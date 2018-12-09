@@ -252,7 +252,7 @@ function openHelpEditor(){
     ];
 
 
-    const tipEasterEggChance = common.randomBetween(0, 5);
+    const tipEasterEggChance = common.randomBetween(0, 2);
     const messageNum = common.randomBetween(0, message.length - 1);
 
     if (tipEasterEggChance == 1) {

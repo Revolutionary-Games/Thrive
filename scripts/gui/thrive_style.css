@@ -195,6 +195,13 @@ video {
   font-size: 15pt;
 }
 
+.HelpScroll {
+  display: inline-block;
+  margin-left: 5%;
+  margin-right: 5%;
+  overflow-y: scroll;
+  height: 600px;
+}
 
 .MenuButton {
   width: 280px;
@@ -599,7 +606,7 @@ video {
   text-align: center;
   left: 0;
   bottom: 30px;
-  color: white;
+  color: yellow;
 }
 
 #pauseButton {
