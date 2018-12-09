@@ -35,5 +35,12 @@ protected:
 
     void
         _OnWorldJoined(std::shared_ptr<GameWorld> world) override;
+
+
+    void
+        _OnLocalControlChanged(GameWorld* world) override;
+
+    void
+        _OnEntityReceived(GameWorld* world, ObjectID created) override;
 };
 } // namespace thrive

@@ -74,6 +74,8 @@ public:
     {
         if(m_microbeBackgroundItem) {
 
+            LOG_INFO("Destroying background item");
+
             if(m_cellStage)
                 m_cellStage->GetScene()->destroyItem(m_microbeBackgroundItem);
             m_microbeBackgroundItem = nullptr;
@@ -92,6 +94,8 @@ public:
         createBackgroundItem()
     {
         destroyBackgroundItem();
+
+        LOG_INFO("Creating background item");
 
         LEVIATHAN_ASSERT(
             m_cellStage, "Trying to create background item before world");
@@ -829,8 +833,7 @@ void
 
     LOG_INFO("Calling world setup script setupScriptsForWorld_Client");
 
-    ScriptRunningSetup setup;
-    setup.SetEntrypoint("setupScriptsForWorld_Client");
+    ScriptRunningSetup setup("setupScriptsForWorld_Client");
 
     auto result = getMicrobeScripts()->ExecuteOnModule<void>(
         setup, false, m_impl->m_cellStage.get());
@@ -863,17 +866,7 @@ void
 
         m_impl->m_microbeBackgroundSubMesh->setMaterialName("Background");
     }
-    // This also needs to be manually destroyed later.
-    if(!m_impl->m_microbeEditorBackgroundMesh) {
-        m_impl->m_microbeEditorBackgroundMesh =
-            Leviathan::GeometryHelpers::CreateScreenSpaceQuad(
-                "Editor_background", -1, -1, 2, 2);
 
-        m_impl->m_microbeEditorBackgroundSubMesh =
-            m_impl->m_microbeEditorBackgroundMesh->getSubMesh(0);
-
-        m_impl->m_microbeEditorBackgroundSubMesh->setMaterialName("Background");
-    }
     // Setup render queue for it
     m_impl->m_cellStage->GetScene()->getRenderQueue()->setRenderQueueMode(
         1, Ogre::RenderQueue::FAST);
@@ -881,12 +874,56 @@ void
     // This now attaches the item as well (as long as the scene node is created)
     // This makes it easier to manage the multiple backgrounds and reattaching
     // them
-    if(!m_impl->m_microbeBackgroundItem) {
-        m_impl->createBackgroundItem();
-    }
+    m_impl->createBackgroundItem();
 
     // We handle spawning cells when the server tells us and we setup our
     // control when we receive a notification of a direct control entity
+}
+
+void
+    ThriveGame::doSpawnCellFromServerReceivedComponents(ObjectID id)
+{
+    LOG_INFO(
+        "ThriveGame: doSpawnCellFromServerReceivedComponents for entity: " +
+        std::to_string(id));
+
+    LEVIATHAN_ASSERT(getMicrobeScripts(), "microbe scripts not loaded");
+
+    ScriptRunningSetup setup("setupClientSideReceivedCell");
+
+    auto result = getMicrobeScripts()->ExecuteOnModule<void>(
+        setup, false, m_impl->m_cellStage.get(), id);
+
+    if(result.Result != SCRIPT_RUN_RESULT::Success) {
+
+        LOG_ERROR("Failed to run setupClientSideReceivedCell");
+        return;
+    }
+}
+
+void
+    ThriveGame::reportLocalControlChanged(GameWorld* world)
+{
+    LOG_INFO("ThriveGame: updating our local player id, local control changed");
+
+    const auto& control = m_impl->m_cellStage->GetOurLocalControl();
+
+    if(control.empty()) {
+
+        playerData().setActiveCreature(NULL_OBJECT);
+
+    } else {
+
+        if(control.size() > 1) {
+            LOG_WARNING("ThriveGame: we have more than 1 locally controlled "
+                        "entity, assuming first is our cell");
+        }
+
+        playerData().setActiveCreature(control.front());
+    }
+
+    LOG_INFO("ThriveGame: active entity is now: " +
+             std::to_string(playerData().activeCreature()));
 }
 
 // ------------------------------------ //

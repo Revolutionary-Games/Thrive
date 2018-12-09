@@ -63,28 +63,30 @@ class MovementOrganelle : OrganelleComponent{
         // the lua version where that was also attempted here
 
         // Create animation component
-        Animated@ animated = organelle.world.Create_Animated(organelle.organelleEntity,
-            model.GraphicalObject);
-        SimpleAnimation moveAnimation("Move");
-        moveAnimation.Loop = true;
-        // 0.25 is the "idle" animation speed when the flagellum isn't used
-        moveAnimation.SpeedFactor = 0.25f;
-        animated.AddAnimation(moveAnimation);
-        // Don't forget to mark to apply the new animation
-        animated.Marked = true;
+        if(IsInGraphicalMode()){
+            Animated@ animated = organelle.world.Create_Animated(organelle.organelleEntity,
+                model.GraphicalObject);
+            SimpleAnimation moveAnimation("Move");
+            moveAnimation.Loop = true;
+            // 0.25 is the "idle" animation speed when the flagellum isn't used
+            moveAnimation.SpeedFactor = 0.25f;
+            animated.AddAnimation(moveAnimation);
+            // Don't forget to mark to apply the new animation
+            animated.Marked = true;
 
-        // TODO: BUG: This is already applied for the player but not generated species
-        auto renderNode = organelle.world.GetComponent_RenderNode(organelle.organelleEntity);
+            // TODO: BUG: This is already applied for the player but not generated species
+            auto renderNode = organelle.world.GetComponent_RenderNode(organelle.organelleEntity);
 
 
-        // Set the pos to be "good enough" for now. It will be
-        // properly set to the edge of the membrane on next call to
-        // update
+            // Set the pos to be "good enough" for now. It will be
+            // properly set to the edge of the membrane on next call to
+            // update
 
-        renderNode.Node.setPosition(organellePos);
+            renderNode.Node.setPosition(organellePos);
 
-        renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(angle),
-                Ogre::Vector3(0, 1, 1)));
+            renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(angle),
+                    Ogre::Vector3(0, 1, 1)));
+        }
     }
 
     // void MovementOrganelle.load(storage){
@@ -115,12 +117,14 @@ class MovementOrganelle : OrganelleComponent{
         if(forceMagnitude > 0){
             if(direction.LengthSquared() < EPSILON || this.force.LengthSquared() < EPSILON){
                 this.movingTail = false;
-                animated.GetAnimation(0).SpeedFactor = 0.25f;
+                if(animated !is null)
+                    animated.GetAnimation(0).SpeedFactor = 0.25f;
                 return Float3(0, 0, 0);
             }
 
             this.movingTail = true;
-            animated.GetAnimation(0).SpeedFactor = 1.3;
+            if(animated !is null)
+                animated.GetAnimation(0).SpeedFactor = 1.3;
             // 7 per second per flagella (according to microbe descisions)
             //dropped to 7
             double energy = abs(FLAGELLA_ENERGY_COST/milliseconds);
@@ -133,7 +137,9 @@ class MovementOrganelle : OrganelleComponent{
                 forceMagnitude = sign(forceMagnitude) * availableEnergy * 1000.f /
                     milliseconds;
                 this.movingTail = false;
-                animated.GetAnimation(0).SpeedFactor = 0.25f;
+                
+                if(animated !is null)
+                    animated.GetAnimation(0).SpeedFactor = 0.25f;
             }
 
             float impulseMagnitude = (FLAGELLA_BASE_FORCE * microbeComponent.movementFactor *
@@ -150,7 +156,9 @@ class MovementOrganelle : OrganelleComponent{
         } else {
             if(this.movingTail){
                 this.movingTail = false;
-                animated.GetAnimation(0).SpeedFactor = 0.25f;
+                
+                if(animated !is null)
+                    animated.GetAnimation(0).SpeedFactor = 0.25f;
             }
         }
 
@@ -181,12 +189,13 @@ class MovementOrganelle : OrganelleComponent{
         angle = ((angle * 180)/PI - 90) % 360;
 
         auto renderNode = organelle.world.GetComponent_RenderNode(organelle.organelleEntity);
-        if (renderNode !is null)
-            {
+        if (renderNode !is null && IsInGraphicalMode())
+        {
             renderNode.Node.setPosition(membraneCoords);
             renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(angle),
-                Ogre::Vector3(0, 1, 0))*Ogre::Quaternion(Ogre::Degree(270),Ogre::Vector3(0, 0, 1)));
-            }
+                    Ogre::Vector3(0, 1, 0))*Ogre::Quaternion(Ogre::Degree(270),
+                        Ogre::Vector3(0, 0, 1)));
+        }
 
         //Grab components
         MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(

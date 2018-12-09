@@ -18,3 +18,27 @@ std::shared_ptr<GameWorld>
 {
     return ThriveServer::get()->getCellStageShared();
 }
+
+GameWorld*
+    ThriveServerNetHandler::_GetWorldForEntityMessage(int32_t worldid)
+{
+    auto world = ThriveServer::get()->getCellStage();
+
+    if(world->GetID() != worldid) {
+
+        LOG_ERROR(
+            "ThriveServerNetHandler: got request for non-cellstage world id: " +
+            std::to_string(worldid));
+        return nullptr;
+    }
+
+    return world;
+}
+
+void
+    ThriveServerNetHandler::_OnPlayerJoinedWorld(
+        const std::shared_ptr<Leviathan::ConnectedPlayer>& player,
+        const std::shared_ptr<GameWorld>& world)
+{
+    return ThriveServer::get()->spawnPlayer(player);
+}

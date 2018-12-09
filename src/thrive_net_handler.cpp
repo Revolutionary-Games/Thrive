@@ -53,3 +53,15 @@ void
 {
     ThriveGame::Get()->reportJoinedServerWorld(world);
 }
+
+void
+    ThriveNetHandler::_OnLocalControlChanged(GameWorld* world)
+{
+    ThriveGame::Get()->reportLocalControlChanged(world);
+}
+
+void
+    ThriveNetHandler::_OnEntityReceived(GameWorld* world, ObjectID created)
+{
+    ThriveGame::Get()->doSpawnCellFromServerReceivedComponents(created);
+}

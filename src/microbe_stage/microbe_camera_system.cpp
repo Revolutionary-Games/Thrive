@@ -45,7 +45,6 @@ void
     }
 
     try {
-
         const auto& playerPos =
             world.GetComponent<Leviathan::Position>(controlledEntity);
 
@@ -62,11 +61,9 @@ void
             cameraPos.Marked = true;
         }
 
-    } catch(const Leviathan::NotFound& e) {
+    } catch(const Leviathan::NotFound&) {
 
-        LOG_WARNING("MicrobeCameraSystem: failed to Run (missing component?) "
-                    "due to exception:");
-        e.PrintToLog();
+        LOG_WARNING("MicrobeCameraSystem: failed to Run (missing component?)");
         return;
     }
 }

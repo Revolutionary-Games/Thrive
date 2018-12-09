@@ -692,14 +692,19 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         auto renderNode = world.Create_RenderNode(organelleEntity);
         renderNode.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
         renderNode.Marked = true;
-        // For performance reasons we set the position here directly
-        // instead of with the position system
-        renderNode.Node.setPosition(offset + this.cartesianPosition);
-        //maybe instead of changing this here we should do so in the generation routine.
-        renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(90),
-                Ogre::Vector3(1, 0, 0)) * Ogre::Quaternion(Ogre::Degree(180),
-                    Ogre::Vector3(0, 1, 0)) * Ogre::Quaternion(Ogre::Degree(rotation),
-                        Ogre::Vector3(0, 0, 1)));
+
+        if(IsInGraphicalMode()){
+        
+            // For performance reasons we set the position here directly
+            // instead of with the position system
+            renderNode.Node.setPosition(offset + this.cartesianPosition);
+            
+            // maybe instead of changing this here we should do so in the generation routine.
+            renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(90),
+                    Ogre::Vector3(1, 0, 0)) * Ogre::Quaternion(Ogre::Degree(180),
+                        Ogre::Vector3(0, 1, 0)) * Ogre::Quaternion(Ogre::Degree(rotation),
+                            Ogre::Vector3(0, 0, 1)));
+        }
 
         // Add hex collision shapes
         auto hexes = organelle.getHexes();
@@ -726,19 +731,25 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
         auto parentRenderNode = world.GetComponent_RenderNode(
             microbeEntity);
-        renderNode.Node.removeFromParent();
-        parentRenderNode.Node.addChild(renderNode.Node);
 
-        //Adding a mesh for the organelle.
+        if(IsInGraphicalMode()){
+            renderNode.Node.removeFromParent();
+            parentRenderNode.Node.addChild(renderNode.Node);
+        }
+
+        // Adding a mesh for the organelle.
         if(organelle.mesh != ""){
             auto model = world.Create_Model(organelleEntity, renderNode.Node, organelle.mesh);
 
             // TODO: clean up this check
             if(organelle.mesh != "flagellum.mesh"){
-                model.GraphicalObject.setCustomParameter(1,
-                    // Start non-tinted
-                    Ogre::Vector4(1, 1, 1, 1)
-                );
+
+                if(IsInGraphicalMode()){
+                    model.GraphicalObject.setCustomParameter(1,
+                        // Start non-tinted
+                        Ogre::Vector4(1, 1, 1, 1)
+                    );
+                }
             }
         }
 
