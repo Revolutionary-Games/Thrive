@@ -33,6 +33,10 @@ public:
         getCellStageShared();
 
 
+    void
+        spawnPlayer(const std::shared_ptr<Leviathan::ConnectedPlayer>& player);
+
+
     // ------------------------------------ //
     // Hooking into the engine, and overridden methods from base application
     // etc.

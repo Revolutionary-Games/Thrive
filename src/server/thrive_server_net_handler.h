@@ -18,5 +18,13 @@ public:
 protected:
     std::shared_ptr<GameWorld>
         _GetWorldForJoinTarget(const std::string& options) override;
+
+    GameWorld*
+        _GetWorldForEntityMessage(int32_t worldid) override;
+
+    void
+        _OnPlayerJoinedWorld(
+            const std::shared_ptr<Leviathan::ConnectedPlayer>& player,
+            const std::shared_ptr<GameWorld>& world) override;
 };
 } // namespace thrive

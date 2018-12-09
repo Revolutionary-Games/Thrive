@@ -595,26 +595,31 @@ void
 
     const int renderTime = Leviathan::TICKSPEED;
 
-    auto playerEntity = ThriveGame::instance()->playerData().activeCreature();
-
     Float3 position = Float3(0, 0, 0);
 
-    if(playerEntity == NULL_OBJECT) {
+    // Hybrid client-server version
+    if(ThriveGame::Get()) {
 
-        LOG_WARNING("CompoundCloudSystem: Run: playerData().activeCreature() "
-                    "is NULL_OBJECT. "
-                    "Using default position");
-    } else {
+        auto playerEntity = ThriveGame::Get()->playerData().activeCreature();
 
-        try {
-            // Get the player's position.
-            const Leviathan::Position& posEntity =
-                world.GetComponent_Position(playerEntity);
-            position = posEntity.Members._Position;
+        if(playerEntity == NULL_OBJECT) {
 
-        } catch(const Leviathan::NotFound&) {
-            LOG_WARNING("CompoundCloudSystem: Run: playerEntity(" +
-                        std::to_string(playerEntity) + ") has no position");
+            LOG_WARNING(
+                "CompoundCloudSystem: Run: playerData().activeCreature() "
+                "is NULL_OBJECT. "
+                "Using default position");
+        } else {
+
+            try {
+                // Get the player's position.
+                const Leviathan::Position& posEntity =
+                    world.GetComponent_Position(playerEntity);
+                position = posEntity.Members._Position;
+
+            } catch(const Leviathan::NotFound&) {
+                LOG_WARNING("CompoundCloudSystem: Run: playerEntity(" +
+                            std::to_string(playerEntity) + ") has no position");
+            }
         }
     }
 

@@ -39,7 +39,11 @@ cellWorld = GameWorldClass.new(
                                                 Variable.new("name", "std::string",
                                                              memberaccess: "name",
                                                              noRef: false)
-                                            ])]),
+                                                                 ])],
+                        # Disabled to not send empty species to the
+                        # client. This should be re-enabled ones
+                        # synchronizing species data works
+                        nosynchronize: true),
     EntityComponent.new("MembraneComponent", [ConstructorInfo.new(
                                          [
 											Variable.new("type", "MEMBRANE_TYPE",

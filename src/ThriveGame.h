@@ -82,9 +82,21 @@ public:
         disconnectFromServer(bool userInitiated,
             const std::string& reason = "Disconnect by user");
 
+    //! \brief Called when we receive an entity from the server that is probably
+    //! a cell
+    //!
+    //! This handles adding MicrobeComponent etc. to make the thing show up
+    //! properly
+    void
+        doSpawnCellFromServerReceivedComponents(ObjectID id);
+
     //! \brief Called from the net handler when we have joined a world
     void
         reportJoinedServerWorld(std::shared_ptr<GameWorld> world);
+
+    //! \brief Called when the entity we control changes
+    void
+        reportLocalControlChanged(GameWorld* world);
 
     // ------------------------------------ //
     // Hooking into the engine, and overridden methods from base application

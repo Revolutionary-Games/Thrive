@@ -95,7 +95,7 @@ void
             std::dynamic_pointer_cast<CellStageWorld>(engine->CreateWorld(
                 nullptr, static_cast<int>(THRIVE_WORLD_TYPE::CELL_STAGE),
                 createPhysicsMaterials(),
-                Leviathan::WorldNetworkSettings::GetSettingsForClient()));
+                Leviathan::WorldNetworkSettings::GetSettingsForServer()));
     }
 
     LEVIATHAN_ASSERT(m_impl->m_cellStage, "Cell stage world creation failed");
@@ -164,6 +164,38 @@ void
     // Allow players joining
     m_network->SetServerAllowPlayers(true);
     m_network->SetServerStatus(Leviathan::SERVER_STATUS::Running);
+}
+// ------------------------------------ //
+void
+    ThriveServer::spawnPlayer(
+        const std::shared_ptr<Leviathan::ConnectedPlayer>& player)
+{
+    LOG_INFO("ThriveServer spawning player");
+
+    ScriptRunningSetup setup;
+    setup.SetEntrypoint("spawnPlayer_Server");
+
+    auto result = getMicrobeScripts()->ExecuteOnModule<ObjectID>(
+        setup, false, m_impl->m_cellStage.get());
+
+    if(result.Result != SCRIPT_RUN_RESULT::Success) {
+
+        LOG_ERROR(
+            "Failed to run player spawn function: " + setup.Entryfunction);
+        return;
+    }
+
+    ObjectID playerEntity = result.Value;
+
+    try {
+        m_impl->m_cellStage->GetComponent_Sendable(playerEntity);
+    } catch(const Leviathan::NotFound&) {
+        LEVIATHAN_ASSERT(
+            false, "spawn player on server didn't create sendable component");
+    }
+
+    m_impl->m_cellStage->SetLocalControl(
+        playerEntity, true, player->GetConnection());
 }
 // ------------------------------------ //
 CellStageWorld*

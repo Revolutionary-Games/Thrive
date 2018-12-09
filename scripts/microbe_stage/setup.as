@@ -28,6 +28,7 @@ void setupScriptsForWorld_Server(CellStageWorld@ world)
 //! Server variant of setupScriptsForWorld
 void setupScriptsForWorld_Client(CellStageWorld@ world)
 {
+    setupSpecies(world);
     setupSystemsForWorld_Client(world);
 }
 
@@ -136,6 +137,44 @@ void setupPlayer(CellStageWorld@ world)
     GetThriveGame().playerData().setActiveCreature(microbe);
 }
 
+//! This spawns a player in multiplayer
+ObjectID spawnPlayer_Server(CellStageWorld@ world)
+{
+    ObjectID microbe = MicrobeOperations::spawnMicrobe(world, Float3(0, 0, 0), "Default",
+        false);
+
+    assert(microbe != NULL_OBJECT, "Failed to spawn player cell");
+    return microbe;
+}
+
+//! This handles making a cell out of an entity received from the server
+void setupClientSideReceivedCell(CellStageWorld@ world, ObjectID entity)
+{
+    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
+        world.GetScriptComponentHolder("MicrobeComponent").Create(entity));
+
+    auto speciesName = "Default";
+
+    auto speciesEntity = findSpeciesEntityByName(world, speciesName);
+
+    assert(speciesEntity != NULL_OBJECT);
+    
+    auto species = world.GetComponent_SpeciesComponent(speciesEntity);
+
+    assert(species !is null);    
+    
+    microbeComponent.init(entity, true, species);
+
+    auto shape = world.GetPhysicalWorld().CreateCompound();    
+    Species::applyTemplate(world, entity, species, shape);
+
+    auto rigidBody = world.GetComponent_Physics(entity);
+
+    MicrobeOperations::_applyMicrobeCollisionShape(world, rigidBody, microbeComponent, shape);
+
+    microbeComponent.initialized = true;
+}
+
 
 // TODO: move this somewhere
 // This is called from c++ system PlayerMicrobeControlSystem
@@ -144,6 +183,10 @@ void applyCellMovementControl(CellStageWorld@ world, ObjectID entity,
 {
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(entity));
+
+    if(microbeComponent is null){
+        return;
+    }
 
     if(!microbeComponent.dead){
         microbeComponent.facingTargetPoint = lookPosition;

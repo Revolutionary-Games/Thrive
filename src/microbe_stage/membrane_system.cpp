@@ -25,6 +25,11 @@ MembraneComponent::MembraneComponent(MEMBRANE_TYPE type) :
 {
     // membrane type
     membraneType = type;
+
+    // Skip if no graphics
+    if(!Ogre::Root::getSingletonPtr())
+        return;
+
     // Create the mesh for rendering us
     m_mesh = Ogre::MeshManager::getSingleton().createManual(
         "MembraneMesh_" + std::to_string(++MembraneMeshNumber),
@@ -35,6 +40,10 @@ MembraneComponent::MembraneComponent(MEMBRANE_TYPE type) :
 
 MembraneComponent::~MembraneComponent()
 {
+    // Skip if no graphics
+    if(!Ogre::Root::getSingletonPtr())
+        return;
+
     LEVIATHAN_ASSERT(!m_item, "MembraneComponent not released");
 
     Ogre::MeshManager::getSingleton().remove(m_mesh);
@@ -219,6 +228,10 @@ void
 
     if(!isInitialized)
         Initialize();
+
+    // Skip if no graphics
+    if(!Ogre::Root::getSingletonPtr())
+        return;
 
     LEVIATHAN_ASSERT(!m_item,
         "Membrane code should always recreate item but it is already created.");
