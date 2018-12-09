@@ -597,7 +597,7 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         // LOG_WARNING("Cell tries to shoot without agent vacuole");
         return;
     }
-	
+
     auto compoundBag = world.GetComponent_CompoundBagComponent(microbeEntity);
     if(compoundBag.getCompoundAmount(compoundId) > MINIMUM_AGENT_EMISSION_AMOUNT)
         {
