@@ -137,7 +137,7 @@ class MovementOrganelle : OrganelleComponent{
                 forceMagnitude = sign(forceMagnitude) * availableEnergy * 1000.f /
                     milliseconds;
                 this.movingTail = false;
-                
+
                 if(animated !is null)
                     animated.GetAnimation(0).SpeedFactor = 0.25f;
             }
@@ -156,7 +156,7 @@ class MovementOrganelle : OrganelleComponent{
         } else {
             if(this.movingTail){
                 this.movingTail = false;
-                
+
                 if(animated !is null)
                     animated.GetAnimation(0).SpeedFactor = 0.25f;
             }

@@ -158,14 +158,14 @@ void setupClientSideReceivedCell(CellStageWorld@ world, ObjectID entity)
     auto speciesEntity = findSpeciesEntityByName(world, speciesName);
 
     assert(speciesEntity != NULL_OBJECT);
-    
+
     auto species = world.GetComponent_SpeciesComponent(speciesEntity);
 
-    assert(species !is null);    
-    
+    assert(species !is null);
+
     microbeComponent.init(entity, true, species);
 
-    auto shape = world.GetPhysicalWorld().CreateCompound();    
+    auto shape = world.GetPhysicalWorld().CreateCompound();
     Species::applyTemplate(world, entity, species, shape);
 
     auto rigidBody = world.GetComponent_Physics(entity);
