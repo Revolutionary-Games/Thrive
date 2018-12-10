@@ -1,12 +1,20 @@
 #include "MicrobeEditorKeyHandler.h"
 
+#include "generated/microbe_editor_world.h"
+#include "microbe_stage/simulation_parameters.h"
+
+#include <Addons/GameModule.h>
 #include <Application/KeyConfiguration.h>
-#include <Engine.h>
+#include <Entities/GameWorld.h>
+#include <Entities/ScriptComponentHolder.h>
 #include <Window.h>
+
+#include <OgreRay.h>
 
 using namespace thrive;
 
 MicrobeEditorKeyHandler::MicrobeEditorKeyHandler(KeyConfiguration& keys) :
+    m_reproduceCheat(keys.ResolveControlNameToFirstKey("ReproduceCheat"))
 {}
 // ------------------------------------ //
 bool

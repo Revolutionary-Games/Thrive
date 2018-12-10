@@ -3,7 +3,13 @@
 #include <Input/InputController.h>
 #include <Input/Key.h>
 
+namespace Leviathan {
+class ScriptComponentHolder;
+}
+
 namespace thrive {
+
+class MicrobeEditorWorld;
 
 //! This detects key presses everywhere
 class MicrobeEditorKeyHandler : public Leviathan::InputReceiver {
@@ -20,9 +26,18 @@ public:
 
     virtual bool
         OnMouseMove(int xmove, int ymove) override;
+    void
+        setEnabled(bool enabled)
+    {
+        m_enabled = enabled;
+    }
+
 
 private:
     Leviathan::GKey m_screenshot;
+    Leviathan::GKey m_reproduceCheat;
+    // Set to false when not in the main menu
+    bool m_enabled = true;
 };
 
 } // namespace thrive
