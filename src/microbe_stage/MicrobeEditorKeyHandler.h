@@ -34,9 +34,9 @@ public:
 
 
 private:
-    Leviathan::GKey m_screenshot;
-    Leviathan::GKey m_reproduceCheat;
-    // Set to false when not in the main menu
+    Leviathan::GKey m_rotateRight;
+    Leviathan::GKey m_rotateLeft;
+    // Set to false when not in the editor
     bool m_enabled = true;
 };
 

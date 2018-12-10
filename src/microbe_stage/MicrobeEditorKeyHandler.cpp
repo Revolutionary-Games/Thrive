@@ -14,7 +14,8 @@
 using namespace thrive;
 
 MicrobeEditorKeyHandler::MicrobeEditorKeyHandler(KeyConfiguration& keys) :
-    m_reproduceCheat(keys.ResolveControlNameToFirstKey("ReproduceCheat"))
+    m_rotateRight(keys.ResolveControlNameToFirstKey("RotateRight")),
+    m_rotateLeft(keys.ResolveControlNameToFirstKey("RotateLeft"))
 {}
 // ------------------------------------ //
 bool
