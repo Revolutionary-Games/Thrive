@@ -222,12 +222,16 @@ void
 
     // Create world if not already created //
     if(!m_impl->m_cellStage) {
+
+        Leviathan::WorldNetworkSettings netSettings;
+        netSettings.IsAuthoritative = true;
+        netSettings.DoInterpolation = true;
+
         LOG_INFO("ThriveGame: startNewGame: Creating new cellstage world");
         m_impl->m_cellStage =
             std::dynamic_pointer_cast<CellStageWorld>(engine->CreateWorld(
                 window1, static_cast<int>(THRIVE_WORLD_TYPE::CELL_STAGE),
-                createPhysicsMaterials(),
-                Leviathan::WorldNetworkSettings::GetSettingsForClient()));
+                createPhysicsMaterials(), netSettings));
     } else {
         restarted = true;
         m_impl->m_cellStage->ClearEntities();
@@ -463,11 +467,15 @@ void
 
         LOG_INFO("ThriveGame: editorButtonClicked: Creating new microbe editor "
                  "world");
+
+        Leviathan::WorldNetworkSettings netSettings;
+        netSettings.IsAuthoritative = true;
+        netSettings.DoInterpolation = true;
+
         m_impl->m_microbeEditor =
             std::dynamic_pointer_cast<MicrobeEditorWorld>(engine->CreateWorld(
                 window1, static_cast<int>(THRIVE_WORLD_TYPE::MICROBE_EDITOR),
-                createPhysicsMaterials(),
-                Leviathan::WorldNetworkSettings::GetSettingsForClient()));
+                createPhysicsMaterials(), netSettings));
     }
 
     LEVIATHAN_ASSERT(
@@ -887,6 +895,14 @@ void
         "ThriveGame: doSpawnCellFromServerReceivedComponents for entity: " +
         std::to_string(id));
 
+    try {
+        m_impl->m_cellStage->GetComponent_MembraneComponent(id);
+    } catch(const Leviathan::NotFound&) {
+
+        LOG_INFO("Skipping this one as this is probably not a cell");
+        return;
+    }
+
     LEVIATHAN_ASSERT(getMicrobeScripts(), "microbe scripts not loaded");
 
     ScriptRunningSetup setup("setupClientSideReceivedCell");
@@ -899,6 +915,8 @@ void
         LOG_ERROR("Failed to run setupClientSideReceivedCell");
         return;
     }
+
+    LOG_INFO("Successfully ran setupClientSideReceivedCell");
 }
 
 void

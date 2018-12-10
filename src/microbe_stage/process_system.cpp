@@ -10,6 +10,8 @@
 
 #include "microbe_stage/process_system.h"
 
+#include <Entities/GameWorld.h>
+
 using namespace thrive;
 
 ProcessorComponent::ProcessorComponent() : Leviathan::Component(TYPE) {}
@@ -196,6 +198,9 @@ double
 void
     ProcessSystem::Run(GameWorld& world)
 {
+    if(!world.GetNetworkSettings().IsAuthoritative)
+        return;
+
     const auto logicTime = Leviathan::TICKSPEED;
     // Iterating on each entity with a CompoundBagComponent and a
     // ProcessorComponent

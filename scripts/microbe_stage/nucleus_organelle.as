@@ -26,7 +26,7 @@ class NucleusOrganelle : OrganelleComponent{
         assert(microbeNode !is null, "microbe entity has no RenderNode");
 
         if(IsInGraphicalMode()){
-            
+
         golgi = world.CreateEntity();
         ER = world.CreateEntity();
 
@@ -68,7 +68,7 @@ class NucleusOrganelle : OrganelleComponent{
 
         world.SetEntitysParent(ER, microbeEntity);
 
-        
+
         // This does nothing...
         // auto speciesColour = speciesComponent.colour;
         // this.colourSuffix = "" + floor(speciesColour.X * 256) +
@@ -91,7 +91,7 @@ class NucleusOrganelle : OrganelleComponent{
             world.QueueDestroyEntity(golgi);
         if(ER != NULL_OBJECT)
             world.QueueDestroyEntity(ER);
-        
+
         golgi = NULL_OBJECT;
         ER = NULL_OBJECT;
     }

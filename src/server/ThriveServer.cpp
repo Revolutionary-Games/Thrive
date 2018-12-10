@@ -194,6 +194,13 @@ void
             false, "spawn player on server didn't create sendable component");
     }
 
+    try {
+        m_impl->m_cellStage->GetComponent_MembraneComponent(playerEntity);
+    } catch(const Leviathan::NotFound&) {
+        LEVIATHAN_ASSERT(
+            false, "spawn player on server didn't create membrane component");
+    }
+
     m_impl->m_cellStage->SetLocalControl(
         playerEntity, true, player->GetConnection());
 }

@@ -103,7 +103,7 @@ class MicrobeStageHudSystem : ScriptSystem{
         ObjectID player = GetThriveGame().playerData().activeCreature();
 
         //since this is ran every step this is a good place to do music code
-        handleAmbientSound();        
+        handleAmbientSound();
 
         // Update player stats if there is a cell currently
         if(player != NULL_OBJECT){
@@ -114,7 +114,7 @@ class MicrobeStageHudSystem : ScriptSystem{
                 World.GetScriptComponentHolder("MicrobeComponent").Find(player));
 
             if(microbeComponent is null){
-                
+
                 return;
             }
 

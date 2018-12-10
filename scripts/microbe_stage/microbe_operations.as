@@ -939,7 +939,7 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, bool aiControlled,
     // s1 = soundComponent.addSound("microbe-movement-2",
     //     "soundeffects/microbe-movement-3.ogg");
     // s1.properties.volume = 0.4;
-    // s1.properties.touch();    
+    // s1.properties.touch();
 
     auto position = world.Create_Position(entity, Float3(0, 0, 0), Float4::IdentityQuaternion);
 
