@@ -17,7 +17,8 @@ public:
     std::shared_ptr<Leviathan::GameWorld>
         CreateNewWorld(int worldtype,
             const std::shared_ptr<Leviathan::PhysicsMaterialManager>&
-                physicsMaterials) override;
+                physicsMaterials,
+            int overrideid) override;
 };
 
 } // namespace thrive

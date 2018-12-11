@@ -26,4 +26,10 @@ var Thrive = {};
     native function exitToMenuClicked();
     Thrive.exitToMenuClicked = exitToMenuClicked;
 
+    native function connectToServer(url);
+    Thrive.connectToServer = connectToServer;
+
+    native function disconnectFromServer();
+    Thrive.disconnectFromServer = disconnectFromServer;
+
 }());

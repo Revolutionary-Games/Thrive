@@ -21,6 +21,10 @@ using namespace thrive;
 void
     PlayerHoverInfoSystem::Run(CellStageWorld& world)
 {
+    // Only on client
+    if(!ThriveGame::Get())
+        return;
+
     passed += Leviathan::TICKSPEED;
 
     if(passed < RUN_EVERY_MS)
