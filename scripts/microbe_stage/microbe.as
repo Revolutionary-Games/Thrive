@@ -546,7 +546,7 @@ class MicrobeSystem : ScriptSystem{
 
         if(physics.Body is null){
 
-            LOG_ERROR("Cell is missing physics body: " + microbeEntity);
+            //LOG_ERROR("Cell is missing physics body: " + microbeEntity);
             return;
         }
 

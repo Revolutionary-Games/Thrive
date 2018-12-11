@@ -43,6 +43,8 @@ class MicrobeEditor{
         eventListener.RegisterForEvent("SymmetryClicked");
         eventListener.RegisterForEvent("MicrobeEditorClicked");
         eventListener.RegisterForEvent("MicrobeEditorExited");
+        eventListener.RegisterForEvent("PressedRightRotate");
+        eventListener.RegisterForEvent("PressedLeftRotate");
 
         placementFunctions = {
             {"nucleus", PlacementFunctionType(this.createNewMicrobe)},
@@ -917,7 +919,6 @@ class MicrobeEditor{
             return 1;
 
         } else if(type == "MicrobeEditorExited"){
-
             LOG_INFO("MicrobeEditor: applying changes to player Species");
 
             // We need to grab the player's species
@@ -946,6 +947,12 @@ class MicrobeEditor{
             //Set Variable
             NamedVars@ vars = event.GetNamedVars();
             symmetry = int(vars.GetSingleValueByName("symmetry"));
+            return 1;
+        } else if (type == "PressedRightRotate"){
+            organelleRot+=(360/6);
+            return 1;
+        }else if (type == "PressedLeftRotate"){
+            organelleRot-=(360/6);
             return 1;
         }
 
