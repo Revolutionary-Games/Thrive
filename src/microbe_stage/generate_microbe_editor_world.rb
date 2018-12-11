@@ -50,7 +50,8 @@ editorWorld = GameWorldClass.new(
   const auto progressInTick = std::get<1>(timeAndTickTuple);
   const auto tick = GetTickNumber();
 END
-                       ),  
+                       ),
+  networking: false
 )
 
 editorWorld.WorldType = "static_cast<int32_t>(thrive::THRIVE_WORLD_TYPE::MICROBE_EDITOR)"

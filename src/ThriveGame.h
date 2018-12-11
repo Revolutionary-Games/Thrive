@@ -3,6 +3,7 @@
 #pragma once
 // ------------------------------------ //
 //! \file \note This file needs to be named like it is currently
+#include "thrive_common.h"
 
 #include "Application/ClientApplication.h"
 #include "Application/GameConfiguration.h"
@@ -20,12 +21,9 @@ class PlayerData;
 
 class PlayerMicrobeControl;
 
-// class BioProcess;
-// class Biome;
-
 //! This is the main thrive class that is created in main.cpp and then handles
 //! running the engine and the event loop
-class ThriveGame : public Leviathan::ClientApplication {
+class ThriveGame : public Leviathan::ClientApplication, public ThriveCommon {
     class Implementation;
 
 public:
@@ -50,9 +48,6 @@ public:
     PlayerMicrobeControl*
         getPlayerInput();
 
-    Leviathan::GameModule*
-        getMicrobeScripts();
-
     void
         setBackgroundMaterial(const std::string& material);
 
@@ -76,6 +71,33 @@ public:
     void
         onZoomChange(float amount);
 
+
+    // ------------------------------------ //
+    //! \brief Begins connecting to server at url
+    void
+        connectToServer(const std::string& url);
+
+    //! \brief Disconnects from current server
+    void
+        disconnectFromServer(bool userInitiated,
+            const std::string& reason = "Disconnect by user");
+
+    //! \brief Called when we receive an entity from the server that is probably
+    //! a cell
+    //!
+    //! This handles adding MicrobeComponent etc. to make the thing show up
+    //! properly
+    void
+        doSpawnCellFromServerReceivedComponents(ObjectID id);
+
+    //! \brief Called from the net handler when we have joined a world
+    void
+        reportJoinedServerWorld(std::shared_ptr<GameWorld> world);
+
+    //! \brief Called when the entity we control changes
+    void
+        reportLocalControlChanged(GameWorld* world);
+
     // ------------------------------------ //
     // Hooking into the engine, and overridden methods from base application
     // etc.
@@ -85,10 +107,6 @@ public:
 
     void
         CustomizeEnginePostLoad() override;
-
-    //! \brief This creates physics materials for a Thrive world
-    std::unique_ptr<Leviathan::PhysicsMaterialManager>
-        createPhysicsMaterials() const;
 
     void
         EnginePreShutdown() override;
@@ -113,11 +131,6 @@ public:
     bool
         InitLoadCustomScriptTypes(asIScriptEngine* engine) override;
 
-private:
-    //! \brief Calls initialization methods for scripts
-    bool
-        scriptSetup();
-
 protected:
     Leviathan::NetworkInterface*
         _GetApplicationPacketHandler() override;
@@ -125,7 +138,7 @@ protected:
         _ShutdownApplicationPacketHandler() override;
 
 private:
-    std::unique_ptr<ThriveNetHandler> Network;
+    std::unique_ptr<ThriveNetHandler> m_network;
 
     ObjectID m_cellCamera = 0;
 

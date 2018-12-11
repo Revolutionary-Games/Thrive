@@ -38,12 +38,19 @@ cellWorld = GameWorldClass.new(
     EntityComponent.new("CompoundBagComponent", [ConstructorInfo.new([])]),
     EntityComponent.new("SpeciesComponent", [ConstructorInfo.new([
                                                 Variable.new("name", "std::string",
-                                                            noRef: false)
-                                            ])]),
+                                                             memberaccess: "name",
+                                                             noRef: false)
+                                                                 ])],
+                        # Disabled to not send empty species to the
+                        # client. This should be re-enabled ones
+                        # synchronizing species data works
+                        nosynchronize: true),
     EntityComponent.new("MembraneComponent", [ConstructorInfo.new(
                                          [
 											Variable.new("type", "MEMBRANE_TYPE",
-                                           noRef: true),
+                                                         noRef: true,
+                                                         memberaccess: "membraneType",
+                                                         serializeas: "uint16_t"),
                                            #Variable.new("GetScene()", "",
                                            #             nonMethodParam: true),
                                          ])], 
@@ -62,31 +69,39 @@ cellWorld = GameWorldClass.new(
                                            noRef: true),
                               Variable.new("fourth", "Compound*",
                                            noRef: true),
-                            ], noangelscript: true)],
-                        releaseparams: ["GetScene()"]),
+                            ], noangelscript: true,
+                          )],
+                        releaseparams: ["GetScene()"],
+                        nosynchronize: true),
     EntityComponent.new("AgentCloudComponent", [ConstructorInfo.new(
                                                   [
                                                     Variable.new("compoundId", "CompoundId",
-                                                                 noRef: true),
+                                                                 noRef: true,
+                                                                 memberaccess: "m_compoundId"),
                                                     Variable.new("red", "float",
-                                                                 noRef: true),
+                                                                 noRef: true,
+                                                                 memberaccess: "getRed()"),
                                                     Variable.new("green", "float",
-                                                                 noRef: true),
+                                                                 noRef: true,
+                                                                 memberaccess: "getGreen()"),
                                                     Variable.new("blue", "float",
-                                                                 noRef: true),
+                                                                 noRef: true,
+                                                                 memberaccess: "getBlue()"),
                                                   ])]),
     EntityComponent.new("SpawnedComponent", [ConstructorInfo.new(
                                                [
                                                  Variable.new("newSpawnRadius", "double",
                                                               noRef: true)
-                                               ])]),
+                                               ])],
+                        nosynchronize: true,),
     EntityComponent.new("CompoundAbsorberComponent", [ConstructorInfo.new([])]),
     EntityComponent.new("TimedLifeComponent", [ConstructorInfo.new(
                                                  [
                                                    Variable.new("timeToLive", "int",
                                                                 noRef: true),
-                                                 ])]),
-    EntityComponent.new("AgentProperties", [ConstructorInfo.new([])]),                                
+                                                 ])],
+                        nosynchronize: true),
+    EntityComponent.new("AgentProperties", [ConstructorInfo.new([])]),
     
   ],
   systems: [

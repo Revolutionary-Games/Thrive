@@ -25,6 +25,52 @@ export function runMenuSetup(){
         common.playButtonPressSound();
         newGame();
     }, true);
+    document.getElementById("extrasButton").addEventListener("click", (event) => {
+        event.stopPropagation();
+        common.playButtonPressSound();
+        $("#mainMenu").slideUp("fast", () => {
+            $("#extrasMenu").slideDown("fast");
+        });
+    }, true);
+    document.getElementById("backFromExtras").addEventListener("click", (event) => {
+        event.stopPropagation();
+        common.playButtonPressSound();
+        $("#extrasMenu").slideUp("fast", () => {
+            $("#mainMenu").slideDown("fast");
+        });
+    }, true);
+    document.getElementById("toMultiplayerProtoButton").addEventListener("click", (event) => {
+        event.stopPropagation();
+        common.playButtonPressSound();
+        $("#extrasMenu").slideUp("fast", () => {
+            $("#serverConnectingMenu").slideDown("fast");
+        });
+    }, true);
+    document.getElementById("backFromConnecting").addEventListener("click", (event) => {
+        event.stopPropagation();
+        common.playButtonPressSound();
+        $("#serverConnectingMenu").slideUp("fast", () => {
+            $("#extrasMenu").slideDown("fast");
+        });
+    }, true);
+    document.getElementById("backFromConnecting").addEventListener("click", (event) => {
+        event.stopPropagation();
+        common.playButtonPressSound();
+        $("#serverConnectingMenu").slideUp("fast", () => {
+            $("#extrasMenu").slideDown("fast");
+        });
+    }, true);
+    document.getElementById("connectToServerButton").addEventListener("click", (event) => {
+        event.stopPropagation();
+        common.playButtonPressSound();
+        connectToSelectedServerURL();
+    }, true);
+    document.getElementById("disconnectFromServer").addEventListener("click", (event) => {
+        event.stopPropagation();
+        common.playButtonPressSound();
+        disconnectFromCurrentServer();
+    }, true);
+
 
     document.addEventListener("keydown", (event) => {
         if(event.key === "Escape"){
@@ -48,6 +94,15 @@ export function runMenuSetup(){
         // Detect return to menu
         Leviathan.OnGeneric("ExitedToMenu", () => {
             doExitToMenu();
+        });
+
+        Leviathan.OnGeneric("MicrobeStageEnteredClient", () => {
+            switchToMicrobeHUD();
+        });
+
+        // Server status message display
+        Leviathan.OnGeneric("ConnectStatusMessage", (event, vars) => {
+            handleConnectionStatusEvent(vars);
         });
 
         // Start intro video
@@ -150,17 +205,57 @@ function newGame(){
     }
 }
 
+function connectToSelectedServerURL(){
+    // The url is from this textbox
+    const url = document.getElementById("connectServerURLInput").value;
+
+    if(!url)
+        return;
+
+    if(common.isInEngine()){
+
+        Thrive.connectToServer(url);
+
+    } else {
+
+        handleConnectionStatusEvent({
+            show: true, server: url,
+            message: "This is the GUI in a browser and can't actually connect"
+        });
+    }
+}
+
+function disconnectFromCurrentServer(){
+    if(common.isInEngine()){
+
+        Thrive.disconnectFromServer();
+
+    } else {
+
+        handleConnectionStatusEvent({show: false});
+    }
+
+    // ThriveGame handles moving back to the menu GUI
+}
+
+function handleConnectionStatusEvent(event){
+    if(event.show){
+        document.getElementById("serverConnectPopup").style.display = "flex";
+    } else {
+        document.getElementById("serverConnectPopup").style.display = "none";
+    }
+
+    if(event.server)
+        document.getElementById("currentServerAddress").innerText = event.server;
+    document.getElementById("currentConnectionStatusMessage").innerText = event.message;
+}
+
 function onMicrobeIntroEnded(error){
 
     if(error)
         console.error("failed to play microbe intro video: " + error);
 
     menuAlreadySkipped = true;
-
-    if(jams){
-
-        jams.Pause();
-    }
 
     if(common.isInEngine()){
 
@@ -172,6 +267,17 @@ function onMicrobeIntroEnded(error){
     } else {
 
         // Show the microbe GUI anyway for testing purposes
+    }
+
+    switchToMicrobeHUD();
+}
+
+function switchToMicrobeHUD(){
+
+    // Stop menu music
+    if(jams){
+
+        jams.Pause();
     }
 
     // Hide main menu

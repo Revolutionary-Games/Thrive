@@ -217,8 +217,12 @@ PlayerMicrobeControlSystem::~PlayerMicrobeControlSystem()
 void
     PlayerMicrobeControlSystem::Run(CellStageWorld& world)
 {
-    ObjectID controlledEntity =
-        ThriveGame::Get()->playerData().activeCreature();
+    // Only on client
+    ThriveGame* game = ThriveGame::Get();
+    if(!game)
+        return;
+
+    ObjectID controlledEntity = game->playerData().activeCreature();
 
     if(controlledEntity == NULL_OBJECT)
         return;

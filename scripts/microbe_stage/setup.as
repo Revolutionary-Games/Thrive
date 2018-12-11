@@ -17,6 +17,21 @@ void setupScriptsForWorld(CellStageWorld@ world)
     setupSpawnSystem(world);
 }
 
+//! Server variant of setupScriptsForWorld
+void setupScriptsForWorld_Server(CellStageWorld@ world)
+{
+    setupSpecies(world);
+    setupSystemsForWorld_Server(world);
+    // setupSpawnSystem_Server(world);
+}
+
+//! Server variant of setupScriptsForWorld
+void setupScriptsForWorld_Client(CellStageWorld@ world)
+{
+    setupSpecies(world);
+    setupSystemsForWorld_Client(world);
+}
+
 // This function should be the entry point for all player initial-species generation
 // For now, it can go through the XML and instantiate all the species, but later this
 // would be all procedural.
@@ -75,6 +90,36 @@ void setupSystemsForWorld(CellStageWorld@ world)
     world.RegisterScriptSystem("MicrobeAISystem", MicrobeAISystem());
 }
 
+//! Server variant of setupSystemsForWorld
+void setupSystemsForWorld_Server(CellStageWorld@ world)
+{
+    // Fail if compound registry is empty //
+    assert(SimulationParameters::compoundRegistry().getSize() > 0,
+        "Compound registry is empty");
+
+    world.RegisterScriptComponentType("MicrobeComponent", @MicrobeComponentFactory);
+    world.RegisterScriptComponentType("MicrobeAIControllerComponent",
+        @MicrobeAIControllerComponentFactory);
+
+    // Add any new systems and component types that are defined in scripts here
+    world.RegisterScriptSystem("MicrobeSystem", MicrobeSystem());
+    world.RegisterScriptSystem("SpeciesSystem", SpeciesSystem());
+    world.RegisterScriptSystem("MicrobeAISystem", MicrobeAISystem());
+}
+
+//! Client variant of setupSystemsForWorld
+void setupSystemsForWorld_Client(CellStageWorld@ world)
+{
+    // Fail if compound registry is empty //
+    assert(SimulationParameters::compoundRegistry().getSize() > 0,
+        "Compound registry is empty");
+
+    world.RegisterScriptComponentType("MicrobeComponent", @MicrobeComponentFactory);
+
+    world.RegisterScriptSystem("MicrobeSystem", MicrobeSystem());
+    world.RegisterScriptSystem("MicrobeStageHudSystem", MicrobeStageHudSystem());
+}
+
 
 //! This spawns the player
 void setupPlayer(CellStageWorld@ world)
@@ -92,6 +137,44 @@ void setupPlayer(CellStageWorld@ world)
     GetThriveGame().playerData().setActiveCreature(microbe);
 }
 
+//! This spawns a player in multiplayer
+ObjectID spawnPlayer_Server(CellStageWorld@ world)
+{
+    ObjectID microbe = MicrobeOperations::spawnMicrobe(world, Float3(0, 0, 0), "Default",
+        false);
+
+    assert(microbe != NULL_OBJECT, "Failed to spawn player cell");
+    return microbe;
+}
+
+//! This handles making a cell out of an entity received from the server
+void setupClientSideReceivedCell(CellStageWorld@ world, ObjectID entity)
+{
+    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
+        world.GetScriptComponentHolder("MicrobeComponent").Create(entity));
+
+    auto speciesName = "Default";
+
+    auto speciesEntity = findSpeciesEntityByName(world, speciesName);
+
+    assert(speciesEntity != NULL_OBJECT);
+
+    auto species = world.GetComponent_SpeciesComponent(speciesEntity);
+
+    assert(species !is null);
+
+    microbeComponent.init(entity, true, species);
+
+    auto shape = world.GetPhysicalWorld().CreateCompound();
+    Species::applyTemplate(world, entity, species, shape);
+
+    auto rigidBody = world.GetComponent_Physics(entity);
+
+    MicrobeOperations::_applyMicrobeCollisionShape(world, rigidBody, microbeComponent, shape);
+
+    microbeComponent.initialized = true;
+}
+
 
 // TODO: move this somewhere
 // This is called from c++ system PlayerMicrobeControlSystem
@@ -100,6 +183,10 @@ void applyCellMovementControl(CellStageWorld@ world, ObjectID entity,
 {
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(entity));
+
+    if(microbeComponent is null){
+        return;
+    }
 
     if(!microbeComponent.dead){
         microbeComponent.facingTargetPoint = lookPosition;
@@ -401,7 +488,7 @@ void createAgentCloud(CellStageWorld@ world, CompoundId compoundId, Float3 pos,
             Ogre::Vector3(0, 1, 0)));
 
 
-    auto rigidBody = world.Create_Physics(agentEntity, world, position);
+    auto rigidBody = world.Create_Physics(agentEntity, position);
 
     // Agent
     auto agentProperties = world.Create_AgentProperties(agentEntity);
@@ -487,7 +574,7 @@ ObjectID createToxin(CellStageWorld@ world, Float3 pos)
     // Need to set the tint
     model.GraphicalObject.setCustomParameter(1, Ogre::Vector4(1, 1, 1, 1));
 
-    auto rigidBody = world.Create_Physics(toxinEntity, world, position);
+    auto rigidBody = world.Create_Physics(toxinEntity, position);
     auto body = rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
         world.GetPhysicalWorld().CreateSphere(1), 1,
         world.GetPhysicalMaterial("agentCollision"));
@@ -519,7 +606,7 @@ ObjectID createChloroplast(CellStageWorld@ world, Float3 pos)
     // Need to set the tint
     model.GraphicalObject.setCustomParameter(1, Ogre::Vector4(1, 1, 1, 1));
 
-    auto rigidBody = world.Create_Physics(chloroplastEntity, world, position);
+    auto rigidBody = world.Create_Physics(chloroplastEntity, position);
     auto body = rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
         world.GetPhysicalWorld().CreateSphere(1), 1,
         world.GetPhysicalMaterial("floatingOrganelle"));
