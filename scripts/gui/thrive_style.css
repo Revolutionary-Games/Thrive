@@ -183,8 +183,7 @@ video {
   position: relative;
   width: auto;
   top: 50vh;
-  margin-top: -140px;
-  left: 42.5%;
+  margin-top: -200px;
 }
 
 .HelpText {
@@ -205,6 +204,28 @@ video {
   vertical-align: middle;
   line-height: 40px;
   font-size: 15pt;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.MenuTextBox {
+  background: rgb(0, 125, 125, 0.8);
+  border: 1px solid rgb(112, 159, 159, 0.6);
+  color: white;
+  height: 32px;
+  font-size: 18pt;
+  margin-bottom: 3px;
+}
+
+.MenuDialogBox {
+  width: 500px;
+  height: 160px;
+  border-radius: 3px;
+  background: rgb(0, 125, 125, 0.9);
+  border: 2px solid rgb(112, 159, 159, 0.6);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .DisabledButton {
@@ -556,6 +577,7 @@ video {
   background-color: rgb(0, 0, 0, 0.7);
   z-index: 1;
   display: flex;
+  align-items: center;
   justify-content: center;
 }
 
@@ -563,14 +585,6 @@ video {
 #pauseOverlayEditor {
   display: none;
   justify-content: center;
-}
-
-#pauseMenu,
-#pauseMenuEditor {
-  position: relative;
-  width: auto;
-  top: 50vh;
-  margin-top: -200px;
 }
 
 #helpText,

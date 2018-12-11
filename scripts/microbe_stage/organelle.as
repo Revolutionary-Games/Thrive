@@ -385,7 +385,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
         auto model = world.GetComponent_Model(organelleEntity);
 
-        if(model !is null){
+        if(model !is null && IsInGraphicalMode()){
             // TODO: clean up this check
             if(organelle.mesh != "flagellum.mesh"){
 
@@ -622,21 +622,23 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         // Assign (doesn't only copy a reference)
         compoundsLeft = organelle.initialComposition;
 
-        // Scale the organelle model to reflect the new size.
-        // This might be able to be skipped as the recalculateBin method will always set
-        // the correct scale
-        RenderNode@ sceneNode = world.GetComponent_RenderNode(
-            organelleEntity);
+        if(IsInGraphicalMode()){
+            // Scale the organelle model to reflect the new size.
+            // This might be able to be skipped as the recalculateBin method will always set
+            // the correct scale
+            RenderNode@ sceneNode = world.GetComponent_RenderNode(
+                organelleEntity);
 
-        sceneNode.Scale = Float3(1, 1, 1) * HEX_SIZE;
-        sceneNode.Marked = true;
+            sceneNode.Scale = Float3(1, 1, 1) * HEX_SIZE;
+            sceneNode.Marked = true;
 
-        // If it was split from a primary organelle, destroy it.
-        if(isDuplicate){
-            MicrobeOperations::removeOrganelle(world, microbeEntity,
-                {this.q, this.r});
-        } else {
-            wasSplit = false;
+            // If it was split from a primary organelle, destroy it.
+            if(isDuplicate){
+                MicrobeOperations::removeOrganelle(world, microbeEntity,
+                    {this.q, this.r});
+            } else {
+                wasSplit = false;
+            }
         }
     }
 
@@ -675,31 +677,38 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
         assert(organelleEntity == NULL_OBJECT, "PlacedOrganelle already had an entity");
 
-        organelleEntity = world.CreateEntity();
-
-        // Automatically destroyed if the parent is destroyed
-        world.SetEntitysParent(organelleEntity, microbeEntity);
-
-        // Change the colour of this species to be tinted by the membrane.
-        auto species = MicrobeOperations::getSpeciesComponent(world, microbeEntity);
-
-        flashColour = species.colour;
-
-        _needsColourUpdate = true;
-
         Float3 offset = organelle.calculateCenterOffset();
 
-        auto renderNode = world.Create_RenderNode(organelleEntity);
-        renderNode.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
-        renderNode.Marked = true;
-        // For performance reasons we set the position here directly
-        // instead of with the position system
-        renderNode.Node.setPosition(offset + this.cartesianPosition);
-        //maybe instead of changing this here we should do so in the generation routine.
-        renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(90),
-                Ogre::Vector3(1, 0, 0)) * Ogre::Quaternion(Ogre::Degree(180),
-                    Ogre::Vector3(0, 1, 0)) * Ogre::Quaternion(Ogre::Degree(rotation),
-                        Ogre::Vector3(0, 0, 1)));
+        RenderNode@ renderNode;
+
+        if(IsInGraphicalMode()){
+
+            organelleEntity = world.CreateEntity();
+
+            // Automatically destroyed if the parent is destroyed
+            world.SetEntitysParent(organelleEntity, microbeEntity);
+
+            // Change the colour of this species to be tinted by the membrane.
+            auto species = MicrobeOperations::getSpeciesComponent(world, microbeEntity);
+
+            flashColour = species.colour;
+
+            _needsColourUpdate = true;
+
+            @renderNode = world.Create_RenderNode(organelleEntity);
+            renderNode.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
+            renderNode.Marked = true;
+
+            // For performance reasons we set the position here directly
+            // instead of with the position system
+            renderNode.Node.setPosition(offset + this.cartesianPosition);
+
+            // maybe instead of changing this here we should do so in the generation routine.
+            renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(90),
+                    Ogre::Vector3(1, 0, 0)) * Ogre::Quaternion(Ogre::Degree(180),
+                        Ogre::Vector3(0, 1, 0)) * Ogre::Quaternion(Ogre::Degree(rotation),
+                            Ogre::Vector3(0, 0, 1)));
+        }
 
         // Add hex collision shapes
         auto hexes = organelle.getHexes();
@@ -723,22 +732,27 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
             _addedCollisions.insertLast(hexCollision);
         }
 
+        if(IsInGraphicalMode()){
 
-        auto parentRenderNode = world.GetComponent_RenderNode(
-            microbeEntity);
-        renderNode.Node.removeFromParent();
-        parentRenderNode.Node.addChild(renderNode.Node);
+            auto parentRenderNode = world.GetComponent_RenderNode(
+                microbeEntity);
 
-        //Adding a mesh for the organelle.
-        if(organelle.mesh != ""){
-            auto model = world.Create_Model(organelleEntity, renderNode.Node, organelle.mesh);
+            renderNode.Node.removeFromParent();
+            parentRenderNode.Node.addChild(renderNode.Node);
 
-            // TODO: clean up this check
-            if(organelle.mesh != "flagellum.mesh"){
-                model.GraphicalObject.setCustomParameter(1,
-                    // Start non-tinted
-                    Ogre::Vector4(1, 1, 1, 1)
-                );
+            // Adding a mesh for the organelle.
+            if(organelle.mesh != ""){
+                auto model = world.Create_Model(organelleEntity, renderNode.Node,
+                    organelle.mesh);
+
+                // TODO: clean up this check
+                if(organelle.mesh != "flagellum.mesh"){
+
+                    model.GraphicalObject.setCustomParameter(1,
+                        // Start non-tinted
+                        Ogre::Vector4(1, 1, 1, 1)
+                    );
+                }
             }
         }
 
@@ -763,7 +777,8 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         //     components[i].onDestroyedWithMicrobe(microbeEntity, this);
         // }
 
-        world.QueueDestroyEntity(organelleEntity);
+        if(organelleEntity != NULL_OBJECT)
+            world.QueueDestroyEntity(organelleEntity);
         organelleEntity = NULL_OBJECT;
         microbeEntity = NULL_OBJECT;
         @world = null;

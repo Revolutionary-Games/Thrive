@@ -805,7 +805,9 @@ ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in specie
     // Try setting the position immediately as well (as otherwise it
     // takes until the next tick for this to take effect)
     auto node = world.GetComponent_RenderNode(microbeEntity);
-    node.Node.setPosition(pos);
+
+    if(IsInGraphicalMode())
+        node.Node.setPosition(pos);
 
     auto speciesEntity = findSpeciesEntityByName(world, speciesName);
     auto species = world.GetComponent_SpeciesComponent(speciesEntity);
@@ -887,6 +889,34 @@ ObjectID spawnBacteria(CellStageWorld@ world, Float3 pos, const string &in speci
     return microbeEntity;
 }
 
+// Creates and applies microbe collision shape
+void _applyMicrobeCollisionShape(CellStageWorld@ world, Physics@ rigidBody,
+    MicrobeComponent@ microbeComponent, PhysicsShape@ shape)
+{
+    float mass = 0.f;
+
+    // Organelles
+    for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
+
+        auto organelle = microbeComponent.organelles[i];
+
+        // organelles are already initialized when they are added
+        // Not sure if this reset is needed here
+        organelle.reset();
+
+        mass += organelle.organelle.mass;
+    }
+
+    assert(mass != 0, "creating cell with zero mass");
+
+    rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(), shape, mass,
+        world.GetPhysicalMaterial("cell"));
+
+    assert(rigidBody.Body !is null);
+
+    _applyMicrobePhysicsBodySettings(world, rigidBody);
+}
+
 // Creates a new microbe with all required components. Use spawnMicrobe from other
 // code instead of this function
 //
@@ -905,13 +935,6 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, bool aiControlled,
         assert(false, "Trying to create a microbe with invalid species");
 
     ObjectID entity = world.CreateEntity();
-
-    auto position = world.Create_Position(entity, Float3(0, 0, 0), Float4::IdentityQuaternion);
-
-    auto shape = world.GetPhysicalWorld().CreateCompound();
-
-    auto membraneComponent = world.Create_MembraneComponent(entity,
-        species.speciesMembraneType);
 
     // TODO: movement sound for microbes
     // auto soundComponent = SoundSourceComponent();
@@ -939,6 +962,11 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, bool aiControlled,
     // s1.properties.volume = 0.4;
     // s1.properties.touch();
 
+    auto position = world.Create_Position(entity, Float3(0, 0, 0), Float4::IdentityQuaternion);
+
+    auto membraneComponent = world.Create_MembraneComponent(entity,
+        species.speciesMembraneType);
+
     auto compoundAbsorberComponent = world.Create_CompoundAbsorberComponent(entity);
 
     world.Create_RenderNode(entity);
@@ -949,7 +977,7 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, bool aiControlled,
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Create(entity));
 
-    microbeComponent.init(entity, not aiControlled, speciesName);
+    microbeComponent.init(entity, not aiControlled, species);
 
     if(aiControlled){
         world.GetScriptComponentHolder("MicrobeAIControllerComponent").Create(entity);
@@ -976,6 +1004,7 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, bool aiControlled,
         assert(false, "Freshly created microbe has organelles in it");
 
     // Apply the template //
+    auto shape = world.GetPhysicalWorld().CreateCompound();
     Species::applyTemplate(world, entity, species, shape);
 
     // ------------------------------------ //
@@ -983,36 +1012,12 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, bool aiControlled,
     assert(microbeComponent.organelles.length() > 0, "Microbe has no "
         "organelles in initializeMicrobe");
 
-    float mass = 0.f;
+    auto rigidBody = world.Create_Physics(entity, position);
 
-    // Organelles
-    for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
-
-        auto organelle = microbeComponent.organelles[i];
-
-        // organelles are already initialized when they are added
-        // Not sure if this reset is needed here
-        organelle.reset();
-
-        mass += organelle.organelle.mass;
-    }
-
-    assert(mass != 0, "creating cell with zero mass");
-
-    // We create physics body after adding the organelles as that
-    // requires the physics body to be recreated when any organelle is
-    // added (if the body already exists at that point) so we do it
-    // here after that
-    auto rigidBody = world.Create_Physics(entity, world, position);
-    rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(), shape, mass,
-        world.GetPhysicalMaterial("cell"));
-
-    assert(rigidBody.Body !is null);
+    _applyMicrobeCollisionShape(world, rigidBody, microbeComponent, shape);
 
     // Allowing the microbe to absorb all the compounds.
     setupAbsorberForAllCompounds(compoundAbsorberComponent);
-
-    _applyMicrobePhysicsBodySettings(world, rigidBody);
 
     microbeComponent.initialized = true;
     return entity;

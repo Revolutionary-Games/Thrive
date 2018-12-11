@@ -28,5 +28,19 @@ protected:
     void
         _OnDisconnectFromServer(const std::string& reasonstring,
             bool donebyus) override;
+
+    std::shared_ptr<Leviathan::PhysicsMaterialManager>
+        GetPhysicsMaterialsForReceivedWorld(int32_t worldtype,
+            const std::string& extraoptions) override;
+
+    void
+        _OnWorldJoined(std::shared_ptr<GameWorld> world) override;
+
+
+    void
+        _OnLocalControlChanged(GameWorld* world) override;
+
+    void
+        _OnEntityReceived(GameWorld* world, ObjectID created) override;
 };
 } // namespace thrive

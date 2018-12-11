@@ -41,9 +41,9 @@ class MicrobeComponent : ScriptComponent{
     }
 
     //! This has to be called after creating this
-    void init(ObjectID forEntity, bool isPlayerMicrobe, const string &in speciesName)
+    void init(ObjectID forEntity, bool isPlayerMicrobe, SpeciesComponent@ species)
     {
-        this.speciesName = speciesName;
+        this.speciesName = species.name;
         this.isPlayerMicrobe = isPlayerMicrobe;
         this.engulfMode = false;
         this.isBeingEngulfed = false;
@@ -51,12 +51,7 @@ class MicrobeComponent : ScriptComponent{
         this.wasBeingEngulfed = false;
         this.isCurrentlyEngulfing = false;
         this.dead = false;
-        auto world = GetThriveGame().getCellStage();
-        if (MicrobeOperations::getSpeciesComponent(world,speciesName) !is null)
-        {
-            this.speciesColour =
-                MicrobeOperations::getSpeciesComponent(world, speciesName).colour;
-        }
+        this.speciesColour = species.colour;
 
         this.microbeEntity = forEntity;
         this.agentEmissionCooldown = 0;
