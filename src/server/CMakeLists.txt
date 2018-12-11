@@ -44,8 +44,9 @@ set(AllProjectFiles
   "../thrive_world_factory.h" "../thrive_world_factory.cpp"
   )
 
+set(CREATE_CONSOLE_APP OFF)
+
 # Include the common file
-set(CREATE_CONSOLE_APP ON)
 include(LeviathanUsingProject)
 
 # The project is now defined
