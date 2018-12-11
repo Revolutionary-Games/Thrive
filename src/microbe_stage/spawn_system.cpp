@@ -116,38 +116,47 @@ SpawnSystem::~SpawnSystem() {}
 void
     SpawnSystem::Run(CellStageWorld& world)
 {
+    if(!world.GetNetworkSettings().IsAuthoritative)
+        return;
+
     m_impl->timeSinceLastUpdate += Leviathan::TICKSPEED;
 
     while(m_impl->timeSinceLastUpdate > SPAWN_INTERVAL) {
         m_impl->timeSinceLastUpdate -= SPAWN_INTERVAL;
 
+        Float3 playerPosition = Float3(0, 0, 0);
 
-        // Getting the player position.
-        auto controlledEntity =
-            ThriveGame::Get()->playerData().activeCreature();
+        // Hybrid client-server version
+        if(ThriveGame::Get()) {
 
-        // Skip if no player entity //
-        if(controlledEntity == NULL_OBJECT)
-            continue;
+            // Getting the player position.
 
-        Float3 playerPosition;
+            auto controlledEntity =
+                ThriveGame::Get()->playerData().activeCreature();
 
-        try {
+            // Skip if no player entity //
+            if(controlledEntity == NULL_OBJECT)
+                continue;
 
-            playerPosition =
-                world.GetComponent_Position(controlledEntity).Members._Position;
+            try {
 
-        } catch(const Leviathan::NotFound& e) {
+                playerPosition = world.GetComponent_Position(controlledEntity)
+                                     .Members._Position;
 
-            LOG_WARNING("SpawnSystem: no Position component in activeCreature, "
-                        "exception:");
-            e.PrintToLog();
-            return;
+            } catch(const Leviathan::NotFound& e) {
+
+                LOG_WARNING(
+                    "SpawnSystem: no Position component in activeCreature, "
+                    "exception:");
+                e.PrintToLog();
+                return;
+            }
         }
 
         // Remove the y-position from player position
         playerPosition.Y = 0;
         int entitiesDeleted = 0;
+
         // Despawn entities.
         for(const auto& entry : CachedComponents.GetIndex()) {
             // delete a max of two entities per step to reduce lag from deleting

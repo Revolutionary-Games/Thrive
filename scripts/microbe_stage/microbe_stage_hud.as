@@ -102,6 +102,9 @@ class MicrobeStageHudSystem : ScriptSystem{
 
         ObjectID player = GetThriveGame().playerData().activeCreature();
 
+        //since this is ran every step this is a good place to do music code
+        handleAmbientSound();
+
         // Update player stats if there is a cell currently
         if(player != NULL_OBJECT){
 
@@ -109,6 +112,11 @@ class MicrobeStageHudSystem : ScriptSystem{
             auto playerSpecies = MicrobeOperations::getSpeciesComponent(World, "Default");
             MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
                 World.GetScriptComponentHolder("MicrobeComponent").Find(player));
+
+            if(microbeComponent is null){
+
+                return;
+            }
 
             GenericEvent@ event = GenericEvent("PlayerCompoundAmounts");
             GenericEvent@ changePopulation = GenericEvent("PopulationChange");
@@ -170,9 +178,6 @@ class MicrobeStageHudSystem : ScriptSystem{
             GetEngine().GetEventHandler().CallEvent(event);
             GetEngine().GetEventHandler().CallEvent(changePopulation);
         }
-
-        //since this is ran every step this is a good place to do music code
-        handleAmbientSound();
     }
 
     // Nodes not used
