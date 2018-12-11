@@ -21,15 +21,18 @@ class NucleusOrganelle : OrganelleComponent{
 
         auto world = organelle.world;
         auto microbeNode = world.GetComponent_RenderNode(microbeEntity);
-    auto speciesComponent = MicrobeOperations::getSpeciesComponent(world, microbeEntity);
+        auto speciesComponent = MicrobeOperations::getSpeciesComponent(world, microbeEntity);
 
         assert(microbeNode !is null, "microbe entity has no RenderNode");
+
+        if(IsInGraphicalMode()){
 
         golgi = world.CreateEntity();
         ER = world.CreateEntity();
 
         auto sceneNode1 = world.Create_RenderNode(golgi);
         auto model1 = world.Create_Model(golgi, sceneNode1.Node, "golgi.mesh");
+
 
         // Tint must be set
         model1.GraphicalObject.setCustomParameter(1, Ogre::Vector4(speciesComponent.colour));
@@ -72,6 +75,7 @@ class NucleusOrganelle : OrganelleComponent{
         //     floor(speciesColour.Y * 256) + floor(speciesColour.Z * 256);
 
         organelle._needsColourUpdate = true;
+        }
     }
 
     // Overridded from OrganelleComponent.onRemovedFromMicrobe
@@ -83,8 +87,11 @@ class NucleusOrganelle : OrganelleComponent{
 
         auto world = organelle.world;
 
-        world.QueueDestroyEntity(golgi);
-        world.QueueDestroyEntity(ER);
+        if(golgi != NULL_OBJECT)
+            world.QueueDestroyEntity(golgi);
+        if(ER != NULL_OBJECT)
+            world.QueueDestroyEntity(ER);
+
         golgi = NULL_OBJECT;
         ER = NULL_OBJECT;
     }

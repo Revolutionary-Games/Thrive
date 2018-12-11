@@ -127,8 +127,14 @@ set(GROUP_MENU
 # For testing purposes even these quite heavily to the final
 # executable connected files are included in the lib
 set(GROUP_CORE_FILES
+  # TODO: to move these out of here the script building would need
+  # IF-DEFS everywhere for switching when ThriveGame isn't available
   "ThriveGame.h" "ThriveGame.cpp"
   "thrive_net_handler.h" "thrive_net_handler.cpp"
+  "thrive_common.h" "thrive_common.cpp"
+  # These might not be needed here
+  "server/ThriveServer.h" "server/ThriveServer.cpp"
+  "server/thrive_server_net_handler.h" "server/thrive_server_net_handler.cpp"  
   )
 
 
@@ -226,5 +232,8 @@ include(LeviathanUsingProject)
 
 # The project is now defined
 target_link_libraries(Thrive ThriveLib)
+
+# Server target. This also defines a Leviathan program
+add_subdirectory(server)
 
 

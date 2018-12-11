@@ -39,8 +39,12 @@ void
     // Get the entity the camera should follow
     auto controlledEntity = ThriveGame::Get()->playerData().activeCreature();
 
-    try {
+    if(controlledEntity == NULL_OBJECT) {
+        // Nothing to control currently
+        return;
+    }
 
+    try {
         const auto& playerPos =
             world.GetComponent<Leviathan::Position>(controlledEntity);
 
@@ -57,11 +61,9 @@ void
             cameraPos.Marked = true;
         }
 
-    } catch(const Leviathan::NotFound& e) {
+    } catch(const Leviathan::NotFound&) {
 
-        LOG_WARNING("MicrobeCameraSystem: failed to Run (missing component?) "
-                    "due to exception:");
-        e.PrintToLog();
+        LOG_WARNING("MicrobeCameraSystem: failed to Run (missing component?)");
         return;
     }
 }
