@@ -3,13 +3,13 @@
 #include "generated/microbe_editor_world.h"
 #include "microbe_stage/simulation_parameters.h"
 
+#include "ThriveGame.h"
 #include <Addons/GameModule.h>
 #include <Application/KeyConfiguration.h>
 #include <Entities/GameWorld.h>
 #include <Entities/ScriptComponentHolder.h>
-#include <Window.h>
-
 #include <OgreRay.h>
+#include <Window.h>
 
 using namespace thrive;
 
@@ -24,14 +24,18 @@ bool
     if(!down)
         return false;
 
-    // LOG_INFO("Global keypress: " + std::to_string(key));
 
-    /*if(m_screenshot.Match(key, modifiers)) {
-        LOG_INFO("Screenshot Time");
-        Engine::Get()->SaveScreenShot();
+    if(m_rotateRight.Match(key, modifiers)) {
+        LOG_INFO("Right pressed");
+        Engine::Get()->GetEventHandler()->CallEvent(
+            new Leviathan::GenericEvent("PressedRightRotate"));
         return true;
-    }*/
-
+    } else if(m_rotateLeft.Match(key, modifiers)) {
+        LOG_INFO("Left pressed");
+        Engine::Get()->GetEventHandler()->CallEvent(
+            new Leviathan::GenericEvent("PressedLeftRotate"));
+        return true;
+    }
     // Not used
     return false;
 }
