@@ -682,7 +682,6 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         RenderNode@ renderNode;
 
         if(IsInGraphicalMode()){
-
             organelleEntity = world.CreateEntity();
 
             // Automatically destroyed if the parent is destroyed
@@ -698,10 +697,8 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
             @renderNode = world.Create_RenderNode(organelleEntity);
             renderNode.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
             renderNode.Marked = true;
+        }
 
-        auto renderNode = world.Create_RenderNode(organelleEntity);
-        renderNode.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
-        renderNode.Marked = true;
         // For performance reasons we set the position here directly
         // instead of with the position system
         renderNode.Node.setPosition(offset + this.cartesianPosition);
@@ -717,7 +714,6 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
                 Ogre::Vector3(1, 0, 0))*Ogre::Quaternion(Ogre::Degree(rotation),
                     Ogre::Vector3(0, 1, 0)));
         }
-
         // Add hex collision shapes
         auto hexes = organelle.getHexes();
 
@@ -739,7 +735,6 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
             collisionShape.AddChildShape(hexCollision, translation);
             _addedCollisions.insertLast(hexCollision);
         }
-
         if(IsInGraphicalMode()){
 
             auto parentRenderNode = world.GetComponent_RenderNode(
@@ -772,7 +767,6 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
             components[i].onAddedToMicrobe(microbeEntity, q, r, rotation, this);
         }
     }
-
     //! Alternative to onRemovedFromMicrobe called when the microbe
     //! and this is being destroyed at the same time. For example when
     //! closing the game
