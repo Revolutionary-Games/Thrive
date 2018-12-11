@@ -3,13 +3,11 @@
 #include "generated/microbe_editor_world.h"
 #include "microbe_stage/simulation_parameters.h"
 
-#include "ThriveGame.h"
-#include <Addons/GameModule.h>
 #include <Application/KeyConfiguration.h>
-#include <Entities/GameWorld.h>
-#include <Entities/ScriptComponentHolder.h>
+#include <Engine.h>
+#include <Events/Event.h>
+#include <Events/EventHandler.h>
 #include <OgreRay.h>
-#include <Window.h>
 
 using namespace thrive;
 
