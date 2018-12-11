@@ -319,7 +319,11 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         if(flashDuration > 0 && species !is null){
             flashDuration -= logicTime;
             // Use organelle.world to get the MicrobeSystem
-            Float4 speciesColour = species.colour;
+            Float4 speciesColour + Float4(0, 0, 0, 0);
+            if (species !is null)
+                {
+                speciesColour = species.colour;
+                }
             Float4 colour;
 
             // How frequent it flashes, would be nice to update the
