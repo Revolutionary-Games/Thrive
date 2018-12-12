@@ -316,10 +316,11 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
     {
         auto species = MicrobeOperations::getSpeciesComponent(world,
             microbeEntity);
+        Float4 speciesColour = Float4(00.0f,0.0f,0.0f,0.0f);
         if(flashDuration > 0 && species !is null){
             flashDuration -= logicTime;
             // Use organelle.world to get the MicrobeSystem
-            Float4 speciesColour = species.colour;
+            speciesColour = species.colour;
             Float4 colour;
 
             // How frequent it flashes, would be nice to update the
