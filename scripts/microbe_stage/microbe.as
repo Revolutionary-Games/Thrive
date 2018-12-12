@@ -54,6 +54,7 @@ class MicrobeComponent : ScriptComponent{
         this.wasBeingEngulfed = false;
         this.isCurrentlyEngulfing = false;
         this.dead = false;
+        this.speciesColour = Float4(00.0f,0.0f,0.0f,0.0f);
         if (species !is null)
             {
             this.speciesColour = species.colour;

@@ -1057,7 +1057,7 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
         auto _amount = getCompoundAmount(world, microbeEntity, compoundId);
         while(_amount > 0){
             // Eject up to 5 units per particle
-            auto ejectedAmount = takeCompound(world, microbeEntity, compoundId, 5.0f);
+            auto ejectedAmount = 5.0f;
             auto direction = Float3(GetEngine().GetRandom().GetNumber(0.0f, 1.0f) * 2 - 1,
                 0, GetEngine().GetRandom().GetNumber(0.0f, 1.0f) * 2 - 1);
 
