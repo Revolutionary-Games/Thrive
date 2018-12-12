@@ -504,7 +504,7 @@ void purgeCompounds(CellStageWorld@ world, ObjectID microbeEntity)
 {
     MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
     auto compoundBag = world.GetComponent_CompoundBagComponent(microbeEntity);
-    purgeCompounds(microbeComponent, compoundBag);
+    purgeCompounds(world, microbeEntity, microbeComponent, compoundBag);
 }
 
 // Since we have individual storage now we dont need this
@@ -512,7 +512,8 @@ void purgeCompounds(CellStageWorld@ world, ObjectID microbeEntity)
 // you no longer need to dump things because thngs can no longer
 // "take up each others space"  However, it would be weird to store
 // up compounds you dont use, so lets purge those.
-void purgeCompounds(MicrobeComponent@ microbeComponent, CompoundBagComponent@ compoundBag)
+void purgeCompounds(CellStageWorld@ world, ObjectID microbeEntity,
+    MicrobeComponent@ microbeComponent, CompoundBagComponent@ compoundBag)
 {
     uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
     for(uint compoundId = 0; compoundId < compoundCount; ++compoundId){
