@@ -120,6 +120,10 @@ public:
     void
         giveCompound(CompoundId, double);
 
+
+    void
+        setCompound(CompoundId, double);
+
     REFERENCE_HANDLE_UNCOUNTED_TYPE(CompoundBagComponent);
 
     static constexpr auto TYPE =
