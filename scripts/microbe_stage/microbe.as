@@ -402,7 +402,7 @@ class MicrobeSystem : ScriptSystem{
 
             if(MicrobeOperations::takeCompound(world, microbeEntity,
                     SimulationParameters::compoundRegistry().getTypeId("atp"), cost) <
-                cost - 0.001)
+                cost - 0.001f)
             {
                 LOG_INFO("too little atp, disabling - engulfing");
                 MicrobeOperations::toggleEngulfMode(microbeComponent);
@@ -958,12 +958,12 @@ class MicrobeSystem : ScriptSystem{
 
             if(amount != 0){
                 MicrobeOperations::takeCompound(world, microbeEntity, compoundID,
-                    amount / 2 /*, false*/ );
+                    amount / 2.0f /*, false*/ );
                 // Not sure what the false here means, it wasn't a
                 // parameter in the original lua function so it did
                 // nothing even then?
                 MicrobeOperations::storeCompound(world, copyEntity, compoundID,
-                    amount / 2, false);
+                    amount / 2.0f, false);
             }
         }
 

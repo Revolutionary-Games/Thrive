@@ -423,7 +423,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
     void growOrganelle(CompoundBagComponent@ compoundBagComponent, int logicTime)
     {
         // Finds the total number of needed compounds.
-        float sum = 0.0;
+        float sum = 0.0f;
 
         auto compoundKeys = compoundsLeft.getKeys();
         for(uint i = 0; i < compoundKeys.length(); ++i){
@@ -447,7 +447,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         // cannot grow the organelle, or the organelle is ready to
         // split (i.e. compoundBin = 2), in which case we wait for the
         // microbe to handle the split.
-        if(sum <= 0.0)
+        if(sum <= 0.0f)
             return;
 
         // Randomly choose which of the compounds are used in reproduction.
@@ -465,7 +465,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
                 continue;
             }
 
-            if(id - amount < 0){
+            if(id - amount < 0.0f){
 
                 // The random number is from this compound, so attempt to take it.
                 float amountToTake = min(logicTime * GROWTH_SPEED_MULTILPIER, amount);
