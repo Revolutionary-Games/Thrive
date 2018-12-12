@@ -259,7 +259,7 @@ void onReturnFromEditor(CellStageWorld@ world)
 
         if(amount != 0){
             MicrobeOperations::takeCompound(world, player, compoundID,
-                amount / 2 /*, false*/ );
+                amount / 2.0f /*, false*/ );
         }
     }
 

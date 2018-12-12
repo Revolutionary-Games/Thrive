@@ -526,19 +526,19 @@ void purgeCompounds(MicrobeComponent@ microbeComponent, CompoundBagComponent@ co
         {
             // Dont remove everything immedately, give it some time so
             // people can see it happening
-            double amountToEject = 2;
+            double amountToEject = 2.0f;
             // Since we have a handle to the compoundBag component, skip calling the getCompoundAmount
             // in the microbe operations namespace
             double availableCompound = compoundBag.getCompoundAmount(compoundId);
 
             // This was also 'amount' so maybe this didn't work either?
-            if(amountToEject > 0 && availableCompound-amountToEject >= 0){
+            if(amountToEject > 0.0f && availableCompound-amountToEject >= 0.0f){
                 amountToEject = takeCompound(microbeComponent, compoundBag,
                     compoundId, amountToEject);
                 ejectCompound(world, microbeEntity, compoundId, amountToEject-1.0f);
             }
             // If we flagged the second one but we still have some left just get rid of it all
-            else if (availableCompound > 0)
+            else if (availableCompound > 0.0f)
             {
                 amountToEject = takeCompound(microbeComponent, compoundBag,
                     compoundId, availableCompound);
@@ -638,7 +638,7 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         auto vec = ( microbeComponent.facingTargetPoint - cellPosition._Position);
         auto direction = vec.Normalize();
 
-        auto amountToEject = takeCompound(microbeComponent, compoundBag, compoundId, maxAmount/10.0);
+        auto amountToEject = takeCompound(microbeComponent, compoundBag, compoundId, maxAmount/10.0f);
 
         if (amountToEject >= MINIMUM_AGENT_EMISSION_AMOUNT)
         {
@@ -1056,7 +1056,7 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
         auto _amount = getCompoundAmount(world, microbeEntity, compoundId);
         while(_amount > 0){
             // Eject up to 5 units per particle
-            auto ejectedAmount = takeCompound(world, microbeEntity, compoundId, 5);
+            auto ejectedAmount = takeCompound(world, microbeEntity, compoundId, 5.0f);
             auto direction = Float3(GetEngine().GetRandom().GetNumber(0.0f, 1.0f) * 2 - 1,
                 0, GetEngine().GetRandom().GetNumber(0.0f, 1.0f) * 2 - 1);
 
