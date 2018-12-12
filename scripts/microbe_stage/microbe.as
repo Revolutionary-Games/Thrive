@@ -43,7 +43,10 @@ class MicrobeComponent : ScriptComponent{
     //! This has to be called after creating this
     void init(ObjectID forEntity, bool isPlayerMicrobe, SpeciesComponent@ species)
     {
-        this.speciesName = species.name;
+        if (species !is null)
+            {
+            this.speciesName = species.name;
+            }
         this.isPlayerMicrobe = isPlayerMicrobe;
         this.engulfMode = false;
         this.isBeingEngulfed = false;
@@ -51,8 +54,10 @@ class MicrobeComponent : ScriptComponent{
         this.wasBeingEngulfed = false;
         this.isCurrentlyEngulfing = false;
         this.dead = false;
-        this.speciesColour = species.colour;
-
+        if (species !is null)
+            {
+            this.speciesColour = species.colour;
+            }
         this.microbeEntity = forEntity;
         this.agentEmissionCooldown = 0;
 
