@@ -698,24 +698,23 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
             @renderNode = world.Create_RenderNode(organelleEntity);
             renderNode.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
             renderNode.Marked = true;
+        }
 
-        auto renderNode = world.Create_RenderNode(organelleEntity);
-        renderNode.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
-        renderNode.Marked = true;
         // For performance reasons we set the position here directly
         // instead of with the position system
         renderNode.Node.setPosition(offset + this.cartesianPosition);
+        // TODO: this MUST BE moved to the mesh file. Otherwise this mess will grow over time
         //maybe instead of changing this here we should do so in the generation routine.
         if(organelle.mesh != "chemoplast.mesh"){
-        renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(90),
-                Ogre::Vector3(1, 0, 0)) * Ogre::Quaternion(Ogre::Degree(180),
-                    Ogre::Vector3(0, 1, 0)) * Ogre::Quaternion(Ogre::Degree(rotation),
-                        Ogre::Vector3(0, 0, 1)));
+            renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(90),
+                    Ogre::Vector3(1, 0, 0)) * Ogre::Quaternion(Ogre::Degree(180),
+                        Ogre::Vector3(0, 1, 0)) * Ogre::Quaternion(Ogre::Degree(rotation),
+                            Ogre::Vector3(0, 0, 1)));
         }
         else {
-        renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(180),
-                Ogre::Vector3(1, 0, 0))*Ogre::Quaternion(Ogre::Degree(rotation),
-                    Ogre::Vector3(0, 1, 0)));
+            renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(180),
+                    Ogre::Vector3(1, 0, 0))*Ogre::Quaternion(Ogre::Degree(rotation),
+                        Ogre::Vector3(0, 1, 0)));
         }
 
         // Add hex collision shapes
