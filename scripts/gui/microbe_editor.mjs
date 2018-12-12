@@ -95,7 +95,11 @@ export function setupMicrobeEditor(){
     // Symmetry Button Clicked
     document.getElementById("SymmetryButton").addEventListener("click",
         onSymmetryClicked, true);
-
+        
+    // New Cell Button Clicked
+    document.getElementById("newButton").addEventListener("click",
+        OnNewCellClicked, true);
+        
     // All of the organelle buttons
     for(const element of organelleSelectionElements){
 
@@ -333,6 +337,12 @@ function onSymmetryClicked(event){
     // I should make teh editor and the javascript use the same exact variable
     Leviathan.CallGenericEvent("SymmetryClicked", {symmetry: symmetry});
 
+    event.stopPropagation();
+}
+
+function OnNewCellClicked(event){
+    common.playButtonPressSound();
+    Leviathan.CallGenericEvent("NewCellClicked", {});
     event.stopPropagation();
 }
 
