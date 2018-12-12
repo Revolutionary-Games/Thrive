@@ -334,7 +334,11 @@ const dictionary STARTER_MICROBES = {
             {
             //for testing
                 {"atp", InitialCompound(60)},
-                {"glucose", InitialCompound(60)}
+                {"glucose", InitialCompound(60)},
+                {"ammonia", InitialCompound(0)},
+                {"phosphates", InitialCompound(0)},
+                {"hydrogensulfide", InitialCompound(0)},
+                {"oxytoxy", InitialCompound(0)}
             },
             {
                 OrganelleTemplatePlaced("nucleus", 0, 0, 180),

@@ -251,7 +251,10 @@ const dictionary DEFAULT_INITIAL_COMPOUNDS =
     {
         {"atp", InitialCompound(30,300)},
         {"glucose", InitialCompound(30,300)},
-        {"ammonia", InitialCompound(30,100)}
+        {"ammonia", InitialCompound(30,100)},
+        {"phosphates", InitialCompound(0)},
+        {"hydrogensulfide", InitialCompound(0)},
+        {"oxytoxy", InitialCompound(0)}
     };
 
 string randomSpeciesName()
@@ -1261,16 +1264,12 @@ void applyTemplate(CellStageWorld@ world, ObjectID microbe, SpeciesComponent@ sp
 
     restoreOrganelleLayout(world, microbe, microbeComponent, species, editShape);
 
-    // TODO: should the compound amounts be reset before this?
     // Another place where compound amounts are something we need to worry about
     auto ids = species.avgCompoundAmounts.getKeys();
     for(uint i = 0; i < ids.length(); i++){
         CompoundId compoundId = parseUInt(ids[i]);
         InitialCompound amount = InitialCompound(species.avgCompoundAmounts[ids[i]]);
-
-        if(amount.amount != 0){
-            MicrobeOperations::storeCompound(world, microbe, compoundId, amount.amount, false);
-        }
+        MicrobeOperations::setCompound(world, microbe, compoundId, amount.amount);
     }
 }
 

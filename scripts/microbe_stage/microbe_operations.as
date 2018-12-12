@@ -320,19 +320,12 @@ void setupMicrobeHitpoints(MicrobeComponent@ microbeComponent, int health)
 //grabs compounds from template (starter_mcirobes) and stores them)
 void setupMicrobeCompounds(CellStageWorld@ world, ObjectID microbeEntity)
 {
-    MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
-                MicrobeTemplate@ data = cast<MicrobeTemplate@>(STARTER_MICROBES["Default"]);
-
     auto ids = getSpeciesComponent(world, microbeEntity).avgCompoundAmounts.getKeys();
     for(uint i = 0; i < ids.length(); ++i){
         CompoundId compoundId = parseUInt(ids[i]);
         InitialCompound amount = InitialCompound(getSpeciesComponent(world, microbeEntity).
             avgCompoundAmounts[ids[i]]);
-
-        if(amount.amount != 0){
-            MicrobeOperations::storeCompound(world, microbeEntity, compoundId, amount.amount,
-                false);
-        }
+        setCompound(world, microbeEntity, compoundId, amount.amount);
     }
 }
 
@@ -409,6 +402,16 @@ float storeCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId co
 
     return amount - storedAmount;
 }
+
+void setCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoundId,
+    double amount)
+    {
+    MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
+    auto storedAmount = amount;
+    storedAmount = min(storedAmount, microbeComponent.capacity);
+    world.GetComponent_CompoundBagComponent(microbeEntity).setCompound(compoundId,storedAmount);
+    }
+
 
 // Default Version of takeCompound that takes ObjectID
 double takeCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoundId,

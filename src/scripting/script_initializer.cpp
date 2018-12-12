@@ -724,6 +724,12 @@ bool
     }
 
     if(engine->RegisterObjectMethod("CompoundBagComponent",
+           "void setCompound(CompoundId compound, double amount)",
+           asMETHOD(CompoundBagComponent, setCompound), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("CompoundBagComponent",
            "double getPrice(CompoundId compound)",
            asMETHOD(CompoundBagComponent, getPrice), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;

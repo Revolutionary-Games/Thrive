@@ -165,6 +165,12 @@ void
     compounds[id].amount += amt;
 }
 
+void
+    CompoundBagComponent::setCompound(CompoundId id, double amt)
+{
+    compounds[id].amount = amt;
+}
+
 double
     CompoundBagComponent::takeCompound(CompoundId id, double to_take)
 {
