@@ -45,6 +45,7 @@ class MicrobeEditor{
         eventListener.RegisterForEvent("MicrobeEditorExited");
         eventListener.RegisterForEvent("PressedRightRotate");
         eventListener.RegisterForEvent("PressedLeftRotate");
+        eventListener.RegisterForEvent("NewCellClicked");
 
         placementFunctions = {
             {"nucleus", PlacementFunctionType(this.createNewMicrobe)},
@@ -404,54 +405,39 @@ class MicrobeEditor{
         }
     }
 
-    // This can only work when creating a new cell so put this inside the new method once done
-    void addNucleus(){
-    //     auto nucleusOrganelle = OrganelleFactory.makeOrganelle({["name"]="nucleus", ["q"]=0, ["r"]=0, ["rotation"]=0});
-    //     MicrobeSystem.addOrganelle(currentMicrobeEntity, 0, 0, 0, nucleusOrganelle);
-    }
-
     void createNewMicrobe(const string &in)
     {
-        mutationPoints = BASE_MUTATION_POINTS;
         // organelleCount = 0;
+        mutationPoints = BASE_MUTATION_POINTS;
         EditorAction@ action = EditorAction(0,
             // redo
             function(EditorAction@ action, MicrobeEditor@ editor){
-                // auto microbeComponent = getComponent(this.currentMicrobeEntity, MicrobeComponent);
-                // speciesName = microbeComponent.speciesName;
-                // if (currentMicrobeEntity != null){
-                //     currentMicrobeEntity.destroy();
-                // }
-                /*for(_, cytoplasm in pairs(this.occupiedHexes)){
-                cytoplasm.destroy()
-                }*/
+            // Show the current microbe
+                for(uint i = editor.editedMicrobe.length()-1; i > 0; --i){
+                    const PlacedOrganelle@ organelle = editor.editedMicrobe[i];
+                    auto hexes = organelle.organelle.getRotatedHexes(organelle.rotation);
+                    for(uint c = 0; c < hexes.length(); ++c){
+                        int posQ = int(hexes[c].q) + organelle.q;
+                        int posR = int(hexes[c].r) + organelle.r;
+                        auto organelleHere = OrganellePlacement::getOrganelleAt(
+                            editor.editedMicrobe, Int2(posQ, posR));
+                        if(organelleHere !is null){
+                            OrganellePlacement::removeOrganelleAt(editor.editedMicrobe,
+                                Int2(posQ, posR));
+                            }
 
-                // currentMicrobeEntity = MicrobeSystem.createMicrobeEntity(null, false, 'Editor_Microbe', true);
-                // microbeComponent = getComponent(currentMicrobeEntity, MicrobeComponent);
-                // auto sceneNodeComponent = getComponent(currentMicrobeEntity, OgreSceneNodeComponent);
-                // currentMicrobeEntity.stealName("working_microbe");
-                // sceneNodeComponent.transform.touch();
-                // microbeComponent.speciesName = speciesName;
-                // addNucleus();
-                // /*for(_, organelle in pairs(microbeComponent.organelles)){
-                // for(s, hex in pairs(organelle._hexes)){
-                // this.createHexComponent(hex.q + organelle.position.q, hex.r + organelle.position.r)
-                // }
-                // }*/
-                //activeActionName = "cytoplasm";
-                // Engine.playerData().setActiveCreature(this.currentMicrobeEntity.id, GameState.MICROBE_EDITOR.wrapper);
+                    }
+                }
+
             },
             null);
-
+        // TODO: What is the point of this?? Can this just be removed?
         if (microbeHasBeenInEditor){
-
             //that there has already been a microbe in the editor
             //suggests that it was a player action, so it's prepared
             //and filed in for un/redo
             microbeHasBeenInEditor = true;
-
             LOG_WRITE("TODO: fix this part about already been stuff");
-
             dictionary organelleStorage = {};
             // auto previousOrganelleCount = organelleCount;
             auto previousMP = mutationPoints;
@@ -459,7 +445,6 @@ class MicrobeEditor{
             /*for(position,organelle in pairs(currentMicrobeComponent.organelles)){
                 organelleStorage[position] = organelle.storage()
             }*/
-
             @action.undo = function(EditorAction@ action, MicrobeEditor@ editor){
                 // auto microbeComponent = getComponent(currentMicrobeEntity, MicrobeComponent);
 
@@ -489,7 +474,7 @@ class MicrobeEditor{
                 //no need to add the nucleus manually - it's alreary included in the organelleStorage
                 // mutationPoints = previousMP;
                 // organelleCount = previousOrganelleCount;
-            //     Engine.playerData().setActiveCreature(this.currentMicrobeEntity.id, GameState.MICROBE_EDITOR.wrapper)
+                // Engine.playerData().setActiveCreature(this.currentMicrobeEntity.id, GameState.MICROBE_EDITOR.wrapper)
             };
             enqueueAction(action);
 
@@ -953,6 +938,10 @@ class MicrobeEditor{
             return 1;
         }else if (type == "PressedLeftRotate"){
             organelleRot-=(360/6);
+            return 1;
+        } else if (type == "NewCellClicked"){
+            //Create New Microbe
+            createNewMicrobe("");
             return 1;
         }
 
