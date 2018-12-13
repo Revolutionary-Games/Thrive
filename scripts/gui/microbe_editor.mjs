@@ -95,11 +95,11 @@ export function setupMicrobeEditor(){
     // Symmetry Button Clicked
     document.getElementById("SymmetryButton").addEventListener("click",
         onSymmetryClicked, true);
-        
+
     // New Cell Button Clicked
     document.getElementById("newButton").addEventListener("click",
         OnNewCellClicked, true);
-        
+
     // All of the organelle buttons
     for(const element of organelleSelectionElements){
 
