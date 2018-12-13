@@ -89,6 +89,8 @@ class MicrobeEditor{
         actionIndex = 0;
         organelleRot = 0;
         symmetry = 0;
+        setUndoButtonStatus(false);
+        setRedoButtonStatus(false);
     }
 
     void activate()
