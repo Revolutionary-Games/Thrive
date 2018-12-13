@@ -100,6 +100,15 @@ export function setupMicrobeEditor(){
     document.getElementById("newButton").addEventListener("click",
         OnNewCellClicked, true);
 
+    // Undo Button Clicked
+    document.getElementById("Undo").addEventListener("click",
+        onUndoClicked, true);
+
+    // Redo Button Clicked
+    document.getElementById("Redo").addEventListener("click",
+        onRedoClicked, true);
+
+
     // All of the organelle buttons
     for(const element of organelleSelectionElements){
 
@@ -373,6 +382,18 @@ function onSymmetryClicked(event){
 function OnNewCellClicked(event){
     common.playButtonPressSound();
     Leviathan.CallGenericEvent("NewCellClicked", {});
+    event.stopPropagation();
+}
+
+function onRedoClicked(event){
+    common.playButtonPressSound();
+    Leviathan.CallGenericEvent("RedoClicked", {});
+    event.stopPropagation();
+}
+
+function onUndoClicked(event){
+    common.playButtonPressSound();
+    Leviathan.CallGenericEvent("UndoClicked", {});
     event.stopPropagation();
 }
 
