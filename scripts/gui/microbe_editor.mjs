@@ -134,6 +134,18 @@ export function setupMicrobeEditor(){
             updateMutationPoints(vars.mutationPoints, vars.maxMutationPoints);
         });
 
+        // Event for undo setting
+        Leviathan.OnGeneric("EditorUndoButtonStatus", (event, vars) => {
+            // Apply the new values
+            setUndo(vars.enabled);
+        });
+
+        // Event for redo setting
+        Leviathan.OnGeneric("EditorRedoButtonStatus", (event, vars) => {
+            // Apply the new values
+            setRedo(vars.enabled);
+        });
+
         // Event for detecting the active organelle
         Leviathan.OnGeneric("MicrobeEditorOrganelleSelected", (event, vars) => {
             updateSelectedOrganelle(vars.organelle);
@@ -157,6 +169,24 @@ export function doEnterMicrobeEditor(){
         // Enable finish button
         onFinishButtonEnable();
     }, 500);
+}
+
+// Undo
+function setUndo(enabled){
+    if (enabled) {
+        document.getElementById("Undo").classList.remove("DisabledButton");
+    } else {
+        document.getElementById("Undo").classList.add("DisabledButton");
+    }
+}
+
+// Redo
+function setRedo(enabled){
+    if (enabled) {
+        document.getElementById("Redo").classList.remove("DisabledButton");
+    } else {
+        document.getElementById("Redo").classList.add("DisabledButton");
+    }
 }
 
 //! Sends organelle selection to the Game
