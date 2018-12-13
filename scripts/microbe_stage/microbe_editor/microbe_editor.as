@@ -412,7 +412,7 @@ class MicrobeEditor{
         EditorAction@ action = EditorAction(0,
             // redo
             function(EditorAction@ action, MicrobeEditor@ editor){
-            // Show the current microbe
+                // Delete the organelles (all except the nucleus)
                 for(uint i = editor.editedMicrobe.length()-1; i > 0; --i){
                     const PlacedOrganelle@ organelle = editor.editedMicrobe[i];
                     auto hexes = organelle.organelle.getRotatedHexes(organelle.rotation);
