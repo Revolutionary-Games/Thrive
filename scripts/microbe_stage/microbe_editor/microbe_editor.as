@@ -226,12 +226,11 @@ class MicrobeEditor{
             function(EditorAction@ action, MicrobeEditor@ editor){
 
                 PlacedOrganelle@ organelle = cast<PlacedOrganelle>(action.data["organelle"]);
-
+                // Need to set this here to make sure the pointer is updated
+                @action.data["organelle"]=organelle;
                 // Check if there is cytoplasm under this organelle.
                 auto hexes = organelle.organelle.getRotatedHexes(organelle.rotation);
-
                 for(uint i = 0; i < hexes.length(); ++i){
-
                     int posQ = int(hexes[i].q) + organelle.q;
                     int posR = int(hexes[i].r) + organelle.r;
 
@@ -253,7 +252,6 @@ class MicrobeEditor{
             },
             // undo
             function(EditorAction@ action, MicrobeEditor@ editor){
-
                 // TODO: this doesn't restore cytoplasm
                 LOG_INFO("Undo called");
                 const PlacedOrganelle@ organelle = cast<PlacedOrganelle>(action.data["organelle"]);
@@ -525,18 +523,19 @@ class MicrobeEditor{
         if(action.cost != 0)
             if(!takeMutationPoints(action.cost))
                 return;
-
-        if(actionHistory.length() > uint(actionIndex + 1)){
-
-            actionHistory.resize(actionIndex + 1);
-        }
+        //We resize always and insert at the index so that
+        //if we undo something then add something, the new
+        //action is in the right spot on the array.
+        //since we only enqueue when we add new actions
+        actionHistory.resize(actionHistory.length()+1);
 
         setUndoButtonStatus(true);
         setRedoButtonStatus(false);
 
         action.redo(action, this);
-        actionHistory.insertLast(action);
+        actionHistory.insertAt(actionIndex,action);
         actionIndex++;
+
     }
 
     //! \todo Clean this up
@@ -675,7 +674,6 @@ class MicrobeEditor{
 
         //nothing left to redo? disable redo
         if (actionIndex >= int(actionHistory.length()-1)){
-
             setRedoButtonStatus(false);
         }
 
@@ -689,10 +687,10 @@ class MicrobeEditor{
         if (actionIndex > 0){
             //LOG_INFO("Attempting to call undo");
             auto action = actionHistory[actionIndex-1];
-            action.undo(action, this);
             if (action.cost > 0){
                 mutationPoints += action.cost;
             }
+            action.undo(action, this);
             actionIndex -= 1;
             //upon undoing, redoing is possible
             setRedoButtonStatus(true);
@@ -761,7 +759,6 @@ class MicrobeEditor{
         PlacedOrganelle@ organelle = cast<PlacedOrganelle>(organelleHere);
 
         if(organelleHere !is null){
-            // Allow replacing cytoplasm (but not with other cytoplasm)
             if(!(organelleHere.organelle.name == "nucleus")) {
                 EditorAction@ action = EditorAction(ORGANELLE_REMOVE_COST,
                 // redo We need data about the organelle we removed, and the location so we can "redo" it
@@ -769,14 +766,30 @@ class MicrobeEditor{
                     LOG_INFO("Redo called");
                     int q = int(action.data["q"]);
                     int r = int(action.data["r"]);
+                    // Remove the organelle
                    OrganellePlacement::removeOrganelleAt(editor.editedMicrobe,Int2(q, r));
                 },
                 // undo
                 function(EditorAction@ action, MicrobeEditor@ editor){
-                    LOG_INFO("Undo called");
-                    //PlacedOrganelle@ organelle = cast<PlacedOrganelle>(action.data["organelle"]);
-                    //if we are undoing a remove there is space there, so we can just insert it
-                    //editor.editedMicrobe.insertLast(organelle);
+                 PlacedOrganelle@ organelle = cast<PlacedOrganelle>(action.data["organelle"]);
+                // Need to set this here to make sure the pointer is updated
+                @action.data["organelle"]=organelle;
+                // Check if there is cytoplasm under this organelle.
+                auto hexes = organelle.organelle.getRotatedHexes(organelle.rotation);
+                for(uint i = 0; i < hexes.length(); ++i){
+                    int posQ = int(hexes[i].q) + organelle.q;
+                    int posR = int(hexes[i].r) + organelle.r;
+                    auto organelleHere = OrganellePlacement::getOrganelleAt(
+                        editor.editedMicrobe, Int2(posQ, posR));
+                    if(organelleHere !is null &&
+                        organelleHere.organelle.name == "cytoplasm")
+                    {
+                        LOG_INFO("replaced cytoplasm");
+                        OrganellePlacement::removeOrganelleAt(editor.editedMicrobe,
+                            Int2(posQ, posR));
+                    }
+                }
+                editor.editedMicrobe.insertLast(organelle);
                 });
                 // Give the action access to some data
                 @action.data["organelle"] = organelle;
