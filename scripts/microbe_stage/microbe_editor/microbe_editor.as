@@ -663,22 +663,21 @@ class MicrobeEditor{
 
     void redo()
     {
-        if (actionIndex <= int(actionHistory.length())-1){
+        if (actionIndex < int(actionHistory.length())-1){
             actionIndex += 1;
             auto action = actionHistory[actionIndex-1];
             action.redo(action, this);
             if (action.cost > 0){
                 mutationPoints -= action.cost;
             }
+            //upon redoing, undoing is possible
+            setUndoButtonStatus(true);
         }
 
         //nothing left to redo? disable redo
-        if (actionIndex >= int(actionHistory.length()-1)){
+        if (actionIndex >= int(actionHistory.length()-2)){
             setRedoButtonStatus(false);
         }
-
-        //upon redoing, undoing is possible
-        setUndoButtonStatus(true);
     }
 
     void undo()
