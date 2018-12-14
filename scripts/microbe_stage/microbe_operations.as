@@ -646,8 +646,7 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
 
         if (amountToEject >= MINIMUM_AGENT_EMISSION_AMOUNT)
         {
-            Position@ thisPosition = world.GetComponent_Position(microbeEntity);
-            playSoundWithDistance(world, "Data/Sound/soundeffects/microbe-release-toxin.ogg",thisPosition._Position);
+            playSoundWithDistance(world, "Data/Sound/soundeffects/microbe-release-toxin.ogg",microbeEntity);
             createAgentCloud(world, compoundId, cellPosition._Position+Float3(xnew*ejectionDistance,0,ynew*ejectionDistance),
                     direction, amountToEject, lifeTime, microbeComponent.speciesName);
 
@@ -659,14 +658,16 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
     }
 }
 
-void playSoundWithDistance(CellStageWorld@ world, string soundPath,  Float3 location)
+void playSoundWithDistance(CellStageWorld@ world, const string &in soundPath, ObjectID microbeEntity)
     {
+    auto location = world.GetComponent_Position(microbeEntity)._Position;
     auto playerEntity = GetThriveGame().playerData().activeCreature();
     Position@ thisPosition = world.GetComponent_Position(playerEntity);
-    MicrobeComponent@ microbeComponent = getMicrobeComponent(world, playerEntity);
-    float thisVolume = (1-(((thisPosition._Position-location).LengthSquared())/1000));
+    MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
+    // Length is squared so also square the variable we are dividing
+    float thisVolume = (1-(((thisPosition._Position-location).LengthSquared())/(1000000)));
     // 1.0 is far too quiet
-    float soundVolume = min(1.0,thisVolume)*100;
+    float soundVolume = min(1.0,thisVolume)*20;
     // Play sound
     if (@microbeComponent.otherAudio is null ||
                 !microbeComponent.otherAudio.Get().isPlaying())
@@ -738,8 +739,7 @@ void damage(CellStageWorld@ world, ObjectID microbeEntity, double amount, const 
         {
         if(damageType == "toxin"){
             // Play the toxin sound
-            Position@ thisPosition = world.GetComponent_Position(microbeEntity);
-            playSoundWithDistance(world, "Data/Sound/soundeffects/microbe-toxin-damage.ogg", thisPosition._Position);
+            playSoundWithDistance(world, "Data/Sound/soundeffects/microbe-toxin-damage.ogg", microbeEntity);
         }
 
         microbeComponent.hitpoints -= amount;
@@ -1148,9 +1148,8 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
             }
         }
 
-    Position@ thisPosition = world.GetComponent_Position(microbeEntity);
     // Play the death sound
-    playSoundWithDistance(world, "Data/Sound/soundeffects/microbe-death.ogg", thisPosition._Position);
+    playSoundWithDistance(world, "Data/Sound/soundeffects/microbe-death.ogg", microbeEntity);
 
     //TODO: Get this working
     //auto deathAnimationEntity = world.CreateEntity();
