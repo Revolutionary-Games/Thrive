@@ -476,7 +476,7 @@ class MicrobeEditor{
                         this.createHexComponent(hex.q + organelle.position.q, hex.r + organelle.position.r)
                     }
                 }*/
-                //no need to add the nucleus manually - it's alreary included in the organelleStorage
+                //no need to add the nucleus manually - it's already included in the organelleStorage
                 // mutationPoints = previousMP;
                 // organelleCount = previousOrganelleCount;
                 // Engine.playerData().setActiveCreature(this.currentMicrobeEntity.id, GameState.MICROBE_EDITOR.wrapper)
