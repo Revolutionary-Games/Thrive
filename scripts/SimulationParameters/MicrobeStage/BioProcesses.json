@@ -81,5 +81,17 @@
         "outputs": {
             "atp": 7.0
         }
+    },
+    
+    "chromatophore_photosynthesis": {
+        "name": "Bacterial Photosynthesis",
+
+        "inputs": {
+            "glucose": 0.0
+        },
+
+        "outputs": {
+            "glucose": 0.33
+        }
     }
 }
