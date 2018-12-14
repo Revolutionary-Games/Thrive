@@ -522,7 +522,7 @@ void setupOrganelles(){
     };
     respiratoryProtein.components = {
         processorOrganelleFactory(1.0f),
-        storageOrganelleFactory(25.0f)
+        storageOrganelleFactory(10.0f)
     };
     respiratoryProtein.processes = {
         TweakedProcess("protein_respiration", 1)
@@ -548,10 +548,10 @@ void setupOrganelles(){
     };
     photosyntheticProtein.components = {
         processorOrganelleFactory(1.0f),
-        storageOrganelleFactory(25.0f)
+        storageOrganelleFactory(10.0f)
     };
     photosyntheticProtein.processes = {
-      TweakedProcess("photosynthesis", 1),
+      TweakedProcess("chromatophore_photosynthesis", 1),
       TweakedProcess("glycolosis", 1)
     };
     photosyntheticProtein.hexes = {
