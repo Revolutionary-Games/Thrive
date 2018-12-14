@@ -52,6 +52,14 @@ const organelleSelectionElements = [
         element: document.getElementById("addFlagellum"),
         organelle: "flagellum"
     },
+    {
+        element: document.getElementById("addRespiratory"),
+        organelle: "respiartoryProteins"
+    },
+    {
+        element: document.getElementById("addChromatophor"),
+        organelle: "chromatophors"
+    }
 
     // AddPilus
     // addCilia

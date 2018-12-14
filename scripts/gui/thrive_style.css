@@ -1131,6 +1131,24 @@ video {
   background-image: url("../../Textures/gui/bevel/FlagellumIcon.png");
 }
 
+#RespiratoryProteinIcon {
+  position: relative;
+  left: calc(50% - 30px);
+  width: 60px;
+  height: 60px;
+  background-size: contain;
+  background-image: url("../../Textures/gui/bevel/RespiratoryProkaryIcon.png");
+}
+
+#ChromatophorIcon {
+  position: relative;
+  left: calc(50% - 30px);
+  width: 60px;
+  height: 60px;
+  background-size: contain;
+  background-image: url("../../Textures/gui/bevel/ChromatophorIcon.png");
+}
+
 #PilusIcon {
   position: relative;
   left: calc(50% - 30px);

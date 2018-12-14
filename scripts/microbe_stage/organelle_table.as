@@ -515,7 +515,7 @@ void setupOrganelles(){
     respiratoryProtein.mesh = "respiratoryProteins.mesh";
     respiratoryProtein.chanceToCreate = 0;
     respiratoryProtein.prokaryoteChance = 1;
-    respiratoryProtein.mpCost = 15;
+    respiratoryProtein.mpCost = 20;
     respiratoryProtein.initialComposition = {
         {"phosphates", 1},
         {"ammonia", 1}
@@ -525,8 +525,7 @@ void setupOrganelles(){
         storageOrganelleFactory(25.0f)
     };
     respiratoryProtein.processes = {
-        TweakedProcess("protein_respiration", 1),
-        TweakedProcess("glycolosis", 1)
+        TweakedProcess("protein_respiration", 1)
     };
     respiratoryProtein.hexes = {
         Int2(0, 0),
@@ -542,7 +541,7 @@ void setupOrganelles(){
     photosyntheticProtein.mesh = "respiratoryProteins.mesh";
     photosyntheticProtein.chanceToCreate = 0;
     photosyntheticProtein.prokaryoteChance = 1;
-    photosyntheticProtein.mpCost = 15;
+    photosyntheticProtein.mpCost = 20;
     photosyntheticProtein.initialComposition = {
         {"phosphates", 1},
         {"ammonia", 1}
