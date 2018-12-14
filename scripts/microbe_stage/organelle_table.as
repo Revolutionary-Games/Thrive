@@ -538,7 +538,7 @@ void setupOrganelles(){
 
     photosyntheticProtein.mass = 0.1;
     photosyntheticProtein.gene = "h";
-    photosyntheticProtein.mesh = "respiratoryProteins.mesh";
+    photosyntheticProtein.mesh = "metabolosome.mesh";
     photosyntheticProtein.chanceToCreate = 0;
     photosyntheticProtein.prokaryoteChance = 1;
     photosyntheticProtein.mpCost = 20;
@@ -594,7 +594,7 @@ void setupOrganelles(){
 
     chemoSynthisizingProtien.mass = 0.1;
     chemoSynthisizingProtien.gene = "c";
-    chemoSynthisizingProtien.mesh = "respiratoryProteins.mesh";
+    chemoSynthisizingProtien.mesh = "metabolosome.mesh";
     chemoSynthisizingProtien.chanceToCreate = 0;
     chemoSynthisizingProtien.prokaryoteChance = 1;
     chemoSynthisizingProtien.mpCost = 15;
