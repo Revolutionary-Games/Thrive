@@ -709,7 +709,7 @@ class Species{
             stringCode = getOrganelleDefinition("protoplasm").gene;
             break;
         case 2:
-            stringCode = getOrganelleDefinition("respiartoryProteins").gene;
+            stringCode = getOrganelleDefinition("metabolosome").gene;
             break;
         case 3:
             stringCode = getOrganelleDefinition("chromatophors").gene;
