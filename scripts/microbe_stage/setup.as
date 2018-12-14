@@ -325,7 +325,7 @@ void cellHitAgent(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
 
 void cellOnCellActualContact(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
 {
-    //We ar egoing to cheat here and set variables when you hit something, and hopefully the AABB will take care of the rest
+    //We are going to cheat here and set variables when you hit something, and hopefully the AABB will take care of the rest
     // Grab the microbe components
     MicrobeComponent@ firstMicrobeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(firstEntity));

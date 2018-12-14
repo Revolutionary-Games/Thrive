@@ -646,9 +646,8 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
 
         if (amountToEject >= MINIMUM_AGENT_EMISSION_AMOUNT)
         {
-            GetEngine().GetSoundDevice().Play2DSoundEffect(
-                "Data/Sound/soundeffects/microbe-release-toxin.ogg");
-
+            Position@ thisPosition = world.GetComponent_Position(microbeEntity);
+            playSoundWithDistance(world, "Data/Sound/soundeffects/microbe-release-toxin.ogg",thisPosition._Position);
             createAgentCloud(world, compoundId, cellPosition._Position+Float3(xnew*ejectionDistance,0,ynew*ejectionDistance),
                     direction, amountToEject, lifeTime, microbeComponent.speciesName);
 
@@ -659,6 +658,34 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         }
     }
 }
+
+void playSoundWithDistance(CellStageWorld@ world, string soundPath,  Float3 location)
+    {
+    auto playerEntity = GetThriveGame().playerData().activeCreature();
+    Position@ thisPosition = world.GetComponent_Position(playerEntity);
+    MicrobeComponent@ microbeComponent = getMicrobeComponent(world, playerEntity);
+    float thisVolume = (1-(((thisPosition._Position-location).LengthSquared())/1000));
+    // 1.0 is far too quiet
+    float soundVolume = min(1.0,thisVolume)*100;
+    // Play sound
+    if (@microbeComponent.otherAudio is null ||
+                !microbeComponent.otherAudio.Get().isPlaying())
+        {
+         @microbeComponent.otherAudio = GetEngine().GetSoundDevice().Play2DSound(
+            soundPath, false, true);
+        if(microbeComponent.otherAudio !is null){
+            if(microbeComponent.otherAudio.HasInternalSource()){
+                    microbeComponent.otherAudio.Get().setVolume(soundVolume);
+                    microbeComponent.otherAudio.Get().play();
+                    } else {
+                        LOG_ERROR("Created sound player doesn't have internal "
+                            "sound source");
+                    }
+            } else {
+                LOG_ERROR("Failed to create sound player");
+            }
+        }
+    }
 
 // Default version of toggleEngulfMode that takes ObjectID
 void toggleEngulfMode(CellStageWorld@ world, ObjectID microbeEntity)
@@ -707,23 +734,24 @@ void damage(CellStageWorld@ world, ObjectID microbeEntity, double amount, const 
 
     MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
     // auto soundSourceComponent = world.GetComponent_SoundSourceComponent(microbeEntity);
+    if (microbeComponent !is null)
+        {
+        if(damageType == "toxin"){
+            // Play the toxin sound
+            Position@ thisPosition = world.GetComponent_Position(microbeEntity);
+            playSoundWithDistance(world, "Data/Sound/soundeffects/microbe-toxin-damage.ogg", thisPosition._Position);
+        }
 
-    if(damageType == "toxin"){
-        // Play the toxin sound
-        GetEngine().GetSoundDevice().Play2DSoundEffect(
-            "Data/Sound/soundeffects/microbe-toxin-damage.ogg");
-    }
-
-    microbeComponent.hitpoints -= amount;
-    // Flash the microbe red
-    //LOG_INFO("DAMAGE FLASH");
-    flashMembraneColour(world, microbeEntity, 1000,
-        Float4(1,0,0,0.5));
-
-    // Find out the amount of health the microbe has.
-    if(microbeComponent.hitpoints <= 0.0f){
-        microbeComponent.hitpoints = 0.0f;
-        kill(world, microbeEntity);
+        microbeComponent.hitpoints -= amount;
+        // Flash the microbe red
+        //LOG_INFO("DAMAGE FLASH");
+        flashMembraneColour(world, microbeEntity, 1000,
+            Float4(1,0,0,0.5));
+        // Find out the amount of health the microbe has.
+        if(microbeComponent.hitpoints <= 0.0f){
+            microbeComponent.hitpoints = 0.0f;
+            kill(world, microbeEntity);
+        }
     }
 }
 
@@ -1120,9 +1148,9 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
             }
         }
 
+    Position@ thisPosition = world.GetComponent_Position(microbeEntity);
     // Play the death sound
-    GetEngine().GetSoundDevice().Play2DSoundEffect(
-        "Data/Sound/soundeffects/microbe-death.ogg");
+    playSoundWithDistance(world, "Data/Sound/soundeffects/microbe-death.ogg", thisPosition._Position);
 
     //TODO: Get this working
     //auto deathAnimationEntity = world.CreateEntity();
