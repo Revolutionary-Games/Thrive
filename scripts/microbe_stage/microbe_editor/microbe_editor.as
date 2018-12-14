@@ -59,6 +59,8 @@ class MicrobeEditor{
             {"vacuole", PlacementFunctionType(this.addOrganelle)},
             {"nitrogenfixingplastid", PlacementFunctionType(this.addOrganelle)},
             {"chemoplast", PlacementFunctionType(this.addOrganelle)},
+            {"chromatophors", PlacementFunctionType(this.addOrganelle)},
+            {"respiartoryProteins", PlacementFunctionType(this.addOrganelle)},
             {"remove", PlacementFunctionType(this.removeOrganelle)}
         };
     }
