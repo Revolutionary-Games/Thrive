@@ -665,7 +665,7 @@ void playSoundWithDistance(CellStageWorld@ world, const string &in soundPath, Ob
     Position@ thisPosition = world.GetComponent_Position(playerEntity);
     MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
     // Length is squared so also square the variable we are dividing
-    float thisVolume = (1-(((thisPosition._Position-location).LengthSquared())/(1000000)));
+    float thisVolume = (1-(((thisPosition._Position-location).LengthSquared())/(250000)));
     // 1.0 is far too quiet
     float soundVolume = min(1.0,thisVolume)*20;
     // Play sound
