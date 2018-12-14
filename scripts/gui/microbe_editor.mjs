@@ -53,8 +53,8 @@ const organelleSelectionElements = [
         organelle: "flagellum"
     },
     {
-        element: document.getElementById("addRespiratory"),
-        organelle: "respiratoryProteins"
+        element: document.getElementById("addMetabolosome"),
+        organelle: "metabolosome"
     },
     {
         element: document.getElementById("addChromatophor"),

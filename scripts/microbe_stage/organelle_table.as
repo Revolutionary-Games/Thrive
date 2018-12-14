@@ -508,11 +508,11 @@ void setupOrganelles(){
 
     // ------------------------------------ //
     // Respiratory Protien
-    auto respiratoryProtein = OrganelleParameters("respiartoryProteins");
+    auto respiratoryProtein = OrganelleParameters("metabolosome");
 
     respiratoryProtein.mass = 0.1;
     respiratoryProtein.gene = "m";
-    respiratoryProtein.mesh = "respiratoryProteins.mesh";
+    respiratoryProtein.mesh = "metabolosome.mesh";
     respiratoryProtein.chanceToCreate = 0;
     respiratoryProtein.prokaryoteChance = 1;
     respiratoryProtein.mpCost = 20;

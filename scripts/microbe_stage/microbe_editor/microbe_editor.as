@@ -60,7 +60,7 @@ class MicrobeEditor{
             {"nitrogenfixingplastid", PlacementFunctionType(this.addOrganelle)},
             {"chemoplast", PlacementFunctionType(this.addOrganelle)},
             {"chromatophors", PlacementFunctionType(this.addOrganelle)},
-            {"respiartoryProteins", PlacementFunctionType(this.addOrganelle)},
+            {"metabolosome", PlacementFunctionType(this.addOrganelle)},
             {"remove", PlacementFunctionType(this.removeOrganelle)}
         };
     }
