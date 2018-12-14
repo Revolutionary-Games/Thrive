@@ -178,7 +178,7 @@ class MicrobeComponent : ScriptComponent{
     bool wasBeingEngulfed = false;
     ObjectID hostileEngulfer = NULL_OBJECT;
     AudioSource@ engulfAudio;
-
+    AudioSource@ otherAudio;
     // New state variables that MicrobeSystem also uses
     bool in_editor = false;
 
@@ -417,7 +417,6 @@ class MicrobeSystem : ScriptSystem{
                     "Data/Sound/soundeffects/engulfment.ogg", false, true);
 
                 if(microbeComponent.engulfAudio !is null){
-
                     if(microbeComponent.engulfAudio.HasInternalSource()){
 
                         if (microbeComponent.isPlayerMicrobe)
@@ -426,10 +425,8 @@ class MicrobeSystem : ScriptSystem{
                         }
                         microbeComponent.engulfAudio.Get().play();
                     } else {
-
                         LOG_ERROR("Created engulfment sound player doesn't have internal "
                             "sound source");
-                        @microbeComponent.engulfAudio = null;
                     }
 
                 } else {
@@ -974,8 +971,7 @@ class MicrobeSystem : ScriptSystem{
         world.Create_SpawnedComponent(copyEntity, MICROBE_SPAWN_RADIUS * MICROBE_SPAWN_RADIUS);
 
         // Play the split sound
-        GetEngine().GetSoundDevice().Play2DSoundEffect(
-            "Data/Sound/soundeffects/reproduction.ogg");
+        MicrobeOperations::playSoundWithDistance(world, "Data/Sound/soundeffects/reproduction.ogg",position._Position);
     }
 
     // Copies this microbe (if this isn't the player). The new microbe
