@@ -534,8 +534,8 @@ void setupOrganelles(){
 
     _addOrganelleToTable(Organelle(respiratoryProtein));
 
-    // Photosynthetic Protien
-    auto photosyntheticProtein = OrganelleParameters("photosyntheticProteins");
+    // chromatophors
+    auto photosyntheticProtein = OrganelleParameters("chromatophors");
 
     photosyntheticProtein.mass = 0.1;
     photosyntheticProtein.gene = "h";

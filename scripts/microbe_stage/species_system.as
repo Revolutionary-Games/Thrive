@@ -712,7 +712,7 @@ class Species{
             stringCode = getOrganelleDefinition("respiartoryProteins").gene;
             break;
         case 3:
-            stringCode = getOrganelleDefinition("photosyntheticProteins").gene;
+            stringCode = getOrganelleDefinition("chromatophors").gene;
             break;
         case 4:
             stringCode = getOrganelleDefinition("oxytoxyProteins").gene;
