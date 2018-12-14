@@ -54,7 +54,7 @@ const organelleSelectionElements = [
     },
     {
         element: document.getElementById("addRespiratory"),
-        organelle: "respiartoryProteins"
+        organelle: "respiratoryProteins"
     },
     {
         element: document.getElementById("addChromatophor"),
