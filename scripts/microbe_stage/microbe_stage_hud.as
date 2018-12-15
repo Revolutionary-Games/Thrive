@@ -301,7 +301,7 @@ class MicrobeStageHudSystem : ScriptSystem{
     string track = MICROBE_AMBIENT_TRACKS[GetEngine().GetRandom().GetNumber(0,
                     MICROBE_AMBIENT_TRACKS.length() - 1)] + ".ogg";
         AudioSource@ audio = GetEngine().GetSoundDevice().Play2DSound("Data/Sound/soundeffects/" +track, false, true);
-        audio.Get().setVolume(0.1);
+        audio.Get().setVolume(0.2);
         if (track == "microbe-ambience2.ogg")
             {
             audio.Get().setVolume(0.05);
