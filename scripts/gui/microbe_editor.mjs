@@ -157,6 +157,12 @@ export function setupMicrobeEditor(){
             updateSize(vars.size);
         });
 
+        // Event for Generation update
+        Leviathan.OnGeneric("GenerationUpdated", (event, vars) => {
+            // Apply the new values
+            updateGeneration(vars.generation);
+        });
+
         // Event for undo setting
         Leviathan.OnGeneric("EditorUndoButtonStatus", (event, vars) => {
             // Apply the new values
@@ -263,6 +269,12 @@ function updateMutationPoints(mutationPoints, maxMutationPoints){
 function updateSize(size){
     document.getElementById("sizeLabel").textContent =
     size + " / Osmoregulation Cost: (" + size + ") ATP/s";
+}
+
+//! Updates generation points in GUI
+function updateGeneration(generation){
+    document.getElementById("generationLabel").textContent =
+    generation;
 }
 
 

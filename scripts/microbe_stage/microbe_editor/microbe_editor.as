@@ -95,6 +95,9 @@ class MicrobeEditor{
         symmetry = 0;
         setUndoButtonStatus(false);
         setRedoButtonStatus(false);
+        //Check generation and set it here.
+        hudSystem.updateGeneration();
+
     }
 
     void activate()
@@ -883,6 +886,14 @@ class MicrobeEditor{
     {
         return editedMicrobe.length();
     }
+    // Maybe i should do this in the non-editor code instead, to make sure its more decoupled from the player
+    int getMicrobeGeneration() const
+    {
+        auto playerSpecies = MicrobeOperations::getSpeciesComponent(GetThriveGame().getCellStage(), "Default");
+        // Its plus one because you are updating the next generation
+        return (playerSpecies.generation+1);
+    }
+
 
     int onGeneric(GenericEvent@ event)
     {
