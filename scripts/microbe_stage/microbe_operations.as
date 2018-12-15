@@ -663,7 +663,7 @@ void playSoundWithDistance(CellStageWorld@ world, const string &in soundPath, Ob
     auto location = world.GetComponent_Position(microbeEntity)._Position;
     auto playerEntity = GetThriveGame().playerData().activeCreature();
 
-    // This way the players sounds don't get their volume loweered away from teh spawn point
+    // This way the players sounds don't get their volume lowered away from the spawn point
     if (playerEntity == microbeEntity)
     {
     GetEngine().GetSoundDevice().Play2DSound(
@@ -675,7 +675,7 @@ void playSoundWithDistance(CellStageWorld@ world, const string &in soundPath, Ob
     // Length is squared so also square the variable we are dividing
     float thisVolume = (1.0f-(((thisPosition._Position-location).LengthSquared())/(250000.0f)));
     // 1.0 is far too quiet
-    float soundVolume = min(1.0f,thisVolume)*20.0f;
+    float soundVolume = min(1.0f,thisVolume)*20;
     // Play sound
     if (@microbeComponent.otherAudio is null ||
                 !microbeComponent.otherAudio.Get().isPlaying())
