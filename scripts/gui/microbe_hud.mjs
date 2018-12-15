@@ -9,6 +9,8 @@ let microbeHudSetupRan = false;
 
 let readyToEdit = false;
 
+let wonOnce = false;
+
 //! Registers all the stuff for this to work.
 //! This makes sure it does something only once
 export function runMicrobeHUDSetup(){
@@ -68,7 +70,7 @@ export function runMicrobeHUDSetup(){
 
         // Event for checking win conditions
         Leviathan.OnGeneric("CheckWin", (event, vars) => {
-            checkGeneration(vars.generation);
+            checkGeneration(vars.generation, vars.population);
         });
 
         // Event for receiving data about stuff we are hovering over
@@ -402,13 +404,12 @@ function checkExtinction(population){
     }
 }
 
-function checkGeneration (generation){
-    // This is set to == because I don't want the wintext to show up after the 15th generation
-    // This can be changed by just about anyone if needed very easily
-    if(generation == 15){
+function checkGeneration (generation, population){
+    if(generation >= 15 && population >= 200 && wonOnce == false){
         document.getElementById("winTitle").style.display = "inline-block";
         document.getElementById("winBody").style.display = "inline-block";
         document.getElementById("winContainer").style.display = "inline-block";
+        wonOnce = true;
         setTimeout(hideWinText, 7000);
     }
 }
