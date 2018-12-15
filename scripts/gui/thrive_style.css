@@ -667,13 +667,30 @@ video {
   line-height: 40px;
 }
 
-#winText {
-  position: absolute;
-  height: 200px;
-  width: 1000px;
+#winContainer {
+  width: 100%;
+  height: 240px;
   margin-top: 17%;
-  margin-left: calc(50% - 500px);
-  font-size: 180pt;
+  background-color: rgba(60, 60, 60, 0.2);
+  display: none;
+}
+
+#winTitle {
+  width: 800px;
+  height: 100px;
+  font-family: thrive;
+  font-size: 90pt;
+  margin-left: calc(50% - 400px);
+  margin-top: 1%;
+  display: none;
+}
+
+#winBody {
+  width: 800px;
+  height: 120px;
+  font-size: 20pt;
+  text-align: left;
+  margin-left: calc(50% - 400px);
   display: none;
 }
 
@@ -781,8 +798,8 @@ video {
 }
 
 #generation,
-#size,
-#speed {
+#speed,
+#size {
   position: absolute;
   height: 26px;
   margin-top: 7px;
@@ -794,7 +811,7 @@ video {
 #generationLabel,
 #sizeLabel,
 #speedLabel {
-  margin-left: 10px;
+  margin-left: 2px;
 }
 
 #generation {
@@ -802,11 +819,11 @@ video {
 }
 
 #size {
-  left: 600px;
+  left: 720px;
 }
 
 #speed {
-  left: 720px;
+  left: 600px;
 }
 
 #SymmetryButton {

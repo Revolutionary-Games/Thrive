@@ -143,6 +143,7 @@ class MicrobeEditor{
         // TODO: this is really dirty to call this all the time
         // This updates the mutation point counts to the GUI
         hudSystem.updateMutationPoints();
+        hudSystem.updateSize();
 
         usedHoverHex = 0;
 
@@ -876,6 +877,11 @@ class MicrobeEditor{
     int getMutationPoints() const
     {
         return mutationPoints;
+    }
+
+    int getMicrobeSize() const
+    {
+        return editedMicrobe.length();
     }
 
     int onGeneric(GenericEvent@ event)

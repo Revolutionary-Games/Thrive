@@ -406,14 +406,18 @@ function checkGeneration (generation){
     // This is set to == because I don't want the wintext to show up after the 15th generation
     // This can be changed by just about anyone if needed very easily
     if(generation == 15){
-        document.getElementById("winText").style.display = "unset";
-        setTimeout(hideWinText, 5000);
+        document.getElementById("winTitle").style.display = "inline-block";
+        document.getElementById("winBody").style.display = "inline-block";
+        document.getElementById("winContainer").style.display = "inline-block";
+        setTimeout(hideWinText, 7000);
     }
 }
 
 //! Supplementry function for checkGeneration that hides the wintext
 function hideWinText(){
-    document.getElementById("winText").style.display = "none";
+    document.getElementById("winTitle").style.display = "none";
+    document.getElementById("winBody").style.display = "none";
+    document.getElementById("winContainer").style.display = "none";
 }
 
 //! Updates the GUI bars
