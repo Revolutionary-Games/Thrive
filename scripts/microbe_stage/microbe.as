@@ -394,8 +394,11 @@ class MicrobeSystem : ScriptSystem{
                 }
             }
         }
-
-        doReproductionStep(components,logicTime);
+        // Only do reproduction stuff if your species isn't extinct
+        if (MicrobeOperations::getSpeciesComponent(world, microbeEntity) !is null)
+            {
+            doReproductionStep(components,logicTime);
+            }
 
         if(microbeComponent.engulfMode){
             // Drain atp
@@ -1002,12 +1005,6 @@ class MicrobeSystem : ScriptSystem{
 
                 divide(microbeEntity);
 
-            } else {
-                // You are extinct so just die okay.
-                // TODO: this isn't optimal and the player might
-                // notice something weird going on. Better to just
-                // infinitely block splitting
-                MicrobeOperations::kill(world, microbeEntity);
             }
         }
     }
