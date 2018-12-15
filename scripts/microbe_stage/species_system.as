@@ -1353,7 +1353,7 @@ void initProcessorComponent(CellStageWorld@ world, ObjectID entity,
             bioProcessId);
 
         if(capacities.exists(processName)){
-            double capacity;
+            double capacity=0.0f;
             if(!capacities.get(processName, capacity)){
                 LOG_ERROR("capacities has invalid value");
                 continue;
@@ -1499,7 +1499,7 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name, const strin
             bioProcessId);
 
         if(capacities.exists(processName)){
-            double capacity;
+            double capacity = 0.0f;
             if(!capacities.get(processName, capacity)){
                 LOG_ERROR("capacities has invalid value");
                 continue;
