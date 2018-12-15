@@ -150,10 +150,8 @@ class MicrobeAISystem : ScriptSystem{
                 aiComponent.preyMicrobes.removeRange(0,aiComponent.preyMicrobes.length());
 
                 // Update most feared microbe and most tasty microbe
-                prey=NULL_OBJECT;
-                predator=NULL_OBJECT;
-                prey = getNearestPreyItem(components,allMicrobes);
-                predator = getNearestPredatorItem(components,allMicrobes);
+                ObjectID prey = getNearestPreyItem(components,allMicrobes);
+                ObjectID predator = getNearestPredatorItem(components,allMicrobes);
 
                 //30 seconds about
                 if (aiComponent.boredom == GetEngine().GetRandom().GetNumber(aiComponent.speciesFocus,1000.0f+aiComponent.speciesFocus)){
@@ -458,24 +456,30 @@ class MicrobeAISystem : ScriptSystem{
 
     // For self defense (not nessessarily fleeing)
     void dealWithPredators(MicrobeAISystemCached@ components, ObjectID predator)
-        {
+    {
         ObjectID microbeEntity = components.entity;
         MicrobeAIControllerComponent@ aiComponent = components.first;
         MicrobeComponent@ microbeComponent = components.second;
         Position@ position = components.third;
+
         if (GetEngine().GetRandom().GetNumber(0,100) <= 10)
-            {
+        {
             aiComponent.hasTargetPosition = false;
-            }
-        // Run From Predator
-        if (aiComponent.hasTargetPosition == false)
-            {
-            preyFlee(microbeEntity, aiComponent, microbeComponent,position);
-            }
         }
 
-    void preyFlee(ObjectID microbeEntity, MicrobeAIControllerComponent@ aiComponent, MicrobeComponent@ microbeComponent, Position@ position){
-            CompoundId oxytoxyId = SimulationParameters::compoundRegistry().getTypeId("oxytoxy");
+        // Run From Predator
+        if (aiComponent.hasTargetPosition == false)
+        {
+            preyFlee(microbeEntity, aiComponent, microbeComponent, position, predator);
+        }
+    }
+
+    void preyFlee(ObjectID microbeEntity, MicrobeAIControllerComponent@ aiComponent,
+        MicrobeComponent@ microbeComponent, Position@ position, ObjectID predator)
+    {
+            CompoundId oxytoxyId = SimulationParameters::compoundRegistry().getTypeId(
+                "oxytoxy");
+
             // Agent vacuoles.
             int numberOfAgentVacuoles = int(
                 microbeComponent.specialStorageOrganelles[formatUInt(oxytoxyId)]);
@@ -707,19 +711,4 @@ class MicrobeAISystem : ScriptSystem{
         ScriptSystemUses("MicrobeComponent"),
         ScriptSystemUses(Position::TYPE)
     };
-
-    // This isn't currently possible to store
-    // dictionary microbes = {};
-
-    // //counting number of frames so the prey get updated the fittest prey
-    // int preycount = 0;
-    // //checking if the prey escaped
-    // bool preyEscaped = false;
-
-    // the final predator the cell shall run from
-    ObjectID predator = NULL_OBJECT;
-
-    // the final prey the cell should hunt
-    ObjectID prey = NULL_OBJECT;
-
 }
