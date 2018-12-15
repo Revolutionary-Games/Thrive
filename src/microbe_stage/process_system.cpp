@@ -208,6 +208,7 @@ void
         return;
 
     const auto logicTime = Leviathan::TICKSPEED;
+
     // Iterating on each entity with a CompoundBagComponent and a
     // ProcessorComponent
     for(auto& value : CachedComponents.GetIndex()) {
@@ -219,6 +220,7 @@ void
             LOG_ERROR("Compound Bag Lacks Processor component");
             continue;
         }
+
         // Set all compounds to price 0 initially, set used ones to 1, this way
         // we can purge unused compounds, I think we may be able to merge this
         // and the bottom for loop, but im not sure how to go about that yet.
@@ -227,125 +229,126 @@ void
             compoundData.price = 0;
         }
 
-        // LOG_INFO("Capacities:
-        // "+std::to_string(processor->process_capacities.size()));
-        for(const auto process : processor->process_capacities) {
-            BioProcessId processId = process.first;
-            double processCapacity = process.second;
+        // LOG_INFO("Capacities:" +
+        // std::to_string(processor->process_capacities.size()));
+        for(const auto& process : processor->process_capacities) {
+            const BioProcessId processId = process.first;
+            const double processCapacity = process.second;
 
             // Processes are now every second
-            double processLimitCapacity = logicTime;
-            // This should not do anything if the cell has no room to hold the
-            // new compounds and it shouldn't just keep draining compounds if
-            // you lack the stuff you need to Do your processes
-            bool processed = false;
-            // Can your cell do the process without waste?
-            bool canDoProcess = true;
+            const double processLimitCapacity = logicTime;
 
             // If capcity is 0 dont do it
-            if(processCapacity != 0.0f) {
+            if(processCapacity <= 0.0f)
+                continue;
 
-                // Loop through to make sure you can follow through with your
-                // whole process so nothing gets wasted as that would be
-                // frusterating, its two more for loops, yes but it should only
-                // really be looping at max two or three times anyway. also make
-                // sure you wont run out of space when you do add the compounds.
-                // Input
-                for(const auto input : SimulationParameters::bioProcessRegistry
-                                           .getTypeData(processId)
-                                           .inputs) {
-                    CompoundId inputId = input.first;
-                    // Set price of used compounds to 1, we dont want to purge
-                    // those
-                    bag.compounds[inputId].price = 1;
-                    double inputRemoved = ((input.second * processCapacity) /
-                                           (processLimitCapacity));
-                    if(bag.compounds[inputId].amount < inputRemoved) {
-                        canDoProcess = false;
+            // TODO: this is a sanity check for incorrect process configuration
+            if(processId >=
+                SimulationParameters::bioProcessRegistry.getSize()) {
+
+                LOG_ERROR(
+                    "ProcessSystem: Run: entity: " +
+                    std::to_string(value.first) + " has invalid process: " +
+                    std::to_string(processId) + ", process count is: " +
+                    std::to_string(
+                        SimulationParameters::bioProcessRegistry.getSize()));
+                continue;
+            }
+
+            // This does a map lookup so only do this once
+            const auto& processData =
+                SimulationParameters::bioProcessRegistry.getTypeData(processId);
+
+            // Can your cell do the process
+            bool canDoProcess = true;
+
+            // Loop through to make sure you can follow through with your
+            // whole process so nothing gets wasted as that would be
+            // frusterating, its two more for loops, yes but it should only
+            // really be looping at max two or three times anyway. also make
+            // sure you wont run out of space when you do add the compounds.
+            // Input
+            for(const auto& input : processData.inputs) {
+
+                const CompoundId inputId = input.first;
+
+                // Set price of used compounds to 1, we dont want to purge
+                // those
+                bag.compounds[inputId].price = 1;
+
+                const double inputRemoved =
+                    ((input.second * processCapacity) / (processLimitCapacity));
+
+                // If not enough compound we can't do the process
+                if(bag.compounds[inputId].amount < inputRemoved) {
+                    canDoProcess = false;
+                }
+            }
+
+            // Output
+            // This is now always looped because the is useful part is always
+            // done
+            for(const auto& output : processData.outputs) {
+
+                const CompoundId outputId = output.first;
+                // For now lets assume compounds we produce are also
+                // useful
+                bag.compounds[outputId].price = 1;
+
+                const double outputAdded = ((output.second * processCapacity) /
+                                            (processLimitCapacity));
+
+                // If no space we can't do the process
+                if(bag.getCompoundAmount(outputId) + outputAdded >
+                    bag.storageSpace) {
+                    canDoProcess = false;
+                }
+            }
+
+            // Only carry out this process if you have all the required
+            // ingredients and enough space for the outputs
+            if(canDoProcess) {
+                // Inputs.
+                for(const auto& input : processData.inputs) {
+                    const CompoundId inputId = input.first;
+                    const double inputRemoved =
+                        ((input.second * processCapacity) /
+                            (processLimitCapacity));
+
+                    // This should always be true (due to the earlier check) so
+                    // it is always assumed here that the process succeeded
+                    if(bag.compounds[inputId].amount >= inputRemoved) {
+                        bag.compounds[inputId].amount -= inputRemoved;
                     }
                 }
-                // Output
-                // Dont loop if you dont need to so check if canDoProcess has
-                // already been set to false
-                if(canDoProcess) {
-                    for(const auto output :
-                        SimulationParameters::bioProcessRegistry
-                            .getTypeData(processId)
-                            .outputs) {
-                        CompoundId outputId = output.first;
-                        // For now lets assume compounds we produce are also
-                        // useful
-                        bag.compounds[outputId].price = 1;
-                        double outputAdded =
-                            ((output.second * processCapacity) /
-                                (processLimitCapacity));
 
-                        if(bag.getCompoundAmount(outputId) + outputAdded >
-                            bag.storageSpace) {
-                            canDoProcess = false;
-                        }
-                    }
-
-                }
-                // Even if you cannot do the process, you still need to know the
-                // price I want to keep this code as simplistic as possible so
-                // we can comprehend it, so i might just add a new method
-                // specifically for calculating prices and call it as this seems
-                // messy.
-                else {
-                    for(const auto output :
-                        SimulationParameters::bioProcessRegistry
-                            .getTypeData(processId)
-                            .outputs) {
-                        CompoundId outputId = output.first;
-                        // For now lets assume compounds we produce are also
-                        // useful
-                        bag.compounds[outputId].price = 1;
-                    }
-                }
-                // Only carry out this process if you have all the required
-                // ingrediants, and if something weird happens and you suddenly
-                // lose your capability, just remove what you can and get out
-                // and next time you will be unable
-
-                if(canDoProcess) {
-                    // Inputs.
-                    for(const auto input :
-                        SimulationParameters::bioProcessRegistry
-                            .getTypeData(processId)
-                            .inputs) {
-                        CompoundId inputId = input.first;
-                        double inputRemoved =
-                            ((input.second * processCapacity) /
-                                (processLimitCapacity));
-                        if(bag.compounds[inputId].amount >= inputRemoved) {
-                            processed = true;
-                            bag.compounds[inputId].amount -= inputRemoved;
-                        } else {
-                            processed = false;
-                        }
-                    }
-
-                    // Outputs.
-                    if(processed) {
-                        for(const auto output :
-                            SimulationParameters::bioProcessRegistry
-                                .getTypeData(processId)
-                                .outputs) {
-                            CompoundId outputId = output.first;
-                            double outputGenerated =
-                                ((output.second * processCapacity) /
-                                    (processLimitCapacity));
-                            bag.compounds[outputId].amount += outputGenerated;
-                        }
-                    }
+                // Outputs.
+                for(const auto& output : processData.outputs) {
+                    const CompoundId outputId = output.first;
+                    const double outputGenerated =
+                        ((output.second * processCapacity) /
+                            (processLimitCapacity));
+                    bag.compounds[outputId].amount += outputGenerated;
                 }
             }
         }
+
         // Making sure the compound amount is not negative.
         for(auto& compound : bag.compounds) {
             CompoundData& compoundData = compound.second;
-            compoundData.amount = std::max(compoundData.amount, 0.0);
+
+            if(compoundData.amount < 0) {
+                LOG_ERROR("ProcessSystem: Run: entity: " +
+                          std::to_string(value.first) +
+                          " has negative amount of compound: " +
+                          std::to_string(compound.first) +
+                          ", amount: " + std::to_string(compoundData.amount));
+
+                compoundData.amount = 0.0;
+            }
+
+            // TODO: fix this comment I (hhyyrylainen) have no idea
+            // what this does or why this is here
             // That way we always have a running tally of what process was set
             // to what despite clearing the price every run cycle
             compoundData.usedLastTime = compoundData.price;

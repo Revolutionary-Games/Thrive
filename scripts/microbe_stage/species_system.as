@@ -1353,19 +1353,22 @@ void initProcessorComponent(CellStageWorld@ world, ObjectID entity,
             bioProcessId);
 
         if(capacities.exists(processName)){
-            double capacity=0.0f;
+
+            double capacity;
             if(!capacities.get(processName, capacity)){
                 LOG_ERROR("capacities has invalid value");
                 continue;
             }
-            LOG_INFO("Process: "+processName+" Capacity: "+capacity);
+
+            // LOG_INFO("Process: " + processName + " Capacity: " + capacity);
             processorComponent.setCapacity(bioProcessId, capacity);
         } else {
-            //if it doesnt exist:
-            capacities.set(processName,double(0.0f));
-             //Better to be safe then sorry, there is a difference between the c++ species and the angelscript one so.
-             processorComponent.setCapacity(bioProcessId, 0.0f);
-            }
+            // If it doesnt exist:
+            capacities.set(processName, 0.0f);
+
+            // This is related to https://github.com/Revolutionary-Games/Thrive/issues/599
+            processorComponent.setCapacity(bioProcessId, 0.0f);
+        }
     }
 }
 
@@ -1499,17 +1502,20 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name, const strin
             bioProcessId);
 
         if(capacities.exists(processName)){
-            double capacity = 0.0f;
+
+            double capacity;
             if(!capacities.get(processName, capacity)){
                 LOG_ERROR("capacities has invalid value");
                 continue;
             }
+
             processorComponent.setCapacity(bioProcessId, capacity);
         } else {
-        //if it doesnt exist:
-        capacities.set(processName,double(0.0f));
-        // Better to be safe than sorry
-         processorComponent.setCapacity(bioProcessId, 0.0f);
+            // If it doesnt exist:
+            capacities.set(processName, 0.0f);
+
+            // This is done because of https://github.com/Revolutionary-Games/Thrive/issues/599
+            processorComponent.setCapacity(bioProcessId, 0.0f);
         }
     }
 
