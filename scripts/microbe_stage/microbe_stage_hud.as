@@ -288,7 +288,7 @@ class MicrobeStageHudSystem : ScriptSystem{
         AudioSource@ audio = GetEngine().GetSoundDevice().Play2DSound("Data/Sound/" +
             MICROBE_MUSIC_TRACKS[GetEngine().GetRandom().GetNumber(0,
                     MICROBE_MUSIC_TRACKS.length() - 1)] + ".ogg", false, true);
-        audio.Get().setVolume(0.2);
+        audio.Get().setVolume(0.3);
         if (audio is null)
         {
             LOG_ERROR("Failed to create ambience music source");
@@ -302,6 +302,10 @@ class MicrobeStageHudSystem : ScriptSystem{
                     MICROBE_AMBIENT_TRACKS.length() - 1)] + ".ogg";
         AudioSource@ audio = GetEngine().GetSoundDevice().Play2DSound("Data/Sound/soundeffects/" +track, false, true);
         audio.Get().setVolume(0.1);
+        if (track == "microbe-ambience2.ogg")
+            {
+            audio.Get().setVolume(0.05);
+            }
         if (audio is null)
         {
             LOG_ERROR("Failed to create ambience sound source");
