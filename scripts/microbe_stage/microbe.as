@@ -394,11 +394,8 @@ class MicrobeSystem : ScriptSystem{
                 }
             }
         }
-        // Only do reproduction stuff if your species isn't extinct
-        if (MicrobeOperations::getSpeciesComponent(world, microbeEntity) !is null)
-            {
-            doReproductionStep(components,logicTime);
-            }
+
+        doReproductionStep(components,logicTime);
 
         if(microbeComponent.engulfMode){
             // Drain atp
