@@ -151,6 +151,12 @@ export function setupMicrobeEditor(){
             updateMutationPoints(vars.mutationPoints, vars.maxMutationPoints);
         });
 
+        // Event for size update
+        Leviathan.OnGeneric("SizeUpdated", (event, vars) => {
+            // Apply the new values
+            updateSize(vars.size);
+        });
+
         // Event for undo setting
         Leviathan.OnGeneric("EditorUndoButtonStatus", (event, vars) => {
             // Apply the new values
@@ -252,6 +258,13 @@ function updateMutationPoints(mutationPoints, maxMutationPoints){
     document.getElementById("microbeHUDPlayerMutationPointsBar").style.width =
          common.barHelper(mutationPoints, maxMutationPoints);
 }
+
+//! Updates size points in GUI
+function updateSize(size){
+    document.getElementById("sizeLabel").textContent =
+    size + " / Osmoregulation Cost: (" + size + ") ATP/s";
+}
+
 
 function onResumeClickedEditor(){
 
