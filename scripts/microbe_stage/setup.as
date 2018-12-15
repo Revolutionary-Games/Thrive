@@ -220,6 +220,7 @@ void onReturnFromEditor(CellStageWorld@ world)
     GenericEvent@ event = GenericEvent("CheckWin");
     NamedVars@ vars = event.GetNamedVars();
     vars.AddValue(ScriptSafeVariableBlock("generation", playerSpecies.generation));
+    vars.AddValue(ScriptSafeVariableBlock("population", playerSpecies.population));
     GetEngine().GetEventHandler().CallEvent(event);
 
     // The editor changes the cell template for the species so we won't have to do that here

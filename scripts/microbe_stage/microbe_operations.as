@@ -291,8 +291,8 @@ void respawnPlayer(CellStageWorld@ world)
         suicideButtonreset();
     }
 
-    // Decrease the population by 10
-    playerSpecies.population -= 10;
+    // Decrease the population by 20
+    playerSpecies.population -= 20;
 
     // TODO: we already check if the player is extinct here. That logic shouldn't
     // be duplicated in the GUI
