@@ -229,7 +229,7 @@ void
 
         // LOG_INFO("Capacities:
         // "+std::to_string(processor->process_capacities.size()));
-        for(const auto& process : processor->process_capacities) {
+        for(const auto process : processor->process_capacities) {
             BioProcessId processId = process.first;
             double processCapacity = process.second;
 
@@ -251,9 +251,9 @@ void
                 // really be looping at max two or three times anyway. also make
                 // sure you wont run out of space when you do add the compounds.
                 // Input
-                for(const auto& input : SimulationParameters::bioProcessRegistry
-                                            .getTypeData(processId)
-                                            .inputs) {
+                for(const auto input : SimulationParameters::bioProcessRegistry
+                                           .getTypeData(processId)
+                                           .inputs) {
                     CompoundId inputId = input.first;
                     // Set price of used compounds to 1, we dont want to purge
                     // those
@@ -268,7 +268,7 @@ void
                 // Dont loop if you dont need to so check if canDoProcess has
                 // already been set to false
                 if(canDoProcess) {
-                    for(const auto& output :
+                    for(const auto output :
                         SimulationParameters::bioProcessRegistry
                             .getTypeData(processId)
                             .outputs) {
@@ -293,7 +293,7 @@ void
                 // specifically for calculating prices and call it as this seems
                 // messy.
                 else {
-                    for(const auto& output :
+                    for(const auto output :
                         SimulationParameters::bioProcessRegistry
                             .getTypeData(processId)
                             .outputs) {
@@ -310,7 +310,7 @@ void
 
                 if(canDoProcess) {
                     // Inputs.
-                    for(const auto& input :
+                    for(const auto input :
                         SimulationParameters::bioProcessRegistry
                             .getTypeData(processId)
                             .inputs) {
@@ -328,7 +328,7 @@ void
 
                     // Outputs.
                     if(processed) {
-                        for(const auto& output :
+                        for(const auto output :
                             SimulationParameters::bioProcessRegistry
                                 .getTypeData(processId)
                                 .outputs) {
