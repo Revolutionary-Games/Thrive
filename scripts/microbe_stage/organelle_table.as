@@ -300,7 +300,7 @@ void setupOrganelles(){
     };
     cytoplasmParameters.components = {
         processorOrganelleFactory(1.0),
-        storageOrganelleFactory(5.0f)
+        storageOrganelleFactory(20.0f)
     };
     cytoplasmParameters.processes = {
         TweakedProcess("glycolosis", 1)
@@ -413,7 +413,7 @@ void setupOrganelles(){
         {"ammonia", 2}
     };
     vacuoleParameters.components = {
-        storageOrganelleFactory(25.0f)
+        storageOrganelleFactory(50.0f)
     };
     vacuoleParameters.hexes = {
         Int2(0, 0)
@@ -541,7 +541,7 @@ void setupOrganelles(){
     photosyntheticProtein.mesh = "metabolosome.mesh";
     photosyntheticProtein.chanceToCreate = 0;
     photosyntheticProtein.prokaryoteChance = 1;
-    photosyntheticProtein.mpCost = 20;
+    photosyntheticProtein.mpCost = 25;
     photosyntheticProtein.initialComposition = {
         {"phosphates", 1},
         {"ammonia", 1}
