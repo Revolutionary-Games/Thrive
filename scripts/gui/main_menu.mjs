@@ -165,7 +165,6 @@ function startMenuMusic(restart = true) {
                 jams = source;
             });
     } else {
-
         jams.Play2D();
     }
 }
