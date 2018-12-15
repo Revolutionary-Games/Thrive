@@ -314,11 +314,10 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
     //  The time since the last call to update()
     void update(int logicTime)
     {
-        Float4 speciesColour = Float4(00.0f,0.0f,0.0f,0.0f);
-        if(flashDuration > 0 && speciesComponent !is null){
+
+        if(flashDuration > 0 ){
             flashDuration -= logicTime;
             // Use organelle.world to get the MicrobeSystem
-            speciesColour = speciesComponent.colour;
             Float4 colour;
 
             // How frequent it flashes, would be nice to update the
@@ -328,12 +327,12 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
                 LOG_INFO("Flashed Organelle");
                 LOG_INFO(""+flashDuration);
             } else {
-                colour = speciesColour;
+                colour = this.speciesColour;
             }
 
             if(flashDuration <= 0){
                 flashDuration = 0;
-                colour = speciesColour;
+                colour = this.speciesColour;
             }
 
             // TODO: this needs a separate colour property
@@ -342,18 +341,16 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         }
 
         // If the organelle is supposed to be another color.
-        if(_needsColourUpdate && speciesComponent !is null){
+        if(_needsColourUpdate){
             // This method doesn't actually apply the colour so I have
             // no clue how the flashing works
             updateColour();
         }
 
         // Update each OrganelleComponent
-        if (speciesComponent !is null){
             for(uint i = 0; i < components.length(); ++i){
                 components[i].update(microbeEntity, this, logicTime);
             }
-        }
     }
 
     protected Float4 calculateHSLForOrganelle(Float4 oldColour)
@@ -667,8 +664,11 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
         microbeEntity = microbe;
 
-        @this.speciesComponent = MicrobeOperations::getSpeciesComponent(world, microbeEntity);
-
+        // This should be the only species check any organelle ever makes.
+        auto species = MicrobeOperations::getSpeciesComponent(world, microbeEntity);
+        if (species !is null){
+            this.speciesColour = species.colour;
+            }
         // Our coordinates are already set when this is called
         // so just cache this
         this.cartesianPosition = Hex::axialToCartesian(q, r);
@@ -687,10 +687,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
             world.SetEntitysParent(organelleEntity, microbeEntity);
 
             // Change the colour of this species to be tinted by the membrane.
-            if (speciesComponent !is null)
-                {
-                flashColour = speciesComponent.colour;
-                }
+            flashColour = this.speciesColour;
 
             _needsColourUpdate = true;
 
@@ -890,7 +887,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
     // TODO: fix this
     float flashDuration = 0;
     //cached species
-    SpeciesComponent@ speciesComponent;
+    Float4 speciesColour = Float4(00.0f,0.0f,0.0f,0.0f);
     //! When flashing this is red othertimes this is the species colour
     Float4 flashColour = Float4(1, 1, 1, 1);
 
