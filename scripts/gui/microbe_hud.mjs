@@ -209,7 +209,7 @@ function openHelp(){
         "Heres a tip, Watch out for larger cells and large bacteria, " +
             "it's not fun to be digested,  and they will eat you.",
         "Heres a tip, Osmoregulation costs 1 ATP per second per organelle your cell has, " +
-            " each empty hex of cytoplasm generates 4 ATP per second aswell," +
+            " each empty hex of cytoplasm generates 5 ATP per second aswell," +
             "which means if you are losing ATP due to osmoregulation just add a couple" +
             " empty hexes cytoplasm or remove some organelles",
         "Fun Fact, Thrive is meant as a simulation of an alien planet, therefore it makes" +

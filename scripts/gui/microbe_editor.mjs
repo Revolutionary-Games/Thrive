@@ -301,10 +301,16 @@ function openHelpEditor(){
         "Heres a tip, toxins can be used to knock other toxins away from you " +
             "if you are quick enough.",
         "Heres a tip, Osmoregulation costs 1 ATP per second per organelle your cell has, " +
-            " each empty hex of cytoplasm generates 4 ATP per second aswell," +
+            " each empty hex of cytoplasm generates 5 ATP per second aswell," +
             "which means if you are losing ATP due to osmoregulation just add a couple" +
             " empty hexes cytoplasm or remove some organelles.",
+        "Fun Fact, In real life prokaryotes have something called Biocompartments " +
+        "which act like organelles, and are in fact called Polyhedral organelles",
+        "Fun Fact, The metabolosome is what is called a Polyhedral organelle",
         "Heres a Tip, You generate exactly 14 atp per second per mitochondria.",
+        "Heres a Tip, You generate exactly 14 atp per second per metabolosome," +
+        "however, it is 7 times less efficient than a mitochondria.",
+        "Heres a Tip, Chromatophores generate 1/3rd the glucose of a chloroplast",
         "Heres a Tip, You generate exactly 2 glucose per second per chemoplast," +
             "as long as you have at least 1 hydrogen sulfide to convert.",
         "Thrive is meant as a simulation of an alien planet, therefore it makes " +
