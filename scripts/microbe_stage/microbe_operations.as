@@ -255,7 +255,7 @@ void respawnPlayer(CellStageWorld@ world)
     auto playerSpecies = MicrobeOperations::getSpeciesComponent(world, "Default");
     auto playerEntity = GetThriveGame().playerData().activeCreature();
 
-    if (playerSpecies.population > 10)
+    if (playerSpecies.population > 20)
     {
         MicrobeComponent@ microbeComponent = getMicrobeComponent(world, playerEntity);
         auto rigidBodyComponent = world.GetComponent_Physics(playerEntity);

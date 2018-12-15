@@ -260,6 +260,17 @@ class MicrobeEditorHudSystem : ScriptSystem{
         GetEngine().GetEventHandler().CallEvent(event);
     }
 
+
+    void updateGeneration()
+    {
+        GenericEvent@ event = GenericEvent("GenerationUpdated");
+        NamedVars@ vars = event.GetNamedVars();
+
+        vars.AddValue(ScriptSafeVariableBlock("generation", editor.getMicrobeGeneration()));
+
+        GetEngine().GetEventHandler().CallEvent(event);
+    }
+
     MicrobeEditorWorld@ world
     {
         get
