@@ -716,38 +716,7 @@ void
             m_cloudGridCenter += Float3(0, 0, CLOUD_HEIGHT * 2);
         }
 
-        // Reposition clouds according to the origin
-        // MAX of 9 clouds can ever be repositioned (this is only the case when
-        // respawning)
-        constexpr size_t MAX_FAR_CLOUDS = 9;
-        std::array<CompoundCloudComponent*, MAX_FAR_CLOUDS> tooFarAwayClouds;
-        size_t farAwayIndex = 0;
-
-        for(auto iter = m_managedClouds.begin(); iter != m_managedClouds.end();
-            ++iter) {
-
-            const auto pos = iter->second->m_position;
-
-            const auto distance = m_cloudGridCenter - pos;
-
-            if(std::abs(distance.X) > 3 * CLOUD_WIDTH ||
-                std::abs(distance.Z) > 3 * CLOUD_HEIGHT) {
-
-                if(farAwayIndex >= MAX_FAR_CLOUDS) {
-
-                    LOG_FATAL("CompoundCloudSystem: Logic error in calculating "
-                              "far away clouds that need to move");
-                    break;
-                }
-
-                tooFarAwayClouds[farAwayIndex++] = iter->second;
-            }
-        }
-
-        // Move clouds that are too far away
-        // We check through each position that should have a cloud and move one
-        // where there isn't one
-
+        // Calculate the new positions
         const Float3 requiredCloudPositions[] = {
             // Center
             m_cloudGridCenter,
@@ -777,6 +746,53 @@ void
             m_cloudGridCenter + Float3(CLOUD_WIDTH * 2, 0, CLOUD_HEIGHT * 2),
         };
 
+
+
+        // Reposition clouds according to the origin
+        // MAX of 9 clouds can ever be repositioned (this is only the case when
+        // respawning)
+        constexpr size_t MAX_FAR_CLOUDS = 9;
+        std::array<CompoundCloudComponent*, MAX_FAR_CLOUDS> tooFarAwayClouds;
+        size_t farAwayIndex = 0;
+
+        // All clouds that aren't at one of the requiredCloudPositions needs to
+        // be moved
+        for(auto iter = m_managedClouds.begin(); iter != m_managedClouds.end();
+            ++iter) {
+
+            const auto pos = iter->second->m_position;
+
+            bool matched = false;
+
+            // Check if it is at any of the valid positions
+            for(size_t i = 0; i < std::size(requiredCloudPositions); ++i) {
+
+                const auto& requiredPos = requiredCloudPositions[i];
+
+                // An exact check might work but just to be safe slight
+                // inaccuracy is allowed here
+                if((pos - requiredPos).HAddAbs() < Leviathan::EPSILON) {
+                    matched = true;
+                    break;
+                }
+            }
+
+            if(!matched) {
+
+                if(farAwayIndex >= MAX_FAR_CLOUDS) {
+
+                    LOG_FATAL("CompoundCloudSystem: Logic error in calculating "
+                              "far away clouds that need to move");
+                    break;
+                }
+
+                tooFarAwayClouds[farAwayIndex++] = iter->second;
+            }
+        }
+
+        // Move clouds that are too far away
+        // We check through each position that should have a cloud and move one
+        // where there isn't one
         size_t farAwayRepositionedIndex = 0;
 
         for(size_t i = 0; i < std::size(requiredCloudPositions); ++i) {
@@ -802,7 +818,11 @@ void
 
             if(farAwayRepositionedIndex >= farAwayIndex) {
                 LOG_FATAL("CompoundCloudSystem: Logic error in moving far "
-                          "clouds (ran out)");
+                          "clouds (ran out), total to reposition: " +
+                          std::to_string(farAwayIndex + 1) +
+                          ", current index: " +
+                          std::to_string(farAwayRepositionedIndex) +
+                          ", position grid index: " + std::to_string(i));
                 break;
             }
 
