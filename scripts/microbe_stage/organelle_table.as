@@ -513,7 +513,7 @@ void setupOrganelles(){
     respiratoryProtein.mass = 0.1;
     respiratoryProtein.gene = "m";
     respiratoryProtein.mesh = "metabolosome.mesh";
-    respiratoryProtein.chanceToCreate = 0;
+    respiratoryProtein.chanceToCreate = 0.5f;
     respiratoryProtein.prokaryoteChance = 1;
     respiratoryProtein.mpCost = 20;
     respiratoryProtein.initialComposition = {
@@ -539,7 +539,7 @@ void setupOrganelles(){
     photosyntheticProtein.mass = 0.1;
     photosyntheticProtein.gene = "h";
     photosyntheticProtein.mesh = "metabolosome.mesh";
-    photosyntheticProtein.chanceToCreate = 0;
+    photosyntheticProtein.chanceToCreate = 0.5f;
     photosyntheticProtein.prokaryoteChance = 1;
     photosyntheticProtein.mpCost = 25;
     photosyntheticProtein.initialComposition = {
