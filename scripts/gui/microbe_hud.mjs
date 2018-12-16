@@ -329,6 +329,7 @@ function onExitToMenuClicked() {
     if(common.isInEngine()){
         document.getElementById("extinctionTitle").style.display = "none";
         document.getElementById("extinctionBody").style.display = "none";
+        document.getElementById("extinctionContainer").style.display = "none";
         hideWinText();
         Thrive.exitToMenuClicked();
 
