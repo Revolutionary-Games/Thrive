@@ -9,6 +9,10 @@ const auto DEFAULT_SPAWN_DENSITY = 1/25000.f;
 const auto STARTING_SPAWN_DENSITY = 50000.0f;
 const auto MAX_SPAWN_DENSITY = 20000.0f;
 
+// Cell Spawn Variation
+const auto MIN_SPAWN_DISTANCE = -500000.0f;
+const auto MAX_SPAWN_DISTANCE = 500000.0f;
+
 // Cell Colors
 const auto MIN_COLOR = 0.0f;
 const auto MAX_COLOR = 0.9f;
