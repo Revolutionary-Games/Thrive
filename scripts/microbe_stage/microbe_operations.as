@@ -275,7 +275,9 @@ void respawnPlayer(CellStageWorld@ world)
         // Setup compounds
         setupMicrobeCompounds(world,playerEntity);
         // Reset position //
-        rigidBodyComponent.Body.SetPosition(Float3(0, 0, 0), Float4::IdentityQuaternion);
+        rigidBodyComponent.Body.SetPosition(Float3(GetEngine().GetRandom().GetNumber(MIN_SPAWN_DISTANCE, MAX_SPAWN_DISTANCE),
+            0, GetEngine().GetRandom().GetNumber(MIN_SPAWN_DISTANCE, MAX_SPAWN_DISTANCE)),
+            Float4::IdentityQuaternion);
 
         // The physics body will set the Position on next tick
 
