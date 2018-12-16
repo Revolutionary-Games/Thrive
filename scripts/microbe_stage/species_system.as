@@ -737,16 +737,23 @@ class Species{
         this.colour = getRightColourForSpecies();
         if (GetEngine().GetRandom().GetNumber(1,100) <= bacterialFlagellumChance)
         {
-            this.stringCode+=getOrganelleDefinition("flagellum").gene;;
+            this.stringCode+=getOrganelleDefinition("flagellum").gene;
         }
-        if (GetEngine().GetRandom().GetNumber(0,100) < 50)
-        {
+        if (GetEngine().GetRandom().GetNumber(0,100) < 50) {
             this.speciesMembraneType = MEMBRANE_TYPE::WALL;
-        }
-        else {
+            
+        } else if (GetEngine().GetRandom().GetNumber(0,100) < 50) {
             this.speciesMembraneType = MEMBRANE_TYPE::CHITIN;
             this.colour.W = randomOpacityChitin();
+            
+        } else if (GetEngine().GetRandom().GetNumber(0,100) < 50) {
+           this.speciesMembraneType = MEMBRANE_TYPE::MEMBRANE;
+           
+        } else {
+            this.speciesMembraneType = MEMBRANE_TYPE::DOUBLEMEMBRANE;
+            this.colour.W = randomOpacityChitin();
         }
+        
         commonConstructor(world);
         this.setupSpawn(world);
     }
