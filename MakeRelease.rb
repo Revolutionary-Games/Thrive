@@ -35,7 +35,7 @@ end
 readmeText += "\n\nVisit http://revolutionarygamesstudio.com/ for more info"
 
 
-File.write File.join(CurrentDir, "README.TXT"), readmeText
+File.write File.join(CurrentDir, "README.txt"), readmeText
 
 
 props = ReleaseProperties.new("Thrive-#{VERSION}")
@@ -45,7 +45,7 @@ props.addExecutable "ThriveServer"
 
 props.addFile File.join ProjectDir, "gpl.txt"
 props.addFile File.join ProjectDir, "LICENSE.txt"
-props.addFile File.join CurrentDir, "README.TXT"
+props.addFile File.join CurrentDir, "README.txt"
 
 # Run the packaging
 runMakeRelease(props)
