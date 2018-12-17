@@ -905,7 +905,8 @@ class MicrobeEditor{
         }
         //This is complex, i Know
         //LOG_INFO(""+flagCount);
-        finalSpeed= ((CELL_BASE_THRUST+((flagCount/lengthMicrobe)*FLAGELLA_BASE_FORCE))+(CELL_DRAG_MULTIPLIER-(CELL_SIZE_DRAG_MULTIPLIER*lengthMicrobe)));
+        finalSpeed= ((CELL_BASE_THRUST+((flagCount/(lengthMicrobe-flagCount))*FLAGELLA_BASE_FORCE))+
+            (CELL_DRAG_MULTIPLIER-(CELL_SIZE_DRAG_MULTIPLIER*lengthMicrobe)));
         return finalSpeed;
     }
     // Maybe i should do this in the non-editor code instead, to make sure its more decoupled from the player
