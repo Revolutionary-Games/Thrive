@@ -163,6 +163,12 @@ export function setupMicrobeEditor(){
             updateGeneration(vars.generation);
         });
 
+        // Event for speed update
+        Leviathan.OnGeneric("SpeedUpdated", (event, vars) => {
+            // Apply the new values
+            updateSpeed(vars.speed);
+        });
+
         // Event for undo setting
         Leviathan.OnGeneric("EditorUndoButtonStatus", (event, vars) => {
             // Apply the new values
@@ -276,6 +282,13 @@ function updateGeneration(generation){
     document.getElementById("generationLabel").textContent =
     generation;
 }
+
+//! Updates generation points in GUI
+function updateSpeed(speed){
+    document.getElementById("speedLabel").textContent =
+    speed.toFixed(2);
+}
+
 
 
 function onResumeClickedEditor(){

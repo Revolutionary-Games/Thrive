@@ -542,6 +542,9 @@ class MicrobeEditor{
         actionHistory.insertAt(actionIndex,action);
         actionIndex++;
 
+        //Only called when an action happens, because its an expensive method
+        hudSystem.updateSpeed();
+
     }
 
     //! \todo Clean this up
@@ -885,6 +888,24 @@ class MicrobeEditor{
     int getMicrobeSize() const
     {
         return editedMicrobe.length();
+    }
+
+    // Make sure this is only called when you add organelles, as it is an expensive
+    double getMicrobeSpeed() const
+    {
+        double finalSpeed = 0;
+        int flagCount=0;
+        double lengthMicrobe = double(editedMicrobe.length());
+        for(uint i = 0; i < editedMicrobe.length(); ++i){
+            auto organelle = cast<PlacedOrganelle>(editedMicrobe[i]);
+            auto name = organelle.organelle.name;
+            if (name=="flagellum"){
+            flagCount++;
+            }
+        }
+        //This is complex, i Know
+        finalSpeed= CELL_BASE_THRUST+((flagCount/lengthMicrobe)*FLAGELLA_BASE_FORCE)-(CELL_DRAG_MULTIPLIER+(CELL_SIZE_DRAG_MULTIPLIER*lengthMicrobe));
+        return finalSpeed;
     }
     // Maybe i should do this in the non-editor code instead, to make sure its more decoupled from the player
     int getMicrobeGeneration() const

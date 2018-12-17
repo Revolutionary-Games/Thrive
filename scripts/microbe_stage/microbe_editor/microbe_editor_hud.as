@@ -271,6 +271,16 @@ class MicrobeEditorHudSystem : ScriptSystem{
         GetEngine().GetEventHandler().CallEvent(event);
     }
 
+    void updateSpeed()
+        {
+        // Number of Flagella / total number of organelles
+        GenericEvent@ event = GenericEvent("SpeedUpdated");
+        NamedVars@ vars = event.GetNamedVars();
+
+        vars.AddValue(ScriptSafeVariableBlock("speed", editor.getMicrobeSpeed()));
+        GetEngine().GetEventHandler().CallEvent(event);
+        }
+
     MicrobeEditorWorld@ world
     {
         get
