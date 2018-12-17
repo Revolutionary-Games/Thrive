@@ -223,13 +223,13 @@ function openHelp(){
     ];
 
 
-    const tipEasterEggChance = common.randomBetween(0, 2);
+    const tipEasterEggChance = common.randomBetween(0, 5);
     const messageNum = common.randomBetween(0, message.length - 1);
 
-    if (tipEasterEggChance == 1) {
+    if (tipEasterEggChance > 1) {
         document.getElementById("tipMsg").style.display = "unset";
         document.getElementById("tipMsg").textContent = message[messageNum];
-        setTimeout(hideTipMsg, 6000);
+        setTimeout(hideTipMsg, 10000);
     }
 
 }
