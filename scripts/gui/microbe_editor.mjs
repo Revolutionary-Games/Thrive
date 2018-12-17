@@ -347,13 +347,13 @@ function openHelpEditor(){
     ];
 
 
-    const tipEasterEggChance = common.randomBetween(0, 2);
+    const tipEasterEggChance = common.randomBetween(0, 5);
     const messageNum = common.randomBetween(0, message.length - 1);
 
-    if (tipEasterEggChance == 1) {
+    if (tipEasterEggChance > 1) {
         document.getElementById("tipMsgEditor").style.display = "unset";
         document.getElementById("tipMsgEditor").textContent = message[messageNum];
-        setTimeout(hideTipMsg, 6000);
+        setTimeout(hideTipMsg, 10000);
     }
 
 }
