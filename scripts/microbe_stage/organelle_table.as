@@ -538,7 +538,7 @@ void setupOrganelles(){
 
     photosyntheticProtein.mass = 0.1;
     photosyntheticProtein.gene = "h";
-    photosyntheticProtein.mesh = "metabolosome.mesh";
+    photosyntheticProtein.mesh = "chromatophores.mesh";
     photosyntheticProtein.chanceToCreate = 0.5f;
     photosyntheticProtein.prokaryoteChance = 1;
     photosyntheticProtein.mpCost = 25;
