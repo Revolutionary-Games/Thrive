@@ -800,6 +800,7 @@ video {
 #generation,
 #speed,
 #size {
+  background-color: rgba(0, 139, 139, 0.3);
   position: absolute;
   height: 26px;
   margin-top: 7px;
@@ -815,15 +816,15 @@ video {
 }
 
 #generation {
-  left: 420px;
+  left: 390px;
 }
 
 #size {
-  left: 720px;
+  left: 620px;
 }
 
 #speed {
-  left: 600px;
+  left: 520px;
 }
 
 #SymmetryButton {
@@ -1067,6 +1068,28 @@ video {
   background-image: url("../../Textures/gui/bevel/CytoplasmIcon.png");
 }
 
+/* Tooltip text */
+.tooltiptext {
+  visibility: hidden;
+  width: 320px;
+  height: 30%;
+  right: 5%;
+  top: 10%;
+  font-size: 10pt;
+  background-color: rgba(0, 139, 139, 0.5);
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: fixed;
+  z-index: 1;
+}
+
+
+#CytoplasmIcon:hover .tooltiptext {
+  visibility: visible;
+}
+
 #PlastidIcon {
   position: relative;
   left: calc(50% - 30px);
@@ -1074,6 +1097,10 @@ video {
   height: 60px;
   background-size: contain;
   background-image: url("../../Textures/gui/bevel/NitroplastidIcon.png");
+}
+
+#PlastidIcon:hover .tooltiptext {
+  visibility: visible;
 }
 
 #MitochondrionIcon {
@@ -1085,6 +1112,10 @@ video {
   background-image: url("../../Textures/gui/bevel/MitochondrionIcon.png");
 }
 
+#MitochondrionIcon:hover .tooltiptext {
+  visibility: visible;
+}
+
 #ChloroplastIcon {
   position: relative;
   left: calc(50% - 30px);
@@ -1092,6 +1123,10 @@ video {
   height: 60px;
   background-size: contain;
   background-image: url("../../Textures/gui/bevel/ChloroplastIcon.png");
+}
+
+#ChloroplastIcon:hover .tooltiptext {
+  visibility: visible;
 }
 
 #ThermoplastIcon {
@@ -1103,6 +1138,10 @@ video {
   background-image: url("../../Textures/gui/bevel/ThermoplastIcon.png");
 }
 
+#ThermoplastIcon:hover .tooltiptext {
+  visibility: visible;
+}
+
 #VacuoleIcon {
   position: relative;
   left: calc(50% - 30px);
@@ -1112,6 +1151,10 @@ video {
   background-image: url("../../Textures/gui/bevel/VacuoleIcon.png");
 }
 
+#VacuoleIcon:hover .tooltiptext {
+  visibility: visible;
+}
+
 #ToxinVacuoleIcon {
   position: relative;
   left: calc(50% - 30px);
@@ -1119,6 +1162,10 @@ video {
   height: 60px;
   background-size: contain;
   background-image: url("../../Textures/gui/bevel/ToxinVacuoleIcon.png");
+}
+
+#ToxinVacuoleIcon:hover .tooltiptext {
+  visibility: visible;
 }
 
 #BioluminescentIcon {
@@ -1139,6 +1186,10 @@ video {
   background-image: url("../../Textures/gui/bevel/ChemoplastIcon.png");
 }
 
+#ChemoplastIcon:hover .tooltiptext {
+  visibility: visible;
+}
+
 #FlagellumIcon {
   position: relative;
   left: calc(50% - 30px);
@@ -1146,6 +1197,10 @@ video {
   height: 60px;
   background-size: contain;
   background-image: url("../../Textures/gui/bevel/FlagellumIcon.png");
+}
+
+#FlagellumIcon:hover .tooltiptext {
+  visibility: visible;
 }
 
 #MetabolosomeIcon {
@@ -1157,6 +1212,10 @@ video {
   background-image: url("../../Textures/gui/bevel/MetabolosomeIcon.png");
 }
 
+#MetabolosomeIcon:hover .tooltiptext {
+  visibility: visible;
+}
+
 #ChromatophorIcon {
   position: relative;
   left: calc(50% - 30px);
@@ -1164,6 +1223,10 @@ video {
   height: 60px;
   background-size: contain;
   background-image: url("../../Textures/gui/bevel/ChromatophorIcon.png");
+}
+
+#ChromatophorIcon:hover .tooltiptext {
+  visibility: visible;
 }
 
 #PilusIcon {
