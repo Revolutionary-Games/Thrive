@@ -2,7 +2,6 @@
 
 const int OXYGEN_SEARCH_THRESHHOLD = 8;
 const int GLUCOSE_SEARCH_THRESHHOLD = 5;
-const float AI_MOVEMENT_SPEED = 0.5;
 
 // microbes_number = {}
 
@@ -393,7 +392,7 @@ class MicrobeAISystem : ScriptSystem{
         //Always set target Position, for use later in AI
         if (aiComponent.speciesAggression+GetEngine().GetRandom().GetNumber(-100.0f,100.0f) > aiComponent.speciesActivity)
             {
-            microbeComponent.movementDirection = Float3(0, 0, -AI_MOVEMENT_SPEED);
+            microbeComponent.movementDirection = Float3(0, 0, -AI_BASE_MOVEMENT);
             }
             else
             {
@@ -493,7 +492,7 @@ class MicrobeAISystem : ScriptSystem{
                 auto vec = (aiComponent.targetPosition - position._Position);
                 aiComponent.direction = vec.Normalize();
                 microbeComponent.facingTargetPoint = aiComponent.targetPosition;
-                microbeComponent.movementDirection = Float3(0, 0, -AI_MOVEMENT_SPEED);
+                microbeComponent.movementDirection = Float3(0, 0, -AI_BASE_MOVEMENT);
                 aiComponent.hasTargetPosition = true;
                 }
             else
@@ -540,7 +539,7 @@ class MicrobeAISystem : ScriptSystem{
                 auto vec = (aiComponent.targetPosition - position._Position);
                 aiComponent.direction = vec.Normalize();
                 microbeComponent.facingTargetPoint = aiComponent.targetPosition;
-                microbeComponent.movementDirection = Float3(0, 0, -AI_MOVEMENT_SPEED);
+                microbeComponent.movementDirection = Float3(0, 0, -AI_BASE_MOVEMENT);
                 aiComponent.hasTargetPosition = true;
 
            }
@@ -689,7 +688,7 @@ class MicrobeAISystem : ScriptSystem{
         auto vec = (aiComponent.targetPosition - position._Position);
         aiComponent.direction = vec.Normalize();
         microbeComponent.facingTargetPoint = aiComponent.targetPosition;
-        microbeComponent.movementDirection = Float3(0, 0, -AI_MOVEMENT_SPEED);
+        microbeComponent.movementDirection = Float3(0, 0, -AI_BASE_MOVEMENT);
         aiComponent.hasTargetPosition = true;
 
     }
