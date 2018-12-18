@@ -1078,15 +1078,15 @@ video {
   font-size: 10pt;
   background-color: rgba(0, 139, 139, 0.5);
   color: #fff;
-  text-align: center;
+  text-align: center-left;
+  border-radius: 25px;
   padding: 5px 0;
-  border-radius: 6px;
   position: fixed;
   z-index: 1;
 }
 
 
-#CytoplasmIcon:hover .tooltiptext {
+.OrganelleListItem:hover .tooltiptext {
   visibility: visible;
 }
 
@@ -1099,9 +1099,6 @@ video {
   background-image: url("../../Textures/gui/bevel/NitroplastidIcon.png");
 }
 
-#PlastidIcon:hover .tooltiptext {
-  visibility: visible;
-}
 
 #MitochondrionIcon {
   position: relative;
@@ -1112,9 +1109,6 @@ video {
   background-image: url("../../Textures/gui/bevel/MitochondrionIcon.png");
 }
 
-#MitochondrionIcon:hover .tooltiptext {
-  visibility: visible;
-}
 
 #ChloroplastIcon {
   position: relative;
@@ -1123,10 +1117,6 @@ video {
   height: 60px;
   background-size: contain;
   background-image: url("../../Textures/gui/bevel/ChloroplastIcon.png");
-}
-
-#ChloroplastIcon:hover .tooltiptext {
-  visibility: visible;
 }
 
 #ThermoplastIcon {
@@ -1138,9 +1128,6 @@ video {
   background-image: url("../../Textures/gui/bevel/ThermoplastIcon.png");
 }
 
-#ThermoplastIcon:hover .tooltiptext {
-  visibility: visible;
-}
 
 #VacuoleIcon {
   position: relative;
@@ -1151,10 +1138,6 @@ video {
   background-image: url("../../Textures/gui/bevel/VacuoleIcon.png");
 }
 
-#VacuoleIcon:hover .tooltiptext {
-  visibility: visible;
-}
-
 #ToxinVacuoleIcon {
   position: relative;
   left: calc(50% - 30px);
@@ -1162,10 +1145,6 @@ video {
   height: 60px;
   background-size: contain;
   background-image: url("../../Textures/gui/bevel/ToxinVacuoleIcon.png");
-}
-
-#ToxinVacuoleIcon:hover .tooltiptext {
-  visibility: visible;
 }
 
 #BioluminescentIcon {
@@ -1186,9 +1165,6 @@ video {
   background-image: url("../../Textures/gui/bevel/ChemoplastIcon.png");
 }
 
-#ChemoplastIcon:hover .tooltiptext {
-  visibility: visible;
-}
 
 #FlagellumIcon {
   position: relative;
@@ -1197,10 +1173,6 @@ video {
   height: 60px;
   background-size: contain;
   background-image: url("../../Textures/gui/bevel/FlagellumIcon.png");
-}
-
-#FlagellumIcon:hover .tooltiptext {
-  visibility: visible;
 }
 
 #MetabolosomeIcon {
@@ -1212,10 +1184,6 @@ video {
   background-image: url("../../Textures/gui/bevel/MetabolosomeIcon.png");
 }
 
-#MetabolosomeIcon:hover .tooltiptext {
-  visibility: visible;
-}
-
 #ChromatophorIcon {
   position: relative;
   left: calc(50% - 30px);
@@ -1223,10 +1191,6 @@ video {
   height: 60px;
   background-size: contain;
   background-image: url("../../Textures/gui/bevel/ChromatophorIcon.png");
-}
-
-#ChromatophorIcon:hover .tooltiptext {
-  visibility: visible;
 }
 
 #PilusIcon {
