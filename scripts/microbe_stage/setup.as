@@ -312,11 +312,10 @@ void cellHitAgent(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
     AgentProperties@ propertiesComponent =
         asCellWorld.GetComponent_AgentProperties(floatingEntity);
 
-    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
-        world.GetScriptComponentHolder("MicrobeComponent").Find(cellEntity));
+    MicrobeComponent@ microbeComponent = MicrobeOperations::getMicrobeComponent(cast<CellStageWorld>(world),cellEntity);
 
     if (propertiesComponent !is null && microbeComponent !is null){
-        if (propertiesComponent.getSpeciesName() != microbeComponent.speciesName && microbeComponent.dead==false){
+        if (propertiesComponent.getSpeciesName() != microbeComponent.speciesName && !microbeComponent.dead){
             MicrobeOperations::damage(asCellWorld, cellEntity, double(OXY_TOXY_DAMAGE), "toxin");
             }
         }
