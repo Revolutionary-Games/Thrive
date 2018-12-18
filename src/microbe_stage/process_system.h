@@ -14,25 +14,10 @@ namespace Leviathan {
 class GameWorld;
 }
 
-// The minimum positive price a compound can have.
-#define MIN_POSITIVE_COMPOUND_PRICE 0.00001
 
-// The "willingness" of the compound prices to change.
-// (between 0.0 and 1.0)
-#define COMPOUND_PRICE_MOMENTUM 0.2
-
-// How much the "important" compounds get their price inflated.
-#define IMPORTANT_COMPOUND_BIAS 1000.0
-
-// How important the storage space is considered.
-#define STORAGE_SPACE_MULTIPLIER 2.0
-
-// Used to soften the demand according to the process capacity.
-#define PROCESS_CAPACITY_DEMAND_MULTIPLIER 15.0
 
 // The initial variables of the system.
-#define INITIAL_COMPOUND_PRICE 10.0
-#define INITIAL_COMPOUND_DEMAND 1.0
+#define INITIAL_COMPOUND_PRICE 0.0
 
 namespace thrive {
 
@@ -67,12 +52,8 @@ public:
 // Helper structure to store the economic information of the compounds.
 struct CompoundData {
     double amount;
-    double uninflatedPrice;
     double price;
     double usedLastTime;
-    double demand;
-    double priceReductionPerUnit;
-    double breakEvenPoint;
 };
 
 //! \todo This component depends on an instance of processor so that needs
@@ -108,7 +89,6 @@ public:
 
     double getPrice(CompoundId);
 
-    double getDemand(CompoundId);
 
     double getUsedLastTime(CompoundId);
 
