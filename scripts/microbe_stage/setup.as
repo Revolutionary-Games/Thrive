@@ -312,7 +312,7 @@ void cellHitAgent(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
     AgentProperties@ propertiesComponent =
         asCellWorld.GetComponent_AgentProperties(floatingEntity);
 
-    MicrobeComponent@ microbeComponent = MicrobeOperations::getMicrobeComponent(cast<CellStageWorld>(world),cellEntity);
+    MicrobeComponent@ microbeComponent = MicrobeOperations::getMicrobeComponent(asCellWorld,cellEntity);
 
     if (propertiesComponent !is null && microbeComponent !is null){
         if (propertiesComponent.getSpeciesName() != microbeComponent.speciesName && !microbeComponent.dead){
