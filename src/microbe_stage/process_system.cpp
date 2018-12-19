@@ -67,8 +67,6 @@ CompoundBagComponent::CompoundBagComponent() : Leviathan::Component(TYPE)
         id++) {
         compounds[id].amount = 0;
         compounds[id].price = INITIAL_COMPOUND_PRICE;
-        compounds[id].uninflatedPrice = INITIAL_COMPOUND_PRICE;
-        compounds[id].demand = INITIAL_COMPOUND_DEMAND;
         compounds[id].usedLastTime = INITIAL_COMPOUND_PRICE;
     }
 }
@@ -101,37 +99,7 @@ demand.get<double>(id);
     this->processor = static_cast<ProcessorComponent*>(Entity(this->speciesName,
             Game::instance().engine().getCurrentGameStateFromLua()).
         getComponent(ProcessorComponent::TYPE_ID));
-}
-
-StorageContainer
-CompoundBagComponent::storage() const
-{
-    StorageContainer storage = Component::storage();
-
-    StorageContainer amounts;
-    StorageContainer prices;
-    StorageContainer uninflatedPrices;
-    StorageContainer demand;
-    for (auto entry : this->compounds) {
-        CompoundId id = entry.first;
-        CompoundData data = entry.second;
-
-        amounts.set<double>(""+id, data.amount);
-        amounts.set<double>(""+id, data.price);
-        amounts.set<double>(""+id, data.uninflatedPrice);
-        amounts.set<double>(""+id, data.demand);
-    }
-
-    storage.set("amounts", std::move(amounts));
-    storage.set("prices", std::move(prices));
-    storage.set("uninflatedPrices", std::move(uninflatedPrices));
-    storage.set("demand", std::move(demand));
-    storage.set("speciesName", this->speciesName);
-    storage.set("storageSpace", this->storageSpace);
-
-    return storage;
-}
-*/
+}*/
 void
     CompoundBagComponent::setProcessor(ProcessorComponent* processor,
         const std::string& speciesName)
@@ -190,12 +158,6 @@ double
     CompoundBagComponent::getUsedLastTime(CompoundId compoundId)
 {
     return compounds[compoundId].usedLastTime;
-}
-
-double
-    CompoundBagComponent::getDemand(CompoundId compoundId)
-{
-    return compounds[compoundId].demand;
 }
 
 // ------------------------------------ //
