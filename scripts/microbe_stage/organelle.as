@@ -379,12 +379,16 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         auto model = world.GetComponent_Model(organelleEntity);
 
         if(model !is null && IsInGraphicalMode()){
+            // TODO: clean up this check
+            if(organelle.mesh != "flagellum.mesh"){
+
                 this.colourTint = calculateHSLForOrganelle(this.colourTint);
                 this.flashColour = calculateHSLForOrganelle(this.flashColour);
 
                 model.GraphicalObject.setCustomParameter(1,
                     Ogre::Vector4( this.colourTint * this.flashColour)
                 );
+            }
         }
 
         _needsColourUpdate = false;
