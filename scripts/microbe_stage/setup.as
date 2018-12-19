@@ -266,7 +266,6 @@ void onReturnFromEditor(CellStageWorld@ world)
 
 }
 
-// TODO: also put these physics callback somewhere more sensible (maybe physics_callbacks.as?)
 void cellHitFloatingOrganelle(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
 {
     // Determine which is the organelle
@@ -312,11 +311,10 @@ void cellHitAgent(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
     AgentProperties@ propertiesComponent =
         asCellWorld.GetComponent_AgentProperties(floatingEntity);
 
-    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
-        world.GetScriptComponentHolder("MicrobeComponent").Find(cellEntity));
+    MicrobeComponent@ microbeComponent = MicrobeOperations::getMicrobeComponent(asCellWorld,cellEntity);
 
     if (propertiesComponent !is null && microbeComponent !is null){
-        if (propertiesComponent.getSpeciesName() != microbeComponent.speciesName){
+        if (propertiesComponent.getSpeciesName() != microbeComponent.speciesName && !microbeComponent.dead){
             MicrobeOperations::damage(asCellWorld, cellEntity, double(OXY_TOXY_DAMAGE), "toxin");
             }
         }
@@ -659,12 +657,12 @@ void setupFloatingOrganelles(CellStageWorld@ world){
     SpawnSystem@ spawnSystem = world.GetSpawnSystem();
 
     //spawn toxin and chloroplasts
-    const auto chloroId = spawnSystem.addSpawnType(
-        @createChloroplast, DEFAULT_SPAWN_DENSITY,
-        MICROBE_SPAWN_RADIUS);
+    //const auto chloroId = spawnSystem.addSpawnType(
+    //    @createChloroplast, DEFAULT_SPAWN_DENSITY,
+    //    MICROBE_SPAWN_RADIUS);
 
     //toxins
-    const auto toxinId = spawnSystem.addSpawnType(
-        @createToxin, DEFAULT_SPAWN_DENSITY,
-        MICROBE_SPAWN_RADIUS);
+    //const auto toxinId = spawnSystem.addSpawnType(
+    //    @createToxin, DEFAULT_SPAWN_DENSITY,
+    //    MICROBE_SPAWN_RADIUS);
 }
