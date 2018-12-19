@@ -380,6 +380,14 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
         if(model !is null && IsInGraphicalMode()){
             // TODO: clean up this check
+            // This URL is split to follow maximum width rule:
+            // https://github.com/Revolutionary-Games/Thrive/commit/
+            // 19ef522a7a22285875a7cdd8cac2bef010e44a39
+            // Comment from there:
+
+            // This should not be disabled until the flagella material support
+            // custom parameters (it uses the Ogre hlms material right now) and
+            // it might just explode at any moment
             if(organelle.mesh != "flagellum.mesh"){
 
                 this.colourTint = calculateHSLForOrganelle(this.colourTint);
