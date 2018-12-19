@@ -649,8 +649,8 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         if (amountToEject >= MINIMUM_AGENT_EMISSION_AMOUNT)
         {
             playSoundWithDistance(world, "Data/Sound/soundeffects/microbe-release-toxin.ogg",microbeEntity);
-            createAgentCloud(world, compoundId, cellPosition._Position+Float3(xnew*ejectionDistance,0,ynew*ejectionDistance),
-                    direction, amountToEject, lifeTime, microbeComponent.speciesName);
+            //createAgentCloud(world, compoundId, cellPosition._Position+Float3(xnew*ejectionDistance,0,ynew*ejectionDistance),
+            //        direction, amountToEject, lifeTime, microbeComponent.speciesName);
 
 
             // The cooldown time is inversely proportional to the amount of agent vacuoles.
@@ -1093,8 +1093,8 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
             auto direction = Float3(GetEngine().GetRandom().GetNumber(0.0f, 1.0f) * 2 - 1,
                 0, GetEngine().GetRandom().GetNumber(0.0f, 1.0f) * 2 - 1);
 
-            createAgentCloud(world, compoundId, position._Position, direction, ejectedAmount,
-                2000, microbeComponent.speciesName);
+            //createAgentCloud(world, compoundId, position._Position, direction, ejectedAmount,
+            //    2000, microbeComponent.speciesName);
             ++createdAgents;
 
             if(createdAgents >= maxAgentsToShoot)
