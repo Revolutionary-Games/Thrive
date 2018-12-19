@@ -291,6 +291,8 @@ void respawnPlayer(CellStageWorld@ world)
         setRandomBiome(world);
         cast<MicrobeStageHudSystem>(world.GetScriptSystem("MicrobeStageHudSystem")).
         suicideButtonreset();
+        // Reset membrane color to fix the bug that made membranes sometimes red after you respawn.
+        MicrobeOperations::applyMembraneColour(world, playerEntity);
     }
 
     // Decrease the population by 20
