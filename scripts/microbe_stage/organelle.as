@@ -788,8 +788,8 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         //     components[i].onDestroyedWithMicrobe(microbeEntity, this);
         // }
 
-        if(organelleEntity != NULL_OBJECT)
-            world.QueueDestroyEntity(organelleEntity);
+        // The organelle entity is automatically destroyed because it
+        // is parented to the microbe entity
         organelleEntity = NULL_OBJECT;
         microbeEntity = NULL_OBJECT;
         @world = null;
