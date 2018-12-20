@@ -505,9 +505,10 @@ void createAgentCloud(CellStageWorld@ world, CompoundId compoundId, Float3 pos,
     // rigidBody.properties.linearDamping = 0.4;
 
     body.SetVelocity(normalizedDirection * AGENT_EMISSION_VELOCITY);
-
     rigidBody.JumpTo(position);
     auto sceneNode = world.Create_RenderNode(agentEntity);
+    sceneNode.Scale = Float3(1, 1, 1);
+    sceneNode.Marked = true;
     auto model = world.Create_Model(agentEntity, sceneNode.Node, "oxytoxy.mesh");
 
     // Need to set the tint
