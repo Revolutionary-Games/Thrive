@@ -478,7 +478,7 @@ bool hitAgent(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
 }
 
 void createAgentCloud(CellStageWorld@ world, CompoundId compoundId,
-    Float3 pos, Float3 direction, int amount, float lifetime, string speciesName)
+    Float3 pos, Float3 direction, float amount, float lifetime, string speciesName)
 {
     auto normalizedDirection = direction.Normalize();
     auto agentEntity = world.CreateEntity();
