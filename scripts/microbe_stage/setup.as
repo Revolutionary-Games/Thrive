@@ -657,12 +657,12 @@ void setupFloatingOrganelles(CellStageWorld@ world){
     SpawnSystem@ spawnSystem = world.GetSpawnSystem();
 
     //spawn toxin and chloroplasts
-    //const auto chloroId = spawnSystem.addSpawnType(
-    //    @createChloroplast, DEFAULT_SPAWN_DENSITY,
-    //    MICROBE_SPAWN_RADIUS);
+    const auto chloroId = spawnSystem.addSpawnType(
+        @createChloroplast, DEFAULT_SPAWN_DENSITY,
+        MICROBE_SPAWN_RADIUS);
 
     //toxins
-    //const auto toxinId = spawnSystem.addSpawnType(
-    //    @createToxin, DEFAULT_SPAWN_DENSITY,
-    //    MICROBE_SPAWN_RADIUS);
+    const auto toxinId = spawnSystem.addSpawnType(
+        @createToxin, DEFAULT_SPAWN_DENSITY,
+        MICROBE_SPAWN_RADIUS);
 }
