@@ -114,28 +114,30 @@ float
 void
     AgentCloudSystem::Run(GameWorld& world)
 {
-
-    const int dt = Leviathan::TICKSPEED;
+    // const int dt = Leviathan::TICKSPEED;
 
     auto& index = CachedComponents.GetIndex();
     for(auto iter = index.begin(); iter != index.end(); ++iter) {
 
-        Leviathan::Position& position = std::get<0>(*iter->second);
-        AgentCloudComponent& agent = std::get<1>(*iter->second);
-        Leviathan::RenderNode& renderNode = std::get<2>(*iter->second);
+        // This does not work currently, don't do anything with this
+        DEBUG_BREAK;
+
+        // Leviathan::Position& position = std::get<0>(*iter->second);
+        // AgentCloudComponent& agent = std::get<1>(*iter->second);
+        // Leviathan::RenderNode& renderNode = std::get<2>(*iter->second);
 
 
-        if(agent.potency > 0.5) {
-            agent.potency *= .99;
-        } else {
-            world.DestroyEntity(iter->first);
-            continue;
-        }
+        // if(agent.potency > 0.5) {
+        //     agent.potency *= .99;
+        // } else {
+        //     world.DestroyEntity(iter->first);
+        //     continue;
+        // }
 
-        position.Members._Position += agent.direction * (dt / 1000.f);
-        position.Marked = true;
+        // position.Members._Position += agent.direction * (dt / 1000.f);
+        // position.Marked = true;
 
-        renderNode.Scale = Float3(agent.potency);
-        renderNode.Marked = true;
+        // renderNode.Scale = Float3(agent.potency);
+        // renderNode.Marked = true;
     }
 }
