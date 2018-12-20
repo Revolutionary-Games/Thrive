@@ -43,7 +43,10 @@ class MicrobeComponent : ScriptComponent{
     //! This has to be called after creating this
     void init(ObjectID forEntity, bool isPlayerMicrobe, SpeciesComponent@ species)
     {
-        this.speciesName = species.name;
+        if (species !is null)
+            {
+            this.speciesName = species.name;
+            }
         this.isPlayerMicrobe = isPlayerMicrobe;
         this.engulfMode = false;
         this.isBeingEngulfed = false;
@@ -51,8 +54,11 @@ class MicrobeComponent : ScriptComponent{
         this.wasBeingEngulfed = false;
         this.isCurrentlyEngulfing = false;
         this.dead = false;
-        this.speciesColour = species.colour;
-
+        this.speciesColour = Float4(00.0f,0.0f,0.0f,0.0f);
+        if (species !is null)
+            {
+            this.speciesColour = species.colour;
+            }
         this.microbeEntity = forEntity;
         this.agentEmissionCooldown = 0;
 
@@ -172,7 +178,7 @@ class MicrobeComponent : ScriptComponent{
     bool wasBeingEngulfed = false;
     ObjectID hostileEngulfer = NULL_OBJECT;
     AudioSource@ engulfAudio;
-
+    AudioSource@ otherAudio;
     // New state variables that MicrobeSystem also uses
     bool in_editor = false;
 
@@ -397,7 +403,7 @@ class MicrobeSystem : ScriptSystem{
 
             if(MicrobeOperations::takeCompound(world, microbeEntity,
                     SimulationParameters::compoundRegistry().getTypeId("atp"), cost) <
-                cost - 0.001)
+                cost - 0.001f)
             {
                 LOG_INFO("too little atp, disabling - engulfing");
                 MicrobeOperations::toggleEngulfMode(microbeComponent);
@@ -411,7 +417,6 @@ class MicrobeSystem : ScriptSystem{
                     "Data/Sound/soundeffects/engulfment.ogg", false, true);
 
                 if(microbeComponent.engulfAudio !is null){
-
                     if(microbeComponent.engulfAudio.HasInternalSource()){
 
                         if (microbeComponent.isPlayerMicrobe)
@@ -420,10 +425,8 @@ class MicrobeSystem : ScriptSystem{
                         }
                         microbeComponent.engulfAudio.Get().play();
                     } else {
-
                         LOG_ERROR("Created engulfment sound player doesn't have internal "
                             "sound source");
-                        @microbeComponent.engulfAudio = null;
                     }
 
                 } else {
@@ -541,7 +544,7 @@ class MicrobeSystem : ScriptSystem{
 
         if(physics.Body is null){
 
-            LOG_ERROR("Cell is missing physics body: " + microbeEntity);
+            //LOG_ERROR("Cell is missing physics body: " + microbeEntity);
             return;
         }
 
@@ -953,12 +956,12 @@ class MicrobeSystem : ScriptSystem{
 
             if(amount != 0){
                 MicrobeOperations::takeCompound(world, microbeEntity, compoundID,
-                    amount / 2 /*, false*/ );
+                    amount / 2.0f /*, false*/ );
                 // Not sure what the false here means, it wasn't a
                 // parameter in the original lua function so it did
                 // nothing even then?
                 MicrobeOperations::storeCompound(world, copyEntity, compoundID,
-                    amount / 2, false);
+                    amount / 2.0f, false);
             }
         }
 
@@ -968,8 +971,7 @@ class MicrobeSystem : ScriptSystem{
         world.Create_SpawnedComponent(copyEntity, MICROBE_SPAWN_RADIUS * MICROBE_SPAWN_RADIUS);
 
         // Play the split sound
-        GetEngine().GetSoundDevice().Play2DSoundEffect(
-            "Data/Sound/soundeffects/reproduction.ogg");
+        MicrobeOperations::playSoundWithDistance(world, "Data/Sound/soundeffects/reproduction.ogg",microbeEntity);
     }
 
     // Copies this microbe (if this isn't the player). The new microbe
@@ -1000,12 +1002,6 @@ class MicrobeSystem : ScriptSystem{
 
                 divide(microbeEntity);
 
-            } else {
-                // You are extinct so just die okay.
-                // TODO: this isn't optimal and the player might
-                // notice something weird going on. Better to just
-                // infinitely block splitting
-                MicrobeOperations::kill(world, microbeEntity);
             }
         }
     }

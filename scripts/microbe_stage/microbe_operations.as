@@ -255,7 +255,7 @@ void respawnPlayer(CellStageWorld@ world)
     auto playerSpecies = MicrobeOperations::getSpeciesComponent(world, "Default");
     auto playerEntity = GetThriveGame().playerData().activeCreature();
 
-    if (playerSpecies.population > 10)
+    if (playerSpecies.population > 20)
     {
         MicrobeComponent@ microbeComponent = getMicrobeComponent(world, playerEntity);
         auto rigidBodyComponent = world.GetComponent_Physics(playerEntity);
@@ -275,7 +275,9 @@ void respawnPlayer(CellStageWorld@ world)
         // Setup compounds
         setupMicrobeCompounds(world,playerEntity);
         // Reset position //
-        rigidBodyComponent.Body.SetPosition(Float3(0, 0, 0), Float4::IdentityQuaternion);
+        rigidBodyComponent.Body.SetPosition(Float3(GetEngine().GetRandom().GetNumber(MIN_SPAWN_DISTANCE, MAX_SPAWN_DISTANCE),
+            0, GetEngine().GetRandom().GetNumber(MIN_SPAWN_DISTANCE, MAX_SPAWN_DISTANCE)),
+            Float4::IdentityQuaternion);
 
         // The physics body will set the Position on next tick
 
@@ -289,10 +291,12 @@ void respawnPlayer(CellStageWorld@ world)
         setRandomBiome(world);
         cast<MicrobeStageHudSystem>(world.GetScriptSystem("MicrobeStageHudSystem")).
         suicideButtonreset();
+        // Reset membrane color to fix the bug that made membranes sometimes red after you respawn.
+        MicrobeOperations::applyMembraneColour(world, playerEntity);
     }
 
-    // Decrease the population by 10
-    playerSpecies.population -= 10;
+    // Decrease the population by 20
+    playerSpecies.population -= 20;
 
     // TODO: we already check if the player is extinct here. That logic shouldn't
     // be duplicated in the GUI
@@ -320,19 +324,12 @@ void setupMicrobeHitpoints(MicrobeComponent@ microbeComponent, int health)
 //grabs compounds from template (starter_mcirobes) and stores them)
 void setupMicrobeCompounds(CellStageWorld@ world, ObjectID microbeEntity)
 {
-    MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
-                MicrobeTemplate@ data = cast<MicrobeTemplate@>(STARTER_MICROBES["Default"]);
-
     auto ids = getSpeciesComponent(world, microbeEntity).avgCompoundAmounts.getKeys();
     for(uint i = 0; i < ids.length(); ++i){
         CompoundId compoundId = parseUInt(ids[i]);
         InitialCompound amount = InitialCompound(getSpeciesComponent(world, microbeEntity).
             avgCompoundAmounts[ids[i]]);
-
-        if(amount.amount != 0){
-            MicrobeOperations::storeCompound(world, microbeEntity, compoundId, amount.amount,
-                false);
-        }
+        setCompound(world, microbeEntity, compoundId, amount.amount);
     }
 }
 
@@ -409,6 +406,16 @@ float storeCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId co
 
     return amount - storedAmount;
 }
+
+void setCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoundId,
+    double amount)
+    {
+    MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
+    auto storedAmount = amount;
+    storedAmount = min(storedAmount, microbeComponent.capacity);
+    world.GetComponent_CompoundBagComponent(microbeEntity).setCompound(compoundId,storedAmount);
+    }
+
 
 // Default Version of takeCompound that takes ObjectID
 double takeCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoundId,
@@ -492,9 +499,8 @@ void ejectCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId com
     auto xnew = -membraneCoords.x * c + membraneCoords.y * s;
     auto ynew = membraneCoords.x * s + membraneCoords.y * c;
 
-    auto amountToEject = takeCompound(world, microbeEntity, compoundId,
-        amount);
-    createCompoundCloud(world, compoundId,
+    auto amountToEject = amount*10000;
+    createCompoundCloud(world, uint64(compoundId),
         position._Position.X + xnew * ejectionDistance,
         position._Position.Z + ynew * ejectionDistance,
        amountToEject);
@@ -505,7 +511,7 @@ void purgeCompounds(CellStageWorld@ world, ObjectID microbeEntity)
 {
     MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
     auto compoundBag = world.GetComponent_CompoundBagComponent(microbeEntity);
-    purgeCompounds(microbeComponent, compoundBag);
+    purgeCompounds(world, microbeEntity, microbeComponent, compoundBag);
 }
 
 // Since we have individual storage now we dont need this
@@ -513,7 +519,8 @@ void purgeCompounds(CellStageWorld@ world, ObjectID microbeEntity)
 // you no longer need to dump things because thngs can no longer
 // "take up each others space"  However, it would be weird to store
 // up compounds you dont use, so lets purge those.
-void purgeCompounds(MicrobeComponent@ microbeComponent, CompoundBagComponent@ compoundBag)
+void purgeCompounds(CellStageWorld@ world, ObjectID microbeEntity,
+    MicrobeComponent@ microbeComponent, CompoundBagComponent@ compoundBag)
 {
     uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
     for(uint compoundId = 0; compoundId < compoundCount; ++compoundId){
@@ -527,23 +534,23 @@ void purgeCompounds(MicrobeComponent@ microbeComponent, CompoundBagComponent@ co
         {
             // Dont remove everything immedately, give it some time so
             // people can see it happening
-            double amountToEject = 2;
+            double amountToEject = 2.0f;
             // Since we have a handle to the compoundBag component, skip calling the getCompoundAmount
             // in the microbe operations namespace
             double availableCompound = compoundBag.getCompoundAmount(compoundId);
 
             // This was also 'amount' so maybe this didn't work either?
-            if(amountToEject > 0 && availableCompound-amountToEject >= 0){
+            if(amountToEject > 0.0f && availableCompound-amountToEject >= 0.0f){
                 amountToEject = takeCompound(microbeComponent, compoundBag,
                     compoundId, amountToEject);
-                //ejectCompound(world, microbeEntity, compoundId, amountToEject-1.0f);
+                ejectCompound(world, microbeEntity, compoundId, amountToEject-1.0f);
             }
             // If we flagged the second one but we still have some left just get rid of it all
-            else if (availableCompound > 0)
+            else if (availableCompound > 0.0f)
             {
                 amountToEject = takeCompound(microbeComponent, compoundBag,
                     compoundId, availableCompound);
-                //ejectCompound(world, microbeEntity, compoundId, amountToEject-1.0f);
+                ejectCompound(world, microbeEntity, compoundId, amountToEject-1.0f);
             }
         }
     }
@@ -639,13 +646,11 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         auto vec = ( microbeComponent.facingTargetPoint - cellPosition._Position);
         auto direction = vec.Normalize();
 
-        auto amountToEject = takeCompound(microbeComponent, compoundBag, compoundId, maxAmount/10.0);
+        auto amountToEject = takeCompound(microbeComponent, compoundBag, compoundId, maxAmount/10.0f);
 
         if (amountToEject >= MINIMUM_AGENT_EMISSION_AMOUNT)
         {
-            GetEngine().GetSoundDevice().Play2DSoundEffect(
-                "Data/Sound/soundeffects/microbe-release-toxin.ogg");
-
+            playSoundWithDistance(world, "Data/Sound/soundeffects/microbe-release-toxin.ogg",microbeEntity);
             createAgentCloud(world, compoundId, cellPosition._Position+Float3(xnew*ejectionDistance,0,ynew*ejectionDistance),
                     direction, amountToEject, lifeTime, microbeComponent.speciesName);
 
@@ -656,6 +661,35 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         }
     }
 }
+
+void playSoundWithDistance(CellStageWorld@ world, const string &in soundPath, ObjectID microbeEntity)
+    {
+    auto location = world.GetComponent_Position(microbeEntity)._Position;
+    auto playerEntity = GetThriveGame().playerData().activeCreature();
+    Position@ thisPosition = world.GetComponent_Position(playerEntity);
+    MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
+    // Length is squared so also square the variable we are dividing
+    float thisVolume = 1000.0f/(sqrt(((thisPosition._Position-location).LengthSquared()))+1);
+    float soundVolume = thisVolume;
+    // Play sound
+    if (@microbeComponent.otherAudio is null ||
+                !microbeComponent.otherAudio.Get().isPlaying())
+        {
+         @microbeComponent.otherAudio = GetEngine().GetSoundDevice().Play2DSound(
+            soundPath, false, true);
+        if(microbeComponent.otherAudio !is null){
+            if(microbeComponent.otherAudio.HasInternalSource()){
+                    microbeComponent.otherAudio.Get().setVolume(soundVolume);
+                    microbeComponent.otherAudio.Get().play();
+                    } else {
+                        LOG_ERROR("Created sound player doesn't have internal "
+                            "sound source");
+                    }
+            } else {
+                LOG_ERROR("Failed to create sound player");
+            }
+        }
+    }
 
 // Default version of toggleEngulfMode that takes ObjectID
 void toggleEngulfMode(CellStageWorld@ world, ObjectID microbeEntity)
@@ -704,23 +738,23 @@ void damage(CellStageWorld@ world, ObjectID microbeEntity, double amount, const 
 
     MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
     // auto soundSourceComponent = world.GetComponent_SoundSourceComponent(microbeEntity);
+    if (microbeComponent !is null)
+        {
+        if(damageType == "toxin"){
+            // Play the toxin sound
+            playSoundWithDistance(world, "Data/Sound/soundeffects/microbe-toxin-damage.ogg", microbeEntity);
+        }
 
-    if(damageType == "toxin"){
-        // Play the toxin sound
-        GetEngine().GetSoundDevice().Play2DSoundEffect(
-            "Data/Sound/soundeffects/microbe-toxin-damage.ogg");
-    }
-
-    microbeComponent.hitpoints -= amount;
-    // Flash the microbe red
-    //LOG_INFO("DAMAGE FLASH");
-    flashMembraneColour(world, microbeEntity, 1000,
-        Float4(1,0,0,0.5));
-
-    // Find out the amount of health the microbe has.
-    if(microbeComponent.hitpoints <= 0.0f){
-        microbeComponent.hitpoints = 0.0f;
-        kill(world, microbeEntity);
+        microbeComponent.hitpoints -= amount;
+        // Flash the microbe red
+        //LOG_INFO("DAMAGE FLASH");
+        flashMembraneColour(world, microbeEntity, 1000,
+            Float4(1,0,0,0.5));
+        // Find out the amount of health the microbe has.
+        if(microbeComponent.hitpoints <= 0.0f){
+            microbeComponent.hitpoints = 0.0f;
+            kill(world, microbeEntity);
+        }
     }
 }
 
@@ -1038,19 +1072,17 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
 {
     MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
     auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
-    // auto soundSourceComponent = world.GetComponent_SoundSourceComponent(microbeEntity);
     auto microbeSceneNode = world.GetComponent_RenderNode(microbeEntity);
     auto position = world.GetComponent_Position(microbeEntity);
 
-    // Hacky but meh.
     if(microbeComponent.dead){
         LOG_ERROR("Trying to kill a dead microbe");
         return;
     }
 
     // Releasing all the agents.
-    // To not completely deadlock in this there is a maximum of 15 of these created
-    const int maxAgentsToShoot = 15;
+    // To not completely deadlock in this there is a maximum of 5 of these created
+    const int maxAgentsToShoot = 5;
     int createdAgents = 0;
 
     auto storageTypes = microbeComponent.specialStorageOrganelles.getKeys();
@@ -1059,7 +1091,7 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
         auto _amount = getCompoundAmount(world, microbeEntity, compoundId);
         while(_amount > 0){
             // Eject up to 5 units per particle
-            auto ejectedAmount = takeCompound(world, microbeEntity, compoundId, 5);
+            auto ejectedAmount = 5.0f;
             auto direction = Float3(GetEngine().GetRandom().GetNumber(0.0f, 1.0f) * 2 - 1,
                 0, GetEngine().GetRandom().GetNumber(0.0f, 1.0f) * 2 - 1);
 
@@ -1070,7 +1102,7 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
             if(createdAgents >= maxAgentsToShoot)
                 break;
 
-            _amount = _amount - ejectedAmount;
+            _amount -= ejectedAmount;
         }
     }
 
@@ -1078,46 +1110,49 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
 
     // Eject the compounds that was in the microbe
     uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
-    for(uint compoundId = 0; compoundId < compoundCount; ++compoundId){
 
+    for(uint compoundId = 0; compoundId < compoundCount; ++compoundId){
         auto total = getCompoundAmount(world, microbeEntity, compoundId)*COMPOUND_RELEASE_PERCENTAGE;
-        auto ejectedAmount = takeCompound(world, microbeEntity,
-            compoundId, total);
-        compoundsToRelease[formatInt(compoundId)] = ejectedAmount;
-        //LOG_INFO("Releaseing resource of "+  ejectedAmount);
+        compoundsToRelease[formatInt(compoundId)] = float(total);
+        //LOG_INFO(""+float(compoundsToRelease[formatInt(compoundId)]));
     }
 
     // Eject some part of the build cost of all the organelles
     for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
-
         auto organelle = microbeComponent.organelles[i];
         auto keys = organelle.organelle.initialComposition.getKeys();
-
         for(uint a = 0; a < keys.length(); ++a){
             float amount = float(organelle.organelle.initialComposition[keys[a]]);
             auto compoundId = SimulationParameters::compoundRegistry().getTypeId(keys[a]);
             auto key = formatInt(compoundId);
-
             if(!compoundsToRelease.exists(key)){
                 compoundsToRelease[key] = amount * COMPOUND_MAKEUP_RELEASE_PERCENTAGE;
             } else {
                 compoundsToRelease[key] = float(compoundsToRelease[key]) +
                     (amount * COMPOUND_MAKEUP_RELEASE_PERCENTAGE);
-                    //LOG_INFO("Releaseing build cost of "+ (amount * COMPOUND_MAKEUP_RELEASE_PERCENTAGE));
             }
         }
     }
-
-    auto keys = compoundsToRelease.getKeys();
-    for(uint i = 0; i < keys.length(); ++i){
-        ejectCompound(world, microbeEntity, parseInt(keys[i]),
-            float(compoundsToRelease[keys[i]]));
-    }
+    // They were added in order already so looping through this other thing is fine
+    for(uint64 compoundID = 0; compoundID <
+                SimulationParameters::compoundRegistry().getSize(); ++compoundID)
+        {
+            //LOG_INFO(""+float(compoundsToRelease[formatInt(compoundID)]));
+            //LOG_INFO(""+float(compoundsToRelease[formatUInt(compoundID)]));
+           if (SimulationParameters::compoundRegistry().getTypeData(compoundID).isCloud &&
+                float(compoundsToRelease[formatUInt(compoundID)]) > 0.0f)
+            {
+            //Earlier we added all of the keys to the list by ID,in order,  so this is fine
+            //LOG_INFO("Releasing "+float(compoundsToRelease[formatUInt(compoundID)]));
+            if (SimulationParameters::compoundRegistry().getTypeData(compoundID).isCloud)
+                {
+                ejectCompound(world, microbeEntity, uint64(compoundID),float(compoundsToRelease[formatUInt(compoundID)]));
+                }
+            }
+        }
 
     // Play the death sound
-    GetEngine().GetSoundDevice().Play2DSoundEffect(
-        "Data/Sound/soundeffects/microbe-death.ogg");
-
+    playSoundWithDistance(world, "Data/Sound/soundeffects/microbe-death.ogg", microbeEntity);
 
     //TODO: Get this working
     //auto deathAnimationEntity = world.CreateEntity();
@@ -1127,7 +1162,7 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
     //     "MicrobeDeath.mesh");
     //deathAnimSceneNode.Node.setPosition(position._Position);
 
-    LOG_WRITE("TODO: play animation deathAnimModel");
+    //LOG_WRITE("TODO: play animation deathAnimModel");
     // deathAnimModel.GraphicalObject.playAnimation("Death", false);
     //subtract population
     auto playerSpecies = MicrobeOperations::getSpeciesComponent(world, "Default");

@@ -160,6 +160,8 @@ string generateNameSection()
     auto cofix_v = SimulationParameters::speciesNameController().getVowelCofixes();
     auto cofix_c = SimulationParameters::speciesNameController().getConsonantCofixes();
     auto suffix = SimulationParameters::speciesNameController().getSuffixes();
+    auto suffix_c = SimulationParameters::speciesNameController().getConsonantSuffixes();
+    auto suffix_v = SimulationParameters::speciesNameController().getVowelSuffixes();
 
     string newName = "";
     string ourPrefix="";
@@ -169,9 +171,56 @@ string generateNameSection()
     string ourPrefixCofix="";
 
     if (GetEngine().GetRandom().GetNumber(0,100) >= 10){
-        switch (GetEngine().GetRandom().GetNumber(0,2))
+        switch (GetEngine().GetRandom().GetNumber(0,3))
         {
         case 0:
+            ourPrefix = prefix_c[GetEngine().GetRandom().GetNumber(0,
+                    prefix_c.length()-1)];
+            ourSuffix = suffix_v[GetEngine().GetRandom().GetNumber(0,
+                    suffix_v.length()-1)];
+            newName = ourPrefix+ourSuffix;
+            break;
+        case 1:
+            ourPrefix = prefix_v[GetEngine().GetRandom().GetNumber(0,
+                    prefix_v.length()-1)];
+            ourSuffix = suffix_c[GetEngine().GetRandom().GetNumber(0,
+                    suffix_c.length()-1)];
+            newName = ourPrefix+ourSuffix;
+            break;
+        case 2:
+            ourPrefix = prefix_v[GetEngine().GetRandom().GetNumber(0,
+                prefix_v.length()-1)];
+            ourCofix = cofix_c[GetEngine().GetRandom().GetNumber(0,
+                cofix_c.length()-1)];
+            ourSuffix = suffix_v[GetEngine().GetRandom().GetNumber(0,
+                suffix_v.length()-1)];
+            newName = ourPrefix+ourCofix+ourSuffix;
+            break;
+        case 3:
+            ourPrefix = prefix_c[GetEngine().GetRandom().GetNumber(0,
+                    prefix_c.length()-1)];
+            ourCofix = cofix_v[GetEngine().GetRandom().GetNumber(0,
+                    cofix_v.length()-1)];
+            ourSuffix = suffix_c[GetEngine().GetRandom().GetNumber(0,
+                    suffix_c.length()-1)];
+            newName = ourPrefix+ourCofix+ourSuffix;
+            break;
+        }
+    }
+    else{
+        //Developer Easter Eggs and really silly long names here
+        //Our own version of wigglesoworthia for example
+        switch (GetEngine().GetRandom().GetNumber(0,3))
+        {
+        case 0:
+        case 1:
+            ourPrefixCofix = prefixCofixList[GetEngine().GetRandom().GetNumber(0,
+                prefixCofixList.length()-1)];
+            ourSuffix = suffix[GetEngine().GetRandom().GetNumber(0,
+                suffix.length()-1)];
+            newName=ourPrefixCofix+ourSuffix;
+            break;
+        case 2:
             ourPrefix = prefix_v[GetEngine().GetRandom().GetNumber(0,
                 prefix_v.length()-1)];
             ourCofix = cofix_c[GetEngine().GetRandom().GetNumber(0,
@@ -180,7 +229,7 @@ string generateNameSection()
                 suffix.length()-1)];
             newName = ourPrefix+ourCofix+ourSuffix;
             break;
-        case 1:
+        case 3:
             ourPrefix = prefix_c[GetEngine().GetRandom().GetNumber(0,
                     prefix_c.length()-1)];
             ourCofix = cofix_v[GetEngine().GetRandom().GetNumber(0,
@@ -188,51 +237,6 @@ string generateNameSection()
             ourSuffix = suffix[GetEngine().GetRandom().GetNumber(0,
                     suffix.length()-1)];
             newName = ourPrefix+ourCofix+ourSuffix;
-            break;
-        case 2:
-            ourPrefix = prefix_v[GetEngine().GetRandom().GetNumber(0,
-                    prefix_v.length()-1)];
-            ourCofix = cofix_v[GetEngine().GetRandom().GetNumber(0,
-                    cofix_v.length()-1)];
-            ourSuffix = suffix[GetEngine().GetRandom().GetNumber(0,
-                    suffix.length()-1)];
-            newName = ourPrefix+ourCofix+ourSuffix;
-            break;
-        }
-    }
-    else{
-        //Developer Easter Eggs and really silly long names here
-        //Our own version of wigglesoworthia for example
-        switch (GetEngine().GetRandom().GetNumber(0,2))
-        {
-        case 0:
-            ourPrefix = prefix_v[GetEngine().GetRandom().GetNumber(0,
-                    prefix_v.length()-1)];
-            ourCofix = cofix_v[GetEngine().GetRandom().GetNumber(0,
-                    cofix_v.length()-1)];
-            ourFirstSuffix = suffix[GetEngine().GetRandom().GetNumber(0,
-                    suffix.length()-1)];
-            ourSuffix = suffix[GetEngine().GetRandom().GetNumber(0,
-                    suffix.length()-1)];
-            newName = ourPrefix+ourFirstSuffix+ourCofix+ourSuffix;
-            break;
-        case 1:
-            ourPrefix = prefix_c[GetEngine().GetRandom().GetNumber(0,
-                    prefix_c.length()-1)];
-            ourCofix = cofix_c[GetEngine().GetRandom().GetNumber(0,
-                    cofix_c.length()-1)];
-            ourFirstSuffix = suffix[GetEngine().GetRandom().GetNumber(0,
-                    suffix.length()-1)];
-            ourSuffix = suffix[GetEngine().GetRandom().GetNumber(0,
-                    suffix.length()-1)];
-            newName = ourPrefix+ourFirstSuffix+ourCofix+ourSuffix;
-            break;
-        case 2:
-            ourPrefixCofix = prefixCofixList[GetEngine().GetRandom().GetNumber(0,
-                prefixCofixList.length()-1)];
-            ourSuffix = suffix[GetEngine().GetRandom().GetNumber(0,
-                suffix.length()-1)];
-            newName=ourPrefixCofix+ourSuffix;
             break;
         }
     }
@@ -247,7 +251,10 @@ const dictionary DEFAULT_INITIAL_COMPOUNDS =
     {
         {"atp", InitialCompound(30,300)},
         {"glucose", InitialCompound(30,300)},
-        {"ammonia", InitialCompound(30,100)}
+        {"ammonia", InitialCompound(30,100)},
+        {"phosphates", InitialCompound(0)},
+        {"hydrogensulfide", InitialCompound(0)},
+        {"oxytoxy", InitialCompound(0)}
     };
 
 string randomSpeciesName()
@@ -387,7 +394,7 @@ class Species{
                 this.colour = Float4(parent.colour.X + randomMutationColourChannel(),
                     parent.colour.Y + randomMutationColourChannel(),
                     parent.colour.Z + randomMutationColourChannel(),
-                    parent.colour.W + randomMutationOpacity());
+                    parent.colour.W + randomMutationColourChannel());
             }
 
             // Chance of new color needs to be low
@@ -405,7 +412,7 @@ class Species{
                 this.colour = Float4(parent.colour.X + randomMutationColourChannel(),
                     parent.colour.Y + randomMutationColourChannel(),
                     parent.colour.Z + randomMutationColourChannel(),
-                    parent.colour.W + randomMutationOpacity());
+                    parent.colour.W + randomMutationColourChannel());
             }
 
             this.population = int(floor(parent.population / 2.f));
@@ -702,10 +709,10 @@ class Species{
             stringCode = getOrganelleDefinition("protoplasm").gene;
             break;
         case 2:
-            stringCode = getOrganelleDefinition("respiartoryProteins").gene;
+            stringCode = getOrganelleDefinition("metabolosome").gene;
             break;
         case 3:
-            stringCode = getOrganelleDefinition("photosyntheticProteins").gene;
+            stringCode = getOrganelleDefinition("chromatophors").gene;
             break;
         case 4:
             stringCode = getOrganelleDefinition("oxytoxyProteins").gene;
@@ -730,16 +737,23 @@ class Species{
         this.colour = getRightColourForSpecies();
         if (GetEngine().GetRandom().GetNumber(1,100) <= bacterialFlagellumChance)
         {
-            this.stringCode+=getOrganelleDefinition("flagellum").gene;;
+            this.stringCode+=getOrganelleDefinition("flagellum").gene;
         }
-        if (GetEngine().GetRandom().GetNumber(0,100) < 50)
-        {
+        if (GetEngine().GetRandom().GetNumber(0,100) < 50) {
             this.speciesMembraneType = MEMBRANE_TYPE::WALL;
-        }
-        else {
+
+        } else if (GetEngine().GetRandom().GetNumber(0,100) < 50) {
             this.speciesMembraneType = MEMBRANE_TYPE::CHITIN;
             this.colour.W = randomOpacityChitin();
+
+        } else if (GetEngine().GetRandom().GetNumber(0,100) < 50) {
+           this.speciesMembraneType = MEMBRANE_TYPE::MEMBRANE;
+
+        } else {
+            this.speciesMembraneType = MEMBRANE_TYPE::DOUBLEMEMBRANE;
+            this.colour.W = randomOpacityChitin();
         }
+
         commonConstructor(world);
         this.setupSpawn(world);
     }
@@ -776,7 +790,7 @@ class Species{
             this.colour = Float4(parent.colour.X + randomMutationColourChannel(),
                 parent.colour.Y + randomMutationColourChannel(),
                 parent.colour.Z + randomMutationColourChannel(),
-                parent.colour.W + randomMutationOpacity());
+                parent.colour.W + randomMutationColourChannel());
         }
 
         if (GetEngine().GetRandom().GetNumber(0, 100)==1)
@@ -796,7 +810,7 @@ class Species{
             this.colour = Float4(parent.colour.X + randomMutationColourChannel(),
                 parent.colour.Y + randomMutationColourChannel(),
                 parent.colour.Z + randomMutationColourChannel(),
-                parent.colour.W + randomMutationOpacity());
+                parent.colour.W + randomMutationColourChannel());
         }
 
         this.population = int(floor(parent.population / 2.f));
@@ -1257,16 +1271,12 @@ void applyTemplate(CellStageWorld@ world, ObjectID microbe, SpeciesComponent@ sp
 
     restoreOrganelleLayout(world, microbe, microbeComponent, species, editShape);
 
-    // TODO: should the compound amounts be reset before this?
     // Another place where compound amounts are something we need to worry about
     auto ids = species.avgCompoundAmounts.getKeys();
     for(uint i = 0; i < ids.length(); i++){
         CompoundId compoundId = parseUInt(ids[i]);
         InitialCompound amount = InitialCompound(species.avgCompoundAmounts[ids[i]]);
-
-        if(amount.amount != 0){
-            MicrobeOperations::storeCompound(world, microbe, compoundId, amount.amount, false);
-        }
+        MicrobeOperations::setCompound(world, microbe, compoundId, amount.amount);
     }
 }
 
@@ -1350,19 +1360,22 @@ void initProcessorComponent(CellStageWorld@ world, ObjectID entity,
             bioProcessId);
 
         if(capacities.exists(processName)){
+
             double capacity;
             if(!capacities.get(processName, capacity)){
                 LOG_ERROR("capacities has invalid value");
                 continue;
             }
-            LOG_INFO("Process: "+processName+" Capacity: "+capacity);
+
+            // LOG_INFO("Process: " + processName + " Capacity: " + capacity);
             processorComponent.setCapacity(bioProcessId, capacity);
         } else {
-            //if it doesnt exist:
-            capacities.set(processName,double(0.0f));
-             //Better to be safe then sorry, there is a difference between the c++ species and the angelscript one so.
-             processorComponent.setCapacity(bioProcessId, 0.0f);
-            }
+            // If it doesnt exist:
+            capacities.set(processName, 0.0f);
+
+            // This is related to https://github.com/Revolutionary-Games/Thrive/issues/599
+            processorComponent.setCapacity(bioProcessId, 0.0f);
+        }
     }
 }
 
@@ -1496,17 +1509,20 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name, const strin
             bioProcessId);
 
         if(capacities.exists(processName)){
+
             double capacity;
             if(!capacities.get(processName, capacity)){
                 LOG_ERROR("capacities has invalid value");
                 continue;
             }
+
             processorComponent.setCapacity(bioProcessId, capacity);
         } else {
-        //if it doesnt exist:
-        capacities.set(processName,double(0.0f));
-        // Better to be safe than sorry
-         processorComponent.setCapacity(bioProcessId, 0.0f);
+            // If it doesnt exist:
+            capacities.set(processName, 0.0f);
+
+            // This is done because of https://github.com/Revolutionary-Games/Thrive/issues/599
+            processorComponent.setCapacity(bioProcessId, 0.0f);
         }
     }
 

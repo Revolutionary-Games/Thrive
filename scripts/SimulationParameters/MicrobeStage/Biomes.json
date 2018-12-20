@@ -1,6 +1,6 @@
 {
     "default": {
-        "name": "Ocean",
+        "name": "Epipelagic",
         "background": "Background",
 		"colors":{
 		    "specularColors": {
@@ -126,9 +126,9 @@
             }
         }
     },
-    "abyss": {
-        "name": "Abyss",
-        "background": "Background_Abyss",
+    "bathypalagic": {
+        "name": "Bathypalagic",
+        "background": "Background_Bathypalagic",
 		"colors":{
 		    "specularColors": {
                 "r": 0.98,
@@ -166,10 +166,51 @@
             }
         }
     },
+    
+    "mesopelagic": {
+        "name": "Mesopelagic",
+        "background": "Background_Mesopelagic",
+		"colors":{
+		    "specularColors": {
+                "r": 0.98,
+                "g": 0.7,
+                "b": 0.75
+			},
+		    "diffuseColors": {
+                "r": 1.0,
+                "g": 0.9,
+                "b": 0.9
+			}
+		},
+		"oxygenPercentage": 0.21,
+		"carbonDioxidePercentage": 0.09,
+		"averageTemperature": 2,
+        "compounds": {
+            "ammonia": {
+                "amount": 300000,
+                "density": 0.00002
+            },
 
-    "shallow": {
-        "name": "Shallow",
-        "background": "Background_Shallow",
+            "glucose": {
+                "amount": 350000,
+                "density": 0.00002
+            },
+            
+            "phosphates": {
+                "amount": 300000,
+                "density": 0.00002
+            },
+
+            "hydrogensulfide": {
+                "amount": 325000,
+                "density": 0.00002
+            }
+        }
+    },
+    
+    "coastal": {
+        "name": "Coastal",
+        "background": "Background_Coastal",
 		"colors":{
 		    "specularColors": {
                 "r": 0.98,

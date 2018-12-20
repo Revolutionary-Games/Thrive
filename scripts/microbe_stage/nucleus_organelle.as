@@ -87,11 +87,7 @@ class NucleusOrganelle : OrganelleComponent{
 
         auto world = organelle.world;
 
-        if(golgi != NULL_OBJECT)
-            world.QueueDestroyEntity(golgi);
-        if(ER != NULL_OBJECT)
-            world.QueueDestroyEntity(ER);
-
+        // These also should be destroyed with the cell as they are parented
         golgi = NULL_OBJECT;
         ER = NULL_OBJECT;
     }

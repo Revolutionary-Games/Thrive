@@ -20,6 +20,7 @@ set(AllProjectFiles
   "${LEVIATHAN_SRC}/LeviathanTest/DummyLog.cpp"
   )
 
+set(SKIP_INSTALL ON)
 set(CREATE_CONSOLE_APP ON)
 include(LeviathanUsingProject)
 

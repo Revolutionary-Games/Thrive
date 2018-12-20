@@ -9,6 +9,10 @@ const auto DEFAULT_SPAWN_DENSITY = 1/25000.f;
 const auto STARTING_SPAWN_DENSITY = 50000.0f;
 const auto MAX_SPAWN_DENSITY = 20000.0f;
 
+// Cell Spawn Variation
+const auto MIN_SPAWN_DISTANCE = -5000.0f;
+const auto MAX_SPAWN_DISTANCE = 5000.0f;
+
 // Cell Colors
 const auto MIN_COLOR = 0.0f;
 const auto MAX_COLOR = 0.9f;
@@ -37,6 +41,8 @@ const auto MUTATION_BACTERIA_TO_EUKARYOTE = 1;
 const auto MUTATION_CREATION_RATE = 0.1f;
 const auto MUTATION_DELETION_RATE = 0.1f;
 
+//Removal cost
+const auto ORGANELLE_REMOVE_COST = 10;
 // Spawn Radius
 const auto MICROBE_SPAWN_RADIUS = 150;
 const auto BACTERIA_SPAWN_RADIUS = 150;
@@ -89,6 +95,8 @@ const auto REGENERATION_RATE = 1.0f;
 const auto FLAGELLA_ENERGY_COST = 7.0f;
 const auto FLAGELLA_BASE_FORCE = 0.5f;
 const auto CELL_BASE_THRUST = 2.0f;
+// is set by this and modified by applyCellMovement like the player later
+const auto AI_BASE_MOVEMENT = 1.0f;
 //! The drag force is calculated by taking the current velocity and multiplying it by this.
 //! This must be negative!
 const auto CELL_DRAG_MULTIPLIER = -0.1f;
@@ -332,11 +340,15 @@ const dictionary STARTER_MICROBES = {
             {
             //for testing
                 {"atp", InitialCompound(60)},
-                {"glucose", InitialCompound(60)}
+                {"glucose", InitialCompound(60)},
+                {"ammonia", InitialCompound(0)},
+                {"phosphates", InitialCompound(0)},
+                {"hydrogensulfide", InitialCompound(0)},
+                {"oxytoxy", InitialCompound(0)}
             },
             {
                 OrganelleTemplatePlaced("nucleus", 0, 0, 180),
-                OrganelleTemplatePlaced("cytoplasm", 1, 2, 0),
+                OrganelleTemplatePlaced("cytoplasm", 1, 1, 0),
                 OrganelleTemplatePlaced("cytoplasm", -1, 2, 0)
             },
             Float4(1, 1, 1, 1),

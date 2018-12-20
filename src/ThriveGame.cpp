@@ -7,6 +7,7 @@
 #include "generated/cell_stage_world.h"
 #include "generated/microbe_editor_world.h"
 #include "main_menu_keypresses.h"
+#include "microbe_stage/MicrobeEditorKeyHandler.h"
 #include "microbe_stage/simulation_parameters.h"
 #include "scripting/script_initializer.h"
 #include "thrive_net_handler.h"
@@ -44,6 +45,8 @@ public:
         m_globalKeyPresses(std::make_shared<GlobalUtilityKeyHandler>(
             *game.ApplicationConfiguration->GetKeyConfiguration())),
         m_cellStageKeys(std::make_shared<PlayerMicrobeControl>(
+            *game.ApplicationConfiguration->GetKeyConfiguration())),
+        m_microbeEditorKeys(std::make_shared<MicrobeEditorKeyHandler>(
             *game.ApplicationConfiguration->GetKeyConfiguration()))
     {}
 
@@ -153,6 +156,7 @@ public:
     std::shared_ptr<MainMenuKeyPressListener> m_menuKeyPresses;
     std::shared_ptr<GlobalUtilityKeyHandler> m_globalKeyPresses;
     std::shared_ptr<PlayerMicrobeControl> m_cellStageKeys;
+    std::shared_ptr<MicrobeEditorKeyHandler> m_microbeEditorKeys;
 };
 
 // ------------------------------------ //
@@ -246,6 +250,7 @@ void
 
     // Set the right input handlers active //
     m_impl->m_menuKeyPresses->setEnabled(false);
+    m_impl->m_microbeEditorKeys->setEnabled(false);
     m_impl->m_cellStageKeys->setEnabled(true);
 
     // And switch the GUI mode to allow key presses through
@@ -488,6 +493,7 @@ void
     // Set the right input handlers active //
     m_impl->m_menuKeyPresses->setEnabled(false);
     m_impl->m_cellStageKeys->setEnabled(false);
+    m_impl->m_microbeEditorKeys->setEnabled(true);
     // // TODO: editor hotkeys. Maybe they should be in the GUI
 
     // // So using this
@@ -574,6 +580,7 @@ void
     // Set the right input handlers active //
     m_impl->m_menuKeyPresses->setEnabled(false);
     m_impl->m_cellStageKeys->setEnabled(true);
+    m_impl->m_microbeEditorKeys->setEnabled(false);
     // // TODO: editor hotkeys. Maybe they should be in the GUI
 
     // // So using this
@@ -628,6 +635,7 @@ void
     // Get proper keys setup
     m_impl->m_menuKeyPresses->setEnabled(true);
     m_impl->m_cellStageKeys->setEnabled(false);
+    m_impl->m_microbeEditorKeys->setEnabled(false);
 
     // And switch the GUI mode to allow key presses through
     auto layer = window1->GetGui()->GetLayerByIndex(0);
@@ -1013,6 +1021,9 @@ void
     // Register the player input listener
     window1->GetInputController()->LinkReceiver(m_impl->m_cellStageKeys);
 
+    // Register the editor input listener
+    window1->GetInputController()->LinkReceiver(m_impl->m_microbeEditorKeys);
+
     Leviathan::GUI::GuiManager* GuiManagerAccess = window1->GetGui();
 
     if(!GuiManagerAccess->LoadGUIFile("Data/Scripts/gui/thrive_gui.html")) {
@@ -1069,6 +1080,8 @@ void
     keyconfigobj->AddKeyIfMissing(guard, "Screenshot", {"PrintScreen"});
     keyconfigobj->AddKeyIfMissing(guard, "ZoomIn", {"+", "Keypad +"});
     keyconfigobj->AddKeyIfMissing(guard, "ZoomOut", {"-", "Keypad -"});
+    keyconfigobj->AddKeyIfMissing(guard, "RotateRight", {"A"});
+    keyconfigobj->AddKeyIfMissing(guard, "RotateLeft", {"D"});
 }
 // ------------------------------------ //
 bool
