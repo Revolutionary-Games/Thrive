@@ -309,6 +309,14 @@ void cellHitAgent(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
         floatingEntity = secondEntity;
         cellEntity = firstEntity;
     }
+
+    if(model is null){
+
+        LOG_ERROR("cellHitAgent: neither body has a Model");
+        return;
+    }
+
+
     AgentProperties@ propertiesComponent =
         asCellWorld.GetComponent_AgentProperties(floatingEntity);
 

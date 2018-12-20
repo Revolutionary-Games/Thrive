@@ -694,6 +694,9 @@ void
         }
     }
 
+    LEVIATHAN_ASSERT(m_managedClouds.size() == 9,
+        "A CompoundCloud entity has mysteriously been destroyed");
+
     const auto moved = playerPos - m_cloudGridCenter;
 
     // TODO: because we no longer check if the player has moved at least a bit
