@@ -357,6 +357,20 @@ bool
     }
 
     if(engine->RegisterObjectMethod("SpeciesNameController",
+           "array<string>@ getConsonantSuffixes()",
+           asMETHOD(SpeciesNameController, getConsonantSuffixes),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("SpeciesNameController",
+           "array<string>@ getVowelSuffixes()",
+           asMETHOD(SpeciesNameController, getVowelSuffixes),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("SpeciesNameController",
            "array<string>@ getPrefixCofix()",
            asMETHOD(SpeciesNameController, getPrefixCofix),
            asCALL_THISCALL) < 0) {
@@ -710,6 +724,12 @@ bool
     }
 
     if(engine->RegisterObjectMethod("CompoundBagComponent",
+           "void setCompound(CompoundId compound, double amount)",
+           asMETHOD(CompoundBagComponent, setCompound), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("CompoundBagComponent",
            "double getPrice(CompoundId compound)",
            asMETHOD(CompoundBagComponent, getPrice), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
@@ -719,12 +739,6 @@ bool
            "double getUsedLastTime(CompoundId compound)",
            asMETHOD(CompoundBagComponent, getUsedLastTime),
            asCALL_THISCALL) < 0) {
-        ANGELSCRIPT_REGISTERFAIL;
-    }
-
-    if(engine->RegisterObjectMethod("CompoundBagComponent",
-           "double getDemand(CompoundId compound)",
-           asMETHOD(CompoundBagComponent, getDemand), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 

@@ -220,6 +220,7 @@ void onReturnFromEditor(CellStageWorld@ world)
     GenericEvent@ event = GenericEvent("CheckWin");
     NamedVars@ vars = event.GetNamedVars();
     vars.AddValue(ScriptSafeVariableBlock("generation", playerSpecies.generation));
+    vars.AddValue(ScriptSafeVariableBlock("population", playerSpecies.population));
     GetEngine().GetEventHandler().CallEvent(event);
 
     // The editor changes the cell template for the species so we won't have to do that here
@@ -259,7 +260,7 @@ void onReturnFromEditor(CellStageWorld@ world)
 
         if(amount != 0){
             MicrobeOperations::takeCompound(world, player, compoundID,
-                amount / 2 /*, false*/ );
+                amount / 2.0f /*, false*/ );
         }
     }
 
@@ -308,24 +309,31 @@ void cellHitAgent(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
         floatingEntity = secondEntity;
         cellEntity = firstEntity;
     }
+
+    if(model is null){
+
+        LOG_ERROR("cellHitAgent: neither body has a Model");
+        return;
+    }
+
+
     AgentProperties@ propertiesComponent =
         asCellWorld.GetComponent_AgentProperties(floatingEntity);
 
-    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
-        world.GetScriptComponentHolder("MicrobeComponent").Find(cellEntity));
+    MicrobeComponent@ microbeComponent = MicrobeOperations::getMicrobeComponent(asCellWorld,cellEntity);
 
     if (propertiesComponent !is null && microbeComponent !is null){
-        if (propertiesComponent.getSpeciesName() != microbeComponent.speciesName){
+        if (propertiesComponent.getSpeciesName() != microbeComponent.speciesName && !microbeComponent.dead){
             MicrobeOperations::damage(asCellWorld, cellEntity, double(OXY_TOXY_DAMAGE), "toxin");
+            world.QueueDestroyEntity(floatingEntity);
             }
         }
 
-    world.QueueDestroyEntity(floatingEntity);
 }
 
 void cellOnCellActualContact(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
 {
-    //We ar egoing to cheat here and set variables when you hit something, and hopefully the AABB will take care of the rest
+    //We are going to cheat here and set variables when you hit something, and hopefully the AABB will take care of the rest
     // Grab the microbe components
     MicrobeComponent@ firstMicrobeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(firstEntity));
@@ -469,16 +477,14 @@ bool hitAgent(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
     if ((firstMicrobeComponent !is null || secondMicrobeComponent !is null) &&
         !(firstMicrobeComponent !is null && secondMicrobeComponent !is null))
     {
-        //LOG_INFO("called toxin callback");
-        cellHitAgent(world,firstEntity,secondEntity);
-        shouldCollide = false;
+        shouldCollide = true;
     }
 
     return shouldCollide;
 }
 
-void createAgentCloud(CellStageWorld@ world, CompoundId compoundId, Float3 pos,
-    Float3 direction, float amount, float lifetime, string speciesName)
+void createAgentCloud(CellStageWorld@ world, CompoundId compoundId,
+    Float3 pos, Float3 direction, float amount, float lifetime, string speciesName)
 {
     auto normalizedDirection = direction.Normalize();
     auto agentEntity = world.CreateEntity();
@@ -506,7 +512,6 @@ void createAgentCloud(CellStageWorld@ world, CompoundId compoundId, Float3 pos,
     // rigidBody.properties.linearDamping = 0.4;
 
     body.SetVelocity(normalizedDirection * AGENT_EMISSION_VELOCITY);
-
     rigidBody.JumpTo(position);
     auto sceneNode = world.Create_RenderNode(agentEntity);
     auto model = world.Create_Model(agentEntity, sceneNode.Node, "oxytoxy.mesh");

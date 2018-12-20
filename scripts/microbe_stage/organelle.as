@@ -6,8 +6,8 @@ const auto GROWTH_SPEED_MULTILPIER = 0.5f / 1000;
 
 // Percentage of the compounds that compose the organelle released
 // upon death (between 0.0 and 1.0).
-const auto COMPOUND_MAKEUP_RELEASE_PERCENTAGE = 0.25f;
-const auto COMPOUND_RELEASE_PERCENTAGE = 0.1f;
+const auto COMPOUND_MAKEUP_RELEASE_PERCENTAGE = 0.9f;
+const auto COMPOUND_RELEASE_PERCENTAGE = 0.9f;
 
 
 //! \todo Replace with Int2
@@ -314,12 +314,10 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
     //  The time since the last call to update()
     void update(int logicTime)
     {
-        auto species = MicrobeOperations::getSpeciesComponent(world,
-            microbeEntity);
-        if(flashDuration > 0 && species !is null){
+
+        if(flashDuration > 0 ){
             flashDuration -= logicTime;
             // Use organelle.world to get the MicrobeSystem
-            Float4 speciesColour = species.colour;
             Float4 colour;
 
             // How frequent it flashes, would be nice to update the
@@ -329,12 +327,12 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
                 LOG_INFO("Flashed Organelle");
                 LOG_INFO(""+flashDuration);
             } else {
-                colour = speciesColour;
+                colour = this.speciesColour;
             }
 
             if(flashDuration <= 0){
                 flashDuration = 0;
-                colour = speciesColour;
+                colour = this.speciesColour;
             }
 
             // TODO: this needs a separate colour property
@@ -343,21 +341,16 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         }
 
         // If the organelle is supposed to be another color.
-        if(_needsColourUpdate && species !is null){
+        if(_needsColourUpdate){
             // This method doesn't actually apply the colour so I have
             // no clue how the flashing works
             updateColour();
         }
 
         // Update each OrganelleComponent
-        if (species !is null){
             for(uint i = 0; i < components.length(); ++i){
                 components[i].update(microbeEntity, this, logicTime);
             }
-        } else {
-            //LOG_INFO("Tried to update entity of extinct species...");
-            //Maybe just kill them here, to prevent spam of "no species found with name X"
-        }
     }
 
     protected Float4 calculateHSLForOrganelle(Float4 oldColour)
@@ -387,6 +380,14 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
         if(model !is null && IsInGraphicalMode()){
             // TODO: clean up this check
+            // This URL is split to follow maximum width rule:
+            // https://github.com/Revolutionary-Games/Thrive/commit/
+            // 19ef522a7a22285875a7cdd8cac2bef010e44a39
+            // Comment from there:
+
+            // This should not be disabled until the flagella material support
+            // custom parameters (it uses the Ogre hlms material right now) and
+            // it might just explode at any moment
             if(organelle.mesh != "flagellum.mesh"){
 
                 this.colourTint = calculateHSLForOrganelle(this.colourTint);
@@ -422,7 +423,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
     void growOrganelle(CompoundBagComponent@ compoundBagComponent, int logicTime)
     {
         // Finds the total number of needed compounds.
-        float sum = 0.0;
+        float sum = 0.0f;
 
         auto compoundKeys = compoundsLeft.getKeys();
         for(uint i = 0; i < compoundKeys.length(); ++i){
@@ -446,7 +447,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         // cannot grow the organelle, or the organelle is ready to
         // split (i.e. compoundBin = 2), in which case we wait for the
         // microbe to handle the split.
-        if(sum <= 0.0)
+        if(sum <= 0.0f)
             return;
 
         // Randomly choose which of the compounds are used in reproduction.
@@ -464,7 +465,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
                 continue;
             }
 
-            if(id - amount < 0){
+            if(id - amount < 0.0f){
 
                 // The random number is from this compound, so attempt to take it.
                 float amountToTake = min(logicTime * GROWTH_SPEED_MULTILPIER, amount);
@@ -671,6 +672,11 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
         microbeEntity = microbe;
 
+        // This should be the only species check any organelle ever makes.
+        auto species = MicrobeOperations::getSpeciesComponent(world, microbeEntity);
+        if (species !is null){
+            this.speciesColour = species.colour;
+            }
         // Our coordinates are already set when this is called
         // so just cache this
         this.cartesianPosition = Hex::axialToCartesian(q, r);
@@ -689,25 +695,30 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
             world.SetEntitysParent(organelleEntity, microbeEntity);
 
             // Change the colour of this species to be tinted by the membrane.
-            auto species = MicrobeOperations::getSpeciesComponent(world, microbeEntity);
-
-            flashColour = species.colour;
+            flashColour = this.speciesColour;
 
             _needsColourUpdate = true;
 
             @renderNode = world.Create_RenderNode(organelleEntity);
             renderNode.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
             renderNode.Marked = true;
+        }
 
-            // For performance reasons we set the position here directly
-            // instead of with the position system
-            renderNode.Node.setPosition(offset + this.cartesianPosition);
-
-            // maybe instead of changing this here we should do so in the generation routine.
+        // For performance reasons we set the position here directly
+        // instead of with the position system
+        renderNode.Node.setPosition(offset + this.cartesianPosition);
+        // TODO: this MUST BE moved to the mesh file. Otherwise this mess will grow over time
+        //maybe instead of changing this here we should do so in the generation routine.
+        if(organelle.mesh != "chemoplast.mesh"){
             renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(90),
                     Ogre::Vector3(1, 0, 0)) * Ogre::Quaternion(Ogre::Degree(180),
                         Ogre::Vector3(0, 1, 0)) * Ogre::Quaternion(Ogre::Degree(rotation),
                             Ogre::Vector3(0, 0, 1)));
+        }
+        else {
+            renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(180),
+                    Ogre::Vector3(1, 0, 0))*Ogre::Quaternion(Ogre::Degree(rotation),
+                        Ogre::Vector3(0, 1, 0)));
         }
 
         // Add hex collision shapes
@@ -777,8 +788,8 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         //     components[i].onDestroyedWithMicrobe(microbeEntity, this);
         // }
 
-        if(organelleEntity != NULL_OBJECT)
-            world.QueueDestroyEntity(organelleEntity);
+        // The organelle entity is automatically destroyed because it
+        // is parented to the microbe entity
         organelleEntity = NULL_OBJECT;
         microbeEntity = NULL_OBJECT;
         @world = null;
@@ -883,7 +894,8 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
     // TODO: fix this
     float flashDuration = 0;
-
+    //cached species
+    Float4 speciesColour = Float4(00.0f,0.0f,0.0f,0.0f);
     //! When flashing this is red othertimes this is the species colour
     Float4 flashColour = Float4(1, 1, 1, 1);
 

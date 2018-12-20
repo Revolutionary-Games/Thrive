@@ -124,7 +124,10 @@
           <span id="populationCount">0</span>
         </div>
 	  
-	  <div id="winText">You win!</div>
+	  <div id="winContainer">
+		<span id="winTitle">YOU HAVE THRIVED!</span>
+		<span id="winBody">Congratulation- a winner is y... who am I kidding, you have thrived! You have won in the 0.4.0 build Good job, you may continue playing after this screen closes if you wish, or start a new game in a new world.</span>
+	  </div>
 	  
 	  <div id="extinctionContainer">
 		<span id="extinctionTitle">EXTINCTION</span>
@@ -264,7 +267,9 @@
         <div class="MenuButton" id="quitButtonHud">Exit</div>
 		</div>
         
-		<div class="HelpText" id="helpText">Collect compounds throughout the
+		<div class="HelpText" id="helpText">
+            <div class="HelpScroll">
+        Collect compounds throughout the
 		environment to process in your cell's organelles and generate
 		ATP. Be careful not to let your ATP stores run out, or you
 		will slow down, lose health and eventually die.
@@ -300,11 +305,10 @@ But if you survive for fifteen generations, you are considered to have won, afte
 <br><br>
 Be wary because your competitors are evolving alongside you.
 <br><br>
-
         <div class="MenuButton" id="closeHelp">Close</div>
+        </div>
         <div id="tipMsg"></div>
         </div>
-        
 	  </div>
 	</div>
 
@@ -332,7 +336,8 @@ Be wary because your competitors are evolving alongside you.
       </div>
 	    </div>
 	  </div>
-	  <div id="newButton" class="DisabledButton">NEW
+	  <div id="newButton" >
+            NEW
 	    <div id="NewIcon"></div>	  </div>
       <div id="microbeEditorLeftPanel" class="Panel">
 	    <div id="StructurePanelTop"><div id="StructureTitle">STRUCTURE</div></div>
@@ -344,37 +349,100 @@ Be wary because your competitors are evolving alongside you.
 	      <div class="OrganelleListTitle">STRUCTURAL ORGANELLES</div>
 	      <table class="OrganelleTable"><tr>
 	          <td id="addCytoplasm" class="OrganelleListItem">
+                <span class="tooltiptext">Cytoplasm<hr><br> Cost: 10 mutation points<hr><br> 
+                Performs Process: Glycolysis<hr><br>
+                Storage Space: 20<hr><br>
+                The material or protoplasm within a living cell.<br>The gooey innards of a cell.</span>
                 <div id="CytoplasmIcon"></div>Cytoplasm<br>10 MP</td>
           </tr></table>
 	      <div class="OrganelleListTitle">INTERNAL ORGANELLES</div>
 	      <table class="OrganelleTable"><tr>
 	          <td id="addMitochondrion" class="OrganelleListItem">
-                <div id="MitochondrionIcon"></div>Mitochondrion<br>40 MP</td>
+                <span class="tooltiptext">
+                Mitochondria<hr><br> Cost: 40 mutation points<hr><br> 
+                Performs Process: Respiration<hr><br>
+                A captured prokaryote used by eukaryotic cells to perform respiration.<br>
+                The Mitochondria is the powerhouse of the cell
+                </span>
+                <div id="MitochondrionIcon">
+                </div>Mitochondrion<br>40 MP</td>
 	          <td id="addChloroplast" class="OrganelleListItem">
+                <span class="tooltiptext">
+                Chloroplast<hr><br> Cost: 40 mutation points<hr><br> 
+                Performs Process: Photosynthesis<hr><br>
+                A captured prokaryote used by eukaryotic cells to perform photosynthesis.<br>
+                The chloroplast is used primarily by plant cells on earth, but some ciliates and other organisms use it too.
+                </span>
                 <div id="ChloroplastIcon"></div>Chloroplast<br>40 MP</td>
 	          <td id="addThermoplast" class="OrganelleListItem DisabledButton">
                 <div id="ThermoplastIcon"></div>Thermoplast<br>40 MP</td>
 	        </tr><tr>
 	          <td id="addVacuole" class="OrganelleListItem">
+                <span class="tooltiptext">
+                Vacuole <hr><br> Cost: 30 mutation points<hr><br> 
+                Storage Space: 50<hr><br>
+                A space or vesicle within the cytoplasm of a cell, enclosed by a membrane and used to hold compounds</span>
                 <div id="VacuoleIcon"></div>Vacuole<br>30 MP</td>
 	          <td id="addToxinVacuole" class="OrganelleListItem">
+              <span class="tooltiptext">
+                Toxin Vacuole <hr><br> Cost: 80 mutation points<hr><br> 
+                Performs Process: OxytoxyNT Production<hr><br>
+                Allows for production and storage of OxytoxyNT which can be shot at enemy cells using E.
+                </span>
                 <div id="ToxinVacuoleIcon"></div>Toxin Vacuole<br>80 MP</td>
 	          <td id="addBioluminescent" class="OrganelleListItem DisabledButton">
                 <div id="BioluminescentIcon"></div>Bioluminescent Vacuole<br>N/A MP</td>
 	        </tr><tr>
 	          <td id="addChemoplast" class="OrganelleListItem">
+                <span class="tooltiptext">
+                Chemoplast<hr><br> Cost: 40 mutation points<hr><br> 
+                Performs Process: Chemosynthesis<hr><br>
+               Allows for synthesis of hydrogen sulfide into glucose.
+               <br>
+               Can be used to process the normally toxic soup containing hydrogen sulfide that comes out of hydrothermal vents at the bottom of the ocean. Into glucose.
+               </span>
                 <div id="ChemoplastIcon"></div>Chemoplast<br>40 MP</td>
               <td id="addNitrogenFixingPlastid" class="OrganelleListItem">
-                <div id="PlastidIcon"></div>Nitrogen Fixing Plastid<br>80 MP</td>
+                <span class="tooltiptext">
+                Nitrogen Fixing Plastid<hr><br> Cost: 80 mutation points<hr><br> 
+                Performs Process: Nitrogen Fixation<hr><br>
+                Allows for synthesis of ammonia from atmospheric nitrogen. For easier cell growth.
+                </span>
+                <div id="PlastidIcon">
+                </div>Nitrogen Fixing Plastid<br>80 MP</td>
 	      </tr></table>
 	      <div class="OrganelleListTitle">EXTERNAL ORGANELLES</div>
 	      <table><tr>
 	          <td id="addFlagellum" class="OrganelleListItem">
+                <span class="tooltiptext">
+                Flagellum<hr><br> Cost: 30 mutation points<hr><br> 
+                Cost: 7 atp per second while in use.<hr><br>
+                A whip like structure used microbes for movement.</span>
                 <div id="FlagellumIcon"></div>Flagellum<br>30 MP</td>
 	          <td id="addPilus" class="OrganelleListItem DisabledButton">
                 <div id="PilusIcon"></div>Predatory Pilus<br>30 MP</td>
 	          <td id="addCilia" class="OrganelleListItem DisabledButton">
                 <div id="CiliaIcon"></div>Cilia<br>40 MP</td>
+	      </tr></table>
+	      <div class="OrganelleListTitle">PROKARYOTIC STRUCTURES</div>
+	      <table><tr>
+	          <td id="addMetabolosome" class="OrganelleListItem">
+                <span class="tooltiptext">
+                Metabolosomes<hr><br> Cost: 20 mutation points<hr><br> 
+                Performs Process: Fermentation<hr><br>
+                Storage Space: 10<hr><br>
+                Organelle-like Bacterial microcompartments (BMCs) consisting of a protein shell that encloses enzymes used for fermentation.
+                </span>
+                <div id="MetabolosomeIcon"></div>Metabolosomes<br>20 MP</td>
+	          <td id="addChromatophor" class="OrganelleListItem">
+                <span class="tooltiptext">
+                Chromatophores <hr><br> Cost: 25 mutation points <hr><br> 
+                Performs Process: Chromatophore Photosynthesis<br>
+                Performs Process: Glycolysis                  <hr><br>
+                Storage Space: 10<hr><br>
+                Coloured, membrane-associated vesicles used by various prokaryotes perform photosynthesis.
+                Chromatophores contain bacteriochlorophyll pigments and carotenoids.</span>
+                <div id="ChromatophorIcon"></div>Chromatophores<br>25 MP</td>
 	      </tr></table>
 	    </div>
       </div>
@@ -388,8 +456,8 @@ Be wary because your competitors are evolving alongside you.
 		  <div id="species">SPECIES <div id="speciesNameBox" class="TextBox">
               <span id="speciesName">Primum Thrivieum</span></div></div>
 		<div id="generation">GENERATION <span id="generationLabel">N/A</span></div>
+		<div id="speed">SPEED <span id="speedLabel">2.0</span></div>
 		<div id="size">SIZE <span id="sizeLabel">N/A</span></div>
-		<div id="speed">SPEED <span id="speedLabel">N/A</span></div>
 		</div>
         </div>
       </div>
@@ -401,12 +469,12 @@ Be wary because your competitors are evolving alongside you.
       </div>
 	  
 	  <!-- Edit tools -->
-	  <div id="Undo" class="DisabledButton"><div id="UndoIcon"></div></div>
-	  <div id="SymmetryButton" class="DisabledButton">
+	  <div id="Undo"><div id="UndoIcon"></div></div>
+	  <div id="SymmetryButton">
 	  <div id="SymmetryIcon"></div>
 	  SYMMETRY
 	  </div>
-	  <div id="Redo" class="DisabledButton"><div id="RedoIcon"></div></div>
+	  <div id="Redo"><div id="RedoIcon"></div></div>
 	  
 	  <!-- Pause menu -->
 	  <div id="pauseOverlayEditor" class="Overlay">
@@ -418,17 +486,19 @@ Be wary because your competitors are evolving alongside you.
         <div class="MenuButton DisabledButton">Statistics</div>
         <div class="MenuButton" id="helpButtonEditor">Help</div>
 		<div class="MenuButton DisabledButton">Options</div>
-		<div class="MenuButton DisabledButton">Main Menu</div>
+		<div class="MenuButton" id="exitToMenuButtonEditor">Main Menu</div>
         <div class="MenuButton" id="quitButtonEditor">Exit</div>
 		</div>
-		<div class="HelpText" id="helpTextEditor"><p>Every time you reproduce, you will
+		<div class="HelpText" id="helpTextEditor">
+            <div class="HelpScroll">
+        <p>Every time you reproduce, you will
 		enter the Microbe Editor, where you can make changes to your
 		species (by adding, moving, or removing organelles) to
 		increase your species' success. <br><br>
         Each visit to the editor in the Microbe Stage Represents 200 million years of evolution<br>
 Each generation, you have 100 mutation points to spend, and each change
 (or mutation) will cost a certain amount of that MP, removing costs mutation points aswell as adding. <br><br>
-
+You can rotate your organelles, with A and D<br>
 Mitochondrion: Produces ATP out of glucose and atmospheric 02. Much more eficiently then cytoplasm<br>
 
 Chloroplast: Makes glucose out of sunlight and atmospheric CO2. <br>
@@ -437,17 +507,22 @@ Chemoplast: Makes glucose out of Hydrogen Sulfide. <br>
 
 Nitrogen Fixing Plastid: Makes ammonia from ATP and atmospheric Nitrogen. <br>
 
-Vacuole: Stores 25 collected compounds. <br>
+Vacuole: Stores 50 collected compounds. <br>
 
 Toxin Vacuoles: Produces toxins (called OxyToxyNT). <br>
 
 Flagella: Moves your cell faster by consuming ATP. <br>
 
-Pilus: Can be used to stab other cells. <br><br>
+Pilus: Can be used to stab other cells. <br>
 
-Cytoplasm: Increases the rate of compound absorbtion and has 5 storage space and performs glycolysis (Produces small amounts of ATP).</p>
+Metabolosomes: Produces the same amount of ATP of a mitocondria, but is way way less efficient, it only takes up 1 Hex and has 10 storage space<br>
+
+Chromatophores: Produces 1/3rd the amount of glucose as a normal chloroplast, but also performs glycolysis, and has 10 storage space, and takes up 1 Hex.<br><br>
+
+Cytoplasm: Increases the rate of compound absorbtion and has 20 storage space and performs glycolysis (Produces small amounts of ATP).</p>
           <div class="MenuButton" id="closeHelpEditor">Close</div>
-           <div id="tipMsg"></div>
+            </div>
+           <div id="tipMsgEditor"></div>
           </div>
 	  </div>
     </div>    

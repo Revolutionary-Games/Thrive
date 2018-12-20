@@ -300,7 +300,7 @@ void setupOrganelles(){
     };
     cytoplasmParameters.components = {
         processorOrganelleFactory(1.0),
-        storageOrganelleFactory(5.0f)
+        storageOrganelleFactory(20.0f)
     };
     cytoplasmParameters.processes = {
         TweakedProcess("glycolosis", 1)
@@ -413,7 +413,7 @@ void setupOrganelles(){
         {"ammonia", 2}
     };
     vacuoleParameters.components = {
-        storageOrganelleFactory(25.0f)
+        storageOrganelleFactory(50.0f)
     };
     vacuoleParameters.hexes = {
         Int2(0, 0)
@@ -508,53 +508,51 @@ void setupOrganelles(){
 
     // ------------------------------------ //
     // Respiratory Protien
-    auto respiratoryProtien = OrganelleParameters("respiartoryProteins");
+    auto respiratoryProtein = OrganelleParameters("metabolosome");
 
-    respiratoryProtien.mass = 0.1;
-    respiratoryProtien.gene = "m";
-    respiratoryProtien.mesh = "mitochondrion.mesh";
-    respiratoryProtien.chanceToCreate = 0;
-    respiratoryProtien.prokaryoteChance = 1;
-    respiratoryProtien.mpCost = 40;
-    respiratoryProtien.initialComposition = {
+    respiratoryProtein.mass = 0.1;
+    respiratoryProtein.gene = "m";
+    respiratoryProtein.mesh = "metabolosome.mesh";
+    respiratoryProtein.chanceToCreate = 0.5f;
+    respiratoryProtein.prokaryoteChance = 1;
+    respiratoryProtein.mpCost = 20;
+    respiratoryProtein.initialComposition = {
         {"phosphates", 1},
         {"ammonia", 1}
     };
-    respiratoryProtien.components = {
+    respiratoryProtein.components = {
         processorOrganelleFactory(1.0f),
-        storageOrganelleFactory(25.0f)
+        storageOrganelleFactory(10.0f)
     };
-    respiratoryProtien.processes = {
-        TweakedProcess("respiration", 1),
-        TweakedProcess("glycolosis", 1)
+    respiratoryProtein.processes = {
+        TweakedProcess("protein_respiration", 1)
     };
-    respiratoryProtien.hexes = {
+    respiratoryProtein.hexes = {
         Int2(0, 0),
     };
 
-    _addOrganelleToTable(Organelle(respiratoryProtien));
+    _addOrganelleToTable(Organelle(respiratoryProtein));
 
-    // Photosynthetic Protien
-    auto photosyntheticProtein = OrganelleParameters("photosyntheticProteins");
+    // chromatophors
+    auto photosyntheticProtein = OrganelleParameters("chromatophors");
 
     photosyntheticProtein.mass = 0.1;
     photosyntheticProtein.gene = "h";
-    photosyntheticProtein.mesh = "chloroplast.mesh";
-    photosyntheticProtein.chanceToCreate = 0;
+    photosyntheticProtein.mesh = "chromatophores.mesh";
+    photosyntheticProtein.chanceToCreate = 0.5f;
     photosyntheticProtein.prokaryoteChance = 1;
-    photosyntheticProtein.mpCost = 40;
+    photosyntheticProtein.mpCost = 25;
     photosyntheticProtein.initialComposition = {
         {"phosphates", 1},
         {"ammonia", 1}
     };
     photosyntheticProtein.components = {
         processorOrganelleFactory(1.0f),
-        storageOrganelleFactory(25.0f)
+        storageOrganelleFactory(10.0f)
     };
     photosyntheticProtein.processes = {
-      TweakedProcess("photosynthesis", 1),
-      TweakedProcess("glycolosis", 1),
-      TweakedProcess("respiration", 1)
+      TweakedProcess("chromatophore_photosynthesis", 1),
+      TweakedProcess("glycolosis", 1)
     };
     photosyntheticProtein.hexes = {
         Int2(0, 0),
@@ -562,7 +560,7 @@ void setupOrganelles(){
 
     _addOrganelleToTable(Organelle(photosyntheticProtein));
 
-    // Photosynthetic Protien
+    // Oxytoxy Protien
     auto oxytoxyProtein = OrganelleParameters("oxytoxyProteins");
 
     oxytoxyProtein.mass = 0.1;
@@ -570,7 +568,7 @@ void setupOrganelles(){
     oxytoxyProtein.mesh = "oxytoxy.mesh";
     oxytoxyProtein.chanceToCreate = 0;
     oxytoxyProtein.prokaryoteChance = 1;
-    oxytoxyProtein.mpCost = 40;
+    oxytoxyProtein.mpCost = 15;
     oxytoxyProtein.initialComposition = {
         {"phosphates", 1},
         {"ammonia", 1}
@@ -582,7 +580,6 @@ void setupOrganelles(){
     };
     oxytoxyProtein.processes = {
      TweakedProcess("oxytoxySynthesis", 1),
-     TweakedProcess("respiration", 1),
      TweakedProcess("glycolosis", 1)
     };
     oxytoxyProtein.hexes = {
@@ -597,10 +594,10 @@ void setupOrganelles(){
 
     chemoSynthisizingProtien.mass = 0.1;
     chemoSynthisizingProtien.gene = "c";
-    chemoSynthisizingProtien.mesh = "chemoplast.mesh";
+    chemoSynthisizingProtien.mesh = "metabolosome.mesh";
     chemoSynthisizingProtien.chanceToCreate = 0;
     chemoSynthisizingProtien.prokaryoteChance = 1;
-    chemoSynthisizingProtien.mpCost = 40;
+    chemoSynthisizingProtien.mpCost = 15;
     chemoSynthisizingProtien.initialComposition = {
         {"phosphates", 1},
         {"ammonia", 1}
@@ -611,8 +608,7 @@ void setupOrganelles(){
     };
     chemoSynthisizingProtien.processes = {
       TweakedProcess("chemoSynthesis", 1),
-      TweakedProcess("glycolosis", 1),
-      TweakedProcess("respiration", 1)
+      TweakedProcess("glycolosis", 1)
     };
     chemoSynthisizingProtien.hexes = {
         Int2(0, 0),
@@ -654,7 +650,7 @@ void setupOrganelles(){
     nitrogenFixationProtien.mesh = "nitrogenplastid.mesh";
     nitrogenFixationProtien.chanceToCreate = 0;
     nitrogenFixationProtien.prokaryoteChance = 1;
-    nitrogenFixationProtien.mpCost = 40;
+    nitrogenFixationProtien.mpCost = 15;
     nitrogenFixationProtien.initialComposition = {
         {"phosphates", 1},
         {"ammonia",1}
@@ -665,8 +661,7 @@ void setupOrganelles(){
     };
     nitrogenFixationProtien.processes = {
       TweakedProcess("nitrogenFixing", 1),
-      TweakedProcess("glycolosis", 1),
-      TweakedProcess("respiration", 1)
+      TweakedProcess("glycolosis", 1)
     };
     nitrogenFixationProtien.hexes = {
         Int2(0, 0),

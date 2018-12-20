@@ -194,6 +194,13 @@ video {
   font-size: 15pt;
 }
 
+.HelpScroll {
+  display: inline-block;
+  margin-left: 5%;
+  margin-right: 5%;
+  overflow-y: scroll;
+  height: 600px;
+}
 
 .MenuButton {
   width: 280px;
@@ -598,20 +605,22 @@ video {
   z-index: 2;
 }
 
-#closeHelp {
+#closeHelp,
+#closeHelpEditor {
   vertical-align: middle;
   position: relative;
   margin: 0 auto;
 }
 
-#tipMsg {
+#tipMsg,
+#tipMsgEditor {
   margin-top: 40px;
   position: absolute;
   width: 100%;
   text-align: center;
   left: 0;
   bottom: 30px;
-  color: white;
+  color: yellow;
 }
 
 #pauseButton {
@@ -658,13 +667,30 @@ video {
   line-height: 40px;
 }
 
-#winText {
-  position: absolute;
-  height: 200px;
-  width: 1000px;
+#winContainer {
+  width: 100%;
+  height: 350px;
   margin-top: 17%;
-  margin-left: calc(50% - 500px);
-  font-size: 180pt;
+  background-color: rgba(60, 60, 60, 0.2);
+  display: none;
+}
+
+#winTitle {
+  width: 800px;
+  height: 100px;
+  font-family: thrive;
+  font-size: 90pt;
+  margin-left: calc(50% - 400px);
+  margin-top: 1%;
+  display: none;
+}
+
+#winBody {
+  width: 800px;
+  height: 120px;
+  font-size: 20pt;
+  text-align: left;
+  margin-left: calc(50% - 400px);
   display: none;
 }
 
@@ -772,8 +798,9 @@ video {
 }
 
 #generation,
-#size,
-#speed {
+#speed,
+#size {
+  background-color: rgba(0, 139, 139, 0.3);
   position: absolute;
   height: 26px;
   margin-top: 7px;
@@ -785,19 +812,19 @@ video {
 #generationLabel,
 #sizeLabel,
 #speedLabel {
-  margin-left: 10px;
+  margin-left: 2px;
 }
 
 #generation {
-  left: 420px;
+  left: 390px;
 }
 
 #size {
-  left: 600px;
+  left: 620px;
 }
 
 #speed {
-  left: 720px;
+  left: 520px;
 }
 
 #SymmetryButton {
@@ -825,7 +852,6 @@ video {
 
 #SymmetryIcon {
   /* Needs Javascript to switch between empty background, 2xSymmetry, 4xSymmetry and 6xSymmetry */
-  background-image: url("../../Textures/gui/bevel/6xSymmetry.png");
   width: 80px;
   height: 62px;
 }
@@ -876,9 +902,12 @@ video {
   background-image: url("../../Textures/gui/bevel/SmallThreeDisabled.png");
 }
 
+
+
 #Redo.DisabledButton {
   background-image: url("../../Textures/gui/bevel/SmallFourDisabled.png");
 }
+
 
 #MPBox {
   position: absolute;
@@ -1039,6 +1068,28 @@ video {
   background-image: url("../../Textures/gui/bevel/CytoplasmIcon.png");
 }
 
+/* Tooltip text */
+.tooltiptext {
+  visibility: hidden;
+  width: 320px;
+  height: 30%;
+  right: 5%;
+  top: 10%;
+  font-size: 10pt;
+  background-color: rgba(0, 139, 139, 0.5);
+  color: #fff;
+  text-align: center-left;
+  border-radius: 25px;
+  padding: 5px 0;
+  position: fixed;
+  z-index: 1;
+}
+
+
+.OrganelleListItem:hover .tooltiptext {
+  visibility: visible;
+}
+
 #PlastidIcon {
   position: relative;
   left: calc(50% - 30px);
@@ -1048,6 +1099,7 @@ video {
   background-image: url("../../Textures/gui/bevel/NitroplastidIcon.png");
 }
 
+
 #MitochondrionIcon {
   position: relative;
   left: calc(50% - 30px);
@@ -1056,6 +1108,7 @@ video {
   background-size: contain;
   background-image: url("../../Textures/gui/bevel/MitochondrionIcon.png");
 }
+
 
 #ChloroplastIcon {
   position: relative;
@@ -1074,6 +1127,7 @@ video {
   background-size: contain;
   background-image: url("../../Textures/gui/bevel/ThermoplastIcon.png");
 }
+
 
 #VacuoleIcon {
   position: relative;
@@ -1111,6 +1165,7 @@ video {
   background-image: url("../../Textures/gui/bevel/ChemoplastIcon.png");
 }
 
+
 #FlagellumIcon {
   position: relative;
   left: calc(50% - 30px);
@@ -1118,6 +1173,24 @@ video {
   height: 60px;
   background-size: contain;
   background-image: url("../../Textures/gui/bevel/FlagellumIcon.png");
+}
+
+#MetabolosomeIcon {
+  position: relative;
+  left: calc(50% - 30px);
+  width: 60px;
+  height: 60px;
+  background-size: contain;
+  background-image: url("../../Textures/gui/bevel/MetabolosomeIcon.png");
+}
+
+#ChromatophorIcon {
+  position: relative;
+  left: calc(50% - 30px);
+  width: 60px;
+  height: 60px;
+  background-size: contain;
+  background-image: url("../../Textures/gui/bevel/ChromatophorIcon.png");
 }
 
 #PilusIcon {

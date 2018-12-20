@@ -15,11 +15,11 @@
         "name": "Glycolosis",
 
         "inputs": {
-            "glucose": 0.2
+            "glucose": 0.125
         },
 
         "outputs": {
-            "atp": 4.0
+            "atp": 5.0
         }
     },
 
@@ -59,7 +59,7 @@
         }
     },
     
-    	"nitrogenFixing": {
+    "nitrogenFixing": {
         "name": "Nitrogen Fixing",
 
         "inputs": {
@@ -68,6 +68,30 @@
 
         "outputs": {
             "ammonia": 0.1
+        }
+    },
+    
+    "protein_respiration": {
+        "name": "RespirationProtein",
+
+        "inputs": {
+            "glucose": 0.7
+        },
+
+        "outputs": {
+            "atp": 14.0
+        }
+    },
+    
+    "chromatophore_photosynthesis": {
+        "name": "Bacterial Photosynthesis",
+
+        "inputs": {
+            "glucose": 0.0
+        },
+
+        "outputs": {
+            "glucose": 0.33
         }
     }
 }

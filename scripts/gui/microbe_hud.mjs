@@ -9,6 +9,8 @@ let microbeHudSetupRan = false;
 
 let readyToEdit = false;
 
+let wonOnce = false;
+
 //! Registers all the stuff for this to work.
 //! This makes sure it does something only once
 export function runMicrobeHUDSetup(){
@@ -68,7 +70,7 @@ export function runMicrobeHUDSetup(){
 
         // Event for checking win conditions
         Leviathan.OnGeneric("CheckWin", (event, vars) => {
-            checkGeneration(vars.generation);
+            checkGeneration(vars.generation, vars.population);
         });
 
         // Event for receiving data about stuff we are hovering over
@@ -171,18 +173,6 @@ function openHelp(){
     const help = document.getElementById("helpText");
     help.style.display = "block";
 
-}
-
-function closeHelp(){
-
-    common.playButtonPressSound();
-
-    const pause = document.getElementById("pauseMenu");
-    pause.style.display = "block";
-
-    const help = document.getElementById("helpText");
-    help.style.display = "none";
-
     // Easter egg code, shows a small message saying something from the
     // List of messages when you open up the help menu
     // TODO: Can we perhaps move this to json?
@@ -220,22 +210,39 @@ function closeHelp(){
             "cytoplasm called pseudopods, eventually we want those in thrive.",
         "Heres a tip, Watch out for larger cells and large bacteria, " +
             "it's not fun to be digested,  and they will eat you.",
-        "Heres a tip, Osmoregulation costs 0.2 ATP per second per organelle your cell has, " +
-            " each empty hex of cytoplasm generates 0.4 ATP per second aswell," +
+        "Heres a tip, Osmoregulation costs 1 ATP per second per organelle your cell has, " +
+            " each empty hex of cytoplasm generates 5 ATP per second aswell," +
             "which means if you are losing ATP due to osmoregulation just add a couple" +
-            " empty hexes cytoplasm or remove some organelles"
+            " empty hexes cytoplasm or remove some organelles",
+        "Fun Fact, Thrive is meant as a simulation of an alien planet, therefore it makes" +
+            "sense that most creatures you find will be related to one " +
+        "or two other species due to evolution happening around you, see if" +
+        " you can identify them!",
+        "Fun Fact, One of the first playable game-play prototypes was made " +
+        "by our awesome programmer, untrustedlife!"
     ];
 
 
     const tipEasterEggChance = common.randomBetween(0, 5);
     const messageNum = common.randomBetween(0, message.length - 1);
 
-    if (tipEasterEggChance == 1) {
+    if (tipEasterEggChance > 1) {
         document.getElementById("tipMsg").style.display = "unset";
         document.getElementById("tipMsg").textContent = message[messageNum];
-        setTimeout(hideTipMsg, 6000);
+        setTimeout(hideTipMsg, 10000);
     }
 
+}
+
+function closeHelp(){
+
+    common.playButtonPressSound();
+
+    const pause = document.getElementById("pauseMenu");
+    pause.style.display = "block";
+
+    const help = document.getElementById("helpText");
+    help.style.display = "none";
 }
 
 function hideTipMsg() {
@@ -322,14 +329,11 @@ function onExitToMenuClicked() {
     if(common.isInEngine()){
         document.getElementById("extinctionTitle").style.display = "none";
         document.getElementById("extinctionBody").style.display = "none";
-
-        // Call a function to tell the game to swap to the editor. It
-        // Will notify us when it is done
+        document.getElementById("extinctionContainer").style.display = "none";
+        hideWinText();
         Thrive.exitToMenuClicked();
 
     } else {
-
-        // Swap GUI for previewing
         main_menu.doExitToMenu();
     }
 }
@@ -401,18 +405,21 @@ function checkExtinction(population){
     }
 }
 
-function checkGeneration (generation){
-    // This is set to == because I don't want the wintext to show up after the 15th generation
-    // This can be changed by just about anyone if needed very easily
-    if(generation == 15){
-        document.getElementById("winText").style.display = "unset";
-        setTimeout(hideWinText, 5000);
+function checkGeneration (generation, population){
+    if(generation >= 15 && population >= 200 && wonOnce == false){
+        document.getElementById("winTitle").style.display = "inline-block";
+        document.getElementById("winBody").style.display = "inline-block";
+        document.getElementById("winContainer").style.display = "inline-block";
+        wonOnce = true;
+        setTimeout(hideWinText, 7000);
     }
 }
 
 //! Supplementry function for checkGeneration that hides the wintext
 function hideWinText(){
-    document.getElementById("winText").style.display = "none";
+    document.getElementById("winTitle").style.display = "none";
+    document.getElementById("winBody").style.display = "none";
+    document.getElementById("winContainer").style.display = "none";
 }
 
 //! Updates the GUI bars

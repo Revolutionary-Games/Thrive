@@ -39,7 +39,6 @@ endif()
 
 option(USE_BREAKPAD "For enabling breakpad crash handling, set off for local debugging" OFF)
 option(COPY_BOOST_TO_PACKAGE "If on copies all boost libraries to package" ON)
-option(STRIP_SYMBOLS_ON_INSTALL "For stripping debug symbols on install" ON)
 
 
 ###########################
@@ -70,8 +69,6 @@ include(LeviathanFindLibraries)
 include(LeviathanUtility)
 
 # Leviathan Required settings
-set(CMAKE_INSTALL_PREFIX "./Install" CACHE FILEPATH "Install path")
-
 DefinePreprocessorMacro(USE_BREAKPAD LEVIATHAN_USING_BREAKPAD)
 
 include(LeviathanDefaultFileCopy)
@@ -88,8 +85,10 @@ endif()
 if(WIN32)
   file(COPY "${LEVIATHAN_SRC}/build/bin/Engine.dll" DESTINATION "${CMAKE_BINARY_DIR}/bin")
   file(COPY "${LEVIATHAN_SRC}/build/bin/Engine.pdb" DESTINATION "${CMAKE_BINARY_DIR}/bin")
+  install(FILES "${LEVIATHAN_SRC}/build/bin/Engine.dll" DESTINATION "bin")
 else()
   file(COPY "${LEVIATHAN_SRC}/build/bin/libEngine.so" DESTINATION "${CMAKE_BINARY_DIR}/bin")
+  install(FILES "${LEVIATHAN_SRC}/build/bin/libEngine.so" DESTINATION "bin")
 endif()
 
 # Link own bin directory
@@ -103,8 +102,9 @@ set(PROGRAM_VERSION_STABLE 0)
 set(PROGRAM_VERSION_MAJOR 4)
 set(PROGRAM_VERSION_MINOR 0)
 set(PROGRAM_VERSION_PATCH 0)
+set(PROGRAM_VERSION_SUFFIX "")
 
-set(PROGRAM_VERSION_STR ${PROGRAM_VERSION_STABLE}.${PROGRAM_VERSION_MAJOR}.${PROGRAM_VERSION_MINOR}.${PROGRAM_VERSION_PATCH})
+set(PROGRAM_VERSION_STR ${PROGRAM_VERSION_STABLE}.${PROGRAM_VERSION_MAJOR}.${PROGRAM_VERSION_MINOR}.${PROGRAM_VERSION_PATCH}${PROGRAM_VERSION_SUFFIX})
 set(PROGRAM_VERSION ${PROGRAM_VERSION_STABLE}.${PROGRAM_VERSION_MAJOR}${PROGRAM_VERSION_MINOR}${PROGRAM_VERSION_PATCH})
 
 set(PROGRAM_VERSIONS "\"${PROGRAM_VERSION_STR}\"")
@@ -143,42 +143,39 @@ set_property(DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}" PROPERTY
 # Copy script files to the bin folder
 file(GLOB THRIVE_SCRIPTS "scripts/*")
 file(COPY ${THRIVE_SCRIPTS} DESTINATION "${PROJECT_BINARY_DIR}/bin/Data/Scripts")
+InstallContentsOfFolder("scripts" "bin/Data/Scripts")
 
-# Copy javascript libraries
-file(GLOB THRIVE_VENDOR_SCRIPTS "assets/jsvendor/*")
-file(COPY ${THRIVE_VENDOR_SCRIPTS} DESTINATION "${PROJECT_BINARY_DIR}/bin/Data/jsvendor")
+# Right now we only use what the engine needs
+# # Copy javascript libraries
+# file(GLOB THRIVE_VENDOR_SCRIPTS "assets/jsvendor/*")
+# file(COPY ${THRIVE_VENDOR_SCRIPTS} DESTINATION "${PROJECT_BINARY_DIR}/bin/Data/jsvendor")
 
 # Copy other data assets
-file(GLOB THRIVE_LOOKNFEEL "assets/gui/looknfeel/*")
-file(COPY ${THRIVE_LOOKNFEEL} DESTINATION
-  "${PROJECT_BINARY_DIR}/bin/Data/Scripts/gui/looknfeel")
-
-file(GLOB THRIVE_ANIMATIONS "assets/gui/animations/*")
-file(COPY ${THRIVE_ANIMATIONS} DESTINATION
-  "${PROJECT_BINARY_DIR}/bin/Data/Scripts/gui/animations")
-
 file(GLOB THRIVE_TEXTURES "assets/textures/*")
 file(COPY ${THRIVE_TEXTURES} DESTINATION "${PROJECT_BINARY_DIR}/bin/Data/Textures/")
+InstallContentsOfFolder("assets/textures" "bin/Data/Textures")
 
-file(GLOB THRIVE_GUI_TEXTURES "assets/gui/imagesets/*")
-file(COPY ${THRIVE_GUI_TEXTURES} DESTINATION "${PROJECT_BINARY_DIR}/bin/Data/Textures/gui/")
 
 file(GLOB THRIVE_FONTS "assets/fonts/*")
 file(COPY ${THRIVE_FONTS} DESTINATION "${PROJECT_BINARY_DIR}/bin/Data/Fonts/")
+InstallContentsOfFolder("assets/fonts" "bin/Data/Fonts")
 
 
 file(GLOB THRIVE_MATERIALS "assets/materials/*")
 file(COPY ${THRIVE_MATERIALS} DESTINATION "${PROJECT_BINARY_DIR}/bin/Data/Materials/")
+InstallContentsOfFolder("assets/materials" "bin/Data/Materials")
 
 file(GLOB THRIVE_MODELS "assets/models/*")
 file(COPY ${THRIVE_MODELS} DESTINATION "${PROJECT_BINARY_DIR}/bin/Data/Models/")
+InstallContentsOfFolder("assets/models" "bin/Data/Models")
 
 file(GLOB THRIVE_SOUNDS "assets/sounds/*")
 file(COPY ${THRIVE_SOUNDS} DESTINATION "${PROJECT_BINARY_DIR}/bin/Data/Sound/")
+InstallContentsOfFolder("assets/sounds" "bin/Data/Sound")
 
 file(GLOB THRIVE_VIDEOS "assets/videos/*")
 file(COPY ${THRIVE_VIDEOS} DESTINATION "${PROJECT_BINARY_DIR}/bin/Data/Videos/")
-
+InstallContentsOfFolder("assets/videos" "bin/Data/Videos")
 
 file(MAKE_DIRECTORY "${PROJECT_BINARY_DIR}/bin/Data/Screenshots")
 file(MAKE_DIRECTORY "${PROJECT_BINARY_DIR}/bin/Data/Cache")
@@ -239,43 +236,4 @@ if(DOXYGEN_FOUND)
         COMMENT "Generating API documentation with Doxygen" VERBATIM
         SOURCES "${DOXYGEN_CONFIG_FILE}"
     )
-endif()
-
-###############################################################################
-# Linux package
-###############################################################################
-
-if(UNIX)
-  # TODO: fix this, also add windows support
-
-  set(LINUX_LIBRARIES "${cAudio_LIBRARIES}" "${BULLET_LIBRARIES}"
-    "${SWRESAMPLE_LIBRARIES}" "${OgreFFMPEG_LIBRARIES}" "${FFMPEG_LIBRARIES}"
-    "${Boost_LIBRARIES}" "${OGRE_LIBRARIES}" "${OIS_LIBRARIES}" "${CMAKE_THREAD_LIBS_INIT}"
-    "${BULLET_LIBRARIES}" "${CEGUI_LIBRARY}" "${TINYXML_LIBRARIES}" "${OpenAL_LIBRARIES}")
-
-  # Linux setup
-  configure_file("${CMAKE_SOURCE_DIR}/cpack/CMakeLibraryList.xml.in"
-    "${CMAKE_CURRENT_BINARY_DIR}/CMakeLibraryList.xml" @ONLY
-    )
-
-  if(LUA_CHECKS)
-
-    # creating debug releases is bad
-    add_custom_target(linuxrelease
-      # Please don't touch this really complex command output format
-      COMMAND "ruby" "-e" \"puts \\\"\\033[31m\\\"\; puts 'ERROR: LUA_CHECKS is on. release build is disabled. Please run \\'cmake .. -DLUA_CHECKS=OFF\\' and try again'\; puts \\\"\\033[0m\\\"\; exit(3) \"
-      )
-    
-  else()
-    
-    add_custom_target(linuxrelease
-      COMMAND "${CMAKE_SOURCE_DIR}/cpack/PackageProject.rb" "${CMAKE_CURRENT_BINARY_DIR}"
-      WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/cpack"
-      DEPENDS ThriveLib doc
-      )
-    # The name of the Thrive target somehow breaks in the above command
-    add_dependencies(linuxrelease Thrive)
-
-  endif()
-  
 endif()
