@@ -126,24 +126,7 @@ bool
 }
 // ------------------------------------ //
 // Physics materials
-//! \note This isn't actually called
-void
-    cellHitAgent(Leviathan::PhysicalWorld& physicalWorld,
-        Leviathan::PhysicsBody& first,
-        Leviathan::PhysicsBody& second)
-{
-    // GameWorld* gameWorld = physicalWorld.GetGameWorld();
 
-    // ScriptRunningSetup setup("cellHitAgent");
-
-    // auto result =
-    // ThriveGame::Get()->getMicrobeScripts()->ExecuteOnModule<void>(
-    //     setup, false, gameWorld, first.GetOwningEntity(),
-    //     second.GetOwningEntity());
-
-    // if(result.Result != SCRIPT_RUN_RESULT::Success)
-    //     LOG_ERROR("Failed to run script side cellHitAgent");
-}
 
 void
     cellHitFloatingOrganelle(Leviathan::PhysicalWorld& physicalWorld,
@@ -211,6 +194,27 @@ bool
     return returned.Value;
 }
 
+void
+    agentCollided(Leviathan::PhysicalWorld& physicalWorld,
+        Leviathan::PhysicsBody& first,
+        Leviathan::PhysicsBody& second)
+{
+    // This will call a script that pulls cells in towards engulfers
+    GameWorld* gameWorld = physicalWorld.GetGameWorld();
+
+    ScriptRunningSetup setup("cellHitAgent");
+
+    auto returned =
+        ThriveCommon::get()->getMicrobeScripts()->ExecuteOnModule<void>(setup,
+            false, gameWorld, first.GetOwningEntity(),
+            second.GetOwningEntity());
+
+    if(returned.Result != SCRIPT_RUN_RESULT::Success) {
+        LOG_ERROR("Failed to run script side beingEngulfed");
+    }
+}
+
+
 
 void
     cellOnCellActualContact(Leviathan::PhysicalWorld& physicalWorld,
@@ -250,7 +254,7 @@ std::unique_ptr<Leviathan::PhysicsMaterialManager>
         .SetCallbacks(nullptr, cellHitFloatingOrganelle);
     // Agents
     cellMaterial->FormPairWith(*agentMaterial)
-        .SetCallbacks(agentCallback, nullptr);
+        .SetCallbacks(agentCallback, agentCollided);
     // Engulfing
     cellMaterial->FormPairWith(*cellMaterial)
         .SetCallbacks(cellOnCellAABBHitCallback, cellOnCellActualContact);

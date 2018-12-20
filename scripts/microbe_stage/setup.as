@@ -325,10 +325,10 @@ void cellHitAgent(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
     if (propertiesComponent !is null && microbeComponent !is null){
         if (propertiesComponent.getSpeciesName() != microbeComponent.speciesName && !microbeComponent.dead){
             MicrobeOperations::damage(asCellWorld, cellEntity, double(OXY_TOXY_DAMAGE), "toxin");
+            world.QueueDestroyEntity(floatingEntity);
             }
         }
 
-    world.QueueDestroyEntity(floatingEntity);
 }
 
 void cellOnCellActualContact(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
@@ -477,9 +477,7 @@ bool hitAgent(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
     if ((firstMicrobeComponent !is null || secondMicrobeComponent !is null) &&
         !(firstMicrobeComponent !is null && secondMicrobeComponent !is null))
     {
-        //LOG_INFO("called toxin callback");
-        cellHitAgent(world,firstEntity,secondEntity);
-        shouldCollide = false;
+        shouldCollide = true;
     }
 
     return shouldCollide;
