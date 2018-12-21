@@ -1,4 +1,4 @@
-#include "MicrobeEditorKeyHandler.h"
+#include "microbe_editor_key_handler.h"
 
 #include "generated/microbe_editor_world.h"
 #include "microbe_stage/simulation_parameters.h"
