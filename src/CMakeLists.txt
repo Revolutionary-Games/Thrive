@@ -63,8 +63,8 @@ set(GROUP_MICROBE_STAGE
   "microbe_stage/species_name_controller.h"
   "microbe_stage/player_microbe_control.h"
   "microbe_stage/player_microbe_control.cpp"
-  "microbe_stage/MicrobeEditorKeyHandler.h"
-  "microbe_stage/MicrobeEditorKeyHandler.cpp"
+  "microbe_stage/microbe_editor_key_handler.h"
+  "microbe_stage/microbe_editor_key_handler.cpp"
   "microbe_stage/player_hover_info.h"
   "microbe_stage/player_hover_info.cpp"
   )
