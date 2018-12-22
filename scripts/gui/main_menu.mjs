@@ -116,6 +116,9 @@ export function runMenuSetup(){
 
         // (this would theoretically work in a browser but would be a bit annoying to work on)
         // common.playVideo("../../Videos/intro.mkv", onIntroEnded);
+
+        // Hide the loading logo
+        common.hideLoadingLogo();
     }
 
     // This is ran immediately because this needs to register
@@ -176,22 +179,13 @@ function onEscapePressed() {
     Leviathan.CancelCutscene();
 }
 
-function doLoadingLogo(hide) {
-    if (hide){
-        document.getElementById("loadingLogo").style.display = "none";
-    }
-    else {
-        document.getElementById("loadingLogo").style.display = "flex";
-    }
-}
-
 function onIntroEnded(error) {
 
     if(error)
         console.error("failed to play intro video: " + error);
 
     if(common.isInEngine()){
-        doLoadingLogo(true);
+        common.hideLoadingLogo();
         startMenuMusic();
     }
 }
@@ -205,10 +199,11 @@ function newGame(){
     if(jams){
         jams.Pause();
     }
+
     if(common.isInEngine()){
         Leviathan.PlayCutscene("Data/Videos/MicrobeIntro.mkv", onMicrobeIntroEnded,
             onMicrobeIntroEnded);
-            doLoadingLogo(false);
+        common.showLoadingLogo();
     } else {
         onMicrobeIntroEnded();
     }
@@ -268,6 +263,8 @@ function onMicrobeIntroEnded(error){
 
     if(common.isInEngine()){
 
+        common.hideLoadingLogo();
+
         // Make sure no video is playing in case we did an immediate start
         Leviathan.CancelCutscene();
         Thrive.start();
@@ -291,7 +288,7 @@ function switchToMicrobeHUD(){
     // Hide main menu
     // If this is ever restored this needs to be set to "flex"
     document.getElementById("topLevelMenuContainer").style.display = "none";
-    doLoadingLogo(true);
+
     // And show microbe gui
     document.getElementById("topLevelMicrobeStage").style.display = "block";
     microbe_hud.runMicrobeHUDSetup();
