@@ -46,11 +46,11 @@ Organelle atributes:
 #include "configs.as"
 
 // Need to include all the used organelle types for the factory functions
-#include "nucleus_organelle.as"
-#include "storage_organelle.as"
-#include "processor_organelle.as"
-#include "agent_vacuole.as"
-#include "movement_organelle.as"
+#include "organelles/nucleus_organelle.as"
+#include "organelles/storage_organelle.as"
+#include "organelles/processor_organelle.as"
+#include "organelles/agent_vacuole.as"
+#include "organelles/movement_organelle.as"
 
 //! Factory typedef for OrganelleComponent
 funcdef OrganelleComponent@ OrganelleComponentFactoryFunc();
