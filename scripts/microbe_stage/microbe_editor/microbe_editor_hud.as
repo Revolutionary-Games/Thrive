@@ -99,9 +99,10 @@ class MicrobeEditorHudSystem : ScriptSystem{
         AudioSource@ audio = GetEngine().GetSoundDevice().Play2DSound("Data/Sound/" +
             MICROBE_EDITOR_AMBIENT_TRACKS[GetEngine().GetRandom().GetNumber(0, MICROBE_EDITOR_AMBIENT_TRACKS.length() - 1)] +
             ".ogg", false, true);
+        if (audio !is null){
             audio.Get().setVolume(0.2);
-        if (audio is null)
-        {
+        }
+        else {
             LOG_ERROR("Failed to create ambience sound source");
         }
 
@@ -116,7 +117,10 @@ class MicrobeEditorHudSystem : ScriptSystem{
         if (@ambienceSounds is null || !ambienceSounds.Get().isPlaying())
         {
             @ambienceSounds = _playRandomEditorAmbience();
-            ambienceSounds.Get().play();
+            if (@ambienceSounds !is null)
+                {
+                ambienceSounds.Get().play();
+                }
         }
     }
 
