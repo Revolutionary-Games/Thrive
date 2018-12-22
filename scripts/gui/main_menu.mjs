@@ -186,6 +186,7 @@ function onIntroEnded(error) {
 
     if(common.isInEngine()){
         common.hideLoadingLogo();
+        randomizeBackground();
         startMenuMusic();
     }
 }
@@ -193,6 +194,21 @@ function onIntroEnded(error) {
 function quitGame(){
     common.requireEngine();
     Leviathan.Quit();
+}
+
+function randomizeBackground(){
+    const num = common.randomBetween(0, 9);
+
+    if (num <= 3){
+        document.getElementById("BackgroundMenuImage").style.backgroundImage = "url(../../" +
+        "Textures/gui/BG_Menu02.png)";
+    } else if (num <= 6){
+        document.getElementById("BackgroundMenuImage").style.backgroundImage = "url(../../" +
+        "Textures/gui/BG_Menu01.png)";
+    } else if (num <= 9){
+        document.getElementById("BackgroundMenuImage").style.backgroundImage = "url(../../" +
+        "Textures/gui/BG_Menu03.png)";
+    }
 }
 
 function newGame(){
