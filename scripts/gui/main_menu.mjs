@@ -176,13 +176,22 @@ function onEscapePressed() {
     Leviathan.CancelCutscene();
 }
 
+function doLoadingLogo(hide) {
+    if (hide){
+        document.getElementById("loadingLogo").style.display = "none";
+    }
+    else {
+        document.getElementById("loadingLogo").style.display = "flex";
+    }
+}
+
 function onIntroEnded(error) {
 
     if(error)
         console.error("failed to play intro video: " + error);
 
     if(common.isInEngine()){
-
+        doLoadingLogo(true);
         startMenuMusic();
     }
 }
@@ -199,6 +208,7 @@ function newGame(){
     if(common.isInEngine()){
         Leviathan.PlayCutscene("Data/Videos/MicrobeIntro.mkv", onMicrobeIntroEnded,
             onMicrobeIntroEnded);
+            doLoadingLogo(false);
     } else {
         onMicrobeIntroEnded();
     }
@@ -260,7 +270,6 @@ function onMicrobeIntroEnded(error){
 
         // Make sure no video is playing in case we did an immediate start
         Leviathan.CancelCutscene();
-
         Thrive.start();
 
     } else {
@@ -282,7 +291,7 @@ function switchToMicrobeHUD(){
     // Hide main menu
     // If this is ever restored this needs to be set to "flex"
     document.getElementById("topLevelMenuContainer").style.display = "none";
-
+    doLoadingLogo(true);
     // And show microbe gui
     document.getElementById("topLevelMicrobeStage").style.display = "block";
     microbe_hud.runMicrobeHUDSetup();
