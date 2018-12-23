@@ -100,10 +100,15 @@ class MicrobeEditorHudSystem : ScriptSystem{
             MICROBE_EDITOR_AMBIENT_TRACKS[GetEngine().GetRandom().GetNumber(0, MICROBE_EDITOR_AMBIENT_TRACKS.length() - 1)] +
             ".ogg", false, true);
         if (audio !is null){
+            if(audio.HasInternalSource()){
             audio.Get().setVolume(0.2);
+            }
+            else {
+            LOG_ERROR("Failed to create editor music internal source");
+            }
         }
         else {
-            LOG_ERROR("Failed to create ambience sound source");
+            LOG_ERROR("Failed to create editor music sound source");
         }
 
         return audio;
