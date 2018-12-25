@@ -840,8 +840,9 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
     }
 
     void hideEntity() {
-    auto renderNode = world.GetComponent_RenderNode(organelleEntity);
-    if(renderNode.Node !is null) renderNode.Node.removeFromParent();
+		auto renderNode = world.GetComponent_RenderNode(organelleEntity);
+		if(renderNode !is null && renderNode.Node !is null) 
+			renderNode.Node.removeFromParent();
     }
     // ------------------------------------ //
 
