@@ -93,7 +93,7 @@ const auto REGENERATION_RATE = 1.0f;
 
 // Movement stuff
 const auto FLAGELLA_ENERGY_COST = 7.0f;
-const auto FLAGELLA_BASE_FORCE = 0.5f;
+const auto FLAGELLA_BASE_FORCE = 0.9f;
 const auto CELL_BASE_THRUST = 2.0f;
 // is set by this and modified by applyCellMovement like the player later
 const auto AI_BASE_MOVEMENT = 1.0f;
@@ -347,9 +347,7 @@ const dictionary STARTER_MICROBES = {
                 {"oxytoxy", InitialCompound(0)}
             },
             {
-                OrganelleTemplatePlaced("nucleus", 0, 0, 180),
-                OrganelleTemplatePlaced("cytoplasm", 1, 1, 0),
-                OrganelleTemplatePlaced("cytoplasm", -1, 2, 0)
+                OrganelleTemplatePlaced("cytoplasm", 0, 0, 0)
             },
             Float4(1, 1, 1, 1),
             false,
