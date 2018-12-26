@@ -399,6 +399,15 @@ bool beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity
         //return false;
         //LOG_INFO(""+firstMicrobeComponent.engulfMode);
        // LOG_INFO(""+secondMicrobeComponent.engulfMode);
+        
+        // if player touch another cell go automatically  in engulfMode
+        //TODO: find a way to disable it when engulfing is end now you have to press G
+        auto playerEntity = GetThriveGame().playerData().activeCreature();
+		if(firstEntity == playerEntity)
+		{
+			firstMicrobeComponent.engulfMode = true;
+		}
+        
         if (firstMicrobeComponent.engulfMode)
         {
             if(firstMicrobeComponentOrganelles >
