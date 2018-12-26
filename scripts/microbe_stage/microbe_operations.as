@@ -1156,10 +1156,13 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
             }
         }
 
-        // The organelles are hidden here as otherwise the extra
+        // The organelles are hidden if they are not the player microbe here as otherwise the extra
         // entities like the ER stay visible for a while until the
         // cell entity is destroyed
-        organelle.hideEntity();
+
+        if (!microbeComponent.isPlayerMicrobe){
+            organelle.hideEntity();
+        }
     }
 
     // They were added in order already so looping through this other thing is fine
