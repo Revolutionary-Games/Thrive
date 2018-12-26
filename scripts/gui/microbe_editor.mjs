@@ -50,7 +50,7 @@ const organelleSelectionElements = [
     },
     {
         element: document.getElementById("addChemoSynthisizingProtiens"),
-        organelle: "chemoSynthisizingProtien"
+        organelle: "chemoSynthisizingProtiens"
     },
     {
         element: document.getElementById("addFlagellum"),
