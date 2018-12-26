@@ -50,7 +50,7 @@ class MicrobeEditor{
         eventListener.RegisterForEvent("UndoClicked");
 
         placementFunctions = {
-            {"nucleus", PlacementFunctionType(this.createNewMicrobe)},
+            {"nucleus", PlacementFunctionType(this.addOrganelle)},
             {"flagellum", PlacementFunctionType(this.addOrganelle)},
             {"cytoplasm", PlacementFunctionType(this.addOrganelle)},
             {"mitochondrion", PlacementFunctionType(this.addOrganelle)},
@@ -227,7 +227,11 @@ class MicrobeEditor{
 
     private void _addOrganelle(PlacedOrganelle@ organelle)
     {
-        EditorAction@ action = EditorAction(organelle.organelle.mpCost,
+
+		if((organelle.organelle.name == "nucleus" && !nucleusIsPresent) || organelle.organelle.name != "nucleus" )
+		{
+		  nucleusIsPresent = true;
+		  EditorAction@ action = EditorAction(organelle.organelle.mpCost,
             // redo
             function(EditorAction@ action, MicrobeEditor@ editor){
 
@@ -278,6 +282,8 @@ class MicrobeEditor{
         @action.data["organelle"] = organelle;
 
         enqueueAction(action);
+		}
+      
     }
 
     void addOrganelle(const string &in organelleType)
@@ -1034,7 +1040,7 @@ class MicrobeEditor{
     private int symmetry = 0;
 
     private bool microbeHasBeenInEditor = false;
-
+	private bool nucleusIsPresent = false;
     private EventListener@ eventListener;
 };
 
