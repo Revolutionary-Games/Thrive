@@ -74,6 +74,13 @@ abstract class OrganelleComponent{
 
     }
 
+    // Should hide any created entities of this component. Used to hide things on death
+    void hideEntity(PlacedOrganelle@ organelle)
+    {
+
+    }
+
+
     // // Function for saving organelle information.
     // // If an organelle depends on an atribute, then it should be saved
     // // the data gets retrieved later by OrganelleComponent:load().

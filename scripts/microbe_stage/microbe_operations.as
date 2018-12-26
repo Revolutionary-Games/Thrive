@@ -1155,11 +1155,6 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
                     (amount * COMPOUND_MAKEUP_RELEASE_PERCENTAGE);
             }
         }
-
-        // The organelles are hidden here as otherwise the extra
-        // entities like the ER stay visible for a while until the
-        // cell entity is destroyed
-        organelle.hideEntity();
     }
 
     // They were added in order already so looping through this other thing is fine
@@ -1215,6 +1210,14 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
         DestroyPhysicsBodyHelper obj(microbeEntity, world);
 
         GetEngine().Invoke(InvokeCallbackFunc(obj.execute));
+
+        // Hide organelles
+        for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
+            // The organelles are hidden here as otherwise the extra
+            // entities like the ER stay visible for a while until the
+            // cell entity is destroyed
+            microbeComponent.organelles[i].hideEntity();
+        }
     }
 
     if(microbeComponent.wasBeingEngulfed){
