@@ -61,6 +61,7 @@ class MicrobeEditor{
             {"chemoplast", PlacementFunctionType(this.addOrganelle)},
             {"chromatophors", PlacementFunctionType(this.addOrganelle)},
             {"metabolosome", PlacementFunctionType(this.addOrganelle)},
+            {"chemoSynthisizingProtiens", PlacementFunctionType(this.addOrganelle)},
             {"remove", PlacementFunctionType(this.removeOrganelle)}
         };
     }
