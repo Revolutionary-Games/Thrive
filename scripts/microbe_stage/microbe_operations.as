@@ -1155,7 +1155,7 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
                     (amount * COMPOUND_MAKEUP_RELEASE_PERCENTAGE);
             }
         }
-    organelle.hideEntity();
+        organelle.hideEntity();
     }
     // They were added in order already so looping through this other thing is fine
     for(uint64 compoundID = 0; compoundID <
