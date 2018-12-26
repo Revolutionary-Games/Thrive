@@ -420,13 +420,15 @@ class MicrobeEditor{
     {
         // organelleCount = 0;
         auto previousMP = mutationPoints;
-        mutationPoints = BASE_MUTATION_POINTS;
-        EditorAction@ action = EditorAction(previousMP,
+        // Copy current microbe to a new array
+        array<PlacedOrganelle@> oldEditedMicrobe = editedMicrobe;
+
+        EditorAction@ action = EditorAction(0,
             // redo
             function(EditorAction@ action, MicrobeEditor@ editor){
-                // Copy current microbe to a new array
-                editor.oldEditedMicrobe = editor.editedMicrobe;
-                // Delete the organelles (all except the nucleus)
+                // Delete the organelles (all except the nucleus) and set mutation points
+                // (just undoing and redoing the cost like other actions doesn't work in this case due to its nature)
+                editor.setMutationPoints(BASE_MUTATION_POINTS);
                 for(uint i = editor.editedMicrobe.length()-1; i > 0; --i){
                     const PlacedOrganelle@ organelle = editor.editedMicrobe[i];
                     auto hexes = organelle.organelle.getRotatedHexes(organelle.rotation);
@@ -446,11 +448,16 @@ class MicrobeEditor{
             },
             function(EditorAction@ action, MicrobeEditor@ editor){
                 editor.editedMicrobe.resize(0);
-                for(uint i = 0; i < editor.oldEditedMicrobe.length(); ++i){
-                    editor.editedMicrobe.insertLast(cast<PlacedOrganelle>(editor.oldEditedMicrobe[i]));
+                editor.setMutationPoints(int(action.data["previousMP"]));
+                // Load old microbe
+                array<PlacedOrganelle@> oldEditedMicrobe =
+                    cast<array<PlacedOrganelle@>>(action.data["oldEditedMicrobe"]);
+                for(uint i = 0; i < oldEditedMicrobe.length(); ++i){
+                    editor.editedMicrobe.insertLast(cast<PlacedOrganelle>(oldEditedMicrobe[i]));
                 }
             });
-
+            @action.data["oldEditedMicrobe"] = oldEditedMicrobe;
+            action.data["previousMP"] = previousMP;
             enqueueAction(action);
 
     }
@@ -837,6 +844,11 @@ class MicrobeEditor{
         }
     }
 
+    void setMutationPoints(int amount)
+    {
+        mutationPoints = amount;
+    }
+
     int getMutationPoints() const
     {
         return mutationPoints;
@@ -973,7 +985,6 @@ class MicrobeEditor{
     // TODO: rename to editedMicrobeOrganelles
     // This is not private because anonymous callbacks want to access this
     array<PlacedOrganelle@> editedMicrobe;
-    array<PlacedOrganelle@> oldEditedMicrobe;
     private ObjectID gridSceneNode;
     private bool gridVisible;
     private MicrobeEditorHudSystem@ hudSystem;
