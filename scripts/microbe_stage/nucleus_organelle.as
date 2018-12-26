@@ -101,6 +101,17 @@ class NucleusOrganelle : OrganelleComponent{
     // this.ER = Entity(g_luaEngine.currentGameState.wrapper)
     // }
 
+    void hideEntity(PlacedOrganelle@ organelle) override
+    {
+        auto renderNode = organelle.world.GetComponent_RenderNode(golgi);
+        if(renderNode !is null && renderNode.Node !is null)
+            renderNode.Node.removeFromParent();
+
+        @renderNode = organelle.world.GetComponent_RenderNode(ER);
+        if(renderNode !is null && renderNode.Node !is null)
+            renderNode.Node.removeFromParent();
+    }
+
     private ObjectID golgi = NULL_OBJECT;
     private ObjectID ER = NULL_OBJECT;
     //! Not sure if this is used for anything

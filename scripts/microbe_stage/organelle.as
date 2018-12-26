@@ -839,10 +839,16 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         //sceneNode.entity.setColour(colour)
     }
 
-    void hideEntity(){
+    void hideEntity()
+    {
         auto renderNode = world.GetComponent_RenderNode(organelleEntity);
         if(renderNode !is null && renderNode.Node !is null)
             renderNode.Node.removeFromParent();
+
+        // Also hide components as they also can have entities
+        for(uint i = 0; i < components.length(); ++i){
+            components[i].hideEntity(this);
+        }
     }
     // ------------------------------------ //
 
