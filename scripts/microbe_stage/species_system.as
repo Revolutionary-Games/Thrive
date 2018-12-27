@@ -1348,9 +1348,6 @@ void initProcessorComponent(CellStageWorld@ world,
 
             if(!capacities.exists(process.process.internalName)){
                 capacities[process.process.internalName] = double(0.0f);
-            auto processId = SimulationParameters::bioProcessRegistry().getTypeId(
-            process.process.internalName);
-                processorComponent.setCapacity(processId, 0.0f);
             }
 
             // Here the second capacities[process.name] was initially capacities[process]
@@ -1362,12 +1359,11 @@ void initProcessorComponent(CellStageWorld@ world,
     }
 
     uint64 processCount = SimulationParameters::bioProcessRegistry().getSize();
-    for(uint bioProcessId = 0; bioProcessId < processCount; ++bioProcessId){
+    for(BioProcessId bioProcessId = 0; bioProcessId < processCount; ++bioProcessId){
         auto processName = SimulationParameters::bioProcessRegistry().getInternalName(
             bioProcessId);
 
         if(capacities.exists(processName)){
-
             double capacity;
             if(!capacities.get(processName, capacity)){
                 LOG_ERROR("capacities has invalid value");
