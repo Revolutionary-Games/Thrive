@@ -229,9 +229,9 @@ class MicrobeEditor{
     {
 		if((organelle.organelle.name == "nucleus" && !nucleusIsPresent) || organelle.organelle.name != "nucleus")
 		{
-			if(organelle.organelle.name == "nucleus")
+		    if(organelle.organelle.name == "nucleus")
 				nucleusIsPresent = true;
-		 EditorAction@ action = EditorAction(organelle.organelle.mpCost,
+		     EditorAction@ action = EditorAction(organelle.organelle.mpCost,
             // redo
             function(EditorAction@ action, MicrobeEditor@ editor){
 
@@ -279,9 +279,9 @@ class MicrobeEditor{
                 }
             });
 
-        @action.data["organelle"] = organelle;
+            @action.data["organelle"] = organelle;
 
-        enqueueAction(action);
+            enqueueAction(action);
 		}
        
     }
