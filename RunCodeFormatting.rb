@@ -20,6 +20,10 @@ end
 if !options[:onlyJS]
   file_paths = []
   Find.find('.') do |path|
+  
+  if path =~ /\/ThirdParty\//i
+    next
+  end
 
     begin
       if path !~ /\.h(pp)?$/ && path !~ /\.cpp$/
@@ -70,7 +74,7 @@ if !options[:onlyJS]
       raise e
     end
 
-    if path !~ /\/src\//i && path !~ /\/test\//i  && path !~ /thirdparty/i ||
+    if path !~ /\/src\//i && path !~ /\/test\//i ||
        # Generated files
        path =~ /\/generated\//i || path =~ /\/src\/main.cpp/i ||
        path =~ /\/src\/thrive_version.h/i || path =~ /\/src\/server\/main.cpp/i ||
