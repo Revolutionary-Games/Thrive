@@ -109,7 +109,6 @@ class MicrobeEditor{
 
         assert(playerSpecies !is null, "didn't find edited species");
         LOG_INFO("Edited species is " + playerSpecies.name);
-
         // We now just fetch the organelles in the player's species
         mutationPoints = BASE_MUTATION_POINTS;
         actionHistory.resize(0);
@@ -119,7 +118,6 @@ class MicrobeEditor{
         // Get the species organelles to be edited
         auto@ templateOrganelles = cast<array<SpeciesStoredOrganelleType@>>(
             playerSpecies.organelles);
-
         editedMicrobe.resize(0);
         for(uint i = 0; i < templateOrganelles.length(); ++i){
             editedMicrobe.insertLast(cast<PlacedOrganelle>(templateOrganelles[i]));
@@ -185,7 +183,6 @@ class MicrobeEditor{
 
         // Show the current microbe
         for(uint i = 0; i < editedMicrobe.length(); ++i){
-
             const PlacedOrganelle@ organelle = editedMicrobe[i];
             auto hexes = organelle.organelle.getRotatedHexes(organelle.rotation);
 
@@ -227,14 +224,11 @@ class MicrobeEditor{
 
     private void _addOrganelle(PlacedOrganelle@ organelle)
     {
-        if((organelle.organelle.name == "nucleus" && !nucleusIsPresent) || organelle.organelle.name != "nucleus")
-        {
-            if(organelle.organelle.name == "nucleus")
-            {
-                nucleusIsPresent = true;
-            }
 
-         EditorAction@ action = EditorAction(organelle.organelle.mpCost,
+        if((organelle.organelle.name == "nucleus" && !nucleusIsPresent) || (nucleusIsPresent && (organelle.organelle.name == "mitochondrion" || organelle.organelle.name == "chloroplast" || organelle.organelle.name == "nitrogenfixingplastid" || organelle.organelle.name == "chemoplast")) || (organelle.organelle.name == "cytoplasm" || organelle.organelle.name == "flagellum" || organelle.organelle.name == "chromatophors" || organelle.organelle.name == "metabolosome" || organelle.organelle.name == "oxytoxy" || organelle.organelle.name == "vacuole" ))
+        {
+            LOG_INFO("you can put this organelle");
+            EditorAction@ action = EditorAction(organelle.organelle.mpCost,
             // redo
             function(EditorAction@ action, MicrobeEditor@ editor){
 
@@ -281,12 +275,13 @@ class MicrobeEditor{
 
                 }
             });
-
             @action.data["organelle"] = organelle;
-
             enqueueAction(action);
-    }
-
+        }
+        else
+        {
+            LOG_INFO("can't put this organelle, maybe you dont have a nucleus");
+        }
     }
 
     void addOrganelle(const string &in organelleType)
@@ -926,6 +921,19 @@ class MicrobeEditor{
         return (playerSpecies.generation+1);
     }
 
+    void getNucleus()
+    {
+        double lengthMicrobe = double(editedMicrobe.length());
+        for(uint i = 0; i < editedMicrobe.length(); ++i){
+            auto organelle = cast<PlacedOrganelle>(editedMicrobe[i]);
+            auto name = organelle.organelle.name;
+            if (name=="nucleus"){
+                nucleusIsPresent = true;
+                LOG_INFO("nucleus is present?" + nucleusIsPresent);
+            }
+        }
+    }
+
 
     int onGeneric(GenericEvent@ event)
     {
@@ -954,7 +962,7 @@ class MicrobeEditor{
 
         } else if(type == "MicrobeEditorExited"){
             LOG_INFO("MicrobeEditor: applying changes to player Species");
-
+            getNucleus();
             // We need to grab the player's species
             SpeciesComponent@ playerSpecies = MicrobeOperations::getSpeciesComponent(
                 GetThriveGame().getCellStage(), GetThriveGame().playerData().activeCreature());
@@ -967,7 +975,6 @@ class MicrobeEditor{
 
             // It is easiest to just replace all
             array<SpeciesStoredOrganelleType@> newOrganelles;
-
             for(uint i = 0; i < editedMicrobe.length(); ++i){
                 newOrganelles.insertLast(editedMicrobe[i]);
             }
