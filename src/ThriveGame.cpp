@@ -162,6 +162,11 @@ public:
 // ------------------------------------ //
 ThriveGame::ThriveGame()
 {
+#ifndef MAKE_RELEASE
+    LOG_INFO("Enabling cheats because this is a non-release build");
+    m_cheatsEnabled = true;
+#endif // MAKE_RELEASE
+
     StaticGame = this;
 }
 
@@ -173,11 +178,21 @@ ThriveGame::~ThriveGame()
 std::string
     ThriveGame::GenerateWindowTitle()
 {
-    return "Thrive " GAME_VERSIONS;
+    return "Thrive " GAME_VERSIONS
+#ifndef MAKE_RELEASE
+           " (non-release)"
+#endif
+        ;
 }
 
 ThriveGame*
     ThriveGame::Get()
+{
+    return StaticGame;
+}
+
+ThriveGame*
+    ThriveGame::get()
 {
     return StaticGame;
 }
