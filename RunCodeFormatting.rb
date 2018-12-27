@@ -70,7 +70,7 @@ if !options[:onlyJS]
       raise e
     end
 
-    if path !~ /\/src\//i && path !~ /\/test\//i ||
+    if path !~ /\/src\//i && path !~ /\/test\//i  && path !~ /thirdparty/i ||
        # Generated files
        path =~ /\/generated\//i || path =~ /\/src\/main.cpp/i ||
        path =~ /\/src\/thrive_version.h/i || path =~ /\/src\/server\/main.cpp/i ||
