@@ -73,7 +73,7 @@ if !options[:onlyJS]
     if path !~ /\/src\//i && path !~ /\/test\//i ||
        # Generated files
        path =~ /\/generated\//i || path =~ /\/src\/main.cpp/i ||
-       path =~ /\/src\/thrive_version.h/i ||
+       path =~ /\/src\/thrive_version.h/i || path =~ /\/src\/server\/main.cpp/i ||
        # ignore catch
        path =~ /catch.hpp$/i
       
