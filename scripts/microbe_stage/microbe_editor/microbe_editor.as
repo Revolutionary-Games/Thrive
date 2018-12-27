@@ -230,7 +230,10 @@ class MicrobeEditor{
 		if((organelle.organelle.name == "nucleus" && !nucleusIsPresent) || organelle.organelle.name != "nucleus")
 		{
 		    if(organelle.organelle.name == "nucleus")
-				nucleusIsPresent = true;
+            {
+                nucleusIsPresent = true;
+            }
+				
 		     EditorAction@ action = EditorAction(organelle.organelle.mpCost,
             // redo
             function(EditorAction@ action, MicrobeEditor@ editor){
