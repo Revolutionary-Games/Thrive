@@ -275,7 +275,9 @@ class MicrobeEditor{
 
                 }
             });
+
             @action.data["organelle"] = organelle;
+
             enqueueAction(action);
         }
         else
@@ -921,7 +923,7 @@ class MicrobeEditor{
         return (playerSpecies.generation+1);
     }
 
-    void getNucleus()
+    void getNucleus() 
     {
         double lengthMicrobe = double(editedMicrobe.length());
         for(uint i = 0; i < editedMicrobe.length(); ++i){
