@@ -68,6 +68,7 @@ class MicrobeEditor{
     //! This is called each time the editor is entered so this needs to properly reset state
     void init()
     {
+        editor.getNucleus();
         gridSceneNode = hudSystem.world.CreateEntity();
         auto node = hudSystem.world.Create_RenderNode(gridSceneNode);
         node.Scale = Float3(HEX_SIZE, 1, HEX_SIZE);
@@ -224,7 +225,6 @@ class MicrobeEditor{
 
     private void _addOrganelle(PlacedOrganelle@ organelle)
     {
-
         if((organelle.organelle.name == "nucleus" && !nucleusIsPresent) || (nucleusIsPresent && (organelle.organelle.name == "mitochondrion" || organelle.organelle.name == "chloroplast" || organelle.organelle.name == "nitrogenfixingplastid" || organelle.organelle.name == "chemoplast")) || (organelle.organelle.name == "cytoplasm" || organelle.organelle.name == "flagellum" || organelle.organelle.name == "chromatophors" || organelle.organelle.name == "metabolosome" || organelle.organelle.name == "oxytoxy" || organelle.organelle.name == "vacuole" ))
         {
             LOG_INFO("you can put this organelle");
@@ -256,11 +256,13 @@ class MicrobeEditor{
                 LOG_INFO("Placing organelle '" + organelle.organelle.name + "' at: " +
                     organelle.q + ", " + organelle.r);
                 editor.editedMicrobe.insertLast(organelle);
+                editor.getNucleus();
             },
             // undo
             function(EditorAction@ action, MicrobeEditor@ editor){
                 // TODO: this doesn't restore cytoplasm
                 LOG_INFO("Undo called");
+                editor.resetNucleus();
                 const PlacedOrganelle@ organelle = cast<PlacedOrganelle>(action.data["organelle"]);
                 auto hexes = organelle.organelle.getRotatedHexes(organelle.rotation);
                 for(uint c = 0; c < hexes.length(); ++c){
@@ -272,8 +274,8 @@ class MicrobeEditor{
                         OrganellePlacement::removeOrganelleAt(editor.editedMicrobe,
                             Int2(posQ, posR));
                     }
-
                 }
+                editor.getNucleus();
             });
 
             @action.data["organelle"] = organelle;
@@ -923,7 +925,7 @@ class MicrobeEditor{
         return (playerSpecies.generation+1);
     }
 
-    void getNucleus() 
+    void getNucleus()
     {
         double lengthMicrobe = double(editedMicrobe.length());
         for(uint i = 0; i < editedMicrobe.length(); ++i){
@@ -931,7 +933,21 @@ class MicrobeEditor{
             auto name = organelle.organelle.name;
             if (name=="nucleus"){
                 nucleusIsPresent = true;
-                LOG_INFO("nucleus is present?" + nucleusIsPresent);
+                LOG_INFO("nucleus is present? " + nucleusIsPresent);
+            }
+        }
+    }
+
+
+    void resetNucleus()
+    {
+        double lengthMicrobe = double(editedMicrobe.length());
+        for(uint i = 0; i < editedMicrobe.length(); ++i){
+            auto organelle = cast<PlacedOrganelle>(editedMicrobe[i]);
+            auto name = organelle.organelle.name;
+            if (name=="nucleus"){
+                nucleusIsPresent = false;
+                LOG_INFO("nucleus is present? " + nucleusIsPresent);
             }
         }
     }
