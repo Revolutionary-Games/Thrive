@@ -50,7 +50,7 @@ class MicrobeEditor{
         eventListener.RegisterForEvent("UndoClicked");
 
         placementFunctions = {
-            {"nucleus", PlacementFunctionType(this.createNewMicrobe)},
+            {"nucleus", PlacementFunctionType(this.addOrganelle)},
             {"flagellum", PlacementFunctionType(this.addOrganelle)},
             {"cytoplasm", PlacementFunctionType(this.addOrganelle)},
             {"mitochondrion", PlacementFunctionType(this.addOrganelle)},
@@ -227,7 +227,11 @@ class MicrobeEditor{
 
     private void _addOrganelle(PlacedOrganelle@ organelle)
     {
-        EditorAction@ action = EditorAction(organelle.organelle.mpCost,
+		if((organelle.organelle.name == "nucleus" && !nucleusIsPresent) || organelle.organelle.name != "nucleus")
+		{
+			if(organelle.organelle.name == "nucleus")
+				nucleusIsPresent = true;
+		 EditorAction@ action = EditorAction(organelle.organelle.mpCost,
             // redo
             function(EditorAction@ action, MicrobeEditor@ editor){
 
@@ -278,6 +282,8 @@ class MicrobeEditor{
         @action.data["organelle"] = organelle;
 
         enqueueAction(action);
+		}
+       
     }
 
     void addOrganelle(const string &in organelleType)
@@ -945,7 +951,7 @@ class MicrobeEditor{
 
         } else if(type == "MicrobeEditorExited"){
             LOG_INFO("MicrobeEditor: applying changes to player Species");
-
+			
             // We need to grab the player's species
             SpeciesComponent@ playerSpecies = MicrobeOperations::getSpeciesComponent(
                 GetThriveGame().getCellStage(), GetThriveGame().playerData().activeCreature());
@@ -960,7 +966,6 @@ class MicrobeEditor{
             array<SpeciesStoredOrganelleType@> newOrganelles;
 
             for(uint i = 0; i < editedMicrobe.length(); ++i){
-
                 newOrganelles.insertLast(editedMicrobe[i]);
             }
 
@@ -1034,7 +1039,7 @@ class MicrobeEditor{
     private int symmetry = 0;
 
     private bool microbeHasBeenInEditor = false;
-
+	private bool nucleusIsPresent = false;
     private EventListener@ eventListener;
 };
 
