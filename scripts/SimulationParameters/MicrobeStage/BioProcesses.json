@@ -59,6 +59,18 @@
         }
     },
     
+	"bacterial_ChemoSynthesis": {
+        "name": "Bacterial Chemosynthesis",
+
+        "inputs": {
+            "hydrogensulfide": 1.0
+        },
+
+        "outputs": {
+            "glucose": 1.0
+        }
+    },
+    
     "nitrogenFixing": {
         "name": "Nitrogen Fixing",
 

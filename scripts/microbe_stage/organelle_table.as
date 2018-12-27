@@ -605,17 +605,17 @@ void setupOrganelles(){
     chemoSynthisizingProtien.mesh = "metabolosome.mesh";
     chemoSynthisizingProtien.chanceToCreate = 0;
     chemoSynthisizingProtien.prokaryoteChance = 1;
-    chemoSynthisizingProtien.mpCost = 15;
+    chemoSynthisizingProtien.mpCost = 20;
     chemoSynthisizingProtien.initialComposition = {
         {"phosphates", 1},
         {"ammonia", 1}
     };
     chemoSynthisizingProtien.components = {
         processorOrganelleFactory(1.0f),
-        storageOrganelleFactory(25.0f)
+        storageOrganelleFactory(20.0f)
     };
     chemoSynthisizingProtien.processes = {
-      TweakedProcess("chemoSynthesis", 1),
+      TweakedProcess("bacterial_ChemoSynthesis", 1),
       TweakedProcess("glycolosis", 1)
     };
     chemoSynthisizingProtien.hexes = {
