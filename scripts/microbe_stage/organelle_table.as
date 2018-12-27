@@ -415,6 +415,10 @@ void setupOrganelles(){
     vacuoleParameters.components = {
         storageOrganelleFactory(50.0f)
     };
+
+    vacuoleParameters.processes = {
+    };
+
     vacuoleParameters.hexes = {
         Int2(0, 0)
     };
@@ -440,6 +444,10 @@ void setupOrganelles(){
     // Flagella takes 1 hex, so allowed storage of 1 cytooplasm
     storageOrganelleFactory(5.0f)
     };
+
+    flagellumParameters.processes = {
+    };
+
     flagellumParameters.hexes = {
         Int2(0, 0)
     };
