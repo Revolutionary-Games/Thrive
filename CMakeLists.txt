@@ -37,7 +37,7 @@ endif()
 # Options #
 ###########
 
-option(USE_BREAKPAD "For enabling breakpad crash handling, set off for local debugging" OFF)
+option(MAKE_RELEASE "Enabled breakpad crash reporting and some game specific options" OFF)
 option(COPY_BOOST_TO_PACKAGE "If on copies all boost libraries to package" ON)
 
 
@@ -69,8 +69,6 @@ include(LeviathanFindLibraries)
 include(LeviathanUtility)
 
 # Leviathan Required settings
-DefinePreprocessorMacro(USE_BREAKPAD LEVIATHAN_USING_BREAKPAD)
-
 include(LeviathanDefaultFileCopy)
 include(LeviathanSetRPath)
 
