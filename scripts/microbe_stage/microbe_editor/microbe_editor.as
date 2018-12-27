@@ -227,6 +227,7 @@ class MicrobeEditor{
 
     private void _addOrganelle(PlacedOrganelle@ organelle)
     {
+<<<<<<< HEAD
     if((organelle.organelle.name == "nucleus" && !nucleusIsPresent) || organelle.organelle.name != "nucleus")
     {
         if(organelle.organelle.name == "nucleus")
@@ -235,6 +236,16 @@ class MicrobeEditor{
             }
 
          EditorAction@ action = EditorAction(organelle.organelle.mpCost,
+=======
+    if((organelle.organelle.name == "nucleus" && !nucleusIsPresent) || organelle.organelle.name != "nucleus")
+    {
+        if(organelle.organelle.name == "nucleus")
+                    {
+                        nucleusIsPresent = true;
+                    }
+
+         EditorAction@ action = EditorAction(organelle.organelle.mpCost,
+>>>>>>> 05e7e3f19975c247bb40048085cabcb1125b8789
             // redo
             function(EditorAction@ action, MicrobeEditor@ editor){
 
