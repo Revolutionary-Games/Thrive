@@ -51,6 +51,12 @@ public:
     void
         setBackgroundMaterial(const std::string& material);
 
+    inline bool
+        areCheatsEnabled() const
+    {
+        return m_cheatsEnabled;
+    }
+
     // ------------------------------------ //
     // Player input actions
     void
@@ -122,8 +128,15 @@ public:
         CheckGameKeyConfigVariables(Lock& guard,
             KeyConfiguration* keyconfigobj);
 
+    //! \deprecated
     static ThriveGame*
         Get();
+
+    //! This variant should be preferred as this follows thrive naming
+    //! convention
+    static ThriveGame*
+        get();
+
     // Alternative for old engine style
     static ThriveGame*
         instance();
@@ -146,6 +159,10 @@ private:
     //! delay methods that skip straight to the game in order to not
     //! start too soon
     bool m_postLoadRan = false;
+
+    //! Controls if cheat keys are enabled.
+    //! These are enabled by default when not making releases
+    bool m_cheatsEnabled = false;
 
     // Some variables that have complex types are hidden here to not
     // have to include tons of headers here
