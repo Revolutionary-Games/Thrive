@@ -68,7 +68,7 @@ class MicrobeEditor{
     //! This is called each time the editor is entered so this needs to properly reset state
     void init()
     {
-        editor.getNucleus();
+        getNucleus();
         gridSceneNode = hudSystem.world.CreateEntity();
         auto node = hudSystem.world.Create_RenderNode(gridSceneNode);
         node.Scale = Float3(HEX_SIZE, 1, HEX_SIZE);
