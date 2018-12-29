@@ -296,7 +296,13 @@ void respawnPlayer(CellStageWorld@ world)
     }
 
     // Decrease the population by 20
-    playerSpecies.population -= 20;
+    if (playerSpecies.population >= 20)
+    {
+        playerSpecies.population -= 20;
+    }else
+    {
+        playerSpecies.population = 0;
+    }
 
     // TODO: we already check if the player is extinct here. That logic shouldn't
     // be duplicated in the GUI
