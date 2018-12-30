@@ -28,7 +28,7 @@ if !options[:onlyJS]
     begin
       if path !~ /\.h(pp)?$/ && path !~ /\.cpp$/
 
-        if path =~ /\.as$/
+        if path =~ /\.as$/ && path !~ /^\.\/build/
           # Check that angelscript doesn't have lines starting with tabs
           begin
             original = File.read(path)
