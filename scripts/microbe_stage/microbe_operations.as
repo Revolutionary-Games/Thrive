@@ -296,8 +296,11 @@ void respawnPlayer(CellStageWorld@ world)
     }
 
     // Decrease the population by 20
-    playerSpecies.population -= 20;
-    if (playerSpecies.population < 0) {
+    if (playerSpecies.population >= 20)
+    {
+        playerSpecies.population -= 20;
+    }else
+    {
         playerSpecies.population = 0;
     }
 
@@ -1070,6 +1073,29 @@ void _applyMicrobePhysicsBodySettings(CellStageWorld@ world, Physics@ rigidBody)
     rigidBody.Body.SetFriction(0.2);
 }
 
+//! Helper for Invoking an operation for destroying the physics body of a cell
+class DestroyPhysicsBodyHelper{
+
+    DestroyPhysicsBodyHelper(ObjectID id, CellStageWorld@ world){
+        m_id = id;
+        @m_world = world;
+    }
+
+    void execute(){
+
+        auto rigidBodyComponent = m_world.GetComponent_Physics(m_id);
+
+        if(rigidBodyComponent !is null){
+            rigidBodyComponent.Release(m_world.GetPhysicalWorld());
+        } else {
+            LOG_ERROR("No Physics for DestroyPhysicsBodyHelper");
+        }
+    }
+
+    ObjectID m_id;
+    CellStageWorld@ m_world;
+}
+
 // Kills the microbe, releasing stored compounds into the enviroment
 void kill(CellStageWorld@ world, ObjectID microbeEntity)
 {
@@ -1136,6 +1162,7 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
             }
         }
     }
+
     // They were added in order already so looping through this other thing is fine
     for(uint64 compoundID = 0; compoundID <
                 SimulationParameters::compoundRegistry().getSize(); ++compoundID)
@@ -1184,8 +1211,19 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
         rigidBodyComponent.Body.ClearVelocity();
 
     if(!microbeComponent.isPlayerMicrobe){
-        // Destroy the physics state //
-        rigidBodyComponent.Release(world.GetPhysicalWorld());
+        // We can't destroy the body while in a physics callback
+        // So we queue it to happen before the next tick
+        DestroyPhysicsBodyHelper obj(microbeEntity, world);
+
+        GetEngine().Invoke(InvokeCallbackFunc(obj.execute));
+
+        // Hide organelles
+        for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
+            // The organelles are hidden here as otherwise the extra
+            // entities like the ER stay visible for a while until the
+            // cell entity is destroyed
+            microbeComponent.organelles[i].hideEntity();
+        }
     }
 
     if(microbeComponent.wasBeingEngulfed){
