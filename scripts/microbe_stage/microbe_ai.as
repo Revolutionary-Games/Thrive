@@ -135,10 +135,11 @@ class MicrobeAISystem : ScriptSystem{
                 }
             }
                 // Were for debugging
-                //LOG_INFO("AI aggression"+aiComponent.speciesAggression);
-                //LOG_INFO("AI fear"+aiComponent.speciesFear);
-                //LOG_INFO("AI Focus"+aiComponent.speciesFocus);
-                //LOG_INFO("AI Activity"+aiComponent.speciesActivity);
+                /*LOG_INFO("AI aggression"+aiComponent.speciesAggression);
+                LOG_INFO("AI fear"+aiComponent.speciesFear);
+                LOG_INFO("AI Focus"+aiComponent.speciesFocus);
+                LOG_INFO("AI Activity"+aiComponent.speciesActivity);*/
+                
             while(aiComponent.intervalRemaining > aiComponent.reevalutationInterval) {
                 aiComponent.intervalRemaining -= aiComponent.reevalutationInterval;
                 int numberOfAgentVacuoles = int(
@@ -221,7 +222,7 @@ class MicrobeAISystem : ScriptSystem{
                             if (GetEngine().GetRandom().GetNumber(0.0f,400.0f) <=  aiComponent.speciesActivity)
                                 {
                                 //LOG_INFO("gather only");
-                                aiComponent.lifeState = PLANTLIKE_STATE;
+                                aiComponent.lifeState = NEUTRAL_STATE;
                                 aiComponent.boredom=0;
                                 }
                             else
