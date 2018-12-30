@@ -116,6 +116,9 @@ export function runMenuSetup(){
 
         // (this would theoretically work in a browser but would be a bit annoying to work on)
         // common.playVideo("../../Videos/intro.mkv", onIntroEnded);
+
+        // Hide the loading logo
+        common.hideLoadingLogo();
     }
 
     // This is ran immediately because this needs to register
@@ -182,7 +185,8 @@ function onIntroEnded(error) {
         console.error("failed to play intro video: " + error);
 
     if(common.isInEngine()){
-
+        common.hideLoadingLogo();
+        randomizeBackground();
         startMenuMusic();
     }
 }
@@ -192,13 +196,30 @@ function quitGame(){
     Leviathan.Quit();
 }
 
+function randomizeBackground(){
+    const num = common.randomBetween(0, 9);
+
+    if (num <= 3){
+        document.getElementById("BackgroundMenuImage").style.backgroundImage = "url(../../" +
+        "Textures/gui/BG_Menu02.png)";
+    } else if (num <= 6){
+        document.getElementById("BackgroundMenuImage").style.backgroundImage = "url(../../" +
+        "Textures/gui/BG_Menu01.png)";
+    } else if (num <= 9){
+        document.getElementById("BackgroundMenuImage").style.backgroundImage = "url(../../" +
+        "Textures/gui/BG_Menu03.png)";
+    }
+}
+
 function newGame(){
     if(jams){
         jams.Pause();
     }
+
     if(common.isInEngine()){
         Leviathan.PlayCutscene("Data/Videos/MicrobeIntro.mkv", onMicrobeIntroEnded,
             onMicrobeIntroEnded);
+        common.showLoadingLogo();
     } else {
         onMicrobeIntroEnded();
     }
@@ -258,9 +279,10 @@ function onMicrobeIntroEnded(error){
 
     if(common.isInEngine()){
 
+        common.hideLoadingLogo();
+
         // Make sure no video is playing in case we did an immediate start
         Leviathan.CancelCutscene();
-
         Thrive.start();
 
     } else {

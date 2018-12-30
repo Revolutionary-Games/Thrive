@@ -61,6 +61,7 @@ class MicrobeEditor{
             {"chemoplast", PlacementFunctionType(this.addOrganelle)},
             {"chromatophors", PlacementFunctionType(this.addOrganelle)},
             {"metabolosome", PlacementFunctionType(this.addOrganelle)},
+            {"chemoSynthisizingProtiens", PlacementFunctionType(this.addOrganelle)},
             {"remove", PlacementFunctionType(this.removeOrganelle)}
         };
     }
@@ -419,11 +420,16 @@ class MicrobeEditor{
     void createNewMicrobe(const string &in)
     {
         // organelleCount = 0;
-        mutationPoints = BASE_MUTATION_POINTS;
+        auto previousMP = mutationPoints;
+        // Copy current microbe to a new array
+        array<PlacedOrganelle@> oldEditedMicrobe = editedMicrobe;
+
         EditorAction@ action = EditorAction(0,
             // redo
             function(EditorAction@ action, MicrobeEditor@ editor){
-                // Delete the organelles (all except the nucleus)
+                // Delete the organelles (all except the nucleus) and set mutation points
+                // (just undoing and redoing the cost like other actions doesn't work in this case due to its nature)
+                editor.setMutationPoints(BASE_MUTATION_POINTS);
                 for(uint i = editor.editedMicrobe.length()-1; i > 0; --i){
                     const PlacedOrganelle@ organelle = editor.editedMicrobe[i];
                     auto hexes = organelle.organelle.getRotatedHexes(organelle.rotation);
@@ -441,61 +447,20 @@ class MicrobeEditor{
                 }
 
             },
-            null);
-        // TODO: What is the point of this?? Can this just be removed?
-        if (microbeHasBeenInEditor){
-            //that there has already been a microbe in the editor
-            //suggests that it was a player action, so it's prepared
-            //and filed in for un/redo
-            microbeHasBeenInEditor = true;
-            LOG_WRITE("TODO: fix this part about already been stuff");
-            dictionary organelleStorage = {};
-            // auto previousOrganelleCount = organelleCount;
-            auto previousMP = mutationPoints;
-            // auto currentMicrobeComponent = getComponent(currentMicrobeEntity, MicrobeComponent);
-            /*for(position,organelle in pairs(currentMicrobeComponent.organelles)){
-                organelleStorage[position] = organelle.storage()
-            }*/
-            @action.undo = function(EditorAction@ action, MicrobeEditor@ editor){
-                // auto microbeComponent = getComponent(currentMicrobeEntity, MicrobeComponent);
-
-                // string speciesName = microbeComponent.speciesName;
-                // currentMicrobeEntity.destroy(); //remove the "new" entity that has replaced the previous one
-                // currentMicrobeEntity = MicrobeSystem.createMicrobeEntity(null, false, 'Editor_Microbe', true);
-
-                // microbeComponent = getComponent(currentMicrobeEntity, MicrobeComponent);
-                // auto sceneNodeComponent = getComponent(currentMicrobeEntity, OgreSceneNodeComponent);
-
-                // currentMicrobeEntity.stealName("working_microbe");
-                // sceneNodeComponent.transform.orientation = Quaternion(Radian(0), Vector3(0, 0, 1)); //Orientation
-                // sceneNodeComponent.transform.touch();
-                // microbeComponent.speciesName = speciesName;
-                /*for(position,storage in pairs(organelleStorage)){
-                    local q, r = decodeAxial(position);
-                    MicrobeSystem.addOrganelle(this.currentMicrobeEntity, storage.get("q", 0), storage.get("r", 0), storage.get("rotation", 0), Organelle.loadOrganelle(storage))
+            function(EditorAction@ action, MicrobeEditor@ editor){
+                editor.editedMicrobe.resize(0);
+                editor.setMutationPoints(int(action.data["previousMP"]));
+                // Load old microbe
+                array<PlacedOrganelle@> oldEditedMicrobe =
+                    cast<array<PlacedOrganelle@>>(action.data["oldEditedMicrobe"]);
+                for(uint i = 0; i < oldEditedMicrobe.length(); ++i){
+                    editor.editedMicrobe.insertLast(cast<PlacedOrganelle>(oldEditedMicrobe[i]));
                 }
-                for(_, cytoplasm in pairs(this.occupiedHexes)){
-                    cytoplasm.destroy()
-                }
-                for(_, organelle in pairs(microbeComponent.organelles)){
-                    for(s, hex in pairs(organelle._hexes)){
-                        this.createHexComponent(hex.q + organelle.position.q, hex.r + organelle.position.r)
-                    }
-                }*/
-                //no need to add the nucleus manually - it's already included in the organelleStorage
-                // mutationPoints = previousMP;
-                // organelleCount = previousOrganelleCount;
-                // Engine.playerData().setActiveCreature(this.currentMicrobeEntity.id, GameState.MICROBE_EDITOR.wrapper)
-            };
+            });
+            @action.data["oldEditedMicrobe"] = oldEditedMicrobe;
+            action.data["previousMP"] = previousMP;
             enqueueAction(action);
 
-        } else{
-            //if there's no microbe yet, it can be safely assumed that
-            //this is a generated default microbe when opening the
-            //editor for the first time, so it's not an action that
-            //should be put into the un/redo-feature
-            action.redo(action, this);
-        }
     }
 
     void setRedoButtonStatus(bool enabled)
@@ -880,6 +845,11 @@ class MicrobeEditor{
         }
     }
 
+    void setMutationPoints(int amount)
+    {
+        mutationPoints = amount;
+    }
+
     int getMutationPoints() const
     {
         return mutationPoints;
@@ -1016,7 +986,6 @@ class MicrobeEditor{
     // TODO: rename to editedMicrobeOrganelles
     // This is not private because anonymous callbacks want to access this
     array<PlacedOrganelle@> editedMicrobe;
-
     private ObjectID gridSceneNode;
     private bool gridVisible;
     private MicrobeEditorHudSystem@ hudSystem;

@@ -49,11 +49,13 @@ bool
     // LOG_INFO("PMC Key pressed: " + std::to_string(key));
 
     if(m_reproduceCheat.Match(key, modifiers)) {
-        LOG_INFO("Reproduce cheat pressed");
-        // A lets player thought this was the only way to reproduce, so
-        // disabling.
-        // Engine::Get()->GetEventHandler()->CallEvent(
-        //    new Leviathan::GenericEvent("PlayerReadyToEnterEditor"));
+
+        if(ThriveGame::get()->areCheatsEnabled()) {
+            LOG_INFO("Reproduce cheat pressed");
+            Engine::Get()->GetEventHandler()->CallEvent(
+                new Leviathan::GenericEvent("PlayerReadyToEnterEditor"));
+        }
+
         return true;
     } else if(Leviathan::MatchesAnyKeyInSet(m_zoomIn, key, modifiers)) {
         ThriveGame::Get()->onZoomChange(-1);
@@ -68,9 +70,12 @@ bool
         pressedToxin = true;
         return true;
     } else if(m_spawnGlucoseCheat.Match(key, modifiers)) {
-        LOG_INFO("Glucose cloud cheat pressed");
-        // Disabled this cheat
-        // cheatCloudsDown = true;
+
+        if(ThriveGame::get()->areCheatsEnabled()) {
+
+            LOG_INFO("Glucose cloud cheat pressed");
+            cheatCloudsDown = true;
+        }
         return true;
     }
 

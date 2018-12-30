@@ -37,7 +37,7 @@ endif()
 # Options #
 ###########
 
-option(USE_BREAKPAD "For enabling breakpad crash handling, set off for local debugging" OFF)
+option(MAKE_RELEASE "Enabled breakpad crash reporting and some game specific options" OFF)
 option(COPY_BOOST_TO_PACKAGE "If on copies all boost libraries to package" ON)
 
 
@@ -69,8 +69,6 @@ include(LeviathanFindLibraries)
 include(LeviathanUtility)
 
 # Leviathan Required settings
-DefinePreprocessorMacro(USE_BREAKPAD LEVIATHAN_USING_BREAKPAD)
-
 include(LeviathanDefaultFileCopy)
 include(LeviathanSetRPath)
 
@@ -101,7 +99,7 @@ link_directories("${LEVIATHAN_SRC}/build/bin")
 set(PROGRAM_VERSION_STABLE 0)
 set(PROGRAM_VERSION_MAJOR 4)
 set(PROGRAM_VERSION_MINOR 0)
-set(PROGRAM_VERSION_PATCH 0)
+set(PROGRAM_VERSION_PATCH 1)
 set(PROGRAM_VERSION_SUFFIX "")
 
 set(PROGRAM_VERSION_STR ${PROGRAM_VERSION_STABLE}.${PROGRAM_VERSION_MAJOR}.${PROGRAM_VERSION_MINOR}.${PROGRAM_VERSION_PATCH}${PROGRAM_VERSION_SUFFIX})
