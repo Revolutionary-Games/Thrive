@@ -139,7 +139,7 @@ class MicrobeAISystem : ScriptSystem{
                 LOG_INFO("AI fear"+aiComponent.speciesFear);
                 LOG_INFO("AI Focus"+aiComponent.speciesFocus);
                 LOG_INFO("AI Activity"+aiComponent.speciesActivity);*/
-                
+
             while(aiComponent.intervalRemaining > aiComponent.reevalutationInterval) {
                 aiComponent.intervalRemaining -= aiComponent.reevalutationInterval;
                 int numberOfAgentVacuoles = int(
