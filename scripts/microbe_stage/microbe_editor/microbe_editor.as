@@ -225,8 +225,6 @@ class MicrobeEditor{
 
     private void _addOrganelle(PlacedOrganelle@ organelle)
     {
-        if((organelle.organelle.name == "nucleus" && !nucleusIsPresent) || (nucleusIsPresent && (organelle.organelle.name == "mitochondrion" || organelle.organelle.name == "chloroplast" || organelle.organelle.name == "nitrogenfixingplastid" || organelle.organelle.name == "chemoplast")) || (organelle.organelle.name == "cytoplasm" || organelle.organelle.name == "flagellum" || organelle.organelle.name == "chromatophors" || organelle.organelle.name == "metabolosome" || organelle.organelle.name == "oxytoxy" || organelle.organelle.name == "vacuole" ))
-        {
             LOG_INFO("you can put this organelle");
             EditorAction@ action = EditorAction(organelle.organelle.mpCost,
             // redo
@@ -281,11 +279,6 @@ class MicrobeEditor{
             @action.data["organelle"] = organelle;
 
             enqueueAction(action);
-        }
-        else
-        {
-            LOG_INFO("can't put this organelle, maybe you dont have a nucleus");
-        }
     }
 
     void addOrganelle(const string &in organelleType)
@@ -298,12 +291,19 @@ class MicrobeEditor{
                 if (isValidPlacement(organelleType, q, r, organelleRot)){
                     auto organelle = PlacedOrganelle(getOrganelleDefinition(organelleType),
                         q, r, organelleRot);
-
                     if (organelle.organelle.mpCost > mutationPoints){
                         return;
                     }
-
-                    _addOrganelle(organelle);
+                    // Check if we can put that organelle
+                    if(!(organelle.organelle.needNucleus) || (organelle.organelle.needNucleus  && nucleusIsPresent)) {
+                        if(organelle.organelle.name == "nucleus" && !nucleusIsPresent ) {
+                            _addOrganelle(organelle);
+                        } else if(organelle.organelle.name != "nucleus") {
+                            _addOrganelle(organelle);
+                        } else {
+                            return;
+                        }
+                    }
                 }
             }
             break;
@@ -314,7 +314,16 @@ class MicrobeEditor{
                     if (organelle.organelle.mpCost > mutationPoints){
                         return;
                     }
-                    _addOrganelle(organelle);
+
+                    if(!(organelle.organelle.needNucleus) || (organelle.organelle.needNucleus  && nucleusIsPresent)) {
+                        if(organelle.organelle.name == "nucleus" && !nucleusIsPresent ) {
+                            _addOrganelle(organelle);
+                        } else if(organelle.organelle.name != "nucleus") {
+                            _addOrganelle(organelle);
+                        } else {
+                            return;
+                        }
+                    }
                  }
                 if ((q != -1 * q || r != r + q)){
                     if (isValidPlacement(organelleType,-1*q, r+q, 360+(-1*organelleRot))){
@@ -323,7 +332,15 @@ class MicrobeEditor{
                         if (organelle2.organelle.mpCost > mutationPoints){
                             return;
                         }
-                        _addOrganelle(organelle2);
+                        if(!(organelle2.organelle.needNucleus) || (organelle2.organelle.needNucleus  && nucleusIsPresent)) {
+                            if(organelle2.organelle.name == "nucleus" && !nucleusIsPresent ) {
+                                _addOrganelle(organelle2);
+                            } else if(organelle2.organelle.name != "nucleus") {
+                                _addOrganelle(organelle2);
+                            } else {
+                            return;
+                            }
+                        }
                     }
                 }
             }
@@ -336,7 +353,15 @@ class MicrobeEditor{
                     if (organelle.organelle.mpCost > mutationPoints){
                         return;
                     }
-                    _addOrganelle(organelle);
+                    if(!(organelle.organelle.needNucleus) || (organelle.organelle.needNucleus  && nucleusIsPresent)) {
+                        if(organelle.organelle.name == "nucleus" && !nucleusIsPresent ) {
+                            _addOrganelle(organelle);
+                        } else if(organelle.organelle.name != "nucleus") {
+                            _addOrganelle(organelle);
+                        } else {
+                            return;
+                        }
+                    }
                 }
                 if ((q != -1 * q || r != r + q)){
                 if (isValidPlacement(organelleType,-1*q, r+q, 360+(-1*organelleRot))){
@@ -345,7 +370,15 @@ class MicrobeEditor{
                     if (organelle2.organelle.mpCost > mutationPoints){
                         return;
                     }
-                    _addOrganelle(organelle2);
+                    if(!(organelle2.organelle.needNucleus) || (organelle2.organelle.needNucleus  && nucleusIsPresent)) {
+                        if(organelle2.organelle.name == "nucleus" && !nucleusIsPresent ) {
+                            _addOrganelle(organelle2);
+                        } else if(organelle2.organelle.name != "nucleus") {
+                            _addOrganelle(organelle2);
+                        } else {
+                            return;
+                        }
+                    }
                  }
                 if (isValidPlacement(organelleType, -1*q, -1*r,(organelleRot+180) % 360)){
                     auto organelle3 = PlacedOrganelle(getOrganelleDefinition(organelleType),
@@ -353,7 +386,15 @@ class MicrobeEditor{
                     if (organelle3.organelle.mpCost > mutationPoints){
                         return;
                     }
-                    _addOrganelle(organelle3);
+                    if(!(organelle3.organelle.needNucleus) || (organelle3.organelle.needNucleus  && nucleusIsPresent)) {
+                        if(organelle3.organelle.name == "nucleus" && !nucleusIsPresent ) {
+                            _addOrganelle(organelle3);
+                        } else if(organelle3.organelle.name != "nucleus") {
+                            _addOrganelle(organelle3);
+                        } else {
+                            return;
+                        }
+                    }
                  }
                 if (isValidPlacement(organelleType, q, -1*(r+q),
                     (540+(-1*organelleRot)) % 360)){
@@ -362,9 +403,17 @@ class MicrobeEditor{
                     if (organelle4.organelle.mpCost > mutationPoints){
                         return;
                     }
-                    _addOrganelle(organelle4);
-                 }
-                 }
+                    if(!(organelle4.organelle.needNucleus) || (organelle4.organelle.needNucleus  && nucleusIsPresent)) {
+                        if(organelle4.organelle.name == "nucleus" && !nucleusIsPresent ) {
+                            _addOrganelle(organelle4);
+                        } else if(organelle4.organelle.name != "nucleus") {
+                            _addOrganelle(organelle4);
+                        } else {
+                            return;
+                        }
+                    }
+                }
+                }
             }
             break;
             case 3: {
@@ -375,7 +424,15 @@ class MicrobeEditor{
                     if (organelle.organelle.mpCost > mutationPoints){
                         return;
                     }
-                    _addOrganelle(organelle);
+                    if(!(organelle.organelle.needNucleus) || (organelle.organelle.needNucleus  && nucleusIsPresent)) {
+                        if(organelle.organelle.name == "nucleus" && !nucleusIsPresent ) {
+                            _addOrganelle(organelle);
+                        } else if(organelle.organelle.name != "nucleus") {
+                            _addOrganelle(organelle);
+                        } else {
+                            return;
+                        }
+                    }
                 }
                 if ((q != -1 * q || r != r + q)){
                 if (isValidPlacement(organelleType, -1*r, r+q,(organelleRot+60) % 360)){
@@ -384,7 +441,15 @@ class MicrobeEditor{
                     if (organelle2.organelle.mpCost > mutationPoints){
                         return;
                     }
-                    _addOrganelle(organelle2);
+                    if(!(organelle2.organelle.needNucleus) || (organelle2.organelle.needNucleus  && nucleusIsPresent)) {
+                        if(organelle2.organelle.name == "nucleus" && !nucleusIsPresent ) {
+                            _addOrganelle(organelle2);
+                        } else if(organelle2.organelle.name != "nucleus") {
+                            _addOrganelle(organelle2);
+                        } else {
+                            return;
+                        }
+                    }
                  }
                 if (isValidPlacement(organelleType, -1*(r+q), q,(organelleRot+120) % 360)){
                     auto organelle3 = PlacedOrganelle(getOrganelleDefinition(organelleType),
@@ -392,7 +457,15 @@ class MicrobeEditor{
                     if (organelle3.organelle.mpCost > mutationPoints){
                         return;
                     }
-                    _addOrganelle(organelle3);
+                    if(!(organelle3.organelle.needNucleus) || (organelle3.organelle.needNucleus  && nucleusIsPresent)) {
+                        if(organelle3.organelle.name == "nucleus" && !nucleusIsPresent ) {
+                            _addOrganelle(organelle3);
+                        } else if(organelle3.organelle.name != "nucleus") {
+                            _addOrganelle(organelle3);
+                        } else {
+                            return;
+                        }
+                    }
                  }
                 if (isValidPlacement(organelleType, -1*q, -1*r,(organelleRot+180) % 360)){
                     auto organelle4 = PlacedOrganelle(getOrganelleDefinition(organelleType),
@@ -400,7 +473,15 @@ class MicrobeEditor{
                     if (organelle4.organelle.mpCost > mutationPoints){
                         return;
                     }
-                    _addOrganelle(organelle4);
+                   if(!(organelle4.organelle.needNucleus) || (organelle4.organelle.needNucleus  && nucleusIsPresent)) {
+                        if(organelle4.organelle.name == "nucleus" && !nucleusIsPresent ) {
+                            _addOrganelle(organelle4);
+                        } else if(organelle4.organelle.name != "nucleus") {
+                            _addOrganelle(organelle4);
+                        } else {
+                            return;
+                        }
+                    }
                  }
                 if (isValidPlacement(organelleType, r, -1*(r+q),(organelleRot+240) % 360)){
                     auto organelle5 = PlacedOrganelle(getOrganelleDefinition(organelleType),
@@ -408,7 +489,15 @@ class MicrobeEditor{
                     if (organelle5.organelle.mpCost > mutationPoints){
                         return;
                     }
-                    _addOrganelle(organelle5);
+                    if(!(organelle5.organelle.needNucleus) || (organelle5.organelle.needNucleus  && nucleusIsPresent)) {
+                        if(organelle5.organelle.name == "nucleus" && !nucleusIsPresent ) {
+                            _addOrganelle(organelle5);
+                        } else if(organelle5.organelle.name != "nucleus") {
+                            _addOrganelle(organelle5);
+                        } else {
+                            return;
+                        }
+                    }
                  }
                 if (isValidPlacement(organelleType, r+q, -1*q,(organelleRot+300) % 360)){
                     auto organelle6 = PlacedOrganelle(getOrganelleDefinition(organelleType),
@@ -416,9 +505,17 @@ class MicrobeEditor{
                     if (organelle6.organelle.mpCost > mutationPoints){
                         return;
                     }
-                    _addOrganelle(organelle6);
-                 }
-                 }
+                    if(!(organelle6.organelle.needNucleus) || (organelle6.organelle.needNucleus  && nucleusIsPresent)) {
+                        if(organelle6.organelle.name == "nucleus" && !nucleusIsPresent ) {
+                            _addOrganelle(organelle6);
+                        } else if(organelle6.organelle.name != "nucleus") {
+                            _addOrganelle(organelle6);
+                        } else {
+                            return;
+                        }
+                    }
+                }
+                }
             }
             break;
         }
