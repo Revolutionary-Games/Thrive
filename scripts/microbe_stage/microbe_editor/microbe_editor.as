@@ -432,6 +432,7 @@ class MicrobeEditor{
         mutationPoints = BASE_MUTATION_POINTS;
         nucleusIsPresent = 0;
         // TODO: if nucleus is created other cytho, with new microbe we lost everything and we cant add new organelles
+        // remove organelle functions should change
         EditorAction@ action = EditorAction(0,
             // redo
             function(EditorAction@ action, MicrobeEditor@ editor){
