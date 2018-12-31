@@ -302,7 +302,7 @@ class MicrobeEditor{
                     if (organelle.organelle.mpCost > mutationPoints){
                         return;
                     }
-                    
+
                     _addOrganelle(organelle);
                 }
             }
@@ -314,7 +314,7 @@ class MicrobeEditor{
                     if (organelle.organelle.mpCost > mutationPoints){
                         return;
                     }
-                   _addOrganelle(organelle);
+                    _addOrganelle(organelle);
                  }
                 if ((q != -1 * q || r != r + q)){
                     if (isValidPlacement(organelleType,-1*q, r+q, 360+(-1*organelleRot))){
@@ -364,8 +364,8 @@ class MicrobeEditor{
                         return;
                     }
                     _addOrganelle(organelle4);
-                }
-                }
+               }
+               }
             }
             break;
             case 3: {
@@ -418,8 +418,8 @@ class MicrobeEditor{
                         return;
                     }
                     _addOrganelle(organelle6);
-                }
-                }
+               }
+               }
             }
             break;
         }

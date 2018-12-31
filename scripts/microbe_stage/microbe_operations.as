@@ -306,7 +306,6 @@ void respawnPlayer(CellStageWorld@ world)
     GenericEvent@ checkExtinction = GenericEvent("CheckExtinction");
     NamedVars@ vars = checkExtinction.GetNamedVars();
     vars.AddValue(ScriptSafeVariableBlock("population", playerSpecies.population));
-
     GetEngine().GetEventHandler().CallEvent(checkExtinction);
 }
 
