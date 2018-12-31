@@ -667,7 +667,7 @@ void setupOrganelles(){
     nitrogenFixationProtien.chanceToCreate = 0;
     nitrogenFixationProtien.prokaryoteChance = 1;
     nitrogenFixationProtien.mpCost = 15;
-    nitrogenFixationProtien.needNucleus = 1;
+    nitrogenFixationProtien.needNucleus = 0;
     nitrogenFixationProtien.initialComposition = {
         {"phosphates", 1},
         {"ammonia",1}
