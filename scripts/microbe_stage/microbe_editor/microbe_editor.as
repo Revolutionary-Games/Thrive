@@ -277,10 +277,9 @@ class MicrobeEditor{
                 }
                 editor.getNucleus();
             });
+        @action.data["organelle"] = organelle;
 
-            @action.data["organelle"] = organelle;
-
-            enqueueAction(action);
+        enqueueAction(action);
         }
         else
         {
@@ -431,7 +430,7 @@ class MicrobeEditor{
                 if (isValidPlacement(organelleType, r+q, -1*q,(organelleRot+300) % 360)){
                     auto organelle6 = PlacedOrganelle(getOrganelleDefinition(organelleType),
                         r+q, -1*q,(organelleRot+300) % 360);
-                    
+
                     if (organelle6.organelle.mpCost > mutationPoints){
                         return;
                     }
