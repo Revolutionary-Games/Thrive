@@ -298,6 +298,7 @@ class MicrobeEditor{
                 if (isValidPlacement(organelleType, q, r, organelleRot)){
                     auto organelle = PlacedOrganelle(getOrganelleDefinition(organelleType),
                         q, r, organelleRot);
+
                     if (organelle.organelle.mpCost > mutationPoints){
                         return;
                     }
@@ -310,6 +311,7 @@ class MicrobeEditor{
                 if (isValidPlacement(organelleType, q, r, organelleRot)){
                     auto organelle = PlacedOrganelle(getOrganelleDefinition(organelleType),
                         q, r, organelleRot);
+
                     if (organelle.organelle.mpCost > mutationPoints){
                         return;
                     }
@@ -320,6 +322,7 @@ class MicrobeEditor{
                     if (isValidPlacement(organelleType,-1*q, r+q, 360+(-1*organelleRot))){
                         auto organelle2 = PlacedOrganelle(getOrganelleDefinition(organelleType),
                             -1*q, r+q, 360+(-1*organelleRot));
+
                         if (organelle2.organelle.mpCost > mutationPoints){
                             return;
                         }
@@ -344,6 +347,7 @@ class MicrobeEditor{
                 if (isValidPlacement(organelleType,-1*q, r+q, 360+(-1*organelleRot))){
                     auto organelle2 = PlacedOrganelle(getOrganelleDefinition(organelleType),
                         -1*q, r+q, 360+(-1*organelleRot));
+
                     if (organelle2.organelle.mpCost > mutationPoints){
                         return;
                     }
@@ -362,6 +366,7 @@ class MicrobeEditor{
                     (540+(-1*organelleRot)) % 360)){
                     auto organelle4 = PlacedOrganelle(getOrganelleDefinition(organelleType),
                         q, -1*(r+q),(540+(-1*organelleRot)) % 360);
+
                     if (organelle4.organelle.mpCost > mutationPoints){
                         return;
                     }
@@ -386,6 +391,7 @@ class MicrobeEditor{
                 if (isValidPlacement(organelleType, -1*r, r+q,(organelleRot+60) % 360)){
                     auto organelle2 = PlacedOrganelle(getOrganelleDefinition(organelleType),
                         -1*r, r+q,(organelleRot+60) % 360);
+
                     if (organelle2.organelle.mpCost > mutationPoints){
                         return;
                     }
@@ -395,6 +401,7 @@ class MicrobeEditor{
                 if (isValidPlacement(organelleType, -1*(r+q), q,(organelleRot+120) % 360)){
                     auto organelle3 = PlacedOrganelle(getOrganelleDefinition(organelleType),
                          -1*(r+q), q,(organelleRot+120) % 360);
+
                     if (organelle3.organelle.mpCost > mutationPoints){
                         return;
                     }
@@ -404,6 +411,7 @@ class MicrobeEditor{
                 if (isValidPlacement(organelleType, -1*q, -1*r,(organelleRot+180) % 360)){
                     auto organelle4 = PlacedOrganelle(getOrganelleDefinition(organelleType),
                         -1*q, -1*r,(organelleRot+180) % 360);
+
                     if (organelle4.organelle.mpCost > mutationPoints){
                         return;
                     }
@@ -413,6 +421,7 @@ class MicrobeEditor{
                 if (isValidPlacement(organelleType, r, -1*(r+q),(organelleRot+240) % 360)){
                     auto organelle5 = PlacedOrganelle(getOrganelleDefinition(organelleType),
                         r, -1*(r+q),(organelleRot+240) % 360);
+
                     if (organelle5.organelle.mpCost > mutationPoints){
                         return;
                     }
@@ -422,6 +431,7 @@ class MicrobeEditor{
                 if (isValidPlacement(organelleType, r+q, -1*q,(organelleRot+300) % 360)){
                     auto organelle6 = PlacedOrganelle(getOrganelleDefinition(organelleType),
                         r+q, -1*q,(organelleRot+300) % 360);
+                    
                     if (organelle6.organelle.mpCost > mutationPoints){
                         return;
                     }
