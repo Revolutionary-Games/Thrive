@@ -50,6 +50,7 @@ class MicrobeEditor{
         eventListener.RegisterForEvent("UndoClicked");
 
         placementFunctions = {
+            {"nucleus", PlacementFunctionType(this.createNewMicrobe)},
             {"nucleus", PlacementFunctionType(this.addOrganelle)},
             {"flagellum", PlacementFunctionType(this.addOrganelle)},
             {"cytoplasm", PlacementFunctionType(this.addOrganelle)},
@@ -429,6 +430,8 @@ class MicrobeEditor{
     {
         // organelleCount = 0;
         mutationPoints = BASE_MUTATION_POINTS;
+        nucleusIsPresent = 0;
+        // TODO: if nucleus is created other cytho, with new microbe we lost everything and we cant add new organelles
         EditorAction@ action = EditorAction(0,
             // redo
             function(EditorAction@ action, MicrobeEditor@ editor){
