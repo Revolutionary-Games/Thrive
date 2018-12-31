@@ -228,8 +228,8 @@ class Organelle{
     //! Cost in mutation points
     int mpCost = 0;
 
-    //! organelle can need nucleus or not
-    bool needNucleus = false;
+    //! organelle can need nucleus or not 0 not 1 yes 2 is nucleus organelle
+    uint8 needNucleus = 0;
 }
 
 enum ORGANELLE_HEALTH{
