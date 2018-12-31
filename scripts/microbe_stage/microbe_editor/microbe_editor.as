@@ -224,7 +224,7 @@ class MicrobeEditor{
 
 
     private void _addOrganelle(PlacedOrganelle@ organelle)
-    {   
+    {
         if((organelle.organelle.needNucleus <= nucleusIsPresent) || (organelle.organelle.needNucleus == 2 && nucleusIsPresent == 0))
         {
             LOG_INFO("you can put this organelle");
@@ -281,8 +281,8 @@ class MicrobeEditor{
             @action.data["organelle"] = organelle;
 
             enqueueAction(action);
-        } 
-        else 
+        }
+        else
         {
             LOG_INFO("you can't put this organelle");
         }
@@ -301,7 +301,7 @@ class MicrobeEditor{
                     if (organelle.organelle.mpCost > mutationPoints){
                         return;
                     }
-                    
+
                     _addOrganelle(organelle);
                 }
             }
@@ -416,7 +416,7 @@ class MicrobeEditor{
                     if (organelle5.organelle.mpCost > mutationPoints){
                         return;
                     }
-                    
+
                     _addOrganelle(organelle5);
                  }
                 if (isValidPlacement(organelleType, r+q, -1*q,(organelleRot+300) % 360)){
