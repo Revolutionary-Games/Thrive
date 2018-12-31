@@ -1030,14 +1030,16 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, bool aiControlled,
         return entity;
     }
 
-    auto processor = world.GetComponent_ProcessorComponent(entity);
+    auto processor = world.GetComponent_ProcessorComponent(speciesEntity);
 
     if(processor is null){
         LOG_ERROR("Microbe species '" + microbeComponent.speciesName +
             "' doesn't have a processor component");
     } else {
-
-        compoundBag.setProcessor(processor, microbeComponent.speciesName);
+       //Safely initiate processor component
+       //may wrap this into apply template or something else
+       Species::initLocalProcessorComponent(world,species,entity);
+       compoundBag.setProcessor(processorComponent,microbeComponent.speciesName);
     }
 
     if(microbeComponent.organelles.length() > 0)
@@ -1045,6 +1047,7 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, bool aiControlled,
 
     // Apply the template //
     auto shape = world.GetPhysicalWorld().CreateCompound();
+    //Maybe wrap it into applytemplate
     Species::applyTemplate(world, entity, species, shape);
 
     // ------------------------------------ //

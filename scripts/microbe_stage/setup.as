@@ -234,6 +234,8 @@ void onReturnFromEditor(CellStageWorld@ world)
 
     // Call this before creating the clone.
     Species::initProcessorComponent(world, player, ourActualSpecies);
+    // Can probabbly wrap this into the usual init to keep things clean
+    Species::initLocalProcessorComponent(world,ourActualSpecies,player);
 
     PlayerSpeciesSpawner factory("Default");
     auto spawned = factory.factorySpawn(world, pos._Position);
