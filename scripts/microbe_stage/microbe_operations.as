@@ -1030,7 +1030,7 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, bool aiControlled,
         return entity;
     }
 
-    auto processor = world.GetComponent_ProcessorComponent(speciesEntity);
+    auto processor = world.GetComponent_ProcessorComponent(entity);
 
     if(processor is null){
         LOG_ERROR("Microbe species '" + microbeComponent.speciesName +
