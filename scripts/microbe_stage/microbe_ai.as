@@ -269,7 +269,7 @@ class MicrobeAISystem : ScriptSystem{
                 // But that may be rather arcane to read through code wise. SO im not sure.
 
                 if ((aiComponent.speciesAggression==MAX_SPECIES_AGRESSION) or
-                    ((((numberOfAgentVacuoles+microbeComponent.organelles.length())*1.0f)*(aiComponent.speciesAggression/AGRESSION_DIVISOR)) >
+                    ((((numberOfAgentVacuoles+microbeComponent.organelles.length())*1.5f)*(aiComponent.speciesAggression/AGRESSION_DIVISOR)) >
                     (secondMicrobeComponent.organelles.length()*1.0f)))
                     {
                     //You are non-threatening to me
@@ -327,7 +327,7 @@ class MicrobeAISystem : ScriptSystem{
             // At max fear add them all
             if (allMicrobes[i] != microbeEntity && (secondMicrobeComponent.speciesName != microbeComponent.speciesName) && !secondMicrobeComponent.dead)
             {
-            if ((aiComponent.speciesFear==MAX_SPECIES_FEAR) or ((((numberOfAgentVacuoles+secondMicrobeComponent.organelles.length())*1.0f)*(aiComponent.speciesFear/FEAR_DIVISOR)) >
+            if ((aiComponent.speciesFear==MAX_SPECIES_FEAR) or ((((numberOfAgentVacuoles+secondMicrobeComponent.organelles.length())*1.5f)*(aiComponent.speciesFear/FEAR_DIVISOR)) >
             (microbeComponent.organelles.length()*1.0f)))
                 {
                 //You are bigger then me and i am afraid of that
