@@ -216,7 +216,7 @@ void onReturnFromEditor(CellStageWorld@ world)
     playerSpecies.population += 30;
     ++playerSpecies.generation;
 
-    //Call event that checks win conditions
+    // Call event that checks win conditions
     GenericEvent@ event = GenericEvent("CheckWin");
     NamedVars@ vars = event.GetNamedVars();
     vars.AddValue(ScriptSafeVariableBlock("generation", playerSpecies.generation));
@@ -234,6 +234,9 @@ void onReturnFromEditor(CellStageWorld@ world)
 
     // Call this before creating the clone.
     Species::initProcessorComponent(world, player, ourActualSpecies);
+    // Can probabbly wrap this into the usual init to keep things clean
+    // This makes sure that the player's processer are up to date with their species
+    Species::copyProcessesFromSpecies(world, ourActualSpecies, player);
 
     PlayerSpeciesSpawner factory("Default");
     auto spawned = factory.factorySpawn(world, pos._Position);
