@@ -580,6 +580,9 @@ class MicrobeAISystem : ScriptSystem{
             aiComponent.lifeState = PLANTLIKE_STATE;
             }
         }
+
+        //Add check here to see if a predator is "nearby" if so, flee (should be based on personality values)
+
         }
 
     // For doing run and tumble
