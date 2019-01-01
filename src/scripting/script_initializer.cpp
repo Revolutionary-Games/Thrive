@@ -485,6 +485,14 @@ bool
         return false;
 
     if(engine->RegisterObjectMethod("ProcessorComponent",
+           "ProcessorComponent& opAssign(const ProcessorComponent &in other)",
+           asMETHODPR(ProcessorComponent, operator=,(const ProcessorComponent&),
+               ProcessorComponent&),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("ProcessorComponent",
            "void setCapacity(BioProcessId id, double capacity)",
            asMETHOD(ProcessorComponent, setCapacity), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
@@ -739,13 +747,6 @@ bool
            "double getUsedLastTime(CompoundId compound)",
            asMETHOD(CompoundBagComponent, getUsedLastTime),
            asCALL_THISCALL) < 0) {
-        ANGELSCRIPT_REGISTERFAIL;
-    }
-
-    if(engine->RegisterObjectMethod("CompoundBagComponent",
-           "void setProcessor(ProcessorComponent@ processor, const string &in "
-           "speciesName)",
-           asMETHOD(CompoundBagComponent, setProcessor), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
