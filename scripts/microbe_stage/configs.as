@@ -64,8 +64,8 @@ const auto MIN_BACTERIAL_LINE_SIZE =  3;
 const auto MAX_BACTERIAL_LINE_SIZE = 6;
 
 // What is divided during fear and aggression calculations in the AI
-const auto AGRESSION_DIVISOR = 100.0f;
-const auto FEAR_DIVISOR = 100.0f;
+const auto AGRESSION_DIVISOR = 25.0f;
+const auto FEAR_DIVISOR = 25.0f;
 const auto ACTIVITY_DIVISOR = 100.0f;
 const auto FOCUS_DIVISOR = 100.0f;
 
