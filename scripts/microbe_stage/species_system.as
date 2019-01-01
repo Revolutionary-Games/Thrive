@@ -1382,6 +1382,33 @@ void initProcessorComponent(CellStageWorld@ world,
     }
 }
 
+//! This function copies process data from a species to an entity with a ProcessorComponent
+void copyProcessesFromSpecies(CellStageWorld@ world,
+    SpeciesComponent@ speciesComponent, ObjectID entity)
+{
+    ProcessorComponent@ cellProcessorComponent = world.GetComponent_ProcessorComponent(
+        entity);
+
+    if(cellProcessorComponent is null)
+    {
+        LOG_ERROR("Entity doesn't have a ProcessorComponent for process copy target");
+        return;
+    }
+
+    auto speciesEntity = findSpeciesEntityByName(world, speciesComponent.name);
+
+    ProcessorComponent@ speciesProcessor = world.GetComponent_ProcessorComponent(
+        speciesEntity);
+
+    if(speciesProcessor is null){
+        LOG_ERROR("Species lacks processor component for copying processes from");
+        return;
+    }
+
+    // Use assignment operator to copy all data
+    cellProcessorComponent = speciesProcessor;
+}
+
 //! Creates a species from the initial template. This doesn't register with SpeciesSystem
 //! because this is (currently) only used for the player's species which isn't managed by it
 ObjectID createSpecies(CellStageWorld@ world, const string &in name,

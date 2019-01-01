@@ -16,48 +16,27 @@ using namespace thrive;
 
 ProcessorComponent::ProcessorComponent() : Leviathan::Component(TYPE) {}
 
-/*
-void
-ProcessorComponent::load(const StorageContainer& storage)
+ProcessorComponent::ProcessorComponent(ProcessorComponent&& other) noexcept :
+    Leviathan::Component(TYPE),
+    m_processCapacities(std::move(other.m_processCapacities))
+{}
+// ------------------------------------ //
+ProcessorComponent&
+    ProcessorComponent::operator=(const ProcessorComponent& other)
 {
-    Component::load(storage);
-    StorageContainer processes = storage.get<StorageContainer>("processes");
-    for (const std::string& id : processes.keys())
-    {
-        this->process_capacities[std::atoi(id.c_str())] =
-processes.get<double>(id);
-    }
+    m_processCapacities = other.m_processCapacities;
+    return *this;
 }
 
-StorageContainer
-ProcessorComponent::storage() const
+ProcessorComponent&
+    ProcessorComponent::operator=(ProcessorComponent&& other) noexcept
 {
-    StorageContainer storage = Component::storage();
-
-    StorageContainer processes;
-    for (auto entry : this->process_capacities) {
-        processes.set<double>(std::to_string(static_cast<int>(entry.first)),
-entry.second);
-    }
-    storage.set<StorageContainer>("processes", processes);
-
-
-    return storage;
-}
-*/
-
-void
-    ProcessorComponent::setCapacity(BioProcessId id, double capacity)
-{
-    this->process_capacities[id] = capacity;
+    m_processCapacities = std::move(other.m_processCapacities);
+    return *this;
 }
 
-double
-    ProcessorComponent::getCapacity(BioProcessId id)
-{
-    return this->process_capacities[id];
-}
-
+// ------------------------------------ //
+// CompoundBagComponent
 CompoundBagComponent::CompoundBagComponent() : Leviathan::Component(TYPE)
 {
     storageSpace = 0;
@@ -100,13 +79,6 @@ demand.get<double>(id);
             Game::instance().engine().getCurrentGameStateFromLua()).
         getComponent(ProcessorComponent::TYPE_ID));
 }*/
-void
-    CompoundBagComponent::setProcessor(ProcessorComponent* processor,
-        const std::string& speciesName)
-{
-    this->processor = processor;
-    this->speciesName = speciesName;
-}
 
 // helper methods for integrating compound bags with current, un-refactored, lua
 // microbes
@@ -176,12 +148,7 @@ void
     for(auto& value : CachedComponents.GetIndex()) {
 
         CompoundBagComponent& bag = std::get<0>(*value.second);
-        ProcessorComponent* processor = bag.processor;
-
-        if(!processor) {
-            LOG_ERROR("Compound Bag Lacks Processor component");
-            continue;
-        }
+        ProcessorComponent& processor = std::get<1>(*value.second);
 
         // Set all compounds to price 0 initially, set used ones to 1, this way
         // we can purge unused compounds, I think we may be able to merge this
@@ -191,20 +158,18 @@ void
             compoundData.price = 0;
         }
 
-        // LOG_INFO("Capacities:" +
-        // std::to_string(processor->process_capacities.size()));
-        for(const auto& process : processor->process_capacities) {
+        for(const auto& process : processor.m_processCapacities) {
             const BioProcessId processId = process.first;
             const double processCapacity = process.second;
+
+            // If capacity is 0 dont do it
+            if(processCapacity <= 0.0f)
+                continue;
 
             // Processes are now every second
             const double processLimitCapacity = logicTime;
 
-            // If capcity is 0 dont do it
-            if(processCapacity <= 0.0f)
-                continue;
-
-            // TODO: this is a sanity check for incorrect process configuration
+            // This is a sanity check for incorrect process configuration
             if(processId >=
                 SimulationParameters::bioProcessRegistry.getSize()) {
 
@@ -310,7 +275,7 @@ void
             }
 
             // TODO: fix this comment I (hhyyrylainen) have no idea
-            // what this does or why this is here
+            // what this does or why this is here:
             // That way we always have a running tally of what process was set
             // to what despite clearing the price every run cycle
             compoundData.usedLastTime = compoundData.price;

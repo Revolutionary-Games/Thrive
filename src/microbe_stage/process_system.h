@@ -23,30 +23,39 @@ namespace thrive {
 
 class CellStageWorld;
 
+//! \brief Specifies what processes a cell can perform
+//! \todo To reduce duplication and excess memory usage the processes should
+//! be moved to a new class ProcessConfiguration
+//! which would be ReferenceCounted and shared
+//! `ProcessConfiguration::pointer m_processes`
 class ProcessorComponent : public Leviathan::Component {
-
 public:
     ProcessorComponent();
-    /*
-    void
-    load(
-        const StorageContainer& storage
-    ) override;
+    ProcessorComponent(ProcessorComponent&& other) noexcept;
 
-    StorageContainer
-    storage() const override;
-    */
+    ProcessorComponent&
+        operator=(const ProcessorComponent& other);
+    ProcessorComponent&
+        operator=(ProcessorComponent&& other) noexcept;
 
-    std::unordered_map<BioProcessId, double> process_capacities;
-    void
-        setCapacity(BioProcessId id, double capacity);
-    double
-        getCapacity(BioProcessId id);
+    inline void
+        setCapacity(BioProcessId id, double capacity)
+    {
+        m_processCapacities[id] = capacity;
+    }
+
+    inline double
+        getCapacity(BioProcessId id)
+    {
+        return m_processCapacities[id];
+    }
 
     REFERENCE_HANDLE_UNCOUNTED_TYPE(ProcessorComponent);
 
     static constexpr auto TYPE =
         componentTypeConvert(THRIVE_COMPONENT::PROCESSOR);
+
+    std::unordered_map<BioProcessId, double> m_processCapacities;
 };
 
 // Helper structure to store the economic information of the compounds.
@@ -56,31 +65,14 @@ struct CompoundData {
     double usedLastTime;
 };
 
-//! \todo This component depends on an instance of processor so that needs
-//! registering
+//! \brief A thing that holds compounds
 class CompoundBagComponent : public Leviathan::Component {
 public:
     CompoundBagComponent();
 
-    /*
-    void
-    load(
-        const StorageContainer& storage
-    ) override;
-
-    StorageContainer
-    storage() const override;
-    */
-
     double storageSpace;
     double storageSpaceOccupied;
-    ProcessorComponent* processor = nullptr;
-    std::string speciesName;
     std::unordered_map<CompoundId, CompoundData> compounds;
-
-    void
-        setProcessor(ProcessorComponent* processor,
-            const std::string& speciesName);
 
     double getCompoundAmount(CompoundId);
 
