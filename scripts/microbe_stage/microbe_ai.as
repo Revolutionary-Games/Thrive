@@ -210,7 +210,7 @@ class MicrobeAISystem : ScriptSystem{
                         else{
                             if (GetEngine().GetRandom().GetNumber(0.0f,400.0f) <=  aiComponent.speciesActivity){
                                 //LOG_INFO("gather only");
-                                aiComponent.lifeState = NEUTRAL_STATE;
+                                aiComponent.lifeState = PLANTLIKE_STATE;
                                 aiComponent.boredom=0;
                                 }
                             else{
@@ -535,23 +535,25 @@ class MicrobeAISystem : ScriptSystem{
             {
             //LOG_INFO("Both");
             if (GetEngine().GetRandom().GetNumber(0.0f,aiComponent.speciesAggression) >
-                    GetEngine().GetRandom().GetNumber(0.0f,aiComponent.speciesFear)){
+                    GetEngine().GetRandom().GetNumber(0.0f,aiComponent.speciesFear) &&
+                        (aiComponent.preyMicrobes.length() > 0)){
                     aiComponent.lifeState = PREDATING_STATE;
                 }
             else if (GetEngine().GetRandom().GetNumber(0.0f,aiComponent.speciesAggression) <
-                    GetEngine().GetRandom().GetNumber(0.0f,aiComponent.speciesFear)){
+                    GetEngine().GetRandom().GetNumber(0.0f,aiComponent.speciesFear)&&
+                        (aiComponent.predatoryMicrobes.length() > 0)){
                     //aiComponent.lifeState = PREDATING_STATE;
                     aiComponent.lifeState = FLEEING_STATE;
                 }
-            else if (aiComponent.speciesAggression == aiComponent.speciesFear){
+            else if (aiComponent.speciesAggression == aiComponent.speciesFear &&
+                (aiComponent.preyMicrobes.length() > 0)){
                     // Prefer predating (makes game more fun)
                     aiComponent.lifeState  = PREDATING_STATE;
                 }
-                // I want gathering to trigger more often so i added this here. Because even with predators and prey around its still important to eat compounds
-                if (GetEngine().GetRandom().GetNumber(0.0f,500.0f) <=
-                    aiComponent.speciesFocus && GetEngine().GetRandom().GetNumber(0,10) <= 2){
-                    aiComponent.lifeState = GATHERING_STATE;
-                }
+            else if (GetEngine().GetRandom().GetNumber(0.0f,500.0f) <=
+                aiComponent.speciesFocus && GetEngine().GetRandom().GetNumber(0,10) <= 2){
+                aiComponent.lifeState = GATHERING_STATE;
+            }
             }
         else if (prey != NULL_OBJECT){
             //LOG_INFO("prey only");
