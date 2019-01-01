@@ -1382,73 +1382,31 @@ void initProcessorComponent(CellStageWorld@ world,
     }
 }
 
-void initLocalProcessorComponent(CellStageWorld@ world,
+//! This function copies process data from a species to an entity with a ProcessorComponent
+void copyProcessesFromSpecies(CellStageWorld@ world,
     SpeciesComponent@ speciesComponent, ObjectID entity)
 {
-    assert(speciesComponent.organelles.length() > 0, "initProcessorComponent given a "
-        "species that has no organelles");
-    auto speciesEntity = findSpeciesEntityByName(world, speciesComponent.name);
-
     ProcessorComponent@ cellProcessorComponent = world.GetComponent_ProcessorComponent(
         entity);
 
-    if (cellProcessorComponent is null)
-        {
-        LOG_ERROR("Species lacks processor component for new cell");
-        //Exit safely
+    if(cellProcessorComponent is null)
+    {
+        LOG_ERROR("Entity doesn't have a ProcessorComponent for process copy target");
         return;
-        }
-    dictionary capacities;
-    for(uint i = 0; i < speciesComponent.organelles.length(); i++){
-
-        const Organelle@ organelleDefinition = cast<PlacedOrganelle>(speciesComponent.organelles[i]).organelle;
-        if(organelleDefinition is null){
-
-            LOG_ERROR("Organelle table has a null organelle in it, position: " + i +
-                "', that was added to a species entity");
-            continue;
-        }
-
-        for(uint processNumber = 0;
-            processNumber < organelleDefinition.processes.length(); ++processNumber)
-        {
-            // This name needs to match the one in bioProcessRegistry
-            TweakedProcess@ process = organelleDefinition.processes[processNumber];
-
-            if(!capacities.exists(process.process.internalName)){
-                capacities[process.process.internalName] = double(0.0f);
-            }
-
-            // Here the second capacities[process.name] was initially capacities[process]
-            // but the processes are just strings inside the Organelle class
-            capacities[process.process.internalName] = double(capacities[
-                    process.process.internalName]) +
-                process.capacity;
-        }
     }
 
-    uint64 processCount = SimulationParameters::bioProcessRegistry().getSize();
-    for(BioProcessId bioProcessId = 0; bioProcessId < processCount; ++bioProcessId){
-        auto processName = SimulationParameters::bioProcessRegistry().getInternalName(
-            bioProcessId);
+    auto speciesEntity = findSpeciesEntityByName(world, speciesComponent.name);
 
-        if(capacities.exists(processName)){
-            double capacity;
-            if(!capacities.get(processName, capacity)){
-                LOG_ERROR("capacities has invalid value");
-                continue;
-            }
+    ProcessorComponent@ speciesProcessor = world.GetComponent_ProcessorComponent(
+        speciesEntity);
 
-            // LOG_INFO("Process: " + processName + " Capacity: " + capacity);
-            cellProcessorComponent.setCapacity(bioProcessId, capacity);
-        } else {
-            // If it doesnt exist:
-            capacities.set(processName, 0.0f);
-
-            // This is related to https://github.com/Revolutionary-Games/Thrive/issues/599
-            cellProcessorComponent.setCapacity(bioProcessId, 0.0f);
-        }
+    if(speciesProcessor is null){
+        LOG_ERROR("Species lacks processor component for copying processes from");
+        return;
     }
+
+    // Use assignment operator to copy all data
+    cellProcessorComponent = speciesProcessor;
 }
 
 //! Creates a species from the initial template. This doesn't register with SpeciesSystem

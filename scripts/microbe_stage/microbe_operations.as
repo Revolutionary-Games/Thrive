@@ -1036,10 +1036,9 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, bool aiControlled,
         LOG_ERROR("Microbe species '" + microbeComponent.speciesName +
             "' doesn't have a processor component");
     } else {
-       //Safely initiate processor component
-       //may wrap this into apply template or something else
-       Species::initLocalProcessorComponent(world,species,entity);
-       compoundBag.setProcessor(processorComponent,microbeComponent.speciesName);
+        // Each microbe now has their own processor component to allow
+        // the process system to run safely while species are deleted
+        Species::copyProcessesFromSpecies(world, species, entity);
     }
 
     if(microbeComponent.organelles.length() > 0)
@@ -1047,7 +1046,11 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, bool aiControlled,
 
     // Apply the template //
     auto shape = world.GetPhysicalWorld().CreateCompound();
-    //Maybe wrap it into applytemplate
+
+    // TODO: as now each microbe has a separate processor component they no longer stay
+    // up to date with the species so either this should apply the species processes OR
+    // there should be a ProcessConfiguration object that would be shared between the
+    // ProcessorComponent both in the species and individual cells
     Species::applyTemplate(world, entity, species, shape);
 
     // ------------------------------------ //
