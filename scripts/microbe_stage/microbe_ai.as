@@ -47,6 +47,7 @@ class MicrobeAIControllerComponent : ScriptComponent{
     float previousAngle = 0.0f;
     float compoundDifference=0;
     ObjectID prey = NULL_OBJECT;
+    bool preyPegged=false;
     // Prey and predator lists
     array<ObjectID> predatoryMicrobes;
     array<ObjectID> preyMicrobes;
@@ -143,9 +144,12 @@ class MicrobeAISystem : ScriptSystem{
                 // Clear the lists
                 aiComponent.predatoryMicrobes.removeRange(0,aiComponent.predatoryMicrobes.length());
                 aiComponent.preyMicrobes.removeRange(0,aiComponent.preyMicrobes.length());
-
-                // Update most feared microbe and most tasty microbe
                 ObjectID prey = getNearestPreyItem(components,allMicrobes);
+                // Peg your prey
+                if (!aiComponent.preyPegged){
+                    aiComponent.prey = prey;
+                    aiComponent.preyPegged=true;
+                }
                 ObjectID predator = getNearestPredatorItem(components,allMicrobes);
 
                 //30 seconds about
@@ -169,18 +173,21 @@ class MicrobeAISystem : ScriptSystem{
                     case PLANTLIKE_STATE:
                         {
                         // This ai would idealy just sit there, until it sees a nice opportunity pop-up unlike neutral, which wanders randomly (has a gather chance) until something interesting pops up
+                        aiComponent.preyPegged=false;
                         break;
                         }
                     case NEUTRAL_STATE:
                         {
                         //In this state you just sit there and analyze your environment
                         aiComponent.boredom=0;
-                        evaluateEnvironment(components,prey,predator);
+                        aiComponent.preyPegged=false;
+                        evaluateEnvironment(components,aiComponent.prey,predator);
                         break;
                         }
                     case GATHERING_STATE:
                         {
                         //In this state you gather compounds
+                        aiComponent.preyPegged=false;
                         doRunAndTumble(components);
                         break;
                         }
@@ -204,8 +211,8 @@ class MicrobeAISystem : ScriptSystem{
                         }
                     case PREDATING_STATE:
                         {
-                        if (prey != NULL_OBJECT){
-                            dealWithPrey(components,prey);
+                        if (aiComponent.prey != NULL_OBJECT){
+                            dealWithPrey(components,aiComponent.prey);
                             }
                         else{
                             if (GetEngine().GetRandom().GetNumber(0.0f,400.0f) <=  aiComponent.speciesActivity){
@@ -376,6 +383,7 @@ class MicrobeAISystem : ScriptSystem{
             // This is probabbly not working
             if (secondMicrobeComponent.dead == true){
                 aiComponent.hasTargetPosition = false;
+                aiComponent.preyPegged=false;
                 aiComponent.lifeState = GATHERING_STATE;
                 if (microbeComponent.engulfMode)
                     {
