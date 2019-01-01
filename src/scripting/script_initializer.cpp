@@ -762,12 +762,6 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-    if(engine->RegisterObjectProperty("CompoundBagComponent",
-           "string speciesName",
-           asOFFSET(CompoundBagComponent, speciesName)) < 0) {
-        ANGELSCRIPT_REGISTERFAIL;
-    }
-
     // ------------------------------------ //
     // CompoundAbsorberComponent
     if(engine->RegisterObjectType(
