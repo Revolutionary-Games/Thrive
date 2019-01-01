@@ -485,6 +485,14 @@ bool
         return false;
 
     if(engine->RegisterObjectMethod("ProcessorComponent",
+           "ProcessorComponent& opAssign(const ProcessorComponent &in other)",
+           asMETHODPR(ProcessorComponent, operator=,(const ProcessorComponent&),
+               ProcessorComponent&),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("ProcessorComponent",
            "void setCapacity(BioProcessId id, double capacity)",
            asMETHOD(ProcessorComponent, setCapacity), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
@@ -742,13 +750,6 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-    if(engine->RegisterObjectMethod("CompoundBagComponent",
-           "void setProcessor(ProcessorComponent@ processor, const string &in "
-           "speciesName)",
-           asMETHOD(CompoundBagComponent, setProcessor), asCALL_THISCALL) < 0) {
-        ANGELSCRIPT_REGISTERFAIL;
-    }
-
     if(engine->RegisterObjectProperty("CompoundBagComponent",
            "double storageSpace",
            asOFFSET(CompoundBagComponent, storageSpace)) < 0) {
@@ -758,12 +759,6 @@ bool
     if(engine->RegisterObjectProperty("CompoundBagComponent",
            "double storageSpaceOccupied",
            asOFFSET(CompoundBagComponent, storageSpaceOccupied)) < 0) {
-        ANGELSCRIPT_REGISTERFAIL;
-    }
-
-    if(engine->RegisterObjectProperty("CompoundBagComponent",
-           "string speciesName",
-           asOFFSET(CompoundBagComponent, speciesName)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
