@@ -296,8 +296,11 @@ void respawnPlayer(CellStageWorld@ world)
     }
 
     // Decrease the population by 20
-    playerSpecies.population -= 20;
-    if (playerSpecies.population < 0) {
+    if (playerSpecies.population >= 20)
+    {
+        playerSpecies.population -= 20;
+    }else
+    {
         playerSpecies.population = 0;
     }
 
