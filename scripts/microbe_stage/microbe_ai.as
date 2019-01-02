@@ -160,7 +160,7 @@ class MicrobeAISystem : ScriptSystem{
                 if (aiComponent.boredom == GetEngine().GetRandom().GetNumber(aiComponent.speciesFocus,1000.0f+aiComponent.speciesFocus)){
                     // Occassionally you need to reevaluate things
                     aiComponent.boredom = 0;
-                    if (GetEngine().GetRandom().GetNumber(0.0f,400.0f) <=  aiComponent.speciesActivity){
+                    if (rollCheck(aiComponent.speciesActivity, 400)){
                         //LOG_INFO("gather only");
                         aiComponent.lifeState = PLANTLIKE_STATE;
                     }
@@ -200,7 +200,7 @@ class MicrobeAISystem : ScriptSystem{
                             dealWithPredators(components,predator);
                             }
                         else{
-                            if (GetEngine().GetRandom().GetNumber(0.0f,400.0f) <=  aiComponent.speciesActivity){
+                            if (rollCheck(aiComponent.speciesActivity, 400)){
                                 //LOG_INFO("gather only");
                                 aiComponent.lifeState = PLANTLIKE_STATE;
                                 aiComponent.boredom=0;
@@ -217,7 +217,7 @@ class MicrobeAISystem : ScriptSystem{
                             dealWithPrey(components, aiComponent.prey, allMicrobes);
                             }
                         else{
-                            if (GetEngine().GetRandom().GetNumber(0.0f,400.0f) <=  aiComponent.speciesActivity){
+                            if (rollCheck(aiComponent.speciesActivity, 400)){
                                 //LOG_INFO("gather only");
                                 aiComponent.lifeState = PLANTLIKE_STATE;
                                 aiComponent.boredom=0;
@@ -238,7 +238,7 @@ class MicrobeAISystem : ScriptSystem{
                 }
             }
             }
-           
+
             //cache stored compounds for use in the next frame (For Run and tumble)
             aiComponent.compoundDifference = microbeComponent.stored-aiComponent.previousStoredCompounds;
             aiComponent.previousStoredCompounds = microbeComponent.stored;
@@ -534,8 +534,7 @@ class MicrobeAISystem : ScriptSystem{
 
            }
            //Freak out and fire toxins everywhere
-          if ((aiComponent.speciesAggression > aiComponent.speciesFear) &&
-                (aiComponent.speciesFocus >= GetEngine().GetRandom().GetNumber(0.0f,400.0f))){
+          if ((aiComponent.speciesAggression > aiComponent.speciesFear) && rollReverseCheck(aiComponent.speciesFocus, 400.0f)){
             if (microbeComponent.hitpoints > 0 && numberOfAgentVacuoles > 0 &&
                 (position._Position -  aiComponent.targetPosition).LengthSquared() <= aiComponent.speciesFocus*10.0f){
                     if (MicrobeOperations::getCompoundAmount(world,microbeEntity,oxytoxyId) >= MINIMUM_AGENT_EMISSION_AMOUNT){
@@ -544,7 +543,7 @@ class MicrobeAISystem : ScriptSystem{
                     }
           }
 
-        }
+    }
 
     // For for firguring out which state to enter
     void evaluateEnvironment(MicrobeAISystemCached@ components, ObjectID prey, ObjectID predator)
@@ -552,7 +551,7 @@ class MicrobeAISystem : ScriptSystem{
         //LOG_INFO("evaluating");
         MicrobeAIControllerComponent@ aiComponent = components.first;
         Position@ position = components.third;
-       if (GetEngine().GetRandom().GetNumber(0.0f,500.0f) <=  aiComponent.speciesActivity)
+       if (rollCheck(aiComponent.speciesActivity,500.0f))
             {
             aiComponent.lifeState = PLANTLIKE_STATE;
             aiComponent.boredom = 0;
@@ -577,8 +576,7 @@ class MicrobeAISystem : ScriptSystem{
                     // Prefer predating (makes game more fun)
                     aiComponent.lifeState  = PREDATING_STATE;
                 }
-            else if (GetEngine().GetRandom().GetNumber(0.0f,500.0f) <=
-                aiComponent.speciesFocus && GetEngine().GetRandom().GetNumber(0,10) <= 2){
+            else if (rollCheck(aiComponent.speciesFocus,500.0f) && GetEngine().GetRandom().GetNumber(0,10) <= 2){
                 aiComponent.lifeState = GATHERING_STATE;
             }
             }
@@ -590,8 +588,7 @@ class MicrobeAISystem : ScriptSystem{
             //LOG_INFO("predator only");
             aiComponent.lifeState = FLEEING_STATE;
             // I want gathering to trigger more often so i added this here. Because even with predators around you should still graze
-            if (GetEngine().GetRandom().GetNumber(0.0f,500.0f) <=
-                aiComponent.speciesFocus && GetEngine().GetRandom().GetNumber(0,10) <= 5){
+            if (rollCheck(aiComponent.speciesFocus,500.0f) && GetEngine().GetRandom().GetNumber(0,10) <= 5){
                     aiComponent.lifeState = GATHERING_STATE;
                 }
             }
@@ -601,7 +598,7 @@ class MicrobeAISystem : ScriptSystem{
             aiComponent.lifeState = GATHERING_STATE;
             }
         // Every 10 intervals or so
-        else if (GetEngine().GetRandom().GetNumber(0.0f,400.0f) <=  aiComponent.speciesActivity){
+        else if (rollCheck(aiComponent.speciesActivity,400.0f)){
             //LOG_INFO("gather only");
             aiComponent.lifeState = PLANTLIKE_STATE;
             }
@@ -665,6 +662,17 @@ class MicrobeAISystem : ScriptSystem{
         microbeComponent.movementDirection = Float3(0, 0, -AI_BASE_MOVEMENT);
         aiComponent.hasTargetPosition = true;
 
+    }
+
+    /* Personality checks */
+    //There are cases when we want either or, so heres two state rolls
+    //TODO: add method for rolling stat versus stat
+    bool rollCheck(double ourStat, double dc){
+        return (GetEngine().GetRandom().GetNumber(0.0f,dc) <=  ourStat);
+    }
+
+    bool rollReverseCheck(double ourStat, double dc){
+        return (ourStat >= GetEngine().GetRandom().GetNumber(0.0f,dc));
     }
 
     void Clear(){
