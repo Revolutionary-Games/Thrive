@@ -229,7 +229,16 @@ class MicrobeAISystem : ScriptSystem{
                         break;
                         }
                     }
+            //Add check here to see if a predator is "nearby" if so, flee (should be based on personality values)
+            //If it was ran in evaluate environment, it would only work if th microbe was in the neutral state.
+            if (predator != NULL_OBJECT){
+                Float3 testPosition = world.GetComponent_Position(predator)._Position;
+                if ((position._Position -  testPosition).LengthSquared() <= aiComponent.speciesFear*10){
+                    aiComponent.lifeState = FLEEING_STATE;
+                }
             }
+            }
+           
             //cache stored compounds for use in the next frame (For Run and tumble)
             aiComponent.compoundDifference = microbeComponent.stored-aiComponent.previousStoredCompounds;
             aiComponent.previousStoredCompounds = microbeComponent.stored;
@@ -542,6 +551,7 @@ class MicrobeAISystem : ScriptSystem{
         {
         //LOG_INFO("evaluating");
         MicrobeAIControllerComponent@ aiComponent = components.first;
+        Position@ position = components.third;
        if (GetEngine().GetRandom().GetNumber(0.0f,500.0f) <=  aiComponent.speciesActivity)
             {
             aiComponent.lifeState = PLANTLIKE_STATE;
@@ -596,8 +606,6 @@ class MicrobeAISystem : ScriptSystem{
             aiComponent.lifeState = PLANTLIKE_STATE;
             }
         }
-        //Add check here to see if a predator is "nearby" if so, flee (should be based on personality values)
-
         }
 
     // For doing run and tumble
