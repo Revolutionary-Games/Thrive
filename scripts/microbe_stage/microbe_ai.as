@@ -197,6 +197,7 @@ class MicrobeAISystem : ScriptSystem{
                         {
                         //In this state you run from preadtory microbes
                         if (predator != NULL_OBJECT){
+                            aiComponent.hasTargetPosition = false;
                             dealWithPredators(components,predator);
                             }
                         else{
@@ -219,7 +220,7 @@ class MicrobeAISystem : ScriptSystem{
                         else{
                             if (rollCheck(aiComponent.speciesActivity, 400)){
                                 //LOG_INFO("gather only");
-                                aiComponent.lifeState = PLANTLIKE_STATE;
+                                aiComponent.lifeState = NEUTRAL_STATE;
                                 aiComponent.boredom=0;
                                 }
                             else{
@@ -229,12 +230,21 @@ class MicrobeAISystem : ScriptSystem{
                         break;
                         }
                     }
-            //Add check here to see if a predator is "nearby" if so, flee (should be based on personality values)
-            //If it was ran in evaluate environment, it would only work if th microbe was in the neutral state.
-            if (predator != NULL_OBJECT){
+
+            /* Check if we are willing to run, and there is a predator nearby, if so, flee for your life
+               If it was ran in evaluate environment, it would only work if the microbe was in the neutral state.
+               So think of this as a "reflex" maybe it should go in its own "doReflex" method,
+               because we may need more of these very specific things in the future for things like latching onto rocks */
+            // If you are predating and not being engulfed, don't run away until you switch state (keeps predators chasing you even when their predators are nearby)
+            // Its not a good survival strategy but it makes the game more fun.
+            if (predator != NULL_OBJECT && (aiComponent.lifeState != PREDATING_STATE || microbeComponent.isBeingEngulfed)){
                 Float3 testPosition = world.GetComponent_Position(predator)._Position;
-                if ((position._Position -  testPosition).LengthSquared() <= aiComponent.speciesFear*10){
-                    aiComponent.lifeState = FLEEING_STATE;
+                if (rollCheck(aiComponent.speciesFear, 500) || microbeComponent.isBeingEngulfed){
+                    MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
+                        world.GetScriptComponentHolder("MicrobeComponent").Find(predator));
+                    if ((position._Position -  testPosition).LengthSquared() <= 400+(secondMicrobeComponent.organelles.length()*4.0f)){
+                        aiComponent.lifeState = FLEEING_STATE;
+                    }
                 }
             }
             }
@@ -448,7 +458,7 @@ class MicrobeAISystem : ScriptSystem{
             }
         }
 
-    // For self defense (not nessessarily fleeing)
+    // For self defense (not necessarily fleeing)
     void dealWithPredators(MicrobeAISystemCached@ components, ObjectID predator)
     {
         ObjectID microbeEntity = components.entity;
@@ -476,63 +486,28 @@ class MicrobeAISystem : ScriptSystem{
             int numberOfAgentVacuoles = int(
                 microbeComponent.specialStorageOrganelles[formatUInt(oxytoxyId)]);
 
-            if (GetEngine().GetRandom().GetNumber(0,100) <= 40){
+            // If focused you can run away more specifically, if not you freak out and scatter
+            if (!rollCheck(aiComponent.speciesFocus,500.0f)){
                 // Scatter
                 auto randAngle = GetEngine().GetRandom().GetFloat(-2*PI, 2*PI);
                 auto randDist = GetEngine().GetRandom().GetFloat(200,aiComponent.movementRadius*10);
                 aiComponent.targetPosition = Float3(cos(randAngle) * randDist,0, sin(randAngle)* randDist);
-                auto vec = (aiComponent.targetPosition - position._Position);
-                aiComponent.direction = vec.Normalize();
-                microbeComponent.facingTargetPoint = aiComponent.targetPosition;
-                microbeComponent.movementDirection = Float3(0, 0, -AI_BASE_MOVEMENT);
-                aiComponent.hasTargetPosition = true;
                 }
             else
                 {
                 // Run specifically away
-                int choice = GetEngine().GetRandom().GetNumber(0,3);
-                switch (choice)
-                {
-                case 0:
-                if (world.GetComponent_Position(predator)._Position.X >= position._Position.X){
-                        aiComponent.targetPosition =
-                            Float3(GetEngine().GetRandom().GetFloat(-10.0f,-100.0f),1.0,1.0)*
-                            world.GetComponent_Position(predator)._Position;
-                        }
-                    else{
-                        aiComponent.targetPosition =
-                            Float3(GetEngine().GetRandom().GetFloat(20.0f,100.0f),1.0,1.0)*
-                            world.GetComponent_Position(predator)._Position;
-                        }
-                break;
-                case 1:
-                if (world.GetComponent_Position(predator)._Position.Z >= position._Position.Z){
-                        aiComponent.targetPosition =
-                        Float3(1.0,1.0,GetEngine().GetRandom().GetFloat(-10.0f,-100.0f))*
-                        world.GetComponent_Position(predator)._Position;
-                        }
-                    else {
-                        aiComponent.targetPosition =
-                        Float3(1.0,1.0,GetEngine().GetRandom().GetFloat(20.0f,100.0f))*
-                        world.GetComponent_Position(predator)._Position;
-                        }
-                break;
-                case 2:
-                case 3:
                 aiComponent.targetPosition =
-                        Float3(GetEngine().GetRandom().GetFloat(-100.0f,100.0f),1.0,
-                        GetEngine().GetRandom().GetFloat(-100.0f,100.0f))*
+                    Float3(GetEngine().GetRandom().GetFloat(-1000.0f,1000.0f),1.0,
+                        GetEngine().GetRandom().GetFloat(-1000.0f,1000.0f))*
                         world.GetComponent_Position(predator)._Position;
-                break;
                 }
 
                 auto vec = (aiComponent.targetPosition - position._Position);
                 aiComponent.direction = vec.Normalize();
                 microbeComponent.facingTargetPoint = aiComponent.targetPosition;
-                microbeComponent.movementDirection = Float3(0, 0, -AI_BASE_MOVEMENT);
+                microbeComponent.movementDirection = Float3(0, 0, -(AI_BASE_MOVEMENT));
                 aiComponent.hasTargetPosition = true;
 
-           }
            //Freak out and fire toxins everywhere
           if ((aiComponent.speciesAggression > aiComponent.speciesFear) && rollReverseCheck(aiComponent.speciesFocus, 400.0f)){
             if (microbeComponent.hitpoints > 0 && numberOfAgentVacuoles > 0 &&
