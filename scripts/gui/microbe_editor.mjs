@@ -63,6 +63,9 @@ const organelleSelectionElements = [
     {
         element: document.getElementById("addChromatophor"),
         organelle: "chromatophors"
+    },
+        element: document.getElementById("addNucleus"),
+        organelle: "nucleus"
     }
 
     // AddPilus
