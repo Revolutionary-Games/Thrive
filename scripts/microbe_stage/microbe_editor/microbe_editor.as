@@ -51,6 +51,7 @@ class MicrobeEditor{
 
         placementFunctions = {
             {"nucleus", PlacementFunctionType(this.createNewMicrobe)},
+            {"nucleus", PlacementFunctionType(this.addOrganelle)},
             {"flagellum", PlacementFunctionType(this.addOrganelle)},
             {"cytoplasm", PlacementFunctionType(this.addOrganelle)},
             {"mitochondrion", PlacementFunctionType(this.addOrganelle)},
@@ -69,6 +70,7 @@ class MicrobeEditor{
     //! This is called each time the editor is entered so this needs to properly reset state
     void init()
     {
+        getNucleusIsPresent();
         gridSceneNode = hudSystem.world.CreateEntity();
         auto node = hudSystem.world.Create_RenderNode(gridSceneNode);
         node.Scale = Float3(HEX_SIZE, 1, HEX_SIZE);
@@ -228,6 +230,8 @@ class MicrobeEditor{
 
     private void _addOrganelle(PlacedOrganelle@ organelle)
     {
+        if((!organelle.organelle.needNucleus && organelle.organelle.name != "nucleus") || (organelle.organelle.needNucleus && isNucleusPresent) || (organelle.organelle.name == "nucleus" && !isNucleusPresent))
+        {
         EditorAction@ action = EditorAction(organelle.organelle.mpCost,
             // redo
             function(EditorAction@ action, MicrobeEditor@ editor){
@@ -256,6 +260,9 @@ class MicrobeEditor{
                 LOG_INFO("Placing organelle '" + organelle.organelle.name + "' at: " +
                     organelle.q + ", " + organelle.r);
                 editor.editedMicrobe.insertLast(organelle);
+
+                //check if nucleus has added
+                editor.getNucleusIsPresent();
             },
             // undo
             function(EditorAction@ action, MicrobeEditor@ editor){
@@ -274,11 +281,19 @@ class MicrobeEditor{
                     }
 
                 }
+
+                //check if nucleus has been removed
+                editor.getNucleusIsPresent();
             });
 
         @action.data["organelle"] = organelle;
 
         enqueueAction(action);
+        }
+        else
+        {   // debug only
+            LOG_INFO("cannot put this organelle");
+        }
     }
 
     void addOrganelle(const string &in organelleType)
@@ -562,6 +577,26 @@ class MicrobeEditor{
         // LOG_WRITE("Mouse hex: " + qr + ", " + rr);
     }
 
+
+    void getNucleusIsPresent()
+    {
+        double lengthMicrobe = double(editedMicrobe.length());
+        for(uint i = 0; i < editedMicrobe.length(); ++i){
+            auto organelle = cast<PlacedOrganelle>(editedMicrobe[i]);
+            auto name = organelle.organelle.name;
+            if (name=="nucleus"){
+                isNucleusPresent = true;
+                LOG_INFO("Nucleus is present!");
+                break;
+            }
+            else {
+                isNucleusPresent = false;
+            }
+        }
+        if(isNucleusPresent == false) {
+            LOG_INFO("Nucleus is NOT present!");
+        }
+    }
 
     bool isValidPlacement(const string &in organelleType, int q, int r,
         int rotation)
@@ -994,6 +1029,8 @@ class MicrobeEditor{
     // private auto nextMicrobeEntity;
     // private dictionary occupiedHexes;
 
+    // determine if nucleus is present in current cell
+    private bool isNucleusPresent = false;
     private int organelleRot;
 
     private dictionary placementFunctions;
