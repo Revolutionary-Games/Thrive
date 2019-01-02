@@ -105,7 +105,7 @@ class OrganelleParameters{
     //! Cost in mutation points
     int mpCost = 0;
 
-    //!  boolean that represent presence or not of nucleus
+    //!  boolean that represent if organelle need presence or not of nucleus
     bool needNucleus = false;
 }
 
