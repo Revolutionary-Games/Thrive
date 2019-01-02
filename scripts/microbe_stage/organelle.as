@@ -713,18 +713,10 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         renderNode.Node.setPosition(offset + this.cartesianPosition);
         // TODO: this MUST BE moved to the mesh file. Otherwise this mess will grow over time
         //maybe instead of changing this here we should do so in the generation routine.
-        if(organelle.mesh != "chemoplast.mesh"){
-            renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(90),
+        renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(90),
                     Ogre::Vector3(1, 0, 0)) * Ogre::Quaternion(Ogre::Degree(180),
                         Ogre::Vector3(0, 1, 0)) * Ogre::Quaternion(Ogre::Degree(rotation),
                             Ogre::Vector3(0, 0, 1)));
-        }
-        else {
-            renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(180),
-                    Ogre::Vector3(1, 0, 0))*Ogre::Quaternion(Ogre::Degree(rotation),
-                        Ogre::Vector3(0, 1, 0)));
-        }
-
         // Add hex collision shapes
         auto hexes = organelle.getHexes();
 
@@ -851,6 +843,17 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         //sceneNode.entity.setColour(colour)
     }
 
+    void hideEntity()
+    {
+        auto renderNode = world.GetComponent_RenderNode(organelleEntity);
+        if(renderNode !is null && renderNode.Node !is null)
+            renderNode.Node.removeFromParent();
+
+        // Also hide components as they also can have entities
+        for(uint i = 0; i < components.length(); ++i){
+            components[i].hideEntity(this);
+        }
+    }
     // ------------------------------------ //
 
     const Organelle@ organelle {

@@ -256,8 +256,8 @@ video {
 }
 
 /* Background planet and logo */
-.BackgroundStars {
-  background-image: url("../../Textures/gui/just_background.png");
+.BackgroundMenu {
+  background-image: url("../../Textures/gui/BG_Menu02.png");
   background-size: cover;
   width: 100%;
   height: 100%;
@@ -1185,6 +1185,15 @@ video {
 }
 
 #ChromatophorIcon {
+  position: relative;
+  left: calc(50% - 30px);
+  width: 60px;
+  height: 60px;
+  background-size: contain;
+  background-image: url("../../Textures/gui/bevel/ChromatophorIcon.png");
+}
+
+#ChemosynthisizingProtiensIcon {
   position: relative;
   left: calc(50% - 30px);
   width: 60px;

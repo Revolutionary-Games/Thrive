@@ -83,14 +83,20 @@ class MicrobeStageHudSystem : ScriptSystem{
         if (@ambienceSounds is null || !ambienceSounds.Get().isPlaying())
         {
             @ambienceSounds = _playRandomMicrobeMusic();
-            ambienceSounds.Get().play();
+            if (@ambienceSounds !is null)
+                {
+                ambienceSounds.Get().play();
+                }
         }
 
         //play ambient track alongside music and loop it (its meant to be played alongside)
         if (@ambientTrack is null || !ambientTrack.Get().isPlaying())
         {
             @ambientTrack = _playRandomMicrobeAmbience();
-            ambientTrack.Get().play();
+            if (@ambientTrack !is null)
+                {
+                ambientTrack.Get().play();
+                }
         }
     }
 
@@ -288,29 +294,37 @@ class MicrobeStageHudSystem : ScriptSystem{
         AudioSource@ audio = GetEngine().GetSoundDevice().Play2DSound("Data/Sound/" +
             MICROBE_MUSIC_TRACKS[GetEngine().GetRandom().GetNumber(0,
                     MICROBE_MUSIC_TRACKS.length() - 1)] + ".ogg", false, true);
-        audio.Get().setVolume(0.3);
-        if (audio is null)
-        {
-            LOG_ERROR("Failed to create ambience music source");
+        if (audio !is null){
+            if(audio.HasInternalSource()){
+                audio.Get().setVolume(0.3);
+            }
+            else {
+                LOG_ERROR("Microbe Music Lacks internal source");
+            }
         }
-
+        else {
+        LOG_ERROR("Failed to create ambiance music source");
+        }
         return audio;
     }
 
         private AudioSource@ _playRandomMicrobeAmbience(){
-    string track = MICROBE_AMBIENT_TRACKS[GetEngine().GetRandom().GetNumber(0,
+            string track = MICROBE_AMBIENT_TRACKS[GetEngine().GetRandom().GetNumber(0,
                     MICROBE_AMBIENT_TRACKS.length() - 1)] + ".ogg";
-        AudioSource@ audio = GetEngine().GetSoundDevice().Play2DSound("Data/Sound/soundeffects/" +track, false, true);
-        audio.Get().setVolume(0.2);
-        if (track == "microbe-ambience2.ogg")
-            {
-            audio.Get().setVolume(0.05);
+            AudioSource@ audio = GetEngine().GetSoundDevice().Play2DSound("Data/Sound/soundeffects/" +track, false, true);
+        if (audio !is null){
+            if(audio.HasInternalSource()){
+                audio.Get().setVolume(0.2);
+                if (track == "microbe-ambience2.ogg") {
+                    audio.Get().setVolume(0.05);
+                }
+            }else {
+                LOG_ERROR("Microbe Ambiance Lacks internal source");
             }
-        if (audio is null)
-        {
-            LOG_ERROR("Failed to create ambience sound source");
         }
-
+        else {
+            LOG_ERROR("Failed to create ambiance sound source");
+        }
         return audio;
     }
     private CellStageWorld@ World;
