@@ -347,9 +347,7 @@ const dictionary STARTER_MICROBES = {
                 {"oxytoxy", InitialCompound(0)}
             },
             {
-                OrganelleTemplatePlaced("nucleus", 0, 0, 180),
-                OrganelleTemplatePlaced("cytoplasm", 1, 1, 0),
-                OrganelleTemplatePlaced("cytoplasm", -1, 2, 0)
+                OrganelleTemplatePlaced("cytoplasm", 0, 0, 0)
             },
             Float4(1, 1, 1, 1),
             false,
