@@ -505,7 +505,7 @@ void setupOrganelles(){
     nitrogenPlastid.chanceToCreate = 1;
     nitrogenPlastid.prokaryoteChance = 0;
     nitrogenPlastid.mpCost = 80;
-    nitrogenplastid.needNucleus = true;
+    nitrogenPlastid.needNucleus = true;
     nitrogenPlastid.initialComposition = {
         {"phosphates", 2},
         {"ammonia", 2}
@@ -591,7 +591,7 @@ void setupOrganelles(){
     oxytoxyProtein.chanceToCreate = 0;
     oxytoxyProtein.prokaryoteChance = 1;
     oxytoxyProtein.mpCost = 15;
-    oxytoxyProteins.needNucleus = false;
+    oxytoxyProtein.needNucleus = false;
     oxytoxyProtein.initialComposition = {
         {"phosphates", 1},
         {"ammonia", 1}
