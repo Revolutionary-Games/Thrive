@@ -195,9 +195,9 @@ class MicrobeAISystem : ScriptSystem{
                         }
                     case FLEEING_STATE:
                         {
-                        //In this state you run from preadtory microbes
+                        //In this state you run from predatory microbes
                         if (predator != NULL_OBJECT){
-                            aiComponent.hasTargetPosition = false;
+                            //aiComponent.hasTargetPosition = false;
                             dealWithPredators(components,predator);
                             }
                         else{
@@ -242,7 +242,13 @@ class MicrobeAISystem : ScriptSystem{
                 if (rollCheck(aiComponent.speciesFear, 500) || microbeComponent.isBeingEngulfed){
                     MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
                         world.GetScriptComponentHolder("MicrobeComponent").Find(predator));
-                    if ((position._Position -  testPosition).LengthSquared() <= 400+(secondMicrobeComponent.organelles.length()*4.0f)){
+                    if ((position._Position -  testPosition).LengthSquared() <= 500+(secondMicrobeComponent.organelles.length()*4.0f)){
+                        if (aiComponent.lifeState != FLEEING_STATE)
+                            {
+                            // Reset target position for faster fleeing
+                            aiComponent.hasTargetPosition = false;
+                            }
+                        aiComponent.boredom=0;
                         aiComponent.lifeState = FLEEING_STATE;
                     }
                 }
