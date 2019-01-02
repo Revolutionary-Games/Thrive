@@ -150,7 +150,9 @@ class MicrobeAISystem : ScriptSystem{
                     aiComponent.prey=NULL_OBJECT;
                     prey = getNearestPreyItem(components,allMicrobes);
                     aiComponent.prey = prey;
-                    aiComponent.preyPegged=true;
+                    if (prey != NULL_OBJECT){
+                        aiComponent.preyPegged=true;
+                    }
                 }
                 ObjectID predator = getNearestPredatorItem(components,allMicrobes);
 
@@ -212,7 +214,7 @@ class MicrobeAISystem : ScriptSystem{
                     case PREDATING_STATE:
                         {
                         if (aiComponent.preyPegged && aiComponent.prey != NULL_OBJECT){
-                            dealWithPrey(components,aiComponent.prey, allMicrobes);
+                            dealWithPrey(components, aiComponent.prey, allMicrobes);
                             }
                         else{
                             if (GetEngine().GetRandom().GetNumber(0.0f,400.0f) <=  aiComponent.speciesActivity){
@@ -358,6 +360,11 @@ class MicrobeAISystem : ScriptSystem{
         //LOG_INFO("predating");
         MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
             world.GetScriptComponentHolder("MicrobeComponent").Find(prey));
+        if (secondMicrobeComponent is null){
+        aiComponent.preyPegged=false;
+        aiComponent.prey = NULL_OBJECT;
+        return;
+        }
         // Agent vacuoles.
         int numberOfAgentVacuoles = int(
                 microbeComponent.specialStorageOrganelles[formatUInt(oxytoxyId)]);
@@ -568,7 +575,6 @@ class MicrobeAISystem : ScriptSystem{
         else if (prey != NULL_OBJECT){
             //LOG_INFO("prey only");
             aiComponent.lifeState = PREDATING_STATE;
-
             }
         else if (predator != NULL_OBJECT){
             //LOG_INFO("predator only");
@@ -590,7 +596,6 @@ class MicrobeAISystem : ScriptSystem{
             aiComponent.lifeState = PLANTLIKE_STATE;
             }
         }
-        aiComponent.prey=NULL_OBJECT;
         //Add check here to see if a predator is "nearby" if so, flee (should be based on personality values)
 
         }
