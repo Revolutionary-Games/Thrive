@@ -51,6 +51,7 @@ class MicrobeEditor{
 
         placementFunctions = {
             {"nucleus", PlacementFunctionType(this.createNewMicrobe)},
+            {"nucleus", PlacementFunctionType(this.addOrganelle)},
             {"flagellum", PlacementFunctionType(this.addOrganelle)},
             {"cytoplasm", PlacementFunctionType(this.addOrganelle)},
             {"mitochondrion", PlacementFunctionType(this.addOrganelle)},
