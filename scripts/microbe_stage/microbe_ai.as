@@ -144,9 +144,11 @@ class MicrobeAISystem : ScriptSystem{
                 // Clear the lists
                 aiComponent.predatoryMicrobes.removeRange(0,aiComponent.predatoryMicrobes.length());
                 aiComponent.preyMicrobes.removeRange(0,aiComponent.preyMicrobes.length());
-                ObjectID prey = getNearestPreyItem(components,allMicrobes);
+                ObjectID prey = NULL_OBJECT;
                 // Peg your prey
                 if (!aiComponent.preyPegged){
+                    aiComponent.prey=NULL_OBJECT;
+                    prey = getNearestPreyItem(components,allMicrobes);
                     aiComponent.prey = prey;
                     aiComponent.preyPegged=true;
                 }
@@ -173,7 +175,6 @@ class MicrobeAISystem : ScriptSystem{
                     case PLANTLIKE_STATE:
                         {
                         // This ai would idealy just sit there, until it sees a nice opportunity pop-up unlike neutral, which wanders randomly (has a gather chance) until something interesting pops up
-                        aiComponent.preyPegged=false;
                         break;
                         }
                     case NEUTRAL_STATE:
@@ -187,7 +188,6 @@ class MicrobeAISystem : ScriptSystem{
                     case GATHERING_STATE:
                         {
                         //In this state you gather compounds
-                        aiComponent.preyPegged=false;
                         doRunAndTumble(components);
                         break;
                         }
@@ -211,8 +211,8 @@ class MicrobeAISystem : ScriptSystem{
                         }
                     case PREDATING_STATE:
                         {
-                        if (aiComponent.prey != NULL_OBJECT){
-                            dealWithPrey(components,aiComponent.prey);
+                        if (aiComponent.preyPegged && aiComponent.prey != NULL_OBJECT){
+                            dealWithPrey(components,aiComponent.prey, allMicrobes);
                             }
                         else{
                             if (GetEngine().GetRandom().GetNumber(0.0f,400.0f) <=  aiComponent.speciesActivity){
@@ -342,7 +342,7 @@ class MicrobeAISystem : ScriptSystem{
     }
 
     // For chasing down and killing prey in various ways
-    void dealWithPrey(MicrobeAISystemCached@ components, ObjectID prey)
+    void dealWithPrey(MicrobeAISystemCached@ components, ObjectID prey, array<ObjectID>@ allMicrobes )
         {
         //LOG_INFO("chasing"+prey);
         // Set Components
@@ -355,7 +355,7 @@ class MicrobeAISystem : ScriptSystem{
         // Required For AI
         CompoundId oxytoxyId = SimulationParameters::compoundRegistry().getTypeId("oxytoxy");
         CompoundId atpID = SimulationParameters::compoundRegistry().getTypeId("atp");
-
+        //LOG_INFO("predating");
         MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
             world.GetScriptComponentHolder("MicrobeComponent").Find(prey));
         // Agent vacuoles.
@@ -383,12 +383,14 @@ class MicrobeAISystem : ScriptSystem{
             // This is probabbly not working
             if (secondMicrobeComponent.dead == true){
                 aiComponent.hasTargetPosition = false;
-                aiComponent.preyPegged=false;
-                aiComponent.lifeState = GATHERING_STATE;
-                if (microbeComponent.engulfMode)
-                    {
+                aiComponent.prey=getNearestPreyItem(components, allMicrobes);
+                if (aiComponent.prey != NULL_OBJECT ) {
+                    aiComponent.preyPegged=true;
+                }
+
+                if (microbeComponent.engulfMode){
                     MicrobeOperations::toggleEngulfMode(world, microbeEntity);
-                    }
+                }
                 //  You got a kill, good job
             auto playerSpecies = MicrobeOperations::getSpeciesComponent(world, "Default");
             if (!microbeComponent.isPlayerMicrobe && microbeComponent.speciesName != playerSpecies.name){
@@ -588,7 +590,7 @@ class MicrobeAISystem : ScriptSystem{
             aiComponent.lifeState = PLANTLIKE_STATE;
             }
         }
-
+        aiComponent.prey=NULL_OBJECT;
         //Add check here to see if a predator is "nearby" if so, flee (should be based on personality values)
 
         }
