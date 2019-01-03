@@ -239,10 +239,10 @@ class MicrobeAISystem : ScriptSystem{
             // Its not a good survival strategy but it makes the game more fun.
             if (predator != NULL_OBJECT && (aiComponent.lifeState != PREDATING_STATE || microbeComponent.isBeingEngulfed)){
                 Float3 testPosition = world.GetComponent_Position(predator)._Position;
-                if (rollCheck(aiComponent.speciesFear, 500) || microbeComponent.isBeingEngulfed){
+                if (rollCheck(aiComponent.speciesFear, 400) || microbeComponent.isBeingEngulfed){
                     MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
                         world.GetScriptComponentHolder("MicrobeComponent").Find(predator));
-                    if ((position._Position -  testPosition).LengthSquared() <= 500+(secondMicrobeComponent.organelles.length()*4.0f)){
+                    if ((position._Position -  testPosition).LengthSquared() <= (1000+(secondMicrobeComponent.organelles.length()*4.0f)*2)){
                         if (aiComponent.lifeState != FLEEING_STATE)
                             {
                             // Reset target position for faster fleeing
@@ -511,7 +511,7 @@ class MicrobeAISystem : ScriptSystem{
                 auto vec = (aiComponent.targetPosition - position._Position);
                 aiComponent.direction = vec.Normalize();
                 microbeComponent.facingTargetPoint = aiComponent.targetPosition;
-                microbeComponent.movementDirection = Float3(0, 0, -(AI_BASE_MOVEMENT));
+                microbeComponent.movementDirection = Float3(0, 0, -(AI_BASE_MOVEMENT*2));
                 aiComponent.hasTargetPosition = true;
 
            //Freak out and fire toxins everywhere
