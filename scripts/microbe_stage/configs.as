@@ -140,10 +140,10 @@ const float RELATIVE_VELOCITY_TO_BUMP_SOUND = 6.0;
 const float INITIAL_EMISSION_RADIUS = 0.5;
 
 // The speed reduction when a cell is in rngulfing mode.
-const uint ENGULFING_MOVEMENT_DIVISION = 3;
+const double ENGULFING_MOVEMENT_DIVISION = 2.0f;
 
 // The speed reduction when a cell is being engulfed.
-const uint ENGULFED_MOVEMENT_DIVISION = 6;
+const double ENGULFED_MOVEMENT_DIVISION = 1.7f;
 
 // The amount of ATP per second spent on being on engulfing mode.
 const float ENGULFING_ATP_COST_SECOND = 1.5;

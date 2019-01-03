@@ -29,8 +29,8 @@ class MicrobeAIControllerComponent : ScriptComponent{
     }
 
     float movementRadius = 2000;
-    // That means they evaluate every 10 seconds or so, correct?
-    int reevalutationInterval = 1000;
+    // That means they evaluate every 5 seconds or so, correct?
+    int reevalutationInterval = 500;
     int intervalRemaining;
     int boredom = 0;
     int ticksSinceLastToggle = 600;
@@ -239,10 +239,9 @@ class MicrobeAISystem : ScriptSystem{
             // Its not a good survival strategy but it makes the game more fun.
             if (predator != NULL_OBJECT && (aiComponent.lifeState != PREDATING_STATE || microbeComponent.isBeingEngulfed)){
                 Float3 testPosition = world.GetComponent_Position(predator)._Position;
-                if (rollCheck(aiComponent.speciesFear, 400) || microbeComponent.isBeingEngulfed){
                     MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
                         world.GetScriptComponentHolder("MicrobeComponent").Find(predator));
-                    if ((position._Position -  testPosition).LengthSquared() <= (1000+(secondMicrobeComponent.organelles.length()*4.0f)*2)){
+                    if ((position._Position -  testPosition).LengthSquared() <= (2000+(secondMicrobeComponent.organelles.length()*8.0f)*2)){
                         if (aiComponent.lifeState != FLEEING_STATE)
                             {
                             // Reset target position for faster fleeing
@@ -251,7 +250,6 @@ class MicrobeAISystem : ScriptSystem{
                         aiComponent.boredom=0;
                         aiComponent.lifeState = FLEEING_STATE;
                     }
-                }
             }
             }
 
@@ -472,7 +470,7 @@ class MicrobeAISystem : ScriptSystem{
         MicrobeComponent@ microbeComponent = components.second;
         Position@ position = components.third;
 
-        if (GetEngine().GetRandom().GetNumber(0,100) <= 10){
+        if (GetEngine().GetRandom().GetNumber(0,50) <= 10){
             aiComponent.hasTargetPosition = false;
         }
 
@@ -503,15 +501,13 @@ class MicrobeAISystem : ScriptSystem{
                 {
                 // Run specifically away
                 aiComponent.targetPosition =
-                    Float3(GetEngine().GetRandom().GetFloat(-1000.0f,1000.0f),1.0,
-                        GetEngine().GetRandom().GetFloat(-1000.0f,1000.0f))*
-                        world.GetComponent_Position(predator)._Position;
+                    (world.GetComponent_Position(predator)._Position);
                 }
 
-                auto vec = (aiComponent.targetPosition - position._Position);
+                auto vec = (position._Position-aiComponent.targetPosition);
                 aiComponent.direction = vec.Normalize();
-                microbeComponent.facingTargetPoint = aiComponent.targetPosition;
-                microbeComponent.movementDirection = Float3(0, 0, -(AI_BASE_MOVEMENT*2));
+                microbeComponent.facingTargetPoint = -aiComponent.targetPosition;
+                microbeComponent.movementDirection = Float3(0, 0, -(AI_BASE_MOVEMENT));
                 aiComponent.hasTargetPosition = true;
 
            //Freak out and fire toxins everywhere
