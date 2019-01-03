@@ -852,19 +852,6 @@ ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in specie
     auto speciesEntity = findSpeciesEntityByName(world, speciesName);
     auto species = world.GetComponent_SpeciesComponent(speciesEntity);
 
-    // TODO: Why is this here with the separate spawnBacteria function existing?
-    // Bacteria get scaled to half size
-    if(species.isBacteria){
-        // TODO: wow, this is a big hack and no way guarantees that
-        // the physics size matches the rendered size
-        node.Scale = Float3(0.5, 0.5, 0.5);
-        node.Marked = true;
-        // This call is also not the cheapest. So would be much better
-        // if the physics generation actually did the right then when
-        // species.isBacteria is true
-        physics.ChangeShape(world.GetPhysicalWorld(),
-            world.GetPhysicalWorld().CreateSphere(HEX_SIZE/2.0f));
-    }
 
     return microbeEntity;
 }
