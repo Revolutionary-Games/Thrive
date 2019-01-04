@@ -157,7 +157,7 @@ class MicrobeAISystem : ScriptSystem{
                 ObjectID predator = getNearestPredatorItem(components,allMicrobes);
 
                 //30 seconds about
-                if (aiComponent.boredom == GetEngine().GetRandom().GetNumber(aiComponent.speciesFocus,1000.0f+aiComponent.speciesFocus)){
+                if (aiComponent.boredom == GetEngine().GetRandom().GetNumber(aiComponent.speciesFocus*2,1000.0f+aiComponent.speciesFocus*2)){
                     // Occassionally you need to reevaluate things
                     aiComponent.boredom = 0;
                     if (rollCheck(aiComponent.speciesActivity, 400)){
@@ -184,6 +184,7 @@ class MicrobeAISystem : ScriptSystem{
                         //In this state you just sit there and analyze your environment
                         aiComponent.boredom=0;
                         aiComponent.preyPegged=false;
+                        prey = NULL_OBJECT;
                         evaluateEnvironment(components,aiComponent.prey,predator);
                         break;
                         }

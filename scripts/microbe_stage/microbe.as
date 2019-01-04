@@ -438,11 +438,11 @@ class MicrobeSystem : ScriptSystem{
             MicrobeOperations::flashMembraneColour(world, microbeEntity, 1000,
                 Float4(0.2,0.5,1.0,0.5));
         }
-
+        
         if(microbeComponent.engulfMode){
             microbeComponent.movementFactor =  microbeComponent.movementFactor/ENGULFING_MOVEMENT_DIVISION;
         }
-
+        
         if(microbeComponent.isBeingEngulfed){
             microbeComponent.movementFactor =  microbeComponent.movementFactor/ENGULFED_MOVEMENT_DIVISION;
             //LOG_INFO("doing engulf damage");
