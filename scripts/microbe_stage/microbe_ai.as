@@ -501,8 +501,9 @@ class MicrobeAISystem : ScriptSystem{
             else
                 {
                 // Run specifically away
-                aiComponent.targetPosition =
-                    (world.GetComponent_Position(predator)._Position);
+                aiComponent.targetPosition = Float3(GetEngine().GetRandom().GetFloat(-5000.0f,5000.0f),1.0,
+                        GetEngine().GetRandom().GetFloat(-5000.0f,5000.0f))*
+                        world.GetComponent_Position(predator)._Position;
                 }
 
                 auto vec = (position._Position-aiComponent.targetPosition);
