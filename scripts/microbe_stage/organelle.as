@@ -37,7 +37,7 @@ class Organelle{
         chanceToCreate = parameters.chanceToCreate;
         prokaryoteChance = parameters.prokaryoteChance;
         mpCost = parameters.mpCost;
-        needNucleus = parameters.needNucleus;
+        needsNucleus = parameters.needsNucleus;
 
         initialComposition = parameters.initialComposition;
         components = parameters.components;
@@ -228,8 +228,8 @@ class Organelle{
     //! Cost in mutation points
     int mpCost = 0;
 
-    //! boolean that represent if organelle need presence of nucleus
-    bool needNucleus = false;
+    //! boolean used in microbe_editor.as to check if current selected organelle need nucleus.
+    bool needsNucleus = false;
 }
 
 enum ORGANELLE_HEALTH{
