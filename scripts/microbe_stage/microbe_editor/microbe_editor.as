@@ -280,7 +280,6 @@ class MicrobeEditor{
                     }
 
                 }
-
             });
 
         @action.data["organelle"] = organelle;
