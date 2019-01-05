@@ -198,9 +198,9 @@ export function setupMicrobeEditor(){
         Leviathan.OnGeneric("MicrobeEditorExited", doExitMicrobeEditor);
 
         // Event for update buttons depending on presence or not of nucleus
-        Leviathan.OnGeneric("NucleusIsPresent", (event, vars) =>) {
-            updateGuiButtons();
-        };
+        Leviathan.OnGeneric("NucleusIsPresent", (event, vars) => {
+            updateGuiButtons(nucleus);
+        });
 
     } else {
         updateSelectedOrganelle("cytoplasm");
@@ -319,7 +319,7 @@ function onExitToMenuClickedEditor(){
     }
 }
 
-function updateGuiButtons() {
+function updateGuiButtons(isNucleusPresent) {
     
 }
 
