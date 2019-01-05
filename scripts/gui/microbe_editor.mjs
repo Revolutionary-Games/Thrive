@@ -274,9 +274,7 @@ function updateSelectedOrganelle(organelle){
 }
 
 function changeGuiButtonStatus(nucleus){
-    
     // disabled or enabling organelle that to need nucleus
-
     if(!nucleus){
         $("#addMitochondrion").addClass("DisabledButton");
         $("#addChloroplast").addClass("DisabledButton");
