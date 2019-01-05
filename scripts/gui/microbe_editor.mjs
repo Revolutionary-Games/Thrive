@@ -201,6 +201,7 @@ export function setupMicrobeEditor(){
         Leviathan.OnGeneric("NucleusIsPresent", (event, vars) => {
              changeGuiButtonStatus(vars.nucleus);
         });
+
     } else {
         updateSelectedOrganelle("cytoplasm");
     }
