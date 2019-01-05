@@ -321,6 +321,20 @@ function onExitToMenuClickedEditor(){
 
 function updateGuiButtons(isNucleusPresent) {
     
+    // change status of buttons
+    if(!isNucleusPresent) {
+        $("#addMitochondrion").addClass(DisbledButton);
+        $("#addChloroplast").addClass(DisbledButton);
+        $("#addThermoplast").addClass(DisbledButton);
+        $("#addChemoplast").addClass(DisbledButton);
+        $("#addNitrogenFixingPlastid").addClass(DisbledButton);
+    } else {
+        $("#addMitochondrion").removeClass(DisbledButton);
+        $("#addChloroplast").removeClass(DisbledButton);
+        $("#addThermoplast").removeClass(DisbledButton);
+        $("#addChemoplast").removeClass(DisbledButton);
+        $("#addNitrogenFixingPlastid").removeClass(DisbledButton);
+    }
 }
 
 function openHelpEditor(){
