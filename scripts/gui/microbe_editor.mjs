@@ -323,17 +323,17 @@ function updateGuiButtons(isNucleusPresent) {
     
     // change status of buttons
     if(!isNucleusPresent) {
-        $("#addMitochondrion").addClass(DisabledButton);
-        $("#addChloroplast").addClass(DisabledButton);
-        $("#addThermoplast").addClass(DisabledButton);
-        $("#addChemoplast").addClass(DisabledButton);
-        $("#addNitrogenFixingPlastid").addClass(DisabledButton);
+        $("#addMitochondrion").addClass("DisabledButton");
+        $("#addChloroplast").addClass("DisabledButton");
+        $("#addThermoplast").addClass("DisabledButton");
+        $("#addChemoplast").addClass("DisabledButton");
+        $("#addNitrogenFixingPlastid").addClass("DisabledButton");
     } else {
-        $("#addMitochondrion").removeClass(DisabledButton);
-        $("#addChloroplast").removeClass(DisabledButton);
-        $("#addThermoplast").removeClass(DisabledButton);
-        $("#addChemoplast").removeClass(DisabledButton);
-        $("#addNitrogenFixingPlastid").removeClass(DisabledButton);
+        $("#addMitochondrion").removeClass("DisabledButton");
+        $("#addChloroplast").removeClass("DisabledButton");
+        $("#addThermoplast").removeClass("DisabledButton");
+        $("#addChemoplast").removeClass("DisabledButton");
+        $("#addNitrogenFixingPlastid").removeClass("DisabledButton");
     }
 }
 
