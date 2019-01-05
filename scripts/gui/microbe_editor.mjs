@@ -198,8 +198,8 @@ export function setupMicrobeEditor(){
         Leviathan.OnGeneric("MicrobeEditorExited", doExitMicrobeEditor);
 
         // Event for update buttons depending on presence or not of nucleus
-        Leviathan.OnGeneric("NucleusIsPresent", (event, vars) => {
-            updateGuiButtons(nucleus);
+        Leviathan.OnGeneric("MicrobeEditorNucleusIsPresent", (event, vars) => {
+            updateGuiButtons(vars.nucleus);
         });
 
     } else {

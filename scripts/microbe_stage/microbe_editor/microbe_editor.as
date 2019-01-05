@@ -591,7 +591,7 @@ class MicrobeEditor{
 
     void updateGuiButtonStatus(bool nucleusIsPresent){
 
-        GenericEvent@ event = GenericEvent("NucleusIsPresent");
+        GenericEvent@ event = GenericEvent("MicrobeEditorNucleusIsPresent");
         NamedVars@ vars = event.GetNamedVars();
 
         vars.AddValue(ScriptSafeVariableBlock("nucleus", nucleusIsPresent));
