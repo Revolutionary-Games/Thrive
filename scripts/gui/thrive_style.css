@@ -236,11 +236,6 @@ video {
 }
 
 .DisabledButton {
-  filter: grayscale(100%);
-}
-
-.DisabledButton:hover {
-  filter: grayscale(100%);
 }
 
 .MenuButton.DisabledButton {
@@ -1089,6 +1084,7 @@ video {
 .OrganelleListItem:hover .tooltiptext {
   visibility: visible;
 }
+
 
 #PlastidIcon {
   position: relative;
