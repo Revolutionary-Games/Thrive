@@ -589,13 +589,13 @@ class MicrobeEditor{
         return false;
     }
 
-    void updateGuiButtonStatus(bool nucleusIsPresent){  
+    void updateGuiButtonStatus(bool nucleusIsPresent){
 
-        GenericEvent@ event = GenericEvent("NucleusIsPresent");    
-        NamedVars@ vars = event.GetNamedVars(); 
+        GenericEvent@ event = GenericEvent("NucleusIsPresent");
+        NamedVars@ vars = event.GetNamedVars();
 
-        vars.AddValue(ScriptSafeVariableBlock("nucleus", nucleusIsPresent));   
-        GetEngine().GetEventHandler().CallEvent(event); 
+        vars.AddValue(ScriptSafeVariableBlock("nucleus", nucleusIsPresent));
+        GetEngine().GetEventHandler().CallEvent(event);
     }
 
     bool isValidPlacement(const string &in organelleType, int q, int r,
