@@ -196,6 +196,11 @@ export function setupMicrobeEditor(){
 
         // Event for restoring the microbe GUI
         Leviathan.OnGeneric("MicrobeEditorExited", doExitMicrobeEditor);
+        
+        // Event for change GUI corresponding to cell status (lockunlock organelles)
+        Leviathan.OnGeneric("NucleusIsPresent", (event, vars) => {
+             changeGuiButtonStatus(vars.nucleus);
+        });
 
     } else {
         updateSelectedOrganelle("cytoplasm");
@@ -266,6 +271,26 @@ function updateSelectedOrganelle(organelle){
         } else {
             element.element.classList.remove("Selected");
         }
+    }
+}
+
+
+function changeGuiButtonStatus(nucleus){
+    
+    // disabled or enabling organelle that to need nucleus
+    
+    if(!nucleus){
+        $("#addMitochondrion").addClass("DisabledButton");
+        $("#addChloroplast").addClass("DisabledButton");
+        $("#addThermoplast").addClass("DisabledButton");
+        $("#addChemoplast").addClass("DisabledButton");
+        $("#addNitrogenFixingPlastid").addClass("DisabledButton");
+    } else {
+        $("#addMitochondrion").removeClass("DisabledButton");
+        $("#addChloroplast").removeClass("DisabledButton");
+        $("#addThermoplast").removeClass("DisabledButton");
+        $("#addChemoplast").removeClass("DisabledButton");
+        $("#addNitrogenFixingPlastid").removeClass("DisabledButton");
     }
 }
 

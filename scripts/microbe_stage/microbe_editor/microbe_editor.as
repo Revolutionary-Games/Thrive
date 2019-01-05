@@ -70,6 +70,7 @@ class MicrobeEditor{
     //! This is called each time the editor is entered so this needs to properly reset state
     void init()
     {
+        updateGuiButtonStatus(checkIsNucleusPresent());
         gridSceneNode = hudSystem.world.CreateEntity();
         auto node = hudSystem.world.Create_RenderNode(gridSceneNode);
         node.Scale = Float3(HEX_SIZE, 1, HEX_SIZE);
@@ -262,6 +263,9 @@ class MicrobeEditor{
                 LOG_INFO("Placing organelle '" + organelle.organelle.name + "' at: " +
                     organelle.q + ", " + organelle.r);
                 editor.editedMicrobe.insertLast(organelle);
+
+                // send to gui current status of cell
+                editor.updateGuiButtonStatus(editor.checkIsNucleusPresent());
             },
             // undo
             function(EditorAction@ action, MicrobeEditor@ editor){
@@ -280,6 +284,10 @@ class MicrobeEditor{
                     }
 
                 }
+
+                // send to gui current status of cell
+                editor.updateGuiButtonStatus(editor.checkIsNucleusPresent());
+
             });
 
         @action.data["organelle"] = organelle;
@@ -580,6 +588,15 @@ class MicrobeEditor{
             }
         }
         return false;
+    }
+
+    void updateGuiButtonStatus(bool nucleusIsPresent){
+
+        GenericEvent@ event = GenericEvent("NucleusIsPresent");
+        NamedVars@ vars = event.GetNamedVars();
+
+            vars.AddValue(ScriptSafeVariableBlock("nucleus", nucleusIsPresent));
+            GetEngine().GetEventHandler().CallEvent(event);
     }
 
     bool isValidPlacement(const string &in organelleType, int q, int r,
