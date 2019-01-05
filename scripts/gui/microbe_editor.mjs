@@ -197,6 +197,11 @@ export function setupMicrobeEditor(){
         // Event for restoring the microbe GUI
         Leviathan.OnGeneric("MicrobeEditorExited", doExitMicrobeEditor);
 
+        // Event for update buttons depending on presence or not of nucleus
+        Leviathan.OnGeneric("NucleusIsPresent", (event, vars) =>) {
+            updateGuiButtons();
+        };
+
     } else {
         updateSelectedOrganelle("cytoplasm");
     }
@@ -312,6 +317,10 @@ function onExitToMenuClickedEditor(){
     } else {
         main_menu.doExitToMenu();
     }
+}
+
+function updateGuiButtons() {
+    
 }
 
 function openHelpEditor(){
