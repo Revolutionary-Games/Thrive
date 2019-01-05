@@ -323,17 +323,17 @@ function updateGuiButtons(isNucleusPresent) {
     
     // change status of buttons
     if(!isNucleusPresent) {
-        $("#addMitochondrion").addClass(DisbledButton);
-        $("#addChloroplast").addClass(DisbledButton);
-        $("#addThermoplast").addClass(DisbledButton);
-        $("#addChemoplast").addClass(DisbledButton);
-        $("#addNitrogenFixingPlastid").addClass(DisbledButton);
+        $("#addMitochondrion").addClass(DisabledButton);
+        $("#addChloroplast").addClass(DisabledButton);
+        $("#addThermoplast").addClass(DisabledButton);
+        $("#addChemoplast").addClass(DisabledButton);
+        $("#addNitrogenFixingPlastid").addClass(DisabledButton);
     } else {
-        $("#addMitochondrion").removeClass(DisbledButton);
-        $("#addChloroplast").removeClass(DisbledButton);
-        $("#addThermoplast").removeClass(DisbledButton);
-        $("#addChemoplast").removeClass(DisbledButton);
-        $("#addNitrogenFixingPlastid").removeClass(DisbledButton);
+        $("#addMitochondrion").removeClass(DisabledButton);
+        $("#addChloroplast").removeClass(DisabledButton);
+        $("#addThermoplast").removeClass(DisabledButton);
+        $("#addChemoplast").removeClass(DisabledButton);
+        $("#addNitrogenFixingPlastid").removeClass(DisabledButton);
     }
 }
 
