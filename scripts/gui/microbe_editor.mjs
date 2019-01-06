@@ -242,7 +242,8 @@ function onSelectNewOrganelle(element){
 
     if(common.isInEngine() && (!$(element.element).hasClass("DisabledButton"))) {
 
-        Leviathan.CallGenericEvent("MicrobeEditorOrganelleSelected", {organelle: element.organelle});
+        Leviathan.CallGenericEvent("MicrobeEditorOrganelleSelected", 
+        {organelle: element.organelle});
 
     } else {
 
