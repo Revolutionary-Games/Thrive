@@ -232,7 +232,7 @@ class MicrobeEditor{
     {
         // 1 - you put nucleus but you already have it
         // 2 - you put organelle that need nucleus and you don't have it
-        if((organelle.organelle.name == "nucleus" && checkIsNucleusPresent()) || (organelle.organelle.needsNucleus && !checkIsNucleusPresent()))
+        if((organelle.organelle.name == "nucleus" && checkIsNucleusPresent()) || (organelle.organelle.prokaryoteChance > 0 && !checkIsNucleusPresent()))
             return;
 
         EditorAction@ action = EditorAction(organelle.organelle.mpCost,

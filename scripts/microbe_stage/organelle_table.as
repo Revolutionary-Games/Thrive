@@ -105,8 +105,6 @@ class OrganelleParameters{
     //! Cost in mutation points
     int mpCost = 0;
 
-    //! Boolean used in editor to know if organelle that player is try to put, need presence or not of nucleus.
-    bool needsNucleus = false;
 }
 
 //! Cache the result if called multiple times in quick succession
@@ -260,7 +258,6 @@ void setupOrganelles(){
     nucleusParameters.chanceToCreate = 0; // Not randomly generated.
     nucleusParameters.prokaryoteChance = 0; // Not randomly generated.
     nucleusParameters.mpCost = 100; //big evolution moment.
-    nucleusParameters.needsNucleus = false;
     nucleusParameters.initialComposition = {
         {"phosphates", 2},
         {"ammonia", 2}
@@ -298,7 +295,6 @@ void setupOrganelles(){
     cytoplasmParameters.chanceToCreate = 1;
     cytoplasmParameters.prokaryoteChance = 1;
     cytoplasmParameters.mpCost = 10;
-    cytoplasmParameters.needsNucleus = false;
     cytoplasmParameters.initialComposition = {
         {"phosphates", 2},
         {"ammonia", 2}
@@ -326,7 +322,6 @@ void setupOrganelles(){
     chloroplastParameters.chanceToCreate = 1;
     chloroplastParameters.prokaryoteChance = 0;
     chloroplastParameters.mpCost = 40;
-    chloroplastParameters.needsNucleus = true;
     chloroplastParameters.initialComposition = {
         {"phosphates", 2},
         {"ammonia", 2}
@@ -357,7 +352,6 @@ void setupOrganelles(){
     oxytoxyParameters.chanceToCreate = 1;
     oxytoxyParameters.prokaryoteChance = 0;
     oxytoxyParameters.mpCost = 80;
-    oxytoxyParameters.needsNucleus = false;
     oxytoxyParameters.initialComposition = {
         {"phosphates", 2},
         {"ammonia", 2}
@@ -386,7 +380,6 @@ void setupOrganelles(){
     mitochondrionParameters.chanceToCreate = 3;
     mitochondrionParameters.prokaryoteChance = 0;
     mitochondrionParameters.mpCost = 40;
-    mitochondrionParameters.needsNucleus = true;
     mitochondrionParameters.initialComposition = {
         {"phosphates", 2},
         {"ammonia", 2}
@@ -416,7 +409,6 @@ void setupOrganelles(){
     vacuoleParameters.chanceToCreate = 3;
     vacuoleParameters.prokaryoteChance = 0;
     vacuoleParameters.mpCost = 30;
-    vacuoleParameters.needsNucleus = false;
     vacuoleParameters.initialComposition = {
         {"phosphates", 2},
         {"ammonia", 2}
@@ -444,7 +436,6 @@ void setupOrganelles(){
     flagellumParameters.chanceToCreate = 6;
     flagellumParameters.prokaryoteChance = 2;
     flagellumParameters.mpCost = 30;
-    flagellumParameters.needsNucleus = false;
     flagellumParameters.initialComposition = {
         {"phosphates", 2},
         {"ammonia", 2}
@@ -475,7 +466,6 @@ void setupOrganelles(){
     chemoplast.chanceToCreate = 1;
     chemoplast.prokaryoteChance = 0;
     chemoplast.mpCost = 40;
-    chemoplast.needsNucleus = true;
     chemoplast.initialComposition = {
         {"phosphates", 5},
         {"ammonia", 5}
@@ -505,7 +495,6 @@ void setupOrganelles(){
     nitrogenPlastid.chanceToCreate = 1;
     nitrogenPlastid.prokaryoteChance = 0;
     nitrogenPlastid.mpCost = 80;
-    nitrogenPlastid.needsNucleus = true;
     nitrogenPlastid.initialComposition = {
         {"phosphates", 2},
         {"ammonia", 2}
@@ -536,7 +525,6 @@ void setupOrganelles(){
     respiratoryProtein.chanceToCreate = 0.5f;
     respiratoryProtein.prokaryoteChance = 1;
     respiratoryProtein.mpCost = 20;
-    respiratoryProtein.needsNucleus = false;
     respiratoryProtein.initialComposition = {
         {"phosphates", 1},
         {"ammonia", 1}
@@ -563,7 +551,6 @@ void setupOrganelles(){
     photosyntheticProtein.chanceToCreate = 0.5f;
     photosyntheticProtein.prokaryoteChance = 1;
     photosyntheticProtein.mpCost = 25;
-    photosyntheticProtein.needsNucleus = false;
     photosyntheticProtein.initialComposition = {
         {"phosphates", 1},
         {"ammonia", 1}
@@ -591,7 +578,6 @@ void setupOrganelles(){
     oxytoxyProtein.chanceToCreate = 0;
     oxytoxyProtein.prokaryoteChance = 1;
     oxytoxyProtein.mpCost = 15;
-    oxytoxyProtein.needsNucleus = false;
     oxytoxyProtein.initialComposition = {
         {"phosphates", 1},
         {"ammonia", 1}
@@ -621,7 +607,6 @@ void setupOrganelles(){
     chemoSynthisizingProtien.chanceToCreate = 0;
     chemoSynthisizingProtien.prokaryoteChance = 1;
     chemoSynthisizingProtien.mpCost = 20;
-    chemoSynthisizingProtien.needsNucleus = false;
     chemoSynthisizingProtien.initialComposition = {
         {"phosphates", 1},
         {"ammonia", 1}
@@ -649,7 +634,6 @@ void setupOrganelles(){
     protoplasmParameters.chanceToCreate = 0;
     protoplasmParameters.prokaryoteChance = 1;
     protoplasmParameters.mpCost = 10;
-    protoplasmParameters.needsNucleus = false;
     protoplasmParameters.initialComposition = {
         {"phosphates", 1},
         {"ammonia", 1}
@@ -676,7 +660,6 @@ void setupOrganelles(){
     nitrogenFixationProtien.chanceToCreate = 0;
     nitrogenFixationProtien.prokaryoteChance = 1;
     nitrogenFixationProtien.mpCost = 15;
-    nitrogenFixationProtien.needsNucleus = false;
     nitrogenFixationProtien.initialComposition = {
         {"phosphates", 1},
         {"ammonia",1}
