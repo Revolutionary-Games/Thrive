@@ -228,7 +228,7 @@ class Organelle{
     //! Cost in mutation points
     int mpCost = 0;
 
-    //! boolean used in microbe_editor.as to check if current selected organelle need nucleus.
+    //! Boolean used in microbe_editor.as to check if current selected organelle need nucleus.
     bool needsNucleus = false;
 }
 
