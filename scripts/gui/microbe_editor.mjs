@@ -320,7 +320,6 @@ function onExitToMenuClickedEditor(){
 }
 
 function updateGuiButtons(isNucleusPresent){
-    
     if(!isNucleusPresent) {
         $("#addMitochondrion").addClass("DisabledButton");
         $("#addChloroplast").addClass("DisabledButton");
