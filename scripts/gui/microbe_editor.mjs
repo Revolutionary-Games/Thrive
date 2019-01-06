@@ -240,7 +240,7 @@ function setRedo(enabled){
 //! Sends organelle selection to the Game
 function onSelectNewOrganelle(element){
 
-    if(common.isEngine() && !$(element.element).hasClass("DisabledButton")){
+    if(common.isInEngine() && !$(element.element).hasClass("DisabledButton")){
 
         Leviathan.CallGenericEvent("MicrobeEditorOrganelleSelected",
             {organelle: element.organelle});
