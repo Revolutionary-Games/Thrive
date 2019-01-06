@@ -292,12 +292,12 @@ class MicrobeSystem : ScriptSystem{
     private void updateAliveCell(MicrobeSystemCached@ &in components, uint logicTime)
     {
         auto microbeEntity = components.entity;
+
         MembraneComponent@ membraneComponent = components.fifth;
         RenderNode@ sceneNodeComponent = components.third;
         CompoundAbsorberComponent@ compoundAbsorberComponent = components.first;
         CompoundBagComponent@ compoundBag = components.sixth;
         MicrobeComponent@ microbeComponent = components.second;
-        microbeComponent.movementFactor = 1.0f;
         //LOG_INFO(""+logicTime);
 
         // Recalculating agent cooldown time.
@@ -439,12 +439,7 @@ class MicrobeSystem : ScriptSystem{
                 Float4(0.2,0.5,1.0,0.5));
         }
 
-        if(microbeComponent.engulfMode){
-            microbeComponent.movementFactor =  microbeComponent.movementFactor/ENGULFING_MOVEMENT_DIVISION;
-        }
-
         if(microbeComponent.isBeingEngulfed){
-            microbeComponent.movementFactor =  microbeComponent.movementFactor/ENGULFED_MOVEMENT_DIVISION;
             //LOG_INFO("doing engulf damage");
             MicrobeOperations::damage(world,microbeEntity,ENGULF_DAMAGE/logicTime,
                 "isBeingEngulfed - Microbe.update()s");

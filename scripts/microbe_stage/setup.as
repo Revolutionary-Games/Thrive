@@ -408,6 +408,7 @@ bool beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity
                 (ENGULF_HP_RATIO_REQ * secondMicrobeComponentOrganelles) &&
                 firstMicrobeComponent.dead == false && secondMicrobeComponent.dead == false)
             {
+                secondMicrobeComponent.movementFactor =  secondMicrobeComponent.movementFactor/ENGULFED_MOVEMENT_DIVISION;
                 secondMicrobeComponent.isBeingEngulfed = true;
                 secondMicrobeComponent.hostileEngulfer = firstEntity;
                 secondMicrobeComponent.wasBeingEngulfed = true;
@@ -421,6 +422,7 @@ bool beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity
                 (ENGULF_HP_RATIO_REQ * firstMicrobeComponentOrganelles) &&
                 secondMicrobeComponent.dead == false && firstMicrobeComponent.dead == false)
             {
+                firstMicrobeComponent.movementFactor =  firstMicrobeComponent.movementFactor/ENGULFED_MOVEMENT_DIVISION;
                 firstMicrobeComponent.isBeingEngulfed = true;
                 firstMicrobeComponent.hostileEngulfer = secondEntity;
                 firstMicrobeComponent.wasBeingEngulfed = true;
