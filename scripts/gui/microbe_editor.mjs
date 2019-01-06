@@ -319,9 +319,8 @@ function onExitToMenuClickedEditor(){
     }
 }
 
-function updateGuiButtons(isNucleusPresent) {
+function updateGuiButtons(isNucleusPresent){
     
-    // change status of buttons
     if(!isNucleusPresent) {
         $("#addMitochondrion").addClass("DisabledButton");
         $("#addChloroplast").addClass("DisabledButton");
