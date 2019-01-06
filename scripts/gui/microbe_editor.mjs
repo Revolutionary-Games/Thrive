@@ -266,10 +266,10 @@ function updateSelectedOrganelle(organelle){
                 if(element.element.contains(selectedOrganelleListItem)) {
                     element.element.removeChild(selectedOrganelleListItem);
                     break;
+                }
             }
-        }
             element.element.classList.add("Selected");
-            element.element.prepend(selectedOrganelleListItem);
+            element.element.prepend(selectedOrganelleListItem);           
         } else {
             element.element.classList.remove("Selected");
         }
