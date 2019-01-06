@@ -578,11 +578,9 @@ class MicrobeEditor{
 
     bool checkIsNucleusPresent()
     {
-        double lengthMicrobe = double(editedMicrobe.length());
         for(uint i = 0; i < editedMicrobe.length(); ++i){
             auto organelle = cast<PlacedOrganelle>(editedMicrobe[i]);
-            auto name = organelle.organelle.name;
-            if (name=="nucleus"){
+            if (organelle.organelle.name=="nucleus"){
                 return true;
             }
         }
