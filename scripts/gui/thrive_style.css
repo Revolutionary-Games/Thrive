@@ -235,13 +235,7 @@ video {
   flex-direction: column;
 }
 
-.DisabledButton {
-  filter: grayscale(100%);
-}
 
-.DisabledButton:hover {
-  filter: grayscale(100%);
-}
 
 .MenuButton.DisabledButton {
   background-image: url("../../Textures/gui/bevel/MenuDisabled.png");
