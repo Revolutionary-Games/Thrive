@@ -240,10 +240,10 @@ function setRedo(enabled){
 //! Sends organelle selection to the Game
 function onSelectNewOrganelle(element){
 
-    if(common.isInEngine() && (!$(element.element).hasClass("DisabledButton"))) {
+    if(common.isInEngine() && !$(element.element).hasClass("DisabledButton")) {
 
         Leviathan.CallGenericEvent("MicrobeEditorOrganelleSelected", 
-        {organelle: element.organelle});
+            {organelle: element.organelle});
 
     } else {
 
@@ -256,17 +256,16 @@ function updateSelectedOrganelle(organelle){
 
     // Remove the selected text from existing ones
     
-
     // Make all buttons unselected except the one that is now selected
     for(const element of organelleSelectionElements){
 
-        if(element.organelle === organelle && (!$(element.element).hasClass("DisabledButton"))){
+        if(element.organelle === organelle && !$(element.element).hasClass("DisabledButton")){
             
             for(const element of organelleSelectionElements){
 
                 if(element.element.contains(selectedOrganelleListItem)) {
-                element.element.removeChild(selectedOrganelleListItem);
-                break;
+                    element.element.removeChild(selectedOrganelleListItem);
+                    break;
             }
         }
             element.element.classList.add("Selected");
