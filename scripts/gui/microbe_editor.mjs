@@ -273,29 +273,6 @@ function updateSelectedOrganelle(organelle){
     }
 }
 
-//! Updates the GUI buttons based on selected organelle
-function updateSelectedOrganelle(organelle){
-
-    // Remove the selected text from existing ones
-    for(const element of organelleSelectionElements){
-
-        if(element.element.contains(selectedOrganelleListItem)){
-            element.element.removeChild(selectedOrganelleListItem);
-            break;
-        }
-    }
-
-    // Make all buttons unselected except the one that is now selected
-    for(const element of organelleSelectionElements){
-
-        if(element.organelle === organelle){
-            element.element.classList.add("Selected");
-            element.element.prepend(selectedOrganelleListItem);
-        } else {
-            element.element.classList.remove("Selected");
-        }
-    }
-}
 
 //! Updates mutation points in GUI
 function updateMutationPoints(mutationPoints, maxMutationPoints){
