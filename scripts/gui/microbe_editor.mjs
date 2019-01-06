@@ -130,7 +130,7 @@ export function setupMicrobeEditor(){
 
         element.element.addEventListener("click", (event) => {
             event.stopPropagation();
-            onSelectNewOrganelle(element.organelle);
+            onSelectNewOrganelle(element);
         }, true);
     }
 
@@ -238,15 +238,15 @@ function setRedo(enabled){
 }
 
 //! Sends organelle selection to the Game
-function onSelectNewOrganelle(organelle){
+function onSelectNewOrganelle(element){
 
-    if(common.isInEngine()){
+    if(common.isInEngine() && (!$(element.element).hasClass("DisabledButton"))) {
 
-        Leviathan.CallGenericEvent("MicrobeEditorOrganelleSelected", {organelle: organelle});
+        Leviathan.CallGenericEvent("MicrobeEditorOrganelleSelected", {organelle: element.organelle});
 
     } else {
 
-        updateSelectedOrganelle(organelle);
+        updateSelectedOrganelle(element.organelle);
     }
 }
 
@@ -254,18 +254,20 @@ function onSelectNewOrganelle(organelle){
 function updateSelectedOrganelle(organelle){
 
     // Remove the selected text from existing ones
-    for(const element of organelleSelectionElements){
-
-        if(element.element.contains(selectedOrganelleListItem)){
-            element.element.removeChild(selectedOrganelleListItem);
-            break;
-        }
-    }
+    
 
     // Make all buttons unselected except the one that is now selected
     for(const element of organelleSelectionElements){
 
-        if(element.organelle === organelle){
+        if(element.organelle === organelle && (!$(element.element).hasClass("DisabledButton"))){
+            
+            for(const element of organelleSelectionElements){
+
+                if(element.element.contains(selectedOrganelleListItem)) {
+                element.element.removeChild(selectedOrganelleListItem);
+                break;
+            }
+        }
             element.element.classList.add("Selected");
             element.element.prepend(selectedOrganelleListItem);
         } else {
@@ -323,13 +325,11 @@ function updateGuiButtons(isNucleusPresent){
     if(!isNucleusPresent) {
         $("#addMitochondrion").addClass("DisabledButton");
         $("#addChloroplast").addClass("DisabledButton");
-        $("#addThermoplast").addClass("DisabledButton");
         $("#addChemoplast").addClass("DisabledButton");
         $("#addNitrogenFixingPlastid").addClass("DisabledButton");
     } else {
         $("#addMitochondrion").removeClass("DisabledButton");
         $("#addChloroplast").removeClass("DisabledButton");
-        $("#addThermoplast").removeClass("DisabledButton");
         $("#addChemoplast").removeClass("DisabledButton");
         $("#addNitrogenFixingPlastid").removeClass("DisabledButton");
     }
