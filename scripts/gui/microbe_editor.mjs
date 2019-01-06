@@ -268,7 +268,7 @@ function updateSelectedOrganelle(organelle){
                 }
             }
             element.element.classList.add("Selected");
-            element.element.prepend(selectedOrganelleListItem);  
+            element.element.prepend(selectedOrganelleListItem);
         }
     }
 }
