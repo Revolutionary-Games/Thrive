@@ -323,15 +323,15 @@ function onExitToMenuClickedEditor(){
 
 function updateGuiButtons(isNucleusPresent){
     if(!isNucleusPresent) {
-        $("#addMitochondrion").addClass("DisabledButton");
-        $("#addChloroplast").addClass("DisabledButton");
-        $("#addChemoplast").addClass("DisabledButton");
-        $("#addNitrogenFixingPlastid").addClass("DisabledButton");
+        document.getElementById("addMitochondrion").classList.add("DisabledButton");
+        document.getElementById("addChloroplast").classList.add("DisabledButton");
+        document.getElementById("addChemoplast").classList.add("DisabledButton");
+        document.getElementById("addNitrogenFixingPlastid").classList.add("DisabledButton");
     } else {
-        $("#addMitochondrion").removeClass("DisabledButton");
-        $("#addChloroplast").removeClass("DisabledButton");
-        $("#addChemoplast").removeClass("DisabledButton");
-        $("#addNitrogenFixingPlastid").removeClass("DisabledButton");
+        document.getElementById("addMitochondrion").classList.remove("DisabledButton");
+        document.getElementById("addChloroplast").classList.remove("DisabledButton");
+        document.getElementById("addChemoplast").classList.remove("DisabledButton");
+        document.getElementById("addNitrogenFixingPlastid").classList.remove("DisabledButton");
     }
 }
 
