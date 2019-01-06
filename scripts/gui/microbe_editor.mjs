@@ -63,6 +63,10 @@ const organelleSelectionElements = [
     {
         element: document.getElementById("addChromatophor"),
         organelle: "chromatophors"
+    },
+    {
+        element: document.getElementById("addNucleus"),
+        organelle: "nucleus"
     }
 
     // AddPilus
@@ -126,7 +130,7 @@ export function setupMicrobeEditor(){
 
         element.element.addEventListener("click", (event) => {
             event.stopPropagation();
-            onSelectNewOrganelle(element.organelle);
+            onSelectNewOrganelle(element);
         }, true);
     }
 
@@ -192,6 +196,11 @@ export function setupMicrobeEditor(){
 
         // Event for restoring the microbe GUI
         Leviathan.OnGeneric("MicrobeEditorExited", doExitMicrobeEditor);
+        
+        // Event for update buttons depending on presence or not of nucleus
+        Leviathan.OnGeneric("MicrobeEditorNucleusIsPresent", (event, vars) => {
+            updateGuiButtons(vars.nucleus);
+        });
 
     } else {
         updateSelectedOrganelle("cytoplasm");
@@ -229,15 +238,38 @@ function setRedo(enabled){
 }
 
 //! Sends organelle selection to the Game
-function onSelectNewOrganelle(organelle){
+function onSelectNewOrganelle(element){
 
-    if(common.isInEngine()){
+    if(common.isEngine() && !$(element.element).hasClass("DisabledButton")){
 
-        Leviathan.CallGenericEvent("MicrobeEditorOrganelleSelected", {organelle: organelle});
+        Leviathan.CallGenericEvent("MicrobeEditorOrganelleSelected", 
+            {organelle: element.organelle});       
 
     } else {
 
-        updateSelectedOrganelle(organelle);
+        updateSelectedOrganelle(element.organelle);
+    }
+}
+
+//! Updates the GUI buttons based on selected organelle
+function updateSelectedOrganelle(organelle){
+
+    // Make all buttons unselected except the one that is now selected
+    for(const element of organelleSelectionElements){
+
+        if(element.organelle === organelle && !$(element.element).hasClass("DisabledButton")){
+
+            for(const element of organelleSelectionElements){
+
+                if(element.element.contains(selectedOrganelleListItem)) {
+                    element.element.removeChild(selectedOrganelleListItem);
+                    element.element.classList.remove("Selected");
+                    break;
+                }
+            }
+            element.element.classList.add("Selected");
+            element.element.prepend(selectedOrganelleListItem);
+        }
     }
 }
 
@@ -285,6 +317,20 @@ function updateSize(size){
 function updateGeneration(generation){
     document.getElementById("generationLabel").textContent =
     generation;
+}
+
+function updateGuiButtons(isNucleusPresent){
+    if(!isNucleusPresent) {
+        document.getElementById("addMitochondrion").classList.add("DisabledButton");
+        document.getElementById("addChloroplast").classList.add("DisabledButton");
+        document.getElementById("addChemoplast").classList.add("DisabledButton");
+        document.getElementById("addNitrogenFixingPlastid").classList.add("DisabledButton");
+    } else {
+        document.getElementById("addMitochondrion").classList.remove("DisabledButton");
+        document.getElementById("addChloroplast").classList.remove("DisabledButton");
+        document.getElementById("addChemoplast").classList.remove("DisabledButton");
+        document.getElementById("addNitrogenFixingPlastid").classList.remove("DisabledButton");
+    }
 }
 
 //! Updates generation points in GUI
