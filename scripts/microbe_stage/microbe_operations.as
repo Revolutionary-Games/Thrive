@@ -713,8 +713,16 @@ void toggleEngulfMode(MicrobeComponent@ microbeComponent)
         microbeComponent.movementFactor = 1.0f;
         // soundSourceComponent.stopSound("microbe-engulfment"); // Possibly comment out.
     }
-    microbeComponent.movementFactor = microbeComponent.movementFactor /
-        ENGULFING_MOVEMENT_DIVISION;
+    else  if (microbeComponent.isBeingEngulfed)
+    {
+        microbeComponent.movementFactor = microbeComponent.movementFactor /
+            ENGULFED_MOVEMENT_DIVISION;
+    }
+    else
+    {
+        microbeComponent.movementFactor = microbeComponent.movementFactor /
+            ENGULFING_MOVEMENT_DIVISION;
+    }
 
     microbeComponent.engulfMode = !microbeComponent.engulfMode;
 }
