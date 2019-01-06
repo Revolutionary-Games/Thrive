@@ -105,7 +105,7 @@ class OrganelleParameters{
     //! Cost in mutation points
     int mpCost = 0;
 
-    //!  boolean used in editor to know if organelle that player is try to putneed presence or not of nucleus.
+    //! Boolean used in editor to know if organelle that player is try to putneed presence or not of nucleus.
     bool needsNucleus = false;
 }
 
