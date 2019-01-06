@@ -258,7 +258,7 @@ function updateSelectedOrganelle(organelle){
     for(const element of organelleSelectionElements){
 
         if(element.organelle === organelle && !$(element.element).hasClass("DisabledButton")){
-            
+
             for(const element of organelleSelectionElements){
 
                 if(element.element.contains(selectedOrganelleListItem)) {
@@ -267,7 +267,7 @@ function updateSelectedOrganelle(organelle){
                 }
             }
             element.element.classList.add("Selected");
-            element.element.prepend(selectedOrganelleListItem);        
+            element.element.prepend(selectedOrganelleListItem);    
         } else {
             element.element.classList.remove("Selected");
         }
