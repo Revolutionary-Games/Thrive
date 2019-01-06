@@ -242,7 +242,7 @@ function onSelectNewOrganelle(element){
 
     if(common.isInEngine() && !$(element.element).hasClass("DisabledButton")) {
 
-        Leviathan.CallGenericEvent("MicrobeEditorOrganelleSelected", 
+        Leviathan.CallGenericEvent("MicrobeEditorOrganelleSelected",
             {organelle: element.organelle});
 
     } else {
@@ -254,8 +254,6 @@ function onSelectNewOrganelle(element){
 //! Updates the GUI buttons based on selected organelle
 function updateSelectedOrganelle(organelle){
 
-    // Remove the selected text from existing ones
-    
     // Make all buttons unselected except the one that is now selected
     for(const element of organelleSelectionElements){
 
@@ -269,7 +267,7 @@ function updateSelectedOrganelle(organelle){
                 }
             }
             element.element.classList.add("Selected");
-            element.element.prepend(selectedOrganelleListItem);           
+            element.element.prepend(selectedOrganelleListItem);        
         } else {
             element.element.classList.remove("Selected");
         }
