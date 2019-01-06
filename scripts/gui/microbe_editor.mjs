@@ -196,7 +196,7 @@ export function setupMicrobeEditor(){
 
         // Event for restoring the microbe GUI
         Leviathan.OnGeneric("MicrobeEditorExited", doExitMicrobeEditor);
-        
+       
         // Event for update buttons depending on presence or not of nucleus
         Leviathan.OnGeneric("MicrobeEditorNucleusIsPresent", (event, vars) => {
             updateGuiButtons(vars.nucleus);
@@ -242,8 +242,8 @@ function onSelectNewOrganelle(element){
 
     if(common.isEngine() && !$(element.element).hasClass("DisabledButton")){
 
-        Leviathan.CallGenericEvent("MicrobeEditorOrganelleSelected", 
-            {organelle: element.organelle});       
+        Leviathan.CallGenericEvent("MicrobeEditorOrganelleSelected",
+            {organelle: element.organelle});
 
     } else {
 
