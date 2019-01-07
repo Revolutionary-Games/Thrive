@@ -211,6 +211,11 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(engine->RegisterObjectProperty(
+           "Compound", "bool isEnvironmental", asOFFSET(Compound, isEnvironmental)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     if(engine->RegisterObjectProperty("Compound", "Ogre::ColourValue colour",
            asOFFSET(Compound, colour)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
