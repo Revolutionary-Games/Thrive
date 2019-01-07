@@ -41,7 +41,6 @@ CompoundBagComponent::CompoundBagComponent() : Leviathan::Component(TYPE)
 {
     storageSpace = 0;
     storageSpaceOccupied = 0;
-
     for(size_t id = 0; id < SimulationParameters::compoundRegistry.getSize();
         id++) {
         compounds[id].amount = 0;
@@ -130,6 +129,20 @@ double
     CompoundBagComponent::getUsedLastTime(CompoundId compoundId)
 {
     return compounds[compoundId].usedLastTime;
+}
+
+void
+    ProcessSystem::setProcessBiome(int biomeId)
+{
+    curBiomeId = biomeId;
+}
+
+double
+    ProcessSystem::getDissolved(CompoundId compoundData)
+{
+    Biome ourBiome =
+        SimulationParameters::biomeRegistry.getTypeData(curBiomeId);
+    return ourBiome.getCompound(compoundData)->dissolved;
 }
 
 // ------------------------------------ //
@@ -282,3 +295,6 @@ void
         }
     }
 }
+void
+    ProcessSystem::Release()
+{}

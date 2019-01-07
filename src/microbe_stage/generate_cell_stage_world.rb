@@ -148,7 +148,9 @@ cellWorld = GameWorldClass.new(
                      runtick: {group: 900, parameters: []}),
 
     EntitySystem.new("ProcessSystem", ["CompoundBagComponent", "ProcessorComponent"],
-                     runtick: {group: 10, parameters: []}),
+                     runtick: {group: 10, parameters: []},
+                     visibletoscripts: true,
+                     release: []),
     EntitySystem.new("TimedLifeSystem", [],
                      runtick: {group: 45, parameters: [
                                  "ComponentTimedLifeComponent.GetIndex()"

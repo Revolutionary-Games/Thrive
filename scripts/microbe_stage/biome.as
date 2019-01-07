@@ -94,6 +94,8 @@ void setBiome(uint64 biomeId, CellStageWorld@ world){
     setSunlightForBiome(world);
     // Changing the background.
     GetThriveGame().setBackgroundMaterial(biome.background);
+    //Update biome for process system
+    world.GetProcessSystem().setProcessBiome(biomeId);
 }
 
 void setSunlightForBiome(CellStageWorld@ world){
@@ -111,9 +113,6 @@ void setSunlightForBiome(CellStageWorld@ world){
     LOG_INFO("specular Colours For Biome r:" + getCurrentBiome().diffuseColors.r +
         "g:" + getCurrentBiome().specularColors.g + "b:" + getCurrentBiome().specularColors.b);
 
-    // Diffused gasses percenatge
-   LOG_INFO("Diffused Oxygen For Biome " + getCurrentBiome().oxygenPercentage);
-   LOG_INFO("Diffused C02 For Biome " + getCurrentBiome().carbonDioxidePercentage);
 
 }
 
