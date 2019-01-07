@@ -15,30 +15,44 @@
 			}
 		},
         
-		"oxygenPercentage": 0.21,
-		"carbonDioxidePercentage": 0.09,
 		"averageTemperature": 8,
         
         "compounds": {
             "ammonia": {
                 "amount": 300000,
-                "density": 0.00002
+                "density": 0.00002,
+                "dissolved": 0.0
             },
 
             "glucose": {
                 "amount": 350000,
-                "density": 0.00002
+                "density": 0.00002,
+                "dissolved": 0.0
             },
             
             "phosphates": {
                 "amount": 300000,
-                "density": 0.00002
+                "density": 0.00002,
+                "dissolved": 0.0
             },
 
             "hydrogensulfide": {
                 "amount": 325000,
-                "density": 0.00002
-            }
+                "density": 0.00002,
+                "dissolved": 0.0
+            },
+            
+            "oxygen": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 0.21
+            },
+            
+            "carbondioxide": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 0.09
+            } 
         }
     },
 
@@ -58,30 +72,44 @@
 			}
 		},
         
-		"oxygenPercentage": 0.21,
-		"carbonDioxidePercentage": 0.09,
 		"averageTemperature": 98,
         
         "compounds": {
             "ammonia": {
                 "amount": 300000,
-                "density": 0.00002
+                "density": 0.00002,
+                "dissolved": 0.0
             },
 
             "glucose": {
                 "amount": 350000,
-                "density": 0.00002
+                "density": 0.00002,
+                "dissolved": 0.0
             },
             
             "phosphates": {
                 "amount": 300000,
-                "density": 0.00002
+                "density": 0.00002,
+                "dissolved": 0.0
             },
 
             "hydrogensulfide": {
                 "amount": 325000,
-                "density": 0.00002
-            }
+                "density": 0.00002,
+                "dissolved": 0.0
+            },
+            
+            "oxygen": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 0.21
+            },
+            
+            "carbondioxide": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 0.09
+            } 
         }
     },
     "tidepool": {
@@ -100,30 +128,44 @@
 			}
 		},
         
-		"oxygenPercentage": 0.21,
-		"carbonDioxidePercentage": 0.09,
 		"averageTemperature": 23,
         
         "compounds": {
             "ammonia": {
                 "amount": 300000,
-                "density": 0.00002
+                "density": 0.00002,
+                "dissolved": 0.0
             },
 
             "glucose": {
                 "amount": 350000,
-                "density": 0.00002
+                "density": 0.00002,
+                "dissolved": 0.0
             },
             
             "phosphates": {
                 "amount": 300000,
-                "density": 0.00002
+                "density": 0.00002,
+                "dissolved": 0.0
             },
 
             "hydrogensulfide": {
                 "amount": 325000,
-                "density": 0.00002
-            }
+                "density": 0.00002,
+                "dissolved": 0.0
+            },
+            
+            "oxygen": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 0.21
+            },
+            
+            "carbondioxide": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 0.09
+            } 
         }
     },
     "bathypalagic": {
@@ -141,29 +183,43 @@
                 "b": 0.9
 			}
 		},
-		"oxygenPercentage": 0.21,
-		"carbonDioxidePercentage": 0.09,
 		"averageTemperature": 2,
         "compounds": {
             "ammonia": {
                 "amount": 300000,
-                "density": 0.00002
+                "density": 0.00002,
+                "dissolved": 0.0
             },
 
             "glucose": {
                 "amount": 350000,
-                "density": 0.00002
+                "density": 0.00002,
+                "dissolved": 0.0
             },
             
             "phosphates": {
                 "amount": 300000,
-                "density": 0.00002
+                "density": 0.00002,
+                "dissolved": 0.0
             },
 
             "hydrogensulfide": {
                 "amount": 325000,
-                "density": 0.00002
-            }
+                "density": 0.00002,
+                "dissolved": 0.0
+            },
+            
+            "oxygen": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 0.21
+            },
+            
+            "carbondioxide": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 0.09
+            } 
         }
     },
     
@@ -182,29 +238,43 @@
                 "b": 0.9
 			}
 		},
-		"oxygenPercentage": 0.21,
-		"carbonDioxidePercentage": 0.09,
 		"averageTemperature": 2,
         "compounds": {
             "ammonia": {
                 "amount": 300000,
-                "density": 0.00002
+                "density": 0.00002,
+                "dissolved": 0.0
             },
 
             "glucose": {
                 "amount": 350000,
-                "density": 0.00002
+                "density": 0.00002,
+                "dissolved": 0.0
             },
             
             "phosphates": {
                 "amount": 300000,
-                "density": 0.00002
+                "density": 0.00002,
+                "dissolved": 0.0
             },
 
             "hydrogensulfide": {
                 "amount": 325000,
-                "density": 0.00002
-            }
+                "density": 0.00002,
+                "dissolved": 0.0
+            },
+            
+            "oxygen": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 0.21
+            },
+            
+            "carbondioxide": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 0.09
+            } 
         }
     },
     
@@ -223,29 +293,43 @@
                 "b": 0.9
 			}
 		},
-		"oxygenPercentage": 0.21,
-		"carbonDioxidePercentage": 0.09,
 		"averageTemperature": 17,
         "compounds": {
             "ammonia": {
                 "amount": 300000,
-                "density": 0.00002
+                "density": 0.00002,
+                "dissolved": 0.0
             },
 
             "glucose": {
                 "amount": 350000,
-                "density": 0.00002
+                "density": 0.00002,
+                "dissolved": 0.0
             },
             
             "phosphates": {
                 "amount": 300000,
-                "density": 0.00002
+                "density": 0.00002,
+                "dissolved": 0.0
             },
 
             "hydrogensulfide": {
                 "amount": 325000,
-                "density": 0.00002
-            }
+                "density": 0.00002,
+                "dissolved": 0.0
+            },
+            
+            "oxygen": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 0.21
+            },
+            
+            "carbondioxide": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 0.09
+            } 
         }
     },
 	
@@ -264,29 +348,43 @@
                 "b": 0.9
 			}
 		},
-		"oxygenPercentage": 0.21,
-		"carbonDioxidePercentage": 0.09,
 		"averageTemperature": 23,
         "compounds": {
             "ammonia": {
                 "amount": 300000,
-                "density": 0.00002
+                "density": 0.00002,
+                "dissolved": 0.0
             },
 
             "glucose": {
                 "amount": 350000,
-                "density": 0.00002
+                "density": 0.00002,
+                "dissolved": 0.0
             },
             
             "phosphates": {
                 "amount": 300000,
-                "density": 0.00002
+                "density": 0.00002,
+                "dissolved": 0.0
             },
 
             "hydrogensulfide": {
                 "amount": 325000,
-                "density": 0.00002
-            }
+                "density": 0.00002,
+                "dissolved": 0.0
+            },
+            
+            "oxygen": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 0.21
+            },
+            
+            "carbondioxide": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 0.09
+            } 
         }
     },
 	
@@ -298,38 +396,52 @@
                 "r": 0.98,
                 "g": 0.7,
                 "b": 0.75
-			},
+            },
 		    "diffuseColors": {
                 "r": 1.0,
                 "g": 0.9,
                 "b": 0.9
-			}
+            }
 		},
         
-		"oxygenPercentage": 0.21,
-		"carbonDioxidePercentage": 0.09,
 		"averageTemperature": -1,
         
         "compounds": {
             "ammonia": {
                 "amount": 300000,
-                "density": 0.00002
+                "density": 0.00002,
+                "dissolved": 0.0
             },
 
             "glucose": {
                 "amount": 350000,
-                "density": 0.00002
+                "density": 0.00002,
+                "dissolved": 0.0
             },
             
             "phosphates": {
                 "amount": 300000,
-                "density": 0.00002
+                "density": 0.00002,
+                "dissolved": 0.0
             },
 
             "hydrogensulfide": {
                 "amount": 325000,
-                "density": 0.00002
-            }
+                "density": 0.00002,
+                "dissolved": 0.0
+            },
+            
+            "oxygen": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 0.21
+            },
+            
+            "carbondioxide": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 0.09
+            } 
         }
     }
 }

@@ -113,6 +113,9 @@ public:
         Run(GameWorld& world);
 
     void
+        Release();
+
+    void
         CreateNodes(
             const std::vector<std::tuple<CompoundBagComponent*, ObjectID>>&
                 firstdata,
@@ -136,8 +139,17 @@ public:
         CachedComponents.RemoveBasedOnKeyTupleList(seconddata);
     }
 
+    void
+        setProcessBiome(int biomeId);
+
+
 protected:
+    double
+        getDissolved(CompoundId compoundData);
+
+
 private:
+    int curBiomeId = 0;
     static constexpr double TIME_SCALING_FACTOR = 1000;
 };
 

@@ -34,11 +34,6 @@ Biome::Biome(Json::Value value)
     diffuseColors = Ogre::ColourValue(r, g, b, 1.0);
 
     // Getting the compound information.
-    Json::Value oxygenPercent = value["oxygenPercentage"];
-    Json::Value carbonDioxidePercent = value["carbonDioxidePercentage"];
-    oxygenPercentage = oxygenPercent.asFloat();
-    carbonDioxidePercentage = carbonDioxidePercent.asFloat();
-
     Json::Value compoundData = value["compounds"];
     std::vector<std::string> compoundInternalNames =
         compoundData.getMemberNames();
@@ -48,7 +43,8 @@ Biome::Biome(Json::Value value)
             compoundData[compoundInternalName]["amount"].asUInt();
         double density =
             compoundData[compoundInternalName]["density"].asDouble();
-
+        double dissolved =
+            compoundData[compoundInternalName]["dissolved"].asDouble();
 
         // Getting the compound id from the compound registry.
         size_t id = SimulationParameters::compoundRegistry
@@ -56,7 +52,7 @@ Biome::Biome(Json::Value value)
                         .id;
 
         compounds.emplace(std::piecewise_construct, std::forward_as_tuple(id),
-            std::forward_as_tuple(amount, density));
+            std::forward_as_tuple(amount, density, dissolved));
     }
 }
 // ------------------------------------ //

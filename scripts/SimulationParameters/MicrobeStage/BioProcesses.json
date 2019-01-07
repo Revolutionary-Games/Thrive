@@ -3,6 +3,7 @@
         "name": "Respiration",
 
         "inputs": {
+            "oxygen": 1.0,
             "glucose": 0.2
         },
 
@@ -27,7 +28,7 @@
         "name": "Photosynthesis",
 
         "inputs": {
-            "glucose": 0.0
+            "carbondioxide": 1.0
         },
 
         "outputs": {
@@ -51,6 +52,7 @@
         "name": "Chemo Synthesis",
 
         "inputs": {
+            "carbondioxide": 0.1,
             "hydrogensulfide": 1.0
         },
 
@@ -63,6 +65,7 @@
         "name": "Bacterial Chemosynthesis",
 
         "inputs": {
+            "carbondioxide": 0.1,
             "hydrogensulfide": 1.0
         },
 
@@ -87,7 +90,8 @@
         "name": "RespirationProtein",
 
         "inputs": {
-            "glucose": 0.7
+            "glucose": 0.7,
+            "oxygen": 1.0
         },
 
         "outputs": {
@@ -99,7 +103,7 @@
         "name": "Bacterial Photosynthesis",
 
         "inputs": {
-            "glucose": 0.0
+            "carbondioxide": 1.0
         },
 
         "outputs": {
