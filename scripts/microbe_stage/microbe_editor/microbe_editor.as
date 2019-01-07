@@ -580,7 +580,7 @@ class MicrobeEditor{
     {
         for(uint i = 0; i < editedMicrobe.length(); ++i){
             auto organelle = cast<PlacedOrganelle>(editedMicrobe[i]);
-            if (organelle.organelle.name=="nucleus"){
+            if (organelle.organelle.name == "nucleus"){
                 return true;
             }
         }
