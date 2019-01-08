@@ -268,7 +268,7 @@ function updateSelectedOrganelle(organelle){
     // Make all buttons unselected except the one that is now selected
     for(const element of organelleSelectionElements){
 
-        if(element.organelle === organelle && !$(element.element).hasClass("DisabledButton")){
+        if(element.organelle === organelle && !element.element.classList.contains("DisabledButton")){
 
 
             element.element.classList.add("Selected");
