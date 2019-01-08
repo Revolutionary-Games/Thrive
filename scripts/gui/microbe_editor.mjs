@@ -263,7 +263,7 @@ function updateSelectedOrganelle(organelle){
             element.element.removeChild(selectedOrganelleListItem);
             element.element.classList.remove("Selected");
             break;
-            }
+        }
     }
 
 
