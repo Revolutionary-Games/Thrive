@@ -130,7 +130,10 @@ export function setupMicrobeEditor(){
 
         element.element.addEventListener("click", (event) => {
             event.stopPropagation();
-            onSelectNewOrganelle(element);
+
+            if(!$(element.element).hasClass("DisabledButton")) {
+                onSelectNewOrganelle(element.organelle);
+            }
         }, true);
     }
 
@@ -238,35 +241,38 @@ function setRedo(enabled){
 }
 
 //! Sends organelle selection to the Game
-function onSelectNewOrganelle(element){
+function onSelectNewOrganelle(organelle){
 
-    if(common.isInEngine() && !$(element.element).hasClass("DisabledButton")){
+    if(common.isInEngine()){
 
-        Leviathan.CallGenericEvent("MicrobeEditorOrganelleSelected",
-            {organelle: element.organelle});
+        Leviathan.CallGenericEvent("MicrobeEditorOrganelleSelected", {organelle: organelle});
 
     } else {
 
-        updateSelectedOrganelle(element.organelle);
+        updateSelectedOrganelle(organelle);
     }
 }
 
 //! Updates the GUI buttons based on selected organelle
 function updateSelectedOrganelle(organelle){
 
+    // Remove the selected text from existing ones
+    for(const element of organelleSelectionElements){
+
+        if(element.element.contains(selectedOrganelleListItem)) {
+            element.element.removeChild(selectedOrganelleListItem);
+            element.element.classList.remove("Selected");
+            break;
+            }
+    }
+
+
     // Make all buttons unselected except the one that is now selected
     for(const element of organelleSelectionElements){
 
         if(element.organelle === organelle && !$(element.element).hasClass("DisabledButton")){
 
-            for(const element of organelleSelectionElements){
 
-                if(element.element.contains(selectedOrganelleListItem)) {
-                    element.element.removeChild(selectedOrganelleListItem);
-                    element.element.classList.remove("Selected");
-                    break;
-                }
-            }
             element.element.classList.add("Selected");
             element.element.prepend(selectedOrganelleListItem);
         }
@@ -297,16 +303,22 @@ function updateGeneration(generation){
 }
 
 function updateGuiButtons(isNucleusPresent){
+
+    // Disabled organelle that need nucleus
     if(!isNucleusPresent) {
         document.getElementById("addMitochondrion").classList.add("DisabledButton");
         document.getElementById("addChloroplast").classList.add("DisabledButton");
         document.getElementById("addChemoplast").classList.add("DisabledButton");
         document.getElementById("addNitrogenFixingPlastid").classList.add("DisabledButton");
+        document.getElementById("addVacuole").classList.add("DisabledButton");
+        document.getElementById("addToxinVacuole").classList.add("DisabledButton");
     } else {
         document.getElementById("addMitochondrion").classList.remove("DisabledButton");
         document.getElementById("addChloroplast").classList.remove("DisabledButton");
         document.getElementById("addChemoplast").classList.remove("DisabledButton");
         document.getElementById("addNitrogenFixingPlastid").classList.remove("DisabledButton");
+        document.getElementById("addVacuole").classList.remove("DisabledButton");
+        document.getElementById("addToxinVacuole").classList.remove("DisabledButton");
     }
 }
 
