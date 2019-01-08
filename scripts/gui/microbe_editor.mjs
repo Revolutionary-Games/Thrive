@@ -259,13 +259,12 @@ function updateSelectedOrganelle(organelle){
     // Remove the selected text from existing ones
     for(const element of organelleSelectionElements){
 
-        if(element.element.contains(selectedOrganelleListItem)) {
+        if(element.element.contains(selectedOrganelleListItem)){
             element.element.removeChild(selectedOrganelleListItem);
             element.element.classList.remove("Selected");
             break;
         }
     }
-
 
     // Make all buttons unselected except the one that is now selected
     for(const element of organelleSelectionElements){
@@ -278,7 +277,6 @@ function updateSelectedOrganelle(organelle){
         }
     }
 }
-
 
 //! Updates mutation points in GUI
 function updateMutationPoints(mutationPoints, maxMutationPoints){
