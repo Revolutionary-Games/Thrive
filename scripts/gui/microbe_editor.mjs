@@ -131,7 +131,7 @@ export function setupMicrobeEditor(){
         element.element.addEventListener("click", (event) => {
             event.stopPropagation();
 
-            if(!$(element.element).hasClass("DisabledButton")) {
+            if(!(element.element.classList.contains("DisabledButton"))) {
                 onSelectNewOrganelle(element.organelle);
             }
         }, true);
