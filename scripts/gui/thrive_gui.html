@@ -117,7 +117,21 @@
           <span id="populationText">POPULATION:</span>
           <span id="populationCount">0</span>
         </div>
-	  
+        <!-- oxygen percentage -->
+        <div class="oxygen">
+          <span id="oxygenTab"></span>
+          <div id="OxygenIcon"></div>
+          <span id="oxygenPercent">O2: 20%</span>
+        </div>
+        <!-- c02 percentage -->
+        <div class="carbondioxide">
+          <span id="carbonDioxideTab"></span>
+          <div id="CO2Icon"></div>
+          <span id="carbonDioxidePercent">CO2: 9%</span>
+        </div>
+        
+
+        
 	  <div id="winContainer">
 		<span id="winTitle">YOU HAVE THRIVED!</span>
 		<span id="winBody">Congratulation- a winner is y... who am I kidding, you have thrived! You have won in the 0.4.0 build Good job, you may continue playing after this screen closes if you wish, or start a new game in a new world.</span>
@@ -354,7 +368,7 @@ Be wary because your competitors are evolving alongside you.
 	          <td id="addMitochondrion" class="OrganelleListItem">
                 <span class="tooltiptext">
                 Mitochondria<hr><br> Cost: 40 mutation points<hr><br> 
-                Performs Process: Respiration<br>(0.2 glucose -> 14 ATP)/Second<hr><br>
+                Performs Process: Respiration<br>(1 Oxygen + 0.2 glucose -> 38 ATP)/Second (Depending On Environmental Oxygen)<hr><br>
                 A captured prokaryote used by eukaryotic cells to perform respiration.<br>
                 The Mitochondria is the powerhouse of the cell
                 </span>
@@ -363,17 +377,17 @@ Be wary because your competitors are evolving alongside you.
 	          <td id="addChloroplast" class="OrganelleListItem">
                 <span class="tooltiptext">
                 Chloroplast<hr><br> Cost: 40 mutation points<hr><br> 
-                Performs Process: Photosynthesis<br>(1 glucose)/Second<hr><br>
+                Performs Process: Photosynthesis<br>( 0.09 Carbon Dioxide -> 1 glucose)/Second (Depending On Environmental C02)<hr><br>
                 A captured prokaryote used by eukaryotic cells to perform photosynthesis.<br>
                 The chloroplast is used primarily by plant cells on earth, but some ciliates and other organisms use it too.
                 </span>
                 <div id="ChloroplastIcon"></div>Chloroplast<br>40 MP</td>
 	          <td id="addThermoplast" class="OrganelleListItem DisabledButton">
                 <span class="tooltiptext">
-                Chloroplast<hr><br> Cost: 40 mutation points<hr><br> 
-                Performs Process: Photosynthesis<br>(1 glucose)/Second<hr><br>
-                A captured prokaryote used by eukaryotic cells to perform photosynthesis.<br>
-                The chloroplast is used primarily by plant cells on earth, but some ciliates and other organisms use it too.
+                Thermoplast<hr><br> Cost: 40 mutation points<hr><br> 
+                Performs Process: Thermosynthesis<br>(Heat -> 1 glucose)/Second (Depending On Environmental Heat)<hr><br>
+                A captured prokaryote used by eukaryotic cells to perform thermosynthesis.<br>
+                The thermoplast is a theoretical organelle that takes environmental heat gradients and generates energy from them.
                 </span>
                 <div id="ThermoplastIcon"></div>Thermoplast<br>40 MP</td>
 	        </tr><tr>
@@ -386,7 +400,7 @@ Be wary because your competitors are evolving alongside you.
 	          <td id="addToxinVacuole" class="OrganelleListItem">
               <span class="tooltiptext">
                 Toxin Vacuole <hr><br> Cost: 80 mutation points<hr><br> 
-                Performs Process: OxytoxyNT Production<br>(1 ATP -> 1 Oxytoxy)/Second<hr><br>
+                Performs Process: OxytoxyNT Production<br>(1 Oxygen + 5 ATP -> 5 Oxytoxy)/Second (Depending On Environmental Oxygen)<hr><br>
                 Allows for production and storage of OxytoxyNT which can be shot at enemy cells using E. The more of this organelle you have the faster your toxin fire rate aswell.
                 </span>
                 <div id="ToxinVacuoleIcon"></div>Toxin Vacuole<br>80 MP</td>
@@ -396,7 +410,7 @@ Be wary because your competitors are evolving alongside you.
 	          <td id="addChemoplast" class="OrganelleListItem">
                 <span class="tooltiptext">
                 Chemoplast<hr><br> Cost: 40 mutation points<hr><br> 
-                Performs Process: Chemosynthesis<br>(1 Hydrogen Sulfide -> 2 Glucose)/Second<hr><br>
+                Performs Process: Chemosynthesis<br>(0.09 CO2 + 1 Hydrogen Sulfide -> 2 Glucose)/Second (Depending On Environmental C02)<hr><br>
                 Allows for synthesis of glucose from hydrogen sulfide and atmospheric carbon dioxide.
                <br>
                Can be used to process the normally toxic soup containing hydrogen sulfide that comes out of hydrothermal vents at the bottom of the ocean. Into glucose.
@@ -429,7 +443,7 @@ Be wary because your competitors are evolving alongside you.
 	          <td id="addMetabolosome" class="OrganelleListItem">
                 <span class="tooltiptext">
                 Metabolosomes<hr><br> Cost: 20 mutation points<hr><br> 
-                Performs Process: Metabolsome Respiration (In real life they Ferment, but we dont have those compounds in the game yet)<br>(0.7 Glucose -> 14 ATP)/Second<hr><br>
+                Performs Process: Metabolsome Respiration (In real life they Ferment, but we dont have those compounds in the game yet)<br>(1 Oxygen + 0.7 Glucose -> 38 ATP)/Second (Depending On Environmental Oxygen)<hr><br>
                 Storage Space: 10<hr><br>
                 Organelle-like Bacterial microcompartments (BMCs) consisting of a protein shell that encloses enzymes used for fermentation.
                 </span>
@@ -437,8 +451,8 @@ Be wary because your competitors are evolving alongside you.
 	          <td id="addChromatophor" class="OrganelleListItem">
                 <span class="tooltiptext">
                 Chromatophores <hr><br> Cost: 25 mutation points <hr><br> 
-                Performs Process: Chromatophore Photosynthesis<br>(0.33 glucose)/Second<br>
-                Performs Process: Glycolysis<br>(0.125 glucose -> 5 ATP)/Second<hr><br>
+                Performs Process: Chromatophore Photosynthesis<br>(0.09 CO2 -> 0.33 glucose)/Second (Depending On Environmental C02)<br>
+                Performs Process: Glycolysis<br>(0.125 glucose -> 5 ATP)/Second (Depending On Environmental C02)<hr><br>
                 Storage Space: 10<hr><br>
                 Coloured, membrane-associated vesicles used by various prokaryotes perform photosynthesis.
                 Chromatophores contain bacteriochlorophyll pigments and carotenoids.</span>
@@ -446,7 +460,7 @@ Be wary because your competitors are evolving alongside you.
 	          <td id="addChemoSynthisizingProtiens" class="OrganelleListItem">
                 <span class="tooltiptext">
                 ChemosynthisizingProtiens <hr><br> Cost: 20 mutation points <hr><br> 
-                Performs Process: Bacterial Chemosynthesis<br>(1 Hydrogen Sulfide -> 1 Glucose)/Second<br>
+                Performs Process: Bacterial Chemosynthesis<br>(1 CO2 + 1 Hydrogen Sulfide -> 1 Glucose)/Second (Depending On Environmental C02)<br>
                 Performs Process: Glycolysis<br>(0.125 glucose -> 5 ATP)/Second<hr><br>
                 Storage Space: 20<hr><br>
                 Small membrane-associated structures that convert the noxious soup containing hydrogen
