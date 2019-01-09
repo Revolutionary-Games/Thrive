@@ -300,9 +300,9 @@ function updateGeneration(generation){
     generation;
 }
 
+//! Add Disabled status organelle that need nucleus if is not already on disabled status
 function updateGuiButtons(isNucleusPresent){
 
-    // add Disabled status organelle that need nucleus if is not already on disabled status
     if(!isNucleusPresent &&
         !document.getElementById("addMitochondrion").classList.contains("DisabledButton")) {
 
