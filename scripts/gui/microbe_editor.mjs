@@ -300,7 +300,7 @@ function updateGeneration(generation){
     generation;
 }
 
-//! Add Disabled status organelle that need nucleus if is not already on disabled status
+//! Updates buttons status depending on presence of nucleus in GUI
 function updateGuiButtons(isNucleusPresent){
 
     if(!isNucleusPresent &&
