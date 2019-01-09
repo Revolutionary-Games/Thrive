@@ -302,15 +302,15 @@ function updateGeneration(generation){
 
 function updateGuiButtons(isNucleusPresent){
 
-    // Disabled organelle that need nucleus
-    if(!isNucleusPresent) {
+    // add Disabled status organelle that need nucleus if is not already on disabled status
+    if(!isNucleusPresent &&  !document.getElementById("addMitochondrion").classList.contains("DisabledButton")) {
         document.getElementById("addMitochondrion").classList.add("DisabledButton");
         document.getElementById("addChloroplast").classList.add("DisabledButton");
         document.getElementById("addChemoplast").classList.add("DisabledButton");
         document.getElementById("addNitrogenFixingPlastid").classList.add("DisabledButton");
         document.getElementById("addVacuole").classList.add("DisabledButton");
         document.getElementById("addToxinVacuole").classList.add("DisabledButton");
-    } else {
+    } else if(isNucleusPresent && document.getElementById("addMitochondrion").classList.contains("DisabledButton")) {
         document.getElementById("addMitochondrion").classList.remove("DisabledButton");
         document.getElementById("addChloroplast").classList.remove("DisabledButton");
         document.getElementById("addChemoplast").classList.remove("DisabledButton");
