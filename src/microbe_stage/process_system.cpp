@@ -208,18 +208,29 @@ void
             // really be looping at max two or three times anyway. also make
             // sure you wont run out of space when you do add the compounds.
             // Input
+            double environmentModifier = 1.0f;
             for(const auto& input : processData.inputs) {
 
                 const CompoundId inputId = input.first;
-
+                auto compoundData =
+                    SimulationParameters::compoundRegistry.getTypeData(inputId);
                 // Set price of used compounds to 1, we dont want to purge
                 // those
                 bag.compounds[inputId].price = 1;
 
-                const double inputRemoved =
+                double inputRemoved =
                     ((input.second * processCapacity) / (processLimitCapacity));
 
+                // do environmental modifier
+                if(compoundData.isEnvironmental) {
+                    environmentModifier = environmentModifier *
+                                          getDissolved(inputId) * input.second;
+                    inputRemoved = inputRemoved * environmentModifier;
+                }
+
                 // If not enough compound we can't do the process
+                // If the compound is environmental the cell doesnt actually
+                // contain it right now and theres no where to take it from
                 if(bag.compounds[inputId].amount < inputRemoved) {
                     canDoProcess = false;
                 }
@@ -231,6 +242,9 @@ void
             for(const auto& output : processData.outputs) {
 
                 const CompoundId outputId = output.first;
+                auto compoundData =
+                    SimulationParameters::compoundRegistry.getTypeData(
+                        outputId);
                 // For now lets assume compounds we produce are also
                 // useful
                 bag.compounds[outputId].price = 1;
@@ -238,37 +252,60 @@ void
                 const double outputAdded = ((output.second * processCapacity) /
                                             (processLimitCapacity));
 
-                // If no space we can't do the process
-                if(bag.getCompoundAmount(outputId) + outputAdded >
-                    bag.storageSpace) {
-                    canDoProcess = false;
+                // If no space we can't do the process, and if environmental
+                // right now this isnt released anywhere
+                if(!compoundData.isEnvironmental) {
+                    if(bag.getCompoundAmount(outputId) +
+                            (outputAdded * environmentModifier) >
+                        bag.storageSpace) {
+                        canDoProcess = false;
+                    }
                 }
             }
 
             // Only carry out this process if you have all the required
             // ingredients and enough space for the outputs
+            environmentModifier = 1.0f;
             if(canDoProcess) {
                 // Inputs.
                 for(const auto& input : processData.inputs) {
                     const CompoundId inputId = input.first;
-                    const double inputRemoved =
-                        ((input.second * processCapacity) /
-                            (processLimitCapacity));
+                    auto compoundData =
+                        SimulationParameters::compoundRegistry.getTypeData(
+                            inputId);
+                    double inputRemoved = ((input.second * processCapacity) /
+                                           (processLimitCapacity));
 
+                    // do environmental modifier (if 0 it obviously wouldnt
+                    // work)
+                    if(compoundData.isEnvironmental) {
+                        environmentModifier = environmentModifier *
+                                              getDissolved(inputId) *
+                                              input.second;
+                        inputRemoved = inputRemoved * environmentModifier;
+                    }
                     // This should always be true (due to the earlier check) so
                     // it is always assumed here that the process succeeded
-                    if(bag.compounds[inputId].amount >= inputRemoved) {
-                        bag.compounds[inputId].amount -= inputRemoved;
+                    if(!compoundData.isEnvironmental) {
+                        if(bag.compounds[inputId].amount >= inputRemoved) {
+                            bag.compounds[inputId].amount -= inputRemoved;
+                        }
                     }
                 }
 
                 // Outputs.
                 for(const auto& output : processData.outputs) {
                     const CompoundId outputId = output.first;
+                    auto compoundData =
+                        SimulationParameters::compoundRegistry.getTypeData(
+                            outputId);
                     const double outputGenerated =
                         ((output.second * processCapacity) /
                             (processLimitCapacity));
-                    bag.compounds[outputId].amount += outputGenerated;
+                    if(!compoundData.isEnvironmental) {
+                        bag.compounds[outputId].amount +=
+                            (outputGenerated * environmentModifier);
+                    }
                 }
             }
         }
