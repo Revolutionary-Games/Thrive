@@ -225,17 +225,20 @@ void
 
                 // do environmental modifier here, and save it for later
                 if(compoundData.isEnvironmental) {
-                    environmentModifier = environmentModifier *
-                                          getDissolved(inputId) * input.second;
+                    environmentModifier =
+                        environmentModifier *
+                        (getDissolved(inputId) / input.second);
                     inputRemoved = inputRemoved * environmentModifier;
                 }
 
                 // If not enough compound we can't do the process
                 // If the compound is environmental the cell doesnt actually
                 // contain it right now and theres no where to take it from
-                if(bag.compounds[inputId].amount < inputRemoved ||
-                    environmentModifier == 0.0f) {
-                    canDoProcess = false;
+                if(!compoundData.isEnvironmental) {
+                    if(bag.compounds[inputId].amount < inputRemoved ||
+                        environmentModifier == 0.0f) {
+                        canDoProcess = false;
+                    }
                 }
             }
 

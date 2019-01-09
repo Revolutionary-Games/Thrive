@@ -1148,6 +1148,12 @@ bool
            asMETHOD(ProcessSystem, setProcessBiome), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
+
+    if(engine->RegisterObjectMethod("ProcessSystem",
+           "void getDissolved(CompoundId compoundData)",
+           asMETHOD(ProcessSystem, getDissolved), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
     // ------------------------------------ //
     // CompoundCloudSystem
     if(engine->RegisterObjectType(
