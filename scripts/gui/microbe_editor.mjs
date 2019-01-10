@@ -252,7 +252,7 @@ function onSelectNewOrganelle(organelle){
     }
 }
 
-//! Updates the GUI buttons based on selected organelle and button status
+//! Updates the GUI buttons based on selected organelle
 function updateSelectedOrganelle(organelle){
 
     // Remove the selected text from existing ones
