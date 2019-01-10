@@ -1,5 +1,5 @@
 // Global table which stores the current biome the player is in.
-uint64 currentBiome = 0;
+uint64 currentBiome = 42;
 
 const Biome@ getCurrentBiome(){
 
@@ -121,9 +121,12 @@ void setRandomBiome(CellStageWorld@ world){
      LOG_INFO("setting random biome");
     // Getting the size of the biome table.
     // Selecting a random biome.
-    auto biome = GetEngine().GetRandom().GetNumber(0,
+    uint64 biome = GetEngine().GetRandom().GetNumber(0,
         int(SimulationParameters::biomeRegistry().getSize()-1));
 
-    // Switching to that biome.
-    setBiome(biome, world);
+    // Switching to that biome if we arent that biome already
+    if (currentBiome != biome)
+        {
+        setBiome(biome, world);
+        }
 }
