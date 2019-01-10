@@ -265,7 +265,7 @@ function updateSelectedOrganelle(organelle){
         }
     }
 
-    // Make all buttons unselected except the one that is now selected
+    // Select button only if is not disabled
     for(const element of organelleSelectionElements){
 
         if(element.organelle === organelle &&
