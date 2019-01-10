@@ -268,8 +268,7 @@ function updateSelectedOrganelle(organelle){
     // Select button only if is not disabled
     for(const element of organelleSelectionElements){
 
-        if(element.organelle === organelle &&
-           !element.element.classList.contains("DisabledButton")){
+        if(element.organelle === organelle){
 
 
             element.element.classList.add("Selected");
