@@ -603,7 +603,7 @@ void setupOrganelles(){
     chemoSynthisizingProtien.mass = 0.1;
     chemoSynthisizingProtien.gene = "c";
     chemoSynthisizingProtien.mesh = "chemoproteins.mesh";
-    chemoSynthisizingProtien.chanceToCreate = 0;
+    chemoSynthisizingProtien.chanceToCreate = 0.5f;
     chemoSynthisizingProtien.prokaryoteChance = 1;
     chemoSynthisizingProtien.mpCost = 20;
     chemoSynthisizingProtien.initialComposition = {
