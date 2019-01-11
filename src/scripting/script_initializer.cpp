@@ -1150,7 +1150,7 @@ bool
     }
 
     if(engine->RegisterObjectMethod("ProcessSystem",
-           "void getDissolved(CompoundId compoundData)",
+           "double getDissolved(CompoundId compoundData)",
            asMETHOD(ProcessSystem, getDissolved), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
