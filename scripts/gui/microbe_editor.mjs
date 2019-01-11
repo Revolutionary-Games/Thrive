@@ -260,7 +260,6 @@ function updateSelectedOrganelle(organelle){
 
         if(element.element.contains(selectedOrganelleListItem)){
             element.element.removeChild(selectedOrganelleListItem);
-            element.element.classList.remove("Selected");
             break;
         }
     }
@@ -268,12 +267,11 @@ function updateSelectedOrganelle(organelle){
     // Make all buttons disalbed except buttons already  disabled
     for(const element of organelleSelectionElements){
 
-        if(element.organelle === organelle &&
-           !element.element.classList.contains("DisabledButton")){
-
-
+        if(element.organelle === organelle){
             element.element.classList.add("Selected");
             element.element.prepend(selectedOrganelleListItem);
+        } else {
+            element.element.classList.remove("Selected");
         }
     }
 }
