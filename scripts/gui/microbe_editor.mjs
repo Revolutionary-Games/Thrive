@@ -264,14 +264,14 @@ function updateSelectedOrganelle(organelle){
         }
     }
 
-    // Select button only if is not disabled
+    // Make all buttons unselected except the one that is now selected
     for(const element of organelleSelectionElements){
 
         if(element.organelle === organelle){
-
-
             element.element.classList.add("Selected");
             element.element.prepend(selectedOrganelleListItem);
+        } else {
+            element.element.classList.remove("Selected");
         }
     }
 }
