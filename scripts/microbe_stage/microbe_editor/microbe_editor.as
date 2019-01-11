@@ -959,6 +959,32 @@ class MicrobeEditor{
             auto@ templateOrganelles = cast<array<SpeciesStoredOrganelleType@>>(
                 playerSpecies.organelles);
 
+            // Grab render and physics of player cell
+            auto node =  GetThriveGame().getCellStage().GetComponent_RenderNode(GetThriveGame().playerData().activeCreature());
+            auto physics = GetThriveGame().getCellStage().GetComponent_Physics(GetThriveGame().playerData().activeCreature());
+
+            //! Change player species cell size
+            if(checkIsNucleusPresent()) {
+                playerSpecies.isBacteria = false;
+                node.Scale = Float3(1.0, 1.0, 1.0);
+                node.Marked = true;
+
+                physics.ChangeShape(GetThriveGame().getCellStage().GetPhysicalWorld(),
+                    GetThriveGame().getCellStage().GetPhysicalWorld().CreateSphere(HEX_SIZE));
+            }
+            else {
+                playerSpecies.isBacteria = true;
+                node.Scale = Float3(0.5, 0.5, 0.5);   
+                node.Marked = true;
+                physics.ChangeShape(GetThriveGame().getCellStage().GetPhysicalWorld(),
+                    GetThriveGame().getCellStage().GetPhysicalWorld().CreateSphere(HEX_SIZE/2));
+            }
+               
+                //! Change size of player cell
+               /* MicrobeOperations::updateCellSize(checkIsNucleusPresent(),  
+                        GetThriveGame().getCellStage(), 
+                        GetThriveGame().playerData().activeCreature());*/
+
             // It is easiest to just replace all
             array<SpeciesStoredOrganelleType@> newOrganelles;
 
