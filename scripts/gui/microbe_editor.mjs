@@ -260,7 +260,6 @@ function updateSelectedOrganelle(organelle){
 
         if(element.element.contains(selectedOrganelleListItem)){
             element.element.removeChild(selectedOrganelleListItem);
-            element.element.classList.remove("Selected");
             break;
         }
     }
