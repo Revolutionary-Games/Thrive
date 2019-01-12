@@ -699,10 +699,10 @@ class Species{
          }
 
         // Bacteria
-        // will randomly have 1 of 3 organelles right now, photosynthesizing protiens,
-        // respiratory Protiens, or Oxy Toxy Producing Protiens, also pure cytoplasm
+        // will randomly have 1 of 3 organelles right now, photosynthesizing proteins,
+        // respiratory Proteins, or Oxy Toxy Producing Proteins, also pure cytoplasm
         // aswell for variety.
-        //TODO when chemosynthesis is added add a protien for that aswell
+        //TODO when chemosynthesis is added add a protein for that aswell
         switch(GetEngine().GetRandom().GetNumber(1,7))
         {
         case 1:
@@ -718,10 +718,10 @@ class Species{
             stringCode = getOrganelleDefinition("oxytoxyProteins").gene;
             break;
         case 5:
-            stringCode = getOrganelleDefinition("chemoSynthisizingProtiens").gene;
+            stringCode = getOrganelleDefinition("chemoSynthisizingProteins").gene;
             break;
         case 6:
-            stringCode = getOrganelleDefinition("nitrogenFixationProtiens").gene;
+            stringCode = getOrganelleDefinition("nitrogenFixationProteins").gene;
             break;
         default:
             stringCode = getOrganelleDefinition("protoplasm").gene;

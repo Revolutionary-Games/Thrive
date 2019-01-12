@@ -1,5 +1,7 @@
-// Global table which stores the current biome the player is in.
-uint64 currentBiome = 0;
+// The current biome's id. This is initially set this high because now
+// the biome is only changed if the number changed. So if there ever
+// are more biomes than this initial value something will break.
+uint64 currentBiome = 1000000;
 
 const Biome@ getCurrentBiome(){
 
@@ -94,6 +96,19 @@ void setBiome(uint64 biomeId, CellStageWorld@ world){
     setSunlightForBiome(world);
     // Changing the background.
     GetThriveGame().setBackgroundMaterial(biome.background);
+    //Update biome for process system
+    world.GetProcessSystem().setProcessBiome(biomeId);
+
+    // Update oxygen and carbon dioxide numbers
+    auto oxyId = SimulationParameters::compoundRegistry().getTypeId("oxygen");
+    auto c02Id = SimulationParameters::compoundRegistry().getTypeId("carbondioxide");
+    GenericEvent@ updateDissolvedGasses = GenericEvent("UpdateDissolvedGasses");
+    NamedVars@ vars = updateDissolvedGasses.GetNamedVars();
+    vars.AddValue(ScriptSafeVariableBlock("oxygenPercent",
+        world.GetProcessSystem().getDissolved(oxyId)*100));
+    vars.AddValue(ScriptSafeVariableBlock("co2Percent",
+        world.GetProcessSystem().getDissolved(c02Id)*100));
+    GetEngine().GetEventHandler().CallEvent(updateDissolvedGasses);
 }
 
 void setSunlightForBiome(CellStageWorld@ world){
@@ -111,20 +126,22 @@ void setSunlightForBiome(CellStageWorld@ world){
     LOG_INFO("specular Colours For Biome r:" + getCurrentBiome().diffuseColors.r +
         "g:" + getCurrentBiome().specularColors.g + "b:" + getCurrentBiome().specularColors.b);
 
-    // Diffused gasses percenatge
-   LOG_INFO("Diffused Oxygen For Biome " + getCurrentBiome().oxygenPercentage);
-   LOG_INFO("Diffused C02 For Biome " + getCurrentBiome().carbonDioxidePercentage);
 
 }
 
 // Setting the current biome to a random biome selected from the biome table.
-void setRandomBiome(CellStageWorld@ world){
-     LOG_INFO("setting random biome");
+void setRandomBiome(CellStageWorld@ world)
+{
+    LOG_INFO("setting random biome");
+
     // Getting the size of the biome table.
     // Selecting a random biome.
-    auto biome = GetEngine().GetRandom().GetNumber(0,
+    uint64 biome = GetEngine().GetRandom().GetNumber(0,
         int(SimulationParameters::biomeRegistry().getSize()-1));
 
-    // Switching to that biome.
-    setBiome(biome, world);
+    // Switching to that biome if we arent in that biome already
+    if (currentBiome != biome)
+    {
+        setBiome(biome, world);
+    }
 }
