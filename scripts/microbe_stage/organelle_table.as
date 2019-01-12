@@ -676,7 +676,7 @@ void setupOrganelles(){
     };
 
     _addOrganelleToTable(Organelle(nitrogenFixationProtein));
-    
+
     // ------------------------------------ //
     // Setup the organelle letters
     setupOrganelleLetters();
