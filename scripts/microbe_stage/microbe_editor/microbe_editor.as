@@ -959,6 +959,17 @@ class MicrobeEditor{
             auto@ templateOrganelles = cast<array<SpeciesStoredOrganelleType@>>(
                 playerSpecies.organelles);
 
+            // It is easiest to just replace all
+            array<SpeciesStoredOrganelleType@> newOrganelles;
+
+            for(uint i = 0; i < editedMicrobe.length(); ++i){
+
+                newOrganelles.insertLast(editedMicrobe[i]);
+            }
+
+            templateOrganelles = newOrganelles;
+
+
             // Grab render and physics of player cell
             auto node =  GetThriveGame().getCellStage().GetComponent_RenderNode(GetThriveGame().playerData().activeCreature());
             auto physics = GetThriveGame().getCellStage().GetComponent_Physics(GetThriveGame().playerData().activeCreature());
@@ -979,22 +990,7 @@ class MicrobeEditor{
                 physics.ChangeShape(GetThriveGame().getCellStage().GetPhysicalWorld(),
                     GetThriveGame().getCellStage().GetPhysicalWorld().CreateSphere(HEX_SIZE/2));
             }
-               
-                //! Change size of player cell
-               /* MicrobeOperations::updateCellSize(checkIsNucleusPresent(),  
-                        GetThriveGame().getCellStage(), 
-                        GetThriveGame().playerData().activeCreature());*/
-
-            // It is easiest to just replace all
-            array<SpeciesStoredOrganelleType@> newOrganelles;
-
-            for(uint i = 0; i < editedMicrobe.length(); ++i){
-
-                newOrganelles.insertLast(editedMicrobe[i]);
-            }
-
-            templateOrganelles = newOrganelles;
-
+            
             LOG_INFO("MicrobeEditor: updated organelles for species: " + playerSpecies.name);
             return 1;
         } else if (type == "SymmetryClicked"){
