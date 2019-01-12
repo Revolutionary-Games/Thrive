@@ -11,6 +11,7 @@ public:
     double volume = 1.0;
     bool isCloud = false;
     bool isUseful = false;
+    bool isEnvironmental = false;
     Ogre::ColourValue colour;
 
     Compound();

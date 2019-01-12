@@ -136,8 +136,15 @@ public:
         CachedComponents.RemoveBasedOnKeyTupleList(seconddata);
     }
 
+    void
+        setProcessBiome(int biomeId);
+
+    double
+        getDissolved(CompoundId compoundData);
+
 protected:
 private:
+    int curBiomeId = 0;
     static constexpr double TIME_SCALING_FACTOR = 1000;
 };
 
