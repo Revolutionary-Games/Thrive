@@ -1,4 +1,6 @@
-// Global table which stores the current biome the player is in.
+// The current biome's id. This is initially set this high because now
+// the biome is only changed if the number changed. So if there ever
+// are more biomes than this initial value something will break.
 uint64 currentBiome = 1000000;
 
 const Biome@ getCurrentBiome(){
@@ -128,16 +130,18 @@ void setSunlightForBiome(CellStageWorld@ world){
 }
 
 // Setting the current biome to a random biome selected from the biome table.
-void setRandomBiome(CellStageWorld@ world){
-     LOG_INFO("setting random biome");
+void setRandomBiome(CellStageWorld@ world)
+{
+    LOG_INFO("setting random biome");
+
     // Getting the size of the biome table.
     // Selecting a random biome.
     uint64 biome = GetEngine().GetRandom().GetNumber(0,
         int(SimulationParameters::biomeRegistry().getSize()-1));
 
-    // Switching to that biome if we arent that biome already
+    // Switching to that biome if we arent in that biome already
     if (currentBiome != biome)
-        {
+    {
         setBiome(biome, world);
-        }
+    }
 }
