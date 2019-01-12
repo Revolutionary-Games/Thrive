@@ -113,9 +113,6 @@ public:
         Run(GameWorld& world);
 
     void
-        Release();
-
-    void
         CreateNodes(
             const std::vector<std::tuple<CompoundBagComponent*, ObjectID>>&
                 firstdata,

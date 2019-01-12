@@ -1,5 +1,5 @@
 // Global table which stores the current biome the player is in.
-uint64 currentBiome = 42;
+uint64 currentBiome = 1000000;
 
 const Biome@ getCurrentBiome(){
 
