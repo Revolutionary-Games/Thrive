@@ -337,6 +337,3 @@ void
         }
     }
 }
-void
-    ProcessSystem::Release()
-{}
