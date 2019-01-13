@@ -41,7 +41,7 @@ class NucleusOrganelle : OrganelleComponent{
         sceneNode1.Node.setPosition(Hex::axialToCartesian(q + 1, r + 1));
             //sceneNode1.Node.setOrientation(Ogre::Quaternion(Ogre::Radian(rotation),
                // Ogre::Vector3(0, .5, 1)));
-        sceneNode1.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(rotation),
+        sceneNode1.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(rotation+180),
                 Ogre::Vector3(0, 1, -1)));
         sceneNode1.Marked = true;
 
@@ -59,7 +59,7 @@ class NucleusOrganelle : OrganelleComponent{
         sceneNode2.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
         sceneNode2.Node.setPosition(Hex::axialToCartesian(q, r+.4));
 
-        sceneNode2.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(rotation+10),
+        sceneNode2.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(rotation+190),
                 Ogre::Vector3(0, 1, -1)));
         sceneNode2.Marked = true;
 

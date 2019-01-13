@@ -242,10 +242,7 @@ class MicrobeEditor{
 
                 PlacedOrganelle@ organelle = cast<PlacedOrganelle>(action.data["organelle"]);
                 // Need to set this here to make sure the pointer is updated
-                @action.data["organelle"]=organelle;
-                // Rotate organelle if is nucleus
-                if(organelle.organelle.name == "nucleus")
-                        organelle.rotation = 180;
+                @action.data["organelle"]=organelle;      
                 // Check if there is cytoplasm under this organelle.
                 auto hexes = organelle.organelle.getRotatedHexes(organelle.rotation);
                 for(uint i = 0; i < hexes.length(); ++i){
@@ -820,8 +817,6 @@ class MicrobeEditor{
 
             assert(toBePlacedOrganelle !is null, "invalid action name in microbe editor");
 
-            if(toBePlacedOrganelle.name == "nucleus")
-                rotation = 180;
             auto hexes = toBePlacedOrganelle.getRotatedHexes(rotation);
 
             for(uint i = 0; i < hexes.length(); ++i){
