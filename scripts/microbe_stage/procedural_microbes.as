@@ -194,7 +194,7 @@ array<PlacedOrganelle@>@ positionOrganelles(const string &in stringCode){
         //this places the nucleus
         if(i == 0){
 
-            @pos = OrganelleTemplatePlaced(name, 0, 0, 0);
+            @pos = OrganelleTemplatePlaced(name, 0, 0, 360);
 
         } else {
 
