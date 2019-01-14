@@ -3,11 +3,12 @@
         "name": "Respiration",
 
         "inputs": {
+            "oxygen": 1.0,
             "glucose": 0.2
         },
 
         "outputs": {
-            "atp": 14.0
+           "atp": 38.0
         }
     },
 	
@@ -27,7 +28,7 @@
         "name": "Photosynthesis",
 
         "inputs": {
-            "glucose": 0.0
+            "carbondioxide": 0.09
         },
 
         "outputs": {
@@ -39,11 +40,12 @@
         "name": "Oxytoxy Synthesis",
 
         "inputs": {
-            "atp": 1.0
+            "oxygen": 1.0,
+            "atp": 5.0
         },
 
         "outputs": {
-            "oxytoxy": 1.0
+            "oxytoxy": 5.0
         }
     },
 	
@@ -51,6 +53,7 @@
         "name": "Chemo Synthesis",
 
         "inputs": {
+            "carbondioxide": 0.09,
             "hydrogensulfide": 1.0
         },
 
@@ -63,6 +66,7 @@
         "name": "Bacterial Chemosynthesis",
 
         "inputs": {
+            "carbondioxide": 0.09,
             "hydrogensulfide": 1.0
         },
 
@@ -87,11 +91,12 @@
         "name": "RespirationProtein",
 
         "inputs": {
+            "oxygen": 1.0,
             "glucose": 0.7
         },
 
         "outputs": {
-            "atp": 14.0
+            "atp": 38.0
         }
     },
     
@@ -99,7 +104,7 @@
         "name": "Bacterial Photosynthesis",
 
         "inputs": {
-            "glucose": 0.0
+            "carbondioxide": 0.09
         },
 
         "outputs": {

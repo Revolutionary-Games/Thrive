@@ -515,7 +515,7 @@ void setupOrganelles(){
     // Prokaryotic Organelles (all meshes are placeholders)//
 
     // ------------------------------------ //
-    // Respiratory Protien
+    // Respiratory Protein
     auto respiratoryProtein = OrganelleParameters("metabolosome");
 
     respiratoryProtein.mass = 0.1;
@@ -568,7 +568,7 @@ void setupOrganelles(){
 
     _addOrganelleToTable(Organelle(photosyntheticProtein));
 
-    // Oxytoxy Protien
+    // Oxytoxy Protein
     auto oxytoxyProtein = OrganelleParameters("oxytoxyProteins");
 
     oxytoxyProtein.mass = 0.1;
@@ -597,32 +597,32 @@ void setupOrganelles(){
     _addOrganelleToTable(Organelle(oxytoxyProtein));
 
 
-    // chemoSynthisizingProtien
-    auto chemoSynthisizingProtien = OrganelleParameters("chemoSynthisizingProtiens");
+    // chemoSynthisizingProtein
+    auto chemoSynthisizingProtein = OrganelleParameters("chemoSynthisizingProteins");
 
-    chemoSynthisizingProtien.mass = 0.1;
-    chemoSynthisizingProtien.gene = "c";
-    chemoSynthisizingProtien.mesh = "chemoproteins.mesh";
-    chemoSynthisizingProtien.chanceToCreate = 0;
-    chemoSynthisizingProtien.prokaryoteChance = 1;
-    chemoSynthisizingProtien.mpCost = 20;
-    chemoSynthisizingProtien.initialComposition = {
+    chemoSynthisizingProtein.mass = 0.1;
+    chemoSynthisizingProtein.gene = "c";
+    chemoSynthisizingProtein.mesh = "chemoproteins.mesh";
+    chemoSynthisizingProtein.chanceToCreate = 0.5f;
+    chemoSynthisizingProtein.prokaryoteChance = 1;
+    chemoSynthisizingProtein.mpCost = 20;
+    chemoSynthisizingProtein.initialComposition = {
         {"phosphates", 1},
         {"ammonia", 1}
     };
-    chemoSynthisizingProtien.components = {
+    chemoSynthisizingProtein.components = {
         processorOrganelleFactory(1.0f),
         storageOrganelleFactory(20.0f)
     };
-    chemoSynthisizingProtien.processes = {
+    chemoSynthisizingProtein.processes = {
       TweakedProcess("bacterial_ChemoSynthesis", 1),
       TweakedProcess("glycolosis", 1)
     };
-    chemoSynthisizingProtien.hexes = {
+    chemoSynthisizingProtein.hexes = {
         Int2(0, 0),
     };
 
-    _addOrganelleToTable(Organelle(chemoSynthisizingProtien));
+    _addOrganelleToTable(Organelle(chemoSynthisizingProtein));
 
     // Bacterial cytoplasm equivilent (so they dont die immediately) (just a stopgap measure for now, though it is real)
     auto protoplasmParameters = OrganelleParameters("protoplasm");
@@ -649,33 +649,35 @@ void setupOrganelles(){
     };
     _addOrganelleToTable(Organelle(protoplasmParameters));
 
-    // nitrogenFixationProtien
+    // nitrogenFixationProtein
     // Uses same mode as chemoplast for now
-    auto nitrogenFixationProtien = OrganelleParameters("nitrogenFixationProtiens");
+    auto nitrogenFixationProtein = OrganelleParameters("nitrogenFixationProteins");
 
-    nitrogenFixationProtien.mass = 0.1;
-    nitrogenFixationProtien.gene = "i";
-    nitrogenFixationProtien.mesh = "nitrogenplastid.mesh";
-    nitrogenFixationProtien.chanceToCreate = 0;
-    nitrogenFixationProtien.prokaryoteChance = 1;
-    nitrogenFixationProtien.mpCost = 15;
-    nitrogenFixationProtien.initialComposition = {
+    nitrogenFixationProtein.mass = 0.1;
+    nitrogenFixationProtein.gene = "i";
+    nitrogenFixationProtein.mesh = "nitrogenplastid.mesh";
+    nitrogenFixationProtein.chanceToCreate = 0;
+    nitrogenFixationProtein.prokaryoteChance = 1;
+    nitrogenFixationProtein.mpCost = 15;
+    nitrogenFixationProtein.initialComposition = {
         {"phosphates", 1},
         {"ammonia",1}
     };
-    nitrogenFixationProtien.components = {
+    nitrogenFixationProtein.components = {
         processorOrganelleFactory(1.0f),
         storageOrganelleFactory(25.0f)
     };
-    nitrogenFixationProtien.processes = {
+    nitrogenFixationProtein.processes = {
       TweakedProcess("nitrogenFixing", 1),
       TweakedProcess("glycolosis", 1)
     };
-    nitrogenFixationProtien.hexes = {
+    nitrogenFixationProtein.hexes = {
         Int2(0, 0),
     };
 
-    _addOrganelleToTable(Organelle(nitrogenFixationProtien));    // ------------------------------------ //
+    _addOrganelleToTable(Organelle(nitrogenFixationProtein));
+
+    // ------------------------------------ //
     // Setup the organelle letters
     setupOrganelleLetters();
 }
