@@ -256,7 +256,7 @@ void setupOrganelles(){
     nucleusParameters.mesh = "nucleus.mesh";
     nucleusParameters.chanceToCreate = 0; // Not randomly generated.
     nucleusParameters.prokaryoteChance = 0; // Not randomly generated.
-    nucleusParameters.mpCost = 0; //it's not supossed to be purchased.
+    nucleusParameters.mpCost = 100; //big evolution moment.
     nucleusParameters.initialComposition = {
         {"phosphates", 2},
         {"ammonia", 2}

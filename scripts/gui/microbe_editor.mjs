@@ -63,6 +63,10 @@ const organelleSelectionElements = [
     {
         element: document.getElementById("addChromatophor"),
         organelle: "chromatophors"
+    },
+    {
+        element: document.getElementById("addNucleus"),
+        organelle: "nucleus"
     }
 
     // AddPilus
@@ -126,7 +130,9 @@ export function setupMicrobeEditor(){
 
         element.element.addEventListener("click", (event) => {
             event.stopPropagation();
-            onSelectNewOrganelle(element.organelle);
+            if(!element.element.classList.contains("DisabledButton")) {
+                onSelectNewOrganelle(element.organelle);
+            }
         }, true);
     }
 
@@ -192,6 +198,11 @@ export function setupMicrobeEditor(){
 
         // Event for restoring the microbe GUI
         Leviathan.OnGeneric("MicrobeEditorExited", doExitMicrobeEditor);
+
+        // Event for update buttons depending on presence or not of nucleus
+        Leviathan.OnGeneric("MicrobeEditorNucleusIsPresent", (event, vars) => {
+            updateGuiButtons(vars.nucleus);
+        });
 
     } else {
         updateSelectedOrganelle("cytoplasm");
@@ -285,6 +296,33 @@ function updateSize(size){
 function updateGeneration(generation){
     document.getElementById("generationLabel").textContent =
     generation;
+}
+
+//! Updates buttons status depending on presence of nucleus in GUI
+function updateGuiButtons(isNucleusPresent){
+
+    if(!isNucleusPresent &&
+        !document.getElementById("addMitochondrion").classList.contains("DisabledButton")) {
+
+        document.getElementById("addNucleus").classList.remove("DisabledButton");
+        document.getElementById("addMitochondrion").classList.add("DisabledButton");
+        document.getElementById("addChloroplast").classList.add("DisabledButton");
+        document.getElementById("addChemoplast").classList.add("DisabledButton");
+        document.getElementById("addNitrogenFixingPlastid").classList.add("DisabledButton");
+        document.getElementById("addVacuole").classList.add("DisabledButton");
+        document.getElementById("addToxinVacuole").classList.add("DisabledButton");
+
+    } else if(isNucleusPresent &&
+        document.getElementById("addMitochondrion").classList.contains("DisabledButton")) {
+
+        document.getElementById("addNucleus").classList.add("DisabledButton");
+        document.getElementById("addMitochondrion").classList.remove("DisabledButton");
+        document.getElementById("addChloroplast").classList.remove("DisabledButton");
+        document.getElementById("addChemoplast").classList.remove("DisabledButton");
+        document.getElementById("addNitrogenFixingPlastid").classList.remove("DisabledButton");
+        document.getElementById("addVacuole").classList.remove("DisabledButton");
+        document.getElementById("addToxinVacuole").classList.remove("DisabledButton");
+    }
 }
 
 //! Updates generation points in GUI
