@@ -49,8 +49,8 @@ const organelleSelectionElements = [
         organelle: "nitrogenfixingplastid"
     },
     {
-        element: document.getElementById("addChemoSynthisizingProtiens"),
-        organelle: "chemoSynthisizingProtiens"
+        element: document.getElementById("addChemoSynthisizingProteins"),
+        organelle: "chemoSynthisizingProteins"
     },
     {
         element: document.getElementById("addFlagellum"),
