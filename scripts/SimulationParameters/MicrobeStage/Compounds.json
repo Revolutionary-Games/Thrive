@@ -1,8 +1,9 @@
 {
+    // changed ATP to spawnable
     "atp": {
         "name": "ATP",
-        "volume": 1,
-        "isCloud": false,
+        "volume": 0.3,
+        "isCloud": true,
         "isUseful": true,
         "isEnvironmental": false,
         "colour": {
@@ -102,4 +103,17 @@
             "b": 0.0
         }
     }
+    
+    "nitrogen": {
+        "name": "Nitrogen"
+        "volume" :1,
+        "isCloud": true,
+        "isUseful": false,
+        "isEnvironmental": true,
+        "colour": {
+            "r": 0.0,
+            "g": 0.0,
+            "b": 0.5
+        }
+    },
 }
