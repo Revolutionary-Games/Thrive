@@ -3,7 +3,7 @@
     "atp": {
         "name": "ATP",
         "volume": 0.3,
-        "isCloud": true,
+        "isCloud": false,
         "isUseful": true,
         "isEnvironmental": false,
         "colour": {
@@ -102,18 +102,8 @@
             "g": 0.0,
             "b": 0.0
         }
-    }
-    
-    "nitrogen": {
-        "name": "Nitrogen"
-        "volume" :1,
-        "isCloud": true,
-        "isUseful": false,
-        "isEnvironmental": true,
-        "colour": {
-            "r": 0.0,
-            "g": 0.0,
-            "b": 0.5
-        }
     },
+    
+    
+
 }
