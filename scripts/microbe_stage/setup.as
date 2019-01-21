@@ -269,7 +269,6 @@ void onReturnFromEditor(CellStageWorld@ world)
 
 }
 
-// TODO: also put these physics callback somewhere more sensible (maybe physics_callbacks.as?)
 void cellHitFloatingOrganelle(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
 {
     // Determine which is the organelle
@@ -292,6 +291,31 @@ void cellHitFloatingOrganelle(GameWorld@ world, ObjectID firstEntity, ObjectID s
     LOG_INFO("TODO: organelle unlock progress if cell: " + cellEntity + " is the player");
 
     world.QueueDestroyEntity(floatingEntity);
+}
+
+// TODO: also put these physics callback somewhere more sensible (maybe physics_callbacks.as?)
+void cellHitIron(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
+{
+    // Determine which is the iron
+    CellStageWorld@ asCellWorld = cast<CellStageWorld>(world);
+
+    auto model = asCellWorld.GetComponent_Model(firstEntity);
+    auto floatingEntity = firstEntity;
+    auto cellEntity = secondEntity;
+
+    // Cell doesn't have a model
+    if(model is null){
+
+        @model = asCellWorld.GetComponent_Model(secondEntity);
+        floatingEntity = secondEntity;
+        cellEntity = firstEntity;
+    }
+
+    // TODO: use this to detect stuff
+    LOG_INFO("Model: " + model.GraphicalObject.getMesh().getName());
+    LOG_INFO("TODO: organelle unlock progress if cell: " + cellEntity + " is the player");
+
+    //world.QueueDestroyEntity(floatingEntity);
 }
 
 // Cell Hit Oxytoxy
@@ -624,6 +648,39 @@ ObjectID createChloroplast(CellStageWorld@ world, Float3 pos)
     return chloroplastEntity;
 }
 
+ObjectID createIron(CellStageWorld@ world, Float3 pos)
+{
+    // Chloroplasts
+    ObjectID ironEntity = world.CreateEntity();
+
+    auto position = world.Create_Position(ironEntity, pos,
+        Ogre::Quaternion(Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
+            Ogre::Vector3(0,1,1)));
+
+    auto renderNode = world.Create_RenderNode(ironEntity);
+    renderNode.Scale = Float3(1, 1, 1);
+    renderNode.Marked = true;
+    renderNode.Node.setOrientation(Ogre::Quaternion(
+            Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
+            Ogre::Vector3(0,1,1)));
+    renderNode.Node.setPosition(pos);
+    auto model = world.Create_Model(ironEntity, renderNode.Node, "iron_01.mesh");
+    // Need to set the tint
+    model.GraphicalObject.setCustomParameter(1, Ogre::Vector4(1, 1, 1, 1));
+
+    auto rigidBody = world.Create_Physics(ironEntity, position);
+    auto body = rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
+        world.GetPhysicalWorld().CreateSphere(1), 100,
+        //iron
+        world.GetPhysicalMaterial("iron"));
+
+    body.ConstraintMovementAxises();
+
+    rigidBody.JumpTo(position);
+
+    return ironEntity;
+}
+
 // TODO: the player species handling would be more logically placed if
 // it was in SpeciesSystem, so move it there
 void setupSpawnSystem(CellStageWorld@ world){
@@ -663,13 +720,18 @@ void setupFloatingOrganelles(CellStageWorld@ world){
     LOG_INFO("setting up free floating organelles");
     SpawnSystem@ spawnSystem = world.GetSpawnSystem();
 
-    //spawn toxin and chloroplasts
+    // chloroplasts
     const auto chloroId = spawnSystem.addSpawnType(
         @createChloroplast, DEFAULT_SPAWN_DENSITY,
         MICROBE_SPAWN_RADIUS);
 
-    //toxins
+    // toxins
     const auto toxinId = spawnSystem.addSpawnType(
         @createToxin, DEFAULT_SPAWN_DENSITY,
+        MICROBE_SPAWN_RADIUS);
+        
+    // iron
+    const auto ironId = spawnSystem.addSpawnType(
+        @createIron, DEFAULT_SPAWN_DENSITY,
         MICROBE_SPAWN_RADIUS);
 }

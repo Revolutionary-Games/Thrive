@@ -146,6 +146,24 @@ void
         LOG_ERROR("Failed to run script side cellHitFloatingOrganelle");
 }
 
+void
+    cellHitIron(Leviathan::PhysicalWorld& physicalWorld,
+        Leviathan::PhysicsBody& first,
+        Leviathan::PhysicsBody& second)
+{
+    GameWorld* gameWorld = physicalWorld.GetGameWorld();
+
+    ScriptRunningSetup setup("cellHitIron");
+
+    auto result =
+        ThriveCommon::get()->getMicrobeScripts()->ExecuteOnModule<void>(setup,
+            false, gameWorld, first.GetOwningEntity(),
+            second.GetOwningEntity());
+
+    if(result.Result != SCRIPT_RUN_RESULT::Success)
+        LOG_ERROR("Failed to run script side cellHitIron");
+}
+
 //! \todo This should return false when either cell is engulfing and apply the
 //! damaging effect
 bool
@@ -244,6 +262,8 @@ std::unique_ptr<Leviathan::PhysicsMaterialManager>
         std::make_unique<Leviathan::PhysicalMaterial>("cell", 1);
     auto floatingOrganelleMaterial =
         std::make_unique<Leviathan::PhysicalMaterial>("floatingOrganelle", 2);
+    auto ironMaterial =
+        std::make_unique<Leviathan::PhysicalMaterial>("iron", 2);
     auto agentMaterial =
         std::make_unique<Leviathan::PhysicalMaterial>("agentCollision", 3);
 
@@ -252,9 +272,15 @@ std::unique_ptr<Leviathan::PhysicsMaterialManager>
     // Floating organelles
     cellMaterial->FormPairWith(*floatingOrganelleMaterial)
         .SetCallbacks(nullptr, cellHitFloatingOrganelle);
+
+    // Iron
+    cellMaterial->FormPairWith(*ironMaterial)
+        .SetCallbacks(nullptr, cellHitIron);
+
     // Agents
     cellMaterial->FormPairWith(*agentMaterial)
         .SetCallbacks(agentCallback, agentCollided);
+
     // Engulfing
     cellMaterial->FormPairWith(*cellMaterial)
         .SetCallbacks(cellOnCellAABBHitCallback, cellOnCellActualContact);
@@ -263,6 +289,7 @@ std::unique_ptr<Leviathan::PhysicsMaterialManager>
 
     manager->LoadedMaterialAdd(std::move(cellMaterial));
     manager->LoadedMaterialAdd(std::move(floatingOrganelleMaterial));
+    manager->LoadedMaterialAdd(std::move(ironMaterial));
     manager->LoadedMaterialAdd(std::move(agentMaterial));
 
     return manager;
