@@ -262,10 +262,10 @@ std::unique_ptr<Leviathan::PhysicsMaterialManager>
         std::make_unique<Leviathan::PhysicalMaterial>("cell", 1);
     auto floatingOrganelleMaterial =
         std::make_unique<Leviathan::PhysicalMaterial>("floatingOrganelle", 2);
-    auto ironMaterial =
-        std::make_unique<Leviathan::PhysicalMaterial>("iron", 2);
     auto agentMaterial =
         std::make_unique<Leviathan::PhysicalMaterial>("agentCollision", 3);
+    auto ironMaterial =
+        std::make_unique<Leviathan::PhysicalMaterial>("iron", 4);
 
     // Set callbacks //
 
@@ -289,8 +289,8 @@ std::unique_ptr<Leviathan::PhysicsMaterialManager>
 
     manager->LoadedMaterialAdd(std::move(cellMaterial));
     manager->LoadedMaterialAdd(std::move(floatingOrganelleMaterial));
-    manager->LoadedMaterialAdd(std::move(ironMaterial));
     manager->LoadedMaterialAdd(std::move(agentMaterial));
+    manager->LoadedMaterialAdd(std::move(ironMaterial));
 
     return manager;
 }
