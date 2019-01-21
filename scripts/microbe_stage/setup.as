@@ -315,7 +315,7 @@ void cellHitIron(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
     LOG_INFO("Model: " + model.GraphicalObject.getMesh().getName());
     LOG_INFO("TODO: organelle unlock progress if cell: " + cellEntity + " is the player");
 
-    world.QueueDestroyEntity(floatingEntity);
+    //world.QueueDestroyEntity(floatingEntity);
 }
 
 // Cell Hit Oxytoxy
@@ -664,13 +664,13 @@ ObjectID createIron(CellStageWorld@ world, Float3 pos)
             Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
             Ogre::Vector3(0,1,1)));
     renderNode.Node.setPosition(pos);
-    auto model = world.Create_Model(ironEntity, renderNode.Node, "nucleus.mesh");
+    auto model = world.Create_Model(ironEntity, renderNode.Node, "iron_01.mesh");
     // Need to set the tint
     model.GraphicalObject.setCustomParameter(1, Ogre::Vector4(1, 1, 1, 1));
 
     auto rigidBody = world.Create_Physics(ironEntity, position);
     auto body = rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
-        world.GetPhysicalWorld().CreateSphere(1), 1,
+        world.GetPhysicalWorld().CreateSphere(1), 100,
         //iron
         world.GetPhysicalMaterial("iron"));
 
@@ -729,7 +729,7 @@ void setupFloatingOrganelles(CellStageWorld@ world){
     const auto toxinId = spawnSystem.addSpawnType(
         @createToxin, DEFAULT_SPAWN_DENSITY,
         MICROBE_SPAWN_RADIUS);
-
+        
     // iron
     const auto ironId = spawnSystem.addSpawnType(
         @createIron, DEFAULT_SPAWN_DENSITY,
