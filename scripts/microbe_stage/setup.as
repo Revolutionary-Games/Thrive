@@ -746,7 +746,7 @@ void setupFloatingOrganelles(CellStageWorld@ world){
     const auto toxinId = spawnSystem.addSpawnType(
         @createToxin, DEFAULT_SPAWN_DENSITY,
         MICROBE_SPAWN_RADIUS);
-
+        
     // iron
     const auto ironId = spawnSystem.addSpawnType(
         @createIron, DEFAULT_SPAWN_DENSITY,
