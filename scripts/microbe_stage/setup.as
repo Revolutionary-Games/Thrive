@@ -664,7 +664,24 @@ ObjectID createIron(CellStageWorld@ world, Float3 pos)
             Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
             Ogre::Vector3(0,1,1)));
     renderNode.Node.setPosition(pos);
-    auto model = world.Create_Model(ironEntity, renderNode.Node, "iron_01.mesh");
+    string mesh="";
+    // There are four kinds
+    switch (GetEngine().GetRandom().GetNumber(0, 3))
+        {
+        case 0:
+        mesh="iron_01.mesh";
+        break;
+        case 1:
+        mesh="iron_02.mesh";
+        break;
+        case 2:
+        mesh="iron_03.mesh";
+        break;
+        case 3:
+        mesh="iron_04.mesh";
+        break;
+        }
+    auto model = world.Create_Model(ironEntity, renderNode.Node, mesh);
     // Need to set the tint
     model.GraphicalObject.setCustomParameter(1, Ogre::Vector4(1, 1, 1, 1));
 
