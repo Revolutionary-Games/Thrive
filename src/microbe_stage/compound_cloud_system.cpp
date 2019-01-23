@@ -695,10 +695,11 @@ void
                 i);
         }
     }
-    //printf(""+(9 * cloudTypesNum) / 4);
-    //LOG_INFO(""+(9 * cloudTypesNum) / 4);
-    //LEVIATHAN_ASSERT(m_managedClouds.size() == ((9 *cloudTypesNum)/4)+1,
-    //    "A CompoundCloud entity has mysteriously been destroyed");
+	// This rounds up to the nearest multiple of 4, 
+	// divides that by 4 and multiplies by 9 to get all the clouds we have 
+	// (if we have 5 compounds that are clouds, we need 18 clouds, if 4 we need 9 etc)
+    LEVIATHAN_ASSERT(m_managedClouds.size() == ((((cloudTypesNum + 4 - 1) / 4 * 4)/4)*9),
+        "A CompoundCloud entity has mysteriously been destroyed");
 
     const auto moved = playerPos - m_cloudGridCenter;
 
@@ -755,9 +756,9 @@ void
 
 
         // Reposition clouds according to the origin
-        // MAX of 9 clouds can ever be repositioned (this is only the case when
-        // respawning)
-        constexpr size_t MAX_FAR_CLOUDS = 9;
+        // MAX of our cloud compounds is nearest multiple of 4 , divided by 4 and multiplied by 9
+		// This case only happens when you respawn.
+        constexpr size_t MAX_FAR_CLOUDS = 18;
         std::array<CompoundCloudComponent*, MAX_FAR_CLOUDS> tooFarAwayClouds;
         size_t farAwayIndex = 0;
 
