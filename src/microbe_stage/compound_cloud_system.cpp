@@ -695,10 +695,12 @@ void
                 i);
         }
     }
-	// This rounds up to the nearest multiple of 4, 
-	// divides that by 4 and multiplies by 9 to get all the clouds we have 
-	// (if we have 5 compounds that are clouds, we need 18 clouds, if 4 we need 9 etc)
-    LEVIATHAN_ASSERT(m_managedClouds.size() == ((((cloudTypesNum + 4 - 1) / 4 * 4)/4)*9),
+    // This rounds up to the nearest multiple of 4,
+    // divides that by 4 and multiplies by 9 to get all the clouds we have
+    // (if we have 5 compounds that are clouds, we need 18 clouds, if 4 we need
+    // 9 etc)
+    LEVIATHAN_ASSERT(
+        m_managedClouds.size() == ((((cloudTypesNum + 4 - 1) / 4 * 4) / 4) * 9),
         "A CompoundCloud entity has mysteriously been destroyed");
 
     const auto moved = playerPos - m_cloudGridCenter;
@@ -756,8 +758,8 @@ void
 
 
         // Reposition clouds according to the origin
-        // MAX of our cloud compounds is nearest multiple of 4 , divided by 4 and multiplied by 9
-		// This case only happens when you respawn.
+        // MAX of our cloud compounds is nearest multiple of 4 , divided by 4
+        // and multiplied by 9 This case only happens when you respawn.
         constexpr size_t MAX_FAR_CLOUDS = 18;
         std::array<CompoundCloudComponent*, MAX_FAR_CLOUDS> tooFarAwayClouds;
         size_t farAwayIndex = 0;
@@ -802,39 +804,41 @@ void
         // where there isn't one
         size_t farAwayRepositionedIndex = 0;
 
-        for(size_t i = 0; i < std::size(requiredCloudPositions); ++i) {
+        // Loop through the cloud groups
+        for(size_t c = 0; c < m_cloudTypes.size(); c += CLOUDS_IN_ONE) {
+            // Loop for moving clouds
+            for(size_t i = 0; i < std::size(requiredCloudPositions); ++i) {
+                bool hasCloud = false;
+                const auto& requiredPos = requiredCloudPositions[i];
+                for(auto iter = m_managedClouds.begin();
+                    iter != m_managedClouds.end(); ++iter) {
+                    const auto pos = iter->second->m_position;
+                    // An exact check might work but just to be safe slight
+                    // inaccuracy is allowed here
+                    if((pos - requiredPos).HAddAbs() < Leviathan::EPSILON &&
+                        m_cloudTypes[c].id == iter->second->m_compoundId1) {
+                        LOG_INFO("Clouds were at same position");
+                        hasCloud = true;
+                        break;
+                    }
+                }
 
-            bool hasCloud = false;
-            const auto& requiredPos = requiredCloudPositions[i];
+                if(hasCloud)
+                    continue;
 
-            for(auto iter = m_managedClouds.begin();
-                iter != m_managedClouds.end(); ++iter) {
-
-                const auto pos = iter->second->m_position;
-
-                // An exact check might work but just to be safe slight
-                // inaccuracy is allowed here
-                if((pos - requiredPos).HAddAbs() < Leviathan::EPSILON) {
-                    hasCloud = true;
+                if(farAwayRepositionedIndex >= farAwayIndex) {
+                    LOG_FATAL("CompoundCloudSystem: Logic error in moving far "
+                              "clouds (ran out), total to reposition: " +
+                              std::to_string(farAwayIndex + 1) +
+                              ", current index: " +
+                              std::to_string(farAwayRepositionedIndex) +
+                              ", position grid index: " + std::to_string(i));
                     break;
                 }
+
+                tooFarAwayClouds[farAwayRepositionedIndex++]->recycleToPosition(
+                    requiredPos);
             }
-
-            if(hasCloud)
-                continue;
-
-            if(farAwayRepositionedIndex >= farAwayIndex) {
-                LOG_FATAL("CompoundCloudSystem: Logic error in moving far "
-                          "clouds (ran out), total to reposition: " +
-                          std::to_string(farAwayIndex + 1) +
-                          ", current index: " +
-                          std::to_string(farAwayRepositionedIndex) +
-                          ", position grid index: " + std::to_string(i));
-                break;
-            }
-
-            tooFarAwayClouds[farAwayRepositionedIndex++]->recycleToPosition(
-                requiredPos);
         }
     }
 }
