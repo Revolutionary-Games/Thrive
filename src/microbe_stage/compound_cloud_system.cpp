@@ -641,6 +641,8 @@ void
         const Float3& playerPos)
 {
     // Initial spawning if everything is empty
+    int cloudTypesNum = m_cloudTypes.size();
+
     if(m_managedClouds.empty()) {
 
         LOG_INFO("CompoundCloudSystem doing initial spawning");
@@ -693,9 +695,10 @@ void
                 i);
         }
     }
-
-    LEVIATHAN_ASSERT(m_managedClouds.size() == 9,
-        "A CompoundCloud entity has mysteriously been destroyed");
+    //printf(""+(9 * cloudTypesNum) / 4);
+    //LOG_INFO(""+(9 * cloudTypesNum) / 4);
+    //LEVIATHAN_ASSERT(m_managedClouds.size() == ((9 *cloudTypesNum)/4)+1,
+    //    "A CompoundCloud entity has mysteriously been destroyed");
 
     const auto moved = playerPos - m_cloudGridCenter;
 
