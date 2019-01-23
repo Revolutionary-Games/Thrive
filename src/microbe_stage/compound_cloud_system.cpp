@@ -1119,6 +1119,7 @@ void
     // Etc.
     if(cloud.m_compoundId3 != NULL_COMPOUND)
         fillCloudChannel(cloud.m_density3, 2, rowBytes, pDest);
+
     if(cloud.m_compoundId4 != NULL_COMPOUND)
         fillCloudChannel(cloud.m_density4, 3, rowBytes, pDest);
 
