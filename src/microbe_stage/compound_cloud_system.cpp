@@ -285,18 +285,24 @@ void
     // Clear data. Maybe there is a faster way
     for(size_t x = 0; x < m_density1.size(); ++x) {
         for(size_t y = 0; y < m_density1[x].size(); ++y) {
+            if(m_compoundId1 != NULL_COMPOUND) {
+                m_density1[x][y] = 0;
+                m_oldDens1[x][y] = 0;
+            }
 
-            m_density1[x][y] = 0;
-            m_oldDens1[x][y] = 0;
+            if(m_compoundId2 != NULL_COMPOUND) {
+                m_density2[x][y] = 0;
+                m_oldDens2[x][y] = 0;
+            }
 
-            m_density2[x][y] = 0;
-            m_oldDens2[x][y] = 0;
-
-            m_density3[x][y] = 0;
-            m_oldDens3[x][y] = 0;
-
-            m_density4[x][y] = 0;
-            m_oldDens4[x][y] = 0;
+            if(m_compoundId3 != NULL_COMPOUND) {
+                m_density3[x][y] = 0;
+                m_oldDens3[x][y] = 0;
+            }
+            if(m_compoundId4 != NULL_COMPOUND) {
+                m_density4[x][y] = 0;
+                m_oldDens4[x][y] = 0;
+            }
         }
     }
 }
@@ -648,7 +654,6 @@ void
         LOG_INFO("CompoundCloudSystem doing initial spawning");
 
         m_cloudGridCenter = Float3(0, 0, 0);
-
         for(size_t i = 0; i < m_cloudTypes.size(); i += CLOUDS_IN_ONE) {
 
             // Center
@@ -815,8 +820,9 @@ void
                     const auto pos = iter->second->m_position;
                     // An exact check might work but just to be safe slight
                     // inaccuracy is allowed here
-                    if((pos - requiredPos).HAddAbs() < Leviathan::EPSILON &&
-                        m_cloudTypes[c].id == iter->second->m_compoundId1) {
+                    if(((pos - requiredPos).HAddAbs() < Leviathan::EPSILON) &&
+                        (m_cloudTypes[c].id ==
+                            iter->second->getCompoundId1())) {
                         LOG_INFO("Clouds were at same position");
                         hasCloud = true;
                         break;
