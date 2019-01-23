@@ -77,6 +77,19 @@
         }
     },
     
+    "iron": {
+        "name": "Iron",
+        "volume": 1,
+        "isCloud": true,
+        "isUseful": false,
+        "isEnvironmental": false,
+        "colour": {
+            "r": 0.28,
+            "g": 0.098,
+            "b": 0.02
+        }
+    },
+    
     "oxygen": {
         "name": "Oxygen",
         "volume": 1,
@@ -100,19 +113,6 @@
             "r": 1.0,
             "g": 0.0,
             "b": 0.0
-        }
-    },
-    
-    "iron": {
-        "name": "Iron",
-        "volume": 1,
-        "isCloud": true,
-        "isUseful": false,
-        "isEnvironmental": false,
-        "colour": {
-            "r": 0.28,
-            "g": 0.098,
-            "b": 0.02
         }
     }
 }
