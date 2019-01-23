@@ -284,23 +284,36 @@ void
             m_position.X, CLOUD_Y_COORDINATE, m_position.Z);
 
     // Clear data. Maybe there is a faster way
+    if(m_compoundId1 != NULL_COMPOUND) {
     for(size_t x = 0; x < m_density1.size(); ++x) {
         for(size_t y = 0; y < m_density1[x].size(); ++y) {
-            if(m_compoundId1 != NULL_COMPOUND) {
                 m_density1[x][y] = 0;
                 m_oldDens1[x][y] = 0;
             }
+		}
+	}
 
-            if(m_compoundId2 != NULL_COMPOUND) {
+    if(m_compoundId2 != NULL_COMPOUND) {
+        for(size_t x = 0; x < m_density2.size(); ++x) {
+            for(size_t y = 0; y < m_density2[x].size(); ++y) {
                 m_density2[x][y] = 0;
                 m_oldDens2[x][y] = 0;
             }
+        }
+    }
 
-            if(m_compoundId3 != NULL_COMPOUND) {
+    if(m_compoundId3 != NULL_COMPOUND) {
+        for(size_t x = 0; x < m_density3.size(); ++x) {
+            for(size_t y = 0; y < m_density3[x].size(); ++y) {
                 m_density3[x][y] = 0;
                 m_oldDens3[x][y] = 0;
             }
-            if(m_compoundId4 != NULL_COMPOUND) {
+        }
+    }
+
+    if(m_compoundId4 != NULL_COMPOUND) {
+        for(size_t x = 0; x < m_density4.size(); ++x) {
+            for(size_t y = 0; y < m_density4[x].size(); ++y) {
                 m_density4[x][y] = 0;
                 m_oldDens4[x][y] = 0;
             }
@@ -1134,6 +1147,7 @@ void
     // Etc.
     if(cloud.m_compoundId3 != NULL_COMPOUND)
         fillCloudChannel(cloud.m_density3, 2, rowBytes, pDest);
+
     if(cloud.m_compoundId4 != NULL_COMPOUND)
         fillCloudChannel(cloud.m_density4, 3, rowBytes, pDest);
 
