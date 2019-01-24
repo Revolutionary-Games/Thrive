@@ -284,13 +284,13 @@ void
 
     // Clear data. Maybe there is a faster way
     if(m_compoundId1 != NULL_COMPOUND) {
-    for(size_t x = 0; x < m_density1.size(); ++x) {
-        for(size_t y = 0; y < m_density1[x].size(); ++y) {
+        for(size_t x = 0; x < m_density1.size(); ++x) {
+            for(size_t y = 0; y < m_density1[x].size(); ++y) {
                 m_density1[x][y] = 0;
                 m_oldDens1[x][y] = 0;
             }
-		}
-	}
+        }
+    }
 
     if(m_compoundId2 != NULL_COMPOUND) {
         for(size_t x = 0; x < m_density2.size(); ++x) {
@@ -836,10 +836,12 @@ void
                     if(((pos - requiredPos).HAddAbs() < Leviathan::EPSILON) &&
                         (m_cloudTypes[c].id ==
                             iter->second->getCompoundId1())) {
-                        LOG_INFO("Clouds were at same position Compound ID:" +
-                                 std::to_string(m_cloudTypes[c].id) +
-                                 " Opposing ID:" +
-                                 std::to_string(iter->second->getCompoundId1()));
+                        LOG_INFO(
+                            "Clouds were at same position Compound ID:" +
+                            std::to_string(m_cloudTypes[c].id) +
+                            " Opposing ID:" +
+                            std::to_string(iter->second->getCompoundId1()));
+                        LOG_INFO(m_cloudTypes[c].displayName);
                         hasCloud = true;
                         break;
                     }
