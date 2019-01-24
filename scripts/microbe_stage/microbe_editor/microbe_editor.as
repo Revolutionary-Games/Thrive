@@ -974,8 +974,7 @@ class MicrobeEditor{
             auto node =  GetThriveGame().getCellStage().GetComponent_RenderNode(GetThriveGame().playerData().activeCreature());
             auto physics = GetThriveGame().getCellStage().GetComponent_Physics(GetThriveGame().playerData().activeCreature());
 
-            //! Change player species cell size 
-            //  depending on presence or not of nucleus organelle
+            //! Change player species cell size depending on presence or not of nucleus organelle
             if(checkIsNucleusPresent()) {
                 playerSpecies.isBacteria = false;
                 node.Scale = Float3(1.0, 1.0, 1.0);
@@ -986,12 +985,12 @@ class MicrobeEditor{
             }
             else {
                 playerSpecies.isBacteria = true;
-                node.Scale = Float3(0.5, 0.5, 0.5);   
+                node.Scale = Float3(0.5, 0.5, 0.5);
                 node.Marked = true;
                 physics.ChangeShape(GetThriveGame().getCellStage().GetPhysicalWorld(),
                     GetThriveGame().getCellStage().GetPhysicalWorld().CreateSphere(HEX_SIZE/2));
             }
-            
+
             LOG_INFO("MicrobeEditor: updated organelles for species: " + playerSpecies.name);
             return 1;
         } else if (type == "SymmetryClicked"){
