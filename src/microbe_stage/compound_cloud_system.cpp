@@ -836,7 +836,10 @@ void
                     if(((pos - requiredPos).HAddAbs() < Leviathan::EPSILON) &&
                         (m_cloudTypes[c].id ==
                             iter->second->getCompoundId1())) {
-                        LOG_INFO("Clouds were at same position");
+                        LOG_INFO("Clouds were at same position Compound ID:" +
+                                 std::to_string(m_cloudTypes[c].id) +
+                                 " Opposing ID:" +
+                                 std::to_string(iter->second->getCompoundId1()));
                         hasCloud = true;
                         break;
                     }
@@ -871,12 +874,15 @@ void
 
     Compound* first =
         startIndex < m_cloudTypes.size() ? &m_cloudTypes[startIndex] : nullptr;
+
     Compound* second = startIndex + 1 < m_cloudTypes.size() ?
                            &m_cloudTypes[startIndex + 1] :
                            nullptr;
+
     Compound* third = startIndex + 2 < m_cloudTypes.size() ?
                           &m_cloudTypes[startIndex + 2] :
                           nullptr;
+
     Compound* fourth = startIndex + 3 < m_cloudTypes.size() ?
                            &m_cloudTypes[startIndex + 3] :
                            nullptr;
