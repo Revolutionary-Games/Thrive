@@ -46,13 +46,9 @@ CompoundCloudComponent::CompoundCloudComponent(CompoundCloudSystem& owner,
             "CompoundCloudComponent needs at least one Compound type");
 
     // Read data
-    // Redundant check (see the throw above)
-    if(first) {
-
-        m_compoundId1 = first->id;
-        m_color1 =
-            Ogre::Vector4(first->colour.r, first->colour.g, first->colour.b, 1);
-    }
+    m_compoundId1 = first->id;
+    m_color1 =
+        Ogre::Vector4(first->colour.r, first->colour.g, first->colour.b, 1);
 
     if(second) {
 
@@ -667,7 +663,7 @@ void
         LOG_INFO("CompoundCloudSystem doing initial spawning");
 
         m_cloudGridCenter = Float3(0, 0, 0);
-        for(size_t i = 0; i < m_cloudTypes.size(); i += CLOUDS_IN_ONE) {
+        for(size_t i = 0; i < cloudTypesNum; i += CLOUDS_IN_ONE) {
 
             // Center
             _spawnCloud(world, m_cloudGridCenter, i);
@@ -823,7 +819,7 @@ void
         size_t farAwayRepositionedIndex = 0;
 
         // Loop through the cloud groups
-        for(size_t c = 0; c < m_cloudTypes.size(); c += CLOUDS_IN_ONE) {
+        for(size_t c = 0; c < cloudTypesNum; c += CLOUDS_IN_ONE) {
             // Loop for moving clouds
             for(size_t i = 0; i < std::size(requiredCloudPositions); ++i) {
                 bool hasCloud = false;

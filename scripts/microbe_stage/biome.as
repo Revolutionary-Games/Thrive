@@ -56,7 +56,6 @@ void setBiome(uint64 biomeId, CellStageWorld@ world){
     LOG_INFO("Setting biome to: " + biomeId);
     // Getting the base biome to change to.
     currentBiome = biomeId;
-
     auto biome = getCurrentBiome();
 
     auto biomeCompounds = biome.getCompoundKeys();
