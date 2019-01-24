@@ -293,7 +293,7 @@ void cellHitFloatingOrganelle(GameWorld@ world, ObjectID firstEntity, ObjectID s
     world.QueueDestroyEntity(floatingEntity);
 }
 
-// TODO: also put these physics callback somewhere more sensible (maybe physics_callbacks.as?)
+
 void cellHitIron(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
 {
     // Determine which is the iron
@@ -310,12 +310,6 @@ void cellHitIron(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
         floatingEntity = secondEntity;
         cellEntity = firstEntity;
     }
-
-    // TODO: use this to detect stuff
-    LOG_INFO("Model: " + model.GraphicalObject.getMesh().getName());
-    LOG_INFO("TODO: organelle unlock progress if cell: " + cellEntity + " is the player");
-
-    //world.QueueDestroyEntity(floatingEntity);
 }
 
 // Cell Hit Oxytoxy

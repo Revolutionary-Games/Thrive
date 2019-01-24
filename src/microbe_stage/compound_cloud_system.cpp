@@ -42,38 +42,37 @@ CompoundCloudComponent::CompoundCloudComponent(CompoundCloudSystem& owner,
     m_textureName("cloud_" + std::to_string(++CloudTextureNumber)),
     m_owner(owner)
 {
+    LOG_INFO("got here");
     if(!first)
         throw std::runtime_error(
             "CompoundCloudComponent needs at least one Compound type");
 
     // Read data
-    // Redundant check (see the throw above)
-    if(first) {
-
-        m_compoundId1 = first->id;
-        m_color1 =
-            Ogre::Vector4(first->colour.r, first->colour.g, first->colour.b, 1);
-    }
+    m_color1 =
+        Ogre::Vector4(first->colour.r, first->colour.g, first->colour.b, 1.0f);
+    m_compoundId1 = first->id;
+    LOG_INFO("cloud colors are " + std::to_string(first->colour.r));
+    LOG_INFO("cloud first compound ID is " + std::to_string(m_compoundId1));
 
     if(second) {
 
         m_compoundId2 = second->id;
         m_color2 = Ogre::Vector4(
-            second->colour.r, second->colour.g, second->colour.b, 1);
+            second->colour.r, second->colour.g, second->colour.b, 1.0f);
     }
 
     if(third) {
 
         m_compoundId3 = third->id;
-        m_color3 =
-            Ogre::Vector4(third->colour.r, third->colour.g, third->colour.b, 1);
+        m_color3 = Ogre::Vector4(
+            third->colour.r, third->colour.g, third->colour.b, 1.0f);
     }
 
     if(fourth) {
 
         m_compoundId4 = fourth->id;
         m_color4 = Ogre::Vector4(
-            fourth->colour.r, fourth->colour.g, fourth->colour.b, 1);
+            fourth->colour.r, fourth->colour.g, fourth->colour.b, 1.0f);
     }
 }
 
@@ -160,12 +159,13 @@ void
     if(x >= m_density1.size() || y >= m_density1[0].size())
         throw std::runtime_error(
             "CompoundCloudComponent coordinates out of range");
-
-    switch(getSlotForCompound(compound)) {
-    case SLOT::FIRST: m_density1[x][y] += dens; break;
-    case SLOT::SECOND: m_density2[x][y] += dens; break;
-    case SLOT::THIRD: m_density3[x][y] += dens; break;
-    case SLOT::FOURTH: m_density4[x][y] += dens; break;
+    if(compound != NULL_COMPOUND) {
+        switch(getSlotForCompound(compound)) {
+        case SLOT::FIRST: m_density1[x][y] += dens; break;
+        case SLOT::SECOND: m_density2[x][y] += dens; break;
+        case SLOT::THIRD: m_density3[x][y] += dens; break;
+        case SLOT::FOURTH: m_density4[x][y] += dens; break;
+        }
     }
 }
 
@@ -175,39 +175,41 @@ int
         size_t y,
         float rate)
 {
-    switch(getSlotForCompound(compound)) {
-    case SLOT::FIRST: {
-        int amountToGive = static_cast<int>(m_density1[x][y] * rate);
-        m_density1[x][y] -= amountToGive;
-        if(m_density1[x][y] < 1)
-            m_density1[x][y] = 0;
+    if(compound != NULL_COMPOUND) {
+        switch(getSlotForCompound(compound)) {
+        case SLOT::FIRST: {
+            int amountToGive = static_cast<int>(m_density1[x][y] * rate);
+            m_density1[x][y] -= amountToGive;
+            if(m_density1[x][y] < 1)
+                m_density1[x][y] = 0;
 
-        return amountToGive;
-    }
-    case SLOT::SECOND: {
-        int amountToGive = static_cast<int>(m_density2[x][y] * rate);
-        m_density2[x][y] -= amountToGive;
-        if(m_density2[x][y] < 1)
-            m_density2[x][y] = 0;
+            return amountToGive;
+        }
+        case SLOT::SECOND: {
+            int amountToGive = static_cast<int>(m_density2[x][y] * rate);
+            m_density2[x][y] -= amountToGive;
+            if(m_density2[x][y] < 1)
+                m_density2[x][y] = 0;
 
-        return amountToGive;
-    }
-    case SLOT::THIRD: {
-        int amountToGive = static_cast<int>(m_density3[x][y] * rate);
-        m_density3[x][y] -= amountToGive;
-        if(m_density3[x][y] < 1)
-            m_density3[x][y] = 0;
+            return amountToGive;
+        }
+        case SLOT::THIRD: {
+            int amountToGive = static_cast<int>(m_density3[x][y] * rate);
+            m_density3[x][y] -= amountToGive;
+            if(m_density3[x][y] < 1)
+                m_density3[x][y] = 0;
 
-        return amountToGive;
-    }
-    case SLOT::FOURTH: {
-        int amountToGive = static_cast<int>(m_density4[x][y] * rate);
-        m_density4[x][y] -= amountToGive;
-        if(m_density4[x][y] < 1)
-            m_density4[x][y] = 0;
+            return amountToGive;
+        }
+        case SLOT::FOURTH: {
+            int amountToGive = static_cast<int>(m_density4[x][y] * rate);
+            m_density4[x][y] -= amountToGive;
+            if(m_density4[x][y] < 1)
+                m_density4[x][y] = 0;
 
-        return amountToGive;
-    }
+            return amountToGive;
+        }
+        }
     }
 
     LEVIATHAN_ASSERT(false, "Shouldn't get here");
@@ -220,25 +222,26 @@ int
         size_t y,
         float rate)
 {
-    switch(getSlotForCompound(compound)) {
-    case SLOT::FIRST: {
-        int amountToGive = static_cast<int>(m_density1[x][y] * rate);
-        return amountToGive;
+    if(compound != NULL_COMPOUND) {
+        switch(getSlotForCompound(compound)) {
+        case SLOT::FIRST: {
+            int amountToGive = static_cast<int>(m_density1[x][y] * rate);
+            return amountToGive;
+        }
+        case SLOT::SECOND: {
+            int amountToGive = static_cast<int>(m_density2[x][y] * rate);
+            return amountToGive;
+        }
+        case SLOT::THIRD: {
+            int amountToGive = static_cast<int>(m_density3[x][y] * rate);
+            return amountToGive;
+        }
+        case SLOT::FOURTH: {
+            int amountToGive = static_cast<int>(m_density4[x][y] * rate);
+            return amountToGive;
+        }
+        }
     }
-    case SLOT::SECOND: {
-        int amountToGive = static_cast<int>(m_density2[x][y] * rate);
-        return amountToGive;
-    }
-    case SLOT::THIRD: {
-        int amountToGive = static_cast<int>(m_density3[x][y] * rate);
-        return amountToGive;
-    }
-    case SLOT::FOURTH: {
-        int amountToGive = static_cast<int>(m_density4[x][y] * rate);
-        return amountToGive;
-    }
-    }
-
     LEVIATHAN_ASSERT(false, "Shouldn't get here");
     return -1;
 }
@@ -285,13 +288,13 @@ void
 
     // Clear data. Maybe there is a faster way
     if(m_compoundId1 != NULL_COMPOUND) {
-    for(size_t x = 0; x < m_density1.size(); ++x) {
-        for(size_t y = 0; y < m_density1[x].size(); ++y) {
+        for(size_t x = 0; x < m_density1.size(); ++x) {
+            for(size_t y = 0; y < m_density1[x].size(); ++y) {
                 m_density1[x][y] = 0;
                 m_oldDens1[x][y] = 0;
             }
-		}
-	}
+        }
+    }
 
     if(m_compoundId2 != NULL_COMPOUND) {
         for(size_t x = 0; x < m_density2.size(); ++x) {
@@ -687,7 +690,7 @@ void
         LOG_INFO("CompoundCloudSystem doing initial spawning");
 
         m_cloudGridCenter = Float3(0, 0, 0);
-        for(size_t i = 0; i < m_cloudTypes.size(); i += CLOUDS_IN_ONE) {
+        for(size_t i = 0; i < cloudTypesNum; i += CLOUDS_IN_ONE) {
 
             // Center
             _spawnCloud(world, m_cloudGridCenter, i);
@@ -843,7 +846,7 @@ void
         size_t farAwayRepositionedIndex = 0;
 
         // Loop through the cloud groups
-        for(size_t c = 0; c < m_cloudTypes.size(); c += CLOUDS_IN_ONE) {
+        for(size_t c = 0; c < cloudTypesNum; c += CLOUDS_IN_ONE) {
             // Loop for moving clouds
             for(size_t i = 0; i < std::size(requiredCloudPositions); ++i) {
                 bool hasCloud = false;
@@ -856,7 +859,6 @@ void
                     if(((pos - requiredPos).HAddAbs() < Leviathan::EPSILON) &&
                         (m_cloudTypes[c].id ==
                             iter->second->getCompoundId1())) {
-                        LOG_INFO("Clouds were at same position");
                         hasCloud = true;
                         break;
                     }
@@ -888,26 +890,26 @@ void
         size_t startIndex)
 {
     auto entity = world.CreateEntity();
-
     Compound* first =
         startIndex < m_cloudTypes.size() ? &m_cloudTypes[startIndex] : nullptr;
+
     Compound* second = startIndex + 1 < m_cloudTypes.size() ?
                            &m_cloudTypes[startIndex + 1] :
                            nullptr;
+
     Compound* third = startIndex + 2 < m_cloudTypes.size() ?
                           &m_cloudTypes[startIndex + 2] :
                           nullptr;
+
     Compound* fourth = startIndex + 3 < m_cloudTypes.size() ?
                            &m_cloudTypes[startIndex + 3] :
                            nullptr;
-
     CompoundCloudComponent& cloud = world.Create_CompoundCloudComponent(
         entity, *this, first, second, third, fourth);
 
     // Set correct position
     // TODO: this should probably be made a constructor parameter
     cloud.m_position = pos;
-
     initializeCloud(cloud, world.GetScene());
     m_managedClouds[entity] = &cloud;
 }
@@ -917,6 +919,8 @@ void
     CompoundCloudSystem::initializeCloud(CompoundCloudComponent& cloud,
         Ogre::SceneManager* scene)
 {
+    LOG_INFO(
+        "cloud first compound ID is " + std::to_string(cloud.m_compoundId1));
     LOG_INFO("Initializing a new compound cloud entity");
 
     // All the densities
@@ -993,18 +997,14 @@ void
     pass->setFragmentProgram("CompoundCloud_PS");
 
     // Set colour parameter //
-    if(cloud.m_compoundId1 != NULL_COMPOUND)
-        pass->getFragmentProgramParameters()->setNamedConstant(
-            "cloudColour1", cloud.m_color1);
-    if(cloud.m_compoundId2 != NULL_COMPOUND)
-        pass->getFragmentProgramParameters()->setNamedConstant(
-            "cloudColour2", cloud.m_color2);
-    if(cloud.m_compoundId3 != NULL_COMPOUND)
-        pass->getFragmentProgramParameters()->setNamedConstant(
-            "cloudColour3", cloud.m_color3);
-    if(cloud.m_compoundId4 != NULL_COMPOUND)
-        pass->getFragmentProgramParameters()->setNamedConstant(
-            "cloudColour4", cloud.m_color4);
+    pass->getFragmentProgramParameters()->setNamedConstant(
+        "cloudColour1", cloud.m_color1);
+    pass->getFragmentProgramParameters()->setNamedConstant(
+        "cloudColour2", cloud.m_color2);
+    pass->getFragmentProgramParameters()->setNamedConstant(
+        "cloudColour3", cloud.m_color3);
+    pass->getFragmentProgramParameters()->setNamedConstant(
+        "cloudColour4", cloud.m_color4);
 
     // The perlin noise texture needs to be tileable. We can't do tricks with
     // the cloud's position
