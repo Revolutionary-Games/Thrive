@@ -120,11 +120,11 @@ CompoundCloudComponent::SLOT
 {
     if(compound == m_compoundId1)
         return SLOT::FIRST;
-    if(compound == m_compoundId2)
+    else if(compound == m_compoundId2)
         return SLOT::SECOND;
-    if(compound == m_compoundId3)
+    else if(compound == m_compoundId3)
         return SLOT::THIRD;
-    if(compound == m_compoundId4)
+    else if(compound == m_compoundId4)
         return SLOT::FOURTH;
 
     throw std::runtime_error("This cloud doesn't contain the used CompoundId");
@@ -155,12 +155,13 @@ void
     if(x >= m_density1.size() || y >= m_density1[0].size())
         throw std::runtime_error(
             "CompoundCloudComponent coordinates out of range");
-
-    switch(getSlotForCompound(compound)) {
-    case SLOT::FIRST: m_density1[x][y] += dens; break;
-    case SLOT::SECOND: m_density2[x][y] += dens; break;
-    case SLOT::THIRD: m_density3[x][y] += dens; break;
-    case SLOT::FOURTH: m_density4[x][y] += dens; break;
+    if(compound != NULL_COMPOUND) {
+        switch(getSlotForCompound(compound)) {
+        case SLOT::FIRST: m_density1[x][y] += dens; break;
+        case SLOT::SECOND: m_density2[x][y] += dens; break;
+        case SLOT::THIRD: m_density3[x][y] += dens; break;
+        case SLOT::FOURTH: m_density4[x][y] += dens; break;
+        }
     }
 }
 
@@ -170,39 +171,41 @@ int
         size_t y,
         float rate)
 {
-    switch(getSlotForCompound(compound)) {
-    case SLOT::FIRST: {
-        int amountToGive = static_cast<int>(m_density1[x][y] * rate);
-        m_density1[x][y] -= amountToGive;
-        if(m_density1[x][y] < 1)
-            m_density1[x][y] = 0;
+    if(compound != NULL_COMPOUND) {
+        switch(getSlotForCompound(compound)) {
+        case SLOT::FIRST: {
+            int amountToGive = static_cast<int>(m_density1[x][y] * rate);
+            m_density1[x][y] -= amountToGive;
+            if(m_density1[x][y] < 1)
+                m_density1[x][y] = 0;
 
-        return amountToGive;
-    }
-    case SLOT::SECOND: {
-        int amountToGive = static_cast<int>(m_density2[x][y] * rate);
-        m_density2[x][y] -= amountToGive;
-        if(m_density2[x][y] < 1)
-            m_density2[x][y] = 0;
+            return amountToGive;
+        }
+        case SLOT::SECOND: {
+            int amountToGive = static_cast<int>(m_density2[x][y] * rate);
+            m_density2[x][y] -= amountToGive;
+            if(m_density2[x][y] < 1)
+                m_density2[x][y] = 0;
 
-        return amountToGive;
-    }
-    case SLOT::THIRD: {
-        int amountToGive = static_cast<int>(m_density3[x][y] * rate);
-        m_density3[x][y] -= amountToGive;
-        if(m_density3[x][y] < 1)
-            m_density3[x][y] = 0;
+            return amountToGive;
+        }
+        case SLOT::THIRD: {
+            int amountToGive = static_cast<int>(m_density3[x][y] * rate);
+            m_density3[x][y] -= amountToGive;
+            if(m_density3[x][y] < 1)
+                m_density3[x][y] = 0;
 
-        return amountToGive;
-    }
-    case SLOT::FOURTH: {
-        int amountToGive = static_cast<int>(m_density4[x][y] * rate);
-        m_density4[x][y] -= amountToGive;
-        if(m_density4[x][y] < 1)
-            m_density4[x][y] = 0;
+            return amountToGive;
+        }
+        case SLOT::FOURTH: {
+            int amountToGive = static_cast<int>(m_density4[x][y] * rate);
+            m_density4[x][y] -= amountToGive;
+            if(m_density4[x][y] < 1)
+                m_density4[x][y] = 0;
 
-        return amountToGive;
-    }
+            return amountToGive;
+        }
+        }
     }
 
     LEVIATHAN_ASSERT(false, "Shouldn't get here");
@@ -215,25 +218,26 @@ int
         size_t y,
         float rate)
 {
-    switch(getSlotForCompound(compound)) {
-    case SLOT::FIRST: {
-        int amountToGive = static_cast<int>(m_density1[x][y] * rate);
-        return amountToGive;
+    if(compound != NULL_COMPOUND) {
+        switch(getSlotForCompound(compound)) {
+        case SLOT::FIRST: {
+            int amountToGive = static_cast<int>(m_density1[x][y] * rate);
+            return amountToGive;
+        }
+        case SLOT::SECOND: {
+            int amountToGive = static_cast<int>(m_density2[x][y] * rate);
+            return amountToGive;
+        }
+        case SLOT::THIRD: {
+            int amountToGive = static_cast<int>(m_density3[x][y] * rate);
+            return amountToGive;
+        }
+        case SLOT::FOURTH: {
+            int amountToGive = static_cast<int>(m_density4[x][y] * rate);
+            return amountToGive;
+        }
+        }
     }
-    case SLOT::SECOND: {
-        int amountToGive = static_cast<int>(m_density2[x][y] * rate);
-        return amountToGive;
-    }
-    case SLOT::THIRD: {
-        int amountToGive = static_cast<int>(m_density3[x][y] * rate);
-        return amountToGive;
-    }
-    case SLOT::FOURTH: {
-        int amountToGive = static_cast<int>(m_density4[x][y] * rate);
-        return amountToGive;
-    }
-    }
-
     LEVIATHAN_ASSERT(false, "Shouldn't get here");
     return -1;
 }
