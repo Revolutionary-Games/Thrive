@@ -252,7 +252,7 @@ function onSelectNewOrganelle(organelle){
     }
 }
 
-//! Updates the GUI buttons based on selected organelle if is enabled
+//! Updates the GUI buttons based on selected organelle
 function updateSelectedOrganelle(organelle){
 
     // Remove the selected text from existing ones
@@ -264,7 +264,7 @@ function updateSelectedOrganelle(organelle){
         }
     }
 
-    // Make all buttons disalbed except buttons already  disabled
+    // Make all buttons unselected except the one that is now selected
     for(const element of organelleSelectionElements){
 
         if(element.organelle === organelle){
