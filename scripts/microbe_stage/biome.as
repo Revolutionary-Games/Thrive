@@ -56,13 +56,12 @@ void setBiome(uint64 biomeId, CellStageWorld@ world){
     LOG_INFO("Setting biome to: " + biomeId);
     // Getting the base biome to change to.
     currentBiome = biomeId;
-
     auto biome = getCurrentBiome();
 
     auto biomeCompounds = biome.getCompoundKeys();
     LOG_INFO("biomeCompounds.length = " + biomeCompounds.length());
     for(uint i = 0; i < biomeCompounds.length(); ++i){
-        auto compoundId = biomeCompounds[i];
+        auto compoundId = SimulationParameters::compoundRegistry().getTypeData(biomeCompounds[i]).id;
 
         if(SimulationParameters::compoundRegistry().getTypeData(compoundId).isCloud){
 

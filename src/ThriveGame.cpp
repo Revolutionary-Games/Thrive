@@ -304,10 +304,9 @@ void
     // This is needed for the compound clouds to work in general
     const auto compoundCount = SimulationParameters::compoundRegistry.getSize();
 
+
     LEVIATHAN_ASSERT(SimulationParameters::compoundRegistry.getSize() > 0,
         "compound registry is empty when creating cloud entities for them");
-    std::unordered_map<Leviathan::ObjectID, thrive::CompoundCloudComponent> u =
-        {};
 
     std::vector<Compound> clouds;
 
