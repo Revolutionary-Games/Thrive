@@ -211,6 +211,11 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(engine->RegisterObjectProperty("Compound", "bool isEnvironmental",
+           asOFFSET(Compound, isEnvironmental)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     if(engine->RegisterObjectProperty("Compound", "Ogre::ColourValue colour",
            asOFFSET(Compound, colour)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
@@ -227,14 +232,6 @@ bool
     if(engine->RegisterObjectProperty("Biome",
            "Ogre::ColourValue diffuseColors",
            asOFFSET(Biome, diffuseColors)) < 0) {
-        ANGELSCRIPT_REGISTERFAIL;
-    }
-    if(engine->RegisterObjectProperty("Biome", "float oxygenPercentage",
-           asOFFSET(Biome, oxygenPercentage)) < 0) {
-        ANGELSCRIPT_REGISTERFAIL;
-    }
-    if(engine->RegisterObjectProperty("Biome", "float carbonDioxidePercentage",
-           asOFFSET(Biome, carbonDioxidePercentage)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
@@ -272,6 +269,10 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(engine->RegisterObjectProperty("BiomeCompoundData", "double dissolved",
+           asOFFSET(BiomeCompoundData, dissolved)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
     return true;
 }
 
@@ -1136,7 +1137,23 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    // Process System
+    if(engine->RegisterObjectType(
+           "ProcessSystem", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
 
+    if(engine->RegisterObjectMethod("ProcessSystem",
+           "void setProcessBiome(int biomeId)",
+           asMETHOD(ProcessSystem, setProcessBiome), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("ProcessSystem",
+           "double getDissolved(CompoundId compoundData)",
+           asMETHOD(ProcessSystem, getDissolved), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
     // ------------------------------------ //
     // CompoundCloudSystem
     if(engine->RegisterObjectType(

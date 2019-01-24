@@ -191,10 +191,10 @@ array<PlacedOrganelle@>@ positionOrganelles(const string &in stringCode){
         const auto letter = CharacterToString(stringCode[i]);
         // LOG_WRITE(formatUInt(i) + ": " + letter);
         string name = string(organelleLetters[letter]);
-        //this places the nucleous
+        //this places the nucleus
         if(i == 0){
 
-            @pos = OrganelleTemplatePlaced(name, 0, 0, 180);
+            @pos = OrganelleTemplatePlaced(name, 0, 0, 360);
 
         } else {
 

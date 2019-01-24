@@ -409,6 +409,12 @@ video {
 }
 
 #OxygenIcon {
+  width: 40px;
+  height: 40px;
+  transform: scale(0.75, 0.75);
+  top: 0;
+  left: 600px;
+  position: absolute;
   background-image: url("../../Textures/gui/bevel/Oxygen.png");
 }
 
@@ -441,6 +447,12 @@ video {
 }
 
 #CO2Icon {
+  width: 40px;
+  height: 40px;
+  transform: scale(0.75, 0.75);
+  top: 0;
+  left: 720px;
+  position: absolute;
   background-image: url("../../Textures/gui/bevel/CO2.png");
 }
 
@@ -643,7 +655,7 @@ video {
   height: 40px;
   width: 150px;
   top: 0;
-  left: 600px;
+  left: 840px;
   font-size: 10pt;
   line-height: 40px;
   background-image: url("../../Textures/gui/bevel/LongTwoNormal.png");
@@ -654,7 +666,49 @@ video {
   height: 40px;
   width: 150px;
   top: 0;
-  left: 680px;
+  left: 920px;
+  font-size: 10pt;
+  line-height: 40px;
+}
+
+#oxygenTab {
+  position: absolute;
+  height: 40px;
+  width: 120px;
+  top: 0;
+  left: 600px;
+  font-size: 10pt;
+  line-height: 40px;
+  background-image: url("../../Textures/gui/bevel/EditPanelHeaderNormal.png");
+}
+
+#oxygenPercent {
+  position: absolute;
+  height: 40px;
+  width: 150px;
+  top: 0;
+  left: 640px;
+  font-size: 10pt;
+  line-height: 40px;
+}
+
+#carbonDioxideTab {
+  position: absolute;
+  height: 40px;
+  width: 120px;
+  top: 0;
+  left: 720px;
+  font-size: 10pt;
+  line-height: 40px;
+  background-image: url("../../Textures/gui/bevel/EditPanelHeaderNormal.png");
+}
+
+#carbonDioxidePercent {
+  position: absolute;
+  height: 40px;
+  width: 150px;
+  top: 0;
+  left: 760px;
   font-size: 10pt;
   line-height: 40px;
 }
@@ -1195,7 +1249,7 @@ video {
   background-image: url("../../Textures/gui/bevel/ChromatophorIcon.png");
 }
 
-#ChemosynthisizingProtiensIcon {
+#ChemosynthisizingProteinsIcon {
   position: relative;
   left: calc(50% - 30px);
   width: 60px;
