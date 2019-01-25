@@ -986,18 +986,14 @@ void
     pass->setFragmentProgram("CompoundCloud_PS");
 
     // Set colour parameter //
-    if(cloud.m_compoundId1 != NULL_COMPOUND)
-        pass->getFragmentProgramParameters()->setNamedConstant(
-            "cloudColour1", cloud.m_color1);
-    if(cloud.m_compoundId2 != NULL_COMPOUND)
-        pass->getFragmentProgramParameters()->setNamedConstant(
-            "cloudColour2", cloud.m_color2);
-    if(cloud.m_compoundId3 != NULL_COMPOUND)
-        pass->getFragmentProgramParameters()->setNamedConstant(
-            "cloudColour3", cloud.m_color3);
-    if(cloud.m_compoundId4 != NULL_COMPOUND)
-        pass->getFragmentProgramParameters()->setNamedConstant(
-            "cloudColour4", cloud.m_color4);
+    pass->getFragmentProgramParameters()->setNamedConstant(
+        "cloudColour1", cloud.m_color1);
+    pass->getFragmentProgramParameters()->setNamedConstant(
+        "cloudColour2", cloud.m_color2);
+    pass->getFragmentProgramParameters()->setNamedConstant(
+        "cloudColour3", cloud.m_color3);
+    pass->getFragmentProgramParameters()->setNamedConstant(
+        "cloudColour4", cloud.m_color4);
 
     // The perlin noise texture needs to be tileable. We can't do tricks with
     // the cloud's position
