@@ -314,10 +314,10 @@ protected:
     //! The color of the compound cloud.
     //! Every used channel must have alpha of 1. The others have alpha 0 so that
     //! they don't need to be worried about affecting the resulting colours
-    Ogre::Vector4 m_color1;
-    Ogre::Vector4 m_color2;
-    Ogre::Vector4 m_color3;
-    Ogre::Vector4 m_color4;
+    Ogre::Vector4 m_color1 = Ogre::Vector4(0, 0, 0, 0);
+    Ogre::Vector4 m_color2 = Ogre::Vector4(0, 0, 0, 0);
+    Ogre::Vector4 m_color3 = Ogre::Vector4(0, 0, 0, 0);
+    Ogre::Vector4 m_color4 = Ogre::Vector4(0, 0, 0, 0);
 
     //! \brief The compound id.
     //! \note NULL_COMPOUND means that this cloud doesn't have that slot filled

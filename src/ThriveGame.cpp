@@ -316,10 +316,8 @@ void
         const auto& data =
             SimulationParameters::compoundRegistry.getTypeData(i);
 
-        if(!data.isCloud)
-            continue;
-
-        clouds.push_back(data);
+        if(data.isCloud)
+            clouds.push_back(data);
     }
 
     m_impl->m_cellStage->GetCompoundCloudSystem().registerCloudTypes(

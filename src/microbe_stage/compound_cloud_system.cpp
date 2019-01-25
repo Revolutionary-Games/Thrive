@@ -48,27 +48,27 @@ CompoundCloudComponent::CompoundCloudComponent(CompoundCloudSystem& owner,
     // Read data
     m_compoundId1 = first->id;
     m_color1 =
-        Ogre::Vector4(first->colour.r, first->colour.g, first->colour.b, 1);
+        Ogre::Vector4(first->colour.r, first->colour.g, first->colour.b, 1.0f);
 
     if(second) {
 
         m_compoundId2 = second->id;
         m_color2 = Ogre::Vector4(
-            second->colour.r, second->colour.g, second->colour.b, 1);
+            second->colour.r, second->colour.g, second->colour.b, 1.0f);
     }
 
     if(third) {
 
         m_compoundId3 = third->id;
-        m_color3 =
-            Ogre::Vector4(third->colour.r, third->colour.g, third->colour.b, 1);
+        m_color3 = Ogre::Vector4(
+            third->colour.r, third->colour.g, third->colour.b, 1.0f);
     }
 
     if(fourth) {
 
         m_compoundId4 = fourth->id;
         m_color4 = Ogre::Vector4(
-            fourth->colour.r, fourth->colour.g, fourth->colour.b, 1);
+            fourth->colour.r, fourth->colour.g, fourth->colour.b, 1.0f);
     }
 }
 
@@ -120,11 +120,11 @@ CompoundCloudComponent::SLOT
 {
     if(compound == m_compoundId1)
         return SLOT::FIRST;
-    else if(compound == m_compoundId2)
+    if(compound == m_compoundId2)
         return SLOT::SECOND;
-    else if(compound == m_compoundId3)
+    if(compound == m_compoundId3)
         return SLOT::THIRD;
-    else if(compound == m_compoundId4)
+    if(compound == m_compoundId4)
         return SLOT::FOURTH;
 
     throw std::runtime_error("This cloud doesn't contain the used CompoundId");
