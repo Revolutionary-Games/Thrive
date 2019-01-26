@@ -246,6 +246,10 @@ void
         netSettings.IsAuthoritative = true;
         netSettings.DoInterpolation = true;
 
+        // TODO: switch to
+        // Leviathan::WorldNetworkSettings::GetSettingsForSinglePlayer() once we
+        // no longer do the interpolation once variable rate ticks are supported
+
         LOG_INFO("ThriveGame: startNewGame: Creating new cellstage world");
         m_impl->m_cellStage =
             std::dynamic_pointer_cast<CellStageWorld>(engine->CreateWorld(
@@ -494,7 +498,8 @@ void
         m_impl->m_microbeEditor =
             std::dynamic_pointer_cast<MicrobeEditorWorld>(engine->CreateWorld(
                 window1, static_cast<int>(THRIVE_WORLD_TYPE::MICROBE_EDITOR),
-                createPhysicsMaterials(), netSettings));
+                createPhysicsMaterials(),
+                Leviathan::WorldNetworkSettings::GetSettingsForSinglePlayer()));
     }
 
     LEVIATHAN_ASSERT(
@@ -984,17 +989,27 @@ void
     ThriveGame::Tick(int mspassed)
 {}
 
-void
-    ThriveGame::CustomizeEnginePostLoad()
+bool
+    ThriveGame::createImpl()
 {
-    Engine* engine = Engine::Get();
-
     try {
         m_impl = std::make_unique<Implementation>(*this);
     } catch(const Leviathan::InvalidArgument& e) {
 
         LOG_ERROR("ThriveGame: loading configuration data failed: ");
         e.PrintToLog();
+        return false;
+    }
+
+    return true;
+}
+
+void
+    ThriveGame::CustomizeEnginePostLoad()
+{
+    Engine* engine = Engine::Get();
+
+    if(!createImpl()) {
         MarkAsClosing();
         return;
     }

@@ -8,6 +8,8 @@ include_directories("${LEVIATHAN_SRC}")
 set(CurrentProjectName ThriveTest)
 set(AllProjectFiles
   "test_main.cpp"
+  "test_thrive_game.h"
+  
   "test_script_compile.cpp"
   "test_simulation_parameters.cpp"
   "test_clouds.cpp"
