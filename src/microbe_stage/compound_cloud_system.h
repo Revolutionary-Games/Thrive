@@ -331,6 +331,9 @@ protected:
     //! \todo This can be removed once there is a proper clear method available
     //! for systems to detect
     CompoundCloudSystem& m_owner;
+
+    // //! A helper value to handle cloud repositioning
+    // bool m_repositioned = false;
 };
 
 
@@ -443,6 +446,39 @@ public:
         convertWorldToCloudLocalForGrab(const Float3& cloudPosition,
             const Float3& worldPosition);
 
+    static inline auto
+        calculateGridPositions(const Float3& center)
+    {
+        return std::array<Float3, 9>{
+            // Center
+            center,
+
+            // Top left
+            center + Float3(-CLOUD_WIDTH * 2, 0, -CLOUD_HEIGHT * 2),
+
+            // Up
+            center + Float3(0, 0, -CLOUD_HEIGHT * 2),
+
+            // Top right
+            center + Float3(CLOUD_WIDTH * 2, 0, -CLOUD_HEIGHT * 2),
+
+            // Left
+            center + Float3(-CLOUD_WIDTH * 2, 0, 0),
+
+            // Right
+            center + Float3(CLOUD_WIDTH * 2, 0, 0),
+
+            // Bottom left
+            center + Float3(-CLOUD_WIDTH * 2, 0, CLOUD_HEIGHT * 2),
+
+            // Down
+            center + Float3(0, 0, CLOUD_HEIGHT * 2),
+
+            // Bottom right
+            center + Float3(CLOUD_WIDTH * 2, 0, CLOUD_HEIGHT * 2),
+        };
+    }
+
 protected:
     //! \brief Removes deleted clouds from m_managedClouds
     void
@@ -514,6 +550,9 @@ private:
     //! the best way to simulate fluid velocity
     std::vector<std::vector<float>> m_xVelocity;
     std::vector<std::vector<float>> m_yVelocity;
+
+    //! This is here to not have to allocate memory every tick
+    std::vector<CompoundCloudComponent*> m_tooFarAwayClouds;
 };
 
 } // namespace thrive

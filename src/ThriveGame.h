@@ -13,6 +13,10 @@
 
 namespace thrive {
 
+namespace test {
+class TestThriveGame;
+}
+
 class CellStageWorld;
 
 class ThriveNetHandler;
@@ -25,6 +29,7 @@ class PlayerMicrobeControl;
 //! running the engine and the event loop
 class ThriveGame : public Leviathan::ClientApplication, public ThriveCommon {
     class Implementation;
+    friend test::TestThriveGame;
 
 public:
     ThriveGame();
@@ -149,6 +154,9 @@ protected:
         _GetApplicationPacketHandler() override;
     void
         _ShutdownApplicationPacketHandler() override;
+
+    bool
+        createImpl();
 
 private:
     std::unique_ptr<ThriveNetHandler> m_network;

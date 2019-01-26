@@ -256,8 +256,14 @@ void
 
     auto module = thrive->getMicrobeScripts();
 
-    if(!module)
-        LOG_FATAL("PlayerMicrobeControlSystem: microbe scripts aren't loaded");
+    if(!module) {
+        // Skip here to allow running better in unit tests
+        // This makes finding errors about this a bit more difficult but the
+        // game shouldn't start with invalid scripts
+        // LOG_FATAL("PlayerMicrobeControlSystem: microbe scripts aren't
+        // loaded");
+        return;
+    }
 
     // Debug for movement keys
     // std::stringstream msg;
@@ -319,6 +325,10 @@ Float3
     PlayerMicrobeControlSystem::getTargetPoint(
         Leviathan::GameWorld& worldWithCamera)
 {
+    // Skip when there is no window to allow running headless
+    if(!Engine::Get()->GetWindowEntity())
+        return Float3(0, 0, 0);
+
     float x, y;
     Engine::Get()->GetWindowEntity()->GetNormalizedRelativeMouse(x, y);
 

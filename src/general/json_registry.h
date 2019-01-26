@@ -17,6 +17,13 @@
 // Base class of things to register.
 class RegistryType {
 public:
+    RegistryType() {}
+
+    //! \brief Helper for derived test constructors
+    RegistryType(size_t id, const std::string& name) :
+        id(id), displayName(name), internalName(name)
+    {}
+
     // Used to search by id.
     size_t id = std::numeric_limits<size_t>::max(); // This would mean an error.
 
