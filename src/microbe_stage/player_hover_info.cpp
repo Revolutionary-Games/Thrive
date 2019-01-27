@@ -85,85 +85,94 @@ void
 
     auto microbeComponents = world.GetScriptComponentHolder("MicrobeComponent");
 
-    // The world will keep this alive (this is released immediately to reduce
-    // chance of leaks)
-    microbeComponents->Release();
+    // Only run when scripts are loaded
+    // TODO: move this to a sub function to not have this huge indended block
+    // here
+    if(microbeComponents) {
 
-    const auto stringType =
-        Leviathan::AngelScriptTypeIDResolver<std::string>::Get(
-            Leviathan::GetCurrentGlobalScriptExecutor());
+        // The world will keep this alive (this is released immediately to
+        // reduce chance of leaks)
+        microbeComponents->Release();
 
-    // This is used to skip the player
-    auto controlledEntity = ThriveGame::Get()->playerData().activeCreature();
+        const auto stringType =
+            Leviathan::AngelScriptTypeIDResolver<std::string>::Get(
+                Leviathan::GetCurrentGlobalScriptExecutor());
 
-    const auto& allSpecies = world.GetComponentIndex_SpeciesComponent();
+        // This is used to skip the player
+        auto controlledEntity =
+            ThriveGame::Get()->playerData().activeCreature();
 
-    auto& index = CachedComponents.GetIndex();
-    for(auto iter = index.begin(); iter != index.end(); ++iter) {
+        const auto& allSpecies = world.GetComponentIndex_SpeciesComponent();
 
-        const float distance =
-            (std::get<1>(*iter->second).Members._Position - lookPoint).Length();
+        auto& index = CachedComponents.GetIndex();
+        for(auto iter = index.begin(); iter != index.end(); ++iter) {
 
-        // Find only cells that have the mouse position within their membrane
-        if(distance >
-            std::get<0>(*iter->second).calculateEncompassingCircleRadius())
-            continue;
+            const float distance =
+                (std::get<1>(*iter->second).Members._Position - lookPoint)
+                    .Length();
 
-        // Skip player
-        if(iter->first == controlledEntity)
-            continue;
+            // Find only cells that have the mouse position within their
+            // membrane
+            if(distance >
+                std::get<0>(*iter->second).calculateEncompassingCircleRadius())
+                continue;
 
-        // Hovered over this. Find the name of the species
-        auto microbeComponent = microbeComponents->Find(iter->first);
+            // Skip player
+            if(iter->first == controlledEntity)
+                continue;
 
-        if(!microbeComponent)
-            continue;
+            // Hovered over this. Find the name of the species
+            auto microbeComponent = microbeComponents->Find(iter->first);
 
-        // We don't store the reference to the object. The holder will keep
-        // the reference alive while we work on it
-        microbeComponent->Release();
+            if(!microbeComponent)
+                continue;
 
-        if(microbeComponent->GetPropertyCount() < 1) {
+            // We don't store the reference to the object. The holder will keep
+            // the reference alive while we work on it
+            microbeComponent->Release();
 
-            LOG_ERROR("PlayerHoverInfoSystem: Run: MicrobeComponent object "
-                      "has no properties");
-            continue;
-        }
+            if(microbeComponent->GetPropertyCount() < 1) {
 
-        if(microbeComponent->GetPropertyTypeId(0) != stringType ||
-            std::strncmp(microbeComponent->GetPropertyName(0), "speciesName",
-                sizeof("speciesName") - 1) != 0) {
-
-            LOG_ERROR(
-                "PlayerHoverInfoSystem: Run: MicrobeComponent object doesn't "
-                "have \"string speciesName\" as the first property");
-            continue;
-        }
-
-        const auto* name = static_cast<std::string*>(
-            microbeComponent->GetAddressOfProperty(0));
-
-        bool found = false;
-
-        for(const auto& tuple : allSpecies) {
-
-            SpeciesComponent* species = std::get<1>(tuple);
-
-            if(species->name == *name) {
-
-                hovered->PushValue(
-                    std::make_unique<VariableBlock>(new Leviathan::StringBlock(
-                        species->genus + " " + species->epithet)));
-                found = true;
-                break;
+                LOG_ERROR("PlayerHoverInfoSystem: Run: MicrobeComponent object "
+                          "has no properties");
+                continue;
             }
-        }
 
-        if(!found) {
+            if(microbeComponent->GetPropertyTypeId(0) != stringType ||
+                std::strncmp(microbeComponent->GetPropertyName(0),
+                    "speciesName", sizeof("speciesName") - 1) != 0) {
 
-            // If we can't find the species, assume that it is extinct
-            hovered->PushValue(std::make_unique<VariableBlock>(
-                new Leviathan::StringBlock("Extinct(" + *name + ")")));
+                LOG_ERROR("PlayerHoverInfoSystem: Run: MicrobeComponent object "
+                          "doesn't "
+                          "have \"string speciesName\" as the first property");
+                continue;
+            }
+
+            const auto* name = static_cast<std::string*>(
+                microbeComponent->GetAddressOfProperty(0));
+
+            bool found = false;
+
+            for(const auto& tuple : allSpecies) {
+
+                SpeciesComponent* species = std::get<1>(tuple);
+
+                if(species->name == *name) {
+
+                    hovered->PushValue(std::make_unique<VariableBlock>(
+                        new Leviathan::StringBlock(
+                            species->genus + " " + species->epithet)));
+                    found = true;
+                    break;
+                }
+            }
+
+            if(!found) {
+
+                // If we can't find the species, assume that it is extinct
+                hovered->PushValue(std::make_unique<VariableBlock>(
+                    new Leviathan::StringBlock("Extinct(" + *name + ")")));
+            }
         }
     }
 

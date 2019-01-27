@@ -170,6 +170,12 @@ ThriveGame::ThriveGame()
     StaticGame = this;
 }
 
+ThriveGame::ThriveGame(Leviathan::Engine* engine) :
+    Leviathan::ClientApplication(engine)
+{
+    StaticGame = this;
+}
+
 ThriveGame::~ThriveGame()
 {
     StaticGame = nullptr;

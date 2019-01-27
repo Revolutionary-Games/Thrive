@@ -10,7 +10,7 @@ namespace thrive { namespace test {
 //! \brief A test dummy for tests needing ThriveGame
 class TestThriveGame : public ThriveGame {
 public:
-    TestThriveGame()
+    TestThriveGame(Leviathan::Engine* engine) : ThriveGame(engine)
     {
         // We need to fake key configurations for things
         ApplicationConfiguration = new Leviathan::AppDef(true);

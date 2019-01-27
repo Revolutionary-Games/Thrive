@@ -33,6 +33,10 @@ class ThriveGame : public Leviathan::ClientApplication, public ThriveCommon {
 
 public:
     ThriveGame();
+
+    //! \brief Version for tests with incomplete engine instance
+    ThriveGame(Leviathan::Engine* engine);
+
     virtual ~ThriveGame();
 
     // ------------------------------------ //
