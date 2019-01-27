@@ -163,7 +163,7 @@ public:
 ThriveGame::ThriveGame()
 {
 #ifndef MAKE_RELEASE
-    LOG_INFO("Enabling cheats because this is a non-release build");
+    LOG_INFO("Enabling cheats because this is a development build");
     m_cheatsEnabled = true;
 #endif // MAKE_RELEASE
 
@@ -186,7 +186,7 @@ std::string
 {
     return "Thrive " GAME_VERSIONS
 #ifndef MAKE_RELEASE
-           " (non-release)"
+           " (development)"
 #endif
         ;
 }
