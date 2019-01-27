@@ -493,4 +493,11 @@ function updateMicrobeHUDBars(values){
     document.getElementById("microbeHUDPlayerHydrogenSulfideBar").style.width =
         common.barHelper(values.compoundHydrogenSulfide, values.HydrogenSulfideMax);
 
+    document.getElementById("microbeHUDPlayerIron").textContent =
+        values.compoundIron.toFixed(1);
+    document.getElementById("microbeHUDPlayerIronMax").textContent =
+        values.IronMax;
+    document.getElementById("microbeHUDPlayerIronBar").style.width =
+        common.barHelper(values.compoundIron, values.IronMax);
+
 }

@@ -74,6 +74,10 @@ class MicrobeStageHudSystem : ScriptSystem{
         this.hydrogenSulfideVolume = SimulationParameters::compoundRegistry().getTypeData(
             this.hydrogenSulfideId).volume;
 
+        this.ironId = SimulationParameters::compoundRegistry().getTypeId("iron");
+        this.ironVolume = SimulationParameters::compoundRegistry().getTypeData(
+            this.ironId).volume;
+
     }
 
     void handleAmbientSound()
@@ -160,6 +164,9 @@ class MicrobeStageHudSystem : ScriptSystem{
                 const auto oxytoxyAmount = bag.getCompoundAmount(oxytoxyId);
                 const auto maxOxytoxy = microbeComponent.capacity;
 
+                const auto ironAmount = bag.getCompoundAmount(ironId);
+                const auto maxIron = microbeComponent.capacity;
+
                 // Write data
                 vars.AddValue(ScriptSafeVariableBlock("compoundPhosphate", phosphateAmount));
                 vars.AddValue(ScriptSafeVariableBlock("PhosphateMax", maxPhosphate));
@@ -178,6 +185,9 @@ class MicrobeStageHudSystem : ScriptSystem{
 
                 vars.AddValue(ScriptSafeVariableBlock("compoundOxytoxy", oxytoxyAmount));
                 vars.AddValue(ScriptSafeVariableBlock("OxytoxyMax", maxOxytoxy));
+
+                vars.AddValue(ScriptSafeVariableBlock("compoundIron", ironAmount));
+                vars.AddValue(ScriptSafeVariableBlock("IronMax", maxIron));
             }
 
             // Fire it off so that the GUI scripts will get it and update the GUI state
@@ -397,6 +407,9 @@ class MicrobeStageHudSystem : ScriptSystem{
 
     CompoundId oxytoxyId;
     float oxytoxyVolume;
+
+    CompoundId ironId;
+    float ironVolume;
 
 }
 
