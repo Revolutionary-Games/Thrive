@@ -24,6 +24,8 @@ PlayerMicrobeControl::PlayerMicrobeControl(KeyConfiguration& keys) :
     m_left(keys.ResolveControlNameToFirstKey("MoveLeft")),
     m_right(keys.ResolveControlNameToFirstKey("MoveRight")),
     m_spawnGlucoseCheat(keys.ResolveControlNameToFirstKey("SpawnGlucoseCheat")),
+    m_spawnPhosphateCheat(
+        keys.ResolveControlNameToFirstKey("SpawnPhosphateCheat")),
     m_zoomIn(keys.ResolveControlNameToKeyVector("ZoomIn")),
     m_zoomOut(keys.ResolveControlNameToKeyVector("ZoomOut"))
 {}
@@ -40,6 +42,13 @@ bool
         m_spawnGlucoseCheat.Match(key, modifiers)) {
 
         cheatCloudsDown = false;
+        return true;
+    }
+
+    if(!active && cheatPhosphateCloudsDown &&
+        m_spawnPhosphateCheat.Match(key, modifiers)) {
+
+        cheatPhosphateCloudsDown = false;
         return true;
     }
 
@@ -75,6 +84,14 @@ bool
 
             LOG_INFO("Glucose cloud cheat pressed");
             cheatCloudsDown = true;
+        }
+        return true;
+    } else if(m_spawnPhosphateCheat.Match(key, modifiers)) {
+
+        if(ThriveGame::get()->areCheatsEnabled()) {
+
+            LOG_INFO("Phosphate cloud cheat pressed");
+            cheatPhosphateCloudsDown = true;
         }
         return true;
     }
@@ -314,10 +331,16 @@ void
 
     if(thrive->getPlayerInput()->getSpamClouds()) {
 
-        LOG_INFO("Spawning cheat cloud");
         world.GetCompoundCloudSystem().addCloud(
             SimulationParameters::compoundRegistry.getTypeId("glucose"), 15000,
             lookPoint);
+    }
+
+    if(thrive->getPlayerInput()->getCheatPhosphateCloudsDown()) {
+
+        world.GetCompoundCloudSystem().addCloud(
+            SimulationParameters::compoundRegistry.getTypeId("phosphates"),
+            15000, lookPoint);
     }
 }
 // ------------------------------------ //

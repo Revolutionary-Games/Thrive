@@ -47,6 +47,12 @@ public:
         return cheatCloudsDown;
     }
 
+    inline bool
+        getCheatPhosphateCloudsDown() const
+    {
+        return cheatPhosphateCloudsDown;
+    }
+
     bool
         getPressedEngulf() const
     {
@@ -88,6 +94,7 @@ private:
     Leviathan::GKey m_right;
 
     Leviathan::GKey m_spawnGlucoseCheat;
+    Leviathan::GKey m_spawnPhosphateCheat;
 
     std::vector<Leviathan::GKey> m_zoomIn;
     std::vector<Leviathan::GKey> m_zoomOut;
@@ -102,6 +109,9 @@ private:
 
     //! True when cheat clouds should be spawned all the time
     bool cheatCloudsDown = false;
+
+    //! Phosphate cheat cloud
+    bool cheatPhosphateCloudsDown = false;
 
     //! Set to false when not in the microbe stage (or maybe editor as
     //! well could use this) to not send control events

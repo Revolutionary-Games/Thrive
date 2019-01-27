@@ -1110,6 +1110,7 @@ void
     keyconfigobj->AddKeyIfMissing(guard, "MoveRight", {"D"});
     keyconfigobj->AddKeyIfMissing(guard, "ReproduceCheat", {"P"});
     keyconfigobj->AddKeyIfMissing(guard, "SpawnGlucoseCheat", {"O"});
+    keyconfigobj->AddKeyIfMissing(guard, "SpawnPhosphateCheat", {"I"});
     keyconfigobj->AddKeyIfMissing(guard, "EngulfMode", {"G"});
     keyconfigobj->AddKeyIfMissing(guard, "ShootToxin", {"E"});
     keyconfigobj->AddKeyIfMissing(guard, "Screenshot", {"PrintScreen"});
