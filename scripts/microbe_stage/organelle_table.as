@@ -378,7 +378,7 @@ void setupOrganelles(){
     mitochondrionParameters.mesh = "mitochondrion.mesh";
     mitochondrionParameters.chanceToCreate = 3;
     mitochondrionParameters.prokaryoteChance = 0;
-    mitochondrionParameters.mpCost = 45;
+    mitochondrionParameters.mpCost = 55;
     mitochondrionParameters.initialComposition = {
         {"phosphates", 2},
         {"ammonia", 2}
