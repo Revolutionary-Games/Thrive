@@ -425,7 +425,7 @@ function checkGeneration (generation, population){
         document.getElementById("winBody").style.display = "inline-block";
         document.getElementById("winContainer").style.display = "inline-block";
         wonOnce = true;
-        setTimeout(hideWinText, 7000);
+        setTimeout(hideWinText, 14000);
     }
 }
 
