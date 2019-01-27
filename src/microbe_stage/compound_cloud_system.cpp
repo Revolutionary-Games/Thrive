@@ -159,13 +159,12 @@ void
     if(x >= m_density1.size() || y >= m_density1[0].size())
         throw std::runtime_error(
             "CompoundCloudComponent coordinates out of range");
-    if(compound != NULL_COMPOUND) {
-        switch(getSlotForCompound(compound)) {
-        case SLOT::FIRST: m_density1[x][y] += dens; break;
-        case SLOT::SECOND: m_density2[x][y] += dens; break;
-        case SLOT::THIRD: m_density3[x][y] += dens; break;
-        case SLOT::FOURTH: m_density4[x][y] += dens; break;
-        }
+
+    switch(getSlotForCompound(compound)) {
+    case SLOT::FIRST: m_density1[x][y] += dens; break;
+    case SLOT::SECOND: m_density2[x][y] += dens; break;
+    case SLOT::THIRD: m_density3[x][y] += dens; break;
+    case SLOT::FOURTH: m_density4[x][y] += dens; break;
     }
 }
 
@@ -175,41 +174,39 @@ int
         size_t y,
         float rate)
 {
-    if(compound != NULL_COMPOUND) {
-        switch(getSlotForCompound(compound)) {
-        case SLOT::FIRST: {
-            int amountToGive = static_cast<int>(m_density1[x][y] * rate);
-            m_density1[x][y] -= amountToGive;
-            if(m_density1[x][y] < 1)
-                m_density1[x][y] = 0;
+    switch(getSlotForCompound(compound)) {
+    case SLOT::FIRST: {
+        int amountToGive = static_cast<int>(m_density1[x][y] * rate);
+        m_density1[x][y] -= amountToGive;
+        if(m_density1[x][y] < 1)
+            m_density1[x][y] = 0;
 
-            return amountToGive;
-        }
-        case SLOT::SECOND: {
-            int amountToGive = static_cast<int>(m_density2[x][y] * rate);
-            m_density2[x][y] -= amountToGive;
-            if(m_density2[x][y] < 1)
-                m_density2[x][y] = 0;
+        return amountToGive;
+    }
+    case SLOT::SECOND: {
+        int amountToGive = static_cast<int>(m_density2[x][y] * rate);
+        m_density2[x][y] -= amountToGive;
+        if(m_density2[x][y] < 1)
+            m_density2[x][y] = 0;
 
-            return amountToGive;
-        }
-        case SLOT::THIRD: {
-            int amountToGive = static_cast<int>(m_density3[x][y] * rate);
-            m_density3[x][y] -= amountToGive;
-            if(m_density3[x][y] < 1)
-                m_density3[x][y] = 0;
+        return amountToGive;
+    }
+    case SLOT::THIRD: {
+        int amountToGive = static_cast<int>(m_density3[x][y] * rate);
+        m_density3[x][y] -= amountToGive;
+        if(m_density3[x][y] < 1)
+            m_density3[x][y] = 0;
 
-            return amountToGive;
-        }
-        case SLOT::FOURTH: {
-            int amountToGive = static_cast<int>(m_density4[x][y] * rate);
-            m_density4[x][y] -= amountToGive;
-            if(m_density4[x][y] < 1)
-                m_density4[x][y] = 0;
+        return amountToGive;
+    }
+    case SLOT::FOURTH: {
+        int amountToGive = static_cast<int>(m_density4[x][y] * rate);
+        m_density4[x][y] -= amountToGive;
+        if(m_density4[x][y] < 1)
+            m_density4[x][y] = 0;
 
-            return amountToGive;
-        }
-        }
+        return amountToGive;
+    }
     }
 
     LEVIATHAN_ASSERT(false, "Shouldn't get here");
@@ -222,26 +219,25 @@ int
         size_t y,
         float rate)
 {
-    if(compound != NULL_COMPOUND) {
-        switch(getSlotForCompound(compound)) {
-        case SLOT::FIRST: {
-            int amountToGive = static_cast<int>(m_density1[x][y] * rate);
-            return amountToGive;
-        }
-        case SLOT::SECOND: {
-            int amountToGive = static_cast<int>(m_density2[x][y] * rate);
-            return amountToGive;
-        }
-        case SLOT::THIRD: {
-            int amountToGive = static_cast<int>(m_density3[x][y] * rate);
-            return amountToGive;
-        }
-        case SLOT::FOURTH: {
-            int amountToGive = static_cast<int>(m_density4[x][y] * rate);
-            return amountToGive;
-        }
-        }
+    switch(getSlotForCompound(compound)) {
+    case SLOT::FIRST: {
+        int amountToGive = static_cast<int>(m_density1[x][y] * rate);
+        return amountToGive;
     }
+    case SLOT::SECOND: {
+        int amountToGive = static_cast<int>(m_density2[x][y] * rate);
+        return amountToGive;
+    }
+    case SLOT::THIRD: {
+        int amountToGive = static_cast<int>(m_density3[x][y] * rate);
+        return amountToGive;
+    }
+    case SLOT::FOURTH: {
+        int amountToGive = static_cast<int>(m_density4[x][y] * rate);
+        return amountToGive;
+    }
+    }
+
     LEVIATHAN_ASSERT(false, "Shouldn't get here");
     return -1;
 }
@@ -435,7 +431,6 @@ void
     doSpawnCycle(world, Float3(0, 0, 0));
 }
 
-//! \brief Places specified amount of compound at position
 bool
     CompoundCloudSystem::addCloud(CompoundId compound,
         float density,
@@ -472,7 +467,6 @@ bool
     return false;
 }
 
-//! \param rate should be less than one.
 float
     CompoundCloudSystem::takeCompound(CompoundId compound,
         const Float3& worldPosition,
@@ -507,7 +501,6 @@ float
     return 0;
 }
 
-//! \param rate should be less than one.
 float
     CompoundCloudSystem::amountAvailable(CompoundId compound,
         const Float3& worldPosition,
@@ -1022,6 +1015,8 @@ void
     // The perlin noise texture needs to be tileable. We can't do tricks with
     // the cloud's position
 
+    // Even though we ask for the RGBA format the actual order of pixels when
+    // locked for writing is something completely different
     cloud.m_texture = Ogre::TextureManager::getSingleton().createManual(
         cloud.m_textureName, "Generated", Ogre::TEX_TYPE_2D,
         CLOUD_SIMULATION_WIDTH, CLOUD_SIMULATION_HEIGHT, 0, Ogre::PF_BYTE_RGBA,
@@ -1150,16 +1145,36 @@ void
     // This is probably branch predictor friendly to move each bunch of pixels
     // separately
 
-    // First channel
-    if(cloud.m_compoundId1 != NULL_COMPOUND)
-        fillCloudChannel(cloud.m_density1, 0, rowBytes, pDest);
-    // Second
+    // Due to Ogre making the pixelbox lock however it wants the order is
+    // actually: Ogre::PF_A8R8G8B8
+    if(pixelBox.format != Ogre::PF_A8R8G8B8) {
+        LOG_INFO(
+            "Pixel format: " + Ogre::PixelUtil::getFormatName(pixelBox.format));
+        LEVIATHAN_ASSERT(false,
+            "Ogre created texture write lock with unexpected pixel order");
+    }
+
+    // Even with that pixel format the actual channel indexes are:
+    // so PF_B8G8R8A8 for some reason
+    // R - 2
+    // G - 1
+    // B - 0
+    // A - 3
+
+    if(cloud.m_compoundId1 == NULL_COMPOUND)
+        LEVIATHAN_ASSERT(false, "cloud with not even the first compound");
+
+    // First density. R goes to channel 2 (see above for the mapping)
+    fillCloudChannel(cloud.m_density1, 2, rowBytes, pDest);
+
+    // Second. G - 1
     if(cloud.m_compoundId2 != NULL_COMPOUND)
         fillCloudChannel(cloud.m_density2, 1, rowBytes, pDest);
-    // Etc.
+    // Etc. B - 0
     if(cloud.m_compoundId3 != NULL_COMPOUND)
-        fillCloudChannel(cloud.m_density3, 2, rowBytes, pDest);
+        fillCloudChannel(cloud.m_density3, 0, rowBytes, pDest);
 
+    // A - 3
     if(cloud.m_compoundId4 != NULL_COMPOUND)
         fillCloudChannel(cloud.m_density4, 3, rowBytes, pDest);
 
