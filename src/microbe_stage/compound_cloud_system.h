@@ -479,6 +479,9 @@ public:
         };
     }
 
+    static Float3
+        calculateGridCenterForPlayerPos(const Float3& pos);
+
 protected:
     //! \brief Removes deleted clouds from m_managedClouds
     void
@@ -486,8 +489,17 @@ protected:
 
 private:
     //! \brief Spawns and despawns the cloud entities around the player
+    //! \todo This should check if the player has moved at least 10 units to
+    //! avoid excessive recalculations if the player goes in a circle around a
+    //! cloud boundary
     void
         doSpawnCycle(CellStageWorld& world, const Float3& playerPos);
+
+    //! \brief This method handles moving the clouds
+    //!
+    //! This has been separated from doSpawnCycle to be more manageable
+    void
+        applyNewCloudPositioning();
 
     void
         _spawnCloud(CellStageWorld& world,
