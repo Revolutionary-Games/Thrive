@@ -533,8 +533,6 @@ TEST_CASE_METHOD(CloudManagerTestsFixture,
     multiCloudPositionCheckHelper(
         clouds, playerPos->Members._Position, cloudFirstTypes);
 
-    // SECTION("Moving CLOUD_WIDTH/2 units") {}
-
     SECTION("Moving 1000 units")
     {
         constexpr auto PLAYER_MOVE_AMOUNT = 1000;
@@ -544,6 +542,84 @@ TEST_CASE_METHOD(CloudManagerTestsFixture,
         multiCloudPositionCheckHelper(
             clouds, playerPos->Members._Position, cloudFirstTypes);
     }
+}
 
-    // SECTION("Moving CLOUD_WIDTH * 1.5 units") {}
+TEST_CASE_METHOD(CloudManagerTestsFixture,
+    "Cloud manager puts spawned cloud in right entity with 5 compound types",
+    "[microbe]")
+{
+    // This test assumes
+    static_assert(CLOUDS_IN_ONE == 4, "this test assumes this");
+
+    const std::vector<Compound> types{
+        Compound{1, "a", true, true, false, Ogre::ColourValue(0, 1, 2, 1)},
+        Compound{2, "b", true, true, false, Ogre::ColourValue(3, 4, 5, 1)},
+        Compound{3, "c", true, true, false, Ogre::ColourValue(6, 7, 8, 1)},
+        Compound{4, "d", true, true, false, Ogre::ColourValue(9, 10, 11, 1)},
+        Compound{5, "e", true, true, false, Ogre::ColourValue(12, 13, 14, 1)}};
+
+    std::array<CompoundId, 2> cloudFirstTypes;
+    cloudFirstTypes[0] = types[0].id;
+    cloudFirstTypes[1] = types[4].id;
+
+    setCloudsAndRunInitial(types);
+
+    // Find the cloud entities
+    const auto clouds = findClouds();
+
+    CHECK(clouds.size() == 18);
+
+    CompoundCloudComponent* cloudGroup1AtOrigin = nullptr;
+    CompoundCloudComponent* cloudGroup2AtOrigin = nullptr;
+
+    for(auto* cloud : clouds) {
+
+        if(cloud->getPosition() != Float3(0, 0, 0))
+            continue;
+
+        if(cloudFirstTypes[0] == cloud->getCompoundId1()) {
+
+            CHECK(!cloudGroup1AtOrigin);
+            cloudGroup1AtOrigin = cloud;
+
+        } else if(cloudFirstTypes[1] == cloud->getCompoundId1()) {
+
+            CHECK(!cloudGroup2AtOrigin);
+            cloudGroup2AtOrigin = cloud;
+        }
+    }
+
+    REQUIRE(cloudGroup1AtOrigin);
+    REQUIRE(cloudGroup2AtOrigin);
+
+    const auto centerCoords = CompoundCloudSystem::convertWorldToCloudLocal(
+        Float3(0, 0, 0), Float3(0, 0, 0));
+
+    // Spawn clouds one by one and make sure they went to the right place
+    world.GetCompoundCloudSystem().addCloud(3, 10, Float3(0, 0, 0));
+
+    CHECK(cloudGroup1AtOrigin->amountAvailable(3, std::get<0>(centerCoords),
+              std::get<1>(centerCoords), 1) == 10);
+
+
+    world.GetCompoundCloudSystem().addCloud(4, 12, Float3(0, 0, 0));
+
+    CHECK(cloudGroup1AtOrigin->amountAvailable(4, std::get<0>(centerCoords),
+              std::get<1>(centerCoords), 1) == 12);
+
+    world.GetCompoundCloudSystem().addCloud(1, 13, Float3(0, 0, 0));
+
+    CHECK(cloudGroup1AtOrigin->amountAvailable(1, std::get<0>(centerCoords),
+              std::get<1>(centerCoords), 1) == 13);
+
+    world.GetCompoundCloudSystem().addCloud(2, 14, Float3(0, 0, 0));
+
+    CHECK(cloudGroup1AtOrigin->amountAvailable(2, std::get<0>(centerCoords),
+              std::get<1>(centerCoords), 1) == 14);
+
+    // Second group
+    world.GetCompoundCloudSystem().addCloud(5, 15, Float3(0, 0, 0));
+
+    CHECK(cloudGroup2AtOrigin->amountAvailable(5, std::get<0>(centerCoords),
+              std::get<1>(centerCoords), 1) == 15);
 }
