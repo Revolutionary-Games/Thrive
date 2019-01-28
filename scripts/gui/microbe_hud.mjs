@@ -91,6 +91,9 @@ export function runMicrobeHUDSetup(){
         // Event that enables the editor button
         Leviathan.OnGeneric("PlayerReadyToEnterEditor", onReadyToEnterEditor);
 
+        // Event that disabled the editor button
+        Leviathan.OnGeneric("PlayerDiedBeforeEnter", onResetEditor);
+
         // Add listner for sucide button
         document.getElementById("suicideButton").addEventListener("click",
             killPlayerCell, true);
@@ -149,6 +152,15 @@ export function onReadyToEnterEditor(){
 
     readyToEdit = true;
     document.getElementById("microbeToEditorButton").classList.remove("DisabledButton");
+}
+
+
+//! Disabled the editor button
+export function onResetEditor(){
+
+    // Disable
+    document.getElementById("microbeToEditorButton").classList.add("DisabledButton");
+    readyToEdit = false;
 }
 
 
