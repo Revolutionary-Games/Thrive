@@ -677,6 +677,31 @@ void setupOrganelles(){
 
     _addOrganelleToTable(Organelle(nitrogenFixationProtein));
 
+    // Rusticyanin
+    auto rusticyanin = OrganelleParameters("rusticyanin");
+
+    rusticyanin.mass = 0.1;
+    rusticyanin.gene = "f";
+    rusticyanin.mesh = "chemoproteins.mesh";
+    rusticyanin.chanceToCreate = 0.5f;
+    rusticyanin.prokaryoteChance = 1;
+    rusticyanin.mpCost = 20;
+    rusticyanin.initialComposition = {
+        {"phosphates", 1},
+        {"ammonia", 1}
+    };
+    rusticyanin.components = {
+        processorOrganelleFactory(1.0f),
+        storageOrganelleFactory(5.0f)
+    };
+    rusticyanin.processes = {
+      TweakedProcess("iron_chemolithoautotrophy", 1)
+    };
+    rusticyanin.hexes = {
+        Int2(0, 0),
+    };
+
+    _addOrganelleToTable(Organelle(rusticyanin));
     // ------------------------------------ //
     // Setup the organelle letters
     setupOrganelleLetters();
