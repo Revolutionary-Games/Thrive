@@ -286,6 +286,14 @@ class MicrobeStageHudSystem : ScriptSystem{
         }
     }
 
+    void hideReproductionDialog(){
+         reproductionDialogOpened = false;
+         GenericEvent@ event = GenericEvent("PlayerDiedBeforeEnter");
+         GetEngine().GetEventHandler().CallEvent(event);
+    }
+
+
+
     void suicideButtonClicked(){
         // getComponent("gui_sounds", this.gameState, SoundSourceComponent).playSound("button-hover-click");
         if(boolean2 == false){
@@ -807,6 +815,11 @@ class MicrobeStageHudSystem : ScriptSystem{
 void showReproductionDialog(GameWorld@ world){
     cast<MicrobeStageHudSystem@>(world.GetScriptSystem("MicrobeStageHudSystem")).
         showReproductionDialog();
+}
+
+void hideReproductionDialog(GameWorld@ world){
+    cast<MicrobeStageHudSystem@>(world.GetScriptSystem("MicrobeStageHudSystem")).
+        hideReproductionDialog();
 }
 
 void showMessage(const string &in msg){
