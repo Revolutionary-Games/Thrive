@@ -110,5 +110,18 @@
         "outputs": {
             "glucose": 0.33
         }
+    },
+    
+    "iron_chemolithoautotrophy": {
+        "name": "Iron Chemolithoautotrophy",
+
+        "inputs": {
+            "carbondioxide": 0.09,
+            "iron": 1.0
+        },
+
+        "outputs": {
+            "atp": 10.0
+        }
     }
 }

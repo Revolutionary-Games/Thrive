@@ -703,7 +703,7 @@ class Species{
         // respiratory Proteins, or Oxy Toxy Producing Proteins, also pure cytoplasm
         // aswell for variety.
         //TODO when chemosynthesis is added add a protein for that aswell
-        switch(GetEngine().GetRandom().GetNumber(1,7))
+        switch(GetEngine().GetRandom().GetNumber(1,8))
         {
         case 1:
             stringCode = getOrganelleDefinition("protoplasm").gene;
@@ -722,6 +722,10 @@ class Species{
             break;
         case 6:
             stringCode = getOrganelleDefinition("nitrogenFixationProteins").gene;
+            break;
+        case 7:
+            stringCode = getOrganelleDefinition("rusticyanin").gene;
+            stringCode += getOrganelleDefinition("protoplasm").gene;
             break;
         default:
             stringCode = getOrganelleDefinition("protoplasm").gene;

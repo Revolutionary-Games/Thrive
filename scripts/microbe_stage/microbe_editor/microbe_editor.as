@@ -63,6 +63,7 @@ class MicrobeEditor{
             {"chromatophors", PlacementFunctionType(this.addOrganelle)},
             {"metabolosome", PlacementFunctionType(this.addOrganelle)},
             {"chemoSynthisizingProteins", PlacementFunctionType(this.addOrganelle)},
+            {"rusticyanin", PlacementFunctionType(this.addOrganelle)},
             {"remove", PlacementFunctionType(this.removeOrganelle)}
         };
     }
