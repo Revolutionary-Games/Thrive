@@ -288,7 +288,7 @@ void setupOrganelles(){
     // Cytoplasm
     auto cytoplasmParameters = OrganelleParameters("cytoplasm");
 
-    cytoplasmParameters.mass = 0.7;
+    cytoplasmParameters.mass = 0.1;
     cytoplasmParameters.gene = "Y";
     cytoplasmParameters.mesh = ""; //it's an empty hex
     cytoplasmParameters.chanceToCreate = 1;

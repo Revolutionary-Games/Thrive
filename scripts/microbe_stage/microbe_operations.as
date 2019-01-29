@@ -932,7 +932,8 @@ ObjectID spawnBacteria(CellStageWorld@ world, Float3 pos, const string &in speci
 void _applyMicrobeCollisionShape(CellStageWorld@ world, Physics@ rigidBody,
     MicrobeComponent@ microbeComponent, PhysicsShape@ shape)
 {
-    float mass = 0.f;
+    // This compensates for the lack of a nucleus for the player cell at the beginning and makes eukaryotes alot heavier.
+    float mass = 0.7f;
 
     // Organelles
     for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
