@@ -247,6 +247,7 @@ string generateNameSection()
     return newName;
 }
 
+// For normal microbes
 const dictionary DEFAULT_INITIAL_COMPOUNDS =
     {
         {"atp", InitialCompound(30,300)},
@@ -254,7 +255,20 @@ const dictionary DEFAULT_INITIAL_COMPOUNDS =
         {"ammonia", InitialCompound(30,100)},
         {"phosphates", InitialCompound(0)},
         {"hydrogensulfide", InitialCompound(0)},
-        {"oxytoxy", InitialCompound(0)}
+        {"oxytoxy", InitialCompound(0)},
+        {"iron", InitialCompound(0)}
+    };
+
+// For iron phillic microbes
+const dictionary DEFAULT_INITIAL_COMPOUNDS_IRON =
+    {
+        {"atp", InitialCompound(30,300)},
+        {"glucose", InitialCompound(10,30)},
+        {"ammonia", InitialCompound(30,100)},
+        {"phosphates", InitialCompound(0)},
+        {"hydrogensulfide", InitialCompound(0)},
+        {"oxytoxy", InitialCompound(0)},
+        {"iron", InitialCompound(30,300)}
     };
 
 string randomSpeciesName()
@@ -477,10 +491,19 @@ class Species{
         @forWorld = world;
 
         auto organelles = positionOrganelles(stringCode);
-
+        // If you have iron (f is the symbol for rusticyanin)
+        if (stringCode.findFirst('f') >= 0)
+        {
+        templateEntity = Species::createSpecies(forWorld, this.name, this.genus, this.epithet,
+            organelles, this.colour, this.isBacteria, this.speciesMembraneType,
+            DEFAULT_INITIAL_COMPOUNDS_IRON, this.aggression, this.fear, this.activity, this.focus);
+        }
+        else {
         templateEntity = Species::createSpecies(forWorld, this.name, this.genus, this.epithet,
             organelles, this.colour, this.isBacteria, this.speciesMembraneType,
             DEFAULT_INITIAL_COMPOUNDS, this.aggression, this.fear, this.activity, this.focus);
+        }
+
     }
 
     // Delete a species
