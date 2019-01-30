@@ -659,8 +659,9 @@ ObjectID createIron(CellStageWorld@ world, Float3 pos)
             Ogre::Vector3(0,1,1)));
     renderNode.Node.setPosition(pos);
     string mesh="";
+    int ironSize = 1;
     // There are four kinds
-    switch (GetEngine().GetRandom().GetNumber(0, 3))
+    switch (GetEngine().GetRandom().GetNumber(0, 4))
         {
         case 0:
         mesh="iron_01.mesh";
@@ -674,6 +675,10 @@ ObjectID createIron(CellStageWorld@ world, Float3 pos)
         case 3:
         mesh="iron_04.mesh";
         break;
+        case 4:
+        mesh="iron_05.mesh";
+        ironSize=8;
+        break;
         }
     auto model = world.Create_Model(ironEntity, renderNode.Node, mesh);
     // Need to set the tint
@@ -681,7 +686,7 @@ ObjectID createIron(CellStageWorld@ world, Float3 pos)
 
     auto rigidBody = world.Create_Physics(ironEntity, position);
     auto body = rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
-        world.GetPhysicalWorld().CreateSphere(1), 100,
+        world.GetPhysicalWorld().CreateSphere(ironSize),100,
         //iron
         world.GetPhysicalMaterial("iron"));
 
