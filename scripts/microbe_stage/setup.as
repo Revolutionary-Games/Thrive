@@ -677,7 +677,7 @@ ObjectID createIron(CellStageWorld@ world, Float3 pos)
         break;
         case 4:
         mesh="iron_05.mesh";
-        ironSize=8;
+        ironSize=10;
         break;
         }
     auto model = world.Create_Model(ironEntity, renderNode.Node, mesh);
