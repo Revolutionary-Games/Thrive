@@ -610,38 +610,6 @@ ObjectID createToxin(CellStageWorld@ world, Float3 pos)
     return toxinEntity;
 }
 
-ObjectID createChloroplast(CellStageWorld@ world, Float3 pos)
-{
-    // Chloroplasts
-    ObjectID chloroplastEntity = world.CreateEntity();
-
-    auto position = world.Create_Position(chloroplastEntity, pos,
-        Ogre::Quaternion(Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
-            Ogre::Vector3(0,1,1)));
-
-    auto renderNode = world.Create_RenderNode(chloroplastEntity);
-    renderNode.Scale = Float3(1, 1, 1);
-    renderNode.Marked = true;
-    renderNode.Node.setOrientation(Ogre::Quaternion(
-            Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
-            Ogre::Vector3(0,1,1)));
-    renderNode.Node.setPosition(pos);
-    auto model = world.Create_Model(chloroplastEntity, renderNode.Node, "chloroplast.mesh");
-    // Need to set the tint
-    model.GraphicalObject.setCustomParameter(1, Ogre::Vector4(1, 1, 1, 1));
-
-    auto rigidBody = world.Create_Physics(chloroplastEntity, position);
-    auto body = rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
-        world.GetPhysicalWorld().CreateSphere(1), 1,
-        world.GetPhysicalMaterial("floatingOrganelle"));
-
-    body.ConstraintMovementAxises();
-
-    rigidBody.JumpTo(position);
-
-    return chloroplastEntity;
-}
-
 ObjectID createIron(CellStageWorld@ world, Float3 pos)
 {
     // Chloroplasts
@@ -735,11 +703,6 @@ void setupSpawnSystem(CellStageWorld@ world){
 void setupFloatingOrganelles(CellStageWorld@ world){
     LOG_INFO("setting up free floating organelles");
     SpawnSystem@ spawnSystem = world.GetSpawnSystem();
-
-    // chloroplasts
-    const auto chloroId = spawnSystem.addSpawnType(
-        @createChloroplast, DEFAULT_SPAWN_DENSITY,
-        MICROBE_SPAWN_RADIUS);
 
     // toxins
     const auto toxinId = spawnSystem.addSpawnType(
