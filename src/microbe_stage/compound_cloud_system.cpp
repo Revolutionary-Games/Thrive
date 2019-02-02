@@ -42,7 +42,7 @@ CompoundCloudComponent::CompoundCloudComponent(CompoundCloudSystem& owner,
     m_textureName("cloud_" + std::to_string(++CloudTextureNumber)),
     m_owner(owner)
 {
-    LOG_INFO("got here");
+    // LOG_INFO("got here");
     if(!first)
         throw std::runtime_error(
             "CompoundCloudComponent needs at least one Compound type");
@@ -51,8 +51,8 @@ CompoundCloudComponent::CompoundCloudComponent(CompoundCloudSystem& owner,
     m_color1 =
         Ogre::Vector4(first->colour.r, first->colour.g, first->colour.b, 1.0f);
     m_compoundId1 = first->id;
-    LOG_INFO("cloud colors are " + std::to_string(first->colour.r));
-    LOG_INFO("cloud first compound ID is " + std::to_string(m_compoundId1));
+    // LOG_INFO("cloud colors are " + std::to_string(first->colour.r));
+    // LOG_INFO("cloud first compound ID is " + std::to_string(m_compoundId1));
 
     if(second) {
 
@@ -925,8 +925,8 @@ void
     CompoundCloudSystem::initializeCloud(CompoundCloudComponent& cloud,
         Ogre::SceneManager* scene)
 {
-    LOG_INFO(
-        "cloud first compound ID is " + std::to_string(cloud.m_compoundId1));
+    // LOG_INFO(
+    //    "cloud first compound ID is " + std::to_string(cloud.m_compoundId1));
     LOG_INFO("Initializing a new compound cloud entity");
 
     // All the densities
