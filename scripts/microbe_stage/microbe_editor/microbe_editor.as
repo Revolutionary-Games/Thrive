@@ -744,7 +744,8 @@ class MicrobeEditor{
         PlacedOrganelle@ organelle = cast<PlacedOrganelle>(organelleHere);
 
         if(organelleHere !is null){
-            if(!(organelleHere.organelle.name == "nucleus")) {
+        // DOnt allow deletion of nucleus or the last organelle
+            if(!(organelleHere.organelle.name == "nucleus") && getMicrobeSize() > 1) {
                 EditorAction@ action = EditorAction(ORGANELLE_REMOVE_COST,
                 // redo We need data about the organelle we removed, and the location so we can "redo" it
                  function(EditorAction@ action, MicrobeEditor@ editor){
