@@ -648,6 +648,10 @@ ObjectID createIron(CellStageWorld@ world, Float3 pos)
         ironSize=10;
         break;
         }
+
+
+    world.GetCompoundCloudSystem().addCloud(SimulationParameters::compoundRegistry().getTypeId("iron"), 325000, Float3(pos.X, 0, pos.Z));
+
     auto model = world.Create_Model(ironEntity, renderNode.Node, mesh);
     // Need to set the tint
     model.GraphicalObject.setCustomParameter(1, Ogre::Vector4(1, 1, 1, 1));
