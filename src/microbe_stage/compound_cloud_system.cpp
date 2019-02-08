@@ -16,6 +16,7 @@
 #include <OgrePlane.h>
 #include <OgreRoot.h>
 #include <OgreSceneManager.h>
+#include <OgreSubMesh2.h>
 #include <OgreTechnique.h>
 #include <OgreTextureManager.h>
 #include <Utility/Random.h>
@@ -324,34 +325,99 @@ void
     if(!Ogre::Root::getSingletonPtr())
         return;
 
-    // Create a background plane on which the fluid clouds will be drawn.
-    Ogre::Plane plane(Ogre::Vector3::UNIT_Y, 1.0);
-    // Ogre::Plane plane(1, 1, 1, 1);
+    // Create the plane mesh
+    m_planeMesh =
+        Ogre::MeshManager::getSingleton().createManual("cloudPlaneMesh",
+            Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 
-    const auto meshName =
-        "CompoundCloudSystem_Plane_" + std::to_string(++CloudMeshNumberCounter);
+    Ogre::SubMesh* planeSubMesh = m_planeMesh->createSubMesh();
 
-    const auto mesh =
-        Ogre::v1::MeshManager::getSingleton().createPlane(meshName + "_v1",
-            Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, plane,
-            CLOUD_X_EXTENT, CLOUD_Y_EXTENT, 1, 1,
-            // Normals. These are required for import to V2 to work
-            true, 1, 1.0f, 1.0f, Ogre::Vector3::UNIT_X,
-            Ogre::v1::HardwareBuffer::HBU_STATIC_WRITE_ONLY,
-            Ogre::v1::HardwareBuffer::HBU_STATIC_WRITE_ONLY, false, false);
+    Ogre::VaoManager* myVaoManager =
+        Ogre::Root::getSingleton().getRenderSystem()->getVaoManager();
 
-    m_planeMesh = Ogre::MeshManager::getSingleton().createManual(
-        meshName, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+    Ogre::VertexElement2Vec myVertexElements;
+    myVertexElements.push_back(
+        Ogre::VertexElement2(Ogre::VET_FLOAT3, Ogre::VES_POSITION));
+    myVertexElements.push_back(
+        Ogre::VertexElement2(Ogre::VET_FLOAT2, Ogre::VES_TEXTURE_COORDINATES));
 
-    // Fourth true is qtangent encoding which is not needed if we don't do
-    // normal mapping
-    m_planeMesh->importV1(mesh.get(), true, true, true);
+    // TODO: *make this static (will probably need a buffer alternative for
+    // generating the vertex data that will be then referenced here instead of
+    // nullptr)
 
-    Ogre::v1::MeshManager::getSingleton().remove(mesh);
+    // Simple square plane with 4 vertices & 2 primitive triangles.
+    const int vertexBufferSize = 4;
+    const int indexBufferSize = 6;
+    Ogre::VertexBufferPacked* myVertexBuffer =
+        myVaoManager->createVertexBuffer(myVertexElements, vertexBufferSize,
+            Ogre::BT_DYNAMIC_DEFAULT, nullptr, false);
 
-    // This crashes when used with RenderDoc and doesn't render anything
-    // m_planeMesh = Leviathan::GeometryHelpers::CreateXZPlane(
-    //     meshName, CLOUD_WIDTH, CLOUD_HEIGHT);
+    Ogre::VertexBufferPackedVec myVertexBuffers;
+    myVertexBuffers.push_back(myVertexBuffer);
+
+    Ogre::uint16* myIndices = reinterpret_cast<Ogre::uint16*>(OGRE_MALLOC_SIMD(
+        sizeof(Ogre::uint16) * indexBufferSize, Ogre::MEMCATEGORY_GEOMETRY));
+    myIndices[0] = static_cast<Ogre::uint16>(2);
+    myIndices[1] = static_cast<Ogre::uint16>(0);
+    myIndices[2] = static_cast<Ogre::uint16>(1);
+    myIndices[3] = static_cast<Ogre::uint16>(0);
+    myIndices[4] = static_cast<Ogre::uint16>(2);
+    myIndices[5] = static_cast<Ogre::uint16>(3);
+
+    Ogre::IndexBufferPacked* myIndexBuffer = nullptr;
+
+    try {
+        myIndexBuffer =
+            myVaoManager->createIndexBuffer(Ogre::IndexBufferPacked::IT_16BIT,
+                indexBufferSize, Ogre::BT_IMMUTABLE,
+                // Could this be false like the vertex buffer to not keep a
+                // shadow buffer
+                myIndices, true);
+    } catch(const Ogre::Exception& e) {
+
+        // Avoid memory leak
+        OGRE_FREE_SIMD(myIndices, Ogre::MEMCATEGORY_GEOMETRY);
+        myIndexBuffer = nullptr;
+        throw e;
+    }
+
+    Ogre::VertexArrayObject* myVao = myVaoManager->createVertexArrayObject(
+        myVertexBuffers, myIndexBuffer, Ogre::OT_TRIANGLE_LIST);
+
+    planeSubMesh->mVao[Ogre::VpNormal].push_back(myVao);
+
+    // This might be needed because we use a v2 mesh
+    // Use the same geometry for shadow casting.
+    // If m_item->setCastShadows(false); is set then this isn't needed
+    planeSubMesh->mVao[Ogre::VpShadow].push_back(myVao);
+
+    // Set the bounds to get frustum culling and LOD to work correctly.
+    m_planeMesh->_setBounds(Ogre::Aabb(Ogre::Vector3::ZERO,
+        Ogre::Vector3(CLOUD_WIDTH, CLOUD_HEIGHT, CLOUD_Y_COORDINATE))
+        /*, false*/);
+    m_planeMesh->_setBoundingSphereRadius(
+        sqrt(CLOUD_WIDTH * CLOUD_WIDTH + CLOUD_HEIGHT * CLOUD_HEIGHT));
+
+    // Update mesh data //
+    // Map the buffer for writing //
+    // DO NOT READ FROM THE MAPPED BUFFER
+    CloudPlaneVertex* RESTRICT_ALIAS meshVertices =
+        reinterpret_cast<CloudPlaneVertex * RESTRICT_ALIAS>(
+            myVertexBuffer->map(0, myVertexBuffer->getNumElements()));
+
+    // Creates a 3D prism from the 2D vertices.
+    meshVertices[0] = {
+        Ogre::Vector3(-CLOUD_WIDTH, 0, -CLOUD_HEIGHT), Ogre::Vector2(0, 0)};
+    meshVertices[1] = {
+        Ogre::Vector3(-CLOUD_WIDTH, 0, CLOUD_HEIGHT), Ogre::Vector2(0, 1)};
+    meshVertices[2] = {
+        Ogre::Vector3(CLOUD_WIDTH, 0, CLOUD_HEIGHT), Ogre::Vector2(1, 1)};
+    meshVertices[3] = {
+        Ogre::Vector3(CLOUD_WIDTH, 0, -CLOUD_HEIGHT), Ogre::Vector2(1, 0)};
+
+    // Upload finished data to the gpu (unmap all needs to be used to
+    // suppress warnings about destroying mapped buffers)
+    myVertexBuffer->unmap(Ogre::UO_UNMAP_ALL);
 
     // Need to edit the render queue (for when the item is created)
     world.GetScene()->getRenderQueue()->setRenderQueueMode(
@@ -910,11 +976,6 @@ void
     // set the position properly
     cloud.m_sceneNode->setPosition(
         cloud.m_position.X, CLOUD_Y_COORDINATE, cloud.m_position.Z);
-
-    // Because of the way Ogre generates the UVs for a plane we need to rotate
-    // the plane to match up with world coordinates
-    cloud.m_sceneNode->setOrientation(
-        Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_Y));
 
     // Create a modified material that uses
     cloud.m_planeMaterial = Ogre::MaterialManager::getSingleton().create(
