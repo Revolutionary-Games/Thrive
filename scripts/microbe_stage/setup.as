@@ -269,6 +269,10 @@ void onReturnFromEditor(CellStageWorld@ world)
 
 }
 
+//
+// TODO: also put these physics callback somewhere more sensible (maybe physics_callbacks.as?)
+//
+
 void cellHitFloatingOrganelle(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
 {
     // Determine which is the organelle
