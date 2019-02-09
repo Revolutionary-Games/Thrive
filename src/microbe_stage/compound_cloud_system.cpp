@@ -16,6 +16,7 @@
 #include <OgrePlane.h>
 #include <OgreRoot.h>
 #include <OgreSceneManager.h>
+#include <OgreSubMesh2.h>
 #include <OgreTechnique.h>
 #include <OgreTextureManager.h>
 #include <Utility/Random.h>
@@ -324,34 +325,53 @@ void
     if(!Ogre::Root::getSingletonPtr())
         return;
 
-    // Create a background plane on which the fluid clouds will be drawn.
-    Ogre::Plane plane(Ogre::Vector3::UNIT_Y, 1.0);
-    // Ogre::Plane plane(1, 1, 1, 1);
-
     const auto meshName =
         "CompoundCloudSystem_Plane_" + std::to_string(++CloudMeshNumberCounter);
 
-    const auto mesh =
-        Ogre::v1::MeshManager::getSingleton().createPlane(meshName + "_v1",
-            Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME, plane,
-            CLOUD_X_EXTENT, CLOUD_Y_EXTENT, 1, 1,
-            // Normals. These are required for import to V2 to work
-            true, 1, 1.0f, 1.0f, Ogre::Vector3::UNIT_X,
-            Ogre::v1::HardwareBuffer::HBU_STATIC_WRITE_ONLY,
-            Ogre::v1::HardwareBuffer::HBU_STATIC_WRITE_ONLY, false, false);
-
+    // Create a background plane on which the fluid clouds will be drawn.
     m_planeMesh = Ogre::MeshManager::getSingleton().createManual(
         meshName, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 
-    // Fourth true is qtangent encoding which is not needed if we don't do
-    // normal mapping
-    m_planeMesh->importV1(mesh.get(), true, true, true);
+    Ogre::SubMesh* planeSubMesh = m_planeMesh->createSubMesh();
 
-    Ogre::v1::MeshManager::getSingleton().remove(mesh);
+    Ogre::VaoManager* myVaoManager =
+        Ogre::Root::getSingleton().getRenderSystem()->getVaoManager();
 
-    // This crashes when used with RenderDoc and doesn't render anything
-    // m_planeMesh = Leviathan::GeometryHelpers::CreateXZPlane(
-    //     meshName, CLOUD_WIDTH, CLOUD_HEIGHT);
+    Ogre::VertexElement2Vec myVertexElements;
+    myVertexElements.push_back(
+        Ogre::VertexElement2(Ogre::VET_FLOAT3, Ogre::VES_POSITION));
+    myVertexElements.push_back(
+        Ogre::VertexElement2(Ogre::VET_FLOAT2, Ogre::VES_TEXTURE_COORDINATES));
+
+
+    // Simple square plane with 4 vertices & 2 primitive triangles.
+    CloudPlaneVertex meshVertices[] = {
+        {Ogre::Vector3(-CLOUD_WIDTH, 0, -CLOUD_HEIGHT), Ogre::Vector2(0, 0)},
+        {Ogre::Vector3(-CLOUD_WIDTH, 0, CLOUD_HEIGHT), Ogre::Vector2(0, 1)},
+        {Ogre::Vector3(CLOUD_WIDTH, 0, CLOUD_HEIGHT), Ogre::Vector2(1, 1)},
+        {Ogre::Vector3(CLOUD_WIDTH, 0, -CLOUD_HEIGHT), Ogre::Vector2(1, 0)}};
+
+    Ogre::VertexBufferPacked* myVertexBuffer = myVaoManager->createVertexBuffer(
+        myVertexElements, sizeof(meshVertices) / sizeof(CloudPlaneVertex),
+        Ogre::BT_IMMUTABLE, meshVertices, false);
+
+    Ogre::VertexBufferPackedVec myVertexBuffers;
+    myVertexBuffers.push_back(myVertexBuffer);
+
+    uint16_t myIndices[] = {2, 0, 1, 0, 2, 3};
+
+    Ogre::IndexBufferPacked* myIndexBuffer = myVaoManager->createIndexBuffer(
+        Ogre::IndexBufferPacked::IT_16BIT, sizeof(myIndices) / sizeof(uint16_t),
+        Ogre::BT_IMMUTABLE, myIndices, false);
+
+    Ogre::VertexArrayObject* myVao = myVaoManager->createVertexArrayObject(
+        myVertexBuffers, myIndexBuffer, Ogre::OT_TRIANGLE_LIST);
+
+    planeSubMesh->mVao[Ogre::VpNormal].push_back(myVao);
+
+    // Set the bounds to get frustum culling and LOD to work correctly.
+    m_planeMesh->_setBounds(Ogre::Aabb(Ogre::Vector3::ZERO,
+        Ogre::Vector3(CLOUD_WIDTH, CLOUD_Y_COORDINATE, CLOUD_HEIGHT)));
 
     // Need to edit the render queue (for when the item is created)
     world.GetScene()->getRenderQueue()->setRenderQueueMode(
@@ -910,11 +930,6 @@ void
     // set the position properly
     cloud.m_sceneNode->setPosition(
         cloud.m_position.X, CLOUD_Y_COORDINATE, cloud.m_position.Z);
-
-    // Because of the way Ogre generates the UVs for a plane we need to rotate
-    // the plane to match up with world coordinates
-    cloud.m_sceneNode->setOrientation(
-        Ogre::Quaternion(Ogre::Degree(90), Ogre::Vector3::UNIT_Y));
 
     // Create a modified material that uses
     cloud.m_planeMaterial = Ogre::MaterialManager::getSingleton().create(

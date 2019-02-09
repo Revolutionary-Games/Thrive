@@ -10,6 +10,7 @@
 #include <Entities/System.h>
 
 #include <OgreMesh.h>
+#include <OgreVector2.h>
 
 #include <vector>
 
@@ -338,6 +339,11 @@ protected:
 //! \see \ref how_compound_clouds_work
 class CompoundCloudSystem {
     friend CompoundCloudComponent;
+
+    struct CloudPlaneVertex {
+        Ogre::Vector3 m_pos;
+        Ogre::Vector2 m_uv;
+    };
 
 public:
     /**
