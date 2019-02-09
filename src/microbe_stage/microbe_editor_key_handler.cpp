@@ -1,13 +1,9 @@
 #include "microbe_editor_key_handler.h"
 
-#include "generated/microbe_editor_world.h"
-#include "microbe_stage/simulation_parameters.h"
-
 #include <Application/KeyConfiguration.h>
 #include <Engine.h>
 #include <Events/Event.h>
 #include <Events/EventHandler.h>
-#include <OgreRay.h>
 
 using namespace thrive;
 
