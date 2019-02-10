@@ -431,6 +431,8 @@ bool
 
 static uint16_t ProcessorComponentTYPEProxy =
     static_cast<uint16_t>(ProcessorComponent::TYPE);
+static uint16_t CompoundVenterTYPEProxy =
+    static_cast<uint16_t>(CompoundVenterComponent::TYPE);
 static uint16_t SpawnedComponentTYPEProxy =
     static_cast<uint16_t>(SpawnedComponent::TYPE);
 static uint16_t AgentCloudComponentTYPEProxy =
@@ -504,6 +506,15 @@ bool
            asMETHOD(ProcessorComponent, getCapacity), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
+    // ------------------------------------ //
+    if(engine->RegisterObjectType(
+           "CompoundVenterComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(!bindComponentTypeId(
+           engine, "CompoundVenterComponent", &CompoundVenterTYPEProxy))
+        return false;
 
     // ------------------------------------ //
     if(engine->RegisterObjectType(
