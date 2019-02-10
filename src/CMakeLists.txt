@@ -51,6 +51,8 @@ set(GROUP_MICROBE_STAGE
   "microbe_stage/microbe_camera_system.h"
   "microbe_stage/process_system.cpp"
   "microbe_stage/process_system.h"
+  "microbe_stage/compound_venter_system.cpp"
+  "microbe_stage/compound_venter_system.h"
   "microbe_stage/simulation_parameters.cpp"
   "microbe_stage/simulation_parameters.h"
   "microbe_stage/spawn_system.cpp"

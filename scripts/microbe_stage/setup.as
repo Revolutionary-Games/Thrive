@@ -616,7 +616,7 @@ ObjectID createToxin(CellStageWorld@ world, Float3 pos)
 
 ObjectID createIron(CellStageWorld@ world, Float3 pos)
 {
-    // Chloroplasts
+    // Iron
     ObjectID ironEntity = world.CreateEntity();
 
     auto position = world.Create_Position(ironEntity, pos,
@@ -654,8 +654,8 @@ ObjectID createIron(CellStageWorld@ world, Float3 pos)
         }
 
 
-    world.GetCompoundCloudSystem().addCloud(SimulationParameters::compoundRegistry().getTypeId("iron"), 325000, Float3(pos.X, 0, pos.Z));
-
+    world.Create_CompoundVenterComponent(ironEntity);
+    world.Create_CompoundBagComponent(ironEntity);
     auto model = world.Create_Model(ironEntity, renderNode.Node, mesh);
     // Need to set the tint
     model.GraphicalObject.setCustomParameter(1, Ogre::Vector4(1, 1, 1, 1));

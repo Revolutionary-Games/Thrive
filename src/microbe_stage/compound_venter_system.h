@@ -20,8 +20,6 @@ class CompoundVenterComponent : public Leviathan::Component {
 public:
     CompoundVenterComponent();
 
-    double storageSpace;
-    double storageSpaceOccupied;
     float x, y;
 
     REFERENCE_HANDLE_UNCOUNTED_TYPE(CompoundVenterComponent);
@@ -32,6 +30,7 @@ public:
     void
         ventCompound(Leviathan::Position& pos,
             CompoundId ourCompound,
+            double amount,
             CellStageWorld& world);
 };
 
@@ -79,6 +78,7 @@ public:
 
 protected:
 private:
-    static constexpr double TIME_SCALING_FACTOR = 1000;
+    static constexpr double TIME_SCALING_FACTOR = 20;
+    int timeSinceLastCycle = 0;
 };
 } // namespace thrive

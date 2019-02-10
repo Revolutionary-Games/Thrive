@@ -21,6 +21,7 @@ generator.addInclude "thrive_world_factory.h"
 generator.addInclude "microbe_stage/membrane_system.h"
 generator.addInclude "microbe_stage/compound_cloud_system.h"
 generator.addInclude "microbe_stage/process_system.h"
+generator.addInclude "microbe_stage/compound_venter_system.h"
 generator.addInclude "microbe_stage/species_component.h"
 generator.addInclude "microbe_stage/spawn_system.h"
 generator.addInclude "microbe_stage/agent_cloud_system.h"
@@ -36,6 +37,7 @@ cellWorld = GameWorldClass.new(
   "CellStageWorld", componentTypes: [
     EntityComponent.new("ProcessorComponent", [ConstructorInfo.new([])]),
     EntityComponent.new("CompoundBagComponent", [ConstructorInfo.new([])]),
+    EntityComponent.new("CompoundVenterComponent", [ConstructorInfo.new([])]),
     EntityComponent.new("SpeciesComponent", [ConstructorInfo.new([
                                                 Variable.new("name", "std::string",
                                                              memberaccess: "name",
@@ -150,6 +152,8 @@ cellWorld = GameWorldClass.new(
     EntitySystem.new("ProcessSystem", ["CompoundBagComponent", "ProcessorComponent"],
                      runtick: {group: 10, parameters: []},
                      visibletoscripts: true),
+    EntitySystem.new("CompoundVenterSystem", ["CompoundBagComponent", "CompoundVenterComponent", "Position"],
+                     runtick: {group: 11, parameters: []}),
     EntitySystem.new("TimedLifeSystem", [],
                      runtick: {group: 45, parameters: [
                                  "ComponentTimedLifeComponent.GetIndex()"

@@ -16,28 +16,40 @@
 
 using namespace thrive;
 
+
+// ------------------------------------ //
+// CompoundVenterComponent
+CompoundVenterComponent::CompoundVenterComponent() : Leviathan::Component(TYPE)
+{}
+
 void
     CompoundVenterSystem::Run(CellStageWorld& world)
 {
     if(!world.GetNetworkSettings().IsAuthoritative)
         return;
 
-    for(auto& value : CachedComponents.GetIndex()) {
+    const auto logicTime = Leviathan::TICKSPEED;
 
-        CompoundBagComponent& bag = std::get<0>(*value.second);
-        CompoundVenterComponent& venter = std::get<1>(*value.second);
-        Leviathan::Position& position = std::get<2>(*value.second);
-
-        venter.ventCompound(position,
-            SimulationParameters::compoundRegistry.getTypeId("iron"), world);
+    timeSinceLastCycle++;
+    while(timeSinceLastCycle > TIME_SCALING_FACTOR) {
+        timeSinceLastCycle -= TIME_SCALING_FACTOR;
+        for(auto& value : CachedComponents.GetIndex()) {
+            CompoundBagComponent& bag = std::get<0>(*value.second);
+            CompoundVenterComponent& venter = std::get<1>(*value.second);
+            Leviathan::Position& position = std::get<2>(*value.second);
+            venter.ventCompound(position,
+                SimulationParameters::compoundRegistry.getTypeId("iron"), 5,
+                world);
+        }
     }
 }
 
 void
     CompoundVenterComponent::ventCompound(Leviathan::Position& pos,
         CompoundId compound,
+        double amount,
         CellStageWorld& world)
 {
     world.GetCompoundCloudSystem().addCloud(
-        compound, 15000, pos.Members._Position);
+        compound, amount * 1000, pos.Members._Position);
 }
