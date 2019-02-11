@@ -264,7 +264,7 @@ void setupOrganelles(){
     nucleusParameters.components = {
         nucleusComponentFactory,
     // Nucleus storage capacity less than cyto * hex
-    storageOrganelleFactory(20.0f)
+    storageOrganelleFactory(55.0f)
     };
     nucleusParameters.processes = {
     };
@@ -300,7 +300,7 @@ void setupOrganelles(){
     };
     cytoplasmParameters.components = {
         processorOrganelleFactory(1.0),
-        storageOrganelleFactory(5.0f)
+        storageOrganelleFactory(20.0f)
     };
     cytoplasmParameters.processes = {
         TweakedProcess("glycolosis", 1)
@@ -350,7 +350,7 @@ void setupOrganelles(){
     oxytoxyParameters.mesh = "oxytoxy.mesh";
     oxytoxyParameters.chanceToCreate = 1;
     oxytoxyParameters.prokaryoteChance = 0;
-    oxytoxyParameters.mpCost = 80;
+    oxytoxyParameters.mpCost = 85;
     oxytoxyParameters.initialComposition = {
         {"phosphates", 2},
         {"ammonia", 2}
@@ -407,13 +407,13 @@ void setupOrganelles(){
     vacuoleParameters.mesh = "vacuole.mesh";
     vacuoleParameters.chanceToCreate = 3;
     vacuoleParameters.prokaryoteChance = 0;
-    vacuoleParameters.mpCost = 40;
+    vacuoleParameters.mpCost = 50;
     vacuoleParameters.initialComposition = {
         {"phosphates", 2},
         {"ammonia", 2}
     };
     vacuoleParameters.components = {
-        storageOrganelleFactory(65.0f)
+        storageOrganelleFactory(40.0f)
     };
 
     vacuoleParameters.processes = {
@@ -442,7 +442,7 @@ void setupOrganelles(){
     flagellumParameters.components = {
         movementOrganelleFactory(20, 300),
     // Flagella takes 1 hex, but it's a flagellum just 1
-    storageOrganelleFactory(1.0f)
+    storageOrganelleFactory(5.0f)
     };
 
     flagellumParameters.processes = {
@@ -472,7 +472,7 @@ void setupOrganelles(){
     chemoplast.components = {
         processorOrganelleFactory(1.0f),
     // Chemoplast takes 2 hexes, so allowed storage of 2 cytooplasm
-    storageOrganelleFactory(10.0f)
+    storageOrganelleFactory(0.0f)
     };
     chemoplast.processes = {
           TweakedProcess("chemoSynthesis", 1)
@@ -523,7 +523,7 @@ void setupOrganelles(){
     respiratoryProtein.mesh = "metabolosome.mesh";
     respiratoryProtein.chanceToCreate = 0.5f;
     respiratoryProtein.prokaryoteChance = 1;
-    respiratoryProtein.mpCost = 20;
+    respiratoryProtein.mpCost = 45;
     respiratoryProtein.initialComposition = {
         {"phosphates", 1},
         {"ammonia", 1}
@@ -549,7 +549,7 @@ void setupOrganelles(){
     photosyntheticProtein.mesh = "chromatophores.mesh";
     photosyntheticProtein.chanceToCreate = 0.5f;
     photosyntheticProtein.prokaryoteChance = 1;
-    photosyntheticProtein.mpCost = 25;
+    photosyntheticProtein.mpCost = 55;
     photosyntheticProtein.initialComposition = {
         {"phosphates", 1},
         {"ammonia", 1}
@@ -605,7 +605,7 @@ void setupOrganelles(){
     chemoSynthisizingProtein.mesh = "chemoproteins.mesh";
     chemoSynthisizingProtein.chanceToCreate = 0.5f;
     chemoSynthisizingProtein.prokaryoteChance = 1;
-    chemoSynthisizingProtein.mpCost = 20;
+    chemoSynthisizingProtein.mpCost = 45;
     chemoSynthisizingProtein.initialComposition = {
         {"phosphates", 1},
         {"ammonia", 1}
@@ -632,14 +632,14 @@ void setupOrganelles(){
     protoplasmParameters.mesh = ""; //it's an empty hex
     protoplasmParameters.chanceToCreate = 0;
     protoplasmParameters.prokaryoteChance = 1;
-    protoplasmParameters.mpCost = 10;
+    protoplasmParameters.mpCost = 55;
     protoplasmParameters.initialComposition = {
         {"phosphates", 1},
         {"ammonia", 1}
     };
     protoplasmParameters.components = {
         processorOrganelleFactory(1.0),
-        storageOrganelleFactory(50.0f)
+        storageOrganelleFactory(10.0f)
     };
     protoplasmParameters.processes = {
         TweakedProcess("glycolosis", 1)
@@ -658,7 +658,7 @@ void setupOrganelles(){
     nitrogenFixationProtein.mesh = "nitrogenplastid.mesh";
     nitrogenFixationProtein.chanceToCreate = 0;
     nitrogenFixationProtein.prokaryoteChance = 1;
-    nitrogenFixationProtein.mpCost = 15;
+    nitrogenFixationProtein.mpCost = 45;
     nitrogenFixationProtein.initialComposition = {
         {"phosphates", 1},
         {"ammonia",1}
