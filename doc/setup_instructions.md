@@ -174,7 +174,8 @@ graphical tool for reviewing the exact lines you have changed, but you
 can also commit on the command line) you can publish them to your fork
 with (assuming you used the master branch, when working with the main
 thrive repository you MUST create a different branch but when working
-with a fork that isn't required):
+with a fork that isn't required, but still strongly recommended as
+making multiple pull requests with one branch is messy):
 
 ```
 git push fork master
