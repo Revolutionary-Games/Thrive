@@ -263,7 +263,7 @@ void setupOrganelles(){
     };
     nucleusParameters.components = {
         nucleusComponentFactory,
-    // Nucleus storage capacity less than cyto * hex
+    // Cell takes up 10 spaces, so 50 cytoplasm
     storageOrganelleFactory(55.0f)
     };
     nucleusParameters.processes = {
@@ -441,7 +441,7 @@ void setupOrganelles(){
     };
     flagellumParameters.components = {
         movementOrganelleFactory(20, 300),
-    // Flagella takes 1 hex, but it's a flagellum just 1
+    // Flagella takes 1 hex, so allowed storage of 1 cytooplasm
     storageOrganelleFactory(5.0f)
     };
 
@@ -639,7 +639,7 @@ void setupOrganelles(){
     };
     protoplasmParameters.components = {
         processorOrganelleFactory(1.0),
-        storageOrganelleFactory(10.0f)
+        storageOrganelleFactory(50.0f)
     };
     protoplasmParameters.processes = {
         TweakedProcess("glycolosis", 1)
