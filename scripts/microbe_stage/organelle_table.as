@@ -493,7 +493,7 @@ void setupOrganelles(){
     nitrogenPlastid.mesh = "nitrogenplastid.mesh";
     nitrogenPlastid.chanceToCreate = 1;
     nitrogenPlastid.prokaryoteChance = 0;
-    nitrogenPlastid.mpCost = 80;
+    nitrogenPlastid.mpCost = 50;
     nitrogenPlastid.initialComposition = {
         {"phosphates", 2},
         {"ammonia", 2}
