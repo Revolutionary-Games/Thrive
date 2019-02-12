@@ -38,8 +38,8 @@ void
             CompoundVenterComponent& venter = std::get<1>(*value.second);
             Leviathan::Position& position = std::get<2>(*value.second);
             venter.ventCompound(position,
-                SimulationParameters::compoundRegistry.getTypeId("iron"), 5,
-                world);
+                SimulationParameters::compoundRegistry.getTypeId("iron"),
+                venter.ventAmount, world);
         }
     }
 }
@@ -51,5 +51,17 @@ void
         CellStageWorld& world)
 {
     world.GetCompoundCloudSystem().addCloud(
-        compound, amount * 1000, pos.Members._Position);
+        compound, amount * 1000.0f, pos.Members._Position);
+}
+
+void
+    CompoundVenterComponent::setVentAmount(float amount)
+{
+    this->ventAmount = amount;
+}
+
+float
+    CompoundVenterComponent::getVentAmount()
+{
+    return this->ventAmount;
 }
