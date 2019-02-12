@@ -472,7 +472,7 @@ void setupOrganelles(){
     chemoplast.components = {
         processorOrganelleFactory(1.0f),
     // Chemoplast takes 2 hexes, so allowed storage of 2 cytooplasm
-    storageOrganelleFactory(0.0f)
+    storageOrganelleFactory(10.0f)
     };
     chemoplast.processes = {
           TweakedProcess("chemoSynthesis", 1)
