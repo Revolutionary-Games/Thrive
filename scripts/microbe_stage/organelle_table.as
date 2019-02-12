@@ -350,7 +350,7 @@ void setupOrganelles(){
     oxytoxyParameters.mesh = "oxytoxy.mesh";
     oxytoxyParameters.chanceToCreate = 1;
     oxytoxyParameters.prokaryoteChance = 0;
-    oxytoxyParameters.mpCost = 85;
+    oxytoxyParameters.mpCost = 70;
     oxytoxyParameters.initialComposition = {
         {"phosphates", 2},
         {"ammonia", 2}
@@ -378,7 +378,7 @@ void setupOrganelles(){
     mitochondrionParameters.mesh = "mitochondrion.mesh";
     mitochondrionParameters.chanceToCreate = 3;
     mitochondrionParameters.prokaryoteChance = 0;
-    mitochondrionParameters.mpCost = 55;
+    mitochondrionParameters.mpCost = 45;
     mitochondrionParameters.initialComposition = {
         {"phosphates", 2},
         {"ammonia", 2}
