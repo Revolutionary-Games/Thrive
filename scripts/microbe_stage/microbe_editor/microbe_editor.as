@@ -133,7 +133,8 @@ class MicrobeEditor{
 
         // Update GUI buttons now that we have correct organelles
         updateGuiButtonStatus(checkIsNucleusPresent());
-
+        //force an auto-evo step
+        cast<SpeciesSystem>(GetThriveGame().getCellStage().GetScriptSystem("SpeciesSystem")).doAutoEvoStep();
         // Reset to cytoplasm if nothing is selected
         if(activeActionName == ""){
             LOG_INFO("Selecting cytoplasm");
