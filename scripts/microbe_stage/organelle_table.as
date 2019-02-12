@@ -293,7 +293,7 @@ void setupOrganelles(){
     cytoplasmParameters.mesh = ""; //it's an empty hex
     cytoplasmParameters.chanceToCreate = 1;
     cytoplasmParameters.prokaryoteChance = 1;
-    cytoplasmParameters.mpCost = 35;
+    cytoplasmParameters.mpCost = 30;
     cytoplasmParameters.initialComposition = {
         {"phosphates", 2},
         {"ammonia", 2}
