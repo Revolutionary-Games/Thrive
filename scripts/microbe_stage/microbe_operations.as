@@ -699,7 +699,8 @@ void playSoundWithDistance(CellStageWorld@ world, const string &in soundPath, Ob
                             "sound source");
                     }
             } else {
-                LOG_ERROR("Failed to create sound player");
+                //this was happening so often it caused lag
+                //LOG_ERROR("Failed to create sound player");
             }
         }
     }

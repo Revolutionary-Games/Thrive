@@ -89,34 +89,40 @@ string mutateWord(string name){
                 switch (GetEngine().GetRandom().GetNumber(0,5))
                     {
                     case 0:
+                    //VC
                     newVowel = GetEngine().GetRandom().GetNumber(0,vowels.length()-1);
                     newConsonant = GetEngine().GetRandom().GetNumber(0,consonants.length()-1);
                     newSyllable= ""+vowels.substr(newVowel, 1)+consonants.substr(newConsonant, 1);
                     newName.insert(index, newSyllable);
                     break;
                     case 1:
+                    //CV
                     newVowel = GetEngine().GetRandom().GetNumber(0,vowels.length()-1);
                     newConsonant = GetEngine().GetRandom().GetNumber(0,consonants.length()-1);
                     newSyllable = ""+consonants.substr(newConsonant, 1)+vowels.substr(newVowel, 1);
                     newName.insert(index, newSyllable);
                     break;
                     case 2:
+                    //CC
                     newConsonant = GetEngine().GetRandom().GetNumber(0,consonants.length()-1);
                     newSyllable= ""+original+consonants.substr(newConsonant, 1);
                     newName.insert(index, newSyllable);
                     break;
                     case 3:
+                    //CC
                     newConsonant = GetEngine().GetRandom().GetNumber(0,consonants.length()-1);
                     newSyllable = ""+consonants.substr(newConsonant, 1)+original;
                     newName.insert(index, newSyllable);
                     break;
                     case 4:
+                    //CCV
                     newVowel = GetEngine().GetRandom().GetNumber(0,vowels.length()-1);
                     newConsonant = GetEngine().GetRandom().GetNumber(0,consonants.length()-1);
                     newSyllable = original+consonants.substr(newConsonant, 1)+vowels.substr(newVowel, 1);
                     newName.insert(index, newSyllable);
                     break;
                     case 5:
+                    //VCC
                     newVowel = GetEngine().GetRandom().GetNumber(0,vowels.length()-1);
                     newConsonant = GetEngine().GetRandom().GetNumber(0,consonants.length()-1);
                     newSyllable = vowels.substr(newVowel, 1)+consonants.substr(newConsonant, 1)+original;
@@ -124,14 +130,17 @@ string mutateWord(string name){
                     break;
                     }
              }
+             // If is vowel
              else {
                 if(GetEngine().GetRandom().GetNumber(0,20) <= 10){
+                //CVV
                 int newConsonant = GetEngine().GetRandom().GetNumber(0,consonants.length()-1);
                 int newVowel = GetEngine().GetRandom().GetNumber(0,vowels.length()-1);
                 string newSyllable = ""+consonants.substr(newConsonant, 1)+vowels.substr(newVowel, 1)+original;
                 newName.insert(index, newSyllable);
                 }
                 else {
+                //VVC
                 int newConsonant = GetEngine().GetRandom().GetNumber(0,consonants.length()-1);
                 int newVowel = GetEngine().GetRandom().GetNumber(0,vowels.length()-1);
                 string newSyllable = ""+original+vowels.substr(newVowel, 1)+consonants.substr(newConsonant, 1);

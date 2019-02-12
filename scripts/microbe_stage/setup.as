@@ -632,6 +632,8 @@ ObjectID createIron(CellStageWorld@ world, Float3 pos)
     renderNode.Node.setPosition(pos);
     string mesh="";
     int ironSize = 1;
+    // 5 is the default
+    float ironAmount = 3.0f;
     // There are four kinds
     switch (GetEngine().GetRandom().GetNumber(0, 4))
         {
@@ -650,11 +652,14 @@ ObjectID createIron(CellStageWorld@ world, Float3 pos)
         case 4:
         mesh="iron_05.mesh";
         ironSize=10;
+        ironAmount=10.0f;
         break;
         }
 
 
     world.Create_CompoundVenterComponent(ironEntity);
+    // So that larger iron chunks give out more compounds
+    world.GetComponent_CompoundVenterComponent(ironEntity).setVentAmount(ironAmount);
     world.Create_CompoundBagComponent(ironEntity);
     auto model = world.Create_Model(ironEntity, renderNode.Node, mesh);
     // Need to set the tint

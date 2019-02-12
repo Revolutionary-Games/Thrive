@@ -21,7 +21,7 @@ public:
     CompoundVenterComponent();
 
     float x, y;
-
+    float ventAmount = 5.0f;
     REFERENCE_HANDLE_UNCOUNTED_TYPE(CompoundVenterComponent);
 
     static constexpr auto TYPE =
@@ -32,6 +32,12 @@ public:
             CompoundId ourCompound,
             double amount,
             CellStageWorld& world);
+
+    void
+        setVentAmount(float amount);
+
+    float
+        getVentAmount();
 };
 
 class CompoundVenterSystem

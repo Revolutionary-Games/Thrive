@@ -516,6 +516,19 @@ bool
            engine, "CompoundVenterComponent", &CompoundVenterTYPEProxy))
         return false;
 
+    if(engine->RegisterObjectMethod("CompoundVenterComponent",
+           "float getVentAmount()",
+           asMETHOD(CompoundVenterComponent, getVentAmount),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("CompoundVenterComponent",
+           "void setVentAmount(float amount)",
+           asMETHOD(CompoundVenterComponent, setVentAmount),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
     // ------------------------------------ //
     if(engine->RegisterObjectType(
            "SpawnedComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
