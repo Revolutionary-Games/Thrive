@@ -657,9 +657,9 @@ ObjectID createIron(CellStageWorld@ world, Float3 pos)
         }
 
 
-    world.Create_CompoundVenterComponent(ironEntity);
+    auto venter = world.Create_CompoundVenterComponent(ironEntity);
     // So that larger iron chunks give out more compounds
-    world.GetComponent_CompoundVenterComponent(ironEntity).setVentAmount(ironAmount);
+    venter.setVentAmount(ironAmount);
     world.Create_CompoundBagComponent(ironEntity);
     auto model = world.Create_Model(ironEntity, renderNode.Node, mesh);
     // Need to set the tint
