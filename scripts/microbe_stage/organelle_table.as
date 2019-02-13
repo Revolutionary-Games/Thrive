@@ -685,7 +685,7 @@ void setupOrganelles(){
     rusticyanin.mesh = "chemoproteins.mesh";
     rusticyanin.chanceToCreate = 0.5f;
     rusticyanin.prokaryoteChance = 1;
-    rusticyanin.mpCost = 20;
+    rusticyanin.mpCost = 45;
     rusticyanin.initialComposition = {
         {"phosphates", 1},
         {"ammonia", 1}

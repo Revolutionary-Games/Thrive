@@ -79,11 +79,12 @@
         "name": "Nitrogen Fixing",
 
         "inputs": {
-            "atp": 0.5
+            "oxygen": 1.0,
+            "atp": 5
         },
 
         "outputs": {
-            "ammonia": 0.1
+            "ammonia": 0.5
         }
     },
     
