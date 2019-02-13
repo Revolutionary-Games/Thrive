@@ -1,7 +1,7 @@
 What's this?
 ============
 
-This is the setup instructions for compiling Thrive.
+These are the setup instructions for compiling Thrive.
 
 Important Note: If you run into any trouble with the setup scripts, please 
 bring them up on the development discord or open a github issue. 
