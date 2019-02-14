@@ -160,6 +160,11 @@ const float OXY_TOXY_DAMAGE = 10.0f;
 // Cooldown between agent emissions, in milliseconds.
 const uint AGENT_EMISSION_COOLDOWN = 2000;
 
+// Iron amounts per chunk.
+// big iron ejects ten per 20 clicks , so about 30 per second, so ill give it enough for 1000 seconds)
+const double IRON_PER_BIG_CHUNK = 30000.0f;
+// small iron ejects 3 per 20 clicks , so about 9 per second, so ill give it enough for 1000 seconds aswell
+const double IRON_PER_SMALL_CHUNK = 9000.0f;
 //Auto Evo Values
 const int CREATURE_DEATH_POPULATION_LOSS = -60;
 const int CREATURE_KILL_POPULATION_GAIN = 50;

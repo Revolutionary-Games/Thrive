@@ -36,10 +36,17 @@ void
         for(auto& value : CachedComponents.GetIndex()) {
             CompoundBagComponent& bag = std::get<0>(*value.second);
             CompoundVenterComponent& venter = std::get<1>(*value.second);
-            Leviathan::Position& position = std::get<2>(*value.second);
-            venter.ventCompound(position,
-                SimulationParameters::compoundRegistry.getTypeId("iron"),
-                venter.ventAmount, world);
+            // Loop through all the compounds in the storage bag and eject them
+            for(const auto& compound : bag.compounds) {
+                double compoundAmount = compound.second.amount;
+                CompoundId compoundId = compound.first;
+                if(venter.ventAmount <= compoundAmount) {
+                    Leviathan::Position& position = std::get<2>(*value.second);
+                    venter.ventCompound(
+                        position, compoundId, venter.ventAmount, world);
+                    bag.takeCompound(compoundId, venter.ventAmount);
+                }
+            }
         }
     }
 }
