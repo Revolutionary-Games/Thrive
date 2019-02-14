@@ -25,11 +25,30 @@ Float3
 }
 
 Int2
-    Hex::cartesianToAxial(double x, double z)
+    Hex::cartesianToAxial(double x, double y)
 {
-    double q = x * (2.0 / 3.0) / Hex::hexSize;
-    double r = z / (Hex::hexSize * std::sqrt(3)) - q / 2.0;
-    return Int2(q, r);
+	// Getting the cube coordinates.
+    double cx = x * (2.0 / 3.0) / Hex::hexSize;
+    double cy = y / (Hex::hexSize * std::sqrt(3)) - cx / 2.0;
+    double cz = -(cx + cy);
+
+    // Rounding the result.
+    double rx = round(cx);
+    double ry = round(cy);
+    double rz = round(cz);
+
+    double xDiff = std::abs(rx - cx);
+    double yDiff = std::abs(ry - cy);
+    double zDiff = std::abs(rz - cz);
+
+    if(xDiff > yDiff && xDiff > zDiff)
+        rx = -(ry + rz);
+
+    else if(yDiff > zDiff)
+        ry = -(rx + rz);
+
+	// Returning the axial coordinates.
+    return cubeToAxial(rx, ry, rz);
 }
 
 Int3
@@ -41,7 +60,8 @@ Int3
 Int2
     Hex::cubeToAxial(double x, double y, double z)
 {
-    return Int2(x, z);
+    (void)z;
+    return Int2(x, y);
 }
 
 Int3
