@@ -634,6 +634,7 @@ ObjectID createIron(CellStageWorld@ world, Float3 pos)
     int ironSize = 1;
     // 5 is the default
     float ironAmount = 3.0f;
+    double ironBagAmount= IRON_PER_SMALL_CHUNK;
     // There are four kinds
     switch (GetEngine().GetRandom().GetNumber(0, 4))
         {
@@ -653,6 +654,7 @@ ObjectID createIron(CellStageWorld@ world, Float3 pos)
         mesh="iron_05.mesh";
         ironSize=10;
         ironAmount=10.0f;
+        ironBagAmount=IRON_PER_BIG_CHUNK;
         break;
         }
 
@@ -660,7 +662,9 @@ ObjectID createIron(CellStageWorld@ world, Float3 pos)
     auto venter = world.Create_CompoundVenterComponent(ironEntity);
     // So that larger iron chunks give out more compounds
     venter.setVentAmount(ironAmount);
-    world.Create_CompoundBagComponent(ironEntity);
+    auto bag = world.Create_CompoundBagComponent(ironEntity);
+
+    bag.setCompound(SimulationParameters::compoundRegistry().getTypeId("iron"),ironBagAmount);
     auto model = world.Create_Model(ironEntity, renderNode.Node, mesh);
     // Need to set the tint
     model.GraphicalObject.setCustomParameter(1, Ogre::Vector4(1, 1, 1, 1));
