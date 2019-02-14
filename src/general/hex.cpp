@@ -27,7 +27,7 @@ Float3
 Int2
     Hex::cartesianToAxial(double x, double y)
 {
-	// Getting the cube coordinates.
+    // Getting the cube coordinates.
     double cx = x * (2.0 / 3.0) / Hex::hexSize;
     double cy = y / (Hex::hexSize * std::sqrt(3)) - cx / 2.0;
     double cz = -(cx + cy);
@@ -47,7 +47,7 @@ Int2
     else if(yDiff > zDiff)
         ry = -(rx + rz);
 
-	// Returning the axial coordinates.
+    // Returning the axial coordinates.
     return cubeToAxial(rx, ry, rz);
 }
 
