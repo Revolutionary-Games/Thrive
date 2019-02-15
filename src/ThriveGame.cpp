@@ -90,8 +90,6 @@ public:
     {
         destroyBackgroundItem();
 
-        LOG_INFO("Creating background item");
-
         LEVIATHAN_ASSERT(
             m_cellStage, "Trying to create background item before world");
 
@@ -526,25 +524,18 @@ void
 
     m_impl->m_microbeEditor->SetCamera(camera);
 
-    // Background
-    // This is called every time we enter the editor, and i think this may be
-    // our "locking" culprit, that or some interaction between this and the
-    // background switching when you die in the microbe stage bit. (One other
-    // possibility would be that when we switch bakcground materials it doesnt
-    // offload) Perhaps this just needs to be deleted when you exit the editor??
-    //***
-    // Ill add an if statement here and see what happens
     if(!m_impl->m_editorBackgroundRenderNode) {
         m_impl->m_editorBackgroundRenderNode =
             m_impl->m_microbeEditor->GetScene()->createSceneNode(
                 Ogre::SCENE_STATIC);
+
         // Setup render queue for it
         m_impl->m_microbeEditor->GetScene()
             ->getRenderQueue()
             ->setRenderQueueMode(1, Ogre::RenderQueue::FAST);
-        // This also attaches it
+
+        // This creates and attaches the item
         m_impl->createBackgroundItem();
-        //***
     }
 
     // Let the script do setup //
@@ -971,9 +962,6 @@ void
     LOG_INFO("Setting microbe background to: " + material);
     m_impl->m_microbeBackgroundSubMesh->setMaterialName(material);
 
-    // If the banana background re-appears after this change, we will make it
-    // just use the default blue background. SO just comment this out then.
-    m_impl->m_microbeEditorBackgroundSubMesh->setMaterialName(material);
     m_impl->createBackgroundItem();
 }
 
