@@ -62,14 +62,6 @@ public:
             m_microbeBackgroundMesh.reset();
             m_microbeBackgroundSubMesh = nullptr;
         }
-
-        if(m_microbeEditorBackgroundMesh) {
-
-            Ogre::MeshManager::getSingleton().remove(
-                m_microbeEditorBackgroundMesh);
-            m_microbeEditorBackgroundMesh.reset();
-            m_microbeEditorBackgroundSubMesh = nullptr;
-        }
     }
 
     void
@@ -117,7 +109,7 @@ public:
             if(!m_microbeEditorBackgroundItem) {
                 m_microbeEditorBackgroundItem =
                     m_microbeEditor->GetScene()->createItem(
-                        m_microbeEditorBackgroundMesh, Ogre::SCENE_STATIC);
+                        m_microbeBackgroundMesh, Ogre::SCENE_STATIC);
                 m_microbeEditorBackgroundItem->setCastShadows(false);
 
                 // Need to edit the render queue and add it to an early one
@@ -145,8 +137,6 @@ public:
     //! This is the background object of the cell stage
     Ogre::MeshPtr m_microbeBackgroundMesh;
     Ogre::SubMesh* m_microbeBackgroundSubMesh;
-    Ogre::MeshPtr m_microbeEditorBackgroundMesh;
-    Ogre::SubMesh* m_microbeEditorBackgroundSubMesh;
     Ogre::Item* m_microbeBackgroundItem = nullptr;
     Ogre::SceneNode* m_backgroundRenderNode = nullptr;
 
@@ -375,17 +365,7 @@ void
 
         m_impl->m_microbeBackgroundSubMesh->setMaterialName("Background");
     }
-    // This also needs to be manually destroyed later.
-    if(!m_impl->m_microbeEditorBackgroundMesh) {
-        m_impl->m_microbeEditorBackgroundMesh =
-            Leviathan::GeometryHelpers::CreateScreenSpaceQuad(
-                "Editor_background", -1, -1, 2, 2);
 
-        m_impl->m_microbeEditorBackgroundSubMesh =
-            m_impl->m_microbeEditorBackgroundMesh->getSubMesh(0);
-
-        m_impl->m_microbeEditorBackgroundSubMesh->setMaterialName("Background");
-    }
     // Setup render queue for it
     m_impl->m_cellStage->GetScene()->getRenderQueue()->setRenderQueueMode(
         1, Ogre::RenderQueue::FAST);
