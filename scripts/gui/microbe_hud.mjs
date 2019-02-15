@@ -107,6 +107,7 @@ export function runMicrobeHUDSetup(){
         const oxytoxy = common.randomBetween(0, 10);
         const phosphate = common.randomBetween(0, 50);
         const hydrogenSulfide = common.randomBetween(0, 50);
+        const iron = common.randomBetween(0, 50);
         updateMicrobeHUDBars({
             hitpoints: common.randomBetween(1, hp),
             maxHitpoints: hp,
@@ -122,6 +123,8 @@ export function runMicrobeHUDSetup(){
             PhosphateMax: phosphate,
             compoundHydrogenSulfide: common.randomBetween(0, hydrogenSulfide),
             HydrogenSulfideMax: hydrogenSulfide,
+            compoundIron: common.randomBetween(0, iron),
+            IronMax: iron,
         });
 
         // Pseudo population code
