@@ -547,6 +547,12 @@ void
     m_impl->m_microbeEditor->SetCamera(camera);
 
     // Background
+    // This is called every time we enter the editor, and i think this may be
+    // our "locking" culprit, that or some interaction between this and the
+    // background switching when you die in the microbe stage bit. (One other
+    // possibility would be that when we switch bakcground materials it doesnt
+    // offload) Perhaps this just needs to be deleted when you exit the editor??
+    //***
     // Ill add an if statement here and see what happens
     if(!m_impl->m_editorBackgroundRenderNode) {
         m_impl->m_editorBackgroundRenderNode =
@@ -558,6 +564,7 @@ void
             ->setRenderQueueMode(1, Ogre::RenderQueue::FAST);
         // This also attaches it
         m_impl->createBackgroundItem();
+        //***
     }
 
     // Let the script do setup //
