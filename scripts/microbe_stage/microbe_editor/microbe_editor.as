@@ -950,24 +950,6 @@ class MicrobeEditor{
 
             templateOrganelles = newOrganelles;
 
-            // Change cell size
-            auto physics = GetThriveGame().getCellStage().GetComponent_Physics(GetThriveGame().playerData().activeCreature());
-            auto node = GetThriveGame().getCellStage().GetComponent_RenderNode(GetThriveGame().playerData().activeCreature());
-
-             if(checkIsNucleusPresent()){
-                physics.ChangeShape( GetThriveGame().getCellStage().GetPhysicalWorld(),
-                     GetThriveGame().getCellStage().GetPhysicalWorld().CreateSphere(HEX_SIZE));
-                node.Scale = Float3(1.0, 1.0, 1.0);
-                node.Marked = true;
-                playerSpecies.isBacteria = false;
-            } 
-            else {
-                physics.ChangeShape( GetThriveGame().getCellStage().GetPhysicalWorld(),
-                     GetThriveGame().getCellStage().GetPhysicalWorld().CreateSphere(HEX_SIZE/2.0f));
-                node.Scale = Float3(0.5, 0.5, 0.5);
-                node.Marked = true;
-            }
-
             LOG_INFO("MicrobeEditor: updated organelles for species: " + playerSpecies.name);
             return 1;
         } else if (type == "SymmetryClicked"){

@@ -227,6 +227,10 @@ void onReturnFromEditor(CellStageWorld@ world)
     const auto player = GetThriveGame().playerData().activeCreature();
     auto pos = world.GetComponent_Position(player);
 
+
+    // We take membrane component to separate two cell with enough space
+    auto membraneComponent = world.GetComponent_MembraneComponent(player);
+
     assert(pos !is null);
 
     // Spawn another cell from the player species
@@ -239,6 +243,10 @@ void onReturnFromEditor(CellStageWorld@ world)
     Species::copyProcessesFromSpecies(world, ourActualSpecies, player);
 
     PlayerSpeciesSpawner factory("Default");
+
+    pos._Position.X += membraneComponent.calculateEncompassingCircleRadius()*2;
+    pos._Position.Z += membraneComponent.calculateEncompassingCircleRadius()*2;
+
     auto spawned = factory.factorySpawn(world, pos._Position);
 
     LOG_WRITE("TODO: the spawned cell from the player species from the editor split will "
