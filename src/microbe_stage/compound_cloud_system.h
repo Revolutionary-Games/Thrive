@@ -315,10 +315,10 @@ protected:
     //! The color of the compound cloud.
     //! Every used channel must have alpha of 1. The others have alpha 0 so that
     //! they don't need to be worried about affecting the resulting colours
-    Ogre::Vector4 m_color1;
-    Ogre::Vector4 m_color2;
-    Ogre::Vector4 m_color3;
-    Ogre::Vector4 m_color4;
+    Ogre::Vector4 m_color1 = Ogre::Vector4(0, 0, 0, 0);
+    Ogre::Vector4 m_color2 = Ogre::Vector4(0, 0, 0, 0);
+    Ogre::Vector4 m_color3 = Ogre::Vector4(0, 0, 0, 0);
+    Ogre::Vector4 m_color4 = Ogre::Vector4(0, 0, 0, 0);
 
     //! \brief The compound id.
     //! \note NULL_COMPOUND means that this cloud doesn't have that slot filled
@@ -443,6 +443,42 @@ public:
         convertWorldToCloudLocalForGrab(const Float3& cloudPosition,
             const Float3& worldPosition);
 
+    static inline auto
+        calculateGridPositions(const Float3& center)
+    {
+        return std::array<Float3, 9>{
+            // Center
+            center,
+
+            // Top left
+            center + Float3(-CLOUD_WIDTH * 2, 0, -CLOUD_HEIGHT * 2),
+
+            // Up
+            center + Float3(0, 0, -CLOUD_HEIGHT * 2),
+
+            // Top right
+            center + Float3(CLOUD_WIDTH * 2, 0, -CLOUD_HEIGHT * 2),
+
+            // Left
+            center + Float3(-CLOUD_WIDTH * 2, 0, 0),
+
+            // Right
+            center + Float3(CLOUD_WIDTH * 2, 0, 0),
+
+            // Bottom left
+            center + Float3(-CLOUD_WIDTH * 2, 0, CLOUD_HEIGHT * 2),
+
+            // Down
+            center + Float3(0, 0, CLOUD_HEIGHT * 2),
+
+            // Bottom right
+            center + Float3(CLOUD_WIDTH * 2, 0, CLOUD_HEIGHT * 2),
+        };
+    }
+
+    static Float3
+        calculateGridCenterForPlayerPos(const Float3& pos);
+
 protected:
     //! \brief Removes deleted clouds from m_managedClouds
     void
@@ -450,8 +486,17 @@ protected:
 
 private:
     //! \brief Spawns and despawns the cloud entities around the player
+    //! \todo This should check if the player has moved at least 10 units to
+    //! avoid excessive recalculations if the player goes in a circle around a
+    //! cloud boundary
     void
         doSpawnCycle(CellStageWorld& world, const Float3& playerPos);
+
+    //! \brief This method handles moving the clouds
+    //!
+    //! This has been separated from doSpawnCycle to be more manageable
+    void
+        applyNewCloudPositioning();
 
     void
         _spawnCloud(CellStageWorld& world,
@@ -514,6 +559,9 @@ private:
     //! the best way to simulate fluid velocity
     std::vector<std::vector<float>> m_xVelocity;
     std::vector<std::vector<float>> m_yVelocity;
+
+    //! This is here to not have to allocate memory every tick
+    std::vector<CompoundCloudComponent*> m_tooFarAwayClouds;
 };
 
 } // namespace thrive

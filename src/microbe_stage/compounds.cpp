@@ -5,6 +5,17 @@ using namespace thrive;
 
 Compound::Compound() {}
 
+Compound::Compound(size_t id,
+    const std::string& name,
+    bool isCloud,
+    bool isUseful,
+    bool isEnvironmental,
+    Ogre::ColourValue colour) :
+    RegistryType(id, name),
+    isCloud(isCloud), isUseful(isUseful), isEnvironmental(isEnvironmental),
+    colour(colour)
+{}
+
 Compound::Compound(Json::Value value)
 {
     volume = value["volume"].asDouble();

@@ -53,6 +53,10 @@ const organelleSelectionElements = [
         organelle: "chemoSynthisizingProteins"
     },
     {
+        element: document.getElementById("addRusticyanin"),
+        organelle: "rusticyanin"
+    },
+    {
         element: document.getElementById("addFlagellum"),
         organelle: "flagellum"
     },

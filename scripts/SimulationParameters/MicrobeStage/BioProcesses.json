@@ -79,11 +79,12 @@
         "name": "Nitrogen Fixing",
 
         "inputs": {
-            "atp": 0.5
+            "oxygen": 1.0,
+            "atp": 5
         },
 
         "outputs": {
-            "ammonia": 0.1
+            "ammonia": 0.5
         }
     },
     
@@ -109,6 +110,19 @@
 
         "outputs": {
             "glucose": 0.33
+        }
+    },
+    
+    "iron_chemolithoautotrophy": {
+        "name": "Iron Chemolithoautotrophy",
+
+        "inputs": {
+            "carbondioxide": 0.09,
+            "iron": 0.175
+        },
+
+        "outputs": {
+            "atp": 10.0
         }
     }
 }

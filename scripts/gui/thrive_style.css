@@ -476,6 +476,14 @@ video {
   background-color: #a02355;
 }
 
+#IronIcon {
+  background-image: url("../../Textures/gui/bevel/Iron.png");
+}
+
+#microbeHUDPlayerIronBar {
+  background-color: #b7410e;
+}
+
 #HealthIcon {
   background-image: url("../../Textures/gui/bevel/Hitpoints.png");
 }
@@ -1250,6 +1258,15 @@ video {
 }
 
 #ChemosynthisizingProteinsIcon {
+  position: relative;
+  left: calc(50% - 30px);
+  width: 60px;
+  height: 60px;
+  background-size: contain;
+  background-image: url("../../Textures/gui/bevel/ChemoproteinsIcon.png");
+}
+
+#RusticyaninIcon {
   position: relative;
   left: calc(50% - 30px);
   width: 60px;

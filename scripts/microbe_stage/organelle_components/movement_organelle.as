@@ -7,11 +7,11 @@
 // See organelle_component.as for more information about the
 // organelle component methods and the arguments they receive.
 
-// Calculate the momentum of the movement organelle based on angle towards nucleus
+// Calculate the momentum of the movement organelle based on angle towards middle of cell
 Float3 calculateForce(int q, int r, float momentum){
     Float3 organelle = Hex::axialToCartesian(q, r);
-    Float3 nucleus = Hex::axialToCartesian(0, 0);
-    auto delta = nucleus - organelle;
+    Float3 middle = Hex::axialToCartesian(0, 0);
+    auto delta = middle - organelle;
     return delta.Normalize() * momentum;
 }
 
@@ -42,9 +42,9 @@ class MovementOrganelle : OrganelleComponent{
         this.force = calculateForce(q, r, this.force.X);
 
         this.organellePos = Hex::axialToCartesian(q, r);
-        Float3 nucleus = Hex::axialToCartesian(0, 0);
+        Float3 middle = Hex::axialToCartesian(0, 0);
 
-        auto delta = nucleus - organellePos;
+        auto delta = middle - organellePos;
 
         float angle = atan2(-delta.Z, delta.X);
         if(angle < 0){
@@ -176,9 +176,9 @@ class MovementOrganelle : OrganelleComponent{
         // This is because GetExternalOrganelle only works after the membrane has initialized,
         // which happens on the next tick
         // This doesnt work properly
-        Float3 nucleus = Hex::axialToCartesian(0, 0);
-        auto delta = nucleus - organellePos;
-        const Float3 exit = nucleus - delta;
+        Float3 middle = Hex::axialToCartesian(0, 0);
+        auto delta = middle - organellePos;
+        const Float3 exit = middle - delta;
         auto membraneComponent = organelle.world.GetComponent_MembraneComponent(microbeEntity);
         auto membraneCoords = membraneComponent.GetExternalOrganelle(exit.X, exit.Z);;
         float angle = atan2(-delta.Z, delta.X);

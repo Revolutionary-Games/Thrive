@@ -74,6 +74,10 @@ class MicrobeStageHudSystem : ScriptSystem{
         this.hydrogenSulfideVolume = SimulationParameters::compoundRegistry().getTypeData(
             this.hydrogenSulfideId).volume;
 
+        this.ironId = SimulationParameters::compoundRegistry().getTypeId("iron");
+        this.ironVolume = SimulationParameters::compoundRegistry().getTypeData(
+            this.ironId).volume;
+
     }
 
     void handleAmbientSound()
@@ -160,6 +164,9 @@ class MicrobeStageHudSystem : ScriptSystem{
                 const auto oxytoxyAmount = bag.getCompoundAmount(oxytoxyId);
                 const auto maxOxytoxy = microbeComponent.capacity;
 
+                const auto ironAmount = bag.getCompoundAmount(ironId);
+                const auto maxIron = microbeComponent.capacity;
+
                 // Write data
                 vars.AddValue(ScriptSafeVariableBlock("compoundPhosphate", phosphateAmount));
                 vars.AddValue(ScriptSafeVariableBlock("PhosphateMax", maxPhosphate));
@@ -178,6 +185,9 @@ class MicrobeStageHudSystem : ScriptSystem{
 
                 vars.AddValue(ScriptSafeVariableBlock("compoundOxytoxy", oxytoxyAmount));
                 vars.AddValue(ScriptSafeVariableBlock("OxytoxyMax", maxOxytoxy));
+
+                vars.AddValue(ScriptSafeVariableBlock("compoundIron", ironAmount));
+                vars.AddValue(ScriptSafeVariableBlock("IronMax", maxIron));
             }
 
             // Fire it off so that the GUI scripts will get it and update the GUI state
@@ -275,6 +285,14 @@ class MicrobeStageHudSystem : ScriptSystem{
             GetEngine().GetEventHandler().CallEvent(event);
         }
     }
+
+    void hideReproductionDialog(){
+         reproductionDialogOpened = false;
+         GenericEvent@ event = GenericEvent("PlayerDiedBeforeEnter");
+         GetEngine().GetEventHandler().CallEvent(event);
+    }
+
+
 
     void suicideButtonClicked(){
         // getComponent("gui_sounds", this.gameState, SoundSourceComponent).playSound("button-hover-click");
@@ -397,6 +415,9 @@ class MicrobeStageHudSystem : ScriptSystem{
 
     CompoundId oxytoxyId;
     float oxytoxyVolume;
+
+    CompoundId ironId;
+    float ironVolume;
 
 }
 
@@ -794,6 +815,11 @@ class MicrobeStageHudSystem : ScriptSystem{
 void showReproductionDialog(GameWorld@ world){
     cast<MicrobeStageHudSystem@>(world.GetScriptSystem("MicrobeStageHudSystem")).
         showReproductionDialog();
+}
+
+void hideReproductionDialog(GameWorld@ world){
+    cast<MicrobeStageHudSystem@>(world.GetScriptSystem("MicrobeStageHudSystem")).
+        hideReproductionDialog();
 }
 
 void showMessage(const string &in msg){
