@@ -24,6 +24,8 @@ PlayerMicrobeControl::PlayerMicrobeControl(KeyConfiguration& keys) :
     m_left(keys.ResolveControlNameToFirstKey("MoveLeft")),
     m_right(keys.ResolveControlNameToFirstKey("MoveRight")),
     m_spawnGlucoseCheat(keys.ResolveControlNameToFirstKey("SpawnGlucoseCheat")),
+    m_spawnPhosphateCheat(
+        keys.ResolveControlNameToFirstKey("SpawnPhosphateCheat")),
     m_zoomIn(keys.ResolveControlNameToKeyVector("ZoomIn")),
     m_zoomOut(keys.ResolveControlNameToKeyVector("ZoomOut"))
 {}
@@ -40,6 +42,13 @@ bool
         m_spawnGlucoseCheat.Match(key, modifiers)) {
 
         cheatCloudsDown = false;
+        return true;
+    }
+
+    if(!active && cheatPhosphateCloudsDown &&
+        m_spawnPhosphateCheat.Match(key, modifiers)) {
+
+        cheatPhosphateCloudsDown = false;
         return true;
     }
 
@@ -75,6 +84,14 @@ bool
 
             LOG_INFO("Glucose cloud cheat pressed");
             cheatCloudsDown = true;
+        }
+        return true;
+    } else if(m_spawnPhosphateCheat.Match(key, modifiers)) {
+
+        if(ThriveGame::get()->areCheatsEnabled()) {
+
+            LOG_INFO("Phosphate cloud cheat pressed");
+            cheatPhosphateCloudsDown = true;
         }
         return true;
     }
@@ -256,8 +273,14 @@ void
 
     auto module = thrive->getMicrobeScripts();
 
-    if(!module)
-        LOG_FATAL("PlayerMicrobeControlSystem: microbe scripts aren't loaded");
+    if(!module) {
+        // Skip here to allow running better in unit tests
+        // This makes finding errors about this a bit more difficult but the
+        // game shouldn't start with invalid scripts
+        // LOG_FATAL("PlayerMicrobeControlSystem: microbe scripts aren't
+        // loaded");
+        return;
+    }
 
     // Debug for movement keys
     // std::stringstream msg;
@@ -308,10 +331,16 @@ void
 
     if(thrive->getPlayerInput()->getSpamClouds()) {
 
-        LOG_INFO("Spawning cheat cloud");
         world.GetCompoundCloudSystem().addCloud(
             SimulationParameters::compoundRegistry.getTypeId("glucose"), 15000,
             lookPoint);
+    }
+
+    if(thrive->getPlayerInput()->getCheatPhosphateCloudsDown()) {
+
+        world.GetCompoundCloudSystem().addCloud(
+            SimulationParameters::compoundRegistry.getTypeId("phosphates"),
+            15000, lookPoint);
     }
 }
 // ------------------------------------ //
@@ -319,6 +348,10 @@ Float3
     PlayerMicrobeControlSystem::getTargetPoint(
         Leviathan::GameWorld& worldWithCamera)
 {
+    // Skip when there is no window to allow running headless
+    if(!Engine::Get()->GetWindowEntity())
+        return Float3(0, 0, 0);
+
     float x, y;
     Engine::Get()->GetWindowEntity()->GetNormalizedRelativeMouse(x, y);
 

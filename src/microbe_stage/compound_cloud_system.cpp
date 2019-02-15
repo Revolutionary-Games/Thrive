@@ -47,33 +47,29 @@ CompoundCloudComponent::CompoundCloudComponent(CompoundCloudSystem& owner,
             "CompoundCloudComponent needs at least one Compound type");
 
     // Read data
-    // Redundant check (see the throw above)
-    if(first) {
-
-        m_compoundId1 = first->id;
-        m_color1 =
-            Ogre::Vector4(first->colour.r, first->colour.g, first->colour.b, 1);
-    }
+    m_color1 =
+        Ogre::Vector4(first->colour.r, first->colour.g, first->colour.b, 1.0f);
+    m_compoundId1 = first->id;
 
     if(second) {
 
         m_compoundId2 = second->id;
         m_color2 = Ogre::Vector4(
-            second->colour.r, second->colour.g, second->colour.b, 1);
+            second->colour.r, second->colour.g, second->colour.b, 1.0f);
     }
 
     if(third) {
 
         m_compoundId3 = third->id;
-        m_color3 =
-            Ogre::Vector4(third->colour.r, third->colour.g, third->colour.b, 1);
+        m_color3 = Ogre::Vector4(
+            third->colour.r, third->colour.g, third->colour.b, 1.0f);
     }
 
     if(fourth) {
 
         m_compoundId4 = fourth->id;
         m_color4 = Ogre::Vector4(
-            fourth->colour.r, fourth->colour.g, fourth->colour.b, 1);
+            fourth->colour.r, fourth->colour.g, fourth->colour.b, 1.0f);
     }
 }
 
@@ -284,20 +280,39 @@ void
             m_position.X, CLOUD_Y_COORDINATE, m_position.Z);
 
     // Clear data. Maybe there is a faster way
-    for(size_t x = 0; x < m_density1.size(); ++x) {
-        for(size_t y = 0; y < m_density1[x].size(); ++y) {
+    if(m_compoundId1 != NULL_COMPOUND) {
+        for(size_t x = 0; x < m_density1.size(); ++x) {
+            for(size_t y = 0; y < m_density1[x].size(); ++y) {
+                m_density1[x][y] = 0;
+                m_oldDens1[x][y] = 0;
+            }
+        }
+    }
 
-            m_density1[x][y] = 0;
-            m_oldDens1[x][y] = 0;
+    if(m_compoundId2 != NULL_COMPOUND) {
+        for(size_t x = 0; x < m_density2.size(); ++x) {
+            for(size_t y = 0; y < m_density2[x].size(); ++y) {
+                m_density2[x][y] = 0;
+                m_oldDens2[x][y] = 0;
+            }
+        }
+    }
 
-            m_density2[x][y] = 0;
-            m_oldDens2[x][y] = 0;
+    if(m_compoundId3 != NULL_COMPOUND) {
+        for(size_t x = 0; x < m_density3.size(); ++x) {
+            for(size_t y = 0; y < m_density3[x].size(); ++y) {
+                m_density3[x][y] = 0;
+                m_oldDens3[x][y] = 0;
+            }
+        }
+    }
 
-            m_density3[x][y] = 0;
-            m_oldDens3[x][y] = 0;
-
-            m_density4[x][y] = 0;
-            m_oldDens4[x][y] = 0;
+    if(m_compoundId4 != NULL_COMPOUND) {
+        for(size_t x = 0; x < m_density4.size(); ++x) {
+            for(size_t y = 0; y < m_density4[x].size(); ++y) {
+                m_density4[x][y] = 0;
+                m_oldDens4[x][y] = 0;
+            }
         }
     }
 }
@@ -327,6 +342,11 @@ void
 
     const auto meshName =
         "CompoundCloudSystem_Plane_" + std::to_string(++CloudMeshNumberCounter);
+
+    // TODO: fix this in the engine to make this method simpler
+    // This crashes when used with RenderDoc and doesn't render anything
+    // m_planeMesh = Leviathan::GeometryHelpers::CreateXZPlane(
+    //     meshName, CLOUD_WIDTH, CLOUD_HEIGHT);
 
     // Create a background plane on which the fluid clouds will be drawn.
     m_planeMesh = Ogre::MeshManager::getSingleton().createManual(
@@ -408,7 +428,6 @@ void
     doSpawnCycle(world, Float3(0, 0, 0));
 }
 
-//! \brief Places specified amount of compound at position
 bool
     CompoundCloudSystem::addCloud(CompoundId compound,
         float density,
@@ -445,7 +464,6 @@ bool
     return false;
 }
 
-//! \param rate should be less than one.
 float
     CompoundCloudSystem::takeCompound(CompoundId compound,
         const Float3& worldPosition,
@@ -480,7 +498,6 @@ float
     return 0;
 }
 
-//! \param rate should be less than one.
 float
     CompoundCloudSystem::amountAvailable(CompoundId compound,
         const Float3& worldPosition,
@@ -606,6 +623,17 @@ std::tuple<float, float>
     return std::make_tuple(localX, localY);
 }
 
+Float3
+    CompoundCloudSystem::calculateGridCenterForPlayerPos(const Float3& pos)
+{
+    // The gaps between the positions is used for calculations here. Otherwise
+    // all clouds get moved when the player moves
+    return Float3(
+        static_cast<int>(std::round(pos.X / CLOUD_X_EXTENT)) * CLOUD_X_EXTENT,
+        0,
+        static_cast<int>(std::round(pos.Z / CLOUD_Y_EXTENT)) * CLOUD_Y_EXTENT);
+}
+
 // ------------------------------------ //
 void
     CompoundCloudSystem::Run(CellStageWorld& world)
@@ -663,194 +691,195 @@ void
     // Initial spawning if everything is empty
     if(m_managedClouds.empty()) {
 
-        LOG_INFO("CompoundCloudSystem doing initial spawning");
-
         m_cloudGridCenter = Float3(0, 0, 0);
+
+        const auto requiredCloudPositions{
+            calculateGridPositions(m_cloudGridCenter)};
 
         for(size_t i = 0; i < m_cloudTypes.size(); i += CLOUDS_IN_ONE) {
 
-            // Center
-            _spawnCloud(world, m_cloudGridCenter, i);
-
-            // Top left
-            _spawnCloud(world,
-                m_cloudGridCenter +
-                    Float3(-CLOUD_WIDTH * 2, 0, -CLOUD_HEIGHT * 2),
-                i);
-
-            // Up
-            _spawnCloud(
-                world, m_cloudGridCenter + Float3(0, 0, -CLOUD_HEIGHT * 2), i);
-
-            // Top right
-            _spawnCloud(world,
-                m_cloudGridCenter +
-                    Float3(CLOUD_WIDTH * 2, 0, -CLOUD_HEIGHT * 2),
-                i);
-
-            // Left
-            _spawnCloud(
-                world, m_cloudGridCenter + Float3(-CLOUD_WIDTH * 2, 0, 0), i);
-
-            // Right
-            _spawnCloud(
-                world, m_cloudGridCenter + Float3(CLOUD_WIDTH * 2, 0, 0), i);
-
-            // Bottom left
-            _spawnCloud(world,
-                m_cloudGridCenter +
-                    Float3(-CLOUD_WIDTH * 2, 0, CLOUD_HEIGHT * 2),
-                i);
-
-            // Down
-            _spawnCloud(
-                world, m_cloudGridCenter + Float3(0, 0, CLOUD_HEIGHT * 2), i);
-
-            // Bottom right
-            _spawnCloud(world,
-                m_cloudGridCenter +
-                    Float3(CLOUD_WIDTH * 2, 0, CLOUD_HEIGHT * 2),
-                i);
+            // All positions
+            for(const auto& pos : requiredCloudPositions) {
+                _spawnCloud(world, pos, i);
+            }
         }
     }
-
-    LEVIATHAN_ASSERT(m_managedClouds.size() == 9,
+    // This rounds up to the nearest multiple of 4,
+    // divides that by 4 and multiplies by 9 to get all the clouds we have
+    // (if we have 5 compounds that are clouds, we need 18 clouds, if 4 we need
+    // 9 etc)
+    LEVIATHAN_ASSERT(m_managedClouds.size() ==
+                         ((((m_cloudTypes.size() + 4 - 1) / 4 * 4) / 4) * 9),
         "A CompoundCloud entity has mysteriously been destroyed");
 
-    const auto moved = playerPos - m_cloudGridCenter;
+    // Calculate what our center should be
+    const auto targetCenter = calculateGridCenterForPlayerPos(playerPos);
 
     // TODO: because we no longer check if the player has moved at least a bit
     // it is possible that this gets triggered very often if the player spins
-    // around a cloud edge, but hopefully there isn't a performance problem and
-    // that case can just be ignored.
-    // Z is used here because these are world coordinates
-    if(std::abs(moved.X) > CLOUD_WIDTH || std::abs(moved.Z) > CLOUD_HEIGHT) {
+    // around a cloud edge.
 
-        // Calculate the new center
-        if(moved.X < -CLOUD_WIDTH) {
-            m_cloudGridCenter -= Float3(CLOUD_WIDTH * 2, 0, 0);
-        } else if(moved.X > CLOUD_WIDTH) {
-            m_cloudGridCenter += Float3(CLOUD_WIDTH * 2, 0, 0);
-        }
+    // This needs an extra variable to track how much the player has moved
+    // auto moved = playerPos - m_cloudGridCenter;
 
-        if(moved.Z < -CLOUD_HEIGHT) {
-            m_cloudGridCenter -= Float3(0, 0, CLOUD_HEIGHT * 2);
-        } else if(moved.Z > CLOUD_HEIGHT) {
-            m_cloudGridCenter += Float3(0, 0, CLOUD_HEIGHT * 2);
-        }
+    if(m_cloudGridCenter != targetCenter) {
 
-        // Calculate the new positions
-        const Float3 requiredCloudPositions[] = {
-            // Center
-            m_cloudGridCenter,
+        m_cloudGridCenter = targetCenter;
+        applyNewCloudPositioning();
+    }
+}
 
-            // Top left
-            m_cloudGridCenter + Float3(-CLOUD_WIDTH * 2, 0, -CLOUD_HEIGHT * 2),
+void
+    CompoundCloudSystem::applyNewCloudPositioning()
+{
+    // Calculate the new positions
+    const auto requiredCloudPositions{
+        calculateGridPositions(m_cloudGridCenter)};
 
-            // Up
-            m_cloudGridCenter + Float3(0, 0, -CLOUD_HEIGHT * 2),
+    // Reposition clouds according to the origin
+    // The max amount of clouds is that all need to be moved
+    const size_t MAX_FAR_CLOUDS = m_managedClouds.size();
 
-            // Top right
-            m_cloudGridCenter + Float3(CLOUD_WIDTH * 2, 0, -CLOUD_HEIGHT * 2),
+    // According to spec this check is superfluous, but it makes me feel
+    // better
+    if(m_tooFarAwayClouds.size() != MAX_FAR_CLOUDS)
+        m_tooFarAwayClouds.resize(MAX_FAR_CLOUDS);
 
-            // Left
-            m_cloudGridCenter + Float3(-CLOUD_WIDTH * 2, 0, 0),
+    size_t farAwayIndex = 0;
 
-            // Right
-            m_cloudGridCenter + Float3(CLOUD_WIDTH * 2, 0, 0),
+    // All clouds that aren't at one of the requiredCloudPositions needs to
+    // be moved. Also only one from each cloud group needs to be at each
+    // position
+    for(auto iter = m_managedClouds.begin(); iter != m_managedClouds.end();
+        ++iter) {
 
-            // Bottom left
-            m_cloudGridCenter + Float3(-CLOUD_WIDTH * 2, 0, CLOUD_HEIGHT * 2),
+        const auto pos = iter->second->m_position;
 
-            // Down
-            m_cloudGridCenter + Float3(0, 0, CLOUD_HEIGHT * 2),
+        bool matched = false;
 
-            // Bottom right
-            m_cloudGridCenter + Float3(CLOUD_WIDTH * 2, 0, CLOUD_HEIGHT * 2),
-        };
+        // Check if it is at any of the valid positions
+        for(size_t i = 0; i < std::size(requiredCloudPositions); ++i) {
 
+            const auto& requiredPos = requiredCloudPositions[i];
 
+            // An exact check might work but just to be safe slight
+            // inaccuracy is allowed here
+            if((pos - requiredPos).HAddAbs() < Leviathan::EPSILON) {
 
-        // Reposition clouds according to the origin
-        // MAX of 9 clouds can ever be repositioned (this is only the case when
-        // respawning)
-        constexpr size_t MAX_FAR_CLOUDS = 9;
-        std::array<CompoundCloudComponent*, MAX_FAR_CLOUDS> tooFarAwayClouds;
-        size_t farAwayIndex = 0;
+                // TODO: this is probably not needed and can be removed
+                // // It also has to be the only cloud with the first
+                // // compound id that it has (this is used to filter out
+                // // multiple clouds of a group being at some position)
+                // bool duplicate = false;
 
-        // All clouds that aren't at one of the requiredCloudPositions needs to
-        // be moved
-        for(auto iter = m_managedClouds.begin(); iter != m_managedClouds.end();
-            ++iter) {
+                // const auto toCheckID = iter->second->getCompoundId1();
 
-            const auto pos = iter->second->m_position;
+                // for(auto iter2 = m_managedClouds.begin();
+                //     iter2 != m_managedClouds.end(); ++iter2) {
 
-            bool matched = false;
+                //     if(iter == iter2)
+                //         continue;
 
-            // Check if it is at any of the valid positions
-            for(size_t i = 0; i < std::size(requiredCloudPositions); ++i) {
+                //     if(toCheckID == iter2->second->getCompoundId1()) {
+                //         duplicate = true;
+                //         break;
+                //     }
+                // }
 
-                const auto& requiredPos = requiredCloudPositions[i];
-
-                // An exact check might work but just to be safe slight
-                // inaccuracy is allowed here
-                if((pos - requiredPos).HAddAbs() < Leviathan::EPSILON) {
-                    matched = true;
-                    break;
-                }
-            }
-
-            if(!matched) {
-
-                if(farAwayIndex >= MAX_FAR_CLOUDS) {
-
-                    LOG_FATAL("CompoundCloudSystem: Logic error in calculating "
-                              "far away clouds that need to move");
-                    break;
-                }
-
-                tooFarAwayClouds[farAwayIndex++] = iter->second;
+                // if(!duplicate) {
+                matched = true;
+                break;
+                //}
             }
         }
 
-        // Move clouds that are too far away
-        // We check through each position that should have a cloud and move one
-        // where there isn't one
-        size_t farAwayRepositionedIndex = 0;
+        if(!matched) {
 
+            if(farAwayIndex >= MAX_FAR_CLOUDS) {
+
+                LOG_FATAL("CompoundCloudSystem: Logic error in calculating "
+                          "far away clouds that need to move");
+                break;
+            }
+
+            m_tooFarAwayClouds[farAwayIndex++] = iter->second;
+        }
+    }
+
+    // Move clouds that are too far away
+    // We check through each position that should have a cloud and move one
+    // where there isn't one. This also needs to take into account the cloud
+    // groups
+
+    // Loop through the cloud groups
+    for(size_t c = 0; c < m_cloudTypes.size(); c += CLOUDS_IN_ONE) {
+
+        const CompoundId groupType = m_cloudTypes[c].id;
+
+        // Loop for moving clouds to all needed positions for each group
         for(size_t i = 0; i < std::size(requiredCloudPositions); ++i) {
 
             bool hasCloud = false;
+
             const auto& requiredPos = requiredCloudPositions[i];
 
             for(auto iter = m_managedClouds.begin();
                 iter != m_managedClouds.end(); ++iter) {
 
                 const auto pos = iter->second->m_position;
-
                 // An exact check might work but just to be safe slight
                 // inaccuracy is allowed here
-                if((pos - requiredPos).HAddAbs() < Leviathan::EPSILON) {
-                    hasCloud = true;
-                    break;
+                if(((pos - requiredPos).HAddAbs() < Leviathan::EPSILON)) {
+
+                    // Check that the group of the cloud is correct
+                    if(groupType == iter->second->getCompoundId1()) {
+                        hasCloud = true;
+                        break;
+                    }
                 }
             }
 
             if(hasCloud)
                 continue;
 
-            if(farAwayRepositionedIndex >= farAwayIndex) {
-                LOG_FATAL("CompoundCloudSystem: Logic error in moving far "
-                          "clouds (ran out), total to reposition: " +
-                          std::to_string(farAwayIndex + 1) +
-                          ", current index: " +
-                          std::to_string(farAwayRepositionedIndex) +
-                          ", position grid index: " + std::to_string(i));
-                break;
+            bool filled = false;
+
+            // We need to find a cloud from the right group
+            for(size_t checkReposition = 0; checkReposition < farAwayIndex;
+                ++checkReposition) {
+
+                if(m_tooFarAwayClouds[checkReposition] &&
+                    m_tooFarAwayClouds[checkReposition]->getCompoundId1() ==
+                        groupType) {
+
+                    // Found a candidate
+                    m_tooFarAwayClouds[checkReposition]->recycleToPosition(
+                        requiredPos);
+
+                    // Set to null to skip on next scan
+                    m_tooFarAwayClouds[checkReposition] = nullptr;
+
+                    filled = true;
+                    break;
+                }
             }
 
-            tooFarAwayClouds[farAwayRepositionedIndex++]->recycleToPosition(
-                requiredPos);
+            if(!filled) {
+                LOG_FATAL("CompoundCloudSystem: Logic error in moving far "
+                          "clouds, didn't find any to use for needed pos");
+                break;
+            }
+        }
+    }
+
+    // TODO: this can be removed once this has been fully confirmed to work fine
+    // Errors about clouds that should have been moved but haven't been
+    for(size_t checkReposition = 0; checkReposition < farAwayIndex;
+        ++checkReposition) {
+        if(m_tooFarAwayClouds[checkReposition]) {
+            LOG_FATAL(
+                "CompoundCloudSystem: Logic error in moving far "
+                "clouds, a cloud that should have been moved wasn't moved");
         }
     }
 }
@@ -861,28 +890,29 @@ void
         size_t startIndex)
 {
     auto entity = world.CreateEntity();
-
     Compound* first =
         startIndex < m_cloudTypes.size() ? &m_cloudTypes[startIndex] : nullptr;
+
     Compound* second = startIndex + 1 < m_cloudTypes.size() ?
                            &m_cloudTypes[startIndex + 1] :
                            nullptr;
+
     Compound* third = startIndex + 2 < m_cloudTypes.size() ?
                           &m_cloudTypes[startIndex + 2] :
                           nullptr;
+
     Compound* fourth = startIndex + 3 < m_cloudTypes.size() ?
                            &m_cloudTypes[startIndex + 3] :
                            nullptr;
-
     CompoundCloudComponent& cloud = world.Create_CompoundCloudComponent(
         entity, *this, first, second, third, fourth);
+    m_managedClouds[entity] = &cloud;
 
     // Set correct position
     // TODO: this should probably be made a constructor parameter
     cloud.m_position = pos;
 
     initializeCloud(cloud, world.GetScene());
-    m_managedClouds[entity] = &cloud;
 }
 
 
@@ -890,8 +920,6 @@ void
     CompoundCloudSystem::initializeCloud(CompoundCloudComponent& cloud,
         Ogre::SceneManager* scene)
 {
-    LOG_INFO("Initializing a new compound cloud entity");
-
     // All the densities
     if(cloud.m_compoundId1 != NULL_COMPOUND) {
         cloud.m_density1.resize(CLOUD_SIMULATION_WIDTH,
@@ -966,22 +994,20 @@ void
     pass->setFragmentProgram("CompoundCloud_PS");
 
     // Set colour parameter //
-    if(cloud.m_compoundId1 != NULL_COMPOUND)
-        pass->getFragmentProgramParameters()->setNamedConstant(
-            "cloudColour1", cloud.m_color1);
-    if(cloud.m_compoundId2 != NULL_COMPOUND)
-        pass->getFragmentProgramParameters()->setNamedConstant(
-            "cloudColour2", cloud.m_color2);
-    if(cloud.m_compoundId3 != NULL_COMPOUND)
-        pass->getFragmentProgramParameters()->setNamedConstant(
-            "cloudColour3", cloud.m_color3);
-    if(cloud.m_compoundId4 != NULL_COMPOUND)
-        pass->getFragmentProgramParameters()->setNamedConstant(
-            "cloudColour4", cloud.m_color4);
+    pass->getFragmentProgramParameters()->setNamedConstant(
+        "cloudColour1", cloud.m_color1);
+    pass->getFragmentProgramParameters()->setNamedConstant(
+        "cloudColour2", cloud.m_color2);
+    pass->getFragmentProgramParameters()->setNamedConstant(
+        "cloudColour3", cloud.m_color3);
+    pass->getFragmentProgramParameters()->setNamedConstant(
+        "cloudColour4", cloud.m_color4);
 
     // The perlin noise texture needs to be tileable. We can't do tricks with
     // the cloud's position
 
+    // Even though we ask for the RGBA format the actual order of pixels when
+    // locked for writing is something completely different
     cloud.m_texture = Ogre::TextureManager::getSingleton().createManual(
         cloud.m_textureName, "Generated", Ogre::TEX_TYPE_2D,
         CLOUD_SIMULATION_WIDTH, CLOUD_SIMULATION_HEIGHT, 0, Ogre::PF_BYTE_RGBA,
@@ -1014,7 +1040,6 @@ void
 
     auto* densityState = pass->createTextureUnitState();
     densityState->setTexture(cloud.m_texture);
-    // densityState->setTextureName("TestImageThing.png");
     densityState->setSamplerblock(wrappedBlock);
 
     Ogre::TexturePtr texturePtr =
@@ -1025,8 +1050,8 @@ void
 
     noiseState->setSamplerblock(wrappedBlock);
 
-    // Maybe compiling this here is the best place
-    cloud.m_planeMaterial->compile();
+    // // Maybe compiling this here is the best place
+    // cloud.m_planeMaterial->compile();
 
     // Needs to create a plane instance on which the material is used on
     cloud.m_compoundCloudsPlane = scene->createItem(m_planeMesh);
@@ -1111,15 +1136,36 @@ void
     // This is probably branch predictor friendly to move each bunch of pixels
     // separately
 
-    // First channel
-    if(cloud.m_compoundId1 != NULL_COMPOUND)
-        fillCloudChannel(cloud.m_density1, 0, rowBytes, pDest);
-    // Second
+    // Due to Ogre making the pixelbox lock however it wants the order is
+    // actually: Ogre::PF_A8R8G8B8
+    if(pixelBox.format != Ogre::PF_A8R8G8B8) {
+        LOG_INFO(
+            "Pixel format: " + Ogre::PixelUtil::getFormatName(pixelBox.format));
+        LEVIATHAN_ASSERT(false,
+            "Ogre created texture write lock with unexpected pixel order");
+    }
+
+    // Even with that pixel format the actual channel indexes are:
+    // so PF_B8G8R8A8 for some reason
+    // R - 2
+    // G - 1
+    // B - 0
+    // A - 3
+
+    if(cloud.m_compoundId1 == NULL_COMPOUND)
+        LEVIATHAN_ASSERT(false, "cloud with not even the first compound");
+
+    // First density. R goes to channel 2 (see above for the mapping)
+    fillCloudChannel(cloud.m_density1, 2, rowBytes, pDest);
+
+    // Second. G - 1
     if(cloud.m_compoundId2 != NULL_COMPOUND)
         fillCloudChannel(cloud.m_density2, 1, rowBytes, pDest);
-    // Etc.
+    // Etc. B - 0
     if(cloud.m_compoundId3 != NULL_COMPOUND)
-        fillCloudChannel(cloud.m_density3, 2, rowBytes, pDest);
+        fillCloudChannel(cloud.m_density3, 0, rowBytes, pDest);
+
+    // A - 3
     if(cloud.m_compoundId4 != NULL_COMPOUND)
         fillCloudChannel(cloud.m_density4, 3, rowBytes, pDest);
 

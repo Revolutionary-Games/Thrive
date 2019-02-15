@@ -89,34 +89,40 @@ string mutateWord(string name){
                 switch (GetEngine().GetRandom().GetNumber(0,5))
                     {
                     case 0:
+                    //VC
                     newVowel = GetEngine().GetRandom().GetNumber(0,vowels.length()-1);
                     newConsonant = GetEngine().GetRandom().GetNumber(0,consonants.length()-1);
                     newSyllable= ""+vowels.substr(newVowel, 1)+consonants.substr(newConsonant, 1);
                     newName.insert(index, newSyllable);
                     break;
                     case 1:
+                    //CV
                     newVowel = GetEngine().GetRandom().GetNumber(0,vowels.length()-1);
                     newConsonant = GetEngine().GetRandom().GetNumber(0,consonants.length()-1);
                     newSyllable = ""+consonants.substr(newConsonant, 1)+vowels.substr(newVowel, 1);
                     newName.insert(index, newSyllable);
                     break;
                     case 2:
+                    //CC
                     newConsonant = GetEngine().GetRandom().GetNumber(0,consonants.length()-1);
                     newSyllable= ""+original+consonants.substr(newConsonant, 1);
                     newName.insert(index, newSyllable);
                     break;
                     case 3:
+                    //CC
                     newConsonant = GetEngine().GetRandom().GetNumber(0,consonants.length()-1);
                     newSyllable = ""+consonants.substr(newConsonant, 1)+original;
                     newName.insert(index, newSyllable);
                     break;
                     case 4:
+                    //CCV
                     newVowel = GetEngine().GetRandom().GetNumber(0,vowels.length()-1);
                     newConsonant = GetEngine().GetRandom().GetNumber(0,consonants.length()-1);
                     newSyllable = original+consonants.substr(newConsonant, 1)+vowels.substr(newVowel, 1);
                     newName.insert(index, newSyllable);
                     break;
                     case 5:
+                    //VCC
                     newVowel = GetEngine().GetRandom().GetNumber(0,vowels.length()-1);
                     newConsonant = GetEngine().GetRandom().GetNumber(0,consonants.length()-1);
                     newSyllable = vowels.substr(newVowel, 1)+consonants.substr(newConsonant, 1)+original;
@@ -124,14 +130,17 @@ string mutateWord(string name){
                     break;
                     }
              }
+             // If is vowel
              else {
                 if(GetEngine().GetRandom().GetNumber(0,20) <= 10){
+                //CVV
                 int newConsonant = GetEngine().GetRandom().GetNumber(0,consonants.length()-1);
                 int newVowel = GetEngine().GetRandom().GetNumber(0,vowels.length()-1);
                 string newSyllable = ""+consonants.substr(newConsonant, 1)+vowels.substr(newVowel, 1)+original;
                 newName.insert(index, newSyllable);
                 }
                 else {
+                //VVC
                 int newConsonant = GetEngine().GetRandom().GetNumber(0,consonants.length()-1);
                 int newVowel = GetEngine().GetRandom().GetNumber(0,vowels.length()-1);
                 string newSyllable = ""+original+vowels.substr(newVowel, 1)+consonants.substr(newConsonant, 1);
@@ -247,6 +256,7 @@ string generateNameSection()
     return newName;
 }
 
+// For normal microbes
 const dictionary DEFAULT_INITIAL_COMPOUNDS =
     {
         {"atp", InitialCompound(30,300)},
@@ -254,7 +264,20 @@ const dictionary DEFAULT_INITIAL_COMPOUNDS =
         {"ammonia", InitialCompound(30,100)},
         {"phosphates", InitialCompound(0)},
         {"hydrogensulfide", InitialCompound(0)},
-        {"oxytoxy", InitialCompound(0)}
+        {"oxytoxy", InitialCompound(0)},
+        {"iron", InitialCompound(0)}
+    };
+
+// For iron phillic microbes
+const dictionary DEFAULT_INITIAL_COMPOUNDS_IRON =
+    {
+        {"atp", InitialCompound(30,300)},
+        {"glucose", InitialCompound(10,30)},
+        {"ammonia", InitialCompound(30,100)},
+        {"phosphates", InitialCompound(0)},
+        {"hydrogensulfide", InitialCompound(0)},
+        {"oxytoxy", InitialCompound(0)},
+        {"iron", InitialCompound(30,300)}
     };
 
 string randomSpeciesName()
@@ -477,10 +500,19 @@ class Species{
         @forWorld = world;
 
         auto organelles = positionOrganelles(stringCode);
-
+        // If you have iron (f is the symbol for rusticyanin)
+        if (stringCode.findFirst('f') >= 0)
+        {
+        templateEntity = Species::createSpecies(forWorld, this.name, this.genus, this.epithet,
+            organelles, this.colour, this.isBacteria, this.speciesMembraneType,
+            DEFAULT_INITIAL_COMPOUNDS_IRON, this.aggression, this.fear, this.activity, this.focus);
+        }
+        else {
         templateEntity = Species::createSpecies(forWorld, this.name, this.genus, this.epithet,
             organelles, this.colour, this.isBacteria, this.speciesMembraneType,
             DEFAULT_INITIAL_COMPOUNDS, this.aggression, this.fear, this.activity, this.focus);
+        }
+
     }
 
     // Delete a species
@@ -703,7 +735,7 @@ class Species{
         // respiratory Proteins, or Oxy Toxy Producing Proteins, also pure cytoplasm
         // aswell for variety.
         //TODO when chemosynthesis is added add a protein for that aswell
-        switch(GetEngine().GetRandom().GetNumber(1,7))
+        switch(GetEngine().GetRandom().GetNumber(1,8))
         {
         case 1:
             stringCode = getOrganelleDefinition("protoplasm").gene;
@@ -722,6 +754,10 @@ class Species{
             break;
         case 6:
             stringCode = getOrganelleDefinition("nitrogenFixationProteins").gene;
+            break;
+        case 7:
+            stringCode = getOrganelleDefinition("rusticyanin").gene;
+            stringCode += getOrganelleDefinition("protoplasm").gene;
             break;
         default:
             stringCode = getOrganelleDefinition("protoplasm").gene;
@@ -939,6 +975,7 @@ class SpeciesSystem : ScriptSystem{
         resetAutoEvo();
     }
 
+
     void Run()
     {
         //LOG_INFO("autoevo running");
@@ -946,155 +983,146 @@ class SpeciesSystem : ScriptSystem{
 
         timeSinceLastCycle++;
         while(this.timeSinceLastCycle > SPECIES_SIM_INTERVAL){
-            LOG_INFO("Processing Auto-evo Step");
-            this.timeSinceLastCycle -= SPECIES_SIM_INTERVAL;
-            bool ranEventThisStep=false;
+           doAutoEvoStep();
+        }
+    }
 
-            // Every 8 steps or so do a cambrian explosion style
-            // Event, this should increase variablility significantly
-            if(GetEngine().GetRandom().GetNumber(0, 200) <= 25){
-                LOG_INFO("Cambrian Explosion");
-                ranEventThisStep = true;
-                // TODO: add a notification for when this happens
-                doCambrianExplosion();
+    void doAutoEvoStep(){
+        LOG_INFO("Processing Auto-evo Step");
+        this.timeSinceLastCycle -= SPECIES_SIM_INTERVAL;
+        bool ranEventThisStep=false;
+        // Every 8 steps or so do a cambrian explosion style
+        // Event, this should increase variablility significantly
+        if(GetEngine().GetRandom().GetNumber(0, 200) <= 25){
+            LOG_INFO("Cambrian Explosion");
+            ranEventThisStep = true;
+            // TODO: add a notification for when this happens
+            doCambrianExplosion();
+        }
+
+        // Various mass extinction events
+        // Only run one "big event" per turn
+        if(species.length() > MAX_SPECIES+MAX_BACTERIA && !ranEventThisStep){
+            LOG_INFO("Mass extinction time");
+            // F to pay respects: TODO: add a notification for when this happens
+            ranEventThisStep = true;
+            doMassExtinction();
+        }
+
+        // Add some variability, this is a less deterministic mass
+        // Extinction eg, a meteor, etc.
+        if(GetEngine().GetRandom().GetNumber(0, 1000) == 1 && !ranEventThisStep){
+            LOG_INFO("Black swan event");
+            ranEventThisStep = true;
+            // F to pay respects: TODO: add a notification for when this happens
+            doMassExtinction();
+        }
+
+        // Super extinction event
+        if(GetEngine().GetRandom().GetNumber(0, 1000) == 1 && !ranEventThisStep){
+            LOG_INFO("Great Dying");
+            ranEventThisStep = true;
+            // Do mass extinction code then devastate all species,
+            //this should extinct quite a few of the ones that
+            //arent doing well.  *Shudders*
+            doMassExtinction();
+            doDevestation();
+        }
+
+        auto numberOfSpecies = species.length();
+        for(uint i = 0; i < numberOfSpecies; i++){
+            // Traversing the population backwards to avoid
+            // "chopping down the branch i'm sitting in"
+            auto index = numberOfSpecies - 1 - i;
+            auto currentSpecies = species[index];
+            currentSpecies.updatePopulation();
+            auto population = currentSpecies.population;
+            LOG_INFO(currentSpecies.name + " " + currentSpecies.population);
+            bool ranSpeciesEvent = false;
+            // This is also just to shake things up occassionally
+            // Cambrian Explosion
+            if ( currentSpecies.population > 0 &&
+                GetEngine().GetRandom().GetNumber(0, 10) <= 2)
+            {
+                // P to pat back: TODO: add a notification for when this happens
+                LOG_INFO(currentSpecies.name + " is diversifying!");
+                currentSpecies.boom();
+                LOG_INFO(currentSpecies.name+" population is now "+
+                    currentSpecies.population);
+                ranSpeciesEvent=true;
             }
-
-            // Various mass extinction events
-            // Only run one "big event" per turn
-            if(species.length() > MAX_SPECIES+MAX_BACTERIA && !ranEventThisStep){
-
-                LOG_INFO("Mass extinction time");
-                // F to pay respects: TODO: add a notification for when this happens
-                ranEventThisStep = true;
-                doMassExtinction();
-            }
-
-            // Add some variability, this is a less deterministic mass
-            // Extinction eg, a meteor, etc.
-            if(GetEngine().GetRandom().GetNumber(0, 1000) == 1 && !ranEventThisStep){
-                LOG_INFO("Black swan event");
-                ranEventThisStep = true;
-                // F to pay respects: TODO: add a notification for when this happens
-                doMassExtinction();
-            }
-
-            // Super extinction event
-            if(GetEngine().GetRandom().GetNumber(0, 1000) == 1 && !ranEventThisStep){
-                LOG_INFO("Great Dying");
-                ranEventThisStep = true;
-                // Do mass extinction code then devastate all species,
-                //this should extinct quite a few of the ones that
-                //arent doing well.  *Shudders*
-                doMassExtinction();
-                doDevestation();
-            }
-
-            auto numberOfSpecies = species.length();
-            for(uint i = 0; i < numberOfSpecies; i++){
-                // Traversing the population backwards to avoid
-                // "chopping down the branch i'm sitting in"
-                auto index = numberOfSpecies - 1 - i;
-                auto currentSpecies = species[index];
-                currentSpecies.updatePopulation();
-                auto population = currentSpecies.population;
-                LOG_INFO(currentSpecies.name + " " + currentSpecies.population);
-
-                bool ranSpeciesEvent = false;
-
-
-                // This is also just to shake things up occassionally
-                // Cambrian Explosion
-                if ( currentSpecies.population > 0 &&
-                    GetEngine().GetRandom().GetNumber(0, 10) <= 2)
-                {
-                    // P to pat back: TODO: add a notification for when this happens
-                    LOG_INFO(currentSpecies.name + " is diversifying!");
-                    currentSpecies.boom();
-                    LOG_INFO(currentSpecies.name+" population is now "+
-                        currentSpecies.population);
-                    ranSpeciesEvent=true;
-                }
 
                 // This is just to shake things up occassionally
-                if ( currentSpecies.population > 0 &&
+           if ( currentSpecies.population > 0 &&
                     GetEngine().GetRandom().GetNumber(0, 10) <= 2 && !ranSpeciesEvent)
-                {
+            {
                     // F to pay respects: TODO: add a notification for when this happens
                     LOG_INFO(currentSpecies.name + " has been devestated by disease.");
                     currentSpecies.devestate();
                     LOG_INFO(currentSpecies.name+" population is now "+
                         currentSpecies.population);
                     ranSpeciesEvent=true;
-                }
+            }
 
                 // 50% chance of splitting off two species instead of one
-                if(GetEngine().GetRandom().GetNumber(0, 10) <= 5 && ranSpeciesEvent == false &&
-                    currentSpecies.population >= MAX_POP_SIZE){
+           if(GetEngine().GetRandom().GetNumber(0, 10) <= 5 && ranSpeciesEvent == false &&
+                currentSpecies.population >= MAX_POP_SIZE){
 
-                    // To prevent ridiculous population numbers
-                    currentSpecies.population=MAX_POP_SIZE;
+                // To prevent ridiculous population numbers
+                currentSpecies.population=MAX_POP_SIZE;
+                auto oldPop = currentSpecies.population;
+                auto newSpecies = Species(currentSpecies, world,
+                    currentSpecies.isBacteria);
 
-                    auto oldPop = currentSpecies.population;
-                    auto newSpecies = Species(currentSpecies, world,
-                        currentSpecies.isBacteria);
-
-                    if (newSpecies.isBacteria)
-                    {
-                        currentBacteriaAmount+=1;
+                if (newSpecies.isBacteria){
+                    currentBacteriaAmount+=1;
                     }
-                    else
-                    {
-                        currentEukaryoteAmount+=1;
+               else{
+                    currentEukaryoteAmount+=1;
                     }
-                    ranSpeciesEvent=true;
-                    species.insertLast(newSpecies);
-                    LOG_INFO("Species " + currentSpecies.name +
-                        " split off several species, the first is:" +
-                        newSpecies.name);
-                    // Reset pop so we can split a second time
-                    currentSpecies.population = oldPop;
+                ranSpeciesEvent=true;
+                species.insertLast(newSpecies);
+                LOG_INFO("Species " + currentSpecies.name +
+                    " split off several species, the first is:" +
+                    newSpecies.name);
+                // Reset pop so we can split a second time
+                currentSpecies.population = oldPop;
+            }
+
+            // Reproduction and mutation
+            if(currentSpecies.population >= MAX_POP_SIZE){
+                // To prevent ridiculous population numbers
+                currentSpecies.population=MAX_POP_SIZE;
+
+                auto newSpecies = Species(currentSpecies, world,
+                    currentSpecies.isBacteria);
+                if (newSpecies.isBacteria){
+                    currentBacteriaAmount+=1;
                 }
-
-                // Reproduction and mutation
-                if(currentSpecies.population >= MAX_POP_SIZE){
-
-                    // To prevent ridiculous population numbers
-                    currentSpecies.population=MAX_POP_SIZE;
-
-                    auto newSpecies = Species(currentSpecies, world,
-                        currentSpecies.isBacteria);
-
-                    if (newSpecies.isBacteria)
-                    {
-                        currentBacteriaAmount+=1;
-                    }
-                    else
-                    {
-                        currentEukaryoteAmount+=1;
-                    }
-                    species.insertLast(newSpecies);
-                    LOG_INFO("Species " + currentSpecies.name + " split off a child species:" +
-                        newSpecies.name);
+                else{
+                    currentEukaryoteAmount+=1;
                 }
+                species.insertLast(newSpecies);
+                LOG_INFO("Species " + currentSpecies.name + " split off a child species:" +
+                    newSpecies.name);
+            }
 
 
-                // Extinction, this is not an event since things with
-                // low population need to be killed off.
-                if(currentSpecies.population <= MIN_POP_SIZE){
-                    LOG_INFO("Species " + currentSpecies.name + " went extinct");
-                    currentSpecies.extinguish();
-                    species.removeAt(index);
-                    // Tweak numbers here
-                    if (currentSpecies.isBacteria)
-                    {
-                        currentBacteriaAmount-=1;
-                    }
-                    else
-                    {
-                        currentEukaryoteAmount-=1;
-                    }
+             // Extinction, this is not an event since things with
+             // low population need to be killed off.
+            if(currentSpecies.population <= MIN_POP_SIZE){
+                LOG_INFO("Species " + currentSpecies.name + " went extinct");
+                currentSpecies.extinguish();
+                species.removeAt(index);
+                // Tweak numbers here
+                if (currentSpecies.isBacteria){
+                    currentBacteriaAmount-=1;
+                }
+                else{
+                    currentEukaryoteAmount-=1;
                 }
             }
+        }
 
             // These are kind of arbitray, we should pronbabbly make it less arbitrary
             // New species
@@ -1110,7 +1138,6 @@ class SpeciesSystem : ScriptSystem{
                 createBacterium();
                 currentBacteriaAmount++;
             }
-        }
     }
 
     void Clear(){}

@@ -16,6 +16,14 @@ public:
 
     Compound();
 
+    //! \brief Constructor for test use
+    Compound(size_t id,
+        const std::string& name,
+        bool isCloud,
+        bool isUseful,
+        bool isEnvironmental,
+        Ogre::ColourValue colour);
+
     Compound(Json::Value value);
 };
 

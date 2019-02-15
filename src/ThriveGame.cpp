@@ -163,10 +163,16 @@ public:
 ThriveGame::ThriveGame()
 {
 #ifndef MAKE_RELEASE
-    LOG_INFO("Enabling cheats because this is a non-release build");
+    LOG_INFO("Enabling cheats because this is a development build");
     m_cheatsEnabled = true;
 #endif // MAKE_RELEASE
 
+    StaticGame = this;
+}
+
+ThriveGame::ThriveGame(Leviathan::Engine* engine) :
+    Leviathan::ClientApplication(engine)
+{
     StaticGame = this;
 }
 
@@ -180,7 +186,7 @@ std::string
 {
     return "Thrive " GAME_VERSIONS
 #ifndef MAKE_RELEASE
-           " (non-release)"
+           " (development)"
 #endif
         ;
 }
@@ -246,6 +252,10 @@ void
         netSettings.IsAuthoritative = true;
         netSettings.DoInterpolation = true;
 
+        // TODO: switch to
+        // Leviathan::WorldNetworkSettings::GetSettingsForSinglePlayer() once we
+        // no longer do the interpolation once variable rate ticks are supported
+
         LOG_INFO("ThriveGame: startNewGame: Creating new cellstage world");
         m_impl->m_cellStage =
             std::dynamic_pointer_cast<CellStageWorld>(engine->CreateWorld(
@@ -304,10 +314,9 @@ void
     // This is needed for the compound clouds to work in general
     const auto compoundCount = SimulationParameters::compoundRegistry.getSize();
 
+
     LEVIATHAN_ASSERT(SimulationParameters::compoundRegistry.getSize() > 0,
         "compound registry is empty when creating cloud entities for them");
-    std::unordered_map<Leviathan::ObjectID, thrive::CompoundCloudComponent> u =
-        {};
 
     std::vector<Compound> clouds;
 
@@ -495,7 +504,8 @@ void
         m_impl->m_microbeEditor =
             std::dynamic_pointer_cast<MicrobeEditorWorld>(engine->CreateWorld(
                 window1, static_cast<int>(THRIVE_WORLD_TYPE::MICROBE_EDITOR),
-                createPhysicsMaterials(), netSettings));
+                createPhysicsMaterials(),
+                Leviathan::WorldNetworkSettings::GetSettingsForSinglePlayer()));
     }
 
     LEVIATHAN_ASSERT(
@@ -985,17 +995,27 @@ void
     ThriveGame::Tick(int mspassed)
 {}
 
-void
-    ThriveGame::CustomizeEnginePostLoad()
+bool
+    ThriveGame::createImpl()
 {
-    Engine* engine = Engine::Get();
-
     try {
         m_impl = std::make_unique<Implementation>(*this);
     } catch(const Leviathan::InvalidArgument& e) {
 
         LOG_ERROR("ThriveGame: loading configuration data failed: ");
         e.PrintToLog();
+        return false;
+    }
+
+    return true;
+}
+
+void
+    ThriveGame::CustomizeEnginePostLoad()
+{
+    Engine* engine = Engine::Get();
+
+    if(!createImpl()) {
         MarkAsClosing();
         return;
     }
@@ -1090,6 +1110,7 @@ void
     keyconfigobj->AddKeyIfMissing(guard, "MoveRight", {"D"});
     keyconfigobj->AddKeyIfMissing(guard, "ReproduceCheat", {"P"});
     keyconfigobj->AddKeyIfMissing(guard, "SpawnGlucoseCheat", {"O"});
+    keyconfigobj->AddKeyIfMissing(guard, "SpawnPhosphateCheat", {"I"});
     keyconfigobj->AddKeyIfMissing(guard, "EngulfMode", {"G"});
     keyconfigobj->AddKeyIfMissing(guard, "ShootToxin", {"E"});
     keyconfigobj->AddKeyIfMissing(guard, "Screenshot", {"PrintScreen"});

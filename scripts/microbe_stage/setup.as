@@ -269,7 +269,10 @@ void onReturnFromEditor(CellStageWorld@ world)
 
 }
 
+//
 // TODO: also put these physics callback somewhere more sensible (maybe physics_callbacks.as?)
+//
+
 void cellHitFloatingOrganelle(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
 {
     // Determine which is the organelle
@@ -292,6 +295,25 @@ void cellHitFloatingOrganelle(GameWorld@ world, ObjectID firstEntity, ObjectID s
     LOG_INFO("TODO: organelle unlock progress if cell: " + cellEntity + " is the player");
 
     world.QueueDestroyEntity(floatingEntity);
+}
+
+
+void cellHitIron(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
+{
+    // Determine which is the iron
+    CellStageWorld@ asCellWorld = cast<CellStageWorld>(world);
+
+    auto model = asCellWorld.GetComponent_Model(firstEntity);
+    auto floatingEntity = firstEntity;
+    auto cellEntity = secondEntity;
+
+    // Cell doesn't have a model
+    if(model is null){
+
+        @model = asCellWorld.GetComponent_Model(secondEntity);
+        floatingEntity = secondEntity;
+        cellEntity = firstEntity;
+    }
 }
 
 // Cell Hit Oxytoxy
@@ -592,36 +614,72 @@ ObjectID createToxin(CellStageWorld@ world, Float3 pos)
     return toxinEntity;
 }
 
-ObjectID createChloroplast(CellStageWorld@ world, Float3 pos)
+ObjectID createIron(CellStageWorld@ world, Float3 pos)
 {
-    // Chloroplasts
-    ObjectID chloroplastEntity = world.CreateEntity();
+    // Iron
+    ObjectID ironEntity = world.CreateEntity();
 
-    auto position = world.Create_Position(chloroplastEntity, pos,
+    auto position = world.Create_Position(ironEntity, pos,
         Ogre::Quaternion(Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
             Ogre::Vector3(0,1,1)));
 
-    auto renderNode = world.Create_RenderNode(chloroplastEntity);
+    auto renderNode = world.Create_RenderNode(ironEntity);
     renderNode.Scale = Float3(1, 1, 1);
     renderNode.Marked = true;
     renderNode.Node.setOrientation(Ogre::Quaternion(
             Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
             Ogre::Vector3(0,1,1)));
     renderNode.Node.setPosition(pos);
-    auto model = world.Create_Model(chloroplastEntity, renderNode.Node, "chloroplast.mesh");
+    string mesh="";
+    int ironSize = 1;
+    // 5 is the default
+    float ironAmount = 3.0f;
+    double ironBagAmount= IRON_PER_SMALL_CHUNK;
+    // There are four kinds
+    switch (GetEngine().GetRandom().GetNumber(0, 4))
+        {
+        case 0:
+        mesh="iron_01.mesh";
+        break;
+        case 1:
+        mesh="iron_02.mesh";
+        break;
+        case 2:
+        mesh="iron_03.mesh";
+        break;
+        case 3:
+        mesh="iron_04.mesh";
+        break;
+        case 4:
+        mesh="iron_05.mesh";
+        ironSize=10;
+        ironAmount=10.0f;
+        ironBagAmount=IRON_PER_BIG_CHUNK;
+        break;
+        }
+
+
+    auto venter = world.Create_CompoundVenterComponent(ironEntity);
+    // So that larger iron chunks give out more compounds
+    venter.setVentAmount(ironAmount);
+    auto bag = world.Create_CompoundBagComponent(ironEntity);
+
+    bag.setCompound(SimulationParameters::compoundRegistry().getTypeId("iron"),ironBagAmount);
+    auto model = world.Create_Model(ironEntity, renderNode.Node, mesh);
     // Need to set the tint
     model.GraphicalObject.setCustomParameter(1, Ogre::Vector4(1, 1, 1, 1));
 
-    auto rigidBody = world.Create_Physics(chloroplastEntity, position);
+    auto rigidBody = world.Create_Physics(ironEntity, position);
     auto body = rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
-        world.GetPhysicalWorld().CreateSphere(1), 1,
-        world.GetPhysicalMaterial("floatingOrganelle"));
+        world.GetPhysicalWorld().CreateSphere(ironSize),100,
+        //iron
+        world.GetPhysicalMaterial("iron"));
 
     body.ConstraintMovementAxises();
 
     rigidBody.JumpTo(position);
 
-    return chloroplastEntity;
+    return ironEntity;
 }
 
 // TODO: the player species handling would be more logically placed if
@@ -663,13 +721,13 @@ void setupFloatingOrganelles(CellStageWorld@ world){
     LOG_INFO("setting up free floating organelles");
     SpawnSystem@ spawnSystem = world.GetSpawnSystem();
 
-    //spawn toxin and chloroplasts
-    const auto chloroId = spawnSystem.addSpawnType(
-        @createChloroplast, DEFAULT_SPAWN_DENSITY,
-        MICROBE_SPAWN_RADIUS);
-
-    //toxins
+    // toxins
     const auto toxinId = spawnSystem.addSpawnType(
         @createToxin, DEFAULT_SPAWN_DENSITY,
+        MICROBE_SPAWN_RADIUS);
+
+    // iron
+    const auto ironId = spawnSystem.addSpawnType(
+        @createIron, DEFAULT_SPAWN_DENSITY,
         MICROBE_SPAWN_RADIUS);
 }

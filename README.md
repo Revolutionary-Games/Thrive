@@ -30,7 +30,7 @@ both for guidelines on code formatting and git usage.
 And [AngelScript primer][asprimer] for scripting help.
 
 ### C++ Programmers 
-To compile Thrive yourself, you will not only need to follow the [setup instructions][setupguide].
+To compile Thrive yourself, you will need to follow the [setup instructions][setupguide].
 
 Be sure to have a look at the [styleguide][styleguide],
 both for guidelines on code formatting and git usage.

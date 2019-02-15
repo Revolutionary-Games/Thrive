@@ -19,9 +19,9 @@
         "isUseful": true,
         "isEnvironmental": false,
         "colour": {
-            "r": 0.6,
-            "g": 0.7,
-            "b": 0.2
+            "r": 1.0,
+            "g": 0.4,
+            "b": 0.1
         }
     },
 
@@ -45,9 +45,9 @@
         "isUseful": false,
         "isEnvironmental": false,
         "colour": {
-            "r": 1.0,
-            "g": 0.4,
-            "b": 0.1
+            "r": 0.6,
+            "g": 0.7,
+            "b": 0.2
         }
     },
     
@@ -74,6 +74,19 @@
             "r": 0.078,
             "g": 0.0,
             "b": 0.078
+        }
+    },
+    
+    "iron": {
+        "name": "Iron",
+        "volume": 1,
+        "isCloud": true,
+        "isUseful": false,
+        "isEnvironmental": false,
+        "colour": {
+            "r": 0.28,
+            "g": 0.098,
+            "b": 0.02
         }
     },
     

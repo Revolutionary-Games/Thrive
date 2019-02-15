@@ -91,6 +91,9 @@ export function runMicrobeHUDSetup(){
         // Event that enables the editor button
         Leviathan.OnGeneric("PlayerReadyToEnterEditor", onReadyToEnterEditor);
 
+        // Event that disabled the editor button
+        Leviathan.OnGeneric("PlayerDiedBeforeEnter", onResetEditor);
+
         // Add listner for sucide button
         document.getElementById("suicideButton").addEventListener("click",
             killPlayerCell, true);
@@ -104,6 +107,7 @@ export function runMicrobeHUDSetup(){
         const oxytoxy = common.randomBetween(0, 10);
         const phosphate = common.randomBetween(0, 50);
         const hydrogenSulfide = common.randomBetween(0, 50);
+        const iron = common.randomBetween(0, 50);
         updateMicrobeHUDBars({
             hitpoints: common.randomBetween(1, hp),
             maxHitpoints: hp,
@@ -119,6 +123,8 @@ export function runMicrobeHUDSetup(){
             PhosphateMax: phosphate,
             compoundHydrogenSulfide: common.randomBetween(0, hydrogenSulfide),
             HydrogenSulfideMax: hydrogenSulfide,
+            compoundIron: common.randomBetween(0, iron),
+            IronMax: iron,
         });
 
         // Pseudo population code
@@ -149,6 +155,15 @@ export function onReadyToEnterEditor(){
 
     readyToEdit = true;
     document.getElementById("microbeToEditorButton").classList.remove("DisabledButton");
+}
+
+
+//! Disabled the editor button
+export function onResetEditor(){
+
+    // Disable
+    document.getElementById("microbeToEditorButton").classList.add("DisabledButton");
+    readyToEdit = false;
 }
 
 
@@ -425,7 +440,7 @@ function checkGeneration (generation, population){
         document.getElementById("winBody").style.display = "inline-block";
         document.getElementById("winContainer").style.display = "inline-block";
         wonOnce = true;
-        setTimeout(hideWinText, 7000);
+        setTimeout(hideWinText, 14000);
     }
 }
 
@@ -492,5 +507,12 @@ function updateMicrobeHUDBars(values){
         values.HydrogenSulfideMax;
     document.getElementById("microbeHUDPlayerHydrogenSulfideBar").style.width =
         common.barHelper(values.compoundHydrogenSulfide, values.HydrogenSulfideMax);
+
+    document.getElementById("microbeHUDPlayerIron").textContent =
+        values.compoundIron.toFixed(1);
+    document.getElementById("microbeHUDPlayerIronMax").textContent =
+        values.IronMax;
+    document.getElementById("microbeHUDPlayerIronBar").style.width =
+        common.barHelper(values.compoundIron, values.IronMax);
 
 }

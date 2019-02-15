@@ -63,6 +63,7 @@ class MicrobeEditor{
             {"chromatophors", PlacementFunctionType(this.addOrganelle)},
             {"metabolosome", PlacementFunctionType(this.addOrganelle)},
             {"chemoSynthisizingProteins", PlacementFunctionType(this.addOrganelle)},
+            {"rusticyanin", PlacementFunctionType(this.addOrganelle)},
             {"remove", PlacementFunctionType(this.removeOrganelle)}
         };
     }
@@ -70,7 +71,6 @@ class MicrobeEditor{
     //! This is called each time the editor is entered so this needs to properly reset state
     void init()
     {
-        updateGuiButtonStatus(checkIsNucleusPresent());
         gridSceneNode = hudSystem.world.CreateEntity();
         auto node = hudSystem.world.Create_RenderNode(gridSceneNode);
         node.Scale = Float3(HEX_SIZE, 1, HEX_SIZE);
@@ -131,6 +131,10 @@ class MicrobeEditor{
         LOG_INFO("Starting microbe editor with: " + editedMicrobe.length() +
             " organelles in the microbe");
 
+        // Update GUI buttons now that we have correct organelles
+        updateGuiButtonStatus(checkIsNucleusPresent());
+        //force an auto-evo step
+        cast<SpeciesSystem>(GetThriveGame().getCellStage().GetScriptSystem("SpeciesSystem")).doAutoEvoStep();
         // Reset to cytoplasm if nothing is selected
         if(activeActionName == ""){
             LOG_INFO("Selecting cytoplasm");
@@ -741,7 +745,8 @@ class MicrobeEditor{
         PlacedOrganelle@ organelle = cast<PlacedOrganelle>(organelleHere);
 
         if(organelleHere !is null){
-            if(!(organelleHere.organelle.name == "nucleus")) {
+        // DOnt allow deletion of nucleus or the last organelle
+            if(!(organelleHere.organelle.name == "nucleus") && getMicrobeSize() > 1) {
                 EditorAction@ action = EditorAction(ORGANELLE_REMOVE_COST,
                 // redo We need data about the organelle we removed, and the location so we can "redo" it
                  function(EditorAction@ action, MicrobeEditor@ editor){

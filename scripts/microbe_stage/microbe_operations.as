@@ -295,6 +295,11 @@ void respawnPlayer(CellStageWorld@ world)
 
         // Reset membrane color to fix the bug that made membranes sometimes red after you respawn.
         MicrobeOperations::applyMembraneColour(world, playerEntity);
+        //If you died before entering the editor disable that
+        microbeComponent.reproductionStage = 0;
+        hideReproductionDialog(world);
+        // Reset the player cell to be the same as the species template
+        Species::restoreOrganelleLayout(world, playerEntity, microbeComponent, playerSpecies);
     }
 
     // Decrease the population by 20
@@ -694,7 +699,8 @@ void playSoundWithDistance(CellStageWorld@ world, const string &in soundPath, Ob
                             "sound source");
                     }
             } else {
-                LOG_ERROR("Failed to create sound player");
+                //this was happening so often it caused lag
+                //LOG_ERROR("Failed to create sound player");
             }
         }
     }
@@ -927,7 +933,8 @@ ObjectID spawnBacteria(CellStageWorld@ world, Float3 pos, const string &in speci
 void _applyMicrobeCollisionShape(CellStageWorld@ world, Physics@ rigidBody,
     MicrobeComponent@ microbeComponent, PhysicsShape@ shape)
 {
-    float mass = 0.f;
+    // This compensates for the lack of a nucleus for the player cell at the beginning and makes eukaryotes alot heavier.
+    float mass = 0.7f;
 
     // Organelles
     for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
