@@ -627,23 +627,22 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         {
         // The front of the microbe
         Float3 exit = Hex::axialToCartesian(0, 1);
+        //This will get what it thinks is the "edge"
         auto membraneCoords = membraneComponent.GetExternalOrganelle(exit.X, exit.Z);
-        //Get the distance to eject the compunds
-        auto maxR = 0;
+
+        //This adds the nucleus r (y) so that it can deal with weird nucleus positioning,
+        //and that is all we actually need
+        int maxR = 2;
         for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
-            auto organelle = microbeComponent.organelles[i];
-            auto hexes = organelle.organelle.getHexes();
-            for(uint a = 0; a < hexes.length(); ++a){
-                auto hex = hexes[a];
-                if(hex.r + organelle.r > maxR){
-                    maxR = hex.r + organelle.r;
-                }
+            auto organelle = cast<PlacedOrganelle>(microbeComponent.organelles[i]);
+            if (organelle.organelle.name == "nucleus"){
+                maxR=maxR+(-organelle.r);
             }
         }
+
         //The distance is two hexes away from the back of the microbe.
         //This distance could be precalculated when adding/removing an organelle
         //for more efficient pooping.
-        auto ejectionDistance = (maxR) * HEX_SIZE/2;
         auto angle = 180;
         // Find the direction the microbe is facing
         auto yAxis = Ogre::Quaternion(cellPosition._Orientation).zAxis();
@@ -657,8 +656,9 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         auto s = sin(finalAngle/180*PI);
         auto c = cos(finalAngle/180*PI);
         // Membrane coords to world coords
-        auto xnew = -membraneCoords.x * c + membraneCoords.z * s;
-        auto ynew = membraneCoords.x * s + membraneCoords.z * c;
+        // Plus bunch more space in world coordinates like we added before with maxr but cleaner
+        auto xnew = -(membraneCoords.x) * c + (membraneCoords.z+maxR*HEX_SIZE) * s;
+        auto ynew = (membraneCoords.x)* s + (membraneCoords.z+maxR*HEX_SIZE) * c;
         // Find the direction the microbe is facing
         auto vec = ( microbeComponent.facingTargetPoint - cellPosition._Position);
         auto direction = vec.Normalize();
@@ -668,8 +668,8 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         if (amountToEject >= MINIMUM_AGENT_EMISSION_AMOUNT)
         {
             playSoundWithDistance(world, "Data/Sound/soundeffects/microbe-release-toxin.ogg",microbeEntity);
-            createAgentCloud(world, compoundId, cellPosition._Position+Float3(xnew*ejectionDistance,0,ynew*ejectionDistance),
-                    direction, amountToEject, lifeTime, microbeComponent.speciesName);
+            createAgentCloud(world, compoundId, cellPosition._Position+Float3(xnew,0,ynew),
+                    direction, amountToEject, lifeTime, microbeComponent.speciesName, microbeEntity);
 
 
             // The cooldown time is inversely proportional to the amount of agent vacuoles.
@@ -1136,7 +1136,7 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
                 0, GetEngine().GetRandom().GetNumber(0.0f, 1.0f) * 2 - 1);
 
             createAgentCloud(world, compoundId, position._Position, direction, ejectedAmount,
-                2000, microbeComponent.speciesName);
+                2000, microbeComponent.speciesName, NULL_OBJECT);
             ++createdAgents;
 
             if(createdAgents >= maxAgentsToShoot)

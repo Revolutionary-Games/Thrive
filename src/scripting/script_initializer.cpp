@@ -873,6 +873,12 @@ bool
     }
 
     if(engine->RegisterObjectMethod("AgentProperties",
+           "void setParentEntity(ObjectID parentId)",
+           asMETHOD(AgentProperties, setParentEntity), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("AgentProperties",
            "void setAgentType(string newString)",
            asMETHOD(AgentProperties, setAgentType), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
@@ -881,6 +887,12 @@ bool
     if(engine->RegisterObjectMethod("AgentProperties",
            "string getSpeciesName()", asMETHOD(AgentProperties, getSpeciesName),
            asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("AgentProperties",
+           "ObjectID getParentEntity()",
+           asMETHOD(AgentProperties, getParentEntity), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
