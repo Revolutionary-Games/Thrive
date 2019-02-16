@@ -269,7 +269,9 @@ void
         return;
     }
 
-    const Float3 movementDirection = thrive->getPlayerInput()->getMovement();
+    // const Float3 movementDirection = thrive->getPlayerInput()->getMovement();
+
+    const Float3 movementDirection = Float3(0, 0, -1);
 
     auto module = thrive->getMicrobeScripts();
 

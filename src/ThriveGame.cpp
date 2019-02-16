@@ -966,9 +966,27 @@ void
 }
 
 // ------------------------------------ //
+int counter = 0;
+
 void
     ThriveGame::Tick(int mspassed)
-{}
+{
+    // Debugging code
+    counter += mspassed;
+
+    // if(counter >= 5000) {
+    if(counter >= 15 * 1000) {
+        counter = 0;
+
+        LOG_WRITE("DEBUG: timer expired");
+
+        // ScriptRunningSetup setup("setRandomBiome");
+
+        // getMicrobeScripts()->ExecuteOnModule<void>(
+        //     setup, false, m_impl->m_cellStage.get());
+        killPlayerCellClicked();
+    }
+}
 
 bool
     ThriveGame::createImpl()
