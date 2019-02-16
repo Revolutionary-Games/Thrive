@@ -20,6 +20,13 @@ std::string
 {
     return this->agentType;
 }
+
+ObjectID
+    AgentProperties::getParentEntity()
+{
+    return this->parentId;
+}
+
 void
     AgentProperties::setSpeciesName(std::string newString)
 {
@@ -29,4 +36,9 @@ void
     AgentProperties::setAgentType(std::string newString)
 {
     this->agentType = newString;
+}
+void
+    AgentProperties::setParentEntity(ObjectID parentId)
+{
+    this->parentId = parentId;
 }
