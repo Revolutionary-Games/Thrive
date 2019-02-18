@@ -155,6 +155,17 @@ ThriveGame::ThriveGame()
     m_cheatsEnabled = true;
 #endif // MAKE_RELEASE
 
+#ifdef _WIN32
+    // This should fix the texture loading error. It is likely caused by running
+    // out of file descriptors, so here we set our limit to the max Not sure why
+    // it was able to happen on linux. Perhaps the launcher could do "ulimit" to
+    // increase the file limit when running the game, but it is very rare to
+    // happen on Linux
+    if(_setmaxstdio(2048) != 2048) {
+        LOG_ERROR("Max open file increase failed! _setmaxstdio");
+    }
+#endif //_WIN32
+
     StaticGame = this;
 }
 
