@@ -948,9 +948,6 @@ const auto INITIAL_BACTERIA = 4;
 // If there are more species than this then all species get their population reduced by half
 const auto MAX_SPECIES = 15;
 
-// If there are more bacteria than this then all species get their population reduced by half
-const auto MAX_BACTERIA = 6;
-
 // If there are less species than this creates new ones.
 const auto MIN_SPECIES = 3;
 
@@ -1002,7 +999,7 @@ class SpeciesSystem : ScriptSystem{
 
         // Various mass extinction events
         // Only run one "big event" per turn
-        if(species.length() > MAX_SPECIES+MAX_BACTERIA && !ranEventThisStep){
+        if(species.length() > MAX_SPECIES && !ranEventThisStep){
             LOG_INFO("Mass extinction time");
             // F to pay respects: TODO: add a notification for when this happens
             ranEventThisStep = true;
