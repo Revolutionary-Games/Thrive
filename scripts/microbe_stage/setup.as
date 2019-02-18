@@ -227,7 +227,6 @@ void onReturnFromEditor(CellStageWorld@ world)
     const auto player = GetThriveGame().playerData().activeCreature();
     auto pos = world.GetComponent_Position(player);
 
-
     assert(pos !is null);
 
     // Spawn another cell from the player species
@@ -240,7 +239,6 @@ void onReturnFromEditor(CellStageWorld@ world)
     Species::copyProcessesFromSpecies(world, ourActualSpecies, player);
 
     PlayerSpeciesSpawner factory("Default");
-
     auto spawned = factory.factorySpawn(world, pos._Position);
 
     LOG_WRITE("TODO: the spawned cell from the player species from the editor split will "
