@@ -231,6 +231,7 @@ void onReturnFromEditor(CellStageWorld@ world)
 
     // Spawn another cell from the player species
     SpeciesComponent@ ourActualSpecies = MicrobeOperations::getSpeciesComponent(world, player);
+    auto membraneComponent = world.GetComponent_MembraneComponent(player);
 
     // Call this before creating the clone.
     Species::initProcessorComponent(world, player, ourActualSpecies);
