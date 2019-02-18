@@ -228,9 +228,6 @@ void onReturnFromEditor(CellStageWorld@ world)
     auto pos = world.GetComponent_Position(player);
 
 
-    // We take membrane component to separate two cell with enough space
-    auto membraneComponent = world.GetComponent_MembraneComponent(player);
-
     assert(pos !is null);
 
     // Spawn another cell from the player species
@@ -243,9 +240,6 @@ void onReturnFromEditor(CellStageWorld@ world)
     Species::copyProcessesFromSpecies(world, ourActualSpecies, player);
 
     PlayerSpeciesSpawner factory("Default");
-
-    pos._Position.X += membraneComponent.calculateEncompassingCircleRadius();
-    pos._Position.Z += membraneComponent.calculateEncompassingCircleRadius();
 
     auto spawned = factory.factorySpawn(world, pos._Position);
 
