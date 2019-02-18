@@ -244,8 +244,8 @@ void onReturnFromEditor(CellStageWorld@ world)
 
     PlayerSpeciesSpawner factory("Default");
 
-    pos._Position.X += membraneComponent.calculateEncompassingCircleRadius()*2;
-    pos._Position.Z += membraneComponent.calculateEncompassingCircleRadius()*2;
+    pos._Position.X += membraneComponent.calculateEncompassingCircleRadius();
+    pos._Position.Z += membraneComponent.calculateEncompassingCircleRadius();
 
     auto spawned = factory.factorySpawn(world, pos._Position);
 
