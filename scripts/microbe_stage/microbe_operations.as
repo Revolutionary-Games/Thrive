@@ -255,8 +255,6 @@ void respawnPlayer(CellStageWorld@ world)
     auto playerSpecies = MicrobeOperations::getSpeciesComponent(world, "Default");
     auto playerEntity = GetThriveGame().playerData().activeCreature();
 
-    playerSpecies.population = 100;
-
     if (playerSpecies.population > 20)
     {
         MicrobeComponent@ microbeComponent = getMicrobeComponent(world, playerEntity);
@@ -745,11 +743,6 @@ void damage(CellStageWorld@ world, ObjectID microbeEntity, double amount, const 
     }
 
     MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
-
-    // Disable dying (other than suicide)
-    if(amount < 100 && microbeComponent.isPlayerMicrobe)
-        return;
-
     // auto soundSourceComponent = world.GetComponent_SoundSourceComponent(microbeEntity);
     if (microbeComponent !is null)
         {

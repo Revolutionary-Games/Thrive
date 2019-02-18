@@ -137,7 +137,6 @@ void setRandomBiome(CellStageWorld@ world)
     // Selecting a random biome.
     uint64 biome = GetEngine().GetRandom().GetNumber(0,
         int(SimulationParameters::biomeRegistry().getSize()-1));
-        //1);
 
     // Switching to that biome if we arent in that biome already
     if (currentBiome != biome)

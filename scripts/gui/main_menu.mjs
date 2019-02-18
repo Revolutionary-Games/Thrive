@@ -133,7 +133,7 @@ export function runMenuSetup(){
     // eslint off
 
     // Test directly going to the stage
-    onMicrobeIntroEnded();
+    // onMicrobeIntroEnded();
 
     // Test going to the editor (also uncomment the function call above)
     // Thrive.editorButtonClicked();
