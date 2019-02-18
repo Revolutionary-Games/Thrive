@@ -954,7 +954,7 @@ class MicrobeEditor{
             auto node =  GetThriveGame().getCellStage().GetComponent_RenderNode(GetThriveGame().playerData().activeCreature());
 
 
-            //! Change player species cell size depending on presence or not of nucleus organelle
+            //! Change player species cell size depending on presence or not of nucleus
             if(checkIsNucleusPresent()) {
                 playerSpecies.isBacteria = false;
                 node.Scale = Float3(1.0, 1.0, 1.0);
