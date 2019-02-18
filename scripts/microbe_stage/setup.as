@@ -244,7 +244,8 @@ void onReturnFromEditor(CellStageWorld@ world)
     // Offset between cells
     pos._Position.X += membraneComponent.calculateEncompassingCircleRadius();
     pos._Position.Z += membraneComponent.calculateEncompassingCircleRadius();
-
+    pos.Marked = true;
+    
     auto spawned = factory.factorySpawn(world, pos._Position);
 
     LOG_WRITE("TODO: the spawned cell from the player species from the editor split will "
