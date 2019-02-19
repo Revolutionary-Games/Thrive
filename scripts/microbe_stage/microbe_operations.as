@@ -1174,24 +1174,43 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
         }
     }
 
-    // They were added in order already so looping through this other thing is fine
-    for(uint64 compoundID = 0; compoundID <
+    
+    
+    for(uint i = 0; i < max(1,microbeComponent.organelles.length()/CORPSE_CHUNK_DIVISER); ++i){
+        double amount = max(1,microbeComponent.organelles.length()/CORPSE_CHUNK_DIVISER);
+        // Chunk(should separate into own function)
+        ObjectID chunkEntity = world.CreateEntity();
+        auto chunkPosition = world.Create_Position(chunkEntity, position._Position,
+            Ogre::Quaternion(Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
+                Ogre::Vector3(0,1,1)));
+            
+        auto renderNode = world.Create_RenderNode(chunkEntity);
+        renderNode.Scale = Float3(2, 2, 2);
+        renderNode.Marked = true;
+        renderNode.Node.setOrientation(Ogre::Quaternion(
+            Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)), Ogre::Vector3(0,1,1)));
+        renderNode.Node.setPosition(chunkPosition._Position);
+        // temp model for testing
+        auto model = world.Create_Model(chunkEntity, renderNode.Node, "mitochondrion.mesh");
+        // Color chunk based on cell
+        model.GraphicalObject.setCustomParameter(1, microbeComponent.speciesColour);
+        auto rigidBody = world.Create_Physics(chunkEntity, chunkPosition);
+        auto body = rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
+            world.GetPhysicalWorld().CreateSphere(1), 10);
+        body.ConstraintMovementAxises();
+        rigidBody.JumpTo(chunkPosition);
+        auto venter = world.Create_CompoundVenterComponent(chunkEntity);
+        // So that larger iron chunks give out more compounds
+        venter.setVentAmount(3);
+        venter.setDoDissolve(true);
+        auto bag = world.Create_CompoundBagComponent(chunkEntity);
+        // They were added in order already so looping through this other thing is fine
+        for(uint64 compoundID = 0; compoundID <
                 SimulationParameters::compoundRegistry().getSize(); ++compoundID)
-        {
-            //LOG_INFO(""+float(compoundsToRelease[formatInt(compoundID)]));
-            //LOG_INFO(""+float(compoundsToRelease[formatUInt(compoundID)]));
-           if (SimulationParameters::compoundRegistry().getTypeData(compoundID).isCloud &&
-                float(compoundsToRelease[formatUInt(compoundID)]) > 0.0f)
             {
-            //Earlier we added all of the keys to the list by ID,in order,  so this is fine
-            //LOG_INFO("Releasing "+float(compoundsToRelease[formatUInt(compoundID)]));
-            if (SimulationParameters::compoundRegistry().getTypeData(compoundID).isCloud)
-                {
-                ejectCompound(world, microbeEntity, uint64(compoundID),float(compoundsToRelease[formatUInt(compoundID)]));
-                }
+            bag.setCompound(compoundID, (float(compoundsToRelease[formatUInt(compoundID)])/amount)*CORPSE_COMPOUND_COMPENSATION);
             }
-        }
-
+    }
     // Play the death sound
     playSoundWithDistance(world, "Data/Sound/soundeffects/microbe-death.ogg", microbeEntity);
 
