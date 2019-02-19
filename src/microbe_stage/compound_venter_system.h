@@ -22,6 +22,8 @@ public:
 
     float x, y;
     float ventAmount = 5.0f;
+    bool doDissolve = false;
+
     REFERENCE_HANDLE_UNCOUNTED_TYPE(CompoundVenterComponent);
 
     static constexpr auto TYPE =
@@ -38,6 +40,12 @@ public:
 
     float
         getVentAmount();
+
+    void
+        setDoDissolve(bool dissolve);
+
+    bool
+        getDoDissolve();
 };
 
 class CompoundVenterSystem

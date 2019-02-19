@@ -529,6 +529,20 @@ bool
            asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
+
+    if(engine->RegisterObjectMethod("CompoundVenterComponent",
+           "bool getDoDissolve()",
+           asMETHOD(CompoundVenterComponent, getDoDissolve),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("CompoundVenterComponent",
+           "void setDoDissolve(bool dissolve)",
+           asMETHOD(CompoundVenterComponent, setDoDissolve),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
     // ------------------------------------ //
     if(engine->RegisterObjectType(
            "SpawnedComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
