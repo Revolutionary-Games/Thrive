@@ -433,6 +433,8 @@ static uint16_t ProcessorComponentTYPEProxy =
     static_cast<uint16_t>(ProcessorComponent::TYPE);
 static uint16_t CompoundVenterTYPEProxy =
     static_cast<uint16_t>(CompoundVenterComponent::TYPE);
+static uint16_t EngulfableComponentTYPEProxy =
+    static_cast<uint16_t>(EngulfableComponent::TYPE);
 static uint16_t SpawnedComponentTYPEProxy =
     static_cast<uint16_t>(SpawnedComponent::TYPE);
 static uint16_t AgentCloudComponentTYPEProxy =
@@ -543,6 +545,28 @@ bool
            asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
+
+    // ------------------------------------ //
+    if(engine->RegisterObjectType(
+           "EngulfableComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(!bindComponentTypeId(
+           engine, "EngulfableComponent", &EngulfableComponentTYPEProxy))
+        return false;
+
+    if(engine->RegisterObjectMethod("EngulfableComponent", "float getSize()",
+           asMETHOD(EngulfableComponent, getSize), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("EngulfableComponent",
+           "void setSize(float size)", asMETHOD(EngulfableComponent, setSize),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     // ------------------------------------ //
     if(engine->RegisterObjectType(
            "SpawnedComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {

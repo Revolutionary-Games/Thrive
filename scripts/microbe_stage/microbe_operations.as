@@ -1174,8 +1174,8 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
         }
     }
 
-    
-    
+
+
     for(uint i = 0; i < max(1,microbeComponent.organelles.length()/CORPSE_CHUNK_DIVISER); ++i){
         double amount = max(1,microbeComponent.organelles.length()/CORPSE_CHUNK_DIVISER);
         // Chunk(should separate into own function)
@@ -1183,9 +1183,9 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
         auto chunkPosition = world.Create_Position(chunkEntity, position._Position,
             Ogre::Quaternion(Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
                 Ogre::Vector3(0,1,1)));
-            
+
         auto renderNode = world.Create_RenderNode(chunkEntity);
-        renderNode.Scale = Float3(2, 2, 2);
+        renderNode.Scale = Float3(amount*0.5f, amount*0.5f, amount*0.5f);
         renderNode.Marked = true;
         renderNode.Node.setOrientation(Ogre::Quaternion(
             Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)), Ogre::Vector3(0,1,1)));
@@ -1200,6 +1200,9 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
         body.ConstraintMovementAxises();
         rigidBody.JumpTo(chunkPosition);
         auto venter = world.Create_CompoundVenterComponent(chunkEntity);
+        //Engulfable
+        auto engulfable = world.Create_EngulfableComponent(chunkEntity);
+        engulfable.setSize(amount);
         // So that larger iron chunks give out more compounds
         venter.setVentAmount(3);
         venter.setDoDissolve(true);
@@ -1236,6 +1239,10 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
     microbeComponent.dead = true;
     microbeComponent.deathTimer = 5000;
     microbeComponent.movementDirection = Float3(0,0,0);
+    //so they stop absorbing the compounds from the chunks they release immediately
+    auto compoundAbsorberComponent = world.GetComponent_CompoundAbsorberComponent(
+        microbeEntity);
+    compoundAbsorberComponent.disable();
 
     if(rigidBodyComponent.Body !is null)
         rigidBodyComponent.Body.ClearVelocity();
