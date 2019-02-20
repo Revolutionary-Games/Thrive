@@ -699,17 +699,8 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
             _needsColourUpdate = true;
 
-            SpeciesComponent@ playerSpecies = MicrobeOperations::getSpeciesComponent(
-               world,microbeEntity);
-
             @renderNode = world.Create_RenderNode(organelleEntity);
-
-            if(playerSpecies.isBacteria) {
-                renderNode.Scale = Float3(HEX_SIZE/2, HEX_SIZE/2, HEX_SIZE/2);
-            }
-            else {
-                renderNode.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
-            }
+            renderNode.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
             renderNode.Marked = true;
         }
 
