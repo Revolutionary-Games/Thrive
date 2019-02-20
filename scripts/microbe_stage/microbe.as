@@ -62,6 +62,11 @@ class MicrobeComponent : ScriptComponent{
         this.microbeEntity = forEntity;
         this.agentEmissionCooldown = 0;
 
+        //cache hexes in microbe
+        for(uint i = 0; i < organelles.length(); ++i){
+            totalHexCountCache += organelles[i].cachedHexCount;
+        }
+
         // Microbe system update should initialize this component on next tick
     }
 
@@ -186,6 +191,8 @@ class MicrobeComponent : ScriptComponent{
     ObjectID microbeEntity = NULL_OBJECT;
 
     Float3 queuedMovementForce = Float3(0, 0, 0);
+
+    int totalHexCountCache = 0;
 }
 
 //! Helper for MicrobeSystem
