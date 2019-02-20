@@ -48,6 +48,24 @@ public:
         getDoDissolve();
 };
 
+class EngulfableComponent : public Leviathan::Component {
+public:
+    EngulfableComponent();
+
+    float size;
+
+    REFERENCE_HANDLE_UNCOUNTED_TYPE(EngulfableComponent);
+
+    static constexpr auto TYPE =
+        componentTypeConvert(THRIVE_COMPONENT::ENGULFABLE);
+
+    void
+        setSize(float size);
+
+    float
+        getSize();
+};
+
 class CompoundVenterSystem
     : public Leviathan::System<std::tuple<CompoundBagComponent&,
           CompoundVenterComponent&,

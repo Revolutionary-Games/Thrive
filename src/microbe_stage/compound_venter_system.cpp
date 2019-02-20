@@ -21,6 +21,22 @@ using namespace thrive;
 // CompoundVenterComponent
 CompoundVenterComponent::CompoundVenterComponent() : Leviathan::Component(TYPE)
 {}
+// ------------------------------------ //
+// EngulfableComponent
+EngulfableComponent::EngulfableComponent() : Leviathan::Component(TYPE) {}
+
+void
+    EngulfableComponent::setSize(float size)
+{
+    this->size = size;
+}
+
+float
+    EngulfableComponent::getSize()
+{
+    return this->size;
+}
+
 
 void
     CompoundVenterSystem::Run(CellStageWorld& world)

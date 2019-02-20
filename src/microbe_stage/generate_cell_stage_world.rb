@@ -38,6 +38,7 @@ cellWorld = GameWorldClass.new(
     EntityComponent.new("ProcessorComponent", [ConstructorInfo.new([])]),
     EntityComponent.new("CompoundBagComponent", [ConstructorInfo.new([])]),
     EntityComponent.new("CompoundVenterComponent", [ConstructorInfo.new([])]),
+    EntityComponent.new("EngulfableComponent", [ConstructorInfo.new([])]),
     EntityComponent.new("SpeciesComponent", [ConstructorInfo.new([
                                                 Variable.new("name", "std::string",
                                                              memberaccess: "name",

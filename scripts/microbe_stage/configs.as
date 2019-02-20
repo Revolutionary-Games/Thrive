@@ -10,7 +10,7 @@ const auto STARTING_SPAWN_DENSITY = 45000.0f;
 const auto MAX_SPAWN_DENSITY = 20000.0f;
 //Corpse info
 const auto CORPSE_COMPOUND_COMPENSATION = 2.0f;
-const auto CORPSE_CHUNK_DIVISER = 5;
+const auto CORPSE_CHUNK_DIVISER = 5.0f;
 
 // Cell Spawn Variation
 const auto MIN_SPAWN_DISTANCE = -5000.0f;
@@ -166,8 +166,11 @@ const uint AGENT_EMISSION_COOLDOWN = 2000;
 // Iron amounts per chunk.
 // big iron ejects ten per 20 clicks , so about 30 per second, so ill give it enough for 1000 seconds)
 const double IRON_PER_BIG_CHUNK = 30000.0f;
+const bool LARGE_IRON_DISSOLVES = false;
 // small iron ejects 3 per 20 clicks , so about 9 per second, so ill give it enough for 1000 seconds aswell
 const double IRON_PER_SMALL_CHUNK = 9000.0f;
+const bool SMALL_IRON_DISSOLVES = true;
+
 //Auto Evo Values
 const int CREATURE_DEATH_POPULATION_LOSS = -60;
 const int CREATURE_KILL_POPULATION_GAIN = 50;

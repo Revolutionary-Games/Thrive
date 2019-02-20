@@ -22,7 +22,7 @@ enum class THRIVE_COMPONENT : uint16_t {
     TIMED_LIFE,
     PROPERTIES,
     COMPOUND_VENTER,
-
+    ENGULFABLE,
     // TODO: check is this needed for anything
     // INVALID
 };
