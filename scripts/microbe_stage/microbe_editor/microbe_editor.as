@@ -974,7 +974,7 @@ class MicrobeEditor{
             auto shape = world.GetPhysicalWorld().CreateCompound();
 
             MicrobeComponent@ microbeComponent = MicrobeOperations::getMicrobeComponent(world,player);
- 
+
             MicrobeOperations::_applyMicrobeCollisionShape(world, rigidBody, microbeComponent, shape);
 
             LOG_INFO("MicrobeEditor: updated organelles for species: " + playerSpecies.name);
