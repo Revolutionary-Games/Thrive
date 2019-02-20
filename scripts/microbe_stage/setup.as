@@ -305,6 +305,7 @@ void cellHitFloatingOrganelle(GameWorld@ world, ObjectID firstEntity, ObjectID s
 }
 
 
+// Will use this for food chunks now
 void cellHitIron(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
 {
     // Determine which is the iron
@@ -321,6 +322,31 @@ void cellHitIron(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
         floatingEntity = secondEntity;
         cellEntity = firstEntity;
     }
+    auto microbeComponent = MicrobeOperations::getMicrobeComponent(asCellWorld,cellEntity);
+
+    auto engulfableComponent = asCellWorld.GetComponent_EngulfableComponent(floatingEntity);
+
+    auto compoundBagComponent = asCellWorld.GetComponent_CompoundBagComponent(cellEntity);
+
+    auto floatBag = asCellWorld.GetComponent_CompoundBagComponent(floatingEntity);
+
+    if (microbeComponent !is null && engulfableComponent !is null
+        && compoundBagComponent !is null && floatBag !is null)
+        {
+        if (microbeComponent.engulfMode && microbeComponent.organelles.length() >=
+            engulfableComponent.getSize()*ENGULF_HP_RATIO_REQ)
+            {
+            uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
+            for(uint compoundId = 0; compoundId < compoundCount; ++compoundId){
+                CompoundId realCompoundId = compoundId;
+                double amountToTake =
+                    floatBag.takeCompound(realCompoundId,floatBag.getCompoundAmount(realCompoundId));
+                // Right now you get way too much compounds for engulfing the things but hey
+                compoundBagComponent.giveCompound(realCompoundId, amountToTake/2);
+            }
+            world.QueueDestroyEntity(floatingEntity);
+            }
+        }
 }
 
 // Cell Hit Oxytoxy
@@ -704,7 +730,7 @@ ObjectID createIron(CellStageWorld@ world, Float3 pos)
     auto rigidBody = world.Create_Physics(ironEntity, position);
     auto body = rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
         world.GetPhysicalWorld().CreateSphere(ironSize),100,
-        //iron
+        //engulfable
         world.GetPhysicalMaterial("iron"));
 
     body.ConstraintMovementAxises();

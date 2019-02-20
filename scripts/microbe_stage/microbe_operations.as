@@ -1196,7 +1196,9 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
         model.GraphicalObject.setCustomParameter(1, microbeComponent.speciesColour);
         auto rigidBody = world.Create_Physics(chunkEntity, chunkPosition);
         auto body = rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
-            world.GetPhysicalWorld().CreateSphere(1), 10);
+            world.GetPhysicalWorld().CreateSphere(1), 10,
+        //engulfable
+        world.GetPhysicalMaterial("iron"));
         body.ConstraintMovementAxises();
         rigidBody.JumpTo(chunkPosition);
         auto venter = world.Create_CompoundVenterComponent(chunkEntity);
