@@ -363,6 +363,20 @@ void cellHitAgent(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
 
 }
 
+uint getHexCountOrganelle(PlacedOrganelle@ organelle)
+{
+    return organelle.organelle.getHexes().length();
+}
+
+uint getTotalHexes(array<PlacedOrganelle@> organelles)
+{
+    uint totalHexes = 0;
+    for(uint i = 0; i < organelles.length(); ++i){
+        totalHexes += getHexCountOrganelle(organelles[i]);
+    }
+    return totalHexes;
+}
+
 void cellOnCellActualContact(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
 {
     //We are going to cheat here and set variables when you hit something, and hopefully the AABB will take care of the rest
@@ -375,8 +389,8 @@ void cellOnCellActualContact(GameWorld@ world, ObjectID firstEntity, ObjectID se
     if (firstMicrobeComponent !is null && secondMicrobeComponent !is null)
     {
         // Get microbe sizes here
-        int firstMicrobeComponentOrganelles = firstMicrobeComponent.organelles.length();
-        int secondMicrobeComponentOrganelles = secondMicrobeComponent.organelles.length();
+        int firstMicrobeComponentOrganelles = getTotalHexes(firstMicrobeComponent.organelles);
+        int secondMicrobeComponentOrganelles = getTotalHexes(secondMicrobeComponent.organelles);
         if (firstMicrobeComponent.engulfMode)
         {
             if(firstMicrobeComponentOrganelles >
