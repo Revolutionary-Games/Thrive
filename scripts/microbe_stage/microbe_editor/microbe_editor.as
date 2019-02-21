@@ -965,17 +965,6 @@ class MicrobeEditor{
                 node.Marked = true;
             }
 
-            // Update physics of player cell
-            auto world =  GetThriveGame().getCellStage();
-            auto player = GetThriveGame().playerData().activeCreature();
-
-            auto rigidBody = world.GetComponent_Physics(player);
-            auto shape = world.GetPhysicalWorld().CreateCompound();
-
-            MicrobeComponent@ microbeComponent = MicrobeOperations::getMicrobeComponent(world,player);
-
-            MicrobeOperations::_applyMicrobeCollisionShape(world, rigidBody, microbeComponent, shape);
-
             LOG_INFO("MicrobeEditor: updated organelles for species: " + playerSpecies.name);
             return 1;
         } else if (type == "SymmetryClicked"){
