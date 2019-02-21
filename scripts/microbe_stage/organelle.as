@@ -107,6 +107,9 @@ class Organelle{
         Hex@ hex = Hex(q, r);
 
         @hexes[formatInt(s)] = hex;
+
+        //update hex cache
+        cachedHexCount += 1;
         return true;
     }
 
@@ -205,6 +208,8 @@ class Organelle{
 
     array<OrganelleComponentFactory@> components;
     private dictionary hexes;
+    int cachedHexCount = 0;
+
 
     // The initial amount of compounds this organelle consists of
     dictionary initialComposition;
@@ -297,8 +302,6 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         }
 
         compoundsLeft = organelle.initialComposition;
-
-        cachedHexCount = _organelle.getHexes().length();
     }
 
     void resetHealth()
@@ -860,6 +863,12 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         }
     }
 
+    int cachedHexCount {
+        get {
+            return _organelle.cachedHexCount;
+        }
+    }
+
     private Organelle@ _organelle;
 
     // q and r are radial coordinates instead of cartesian
@@ -867,7 +876,6 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
     int q;
     int r;
     int rotation;
-    int cachedHexCount;
 
     // Filled from the above parameters when added to a microbe
     Float3 cartesianPosition = Float3(0, 0, 0);
