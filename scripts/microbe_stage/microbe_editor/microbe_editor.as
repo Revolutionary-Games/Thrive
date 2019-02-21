@@ -953,7 +953,6 @@ class MicrobeEditor{
             // Grab render of player cell
             auto node =  GetThriveGame().getCellStage().GetComponent_RenderNode(GetThriveGame().playerData().activeCreature());
 
-
             //! Change player species cell size depending on presence or not of nucleus
             if(checkIsNucleusPresent()) {
                 playerSpecies.isBacteria = false;
@@ -974,7 +973,7 @@ class MicrobeEditor{
             auto shape = world.GetPhysicalWorld().CreateCompound();
 
             MicrobeComponent@ microbeComponent = MicrobeOperations::getMicrobeComponent(world,player);
- 
+
             MicrobeOperations::_applyMicrobeCollisionShape(world, rigidBody, microbeComponent, shape);
 
             LOG_INFO("MicrobeEditor: updated organelles for species: " + playerSpecies.name);
