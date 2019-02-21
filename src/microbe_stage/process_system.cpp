@@ -101,7 +101,11 @@ double
 void
     CompoundBagComponent::giveCompound(CompoundId id, double amt)
 {
+
     compounds[id].amount += amt;
+    if(compounds[id].amount > storageSpace) {
+        compounds[id].amount = storageSpace;
+    }
 }
 
 void
