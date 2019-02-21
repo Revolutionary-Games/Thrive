@@ -950,6 +950,18 @@ class MicrobeEditor{
 
             templateOrganelles = newOrganelles;
 
+            //! Change player species cell size depending on presence or not of nucleus
+            if(checkIsNucleusPresent()) {
+                playerSpecies.isBacteria = false;
+                node.Scale = Float3(1.0, 1.0, 1.0);
+                node.Marked = true;
+            }
+            else {
+                playerSpecies.isBacteria = true;
+                node.Scale = Float3(0.5, 0.5, 0.5);
+                node.Marked = true;
+            }
+
             LOG_INFO("MicrobeEditor: updated organelles for species: " + playerSpecies.name);
             return 1;
         } else if (type == "SymmetryClicked"){

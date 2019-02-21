@@ -248,6 +248,12 @@ void onReturnFromEditor(CellStageWorld@ world)
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(player));
 
+    // Update physics of player cell
+    auto rigidBody = world.GetComponent_Physics(player);
+    auto shape = world.GetPhysicalWorld().CreateCompound();
+
+    MicrobeOperations::_applyMicrobeCollisionShape(world, rigidBody, microbeComponent, shape);
+
     // Reset the player cell to be the same as the species template
     Species::restoreOrganelleLayout(world, player, microbeComponent, playerSpecies);
 
