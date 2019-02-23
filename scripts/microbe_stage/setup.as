@@ -342,7 +342,7 @@ void cellHitIron(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
                 double amountToTake =
                     floatBag.takeCompound(realCompoundId,floatBag.getCompoundAmount(realCompoundId));
                 // Right now you get way too much compounds for engulfing the things but hey
-                compoundBagComponent.giveCompound(realCompoundId, amountToTake/2);
+                compoundBagComponent.giveCompound(realCompoundId, amountToTake/CHUNK_ENGULF_COMPOUND_DIVISOR);
             }
             world.QueueDestroyEntity(floatingEntity);
             }
