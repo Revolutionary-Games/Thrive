@@ -312,15 +312,7 @@ class Species{
             genus = generateNameSection();
             epithet = generateNameSection();
 
-            // Variables used in AI to determine general behavior
-            this.aggression = GetEngine().GetRandom().GetFloat(0.0f,
-                MAX_SPECIES_AGRESSION);
-            this.fear = GetEngine().GetRandom().GetFloat(0.0f,
-                MAX_SPECIES_FEAR);
-            this.activity = GetEngine().GetRandom().GetFloat(0.0f,
-                MAX_SPECIES_ACTIVITY);
-            this.focus = GetEngine().GetRandom().GetFloat(0.0f,
-                MAX_SPECIES_FOCUS);
+            initializeBehavior();
 
             auto stringSize = GetEngine().GetRandom().GetNumber(MIN_INITIAL_LENGTH,
                 MAX_INITIAL_LENGTH);
@@ -398,15 +390,7 @@ class Species{
              }
             genus = parent.genus;
 
-            // Variables used in AI to determine general behavior mutate these
-            this.aggression = parent.aggression+GetEngine().GetRandom().GetFloat(
-                MIN_SPECIES_PERSONALITY_MUTATION, MAX_SPECIES_PERSONALITY_MUTATION);
-            this.fear = parent.fear+GetEngine().GetRandom().GetFloat(
-                MIN_SPECIES_PERSONALITY_MUTATION, MAX_SPECIES_PERSONALITY_MUTATION);
-            this.activity = parent.activity+GetEngine().GetRandom().GetFloat(
-                MIN_SPECIES_PERSONALITY_MUTATION, MAX_SPECIES_PERSONALITY_MUTATION);
-            this.focus = parent.focus+GetEngine().GetRandom().GetFloat(
-                MIN_SPECIES_PERSONALITY_MUTATION, MAX_SPECIES_PERSONALITY_MUTATION);
+            mutateBehavior(parent);
 
             // Make sure not over or under our scales
             cleanPersonality();
@@ -493,8 +477,45 @@ class Species{
             {
                 this.focus=0;
             }
+
+            // Opportunism
+            if (this.opportunism > MAX_SPECIES_OPPORTUNISM)
+            {
+                this.opportunism=MAX_SPECIES_OPPORTUNISM;
+            }
+            if (this.opportunism < 0.0f)
+            {
+                this.opportunism=0;
+            }
         }
 
+    private void initializeBehavior(){
+            // Variables used in AI to determine general behavior
+            this.aggression = GetEngine().GetRandom().GetFloat(0.0f,
+                MAX_SPECIES_AGRESSION);
+            this.fear = GetEngine().GetRandom().GetFloat(0.0f,
+                MAX_SPECIES_FEAR);
+            this.activity = GetEngine().GetRandom().GetFloat(0.0f,
+                MAX_SPECIES_ACTIVITY);
+            this.focus = GetEngine().GetRandom().GetFloat(0.0f,
+                MAX_SPECIES_FOCUS);
+            this.opportunism = GetEngine().GetRandom().GetFloat(0.0f,
+                MAX_SPECIES_OPPORTUNISM);
+    }
+
+    private void mutateBehavior(Species@ parent){
+        // Variables used in AI to determine general behavior mutate these
+        this.aggression = parent.aggression+GetEngine().GetRandom().GetFloat(
+            MIN_SPECIES_PERSONALITY_MUTATION, MAX_SPECIES_PERSONALITY_MUTATION);
+        this.fear = parent.fear+GetEngine().GetRandom().GetFloat(
+            MIN_SPECIES_PERSONALITY_MUTATION, MAX_SPECIES_PERSONALITY_MUTATION);
+        this.activity = parent.activity+GetEngine().GetRandom().GetFloat(
+            MIN_SPECIES_PERSONALITY_MUTATION, MAX_SPECIES_PERSONALITY_MUTATION);
+        this.focus = parent.focus+GetEngine().GetRandom().GetFloat(
+            MIN_SPECIES_PERSONALITY_MUTATION, MAX_SPECIES_PERSONALITY_MUTATION);
+        this.opportunism = parent.opportunism+GetEngine().GetRandom().GetFloat(
+            MIN_SPECIES_PERSONALITY_MUTATION, MAX_SPECIES_PERSONALITY_MUTATION);
+    }
     private void commonConstructor(CellStageWorld@ world)
     {
         @forWorld = world;
@@ -505,12 +526,12 @@ class Species{
         {
         templateEntity = Species::createSpecies(forWorld, this.name, this.genus, this.epithet,
             organelles, this.colour, this.isBacteria, this.speciesMembraneType,
-            DEFAULT_INITIAL_COMPOUNDS_IRON, this.aggression, this.fear, this.activity, this.focus);
+            DEFAULT_INITIAL_COMPOUNDS_IRON, this.aggression, this.fear, this.activity, this.focus, this.opportunism);
         }
         else {
         templateEntity = Species::createSpecies(forWorld, this.name, this.genus, this.epithet,
             organelles, this.colour, this.isBacteria, this.speciesMembraneType,
-            DEFAULT_INITIAL_COMPOUNDS, this.aggression, this.fear, this.activity, this.focus);
+            DEFAULT_INITIAL_COMPOUNDS, this.aggression, this.fear, this.activity, this.focus, this.opportunism);
         }
 
     }
@@ -710,15 +731,7 @@ class Species{
         genus = generateNameSection();
         epithet = generateNameSection();
 
-        // Variables used in AI to determine general behavior
-        this.aggression = GetEngine().GetRandom().GetFloat(0.0f,
-                MAX_SPECIES_AGRESSION);
-        this.fear = GetEngine().GetRandom().GetFloat(0.0f,
-                MAX_SPECIES_FEAR);
-        this.activity = GetEngine().GetRandom().GetFloat(0.0f,
-                MAX_SPECIES_ACTIVITY);
-        this.focus = GetEngine().GetRandom().GetFloat(0.0f,
-                MAX_SPECIES_FOCUS);
+        initializeBehavior();
 
         // Bacteria are tiny, start off with a max of 3 hexes (maybe
         // we should start them all off with just one? )
@@ -807,15 +820,7 @@ class Species{
         }
 
 
-        // Variables used in AI to determine general behavior mutate these
-        this.aggression = parent.aggression+GetEngine().GetRandom().GetFloat(
-            MIN_SPECIES_PERSONALITY_MUTATION, MAX_SPECIES_PERSONALITY_MUTATION);
-        this.fear = parent.fear+GetEngine().GetRandom().GetFloat(
-            MIN_SPECIES_PERSONALITY_MUTATION, MAX_SPECIES_PERSONALITY_MUTATION);
-        this.activity = parent.activity+GetEngine().GetRandom().GetFloat(
-            MIN_SPECIES_PERSONALITY_MUTATION, MAX_SPECIES_PERSONALITY_MUTATION);
-        this.focus = parent.focus+GetEngine().GetRandom().GetFloat(
-            MIN_SPECIES_PERSONALITY_MUTATION, MAX_SPECIES_PERSONALITY_MUTATION);
+        mutateBehavior(parent);
 
         // Make sure not over or under our scales
         cleanPersonality();
@@ -904,6 +909,7 @@ class Species{
     string epithet;
     bool isBacteria;
     double aggression = 100.0f;
+    double opportunism = 100.0f;
     double fear = 100.0f;
     double activity = 0.0f;
     double focus = 0.0f;
@@ -1453,14 +1459,14 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name,
 
     return createSpecies(world, name, "Player", "Species", convertedOrganelles,
         fromTemplate.colour, fromTemplate.isBacteria, fromTemplate.speciesMembraneType,
-        fromTemplate.compounds, 100.0f, 100.0f, 100.0f, 200.0f);
+        fromTemplate.compounds, 100.0f, 100.0f, 100.0f, 200.0f, 100.0f);
 }
 //! Creates an entity that has all the species stuff on it
 //! AI controlled ones need to be in addition in SpeciesSystem
 ObjectID createSpecies(CellStageWorld@ world, const string &in name, const string &in genus,
     const string &in epithet, array<PlacedOrganelle@> organelles, Float4 colour,
     bool isBacteria, MEMBRANE_TYPE speciesMembraneType,  const dictionary &in compounds,
-    double aggression, double fear, double activity, double focus)
+    double aggression, double fear, double activity, double focus, double opportunism)
 {
     ObjectID speciesEntity = world.CreateEntity();
 
@@ -1507,6 +1513,7 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name, const strin
     speciesComponent.fear = fear;
     speciesComponent.activity = activity;
     speciesComponent.focus = focus;
+    speciesComponent.opportunism = opportunism;
 
     // Iterates over all compounds, and sets amounts and priorities
     uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
