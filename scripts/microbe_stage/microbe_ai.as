@@ -246,7 +246,7 @@ class MicrobeAISystem : ScriptSystem{
                 Float3 testPosition = world.GetComponent_Position(predator)._Position;
                     MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
                         world.GetScriptComponentHolder("MicrobeComponent").Find(predator));
-                    if ((position._Position -  testPosition).LengthSquared() <= (2000+(secondMicrobeComponent.organelles.length()*8.0f)*2)){
+                    if ((position._Position -  testPosition).LengthSquared() <= (2000+(secondMicrobeComponent.totalHexCountCache*8.0f)*2)){
                         if (aiComponent.lifeState != FLEEING_STATE)
                             {
                             // Reset target position for faster fleeing
@@ -287,8 +287,8 @@ class MicrobeAISystem : ScriptSystem{
             // At max aggression add them all
             if (allMicrobes[i] != microbeEntity && (secondMicrobeComponent.speciesName != microbeComponent.speciesName) && !secondMicrobeComponent.dead){
                 if ((aiComponent.speciesAggression==MAX_SPECIES_AGRESSION) or
-                    ((((numberOfAgentVacuoles+microbeComponent.organelles.length())*1.0f)*(aiComponent.speciesAggression/AGRESSION_DIVISOR)) >
-                    (secondMicrobeComponent.organelles.length()*1.0f))){
+                    ((((numberOfAgentVacuoles+microbeComponent.totalHexCountCache)*1.0f)*(aiComponent.speciesAggression/AGRESSION_DIVISOR)) >
+                    (secondMicrobeComponent.organelles.totalHexCountCache*1.0f))){
                     //You are non-threatening to me
                     aiComponent.preyMicrobes.insertLast(allMicrobes[i]);
                     }
@@ -342,8 +342,8 @@ class MicrobeAISystem : ScriptSystem{
             // At max fear add them all
             if (allMicrobes[i] != microbeEntity && (secondMicrobeComponent.speciesName != microbeComponent.speciesName) && !secondMicrobeComponent.dead){
             if ((aiComponent.speciesFear==MAX_SPECIES_FEAR) or
-            ((((numberOfAgentVacuoles+secondMicrobeComponent.organelles.length())*1.0f)*(aiComponent.speciesFear/FEAR_DIVISOR)) >
-            (microbeComponent.organelles.length()*1.0f))){
+            ((((numberOfAgentVacuoles+secondMicrobeComponent.totalHexCountCache)*1.0f)*(aiComponent.speciesFear/FEAR_DIVISOR)) >
+            (microbeComponent.totalHexCountCache*1.0f))){
                 //You are bigger then me and i am afraid of that
                 aiComponent.predatoryMicrobes.insertLast(allMicrobes[i]);
                 //LOG_INFO("Added predator " + allMicrobes[i] );
@@ -435,15 +435,15 @@ class MicrobeAISystem : ScriptSystem{
             else
             {
                 //  Turn on engulfmode if close
-                if (((position._Position -  aiComponent.targetPosition).LengthSquared() <= 300+(microbeComponent.organelles.length()*3.0f))
+                if (((position._Position -  aiComponent.targetPosition).LengthSquared() <= 300+(microbeComponent.totalHexCountCache*3.0f))
                         && (MicrobeOperations::getCompoundAmount(world,microbeEntity,atpID) >=  1.0f)
                     && !microbeComponent.engulfMode &&
-                    (float(microbeComponent.organelles.length()) > (
-                        ENGULF_HP_RATIO_REQ*secondMicrobeComponent.organelles.length()))){
+                    (float(microbeComponent.totalHexCountCache) > (
+                        ENGULF_HP_RATIO_REQ*secondMicrobeComponent.totalHexCountCache))){
                     MicrobeOperations::toggleEngulfMode(world, microbeEntity);
                     aiComponent.ticksSinceLastToggle=0;
                     }
-                else if (((position._Position -  aiComponent.targetPosition).LengthSquared() >= 500+(microbeComponent.organelles.length()*3.0f))
+                else if (((position._Position -  aiComponent.targetPosition).LengthSquared() >= 500+(microbeComponent.totalHexCountCache*3.0f))
                         && (microbeComponent.engulfMode && aiComponent.ticksSinceLastToggle >= AI_ENGULF_INTERVAL)){
                     MicrobeOperations::toggleEngulfMode(world, microbeEntity);
                     aiComponent.ticksSinceLastToggle=0;
