@@ -575,6 +575,12 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(engine->RegisterObjectMethod("MembraneComponent",
+           "void setHealthPercentage(float value)",
+           asMETHOD(MembraneComponent, setHealthPercentage), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
 
     if(engine->RegisterEnum("MEMBRANE_TYPE") < 0) {
         ANGELSCRIPT_REGISTERFAIL;

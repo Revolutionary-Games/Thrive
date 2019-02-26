@@ -504,6 +504,8 @@ class MicrobeSystem : ScriptSystem{
         applyCellMovement(components, logicTime);
 
         compoundAbsorberComponent.setAbsorbtionCapacity(microbeComponent.capacity);
+		
+		membraneComponent.setHealthPercentage(microbeComponent.hitpoints / microbeComponent.maxHitpoints);
     }
 
     private void updateDeadCell(MicrobeSystemCached@ &in components, uint logicTime)
