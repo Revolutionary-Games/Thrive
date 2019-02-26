@@ -202,7 +202,7 @@ class Organelle{
         }
     }
 
-    int getHexCount()
+    int getHexCount() const
     {
         return cachedHexCount;
     }
