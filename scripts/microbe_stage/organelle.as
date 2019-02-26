@@ -202,13 +202,18 @@ class Organelle{
         }
     }
 
+    int getHexCount()
+    {
+        return cachedHexCount;
+    }
+
     private string _name;
     float mass;
     string gene;
 
     array<OrganelleComponentFactory@> components;
     private dictionary hexes;
-    int cachedHexCount = 0;
+    private int cachedHexCount = 0;
 
 
     // The initial amount of compounds this organelle consists of
@@ -863,10 +868,9 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         }
     }
 
-    int cachedHexCount {
-        get {
-            return _organelle.cachedHexCount;
-        }
+    int getHexCount()
+    {
+        return _organelle.getHexCount();
     }
 
     private Organelle@ _organelle;

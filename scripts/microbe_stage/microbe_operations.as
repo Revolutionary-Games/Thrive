@@ -116,7 +116,7 @@ bool removeOrganelle(CellStageWorld@ world, ObjectID microbeEntity, Int2 hex)
 
     organelle.onRemovedFromMicrobe(microbeEntity, rigidBodyComponent.Body.Shape);
 
-    microbeComponent.totalHexCountCache -= organelle.cachedHexCount;
+    microbeComponent.totalHexCountCache -= organelle.getHexCount();
 
     // TODO: there seriously needs to be some caching here to make this less expensive
     rigidBodyComponent.ChangeShape(world.GetPhysicalWorld(), rigidBodyComponent.Body.Shape);
@@ -199,7 +199,7 @@ bool addOrganelle(CellStageWorld@ world, ObjectID microbeEntity, PlacedOrganelle
 
     microbeComponent.organelles.insertLast(@organelle);
 
-    microbeComponent.totalHexCountCache += organelle.cachedHexCount;
+    microbeComponent.totalHexCountCache += organelle.getHexCount();
 
     // Update collision shape
     if(editShape !is null){

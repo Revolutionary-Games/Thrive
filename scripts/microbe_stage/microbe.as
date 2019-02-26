@@ -64,7 +64,7 @@ class MicrobeComponent : ScriptComponent{
 
         //cache hexes in microbe
         for(uint i = 0; i < organelles.length(); ++i){
-            totalHexCountCache += organelles[i].cachedHexCount;
+            totalHexCountCache += organelles[i].getHexCount();
         }
 
         // Microbe system update should initialize this component on next tick
@@ -192,6 +192,7 @@ class MicrobeComponent : ScriptComponent{
 
     Float3 queuedMovementForce = Float3(0, 0, 0);
 
+    //this variable is used to cache the size of the hexes
     int totalHexCountCache = 0;
 }
 
