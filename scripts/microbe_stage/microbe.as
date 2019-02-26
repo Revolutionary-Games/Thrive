@@ -64,7 +64,7 @@ class MicrobeComponent : ScriptComponent{
 
         //cache hexes in microbe
         for(uint i = 0; i < organelles.length(); ++i){
-            totalHexCountCache += organelles[i].getHexCount();
+            totalHexCountCache += organelles[i].organelle.getHexCount();
         }
 
         // Microbe system update should initialize this component on next tick

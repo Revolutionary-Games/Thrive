@@ -868,11 +868,6 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         }
     }
 
-    int getHexCount()
-    {
-        return _organelle.getHexCount();
-    }
-
     private Organelle@ _organelle;
 
     // q and r are radial coordinates instead of cartesian
