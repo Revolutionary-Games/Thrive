@@ -192,7 +192,7 @@ class MicrobeComponent : ScriptComponent{
 
     Float3 queuedMovementForce = Float3(0, 0, 0);
 
-    //this variable is used to cache the size of the hexes
+    // This variable is used to cache the size of the hexes
     int totalHexCountCache = 0;
 }
 

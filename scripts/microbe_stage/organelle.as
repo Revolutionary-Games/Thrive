@@ -108,8 +108,6 @@ class Organelle{
 
         @hexes[formatInt(s)] = hex;
 
-        //update hex cache
-        cachedHexCount += 1;
         return true;
     }
 
@@ -204,7 +202,7 @@ class Organelle{
 
     int getHexCount() const
     {
-        return cachedHexCount;
+        return hexes.getSize();
     }
 
     private string _name;
@@ -213,7 +211,6 @@ class Organelle{
 
     array<OrganelleComponentFactory@> components;
     private dictionary hexes;
-    private int cachedHexCount = 0;
 
 
     // The initial amount of compounds this organelle consists of
