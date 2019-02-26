@@ -333,7 +333,7 @@ void cellHitIron(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
     if (microbeComponent !is null && engulfableComponent !is null
         && compoundBagComponent !is null && floatBag !is null)
         {
-        if (microbeComponent.engulfMode && microbeComponent.organelles.length() >=
+        if (microbeComponent.engulfMode && microbeComponent.totalHexCountCache >=
             engulfableComponent.getSize()*ENGULF_HP_RATIO_REQ)
             {
             uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();

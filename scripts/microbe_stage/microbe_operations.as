@@ -1137,6 +1137,8 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
 
             createAgentCloud(world, compoundId, position._Position, direction, ejectedAmount,
                 2000, microbeComponent.speciesName, NULL_OBJECT);
+            //take oxytoxy
+            takeCompound(world,microbeEntity,compoundId,ejectedAmount);
             ++createdAgents;
 
             if(createdAgents >= maxAgentsToShoot)
