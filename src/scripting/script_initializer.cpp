@@ -577,7 +577,8 @@ bool
 
     if(engine->RegisterObjectMethod("MembraneComponent",
            "void setHealthPercentage(float value)",
-           asMETHOD(MembraneComponent, setHealthPercentage), asCALL_THISCALL) < 0) {
+           asMETHOD(MembraneComponent, setHealthPercentage),
+           asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
