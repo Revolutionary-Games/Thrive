@@ -381,7 +381,7 @@ class MicrobeSystem : ScriptSystem{
             atpDamage(microbeEntity);
         }
 
-        //	Handle hitpoints
+        //  Handle hitpoints
         if((microbeComponent.hitpoints < microbeComponent.maxHitpoints))
         {
             if(MicrobeOperations::getCompoundAmount(world, microbeEntity,
@@ -504,8 +504,8 @@ class MicrobeSystem : ScriptSystem{
         applyCellMovement(components, logicTime);
 
         compoundAbsorberComponent.setAbsorbtionCapacity(microbeComponent.capacity);
-		
-		membraneComponent.setHealthPercentage(microbeComponent.hitpoints / microbeComponent.maxHitpoints);
+        
+        membraneComponent.setHealthPercentage(microbeComponent.hitpoints / microbeComponent.maxHitpoints);
     }
 
     private void updateDeadCell(MicrobeSystemCached@ &in components, uint logicTime)
