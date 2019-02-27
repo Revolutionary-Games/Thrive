@@ -199,29 +199,21 @@ void
             ->getPass(0)
             ->getFragmentProgramParameters()
             ->setNamedConstant("membraneColour", colour);
-        coloredMaterial->getTechnique(0)
-            ->getPass(0)
-            ->getTextureUnitState(0)
-            ->setHardwareGammaEnabled(true);
         coloredMaterial->compile();
     }
 }
 
 void
-    MembraneComponent::setHealthPercentage(float value)
+    MembraneComponent::setHealthFraction(float value)
 {
-    healthPercentage = std::clamp<float>(value, 0.0, 1.0);
+    healthFraction = std::clamp(value, 0.0f, 1.0f);
 
     // If we already have created a material we need to re-apply it
     if(coloredMaterial) {
         coloredMaterial->getTechnique(0)
             ->getPass(0)
             ->getFragmentProgramParameters()
-            ->setNamedConstant("healthPercentage", healthPercentage);
-        coloredMaterial->getTechnique(0)
-            ->getPass(0)
-            ->getTextureUnitState(0)
-            ->setHardwareGammaEnabled(true);
+            ->setNamedConstant("healthPercentage", healthFraction);
         coloredMaterial->compile();
     }
 }
@@ -346,6 +338,18 @@ void
             ->getPass(0)
             ->getFragmentProgramParameters()
             ->setNamedConstant("membraneColour", colour);
+
+        coloredMaterial->getTechnique(0)
+            ->getPass(0)
+            ->getFragmentProgramParameters()
+            ->setNamedConstant("healthPercentage", healthFraction);
+        coloredMaterial->compile();
+
+        coloredMaterial->getTechnique(0)
+            ->getPass(0)
+            ->getTextureUnitState(0)
+            ->setHardwareGammaEnabled(true);
+
         coloredMaterial->compile();
     }
 

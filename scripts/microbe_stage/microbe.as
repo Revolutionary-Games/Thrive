@@ -129,6 +129,7 @@ class MicrobeComponent : ScriptComponent{
 
     // TODO: initialize
     float hitpoints = DEFAULT_HEALTH;
+    float previousHitpoints = DEFAULT_HEALTH;
     float maxHitpoints = DEFAULT_HEALTH;
     bool dead = false;
     uint deathTimer = 0;
@@ -504,8 +505,11 @@ class MicrobeSystem : ScriptSystem{
         applyCellMovement(components, logicTime);
 
         compoundAbsorberComponent.setAbsorbtionCapacity(microbeComponent.capacity);
+
+        if(microbeComponent.hitpoints != microbeComponent.previousHitpoints)
+            membraneComponent.setHealthFraction(microbeComponent.hitpoints / microbeComponent.maxHitpoints);
         
-        membraneComponent.setHealthPercentage(microbeComponent.hitpoints / microbeComponent.maxHitpoints);
+        microbeComponent.previousHitpoints = microbeComponent.hitpoints;
     }
 
     private void updateDeadCell(MicrobeSystemCached@ &in components, uint logicTime)

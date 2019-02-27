@@ -55,7 +55,7 @@ public:
 
     //! Should set the health percentage.
     void
-        setHealthPercentage(float value);
+        setHealthFraction(float value);
 
     //! Returns the last set colour
     Float4
@@ -217,9 +217,9 @@ protected:
     //! The amount of compounds stored in the membrane.
     int compoundAmount = 0;
 
-    // The health percentage of a cell, used to get damage effects in the
+    // The health percentage of a cell, in the range [0.0, 1.0], used to get damage effects in the
     // membrane.
-    float healthPercentage = 1.0;
+    float healthFraction = 1.0;
 
 private:
 };
