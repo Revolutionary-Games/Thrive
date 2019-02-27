@@ -107,6 +107,7 @@ class Organelle{
         Hex@ hex = Hex(q, r);
 
         @hexes[formatInt(s)] = hex;
+
         return true;
     }
 
@@ -199,12 +200,18 @@ class Organelle{
         }
     }
 
+    int getHexCount() const
+    {
+        return hexes.getSize();
+    }
+
     private string _name;
     float mass;
     string gene;
 
     array<OrganelleComponentFactory@> components;
     private dictionary hexes;
+
 
     // The initial amount of compounds this organelle consists of
     dictionary initialComposition;
