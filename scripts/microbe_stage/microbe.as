@@ -508,7 +508,7 @@ class MicrobeSystem : ScriptSystem{
 
         if(microbeComponent.hitpoints != microbeComponent.previousHitpoints)
             membraneComponent.setHealthFraction(microbeComponent.hitpoints / microbeComponent.maxHitpoints);
-        
+
         microbeComponent.previousHitpoints = microbeComponent.hitpoints;
     }
 
