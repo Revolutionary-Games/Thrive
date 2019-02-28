@@ -264,7 +264,7 @@ class MicrobeEditorHudSystem : ScriptSystem{
         GenericEvent@ event = GenericEvent("SizeUpdated");
         NamedVars@ vars = event.GetNamedVars();
 
-        vars.AddValue(ScriptSafeVariableBlock("size", editor.getMicrobeSize()));
+        vars.AddValue(ScriptSafeVariableBlock("size", editor.getActualMicrobeSize()));
 
         GetEngine().GetEventHandler().CallEvent(event);
     }

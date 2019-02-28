@@ -1178,8 +1178,8 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
 
 
 
-    for(uint i = 0; i < max(1,microbeComponent.organelles.length()/CORPSE_CHUNK_DIVISER); ++i){
-        double amount = max(1,microbeComponent.organelles.length()/CORPSE_CHUNK_DIVISER);
+    for(uint i = 0; i < max(1,microbeComponent.totalHexCountCache/CORPSE_CHUNK_DIVISER); ++i){
+        double amount = max(1,microbeComponent.totalHexCountCache/CORPSE_CHUNK_DIVISER);
         // Chunk(should separate into own function)
         ObjectID chunkEntity = world.CreateEntity();
         auto chunkPosition = world.Create_Position(chunkEntity, position._Position,

@@ -288,7 +288,7 @@ class MicrobeAISystem : ScriptSystem{
             if (allMicrobes[i] != microbeEntity && (secondMicrobeComponent.speciesName != microbeComponent.speciesName) && !secondMicrobeComponent.dead){
                 if ((aiComponent.speciesAggression==MAX_SPECIES_AGRESSION) or
                     ((((numberOfAgentVacuoles+microbeComponent.totalHexCountCache)*1.0f)*(aiComponent.speciesAggression/AGRESSION_DIVISOR)) >
-                    (secondMicrobeComponent.organelles.totalHexCountCache*1.0f))){
+                    (secondMicrobeComponent.totalHexCountCache*1.0f))){
                     //You are non-threatening to me
                     aiComponent.preyMicrobes.insertLast(allMicrobes[i]);
                     }

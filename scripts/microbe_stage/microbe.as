@@ -484,7 +484,7 @@ class MicrobeSystem : ScriptSystem{
                 world.GetScriptComponentHolder("MicrobeComponent").Find(microbeComponent.hostileEngulfer));
             if ((hostileMicrobeComponent is null) || (!hostileMicrobeComponent.engulfMode) ||
             (hostileMicrobeComponent.dead) || (ourPosition._Position -  predatorPosition._Position).LengthSquared() >=
-            ((hostileMicrobeComponent.organelles.length()+3)*HEX_SIZE)+50){
+            ((hostileMicrobeComponent.totalHexCountCache+3)*HEX_SIZE)+50){
                 microbeComponent.hostileEngulfer = NULL_OBJECT;
                 microbeComponent.isBeingEngulfed = false;
                 }
@@ -499,7 +499,7 @@ class MicrobeSystem : ScriptSystem{
         //TODO:It seems to happen no matter what (even if it takes away less atp then you generate per second),
         //we should probably make it take into account the amount of atp being generated so resources arent wasted
         //for now made it not take away if your atp amount is equal to your capacity
-        auto osmoCost = (microbeComponent.organelles.length()*ATP_COST_FOR_OSMOREGULATION)/(logicTime);
+        auto osmoCost = (microbeComponent.totalHexCountCache*ATP_COST_FOR_OSMOREGULATION)/(logicTime);
         //auto osmoCost = (microbeComponent.organelles.length()*2)/logicTime;
         double atpAmount = MicrobeOperations::getCompoundAmount(world, microbeEntity,SimulationParameters::compoundRegistry().getTypeId("atp"));
 
@@ -576,9 +576,9 @@ class MicrobeSystem : ScriptSystem{
         const Float3 velocity = physics.Body.GetVelocity();
 
         // There should be no Y velocity so it should be zero
-        const Float3 drag(velocity.X * (CELL_DRAG_MULTIPLIER+(CELL_SIZE_DRAG_MULTIPLIER*microbeComponent.organelles.length())),
-            velocity.Y * (CELL_DRAG_MULTIPLIER+(CELL_SIZE_DRAG_MULTIPLIER*microbeComponent.organelles.length())),
-            velocity.Z * (CELL_DRAG_MULTIPLIER+(CELL_SIZE_DRAG_MULTIPLIER*microbeComponent.organelles.length())));
+        const Float3 drag(velocity.X * (CELL_DRAG_MULTIPLIER+(CELL_SIZE_DRAG_MULTIPLIER*microbeComponent.totalHexCountCache)),
+            velocity.Y * (CELL_DRAG_MULTIPLIER+(CELL_SIZE_DRAG_MULTIPLIER*microbeComponent.totalHexCountCache)),
+            velocity.Z * (CELL_DRAG_MULTIPLIER+(CELL_SIZE_DRAG_MULTIPLIER*microbeComponent.totalHexCountCache)));
 
         // Only add drag if it is over CELL_REQUIRED_DRAG_BEFORE_APPLY
         if(abs(drag.X) >= CELL_REQUIRED_DRAG_BEFORE_APPLY){
@@ -630,7 +630,7 @@ class MicrobeSystem : ScriptSystem{
                 //     microbeComponent.queuedMovementForce.Z);
 
                 // There is an movement without flagella cost
-                auto cost = (BASE_MOVEMENT_ATP_COST*microbeComponent.organelles.length())/logicTime;
+                auto cost = (BASE_MOVEMENT_ATP_COST*microbeComponent.totalHexCountCache)/logicTime;
 
                 // TODO: if there isn't enough energy this needs to scale the impulse
                 MicrobeOperations::takeCompound(world, microbeEntity,
