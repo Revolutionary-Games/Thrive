@@ -137,7 +137,7 @@ OrganelleTemplatePlaced@ getPosition(const string &in organelleName,
     // Moving the center one hex to the bottom.
     // This way organelles are "encouraged" to be on the bottom, rather than on the top,
     // which in turn means the flagellum are more likely to be on the back side of the cell.
-    auto initialOffset = Int2(HEX_NEIGHBOUR_OFFSET[formatInt(int(HEX_SIDE::BOTTOM))]);
+    auto initialOffset = Int2(HEX_NEIGHBOUR_OFFSET[formatInt(int(HEX_SIDE::TOP))]);
     q = q + initialOffset.X;
     r = r + initialOffset.Y;
 
