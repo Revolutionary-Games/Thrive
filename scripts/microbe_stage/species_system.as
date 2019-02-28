@@ -324,10 +324,41 @@ class Species{
             }
 
             const auto cytoplasmGene = getOrganelleDefinition("cytoplasm").gene;
+            string energyGene = cytoplasmGene;
+            const auto bonusPadding = GetEngine().GetRandom().GetNumber(1, 5);
 
             // it should always have a nucleus and a cytoplasm.
             stringCode = getOrganelleDefinition("nucleus").gene +
                 cytoplasmGene;
+
+            // generated cells need to be viable for now
+            switch (GetEngine().GetRandom().GetNumber(0, 3))
+                {
+                case 0:
+                energyGene = getOrganelleDefinition("cytoplasm").gene;
+                //if cytoplasm you need a few more of them
+                for(int i = 0; i < bonusPadding; i++){
+                    this.stringCode.insert(GetEngine().GetRandom().GetNumber(2,
+                        stringCode.length()), energyGene);
+                }
+                break;
+                case 1:
+                    energyGene = getOrganelleDefinition("metabolosome").gene;
+                break;
+                case 2:
+                    energyGene = getOrganelleDefinition("rusticyanin").gene;
+                    energyGene += getOrganelleDefinition("cytoplasm").gene;
+                break;
+                case 3:
+                    energyGene = getOrganelleDefinition("mitochondrion").gene;
+                break;
+                }
+
+            const auto energyPadding = GetEngine().GetRandom().GetNumber(1, 5);
+             for(int i = 0; i < energyPadding; i++){
+                    this.stringCode.insert(GetEngine().GetRandom().GetNumber(2,
+                        stringCode.length()), energyGene);
+                }
 
             for(int i = 0; i < stringSize; i++){
                 this.stringCode += getRandomLetter(false);
@@ -338,8 +369,15 @@ class Species{
             if (GetEngine().GetRandom().GetNumber(0, 100) <= 25)
             {
                 for(int i = 0; i < cytoplasmPadding; i++){
-                    this.stringCode.insert(GetEngine().GetRandom().GetNumber(2,
+                    if  (GetEngine().GetRandom().GetNumber(0, 20)<= 10)
+                        {
+                         this.stringCode.insert(GetEngine().GetRandom().GetNumber(2,
+                            stringCode.length()), energyGene);
+                        }
+                    else {
+                         this.stringCode.insert(GetEngine().GetRandom().GetNumber(2,
                             stringCode.length()), cytoplasmGene);
+                        }
                 }
             }
 

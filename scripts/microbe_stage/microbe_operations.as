@@ -1119,7 +1119,8 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
         LOG_ERROR("Trying to kill a dead microbe");
         return;
     }
-
+    //diable engulf mode when a cell dies
+    microbeComponent.engulfMode = false;
     // Releasing all the agents.
     // To not completely deadlock in this there is a maximum of 5 of these created
     const int maxAgentsToShoot = 5;
