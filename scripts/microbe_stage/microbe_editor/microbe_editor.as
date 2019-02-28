@@ -874,21 +874,31 @@ class MicrobeEditor{
         return editedMicrobe.length();
     }
 
+    int getActualMicrobeSize() const
+    {
+        double lengthMicrobe = 0;
+        for(uint i = 0; i < editedMicrobe.length(); ++i){
+            auto organelle = cast<PlacedOrganelle>(editedMicrobe[i]);
+            lengthMicrobe+=organelle.organelle.getHexCount();
+        }
+        return lengthMicrobe;
+    }
     // Make sure this is only called when you add organelles, as it is an expensive
     double getMicrobeSpeed() const
     {
         double finalSpeed = 0;
         int flagCount=0;
-        double lengthMicrobe = double(editedMicrobe.length());
+        double lengthMicrobe = 0;
         for(uint i = 0; i < editedMicrobe.length(); ++i){
             auto organelle = cast<PlacedOrganelle>(editedMicrobe[i]);
+            lengthMicrobe+=organelle.organelle.getHexCount();
             auto name = organelle.organelle.name;
             if (name=="flagellum"){
                 flagCount++;
             }
         }
         //This is complex, i Know
-        //LOG_INFO(""+flagCount);
+        //LOG_INFO(""+lengthMicrobe);
         finalSpeed= ((CELL_BASE_THRUST+((flagCount/(lengthMicrobe-flagCount))*FLAGELLA_BASE_FORCE))+
             (CELL_DRAG_MULTIPLIER-(CELL_SIZE_DRAG_MULTIPLIER*lengthMicrobe)));
         return finalSpeed;
