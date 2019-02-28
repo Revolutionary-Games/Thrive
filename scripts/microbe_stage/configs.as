@@ -10,7 +10,7 @@ const auto STARTING_SPAWN_DENSITY = 45000.0f;
 const auto MAX_SPAWN_DENSITY = 20000.0f;
 //Corpse info
 const auto CORPSE_COMPOUND_COMPENSATION = 2.0f;
-const auto CORPSE_CHUNK_DIVISER = 5.0f;
+const auto CORPSE_CHUNK_DIVISER = 8.0f;
 const auto CHUNK_ENGULF_COMPOUND_DIVISOR = 6.0f;
 
 // Cell Spawn Variation
