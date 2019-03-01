@@ -268,7 +268,7 @@ const dictionary DEFAULT_INITIAL_COMPOUNDS =
         {"iron", InitialCompound(0)}
     };
 
-// For iron phillic microbes
+// For ferrophillic microbes
 const dictionary DEFAULT_INITIAL_COMPOUNDS_IRON =
     {
         {"atp", InitialCompound(30,300)},
@@ -278,6 +278,18 @@ const dictionary DEFAULT_INITIAL_COMPOUNDS_IRON =
         {"hydrogensulfide", InitialCompound(0)},
         {"oxytoxy", InitialCompound(0)},
         {"iron", InitialCompound(30,300)}
+    };
+
+// For chemophillic microbes
+const dictionary DEFAULT_INITIAL_COMPOUNDS_CHEMO =
+    {
+        {"atp", InitialCompound(30,300)},
+        {"glucose", InitialCompound(10,30)},
+        {"ammonia", InitialCompound(30,100)},
+        {"phosphates", InitialCompound(0)},
+        {"hydrogensulfide", InitialCompound(30,300)},
+        {"oxytoxy", InitialCompound(0)},
+        {"iron", InitialCompound(0)}
     };
 
 string randomSpeciesName()
@@ -325,14 +337,14 @@ class Species{
 
             const auto cytoplasmGene = getOrganelleDefinition("cytoplasm").gene;
             string energyGene = cytoplasmGene;
-            const auto bonusPadding = GetEngine().GetRandom().GetNumber(1, 5);
+            const auto bonusPadding = GetEngine().GetRandom().GetNumber(1, 10);
 
             // it should always have a nucleus and a cytoplasm.
             stringCode = getOrganelleDefinition("nucleus").gene +
                 cytoplasmGene;
 
-            // generated cells need to be viable for now
-            switch (GetEngine().GetRandom().GetNumber(0, 3))
+            // generated cells need to be viable for now. so heres all possible survival strategies i can think of
+            switch (GetEngine().GetRandom().GetNumber(0, 15))
                 {
                 case 0:
                 energyGene = getOrganelleDefinition("cytoplasm").gene;
@@ -350,7 +362,62 @@ class Species{
                     energyGene += getOrganelleDefinition("cytoplasm").gene;
                 break;
                 case 3:
+                    energyGene = getOrganelleDefinition("cytoplasm").gene;
+                    //if cytoplasm you need a few more of them
+                    for(int i = 0; i < bonusPadding; i++){
+                        this.stringCode.insert(GetEngine().GetRandom().GetNumber(2,
+                            stringCode.length()), energyGene);
+                    }
+                    energyGene += getOrganelleDefinition("chemoSynthisizingProteins").gene;
+                break;
+                case 4:
                     energyGene = getOrganelleDefinition("mitochondrion").gene;
+                case 5:
+                    energyGene = getOrganelleDefinition("chemoSynthisizingProteins").gene;
+                    energyGene += getOrganelleDefinition("mitochondrion").gene;
+                case 6:
+                    energyGene = getOrganelleDefinition("chloroplast").gene;
+                    energyGene += getOrganelleDefinition("mitochondrion").gene;
+                case 7:
+                    energyGene = getOrganelleDefinition("metabolosome").gene;
+                    energyGene += getOrganelleDefinition("chemoSynthisizingProteins").gene;
+                break;
+                case 8:
+                    energyGene = getOrganelleDefinition("metabolosome").gene;
+                    energyGene += getOrganelleDefinition("chromatophors").gene;
+                case 9:
+                    energyGene = getOrganelleDefinition("chromatophors").gene;
+                    energyGene += getOrganelleDefinition("mitochondrion").gene;
+                break;
+                case 10:
+                    energyGene = getOrganelleDefinition("chemoplast").gene;
+                    energyGene += getOrganelleDefinition("mitochondrion").gene;
+                break;
+                case 11:
+                    energyGene = getOrganelleDefinition("chemoplast").gene;
+                    energyGene += getOrganelleDefinition("metabolosome").gene;
+                break;
+                case 12:
+                    energyGene = getOrganelleDefinition("chromatophors").gene;
+                    energyGene += getOrganelleDefinition("cytoplasm").gene;
+                break;
+                case 13:
+                    energyGene = getOrganelleDefinition("chloroplast").gene;
+                    energyGene += getOrganelleDefinition("cytoplasm").gene;
+                break;
+                case 14:
+
+                    energyGene = getOrganelleDefinition("cytoplasm").gene;
+                    //if cytoplasm you need a few more of them
+                    for(int i = 0; i < bonusPadding; i++){
+                        this.stringCode.insert(GetEngine().GetRandom().GetNumber(2,
+                            stringCode.length()), energyGene);
+                    }
+                    energyGene += getOrganelleDefinition("chemoplast").gene;
+                break;
+                case 15:
+                    energyGene = getOrganelleDefinition("chloroplast").gene;
+                    energyGene += getOrganelleDefinition("metabolosome").gene;
                 break;
                 }
 
@@ -565,6 +632,12 @@ class Species{
         templateEntity = Species::createSpecies(forWorld, this.name, this.genus, this.epithet,
             organelles, this.colour, this.isBacteria, this.speciesMembraneType,
             DEFAULT_INITIAL_COMPOUNDS_IRON, this.aggression, this.fear, this.activity, this.focus, this.opportunism);
+        }
+        else if (stringCode.findFirst('C') >= 0 || stringCode.findFirst('c') >= 0)
+        {
+        templateEntity = Species::createSpecies(forWorld, this.name, this.genus, this.epithet,
+            organelles, this.colour, this.isBacteria, this.speciesMembraneType,
+            DEFAULT_INITIAL_COMPOUNDS_CHEMO, this.aggression, this.fear, this.activity, this.focus, this.opportunism);
         }
         else {
         templateEntity = Species::createSpecies(forWorld, this.name, this.genus, this.epithet,
