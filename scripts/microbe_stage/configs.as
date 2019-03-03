@@ -10,8 +10,8 @@ const auto STARTING_SPAWN_DENSITY = 45000.0f;
 const auto MAX_SPAWN_DENSITY = 20000.0f;
 //Corpse info
 const auto CORPSE_COMPOUND_COMPENSATION = 2.0f;
-const auto CORPSE_CHUNK_DIVISER = 8.0f;
-const auto CHUNK_ENGULF_COMPOUND_DIVISOR = 6.0f;
+const auto CORPSE_CHUNK_DIVISER = 9.0f;
+const auto CHUNK_ENGULF_COMPOUND_DIVISOR = 7.0f;
 
 // Cell Spawn Variation
 const auto MIN_SPAWN_DISTANCE = -5000.0f;
@@ -32,13 +32,6 @@ const auto MAX_OPACITY_CHITIN = 1.2f;
 // Min Opacity Mutation
 const auto MIN_OPACITY_MUTATION = -0.01f;
 const auto MAX_OPACITY_MUTATION = 0.01f;
-
-//not const because we want to change these
-//current atmospheric oxygen percentage in modern times
-auto OXYGEN_PERCENTAGE = 0.21f;
-//co2 percentage (over expressed as .09% is the percenatge of all
-//non-nitrogen-non-oxygen gasses in our atmosphere)
-auto CARBON_DIOXIDE_PERCENTAGE = 0.009f;
 
 // Mutation Variables
 const auto MUTATION_BACTERIA_TO_EUKARYOTE = 1;
@@ -170,8 +163,8 @@ const uint AGENT_EMISSION_COOLDOWN = 2000;
 // big iron ejects ten per 20 clicks , so about 30 per second, so ill give it enough for 1000 seconds)
 const double IRON_PER_BIG_CHUNK = 30000.0f;
 const bool LARGE_IRON_DISSOLVES = false;
-// small iron ejects 3 per 20 clicks , so about 9 per second, so ill give it enough for 1000 seconds aswell
-const double IRON_PER_SMALL_CHUNK = 3000.0f;
+// small iron ejects 3 per 20 clicks , so about 9 per second
+const double IRON_PER_SMALL_CHUNK = 100.0f;
 const bool SMALL_IRON_DISSOLVES = true;
 
 //Auto Evo Values
