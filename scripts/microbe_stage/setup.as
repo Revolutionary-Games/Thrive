@@ -377,6 +377,21 @@ void cellOnCellActualContact(GameWorld@ world, ObjectID firstEntity, ObjectID se
         // Get microbe sizes here
         int firstMicrobeComponentHexCount = firstMicrobeComponent.totalHexCountCache;
         int secondMicrobeComponentHexCount = secondMicrobeComponent.totalHexCountCache;
+
+        CellStageWorld@ asCellWorld = cast<CellStageWorld>(world);
+
+        auto firstSpeciesEntity = findSpeciesEntityByName(asCellWorld, firstMicrobeComponent.speciesName);
+        auto firstSpecies = asCellWorld.GetComponent_SpeciesComponent(firstSpeciesEntity);
+        
+        if(firstSpecies.isBacteria)
+            firstMicrobeComponentHexCount /= 2;
+            
+        auto secondSpeciesEntity = findSpeciesEntityByName(asCellWorld, secondMicrobeComponent.speciesName);
+        auto secondSpecies = asCellWorld.GetComponent_SpeciesComponent(secondSpeciesEntity);
+        
+        if(secondSpecies.isBacteria)
+            secondMicrobeComponentHexCount /= 2;
+
         if (firstMicrobeComponent.engulfMode)
         {
             if(firstMicrobeComponentHexCount >
@@ -427,6 +442,21 @@ bool beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity
         // Get microbe sizes here
         int firstMicrobeComponentHexCount = firstMicrobeComponent.totalHexCountCache;
         int secondMicrobeComponentHexCount = secondMicrobeComponent.totalHexCountCache;
+
+        CellStageWorld@ asCellWorld = cast<CellStageWorld>(world);
+
+        auto firstSpeciesEntity = findSpeciesEntityByName(asCellWorld, firstMicrobeComponent.speciesName);
+        auto firstSpecies = asCellWorld.GetComponent_SpeciesComponent(firstSpeciesEntity);
+        
+        if(firstSpecies.isBacteria)
+            firstMicrobeComponentHexCount /= 2;
+            
+        auto secondSpeciesEntity = findSpeciesEntityByName(asCellWorld, secondMicrobeComponent.speciesName);
+        auto secondSpecies = asCellWorld.GetComponent_SpeciesComponent(secondSpeciesEntity);
+        
+        if(secondSpecies.isBacteria)
+            secondMicrobeComponentHexCount /= 2;
+
         // If either cell is engulfing we need to do things
         //return false;
         //LOG_INFO(""+firstMicrobeComponent.engulfMode);
