@@ -434,10 +434,10 @@ bool beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity
         // Get microbe sizes here
         int firstMicrobeComponentHexCount = firstMicrobeComponent.totalHexCountCache;
         int secondMicrobeComponentHexCount = secondMicrobeComponent.totalHexCountCache;
-        
+
         if(firstMicrobeComponent.isBacteria)
             firstMicrobeComponentHexCount /= 2;
-        
+
         if(secondMicrobeComponent.isBacteria)
             secondMicrobeComponentHexCount /= 2;
 
