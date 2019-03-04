@@ -1334,6 +1334,9 @@ void restoreOrganelleLayout(CellStageWorld@ world, ObjectID microbeEntity,
 
         MicrobeOperations::addOrganelle(world, microbeEntity, organelle, editShape);
     }
+
+    // cache isBacteria from species
+    microbeComponent.isBacteria = species.isBacteria;
 }
 
 void initProcessorComponent(CellStageWorld@ world, ObjectID entity,
