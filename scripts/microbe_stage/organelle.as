@@ -715,6 +715,13 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
                             Ogre::Vector3(0, 0, 1)));
         // Add hex collision shapes
         auto hexes = organelle.getHexes();
+        
+        //! Offset depending if species is bacteria or not
+        float hexOffset = 0;   
+        if(species.isBacteria) 
+            hexOffset = 0.5;
+        else
+            hexOffset = 2.0;
 
         for(uint i = 0; i < hexes.length(); ++i){
 
@@ -726,7 +733,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
             // Create the matrix with the offset
             Ogre::Matrix4 hexFinalOffset(translation);
 
-            PhysicsShape@ hexCollision = world.GetPhysicalWorld().CreateSphere(HEX_SIZE * 2);
+            PhysicsShape@ hexCollision = world.GetPhysicalWorld().CreateSphere(HEX_SIZE * hexOffset);
 
             if(hexCollision is null)
                 assert(false, "Failed to create Sphere for hex");
