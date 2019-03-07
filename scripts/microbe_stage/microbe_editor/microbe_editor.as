@@ -567,7 +567,6 @@ class MicrobeEditor{
         return false;
     }
 
-
     void updateGuiButtonStatus(bool nucleusIsPresent){
 
         GenericEvent@ event = GenericEvent("MicrobeEditorNucleusIsPresent");
