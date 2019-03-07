@@ -955,7 +955,7 @@ class MicrobeEditor{
 
             // Grab render of player cell
             auto node =  world.GetComponent_RenderNode(player);
-            
+
             //! Change player species cell size depending on presence or not of nucleus
             if(checkIsNucleusPresent()) {
                 playerSpecies.isBacteria = false;

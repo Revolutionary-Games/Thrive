@@ -851,7 +851,7 @@ ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in specie
         node.Node.setPosition(pos);
 
     auto speciesEntity = findSpeciesEntityByName(world, speciesName);
-    auto species = world.GetComponent_SpeciesComponent(speciesEntity); 
+    auto species = world.GetComponent_SpeciesComponent(speciesEntity);
 
     // TODO: Why is this here with the separate spawnBacteria function existing?
     // Bacteria get scaled to half size
