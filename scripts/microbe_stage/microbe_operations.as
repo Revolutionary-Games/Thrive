@@ -845,12 +845,13 @@ ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in specie
     // Try setting the position immediately as well (as otherwise it
     // takes until the next tick for this to take effect)
     auto node = world.GetComponent_RenderNode(microbeEntity);
+    auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
 
     if(IsInGraphicalMode())
         node.Node.setPosition(pos);
 
     auto speciesEntity = findSpeciesEntityByName(world, speciesName);
-    auto species = world.GetComponent_SpeciesComponent(speciesEntity);
+    auto species = world.GetComponent_SpeciesComponent(speciesEntity); 
 
     // TODO: Why is this here with the separate spawnBacteria function existing?
     // Bacteria get scaled to half size
@@ -859,11 +860,12 @@ ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in specie
         // the physics size matches the rendered size
         node.Scale = Float3(0.5, 0.5, 0.5);
         node.Marked = true;
+
         // This call is also not the cheapest. So would be much better
         // if the physics generation actually did the right then when
         // species.isBacteria is true
-        physics.ChangeShape(world.GetPhysicalWorld(),
-            world.GetPhysicalWorld().CreateSphere(HEX_SIZE/2.0f));
+        rigidBodyComponent.ChangeShape(world.GetPhysicalWorld(),
+            rigidBodyComponent.Body.Shape);
     }
 
     return microbeEntity;

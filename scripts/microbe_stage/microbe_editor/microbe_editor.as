@@ -567,6 +567,7 @@ class MicrobeEditor{
         return false;
     }
 
+
     void updateGuiButtonStatus(bool nucleusIsPresent){
 
         GenericEvent@ event = GenericEvent("MicrobeEditorNucleusIsPresent");
@@ -930,9 +931,12 @@ class MicrobeEditor{
         } else if(type == "MicrobeEditorExited"){
             LOG_INFO("MicrobeEditor: applying changes to player Species");
 
+            auto world = GetThriveGame().getCellStage();
+            auto player = GetThriveGame().playerData().activeCreature();
+
             // We need to grab the player's species
             SpeciesComponent@ playerSpecies = MicrobeOperations::getSpeciesComponent(
-                GetThriveGame().getCellStage(), GetThriveGame().playerData().activeCreature());
+                world, player);
 
             assert(playerSpecies !is null, "didn't find edited species");
 
@@ -951,7 +955,7 @@ class MicrobeEditor{
             templateOrganelles = newOrganelles;
 
             // Grab render of player cell
-            auto node =  GetThriveGame().getCellStage().GetComponent_RenderNode(GetThriveGame().playerData().activeCreature());
+            auto node =  world.GetComponent_RenderNode(player);
             
             //! Change player species cell size depending on presence or not of nucleus
             if(checkIsNucleusPresent()) {
