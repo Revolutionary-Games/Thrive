@@ -726,7 +726,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
             // Create the matrix with the offset
             Ogre::Matrix4 hexFinalOffset(translation);
 
-            PhysicsShape@ hexCollision = world.GetPhysicalWorld().CreateSphere(HEX_SIZE);
+            PhysicsShape@ hexCollision = world.GetPhysicalWorld().CreateSphere(HEX_SIZE  * 2);
 
             if(hexCollision is null)
                 assert(false, "Failed to create Sphere for hex");
