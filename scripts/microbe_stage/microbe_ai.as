@@ -337,7 +337,7 @@ class MicrobeAISystem : ScriptSystem{
                 }
 
             }
-            
+
     return chosenChunk;
     }
 
@@ -685,7 +685,7 @@ class MicrobeAISystem : ScriptSystem{
             {
             aiComponent.lifeState = SCAVENGING_STATE;
             aiComponent.boredom = 0;
-            }    
+            }
        else if (rollCheck(aiComponent.speciesActivity,500.0f))
             {
             aiComponent.lifeState = PLANTLIKE_STATE;
