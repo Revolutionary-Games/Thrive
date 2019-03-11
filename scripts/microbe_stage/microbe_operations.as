@@ -845,7 +845,6 @@ ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in specie
     // Try setting the position immediately as well (as otherwise it
     // takes until the next tick for this to take effect)
     auto node = world.GetComponent_RenderNode(microbeEntity);
-    auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
 
     if(IsInGraphicalMode())
         node.Node.setPosition(pos);
@@ -864,8 +863,8 @@ ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in specie
         // This call is also not the cheapest. So would be much better
         // if the physics generation actually did the right then when
         // species.isBacteria is true
-        rigidBodyComponent.ChangeShape(world.GetPhysicalWorld(),
-            rigidBodyComponent.Body.Shape);
+        /*rigidBodyComponent.ChangeShape(world.GetPhysicalWorld(),
+            rigidBodyComponent.Body.Shape);*/
     }
 
     return microbeEntity;
