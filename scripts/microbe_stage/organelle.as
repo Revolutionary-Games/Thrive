@@ -720,10 +720,10 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
                             Ogre::Vector3(0, 0, 1)));
         // Add hex collision shapes
         auto hexes = organelle.getHexes();
-        
+
         //! HexSize depending if species is bacteria or not
-        float hexSize = 0;   
-        if(species.isBacteria) 
+        float hexSize = 0;
+        if(species.isBacteria)
             hexSize = HEX_SIZE / 2;
         else
             hexSize = HEX_SIZE * 2;
