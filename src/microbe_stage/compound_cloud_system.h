@@ -178,14 +178,12 @@ class CompoundCloudComponent : public Leviathan::Component {
 
 public:
     enum class SLOT {
-
         FIRST,
         SECOND,
         THIRD,
         FOURTH
     };
 
-public:
     //! \brief Creates a cloud with the specified compound types and colour
     //!
     //! Set not used ones to null. At least first must be not null
