@@ -177,12 +177,7 @@ class CompoundCloudComponent : public Leviathan::Component {
     friend class CompoundAbsorberSystem;
 
 public:
-    enum class SLOT {
-        FIRST,
-        SECOND,
-        THIRD,
-        FOURTH
-    };
+    enum class SLOT { FIRST, SECOND, THIRD, FOURTH };
 
     //! \brief Creates a cloud with the specified compound types and colour
     //!

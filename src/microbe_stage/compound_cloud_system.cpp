@@ -1173,8 +1173,10 @@ void
     for(size_t j = 0; j < height; j++) {
         for(size_t i = 0; i < density.size(); i++) {
 
-			// This formula smoothens the cloud density so that we get gradients of transparency.
-			// TODO: move this to the shaders for better performance (we would need to pass a float instead of a byte).
+            // This formula smoothens the cloud density so that we get gradients
+            // of transparency.
+            // TODO: move this to the shaders for better performance (we would
+            // need to pass a float instead of a byte).
             int intensity =
                 static_cast<int>(255 * std::log(density[i][j] / 1000 + 1));
 
