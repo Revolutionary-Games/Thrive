@@ -13,13 +13,11 @@
 #include <OgreMesh2.h>
 #include <OgreMeshManager.h>
 #include <OgreMeshManager2.h>
-#include <OgrePlane.h>
 #include <OgreRoot.h>
 #include <OgreSceneManager.h>
 #include <OgreSubMesh2.h>
 #include <OgreTechnique.h>
 #include <OgreTextureManager.h>
-#include <Utility/Random.h>
 
 #include <atomic>
 
@@ -973,16 +971,7 @@ void
 
     // Set blendblock
     Ogre::HlmsBlendblock blendblock;
-    blendblock.mAlphaToCoverageEnabled = true;
-
-    // This is the old setting
-    // pass->setSceneBlending(Ogre::SBT_TRANSPARENT_ALPHA);
-    // And according to Ogre source code (OgrePass.cpp Pass::_getBlendFlags)
-    // it matches this: source = SBF_SOURCE_ALPHA; dest =
-    // SBF_ONE_MINUS_SOURCE_ALPHA;
-
-    blendblock.mSourceBlendFactor = Ogre::SBF_SOURCE_ALPHA;
-    blendblock.mDestBlendFactor = Ogre::SBF_ONE_MINUS_SOURCE_ALPHA;
+    blendblock.setBlendType(Ogre::SBT_TRANSPARENT_ALPHA);
 
     // Important for proper blending (not sure,
     // mAlphaToCoverageEnabled seems to be more important as a lot of
@@ -1184,14 +1173,15 @@ void
     for(size_t j = 0; j < height; j++) {
         for(size_t i = 0; i < density.size(); i++) {
 
-            int intensity = static_cast<int>(density[i][j]);
+            // This formula smoothens the cloud density so that we get gradients
+            // of transparency.
+            // TODO: move this to the shaders for better performance (we would
+            // need to pass a float instead of a byte).
+            int intensity =
+                static_cast<int>(255 * std::log(density[i][j] / 1000 + 1));
 
             // This is the same clamping code as in the old version
-            if(intensity < 0) {
-                intensity = 0;
-            } else if(intensity > 255) {
-                intensity = 255;
-            }
+            intensity = std::clamp(intensity, 0, 255);
 
             pDest[rowBytes * j + (i * OGRE_CLOUD_TEXTURE_BYTES_PER_ELEMENT) +
                   index] = static_cast<uint8_t>(intensity);
@@ -1242,11 +1232,10 @@ void
     float a = dt * diffRate;
     for(int x = 1; x < CLOUD_SIMULATION_WIDTH - 1; x++) {
         for(int y = 1; y < CLOUD_SIMULATION_HEIGHT - 1; y++) {
-            oldDens[x][y] =
-                (density[x][y] +
-                    a * (oldDens[x - 1][y] + oldDens[x + 1][y] +
-                            oldDens[x][y - 1] + oldDens[x][y + 1])) /
-                (1 + 4 * a);
+            oldDens[x][y] = density[x][y] * (1 - a) +
+                            (oldDens[x - 1][y] + oldDens[x + 1][y] +
+                                oldDens[x][y - 1] + oldDens[x][y + 1]) *
+                                a / 4;
         }
     }
 }
@@ -1270,15 +1259,8 @@ void
                 float dx = x + dt * m_xVelocity[x][y];
                 float dy = y + dt * m_yVelocity[x][y];
 
-                if(dx < 0.5f)
-                    dx = 0.5f;
-                if(dx > CLOUD_SIMULATION_WIDTH - 1.5f)
-                    dx = CLOUD_SIMULATION_WIDTH - 1.5f;
-
-                if(dy < 0.5f)
-                    dy = 0.5f;
-                if(dy > CLOUD_SIMULATION_HEIGHT - 1.5f)
-                    dy = CLOUD_SIMULATION_HEIGHT - 1.5f;
+                dx = std::clamp(dx, 0.5f, CLOUD_SIMULATION_WIDTH - 1.5f);
+                dy = std::clamp(dy, 0.5f, CLOUD_SIMULATION_HEIGHT - 1.5f);
 
                 const int x0 = static_cast<int>(dx);
                 const int x1 = x0 + 1;
