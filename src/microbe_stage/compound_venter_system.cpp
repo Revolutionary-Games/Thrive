@@ -67,7 +67,7 @@ void
             }
 
             // If you did not vent anything this step and the venter component
-            // is flagged to dissolve tyou, dissolve you
+            // is flagged to dissolve you, dissolve you
             if(vented == false && venter.getDoDissolve()) {
                 world.QueueDestroyEntity(value.first);
             }

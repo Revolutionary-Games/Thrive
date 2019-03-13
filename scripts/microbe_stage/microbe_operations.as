@@ -1179,24 +1179,37 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
 
 
 
-    for(uint i = 0; i < max(1,microbeComponent.totalHexCountCache/CORPSE_CHUNK_DIVISER); ++i){
-        double amount = max(1,microbeComponent.totalHexCountCache/CORPSE_CHUNK_DIVISER);
+    for(uint i = 0; i < uint(max(1,microbeComponent.totalHexCountCache/CORPSE_CHUNK_DIVISER)); ++i){
+        //Amount of compound in one chunk
+        double amount = double(microbeComponent.totalHexCountCache)/CORPSE_CHUNK_AMOUNT_DIVISER;
         // Chunk(should separate into own function)
         ObjectID chunkEntity = world.CreateEntity();
-        auto chunkPosition = world.Create_Position(chunkEntity, position._Position,
+        auto positionAdded = Float3(GetEngine().GetRandom().GetFloat(-2.0f, 2.0f),0,
+            GetEngine().GetRandom().GetFloat(-2.0f, 2.0f));
+        auto chunkPosition = world.Create_Position(chunkEntity, position._Position+positionAdded,
             Ogre::Quaternion(Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
                 Ogre::Vector3(0,1,1)));
 
         auto renderNode = world.Create_RenderNode(chunkEntity);
-        renderNode.Scale = Float3(amount*0.5f, amount*0.5f, amount*0.5f);
+        renderNode.Scale = Float3(1.0f, 1.0f, 1.0f);
         renderNode.Marked = true;
         renderNode.Node.setOrientation(Ogre::Quaternion(
             Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)), Ogre::Vector3(0,1,1)));
         renderNode.Node.setPosition(chunkPosition._Position);
-        // temp model for testing
-        auto model = world.Create_Model(chunkEntity, renderNode.Node, "mitochondrion.mesh");
-        // Color chunk based on cell
-        model.GraphicalObject.setCustomParameter(1, microbeComponent.speciesColour);
+        // Grab random organelle from cell and use that
+        auto organelleIndex = GetEngine().GetRandom().GetNumber(0, microbeComponent.organelles.length()-1);
+        string mesh = microbeComponent.organelles[organelleIndex].organelle.mesh;
+        if (mesh != "")
+            {
+            auto model = world.Create_Model(chunkEntity, renderNode.Node, mesh);
+            // Color chunk based on cell
+            model.GraphicalObject.setCustomParameter(1, microbeComponent.speciesColour);
+            }
+        else {
+            auto model = world.Create_Model(chunkEntity, renderNode.Node, "mitochondrion.mesh");
+            // Color chunk based on cell
+            model.GraphicalObject.setCustomParameter(1, microbeComponent.speciesColour);
+            }
         auto rigidBody = world.Create_Physics(chunkEntity, chunkPosition);
         auto body = rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
             world.GetPhysicalWorld().CreateSphere(1), 10,
@@ -1207,7 +1220,7 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
         auto venter = world.Create_CompoundVenterComponent(chunkEntity);
         //Engulfable
         auto engulfable = world.Create_EngulfableComponent(chunkEntity);
-        engulfable.setSize(amount);
+        engulfable.setSize(2);
         // So that larger iron chunks give out more compounds
         venter.setVentAmount(3);
         venter.setDoDissolve(true);
@@ -1216,22 +1229,14 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
         for(uint64 compoundID = 0; compoundID <
                 SimulationParameters::compoundRegistry().getSize(); ++compoundID)
             {
-            bag.setCompound(compoundID, (float(compoundsToRelease[formatUInt(compoundID)])/amount)*CORPSE_COMPOUND_COMPENSATION);
+            //Randomize compound amount a bit so things "rot away"
+            bag.setCompound(compoundID, (float(compoundsToRelease[formatUInt(compoundID)])/
+                GetEngine().GetRandom().GetFloat(amount/3.0f, amount)*CORPSE_COMPOUND_COMPENSATION));
             }
     }
     // Play the death sound
     playSoundWithDistance(world, "Data/Sound/soundeffects/microbe-death.ogg", microbeEntity);
 
-    //TODO: Get this working
-    //auto deathAnimationEntity = world.CreateEntity();
-    //auto lifeTimeComponent = world.Create_TimedLifeComponent(deathAnimationEntity, 4000);
-    //auto deathAnimSceneNode = world.Create_RenderNode(deathAnimationEntity);
-    //auto deathAnimModel = world.Create_Model(deathAnimationEntity, deathAnimSceneNode.Node,
-    //     "MicrobeDeath.mesh");
-    //deathAnimSceneNode.Node.setPosition(position._Position);
-
-    //LOG_WRITE("TODO: play animation deathAnimModel");
-    // deathAnimModel.GraphicalObject.playAnimation("Death", false);
     //subtract population
     auto playerSpecies = MicrobeOperations::getSpeciesComponent(world, "Default");
     if (!microbeComponent.isPlayerMicrobe &&

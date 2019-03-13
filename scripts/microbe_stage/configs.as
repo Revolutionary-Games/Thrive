@@ -9,9 +9,10 @@ const auto DEFAULT_SPAWN_DENSITY = 1/25000.f;
 const auto STARTING_SPAWN_DENSITY = 45000.0f;
 const auto MAX_SPAWN_DENSITY = 20000.0f;
 //Corpse info
-const auto CORPSE_COMPOUND_COMPENSATION = 2.0f;
-const auto CORPSE_CHUNK_DIVISER = 9.0f;
-const auto CHUNK_ENGULF_COMPOUND_DIVISOR = 7.0f;
+const auto CORPSE_COMPOUND_COMPENSATION = 8.0f;
+const int CORPSE_CHUNK_DIVISER = 3;
+const auto CORPSE_CHUNK_AMOUNT_DIVISER = 3.0f;
+const auto CHUNK_ENGULF_COMPOUND_DIVISOR = 30.0f;
 
 // Cell Spawn Variation
 const auto MIN_SPAWN_DISTANCE = -5000.0f;

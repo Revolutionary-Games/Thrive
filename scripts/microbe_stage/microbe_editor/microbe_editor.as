@@ -876,7 +876,7 @@ class MicrobeEditor{
 
     int getActualMicrobeSize() const
     {
-        double lengthMicrobe = 0;
+        int lengthMicrobe = 0;
         for(uint i = 0; i < editedMicrobe.length(); ++i){
             auto organelle = cast<PlacedOrganelle>(editedMicrobe[i]);
             lengthMicrobe+=organelle.organelle.getHexCount();
