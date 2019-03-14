@@ -48,6 +48,7 @@ class MicrobeComponent : ScriptComponent{
             this.speciesName = species.name;
             }
         this.isPlayerMicrobe = isPlayerMicrobe;
+        this.isBacteria = species.isBacteria;
         this.engulfMode = false;
         this.isBeingEngulfed = false;
         this.hostileEngulfer = NULL_OBJECT;
@@ -165,6 +166,7 @@ class MicrobeComponent : ScriptComponent{
     double stored = 0;
     bool initialized = false;
     bool isPlayerMicrobe = false;
+    bool isBacteria = false;
     float maxBandwidth = 10.0 * BANDWIDTH_PER_ORGANELLE; // wtf is a bandwidth anyway?
     float remainingBandwidth = 0.0;
     uint compoundCollectionTimer = EXCESS_COMPOUND_COLLECTION_INTERVAL;
