@@ -377,6 +377,13 @@ void cellOnCellActualContact(GameWorld@ world, ObjectID firstEntity, ObjectID se
         // Get microbe sizes here
         int firstMicrobeComponentHexCount = firstMicrobeComponent.totalHexCountCache;
         int secondMicrobeComponentHexCount = secondMicrobeComponent.totalHexCountCache;
+
+        if(firstMicrobeComponent.isBacteria)
+            firstMicrobeComponentHexCount /= 2;
+
+        if(secondMicrobeComponent.isBacteria)
+            secondMicrobeComponentHexCount /= 2;
+
         if (firstMicrobeComponent.engulfMode)
         {
             if(firstMicrobeComponentHexCount >
@@ -427,6 +434,13 @@ bool beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity
         // Get microbe sizes here
         int firstMicrobeComponentHexCount = firstMicrobeComponent.totalHexCountCache;
         int secondMicrobeComponentHexCount = secondMicrobeComponent.totalHexCountCache;
+
+        if(firstMicrobeComponent.isBacteria)
+            firstMicrobeComponentHexCount /= 2;
+
+        if(secondMicrobeComponent.isBacteria)
+            secondMicrobeComponentHexCount /= 2;
+
         // If either cell is engulfing we need to do things
         //return false;
         //LOG_INFO(""+firstMicrobeComponent.engulfMode);
