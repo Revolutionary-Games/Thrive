@@ -1178,7 +1178,7 @@ void
             // TODO: move this to the shaders for better performance (we would
             // need to pass a float instead of a byte).
             int intensity =
-                static_cast<int>(255 * std::log(density[i][j] / 1000 + 1));
+                static_cast<int>(255 * 2 * std::atan(0.003 * density[i][j]));
 
             // This is the same clamping code as in the old version
             intensity = std::clamp(intensity, 0, 255);
