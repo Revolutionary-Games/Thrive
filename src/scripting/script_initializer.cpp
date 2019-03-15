@@ -433,6 +433,8 @@ static uint16_t ProcessorComponentTYPEProxy =
     static_cast<uint16_t>(ProcessorComponent::TYPE);
 static uint16_t CompoundVenterTYPEProxy =
     static_cast<uint16_t>(CompoundVenterComponent::TYPE);
+static uint16_t EngulfableComponentTYPEProxy =
+    static_cast<uint16_t>(EngulfableComponent::TYPE);
 static uint16_t SpawnedComponentTYPEProxy =
     static_cast<uint16_t>(SpawnedComponent::TYPE);
 static uint16_t AgentCloudComponentTYPEProxy =
@@ -529,6 +531,42 @@ bool
            asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
+
+    if(engine->RegisterObjectMethod("CompoundVenterComponent",
+           "bool getDoDissolve()",
+           asMETHOD(CompoundVenterComponent, getDoDissolve),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("CompoundVenterComponent",
+           "void setDoDissolve(bool dissolve)",
+           asMETHOD(CompoundVenterComponent, setDoDissolve),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    // ------------------------------------ //
+    if(engine->RegisterObjectType(
+           "EngulfableComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(!bindComponentTypeId(
+           engine, "EngulfableComponent", &EngulfableComponentTYPEProxy))
+        return false;
+
+    if(engine->RegisterObjectMethod("EngulfableComponent", "float getSize()",
+           asMETHOD(EngulfableComponent, getSize), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("EngulfableComponent",
+           "void setSize(float size)", asMETHOD(EngulfableComponent, setSize),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     // ------------------------------------ //
     if(engine->RegisterObjectType(
            "SpawnedComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
@@ -723,6 +761,11 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(engine->RegisterObjectProperty("SpeciesComponent", "double opportunism",
+           asOFFSET(SpeciesComponent, opportunism)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     if(engine->RegisterObjectProperty("SpeciesComponent", "int32 population",
            asOFFSET(SpeciesComponent, population)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
@@ -873,6 +916,12 @@ bool
     }
 
     if(engine->RegisterObjectMethod("AgentProperties",
+           "void setParentEntity(ObjectID parentId)",
+           asMETHOD(AgentProperties, setParentEntity), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("AgentProperties",
            "void setAgentType(string newString)",
            asMETHOD(AgentProperties, setAgentType), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
@@ -881,6 +930,12 @@ bool
     if(engine->RegisterObjectMethod("AgentProperties",
            "string getSpeciesName()", asMETHOD(AgentProperties, getSpeciesName),
            asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("AgentProperties",
+           "ObjectID getParentEntity()",
+           asMETHOD(AgentProperties, getParentEntity), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 

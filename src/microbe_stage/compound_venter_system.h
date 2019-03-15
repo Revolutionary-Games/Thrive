@@ -22,6 +22,8 @@ public:
 
     float x, y;
     float ventAmount = 5.0f;
+    bool doDissolve = false;
+
     REFERENCE_HANDLE_UNCOUNTED_TYPE(CompoundVenterComponent);
 
     static constexpr auto TYPE =
@@ -38,6 +40,30 @@ public:
 
     float
         getVentAmount();
+
+    void
+        setDoDissolve(bool dissolve);
+
+    bool
+        getDoDissolve();
+};
+
+class EngulfableComponent : public Leviathan::Component {
+public:
+    EngulfableComponent();
+
+    float size;
+
+    REFERENCE_HANDLE_UNCOUNTED_TYPE(EngulfableComponent);
+
+    static constexpr auto TYPE =
+        componentTypeConvert(THRIVE_COMPONENT::ENGULFABLE);
+
+    void
+        setSize(float size);
+
+    float
+        getSize();
 };
 
 class CompoundVenterSystem

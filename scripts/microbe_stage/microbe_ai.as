@@ -18,7 +18,8 @@ const int GLUCOSE_SEARCH_THRESHHOLD = 5;
         GATHERING_STATE,
         FLEEING_STATE,
         PREDATING_STATE,
-        PLANTLIKE_STATE
+        PLANTLIKE_STATE,
+        SCAVENGING_STATE
         }
 
 class MicrobeAIControllerComponent : ScriptComponent{
@@ -40,6 +41,7 @@ class MicrobeAIControllerComponent : ScriptComponent{
     double speciesFear = -1.0f;
     double speciesActivity = -1.0f;
     double speciesFocus = -1.0f;
+    double speciesOpportunism = -1.0;
     bool hasTargetPosition = false;
     Float3 targetPosition = Float3(0, 0, 0);
     bool hasSearchedCompoundId = false;
@@ -47,11 +49,12 @@ class MicrobeAIControllerComponent : ScriptComponent{
     float previousAngle = 0.0f;
     float compoundDifference=0;
     ObjectID prey = NULL_OBJECT;
+    ObjectID targetChunk = NULL_OBJECT;
     bool preyPegged=false;
     // Prey and predator lists
     array<ObjectID> predatoryMicrobes;
     array<ObjectID> preyMicrobes;
-
+    array<ObjectID> chunkList;
 
     LIFESTATE lifeState = NEUTRAL_STATE;
 
@@ -102,7 +105,7 @@ class MicrobeAISystem : ScriptSystem{
         // This list is quite expensive to build each frame but
         // there's currently no good way to cache this
         array<ObjectID>@ allMicrobes = world.GetScriptComponentHolder("MicrobeComponent").GetIndex();
-
+        array<ObjectID>@ allChunks = world.GetComponentIndex_EngulfableComponent();
 
         for(uint i = 0; i < CachedComponents.length(); ++i){
 
@@ -129,6 +132,9 @@ class MicrobeAISystem : ScriptSystem{
             if (aiComponent.speciesFocus == -1.0f){
                 aiComponent.speciesFocus = ourSpecies.focus;
                 }
+            if (aiComponent.speciesOpportunism == -1.0f){
+                aiComponent.speciesOpportunism = ourSpecies.opportunism;
+                }
             }
                 // Were for debugging
                 /*LOG_INFO("AI aggression"+aiComponent.speciesAggression);
@@ -144,6 +150,7 @@ class MicrobeAISystem : ScriptSystem{
                 // Clear the lists
                 aiComponent.predatoryMicrobes.removeRange(0,aiComponent.predatoryMicrobes.length());
                 aiComponent.preyMicrobes.removeRange(0,aiComponent.preyMicrobes.length());
+                aiComponent.chunkList.removeRange(0,aiComponent.chunkList.length());
                 ObjectID prey = NULL_OBJECT;
                 // Peg your prey
                 if (!aiComponent.preyPegged){
@@ -154,8 +161,12 @@ class MicrobeAISystem : ScriptSystem{
                         aiComponent.preyPegged=true;
                     }
                 }
-                ObjectID predator = getNearestPredatorItem(components,allMicrobes);
 
+
+                aiComponent.targetChunk=NULL_OBJECT;
+                aiComponent.targetChunk = getNearestChunkItem(components,allChunks);
+
+                ObjectID predator = getNearestPredatorItem(components,allMicrobes);
                 //30 seconds about
                 if (aiComponent.boredom == GetEngine().GetRandom().GetNumber(aiComponent.speciesFocus*2,1000.0f+aiComponent.speciesFocus*2)){
                     // Occassionally you need to reevaluate things
@@ -191,7 +202,13 @@ class MicrobeAISystem : ScriptSystem{
                     case GATHERING_STATE:
                         {
                         //In this state you gather compounds
+                        if (rollCheck(aiComponent.speciesOpportunism,400.0f)){
+                            aiComponent.lifeState= SCAVENGING_STATE;
+                            aiComponent.boredom = 0;
+                        }
+                        else {
                         doRunAndTumble(components);
+                        }
                         break;
                         }
                     case FLEEING_STATE:
@@ -230,6 +247,23 @@ class MicrobeAISystem : ScriptSystem{
                             }
                         break;
                         }
+                     case SCAVENGING_STATE:
+                        {
+                        if (aiComponent.targetChunk != NULL_OBJECT){
+                            dealWithChunks(components, aiComponent.targetChunk, allChunks);
+                            }
+                        else{
+                            if (!rollCheck(aiComponent.speciesOpportunism, 400)){
+                                //LOG_INFO("gather only");
+                                aiComponent.lifeState = NEUTRAL_STATE;
+                                aiComponent.boredom=0;
+                                }
+                            else{
+                                aiComponent.lifeState = NEUTRAL_STATE;
+                                }
+                            }
+                        break;
+                        }
                     }
 
             /* Check if we are willing to run, and there is a predator nearby, if so, flee for your life
@@ -242,7 +276,7 @@ class MicrobeAISystem : ScriptSystem{
                 Float3 testPosition = world.GetComponent_Position(predator)._Position;
                     MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
                         world.GetScriptComponentHolder("MicrobeComponent").Find(predator));
-                    if ((position._Position -  testPosition).LengthSquared() <= (2000+(secondMicrobeComponent.organelles.length()*8.0f)*2)){
+                    if ((position._Position -  testPosition).LengthSquared() <= (2000+(secondMicrobeComponent.totalHexCountCache*8.0f)*2)){
                         if (aiComponent.lifeState != FLEEING_STATE)
                             {
                             // Reset target position for faster fleeing
@@ -258,6 +292,53 @@ class MicrobeAISystem : ScriptSystem{
             aiComponent.compoundDifference = microbeComponent.stored-aiComponent.previousStoredCompounds;
             aiComponent.previousStoredCompounds = microbeComponent.stored;
         }
+    }
+    // deal with chunks
+    ObjectID getNearestChunkItem(MicrobeAISystemCached@ components, array<ObjectID>@ allChunks){
+        ObjectID microbeEntity = components.entity;
+        MicrobeAIControllerComponent@ aiComponent = components.first;
+        MicrobeComponent@ microbeComponent = components.second;
+        Position@ position = components.third;
+        ObjectID chosenChunk = NULL_OBJECT;
+
+
+        // Retrieve nearest potential chunk
+        for (uint i = 0; i < allChunks.length(); i++){
+            // Get the microbe component
+            auto compoundBag = world.GetComponent_CompoundBagComponent(allChunks[i]);
+            // Get the microbe component
+            auto engulfableComponent = world.GetComponent_EngulfableComponent(allChunks[i]);
+
+            if ((aiComponent.speciesOpportunism==MAX_SPECIES_OPPORTUNISM) or
+                ((((microbeComponent.totalHexCountCache)*1.0f)*(aiComponent.speciesOpportunism/OPPORTUNISM_DIVISOR)) >
+                (engulfableComponent.getSize()*1.0f))){
+                //You are non-threatening to me
+                aiComponent.chunkList.insertLast(allChunks[i]);
+            }
+        }
+        // Get the nearest one if it exists
+        if (aiComponent.chunkList.length() > 0 )
+            {
+                //LOG_INFO(""+aiComponent.chunkList.length());
+                if (world.GetComponent_Position(aiComponent.chunkList[0]) !is null)
+                {
+                Float3 testPosition = world.GetComponent_Position(aiComponent.chunkList[0])._Position;
+                chosenChunk = aiComponent.chunkList[0];
+                for (uint c = 0; c < aiComponent.chunkList.length(); c++){
+                    // Get position
+                    Position@ thisPosition = world.GetComponent_Position(aiComponent.chunkList[c]);
+                    if (thisPosition !is null){
+                        if ((testPosition - position._Position).LengthSquared() > (thisPosition._Position -  position._Position).LengthSquared()){
+                            testPosition = thisPosition._Position;
+                            chosenChunk = aiComponent.chunkList[c];
+                        }
+                    }
+                }
+                }
+
+            }
+
+    return chosenChunk;
     }
 
     // Building the prey list and returning the best option
@@ -283,8 +364,8 @@ class MicrobeAISystem : ScriptSystem{
             // At max aggression add them all
             if (allMicrobes[i] != microbeEntity && (secondMicrobeComponent.speciesName != microbeComponent.speciesName) && !secondMicrobeComponent.dead){
                 if ((aiComponent.speciesAggression==MAX_SPECIES_AGRESSION) or
-                    ((((numberOfAgentVacuoles+microbeComponent.organelles.length())*1.0f)*(aiComponent.speciesAggression/AGRESSION_DIVISOR)) >
-                    (secondMicrobeComponent.organelles.length()*1.0f))){
+                    ((((numberOfAgentVacuoles+microbeComponent.totalHexCountCache)*1.0f)*(aiComponent.speciesAggression/AGRESSION_DIVISOR)) >
+                    (secondMicrobeComponent.totalHexCountCache*1.0f))){
                     //You are non-threatening to me
                     aiComponent.preyMicrobes.insertLast(allMicrobes[i]);
                     }
@@ -338,8 +419,8 @@ class MicrobeAISystem : ScriptSystem{
             // At max fear add them all
             if (allMicrobes[i] != microbeEntity && (secondMicrobeComponent.speciesName != microbeComponent.speciesName) && !secondMicrobeComponent.dead){
             if ((aiComponent.speciesFear==MAX_SPECIES_FEAR) or
-            ((((numberOfAgentVacuoles+secondMicrobeComponent.organelles.length())*1.0f)*(aiComponent.speciesFear/FEAR_DIVISOR)) >
-            (microbeComponent.organelles.length()*1.0f))){
+            ((((numberOfAgentVacuoles+secondMicrobeComponent.totalHexCountCache)*1.0f)*(aiComponent.speciesFear/FEAR_DIVISOR)) >
+            (microbeComponent.totalHexCountCache*1.0f))){
                 //You are bigger then me and i am afraid of that
                 aiComponent.predatoryMicrobes.insertLast(allMicrobes[i]);
                 //LOG_INFO("Added predator " + allMicrobes[i] );
@@ -427,19 +508,24 @@ class MicrobeAISystem : ScriptSystem{
             if (!microbeComponent.isPlayerMicrobe && microbeComponent.speciesName != playerSpecies.name){
                 MicrobeOperations::alterSpeciesPopulation(world,microbeEntity,CREATURE_KILL_POPULATION_GAIN);
                 }
+
+            if (rollCheck(aiComponent.speciesOpportunism,400.0f)){
+                aiComponent.lifeState= SCAVENGING_STATE;
+            }
+
             }
             else
             {
                 //  Turn on engulfmode if close
-                if (((position._Position -  aiComponent.targetPosition).LengthSquared() <= 300+(microbeComponent.organelles.length()*3.0f))
+                if (((position._Position -  aiComponent.targetPosition).LengthSquared() <= 300+(microbeComponent.totalHexCountCache*3.0f))
                         && (MicrobeOperations::getCompoundAmount(world,microbeEntity,atpID) >=  1.0f)
                     && !microbeComponent.engulfMode &&
-                    (float(microbeComponent.organelles.length()) > (
-                        ENGULF_HP_RATIO_REQ*secondMicrobeComponent.organelles.length()))){
+                    (float(microbeComponent.totalHexCountCache) > (
+                        ENGULF_HP_RATIO_REQ*secondMicrobeComponent.totalHexCountCache))){
                     MicrobeOperations::toggleEngulfMode(world, microbeEntity);
                     aiComponent.ticksSinceLastToggle=0;
                     }
-                else if (((position._Position -  aiComponent.targetPosition).LengthSquared() >= 500+(microbeComponent.organelles.length()*3.0f))
+                else if (((position._Position -  aiComponent.targetPosition).LengthSquared() >= 500+(microbeComponent.totalHexCountCache*3.0f))
                         && (microbeComponent.engulfMode && aiComponent.ticksSinceLastToggle >= AI_ENGULF_INTERVAL)){
                     MicrobeOperations::toggleEngulfMode(world, microbeEntity);
                     aiComponent.ticksSinceLastToggle=0;
@@ -462,6 +548,71 @@ class MicrobeAISystem : ScriptSystem{
                     }
             }
         }
+
+    // For chasing down and eating chunka in various ways
+    void dealWithChunks(MicrobeAISystemCached@ components, ObjectID chunk, array<ObjectID>@ allChunks )
+        {
+        //LOG_INFO("chasing"+prey);
+        // Set Components
+        ObjectID microbeEntity = components.entity;
+        MicrobeAIControllerComponent@ aiComponent = components.first;
+        MicrobeComponent@ microbeComponent = components.second;
+        Position@ position = components.third;
+        // Tick the engulf tick
+        aiComponent.ticksSinceLastToggle+=1;
+        // Required For AI
+        CompoundId ironId = SimulationParameters::compoundRegistry().getTypeId("iron");
+        CompoundId atpID = SimulationParameters::compoundRegistry().getTypeId("atp");
+        //LOG_INFO("predating");
+        auto compoundBag = world.GetComponent_CompoundBagComponent(chunk);
+        // Get the engulfablecomponent
+        auto engulfableComponent = world.GetComponent_EngulfableComponent(chunk);
+        if (engulfableComponent is null){
+            aiComponent.targetChunk = NULL_OBJECT;
+            //(maybe immediately target a new one)
+            return;
+        }
+
+        aiComponent.targetPosition =  world.GetComponent_Position(chunk)._Position;
+        auto vec = (aiComponent.targetPosition - position._Position);
+        aiComponent.direction = vec.Normalize();
+        microbeComponent.facingTargetPoint = aiComponent.targetPosition;
+        aiComponent.hasTargetPosition = true;
+
+        //Always set target Position, for use later in AI
+        microbeComponent.movementDirection = Float3(0, 0, -AI_BASE_MOVEMENT);
+
+        // Turn off engulf if chunk is gone
+        if (engulfableComponent is null){
+            aiComponent.hasTargetPosition = false;
+            aiComponent.targetChunk=getNearestChunkItem(components,allChunks);
+            if (microbeComponent.engulfMode){
+                MicrobeOperations::toggleEngulfMode(world, microbeEntity);
+            }
+            //  You got a consumption, good job
+            auto playerSpecies = MicrobeOperations::getSpeciesComponent(world, "Default");
+            if (!microbeComponent.isPlayerMicrobe && microbeComponent.speciesName != playerSpecies.name){
+                MicrobeOperations::alterSpeciesPopulation(world,microbeEntity,CREATURE_SCAVENGE_POPULATION_GAIN);
+                }
+            }
+            else
+            {
+                //  Turn on engulfmode if close
+                if (((position._Position -  aiComponent.targetPosition).LengthSquared() <= 300+(microbeComponent.totalHexCountCache*3.0f))
+                        && (MicrobeOperations::getCompoundAmount(world,microbeEntity,atpID) >=  1.0f)
+                    && !microbeComponent.engulfMode &&
+                    (float(microbeComponent.totalHexCountCache) > (
+                        ENGULF_HP_RATIO_REQ*engulfableComponent.getSize()))){
+                    MicrobeOperations::toggleEngulfMode(world, microbeEntity);
+                    aiComponent.ticksSinceLastToggle=0;
+                    }
+                else if (((position._Position -  aiComponent.targetPosition).LengthSquared() >= 500+(microbeComponent.totalHexCountCache*3.0f))
+                        && (microbeComponent.engulfMode && aiComponent.ticksSinceLastToggle >= AI_ENGULF_INTERVAL)){
+                    MicrobeOperations::toggleEngulfMode(world, microbeEntity);
+                    aiComponent.ticksSinceLastToggle=0;
+                    }
+            }
+    }
 
     // For self defense (not necessarily fleeing)
     void dealWithPredators(MicrobeAISystemCached@ components, ObjectID predator)
@@ -530,7 +681,12 @@ class MicrobeAISystem : ScriptSystem{
         //LOG_INFO("evaluating");
         MicrobeAIControllerComponent@ aiComponent = components.first;
         Position@ position = components.third;
-       if (rollCheck(aiComponent.speciesActivity,500.0f))
+        if (rollCheck(aiComponent.speciesOpportunism,500.0f))
+            {
+            aiComponent.lifeState = SCAVENGING_STATE;
+            aiComponent.boredom = 0;
+            }
+       else if (rollCheck(aiComponent.speciesActivity,500.0f))
             {
             aiComponent.lifeState = PLANTLIKE_STATE;
             aiComponent.boredom = 0;
@@ -570,6 +726,10 @@ class MicrobeAISystem : ScriptSystem{
             if (rollCheck(aiComponent.speciesFocus,500.0f) && GetEngine().GetRandom().GetNumber(0,10) <= 5){
                     aiComponent.lifeState = GATHERING_STATE;
                 }
+            }
+        else if (aiComponent.targetChunk != NULL_OBJECT){
+            //LOG_INFO("prey only");
+            aiComponent.lifeState = SCAVENGING_STATE;
             }
         // Every 2 intervals or so
         else if (GetEngine().GetRandom().GetNumber(0,10) < 8){
