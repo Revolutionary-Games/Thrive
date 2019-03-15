@@ -160,7 +160,7 @@ class Organelle{
         return result;
     }
 
-    Float3 calculateCenterOffset(SpeciesComponent@ species) const
+    Float3 calculateCenterOffset() const
     {
         int count = 0;
 
@@ -173,9 +173,6 @@ class Organelle{
 
             auto hex = cast<Hex@>(hexes[keys[i]]);
             offset += Hex::axialToCartesian(hex.q, hex.r);
-            if(species.isBacteria) {
-                offset /= 2;
-            }
         }
 
         offset /= count;
@@ -685,7 +682,8 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         // so just cache this
         this.cartesianPosition = Hex::axialToCartesian(q, r);
 
-        // Calcuate hexSize depending if species is baceteria or not
+        // Calculate hexSize depending if species is baceteria or not
+        // Scaling parameters that we need to scale
         double hexSize = 0;
         if(species.isBacteria) {
             this.cartesianPosition /= 2;
@@ -696,7 +694,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
         assert(organelleEntity == NULL_OBJECT, "PlacedOrganelle already had an entity");
 
-        Float3 offset = organelle.calculateCenterOffset(species);
+        Float3 offset = organelle.calculateCenterOffset();
 
         RenderNode@ renderNode;
 
@@ -735,9 +733,6 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
             // Also add our offset to the hex offset
             Float3 translation = Hex::axialToCartesian(hex.q, hex.r) + this.cartesianPosition;
-
-            if(species.isBacteria)
-                translation /= 2;
 
             // Create the matrix with the offset
             Ogre::Matrix4 hexFinalOffset(translation);

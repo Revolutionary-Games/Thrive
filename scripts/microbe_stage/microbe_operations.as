@@ -830,6 +830,7 @@ ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in specie
         return NULL_OBJECT;
     }
 
+    // Create microbeEntity with correct template, physics and species name
     auto microbeEntity = _createMicrobeEntity(world, aiControlled, speciesName,
         // in_editor
         false);
@@ -850,19 +851,12 @@ ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in specie
         node.Node.setPosition(pos);
 
     auto speciesEntity = findSpeciesEntityByName(world, speciesName);
-    auto species = world.GetComponent_SpeciesComponent(speciesEntity);
 
     // TODO: Why is this here with the separate spawnBacteria function existing?
     // Bacteria get scaled to half size
     if(species.isBacteria){
         node.Scale = Float3(0.5, 0.5, 0.5);
         node.Marked = true;
-
-        // ! We add physics to fit with render using restoreOrganelleLayout function
-        MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
-        SpeciesComponent@ species =  MicrobeOperations::getSpeciesComponent(world, microbeEntity);
-
-        Species::restoreOrganelleLayout(world, microbeEntity, microbeComponent, species);
     }
 
     return microbeEntity;
@@ -888,6 +882,8 @@ ObjectID spawnBacteria(CellStageWorld@ world, Float3 pos, const string &in speci
         return NULL_OBJECT;
     }
 
+
+    // Create microbeEntity with correct template, physics and species name
     auto microbeEntity = _createMicrobeEntity(world, aiControlled, speciesName,
         // in_editor
         false);
@@ -896,9 +892,6 @@ ObjectID spawnBacteria(CellStageWorld@ world, Float3 pos, const string &in speci
     auto microbePos = world.GetComponent_Position(microbeEntity);
     microbePos._Position = pos;
     microbePos.Marked = true;
-
-    MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
-    SpeciesComponent@ species =  MicrobeOperations::getSpeciesComponent(world, microbeEntity);
 
     auto physics = world.GetComponent_Physics(microbeEntity);
     physics.Body.SetMass(physics.Body.Mass * 10);
@@ -913,8 +906,6 @@ ObjectID spawnBacteria(CellStageWorld@ world, Float3 pos, const string &in speci
     node.Scale = Float3(0.5, 0.5, 0.5);
     node.Marked = true;
 
-    // ! We add physics to fit with render using restoreOrganelleLayout function
-    Species::restoreOrganelleLayout(world, microbeEntity, microbeComponent, species);
 
     // Need to set bacteria spawn and it needs to be squared like it
     // is in the spawn system. code, if part of colony but not
