@@ -263,8 +263,8 @@ void setupOrganelles(){
     };
     nucleusParameters.components = {
         nucleusComponentFactory,
-    // Cell takes up 10 spaces, so 50 cytoplasm
-    storageOrganelleFactory(55.0f)
+    // Same storage as vacuole
+    storageOrganelleFactory(15.0f)
     };
     nucleusParameters.processes = {
     };
@@ -300,7 +300,7 @@ void setupOrganelles(){
     };
     cytoplasmParameters.components = {
         processorOrganelleFactory(1.0),
-        storageOrganelleFactory(20.0f)
+        storageOrganelleFactory(4.0f)
     };
     cytoplasmParameters.processes = {
         TweakedProcess("glycolosis", 1)
@@ -327,8 +327,8 @@ void setupOrganelles(){
     };
     chloroplastParameters.components = {
         processorOrganelleFactory(1.0),
-    //chloroplast takes 3 hexes, so allowed storage of 3 cytooplasm
-    storageOrganelleFactory(15.0f)
+    //chloroplast takes 3 hexes, so allowed storage of 1 cytoplasm
+    storageOrganelleFactory(2.0f)
     };
     chloroplastParameters.processes = {
         TweakedProcess("photosynthesis", 1)
@@ -357,7 +357,8 @@ void setupOrganelles(){
     };
     oxytoxyParameters.components = {
     //this can't hold since it is a vacuole
-        agentVacuoleFactory("oxytoxy", "oxytoxySynthesis")
+        agentVacuoleFactory("oxytoxy", "oxytoxySynthesis"),
+        storageOrganelleFactory(5.0f)
     };
     oxytoxyParameters.processes = {
         TweakedProcess("oxytoxySynthesis", 1)
@@ -385,8 +386,8 @@ void setupOrganelles(){
     };
     mitochondrionParameters.components = {
         processorOrganelleFactory(1.0f),
-        // Mitochondria takes 2 hexes, so allowed storage of 2 cytooplasm
-    storageOrganelleFactory(10.0f)
+        // Mitochondria takes 2 hexes, so allowed storage of 1 cytooplasm
+        storageOrganelleFactory(2.0f)
     };
     mitochondrionParameters.processes = {
         TweakedProcess("respiration", 1)
@@ -413,7 +414,7 @@ void setupOrganelles(){
         {"ammonia", 2}
     };
     vacuoleParameters.components = {
-        storageOrganelleFactory(40.0f)
+        storageOrganelleFactory(15.0f)
     };
 
     vacuoleParameters.processes = {
@@ -442,7 +443,7 @@ void setupOrganelles(){
     flagellumParameters.components = {
         movementOrganelleFactory(20, 300),
     // Flagella takes 1 hex, so allowed storage of 1 cytooplasm
-    storageOrganelleFactory(5.0f)
+    storageOrganelleFactory(1.0f)
     };
 
     flagellumParameters.processes = {
@@ -471,8 +472,8 @@ void setupOrganelles(){
     };
     chemoplast.components = {
         processorOrganelleFactory(1.0f),
-    // Chemoplast takes 2 hexes, so allowed storage of 2 cytooplasm
-    storageOrganelleFactory(10.0f)
+    // Chemoplast takes 2 hexes, so allowed storage of 1 cytooplasm
+    storageOrganelleFactory(2.0f)
     };
     chemoplast.processes = {
           TweakedProcess("chemoSynthesis", 1)
@@ -500,8 +501,8 @@ void setupOrganelles(){
     };
     nitrogenPlastid.components = {
         processorOrganelleFactory(1.0f),
-        // nitrogenPlastid takes 2 hexes, so allowed storage of 2 cytooplasm
-        storageOrganelleFactory(10.0f)
+        // nitrogenPlastid takes 2 hexes, so allowed storage of 1 cytooplasm
+        storageOrganelleFactory(2.0f)
     };
     nitrogenPlastid.processes = {
           TweakedProcess("nitrogenFixing", 1)
@@ -530,7 +531,7 @@ void setupOrganelles(){
     };
     respiratoryProtein.components = {
         processorOrganelleFactory(1.0f),
-        storageOrganelleFactory(10.0f)
+        storageOrganelleFactory(1.0f)
     };
     respiratoryProtein.processes = {
         TweakedProcess("protein_respiration", 1)
@@ -556,7 +557,7 @@ void setupOrganelles(){
     };
     photosyntheticProtein.components = {
         processorOrganelleFactory(1.0f),
-        storageOrganelleFactory(10.0f)
+        storageOrganelleFactory(1.0f)
     };
     photosyntheticProtein.processes = {
       TweakedProcess("chromatophore_photosynthesis", 1),
@@ -583,7 +584,7 @@ void setupOrganelles(){
     };
     oxytoxyProtein.components = {
         agentVacuoleFactory("oxytoxy", "oxytoxySynthesis"),
-        storageOrganelleFactory(25.0f),
+        storageOrganelleFactory(2.0f),
         processorOrganelleFactory(1.0f)
     };
     oxytoxyProtein.processes = {
@@ -612,7 +613,7 @@ void setupOrganelles(){
     };
     chemoSynthisizingProtein.components = {
         processorOrganelleFactory(1.0f),
-        storageOrganelleFactory(20.0f)
+        storageOrganelleFactory(1.0f)
     };
     chemoSynthisizingProtein.processes = {
       TweakedProcess("bacterial_ChemoSynthesis", 1),
@@ -639,7 +640,7 @@ void setupOrganelles(){
     };
     protoplasmParameters.components = {
         processorOrganelleFactory(1.0),
-        storageOrganelleFactory(50.0f)
+        storageOrganelleFactory(15.0f)
     };
     protoplasmParameters.processes = {
         TweakedProcess("glycolosis", 1)
@@ -665,7 +666,7 @@ void setupOrganelles(){
     };
     nitrogenFixationProtein.components = {
         processorOrganelleFactory(1.0f),
-        storageOrganelleFactory(25.0f)
+        storageOrganelleFactory(2.0f)
     };
     nitrogenFixationProtein.processes = {
       TweakedProcess("nitrogenFixing", 1),
@@ -692,10 +693,10 @@ void setupOrganelles(){
     };
     rusticyanin.components = {
         processorOrganelleFactory(1.0f),
-        storageOrganelleFactory(5.0f)
+        storageOrganelleFactory(1.0f)
     };
     rusticyanin.processes = {
-      TweakedProcess("iron_chemolithoautotrophy", 1)
+      TweakedProcess("iron_chemolithoautotrophy", 2)
     };
     rusticyanin.hexes = {
         Int2(0, 0),

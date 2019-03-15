@@ -6,8 +6,13 @@
 const auto CLOUD_SPAWN_RADIUS = 150;
 const auto POWERUP_SPAWN_RADIUS = 85;
 const auto DEFAULT_SPAWN_DENSITY = 1/25000.f;
-const auto STARTING_SPAWN_DENSITY = 50000.0f;
+const auto STARTING_SPAWN_DENSITY = 45000.0f;
 const auto MAX_SPAWN_DENSITY = 20000.0f;
+//Corpse info
+const auto CORPSE_COMPOUND_COMPENSATION = 8.0f;
+const int CORPSE_CHUNK_DIVISER = 3;
+const auto CORPSE_CHUNK_AMOUNT_DIVISER = 3.0f;
+const auto CHUNK_ENGULF_COMPOUND_DIVISOR = 30.0f;
 
 // Cell Spawn Variation
 const auto MIN_SPAWN_DISTANCE = -5000.0f;
@@ -29,13 +34,6 @@ const auto MAX_OPACITY_CHITIN = 1.2f;
 const auto MIN_OPACITY_MUTATION = -0.01f;
 const auto MAX_OPACITY_MUTATION = 0.01f;
 
-//not const because we want to change these
-//current atmospheric oxygen percentage in modern times
-auto OXYGEN_PERCENTAGE = 0.21f;
-//co2 percentage (over expressed as .09% is the percenatge of all
-//non-nitrogen-non-oxygen gasses in our atmosphere)
-auto CARBON_DIOXIDE_PERCENTAGE = 0.009f;
-
 // Mutation Variables
 const auto MUTATION_BACTERIA_TO_EUKARYOTE = 1;
 const auto MUTATION_CREATION_RATE = 0.1f;
@@ -52,12 +50,13 @@ const auto MAX_SPECIES_AGRESSION = 400.0f;
 const auto MAX_SPECIES_FEAR = 400.0f;
 const auto MAX_SPECIES_ACTIVITY = 400.0f;
 const auto MAX_SPECIES_FOCUS = 400.0f;
+const auto MAX_SPECIES_OPPORTUNISM = 400.0f;
 
 // Personality Mutation
 const auto MAX_SPECIES_PERSONALITY_MUTATION = 20.0f;
 const auto MIN_SPECIES_PERSONALITY_MUTATION = -20.0f;
 
-// Bacterial CXOlony configuration
+// Bacterial COlony configuration
 const auto MIN_BACTERIAL_COLONY_SIZE = 1;
 const auto MAX_BACTERIAL_COLONY_SIZE = 5;
 const auto MIN_BACTERIAL_LINE_SIZE =  3;
@@ -68,6 +67,7 @@ const auto AGRESSION_DIVISOR = 25.0f;
 const auto FEAR_DIVISOR = 25.0f;
 const auto ACTIVITY_DIVISOR = 100.0f;
 const auto FOCUS_DIVISOR = 100.0f;
+const auto OPPORTUNISM_DIVISOR = 100.0f;
 
 // Cooldown for AI for toggling engulfing
 const uint AI_ENGULF_INTERVAL=300;
@@ -163,11 +163,15 @@ const uint AGENT_EMISSION_COOLDOWN = 2000;
 // Iron amounts per chunk.
 // big iron ejects ten per 20 clicks , so about 30 per second, so ill give it enough for 1000 seconds)
 const double IRON_PER_BIG_CHUNK = 30000.0f;
-// small iron ejects 3 per 20 clicks , so about 9 per second, so ill give it enough for 1000 seconds aswell
-const double IRON_PER_SMALL_CHUNK = 9000.0f;
+const bool LARGE_IRON_DISSOLVES = false;
+// small iron ejects 3 per 20 clicks , so about 9 per second
+const double IRON_PER_SMALL_CHUNK = 100.0f;
+const bool SMALL_IRON_DISSOLVES = true;
+
 //Auto Evo Values
 const int CREATURE_DEATH_POPULATION_LOSS = -60;
 const int CREATURE_KILL_POPULATION_GAIN = 50;
+const int CREATURE_SCAVENGE_POPULATION_GAIN = 10;
 const int CREATURE_REPRODUCE_POPULATION_GAIN = 50;
 const int CREATURE_ESCAPE_POPULATION_GAIN = 50;
 
