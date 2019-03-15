@@ -683,10 +683,20 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         auto species = MicrobeOperations::getSpeciesComponent(world, microbeEntity);
         if (species !is null){
             this.speciesColour = species.colour;
-            }
+        }
         // Our coordinates are already set when this is called
         // so just cache this
         this.cartesianPosition = Hex::axialToCartesian(q, r);
+
+        // Calculate hexSize depending if species is baceteria or not
+        // Scaling parameters that we need to scale
+        double hexSize = 0;
+        if(species.isBacteria) {
+            this.cartesianPosition /= 2;
+            hexSize = 0.375;
+        }
+        else
+            hexSize = HEX_SIZE;
 
         assert(organelleEntity == NULL_OBJECT, "PlacedOrganelle already had an entity");
 
@@ -733,7 +743,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
             // Create the matrix with the offset
             Ogre::Matrix4 hexFinalOffset(translation);
 
-            PhysicsShape@ hexCollision = world.GetPhysicalWorld().CreateSphere(HEX_SIZE * 2);
+            PhysicsShape@ hexCollision = world.GetPhysicalWorld().CreateSphere(hexSize * 2);
 
             if(hexCollision is null)
                 assert(false, "Failed to create Sphere for hex");
