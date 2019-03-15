@@ -882,7 +882,6 @@ ObjectID spawnBacteria(CellStageWorld@ world, Float3 pos, const string &in speci
         return NULL_OBJECT;
     }
 
-
     // Create microbeEntity with correct template, physics and species name
     auto microbeEntity = _createMicrobeEntity(world, aiControlled, speciesName,
         // in_editor
