@@ -906,7 +906,6 @@ ObjectID spawnBacteria(CellStageWorld@ world, Float3 pos, const string &in speci
     node.Scale = Float3(0.5, 0.5, 0.5);
     node.Marked = true;
 
-
     // Need to set bacteria spawn and it needs to be squared like it
     // is in the spawn system. code, if part of colony but not
     // directly spawned give a spawned component
