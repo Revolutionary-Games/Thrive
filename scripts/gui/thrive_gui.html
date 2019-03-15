@@ -134,7 +134,7 @@
         
 	  <div id="winContainer">
 		<span id="winTitle">YOU HAVE THRIVED!</span>
-		<span id="winBody">Congratulation- a winner is y... who am I kidding, you have thrived! You have won in the 0.4.0 build Good job, you may continue playing after this screen closes if you wish, or start a new game in a new world.</span>
+		<span id="winBody">Congratulation- a winner is y... who am I kidding, you have thrived! You have won in the 0.4.1 build Good job, you may continue playing after this screen closes if you wish, or start a new game in a new world.</span>
 	  </div>
 	  
 	  <div id="extinctionContainer">
@@ -294,37 +294,36 @@
 		environment to process in your cell's organelles and generate
 		ATP. Be careful not to let your ATP stores run out, or you
 		will slow down, lose health and eventually die.
-		<br><br> The various compound clouds are:<br> White –
-Glucose <br> Yellow – Hydrogen Sulfide <br> Orange - Ammonia  <br> Purple - Phosphates <br>
+		<br><br> The various compound clouds are:<br><br> White –
+Glucose <br> Yellow – Hydrogen Sulfide <br> Orange - Ammonia  <br> Purple - Phosphates <br> Rust Brown - Iron Ions <br><br>
 
-Glucose makes ATP, Hydrogen Sulfide can be converted into glucose via chemoplasts and Ammonia and Phosphates are crucial for
-reproduction. <br><br>
+Glucose makes ATP<br>
+Hydrogen Sulfide can be converted into glucose via chemoplasts and chemosynthesizing proteins<br>
+Iron Ions can be converted via rusticyanin into ATP<br>
+and Ammonia and Phosphates are crucial for reproduction. <br><br>
 
 Press E to release a dangerous agent, Oxytoxy NT, to kill other cells
 and then collect the spilled compounds if you have a toxin vacuole. <br><br>
 
-You can also engulf cells and bacteria that are smaller than you by pressing
+You can also engulf cells and bacteria and iron chunks and cell chunks that are smaller than you by pressing
 G. This will cost additional ATP and will slow you down. Don't forget
 to press G a second time to stop engulfing. <br><br>
-
-You can also gain a pilus in the editor and skewer other cells and bacteria  <br><br>
 
 To reproduce you need to divide each of your organelles into two and
 then duplicate the DNA in your nucleus. Each organelle needs 2 ammonia
 and 2 phosphate to split in
 half. 
 <br><br>
-Osmoregulation Now costs ATP, which means the bigger your cell is, the more Mitochondria (or cytoplasm, which does Glycolysis now) you need to avoid losing ATP when you are stationary.
-It works this way: Osmoregulation costs are ((Organelle Amount)x1)/per second , each empty hex of cytoplasm generates 4 ATP per second aswell (Due to glycolysis), which means if you are losing ATP
-due to osmoregulation just add a couple empty hexes cytoplasm or a mitochondria or remove some organelles. Be wary of this when making huge cells...
+Osmoregulation Now costs ATP, which means the bigger your cell is, the more Mitochondria or Metabolosomes or Rusticyanin (or cytoplasm, which does Glycolysis) you need to avoid losing ATP when you are stationary.
+It works this way: Osmoregulation costs are ((Hex Amount * 1) per second...
 <br><br>
 There are many Organelles in the editor for you to evolve, allowing for a wide range of different playstyles.
 <br><br>
 For this Release if your population (top tab) drops to zero you go extinct.
 <br>
-But if you survive for fifteen generations, you are considered to have won, after winning you get a popup and can continue playing as you wish.
+But if you survive for fifteen generations with 200 population, you are considered to have won, after winning you get a popup and can continue playing as you wish.
 <br><br>
-Be wary because your competitors are evolving alongside you.
+Be wary because your competitors are evolving alongside you. Every time you enter the editor they evolve as well.
 <br><br>
         <div class="MenuButton" id="closeHelp">Close</div>
         </div>
@@ -561,8 +560,30 @@ Be wary because your competitors are evolving alongside you.
         Each visit to the editor in the Microbe Stage Represents 200 million years of evolution<br>
 Each generation, you have 100 mutation points to spend, and each change
 (or mutation) will cost a certain amount of that MP, removing costs mutation points aswell as adding. <br><br>
-You can rotate your organelles, with A and D<br>
-Mitochondrion: Produces ATP out of glucose and atmospheric 02. Much more eficiently then cytoplasm<br>
+You can rotate your organelles, with A and D<br><br>
+
+Prokaryotic Structures<br>
+Metabolosomes: Produces the same amount of ATP of a mitocondria, but is way way less efficient, it only takes up 1 Hex<br>
+
+Chemosynthisizing Proteins: Produces half of the glucose out of Hydrogen Sulfide as a chemoplast, but also performs glycolysis, takes up 1 Hex <br>
+
+Chromatophores: Produces 1/3rd the amount of glucose as a normal chloroplast, but also performs glycolysis, and takes up 1 Hex.<br>
+
+Rusticyanin: Converts iron ions into ATP, and takes up 1 Hex.<br>
+
+Cytoplasm: Increases the rate of compound absorbtion and has 4 storage space and performs glycolysis (Produces small amounts of ATP).<br><br>
+
+External Organelles<br>
+
+Flagella: Moves your cell faster by consuming ATP. <br>
+
+Pilus: Can be used to stab other cells. <br><br>
+
+Membrane Bound Organelles <br>
+
+Nucleus: Takes up 11 hexes and allows for evolution of membrane bound organelles. And also doubles your cells size. (Can only be evolved once)<br>
+
+Mitochondrion: Produces ATP out of glucose and atmospheric 02. Much more efficiently then cytoplasm<br>
 
 Chloroplast: Makes glucose out of sunlight and atmospheric CO2. <br>
 
@@ -570,21 +591,10 @@ Chemoplast: Makes glucose out of Hydrogen Sulfide. <br>
 
 Nitrogen Fixing Plastid: Makes ammonia from ATP and atmospheric Nitrogen. <br>
 
-Vacuole: Stores 50 collected compounds. <br>
+Vacuole: Stores 15 collected compounds. <br>
 
-Toxin Vacuoles: Produces toxins (called OxyToxyNT). <br>
+Toxin Vacuoles: Produces toxins (called OxyToxyNT). <p>
 
-Flagella: Moves your cell faster by consuming ATP. <br>
-
-Pilus: Can be used to stab other cells. <br>
-
-Metabolosomes: Produces the same amount of ATP of a mitocondria, but is way way less efficient, it only takes up 1 Hex and has 10 storage space<br>
-
-Chemosynthisizing Proteins: Produces half of the glucose out of Hydrogen Sulfide as a chemoplast, but also performs glycolysis, takes up 1 Hex and has 20 storage space<br>
-
-Chromatophores: Produces 1/3rd the amount of glucose as a normal chloroplast, but also performs glycolysis, and has 10 storage space, and takes up 1 Hex.<br><br>
-
-Cytoplasm: Increases the rate of compound absorbtion and has 20 storage space and performs glycolysis (Produces small amounts of ATP).</p>
           <div class="MenuButton" id="closeHelpEditor">Close</div>
             </div>
            <div id="tipMsgEditor"></div>

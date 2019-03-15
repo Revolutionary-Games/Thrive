@@ -221,6 +221,9 @@ function openHelp(){
             "the compounds in, different biomes sometimes spawn at different rates.",
         "Heres a tip, The more flagella you have, the faster you go, " +
             "vroom vroom, but it also costs more ATP",
+        "Heres a tip, you can en[g]ulf chunks iron or otherwise.",
+        "Heres a tip, prepare before adding a nucleus." +
+        " those things are expensive! In upkeep and up front cost.",
         "Fun Fact, Did you know that there are over 8000 species of ciliate on planet earth?",
         "Fun Fact, The Stentor is a ciliate that can stretch itself and catch prey " +
             "in a kind of trumpet like mouth that draws prey in by generating " +
@@ -230,7 +233,7 @@ function openHelp(){
             "cytoplasm called pseudopods, eventually we want those in thrive.",
         "Heres a tip, Watch out for larger cells and large bacteria, " +
             "it's not fun to be digested,  and they will eat you.",
-        "Heres a tip, Osmoregulation costs 1 ATP per second per organelle your cell has, " +
+        "Heres a tip, Osmoregulation costs 1 ATP per second per hex, " +
             " each empty hex of cytoplasm generates 5 ATP per second aswell," +
             "which means if you are losing ATP due to osmoregulation just add a couple" +
             " empty hexes cytoplasm or remove some organelles",
@@ -238,6 +241,7 @@ function openHelp(){
             "sense that most creatures you find will be related to one " +
         "or two other species due to evolution happening around you, see if" +
         " you can identify them!",
+        "Heres a tip, if your cell is 150 hexes, you can engulf the large iron chunks.",
         "Fun Fact, One of the first playable game-play prototypes was made " +
         "by our awesome programmer, untrustedlife!"
     ];
