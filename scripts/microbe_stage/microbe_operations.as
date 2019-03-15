@@ -679,35 +679,39 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
     }
 }
 
-void playSoundWithDistance(CellStageWorld@ world, const string &in soundPath, ObjectID microbeEntity)
-    {
+void playSoundWithDistance(CellStageWorld@ world, const string &in soundPath,
+    ObjectID microbeEntity)
+{
     auto location = world.GetComponent_Position(microbeEntity)._Position;
     auto playerEntity = GetThriveGame().playerData().activeCreature();
+
     Position@ thisPosition = world.GetComponent_Position(playerEntity);
     MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
+
     // Length is squared so also square the variable we are dividing
     float thisVolume = 1000.0f/(sqrt(((thisPosition._Position-location).LengthSquared()))+1);
     float soundVolume = thisVolume;
+
     // Play sound
-    if (@microbeComponent.otherAudio is null ||
+    if (microbeComponent.otherAudio is null ||
                 !microbeComponent.otherAudio.Get().isPlaying())
-        {
-         @microbeComponent.otherAudio = GetEngine().GetSoundDevice().Play2DSound(
+    {
+        @microbeComponent.otherAudio = GetEngine().GetSoundDevice().Play2DSound(
             soundPath, false, true);
         if(microbeComponent.otherAudio !is null){
             if(microbeComponent.otherAudio.HasInternalSource()){
-                    microbeComponent.otherAudio.Get().setVolume(soundVolume);
-                    microbeComponent.otherAudio.Get().play();
-                    } else {
-                        LOG_ERROR("Created sound player doesn't have internal "
-                            "sound source");
-                    }
+                microbeComponent.otherAudio.Get().setVolume(soundVolume);
+                microbeComponent.otherAudio.Get().play();
             } else {
-                //this was happening so often it caused lag
-                //LOG_ERROR("Failed to create sound player");
+                LOG_ERROR("Created sound player doesn't have internal "
+                    "sound source");
             }
+        } else {
+            //this was happening so often it caused lag
+            //LOG_ERROR("Failed to create sound player");
         }
     }
+}
 
 // Default version of toggleEngulfMode that takes ObjectID
 void toggleEngulfMode(CellStageWorld@ world, ObjectID microbeEntity)

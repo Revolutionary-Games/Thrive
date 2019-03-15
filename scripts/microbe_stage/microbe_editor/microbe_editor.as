@@ -963,16 +963,15 @@ class MicrobeEditor{
 
             templateOrganelles = newOrganelles;
 
-            // Grab render of player cell
+            // Grab render node of player cell
             auto node =  world.GetComponent_RenderNode(player);
 
-            //! Change player species cell size depending on presence or not of nucleus
+            // Change player species cell size depending on whether they are a bacteria or not
             if(checkIsNucleusPresent()) {
                 playerSpecies.isBacteria = false;
                 node.Scale = Float3(1.0, 1.0, 1.0);
                 node.Marked = true;
-            }
-            else {
+            } else {
                 playerSpecies.isBacteria = true;
                 node.Scale = Float3(0.5, 0.5, 0.5);
                 node.Marked = true;
