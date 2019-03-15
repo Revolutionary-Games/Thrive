@@ -855,16 +855,14 @@ ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in specie
     // TODO: Why is this here with the separate spawnBacteria function existing?
     // Bacteria get scaled to half size
     if(species.isBacteria){
-        // TODO: wow, this is a big hack and no way guarantees that
-        // the physics size matches the rendered size
         node.Scale = Float3(0.5, 0.5, 0.5);
         node.Marked = true;
 
-        // This call is also not the cheapest. So would be much better
-        // if the physics generation actually did the right then when
-        // species.isBacteria is true
-        /*rigidBodyComponent.ChangeShape(world.GetPhysicalWorld(),
-            rigidBodyComponent.Body.Shape);*/
+        // ! We add physics to fit with render using restoreOrganelleLayout function
+        MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
+        SpeciesComponent@ species =  MicrobeOperations::getSpeciesComponent(world, microbeEntity);
+
+        Species::restoreOrganelleLayout(world, microbeEntity, microbeComponent, species);
     }
 
     return microbeEntity;
@@ -899,6 +897,9 @@ ObjectID spawnBacteria(CellStageWorld@ world, Float3 pos, const string &in speci
     microbePos._Position = pos;
     microbePos.Marked = true;
 
+    MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
+    SpeciesComponent@ species =  MicrobeOperations::getSpeciesComponent(world, microbeEntity);
+
     auto physics = world.GetComponent_Physics(microbeEntity);
     physics.Body.SetMass(physics.Body.Mass * 10);
     physics.JumpTo(microbePos);
@@ -909,15 +910,11 @@ ObjectID spawnBacteria(CellStageWorld@ world, Float3 pos, const string &in speci
     node.Node.setPosition(pos);
 
     // Bacteria get scaled to half size
-    // TODO: wow, this is a big hack and no way guarantees that
-    // the physics size matches the rendered size
     node.Scale = Float3(0.5, 0.5, 0.5);
     node.Marked = true;
-    // This call is also not the cheapest. So would be much better
-    // if the physics generation actually did the right then when
-    // species.isBacteria is true
-    physics.ChangeShape(world.GetPhysicalWorld(),
-        world.GetPhysicalWorld().CreateSphere(HEX_SIZE/2.0f));
+
+    // ! We add physics to fit with render using restoreOrganelleLayout function
+    Species::restoreOrganelleLayout(world, microbeEntity, microbeComponent, species);
 
     // Need to set bacteria spawn and it needs to be squared like it
     // is in the spawn system. code, if part of colony but not

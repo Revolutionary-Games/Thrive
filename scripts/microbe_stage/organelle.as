@@ -160,7 +160,7 @@ class Organelle{
         return result;
     }
 
-    Float3 calculateCenterOffset() const
+    Float3 calculateCenterOffset(SpeciesComponent@ species) const
     {
         int count = 0;
 
@@ -173,6 +173,9 @@ class Organelle{
 
             auto hex = cast<Hex@>(hexes[keys[i]]);
             offset += Hex::axialToCartesian(hex.q, hex.r);
+            if(species.isBacteria) {
+                offset /= 2;
+            }           
         }
 
         offset /= count;
@@ -677,18 +680,23 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         if (species !is null){
             this.speciesColour = species.colour;
             }
+
         // Our coordinates are already set when this is called
-        // so just cache this
+        // so just cache this    
+        this.cartesianPosition = Hex::axialToCartesian(q, r);
 
-        // Cartesian distance depending if species is bacteria or not
-        if(species.isBacteria)
-            this.cartesianPosition = Hex::axialToCartesian(q/2, r/2);
+        // Calcuate hexSize depending if species is baceteria or not
+        double hexSize = 0;
+        if(species.isBacteria) {
+            this.cartesianPosition /= 2;
+            hexSize = 0.375;
+        }
         else
-            this.cartesianPosition = Hex::axialToCartesian(q, r);
-
+            hexSize = HEX_SIZE;
+       
         assert(organelleEntity == NULL_OBJECT, "PlacedOrganelle already had an entity");
 
-        Float3 offset = organelle.calculateCenterOffset();
+        Float3 offset = organelle.calculateCenterOffset(species);
 
         RenderNode@ renderNode;
 
@@ -721,13 +729,6 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         // Add hex collision shapes
         auto hexes = organelle.getHexes();
 
-        //! HexSize depending if species is bacteria or not
-        float hexSize = 0;
-        if(species.isBacteria)
-            hexSize = HEX_SIZE / 2;
-        else
-            hexSize = HEX_SIZE * 2;
-
         for(uint i = 0; i < hexes.length(); ++i){
 
             Hex@ hex = hexes[i];
@@ -735,10 +736,13 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
             // Also add our offset to the hex offset
             Float3 translation = Hex::axialToCartesian(hex.q, hex.r) + this.cartesianPosition;
 
+            if(species.isBacteria) 
+                translation /= 2;
+            
             // Create the matrix with the offset
             Ogre::Matrix4 hexFinalOffset(translation);
 
-            PhysicsShape@ hexCollision = world.GetPhysicalWorld().CreateSphere(hexSize);
+            PhysicsShape@ hexCollision = world.GetPhysicalWorld().CreateSphere(hexSize * 2);
 
             if(hexCollision is null)
                 assert(false, "Failed to create Sphere for hex");
