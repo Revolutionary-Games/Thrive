@@ -676,8 +676,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         auto species = MicrobeOperations::getSpeciesComponent(world, microbeEntity);
         if (species !is null){
             this.speciesColour = species.colour;
-            }
-
+        }
         // Our coordinates are already set when this is called
         // so just cache this
         this.cartesianPosition = Hex::axialToCartesian(q, r);
