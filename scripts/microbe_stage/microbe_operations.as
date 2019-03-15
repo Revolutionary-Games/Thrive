@@ -834,6 +834,7 @@ ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in specie
         return NULL_OBJECT;
     }
 
+    // Create microbeEntity with correct template, physics and species name
     auto microbeEntity = _createMicrobeEntity(world, aiControlled, speciesName,
         // in_editor
         false);
@@ -859,15 +860,8 @@ ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in specie
     // TODO: Why is this here with the separate spawnBacteria function existing?
     // Bacteria get scaled to half size
     if(species.isBacteria){
-        // TODO: wow, this is a big hack and no way guarantees that
-        // the physics size matches the rendered size
         node.Scale = Float3(0.5, 0.5, 0.5);
         node.Marked = true;
-        // This call is also not the cheapest. So would be much better
-        // if the physics generation actually did the right then when
-        // species.isBacteria is true
-        physics.ChangeShape(world.GetPhysicalWorld(),
-            world.GetPhysicalWorld().CreateSphere(HEX_SIZE/2.0f));
     }
 
     return microbeEntity;
@@ -893,6 +887,7 @@ ObjectID spawnBacteria(CellStageWorld@ world, Float3 pos, const string &in speci
         return NULL_OBJECT;
     }
 
+    // Create microbeEntity with correct template, physics and species name
     auto microbeEntity = _createMicrobeEntity(world, aiControlled, speciesName,
         // in_editor
         false);
@@ -912,15 +907,8 @@ ObjectID spawnBacteria(CellStageWorld@ world, Float3 pos, const string &in speci
     node.Node.setPosition(pos);
 
     // Bacteria get scaled to half size
-    // TODO: wow, this is a big hack and no way guarantees that
-    // the physics size matches the rendered size
     node.Scale = Float3(0.5, 0.5, 0.5);
     node.Marked = true;
-    // This call is also not the cheapest. So would be much better
-    // if the physics generation actually did the right then when
-    // species.isBacteria is true
-    physics.ChangeShape(world.GetPhysicalWorld(),
-        world.GetPhysicalWorld().CreateSphere(HEX_SIZE/2.0f));
 
     // Need to set bacteria spawn and it needs to be squared like it
     // is in the spawn system. code, if part of colony but not
