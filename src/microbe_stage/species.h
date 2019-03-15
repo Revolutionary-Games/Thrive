@@ -22,6 +22,7 @@ public:
     std::string epithet;
     double fear;
     double aggression;
+    double opportunism;
     double activity;
     double focus;
     MEMBRANE_TYPE speciesMembraneType;

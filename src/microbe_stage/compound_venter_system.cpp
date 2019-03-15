@@ -21,6 +21,22 @@ using namespace thrive;
 // CompoundVenterComponent
 CompoundVenterComponent::CompoundVenterComponent() : Leviathan::Component(TYPE)
 {}
+// ------------------------------------ //
+// EngulfableComponent
+EngulfableComponent::EngulfableComponent() : Leviathan::Component(TYPE) {}
+
+void
+    EngulfableComponent::setSize(float size)
+{
+    this->size = size;
+}
+
+float
+    EngulfableComponent::getSize()
+{
+    return this->size;
+}
+
 
 void
     CompoundVenterSystem::Run(CellStageWorld& world)
@@ -37,6 +53,7 @@ void
             CompoundBagComponent& bag = std::get<0>(*value.second);
             CompoundVenterComponent& venter = std::get<1>(*value.second);
             // Loop through all the compounds in the storage bag and eject them
+            bool vented = false;
             for(const auto& compound : bag.compounds) {
                 double compoundAmount = compound.second.amount;
                 CompoundId compoundId = compound.first;
@@ -45,7 +62,14 @@ void
                     venter.ventCompound(
                         position, compoundId, venter.ventAmount, world);
                     bag.takeCompound(compoundId, venter.ventAmount);
+                    vented = true;
                 }
+            }
+
+            // If you did not vent anything this step and the venter component
+            // is flagged to dissolve you, dissolve you
+            if(vented == false && venter.getDoDissolve()) {
+                world.QueueDestroyEntity(value.first);
             }
         }
     }
@@ -71,4 +95,16 @@ float
     CompoundVenterComponent::getVentAmount()
 {
     return this->ventAmount;
+}
+
+void
+    CompoundVenterComponent::setDoDissolve(bool dissolve)
+{
+    this->doDissolve = dissolve;
+}
+
+bool
+    CompoundVenterComponent::getDoDissolve()
+{
+    return this->doDissolve;
 }

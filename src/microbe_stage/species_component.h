@@ -37,6 +37,7 @@ public:
     double fear;
     double activity;
     double focus;
+    double opportunism;
     int32_t population;
     int32_t generation;
 

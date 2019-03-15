@@ -48,6 +48,7 @@ class MicrobeComponent : ScriptComponent{
             this.speciesName = species.name;
             }
         this.isPlayerMicrobe = isPlayerMicrobe;
+        this.isBacteria = species.isBacteria;
         this.engulfMode = false;
         this.isBeingEngulfed = false;
         this.hostileEngulfer = NULL_OBJECT;
@@ -61,6 +62,11 @@ class MicrobeComponent : ScriptComponent{
             }
         this.microbeEntity = forEntity;
         this.agentEmissionCooldown = 0;
+
+        //cache hexes in microbe
+        for(uint i = 0; i < organelles.length(); ++i){
+            totalHexCountCache += organelles[i].organelle.getHexCount();
+        }
 
         // Microbe system update should initialize this component on next tick
     }
@@ -129,6 +135,7 @@ class MicrobeComponent : ScriptComponent{
 
     // TODO: initialize
     float hitpoints = DEFAULT_HEALTH;
+    float previousHitpoints = DEFAULT_HEALTH;
     float maxHitpoints = DEFAULT_HEALTH;
     bool dead = false;
     uint deathTimer = 0;
@@ -159,6 +166,7 @@ class MicrobeComponent : ScriptComponent{
     double stored = 0;
     bool initialized = false;
     bool isPlayerMicrobe = false;
+    bool isBacteria = false;
     float maxBandwidth = 10.0 * BANDWIDTH_PER_ORGANELLE; // wtf is a bandwidth anyway?
     float remainingBandwidth = 0.0;
     uint compoundCollectionTimer = EXCESS_COMPOUND_COLLECTION_INTERVAL;
@@ -186,6 +194,9 @@ class MicrobeComponent : ScriptComponent{
     ObjectID microbeEntity = NULL_OBJECT;
 
     Float3 queuedMovementForce = Float3(0, 0, 0);
+
+    // This variable is used to cache the size of the hexes
+    int totalHexCountCache = 0;
 }
 
 //! Helper for MicrobeSystem
@@ -381,7 +392,7 @@ class MicrobeSystem : ScriptSystem{
             atpDamage(microbeEntity);
         }
 
-        //	Handle hitpoints
+        //  Handle hitpoints
         if((microbeComponent.hitpoints < microbeComponent.maxHitpoints))
         {
             if(MicrobeOperations::getCompoundAmount(world, microbeEntity,
@@ -473,7 +484,7 @@ class MicrobeSystem : ScriptSystem{
                 world.GetScriptComponentHolder("MicrobeComponent").Find(microbeComponent.hostileEngulfer));
             if ((hostileMicrobeComponent is null) || (!hostileMicrobeComponent.engulfMode) ||
             (hostileMicrobeComponent.dead) || (ourPosition._Position -  predatorPosition._Position).LengthSquared() >=
-            ((hostileMicrobeComponent.organelles.length()+3)*HEX_SIZE)+50){
+            ((hostileMicrobeComponent.totalHexCountCache+3)*HEX_SIZE)+50){
                 microbeComponent.hostileEngulfer = NULL_OBJECT;
                 microbeComponent.isBeingEngulfed = false;
                 }
@@ -488,7 +499,7 @@ class MicrobeSystem : ScriptSystem{
         //TODO:It seems to happen no matter what (even if it takes away less atp then you generate per second),
         //we should probably make it take into account the amount of atp being generated so resources arent wasted
         //for now made it not take away if your atp amount is equal to your capacity
-        auto osmoCost = (microbeComponent.organelles.length()*ATP_COST_FOR_OSMOREGULATION)/(logicTime);
+        auto osmoCost = (microbeComponent.totalHexCountCache*ATP_COST_FOR_OSMOREGULATION)/(logicTime);
         //auto osmoCost = (microbeComponent.organelles.length()*2)/logicTime;
         double atpAmount = MicrobeOperations::getCompoundAmount(world, microbeEntity,SimulationParameters::compoundRegistry().getTypeId("atp"));
 
@@ -504,6 +515,11 @@ class MicrobeSystem : ScriptSystem{
         applyCellMovement(components, logicTime);
 
         compoundAbsorberComponent.setAbsorbtionCapacity(microbeComponent.capacity);
+
+        if(microbeComponent.hitpoints != microbeComponent.previousHitpoints)
+            membraneComponent.setHealthFraction(microbeComponent.hitpoints / microbeComponent.maxHitpoints);
+
+        microbeComponent.previousHitpoints = microbeComponent.hitpoints;
     }
 
     private void updateDeadCell(MicrobeSystemCached@ &in components, uint logicTime)
@@ -560,9 +576,9 @@ class MicrobeSystem : ScriptSystem{
         const Float3 velocity = physics.Body.GetVelocity();
 
         // There should be no Y velocity so it should be zero
-        const Float3 drag(velocity.X * (CELL_DRAG_MULTIPLIER+(CELL_SIZE_DRAG_MULTIPLIER*microbeComponent.organelles.length())),
-            velocity.Y * (CELL_DRAG_MULTIPLIER+(CELL_SIZE_DRAG_MULTIPLIER*microbeComponent.organelles.length())),
-            velocity.Z * (CELL_DRAG_MULTIPLIER+(CELL_SIZE_DRAG_MULTIPLIER*microbeComponent.organelles.length())));
+        const Float3 drag(velocity.X * (CELL_DRAG_MULTIPLIER+(CELL_SIZE_DRAG_MULTIPLIER*microbeComponent.totalHexCountCache)),
+            velocity.Y * (CELL_DRAG_MULTIPLIER+(CELL_SIZE_DRAG_MULTIPLIER*microbeComponent.totalHexCountCache)),
+            velocity.Z * (CELL_DRAG_MULTIPLIER+(CELL_SIZE_DRAG_MULTIPLIER*microbeComponent.totalHexCountCache)));
 
         // Only add drag if it is over CELL_REQUIRED_DRAG_BEFORE_APPLY
         if(abs(drag.X) >= CELL_REQUIRED_DRAG_BEFORE_APPLY){
@@ -614,7 +630,7 @@ class MicrobeSystem : ScriptSystem{
                 //     microbeComponent.queuedMovementForce.Z);
 
                 // There is an movement without flagella cost
-                auto cost = (BASE_MOVEMENT_ATP_COST*microbeComponent.organelles.length())/logicTime;
+                auto cost = (BASE_MOVEMENT_ATP_COST*microbeComponent.totalHexCountCache)/logicTime;
 
                 // TODO: if there isn't enough energy this needs to scale the impulse
                 MicrobeOperations::takeCompound(world, microbeEntity,

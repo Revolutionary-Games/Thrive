@@ -231,6 +231,7 @@ void onReturnFromEditor(CellStageWorld@ world)
 
     // Spawn another cell from the player species
     SpeciesComponent@ ourActualSpecies = MicrobeOperations::getSpeciesComponent(world, player);
+    auto membraneComponent = world.GetComponent_MembraneComponent(player);
 
     // Call this before creating the clone.
     Species::initProcessorComponent(world, player, ourActualSpecies);
@@ -239,6 +240,12 @@ void onReturnFromEditor(CellStageWorld@ world)
     Species::copyProcessesFromSpecies(world, ourActualSpecies, player);
 
     PlayerSpeciesSpawner factory("Default");
+
+    // Offset between cells
+    pos._Position.X += membraneComponent.calculateEncompassingCircleRadius();
+    pos._Position.Z += membraneComponent.calculateEncompassingCircleRadius();
+    pos.Marked = true;
+
     auto spawned = factory.factorySpawn(world, pos._Position);
 
     LOG_WRITE("TODO: the spawned cell from the player species from the editor split will "
@@ -298,6 +305,7 @@ void cellHitFloatingOrganelle(GameWorld@ world, ObjectID firstEntity, ObjectID s
 }
 
 
+// Will use this for food chunks now
 void cellHitIron(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
 {
     // Determine which is the iron
@@ -314,6 +322,31 @@ void cellHitIron(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
         floatingEntity = secondEntity;
         cellEntity = firstEntity;
     }
+    auto microbeComponent = MicrobeOperations::getMicrobeComponent(asCellWorld,cellEntity);
+
+    auto engulfableComponent = asCellWorld.GetComponent_EngulfableComponent(floatingEntity);
+
+    auto compoundBagComponent = asCellWorld.GetComponent_CompoundBagComponent(cellEntity);
+
+    auto floatBag = asCellWorld.GetComponent_CompoundBagComponent(floatingEntity);
+
+    if (microbeComponent !is null && engulfableComponent !is null
+        && compoundBagComponent !is null && floatBag !is null)
+        {
+        if (microbeComponent.engulfMode && microbeComponent.totalHexCountCache >=
+            engulfableComponent.getSize()*ENGULF_HP_RATIO_REQ)
+            {
+            uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
+            for(uint compoundId = 0; compoundId < compoundCount; ++compoundId){
+                CompoundId realCompoundId = compoundId;
+                double amountToTake =
+                    floatBag.takeCompound(realCompoundId,floatBag.getCompoundAmount(realCompoundId));
+                // Right now you get way too much compounds for engulfing the things but hey
+                compoundBagComponent.giveCompound(realCompoundId, (amountToTake/CHUNK_ENGULF_COMPOUND_DIVISOR));
+            }
+            world.QueueDestroyEntity(floatingEntity);
+            }
+        }
 }
 
 // Cell Hit Oxytoxy
@@ -368,12 +401,19 @@ void cellOnCellActualContact(GameWorld@ world, ObjectID firstEntity, ObjectID se
     if (firstMicrobeComponent !is null && secondMicrobeComponent !is null)
     {
         // Get microbe sizes here
-        int firstMicrobeComponentOrganelles = firstMicrobeComponent.organelles.length();
-        int secondMicrobeComponentOrganelles = secondMicrobeComponent.organelles.length();
+        int firstMicrobeComponentHexCount = firstMicrobeComponent.totalHexCountCache;
+        int secondMicrobeComponentHexCount = secondMicrobeComponent.totalHexCountCache;
+
+        if(firstMicrobeComponent.isBacteria)
+            firstMicrobeComponentHexCount /= 2;
+
+        if(secondMicrobeComponent.isBacteria)
+            secondMicrobeComponentHexCount /= 2;
+
         if (firstMicrobeComponent.engulfMode)
         {
-            if(firstMicrobeComponentOrganelles >
-                (ENGULF_HP_RATIO_REQ * secondMicrobeComponentOrganelles) &&
+            if(firstMicrobeComponentHexCount >
+                (ENGULF_HP_RATIO_REQ * secondMicrobeComponentHexCount) &&
                 firstMicrobeComponent.dead == false && secondMicrobeComponent.dead == false)
             {
                 secondMicrobeComponent.isBeingEngulfed = true;
@@ -383,8 +423,8 @@ void cellOnCellActualContact(GameWorld@ world, ObjectID firstEntity, ObjectID se
         }
         if (secondMicrobeComponent.engulfMode)
         {
-            if(secondMicrobeComponentOrganelles >
-                (ENGULF_HP_RATIO_REQ * firstMicrobeComponentOrganelles) &&
+            if(secondMicrobeComponentHexCount >
+                (ENGULF_HP_RATIO_REQ * firstMicrobeComponentHexCount) &&
                 secondMicrobeComponent.dead == false && firstMicrobeComponent.dead == false)
             {
                 firstMicrobeComponent.isBeingEngulfed = true;
@@ -418,16 +458,23 @@ bool beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity
     if (firstMicrobeComponent !is null && secondMicrobeComponent !is null)
     {
         // Get microbe sizes here
-        int firstMicrobeComponentOrganelles = firstMicrobeComponent.organelles.length();
-        int secondMicrobeComponentOrganelles = secondMicrobeComponent.organelles.length();
+        int firstMicrobeComponentHexCount = firstMicrobeComponent.totalHexCountCache;
+        int secondMicrobeComponentHexCount = secondMicrobeComponent.totalHexCountCache;
+
+        if(firstMicrobeComponent.isBacteria)
+            firstMicrobeComponentHexCount /= 2;
+
+        if(secondMicrobeComponent.isBacteria)
+            secondMicrobeComponentHexCount /= 2;
+
         // If either cell is engulfing we need to do things
         //return false;
         //LOG_INFO(""+firstMicrobeComponent.engulfMode);
        // LOG_INFO(""+secondMicrobeComponent.engulfMode);
         if (firstMicrobeComponent.engulfMode)
         {
-            if(firstMicrobeComponentOrganelles >
-                (ENGULF_HP_RATIO_REQ * secondMicrobeComponentOrganelles) &&
+            if(firstMicrobeComponentHexCount >
+                (ENGULF_HP_RATIO_REQ * secondMicrobeComponentHexCount) &&
                 firstMicrobeComponent.dead == false && secondMicrobeComponent.dead == false)
             {
                 secondMicrobeComponent.isBeingEngulfed = true;
@@ -439,8 +486,8 @@ bool beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity
         }
         if (secondMicrobeComponent.engulfMode)
         {
-            if(secondMicrobeComponentOrganelles >
-                (ENGULF_HP_RATIO_REQ * firstMicrobeComponentOrganelles) &&
+            if(secondMicrobeComponentHexCount >
+                (ENGULF_HP_RATIO_REQ * firstMicrobeComponentHexCount) &&
                 secondMicrobeComponent.dead == false && firstMicrobeComponent.dead == false)
             {
                 firstMicrobeComponent.isBeingEngulfed = true;
@@ -480,7 +527,8 @@ bool hitAgent(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
     {
         if (firstPropertiesComponent !is null && secondMicrobeComponent !is null)
         {
-            if (firstPropertiesComponent.getSpeciesName()==secondMicrobeComponent.speciesName)
+            if (firstPropertiesComponent.getSpeciesName()==secondMicrobeComponent.speciesName ||
+            firstPropertiesComponent.getParentEntity()==secondEntity)
             {
                 shouldCollide = false;
                 return shouldCollide;
@@ -488,7 +536,8 @@ bool hitAgent(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
         }
         else if (secondPropertiesComponent !is null && firstMicrobeComponent !is null)
         {
-            if (secondPropertiesComponent.getSpeciesName()==firstMicrobeComponent.speciesName)
+            if (secondPropertiesComponent.getSpeciesName()==firstMicrobeComponent.speciesName ||
+            secondPropertiesComponent.getParentEntity()==firstEntity)
             {
                 shouldCollide = false;
                 return shouldCollide;
@@ -507,25 +556,27 @@ bool hitAgent(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
 }
 
 void createAgentCloud(CellStageWorld@ world, CompoundId compoundId,
-    Float3 pos, Float3 direction, float amount, float lifetime, string speciesName)
+    Float3 pos, Float3 direction, float amount, float lifetime,
+    string speciesName, ObjectID creatorEntity)
 {
     auto normalizedDirection = direction.Normalize();
     auto agentEntity = world.CreateEntity();
 
     auto position = world.Create_Position(agentEntity, pos + (direction * 1.5),
         Ogre::Quaternion(Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
-            Ogre::Vector3(0, 1, 0)));
-
-
-    auto rigidBody = world.Create_Physics(agentEntity, position);
+            Ogre::Vector3(0,1, 0)));
 
     // Agent
     auto agentProperties = world.Create_AgentProperties(agentEntity);
     agentProperties.setSpeciesName(speciesName);
+    agentProperties.setParentEntity(creatorEntity);
     agentProperties.setAgentType("oxytoxy");
 
+    auto rigidBody = world.Create_Physics(agentEntity, position);
+
+
     auto body = rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
-        world.GetPhysicalWorld().CreateSphere(HEX_SIZE), 1,
+        world.GetPhysicalWorld().CreateSphere(HEX_SIZE), 0.5,
         world.GetPhysicalMaterial("agentCollision"));
 
     body.ConstraintMovementAxises();
@@ -596,6 +647,7 @@ ObjectID createToxin(CellStageWorld@ world, Float3 pos)
     // Agent
     auto agentProperties = world.Create_AgentProperties(toxinEntity);
     agentProperties.setSpeciesName("");
+    agentProperties.setParentEntity(NULL_OBJECT);
     agentProperties.setAgentType("oxytoxy");
 
     auto model = world.Create_Model(toxinEntity, renderNode.Node, "oxytoxy.mesh");
@@ -635,6 +687,8 @@ ObjectID createIron(CellStageWorld@ world, Float3 pos)
     // 5 is the default
     float ironAmount = 3.0f;
     double ironBagAmount= IRON_PER_SMALL_CHUNK;
+    bool dissolves=SMALL_IRON_DISSOLVES;
+    int ironEngulfSize = 2;
     // There are four kinds
     switch (GetEngine().GetRandom().GetNumber(0, 4))
         {
@@ -654,7 +708,9 @@ ObjectID createIron(CellStageWorld@ world, Float3 pos)
         mesh="iron_05.mesh";
         ironSize=10;
         ironAmount=10.0f;
+        ironEngulfSize = 100;
         ironBagAmount=IRON_PER_BIG_CHUNK;
+        dissolves=LARGE_IRON_DISSOLVES;
         break;
         }
 
@@ -662,8 +718,10 @@ ObjectID createIron(CellStageWorld@ world, Float3 pos)
     auto venter = world.Create_CompoundVenterComponent(ironEntity);
     // So that larger iron chunks give out more compounds
     venter.setVentAmount(ironAmount);
+    venter.setDoDissolve(dissolves);
     auto bag = world.Create_CompoundBagComponent(ironEntity);
-
+    auto engulfable = world.Create_EngulfableComponent(ironEntity);
+    engulfable.setSize(ironEngulfSize);
     bag.setCompound(SimulationParameters::compoundRegistry().getTypeId("iron"),ironBagAmount);
     auto model = world.Create_Model(ironEntity, renderNode.Node, mesh);
     // Need to set the tint
@@ -672,7 +730,7 @@ ObjectID createIron(CellStageWorld@ world, Float3 pos)
     auto rigidBody = world.Create_Physics(ironEntity, position);
     auto body = rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
         world.GetPhysicalWorld().CreateSphere(ironSize),100,
-        //iron
+        //engulfable
         world.GetPhysicalMaterial("iron"));
 
     body.ConstraintMovementAxises();

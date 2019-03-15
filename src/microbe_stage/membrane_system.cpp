@@ -10,6 +10,7 @@
 #include <OgreTechnique.h>
 #include <OgreTextureUnitState.h>
 
+#include <algorithm>
 #include <atomic>
 
 using namespace thrive;
@@ -198,10 +199,21 @@ void
             ->getPass(0)
             ->getFragmentProgramParameters()
             ->setNamedConstant("membraneColour", colour);
+        coloredMaterial->compile();
+    }
+}
+
+void
+    MembraneComponent::setHealthFraction(float value)
+{
+    healthFraction = std::clamp(value, 0.0f, 1.0f);
+
+    // If we already have created a material we need to re-apply it
+    if(coloredMaterial) {
         coloredMaterial->getTechnique(0)
             ->getPass(0)
-            ->getTextureUnitState(0)
-            ->setHardwareGammaEnabled(true);
+            ->getFragmentProgramParameters()
+            ->setNamedConstant("healthPercentage", healthFraction);
         coloredMaterial->compile();
     }
 }
@@ -326,6 +338,18 @@ void
             ->getPass(0)
             ->getFragmentProgramParameters()
             ->setNamedConstant("membraneColour", colour);
+
+        coloredMaterial->getTechnique(0)
+            ->getPass(0)
+            ->getFragmentProgramParameters()
+            ->setNamedConstant("healthPercentage", healthFraction);
+        coloredMaterial->compile();
+
+        coloredMaterial->getTechnique(0)
+            ->getPass(0)
+            ->getTextureUnitState(0)
+            ->setHardwareGammaEnabled(true);
+
         coloredMaterial->compile();
     }
 

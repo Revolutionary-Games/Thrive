@@ -62,14 +62,6 @@ public:
             m_microbeBackgroundMesh.reset();
             m_microbeBackgroundSubMesh = nullptr;
         }
-
-        if(m_microbeEditorBackgroundMesh) {
-
-            Ogre::MeshManager::getSingleton().remove(
-                m_microbeEditorBackgroundMesh);
-            m_microbeEditorBackgroundMesh.reset();
-            m_microbeEditorBackgroundSubMesh = nullptr;
-        }
     }
 
     void
@@ -98,8 +90,6 @@ public:
     {
         destroyBackgroundItem();
 
-        LOG_INFO("Creating background item");
-
         LEVIATHAN_ASSERT(
             m_cellStage, "Trying to create background item before world");
 
@@ -117,7 +107,7 @@ public:
             if(!m_microbeEditorBackgroundItem) {
                 m_microbeEditorBackgroundItem =
                     m_microbeEditor->GetScene()->createItem(
-                        m_microbeEditorBackgroundMesh, Ogre::SCENE_STATIC);
+                        m_microbeBackgroundMesh, Ogre::SCENE_STATIC);
                 m_microbeEditorBackgroundItem->setCastShadows(false);
 
                 // Need to edit the render queue and add it to an early one
@@ -145,8 +135,6 @@ public:
     //! This is the background object of the cell stage
     Ogre::MeshPtr m_microbeBackgroundMesh;
     Ogre::SubMesh* m_microbeBackgroundSubMesh;
-    Ogre::MeshPtr m_microbeEditorBackgroundMesh;
-    Ogre::SubMesh* m_microbeEditorBackgroundSubMesh;
     Ogre::Item* m_microbeBackgroundItem = nullptr;
     Ogre::SceneNode* m_backgroundRenderNode = nullptr;
 
@@ -166,6 +154,17 @@ ThriveGame::ThriveGame()
     LOG_INFO("Enabling cheats because this is a development build");
     m_cheatsEnabled = true;
 #endif // MAKE_RELEASE
+
+#ifdef _WIN32
+    // This should fix the texture loading error. It is likely caused by running
+    // out of file descriptors, so here we set our limit to the max Not sure why
+    // it was able to happen on linux. Perhaps the launcher could do "ulimit" to
+    // increase the file limit when running the game, but it is very rare to
+    // happen on Linux
+    if(_setmaxstdio(2048) != 2048) {
+        LOG_ERROR("Max open file increase failed! _setmaxstdio");
+    }
+#endif //_WIN32
 
     StaticGame = this;
 }
@@ -375,17 +374,7 @@ void
 
         m_impl->m_microbeBackgroundSubMesh->setMaterialName("Background");
     }
-    // This also needs to be manually destroyed later.
-    if(!m_impl->m_microbeEditorBackgroundMesh) {
-        m_impl->m_microbeEditorBackgroundMesh =
-            Leviathan::GeometryHelpers::CreateScreenSpaceQuad(
-                "Editor_background", -1, -1, 2, 2);
 
-        m_impl->m_microbeEditorBackgroundSubMesh =
-            m_impl->m_microbeEditorBackgroundMesh->getSubMesh(0);
-
-        m_impl->m_microbeEditorBackgroundSubMesh->setMaterialName("Background");
-    }
     // Setup render queue for it
     m_impl->m_cellStage->GetScene()->getRenderQueue()->setRenderQueueMode(
         1, Ogre::RenderQueue::FAST);
@@ -546,17 +535,17 @@ void
 
     m_impl->m_microbeEditor->SetCamera(camera);
 
-    // Background
-    // Ill add an if statement here and see what happens
     if(!m_impl->m_editorBackgroundRenderNode) {
         m_impl->m_editorBackgroundRenderNode =
             m_impl->m_microbeEditor->GetScene()->createSceneNode(
                 Ogre::SCENE_STATIC);
+
         // Setup render queue for it
         m_impl->m_microbeEditor->GetScene()
             ->getRenderQueue()
             ->setRenderQueueMode(1, Ogre::RenderQueue::FAST);
-        // This also attaches it
+
+        // This creates and attaches the item
         m_impl->createBackgroundItem();
     }
 
@@ -984,9 +973,6 @@ void
     LOG_INFO("Setting microbe background to: " + material);
     m_impl->m_microbeBackgroundSubMesh->setMaterialName(material);
 
-    // If the banana background re-appears after this change, we will make it
-    // just use the default blue background. SO just comment this out then.
-    m_impl->m_microbeEditorBackgroundSubMesh->setMaterialName(material);
     m_impl->createBackgroundItem();
 }
 

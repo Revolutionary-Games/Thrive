@@ -268,7 +268,7 @@ const dictionary DEFAULT_INITIAL_COMPOUNDS =
         {"iron", InitialCompound(0)}
     };
 
-// For iron phillic microbes
+// For ferrophillic microbes
 const dictionary DEFAULT_INITIAL_COMPOUNDS_IRON =
     {
         {"atp", InitialCompound(30,300)},
@@ -278,6 +278,18 @@ const dictionary DEFAULT_INITIAL_COMPOUNDS_IRON =
         {"hydrogensulfide", InitialCompound(0)},
         {"oxytoxy", InitialCompound(0)},
         {"iron", InitialCompound(30,300)}
+    };
+
+// For chemophillic microbes
+const dictionary DEFAULT_INITIAL_COMPOUNDS_CHEMO =
+    {
+        {"atp", InitialCompound(30,300)},
+        {"glucose", InitialCompound(10,30)},
+        {"ammonia", InitialCompound(30,100)},
+        {"phosphates", InitialCompound(0)},
+        {"hydrogensulfide", InitialCompound(30,300)},
+        {"oxytoxy", InitialCompound(0)},
+        {"iron", InitialCompound(0)}
     };
 
 string randomSpeciesName()
@@ -312,15 +324,7 @@ class Species{
             genus = generateNameSection();
             epithet = generateNameSection();
 
-            // Variables used in AI to determine general behavior
-            this.aggression = GetEngine().GetRandom().GetFloat(0.0f,
-                MAX_SPECIES_AGRESSION);
-            this.fear = GetEngine().GetRandom().GetFloat(0.0f,
-                MAX_SPECIES_FEAR);
-            this.activity = GetEngine().GetRandom().GetFloat(0.0f,
-                MAX_SPECIES_ACTIVITY);
-            this.focus = GetEngine().GetRandom().GetFloat(0.0f,
-                MAX_SPECIES_FOCUS);
+            initializeBehavior();
 
             auto stringSize = GetEngine().GetRandom().GetNumber(MIN_INITIAL_LENGTH,
                 MAX_INITIAL_LENGTH);
@@ -332,10 +336,96 @@ class Species{
             }
 
             const auto cytoplasmGene = getOrganelleDefinition("cytoplasm").gene;
+            string energyGene = cytoplasmGene;
+            const auto bonusPadding = GetEngine().GetRandom().GetNumber(1, 10);
 
             // it should always have a nucleus and a cytoplasm.
             stringCode = getOrganelleDefinition("nucleus").gene +
                 cytoplasmGene;
+
+            // generated cells need to be viable for now. so heres all possible survival strategies i can think of
+            switch (GetEngine().GetRandom().GetNumber(0, 15))
+                {
+                case 0:
+                energyGene = getOrganelleDefinition("cytoplasm").gene;
+                //if cytoplasm you need a few more of them
+                for(int i = 0; i < bonusPadding; i++){
+                    this.stringCode.insert(GetEngine().GetRandom().GetNumber(2,
+                        stringCode.length()), energyGene);
+                }
+                break;
+                case 1:
+                    energyGene = getOrganelleDefinition("metabolosome").gene;
+                break;
+                case 2:
+                    energyGene = getOrganelleDefinition("rusticyanin").gene;
+                    energyGene += getOrganelleDefinition("cytoplasm").gene;
+                break;
+                case 3:
+                    energyGene = getOrganelleDefinition("cytoplasm").gene;
+                    //if cytoplasm you need a few more of them
+                    for(int i = 0; i < bonusPadding; i++){
+                        this.stringCode.insert(GetEngine().GetRandom().GetNumber(2,
+                            stringCode.length()), energyGene);
+                    }
+                    energyGene += getOrganelleDefinition("chemoSynthisizingProteins").gene;
+                break;
+                case 4:
+                    energyGene = getOrganelleDefinition("mitochondrion").gene;
+                case 5:
+                    energyGene = getOrganelleDefinition("chemoSynthisizingProteins").gene;
+                    energyGene += getOrganelleDefinition("mitochondrion").gene;
+                case 6:
+                    energyGene = getOrganelleDefinition("chloroplast").gene;
+                    energyGene += getOrganelleDefinition("mitochondrion").gene;
+                case 7:
+                    energyGene = getOrganelleDefinition("metabolosome").gene;
+                    energyGene += getOrganelleDefinition("chemoSynthisizingProteins").gene;
+                break;
+                case 8:
+                    energyGene = getOrganelleDefinition("metabolosome").gene;
+                    energyGene += getOrganelleDefinition("chromatophors").gene;
+                case 9:
+                    energyGene = getOrganelleDefinition("chromatophors").gene;
+                    energyGene += getOrganelleDefinition("mitochondrion").gene;
+                break;
+                case 10:
+                    energyGene = getOrganelleDefinition("chemoplast").gene;
+                    energyGene += getOrganelleDefinition("mitochondrion").gene;
+                break;
+                case 11:
+                    energyGene = getOrganelleDefinition("chemoplast").gene;
+                    energyGene += getOrganelleDefinition("metabolosome").gene;
+                break;
+                case 12:
+                    energyGene = getOrganelleDefinition("chromatophors").gene;
+                    energyGene += getOrganelleDefinition("cytoplasm").gene;
+                break;
+                case 13:
+                    energyGene = getOrganelleDefinition("chloroplast").gene;
+                    energyGene += getOrganelleDefinition("cytoplasm").gene;
+                break;
+                case 14:
+
+                    energyGene = getOrganelleDefinition("cytoplasm").gene;
+                    //if cytoplasm you need a few more of them
+                    for(int i = 0; i < bonusPadding; i++){
+                        this.stringCode.insert(GetEngine().GetRandom().GetNumber(2,
+                            stringCode.length()), energyGene);
+                    }
+                    energyGene += getOrganelleDefinition("chemoplast").gene;
+                break;
+                case 15:
+                    energyGene = getOrganelleDefinition("chloroplast").gene;
+                    energyGene += getOrganelleDefinition("metabolosome").gene;
+                break;
+                }
+
+            const auto energyPadding = GetEngine().GetRandom().GetNumber(1, 5);
+             for(int i = 0; i < energyPadding; i++){
+                    this.stringCode.insert(GetEngine().GetRandom().GetNumber(2,
+                        stringCode.length()), energyGene);
+                }
 
             for(int i = 0; i < stringSize; i++){
                 this.stringCode += getRandomLetter(false);
@@ -346,8 +436,15 @@ class Species{
             if (GetEngine().GetRandom().GetNumber(0, 100) <= 25)
             {
                 for(int i = 0; i < cytoplasmPadding; i++){
-                    this.stringCode.insert(GetEngine().GetRandom().GetNumber(2,
+                    if  (GetEngine().GetRandom().GetNumber(0, 20)<= 10)
+                        {
+                         this.stringCode.insert(GetEngine().GetRandom().GetNumber(2,
+                            stringCode.length()), energyGene);
+                        }
+                    else {
+                         this.stringCode.insert(GetEngine().GetRandom().GetNumber(2,
                             stringCode.length()), cytoplasmGene);
+                        }
                 }
             }
 
@@ -398,15 +495,7 @@ class Species{
              }
             genus = parent.genus;
 
-            // Variables used in AI to determine general behavior mutate these
-            this.aggression = parent.aggression+GetEngine().GetRandom().GetFloat(
-                MIN_SPECIES_PERSONALITY_MUTATION, MAX_SPECIES_PERSONALITY_MUTATION);
-            this.fear = parent.fear+GetEngine().GetRandom().GetFloat(
-                MIN_SPECIES_PERSONALITY_MUTATION, MAX_SPECIES_PERSONALITY_MUTATION);
-            this.activity = parent.activity+GetEngine().GetRandom().GetFloat(
-                MIN_SPECIES_PERSONALITY_MUTATION, MAX_SPECIES_PERSONALITY_MUTATION);
-            this.focus = parent.focus+GetEngine().GetRandom().GetFloat(
-                MIN_SPECIES_PERSONALITY_MUTATION, MAX_SPECIES_PERSONALITY_MUTATION);
+            mutateBehavior(parent);
 
             // Make sure not over or under our scales
             cleanPersonality();
@@ -493,8 +582,45 @@ class Species{
             {
                 this.focus=0;
             }
+
+            // Opportunism
+            if (this.opportunism > MAX_SPECIES_OPPORTUNISM)
+            {
+                this.opportunism=MAX_SPECIES_OPPORTUNISM;
+            }
+            if (this.opportunism < 0.0f)
+            {
+                this.opportunism=0;
+            }
         }
 
+    private void initializeBehavior(){
+            // Variables used in AI to determine general behavior
+            this.aggression = GetEngine().GetRandom().GetFloat(0.0f,
+                MAX_SPECIES_AGRESSION);
+            this.fear = GetEngine().GetRandom().GetFloat(0.0f,
+                MAX_SPECIES_FEAR);
+            this.activity = GetEngine().GetRandom().GetFloat(0.0f,
+                MAX_SPECIES_ACTIVITY);
+            this.focus = GetEngine().GetRandom().GetFloat(0.0f,
+                MAX_SPECIES_FOCUS);
+            this.opportunism = GetEngine().GetRandom().GetFloat(0.0f,
+                MAX_SPECIES_OPPORTUNISM);
+    }
+
+    private void mutateBehavior(Species@ parent){
+        // Variables used in AI to determine general behavior mutate these
+        this.aggression = parent.aggression+GetEngine().GetRandom().GetFloat(
+            MIN_SPECIES_PERSONALITY_MUTATION, MAX_SPECIES_PERSONALITY_MUTATION);
+        this.fear = parent.fear+GetEngine().GetRandom().GetFloat(
+            MIN_SPECIES_PERSONALITY_MUTATION, MAX_SPECIES_PERSONALITY_MUTATION);
+        this.activity = parent.activity+GetEngine().GetRandom().GetFloat(
+            MIN_SPECIES_PERSONALITY_MUTATION, MAX_SPECIES_PERSONALITY_MUTATION);
+        this.focus = parent.focus+GetEngine().GetRandom().GetFloat(
+            MIN_SPECIES_PERSONALITY_MUTATION, MAX_SPECIES_PERSONALITY_MUTATION);
+        this.opportunism = parent.opportunism+GetEngine().GetRandom().GetFloat(
+            MIN_SPECIES_PERSONALITY_MUTATION, MAX_SPECIES_PERSONALITY_MUTATION);
+    }
     private void commonConstructor(CellStageWorld@ world)
     {
         @forWorld = world;
@@ -505,12 +631,18 @@ class Species{
         {
         templateEntity = Species::createSpecies(forWorld, this.name, this.genus, this.epithet,
             organelles, this.colour, this.isBacteria, this.speciesMembraneType,
-            DEFAULT_INITIAL_COMPOUNDS_IRON, this.aggression, this.fear, this.activity, this.focus);
+            DEFAULT_INITIAL_COMPOUNDS_IRON, this.aggression, this.fear, this.activity, this.focus, this.opportunism);
+        }
+        else if (stringCode.findFirst('C') >= 0 || stringCode.findFirst('c') >= 0)
+        {
+        templateEntity = Species::createSpecies(forWorld, this.name, this.genus, this.epithet,
+            organelles, this.colour, this.isBacteria, this.speciesMembraneType,
+            DEFAULT_INITIAL_COMPOUNDS_CHEMO, this.aggression, this.fear, this.activity, this.focus, this.opportunism);
         }
         else {
         templateEntity = Species::createSpecies(forWorld, this.name, this.genus, this.epithet,
             organelles, this.colour, this.isBacteria, this.speciesMembraneType,
-            DEFAULT_INITIAL_COMPOUNDS, this.aggression, this.fear, this.activity, this.focus);
+            DEFAULT_INITIAL_COMPOUNDS, this.aggression, this.fear, this.activity, this.focus, this.opportunism);
         }
 
     }
@@ -710,15 +842,7 @@ class Species{
         genus = generateNameSection();
         epithet = generateNameSection();
 
-        // Variables used in AI to determine general behavior
-        this.aggression = GetEngine().GetRandom().GetFloat(0.0f,
-                MAX_SPECIES_AGRESSION);
-        this.fear = GetEngine().GetRandom().GetFloat(0.0f,
-                MAX_SPECIES_FEAR);
-        this.activity = GetEngine().GetRandom().GetFloat(0.0f,
-                MAX_SPECIES_ACTIVITY);
-        this.focus = GetEngine().GetRandom().GetFloat(0.0f,
-                MAX_SPECIES_FOCUS);
+        initializeBehavior();
 
         // Bacteria are tiny, start off with a max of 3 hexes (maybe
         // we should start them all off with just one? )
@@ -807,15 +931,7 @@ class Species{
         }
 
 
-        // Variables used in AI to determine general behavior mutate these
-        this.aggression = parent.aggression+GetEngine().GetRandom().GetFloat(
-            MIN_SPECIES_PERSONALITY_MUTATION, MAX_SPECIES_PERSONALITY_MUTATION);
-        this.fear = parent.fear+GetEngine().GetRandom().GetFloat(
-            MIN_SPECIES_PERSONALITY_MUTATION, MAX_SPECIES_PERSONALITY_MUTATION);
-        this.activity = parent.activity+GetEngine().GetRandom().GetFloat(
-            MIN_SPECIES_PERSONALITY_MUTATION, MAX_SPECIES_PERSONALITY_MUTATION);
-        this.focus = parent.focus+GetEngine().GetRandom().GetFloat(
-            MIN_SPECIES_PERSONALITY_MUTATION, MAX_SPECIES_PERSONALITY_MUTATION);
+        mutateBehavior(parent);
 
         // Make sure not over or under our scales
         cleanPersonality();
@@ -904,6 +1020,7 @@ class Species{
     string epithet;
     bool isBacteria;
     double aggression = 100.0f;
+    double opportunism = 100.0f;
     double fear = 100.0f;
     double activity = 0.0f;
     double focus = 0.0f;
@@ -947,9 +1064,6 @@ const auto INITIAL_BACTERIA = 4;
 
 // If there are more species than this then all species get their population reduced by half
 const auto MAX_SPECIES = 15;
-
-// If there are more bacteria than this then all species get their population reduced by half
-const auto MAX_BACTERIA = 6;
 
 // If there are less species than this creates new ones.
 const auto MIN_SPECIES = 3;
@@ -1002,7 +1116,7 @@ class SpeciesSystem : ScriptSystem{
 
         // Various mass extinction events
         // Only run one "big event" per turn
-        if(species.length() > MAX_SPECIES+MAX_BACTERIA && !ranEventThisStep){
+        if(species.length() > MAX_SPECIES && !ranEventThisStep){
             LOG_INFO("Mass extinction time");
             // F to pay respects: TODO: add a notification for when this happens
             ranEventThisStep = true;
@@ -1334,6 +1448,9 @@ void restoreOrganelleLayout(CellStageWorld@ world, ObjectID microbeEntity,
 
         MicrobeOperations::addOrganelle(world, microbeEntity, organelle, editShape);
     }
+
+    // cache isBacteria from species
+    microbeComponent.isBacteria = species.isBacteria;
 }
 
 void initProcessorComponent(CellStageWorld@ world, ObjectID entity,
@@ -1453,14 +1570,14 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name,
 
     return createSpecies(world, name, "Player", "Species", convertedOrganelles,
         fromTemplate.colour, fromTemplate.isBacteria, fromTemplate.speciesMembraneType,
-        fromTemplate.compounds, 100.0f, 100.0f, 100.0f, 200.0f);
+        fromTemplate.compounds, 100.0f, 100.0f, 100.0f, 200.0f, 100.0f);
 }
 //! Creates an entity that has all the species stuff on it
 //! AI controlled ones need to be in addition in SpeciesSystem
 ObjectID createSpecies(CellStageWorld@ world, const string &in name, const string &in genus,
     const string &in epithet, array<PlacedOrganelle@> organelles, Float4 colour,
     bool isBacteria, MEMBRANE_TYPE speciesMembraneType,  const dictionary &in compounds,
-    double aggression, double fear, double activity, double focus)
+    double aggression, double fear, double activity, double focus, double opportunism)
 {
     ObjectID speciesEntity = world.CreateEntity();
 
@@ -1507,6 +1624,7 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name, const strin
     speciesComponent.fear = fear;
     speciesComponent.activity = activity;
     speciesComponent.focus = focus;
+    speciesComponent.opportunism = opportunism;
 
     // Iterates over all compounds, and sets amounts and priorities
     uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();

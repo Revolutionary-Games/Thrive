@@ -116,6 +116,8 @@ bool removeOrganelle(CellStageWorld@ world, ObjectID microbeEntity, Int2 hex)
 
     organelle.onRemovedFromMicrobe(microbeEntity, rigidBodyComponent.Body.Shape);
 
+    microbeComponent.totalHexCountCache -= organelle.organelle.getHexCount();
+
     // TODO: there seriously needs to be some caching here to make this less expensive
     rigidBodyComponent.ChangeShape(world.GetPhysicalWorld(), rigidBodyComponent.Body.Shape);
 
@@ -196,6 +198,8 @@ bool addOrganelle(CellStageWorld@ world, ObjectID microbeEntity, PlacedOrganelle
     auto position = world.GetComponent_Position(microbeEntity);
 
     microbeComponent.organelles.insertLast(@organelle);
+
+    microbeComponent.totalHexCountCache += organelle.organelle.getHexCount();
 
     // Update collision shape
     if(editShape !is null){
@@ -623,23 +627,22 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         {
         // The front of the microbe
         Float3 exit = Hex::axialToCartesian(0, 1);
+        //This will get what it thinks is the "edge"
         auto membraneCoords = membraneComponent.GetExternalOrganelle(exit.X, exit.Z);
-        //Get the distance to eject the compunds
-        auto maxR = 0;
+
+        //This adds the nucleus r (y) so that it can deal with weird nucleus positioning,
+        //and that is all we actually need
+        int maxR = 2;
         for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
-            auto organelle = microbeComponent.organelles[i];
-            auto hexes = organelle.organelle.getHexes();
-            for(uint a = 0; a < hexes.length(); ++a){
-                auto hex = hexes[a];
-                if(hex.r + organelle.r > maxR){
-                    maxR = hex.r + organelle.r;
-                }
+            auto organelle = cast<PlacedOrganelle>(microbeComponent.organelles[i]);
+            if (organelle.organelle.name == "nucleus"){
+                maxR=maxR+(-organelle.r);
             }
         }
+
         //The distance is two hexes away from the back of the microbe.
         //This distance could be precalculated when adding/removing an organelle
         //for more efficient pooping.
-        auto ejectionDistance = (maxR) * HEX_SIZE/2;
         auto angle = 180;
         // Find the direction the microbe is facing
         auto yAxis = Ogre::Quaternion(cellPosition._Orientation).zAxis();
@@ -653,8 +656,9 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         auto s = sin(finalAngle/180*PI);
         auto c = cos(finalAngle/180*PI);
         // Membrane coords to world coords
-        auto xnew = -membraneCoords.x * c + membraneCoords.z * s;
-        auto ynew = membraneCoords.x * s + membraneCoords.z * c;
+        // Plus bunch more space in world coordinates like we added before with maxr but cleaner
+        auto xnew = -(membraneCoords.x) * c + (membraneCoords.z+maxR*HEX_SIZE) * s;
+        auto ynew = (membraneCoords.x)* s + (membraneCoords.z+maxR*HEX_SIZE) * c;
         // Find the direction the microbe is facing
         auto vec = ( microbeComponent.facingTargetPoint - cellPosition._Position);
         auto direction = vec.Normalize();
@@ -664,8 +668,8 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         if (amountToEject >= MINIMUM_AGENT_EMISSION_AMOUNT)
         {
             playSoundWithDistance(world, "Data/Sound/soundeffects/microbe-release-toxin.ogg",microbeEntity);
-            createAgentCloud(world, compoundId, cellPosition._Position+Float3(xnew*ejectionDistance,0,ynew*ejectionDistance),
-                    direction, amountToEject, lifeTime, microbeComponent.speciesName);
+            createAgentCloud(world, compoundId, cellPosition._Position+Float3(xnew,0,ynew),
+                    direction, amountToEject, lifeTime, microbeComponent.speciesName, microbeEntity);
 
 
             // The cooldown time is inversely proportional to the amount of agent vacuoles.
@@ -1103,7 +1107,8 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
         LOG_ERROR("Trying to kill a dead microbe");
         return;
     }
-
+    //diable engulf mode when a cell dies
+    microbeComponent.engulfMode = false;
     // Releasing all the agents.
     // To not completely deadlock in this there is a maximum of 5 of these created
     const int maxAgentsToShoot = 5;
@@ -1120,7 +1125,9 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
                 0, GetEngine().GetRandom().GetNumber(0.0f, 1.0f) * 2 - 1);
 
             createAgentCloud(world, compoundId, position._Position, direction, ejectedAmount,
-                2000, microbeComponent.speciesName);
+                2000, microbeComponent.speciesName, NULL_OBJECT);
+            //take oxytoxy
+            takeCompound(world,microbeEntity,compoundId,ejectedAmount);
             ++createdAgents;
 
             if(createdAgents >= maxAgentsToShoot)
@@ -1158,37 +1165,66 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
         }
     }
 
-    // They were added in order already so looping through this other thing is fine
-    for(uint64 compoundID = 0; compoundID <
-                SimulationParameters::compoundRegistry().getSize(); ++compoundID)
-        {
-            //LOG_INFO(""+float(compoundsToRelease[formatInt(compoundID)]));
-            //LOG_INFO(""+float(compoundsToRelease[formatUInt(compoundID)]));
-           if (SimulationParameters::compoundRegistry().getTypeData(compoundID).isCloud &&
-                float(compoundsToRelease[formatUInt(compoundID)]) > 0.0f)
-            {
-            //Earlier we added all of the keys to the list by ID,in order,  so this is fine
-            //LOG_INFO("Releasing "+float(compoundsToRelease[formatUInt(compoundID)]));
-            if (SimulationParameters::compoundRegistry().getTypeData(compoundID).isCloud)
-                {
-                ejectCompound(world, microbeEntity, uint64(compoundID),float(compoundsToRelease[formatUInt(compoundID)]));
-                }
-            }
-        }
 
+
+    for(uint i = 0; i < uint(max(1,microbeComponent.totalHexCountCache/CORPSE_CHUNK_DIVISER)); ++i){
+        //Amount of compound in one chunk
+        double amount = double(microbeComponent.totalHexCountCache)/CORPSE_CHUNK_AMOUNT_DIVISER;
+        // Chunk(should separate into own function)
+        ObjectID chunkEntity = world.CreateEntity();
+        auto positionAdded = Float3(GetEngine().GetRandom().GetFloat(-2.0f, 2.0f),0,
+            GetEngine().GetRandom().GetFloat(-2.0f, 2.0f));
+        auto chunkPosition = world.Create_Position(chunkEntity, position._Position+positionAdded,
+            Ogre::Quaternion(Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
+                Ogre::Vector3(0,1,1)));
+
+        auto renderNode = world.Create_RenderNode(chunkEntity);
+        renderNode.Scale = Float3(1.0f, 1.0f, 1.0f);
+        renderNode.Marked = true;
+        renderNode.Node.setOrientation(Ogre::Quaternion(
+            Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)), Ogre::Vector3(0,1,1)));
+        renderNode.Node.setPosition(chunkPosition._Position);
+        // Grab random organelle from cell and use that
+        auto organelleIndex = GetEngine().GetRandom().GetNumber(0, microbeComponent.organelles.length()-1);
+        string mesh = microbeComponent.organelles[organelleIndex].organelle.mesh;
+        if (mesh != "")
+            {
+            auto model = world.Create_Model(chunkEntity, renderNode.Node, mesh);
+            // Color chunk based on cell
+            model.GraphicalObject.setCustomParameter(1, microbeComponent.speciesColour);
+            }
+        else {
+            auto model = world.Create_Model(chunkEntity, renderNode.Node, "mitochondrion.mesh");
+            // Color chunk based on cell
+            model.GraphicalObject.setCustomParameter(1, microbeComponent.speciesColour);
+            }
+        auto rigidBody = world.Create_Physics(chunkEntity, chunkPosition);
+        auto body = rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
+            world.GetPhysicalWorld().CreateSphere(1), 10,
+        //engulfable
+        world.GetPhysicalMaterial("iron"));
+        body.ConstraintMovementAxises();
+        rigidBody.JumpTo(chunkPosition);
+        auto venter = world.Create_CompoundVenterComponent(chunkEntity);
+        //Engulfable
+        auto engulfable = world.Create_EngulfableComponent(chunkEntity);
+        engulfable.setSize(2);
+        // So that larger iron chunks give out more compounds
+        venter.setVentAmount(3);
+        venter.setDoDissolve(true);
+        auto bag = world.Create_CompoundBagComponent(chunkEntity);
+        // They were added in order already so looping through this other thing is fine
+        for(uint64 compoundID = 0; compoundID <
+                SimulationParameters::compoundRegistry().getSize(); ++compoundID)
+            {
+            //Randomize compound amount a bit so things "rot away"
+            bag.setCompound(compoundID, (float(compoundsToRelease[formatUInt(compoundID)])/
+                GetEngine().GetRandom().GetFloat(amount/3.0f, amount)*CORPSE_COMPOUND_COMPENSATION));
+            }
+    }
     // Play the death sound
     playSoundWithDistance(world, "Data/Sound/soundeffects/microbe-death.ogg", microbeEntity);
 
-    //TODO: Get this working
-    //auto deathAnimationEntity = world.CreateEntity();
-    //auto lifeTimeComponent = world.Create_TimedLifeComponent(deathAnimationEntity, 4000);
-    //auto deathAnimSceneNode = world.Create_RenderNode(deathAnimationEntity);
-    //auto deathAnimModel = world.Create_Model(deathAnimationEntity, deathAnimSceneNode.Node,
-    //     "MicrobeDeath.mesh");
-    //deathAnimSceneNode.Node.setPosition(position._Position);
-
-    //LOG_WRITE("TODO: play animation deathAnimModel");
-    // deathAnimModel.GraphicalObject.playAnimation("Death", false);
     //subtract population
     auto playerSpecies = MicrobeOperations::getSpeciesComponent(world, "Default");
     if (!microbeComponent.isPlayerMicrobe &&
@@ -1201,6 +1237,10 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
     microbeComponent.dead = true;
     microbeComponent.deathTimer = 5000;
     microbeComponent.movementDirection = Float3(0,0,0);
+    //so they stop absorbing the compounds from the chunks they release immediately
+    auto compoundAbsorberComponent = world.GetComponent_CompoundAbsorberComponent(
+        microbeEntity);
+    compoundAbsorberComponent.disable();
 
     if(rigidBodyComponent.Body !is null)
         rigidBodyComponent.Body.ClearVelocity();
