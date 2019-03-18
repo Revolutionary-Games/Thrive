@@ -1012,6 +1012,10 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, bool aiControlled,
     auto membraneComponent = world.Create_MembraneComponent(entity,
         species.speciesMembraneType);
 
+    //! Set scale for calculate absorber component radius
+    if(species.isBacteria)
+        membraneComponent.setScale(2.0f);
+
     auto compoundAbsorberComponent = world.Create_CompoundAbsorberComponent(entity);
 
     world.Create_RenderNode(entity);

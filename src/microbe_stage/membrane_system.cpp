@@ -179,6 +179,12 @@ float
     return m_encompassingCircleRadius;
 }
 
+void
+    MembraneComponent::setScale(float newScale)
+{
+    scale = newScale;
+}
+
 // ------------------------------------ //
 //! Should set the colour of the membrane once working
 void

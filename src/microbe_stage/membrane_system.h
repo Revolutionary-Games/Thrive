@@ -33,7 +33,10 @@ public:
     MembraneComponent(MEMBRANE_TYPE type);
     virtual ~MembraneComponent();
 
-
+	//! scale value to calculate circle radius cells
+    //! value 1.0 is for eukaryotic
+    //! value 2.0 is for prokaryotic
+	float scale = 1.0f;
 
     // Holder for membrane type
     MEMBRANE_TYPE membraneType;
@@ -102,6 +105,11 @@ public:
     //! placed at 0,0 local coordinate)
     float
         calculateEncompassingCircleRadius() const;
+
+	
+	//! function to set scale value
+    void
+        setScale(float newScale);
 
     //! \param parentcomponentpos The mesh is attached to this node when the
     //! mesh is created \todo As this is currently only executed once (when

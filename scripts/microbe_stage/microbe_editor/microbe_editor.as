@@ -940,9 +940,15 @@ class MicrobeEditor{
         } else if(type == "MicrobeEditorExited"){
             LOG_INFO("MicrobeEditor: applying changes to player Species");
 
+
+            auto world =  GetThriveGame().getCellStage();
+            auto player =  GetThriveGame().playerData().activeCreature();
+
             // We need to grab the player's species
             SpeciesComponent@ playerSpecies = MicrobeOperations::getSpeciesComponent(
-                GetThriveGame().getCellStage(), GetThriveGame().playerData().activeCreature());
+                world, player);
+
+            
 
             assert(playerSpecies !is null, "didn't find edited species");
 
@@ -959,6 +965,27 @@ class MicrobeEditor{
             }
 
             templateOrganelles = newOrganelles;
+
+            // Grab render of player cell
+            auto node =  world.GetComponent_RenderNode(player);          
+
+
+            // Grab memnbrane to update scale value for absorber compound system
+            auto membraneComponent = world.GetComponent_MembraneComponent(player);
+
+            //! Change player species cell size depending on presence or not of nucleus
+            if(checkIsNucleusPresent()) {
+                playerSpecies.isBacteria = false;
+                node.Scale = Float3(1.0, 1.0, 1.0);
+                node.Marked = true;
+                membraneComponent.setScale(1.0f);
+            }               
+            else {
+                playerSpecies.isBacteria = true;
+                node.Scale = Float3(0.5, 0.5, 0.5);
+                node.Marked = true;
+                membraneComponent.setScale(2.0f);
+            }
 
             LOG_INFO("MicrobeEditor: updated organelles for species: " + playerSpecies.name);
             return 1;

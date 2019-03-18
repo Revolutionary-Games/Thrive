@@ -661,6 +661,12 @@ bool
     }
 
     if(engine->RegisterObjectMethod("MembraneComponent",
+           "void setScale(float newScale)",
+           asMETHOD(MembraneComponent, setScale), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("MembraneComponent",
            "Ogre::Vector3 GetExternalOrganelle(double x, double y)",
            asMETHOD(MembraneComponent, GetExternalOrganelle),
            asCALL_THISCALL) < 0) {
