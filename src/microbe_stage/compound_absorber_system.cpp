@@ -150,7 +150,7 @@ void
         const auto grabRadius = membrane.calculateEncompassingCircleRadius() / membrane.scale;
 
         // This version is used when working with cloud local coordinates
-        const auto localGrabRadius = (grabRadius / CLOUD_RESOLUTION) / membrane.scale;
+        const auto localGrabRadius = (grabRadius / CLOUD_RESOLUTION);
 
         // Skip if not initialized //
         if(grabRadius < 1)
