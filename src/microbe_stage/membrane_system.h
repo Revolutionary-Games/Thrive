@@ -33,10 +33,10 @@ public:
     MembraneComponent(MEMBRANE_TYPE type);
     virtual ~MembraneComponent();
 
-	//! scale value to calculate circle radius cells
+    //! scale value to calculate circle radius cells
     //! value 1.0 is for eukaryotic
     //! value 2.0 is for prokaryotic
-	float scale = 1.0f;
+    float scale = 1.0f;
 
     // Holder for membrane type
     MEMBRANE_TYPE membraneType;
@@ -106,8 +106,8 @@ public:
     float
         calculateEncompassingCircleRadius() const;
 
-	
-	//! function to set scale value
+
+    //! function to set scale value
     void
         setScale(float newScale);
 

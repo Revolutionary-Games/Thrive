@@ -147,10 +147,11 @@ void
         const Float3 origin = sceneNode.Members._Position;
 
         // This version is used for world coordinate calculations
-        const auto grabRadius = membrane.calculateEncompassingCircleRadius() / membrane.scale;
+        const auto grabRadius =
+            membrane.calculateEncompassingCircleRadius() / membrane.scale;
 
         // This version is used when working with cloud local coordinates
-        const auto localGrabRadius = (grabRadius / CLOUD_RESOLUTION);
+        const auto localGrabRadius = grabRadius / CLOUD_RESOLUTION;
 
         // Skip if not initialized //
         if(grabRadius < 1)

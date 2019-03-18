@@ -948,7 +948,7 @@ class MicrobeEditor{
             SpeciesComponent@ playerSpecies = MicrobeOperations::getSpeciesComponent(
                 world, player);
 
-            
+
 
             assert(playerSpecies !is null, "didn't find edited species");
 
@@ -967,7 +967,7 @@ class MicrobeEditor{
             templateOrganelles = newOrganelles;
 
             // Grab render of player cell
-            auto node =  world.GetComponent_RenderNode(player);          
+            auto node =  world.GetComponent_RenderNode(player);
 
 
             // Grab memnbrane to update scale value for absorber compound system
@@ -979,7 +979,7 @@ class MicrobeEditor{
                 node.Scale = Float3(1.0, 1.0, 1.0);
                 node.Marked = true;
                 membraneComponent.setScale(1.0f);
-            }               
+            }
             else {
                 playerSpecies.isBacteria = true;
                 node.Scale = Float3(0.5, 0.5, 0.5);
