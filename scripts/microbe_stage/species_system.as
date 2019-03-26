@@ -1449,7 +1449,8 @@ void restoreOrganelleLayout(CellStageWorld@ world, ObjectID microbeEntity,
         MicrobeOperations::addOrganelle(world, microbeEntity, organelle, editShape);
     }
 
-    // cache isBacteria from species
+    // Cache isBacteria from species. This can be changed depending on
+    // the added organelles in the editor
     microbeComponent.isBacteria = species.isBacteria;
 }
 

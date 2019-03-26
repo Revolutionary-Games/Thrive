@@ -8,7 +8,7 @@
         },
 
         "outputs": {
-           "atp": 38.0
+           "atp": 45.0
         }
     },
 	
@@ -93,7 +93,7 @@
 
         "inputs": {
             "oxygen": 1.0,
-            "glucose": 0.7
+            "glucose": 1.0
         },
 
         "outputs": {
@@ -109,7 +109,7 @@
         },
 
         "outputs": {
-            "glucose": 0.33
+            "glucose": 0.15
         }
     },
     
@@ -118,6 +118,7 @@
 
         "inputs": {
             "carbondioxide": 0.09,
+            "oxygen": 0.21,
             "iron": 0.175
         },
 

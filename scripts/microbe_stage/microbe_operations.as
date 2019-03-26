@@ -679,35 +679,39 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
     }
 }
 
-void playSoundWithDistance(CellStageWorld@ world, const string &in soundPath, ObjectID microbeEntity)
-    {
+void playSoundWithDistance(CellStageWorld@ world, const string &in soundPath,
+    ObjectID microbeEntity)
+{
     auto location = world.GetComponent_Position(microbeEntity)._Position;
     auto playerEntity = GetThriveGame().playerData().activeCreature();
+
     Position@ thisPosition = world.GetComponent_Position(playerEntity);
     MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
+
     // Length is squared so also square the variable we are dividing
     float thisVolume = 1000.0f/(sqrt(((thisPosition._Position-location).LengthSquared()))+1);
     float soundVolume = thisVolume;
+
     // Play sound
-    if (@microbeComponent.otherAudio is null ||
+    if (microbeComponent.otherAudio is null ||
                 !microbeComponent.otherAudio.Get().isPlaying())
-        {
-         @microbeComponent.otherAudio = GetEngine().GetSoundDevice().Play2DSound(
+    {
+        @microbeComponent.otherAudio = GetEngine().GetSoundDevice().Play2DSound(
             soundPath, false, true);
         if(microbeComponent.otherAudio !is null){
             if(microbeComponent.otherAudio.HasInternalSource()){
-                    microbeComponent.otherAudio.Get().setVolume(soundVolume);
-                    microbeComponent.otherAudio.Get().play();
-                    } else {
-                        LOG_ERROR("Created sound player doesn't have internal "
-                            "sound source");
-                    }
+                microbeComponent.otherAudio.Get().setVolume(soundVolume);
+                microbeComponent.otherAudio.Get().play();
             } else {
-                //this was happening so often it caused lag
-                //LOG_ERROR("Failed to create sound player");
+                LOG_ERROR("Created sound player doesn't have internal "
+                    "sound source");
             }
+        } else {
+            //this was happening so often it caused lag
+            //LOG_ERROR("Failed to create sound player");
         }
     }
+}
 
 // Default version of toggleEngulfMode that takes ObjectID
 void toggleEngulfMode(CellStageWorld@ world, ObjectID microbeEntity)
@@ -834,6 +838,7 @@ ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in specie
         return NULL_OBJECT;
     }
 
+    // Create microbeEntity with correct template, physics and species name
     auto microbeEntity = _createMicrobeEntity(world, aiControlled, speciesName,
         // in_editor
         false);
@@ -859,15 +864,8 @@ ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in specie
     // TODO: Why is this here with the separate spawnBacteria function existing?
     // Bacteria get scaled to half size
     if(species.isBacteria){
-        // TODO: wow, this is a big hack and no way guarantees that
-        // the physics size matches the rendered size
         node.Scale = Float3(0.5, 0.5, 0.5);
         node.Marked = true;
-        // This call is also not the cheapest. So would be much better
-        // if the physics generation actually did the right then when
-        // species.isBacteria is true
-        physics.ChangeShape(world.GetPhysicalWorld(),
-            world.GetPhysicalWorld().CreateSphere(HEX_SIZE/2.0f));
     }
 
     return microbeEntity;
@@ -893,6 +891,7 @@ ObjectID spawnBacteria(CellStageWorld@ world, Float3 pos, const string &in speci
         return NULL_OBJECT;
     }
 
+    // Create microbeEntity with correct template, physics and species name
     auto microbeEntity = _createMicrobeEntity(world, aiControlled, speciesName,
         // in_editor
         false);
@@ -912,15 +911,8 @@ ObjectID spawnBacteria(CellStageWorld@ world, Float3 pos, const string &in speci
     node.Node.setPosition(pos);
 
     // Bacteria get scaled to half size
-    // TODO: wow, this is a big hack and no way guarantees that
-    // the physics size matches the rendered size
     node.Scale = Float3(0.5, 0.5, 0.5);
     node.Marked = true;
-    // This call is also not the cheapest. So would be much better
-    // if the physics generation actually did the right then when
-    // species.isBacteria is true
-    physics.ChangeShape(world.GetPhysicalWorld(),
-        world.GetPhysicalWorld().CreateSphere(HEX_SIZE/2.0f));
 
     // Need to set bacteria spawn and it needs to be squared like it
     // is in the spawn system. code, if part of colony but not
