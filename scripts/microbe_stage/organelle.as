@@ -679,14 +679,23 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
         microbeEntity = microbe;
 
+        bool bacteria = false;
+
         // This should be the only species check any organelle ever makes.
         auto species = MicrobeOperations::getSpeciesComponent(world, microbeEntity);
         if (species !is null){
             this.speciesColour = species.colour;
-            }
+            bacteria = species.isBacteria;
+        }
         // Our coordinates are already set when this is called
         // so just cache this
         this.cartesianPosition = Hex::axialToCartesian(q, r);
+
+        float hexSize = HEX_SIZE;
+
+        // Scale the hex size down for bacteria
+        if(bacteria)
+            hexSize /= 2.f;
 
         assert(organelleEntity == NULL_OBJECT, "PlacedOrganelle already had an entity");
 
@@ -694,6 +703,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
         RenderNode@ renderNode;
 
+        // Graphics setup
         if(IsInGraphicalMode()){
 
             organelleEntity = world.CreateEntity();
@@ -709,17 +719,17 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
             @renderNode = world.Create_RenderNode(organelleEntity);
             renderNode.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
             renderNode.Marked = true;
-        }
 
-        // For performance reasons we set the position here directly
-        // instead of with the position system
-        renderNode.Node.setPosition(offset + this.cartesianPosition);
-        // TODO: this MUST BE moved to the mesh file. Otherwise this mess will grow over time
-        //maybe instead of changing this here we should do so in the generation routine.
-        renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(90),
+            // For performance reasons we set the position here directly
+            // instead of with the position system
+            renderNode.Node.setPosition(offset + this.cartesianPosition);
+
+            renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(90),
                     Ogre::Vector3(1, 0, 0)) * Ogre::Quaternion(Ogre::Degree(180),
                         Ogre::Vector3(0, 1, 0)) * Ogre::Quaternion(Ogre::Degree(rotation),
                             Ogre::Vector3(0, 0, 1)));
+        }
+
         // Add hex collision shapes
         auto hexes = organelle.getHexes();
 
@@ -730,13 +740,11 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
             // Also add our offset to the hex offset
             Float3 translation = Hex::axialToCartesian(hex.q, hex.r) + this.cartesianPosition;
 
-            // Create the matrix with the offset
-            Ogre::Matrix4 hexFinalOffset(translation);
+            // Scale for bacteria physics. This might be pretty expensive to be in this loop...
+            if(bacteria)
+                translation /= 2.f;
 
-            PhysicsShape@ hexCollision = world.GetPhysicalWorld().CreateSphere(HEX_SIZE * 2);
-
-            if(hexCollision is null)
-                assert(false, "Failed to create Sphere for hex");
+            PhysicsShape@ hexCollision = world.GetPhysicalWorld().CreateSphere(hexSize * 2);
 
             collisionShape.AddChildShape(hexCollision, translation);
             _addedCollisions.insertLast(hexCollision);

@@ -347,7 +347,7 @@ const dictionary STARTER_MICROBES = {
         "Default",
         MicrobeTemplate(1/14000,
             {
-            //for testing
+                // For testing
                 {"atp", InitialCompound(60)},
                 {"glucose", InitialCompound(60)},
                 {"ammonia", InitialCompound(0)},
@@ -360,7 +360,8 @@ const dictionary STARTER_MICROBES = {
                 OrganelleTemplatePlaced("cytoplasm", 0, 0, 0)
             },
             Float4(1, 1, 1, 1),
-            false,
+            // Player starts as bacteria
+            true,
             MEMBRANE_TYPE::MEMBRANE)
     }
 };
