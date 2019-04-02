@@ -877,7 +877,7 @@ class Species{
             stringCode = getOrganelleDefinition("chemoSynthisizingProteins").gene;
             break;
         case 6:
-            stringCode = getOrganelleDefinition("nitrogenFixationProteins").gene;
+            stringCode = getOrganelleDefinition("nitrogenase").gene;
             break;
         case 7:
             stringCode = getOrganelleDefinition("rusticyanin").gene;

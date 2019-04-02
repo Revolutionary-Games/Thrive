@@ -422,7 +422,13 @@ video {
   background-color: #2dcbf0;
 }
 
-#AminoAcidsIcon {
+#NitrogenIcon {
+  width: 40px;
+  height: 40px;
+  transform: scale(0.75, 0.75);
+  top: 0;
+  left: 840px;
+  position: absolute;
   background-image: url("../../Textures/gui/bevel/AminoAcids.png");
 }
 
@@ -663,7 +669,7 @@ video {
   height: 40px;
   width: 150px;
   top: 0;
-  left: 840px;
+  left: 960px;
   font-size: 10pt;
   line-height: 40px;
   background-image: url("../../Textures/gui/bevel/LongTwoNormal.png");
@@ -674,7 +680,7 @@ video {
   height: 40px;
   width: 150px;
   top: 0;
-  left: 920px;
+  left: 1040px;
   font-size: 10pt;
   line-height: 40px;
 }
@@ -717,6 +723,27 @@ video {
   width: 150px;
   top: 0;
   left: 760px;
+  font-size: 10pt;
+  line-height: 40px;
+}
+
+#nitrogenTab {
+  position: absolute;
+  height: 40px;
+  width: 120px;
+  top: 0;
+  left: 840px;
+  font-size: 10pt;
+  line-height: 40px;
+  background-image: url("../../Textures/gui/bevel/EditPanelHeaderNormal.png");
+}
+
+#nitrogenPercent {
+  position: absolute;
+  height: 40px;
+  width: 150px;
+  top: 0;
+  left: 880px;
   font-size: 10pt;
   line-height: 40px;
 }
@@ -1247,6 +1274,16 @@ video {
   background-size: contain;
   background-image: url("../../Textures/gui/bevel/MetabolosomeIcon.png");
 }
+
+#NitrogenaseIcon {
+  position: relative;
+  left: calc(50% - 30px);
+  width: 60px;
+  height: 60px;
+  background-size: contain;
+  background-image: url("../../Textures/gui/bevel/MetabolosomeIcon.png");
+}
+
 
 #ChromatophorIcon {
   position: relative;

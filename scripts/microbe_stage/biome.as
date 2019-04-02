@@ -101,12 +101,15 @@ void setBiome(uint64 biomeId, CellStageWorld@ world){
     // Update oxygen and carbon dioxide numbers
     auto oxyId = SimulationParameters::compoundRegistry().getTypeId("oxygen");
     auto c02Id = SimulationParameters::compoundRegistry().getTypeId("carbondioxide");
+    auto n2Id = SimulationParameters::compoundRegistry().getTypeId("nitrogen");
     GenericEvent@ updateDissolvedGasses = GenericEvent("UpdateDissolvedGasses");
     NamedVars@ vars = updateDissolvedGasses.GetNamedVars();
     vars.AddValue(ScriptSafeVariableBlock("oxygenPercent",
         world.GetProcessSystem().getDissolved(oxyId)*100));
     vars.AddValue(ScriptSafeVariableBlock("co2Percent",
         world.GetProcessSystem().getDissolved(c02Id)*100));
+    vars.AddValue(ScriptSafeVariableBlock("n2Percent",
+        world.GetProcessSystem().getDissolved(n2Id)*100));
     GetEngine().GetEventHandler().CallEvent(updateDissolvedGasses);
 }
 

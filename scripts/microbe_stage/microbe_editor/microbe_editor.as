@@ -64,6 +64,7 @@ class MicrobeEditor{
             {"metabolosome", PlacementFunctionType(this.addOrganelle)},
             {"chemoSynthisizingProteins", PlacementFunctionType(this.addOrganelle)},
             {"rusticyanin", PlacementFunctionType(this.addOrganelle)},
+            {"nitrogenase", PlacementFunctionType(this.addOrganelle)},
             {"remove", PlacementFunctionType(this.removeOrganelle)}
         };
     }

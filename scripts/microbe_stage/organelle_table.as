@@ -650,16 +650,15 @@ void setupOrganelles(){
     };
     _addOrganelleToTable(Organelle(protoplasmParameters));
 
-    // nitrogenFixationProtein
-    // Uses same mode as chemoplast for now
-    auto nitrogenFixationProtein = OrganelleParameters("nitrogenFixationProteins");
+    // Nitrogenase
+    auto nitrogenFixationProtein = OrganelleParameters("nitrogenase");
 
     nitrogenFixationProtein.mass = 0.1;
     nitrogenFixationProtein.gene = "i";
-    nitrogenFixationProtein.mesh = "nitrogenplastid.mesh";
+    nitrogenFixationProtein.mesh = "metabolosome.mesh";
     nitrogenFixationProtein.chanceToCreate = 0;
     nitrogenFixationProtein.prokaryoteChance = 1;
-    nitrogenFixationProtein.mpCost = 45;
+    nitrogenFixationProtein.mpCost = 70;
     nitrogenFixationProtein.initialComposition = {
         {"phosphates", 1},
         {"ammonia",1}
@@ -669,7 +668,7 @@ void setupOrganelles(){
         storageOrganelleFactory(2.0f)
     };
     nitrogenFixationProtein.processes = {
-      TweakedProcess("nitrogenFixing", 1),
+      TweakedProcess("nitrogenaseReaction", 1),
       TweakedProcess("glycolosis", 1)
     };
     nitrogenFixationProtein.hexes = {
