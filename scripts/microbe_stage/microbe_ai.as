@@ -357,13 +357,12 @@ class MicrobeAISystem : ScriptSystem{
 
         // Retrieve nearest potential prey
         //Max position
-        Float3 testPosition = Float3(999999.0f,999999.0f,999999.0f);
+        Float3 testPosition;
+        bool setPosition=true;
         for (uint i = 0; i < allMicrobes.length(); i++){
             // Get the microbe component
             MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
                 world.GetScriptComponentHolder("MicrobeComponent").Find(allMicrobes[i]));
-
-            // At max aggression add them all
 
             if (allMicrobes[i] != microbeEntity && (secondMicrobeComponent.speciesName != microbeComponent.speciesName) && !secondMicrobeComponent.dead){
                 if ((aiComponent.speciesAggression==MAX_SPECIES_AGRESSION) or
@@ -372,7 +371,15 @@ class MicrobeAISystem : ScriptSystem{
                     //You are non-threatening to me
                     aiComponent.preyMicrobes.insertLast(allMicrobes[i]);
                     // Positions
+
                     Position@ thisPosition = world.GetComponent_Position(allMicrobes[i]);
+
+                    // At max aggression add them all
+                    if (setPosition==true){
+                        testPosition=thisPosition._Position;
+                        setPosition=false;
+                        chosenPrey = allMicrobes[i];
+                    }
 
                     if ((testPosition - position._Position).LengthSquared() > (thisPosition._Position -  position._Position).LengthSquared()){
                         testPosition = thisPosition._Position;
