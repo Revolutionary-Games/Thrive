@@ -656,9 +656,9 @@ void setupOrganelles(){
     nitrogenFixationProtein.mass = 0.1;
     nitrogenFixationProtein.gene = "i";
     nitrogenFixationProtein.mesh = "metabolosome.mesh";
-    nitrogenFixationProtein.chanceToCreate = 0;
+    nitrogenFixationProtein.chanceToCreate = 1;
     nitrogenFixationProtein.prokaryoteChance = 1;
-    nitrogenFixationProtein.mpCost = 50;
+    nitrogenFixationProtein.mpCost = 55;
     nitrogenFixationProtein.initialComposition = {
         {"phosphates", 1},
         {"ammonia",1}
