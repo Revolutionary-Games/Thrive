@@ -356,38 +356,30 @@ class MicrobeAISystem : ScriptSystem{
                     microbeComponent.specialStorageOrganelles[formatUInt(oxytoxyId)]);
 
         // Retrieve nearest potential prey
+        //Max position
+        Float3 testPosition = Float3(999999.0f,999999.0f,999999.0f);
         for (uint i = 0; i < allMicrobes.length(); i++){
             // Get the microbe component
             MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
                 world.GetScriptComponentHolder("MicrobeComponent").Find(allMicrobes[i]));
 
             // At max aggression add them all
+
             if (allMicrobes[i] != microbeEntity && (secondMicrobeComponent.speciesName != microbeComponent.speciesName) && !secondMicrobeComponent.dead){
                 if ((aiComponent.speciesAggression==MAX_SPECIES_AGRESSION) or
                     ((((numberOfAgentVacuoles+microbeComponent.totalHexCountCache)*1.0f)*(aiComponent.speciesAggression/AGRESSION_DIVISOR)) >
                     (secondMicrobeComponent.totalHexCountCache*1.0f))){
                     //You are non-threatening to me
                     aiComponent.preyMicrobes.insertLast(allMicrobes[i]);
-                    }
-            }
-            }
-
-            // Get the nearest one if it exists
-            if (aiComponent.preyMicrobes.length() > 0 )
-            {
-            Float3 testPosition = world.GetComponent_Position(aiComponent.preyMicrobes[0])._Position;
-            chosenPrey = aiComponent.preyMicrobes[0];
-            for (uint c = 0; c < aiComponent.preyMicrobes.length(); c++){
-                // Get the microbe component
-                MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
-                    world.GetScriptComponentHolder("MicrobeComponent").Find(aiComponent.preyMicrobes[c]));
-                    Position@ thisPosition = world.GetComponent_Position(aiComponent.preyMicrobes[c]);
+                    // Positions
+                    Position@ thisPosition = world.GetComponent_Position(allMicrobes[i]);
 
                     if ((testPosition - position._Position).LengthSquared() > (thisPosition._Position -  position._Position).LengthSquared()){
                         testPosition = thisPosition._Position;
-                        chosenPrey = aiComponent.preyMicrobes[c];
+                        chosenPrey = allMicrobes[i];
                         }
-                }
+                    }
+            }
             }
             // It might be interesting to prioritize weakened prey (Maybe add a variable for opportunisticness to each species?)
 
