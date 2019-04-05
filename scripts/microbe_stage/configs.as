@@ -362,7 +362,7 @@ const dictionary STARTER_MICROBES = {
             Float4(1, 1, 1, 1),
             // Player starts as bacteria
             true,
-            MEMBRANE_TYPE::MEMBRANE)
+            MEMBRANE_TYPE::WALL)
     }
 };
 
