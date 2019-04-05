@@ -301,7 +301,8 @@ class MicrobeAISystem : ScriptSystem{
         Position@ position = components.third;
         ObjectID chosenChunk = NULL_OBJECT;
 
-
+        Float3 testPosition;
+        bool setPosition=true;
         // Retrieve nearest potential chunk
         for (uint i = 0; i < allChunks.length(); i++){
             // Get the microbe component
@@ -314,29 +315,23 @@ class MicrobeAISystem : ScriptSystem{
                 (engulfableComponent.getSize()*1.0f))){
                 //You are non-threatening to me
                 aiComponent.chunkList.insertLast(allChunks[i]);
-            }
-        }
-        // Get the nearest one if it exists
-        if (aiComponent.chunkList.length() > 0 )
-            {
-                //LOG_INFO(""+aiComponent.chunkList.length());
-                if (world.GetComponent_Position(aiComponent.chunkList[0]) !is null)
-                {
-                Float3 testPosition = world.GetComponent_Position(aiComponent.chunkList[0])._Position;
-                chosenChunk = aiComponent.chunkList[0];
-                for (uint c = 0; c < aiComponent.chunkList.length(); c++){
-                    // Get position
-                    Position@ thisPosition = world.GetComponent_Position(aiComponent.chunkList[c]);
-                    if (thisPosition !is null){
-                        if ((testPosition - position._Position).LengthSquared() > (thisPosition._Position -  position._Position).LengthSquared()){
-                            testPosition = thisPosition._Position;
-                            chosenChunk = aiComponent.chunkList[c];
-                        }
-                    }
-                }
+                Position@ thisPosition = world.GetComponent_Position(allChunks[i]);
+
+                // At max aggression add them all
+                if (setPosition==true){
+                    testPosition=thisPosition._Position;
+                    setPosition=false;
+                    chosenChunk = allChunks[i];
                 }
 
+                if (thisPosition !is null){
+                    if ((testPosition - position._Position).LengthSquared() > (thisPosition._Position -  position._Position).LengthSquared()){
+                        testPosition = thisPosition._Position;
+                        chosenChunk = allChunks[i];
+                    }
+                }
             }
+        }
 
     return chosenChunk;
     }
@@ -365,7 +360,7 @@ class MicrobeAISystem : ScriptSystem{
                 world.GetScriptComponentHolder("MicrobeComponent").Find(allMicrobes[i]));
 
             if (allMicrobes[i] != microbeEntity && (secondMicrobeComponent.speciesName != microbeComponent.speciesName) && !secondMicrobeComponent.dead){
-                if ((aiComponent.speciesAggression==MAX_SPECIES_AGRESSION) or
+            if ((aiComponent.speciesAggression==MAX_SPECIES_AGRESSION) or
                     ((((numberOfAgentVacuoles+microbeComponent.totalHexCountCache)*1.0f)*(aiComponent.speciesAggression/AGRESSION_DIVISOR)) >
                     (secondMicrobeComponent.totalHexCountCache*1.0f))){
                     //You are non-threatening to me
@@ -381,11 +376,13 @@ class MicrobeAISystem : ScriptSystem{
                         chosenPrey = allMicrobes[i];
                     }
 
-                    if ((testPosition - position._Position).LengthSquared() > (thisPosition._Position -  position._Position).LengthSquared()){
-                        testPosition = thisPosition._Position;
-                        chosenPrey = allMicrobes[i];
+                    if (thisPosition !is null){
+                        if ((testPosition - position._Position).LengthSquared() > (thisPosition._Position -  position._Position).LengthSquared()){
+                            testPosition = thisPosition._Position;
+                            chosenPrey = allMicrobes[i];
                         }
-                    }
+                }
+                }
             }
             }
             // It might be interesting to prioritize weakened prey (Maybe add a variable for opportunisticness to each species?)
@@ -406,6 +403,9 @@ class MicrobeAISystem : ScriptSystem{
         // Retrive the nearest predator
         // For our desires lets just say all microbes bigger are potential predators
         // and later extend this to include those with toxins and pilus
+
+        Float3 testPosition;
+        bool setPosition=true;
         for (uint i = 0; i < allMicrobes.length(); i++)
             {
             // Get the microbe component
@@ -423,26 +423,23 @@ class MicrobeAISystem : ScriptSystem{
                 //You are bigger then me and i am afraid of that
                 aiComponent.predatoryMicrobes.insertLast(allMicrobes[i]);
                 //LOG_INFO("Added predator " + allMicrobes[i] );
+                Position@ thisPosition = world.GetComponent_Position(allMicrobes[i]);
+
+                // At max aggression add them all
+                if (setPosition==true){
+                    testPosition=thisPosition._Position;
+                    setPosition=false;
+                    predator = allMicrobes[i];
                 }
-            }
-            }
 
-            // Get the nearest one if it exists
-            if (aiComponent.predatoryMicrobes.length() > 0){
-            Float3 testPosition = world.GetComponent_Position(aiComponent.predatoryMicrobes[0])._Position;
-            predator = aiComponent.predatoryMicrobes[0];
-
-            for (uint c = 0; c < aiComponent.predatoryMicrobes.length(); c++){
-                // Get the microbe component
-                MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
-                    world.GetScriptComponentHolder("MicrobeComponent").Find(aiComponent.predatoryMicrobes[c]));
-                    Position@ thisPosition = world.GetComponent_Position(aiComponent.predatoryMicrobes[c]);
-
+                if (thisPosition !is null){
                     if ((testPosition - position._Position).LengthSquared() > (thisPosition._Position -  position._Position).LengthSquared()){
                         testPosition = thisPosition._Position;
-                        predator = aiComponent.predatoryMicrobes[c];
-                        }
+                        predator = allMicrobes[i];
+                    }
                 }
+                }
+            }
             }
     return predator;
     }
@@ -510,6 +507,7 @@ class MicrobeAISystem : ScriptSystem{
 
             if (rollCheck(aiComponent.speciesOpportunism,400.0f)){
                 aiComponent.lifeState= SCAVENGING_STATE;
+                aiComponent.boredom = 0;
             }
 
             }
