@@ -23,7 +23,19 @@
             "atp": 5.0
         }
     },
+    
+	"glycolosis_cytoplasm": {
+        "name": "Cytoplasm Glycolysis",
 
+        "inputs": {
+            "glucose": 0.06
+        },
+
+        "outputs": {
+            "atp": 5.0
+        }
+    },
+    
     "photosynthesis": {
         "name": "Photosynthesis",
 

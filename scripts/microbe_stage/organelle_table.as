@@ -303,7 +303,7 @@ void setupOrganelles(){
         storageOrganelleFactory(4.0f)
     };
     cytoplasmParameters.processes = {
-        TweakedProcess("glycolosis", 1)
+        TweakedProcess("glycolosis_cytoplasm", 1)
     };
     cytoplasmParameters.hexes = {
         Int2(0, 0),
