@@ -372,12 +372,15 @@ class Species{
                 break;
                 case 4:
                     energyGene = getOrganelleDefinition("mitochondrion").gene;
+                break;
                 case 5:
                     energyGene = getOrganelleDefinition("chemoSynthisizingProteins").gene;
                     energyGene += getOrganelleDefinition("mitochondrion").gene;
+                break;
                 case 6:
                     energyGene = getOrganelleDefinition("chloroplast").gene;
                     energyGene += getOrganelleDefinition("mitochondrion").gene;
+                break;
                 case 7:
                     energyGene = getOrganelleDefinition("metabolosome").gene;
                     energyGene += getOrganelleDefinition("chemoSynthisizingProteins").gene;
@@ -385,6 +388,7 @@ class Species{
                 case 8:
                     energyGene = getOrganelleDefinition("metabolosome").gene;
                     energyGene += getOrganelleDefinition("chromatophors").gene;
+                break;
                 case 9:
                     energyGene = getOrganelleDefinition("chromatophors").gene;
                     energyGene += getOrganelleDefinition("mitochondrion").gene;
@@ -456,15 +460,15 @@ class Species{
             else if (GetEngine().GetRandom().GetNumber(0,100) < 50) {
                 this.speciesMembraneType = MEMBRANE_TYPE::DOUBLEMEMBRANE;
                 this.colour.W = randomOpacityChitin();;
-            }
+            } 
             else if (GetEngine().GetRandom().GetNumber(0,100) < 50) {
                 this.speciesMembraneType = MEMBRANE_TYPE::WALL;
-            }
+            } 
             else {
             this.speciesMembraneType = MEMBRANE_TYPE::CHITIN;
             this.colour.W = randomOpacityChitin();
             }
-
+            
             commonConstructor(world);
             this.setupSpawn(world);
 
