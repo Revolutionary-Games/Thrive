@@ -682,7 +682,7 @@ void setupOrganelles(){
 
     rusticyanin.mass = 0.1;
     rusticyanin.gene = "f";
-    rusticyanin.mesh = "chemoproteins.mesh";
+    rusticyanin.mesh = "rusticyanin.mesh";
     rusticyanin.chanceToCreate = 0.5f;
     rusticyanin.prokaryoteChance = 1;
     rusticyanin.mpCost = 45;

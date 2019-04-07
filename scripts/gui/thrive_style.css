@@ -409,12 +409,12 @@ video {
 }
 
 #OxygenIcon {
-  width: 40px;
-  height: 40px;
-  transform: scale(0.75, 0.75);
-  top: 0;
-  left: 600px;
   position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 5px;
+  left: 610px;
+  background-size: 30px 30px;
   background-image: url("../../Textures/gui/bevel/Oxygen.png");
 }
 
@@ -423,13 +423,13 @@ video {
 }
 
 #NitrogenIcon {
-  width: 40px;
-  height: 40px;
-  transform: scale(0.75, 0.75);
-  top: 0;
-  left: 840px;
   position: absolute;
-  background-image: url("../../Textures/gui/bevel/AminoAcids.png");
+  width: 30px;
+  height: 30px;
+  top: 5px;
+  left: 850px;
+  background-size: 30px 30px;
+  background-image: url("../../Textures/gui/bevel/Nitrogen.png");
 }
 
 #AminoAcidsBar {
@@ -453,12 +453,12 @@ video {
 }
 
 #CO2Icon {
-  width: 40px;
-  height: 40px;
-  transform: scale(0.75, 0.75);
-  top: 0;
-  left: 720px;
   position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 5px;
+  left: 730px;
+  background-size: 30px 30px;
   background-image: url("../../Textures/gui/bevel/CO2.png");
 }
 
