@@ -570,6 +570,13 @@ void purgeCompounds(CellStageWorld@ world, ObjectID microbeEntity,
                 ejectCompound(world, microbeEntity, compoundId, amountToEject-1.0f);
             }
         }
+        //Empty when you have too many compounds even when its useful
+        double availableCompound = compoundBag.getCompoundAmount(compoundId);
+        if(availableCompound > microbeComponent.capacity){
+                double amountToEject = takeCompound(microbeComponent, compoundBag,
+                    compoundId, availableCompound-microbeComponent.capacity);
+                ejectCompound(world, microbeEntity, compoundId, amountToEject-1.0f);
+            }
     }
 }
 
