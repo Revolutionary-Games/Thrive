@@ -9,6 +9,7 @@ const auto DEFAULT_SPAWN_DENSITY = 1/25000.f;
 const auto STARTING_SPAWN_DENSITY = 70000.0f;
 const auto DEFAULT_PLAYER_SPAWN_DENSITY = 1/70000.f;
 const auto MAX_SPAWN_DENSITY = 20000.0f;
+
 //Corpse info
 const auto CORPSE_COMPOUND_COMPENSATION = 8.0f;
 const int CORPSE_CHUNK_DIVISER = 3;
@@ -57,11 +58,11 @@ const auto MAX_SPECIES_OPPORTUNISM = 400.0f;
 const auto MAX_SPECIES_PERSONALITY_MUTATION = 20.0f;
 const auto MIN_SPECIES_PERSONALITY_MUTATION = -20.0f;
 
-// Bacterial COlony configuration
-const auto MIN_BACTERIAL_COLONY_SIZE = 1;
-const auto MAX_BACTERIAL_COLONY_SIZE = 5;
+// Bacterial Colony configuration
+const auto MIN_BACTERIAL_COLONY_SIZE = 2;
+const auto MAX_BACTERIAL_COLONY_SIZE = 6;
 const auto MIN_BACTERIAL_LINE_SIZE =  3;
-const auto MAX_BACTERIAL_LINE_SIZE = 6;
+const auto MAX_BACTERIAL_LINE_SIZE = 7;
 
 // What is divided during fear and aggression calculations in the AI
 const auto AGRESSION_DIVISOR = 25.0f;
@@ -69,6 +70,7 @@ const auto FEAR_DIVISOR = 25.0f;
 const auto ACTIVITY_DIVISOR = 100.0f;
 const auto FOCUS_DIVISOR = 100.0f;
 const auto OPPORTUNISM_DIVISOR = 100.0f;
+
 
 // Cooldown for AI for toggling engulfing
 const uint AI_ENGULF_INTERVAL=300;
