@@ -57,7 +57,7 @@
             "nitrogen": {
                 "amount": 0,
                 "density": 0.0,
-                "dissolved": 0.78
+                "dissolved": 0.70
             }
         }
     },
@@ -120,7 +120,7 @@
             "nitrogen": {
                 "amount": 0,
                 "density": 0.0,
-                "dissolved": 0.78
+                "dissolved": 0.70
             }
         }
     },
@@ -182,7 +182,7 @@
             "nitrogen": {
                 "amount": 0,
                 "density": 0.0,
-                "dissolved": 0.78
+                "dissolved": 0.70
             } 
         }
     },
@@ -242,7 +242,7 @@
             "nitrogen": {
                 "amount": 0,
                 "density": 0.0,
-                "dissolved": 0.78
+                "dissolved": 0.70
             } 
         }
     },
@@ -303,7 +303,7 @@
             "nitrogen": {
                 "amount": 0,
                 "density": 0.0,
-                "dissolved": 0.78
+                "dissolved": 0.70
             } 
         }
     },
@@ -364,7 +364,7 @@
             "nitrogen": {
                 "amount": 0,
                 "density": 0.0,
-                "dissolved": 0.78
+                "dissolved": 0.70
             } 
         }
     },
@@ -425,7 +425,7 @@
             "nitrogen": {
                 "amount": 0,
                 "density": 0.0,
-                "dissolved": 0.78
+                "dissolved": 0.70
             } 
         }
     },
@@ -488,7 +488,7 @@
             "nitrogen": {
                 "amount": 0,
                 "density": 0.0,
-                "dissolved": 0.78
+                "dissolved": 0.70
             } 
         }
     },
@@ -553,6 +553,69 @@
                 "density": 0.0,
                 "dissolved": 0.78
             } 
+        }
+    },
+    
+    "seafloor": {
+        "name": "Sea Floor",
+        "background": "Background_Seafloor",
+		"colors":{
+		    "specularColors": {
+                "r": 0.98,
+                "g": 0.7,
+                "b": 0.75
+			},
+		    "diffuseColors": {
+                "r": 1.0,
+                "g": 0.9,
+                "b": 0.9
+			}
+		},
+        
+		"averageTemperature": 4,
+        
+        "compounds": {
+            "ammonia": {
+                "amount": 300000,
+                "density": 0.00002,
+                "dissolved": 0.0
+            },
+
+            "glucose": {
+                "amount": 350000,
+                "density": 0.00002,
+                "dissolved": 0.0
+            },
+            
+            "phosphates": {
+                "amount": 300000,
+                "density": 0.00002,
+                "dissolved": 0.0
+            },
+
+            "hydrogensulfide": {
+                "amount": 325000,
+                "density": 0.00002,
+                "dissolved": 0.0
+            },
+            
+            "oxygen": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 0.21
+            },
+            
+            "carbondioxide": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 0.09
+            },
+            
+            "nitrogen": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 0.70
+            }
         }
     }
 }
