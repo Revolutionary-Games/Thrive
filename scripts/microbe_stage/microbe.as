@@ -416,7 +416,7 @@ class MicrobeSystem : ScriptSystem{
                     SimulationParameters::compoundRegistry().getTypeId("atp"), cost) <
                 cost - 0.001f)
             {
-                LOG_INFO("too little atp, disabling - engulfing");
+                //LOG_INFO("too little atp, disabling - engulfing");
                 MicrobeOperations::toggleEngulfMode(microbeComponent);
             }
 
@@ -441,7 +441,7 @@ class MicrobeSystem : ScriptSystem{
                     }
 
                 } else {
-                    LOG_ERROR("Failed to create engulfment sound player");
+                    //LOG_ERROR("Failed to create engulfment sound player");
                 }
             }
 

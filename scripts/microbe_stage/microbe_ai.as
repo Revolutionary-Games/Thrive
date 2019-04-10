@@ -92,6 +92,7 @@ class MicrobeAISystem : ScriptSystem{
     void Init(GameWorld@ w){
 
         @this.world = cast<CellStageWorld>(w);
+        passedTime = 0;
         assert(this.world !is null, "MicrobeAISystem expected CellStageWorld");
     }
 
@@ -99,10 +100,12 @@ class MicrobeAISystem : ScriptSystem{
 
     void Run(){
         const int logicTime = TICKSPEED;
+        passedTime+=logicTime;
+        if (passedTime >= AI_TIME_INTERVAL){
+            passedTime=0;
 
         // TODO: this could be cached better
         CompoundId oxytoxyId = SimulationParameters::compoundRegistry().getTypeId("oxytoxy");
-
         // This list is quite expensive to build each frame but
         // there's currently no good way to cache this
         array<ObjectID>@ allMicrobes = world.GetScriptComponentHolder("MicrobeComponent").GetIndex();
@@ -156,23 +159,6 @@ class MicrobeAISystem : ScriptSystem{
                 aiComponent.preyMicrobes.removeRange(0,aiComponent.preyMicrobes.length());
                 aiComponent.chunkList.removeRange(0,aiComponent.chunkList.length());
                 ObjectID prey = NULL_OBJECT;
-                // Peg your prey
-                if (!aiComponent.preyPegged){
-                    aiComponent.prey=NULL_OBJECT;
-                    prey = getNearestPreyItem(components,allMicrobes);
-                    aiComponent.prey = prey;
-                    if (prey != NULL_OBJECT){
-                        aiComponent.preyPegged=true;
-                    }
-                }
-
-                if (aiComponent.targetChunk==NULL_OBJECT){
-                    aiComponent.targetChunk = getNearestChunkItem(components,allChunks);
-                }
-
-                if (aiComponent.predator==NULL_OBJECT){
-                    aiComponent.predator = getNearestPredatorItem(components,allMicrobes);
-                }
                 //30 seconds about
                 if (aiComponent.boredom == GetEngine().GetRandom().GetNumber(aiComponent.speciesFocus*2,1000.0f+aiComponent.speciesFocus*2)){
                     // Occassionally you need to reevaluate things
@@ -198,10 +184,28 @@ class MicrobeAISystem : ScriptSystem{
                         }
                     case NEUTRAL_STATE:
                         {
-                        //In this state you just sit there and analyze your environment
+                        // Before these would run every time, now they just run for the states that need them.
                         aiComponent.boredom=0;
                         aiComponent.preyPegged=false;
                         prey = NULL_OBJECT;
+                        if (aiComponent.predator==NULL_OBJECT){
+                            aiComponent.predator = getNearestPredatorItem(components,allMicrobes);
+                        }
+
+                        // Peg your prey
+                        if (!aiComponent.preyPegged){
+                            aiComponent.prey=NULL_OBJECT;
+                            prey = getNearestPreyItem(components,allMicrobes);
+                            aiComponent.prey = prey;
+                            if (prey != NULL_OBJECT){
+                                aiComponent.preyPegged=true;
+                            }
+                        }
+
+                        if (aiComponent.targetChunk==NULL_OBJECT){
+                            aiComponent.targetChunk = getNearestChunkItem(components,allChunks);
+                        }
+
                         evaluateEnvironment(components,aiComponent.prey,aiComponent.predator);
                         break;
                         }
@@ -219,6 +223,11 @@ class MicrobeAISystem : ScriptSystem{
                         }
                     case FLEEING_STATE:
                         {
+
+                        if (aiComponent.predator==NULL_OBJECT){
+                            aiComponent.predator = getNearestPredatorItem(components,allMicrobes);
+                        }
+
                         //In this state you run from predatory microbes
                         if (aiComponent.predator != NULL_OBJECT){
                             //aiComponent.hasTargetPosition = false;
@@ -238,23 +247,39 @@ class MicrobeAISystem : ScriptSystem{
                         }
                     case PREDATING_STATE:
                         {
+
+                        // Peg your prey
+                        if (!aiComponent.preyPegged){
+                            aiComponent.prey=NULL_OBJECT;
+                            prey = getNearestPreyItem(components,allMicrobes);
+                            aiComponent.prey = prey;
+                            if (prey != NULL_OBJECT){
+                                aiComponent.preyPegged=true;
+                            }
+                        }
+
                         if (aiComponent.preyPegged && aiComponent.prey != NULL_OBJECT){
                             dealWithPrey(components, aiComponent.prey, allMicrobes);
                             }
                         else{
                             if (rollCheck(aiComponent.speciesActivity, 400)){
                                 //LOG_INFO("gather only");
-                                aiComponent.lifeState = NEUTRAL_STATE;
+                                aiComponent.lifeState = PLANTLIKE_STATE;
                                 aiComponent.boredom=0;
                                 }
                             else{
-                                aiComponent.lifeState = PREDATING_STATE;
+                                aiComponent.lifeState = NEUTRAL_STATE;
                                 }
                             }
                         break;
                         }
                      case SCAVENGING_STATE:
                         {
+
+                        if (aiComponent.targetChunk==NULL_OBJECT){
+                            aiComponent.targetChunk = getNearestChunkItem(components,allChunks);
+                        }
+
                         if (aiComponent.targetChunk != NULL_OBJECT){
                             dealWithChunks(components, aiComponent.targetChunk, allChunks);
                             }
@@ -278,6 +303,7 @@ class MicrobeAISystem : ScriptSystem{
             //cache stored compounds for use in the next frame (For Run and tumble)
             aiComponent.compoundDifference = microbeComponent.stored-aiComponent.previousStoredCompounds;
             aiComponent.previousStoredCompounds = microbeComponent.stored;
+    }
     }
 }
 
@@ -697,8 +723,7 @@ class MicrobeAISystem : ScriptSystem{
     }
 
     // For for firguring out which state to enter
-    void evaluateEnvironment(MicrobeAISystemCached@ components, ObjectID prey, ObjectID predator)
-        {
+    void evaluateEnvironment(MicrobeAISystemCached@ components, ObjectID prey, ObjectID predator){
         //LOG_INFO("evaluating");
         MicrobeAIControllerComponent@ aiComponent = components.first;
         Position@ position = components.third;
@@ -764,7 +789,7 @@ class MicrobeAISystem : ScriptSystem{
             aiComponent.lifeState = PLANTLIKE_STATE;
             }
         }
-        }
+    }
 
     // For doing run and tumble
     void doRunAndTumble(MicrobeAISystemCached@ components){
@@ -853,4 +878,6 @@ class MicrobeAISystem : ScriptSystem{
         ScriptSystemUses("MicrobeComponent"),
         ScriptSystemUses(Position::TYPE)
     };
+
+    int passedTime=0;
 }

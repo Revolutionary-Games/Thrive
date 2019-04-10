@@ -74,6 +74,9 @@ const uint AI_ENGULF_INTERVAL=300;
 
 // if you are gaining less then this amount of compound per turn you are much more likely to turn randomly
 const auto AI_COMPOUND_BIAS = -10.0f;
+// So we dont run the AI system every single frame
+const auto AI_TIME_INTERVAL = 150;
+
 // Osmoregulation ATP cost
 const auto ATP_COST_FOR_OSMOREGULATION = 1.0f;
 

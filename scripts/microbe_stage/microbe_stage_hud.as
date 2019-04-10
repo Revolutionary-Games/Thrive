@@ -321,7 +321,7 @@ class MicrobeStageHudSystem : ScriptSystem{
             }
         }
         else {
-        LOG_ERROR("Failed to create ambiance music source");
+        //LOG_ERROR("Failed to create ambiance music source");
         }
         return audio;
     }
