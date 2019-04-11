@@ -8,10 +8,10 @@
 float clamp(float value, float lowerBound, float upperBound) {
     if (value > upperBound)
         return upperBound;
-    
+
     if (value < lowerBound)
         return lowerBound;
-    
+
     return value;
 }
 
