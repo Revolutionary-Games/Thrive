@@ -16,8 +16,9 @@
 
 
 namespace thrive {
+	class FluidSystem;
 
-class CompoundCloudSystem;
+	class CompoundCloudSystem;
 class CellStageWorld;
 
 // Don't touch these without changing the explanation below
@@ -342,12 +343,12 @@ public:
     /**
      * @brief Constructor
      */
-    CompoundCloudSystem();
+    CompoundCloudSystem() = default;
 
     /**
      * @brief Destructor
      */
-    ~CompoundCloudSystem();
+    ~CompoundCloudSystem() = default;
 
     /**
      * @brief Initializes the system
@@ -497,7 +498,9 @@ private:
             size_t startIndex);
 
     void
-        processCloud(CompoundCloudComponent& cloud, int renderTime);
+        processCloud(CompoundCloudComponent& cloud,
+            int renderTime,
+            FluidSystem& fluidSystem);
 
     void
         initializeCloud(CompoundCloudComponent& cloud,
@@ -510,9 +513,6 @@ private:
             uint8_t* pDest);
 
     void
-        createVelocityField();
-
-    void
         diffuse(float diffRate,
             std::vector<std::vector<float>>& oldDens,
             const std::vector<std::vector<float>>& density,
@@ -521,7 +521,7 @@ private:
     void
         advect(const std::vector<std::vector<float>>& oldDens,
             std::vector<std::vector<float>>& density,
-            int dt);
+            int dt, FluidSystem& fluidSystem, Float2 pos);
 
 private:
     //! This system now spawns these entities when it needs them
@@ -541,17 +541,6 @@ private:
     std::vector<Compound> m_cloudTypes;
 
     Ogre::MeshPtr m_planeMesh;
-
-    // Shared perlin noise for adding turbulence to the movement of compounds in
-    // the clouds
-    PerlinNoise m_fieldPotential;
-    const float m_noiseScale = 5;
-
-    //! The velocity of the fluid.
-    //! This is not updated after the initial generation, which isn't probably
-    //! the best way to simulate fluid velocity
-    std::vector<std::vector<float>> m_xVelocity;
-    std::vector<std::vector<float>> m_yVelocity;
 
     //! This is here to not have to allocate memory every tick
     std::vector<CompoundCloudComponent*> m_tooFarAwayClouds;
