@@ -2,6 +2,26 @@
 #include "microbe_operations.as"
 #include "procedural_microbes.as"
 
+
+// TODO: Move the following to C++ (preferably to Leviathan itself)
+
+float clamp(float value, float lowerBound, float upperBound) {
+    if (value > upperBound)
+        return upperBound;
+    
+    if (value < lowerBound)
+        return lowerBound;
+    
+    return value;
+}
+
+string randomChoice(const array<string>& source) {
+    return source[GetEngine().GetRandom().GetNumber(0,
+                    source.length() - 1)];
+}
+
+// End of the TODO.
+
 float randomColourChannel()
 {
     return GetEngine().GetRandom().GetNumber(MIN_COLOR, MAX_COLOR);
@@ -44,116 +64,79 @@ Float4 randomProkayroteColour(float opaqueness = randomOpacityBacteria())
         opaqueness);
 }
 
+string mutateWord(string name) {
+    const array<string> vowels = {"a", "e", "i", "o", "u"};
+    const array<string> consonants = {"b", "c", "d", "f", "g", "h", "j", "k", "l", "m",
+                                        "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"};
 
-string mutateWord(string name){
-    string vowels = "aeiou";
-    string consonants = "bcdfghjklmnpqrstvwxyz";
-    bool changed=false;
     string newName = name;
     int changeLimit = 4;
     int changes=0;
-    //Ignore the first letter and last letter
-    for(uint i = 1; i < newName.length()-1; i++){
-        // Index we are adding or erasing chromosomes at
-        bool isVowel=false;
-        uint index = newName.length() - i - 1;
-        // Are we a vowel or are we a consonant?
-        if (vowels.findFirst(newName.substr(index,1)) >= 0){
-           isVowel=true;
-        }
-        //30 percent chance replace
-        if(GetEngine().GetRandom().GetNumber(0,20) <= 6 && changes <= changeLimit){
-             newName.erase(index, 1);
-             changes++;
-             changed=true;
-             if (isVowel){
-                int newVowel = GetEngine().GetRandom().GetNumber(0,vowels.length()-1);
-                newName.insert(index, vowels.substr(newVowel, 1));
-             }
-             else {
-                int newConsonant = GetEngine().GetRandom().GetNumber(0,consonants.length()-1);
-                newName.insert(index, consonants.substr(newConsonant, 1));
-             }
 
+    //Ignore the first letter and last letter
+    for(uint i = 1; i < newName.length()-1; i++) {
+        // Index we are adding or erasing chromosomes at
+        uint index = newName.length() - i - 1;
+
+        // Are we a vowel or are we a consonant?
+        bool isVowel = vowels.find(newName.substr(index,1)) >= 0;
+
+        //30 percent chance replace
+        if(GetEngine().GetRandom().GetNumber(0,20) <= 6 && changes <= changeLimit) {
+            newName.erase(index, 1);
+            changes++;
+
+            if (isVowel)
+                newName.insert(index, randomChoice(vowels));
+            else
+                newName.insert(index, randomChoice(consonants));
         }
+
         //10 percent chance new syllable
         if(GetEngine().GetRandom().GetNumber(0,20) <= 2  && changes <= changeLimit){
-             string original = newName.substr(index, 1);
-             newName.erase(index, 1);
-             changed=true;
-             changes++;
-             if (!isVowel){
-                int newVowel;
-                int newConsonant;
-                string newSyllable;
-                switch (GetEngine().GetRandom().GetNumber(0,5))
-                    {
+            string original = newName.substr(index, 1);
+            newName.erase(index, 1);
+            changes++;
+
+            if (!isVowel){
+                switch (GetEngine().GetRandom().GetNumber(0,5)) {
                     case 0:
-                    //VC
-                    newVowel = GetEngine().GetRandom().GetNumber(0,vowels.length()-1);
-                    newConsonant = GetEngine().GetRandom().GetNumber(0,consonants.length()-1);
-                    newSyllable= ""+vowels.substr(newVowel, 1)+consonants.substr(newConsonant, 1);
-                    newName.insert(index, newSyllable);
-                    break;
+                        newName.insert(index, randomChoice(vowels) + randomChoice(consonants));
+                        break;
                     case 1:
-                    //CV
-                    newVowel = GetEngine().GetRandom().GetNumber(0,vowels.length()-1);
-                    newConsonant = GetEngine().GetRandom().GetNumber(0,consonants.length()-1);
-                    newSyllable = ""+consonants.substr(newConsonant, 1)+vowels.substr(newVowel, 1);
-                    newName.insert(index, newSyllable);
-                    break;
+                        newName.insert(index, randomChoice(consonants) + randomChoice(vowels));
+                        break;
                     case 2:
-                    //CC
-                    newConsonant = GetEngine().GetRandom().GetNumber(0,consonants.length()-1);
-                    newSyllable= ""+original+consonants.substr(newConsonant, 1);
-                    newName.insert(index, newSyllable);
-                    break;
+                        newName.insert(index, original + randomChoice(consonants));
+                        break;
                     case 3:
-                    //CC
-                    newConsonant = GetEngine().GetRandom().GetNumber(0,consonants.length()-1);
-                    newSyllable = ""+consonants.substr(newConsonant, 1)+original;
-                    newName.insert(index, newSyllable);
-                    break;
+                        newName.insert(index, randomChoice(consonants) + original);
+                        break;
                     case 4:
-                    //CCV
-                    newVowel = GetEngine().GetRandom().GetNumber(0,vowels.length()-1);
-                    newConsonant = GetEngine().GetRandom().GetNumber(0,consonants.length()-1);
-                    newSyllable = original+consonants.substr(newConsonant, 1)+vowels.substr(newVowel, 1);
-                    newName.insert(index, newSyllable);
-                    break;
+                        newName.insert(index, original + randomChoice(consonants) + randomChoice(vowels));
+                        break;
                     case 5:
-                    //VCC
-                    newVowel = GetEngine().GetRandom().GetNumber(0,vowels.length()-1);
-                    newConsonant = GetEngine().GetRandom().GetNumber(0,consonants.length()-1);
-                    newSyllable = vowels.substr(newVowel, 1)+consonants.substr(newConsonant, 1)+original;
-                    newName.insert(index, newSyllable);
-                    break;
-                    }
-             }
-             // If is vowel
-             else {
-                if(GetEngine().GetRandom().GetNumber(0,20) <= 10){
-                //CVV
-                int newConsonant = GetEngine().GetRandom().GetNumber(0,consonants.length()-1);
-                int newVowel = GetEngine().GetRandom().GetNumber(0,vowels.length()-1);
-                string newSyllable = ""+consonants.substr(newConsonant, 1)+vowels.substr(newVowel, 1)+original;
-                newName.insert(index, newSyllable);
+                        newName.insert(index, randomChoice(vowels) + randomChoice(consonants) + original);
+                        break;
                 }
-                else {
-                //VVC
-                int newConsonant = GetEngine().GetRandom().GetNumber(0,consonants.length()-1);
-                int newVowel = GetEngine().GetRandom().GetNumber(0,vowels.length()-1);
-                string newSyllable = ""+original+vowels.substr(newVowel, 1)+consonants.substr(newConsonant, 1);
-                newName.insert(index, newSyllable);
-                }
-             }
+            }
+
+            // If is vowel
+            else {
+                if(GetEngine().GetRandom().GetNumber(0,20) <= 10)
+                    newName.insert(index, randomChoice(consonants) + randomChoice(vowels) + original);
+                else
+                    newName.insert(index, original + randomChoice(vowels) + randomChoice(consonants));
+            }
         }
     }
+
     // Our base case
-    if (!changed){
+    if(changes == 0) {
         //We didnt change our word at all, try again recursviely until we do
         return mutateWord(name);
     }
+
     LOG_INFO("Mutating Name:"+name +" to new name:"+newName);
     return newName;
 }
@@ -173,79 +156,36 @@ string generateNameSection()
     auto suffix_v = SimulationParameters::speciesNameController().getVowelSuffixes();
 
     string newName = "";
-    string ourPrefix="";
-    string ourSuffix="";
-    string ourFirstSuffix="";
-    string ourCofix="";
-    string ourPrefixCofix="";
 
-    if (GetEngine().GetRandom().GetNumber(0,100) >= 10){
-        switch (GetEngine().GetRandom().GetNumber(0,3))
-        {
+    if (GetEngine().GetRandom().GetNumber(0,100) >= 10) {
+        switch (GetEngine().GetRandom().GetNumber(0,3)) {
         case 0:
-            ourPrefix = prefix_c[GetEngine().GetRandom().GetNumber(0,
-                    prefix_c.length()-1)];
-            ourSuffix = suffix_v[GetEngine().GetRandom().GetNumber(0,
-                    suffix_v.length()-1)];
-            newName = ourPrefix+ourSuffix;
+            newName = randomChoice(prefix_c) + randomChoice(suffix_v);
             break;
         case 1:
-            ourPrefix = prefix_v[GetEngine().GetRandom().GetNumber(0,
-                    prefix_v.length()-1)];
-            ourSuffix = suffix_c[GetEngine().GetRandom().GetNumber(0,
-                    suffix_c.length()-1)];
-            newName = ourPrefix+ourSuffix;
+            newName = randomChoice(prefix_v) + randomChoice(suffix_c);
             break;
         case 2:
-            ourPrefix = prefix_v[GetEngine().GetRandom().GetNumber(0,
-                prefix_v.length()-1)];
-            ourCofix = cofix_c[GetEngine().GetRandom().GetNumber(0,
-                cofix_c.length()-1)];
-            ourSuffix = suffix_v[GetEngine().GetRandom().GetNumber(0,
-                suffix_v.length()-1)];
-            newName = ourPrefix+ourCofix+ourSuffix;
+            newName = randomChoice(prefix_v) + randomChoice(cofix_c) + randomChoice(suffix_v);
             break;
         case 3:
-            ourPrefix = prefix_c[GetEngine().GetRandom().GetNumber(0,
-                    prefix_c.length()-1)];
-            ourCofix = cofix_v[GetEngine().GetRandom().GetNumber(0,
-                    cofix_v.length()-1)];
-            ourSuffix = suffix_c[GetEngine().GetRandom().GetNumber(0,
-                    suffix_c.length()-1)];
-            newName = ourPrefix+ourCofix+ourSuffix;
+            newName = randomChoice(prefix_c) + randomChoice(cofix_v) + randomChoice(suffix_c);
             break;
         }
-    }
-    else{
+    } else {
         //Developer Easter Eggs and really silly long names here
         //Our own version of wigglesoworthia for example
         switch (GetEngine().GetRandom().GetNumber(0,3))
         {
         case 0:
         case 1:
-            ourPrefixCofix = prefixCofixList[GetEngine().GetRandom().GetNumber(0,
-                prefixCofixList.length()-1)];
-            ourSuffix = suffix[GetEngine().GetRandom().GetNumber(0,
-                suffix.length()-1)];
-            newName=ourPrefixCofix+ourSuffix;
+            newName = randomChoice(prefixCofixList) + randomChoice(suffix);
             break;
         case 2:
-            ourPrefix = prefix_v[GetEngine().GetRandom().GetNumber(0,
-                prefix_v.length()-1)];
-            ourCofix = cofix_c[GetEngine().GetRandom().GetNumber(0,
-                cofix_c.length()-1)];
-            ourSuffix = suffix[GetEngine().GetRandom().GetNumber(0,
-                suffix.length()-1)];
-            newName = ourPrefix+ourCofix+ourSuffix;
+            newName = randomChoice(prefix_v) + randomChoice(cofix_c) + randomChoice(suffix);
             break;
         case 3:
-            ourPrefix = prefix_c[GetEngine().GetRandom().GetNumber(0,
-                    prefix_c.length()-1)];
-            ourCofix = cofix_v[GetEngine().GetRandom().GetNumber(0,
-                    cofix_v.length()-1)];
-            ourSuffix = suffix[GetEngine().GetRandom().GetNumber(0,
-                    suffix.length()-1)];
-            newName = ourPrefix+ourCofix+ourSuffix;
+            newName = randomChoice(prefix_c) + randomChoice(cofix_v) + randomChoice(suffix);
             break;
         }
     }
@@ -554,68 +494,26 @@ class Species{
         }
     }
 
-        private void cleanPersonality(){
-            // Is there a better way of doing this while keeping it clean?
-            // Aggression
-            if (this.aggression > MAX_SPECIES_AGRESSION)
-            {
-                this.aggression=MAX_SPECIES_AGRESSION;
-            }
-            if (this.aggression < 0.0f)
-            {
-                this.aggression=0;
-            }
-            // Fear
-            if (this.fear > MAX_SPECIES_FEAR)
-            {
-                this.fear=MAX_SPECIES_FEAR;
-            }
-            if (this.fear < 0.0f)
-            {
-                this.fear=0;
-            }
-            // Activity
-            if (this.activity > MAX_SPECIES_ACTIVITY)
-            {
-                this.activity=MAX_SPECIES_ACTIVITY;
-            }
-            if (this.activity < 0.0f)
-            {
-                this.activity=0;
-            }
-            // Focus
-            if (this.focus > MAX_SPECIES_FOCUS)
-            {
-                this.focus=MAX_SPECIES_FOCUS;
-            }
-            if (this.focus < 0.0f)
-            {
-                this.focus=0;
-            }
-
-            // Opportunism
-            if (this.opportunism > MAX_SPECIES_OPPORTUNISM)
-            {
-                this.opportunism=MAX_SPECIES_OPPORTUNISM;
-            }
-            if (this.opportunism < 0.0f)
-            {
-                this.opportunism=0;
-            }
-        }
+    private void cleanPersonality() {
+        this.aggression = clamp(this.aggression, 0.0f, MAX_SPECIES_AGRESSION);
+        this.fear = clamp(this.fear, 0.0f, MAX_SPECIES_FEAR);
+        this.activity = clamp(this.activity, 0.0f, MAX_SPECIES_ACTIVITY);
+        this.focus = clamp(this.focus, 0.0f, MAX_SPECIES_FOCUS);
+        this.opportunism = clamp(this.opportunism, 0.0f, MAX_SPECIES_OPPORTUNISM);
+    }
 
     private void initializeBehavior(){
-            // Variables used in AI to determine general behavior
-            this.aggression = GetEngine().GetRandom().GetFloat(0.0f,
-                MAX_SPECIES_AGRESSION);
-            this.fear = GetEngine().GetRandom().GetFloat(0.0f,
-                MAX_SPECIES_FEAR);
-            this.activity = GetEngine().GetRandom().GetFloat(0.0f,
-                MAX_SPECIES_ACTIVITY);
-            this.focus = GetEngine().GetRandom().GetFloat(0.0f,
-                MAX_SPECIES_FOCUS);
-            this.opportunism = GetEngine().GetRandom().GetFloat(0.0f,
-                MAX_SPECIES_OPPORTUNISM);
+        // Variables used in AI to determine general behavior
+        this.aggression = GetEngine().GetRandom().GetFloat(0.0f,
+            MAX_SPECIES_AGRESSION);
+        this.fear = GetEngine().GetRandom().GetFloat(0.0f,
+            MAX_SPECIES_FEAR);
+        this.activity = GetEngine().GetRandom().GetFloat(0.0f,
+            MAX_SPECIES_ACTIVITY);
+        this.focus = GetEngine().GetRandom().GetFloat(0.0f,
+            MAX_SPECIES_FOCUS);
+        this.opportunism = GetEngine().GetRandom().GetFloat(0.0f,
+            MAX_SPECIES_OPPORTUNISM);
     }
 
     private void mutateBehavior(Species@ parent){
@@ -631,6 +529,7 @@ class Species{
         this.opportunism = parent.opportunism+GetEngine().GetRandom().GetFloat(
             MIN_SPECIES_PERSONALITY_MUTATION, MAX_SPECIES_PERSONALITY_MUTATION);
     }
+
     private void commonConstructor(CellStageWorld@ world)
     {
         @forWorld = world;
@@ -1752,4 +1651,3 @@ void resetAutoEvo(CellStageWorld@ world){
     cast<SpeciesSystem>(world.GetScriptSystem("SpeciesSystem")).resetAutoEvo();
 }
 }
-
