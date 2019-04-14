@@ -1074,7 +1074,7 @@ void
 {
     // Try to slow things down (doesn't seem to work great)
     renderTime /= 10;
-    Float2 pos(cloud.m_position.X, cloud.m_position.Y);
+    Float2 pos(cloud.m_position.X, cloud.m_position.Z);
 
     // The diffusion rate seems to have a bigger effect
 
@@ -1177,8 +1177,8 @@ void
             // need to pass a float instead of a byte).
             int intensity =
                 static_cast<int>(255 * 2 * std::atan(0.003f * density[i][j]));
-            intensity =
-                static_cast<int>(i * 2.55f);
+
+            intensity = static_cast<int>(128.0f * (density[i][j]+ 1.0f));
 
             // This is the same clamping code as in the old version
             intensity = std::clamp(intensity, 0, 255);
@@ -1258,8 +1258,9 @@ void
     // the next cloud (instead of not handling them here)
     for(size_t x = 1; x < CLOUD_SIMULATION_WIDTH - 1; x++) {
         for(size_t y = 1; y < CLOUD_SIMULATION_HEIGHT - 1; y++) {
-            //if(oldDens[x][y] > 1) {
-				Float2 velocity = fluidSystem.getVelocityAt(pos + Float2(x, y));
+            if(oldDens[x][y] > 1) {
+                constexpr float viscosity = 0.3f; // TODO: give each cloud a viscosity value in the JSON file and use it instead.
+				Float2 velocity = fluidSystem.getVelocityAt(pos + Float2(x, y) * CLOUD_RESOLUTION) * viscosity;
 
                 float dx = x + dt * velocity.X;
                 float dy = y + dt * velocity.Y;
@@ -1277,13 +1278,11 @@ void
                 float t1 = dy - y0;
                 float t0 = 1.0f - t1;
 
-                //density[x0][y0] += oldDens[x][y] * s0 * t0;
-                //density[x0][y1] += oldDens[x][y] * s0 * t1;
-                //density[x1][y0] += oldDens[x][y] * s1 * t0;
-                //density[x1][y1] += oldDens[x][y] * s1 * t1;
-
-                density[x0][y0] = velocity.Y;
-            //}
+                density[x0][y0] += oldDens[x][y] * s0 * t0;
+                density[x0][y1] += oldDens[x][y] * s0 * t1;
+                density[x1][y0] += oldDens[x][y] * s1 * t0;
+                density[x1][y1] += oldDens[x][y] * s1 * t1;
+            }
         }
     }
 }
