@@ -303,7 +303,7 @@ void setupOrganelles(){
         storageOrganelleFactory(4.0f)
     };
     cytoplasmParameters.processes = {
-        TweakedProcess("glycolosis", 1)
+        TweakedProcess("glycolosis_cytoplasm", 1)
     };
     cytoplasmParameters.hexes = {
         Int2(0, 0),
@@ -650,16 +650,15 @@ void setupOrganelles(){
     };
     _addOrganelleToTable(Organelle(protoplasmParameters));
 
-    // nitrogenFixationProtein
-    // Uses same mode as chemoplast for now
-    auto nitrogenFixationProtein = OrganelleParameters("nitrogenFixationProteins");
+    // Nitrogenase
+    auto nitrogenFixationProtein = OrganelleParameters("nitrogenase");
 
     nitrogenFixationProtein.mass = 0.1;
     nitrogenFixationProtein.gene = "i";
-    nitrogenFixationProtein.mesh = "nitrogenplastid.mesh";
-    nitrogenFixationProtein.chanceToCreate = 0;
+    nitrogenFixationProtein.mesh = "nitrogenase.mesh";
+    nitrogenFixationProtein.chanceToCreate = 1;
     nitrogenFixationProtein.prokaryoteChance = 1;
-    nitrogenFixationProtein.mpCost = 45;
+    nitrogenFixationProtein.mpCost = 55;
     nitrogenFixationProtein.initialComposition = {
         {"phosphates", 1},
         {"ammonia",1}
@@ -669,7 +668,7 @@ void setupOrganelles(){
         storageOrganelleFactory(2.0f)
     };
     nitrogenFixationProtein.processes = {
-      TweakedProcess("nitrogenFixing", 1),
+      TweakedProcess("nitrogenaseReaction", 1),
       TweakedProcess("glycolosis", 1)
     };
     nitrogenFixationProtein.hexes = {
@@ -683,7 +682,7 @@ void setupOrganelles(){
 
     rusticyanin.mass = 0.1;
     rusticyanin.gene = "f";
-    rusticyanin.mesh = "chemoproteins.mesh";
+    rusticyanin.mesh = "rusticyanin.mesh";
     rusticyanin.chanceToCreate = 0.5f;
     rusticyanin.prokaryoteChance = 1;
     rusticyanin.mpCost = 45;

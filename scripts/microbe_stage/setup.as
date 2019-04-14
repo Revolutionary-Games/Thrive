@@ -767,7 +767,7 @@ void setupSpawnSystem(CellStageWorld@ world){
         const auto spawnerId = spawnSystem.addSpawnType(
             factory,
             //spawnDensity should depend on population
-            DEFAULT_SPAWN_DENSITY,
+            DEFAULT_PLAYER_SPAWN_DENSITY,
             MICROBE_SPAWN_RADIUS);
     }
 }

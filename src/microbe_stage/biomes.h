@@ -32,6 +32,11 @@ public:
 
     Ogre::ColourValue specularColors;
     Ogre::ColourValue diffuseColors;
+    // Ambient Lights
+    Ogre::ColourValue upperAmbientColor;
+    Ogre::ColourValue lowerAmbientColor;
+
+    float lightPower;
     Biome();
 
     Biome(Json::Value value);
