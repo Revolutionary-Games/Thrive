@@ -22,6 +22,7 @@ void
 }
 
 // TODO: refactor this nonsense.
+// TODO: also figure out if there's a way to do this that doesn't generate only horiontal or vertical currents
 Float2
     FluidSystem::getVelocityAt(Float2 position)
 {
