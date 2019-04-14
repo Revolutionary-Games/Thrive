@@ -235,6 +235,22 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(engine->RegisterObjectProperty("Biome",
+           "Ogre::ColourValue upperAmbientColor",
+           asOFFSET(Biome, upperAmbientColor)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    if(engine->RegisterObjectProperty("Biome",
+           "Ogre::ColourValue lowerAmbientColor",
+           asOFFSET(Biome, lowerAmbientColor)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty(
+           "Biome", "float lightPower", asOFFSET(Biome, lightPower)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     if(engine->RegisterObjectProperty("Biome", "const string background",
            asOFFSET(Biome, background)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;

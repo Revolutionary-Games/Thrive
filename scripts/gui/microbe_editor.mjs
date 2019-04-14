@@ -69,6 +69,10 @@ const organelleSelectionElements = [
         organelle: "chromatophors"
     },
     {
+        element: document.getElementById("addNitrogenase"),
+        organelle: "nitrogenase"
+    },
+    {
         element: document.getElementById("addNucleus"),
         organelle: "nucleus"
     }

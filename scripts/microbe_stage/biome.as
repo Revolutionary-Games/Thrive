@@ -101,22 +101,25 @@ void setBiome(uint64 biomeId, CellStageWorld@ world){
     // Update oxygen and carbon dioxide numbers
     auto oxyId = SimulationParameters::compoundRegistry().getTypeId("oxygen");
     auto c02Id = SimulationParameters::compoundRegistry().getTypeId("carbondioxide");
+    auto n2Id = SimulationParameters::compoundRegistry().getTypeId("nitrogen");
     GenericEvent@ updateDissolvedGasses = GenericEvent("UpdateDissolvedGasses");
     NamedVars@ vars = updateDissolvedGasses.GetNamedVars();
     vars.AddValue(ScriptSafeVariableBlock("oxygenPercent",
         world.GetProcessSystem().getDissolved(oxyId)*100));
     vars.AddValue(ScriptSafeVariableBlock("co2Percent",
         world.GetProcessSystem().getDissolved(c02Id)*100));
+    vars.AddValue(ScriptSafeVariableBlock("n2Percent",
+        world.GetProcessSystem().getDissolved(n2Id)*100));
     GetEngine().GetEventHandler().CallEvent(updateDissolvedGasses);
 }
 
 void setSunlightForBiome(CellStageWorld@ world){
     // Light properties isnt working for some reason
     world.SetLightProperties(getCurrentBiome().diffuseColors, getCurrentBiome().specularColors,
-        Ogre::Vector3(Float3(0.55f, -0.3f, 0.75f).Normalize()), 30,
+        Ogre::Vector3(Float3(0.55f, -0.3f, 0.75f).Normalize()), getCurrentBiome().lightPower,
         // https://ogrecave.github.io/ogre/api/2.1/class_ogre_1_1_scene_manager.html#a56cd9aa2c4dee4eec9eb07ce1372fb52
-        Ogre::ColourValue(0.3f, 0.3f, 0.3f),
-        Ogre::ColourValue(0.2f, 0.2f, 0.2f),
+        getCurrentBiome().upperAmbientColor,
+        getCurrentBiome().lowerAmbientColor,
         -Float3(0.55f, -0.3f, 0.75f).Normalize() + Float3::UnitVUp * 0.2f
     );
     // These work fine

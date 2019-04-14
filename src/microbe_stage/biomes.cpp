@@ -22,6 +22,11 @@ Biome::Biome(Json::Value value)
     Json::Value colorData = value["colors"];
     Json::Value dData = colorData["diffuseColors"];
     Json::Value sData = colorData["specularColors"];
+    Json::Value uData = colorData["upperAmbientColor"];
+    Json::Value lData = colorData["lowerAmbientColor"];
+
+    // Light power
+    lightPower = value["lightPower"].asFloat();
 
     float r = sData["r"].asFloat();
     float g = sData["g"].asFloat();
@@ -32,6 +37,16 @@ Biome::Biome(Json::Value value)
     g = sData["g"].asFloat();
     b = sData["b"].asFloat();
     diffuseColors = Ogre::ColourValue(r, g, b, 1.0);
+
+    r = uData["r"].asFloat();
+    g = uData["g"].asFloat();
+    b = uData["b"].asFloat();
+    upperAmbientColor = Ogre::ColourValue(r, g, b, 1.0);
+
+    r = lData["r"].asFloat();
+    g = lData["g"].asFloat();
+    b = lData["b"].asFloat();
+    lowerAmbientColor = Ogre::ColourValue(r, g, b, 1.0);
 
     // Getting the compound information.
     Json::Value compoundData = value["compounds"];

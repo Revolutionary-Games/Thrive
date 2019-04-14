@@ -108,7 +108,7 @@ class MicrobeEditorHudSystem : ScriptSystem{
             }
         }
         else {
-            LOG_ERROR("Failed to create editor music sound source");
+            //LOG_ERROR("Failed to create editor music sound source");
         }
 
         return audio;

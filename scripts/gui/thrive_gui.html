@@ -129,7 +129,12 @@
           <div id="CO2Icon"></div>
           <span id="carbonDioxidePercent">CO2: 9%</span>
         </div>
-        
+        <!-- N2 percentage -->
+        <div class="nitrogen">
+          <span id="nitrogenTab"></span>
+          <div id="NitrogenIcon"></div>
+          <span id="nitrogenPercent">N2: 70%</span>
+        </div>
 
         
 	  <div id="winContainer">
@@ -370,7 +375,7 @@ Be wary because your competitors are evolving alongside you. Every time you ente
 	      <table class="OrganelleTable"><tr>
 	          <td id="addCytoplasm" class="OrganelleListItem">
                 <span class="tooltiptext">Cytoplasm<hr><br> Cost: 30 mutation points<hr><br> 
-                Performs Process: Glycolysis<br>(0.125 glucose -> 5 ATP)/Second<hr><br>
+                Performs Process: Cytoplasm Glycolysis<br>(0.06 glucose -> 5 ATP)/Second<hr><br>
                 Storage Space: 4<hr><br>
                 The material or protoplasm within a living cell.<br>The gooey innards of a cell.</span>
                 <div id="CytoplasmIcon"></div>Cytoplasm<br>30 MP</td>
@@ -414,6 +419,16 @@ Be wary because your competitors are evolving alongside you. Every time you ente
                 Iron Chemolithotrophy is a process by which organisms obtain their energy from the oxidation of reduced inorganic ions.
               </span>
               <div id="RusticyaninIcon"></div>Rusticyanin<br>45 MP</td>
+            <td id="addNitrogenase" class="OrganelleListItem">
+                <span class="tooltiptext">
+                Nitrogenase<hr><br> Cost: 55 mutation points<hr><br> 
+                Performs Process: Anaerobic Nitrogen Fixation<br>(2 Nitrogen + 10 ATP -> 0.02 Ammonia)/Second (Depending On Environmental Nitrogen)<br>
+                Performs Process: Glycolysis<br>(0.125 glucose -> 5 ATP)/Second<hr><br>
+                Storage Space: 2<hr><br>
+                Allows for synthesis of ammonia from atmospheric nitrogen anaerobically. For easier cell growth.
+                </span>
+                <div id="NitrogenaseIcon">
+                </div>Nitrogenase<br>55 MP</td>
         </tr></table>
         <div class="OrganelleListTitle">EXTERNAL ORGANELLES</div>
         <table><tr>
@@ -483,7 +498,7 @@ Be wary because your competitors are evolving alongside you. Every time you ente
             <td id="addNitrogenFixingPlastid" class="OrganelleListItem">
                 <span class="tooltiptext">
                 Nitrogen Fixing Plastid<hr><br> Cost: 50 mutation points<hr><br> 
-                Performs Process: Nitrogen Fixation<br>(1 Oxygen + 5 ATP -> 0.5 Ammonia)/Second (Depending On Environmental Oxygen)<hr><br>
+                Performs Process: Aerobic Nitrogen Fixation<br>(1 Oxygen + 1 Nitrogen + 5 ATP -> 0.5 Ammonia)/Second (Depending On Environmental Oxygen/Nitrogen)<hr><br>
                 Storage Space: 2<hr><br>
                 Allows for synthesis of ammonia from atmospheric nitrogen and oxygen. For easier cell growth.
                 </span>
@@ -572,6 +587,8 @@ Chromatophores: Produces 1/3rd the amount of glucose as a normal chloroplast, bu
 
 Rusticyanin: Converts iron ions into ATP, and takes up 1 Hex.<br>
 
+Nitrogenase: Converts atmospheric nitrogen and ATP into ammonia anaerobically<br>
+
 Cytoplasm: Increases the rate of compound absorbtion and has 4 storage space and performs glycolysis (Produces small amounts of ATP).<br><br>
 
 External Organelles<br>
@@ -590,7 +607,7 @@ Chloroplast: Makes glucose out of sunlight and atmospheric CO2. <br>
 
 Chemoplast: Makes glucose out of Hydrogen Sulfide. <br>
 
-Nitrogen Fixing Plastid: Makes ammonia from ATP and atmospheric Nitrogen. <br>
+Nitrogen Fixing Plastid: Makes ammonia from ATP and atmospheric Nitrogen and Oxygen. <br>
 
 Vacuole: Stores 15 collected compounds. <br>
 
