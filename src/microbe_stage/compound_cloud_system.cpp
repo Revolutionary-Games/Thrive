@@ -1178,8 +1178,6 @@ void
             int intensity =
                 static_cast<int>(255 * 2 * std::atan(0.003f * density[i][j]));
 
-            intensity = static_cast<int>(128.0f * (density[i][j]+ 1.0f));
-
             // This is the same clamping code as in the old version
             intensity = std::clamp(intensity, 0, 255);
 
@@ -1188,41 +1186,6 @@ void
         }
     }
 }
-
-/*
-void
-    CompoundCloudSystem::createVelocityField()
-{
-    const float nxScale = m_noiseScale;
-    // "float(CLOUD_SIMULATION_WIDTH) / float(CLOUD_SIMULATION_HEIGHT)" is the
-    // aspect ratio of the cloud. This is 1 if the cloud is a square.
-    const float nyScale = nxScale * (float(CLOUD_SIMULATION_WIDTH) /
-                                        float(CLOUD_SIMULATION_HEIGHT));
-
-    for(int x = 0; x < CLOUD_SIMULATION_WIDTH; x++) {
-        for(int y = 0; y < CLOUD_SIMULATION_HEIGHT; y++) {
-            const float x0 =
-                (float(x - 1) / float(CLOUD_SIMULATION_WIDTH)) * nxScale;
-            const float y0 =
-                (float(y - 1) / float(CLOUD_SIMULATION_HEIGHT)) * nyScale;
-            const float x1 =
-                (float(x + 1) / float(CLOUD_SIMULATION_WIDTH)) * nxScale;
-            const float y1 =
-                (float(y + 1) / float(CLOUD_SIMULATION_HEIGHT)) * nyScale;
-
-            float n0 = m_fieldPotential.noise(x0, y0, 0);
-            float n1 = m_fieldPotential.noise(x1, y0, 0);
-            const float ny = n0 - n1;
-            n0 = m_fieldPotential.noise(x0, y0, 0);
-            n1 = m_fieldPotential.noise(x0, y1, 0);
-            const float nx = n1 - n0;
-
-            m_xVelocity[x][y] = nx / 2;
-            m_yVelocity[x][y] = ny / 2;
-        }
-    }
-}
-*/
 
 void
     CompoundCloudSystem::diffuse(float diffRate,
