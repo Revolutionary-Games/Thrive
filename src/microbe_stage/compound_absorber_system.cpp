@@ -56,6 +56,18 @@ void
     m_enabled = false;
 }
 
+void
+    CompoundAbsorberComponent::setIsHalf()
+{
+    radiusHalved = true;
+}
+
+void
+    CompoundAbsorberComponent::setNotHalf()
+{
+    radiusHalved = false;
+}
+
 // void
 // CompoundAbsorberComponent::load(
 //     const StorageContainer& storage
@@ -150,7 +162,9 @@ void
         const auto grabRadius = membrane.calculateEncompassingCircleRadius();
 
         // This version is used when working with cloud local coordinates
-        const auto localGrabRadius = grabRadius / CLOUD_RESOLUTION;
+        const auto localGrabRadius = (absorber.radiusHalved == true ?
+                                          grabRadius / CLOUD_RESOLUTION / 2.0f :
+                                          grabRadius / CLOUD_RESOLUTION);
 
         // Skip if not initialized //
         if(grabRadius < 1)

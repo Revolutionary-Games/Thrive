@@ -876,6 +876,18 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(engine->RegisterObjectMethod("CompoundAbsorberComponent",
+           "void setIsHalf()", asMETHOD(CompoundAbsorberComponent, setIsHalf),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("CompoundAbsorberComponent",
+           "void setNotHalf()", asMETHOD(CompoundAbsorberComponent, setNotHalf),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
 
     if(engine->RegisterObjectMethod("CompoundAbsorberComponent",
            "array<CompoundId>@ getAbsorbedCompounds()",
