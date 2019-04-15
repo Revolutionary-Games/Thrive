@@ -57,15 +57,9 @@ void
 }
 
 void
-    CompoundAbsorberComponent::setIsHalf()
+    CompoundAbsorberComponent::setGrabScale(float scale)
 {
-    radiusHalved = true;
-}
-
-void
-    CompoundAbsorberComponent::setNotHalf()
-{
-    radiusHalved = false;
+    this->scale = scale;
 }
 
 // void
@@ -162,9 +156,8 @@ void
         const auto grabRadius = membrane.calculateEncompassingCircleRadius();
 
         // This version is used when working with cloud local coordinates
-        const auto localGrabRadius = (absorber.radiusHalved == true ?
-                                          grabRadius / CLOUD_RESOLUTION / 2.0f :
-                                          grabRadius / CLOUD_RESOLUTION);
+        const auto localGrabRadius =
+            grabRadius / CLOUD_RESOLUTION / absorber.scale;
 
         // Skip if not initialized //
         if(grabRadius < 1)

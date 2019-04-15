@@ -876,14 +876,10 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-    if(engine->RegisterObjectMethod("CompoundAbsorberComponent",
-           "void setIsHalf()", asMETHOD(CompoundAbsorberComponent, setIsHalf),
-           asCALL_THISCALL) < 0) {
-        ANGELSCRIPT_REGISTERFAIL;
-    }
 
     if(engine->RegisterObjectMethod("CompoundAbsorberComponent",
-           "void setNotHalf()", asMETHOD(CompoundAbsorberComponent, setNotHalf),
+           "void setGrabScale(float scale)",
+           asMETHOD(CompoundAbsorberComponent, setGrabScale),
            asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }

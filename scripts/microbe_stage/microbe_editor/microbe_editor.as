@@ -974,12 +974,12 @@ class MicrobeEditor{
                 playerSpecies.isBacteria = false;
                 node.Scale = Float3(1.0, 1.0, 1.0);
                 node.Marked = true;
-                absorber.setNotHalf();
+                absorber.setGrabScale(1.0f);
             } else {
                 playerSpecies.isBacteria = true;
                 node.Scale = Float3(0.5, 0.5, 0.5);
                 node.Marked = true;
-                absorber.setIsHalf();
+                absorber.setGrabScale(2.0f);
             }
 
             LOG_INFO("MicrobeEditor: updated organelles for species: " + playerSpecies.name);
