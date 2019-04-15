@@ -8,6 +8,7 @@
 
 namespace thrive {
 
+// TODO: add more variables here for more complex fluid dynamics
 class FluidEffectComponent : public Leviathan::Component {
 public:
     FluidEffectComponent();
@@ -62,8 +63,9 @@ private:
     PerlinNoise noiseX;
     PerlinNoise noiseY;
 
-	static const Float2 scale;
+    static const Float2 scale;
     static const float timeScale;
+    static const float maxForceApplied;
 };
 
 } // namespace thrive

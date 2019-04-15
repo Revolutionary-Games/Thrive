@@ -324,7 +324,7 @@ void
 {
     // Use the curl of a Perlin noise field to create a turbulent velocity
     // field.
-    //createVelocityField();
+    // createVelocityField();
 
     // Skip if no graphics
     if(!Ogre::Root::getSingletonPtr())
@@ -1222,8 +1222,12 @@ void
     for(size_t x = 1; x < CLOUD_SIMULATION_WIDTH - 1; x++) {
         for(size_t y = 1; y < CLOUD_SIMULATION_HEIGHT - 1; y++) {
             if(oldDens[x][y] > 1) {
-                constexpr float viscosity = 0.3f; // TODO: give each cloud a viscosity value in the JSON file and use it instead.
-				Float2 velocity = fluidSystem.getVelocityAt(pos + Float2(x, y) * CLOUD_RESOLUTION) * viscosity;
+                constexpr float viscosity =
+                    0.3f; // TODO: give each cloud a viscosity value in the JSON
+                          // file and use it instead.
+                Float2 velocity = fluidSystem.getVelocityAt(
+                                      pos + Float2(x, y) * CLOUD_RESOLUTION) *
+                                  viscosity;
 
                 float dx = x + dt * velocity.X;
                 float dy = y + dt * velocity.Y;

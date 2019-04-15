@@ -16,9 +16,9 @@
 
 
 namespace thrive {
-	class FluidSystem;
+class FluidSystem;
 
-	class CompoundCloudSystem;
+class CompoundCloudSystem;
 class CellStageWorld;
 
 // Don't touch these without changing the explanation below
@@ -521,7 +521,9 @@ private:
     void
         advect(const std::vector<std::vector<float>>& oldDens,
             std::vector<std::vector<float>>& density,
-            int dt, FluidSystem& fluidSystem, Float2 pos);
+            int dt,
+            FluidSystem& fluidSystem,
+            Float2 pos);
 
 private:
     //! This system now spawns these entities when it needs them

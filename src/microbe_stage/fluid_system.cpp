@@ -3,7 +3,8 @@
 using namespace thrive;
 
 const Float2 FluidSystem::scale(0.05f, 0.05f);
-const float FluidSystem::timeScale = 0.001;
+const float FluidSystem::timeScale = 0.001f;
+const float FluidSystem::maxForceApplied = 10.0f;
 
 FluidEffectComponent::FluidEffectComponent() : Leviathan::Component(TYPE) {}
 
@@ -12,17 +13,20 @@ FluidSystem::FluidSystem() : noiseX(69), noiseY(13) {}
 void
     FluidSystem::Run(GameWorld& world)
 {
-    millisecondsPassed += Leviathan::TICKSPEED * timeScale; // TODO: get this thing plugged to FPS.
+    millisecondsPassed += Leviathan::TICKSPEED *
+                          timeScale; // TODO: get this thing plugged to FPS.
 
-    auto& index = CachedComponents.GetIndex();
-    for(auto iter = index.begin(); iter != index.end(); ++iter) {
-        Leviathan::Physics& rigidBody = std::get<1>(*iter->second);
-		// Push the rigidbody here.
+    for(auto& [id, components] : CachedComponents.GetIndex()) {
+        Leviathan::Physics& rigidBody = std::get<1>(*components);
+        Float3 pos = rigidBody.GetBody()->GetPosition();
+        Float2 vel = getVelocityAt(Float2(pos.X, pos.Z));
+        rigidBody.GetBody()->GiveImpulse(Float3(vel.X, 0.0f, vel.Y), pos);
     }
 }
 
 // TODO: refactor this nonsense.
-// TODO: also figure out if there's a way to do this that doesn't generate only horiontal or vertical currents
+// TODO: also figure out if there's a way to do this that doesn't generate only
+// horiontal or vertical currents
 Float2
     FluidSystem::getVelocityAt(Float2 position)
 {
@@ -32,12 +36,12 @@ Float2
     Float2 sample =
         sampleNoise(position, millisecondsPassed) * 2 - Float2(1, 1);
     const Float2 scaledPos = position * scale / 2;
-    Float2 sample2 = Float2(
-        noiseX.noise(scaledPos.X / 10, scaledPos.Y, millisecondsPassed / 500),
-            noiseY.noise(
-                scaledPos.X, scaledPos.Y / 10,
-                             millisecondsPassed / 500))
-				* 2 - Float2(1, 1);
+    Float2 sample2 = Float2(noiseX.noise(scaledPos.X / 10, scaledPos.Y,
+                                millisecondsPassed / 500),
+                         noiseY.noise(scaledPos.X, scaledPos.Y / 10,
+                             millisecondsPassed / 500)) *
+                         2 -
+                     Float2(1, 1);
 
     Float2 sample2x = Float2(0.0f);
     if(std::abs(sample2.X) > minCurrentIntensity)
@@ -45,7 +49,7 @@ Float2
     if(std::abs(sample2.Y) > minCurrentIntensity)
         sample2x += Float2(0.0f, sample2.Y);
 
-	// Normalize the sample?
+    // Normalize the sample?
     return sample * sampleProp + sample2x * (1.0f - sampleProp);
 }
 
