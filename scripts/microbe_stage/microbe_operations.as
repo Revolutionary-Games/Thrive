@@ -1178,6 +1178,7 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
         double amount = double(microbeComponent.totalHexCountCache)/CORPSE_CHUNK_AMOUNT_DIVISER;
         // Chunk(should separate into own function)
         ObjectID chunkEntity = world.CreateEntity();
+        world.Create_FluidEffectComponent(chunkEntity);
         auto positionAdded = Float3(GetEngine().GetRandom().GetFloat(-2.0f, 2.0f),0,
             GetEngine().GetRandom().GetFloat(-2.0f, 2.0f));
         auto chunkPosition = world.Create_Position(chunkEntity, position._Position+positionAdded,
