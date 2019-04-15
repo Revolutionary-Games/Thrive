@@ -626,7 +626,7 @@ class PlayerSpeciesSpawner{
     }
 }
 
-
+// Should this be affected by currents?
 ObjectID createToxin(CellStageWorld@ world, Float3 pos)
 {
     // Toxins
@@ -736,6 +736,8 @@ ObjectID createIron(CellStageWorld@ world, Float3 pos)
     body.ConstraintMovementAxises();
 
     rigidBody.JumpTo(position);
+    
+    world.Create_FluidEffectComponent(ironEntity);
 
     return ironEntity;
 }

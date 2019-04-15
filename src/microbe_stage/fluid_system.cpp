@@ -17,10 +17,14 @@ void
                           timeScale; // TODO: get this thing plugged to FPS.
 
     for(auto& [id, components] : CachedComponents.GetIndex()) {
-        Leviathan::Physics& rigidBody = std::get<1>(*components);
-        Float3 pos = rigidBody.GetBody()->GetPosition();
-        Float2 vel = getVelocityAt(Float2(pos.X, pos.Z));
-        rigidBody.GetBody()->GiveImpulse(Float3(vel.X, 0.0f, vel.Y), pos);
+        Leviathan::PhysicsBody* rigidBody = std::get<1>(*components).GetBody();
+
+        if(!rigidBody) // Missing body for some reason.
+            continue;
+
+        Float3 pos = rigidBody->GetPosition();
+        Float2 vel = getVelocityAt(Float2(pos.X, pos.Z)) * maxForceApplied;
+        rigidBody->GiveImpulse(Float3(vel.X, 0.0f, vel.Y));
     }
 }
 
