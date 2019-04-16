@@ -418,6 +418,12 @@ video {
   background-image: url("../../Textures/gui/bevel/Oxygen.png");
 }
 
+#OxygenNormalIcon {
+  background-image: url("../../Textures/gui/bevel/Oxygen.png");
+  background-repeat: no-repeat;
+}
+
+
 #OxygenBar {
   background-color: #2dcbf0;
 }
@@ -432,12 +438,18 @@ video {
   background-image: url("../../Textures/gui/bevel/Nitrogen.png");
 }
 
+#NitrogenNormalIcon {
+  background-image: url("../../Textures/gui/bevel/Nitrogen.png");
+  background-repeat: no-repeat;
+}
+
 #AminoAcidsBar {
   background-color: #f94b97;
 }
 
 #AmmoniaIcon {
   background-image: url("../../Textures/gui/bevel/Ammonia.png");
+  background-repeat: no-repeat;
 }
 
 #microbeHUDPlayerAmmoniaBar {
@@ -446,6 +458,14 @@ video {
 
 #GlucoseIcon {
   background-image: url("../../Textures/gui/bevel/Glucose.png");
+  background-repeat: no-repeat;
+}
+
+.tooltiptext .compoundIcon {
+  position: relative;
+  display: inline-block;
+  top: 5px;
+  left: 1px;
 }
 
 #microbeHUDPlayerGlucoseBar {
@@ -462,12 +482,18 @@ video {
   background-image: url("../../Textures/gui/bevel/CO2.png");
 }
 
+#CO2NormalIcon {
+  background-image: url("../../Textures/gui/bevel/CO2.png");
+  background-repeat: no-repeat;
+}
+
 #CO2Bar {
   background-color: #153665;
 }
 
 #FattyAcidsIcon {
   background-image: url("../../Textures/gui/bevel/FattyAcids.png");
+  background-repeat: no-repeat;
 }
 
 #FattyAcidsBar {
@@ -476,6 +502,7 @@ video {
 
 #OxyToxyIcon {
   background-image: url("../../Textures/gui/bevel/OxyToxy.png");
+  background-repeat: no-repeat;
 }
 
 #microbeHUDPlayerOxytoxyBar {
@@ -484,6 +511,7 @@ video {
 
 #IronIcon {
   background-image: url("../../Textures/gui/bevel/Iron.png");
+  background-repeat: no-repeat;
 }
 
 #microbeHUDPlayerIronBar {
@@ -492,6 +520,7 @@ video {
 
 #HealthIcon {
   background-image: url("../../Textures/gui/bevel/Hitpoints.png");
+  background-repeat: no-repeat;
 }
 
 #microbeHUDPlayerHitpointsBar {
@@ -501,6 +530,7 @@ video {
 
 #MutationPointsIcon {
   background-image: url("../../Textures/gui/bevel/MP.png");
+  background-repeat: no-repeat;
 }
 
 #microbeHUDPlayerMutationPointsBar {
@@ -528,6 +558,7 @@ video {
 
 #PhosphatesIcon {
   background-image: url("../../Textures/gui/bevel/Phosphates.png");
+  background-repeat: no-repeat;
 }
 
 #microbeHUDPlayerPhosphatesBar {
@@ -536,6 +567,7 @@ video {
 
 #HydrogenSulfideIcon {
   background-image: url("../../Textures/gui/bevel/HydrogenSulfide.png");
+  background-repeat: no-repeat;
 }
 
 #microbeHUDPlayerHydrogenSulfideBar {
@@ -1174,6 +1206,7 @@ video {
   position: fixed;
   z-index: 1;
 }
+
 
 
 .OrganelleListItem:hover .tooltiptext {
