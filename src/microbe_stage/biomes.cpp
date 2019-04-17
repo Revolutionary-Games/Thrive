@@ -71,35 +71,31 @@ Biome::Biome(Json::Value value)
     }
 
     Json::Value chunkData = value["chunks"];
-    std::vector<std::string> chunkInternalNames = 
-		chunkData.getMemberNames();
+    std::vector<std::string> chunkInternalNames = chunkData.getMemberNames();
     unsigned int id = 0;
     for(std::string chunkInternalName : chunkInternalNames) {
-		//Get values for chunks
-		
+        // Get values for chunks
+
         std::string name = chunkData[chunkInternalName]["name"].asString();
         double density = compoundData[chunkInternalName]["density"].asDouble();
         bool dissolves = compoundData[chunkInternalName]["dissolves"].asBool();
-		//Initilize chunk
-        ChunkData* chunk = new ChunkData(name, density, dissolves);
+        // Initilize chunk
+        ChunkData chunk(name, density, dissolves);
 
-        chunk->radius = 
-			chunkData[chunkInternalName]["radius"].asUInt();
-        chunk->mass = 
-			chunkData[chunkInternalName]["mass"].asUInt();
-        chunk->size = 
-			chunkData[chunkInternalName]["size"].asUInt();
-        chunk->ventAmount = 
-			compoundData[chunkInternalName]["ventAmount"].asDouble();
+        chunk.radius = chunkData[chunkInternalName]["radius"].asUInt();
+        chunk.mass = chunkData[chunkInternalName]["mass"].asUInt();
+        chunk.size = chunkData[chunkInternalName]["size"].asUInt();
+        chunk.ventAmount =
+            compoundData[chunkInternalName]["ventAmount"].asDouble();
 
-		//Get compound info
-        //Getting the compound information.
+        // Get compound info
+        // Getting the compound information.
         Json::Value chunkCompoundData =
             chunkData[chunkInternalName]["compounds"];
         std::vector<std::string> compoundChunkNames =
             chunkCompoundData.getMemberNames();
 
-		// Can this support empty chunks?
+        // Can this support empty chunks?
         for(std::string compoundChunkName : compoundChunkNames) {
             unsigned int amount =
                 chunkCompoundData[compoundChunkName]["amount"].asUInt();
@@ -109,15 +105,15 @@ Biome::Biome(Json::Value value)
                             .getTypeData(compoundChunkName)
                             .id;
 
-             chunk->chunkCompounds.emplace(std::piecewise_construct,
+            chunk.chunkCompounds.emplace(std::piecewise_construct,
                 std::forward_as_tuple(id),
                 std::forward_as_tuple(amount, compoundChunkName));
         }
 
-		// Retrive mesh array
+        // Retrive mesh array
 
-		// Add chunk to list
-        chunks.emplace(id, *chunk);
+        // Add chunk to list
+        chunks.emplace(id, std::move(chunk));
         id++;
     }
 }

@@ -30,6 +30,16 @@ public:
     std::string name;
     ChunkCompoundData() {}
 
+	// Move constructor
+    ChunkCompoundData(ChunkCompoundData&& other) :
+        name(std::move(other.name)), amount(other.amount)
+    {}
+
+	// Copy constructor
+	ChunkCompoundData(const ChunkCompoundData& other) :
+        name(std::move(other.name)), amount(other.amount)
+    {}
+
     ChunkCompoundData(unsigned int amount, std::string name) :
         amount(amount), name(name)
     {}
@@ -37,7 +47,7 @@ public:
 
 struct ChunkData {
 public:
-    std::string name;
+    std::string name ="";
     double density = 1.0f;
     bool dissolves = true;
     unsigned int radius = 0;
@@ -47,6 +57,26 @@ public:
 
     std::vector<std::string> meshes;
     std::map<size_t, ChunkCompoundData> chunkCompounds;
+
+	// Move constructor
+    ChunkData(ChunkData&& other) :
+        name(std::move(other.name)), dissolves(other.dissolves),
+        radius(other.radius), mass(other.mass), size(other.size),
+        ventAmount(other.ventAmount)
+    {
+        meshes = std::move(other.meshes);
+        chunkCompounds = std::move(other.chunkCompounds);
+	}
+
+	// Copy constructor
+    ChunkData(const ChunkData& other) :
+        name(std::move(other.name)), dissolves(other.dissolves),
+        radius(other.radius), mass(other.mass), size(other.size),
+        ventAmount(other.ventAmount)
+    {
+        meshes = std::move(other.meshes);
+        chunkCompounds = std::move(other.chunkCompounds);
+    }
 
     ChunkData() {}
 
