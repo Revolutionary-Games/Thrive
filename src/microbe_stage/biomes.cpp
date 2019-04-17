@@ -69,6 +69,57 @@ Biome::Biome(Json::Value value)
         compounds.emplace(std::piecewise_construct, std::forward_as_tuple(id),
             std::forward_as_tuple(amount, density, dissolved));
     }
+
+    Json::Value chunkData = value["chunks"];
+    std::vector<std::string> chunkInternalNames = 
+		chunkData.getMemberNames();
+    unsigned int id = 0;
+    for(std::string chunkInternalName : chunkInternalNames) {
+		//Get values for chunks
+		
+        std::string name = chunkData[chunkInternalName]["name"].asString();
+        double density = compoundData[chunkInternalName]["density"].asDouble();
+        bool dissolves = compoundData[chunkInternalName]["dissolves"].asBool();
+		//Initilize chunk
+        ChunkData* chunk = new ChunkData(name, density, dissolves);
+
+        chunk->radius = 
+			chunkData[chunkInternalName]["radius"].asUInt();
+        chunk->mass = 
+			chunkData[chunkInternalName]["mass"].asUInt();
+        chunk->size = 
+			chunkData[chunkInternalName]["size"].asUInt();
+        chunk->ventAmount = 
+			compoundData[chunkInternalName]["ventAmount"].asDouble();
+
+		//Get compound info
+        //Getting the compound information.
+        Json::Value chunkCompoundData =
+            chunkData[chunkInternalName]["compounds"];
+        std::vector<std::string> compoundChunkNames =
+            chunkCompoundData.getMemberNames();
+
+		// Can this support empty chunks?
+        for(std::string compoundChunkName : compoundChunkNames) {
+            unsigned int amount =
+                chunkCompoundData[compoundChunkName]["amount"].asUInt();
+
+            // Getting the compound id from the compound registry.
+            size_t id = SimulationParameters::compoundRegistry
+                            .getTypeData(compoundChunkName)
+                            .id;
+
+             chunk->chunkCompounds.emplace(std::piecewise_construct,
+                std::forward_as_tuple(id),
+                std::forward_as_tuple(amount, compoundChunkName));
+        }
+
+		// Retrive mesh array
+
+		// Add chunk to list
+        chunks.emplace(id, *chunk);
+        id++;
+    }
 }
 // ------------------------------------ //
 BiomeCompoundData*
@@ -83,5 +134,22 @@ CScriptArray*
     return Leviathan::ConvertIteratorToASArray(
         (compounds | boost::adaptors::map_keys).begin(),
         (compounds | boost::adaptors::map_keys).end(),
+        Leviathan::ScriptExecutor::Get()->GetASEngine(), "array<uint64>");
+}
+
+// ----- //
+
+ChunkCompoundData*
+    ChunkData::getCompound(size_t type)
+{
+    return &chunkCompounds[type];
+}
+
+CScriptArray*
+    ChunkData::getCompoundKeys() const
+{
+    return Leviathan::ConvertIteratorToASArray(
+        (chunkCompounds | boost::adaptors::map_keys).begin(),
+        (chunkCompounds | boost::adaptors::map_keys).end(),
         Leviathan::ScriptExecutor::Get()->GetASEngine(), "array<uint64>");
 }

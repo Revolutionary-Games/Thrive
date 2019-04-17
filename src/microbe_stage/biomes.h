@@ -5,6 +5,7 @@
 #include <OgreColourValue.h>
 #include <map>
 #include <string>
+#include <vector>
 
 class CScriptArray;
 
@@ -23,11 +24,49 @@ public:
     {}
 };
 
+struct ChunkCompoundData {
+public:
+    unsigned int amount = 0;
+    std::string name;
+    ChunkCompoundData() {}
+
+    ChunkCompoundData(unsigned int amount, std::string name) :
+        amount(amount), name(name)
+    {}
+};
+
+struct ChunkData {
+public:
+    std::string name;
+    double density = 1.0f;
+    bool dissolves = true;
+    unsigned int radius = 0;
+    unsigned int mass = 0;
+    unsigned int size = 0;
+    double ventAmount = 3.0f;
+
+    std::vector<std::string> meshes;
+    std::map<size_t, ChunkCompoundData> chunkCompounds;
+
+    ChunkData() {}
+
+    ChunkData(std::string name, double density, bool dissolves) :
+        name(name), density(density), dissolves(dissolves)
+    {}
+
+    ChunkCompoundData*
+        getCompound(size_t type);
+
+    CScriptArray*
+        getCompoundKeys() const;
+};
+
 class SimulationParameters;
 
 class Biome : public RegistryType {
 public:
     std::map<size_t, BiomeCompoundData> compounds;
+    std::map<size_t, ChunkData> chunks;
     std::string background = "error";
 
     Ogre::ColourValue specularColors;
