@@ -37,7 +37,7 @@ public:
 
     // Copy constructor
     ChunkCompoundData(const ChunkCompoundData& other) :
-        name(std::move(other.name)), amount(other.amount)
+        name(other.name), amount(other.amount)
     {}
 
     ChunkCompoundData(unsigned int amount, std::string name) :
@@ -70,12 +70,12 @@ public:
 
     // Copy constructor
     ChunkData(const ChunkData& other) :
-        name(std::move(other.name)), dissolves(other.dissolves),
+        name(other.name), dissolves(other.dissolves),
         radius(other.radius), mass(other.mass), size(other.size),
         ventAmount(other.ventAmount)
     {
-        meshes = std::move(other.meshes);
-        chunkCompounds = std::move(other.chunkCompounds);
+        meshes = other.meshes;
+        chunkCompounds = other.chunkCompounds;
     }
 
     ChunkData() {}
