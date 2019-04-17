@@ -109,8 +109,15 @@ Biome::Biome(Json::Value value)
                 std::forward_as_tuple(id),
                 std::forward_as_tuple(amount, compoundChunkName));
         }
-
-        // Retrive mesh array
+		
+		// Add meshes
+		Json::Value meshData =
+            chunkData[chunkInternalName]["meshes"];
+		
+		for (int i = 0; i < meshData.size(); i++){
+            chunk.meshes.push_back(meshData[i].asString());
+            //LOG_INFO(meshData[i].asString());
+		}
 
         // Add chunk to list
         chunks.emplace(id, std::move(chunk));
@@ -130,6 +137,21 @@ CScriptArray*
     return Leviathan::ConvertIteratorToASArray(
         (compounds | boost::adaptors::map_keys).begin(),
         (compounds | boost::adaptors::map_keys).end(),
+        Leviathan::ScriptExecutor::Get()->GetASEngine(), "array<uint64>");
+}
+
+ChunkData*
+    Biome::getChunk(size_t type)
+{
+    return &chunks[type];
+}
+
+CScriptArray*
+    Biome::getChunkKeys() const
+{
+    return Leviathan::ConvertIteratorToASArray(
+        (chunks | boost::adaptors::map_keys).begin(),
+        (chunks | boost::adaptors::map_keys).end(),
         Leviathan::ScriptExecutor::Get()->GetASEngine(), "array<uint64>");
 }
 

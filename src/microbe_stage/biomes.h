@@ -114,6 +114,12 @@ public:
         getCompound(size_t type);
     CScriptArray*
         getCompoundKeys() const;
+
+    CScriptArray*
+        Biome::getChunkKeys() const;
+
+	ChunkData*
+        Biome::getChunk(size_t type);
 };
 
 } // namespace thrive
