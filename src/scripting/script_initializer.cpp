@@ -363,6 +363,18 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectMethod("ChunkData", "int getMeshListSize()",
+           asMETHOD(ChunkData, getMeshListSize), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectMethod("ChunkData", "string getMesh(int index)",
+           asMETHOD(ChunkData, getMesh), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     if(engine->RegisterObjectProperty("ChunkCompoundData", "uint amount",
            asOFFSET(ChunkCompoundData, amount)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;

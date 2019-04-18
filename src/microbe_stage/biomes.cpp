@@ -170,3 +170,22 @@ CScriptArray*
         (chunkCompounds | boost::adaptors::map_keys).end(),
         Leviathan::ScriptExecutor::Get()->GetASEngine(), "array<uint64>");
 }
+
+int
+    ChunkData::getMeshListSize()
+{
+    return this->meshes.size();
+}
+
+std::string
+    ChunkData::getMesh(int index)
+{
+    // Some error checking
+    if(index >= 0 && index < this->meshes.size()) {
+        return this->meshes.at(index);
+    } else {
+        LOG_ERROR(
+            "Mesh at index " + std::to_string(index) + " does not exist!");
+        return "error";
+    }
+}
