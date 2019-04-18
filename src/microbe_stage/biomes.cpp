@@ -109,15 +109,14 @@ Biome::Biome(Json::Value value)
                 std::forward_as_tuple(id),
                 std::forward_as_tuple(amount, compoundChunkName));
         }
-		
-		// Add meshes
-		Json::Value meshData =
-            chunkData[chunkInternalName]["meshes"];
-		
-		for (int i = 0; i < meshData.size(); i++){
+
+        // Add meshes
+        Json::Value meshData = chunkData[chunkInternalName]["meshes"];
+
+        for(int i = 0; i < meshData.size(); i++) {
             chunk.meshes.push_back(meshData[i].asString());
-            //LOG_INFO(meshData[i].asString());
-		}
+            // LOG_INFO(meshData[i].asString());
+        }
 
         // Add chunk to list
         chunks.emplace(id, std::move(chunk));

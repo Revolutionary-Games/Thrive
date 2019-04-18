@@ -70,9 +70,8 @@ public:
 
     // Copy constructor
     ChunkData(const ChunkData& other) :
-        name(other.name), dissolves(other.dissolves),
-        radius(other.radius), mass(other.mass), size(other.size),
-        ventAmount(other.ventAmount)
+        name(other.name), dissolves(other.dissolves), radius(other.radius),
+        mass(other.mass), size(other.size), ventAmount(other.ventAmount)
     {
         meshes = other.meshes;
         chunkCompounds = other.chunkCompounds;
@@ -118,7 +117,7 @@ public:
     CScriptArray*
         Biome::getChunkKeys() const;
 
-	ChunkData*
+    ChunkData*
         Biome::getChunk(size_t type);
 };
 
