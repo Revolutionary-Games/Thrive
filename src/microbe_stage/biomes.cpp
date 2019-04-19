@@ -98,7 +98,7 @@ Biome::Biome(Json::Value value)
         // Can this support empty chunks?
         for(std::string compoundChunkName : compoundChunkNames) {
             unsigned int amount =
-                chunkCompoundData[compoundChunkName]["amount"].asUInt();
+                chunkCompoundData[compoundChunkName]["amount"].asDouble();
 
             // Getting the compound id from the compound registry.
             size_t id = SimulationParameters::compoundRegistry

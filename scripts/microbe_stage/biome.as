@@ -102,15 +102,16 @@ ObjectID createChunk(CellStageWorld@ world, uint chunkId,  Float3 pos)
 
 
     // need to generalize this
-
     auto chunkCompounds = chunk.getCompoundKeys();
     LOG_INFO("chunkCompounds.length = " + chunkCompounds.length());
+
     for(uint i = 0; i < chunkCompounds.length(); ++i){
         auto compoundId = SimulationParameters::compoundRegistry().getTypeData(chunkCompounds[i]).id;
-
+        //LOG_INFO("got here:");
         if(SimulationParameters::compoundRegistry().getTypeData(compoundId).isCloud){
             // And register new
-            const auto amount = chunk.getCompound(compoundId).amount;
+            const double amount = chunk.getCompound(chunkCompounds[i]).amount;
+            //LOG_INFO("amount:"+amount);
             bag.setCompound(compoundId,amount);
         }
     }
@@ -147,20 +148,22 @@ void setBiome(uint64 biomeId, CellStageWorld@ world){
     auto biome = getCurrentBiome();
 
     auto chunks = biome.getChunkKeys();
-
     LOG_INFO("chunks.length = " + chunks.length());
 
-    for(uint i = 0; i < chunks.length(); ++i){
-        auto chunkId = chunks[i];
-        Chunkfactory@ spawnChunk = Chunkfactory(chunkId);
-        const string typeStr = formatUInt(chunkId);
-        // Remove existing (if there is one)
-        // this doesn't work properly as it will only delete existing ids instea dof just clearing everything
+    // clearing chunks (all of them)
+    for (uint c = 0; c < chunkSpawnTypes.getSize(); ++c){
+        const string typeStr = formatUInt(c);
         if(chunkSpawnTypes.exists(typeStr)){
             world.GetSpawnSystem().removeSpawnType(SpawnerTypeId(
                 chunkSpawnTypes[typeStr]));
             LOG_INFO("deleting chunk spawn");
         }
+    }
+
+    for(uint i = 0; i < chunks.length(); ++i){
+        auto chunkId = chunks[i];
+        Chunkfactory@ spawnChunk = Chunkfactory(chunkId);
+        const string typeStr = formatUInt(chunkId);
         // And register new
         const auto density = biome.getChunk(chunkId).density;
        const auto name = biome.getChunk(chunkId).name;

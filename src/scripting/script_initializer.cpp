@@ -377,7 +377,7 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-    if(engine->RegisterObjectProperty("ChunkCompoundData", "uint amount",
+    if(engine->RegisterObjectProperty("ChunkCompoundData", "double amount",
            asOFFSET(ChunkCompoundData, amount)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }

@@ -26,7 +26,7 @@ public:
 
 struct ChunkCompoundData {
 public:
-    unsigned int amount = 0;
+    double amount = 0.0f;
     std::string name;
     ChunkCompoundData() {}
 
@@ -40,7 +40,7 @@ public:
         name(other.name), amount(other.amount)
     {}
 
-    ChunkCompoundData(unsigned int amount, std::string name) :
+    ChunkCompoundData(double amount, std::string name) :
         amount(amount), name(name)
     {}
 };
