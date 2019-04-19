@@ -74,6 +74,7 @@ ObjectID createChunk(CellStageWorld@ world, uint chunkId,  Float3 pos)
         Ogre::Quaternion(Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
             Ogre::Vector3(0,1,1)));
 
+
     auto renderNode = world.Create_RenderNode(chunkEntity);
     // Grab scale from json
     double chunkScale = chunk.chunkScale;
@@ -82,6 +83,7 @@ ObjectID createChunk(CellStageWorld@ world, uint chunkId,  Float3 pos)
     renderNode.Node.setOrientation(Ogre::Quaternion(
             Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
             Ogre::Vector3(0,1,1)));
+
     renderNode.Node.setPosition(pos);
 
     //Grab data
