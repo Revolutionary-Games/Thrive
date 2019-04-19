@@ -51,6 +51,7 @@ public:
     double density = 1.0f;
     bool dissolves = true;
     unsigned int radius = 0;
+    double chunkScale = 1.0f;
     unsigned int mass = 0;
     unsigned int size = 0;
     double ventAmount = 3.0f;
@@ -61,17 +62,17 @@ public:
     // Move constructor
     ChunkData(ChunkData&& other) :
         name(std::move(other.name)), density(other.density),
-        dissolves(other.dissolves), radius(other.radius), mass(other.mass),
-        size(other.size), ventAmount(other.ventAmount),
-        meshes(std::move(other.meshes)),
+        dissolves(other.dissolves), radius(other.radius),
+        chunkScale(other.chunkScale), mass(other.mass), size(other.size),
+        ventAmount(other.ventAmount), meshes(std::move(other.meshes)),
         chunkCompounds(std::move(other.chunkCompounds))
     {}
 
     // Copy constructor
     ChunkData(const ChunkData& other) :
         name(other.name), density(other.density), dissolves(other.dissolves),
-        radius(other.radius), mass(other.mass), size(other.size),
-        ventAmount(other.ventAmount), meshes(other.meshes),
+        radius(other.radius), chunkScale(other.chunkScale), mass(other.mass),
+        size(other.size), ventAmount(other.ventAmount), meshes(other.meshes),
         chunkCompounds(other.chunkCompounds)
     {}
 

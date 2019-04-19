@@ -344,6 +344,11 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(engine->RegisterObjectProperty("ChunkData", "double chunkScale",
+           asOFFSET(ChunkData, chunkScale)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     if(engine->RegisterObjectType(
            "ChunkCompoundData", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
         ANGELSCRIPT_REGISTERFAIL;

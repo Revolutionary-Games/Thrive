@@ -75,7 +75,9 @@ ObjectID createChunk(CellStageWorld@ world, uint chunkId,  Float3 pos)
             Ogre::Vector3(0,1,1)));
 
     auto renderNode = world.Create_RenderNode(chunkEntity);
-    renderNode.Scale = Float3(1, 1, 1);
+    // Grab scale from json
+    double chunkScale = chunk.chunkScale;
+    renderNode.Scale = Float3(chunkScale, chunkScale, chunkScale);
     renderNode.Marked = true;
     renderNode.Node.setOrientation(Ogre::Quaternion(
             Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),

@@ -33,12 +33,13 @@
                 "density": 0.00002,
                 "dissolves": true,
                 "radius": 1,
+                "chunkScale": 1.0,
                 "mass": 100,
                 "size": 2,
                 "ventAmount": 3.0,
                 "compounds": {
                     "iron": {
-                        "amount": 300.0
+                        "amount": 100.0
                     }
                 }
             },
@@ -48,6 +49,7 @@
                 "density": 0.00002,
                 "dissolves": true,
                 "radius": 10,
+                "chunkScale": 1.0,
                 "mass": 100,
                 "size": 100,
                 "ventAmount": 10.0,
@@ -140,12 +142,13 @@
                 "density": 0.00002,
                 "dissolves": true,
                 "radius": 1,
+                "chunkScale": 1.0,
                 "mass": 100,
                 "size": 2,
                 "ventAmount": 3.0,
                 "compounds": {
                     "iron": {
-                        "amount": 300.0
+                        "amount": 100.0
                     }
                 }
             },
@@ -155,6 +158,7 @@
                 "density": 0.00002,
                 "dissolves": true,
                 "radius": 10,
+                "chunkScale": 1.0,
                 "mass": 100,
                 "size": 100,
                 "ventAmount": 10.0,
@@ -246,12 +250,13 @@
                 "density": 0.00002,
                 "dissolves": true,
                 "radius": 1,
+                "chunkScale": 1.0,
                 "mass": 100,
                 "size": 2,
                 "ventAmount": 3.0,
                 "compounds": {
                     "iron": {
-                        "amount": 300.0
+                        "amount": 100.0
                     }
                 }
             },
@@ -261,6 +266,7 @@
                 "density": 0.00002,
                 "dissolves": true,
                 "radius": 10,
+                "chunkScale": 1.0,
                 "mass": 100,
                 "size": 100,
                 "ventAmount": 10.0,
@@ -352,12 +358,13 @@
                 "density": 0.00002,
                 "dissolves": true,
                 "radius": 1,
+                "chunkScale": 1.0,
                 "mass": 100,
                 "size": 2,
                 "ventAmount": 3.0,
                 "compounds": {
                     "iron": {
-                        "amount": 300.0
+                        "amount": 100.0
                     }
                 }
             },
@@ -367,6 +374,7 @@
                 "density": 0.00002,
                 "dissolves": true,
                 "radius": 10,
+                "chunkScale": 1.0,
                 "mass": 100,
                 "size": 100,
                 "ventAmount": 10.0,
@@ -458,12 +466,13 @@
                 "density": 0.00002,
                 "dissolves": true,
                 "radius": 1,
+                "chunkScale": 1.0,
                 "mass": 100,
                 "size": 2,
                 "ventAmount": 3.0,
                 "compounds": {
                     "iron": {
-                        "amount": 300.0
+                        "amount": 100.0
                     }
                 }
             },
@@ -473,6 +482,7 @@
                 "density": 0.00002,
                 "dissolves": true,
                 "radius": 10,
+                "chunkScale": 1.0,
                 "mass": 100,
                 "size": 100,
                 "ventAmount": 10.0,
@@ -564,12 +574,13 @@
                 "density": 0.00002,
                 "dissolves": true,
                 "radius": 1,
+                "chunkScale": 1.0,
                 "mass": 100,
                 "size": 2,
                 "ventAmount": 3.0,
                 "compounds": {
                     "iron": {
-                        "amount": 300.0
+                        "amount": 100.0
                     }
                 }
             },
@@ -579,6 +590,7 @@
                 "density": 0.00002,
                 "dissolves": true,
                 "radius": 10,
+                "chunkScale": 1.0,
                 "mass": 100,
                 "size": 100,
                 "ventAmount": 10.0,
@@ -670,12 +682,13 @@
                 "density": 0.00002,
                 "dissolves": true,
                 "radius": 1,
+                "chunkScale": 1.0,
                 "mass": 100,
                 "size": 2,
                 "ventAmount": 3.0,
                 "compounds": {
                     "iron": {
-                        "amount": 300.0
+                        "amount": 100.0
                     }
                 }
             },
@@ -685,6 +698,7 @@
                 "density": 0.00002,
                 "dissolves": true,
                 "radius": 10,
+                "chunkScale": 1.0,
                 "mass": 100,
                 "size": 100,
                 "ventAmount": 10.0,
@@ -776,12 +790,13 @@
                 "density": 0.00002,
                 "dissolves": true,
                 "radius": 1,
+                "chunkScale": 1.0,
                 "mass": 100,
                 "size": 2,
                 "ventAmount": 3.0,
                 "compounds": {
                     "iron": {
-                        "amount": 300.0
+                        "amount": 100.0
                     }
                 }
             },
@@ -791,6 +806,20 @@
                 "density": 0.0001,
                 "dissolves": false,
                 "radius": 1,
+                "chunkScale": 1.0,
+                "mass": 100,
+                "size": 2,
+                "ventAmount": 3.0,
+                "compounds": {
+                }
+            },
+            "gianticeCrystal": {
+                "name": "Giant Ice Crystal",
+                "meshes": ["ice_crystal", "icecrystal"],
+                "density": 0.000001,
+                "dissolves": false,
+                "radius": 10,
+                "chunkScale": 10.0,
                 "mass": 100,
                 "size": 2,
                 "ventAmount": 3.0,
@@ -803,6 +832,7 @@
                 "density": 0.00002,
                 "dissolves": true,
                 "radius": 10,
+                "chunkScale": 1.0,
                 "mass": 100,
                 "size": 100,
                 "ventAmount": 10.0,
@@ -895,12 +925,13 @@
                 "density": 0.00002,
                 "dissolves": true,
                 "radius": 1,
+                "chunkScale": 1.0,
                 "mass": 100,
                 "size": 2,
                 "ventAmount": 3.0,
                 "compounds": {
                     "iron": {
-                        "amount": 300.0
+                        "amount": 100.0
                     }
                 }
             },
@@ -910,6 +941,7 @@
                 "density": 0.00002,
                 "dissolves": true,
                 "radius": 10,
+                "chunkScale": 1.0,
                 "mass": 100,
                 "size": 100,
                 "ventAmount": 10.0,
@@ -1002,12 +1034,13 @@
                 "density": 0.00002,
                 "dissolves": true,
                 "radius": 1,
+                "chunkScale": 1.0,
                 "mass": 100,
                 "size": 2,
                 "ventAmount": 3.0,
                 "compounds": {
                     "iron": {
-                        "amount": 300.0
+                        "amount": 100.0
                     }
                 }
             },
@@ -1017,6 +1050,7 @@
                 "density": 0.00002,
                 "dissolves": true,
                 "radius": 10,
+                "chunkScale": 1.0,
                 "mass": 100,
                 "size": 100,
                 "ventAmount": 10.0,

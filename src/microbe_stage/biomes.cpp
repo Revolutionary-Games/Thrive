@@ -83,6 +83,8 @@ Biome::Biome(Json::Value value)
         ChunkData chunk(name, density, dissolves);
 
         chunk.radius = chunkData[chunkInternalName]["radius"].asUInt();
+        chunk.chunkScale =
+            chunkData[chunkInternalName]["chunkScale"].asDouble();
         chunk.mass = chunkData[chunkInternalName]["mass"].asUInt();
         chunk.size = chunkData[chunkInternalName]["size"].asUInt();
         chunk.ventAmount =
