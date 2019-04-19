@@ -102,7 +102,18 @@ ObjectID createChunk(CellStageWorld@ world, uint chunkId,  Float3 pos)
 
 
     // need to generalize this
-    bag.setCompound(SimulationParameters::compoundRegistry().getTypeId("iron"),IRON_PER_BIG_CHUNK);
+
+    auto chunkCompounds = chunk.getCompoundKeys();
+    LOG_INFO("chunkCompounds.length = " + chunkCompounds.length());
+    for(uint i = 0; i < chunkCompounds.length(); ++i){
+        auto compoundId = SimulationParameters::compoundRegistry().getTypeData(chunkCompounds[i]).id;
+
+        if(SimulationParameters::compoundRegistry().getTypeData(compoundId).isCloud){
+            // And register new
+            const auto amount = chunk.getCompound(compoundId).amount;
+            bag.setCompound(compoundId,amount);
+        }
+    }
 
     auto model = world.Create_Model(chunkEntity, renderNode.Node, mesh);
 
