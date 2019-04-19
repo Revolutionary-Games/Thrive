@@ -979,7 +979,7 @@ class MicrobeEditor{
                 playerSpecies.isBacteria = true;
                 node.Scale = Float3(0.5, 0.5, 0.5);
                 node.Marked = true;
-                absorber.setGrabScale(2.0f);
+                absorber.setGrabScale(0.5f);
             }
 
             LOG_INFO("MicrobeEditor: updated organelles for species: " + playerSpecies.name);
