@@ -122,10 +122,10 @@ public:
         getCompoundKeys() const;
 
     CScriptArray*
-        Biome::getChunkKeys() const;
+        getChunkKeys() const;
 
     ChunkData*
-        Biome::getChunk(size_t type);
+        getChunk(size_t type);
 };
 
 } // namespace thrive
