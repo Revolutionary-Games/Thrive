@@ -171,14 +171,14 @@ CScriptArray*
         Leviathan::ScriptExecutor::Get()->GetASEngine(), "array<uint64>");
 }
 
-int
+size_t
     ChunkData::getMeshListSize()
 {
     return this->meshes.size();
 }
 
 std::string
-    ChunkData::getMesh(int index)
+    ChunkData::getMesh(size_t index)
 {
     // Some error checking
     if(index >= 0 && index < this->meshes.size()) {

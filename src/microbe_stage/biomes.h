@@ -87,11 +87,11 @@ public:
     CScriptArray*
         getCompoundKeys() const;
 
-    int
+    size_t
         getMeshListSize();
 
     std::string
-        getMesh(int index);
+        getMesh(size_t index);
 };
 
 class SimulationParameters;

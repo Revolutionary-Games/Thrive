@@ -365,14 +365,14 @@ bool
 
     ANGELSCRIPT_ASSUMED_SIZE_T;
     if(engine->RegisterObjectMethod("ChunkData",
-           "const int getMeshListSize() const",
+           "const uint64 getMeshListSize() const",
            asMETHOD(ChunkData, getMeshListSize), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
     ANGELSCRIPT_ASSUMED_SIZE_T;
     if(engine->RegisterObjectMethod("ChunkData",
-           "const string getMesh(int index) const",
+           "const string getMesh(uint64 index) const",
            asMETHOD(ChunkData, getMesh), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
