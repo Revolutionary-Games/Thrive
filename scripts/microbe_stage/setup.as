@@ -666,80 +666,6 @@ ObjectID createToxin(CellStageWorld@ world, Float3 pos)
     return toxinEntity;
 }
 
-ObjectID createIron(CellStageWorld@ world, Float3 pos)
-{
-    // Iron
-    ObjectID ironEntity = world.CreateEntity();
-
-    auto position = world.Create_Position(ironEntity, pos,
-        Ogre::Quaternion(Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
-            Ogre::Vector3(0,1,1)));
-
-    auto renderNode = world.Create_RenderNode(ironEntity);
-    renderNode.Scale = Float3(1, 1, 1);
-    renderNode.Marked = true;
-    renderNode.Node.setOrientation(Ogre::Quaternion(
-            Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
-            Ogre::Vector3(0,1,1)));
-    renderNode.Node.setPosition(pos);
-    string mesh="";
-    int ironSize = 1;
-    // 5 is the default
-    float ironAmount = 3.0f;
-    double ironBagAmount= IRON_PER_SMALL_CHUNK;
-    bool dissolves=SMALL_IRON_DISSOLVES;
-    int ironEngulfSize = 2;
-    // There are four kinds
-    switch (GetEngine().GetRandom().GetNumber(0, 4))
-        {
-        case 0:
-        mesh="iron_01.mesh";
-        break;
-        case 1:
-        mesh="iron_02.mesh";
-        break;
-        case 2:
-        mesh="iron_03.mesh";
-        break;
-        case 3:
-        mesh="iron_04.mesh";
-        break;
-        case 4:
-        mesh="iron_05.mesh";
-        ironSize=10;
-        ironAmount=10.0f;
-        ironEngulfSize = 100;
-        ironBagAmount=IRON_PER_BIG_CHUNK;
-        dissolves=LARGE_IRON_DISSOLVES;
-        break;
-        }
-
-
-    auto venter = world.Create_CompoundVenterComponent(ironEntity);
-    // So that larger iron chunks give out more compounds
-    venter.setVentAmount(ironAmount);
-    venter.setDoDissolve(dissolves);
-    auto bag = world.Create_CompoundBagComponent(ironEntity);
-    auto engulfable = world.Create_EngulfableComponent(ironEntity);
-    engulfable.setSize(ironEngulfSize);
-    bag.setCompound(SimulationParameters::compoundRegistry().getTypeId("iron"),ironBagAmount);
-    auto model = world.Create_Model(ironEntity, renderNode.Node, mesh);
-    // Need to set the tint
-    model.GraphicalObject.setCustomParameter(1, Ogre::Vector4(1, 1, 1, 1));
-
-    auto rigidBody = world.Create_Physics(ironEntity, position);
-    auto body = rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
-        world.GetPhysicalWorld().CreateSphere(ironSize),100,
-        //engulfable
-        world.GetPhysicalMaterial("iron"));
-
-    body.ConstraintMovementAxises();
-
-    rigidBody.JumpTo(position);
-
-    return ironEntity;
-}
-
 // TODO: the player species handling would be more logically placed if
 // it was in SpeciesSystem, so move it there
 void setupSpawnSystem(CellStageWorld@ world){
@@ -782,10 +708,5 @@ void setupFloatingOrganelles(CellStageWorld@ world){
     // toxins
     const auto toxinId = spawnSystem.addSpawnType(
         @createToxin, DEFAULT_SPAWN_DENSITY,
-        MICROBE_SPAWN_RADIUS);
-
-    // iron
-    const auto ironId = spawnSystem.addSpawnType(
-        @createIron, DEFAULT_SPAWN_DENSITY,
         MICROBE_SPAWN_RADIUS);
 }

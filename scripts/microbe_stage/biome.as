@@ -47,7 +47,84 @@ class CloudFactory{
     private CompoundId compound;
 }
 
+class Chunkfactory{
+
+    Chunkfactory(uint c){
+
+        chunkId = c;
+    }
+
+    ObjectID spawn(CellStageWorld@ world, Float3 pos){
+        return createChunk(world, chunkId, pos);
+    }
+
+    private uint chunkId;
+}
+
+
+ObjectID createChunk(CellStageWorld@ world, uint chunkId,  Float3 pos)
+{
+    auto biome = getCurrentBiome();
+    // chunk
+    ObjectID chunkEntity = world.CreateEntity();
+    const ChunkData@ chunk = biome.getChunk(chunkId);
+
+    //Position and render node
+    auto position = world.Create_Position(chunkEntity, pos,
+        Ogre::Quaternion(Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
+            Ogre::Vector3(0,1,1)));
+
+    auto renderNode = world.Create_RenderNode(chunkEntity);
+    renderNode.Scale = Float3(1, 1, 1);
+    renderNode.Marked = true;
+    renderNode.Node.setOrientation(Ogre::Quaternion(
+            Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
+            Ogre::Vector3(0,1,1)));
+    renderNode.Node.setPosition(pos);
+
+    //Grab data
+    double ventAmount= chunk.ventAmount;
+    bool dissolves=chunk.dissolves;
+    int radius = chunk.radius;
+    int mass = chunk.mass;
+    int chunkSize = chunk.size;
+    auto meshListSize = chunk.getMeshListSize();
+    string mesh=chunk.getMesh(GetEngine().GetRandom().GetNumber(0,
+        meshListSize-1))+".mesh";
+
+    //Set things
+    auto venter = world.Create_CompoundVenterComponent(chunkEntity);
+    venter.setVentAmount(ventAmount);
+    venter.setDoDissolve(dissolves);
+    auto bag = world.Create_CompoundBagComponent(chunkEntity);
+    auto engulfable = world.Create_EngulfableComponent(chunkEntity);
+    engulfable.setSize(chunkSize);
+
+
+    // need to generalize this
+    bag.setCompound(SimulationParameters::compoundRegistry().getTypeId("iron"),IRON_PER_BIG_CHUNK);
+
+    auto model = world.Create_Model(chunkEntity, renderNode.Node, mesh);
+
+    // Need to set the tint
+    model.GraphicalObject.setCustomParameter(1, Ogre::Vector4(1, 1, 1, 1));
+
+    // Rigid Body
+    auto rigidBody = world.Create_Physics(chunkEntity, position);
+    auto body = rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
+        world.GetPhysicalWorld().CreateSphere(radius),mass,
+        //engulfable
+        world.GetPhysicalMaterial("iron"));
+
+    body.ConstraintMovementAxises();
+
+    rigidBody.JumpTo(position);
+
+    return chunkEntity;
+}
+
 dictionary compoundSpawnTypes;
+dictionary chunkSpawnTypes;
 
 // Setting the current biome to the one with the specified name.
 void setBiome(uint64 biomeId, CellStageWorld@ world){
@@ -57,6 +134,36 @@ void setBiome(uint64 biomeId, CellStageWorld@ world){
     // Getting the base biome to change to.
     currentBiome = biomeId;
     auto biome = getCurrentBiome();
+
+    auto chunks = biome.getChunkKeys();
+
+    LOG_INFO("chunks.length = " + chunks.length());
+
+    for(uint i = 0; i < chunks.length(); ++i){
+        auto chunkId = chunks[i];
+        Chunkfactory@ spawnChunk = Chunkfactory(chunkId);
+        const string typeStr = formatUInt(chunkId);
+        // Remove existing (if there is one)
+        // this doesn't work properly as it will only delete existing ids instea dof just clearing everything
+        if(chunkSpawnTypes.exists(typeStr)){
+            world.GetSpawnSystem().removeSpawnType(SpawnerTypeId(
+                chunkSpawnTypes[typeStr]));
+            LOG_INFO("deleting chunk spawn");
+        }
+        // And register new
+        const auto density = biome.getChunk(chunkId).density;
+       const auto name = biome.getChunk(chunkId).name;
+
+        if(density <= 0){
+            LOG_WARNING("chunk spawn density is 0. It won't spawn");
+        }
+
+        LOG_INFO("registering chunk: " + chunkId + " Name: "+name +" density: " + density);
+        SpawnFactoryFunc@ factory = SpawnFactoryFunc(spawnChunk.spawn);
+        chunkSpawnTypes[typeStr] = world.GetSpawnSystem().addSpawnType(factory, density,
+            MICROBE_SPAWN_RADIUS);
+
+    }
 
     auto biomeCompounds = biome.getCompoundKeys();
     LOG_INFO("biomeCompounds.length = " + biomeCompounds.length());

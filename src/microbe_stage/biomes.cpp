@@ -77,8 +77,8 @@ Biome::Biome(Json::Value value)
         // Get values for chunks
 
         std::string name = chunkData[chunkInternalName]["name"].asString();
-        double density = compoundData[chunkInternalName]["density"].asDouble();
-        bool dissolves = compoundData[chunkInternalName]["dissolves"].asBool();
+        double density = chunkData[chunkInternalName]["density"].asDouble();
+        bool dissolves = chunkData[chunkInternalName]["dissolves"].asBool();
         // Initilize chunk
         ChunkData chunk(name, density, dissolves);
 
@@ -86,7 +86,7 @@ Biome::Biome(Json::Value value)
         chunk.mass = chunkData[chunkInternalName]["mass"].asUInt();
         chunk.size = chunkData[chunkInternalName]["size"].asUInt();
         chunk.ventAmount =
-            compoundData[chunkInternalName]["ventAmount"].asDouble();
+            chunkData[chunkInternalName]["ventAmount"].asDouble();
 
         // Get compound info
         // Getting the compound information.
