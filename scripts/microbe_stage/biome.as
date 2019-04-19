@@ -101,9 +101,8 @@ ObjectID createChunk(CellStageWorld@ world, uint chunkId,  Float3 pos)
     engulfable.setSize(chunkSize);
 
 
-    // need to generalize this
     auto chunkCompounds = chunk.getCompoundKeys();
-    LOG_INFO("chunkCompounds.length = " + chunkCompounds.length());
+    //LOG_INFO("chunkCompounds.length = " + chunkCompounds.length());
 
     for(uint i = 0; i < chunkCompounds.length(); ++i){
         auto compoundId = SimulationParameters::compoundRegistry().getTypeData(chunkCompounds[i]).id;

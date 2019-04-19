@@ -184,8 +184,7 @@ std::string
     if(index >= 0 && index < this->meshes.size()) {
         return this->meshes.at(index);
     } else {
-        LOG_ERROR(
+        throw Leviathan::InvalidArgument(
             "Mesh at index " + std::to_string(index) + " does not exist!");
-        return "error";
     }
 }

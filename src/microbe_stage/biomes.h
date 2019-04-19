@@ -62,21 +62,18 @@ public:
     ChunkData(ChunkData&& other) :
         name(std::move(other.name)), density(other.density),
         dissolves(other.dissolves), radius(other.radius), mass(other.mass),
-        size(other.size), ventAmount(other.ventAmount)
-    {
-        meshes = std::move(other.meshes);
-        chunkCompounds = std::move(other.chunkCompounds);
-    }
+        size(other.size), ventAmount(other.ventAmount),
+        meshes(std::move(other.meshes)),
+        chunkCompounds(std::move(other.chunkCompounds))
+    {}
 
     // Copy constructor
     ChunkData(const ChunkData& other) :
         name(other.name), density(other.density), dissolves(other.dissolves),
         radius(other.radius), mass(other.mass), size(other.size),
-        ventAmount(other.ventAmount)
-    {
-        meshes = other.meshes;
-        chunkCompounds = other.chunkCompounds;
-    }
+        ventAmount(other.ventAmount), meshes(other.meshes),
+        chunkCompounds(other.chunkCompounds)
+    {}
 
     ChunkData() {}
 
