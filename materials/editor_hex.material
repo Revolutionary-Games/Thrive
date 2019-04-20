@@ -1,0 +1,13 @@
+// Material for the hex inside the cell editor
+hlms EditorHexMaterial unlit
+{
+    diffuse_map single_hex.png
+}
+
+hlms EditorHexMaterialInvalid unlit
+{
+    diffuse_map single_hex_invalid.png
+}
+
+
+// This is an alternative that has the icon of the organelle on it

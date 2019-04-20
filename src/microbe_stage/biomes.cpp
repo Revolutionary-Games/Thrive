@@ -115,8 +115,8 @@ Biome::Biome(Json::Value value)
         // Add meshes
         Json::Value meshData = chunkData[chunkInternalName]["meshes"];
 
-        for(int i = 0; i < meshData.size(); i++) {
-            chunk.meshes.push_back(meshData[i].asString());
+        for(size_t i = 0; i < meshData.size(); i++) {
+            chunk.meshes.push_back(meshData[static_cast<int>(i)].asString());
             // LOG_INFO(meshData[i].asString());
         }
 
