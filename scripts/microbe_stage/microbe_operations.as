@@ -1013,6 +1013,10 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, bool aiControlled,
 
     auto compoundAbsorberComponent = world.Create_CompoundAbsorberComponent(entity);
 
+    if (species.isBacteria) {
+        compoundAbsorberComponent.setGrabScale(0.5f);
+    }
+
     world.Create_RenderNode(entity);
     auto compoundBag = world.Create_CompoundBagComponent(entity);
 

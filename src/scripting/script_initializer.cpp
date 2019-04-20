@@ -289,6 +289,109 @@ bool
            asOFFSET(BiomeCompoundData, dissolved)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
+
+    if(engine->RegisterObjectType("ChunkData", 0, asOBJ_REF | asOBJ_NOCOUNT) <
+        0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectMethod("Biome",
+           "const ChunkData& getChunk(uint64 type) const",
+           asMETHOD(Biome, getChunk), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectMethod("Biome",
+           "array<uint64>@ getChunkKeys() const", asMETHOD(Biome, getChunkKeys),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty(
+           "ChunkData", "string name", asOFFSET(ChunkData, name)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty(
+           "ChunkData", "double density", asOFFSET(ChunkData, density)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty(
+           "ChunkData", "bool dissolves", asOFFSET(ChunkData, dissolves)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty(
+           "ChunkData", "uint radius", asOFFSET(ChunkData, radius)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty(
+           "ChunkData", "uint mass", asOFFSET(ChunkData, mass)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty(
+           "ChunkData", "uint size", asOFFSET(ChunkData, size)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("ChunkData", "double ventAmount",
+           asOFFSET(ChunkData, ventAmount)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("ChunkData", "double chunkScale",
+           asOFFSET(ChunkData, chunkScale)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectType(
+           "ChunkCompoundData", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectMethod("ChunkData",
+           "const ChunkCompoundData& getCompound(uint64 type) const",
+           asMETHOD(ChunkData, getCompound), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectMethod("ChunkData",
+           "array<uint64>@ getCompoundKeys() const",
+           asMETHOD(ChunkData, getCompoundKeys), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectMethod("ChunkData",
+           "const uint64 getMeshListSize() const",
+           asMETHOD(ChunkData, getMeshListSize), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectMethod("ChunkData",
+           "const string getMesh(uint64 index) const",
+           asMETHOD(ChunkData, getMesh), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("ChunkCompoundData", "double amount",
+           asOFFSET(ChunkCompoundData, amount)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("ChunkCompoundData", "string name",
+           asOFFSET(ChunkCompoundData, name)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     return true;
 }
 
@@ -872,6 +975,14 @@ bool
 
     if(engine->RegisterObjectMethod("CompoundAbsorberComponent",
            "void disable()", asMETHOD(CompoundAbsorberComponent, disable),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+
+    if(engine->RegisterObjectMethod("CompoundAbsorberComponent",
+           "void setGrabScale(float scale)",
+           asMETHOD(CompoundAbsorberComponent, setGrabScale),
            asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }

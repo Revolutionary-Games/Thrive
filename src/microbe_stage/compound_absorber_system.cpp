@@ -56,6 +56,12 @@ void
     m_enabled = false;
 }
 
+void
+    CompoundAbsorberComponent::setGrabScale(float scale)
+{
+    this->scale = scale;
+}
+
 // void
 // CompoundAbsorberComponent::load(
 //     const StorageContainer& storage
@@ -150,7 +156,8 @@ void
         const auto grabRadius = membrane.calculateEncompassingCircleRadius();
 
         // This version is used when working with cloud local coordinates
-        const auto localGrabRadius = grabRadius / CLOUD_RESOLUTION;
+        const auto localGrabRadius =
+            grabRadius / CLOUD_RESOLUTION * absorber.scale;
 
         // Skip if not initialized //
         if(grabRadius < 1)
