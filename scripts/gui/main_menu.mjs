@@ -25,6 +25,7 @@ export function runMenuSetup(){
         common.playButtonPressSound();
         newGame();
     }, true);
+
     // The prototype doesn't really work so disabled for now
     // document.getElementById("extrasButton").addEventListener("click", (event) => {
     //     event.stopPropagation();

@@ -418,12 +418,12 @@ function updatePopulation(population){
 
 // Update dissolved gasses
 function updateDissolvedGasses(oxygen, c02, n2){
-    document.getElementById("oxygenPercent").textContent =
-    "O2: " + oxygen + "%";
-    document.getElementById("carbonDioxidePercent").textContent =
-    "CO2: " + c02 + "%";
-    document.getElementById("nitrogenPercent").textContent =
-    "N2: " + n2 + "%";
+    document.getElementById("oxygenPercent").innerHTML =
+    "O<sub>2</sub>" + ": " + oxygen + "%";
+    document.getElementById("carbonDioxidePercent").innerHTML =
+    "CO<sub>2</sub>" + ": " + c02 + "%";
+    document.getElementById("nitrogenPercent").innerHTML =
+    "N<sub>2</sub>" + ": " + n2 + "%";
 }
 
 
