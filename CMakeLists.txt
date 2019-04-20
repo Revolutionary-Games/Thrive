@@ -98,9 +98,9 @@ link_directories("${LEVIATHAN_SRC}/build/bin")
 # Version
 set(PROGRAM_VERSION_STABLE 0)
 set(PROGRAM_VERSION_MAJOR 4)
-set(PROGRAM_VERSION_MINOR 1)
-set(PROGRAM_VERSION_PATCH 1)
-set(PROGRAM_VERSION_SUFFIX "")
+set(PROGRAM_VERSION_MINOR 2)
+set(PROGRAM_VERSION_PATCH 0)
+set(PROGRAM_VERSION_SUFFIX "-alpha")
 
 set(PROGRAM_VERSION_STR ${PROGRAM_VERSION_STABLE}.${PROGRAM_VERSION_MAJOR}.${PROGRAM_VERSION_MINOR}.${PROGRAM_VERSION_PATCH}${PROGRAM_VERSION_SUFFIX})
 set(PROGRAM_VERSION ${PROGRAM_VERSION_STABLE}.${PROGRAM_VERSION_MAJOR}${PROGRAM_VERSION_MINOR}${PROGRAM_VERSION_PATCH})
@@ -143,10 +143,13 @@ file(GLOB THRIVE_SCRIPTS "scripts/*")
 file(COPY ${THRIVE_SCRIPTS} DESTINATION "${PROJECT_BINARY_DIR}/bin/Data/Scripts")
 InstallContentsOfFolder("scripts" "bin/Data/Scripts")
 
-# Right now we only use what the engine needs
-# # Copy javascript libraries
-# file(GLOB THRIVE_VENDOR_SCRIPTS "assets/jsvendor/*")
-# file(COPY ${THRIVE_VENDOR_SCRIPTS} DESTINATION "${PROJECT_BINARY_DIR}/bin/Data/jsvendor")
+file(GLOB THRIVE_MATERIALS "materials/*")
+file(COPY ${THRIVE_MATERIALS} DESTINATION "${PROJECT_BINARY_DIR}/bin/Data/Materials/")
+InstallContentsOfFolder("materials" "bin/Data/Materials")
+
+file(GLOB THRIVE_SHADERS "shaders/*")
+file(COPY ${THRIVE_SHADERS} DESTINATION "${PROJECT_BINARY_DIR}/bin/Data/Shaders/")
+InstallContentsOfFolder("shaders" "bin/Data/Shaders")
 
 # Copy other data assets
 file(GLOB THRIVE_TEXTURES "assets/textures/*")
@@ -157,11 +160,6 @@ InstallContentsOfFolder("assets/textures" "bin/Data/Textures")
 file(GLOB THRIVE_FONTS "assets/fonts/*")
 file(COPY ${THRIVE_FONTS} DESTINATION "${PROJECT_BINARY_DIR}/bin/Data/Fonts/")
 InstallContentsOfFolder("assets/fonts" "bin/Data/Fonts")
-
-
-file(GLOB THRIVE_MATERIALS "assets/materials/*")
-file(COPY ${THRIVE_MATERIALS} DESTINATION "${PROJECT_BINARY_DIR}/bin/Data/Materials/")
-InstallContentsOfFolder("assets/materials" "bin/Data/Materials")
 
 file(GLOB THRIVE_MODELS "assets/models/*")
 file(COPY ${THRIVE_MODELS} DESTINATION "${PROJECT_BINARY_DIR}/bin/Data/Models/")

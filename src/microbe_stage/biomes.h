@@ -31,13 +31,13 @@ public:
     ChunkCompoundData() {}
 
     // Move constructor
-    ChunkCompoundData(ChunkCompoundData&& other) :
-        name(std::move(other.name)), amount(other.amount)
+    ChunkCompoundData(ChunkCompoundData&& other) noexcept :
+        amount(other.amount), name(std::move(other.name))
     {}
 
     // Copy constructor
     ChunkCompoundData(const ChunkCompoundData& other) :
-        name(other.name), amount(other.amount)
+        amount(other.amount), name(other.name)
     {}
 
     ChunkCompoundData(double amount, std::string name) :
@@ -60,7 +60,7 @@ public:
     std::map<size_t, ChunkCompoundData> chunkCompounds;
 
     // Move constructor
-    ChunkData(ChunkData&& other) :
+    ChunkData(ChunkData&& other) noexcept :
         name(std::move(other.name)), density(other.density),
         dissolves(other.dissolves), radius(other.radius),
         chunkScale(other.chunkScale), mass(other.mass), size(other.size),

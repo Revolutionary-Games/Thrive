@@ -1,0 +1,53 @@
+
+
+material AgentVacuoleMaterial3 
+{
+    receive_shadows on 
+
+    technique
+    {
+        pass AgentVacuoleMaterial3
+        {
+            ambient 0.800000011920929 0.800000011920929 0.800000011920929 1.0
+            diffuse 0.6400000190734865 0.6400000190734865 0.6400000190734865 1.0
+            specular 0.0 0.0 0.0 1.0 12.5
+            emissive 0.4000000059604645 0.4000000059604645 0.4000000059604645 1.0
+
+            alpha_to_coverage off
+            colour_write on
+            cull_hardware clockwise
+            depth_check on
+            depth_func less_equal
+            depth_write on
+            illumination_stage 
+            light_clip_planes off
+            light_scissor off
+            // lighting on
+            // normalise_normals off
+            polygon_mode solid
+            scene_blend one zero
+            scene_blend_op add
+            shading gouraud
+            // transparent_sorting on
+
+            vertex_program_ref Organelle_VS
+            {
+                param_named size float 0.01
+                param_named maxRot float 180
+            }
+            fragment_program_ref Organelle_PS
+            {
+                param_named tex int 0
+                param_named_auto organelleColour custom 1
+            }
+            texture_unit 
+            {
+                texture AgentVacuole.png gamma
+                tex_address_mode wrap
+                scale 1.0 1.0
+                tex_coord_set 0
+                colour_op modulate
+            }
+        }
+    }
+}
