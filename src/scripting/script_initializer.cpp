@@ -344,6 +344,16 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(engine->RegisterObjectProperty(
+           "ChunkData", "double damages", asOFFSET(ChunkData, damages)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("ChunkData", "bool deleteOnTouch",
+           asOFFSET(ChunkData, deleteOnTouch)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     if(engine->RegisterObjectProperty("ChunkData", "double chunkScale",
            asOFFSET(ChunkData, chunkScale)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
