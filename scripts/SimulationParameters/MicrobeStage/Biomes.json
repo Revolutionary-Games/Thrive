@@ -383,6 +383,33 @@
                         "amount": 30000.0
                     }
                 }
+            },
+            "marineSnow": {
+                "name": "Marine snow",
+                "meshes": ["nucleus", "chloroplast", "oxytoxy","flagellum",
+                "chemoplast","nitrogenplastid","metabolosome","chromatophores",
+                "vacuole","mitochondrion","chemoproteins","nitrogenase","rusticyanin"],
+                "density": 0.00002,
+                "dissolves": true,
+                "radius": 1,
+                "chunkScale": 1.0,
+                "mass": 1,
+                "size": 2,
+                "ventAmount": 3.0,
+                "compounds": {
+                    "atp": {
+                        "amount": 100.0
+                    },
+                    "ammonia": {
+                        "amount": 100.0
+                    },
+                    "phosphates": {
+                        "amount": 100.0
+                    },
+                    "glucose": {
+                        "amount": 100.0
+                    }
+                }
             }
         },
         
@@ -489,6 +516,33 @@
                 "compounds": {
                     "iron": {
                         "amount": 30000.0
+                    }
+                }
+            },
+            "marineSnow": {
+                "name": "Marine snow",
+                "meshes": ["nucleus", "chloroplast", "oxytoxy","flagellum",
+                "chemoplast","nitrogenplastid","metabolosome","chromatophores",
+                "vacuole","mitochondrion","chemoproteins","nitrogenase","rusticyanin"],
+                "density": 0.00002,
+                "dissolves": true,
+                "radius": 1,
+                "chunkScale": 1.0,
+                "mass": 1,
+                "size": 2,
+                "ventAmount": 3.0,
+                "compounds": {
+                    "atp": {
+                        "amount": 100.0
+                    },
+                    "ammonia": {
+                        "amount": 100.0
+                    },
+                    "phosphates": {
+                        "amount": 100.0
+                    },
+                    "glucose": {
+                        "amount": 100.0
                     }
                 }
             }
@@ -1057,6 +1111,33 @@
                 "compounds": {
                     "iron": {
                         "amount": 30000.0
+                    }
+                }
+            },
+            "marineSnow": {
+                "name": "Marine snow",
+                "meshes": ["nucleus", "chloroplast", "oxytoxy","flagellum",
+                "chemoplast","nitrogenplastid","metabolosome","chromatophores",
+                "vacuole","mitochondrion","chemoproteins","nitrogenase","rusticyanin"],
+                "density": 0.00004,
+                "dissolves": true,
+                "radius": 1,
+                "chunkScale": 1.0,
+                "mass": 1,
+                "size": 2,
+                "ventAmount": 3.0,
+                "compounds": {
+                    "atp": {
+                        "amount": 100.0
+                    },
+                    "ammonia": {
+                        "amount": 100.0
+                    },
+                    "phosphates": {
+                        "amount": 100.0
+                    },
+                    "glucose": {
+                        "amount": 100.0
                     }
                 }
             }

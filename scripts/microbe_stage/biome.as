@@ -111,12 +111,10 @@ ObjectID createChunk(CellStageWorld@ world, uint chunkId,  Float3 pos)
     for(uint i = 0; i < chunkCompounds.length(); ++i){
         auto compoundId = SimulationParameters::compoundRegistry().getTypeData(chunkCompounds[i]).id;
         //LOG_INFO("got here:");
-        if(SimulationParameters::compoundRegistry().getTypeData(compoundId).isCloud){
-            // And register new
-            const double amount = chunk.getCompound(chunkCompounds[i]).amount;
-            //LOG_INFO("amount:"+amount);
-            bag.setCompound(compoundId,amount);
-        }
+        // And register new
+        const double amount = chunk.getCompound(chunkCompounds[i]).amount;
+        //LOG_INFO("amount:"+amount);
+        bag.setCompound(compoundId,amount);
     }
 
     auto model = world.Create_Model(chunkEntity, renderNode.Node, mesh);
