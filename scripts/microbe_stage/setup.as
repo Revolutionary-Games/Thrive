@@ -308,7 +308,7 @@ void cellHitFloatingOrganelle(GameWorld@ world, ObjectID firstEntity, ObjectID s
 // Used for chunks
 void cellHitEngulfable(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
 {
-    // Determine which is the iron
+    // Determine which is the chunk
     CellStageWorld@ asCellWorld = cast<CellStageWorld>(world);
 
     auto model = asCellWorld.GetComponent_Model(firstEntity);
@@ -352,53 +352,35 @@ void cellHitEngulfable(GameWorld@ world, ObjectID firstEntity, ObjectID secondEn
 // Used for chunks that also can damage
 void cellHitDamageChunk(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
 {
-    // Determine which is the iron
+    // Determine which is the chunk
     CellStageWorld@ asCellWorld = cast<CellStageWorld>(world);
 
     auto model = asCellWorld.GetComponent_Model(firstEntity);
     auto floatingEntity = firstEntity;
     auto cellEntity = secondEntity;
-
-    // Cell doesn't have a model
-    if(model is null){
-
-        @model = asCellWorld.GetComponent_Model(secondEntity);
-        floatingEntity = secondEntity;
-        cellEntity = firstEntity;
-    }
-
-    // Determine which is the organelle
-    CellStageWorld@ asCellWorld = cast<CellStageWorld>(world);
-
-    auto model = asCellWorld.GetComponent_Model(firstEntity);
-    auto floatingEntity = firstEntity;
-    auto cellEntity = secondEntity;
-
+    bool disappear=false;
     // Cell doesn't have a model
     if(model is null){
         @model = asCellWorld.GetComponent_Model(secondEntity);
         floatingEntity = secondEntity;
         cellEntity = firstEntity;
     }
-
-    AgentProperties@ propertiesComponent =
-        asCellWorld.GetComponent_AgentProperties(floatingEntity);
-
+    auto damage = asCellWorld.GetComponent_DamageOnTouchComponent(floatingEntity);
     MicrobeComponent@ microbeComponent = MicrobeOperations::getMicrobeComponent(asCellWorld,cellEntity);
 
-    if (propertiesComponent !is null && microbeComponent !is null){
-        if (propertiesComponent.getSpeciesName() != microbeComponent.speciesName && !microbeComponent.dead){
-            MicrobeOperations::damage(asCellWorld, cellEntity, double(OXY_TOXY_DAMAGE), "toxin");
-            world.QueueDestroyEntity(floatingEntity);
-            }
+    if (damage !is null && microbeComponent !is null){
+        if (damage.getDeletes() && !microbeComponent.dead){
+            MicrobeOperations::damage(asCellWorld, cellEntity, double(damage.getDamage()), "toxin");
+            disappear=true;
+        }
+        else if (!damage.getDeletes() && !microbeComponent.dead){
+            MicrobeOperations::damage(asCellWorld, cellEntity, double(damage.getDamage()), "toxin");
+        }
     }
 
-    auto microbeComponent = MicrobeOperations::getMicrobeComponent(asCellWorld,cellEntity);
-
+    // Do engulfing stuff in the case that we have an engulfable component
     auto engulfableComponent = asCellWorld.GetComponent_EngulfableComponent(floatingEntity);
-
     auto compoundBagComponent = asCellWorld.GetComponent_CompoundBagComponent(cellEntity);
-
     auto floatBag = asCellWorld.GetComponent_CompoundBagComponent(floatingEntity);
 
     if (microbeComponent !is null && engulfableComponent !is null
@@ -415,9 +397,13 @@ void cellHitDamageChunk(GameWorld@ world, ObjectID firstEntity, ObjectID secondE
                 // Right now you get way too much compounds for engulfing the things but hey
                 compoundBagComponent.giveCompound(realCompoundId, (amountToTake/CHUNK_ENGULF_COMPOUND_DIVISOR));
             }
-            world.QueueDestroyEntity(floatingEntity);
+            disappear=true;
             }
         }
+
+    if (disappear){
+        world.QueueDestroyEntity(floatingEntity);
+    }
 }
 
 

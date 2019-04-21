@@ -124,14 +124,25 @@ ObjectID createChunk(CellStageWorld@ world, uint chunkId,  Float3 pos)
 
     // Rigid Body
     auto rigidBody = world.Create_Physics(chunkEntity, position);
+
+    //chunk properties
+    if (chunk.damages > 0.0f || chunk.deleteOnTouch){
+        auto damager = world.Create_DamageOnTouchComponent(chunkEntity);
+        damager.setDamage(chunk.damages);
+        damager.setDeletes(chunk.deleteOnTouch);
+        auto body = rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
+            world.GetPhysicalWorld().CreateSphere(radius),mass,
+        //damage
+        world.GetPhysicalMaterial("chunkDamageMaterial"));
+        body.ConstraintMovementAxises();
+    }
+    else {
     auto body = rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
         world.GetPhysicalWorld().CreateSphere(radius),mass,
         //engulfable
         world.GetPhysicalMaterial("engulfableMaterial"));
-
-        //need to change material based on settings
-
     body.ConstraintMovementAxises();
+    }
 
     rigidBody.JumpTo(position);
 
