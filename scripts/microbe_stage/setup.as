@@ -305,7 +305,7 @@ void cellHitFloatingOrganelle(GameWorld@ world, ObjectID firstEntity, ObjectID s
 }
 
 
-// Will use this for food chunks now
+// Used for chunks
 void cellHitEngulfable(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
 {
     // Determine which is the iron
@@ -348,6 +348,78 @@ void cellHitEngulfable(GameWorld@ world, ObjectID firstEntity, ObjectID secondEn
             }
         }
 }
+
+// Used for chunks that also can damage
+void cellHitDamageChunk(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
+{
+    // Determine which is the iron
+    CellStageWorld@ asCellWorld = cast<CellStageWorld>(world);
+
+    auto model = asCellWorld.GetComponent_Model(firstEntity);
+    auto floatingEntity = firstEntity;
+    auto cellEntity = secondEntity;
+
+    // Cell doesn't have a model
+    if(model is null){
+
+        @model = asCellWorld.GetComponent_Model(secondEntity);
+        floatingEntity = secondEntity;
+        cellEntity = firstEntity;
+    }
+
+    // Determine which is the organelle
+    CellStageWorld@ asCellWorld = cast<CellStageWorld>(world);
+
+    auto model = asCellWorld.GetComponent_Model(firstEntity);
+    auto floatingEntity = firstEntity;
+    auto cellEntity = secondEntity;
+
+    // Cell doesn't have a model
+    if(model is null){
+        @model = asCellWorld.GetComponent_Model(secondEntity);
+        floatingEntity = secondEntity;
+        cellEntity = firstEntity;
+    }
+
+    AgentProperties@ propertiesComponent =
+        asCellWorld.GetComponent_AgentProperties(floatingEntity);
+
+    MicrobeComponent@ microbeComponent = MicrobeOperations::getMicrobeComponent(asCellWorld,cellEntity);
+
+    if (propertiesComponent !is null && microbeComponent !is null){
+        if (propertiesComponent.getSpeciesName() != microbeComponent.speciesName && !microbeComponent.dead){
+            MicrobeOperations::damage(asCellWorld, cellEntity, double(OXY_TOXY_DAMAGE), "toxin");
+            world.QueueDestroyEntity(floatingEntity);
+            }
+    }
+
+    auto microbeComponent = MicrobeOperations::getMicrobeComponent(asCellWorld,cellEntity);
+
+    auto engulfableComponent = asCellWorld.GetComponent_EngulfableComponent(floatingEntity);
+
+    auto compoundBagComponent = asCellWorld.GetComponent_CompoundBagComponent(cellEntity);
+
+    auto floatBag = asCellWorld.GetComponent_CompoundBagComponent(floatingEntity);
+
+    if (microbeComponent !is null && engulfableComponent !is null
+        && compoundBagComponent !is null && floatBag !is null)
+        {
+        if (microbeComponent.engulfMode && microbeComponent.totalHexCountCache >=
+            engulfableComponent.getSize()*ENGULF_HP_RATIO_REQ)
+            {
+            uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
+            for(uint compoundId = 0; compoundId < compoundCount; ++compoundId){
+                CompoundId realCompoundId = compoundId;
+                double amountToTake =
+                    floatBag.takeCompound(realCompoundId,floatBag.getCompoundAmount(realCompoundId));
+                // Right now you get way too much compounds for engulfing the things but hey
+                compoundBagComponent.giveCompound(realCompoundId, (amountToTake/CHUNK_ENGULF_COMPOUND_DIVISOR));
+            }
+            world.QueueDestroyEntity(floatingEntity);
+            }
+        }
+}
+
 
 // Cell Hit Oxytoxy
 // We can make this generic using the dictionary in agents.as

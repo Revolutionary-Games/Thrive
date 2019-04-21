@@ -564,6 +564,8 @@ static uint16_t CompoundVenterTYPEProxy =
     static_cast<uint16_t>(CompoundVenterComponent::TYPE);
 static uint16_t EngulfableComponentTYPEProxy =
     static_cast<uint16_t>(EngulfableComponent::TYPE);
+static uint16_t DamageOnTouchComponentTYPEProxy =
+    static_cast<uint16_t>(DamageOnTouchComponent::TYPE);
 static uint16_t SpawnedComponentTYPEProxy =
     static_cast<uint16_t>(SpawnedComponent::TYPE);
 static uint16_t AgentCloudComponentTYPEProxy =
@@ -693,6 +695,39 @@ bool
     if(engine->RegisterObjectMethod("EngulfableComponent",
            "void setSize(float size)", asMETHOD(EngulfableComponent, setSize),
            asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    // ------------------------------------ //
+    if(engine->RegisterObjectType(
+           "DamageOnTouchComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(!bindComponentTypeId(
+           engine, "DamageOnTouchComponent", &DamageOnTouchComponentTYPEProxy))
+        return false;
+
+    if(engine->RegisterObjectMethod("DamageOnTouchComponent",
+           "double getDamage()", asMETHOD(DamageOnTouchComponent, getDamage),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("DamageOnTouchComponent",
+           "void setDamage(double damage)",
+           asMETHOD(DamageOnTouchComponent, setDamage), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    if(engine->RegisterObjectMethod("DamageOnTouchComponent",
+           "bool getDeletes()", asMETHOD(DamageOnTouchComponent, getDeletes),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("DamageOnTouchComponent",
+           "void setDeletes(bool deletes)",
+           asMETHOD(DamageOnTouchComponent, setDeletes), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
