@@ -306,7 +306,7 @@ void cellHitFloatingOrganelle(GameWorld@ world, ObjectID firstEntity, ObjectID s
 
 
 // Will use this for food chunks now
-void cellHitIron(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
+void cellHitEngulfable(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
 {
     // Determine which is the iron
     CellStageWorld@ asCellWorld = cast<CellStageWorld>(world);

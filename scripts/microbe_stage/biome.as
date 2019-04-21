@@ -127,7 +127,9 @@ ObjectID createChunk(CellStageWorld@ world, uint chunkId,  Float3 pos)
     auto body = rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
         world.GetPhysicalWorld().CreateSphere(radius),mass,
         //engulfable
-        world.GetPhysicalMaterial("iron"));
+        world.GetPhysicalMaterial("engulfableMaterial"));
+
+        //need to change material based on settings
 
     body.ConstraintMovementAxises();
 
