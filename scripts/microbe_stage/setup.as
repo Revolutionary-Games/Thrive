@@ -684,46 +684,6 @@ class PlayerSpeciesSpawner{
     }
 }
 
-
-ObjectID createToxin(CellStageWorld@ world, Float3 pos)
-{
-    // Toxins
-    ObjectID toxinEntity = world.CreateEntity();
-
-    auto position = world.Create_Position(toxinEntity, pos,
-        Ogre::Quaternion(Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
-            Ogre::Vector3(0,1,0)));
-    auto renderNode = world.Create_RenderNode(toxinEntity);
-    renderNode.Scale = Float3(1, 1, 1);
-    renderNode.Marked = true;
-    renderNode.Node.setOrientation(Ogre::Quaternion(
-            Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)), Ogre::Vector3(0,1,1)));
-    renderNode.Node.setPosition(pos);
-    // Ogre::Quaternion(Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
-    //     Ogre::Vector3(0, 1, 0)));
-
-    // Agent
-    auto agentProperties = world.Create_AgentProperties(toxinEntity);
-    agentProperties.setSpeciesName("");
-    agentProperties.setParentEntity(NULL_OBJECT);
-    agentProperties.setAgentType("oxytoxy");
-
-    auto model = world.Create_Model(toxinEntity, renderNode.Node, "oxytoxy.mesh");
-    // Need to set the tint
-    model.GraphicalObject.setCustomParameter(1, Ogre::Vector4(1, 1, 1, 1));
-
-    auto rigidBody = world.Create_Physics(toxinEntity, position);
-    auto body = rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
-        world.GetPhysicalWorld().CreateSphere(1), 1,
-        world.GetPhysicalMaterial("agentCollision"));
-
-    body.ConstraintMovementAxises();
-
-    rigidBody.JumpTo(position);
-
-    return toxinEntity;
-}
-
 // TODO: the player species handling would be more logically placed if
 // it was in SpeciesSystem, so move it there
 void setupSpawnSystem(CellStageWorld@ world){
@@ -731,11 +691,6 @@ void setupSpawnSystem(CellStageWorld@ world){
     SpawnSystem@ spawnSystem = world.GetSpawnSystem();
 
     // Clouds are handled by biome.as
-
-    LOG_INFO("setting up spawn information");
-
-    setupFloatingOrganelles(world);
-
     LOG_INFO("setting up player species to spawn");
     auto keys = STARTER_MICROBES.getKeys();
     for(uint n = 0; n < keys.length(); n++)
@@ -756,15 +711,3 @@ void setupSpawnSystem(CellStageWorld@ world){
     }
 }
 
-
-// moved this over here for now, its probabbly good to put "free
-// spawning organelles" in their own function
-void setupFloatingOrganelles(CellStageWorld@ world){
-    LOG_INFO("setting up free floating organelles");
-    SpawnSystem@ spawnSystem = world.GetSpawnSystem();
-
-    // toxins
-    const auto toxinId = spawnSystem.addSpawnType(
-        @createToxin, DEFAULT_SPAWN_DENSITY,
-        MICROBE_SPAWN_RADIUS);
-}

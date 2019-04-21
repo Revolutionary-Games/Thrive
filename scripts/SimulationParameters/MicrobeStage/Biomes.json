@@ -27,6 +27,21 @@
 		},
         
         "chunks":{
+            "floatingToxin": {
+                "name": "Floating Hazard",
+                "meshes": ["oxytoxy"],
+                "density": 0.00002,
+                "dissolves": false,
+                "radius": 1,
+                "chunkScale": 1.0,
+                "mass": 1,
+                "size": 10000,
+                "ventAmount": 3.0,
+                "damages": 10.0,
+                "deleteOnTouch": true,
+                "compounds": {
+                }
+            },
             "ironSmallChunk": {
                 "name": "Small Iron Chunk",
                 "meshes": ["iron_01", "iron_02", "iron_03","iron_04"],
@@ -140,6 +155,21 @@
 		},
         
         "chunks":{
+            "floatingToxin": {
+                "name": "Floating Hazard",
+                "meshes": ["oxytoxy"],
+                "density": 0.00002,
+                "dissolves": false,
+                "radius": 1,
+                "chunkScale": 1.0,
+                "mass": 1,
+                "size": 10000,
+                "ventAmount": 3.0,
+                "damages": 10.0,
+                "deleteOnTouch": true,
+                "compounds": {
+                }
+            },
             "ironSmallChunk": {
                 "name": "Small Iron Chunk",
                 "meshes": ["iron_01", "iron_02", "iron_03","iron_04"],
@@ -154,6 +184,35 @@
                 "deleteOnTouch": false,
                 "compounds": {
                     "iron": {
+                        "amount": 100.0
+                    }
+                }
+            },
+            "marineSnow": {
+                "name": "Marine snow",
+                "meshes": ["nucleus", "chloroplast", "oxytoxy","flagellum",
+                "chemoplast","nitrogenplastid","metabolosome","chromatophores",
+                "vacuole","mitochondrion","chemoproteins","nitrogenase","rusticyanin"],
+                "density": 0.00004,
+                "dissolves": true,
+                "radius": 1,
+                "chunkScale": 1.0,
+                "mass": 1,
+                "size": 2,
+                "ventAmount": 3.0,
+                "damages": 0.0,
+                "deleteOnTouch": false,
+                "compounds": {
+                    "atp": {
+                        "amount": 100.0
+                    },
+                    "ammonia": {
+                        "amount": 100.0
+                    },
+                    "phosphates": {
+                        "amount": 100.0
+                    },
+                    "glucose": {
                         "amount": 100.0
                     }
                 }
@@ -252,6 +311,21 @@
 		},
         
         "chunks":{
+            "floatingToxin": {
+                "name": "Floating Hazard",
+                "meshes": ["oxytoxy"],
+                "density": 0.00002,
+                "dissolves": false,
+                "radius": 1,
+                "chunkScale": 1.0,
+                "mass": 1,
+                "size": 10000,
+                "ventAmount": 3.0,
+                "damages": 10.0,
+                "deleteOnTouch": true,
+                "compounds": {
+                }
+            },
             "ironSmallChunk": {
                 "name": "Small Iron Chunk",
                 "meshes": ["iron_01", "iron_02", "iron_03","iron_04"],
@@ -364,6 +438,21 @@
 		},
         
         "chunks":{
+            "floatingToxin": {
+                "name": "Floating Hazard",
+                "meshes": ["oxytoxy"],
+                "density": 0.00002,
+                "dissolves": false,
+                "radius": 1,
+                "chunkScale": 1.0,
+                "mass": 1,
+                "size": 10000,
+                "ventAmount": 3.0,
+                "damages": 10.0,
+                "deleteOnTouch": true,
+                "compounds": {
+                }
+            },
             "ironSmallChunk": {
                 "name": "Small Iron Chunk",
                 "meshes": ["iron_01", "iron_02", "iron_03","iron_04"],
@@ -505,6 +594,21 @@
 		},
         
         "chunks":{
+            "floatingToxin": {
+                "name": "Floating Hazard",
+                "meshes": ["oxytoxy"],
+                "density": 0.00002,
+                "dissolves": false,
+                "radius": 1,
+                "chunkScale": 1.0,
+                "mass": 1,
+                "size": 10000,
+                "ventAmount": 3.0,
+                "damages": 10.0,
+                "deleteOnTouch": true,
+                "compounds": {
+                }
+            },
             "ironSmallChunk": {
                 "name": "Small Iron Chunk",
                 "meshes": ["iron_01", "iron_02", "iron_03","iron_04"],
@@ -646,6 +750,21 @@
 		},
         
         "chunks":{
+            "floatingToxin": {
+                "name": "Floating Hazard",
+                "meshes": ["oxytoxy"],
+                "density": 0.00002,
+                "dissolves": false,
+                "radius": 1,
+                "chunkScale": 1.0,
+                "mass": 1,
+                "size": 10000,
+                "ventAmount": 3.0,
+                "damages": 10.0,
+                "deleteOnTouch": true,
+                "compounds": {
+                }
+            },
             "ironSmallChunk": {
                 "name": "Small Iron Chunk",
                 "meshes": ["iron_01", "iron_02", "iron_03","iron_04"],
@@ -758,10 +877,25 @@
 		},
         
         "chunks":{
+            "floatingToxin": {
+                "name": "Floating Hazard",
+                "meshes": ["oxytoxy"],
+                "density": 0.0002,
+                "dissolves": false,
+                "radius": 1,
+                "chunkScale": 1.0,
+                "mass": 1,
+                "size": 10000,
+                "ventAmount": 3.0,
+                "damages": 10.0,
+                "deleteOnTouch": true,
+                "compounds": {
+                }
+            },
             "ironSmallChunk": {
                 "name": "Small Iron Chunk",
                 "meshes": ["iron_01", "iron_02", "iron_03","iron_04"],
-                "density": 0.00002,
+                "density": 0.00006,
                 "dissolves": true,
                 "radius": 1,
                 "chunkScale": 1.0,
@@ -779,7 +913,7 @@
             "ironBigChunk": {
                 "name": "Big Iron Chunk",
                 "meshes":  [ "iron_05" ],
-                "density": 0.00002,
+                "density": 0.00006,
                 "dissolves": true,
                 "radius": 10,
                 "chunkScale": 1.0,
@@ -870,6 +1004,21 @@
 		},
         
         "chunks":{
+            "floatingToxin": {
+                "name": "Floating Hazard",
+                "meshes": ["oxytoxy"],
+                "density": 0.00002,
+                "dissolves": false,
+                "radius": 1,
+                "chunkScale": 1.0,
+                "mass": 1,
+                "size": 10000,
+                "ventAmount": 3.0,
+                "damages": 10.0,
+                "deleteOnTouch": true,
+                "compounds": {
+                }
+            },
             "ironSmallChunk": {
                 "name": "Small Iron Chunk",
                 "meshes": ["iron_01", "iron_02", "iron_03","iron_04"],
@@ -898,7 +1047,7 @@
                 "mass": 100,
                 "size": 1000,
                 "ventAmount": 3.0,
-                "damages": 2.0,
+                "damages": 0.5,
                 "deleteOnTouch": false,
                 "compounds": {
                 }
@@ -913,7 +1062,7 @@
                 "mass": 100,
                 "size": 1000,
                 "ventAmount": 3.0,
-                "damages": 2.0,
+                "damages": 0.5,
                 "deleteOnTouch": false,
                 "compounds": {
                 }
@@ -1013,6 +1162,21 @@
 		},
         
         "chunks":{
+            "floatingToxin": {
+                "name": "Floating Hazard",
+                "meshes": ["oxytoxy"],
+                "density": 0.00002,
+                "dissolves": false,
+                "radius": 1,
+                "chunkScale": 1.0,
+                "mass": 1,
+                "size": 10000,
+                "ventAmount": 3.0,
+                "damages": 10.0,
+                "deleteOnTouch": true,
+                "compounds": {
+                }
+            },
             "ironSmallChunk": {
                 "name": "Small Iron Chunk",
                 "meshes": ["iron_01", "iron_02", "iron_03","iron_04"],
@@ -1126,6 +1290,21 @@
 		},
         
         "chunks":{
+            "floatingToxin": {
+                "name": "Floating Hazard",
+                "meshes": ["oxytoxy"],
+                "density": 0.00002,
+                "dissolves": false,
+                "radius": 1,
+                "chunkScale": 1.0,
+                "mass": 1,
+                "size": 10000,
+                "ventAmount": 3.0,
+                "damages": 10.0,
+                "deleteOnTouch": true,
+                "compounds": {
+                }
+            },
             "ironSmallChunk": {
                 "name": "Small Iron Chunk",
                 "meshes": ["iron_01", "iron_02", "iron_03","iron_04"],
