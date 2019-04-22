@@ -381,15 +381,19 @@ class MicrobeSystem : ScriptSystem{
         microbeComponent.compoundCollectionTimer =
             microbeComponent.compoundCollectionTimer + logicTime;
 
+        //Moved this to right before atpDamage
+        applyCellMovement(components, logicTime);
+
         while(microbeComponent.compoundCollectionTimer >
             EXCESS_COMPOUND_COLLECTION_INTERVAL)
         {
             // For every COMPOUND_DISTRIBUTION_INTERVAL passed
+            atpDamage(microbeEntity);
+
             microbeComponent.compoundCollectionTimer =
                 microbeComponent.compoundCollectionTimer -
                 EXCESS_COMPOUND_COLLECTION_INTERVAL;
             MicrobeOperations::purgeCompounds(world, microbeEntity);
-            atpDamage(microbeEntity);
         }
 
         //  Handle hitpoints
@@ -511,9 +515,6 @@ class MicrobeSystem : ScriptSystem{
             MicrobeOperations::takeCompound(world, microbeEntity,
                 SimulationParameters::compoundRegistry().getTypeId("atp"), atpAmount);
         }
-
-        applyCellMovement(components, logicTime);
-
         compoundAbsorberComponent.setAbsorbtionCapacity(microbeComponent.capacity);
 
         if(microbeComponent.hitpoints != microbeComponent.previousHitpoints)
@@ -601,7 +602,7 @@ class MicrobeSystem : ScriptSystem{
         // Rotate the 'thrust' based on our orientation
         // Halve speed if out of ATP
         if (MicrobeOperations::getCompoundAmount(world, microbeEntity,
-                SimulationParameters::compoundRegistry().getTypeId("atp")) <= 1.0){
+                SimulationParameters::compoundRegistry().getTypeId("atp")) <= 0.0){
             microbeComponent.queuedMovementForce += pos._Orientation.RotateVector(
             microbeComponent.movementDirection * (CELL_BASE_THRUST/2.0f) *
             microbeComponent.movementFactor);
@@ -928,7 +929,7 @@ class MicrobeSystem : ScriptSystem{
             world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
 
         if(MicrobeOperations::getCompoundAmount(world, microbeEntity,
-                SimulationParameters::compoundRegistry().getTypeId("atp")) < 1.0f)
+                SimulationParameters::compoundRegistry().getTypeId("atp")) <= 0.0f)
         {
             // TODO: put this on a GUI notification.
             // if(microbeComponent.isPlayerMicrobe and not this.playerAlreadyShownAtpDamage){
