@@ -586,6 +586,13 @@ void rebuildProcessList(CellStageWorld@ world, ObjectID microbeEntity)
     ProcessorComponent@ processorComponent = world.GetComponent_ProcessorComponent(microbeEntity);
     MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
 	
+	//Debug Statements
+	auto thisSpecies = getSpeciesComponent(world, microbeEntity);
+	if(thisSpecies != null)
+	{
+	    LOG_INFO("Regenerating Process list for microbe ID# " + microbeEntity + "of species " + thisSpecies.name);
+	}
+	
 	dictionary capacities;
     for(uint i = 0; i < microbeComponent.organelles.length(); i++){
 
