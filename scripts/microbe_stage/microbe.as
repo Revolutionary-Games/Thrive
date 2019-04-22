@@ -377,25 +377,6 @@ class MicrobeSystem : ScriptSystem{
                 MicrobeOperations::applyMembraneColour(world, microbeEntity);
             }
         }
-
-        microbeComponent.compoundCollectionTimer =
-            microbeComponent.compoundCollectionTimer + logicTime;
-
-        //Moved this to right before atpDamage
-        applyCellMovement(components, logicTime);
-
-        while(microbeComponent.compoundCollectionTimer >
-            EXCESS_COMPOUND_COLLECTION_INTERVAL)
-        {
-            // For every COMPOUND_DISTRIBUTION_INTERVAL passed
-            atpDamage(microbeEntity);
-
-            microbeComponent.compoundCollectionTimer =
-                microbeComponent.compoundCollectionTimer -
-                EXCESS_COMPOUND_COLLECTION_INTERVAL;
-            MicrobeOperations::purgeCompounds(world, microbeEntity);
-        }
-
         //  Handle hitpoints
         if((microbeComponent.hitpoints < microbeComponent.maxHitpoints))
         {
@@ -516,6 +497,24 @@ class MicrobeSystem : ScriptSystem{
                 SimulationParameters::compoundRegistry().getTypeId("atp"), atpAmount);
         }
         compoundAbsorberComponent.setAbsorbtionCapacity(microbeComponent.capacity);
+
+        microbeComponent.compoundCollectionTimer =
+            microbeComponent.compoundCollectionTimer + logicTime;
+
+        //Moved this to right before atpDamage
+        applyCellMovement(components, logicTime);
+
+        while(microbeComponent.compoundCollectionTimer >
+            EXCESS_COMPOUND_COLLECTION_INTERVAL)
+        {
+            // For every COMPOUND_DISTRIBUTION_INTERVAL passed
+            atpDamage(microbeEntity);
+
+            microbeComponent.compoundCollectionTimer =
+                microbeComponent.compoundCollectionTimer -
+                EXCESS_COMPOUND_COLLECTION_INTERVAL;
+            MicrobeOperations::purgeCompounds(world, microbeEntity);
+        }
 
         if(microbeComponent.hitpoints != microbeComponent.previousHitpoints)
             membraneComponent.setHealthFraction(microbeComponent.hitpoints / microbeComponent.maxHitpoints);
