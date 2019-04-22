@@ -587,8 +587,8 @@ void rebuildProcessList(CellStageWorld@ world, ObjectID microbeEntity)
     MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
 
     //Debug Statements
-    auto thisSpecies = getSpeciesComponent(world, microbeEntity);
-    if(thisSpecies != null)
+    SpeciesComponent@ thisSpecies = getSpeciesComponent(world, microbeEntity);
+    if(!(thisSpecies is null))
     {
         LOG_INFO("Regenerating Process list for microbe ID# " + microbeEntity + "of species " + thisSpecies.name);
     }
