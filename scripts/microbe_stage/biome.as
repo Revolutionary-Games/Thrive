@@ -130,10 +130,11 @@ ObjectID createChunk(CellStageWorld@ world, uint chunkId,  Float3 pos)
         auto damager = world.Create_DamageOnTouchComponent(chunkEntity);
         damager.setDamage(chunk.damages);
         damager.setDeletes(chunk.deleteOnTouch);
+        //Damage
         auto body = rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
             world.GetPhysicalWorld().CreateSphere(radius),mass,
-        //damage
-        world.GetPhysicalMaterial("chunkDamageMaterial"));
+            world.GetPhysicalMaterial("chunkDamageMaterial"));
+
         body.ConstraintMovementAxises();
     }
     else {
