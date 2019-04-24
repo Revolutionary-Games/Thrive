@@ -1202,7 +1202,6 @@ video {
   height: 30%;
   right: 5%;
   top: 10%;
-  font-size: 14pt;
   background-color: rgba(0, 89, 89, 0);
   color: #fff;
   text-align: center;
@@ -1225,9 +1224,7 @@ video {
   height: auto;
   right: 5%;
   top: 10%;
-  font-size: 10pt;
   background-color: rgba(0, 89, 89, 0.75);
-  color: #fff;
   border-radius: 25px;
   padding: 20px 20px 20px 20px;
   position: fixed;
@@ -1421,7 +1418,7 @@ video {
 
 /* Used for the headers of tooltips. */
 
-span toolhead {
+.thead {
   color: white;
   font-size: 150%;
   font-weight: 1000;
@@ -1430,7 +1427,7 @@ span toolhead {
 
 /* Used everytime an input or output is mentioned in the initial blurb of the tooltip. */
 
-span tkey {
+.tkey {
   color: white;
   font-size: 100%;
   font-weight: 1000;
@@ -1438,7 +1435,7 @@ span tkey {
 
 /* Used for formula names in tooltips. */
 
-span toolgold {
+.tgold {
   color: #ffd700;
   font-size: 100%;
   font-weight: 1000;
@@ -1446,7 +1443,7 @@ span toolgold {
 
 /* Used for highlighting beneficial values. */
 
-span toolbonus {
+.tbonus {
   color: #0f0;
   font-size: 100%;
   font-weight: 1000;
@@ -1454,7 +1451,7 @@ span toolbonus {
 
 /* Used for highlighting deleterious values. */
 
-span toolmalus {
+.tmalus {
   color: #ff4d4d;
   font-size: 100%;
   font-weight: 1000;
@@ -1462,14 +1459,14 @@ span toolmalus {
 
 /* Used for the regular text in the initial blurb. */
 
-span toolbody {
+.tbody {
   color: #d3d3d3;
   font-size: 100%;
 }
 
 /* Used for the scientific description text in the final blurb. */
 
-span tooldesc {
+.tdesc {
   color: #d3d3d3;
   font-size: 85%;
 }
