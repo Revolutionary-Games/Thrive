@@ -105,6 +105,7 @@ cellWorld = GameWorldClass.new(
                                                  ])],
                         nosynchronize: true),
     EntityComponent.new("AgentProperties", [ConstructorInfo.new([])]),
+    EntityComponent.new("DamageOnTouchComponent", [ConstructorInfo.new([])]),
     
   ],
   systems: [

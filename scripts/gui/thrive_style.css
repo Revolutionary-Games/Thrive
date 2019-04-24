@@ -464,7 +464,7 @@ video {
 .tooltiptext .compoundIcon {
   position: relative;
   display: inline-block;
-  top: 5px;
+  top: 4px;
   left: 1px;
 }
 
@@ -1190,29 +1190,53 @@ video {
   background-image: url("../../Textures/gui/bevel/CytoplasmIcon.png");
 }
 
-/* Tooltip text */
-.tooltiptext {
+/* TOOLTIP ENTRIES */
+
+/* The following few entries are for elements regarding tooltips. */
+
+/* Used to place the headers as a second, transparent background tooltip on top of the actual text containing tooltip. This way the headers can be center aligned while the rest of the tooltip is left aligned. */
+
+.tooltipheader {
   visibility: hidden;
-  width: 320px;
+  width: 400px;
   height: 30%;
   right: 5%;
   top: 10%;
-  font-size: 10pt;
-  background-color: rgba(0, 139, 139, 0.5);
+  background-color: rgba(0, 89, 89, 0);
   color: #fff;
-  text-align: center-left;
+  text-align: center;
   border-radius: 25px;
-  padding: 5px 0;
+  padding: 20px 20px 20px 20px;
   position: fixed;
   z-index: 1;
+  font-size: 190%;
 }
 
+.OrganelleListItem:hover .tooltipheader {
+  visibility: visible;
+}
 
+/* Regular tooltip text aside from the header. */
+
+.tooltiptext {
+  visibility: hidden;
+  width: 400px;
+  height: auto;
+  right: 5%;
+  top: 10%;
+  background-color: rgba(0, 89, 89, 0.75);
+  border-radius: 25px;
+  padding: 20px 20px 20px 20px;
+  position: fixed;
+  z-index: 1;
+  color: #d3d3d3;
+  text-align: left;
+  font-size: 190%;
+}
 
 .OrganelleListItem:hover .tooltiptext {
   visibility: visible;
 }
-
 
 #PlastidIcon {
   position: relative;
@@ -1262,6 +1286,12 @@ video {
   background-image: url("../../Textures/gui/bevel/VacuoleIcon.png");
 }
 
+/* Used to place the vacuole's icon inside tooltips as an icon for storage. */
+
+#VacuoleTooltipIcon {
+  background-image: url("../../Textures/gui/bevel/VacuoleIcon.png");
+}
+
 #ToxinVacuoleIcon {
   position: relative;
   left: calc(50% - 30px);
@@ -1299,6 +1329,12 @@ video {
   background-image: url("../../Textures/gui/bevel/FlagellumIcon.png");
 }
 
+/* Used to place the flagellum's icon inside tooltips as an icon for storage. */
+
+#FlagellumTooltipIcon {
+  background-image: url("../../Textures/gui/bevel/FlagellumIcon.png");
+}
+
 #MetabolosomeIcon {
   position: relative;
   left: calc(50% - 30px);
@@ -1316,7 +1352,6 @@ video {
   background-size: contain;
   background-image: url("../../Textures/gui/bevel/NitrogenaseIcon.png");
 }
-
 
 #ChromatophorIcon {
   position: relative;
@@ -1361,4 +1396,77 @@ video {
   height: 60px;
   background-size: contain;
   background-image: url("../../Textures/gui/bevel/CiliaIcon.png");
+}
+
+/* Used in formulas in tooltips. */
+
+#WhiteArrow {
+  background-image: url("../../Textures/gui/bevel/WhiteArrow.png");
+}
+
+#TemperatureIcon {
+  background-image: url("../../Textures/gui/bevel/Temperature.png");
+}
+
+#LightIcon {
+  background-image: url("../../Textures/gui/bevel/Light.png");
+}
+
+#PressureIcon {
+  background-image: url("../../Textures/gui/bevel/Pressure.png");
+}
+
+/* Used for the headers of tooltips. */
+
+.thead {
+  color: white;
+  font-size: 150%;
+  font-weight: 1000;
+  text-align: center;
+}
+
+/* Used everytime an input or output is mentioned in the initial blurb of the tooltip. */
+
+.tkey {
+  color: white;
+  font-size: 100%;
+  font-weight: 1000;
+}
+
+/* Used for formula names in tooltips. */
+
+.tgold {
+  color: #ffd700;
+  font-size: 100%;
+  font-weight: 1000;
+}
+
+/* Used for highlighting beneficial values. */
+
+.tbonus {
+  color: #0f0;
+  font-size: 100%;
+  font-weight: 1000;
+}
+
+/* Used for highlighting deleterious values. */
+
+.tmalus {
+  color: #ff4d4d;
+  font-size: 100%;
+  font-weight: 1000;
+}
+
+/* Used for the regular text in the initial blurb. */
+
+.tbody {
+  color: #d3d3d3;
+  font-size: 100%;
+}
+
+/* Used for the scientific description text in the final blurb. */
+
+.tdesc {
+  color: #d3d3d3;
+  font-size: 85%;
 }
