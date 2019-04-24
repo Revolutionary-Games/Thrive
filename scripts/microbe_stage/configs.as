@@ -98,7 +98,7 @@ const auto DEFAULT_HEALTH = 100;
 const auto REGENERATION_RATE = 1.0f;
 
 // Movement stuff
-const auto FLAGELLA_ENERGY_COST = 7.0f;
+const auto FLAGELLA_ENERGY_COST = 7.1f;
 const auto FLAGELLA_BASE_FORCE = 0.7f;
 const auto CELL_BASE_THRUST = 1.6f;
 // is set by this and modified by applyCellMovement like the player later

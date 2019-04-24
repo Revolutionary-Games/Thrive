@@ -55,6 +55,8 @@ public:
     unsigned int mass = 0;
     unsigned int size = 0;
     double ventAmount = 3.0f;
+    double damages = 0.0f;
+    bool deleteOnTouch = false;
 
     std::vector<std::string> meshes;
     std::map<size_t, ChunkCompoundData> chunkCompounds;
@@ -64,7 +66,8 @@ public:
         name(std::move(other.name)), density(other.density),
         dissolves(other.dissolves), radius(other.radius),
         chunkScale(other.chunkScale), mass(other.mass), size(other.size),
-        ventAmount(other.ventAmount), meshes(std::move(other.meshes)),
+        ventAmount(other.ventAmount), damages(other.damages),
+        deleteOnTouch(other.deleteOnTouch), meshes(std::move(other.meshes)),
         chunkCompounds(std::move(other.chunkCompounds))
     {}
 
@@ -72,7 +75,8 @@ public:
     ChunkData(const ChunkData& other) :
         name(other.name), density(other.density), dissolves(other.dissolves),
         radius(other.radius), chunkScale(other.chunkScale), mass(other.mass),
-        size(other.size), ventAmount(other.ventAmount), meshes(other.meshes),
+        size(other.size), ventAmount(other.ventAmount), damages(other.damages),
+        deleteOnTouch(other.deleteOnTouch), meshes(other.meshes),
         chunkCompounds(other.chunkCompounds)
     {}
 

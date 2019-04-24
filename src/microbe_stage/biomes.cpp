@@ -90,6 +90,11 @@ Biome::Biome(Json::Value value)
         chunk.ventAmount =
             chunkData[chunkInternalName]["ventAmount"].asDouble();
 
+        // Does it damge? If so how much?
+        chunk.damages = chunkData[chunkInternalName]["damages"].asDouble();
+        chunk.deleteOnTouch =
+            chunkData[chunkInternalName]["deleteOnTouch"].asBool();
+
         // Get compound info
         // Getting the compound information.
         Json::Value chunkCompoundData =

@@ -111,12 +111,10 @@ ObjectID createChunk(CellStageWorld@ world, uint chunkId,  Float3 pos)
     for(uint i = 0; i < chunkCompounds.length(); ++i){
         auto compoundId = SimulationParameters::compoundRegistry().getTypeData(chunkCompounds[i]).id;
         //LOG_INFO("got here:");
-        if(SimulationParameters::compoundRegistry().getTypeData(compoundId).isCloud){
-            // And register new
-            const double amount = chunk.getCompound(chunkCompounds[i]).amount;
-            //LOG_INFO("amount:"+amount);
-            bag.setCompound(compoundId,amount);
-        }
+        // And register new
+        const double amount = chunk.getCompound(chunkCompounds[i]).amount;
+        //LOG_INFO("amount:"+amount);
+        bag.setCompound(compoundId,amount);
     }
 
     auto model = world.Create_Model(chunkEntity, renderNode.Node, mesh);
@@ -126,12 +124,26 @@ ObjectID createChunk(CellStageWorld@ world, uint chunkId,  Float3 pos)
 
     // Rigid Body
     auto rigidBody = world.Create_Physics(chunkEntity, position);
+
+    //chunk properties
+    if (chunk.damages > 0.0f || chunk.deleteOnTouch){
+        auto damager = world.Create_DamageOnTouchComponent(chunkEntity);
+        damager.setDamage(chunk.damages);
+        damager.setDeletes(chunk.deleteOnTouch);
+        //Damage
+        auto body = rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
+            world.GetPhysicalWorld().CreateSphere(radius),mass,
+            world.GetPhysicalMaterial("chunkDamageMaterial"));
+
+        body.ConstraintMovementAxises();
+    }
+    else {
     auto body = rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
         world.GetPhysicalWorld().CreateSphere(radius),mass,
         //engulfable
-        world.GetPhysicalMaterial("iron"));
-
+        world.GetPhysicalMaterial("engulfableMaterial"));
     body.ConstraintMovementAxises();
+    }
 
     rigidBody.JumpTo(position);
 
