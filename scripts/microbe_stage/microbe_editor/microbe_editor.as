@@ -966,16 +966,20 @@ class MicrobeEditor{
 
             // Grab render node of player cell
             auto node =  world.GetComponent_RenderNode(player);
+            auto absorber = world.GetComponent_CompoundAbsorberComponent(
+            player);
 
             // Change player species cell size depending on whether they are a bacteria or not
             if(checkIsNucleusPresent()) {
                 playerSpecies.isBacteria = false;
                 node.Scale = Float3(1.0, 1.0, 1.0);
                 node.Marked = true;
+                absorber.setGrabScale(1.0f);
             } else {
                 playerSpecies.isBacteria = true;
                 node.Scale = Float3(0.5, 0.5, 0.5);
                 node.Marked = true;
+                absorber.setGrabScale(0.5f);
             }
 
             LOG_INFO("MicrobeEditor: updated organelles for species: " + playerSpecies.name);

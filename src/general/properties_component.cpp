@@ -42,3 +42,30 @@ void
 {
     this->parentId = parentId;
 }
+
+// DamageOnTouch component
+DamageOnTouchComponent::DamageOnTouchComponent() : Leviathan::Component(TYPE) {}
+
+void
+    DamageOnTouchComponent::setDamage(double damage)
+{
+    this->damage = damage;
+}
+
+double
+    DamageOnTouchComponent::getDamage()
+{
+    return this->damage;
+}
+
+void
+    DamageOnTouchComponent::setDeletes(bool deletes)
+{
+    this->deletes = deletes;
+}
+
+bool
+    DamageOnTouchComponent::getDeletes()
+{
+    return this->deletes;
+}

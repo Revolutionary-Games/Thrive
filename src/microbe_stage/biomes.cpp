@@ -69,6 +69,66 @@ Biome::Biome(Json::Value value)
         compounds.emplace(std::piecewise_construct, std::forward_as_tuple(id),
             std::forward_as_tuple(amount, density, dissolved));
     }
+
+    Json::Value chunkData = value["chunks"];
+    std::vector<std::string> chunkInternalNames = chunkData.getMemberNames();
+    unsigned int id = 0;
+    for(std::string chunkInternalName : chunkInternalNames) {
+        // Get values for chunks
+
+        std::string name = chunkData[chunkInternalName]["name"].asString();
+        double density = chunkData[chunkInternalName]["density"].asDouble();
+        bool dissolves = chunkData[chunkInternalName]["dissolves"].asBool();
+        // Initilize chunk
+        ChunkData chunk(name, density, dissolves);
+
+        chunk.radius = chunkData[chunkInternalName]["radius"].asUInt();
+        chunk.chunkScale =
+            chunkData[chunkInternalName]["chunkScale"].asDouble();
+        chunk.mass = chunkData[chunkInternalName]["mass"].asUInt();
+        chunk.size = chunkData[chunkInternalName]["size"].asUInt();
+        chunk.ventAmount =
+            chunkData[chunkInternalName]["ventAmount"].asDouble();
+
+        // Does it damge? If so how much?
+        chunk.damages = chunkData[chunkInternalName]["damages"].asDouble();
+        chunk.deleteOnTouch =
+            chunkData[chunkInternalName]["deleteOnTouch"].asBool();
+
+        // Get compound info
+        // Getting the compound information.
+        Json::Value chunkCompoundData =
+            chunkData[chunkInternalName]["compounds"];
+        std::vector<std::string> compoundChunkNames =
+            chunkCompoundData.getMemberNames();
+
+        // Can this support empty chunks?
+        for(std::string compoundChunkName : compoundChunkNames) {
+            unsigned int amount =
+                chunkCompoundData[compoundChunkName]["amount"].asDouble();
+
+            // Getting the compound id from the compound registry.
+            size_t id = SimulationParameters::compoundRegistry
+                            .getTypeData(compoundChunkName)
+                            .id;
+
+            chunk.chunkCompounds.emplace(std::piecewise_construct,
+                std::forward_as_tuple(id),
+                std::forward_as_tuple(amount, compoundChunkName));
+        }
+
+        // Add meshes
+        Json::Value meshData = chunkData[chunkInternalName]["meshes"];
+
+        for(size_t i = 0; i < meshData.size(); i++) {
+            chunk.meshes.push_back(meshData[static_cast<int>(i)].asString());
+            // LOG_INFO(meshData[i].asString());
+        }
+
+        // Add chunk to list
+        chunks.emplace(id, std::move(chunk));
+        id++;
+    }
 }
 // ------------------------------------ //
 BiomeCompoundData*
@@ -84,4 +144,54 @@ CScriptArray*
         (compounds | boost::adaptors::map_keys).begin(),
         (compounds | boost::adaptors::map_keys).end(),
         Leviathan::ScriptExecutor::Get()->GetASEngine(), "array<uint64>");
+}
+
+ChunkData*
+    Biome::getChunk(size_t type)
+{
+    return &chunks[type];
+}
+
+CScriptArray*
+    Biome::getChunkKeys() const
+{
+    return Leviathan::ConvertIteratorToASArray(
+        (chunks | boost::adaptors::map_keys).begin(),
+        (chunks | boost::adaptors::map_keys).end(),
+        Leviathan::ScriptExecutor::Get()->GetASEngine(), "array<uint64>");
+}
+
+// ----- //
+
+ChunkCompoundData*
+    ChunkData::getCompound(size_t type)
+{
+    return &chunkCompounds[type];
+}
+
+CScriptArray*
+    ChunkData::getCompoundKeys() const
+{
+    return Leviathan::ConvertIteratorToASArray(
+        (chunkCompounds | boost::adaptors::map_keys).begin(),
+        (chunkCompounds | boost::adaptors::map_keys).end(),
+        Leviathan::ScriptExecutor::Get()->GetASEngine(), "array<uint64>");
+}
+
+size_t
+    ChunkData::getMeshListSize()
+{
+    return this->meshes.size();
+}
+
+std::string
+    ChunkData::getMesh(size_t index)
+{
+    // Some error checking
+    if(index >= 0 && index < this->meshes.size()) {
+        return this->meshes.at(index);
+    } else {
+        throw Leviathan::InvalidArgument(
+            "Mesh at index " + std::to_string(index) + " does not exist!");
+    }
 }

@@ -147,13 +147,13 @@ void
 }
 
 void
-    cellHitIron(Leviathan::PhysicalWorld& physicalWorld,
+    cellHitEngulfable(Leviathan::PhysicalWorld& physicalWorld,
         Leviathan::PhysicsBody& first,
         Leviathan::PhysicsBody& second)
 {
     GameWorld* gameWorld = physicalWorld.GetGameWorld();
 
-    ScriptRunningSetup setup("cellHitIron");
+    ScriptRunningSetup setup("cellHitEngulfable");
 
     auto result =
         ThriveCommon::get()->getMicrobeScripts()->ExecuteOnModule<void>(setup,
@@ -161,8 +161,27 @@ void
             second.GetOwningEntity());
 
     if(result.Result != SCRIPT_RUN_RESULT::Success)
-        LOG_ERROR("Failed to run script side cellHitIron");
+        LOG_ERROR("Failed to run script side cellHitEngulfable");
 }
+
+void
+    cellHitDamageChunk(Leviathan::PhysicalWorld& physicalWorld,
+        Leviathan::PhysicsBody& first,
+        Leviathan::PhysicsBody& second)
+{
+    GameWorld* gameWorld = physicalWorld.GetGameWorld();
+
+    ScriptRunningSetup setup("cellHitDamageChunk");
+
+    auto result =
+        ThriveCommon::get()->getMicrobeScripts()->ExecuteOnModule<void>(setup,
+            false, gameWorld, first.GetOwningEntity(),
+            second.GetOwningEntity());
+
+    if(result.Result != SCRIPT_RUN_RESULT::Success)
+        LOG_ERROR("Failed to run script side cellHitDamageChunk");
+}
+
 
 //! \todo This should return false when either cell is engulfing and apply the
 //! damaging effect
@@ -264,8 +283,10 @@ std::unique_ptr<Leviathan::PhysicsMaterialManager>
         std::make_unique<Leviathan::PhysicalMaterial>("floatingOrganelle", 2);
     auto agentMaterial =
         std::make_unique<Leviathan::PhysicalMaterial>("agentCollision", 3);
-    auto ironMaterial =
-        std::make_unique<Leviathan::PhysicalMaterial>("iron", 4);
+    auto engulfableMaterial =
+        std::make_unique<Leviathan::PhysicalMaterial>("engulfableMaterial", 4);
+    auto chunkDamageMaterial =
+        std::make_unique<Leviathan::PhysicalMaterial>("chunkDamageMaterial", 5);
 
     // Set callbacks //
 
@@ -273,10 +294,11 @@ std::unique_ptr<Leviathan::PhysicsMaterialManager>
     cellMaterial->FormPairWith(*floatingOrganelleMaterial)
         .SetCallbacks(nullptr, cellHitFloatingOrganelle);
 
-    // Iron
-    cellMaterial->FormPairWith(*ironMaterial)
-        .SetCallbacks(nullptr, cellHitIron);
-
+    // Chunks
+    cellMaterial->FormPairWith(*engulfableMaterial)
+        .SetCallbacks(nullptr, cellHitEngulfable);
+    cellMaterial->FormPairWith(*chunkDamageMaterial)
+        .SetCallbacks(nullptr, *cellHitDamageChunk);
     // Agents
     cellMaterial->FormPairWith(*agentMaterial)
         .SetCallbacks(agentCallback, agentCollided);
@@ -290,7 +312,8 @@ std::unique_ptr<Leviathan::PhysicsMaterialManager>
     manager->LoadedMaterialAdd(std::move(cellMaterial));
     manager->LoadedMaterialAdd(std::move(floatingOrganelleMaterial));
     manager->LoadedMaterialAdd(std::move(agentMaterial));
-    manager->LoadedMaterialAdd(std::move(ironMaterial));
+    manager->LoadedMaterialAdd(std::move(engulfableMaterial));
+    manager->LoadedMaterialAdd(std::move(chunkDamageMaterial));
 
     return manager;
 }

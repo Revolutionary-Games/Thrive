@@ -58,6 +58,8 @@ public:
      */
     bool m_enabled = true;
 
+    float scale = 1.0f;
+
     /**
      * @brief The amount of compound volume that can be absorbed
      */
@@ -108,6 +110,11 @@ public:
      */
     void
         disable();
+
+    // Set radiusHalved to true
+    void
+        setGrabScale(float scale);
+
 
     // void
     // load(
