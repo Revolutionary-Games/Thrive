@@ -587,11 +587,11 @@ void rebuildProcessList(CellStageWorld@ world, ObjectID microbeEntity)
     MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
 
     //Debug Statements
-    auto@ thisSpecies = getSpeciesComponent(world, microbeEntity);
-    if(thisSpecies !is null)
-    {
-        LOG_INFO("Regenerating Process list for microbe ID# " + microbeEntity + "of species " + thisSpecies.name);
-    }
+    //auto@ thisSpecies = getSpeciesComponent(world, microbeEntity);
+    //if(thisSpecies !is null)
+    //{
+        //LOG_INFO("Regenerating Process list for microbe ID# " + microbeEntity + "of species " + thisSpecies.name);
+    //}
 
     dictionary capacities;
     for(uint i = 0; i < microbeComponent.organelles.length(); i++){
