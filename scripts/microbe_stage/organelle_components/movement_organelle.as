@@ -133,7 +133,7 @@ class MovementOrganelle : OrganelleComponent{
                 microbeEntity, SimulationParameters::compoundRegistry().getTypeId("atp"),
                 energy);
 
-            if(availableEnergy < energy){
+            if(availableEnergy <= 0.0f){
                 forceMagnitude = sign(forceMagnitude) * availableEnergy * 1000.f /
                     milliseconds;
                 this.movingTail = false;

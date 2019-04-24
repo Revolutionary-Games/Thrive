@@ -121,19 +121,19 @@
         <div class="oxygen">
           <span id="oxygenTab"></span>
           <div id="OxygenIcon"></div>
-          <span id="oxygenPercent">O2: 21%</span>
+          <span id="oxygenPercent">O<sub>2</sub>: 21%</span>
         </div>
         <!-- c02 percentage -->
         <div class="carbondioxide">
           <span id="carbonDioxideTab"></span>
           <div id="CO2Icon"></div>
-          <span id="carbonDioxidePercent">CO2: 9%</span>
+          <span id="carbonDioxidePercent">CO<sub>2</sub>: 9%</span>
         </div>
         <!-- N2 percentage -->
         <div class="nitrogen">
           <span id="nitrogenTab"></span>
           <div id="NitrogenIcon"></div>
-          <span id="nitrogenPercent">N2: 70%</span>
+          <span id="nitrogenPercent">N<sub>2</sub>: 70%</span>
         </div>
 
         
@@ -234,7 +234,7 @@
           <div class="BarBackground" id="microbeHUDPlayerPhosphatesBar">
 		  <div class="BarForeground">
           <div class="compoundIcon" id="PhosphatesIcon"></div>
-          <div class="BarTitle">Phosphates</div>
+          <div class="BarTitle">Phosphate</div>
             <div class="BarValue">
               <span id="microbeHUDPlayerPhosphates">0</span> /
               <span id="microbeHUDPlayerPhosphatesMax">0</span>
@@ -262,7 +262,7 @@
           <div class="BarBackground" id="microbeHUDPlayerIronBar">
 		  <div class="BarForeground">
           <div class="compoundIcon" id="IronIcon"></div>
-          <div class="BarTitle">Iron Ions</div>
+          <div class="BarTitle">Iron</div>
             <div class="BarValue">
               <span id="microbeHUDPlayerIron">0</span> /
               <span id="microbeHUDPlayerIronMax">0</span>
@@ -300,12 +300,12 @@
 		ATP. Be careful not to let your ATP stores run out, or you
 		will slow down, lose health and eventually die.
 		<br><br> The various compound clouds are:<br><br> White –
-Glucose <br> Yellow – Hydrogen Sulfide <br> Orange - Ammonia  <br> Purple - Phosphates <br> Rust Brown - Iron Ions <br><br>
+Glucose <br> Yellow – Hydrogen Sulfide <br> Orange - Ammonia  <br> Purple - Phosphate <br> Rust Brown - Iron <br><br>
 
 Glucose makes ATP<br>
 Hydrogen Sulfide can be converted into glucose via chemoplasts and chemosynthesizing proteins<br>
-Iron Ions can be converted via rusticyanin into ATP<br>
-and Ammonia and Phosphates are crucial for reproduction. <br><br>
+Iron can be converted via rusticyanin into ATP<br>
+and Ammonia and Phosphate are crucial for reproduction. <br><br>
 
 Press E to release a dangerous agent, Oxytoxy NT, to kill other cells
 and then collect the spilled compounds if you have a toxin vacuole. <br><br>
@@ -374,59 +374,120 @@ Be wary because your competitors are evolving alongside you. Every time you ente
 	      <div class="OrganelleListTitle">STRUCTURAL ORGANELLES</div>
 	      <table class="OrganelleTable"><tr>
 	          <td id="addCytoplasm" class="OrganelleListItem">
-                <span class="tooltiptext">Cytoplasm<hr><br> Cost: 30 mutation points<hr><br> 
-                Performs Process: Cytoplasm Glycolysis<br>(0.06 glucose -> 5 ATP)/Second<hr><br>
-                Storage Space: 4<hr><br>
-                The material or protoplasm within a living cell.<br>The gooey innards of a cell.</span>
+				<span class="tooltiptext">
+				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">30</span> <br> <br>
+                Turns <span class="tkey">Glucose</span> <span class="compoundIcon" id="GlucoseIcon"></span> into <span class="tkey">ATP</span> <span class="compoundIcon" id="ATPIcon"></span> . <br> <br>
+				<span class="tgold">Fermentation</span> <br>
+				<span class="tkey">0.06</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">5.00</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="tkey">/second</span> <br> <br>
+				<span class="tbonus">+4</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
+				<span class="tmalus">+1</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
+				<span class="tdesc">The gooey innards of a cell. The cytoplasm is the basic mixture of ions, proteins, and other substances dissolved 
+                in water that fill the interior of the cell. One of the functions it performs is Fermentation, the conversion of glucose into
+                ATP energy. For cells that lack organelles to have more advanced metabolisms, this is what they rely on for energy. It is also 
+                used to store molecules in the cell and to grow the cell's size.</span>
+                </span>
+				<span class="tooltipheader">
+				<span class="thead">Cytoplasm</span>
+				</span>
                 <div id="CytoplasmIcon"></div>Cytoplasm<br>30 MP</td>
           </tr></table>
         <div class="OrganelleListTitle">PROKARYOTIC STRUCTURES</div>
         <table><tr>
             <td id="addMetabolosome" class="OrganelleListItem">
                 <span class="tooltiptext">
-                Metabolosomes<hr><br> Cost: 45 mutation points<hr><br> 
-                Performs Process: Metabolsome Respiration (In real life they Ferment, but we dont have those compounds in the game yet)<br>(1 Oxygen + 1 Glucose -> 38 ATP)/Second (Depending On Environmental Oxygen)<hr><br>
-                Storage Space: 1<hr><br>
-                Organelle-like Bacterial microcompartments (BMCs) consisting of a protein shell that encloses enzymes used for fermentation.
+				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">45</span> <br> <br>
+                Turns <span class="tkey">Glucose</span> <span class="compoundIcon" id="GlucoseIcon"></span> into <span class="tkey">ATP</span> <span class="compoundIcon" id="ATPIcon"></span> . Rate scales with concentration of <span class="tkey">Oxygen</span> <span class="compoundIcon" id="OxygenNormalIcon"></span>&nbsp;. <br> <br>
+				<span class="tgold">Aerobic Respiration</span> <br>
+				<span class="tkey">0.21</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">7.98</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="tkey">/second&emsp;@&emsp;21.00%</span> <span class="compoundIcon" id="OxygenNormalIcon"></span><br> <br>
+				<span class="tgold">Fermentation</span> <br>
+				<span class="tkey">0.13</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">5.00</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="tkey">/second</span> <br> <br>
+				<span class="tbonus">+1</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
+				<span class="tmalus">+1</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
+				<span class="tdesc">Metabolosomes are clusters of proteins wrapped in protein shells. They are able to convert glucose 
+                into ATP at a much higher efficiency than can be done in the cytoplasm in a process called Aerobic Respiration. 
+                It does, however, require oxygen to function, and lower levels of oxygen in the environment will slow down
+                the rate of its ATP production. Since the metabolosomes are suspended directly in the cytoplasm, the surrounding
+                fluid performs some fermentation.</span>
                 </span>
+				<span class="tooltipheader">
+				<span class="thead">Metabolosomes</span>
+				</span>
                 <div id="MetabolosomeIcon"></div>Metabolosomes<br>45 MP</td>
             <td id="addChromatophor" class="OrganelleListItem">
                 <span class="tooltiptext">
-                Chromatophores <hr><br> Cost: 55 mutation points <hr><br> 
-                Performs Process: Chromatophore Photosynthesis<br>(0.09 CO2 -> 0.15 glucose)/Second (Depending On Environmental C02)<br>
-                Performs Process: Glycolysis<br>(0.125 glucose -> 5 ATP)/Second (Depending On Environmental C02)<hr><br>
-                Storage Space: 1<hr><br>
-                Coloured, membrane-associated vesicles used by various prokaryotes perform photosynthesis.
-                Chromatophores contain bacteriochlorophyll pigments and carotenoids.</span>
-                <div id="ChromatophorIcon"></div>Chromatophores<br>55 MP</td>
+				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">55</span> <br> <br>
+                Produces <span class="tkey">Glucose</span> <span class="compoundIcon" id="GlucoseIcon"></span> . Rate scales with concentration of <span class="tkey">Carbon Dioxide</span> <span class="compoundIcon" id="CO2NormalIcon"></span> and intensity of <span class="tkey">Light</span> <span class="compoundIcon" id="LightIcon"></span>&nbsp;. <br> <br>
+				<span class="tgold">Photosynthesis</span> <br>
+				<span class="tkey">+0.15</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="tkey">/second&emsp;@&emsp;0.09%</span> <span class="compoundIcon" id="CO2NormalIcon"></span> <span class="tkey">, 10,000 lux</span> <span class="compoundIcon" id="LightIcon"></span><br> <br>
+				<span class="tgold">Fermentation</span> <br>
+				<span class="tkey">0.13</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">5.00</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="tkey">/second</span> <br> <br>
+				<span class="tbonus">+1</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
+				<span class="tmalus">+1</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
+				<span class="tdesc">Thylakoids are clusters of proteins and photosensitive pigments. The pigments are able to use the
+                energy of light to produce glucose from water and gaseous carbon dioxide in a process called Photosynthesis.
+                These pigments are also what give them a distinctive colour. The rate of their glucose production scales with
+                the concentration of carbon dioxide, and intensity of light. Since the thylakoids are suspended directly in the
+                cytoplasm, the surrounding fluid performs some fermentation.</span>
+                </span>
+				<span class="tooltipheader">
+				<span class="thead">Thylakoids</span>
+				</span>
+                <div id="ChromatophorIcon"></div>Thylakoid<br>55 MP</td>
             <td id="addChemoSynthisizingProteins" class="OrganelleListItem">
-                <span class="tooltiptext">
-                ChemosynthisizingProteins <hr><br> Cost: 45 mutation points <hr><br>
-                Performs Process: Bacterial Chemosynthesis<br>(1 CO2 + 1 Hydrogen Sulfide -> 1 Glucose)/Second (Depending On Environmental C02)<br>
-                Performs Process: Glycolysis<br>(0.125 glucose -> 5 ATP)/Second<hr><br>
-                Storage Space: 1<hr><br>
-                Small membrane-associated structures that convert the noxious soup containing hydrogen
-                sulfide from hydrothermal vents into usable energy in the form of glucose.</span>
-                <div id="ChemosynthisizingProteinsIcon"></div>Chemosynthisizing Proteins<br>45 MP</td>
+				<span class="tooltiptext">
+				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">45</span> <br> <br> <br> <br>
+                Turns <span class="tkey">Hydrogen Sulfide</span> <span class="compoundIcon" id="HydrogenSulfideIcon"></span> into <span class="tkey">Glucose</span> <span class="compoundIcon" id="GlucoseIcon"></span> . Rate scales with concentration of <span class="tkey">Carbon Dioxide</span> <span class="compoundIcon" id="CO2NormalIcon"></span>&nbsp;. Also turns <span class="tkey">Glucose</span> <span class="compoundIcon" id="GlucoseIcon"></span> into <span class="tkey">ATP</span> <span class="compoundIcon" id="ATPIcon"></span> . <br> <br>
+				<span class="tgold">Hydrogen Sulfide Chemosynthesis</span> <br>
+				<span class="tkey">0.21</span> <span class="compoundIcon" id="HydrogenSulfideIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">0.21</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="tkey">/second&emsp;@&emsp;0.09%</span> <span class="compoundIcon" id="CO2NormalIcon"></span><br> <br>
+				<span class="tgold">Fermentation</span> <br>
+				<span class="tkey">0.13</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">5.00</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="tkey">/second</span> <br> <br>
+				<span class="tbonus">+1</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
+				<span class="tmalus">+1</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
+				<span class="tdesc">Chemosynthesizing proteins are small clusters of protein in the cytoplasm that are able to 
+                convert hydrogen sulfide, water, and gaseous carbon dioxide into glucose in a process called Hydrogen 
+                Sulfide Chemosynthesis. The rate of its glucose production scales with the concentration of carbon dioxide.
+                Since the chemosynthesizing proteins are suspended directly in the cytoplasm, the surrounding fluid performs
+                some fermentation.</span>
+                </span>
+				<span class="tooltipheader">
+				<span class="thead">Chemosynth-<br>esizing Proteins</span>
+				</span>
+                <div id="ChemosynthisizingProteinsIcon"></div>Chemosynthesizing Proteins<br>45 MP</td>
         </tr></table>
         <table><tr>
 	        <td id="addRusticyanin" class="OrganelleListItem">
-              <span class="tooltiptext">
-                Rusticyanin <hr><br> Cost: 45 mutation points <hr><br>
-                Performs Process: Iron Chemolithotrophy<br>(0.21 Oxygen (Primary Electron acceptor) + 0.09 CO2 + 0.175 Iron Ion -> 10 ATP)/Second (Depending On Environmental C02 and O2)<hr><br>
-                Storage Space: 1<hr><br>
-                Siderophores and Rusticyanin for storing and using iron ions with oxygen as the primary electron acceptor and carbon from atmospheric carbon dioxide to produce ATP.
-                Iron Chemolithotrophy is a process by which organisms obtain their energy from the oxidation of reduced inorganic ions.
-              </span>
-              <div id="RusticyaninIcon"></div>Rusticyanin<br>45 MP</td>
-            <td id="addNitrogenase" class="OrganelleListItem">
-                <span class="tooltiptext">
-                Nitrogenase<hr><br> Cost: 55 mutation points<hr><br> 
-                Performs Process: Anaerobic Nitrogen Fixation<br>(2 Nitrogen + 10 ATP -> 0.02 Ammonia)/Second (Depending On Environmental Nitrogen)<br>
-                Performs Process: Glycolysis<br>(0.125 glucose -> 5 ATP)/Second<hr><br>
-                Storage Space: 2<hr><br>
-                Allows for synthesis of ammonia from atmospheric nitrogen anaerobically. For easier cell growth.
+				<span class="tooltiptext">
+				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">45</span> <br> <br>
+                Turns <span class="tkey">Iron</span> <span class="compoundIcon" id="IronIcon"></span> into <span class="tkey">ATP</span> <span class="compoundIcon" id="ATPIcon"></span> . Rate scales with concentration of <span class="tkey">Carbon Dioxide</span> <span class="compoundIcon" id="CO2NormalIcon"></span> and <span class="tkey">Oxygen</span> &nbsp;<span class="compoundIcon" id="OxygenNormalIcon"></span>&nbsp;. <br> <br>
+				<span class="tgold">Iron Respiration</span> <br>
+				<span class="tkey">0.18</span> <span class="compoundIcon" id="IronIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">10.00</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="tkey">/second&emsp;@&emsp;0.09%</span> <span class="compoundIcon" id="CO2NormalIcon"></span> <span class="tkey">, 0.21%</span> <span class="compoundIcon" id="OxygenNormalIcon"></span> <br> <br>
+				<span class="tbonus">+1</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
+				<span class="tmalus">+1</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
+				<span class="tdesc">Rusticyanin is a protein able to use gaseous carbon dioxide and oxygen to oxidize iron from one 
+                chemical state to another. This process, called Iron Respiration, releases energy which the cell can then 
+                harvest.</span>
                 </span>
+				<span class="tooltipheader">
+				<span class="thead">Rusticyanin</span>
+				</span>
+				<div id="RusticyaninIcon"></div>Rusticyanin<br>45 MP</td>
+            <td id="addNitrogenase" class="OrganelleListItem">
+				<span class="tooltiptext">
+				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">55</span> <br> <br>
+                Turns <span class="tkey">ATP</span> <span class="compoundIcon" id="ATPIcon"></span> into <span class="tkey">Ammonia</span> <span class="compoundIcon" id="AmmoniaIcon"></span>. Rate scales with concentration of <span class="tkey">Nitrogen</span> <span class="compoundIcon" id="NitrogenNormalIcon"></span>&nbsp;. <br> <br>
+				<span class="tgold">Nitrogen Fixation</span> <br>
+				<span class="tkey">3.91</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">0.01</span> <span class="compoundIcon" id="AmmoniaIcon"></span> <span class="tkey">/second&emsp;@&emsp;78.00%</span> <span class="compoundIcon" id="NitrogenNormalIcon"></span> <br> <br>
+				<span class="tgold">Fermentation</span> <br>
+				<span class="tkey">0.13</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">5.00</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="tkey">/second</span> <br> <br>
+				<span class="tbonus">+2</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
+				<span class="tmalus">+1</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
+				<span class="tdesc">Nitrogenase is a protein able to use gaseous nitrogen and cellular energy in the form of ATP to 
+                produce ammonia, a key growth nutrient for cells. This is a process referred to as Anaerobic Nitrogen Fixation.
+                Since the nitrogenase is suspended directly in the cytoplasm, the surrounding fluid performs some fermentation.</span>
+                </span>
+				<span class="tooltipheader">
+				<span class="thead">Nitrogenase</span>
+				</span>
                 <div id="NitrogenaseIcon">
                 </div>Nitrogenase<br>55 MP</td>
         </tr></table>
@@ -434,93 +495,183 @@ Be wary because your competitors are evolving alongside you. Every time you ente
         <table><tr>
             <td id="addFlagellum" class="OrganelleListItem">
                 <span class="tooltiptext">
-                Flagellum<hr><br> Cost: 55 mutation points<hr><br> 
-                Performs Process: Movement<br>(7atp -> Faster movement speed)/Second<hr><br>
-                Storage Space: 1<hr><br>
-                A whip like structure used by microbes for movement.</span>
+				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">55</span> <br> <br>
+                Uses <span class="tkey">ATP</span> <span class="compoundIcon" id="ATPIcon"></span> to increase the movement speed of the cell. <br> <br>
+				<span class="tbonus">+0.7</span> <span class="tkey">Speed</span> <span class="compoundIcon" id="FlagellumTooltipIcon"></span> <br>
+				<span class="tbonus">+1</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
+				<span class="tmalus">+1</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
+				<span class="tdesc">The flagellum (plural: flagella) is a whip-like bundle of protein fibers extending from the 
+                cell's membrane which can use ATP to undulate and propel the cell in a direction.</span>
+                </span>
+				<span class="tooltipheader">
+				<span class="thead">Flagellum</span>
+				</span>
                 <div id="FlagellumIcon"></div>Flagellum<br>55 MP</td>
             <td id="addPilus" class="OrganelleListItem DisabledButton">
-                <div id="PilusIcon"></div>Predatory Pilus<br>30 MP</td>
+                <span class="tooltiptext">
+				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">0</span> <br> <br>
+                To be implemented. 
+                </span>
+				<span class="tooltipheader">
+				<span class="thead">Predatory Pilus</span>
+				</span>
+				<div id="PilusIcon"></div>Predatory Pilus<br>30 MP</td>
             <td id="addCilia" class="OrganelleListItem DisabledButton">
-              <div id="CiliaIcon"></div>Cilia<br>40 MP</td>
+				<span class="tooltiptext">
+				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">0</span> <br> <br>
+                To be implemented. 
+                </span>
+				<span class="tooltipheader">
+				<span class="thead">Cilia</span>
+				</span>
+				<div id="CiliaIcon"></div>Cilia<br>40 MP</td>
         </tr></table>
 	      <div class="OrganelleListTitle">INTERNAL ORGANELLES</div>
 	      <table class="OrganelleTable"><tr>
             <td id="addNucleus" class="OrganelleListItem">
                 <span class="tooltiptext">
-                Nucleus<hr><br> Cost: 100 mutation points<hr><br>
-                Performs Process: Eukaryote Evolution<hr><br>
-                Storage Space: 15<hr><br>
-                Allows for synthesis of RNA and MRNA, allows cell to evolve membrane bound organelles.
-                 <p style="color:yellow;">Warning! The nucleus will slow you down significantly and has an upkeep cost of 11 ATP per second due to osmoregulation! It is also irreversible.</p>
+				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">100</span> <br> <br>
+                Allows for the evolution of more complex, membrane-bound organelles. Costs a lot of ATP to maintain. This is an irreversible evolution.<br> <br>
+				<span class="tbonus">+15</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
+				<span class="tmalus">+10</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
+				<span class="tdesc">The defining feature of eukaryotic cells. The nucleus also includes the endoplasmic reticulum and the golgi body. 
+                It is an evolution of prokaryotic cells to develop a system of internal membranes, done by assimilating another prokaryote 
+                inside of themselves. This allows them to compartmentalize, or ward off, the different processes happening inside the cell and 
+                prevent them from overlapping. This allows their new membrane bound organelles to be much more complex, efficient, and specialized
+                than if they were free-floating in the cytoplasm. However, this comes at the cost of making the cell much larger and requiring 
+                a lot of the cell's energy to maintain.</span>
                 </span>
+				<span class="tooltipheader">
+				<span class="thead">Nucleus</span>
+				</span>
                 <div id="NucleusIcon">
                 </div>Nucleus<br>100 MP</td>
 	          <td id="addMitochondrion" class="OrganelleListItem">
-                <span class="tooltiptext">
-                Mitochondria<hr><br> Cost: 45 mutation points<hr><br> 
-                Performs Process: Respiration<br>(1 Oxygen + 0.2 glucose -> 45 ATP)/Second (Depending On Environmental Oxygen)<hr><br>
-                Storage Space: 2<hr><br>
-                A captured prokaryote used by eukaryotic cells to perform respiration.<br>
-                - The Mitochondria is the powerhouse of the cell
+				<span class="tooltiptext">
+				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">55</span> <br> <br>
+				Turns <span class="tkey">Glucose</span> <span class="compoundIcon" id="GlucoseIcon"></span> into <span class="tkey">ATP</span> <span class="compoundIcon" id="ATPIcon"></span> . Rate scales with concentration of <span class="tkey">Oxygen</span> <span class="compoundIcon" id="OxygenNormalIcon"></span>&nbsp;. <br> <br>
+				<span class="tgold">Aerobic Respiration</span> <br>
+				<span class="tkey">0.04</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">9.45</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="tkey">/second&emsp;@&emsp;21.00%</span> <span class="compoundIcon" id="OxygenNormalIcon"></span><br> <br>
+				<span class="tbonus">+2</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
+				<span class="tmalus">+2</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
+				<span class="tdesc">The powerhouse of the cell. The mitochondrion (plural: mitochondria) is a double membrane structure filled 
+                with proteins and enzymes. It is a prokaryote that has been assimilated for use by its eukaryotic host. It is able to
+                convert glucose into ATP at a much higher efficiency than can be done in the cytoplasm in a process called Aerobic Respiration.
+                It does, however, require oxygen to function, and lower levels of oxygen in the environment will slow down the rate of its ATP
+                production.</span>
                 </span>
+				<span class="tooltipheader">
+				<span class="thead">Mitochondrion</span>
+				</span>
                 <div id="MitochondrionIcon">
                 </div>Mitochondrion<br>45 MP</td>
 	          <td id="addChloroplast" class="OrganelleListItem">
-                <span class="tooltiptext">
-                Chloroplast<hr><br> Cost: 55 mutation points<hr><br> 
-                Performs Process: Photosynthesis<br>( 0.09 CO2 -> 1 glucose)/Second (Depending On Environmental C02)<hr><br>
-                Storage Space: 2<hr><br>
-                A captured prokaryote used by eukaryotic cells to perform photosynthesis.<br>
-                The chloroplast is used primarily by plant cells on earth, but some ciliates and other organisms use it too.
+				<span class="tooltiptext">
+				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">55</span> <br> <br>
+                Produces <span class="tkey">Glucose</span> <span class="compoundIcon" id="GlucoseIcon"></span> . Rate scales with concentration of <span class="tkey">Carbon Dioxide</span> <span class="compoundIcon" id="CO2NormalIcon"></span> and intensity of <span class="tkey">Light</span> <span class="compoundIcon" id="LightIcon"></span>&nbsp;. <br> <br>
+				<span class="tgold">Photosynthesis</span> <br>
+				<span class="tkey">+1.00</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="tkey">/second&emsp;@&emsp;0.09%</span> <span class="compoundIcon" id="CO2NormalIcon"></span> <span class="tkey">, 10,000 lux</span> <span class="compoundIcon" id="LightIcon"></span><br> <br>
+				<span class="tbonus">+2</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
+				<span class="tmalus">+2</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
+				<span class="tdesc">The chloroplast is a double membrane structure containing photosensitive pigments stacked together in membranous sacs.
+                It is a prokaryote that has been assimilated for use by its eukaryotic host. The pigments in the chloroplast are able to use the
+                energy of light to produce glucose from water and gaseous carbon dioxide in a process called Photosynthesis. These pigments are 
+                also what give it a distinctive colour. The rate of its glucose production scales with the concentration of carbon dioxide, and 
+                intensity of light.</span>
                 </span>
+				<span class="tooltipheader">
+				<span class="thead">Chloroplast</span>
+				</span>
                 <div id="ChloroplastIcon"></div>Chloroplast<br>55 MP</td>
 	        </tr><tr>
             <td id="addThermoplast" class="OrganelleListItem DisabledButton">
                 <span class="tooltiptext">
-                Thermoplast<hr><br> Cost: 40 mutation points<hr><br> 
-                Performs Process: Thermosynthesis<br>(Heat -> 1 glucose)/Second (Depending On Environmental Heat)<hr><br>
-                Storage Space: 2<hr><br>
-                A captured prokaryote used by eukaryotic cells to perform thermosynthesis.<br>
-                The thermoplast is a theoretical organelle that takes environmental heat gradients and generates energy from them.
+				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">40</span> <br> <br>
+                Produces <span class="tkey">Glucose</span> <span class="compoundIcon" id="GlucoseIcon"></span> . Rate scales with concentration of <span class="tkey">Carbon Dioxide</span> <span class="compoundIcon" id="CO2NormalIcon"></span> and <span class="tkey">Temperature</span> <span class="compoundIcon" id="TemperatureIcon"></span>&nbsp;. <br> <br>
+				<span class="tgold">Thermosynthesis</span> <br>
+				<span class="tkey">+1.00</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="tkey">/second&emsp;@&emsp;0.09%</span> <span class="compoundIcon" id="CO2NormalIcon"></span> <span class="tkey">, 50 &#8451</span> <span class="compoundIcon" id="TemperatureIcon"></span><br> <br>
+				<span class="tbonus">+2</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
+				<span class="tmalus">+2</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
+				<span class="tdesc">The thermoplast is a double membrane structure containing thermosensitive pigments stacked together 
+                in membranous sacs. It is a prokaryote that has been assimilated for use by its eukaryotic host. The pigments 
+                in the thermoplast are able to use the energy of heat differences in the surroundings to produce glucose from 
+                water and gaseous carbon dioxide in a process called Thermosynthesis. The rate of its glucose production scales
+                with the concentration of carbon dioxide, and temperature.</span>
                 </span>
+				<span class="tooltipheader">
+				<span class="thead">Thermoplast</span>
+				</span>
                 <div id="ThermoplastIcon"></div>Thermoplast<br>40 MP</td>
             <td id="addChemoplast" class="OrganelleListItem">
                 <span class="tooltiptext">
-                Chemoplast<hr><br> Cost: 45 mutation points<hr><br> 
-                Performs Process: Chemosynthesis<br>(0.09 CO2 + 1 Hydrogen Sulfide -> 2 Glucose)/Second (Depending On Environmental C02)<hr><br>
-                Storage Space: 2<hr><br>
-                Allows for synthesis of glucose from hydrogen sulfide and atmospheric carbon dioxide.
-                <br>
-                Can be used to process the normally toxic soup containing hydrogen sulfide that comes out of hydrothermal vents at the bottom of the ocean. Into glucose.
+				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">45</span> <br> <br>
+                Turns <span class="tkey">Hydrogen Sulfide</span> <span class="compoundIcon" id="HydrogenSulfideIcon"></span> into <span class="tkey">Glucose</span> <span class="compoundIcon" id="GlucoseIcon"></span> . Rate scales with concentration of <span class="tkey">Carbon Dioxide</span> <span class="compoundIcon" id="CO2NormalIcon"></span>&nbsp;. <br> <br>
+				<span class="tgold">Hydrogen Sulfide Chemosynthesis</span> <br>
+				<span class="tkey">1.00</span> <span class="compoundIcon" id="HydrogenSulfideIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">2.00</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="tkey">/second&emsp;@&emsp;0.09%</span> <span class="compoundIcon" id="CO2NormalIcon"></span><br> <br>
+				<span class="tbonus">+2</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
+				<span class="tmalus">+2</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
+				<span class="tdesc">The chemoplast is a double membrane structure containing proteins able to convert hydrogen sulfide, 
+                water, and gaseous carbon dioxide into glucose in a process called Hydrogen Sulfide Chemosynthesis. The rate
+                of its glucose production scales with the concentration of water and carbon dioxide.</span>
                 </span>
+				<span class="tooltipheader">
+				<span class="thead">Chemoplast</span>
+				</span>
                 <div id="ChemoplastIcon"></div>Chemoplast<br>45 MP</td>
             <td id="addNitrogenFixingPlastid" class="OrganelleListItem">
                 <span class="tooltiptext">
-                Nitrogen Fixing Plastid<hr><br> Cost: 50 mutation points<hr><br> 
-                Performs Process: Aerobic Nitrogen Fixation<br>(1 Oxygen + 1 Nitrogen + 5 ATP -> 0.5 Ammonia)/Second (Depending On Environmental Oxygen/Nitrogen)<hr><br>
-                Storage Space: 2<hr><br>
-                Allows for synthesis of ammonia from atmospheric nitrogen and oxygen. For easier cell growth.
+				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">50</span> <br> <br><br>
+                Turns <span class="tkey">ATP</span> <span class="compoundIcon" id="ATPIcon"></span> into <span class="tkey">Ammonia</span> <span class="compoundIcon" id="AmmoniaIcon"></span>. Rate scales with concentration of <span class="tkey">Nitrogen</span> <span class="compoundIcon" id="NitrogenNormalIcon"></span> and <span class="tkey">Oxygen</span> <span class="compoundIcon" id="OxygenNormalIcon"></span>&nbsp;. <br> <br>
+				<span class="tgold">Nitrogen Fixation</span> <br>
+				<span class="tkey">1.05</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">0.11</span> <span class="compoundIcon" id="AmmoniaIcon"></span> <span class="tkey">/second&emsp;@&emsp;78.00%</span> <span class="compoundIcon" id="NitrogenNormalIcon"></span> <span class="tkey">, 21.00%</span> <span class="compoundIcon" id="OxygenNormalIcon"></span><br> <br>
+				<span class="tbonus">+2</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
+				<span class="tmalus">+2</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
+				<span class="tdesc">The Nitrogen Fixing Plastid is a protein able to use gaseous nitrogen and oxygen and 
+                cellular energy in the form of ATP to produce ammonia, a key growth nutrient for cells. This is 
+                a process referred to as Aerobic Nitrogen Fixation.</span>
                 </span>
-                <div id="PlastidIcon">
-                </div>Nitrogen Fixing <br> Plastid<br>50 MP</td>
+				<span class="tooltipheader">
+				<span class="thead">Nitrogen Fixing<br> Plastid</span>
+				</span>
+                <div id="PlastidIcon"></div>Nitrogen Fixing<br> Plastid<br>50 MP</td>
 	        </tr><tr>
              <td id="addVacuole" class="OrganelleListItem">
                 <span class="tooltiptext">
-                Vacuole <hr><br> Cost: 50 mutation points<hr><br> 
-                Storage Space: 15<hr><br>
-                A space or vesicle within the cytoplasm of a cell, enclosed by a membrane and used to hold compounds.</span>
+				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">50</span> <br> <br>
+                Increases the storage space of the cell. <br> <br>
+				<span class="tbonus">+15</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
+				<span class="tmalus">+1</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
+				<span class="tdesc">The vacuole is an internal membranous organelle used for storage in the cell. They are composed 
+                of several vesicles, smaller membranous structures widely used in cells for storage, that have fused together.
+                It is filled with water which is used to contain molecules, enzymes, solids, and other substances. Their shape
+                is fluid and can vary between cells.</span>
+                </span>
+				<span class="tooltipheader">
+				<span class="thead">Vacuole</span>
+				</span>
                 <div id="VacuoleIcon"></div>Vacuole<br>50 MP</td>
             <td id="addToxinVacuole" class="OrganelleListItem">
                 <span class="tooltiptext">
-                Toxin Vacuole <hr><br> Cost: 70 mutation points<hr><br> 
-                Performs Process: OxytoxyNT Production<br>(1 Oxygen + 5 ATP -> 5 Oxytoxy)/Second (Depending On Environmental Oxygen)<hr><br>
-                Storage Space: 5<hr><br>
-                Allows for production and storage of OxytoxyNT which can be shot at enemy cells using E. The more of this organelle you have the faster your toxin fire rate will be.
+				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">70</span> <br> <br>
+                Turns <span class="tkey">ATP</span> <span class="compoundIcon" id="ATPIcon"></span> into <span class="tkey">Oxytoxy</span> <span class="compoundIcon" id="OxyToxyIcon"></span>. Can release toxins by pressing <span class="tkey">E</span>. Rate scales with concentration of <span class="tkey">Oxygen</span> <span class="compoundIcon" id="OxygenNormalIcon"></span>&nbsp;. <br> <br>
+				<span class="tgold">Agent Synthesis</span> <br>
+				<span class="tkey">1.05</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">1.05</span> <span class="compoundIcon" id="OxyToxyIcon"></span> <span class="tkey">/second&emsp;@&emsp;21.00%</span> <span class="compoundIcon" id="OxygenNormalIcon"></span> <br> <br>
+				<span class="tbonus">+5</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
+				<span class="tmalus">+1</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
+				<span class="tdesc">The toxin vacuole is a vacuole that has been modified for the specific production, storage,
+                and secretion of oxytoxy toxins. More toxin vacuoles will increase the rate at which toxins can be
+                released.</span>
                 </span>
+				<span class="tooltipheader">
+				<span class="thead">Toxin Vacuole</span>
+				</span>
                 <div id="ToxinVacuoleIcon"></div>Toxin Vacuole<br>70 MP</td>
              <td id="addBioluminescent" class="OrganelleListItem DisabledButton">
-               <div id="BioluminescentIcon"></div>Bioluminescent Vacuole<br>N/A MP</td>
+				<span class="tooltiptext">
+				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">0</span> <span class="thead">&emsp;Bioluminescent Vacuole&emsp;&ensp;</span> <br> <br>
+                To be implemented. 
+                </span>
+			   <div id="BioluminescentIcon"></div>Bioluminescent Vacuole<br>N/A MP</td>
 	      </tr></table>
 	    </div>
       </div>
@@ -585,7 +736,7 @@ Chemosynthisizing Proteins: Produces half of the glucose out of Hydrogen Sulfide
 
 Chromatophores: Produces 1/3rd the amount of glucose as a normal chloroplast, but also performs glycolysis, and takes up 1 Hex.<br>
 
-Rusticyanin: Converts iron ions into ATP, and takes up 1 Hex.<br>
+Rusticyanin: Converts iron into ATP, and takes up 1 Hex.<br>
 
 Nitrogenase: Converts atmospheric nitrogen and ATP into ammonia anaerobically<br>
 
