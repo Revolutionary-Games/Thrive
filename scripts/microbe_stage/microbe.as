@@ -802,6 +802,7 @@ class MicrobeSystem : ScriptSystem{
         if(organellesToAdd.length() > 0){
             // Redo the cell membrane.
             membraneComponent.clear();
+    MicrobeOperations::rebuildProcessList(world, microbeEntity);
         }
 
         if(reproductionStageComplete && microbeComponent.reproductionStage < 2){
