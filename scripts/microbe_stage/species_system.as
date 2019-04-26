@@ -1064,6 +1064,7 @@ void applyTemplate(CellStageWorld@ world, ObjectID microbe, SpeciesComponent@ sp
         InitialCompound amount = InitialCompound(species.avgCompoundAmounts[ids[i]]);
         MicrobeOperations::setCompound(world, microbe, compoundId, amount.amount);
     }
+
 }
 
 void restoreOrganelleLayout(CellStageWorld@ world, ObjectID microbeEntity,
@@ -1097,6 +1098,11 @@ void restoreOrganelleLayout(CellStageWorld@ world, ObjectID microbeEntity,
     // Cache isBacteria from species. This can be changed depending on
     // the added organelles in the editor
     microbeComponent.isBacteria = species.isBacteria;
+
+    // Call this  to reset processor component
+    Species::initProcessorComponent(world, microbeEntity, species);
+    // This makes sure that the microbes processer are up to date with their species
+    Species::copyProcessesFromSpecies(world, species, microbeEntity);
 }
 
 void initProcessorComponent(CellStageWorld@ world, ObjectID entity,
