@@ -26,7 +26,7 @@ public:
     double activity;
     double focus;
     int population;
-	MEMBRANE_TYPE speciesMembraneType;
+    MEMBRANE_TYPE speciesMembraneType;
     std::map<size_t, unsigned int> startingCompounds;
     std::map<int, size_t> organelles; // TODO: get a position as the key.
 

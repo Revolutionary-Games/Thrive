@@ -262,8 +262,8 @@ class Species{
         }
     }
 
-    // Creates a mutated version of the species and reduces the species population by half
-    Species(Species@ parent, CellStageWorld@ world, bool isBacteria)
+    // Creates a mutated version of the species
+    Species(SpeciesComponent@ parent, CellStageWorld@ world, bool isBacteria)
     {
         this.isBacteria = parent.isBacteria;
 
@@ -355,7 +355,7 @@ class Species{
         this.opportunism = clamp(this.opportunism, 0.0f, MAX_SPECIES_OPPORTUNISM);
     }
 
-    private void mutateBehavior(Species@ parent){
+    private void mutateBehavior(SpeciesComponent@ parent){
         // Variables used in AI to determine general behavior mutate these
         this.aggression = parent.aggression+GetEngine().GetRandom().GetFloat(
             MIN_SPECIES_PERSONALITY_MUTATION, MAX_SPECIES_PERSONALITY_MUTATION);
@@ -581,7 +581,7 @@ class Species{
             BACTERIA_SPAWN_RADIUS);
     }
 
-    void mutateBacteria(Species@ parent, CellStageWorld@ world)
+    void mutateBacteria(SpeciesComponent@ parent, CellStageWorld@ world)
     {
         name = randomBacteriaName();
         genus = parent.genus;
@@ -862,7 +862,8 @@ class SpeciesSystem : ScriptSystem{
                 // To prevent ridiculous population numbers
                 currentSpecies.population=MAX_POP_SIZE;
                 auto oldPop = currentSpecies.population;
-                auto newSpecies = Species(currentSpecies, world,
+                auto speciesComp = world.GetComponent_SpeciesComponent(currentSpecies.templateEntity);
+                auto newSpecies = Species(speciesComp, world,
                     currentSpecies.isBacteria);
 
                 ranSpeciesEvent=true;
@@ -881,7 +882,8 @@ class SpeciesSystem : ScriptSystem{
 
                 currentSpecies.population = int(floor(currentSpecies.population / 2.f));
 
-                auto newSpecies = Species(currentSpecies, world,
+                auto speciesComp = world.GetComponent_SpeciesComponent(currentSpecies.templateEntity);
+                auto newSpecies = Species(speciesComp, world,
                     currentSpecies.isBacteria);
 
                 newSpecies.population = int(ceil(currentSpecies.population));
@@ -917,7 +919,7 @@ class SpeciesSystem : ScriptSystem{
         }
     }
 
-    void splitSpecies(Species@ currentSpecies){
+    void splitSpecies(SpeciesComponent@ currentSpecies){
         auto newSpecies = Species(currentSpecies, world,
                 currentSpecies.isBacteria);
 
