@@ -892,11 +892,15 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(engine->RegisterObjectProperty("SpeciesComponent", "string stringCode",
+           asOFFSET(SpeciesComponent, stringCode)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     if(engine->RegisterObjectProperty("SpeciesComponent", "Float4 colour",
            asOFFSET(SpeciesComponent, colour)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
-
     if(engine->RegisterObjectProperty("SpeciesComponent", "string name",
            asOFFSET(SpeciesComponent, name)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
