@@ -23,7 +23,8 @@ enum class THRIVE_COMPONENT : uint16_t {
     PROPERTIES,
     COMPOUND_VENTER,
     ENGULFABLE,
-	FLUID_EFFECT
+	FLUID_EFFECT,
+    DAMAGETOUCH,
     // TODO: check is this needed for anything
     // INVALID
 };

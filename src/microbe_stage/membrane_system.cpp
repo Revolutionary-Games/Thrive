@@ -649,7 +649,7 @@ Ogre::Vector3
     MembraneComponent::GetMovementForCellWall(Ogre::Vector3 target,
         Ogre::Vector3 closestOrganelle)
 {
-    double power = pow(2.7, (-target.distance(closestOrganelle) * 2) / 10) / 40;
+    double power = pow(10.0f, (-target.distance(closestOrganelle))) / 50;
 
     return (Ogre::Vector3(closestOrganelle) - Ogre::Vector3(target)) * power;
 }
@@ -681,9 +681,8 @@ void
         // Check to see if the gap between two points in the membrane is too
         // big.
         if(newPositions[i].distance(
-               newPositions[(i + 1) % newPositions.size()]) *
-                2 >
-            (cellDimensions / membraneResolution)) {
+               newPositions[(i + 1) % newPositions.size()]) >
+            cellDimensions / membraneResolution) {
             // Add an element after the ith term that is the average of the i
             // and i+1 term.
             auto it = newPositions.begin();
@@ -692,17 +691,17 @@ void
                     newPositions[i]) /
                 2;
             newPositions.insert(it + i + 1, tempPoint);
-            i++;
-        }
 
-        // Check to see if the gap between two points in the membrane is too
-        // small.
-        if(newPositions[(i + 1) % newPositions.size()].distance(
-               newPositions[(i - 1) % newPositions.size()]) <
-            cellDimensions / membraneResolution) {
-            // Delete the ith term.
-            auto it = newPositions.begin();
-            newPositions.erase(it + i);
+            // Check to see if the gap between two points in the wall is too
+            // small.
+            if(newPositions[(i + 1) % newPositions.size()].distance(
+                   newPositions[(i - 1) % newPositions.size()]) <
+                cellDimensions / membraneResolution) {
+                // Delete the ith term.
+                auto it = newPositions.begin();
+                newPositions.erase(it + i);
+            }
+            i++;
         }
 
         // Check to see if the gap between two points in the membrane is too

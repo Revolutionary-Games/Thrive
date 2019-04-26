@@ -26,15 +26,15 @@
     },
 
     "phosphates": {
-        "name": "Phosphates",
+        "name": "Phosphate",
         "volume": 1,
         "isCloud": true,
         "isUseful": true,
         "isEnvironmental": false,
         "colour": {
-            "r": 0.7,
-            "g": 0.0,
-            "b": 0.7
+            "r": 0.8,
+            "g": 0.4,
+            "b": 1.0
         }
     },
 
@@ -105,6 +105,19 @@
     
     "carbondioxide": {
         "name": "Carbon Dioxide",
+        "volume": 1,
+        "isCloud": false,
+        "isUseful": true,
+        "isEnvironmental": true,
+        "colour": {
+            "r": 1.0,
+            "g": 0.0,
+            "b": 0.0
+        }
+    },
+    
+    "nitrogen": {
+        "name": "Nitrogen",
         "volume": 1,
         "isCloud": false,
         "isUseful": true,

@@ -305,10 +305,10 @@ void cellHitFloatingOrganelle(GameWorld@ world, ObjectID firstEntity, ObjectID s
 }
 
 
-// Will use this for food chunks now
-void cellHitIron(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
+// Used for chunks
+void cellHitEngulfable(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
 {
-    // Determine which is the iron
+    // Determine which is the chunk
     CellStageWorld@ asCellWorld = cast<CellStageWorld>(world);
 
     auto model = asCellWorld.GetComponent_Model(firstEntity);
@@ -348,6 +348,64 @@ void cellHitIron(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
             }
         }
 }
+
+// Used for chunks that also can damage
+void cellHitDamageChunk(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
+{
+    // Determine which is the chunk
+    CellStageWorld@ asCellWorld = cast<CellStageWorld>(world);
+
+    auto model = asCellWorld.GetComponent_Model(firstEntity);
+    auto floatingEntity = firstEntity;
+    auto cellEntity = secondEntity;
+    bool disappear=false;
+    // Cell doesn't have a model
+    if(model is null){
+        @model = asCellWorld.GetComponent_Model(secondEntity);
+        floatingEntity = secondEntity;
+        cellEntity = firstEntity;
+    }
+    auto damage = asCellWorld.GetComponent_DamageOnTouchComponent(floatingEntity);
+    MicrobeComponent@ microbeComponent = MicrobeOperations::getMicrobeComponent(asCellWorld,cellEntity);
+
+    if (damage !is null && microbeComponent !is null){
+        if (damage.getDeletes() && !microbeComponent.dead){
+            MicrobeOperations::damage(asCellWorld, cellEntity, double(damage.getDamage()), "toxin");
+            disappear=true;
+        }
+        else if (!damage.getDeletes() && !microbeComponent.dead){
+            MicrobeOperations::damage(asCellWorld, cellEntity, double(damage.getDamage()), "toxin");
+        }
+    }
+
+    // Do engulfing stuff in the case that we have an engulfable component
+    auto engulfableComponent = asCellWorld.GetComponent_EngulfableComponent(floatingEntity);
+    auto compoundBagComponent = asCellWorld.GetComponent_CompoundBagComponent(cellEntity);
+    auto floatBag = asCellWorld.GetComponent_CompoundBagComponent(floatingEntity);
+
+    if (microbeComponent !is null && engulfableComponent !is null
+        && compoundBagComponent !is null && floatBag !is null)
+        {
+        if (microbeComponent.engulfMode && microbeComponent.totalHexCountCache >=
+            engulfableComponent.getSize()*ENGULF_HP_RATIO_REQ)
+            {
+            uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
+            for(uint compoundId = 0; compoundId < compoundCount; ++compoundId){
+                CompoundId realCompoundId = compoundId;
+                double amountToTake =
+                    floatBag.takeCompound(realCompoundId,floatBag.getCompoundAmount(realCompoundId));
+                // Right now you get way too much compounds for engulfing the things but hey
+                compoundBagComponent.giveCompound(realCompoundId, (amountToTake/CHUNK_ENGULF_COMPOUND_DIVISOR));
+            }
+            disappear=true;
+            }
+        }
+
+    if (disappear){
+        world.QueueDestroyEntity(floatingEntity);
+    }
+}
+
 
 // Cell Hit Oxytoxy
 // We can make this generic using the dictionary in agents.as
@@ -626,122 +684,6 @@ class PlayerSpeciesSpawner{
     }
 }
 
-// Should this be affected by currents?
-ObjectID createToxin(CellStageWorld@ world, Float3 pos)
-{
-    // Toxins
-    ObjectID toxinEntity = world.CreateEntity();
-
-    auto position = world.Create_Position(toxinEntity, pos,
-        Ogre::Quaternion(Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
-            Ogre::Vector3(0,1,0)));
-    auto renderNode = world.Create_RenderNode(toxinEntity);
-    renderNode.Scale = Float3(1, 1, 1);
-    renderNode.Marked = true;
-    renderNode.Node.setOrientation(Ogre::Quaternion(
-            Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)), Ogre::Vector3(0,1,1)));
-    renderNode.Node.setPosition(pos);
-    // Ogre::Quaternion(Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
-    //     Ogre::Vector3(0, 1, 0)));
-
-    // Agent
-    auto agentProperties = world.Create_AgentProperties(toxinEntity);
-    agentProperties.setSpeciesName("");
-    agentProperties.setParentEntity(NULL_OBJECT);
-    agentProperties.setAgentType("oxytoxy");
-
-    auto model = world.Create_Model(toxinEntity, renderNode.Node, "oxytoxy.mesh");
-    // Need to set the tint
-    model.GraphicalObject.setCustomParameter(1, Ogre::Vector4(1, 1, 1, 1));
-
-    auto rigidBody = world.Create_Physics(toxinEntity, position);
-    auto body = rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
-        world.GetPhysicalWorld().CreateSphere(1), 1,
-        world.GetPhysicalMaterial("agentCollision"));
-
-    body.ConstraintMovementAxises();
-
-    rigidBody.JumpTo(position);
-
-    return toxinEntity;
-}
-
-ObjectID createIron(CellStageWorld@ world, Float3 pos)
-{
-    // Iron
-    ObjectID ironEntity = world.CreateEntity();
-
-    auto position = world.Create_Position(ironEntity, pos,
-        Ogre::Quaternion(Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
-            Ogre::Vector3(0,1,1)));
-
-    auto renderNode = world.Create_RenderNode(ironEntity);
-    renderNode.Scale = Float3(1, 1, 1);
-    renderNode.Marked = true;
-    renderNode.Node.setOrientation(Ogre::Quaternion(
-            Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
-            Ogre::Vector3(0,1,1)));
-    renderNode.Node.setPosition(pos);
-    string mesh="";
-    int ironSize = 1;
-    // 5 is the default
-    float ironAmount = 3.0f;
-    double ironBagAmount= IRON_PER_SMALL_CHUNK;
-    bool dissolves=SMALL_IRON_DISSOLVES;
-    int ironEngulfSize = 2;
-    // There are four kinds
-    switch (GetEngine().GetRandom().GetNumber(0, 4))
-        {
-        case 0:
-        mesh="iron_01.mesh";
-        break;
-        case 1:
-        mesh="iron_02.mesh";
-        break;
-        case 2:
-        mesh="iron_03.mesh";
-        break;
-        case 3:
-        mesh="iron_04.mesh";
-        break;
-        case 4:
-        mesh="iron_05.mesh";
-        ironSize=10;
-        ironAmount=10.0f;
-        ironEngulfSize = 100;
-        ironBagAmount=IRON_PER_BIG_CHUNK;
-        dissolves=LARGE_IRON_DISSOLVES;
-        break;
-        }
-
-
-    auto venter = world.Create_CompoundVenterComponent(ironEntity);
-    // So that larger iron chunks give out more compounds
-    venter.setVentAmount(ironAmount);
-    venter.setDoDissolve(dissolves);
-    auto bag = world.Create_CompoundBagComponent(ironEntity);
-    auto engulfable = world.Create_EngulfableComponent(ironEntity);
-    engulfable.setSize(ironEngulfSize);
-    bag.setCompound(SimulationParameters::compoundRegistry().getTypeId("iron"),ironBagAmount);
-    auto model = world.Create_Model(ironEntity, renderNode.Node, mesh);
-    // Need to set the tint
-    model.GraphicalObject.setCustomParameter(1, Ogre::Vector4(1, 1, 1, 1));
-
-    auto rigidBody = world.Create_Physics(ironEntity, position);
-    auto body = rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
-        world.GetPhysicalWorld().CreateSphere(ironSize),100,
-        //engulfable
-        world.GetPhysicalMaterial("iron"));
-
-    body.ConstraintMovementAxises();
-
-    rigidBody.JumpTo(position);
-    
-    world.Create_FluidEffectComponent(ironEntity);
-
-    return ironEntity;
-}
-
 // TODO: the player species handling would be more logically placed if
 // it was in SpeciesSystem, so move it there
 void setupSpawnSystem(CellStageWorld@ world){
@@ -749,11 +691,6 @@ void setupSpawnSystem(CellStageWorld@ world){
     SpawnSystem@ spawnSystem = world.GetSpawnSystem();
 
     // Clouds are handled by biome.as
-
-    LOG_INFO("setting up spawn information");
-
-    setupFloatingOrganelles(world);
-
     LOG_INFO("setting up player species to spawn");
     auto keys = STARTER_MICROBES.getKeys();
     for(uint n = 0; n < keys.length(); n++)
@@ -769,25 +706,8 @@ void setupSpawnSystem(CellStageWorld@ world){
         const auto spawnerId = spawnSystem.addSpawnType(
             factory,
             //spawnDensity should depend on population
-            DEFAULT_SPAWN_DENSITY,
+            DEFAULT_PLAYER_SPAWN_DENSITY,
             MICROBE_SPAWN_RADIUS);
     }
 }
 
-
-// moved this over here for now, its probabbly good to put "free
-// spawning organelles" in their own function
-void setupFloatingOrganelles(CellStageWorld@ world){
-    LOG_INFO("setting up free floating organelles");
-    SpawnSystem@ spawnSystem = world.GetSpawnSystem();
-
-    // toxins
-    const auto toxinId = spawnSystem.addSpawnType(
-        @createToxin, DEFAULT_SPAWN_DENSITY,
-        MICROBE_SPAWN_RADIUS);
-
-    // iron
-    const auto ironId = spawnSystem.addSpawnType(
-        @createIron, DEFAULT_SPAWN_DENSITY,
-        MICROBE_SPAWN_RADIUS);
-}

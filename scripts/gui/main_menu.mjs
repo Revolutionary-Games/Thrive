@@ -25,13 +25,15 @@ export function runMenuSetup(){
         common.playButtonPressSound();
         newGame();
     }, true);
-    document.getElementById("extrasButton").addEventListener("click", (event) => {
-        event.stopPropagation();
-        common.playButtonPressSound();
-        $("#mainMenu").slideUp("fast", () => {
-            $("#extrasMenu").slideDown("fast");
-        });
-    }, true);
+
+    // The prototype doesn't really work so disabled for now
+    // document.getElementById("extrasButton").addEventListener("click", (event) => {
+    //     event.stopPropagation();
+    //     common.playButtonPressSound();
+    //     $("#mainMenu").slideUp("fast", () => {
+    //         $("#extrasMenu").slideDown("fast");
+    //     });
+    // }, true);
     document.getElementById("backFromExtras").addEventListener("click", (event) => {
         event.stopPropagation();
         common.playButtonPressSound();

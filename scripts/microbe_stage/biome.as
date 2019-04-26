@@ -47,7 +47,111 @@ class CloudFactory{
     private CompoundId compound;
 }
 
+class Chunkfactory{
+
+    Chunkfactory(uint c){
+
+        chunkId = c;
+    }
+
+    ObjectID spawn(CellStageWorld@ world, Float3 pos){
+        return createChunk(world, chunkId, pos);
+    }
+
+    private uint chunkId;
+}
+
+
+ObjectID createChunk(CellStageWorld@ world, uint chunkId,  Float3 pos)
+{
+    auto biome = getCurrentBiome();
+    // chunk
+    ObjectID chunkEntity = world.CreateEntity();
+    const ChunkData@ chunk = biome.getChunk(chunkId);
+
+    //Position and render node
+    auto position = world.Create_Position(chunkEntity, pos,
+        Ogre::Quaternion(Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
+            Ogre::Vector3(0,1,1)));
+
+
+    auto renderNode = world.Create_RenderNode(chunkEntity);
+    // Grab scale from json
+    double chunkScale = chunk.chunkScale;
+    renderNode.Scale = Float3(chunkScale, chunkScale, chunkScale);
+    renderNode.Marked = true;
+    renderNode.Node.setOrientation(Ogre::Quaternion(
+            Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
+            Ogre::Vector3(0,1,1)));
+
+    renderNode.Node.setPosition(pos);
+
+    //Grab data
+    double ventAmount= chunk.ventAmount;
+    bool dissolves=chunk.dissolves;
+    int radius = chunk.radius;
+    int mass = chunk.mass;
+    int chunkSize = chunk.size;
+    auto meshListSize = chunk.getMeshListSize();
+    string mesh=chunk.getMesh(GetEngine().GetRandom().GetNumber(0,
+        meshListSize-1))+".mesh";
+
+    //Set things
+    auto venter = world.Create_CompoundVenterComponent(chunkEntity);
+    venter.setVentAmount(ventAmount);
+    venter.setDoDissolve(dissolves);
+    auto bag = world.Create_CompoundBagComponent(chunkEntity);
+    auto engulfable = world.Create_EngulfableComponent(chunkEntity);
+    engulfable.setSize(chunkSize);
+
+
+    auto chunkCompounds = chunk.getCompoundKeys();
+    //LOG_INFO("chunkCompounds.length = " + chunkCompounds.length());
+
+    for(uint i = 0; i < chunkCompounds.length(); ++i){
+        auto compoundId = SimulationParameters::compoundRegistry().getTypeData(chunkCompounds[i]).id;
+        //LOG_INFO("got here:");
+        // And register new
+        const double amount = chunk.getCompound(chunkCompounds[i]).amount;
+        //LOG_INFO("amount:"+amount);
+        bag.setCompound(compoundId,amount);
+    }
+
+    auto model = world.Create_Model(chunkEntity, renderNode.Node, mesh);
+
+    // Need to set the tint
+    model.GraphicalObject.setCustomParameter(1, Ogre::Vector4(1, 1, 1, 1));
+
+    // Rigid Body
+    auto rigidBody = world.Create_Physics(chunkEntity, position);
+
+    //chunk properties
+    if (chunk.damages > 0.0f || chunk.deleteOnTouch){
+        auto damager = world.Create_DamageOnTouchComponent(chunkEntity);
+        damager.setDamage(chunk.damages);
+        damager.setDeletes(chunk.deleteOnTouch);
+        //Damage
+        auto body = rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
+            world.GetPhysicalWorld().CreateSphere(radius),mass,
+            world.GetPhysicalMaterial("chunkDamageMaterial"));
+
+        body.ConstraintMovementAxises();
+    }
+    else {
+    auto body = rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
+        world.GetPhysicalWorld().CreateSphere(radius),mass,
+        //engulfable
+        world.GetPhysicalMaterial("engulfableMaterial"));
+    body.ConstraintMovementAxises();
+    }
+
+    rigidBody.JumpTo(position);
+
+    return chunkEntity;
+}
+
 dictionary compoundSpawnTypes;
+dictionary chunkSpawnTypes;
 
 // Setting the current biome to the one with the specified name.
 void setBiome(uint64 biomeId, CellStageWorld@ world){
@@ -57,6 +161,38 @@ void setBiome(uint64 biomeId, CellStageWorld@ world){
     // Getting the base biome to change to.
     currentBiome = biomeId;
     auto biome = getCurrentBiome();
+
+    auto chunks = biome.getChunkKeys();
+    LOG_INFO("chunks.length = " + chunks.length());
+
+    // clearing chunks (all of them)
+    for (uint c = 0; c < chunkSpawnTypes.getSize(); ++c){
+        const string typeStr = formatUInt(c);
+        if(chunkSpawnTypes.exists(typeStr)){
+            world.GetSpawnSystem().removeSpawnType(SpawnerTypeId(
+                chunkSpawnTypes[typeStr]));
+            LOG_INFO("deleting chunk spawn");
+        }
+    }
+
+    for(uint i = 0; i < chunks.length(); ++i){
+        auto chunkId = chunks[i];
+        Chunkfactory@ spawnChunk = Chunkfactory(chunkId);
+        const string typeStr = formatUInt(chunkId);
+        // And register new
+        const auto density = biome.getChunk(chunkId).density;
+       const auto name = biome.getChunk(chunkId).name;
+
+        if(density <= 0){
+            LOG_WARNING("chunk spawn density is 0. It won't spawn");
+        }
+
+        LOG_INFO("registering chunk: " + chunkId + " Name: "+name +" density: " + density);
+        SpawnFactoryFunc@ factory = SpawnFactoryFunc(spawnChunk.spawn);
+        chunkSpawnTypes[typeStr] = world.GetSpawnSystem().addSpawnType(factory, density,
+            MICROBE_SPAWN_RADIUS);
+
+    }
 
     auto biomeCompounds = biome.getCompoundKeys();
     LOG_INFO("biomeCompounds.length = " + biomeCompounds.length());
@@ -101,22 +237,25 @@ void setBiome(uint64 biomeId, CellStageWorld@ world){
     // Update oxygen and carbon dioxide numbers
     auto oxyId = SimulationParameters::compoundRegistry().getTypeId("oxygen");
     auto c02Id = SimulationParameters::compoundRegistry().getTypeId("carbondioxide");
+    auto n2Id = SimulationParameters::compoundRegistry().getTypeId("nitrogen");
     GenericEvent@ updateDissolvedGasses = GenericEvent("UpdateDissolvedGasses");
     NamedVars@ vars = updateDissolvedGasses.GetNamedVars();
     vars.AddValue(ScriptSafeVariableBlock("oxygenPercent",
         world.GetProcessSystem().getDissolved(oxyId)*100));
     vars.AddValue(ScriptSafeVariableBlock("co2Percent",
         world.GetProcessSystem().getDissolved(c02Id)*100));
+    vars.AddValue(ScriptSafeVariableBlock("n2Percent",
+        world.GetProcessSystem().getDissolved(n2Id)*100));
     GetEngine().GetEventHandler().CallEvent(updateDissolvedGasses);
 }
 
 void setSunlightForBiome(CellStageWorld@ world){
     // Light properties isnt working for some reason
     world.SetLightProperties(getCurrentBiome().diffuseColors, getCurrentBiome().specularColors,
-        Ogre::Vector3(Float3(0.55f, -0.3f, 0.75f).Normalize()), 30,
+        Ogre::Vector3(Float3(0.55f, -0.3f, 0.75f).Normalize()), getCurrentBiome().lightPower,
         // https://ogrecave.github.io/ogre/api/2.1/class_ogre_1_1_scene_manager.html#a56cd9aa2c4dee4eec9eb07ce1372fb52
-        Ogre::ColourValue(0.3f, 0.3f, 0.3f),
-        Ogre::ColourValue(0.2f, 0.2f, 0.2f),
+        getCurrentBiome().upperAmbientColor,
+        getCurrentBiome().lowerAmbientColor,
         -Float3(0.55f, -0.3f, 0.75f).Normalize() + Float3::UnitVUp * 0.2f
     );
     // These work fine

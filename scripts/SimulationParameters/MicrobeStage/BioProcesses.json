@@ -23,7 +23,19 @@
             "atp": 5.0
         }
     },
+    
+	"glycolosis_cytoplasm": {
+        "name": "Cytoplasm Glycolysis",
 
+        "inputs": {
+            "glucose": 0.06
+        },
+
+        "outputs": {
+            "atp": 5.0
+        }
+    },
+    
     "photosynthesis": {
         "name": "Photosynthesis",
 
@@ -76,15 +88,29 @@
     },
     
     "nitrogenFixing": {
-        "name": "Nitrogen Fixing",
+        "name": "Aerobic Nitrogen Fixing",
 
         "inputs": {
             "oxygen": 1.0,
+            "nitrogen": 1.0,
             "atp": 5
         },
 
         "outputs": {
             "ammonia": 0.5
+        }
+    },
+    
+    "nitrogenaseReaction": {
+        "name": "Anaerobic Nitrogen Fixation",
+
+        "inputs": {
+            "nitrogen": 2.0,
+            "atp": 10
+        },
+
+        "outputs": {
+            "ammonia": 0.02
         }
     },
     

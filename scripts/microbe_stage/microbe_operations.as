@@ -570,6 +570,79 @@ void purgeCompounds(CellStageWorld@ world, ObjectID microbeEntity,
                 ejectCompound(world, microbeEntity, compoundId, amountToEject-1.0f);
             }
         }
+        //Empty when you have too many compounds even when its useful
+        double availableCompound = compoundBag.getCompoundAmount(compoundId);
+        if(availableCompound > microbeComponent.capacity){
+                double amountToEject = takeCompound(microbeComponent, compoundBag,
+                    compoundId, availableCompound-microbeComponent.capacity);
+                ejectCompound(world, microbeEntity, compoundId, amountToEject-1.0f);
+            }
+    }
+}
+
+//
+void rebuildProcessList(CellStageWorld@ world, ObjectID microbeEntity)
+{
+    ProcessorComponent@ processorComponent = world.GetComponent_ProcessorComponent(microbeEntity);
+    MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
+
+    //Debug Statements
+    //auto@ thisSpecies = getSpeciesComponent(world, microbeEntity);
+    //if(thisSpecies !is null)
+    //{
+        //LOG_INFO("Regenerating Process list for microbe ID# " + microbeEntity + "of species " + thisSpecies.name);
+    //}
+
+    dictionary capacities;
+    for(uint i = 0; i < microbeComponent.organelles.length(); i++){
+
+        const Organelle@ organelleDefinition = microbeComponent.organelles[i].organelle;
+        if(organelleDefinition is null){
+
+            LOG_ERROR("Organelle table has a null organelle in it, position: " + i +
+                "', that was added to a microbe entity");
+            continue;
+        }
+
+        for(uint processNumber = 0;
+            processNumber < organelleDefinition.processes.length(); ++processNumber)
+        {
+            // This name needs to match the one in bioProcessRegistry
+            TweakedProcess@ process = organelleDefinition.processes[processNumber];
+
+            if(!capacities.exists(process.process.internalName)){
+                capacities[process.process.internalName] = double(0.0f);
+            }
+
+            // Here the second capacities[process.name] was initially capacities[process]
+            // but the processes are just strings inside the Organelle class
+            capacities[process.process.internalName] = double(capacities[
+                    process.process.internalName]) +
+                process.capacity;
+        }
+    }
+
+    uint64 processCount = SimulationParameters::bioProcessRegistry().getSize();
+    for(BioProcessId bioProcessId = 0; bioProcessId < processCount; ++bioProcessId){
+        auto processName = SimulationParameters::bioProcessRegistry().getInternalName(
+            bioProcessId);
+
+        if(capacities.exists(processName)){
+            double capacity;
+            if(!capacities.get(processName, capacity)){
+                LOG_ERROR("capacities has invalid value");
+                continue;
+            }
+
+            // LOG_INFO("Process: " + processName + " Capacity: " + capacity);
+            processorComponent.setCapacity(bioProcessId, capacity);
+        } else {
+            // If it doesnt exist:
+            capacities.set(processName, 0.0f);
+
+            // This is related to https://github.com/Revolutionary-Games/Thrive/issues/599
+            processorComponent.setCapacity(bioProcessId, 0.0f);
+        }
     }
 }
 
@@ -1008,6 +1081,10 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, bool aiControlled,
     
     world.Create_FluidEffectComponent(entity);
 
+    if (species.isBacteria) {
+        compoundAbsorberComponent.setGrabScale(0.5f);
+    }
+
     world.Create_RenderNode(entity);
     auto compoundBag = world.Create_CompoundBagComponent(entity);
 
@@ -1209,7 +1286,7 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
         auto body = rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
             world.GetPhysicalWorld().CreateSphere(1), 10,
         //engulfable
-        world.GetPhysicalMaterial("iron"));
+        world.GetPhysicalMaterial("engulfableMaterial"));
         body.ConstraintMovementAxises();
         rigidBody.JumpTo(chunkPosition);
         auto venter = world.Create_CompoundVenterComponent(chunkEntity);

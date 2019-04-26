@@ -70,7 +70,7 @@ export function runMicrobeHUDSetup(){
 
         // Event for updating o2 and c02 numbers
         Leviathan.OnGeneric("UpdateDissolvedGasses", (event, vars) => {
-            updateDissolvedGasses(vars.oxygenPercent, vars.co2Percent);
+            updateDissolvedGasses(vars.oxygenPercent, vars.co2Percent, vars.n2Percent);
         });
 
         // Event for checking win conditions
@@ -417,11 +417,13 @@ function updatePopulation(population){
 }
 
 // Update dissolved gasses
-function updateDissolvedGasses(oxygen, c02){
-    document.getElementById("oxygenPercent").textContent =
-    "O2: " + oxygen + "%";
-    document.getElementById("carbonDioxidePercent").textContent =
-    "CO2: " + c02 + "%";
+function updateDissolvedGasses(oxygen, c02, n2){
+    document.getElementById("oxygenPercent").innerHTML =
+    "O<sub>2</sub>" + ": " + oxygen + "%";
+    document.getElementById("carbonDioxidePercent").innerHTML =
+    "CO<sub>2</sub>" + ": " + c02 + "%";
+    document.getElementById("nitrogenPercent").innerHTML =
+    "N<sub>2</sub>" + ": " + n2 + "%";
 }
 
 

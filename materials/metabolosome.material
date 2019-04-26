@@ -1,0 +1,35 @@
+material metabolosome
+{
+    receive_shadows on
+    
+    technique
+    {
+        pass metabolosome
+        {
+            // lighting off
+            
+            scene_blend alpha_blend
+			depth_write off
+            
+            vertex_program_ref Organelle_VS
+            {
+                param_named_auto worldViewProj worldviewproj_matrix
+                param_named_auto time time_0_2pi 20
+                param_named size float 0.05
+                param_named maxRot float 15
+            }
+            fragment_program_ref Organelle_PS
+            {
+                param_named tex int 0
+                param_named_auto organelleColour custom 1
+            }
+            
+            texture_unit 
+            {
+                texture metabolosome.png gamma
+				alpha_op_ex modulate src_manual src_texture .7
+                colour_op_ex modulate src_manual src_texture 1.0 1.0 1.0
+            }
+        }
+    }
+}
