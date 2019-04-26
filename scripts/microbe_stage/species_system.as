@@ -284,6 +284,7 @@ class Species{
             // Make sure not over or under our scales
             cleanPersonality();
 
+
             // Subtly mutate color
             if (GetEngine().GetRandom().GetNumber(0,5) == 0)
             {
@@ -313,7 +314,27 @@ class Species{
 
             this.stringCode = Species::mutate(parent.stringCode);
 
-            this.speciesMembraneType = parent.speciesMembraneType;
+
+            if (GetEngine().GetRandom().GetNumber(0,100)<=20){
+                if (GetEngine().GetRandom().GetNumber(0,100) < 50){
+                    this.speciesMembraneType = MEMBRANE_TYPE::MEMBRANE;
+                }
+                else if (GetEngine().GetRandom().GetNumber(0,100) < 50) {
+                    this.speciesMembraneType = MEMBRANE_TYPE::DOUBLEMEMBRANE;
+                    this.colour.W = randomOpacityChitin();;
+                }
+                else if (GetEngine().GetRandom().GetNumber(0,100) < 50) {
+                    this.speciesMembraneType = MEMBRANE_TYPE::WALL;
+                }
+                else {
+                    this.speciesMembraneType = MEMBRANE_TYPE::CHITIN;
+                    this.colour.W = randomOpacityChitin();
+                }
+            }
+            else {
+                this.speciesMembraneType = parent.speciesMembraneType;
+            }
+
 
             commonConstructor(world);
 
@@ -332,20 +353,6 @@ class Species{
         this.activity = clamp(this.activity, 0.0f, MAX_SPECIES_ACTIVITY);
         this.focus = clamp(this.focus, 0.0f, MAX_SPECIES_FOCUS);
         this.opportunism = clamp(this.opportunism, 0.0f, MAX_SPECIES_OPPORTUNISM);
-    }
-
-    private void initializeBehavior(){
-        // Variables used in AI to determine general behavior
-        this.aggression = GetEngine().GetRandom().GetFloat(0.0f,
-            MAX_SPECIES_AGRESSION);
-        this.fear = GetEngine().GetRandom().GetFloat(0.0f,
-            MAX_SPECIES_FEAR);
-        this.activity = GetEngine().GetRandom().GetFloat(0.0f,
-            MAX_SPECIES_ACTIVITY);
-        this.focus = GetEngine().GetRandom().GetFloat(0.0f,
-            MAX_SPECIES_FOCUS);
-        this.opportunism = GetEngine().GetRandom().GetFloat(0.0f,
-            MAX_SPECIES_OPPORTUNISM);
     }
 
     private void mutateBehavior(Species@ parent){
@@ -622,7 +629,26 @@ class Species{
         }
 
         this.stringCode = Species::mutateProkaryote(parent.stringCode);
-        this.speciesMembraneType = parent.speciesMembraneType;
+
+        if (GetEngine().GetRandom().GetNumber(0,100)<=20){
+            if (GetEngine().GetRandom().GetNumber(0,100) < 50){
+                this.speciesMembraneType = MEMBRANE_TYPE::MEMBRANE;
+            }
+            else if (GetEngine().GetRandom().GetNumber(0,100) < 50) {
+                this.speciesMembraneType = MEMBRANE_TYPE::DOUBLEMEMBRANE;
+                this.colour.W = randomOpacityChitin();;
+            }
+            else if (GetEngine().GetRandom().GetNumber(0,100) < 50) {
+                this.speciesMembraneType = MEMBRANE_TYPE::WALL;
+            }
+            else {
+                this.speciesMembraneType = MEMBRANE_TYPE::CHITIN;
+                this.colour.W = randomOpacityChitin();
+                }
+            }
+            else {
+                this.speciesMembraneType = parent.speciesMembraneType;
+            }
 
         commonConstructor(world);
         this.setupSpawn(world);
