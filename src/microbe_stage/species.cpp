@@ -14,7 +14,8 @@ Species::Species(Json::Value value)
     speciesMembraneType =
         static_cast<MEMBRANE_TYPE>(value["membranetype"].asInt());
     genus = value["genus"].asString();
-    epithet = value["genus"].asString();
+    epithet = value["epithet"].asString();
+    population = value["population"].asInt();
 
     // Setting the cloud colour.
     float r = value["colour"]["r"].asFloat();
