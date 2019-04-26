@@ -125,10 +125,20 @@ class MicrobeEditor{
             playerSpecies.organelles);
 
         editedMicrobe.resize(0);
+        playerSpecies.stringCode="";
         for(uint i = 0; i < templateOrganelles.length(); ++i){
-            editedMicrobe.insertLast(cast<PlacedOrganelle>(templateOrganelles[i]));
+            auto organelle = cast<PlacedOrganelle>(templateOrganelles[i]);
+            editedMicrobe.insertLast(organelle);
+            playerSpecies.stringCode+=organelle._organelle.gene;
+            // This will always be added after each organelle so its safe to assume its there
+            playerSpecies.stringCode+=","+organelle.q+","+
+            organelle.r+","+
+            organelle.rotation;
+            if (i != templateOrganelles.length()-1){
+                playerSpecies.stringCode+="|";
+            }
         }
-
+        LOG_INFO(playerSpecies.stringCode);
         LOG_INFO("Starting microbe editor with: " + editedMicrobe.length() +
             " organelles in the microbe");
 

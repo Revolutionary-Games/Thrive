@@ -1,17 +1,7 @@
 #include "configs.as"
 #include "nucleus_organelle.as"
 #include "hex.as"
-
-// Limits the size of the initial stringCodes
-const auto MIN_INITIAL_LENGTH = 2;
-const auto MAX_INITIAL_LENGTH = 15;
-
-const auto MIN_INITIAL_EPIC_LENGTH = 30;
-const auto MAX_INITIAL_EPIC_LENGTH = 70;
-
-const auto MIN_INITIAL_EPIC_BACTERIA_LENGTH = 3;
-const auto MAX_INITIAL_EPIC_BACTERIA_LENGTH = 30;
-
+// Lists of valid organelles to choose from for mutation
 dictionary organelleLetters = {};
 array<string> VALID_ORGANELLES = {};
 array<string> VALID_ORGANELLE_LETTERS = {};
@@ -55,6 +45,8 @@ void setupOrganelleLetters(){
 // TODO: verify that this has a good chance of returning also the last organelle
 // TODO: is there a way to make this run faster?
 string getRandomLetter(bool isBacteria){
+
+    // This is actually essentially the entire mutation system here
     if (!isBacteria)
     {
         float i = GetEngine().GetRandom().GetNumber(0.f, maxEukaryoteScore);
@@ -86,18 +78,19 @@ string getRandomLetter(bool isBacteria){
 
 // Checks whether an organelle in a certain position would fit within a list of other organelles.
 bool isValidPlacement(const string &in organelleName, int q, int r, int rotation,
-    const array<OrganelleTemplatePlaced@> &in organelleList
+    array<PlacedOrganelle@>@ organelleList
 ) {
-    // This is super hacky :/
-    // this is now slightly less hacky
+
+    // this is now slightly less hacky but it could be btter
     auto organelleHexes = getOrganelleDefinition(organelleName).getRotatedHexes(rotation);
 
     for(uint i = 0; i < organelleList.length(); ++i){
 
         auto otherOrganelle = organelleList[i];
+        auto organelleDef = getOrganelleDefinition(otherOrganelle.organelle.name);
 
-        auto otherOrganelleHexes = getOrganelleDefinition(otherOrganelle.type).getRotatedHexes(
-            otherOrganelle.rotation);
+        // The organelles hexes
+        auto otherOrganelleHexes = organelleDef.getRotatedHexes(organelleList[i].rotation);
 
         for(uint thisHexIndex = 0; thisHexIndex < organelleHexes.length(); ++thisHexIndex){
 
@@ -119,101 +112,186 @@ bool isValidPlacement(const string &in organelleName, int q, int r, int rotation
 }
 
 // Finds a valid position to place the organelle and returns it
-// Maybe the values should be saved?
-OrganelleTemplatePlaced@ getPosition(const string &in organelleName,
-    const array<OrganelleTemplatePlaced@> &in organelleList
+// We should be able to get far more creative with our cells now
+OrganelleTemplatePlaced@ getRealisticPosition(const string &in organelleName,
+    array<PlacedOrganelle@>@ organelleList
 ) {
     int q = 0;
     int r = 0;
 
-    // Checks whether the center is free.
-    for(int j = 0; j <= 5; ++j){
-        int rotation = 360 * j / 6;
-        if(isValidPlacement(organelleName, q, r, rotation, organelleList)){
-            return OrganelleTemplatePlaced(organelleName, q, r, rotation);
-        }
+    auto organelleShuffledArray = organelleList;
+
+    // Shuffle the Array to make sure its not always placing at the same part of the cell
+    organelleShuffledArray.sort( function(a,b) {
+        return GetEngine().GetRandom().GetNumber(0,100) <= 50;
     }
+    );
 
-    // Moving the center one hex to the bottom.
-    // This way organelles are "encouraged" to be on the bottom, rather than on the top,
-    // which in turn means the flagellum are more likely to be on the back side of the cell.
-    auto initialOffset = Int2(HEX_NEIGHBOUR_OFFSET[formatInt(int(HEX_SIDE::TOP))]);
-    q = q + initialOffset.X;
-    r = r + initialOffset.Y;
+    // Loop through all the organelles and find an open spot to place our new organelle attached to existing organelles
+    // This almost always is over at the first iteration, so its not a huge performance hog
+    for(uint i = 0; i < organelleShuffledArray.length(); ++i){
+        // The organelle we wish to be next to
+        auto otherOrganelle = organelleShuffledArray[i].organelle;
+        auto organelleDef = getOrganelleDefinition(otherOrganelle.name);
 
-    // Spiral search for space for the organelle
-    int radius = 1;
+        // The organelles hexes
+        auto hexes = organelleDef.getRotatedHexes(organelleShuffledArray[i].rotation);
 
-    while(true){
-        //Moves into the ring of radius "radius" and center the old organelle
-        Int2 radiusOffset = Int2(HEX_NEIGHBOUR_OFFSET[
-                formatInt(int(HEX_SIDE::BOTTOM_LEFT))]);
-        q = q + radiusOffset.X;
-        r = r + radiusOffset.Y;
+        // Middle of our organelle
+        q = organelleShuffledArray[i].q;
+        r = organelleShuffledArray[i].r;
 
-        //Iterates in the ring
-        for(int side = 1; side <= 6; ++side){
-            Int2 offset = Int2(HEX_NEIGHBOUR_OFFSET[formatInt(side)]);
-            //Moves "radius" times into each direction
-            for(int i = 1; i <= radius; ++i){
+        for(uint z = 0; z < hexes.length(); ++z){
+            // Off set by hexes in organelle we are looking at
+            q+=hexes[z].q;
+            r+=hexes[z].r;
+
+            for(int side = 1; side <= 6; ++side){
+                Int2 offset = Int2(HEX_NEIGHBOUR_OFFSET[formatInt(side)]);
+                // Offset by hex offset
                 q = q + offset.X;
                 r = r + offset.Y;
 
-                //Checks every possible rotation value.
+                //Check every possible rotation value.
                 for(int j = 0; j <= 5; ++j){
-
                     int rotation = (360 * j / 6);
-
-                    if(isValidPlacement(organelleName, q, r, rotation, organelleList)){
+                    if(isValidPlacement(organelleName, q, r, rotation, organelleShuffledArray)){
                         return OrganelleTemplatePlaced(organelleName, q, r, rotation);
                     }
                 }
             }
+
+        //Gotta reset each time
+        q = organelleShuffledArray[i].q;
+        r = organelleShuffledArray[i].r;
+
         }
-
-        ++radius;
     }
-
+    // We didnt find an open spot, that doesnt mak emuch sense
     return null;
+}
+
+// This function takes in a positioning block from the string code and a name
+// and returns an organelle with the correct position info
+OrganelleTemplatePlaced@ getStringCodePosition(const string &in organelleName, string code){
+    //LOG_INFO(code);
+
+    array<string>@ chromArray = code.split(",");
+    //TODO:Need to add some proper error handling
+    int q = 0;
+    int r = 0;
+    int rotation = 0;
+
+    q=parseInt(chromArray[1]);
+
+    //LOG_INFO(""+q);
+    r=parseInt(chromArray[2]);
+
+    //LOG_INFO(""+r);
+
+    rotation=parseInt(chromArray[3]);
+
+    //LOG_INFO(""+rotation);
+
+    return OrganelleTemplatePlaced(organelleName, q, r, rotation);
 }
 
 // Creates a list of organelles from the stringCode.
 array<PlacedOrganelle@>@ positionOrganelles(const string &in stringCode){
     // TODO: remove once this works
-    LOG_INFO("DEBUG: positionOrganelles stringCode: " + stringCode);
+    //LOG_INFO("DEBUG: positionOrganelles stringCode: " + stringCode);
 
     array<PlacedOrganelle@>@ result = array<PlacedOrganelle@>();
-    array<OrganelleTemplatePlaced@> organelleList;
+    array<string>@ chromArray = stringCode.split("|");
+    for(uint i = 0; i < chromArray.length(); ++i){
+            OrganelleTemplatePlaced@ pos;
+            string geneCode = chromArray[i];
 
-    for(uint i = 0; i < stringCode.length(); ++i){
+            if (geneCode.length() > 0){
+                const auto letter = CharacterToString(geneCode[0]);
+                //LOG_WRITE(formatUInt(i) + ": " + letter);
+                string name = string(organelleLetters[letter]);
+                @pos = getStringCodePosition(name,geneCode);
 
-        OrganelleTemplatePlaced@ pos;
-        const auto letter = CharacterToString(stringCode[i]);
-        // LOG_WRITE(formatUInt(i) + ": " + letter);
-        string name = string(organelleLetters[letter]);
-        //this places the nucleus
-        if(i == 0){
+                if(pos.type == ""){
+                    assert(false, "positionOrganelles: organelleLetters didn't have the "
+                    "current letter: " + letter);
+                }
 
-            @pos = OrganelleTemplatePlaced(name, 0, 0, 360);
-
-        } else {
-
-            @pos = getPosition(name, organelleList);
-        }
-
-        if(pos.type == ""){
-
-            assert(false, "positionOrganelles: organelleLetters didn't have the "
-                "current letter: " + letter);
-        }
-
-        organelleList.insertLast(pos);
-        result.insertLast(PlacedOrganelle(getOrganelleDefinition(pos.type), pos.q, pos.r,
-                pos.rotation));
+                result.insertLast(PlacedOrganelle(getOrganelleDefinition(pos.type), pos.q, pos.r,
+                    pos.rotation));
+            }
     }
 
-    // Make sure all were added
-    assert(stringCode.length() == result.length());
-
     return result;
+}
+
+//! Mutates a species' dna code randomly
+
+
+string translateOrganelleToGene(OrganelleTemplatePlaced@ ourOrganelle){
+    string completeString = "";
+    auto organelle = getOrganelleDefinition(ourOrganelle.type);
+    completeString=organelle.gene+","+
+        ourOrganelle.q+","+
+        ourOrganelle.r+","+
+        ourOrganelle.rotation;
+    return completeString;
+
+}
+
+// Pass in the string code, isbacteria
+string mutateMicrobe(const string &in stringCode, bool isBacteria)
+{
+    array<string>@ chromArray = stringCode.split("|");
+    array<string>@ modifiedArray = chromArray;
+    LOG_INFO(chromArray[0]);
+    string completeString = "";
+
+    // Delete or replace an organelle randomly
+    for(uint i = 0; i < chromArray.length(); i++){
+        string chromosomes = chromArray[i];
+        // Removing last organelle would be silly
+        if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_DELETION_RATE && chromosomes.length() > 0){
+            if (i != chromArray.length()-1 && CharacterToString(chromosomes[0]) != "N"){
+                //LOG_INFO("deleteing");
+                //LOG_INFO("chromosomes:"+chromArray[i]);
+               // Delete organelle and its position
+                modifiedArray.removeAt(i);
+
+            }
+        }else if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_REPLACEMENT_RATE && chromosomes.length() > 0){
+            if (CharacterToString(chromosomes[0]) != "N"){
+                //LOG_INFO("Replacing");
+                //LOG_INFO("chromosomes:"+chromArray[i]);
+                chromosomes[0]=getRandomLetter(isBacteria)[0];
+                if (i != chromArray.length()-1){
+                    modifiedArray.removeAt(i);
+                    modifiedArray.insertAt(i,chromosomes);
+                }
+                else{
+                    modifiedArray.removeAt(i);
+                    modifiedArray.insertLast(chromosomes);
+                }
+            }
+        }
+
+    }
+
+
+    completeString = join(modifiedArray,"|");
+
+    // We can insert new organelles at the end of the list
+    if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
+        auto organelleList = positionOrganelles(completeString);
+        const auto letter = getRandomLetter(isBacteria);
+        string name = string(organelleLetters[letter]);
+        string returnedGenome = translateOrganelleToGene(getRealisticPosition(name,organelleList));
+        //LOG_INFO("Adding");
+        //LOG_INFO("chromosomes:"+returnedGenome);
+        completeString+="|"+returnedGenome;
+    }
+
+    LOG_INFO("Mutated: "+completeString);
+    return completeString;
 }

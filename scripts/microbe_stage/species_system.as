@@ -266,19 +266,20 @@ class Species{
     Species(SpeciesComponent@ parent, CellStageWorld@ world, bool isBacteria)
     {
         this.isBacteria = parent.isBacteria;
-
+        LOG_INFO("Gene Code Is:"+parent.stringCode);
         if (!isBacteria)
         {
             name = randomSpeciesName();
+
             //Mutate the epithet
-            if (GetEngine().GetRandom().GetNumber(0, 10) < 8){
+            if (GetEngine().GetRandom().GetNumber(0, 10) < 5){
                 epithet = mutateWord(parent.epithet);
             }
             else {
             epithet = generateNameSection();
              }
             genus = parent.genus;
-
+            colour=parent.colour;
             mutateBehavior(parent);
 
             // Make sure not over or under our scales
@@ -286,20 +287,19 @@ class Species{
 
 
             // Subtly mutate color
-            if (GetEngine().GetRandom().GetNumber(0,5) == 0)
-            {
-                this.colour = Float4(parent.colour.X + randomMutationColourChannel(),
-                    parent.colour.Y + randomMutationColourChannel(),
-                    parent.colour.Z + randomMutationColourChannel(),
-                    parent.colour.W + randomMutationColourChannel());
-            }
+            this.colour = Float4(parent.colour.X + randomMutationColourChannel(),
+                parent.colour.Y + randomMutationColourChannel(),
+                parent.colour.Z + randomMutationColourChannel(),
+                parent.colour.W + randomMutationColourChannel());
 
+            LOG_INFO("X:"+parent.colour.X+" Y:"+parent.colour.Y+" Z:"+parent.colour.Z+" W:"+parent.colour.W);
+            LOG_INFO("X:"+colour.X+" Y:"+colour.Y+" Z:"+colour.Z+" W:"+colour.W);
             // Chance of new color needs to be low
-            if (GetEngine().GetRandom().GetNumber(0,100)==1)
+            if (GetEngine().GetRandom().GetNumber(0,100) <= 20)
             {
                 LOG_INFO("New Genus");
                 // We can do more fun stuff here later
-                if (GetEngine().GetRandom().GetNumber(0, 10) < 8){
+                if (GetEngine().GetRandom().GetNumber(0, 10) < 5){
                     genus = mutateWord(parent.genus);
                 }
                 else {
@@ -312,28 +312,10 @@ class Species{
                     parent.colour.W + randomMutationColourChannel());
             }
 
-            this.stringCode = Species::mutate(parent.stringCode);
+            this.stringCode = mutateMicrobe(parent.stringCode,false);
 
 
-            if (GetEngine().GetRandom().GetNumber(0,100)<=20){
-                if (GetEngine().GetRandom().GetNumber(0,100) < 50){
-                    this.speciesMembraneType = MEMBRANE_TYPE::MEMBRANE;
-                }
-                else if (GetEngine().GetRandom().GetNumber(0,100) < 50) {
-                    this.speciesMembraneType = MEMBRANE_TYPE::DOUBLEMEMBRANE;
-                    this.colour.W = randomOpacityChitin();;
-                }
-                else if (GetEngine().GetRandom().GetNumber(0,100) < 50) {
-                    this.speciesMembraneType = MEMBRANE_TYPE::WALL;
-                }
-                else {
-                    this.speciesMembraneType = MEMBRANE_TYPE::CHITIN;
-                    this.colour.W = randomOpacityChitin();
-                }
-            }
-            else {
-                this.speciesMembraneType = parent.speciesMembraneType;
-            }
+            generateMembranes(parent);
 
 
             commonConstructor(world);
@@ -345,6 +327,28 @@ class Species{
         {
             mutateBacteria(parent,world);
         }
+    }
+
+    private void generateMembranes(SpeciesComponent@ parent){
+        if (GetEngine().GetRandom().GetNumber(0,100)<=20){
+            if (GetEngine().GetRandom().GetNumber(0,100) < 50){
+                this.speciesMembraneType = MEMBRANE_TYPE::MEMBRANE;
+            }
+            else if (GetEngine().GetRandom().GetNumber(0,100) < 50) {
+                this.speciesMembraneType = MEMBRANE_TYPE::DOUBLEMEMBRANE;
+                this.colour.W = randomOpacityChitin();
+            }
+            else if (GetEngine().GetRandom().GetNumber(0,100) < 50) {
+                this.speciesMembraneType = MEMBRANE_TYPE::WALL;
+            }
+            else {
+                this.speciesMembraneType = MEMBRANE_TYPE::CHITIN;
+                this.colour.W = randomOpacityChitin();
+            }
+        }
+        else{
+            this.speciesMembraneType = parent.speciesMembraneType;
+            }
     }
 
     private void cleanPersonality() {
@@ -373,7 +377,9 @@ class Species{
     {
         @forWorld = world;
 
+        // This translates the genetic code into positions
         auto organelles = positionOrganelles(stringCode);
+
         // If you have iron (f is the symbol for rusticyanin)
         if (stringCode.findFirst('f') >= 0)
         {
@@ -585,8 +591,9 @@ class Species{
     {
         name = randomBacteriaName();
         genus = parent.genus;
+        colour=parent.colour;
         //Mutate the epithet
-        if (GetEngine().GetRandom().GetNumber(0, 10) < 8){
+        if (GetEngine().GetRandom().GetNumber(0, 10) < 5){
             epithet = mutateWord(parent.epithet);
         }
         else {
@@ -600,21 +607,22 @@ class Species{
         cleanPersonality();
 
         // Subtly mutate color
-        if (GetEngine().GetRandom().GetNumber(0, 5)==0)
-        {
-            this.colour = Float4(parent.colour.X + randomMutationColourChannel(),
-                parent.colour.Y + randomMutationColourChannel(),
-                parent.colour.Z + randomMutationColourChannel(),
-                parent.colour.W + randomMutationColourChannel());
-        }
+        this.colour = Float4(parent.colour.X + randomMutationColourChannel(),
+            parent.colour.Y + randomMutationColourChannel(),
+            parent.colour.Z + randomMutationColourChannel(),
+            parent.colour.W + randomMutationColourChannel());
 
-        if (GetEngine().GetRandom().GetNumber(0, 100)==1)
+
+        LOG_INFO("X:"+parent.colour.X+" Y:"+parent.colour.Y+" Z:"+parent.colour.Z+" W:"+parent.colour.W);
+        LOG_INFO("X:"+colour.X+" Y:"+colour.Y+" Z:"+colour.Z+" W:"+colour.W);
+
+        if (GetEngine().GetRandom().GetNumber(0,100) <= 20)
         {
             LOG_INFO("New Genus of bacteria");
 
             // We can do more fun stuff here later
             //Mutate the genus
-            if (GetEngine().GetRandom().GetNumber(0, 10) < 8){
+            if (GetEngine().GetRandom().GetNumber(0, 10) < 5){
                 genus = mutateWord(parent.genus);
             }
             else {
@@ -628,27 +636,9 @@ class Species{
                 parent.colour.W + randomMutationColourChannel());
         }
 
-        this.stringCode = Species::mutateProkaryote(parent.stringCode);
+        this.stringCode = mutateMicrobe(parent.stringCode,true);
 
-        if (GetEngine().GetRandom().GetNumber(0,100)<=20){
-            if (GetEngine().GetRandom().GetNumber(0,100) < 50){
-                this.speciesMembraneType = MEMBRANE_TYPE::MEMBRANE;
-            }
-            else if (GetEngine().GetRandom().GetNumber(0,100) < 50) {
-                this.speciesMembraneType = MEMBRANE_TYPE::DOUBLEMEMBRANE;
-                this.colour.W = randomOpacityChitin();;
-            }
-            else if (GetEngine().GetRandom().GetNumber(0,100) < 50) {
-                this.speciesMembraneType = MEMBRANE_TYPE::WALL;
-            }
-            else {
-                this.speciesMembraneType = MEMBRANE_TYPE::CHITIN;
-                this.colour.W = randomOpacityChitin();
-                }
-            }
-            else {
-                this.speciesMembraneType = parent.speciesMembraneType;
-            }
+        generateMembranes(parent);
 
         commonConstructor(world);
         this.setupSpawn(world);
@@ -1064,6 +1054,7 @@ void applyTemplate(CellStageWorld@ world, ObjectID microbe, SpeciesComponent@ sp
         InitialCompound amount = InitialCompound(species.avgCompoundAmounts[ids[i]]);
         MicrobeOperations::setCompound(world, microbe, compoundId, amount.amount);
     }
+
 }
 
 void restoreOrganelleLayout(CellStageWorld@ world, ObjectID microbeEntity,
@@ -1097,6 +1088,11 @@ void restoreOrganelleLayout(CellStageWorld@ world, ObjectID microbeEntity,
     // Cache isBacteria from species. This can be changed depending on
     // the added organelles in the editor
     microbeComponent.isBacteria = species.isBacteria;
+
+    // Call this  to reset processor component
+    Species::initProcessorComponent(world, microbeEntity, species);
+    // This makes sure that the microbes processer are up to date with their species
+    Species::copyProcessesFromSpecies(world, species, microbeEntity);
 }
 
 void initProcessorComponent(CellStageWorld@ world, ObjectID entity,
@@ -1237,11 +1233,20 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name, const strin
     @speciesComponent.avgCompoundAmounts = dictionary();
 
     @speciesComponent.organelles = array<SpeciesStoredOrganelleType@>();
-    for(uint i = 0; i < organelles.length(); i++){
+    speciesComponent.stringCode="";
 
-        // This conversion does a little bit of extra calculations (that are in the
-        // end not used)
-        speciesComponent.organelles.insertLast(PlacedOrganelle(organelles[i]));
+    // Translate positions over
+    for(uint i = 0; i < organelles.length(); ++i){
+        auto organelle = cast<PlacedOrganelle>(organelles[i]);
+        speciesComponent.organelles.insertLast(organelle);
+        speciesComponent.stringCode+=organelle._organelle.gene;
+        // This will always be added after each organelle so its safe to assume its there
+        speciesComponent.stringCode+=","+organelle.q+","+
+            organelle.r+","+
+            organelle.rotation;
+        if (i != organelles.length()-1){
+            speciesComponent.stringCode+="|";
+        }
     }
 
     // Verify it //
@@ -1295,91 +1300,6 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name, const strin
     initProcessorComponent(world,speciesComponent);
 
     return speciesEntity;
-}
-
-
-//! Mutates a species' dna code randomly
-string mutate(const string &in stringCode)
-{
-    // Moving the stringCode to a table to facilitate changes
-    string chromosomes = stringCode.substr(2);
-
-    // Try to insert a letter at the end of the table.
-    if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
-        chromosomes += getRandomLetter(false);
-    }
-
-    // Modifies the rest of the table.
-    for(uint i = 0; i < stringCode.length(); i++){
-        // Index we are adding or erasing chromosomes at
-        uint index = stringCode.length() - i - 1;
-
-        if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_DELETION_RATE){
-            // Removing the last organelle is pointless, that would
-            // kill the creature (also caused errors).
-            if (index != stringCode.length()-1)
-            {
-                chromosomes.erase(index, 1);
-            }
-        }
-
-        if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
-            // There is an error here when we try to insert at the end
-            // of the list so use insertlast instead in that case
-            if (index != stringCode.length()-1)
-            {
-                chromosomes.insert(index, getRandomLetter(false));
-            }
-            else{
-                chromosomes+=getRandomLetter(false);
-            }
-        }
-    }
-
-    // Transforming the table back into a string
-    // TODO: remove Hardcoded microbe genes
-    auto newString = "NY" + chromosomes;
-    return newString;
-}
-
-// Mutate a Bacterium
-string mutateProkaryote(const string &in stringCode)
-{
-    // Moving the stringCode to a table to facilitate changes
-    string chromosomes = stringCode;
-
-    // Try to insert a letter at the end of the table.
-    if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
-        chromosomes += getRandomLetter(true);
-    }
-
-    // Modifies the rest of the table.
-    for(uint i = 0; i < stringCode.length(); i++){
-        // Index we are adding or erasing chromosomes at
-        uint index = stringCode.length() - i -1;
-        // Bacteria can be size 1 so removing their only organelle is a bad idea
-        if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_DELETION_RATE){
-            if (index != stringCode.length()-1)
-            {
-                chromosomes.erase(index, 1);
-            }
-        }
-
-        if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
-            // There is an error here when we try to insert at the end
-            // of the list so use insertlast instead in that case
-            if (index != stringCode.length()-1)
-            {
-                chromosomes.insert(index, getRandomLetter(true));
-            }
-            else{
-                chromosomes+=getRandomLetter(true);
-            }
-        }
-    }
-
-    auto newString = "" + chromosomes;
-    return newString;
 }
 
 //! Calls resetAutoEvo on world's SpeciesSystem

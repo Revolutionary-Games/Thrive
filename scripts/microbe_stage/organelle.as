@@ -873,7 +873,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         }
     }
 
-    private Organelle@ _organelle;
+    Organelle@ _organelle;
 
     // q and r are radial coordinates instead of cartesian
     // Could use the class AxialCoordinates here
