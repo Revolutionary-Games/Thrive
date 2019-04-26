@@ -477,8 +477,6 @@ class Species{
                     parent.colour.W + randomMutationColourChannel());
             }
 
-            this.population = int(floor(parent.population / 2.f));
-            parent.population = int(ceil(parent.population / 2.f));
             this.stringCode = Species::mutate(parent.stringCode);
 
             this.speciesMembraneType = parent.speciesMembraneType;
@@ -874,9 +872,6 @@ class Species{
                 parent.colour.W + randomMutationColourChannel());
         }
 
-        this.population = int(floor(parent.population / 2.f));
-        parent.population = int(ceil(parent.population / 2.f));
-
         this.stringCode = Species::mutateProkaryote(parent.stringCode);
         this.speciesMembraneType = parent.speciesMembraneType;
 
@@ -987,9 +982,6 @@ class SpeciesSystem : ScriptSystem{
     {
         @this.world = cast<CellStageWorld>(w);
         assert(this.world !is null, "SpeciesSystem expected CellStageWorld");
-
-        // This is needed to actually have AI species in the world
-        createNewEcoSystem();
     }
 
     void Release()
@@ -1014,6 +1006,7 @@ class SpeciesSystem : ScriptSystem{
         LOG_INFO("Processing Auto-evo Step");
         this.timeSinceLastCycle -= SPECIES_SIM_INTERVAL;
         bool ranEventThisStep=false;
+        countSpecies();
         // Every 8 steps or so do a cambrian explosion style
         // Event, this should increase variablility significantly
         if(GetEngine().GetRandom().GetNumber(0, 200) <= 25){
@@ -1097,12 +1090,6 @@ class SpeciesSystem : ScriptSystem{
                 auto newSpecies = Species(currentSpecies, world,
                     currentSpecies.isBacteria);
 
-                if (newSpecies.isBacteria){
-                    currentBacteriaAmount+=1;
-                    }
-               else{
-                    currentEukaryoteAmount+=1;
-                    }
                 ranSpeciesEvent=true;
                 species.insertLast(newSpecies);
                 LOG_INFO("Species " + currentSpecies.name +
@@ -1117,14 +1104,13 @@ class SpeciesSystem : ScriptSystem{
                 // To prevent ridiculous population numbers
                 currentSpecies.population=MAX_POP_SIZE;
 
+                currentSpecies.population = int(floor(currentSpecies.population / 2.f));
+
                 auto newSpecies = Species(currentSpecies, world,
                     currentSpecies.isBacteria);
-                if (newSpecies.isBacteria){
-                    currentBacteriaAmount+=1;
-                }
-                else{
-                    currentEukaryoteAmount+=1;
-                }
+
+                newSpecies.population = int(ceil(currentSpecies.population));
+
                 species.insertLast(newSpecies);
                 LOG_INFO("Species " + currentSpecies.name + " split off a child species:" +
                     newSpecies.name);
@@ -1137,30 +1123,8 @@ class SpeciesSystem : ScriptSystem{
                 LOG_INFO("Species " + currentSpecies.name + " went extinct");
                 currentSpecies.extinguish();
                 species.removeAt(index);
-                // Tweak numbers here
-                if (currentSpecies.isBacteria){
-                    currentBacteriaAmount-=1;
-                }
-                else{
-                    currentEukaryoteAmount-=1;
-                }
             }
         }
-
-            // These are kind of arbitray, we should pronbabbly make it less arbitrary
-            // New species
-            while(currentEukaryoteAmount < MIN_SPECIES){
-                LOG_INFO("Creating new species as there's too few");
-                createSpecies();
-                currentEukaryoteAmount++;
-            }
-
-            // New bacteria
-            while(currentBacteriaAmount < MIN_BACTERIA){
-                LOG_INFO("Creating new prokaryote as there's too few");
-                createBacterium();
-                currentBacteriaAmount++;
-            }
     }
 
     void Clear(){}
@@ -1176,6 +1140,15 @@ class SpeciesSystem : ScriptSystem{
                 species[i].population+=num;
             }
         }
+    }
+
+    void splitSpecies(Species@ currentSpecies){
+        auto newSpecies = Species(currentSpecies, world,
+                currentSpecies.isBacteria);
+
+        int population = GetEngine().GetRandom().GetNumber(600,INITIAL_POPULATION);
+        newSpecies.population=GetEngine().GetRandom().GetNumber(600,INITIAL_POPULATION);
+        species.insertLast(newSpecies);
     }
 
     int getSpeciesPopulation(string speciesName)
@@ -1239,17 +1212,17 @@ class SpeciesSystem : ScriptSystem{
         species.insertLast(newSpecies);
     }
 
-    void createNewEcoSystem()
+    void countSpecies()
     {
-        for(int i = 0; i < INITIAL_SPECIES; i++){
-            createSpecies();
-            currentEukaryoteAmount++;
-        }
-
-        //generate bacteria aswell
-        for(int i = 0; i < INITIAL_BACTERIA; i++){
-            createBacterium();
-            currentBacteriaAmount++;
+         currentBacteriaAmount=0;
+         currentEukaryoteAmount=0;
+        for(uint i = 0; i < species.length(); i++){
+            if (species[i].isBacteria){
+                currentBacteriaAmount++;
+           }
+            else {
+                currentEukaryoteAmount++;
+            }
         }
     }
 
@@ -1478,7 +1451,7 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name,
                 organelle.rotation));
     }
 
-    return createSpecies(world, name, "Player", "Species", convertedOrganelles,
+    return createSpecies(world, name, fromTemplate.genus, fromTemplate.epithet, convertedOrganelles,
         fromTemplate.colour, fromTemplate.isBacteria, fromTemplate.speciesMembraneType,
         fromTemplate.compounds, 100.0f, 100.0f, 100.0f, 200.0f, 100.0f);
 }

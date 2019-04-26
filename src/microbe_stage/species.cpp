@@ -13,6 +13,8 @@ Species::Species(Json::Value value)
     // cast an int as a member of the enum (eg (0,1,2)(membrane,wall,chitin))
     speciesMembraneType =
         static_cast<MEMBRANE_TYPE>(value["membranetype"].asInt());
+    genus = value["genus"].asString();
+    epithet = value["genus"].asString();
 
     // Setting the cloud colour.
     float r = value["colour"]["r"].asFloat();

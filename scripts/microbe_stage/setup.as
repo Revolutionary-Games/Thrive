@@ -663,7 +663,6 @@ void resetWorld(CellStageWorld@ world)
     // but eh. We can call it all in this method.
 
     cast<SpeciesSystem>(world.GetScriptSystem("SpeciesSystem")).resetAutoEvo();
-    cast<SpeciesSystem>(world.GetScriptSystem("SpeciesSystem")).createNewEcoSystem();
 }
 
 //! AI species are spawned by Species in species_system
