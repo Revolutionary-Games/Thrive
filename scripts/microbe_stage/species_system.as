@@ -1302,7 +1302,7 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name, const strin
 string mutate(const string &in stringCode)
 {
     // Moving the stringCode to a table to facilitate changes
-    string chromosomes = stringCode.substr(2);
+    string chromosomes = stringCode;
 
     // Try to insert a letter at the end of the table.
     if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
@@ -1317,7 +1317,7 @@ string mutate(const string &in stringCode)
         if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_DELETION_RATE){
             // Removing the last organelle is pointless, that would
             // kill the creature (also caused errors).
-            if (index != stringCode.length()-1)
+            if (index != stringCode.length()-1 && chromosomes.substr(index,1) != "N")
             {
                 chromosomes.erase(index, 1);
             }
@@ -1336,10 +1336,7 @@ string mutate(const string &in stringCode)
         }
     }
 
-    // Transforming the table back into a string
-    // TODO: remove Hardcoded microbe genes
-    auto newString = "NY" + chromosomes;
-    return newString;
+    return chromosomes;
 }
 
 // Mutate a Bacterium

@@ -125,8 +125,10 @@ class MicrobeEditor{
             playerSpecies.organelles);
 
         editedMicrobe.resize(0);
+        playerSpecies.stringCode="";
         for(uint i = 0; i < templateOrganelles.length(); ++i){
             editedMicrobe.insertLast(cast<PlacedOrganelle>(templateOrganelles[i]));
+            playerSpecies.stringCode+=cast<PlacedOrganelle>(templateOrganelles[i])._organelle.gene;
         }
 
         LOG_INFO("Starting microbe editor with: " + editedMicrobe.length() +
