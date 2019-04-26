@@ -266,7 +266,7 @@ class Species{
     Species(SpeciesComponent@ parent, CellStageWorld@ world, bool isBacteria)
     {
         this.isBacteria = parent.isBacteria;
-
+        LOG_INFO("Gene Code Is:"+parent.stringCode);
         if (!isBacteria)
         {
             name = randomSpeciesName();
@@ -1243,11 +1243,14 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name, const strin
     @speciesComponent.avgCompoundAmounts = dictionary();
 
     @speciesComponent.organelles = array<SpeciesStoredOrganelleType@>();
+    speciesComponent.stringCode="";
+
     for(uint i = 0; i < organelles.length(); i++){
 
         // This conversion does a little bit of extra calculations (that are in the
         // end not used)
         speciesComponent.organelles.insertLast(PlacedOrganelle(organelles[i]));
+        speciesComponent.stringCode+=cast<PlacedOrganelle>(organelles[i])._organelle.gene;
     }
 
     // Verify it //
