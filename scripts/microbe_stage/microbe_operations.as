@@ -1047,30 +1047,6 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, bool aiControlled,
     ObjectID entity = world.CreateEntity();
 
     // TODO: movement sound for microbes
-    // auto soundComponent = SoundSourceComponent();
-    // auto s1 = null;
-    // soundComponent.addSound("microbe-release-toxin",
-    //     "soundeffects/microbe-release-toxin.ogg");
-    // soundComponent.addSound("microbe-toxin-damage",
-    //     "soundeffects/microbe-toxin-damage.ogg");
-    // soundComponent.addSound("microbe-death", "soundeffects/microbe-death.ogg");
-    // soundComponent.addSound("microbe-pickup-organelle",
-    //     "soundeffects/microbe-pickup-organelle.ogg");
-    // soundComponent.addSound("microbe-engulfment", "soundeffects/engulfment.ogg");
-    // soundComponent.addSound("microbe-reproduction", "soundeffects/reproduction.ogg");
-
-    // s1 = soundComponent.addSound("microbe-movement-1",
-    //     "soundeffects/microbe-movement-1.ogg");
-    // s1.properties.volume = 0.4;
-    // s1.properties.touch();
-    // s1 = soundComponent.addSound("microbe-movement-turn",
-    //     "soundeffects/microbe-movement-2.ogg");
-    // s1.properties.volume = 0.1;
-    // s1.properties.touch();
-    // s1 = soundComponent.addSound("microbe-movement-2",
-    //     "soundeffects/microbe-movement-3.ogg");
-    // s1.properties.volume = 0.4;
-    // s1.properties.touch();
 
     auto position = world.Create_Position(entity, Float3(0, 0, 0), Float4::IdentityQuaternion);
 
