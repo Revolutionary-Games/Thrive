@@ -270,15 +270,16 @@ class Species{
         if (!isBacteria)
         {
             name = randomSpeciesName();
+
             //Mutate the epithet
-            if (GetEngine().GetRandom().GetNumber(0, 10) < 8){
+            if (GetEngine().GetRandom().GetNumber(0, 10) < 5){
                 epithet = mutateWord(parent.epithet);
             }
             else {
             epithet = generateNameSection();
              }
             genus = parent.genus;
-
+            colour=parent.colour;
             mutateBehavior(parent);
 
             // Make sure not over or under our scales
@@ -286,20 +287,19 @@ class Species{
 
 
             // Subtly mutate color
-            if (GetEngine().GetRandom().GetNumber(0,5) == 0)
-            {
-                this.colour = Float4(parent.colour.X + randomMutationColourChannel(),
-                    parent.colour.Y + randomMutationColourChannel(),
-                    parent.colour.Z + randomMutationColourChannel(),
-                    parent.colour.W + randomMutationColourChannel());
-            }
+            this.colour = Float4(parent.colour.X + randomMutationColourChannel(),
+                parent.colour.Y + randomMutationColourChannel(),
+                parent.colour.Z + randomMutationColourChannel(),
+                parent.colour.W + randomMutationColourChannel());
 
+            LOG_INFO("X:"+parent.colour.X+" Y:"+parent.colour.Y+" Z:"+parent.colour.Z+" W:"+parent.colour.W);
+            LOG_INFO("X:"+colour.X+" Y:"+colour.Y+" Z:"+colour.Z+" W:"+colour.W);
             // Chance of new color needs to be low
-            if (GetEngine().GetRandom().GetNumber(0,100)==1)
+            if (GetEngine().GetRandom().GetNumber(0,100) <= 20)
             {
                 LOG_INFO("New Genus");
                 // We can do more fun stuff here later
-                if (GetEngine().GetRandom().GetNumber(0, 10) < 8){
+                if (GetEngine().GetRandom().GetNumber(0, 10) < 5){
                     genus = mutateWord(parent.genus);
                 }
                 else {
@@ -321,7 +321,7 @@ class Species{
                 }
                 else if (GetEngine().GetRandom().GetNumber(0,100) < 50) {
                     this.speciesMembraneType = MEMBRANE_TYPE::DOUBLEMEMBRANE;
-                    this.colour.W = randomOpacityChitin();;
+                    this.colour.W = randomOpacityChitin();
                 }
                 else if (GetEngine().GetRandom().GetNumber(0,100) < 50) {
                     this.speciesMembraneType = MEMBRANE_TYPE::WALL;
@@ -585,8 +585,9 @@ class Species{
     {
         name = randomBacteriaName();
         genus = parent.genus;
+        colour=parent.colour;
         //Mutate the epithet
-        if (GetEngine().GetRandom().GetNumber(0, 10) < 8){
+        if (GetEngine().GetRandom().GetNumber(0, 10) < 5){
             epithet = mutateWord(parent.epithet);
         }
         else {
@@ -600,21 +601,22 @@ class Species{
         cleanPersonality();
 
         // Subtly mutate color
-        if (GetEngine().GetRandom().GetNumber(0, 5)==0)
-        {
-            this.colour = Float4(parent.colour.X + randomMutationColourChannel(),
-                parent.colour.Y + randomMutationColourChannel(),
-                parent.colour.Z + randomMutationColourChannel(),
-                parent.colour.W + randomMutationColourChannel());
-        }
+        this.colour = Float4(parent.colour.X + randomMutationColourChannel(),
+            parent.colour.Y + randomMutationColourChannel(),
+            parent.colour.Z + randomMutationColourChannel(),
+            parent.colour.W + randomMutationColourChannel());
 
-        if (GetEngine().GetRandom().GetNumber(0, 100)==1)
+
+        LOG_INFO("X:"+parent.colour.X+" Y:"+parent.colour.Y+" Z:"+parent.colour.Z+" W:"+parent.colour.W);
+        LOG_INFO("X:"+colour.X+" Y:"+colour.Y+" Z:"+colour.Z+" W:"+colour.W);
+
+        if (GetEngine().GetRandom().GetNumber(0,100) <= 20)
         {
             LOG_INFO("New Genus of bacteria");
 
             // We can do more fun stuff here later
             //Mutate the genus
-            if (GetEngine().GetRandom().GetNumber(0, 10) < 8){
+            if (GetEngine().GetRandom().GetNumber(0, 10) < 5){
                 genus = mutateWord(parent.genus);
             }
             else {
@@ -636,7 +638,7 @@ class Species{
             }
             else if (GetEngine().GetRandom().GetNumber(0,100) < 50) {
                 this.speciesMembraneType = MEMBRANE_TYPE::DOUBLEMEMBRANE;
-                this.colour.W = randomOpacityChitin();;
+                this.colour.W = randomOpacityChitin();
             }
             else if (GetEngine().GetRandom().GetNumber(0,100) < 50) {
                 this.speciesMembraneType = MEMBRANE_TYPE::WALL;

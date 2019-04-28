@@ -24,8 +24,8 @@ const auto MAX_SPAWN_DISTANCE = 5000.0f;
 const auto MIN_COLOR = 0.0f;
 const auto MAX_COLOR = 0.9f;
 // Too subtle?
-const auto MIN_COLOR_MUTATION = -0.005f;
-const auto MAX_COLOR_MUTATION = 0.005f;
+const auto MIN_COLOR_MUTATION = -0.2f;
+const auto MAX_COLOR_MUTATION = 0.2f;
 
 const auto MIN_OPACITY = 0.5f;
 const auto MAX_OPACITY = 1.8f;
