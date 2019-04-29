@@ -241,7 +241,6 @@ string mutateMicrobe(const string &in stringCode, bool isBacteria)
         chromosomes += getRandomLetter(isBacteria);
     }*/
 
-    //TODO: Make game not delete numbers somehow
 
     // Delete an organelle randomly
     for(uint i = 0; i < chromArray.length(); i++){
