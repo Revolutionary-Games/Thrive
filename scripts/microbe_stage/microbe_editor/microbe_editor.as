@@ -132,7 +132,10 @@ class MicrobeEditor{
             // This will always be added after each organelle so its safe to assume its there
             playerSpecies.stringCode+=","+cast<PlacedOrganelle>(templateOrganelles[i]).q+","+
             cast<PlacedOrganelle>(templateOrganelles[i]).r+","+
-            cast<PlacedOrganelle>(templateOrganelles[i]).rotation+"|";
+            cast<PlacedOrganelle>(templateOrganelles[i]).rotation;
+            if (i != templateOrganelles.length()-1){
+                playerSpecies.stringCode+="|";
+            }
         }
         LOG_INFO(playerSpecies.stringCode);
         LOG_INFO("Starting microbe editor with: " + editedMicrobe.length() +

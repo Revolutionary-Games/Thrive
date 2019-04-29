@@ -1256,7 +1256,10 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name, const strin
         // This will always be added after each organelle so its safe to assume its there
         speciesComponent.stringCode+=","+cast<PlacedOrganelle>(organelles[i]).q+","+
             cast<PlacedOrganelle>(organelles[i]).r+","+
-            cast<PlacedOrganelle>(organelles[i]).rotation+"|";
+            cast<PlacedOrganelle>(organelles[i]).rotation;
+        if (i != organelles.length()-1){
+            speciesComponent.stringCode+="|";
+        }
     }
 
     // Verify it //

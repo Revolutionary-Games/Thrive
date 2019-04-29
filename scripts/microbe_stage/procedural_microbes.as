@@ -231,13 +231,10 @@ array<PlacedOrganelle@>@ positionOrganelles(const string &in stringCode){
 
 string mutateMicrobe(const string &in stringCode, bool isBacteria)
 {
-    // Moving the stringCode to a table to facilitate changes
-    // chrosomsomes will be the string we return at the end
-    string chromosomes = stringCode;
-
-    array<string>@ chromArray = chromosomes.split("|");
-
+    array<string>@ chromArray = stringCode.split("|");
+    array<string>@ modifiedArray = chromArray;
     LOG_INFO(chromArray[0]);
+    string completeString = "";
 
     // Try to insert a letter at the end of the table.
     /*if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
@@ -246,26 +243,32 @@ string mutateMicrobe(const string &in stringCode, bool isBacteria)
 
     //TODO: Make game not delete numbers somehow
 
-    // Modifies the rest of the table.
-    /*for(uint i = 0; i < stringCode.length(); i++){
-        // Index we are adding or erasing chromosomes at
-        uint index = stringCode.length() - i -1;
+    // Delete an organelle randomly
+    for(uint i = 0; i < chromArray.length(); i++){
+        string chromosomes = chromArray[i];
         // Removing last organelle would be silly
-        if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_DELETION_RATE){
-            if (index != stringCode.length()-1 && chromosomes.substr(index,1) != "N")
-            {
-                LOG_INFO("chromosomes:"+chromosomes);
+        if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_DELETION_RATE && chromosomes.length() > 0){
+            if (i != chromArray.length()-1 && CharacterToString(chromosomes[0]) != "N"){
                 LOG_INFO("deleteing");
-               // Position to erase from
-               int endPos = (posInfoEnd-posInfoStart)+1;
-
+                LOG_INFO("chromosomes:"+chromArray[i]);
                // Delete organelle and its position
-                chromosomes.erase(index, endPos);
+                modifiedArray.removeAt(i);
 
             }
         }
-        // We can insert new organelles at the end of the list
-        if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
+    }
+
+
+    for(uint i = 0; i < modifiedArray.length(); i++){
+        string chromosomes = modifiedArray[i];
+        completeString+=chromosomes;
+        if (i < modifiedArray.length()-1){
+            completeString+="|";
+        }
+    }
+
+    // We can insert new organelles at the end of the list
+        /*if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
             // There is an error here when we try to insert at the end
             // of the list so use insertlast instead in that case
             if (index != stringCode.length()-1)
@@ -275,9 +278,8 @@ string mutateMicrobe(const string &in stringCode, bool isBacteria)
             else{
                 chromosomes+=getRandomLetter(isBacteria);
             }
-        }
+        }*/
 
-    }*/
-
-    return chromosomes;
+    LOG_INFO("Mutated: "+completeString);
+    return completeString;
 }
