@@ -205,62 +205,23 @@ array<PlacedOrganelle@>@ positionOrganelles(const string &in stringCode){
 }
 
 //! Mutates a species' dna code randomly
-string mutate(const string &in stringCode)
+
+
+string mutateMicrobe(const string &in stringCode, bool isBacteria)
 {
     // Moving the stringCode to a table to facilitate changes
     string chromosomes = stringCode;
 
     // Try to insert a letter at the end of the table.
     if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
-        chromosomes += getRandomLetter(false);
-    }
-
-    // Modifies the rest of the table.
-    for(uint i = 0; i < stringCode.length(); i++){
-        // Index we are adding or erasing chromosomes at
-        uint index = stringCode.length() - i - 1;
-
-        if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_DELETION_RATE){
-            // Removing the last organelle is pointless, that would
-            // kill the creature (also caused errors).
-            if (index != stringCode.length()-1 && chromosomes.substr(index,1) != "N")
-            {
-                chromosomes.erase(index, 1);
-            }
-        }
-
-        if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
-            // There is an error here when we try to insert at the end
-            // of the list so use insertlast instead in that case
-            if (index != stringCode.length()-1)
-            {
-                chromosomes.insert(index, getRandomLetter(false));
-            }
-            else{
-                chromosomes+=getRandomLetter(false);
-            }
-        }
-    }
-
-    return chromosomes;
-}
-
-// Mutate a Bacterium
-string mutateProkaryote(const string &in stringCode)
-{
-    // Moving the stringCode to a table to facilitate changes
-    string chromosomes = stringCode;
-
-    // Try to insert a letter at the end of the table.
-    if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
-        chromosomes += getRandomLetter(true);
+        chromosomes += getRandomLetter(isBacteria);
     }
 
     // Modifies the rest of the table.
     for(uint i = 0; i < stringCode.length(); i++){
         // Index we are adding or erasing chromosomes at
         uint index = stringCode.length() - i -1;
-        // Bacteria can be size 1 so removing their only organelle is a bad idea
+        // Removing last organelle would be silly
         if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_DELETION_RATE){
             if (index != stringCode.length()-1)
             {
@@ -273,10 +234,10 @@ string mutateProkaryote(const string &in stringCode)
             // of the list so use insertlast instead in that case
             if (index != stringCode.length()-1)
             {
-                chromosomes.insert(index, getRandomLetter(true));
+                chromosomes.insert(index, getRandomLetter(isBacteria));
             }
             else{
-                chromosomes+=getRandomLetter(true);
+                chromosomes+=getRandomLetter(isBacteria);
             }
         }
     }

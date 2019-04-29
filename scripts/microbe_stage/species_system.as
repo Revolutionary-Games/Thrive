@@ -312,7 +312,7 @@ class Species{
                     parent.colour.W + randomMutationColourChannel());
             }
 
-            this.stringCode = mutate(parent.stringCode);
+            this.stringCode = mutateMicrobe(parent.stringCode,false);
 
 
             if (GetEngine().GetRandom().GetNumber(0,100)<=20){
@@ -631,7 +631,7 @@ class Species{
                 parent.colour.W + randomMutationColourChannel());
         }
 
-        this.stringCode = mutateProkaryote(parent.stringCode);
+        this.stringCode = mutateMicrobe(parent.stringCode,true);
 
         if (GetEngine().GetRandom().GetNumber(0,100)<=20){
             if (GetEngine().GetRandom().GetNumber(0,100) < 50){
