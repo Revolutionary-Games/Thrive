@@ -315,25 +315,7 @@ class Species{
             this.stringCode = mutateMicrobe(parent.stringCode,false);
 
 
-            if (GetEngine().GetRandom().GetNumber(0,100)<=20){
-                if (GetEngine().GetRandom().GetNumber(0,100) < 50){
-                    this.speciesMembraneType = MEMBRANE_TYPE::MEMBRANE;
-                }
-                else if (GetEngine().GetRandom().GetNumber(0,100) < 50) {
-                    this.speciesMembraneType = MEMBRANE_TYPE::DOUBLEMEMBRANE;
-                    this.colour.W = randomOpacityChitin();
-                }
-                else if (GetEngine().GetRandom().GetNumber(0,100) < 50) {
-                    this.speciesMembraneType = MEMBRANE_TYPE::WALL;
-                }
-                else {
-                    this.speciesMembraneType = MEMBRANE_TYPE::CHITIN;
-                    this.colour.W = randomOpacityChitin();
-                }
-            }
-            else {
-                this.speciesMembraneType = parent.speciesMembraneType;
-            }
+            generateMembranes();
 
 
             commonConstructor(world);
@@ -345,6 +327,28 @@ class Species{
         {
             mutateBacteria(parent,world);
         }
+    }
+
+    private void generateMembranes(){
+        if (GetEngine().GetRandom().GetNumber(0,100)<=20){
+            if (GetEngine().GetRandom().GetNumber(0,100) < 50){
+                this.speciesMembraneType = MEMBRANE_TYPE::MEMBRANE;
+            }
+            else if (GetEngine().GetRandom().GetNumber(0,100) < 50) {
+                this.speciesMembraneType = MEMBRANE_TYPE::DOUBLEMEMBRANE;
+                this.colour.W = randomOpacityChitin();
+            }
+            else if (GetEngine().GetRandom().GetNumber(0,100) < 50) {
+                this.speciesMembraneType = MEMBRANE_TYPE::WALL;
+            }
+            else {
+                this.speciesMembraneType = MEMBRANE_TYPE::CHITIN;
+                this.colour.W = randomOpacityChitin();
+            }
+        }
+        else{
+            this.speciesMembraneType = parent.speciesMembraneType;
+            }
     }
 
     private void cleanPersonality() {
@@ -634,25 +638,7 @@ class Species{
 
         this.stringCode = mutateMicrobe(parent.stringCode,true);
 
-        if (GetEngine().GetRandom().GetNumber(0,100)<=20){
-            if (GetEngine().GetRandom().GetNumber(0,100) < 50){
-                this.speciesMembraneType = MEMBRANE_TYPE::MEMBRANE;
-            }
-            else if (GetEngine().GetRandom().GetNumber(0,100) < 50) {
-                this.speciesMembraneType = MEMBRANE_TYPE::DOUBLEMEMBRANE;
-                this.colour.W = randomOpacityChitin();
-            }
-            else if (GetEngine().GetRandom().GetNumber(0,100) < 50) {
-                this.speciesMembraneType = MEMBRANE_TYPE::WALL;
-            }
-            else {
-                this.speciesMembraneType = MEMBRANE_TYPE::CHITIN;
-                this.colour.W = randomOpacityChitin();
-                }
-            }
-            else {
-                this.speciesMembraneType = parent.speciesMembraneType;
-            }
+        generateMembranes();
 
         commonConstructor(world);
         this.setupSpawn(world);
