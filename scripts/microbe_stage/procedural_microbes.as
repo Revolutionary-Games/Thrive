@@ -171,38 +171,25 @@ OrganelleTemplatePlaced@ getRealisticPosition(const string &in organelleName,
 
 // This function takes in a positioning block from the string code and a name
 // and returns an organelle with the correct position info
-OrganelleTemplatePlaced@ getStringCodePosition(const string &in organelleName, string code)
- {
-    //LOG_INFO(code);
+OrganelleTemplatePlaced@ getStringCodePosition(const string &in organelleName, string code){
+    LOG_INFO(code);
+
+    array<string>@ chromArray = code.split(",");
     //TODO:Need to add some proper error handling
     int q = 0;
     int r = 0;
     int rotation = 0;
-    string ourCode = code;
 
-    int posInfoStart = ourCode.findFirst("[");
-    int posInfoEnd = ourCode.findFirst("]");
-    int endPos = (posInfoEnd-posInfoStart)+1;
-    q=parseInt(ourCode.substr(posInfoStart+1,endPos-1));
-    ourCode.erase(posInfoStart, endPos);
+    q=parseInt(chromArray[0]);
 
-    //LOG_INFO(ourCode);
+    LOG_INFO(""+q);
+    r=parseInt(chromArray[1]);
 
-    posInfoStart = ourCode.findFirst("[");
-    posInfoEnd = ourCode.findFirst("]");
-    endPos = (posInfoEnd-posInfoStart)+1;
-    r=parseInt(ourCode.substr(posInfoStart+1,endPos-1));
-    ourCode.erase(posInfoStart, endPos);
+    LOG_INFO(""+r);
 
-    //LOG_INFO(ourCode);
+    rotation=parseInt(chromArray[2]);
 
-    posInfoStart = ourCode.findFirst("[");
-    posInfoEnd = ourCode.findFirst("]");
-    endPos = (posInfoEnd-posInfoStart)+1;
-    rotation=parseInt(ourCode.substr(posInfoStart+1,endPos-1));
-    ourCode.erase(posInfoStart, endPos);
-
-    //LOG_INFO(ourCode);
+    LOG_INFO(""+rotation);
 
     return OrganelleTemplatePlaced(organelleName, q, r, rotation);
 }
@@ -214,34 +201,25 @@ array<PlacedOrganelle@>@ positionOrganelles(const string &in stringCode){
 
     array<PlacedOrganelle@>@ result = array<PlacedOrganelle@>();
     array<OrganelleTemplatePlaced@> organelleList;
-
-    for(uint i = 0; i < stringCode.length(); ++i){
-        if (stringCode.substr(i,1) != "(" && stringCode.substr(i,1) != ")"
-            && stringCode.substr(i,1) != "[" && stringCode.substr(i,1) != "]"){
+    array<string>@ chromArray = stringCode.split("|");
+    for(uint i = 0; i < chromArray.length(); ++i){
             OrganelleTemplatePlaced@ pos;
-            const auto letter = CharacterToString(stringCode[i]);
+            string geneCode = chromArray[i];
 
-            //LOG_INFO("Our letter"+letter);
-            // LOG_WRITE(formatUInt(i) + ": " + letter);
-            string name = string(organelleLetters[letter]);
-            // This is what actually determines the location of the microbe
-            int posInfoStart = stringCode.findFirst("(", i);
-            int posInfoEnd = stringCode.findFirst(")", i);
+            if (geneCode.length() > 0){
+                const auto letter = CharacterToString(geneCode[0]);
+                LOG_WRITE(formatUInt(i) + ": " + letter);
+                string name = string(organelleLetters[letter]);
+                @pos = getStringCodePosition(name,geneCode);
 
-            @pos = getStringCodePosition(name,stringCode.substr(posInfoStart,posInfoEnd-posInfoStart+1));
+                if(pos.type == ""){
+                    assert(false, "positionOrganelles: organelleLetters didn't have the "
+                    "current letter: " + letter);
+                }
 
-            if(pos.type == ""){
-                assert(false, "positionOrganelles: organelleLetters didn't have the "
-                "current letter: " + letter);
-            }
-
-            organelleList.insertLast(pos);
-            result.insertLast(PlacedOrganelle(getOrganelleDefinition(pos.type), pos.q, pos.r,
-                pos.rotation));
-
-            // skip position
-            i= posInfoEnd;
-
+                organelleList.insertLast(pos);
+                result.insertLast(PlacedOrganelle(getOrganelleDefinition(pos.type), pos.q, pos.r,
+                    pos.rotation));
             }
     }
 
@@ -257,6 +235,10 @@ string mutateMicrobe(const string &in stringCode, bool isBacteria)
     // chrosomsomes will be the string we return at the end
     string chromosomes = stringCode;
 
+    array<string>@ chromArray = chromosomes.split("|");
+
+    LOG_INFO(chromArray[0]);
+
     // Try to insert a letter at the end of the table.
     /*if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
         chromosomes += getRandomLetter(isBacteria);
@@ -270,25 +252,10 @@ string mutateMicrobe(const string &in stringCode, bool isBacteria)
         uint index = stringCode.length() - i -1;
         // Removing last organelle would be silly
         if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_DELETION_RATE){
-            if (index != stringCode.length()-1 && chromosomes.substr(index,1) != "N"
-            && chromosomes.substr(index,1) != "(" && chromosomes.substr(index,1) != ")"
-            && chromosomes.substr(index,1) != "[" && chromosomes.substr(index,1) != "]")
+            if (index != stringCode.length()-1 && chromosomes.substr(index,1) != "N")
             {
-                int posInfoStart = stringCode.findFirst("(", index);
-                int posInfoEnd = stringCode.findFirst(")", index);
                 LOG_INFO("chromosomes:"+chromosomes);
                 LOG_INFO("deleteing");
-               // Do math to find how much to erase
-               //N([][][])8 c([][][]) 17
-               // start = 1
-               // end = 8
-               // end-start = 7
-               // 7+1 = 8
-               //start = 10
-               // end = 17
-               // end-start = 7
-               // 7+1 = 8
-
                // Position to erase from
                int endPos = (posInfoEnd-posInfoStart)+1;
 

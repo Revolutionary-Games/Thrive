@@ -1254,9 +1254,9 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name, const strin
         speciesComponent.organelles.insertLast(cast<PlacedOrganelle>(organelles[i]));
         speciesComponent.stringCode+=cast<PlacedOrganelle>(organelles[i])._organelle.gene;
         // This will always be added after each organelle so its safe to assume its there
-        speciesComponent.stringCode+="(["+cast<PlacedOrganelle>(organelles[i]).q+"]";
-        speciesComponent.stringCode+="["+cast<PlacedOrganelle>(organelles[i]).r+"]";
-        speciesComponent.stringCode+="["+cast<PlacedOrganelle>(organelles[i]).rotation+"])";
+        speciesComponent.stringCode+="("+cast<PlacedOrganelle>(organelles[i]).q+","+
+            cast<PlacedOrganelle>(organelles[i]).r+","+
+            cast<PlacedOrganelle>(organelles[i]).rotation+")|";
     }
 
     // Verify it //
