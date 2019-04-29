@@ -375,6 +375,7 @@ class Species{
 
         // This translates the genetic code into positions
         auto organelles = positionOrganelles(stringCode);
+
         // If you have iron (f is the symbol for rusticyanin)
         if (stringCode.findFirst('f') >= 0)
         {
@@ -1248,12 +1249,14 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name, const strin
     @speciesComponent.organelles = array<SpeciesStoredOrganelleType@>();
     speciesComponent.stringCode="";
 
-    for(uint i = 0; i < organelles.length(); i++){
-
-        // This conversion does a little bit of extra calculations (that are in the
-        // end not used)
-        speciesComponent.organelles.insertLast(PlacedOrganelle(organelles[i]));
+    // Translate positions over
+    for(uint i = 0; i < organelles.length(); ++i){
+        speciesComponent.organelles.insertLast(cast<PlacedOrganelle>(organelles[i]));
         speciesComponent.stringCode+=cast<PlacedOrganelle>(organelles[i])._organelle.gene;
+        // This will always be added after each organelle so its safe to assume its there
+        speciesComponent.stringCode+="(["+cast<PlacedOrganelle>(organelles[i]).q+"]";
+        speciesComponent.stringCode+="["+cast<PlacedOrganelle>(organelles[i]).r+"]";
+        speciesComponent.stringCode+="["+cast<PlacedOrganelle>(organelles[i]).rotation+"])";
     }
 
     // Verify it //

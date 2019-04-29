@@ -170,8 +170,45 @@ OrganelleTemplatePlaced@ getPosition(const string &in organelleName,
     return null;
 }
 
+// This function takes in a positioning block from the string code and a name
+// and returns an organelle with the correct position info
+OrganelleTemplatePlaced@ getStringCodePosition(const string &in organelleName, string code)
+ {
+    LOG_INFO(code);
+    //TODO:Need to add some proper error handling
+    int q = 0;
+    int r = 0;
+    int rotation = 0;
+    string ourCode = code;
+
+    int posInfoStart = ourCode.findFirst("[");
+    int posInfoEnd = ourCode.findFirst("]");
+    int endPos = (posInfoEnd-posInfoStart)+1;
+    q=parseInt(ourCode.substr(posInfoStart+1,endPos-1));
+    ourCode.erase(posInfoStart, endPos);
+
+    LOG_INFO(ourCode);
+
+    posInfoStart = ourCode.findFirst("[");
+    posInfoEnd = ourCode.findFirst("]");
+    endPos = (posInfoEnd-posInfoStart)+1;
+    r=parseInt(ourCode.substr(posInfoStart+1,endPos-1));
+    ourCode.erase(posInfoStart, endPos);
+
+    LOG_INFO(ourCode);
+
+    posInfoStart = ourCode.findFirst("[");
+    posInfoEnd = ourCode.findFirst("]");
+    endPos = (posInfoEnd-posInfoStart)+1;
+    rotation=parseInt(ourCode.substr(posInfoStart+1,endPos-1));
+    ourCode.erase(posInfoStart, endPos);
+
+    LOG_INFO(ourCode);
+
+    return OrganelleTemplatePlaced(organelleName, q, r, rotation);
+}
+
 // Creates a list of organelles from the stringCode.
-// This is what makes all eukaryotes circular
 array<PlacedOrganelle@>@ positionOrganelles(const string &in stringCode){
     // TODO: remove once this works
     LOG_INFO("DEBUG: positionOrganelles stringCode: " + stringCode);
@@ -180,26 +217,34 @@ array<PlacedOrganelle@>@ positionOrganelles(const string &in stringCode){
     array<OrganelleTemplatePlaced@> organelleList;
 
     for(uint i = 0; i < stringCode.length(); ++i){
+        if (stringCode.substr(i,1) != "(" && stringCode.substr(i,1) != ")"
+            && stringCode.substr(i,1) != "[" && stringCode.substr(i,1) != "]"){
+            OrganelleTemplatePlaced@ pos;
+            const auto letter = CharacterToString(stringCode[i]);
 
-        OrganelleTemplatePlaced@ pos;
-        const auto letter = CharacterToString(stringCode[i]);
-        // LOG_WRITE(formatUInt(i) + ": " + letter);
-        string name = string(organelleLetters[letter]);
-        @pos = getPosition(name, organelleList);
+            LOG_INFO("Our letter"+letter);
+            // LOG_WRITE(formatUInt(i) + ": " + letter);
+            string name = string(organelleLetters[letter]);
+            // This is what actually determines the location of the microbe
+            int posInfoStart = stringCode.findFirst("(", i);
+            int posInfoEnd = stringCode.findFirst(")", i);
 
-        if(pos.type == ""){
+            @pos = getStringCodePosition(name,stringCode.substr(posInfoStart,posInfoEnd-posInfoStart+1));
 
-            assert(false, "positionOrganelles: organelleLetters didn't have the "
+            if(pos.type == ""){
+                assert(false, "positionOrganelles: organelleLetters didn't have the "
                 "current letter: " + letter);
-        }
+            }
 
-        organelleList.insertLast(pos);
-        result.insertLast(PlacedOrganelle(getOrganelleDefinition(pos.type), pos.q, pos.r,
+            organelleList.insertLast(pos);
+            result.insertLast(PlacedOrganelle(getOrganelleDefinition(pos.type), pos.q, pos.r,
                 pos.rotation));
-    }
 
-    // Make sure all were added
-    assert(stringCode.length() == result.length());
+            // skip position
+            i= posInfoEnd;
+
+            }
+    }
 
     return result;
 }
@@ -210,25 +255,50 @@ array<PlacedOrganelle@>@ positionOrganelles(const string &in stringCode){
 string mutateMicrobe(const string &in stringCode, bool isBacteria)
 {
     // Moving the stringCode to a table to facilitate changes
+    // chrosomsomes will be the string we return at the end
     string chromosomes = stringCode;
 
     // Try to insert a letter at the end of the table.
-    if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
+    /*if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
         chromosomes += getRandomLetter(isBacteria);
-    }
+    }*/
+
+    //TODO: Make game not delete numbers somehow
 
     // Modifies the rest of the table.
-    for(uint i = 0; i < stringCode.length(); i++){
+    /*for(uint i = 0; i < stringCode.length(); i++){
         // Index we are adding or erasing chromosomes at
         uint index = stringCode.length() - i -1;
         // Removing last organelle would be silly
         if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_DELETION_RATE){
-            if (index != stringCode.length()-1)
+            if (index != stringCode.length()-1 && chromosomes.substr(index,1) != "N"
+            && chromosomes.substr(index,1) != "(" && chromosomes.substr(index,1) != ")"
+            && chromosomes.substr(index,1) != "[" && chromosomes.substr(index,1) != "]")
             {
-                chromosomes.erase(index, 1);
+                int posInfoStart = stringCode.findFirst("(", index);
+                int posInfoEnd = stringCode.findFirst(")", index);
+                LOG_INFO("chromosomes:"+chromosomes);
+                LOG_INFO("deleteing");
+               // Do math to find how much to erase
+               //N([][][])8 c([][][]) 17
+               // start = 1
+               // end = 8
+               // end-start = 7
+               // 7+1 = 8
+               //start = 10
+               // end = 17
+               // end-start = 7
+               // 7+1 = 8
+
+               // Position to erase from
+               int endPos = (posInfoEnd-posInfoStart)+1;
+
+               // Delete organelle and its position
+                chromosomes.erase(index, endPos);
+
             }
         }
-
+        // We can insert new organelles at the end of the list
         if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
             // There is an error here when we try to insert at the end
             // of the list so use insertlast instead in that case
@@ -240,8 +310,8 @@ string mutateMicrobe(const string &in stringCode, bool isBacteria)
                 chromosomes+=getRandomLetter(isBacteria);
             }
         }
-    }
 
-    auto newString = "" + chromosomes;
-    return newString;
+    }*/
+
+    return chromosomes;
 }
