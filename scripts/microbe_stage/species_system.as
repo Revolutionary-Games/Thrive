@@ -312,7 +312,7 @@ class Species{
                     parent.colour.W + randomMutationColourChannel());
             }
 
-            this.stringCode = Species::mutate(parent.stringCode);
+            this.stringCode = mutate(parent.stringCode);
 
 
             if (GetEngine().GetRandom().GetNumber(0,100)<=20){
@@ -373,6 +373,7 @@ class Species{
     {
         @forWorld = world;
 
+        // This translates the genetic code into positions
         auto organelles = positionOrganelles(stringCode);
         // If you have iron (f is the symbol for rusticyanin)
         if (stringCode.findFirst('f') >= 0)
@@ -630,7 +631,7 @@ class Species{
                 parent.colour.W + randomMutationColourChannel());
         }
 
-        this.stringCode = Species::mutateProkaryote(parent.stringCode);
+        this.stringCode = mutateProkaryote(parent.stringCode);
 
         if (GetEngine().GetRandom().GetNumber(0,100)<=20){
             if (GetEngine().GetRandom().GetNumber(0,100) < 50){
@@ -1306,88 +1307,6 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name, const strin
     initProcessorComponent(world,speciesComponent);
 
     return speciesEntity;
-}
-
-
-//! Mutates a species' dna code randomly
-string mutate(const string &in stringCode)
-{
-    // Moving the stringCode to a table to facilitate changes
-    string chromosomes = stringCode;
-
-    // Try to insert a letter at the end of the table.
-    if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
-        chromosomes += getRandomLetter(false);
-    }
-
-    // Modifies the rest of the table.
-    for(uint i = 0; i < stringCode.length(); i++){
-        // Index we are adding or erasing chromosomes at
-        uint index = stringCode.length() - i - 1;
-
-        if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_DELETION_RATE){
-            // Removing the last organelle is pointless, that would
-            // kill the creature (also caused errors).
-            if (index != stringCode.length()-1 && chromosomes.substr(index,1) != "N")
-            {
-                chromosomes.erase(index, 1);
-            }
-        }
-
-        if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
-            // There is an error here when we try to insert at the end
-            // of the list so use insertlast instead in that case
-            if (index != stringCode.length()-1)
-            {
-                chromosomes.insert(index, getRandomLetter(false));
-            }
-            else{
-                chromosomes+=getRandomLetter(false);
-            }
-        }
-    }
-
-    return chromosomes;
-}
-
-// Mutate a Bacterium
-string mutateProkaryote(const string &in stringCode)
-{
-    // Moving the stringCode to a table to facilitate changes
-    string chromosomes = stringCode;
-
-    // Try to insert a letter at the end of the table.
-    if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
-        chromosomes += getRandomLetter(true);
-    }
-
-    // Modifies the rest of the table.
-    for(uint i = 0; i < stringCode.length(); i++){
-        // Index we are adding or erasing chromosomes at
-        uint index = stringCode.length() - i -1;
-        // Bacteria can be size 1 so removing their only organelle is a bad idea
-        if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_DELETION_RATE){
-            if (index != stringCode.length()-1)
-            {
-                chromosomes.erase(index, 1);
-            }
-        }
-
-        if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
-            // There is an error here when we try to insert at the end
-            // of the list so use insertlast instead in that case
-            if (index != stringCode.length()-1)
-            {
-                chromosomes.insert(index, getRandomLetter(true));
-            }
-            else{
-                chromosomes+=getRandomLetter(true);
-            }
-        }
-    }
-
-    auto newString = "" + chromosomes;
-    return newString;
 }
 
 //! Calls resetAutoEvo on world's SpeciesSystem
