@@ -112,8 +112,8 @@ bool isValidPlacement(const string &in organelleName, int q, int r, int rotation
 }
 
 // Finds a valid position to place the organelle and returns it
-// Maybe the values should be saved?
-OrganelleTemplatePlaced@ getPosition(const string &in organelleName,
+// We should be able to get far more creative with our cells now
+OrganelleTemplatePlaced@ getRealisticPosition(const string &in organelleName,
     const array<OrganelleTemplatePlaced@> &in organelleList
 ) {
     int q = 0;
@@ -166,7 +166,6 @@ OrganelleTemplatePlaced@ getPosition(const string &in organelleName,
 
         ++radius;
     }
-
     return null;
 }
 
@@ -174,7 +173,7 @@ OrganelleTemplatePlaced@ getPosition(const string &in organelleName,
 // and returns an organelle with the correct position info
 OrganelleTemplatePlaced@ getStringCodePosition(const string &in organelleName, string code)
  {
-    LOG_INFO(code);
+    //LOG_INFO(code);
     //TODO:Need to add some proper error handling
     int q = 0;
     int r = 0;
@@ -187,7 +186,7 @@ OrganelleTemplatePlaced@ getStringCodePosition(const string &in organelleName, s
     q=parseInt(ourCode.substr(posInfoStart+1,endPos-1));
     ourCode.erase(posInfoStart, endPos);
 
-    LOG_INFO(ourCode);
+    //LOG_INFO(ourCode);
 
     posInfoStart = ourCode.findFirst("[");
     posInfoEnd = ourCode.findFirst("]");
@@ -195,7 +194,7 @@ OrganelleTemplatePlaced@ getStringCodePosition(const string &in organelleName, s
     r=parseInt(ourCode.substr(posInfoStart+1,endPos-1));
     ourCode.erase(posInfoStart, endPos);
 
-    LOG_INFO(ourCode);
+    //LOG_INFO(ourCode);
 
     posInfoStart = ourCode.findFirst("[");
     posInfoEnd = ourCode.findFirst("]");
@@ -203,7 +202,7 @@ OrganelleTemplatePlaced@ getStringCodePosition(const string &in organelleName, s
     rotation=parseInt(ourCode.substr(posInfoStart+1,endPos-1));
     ourCode.erase(posInfoStart, endPos);
 
-    LOG_INFO(ourCode);
+    //LOG_INFO(ourCode);
 
     return OrganelleTemplatePlaced(organelleName, q, r, rotation);
 }
@@ -211,7 +210,7 @@ OrganelleTemplatePlaced@ getStringCodePosition(const string &in organelleName, s
 // Creates a list of organelles from the stringCode.
 array<PlacedOrganelle@>@ positionOrganelles(const string &in stringCode){
     // TODO: remove once this works
-    LOG_INFO("DEBUG: positionOrganelles stringCode: " + stringCode);
+    //LOG_INFO("DEBUG: positionOrganelles stringCode: " + stringCode);
 
     array<PlacedOrganelle@>@ result = array<PlacedOrganelle@>();
     array<OrganelleTemplatePlaced@> organelleList;
@@ -222,7 +221,7 @@ array<PlacedOrganelle@>@ positionOrganelles(const string &in stringCode){
             OrganelleTemplatePlaced@ pos;
             const auto letter = CharacterToString(stringCode[i]);
 
-            LOG_INFO("Our letter"+letter);
+            //LOG_INFO("Our letter"+letter);
             // LOG_WRITE(formatUInt(i) + ": " + letter);
             string name = string(organelleLetters[letter]);
             // This is what actually determines the location of the microbe
