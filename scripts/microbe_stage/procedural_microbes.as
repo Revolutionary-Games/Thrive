@@ -254,15 +254,19 @@ string mutateMicrobe(const string &in stringCode, bool isBacteria)
                 modifiedArray.removeAt(i);
 
             }
-        }
-
-        if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_REPLACEMENT_RATE && chromosomes.length() > 0){
+        }else if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_REPLACEMENT_RATE && chromosomes.length() > 0){
             if (CharacterToString(chromosomes[0]) != "N"){
                 LOG_INFO("Replacing");
                 LOG_INFO("chromosomes:"+chromArray[i]);
                 chromosomes[0]=getRandomLetter(isBacteria)[0];
-                modifiedArray.insertAt(i,chromosomes);
-
+                if (i != chromArray.length()-1){
+                    modifiedArray.removeAt(i);
+                    modifiedArray.insertAt(i,chromosomes);
+                }
+                else{
+                    modifiedArray.removeAt(i);
+                    modifiedArray.insertLast(chromosomes);
+                }
             }
         }
 
