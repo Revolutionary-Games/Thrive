@@ -255,16 +255,20 @@ string mutateMicrobe(const string &in stringCode, bool isBacteria)
 
             }
         }
-    }
 
+        if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_REPLACEMENT_RATE && chromosomes.length() > 0){
+            if (CharacterToString(chromosomes[0]) != "N"){
+                LOG_INFO("Replacing");
+                LOG_INFO("chromosomes:"+chromArray[i]);
+                chromosomes[0]=getRandomLetter(isBacteria)[0];
+                modifiedArray.insertAt(i,chromosomes);
 
-    for(uint i = 0; i < modifiedArray.length(); i++){
-        string chromosomes = modifiedArray[i];
-        completeString+=chromosomes;
-        if (i < modifiedArray.length()-1){
-            completeString+="|";
+            }
         }
+
     }
+
+    completeString = join(modifiedArray,"|");
 
     // We can insert new organelles at the end of the list
         /*if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
