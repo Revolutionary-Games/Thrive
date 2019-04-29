@@ -180,14 +180,14 @@ OrganelleTemplatePlaced@ getStringCodePosition(const string &in organelleName, s
     int r = 0;
     int rotation = 0;
 
-    q=parseInt(chromArray[0]);
+    q=parseInt(chromArray[1]);
 
     LOG_INFO(""+q);
-    r=parseInt(chromArray[1]);
+    r=parseInt(chromArray[2]);
 
     LOG_INFO(""+r);
 
-    rotation=parseInt(chromArray[2]);
+    rotation=parseInt(chromArray[3]);
 
     LOG_INFO(""+rotation);
 
