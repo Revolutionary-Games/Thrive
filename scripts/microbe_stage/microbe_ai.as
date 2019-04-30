@@ -51,6 +51,7 @@ class MicrobeAIControllerComponent : ScriptComponent{
     ObjectID prey = NULL_OBJECT;
     ObjectID targetChunk = NULL_OBJECT;
     ObjectID predator = NULL_OBJECT;
+    bool moveThisHunt = true;
     bool preyPegged=false;
     // Prey and predator lists
     array<ObjectID> predatoryMicrobes;
@@ -514,15 +515,15 @@ class MicrobeAISystem : ScriptSystem{
         // Chase your prey if you dont like acting like a plant
         // Allows for emergence of Predatory Plants (Like a single cleed version of a venus fly trap)
         // Creatures with lethargicness of 400 will not actually chase prey, just lie in wait
-        aiComponent.targetPosition =  world.GetComponent_Position(prey)._Position;
+        aiComponent.targetPosition =  world.GetComponent_Position(prey)._Position.Normalize();
         auto vec = (aiComponent.targetPosition - position._Position);
         aiComponent.direction = vec.Normalize();
         microbeComponent.facingTargetPoint = aiComponent.targetPosition;
         aiComponent.hasTargetPosition = true;
 
         //Always set target Position, for use later in AI
-        if (aiComponent.speciesAggression+GetEngine().GetRandom().GetNumber(-100.0f,100.0f) > aiComponent.speciesActivity){
-            microbeComponent.movementDirection = Float3(0, 0, -AI_BASE_MOVEMENT);
+        if (aiComponent.moveThisHunt){
+            microbeComponent.movementDirection = Float3(0.0f,0.0f,-AI_BASE_MOVEMENT);
             }
             else{
             microbeComponent.movementDirection = Float3(0, 0, 0);
@@ -614,11 +615,11 @@ class MicrobeAISystem : ScriptSystem{
         aiComponent.targetPosition =  world.GetComponent_Position(chunk)._Position;
         auto vec = (aiComponent.targetPosition - position._Position);
         aiComponent.direction = vec.Normalize();
-        microbeComponent.facingTargetPoint = aiComponent.targetPosition;
+        microbeComponent.facingTargetPoint =  aiComponent.targetPosition;
         aiComponent.hasTargetPosition = true;
 
         //Always set target Position, for use later in AI
-        microbeComponent.movementDirection = Float3(0, 0, -AI_BASE_MOVEMENT);
+        microbeComponent.movementDirection = Float3(0.0f,0.0f,-AI_BASE_MOVEMENT);
 
         // Turn off engulf if chunk is gone
         if (engulfableComponent is null){
@@ -707,7 +708,7 @@ class MicrobeAISystem : ScriptSystem{
                 auto vec = (position._Position-aiComponent.targetPosition);
                 aiComponent.direction = vec.Normalize();
                 microbeComponent.facingTargetPoint = -aiComponent.targetPosition;
-                microbeComponent.movementDirection = Float3(0, 0, -(AI_BASE_MOVEMENT));
+                microbeComponent.movementDirection = Float3(0.0f,0.0f,-AI_BASE_MOVEMENT);
                 aiComponent.hasTargetPosition = true;
 
            //Freak out and fire toxins everywhere
@@ -733,11 +734,6 @@ class MicrobeAISystem : ScriptSystem{
             aiComponent.lifeState = SCAVENGING_STATE;
             aiComponent.boredom = 0;
             }
-       else if (rollCheck(aiComponent.speciesActivity,500.0f))
-            {
-            aiComponent.lifeState = PLANTLIKE_STATE;
-            aiComponent.boredom = 0;
-            }
         else {
         if (prey != NULL_OBJECT && predator != NULL_OBJECT)
             {
@@ -745,6 +741,7 @@ class MicrobeAISystem : ScriptSystem{
             if (GetEngine().GetRandom().GetNumber(0.0f,aiComponent.speciesAggression) >
                     GetEngine().GetRandom().GetNumber(0.0f,aiComponent.speciesFear) &&
                         (aiComponent.preyMicrobes.length() > 0)){
+                    aiComponent.moveThisHunt=!rollCheck(aiComponent.speciesActivity,500.0f);
                     aiComponent.lifeState = PREDATING_STATE;
                 }
             else if (GetEngine().GetRandom().GetNumber(0.0f,aiComponent.speciesAggression) <
@@ -756,6 +753,7 @@ class MicrobeAISystem : ScriptSystem{
             else if (aiComponent.speciesAggression == aiComponent.speciesFear &&
                 (aiComponent.preyMicrobes.length() > 0)){
                     // Prefer predating (makes game more fun)
+                    aiComponent.moveThisHunt=!rollCheck(aiComponent.speciesActivity,500.0f);
                     aiComponent.lifeState  = PREDATING_STATE;
                 }
             else if (rollCheck(aiComponent.speciesFocus,500.0f) && GetEngine().GetRandom().GetNumber(0,10) <= 2){
@@ -764,6 +762,7 @@ class MicrobeAISystem : ScriptSystem{
             }
         else if (prey != NULL_OBJECT){
             //LOG_INFO("prey only");
+            aiComponent.moveThisHunt=!rollCheck(aiComponent.speciesActivity,500.0f);
             aiComponent.lifeState = PREDATING_STATE;
             }
         else if (predator != NULL_OBJECT){
@@ -845,7 +844,7 @@ class MicrobeAISystem : ScriptSystem{
         auto vec = (aiComponent.targetPosition - position._Position);
         aiComponent.direction = vec.Normalize();
         microbeComponent.facingTargetPoint = aiComponent.targetPosition;
-        microbeComponent.movementDirection = Float3(0, 0, -AI_BASE_MOVEMENT);
+        microbeComponent.movementDirection = Float3(0.0f,0.0f,-AI_BASE_MOVEMENT);
         aiComponent.hasTargetPosition = true;
 
     }
