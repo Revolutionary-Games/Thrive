@@ -102,8 +102,10 @@ const auto REGENERATION_RATE = 1.0f;
 const auto FLAGELLA_ENERGY_COST = 7.1f;
 const auto FLAGELLA_BASE_FORCE = 0.7f;
 const auto CELL_BASE_THRUST = 1.6f;
+
 // is set by this and modified by applyCellMovement like the player later
-const auto AI_BASE_MOVEMENT = 1.0f;
+const auto AI_BASE_MOVEMENT = 1.6f;
+
 //! The drag force is calculated by taking the current velocity and multiplying it by this.
 //! This must be negative!
 const auto CELL_DRAG_MULTIPLIER = -0.12f;
