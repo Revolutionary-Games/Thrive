@@ -3,18 +3,19 @@
 using namespace thrive;
 
 const Float2 FluidSystem::scale(0.05f, 0.05f);
-const float FluidSystem::timeScale = 0.001f;
-const float FluidSystem::maxForceApplied = 10.0f;
 
 FluidEffectComponent::FluidEffectComponent() : Leviathan::Component(TYPE) {}
 
-FluidSystem::FluidSystem() : noiseX(69), noiseY(13) {}
+FluidSystem::FluidSystem() :
+    noiseDisturbancesX(69), noiseDisturbancesY(13), noiseCurrentsX(420),
+    noiseCurrentsY(1337)
+{}
 
 void
     FluidSystem::Run(GameWorld& world)
 {
-    millisecondsPassed += Leviathan::TICKSPEED *
-                          timeScale; // TODO: get this thing plugged to FPS.
+    millisecondsPassed +=
+        Leviathan::TICKSPEED; // TODO: get this thing plugged to FPS.
 
     for(auto& [id, components] : CachedComponents.GetIndex()) {
         Leviathan::PhysicsBody* rigidBody = std::get<1>(*components).GetBody();
@@ -24,43 +25,48 @@ void
 
         Float3 pos = rigidBody->GetPosition();
         Float2 vel = getVelocityAt(Float2(pos.X, pos.Z)) * maxForceApplied;
+
+        // Uncomment once we get some nifty graphics
         rigidBody->GiveImpulse(Float3(vel.X, 0.0f, vel.Y));
     }
 }
 
-// TODO: refactor this nonsense.
 // TODO: also figure out if there's a way to do this that doesn't generate only
 // horiontal or vertical currents
 Float2
     FluidSystem::getVelocityAt(Float2 position)
 {
-    constexpr float sampleProp = 0.15f;
-    constexpr float minCurrentIntensity = 0.4f;
+    const Float2 scaledPosition = position * positionScaling;
 
-    Float2 sample =
-        sampleNoise(position, millisecondsPassed) * 2 - Float2(1, 1);
-    const Float2 scaledPos = position * scale / 2;
-    Float2 sample2 = Float2(noiseX.noise(scaledPos.X / 10, scaledPos.Y,
-                                millisecondsPassed / 500),
-                         noiseY.noise(scaledPos.X, scaledPos.Y / 10,
-                             millisecondsPassed / 500)) *
-                         2 -
-                     Float2(1, 1);
+    const float disturbances_x =
+        noiseDisturbancesX.noise(scaledPosition.X, scaledPosition.Y,
+            millisecondsPassed * disturbanceTimescale) *
+            2.0f -
+        1.0f;
+    ;
+    const float disturbances_y =
+        noiseDisturbancesY.noise(scaledPosition.X, scaledPosition.Y,
+            millisecondsPassed * disturbanceTimescale) *
+            2.0f -
+        1.0f;
 
-    Float2 sample2x = Float2(0.0f);
-    if(std::abs(sample2.X) > minCurrentIntensity)
-        sample2x += Float2(sample2.X, 0.0f);
-    if(std::abs(sample2.Y) > minCurrentIntensity)
-        sample2x += Float2(0.0f, sample2.Y);
+    const float currents_x =
+        noiseCurrentsX.noise(scaledPosition.X * currentsStretchingMultiplier,
+            scaledPosition.Y, millisecondsPassed * currentsTimescale) *
+            2.0f -
+        1.0f;
+    const float currents_y =
+        noiseCurrentsY.noise(scaledPosition.X,
+            scaledPosition.Y * currentsStretchingMultiplier,
+            millisecondsPassed * currentsTimescale) *
+            2.0f -
+        1.0f;
 
-    // Normalize the sample?
-    return sample * sampleProp + sample2x * (1.0f - sampleProp);
-}
+    const Float2 disturbancesVelocity(disturbances_x, disturbances_y);
+    const Float2 currentsVelocity(
+        std::abs(currents_x) > minCurrentIntensity ? currents_x : 0.0f,
+        std::abs(currents_y) > minCurrentIntensity ? currents_y : 0.0f);
 
-Float2
-    FluidSystem::sampleNoise(Float2 pos, float time)
-{
-    const Float2 scaledPos = pos * scale;
-    return Float2(noiseX.noise(scaledPos.X, scaledPos.Y, time),
-        noiseY.noise(scaledPos.X, scaledPos.Y, time));
+    return (disturbancesVelocity * disturbanceToCurrentsRatio +
+            currentsVelocity * (1.0f - disturbanceToCurrentsRatio));
 }

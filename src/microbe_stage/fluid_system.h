@@ -60,12 +60,20 @@ private:
         sampleNoise(Float2 pos, float time);
 
     float millisecondsPassed = 0.0;
-    PerlinNoise noiseX;
-    PerlinNoise noiseY;
+    PerlinNoise noiseDisturbancesX;
+    PerlinNoise noiseDisturbancesY;
+    PerlinNoise noiseCurrentsX;
+    PerlinNoise noiseCurrentsY;
 
     static const Float2 scale;
-    static const float timeScale;
-    static const float maxForceApplied;
+
+    static constexpr float maxForceApplied = 10.0;
+    static constexpr float disturbanceTimescale = 0.001;
+    static constexpr float currentsTimescale = 0.001 / 500.0;
+    static constexpr float currentsStretchingMultiplier = 1.0 / 10.0;
+    static constexpr float minCurrentIntensity = 0.4;
+    static constexpr float disturbanceToCurrentsRatio = 0.15;
+    static constexpr float positionScaling = 0.05;
 };
 
 } // namespace thrive
