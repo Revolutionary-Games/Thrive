@@ -79,18 +79,19 @@ string getRandomLetter(bool isBacteria){
 
 // Checks whether an organelle in a certain position would fit within a list of other organelles.
 bool isValidPlacement(const string &in organelleName, int q, int r, int rotation,
-    const array<OrganelleTemplatePlaced@> &in organelleList
+    array<PlacedOrganelle@>@ organelleList
 ) {
-    // This is super hacky :/
-    // this is now slightly less hacky
+
+    // this is now slightly less hacky but it could be btter
     auto organelleHexes = getOrganelleDefinition(organelleName).getRotatedHexes(rotation);
 
     for(uint i = 0; i < organelleList.length(); ++i){
 
         auto otherOrganelle = organelleList[i];
+        auto organelleDef = getOrganelleDefinition(otherOrganelle.organelle.name);
 
-        auto otherOrganelleHexes = getOrganelleDefinition(otherOrganelle.type).getRotatedHexes(
-            otherOrganelle.rotation);
+        // The organelles hexes
+        auto otherOrganelleHexes = organelleDef.getRotatedHexes(organelleList[i].rotation);
 
         for(uint thisHexIndex = 0; thisHexIndex < organelleHexes.length(); ++thisHexIndex){
 
@@ -113,59 +114,54 @@ bool isValidPlacement(const string &in organelleName, int q, int r, int rotation
 
 // Finds a valid position to place the organelle and returns it
 // We should be able to get far more creative with our cells now
+// This is a rather expensive method especially at large sizes,
+// im sure it can be optimized while still being better then the previous maybe?
 OrganelleTemplatePlaced@ getRealisticPosition(const string &in organelleName,
-    const array<OrganelleTemplatePlaced@> &in organelleList
+    array<PlacedOrganelle@>@ organelleList
 ) {
     int q = 0;
     int r = 0;
 
-    // Checks whether the center is free.
-    for(int j = 0; j <= 5; ++j){
-        int rotation = 360 * j / 6;
-        if(isValidPlacement(organelleName, q, r, rotation, organelleList)){
-            return OrganelleTemplatePlaced(organelleName, q, r, rotation);
-        }
-    }
+    // Loop through all the organelles and find an open spot to place our new organelle attached to existing organelles
+    for(uint i = 0; i < organelleList.length(); ++i){
+        // The organelle we wish to be next to
+        auto otherOrganelle = organelleList[i].organelle;
+        auto organelleDef = getOrganelleDefinition(otherOrganelle.name);
 
-    // Moving the center one hex to the bottom.
-    // This way organelles are "encouraged" to be on the bottom, rather than on the top,
-    // which in turn means the flagellum are more likely to be on the back side of the cell.
-    auto initialOffset = Int2(HEX_NEIGHBOUR_OFFSET[formatInt(int(HEX_SIDE::TOP))]);
-    q = q + initialOffset.X;
-    r = r + initialOffset.Y;
+        // The organelles hexes
+        auto hexes = organelleDef.getRotatedHexes(organelleList[i].rotation);
 
-    // Spiral search for space for the organelle
-    int radius = 1;
+        // Middle of our organelle
+        q = organelleList[i].q;
+        r = organelleList[i].r;
 
-    while(true){
-        //Moves into the ring of radius "radius" and center the old organelle
-        Int2 radiusOffset = Int2(HEX_NEIGHBOUR_OFFSET[
-                formatInt(int(HEX_SIDE::BOTTOM_LEFT))]);
-        q = q + radiusOffset.X;
-        r = r + radiusOffset.Y;
+        for(uint z = 0; z < hexes.length(); ++z){
+            // Off set by hexes in organelle we are looking at
+            q+=hexes[z].q;
+            r+=hexes[z].r;
 
-        //Iterates in the ring
-        for(int side = 1; side <= 6; ++side){
-            Int2 offset = Int2(HEX_NEIGHBOUR_OFFSET[formatInt(side)]);
-            //Moves "radius" times into each direction
-            for(int i = 1; i <= radius; ++i){
+            for(int side = 1; side <= 6; ++side){
+                Int2 offset = Int2(HEX_NEIGHBOUR_OFFSET[formatInt(side)]);
+                // Offset by hex offset
                 q = q + offset.X;
                 r = r + offset.Y;
 
-                //Checks every possible rotation value.
+                //Check every possible rotation value.
                 for(int j = 0; j <= 5; ++j){
-
                     int rotation = (360 * j / 6);
-
                     if(isValidPlacement(organelleName, q, r, rotation, organelleList)){
                         return OrganelleTemplatePlaced(organelleName, q, r, rotation);
                     }
                 }
             }
-        }
 
-        ++radius;
+        //Gotta reset each time
+        q = organelleList[i].q;
+        r = organelleList[i].r;
+
+        }
     }
+    // We didnt find an open spot, that doesnt mak emuch sense
     return null;
 }
 
@@ -200,7 +196,6 @@ array<PlacedOrganelle@>@ positionOrganelles(const string &in stringCode){
     //LOG_INFO("DEBUG: positionOrganelles stringCode: " + stringCode);
 
     array<PlacedOrganelle@>@ result = array<PlacedOrganelle@>();
-    array<OrganelleTemplatePlaced@> organelleList;
     array<string>@ chromArray = stringCode.split("|");
     for(uint i = 0; i < chromArray.length(); ++i){
             OrganelleTemplatePlaced@ pos;
@@ -217,7 +212,6 @@ array<PlacedOrganelle@>@ positionOrganelles(const string &in stringCode){
                     "current letter: " + letter);
                 }
 
-                organelleList.insertLast(pos);
                 result.insertLast(PlacedOrganelle(getOrganelleDefinition(pos.type), pos.q, pos.r,
                     pos.rotation));
             }
@@ -229,6 +223,18 @@ array<PlacedOrganelle@>@ positionOrganelles(const string &in stringCode){
 //! Mutates a species' dna code randomly
 
 
+string translateOrganelleTogene(OrganelleTemplatePlaced@ ourOrganelle){
+    string completeString = "";
+    auto organelle = getOrganelleDefinition(ourOrganelle.type);
+    completeString=organelle.gene+","+
+        ourOrganelle.q+","+
+        ourOrganelle.r+","+
+        ourOrganelle.rotation;
+    return completeString;
+
+}
+
+// Pass in the string code, isbacteria
 string mutateMicrobe(const string &in stringCode, bool isBacteria)
 {
     array<string>@ chromArray = stringCode.split("|");
@@ -272,20 +278,18 @@ string mutateMicrobe(const string &in stringCode, bool isBacteria)
 
     }
 
+
     completeString = join(modifiedArray,"|");
 
     // We can insert new organelles at the end of the list
-        /*if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
-            // There is an error here when we try to insert at the end
-            // of the list so use insertlast instead in that case
-            if (index != stringCode.length()-1)
-            {
-                chromosomes.insert(index, getRandomLetter(isBacteria));
-            }
-            else{
-                chromosomes+=getRandomLetter(isBacteria);
-            }
-        }*/
+    // Adding new organelles is complicated
+    auto organelleList = positionOrganelles(completeString);
+    const auto letter = getRandomLetter(isBacteria);
+    string name = string(organelleLetters[letter]);
+    string returnedGenome = translateOrganelleTogene(getRealisticPosition(name,organelleList));
+    LOG_INFO("Adding");
+    LOG_INFO("chromosomes:"+returnedGenome);
+    completeString+="|"+returnedGenome;
 
     LOG_INFO("Mutated: "+completeString);
     return completeString;

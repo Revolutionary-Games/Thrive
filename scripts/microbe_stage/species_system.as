@@ -315,7 +315,7 @@ class Species{
             this.stringCode = mutateMicrobe(parent.stringCode,false);
 
 
-            generateMembranes();
+            generateMembranes(parent);
 
 
             commonConstructor(world);
@@ -329,7 +329,7 @@ class Species{
         }
     }
 
-    private void generateMembranes(){
+    private void generateMembranes(SpeciesComponent@ parent){
         if (GetEngine().GetRandom().GetNumber(0,100)<=20){
             if (GetEngine().GetRandom().GetNumber(0,100) < 50){
                 this.speciesMembraneType = MEMBRANE_TYPE::MEMBRANE;
@@ -638,7 +638,7 @@ class Species{
 
         this.stringCode = mutateMicrobe(parent.stringCode,true);
 
-        generateMembranes();
+        generateMembranes(parent);
 
         commonConstructor(world);
         this.setupSpawn(world);
