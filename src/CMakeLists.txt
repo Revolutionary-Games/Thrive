@@ -2,6 +2,7 @@
 
 # Add source files to the list
 set(GROUP_ENGINE
+  "engine/component_types.h"
   "engine/typedefs.h"
   "engine/player_data.cpp"
   "engine/player_data.h"
