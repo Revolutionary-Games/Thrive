@@ -27,7 +27,7 @@ void
         Float2 vel = getVelocityAt(Float2(pos.X, pos.Z)) * maxForceApplied;
 
         // Uncomment once we get some nifty graphics
-        rigidBody->GiveImpulse(Float3(vel.X, 0.0f, vel.Y));
+        // rigidBody->GiveImpulse(Float3(vel.X, 0.0f, vel.Y));
     }
 }
 
