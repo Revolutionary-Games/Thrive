@@ -1078,7 +1078,7 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, bool aiControlled,
         species.speciesMembraneType);
 
     auto compoundAbsorberComponent = world.Create_CompoundAbsorberComponent(entity);
-    
+
     world.Create_FluidEffectComponent(entity);
 
     if (species.isBacteria) {

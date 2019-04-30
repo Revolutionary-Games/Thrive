@@ -121,7 +121,7 @@ ObjectID createChunk(CellStageWorld@ world, uint chunkId,  Float3 pos)
 
     // Need to set the tint
     model.GraphicalObject.setCustomParameter(1, Ogre::Vector4(1, 1, 1, 1));
-    
+
     // Fluid mechanics.
     world.Create_FluidEffectComponent(chunkEntity);
 
