@@ -515,7 +515,7 @@ class MicrobeAISystem : ScriptSystem{
         // Chase your prey if you dont like acting like a plant
         // Allows for emergence of Predatory Plants (Like a single cleed version of a venus fly trap)
         // Creatures with lethargicness of 400 will not actually chase prey, just lie in wait
-        aiComponent.targetPosition =  world.GetComponent_Position(prey)._Position.Normalize();
+        aiComponent.targetPosition =  world.GetComponent_Position(prey)._Position;
         auto vec = (aiComponent.targetPosition - position._Position);
         aiComponent.direction = vec.Normalize();
         microbeComponent.facingTargetPoint = aiComponent.targetPosition;
