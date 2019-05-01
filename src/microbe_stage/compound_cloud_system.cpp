@@ -318,21 +318,13 @@ void
 ////////////////////////////////////////////////////////////////////////////////
 // CompoundCloudSystem
 ////////////////////////////////////////////////////////////////////////////////
-CompoundCloudSystem::CompoundCloudSystem() :
-    m_xVelocity(CLOUD_SIMULATION_WIDTH,
-        std::vector<float>(CLOUD_SIMULATION_HEIGHT, 0)),
-    m_yVelocity(CLOUD_SIMULATION_WIDTH,
-        std::vector<float>(CLOUD_SIMULATION_HEIGHT, 0))
-{}
-
-CompoundCloudSystem::~CompoundCloudSystem() {}
 
 void
     CompoundCloudSystem::Init(CellStageWorld& world)
 {
     // Use the curl of a Perlin noise field to create a turbulent velocity
     // field.
-    createVelocityField();
+    // createVelocityField();
 
     // Skip if no graphics
     if(!Ogre::Root::getSingletonPtr())
@@ -678,7 +670,7 @@ void
                                     "it didn't initialize");
         }
 
-        processCloud(*value.second, renderTime);
+        processCloud(*value.second, renderTime, world.GetFluidSystem());
     }
 }
 
@@ -1077,10 +1069,12 @@ void
 // ------------------------------------ //
 void
     CompoundCloudSystem::processCloud(CompoundCloudComponent& cloud,
-        int renderTime)
+        int renderTime,
+        FluidSystem& fluidSystem)
 {
     // Try to slow things down (doesn't seem to work great)
     renderTime /= 10;
+    Float2 pos(cloud.m_position.X, cloud.m_position.Z);
 
     // The diffusion rate seems to have a bigger effect
 
@@ -1088,22 +1082,26 @@ void
     if(cloud.m_compoundId1 != NULL_COMPOUND) {
         diffuse(0.007f, cloud.m_oldDens1, cloud.m_density1, renderTime);
         // Move the compound clouds about the velocity field.
-        advect(cloud.m_oldDens1, cloud.m_density1, renderTime);
+        advect(
+            cloud.m_oldDens1, cloud.m_density1, renderTime, fluidSystem, pos);
     }
     if(cloud.m_compoundId2 != NULL_COMPOUND) {
         diffuse(0.007f, cloud.m_oldDens2, cloud.m_density2, renderTime);
         // Move the compound clouds about the velocity field.
-        advect(cloud.m_oldDens2, cloud.m_density2, renderTime);
+        advect(
+            cloud.m_oldDens2, cloud.m_density2, renderTime, fluidSystem, pos);
     }
     if(cloud.m_compoundId3 != NULL_COMPOUND) {
         diffuse(0.007f, cloud.m_oldDens3, cloud.m_density3, renderTime);
         // Move the compound clouds about the velocity field.
-        advect(cloud.m_oldDens3, cloud.m_density3, renderTime);
+        advect(
+            cloud.m_oldDens3, cloud.m_density3, renderTime, fluidSystem, pos);
     }
     if(cloud.m_compoundId4 != NULL_COMPOUND) {
         diffuse(0.007f, cloud.m_oldDens4, cloud.m_density4, renderTime);
         // Move the compound clouds about the velocity field.
-        advect(cloud.m_oldDens4, cloud.m_density4, renderTime);
+        advect(
+            cloud.m_oldDens4, cloud.m_density4, renderTime, fluidSystem, pos);
     }
 
     // No graphics check
@@ -1189,40 +1187,6 @@ void
     }
 }
 
-
-void
-    CompoundCloudSystem::createVelocityField()
-{
-    const float nxScale = m_noiseScale;
-    // "float(CLOUD_SIMULATION_WIDTH) / float(CLOUD_SIMULATION_HEIGHT)" is the
-    // aspect ratio of the cloud. This is 1 if the cloud is a square.
-    const float nyScale = nxScale * (float(CLOUD_SIMULATION_WIDTH) /
-                                        float(CLOUD_SIMULATION_HEIGHT));
-
-    for(int x = 0; x < CLOUD_SIMULATION_WIDTH; x++) {
-        for(int y = 0; y < CLOUD_SIMULATION_HEIGHT; y++) {
-            const float x0 =
-                (float(x - 1) / float(CLOUD_SIMULATION_WIDTH)) * nxScale;
-            const float y0 =
-                (float(y - 1) / float(CLOUD_SIMULATION_HEIGHT)) * nyScale;
-            const float x1 =
-                (float(x + 1) / float(CLOUD_SIMULATION_WIDTH)) * nxScale;
-            const float y1 =
-                (float(y + 1) / float(CLOUD_SIMULATION_HEIGHT)) * nyScale;
-
-            float n0 = m_fieldPotential.noise(x0, y0, 0);
-            float n1 = m_fieldPotential.noise(x1, y0, 0);
-            const float ny = n0 - n1;
-            n0 = m_fieldPotential.noise(x0, y0, 0);
-            n1 = m_fieldPotential.noise(x0, y1, 0);
-            const float nx = n1 - n0;
-
-            m_xVelocity[x][y] = nx / 2;
-            m_yVelocity[x][y] = ny / 2;
-        }
-    }
-}
-
 void
     CompoundCloudSystem::diffuse(float diffRate,
         std::vector<std::vector<float>>& oldDens,
@@ -1243,7 +1207,9 @@ void
 void
     CompoundCloudSystem::advect(const std::vector<std::vector<float>>& oldDens,
         std::vector<std::vector<float>>& density,
-        int dt)
+        int dt,
+        FluidSystem& fluidSystem,
+        Float2 pos)
 {
     for(int x = 0; x < CLOUD_SIMULATION_WIDTH; x++) {
         for(int y = 0; y < CLOUD_SIMULATION_HEIGHT; y++) {
@@ -1256,8 +1222,15 @@ void
     for(size_t x = 1; x < CLOUD_SIMULATION_WIDTH - 1; x++) {
         for(size_t y = 1; y < CLOUD_SIMULATION_HEIGHT - 1; y++) {
             if(oldDens[x][y] > 1) {
-                float dx = x + dt * m_xVelocity[x][y];
-                float dy = y + dt * m_yVelocity[x][y];
+                constexpr float viscosity =
+                    0.0525f; // TODO: give each cloud a viscosity value in the
+                             // JSON file and use it instead.
+                Float2 velocity = fluidSystem.getVelocityAt(
+                                      pos + Float2(x, y) * CLOUD_RESOLUTION) *
+                                  viscosity;
+
+                float dx = x + dt * velocity.X;
+                float dy = y + dt * velocity.Y;
 
                 dx = std::clamp(dx, 0.5f, CLOUD_SIMULATION_WIDTH - 1.5f);
                 dy = std::clamp(dy, 0.5f, CLOUD_SIMULATION_HEIGHT - 1.5f);

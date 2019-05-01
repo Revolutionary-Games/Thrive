@@ -18,6 +18,7 @@ generator.addInclude "Script/ScriptTypeResolver.h"
 
 generator.addInclude "thrive_world_factory.h"
 
+generator.addInclude "microbe_stage/fluid_system.h"
 generator.addInclude "microbe_stage/membrane_system.h"
 generator.addInclude "microbe_stage/compound_cloud_system.h"
 generator.addInclude "microbe_stage/process_system.h"
@@ -35,6 +36,7 @@ generator.addInclude "general/timed_life_system.h"
 
 cellWorld = GameWorldClass.new(
   "CellStageWorld", componentTypes: [
+    EntityComponent.new("FluidEffectComponent", [ConstructorInfo.new([])]),
     EntityComponent.new("ProcessorComponent", [ConstructorInfo.new([])]),
     EntityComponent.new("CompoundBagComponent", [ConstructorInfo.new([])]),
     EntityComponent.new("CompoundVenterComponent", [ConstructorInfo.new([])]),
@@ -115,7 +117,11 @@ cellWorld = GameWorldClass.new(
                      # "runrender"
                      runtick: {group: 100, parameters: [
                                    "GetScene()"
-                                 ]}),
+                                ]}),
+
+    EntitySystem.new("FluidSystem", ["FluidEffectComponent", "Physics"],
+                        runtick: {group: 49, parameters: []}
+                    ),
 
     EntitySystem.new("SpawnSystem", ["SpawnedComponent", "Position"],
                      runtick: {group: 50, parameters: []},
