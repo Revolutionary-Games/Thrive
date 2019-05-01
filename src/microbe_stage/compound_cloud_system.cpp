@@ -1223,7 +1223,7 @@ void
         for(size_t y = 1; y < CLOUD_SIMULATION_HEIGHT - 1; y++) {
             if(oldDens[x][y] > 1) {
                 constexpr float viscosity =
-                    0.3f; // TODO: give each cloud a viscosity value in the JSON
+                    0.15f; // TODO: give each cloud a viscosity value in the JSON
                           // file and use it instead.
                 Float2 velocity = fluidSystem.getVelocityAt(
                                       pos + Float2(x, y) * CLOUD_RESOLUTION) *

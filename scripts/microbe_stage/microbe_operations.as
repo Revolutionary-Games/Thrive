@@ -1079,7 +1079,8 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, bool aiControlled,
 
     auto compoundAbsorberComponent = world.Create_CompoundAbsorberComponent(entity);
 
-    world.Create_FluidEffectComponent(entity);
+    // Uncomment this when we get pretty fluid graphics.
+    //world.Create_FluidEffectComponent(entity);
 
     if (species.isBacteria) {
         compoundAbsorberComponent.setGrabScale(0.5f);
