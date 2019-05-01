@@ -67,13 +67,13 @@ private:
 
     static const Float2 scale;
 
-    static constexpr float maxForceApplied = 10.0;
-    static constexpr float disturbanceTimescale = 0.001;
-    static constexpr float currentsTimescale = 0.001 / 500.0;
-    static constexpr float currentsStretchingMultiplier = 1.0 / 10.0;
-    static constexpr float minCurrentIntensity = 0.4;
-    static constexpr float disturbanceToCurrentsRatio = 0.15;
-    static constexpr float positionScaling = 0.05;
+    static constexpr float maxForceApplied = 0.525f;
+    static constexpr float disturbanceTimescale = 0.001f;
+    static constexpr float currentsTimescale = 0.001f / 500.0f;
+    static constexpr float currentsStretchingMultiplier = 1.0f / 10.0f;
+    static constexpr float minCurrentIntensity = 0.4f;
+    static constexpr float disturbanceToCurrentsRatio = 0.15f;
+    static constexpr float positionScaling = 0.05f;
 };
 
 } // namespace thrive
