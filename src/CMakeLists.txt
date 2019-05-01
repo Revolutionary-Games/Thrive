@@ -2,6 +2,7 @@
 
 # Add source files to the list
 set(GROUP_ENGINE
+  "engine/component_types.h"
   "engine/typedefs.h"
   "engine/player_data.cpp"
   "engine/player_data.h"
@@ -44,7 +45,9 @@ set(GROUP_MICROBE_STAGE
   "microbe_stage/compounds.cpp"
   "microbe_stage/compounds.h"
   "microbe_stage/generate_cell_stage_world.rb"
-  "microbe_stage/generate_microbe_editor_world.rb"  
+  "microbe_stage/generate_microbe_editor_world.rb"
+  "microbe_stage/fluid_system.cpp"
+  "microbe_stage/fluid_system.h"
   "microbe_stage/membrane_system.cpp"
   "microbe_stage/membrane_system.h"
   "microbe_stage/microbe_camera_system.cpp"

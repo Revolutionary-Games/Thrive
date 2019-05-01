@@ -1055,6 +1055,9 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, bool aiControlled,
 
     auto compoundAbsorberComponent = world.Create_CompoundAbsorberComponent(entity);
 
+    // Uncomment this when we get pretty fluid graphics.
+    //world.Create_FluidEffectComponent(entity);
+
     if (species.isBacteria) {
         compoundAbsorberComponent.setGrabScale(0.5f);
     }
@@ -1229,6 +1232,7 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
         double amount = double(microbeComponent.totalHexCountCache)/CORPSE_CHUNK_AMOUNT_DIVISER;
         // Chunk(should separate into own function)
         ObjectID chunkEntity = world.CreateEntity();
+        world.Create_FluidEffectComponent(chunkEntity);
         auto positionAdded = Float3(GetEngine().GetRandom().GetFloat(-2.0f, 2.0f),0,
             GetEngine().GetRandom().GetFloat(-2.0f, 2.0f));
         auto chunkPosition = world.Create_Position(chunkEntity, position._Position+positionAdded,
