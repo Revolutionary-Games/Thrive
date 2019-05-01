@@ -52,6 +52,7 @@ class MicrobeAIControllerComponent : ScriptComponent{
     ObjectID targetChunk = NULL_OBJECT;
     ObjectID predator = NULL_OBJECT;
     bool moveThisHunt = true;
+    bool moveFocused = false;
     bool preyPegged=false;
     // Prey and predator lists
     array<ObjectID> predatoryMicrobes;
@@ -523,11 +524,16 @@ class MicrobeAISystem : ScriptSystem{
 
         //Always set target Position, for use later in AI
         if (aiComponent.moveThisHunt){
-            microbeComponent.movementDirection = Float3(0.0f,0.0f,-AI_BASE_MOVEMENT);
+            if (aiComponent.moveFocused){
+                microbeComponent.movementDirection = Float3(0.0f,0.0f,-AI_FOCUSED_MOVEMENT);
             }
             else{
-            microbeComponent.movementDirection = Float3(0, 0, 0);
+                microbeComponent.movementDirection = Float3(0.0f,0.0f,-AI_BASE_MOVEMENT);
             }
+        }
+        else{
+            microbeComponent.movementDirection = Float3(0, 0, 0);
+        }
 
             // Turn off engulf if prey is Dead
             // This is probabbly not working
@@ -728,6 +734,11 @@ class MicrobeAISystem : ScriptSystem{
         //LOG_INFO("evaluating");
         MicrobeAIControllerComponent@ aiComponent = components.first;
         Position@ position = components.third;
+        MicrobeComponent@ microbeComponent = components.second;
+        CompoundId oxytoxyId = SimulationParameters::compoundRegistry().getTypeId("oxytoxy");
+        int numberOfAgentVacuoles = int(
+                    microbeComponent.specialStorageOrganelles[formatUInt(oxytoxyId)]);
+
         //rollCheck(aiComponent.speciesOpportunism,500.0f)
         if (rollCheck(aiComponent.speciesOpportunism,500.0f))
             {
@@ -742,6 +753,11 @@ class MicrobeAISystem : ScriptSystem{
                     GetEngine().GetRandom().GetNumber(0.0f,aiComponent.speciesFear) &&
                         (aiComponent.preyMicrobes.length() > 0)){
                     aiComponent.moveThisHunt=!rollCheck(aiComponent.speciesActivity,500.0f);
+
+                    if (numberOfAgentVacuoles > 0){
+                        aiComponent.moveFocused = rollCheck(aiComponent.speciesFocus,500.0f);
+                    }
+
                     aiComponent.lifeState = PREDATING_STATE;
                 }
             else if (GetEngine().GetRandom().GetNumber(0.0f,aiComponent.speciesAggression) <
@@ -754,6 +770,11 @@ class MicrobeAISystem : ScriptSystem{
                 (aiComponent.preyMicrobes.length() > 0)){
                     // Prefer predating (makes game more fun)
                     aiComponent.moveThisHunt=!rollCheck(aiComponent.speciesActivity,500.0f);
+
+                    if (numberOfAgentVacuoles > 0){
+                        aiComponent.moveFocused = rollCheck(aiComponent.speciesFocus,500.0f);
+                    }
+
                     aiComponent.lifeState  = PREDATING_STATE;
                 }
             else if (rollCheck(aiComponent.speciesFocus,500.0f) && GetEngine().GetRandom().GetNumber(0,10) <= 2){
@@ -763,6 +784,11 @@ class MicrobeAISystem : ScriptSystem{
         else if (prey != NULL_OBJECT){
             //LOG_INFO("prey only");
             aiComponent.moveThisHunt=!rollCheck(aiComponent.speciesActivity,500.0f);
+
+            if (numberOfAgentVacuoles > 0){
+                aiComponent.moveFocused = rollCheck(aiComponent.speciesFocus,500.0f);
+            }
+
             aiComponent.lifeState = PREDATING_STATE;
             }
         else if (predator != NULL_OBJECT){

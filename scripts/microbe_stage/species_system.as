@@ -1237,12 +1237,13 @@ ObjectID createSpecies(CellStageWorld@ world, const string &in name, const strin
 
     // Translate positions over
     for(uint i = 0; i < organelles.length(); ++i){
-        speciesComponent.organelles.insertLast(cast<PlacedOrganelle>(organelles[i]));
-        speciesComponent.stringCode+=cast<PlacedOrganelle>(organelles[i])._organelle.gene;
+        auto organelle = cast<PlacedOrganelle>(organelles[i]);
+        speciesComponent.organelles.insertLast(organelle);
+        speciesComponent.stringCode+=organelle._organelle.gene;
         // This will always be added after each organelle so its safe to assume its there
-        speciesComponent.stringCode+=","+cast<PlacedOrganelle>(organelles[i]).q+","+
-            cast<PlacedOrganelle>(organelles[i]).r+","+
-            cast<PlacedOrganelle>(organelles[i]).rotation;
+        speciesComponent.stringCode+=","+organelle.q+","+
+            organelle.r+","+
+            organelle.rotation;
         if (i != organelles.length()-1){
             speciesComponent.stringCode+="|";
         }

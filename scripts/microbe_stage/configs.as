@@ -23,6 +23,7 @@ const auto MAX_SPAWN_DISTANCE = 5000.0f;
 // Cell Colors
 const auto MIN_COLOR = 0.0f;
 const auto MAX_COLOR = 0.9f;
+
 // Too subtle?
 const auto MIN_COLOR_MUTATION = -0.2f;
 const auto MAX_COLOR_MUTATION = 0.2f;
@@ -32,6 +33,7 @@ const auto MAX_OPACITY = 1.8f;
 
 const auto MIN_OPACITY_CHITIN = 0.4f;
 const auto MAX_OPACITY_CHITIN = 1.2f;
+
 // Min Opacity Mutation
 const auto MIN_OPACITY_MUTATION = -0.01f;
 const auto MAX_OPACITY_MUTATION = 0.01f;
@@ -44,6 +46,7 @@ const auto MUTATION_REPLACEMENT_RATE = 0.1f;
 
 //Removal cost
 const auto ORGANELLE_REMOVE_COST = 10;
+
 // Spawn Radius
 const auto MICROBE_SPAWN_RADIUS = 150;
 const auto BACTERIA_SPAWN_RADIUS = 150;
@@ -105,6 +108,7 @@ const auto CELL_BASE_THRUST = 1.6f;
 
 // is set by this and modified by applyCellMovement like the player later
 const auto AI_BASE_MOVEMENT = 1.6f;
+const auto AI_FOCUSED_MOVEMENT = 1.0f;
 
 //! The drag force is calculated by taking the current velocity and multiplying it by this.
 //! This must be negative!
