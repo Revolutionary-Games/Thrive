@@ -574,6 +574,8 @@ static uint16_t CompoundCloudComponentTYPEProxy =
     static_cast<uint16_t>(CompoundCloudComponent::TYPE);
 static uint16_t MembraneComponentTYPEProxy =
     static_cast<uint16_t>(MembraneComponent::TYPE);
+static uint16_t FluidEffectComponentTYPEProxy =
+    static_cast<uint16_t>(FluidEffectComponent::TYPE);
 static uint16_t SpeciesComponentTYPEProxy =
     static_cast<uint16_t>(SpeciesComponent::TYPE);
 static uint16_t CompoundBagComponentTYPEProxy =
@@ -759,6 +761,16 @@ bool
 
     if(!bindComponentTypeId(
            engine, "CompoundCloudComponent", &CompoundCloudComponentTYPEProxy))
+        return false;
+
+    // ------------------------------------ //
+    if(engine->RegisterObjectType(
+           "FluidEffectComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(!bindComponentTypeId(
+           engine, "FluidEffectComponent", &FluidEffectComponentTYPEProxy))
         return false;
 
     // ------------------------------------ //
