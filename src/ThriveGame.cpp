@@ -1047,7 +1047,9 @@ void
 
     Leviathan::GUI::GuiManager* GuiManagerAccess = window1->GetGui();
 
-    if(!GuiManagerAccess->LoadGUIFile("Data/Scripts/gui/thrive_gui.html")) {
+    window1->SetCustomCursor("default.png");
+
+    if(!GuiManagerAccess->LoadCEFLayer("Data/Scripts/gui/thrive_gui.html")) {
 
         LOG_ERROR("Thrive: failed to load the main menu gui, quitting");
         StartRelease();
