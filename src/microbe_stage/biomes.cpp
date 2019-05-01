@@ -161,7 +161,7 @@ CScriptArray*
         Leviathan::ScriptExecutor::Get()->GetASEngine(), "array<uint64>");
 }
 
-// ----- //
+// ------------------------------------ //
 
 ChunkCompoundData*
     ChunkData::getCompound(size_t type)
@@ -188,8 +188,8 @@ std::string
     ChunkData::getMesh(size_t index)
 {
     // Some error checking
-    if(index >= 0 && index < this->meshes.size()) {
-        return this->meshes.at(index);
+    if(index < meshes.size()) {
+        return meshes.at(index);
     } else {
         throw Leviathan::InvalidArgument(
             "Mesh at index " + std::to_string(index) + " does not exist!");
