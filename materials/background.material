@@ -87,7 +87,7 @@ material Background_Vent
     }
 }
 
-material Background_Bathypalagic
+material Background_Abyssopelagic
 {
     technique
     {
@@ -130,6 +130,51 @@ material Background_Bathypalagic
         }
     }
 }
+
+material Background_Bathypalagic
+{
+    technique
+    {
+        pass
+        {
+            // scene_blend alpha_blend
+            depth_write off
+            depth_check off
+
+            vertex_program_ref Background_VS
+            {
+            }
+            fragment_program_ref Background_PS
+            {
+            }
+            texture_unit 0
+            {
+                filtering none
+            	tex_coord_set 0
+                texture background/Thrive_bathy0.png 2d gamma
+            }
+            texture_unit 1
+            {
+                filtering none
+            	tex_coord_set 1
+                texture background/Thrive_bathy1.png 2d gamma
+            }
+            texture_unit 2
+            {
+                filtering none
+            	tex_coord_set 2
+                texture background/Thrive_bathy2.png 2d gamma
+            }
+            texture_unit 3
+            {
+                filtering none
+            	tex_coord_set 3
+                texture background/Thrive_bathy3.png 2d gamma
+            }
+        }
+    }
+}
+
 material Background_Tidepool
 {
     technique

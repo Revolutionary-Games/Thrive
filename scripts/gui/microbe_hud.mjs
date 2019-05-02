@@ -355,6 +355,8 @@ function onExitToMenuClicked() {
         document.getElementById("extinctionBody").style.display = "none";
         document.getElementById("extinctionContainer").style.display = "none";
         hideWinText();
+        // Gotta reset this
+        wonOnce=false;
         Thrive.exitToMenuClicked();
 
     } else {
@@ -441,7 +443,7 @@ function checkExtinction(population){
 }
 
 function checkGeneration (generation, population){
-    if(generation >= 15 && population >= 200 && wonOnce == false){
+    if(generation >= 20 && population >= 500 && wonOnce == false){
         document.getElementById("winTitle").style.display = "inline-block";
         document.getElementById("winBody").style.display = "inline-block";
         document.getElementById("winContainer").style.display = "inline-block";
