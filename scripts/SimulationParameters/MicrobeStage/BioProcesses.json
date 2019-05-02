@@ -60,6 +60,19 @@
             "oxytoxy": 5.0
         }
     },
+    
+    "bacterial_oxytoxySynthesis": {
+        "name": "Bacterial Oxytoxy Synthesis",
+
+        "inputs": {
+            "oxygen": 0.21,
+            "atp": 5.0
+        },
+
+        "outputs": {
+            "oxytoxy": 0.5
+        }
+    },
 	
 	"chemoSynthesis": {
         "name": "Chemo Synthesis",

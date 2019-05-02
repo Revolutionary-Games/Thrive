@@ -51,12 +51,12 @@
                 "chunkScale": 1.0,
                 "mass": 100,
                 "size": 2,
-                "ventAmount": 3.0,
+                "ventAmount": 6.0,
                 "damages": 0.0,
                 "deleteOnTouch": false,
                 "compounds": {
                     "iron": {
-                        "amount": 100.0
+                        "amount": 200.0
                     }
                 }
             },
@@ -69,12 +69,12 @@
                 "chunkScale": 1.0,
                 "mass": 100,
                 "size": 100,
-                "ventAmount": 10.0,
+                "ventAmount": 20.0,
                 "damages": 0.0,
                 "deleteOnTouch": false,
                 "compounds": {
                     "iron": {
-                        "amount": 30000.0
+                        "amount": 60000.0
                     }
                 }
             }
@@ -84,25 +84,25 @@
         
         "compounds": {
             "ammonia": {
-                "amount": 300000,
+                "amount": 200000,
                 "density": 0.00002,
                 "dissolved": 0.0
             },
 
             "glucose": {
-                "amount": 350000,
+                "amount": 250000,
                 "density": 0.00002,
                 "dissolved": 0.0
             },
             
             "phosphates": {
-                "amount": 300000,
+                "amount": 200000,
                 "density": 0.00002,
                 "dissolved": 0.0
             },
 
             "hydrogensulfide": {
-                "amount": 325000,
+                "amount": 225000,
                 "density": 0.00002,
                 "dissolved": 0.0
             },
@@ -179,18 +179,18 @@
                 "chunkScale": 1.0,
                 "mass": 100,
                 "size": 2,
-                "ventAmount": 3.0,
+                "ventAmount": 6.0,
                 "damages": 0.0,
                 "deleteOnTouch": false,
                 "compounds": {
                     "iron": {
-                        "amount": 100.0
+                        "amount": 200.0
                     }
                 }
             },
             "marineSnow": {
                 "name": "Marine snow",
-                "meshes": ["nucleus", "chloroplast", "oxytoxy","flagellum",
+                "meshes": ["oxytoxy_gland", "nucleus", "chloroplast", "oxytoxy","flagellum",
                 "chemoplast","nitrogenplastid","metabolosome","chromatophores",
                 "vacuole","mitochondrion","chemoproteins","nitrogenase","rusticyanin"],
                 "density": 0.00004,
@@ -226,12 +226,12 @@
                 "chunkScale": 1.0,
                 "mass": 100,
                 "size": 100,
-                "ventAmount": 10.0,
+                "ventAmount": 20.0,
                 "damages": 0.0,
                 "deleteOnTouch": false,
                 "compounds": {
                     "iron": {
-                        "amount": 30000.0
+                        "amount": 60000.0
                     }
                 }
             }
@@ -241,25 +241,25 @@
         
         "compounds": {
             "ammonia": {
-                "amount": 300000,
+                "amount": 200000,
                 "density": 0.00002,
                 "dissolved": 0.0
             },
 
             "glucose": {
-                "amount": 350000,
+                "amount": 250000,
                 "density": 0.00002,
                 "dissolved": 0.0
             },
             
             "phosphates": {
-                "amount": 300000,
+                "amount": 200000,
                 "density": 0.00002,
                 "dissolved": 0.0
             },
 
             "hydrogensulfide": {
-                "amount": 325000,
+                "amount": 225000,
                 "density": 0.00002,
                 "dissolved": 0.0
             },
@@ -335,12 +335,12 @@
                 "chunkScale": 1.0,
                 "mass": 100,
                 "size": 2,
-                "ventAmount": 3.0,
+                "ventAmount": 6.0,
                 "damages": 0.0,
                 "deleteOnTouch": false,
                 "compounds": {
                     "iron": {
-                        "amount": 100.0
+                        "amount": 200.0
                     }
                 }
             },
@@ -353,12 +353,12 @@
                 "chunkScale": 1.0,
                 "mass": 100,
                 "size": 100,
-                "ventAmount": 10.0,
+                "ventAmount": 20.0,
                 "damages": 0.0,
                 "deleteOnTouch": false,
                 "compounds": {
                     "iron": {
-                        "amount": 30000.0
+                        "amount": 60000.0
                     }
                 }
             }
@@ -368,25 +368,25 @@
         
         "compounds": {
             "ammonia": {
-                "amount": 300000,
+                "amount": 200000,
                 "density": 0.00002,
                 "dissolved": 0.0
             },
 
             "glucose": {
-                "amount": 350000,
+                "amount": 250000,
                 "density": 0.00002,
                 "dissolved": 0.0
             },
             
             "phosphates": {
-                "amount": 300000,
+                "amount": 200000,
                 "density": 0.00002,
                 "dissolved": 0.0
             },
 
             "hydrogensulfide": {
-                "amount": 325000,
+                "amount": 225000,
                 "density": 0.00002,
                 "dissolved": 0.0
             },
@@ -413,6 +413,161 @@
     "bathypalagic": {
         "name": "Bathypalagic",
         "background": "Background_Bathypalagic",
+        "lightPower": 30.0,
+		"colors":{
+		    "specularColors": {
+                "r": 0,
+                "g": 0.4,
+                "b": 0.5
+			},
+		    "diffuseColors": {
+                "r": 0,
+                "g": 0.4,
+                "b": 0.5
+			},
+		    "upperAmbientColor": {
+                "r": 0.2,
+                "g": 0.5, 
+                "b": 0.5
+			},
+		    "lowerAmbientColor": {
+                "r": 0.1,
+                "g": 0.5, 
+                "b": 0.5
+			}
+		},
+        
+        "chunks":{
+            "floatingToxin": {
+                "name": "Floating Hazard",
+                "meshes": ["oxytoxy"],
+                "density": 0.000015,
+                "dissolves": false,
+                "radius": 1,
+                "chunkScale": 1.0,
+                "mass": 7,
+                "size": 10000,
+                "ventAmount": 3.0,
+                "damages": 10.0,
+                "deleteOnTouch": true,
+                "compounds": {
+                }
+            },
+            "ironSmallChunk": {
+                "name": "Small Iron Chunk",
+                "meshes": ["iron_01", "iron_02", "iron_03","iron_04"],
+                "density": 0.000015,
+                "dissolves": true,
+                "radius": 1,
+                "chunkScale": 1.0,
+                "mass": 100,
+                "size": 2,
+                "ventAmount": 6.0,
+                "damages": 0.0,
+                "deleteOnTouch": false,
+                "compounds": {
+                    "iron": {
+                        "amount": 200.0
+                    }
+                }
+            },
+            "ironBigChunk": {
+                "name": "Big Iron Chunk",
+                "meshes":  [ "iron_05" ],
+                "density": 0.000015,
+                "dissolves": true,
+                "radius": 10,
+                "chunkScale": 1.0,
+                "mass": 100,
+                "size": 100,
+                "ventAmount": 20.0,
+                "damages": 0.0,
+                "deleteOnTouch": false,
+                "compounds": {
+                    "iron": {
+                        "amount": 60000.0
+                    }
+                }
+            },
+            "marineSnow": {
+                "name": "Marine snow",
+                "meshes": ["oxytoxy_gland", "nucleus", "chloroplast", "oxytoxy","flagellum",
+                "chemoplast","nitrogenplastid","metabolosome","chromatophores",
+                "vacuole","mitochondrion","chemoproteins","nitrogenase","rusticyanin"],
+                "density": 0.0002,
+                "dissolves": true,
+                "radius": 1,
+                "chunkScale": 1.0,
+                "mass": 7,
+                "size": 2,
+                "ventAmount": 3.0,
+                "damages": 0.0,
+                "deleteOnTouch": false,
+                "compounds": {
+                    "atp": {
+                        "amount": 100.0
+                    },
+                    "ammonia": {
+                        "amount": 100.0
+                    },
+                    "phosphates": {
+                        "amount": 100.0
+                    },
+                    "glucose": {
+                        "amount": 100.0
+                    }
+                }
+            }
+        },
+        
+		"averageTemperature": 4,
+        "compounds": {
+            "ammonia": {
+                "amount": 200000,
+                "density": 0.00002,
+                "dissolved": 0.0
+            },
+
+            "glucose": {
+                "amount": 250000,
+                "density": 0.00002,
+                "dissolved": 0.0
+            },
+            
+            "phosphates": {
+                "amount": 200000,
+                "density": 0.00002,
+                "dissolved": 0.0
+            },
+
+            "hydrogensulfide": {
+                "amount": 225000,
+                "density": 0.00002,
+                "dissolved": 0.0
+            },
+
+            "oxygen": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 0.21
+            },
+            
+            "carbondioxide": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 0.09
+            },
+            
+            "nitrogen": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 0.70
+            } 
+        }
+    },
+ "abyssopelagic": {
+        "name": "Abyssopelagic",
+        "background": "Background_Abyssopelagic",
         "lightPower": 25.0,
 		"colors":{
 		    "specularColors": {
@@ -462,12 +617,12 @@
                 "chunkScale": 1.0,
                 "mass": 100,
                 "size": 2,
-                "ventAmount": 3.0,
+                "ventAmount": 6.0,
                 "damages": 0.0,
                 "deleteOnTouch": false,
                 "compounds": {
                     "iron": {
-                        "amount": 100.0
+                        "amount": 200.0
                     }
                 }
             },
@@ -480,18 +635,18 @@
                 "chunkScale": 1.0,
                 "mass": 100,
                 "size": 100,
-                "ventAmount": 10.0,
+                "ventAmount": 20.0,
                 "damages": 0.0,
                 "deleteOnTouch": false,
                 "compounds": {
                     "iron": {
-                        "amount": 30000.0
+                        "amount": 60000.0
                     }
                 }
             },
             "marineSnow": {
                 "name": "Marine snow",
-                "meshes": ["nucleus", "chloroplast", "oxytoxy","flagellum",
+                "meshes": ["oxytoxy_gland", "nucleus", "chloroplast", "oxytoxy","flagellum",
                 "chemoplast","nitrogenplastid","metabolosome","chromatophores",
                 "vacuole","mitochondrion","chemoproteins","nitrogenase","rusticyanin"],
                 "density": 0.00002,
@@ -523,25 +678,25 @@
 		"averageTemperature": 2,
         "compounds": {
             "ammonia": {
-                "amount": 300000,
+                "amount": 200000,
                 "density": 0.00002,
                 "dissolved": 0.0
             },
 
             "glucose": {
-                "amount": 350000,
+                "amount": 250000,
                 "density": 0.00002,
                 "dissolved": 0.0
             },
             
             "phosphates": {
-                "amount": 300000,
+                "amount": 200000,
                 "density": 0.00002,
                 "dissolved": 0.0
             },
 
             "hydrogensulfide": {
-                "amount": 325000,
+                "amount": 225000,
                 "density": 0.00002,
                 "dissolved": 0.0
             },
@@ -618,12 +773,12 @@
                 "chunkScale": 1.0,
                 "mass": 100,
                 "size": 2,
-                "ventAmount": 3.0,
+                "ventAmount": 6.0,
                 "damages": 0.0,
                 "deleteOnTouch": false,
                 "compounds": {
                     "iron": {
-                        "amount": 100.0
+                        "amount": 200.0
                     }
                 }
             },
@@ -636,18 +791,18 @@
                 "chunkScale": 1.0,
                 "mass": 100,
                 "size": 100,
-                "ventAmount": 10.0,
+                "ventAmount": 20.0,
                 "damages": 0.0,
                 "deleteOnTouch": false,
                 "compounds": {
                     "iron": {
-                        "amount": 30000.0
+                        "amount": 60000.0
                     }
                 }
             },
             "marineSnow": {
                 "name": "Marine snow",
-                "meshes": ["nucleus", "chloroplast", "oxytoxy","flagellum",
+                "meshes": ["oxytoxy_gland", "nucleus", "chloroplast", "oxytoxy","flagellum",
                 "chemoplast","nitrogenplastid","metabolosome","chromatophores",
                 "vacuole","mitochondrion","chemoproteins","nitrogenase","rusticyanin"],
                 "density": 0.00002,
@@ -679,25 +834,25 @@
 		"averageTemperature": 2,
         "compounds": {
             "ammonia": {
-                "amount": 300000,
+                "amount": 200000,
                 "density": 0.00002,
                 "dissolved": 0.0
             },
 
             "glucose": {
-                "amount": 350000,
+                "amount": 250000,
                 "density": 0.00002,
                 "dissolved": 0.0
             },
             
             "phosphates": {
-                "amount": 300000,
+                "amount": 200000,
                 "density": 0.00002,
                 "dissolved": 0.0
             },
 
             "hydrogensulfide": {
-                "amount": 325000,
+                "amount": 225000,
                 "density": 0.00002,
                 "dissolved": 0.0
             },
@@ -774,12 +929,12 @@
                 "chunkScale": 1.0,
                 "mass": 100,
                 "size": 2,
-                "ventAmount": 3.0,
+                "ventAmount": 6.0,
                 "damages": 0.0,
                 "deleteOnTouch": false,
                 "compounds": {
                     "iron": {
-                        "amount": 100.0
+                        "amount": 200.0
                     }
                 }
             },
@@ -792,12 +947,12 @@
                 "chunkScale": 1.0,
                 "mass": 100,
                 "size": 100,
-                "ventAmount": 10.0,
+                "ventAmount": 20.0,
                 "damages": 0.0,
                 "deleteOnTouch": false,
                 "compounds": {
                     "iron": {
-                        "amount": 30000.0
+                        "amount": 60000.0
                     }
                 }
             }
@@ -806,25 +961,25 @@
 		"averageTemperature": 17,
         "compounds": {
             "ammonia": {
-                "amount": 300000,
+                "amount": 200000,
                 "density": 0.00002,
                 "dissolved": 0.0
             },
 
             "glucose": {
-                "amount": 350000,
+                "amount": 250000,
                 "density": 0.00002,
                 "dissolved": 0.0
             },
             
             "phosphates": {
-                "amount": 300000,
+                "amount": 200000,
                 "density": 0.00002,
                 "dissolved": 0.0
             },
 
             "hydrogensulfide": {
-                "amount": 325000,
+                "amount": 225000,
                 "density": 0.00002,
                 "dissolved": 0.0
             },
@@ -901,12 +1056,12 @@
                 "chunkScale": 1.0,
                 "mass": 100,
                 "size": 2,
-                "ventAmount": 3.0,
+                "ventAmount": 6.0,
                 "damages": 0.0,
                 "deleteOnTouch": false,
                 "compounds": {
                     "iron": {
-                        "amount": 100.0
+                        "amount": 200.0
                     }
                 }
             },
@@ -919,12 +1074,12 @@
                 "chunkScale": 1.0,
                 "mass": 100,
                 "size": 100,
-                "ventAmount": 10.0,
+                "ventAmount": 20.0,
                 "damages": 0.0,
                 "deleteOnTouch": false,
                 "compounds": {
                     "iron": {
-                        "amount": 30000.0
+                        "amount": 60000.0
                     }
                 }
             }
@@ -933,25 +1088,25 @@
 		"averageTemperature": 23,
         "compounds": {
             "ammonia": {
-                "amount": 300000,
+                "amount": 200000,
                 "density": 0.00002,
                 "dissolved": 0.0
             },
 
             "glucose": {
-                "amount": 350000,
+                "amount": 250000,
                 "density": 0.00002,
                 "dissolved": 0.0
             },
             
             "phosphates": {
-                "amount": 300000,
+                "amount": 200000,
                 "density": 0.00002,
                 "dissolved": 0.0
             },
 
             "hydrogensulfide": {
-                "amount": 325000,
+                "amount": 225000,
                 "density": 0.00002,
                 "dissolved": 0.0
             },
@@ -1028,12 +1183,12 @@
                 "chunkScale": 1.0,
                 "mass": 100,
                 "size": 2,
-                "ventAmount": 3.0,
+                "ventAmount": 6.0,
                 "damages": 0.0,
                 "deleteOnTouch": false,
                 "compounds": {
                     "iron": {
-                        "amount": 100.0
+                        "amount": 200.0
                     }
                 }
             },
@@ -1076,12 +1231,12 @@
                 "chunkScale": 1.0,
                 "mass": 100,
                 "size": 100,
-                "ventAmount": 10.0,
+                "ventAmount": 20.0,
                 "damages": 0.0,
                 "deleteOnTouch": false,
                 "compounds": {
                     "iron": {
-                        "amount": 30000.0
+                        "amount": 60000.0
                     }
                 }
             }
@@ -1091,25 +1246,25 @@
         
         "compounds": {
             "ammonia": {
-                "amount": 300000,
+                "amount": 200000,
                 "density": 0.00002,
                 "dissolved": 0.0
             },
 
             "glucose": {
-                "amount": 350000,
+                "amount": 250000,
                 "density": 0.00002,
                 "dissolved": 0.0
             },
             
             "phosphates": {
-                "amount": 300000,
+                "amount": 200000,
                 "density": 0.00002,
                 "dissolved": 0.0
             },
 
             "hydrogensulfide": {
-                "amount": 325000,
+                "amount": 225000,
                 "density": 0.00002,
                 "dissolved": 0.0
             },
@@ -1186,12 +1341,12 @@
                 "chunkScale": 1.0,
                 "mass": 100,
                 "size": 2,
-                "ventAmount": 3.0,
+                "ventAmount": 6.0,
                 "damages": 0.0,
                 "deleteOnTouch": false,
                 "compounds": {
                     "iron": {
-                        "amount": 100.0
+                        "amount": 200.0
                     }
                 }
             },
@@ -1204,12 +1359,12 @@
                 "chunkScale": 1.0,
                 "mass": 100,
                 "size": 100,
-                "ventAmount": 10.0,
+                "ventAmount": 20.0,
                 "damages": 0.0,
                 "deleteOnTouch": false,
                 "compounds": {
                     "iron": {
-                        "amount": 30000.0
+                        "amount": 60000.0
                     }
                 }
             }
@@ -1219,25 +1374,25 @@
         
         "compounds": {
             "ammonia": {
-                "amount": 300000,
+                "amount": 200000,
                 "density": 0.00002,
                 "dissolved": 0.0
             },
 
             "glucose": {
-                "amount": 350000,
+                "amount": 250000,
                 "density": 0.00002,
                 "dissolved": 0.0
             },
             
             "phosphates": {
-                "amount": 300000,
+                "amount": 200000,
                 "density": 0.00002,
                 "dissolved": 0.0
             },
 
             "hydrogensulfide": {
-                "amount": 325000,
+                "amount": 225000,
                 "density": 0.00002,
                 "dissolved": 0.0
             },
@@ -1314,12 +1469,12 @@
                 "chunkScale": 1.0,
                 "mass": 100,
                 "size": 2,
-                "ventAmount": 3.0,
+                "ventAmount": 6.0,
                 "damages": 0.0,
                 "deleteOnTouch": false,
                 "compounds": {
                     "iron": {
-                        "amount": 100.0
+                        "amount": 200.0
                     }
                 }
             },
@@ -1332,18 +1487,18 @@
                 "chunkScale": 1.0,
                 "mass": 100,
                 "size": 100,
-                "ventAmount": 10.0,
+                "ventAmount": 20.0,
                 "damages": 0.0,
                 "deleteOnTouch": false,
                 "compounds": {
                     "iron": {
-                        "amount": 30000.0
+                        "amount": 60000.0
                     }
                 }
             },
             "marineSnow": {
                 "name": "Marine snow",
-                "meshes": ["nucleus", "chloroplast", "oxytoxy","flagellum",
+                "meshes": ["oxytoxy_gland", "nucleus", "chloroplast", "oxytoxy","flagellum",
                 "chemoplast","nitrogenplastid","metabolosome","chromatophores",
                 "vacuole","mitochondrion","chemoproteins","nitrogenase","rusticyanin"],
                 "density": 0.00004,
@@ -1375,25 +1530,25 @@
 		"averageTemperature": 4,
         "compounds": {
             "ammonia": {
-                "amount": 300000,
+                "amount": 200000,
                 "density": 0.00002,
                 "dissolved": 0.0
             },
 
             "glucose": {
-                "amount": 350000,
+                "amount": 250000,
                 "density": 0.00002,
                 "dissolved": 0.0
             },
             
             "phosphates": {
-                "amount": 300000,
+                "amount": 200000,
                 "density": 0.00002,
                 "dissolved": 0.0
             },
 
             "hydrogensulfide": {
-                "amount": 325000,
+                "amount": 225000,
                 "density": 0.00002,
                 "dissolved": 0.0
             },

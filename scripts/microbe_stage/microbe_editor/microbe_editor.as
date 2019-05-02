@@ -65,6 +65,7 @@ class MicrobeEditor{
             {"chemoSynthisizingProteins", PlacementFunctionType(this.addOrganelle)},
             {"rusticyanin", PlacementFunctionType(this.addOrganelle)},
             {"nitrogenase", PlacementFunctionType(this.addOrganelle)},
+            {"oxytoxyProteins", PlacementFunctionType(this.addOrganelle)},
             {"remove", PlacementFunctionType(this.removeOrganelle)}
         };
     }
