@@ -574,21 +574,21 @@ void setupOrganelles(){
 
     oxytoxyProtein.mass = 0.1;
     oxytoxyProtein.gene = "t";
-    oxytoxyProtein.mesh = "oxytoxy.mesh";
+    oxytoxyProtein.mesh = "metabolosome.mesh";
     oxytoxyProtein.chanceToCreate = 0;
     oxytoxyProtein.prokaryoteChance = 1;
-    oxytoxyProtein.mpCost = 15;
+    oxytoxyProtein.mpCost = 55;
     oxytoxyProtein.initialComposition = {
         {"phosphates", 1},
         {"ammonia", 1}
     };
     oxytoxyProtein.components = {
-        agentVacuoleFactory("oxytoxy", "oxytoxySynthesis"),
-        storageOrganelleFactory(2.0f),
+        agentVacuoleFactory("oxytoxy", "bacterial_oxytoxySynthesis"),
+        storageOrganelleFactory(4.0f),
         processorOrganelleFactory(1.0f)
     };
     oxytoxyProtein.processes = {
-     TweakedProcess("oxytoxySynthesis", 1),
+     TweakedProcess("bacterial_oxytoxySynthesis", 1),
      TweakedProcess("glycolosis", 1)
     };
     oxytoxyProtein.hexes = {
