@@ -293,7 +293,7 @@ void setupOrganelles(){
     cytoplasmParameters.mesh = ""; //it's an empty hex
     cytoplasmParameters.chanceToCreate = 1;
     cytoplasmParameters.prokaryoteChance = 1;
-    cytoplasmParameters.mpCost = 30;
+    cytoplasmParameters.mpCost = 22;
     cytoplasmParameters.initialComposition = {
         {"phosphates", 2},
         {"ammonia", 2}
@@ -575,7 +575,7 @@ void setupOrganelles(){
     oxytoxyProtein.mass = 0.1;
     oxytoxyProtein.gene = "t";
     oxytoxyProtein.mesh = "metabolosome.mesh";
-    oxytoxyProtein.chanceToCreate = 0;
+    oxytoxyProtein.chanceToCreate = 1;
     oxytoxyProtein.prokaryoteChance = 1;
     oxytoxyProtein.mpCost = 55;
     oxytoxyProtein.initialComposition = {
