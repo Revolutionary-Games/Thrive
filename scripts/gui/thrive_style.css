@@ -699,12 +699,14 @@ video {
 #populationText {
   position: absolute;
   height: 40px;
-  width: 150px;
+  width: 160px;
   top: 0;
   left: 960px;
   font-size: 10pt;
   line-height: 40px;
   background-image: url("../../Textures/gui/bevel/LongTwoNormal.png");
+  background-repeat: no-repeat;
+  text-indent: 10px;
 }
 
 #populationCount {
@@ -715,6 +717,7 @@ video {
   left: 1040px;
   font-size: 10pt;
   line-height: 40px;
+  text-indent: 10px;
 }
 
 #oxygenTab {
