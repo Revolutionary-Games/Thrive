@@ -374,7 +374,7 @@ void cellHitDamageChunk(GameWorld@ world, ObjectID firstEntity, ObjectID secondE
             disappear=true;
         }
         else if (!damage.getDeletes() && !microbeComponent.dead){
-            MicrobeOperations::damage(asCellWorld, cellEntity, double(damage.getDamage()), "toxin");
+            MicrobeOperations::damage(asCellWorld, cellEntity, double(damage.getDamage()), "chunk");
         }
     }
 
@@ -646,7 +646,7 @@ void createAgentCloud(CellStageWorld@ world, CompoundId compoundId,
     body.SetVelocity(normalizedDirection * AGENT_EMISSION_VELOCITY);
     rigidBody.JumpTo(position);
     auto sceneNode = world.Create_RenderNode(agentEntity);
-    auto model = world.Create_Model(agentEntity, sceneNode.Node, "oxytoxy.mesh");
+    auto model = world.Create_Model(agentEntity, sceneNode.Node, "oxytoxy_fluid.mesh");
 
     // Need to set the tint
     model.GraphicalObject.setCustomParameter(1, Ogre::Vector4(1, 1, 1, 1));
