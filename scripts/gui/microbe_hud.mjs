@@ -355,9 +355,8 @@ function onExitToMenuClicked() {
         document.getElementById("extinctionBody").style.display = "none";
         document.getElementById("extinctionContainer").style.display = "none";
         hideWinText();
-
         // Gotta reset this
-        wonOnce = false;
+        wonOnce=false;
         Thrive.exitToMenuClicked();
 
     } else {

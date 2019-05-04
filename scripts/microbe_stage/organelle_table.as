@@ -347,7 +347,7 @@ void setupOrganelles(){
 
     oxytoxyParameters.mass = 0.3;
     oxytoxyParameters.gene = "T";
-    oxytoxyParameters.mesh = "oxytoxy.mesh";
+    oxytoxyParameters.mesh = "oxytoxy_gland.mesh";
     oxytoxyParameters.chanceToCreate = 1;
     oxytoxyParameters.prokaryoteChance = 0;
     oxytoxyParameters.mpCost = 70;
@@ -574,7 +574,7 @@ void setupOrganelles(){
 
     oxytoxyProtein.mass = 0.1;
     oxytoxyProtein.gene = "t";
-    oxytoxyProtein.mesh = "metabolosome.mesh";
+    oxytoxyProtein.mesh = "oxytoxy.mesh";
     oxytoxyProtein.chanceToCreate = 1;
     oxytoxyProtein.prokaryoteChance = 1;
     oxytoxyProtein.mpCost = 55;
