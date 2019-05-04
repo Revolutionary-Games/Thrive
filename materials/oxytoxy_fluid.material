@@ -28,7 +28,7 @@ material oxytoxy_fluid
             texture_unit 
             {
                 texture oxytoxy_fluid.png gamma
-				alpha_op_ex modulate src_manual src_texture .7
+				alpha_op_ex modulate src_manual src_texture 1.0
                 colour_op_ex modulate src_manual src_texture 1.0 1.0 1.0
             }
         }
