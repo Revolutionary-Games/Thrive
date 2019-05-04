@@ -728,10 +728,14 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         auto finalAngle = (angle + microbeAngle) % 360;
         auto s = sin(finalAngle/180*PI);
         auto c = cos(finalAngle/180*PI);
+        //Bacteria need to be able to shoot closer to themselves
+        auto ourHex = HEX_SIZE;
+        if (microbeComponent.isBacteria)
+            ourHex/=2;
         // Membrane coords to world coords
         // Plus bunch more space in world coordinates like we added before with maxr but cleaner
-        auto xnew = -(membraneCoords.x) * c + (membraneCoords.z+maxR*HEX_SIZE) * s;
-        auto ynew = (membraneCoords.x)* s + (membraneCoords.z+maxR*HEX_SIZE) * c;
+        auto xnew = -(membraneCoords.x) * c + (membraneCoords.z+maxR*ourHex) * s;
+        auto ynew = (membraneCoords.x)* s + (membraneCoords.z+maxR*ourHex) * c;
         // Find the direction the microbe is facing
         auto vec = ( microbeComponent.facingTargetPoint - cellPosition._Position);
         auto direction = vec.Normalize();
