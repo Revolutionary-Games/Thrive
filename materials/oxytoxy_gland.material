@@ -9,7 +9,7 @@ material oxytoxy_gland
             // lighting off
             
             scene_blend alpha_blend
-			depth_write on
+			depth_write off
             point_sprites on
             
             vertex_program_ref Organelle_VS
