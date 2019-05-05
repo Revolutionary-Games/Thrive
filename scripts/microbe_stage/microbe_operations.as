@@ -895,22 +895,46 @@ bool validPlacement(CellStageWorld@ world, ObjectID microbeEntity, const Organel
     return touching;
 }
 
-// speciesName decides the template to use, while individualName is
-// used for referencing the instance
-ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in speciesName,
-    bool aiControlled)
+// function creates a microbe to be spawned by either the spawnMicrobe function or
+// the spawnBacteria function, reduces code duplication
+ObjectID createMicrobe(CellStageWorld@ world, Float3 pos, const string &in speciesName,
+    bool aiControlled, string typeOfMicrobe)
 {
     assert(world !is null);
     assert(speciesName != "");
 
     if(pos.Y != 0)
-        LOG_WARNING("spawnMicrobe: spawning at y-coordinate: " + pos.Y);
-
+        LOG_WARNING("spawn" + typeOfMicrobe + ": spawning at y-coordinate: " + pos.Y);
 
     // Create microbeEntity with correct template, physics and species name
     auto microbeEntity = _createMicrobeEntity(world, aiControlled, speciesName,
+
+    auto processor = getProcessorComponent(world, speciesName);
+
+    if(processor is null){
+        LOG_ERROR("Skipping " + typeOfMicrobe + " spawn because species '" + speciesName +
+            "' doesn't have a processor component");
+
+        return NULL_OBJECT;
+    }
+    
+    return _createMicrobeEntity(world, aiControlled, speciesName,
         // in_editor
         false);
+}
+
+// speciesName decides the template to use, while individualName is
+// used for referencing the instance
+ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in speciesName,
+    bool aiControlled)
+{
+    // Create microbeEntity with correct template, physics and species name
+    auto microbeEntity = createMicrobe(world, pos, speciesName, aiControlled, "Microbe");
+    
+    if (microbeEntity == NULL_OBJECT)
+    {
+        return NULL_OBJECT;
+    }
 
     // Teleport the cell to the right position
     auto microbePos = world.GetComponent_Position(microbeEntity);
@@ -930,8 +954,9 @@ ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in specie
     auto speciesEntity = findSpeciesEntityByName(world, speciesName);
     auto species = world.GetComponent_SpeciesComponent(speciesEntity);
 
-    // TODO: Why is this here with the separate spawnBacteria function existing?
-    // Bacteria get scaled to half size
+    // I guess this is to check for if things are prokaryotes rather than check if they
+    // are bacteria, when this was removed in testing, prokaryotes spawned at the sizes of
+    // eukaryotes, it was quite scary
     if(species.isBacteria){
         node.Scale = Float3(0.5, 0.5, 0.5);
         node.Marked = true;
@@ -944,16 +969,13 @@ ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in specie
 ObjectID spawnBacteria(CellStageWorld@ world, Float3 pos, const string &in speciesName,
     bool aiControlled, bool partOfColony)
 {
-    assert(world !is null);
-    assert(speciesName != "");
-
-    if(pos.Y != 0)
-        LOG_WARNING("spawnBacteria: spawning at y-coordinate: " + pos.Y);
-
     // Create microbeEntity with correct template, physics and species name
-    auto microbeEntity = _createMicrobeEntity(world, aiControlled, speciesName,
-        // in_editor
-        false);
+    auto microbeEntity = createMicrobe(world, pos, speciesName, aiControlled, "Bacteria");
+    
+    if (microbeEntity == NULL_OBJECT)
+    {
+        return NULL_OBJECT;
+    }
 
     // Teleport the cell to the right position
     auto microbePos = world.GetComponent_Position(microbeEntity);
