@@ -70,30 +70,20 @@ string mutateWord(string name) {
                                         "n", "p", "q", "r", "s", "t", "v", "w", "x", "y", "z"};
 
     string newName = name;
-    int changeLimit = 4;
+    int changeLimit = 1;
+    int letterChangeLimit = 3;
+    int letterChanges=0;
     int changes=0;
 
-    //Ignore the first letter and last letter
+    // 2% chance each letter
     for(uint i = 1; i < newName.length()-1; i++) {
-        // Index we are adding or erasing chromosomes at
-        uint index = newName.length() - i - 1;
+        if(GetEngine().GetRandom().GetNumber(0,120) <= 1  && changes <= changeLimit){
+            // Index we are adding or erasing chromosomes at
+            uint index = newName.length() - i - 1;
 
-        // Are we a vowel or are we a consonant?
-        bool isVowel = vowels.find(newName.substr(index,1)) >= 0;
+            // Are we a vowel or are we a consonant?
+            bool isVowel = vowels.find(newName.substr(index,1)) >= 0;
 
-        //30 percent chance replace
-        if(GetEngine().GetRandom().GetNumber(0,20) <= 6 && changes <= changeLimit) {
-            newName.erase(index, 1);
-            changes++;
-
-            if (isVowel)
-                newName.insert(index, randomChoice(vowels));
-            else
-                newName.insert(index, randomChoice(consonants));
-        }
-
-        //10 percent chance new syllable
-        if(GetEngine().GetRandom().GetNumber(0,20) <= 2  && changes <= changeLimit){
             string original = newName.substr(index, 1);
             newName.erase(index, 1);
             changes++;
@@ -120,7 +110,6 @@ string mutateWord(string name) {
                         break;
                 }
             }
-
             // If is vowel
             else {
                 if(GetEngine().GetRandom().GetNumber(0,20) <= 10)
@@ -130,9 +119,29 @@ string mutateWord(string name) {
             }
         }
     }
+    //Ignore the first letter and last letter
+    for(uint i = 1; i < newName.length()-1; i++) {
+        // Index we are adding or erasing chromosomes at
+        uint index = newName.length() - i - 1;
+
+        // Are we a vowel or are we a consonant?
+        bool isVowel = vowels.find(newName.substr(index,1)) >= 0;
+
+        //50 percent chance replace
+        if(GetEngine().GetRandom().GetNumber(0,20) <= 10 && changes <= changeLimit) {
+            newName.erase(index, 1);
+            letterChanges++;
+
+            if (isVowel)
+                newName.insert(index, randomChoice(vowels));
+            else
+                newName.insert(index, randomChoice(consonants));
+        }
+
+    }
 
     // Our base case
-    if(changes == 0) {
+    if(letterChanges < 2 && changes==0 ) {
         //We didnt change our word at all, try again recursviely until we do
         return mutateWord(name);
     }
@@ -295,7 +304,7 @@ class Species{
             LOG_INFO("X:"+parent.colour.X+" Y:"+parent.colour.Y+" Z:"+parent.colour.Z+" W:"+parent.colour.W);
             LOG_INFO("X:"+colour.X+" Y:"+colour.Y+" Z:"+colour.Z+" W:"+colour.W);
             // Chance of new color needs to be low
-            if (GetEngine().GetRandom().GetNumber(0,100) <= 20)
+            if (GetEngine().GetRandom().GetNumber(0,100) <= 50)
             {
                 LOG_INFO("New Genus");
                 // We can do more fun stuff here later
@@ -616,7 +625,7 @@ class Species{
         LOG_INFO("X:"+parent.colour.X+" Y:"+parent.colour.Y+" Z:"+parent.colour.Z+" W:"+parent.colour.W);
         LOG_INFO("X:"+colour.X+" Y:"+colour.Y+" Z:"+colour.Z+" W:"+colour.W);
 
-        if (GetEngine().GetRandom().GetNumber(0,100) <= 20)
+        if (GetEngine().GetRandom().GetNumber(0,100) <= 50)
         {
             LOG_INFO("New Genus of bacteria");
 
@@ -716,14 +725,14 @@ class Species{
 const auto INITIAL_POPULATION = 3000;
 
 // How much time does it take for the simulation to update.
-const auto SPECIES_SIM_INTERVAL = 5000;
+const auto SPECIES_SIM_INTERVAL = 2500;
 
 // If a specie's population goes below this it goes extinct.
 const auto MIN_POP_SIZE = 500;
 
 // If a specie's population goes above this it gets split in half and a
 // new mutated species apears. this should be randomized
-const auto MAX_POP_SIZE = 6000;
+const auto MAX_POP_SIZE = 3000;
 
 // The amount of species at the start of the microbe stage (not counting Default/Player)
 const auto INITIAL_SPECIES = 7;
