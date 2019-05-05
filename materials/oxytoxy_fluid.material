@@ -6,11 +6,9 @@ material oxytoxy_fluid
     {
         pass oxytoxy_fluid
         {
-            // lighting off
-            
+            //lighting on
             scene_blend alpha_blend
 			depth_write on
-            point_sprites on
             
             vertex_program_ref Organelle_VS
             {
