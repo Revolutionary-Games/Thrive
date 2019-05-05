@@ -233,11 +233,7 @@ void onReturnFromEditor(CellStageWorld@ world)
     SpeciesComponent@ ourActualSpecies = MicrobeOperations::getSpeciesComponent(world, player);
     auto membraneComponent = world.GetComponent_MembraneComponent(player);
 
-    // Call this before creating the clone.
-    Species::initProcessorComponent(world, player, ourActualSpecies);
     // Can probabbly wrap this into the usual init to keep things clean
-    // This makes sure that the player's processer are up to date with their species
-    Species::copyProcessesFromSpecies(world, ourActualSpecies, player);
 
     PlayerSpeciesSpawner factory("Default");
 
@@ -256,6 +252,7 @@ void onReturnFromEditor(CellStageWorld@ world)
         world.GetScriptComponentHolder("MicrobeComponent").Find(player));
 
     // Reset the player cell to be the same as the species template
+    // This also sets the processor component
     Species::restoreOrganelleLayout(world, player, microbeComponent, playerSpecies);
 
     // Reset Players reproduction
