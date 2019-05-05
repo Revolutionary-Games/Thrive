@@ -281,6 +281,7 @@ string mutateMicrobe(const string &in stringCode, bool isBacteria)
 
     completeString = join(modifiedArray,"|");
 
+    // Can add up to 6 new organelles (Which should allow AI to catch up to player more
     // We can insert new organelles at the end of the list
     if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
         auto organelleList = positionOrganelles(completeString);
@@ -290,6 +291,25 @@ string mutateMicrobe(const string &in stringCode, bool isBacteria)
         //LOG_INFO("Adding");
         //LOG_INFO("chromosomes:"+returnedGenome);
         completeString+="|"+returnedGenome;
+    }
+
+    /*
+    Probability of mutation occuring 5 time(s) = 0.15 = 1.0E-5
+    Probability of mutation NOT occuring = (1 - 0.1)5 = 0.59049
+    Probability of mutation occuring = 1 - (1 - 0.1)5 = 0.40951
+    */
+    // We can insert new organelles at the end of the list
+    for(int n = 0; n < 5; n++ ){
+    // We can insert new organelles at the end of the list
+        if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_EXTRA_CREATION_RATE){
+            auto organelleList = positionOrganelles(completeString);
+            const auto letter = getRandomLetter(isBacteria);
+            string name = string(organelleLetters[letter]);
+            string returnedGenome = translateOrganelleToGene(getRealisticPosition(name,organelleList));
+            //LOG_INFO("Adding");
+            //LOG_INFO("chromosomes:"+returnedGenome);
+            completeString+="|"+returnedGenome;
+        }
     }
 
     LOG_INFO("Mutated: "+completeString);
