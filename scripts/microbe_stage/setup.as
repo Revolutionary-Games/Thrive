@@ -374,7 +374,7 @@ void cellHitDamageChunk(GameWorld@ world, ObjectID firstEntity, ObjectID secondE
             disappear=true;
         }
         else if (!damage.getDeletes() && !microbeComponent.dead){
-            MicrobeOperations::damage(asCellWorld, cellEntity, double(damage.getDamage()), "toxin");
+            MicrobeOperations::damage(asCellWorld, cellEntity, double(damage.getDamage()), "chunk");
         }
     }
 
