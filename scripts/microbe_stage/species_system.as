@@ -108,9 +108,9 @@ string mutateWord(string name) {
                 pronoucablePermutation.find(newName.substr(index-2,2)) > 0 ||
                 pronoucablePermutation.find(newName.substr(index,2)) > 0){
                     isPermute=true;
-                    LOG_INFO(i + ":"+newName.substr(index-1,2));
-                    LOG_INFO(i + ":"+newName.substr(index-2,2));
-                    LOG_INFO(i + ":"+newName.substr(index,2));
+                    //LOG_INFO(i + ":"+newName.substr(index-1,2));
+                    //LOG_INFO(i + ":"+newName.substr(index-2,2));
+                    //LOG_INFO(i + ":"+newName.substr(index,2));
                 }
             }
 
@@ -163,9 +163,9 @@ string mutateWord(string name) {
             pronoucablePermutation.find(newName.substr(index-2,2)) > 0 ||
             pronoucablePermutation.find(newName.substr(index,2)) > 0){
                 isPermute=true;
-                LOG_INFO(i + ":"+newName.substr(index-1,2));
-                LOG_INFO(i + ":"+newName.substr(index-2,2));
-                LOG_INFO(i + ":"+newName.substr(index,2));
+                //LOG_INFO(i + ":"+newName.substr(index-1,2));
+                //LOG_INFO(i + ":"+newName.substr(index-2,2));
+                //LOG_INFO(i + ":"+newName.substr(index,2));
             }
         }
 
