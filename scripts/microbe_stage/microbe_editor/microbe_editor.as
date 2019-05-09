@@ -130,7 +130,7 @@ class MicrobeEditor{
         for(uint i = 0; i < templateOrganelles.length(); ++i){
             auto organelle = cast<PlacedOrganelle>(templateOrganelles[i]);
             editedMicrobe.insertLast(organelle);
-            playerSpecies.stringCode+=organelle._organelle.gene;
+            playerSpecies.stringCode += organelle.organelle.gene;
             // This will always be added after each organelle so its safe to assume its there
             playerSpecies.stringCode+=","+organelle.q+","+
             organelle.r+","+
