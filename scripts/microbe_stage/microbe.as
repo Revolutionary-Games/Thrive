@@ -465,11 +465,16 @@ class MicrobeSystem : ScriptSystem{
         if (microbeComponent.hostileEngulfer != NULL_OBJECT){
             auto predatorPosition = world.GetComponent_Position(microbeComponent.hostileEngulfer);
             auto ourPosition = world.GetComponent_Position(microbeEntity);
+            auto predatorMembraneComponent = world.GetComponent_MembraneComponent(microbeComponent.hostileEngulfer);
+             auto circleRad = predatorMembraneComponent.calculateEncompassingCircleRadius();
              MicrobeComponent@ hostileMicrobeComponent = cast<MicrobeComponent>(
                 world.GetScriptComponentHolder("MicrobeComponent").Find(microbeComponent.hostileEngulfer));
+            if (hostileMicrobeComponent.isBacteria){
+                circleRad = circleRad/2;
+            }
             if ((hostileMicrobeComponent is null) || (!hostileMicrobeComponent.engulfMode) ||
             (hostileMicrobeComponent.dead) || (ourPosition._Position -  predatorPosition._Position).LengthSquared() >=
-            ((hostileMicrobeComponent.totalHexCountCache+3)*HEX_SIZE)+50){
+            circleRad){
                 microbeComponent.hostileEngulfer = NULL_OBJECT;
                 microbeComponent.isBeingEngulfed = false;
                 }
