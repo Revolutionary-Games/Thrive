@@ -906,14 +906,6 @@ ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in specie
     if(pos.Y != 0)
         LOG_WARNING("spawnMicrobe: spawning at y-coordinate: " + pos.Y);
 
-    auto processor = getProcessorComponent(world, speciesName);
-
-    if(processor is null){
-        LOG_ERROR("Skipping microbe spawn because species '" + speciesName +
-            "' doesn't have a processor component");
-
-        return NULL_OBJECT;
-    }
 
     // Create microbeEntity with correct template, physics and species name
     auto microbeEntity = _createMicrobeEntity(world, aiControlled, speciesName,
@@ -957,16 +949,6 @@ ObjectID spawnBacteria(CellStageWorld@ world, Float3 pos, const string &in speci
 
     if(pos.Y != 0)
         LOG_WARNING("spawnBacteria: spawning at y-coordinate: " + pos.Y);
-
-    auto processor = getProcessorComponent(world, speciesName);
-
-    if(processor is null){
-
-        LOG_ERROR("Skipping microbe spawn because species '" + speciesName +
-            "' doesn't have a processor component");
-
-        return NULL_OBJECT;
-    }
 
     // Create microbeEntity with correct template, physics and species name
     auto microbeEntity = _createMicrobeEntity(world, aiControlled, speciesName,
@@ -1087,17 +1069,6 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, bool aiControlled,
         return entity;
     }
 
-    auto processor = world.GetComponent_ProcessorComponent(speciesEntity);
-
-    if(processor is null){
-        LOG_ERROR("Microbe species '" + microbeComponent.speciesName +
-            "' doesn't have a processor component");
-    } else {
-        // Each microbe now has their own processor component to allow
-        // the process system to run safely while species are deleted
-        Species::copyProcessesFromSpecies(world, species, entity);
-    }
-
     if(microbeComponent.organelles.length() > 0)
         assert(false, "Freshly created microbe has organelles in it");
 
@@ -1108,12 +1079,14 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, bool aiControlled,
     // up to date with the species so either this should apply the species processes OR
     // there should be a ProcessConfiguration object that would be shared between the
     // ProcessorComponent both in the species and individual cells
+    // this also sets up the processor component
     Species::applyTemplate(world, entity, species, shape);
 
     // ------------------------------------ //
     // Initialization logic taken from MicrobeSystem and put here now
     assert(microbeComponent.organelles.length() > 0, "Microbe has no "
         "organelles in initializeMicrobe");
+
 
     auto rigidBody = world.Create_Physics(entity, position);
 
