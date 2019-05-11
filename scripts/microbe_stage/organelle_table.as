@@ -293,7 +293,7 @@ void setupOrganelles(){
     cytoplasmParameters.mesh = ""; //it's an empty hex
     cytoplasmParameters.chanceToCreate = 1;
     cytoplasmParameters.prokaryoteChance = 1;
-    cytoplasmParameters.mpCost = 30;
+    cytoplasmParameters.mpCost = 22;
     cytoplasmParameters.initialComposition = {
         {"phosphates", 2},
         {"ammonia", 2}
@@ -347,7 +347,7 @@ void setupOrganelles(){
 
     oxytoxyParameters.mass = 0.3;
     oxytoxyParameters.gene = "T";
-    oxytoxyParameters.mesh = "oxytoxy.mesh";
+    oxytoxyParameters.mesh = "oxytoxy_gland.mesh";
     oxytoxyParameters.chanceToCreate = 1;
     oxytoxyParameters.prokaryoteChance = 0;
     oxytoxyParameters.mpCost = 70;
@@ -575,20 +575,20 @@ void setupOrganelles(){
     oxytoxyProtein.mass = 0.1;
     oxytoxyProtein.gene = "t";
     oxytoxyProtein.mesh = "oxytoxy.mesh";
-    oxytoxyProtein.chanceToCreate = 0;
+    oxytoxyProtein.chanceToCreate = 1;
     oxytoxyProtein.prokaryoteChance = 1;
-    oxytoxyProtein.mpCost = 15;
+    oxytoxyProtein.mpCost = 55;
     oxytoxyProtein.initialComposition = {
         {"phosphates", 1},
         {"ammonia", 1}
     };
     oxytoxyProtein.components = {
-        agentVacuoleFactory("oxytoxy", "oxytoxySynthesis"),
-        storageOrganelleFactory(2.0f),
+        agentVacuoleFactory("oxytoxy", "bacterial_oxytoxySynthesis"),
+        storageOrganelleFactory(4.0f),
         processorOrganelleFactory(1.0f)
     };
     oxytoxyProtein.processes = {
-     TweakedProcess("oxytoxySynthesis", 1),
+     TweakedProcess("bacterial_oxytoxySynthesis", 1),
      TweakedProcess("glycolosis", 1)
     };
     oxytoxyProtein.hexes = {

@@ -1,10 +1,10 @@
-material oxytoxy
+material oxytoxy_gland
 {
     receive_shadows on
     
     technique
     {
-        pass oxytoxy
+        pass oxytoxy_gland
         {
             // lighting off
             
@@ -27,7 +27,7 @@ material oxytoxy
             
             texture_unit 
             {
-                texture oxytoxy.png gamma
+                texture oxytoxy_gland.png gamma
 				alpha_op_ex modulate src_manual src_texture .7
                 colour_op_ex modulate src_manual src_texture 1.0 1.0 1.0
             }

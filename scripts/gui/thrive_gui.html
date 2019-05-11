@@ -139,7 +139,7 @@
         
 	  <div id="winContainer">
 		<span id="winTitle">YOU HAVE THRIVED!</span>
-		<span id="winBody">Congratulation- a winner is y... who am I kidding, you have thrived! You have won in the 0.4.1 build Good job, you may continue playing after this screen closes if you wish, or start a new game in a new world.</span>
+		<span id="winBody">Congratulation- a winner is y... who am I kidding, you have thrived! You have won in the 0.4.2 dev build Good job, you may continue playing after this screen closes if you wish, or start a new game in a new world.</span>
 	  </div>
 	  
 	  <div id="extinctionContainer">
@@ -326,7 +326,7 @@ There are many Organelles in the editor for you to evolve, allowing for a wide r
 <br><br>
 For this Release if your population (top tab) drops to zero you go extinct.
 <br>
-But if you survive for fifteen generations with 200 population, you are considered to have won, after winning you get a popup and can continue playing as you wish.
+But if you survive for twenty generations with 400 population, you are considered to have won, after winning you get a popup and can continue playing as you wish.
 <br><br>
 Be wary because your competitors are evolving alongside you. Every time you enter the editor they evolve as well.
 <br><br>
@@ -375,7 +375,7 @@ Be wary because your competitors are evolving alongside you. Every time you ente
 	      <table class="OrganelleTable"><tr>
 	          <td id="addCytoplasm" class="OrganelleListItem">
 				<span class="tooltiptext">
-				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">30</span> <br> <br>
+				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">22</span> <br> <br>
                 Turns <span class="tkey">Glucose</span> <span class="compoundIcon" id="GlucoseIcon"></span> into <span class="tkey">ATP</span> <span class="compoundIcon" id="ATPIcon"></span> . <br> <br>
 				<span class="tgold">Fermentation</span> <br>
 				<span class="tkey">0.06</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">5.00</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="tkey">/second</span> <br> <br>
@@ -389,10 +389,10 @@ Be wary because your competitors are evolving alongside you. Every time you ente
 				<span class="tooltipheader">
 				<span class="thead">Cytoplasm</span>
 				</span>
-                <div id="CytoplasmIcon"></div>Cytoplasm<br>30 MP</td>
+                <div id="CytoplasmIcon"></div>Cytoplasm<br>22 MP</td>
           </tr></table>
         <div class="OrganelleListTitle">PROKARYOTIC STRUCTURES</div>
-        <table><tr>
+        <table class="OrganelleTable"><tr>
             <td id="addMetabolosome" class="OrganelleListItem">
                 <span class="tooltiptext">
 				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">45</span> <br> <br>
@@ -438,7 +438,7 @@ Be wary because your competitors are evolving alongside you. Every time you ente
 				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">45</span> <br> <br> <br> <br>
                 Turns <span class="tkey">Hydrogen Sulfide</span> <span class="compoundIcon" id="HydrogenSulfideIcon"></span> into <span class="tkey">Glucose</span> <span class="compoundIcon" id="GlucoseIcon"></span> . Rate scales with concentration of <span class="tkey">Carbon Dioxide</span> <span class="compoundIcon" id="CO2NormalIcon"></span>&nbsp;. Also turns <span class="tkey">Glucose</span> <span class="compoundIcon" id="GlucoseIcon"></span> into <span class="tkey">ATP</span> <span class="compoundIcon" id="ATPIcon"></span> . <br> <br>
 				<span class="tgold">Hydrogen Sulfide Chemosynthesis</span> <br>
-				<span class="tkey">0.21</span> <span class="compoundIcon" id="HydrogenSulfideIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">0.21</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="tkey">/second&emsp;@&emsp;0.09%</span> <span class="compoundIcon" id="CO2NormalIcon"></span><br> <br>
+				<span class="tkey">1.0</span> <span class="compoundIcon" id="HydrogenSulfideIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">1.0</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="tkey">/second&emsp;@&emsp;0.09%</span> <span class="compoundIcon" id="CO2NormalIcon"></span><br> <br>
 				<span class="tgold">Fermentation</span> <br>
 				<span class="tkey">0.13</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">5.00</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="tkey">/second</span> <br> <br>
 				<span class="tbonus">+1</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
@@ -453,8 +453,8 @@ Be wary because your competitors are evolving alongside you. Every time you ente
 				<span class="thead">Chemosynth-<br>esizing Proteins</span>
 				</span>
                 <div id="ChemosynthisizingProteinsIcon"></div>Chemosynthesizing Proteins<br>45 MP</td>
-        </tr></table>
-        <table><tr>
+        </tr>
+        <tr>
 	        <td id="addRusticyanin" class="OrganelleListItem">
 				<span class="tooltiptext">
 				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">45</span> <br> <br>
@@ -490,6 +490,22 @@ Be wary because your competitors are evolving alongside you. Every time you ente
 				</span>
                 <div id="NitrogenaseIcon">
                 </div>Nitrogenase<br>55 MP</td>
+            <td id="addToxinProtein" class="OrganelleListItem">
+                <span class="tooltiptext">
+				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">55</span> <br> <br>
+                Turns <span class="tkey">ATP</span> <span class="compoundIcon" id="ATPIcon"></span> into <span class="tkey">Oxytoxy</span> <span class="compoundIcon" id="OxyToxyIcon"></span>. Can release toxins by pressing <span class="tkey">E</span>. Rate scales with concentration of <span class="tkey">Oxygen</span> <span class="compoundIcon" id="OxygenNormalIcon"></span>&nbsp;. <br> <br>
+				<span class="tgold">Agent Synthesis</span> <br>
+				<span class="tkey">5.00</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">0.5</span> <span class="compoundIcon" id="OxyToxyIcon"></span> <span class="tkey">/second&emsp;@&emsp;21.00%</span> <span class="compoundIcon" id="OxygenNormalIcon"></span> <br> <br>
+				<span class="tgold">Fermentation</span> <br>
+				<span class="tkey">0.13</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">5.00</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="tkey">/second</span> <br> <br>
+                <span class="tbonus">+4</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
+				<span class="tmalus">+1</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
+				<span class="tdesc">A modified metabolosome responsible for the production of a primitive form of the toxic agent Oxytoxy NT.</span>
+                </span>
+				<span class="tooltipheader">
+				<span class="thead">Oxytoxisome</span>
+				</span>
+                <div id="ToxinVacuoleIcon"></div>Oxytoxisome<br>55 MP</td>
         </tr></table>
         <div class="OrganelleListTitle">EXTERNAL ORGANELLES</div>
         <table><tr>
@@ -724,7 +740,7 @@ Be wary because your competitors are evolving alongside you. Every time you ente
 		enter the Microbe Editor, where you can make changes to your
 		species (by adding, moving, or removing organelles) to
 		increase your species' success. <br><br>
-        Each visit to the editor in the Microbe Stage Represents 200 million years of evolution<br>
+        Each visit to the editor in the Microbe Stage Represents 150 million years of evolution<br>
 Each generation, you have 100 mutation points to spend, and each change
 (or mutation) will cost a certain amount of that MP, removing costs mutation points aswell as adding. <br><br>
 You can rotate your organelles, with A and D<br><br>

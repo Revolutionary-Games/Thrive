@@ -233,11 +233,7 @@ void onReturnFromEditor(CellStageWorld@ world)
     SpeciesComponent@ ourActualSpecies = MicrobeOperations::getSpeciesComponent(world, player);
     auto membraneComponent = world.GetComponent_MembraneComponent(player);
 
-    // Call this before creating the clone.
-    Species::initProcessorComponent(world, player, ourActualSpecies);
     // Can probabbly wrap this into the usual init to keep things clean
-    // This makes sure that the player's processer are up to date with their species
-    Species::copyProcessesFromSpecies(world, ourActualSpecies, player);
 
     PlayerSpeciesSpawner factory("Default");
 
@@ -256,6 +252,7 @@ void onReturnFromEditor(CellStageWorld@ world)
         world.GetScriptComponentHolder("MicrobeComponent").Find(player));
 
     // Reset the player cell to be the same as the species template
+    // This also sets the processor component
     Species::restoreOrganelleLayout(world, player, microbeComponent, playerSpecies);
 
     // Reset Players reproduction
@@ -374,7 +371,7 @@ void cellHitDamageChunk(GameWorld@ world, ObjectID firstEntity, ObjectID secondE
             disappear=true;
         }
         else if (!damage.getDeletes() && !microbeComponent.dead){
-            MicrobeOperations::damage(asCellWorld, cellEntity, double(damage.getDamage()), "toxin");
+            MicrobeOperations::damage(asCellWorld, cellEntity, double(damage.getDamage()), "chunk");
         }
     }
 
@@ -646,7 +643,7 @@ void createAgentCloud(CellStageWorld@ world, CompoundId compoundId,
     body.SetVelocity(normalizedDirection * AGENT_EMISSION_VELOCITY);
     rigidBody.JumpTo(position);
     auto sceneNode = world.Create_RenderNode(agentEntity);
-    auto model = world.Create_Model(agentEntity, sceneNode.Node, "oxytoxy.mesh");
+    auto model = world.Create_Model(agentEntity, sceneNode.Node, "oxytoxy_fluid.mesh");
 
     // Need to set the tint
     model.GraphicalObject.setCustomParameter(1, Ogre::Vector4(1, 1, 1, 1));
@@ -663,7 +660,6 @@ void resetWorld(CellStageWorld@ world)
     // but eh. We can call it all in this method.
 
     cast<SpeciesSystem>(world.GetScriptSystem("SpeciesSystem")).resetAutoEvo();
-    cast<SpeciesSystem>(world.GetScriptSystem("SpeciesSystem")).createNewEcoSystem();
 }
 
 //! AI species are spawned by Species in species_system

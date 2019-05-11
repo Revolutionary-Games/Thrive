@@ -73,6 +73,10 @@ const organelleSelectionElements = [
         organelle: "nitrogenase"
     },
     {
+        element: document.getElementById("addToxinProtein"),
+        organelle: "oxytoxyProteins"
+    },
+    {
         element: document.getElementById("addNucleus"),
         organelle: "nucleus"
     }
