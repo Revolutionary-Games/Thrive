@@ -906,6 +906,23 @@ ObjectID createMicrobe(CellStageWorld@ world, Float3 pos, const string &in speci
     if(pos.Y != 0)
         LOG_WARNING("spawn" + typeOfMicrobe + ": spawning at y-coordinate: " + pos.Y);
 
+    auto processor = getProcessorComponent(world, speciesName);
+
+    if(processor is null){
+        LOG_ERROR("Skipping " + typeOfMicrobe + " spawn because species '" + speciesName +
+            "' doesn't have a processor component");
+
+        return NULL_OBJECT;
+    }
+    
+    return _createMicrobeEntity(world, aiControlled, speciesName, false);
+}
+
+// speciesName decides the template to use, while individualName is
+// used for referencing the instance
+ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in speciesName,
+    bool aiControlled)
+{
     // Create microbeEntity with correct template, physics and species name
     auto microbeEntity = _createMicrobeEntity(world, aiControlled, speciesName,
 
