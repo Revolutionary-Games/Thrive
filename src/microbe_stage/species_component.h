@@ -33,6 +33,12 @@ public:
     std::string name;
     std::string genus;
     std::string epithet;
+
+    // TODO:
+    // I really like this but we probabbly will have to remove it later since it
+    // doesnt code for location The only reason im leaving this here is because
+    // i dont feel like changing the mutation code at the moment
+    std::string stringCode;
     double aggression;
     double fear;
     double activity;

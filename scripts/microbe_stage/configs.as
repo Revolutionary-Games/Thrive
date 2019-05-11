@@ -23,26 +23,35 @@ const auto MAX_SPAWN_DISTANCE = 5000.0f;
 // Cell Colors
 const auto MIN_COLOR = 0.0f;
 const auto MAX_COLOR = 0.9f;
+
 // Too subtle?
-const auto MIN_COLOR_MUTATION = -0.005f;
-const auto MAX_COLOR_MUTATION = 0.005f;
+const auto MIN_COLOR_MUTATION = -0.2f;
+const auto MAX_COLOR_MUTATION = 0.2f;
 
 const auto MIN_OPACITY = 0.5f;
 const auto MAX_OPACITY = 1.8f;
 
 const auto MIN_OPACITY_CHITIN = 0.4f;
 const auto MAX_OPACITY_CHITIN = 1.2f;
+
 // Min Opacity Mutation
 const auto MIN_OPACITY_MUTATION = -0.01f;
 const auto MAX_OPACITY_MUTATION = 0.01f;
 
 // Mutation Variables
 const auto MUTATION_BACTERIA_TO_EUKARYOTE = 1;
-const auto MUTATION_CREATION_RATE = 0.1f;
+const auto MUTATION_CREATION_RATE = 0.5f;
+const auto MUTATION_EXTRA_CREATION_RATE = 0.1f;
 const auto MUTATION_DELETION_RATE = 0.1f;
+const auto MUTATION_REPLACEMENT_RATE = 0.3f;
+
+// Genus splitting and name mutation
+const auto MUTATION_CHANGE_GENUS = 33;
+const auto MUTATION_WORD_EDIT = 75;
 
 //Removal cost
 const auto ORGANELLE_REMOVE_COST = 10;
+
 // Spawn Radius
 const auto MICROBE_SPAWN_RADIUS = 150;
 const auto BACTERIA_SPAWN_RADIUS = 150;
@@ -101,8 +110,11 @@ const auto REGENERATION_RATE = 1.0f;
 const auto FLAGELLA_ENERGY_COST = 7.1f;
 const auto FLAGELLA_BASE_FORCE = 0.7f;
 const auto CELL_BASE_THRUST = 1.6f;
+
 // is set by this and modified by applyCellMovement like the player later
-const auto AI_BASE_MOVEMENT = 1.0f;
+const auto AI_BASE_MOVEMENT = 1.6f;
+const auto AI_FOCUSED_MOVEMENT = 1.0f;
+
 //! The drag force is calculated by taking the current velocity and multiplying it by this.
 //! This must be negative!
 const auto CELL_DRAG_MULTIPLIER = -0.12f;
@@ -312,7 +324,9 @@ class MicrobeTemplate{
         array<OrganelleTemplatePlaced@> organelles,
         Float4 colour,
     bool isBacteria,
-    MEMBRANE_TYPE speciesMembraneType
+    MEMBRANE_TYPE speciesMembraneType,
+    string genus,
+    string epithet
     ) {
         this.spawnDensity = spawnDensity;
         this.compounds = compounds;
@@ -320,8 +334,12 @@ class MicrobeTemplate{
         this.colour = colour;
         this.isBacteria = isBacteria;
         this.speciesMembraneType = speciesMembraneType;
+        this.genus = genus;
+        this.epithet = epithet;
     }
 
+    string genus;
+    string epithet;
     float spawnDensity;
     dictionary compounds;
     array<OrganelleTemplatePlaced@> organelles;
@@ -368,7 +386,9 @@ const dictionary STARTER_MICROBES = {
             Float4(1, 1, 1, 1),
             // Player starts as bacteria
             true,
-            MEMBRANE_TYPE::WALL)
+            MEMBRANE_TYPE::WALL,
+            "Primum",
+            "Thrivium")
     }
 };
 

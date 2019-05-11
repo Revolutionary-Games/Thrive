@@ -1,16 +1,14 @@
-material oxytoxy
+material oxytoxy_fluid
 {
     receive_shadows on
     
     technique
     {
-        pass oxytoxy
+        pass oxytoxy_fluid
         {
-            // lighting off
-            
+            //lighting on
             scene_blend alpha_blend
-			depth_write off
-            point_sprites on
+			depth_write on
             
             vertex_program_ref Organelle_VS
             {
@@ -27,8 +25,8 @@ material oxytoxy
             
             texture_unit 
             {
-                texture oxytoxy.png gamma
-				alpha_op_ex modulate src_manual src_texture .7
+                texture oxytoxy_fluid.png gamma
+				alpha_op_ex modulate src_manual src_texture 1.0
                 colour_op_ex modulate src_manual src_texture 1.0 1.0 1.0
             }
         }

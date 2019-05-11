@@ -311,7 +311,7 @@ void
         //           " at (cloud local): " + std::to_string(x) + ", " +
         //           std::to_string(y) + " amount: " + std::to_string(amount));
         absorber.m_absorbedCompounds[id] +=
-            compoundCloud->takeCompound(id, x, y, .2) / 20000.0f;
+            compoundCloud->takeCompound(id, x, y, .4) / 80000.0f;
     }
     // Absorb .2 (third parameter) of the available
     // compounds.

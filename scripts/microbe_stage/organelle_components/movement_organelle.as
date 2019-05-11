@@ -205,8 +205,11 @@ class MovementOrganelle : OrganelleComponent{
         MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
             organelle.world.GetScriptComponentHolder("MicrobeComponent").Find(microbeEntity));
         auto pos = organelle.world.GetComponent_Position(microbeEntity);
+
+
         const auto force = calculateMovementForce(microbeEntity, organelle, logicTime,
             microbeComponent, pos);
+
 
         if(force != Float3(0, 0, 0))
             microbeComponent.addMovementForce(force);
