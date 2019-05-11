@@ -78,11 +78,11 @@ string getRandomLetter(bool isBacteria){
 
 // Checks whether an organelle in a certain position would fit within a list of other organelles.
 bool isValidPlacement(const string &in organelleName, int q, int r, int rotation,
-    array<PlacedOrganelle@>@ organelleList
+    const  array<PlacedOrganelle@>@ &in organelleList
 ) {
 
     // this is now slightly less hacky but it could be btter
-    auto organelleHexes = getOrganelleDefinition(organelleName).getRotatedHexes(rotation);
+    const auto organelleHexes = getOrganelleDefinition(organelleName).getRotatedHexes(rotation);
 
     for(uint i = 0; i < organelleList.length(); ++i){
 
@@ -119,7 +119,7 @@ OrganelleTemplatePlaced@ getRealisticPosition(const string &in organelleName,
     int q = 0;
     int r = 0;
 
-    auto organelleShuffledArray = organelleList;
+    array<PlacedOrganelle@>@ organelleShuffledArray = organelleList;
 
     // Shuffle the Array to make sure its not always placing at the same part of the cell
     organelleShuffledArray.sort( function(a,b) {
@@ -173,7 +173,7 @@ OrganelleTemplatePlaced@ getRealisticPosition(const string &in organelleName,
 
 // This function takes in a positioning block from the string code and a name
 // and returns an organelle with the correct position info
-OrganelleTemplatePlaced@ getStringCodePosition(const string &in organelleName, string code){
+OrganelleTemplatePlaced@ getStringCodePosition(const string &in organelleName, const string &in code){
     //LOG_INFO(code);
 
     array<string>@ chromArray = code.split(",");
@@ -202,7 +202,7 @@ array<PlacedOrganelle@>@ positionOrganelles(const string &in stringCode){
     //LOG_INFO("DEBUG: positionOrganelles stringCode: " + stringCode);
 
     array<PlacedOrganelle@>@ result = array<PlacedOrganelle@>();
-    array<string>@ chromArray = stringCode.split("|");
+    const array<string>@ chromArray = stringCode.split("|");
     for(uint i = 0; i < chromArray.length(); ++i){
             OrganelleTemplatePlaced@ pos;
             string geneCode = chromArray[i];
@@ -244,8 +244,8 @@ string translateOrganelleToGene(OrganelleTemplatePlaced@ ourOrganelle){
 string mutateMicrobe(const string &in stringCode, bool isBacteria)
 {
     array<string>@ chromArray = stringCode.split("|");
-    array<string>@ modifiedArray = chromArray;
-    LOG_INFO(chromArray[0]);
+    auto modifiedArray = chromArray;
+   //LOG_INFO(chromArray[0]);
     string completeString = "";
 
     // Delete or replace an organelle randomly
@@ -284,10 +284,10 @@ string mutateMicrobe(const string &in stringCode, bool isBacteria)
     // Can add up to 6 new organelles (Which should allow AI to catch up to player more
     // We can insert new organelles at the end of the list
     if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_CREATION_RATE){
-        auto organelleList = positionOrganelles(completeString);
+        const auto organelleList = positionOrganelles(completeString);
         const auto letter = getRandomLetter(isBacteria);
         string name = string(organelleLetters[letter]);
-        string returnedGenome = translateOrganelleToGene(getRealisticPosition(name,organelleList));
+        const string returnedGenome = translateOrganelleToGene(getRealisticPosition(name,organelleList));
         //LOG_INFO("Adding");
         //LOG_INFO("chromosomes:"+returnedGenome);
         completeString+="|"+returnedGenome;
@@ -302,10 +302,10 @@ string mutateMicrobe(const string &in stringCode, bool isBacteria)
     for(int n = 0; n < 5; n++ ){
     // We can insert new organelles at the end of the list
         if(GetEngine().GetRandom().GetNumber(0.f, 1.f) < MUTATION_EXTRA_CREATION_RATE){
-            auto organelleList = positionOrganelles(completeString);
+            const auto organelleList = positionOrganelles(completeString);
             const auto letter = getRandomLetter(isBacteria);
             string name = string(organelleLetters[letter]);
-            string returnedGenome = translateOrganelleToGene(getRealisticPosition(name,organelleList));
+            const string returnedGenome = translateOrganelleToGene(getRealisticPosition(name,organelleList));
             //LOG_INFO("Adding");
             //LOG_INFO("chromosomes:"+returnedGenome);
             completeString+="|"+returnedGenome;
