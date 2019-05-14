@@ -393,7 +393,7 @@ class Species{
                 parent.colour.W + randomMutationColourChannel());
         }
 
-        this.stringCode = mutateMicrobe(parent.stringCode,false);
+        this.stringCode = mutateMicrobe(parent.stringCode,isBacteria);
 
 
         generateMembranes(parent);

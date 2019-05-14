@@ -919,11 +919,6 @@ ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in specie
     auto speciesEntity = findSpeciesEntityByName(world, speciesName);
     auto species = world.GetComponent_SpeciesComponent(speciesEntity);
 
-    if (species.isBacteria)
-    {
-        physics.Body.SetMass(physics.Body.Mass * 10);
-    }
-
     physics.JumpTo(microbePos);
 
     // Try setting the position immediately as well (as otherwise it
