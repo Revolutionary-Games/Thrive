@@ -337,66 +337,72 @@ class Species{
     {
         this.isBacteria = parent.isBacteria;
         LOG_INFO("Gene Code Is:"+parent.stringCode);
+
         if (!isBacteria)
         {
             name = randomSpeciesName();
+        }
+        else {
+            name = randomBacteriaName();
+        }
 
-            //Mutate the epithet
+        //Mutate the epithet
+        if (GetEngine().GetRandom().GetNumber(0, 100) < MUTATION_WORD_EDIT){
+            epithet = mutateWord(parent.epithet);
+        }
+        else {
+            epithet = generateNameSection();
+        }
+        genus = parent.genus;
+        colour=parent.colour;
+        mutateBehavior(parent);
+
+        // Make sure not over or under our scales
+        cleanPersonality();
+
+
+        // Subtly mutate color
+        this.colour = Float4(parent.colour.X + randomMutationColourChannel(),
+            parent.colour.Y + randomMutationColourChannel(),
+            parent.colour.Z + randomMutationColourChannel(),
+            parent.colour.W + randomMutationColourChannel());
+
+        LOG_INFO("X:"+parent.colour.X+" Y:"+parent.colour.Y+" Z:"+parent.colour.Z+" W:"+parent.colour.W);
+        LOG_INFO("X:"+colour.X+" Y:"+colour.Y+" Z:"+colour.Z+" W:"+colour.W);
+        // Chance of new color needs to be low
+        if (GetEngine().GetRandom().GetNumber(0,100) <= MUTATION_CHANGE_GENUS)
+        {
+            if (!isBacteria)
+            {
+                LOG_INFO("New Genus");
+            }else {
+                LOG_INFO("New Genus of Bacteria");
+            }
+
+            // We can do more fun stuff here later
             if (GetEngine().GetRandom().GetNumber(0, 100) < MUTATION_WORD_EDIT){
-                epithet = mutateWord(parent.epithet);
+                genus = mutateWord(parent.genus);
             }
             else {
-            epithet = generateNameSection();
-             }
-            genus = parent.genus;
-            colour=parent.colour;
-            mutateBehavior(parent);
-
-            // Make sure not over or under our scales
-            cleanPersonality();
-
-
-            // Subtly mutate color
+                genus = generateNameSection();
+            }
+            // New genuses get to double their color change
             this.colour = Float4(parent.colour.X + randomMutationColourChannel(),
                 parent.colour.Y + randomMutationColourChannel(),
                 parent.colour.Z + randomMutationColourChannel(),
                 parent.colour.W + randomMutationColourChannel());
-
-            LOG_INFO("X:"+parent.colour.X+" Y:"+parent.colour.Y+" Z:"+parent.colour.Z+" W:"+parent.colour.W);
-            LOG_INFO("X:"+colour.X+" Y:"+colour.Y+" Z:"+colour.Z+" W:"+colour.W);
-            // Chance of new color needs to be low
-            if (GetEngine().GetRandom().GetNumber(0,100) <= MUTATION_CHANGE_GENUS)
-            {
-                LOG_INFO("New Genus");
-                // We can do more fun stuff here later
-                if (GetEngine().GetRandom().GetNumber(0, 100) < MUTATION_WORD_EDIT){
-                    genus = mutateWord(parent.genus);
-                }
-                else {
-                    genus = generateNameSection();
-                }
-                // New genuses get to double their color change
-                this.colour = Float4(parent.colour.X + randomMutationColourChannel(),
-                    parent.colour.Y + randomMutationColourChannel(),
-                    parent.colour.Z + randomMutationColourChannel(),
-                    parent.colour.W + randomMutationColourChannel());
-            }
-
-            this.stringCode = mutateMicrobe(parent.stringCode,false);
-
-
-            generateMembranes(parent);
-
-
-            commonConstructor(world);
-
-
-            this.setupSpawn(world);
         }
-        else
-        {
-            mutateBacteria(parent,world);
-        }
+
+        this.stringCode = mutateMicrobe(parent.stringCode,isBacteria);
+
+
+        generateMembranes(parent);
+
+
+        commonConstructor(world);
+
+
+        this.setupSpawn(world);
     }
 
     private void generateMembranes(SpeciesComponent@ parent){
@@ -509,7 +515,7 @@ class Species{
 
                 //dont spawn them on top of each other because it
                 //causes them to bounce around and lag
-                MicrobeOperations::spawnBacteria(world, pos + curSpawn, this.name, true, true);
+                MicrobeOperations::spawnMicrobe(world, pos + curSpawn, this.name, true, true);
                 curSpawn = curSpawn + Float3(GetEngine().GetRandom().GetNumber(-7, 7), 0,
                     GetEngine().GetRandom().GetNumber(-7, 7));
             }
@@ -528,7 +534,7 @@ class Species{
 
                 // Dont spawn them on top of each other because it
                 // Causes them to bounce around and lag
-                MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name, true, true);
+                MicrobeOperations::spawnMicrobe(world, pos+curSpawn, this.name, true, true);
                 curSpawn = curSpawn + Float3(lineX + GetEngine().GetRandom().GetNumber(-2, 2),
                     0, linez + GetEngine().GetRandom().GetNumber(-2, 2));
             }
@@ -560,7 +566,7 @@ class Species{
 
                         // Add a litlle organicness to the look
                         curSpawn.Z += GetEngine().GetRandom().GetNumber(-2, 2);
-                        MicrobeOperations::spawnBacteria(world, pos + curSpawn, this.name,
+                        MicrobeOperations::spawnMicrobe(world, pos + curSpawn, this.name,
                             true, true);
                     }
                 }
@@ -573,7 +579,7 @@ class Species{
                         curSpawn.Z += GetEngine().GetRandom().GetNumber(5,7);
                         // Add a litlle organicness to the look
                         curSpawn.X += GetEngine().GetRandom().GetNumber(-2,2);
-                        MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name, true,
+                        MicrobeOperations::spawnMicrobe(world, pos+curSpawn, this.name, true,
                             true);
                     }
                 }
@@ -590,7 +596,7 @@ class Species{
                         curSpawn.X -= GetEngine().GetRandom().GetNumber(5, 7);
                         // Add a litlle organicness to the look
                         curSpawn.Z -= GetEngine().GetRandom().GetNumber(-2, 2);
-                        MicrobeOperations::spawnBacteria(world, pos + curSpawn, this.name,
+                        MicrobeOperations::spawnMicrobe(world, pos + curSpawn, this.name,
                             true, true);
                     }
                 }
@@ -606,7 +612,7 @@ class Species{
                         curSpawn.Z -= GetEngine().GetRandom().GetNumber(5, 7);
                         //add a litlle organicness to the look
                         curSpawn.X -= GetEngine().GetRandom().GetNumber(-2, 2);
-                        MicrobeOperations::spawnBacteria(world, pos+curSpawn, this.name, true,
+                        MicrobeOperations::spawnMicrobe(world, pos+curSpawn, this.name, true,
                             true);
                     }
                 }
@@ -622,14 +628,14 @@ class Species{
                         // Causes them to bounce around and lag
                         curSpawn.Z += GetEngine().GetRandom().GetNumber(5, 7);
                         curSpawn.X += GetEngine().GetRandom().GetNumber(5, 7);
-                        MicrobeOperations::spawnBacteria(world, pos + curSpawn, this.name,
+                        MicrobeOperations::spawnMicrobe(world, pos + curSpawn, this.name,
                             true, true);
                     }
                 }
             }
         }
 
-        return MicrobeOperations::spawnBacteria(world, pos, this.name, true, false);
+        return MicrobeOperations::spawnMicrobe(world, pos, this.name, true);
     }
 
     // Sets up the spawn of the species
@@ -655,63 +661,6 @@ class Species{
             // This does now but it also needs to be modified later to match changes
             1.0f / (STARTING_SPAWN_DENSITY - (min(MAX_SPAWN_DENSITY, this.population * 5))),
             BACTERIA_SPAWN_RADIUS);
-    }
-
-    void mutateBacteria(SpeciesComponent@ parent, CellStageWorld@ world)
-    {
-        name = randomBacteriaName();
-        genus = parent.genus;
-        colour=parent.colour;
-        //Mutate the epithet
-        if (GetEngine().GetRandom().GetNumber(0, 100) < MUTATION_WORD_EDIT){
-            epithet = mutateWord(parent.epithet);
-        }
-        else {
-            epithet = generateNameSection();
-        }
-
-
-        mutateBehavior(parent);
-
-        // Make sure not over or under our scales
-        cleanPersonality();
-
-        // Subtly mutate color
-        this.colour = Float4(parent.colour.X + randomMutationColourChannel(),
-            parent.colour.Y + randomMutationColourChannel(),
-            parent.colour.Z + randomMutationColourChannel(),
-            parent.colour.W + randomMutationColourChannel());
-
-
-        LOG_INFO("X:"+parent.colour.X+" Y:"+parent.colour.Y+" Z:"+parent.colour.Z+" W:"+parent.colour.W);
-        LOG_INFO("X:"+colour.X+" Y:"+colour.Y+" Z:"+colour.Z+" W:"+colour.W);
-
-        if (GetEngine().GetRandom().GetNumber(0,100) <= MUTATION_CHANGE_GENUS)
-        {
-            LOG_INFO("New Genus of bacteria");
-
-            // We can do more fun stuff here later
-            //Mutate the genus
-            if (GetEngine().GetRandom().GetNumber(0, 100) < MUTATION_WORD_EDIT){
-                genus = mutateWord(parent.genus);
-            }
-            else {
-                genus = generateNameSection();
-            }
-
-            // New genuses get to double color change
-            this.colour = Float4(parent.colour.X + randomMutationColourChannel(),
-                parent.colour.Y + randomMutationColourChannel(),
-                parent.colour.Z + randomMutationColourChannel(),
-                parent.colour.W + randomMutationColourChannel());
-        }
-
-        this.stringCode = mutateMicrobe(parent.stringCode,true);
-
-        generateMembranes(parent);
-
-        commonConstructor(world);
-        this.setupSpawn(world);
     }
 
     //! updates the population count of the species

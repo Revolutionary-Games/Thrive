@@ -112,7 +112,7 @@ const auto FLAGELLA_BASE_FORCE = 0.7f;
 const auto CELL_BASE_THRUST = 1.6f;
 
 // is set by this and modified by applyCellMovement like the player later
-const auto AI_BASE_MOVEMENT = 1.6f;
+const auto AI_BASE_MOVEMENT = 1.0f;
 const auto AI_FOCUSED_MOVEMENT = 1.0f;
 
 //! The drag force is calculated by taking the current velocity and multiplying it by this.
