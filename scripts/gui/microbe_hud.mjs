@@ -444,7 +444,7 @@ function checkExtinction(population){
 }
 
 function checkGeneration (generation, population){
-    if(generation >= 20 && population >= 400 && wonOnce == false){
+    if(generation >= 20 && population >= 300 && wonOnce == false){
         document.getElementById("winTitle").style.display = "inline-block";
         document.getElementById("winBody").style.display = "inline-block";
         document.getElementById("winContainer").style.display = "inline-block";
