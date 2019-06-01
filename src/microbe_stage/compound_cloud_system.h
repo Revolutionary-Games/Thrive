@@ -9,8 +9,9 @@
 #include <Entities/Component.h>
 #include <Entities/System.h>
 
-#include <OgreMesh.h>
-#include <OgreVector2.h>
+#include <bsfCore/BsCorePrerequisites.h>
+#include <bsfUtility/Math/BsVector2.h>
+#include <bsfUtility/Math/BsVector3.h>
 
 #include <vector>
 
@@ -193,7 +194,7 @@ public:
     ~CompoundCloudComponent();
 
     void
-        Release(Ogre::SceneManager* scene);
+        Release(bs::Scene* scene);
 
     //! \returns Index for CompoundId or throws if not found
     SLOT
@@ -268,8 +269,8 @@ public:
 
 protected:
     // Now each cloud has it's own plane that it renders onto
-    Ogre::Item* m_compoundCloudsPlane = nullptr;
-    Ogre::SceneNode* m_sceneNode = nullptr;
+    // Ogre::Item* m_compoundCloudsPlane = nullptr;
+    // Ogre::SceneNode* m_sceneNode = nullptr;
 
     // True once initialized by CompoundCloudSystem
     bool m_initialized = false;
@@ -277,8 +278,8 @@ protected:
     //! This is customized with the parameters of this cloud
     //! \todo Check if one material could be used by setting custom parameters
     //! on it
-    Ogre::MaterialPtr m_planeMaterial;
-    Ogre::TexturePtr m_texture;
+    bs::HMaterial m_planeMaterial;
+    bs::HTexture m_texture;
 
     //! The world position this cloud is at. Used to despawn and spawn new ones
     //! Y is ignored and replaced with CLOUD_Y_COORDINATE
@@ -309,10 +310,10 @@ protected:
     //! The color of the compound cloud.
     //! Every used channel must have alpha of 1. The others have alpha 0 so that
     //! they don't need to be worried about affecting the resulting colours
-    Ogre::Vector4 m_color1 = Ogre::Vector4(0, 0, 0, 0);
-    Ogre::Vector4 m_color2 = Ogre::Vector4(0, 0, 0, 0);
-    Ogre::Vector4 m_color3 = Ogre::Vector4(0, 0, 0, 0);
-    Ogre::Vector4 m_color4 = Ogre::Vector4(0, 0, 0, 0);
+    Float4 m_color1 = Float4(0, 0, 0, 0);
+    Float4 m_color2 = Float4(0, 0, 0, 0);
+    Float4 m_color3 = Float4(0, 0, 0, 0);
+    Float4 m_color4 = Float4(0, 0, 0, 0);
 
     //! \brief The compound id.
     //! \note NULL_COMPOUND means that this cloud doesn't have that slot filled
@@ -335,8 +336,8 @@ class CompoundCloudSystem {
     friend CompoundCloudComponent;
 
     struct CloudPlaneVertex {
-        Ogre::Vector3 m_pos;
-        Ogre::Vector2 m_uv;
+        bs::Vector3 m_pos;
+        bs::Vector2 m_uv;
     };
 
 public:
@@ -542,7 +543,7 @@ private:
     //! one cloud
     std::vector<Compound> m_cloudTypes;
 
-    Ogre::MeshPtr m_planeMesh;
+    bs::HMesh m_planeMesh;
 
     //! This is here to not have to allocate memory every tick
     std::vector<CompoundCloudComponent*> m_tooFarAwayClouds;

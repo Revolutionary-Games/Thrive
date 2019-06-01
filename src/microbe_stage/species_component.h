@@ -1,8 +1,5 @@
 #pragma once
 
-#include <OgreVector3.h>
-#include <string>
-
 
 #include "engine/component_types.h"
 #include "membrane_system.h"
@@ -12,6 +9,8 @@
 
 #include <add_on/scriptarray/scriptarray.h>
 #include <add_on/scriptdictionary/scriptdictionary.h>
+
+#include <string>
 
 namespace thrive {
 

@@ -6,8 +6,8 @@
 #include <Entities/Components.h>
 #include <Entities/System.h>
 
-#include <OgreColourValue.h>
-#include <OgreItem.h>
+#include <bsfUtility/Math/BsVector2.h>
+#include <bsfUtility/Math/BsVector3.h>
 
 #include <atomic>
 
@@ -24,9 +24,8 @@ enum class MEMBRANE_TYPE { MEMBRANE, WALL, CHITIN, DOUBLEMEMBRANE };
 class MembraneComponent : public Leviathan::Component {
     struct MembraneVertex {
 
-        Ogre::Vector3 m_pos;
-        Ogre::Vector2 m_uv;
-        // Ogre::Vector3 m_normal;
+        bs::Vector3 m_pos;
+        bs::Vector2 m_uv;
     };
 
 public:
@@ -47,7 +46,7 @@ public:
     getMembraneType();
 
     void
-        Release(Ogre::SceneManager* scene);
+        Release(bs::Scene* scene);
 
     //! Should set the colour of the membrane once working
     void
@@ -109,7 +108,7 @@ public:
     //! fully created data, instead of creating the buffers first and then
     //! filling them with data
     void
-        Update(Ogre::SceneManager* scene, Ogre::SceneNode* parentcomponentpos);
+        Update(bs::Scene* scene, const bs::HSceneObject& parentComponentPos);
 
     // Adds absorbed compound to the membrane.
     // These are later queried and added to the vacuoles.
@@ -121,18 +120,18 @@ public:
     //! \note The returned Vector is in world coordinates (x, 0, z) and not in
     //! internal membrane coordinates (x, y, 0). This is so that gameplay code
     //! doesn't have to do the conversion everywhere this is used
-    Ogre::Vector3
+    Float3
         GetExternalOrganelle(double x, double y);
 
     // Return the position of the closest organelle to the target
     // point if it is less then a certain threshold away.
-    Ogre::Vector3
-        FindClosestOrganelles(Ogre::Vector3 target);
+    Float2
+        FindClosestOrganelles(const Float2& target);
 
     // Decides where the point needs to move based on the position of the
     // closest organelle.
-    virtual Ogre::Vector3
-        GetMovement(Ogre::Vector3 target, Ogre::Vector3 closestOrganelle);
+    Float2
+        GetMovement(const Float2& target, const Float2& closestOrganelle);
 
     REFERENCE_HANDLE_UNCOUNTED_TYPE(MembraneComponent);
 
@@ -143,7 +142,7 @@ public:
     code for generic things
     */
 
-    Ogre::MaterialPtr
+    bs::HMaterial
         chooseMaterialByType();
 
     void
@@ -152,12 +151,12 @@ public:
     // Cell Wall COde
     // Creates the 2D points in the membrane by looking at the positions of the
     // organelles.
-    virtual void
+    void
         DrawCellWall();
 
-    virtual Ogre::Vector3
-        GetMovementForCellWall(Ogre::Vector3 target,
-            Ogre::Vector3 closestOrganelle);
+    Float2
+        GetMovementForCellWall(const Float2& target,
+            const Float2& closestOrganelle);
 
 protected:
     //! Called on first Update
@@ -165,7 +164,7 @@ protected:
         Initialize();
 
     void
-        releaseOgreResourcesForClear(Ogre::SceneManager* scene);
+        releaseCurrentMesh();
 
     //! When this should be recreated this is true. So that clearing will be
     //! done
@@ -175,10 +174,10 @@ protected:
     //! geometry is changed so when this is true Update does nothing
     bool isInitialized = false;
     // Stores the positions of the organelles.
-    std::vector<Ogre::Vector3> organellePositions;
+    std::vector<Float2> organellePositions;
 
     //! The colour of the membrane.
-    Ogre::ColourValue colour;
+    Float4 colour;
 
     //! The length in pixels of a side of the square that bounds the membrane.
     //! Half the side length of the original square that is compressed to make
@@ -190,26 +189,20 @@ protected:
     int membraneResolution = 10;
 
     //! Stores the generated 2-Dimensional membrane.
-    std::vector<Ogre::Vector3> vertices2D;
+    std::vector<Float2> vertices2D;
 
     //! Marks if cached encompassing circleradius is calculated
     mutable bool m_isEncompassingCircleCalculated = false;
     //! Cached circle radius
     mutable float m_encompassingCircleRadius;
 
-    //! Ogre renderable that holds the mesh
-    Ogre::MeshPtr m_mesh;
-
-    //! The submesh that actually holds our vertex and index buffers
-    Ogre::SubMesh* m_subMesh = nullptr;
+    bs::HMesh m_mesh;
 
     //! Actual object that is attached to a scenenode
-    Ogre::Item* m_item = nullptr;
+    bs::HRenderable m_item;
 
     //! A material created from the base material that can be colored
-    //! \todo It would be better to share this between all cells of a species
-    Ogre::MaterialPtr coloredMaterial;
-    // Ogre::MaterialPtr speciesMaterial;
+    bs::HMaterial coloredMaterial;
 
     //! For unique name generation
     static std::atomic<int> membraneNumber;
@@ -234,7 +227,7 @@ class MembraneSystem
 public:
     //! Updates the membrane calculations every frame
     void
-        Run(GameWorld& world, Ogre::SceneManager* scene)
+        Run(GameWorld& world, bs::Scene* scene)
     {
         auto& index = CachedComponents.GetIndex();
         for(auto iter = index.begin(); iter != index.end(); ++iter) {

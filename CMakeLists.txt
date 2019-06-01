@@ -1,14 +1,14 @@
 # Based on a file from the Ogre Wiki Tutorial Framework
 #      http://www.ogre3d.org/tikiwiki/
 #
-# Modified as part of the Thrive project
-# As of the Leviathan engine update this has been mostly rewritten
+# Heavily modified as part of the Thrive project
+# As of the Leviathan engine update this has been mostly rewritten.
+# With the switch to bs::framework this likely has no original parts left
 #-----------------------------------------------------------------------------
 
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.10)
 
 project(Thrive)
-
 
 
 ###################

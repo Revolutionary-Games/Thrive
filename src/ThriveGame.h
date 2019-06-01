@@ -1,5 +1,5 @@
 // Thrive Game
-// Copyright (C) 2013-2018  Revolutionary Games
+// Copyright (C) 2013-2019  Revolutionary Games
 #pragma once
 // ------------------------------------ //
 //! \file \note This file needs to be named like it is currently

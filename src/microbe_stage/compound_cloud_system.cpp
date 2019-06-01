@@ -45,72 +45,70 @@ CompoundCloudComponent::CompoundCloudComponent(CompoundCloudSystem& owner,
             "CompoundCloudComponent needs at least one Compound type");
 
     // Read data
-    m_color1 =
-        Ogre::Vector4(first->colour.r, first->colour.g, first->colour.b, 1.0f);
+    m_color1 = first->colour;
     m_compoundId1 = first->id;
 
     if(second) {
 
         m_compoundId2 = second->id;
-        m_color2 = Ogre::Vector4(
-            second->colour.r, second->colour.g, second->colour.b, 1.0f);
+        m_color2 = second->colour;
     }
 
     if(third) {
 
         m_compoundId3 = third->id;
-        m_color3 = Ogre::Vector4(
-            third->colour.r, third->colour.g, third->colour.b, 1.0f);
+        m_color3 = third->colour;
     }
 
     if(fourth) {
 
         m_compoundId4 = fourth->id;
-        m_color4 = Ogre::Vector4(
-            fourth->colour.r, fourth->colour.g, fourth->colour.b, 1.0f);
+        m_color4 = fourth->colour;
     }
 }
 
 CompoundCloudComponent::~CompoundCloudComponent()
 {
-    LEVIATHAN_ASSERT(!m_compoundCloudsPlane && !m_sceneNode,
-        "CompoundCloudComponent not Released");
+    // LEVIATHAN_ASSERT(!m_compoundCloudsPlane && !m_sceneNode,
+    //     "CompoundCloudComponent not Released");
 
     m_owner.cloudReportDestroyed(this);
 }
 
 void
-    CompoundCloudComponent::Release(Ogre::SceneManager* scene)
+    CompoundCloudComponent::Release(bs::Scene* scene)
 {
-    // Destroy the plane
-    if(m_compoundCloudsPlane) {
-        scene->destroyItem(m_compoundCloudsPlane);
-        m_compoundCloudsPlane = nullptr;
-    }
+    DEBUG_BREAK;
 
-    // Scenenode
-    if(m_sceneNode) {
-        scene->destroySceneNode(m_sceneNode);
-        m_sceneNode = nullptr;
-    }
+    // // Destroy the plane
+    // if(m_compoundCloudsPlane) {
+    //     scene->destroyItem(m_compoundCloudsPlane);
+    //     m_compoundCloudsPlane = nullptr;
+    // }
 
-    if(m_initialized) {
+    // // Scenenode
+    // if(m_sceneNode) {
+    //     scene->destroySceneNode(m_sceneNode);
+    //     m_sceneNode = nullptr;
+    // }
 
-        m_initialized = false;
-    }
+    // if(m_initialized) {
 
-    // And material
-    if(m_planeMaterial) {
+    //     m_initialized = false;
+    // }
 
-        Ogre::MaterialManager::getSingleton().remove(m_planeMaterial);
-        m_planeMaterial.reset();
-    }
+    // // And material
+    // if(m_planeMaterial) {
 
-    // Texture
-    if(m_texture) {
-        Ogre::TextureManager::getSingleton().remove(m_texture);
-        m_texture.reset();
-    }
+    //     Ogre::MaterialManager::getSingleton().remove(m_planeMaterial);
+    //     m_planeMaterial.reset();
+    // }
+
+    // // Texture
+    // if(m_texture) {
+    //     Ogre::TextureManager::getSingleton().remove(m_texture);
+    //     m_texture.reset();
+    // }
 }
 
 // ------------------------------------ //

@@ -25,12 +25,12 @@
 #include <Script/ScriptExecutor.h>
 #include <Window.h>
 
-#include <OgreManualObject.h>
-#include <OgreMesh2.h>
-#include <OgreMeshManager2.h>
-#include <OgreRoot.h>
-#include <OgreSceneManager.h>
-#include <OgreSubMesh2.h>
+// #include <OgreManualObject.h>
+// #include <OgreMesh2.h>
+// #include <OgreMeshManager2.h>
+// #include <OgreRoot.h>
+// #include <OgreSceneManager.h>
+// #include <OgreSubMesh2.h>
 
 
 using namespace thrive;

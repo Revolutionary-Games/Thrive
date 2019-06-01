@@ -11,7 +11,7 @@
 #include <Entities/ScriptComponentHolder.h>
 #include <Window.h>
 
-#include <OgreRay.h>
+#include <bsfUtility/Math/BsRay.h>
 
 using namespace thrive;
 // ------------------------------------ //
@@ -357,7 +357,7 @@ Float3
 
     const auto ray = worldWithCamera.CastRayFromCamera(x, y);
 
-    const auto plane = Ogre::Plane(Ogre::Vector3(0, 1, 0), 0);
+    const auto plane = bs::Plane(bs::Vector3(0, 1, 0), 0);
 
     bool intersects;
     float distance;
