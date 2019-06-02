@@ -29,6 +29,7 @@ Patch::getBiome()
 {
     return this->patchBiome;
 }
+
 void
 Patch::setBiome(Biome* biome)
 {

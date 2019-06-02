@@ -13,6 +13,7 @@ using namespace thrive;
 #include "microbe_stage/player_microbe_control.h"
 #include "microbe_stage/simulation_parameters.h"
 #include "microbe_stage/species_name_controller.h"
+#include "microbe_stage/patch.h"
 
 #include "ThriveGame.h"
 
@@ -1511,6 +1512,35 @@ bool
         0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
+
+	if(engine->RegisterObjectMethod("Patch",
+           "string getName()",
+           asMETHOD(Patch, getName), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("Patch", "void setName(string name)",
+           asMETHOD(Patch, setName), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("Patch", "Biome@ getBiome()",
+           asMETHOD(Patch, getBiome), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("Patch", "void setBiome(Biome@ biome)",
+           asMETHOD(Patch, setBiome), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectMethod("Patch",
+           "uint64 getId()",
+           asMETHOD(Patch, getId), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     return true;
 }
 
