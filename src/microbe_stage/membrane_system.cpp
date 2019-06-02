@@ -95,6 +95,9 @@ Float2
 Float3
     MembraneComponent::GetExternalOrganelle(double x, double y)
 {
+    // This gets called by the flagella every frame as on the first call this
+    // object is not initialized yet. TODO: do something about that
+
     // This was causing little regular-interval lag bursts
     /*if(vertices2D.empty())
         LOG_WARNING("MembraneComponent: GetExternalOrganelle: called before "
