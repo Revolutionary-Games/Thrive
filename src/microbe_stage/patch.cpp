@@ -2,36 +2,36 @@
 
 using namespace thrive;
 
-Patch::Patch(std::string name) 
+Patch::Patch(std::string name)
 {
     this->name = name;
 }
 
-Patch::~Patch() 
+Patch::~Patch()
 {
     delete patchBiome;
 }
 
 std::string
-Patch::getName()
+    Patch::getName()
 {
     return this->name;
 }
 
 void
-Patch::setName(std::string name)
+    Patch::setName(std::string name)
 {
     this->name = name;
 }
 
 Biome*
-Patch::getBiome()
+    Patch::getBiome()
 {
     return this->patchBiome;
 }
 
 void
-Patch::setBiome(Biome* biome)
+    Patch::setBiome(Biome* biome)
 {
     if(patchBiome)
         delete patchBiome;
@@ -39,7 +39,7 @@ Patch::setBiome(Biome* biome)
 }
 
 size_t
-Patch::getId()
+    Patch::getId()
 {
     return this->patchId;
 }

@@ -10,33 +10,31 @@ namespace thrive {
 
 class CellStageWorld;
 
-//!An object that represents a patch
+//! An object that represents a patch
 class Patch {
-	public:
+public:
     std::string name;
     size_t patchId;
 
     Patch(std::string name);
     virtual ~Patch();
 
-    std::string 
-		getName();
-    void 
-		setName(std::string name);
+    std::string
+        getName();
+    void
+        setName(std::string name);
 
     Biome*
         getBiome();
     void
         setBiome(Biome* biome);
 
-	size_t
+    size_t
         getId();
 
-	private:
+private:
     Biome* patchBiome = nullptr;
     std::vector<std::weak_ptr<Patch>> adjacentPatches;
-
-
 };
 
-}
+} // namespace thrive

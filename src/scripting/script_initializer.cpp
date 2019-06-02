@@ -10,10 +10,10 @@ using namespace thrive;
 #include "general/timed_life_system.h"
 #include "generated/cell_stage_world.h"
 #include "generated/microbe_editor_world.h"
+#include "microbe_stage/patch.h"
 #include "microbe_stage/player_microbe_control.h"
 #include "microbe_stage/simulation_parameters.h"
 #include "microbe_stage/species_name_controller.h"
-#include "microbe_stage/patch.h"
 
 #include "ThriveGame.h"
 
@@ -1508,13 +1508,11 @@ ObjectID
 bool
     registerPatches(asIScriptEngine* engine)
 {
-    if(engine->RegisterObjectType("Patch", 0, asOBJ_REF | asOBJ_NOCOUNT) <
-        0) {
+    if(engine->RegisterObjectType("Patch", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-	if(engine->RegisterObjectMethod("Patch",
-           "string getName()",
+    if(engine->RegisterObjectMethod("Patch", "string getName()",
            asMETHOD(Patch, getName), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
@@ -1535,8 +1533,7 @@ bool
     }
 
     ANGELSCRIPT_ASSUMED_SIZE_T;
-    if(engine->RegisterObjectMethod("Patch",
-           "uint64 getId()",
+    if(engine->RegisterObjectMethod("Patch", "uint64 getId()",
            asMETHOD(Patch, getId), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
