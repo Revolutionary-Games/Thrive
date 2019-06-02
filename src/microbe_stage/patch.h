@@ -24,11 +24,16 @@ class Patch {
     void 
 		setName(std::string name);
 
+    Biome*
+        getBiome();
+    void
+        setBiome(Biome* biome);
+
 	size_t
         getId();
 
 	private:
-    Biome* patchBiome;
+    Biome* patchBiome = nullptr;
     std::vector<std::weak_ptr<Patch>> adjacentPatches;
 
 

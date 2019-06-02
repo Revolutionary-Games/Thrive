@@ -19,9 +19,22 @@ Patch::getName()
 }
 
 void
-    Patch::setName(std::string name)
+Patch::setName(std::string name)
 {
     this->name = name;
+}
+
+Biome*
+Patch::getBiome()
+{
+    return this->patchBiome;
+}
+void
+Patch::setBiome(Biome* biome)
+{
+    if(patchBiome)
+        delete patchBiome;
+    this->patchBiome = biome;
 }
 
 size_t

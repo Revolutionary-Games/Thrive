@@ -1504,6 +1504,15 @@ ObjectID
     return NULL_OBJECT;
 }
 
+bool
+    registerPatches(asIScriptEngine* engine)
+{
+    if(engine->RegisterObjectType("Patch", 0, asOBJ_REF | asOBJ_NOCOUNT) <
+        0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    return true;
+}
 
 bool
     thrive::registerThriveScriptTypes(asIScriptEngine* engine)
