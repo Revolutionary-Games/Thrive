@@ -8,8 +8,6 @@ set(GROUP_ENGINE
   "engine/player_data.h"
   # "engine/rolling_grid.cpp"
   # "engine/rolling_grid.h"
-  "engine/serialization.cpp"
-  "engine/serialization.h"
   )
 
 set(GROUP_GENERAL

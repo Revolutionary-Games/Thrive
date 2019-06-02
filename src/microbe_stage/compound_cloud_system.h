@@ -270,7 +270,7 @@ public:
 protected:
     // Now each cloud has it's own plane that it renders onto
     // Ogre::Item* m_compoundCloudsPlane = nullptr;
-    // Ogre::SceneNode* m_sceneNode = nullptr;
+    bs::HSceneObject m_sceneNode;
 
     // True once initialized by CompoundCloudSystem
     bool m_initialized = false;
@@ -504,8 +504,7 @@ private:
             FluidSystem& fluidSystem);
 
     void
-        initializeCloud(CompoundCloudComponent& cloud,
-            Ogre::SceneManager* scene);
+        initializeCloud(CompoundCloudComponent& cloud, bs::Scene* scene);
 
     void
         fillCloudChannel(const std::vector<std::vector<float>>& density,

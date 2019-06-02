@@ -1,4 +1,4 @@
-//! Tests compound cloud operations that don't need Ogre
+//! Tests compound cloud operations that don't need graphics
 #include "engine/player_data.h"
 #include "generated/cell_stage_world.h"
 #include "microbe_stage/compound_cloud_system.h"
@@ -422,7 +422,7 @@ TEST_CASE_METHOD(CloudManagerTestsFixture,
     "[microbe]")
 {
     setCloudsAndRunInitial(
-        {Compound{1, "a", true, true, false, Ogre::ColourValue(0, 1, 2, 3)}});
+        {Compound{1, "a", true, true, false, Float4(0, 1, 2, 3)}});
 
     // Find the cloud entities
     const auto clouds = findClouds();
@@ -445,11 +445,11 @@ TEST_CASE_METHOD(CloudManagerTestsFixture,
     static_assert(CLOUDS_IN_ONE == 4, "this test assumes this");
 
     const std::vector<Compound> types{
-        Compound{1, "a", true, true, false, Ogre::ColourValue(0, 1, 2, 1)},
-        Compound{2, "b", true, true, false, Ogre::ColourValue(3, 4, 5, 1)},
-        Compound{3, "c", true, true, false, Ogre::ColourValue(6, 7, 8, 1)},
-        Compound{4, "d", true, true, false, Ogre::ColourValue(9, 10, 11, 1)},
-        Compound{5, "e", true, true, false, Ogre::ColourValue(12, 13, 14, 1)}};
+        Compound{1, "a", true, true, false, Float4(0, 1, 2, 1)},
+        Compound{2, "b", true, true, false, Float4(3, 4, 5, 1)},
+        Compound{3, "c", true, true, false, Float4(6, 7, 8, 1)},
+        Compound{4, "d", true, true, false, Float4(9, 10, 11, 1)},
+        Compound{5, "e", true, true, false, Float4(12, 13, 14, 1)}};
 
     std::array<CompoundId, 2> cloudFirstTypes;
     cloudFirstTypes[0] = types[0].id;
@@ -474,7 +474,7 @@ TEST_CASE_METHOD(CloudManagerTestsFixture,
     constexpr auto PLAYER_MOVE_AMOUNT = 1000;
 
     setCloudsAndRunInitial(
-        {Compound{1, "a", true, true, false, Ogre::ColourValue(0, 1, 2, 3)}});
+        {Compound{1, "a", true, true, false, Float4(0, 1, 2, 3)}});
 
     // Find the cloud entities
     const auto clouds = findClouds();
@@ -513,11 +513,11 @@ TEST_CASE_METHOD(CloudManagerTestsFixture,
     static_assert(CLOUDS_IN_ONE == 4, "this test assumes this");
 
     const std::vector<Compound> types{
-        Compound{1, "a", true, true, false, Ogre::ColourValue(0, 1, 2, 1)},
-        Compound{2, "b", true, true, false, Ogre::ColourValue(3, 4, 5, 1)},
-        Compound{3, "c", true, true, false, Ogre::ColourValue(6, 7, 8, 1)},
-        Compound{4, "d", true, true, false, Ogre::ColourValue(9, 10, 11, 1)},
-        Compound{5, "e", true, true, false, Ogre::ColourValue(12, 13, 14, 1)}};
+        Compound{1, "a", true, true, false, Float4(0, 1, 2, 1)},
+        Compound{2, "b", true, true, false, Float4(3, 4, 5, 1)},
+        Compound{3, "c", true, true, false, Float4(6, 7, 8, 1)},
+        Compound{4, "d", true, true, false, Float4(9, 10, 11, 1)},
+        Compound{5, "e", true, true, false, Float4(12, 13, 14, 1)}};
 
     std::array<CompoundId, 2> cloudFirstTypes;
     cloudFirstTypes[0] = types[0].id;
@@ -552,11 +552,11 @@ TEST_CASE_METHOD(CloudManagerTestsFixture,
     static_assert(CLOUDS_IN_ONE == 4, "this test assumes this");
 
     const std::vector<Compound> types{
-        Compound{1, "a", true, true, false, Ogre::ColourValue(0, 1, 2, 1)},
-        Compound{2, "b", true, true, false, Ogre::ColourValue(3, 4, 5, 1)},
-        Compound{3, "c", true, true, false, Ogre::ColourValue(6, 7, 8, 1)},
-        Compound{4, "d", true, true, false, Ogre::ColourValue(9, 10, 11, 1)},
-        Compound{5, "e", true, true, false, Ogre::ColourValue(12, 13, 14, 1)}};
+        Compound{1, "a", true, true, false, Float4(0, 1, 2, 1)},
+        Compound{2, "b", true, true, false, Float4(3, 4, 5, 1)},
+        Compound{3, "c", true, true, false, Float4(6, 7, 8, 1)},
+        Compound{4, "d", true, true, false, Float4(9, 10, 11, 1)},
+        Compound{5, "e", true, true, false, Float4(12, 13, 14, 1)}};
 
     std::array<CompoundId, 2> cloudFirstTypes;
     cloudFirstTypes[0] = types[0].id;

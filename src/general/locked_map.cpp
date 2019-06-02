@@ -1,11 +1,5 @@
 #include "general/locked_map.h"
 
-//#include "bullet/collision_filter.h"
-//#include "engine/engine.h"
-//#include "engine/entity_filter.h"
-//#include "engine/game_state.h"
-#include "engine/serialization.h"
-
 using namespace thrive;
 
 // void LockedMap::luaBindings(
@@ -42,33 +36,33 @@ void
 }
 
 
-void
-    LockedMap::load(const StorageContainer& storage)
-{
-    StorageList locks = storage.get<StorageList>("locks");
-    for(const StorageContainer& container : locks) {
-        std::string name = container.get<std::string>("name");
-        m_locks.insert(name);
-    }
-}
+// void
+//     LockedMap::load(const StorageContainer& storage)
+// {
+//     StorageList locks = storage.get<StorageList>("locks");
+//     for(const StorageContainer& container : locks) {
+//         std::string name = container.get<std::string>("name");
+//         m_locks.insert(name);
+//     }
+// }
 
-const std::unordered_set<std::string>&
-    LockedMap::locksList() const
-{
-    return m_locks;
-}
+// const std::unordered_set<std::string>&
+//     LockedMap::locksList() const
+// {
+//     return m_locks;
+// }
 
-StorageContainer
-    LockedMap::storage() const
-{
-    StorageContainer storage;
-    StorageList locks;
-    locks.reserve(m_locks.size());
-    for(const auto& name : m_locks) {
-        StorageContainer container;
-        container.set<std::string>("name", name);
-        locks.append(container);
-    }
-    storage.set<StorageList>("locks", locks);
-    return storage;
-}
+// StorageContainer
+//     LockedMap::storage() const
+// {
+//     StorageContainer storage;
+//     StorageList locks;
+//     locks.reserve(m_locks.size());
+//     for(const auto& name : m_locks) {
+//         StorageContainer container;
+//         container.set<std::string>("name", name);
+//         locks.append(container);
+//     }
+//     storage.set<StorageList>("locks", locks);
+//     return storage;
+// }

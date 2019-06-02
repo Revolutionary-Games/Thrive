@@ -15,6 +15,7 @@
 #include "thrive_world_factory.h"
 
 
+#include <FileSystem.h>
 #include <GUI/GuiView.h>
 #include <Handlers/ObjectLoader.h>
 #include <Networking/NetworkHandler.h>
@@ -32,6 +33,10 @@
 // #include <OgreSceneManager.h>
 // #include <OgreSubMesh2.h>
 
+#include <bsfCore/Components/BsCRenderable.h>
+#include <bsfCore/Importer/BsImporter.h>
+#include <bsfCore/Material/BsMaterial.h>
+#include <bsfEngine/Resources/BsBuiltinResources.h>
 
 using namespace thrive;
 
@@ -54,75 +59,73 @@ public:
     void
         releaseOgreResources()
     {
-        destroyBackgroundItem();
+        m_microbeBackgroundMesh = nullptr;
+        m_microbeBackgroundItem = nullptr;
+        m_backgroundRenderNode->destroy();
+        m_backgroundRenderNode = nullptr;
 
-        if(m_microbeBackgroundMesh) {
+        m_microbeEditorBackgroundItem = nullptr;
+        m_editorBackgroundRenderNode->destroy();
+        m_editorBackgroundRenderNode = nullptr;
 
-            Ogre::MeshManager::getSingleton().remove(m_microbeBackgroundMesh);
-            m_microbeBackgroundMesh.reset();
-            m_microbeBackgroundSubMesh = nullptr;
-        }
-    }
-
-    void
-        destroyBackgroundItem()
-    {
-        if(m_microbeBackgroundItem) {
-
-            LOG_INFO("Destroying background item");
-
-            if(m_cellStage)
-                m_cellStage->GetScene()->destroyItem(m_microbeBackgroundItem);
-            m_microbeBackgroundItem = nullptr;
-        }
-
-        if(m_microbeEditorBackgroundItem) {
-
-            if(m_microbeEditor)
-                m_microbeEditor->GetScene()->destroyItem(
-                    m_microbeEditorBackgroundItem);
-            m_microbeEditorBackgroundItem = nullptr;
-        }
+        m_MicrobeBackgroundMaterial = nullptr;
     }
 
     void
         createBackgroundItem()
     {
-        destroyBackgroundItem();
+        // Create the mesh for the items
+        if(!m_microbeBackgroundMesh)
+            m_microbeBackgroundMesh =
+                Leviathan::GeometryHelpers::CreateXZPlane(100, 100);
 
-        LEVIATHAN_ASSERT(
-            m_cellStage, "Trying to create background item before world");
+        if(!m_MicrobeBackgroundMaterial) {
 
-        m_microbeBackgroundItem = m_cellStage->GetScene()->createItem(
-            m_microbeBackgroundMesh, Ogre::SCENE_STATIC);
-        m_microbeBackgroundItem->setCastShadows(false);
+            bs::HShader shader = bs::gBuiltinResources().getBuiltinShader(
+                bs::BuiltinShader::Standard);
 
-        // Need to edit the render queue and add it to an early one
-        m_microbeBackgroundItem->setRenderQueueGroup(1);
+            m_MicrobeBackgroundMaterial = bs::Material::create(shader);
 
-        // Editor version
-        // We only checked the first background item before we did this. Not the
-        // editor one.
-        if(m_microbeEditor) {
-            if(!m_microbeEditorBackgroundItem) {
-                m_microbeEditorBackgroundItem =
-                    m_microbeEditor->GetScene()->createItem(
-                        m_microbeBackgroundMesh, Ogre::SCENE_STATIC);
-                m_microbeEditorBackgroundItem->setCastShadows(false);
+            bs::HTexture texture = bs::gImporter().import<bs::Texture>(
+                "Data/Textures/background/Thrive_ocean0.png");
+            m_MicrobeBackgroundMaterial->setTexture("gAlbedoTex", texture);
+        }
 
-                // Need to edit the render queue and add it to an early one
-                m_microbeEditorBackgroundItem->setRenderQueueGroup(1);
+        if(m_cellStage) {
+            if(!m_microbeBackgroundItem) {
+                m_backgroundRenderNode =
+                    bs::SceneObject::create("microbe background");
+                m_backgroundRenderNode->setParent(
+                    m_cellStage->GetCameraSceneObject(), false);
+
+                m_backgroundRenderNode->setPosition(Float3(0, 0, 100));
+                m_microbeBackgroundItem =
+                    m_backgroundRenderNode->addComponent<bs::CRenderable>();
+
+                m_microbeBackgroundItem->setMaterial(
+                    m_MicrobeBackgroundMaterial);
+                m_microbeBackgroundItem->setMesh(m_microbeBackgroundMesh);
             }
         }
 
-        // Re-attach if the nodes exist
-        // Add it
-        if(m_backgroundRenderNode)
-            m_backgroundRenderNode->attachObject(m_microbeBackgroundItem);
+        // Editor version
+        if(m_microbeEditor) {
+            if(!m_microbeEditorBackgroundItem) {
+                m_editorBackgroundRenderNode =
+                    bs::SceneObject::create("microbe editor background");
+                m_editorBackgroundRenderNode->setParent(
+                    m_microbeEditor->GetCameraSceneObject(), false);
 
-        if(m_editorBackgroundRenderNode)
-            m_editorBackgroundRenderNode->attachObject(
-                m_microbeEditorBackgroundItem);
+                m_editorBackgroundRenderNode->setPosition(Float3(0, 0, 100));
+                m_microbeEditorBackgroundItem =
+                    m_editorBackgroundRenderNode
+                        ->addComponent<bs::CRenderable>();
+
+                m_microbeEditorBackgroundItem->setMaterial(
+                    m_MicrobeBackgroundMaterial);
+                m_microbeEditorBackgroundItem->setMesh(m_microbeBackgroundMesh);
+            }
+        }
     }
 
     ThriveGame& m_game;
@@ -133,13 +136,15 @@ public:
     std::shared_ptr<MicrobeEditorWorld> m_microbeEditor;
 
     //! This is the background object of the cell stage
-    Ogre::MeshPtr m_microbeBackgroundMesh;
-    Ogre::SubMesh* m_microbeBackgroundSubMesh;
-    Ogre::Item* m_microbeBackgroundItem = nullptr;
-    Ogre::SceneNode* m_backgroundRenderNode = nullptr;
+    bs::HMesh m_microbeBackgroundMesh;
 
-    Ogre::Item* m_microbeEditorBackgroundItem = nullptr;
-    Ogre::SceneNode* m_editorBackgroundRenderNode = nullptr;
+    bs::HMaterial m_MicrobeBackgroundMaterial;
+
+    bs::HRenderable m_microbeBackgroundItem;
+    bs::HSceneObject m_backgroundRenderNode;
+
+    bs::HRenderable m_microbeEditorBackgroundItem;
+    bs::HSceneObject m_editorBackgroundRenderNode;
 
     std::shared_ptr<MainMenuKeyPressListener> m_menuKeyPresses;
     std::shared_ptr<GlobalUtilityKeyHandler> m_globalKeyPresses;
@@ -294,8 +299,7 @@ void
 
     // Main camera that will be attached to the player
     m_cellCamera = Leviathan::ObjectLoader::LoadCamera(*m_impl->m_cellStage,
-        Float3(0, 15, 0),
-        Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3::UNIT_X));
+        Float3(0, 15, 0), bs::Quaternion(bs::Vector3::UNIT_X, bs::Degree(-90)));
 
     // Link the camera to the camera control system
     m_impl->m_cellStage->GetMicrobeCameraSystem().setCameraEntity(m_cellCamera);
@@ -357,34 +361,7 @@ void
     LOG_INFO("Finished calling setupScriptsForWorld");
 
     // Set background plane //
-    // This is needed to be created here for biome.as to work correctly
-    // Also this is a manual object and with infinite extent as this isn't
-    // perspective projected in the shader
-    m_impl->m_backgroundRenderNode =
-        m_impl->m_cellStage->GetScene()->createSceneNode(Ogre::SCENE_STATIC);
-
-    // This needs to be manually destroyed later
-    if(!m_impl->m_microbeBackgroundMesh) {
-        m_impl->m_microbeBackgroundMesh =
-            Leviathan::GeometryHelpers::CreateScreenSpaceQuad(
-                "CellStage_background", -1, -1, 2, 2);
-
-        m_impl->m_microbeBackgroundSubMesh =
-            m_impl->m_microbeBackgroundMesh->getSubMesh(0);
-
-        m_impl->m_microbeBackgroundSubMesh->setMaterialName("Background");
-    }
-
-    // Setup render queue for it
-    m_impl->m_cellStage->GetScene()->getRenderQueue()->setRenderQueueMode(
-        1, Ogre::RenderQueue::FAST);
-
-    // This now attaches the item as well (as long as the scene node is created)
-    // This makes it easier to manage the multiple backgrounds and reattaching
-    // them
-    if(!m_impl->m_microbeBackgroundItem) {
-        m_impl->createBackgroundItem();
-    }
+    m_impl->createBackgroundItem();
 
     // Gen species if this is a restart//
     if(restarted) {
@@ -396,6 +373,7 @@ void
         if(returned.Result != SCRIPT_RUN_RESULT::Success)
             LOG_ERROR("Failed to run script side resetWorld");
     }
+
     // Spawn player //
     setup = ScriptRunningSetup("setupPlayer");
 
@@ -524,8 +502,7 @@ void
 
     // Main camera that will be attached to the player
     auto camera = Leviathan::ObjectLoader::LoadCamera(*m_impl->m_microbeEditor,
-        Float3(0, 15, 0),
-        Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3::UNIT_X));
+        Float3(0, 15, 0), bs::Quaternion(bs::Vector3::UNIT_X, bs::Degree(-90)));
 
     // TODO: attach a ligth to the camera
     // -- Light
@@ -535,19 +512,8 @@ void
 
     m_impl->m_microbeEditor->SetCamera(camera);
 
-    if(!m_impl->m_editorBackgroundRenderNode) {
-        m_impl->m_editorBackgroundRenderNode =
-            m_impl->m_microbeEditor->GetScene()->createSceneNode(
-                Ogre::SCENE_STATIC);
-
-        // Setup render queue for it
-        m_impl->m_microbeEditor->GetScene()
-            ->getRenderQueue()
-            ->setRenderQueueMode(1, Ogre::RenderQueue::FAST);
-
-        // This creates and attaches the item
-        m_impl->createBackgroundItem();
-    }
+    // Create backgrounds if they don't exist
+    m_impl->createBackgroundItem();
 
     // Let the script do setup //
     // This registers all the script defined systems to run and be
@@ -745,7 +711,7 @@ void
 
         exitToMenuClicked();
 
-        m_impl->destroyBackgroundItem();
+        // m_impl->destroyBackgroundItem();
 
         if(m_impl->m_cellStage) {
             m_impl->m_cellStage->Release();
@@ -836,8 +802,7 @@ void
 
     // Main camera that will be attached to the player
     m_cellCamera = Leviathan::ObjectLoader::LoadCamera(*m_impl->m_cellStage,
-        Float3(0, 15, 0),
-        Ogre::Quaternion(Ogre::Degree(-90), Ogre::Vector3::UNIT_X));
+        Float3(0, 15, 0), bs::Quaternion(bs::Vector3::UNIT_X, bs::Degree(-90)));
 
     // Link the camera to the camera control system
     m_impl->m_cellStage->GetMicrobeCameraSystem().setCameraEntity(m_cellCamera);
@@ -882,28 +847,7 @@ void
     // This is needed to be created here for biome.as to work correctly
     // Also this is a manual object and with infinite extent as this isn't
     // perspective projected in the shader
-    m_impl->m_backgroundRenderNode =
-        m_impl->m_cellStage->GetScene()->createSceneNode(Ogre::SCENE_STATIC);
 
-    // This needs to be manually destroyed later
-    if(!m_impl->m_microbeBackgroundMesh) {
-        m_impl->m_microbeBackgroundMesh =
-            Leviathan::GeometryHelpers::CreateScreenSpaceQuad(
-                "CellStage_background", -1, -1, 2, 2);
-
-        m_impl->m_microbeBackgroundSubMesh =
-            m_impl->m_microbeBackgroundMesh->getSubMesh(0);
-
-        m_impl->m_microbeBackgroundSubMesh->setMaterialName("Background");
-    }
-
-    // Setup render queue for it
-    m_impl->m_cellStage->GetScene()->getRenderQueue()->setRenderQueueMode(
-        1, Ogre::RenderQueue::FAST);
-
-    // This now attaches the item as well (as long as the scene node is created)
-    // This makes it easier to manage the multiple backgrounds and reattaching
-    // them
     m_impl->createBackgroundItem();
 
     // We handle spawning cells when the server tells us and we setup our
@@ -971,9 +915,16 @@ void
     ThriveGame::setBackgroundMaterial(const std::string& material)
 {
     LOG_INFO("Setting microbe background to: " + material);
-    m_impl->m_microbeBackgroundSubMesh->setMaterialName(material);
+    auto file = FileSystem::Get()->SearchForFile(Leviathan::FILEGROUP_TEXTURE,
+        Leviathan::StringOperations::RemoveExtension(material, true),
+        Leviathan::StringOperations::GetExtension(material));
 
-    m_impl->createBackgroundItem();
+    LEVIATHAN_ASSERT(!file.empty(), "failed to find material: " + material);
+
+    LEVIATHAN_ASSERT(m_impl->m_MicrobeBackgroundMaterial, "no material yet");
+
+    bs::HTexture texture = bs::gImporter().import<bs::Texture>(file.c_str());
+    m_impl->m_MicrobeBackgroundMaterial->setTexture("gAlbedoTex", texture);
 }
 
 // ------------------------------------ //
