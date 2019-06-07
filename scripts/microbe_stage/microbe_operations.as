@@ -292,7 +292,7 @@ void respawnPlayer(CellStageWorld@ world)
         sceneNodeComponent.Hidden = false;
         sceneNodeComponent.Marked = true;
 
-        setRandomBiome(world);
+        //setRandomBiome(world);
 
         cast<MicrobeStageHudSystem>(world.GetScriptSystem("MicrobeStageHudSystem")).
             suicideButtonreset();

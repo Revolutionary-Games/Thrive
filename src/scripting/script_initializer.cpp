@@ -1587,6 +1587,9 @@ bool
     if(!registerHexFunctions(engine))
         return false;
 
+    if(!registerPatches(engine))
+        return false;
+
     if(engine->RegisterObjectType("ThriveGame", 0, asOBJ_REF | asOBJ_NOCOUNT) <
         0) {
         ANGELSCRIPT_REGISTERFAIL;
