@@ -43,7 +43,7 @@ public:
     PatchManager();
     virtual ~PatchManager();
     size_t
-       generatePatchMap();
+        generatePatchMap();
 
     Patch*
         getCurrentPatch();

@@ -1528,7 +1528,7 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-	ANGELSCRIPT_ASSUMED_SIZE_T;
+    ANGELSCRIPT_ASSUMED_SIZE_T;
     if(engine->RegisterObjectMethod("Patch", "void setBiome(uint64 patchBiome)",
            asMETHOD(Patch, setBiome), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
@@ -1540,7 +1540,8 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-    if(engine->RegisterObjectType("PatchManager", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
+    if(engine->RegisterObjectType(
+           "PatchManager", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
@@ -1550,7 +1551,8 @@ bool
     }
 
     ANGELSCRIPT_ASSUMED_SIZE_T;
-    if(engine->RegisterObjectMethod("PatchManager", "Patch@ getPatchFromKey(uint64 key)",
+    if(engine->RegisterObjectMethod("PatchManager",
+           "Patch@ getPatchFromKey(uint64 key)",
            asMETHOD(PatchManager, getPatchFromKey), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
