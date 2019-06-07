@@ -45,11 +45,25 @@ size_t
 }
 
 //Patch manager
-PatchManager::PatchManager() {
+PatchManager::PatchManager()
+{
+    this->currentPatchId = generatePatchMap();
+}
 
+///Generate patch map and return the id of the starting patch
+size_t
+    PatchManager::generatePatchMap()
+{
+	//TODO: add map generator
+    return 0;
+}
+Patch*
+    PatchManager::getCurrentPatch(){
+    return patchMap[this->currentPatchId].get();
 }
 
 Patch*
-    PatchManager::getCurrentPatch(){
-    return patchMap[currentPatchId].get();
+    PatchManager::getPatchFromKey(size_t key)
+{
+    return patchMap[key].get();
 }

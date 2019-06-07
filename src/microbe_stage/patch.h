@@ -42,8 +42,14 @@ class PatchManager {
 public:
     PatchManager();
 
+    size_t
+        PatchManager::generatePatchMap();
+
     Patch*
         getCurrentPatch();
+
+    Patch*
+        getPatchFromKey(size_t key);
 
 protected:
 
