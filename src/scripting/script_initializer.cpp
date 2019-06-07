@@ -1540,6 +1540,27 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(engine->RegisterObjectType("PatchManager", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("PatchManager", "Patch@ getCurrentPatch()",
+           asMETHOD(PatchManager, getCurrentPatch), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectMethod("PatchManager", "Patch@ getPatchFromKey(uint64 key)",
+           asMETHOD(PatchManager, getPatchFromKey), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectMethod("PatchManager", "uint64 generatePatchMap()",
+           asMETHOD(PatchManager, generatePatchMap), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     return true;
 }
 
