@@ -8,8 +8,7 @@ Patch::Patch(std::string name)
     this->name = name;
 }
 
-Patch::~Patch()
-{}
+Patch::~Patch() {}
 
 std::string
     Patch::getName()
@@ -41,21 +40,31 @@ size_t
     return this->patchId;
 }
 
-//Patch manager
+// Patch manager
 PatchManager::PatchManager()
 {
     this->currentPatchId = generatePatchMap();
 }
 
-///Generate patch map and return the id of the starting patch
+PatchManager::~PatchManager()
+{
+    patchMap.clear();
+}
+/// Generate patch map and return the id of the starting patch
 size_t
     PatchManager::generatePatchMap()
 {
-	//TODO: add map generator
+    // TODO: add proper map generator
+    std::shared_ptr<Patch> p = std::make_shared<Patch>("Pangonian vents");
+    p.get()->setBiome(0);
+    p.get()->patchId = 0;
+
+    patchMap[0] = p;
     return 0;
 }
 Patch*
-    PatchManager::getCurrentPatch(){
+    PatchManager::getCurrentPatch()
+{
     return patchMap[this->currentPatchId].get();
 }
 

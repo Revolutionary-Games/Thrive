@@ -41,7 +41,7 @@ private:
 class PatchManager {
 public:
     PatchManager();
-
+    virtual ~PatchManager();
     size_t
         PatchManager::generatePatchMap();
 
