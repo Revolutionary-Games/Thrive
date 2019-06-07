@@ -1,4 +1,5 @@
 #include "microbe_stage/patch.h"
+#include "simulation_parameters.h"
 
 using namespace thrive;
 
