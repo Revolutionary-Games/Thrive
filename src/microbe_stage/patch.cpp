@@ -43,3 +43,13 @@ size_t
 {
     return this->patchId;
 }
+
+//Patch manager
+PatchManager::PatchManager() {
+
+}
+
+Patch*
+    PatchManager::getCurrentPatch(){
+    return patchMap[currentPatchId].get();
+}

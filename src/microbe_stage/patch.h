@@ -37,4 +37,20 @@ private:
     std::vector<std::weak_ptr<Patch>> adjacentPatches;
 };
 
+
+class PatchManager {
+public:
+    PatchManager();
+
+    Patch*
+        getCurrentPatch();
+
+protected:
+
+private:
+	std::unordered_map<size_t, std::shared_ptr<Patch>> patchMap;
+    size_t currentPatchId = 0;
+
+};
+
 } // namespace thrive
