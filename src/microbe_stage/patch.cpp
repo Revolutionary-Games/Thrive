@@ -9,9 +9,7 @@ Patch::Patch(std::string name)
 }
 
 Patch::~Patch()
-{
-    delete patchBiome;
-}
+{}
 
 std::string
     Patch::getName()
@@ -25,18 +23,16 @@ void
     this->name = name;
 }
 
-Biome*
+size_t
     Patch::getBiome()
 {
     return this->patchBiome;
 }
 
 void
-    Patch::setBiome(Biome* biome)
+    Patch::setBiome(size_t patchBiome)
 {
-    if(patchBiome)
-        delete patchBiome;
-    this->patchBiome = biome;
+    this->patchBiome = patchBiome;
 }
 
 size_t

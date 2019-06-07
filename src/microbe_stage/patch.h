@@ -24,16 +24,16 @@ public:
     void
         setName(std::string name);
 
-    Biome*
+    size_t
         getBiome();
     void
-        setBiome(Biome* biome);
+        setBiome(size_t patchBiome);
 
     size_t
         getId();
 
 private:
-    Biome* patchBiome = nullptr;
+    size_t patchBiome;
     std::vector<std::weak_ptr<Patch>> adjacentPatches;
 };
 
@@ -52,11 +52,9 @@ public:
         getPatchFromKey(size_t key);
 
 protected:
-
 private:
-	std::unordered_map<size_t, std::shared_ptr<Patch>> patchMap;
+    std::unordered_map<size_t, std::shared_ptr<Patch>> patchMap;
     size_t currentPatchId = 0;
-
 };
 
 } // namespace thrive

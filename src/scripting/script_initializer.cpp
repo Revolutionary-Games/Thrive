@@ -1522,12 +1522,14 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-    if(engine->RegisterObjectMethod("Patch", "Biome@ getBiome()",
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectMethod("Patch", "uint64 getBiome()",
            asMETHOD(Patch, getBiome), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-    if(engine->RegisterObjectMethod("Patch", "void setBiome(Biome@ biome)",
+	ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectMethod("Patch", "void setBiome(uint64 patchBiome)",
            asMETHOD(Patch, setBiome), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
