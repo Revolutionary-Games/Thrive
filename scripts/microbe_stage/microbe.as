@@ -635,11 +635,12 @@ class MicrobeSystem : ScriptSystem{
                 //     microbeComponent.queuedMovementForce.Z);
 
                 // There is an movement without flagella cost
-                auto cost = (BASE_MOVEMENT_ATP_COST*microbeComponent.totalHexCountCache)/logicTime;
-
-                // TODO: if there isn't enough energy this needs to scale the impulse
-                MicrobeOperations::takeCompound(world, microbeEntity,
-                    SimulationParameters::compoundRegistry().getTypeId("atp"), cost);
+                if (microbeComponent.movementDirection != Float3(0.0f, 0.0f, 0.0f)){
+                    auto cost = (BASE_MOVEMENT_ATP_COST*microbeComponent.totalHexCountCache)/logicTime;
+                    // TODO: if there isn't enough energy this needs to scale the impulse
+                    MicrobeOperations::takeCompound(world, microbeEntity,
+                        SimulationParameters::compoundRegistry().getTypeId("atp"), cost);
+                }
 
                 physics.Body.GiveImpulse(microbeComponent.queuedMovementForce);
             }
