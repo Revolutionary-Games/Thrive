@@ -55,7 +55,7 @@ public:
             *game.ApplicationConfiguration->GetKeyConfiguration())),
         m_microbeEditorKeys(std::make_shared<MicrobeEditorKeyHandler>(
             *game.ApplicationConfiguration->GetKeyConfiguration())),
-        m_patch_manager(std::make_unique<PatchManager>())
+        m_patch_manager(std::make_shared<PatchManager>())
     {}
 
     //! Releases Ogre things. Needs to be called before shutdown
@@ -160,7 +160,7 @@ public:
 
     PlayerData m_playerData;
 
-    std::unique_ptr<PatchManager> m_patch_manager;
+    std::shared_ptr<PatchManager> m_patch_manager;
 
     std::shared_ptr<CellStageWorld> m_cellStage;
     std::shared_ptr<MicrobeEditorWorld> m_microbeEditor;
@@ -442,6 +442,12 @@ CellStageWorld*
     ThriveGame::getCellStage()
 {
     return m_impl->m_cellStage.get();
+}
+
+PatchManager*
+    ThriveGame::getPatchManager()
+{
+    return m_impl->m_patch_manager.get();
 }
 
 PlayerData&
