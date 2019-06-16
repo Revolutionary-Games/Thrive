@@ -7,6 +7,7 @@
 #include "generated/cell_stage_world.h"
 #include "generated/microbe_editor_world.h"
 #include "main_menu_keypresses.h"
+#include "microbe_stage/patch.h"
 #include "microbe_stage/microbe_editor_key_handler.h"
 #include "microbe_stage/simulation_parameters.h"
 #include "scripting/script_initializer.h"
@@ -53,7 +54,8 @@ public:
         m_cellStageKeys(std::make_shared<PlayerMicrobeControl>(
             *game.ApplicationConfiguration->GetKeyConfiguration())),
         m_microbeEditorKeys(std::make_shared<MicrobeEditorKeyHandler>(
-            *game.ApplicationConfiguration->GetKeyConfiguration()))
+            *game.ApplicationConfiguration->GetKeyConfiguration())),
+        m_patch_manager(std::make_unique<PatchManager>())
     {}
 
     //! Releases Ogre things. Needs to be called before shutdown
@@ -157,6 +159,8 @@ public:
     ThriveGame& m_game;
 
     PlayerData m_playerData;
+
+    std::unique_ptr<PatchManager> m_patch_manager;
 
     std::shared_ptr<CellStageWorld> m_cellStage;
     std::shared_ptr<MicrobeEditorWorld> m_microbeEditor;
