@@ -270,6 +270,36 @@ void toxin_call_Notification(){
     }
 }
 
+//! Returns a material with a basic texture on it. For use on non-organelle models
+bs::HMaterial getBasicMaterialWithTexture(const string &in textureName)
+{
+    bs::HShader shader(bs::BuiltinShader::Standard);
+    bs::HMaterial material(shader);
+    bs::HTexture texture(textureName);
+    material.setTexture("gAlbedoTex", texture);
+
+    return material;
+}
+
+//! Returns a material with a basic texture on it and tint colour. For
+//! use on non-organelle models
+//! TODO: implement tint again, looks like the base shader does not support it
+bs::HMaterial getBasicMaterialWithTextureTinted(const string &in textureName,
+    const Float4 &in tint = Float4(1, 1, 1, 1))
+{
+    bs::HShader shader(bs::BuiltinShader::Standard);
+    bs::HMaterial material(shader);
+    bs::HTexture texture(textureName);
+    material.setTexture("gAlbedoTex", texture);
+
+    return material;
+}
+
+void updateMaterialTint(bs::HMaterial &in material, const Float4 &in tint)
+{
+    // TODO: implement
+}
+
 // TODO: move this to where axialToCartesian is defined
 // We should use Int2 instead, or MAYBE a derived class defined in c++ if we wanna be really fancy...
 /*

@@ -14,6 +14,8 @@ Organelle atributes:
     mesh:   The name of the mesh file of the organelle.
             It has to be in the models folder.
 
+    texture: The name of the texture file to use
+
     hexes:  A table of the hexes that the organelle occupies.
             Each hex it's represented by a table that looks like this:
                 {["q"]=q,   ["r"]=r}
@@ -85,6 +87,7 @@ class OrganelleParameters{
     string name;
     string gene = "INVALID";
     string mesh;
+    string texture = "UNSET TEXTURE";
 
     //! Chance of randomly generating this (used by procedural_microbes.as)
     float chanceToCreate = 0.0;
@@ -254,6 +257,7 @@ void setupOrganelles(){
     nucleusParameters.mass = 0.7;
     nucleusParameters.gene = "N";
     nucleusParameters.mesh = "nucleus.mesh";
+    nucleusParameters.texture = "Nucleus.png";
     nucleusParameters.chanceToCreate = 0; // Not randomly generated.
     nucleusParameters.prokaryoteChance = 0; // Not randomly generated.
     nucleusParameters.mpCost = 100; //big evolution moment.

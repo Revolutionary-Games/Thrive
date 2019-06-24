@@ -294,9 +294,9 @@ void cellHitFloatingOrganelle(GameWorld@ world, ObjectID firstEntity, ObjectID s
         cellEntity = firstEntity;
     }
 
-    // TODO: use this to detect stuff
-    LOG_INFO("Model: " + model.GraphicalObject.getMesh().getName());
-    LOG_INFO("TODO: organelle unlock progress if cell: " + cellEntity + " is the player");
+    // // TODO: use this to detect stuff
+    // LOG_INFO("Model: " + model.GraphicalObject.getMesh().getName());
+    // LOG_INFO("TODO: organelle unlock progress if cell: " + cellEntity + " is the player");
 
     world.QueueDestroyEntity(floatingEntity);
 }
@@ -618,8 +618,8 @@ void createAgentCloud(CellStageWorld@ world, CompoundId compoundId,
     auto agentEntity = world.CreateEntity();
 
     auto position = world.Create_Position(agentEntity, pos + (direction * 1.5),
-        Ogre::Quaternion(Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
-            Ogre::Vector3(0,1, 0)));
+        bs::Quaternion(bs::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
+            bs::Vector3(0,1, 0)));
 
     // Agent
     auto agentProperties = world.Create_AgentProperties(agentEntity);
@@ -643,12 +643,102 @@ void createAgentCloud(CellStageWorld@ world, CompoundId compoundId,
     body.SetVelocity(normalizedDirection * AGENT_EMISSION_VELOCITY);
     rigidBody.JumpTo(position);
     auto sceneNode = world.Create_RenderNode(agentEntity);
-    auto model = world.Create_Model(agentEntity, sceneNode.Node, "oxytoxy_fluid.mesh");
+    auto model = world.Create_Model(agentEntity, "oxytoxy_fluid.mesh",
+        getBasicMaterialWithTexture("oxytoxy_fluid.png"));
 
-    // Need to set the tint
-    model.GraphicalObject.setCustomParameter(1, Ogre::Vector4(1, 1, 1, 1));
+    // // Need to set the tint
+    // model.GraphicalObject.setCustomParameter(1, bs::Vector4(1, 1, 1, 1));
 
     auto timedLifeComponent = world.Create_TimedLifeComponent(agentEntity, int(lifetime));
+}
+
+ObjectID createChunk(CellStageWorld@ world, uint chunkId,  Float3 pos)
+{
+    auto biome = getCurrentBiome();
+    // chunk
+    ObjectID chunkEntity = world.CreateEntity();
+    const ChunkData@ chunk = biome.getChunk(chunkId);
+
+    //Position and render node
+    auto position = world.Create_Position(chunkEntity, pos,
+        bs::Quaternion(bs::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
+            bs::Vector3(0,1,1)));
+
+
+    auto renderNode = world.Create_RenderNode(chunkEntity);
+    // Grab scale from json
+    double chunkScale = chunk.chunkScale;
+    renderNode.Scale = Float3(chunkScale, chunkScale, chunkScale);
+    renderNode.Marked = true;
+    renderNode.Node.setOrientation(bs::Quaternion(
+            bs::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
+            bs::Vector3(0,1,1)));
+
+    renderNode.Node.setPosition(pos);
+
+    //Grab data
+    double ventAmount= chunk.ventAmount;
+    bool dissolves=chunk.dissolves;
+    int radius = chunk.radius;
+    int mass = chunk.mass;
+    int chunkSize = chunk.size;
+    auto meshListSize = chunk.getMeshListSize();
+    string mesh=chunk.getMesh(GetEngine().GetRandom().GetNumber(0,
+            meshListSize-1))+".mesh";
+
+    //Set things
+    auto venter = world.Create_CompoundVenterComponent(chunkEntity);
+    venter.setVentAmount(ventAmount);
+    venter.setDoDissolve(dissolves);
+    auto bag = world.Create_CompoundBagComponent(chunkEntity);
+    auto engulfable = world.Create_EngulfableComponent(chunkEntity);
+    engulfable.setSize(chunkSize);
+
+
+    auto chunkCompounds = chunk.getCompoundKeys();
+    //LOG_INFO("chunkCompounds.length = " + chunkCompounds.length());
+
+    for(uint i = 0; i < chunkCompounds.length(); ++i){
+        auto compoundId = SimulationParameters::compoundRegistry().getTypeData(chunkCompounds[i]).id;
+        //LOG_INFO("got here:");
+        // And register new
+        const double amount = chunk.getCompound(chunkCompounds[i]).amount;
+        //LOG_INFO("amount:"+amount);
+        bag.setCompound(compoundId,amount);
+    }
+
+    auto model = world.Create_Model(chunkEntity, mesh, getBasicMaterialWithTexture(
+            chunk.name + ".png"));
+
+    // Fluid mechanics.
+    world.Create_FluidEffectComponent(chunkEntity);
+
+    // Rigid Body
+    auto rigidBody = world.Create_Physics(chunkEntity, position);
+
+    //chunk properties
+    if (chunk.damages > 0.0f || chunk.deleteOnTouch){
+        auto damager = world.Create_DamageOnTouchComponent(chunkEntity);
+        damager.setDamage(chunk.damages);
+        damager.setDeletes(chunk.deleteOnTouch);
+        //Damage
+        auto body = rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
+            world.GetPhysicalWorld().CreateSphere(radius),mass,
+            world.GetPhysicalMaterial("chunkDamageMaterial"));
+
+        body.ConstraintMovementAxises();
+    }
+    else {
+        auto body = rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
+            world.GetPhysicalWorld().CreateSphere(radius),mass,
+            //engulfable
+            world.GetPhysicalMaterial("engulfableMaterial"));
+        body.ConstraintMovementAxises();
+    }
+
+    rigidBody.JumpTo(position);
+
+    return chunkEntity;
 }
 
 void resetWorld(CellStageWorld@ world)

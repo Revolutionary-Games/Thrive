@@ -80,16 +80,18 @@ class MicrobeEditor{
         node.Node.setPosition(Float3(0.72f, 0, 0.18f));
         node.Marked = true;
 
-        auto plane = hudSystem.world.Create_Plane(gridSceneNode, node.Node,
-            "EditorGridMaterial", Ogre::Plane(Ogre::Vector3(0, 1, 0), 0), Float2(100, 100),
-            // This is the UV coordinates direction
-            Ogre::Vector3(0, 0, 1));
+        LOG_WRITE("TODO: remake the background grid");
+        
+        // auto plane = hudSystem.world.Create_Plane(gridSceneNode, node.Node,
+        //     "EditorGridMaterial", bs::Plane(bs::Vector3(0, 1, 0), 0), Float2(100, 100),
+        //     // This is the UV coordinates direction
+        //     Float3(0, 0, 1));
 
-        // Move to an early render queue
-        hudSystem.world.GetScene().getRenderQueue().setRenderQueueMode(
-            2, Ogre::RenderQueue::FAST);
+        // // Move to an early render queue
+        // hudSystem.world.GetScene().getRenderQueue().setRenderQueueMode(
+        //     2, Ogre::RenderQueue::FAST);
 
-        plane.GraphicalObject.setRenderQueueGroup(2);
+        // plane.GraphicalObject.setRenderQueueGroup(2);
 
         mutationPoints = BASE_MUTATION_POINTS;
         // organelleCount = 0;
@@ -235,14 +237,17 @@ class MicrobeEditor{
                 ObjectID hex = hudSystem.hoverHex[usedHoverHex++];
                 auto node = hudSystem.world.GetComponent_RenderNode(hex);
                 node.Node.setPosition(pos);
-                node.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(90),
-                        Ogre::Vector3(0, 1, 0)) * Ogre::Quaternion(Ogre::Degree(180),
-                            Ogre::Vector3(0, 0, 1)));
+                node.Node.setOrientation(bs::Quaternion(bs::Degree(90),
+                        bs::Vector3(0, 1, 0)) * bs::Quaternion(bs::Degree(180),
+                            bs::Vector3(0, 0, 1)));
                 node.Hidden = false;
                 node.Marked = true;
 
                 auto model = hudSystem.world.GetComponent_Model(hex);
-                model.GraphicalObject.setDatablockOrMaterialName("EditorHexMaterial");
+
+                // TODO: this seems a bit wasteful to do each tick
+                model.Material = getBasicMaterialWithTexture("single_hex.png");
+                model.Marked = true;
             }
         }
     }
@@ -555,21 +560,16 @@ class MicrobeEditor{
         const auto ray = hudSystem.world.CastRayFromCamera(x, y);
 
         float distance;
-        bool intersects = ray.intersects(Ogre::Plane(Ogre::Vector3(0, 1, 0), 0),distance);
+        bool intersects = ray.intersects(bs::Plane(bs::Vector3(0, 1, 0), 0), distance);
 
         // Get the position of the cursor in the plane that the microbes is floating in
         const auto rayPoint = ray.getPoint(distance);
 
-        // LOG_WRITE("Mouse point: " + rayPoint.x + ", " + rayPoint.y + ", " + rayPoint.z);
-
         // Convert to the hex the cursor is currently located over.
-
         const auto tmp1 = Hex::cartesianToAxial(rayPoint.x, rayPoint.z);
 
         qr = tmp1.X;
         rr = tmp1.Y;
-
-        // LOG_WRITE("Mouse hex: " + qr + ", " + rr);
     }
 
     bool checkIsNucleusPresent()
@@ -826,9 +826,9 @@ class MicrobeEditor{
                 ObjectID hex = hudSystem.hoverHex[usedHoverHex++];
                 auto node = hudSystem.world.GetComponent_RenderNode(hex);
                 node.Node.setPosition(pos);
-                node.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(90),
-                        Ogre::Vector3(0, 1, 0)) * Ogre::Quaternion(Ogre::Degree(180),
-                            Ogre::Vector3(0, 0, 1)));
+                node.Node.setOrientation(bs::Quaternion(bs::Degree(90),
+                        bs::Vector3(0, 1, 0)) * bs::Quaternion(bs::Degree(180),
+                            bs::Vector3(0, 0, 1)));
                 node.Hidden = false;
                 node.Marked = true;
 
@@ -842,11 +842,11 @@ class MicrobeEditor{
                     (organelleHere !is null && organelleHere.organelle.name != "cytoplasm"))
                 {
                     // Invalid place
-                    model.GraphicalObject.setDatablockOrMaterialName(
-                        "EditorHexMaterialInvalid");
+                    model.Material = getBasicMaterialWithTexture("single_hex_invalid.png");
+                    model.Marked = true;
                 } else {
-                    model.GraphicalObject.setDatablockOrMaterialName(
-                        "EditorHexMaterial");
+                    model.Material = getBasicMaterialWithTexture("single_hex.png");
+                    model.Marked = true;
                 }
             }
         }

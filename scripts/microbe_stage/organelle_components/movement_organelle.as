@@ -64,8 +64,7 @@ class MovementOrganelle : OrganelleComponent{
 
         // Create animation component
         if(IsInGraphicalMode()){
-            Animated@ animated = organelle.world.Create_Animated(organelle.organelleEntity,
-                model.GraphicalObject);
+            Animated@ animated = organelle.world.Create_Animated(organelle.organelleEntity);
             SimpleAnimation moveAnimation("Move");
             moveAnimation.Loop = true;
             // 0.25 is the "idle" animation speed when the flagellum isn't used
@@ -84,8 +83,8 @@ class MovementOrganelle : OrganelleComponent{
 
             renderNode.Node.setPosition(organellePos);
 
-            renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(angle),
-                    Ogre::Vector3(0, 1, 1)));
+            renderNode.Node.setOrientation(bs::Quaternion(bs::Degree(angle),
+                    bs::Vector3(0, 1, 1)));
         }
     }
 
@@ -192,13 +191,10 @@ class MovementOrganelle : OrganelleComponent{
         if (renderNode !is null && IsInGraphicalMode())
         {
             renderNode.Node.setPosition(membraneCoords);
-            renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(90),
-                    Ogre::Vector3(1, 0, 0)) * Ogre::Quaternion(Ogre::Degree(180),
-                        Ogre::Vector3(0, 1, 0)) * Ogre::Quaternion(Ogre::Degree(angle),
-                            Ogre::Vector3(0, 0, 1)));
-            //renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(angle),
-            //        Ogre::Vector3(0, 1, 0))*Ogre::Quaternion(Ogre::Degree(270),
-            //            Ogre::Vector3(0, 0, 1)));
+            renderNode.Node.setOrientation(bs::Quaternion(bs::Degree(90),
+                    bs::Vector3(1, 0, 0)) * bs::Quaternion(bs::Degree(180),
+                        bs::Vector3(0, 1, 0)) * bs::Quaternion(bs::Degree(angle),
+                            bs::Vector3(0, 0, 1)));
         }
 
         //Grab components

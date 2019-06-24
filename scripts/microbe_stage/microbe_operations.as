@@ -501,7 +501,7 @@ void ejectCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId com
 
     auto angle = 180;
     // Find the direction the microbe is facing
-    auto yAxis = Ogre::Quaternion(position._Orientation).yAxis();
+    auto yAxis = bs::Quaternion(position._Orientation).yAxis();
     auto microbeAngle = atan2(yAxis.x, yAxis.y);
     if(microbeAngle < 0){
         microbeAngle = microbeAngle + 2 * PI;
@@ -513,8 +513,8 @@ void ejectCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId com
     auto s = sin(finalAngle/180*PI);
     auto c = cos(finalAngle/180*PI);
 
-    auto xnew = -membraneCoords.x * c + membraneCoords.y * s;
-    auto ynew = membraneCoords.x * s + membraneCoords.y * c;
+    auto xnew = -membraneCoords.X * c + membraneCoords.Y * s;
+    auto ynew = membraneCoords.X * s + membraneCoords.Y * c;
 
     auto amountToEject = amount*10000;
     createCompoundCloud(world, uint64(compoundId),
@@ -718,7 +718,7 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         //for more efficient pooping.
         auto angle = 180;
         // Find the direction the microbe is facing
-        auto yAxis = Ogre::Quaternion(cellPosition._Orientation).zAxis();
+        auto yAxis = bs::Quaternion(cellPosition._Orientation).zAxis();
         auto microbeAngle = atan2(yAxis.x, yAxis.z);
         if(microbeAngle < 0){
             microbeAngle = microbeAngle + 2 * PI;
@@ -734,8 +734,8 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
             ourHex/=2;
         // Membrane coords to world coords
         // Plus bunch more space in world coordinates like we added before with maxr but cleaner
-        auto xnew = -(membraneCoords.x) * c + (membraneCoords.z+maxR*ourHex) * s;
-        auto ynew = (membraneCoords.x)* s + (membraneCoords.z+maxR*ourHex) * c;
+        auto xnew = -(membraneCoords.X) * c + (membraneCoords.Z+maxR*ourHex) * s;
+        auto ynew = (membraneCoords.X)* s + (membraneCoords.Z+maxR*ourHex) * c;
         // Find the direction the microbe is facing
         auto vec = ( microbeComponent.facingTargetPoint - cellPosition._Position);
         auto direction = vec.Normalize();
@@ -1174,28 +1174,30 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
         auto positionAdded = Float3(GetEngine().GetRandom().GetFloat(-2.0f, 2.0f),0,
             GetEngine().GetRandom().GetFloat(-2.0f, 2.0f));
         auto chunkPosition = world.Create_Position(chunkEntity, position._Position+positionAdded,
-            Ogre::Quaternion(Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
-                Ogre::Vector3(0,1,1)));
+            bs::Quaternion(bs::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
+                bs::Vector3(0,1,1)));
 
         auto renderNode = world.Create_RenderNode(chunkEntity);
         renderNode.Scale = Float3(1.0f, 1.0f, 1.0f);
         renderNode.Marked = true;
-        renderNode.Node.setOrientation(Ogre::Quaternion(
-            Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)), Ogre::Vector3(0,1,1)));
+        renderNode.Node.setOrientation(bs::Quaternion(
+            bs::Degree(GetEngine().GetRandom().GetNumber(0, 360)), bs::Vector3(0,1,1)));
         renderNode.Node.setPosition(chunkPosition._Position);
         // Grab random organelle from cell and use that
         auto organelleIndex = GetEngine().GetRandom().GetNumber(0, microbeComponent.organelles.length()-1);
         string mesh = microbeComponent.organelles[organelleIndex].organelle.mesh;
         if (mesh != "")
             {
-            auto model = world.Create_Model(chunkEntity, renderNode.Node, mesh);
-            // Color chunk based on cell
-            model.GraphicalObject.setCustomParameter(1, microbeComponent.speciesColour);
+                auto model = world.Create_Model(chunkEntity, mesh,
+                    getBasicMaterialWithTextureTinted(
+                        microbeComponent.organelles[organelleIndex].organelle.texture,
+                        microbeComponent.speciesColour));
             }
         else {
-            auto model = world.Create_Model(chunkEntity, renderNode.Node, "mitochondrion.mesh");
-            // Color chunk based on cell
-            model.GraphicalObject.setCustomParameter(1, microbeComponent.speciesColour);
+            auto model = world.Create_Model(chunkEntity, "mitochondrion.mesh",
+                getBasicMaterialWithTextureTinted(
+                    microbeComponent.organelles[organelleIndex].organelle.texture,
+                    microbeComponent.speciesColour));
             }
         auto rigidBody = world.Create_Physics(chunkEntity, chunkPosition);
         auto body = rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
