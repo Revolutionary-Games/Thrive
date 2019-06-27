@@ -261,9 +261,6 @@ public:
 
     REFERENCE_HANDLE_UNCOUNTED_TYPE(CompoundCloudComponent);
 
-    //! The name of the texture that is made for this cloud
-    const std::string m_textureName;
-
     static constexpr auto TYPE =
         componentTypeConvert(THRIVE_COMPONENT::COMPOUND_CLOUD);
 

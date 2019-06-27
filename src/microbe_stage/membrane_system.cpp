@@ -172,7 +172,8 @@ void
     MembraneComponent::setColour(const Float4& value)
 {
     colour = value;
-    DEBUG_BREAK;
+    LOG_WRITE("TODO: MembraneComponent::setColour");
+    // DEBUG_BREAK;
 
     // // Desaturate it here so it looks nicer (could implement as method
     // thatcould
@@ -240,7 +241,8 @@ void
     // This is a triangle strip so we only need 2 + n vertices
     const auto bufferSize = vertices2D.size() + 2;
 
-    DEBUG_BREAK;
+    LOG_WRITE("TODO: MembraneComponent::Update");
+    // DEBUG_BREAK;
 
     // Ogre::RenderSystem* renderSystem =
     //     Ogre::Root::getSingleton().getRenderSystem();
@@ -447,7 +449,8 @@ size_t
 bs::HMaterial
     MembraneComponent::chooseMaterialByType()
 {
-    DEBUG_BREAK;
+    LOG_WRITE("TODO: chooseMaterialByType");
+    // DEBUG_BREAK;
 
     // switch(membraneType) {
     // case MEMBRANE_TYPE::MEMBRANE:
@@ -605,7 +608,7 @@ void
     isInitialized = false;
     vertices2D.clear();
 
-    DEBUG_BREAK;
+    LOG_WRITE("TODO: MembraneComponent::releaseCurrentMesh");
 
     // if(m_item) {
     //     scene->destroyItem(m_item);

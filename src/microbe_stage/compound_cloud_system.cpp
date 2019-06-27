@@ -8,25 +8,11 @@
 
 #include <Rendering/GeometryHelpers.h>
 
-// #include <OgreHardwarePixelBuffer.h>
-// #include <OgreMaterialManager.h>
-// #include <OgreMesh2.h>
-// #include <OgreMeshManager.h>
-// #include <OgreMeshManager2.h>
-// #include <OgreRoot.h>
-// #include <OgreSceneManager.h>
-// #include <OgreSubMesh2.h>
-// #include <OgreTechnique.h>
-// #include <OgreTextureManager.h>
-
 #include <atomic>
 
 using namespace thrive;
 
-constexpr auto OGRE_CLOUD_TEXTURE_BYTES_PER_ELEMENT = 4;
-
-static std::atomic<int> CloudTextureNumber = {0};
-static std::atomic<int> CloudMeshNumberCounter = {0};
+constexpr auto CLOUD_TEXTURE_BYTES_PER_ELEMENT = 4;
 
 ////////////////////////////////////////////////////////////////////////////////
 // CompoundCloudComponent
@@ -37,7 +23,6 @@ CompoundCloudComponent::CompoundCloudComponent(CompoundCloudSystem& owner,
     Compound* third,
     Compound* fourth) :
     Leviathan::Component(TYPE),
-    m_textureName("cloud_" + std::to_string(++CloudTextureNumber)),
     m_owner(owner)
 {
     if(!first)
@@ -78,7 +63,8 @@ CompoundCloudComponent::~CompoundCloudComponent()
 void
     CompoundCloudComponent::Release(bs::Scene* scene)
 {
-    DEBUG_BREAK;
+    LOG_WRITE("TODO: CompoundCloudComponent::Release");
+    // DEBUG_BREAK;
 
     // // Destroy the plane
     // if(m_compoundCloudsPlane) {
@@ -328,66 +314,8 @@ void
     if(!Engine::Get()->IsInGraphicalMode())
         return;
 
-    const auto meshName =
-        "CompoundCloudSystem_Plane_" + std::to_string(++CloudMeshNumberCounter);
-
-    // TODO: fix this in the engine to make this method simpler
-    // This crashes when used with RenderDoc and doesn't render anything
-    // m_planeMesh = Leviathan::GeometryHelpers::CreateXZPlane(
-    //     meshName, CLOUD_WIDTH, CLOUD_HEIGHT);
-
-    DEBUG_BREAK;
-
-    // // Create a background plane on which the fluid clouds will be drawn.
-    // m_planeMesh = Ogre::MeshManager::getSingleton().createManual(
-    //     meshName, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
-
-    // Ogre::SubMesh* planeSubMesh = m_planeMesh->createSubMesh();
-
-    // Ogre::VaoManager* myVaoManager =
-    //     Ogre::Root::getSingleton().getRenderSystem()->getVaoManager();
-
-    // Ogre::VertexElement2Vec myVertexElements;
-    // myVertexElements.push_back(
-    //     Ogre::VertexElement2(Ogre::VET_FLOAT3, Ogre::VES_POSITION));
-    // myVertexElements.push_back(
-    //     Ogre::VertexElement2(Ogre::VET_FLOAT2,
-    //     Ogre::VES_TEXTURE_COORDINATES));
-
-
-    // // Simple square plane with 4 vertices & 2 primitive triangles.
-    // CloudPlaneVertex meshVertices[] = {
-    //     {Ogre::Vector3(-CLOUD_WIDTH, 0, -CLOUD_HEIGHT), Ogre::Vector2(0, 0)},
-    //     {Ogre::Vector3(-CLOUD_WIDTH, 0, CLOUD_HEIGHT), Ogre::Vector2(0, 1)},
-    //     {Ogre::Vector3(CLOUD_WIDTH, 0, CLOUD_HEIGHT), Ogre::Vector2(1, 1)},
-    //     {Ogre::Vector3(CLOUD_WIDTH, 0, -CLOUD_HEIGHT), Ogre::Vector2(1, 0)}};
-
-    // Ogre::VertexBufferPacked* myVertexBuffer =
-    // myVaoManager->createVertexBuffer(
-    //     myVertexElements, sizeof(meshVertices) / sizeof(CloudPlaneVertex),
-    //     Ogre::BT_IMMUTABLE, meshVertices, false);
-
-    // Ogre::VertexBufferPackedVec myVertexBuffers;
-    // myVertexBuffers.push_back(myVertexBuffer);
-
-    // uint16_t myIndices[] = {2, 0, 1, 0, 2, 3};
-
-    // Ogre::IndexBufferPacked* myIndexBuffer = myVaoManager->createIndexBuffer(
-    //     Ogre::IndexBufferPacked::IT_16BIT, sizeof(myIndices) /
-    //     sizeof(uint16_t), Ogre::BT_IMMUTABLE, myIndices, false);
-
-    // Ogre::VertexArrayObject* myVao = myVaoManager->createVertexArrayObject(
-    //     myVertexBuffers, myIndexBuffer, Ogre::OT_TRIANGLE_LIST);
-
-    // planeSubMesh->mVao[Ogre::VpNormal].push_back(myVao);
-
-    // // Set the bounds to get frustum culling and LOD to work correctly.
-    // m_planeMesh->_setBounds(Ogre::Aabb(Ogre::Vector3::ZERO,
-    //     Ogre::Vector3(CLOUD_WIDTH, CLOUD_Y_COORDINATE, CLOUD_HEIGHT)));
-
-    // // Need to edit the render queue (for when the item is created)
-    // world.GetScene()->getRenderQueue()->setRenderQueueMode(
-    //     2, Ogre::RenderQueue::FAST);
+    m_planeMesh = Leviathan::GeometryHelpers::CreateXZPlane(
+        CLOUD_X_EXTENT, CLOUD_Y_EXTENT);
 }
 
 void
@@ -401,12 +329,8 @@ void
         world.DestroyEntity(m_managedClouds.begin()->first);
     }
 
-    // // Skip if no graphics
-    // if(!Ogre::Root::getSingletonPtr())
-    //     return;
-
-    // // Destroy the shared mesh
-    // Ogre::MeshManager::getSingleton().remove(m_planeMesh);
+    // Destroy the shared mesh
+    m_planeMesh = nullptr;
 }
 // ------------------------------------ //
 void
@@ -944,7 +868,8 @@ void
     if(!Engine::Get()->IsInGraphicalMode())
         return;
 
-    DEBUG_BREAK;
+    LOG_WRITE("TODO: redo rest of CompoundCloudSystem::initializeCloud");
+    // DEBUG_BREAK;
 
     // // Create where the eventually created plane object will be attached
     // cloud.m_sceneNode = scene->getRootSceneNode()->createChildSceneNode();
@@ -1002,7 +927,7 @@ void
     //     true);
 
     // LEVIATHAN_ASSERT(Ogre::PixelUtil::getNumElemBytes(Ogre::PF_BYTE_RGBA) ==
-    //                      OGRE_CLOUD_TEXTURE_BYTES_PER_ELEMENT,
+    //                      CLOUD_TEXTURE_BYTES_PER_ELEMENT,
     //     "Pixel format bytes has changed");
 
     // auto pixelBuffer = cloud.m_texture->getBuffer();
@@ -1113,7 +1038,8 @@ void
     if(!cloud.m_texture)
         return;
 
-    DEBUG_BREAK;
+    LOG_WRITE("TODO: rest of CompoundCloudSystem::processCloud");
+    // DEBUG_BREAK;
 
     // // Store the pixel data in a hardware buffer for quick access.
     // auto pixelBuffer = cloud.m_texture->getBuffer();
@@ -1123,7 +1049,7 @@ void
     // auto* pDest = static_cast<uint8_t*>(pixelBox.data);
 
     // const size_t rowBytes =
-    //     pixelBox.rowPitch * OGRE_CLOUD_TEXTURE_BYTES_PER_ELEMENT;
+    //     pixelBox.rowPitch * CLOUD_TEXTURE_BYTES_PER_ELEMENT;
 
     // // Copy the density vector into the buffer.
 
@@ -1190,7 +1116,7 @@ void
             // This is the same clamping code as in the old version
             intensity = std::clamp(intensity, 0, 255);
 
-            pDest[rowBytes * j + (i * OGRE_CLOUD_TEXTURE_BYTES_PER_ELEMENT) +
+            pDest[rowBytes * j + (i * CLOUD_TEXTURE_BYTES_PER_ELEMENT) +
                   index] = static_cast<uint8_t>(intensity);
         }
     }

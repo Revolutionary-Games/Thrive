@@ -21,6 +21,7 @@
 #include <Networking/NetworkHandler.h>
 #include <Physics/PhysicsMaterialManager.h>
 #include <Rendering/GeometryHelpers.h>
+#include <Rendering/Graphics.h>
 #include <Script/Bindings/BindHelpers.h>
 #include <Script/Bindings/StandardWorldBindHelper.h>
 #include <Script/ScriptExecutor.h>
@@ -61,11 +62,13 @@ public:
     {
         m_microbeBackgroundMesh = nullptr;
         m_microbeBackgroundItem = nullptr;
-        m_backgroundRenderNode->destroy();
+        if(!m_backgroundRenderNode.isDestroyed())
+            m_backgroundRenderNode->destroy();
         m_backgroundRenderNode = nullptr;
 
         m_microbeEditorBackgroundItem = nullptr;
-        m_editorBackgroundRenderNode->destroy();
+        if(!m_editorBackgroundRenderNode.isDestroyed())
+            m_editorBackgroundRenderNode->destroy();
         m_editorBackgroundRenderNode = nullptr;
 
         m_MicrobeBackgroundMaterial = nullptr;
@@ -914,16 +917,13 @@ void
 void
     ThriveGame::setBackgroundMaterial(const std::string& material)
 {
-    LOG_INFO("Setting microbe background to: " + material);
-    auto file = FileSystem::Get()->SearchForFile(Leviathan::FILEGROUP_TEXTURE,
-        Leviathan::StringOperations::RemoveExtension(material, true),
-        Leviathan::StringOperations::GetExtension(material));
-
-    LEVIATHAN_ASSERT(!file.empty(), "failed to find material: " + material);
-
     LEVIATHAN_ASSERT(m_impl->m_MicrobeBackgroundMaterial, "no material yet");
 
-    bs::HTexture texture = bs::gImporter().import<bs::Texture>(file.c_str());
+    // TODO: use material here
+    bs::HTexture texture =
+        Engine::Get()->GetGraphics()->LoadTextureByName("Thrive_ocean0.png");
+
+    LEVIATHAN_ASSERT(texture, "failed to load background: " + material);
     m_impl->m_MicrobeBackgroundMaterial->setTexture("gAlbedoTex", texture);
 }
 
