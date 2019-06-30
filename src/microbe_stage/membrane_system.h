@@ -20,6 +20,7 @@ enum class MEMBRANE_TYPE { MEMBRANE, WALL, CHITIN, DOUBLEMEMBRANE };
  * @brief Adds a membrane to an entity
  * @todo To improve performance this has to actually calculate the bounds for
  * frustrum culling to work well
+ * @todo All the processing functions from this should be moved to the system.
  */
 class MembraneComponent : public Leviathan::Component {
     struct MembraneVertex {
@@ -27,6 +28,8 @@ class MembraneComponent : public Leviathan::Component {
         bs::Vector3 m_pos;
         bs::Vector2 m_uv;
     };
+
+    static_assert(sizeof(MembraneVertex) == 5 * sizeof(float));
 
 public:
     MembraneComponent(MEMBRANE_TYPE type);
@@ -108,7 +111,9 @@ public:
     //! fully created data, instead of creating the buffers first and then
     //! filling them with data
     void
-        Update(bs::Scene* scene, const bs::HSceneObject& parentComponentPos);
+        Update(bs::Scene* scene,
+            const bs::HSceneObject& parentComponentPos,
+            const bs::SPtr<bs::VertexDataDesc>& vertexDesc);
 
     // Adds absorbed compound to the membrane.
     // These are later queried and added to the vacuoles.
@@ -204,9 +209,6 @@ protected:
     //! A material created from the base material that can be colored
     bs::HMaterial coloredMaterial;
 
-    //! For unique name generation
-    static std::atomic<int> membraneNumber;
-
     //! The amount of compounds stored in the membrane.
     int compoundAmount = 0;
 
@@ -224,7 +226,12 @@ private:
 class MembraneSystem
     : public Leviathan::System<
           std::tuple<MembraneComponent&, Leviathan::RenderNode&>> {
+    struct Implementation;
+
 public:
+    MembraneSystem();
+    ~MembraneSystem();
+
     //! Updates the membrane calculations every frame
     void
         Run(GameWorld& world, bs::Scene* scene)
@@ -232,8 +239,8 @@ public:
         auto& index = CachedComponents.GetIndex();
         for(auto iter = index.begin(); iter != index.end(); ++iter) {
 
-            std::get<0>(*iter->second)
-                .Update(scene, std::get<1>(*iter->second).Node);
+            UpdateComponent(std::get<0>(*iter->second), scene,
+                std::get<1>(*iter->second).Node);
         }
     }
 
@@ -259,6 +266,15 @@ public:
         CachedComponents.RemoveBasedOnKeyTupleList(firstdata);
         CachedComponents.RemoveBasedOnKeyTupleList(seconddata);
     }
+
+private:
+    void
+        UpdateComponent(MembraneComponent& component,
+            bs::Scene* scene,
+            const bs::HSceneObject& parentComponentPos);
+
+private:
+    std::unique_ptr<Implementation> m_impl;
 };
 
 } // namespace thrive

@@ -1,6 +1,14 @@
 #include "membrane_system.h"
 
 #include <Engine.h>
+#include <Rendering/Graphics.h>
+#include <bsfCore/Components/BsCRenderable.h>
+#include <bsfCore/Material/BsMaterial.h>
+#include <bsfCore/Mesh/BsMesh.h>
+#include <bsfCore/RenderAPI/BsVertexDataDesc.h>
+#include <bsfCore/Scene/BsSceneObject.h>
+// temporary
+#include <bsfEngine/Resources/BsBuiltinResources.h>
 
 #include <algorithm>
 #include <atomic>
@@ -10,8 +18,6 @@ using namespace thrive;
 ////////////////////////////////////////////////////////////////////////////////
 // Membrane Component
 ////////////////////////////////////////////////////////////////////////////////
-static std::atomic<int> MembraneMeshNumber = {0};
-std::atomic<int> MembraneComponent::membraneNumber = {0};
 
 //! This must be big enough that no organelle can be at this position
 constexpr auto INVALID_FOUND_ORGANELLE = -999999.f;
@@ -30,16 +36,6 @@ MembraneComponent::~MembraneComponent()
         return;
 
     LEVIATHAN_ASSERT(!m_item, "MembraneComponent not released");
-
-    // Ogre::MeshManager::getSingleton().remove(m_mesh);
-    // m_mesh.reset();
-    // m_subMesh = nullptr;
-
-    // if(coloredMaterial) {
-
-    //     Ogre::MaterialManager::getSingleton().remove(coloredMaterial);
-    //     coloredMaterial.reset();
-    // }
 }
 
 void
@@ -58,6 +54,11 @@ void
     MembraneComponent::Release(bs::Scene* scene)
 {
     releaseCurrentMesh();
+
+    if(m_item && !m_item.isDestroyed()) {
+        m_item->destroy();
+        m_item = nullptr;
+    }
 }
 // ------------------------------------ //
 Float2
@@ -201,7 +202,7 @@ void
 
     // If we already have created a material we need to re-apply it
     if(coloredMaterial) {
-        DEBUG_BREAK;
+        LOG_WRITE("TODO: setHealthFraction");
 
         // coloredMaterial->getTechnique(0)
         //     ->getPass(0)
@@ -219,7 +220,8 @@ Float4
 // ------------------------------------ //
 void
     MembraneComponent::Update(bs::Scene* scene,
-        const bs::HSceneObject& parentComponentPos)
+        const bs::HSceneObject& parentComponentPos,
+        const bs::SPtr<bs::VertexDataDesc>& vertexDesc)
 {
     if(clearNeeded) {
 
@@ -238,75 +240,50 @@ void
     if(!Engine::Get()->IsInGraphicalMode())
         return;
 
-    // This is a triangle strip so we only need 2 + n vertices
+    // This is a triangle fan so we only need 2 + n vertices
     const auto bufferSize = vertices2D.size() + 2;
 
     LOG_WRITE("TODO: MembraneComponent::Update");
-    // DEBUG_BREAK;
 
-    // Ogre::RenderSystem* renderSystem =
-    //     Ogre::Root::getSingleton().getRenderSystem();
-    // Ogre::VaoManager* vaoManager = renderSystem->getVaoManager();
+    bs::MESH_DESC meshDesc;
+    meshDesc.numVertices = bufferSize;
+    meshDesc.numIndices = bufferSize;
 
-    // Ogre::VertexElement2Vec vertexElements;
-    // vertexElements.push_back(
-    //     Ogre::VertexElement2(Ogre::VET_FLOAT3, Ogre::VES_POSITION));
-    // vertexElements.push_back(
-    //     Ogre::VertexElement2(Ogre::VET_FLOAT2,
-    //     Ogre::VES_TEXTURE_COORDINATES));
-    // // vertexElements.push_back(Ogre::VertexElement2(Ogre::VET_FLOAT3,
-    // // Ogre::VES_NORMAL));
+    meshDesc.indexType = bs::IT_32BIT;
+    // This is static as logic for detecting just moved vertices (no new
+    // created) isn't done. This is recreated every time
+    meshDesc.usage = bs::MU_STATIC;
+    meshDesc.subMeshes.push_back(
+        bs::SubMesh(0, bufferSize, bs::DOT_TRIANGLE_FAN));
 
-    // // TODO: make this static (will probably need a buffer alternative for
-    // // generating the vertex data that will be then referenced here instead
-    // of
-    // // nullptr)
-    // Ogre::VertexBufferPacked* vertexBuffer = vaoManager->createVertexBuffer(
-    //     vertexElements, bufferSize, Ogre::BT_DYNAMIC_DEFAULT, nullptr,
-    //     false);
+    meshDesc.vertexDesc = vertexDesc;
 
-    // Ogre::VertexBufferPackedVec vertexBuffers;
-    // vertexBuffers.push_back(vertexBuffer);
+    // TODO: 16 bit indices would save memory
+    bs::SPtr<bs::MeshData> meshData =
+        bs::MeshData::create(bufferSize, bufferSize, vertexDesc, bs::IT_32BIT);
 
-    // // 1 to 1 index buffer mapping
+    // 1 to 1 index buffer mapping
+    uint32_t* indexWrite = meshData->getIndices32();
 
-    // Ogre::uint16* indices = reinterpret_cast<Ogre::uint16*>(OGRE_MALLOC_SIMD(
-    //     sizeof(Ogre::uint16) * bufferSize, Ogre::MEMCATEGORY_GEOMETRY));
+    for(size_t i = 0; i < bufferSize; ++i) {
+        indexWrite[i] = i;
+    }
 
-    // for(size_t i = 0; i < bufferSize; ++i) {
+    // Write mesh data //
+    size_t writeIndex = 0;
+    MembraneVertex* meshVertices =
+        reinterpret_cast<MembraneVertex*>(meshData->getStreamData(0));
 
-    //     indices[i] = static_cast<Ogre::uint16>(i);
-    // }
+    writeIndex = InitializeCorrectMembrane(writeIndex, meshVertices);
 
-    // // TODO: check if this is needed (when a 1 to 1 vertex and index mapping
-    // // is used)
-    // Ogre::IndexBufferPacked* indexBuffer = nullptr;
+    // This can be commented out when this works correctly, or maybe a
+    // different macro for debug builds to include this check could
+    // work, but it has to also work on linux
+    LEVIATHAN_ASSERT(writeIndex == bufferSize, "Invalid array element math in "
+                                               "fill vertex buffer");
 
-    // try {
-    //     indexBuffer = vaoManager->createIndexBuffer(
-    //         Ogre::IndexBufferPacked::IT_16BIT, bufferSize,
-    //         Ogre::BT_IMMUTABLE,
-    //         // Could this be false like the vertex buffer to not keep a
-    //         // shadow buffer
-    //         indices, true);
-    // } catch(const Ogre::Exception& e) {
 
-    //     // Avoid memory leak
-    //     OGRE_FREE_SIMD(indices, Ogre::MEMCATEGORY_GEOMETRY);
-    //     indexBuffer = nullptr;
-    //     throw e;
-    // }
-
-    // Ogre::VertexArrayObject* vao = vaoManager->createVertexArrayObject(
-    //     vertexBuffers, indexBuffer, Ogre::OT_TRIANGLE_FAN);
-
-    // m_subMesh->mVao[Ogre::VpNormal].push_back(vao);
-
-    // // This might be needed because we use a v2 mesh
-    // // Use the same geometry for shadow casting.
-    // // If m_item->setCastShadows(false); is set then this isn't needed
-    // m_subMesh->mVao[Ogre::VpShadow].push_back(vao);
-
+    m_mesh = bs::Mesh::create(meshData, meshDesc);
 
     // // Set the bounds to get frustum culling and LOD to work correctly.
     // // TODO: make this more accurate by calculating the actual extents
@@ -314,71 +291,44 @@ void
     //     /*, false*/);
     // m_mesh->_setBoundingSphereRadius(50);
 
-    // // Set the membrane material //
-    // // We need to create a new instance until the managing is moved to the
-    // // species (allowing the same species to share)
-    // if(!coloredMaterial) {
-    //     Ogre::MaterialPtr baseMaterial = chooseMaterialByType();
 
-    //     LEVIATHAN_ASSERT(
-    //         baseMaterial, "Failed to find base material for membrane");
+    // Set the membrane material //
+    // species (allowing the same species to share)
+    if(!coloredMaterial) {
+        auto baseMaterial = chooseMaterialByType();
 
-    //     // TODO: find a way for the species to manage this to
-    //     // avoid having tons of materials Maybe Use the species's
-    //     // name instead. and let something like the
-    //     // SpeciesComponent create and destroy this
-    //     coloredMaterial = baseMaterial->clone(
-    //         "Membrane_instance_" + std::to_string(++membraneNumber));
+        LEVIATHAN_ASSERT(
+            baseMaterial, "Failed to find base material for membrane");
 
-    //     coloredMaterial->getTechnique(0)
-    //         ->getPass(0)
-    //         ->getFragmentProgramParameters()
-    //         ->setNamedConstant("membraneColour", colour);
+        // The baseMaterial fetch makes a new instance so this is fine
+        coloredMaterial = baseMaterial;
+        //     coloredMaterial = baseMaterial->clone(
+        //         "Membrane_instance_" + std::to_string(++membraneNumber));
 
-    //     coloredMaterial->getTechnique(0)
-    //         ->getPass(0)
-    //         ->getFragmentProgramParameters()
-    //         ->setNamedConstant("healthPercentage", healthFraction);
-    //     coloredMaterial->compile();
+        //     coloredMaterial->getTechnique(0)
+        //         ->getPass(0)
+        //         ->getFragmentProgramParameters()
+        //         ->setNamedConstant("membraneColour", colour);
 
-    //     coloredMaterial->getTechnique(0)
-    //         ->getPass(0)
-    //         ->getTextureUnitState(0)
-    //         ->setHardwareGammaEnabled(true);
+        //     coloredMaterial->getTechnique(0)
+        //         ->getPass(0)
+        //         ->getFragmentProgramParameters()
+        //         ->setNamedConstant("healthPercentage", healthFraction);
+        //     coloredMaterial->compile();
 
-    //     coloredMaterial->compile();
-    // }
+        //     coloredMaterial->getTechnique(0)
+        //         ->getPass(0)
+        //         ->getTextureUnitState(0)
+        //         ->setHardwareGammaEnabled(true);
 
-    // m_subMesh->setMaterialName(coloredMaterial->getName());
+        //     coloredMaterial->compile();
+    }
 
-    // // Update mesh data //
-    // // Map the buffer for writing //
-    // // DO NOT READ FROM THE MAPPED BUFFER
-    // MembraneVertex* RESTRICT_ALIAS meshVertices =
-    //     reinterpret_cast<MembraneVertex * RESTRICT_ALIAS>(
-    //         vertexBuffer->map(0, vertexBuffer->getNumElements()));
+    if(!m_item)
+        m_item = parentComponentPos->addComponent<bs::CRenderable>();
 
-    // // Creates a 3D prism from the 2D vertices.
-
-    // // initialize membrane
-    // size_t writeIndex = 0;
-    // writeIndex = InitializeCorrectMembrane(writeIndex, meshVertices);
-
-    // // This can be commented out when this works correctly, or maybe a
-    // // different macro for debug builds to include this check could
-    // // work, but it has to also work on linux
-    // LEVIATHAN_ASSERT(writeIndex == bufferSize, "Invalid array element math in
-    // "
-    //                                            "fill vertex buffer");
-
-    // // Upload finished data to the gpu (unmap all needs to be used to
-    // // suppress warnings about destroying mapped buffers)
-    // vertexBuffer->unmap(Ogre::UO_UNMAP_ALL);
-
-    // // This needs the v2 mesh to contain data to work
-    // m_item = scene->createItem(m_mesh, Ogre::SCENE_DYNAMIC);
-    // m_item->setRenderQueueGroup(Leviathan::DEFAULT_RENDER_QUEUE);
-    // parentcomponentpos->attachObject(m_item);
+    m_item->setMaterial(coloredMaterial);
+    m_item->setMesh(m_mesh);
 }
 
 void
@@ -424,8 +374,8 @@ size_t
         break;
     case MEMBRANE_TYPE::WALL:
     case MEMBRANE_TYPE::CHITIN:
-        // cell walls need obvious inner/outer memrbranes (we can worry about
-        // chitin later)
+        // cell walls need obvious inner/outer memrbranes (we can worry
+        // about chitin later)
         height = .05;
         meshVertices[writeIndex++] = {Float3(0, height / 2, 0), center};
 
@@ -454,23 +404,36 @@ bs::HMaterial
 
     // switch(membraneType) {
     // case MEMBRANE_TYPE::MEMBRANE:
-    //     return Ogre::MaterialManager::getSingleton().getByName("Membrane");
+    //     return
+    //     Ogre::MaterialManager::getSingleton().getByName("Membrane");
     //     break;
     // case MEMBRANE_TYPE::DOUBLEMEMBRANE:
     //     return Ogre::MaterialManager::getSingleton().getByName(
     //         "MembraneDouble");
     //     break;
     // case MEMBRANE_TYPE::WALL:
-    //     return Ogre::MaterialManager::getSingleton().getByName("cellwall");
+    //     return
+    //     Ogre::MaterialManager::getSingleton().getByName("cellwall");
     //     break;
     // case MEMBRANE_TYPE::CHITIN:
     //     return Ogre::MaterialManager::getSingleton().getByName(
     //         "cellwallchitin");
     //     break;
     // }
-    // // default
-    // return Ogre::MaterialManager::getSingleton().getByName("cellwall");
-    return nullptr;
+
+    // auto texture =
+    //     Engine::Get()->GetGraphics()->LoadTextureByName("CellWallGradient.png");
+    auto texture =
+        Engine::Get()->GetGraphics()->LoadTextureByName("flagella_texture.png");
+
+    // bs::HShader shader = bs::gBuiltinResources().getBuiltinShader(
+    //     bs::BuiltinShader::Transparent);
+    bs::HShader shader =
+        bs::gBuiltinResources().getBuiltinShader(bs::BuiltinShader::Standard);
+    bs::HMaterial material = bs::Material::create(shader);
+    material->setTexture("gAlbedoTex", texture);
+
+    return material;
 }
 
 void
@@ -549,8 +512,8 @@ void
         // big.
         if((newPositions[i] - newPositions[(i + 1) % newPositions.size()])
                 .Length() > cellDimensions / membraneResolution) {
-            // Add an element after the ith term that is the average of the i
-            // and i+1 term.
+            // Add an element after the ith term that is the average of the
+            // i and i+1 term.
             auto it = newPositions.begin();
             const auto tempPoint =
                 (newPositions[(i + 1) % newPositions.size()] +
@@ -607,39 +570,7 @@ void
 {
     isInitialized = false;
     vertices2D.clear();
-
-    LOG_WRITE("TODO: MembraneComponent::releaseCurrentMesh");
-
-    // if(m_item) {
-    //     scene->destroyItem(m_item);
-    //     m_item = nullptr;
-    // }
-
-    // if(m_mesh) {
-
-    //     // If there is nothing in the mesh there isn't anything to destroy
-    //     if(!m_subMesh->mVao[Ogre::VpNormal].empty()) {
-
-    //         Ogre::RenderSystem* renderSystem =
-    //             Ogre::Root::getSingleton().getRenderSystem();
-    //         Ogre::VaoManager* vaoManager = renderSystem->getVaoManager();
-
-    //         // Delete the index and vertex buffers
-    //         Ogre::VertexArrayObject* vao =
-    //             m_subMesh->mVao[Ogre::VpNormal].front();
-    //         Ogre::IndexBufferPacked* indexBuffer = vao->getIndexBuffer();
-    //         Ogre::VertexBufferPacked* vertexBuffer =
-    //             vao->getVertexBuffers().front();
-
-    //         vaoManager->destroyVertexArrayObject(vao);
-    //         vaoManager->destroyIndexBuffer(indexBuffer);
-    //         vaoManager->destroyVertexBuffer(vertexBuffer);
-
-    //         // And make sure they aren't used
-    //         m_subMesh->mVao[Ogre::VpNormal].clear();
-    //         m_subMesh->mVao[Ogre::VpShadow].clear();
-    //     }
-    // }
+    m_mesh = nullptr;
 }
 
 /*
@@ -685,8 +616,8 @@ void
         // big.
         if((newPositions[i] - newPositions[(i + 1) % newPositions.size()])
                 .Length() > cellDimensions / membraneResolution) {
-            // Add an element after the ith term that is the average of the i
-            // and i+1 term.
+            // Add an element after the ith term that is the average of the
+            // i and i+1 term.
             auto it = newPositions.begin();
             const auto tempPoint =
                 (newPositions[(i + 1) % newPositions.size()] +
@@ -718,4 +649,28 @@ void
     }
 
     vertices2D = newPositions;
+}
+// ------------------------------------ //
+// MembraneSystem
+struct MembraneSystem::Implementation {
+
+    Implementation()
+    {
+        m_vertexDesc = bs::VertexDataDesc::create();
+        m_vertexDesc->addVertElem(bs::VET_FLOAT3, bs::VES_POSITION);
+        m_vertexDesc->addVertElem(bs::VET_FLOAT2, bs::VES_TEXCOORD);
+    }
+
+    bs::SPtr<bs::VertexDataDesc> m_vertexDesc;
+};
+
+MembraneSystem::MembraneSystem() : m_impl(std::make_unique<Implementation>()) {}
+MembraneSystem::~MembraneSystem() {}
+
+void
+    MembraneSystem::UpdateComponent(MembraneComponent& component,
+        bs::Scene* scene,
+        const bs::HSceneObject& parentComponentPos)
+{
+    component.Update(scene, parentComponentPos, m_impl->m_vertexDesc);
 }
