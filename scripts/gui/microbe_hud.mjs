@@ -63,6 +63,13 @@ export function runMicrobeHUDSetup(){
             updatePopulation(vars.populationAmount);
         });
 
+        // Event for patch details
+        Leviathan.OnGeneric("updatePatchDetails", (event, vars) => {
+
+            // Apply the new values
+            updatePatchInfo(vars.patchName);
+        });
+
         // Event for checking extinction
         Leviathan.OnGeneric("CheckExtinction", (event, vars) => {
             checkExtinction(vars.population);
@@ -148,6 +155,10 @@ function quitGameHud(){
     common.playButtonPressSound();
     common.requireEngine();
     Leviathan.Quit();
+}
+
+function updatePatchInfo(patchName){
+    document.getElementById("infoPatch").textContent = "Patch Name:" + patchName;
 }
 
 //! Enables the editor button

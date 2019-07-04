@@ -126,6 +126,11 @@ void setupPlayer(CellStageWorld@ world)
 {
     assert(world !is null);
     setPatchBiome(world);
+    GenericEvent@ event = GenericEvent("updatePatchDetails");
+    NamedVars@ vars = event.GetNamedVars();
+    vars.AddValue(ScriptSafeVariableBlock("patchName", GetThriveGame().getPatchManager().getCurrentPatch().getName()));
+    GetEngine().GetEventHandler().CallEvent(event);
+
     GetThriveGame().playerData().lockedMap().addLock("Toxin");
     GetThriveGame().playerData().lockedMap().addLock("chloroplast");
 
