@@ -1704,6 +1704,12 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(engine->RegisterObjectMethod("ThriveGame",
+           "PatchManager@ getPatchManager()",
+           asMETHOD(ThriveGame, getPatchManager), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     if(engine->RegisterGlobalFunction(
            "ObjectID findSpeciesEntityByName(CellStageWorld@ world, "
            "const string &in name)",

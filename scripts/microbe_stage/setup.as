@@ -125,7 +125,7 @@ void setupSystemsForWorld_Client(CellStageWorld@ world)
 void setupPlayer(CellStageWorld@ world)
 {
     assert(world !is null);
-    setRandomBiome(world);
+    setPatchBiome(world);
     GetThriveGame().playerData().lockedMap().addLock("Toxin");
     GetThriveGame().playerData().lockedMap().addLock("chloroplast");
 

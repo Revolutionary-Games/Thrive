@@ -130,7 +130,7 @@
         }
     },
 
-    "volcanic_vent": {
+    "aavolcanic_vent": {
         "name": "Volcanic vent",
         "background": "Background_Vent",
         "lightPower": 25.0,
@@ -1076,17 +1076,17 @@
 		"colors":{
 		    "specularColors": {
                 "r": 0.1,
-                "g": 0.1,
-                "b": 0.2
-			},
-		    "diffuseColors": {
-                "r": 0.2,
-                "g": 0.2,
+                "g": 0.3,
                 "b": 0.3
 			},
+		    "diffuseColors": {
+                "r": 0.1,
+                "g": 0.3,
+                "b": 0.4
+			},
 		    "upperAmbientColor": {
-                "r": 0.4,
-                "g": 0.3, 
+                "r": 0.2,
+                "g": 0.4, 
                 "b": 0.5
 			},
 		    "lowerAmbientColor": {
