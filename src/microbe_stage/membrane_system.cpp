@@ -8,6 +8,7 @@
 #include <bsfCore/RenderAPI/BsVertexDataDesc.h>
 #include <bsfCore/Scene/BsSceneObject.h>
 // temporary
+#include <bsfCore/Resources/BsResources.h>
 #include <bsfEngine/Resources/BsBuiltinResources.h>
 
 #include <algorithm>
@@ -262,11 +263,13 @@ void
     bs::SPtr<bs::MeshData> meshData =
         bs::MeshData::create(bufferSize, bufferSize, vertexDesc, bs::IT_32BIT);
 
-    // 1 to 1 index buffer mapping
+    // Index mapping to reverse all points
     uint32_t* indexWrite = meshData->getIndices32();
 
-    for(size_t i = 0; i < bufferSize; ++i) {
-        indexWrite[i] = i;
+    indexWrite[0] = 0;
+
+    for(size_t i = 1; i < bufferSize; ++i) {
+        indexWrite[i] = bufferSize - i;
     }
 
     // Write mesh data //
@@ -284,6 +287,7 @@ void
 
 
     m_mesh = bs::Mesh::create(meshData, meshDesc);
+    // m_mesh = bs::gResources().load<bs::Mesh>("Data/Meshes/Box.asset");
 
     // // Set the bounds to get frustum culling and LOD to work correctly.
     // // TODO: make this more accurate by calculating the actual extents
@@ -421,10 +425,10 @@ bs::HMaterial
     //     break;
     // }
 
-    // auto texture =
-    //     Engine::Get()->GetGraphics()->LoadTextureByName("CellWallGradient.png");
     auto texture =
-        Engine::Get()->GetGraphics()->LoadTextureByName("flagella_texture.png");
+        Engine::Get()->GetGraphics()->LoadTextureByName("CellWallGradient.png");
+    // auto texture =
+    //     Engine::Get()->GetGraphics()->LoadTextureByName("flagella_texture.png");
 
     // bs::HShader shader = bs::gBuiltinResources().getBuiltinShader(
     //     bs::BuiltinShader::Transparent);
