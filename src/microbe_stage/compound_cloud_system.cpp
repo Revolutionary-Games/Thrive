@@ -7,12 +7,19 @@
 #include "generated/cell_stage_world.h"
 
 #include <Rendering/GeometryHelpers.h>
+#include <bsfCore/Components/BsCRenderable.h>
+#include <bsfCore/Image/BsTexture.h>
+#include <bsfCore/Material/BsMaterial.h>
+// temporary
+#include <bsfCore/Resources/BsResources.h>
+#include <bsfEngine/Resources/BsBuiltinResources.h>
 
 #include <atomic>
 
 using namespace thrive;
 
 constexpr auto CLOUD_TEXTURE_BYTES_PER_ELEMENT = 4;
+constexpr auto BS_PIXEL_FORMAT = bs::PF_RGBA8;
 
 ////////////////////////////////////////////////////////////////////////////////
 // CompoundCloudComponent
@@ -54,8 +61,8 @@ CompoundCloudComponent::CompoundCloudComponent(CompoundCloudSystem& owner,
 
 CompoundCloudComponent::~CompoundCloudComponent()
 {
-    // LEVIATHAN_ASSERT(!m_compoundCloudsPlane && !m_sceneNode,
-    //     "CompoundCloudComponent not Released");
+    LEVIATHAN_ASSERT(
+        !m_sceneNode && !m_renderable, "CompoundCloudComponent not Released");
 
     m_owner.cloudReportDestroyed(this);
 }
@@ -63,38 +70,16 @@ CompoundCloudComponent::~CompoundCloudComponent()
 void
     CompoundCloudComponent::Release(bs::Scene* scene)
 {
-    LOG_WRITE("TODO: CompoundCloudComponent::Release");
-    // DEBUG_BREAK;
+    if(m_sceneNode && !m_sceneNode.isDestroyed()) {
 
-    // // Destroy the plane
-    // if(m_compoundCloudsPlane) {
-    //     scene->destroyItem(m_compoundCloudsPlane);
-    //     m_compoundCloudsPlane = nullptr;
-    // }
+        m_sceneNode->destroy();
+        m_sceneNode = nullptr;
+        m_renderable = nullptr;
+    }
 
-    // // Scenenode
-    // if(m_sceneNode) {
-    //     scene->destroySceneNode(m_sceneNode);
-    //     m_sceneNode = nullptr;
-    // }
+    m_initialized = false;
 
-    // if(m_initialized) {
-
-    //     m_initialized = false;
-    // }
-
-    // // And material
-    // if(m_planeMaterial) {
-
-    //     Ogre::MaterialManager::getSingleton().remove(m_planeMaterial);
-    //     m_planeMaterial.reset();
-    // }
-
-    // // Texture
-    // if(m_texture) {
-    //     Ogre::TextureManager::getSingleton().remove(m_texture);
-    //     m_texture.reset();
-    // }
+    // Other resources are held by smart pointers
 }
 
 // ------------------------------------ //
@@ -133,12 +118,6 @@ void
         size_t x,
         size_t y)
 {
-    // TODO: this check isn't even very good so it can be removed once this is
-    // debugged
-    if(x >= m_density1.size() || y >= m_density1[0].size())
-        throw std::runtime_error(
-            "CompoundCloudComponent coordinates out of range");
-
     switch(getSlotForCompound(compound)) {
     case SLOT::FIRST: m_density1[x][y] += dens; break;
     case SLOT::SECOND: m_density2[x][y] += dens; break;
@@ -322,14 +301,13 @@ void
     CompoundCloudSystem::Release(CellStageWorld& world)
 {
     // Make sure all of our entities are destroyed //
-    // Because their destruction callback unregisters them we have to delete
+    // Because their destruction callback unregisters them, we have to delete
     // them like this
     while(!m_managedClouds.empty()) {
 
         world.DestroyEntity(m_managedClouds.begin()->first);
     }
 
-    // Destroy the shared mesh
     m_planeMesh = nullptr;
 }
 // ------------------------------------ //
@@ -682,30 +660,8 @@ void
             // inaccuracy is allowed here
             if((pos - requiredPos).HAddAbs() < Leviathan::EPSILON) {
 
-                // TODO: this is probably not needed and can be removed
-                // // It also has to be the only cloud with the first
-                // // compound id that it has (this is used to filter out
-                // // multiple clouds of a group being at some position)
-                // bool duplicate = false;
-
-                // const auto toCheckID = iter->second->getCompoundId1();
-
-                // for(auto iter2 = m_managedClouds.begin();
-                //     iter2 != m_managedClouds.end(); ++iter2) {
-
-                //     if(iter == iter2)
-                //         continue;
-
-                //     if(toCheckID == iter2->second->getCompoundId1()) {
-                //         duplicate = true;
-                //         break;
-                //     }
-                // }
-
-                // if(!duplicate) {
                 matched = true;
                 break;
-                //}
             }
         }
 
@@ -868,40 +824,44 @@ void
     if(!Engine::Get()->IsInGraphicalMode())
         return;
 
-    LOG_WRITE("TODO: redo rest of CompoundCloudSystem::initializeCloud");
-    // DEBUG_BREAK;
+    cloud.m_sceneNode = bs::SceneObject::create("cloud");
 
-    // // Create where the eventually created plane object will be attached
-    // cloud.m_sceneNode = scene->getRootSceneNode()->createChildSceneNode();
+    cloud.m_renderable = cloud.m_sceneNode->addComponent<bs::CRenderable>();
 
-    // // set the position properly
-    // cloud.m_sceneNode->setPosition(
-    //     cloud.m_position.X, CLOUD_Y_COORDINATE, cloud.m_position.Z);
+    cloud.m_renderable->setMesh(m_planeMesh);
 
-    // // Create a modified material that uses
-    // cloud.m_planeMaterial = Ogre::MaterialManager::getSingleton().create(
-    //     cloud.m_textureName + "_material", "Generated");
+
+    // Set initial position
+    cloud.m_sceneNode->setPosition(bs::Vector3(
+        cloud.m_position.X, CLOUD_Y_COORDINATE, cloud.m_position.Z));
+
+    cloud.m_textureData1 = bs::PixelData::create(
+        CLOUD_SIMULATION_WIDTH, CLOUD_SIMULATION_HEIGHT, 1, BS_PIXEL_FORMAT);
+
+    LEVIATHAN_ASSERT(bs::PixelUtil::getNumElemBytes(BS_PIXEL_FORMAT) ==
+                         CLOUD_TEXTURE_BYTES_PER_ELEMENT,
+        "Pixel format bytes has changed");
+
+    // Not needed with BSF
+    // Fill with zeroes
+    std::memset(static_cast<uint8_t*>(cloud.m_textureData1->getData()), 255,
+        cloud.m_textureData1->getSize());
+
+    // cloud.m_renderable->setCastShadows(false);
+
+    // cloud.m_compoundCloudsPlane->setRenderQueueGroup(2);
+
+    cloud.m_texture = bs::Texture::create(cloud.m_textureData1, bs::TU_DYNAMIC);
+
+    // For now just use the standard shader
+    bs::HShader shader =
+        bs::gBuiltinResources().getBuiltinShader(bs::BuiltinShader::Standard);
+    bs::HMaterial material = bs::Material::create(shader);
+    material->setTexture("gAlbedoTex", cloud.m_texture);
+
+    cloud.m_renderable->setMaterial(material);
 
     // cloud.m_planeMaterial->setReceiveShadows(false);
-
-    // // cloud.m_planeMaterial->createTechnique();
-    // LEVIATHAN_ASSERT(cloud.m_planeMaterial->getTechnique(0) &&
-    //                      cloud.m_planeMaterial->getTechnique(0)->getPass(0),
-    //     "Ogre material didn't create default technique and pass");
-    // Ogre::Pass* pass = cloud.m_planeMaterial->getTechnique(0)->getPass(0);
-
-    // // Set blendblock
-    // Ogre::HlmsBlendblock blendblock;
-    // blendblock.setBlendType(Ogre::SBT_TRANSPARENT_ALPHA);
-
-    // // Important for proper blending (not sure,
-    // // mAlphaToCoverageEnabled seems to be more important as a lot of
-    // // stuff breaks without it)
-    // blendblock.mIsTransparent = true;
-
-    // pass->setBlendblock(blendblock);
-    // pass->setVertexProgram("CompoundCloud_VS");
-    // pass->setFragmentProgram("CompoundCloud_PS");
 
     // // Set colour parameter //
     // pass->getFragmentProgramParameters()->setNamedConstant(
@@ -915,70 +875,6 @@ void
 
     // // The perlin noise texture needs to be tileable. We can't do tricks with
     // // the cloud's position
-
-    // // Even though we ask for the RGBA format the actual order of pixels when
-    // // locked for writing is something completely different
-    // cloud.m_texture = Ogre::TextureManager::getSingleton().createManual(
-    //     cloud.m_textureName, "Generated", Ogre::TEX_TYPE_2D,
-    //     CLOUD_SIMULATION_WIDTH, CLOUD_SIMULATION_HEIGHT, 0,
-    //     Ogre::PF_BYTE_RGBA, Ogre::TU_DYNAMIC_WRITE_ONLY_DISCARDABLE, nullptr
-    //     // Gamma correction
-    //     ,
-    //     true);
-
-    // LEVIATHAN_ASSERT(Ogre::PixelUtil::getNumElemBytes(Ogre::PF_BYTE_RGBA) ==
-    //                      CLOUD_TEXTURE_BYTES_PER_ELEMENT,
-    //     "Pixel format bytes has changed");
-
-    // auto pixelBuffer = cloud.m_texture->getBuffer();
-    // pixelBuffer->lock(Ogre::v1::HardwareBuffer::HBL_DISCARD);
-    // const Ogre::PixelBox& pixelBox = pixelBuffer->getCurrentLock();
-
-    // // Fill with zeroes
-    // std::memset(
-    //     static_cast<uint8_t*>(pixelBox.data), 0,
-    //     pixelBuffer->getSizeInBytes());
-
-    // // Unlock the pixel buffer
-    // pixelBuffer->unlock();
-    // // Make sure it wraps to make the borders also look good
-    // // TODO: check is this needed. This is absolutely needed for the perlin
-    // // noise but probably not for the cloud densities. So it is easier to
-    // keep
-    // // this for now
-    // Ogre::HlmsSamplerblock wrappedBlock;
-    // wrappedBlock.setAddressingMode(Ogre::TextureAddressingMode::TAM_WRAP);
-
-    // auto* densityState = pass->createTextureUnitState();
-    // densityState->setTexture(cloud.m_texture);
-    // densityState->setSamplerblock(wrappedBlock);
-
-    // Ogre::TexturePtr texturePtr =
-    //     Ogre::TextureManager::getSingleton().load("PerlinNoise.jpg",
-    //         Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
-    // auto* noiseState = pass->createTextureUnitState();
-    // noiseState->setTexture(texturePtr);
-
-    // noiseState->setSamplerblock(wrappedBlock);
-
-    // // // Maybe compiling this here is the best place
-    // // cloud.m_planeMaterial->compile();
-
-    // // Needs to create a plane instance on which the material is used on
-    // cloud.m_compoundCloudsPlane = scene->createItem(m_planeMesh);
-    // cloud.m_compoundCloudsPlane->setCastShadows(false);
-
-    // // This needs to be add to an early render queue
-    // // But after the background
-    // cloud.m_compoundCloudsPlane->setRenderQueueGroup(2);
-
-    // cloud.m_sceneNode->attachObject(cloud.m_compoundCloudsPlane);
-
-    // // This loads the material first time this is called. This needs
-    // // to be called AFTER the first compound cloud has been created. We are
-    // // currently initializing one so it is fine
-    // cloud.m_compoundCloudsPlane->setMaterialName(
-    //     cloud.m_planeMaterial->getName());
 }
 // ------------------------------------ //
 void
@@ -1038,61 +934,49 @@ void
     if(!cloud.m_texture)
         return;
 
-    LOG_WRITE("TODO: rest of CompoundCloudSystem::processCloud");
-    // DEBUG_BREAK;
+    if(cloud.m_textureData1->isLocked()) {
+        // Just skip for now. in the future we'll want a few rotating buffers
+        LOG_WARNING("CompoundCloud: texture data buffer is still locked, "
+                    "skipping writing new data");
+        return;
+    }
 
-    // // Store the pixel data in a hardware buffer for quick access.
-    // auto pixelBuffer = cloud.m_texture->getBuffer();
+    const size_t rowBytes = cloud.m_textureData1->getRowPitch();
+    uint8_t* const pDest = cloud.m_textureData1->getData();
 
-    // pixelBuffer->lock(Ogre::v1::HardwareBuffer::HBL_DISCARD);
-    // const Ogre::PixelBox& pixelBox = pixelBuffer->getCurrentLock();
-    // auto* pDest = static_cast<uint8_t*>(pixelBox.data);
+    // Copy the density vector into the buffer.
 
-    // const size_t rowBytes =
-    //     pixelBox.rowPitch * CLOUD_TEXTURE_BYTES_PER_ELEMENT;
+    // This is probably branch predictor friendly to move each bunch of pixels
+    // separately
 
-    // // Copy the density vector into the buffer.
-
-    // // This is probably branch predictor friendly to move each bunch of
-    // pixels
-    // // separately
-
-    // // Due to Ogre making the pixelbox lock however it wants the order is
-    // // actually: Ogre::PF_A8R8G8B8
-    // if(pixelBox.format != Ogre::PF_A8R8G8B8) {
-    //     LOG_INFO(
-    //         "Pixel format: " +
-    //         Ogre::PixelUtil::getFormatName(pixelBox.format));
-    //     LEVIATHAN_ASSERT(false,
-    //         "Ogre created texture write lock with unexpected pixel order");
-    // }
-
+    // Old Ogre info:
     // Even with that pixel format the actual channel indexes are:
     // PF_B8G8R8A8 for some reason
     // R - 2
     // G - 1
     // B - 0
     // A - 3
+    // Channels should now be RGBA
 
     if(cloud.m_compoundId1 == NULL_COMPOUND)
         LEVIATHAN_ASSERT(false, "cloud with not even the first compound");
 
-    // // First density. R goes to channel 2 (see above for the mapping)
-    // fillCloudChannel(cloud.m_density1, 2, rowBytes, pDest);
+    // First density. R goes to channel 0 (see above for the mapping)
+    fillCloudChannel(cloud.m_density1, 0, rowBytes, pDest);
 
-    // // Second. G - 1
-    // if(cloud.m_compoundId2 != NULL_COMPOUND)
-    //     fillCloudChannel(cloud.m_density2, 1, rowBytes, pDest);
-    // // Etc. B - 0
-    // if(cloud.m_compoundId3 != NULL_COMPOUND)
-    //     fillCloudChannel(cloud.m_density3, 0, rowBytes, pDest);
+    // Second. G - 1
+    if(cloud.m_compoundId2 != NULL_COMPOUND)
+        fillCloudChannel(cloud.m_density2, 1, rowBytes, pDest);
+    // Third. B - 2
+    if(cloud.m_compoundId3 != NULL_COMPOUND)
+        fillCloudChannel(cloud.m_density3, 2, rowBytes, pDest);
 
-    // // A - 3
-    // if(cloud.m_compoundId4 != NULL_COMPOUND)
-    //     fillCloudChannel(cloud.m_density4, 3, rowBytes, pDest);
+    // Fourth. A - 3
+    if(cloud.m_compoundId4 != NULL_COMPOUND)
+        fillCloudChannel(cloud.m_density4, 3, rowBytes, pDest);
 
-    // // Unlock the pixel buffer.
-    // pixelBuffer->unlock();
+    // Submit the updated data
+    cloud.m_texture->writeData(cloud.m_textureData1, 0, 0, true);
 }
 
 void

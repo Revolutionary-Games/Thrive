@@ -265,9 +265,8 @@ public:
         componentTypeConvert(THRIVE_COMPONENT::COMPOUND_CLOUD);
 
 protected:
-    // Now each cloud has it's own plane that it renders onto
-    // Ogre::Item* m_compoundCloudsPlane = nullptr;
     bs::HSceneObject m_sceneNode;
+    bs::HRenderable m_renderable;
 
     // True once initialized by CompoundCloudSystem
     bool m_initialized = false;
@@ -277,6 +276,10 @@ protected:
     //! on it
     bs::HMaterial m_planeMaterial;
     bs::HTexture m_texture;
+    //! \todo Might have to have two buffers for rotating if it happens often
+    //! that the previous buffer is still locked while processing next frame is
+    //! happening
+    bs::SPtr<bs::PixelData> m_textureData1;
 
     //! The world position this cloud is at. Used to despawn and spawn new ones
     //! Y is ignored and replaced with CLOUD_Y_COORDINATE
