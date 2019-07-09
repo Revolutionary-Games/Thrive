@@ -333,6 +333,7 @@ void
 
     m_item->setMaterial(coloredMaterial);
     m_item->setMesh(m_mesh);
+    m_item->setLayer(1 << *scene);
 }
 
 void

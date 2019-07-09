@@ -80,7 +80,7 @@ public:
         // Create the mesh for the items
         if(!m_microbeBackgroundMesh)
             m_microbeBackgroundMesh =
-                Leviathan::GeometryHelpers::CreateXZPlane(100, 100);
+                Leviathan::GeometryHelpers::CreateXZPlane(300, 300);
 
         if(!m_MicrobeBackgroundMaterial) {
 
@@ -98,12 +98,17 @@ public:
             if(!m_microbeBackgroundItem) {
                 m_backgroundRenderNode =
                     bs::SceneObject::create("microbe background");
-                m_backgroundRenderNode->setParent(
-                    m_cellStage->GetCameraSceneObject(), false);
+                // m_backgroundRenderNode->setParent(
+                //     m_cellStage->GetCameraSceneObject(), false);
 
-                m_backgroundRenderNode->setPosition(Float3(0, 0, 100));
+                // m_backgroundRenderNode->setPosition(Float3(0, 0, 100));
+
+                m_backgroundRenderNode->setPosition(Float3(0, -15, 0));
                 m_microbeBackgroundItem =
                     m_backgroundRenderNode->addComponent<bs::CRenderable>();
+
+                m_microbeBackgroundItem->setLayer(
+                    1 << *m_cellStage->GetScene());
 
                 m_microbeBackgroundItem->setMaterial(
                     m_MicrobeBackgroundMaterial);
@@ -116,13 +121,15 @@ public:
             if(!m_microbeEditorBackgroundItem) {
                 m_editorBackgroundRenderNode =
                     bs::SceneObject::create("microbe editor background");
-                m_editorBackgroundRenderNode->setParent(
-                    m_microbeEditor->GetCameraSceneObject(), false);
 
-                m_editorBackgroundRenderNode->setPosition(Float3(0, 0, 100));
+                m_editorBackgroundRenderNode->setPosition(Float3(0, -15, 0));
+
                 m_microbeEditorBackgroundItem =
                     m_editorBackgroundRenderNode
                         ->addComponent<bs::CRenderable>();
+
+                m_microbeEditorBackgroundItem->setLayer(
+                    1 << *m_microbeEditor->GetScene());
 
                 m_microbeEditorBackgroundItem->setMaterial(
                     m_MicrobeBackgroundMaterial);
