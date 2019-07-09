@@ -431,10 +431,10 @@ bs::HMaterial
     // auto texture =
     //     Engine::Get()->GetGraphics()->LoadTextureByName("flagella_texture.png");
 
-    // bs::HShader shader = bs::gBuiltinResources().getBuiltinShader(
-    //     bs::BuiltinShader::Transparent);
-    bs::HShader shader =
-        bs::gBuiltinResources().getBuiltinShader(bs::BuiltinShader::Standard);
+    bs::HShader shader = bs::gBuiltinResources().getBuiltinShader(
+        bs::BuiltinShader::Transparent);
+    // bs::HShader shader =
+    //     bs::gBuiltinResources().getBuiltinShader(bs::BuiltinShader::Standard);
     bs::HMaterial material = bs::Material::create(shader);
     material->setTexture("gAlbedoTex", texture);
 
