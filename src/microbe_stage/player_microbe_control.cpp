@@ -352,8 +352,8 @@ Float3
     if(!Engine::Get()->GetWindowEntity())
         return Float3(0, 0, 0);
 
-    float x, y;
-    Engine::Get()->GetWindowEntity()->GetNormalizedRelativeMouse(x, y);
+    int x, y;
+    Engine::Get()->GetWindowEntity()->GetRelativeMouse(x, y);
 
     const auto ray = worldWithCamera.CastRayFromCamera(x, y);
 
