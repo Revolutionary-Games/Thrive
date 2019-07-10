@@ -253,8 +253,6 @@ void
     if(controlledEntity == NULL_OBJECT)
         return;
 
-    // TODO: just delegate this to a script to avoid the major
-    // headaches with getting the properties from c++
     ThriveGame* thrive = ThriveGame::Get();
 
     Float3 lookPoint;
@@ -282,10 +280,6 @@ void
         return;
     }
 
-    // Debug for movement keys
-    // std::stringstream msg;
-    // msg << "Input: " << movementDirection << " and look: " << lookPoint;
-    // LOG_WRITE(msg.str());
     ScriptRunningSetup setup("applyCellMovementControl");
     auto result = module->ExecuteOnModule<void>(setup, false, &world,
         controlledEntity, movementDirection.Normalize(), lookPoint);
