@@ -60,6 +60,11 @@ public:
     void
         setBackgroundMaterial(const std::string& material);
 
+    //!\brief This is a callback for the camera controller to notify us of the
+    //! new needed position of the background
+    void
+        notifyCameraDistance(float height);
+
     inline bool
         areCheatsEnabled() const
     {

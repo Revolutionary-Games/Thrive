@@ -27,21 +27,20 @@
 #include <Script/ScriptExecutor.h>
 #include <Window.h>
 
-// #include <OgreManualObject.h>
-// #include <OgreMesh2.h>
-// #include <OgreMeshManager2.h>
-// #include <OgreRoot.h>
-// #include <OgreSceneManager.h>
-// #include <OgreSubMesh2.h>
-
 #include <bsfCore/Components/BsCRenderable.h>
-#include <bsfCore/Importer/BsImporter.h>
 #include <bsfCore/Material/BsMaterial.h>
-#include <bsfEngine/Resources/BsBuiltinResources.h>
 
 using namespace thrive;
 
 // ------------------------------------ //
+constexpr auto BACKGROUND_Y = -15;
+
+float
+    backgroundYForCameraHeight(float height)
+{
+    return BACKGROUND_Y - height;
+}
+
 //! Contains properties that would need unnecessary large includes in the header
 class ThriveGame::Implementation {
 public:
@@ -84,26 +83,39 @@ public:
 
         if(!m_MicrobeBackgroundMaterial) {
 
-            bs::HShader shader = bs::gBuiltinResources().getBuiltinShader(
-                bs::BuiltinShader::Standard);
+            auto graphics = Engine::Get()->GetGraphics();
+
+            auto shader = graphics->LoadShaderByName("background.bsl");
 
             m_MicrobeBackgroundMaterial = bs::Material::create(shader);
 
-            bs::HTexture texture = bs::gImporter().import<bs::Texture>(
-                "Data/Textures/background/Thrive_ocean0.png");
-            m_MicrobeBackgroundMaterial->setTexture("gAlbedoTex", texture);
+            m_MicrobeBackgroundMaterial->setTexture(
+                "gTexLayer0", graphics->LoadTextureByName("Thrive_ocean0.png"));
+
+            m_MicrobeBackgroundMaterial->setTexture(
+                "gTexLayer1", graphics->LoadTextureByName("Thrive_ocean1.png"));
+
+            m_MicrobeBackgroundMaterial->setTexture(
+                "gTexLayer2", graphics->LoadTextureByName("Thrive_ocean2.png"));
+
+            m_MicrobeBackgroundMaterial->setTexture(
+                "gTexLayer3", graphics->LoadTextureByName("Thrive_ocean3.png"));
         }
 
         if(m_cellStage) {
             if(!m_microbeBackgroundItem) {
                 m_backgroundRenderNode =
                     bs::SceneObject::create("microbe background");
-                // m_backgroundRenderNode->setParent(
-                //     m_cellStage->GetCameraSceneObject(), false);
+                m_backgroundRenderNode->setParent(
+                    m_cellStage->GetCameraSceneObject(), false);
 
                 // m_backgroundRenderNode->setPosition(Float3(0, 0, 100));
 
-                m_backgroundRenderNode->setPosition(Float3(0, -15, 0));
+                m_backgroundRenderNode->setPosition(Float3(
+                    0, 0, backgroundYForCameraHeight(INITIAL_CAMERA_HEIGHT)));
+
+                m_backgroundRenderNode->setRotation(
+                    bs::Quaternion(bs::Vector3::UNIT_X, bs::Degree(90)));
                 m_microbeBackgroundItem =
                     m_backgroundRenderNode->addComponent<bs::CRenderable>();
 
@@ -122,7 +134,8 @@ public:
                 m_editorBackgroundRenderNode =
                     bs::SceneObject::create("microbe editor background");
 
-                m_editorBackgroundRenderNode->setPosition(Float3(0, -15, 0));
+                m_editorBackgroundRenderNode->setPosition(
+                    Float3(0, BACKGROUND_Y, 0));
 
                 m_microbeEditorBackgroundItem =
                     m_editorBackgroundRenderNode
@@ -932,6 +945,17 @@ void
 
     LEVIATHAN_ASSERT(texture, "failed to load background: " + material);
     m_impl->m_MicrobeBackgroundMaterial->setTexture("gAlbedoTex", texture);
+}
+
+void
+    ThriveGame::notifyCameraDistance(float height)
+{
+    if(m_impl->m_backgroundRenderNode) {
+        m_impl->m_backgroundRenderNode->setPosition(
+            Float3(0, 0, backgroundYForCameraHeight(height)));
+    }
+
+    // Editor background is static
 }
 
 // ------------------------------------ //
