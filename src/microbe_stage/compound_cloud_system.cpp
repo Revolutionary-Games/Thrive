@@ -7,6 +7,7 @@
 #include "generated/cell_stage_world.h"
 
 #include <Rendering/GeometryHelpers.h>
+#include <Rendering/Graphics.h>
 #include <bsfCore/Components/BsCRenderable.h>
 #include <bsfCore/Image/BsTexture.h>
 #include <bsfCore/Material/BsMaterial.h>
@@ -295,6 +296,11 @@ void
 
     m_planeMesh = Leviathan::GeometryHelpers::CreateXZPlane(
         CLOUD_X_EXTENT, CLOUD_Y_EXTENT);
+
+    m_perlinNoise =
+        Engine::Get()->GetGraphics()->LoadTextureByName("PerlinNoise.jpg");
+
+    LEVIATHAN_ASSERT(m_perlinNoise, "failed to load perlin noise texture");
 }
 
 void
@@ -309,6 +315,7 @@ void
     }
 
     m_planeMesh = nullptr;
+    m_perlinNoise = nullptr;
 }
 // ------------------------------------ //
 void
@@ -827,7 +834,7 @@ void
     cloud.m_sceneNode = bs::SceneObject::create("cloud");
 
     cloud.m_renderable = cloud.m_sceneNode->addComponent<bs::CRenderable>();
-
+    cloud.m_renderable->setLayer(1 << *scene);
     cloud.m_renderable->setMesh(m_planeMesh);
 
 
@@ -842,9 +849,8 @@ void
                          CLOUD_TEXTURE_BYTES_PER_ELEMENT,
         "Pixel format bytes has changed");
 
-    // Not needed with BSF
     // Fill with zeroes
-    std::memset(static_cast<uint8_t*>(cloud.m_textureData1->getData()), 255,
+    std::memset(static_cast<uint8_t*>(cloud.m_textureData1->getData()), 0,
         cloud.m_textureData1->getSize());
 
     // cloud.m_renderable->setCastShadows(false);
@@ -853,28 +859,25 @@ void
 
     cloud.m_texture = bs::Texture::create(cloud.m_textureData1, bs::TU_DYNAMIC);
 
-    // For now just use the standard shader
-    bs::HShader shader =
-        bs::gBuiltinResources().getBuiltinShader(bs::BuiltinShader::Standard);
+    auto shader =
+        Engine::Get()->GetGraphics()->LoadShaderByName("compound_cloud.bsl");
+
     bs::HMaterial material = bs::Material::create(shader);
-    material->setTexture("gAlbedoTex", cloud.m_texture);
+    material->setTexture("gDensityTex", cloud.m_texture);
+
+    // Set colour parameters //
+    material->setVec4("gCloudColour1", cloud.m_color1);
+    material->setVec4("gCloudColour2", cloud.m_color2);
+    material->setVec4("gCloudColour3", cloud.m_color3);
+    material->setVec4("gCloudColour4", cloud.m_color4);
+
+    // The perlin noise texture needs to be tileable. We can't do tricks with
+    // the cloud's position
+    material->setTexture("gNoiseTex", m_perlinNoise);
 
     cloud.m_renderable->setMaterial(material);
 
     // cloud.m_planeMaterial->setReceiveShadows(false);
-
-    // // Set colour parameter //
-    // pass->getFragmentProgramParameters()->setNamedConstant(
-    //     "cloudColour1", cloud.m_color1);
-    // pass->getFragmentProgramParameters()->setNamedConstant(
-    //     "cloudColour2", cloud.m_color2);
-    // pass->getFragmentProgramParameters()->setNamedConstant(
-    //     "cloudColour3", cloud.m_color3);
-    // pass->getFragmentProgramParameters()->setNamedConstant(
-    //     "cloudColour4", cloud.m_color4);
-
-    // // The perlin noise texture needs to be tileable. We can't do tricks with
-    // // the cloud's position
 }
 // ------------------------------------ //
 void

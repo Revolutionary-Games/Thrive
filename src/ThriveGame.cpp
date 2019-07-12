@@ -939,12 +939,14 @@ void
 {
     LEVIATHAN_ASSERT(m_impl->m_MicrobeBackgroundMaterial, "no material yet");
 
-    // TODO: use material here
-    bs::HTexture texture =
-        Engine::Get()->GetGraphics()->LoadTextureByName("Thrive_ocean0.png");
+    LOG_WRITE("TODO: redo setBackgroundMaterial");
 
-    LEVIATHAN_ASSERT(texture, "failed to load background: " + material);
-    m_impl->m_MicrobeBackgroundMaterial->setTexture("gAlbedoTex", texture);
+    // // TODO: use material here
+    // bs::HTexture texture =
+    //     Engine::Get()->GetGraphics()->LoadTextureByName("Thrive_ocean0.png");
+
+    // LEVIATHAN_ASSERT(texture, "failed to load background: " + material);
+    // m_impl->m_MicrobeBackgroundMaterial->setTexture("gAlbedoTex", texture);
 }
 
 void

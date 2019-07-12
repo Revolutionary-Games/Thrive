@@ -544,6 +544,8 @@ private:
 
     bs::HMesh m_planeMesh;
 
+    bs::HTexture m_perlinNoise;
+
     //! This is here to not have to allocate memory every tick
     std::vector<CompoundCloudComponent*> m_tooFarAwayClouds;
 };

@@ -23,7 +23,7 @@ set(ASSET_DIRECTORY "${CMAKE_SOURCE_DIR}/assets"
 set(LEVIATHAN_SRC "${PROJECT_SOURCE_DIR}/ThirdParty/Leviathan" CACHE FILEPATH
   "Path to leviathan source folder")
 
-if(NOT IS_DIRECTORY "${ASSET_DIRECTORY}/models")
+if(NOT IS_DIRECTORY "${ASSET_DIRECTORY}/raw_assets")
     message(FATAL_ERROR 
 "Could not find assets in ${ASSET_DIRECTORY}.  
 Please run the SetupThrive.rb script to download them.
@@ -147,9 +147,9 @@ file(GLOB THRIVE_MATERIALS "materials/*")
 file(COPY ${THRIVE_MATERIALS} DESTINATION "${PROJECT_BINARY_DIR}/bin/Data/Materials/")
 InstallContentsOfFolder("materials" "bin/Data/Materials")
 
-file(GLOB THRIVE_SHADERS "shaders/*")
+file(GLOB THRIVE_SHADERS "assets/Shaders/*")
 file(COPY ${THRIVE_SHADERS} DESTINATION "${PROJECT_BINARY_DIR}/bin/Data/Shaders/")
-InstallContentsOfFolder("shaders" "bin/Data/Shaders")
+InstallContentsOfFolder("assets/Shaders" "bin/Data/Shaders")
 
 # Copy other data assets
 file(GLOB THRIVE_TEXTURES "assets/textures/*")
