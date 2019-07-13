@@ -7,9 +7,6 @@
 #include <bsfCore/Mesh/BsMesh.h>
 #include <bsfCore/RenderAPI/BsVertexDataDesc.h>
 #include <bsfCore/Scene/BsSceneObject.h>
-// temporary
-#include <bsfCore/Resources/BsResources.h>
-#include <bsfEngine/Resources/BsBuiltinResources.h>
 
 #include <algorithm>
 #include <atomic>
@@ -26,7 +23,6 @@ constexpr auto INVALID_FOUND_ORGANELLE = -999999.f;
 MembraneComponent::MembraneComponent(MEMBRANE_TYPE type) :
     Leviathan::Component(TYPE)
 {
-    // membrane type
     membraneType = type;
 }
 
@@ -174,26 +170,23 @@ void
     MembraneComponent::setColour(const Float4& value)
 {
     colour = value;
-    LOG_WRITE("TODO: MembraneComponent::setColour");
-    // DEBUG_BREAK;
 
-    // // Desaturate it here so it looks nicer (could implement as method
-    // thatcould
-    // // be called i suppose)
-    // Ogre::Real saturation;
-    // Ogre::Real brightness;
-    // Ogre::Real hue;
-    // colour.getHSB(&hue, &saturation, &brightness);
-    // colour.setHSB(hue, saturation * .75, brightness);
+    // Desaturate it here so it looks nicer (could implement as method that
+    // could be called i suppose)
+    float saturation;
+    float brightness;
+    float hue;
 
-    // // If we already have created a material we need to re-apply it
-    // if(coloredMaterial) {
-    //     coloredMaterial->getTechnique(0)
-    //         ->getPass(0)
-    //         ->getFragmentProgramParameters()
-    //         ->setNamedConstant("membraneColour", colour);
-    //     coloredMaterial->compile();
-    // }
+    bs::Color tmp = colour;
+
+    tmp.getHSB(&hue, &saturation, &brightness);
+    colour = Float4(bs::Color::fromHSB(hue, saturation * .75, brightness));
+
+    // If we already have created a material we need to re-apply it
+    if(coloredMaterial) {
+
+        coloredMaterial->setVec4("gTint", colour);
+    }
 }
 
 void
@@ -203,13 +196,8 @@ void
 
     // If we already have created a material we need to re-apply it
     if(coloredMaterial) {
-        LOG_WRITE("TODO: setHealthFraction");
 
-        // coloredMaterial->getTechnique(0)
-        //     ->getPass(0)
-        //     ->getFragmentProgramParameters()
-        //     ->setNamedConstant("healthPercentage", healthFraction);
-        // coloredMaterial->compile();
+        coloredMaterial->setFloat("gHealthFraction", healthFraction);
     }
 }
 
@@ -243,8 +231,6 @@ void
 
     // This is a triangle fan so we only need 2 + n vertices
     const auto bufferSize = vertices2D.size() + 2;
-
-    LOG_WRITE("TODO: MembraneComponent::Update");
 
     bs::MESH_DESC meshDesc;
     meshDesc.numVertices = bufferSize;
@@ -287,8 +273,6 @@ void
 
 
     m_mesh = bs::Mesh::create(meshData, meshDesc);
-    // m_mesh = bs::gResources().load<bs::Mesh>("Data/Meshes/Box.asset");
-
     // // Set the bounds to get frustum culling and LOD to work correctly.
     // // TODO: make this more accurate by calculating the actual extents
     // m_mesh->_setBounds(Ogre::Aabb(Float3::ZERO, Float3::UNIT_SCALE * 50)
@@ -297,35 +281,16 @@ void
 
 
     // Set the membrane material //
-    // species (allowing the same species to share)
     if(!coloredMaterial) {
         auto baseMaterial = chooseMaterialByType();
 
-        LEVIATHAN_ASSERT(
-            baseMaterial, "Failed to find base material for membrane");
+        LEVIATHAN_ASSERT(baseMaterial, "no material for membrane");
 
         // The baseMaterial fetch makes a new instance so this is fine
         coloredMaterial = baseMaterial;
-        //     coloredMaterial = baseMaterial->clone(
-        //         "Membrane_instance_" + std::to_string(++membraneNumber));
 
-        //     coloredMaterial->getTechnique(0)
-        //         ->getPass(0)
-        //         ->getFragmentProgramParameters()
-        //         ->setNamedConstant("membraneColour", colour);
-
-        //     coloredMaterial->getTechnique(0)
-        //         ->getPass(0)
-        //         ->getFragmentProgramParameters()
-        //         ->setNamedConstant("healthPercentage", healthFraction);
-        //     coloredMaterial->compile();
-
-        //     coloredMaterial->getTechnique(0)
-        //         ->getPass(0)
-        //         ->getTextureUnitState(0)
-        //         ->setHardwareGammaEnabled(true);
-
-        //     coloredMaterial->compile();
+        coloredMaterial->setVec4("gTint", colour);
+        coloredMaterial->setFloat("gHealthFraction", healthFraction);
     }
 
     if(!m_item)
@@ -404,39 +369,53 @@ size_t
 bs::HMaterial
     MembraneComponent::chooseMaterialByType()
 {
-    LOG_WRITE("TODO: chooseMaterialByType");
-    // DEBUG_BREAK;
+    auto shader =
+        Engine::Get()->GetGraphics()->LoadShaderByName("membrane.bsl");
 
-    // switch(membraneType) {
-    // case MEMBRANE_TYPE::MEMBRANE:
-    //     return
-    //     Ogre::MaterialManager::getSingleton().getByName("Membrane");
-    //     break;
-    // case MEMBRANE_TYPE::DOUBLEMEMBRANE:
-    //     return Ogre::MaterialManager::getSingleton().getByName(
-    //         "MembraneDouble");
-    //     break;
-    // case MEMBRANE_TYPE::WALL:
-    //     return
-    //     Ogre::MaterialManager::getSingleton().getByName("cellwall");
-    //     break;
-    // case MEMBRANE_TYPE::CHITIN:
-    //     return Ogre::MaterialManager::getSingleton().getByName(
-    //         "cellwallchitin");
-    //     break;
-    // }
+    bs::HTexture normal;
+    bs::HTexture damaged;
+    // When true the shader adds animation to the membrane
+    bool wiggly = true;
 
-    auto texture =
-        Engine::Get()->GetGraphics()->LoadTextureByName("CellWallGradient.png");
-    // auto texture =
-    //     Engine::Get()->GetGraphics()->LoadTextureByName("flagella_texture.png");
+    switch(membraneType) {
+    case MEMBRANE_TYPE::MEMBRANE:
+        normal = Engine::Get()->GetGraphics()->LoadTextureByName(
+            "FresnelGradient.png");
+        damaged = Engine::Get()->GetGraphics()->LoadTextureByName(
+            "FresnelGradientDamaged.png");
+        break;
+    case MEMBRANE_TYPE::DOUBLEMEMBRANE:
+        normal = Engine::Get()->GetGraphics()->LoadTextureByName(
+            "DoubleCellMembrane.png");
+        damaged = Engine::Get()->GetGraphics()->LoadTextureByName(
+            "DoubleCellMembraneDamaged.png");
+        break;
+    case MEMBRANE_TYPE::WALL:
+        normal = Engine::Get()->GetGraphics()->LoadTextureByName(
+            "CellWallGradient.png");
+        damaged = Engine::Get()->GetGraphics()->LoadTextureByName(
+            "CellWallGradientDamaged.png");
+        wiggly = false;
+        break;
+    case MEMBRANE_TYPE::CHITIN:
+        normal = Engine::Get()->GetGraphics()->LoadTextureByName(
+            "ChitinCellWallGradient.png");
+        damaged = Engine::Get()->GetGraphics()->LoadTextureByName(
+            "ChitinCellWallGradientDamaged.png");
+        wiggly = false;
+        break;
+    }
 
-    bs::HShader shader = bs::gBuiltinResources().getBuiltinShader(
-        bs::BuiltinShader::Transparent);
-    // bs::HShader shader =
-    //     bs::gBuiltinResources().getBuiltinShader(bs::BuiltinShader::Standard);
+    LEVIATHAN_ASSERT(
+        normal && damaged && shader, "failed to load some membrane resource");
+
     bs::HMaterial material = bs::Material::create(shader);
-    material->setTexture("gAlbedoTex", texture);
+    material->setTexture("gAlbedoTex", normal);
+    material->setTexture("gDamagedTex", damaged);
+
+    bs::ShaderVariation variation;
+    variation.setBool("WIGGLY", wiggly);
+    material->setVariation(variation);
 
     return material;
 }
