@@ -683,8 +683,9 @@ ObjectID createChunk(CellStageWorld@ world, uint chunkId,  Float3 pos)
     int mass = chunk.mass;
     int chunkSize = chunk.size;
     auto meshListSize = chunk.getMeshListSize();
-    string mesh=chunk.getMesh(GetEngine().GetRandom().GetNumber(0,
-            meshListSize-1))+".mesh";
+    int selectedIndex = GetEngine().GetRandom().GetNumber(0, meshListSize-1);
+    string mesh = chunk.getMesh(selectedIndex);
+    string texture = chunk.getTexture(selectedIndex);
 
     //Set things
     auto venter = world.Create_CompoundVenterComponent(chunkEntity);
@@ -708,7 +709,7 @@ ObjectID createChunk(CellStageWorld@ world, uint chunkId,  Float3 pos)
     }
 
     auto model = world.Create_Model(chunkEntity, mesh, getBasicMaterialWithTexture(
-            chunk.name + ".png"));
+            texture));
 
     // Fluid mechanics.
     world.Create_FluidEffectComponent(chunkEntity);

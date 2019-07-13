@@ -388,6 +388,13 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectMethod("ChunkData",
+           "const string getTexture(uint64 index) const",
+           asMETHOD(ChunkData, getTexture), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     if(engine->RegisterObjectProperty("ChunkCompoundData", "double amount",
            asOFFSET(ChunkCompoundData, amount)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;

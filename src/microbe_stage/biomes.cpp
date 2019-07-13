@@ -121,8 +121,9 @@ Biome::Biome(Json::Value value)
         Json::Value meshData = chunkData[chunkInternalName]["meshes"];
 
         for(size_t i = 0; i < meshData.size(); i++) {
-            chunk.meshes.push_back(meshData[static_cast<int>(i)].asString());
-            // LOG_INFO(meshData[i].asString());
+            chunk.meshes.emplace_back(
+                meshData[static_cast<int>(i)]["mesh"].asString(),
+                meshData[static_cast<int>(i)]["texture"].asString());
         }
 
         // Add chunk to list
@@ -161,7 +162,7 @@ CScriptArray*
         Leviathan::ScriptExecutor::Get()->GetASEngine(), "array<uint64>");
 }
 
-// ----- //
+// ------------------------------------ //
 
 ChunkCompoundData*
     ChunkData::getCompound(size_t type)
@@ -185,13 +186,25 @@ size_t
 }
 
 std::string
-    ChunkData::getMesh(size_t index)
+    ChunkData::getMesh(size_t index) const
 {
     // Some error checking
     if(index >= 0 && index < this->meshes.size()) {
-        return this->meshes.at(index);
+        return this->meshes.at(index).mesh;
     } else {
         throw Leviathan::InvalidArgument(
             "Mesh at index " + std::to_string(index) + " does not exist!");
+    }
+}
+
+std::string
+    ChunkData::getTexture(size_t index) const
+{
+    // Some error checking
+    if(index >= 0 && index < this->meshes.size()) {
+        return this->meshes.at(index).texture;
+    } else {
+        throw Leviathan::InvalidArgument(
+            "Texture at index " + std::to_string(index) + " does not exist!");
     }
 }
