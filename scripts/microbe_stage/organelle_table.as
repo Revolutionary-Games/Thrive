@@ -322,6 +322,7 @@ void setupOrganelles(){
     chloroplastParameters.mass = 0.4;
     chloroplastParameters.gene = "H";
     chloroplastParameters.mesh = "chloroplast.mesh";
+    chloroplastParameters.texture = "chloroplast.png";
     chloroplastParameters.chanceToCreate = 1;
     chloroplastParameters.prokaryoteChance = 0;
     chloroplastParameters.mpCost = 55;
@@ -352,6 +353,7 @@ void setupOrganelles(){
     oxytoxyParameters.mass = 0.3;
     oxytoxyParameters.gene = "T";
     oxytoxyParameters.mesh = "oxytoxy_gland.mesh";
+    oxytoxyParameters.texture = "oxytoxy_gland.png";
     oxytoxyParameters.chanceToCreate = 1;
     oxytoxyParameters.prokaryoteChance = 0;
     oxytoxyParameters.mpCost = 70;
@@ -465,8 +467,8 @@ void setupOrganelles(){
 
     chemoplast.mass = 0.1;
     chemoplast.gene = "C";
-    //TODO: They need their model
     chemoplast.mesh = "chemoplast.mesh";
+    chemoplast.texture = "chemoplast.png";
     chemoplast.chanceToCreate = 1;
     chemoplast.prokaryoteChance = 0;
     chemoplast.mpCost = 45;
@@ -494,8 +496,8 @@ void setupOrganelles(){
 
     nitrogenPlastid.mass = 0.1;
     nitrogenPlastid.gene = "I";
-    //TODO: They need their model
     nitrogenPlastid.mesh = "nitrogenplastid.mesh";
+    nitrogenPlastid.texture = "nitrogenplastid.png";
     nitrogenPlastid.chanceToCreate = 1;
     nitrogenPlastid.prokaryoteChance = 0;
     nitrogenPlastid.mpCost = 50;
@@ -526,6 +528,7 @@ void setupOrganelles(){
     respiratoryProtein.mass = 0.1;
     respiratoryProtein.gene = "m";
     respiratoryProtein.mesh = "metabolosome.mesh";
+    respiratoryProtein.texture = "metabolosome.png";
     respiratoryProtein.chanceToCreate = 0.5f;
     respiratoryProtein.prokaryoteChance = 1;
     respiratoryProtein.mpCost = 45;
