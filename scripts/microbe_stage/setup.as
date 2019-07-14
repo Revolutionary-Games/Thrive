@@ -684,7 +684,7 @@ ObjectID createChunk(CellStageWorld@ world, uint chunkId,  Float3 pos)
     int chunkSize = chunk.size;
     auto meshListSize = chunk.getMeshListSize();
     int selectedIndex = GetEngine().GetRandom().GetNumber(0, meshListSize-1);
-    string mesh = chunk.getMesh(selectedIndex);
+    string mesh = chunk.getMesh(selectedIndex)+".fbx";
     string texture = chunk.getTexture(selectedIndex);
 
     //Set things
