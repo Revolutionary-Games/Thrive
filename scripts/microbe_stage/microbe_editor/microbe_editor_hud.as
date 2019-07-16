@@ -7,8 +7,8 @@ const array<string> MICROBE_EDITOR_AMBIENT_TRACKS = {
 };
 
 const int BASE_MUTATION_POINTS = 100;
-// This should be the max needed hexes (nucleus {9} * 6-way symmetry)
-const int MAX_HOVER_HEXES = 54;
+// This should be the max needed hexes (nucleus {10} * 6-way symmetry)
+const int MAX_HOVER_HEXES = 60;
 const int MAX_SYMMETRY = 6;
 
 class MicrobeEditorHudSystem : ScriptSystem{
@@ -75,12 +75,9 @@ class MicrobeEditorHudSystem : ScriptSystem{
 
     }
 
-    int counter = 0;
-
     void Run()
     {
         int logicTime = TICKSPEED;
-        ++counter;
 
         // We move all the hexes and the hover hexes to 0,0,0 so that
         // the editor is free to replace them wherever
@@ -128,12 +125,7 @@ class MicrobeEditorHudSystem : ScriptSystem{
         }
 
         for(int i = 0; i < MAX_SYMMETRY; ++i){
-            ObjectID organelle = world.CreateEntity();
-            auto node = world.Create_RenderNode(organelle);
-            node.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
-            node.Marked = true;
-            node.Node.setPosition(bs::Vector3(0, 0, 0));
-            hoverOrganelle.insertLast(organelle);
+            hoverOrganelle.insertLast(editor.createEditorOrganelleModel());
         }
 
         editor.activate();

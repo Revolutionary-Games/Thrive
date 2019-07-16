@@ -33,7 +33,7 @@ class NucleusOrganelle : OrganelleComponent{
 
         auto sceneNode1 = world.Create_RenderNode(golgi);
         auto model1 = world.Create_Model(golgi, "golgi.mesh",
-            getOrganelleMaterialWithTexture("golgi.png", speciesComponent.colour));
+            getOrganelleMaterialWithTexture("GolgiApparatus.png", speciesComponent.colour));
 
         sceneNode1.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
         sceneNode1.Node.setPosition(Hex::axialToCartesian(q + 1, r + 1));

@@ -256,8 +256,8 @@ void setupOrganelles(){
 
     nucleusParameters.mass = 0.7;
     nucleusParameters.gene = "N";
-    nucleusParameters.mesh = "nucleus.mesh";
-    nucleusParameters.texture = "Nucleus.png";
+    nucleusParameters.mesh = "nucleus.fbx";
+    nucleusParameters.texture = "nucleus.png";
     nucleusParameters.chanceToCreate = 0; // Not randomly generated.
     nucleusParameters.prokaryoteChance = 0; // Not randomly generated.
     nucleusParameters.mpCost = 100; //big evolution moment.
@@ -321,7 +321,7 @@ void setupOrganelles(){
 
     chloroplastParameters.mass = 0.4;
     chloroplastParameters.gene = "H";
-    chloroplastParameters.mesh = "chloroplast.mesh";
+    chloroplastParameters.mesh = "chloroplast.fbx";
     chloroplastParameters.texture = "chloroplast.png";
     chloroplastParameters.chanceToCreate = 1;
     chloroplastParameters.prokaryoteChance = 0;
@@ -352,7 +352,7 @@ void setupOrganelles(){
 
     oxytoxyParameters.mass = 0.3;
     oxytoxyParameters.gene = "T";
-    oxytoxyParameters.mesh = "oxytoxy_gland.mesh";
+    oxytoxyParameters.mesh = "agent_gland.fbx";
     oxytoxyParameters.texture = "oxytoxy_gland.png";
     oxytoxyParameters.chanceToCreate = 1;
     oxytoxyParameters.prokaryoteChance = 0;
@@ -382,7 +382,8 @@ void setupOrganelles(){
 
     mitochondrionParameters.mass = 0.3;
     mitochondrionParameters.gene = "M";
-    mitochondrionParameters.mesh = "mitochondrion.mesh";
+    mitochondrionParameters.mesh = "mitochondrion.fbx";
+    mitochondrionParameters.texture = "mitochondrion.png";
     mitochondrionParameters.chanceToCreate = 3;
     mitochondrionParameters.prokaryoteChance = 0;
     mitochondrionParameters.mpCost = 45;
@@ -411,7 +412,8 @@ void setupOrganelles(){
 
     vacuoleParameters.mass = 0.4;
     vacuoleParameters.gene = "V";
-    vacuoleParameters.mesh = "vacuole.mesh";
+    vacuoleParameters.mesh = "vacuole.fbx";
+    vacuoleParameters.texture = "vacuole.png";
     vacuoleParameters.chanceToCreate = 3;
     vacuoleParameters.prokaryoteChance = 0;
     vacuoleParameters.mpCost = 50;
@@ -438,7 +440,8 @@ void setupOrganelles(){
 
     flagellumParameters.mass = 0.3;
     flagellumParameters.gene = "F";
-    flagellumParameters.mesh = "flagellum.mesh";
+    flagellumParameters.mesh = "flagellum.fbx";
+    flagellumParameters.texture = "flagellum.png";
     flagellumParameters.chanceToCreate = 6;
     flagellumParameters.prokaryoteChance = 2;
     flagellumParameters.mpCost = 55;
@@ -467,7 +470,7 @@ void setupOrganelles(){
 
     chemoplast.mass = 0.1;
     chemoplast.gene = "C";
-    chemoplast.mesh = "chemoplast.mesh";
+    chemoplast.mesh = "chemoplast.fbx";
     chemoplast.texture = "chemoplast.png";
     chemoplast.chanceToCreate = 1;
     chemoplast.prokaryoteChance = 0;
@@ -496,7 +499,7 @@ void setupOrganelles(){
 
     nitrogenPlastid.mass = 0.1;
     nitrogenPlastid.gene = "I";
-    nitrogenPlastid.mesh = "nitrogenplastid.mesh";
+    nitrogenPlastid.mesh = "rhizoplast.fbx";
     nitrogenPlastid.texture = "nitrogenplastid.png";
     nitrogenPlastid.chanceToCreate = 1;
     nitrogenPlastid.prokaryoteChance = 0;
@@ -527,7 +530,7 @@ void setupOrganelles(){
 
     respiratoryProtein.mass = 0.1;
     respiratoryProtein.gene = "m";
-    respiratoryProtein.mesh = "metabolosome.mesh";
+    respiratoryProtein.mesh = "metabolosome.fbx";
     respiratoryProtein.texture = "metabolosome.png";
     respiratoryProtein.chanceToCreate = 0.5f;
     respiratoryProtein.prokaryoteChance = 1;
@@ -554,7 +557,8 @@ void setupOrganelles(){
 
     photosyntheticProtein.mass = 0.1;
     photosyntheticProtein.gene = "h";
-    photosyntheticProtein.mesh = "chromatophores.mesh";
+    photosyntheticProtein.mesh = "chromatophores.fbx";
+    photosyntheticProtein.texture = "chromatophores.png";
     photosyntheticProtein.chanceToCreate = 0.5f;
     photosyntheticProtein.prokaryoteChance = 1;
     photosyntheticProtein.mpCost = 55;
@@ -581,7 +585,8 @@ void setupOrganelles(){
 
     oxytoxyProtein.mass = 0.1;
     oxytoxyProtein.gene = "t";
-    oxytoxyProtein.mesh = "oxytoxy.mesh";
+    oxytoxyProtein.mesh = "oxytoxy.fbx";
+    oxytoxyProtein.texture = "oxytoxy.png";
     oxytoxyProtein.chanceToCreate = 1;
     oxytoxyProtein.prokaryoteChance = 1;
     oxytoxyProtein.mpCost = 55;
@@ -610,7 +615,8 @@ void setupOrganelles(){
 
     chemoSynthisizingProtein.mass = 0.1;
     chemoSynthisizingProtein.gene = "c";
-    chemoSynthisizingProtein.mesh = "chemoproteins.mesh";
+    chemoSynthisizingProtein.mesh = "chemoproteins.fbx";
+    chemoSynthisizingProtein.texture = "chemoproteins.png";
     chemoSynthisizingProtein.chanceToCreate = 0.5f;
     chemoSynthisizingProtein.prokaryoteChance = 1;
     chemoSynthisizingProtein.mpCost = 45;
@@ -662,7 +668,8 @@ void setupOrganelles(){
 
     nitrogenFixationProtein.mass = 0.1;
     nitrogenFixationProtein.gene = "i";
-    nitrogenFixationProtein.mesh = "nitrogenase.mesh";
+    nitrogenFixationProtein.mesh = "nitrogenase.fbx";
+    nitrogenFixationProtein.texture = "nitrogenase.png";
     nitrogenFixationProtein.chanceToCreate = 1;
     nitrogenFixationProtein.prokaryoteChance = 1;
     nitrogenFixationProtein.mpCost = 55;
@@ -689,7 +696,8 @@ void setupOrganelles(){
 
     rusticyanin.mass = 0.1;
     rusticyanin.gene = "f";
-    rusticyanin.mesh = "rusticyanin.mesh";
+    rusticyanin.mesh = "rusticyanin.fbx";
+    rusticyanin.texture = "rusticyanin.png";
     rusticyanin.chanceToCreate = 0.5f;
     rusticyanin.prokaryoteChance = 1;
     rusticyanin.mpCost = 45;

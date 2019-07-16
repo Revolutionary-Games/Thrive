@@ -147,6 +147,7 @@ class MicrobeEditor{
                 playerSpecies.stringCode+="|";
             }
         }
+
         LOG_INFO(playerSpecies.stringCode);
         LOG_INFO("Starting microbe editor with: " + editedMicrobe.length() +
             " organelles in the microbe");
@@ -268,67 +269,46 @@ class MicrobeEditor{
             }
 
             // Model of the organelle
-            //         // occupiedHexList = OrganelleFactory.checkSize(data);
+            if(organelle.organelle.mesh != ""){
 
-            //         // //Used to get the average x and y values.
-            //         // float xSum = 0;
-            //         // float ySum = 0;
+                const auto cartesianPosition = Hex::axialToCartesian(organelle.q, organelle.r);
 
-            //         // //Rendering a cytoplasm in each of those hexes.
-            //         // //Note: each scenenode after the first one is considered a cytoplasm by the
-            //         // // engine automatically.
-            //         // // TODO: verify the above claims
+                if(nextFreeOrganelle >= placedModels.length()){
+                    // New organelle model needed
+                    placedModels.insertLast(createEditorOrganelleModel());
+                }
 
-            //         // Float2 organelleXY = Hex::axialToCartesian(data.q, data.r);
+                ObjectID organelleModel = placedModels[nextFreeOrganelle++];
+                auto node = hudSystem.world.GetComponent_RenderNode(organelleModel);
+                node.Node.setPosition(cartesianPosition +
+                    organelle.organelle.calculateCenterOffset());
+                node.Node.setOrientation(bs::Quaternion(bs::Degree(90),
+                        bs::Vector3(1, 0, 0)) * bs::Quaternion(bs::Degree(180),
+                            bs::Vector3(0, 1, 0)) *
+                    bs::Quaternion(bs::Degree(organelle.rotation), bs::Vector3(0, 0, 1)));
+                node.Hidden = false;
+                node.Marked = true;
 
-            //         // uint i = 2;
-            //         // for(uint listIndex = 0; listIndex < data.hexes.length(); ++listIndex){
+                auto model = hudSystem.world.GetComponent_Model(organelleModel);
 
-            //         //     const Hex@ hex = data.hexes[listIndex];
-
-
-            //         //     Float2 hexXY = Hex::axialToCartesian(hex.q, hex.r);
-
-            //         //     float x = organelleXY.X + hexX;
-            //         //     float y = organelleYY.Y + hexY;
-            //         //     xSum = xSum + x;
-            //         //     ySum = ySum + y;
-            //         //     i = i + 1;
-            //         // }
-
-            //         // //Getting the average x and y values to render the organelle mesh in the middle.
-            //         // local xAverage = xSum / (i - 2); // Number of occupied hexes = (i - 2).
-            //         // local yAverage = ySum / (i - 2);
-
-            //         // //Rendering the organelle mesh (if it has one).
-            //         // auto mesh = data.organelle.organelle.mesh;
-            //         // if(mesh ~= nil) {
-
-            //         //     // Create missing components to place the mesh in etc.
-            //         //     if(world.GetComponent_
-
-            //         //     data.sceneNode[1].meshName = mesh;
-            //         //     data.sceneNode[1].transform.position = Vector3(-xAverage, -yAverage, 0);
-            //         //     data.sceneNode[1].transform.orientation = Quaternion.new(
-            //         //         Radian.new(Degree(data.rotation)), Vector3(0, 0, 1));
-            //         // }
-
-            // cartesianPosition = Hex::axialToCartesian(q, r);
-
-            // organelle.calculateCenterOffset();
-            // getOrganelleMaterialWithTexture();
-
-            // auto model = hudSystem.world.GetComponent_Model(hex);
-
-            // model.Material = validMaterial;
-            // model.Marked = true;
-
+                if(model.MeshName != organelle.organelle.mesh){
+                    model.MeshName = organelle.organelle.mesh;
+                    model.Material = getOrganelleMaterialWithTexture(
+                        organelle.organelle.texture);
+                    model.Marked = true;
+                }
+            }
         }
 
         // Delete excess entities
         while(nextFreeHex < placedHexes.length()){
             hudSystem.world.DestroyEntity(placedHexes[placedHexes.length() - 1]);
             placedHexes.removeLast();
+        }
+
+        while(nextFreeOrganelle < placedModels.length()){
+            hudSystem.world.DestroyEntity(placedModels[placedModels.length() - 1]);
+            placedModels.removeLast();
         }
     }
 
@@ -895,76 +875,105 @@ class MicrobeEditor{
     //The first parameter states which sceneNodes to use, starting with "start" and going up 6.
     void renderHighlightedOrganelle(int start, int q, int r, int rotation)
     {
-        if (activeActionName != ""){
+        if (activeActionName == "")
+            return;
 
-            // If not hovering over an organelle render the to-be-placed organelle
-            Organelle@ toBePlacedOrganelle = getOrganelleDefinition(activeActionName);
+        // If not hovering over an organelle render the to-be-placed organelle
+        Organelle@ toBePlacedOrganelle = getOrganelleDefinition(activeActionName);
 
-            assert(toBePlacedOrganelle !is null, "invalid action name in microbe editor");
+        assert(toBePlacedOrganelle !is null, "invalid action name in microbe editor");
 
-            auto hexes = toBePlacedOrganelle.getRotatedHexes(rotation);
+        auto hexes = toBePlacedOrganelle.getRotatedHexes(rotation);
 
-            for(uint i = 0; i < hexes.length(); ++i){
+        bool showModel = true;
 
-                int posQ = int(hexes[i].q) + q;
-                int posR = int(hexes[i].r) + r;
+        for(uint i = 0; i < hexes.length(); ++i){
 
-                const Float3 pos = Hex::axialToCartesian(posQ, posR);
+            int posQ = int(hexes[i].q) + q;
+            int posR = int(hexes[i].r) + r;
 
-                // Detect can it be placed there
-                auto organelleHere = OrganellePlacement::getOrganelleAt(editedMicrobe,
-                    Int2(posQ, posR));
+            const Float3 pos = Hex::axialToCartesian(posQ, posR);
 
-                bool canPlace = false;
+            // Detect can it be placed there
+            auto organelleHere = OrganellePlacement::getOrganelleAt(editedMicrobe,
+                Int2(posQ, posR));
 
-                if(isPlacementProbablyValid == false ||
-                    (organelleHere !is null && (organelleHere.organelle.name != "cytoplasm" ||
-                        toBePlacedOrganelle.name == "cytoplasm")))
-                {
-                    canPlace = false;
-                } else {
-                    canPlace = true;
-                }
+            bool canPlace = false;
 
-                bool duplicate = false;
+            if(isPlacementProbablyValid == false ||
+                (organelleHere !is null && (organelleHere.organelle.name != "cytoplasm" ||
+                    toBePlacedOrganelle.name == "cytoplasm")))
+            {
+                canPlace = false;
+            } else {
+                canPlace = true;
+            }
 
-                // Skip if there is a placed organelle here already
-                for(uint placedIndex = 0; placedIndex < placedHexes.length();
-                    ++placedIndex){
+            bool duplicate = false;
 
-                    ObjectID hex = placedHexes[placedIndex];
-                    auto node = hudSystem.world.GetComponent_RenderNode(hex);
-                    if(pos == node.Node.getPosition()){
-                        duplicate = true;
+            // Skip if there is a placed organelle here already
+            for(uint placedIndex = 0; placedIndex < placedHexes.length();
+                ++placedIndex){
 
-                        if(!canPlace){
-                            // Mark as invalid
-                            auto model = hudSystem.world.GetComponent_Model(hex);
-                            model.Material = invalidMaterial;
-                            model.Marked = true;
-                        }
-
-                        break;
-                    }
-                }
-
-                if(duplicate)
-                    continue;
-
-                ObjectID hex = hudSystem.hoverHex[usedHoverHex++];
+                ObjectID hex = placedHexes[placedIndex];
                 auto node = hudSystem.world.GetComponent_RenderNode(hex);
-                node.Node.setPosition(pos);
-                node.Hidden = false;
-                node.Marked = true;
+                if(pos == node.Node.getPosition()){
+                    duplicate = true;
 
-                auto model = hudSystem.world.GetComponent_Model(hex);
+                    if(!canPlace){
+                        // Mark as invalid
+                        auto model = hudSystem.world.GetComponent_Model(hex);
+                        model.Material = invalidMaterial;
+                        model.Marked = true;
 
-                if(canPlace){
-                    model.Material = validMaterial;
-                } else {
-                    model.Material = invalidMaterial;
+                        showModel = false;
+                    }
+
+                    break;
                 }
+            }
 
+            if(duplicate)
+                continue;
+
+            ObjectID hex = hudSystem.hoverHex[usedHoverHex++];
+            auto node = hudSystem.world.GetComponent_RenderNode(hex);
+            node.Node.setPosition(pos);
+            node.Hidden = false;
+            node.Marked = true;
+
+            auto model = hudSystem.world.GetComponent_Model(hex);
+
+            if(canPlace){
+                model.Material = validMaterial;
+            } else {
+                model.Material = invalidMaterial;
+            }
+
+            model.Marked = true;
+        }
+
+        // Model
+        if(toBePlacedOrganelle.mesh != "" && showModel){
+
+            const auto cartesianPosition = Hex::axialToCartesian(q, r);
+
+            ObjectID organelleModel = hudSystem.hoverOrganelle[usedHoverOrganelle++];
+            auto node = hudSystem.world.GetComponent_RenderNode(organelleModel);
+            node.Node.setPosition(cartesianPosition +
+                toBePlacedOrganelle.calculateCenterOffset());
+            node.Node.setOrientation(bs::Quaternion(bs::Degree(90),
+                    bs::Vector3(1, 0, 0)) * bs::Quaternion(bs::Degree(180),
+                        bs::Vector3(0, 1, 0)) * bs::Quaternion(bs::Degree(rotation),
+                            bs::Vector3(0, 0, 1)));
+            node.Hidden = false;
+            node.Marked = true;
+
+            auto model = hudSystem.world.GetComponent_Model(organelleModel);
+
+            if(model.MeshName != toBePlacedOrganelle.mesh){
+                model.MeshName = toBePlacedOrganelle.mesh;
+                model.Material = getOrganelleMaterialWithTexture(toBePlacedOrganelle.texture);
                 model.Marked = true;
             }
         }
@@ -986,6 +995,21 @@ class MicrobeEditor{
                 bs::Vector3(0, 1, 0)) * bs::Quaternion(bs::Degree(180),
                     bs::Vector3(0, 0, 1)));
         return hex;
+    }
+
+    //! Creates an entity for showing the model of an organelle
+    ObjectID createEditorOrganelleModel()
+    {
+        ObjectID organelle = hudSystem.world.CreateEntity();
+        auto node = hudSystem.world.Create_RenderNode(organelle);
+        node.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
+        node.Hidden = true;
+        node.Marked = true;
+        node.Node.setPosition(bs::Vector3(0, 0, 0));
+
+        hudSystem.world.Create_Model(organelle, "", bs::HMaterial());
+
+        return organelle;
     }
 
 
