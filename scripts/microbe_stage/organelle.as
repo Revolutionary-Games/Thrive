@@ -695,7 +695,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
             if(organelle.mesh != ""){
                 // TODO: the tint would be nice to already set here
                 auto model = world.Create_Model(organelleEntity, organelle.mesh,
-                    getBasicMaterialWithTextureTinted(organelle.texture, Float4(1, 1, 1, 1)));
+                    getOrganelleMaterialWithTexture(organelle.texture, Float4(1, 1, 1, 1)));
             }
         }
 

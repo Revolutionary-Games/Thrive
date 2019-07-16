@@ -7,7 +7,9 @@ const array<string> MICROBE_EDITOR_AMBIENT_TRACKS = {
 };
 
 const int BASE_MUTATION_POINTS = 100;
-
+// This should be the max needed hexes (nucleus {9} * 6-way symmetry)
+const int MAX_HOVER_HEXES = 54;
+const int MAX_SYMMETRY = 6;
 
 class MicrobeEditorHudSystem : ScriptSystem{
 
@@ -19,23 +21,16 @@ class MicrobeEditorHudSystem : ScriptSystem{
 
         @editor = MicrobeEditor(this);
 
-
-        LOG_WRITE("TODO: lock locked organelles");
-        // for(typeName,button in pairs(global_activeMicrobeEditorHudSystem.organelleButtons)){
-        //     print(typeName);
-        //     if(Engine.playerData():lockedMap():isLocked(typeName)){
-        //         button.disable();
-        //     } else {
-        //         button.enable();
-        //     }
-        // }
+        // This was were locked organelles would be checked
     }
 
 
     private AudioSource@ _playRandomEditorAmbience()
     {
         AudioSource@ audio = GetEngine().GetSoundDevice().Play2DSound("Data/Sound/" +
-            MICROBE_EDITOR_AMBIENT_TRACKS[GetEngine().GetRandom().GetNumber(0, MICROBE_EDITOR_AMBIENT_TRACKS.length() - 1)] +
+            MICROBE_EDITOR_AMBIENT_TRACKS[
+                GetEngine().GetRandom().GetNumber(0,
+                    MICROBE_EDITOR_AMBIENT_TRACKS.length() - 1)] +
             ".ogg", false, true);
         if (audio !is null){
             if(audio.HasInternalSource()){
@@ -94,10 +89,6 @@ class MicrobeEditorHudSystem : ScriptSystem{
 
             auto node = world.GetComponent_RenderNode(hoverHex[i]);
             node.Node.setPosition(Float3(0, 0, 0));
-
-            bs::Quaternion rot(0.40118, 0.791809, 0.431951, 0.0381477);
-
-            node.Node.setOrientation(rot);
             node.Hidden = true;
             node.Marked = true;
         }
@@ -128,43 +119,24 @@ class MicrobeEditorHudSystem : ScriptSystem{
         hoverHex.resize(0);
         hoverOrganelle.resize(0);
 
-
         // Prepare for a new edit
         editor.init();
 
         // This seems really cluttered, there must be a better way.
-        for(int i = 0; i < 200; ++i){
-
-            ObjectID hex = world.CreateEntity();
-            auto node = world.Create_RenderNode(hex);
-            world.Create_Model(hex, "hex.mesh",
-                getBasicMaterialWithTexture("single_hex.png"));
-            node.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
-            node.Marked = true;
-            node.Node.setPosition(bs::Vector3(0, 0, 0));
-            hoverHex.insertLast(hex);
+        for(int i = 0; i < MAX_HOVER_HEXES; ++i){
+            hoverHex.insertLast(editor.createEditorHexEntity());
         }
 
-        for(int i = 0; i < 6; ++i){
-            ObjectID hex = world.CreateEntity();
-            auto node = world.Create_RenderNode(hex);
+        for(int i = 0; i < MAX_SYMMETRY; ++i){
+            ObjectID organelle = world.CreateEntity();
+            auto node = world.Create_RenderNode(organelle);
             node.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
             node.Marked = true;
             node.Node.setPosition(bs::Vector3(0, 0, 0));
-            hoverOrganelle.insertLast(hex);
+            hoverOrganelle.insertLast(organelle);
         }
 
         editor.activate();
-    }
-
-    void setActiveAction(const string &in actionName)
-    {
-        this.editor.setActiveAction(actionName);
-
-        if(actionName == "nucleus"){
-            // For now we simply create a new microbe with the nucleus button
-            this.editor.performLocationAction();
-        }
     }
 
     void updateMutationPoints()
@@ -188,7 +160,6 @@ class MicrobeEditorHudSystem : ScriptSystem{
         GetEngine().GetEventHandler().CallEvent(event);
     }
 
-
     void updateGeneration()
     {
         GenericEvent@ event = GenericEvent("GenerationUpdated");
@@ -200,14 +171,14 @@ class MicrobeEditorHudSystem : ScriptSystem{
     }
 
     void updateSpeed()
-        {
+    {
         // Number of Flagella / total number of organelles
         GenericEvent@ event = GenericEvent("SpeedUpdated");
         NamedVars@ vars = event.GetNamedVars();
 
         vars.AddValue(ScriptSafeVariableBlock("speed", editor.getMicrobeSpeed()));
         GetEngine().GetEventHandler().CallEvent(event);
-        }
+    }
 
     MicrobeEditorWorld@ world
     {
@@ -223,16 +194,6 @@ class MicrobeEditorHudSystem : ScriptSystem{
 
     // TODO: it isn't very clean that the editor directly touches these
     array<ObjectID> hoverHex;
-    // Scene nodes for the organelle cursors for symmetry.
+    // these are the organelle models for hovering
     array<ObjectID> hoverOrganelle;
-
-    // this.saveLoadPanel = null;
-    // this.creationsListbox = null;
-
-    // Map from player creation name to filepath
-    dictionary creationFileMap;
-
-    // this.activeButton = null; // stores button, not name
-    bool helpPanelOpen = false;
-    bool menuOpen = false;
 }

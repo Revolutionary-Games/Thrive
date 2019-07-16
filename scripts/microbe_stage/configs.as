@@ -281,10 +281,8 @@ bs::HMaterial getBasicMaterialWithTexture(const string &in textureName)
     return material;
 }
 
-//! Returns a material with a basic texture on it and tint colour. For
-//! use on non-organelle models
-//! TODO: implement tint again, looks like the base shader does not support it
-bs::HMaterial getBasicMaterialWithTextureTinted(const string &in textureName,
+//! Returns a material for organelles
+bs::HMaterial getOrganelleMaterialWithTexture(const string &in textureName,
     const Float4 &in tint = Float4(1, 1, 1, 1))
 {
     bs::HShader shader(bs::BuiltinShader::Standard);

@@ -1189,13 +1189,13 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
         if (mesh != "")
             {
                 auto model = world.Create_Model(chunkEntity, mesh,
-                    getBasicMaterialWithTextureTinted(
+                    getOrganelleMaterialWithTexture(
                         microbeComponent.organelles[organelleIndex].organelle.texture,
                         microbeComponent.speciesColour));
             }
         else {
-            auto model = world.Create_Model(chunkEntity, "mitochondrion.mesh",
-                getBasicMaterialWithTextureTinted(
+            auto model = world.Create_Model(chunkEntity, "mitochondrion.fbx",
+                getOrganelleMaterialWithTexture(
                     microbeComponent.organelles[organelleIndex].organelle.texture,
                     microbeComponent.speciesColour));
             }
