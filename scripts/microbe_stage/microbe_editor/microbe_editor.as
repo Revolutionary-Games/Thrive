@@ -554,19 +554,11 @@ class MicrobeEditor{
     //! \todo Clean this up
     void getMouseHex(int &out qr, int &out rr)
     {
-        float x, y;
-        GetEngine().GetWindowEntity().GetNormalizedRelativeMouse(x, y);
-
-        const auto ray = hudSystem.world.CastRayFromCamera(x, y);
-
-        float distance;
-        bool intersects = ray.intersects(bs::Plane(bs::Vector3(0, 1, 0), 0), distance);
-
         // Get the position of the cursor in the plane that the microbes is floating in
-        const auto rayPoint = ray.getPoint(distance);
+        const auto rayPoint = PlayerMicrobeControlSystem::getTargetPoint(hudSystem.world);
 
         // Convert to the hex the cursor is currently located over.
-        const auto tmp1 = Hex::cartesianToAxial(rayPoint.x, rayPoint.z);
+        const auto tmp1 = Hex::cartesianToAxial(rayPoint.X, rayPoint.Z);
 
         qr = tmp1.X;
         rr = tmp1.Y;
@@ -707,16 +699,15 @@ class MicrobeEditor{
     // Don't call directly. Should be used through actions
     void removeOrganelle(const string &in)
     {
+        int q, r;
+        getMouseHex(q, r);
+
         switch (symmetry){
             case 0: {
-                int q, r;
-                getMouseHex(q, r);
                 removeOrganelleAt(q,r);
             }
             break;
             case 1: {
-                int q, r;
-                getMouseHex(q, r);
                 removeOrganelleAt(q,r);
 
                 if ((q != -1 * q || r != r + q)){
@@ -725,8 +716,6 @@ class MicrobeEditor{
             }
             break;
             case 2: {
-                int q, r;
-                getMouseHex(q, r);
                 removeOrganelleAt(q,r);
 
                 if ((q != -1 * q || r != r + q)){
@@ -737,8 +726,6 @@ class MicrobeEditor{
             }
             break;
             case 3: {
-                int q, r;
-                getMouseHex(q, r);
                 removeOrganelleAt(q,r);
 
                 if ((q != -1 * q || r != r + q)){

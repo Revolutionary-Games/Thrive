@@ -1386,7 +1386,6 @@ SpawnerTypeId
 bool
     bindScriptAccessibleSystems(asIScriptEngine* engine)
 {
-
     // ------------------------------------ //
     // SpawnSystem
     if(engine->RegisterFuncdef(
@@ -1458,6 +1457,26 @@ bool
            asMETHOD(CompoundCloudSystem, takeCompound), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
+
+    // ------------------------------------ //
+    // PlayerMicrobeControlSystem
+
+    // static
+    if(engine->SetDefaultNamespace("PlayerMicrobeControlSystem") < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalFunction(
+           "Float3 getTargetPoint(GameWorld &in worldWithCamera)",
+           asFUNCTION(PlayerMicrobeControlSystem::getTargetPoint),
+           asCALL_CDECL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->SetDefaultNamespace("") < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
 
     return true;
 }
