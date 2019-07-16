@@ -111,30 +111,155 @@
         </div>
 	  </div>
 	  <div id="pauseButton"><div id="pauseIcon"></div></div>
-	  
-        <!-- Population bar -->
-        <div class="population">
-          <span id="populationText">POPULATION:</span>
-          <span id="populationCount">0</span>
+	     
+       <!-- ENVIRONMENT -->
+       <div class="environment">
+          <p class="mainText"> Environment </p>
+          <div class="line"></div>
+
+          <!-- oxygen percentage -->
+           <div class ="oxygen"> 
+           <div class="mainGUITab"> <p class="valueText"> O<sub>2</sub></p>  
+            <p class="valueNumber">21%</p> 
+            <div class="compoundIcon" id="oxygenIcon"> </div> 
+            <span id="oxygenPercent"> </span>  </div>
+          </div>
+
+           <!-- c02 percentage -->
+          <div class="carbondioxide">
+            <div class="mainGUITab"> <p class="valueText"> CO<sub>2</sub></p>
+             <p class="valueNumber">9%</p> 
+             <div class="compoundIcon" id="carbondioxideIcon"> </div> 
+             <span id="carbondioxidePercent"> </span>  </div>
+          </div>
+
+          <!-- N2 percentage -->
+          <div class="nitrogen">
+            <div class="mainGUITab"> <p class="valueText"> N<sub>2</sub></p> 
+              <p class="valueNumber">70%</p> 
+              <div  class="compoundIcon" id="nitrogenIcon"> </div>
+               <span id="nitrogenPercent"> </span> </div>
+          </div>
+
+          <!-- Temperature percentage -->
+          <div class="temperature">
+            <div class="mainGUITab"> <p class="valueText"> Temp.</p> 
+              <p class="valueNumber">55°C</p> 
+              <div  class="compoundIcon" id="temperatureIcon"> </div> </div>
+          </div>
+        
+
+         <!-- Ligh percentage -->
+          <div class="temperature">
+            <div class="mainGUITab"> <p class="valueText"> Light</p> 
+              <p class="valueNumber">80K lux</p> 
+              <div  class="compoundIcon" id="lightIcon"> </div> </div>
+          </div>
+
+          <!-- Pressure percentage -->
+          <div class="temperature">
+            <div class="mainGUITab"> <p class="valueText"> Press.</p> 
+              <p class="valueNumber">200 kPa</p> 
+              <div  class="compoundIcon" id="pressureIcon"> </div> </div>
+          </div>
         </div>
-        <!-- oxygen percentage -->
-        <div class="oxygen">
-          <span id="oxygenTab"></span>
-          <div id="OxygenIcon"></div>
-          <span id="oxygenPercent">O<sub>2</sub>: 21%</span>
+
+           
+        <!-- COMPOUNDS -->
+        <div class="compounds">
+          <div  id=compoundsIcon> </div> <p class="mainTextCompounds"> Compounds </p>
+          <div class="line"></div>
+
+          <!-- Glucose -->
+            <div class="Bar"> 
+                <div class="BarBackground" id="microbeHUDPlayerGlucoseBar">
+                    <div class="BarForeground">
+                        <div class="compoundIcon" id="GlucoseIcon"></div>
+                        <div class="BarTitle">Glucose</div>
+                          <div class="BarValue">
+                            <span id="microbeHUDPlayerGlucose">0</span> /
+                            <span id="microbeHUDPlayerGlucoseMax">0</span>
+                          </div>
+                    </div>
+                  </div>
+              </div>
+
+               <!-- Ammonia -->
+              <div class="Bar"> 
+                <div class="BarBackground" id="microbeHUDPlayerAmmoniaBar">
+                  <div class="BarForeground">
+                      <div class="compoundIcon" id="AmmoniaIcon"></div>
+                      <div class="BarTitle">Ammonia</div>
+                        <div class="BarValue">
+                          <span id="microbeHUDPlayerAmmonia">0</span> /
+                          <span id="microbeHUDPlayerAmmoniaMax">0</span>
+                        </div>
+                  </div>
+                </div>
+              </div>
+
+            <!-- Hydrogen Sulfide -->
+            <div class="Bar"> 
+              <div class="BarBackground" id="microbeHUDPlayerHydrogenSulfideBar">
+                <div class="BarForeground">
+                    <div class="compoundIcon" id="HydrogenSulfideIcon"></div>
+                    <div class="BarTitle">Hydrogen Sulfide</div>
+                      <div class="BarValue">
+                        <span id="microbeHUDPlayerHydrogenSulfide">0</span> /
+                        <span id="microbeHUDPlayerHydrogenSulfideMax">0</span>
+                      </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Phosphates -->
+            <div class="Bar"> 
+              <div class="BarBackground" id="microbeHUDPlayerPhosphatesBar">
+                <div class="BarForeground">
+                    <div class="compoundIcon" id="PhosphatesIcon"></div>
+                    <div class="BarTitle">Phosphate</div>
+                      <div class="BarValue">
+                        <span id="microbeHUDPlayerPhosphates">0</span> /
+                        <span id="microbeHUDPlayerPhosphatesMax">0</span>
+                      </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Iron -->
+            <div class="Bar"> 
+              <div class="BarBackground" id="microbeHUDPlayerIronBar">
+                <div class="BarForeground">
+                    <div class="compoundIcon" id="IronIcon"></div>
+                    <div class="BarTitle">Iron</div>
+                      <div class="BarValue">
+                        <span id="microbeHUDPlayerIron">0</span> /
+                        <span id="microbeHUDPlayerIronMax">0</span>
+                      </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- AGENTS -->
+        <div class="agents">
+          <div  id=agentsIcon> </div><p class="mainTextCompounds"> Agents </p>
+            <div class="line"></div>
+              <!-- Oxytoxy -->
+              <div class="Bar"> 
+                <div class="BarBackground" id="microbeHUDPlayerOxytoxyBar">
+                  <div class="BarForeground">
+                      <div class="compoundIcon" id="OxyToxyIcon"></div>
+                      <div class="BarTitle">OxyToxy NT</div>
+                        <div class="BarValue">
+                          <span id="microbeHUDPlayerOxytoxy">0</span> /
+                          <span id="microbeHUDPlayerOxytoxyMax">0</span>
+                        </div>
+                  </div>
+                </div>
+            </div>
         </div>
-        <!-- c02 percentage -->
-        <div class="carbondioxide">
-          <span id="carbonDioxideTab"></span>
-          <div id="CO2Icon"></div>
-          <span id="carbonDioxidePercent">CO<sub>2</sub>: 9%</span>
-        </div>
-        <!-- N2 percentage -->
-        <div class="nitrogen">
-          <span id="nitrogenTab"></span>
-          <div id="NitrogenIcon"></div>
-          <span id="nitrogenPercent">N<sub>2</sub>: 70%</span>
-        </div>
+      
 
         
 	  <div id="winContainer">
@@ -146,21 +271,25 @@
 		<span id="extinctionTitle">EXTINCTION</span>
 		<span id="extinctionBody">Just like 99% of all species that have ever existed, your species has gone extinct. Others will go on to fill in your niche and thrive, but that won’t be you. You will be forgotten, a failed experiment in evolution.</span>
 	  </div>
-	  
-      
-	  <div id="suicideButton">SUICIDE<div id="suicideIcon"></div></div>
-	  <div id="suicideMsg"></div>
-      
+	   
+
+  
+
+
       <!-- Bottom bar -->
       <div id="microbeBottomBar" class="Panel">
-        <div id="mainMenuButton">MENU</div>
-        <div id="infoBar" class="Panel">
-	      <div id="infoBarLeft" class="Panel"></div><div id="infoBarCentre" class="Panel">
-          </div><div id="infoBarRight" class="Panel"></div>
-        </div>
-	    <div id="compoundExpand"><div id="compoundExpandIcon"></div>
-        </div>
+        <div  class="bottomButton" id="mainMenuButton"></div>
+        <div  class="bottomButton" id="pauseButtoon"></div>
+        <div  class="bottomButton" id="compoundsBottomButton"> </div>
+        <div  class="bottomButton" id="chemicalButton"> </div>
+        <div  class="bottomButton" id="questionMarkButton"> </div>
+        <div  class="bottomButton" id="statisticsButton"> </div>
+        <div  class="bottomButton" id="searchButton"> </div>
+        <div  class="bottomButton" id="suicideButton"></div>
+        <div id="suicideMsg"></div>
+        <div  class="bottomButton"id="compoundExpand"></div>
       </div>
+     
 
       <!-- Mouse hover panel -->
       <div id="mouseHoverPanel" class="Panel">
@@ -168,108 +297,46 @@
       </div>
 
       <!-- Compounds panel -->
-      <div id="compoundsPanel" class="Panel">COMPOUNDS
+      <div id="compoundsPanel" class="Panel">
         <!-- <\!-- This bar is redundant with the one in the top left box -\-> -->
         <!-- <div style="display: none"> -->
         <!--   ATP: <span id="microbeHUDPlayerATPCompound">0</span> / -->
         <!--   <span id="microbeHUDPlayerATPMax">0</span> -->
-        <!-- </div> -->
-		<div class="Bar"> 
-          <div class="BarBackground" id="microbeHUDPlayerATPBar">
-		  <div class="BarForeground">
-          <div class="compoundIcon" id="ATPIcon"></div>
-          <div class="BarTitle">ATP</div>
-            <div class="BarValue">
-              <span id="microbeHUDPlayerATPCompound">0</span> /
-              <span id="microbeHUDPlayerATPMax">0</span>
-            </div>
-		  </div>
-          </div>
-	    </div>
-        
-        <!-- Glucose -->
-		<div class="Bar"> 
-          <div class="BarBackground" id="microbeHUDPlayerGlucoseBar">
-		  <div class="BarForeground">
-          <div class="compoundIcon" id="GlucoseIcon"></div>
-          <div class="BarTitle">Glucose</div>
-            <div class="BarValue">
-              <span id="microbeHUDPlayerGlucose">0</span> /
-              <span id="microbeHUDPlayerGlucoseMax">0</span>
-            </div>
-		  </div>
-          </div>
-	    </div>
-        
-        <!-- Ammonia -->
-        <div class="Bar"> 
-          <div class="BarBackground" id="microbeHUDPlayerAmmoniaBar">
-		  <div class="BarForeground">
-          <div class="compoundIcon" id="AmmoniaIcon"></div>
-          <div class="BarTitle">Ammonia</div>
-            <div class="BarValue">
-              <span id="microbeHUDPlayerAmmonia">0</span> /
-              <span id="microbeHUDPlayerAmmoniaMax">0</span>
-            </div>
-		  </div>
-          </div>
-	    </div>
+          <!-- </div> -->
 
-        <!-- Hydrogen Sulfide -->
-        <div class="Bar"> 
-          <div class="BarBackground" id="microbeHUDPlayerHydrogenSulfideBar">
-		  <div class="BarForeground">
-          <div class="compoundIcon" id="HydrogenSulfideIcon"></div>
-          <div class="BarTitle">Hydrogen Sulfide</div>
-            <div class="BarValue">
-              <span id="microbeHUDPlayerHydrogenSulfide">0</span> /
-              <span id="microbeHUDPlayerHydrogenSulfideMax">0</span>
-            </div>
-		  </div>
-          </div>
-	    </div>
-        
-		<!-- Phosphates -->
-        <div class="Bar"> 
-          <div class="BarBackground" id="microbeHUDPlayerPhosphatesBar">
-		  <div class="BarForeground">
-          <div class="compoundIcon" id="PhosphatesIcon"></div>
-          <div class="BarTitle">Phosphate</div>
-            <div class="BarValue">
-              <span id="microbeHUDPlayerPhosphates">0</span> /
-              <span id="microbeHUDPlayerPhosphatesMax">0</span>
-            </div>
-		  </div>
-          </div>
-	    </div>
-		
-		<!-- Oxytoxy -->
-        <div class="Bar"> 
-          <div class="BarBackground" id="microbeHUDPlayerOxytoxyBar">
-		  <div class="BarForeground">
-          <div class="compoundIcon" id="OxyToxyIcon"></div>
-          <div class="BarTitle">OxyToxy NT</div>
-            <div class="BarValue">
-              <span id="microbeHUDPlayerOxytoxy">0</span> /
-              <span id="microbeHUDPlayerOxytoxyMax">0</span>
-            </div>
-		  </div>
-          </div>
-	    </div>
-        
-		<!-- Iron -->
-        <div class="Bar"> 
-          <div class="BarBackground" id="microbeHUDPlayerIronBar">
-		  <div class="BarForeground">
-          <div class="compoundIcon" id="IronIcon"></div>
-          <div class="BarTitle">Iron</div>
-            <div class="BarValue">
-              <span id="microbeHUDPlayerIron">0</span> /
-              <span id="microbeHUDPlayerIronMax">0</span>
-            </div>
-		  </div>
-          </div>
-	    </div>
+      <div class="circleDna"> <div id="dnaImg">  </div> </div>
+
+        <div id="ATPcircle">ATP
+            <span id="microbeHUDPlayerATPCompound">0</span> 
+            <span id="microbeHUDPlayerATPMax">/0</span>
+        <div class="progressdiv"> 
+          <svg id="atp" class="progress" width="178" height="178" viewport="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <circle id="atpColor" r="80" cx="89" cy="89" fill="transparent" stroke-dasharray="502.4" stroke-dashoffset="0" >
+            </circle>
+            <circle class="bar" r="80" cx="89" cy="89" fill="transparent" stroke-dasharray="502.4" stroke-dashoffset="0">
+            </circle>
+          </svg>
+        </div>
+      </div>
+
+            
+       <div id="Healthcircle">HEALTH
+            <span id="microbeHUDPlayerHitpoints">100</span>
+            <span id="microbeHUDPlayerMaxHitpoints">/100</span>
+        <div class="progressdiv"> 
+          <svg id="hp" class="progress" width="250" height="250" viewport="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+            <circle  id="hpColor" r="90" cx="125" cy="125" fill="transparent" stroke-dasharray="502.4" stroke-dashoffset="0" >
+            </circle>
+            <circle class="bar" r="90" cx="125" cy="125" fill="transparent" stroke-dasharray="502.4" stroke-dashoffset="0">
+            </circle>
+          </svg>
+        </div>
+      </div>
+
+      <div class="population">
+          <span id="populationText">POPULATION:</span>
+          <span id="populationCount">0</span>
+      </div>     
 	</div>
     
     

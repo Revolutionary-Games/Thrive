@@ -170,17 +170,11 @@ export function onResetEditor(){
 function onCompoundPanelClicked() {
     common.playButtonPressSound();
 
-    $("#compoundsPanel").slideToggle(400, "swing", function(){
+    $(".environment").animate({"width": "toggle"});
+    $(".compounds").animate({"width": "toggle"});
+    $(".agents").animate({"width": "toggle"});
 
-        const visible = $(this).is(":visible");
-
-        // TODO: could just animate this image to rotate
-        document.getElementById("compoundExpandIcon").style.backgroundImage = visible ?
-            "url(../../Textures/gui/bevel/ExpandDownIcon.png)" :
-            "url(../../Textures/gui/bevel/ExpandUpIcon.png)";
-    });
-
-
+    $("#compoundExpand").toggleClass("flip");
 }
 
 function openHelp(){
@@ -420,14 +414,14 @@ function updatePopulation(population){
 }
 
 // Update dissolved gasses
-function updateDissolvedGasses(oxygen, c02, n2){
+/*function updateDissolvedGasses(oxygen, c02, n2){
     document.getElementById("oxygenPercent").innerHTML =
     "O<sub>2</sub>" + ": " + oxygen + "%";
     document.getElementById("carbonDioxidePercent").innerHTML =
     "CO<sub>2</sub>" + ": " + c02 + "%";
     document.getElementById("nitrogenPercent").innerHTML =
     "N<sub>2</sub>" + ": " + n2 + "%";
-}
+}*/
 
 
 //! Checks if the player is extinct
@@ -463,25 +457,40 @@ function hideWinText(){
 //! Updates the GUI bars
 //! values needs to be an object with properties set with values for everything
 function updateMicrobeHUDBars(values){
+   
+   
+    // The bars
+    
+
     document.getElementById("microbeHUDPlayerHitpoints").textContent =
         values.hitpoints;
     document.getElementById("microbeHUDPlayerMaxHitpoints").textContent =
         values.maxHitpoints;
-    document.getElementById("microbeHUDPlayerHitpointsBar").style.width =
-        common.barHelper(values.hitpoints, values.maxHitpoints);
 
-    // TODO: remove this debug code
-    document.getElementById("microbeHUDPlayerATP").textContent =
-        values.compoundATP.toFixed(1);
-
-    // The bars
     document.getElementById("microbeHUDPlayerATPCompound").textContent =
          values.compoundATP.toFixed(1);
     document.getElementById("microbeHUDPlayerATPMax").textContent =
          values.ATPMax;
-    document.getElementById("microbeHUDPlayerATPBar").style.width =
-         common.barHelper(values.compoundATP, values.ATPMax);
 
+    var valueAtp = common.barHelper(values.compoundATP, values.ATPMax).replace("%","");
+    var valueHp = common.barHelper(values.hitpoints, values.maxHitpoints).replace("%","");
+
+    var totalProgress, progress;
+        const circles = document.querySelectorAll('#atp');
+        for(var i = 0; i < circles.length; i++) {
+            totalProgress = circles[i].querySelector('circle').getAttribute('stroke-dasharray');
+            progress = valueAtp;
+            circles[i].querySelector('.bar').style['stroke-dashoffset'] = totalProgress * progress / 100;
+        }
+
+        const circlesHp = document.querySelectorAll('#hp');
+        for(var i = 0; i < circlesHp.length; i++) {
+            totalProgress = circlesHp[i].querySelector('circle').getAttribute('stroke-dasharray');
+            progress = valueHp;
+            circlesHp[i].querySelector('.bar').style['stroke-dashoffset'] = totalProgress * progress / 100;
+        }
+
+ 
     document.getElementById("microbeHUDPlayerAmmonia").textContent =
         values.compoundAmmonia.toFixed(1);
     document.getElementById("microbeHUDPlayerAmmoniaMax").textContent =
