@@ -65,6 +65,23 @@ video {
   display: flex;
 }
 
+/* scrollbar style */
+div::-webkit-scrollbar {
+  width: 15px;
+}
+
+div::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+div::-webkit-scrollbar-thumb {
+  background: rgb(0, 125, 125, 0.6);
+}
+
+div::-webkit-scrollbar-thumb:hover {
+  background: rgba(89, 210, 255, 0.7);
+}
+
 /* Common quick classes */
 .Centered {
   text-align: center;
