@@ -237,7 +237,7 @@ class Organelle{
     // The total number of compounds we need before we can split.
     int organelleCost;
 
-    // Name of the model used for this organelle. For example "nucleus.mesh"
+    // Name of the model used for this organelle. For example "nucleus.fbx"
     string mesh;
 
     //! Name of the texture used for this model

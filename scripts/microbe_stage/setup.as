@@ -610,6 +610,7 @@ bool hitAgent(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
     return shouldCollide;
 }
 
+// TODO: this should use the Agent class from (agents.as)
 void createAgentCloud(CellStageWorld@ world, CompoundId compoundId,
     Float3 pos, Float3 direction, float amount, float lifetime,
     string speciesName, ObjectID creatorEntity)
@@ -643,7 +644,7 @@ void createAgentCloud(CellStageWorld@ world, CompoundId compoundId,
     body.SetVelocity(normalizedDirection * AGENT_EMISSION_VELOCITY);
     rigidBody.JumpTo(position);
     auto sceneNode = world.Create_RenderNode(agentEntity);
-    auto model = world.Create_Model(agentEntity, "oxytoxy_fluid.mesh",
+    auto model = world.Create_Model(agentEntity, "oxytoxy.fbx",
         getBasicMaterialWithTexture("oxytoxy_fluid.png"));
 
     // // Need to set the tint
