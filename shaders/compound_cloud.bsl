@@ -13,19 +13,19 @@ shader CompoundCloud {
     mixin BasePass;
     mixin ForwardLighting;
 
-	blend
-	{
-		target	
-		{
-			enabled = true;
-			color = { srcA, srcIA, add };
-		};
-	};	
-	
-	depth
-	{
-		write = false;
-	};
+    blend
+    {
+        target  
+        {
+            enabled = true;
+            color = { srcA, srcIA, add };
+        };
+    };  
+    
+    depth
+    {
+        write = false;
+    };
 
     code {
     
