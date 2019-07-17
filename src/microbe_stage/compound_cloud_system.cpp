@@ -938,9 +938,11 @@ void
         return;
 
     if(cloud.m_textureData1->isLocked()) {
-        // Just skip for now. in the future we'll want a few rotating buffers
-        LOG_WARNING("CompoundCloud: texture data buffer is still locked, "
-                    "skipping writing new data");
+        // Just skip for now. in the future we'll want two rotating buffers.
+        // When the game lags and updates get queued is when this happens. Which
+        // currently happens a lot so this is commented out
+        // LOG_WARNING("CompoundCloud: texture data buffer is still locked, "
+        //             "skipping writing new data");
         return;
     }
 
