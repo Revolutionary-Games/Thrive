@@ -32,7 +32,7 @@ class NucleusOrganelle : OrganelleComponent{
         ER = world.CreateEntity();
 
         auto sceneNode1 = world.Create_RenderNode(golgi);
-        auto model1 = world.Create_Model(golgi, "golgi.mesh",
+        auto model1 = world.Create_Model(golgi, "golgi.fbx",
             getOrganelleMaterialWithTexture("GolgiApparatus.png", speciesComponent.colour));
 
         sceneNode1.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
@@ -41,12 +41,12 @@ class NucleusOrganelle : OrganelleComponent{
                 bs::Vector3(0, 1, -1)));
         sceneNode1.Marked = true;
 
-        sceneNode1.Node.setParent(sceneNode1.Node, false);
+        sceneNode1.Node.setParent(microbeNode.Node, false);
 
         world.SetEntitysParent(golgi, microbeEntity);
 
         auto sceneNode2 = world.Create_RenderNode(ER);
-        auto model2 = world.Create_Model(ER, "ER.mesh",
+        auto model2 = world.Create_Model(ER, "ER.fbx",
             getOrganelleMaterialWithTexture("ER.png", speciesComponent.colour));
 
         sceneNode2.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
@@ -56,7 +56,7 @@ class NucleusOrganelle : OrganelleComponent{
                 bs::Vector3(0, 1, -1)));
         sceneNode2.Marked = true;
 
-        sceneNode2.Node.setParent(sceneNode2.Node, false);
+        sceneNode2.Node.setParent(microbeNode.Node, false);
 
         world.SetEntitysParent(ER, microbeEntity);
 
