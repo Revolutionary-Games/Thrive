@@ -285,17 +285,19 @@ bs::HMaterial getBasicMaterialWithTexture(const string &in textureName)
 bs::HMaterial getOrganelleMaterialWithTexture(const string &in textureName,
     const Float4 &in tint = Float4(1, 1, 1, 1))
 {
-    bs::HShader shader(bs::BuiltinShader::Standard);
+    // TODO: loading the shader just once would be nice
+    bs::HShader shader("organelle.bsl");
     bs::HMaterial material(shader);
     bs::HTexture texture(textureName);
     material.setTexture("gAlbedoTex", texture);
 
+    updateMaterialTint(material, tint);
     return material;
 }
 
 void updateMaterialTint(bs::HMaterial &in material, const Float4 &in tint)
 {
-    // TODO: implement
+    material.setVec4("gTint", bs::Vector4(tint));
 }
 
 // TODO: move this to where axialToCartesian is defined

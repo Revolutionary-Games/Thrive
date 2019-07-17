@@ -30,8 +30,7 @@ Float4 calculateHSLForOrganelle(const Float4 &in oldColour)
     float hue = 0;
 
     bs::Color(oldColour).getHSB(hue, saturation, brightness);
-
-    return Float4(bs::Color::fromHSB(hue, saturation*2, brightness));
+    return bs::Color::fromHSB(hue, saturation*2, brightness);
 }
 
 
@@ -624,6 +623,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
             this.speciesColour = species.colour;
             bacteria = species.isBacteria;
         }
+
         // Our coordinates are already set when this is called
         // so just cache this
         this.cartesianPosition = Hex::axialToCartesian(q, r);
@@ -636,7 +636,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
         assert(organelleEntity == NULL_OBJECT, "PlacedOrganelle already had an entity");
 
-        Float3 offset = organelle.calculateCenterOffset();
+        const Float3 offset = organelle.calculateCenterOffset();
 
         RenderNode@ renderNode;
 
@@ -662,6 +662,18 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
                     bs::Vector3(1, 0, 0)) * bs::Quaternion(bs::Degree(180),
                         bs::Vector3(0, 1, 0)) * bs::Quaternion(bs::Degree(rotation),
                             bs::Vector3(0, 0, 1)));
+
+            auto parentRenderNode = world.GetComponent_RenderNode(
+                microbeEntity);
+
+            renderNode.Node.setParent(parentRenderNode.Node, false);
+
+            // Adding a mesh for the organelle.
+            if(organelle.mesh != ""){
+                auto model = world.Create_Model(organelleEntity, organelle.mesh,
+                    getOrganelleMaterialWithTexture(organelle.texture,
+                        calculateHSLForOrganelle(this.speciesColour)));
+            }
         }
 
         // Add hex collision shapes
@@ -682,21 +694,6 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
             collisionShape.AddChildShape(hexCollision, translation);
             _addedCollisions.insertLast(hexCollision);
-        }
-
-        if(IsInGraphicalMode()){
-
-            auto parentRenderNode = world.GetComponent_RenderNode(
-                microbeEntity);
-
-            renderNode.Node.setParent(renderNode.Node, false);
-
-            // Adding a mesh for the organelle.
-            if(organelle.mesh != ""){
-                // TODO: the tint would be nice to already set here
-                auto model = world.Create_Model(organelleEntity, organelle.mesh,
-                    getOrganelleMaterialWithTexture(organelle.texture, Float4(1, 1, 1, 1)));
-            }
         }
 
         // Add each OrganelleComponent
