@@ -2,7 +2,8 @@
 
 #include "general/json_registry.h"
 
-#include <OgreColourValue.h>
+#include <Common/Types.h>
+
 #include <map>
 #include <string>
 #include <vector>
@@ -120,11 +121,11 @@ public:
     std::map<size_t, ChunkData> chunks;
     std::string background = "error";
 
-    Ogre::ColourValue specularColors;
-    Ogre::ColourValue diffuseColors;
+    Float4 specularColors;
+    Float4 diffuseColors;
     // Ambient Lights
-    Ogre::ColourValue upperAmbientColor;
-    Ogre::ColourValue lowerAmbientColor;
+    Float4 upperAmbientColor;
+    Float4 lowerAmbientColor;
 
     float lightPower;
     Biome();
