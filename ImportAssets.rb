@@ -1,6 +1,8 @@
 #!/usr/bin/env ruby
 # This script imports the assets and shaders to BSF format. All the imported versions
 # are placed under "assets"
+# Depending on locale you may have to run this as: LC_ALL=en_GB.utf8 ./ImportAssets.rb
+# to not get shader compiler errors
 require 'fileutils'
 require 'open3'
 

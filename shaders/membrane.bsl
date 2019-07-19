@@ -120,9 +120,9 @@ shader Membrane
             surfaceData.roughness = gRoughnessTex.Sample(gRoughnessSamp, uv).x;
             surfaceData.metalness = gMetalnessTex.Sample(gMetalnessSamp, uv).x;
             
-            // float3 lighting = calcLighting(input.worldPosition.xyz, input.position, uv, surfaceData);
+            float3 lighting = calcLighting(input.worldPosition.xyz, input.position, uv, surfaceData);
             float3 emissive = gEmissiveColor * gEmissiveMaskTex.Sample(gEmissiveMaskSamp, uv).x;
-            return float4(emissive /*+ lighting*/ + surfaceData.albedo.rgb, surfaceData.albedo.a * gOpacity);
+            return float4(emissive + lighting, surfaceData.albedo.a * gOpacity);
         }   
     };
 };
