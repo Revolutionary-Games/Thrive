@@ -103,7 +103,7 @@ public:
     // ------------------------------------ //
     // Player input actions
     void
-        editorButtonClicked();
+        editorButtonClicked(bool freeBuilding = false);
 
     void
         finishEditingClicked();

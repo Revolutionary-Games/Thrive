@@ -73,6 +73,25 @@ export function runMenuSetup(){
         disconnectFromCurrentServer();
     }, true);
 
+    document.getElementById("toolsButton").addEventListener("click", (event) => {
+        event.stopPropagation();
+        common.playButtonPressSound();
+        $("#mainMenu").slideUp("fast", () => {
+            $("#toolsMenu").slideDown("fast");
+        });
+    }, true);
+    document.getElementById("backFromTools").addEventListener("click", (event) => {
+        event.stopPropagation();
+        common.playButtonPressSound();
+        $("#toolsMenu").slideUp("fast", () => {
+            $("#mainMenu").slideDown("fast");
+        });
+    }, true);
+    document.getElementById("freebuildEditorButton").addEventListener("click", (event) => {
+        event.stopPropagation();
+        common.playButtonPressSound();
+        enterFreebuildEditor();
+    }, true);
 
     document.addEventListener("keydown", (event) => {
         if(event.key === "Escape"){
@@ -237,6 +256,16 @@ function newGame(){
     } else {
         onMicrobeIntroEnded();
     }
+}
+
+function enterFreebuildEditor(){
+    if(common.isInEngine()){
+        Thrive.start();
+        Thrive.freebuildEditorButtonClicked();
+    }
+    switchToMicrobeHUD();
+    document.getElementById("toolsMenu").style.display = "none";
+    document.getElementById("mainMenu").style.display = "";
 }
 
 function connectToSelectedServerURL(){

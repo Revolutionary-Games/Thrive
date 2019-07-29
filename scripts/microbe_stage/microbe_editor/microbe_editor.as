@@ -1,6 +1,7 @@
 #include "microbe_editor_hud.as"
 #include "microbe_operations.as"
 #include "organelle_placement.as"
+#include "setup.as"
 /*
 ////////////////////////////////////////////////////////////////////////////////
 // MicrobeEditor
@@ -10,6 +11,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 */
 
+bool freeBuilding = false;
 
 funcdef void EditorActionApply(EditorAction@ action, MicrobeEditor@ editor);
 
@@ -17,6 +19,10 @@ class EditorAction{
 
     EditorAction(int cost, EditorActionApply@ redo, EditorActionApply@ undo)
     {
+        if (freeBuilding)
+        {
+            cost = 0;
+        }
         this.cost = cost;
         @this.redo = redo;
         @this.undo = undo;
@@ -301,6 +307,7 @@ class MicrobeEditor{
             (organelle.organelle.prokaryoteChance == 0 && !checkIsNucleusPresent())
             && organelle.organelle.chanceToCreate != 0 )
                 return;
+
 
         EditorAction@ action = EditorAction(organelle.organelle.mpCost,
             // redo
@@ -804,44 +811,43 @@ class MicrobeEditor{
                 Int2(q, r));
         PlacedOrganelle@ organelle = cast<PlacedOrganelle>(organelleHere);
 
+
+
         if(organelleHere !is null){
             // Dont allow deletion of nucleus or the last organelle
             // TODO: allow deleting the last cytoplasm if an organelle is about to be placed
             if(!(organelleHere.organelle.name == "nucleus") && getMicrobeSize() > 1) {
                 EditorAction@ action = EditorAction(ORGANELLE_REMOVE_COST,
-                    // redo We need data about the organelle we removed,
-                    // and the location so we can "redo" it
-                    function(EditorAction@ action, MicrobeEditor@ editor){
-                        LOG_INFO("Redo called");
-                        int q = int(action.data["q"]);
-                        int r = int(action.data["r"]);
-                        // Remove the organelle
-                        OrganellePlacement::removeOrganelleAt(editor.editedMicrobe,Int2(q, r));
-                    },
-                    // undo
-                    function(EditorAction@ action, MicrobeEditor@ editor){
-                        PlacedOrganelle@ organelle = cast<PlacedOrganelle>(
-                            action.data["organelle"]);
-
-                        // Need to set this here to make sure the pointer is updated
-                        @action.data["organelle"]=organelle;
-                        // Check if there is cytoplasm under this organelle.
-                        auto hexes = organelle.organelle.getRotatedHexes(organelle.rotation);
-                        for(uint i = 0; i < hexes.length(); ++i){
-                            int posQ = int(hexes[i].q) + organelle.q;
-                            int posR = int(hexes[i].r) + organelle.r;
-                            auto organelleHere = OrganellePlacement::getOrganelleAt(
-                                editor.editedMicrobe, Int2(posQ, posR));
-                            if(organelleHere !is null &&
-                                organelleHere.organelle.name == "cytoplasm")
-                            {
-                                LOG_INFO("replaced cytoplasm");
-                                OrganellePlacement::removeOrganelleAt(editor.editedMicrobe,
-                                    Int2(posQ, posR));
-                            }
-                        }
-                        editor.editedMicrobe.insertLast(organelle);
-                    });
+                // redo We need data about the organelle we removed, and the location so we can "redo" it
+                 function(EditorAction@ action, MicrobeEditor@ editor){
+                    LOG_INFO("Redo called");
+                    int q = int(action.data["q"]);
+                    int r = int(action.data["r"]);
+                    // Remove the organelle
+                   OrganellePlacement::removeOrganelleAt(editor.editedMicrobe,Int2(q, r));
+                },
+                // undo
+                function(EditorAction@ action, MicrobeEditor@ editor){
+                 PlacedOrganelle@ organelle = cast<PlacedOrganelle>(action.data["organelle"]);
+                // Need to set this here to make sure the pointer is updated
+                @action.data["organelle"]=organelle;
+                // Check if there is cytoplasm under this organelle.
+                auto hexes = organelle.organelle.getRotatedHexes(organelle.rotation);
+                for(uint i = 0; i < hexes.length(); ++i){
+                    int posQ = int(hexes[i].q) + organelle.q;
+                    int posR = int(hexes[i].r) + organelle.r;
+                    auto organelleHere = OrganellePlacement::getOrganelleAt(
+                        editor.editedMicrobe, Int2(posQ, posR));
+                    if(organelleHere !is null &&
+                        organelleHere.organelle.name == "cytoplasm")
+                    {
+                        LOG_INFO("replaced cytoplasm");
+                        OrganellePlacement::removeOrganelleAt(editor.editedMicrobe,
+                            Int2(posQ, posR));
+                    }
+                }
+                editor.editedMicrobe.insertLast(organelle);
+                });
                 // Give the action access to some data
                 @action.data["organelle"] = organelle;
                 action.data["q"] = q;
