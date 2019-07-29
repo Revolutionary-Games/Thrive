@@ -89,6 +89,15 @@ bool
         Owner->SendCustomExtensionMessage(message);
         return true;
 
+    } else if(name == "freebuildEditorButtonClicked") {
+
+        auto message = CefProcessMessage::Create("Custom");
+        auto args = message->GetArgumentList();
+        args->SetString(0, "freebuildEditorButtonClicked");
+
+        Owner->SendCustomExtensionMessage(message);
+        return true;
+
     } else if(name == "finishEditingClicked") {
 
         auto message = CefProcessMessage::Create("Custom");
@@ -169,6 +178,10 @@ bool
         ThriveGame::Get()->editorButtonClicked();
         return true;
 
+    } else if(customType == "freebuildEditorButtonClicked") {
+
+        ThriveGame::Get()->editorButtonClicked(true);
+        return true;
     } else if(customType == "finishEditingClicked") {
 
         ThriveGame::Get()->finishEditingClicked();

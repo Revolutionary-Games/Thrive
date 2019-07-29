@@ -497,7 +497,7 @@ void
 }
 
 void
-    ThriveGame::editorButtonClicked()
+    ThriveGame::editorButtonClicked(bool freeBuilding)
 {
     LOG_INFO("Editor button pressed");
 

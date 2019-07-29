@@ -354,6 +354,7 @@ function onResumeClickedEditor(){
 
 function onExitToMenuClickedEditor(){
     if(common.isInEngine()){
+        document.getElementById("pauseOverlayEditor").style.display = "none";
         Thrive.exitToMenuClicked();
     } else {
         main_menu.doExitToMenu();
