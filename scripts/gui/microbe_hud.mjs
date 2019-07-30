@@ -22,7 +22,7 @@ export function runMicrobeHUDSetup(){
         onEditorButtonClicked, true);
 
     // Compound Panel
-    document.getElementById("compoundExpand").addEventListener("click",
+    document.getElementById("compoundsButton").addEventListener("click",
         onCompoundPanelClicked, true);
 
     // Pause Menu Clicked
@@ -46,6 +46,12 @@ export function runMicrobeHUDSetup(){
 
     // Editor button is initially disabled
     document.getElementById("microbeToEditorButton").classList.add("DisabledButton");
+
+    // Compounds Panel buttons
+    document.getElementById("compressPanel").addEventListener("click", onCompressPanelClicked);
+
+    document.getElementById("expandPanel").addEventListener("click", onExpandPanelClicked);
+
 
     if(common.isInEngine()){
 
@@ -169,12 +175,17 @@ export function onResetEditor(){
 
 function onCompoundPanelClicked() {
     common.playButtonPressSound();
+    document.getElementById("compoundsPanel").style.transition = "0s";
 
-    $(".environment").animate({"width": "toggle"});
-    $(".compounds").animate({"width": "toggle"});
-    $(".agents").animate({"width": "toggle"});
+    $("#environmentPanel").animate({"width": "toggle"});
+    $("#compoundsPanel").animate({"width": "toggle"});
+    $("#agentsPanel").animate({"width": "toggle"});
 
-    $("#compoundExpand").toggleClass("flip");
+    $("#compoundsButton").toggleClass('active');   
+    $("#compoundsButton").toggleClass('inactive');  
+   
+    /*$("#compoundExpandIcon").toggleClass("rotate-reset");
+    $("#compoundExpandIcon").toggleClass("rotate");*/
 }
 
 function openHelp(){
@@ -364,15 +375,23 @@ function updateHoverInfo(vars){
 
     const panel = document.getElementById("mouseHoverPanel");
     common.clearChildren(panel);
-
-    panel.appendChild(document.createTextNode("Stuff at " + vars.mousePos + ":"));
+    
+    var div = document.createElement("div");
+    div.style.width = "100%";
+    div.style.height = "15px";
+    div.style.color = "white";
+    div.style.textAlign = "center"
+    div.innerHTML = "Hello";
 
     if(vars.noCompounds){
 
         panel.appendChild(document.createElement("br"));
-        panel.appendChild(document.createTextNode("Nothing to eat here"));
-
+        div.innerHTML = "Nothing to eat here";
+        panel.appendChild(div);
     } else {
+
+        div.innerHTML = "At cursor:";
+        panel.appendChild(div);
 
         common.getKeys(vars).forEach(function(key){
 
@@ -384,8 +403,26 @@ function updateHoverInfo(vars){
             panel.appendChild(document.createElement("br"));
 
             // Debug print version
+            var values = vars[key].split(":");
+            var img = document.createElement("IMG");
+            var src = "../../Textures/gui/bevel/";
+            values[0] = values[0].replace(/\s+/, "") 
+            src =  src + values[0];
+            src = src + ".png";
+            
+            img.setAttribute("src", src);
+            img.setAttribute("width", "25");
+            img.setAttribute("height", "25");
+            panel.appendChild(img);
+
+            var par = document.createElement("p");
+            par.style.display = "inline-block";
+            var parText = document.createTextNode("" + vars[key]);
+            par.appendChild(parText);
+
             // Panel.appendChild(document.createTextNode(key + ": " + vars[key]));
-            panel.appendChild(document.createTextNode(vars[key]));
+            panel.appendChild(par);
+
         });
     }
 
@@ -414,15 +451,14 @@ function updatePopulation(population){
 }
 
 // Update dissolved gasses
-/*function updateDissolvedGasses(oxygen, c02, n2){
-    document.getElementById("oxygenPercent").innerHTML =
-    "O<sub>2</sub>" + ": " + oxygen + "%";
-    document.getElementById("carbonDioxidePercent").innerHTML =
-    "CO<sub>2</sub>" + ": " + c02 + "%";
-    document.getElementById("nitrogenPercent").innerHTML =
-    "N<sub>2</sub>" + ": " + n2 + "%";
-}*/
-
+function updateDissolvedGasses(oxygen, c02, n2){
+    document.getElementById("microbeHUDPlayerOxygen").textContent =
+        oxygen + "%";
+    document.getElementById("microbeHUDPlayerCO2").textContent =
+        c02 + "%";
+    document.getElementById("microbeHUDPlayerNitrogen").textContent =
+        n2 + "%";
+}
 
 //! Checks if the player is extinct
 function checkExtinction(population){
@@ -454,6 +490,121 @@ function hideWinText(){
     document.getElementById("winContainer").style.display = "none";
 }
 
+
+ //! Compress panel function
+function onCompressPanelClicked() {
+
+    document.getElementById('compoundsPanel').style.width = "251px";
+    document.getElementById('compoundsPanel').style.height = "145px";
+    document.getElementById('compoundsPanel').style.backgroundImage = "url('../../Textures/gui/bevel/compoundPanelExpand.png')";
+    document.getElementById('compoundsPanel').style.transition = "0.5s";
+
+
+    document.getElementById('compressPanel').style.backgroundImage = "url('../../Textures/gui/bevel/compressPanelActive.png')";
+    document.getElementById('expandPanel').style.backgroundImage = "url('../../Textures/gui/bevel/expandPanel.png')";
+
+    var row1 = document.getElementById('row1');
+    var bars = row1.getElementsByClassName('Bar');
+    var title =  row1.getElementsByClassName('BarTitle');
+    var barValues = row1.getElementsByClassName('BarValue');
+
+    for (var i = 0; i < bars.length; i++) {
+        bars[i].style.display = "inline-block";
+        bars[i].style.width = "65px";
+        bars[i].style.marginBottom = "0px";
+        bars[i].style.marginTop = "6px";
+        bars[i].style.marginLeft = "-25px";
+    }    
+
+    for (var i = 0; i < title.length; i++) {
+        title[i].style.visibility  = "hidden";
+    }   
+
+    for (var i = 0; i < barValues.length; i++) {
+        barValues[i].style.left = "-30px";
+    }  
+
+    //! ROW 2 
+    var row2 =  document.getElementById('row2');
+    var bars = row2.getElementsByClassName('Bar');
+    var title =  row2.getElementsByClassName('BarTitle');
+    var barValues = row2.getElementsByClassName('BarValue');
+    
+    for (var i = 0; i < bars.length; i++) {
+        bars[i].style.display = "inline-block";  
+        bars[i].style.width = "65px";
+        bars[i].style.marginBottom = "0px";
+        bars[i].style.marginTop = "-10px";
+        bars[i].style.marginLeft = "-25px"; 
+    }    
+
+    for (var i = 0; i < title.length; i++) {
+        title[i].style.visibility  = "hidden";
+    }   
+
+    for (var i = 0; i < barValues.length; i++) {
+        barValues[i].style.left = "-30px";
+    }  
+}
+
+
+//! Expand panel function
+function onExpandPanelClicked() {
+
+    document.getElementById('compoundsPanel').style.width = "249px";
+    document.getElementById('compoundsPanel').style.height = "238px";
+    document.getElementById('compoundsPanel').style.backgroundImage = "url('../../Textures/gui/bevel/compoundPanel.png')";
+    document.getElementById('compoundsPanel').style.transition = "0.5s";
+
+
+    document.getElementById('compressPanel').style.backgroundImage = "url('../../Textures/gui/bevel/compressPanel.png')";
+    document.getElementById('expandPanel').style.backgroundImage = "url('../../Textures/gui/bevel/expandPanelActive.png')";
+
+    var row1 = document.getElementById('row1');
+    var bars = row1.getElementsByClassName('Bar');
+    var title =  row1.getElementsByClassName('BarTitle');
+    var barValues = row1.getElementsByClassName('BarValue');
+
+    for (var i = 0; i < bars.length; i++) {
+        bars[i].style.display = "block";
+        bars[i].style.marginBottom = "4px";
+        bars[i].style.marginTop = "6px";
+        bars[i].style.marginLeft = "20px";
+        bars[i].style.width = "215px";
+    }    
+
+     for (var i = 0; i < title.length; i++) {
+        title[i].style.visibility  = "visible";
+    }   
+
+    for (var i = 0; i < barValues.length; i++) {
+        barValues[i].style.left = "120px";
+    }  
+
+    //! ROW 2 
+    var row2 =  document.getElementById('row2');
+    var bars = row2.getElementsByClassName('Bar');
+    var title =  row2.getElementsByClassName('BarTitle');
+    var barValues = row2.getElementsByClassName('BarValue');
+    
+    for (var i = 0; i < bars.length; i++) {
+        bars[i].style.display = "block";
+        bars[i].style.marginLeft = "20px";
+        bars[i].style.marginBottom = "4px";
+        bars[i].style.marginTop = "6px";
+        bars[i].style.width = "215px";
+    }    
+
+     for (var i = 0; i < title.length; i++) {
+        title[i].style.visibility  = "visible";
+    }   
+
+    for (var i = 0; i < barValues.length; i++) {
+        barValues[i].style.left = "120px";
+    }   
+}
+
+
 //! Updates the GUI bars
 //! values needs to be an object with properties set with values for everything
 function updateMicrobeHUDBars(values){
@@ -461,7 +612,6 @@ function updateMicrobeHUDBars(values){
    
     // The bars
     
-
     document.getElementById("microbeHUDPlayerHitpoints").textContent =
         values.hitpoints;
     document.getElementById("microbeHUDPlayerMaxHitpoints").textContent =
@@ -476,20 +626,24 @@ function updateMicrobeHUDBars(values){
     var valueHp = common.barHelper(values.hitpoints, values.maxHitpoints).replace("%","");
 
     var totalProgress, progress;
-        const circles = document.querySelectorAll('#atp');
-        for(var i = 0; i < circles.length; i++) {
-            totalProgress = circles[i].querySelector('circle').getAttribute('stroke-dasharray');
-            progress = valueAtp;
-            circles[i].querySelector('.bar').style['stroke-dashoffset'] = totalProgress * progress / 100;
+    const circles = document.querySelectorAll('#circleBars');
+    
+    // ! instead of using totalProgress var, two hardCoded value are used
+    // They are in thrive_gui.html at line 117 and 134.
+    // two loops could be used but this need draw two differents svg for each circle
+
+    for(var i = 0; i < circles.length; i++) {
+        
+        progress = 100 - valueAtp;
+        if(valueAtp < 2.5) {
+            circles[i].querySelector('#shapeAtp').style['stroke-dashoffset'] = 189.117;
+        } else {
+            circles[i].querySelector('#shapeAtp').style['stroke-dashoffset'] = 189.117 * progress / 100;
         }
 
-        const circlesHp = document.querySelectorAll('#hp');
-        for(var i = 0; i < circlesHp.length; i++) {
-            totalProgress = circlesHp[i].querySelector('circle').getAttribute('stroke-dasharray');
-            progress = valueHp;
-            circlesHp[i].querySelector('.bar').style['stroke-dashoffset'] = totalProgress * progress / 100;
-        }
-
+        progress = 100 - valueHp;
+        circles[i].querySelector('#shapeHp').style['stroke-dashoffset'] = 244.393 * progress / 100;
+    }
  
     document.getElementById("microbeHUDPlayerAmmonia").textContent =
         values.compoundAmmonia.toFixed(1);

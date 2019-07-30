@@ -31,6 +31,8 @@
     </div>
 
 
+
+
     <!-- All the menus for easy disabling -->
     <div id="topLevelMenuContainer" class="MenuContainer">
       <div id = "BackgroundMenuImage" class="BackgroundMenu"></div>
@@ -43,7 +45,7 @@
         <div class="MenuButton DisabledButton">Load Game</div>
         <div class="MenuButton DisabledButton">Options</div>
         <div class="MenuButton DisabledButton">Tools</div>
-        <div class="MenuButton DisabledButton" id="extrasButton">Extras</div>
+        <div class="MenuButton" id="extrasButton">Extras</div>
         <div class="MenuButton DisabledButton">Credits</div>
         <div class="MenuButton" id="quitButton">Exit</div>
       </div>
@@ -51,7 +53,7 @@
       <!-- Extras menu -->
       <div id="extrasMenu" class="MainMenu" style="display: none;">
         <div class="MenuButton" id="toMultiplayerProtoButton">
-          Multiplayer prototype</div>
+          Multiplayer Proto.</div>
         <div class="MenuButton" id="backFromExtras">Back</div>
       </div>
 
@@ -83,96 +85,212 @@
 
     <!-- Microbe stage GUI -->
     <div id="topLevelMicrobeStage">
-	
-      <!-- Top left box -->
+  
+      <!-- Bottom right box -->
       <div id="microbeHealthBox" class="Panel">
-	  
-        <!-- Health bar -->
-        <div class="Bar"> 
-          <div class="BarBackground" id="microbeHUDPlayerHitpointsBar">
-		  <div class="BarForeground">
-          <div class="compoundIcon" id="HealthIcon"></div>
-          <div class="BarTitle">Health</div>
-		  </div>
+
+
+        <div class="dataValue">
+          <div> ATP 
+              <span id="microbeHUDPlayerATPCompound">0</span> 
+              <span>/</span>
+              <span id="microbeHUDPlayerATPMax">0</span>
           </div>
-	    </div>
+          <div> HEALTH
+              <span id="microbeHUDPlayerHitpoints">0</span>
+               <span>/</span>
+              <span id="microbeHUDPlayerMaxHitpoints">100</span>
+          </div>
+           <!-- Population bar -->
+          <div class="population">
+              <span id="populationText">POPULATION:</span>
+              <span id="populationCount">0</span>
+          </div>  
+        </div>
+   
+          
+        <svg id="circleBars" width="200" height="200">
+
+            
+          <defs>
+            <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="-50%" stop-color="#212121" />
+              <stop offset="100%" stop-color="#F5457A" />
+            </linearGradient>
+          </defs>
+            <!-- HP bar -->
+        <path id="hp" d="M40,140  A30,30 0 0,1 150,30" 
+            stroke-width="10";
+            fill="transparent"
+            stroke="black"
+            stroke-dasharray="244.393";
+            stroke-dashoffset="0"
+            stroke-linecap="round"/>
         
-        <!-- For some reason this glitched out when you were low on health 
-        (started following bar) and being scrunched together,
-        decoupling it from the bar fixed that glitch -->
-        <div class="HealthValue">
-            <span id="microbeHUDPlayerHitpoints">0</span> /
-            <span id="microbeHUDPlayerMaxHitpoints">0</span>
-        </div>
-	    <div id="ATPCount"><div class="compoundIcon" id="ATPIcon"></div>
-          <div class="BarTitle">ATP</div><div class="ATPValue">
-            <span id="microbeHUDPlayerATP">0</span>
-          </div>
-        </div>
-	  </div>
-	  <div id="pauseButton"><div id="pauseIcon"></div></div>
-	     
-       <!-- ENVIRONMENT -->
-       <div class="environment">
-          <p class="mainText"> Environment </p>
-          <div class="line"></div>
-
-          <!-- oxygen percentage -->
-           <div class ="oxygen"> 
-           <div class="mainGUITab"> <p class="valueText"> O<sub>2</sub></p>  
-            <p class="valueNumber">21%</p> 
-            <div class="compoundIcon" id="oxygenIcon"> </div> 
-            <span id="oxygenPercent"> </span>  </div>
-          </div>
-
-           <!-- c02 percentage -->
-          <div class="carbondioxide">
-            <div class="mainGUITab"> <p class="valueText"> CO<sub>2</sub></p>
-             <p class="valueNumber">9%</p> 
-             <div class="compoundIcon" id="carbondioxideIcon"> </div> 
-             <span id="carbondioxidePercent"> </span>  </div>
-          </div>
-
-          <!-- N2 percentage -->
-          <div class="nitrogen">
-            <div class="mainGUITab"> <p class="valueText"> N<sub>2</sub></p> 
-              <p class="valueNumber">70%</p> 
-              <div  class="compoundIcon" id="nitrogenIcon"> </div>
-               <span id="nitrogenPercent"> </span> </div>
-          </div>
-
-          <!-- Temperature percentage -->
-          <div class="temperature">
-            <div class="mainGUITab"> <p class="valueText"> Temp.</p> 
-              <p class="valueNumber">55°C</p> 
-              <div  class="compoundIcon" id="temperatureIcon"> </div> </div>
-          </div>
+        <path id="shapeHp" d="M40,140  A30,30 0 0,1 150,30" 
+            stroke-width="10";
+            fill="transparent"
+            stroke="url(#gradient)"
+            stroke-dasharray="244.393";
+            stroke-dashoffset="0"
+            stroke-linecap="round"/>
+          
+           <!-- ATP bar -->
+       <path id="atp"  d="M50,125  A30,30 0 0,1 140,45" 
+            stroke-width="10";
+            fill="transparent"
+            stroke="black"
+            stroke-dasharray="189.117";
+            stroke-dashoffset="0"
+            stroke-linecap="round"/>
+     
+      <path id="shapeAtp"  d="M50,125  A30,30 0 0,1 140,45" 
+            stroke-width="10";
+            fill="transparent"
+            stroke="green"
+            stroke-dasharray="189.117";
+            stroke-dashoffset="0"
+            stroke-linecap="round"/>
+      </svg>
+          
+       
         
+    </div>
+    <div id="pauseButton"><div id="pauseIcon"></div></div>
+    
+        
+    <div id="winContainer">
+    <span id="winTitle">YOU HAVE THRIVED!</span>
+    <span id="winBody">Congratulation- a winner is y... who am I kidding, you have thrived! You have won in the 0.4.1 build Good job, you may continue playing after this screen closes if you wish, or start a new game in a new world.</span>
+    </div>
+    
+    <div id="extinctionContainer">
+    <span id="extinctionTitle">EXTINCTION</span>
+    <span id="extinctionBody">Just like 99% of all species that have ever existed, your species has gone extinct. Others will go on to fill in your niche and thrive, but that won’t be you. You will be forgotten, a failed experiment in evolution.</span>
+    </div>
+    
+      
+    
+      
+      <!-- Bottom bar -->
+      <div id="microbeBottomBar" class="Panel">
+        <div id="mainMenuButton"></div>
+        <div id="pauseButtonBottom"></div>
+        <div id="compoundsButton" class="active"></div>
+        <div id="chemicalButton"></div>
+        <div id="statisticsButton"></div>
+        <div id="searchButton"></div>
+        <div id="questionMarkButton"></div>
+        <div id="suicideButton"></div>
+      </div>
 
-         <!-- Ligh percentage -->
-          <div class="temperature">
-            <div class="mainGUITab"> <p class="valueText"> Light</p> 
-              <p class="valueNumber">80K lux</p> 
-              <div  class="compoundIcon" id="lightIcon"> </div> </div>
-          </div>
 
-          <!-- Pressure percentage -->
-          <div class="temperature">
-            <div class="mainGUITab"> <p class="valueText"> Press.</p> 
-              <p class="valueNumber">200 kPa</p> 
-              <div  class="compoundIcon" id="pressureIcon"> </div> </div>
-          </div>
+
+      <!-- Mouse hover panel -->
+      <div id="mouseHoverPanel" class="Panel">
+      </div>
+     
+     <div id="Panels">
+    <!-- Environment panel -->
+        <div id="environmentPanel" class="Panel">Environment
+
+        <!-- Oxygen -->
+          <div class="EnvironmentBar"> 
+            <div class="OxygenBarBackground" id="microbeHUDPlayerOxygenBar">
+              <div class="BarForeground">
+                  <div class="environmentIcon" id="OxygenIcon"></div>
+                  <div class="EnvironmentBarTitle">O₂</div>
+                    <div class="EnvironmentBarValue">
+                      <span id="microbeHUDPlayerOxygen">21%</span>
+                    </div>
+              </div>
+            </div>
         </div>
 
-           
-        <!-- COMPOUNDS -->
-        <div class="compounds">
-          <div  id=compoundsIcon> </div> <p class="mainTextCompounds"> Compounds </p>
-          <div class="line"></div>
+        <!-- Carbon Dioxide -->
+          <div class="EnvironmentBar"> 
+            <div class="CO2BarBackground" id="microbeHUDPlayerCO2Bar">
+              <div class="BarForeground">
+                  <div class="environmentIcon" id="CO2Icon"></div>
+                  <div class="EnvironmentBarTitle">CO₂</div>
+                    <div class="EnvironmentBarValue">
+                      <span id="microbeHUDPlayerCO2">9%</span>
+                    </div>
+              </div>
+            </div>
+        </div>
 
+        <!-- Nitrogen -->
+          <div class="EnvironmentBar"> 
+            <div class="NitrogenBarBackground" id="microbeHUDPlayerNitrogenBar">
+              <div class="BarForeground">
+                  <div class="environmentIcon" id="NitrogenIcon"></div>
+                  <div class="EnvironmentBarTitle">N₂</div>
+                    <div class="EnvironmentBarValue">
+                      <span id="microbeHUDPlayerNitrogen">70%</span>
+                    </div>
+              </div>
+            </div>
+        </div>
+
+        <!-- Temperature -->
+          <div class="EnvironmentBar"> 
+            <div class="EmptyBarBackground" id="microbeHUDPlayerTempBar">
+              <div class="BarForeground">
+                  <div class="environmentIcon" id="TempIcon"></div>
+                  <div class="EnvironmentBarTitle">Temp.</div>
+                    <div class="EnvironmentBarValue">
+                      <span id="microbeHUDPlayerTemp">55° C</span>
+                    </div>
+              </div>
+            </div>
+        </div>
+
+        <!-- Light -->
+          <div class="EnvironmentBar"> 
+            <div class="EmptyBarBackground" id="microbeHUDPlayerLightBar">
+              <div class="BarForeground">
+                  <div class="environmentIcon" id="LightIcon"></div>
+                  <div class="EnvironmentBarTitle">Light</div>
+                    <div class="EnvironmentBarValue">
+                      <span id="microbeHUDPlayerLight">80k lux</span>
+                    </div>
+              </div>
+            </div>
+        </div>
+
+        <!-- Pressure -->
+          <div class="EnvironmentBar"> 
+            <div class="EmptyBarBackground" id="microbeHUDPlayerPressureBar">
+              <div class="BarForeground">
+                  <div class="environmentIcon" id="PressureIcon"></div>
+                  <div class="EnvironmentBarTitle">Press.</div>
+                    <div class="EnvironmentBarValue">
+                      <span id="microbeHUDPlayerPressure">200 kPa</span>
+                    </div>
+              </div>
+            </div>
+        </div>
+    </div>
+
+
+      <!-- Compounds panel -->
+      <div id="compoundsPanel" class="Panel">
+          <div id="panelTitle"> Compounds  
+            <div  id="compressPanel" src="../../Textures/gui/bevel/compressPanel.png"> </div>
+            <div  id="expandPanel"   src="../../Textures/gui/bevel/expandPanel.png"> </div>
+          </div>
+         
+          <!-- <\!-- This bar is redundant with the one in the top left box -\-> -->
+          <!-- <div style="display: none"> -->
+          <!--   ATP: <span id="microbeHUDPlayerATPCompound">0</span> / -->
+          <!--   <span id="microbeHUDPlayerATPMax">0</span> -->
+          <!-- </div> -->
+          
           <!-- Glucose -->
+          <div id="row1">
             <div class="Bar"> 
-                <div class="BarBackground" id="microbeHUDPlayerGlucoseBar">
+                  <div class="BarBackground" id="microbeHUDPlayerGlucoseBar">
                     <div class="BarForeground">
                         <div class="compoundIcon" id="GlucoseIcon"></div>
                         <div class="BarTitle">Glucose</div>
@@ -183,21 +301,37 @@
                     </div>
                   </div>
               </div>
+                
+                <!-- Ammonia -->
+                <div class="Bar"> 
+                  <div class="BarBackground" id="microbeHUDPlayerAmmoniaBar">
+                    <div class="BarForeground">
+                        <div class="compoundIcon" id="AmmoniaIcon"></div>
+                        <div class="BarTitle">Ammonia</div>
+                          <div class="BarValue">
+                            <span id="microbeHUDPlayerAmmonia">0</span> /
+                            <span id="microbeHUDPlayerAmmoniaMax">0</span>
+                          </div>
+                    </div>
+                  </div>
+              </div>
 
-               <!-- Ammonia -->
+            <!-- Phosphates -->
               <div class="Bar"> 
-                <div class="BarBackground" id="microbeHUDPlayerAmmoniaBar">
+                <div class="BarBackground" id="microbeHUDPlayerPhosphatesBar">
                   <div class="BarForeground">
-                      <div class="compoundIcon" id="AmmoniaIcon"></div>
-                      <div class="BarTitle">Ammonia</div>
+                      <div class="compoundIcon" id="PhosphatesIcon"></div>
+                      <div class="BarTitle">Phosphate</div>
                         <div class="BarValue">
-                          <span id="microbeHUDPlayerAmmonia">0</span> /
-                          <span id="microbeHUDPlayerAmmoniaMax">0</span>
+                          <span id="microbeHUDPlayerPhosphates">0</span> /
+                          <span id="microbeHUDPlayerPhosphatesMax">0</span>
                         </div>
                   </div>
                 </div>
-              </div>
+            </div>
+          </div>
 
+           <div id="row2">
             <!-- Hydrogen Sulfide -->
             <div class="Bar"> 
               <div class="BarBackground" id="microbeHUDPlayerHydrogenSulfideBar">
@@ -210,169 +344,76 @@
                       </div>
                 </div>
               </div>
-            </div>
-
-            <!-- Phosphates -->
-            <div class="Bar"> 
-              <div class="BarBackground" id="microbeHUDPlayerPhosphatesBar">
-                <div class="BarForeground">
-                    <div class="compoundIcon" id="PhosphatesIcon"></div>
-                    <div class="BarTitle">Phosphate</div>
-                      <div class="BarValue">
-                        <span id="microbeHUDPlayerPhosphates">0</span> /
-                        <span id="microbeHUDPlayerPhosphatesMax">0</span>
-                      </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Iron -->
-            <div class="Bar"> 
-              <div class="BarBackground" id="microbeHUDPlayerIronBar">
-                <div class="BarForeground">
-                    <div class="compoundIcon" id="IronIcon"></div>
-                    <div class="BarTitle">Iron</div>
-                      <div class="BarValue">
-                        <span id="microbeHUDPlayerIron">0</span> /
-                        <span id="microbeHUDPlayerIronMax">0</span>
-                      </div>
-                </div>
-              </div>
-            </div>
           </div>
-
-          <!-- AGENTS -->
-        <div class="agents">
-          <div  id=agentsIcon> </div><p class="mainTextCompounds"> Agents </p>
-            <div class="line"></div>
-              <!-- Oxytoxy -->
-              <div class="Bar"> 
-                <div class="BarBackground" id="microbeHUDPlayerOxytoxyBar">
-                  <div class="BarForeground">
-                      <div class="compoundIcon" id="OxyToxyIcon"></div>
-                      <div class="BarTitle">OxyToxy NT</div>
-                        <div class="BarValue">
-                          <span id="microbeHUDPlayerOxytoxy">0</span> /
-                          <span id="microbeHUDPlayerOxytoxyMax">0</span>
-                        </div>
-                  </div>
-                </div>
+          
+      <!-- Iron -->
+          <div class="Bar"> 
+            <div class="BarBackground" id="microbeHUDPlayerIronBar">
+              <div class="BarForeground">
+                  <div class="compoundIcon" id="IronIcon"></div>
+                  <div class="BarTitle">Iron</div>
+                    <div class="BarValue">
+                      <span id="microbeHUDPlayerIron">0</span> /
+                      <span id="microbeHUDPlayerIronMax">0</span>
+                    </div>
+              </div>
             </div>
         </div>
-      
+       </div>
+    </div>
 
-        
-	  <div id="winContainer">
-		<span id="winTitle">YOU HAVE THRIVED!</span>
-		<span id="winBody">Congratulation- a winner is y... who am I kidding, you have thrived! You have won in the 0.4.2 dev build Good job, you may continue playing after this screen closes if you wish, or start a new game in a new world.</span>
-	  </div>
-	  
-	  <div id="extinctionContainer">
-		<span id="extinctionTitle">EXTINCTION</span>
-		<span id="extinctionBody">Just like 99% of all species that have ever existed, your species has gone extinct. Others will go on to fill in your niche and thrive, but that won’t be you. You will be forgotten, a failed experiment in evolution.</span>
-	  </div>
-	   
-
-  
-
-
-      <!-- Bottom bar -->
-      <div id="microbeBottomBar" class="Panel">
-        <div  class="bottomButton" id="mainMenuButton"></div>
-        <div  class="bottomButton" id="pauseButtoon"></div>
-        <div  class="bottomButton" id="compoundsBottomButton"> </div>
-        <div  class="bottomButton" id="chemicalButton"> </div>
-        <div  class="bottomButton" id="questionMarkButton"> </div>
-        <div  class="bottomButton" id="statisticsButton"> </div>
-        <div  class="bottomButton" id="searchButton"> </div>
-        <div  class="bottomButton" id="suicideButton"></div>
-        <div id="suicideMsg"></div>
-        <div  class="bottomButton"id="compoundExpand"></div>
-      </div>
-     
-
-      <!-- Mouse hover panel -->
-      <div id="mouseHoverPanel" class="Panel">
-        
-      </div>
-
-      <!-- Compounds panel -->
-      <div id="compoundsPanel" class="Panel">
-        <!-- <\!-- This bar is redundant with the one in the top left box -\-> -->
-        <!-- <div style="display: none"> -->
-        <!--   ATP: <span id="microbeHUDPlayerATPCompound">0</span> / -->
-        <!--   <span id="microbeHUDPlayerATPMax">0</span> -->
-          <!-- </div> -->
-
-      <div class="circleDna"> <div id="dnaImg">  </div> </div>
-
-        <div id="ATPcircle">ATP
-            <span id="microbeHUDPlayerATPCompound">0</span> 
-            <span id="microbeHUDPlayerATPMax">/0</span>
-        <div class="progressdiv"> 
-          <svg id="atp" class="progress" width="178" height="178" viewport="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
-            <circle id="atpColor" r="80" cx="89" cy="89" fill="transparent" stroke-dasharray="502.4" stroke-dashoffset="0" >
-            </circle>
-            <circle class="bar" r="80" cx="89" cy="89" fill="transparent" stroke-dasharray="502.4" stroke-dashoffset="0">
-            </circle>
-          </svg>
-        </div>
-      </div>
-
-            
-       <div id="Healthcircle">HEALTH
-            <span id="microbeHUDPlayerHitpoints">100</span>
-            <span id="microbeHUDPlayerMaxHitpoints">/100</span>
-        <div class="progressdiv"> 
-          <svg id="hp" class="progress" width="250" height="250" viewport="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
-            <circle  id="hpColor" r="90" cx="125" cy="125" fill="transparent" stroke-dasharray="502.4" stroke-dashoffset="0" >
-            </circle>
-            <circle class="bar" r="90" cx="125" cy="125" fill="transparent" stroke-dasharray="502.4" stroke-dashoffset="0">
-            </circle>
-          </svg>
-        </div>
-      </div>
-
-      <div class="population">
-          <span id="populationText">POPULATION:</span>
-          <span id="populationCount">0</span>
-      </div>     
-	</div>
+    <!-- Agents panel --> 
+    <div id="agentsPanel" class="Panel">Agents
+         <!-- Oxytoxy -->
+            <div class="Bar"> 
+              <div class="BarBackground" id="microbeHUDPlayerOxytoxyBar">
+                <div class="BarForeground">
+                    <div class="compoundIcon" id="OxyToxyIcon"></div>
+                    <div class="BarTitle">OxyToxy NT</div>
+                      <div class="BarValue">
+                        <span id="microbeHUDPlayerOxytoxy">0</span> /
+                        <span id="microbeHUDPlayerOxytoxyMax">0</span>
+                      </div>
+                </div>
+              </div>
+          </div>
+    </div>
+  </div>
     
     
       <!-- Editor button -->
-      <div class="microbeToEditorButton DisabledButton" id="microbeToEditorButton">
-	  <div id="microbeEditorIcon"></div>
-	  EDITOR
+      <div class="microbeToEditorButton" id="microbeToEditorButton">
+    <div id="microbeEditorIcon"></div>
+    EDITOR
       </div>
-	  
-	  <!-- Pause menu -->
-	  <div id="pauseOverlay" class="Overlay">
+    
+    <!-- Pause menu -->
+    <div id="pauseOverlay" class="Overlay">
       <div id="pauseMenu" class="PauseMenu">
-	    <div class="MenuButton" id="resumeButton">Resume</div>
+      <div class="MenuButton" id="resumeButton">Resume</div>
         <div class="MenuButton DisabledButton">Quicksave</div>
         <div class="MenuButton DisabledButton">Save Game</div>
         <div class="MenuButton DisabledButton">Load Game</div>
         <div class="MenuButton DisabledButton">Statistics</div>
         <div class="MenuButton" id="helpButton">Help</div>
-		<div class="MenuButton DisabledButton">Options</div>
+    <div class="MenuButton DisabledButton">Options</div>
         <div class="MenuButton" id="exitToMenuButton">Main Menu</div>
         <div class="MenuButton" id="quitButtonHud">Exit</div>
-		</div>
+    </div>
         
-		<div class="HelpText" id="helpText">
+    <div class="HelpText" id="helpText">
             <div class="HelpScroll">
         Collect compounds throughout the
-		environment to process in your cell's organelles and generate
-		ATP. Be careful not to let your ATP stores run out, or you
-		will slow down, lose health and eventually die.
-		<br><br> The various compound clouds are:<br><br> White –
-Glucose <br> Yellow – Hydrogen Sulfide <br> Orange - Ammonia  <br> Purple - Phosphate <br> Rust Brown - Iron <br><br>
+    environment to process in your cell's organelles and generate
+    ATP. Be careful not to let your ATP stores run out, or you
+    will slow down, lose health and eventually die.
+    <br><br> The various compound clouds are:<br><br> White –
+Glucose <br> Yellow – Hydrogen Sulfide <br> Orange - Ammonia  <br> Purple - Phosphates <br> Rust Brown - Iron Ions <br><br>
 
 Glucose makes ATP<br>
 Hydrogen Sulfide can be converted into glucose via chemoplasts and chemosynthesizing proteins<br>
-Iron can be converted via rusticyanin into ATP<br>
-and Ammonia and Phosphate are crucial for reproduction. <br><br>
+Iron Ions can be converted via rusticyanin into ATP<br>
+and Ammonia and Phosphates are crucial for reproduction. <br><br>
 
 Press E to release a dangerous agent, Oxytoxy NT, to kill other cells
 and then collect the spilled compounds if you have a toxin vacuole. <br><br>
@@ -393,7 +434,7 @@ There are many Organelles in the editor for you to evolve, allowing for a wide r
 <br><br>
 For this Release if your population (top tab) drops to zero you go extinct.
 <br>
-But if you survive for twenty generations with 400 population, you are considered to have won, after winning you get a popup and can continue playing as you wish.
+But if you survive for fifteen generations with 200 population, you are considered to have won, after winning you get a popup and can continue playing as you wish.
 <br><br>
 Be wary because your competitors are evolving alongside you. Every time you enter the editor they evolve as well.
 <br><br>
@@ -401,8 +442,8 @@ Be wary because your competitors are evolving alongside you. Every time you ente
         </div>
         <div id="tipMsg"></div>
         </div>
-	  </div>
-	</div>
+    </div>
+  </div>
 
     
     <!-- Microbe editor GUI -->
@@ -412,401 +453,401 @@ Be wary because your competitors are evolving alongside you. Every time you ente
            inside the editor and sending an event for doing the placing -->
       <div id="microbeEditorClickDetector"
            style="position: relative; width: 100%; height: 100%;"></div>
-	
+  
       <!-- Top left box -->
-	  <div id="MPBox" class="Panel">
-	  <div class="Bar" id="MP"> 
+    <div id="MPBox" class="Panel">
+    <div class="Bar" id="MP"> 
           <div class="BarBackground" id="microbeHUDPlayerMutationPointsBar">
-		  <div class="BarForeground">
+      <div class="BarForeground">
           <div class="compoundIcon" id="MutationPointsIcon"></div>
           <div class="BarTitle">Mutation Points</div>
           <div class="BarValue">
               <span id="microbeHUDPlayerMutationPoints">100/</span>
               <span id="microbeHUDPlayerMaxMutationPoints">100</span>
           </div>
-		  </div>
       </div>
-	    </div>
-	  </div>
-	  <div id="newButton" >
+      </div>
+      </div>
+    </div>
+    <div id="newButton" >
             NEW
-	    <div id="NewIcon"></div>	  </div>
+      <div id="NewIcon"></div>    </div>
       <div id="microbeEditorLeftPanel" class="Panel">
-	    <div id="StructurePanelTop"><div id="StructureTitle">STRUCTURE</div></div>
-	    <div id="AppearanceButton" class="DisabledButton">
+      <div id="StructurePanelTop"><div id="StructureTitle">STRUCTURE</div></div>
+      <div id="AppearanceButton" class="DisabledButton">
           <div id="AppearanceTitle">APPEARANCE</div></div>
-	    <div id="BehaviorButton" class="DisabledButton">
+      <div id="BehaviorButton" class="DisabledButton">
           <div id="BehaviorTitle">BEHAVIOR</div></div>
-	    <div id="StructurePanelMid">
-	      <div class="OrganelleListTitle">STRUCTURAL ORGANELLES</div>
-	      <table class="OrganelleTable"><tr>
-	          <td id="addCytoplasm" class="OrganelleListItem">
-				<span class="tooltiptext">
-				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">22</span> <br> <br>
+      <div id="StructurePanelMid">
+        <div class="OrganelleListTitle">STRUCTURAL ORGANELLES</div>
+        <table class="OrganelleTable"><tr>
+            <td id="addCytoplasm" class="OrganelleListItem">
+        <span class="tooltiptext">
+        &emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">22</span> <br> <br>
                 Turns <span class="tkey">Glucose</span> <span class="compoundIcon" id="GlucoseIcon"></span> into <span class="tkey">ATP</span> <span class="compoundIcon" id="ATPIcon"></span> . <br> <br>
-				<span class="tgold">Fermentation</span> <br>
-				<span class="tkey">0.06</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">5.00</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="tkey">/second</span> <br> <br>
-				<span class="tbonus">+4</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
-				<span class="tmalus">+1</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
-				<span class="tdesc">The gooey innards of a cell. The cytoplasm is the basic mixture of ions, proteins, and other substances dissolved 
+        <span class="tgold">Fermentation</span> <br>
+        <span class="tkey">0.06</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">5.00</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="tkey">/second</span> <br> <br>
+        <span class="tbonus">+4</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
+        <span class="tmalus">+1</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
+        <span class="tdesc">The gooey innards of a cell. The cytoplasm is the basic mixture of ions, proteins, and other substances dissolved 
                 in water that fill the interior of the cell. One of the functions it performs is Fermentation, the conversion of glucose into
                 ATP energy. For cells that lack organelles to have more advanced metabolisms, this is what they rely on for energy. It is also 
                 used to store molecules in the cell and to grow the cell's size.</span>
                 </span>
-				<span class="tooltipheader">
-				<span class="thead">Cytoplasm</span>
-				</span>
+        <span class="tooltipheader">
+        <span class="thead">Cytoplasm</span>
+        </span>
                 <div id="CytoplasmIcon"></div>Cytoplasm<br>22 MP</td>
           </tr></table>
         <div class="OrganelleListTitle">PROKARYOTIC STRUCTURES</div>
         <table class="OrganelleTable"><tr>
             <td id="addMetabolosome" class="OrganelleListItem">
                 <span class="tooltiptext">
-				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">45</span> <br> <br>
+        &emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">45</span> <br> <br>
                 Turns <span class="tkey">Glucose</span> <span class="compoundIcon" id="GlucoseIcon"></span> into <span class="tkey">ATP</span> <span class="compoundIcon" id="ATPIcon"></span> . Rate scales with concentration of <span class="tkey">Oxygen</span> <span class="compoundIcon" id="OxygenNormalIcon"></span>&nbsp;. <br> <br>
-				<span class="tgold">Aerobic Respiration</span> <br>
-				<span class="tkey">0.21</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">7.98</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="tkey">/second&emsp;@&emsp;21.00%</span> <span class="compoundIcon" id="OxygenNormalIcon"></span><br> <br>
-				<span class="tgold">Fermentation</span> <br>
-				<span class="tkey">0.13</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">5.00</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="tkey">/second</span> <br> <br>
-				<span class="tbonus">+1</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
-				<span class="tmalus">+1</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
-				<span class="tdesc">Metabolosomes are clusters of proteins wrapped in protein shells. They are able to convert glucose 
+        <span class="tgold">Aerobic Respiration</span> <br>
+        <span class="tkey">0.21</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">7.98</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="tkey">/second&emsp;@&emsp;21.00%</span> <span class="compoundIcon" id="OxygenNormalIcon"></span><br> <br>
+        <span class="tgold">Fermentation</span> <br>
+        <span class="tkey">0.13</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">5.00</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="tkey">/second</span> <br> <br>
+        <span class="tbonus">+1</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
+        <span class="tmalus">+1</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
+        <span class="tdesc">Metabolosomes are clusters of proteins wrapped in protein shells. They are able to convert glucose 
                 into ATP at a much higher efficiency than can be done in the cytoplasm in a process called Aerobic Respiration. 
                 It does, however, require oxygen to function, and lower levels of oxygen in the environment will slow down
                 the rate of its ATP production. Since the metabolosomes are suspended directly in the cytoplasm, the surrounding
                 fluid performs some fermentation.</span>
                 </span>
-				<span class="tooltipheader">
-				<span class="thead">Metabolosomes</span>
-				</span>
+        <span class="tooltipheader">
+        <span class="thead">Metabolosomes</span>
+        </span>
                 <div id="MetabolosomeIcon"></div>Metabolosomes<br>45 MP</td>
             <td id="addChromatophor" class="OrganelleListItem">
                 <span class="tooltiptext">
-				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">55</span> <br> <br>
+        &emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">55</span> <br> <br>
                 Produces <span class="tkey">Glucose</span> <span class="compoundIcon" id="GlucoseIcon"></span> . Rate scales with concentration of <span class="tkey">Carbon Dioxide</span> <span class="compoundIcon" id="CO2NormalIcon"></span> and intensity of <span class="tkey">Light</span> <span class="compoundIcon" id="LightIcon"></span>&nbsp;. <br> <br>
-				<span class="tgold">Photosynthesis</span> <br>
-				<span class="tkey">+0.15</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="tkey">/second&emsp;@&emsp;0.09%</span> <span class="compoundIcon" id="CO2NormalIcon"></span> <span class="tkey">, 10,000 lux</span> <span class="compoundIcon" id="LightIcon"></span><br> <br>
-				<span class="tgold">Fermentation</span> <br>
-				<span class="tkey">0.13</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">5.00</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="tkey">/second</span> <br> <br>
-				<span class="tbonus">+1</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
-				<span class="tmalus">+1</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
-				<span class="tdesc">Thylakoids are clusters of proteins and photosensitive pigments. The pigments are able to use the
+        <span class="tgold">Photosynthesis</span> <br>
+        <span class="tkey">+0.15</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="tkey">/second&emsp;@&emsp;0.09%</span> <span class="compoundIcon" id="CO2NormalIcon"></span> <span class="tkey">, 10,000 lux</span> <span class="compoundIcon" id="LightIcon"></span><br> <br>
+        <span class="tgold">Fermentation</span> <br>
+        <span class="tkey">0.13</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">5.00</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="tkey">/second</span> <br> <br>
+        <span class="tbonus">+1</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
+        <span class="tmalus">+1</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
+        <span class="tdesc">Thylakoids are clusters of proteins and photosensitive pigments. The pigments are able to use the
                 energy of light to produce glucose from water and gaseous carbon dioxide in a process called Photosynthesis.
                 These pigments are also what give them a distinctive colour. The rate of their glucose production scales with
                 the concentration of carbon dioxide, and intensity of light. Since the thylakoids are suspended directly in the
                 cytoplasm, the surrounding fluid performs some fermentation.</span>
                 </span>
-				<span class="tooltipheader">
-				<span class="thead">Thylakoids</span>
-				</span>
+        <span class="tooltipheader">
+        <span class="thead">Thylakoids</span>
+        </span>
                 <div id="ChromatophorIcon"></div>Thylakoid<br>55 MP</td>
             <td id="addChemoSynthisizingProteins" class="OrganelleListItem">
-				<span class="tooltiptext">
-				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">45</span> <br> <br> <br> <br>
+        <span class="tooltiptext">
+        &emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">45</span> <br> <br> <br> <br>
                 Turns <span class="tkey">Hydrogen Sulfide</span> <span class="compoundIcon" id="HydrogenSulfideIcon"></span> into <span class="tkey">Glucose</span> <span class="compoundIcon" id="GlucoseIcon"></span> . Rate scales with concentration of <span class="tkey">Carbon Dioxide</span> <span class="compoundIcon" id="CO2NormalIcon"></span>&nbsp;. Also turns <span class="tkey">Glucose</span> <span class="compoundIcon" id="GlucoseIcon"></span> into <span class="tkey">ATP</span> <span class="compoundIcon" id="ATPIcon"></span> . <br> <br>
-				<span class="tgold">Hydrogen Sulfide Chemosynthesis</span> <br>
-				<span class="tkey">1.0</span> <span class="compoundIcon" id="HydrogenSulfideIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">1.0</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="tkey">/second&emsp;@&emsp;0.09%</span> <span class="compoundIcon" id="CO2NormalIcon"></span><br> <br>
-				<span class="tgold">Fermentation</span> <br>
-				<span class="tkey">0.13</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">5.00</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="tkey">/second</span> <br> <br>
-				<span class="tbonus">+1</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
-				<span class="tmalus">+1</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
-				<span class="tdesc">Chemosynthesizing proteins are small clusters of protein in the cytoplasm that are able to 
+        <span class="tgold">Hydrogen Sulfide Chemosynthesis</span> <br>
+        <span class="tkey">1.0</span> <span class="compoundIcon" id="HydrogenSulfideIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">1.0</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="tkey">/second&emsp;@&emsp;0.09%</span> <span class="compoundIcon" id="CO2NormalIcon"></span><br> <br>
+        <span class="tgold">Fermentation</span> <br>
+        <span class="tkey">0.13</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">5.00</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="tkey">/second</span> <br> <br>
+        <span class="tbonus">+1</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
+        <span class="tmalus">+1</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
+        <span class="tdesc">Chemosynthesizing proteins are small clusters of protein in the cytoplasm that are able to 
                 convert hydrogen sulfide, water, and gaseous carbon dioxide into glucose in a process called Hydrogen 
                 Sulfide Chemosynthesis. The rate of its glucose production scales with the concentration of carbon dioxide.
                 Since the chemosynthesizing proteins are suspended directly in the cytoplasm, the surrounding fluid performs
                 some fermentation.</span>
                 </span>
-				<span class="tooltipheader">
-				<span class="thead">Chemosynth-<br>esizing Proteins</span>
-				</span>
+        <span class="tooltipheader">
+        <span class="thead">Chemosynth-<br>esizing Proteins</span>
+        </span>
                 <div id="ChemosynthisizingProteinsIcon"></div>Chemosynthesizing Proteins<br>45 MP</td>
         </tr>
         <tr>
-	        <td id="addRusticyanin" class="OrganelleListItem">
-				<span class="tooltiptext">
-				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">45</span> <br> <br>
+          <td id="addRusticyanin" class="OrganelleListItem">
+        <span class="tooltiptext">
+        &emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">45</span> <br> <br>
                 Turns <span class="tkey">Iron</span> <span class="compoundIcon" id="IronIcon"></span> into <span class="tkey">ATP</span> <span class="compoundIcon" id="ATPIcon"></span> . Rate scales with concentration of <span class="tkey">Carbon Dioxide</span> <span class="compoundIcon" id="CO2NormalIcon"></span> and <span class="tkey">Oxygen</span> &nbsp;<span class="compoundIcon" id="OxygenNormalIcon"></span>&nbsp;. <br> <br>
-				<span class="tgold">Iron Respiration</span> <br>
-				<span class="tkey">0.18</span> <span class="compoundIcon" id="IronIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">10.00</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="tkey">/second&emsp;@&emsp;0.09%</span> <span class="compoundIcon" id="CO2NormalIcon"></span> <span class="tkey">, 0.21%</span> <span class="compoundIcon" id="OxygenNormalIcon"></span> <br> <br>
-				<span class="tbonus">+1</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
-				<span class="tmalus">+1</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
-				<span class="tdesc">Rusticyanin is a protein able to use gaseous carbon dioxide and oxygen to oxidize iron from one 
+        <span class="tgold">Iron Respiration</span> <br>
+        <span class="tkey">0.18</span> <span class="compoundIcon" id="IronIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">10.00</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="tkey">/second&emsp;@&emsp;0.09%</span> <span class="compoundIcon" id="CO2NormalIcon"></span> <span class="tkey">, 0.21%</span> <span class="compoundIcon" id="OxygenNormalIcon"></span> <br> <br>
+        <span class="tbonus">+1</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
+        <span class="tmalus">+1</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
+        <span class="tdesc">Rusticyanin is a protein able to use gaseous carbon dioxide and oxygen to oxidize iron from one 
                 chemical state to another. This process, called Iron Respiration, releases energy which the cell can then 
                 harvest.</span>
                 </span>
-				<span class="tooltipheader">
-				<span class="thead">Rusticyanin</span>
-				</span>
-				<div id="RusticyaninIcon"></div>Rusticyanin<br>45 MP</td>
+        <span class="tooltipheader">
+        <span class="thead">Rusticyanin</span>
+        </span>
+        <div id="RusticyaninIcon"></div>Rusticyanin<br>45 MP</td>
             <td id="addNitrogenase" class="OrganelleListItem">
-				<span class="tooltiptext">
-				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">55</span> <br> <br>
+        <span class="tooltiptext">
+        &emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">55</span> <br> <br>
                 Turns <span class="tkey">ATP</span> <span class="compoundIcon" id="ATPIcon"></span> into <span class="tkey">Ammonia</span> <span class="compoundIcon" id="AmmoniaIcon"></span>. Rate scales with concentration of <span class="tkey">Nitrogen</span> <span class="compoundIcon" id="NitrogenNormalIcon"></span>&nbsp;. <br> <br>
-				<span class="tgold">Nitrogen Fixation</span> <br>
-				<span class="tkey">3.91</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">0.01</span> <span class="compoundIcon" id="AmmoniaIcon"></span> <span class="tkey">/second&emsp;@&emsp;78.00%</span> <span class="compoundIcon" id="NitrogenNormalIcon"></span> <br> <br>
-				<span class="tgold">Fermentation</span> <br>
-				<span class="tkey">0.13</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">5.00</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="tkey">/second</span> <br> <br>
-				<span class="tbonus">+2</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
-				<span class="tmalus">+1</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
-				<span class="tdesc">Nitrogenase is a protein able to use gaseous nitrogen and cellular energy in the form of ATP to 
+        <span class="tgold">Nitrogen Fixation</span> <br>
+        <span class="tkey">3.91</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">0.01</span> <span class="compoundIcon" id="AmmoniaIcon"></span> <span class="tkey">/second&emsp;@&emsp;78.00%</span> <span class="compoundIcon" id="NitrogenNormalIcon"></span> <br> <br>
+        <span class="tgold">Fermentation</span> <br>
+        <span class="tkey">0.13</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">5.00</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="tkey">/second</span> <br> <br>
+        <span class="tbonus">+2</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
+        <span class="tmalus">+1</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
+        <span class="tdesc">Nitrogenase is a protein able to use gaseous nitrogen and cellular energy in the form of ATP to 
                 produce ammonia, a key growth nutrient for cells. This is a process referred to as Anaerobic Nitrogen Fixation.
                 Since the nitrogenase is suspended directly in the cytoplasm, the surrounding fluid performs some fermentation.</span>
                 </span>
-				<span class="tooltipheader">
-				<span class="thead">Nitrogenase</span>
-				</span>
+        <span class="tooltipheader">
+        <span class="thead">Nitrogenase</span>
+        </span>
                 <div id="NitrogenaseIcon">
                 </div>Nitrogenase<br>55 MP</td>
             <td id="addToxinProtein" class="OrganelleListItem">
                 <span class="tooltiptext">
-				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">55</span> <br> <br>
+        &emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">55</span> <br> <br>
                 Turns <span class="tkey">ATP</span> <span class="compoundIcon" id="ATPIcon"></span> into <span class="tkey">Oxytoxy</span> <span class="compoundIcon" id="OxyToxyIcon"></span>. Can release toxins by pressing <span class="tkey">E</span>. Rate scales with concentration of <span class="tkey">Oxygen</span> <span class="compoundIcon" id="OxygenNormalIcon"></span>&nbsp;. <br> <br>
-				<span class="tgold">Agent Synthesis</span> <br>
-				<span class="tkey">5.00</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">0.5</span> <span class="compoundIcon" id="OxyToxyIcon"></span> <span class="tkey">/second&emsp;@&emsp;21.00%</span> <span class="compoundIcon" id="OxygenNormalIcon"></span> <br> <br>
-				<span class="tgold">Fermentation</span> <br>
-				<span class="tkey">0.13</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">5.00</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="tkey">/second</span> <br> <br>
+        <span class="tgold">Agent Synthesis</span> <br>
+        <span class="tkey">5.00</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">0.5</span> <span class="compoundIcon" id="OxyToxyIcon"></span> <span class="tkey">/second&emsp;@&emsp;21.00%</span> <span class="compoundIcon" id="OxygenNormalIcon"></span> <br> <br>
+        <span class="tgold">Fermentation</span> <br>
+        <span class="tkey">0.13</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">5.00</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="tkey">/second</span> <br> <br>
                 <span class="tbonus">+4</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
-				<span class="tmalus">+1</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
-				<span class="tdesc">A modified metabolosome responsible for the production of a primitive form of the toxic agent Oxytoxy NT.</span>
+        <span class="tmalus">+1</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
+        <span class="tdesc">A modified metabolosome responsible for the production of a primitive form of the toxic agent Oxytoxy NT.</span>
                 </span>
-				<span class="tooltipheader">
-				<span class="thead">Oxytoxisome</span>
-				</span>
+        <span class="tooltipheader">
+        <span class="thead">Oxytoxisome</span>
+        </span>
                 <div id="ToxinVacuoleIcon"></div>Oxytoxisome<br>55 MP</td>
         </tr></table>
         <div class="OrganelleListTitle">EXTERNAL ORGANELLES</div>
         <table><tr>
             <td id="addFlagellum" class="OrganelleListItem">
                 <span class="tooltiptext">
-				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">55</span> <br> <br>
+        &emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">55</span> <br> <br>
                 Uses <span class="tkey">ATP</span> <span class="compoundIcon" id="ATPIcon"></span> to increase the movement speed of the cell. <br> <br>
-				<span class="tbonus">+0.7</span> <span class="tkey">Speed</span> <span class="compoundIcon" id="FlagellumTooltipIcon"></span> <br>
-				<span class="tbonus">+1</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
-				<span class="tmalus">+1</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
-				<span class="tdesc">The flagellum (plural: flagella) is a whip-like bundle of protein fibers extending from the 
+        <span class="tbonus">+0.7</span> <span class="tkey">Speed</span> <span class="compoundIcon" id="FlagellumTooltipIcon"></span> <br>
+        <span class="tbonus">+1</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
+        <span class="tmalus">+1</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
+        <span class="tdesc">The flagellum (plural: flagella) is a whip-like bundle of protein fibers extending from the 
                 cell's membrane which can use ATP to undulate and propel the cell in a direction.</span>
                 </span>
-				<span class="tooltipheader">
-				<span class="thead">Flagellum</span>
-				</span>
+        <span class="tooltipheader">
+        <span class="thead">Flagellum</span>
+        </span>
                 <div id="FlagellumIcon"></div>Flagellum<br>55 MP</td>
             <td id="addPilus" class="OrganelleListItem DisabledButton">
                 <span class="tooltiptext">
-				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">0</span> <br> <br>
+        &emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">0</span> <br> <br>
                 To be implemented. 
                 </span>
-				<span class="tooltipheader">
-				<span class="thead">Predatory Pilus</span>
-				</span>
-				<div id="PilusIcon"></div>Predatory Pilus<br>30 MP</td>
+        <span class="tooltipheader">
+        <span class="thead">Predatory Pilus</span>
+        </span>
+        <div id="PilusIcon"></div>Predatory Pilus<br>30 MP</td>
             <td id="addCilia" class="OrganelleListItem DisabledButton">
-				<span class="tooltiptext">
-				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">0</span> <br> <br>
+        <span class="tooltiptext">
+        &emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">0</span> <br> <br>
                 To be implemented. 
                 </span>
-				<span class="tooltipheader">
-				<span class="thead">Cilia</span>
-				</span>
-				<div id="CiliaIcon"></div>Cilia<br>40 MP</td>
+        <span class="tooltipheader">
+        <span class="thead">Cilia</span>
+        </span>
+        <div id="CiliaIcon"></div>Cilia<br>40 MP</td>
         </tr></table>
-	      <div class="OrganelleListTitle">INTERNAL ORGANELLES</div>
-	      <table class="OrganelleTable"><tr>
+        <div class="OrganelleListTitle">INTERNAL ORGANELLES</div>
+        <table class="OrganelleTable"><tr>
             <td id="addNucleus" class="OrganelleListItem">
                 <span class="tooltiptext">
-				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">100</span> <br> <br>
+        &emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">100</span> <br> <br>
                 Allows for the evolution of more complex, membrane-bound organelles. Costs a lot of ATP to maintain. This is an irreversible evolution.<br> <br>
-				<span class="tbonus">+15</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
-				<span class="tmalus">+10</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
-				<span class="tdesc">The defining feature of eukaryotic cells. The nucleus also includes the endoplasmic reticulum and the golgi body. 
+        <span class="tbonus">+15</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
+        <span class="tmalus">+10</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
+        <span class="tdesc">The defining feature of eukaryotic cells. The nucleus also includes the endoplasmic reticulum and the golgi body. 
                 It is an evolution of prokaryotic cells to develop a system of internal membranes, done by assimilating another prokaryote 
                 inside of themselves. This allows them to compartmentalize, or ward off, the different processes happening inside the cell and 
                 prevent them from overlapping. This allows their new membrane bound organelles to be much more complex, efficient, and specialized
                 than if they were free-floating in the cytoplasm. However, this comes at the cost of making the cell much larger and requiring 
                 a lot of the cell's energy to maintain.</span>
                 </span>
-				<span class="tooltipheader">
-				<span class="thead">Nucleus</span>
-				</span>
+        <span class="tooltipheader">
+        <span class="thead">Nucleus</span>
+        </span>
                 <div id="NucleusIcon">
                 </div>Nucleus<br>100 MP</td>
-	          <td id="addMitochondrion" class="OrganelleListItem">
-				<span class="tooltiptext">
-				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">55</span> <br> <br>
-				Turns <span class="tkey">Glucose</span> <span class="compoundIcon" id="GlucoseIcon"></span> into <span class="tkey">ATP</span> <span class="compoundIcon" id="ATPIcon"></span> . Rate scales with concentration of <span class="tkey">Oxygen</span> <span class="compoundIcon" id="OxygenNormalIcon"></span>&nbsp;. <br> <br>
-				<span class="tgold">Aerobic Respiration</span> <br>
-				<span class="tkey">0.04</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">9.45</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="tkey">/second&emsp;@&emsp;21.00%</span> <span class="compoundIcon" id="OxygenNormalIcon"></span><br> <br>
-				<span class="tbonus">+2</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
-				<span class="tmalus">+2</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
-				<span class="tdesc">The powerhouse of the cell. The mitochondrion (plural: mitochondria) is a double membrane structure filled 
+            <td id="addMitochondrion" class="OrganelleListItem">
+        <span class="tooltiptext">
+        &emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">55</span> <br> <br>
+        Turns <span class="tkey">Glucose</span> <span class="compoundIcon" id="GlucoseIcon"></span> into <span class="tkey">ATP</span> <span class="compoundIcon" id="ATPIcon"></span> . Rate scales with concentration of <span class="tkey">Oxygen</span> <span class="compoundIcon" id="OxygenNormalIcon"></span>&nbsp;. <br> <br>
+        <span class="tgold">Aerobic Respiration</span> <br>
+        <span class="tkey">0.04</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">9.45</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="tkey">/second&emsp;@&emsp;21.00%</span> <span class="compoundIcon" id="OxygenNormalIcon"></span><br> <br>
+        <span class="tbonus">+2</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
+        <span class="tmalus">+2</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
+        <span class="tdesc">The powerhouse of the cell. The mitochondrion (plural: mitochondria) is a double membrane structure filled 
                 with proteins and enzymes. It is a prokaryote that has been assimilated for use by its eukaryotic host. It is able to
                 convert glucose into ATP at a much higher efficiency than can be done in the cytoplasm in a process called Aerobic Respiration.
                 It does, however, require oxygen to function, and lower levels of oxygen in the environment will slow down the rate of its ATP
                 production.</span>
                 </span>
-				<span class="tooltipheader">
-				<span class="thead">Mitochondrion</span>
-				</span>
+        <span class="tooltipheader">
+        <span class="thead">Mitochondrion</span>
+        </span>
                 <div id="MitochondrionIcon">
                 </div>Mitochondrion<br>45 MP</td>
-	          <td id="addChloroplast" class="OrganelleListItem">
-				<span class="tooltiptext">
-				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">55</span> <br> <br>
+            <td id="addChloroplast" class="OrganelleListItem">
+        <span class="tooltiptext">
+        &emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">55</span> <br> <br>
                 Produces <span class="tkey">Glucose</span> <span class="compoundIcon" id="GlucoseIcon"></span> . Rate scales with concentration of <span class="tkey">Carbon Dioxide</span> <span class="compoundIcon" id="CO2NormalIcon"></span> and intensity of <span class="tkey">Light</span> <span class="compoundIcon" id="LightIcon"></span>&nbsp;. <br> <br>
-				<span class="tgold">Photosynthesis</span> <br>
-				<span class="tkey">+1.00</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="tkey">/second&emsp;@&emsp;0.09%</span> <span class="compoundIcon" id="CO2NormalIcon"></span> <span class="tkey">, 10,000 lux</span> <span class="compoundIcon" id="LightIcon"></span><br> <br>
-				<span class="tbonus">+2</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
-				<span class="tmalus">+2</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
-				<span class="tdesc">The chloroplast is a double membrane structure containing photosensitive pigments stacked together in membranous sacs.
+        <span class="tgold">Photosynthesis</span> <br>
+        <span class="tkey">+1.00</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="tkey">/second&emsp;@&emsp;0.09%</span> <span class="compoundIcon" id="CO2NormalIcon"></span> <span class="tkey">, 10,000 lux</span> <span class="compoundIcon" id="LightIcon"></span><br> <br>
+        <span class="tbonus">+2</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
+        <span class="tmalus">+2</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
+        <span class="tdesc">The chloroplast is a double membrane structure containing photosensitive pigments stacked together in membranous sacs.
                 It is a prokaryote that has been assimilated for use by its eukaryotic host. The pigments in the chloroplast are able to use the
                 energy of light to produce glucose from water and gaseous carbon dioxide in a process called Photosynthesis. These pigments are 
                 also what give it a distinctive colour. The rate of its glucose production scales with the concentration of carbon dioxide, and 
                 intensity of light.</span>
                 </span>
-				<span class="tooltipheader">
-				<span class="thead">Chloroplast</span>
-				</span>
+        <span class="tooltipheader">
+        <span class="thead">Chloroplast</span>
+        </span>
                 <div id="ChloroplastIcon"></div>Chloroplast<br>55 MP</td>
-	        </tr><tr>
+          </tr><tr>
             <td id="addThermoplast" class="OrganelleListItem DisabledButton">
                 <span class="tooltiptext">
-				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">40</span> <br> <br>
+        &emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">40</span> <br> <br>
                 Produces <span class="tkey">Glucose</span> <span class="compoundIcon" id="GlucoseIcon"></span> . Rate scales with concentration of <span class="tkey">Carbon Dioxide</span> <span class="compoundIcon" id="CO2NormalIcon"></span> and <span class="tkey">Temperature</span> <span class="compoundIcon" id="TemperatureIcon"></span>&nbsp;. <br> <br>
-				<span class="tgold">Thermosynthesis</span> <br>
-				<span class="tkey">+1.00</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="tkey">/second&emsp;@&emsp;0.09%</span> <span class="compoundIcon" id="CO2NormalIcon"></span> <span class="tkey">, 50 &#8451</span> <span class="compoundIcon" id="TemperatureIcon"></span><br> <br>
-				<span class="tbonus">+2</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
-				<span class="tmalus">+2</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
-				<span class="tdesc">The thermoplast is a double membrane structure containing thermosensitive pigments stacked together 
+        <span class="tgold">Thermosynthesis</span> <br>
+        <span class="tkey">+1.00</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="tkey">/second&emsp;@&emsp;0.09%</span> <span class="compoundIcon" id="CO2NormalIcon"></span> <span class="tkey">, 50 &#8451</span> <span class="compoundIcon" id="TemperatureIcon"></span><br> <br>
+        <span class="tbonus">+2</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
+        <span class="tmalus">+2</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
+        <span class="tdesc">The thermoplast is a double membrane structure containing thermosensitive pigments stacked together 
                 in membranous sacs. It is a prokaryote that has been assimilated for use by its eukaryotic host. The pigments 
                 in the thermoplast are able to use the energy of heat differences in the surroundings to produce glucose from 
                 water and gaseous carbon dioxide in a process called Thermosynthesis. The rate of its glucose production scales
                 with the concentration of carbon dioxide, and temperature.</span>
                 </span>
-				<span class="tooltipheader">
-				<span class="thead">Thermoplast</span>
-				</span>
+        <span class="tooltipheader">
+        <span class="thead">Thermoplast</span>
+        </span>
                 <div id="ThermoplastIcon"></div>Thermoplast<br>40 MP</td>
             <td id="addChemoplast" class="OrganelleListItem">
                 <span class="tooltiptext">
-				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">45</span> <br> <br>
+        &emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">45</span> <br> <br>
                 Turns <span class="tkey">Hydrogen Sulfide</span> <span class="compoundIcon" id="HydrogenSulfideIcon"></span> into <span class="tkey">Glucose</span> <span class="compoundIcon" id="GlucoseIcon"></span> . Rate scales with concentration of <span class="tkey">Carbon Dioxide</span> <span class="compoundIcon" id="CO2NormalIcon"></span>&nbsp;. <br> <br>
-				<span class="tgold">Hydrogen Sulfide Chemosynthesis</span> <br>
-				<span class="tkey">1.00</span> <span class="compoundIcon" id="HydrogenSulfideIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">2.00</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="tkey">/second&emsp;@&emsp;0.09%</span> <span class="compoundIcon" id="CO2NormalIcon"></span><br> <br>
-				<span class="tbonus">+2</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
-				<span class="tmalus">+2</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
-				<span class="tdesc">The chemoplast is a double membrane structure containing proteins able to convert hydrogen sulfide, 
+        <span class="tgold">Hydrogen Sulfide Chemosynthesis</span> <br>
+        <span class="tkey">1.00</span> <span class="compoundIcon" id="HydrogenSulfideIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">2.00</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="tkey">/second&emsp;@&emsp;0.09%</span> <span class="compoundIcon" id="CO2NormalIcon"></span><br> <br>
+        <span class="tbonus">+2</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
+        <span class="tmalus">+2</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
+        <span class="tdesc">The chemoplast is a double membrane structure containing proteins able to convert hydrogen sulfide, 
                 water, and gaseous carbon dioxide into glucose in a process called Hydrogen Sulfide Chemosynthesis. The rate
                 of its glucose production scales with the concentration of water and carbon dioxide.</span>
                 </span>
-				<span class="tooltipheader">
-				<span class="thead">Chemoplast</span>
-				</span>
+        <span class="tooltipheader">
+        <span class="thead">Chemoplast</span>
+        </span>
                 <div id="ChemoplastIcon"></div>Chemoplast<br>45 MP</td>
             <td id="addNitrogenFixingPlastid" class="OrganelleListItem">
                 <span class="tooltiptext">
-				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">50</span> <br> <br><br>
+        &emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">50</span> <br> <br><br>
                 Turns <span class="tkey">ATP</span> <span class="compoundIcon" id="ATPIcon"></span> into <span class="tkey">Ammonia</span> <span class="compoundIcon" id="AmmoniaIcon"></span>. Rate scales with concentration of <span class="tkey">Nitrogen</span> <span class="compoundIcon" id="NitrogenNormalIcon"></span> and <span class="tkey">Oxygen</span> <span class="compoundIcon" id="OxygenNormalIcon"></span>&nbsp;. <br> <br>
-				<span class="tgold">Nitrogen Fixation</span> <br>
-				<span class="tkey">1.05</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">0.11</span> <span class="compoundIcon" id="AmmoniaIcon"></span> <span class="tkey">/second&emsp;@&emsp;78.00%</span> <span class="compoundIcon" id="NitrogenNormalIcon"></span> <span class="tkey">, 21.00%</span> <span class="compoundIcon" id="OxygenNormalIcon"></span><br> <br>
-				<span class="tbonus">+2</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
-				<span class="tmalus">+2</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
-				<span class="tdesc">The Nitrogen Fixing Plastid is a protein able to use gaseous nitrogen and oxygen and 
+        <span class="tgold">Nitrogen Fixation</span> <br>
+        <span class="tkey">1.05</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">0.11</span> <span class="compoundIcon" id="AmmoniaIcon"></span> <span class="tkey">/second&emsp;@&emsp;78.00%</span> <span class="compoundIcon" id="NitrogenNormalIcon"></span> <span class="tkey">, 21.00%</span> <span class="compoundIcon" id="OxygenNormalIcon"></span><br> <br>
+        <span class="tbonus">+2</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
+        <span class="tmalus">+2</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
+        <span class="tdesc">The Nitrogen Fixing Plastid is a protein able to use gaseous nitrogen and oxygen and 
                 cellular energy in the form of ATP to produce ammonia, a key growth nutrient for cells. This is 
                 a process referred to as Aerobic Nitrogen Fixation.</span>
                 </span>
-				<span class="tooltipheader">
-				<span class="thead">Nitrogen Fixing<br> Plastid</span>
-				</span>
+        <span class="tooltipheader">
+        <span class="thead">Nitrogen Fixing<br> Plastid</span>
+        </span>
                 <div id="PlastidIcon"></div>Nitrogen Fixing<br> Plastid<br>50 MP</td>
-	        </tr><tr>
+          </tr><tr>
              <td id="addVacuole" class="OrganelleListItem">
                 <span class="tooltiptext">
-				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">50</span> <br> <br>
+        &emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">50</span> <br> <br>
                 Increases the storage space of the cell. <br> <br>
-				<span class="tbonus">+15</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
-				<span class="tmalus">+1</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
-				<span class="tdesc">The vacuole is an internal membranous organelle used for storage in the cell. They are composed 
+        <span class="tbonus">+15</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
+        <span class="tmalus">+1</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
+        <span class="tdesc">The vacuole is an internal membranous organelle used for storage in the cell. They are composed 
                 of several vesicles, smaller membranous structures widely used in cells for storage, that have fused together.
                 It is filled with water which is used to contain molecules, enzymes, solids, and other substances. Their shape
                 is fluid and can vary between cells.</span>
                 </span>
-				<span class="tooltipheader">
-				<span class="thead">Vacuole</span>
-				</span>
+        <span class="tooltipheader">
+        <span class="thead">Vacuole</span>
+        </span>
                 <div id="VacuoleIcon"></div>Vacuole<br>50 MP</td>
             <td id="addToxinVacuole" class="OrganelleListItem">
                 <span class="tooltiptext">
-				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">70</span> <br> <br>
+        &emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">70</span> <br> <br>
                 Turns <span class="tkey">ATP</span> <span class="compoundIcon" id="ATPIcon"></span> into <span class="tkey">Oxytoxy</span> <span class="compoundIcon" id="OxyToxyIcon"></span>. Can release toxins by pressing <span class="tkey">E</span>. Rate scales with concentration of <span class="tkey">Oxygen</span> <span class="compoundIcon" id="OxygenNormalIcon"></span>&nbsp;. <br> <br>
-				<span class="tgold">Agent Synthesis</span> <br>
-				<span class="tkey">1.05</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">1.05</span> <span class="compoundIcon" id="OxyToxyIcon"></span> <span class="tkey">/second&emsp;@&emsp;21.00%</span> <span class="compoundIcon" id="OxygenNormalIcon"></span> <br> <br>
-				<span class="tbonus">+5</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
-				<span class="tmalus">+1</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
-				<span class="tdesc">The toxin vacuole is a vacuole that has been modified for the specific production, storage,
+        <span class="tgold">Agent Synthesis</span> <br>
+        <span class="tkey">1.05</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">1.05</span> <span class="compoundIcon" id="OxyToxyIcon"></span> <span class="tkey">/second&emsp;@&emsp;21.00%</span> <span class="compoundIcon" id="OxygenNormalIcon"></span> <br> <br>
+        <span class="tbonus">+5</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
+        <span class="tmalus">+1</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
+        <span class="tdesc">The toxin vacuole is a vacuole that has been modified for the specific production, storage,
                 and secretion of oxytoxy toxins. More toxin vacuoles will increase the rate at which toxins can be
                 released.</span>
                 </span>
-				<span class="tooltipheader">
-				<span class="thead">Toxin Vacuole</span>
-				</span>
+        <span class="tooltipheader">
+        <span class="thead">Toxin Vacuole</span>
+        </span>
                 <div id="ToxinVacuoleIcon"></div>Toxin Vacuole<br>70 MP</td>
              <td id="addBioluminescent" class="OrganelleListItem DisabledButton">
-				<span class="tooltiptext">
-				&emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">0</span> <span class="thead">&emsp;Bioluminescent Vacuole&emsp;&ensp;</span> <br> <br>
+        <span class="tooltiptext">
+        &emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">0</span> <span class="thead">&emsp;Bioluminescent Vacuole&emsp;&ensp;</span> <br> <br>
                 To be implemented. 
                 </span>
-			   <div id="BioluminescentIcon"></div>Bioluminescent Vacuole<br>N/A MP</td>
-	      </tr></table>
-	    </div>
+         <div id="BioluminescentIcon"></div>Bioluminescent Vacuole<br>N/A MP</td>
+        </tr></table>
+      </div>
       </div>
 
       <!-- Bottom bar -->
       <div id="microbeEditorBottomBar" class="Panel">
         <div id="mainMenuButtonEditor">MENU</div>
         <div id="infoBar" class="Panel">
-	    <div id="infoBarLeft" class="Panel"></div>
-		<div id="infoBarCentreEditor" class="Panel">
-		  <div id="species">SPECIES <div id="speciesNameBox" class="TextBox">
+      <div id="infoBarLeft" class="Panel"></div>
+    <div id="infoBarCentreEditor" class="Panel">
+      <div id="species">SPECIES <div id="speciesNameBox" class="TextBox">
               <span id="speciesName">Primum Thrivieum</span></div></div>
-		<div id="generation">GENERATION <span id="generationLabel">N/A</span></div>
-		<div id="speed">SPEED <span id="speedLabel">2.0</span></div>
-		<div id="size">SIZE <span id="sizeLabel">N/A</span></div>
-		</div>
+    <div id="generation">GENERATION <span id="generationLabel">N/A</span></div>
+    <div id="speed">SPEED <span id="speedLabel">2.0</span></div>
+    <div id="size">SIZE <span id="sizeLabel">N/A</span></div>
+    </div>
         </div>
       </div>
 
       <!-- Finish button -->
-	  <div id="microbeEditorFinishButton" class="DisabledButton">
-	  <div id="microbeEditorIcon"></div>
-	  FINISH
+    <div id="microbeEditorFinishButton" class="DisabledButton">
+    <div id="microbeEditorIcon"></div>
+    FINISH
       </div>
-	  
-	  <!-- Edit tools -->
-	  <div id="Undo"><div id="UndoIcon"></div></div>
-	  <div id="SymmetryButton">
-	  <div id="SymmetryIcon"></div>
-	  SYMMETRY
-	  </div>
-	  <div id="Redo"><div id="RedoIcon"></div></div>
-	  
-	  <!-- Pause menu -->
-	  <div id="pauseOverlayEditor" class="Overlay">
+    
+    <!-- Edit tools -->
+    <div id="Undo"><div id="UndoIcon"></div></div>
+    <div id="SymmetryButton">
+    <div id="SymmetryIcon"></div>
+    SYMMETRY
+    </div>
+    <div id="Redo"><div id="RedoIcon"></div></div>
+    
+    <!-- Pause menu -->
+    <div id="pauseOverlayEditor" class="Overlay">
       <div id="pauseMenuEditor" class="PauseMenu">
-	    <div class="MenuButton" id="resumeButtonEditor">Resume</div>
+      <div class="MenuButton" id="resumeButtonEditor">Resume</div>
         <div class="MenuButton DisabledButton">Quicksave</div>
         <div class="MenuButton DisabledButton">Save Game</div>
         <div class="MenuButton DisabledButton">Load Game</div>
         <div class="MenuButton DisabledButton">Statistics</div>
         <div class="MenuButton" id="helpButtonEditor">Help</div>
-		<div class="MenuButton DisabledButton">Options</div>
-		<div class="MenuButton" id="exitToMenuButtonEditor">Main Menu</div>
+    <div class="MenuButton DisabledButton">Options</div>
+    <div class="MenuButton" id="exitToMenuButtonEditor">Main Menu</div>
         <div class="MenuButton" id="quitButtonEditor">Exit</div>
-		</div>
-		<div class="HelpText" id="helpTextEditor">
+    </div>
+    <div class="HelpText" id="helpTextEditor">
             <div class="HelpScroll">
         <p>Every time you reproduce, you will
-		enter the Microbe Editor, where you can make changes to your
-		species (by adding, moving, or removing organelles) to
-		increase your species' success. <br><br>
+    enter the Microbe Editor, where you can make changes to your
+    species (by adding, moving, or removing organelles) to
+    increase your species' success. <br><br>
         Each visit to the editor in the Microbe Stage Represents 150 million years of evolution<br>
 Each generation, you have 100 mutation points to spend, and each change
 (or mutation) will cost a certain amount of that MP, removing costs mutation points aswell as adding. <br><br>
@@ -851,7 +892,7 @@ Toxin Vacuoles: Produces toxins (called OxyToxyNT). <p>
             </div>
            <div id="tipMsgEditor"></div>
           </div>
-	  </div>
+    </div>
     </div>    
     
   </body>
