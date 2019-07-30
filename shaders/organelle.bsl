@@ -63,8 +63,8 @@ shader Organelle
 
             // Animation
             const float pi = 3.1415927f;
-            input.position.x += gJiggleAmount * (3.f * sin(3.f * gTime));
-            input.position.y += gJiggleAmount * (3.f * sin(2.f * gTime));
+            input.position.x += gJiggleAmount * sin(3.f * gTime);
+            input.position.y += gJiggleAmount * sin(2.f * gTime);
 
              float angle = cos(gTime) * pi * gJiggleMaxAngle / 360.f;
              const float4x4 rotation = float4x4(
