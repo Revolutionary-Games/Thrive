@@ -49,8 +49,12 @@ export function runMicrobeHUDSetup(){
 
     // Compounds Panel buttons
     document.getElementById("compressPanel").addEventListener("click", onCompressPanelClicked);
-
     document.getElementById("expandPanel").addEventListener("click", onExpandPanelClicked);
+
+    // Patch-report Buttons
+    document.getElementById("report").addEventListener("click", onPatchReportClicked);
+    document.getElementById("patch").addEventListener("click", onPatchReportClicked);
+    document.getElementById("editor").addEventListener("click", onPatchReportClicked);
 
 
     if(common.isInEngine()){
@@ -602,6 +606,27 @@ function onExpandPanelClicked() {
     for (var i = 0; i < barValues.length; i++) {
         barValues[i].style.left = "120px";
     }   
+}
+
+
+
+
+var buttons = ["patch", "report", "editor"];
+
+// Patch-Report function  
+function onPatchReportClicked() {
+    var id = this.id;
+    for(var i = 0; i< buttons.length; i++) {
+
+        if(buttons[i] == this.id) {
+            $("#" + this.id).css("background-image", "url(../../Textures/gui/bevel/topLeftButtonActive.png)");
+            $("#" + this.id).css("color", "#112B36"); 
+        } 
+         else {
+            $("#" + buttons[i]).css("background-image", "url(../../Textures/gui/bevel/topLeftButton.png)");
+            $("#" + buttons[i]).css("color", "#FAFCFD"); 
+         }
+    }
 }
 
 

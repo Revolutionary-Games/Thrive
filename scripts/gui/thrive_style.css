@@ -405,6 +405,27 @@ video {
 }
 
 
+#topLeftButtons{
+  position: absolute;
+  top: 10px;
+  left: 5px;
+  width: 500px;
+  height: 36px;
+  font-weight: bold;
+}
+
+.topButtons{
+  position: relative;
+  display: inline-block;
+  width: 133px;
+  height: 34px;
+  background-image: url("../../Textures/gui/bevel/topLeftButton.png");
+  text-align: center;
+  vertical-align: middle;
+  line-height: 34px;
+}
+
+
 #microbeBottomBar{
   width: 500px;
   height: 46px;
@@ -667,10 +688,6 @@ video {
   background-image: url("../../Textures/gui/bevel/ATP.png");
 }
 
-#ATPBar {
-  background-color: #6edd6b;
-}
-
 #OxygenIcon {
   background-image: url("../../Textures/gui/bevel/Oxygen.png");
 }
@@ -752,7 +769,22 @@ video {
 }
 
 #HealthIcon {
+  position: absolute;
+  width: 19px;
+  height: 19px;
+  bottom: -18px;
+  right: 172px;
   background-image: url("../../Textures/gui/bevel/Hitpoints.png");
+}
+
+
+#ATPIconBar{
+  position: absolute;
+  width: 19px;
+  height: 19px;
+  bottom: 0px;
+  right: 158px;
+  background-image: url("../../Textures/gui/bevel/AtpIconBar.png");
 }
 
 #microbeHUDPlayerHitpointsBar {

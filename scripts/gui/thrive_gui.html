@@ -89,7 +89,6 @@
       <!-- Bottom right box -->
       <div id="microbeHealthBox" class="Panel">
 
-
         <div class="dataValue">
           <div> ATP 
               <span id="microbeHUDPlayerATPCompound">0</span> 
@@ -108,16 +107,17 @@
           </div>  
         </div>
    
-          
+        <div id="HealthIcon"> </div>
+        <div id="ATPIconBar"> </div>
         <svg id="circleBars" width="200" height="200">
-
-            
+ 
           <defs>
             <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
               <stop offset="-50%" stop-color="#212121" />
               <stop offset="100%" stop-color="#F5457A" />
             </linearGradient>
           </defs>
+
             <!-- HP bar -->
         <path id="hp" d="M40,140  A30,30 0 0,1 150,30" 
             stroke-width="10";
@@ -169,8 +169,12 @@
     <span id="extinctionBody">Just like 99% of all species that have ever existed, your species has gone extinct. Others will go on to fill in your niche and thrive, but that won’t be you. You will be forgotten, a failed experiment in evolution.</span>
     </div>
     
-      
-    
+      <!--PatchReport buttons -->
+    <div id=topLeftButtons >
+      <div id="report" class="topButtons">  Report </div>
+      <div id="patch"  class="topButtons">  Patch Map   </div>
+      <div id="editor" class="topButtons">  Editor  </div>
+    </div>
       
       <!-- Bottom bar -->
       <div id="microbeBottomBar" class="Panel">
