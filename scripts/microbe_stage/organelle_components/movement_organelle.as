@@ -65,7 +65,7 @@ class MovementOrganelle : OrganelleComponent{
         // Create animation component
         if(IsInGraphicalMode()){
             Animated@ animated = organelle.world.Create_Animated(organelle.organelleEntity);
-            SimpleAnimation moveAnimation("Move");
+            SimpleAnimation moveAnimation("flagellum_move.animation");
             moveAnimation.Loop = true;
             // 0.25 is the "idle" animation speed when the flagellum isn't used
             moveAnimation.SpeedFactor = 0.25f;
