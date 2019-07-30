@@ -425,6 +425,50 @@ video {
   line-height: 34px;
 }
 
+#reportTab {
+  position: absolute;
+  width: 97%;
+  height: 89%;
+  top:5%;
+  left:1.5%;
+  z-index: 2;
+  visibility: hidden;
+  font-size: 50px;
+  background-color: rgba(0,33,36,0.9);
+  border-color: #11FCD3;
+  border-width: 10px;
+  border-radius: 10px;
+  text-align: center;
+  line-height: normal;
+  color: white;
+}
+
+
+#patchTab{
+  position: absolute;
+  width: 97%;
+  height: 89%;
+  top:5%;
+  left:1.5%;
+  z-index: 2;
+  visibility: hidden;
+  font-size: 50px;
+  background-color: rgba(0,33,36,0.9);
+  border-color: #11FCD3;
+  border-width: 10px;
+  border-radius: 10px;
+  text-align: center;
+  line-height: normal;
+  color: white;
+}
+
+#EditorPanelTop{
+  display: none;
+}
+
+#EditorPanelBottom{
+ visibility: hidden;
+}
 
 #microbeBottomBar{
   width: 500px;
@@ -1277,7 +1321,7 @@ video {
   width: 480px;
   height: 40px;
   top: 0;
-  left: 0;
+  left: 500px;
   background-image: url("../../Textures/gui/bevel/HealthPanel.png");
   text-indent: 40px;
   line-height: 40px;
@@ -1288,7 +1332,7 @@ video {
   height: 40px;
   width: 120px;
   top: 0;
-  left: 480px;
+  left: 980px;
   background-image: url("../../Textures/gui/bevel/MediumTwoNormal.png");
   font-size: 8pt;
   line-height: 40px;
@@ -1319,7 +1363,7 @@ video {
 #microbeEditorLeftPanel {
   position: absolute;
   left: 0;
-  top: 40px;
+  top: 50px;
   width: 400px;
   height: calc(100% - 80px);
 }

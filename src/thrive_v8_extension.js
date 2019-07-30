@@ -17,6 +17,9 @@ var Thrive = {};
     native function editorButtonClicked();
     Thrive.editorButtonClicked = editorButtonClicked;
 
+    native function patchButtonClicked();
+    Thrive.patchButtonClicked = patchButtonClicked;
+
     native function finishEditingClicked();
     Thrive.finishEditingClicked = finishEditingClicked;
     

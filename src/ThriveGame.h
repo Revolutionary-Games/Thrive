@@ -78,6 +78,9 @@ public:
         killPlayerCellClicked();
 
     void
+        patchButtonClicked();
+
+    void
         exitToMenuClicked();
 
     //! \param amount The amount the camera is moved. Positive moves away

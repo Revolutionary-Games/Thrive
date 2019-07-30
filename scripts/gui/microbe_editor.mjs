@@ -224,9 +224,6 @@ export function setupMicrobeEditor(){
 //! Called to enter the editor view
 export function doEnterMicrobeEditor(){
 
-    document.getElementById("topLevelMicrobeStage").style.display = "none";
-    document.getElementById("topLevelMicrobeEditor").style.display = "block";
-
     window.setTimeout(() => {
         // Enable finish button
         onFinishButtonEnable();

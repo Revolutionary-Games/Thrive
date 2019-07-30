@@ -331,24 +331,16 @@ function hideSuicideMsg() {
 
 function onEditorButtonClicked(event){
 
+
+    document.getElementById("topLevelMicrobeStage").style.display = "none";
+    document.getElementById("topLevelMicrobeEditor").style.display = "block";
+    $( "#report" ).click();
+
     if(!readyToEdit)
         return false;
 
     event.stopPropagation();
     common.playButtonPressSound();
-
-    // Fire event
-    if(common.isInEngine()){
-
-        // Call a function to tell the game to swap to the editor. It
-        // Will notify us when it is done
-        Thrive.editorButtonClicked();
-
-    } else {
-
-        // Swap GUI for previewing
-        doEnterMicrobeEditor();
-    }
 
     // Disable
     document.getElementById("microbeToEditorButton").classList.add("DisabledButton");
@@ -611,21 +603,46 @@ function onExpandPanelClicked() {
 
 
 
-var buttons = ["patch", "report", "editor"];
+
 
 // Patch-Report function  
 function onPatchReportClicked() {
-    var id = this.id;
+
+    // Fire event
+    if(common.isInEngine()){
+        // Call a function to tell the game to swap to the editor. It
+        // Will notify us when it is done
+        Thrive.patchButtonClicked();
+    } else {
+        // Swap GUI for previewing
+        doEnterMicrobeEditor();
+    }
+    
+
+    // All panels whitin is possible to navigate
+    var buttons = ["patch", "report", "editor"];
     for(var i = 0; i< buttons.length; i++) {
 
+       
         if(buttons[i] == this.id) {
             $("#" + this.id).css("background-image", "url(../../Textures/gui/bevel/topLeftButtonActive.png)");
             $("#" + this.id).css("color", "#112B36"); 
+            $("#"+  this.id + "Tab").css("visibility","visible");
+
+
+            if(this.id == "editor") {
+                document.getElementById("EditorPanelTop").style.display = "block";
+                document.getElementById("EditorPanelBottom").style.visibility="visible"; 
+                Thrive.editorButtonClicked();   
+            }   
         } 
          else {
             $("#" + buttons[i]).css("background-image", "url(../../Textures/gui/bevel/topLeftButton.png)");
             $("#" + buttons[i]).css("color", "#FAFCFD"); 
-         }
+            $("#" + buttons[i] + "Tab").css("visibility","hidden");
+            document.getElementById("EditorPanelTop").style.display = "none";
+            document.getElementById("EditorPanelBottom").style.visibility="hidden";
+        }
     }
 }
 

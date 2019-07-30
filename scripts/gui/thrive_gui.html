@@ -169,12 +169,6 @@
     <span id="extinctionBody">Just like 99% of all species that have ever existed, your species has gone extinct. Others will go on to fill in your niche and thrive, but that won’t be you. You will be forgotten, a failed experiment in evolution.</span>
     </div>
     
-      <!--PatchReport buttons -->
-    <div id=topLeftButtons >
-      <div id="report" class="topButtons">  Report </div>
-      <div id="patch"  class="topButtons">  Patch Map   </div>
-      <div id="editor" class="topButtons">  Editor  </div>
-    </div>
       
       <!-- Bottom bar -->
       <div id="microbeBottomBar" class="Panel">
@@ -457,8 +451,51 @@ Be wary because your competitors are evolving alongside you. Every time you ente
            inside the editor and sending an event for doing the placing -->
       <div id="microbeEditorClickDetector"
            style="position: relative; width: 100%; height: 100%;"></div>
-  
+      
+      <!--PatchReport buttons -->
+    <div id=topLeftButtons >
+      <div id="report" class="topButtons">  Report </div>
+      <div id="patch"  class="topButtons">  Patch Map   </div>
+      <div id="editor" class="topButtons">  Editor  </div>
+    </div>
+
+    <div id="reportTab"> <p> REPORT TAB </p> </div>
+    <div id="patchTab">  <p> PATCH TAB </p> </div>
+    <div id="editorTab"> </div>
+
+
+     <div id="EditorPanelBottom">
+          <!-- Bottom bar -->
+          <div id="microbeEditorBottomBar" class="Panel">
+            <div id="mainMenuButtonEditor">MENU</div>
+            <div id="infoBar" class="Panel">
+          <div id="infoBarLeft" class="Panel"></div>
+        <div id="infoBarCentreEditor" class="Panel">
+          <div id="species">SPECIES <div id="speciesNameBox" class="TextBox">
+                  <span id="speciesName">Primum Thrivieum</span></div></div>
+        <div id="generation">GENERATION <span id="generationLabel">N/A</span></div>
+        <div id="speed">SPEED <span id="speedLabel">2.0</span></div>
+        <div id="size">SIZE <span id="sizeLabel">N/A</span></div>
+        </div>
+            </div>
+          </div>
+        <!-- Finish button -->
+        <div id="microbeEditorFinishButton" class="DisabledButton">
+        <div id="microbeEditorIcon"></div>
+        FINISH
+          </div>
+        
+        <!-- Edit tools -->
+        <div id="Undo"><div id="UndoIcon"></div></div>
+        <div id="SymmetryButton">
+        <div id="SymmetryIcon"></div>
+        SYMMETRY
+        </div>
+        <div id="Redo"><div id="RedoIcon"></div></div>
+      </div>
+
       <!-- Top left box -->
+    <div id="EditorPanelTop">
     <div id="MPBox" class="Panel">
     <div class="Bar" id="MP"> 
           <div class="BarBackground" id="microbeHUDPlayerMutationPointsBar">
@@ -803,35 +840,8 @@ Be wary because your competitors are evolving alongside you. Every time you ente
         </tr></table>
       </div>
       </div>
-
-      <!-- Bottom bar -->
-      <div id="microbeEditorBottomBar" class="Panel">
-        <div id="mainMenuButtonEditor">MENU</div>
-        <div id="infoBar" class="Panel">
-      <div id="infoBarLeft" class="Panel"></div>
-    <div id="infoBarCentreEditor" class="Panel">
-      <div id="species">SPECIES <div id="speciesNameBox" class="TextBox">
-              <span id="speciesName">Primum Thrivieum</span></div></div>
-    <div id="generation">GENERATION <span id="generationLabel">N/A</span></div>
-    <div id="speed">SPEED <span id="speedLabel">2.0</span></div>
-    <div id="size">SIZE <span id="sizeLabel">N/A</span></div>
     </div>
-        </div>
-      </div>
 
-      <!-- Finish button -->
-    <div id="microbeEditorFinishButton" class="DisabledButton">
-    <div id="microbeEditorIcon"></div>
-    FINISH
-      </div>
-    
-    <!-- Edit tools -->
-    <div id="Undo"><div id="UndoIcon"></div></div>
-    <div id="SymmetryButton">
-    <div id="SymmetryIcon"></div>
-    SYMMETRY
-    </div>
-    <div id="Redo"><div id="RedoIcon"></div></div>
     
     <!-- Pause menu -->
     <div id="pauseOverlayEditor" class="Overlay">
