@@ -126,6 +126,8 @@ public:
                     m_MicrobeBackgroundMaterial);
                 m_microbeBackgroundItem->setMesh(m_microbeBackgroundMesh);
             }
+
+            m_cellStage->SetSkybox("Thrive_ocean_skybox");
         }
 
         // Editor version
