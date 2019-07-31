@@ -542,6 +542,7 @@ function onRedoClicked(event){
 function onUndoClicked(event){
     common.playButtonPressSound();
     Leviathan.CallGenericEvent("UndoClicked", {});
+    Leviathan.CallGenericEvent("MicrobeEditorOrganelleSelected", {organelle: "cytoplasm"});
     event.stopPropagation();
 }
 
