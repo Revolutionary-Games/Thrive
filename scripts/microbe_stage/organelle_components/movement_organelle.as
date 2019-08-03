@@ -116,14 +116,15 @@ class MovementOrganelle : OrganelleComponent{
         if(forceMagnitude > 0){
             if(direction.LengthSquared() < EPSILON || this.force.LengthSquared() < EPSILON){
                 this.movingTail = false;
-                if(animated !is null)
-                    animated.GetAnimation(0).SpeedFactor = 0.25f;
+
+                _setSpeedFactor(animated, 0.25f);
                 return Float3(0, 0, 0);
             }
 
             this.movingTail = true;
-            if(animated !is null)
-                animated.GetAnimation(0).SpeedFactor = 1.3;
+            // TODO: make only one speedfactor call per tick (currently 2 might be made)
+            _setSpeedFactor(animated, 2.3f);
+
             // 7 per second per flagella (according to microbe descisions)
             //dropped to 7
             double energy = abs(FLAGELLA_ENERGY_COST/milliseconds);
@@ -137,8 +138,7 @@ class MovementOrganelle : OrganelleComponent{
                     milliseconds;
                 this.movingTail = false;
 
-                if(animated !is null)
-                    animated.GetAnimation(0).SpeedFactor = 0.25f;
+                _setSpeedFactor(animated, 0.25f);
             }
 
             float impulseMagnitude = (FLAGELLA_BASE_FORCE * microbeComponent.movementFactor *
@@ -156,8 +156,7 @@ class MovementOrganelle : OrganelleComponent{
             if(this.movingTail){
                 this.movingTail = false;
 
-                if(animated !is null)
-                    animated.GetAnimation(0).SpeedFactor = 0.25f;
+                _setSpeedFactor(animated, 0.25f);
             }
         }
 
@@ -209,6 +208,16 @@ class MovementOrganelle : OrganelleComponent{
 
         if(force != Float3(0, 0, 0))
             microbeComponent.addMovementForce(force);
+    }
+
+    private void _setSpeedFactor(Animated@ animated, float speed)
+    {
+        if(animated !is null){
+            if(animated.GetAnimation(0).SpeedFactor != speed){
+                animated.GetAnimation(0).SpeedFactor = speed;
+                animated.Marked = true;
+            }
+        }
     }
 
     // This is needed to update the positioning on each update
