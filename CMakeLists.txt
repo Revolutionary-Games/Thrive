@@ -79,14 +79,16 @@ endif()
 
 # Links to libs
 
-# Copy engine lib
+# Copy engine lib and LeviathanEditor
 if(WIN32)
   file(COPY "${LEVIATHAN_SRC}/build/bin/Engine.dll" DESTINATION "${CMAKE_BINARY_DIR}/bin")
   file(COPY "${LEVIATHAN_SRC}/build/bin/Engine.pdb" DESTINATION "${CMAKE_BINARY_DIR}/bin")
   install(FILES "${LEVIATHAN_SRC}/build/bin/Engine.dll" DESTINATION "bin")
+  install(PROGRAMS "${LEVIATHAN_SRC}/build/bin/LeviathanEditor.exe" DESTINATION "bin")
 else()
   file(COPY "${LEVIATHAN_SRC}/build/bin/libEngine.so" DESTINATION "${CMAKE_BINARY_DIR}/bin")
   install(FILES "${LEVIATHAN_SRC}/build/bin/libEngine.so" DESTINATION "bin")
+  install(PROGRAMS "${LEVIATHAN_SRC}/build/bin/LeviathanEditor" DESTINATION "bin")
 endif()
 
 # Link own bin directory
