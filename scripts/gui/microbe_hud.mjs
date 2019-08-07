@@ -489,14 +489,17 @@ function onCompressPanelClicked() {
 
     document.getElementById('compoundsPanel').style.width = "251px";
     document.getElementById('compoundsPanel').style.height = "145px";
-    document.getElementById('compoundsPanel').style.backgroundImage = "url('../../Textures/gui/bevel/compoundPanelExpand.png')";
+    document.getElementById('compoundsPanel').style.backgroundImage = 
+        "url('../../Textures/gui/bevel/compoundPanelExpand.png')";
     document.getElementById('compoundsPanel').style.transition = "0.5s";
 
 
-    document.getElementById('compressPanel').style.backgroundImage = "url('../../Textures/gui/bevel/compressPanelActive.png')";
-    document.getElementById('expandPanel').style.backgroundImage = "url('../../Textures/gui/bevel/expandPanel.png')";
+    document.getElementById('compressPanel').style.backgroundImage = 
+        "url('../../Textures/gui/bevel/compressPanelActive.png')";
+    document.getElementById('expandPanel').style.backgroundImage = 
+        "url('../../Textures/gui/bevel/expandPanel.png')";
 
-    var row1 = document.getElementById('row1');
+    const row1 = document.getElementById('row1');
     var bars = row1.getElementsByClassName('Bar');
     var title =  row1.getElementsByClassName('BarTitle');
     var barValues = row1.getElementsByClassName('BarValue');
@@ -518,10 +521,10 @@ function onCompressPanelClicked() {
     }
 
     //! ROW 2
-    var row2 =  document.getElementById('row2');
-    var bars = row2.getElementsByClassName('Bar');
-    var title =  row2.getElementsByClassName('BarTitle');
-    var barValues = row2.getElementsByClassName('BarValue');
+    const row2 =  document.getElementById('row2');
+    bars = row2.getElementsByClassName('Bar');
+    title =  row2.getElementsByClassName('BarTitle');
+    barValues = row2.getElementsByClassName('BarValue');
 
     for (var i = 0; i < bars.length; i++) {
         bars[i].style.display = "inline-block";
@@ -546,12 +549,15 @@ function onExpandPanelClicked() {
 
     document.getElementById('compoundsPanel').style.width = "249px";
     document.getElementById('compoundsPanel').style.height = "238px";
-    document.getElementById('compoundsPanel').style.backgroundImage = "url('../../Textures/gui/bevel/compoundPanel.png')";
+    document.getElementById('compoundsPanel').style.backgroundImage = 
+        "url('../../Textures/gui/bevel/compoundPanel.png')";
     document.getElementById('compoundsPanel').style.transition = "0.5s";
 
 
-    document.getElementById('compressPanel').style.backgroundImage = "url('../../Textures/gui/bevel/compressPanel.png')";
-    document.getElementById('expandPanel').style.backgroundImage = "url('../../Textures/gui/bevel/expandPanelActive.png')";
+    document.getElementById('compressPanel').style.backgroundImage = 
+        "url('../../Textures/gui/bevel/compressPanel.png')";
+    document.getElementById('expandPanel').style.backgroundImage = 
+        "url('../../Textures/gui/bevel/expandPanelActive.png')";
 
     var row1 = document.getElementById('row1');
     var bars = row1.getElementsByClassName('Bar');
