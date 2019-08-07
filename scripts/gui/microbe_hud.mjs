@@ -185,11 +185,8 @@ function onCompoundPanelClicked() {
     $("#compoundsPanel").animate({"width": "toggle"});
     $("#agentsPanel").animate({"width": "toggle"});
 
-    $("#compoundsButton").toggleClass('active');   
-    $("#compoundsButton").toggleClass('inactive');  
-   
-    /*$("#compoundExpandIcon").toggleClass("rotate-reset");
-    $("#compoundExpandIcon").toggleClass("rotate");*/
+    $("#compoundsButton").toggleClass('active');
+    $("#compoundsButton").toggleClass('inactive');
 }
 
 function openHelp(){
@@ -510,37 +507,37 @@ function onCompressPanelClicked() {
         bars[i].style.marginBottom = "0px";
         bars[i].style.marginTop = "6px";
         bars[i].style.marginLeft = "-25px";
-    }    
+    }
 
     for (var i = 0; i < title.length; i++) {
         title[i].style.visibility  = "hidden";
-    }   
+    }
 
     for (var i = 0; i < barValues.length; i++) {
         barValues[i].style.left = "-30px";
-    }  
+    }
 
-    //! ROW 2 
+    //! ROW 2
     var row2 =  document.getElementById('row2');
     var bars = row2.getElementsByClassName('Bar');
     var title =  row2.getElementsByClassName('BarTitle');
-    var barValues = row2.getElementsByClassName('BarValue');
-    
+    var barValues = row2.getElementsByClassName('BarValue');\
+
     for (var i = 0; i < bars.length; i++) {
-        bars[i].style.display = "inline-block";  
+        bars[i].style.display = "inline-block";
         bars[i].style.width = "65px";
         bars[i].style.marginBottom = "0px";
         bars[i].style.marginTop = "-10px";
-        bars[i].style.marginLeft = "-25px"; 
-    }    
+        bars[i].style.marginLeft = "-25px";
+    }
 
     for (var i = 0; i < title.length; i++) {
         title[i].style.visibility  = "hidden";
-    }   
+    }
 
     for (var i = 0; i < barValues.length; i++) {
         barValues[i].style.left = "-30px";
-    }  
+    }
 }
 
 
@@ -567,47 +564,47 @@ function onExpandPanelClicked() {
         bars[i].style.marginTop = "6px";
         bars[i].style.marginLeft = "20px";
         bars[i].style.width = "215px";
-    }    
+    }
 
      for (var i = 0; i < title.length; i++) {
         title[i].style.visibility  = "visible";
-    }   
+    }
 
     for (var i = 0; i < barValues.length; i++) {
         barValues[i].style.left = "120px";
-    }  
+    }
 
-    //! ROW 2 
+    //! ROW 2
     var row2 =  document.getElementById('row2');
     var bars = row2.getElementsByClassName('Bar');
     var title =  row2.getElementsByClassName('BarTitle');
     var barValues = row2.getElementsByClassName('BarValue');
-    
+
     for (var i = 0; i < bars.length; i++) {
         bars[i].style.display = "block";
         bars[i].style.marginLeft = "20px";
         bars[i].style.marginBottom = "4px";
         bars[i].style.marginTop = "6px";
         bars[i].style.width = "215px";
-    }    
+    }
 
      for (var i = 0; i < title.length; i++) {
         title[i].style.visibility  = "visible";
-    }   
+    }
 
     for (var i = 0; i < barValues.length; i++) {
         barValues[i].style.left = "120px";
-    }   
+    }
 }
 
- 
+
 // All panels whitin is possible to navigate
 var buttons = ["patch", "report", "editor"];
 
 
-// Patch-Report function  
+// Patch-Report function
 function onPatchReportClicked() {
-    
+
     // Fire event
     if(common.isInEngine()){
         // Call a function to tell the game to swap to the editor. It
@@ -617,23 +614,23 @@ function onPatchReportClicked() {
         // Swap GUI for previewing
         doEnterMicrobeEditor();
     }
-    
+
     for(var i = 0; i< buttons.length; i++) {
         if(buttons[i] == this.id) {
 
             $("#" + this.id).css("background-image", "url(../../Textures/gui/bevel/topLeftButtonActive.png)");
-            $("#" + this.id).css("color", "#112B36"); 
+            $("#" + this.id).css("color", "#112B36");
             $("#"+  this.id + "Tab").css("visibility","visible");
 
             if(this.id == "editor") {
                 document.getElementById("EditorPanelTop").style.display = "block";
-                document.getElementById("EditorPanelBottom").style.visibility="visible"; 
-                Thrive.editorButtonClicked();   
-            }   
-        } 
+                document.getElementById("EditorPanelBottom").style.visibility="visible";
+                Thrive.editorButtonClicked();
+            }
+        }
          else {
             $("#" + buttons[i]).css("background-image", "url(../../Textures/gui/bevel/topLeftButton.png)");
-            $("#" + buttons[i]).css("color", "#FAFCFD"); 
+            $("#" + buttons[i]).css("color", "#FAFCFD");
             $("#" + buttons[i] + "Tab").css("visibility","hidden");
             document.getElementById("EditorPanelTop").style.display = "none";
             document.getElementById("EditorPanelBottom").style.visibility="hidden";
@@ -652,9 +649,9 @@ $(".nodeMap").click(function(event) {
 
 // Patch Map close button
 $(".minusBtn").click(function() {
-    var tab = $(this).attr("data-cond"); 
+    var tab = $(this).attr("data-cond");
     $("#" + tab).animate({"height": "toggle"});
-    
+
    $(this).toggleClass("minus");
    $(this).toggleClass("plus");
 });
@@ -663,10 +660,10 @@ $(".minusBtn").click(function() {
 //! Updates the GUI bars
 //! values needs to be an object with properties set with values for everything
 function updateMicrobeHUDBars(values){
-   
-   
+
+
     // The bars
-    
+
     document.getElementById("microbeHUDPlayerHitpoints").textContent =
         values.hitpoints;
     document.getElementById("microbeHUDPlayerMaxHitpoints").textContent =
@@ -682,13 +679,13 @@ function updateMicrobeHUDBars(values){
 
     var totalProgress, progress;
     const circles = document.querySelectorAll('#circleBars');
-    
+
     // ! instead of using totalProgress var, two hardCoded value are used
     // They are in thrive_gui.html at line 117 and 134.
     // two loops could be used but this need draw two differents svg for each circle
 
     for(var i = 0; i < circles.length; i++) {
-        
+
         progress = 100 - valueAtp;
         if(valueAtp < 2.5) {
             circles[i].querySelector('#shapeAtp').style['stroke-dashoffset'] = 189.117;
@@ -699,7 +696,7 @@ function updateMicrobeHUDBars(values){
         progress = 100 - valueHp;
         circles[i].querySelector('#shapeHp').style['stroke-dashoffset'] = 244.393 * progress / 100;
     }
- 
+
     document.getElementById("microbeHUDPlayerAmmonia").textContent =
         values.compoundAmmonia.toFixed(1);
     document.getElementById("microbeHUDPlayerAmmoniaMax").textContent =
