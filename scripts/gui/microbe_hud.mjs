@@ -521,7 +521,7 @@ function onCompressPanelClicked() {
     var row2 =  document.getElementById('row2');
     var bars = row2.getElementsByClassName('Bar');
     var title =  row2.getElementsByClassName('BarTitle');
-    var barValues = row2.getElementsByClassName('BarValue');\
+    var barValues = row2.getElementsByClassName('BarValue');
 
     for (var i = 0; i < bars.length; i++) {
         bars[i].style.display = "inline-block";

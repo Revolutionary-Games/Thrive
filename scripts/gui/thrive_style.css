@@ -760,33 +760,6 @@ video {
   background-image: url("../../Textures/gui/bevel/MediumTwoHover.png");
 }
 
-#compoundExpand {
-  position: relative;
-  display: inline-block;
-  width: 42px;
-  height: 42px;
-  background-image: url("../../Textures/gui/bevel/button.png");
-}
-
-#compoundExpandIcon {
-  /* Needs some Javascript to replace image with Textures/gui/bevel/ExpandUpIcon.png when hidden */
-  background-image: url("../../Textures/gui/bevel/ExpandDownIcon.png");
-  width: 40px;
-  height: 40px;
-  position: relative;
-  left: 1px;
-  bottom: -2px;
-}
-
-#compoundExpand:hover {
-  background-image: url("../../Textures/gui/bevel/buttonHover.png");
-}
-
-#panelButtons {
-  display: inline-block;
-  position: relative;
-  background-color: red;
-}
 
 #expandPanel {
   display: inline-block;
