@@ -668,8 +668,9 @@ $(".minusBtn").click(function() {
 //! Updates the GUI bars
 //! values needs to be an object with properties set with values for everything
 function updateMicrobeHUDBars(values){
-    // The bars
     var progress;
+    
+    // The bars
 
     document.getElementById("microbeHUDPlayerHitpoints").textContent =
         values.hitpoints;
