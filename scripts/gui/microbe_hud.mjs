@@ -581,7 +581,7 @@ function onExpandPanelClicked() {
     }
 
     //! ROW 2
-   var row2 =  document.getElementById('row2');
+    var row2 =  document.getElementById('row2');
     bars = row2.getElementsByClassName('Bar');
     title =  row2.getElementsByClassName('BarTitle');
     barValues = row2.getElementsByClassName('BarValue');
@@ -668,7 +668,7 @@ $(".minusBtn").click(function() {
 //! Updates the GUI bars
 //! values needs to be an object with properties set with values for everything
 function updateMicrobeHUDBars(values){
-    var progress;
+    var progress = 0;
     
     // The bars
 
