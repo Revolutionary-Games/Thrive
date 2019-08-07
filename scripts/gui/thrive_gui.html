@@ -235,7 +235,7 @@
           <div class="EnvironmentBar"> 
             <div class="EmptyBarBackground" id="microbeHUDPlayerTempBar">
               <div class="BarForeground">
-                  <div class="environmentIcon" id="TempIcon"></div>
+                  <div class="environmentIcon TempIcon"></div>
                   <div class="EnvironmentBarTitle">Temp.</div>
                     <div class="EnvironmentBarValue">
                       <span id="microbeHUDPlayerTemp">55° C</span>
@@ -452,22 +452,35 @@ Be wary because your competitors are evolving alongside you. Every time you ente
       <div id="microbeEditorClickDetector"
            style="position: relative; width: 100%; height: 100%;"></div>
       
-      <!--PatchReport buttons -->
+    <!--PatchReport buttons -->
     <div id=topLeftButtons >
       <div id="report" class="topButtons">  Report </div>
       <div id="patch"  class="topButtons">  Patch Map   </div>
       <div id="editor" class="topButtons">  Editor  </div>
     </div>
 
+    <!--next  button -->
+    <div id="next">NEXT </div>
     <div id="reportTab"> 
         <div class="firstHalf"> <div class="tabTitle"> Report Tab</div>
         </div>
         <div class="secondHalf">  <div class="tabTitle"> Statistics</div>
+         <svg style="width:90%;height:100px;position:absolute;left:10px;top:200px;" class="chart">
+            <polyline
+               fill="none"
+               stroke="#0074d9"
+               stroke-width="3"
+               points="
+                 0,120
+                 20,60
+                 40,80
+                 60,20"/>
+          </svg>
         </div>
     </div>
     
     <div id="patchTab"> 
-        <div class="firstHalf"> <div class="tabTitle"> Pangonian Mesopelagic Shelf </div>
+        <div class="firstHalf"> <div class="tabTitle">Map </div>
          <svg style="width:100%;height:100%;position:absolute;left:0px;top:0px;">
             
             <!--tidepool lines -->
@@ -494,51 +507,86 @@ Be wary because your competitors are evolving alongside you. Every time you ente
 
               
             <!--tidepool -->
-            <img  class="nodeMap" src="../../Textures/gui/bevel/tidepool.png" style=" width:50px;height:50px;position:absolute;left:355px;top:150px;">
+            <img  class="nodeMap" data-type="Tidepool" src="../../Textures/gui/bevel/tidepool.png" style=" width:50px;height:50px;position:absolute;left:355px;top:150px;">
             
             <!--cave -->
-            <img  class="nodeMap" src="../../Textures/gui/bevel/cave.png" style=" width:50px;height:50px;position:absolute;left:355px;top:220px;">
+            <img  class="nodeMap" data-type="Cave" src="../../Textures/gui/bevel/cave.png" style=" width:50px;height:50px;position:absolute;left:355px;top:220px;">
 
             <!--tidepool -->
-            <img  class="nodeMap" src="../../Textures/gui/bevel/tidepool.png" style="width:50px;height:50px;position:absolute;left:285px;top:220px;">
+            <img  class="nodeMap" data-type="Tidepool" src="../../Textures/gui/bevel/tidepool.png" style="width:50px;height:50px;position:absolute;left:285px;top:220px;">
 
             <!--Estuary -->
-            <img  class="nodeMap" src="../../Textures/gui/bevel/estuary.png" style="width:50px;height:50px;position:absolute;left:430px;top:175px;">
-            <img  class="nodeMap" src="../../Textures/gui/bevel/estuary.png" style="width:50px;height:50px;position:absolute;left:490px;top:175px;">
+            <img  class="nodeMap" data-type="Estuary" src="../../Textures/gui/bevel/estuary.png" style="width:50px;height:50px;position:absolute;left:430px;top:175px;">
+            <img  class="nodeMap" data-type="Estuary" src="../../Textures/gui/bevel/estuary.png" style="width:50px;height:50px;position:absolute;left:490px;top:175px;">
 
             <!--shallow -->
-            <img  class="nodeMap" src="../../Textures/gui/bevel/shallow.png" style="width:50px;height:50px;position:absolute;left:457.5px;top:300px;">
-            <img  class="nodeMap" src="../../Textures/gui/bevel/shallow.png" style="width:50px;height:50px;position:absolute;left:260px;top:300px;">
+            <img  class="nodeMap"  data-type="Shallow" src="../../Textures/gui/bevel/shallow.png" style="width:50px;height:50px;position:absolute;left:457.5px;top:300px;">
+            <img  class="nodeMap"  data-type="Shallow" src="../../Textures/gui/bevel/shallow.png" style="width:50px;height:50px;position:absolute;left:260px;top:300px;">
             
             <!--tidepool tidepool tidepool and estuary-->
             <div  class=nodeMap style="width:140px;height:130px;position:absolute;left:65px;top:225px;"> 
-              <img   src="../../Textures/gui/bevel/tidepool.png" style="width:50px;height:50px;position:relative; display:inline-block; margin-left: 5px; margin-right: 5px; margin-top: 5px;">
-              <img  src="../../Textures/gui/bevel/tidepool.png" style="width:50px;height:50px;position:relative; display:inline-block; margin-left: 5px; margin-right: 5px; margin-top: 5px;">
-              <img  src="../../Textures/gui/bevel/tidepool.png" style="width:50px;height:50px;position:relative; display:inline-block; margin-left: 5px; margin-right: 5px; margin-top: 5px;">
-              <img  src="../../Textures/gui/bevel/estuary.png" style="width:50px;height:50px;position:relative; display:inline-block; margin-left: 5px; margin-right: 5px; margin-top: 5px;">
+              <img  data-type="Tidepool" src="../../Textures/gui/bevel/tidepool.png" style="width:50px;height:50px;position:relative; display:inline-block; margin-left: 5px; margin-right: 5px; margin-top: 5px;">
+              <img  data-type="Tidepool" src="../../Textures/gui/bevel/tidepool.png" style="width:50px;height:50px;position:relative; display:inline-block; margin-left: 5px; margin-right: 5px; margin-top: 5px;">
+              <img  data-type="Tidepool" src="../../Textures/gui/bevel/tidepool.png" style="width:50px;height:50px;position:relative; display:inline-block; margin-left: 5px; margin-right: 5px; margin-top: 5px;">
+              <img  data-type="Estuary" src="../../Textures/gui/bevel/estuary.png" style="width:50px;height:50px;position:relative; display:inline-block; margin-left: 5px; margin-right: 5px; margin-top: 5px;">
             </div>
             
             <!--epipelagic mesopelagic mesopelagic floor -->
             <div class=nodeMap style="width:70px;height:195px;position:absolute;left:65px;top:370px;">  
-              <img   src="../../Textures/gui/bevel/epipelagic.png" style="width:50px;height:50px;position:relative; display:inline-block; margin-left: 5px; margin-right: 5px; margin-top: 5px;">
-              <img   src="../../Textures/gui/bevel/mesopelagic.png" style="width:50px;height:50px;position:relative; display:inline-block; margin-left: 5px; margin-right: 5px; margin-top: 5px;">
-              <img   src="../../Textures/gui/bevel/mesopelagicFloor.png" style="width:50px;height:50px;position:relative; display:inline-block; margin-left: 5px; margin-right: 5px; margin-top: 5px;">
+              <img  data-type="Epipelagic"  src="../../Textures/gui/bevel/epipelagic.png" style="width:50px;height:50px;position:relative; display:inline-block; margin-left: 5px; margin-right: 5px; margin-top: 5px;">
+              <img  data-type="Mesopelagic"  src="../../Textures/gui/bevel/mesopelagic.png" style="width:50px;height:50px;position:relative; display:inline-block; margin-left: 5px; margin-right: 5px; margin-top: 5px;">
+              <img  data-type="Mesopelagic Floor" src="../../Textures/gui/bevel/mesopelagicFloor.png" style="width:50px;height:50px;position:relative; display:inline-block; margin-left: 5px; margin-right: 5px; margin-top: 5px;">
             </div>
         </svg>
 
         </div>
-        <div class="secondHalf"> <div class="tabTitle"> Statistics </div>
-          <svg style="width:90%;height:100px;position:absolute;left:10px;top:200px;" class="chart">
-            <polyline
-               fill="none"
-               stroke="#0074d9"
-               stroke-width="3"
-               points="
-                 0,120
-                 20,60
-                 40,80
-                 60,20"/>
-          </svg>
+        <div class="secondHalf"> <div class="tabTitle"  id="patchName"> Statistics </div>
+          <div id="Allcondition"> 
+            <p id="microbeHUDPatchMeters"> 200-340m below sea level </p>
+
+            <!-- Phsysical Conditions -->
+            <div class="topBar">
+              <div class="minusBtn minus" data-cond="PhysicalCondition"></div> <div class="condTitle">  Physical Conditions </div> 
+            </div>
+            <div class="ConditionTab" id="PhysicalCondition"> 
+                <div class="condition"><img src="../../Textures/gui/bevel/Temperature.png"  class="patchIcon"> 
+                  <span id="microbeHUDPatchTemperature" class="value"> 6 °C <div class="situation" id="microbeHUDPatchTemperatureSituation"></div> </span> </div> 
+                <div class="condition"><img src="../../Textures/gui/bevel/Pressure.png"  class="patchIcon"> 
+                  <span id="microbeHUDPatchPressure" class="value"> 20-30.4 bar </span> </div>
+                <div class="condition"><img src="../../Textures/gui/bevel/Light.png"  class="patchIcon"> 
+                  <span id="microbeHUDPatchLight" class="value"> 40-23 lux </span> </div>
+            </div>  
+
+            <!-- Atmospheric Conditions -->
+            <div class="topBar">
+              <div class="minusBtn minus" data-cond="AtmosphericCondition"></div> <div class="condTitle">  Atmospheric Gasses</div>
+            </div>
+            <div class="ConditionTab" id="AtmosphericCondition"> 
+                <div class="condition"><img src="../../Textures/gui/bevel/Oxygen.png"  class="patchIcon"> 
+                  <span id="microbeHUDPatchOxygen" class="value"> 23% </span> </div> 
+                <div class="condition"><img src="../../Textures/gui/bevel/Nitrogen.png"  class="patchIcon"> 
+                  <span id="microbeHUDPatchNitrogen" class="value"> 3ppm </span> </div>
+                <div class="condition"><img src="../../Textures/gui/bevel/CO2.png" class="patchIcon"> 
+                  <span id="microbeHUDPatchCO2" class="value"> 43ppm </span> </div>
+            </div> 
+
+            <!--Compounds Cimposition -->
+            <div class="topBar">
+              <div class="minusBtn minus" data-cond="CompoundsComposition"></div> <div class="condTitle"> Compounds</div>
+            </div>
+            <div class="ConditionTab" id="CompoundsComposition"> 
+                <div class="condition"><img src="../../Textures/gui/bevel/HydrogenSulfide.png"  class="patchIcon"> 
+                  <span id="microbeHUDPatchHydrogenSulfide" class="value"> >1ppb </span> </div> 
+                <div class="condition"><img src="../../Textures/gui/bevel/Ammonia.png"  class="patchIcon"> 
+                  <span id="microbeHUDPatchAmmonia" class="value"> 4ppm </span> </div>
+                <div class="condition"><img src="../../Textures/gui/bevel/Glucose.png" class="patchIcon"> 
+                  <span id="microbeHUDPatchGlucose" class="value"> 4ppm </span> </div>
+                <div class="condition"><img src="../../Textures/gui/bevel/Phosphate.png" class="patchIcon"> 
+                  <span id="microbeHUDPatchPhosphate" class="value"> 26ppm </span> </div>
+                 <div class="condition"><img src="../../Textures/gui/bevel/Iron.png" class="patchIcon"> 
+                  <span id="microbeHUDPatchIron" class="value"> 9ppm </span> </div>
+            </div> 
+          </div>
         </div>
     </div>
 

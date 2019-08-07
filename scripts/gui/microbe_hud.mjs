@@ -331,13 +331,13 @@ function hideSuicideMsg() {
 
 function onEditorButtonClicked(event){
 
+    if(!readyToEdit)
+        return false;
+
 
     document.getElementById("topLevelMicrobeStage").style.display = "none";
     document.getElementById("topLevelMicrobeEditor").style.display = "block";
     $( "#report" ).click();
-
-    if(!readyToEdit)
-        return false;
 
     event.stopPropagation();
     common.playButtonPressSound();
@@ -600,14 +600,14 @@ function onExpandPanelClicked() {
     }   
 }
 
-
-
-
+ 
+// All panels whitin is possible to navigate
+var buttons = ["patch", "report", "editor"];
 
 
 // Patch-Report function  
 function onPatchReportClicked() {
-
+    
     // Fire event
     if(common.isInEngine()){
         // Call a function to tell the game to swap to the editor. It
@@ -618,17 +618,12 @@ function onPatchReportClicked() {
         doEnterMicrobeEditor();
     }
     
-
-    // All panels whitin is possible to navigate
-    var buttons = ["patch", "report", "editor"];
     for(var i = 0; i< buttons.length; i++) {
-
-       
         if(buttons[i] == this.id) {
+
             $("#" + this.id).css("background-image", "url(../../Textures/gui/bevel/topLeftButtonActive.png)");
             $("#" + this.id).css("color", "#112B36"); 
             $("#"+  this.id + "Tab").css("visibility","visible");
-
 
             if(this.id == "editor") {
                 document.getElementById("EditorPanelTop").style.display = "block";
@@ -645,6 +640,24 @@ function onPatchReportClicked() {
         }
     }
 }
+
+// Patch node click event
+$(".nodeMap").click(function(event) {
+    var type = $(event.target).attr('data-type');
+    alert("patch: " + type);
+
+    document.getElementById("patchName").innerHTML = type;
+});
+
+
+// Patch Map close button
+$(".minusBtn").click(function() {
+    var tab = $(this).attr("data-cond"); 
+    $("#" + tab).animate({"height": "toggle"});
+    
+   $(this).toggleClass("minus");
+   $(this).toggleClass("plus");
+});
 
 
 //! Updates the GUI bars

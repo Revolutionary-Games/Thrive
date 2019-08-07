@@ -218,6 +218,7 @@ video {
   font-size: 11pt;
 }
 
+
 .environmentIcon {
   position: relative;
   width: 29px;
@@ -425,9 +426,24 @@ video {
   line-height: 34px;
 }
 
+#next {
+  width: 150px;
+  height: 44px;
+  vertical-align: middle;
+  line-height: 44px;
+  text-align: center;
+  background-color: #008A42;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 5px;
+  border-color: rgba(17, 255, 213, 1.0);
+  position: absolute;
+  right: 20px;
+  bottom: 5px;
+}
+
 #reportTab {
   position: absolute;
-  display: inline-block;
   width: 100%;
   height: 89%;
   top:5%;
@@ -436,7 +452,6 @@ video {
 
 #patchTab{
   position: absolute;
-  display: inline-block;
   width: 100%;
   height: 89%;
   top:5%;
@@ -445,20 +460,21 @@ video {
 
 .nodeMap {
   border:2px 
-  solid #000000;
+  solid rgba(0, 1, 28,0.6);
   border-radius:10px;
 }
 
 .firstHalf{
   position: relative;
   display: inline-block;
-  width: 65%;
+  width: 70%;
   height: 100%;
   z-index: 2;
   font-size: 50px;
-  background-color: rgba(0,33,36,0.9);
+  background-color: rgba(0,32,36,0.75);
+  border-style: solid;
   border-color: #11FCD3;
-  border-width: 10px;
+  border-width: 1px;
   border-radius: 10px;
   text-align: center;
   line-height: normal;
@@ -466,11 +482,11 @@ video {
 }
 
 #Map{
- position: absolute;
- top: 0%;
- left: 0%;
- width: 100%;
- height: 100%;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
 }
 
 
@@ -478,14 +494,15 @@ video {
 .secondHalf{
   position: relative;
   display: inline-block;
-  width: 30%;
+  width: 25%;
   height: 100%;
   margin-left: 1.75%;
   z-index: 2;
   font-size: 50px;
-  background-color: rgba(0,33,36,0.9);
+  background-color: rgba(0,32,36,0.75);
+  border-style: solid;
   border-color: #11FCD3;
-  border-width: 10px;
+  border-width: 1px;
   border-radius: 10px;
   color: white;
 }
@@ -496,7 +513,100 @@ video {
   width: 100%;
   margin-top: 15px;
   height: 50px;
+  font-size: 28pt;
 }
+
+#Allcondition{
+  position:absolute;
+  width: 100%;
+  height: calc(100% - 65px);
+  font-size: 11pt;
+}
+
+.ConditionTab{
+  position: relative;
+  display: inline-block;
+  height: auto;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.condition {
+  position: relative;
+  display: inline-block;
+  margin-top: 5px;
+  width: 42.5%;
+  margin-left: 5%;
+  height: auto;
+}
+
+
+.value {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 16pt;
+}
+
+.situation {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 10px;
+  width: 12px;
+  height: 12px;
+  background-image: url("../../Textures/gui/bevel/increase.png");
+}
+
+
+.patchIcon {
+  display: inline-block;
+  vertical-align: middle;
+  width : 40px;
+  height: auto;
+}
+
+#microbeHUDPatchMeters{
+  position:relative;
+  width: 100%;
+  text-align: center;
+  font-size: 14pt;
+}
+
+.minusBtn {
+  position:relative;
+  display: inline-block;
+  width: 27px;
+  height: 27px;
+  margin-bottom: 5px;
+  font-size: 12pt;
+  background-size: 27px, 27px;
+  background-position: center;
+}
+
+.minusBtn:hover{
+  background-image: url("../../Textures/gui/bevel/minusButtonHover.png");
+}
+
+.topBar {
+  display: block;
+  margin-left: 20px;
+  margin-top: 8px;
+  margin-bottom: 0px;
+  width: 100%;
+  height: auto;
+  vertical-align:middle;
+}
+
+.condTitle {
+  display: inline-block;
+  position: relative;
+  height: auto
+  font-size: 13pt;
+  vertical-align:middle;
+  margin-left: 5px;
+  padding-bottom: 28px;
+}
+
+
 
 .chart {
   background: transparent;
@@ -790,7 +900,7 @@ video {
   background-image: url("../../Textures/gui/bevel/Nitrogen.png");
 }
 
-#TempIcon {
+.TempIcon {
   background-image: url("../../Textures/gui/bevel/Temperature.png");
 }
 
@@ -1714,15 +1824,17 @@ video {
 
 
 /* ANIMATION */
-.rotate {
-  transform: rotate(270deg);
-  transition: .5s;
-}
-.rotate-reset {
-  transform: rotate(90deg);
-  transition: .5s;
+.minus {
+  background-image: url("../../Textures/gui/bevel/minusButton.png");
 }
 
+.plus {
+  background-image: url("../../Textures/gui/bevel/plusButton.png");
+}
+
+.plus:hover {
+  background-image: url("../../Textures/gui/bevel/plusButtonHover.png"); 
+}
 
 
 #circleBars {
@@ -1732,9 +1844,3 @@ video {
   right: 12px;
 }
 
-
-#test{
-  position: absolute;
-  left: 50px;
-  top: 50px;
-}
