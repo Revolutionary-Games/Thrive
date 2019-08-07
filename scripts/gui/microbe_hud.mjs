@@ -577,7 +577,7 @@ function onExpandPanelClicked() {
     }
 
     for (const barValue of  barValues) {
-        barValues[i].style.left = "120px";
+        barValue.style.left = "120px";
     }
 
     //! ROW 2
@@ -669,6 +669,8 @@ $(".minusBtn").click(function() {
 //! values needs to be an object with properties set with values for everything
 function updateMicrobeHUDBars(values){
     // The bars
+    var progress;
+
     document.getElementById("microbeHUDPlayerHitpoints").textContent =
         values.hitpoints;
     document.getElementById("microbeHUDPlayerMaxHitpoints").textContent =
@@ -682,7 +684,6 @@ function updateMicrobeHUDBars(values){
     var valueAtp = common.barHelper(values.compoundATP, values.ATPMax).replace("%","");
     var valueHp = common.barHelper(values.hitpoints, values.maxHitpoints).replace("%","");
 
-    var totalProgress, progress;
     const circles = document.querySelectorAll('#circleBars');
 
     // ! instead of using totalProgress var, two hardCoded value are used
