@@ -512,12 +512,12 @@ function onCompressPanelClicked() {
         bar.style.marginLeft = "-25px";
     }
 
-    for (var i = 0; i < title.length; i++) {
-        title[i].style.visibility  = "hidden";
+    for (const tit of title) {
+        tit.style.visibility  = "hidden";
     }
 
-    for (var i = 0; i < barValues.length; i++) {
-        barValues[i].style.left = "-30px";
+    for (const barValue of barValues) {
+        barValue.style.left = "-30px";
     }
 
     //! ROW 2
@@ -526,20 +526,20 @@ function onCompressPanelClicked() {
     title =  row2.getElementsByClassName('BarTitle');
     barValues = row2.getElementsByClassName('BarValue');
 
-    for (var i = 0; i < bars.length; i++) {
-        bars[i].style.display = "inline-block";
-        bars[i].style.width = "65px";
-        bars[i].style.marginBottom = "0px";
-        bars[i].style.marginTop = "-10px";
-        bars[i].style.marginLeft = "-25px";
+    for (const bar of bars) {
+        bar.style.display = "inline-block";
+        bar.style.width = "65px";
+        bar.style.marginBottom = "0px";
+        bar.style.marginTop = "-10px";
+        bar.style.marginLeft = "-25px";
     }
 
-    for (var i = 0; i < title.length; i++) {
-        title[i].style.visibility  = "hidden";
+    for (const tit of title) {
+        tit.style.visibility  = "hidden";
     }
 
-    for (var i = 0; i < barValues.length; i++) {
-        barValues[i].style.left = "-30px";
+    for (const barValue of barValues) {
+        barValue.style.left = "-30px";
     }
 }
 
