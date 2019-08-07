@@ -559,10 +559,10 @@ function onExpandPanelClicked() {
     document.getElementById('expandPanel').style.backgroundImage = 
         "url('../../Textures/gui/bevel/expandPanelActive.png')";
 
-    row1 = document.getElementById('row1');
-    bars = row1.getElementsByClassName('Bar');
-    title =  row1.getElementsByClassName('BarTitle');
-    barValues = row1.getElementsByClassName('BarValue');
+    var row1 = document.getElementById('row1');
+    var bars = row1.getElementsByClassName('Bar');
+    var title =  row1.getElementsByClassName('BarTitle');
+    var barValues = row1.getElementsByClassName('BarValue');
 
     for (const bar of bars) {
         bar.style.display = "block";
@@ -581,7 +581,7 @@ function onExpandPanelClicked() {
     }
 
     //! ROW 2
-    row2 =  document.getElementById('row2');
+   var row2 =  document.getElementById('row2');
     bars = row2.getElementsByClassName('Bar');
     title =  row2.getElementsByClassName('BarTitle');
     barValues = row2.getElementsByClassName('BarValue');
@@ -624,7 +624,8 @@ function onPatchReportClicked() {
     for(const button of  buttons) {
         if(button == this.id) {
 
-            $("#" + this.id).css("background-image", "url(../../Textures/gui/bevel/topLeftButtonActive.png)");
+            $("#" + this.id).css("background-image", 
+                "url(../../Textures/gui/bevel/topLeftButtonActive.png)");
             $("#" + this.id).css("color", "#112B36");
             $("#"+  this.id + "Tab").css("visibility","visible");
 
@@ -635,7 +636,8 @@ function onPatchReportClicked() {
             }
         }
          else {
-            $("#" + button).css("background-image", "url(../../Textures/gui/bevel/topLeftButton.png)");
+            $("#" + button).css("background-image", 
+                "url(../../Textures/gui/bevel/topLeftButton.png)");
             $("#" + button).css("color", "#FAFCFD");
             $("#" + button + "Tab").css("visibility","hidden");
             document.getElementById("EditorPanelTop").style.display = "none";
@@ -693,7 +695,8 @@ function updateMicrobeHUDBars(values){
         if(valueAtp < 2.5) {
             circle.querySelector('#shapeAtp').style['stroke-dashoffset'] = 189.117;
         } else {
-            circle.querySelector('#shapeAtp').style['stroke-dashoffset'] = 189.117 * progress / 100;
+            circle.querySelector('#shapeAtp').style['stroke-dashoffset'] = 
+                189.117 * progress / 100;
         }
 
         progress = 100 - valueHp;
