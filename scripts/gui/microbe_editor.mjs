@@ -477,7 +477,6 @@ function doExitMicrobeEditor(){
     document.getElementById("topLevelMicrobeStage").style.display = "block";
     document.getElementById("topLevelMicrobeEditor").style.display = "none";
 
- 
     // To reset the symmetry button properly when you exit
     symmetry = 0;
     document.getElementById("SymmetryIcon").style.backgroundImage = "url()";
