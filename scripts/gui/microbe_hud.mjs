@@ -504,12 +504,12 @@ function onCompressPanelClicked() {
     var title =  row1.getElementsByClassName('BarTitle');
     var barValues = row1.getElementsByClassName('BarValue');
 
-    for (var i = 0; i < bars.length; i++) {
-        bars[i].style.display = "inline-block";
-        bars[i].style.width = "65px";
-        bars[i].style.marginBottom = "0px";
-        bars[i].style.marginTop = "6px";
-        bars[i].style.marginLeft = "-25px";
+    for (const bar of bars) {
+        bar.style.display = "inline-block";
+        bar.style.width = "65px";
+        bar.style.marginBottom = "0px";
+        bar.style.marginTop = "6px";
+        bar.style.marginLeft = "-25px";
     }
 
     for (var i = 0; i < title.length; i++) {
