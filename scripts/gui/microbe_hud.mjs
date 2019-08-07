@@ -185,8 +185,8 @@ function onCompoundPanelClicked() {
     $("#compoundsPanel").animate({"width": "toggle"});
     $("#agentsPanel").animate({"width": "toggle"});
 
-    $("#compoundsButton").toggleClass('active');
-    $("#compoundsButton").toggleClass('inactive');
+    $("#compoundsButton").toggleClass("active");
+    $("#compoundsButton").toggleClass("inactive");
 }
 
 function openHelp(){
@@ -368,12 +368,12 @@ function updateHoverInfo(vars){
 
     const panel = document.getElementById("mouseHoverPanel");
     common.clearChildren(panel);
-    
-    var div = document.createElement("div");
+
+    const div = document.createElement("div");
     div.style.width = "100%";
     div.style.height = "15px";
     div.style.color = "white";
-    div.style.textAlign = "center"
+    div.style.textAlign = "center";
     div.innerHTML = "Hello";
 
     if(vars.noCompounds){
@@ -396,9 +396,9 @@ function updateHoverInfo(vars){
             panel.appendChild(document.createElement("br"));
 
             // Debug print version
-            var values = vars[key].split(":");
-            var img = document.createElement("IMG");
-            var src = "../../Textures/gui/bevel/";
+            const values = vars[key].split(":");
+            const img = document.createElement("IMG");
+            const src = "../../Textures/gui/bevel/";
             values[0] = values[0].replace(/\s+/, "") 
             src =  src + values[0];
             src = src + ".png";
@@ -408,9 +408,9 @@ function updateHoverInfo(vars){
             img.setAttribute("height", "25");
             panel.appendChild(img);
 
-            var par = document.createElement("p");
+            const par = document.createElement("p");
             par.style.display = "inline-block";
-            var parText = document.createTextNode("" + vars[key]);
+            const parText = document.createTextNode("" + vars[key]);
             par.appendChild(parText);
 
             // Panel.appendChild(document.createTextNode(key + ": " + vars[key]));
@@ -484,25 +484,25 @@ function hideWinText(){
 }
 
 
- //! Compress panel function
+//! Compress panel function
 function onCompressPanelClicked() {
 
-    document.getElementById('compoundsPanel').style.width = "251px";
-    document.getElementById('compoundsPanel').style.height = "145px";
-    document.getElementById('compoundsPanel').style.backgroundImage = 
+    document.getElementById("compoundsPanel").style.width = "251px";
+    document.getElementById("compoundsPanel").style.height = "145px";
+    document.getElementById("compoundsPanel").style.backgroundImage = 
         "url('../../Textures/gui/bevel/compoundPanelExpand.png')";
-    document.getElementById('compoundsPanel').style.transition = "0.5s";
+    document.getElementById("compoundsPanel").style.transition = "0.5s";
 
 
-    document.getElementById('compressPanel').style.backgroundImage = 
+    document.getElementById("compressPanel").style.backgroundImage = 
         "url('../../Textures/gui/bevel/compressPanelActive.png')";
-    document.getElementById('expandPanel').style.backgroundImage = 
+    document.getElementById("expandPanel").style.backgroundImage = 
         "url('../../Textures/gui/bevel/expandPanel.png')";
 
-    var row1 = document.getElementById('row1');
-    var bars = row1.getElementsByClassName('Bar');
-    var title =  row1.getElementsByClassName('BarTitle');
-    var barValues = row1.getElementsByClassName('BarValue');
+    var row1 = document.getElementById("row1");
+    var bars = row1.getElementsByClassName("Bar");
+    var title =  row1.getElementsByClassName("BarTitle");
+    var barValues = row1.getElementsByClassName("BarValue");
 
     for (const bar of bars) {
         bar.style.display = "inline-block";
@@ -513,7 +513,7 @@ function onCompressPanelClicked() {
     }
 
     for (const tit of title) {
-        tit.style.visibility  = "hidden";
+        tit.style.visibility = "hidden";
     }
 
     for (const barValue of barValues) {
@@ -521,10 +521,10 @@ function onCompressPanelClicked() {
     }
 
     //! ROW 2
-    var row2 =  document.getElementById('row2');
-    bars = row2.getElementsByClassName('Bar');
-    title =  row2.getElementsByClassName('BarTitle');
-    barValues = row2.getElementsByClassName('BarValue');
+    var row2 =  document.getElementById("row2");
+    bars = row2.getElementsByClassName("Bar");
+    title =  row2.getElementsByClassName("BarTitle");
+    barValues = row2.getElementsByClassName("BarValue");
 
     for (const bar of bars) {
         bar.style.display = "inline-block";
@@ -535,7 +535,7 @@ function onCompressPanelClicked() {
     }
 
     for (const tit of title) {
-        tit.style.visibility  = "hidden";
+        tit.style.visibility = "hidden";
     }
 
     for (const barValue of barValues) {
@@ -547,22 +547,22 @@ function onCompressPanelClicked() {
 //! Expand panel function
 function onExpandPanelClicked() {
 
-    document.getElementById('compoundsPanel').style.width = "249px";
-    document.getElementById('compoundsPanel').style.height = "238px";
-    document.getElementById('compoundsPanel').style.backgroundImage = 
+    document.getElementById("compoundsPanel").style.width = "249px";
+    document.getElementById("compoundsPanel").style.height = "238px";
+    document.getElementById("compoundsPanel").style.backgroundImage = 
         "url('../../Textures/gui/bevel/compoundPanel.png')";
-    document.getElementById('compoundsPanel').style.transition = "0.5s";
+    document.getElementById("compoundsPanel").style.transition = "0.5s";
 
 
-    document.getElementById('compressPanel').style.backgroundImage = 
+    document.getElementById("compressPanel").style.backgroundImage = 
         "url('../../Textures/gui/bevel/compressPanel.png')";
-    document.getElementById('expandPanel').style.backgroundImage = 
+    document.getElementById("expandPanel").style.backgroundImage = 
         "url('../../Textures/gui/bevel/expandPanelActive.png')";
 
-    var row1 = document.getElementById('row1');
-    var bars = row1.getElementsByClassName('Bar');
-    var title =  row1.getElementsByClassName('BarTitle');
-    var barValues = row1.getElementsByClassName('BarValue');
+    var row1 = document.getElementById("row1");
+    var bars = row1.getElementsByClassName("Bar");
+    var title =  row1.getElementsByClassName("BarTitle");
+    var barValues = row1.getElementsByClassName("BarValue");
 
     for (const bar of bars) {
         bar.style.display = "block";
@@ -573,7 +573,7 @@ function onExpandPanelClicked() {
     }
 
     for (const tit of title) {
-        tit.style.visibility  = "visible";
+        tit.style.visibility = "visible";
     }
 
     for (const barValue of  barValues) {
@@ -581,10 +581,10 @@ function onExpandPanelClicked() {
     }
 
     //! ROW 2
-    var row2 =  document.getElementById('row2');
-    bars = row2.getElementsByClassName('Bar');
-    title =  row2.getElementsByClassName('BarTitle');
-    barValues = row2.getElementsByClassName('BarValue');
+    var row2 =  document.getElementById("row2");
+    bars = row2.getElementsByClassName("Bar");
+    title =  row2.getElementsByClassName("BarTitle");
+    barValues = row2.getElementsByClassName("BarValue");
 
     for (const bar of bars) {
         bar.style.display = "block";
@@ -595,7 +595,7 @@ function onExpandPanelClicked() {
     }
 
     for (const tit of title) {
-        tit.style.visibility  = "visible";
+        tit.style.visibility = "visible";
     }
 
     for (const barValue of barValues) {
@@ -605,7 +605,7 @@ function onExpandPanelClicked() {
 
 
 // All panels whitin is possible to navigate
-var buttons = ["patch", "report", "editor"];
+const buttons = ["patch", "report", "editor"];
 
 
 // Patch-Report function
@@ -621,34 +621,33 @@ function onPatchReportClicked() {
         doEnterMicrobeEditor();
     }
 
-    for(const button of  buttons) {
+    for(const button of buttons) {
         if(button == this.id) {
 
-            $("#" + this.id).css("background-image", 
+            $("#" + this.id).css("background-image",
                 "url(../../Textures/gui/bevel/topLeftButtonActive.png)");
             $("#" + this.id).css("color", "#112B36");
-            $("#"+  this.id + "Tab").css("visibility","visible");
+            $("#"+  this.id + "Tab").css("visibility", "visible");
 
             if(this.id == "editor") {
                 document.getElementById("EditorPanelTop").style.display = "block";
-                document.getElementById("EditorPanelBottom").style.visibility="visible";
+                document.getElementById("EditorPanelBottom").style.visibility = "visible";
                 Thrive.editorButtonClicked();
             }
-        }
-         else {
-            $("#" + button).css("background-image", 
+        } else {
+            $("#" + button).css("background-image",
                 "url(../../Textures/gui/bevel/topLeftButton.png)");
             $("#" + button).css("color", "#FAFCFD");
-            $("#" + button + "Tab").css("visibility","hidden");
+            $("#" + button + "Tab").css("visibility", "hidden");
             document.getElementById("EditorPanelTop").style.display = "none";
-            document.getElementById("EditorPanelBottom").style.visibility="hidden";
+            document.getElementById("EditorPanelBottom").style.visibility = "hidden";
         }
     }
 }
 
 // Patch node click event
 $(".nodeMap").click(function(event) {
-    var type = $(event.target).attr('data-type');
+    const type = $(event.target).attr('data-type');
     alert("patch: " + type);
 
     document.getElementById("patchName").innerHTML = type;
@@ -660,8 +659,8 @@ $(".minusBtn").click(function() {
     var tab = $(this).attr("data-cond");
     $("#" + tab).animate({"height": "toggle"});
 
-   $(this).toggleClass("minus");
-   $(this).toggleClass("plus");
+    $(this).toggleClass("minus");
+    $(this).toggleClass("plus");
 });
 
 
@@ -682,10 +681,10 @@ function updateMicrobeHUDBars(values){
     document.getElementById("microbeHUDPlayerATPMax").textContent =
          values.ATPMax;
 
-    var valueAtp = common.barHelper(values.compoundATP, values.ATPMax).replace("%","");
-    var valueHp = common.barHelper(values.hitpoints, values.maxHitpoints).replace("%","");
+    const valueAtp = common.barHelper(values.compoundATP, values.ATPMax).replace("%","");
+    const valueHp = common.barHelper(values.hitpoints, values.maxHitpoints).replace("%","");
 
-    const circles = document.querySelectorAll('#circleBars');
+    const circles = document.querySelectorAll("#circleBars");
 
     // ! instead of using totalProgress var, two hardCoded value are used
     // They are in thrive_gui.html at line 117 and 134.
@@ -695,14 +694,14 @@ function updateMicrobeHUDBars(values){
 
         progress = 100 - valueAtp;
         if(valueAtp < 2.5) {
-            circle.querySelector('#shapeAtp').style['stroke-dashoffset'] = 189.117;
+            circle.querySelector("#shapeAtp").style["stroke-dashoffset"] = 189.117;
         } else {
-            circle.querySelector('#shapeAtp').style['stroke-dashoffset'] = 
+            circle.querySelector("#shapeAtp").style["stroke-dashoffset"] = 
                 189.117 * progress / 100;
         }
 
         progress = 100 - valueHp;
-        circle.querySelector('#shapeHp').style['stroke-dashoffset'] = 244.393 * progress / 100;
+        circle.querySelector("#shapeHp").style["stroke-dashoffset"] = 244.393 * progress / 100;
     }
 
     document.getElementById("microbeHUDPlayerAmmonia").textContent =

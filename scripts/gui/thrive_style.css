@@ -95,7 +95,7 @@ video {
   background-color: rgb(0, 0, 0, 0.2);
 }
 
-#panelTitle{
+#panelTitle {
   display: block;
 }
 
@@ -156,7 +156,7 @@ video {
   top: -10px;
   text-align: center;
   line-height: 0;
-  font-size: 0pt;
+  font-size: 0;
 }
 
 .EnvironmentBar {
@@ -164,7 +164,7 @@ video {
   width: 180px;
   height: 25px;
   left: 20px;
-  margin-bottom: 0px;
+  margin-bottom: 0;
   margin-top: 6px;
   background-color: rgb(0, 0, 0, 0.2);
 }
@@ -231,7 +231,7 @@ video {
   position: relative;
   width: 0%;
   height: 0%;
-  background: rgb(0, 0, 0, 0.0);
+  background: rgb(0, 0, 0, 0);
 }
 
 /* Menu things */
@@ -406,7 +406,7 @@ video {
 }
 
 
-#topLeftButtons{
+#topLeftButtons {
   position: absolute;
   top: 10px;
   left: 5px;
@@ -415,7 +415,7 @@ video {
   font-weight: bold;
 }
 
-.topButtons{
+.topButtons {
   position: relative;
   display: inline-block;
   width: 133px;
@@ -432,11 +432,11 @@ video {
   vertical-align: middle;
   line-height: 44px;
   text-align: center;
-  background-color: #008A42;
+  background-color: #008a42;
   border-style: solid;
   border-width: 2px;
   border-radius: 5px;
-  border-color: rgba(17, 255, 213, 1.0);
+  border-color: rgba(17, 255, 213, 1);
   position: absolute;
   right: 20px;
   bottom: 5px;
@@ -450,30 +450,30 @@ video {
   left:1.5%;
 }
 
-#patchTab{
+#patchTab {
   position: absolute;
   width: 100%;
   height: 89%;
-  top:5%;
-  left:1.5%;
+  top: 5%;
+  left: 1.5%;
 }
 
 .nodeMap {
   border:2px 
-  solid rgba(0, 1, 28,0.6);
+    solid rgba(0, 1, 28,0.6);
   border-radius:10px;
 }
 
-.firstHalf{
+.firstHalf {
   position: relative;
   display: inline-block;
   width: 70%;
   height: 100%;
   z-index: 2;
   font-size: 50px;
-  background-color: rgba(0,32,36,0.75);
+  background-color: rgba(0, 32, 36, 0.75);
   border-style: solid;
-  border-color: #11FCD3;
+  border-color: #11fcd3;
   border-width: 1px;
   border-radius: 10px;
   text-align: center;
@@ -481,7 +481,7 @@ video {
   color: white;
 }
 
-#Map{
+#Map {
   position: absolute;
   top: 0%;
   left: 0%;
@@ -491,7 +491,7 @@ video {
 
 
 
-.secondHalf{
+.secondHalf {
   position: relative;
   display: inline-block;
   width: 25%;
@@ -499,15 +499,15 @@ video {
   margin-left: 1.75%;
   z-index: 2;
   font-size: 50px;
-  background-color: rgba(0,32,36,0.75);
+  background-color: rgba(0, 32, 36, 0.75);
   border-style: solid;
-  border-color: #11FCD3;
+  border-color: #11fcd3;
   border-width: 1px;
   border-radius: 10px;
   color: white;
 }
 
-.tabTitle{
+.tabTitle {
   text-align: center;
   position: relative;
   width: 100%;
@@ -516,14 +516,14 @@ video {
   font-size: 28pt;
 }
 
-#Allcondition{
+#Allcondition {
   position:absolute;
   width: 100%;
   height: calc(100% - 65px);
   font-size: 11pt;
 }
 
-.ConditionTab{
+.ConditionTab {
   position: relative;
   display: inline-block;
   height: auto;
@@ -560,19 +560,19 @@ video {
 .patchIcon {
   display: inline-block;
   vertical-align: middle;
-  width : 40px;
+  width: 40px;
   height: auto;
 }
 
-#microbeHUDPatchMeters{
-  position:relative;
+#microbeHUDPatchMeters {
+  position: relative;
   width: 100%;
   text-align: center;
   font-size: 14pt;
 }
 
 .minusBtn {
-  position:relative;
+  position: relative;
   display: inline-block;
   width: 27px;
   height: 27px;
@@ -582,7 +582,7 @@ video {
   background-position: center;
 }
 
-.minusBtn:hover{
+.minusBtn:hover {
   background-image: url("../../Textures/gui/bevel/minusButtonHover.png");
 }
 
@@ -590,18 +590,18 @@ video {
   display: block;
   margin-left: 20px;
   margin-top: 8px;
-  margin-bottom: 0px;
+  margin-bottom: 0;
   width: 100%;
   height: auto;
-  vertical-align:middle;
+  vertical-align: middle;
 }
 
 .condTitle {
   display: inline-block;
   position: relative;
-  height: auto
+  height: auto;
   font-size: 13pt;
-  vertical-align:middle;
+  vertical-align: middle;
   margin-left: 5px;
   padding-bottom: 28px;
 }
@@ -618,15 +618,15 @@ video {
 }
 
 
-#EditorPanelTop{
+#EditorPanelTop {
   display: none;
 }
 
-#EditorPanelBottom{
- visibility: hidden;
+#EditorPanelBottom {
+  visibility: hidden;
 }
 
-#microbeBottomBar{
+#microbeBottomBar {
   width: 500px;
   height: 46px;
   position: absolute;
@@ -660,7 +660,7 @@ video {
   background-image: url("../../Textures/gui/bevel/pauseButtonHover.png");
 }
 
-#compoundsButton{
+#compoundsButton {
   position: relative;
   display: inline-block;
   width: 42px;
@@ -681,7 +681,7 @@ video {
   background-image: url("../../Textures/gui/bevel/compoundsButtonHover.png");
 }
 
-#chemicalButton{
+#chemicalButton {
   position: relative;
   display: inline-block;
   width: 42px;
@@ -770,12 +770,12 @@ video {
   height: 20px;
   background-image: url("../../Textures/gui/bevel/expandPanelActive.png");
   background-repeat: no-repeat;
-  background-size: 20px,20px;
+  background-size: 20px, 20px;
   background-position: center;
 }
 
 #expandPanel:hover {
-  background-size: 22px,22px;
+  background-size: 22px, 22px;
 }
 
 #compressPanel {
@@ -783,16 +783,16 @@ video {
   float: right;
   margin-top: 9.5px;
   margin-right: 15px;
-  width:  20px;
+  width: 20px;
   height: 20px;
   background-repeat: no-repeat;
   background-position: center;
-  background-size: 20px,20px;
+  background-size: 20px, 20px;
   background-image: url("../../Textures/gui/bevel/compressPanel.png");
 }
 
 #compressPanel:hover {
-  background-size: 22px,22px;
+  background-size: 22px, 22px;
 }
 
 #Panels{
@@ -833,7 +833,7 @@ video {
 }
 
 
-#agentsPanel{
+#agentsPanel {
   position: relative;
   width: 332px;
   height: 90px; 
@@ -886,7 +886,7 @@ video {
 }
 
 #microbeHUDPlayerNitrogenBar {
-  background-color: #68B26E;
+  background-color: #68b26e;
 }
 
 #AminoAcidsBar {
@@ -898,7 +898,7 @@ video {
 }
 
 #microbeHUDPlayerAmmoniaBar {
-  background-color: #A16500;
+  background-color: #a16500;
 }
 
 #GlucoseIcon {
@@ -914,7 +914,7 @@ video {
 }
 
 #microbeHUDPlayerCO2Bar {
-  background-color: #2447AE;
+  background-color: #2447ae;
 }
 
 #FattyAcidsIcon {
@@ -951,7 +951,7 @@ video {
 }
 
 
-#ATPIconBar{
+#ATPIconBar {
   position: absolute;
   width: 19px;
   height: 19px;
@@ -1004,7 +1004,7 @@ video {
 }
 
 #microbeHUDPlayerHydrogenSulfideBar {
-  background-color: #646B28;
+  background-color: #646b28;
 }
 
 #microbeToEditorButton,
@@ -1129,7 +1129,7 @@ video {
   left: 0;
 }
 
-.dataValue{
+.dataValue {
   position: absolute;
   bottom: 150px;
   right: 65px;
@@ -1137,7 +1137,7 @@ video {
   height: 120px;
 }
 
-.population{
+.population {
   position: absolute;
   width: 200px;
   height: 30px;
@@ -1437,7 +1437,6 @@ video {
 #Undo.DisabledButton {
   background-image: url("../../Textures/gui/bevel/SmallThreeDisabled.png");
 }
-
 
 
 #Redo.DisabledButton {
