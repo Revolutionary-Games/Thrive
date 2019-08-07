@@ -182,10 +182,10 @@ bool
         ThriveGame::Get()->finishEditingClicked();
         return true;
     } else if(customType == "patchButtonClicked") {
-	
-		ThriveGame::Get()->patchButtonClicked();
+
+        ThriveGame::Get()->patchButtonClicked();
         return true;
-	}else if(customType == "killPlayerCellClicked") {
+    } else if(customType == "killPlayerCellClicked") {
 
         ThriveGame::Get()->killPlayerCellClicked();
         return true;

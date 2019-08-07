@@ -466,7 +466,7 @@ void
 }
 
 void
-ThriveGame::patchButtonClicked()
+    ThriveGame::patchButtonClicked()
 {
     m_impl->m_cellStageKeys->setEnabled(false);
 }
