@@ -499,7 +499,7 @@ function onCompressPanelClicked() {
     document.getElementById('expandPanel').style.backgroundImage = 
         "url('../../Textures/gui/bevel/expandPanel.png')";
 
-    const row1 = document.getElementById('row1');
+    var row1 = document.getElementById('row1');
     var bars = row1.getElementsByClassName('Bar');
     var title =  row1.getElementsByClassName('BarTitle');
     var barValues = row1.getElementsByClassName('BarValue');
@@ -521,7 +521,7 @@ function onCompressPanelClicked() {
     }
 
     //! ROW 2
-    const row2 =  document.getElementById('row2');
+    var row2 =  document.getElementById('row2');
     bars = row2.getElementsByClassName('Bar');
     title =  row2.getElementsByClassName('BarTitle');
     barValues = row2.getElementsByClassName('BarValue');
@@ -559,47 +559,47 @@ function onExpandPanelClicked() {
     document.getElementById('expandPanel').style.backgroundImage = 
         "url('../../Textures/gui/bevel/expandPanelActive.png')";
 
-    var row1 = document.getElementById('row1');
-    var bars = row1.getElementsByClassName('Bar');
-    var title =  row1.getElementsByClassName('BarTitle');
-    var barValues = row1.getElementsByClassName('BarValue');
+    row1 = document.getElementById('row1');
+    bars = row1.getElementsByClassName('Bar');
+    title =  row1.getElementsByClassName('BarTitle');
+    barValues = row1.getElementsByClassName('BarValue');
 
-    for (var i = 0; i < bars.length; i++) {
-        bars[i].style.display = "block";
-        bars[i].style.marginBottom = "4px";
-        bars[i].style.marginTop = "6px";
-        bars[i].style.marginLeft = "20px";
-        bars[i].style.width = "215px";
+    for (const bar of bars) {
+        bar.style.display = "block";
+        bar.style.marginBottom = "4px";
+        bar.style.marginTop = "6px";
+        bar.style.marginLeft = "20px";
+        bar.style.width = "215px";
     }
 
-     for (var i = 0; i < title.length; i++) {
-        title[i].style.visibility  = "visible";
+    for (const tit of title) {
+        tit.style.visibility  = "visible";
     }
 
-    for (var i = 0; i < barValues.length; i++) {
+    for (const barValue of  barValues) {
         barValues[i].style.left = "120px";
     }
 
     //! ROW 2
-    var row2 =  document.getElementById('row2');
-    var bars = row2.getElementsByClassName('Bar');
-    var title =  row2.getElementsByClassName('BarTitle');
-    var barValues = row2.getElementsByClassName('BarValue');
+    row2 =  document.getElementById('row2');
+    bars = row2.getElementsByClassName('Bar');
+    title =  row2.getElementsByClassName('BarTitle');
+    barValues = row2.getElementsByClassName('BarValue');
 
-    for (var i = 0; i < bars.length; i++) {
-        bars[i].style.display = "block";
-        bars[i].style.marginLeft = "20px";
-        bars[i].style.marginBottom = "4px";
-        bars[i].style.marginTop = "6px";
-        bars[i].style.width = "215px";
+    for (const bar of bars) {
+        bar.style.display = "block";
+        bar.style.marginLeft = "20px";
+        bar.style.marginBottom = "4px";
+        bar.style.marginTop = "6px";
+        bar.style.width = "215px";
     }
 
-     for (var i = 0; i < title.length; i++) {
-        title[i].style.visibility  = "visible";
+    for (const tit of title) {
+        tit.style.visibility  = "visible";
     }
 
-    for (var i = 0; i < barValues.length; i++) {
-        barValues[i].style.left = "120px";
+    for (const barValue of barValues) {
+        barValue.style.left = "120px";
     }
 }
 
@@ -621,8 +621,8 @@ function onPatchReportClicked() {
         doEnterMicrobeEditor();
     }
 
-    for(var i = 0; i< buttons.length; i++) {
-        if(buttons[i] == this.id) {
+    for(const button of  buttons) {
+        if(button == this.id) {
 
             $("#" + this.id).css("background-image", "url(../../Textures/gui/bevel/topLeftButtonActive.png)");
             $("#" + this.id).css("color", "#112B36");
@@ -635,9 +635,9 @@ function onPatchReportClicked() {
             }
         }
          else {
-            $("#" + buttons[i]).css("background-image", "url(../../Textures/gui/bevel/topLeftButton.png)");
-            $("#" + buttons[i]).css("color", "#FAFCFD");
-            $("#" + buttons[i] + "Tab").css("visibility","hidden");
+            $("#" + button).css("background-image", "url(../../Textures/gui/bevel/topLeftButton.png)");
+            $("#" + button).css("color", "#FAFCFD");
+            $("#" + button + "Tab").css("visibility","hidden");
             document.getElementById("EditorPanelTop").style.display = "none";
             document.getElementById("EditorPanelBottom").style.visibility="hidden";
         }
@@ -687,17 +687,17 @@ function updateMicrobeHUDBars(values){
     // They are in thrive_gui.html at line 117 and 134.
     // two loops could be used but this need draw two differents svg for each circle
 
-    for(var i = 0; i < circles.length; i++) {
+    for(const circle of circles) {
 
         progress = 100 - valueAtp;
         if(valueAtp < 2.5) {
-            circles[i].querySelector('#shapeAtp').style['stroke-dashoffset'] = 189.117;
+            circle.querySelector('#shapeAtp').style['stroke-dashoffset'] = 189.117;
         } else {
-            circles[i].querySelector('#shapeAtp').style['stroke-dashoffset'] = 189.117 * progress / 100;
+            circle.querySelector('#shapeAtp').style['stroke-dashoffset'] = 189.117 * progress / 100;
         }
 
         progress = 100 - valueHp;
-        circles[i].querySelector('#shapeHp').style['stroke-dashoffset'] = 244.393 * progress / 100;
+        circle.querySelector('#shapeHp').style['stroke-dashoffset'] = 244.393 * progress / 100;
     }
 
     document.getElementById("microbeHUDPlayerAmmonia").textContent =
@@ -741,5 +741,4 @@ function updateMicrobeHUDBars(values){
         values.IronMax;
     document.getElementById("microbeHUDPlayerIronBar").style.width =
         common.barHelper(values.compoundIron, values.IronMax);
-
 }
