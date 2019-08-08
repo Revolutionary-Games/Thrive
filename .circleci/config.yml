@@ -47,7 +47,7 @@ jobs:
        #     working_directory: ~/leviathan/build/bin
        # - store_test_results:
        #     path: /reports/reports
-  format_script:
+   format_script:
      working_directory: ~/Thrive
      docker:
        - image: hhyyrylainen/thrive-deps:v1
