@@ -47,3 +47,41 @@ jobs:
        #     working_directory: ~/leviathan/build/bin
        # - store_test_results:
        #     path: /reports/reports
+  format_script:
+     working_directory: ~/Thrive
+     docker:
+       - image: hhyyrylainen/thrive-deps:v1
+     steps:
+       - checkout
+       # eslint is completely silly in refusing to use a globally installed plugin
+       - restore_cache:
+           keys:
+             - v1-npm-{{ checksum ".eslintrc.js" }}       
+       - run: npm install eslint-plugin-html@latest --save-dev
+       - save_cache:
+           key: v1-npm-{{ checksum ".eslintrc.js" }}
+           paths:
+             - node_modules
+       - run: ./RunCodeFormatting.rb
+       - run:
+           when: always
+           command: |
+             git diff > format_diff.patch
+             if grep -q '[^[:space:]]' < clang_format_diff.patch; then
+                 echo "Formatter found things to be fixed:"
+                 cat clang_format_diff.patch
+                 exit 1
+             else
+                 echo "No changes made"
+                 rm -f format_diff.patch
+             fi
+       - store_artifacts:
+          path: format_diff.patch
+
+
+workflows:
+  version: 2
+  build_and_format:
+    jobs:
+      - build
+      - format_script
