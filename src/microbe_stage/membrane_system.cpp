@@ -230,7 +230,10 @@ void
         return;
 
     // This is a triangle fan so we only need 2 + n vertices
+    // This is actually a triangle list, but the index buffer is used to build
+    // the indices (to emulate a triangle fan)
     const auto bufferSize = vertices2D.size() + 2;
+    const auto indexSize = vertices2D.size() * 3;
 
     bs::MESH_DESC meshDesc;
     meshDesc.numVertices = bufferSize;
@@ -241,21 +244,25 @@ void
     // created) isn't done. This is recreated every time
     meshDesc.usage = bs::MU_STATIC;
     meshDesc.subMeshes.push_back(
-        bs::SubMesh(0, bufferSize, bs::DOT_TRIANGLE_FAN));
+        bs::SubMesh(0, indexSize, bs::DOT_TRIANGLE_LIST));
 
     meshDesc.vertexDesc = vertexDesc;
 
     // TODO: 16 bit indices would save memory
     bs::SPtr<bs::MeshData> meshData =
-        bs::MeshData::create(bufferSize, bufferSize, vertexDesc, bs::IT_32BIT);
+        bs::MeshData::create(bufferSize, indexSize, vertexDesc, bs::IT_32BIT);
 
-    // Index mapping to reverse all points
+    // Index mapping to build all triangles
     uint32_t* indexWrite = meshData->getIndices32();
 
-    indexWrite[0] = 0;
+    std::remove_pointer_t<decltype(indexWrite)> currentVertexIndex = 1;
 
-    for(size_t i = 1; i < bufferSize; ++i) {
-        indexWrite[i] = bufferSize - i;
+    for(size_t i = 0; i < indexSize; i += 3) {
+        indexWrite[i] = 0;
+        indexWrite[i + 1] = currentVertexIndex + 1;
+        indexWrite[i + 2] = currentVertexIndex;
+
+        ++currentVertexIndex;
     }
 
     // Write mesh data //
