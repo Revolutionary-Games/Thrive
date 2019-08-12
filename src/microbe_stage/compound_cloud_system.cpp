@@ -859,6 +859,7 @@ void
 
     cloud.m_texture = bs::Texture::create(cloud.m_textureData1, bs::TU_DYNAMIC);
 
+    // TODO: this should be loaded just once to be more efficient
     auto shader =
         Engine::Get()->GetGraphics()->LoadShaderByName("compound_cloud.bsl");
 
