@@ -295,6 +295,7 @@ void setupOrganelles(){
     cytoplasmParameters.mass = 0.1;
     cytoplasmParameters.gene = "Y";
     cytoplasmParameters.mesh = ""; //it's an empty hex
+    cytoplasmParameters.texture = "";
     cytoplasmParameters.chanceToCreate = 1;
     cytoplasmParameters.prokaryoteChance = 1;
     cytoplasmParameters.mpCost = 22;
@@ -644,6 +645,7 @@ void setupOrganelles(){
     protoplasmParameters.mass = 0.1;
     protoplasmParameters.gene = "y";
     protoplasmParameters.mesh = ""; //it's an empty hex
+    protoplasmParameters.texture = "";
     protoplasmParameters.chanceToCreate = 0;
     protoplasmParameters.prokaryoteChance = 1;
     protoplasmParameters.mpCost = 55;

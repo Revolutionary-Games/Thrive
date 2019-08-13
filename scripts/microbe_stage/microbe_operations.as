@@ -1196,7 +1196,7 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
         else {
             auto model = world.Create_Model(chunkEntity, "mitochondrion.fbx",
                 getOrganelleMaterialWithTexture(
-                    microbeComponent.organelles[organelleIndex].organelle.texture,
+                    "mitochondrion.png",
                     microbeComponent.speciesColour));
             }
         auto rigidBody = world.Create_Physics(chunkEntity, chunkPosition);
