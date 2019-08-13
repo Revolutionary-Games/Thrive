@@ -1490,3 +1490,25 @@ div::-webkit-scrollbar-thumb:hover {
   color: #d3d3d3;
   font-size: 85%;
 }
+
+#debugOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background: none;
+  z-index: 1000;
+  text-shadow: 1px 1px #111a;
+  font-size: 1.2em;
+  font-family: "Sans";
+}
+
+#currentFPS {
+  font-size: 1.8em;
+}
+
+#debugOverlay span {
+  padding-right: 3px;
+  display: inline-block;
+  vertical-align: top;
+}

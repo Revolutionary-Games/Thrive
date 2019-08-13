@@ -1,13 +1,17 @@
+// ------------------------------------ //
 #include "general/global_keypresses.h"
+
+#include "ThriveGame.h"
 
 #include <Application/KeyConfiguration.h>
 #include <Engine.h>
 #include <Window.h>
-
 using namespace thrive;
+// ------------------------------------ //
 
 GlobalUtilityKeyHandler::GlobalUtilityKeyHandler(KeyConfiguration& keys) :
-    m_screenshot(keys.ResolveControlNameToFirstKey("Screenshot"))
+    m_screenshot(keys.ResolveControlNameToFirstKey("Screenshot")),
+    m_debugOverlay(keys.ResolveControlNameToFirstKey("ToggleDebugOverlay"))
 {}
 // ------------------------------------ //
 bool
@@ -19,8 +23,17 @@ bool
     // LOG_INFO("Global keypress: " + std::to_string(key));
 
     if(m_screenshot.Match(key, modifiers)) {
-        LOG_INFO("Screenshot Time");
+        LOG_INFO("Screenshot key pressed");
         Engine::Get()->SaveScreenShot();
+        return true;
+    }
+
+    if(m_debugOverlay.Match(key, modifiers)) {
+        if(ThriveGame::Get()) {
+            ThriveGame::Get()->toggleDebugOverlay();
+        } else {
+            LOG_WARNING("Can't toggle debug overlay");
+        }
         return true;
     }
 

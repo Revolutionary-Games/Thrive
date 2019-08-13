@@ -91,6 +91,8 @@ public:
     void
         onZoomChange(float amount);
 
+    void
+        toggleDebugOverlay();
 
     // ------------------------------------ //
     //! \brief Begins connecting to server at url
@@ -180,6 +182,9 @@ private:
     //! Controls if cheat keys are enabled.
     //! These are enabled by default when not making releases
     bool m_cheatsEnabled = false;
+
+    //! True when debug overlay is enabled and updates should be sent to it
+    bool m_debugOverlayEnabled = false;
 
     // Some variables that have complex types are hidden here to not
     // have to include tons of headers here

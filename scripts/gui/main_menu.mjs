@@ -79,7 +79,6 @@ export function runMenuSetup(){
 
             event.stopPropagation();
             onEscapePressed();
-
         }
     }, true);
 
@@ -105,6 +104,11 @@ export function runMenuSetup(){
         // Server status message display
         Leviathan.OnGeneric("ConnectStatusMessage", (event, vars) => {
             handleConnectionStatusEvent(vars);
+        });
+
+        // Debug overlay data
+        Leviathan.OnGeneric("ThriveDebugOverlayData", (event, vars) => {
+            handleDebugOverlayData(vars);
         });
 
         // Start intro video
@@ -270,6 +274,18 @@ function handleConnectionStatusEvent(event){
     if(event.server)
         document.getElementById("currentServerAddress").innerText = event.server;
     document.getElementById("currentConnectionStatusMessage").innerText = event.message;
+}
+
+function handleDebugOverlayData(vars){
+    if(vars.show){
+        document.getElementById("debugOverlay").style.display = "block";
+    } else {
+        document.getElementById("debugOverlay").style.display = "none";
+    }
+
+    document.getElementById("currentFPS").innerText = vars.fps;
+    document.getElementById("avgFrameTime").innerText = vars.avgFrameTime.toFixed(1) + "ms";
+    document.getElementById("currentTickTime").innerText = vars.tickTime + "ms";
 }
 
 function onMicrobeIntroEnded(error){

@@ -15,6 +15,7 @@
 #include "thrive_world_factory.h"
 
 
+#include <Common/DataStoring/DataStore.h>
 #include <FileSystem.h>
 #include <GUI/GuiView.h>
 #include <Handlers/ObjectLoader.h>
@@ -664,6 +665,31 @@ void
 }
 // ------------------------------------ //
 void
+    ThriveGame::toggleDebugOverlay()
+{
+    if(m_debugOverlayEnabled) {
+
+        m_debugOverlayEnabled = false;
+
+        Leviathan::GenericEvent::pointer event =
+            new Leviathan::GenericEvent("ThriveDebugOverlayData");
+
+        auto vars = event->GetVariables();
+
+        vars->Add(std::make_shared<NamedVariableList>(
+            "show", new Leviathan::BoolBlock(false)));
+
+        Engine::Get()->GetEventHandler()->CallEvent(event.detach());
+
+    } else {
+
+        m_debugOverlayEnabled = true;
+
+        // The data event will make it visible
+    }
+}
+// ------------------------------------ //
+void
     ThriveGame::connectToServer(const std::string& url)
 {
     LOG_INFO("Connecting to server at: " + url);
@@ -965,7 +991,28 @@ void
 // ------------------------------------ //
 void
     ThriveGame::Tick(int mspassed)
-{}
+{
+    if(m_debugOverlayEnabled) {
+        Leviathan::GenericEvent::pointer event =
+            new Leviathan::GenericEvent("ThriveDebugOverlayData");
+
+        auto vars = event->GetVariables();
+
+        auto store = Leviathan::DataStore::Get();
+
+        vars->Add(std::make_shared<NamedVariableList>(
+            "show", new Leviathan::BoolBlock(true)));
+        vars->Add(std::make_shared<NamedVariableList>(
+            "fps", new Leviathan::IntBlock(store->GetFPS())));
+        // Convert from micro to milliseconds
+        vars->Add(std::make_shared<NamedVariableList>("avgFrameTime",
+            new Leviathan::FloatBlock(store->GetFrameTimeAverage() / 1000.f)));
+        vars->Add(std::make_shared<NamedVariableList>(
+            "tickTime", new Leviathan::FloatBlock(store->GetTickTime())));
+
+        Engine::Get()->GetEventHandler()->CallEvent(event.detach());
+    }
+}
 
 bool
     ThriveGame::createImpl()
@@ -1090,6 +1137,7 @@ void
     keyconfigobj->AddKeyIfMissing(guard, "ZoomOut", {"-", "Keypad -"});
     keyconfigobj->AddKeyIfMissing(guard, "RotateRight", {"A"});
     keyconfigobj->AddKeyIfMissing(guard, "RotateLeft", {"D"});
+    keyconfigobj->AddKeyIfMissing(guard, "ToggleDebugOverlay", {"F3"});
 }
 // ------------------------------------ //
 bool
