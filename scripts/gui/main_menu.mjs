@@ -285,7 +285,16 @@ function handleDebugOverlayData(vars){
 
     document.getElementById("currentFPS").innerText = vars.fps;
     document.getElementById("avgFrameTime").innerText = vars.avgFrameTime.toFixed(1) + "ms";
+    document.getElementById("currentFrameTime").innerText = vars.frameTime.toFixed(1) + "ms";
+    document.getElementById("maxFrameTime").innerText = vars.maxFrameTime.toFixed(1) + "ms";
     document.getElementById("currentTickTime").innerText = vars.tickTime + "ms";
+
+    if(vars.ticksBehind){
+        document.getElementById("currentTicksBehind").innerText =
+            "TICK UPDATES ARE BEHIND BY " + vars.ticksBehind + " TICKS";
+    } else {
+        document.getElementById("currentTicksBehind").innerText = "";
+    }
 }
 
 function onMicrobeIntroEnded(error){

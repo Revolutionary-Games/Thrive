@@ -1005,10 +1005,18 @@ void
         vars->Add(std::make_shared<NamedVariableList>(
             "fps", new Leviathan::IntBlock(store->GetFPS())));
         // Convert from micro to milliseconds
+        vars->Add(std::make_shared<NamedVariableList>("frameTime",
+            new Leviathan::FloatBlock(store->GetFrameTime() / 1000.f)));
+        vars->Add(std::make_shared<NamedVariableList>("maxFrameTime",
+            new Leviathan::FloatBlock(store->GetFrameTimeMax() / 1000.f)));
         vars->Add(std::make_shared<NamedVariableList>("avgFrameTime",
             new Leviathan::FloatBlock(store->GetFrameTimeAverage() / 1000.f)));
+
         vars->Add(std::make_shared<NamedVariableList>(
             "tickTime", new Leviathan::FloatBlock(store->GetTickTime())));
+
+        vars->Add(std::make_shared<NamedVariableList>(
+            "ticksBehind", new Leviathan::IntBlock(store->GetTicksBehind())));
 
         Engine::Get()->GetEventHandler()->CallEvent(event.detach());
     }

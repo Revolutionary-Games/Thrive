@@ -25,8 +25,10 @@
     <!-- Debug overlay that is on top of everything (except the videos that are on another layer -->
     <div id="debugOverlay" style="display: none;">
       <span id="currentFPS">performance data not updated</span>
-      <span>frame avg: <span id="avgFrameTime"></span></span>
+      <span>frame: <span id="currentFrameTime"></span> max: <span id="maxFrameTime"></span>
+        avg: <span id="avgFrameTime"></span></span>
       <span>tick: <span id="currentTickTime"></span></span>
+      <span id="currentTicksBehind"></span>
     </div>
 
     <!-- This blocks out everything until javascript has loaded (shows the tasteful thrive logo) -->
