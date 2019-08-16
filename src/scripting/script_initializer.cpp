@@ -216,32 +216,28 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-    if(engine->RegisterObjectProperty("Compound", "Ogre::ColourValue colour",
-           asOFFSET(Compound, colour)) < 0) {
+    if(engine->RegisterObjectProperty(
+           "Compound", "Float4 colour", asOFFSET(Compound, colour)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
     // ------------------------------------ //
     // Biome
     // define colors for sunglight here aswell
-    if(engine->RegisterObjectProperty("Biome",
-           "Ogre::ColourValue specularColors",
+    if(engine->RegisterObjectProperty("Biome", "Float4 specularColors",
            asOFFSET(Biome, specularColors)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
-    if(engine->RegisterObjectProperty("Biome",
-           "Ogre::ColourValue diffuseColors",
+    if(engine->RegisterObjectProperty("Biome", "Float4 diffuseColors",
            asOFFSET(Biome, diffuseColors)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-    if(engine->RegisterObjectProperty("Biome",
-           "Ogre::ColourValue upperAmbientColor",
+    if(engine->RegisterObjectProperty("Biome", "Float4 upperAmbientColor",
            asOFFSET(Biome, upperAmbientColor)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
-    if(engine->RegisterObjectProperty("Biome",
-           "Ogre::ColourValue lowerAmbientColor",
+    if(engine->RegisterObjectProperty("Biome", "Float4 lowerAmbientColor",
            asOFFSET(Biome, lowerAmbientColor)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
@@ -389,6 +385,13 @@ bool
     if(engine->RegisterObjectMethod("ChunkData",
            "const string getMesh(uint64 index) const",
            asMETHOD(ChunkData, getMesh), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectMethod("ChunkData",
+           "const string getTexture(uint64 index) const",
+           asMETHOD(ChunkData, getTexture), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
@@ -837,7 +840,7 @@ bool
     }
 
     if(engine->RegisterObjectMethod("MembraneComponent",
-           "Ogre::Vector3 GetExternalOrganelle(double x, double y)",
+           "Float3 GetExternalOrganelle(double x, double y)",
            asMETHOD(MembraneComponent, GetExternalOrganelle),
            asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
@@ -1383,7 +1386,6 @@ SpawnerTypeId
 bool
     bindScriptAccessibleSystems(asIScriptEngine* engine)
 {
-
     // ------------------------------------ //
     // SpawnSystem
     if(engine->RegisterFuncdef(
@@ -1455,6 +1457,26 @@ bool
            asMETHOD(CompoundCloudSystem, takeCompound), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
+
+    // ------------------------------------ //
+    // PlayerMicrobeControlSystem
+
+    // static
+    if(engine->SetDefaultNamespace("PlayerMicrobeControlSystem") < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalFunction(
+           "Float3 getTargetPoint(GameWorld &in worldWithCamera)",
+           asFUNCTION(PlayerMicrobeControlSystem::getTargetPoint),
+           asCALL_CDECL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->SetDefaultNamespace("") < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
 
     return true;
 }

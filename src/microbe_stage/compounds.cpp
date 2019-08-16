@@ -10,7 +10,7 @@ Compound::Compound(size_t id,
     bool isCloud,
     bool isUseful,
     bool isEnvironmental,
-    Ogre::ColourValue colour) :
+    Float4 colour) :
     RegistryType(id, name),
     isCloud(isCloud), isUseful(isUseful), isEnvironmental(isEnvironmental),
     colour(colour)
@@ -26,5 +26,5 @@ Compound::Compound(Json::Value value)
     float r = value["colour"]["r"].asFloat();
     float g = value["colour"]["g"].asFloat();
     float b = value["colour"]["b"].asFloat();
-    colour = Ogre::ColourValue(r, g, b, 1.0);
+    colour = Float4(r, g, b, 1.0);
 }

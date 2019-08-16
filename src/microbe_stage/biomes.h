@@ -2,7 +2,8 @@
 
 #include "general/json_registry.h"
 
-#include <OgreColourValue.h>
+#include <Common/Types.h>
+
 #include <map>
 #include <string>
 #include <vector>
@@ -45,6 +46,16 @@ public:
     {}
 };
 
+struct ChunkMeshData {
+public:
+    ChunkMeshData(const std::string& mesh, const std::string& texture) :
+        mesh(mesh), texture(texture)
+    {}
+
+    std::string mesh;
+    std::string texture;
+};
+
 struct ChunkData {
 public:
     std::string name = "";
@@ -58,7 +69,7 @@ public:
     double damages = 0.0f;
     bool deleteOnTouch = false;
 
-    std::vector<std::string> meshes;
+    std::vector<ChunkMeshData> meshes;
     std::map<size_t, ChunkCompoundData> chunkCompounds;
 
     // Move constructor
@@ -96,7 +107,10 @@ public:
         getMeshListSize();
 
     std::string
-        getMesh(size_t index);
+        getMesh(size_t index) const;
+
+    std::string
+        getTexture(size_t index) const;
 };
 
 class SimulationParameters;
@@ -107,11 +121,11 @@ public:
     std::map<size_t, ChunkData> chunks;
     std::string background = "error";
 
-    Ogre::ColourValue specularColors;
-    Ogre::ColourValue diffuseColors;
+    Float4 specularColors;
+    Float4 diffuseColors;
     // Ambient Lights
-    Ogre::ColourValue upperAmbientColor;
-    Ogre::ColourValue lowerAmbientColor;
+    Float4 upperAmbientColor;
+    Float4 lowerAmbientColor;
 
     float lightPower;
     Biome();

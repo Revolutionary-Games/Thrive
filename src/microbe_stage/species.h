@@ -4,7 +4,6 @@
 
 #include "membrane_system.h"
 
-#include <OgreColourValue.h>
 #include <map>
 #include <string>
 #include <vector>
@@ -16,7 +15,7 @@ class SimulationParameters;
 class Species : public RegistryType {
 public:
     double spawnDensity = 0.0;
-    Ogre::ColourValue colour;
+    Float4 colour;
     bool isBacteria;
     std::string genus;
     std::string epithet;

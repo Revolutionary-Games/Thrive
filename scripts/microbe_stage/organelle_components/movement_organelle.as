@@ -64,9 +64,8 @@ class MovementOrganelle : OrganelleComponent{
 
         // Create animation component
         if(IsInGraphicalMode()){
-            Animated@ animated = organelle.world.Create_Animated(organelle.organelleEntity,
-                model.GraphicalObject);
-            SimpleAnimation moveAnimation("Move");
+            Animated@ animated = organelle.world.Create_Animated(organelle.organelleEntity);
+            SimpleAnimation moveAnimation("flagellum_move.animation");
             moveAnimation.Loop = true;
             // 0.25 is the "idle" animation speed when the flagellum isn't used
             moveAnimation.SpeedFactor = 0.25f;
@@ -84,8 +83,8 @@ class MovementOrganelle : OrganelleComponent{
 
             renderNode.Node.setPosition(organellePos);
 
-            renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(angle),
-                    Ogre::Vector3(0, 1, 1)));
+            renderNode.Node.setOrientation(bs::Quaternion(bs::Degree(angle),
+                    bs::Vector3(0, 1, 1)));
         }
     }
 
@@ -117,14 +116,15 @@ class MovementOrganelle : OrganelleComponent{
         if(forceMagnitude > 0){
             if(direction.LengthSquared() < EPSILON || this.force.LengthSquared() < EPSILON){
                 this.movingTail = false;
-                if(animated !is null)
-                    animated.GetAnimation(0).SpeedFactor = 0.25f;
+
+                _setSpeedFactor(animated, 0.25f);
                 return Float3(0, 0, 0);
             }
 
             this.movingTail = true;
-            if(animated !is null)
-                animated.GetAnimation(0).SpeedFactor = 1.3;
+            // TODO: make only one speedfactor call per tick (currently 2 might be made)
+            _setSpeedFactor(animated, 2.3f);
+
             // 7 per second per flagella (according to microbe descisions)
             //dropped to 7
             double energy = abs(FLAGELLA_ENERGY_COST/milliseconds);
@@ -138,8 +138,7 @@ class MovementOrganelle : OrganelleComponent{
                     milliseconds;
                 this.movingTail = false;
 
-                if(animated !is null)
-                    animated.GetAnimation(0).SpeedFactor = 0.25f;
+                _setSpeedFactor(animated, 0.25f);
             }
 
             float impulseMagnitude = (FLAGELLA_BASE_FORCE * microbeComponent.movementFactor *
@@ -157,8 +156,7 @@ class MovementOrganelle : OrganelleComponent{
             if(this.movingTail){
                 this.movingTail = false;
 
-                if(animated !is null)
-                    animated.GetAnimation(0).SpeedFactor = 0.25f;
+                _setSpeedFactor(animated, 0.25f);
             }
         }
 
@@ -192,13 +190,10 @@ class MovementOrganelle : OrganelleComponent{
         if (renderNode !is null && IsInGraphicalMode())
         {
             renderNode.Node.setPosition(membraneCoords);
-            renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(90),
-                    Ogre::Vector3(1, 0, 0)) * Ogre::Quaternion(Ogre::Degree(180),
-                        Ogre::Vector3(0, 1, 0)) * Ogre::Quaternion(Ogre::Degree(angle),
-                            Ogre::Vector3(0, 0, 1)));
-            //renderNode.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(angle),
-            //        Ogre::Vector3(0, 1, 0))*Ogre::Quaternion(Ogre::Degree(270),
-            //            Ogre::Vector3(0, 0, 1)));
+            renderNode.Node.setOrientation(bs::Quaternion(bs::Degree(90),
+                    bs::Vector3(1, 0, 0)) * bs::Quaternion(bs::Degree(180),
+                        bs::Vector3(0, 1, 0)) * bs::Quaternion(bs::Degree(angle),
+                            bs::Vector3(0, 0, 1)));
         }
 
         //Grab components
@@ -213,6 +208,16 @@ class MovementOrganelle : OrganelleComponent{
 
         if(force != Float3(0, 0, 0))
             microbeComponent.addMovementForce(force);
+    }
+
+    private void _setSpeedFactor(Animated@ animated, float speed)
+    {
+        if(animated !is null){
+            if(animated.GetAnimation(0).SpeedFactor != speed){
+                animated.GetAnimation(0).SpeedFactor = speed;
+                animated.Marked = true;
+            }
+        }
     }
 
     // This is needed to update the positioning on each update

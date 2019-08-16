@@ -1,6 +1,6 @@
 #pragma once
 
-struct asIScriptEngine;
+class asIScriptEngine;
 
 namespace thrive {
 

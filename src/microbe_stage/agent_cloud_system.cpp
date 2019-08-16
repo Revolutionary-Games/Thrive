@@ -1,5 +1,5 @@
 #include "microbe_stage/agent_cloud_system.h"
-#include "microbe_stage/membrane_system.h"
+// #include "microbe_stage/membrane_system.h"
 
 // #include "bullet/collision_system.h"
 // #include "bullet/rigid_body_system.h"
@@ -64,7 +64,7 @@ AgentCloudComponent::AgentCloudComponent(CompoundId id,
     float green,
     float blue) :
     Leviathan::Component(TYPE),
-    color(Ogre::ColourValue(red, green, blue)), m_compoundId(id)
+    color(red, green, blue, 1.f), m_compoundId(id)
 {}
 
 // void

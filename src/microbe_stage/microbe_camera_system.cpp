@@ -61,6 +61,11 @@ void
             cameraPos.Marked = true;
         }
 
+        // Update background distance
+        if(ThriveGame::Get())
+            ThriveGame::Get()->notifyCameraDistance(
+                cameraPos.Members._Position.Y);
+
     } catch(const Leviathan::NotFound&) {
 
         LOG_WARNING("MicrobeCameraSystem: failed to Run (missing component?)");

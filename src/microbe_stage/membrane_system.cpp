@@ -1,14 +1,12 @@
 #include "membrane_system.h"
 
-#include <OgreMaterial.h>
-#include <OgreMaterialManager.h>
-#include <OgreMesh2.h>
-#include <OgreMeshManager2.h>
-#include <OgreRoot.h>
-#include <OgreSceneManager.h>
-#include <OgreSubMesh2.h>
-#include <OgreTechnique.h>
-#include <OgreTextureUnitState.h>
+#include <Engine.h>
+#include <Rendering/Graphics.h>
+#include <bsfCore/Components/BsCRenderable.h>
+#include <bsfCore/Material/BsMaterial.h>
+#include <bsfCore/Mesh/BsMesh.h>
+#include <bsfCore/RenderAPI/BsVertexDataDesc.h>
+#include <bsfCore/Scene/BsSceneObject.h>
 
 #include <algorithm>
 #include <atomic>
@@ -18,44 +16,23 @@ using namespace thrive;
 ////////////////////////////////////////////////////////////////////////////////
 // Membrane Component
 ////////////////////////////////////////////////////////////////////////////////
-static std::atomic<int> MembraneMeshNumber = {0};
-std::atomic<int> MembraneComponent::membraneNumber = {0};
+
+//! This must be big enough that no organelle can be at this position
+constexpr auto INVALID_FOUND_ORGANELLE = -999999.f;
 
 MembraneComponent::MembraneComponent(MEMBRANE_TYPE type) :
     Leviathan::Component(TYPE)
 {
-    // membrane type
     membraneType = type;
-
-    // Skip if no graphics
-    if(!Ogre::Root::getSingletonPtr())
-        return;
-
-    // Create the mesh for rendering us
-    m_mesh = Ogre::MeshManager::getSingleton().createManual(
-        "MembraneMesh_" + std::to_string(++MembraneMeshNumber),
-        Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
-
-    m_subMesh = m_mesh->createSubMesh();
 }
 
 MembraneComponent::~MembraneComponent()
 {
     // Skip if no graphics
-    if(!Ogre::Root::getSingletonPtr())
+    if(!Engine::Get()->IsInGraphicalMode())
         return;
 
     LEVIATHAN_ASSERT(!m_item, "MembraneComponent not released");
-
-    Ogre::MeshManager::getSingleton().remove(m_mesh);
-    m_mesh.reset();
-    m_subMesh = nullptr;
-
-    if(coloredMaterial) {
-
-        Ogre::MaterialManager::getSingleton().remove(coloredMaterial);
-        coloredMaterial.reset();
-    }
 }
 
 void
@@ -71,20 +48,25 @@ MembraneComponent::getMembraneType()
 }
 
 void
-    MembraneComponent::Release(Ogre::SceneManager* scene)
+    MembraneComponent::Release(bs::Scene* scene)
 {
-    releaseOgreResourcesForClear(scene);
+    releaseCurrentMesh();
+
+    if(m_item && !m_item.isDestroyed()) {
+        m_item->destroy();
+        m_item = nullptr;
+    }
 }
 // ------------------------------------ //
-Ogre::Vector3
-    MembraneComponent::FindClosestOrganelles(Ogre::Vector3 target)
+Float2
+    MembraneComponent::FindClosestOrganelles(const Float2& target)
 {
     // The distance we want the membrane to be from the organelles squared.
     double closestSoFar = 4;
     int closestIndex = -1;
 
     for(size_t i = 0, end = organellePositions.size(); i < end; i++) {
-        double lenToObject = target.squaredDistance(organellePositions[i]);
+        double lenToObject = (target - organellePositions[i]).LengthSquared();
 
         if(lenToObject < 4 && lenToObject < closestSoFar) {
             closestSoFar = lenToObject;
@@ -94,47 +76,50 @@ Ogre::Vector3
     }
 
     if(closestIndex != -1)
-        return (organellePositions[closestIndex]);
+        return organellePositions[closestIndex];
     else
-        return Ogre::Vector3(0, 0, -1);
+        return {INVALID_FOUND_ORGANELLE, INVALID_FOUND_ORGANELLE};
 }
 
-Ogre::Vector3
-    MembraneComponent::GetMovement(Ogre::Vector3 target,
-        Ogre::Vector3 closestOrganelle)
+Float2
+    MembraneComponent::GetMovement(const Float2& target,
+        const Float2& closestOrganelle)
 {
-    double power = pow(2.7, (-target.distance(closestOrganelle)) / 10) / 50;
+    double power = pow(2.7, (-(target - closestOrganelle).Length()) / 10) / 50;
 
-    return (Ogre::Vector3(closestOrganelle) - Ogre::Vector3(target)) * power;
+    return (closestOrganelle - target) * power;
 }
 
-Ogre::Vector3
+Float3
     MembraneComponent::GetExternalOrganelle(double x, double y)
 {
+    // This gets called by the flagella every frame as on the first call this
+    // object is not initialized yet. TODO: do something about that
+
     // This was causing little regular-interval lag bursts
     /*if(vertices2D.empty())
         LOG_WARNING("MembraneComponent: GetExternalOrganelle: called before "
                     "membrane is initialized. Returning 0, 0");
     */
 
-    float organelleAngle = Ogre::Math::ATan2(y, x).valueRadians();
 
-    Ogre::Vector3 closestSoFar(0, 0, 0);
-    float angleToClosest = Ogre::Math::TWO_PI;
+
+    float organelleAngle = std::atan2(y, x);
+
+    Float3 closestSoFar(0, 0, 0);
+    float angleToClosest = Leviathan::PI * 2;
 
     for(const auto& vertex : vertices2D) {
-        if(Ogre::Math::Abs(
-               Ogre::Math::ATan2(vertex.y, vertex.x).valueRadians() -
-               organelleAngle) < angleToClosest) {
-            closestSoFar = Ogre::Vector3(vertex.x, vertex.y, 0);
-            angleToClosest = Ogre::Math::Abs(
-                Ogre::Math::ATan2(vertex.y, vertex.x).valueRadians() -
-                organelleAngle);
+        if(std::abs(std::atan2(vertex.Y, vertex.X) - organelleAngle) <
+            angleToClosest) {
+            closestSoFar = Float3(vertex.X, vertex.Y, 0);
+            angleToClosest =
+                std::abs(std::atan2(vertex.Y, vertex.X) - organelleAngle);
         }
     }
 
     // Swap to world coordinates from internal membrane coordinates
-    return Ogre::Vector3(closestSoFar.x, 0, closestSoFar.y);
+    return Float3(closestSoFar.X, 0, closestSoFar.Y);
 }
 
 bool
@@ -144,12 +129,12 @@ bool
 
     int n = vertices2D.size();
     for(int i = 0; i < n - 1; i++) {
-        if((vertices2D[i].y <= y && y < vertices2D[i + 1].y) ||
-            (vertices2D[i + 1].y <= y && y < vertices2D[i].y)) {
-            if(x < (vertices2D[i + 1].x - vertices2D[i].x) *
-                           (y - vertices2D[i].y) /
-                           (vertices2D[i + 1].y - vertices2D[i].y) +
-                       vertices2D[i].x) {
+        if((vertices2D[i].Y <= y && y < vertices2D[i + 1].Y) ||
+            (vertices2D[i + 1].Y <= y && y < vertices2D[i].Y)) {
+            if(x < (vertices2D[i + 1].X - vertices2D[i].X) *
+                           (y - vertices2D[i].Y) /
+                           (vertices2D[i + 1].Y - vertices2D[i].Y) +
+                       vertices2D[i].X) {
                 crosses = !crosses;
             }
         }
@@ -168,7 +153,7 @@ float
 
     for(const auto& vertex : vertices2D) {
 
-        const auto currentDistance = vertex.squaredLength();
+        const auto currentDistance = vertex.LengthSquared();
         if(currentDistance >= distanceSquared)
             distanceSquared = currentDistance;
     }
@@ -185,21 +170,22 @@ void
     MembraneComponent::setColour(const Float4& value)
 {
     colour = value;
-    // Desaturate it here so it looks nicer (could implement as method thatcould
-    // be called i suppose)
-    Ogre::Real saturation;
-    Ogre::Real brightness;
-    Ogre::Real hue;
-    colour.getHSB(&hue, &saturation, &brightness);
-    colour.setHSB(hue, saturation * .75, brightness);
+
+    // Desaturate it here so it looks nicer (could implement as method that
+    // could be called i suppose)
+    float saturation;
+    float brightness;
+    float hue;
+
+    bs::Color tmp = colour;
+
+    tmp.getHSB(&hue, &saturation, &brightness);
+    colour = Float4(bs::Color::fromHSB(hue, saturation * .75, brightness));
 
     // If we already have created a material we need to re-apply it
     if(coloredMaterial) {
-        coloredMaterial->getTechnique(0)
-            ->getPass(0)
-            ->getFragmentProgramParameters()
-            ->setNamedConstant("membraneColour", colour);
-        coloredMaterial->compile();
+
+        coloredMaterial->setVec4("gTint", colour);
     }
 }
 
@@ -210,11 +196,8 @@ void
 
     // If we already have created a material we need to re-apply it
     if(coloredMaterial) {
-        coloredMaterial->getTechnique(0)
-            ->getPass(0)
-            ->getFragmentProgramParameters()
-            ->setNamedConstant("healthPercentage", healthFraction);
-        coloredMaterial->compile();
+
+        coloredMaterial->setFloat("gHealthFraction", healthFraction);
     }
 }
 
@@ -225,12 +208,13 @@ Float4
 }
 // ------------------------------------ //
 void
-    MembraneComponent::Update(Ogre::SceneManager* scene,
-        Ogre::SceneNode* parentcomponentpos)
+    MembraneComponent::Update(bs::Scene* scene,
+        const bs::HSceneObject& parentComponentPos,
+        const bs::SPtr<bs::VertexDataDesc>& vertexDesc)
 {
     if(clearNeeded) {
 
-        releaseOgreResourcesForClear(scene);
+        releaseCurrentMesh();
         clearNeeded = false;
     }
 
@@ -242,130 +226,50 @@ void
         Initialize();
 
     // Skip if no graphics
-    if(!Ogre::Root::getSingletonPtr())
+    if(!Engine::Get()->IsInGraphicalMode())
         return;
 
-    LEVIATHAN_ASSERT(!m_item,
-        "Membrane code should always recreate item but it is already created.");
-
-    // This is a triangle strip so we only need 2 + n vertices
+    // This is a triangle fan so we only need 2 + n vertices
+    // This is actually a triangle list, but the index buffer is used to build
+    // the indices (to emulate a triangle fan)
     const auto bufferSize = vertices2D.size() + 2;
+    const auto indexSize = vertices2D.size() * 3;
 
-    Ogre::RenderSystem* renderSystem =
-        Ogre::Root::getSingleton().getRenderSystem();
-    Ogre::VaoManager* vaoManager = renderSystem->getVaoManager();
+    bs::MESH_DESC meshDesc;
+    meshDesc.numVertices = bufferSize;
+    meshDesc.numIndices = bufferSize;
 
-    Ogre::VertexElement2Vec vertexElements;
-    vertexElements.push_back(
-        Ogre::VertexElement2(Ogre::VET_FLOAT3, Ogre::VES_POSITION));
-    vertexElements.push_back(
-        Ogre::VertexElement2(Ogre::VET_FLOAT2, Ogre::VES_TEXTURE_COORDINATES));
-    // vertexElements.push_back(Ogre::VertexElement2(Ogre::VET_FLOAT3,
-    // Ogre::VES_NORMAL));
+    meshDesc.indexType = bs::IT_32BIT;
+    // This is static as logic for detecting just moved vertices (no new
+    // created) isn't done. This is recreated every time
+    meshDesc.usage = bs::MU_STATIC;
+    meshDesc.subMeshes.push_back(
+        bs::SubMesh(0, indexSize, bs::DOT_TRIANGLE_LIST));
 
-    // TODO: make this static (will probably need a buffer alternative for
-    // generating the vertex data that will be then referenced here instead of
-    // nullptr)
-    Ogre::VertexBufferPacked* vertexBuffer = vaoManager->createVertexBuffer(
-        vertexElements, bufferSize, Ogre::BT_DYNAMIC_DEFAULT, nullptr, false);
+    meshDesc.vertexDesc = vertexDesc;
 
-    Ogre::VertexBufferPackedVec vertexBuffers;
-    vertexBuffers.push_back(vertexBuffer);
+    // TODO: 16 bit indices would save memory
+    bs::SPtr<bs::MeshData> meshData =
+        bs::MeshData::create(bufferSize, indexSize, vertexDesc, bs::IT_32BIT);
 
-    // 1 to 1 index buffer mapping
+    // Index mapping to build all triangles
+    uint32_t* indexWrite = meshData->getIndices32();
 
-    Ogre::uint16* indices = reinterpret_cast<Ogre::uint16*>(OGRE_MALLOC_SIMD(
-        sizeof(Ogre::uint16) * bufferSize, Ogre::MEMCATEGORY_GEOMETRY));
+    std::remove_pointer_t<decltype(indexWrite)> currentVertexIndex = 1;
 
-    for(size_t i = 0; i < bufferSize; ++i) {
+    for(size_t i = 0; i < indexSize; i += 3) {
+        indexWrite[i] = 0;
+        indexWrite[i + 1] = currentVertexIndex + 1;
+        indexWrite[i + 2] = currentVertexIndex;
 
-        indices[i] = static_cast<Ogre::uint16>(i);
+        ++currentVertexIndex;
     }
 
-    // TODO: check if this is needed (when a 1 to 1 vertex and index mapping
-    // is used)
-    Ogre::IndexBufferPacked* indexBuffer = nullptr;
-
-    try {
-        indexBuffer = vaoManager->createIndexBuffer(
-            Ogre::IndexBufferPacked::IT_16BIT, bufferSize, Ogre::BT_IMMUTABLE,
-            // Could this be false like the vertex buffer to not keep a
-            // shadow buffer
-            indices, true);
-    } catch(const Ogre::Exception& e) {
-
-        // Avoid memory leak
-        OGRE_FREE_SIMD(indices, Ogre::MEMCATEGORY_GEOMETRY);
-        indexBuffer = nullptr;
-        throw e;
-    }
-
-    Ogre::VertexArrayObject* vao = vaoManager->createVertexArrayObject(
-        vertexBuffers, indexBuffer, Ogre::OT_TRIANGLE_FAN);
-
-    m_subMesh->mVao[Ogre::VpNormal].push_back(vao);
-
-    // This might be needed because we use a v2 mesh
-    // Use the same geometry for shadow casting.
-    // If m_item->setCastShadows(false); is set then this isn't needed
-    m_subMesh->mVao[Ogre::VpShadow].push_back(vao);
-
-
-    // Set the bounds to get frustum culling and LOD to work correctly.
-    // TODO: make this more accurate by calculating the actual extents
-    m_mesh->_setBounds(
-        Ogre::Aabb(Ogre::Vector3::ZERO, Ogre::Vector3::UNIT_SCALE * 50)
-        /*, false*/);
-    m_mesh->_setBoundingSphereRadius(50);
-
-    // Set the membrane material //
-    // We need to create a new instance until the managing is moved to the
-    // species (allowing the same species to share)
-    if(!coloredMaterial) {
-        Ogre::MaterialPtr baseMaterial = chooseMaterialByType();
-
-        LEVIATHAN_ASSERT(
-            baseMaterial, "Failed to find base material for membrane");
-
-        // TODO: find a way for the species to manage this to
-        // avoid having tons of materials Maybe Use the species's
-        // name instead. and let something like the
-        // SpeciesComponent create and destroy this
-        coloredMaterial = baseMaterial->clone(
-            "Membrane_instance_" + std::to_string(++membraneNumber));
-
-        coloredMaterial->getTechnique(0)
-            ->getPass(0)
-            ->getFragmentProgramParameters()
-            ->setNamedConstant("membraneColour", colour);
-
-        coloredMaterial->getTechnique(0)
-            ->getPass(0)
-            ->getFragmentProgramParameters()
-            ->setNamedConstant("healthPercentage", healthFraction);
-        coloredMaterial->compile();
-
-        coloredMaterial->getTechnique(0)
-            ->getPass(0)
-            ->getTextureUnitState(0)
-            ->setHardwareGammaEnabled(true);
-
-        coloredMaterial->compile();
-    }
-
-    m_subMesh->setMaterialName(coloredMaterial->getName());
-
-    // Update mesh data //
-    // Map the buffer for writing //
-    // DO NOT READ FROM THE MAPPED BUFFER
-    MembraneVertex* RESTRICT_ALIAS meshVertices =
-        reinterpret_cast<MembraneVertex * RESTRICT_ALIAS>(
-            vertexBuffer->map(0, vertexBuffer->getNumElements()));
-
-    // Creates a 3D prism from the 2D vertices.
-
-    // initialize membrane
+    // Write mesh data //
     size_t writeIndex = 0;
+    MembraneVertex* meshVertices =
+        reinterpret_cast<MembraneVertex*>(meshData->getStreamData(0));
+
     writeIndex = InitializeCorrectMembrane(writeIndex, meshVertices);
 
     // This can be commented out when this works correctly, or maybe a
@@ -374,14 +278,34 @@ void
     LEVIATHAN_ASSERT(writeIndex == bufferSize, "Invalid array element math in "
                                                "fill vertex buffer");
 
-    // Upload finished data to the gpu (unmap all needs to be used to
-    // suppress warnings about destroying mapped buffers)
-    vertexBuffer->unmap(Ogre::UO_UNMAP_ALL);
 
-    // This needs the v2 mesh to contain data to work
-    m_item = scene->createItem(m_mesh, Ogre::SCENE_DYNAMIC);
-    m_item->setRenderQueueGroup(Leviathan::DEFAULT_RENDER_QUEUE);
-    parentcomponentpos->attachObject(m_item);
+    m_mesh = bs::Mesh::create(meshData, meshDesc);
+    // // Set the bounds to get frustum culling and LOD to work correctly.
+    // // TODO: make this more accurate by calculating the actual extents
+    // m_mesh->_setBounds(Ogre::Aabb(Float3::ZERO, Float3::UNIT_SCALE * 50)
+    //     /*, false*/);
+    // m_mesh->_setBoundingSphereRadius(50);
+
+
+    // Set the membrane material //
+    if(!coloredMaterial) {
+        auto baseMaterial = chooseMaterialByType();
+
+        LEVIATHAN_ASSERT(baseMaterial, "no material for membrane");
+
+        // The baseMaterial fetch makes a new instance so this is fine
+        coloredMaterial = baseMaterial;
+
+        coloredMaterial->setVec4("gTint", colour);
+        coloredMaterial->setFloat("gHealthFraction", healthFraction);
+    }
+
+    if(!m_item)
+        m_item = parentComponentPos->addComponent<bs::CRenderable>();
+
+    m_item->setMaterial(coloredMaterial);
+    m_item->setMesh(m_mesh);
+    m_item->setLayer(1 << *scene);
 }
 
 void
@@ -404,12 +328,12 @@ size_t
 
     // common variables
     float height = .1;
-    const Ogre::Vector2 center(0.5, 0.5);
+    const bs::Vector2 center(0.5, 0.5);
 
     switch(membraneType) {
     case MEMBRANE_TYPE::MEMBRANE:
     case MEMBRANE_TYPE::DOUBLEMEMBRANE:
-        meshVertices[writeIndex++] = {Ogre::Vector3(0, height / 2, 0), center};
+        meshVertices[writeIndex++] = {bs::Vector3(0, height / 2, 0), center};
 
         for(size_t i = 0, end = vertices2D.size(); i < end + 1; i++) {
             // Finds the UV coordinates be projecting onto a plane and
@@ -418,30 +342,29 @@ size_t
             const double currentRadians = 2.0 * 3.1416 * i / end;
 
             meshVertices[writeIndex++] = {
-                Ogre::Vector3(vertices2D[i % end].x,
-                    vertices2D[i % end].z + height / 2, vertices2D[i % end].y),
-                center +
-                    Ogre::Vector2(cos(currentRadians), sin(currentRadians)) /
-                        2};
+                bs::Vector3(
+                    vertices2D[i % end].X, height / 2, vertices2D[i % end].Y),
+                center + bs::Vector2(std::cos(currentRadians),
+                             std::sin(currentRadians)) /
+                             2};
         }
         break;
     case MEMBRANE_TYPE::WALL:
     case MEMBRANE_TYPE::CHITIN:
-        // cell walls need obvious inner/outer memrbranes (we can worry about
-        // chitin later)
+        // cell walls need obvious inner/outer memrbranes (we can worry
+        // about chitin later)
         height = .05;
-        meshVertices[writeIndex++] = {Ogre::Vector3(0, height / 2, 0), center};
+        meshVertices[writeIndex++] = {Float3(0, height / 2, 0), center};
 
         for(size_t i = 0, end = vertices2D.size(); i < end + 1; i++) {
             // Finds the UV coordinates be projecting onto a plane and
             // stretching to fit a circle.
             const double currentRadians = 3.1416 * i / end;
             meshVertices[writeIndex++] = {
-                Ogre::Vector3(vertices2D[i % end].x,
-                    vertices2D[i % end].z + height / 2, vertices2D[i % end].y),
+                Float3(
+                    vertices2D[i % end].X, height / 2, vertices2D[i % end].Y),
                 center +
-                    Ogre::Vector2(cos(currentRadians), sin(currentRadians)) /
-                        2};
+                    bs::Vector2(cos(currentRadians), sin(currentRadians)) / 2};
         }
         break;
     }
@@ -450,58 +373,89 @@ size_t
     return writeIndex;
 }
 
-Ogre::MaterialPtr
+bs::HMaterial
     MembraneComponent::chooseMaterialByType()
 {
+    auto shader =
+        Engine::Get()->GetGraphics()->LoadShaderByName("membrane.bsl");
+
+    bs::HTexture normal;
+    bs::HTexture damaged;
+    // When true the shader adds animation to the membrane
+    bool wiggly = true;
+
     switch(membraneType) {
     case MEMBRANE_TYPE::MEMBRANE:
-        return Ogre::MaterialManager::getSingleton().getByName("Membrane");
+        normal = Engine::Get()->GetGraphics()->LoadTextureByName(
+            "FresnelGradient.png");
+        damaged = Engine::Get()->GetGraphics()->LoadTextureByName(
+            "FresnelGradientDamaged.png");
         break;
     case MEMBRANE_TYPE::DOUBLEMEMBRANE:
-        return Ogre::MaterialManager::getSingleton().getByName(
-            "MembraneDouble");
+        normal = Engine::Get()->GetGraphics()->LoadTextureByName(
+            "DoubleCellMembrane.png");
+        damaged = Engine::Get()->GetGraphics()->LoadTextureByName(
+            "DoubleCellMembraneDamaged.png");
         break;
     case MEMBRANE_TYPE::WALL:
-        return Ogre::MaterialManager::getSingleton().getByName("cellwall");
+        normal = Engine::Get()->GetGraphics()->LoadTextureByName(
+            "CellWallGradient.png");
+        damaged = Engine::Get()->GetGraphics()->LoadTextureByName(
+            "CellWallGradientDamaged.png");
+        wiggly = false;
         break;
     case MEMBRANE_TYPE::CHITIN:
-        return Ogre::MaterialManager::getSingleton().getByName(
-            "cellwallchitin");
+        normal = Engine::Get()->GetGraphics()->LoadTextureByName(
+            "ChitinCellWallGradient.png");
+        damaged = Engine::Get()->GetGraphics()->LoadTextureByName(
+            "ChitinCellWallGradientDamaged.png");
+        wiggly = false;
         break;
     }
-    // default
-    return Ogre::MaterialManager::getSingleton().getByName("cellwall");
+
+    LEVIATHAN_ASSERT(
+        normal && damaged && shader, "failed to load some membrane resource");
+
+    bs::HMaterial material = bs::Material::create(shader);
+    material->setTexture("gAlbedoTex", normal);
+    material->setTexture("gDamagedTex", damaged);
+
+    bs::ShaderVariation variation;
+    variation.setBool("WIGGLY", wiggly);
+    material->setVariation(variation);
+
+    return material;
 }
 
 void
     MembraneComponent::Initialize()
 {
-    for(Ogre::Vector3 pos : organellePositions) {
-        if(abs(pos.x) + 1 > cellDimensions) {
-            cellDimensions = abs(pos.x) + 1;
+    for(const auto& pos : organellePositions) {
+        if(std::abs(pos.X) + 1 > cellDimensions) {
+            cellDimensions = std::abs(pos.X) + 1;
         }
-        if(abs(pos.y) + 1 > cellDimensions) {
-            cellDimensions = abs(pos.y) + 1;
+        if(std::abs(pos.Y) + 1 > cellDimensions) {
+            cellDimensions = std::abs(pos.Y) + 1;
         }
     }
 
     for(int i = membraneResolution; i > 0; i--) {
         vertices2D.emplace_back(-cellDimensions,
-            cellDimensions - 2 * cellDimensions / membraneResolution * i, 0);
+            cellDimensions - 2 * cellDimensions / membraneResolution * i);
     }
     for(int i = membraneResolution; i > 0; i--) {
         vertices2D.emplace_back(
             cellDimensions - 2 * cellDimensions / membraneResolution * i,
-            cellDimensions, 0);
+            cellDimensions);
     }
     for(int i = membraneResolution; i > 0; i--) {
         vertices2D.emplace_back(cellDimensions,
-            -cellDimensions + 2 * cellDimensions / membraneResolution * i, 0);
+            -cellDimensions + 2 * cellDimensions / membraneResolution * i);
     }
     for(int i = membraneResolution; i > 0; i--) {
         vertices2D.emplace_back(
             -cellDimensions + 2 * cellDimensions / membraneResolution * i,
-            -cellDimensions, 0);
+            -cellDimensions);
     }
 
     // Does this need to run 40*cellDimensions times. That seems to be
@@ -529,16 +483,17 @@ void
     // Loops through all the points in the membrane and relocates them as
     // necessary.
     for(size_t i = 0, end = newPositions.size(); i < end; i++) {
-        Ogre::Vector3 closestOrganelle = FindClosestOrganelles(vertices2D[i]);
-        if(closestOrganelle == Ogre::Vector3(0, 0, -1)) {
+        const auto closestOrganelle = FindClosestOrganelles(vertices2D[i]);
+        if(closestOrganelle ==
+            Float2(INVALID_FOUND_ORGANELLE, INVALID_FOUND_ORGANELLE)) {
             newPositions[i] =
                 (vertices2D[(end + i - 1) % end] + vertices2D[(i + 1) % end]) /
                 2;
         } else {
-            Ogre::Vector3 movementDirection =
+            const auto movementDirection =
                 GetMovement(vertices2D[i], closestOrganelle);
-            newPositions[i].x -= movementDirection.x;
-            newPositions[i].y -= movementDirection.y;
+            newPositions[i].X -= movementDirection.X;
+            newPositions[i].Y -= movementDirection.Y;
         }
     }
 
@@ -546,13 +501,12 @@ void
     for(size_t i = 0; i < newPositions.size() - 1; i++) {
         // Check to see if the gap between two points in the membrane is too
         // big.
-        if(newPositions[i].distance(
-               newPositions[(i + 1) % newPositions.size()]) >
-            cellDimensions / membraneResolution) {
-            // Add an element after the ith term that is the average of the i
-            // and i+1 term.
+        if((newPositions[i] - newPositions[(i + 1) % newPositions.size()])
+                .Length() > cellDimensions / membraneResolution) {
+            // Add an element after the ith term that is the average of the
+            // i and i+1 term.
             auto it = newPositions.begin();
-            Ogre::Vector3 tempPoint =
+            const auto tempPoint =
                 (newPositions[(i + 1) % newPositions.size()] +
                     newPositions[i]) /
                 2;
@@ -563,9 +517,9 @@ void
 
         // Check to see if the gap between two points in the membrane is too
         // small.
-        if(newPositions[(i + 1) % newPositions.size()].distance(
-               newPositions[(i - 1) % newPositions.size()]) <
-            cellDimensions / membraneResolution) {
+        if((newPositions[(i + 1) % newPositions.size()] -
+               newPositions[(i - 1) % newPositions.size()])
+                .Length() < cellDimensions / membraneResolution) {
             // Delete the ith term.
             auto it = newPositions.begin();
             newPositions.erase(it + i);
@@ -578,7 +532,7 @@ void
 void
     MembraneComponent::sendOrganelles(double x, double y)
 {
-    organellePositions.emplace_back(x, y, 0);
+    organellePositions.emplace_back(x, y);
 }
 
 bool
@@ -587,7 +541,7 @@ bool
     for(auto iter = organellePositions.begin();
         iter != organellePositions.end(); ++iter) {
 
-        if(iter->x == x && iter->y == y) {
+        if(iter->X == x && iter->Y == y) {
             organellePositions.erase(iter);
             return true;
         }
@@ -603,41 +557,11 @@ void
 }
 
 void
-    MembraneComponent::releaseOgreResourcesForClear(Ogre::SceneManager* scene)
+    MembraneComponent::releaseCurrentMesh()
 {
     isInitialized = false;
     vertices2D.clear();
-
-    if(m_item) {
-        scene->destroyItem(m_item);
-        m_item = nullptr;
-    }
-
-    if(m_mesh) {
-
-        // If there is nothing in the mesh there isn't anything to destroy
-        if(!m_subMesh->mVao[Ogre::VpNormal].empty()) {
-
-            Ogre::RenderSystem* renderSystem =
-                Ogre::Root::getSingleton().getRenderSystem();
-            Ogre::VaoManager* vaoManager = renderSystem->getVaoManager();
-
-            // Delete the index and vertex buffers
-            Ogre::VertexArrayObject* vao =
-                m_subMesh->mVao[Ogre::VpNormal].front();
-            Ogre::IndexBufferPacked* indexBuffer = vao->getIndexBuffer();
-            Ogre::VertexBufferPacked* vertexBuffer =
-                vao->getVertexBuffers().front();
-
-            vaoManager->destroyVertexArrayObject(vao);
-            vaoManager->destroyIndexBuffer(indexBuffer);
-            vaoManager->destroyVertexBuffer(vertexBuffer);
-
-            // And make sure they aren't used
-            m_subMesh->mVao[Ogre::VpNormal].clear();
-            m_subMesh->mVao[Ogre::VpShadow].clear();
-        }
-    }
+    m_mesh = nullptr;
 }
 
 /*
@@ -645,13 +569,13 @@ Cell Wall Code Here
 */
 
 // this is where the magic happens i think
-Ogre::Vector3
-    MembraneComponent::GetMovementForCellWall(Ogre::Vector3 target,
-        Ogre::Vector3 closestOrganelle)
+Float2
+    MembraneComponent::GetMovementForCellWall(const Float2& target,
+        const Float2& closestOrganelle)
 {
-    double power = pow(10.0f, (-target.distance(closestOrganelle))) / 50;
+    double power = pow(10.0f, (-(target - closestOrganelle).Length())) / 50;
 
-    return (Ogre::Vector3(closestOrganelle) - Ogre::Vector3(target)) * power;
+    return (closestOrganelle - target) * power;
 }
 
 void
@@ -663,16 +587,17 @@ void
     // Loops through all the points in the membrane and relocates them as
     // necessary.
     for(size_t i = 0, end = newPositions.size(); i < end; i++) {
-        Ogre::Vector3 closestOrganelle = FindClosestOrganelles(vertices2D[i]);
-        if(closestOrganelle == Ogre::Vector3(0, 0, -1)) {
+        const auto closestOrganelle = FindClosestOrganelles(vertices2D[i]);
+        if(closestOrganelle ==
+            Float2(INVALID_FOUND_ORGANELLE, INVALID_FOUND_ORGANELLE)) {
             newPositions[i] =
                 (vertices2D[(end + i - 1) % end] + vertices2D[(i + 1) % end]) /
                 2;
         } else {
-            Ogre::Vector3 movementDirection =
+            const auto movementDirection =
                 GetMovementForCellWall(vertices2D[i], closestOrganelle);
-            newPositions[i].x -= movementDirection.x;
-            newPositions[i].y -= movementDirection.y;
+            newPositions[i].X -= movementDirection.X;
+            newPositions[i].Y -= movementDirection.Y;
         }
     }
 
@@ -680,13 +605,12 @@ void
     for(size_t i = 0; i < newPositions.size() - 1; i++) {
         // Check to see if the gap between two points in the membrane is too
         // big.
-        if(newPositions[i].distance(
-               newPositions[(i + 1) % newPositions.size()]) >
-            cellDimensions / membraneResolution) {
-            // Add an element after the ith term that is the average of the i
-            // and i+1 term.
+        if((newPositions[i] - newPositions[(i + 1) % newPositions.size()])
+                .Length() > cellDimensions / membraneResolution) {
+            // Add an element after the ith term that is the average of the
+            // i and i+1 term.
             auto it = newPositions.begin();
-            Ogre::Vector3 tempPoint =
+            const auto tempPoint =
                 (newPositions[(i + 1) % newPositions.size()] +
                     newPositions[i]) /
                 2;
@@ -694,9 +618,9 @@ void
 
             // Check to see if the gap between two points in the wall is too
             // small.
-            if(newPositions[(i + 1) % newPositions.size()].distance(
-                   newPositions[(i - 1) % newPositions.size()]) <
-                cellDimensions / membraneResolution) {
+            if((newPositions[(i + 1) % newPositions.size()] -
+                   newPositions[(i - 1) % newPositions.size()])
+                    .Length() < cellDimensions / membraneResolution) {
                 // Delete the ith term.
                 auto it = newPositions.begin();
                 newPositions.erase(it + i);
@@ -706,9 +630,9 @@ void
 
         // Check to see if the gap between two points in the membrane is too
         // small.
-        if(newPositions[(i + 1) % newPositions.size()].distance(
-               newPositions[(i - 1) % newPositions.size()]) <
-            cellDimensions / membraneResolution) {
+        if((newPositions[(i + 1) % newPositions.size()] -
+               newPositions[(i - 1) % newPositions.size()])
+                .Length() < cellDimensions / membraneResolution) {
             // Delete the ith term.
             auto it = newPositions.begin();
             newPositions.erase(it + i);
@@ -716,4 +640,28 @@ void
     }
 
     vertices2D = newPositions;
+}
+// ------------------------------------ //
+// MembraneSystem
+struct MembraneSystem::Implementation {
+
+    Implementation()
+    {
+        m_vertexDesc = bs::VertexDataDesc::create();
+        m_vertexDesc->addVertElem(bs::VET_FLOAT3, bs::VES_POSITION);
+        m_vertexDesc->addVertElem(bs::VET_FLOAT2, bs::VES_TEXCOORD);
+    }
+
+    bs::SPtr<bs::VertexDataDesc> m_vertexDesc;
+};
+
+MembraneSystem::MembraneSystem() : m_impl(std::make_unique<Implementation>()) {}
+MembraneSystem::~MembraneSystem() {}
+
+void
+    MembraneSystem::UpdateComponent(MembraneComponent& component,
+        bs::Scene* scene,
+        const bs::HSceneObject& parentComponentPos)
+{
+    component.Update(scene, parentComponentPos, m_impl->m_vertexDesc);
 }

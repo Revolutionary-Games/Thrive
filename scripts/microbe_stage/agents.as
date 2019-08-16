@@ -34,7 +34,7 @@ class OxytoxyEffect : AgentEffect{
 
 
 const dictionary AGENTS = {
-    {"oxytoxy", Agent("OxyToxy NT", 1, "oxytoxy_fluid.mesh", 0.3, OxytoxyEffect())}
+    {"oxytoxy", Agent("OxyToxy NT", 1, "oxytoxy.fbx", 0.3, OxytoxyEffect())}
 };
 
 
