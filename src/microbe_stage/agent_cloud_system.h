@@ -1,13 +1,5 @@
 #pragma once
 
-#include <vector>
-// #include <OgreEntity.h>
-// #include <OgreSceneManager.h>
-// #include "OgreHardwarePixelBuffer.h"
-
-// #include "engine/component.h"
-// #include "engine/system.h"
-// #include "engine/touchable.h"
 #include "engine/component_types.h"
 #include "engine/typedefs.h"
 
@@ -16,6 +8,8 @@
 
 #include <Entities/Component.h>
 #include <Entities/System.h>
+
+#include <vector>
 
 namespace thrive {
 
@@ -38,23 +32,23 @@ public:
     std::vector<std::vector<float>> oldDens;
 
     /// The color of the compound cloud.
-    Ogre::ColourValue color;
+    Float4 color;
 
     // Helpers for networking
     inline auto
         getRed() const
     {
-        return color.r;
+        return color.X;
     }
     inline auto
         getGreen() const
     {
-        return color.g;
+        return color.Y;
     }
     inline auto
         getBlue() const
     {
-        return color.b;
+        return color.Z;
     }
 
     /**

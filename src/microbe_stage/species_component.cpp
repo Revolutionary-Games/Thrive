@@ -1,9 +1,5 @@
 #include "species_component.h"
 
-#include "engine/serialization.h"
-
-#include <OgreMath.h>
-
 using namespace thrive;
 
 unsigned int SpeciesComponent::SPECIES_NUM = 0;
@@ -28,7 +24,6 @@ SpeciesComponent::SpeciesComponent(const std::string& _name) :
 
 SpeciesComponent::~SpeciesComponent()
 {
-
     SAFE_RELEASE(organelles);
     SAFE_RELEASE(avgCompoundAmounts);
 }

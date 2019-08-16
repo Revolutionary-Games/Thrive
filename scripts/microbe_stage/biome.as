@@ -61,98 +61,6 @@ class Chunkfactory{
     private uint chunkId;
 }
 
-
-ObjectID createChunk(CellStageWorld@ world, uint chunkId,  Float3 pos)
-{
-    auto biome = getCurrentBiome();
-    // chunk
-    ObjectID chunkEntity = world.CreateEntity();
-    const ChunkData@ chunk = biome.getChunk(chunkId);
-
-    //Position and render node
-    auto position = world.Create_Position(chunkEntity, pos,
-        Ogre::Quaternion(Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
-            Ogre::Vector3(0,1,1)));
-
-
-    auto renderNode = world.Create_RenderNode(chunkEntity);
-    // Grab scale from json
-    double chunkScale = chunk.chunkScale;
-    renderNode.Scale = Float3(chunkScale, chunkScale, chunkScale);
-    renderNode.Marked = true;
-    renderNode.Node.setOrientation(Ogre::Quaternion(
-            Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
-            Ogre::Vector3(0,1,1)));
-
-    renderNode.Node.setPosition(pos);
-
-    //Grab data
-    double ventAmount= chunk.ventAmount;
-    bool dissolves=chunk.dissolves;
-    int radius = chunk.radius;
-    int mass = chunk.mass;
-    int chunkSize = chunk.size;
-    auto meshListSize = chunk.getMeshListSize();
-    string mesh=chunk.getMesh(GetEngine().GetRandom().GetNumber(0,
-        meshListSize-1))+".mesh";
-
-    //Set things
-    auto venter = world.Create_CompoundVenterComponent(chunkEntity);
-    venter.setVentAmount(ventAmount);
-    venter.setDoDissolve(dissolves);
-    auto bag = world.Create_CompoundBagComponent(chunkEntity);
-    auto engulfable = world.Create_EngulfableComponent(chunkEntity);
-    engulfable.setSize(chunkSize);
-
-
-    auto chunkCompounds = chunk.getCompoundKeys();
-    //LOG_INFO("chunkCompounds.length = " + chunkCompounds.length());
-
-    for(uint i = 0; i < chunkCompounds.length(); ++i){
-        auto compoundId = SimulationParameters::compoundRegistry().getTypeData(chunkCompounds[i]).id;
-        //LOG_INFO("got here:");
-        // And register new
-        const double amount = chunk.getCompound(chunkCompounds[i]).amount;
-        //LOG_INFO("amount:"+amount);
-        bag.setCompound(compoundId,amount);
-    }
-
-    auto model = world.Create_Model(chunkEntity, renderNode.Node, mesh);
-
-    // Need to set the tint
-    model.GraphicalObject.setCustomParameter(1, Ogre::Vector4(1, 1, 1, 1));
-
-    // Fluid mechanics.
-    world.Create_FluidEffectComponent(chunkEntity);
-
-    // Rigid Body
-    auto rigidBody = world.Create_Physics(chunkEntity, position);
-
-    //chunk properties
-    if (chunk.damages > 0.0f || chunk.deleteOnTouch){
-        auto damager = world.Create_DamageOnTouchComponent(chunkEntity);
-        damager.setDamage(chunk.damages);
-        damager.setDeletes(chunk.deleteOnTouch);
-        //Damage
-        auto body = rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
-            world.GetPhysicalWorld().CreateSphere(radius),mass,
-            world.GetPhysicalMaterial("chunkDamageMaterial"));
-
-        body.ConstraintMovementAxises();
-    }
-    else {
-    auto body = rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
-        world.GetPhysicalWorld().CreateSphere(radius),mass,
-        //engulfable
-        world.GetPhysicalMaterial("engulfableMaterial"));
-    body.ConstraintMovementAxises();
-    }
-
-    rigidBody.JumpTo(position);
-
-    return chunkEntity;
-}
-
 dictionary compoundSpawnTypes;
 dictionary chunkSpawnTypes;
 
@@ -253,21 +161,15 @@ void setBiome(uint64 biomeId, CellStageWorld@ world){
 }
 
 void setSunlightForBiome(CellStageWorld@ world){
+    // TODO: redo
     // Light properties isnt working for some reason
-    world.SetLightProperties(getCurrentBiome().diffuseColors, getCurrentBiome().specularColors,
-        Ogre::Vector3(Float3(0.55f, -0.3f, 0.75f).Normalize()), getCurrentBiome().lightPower,
-        // https://ogrecave.github.io/ogre/api/2.1/class_ogre_1_1_scene_manager.html#a56cd9aa2c4dee4eec9eb07ce1372fb52
-        getCurrentBiome().upperAmbientColor,
-        getCurrentBiome().lowerAmbientColor,
-        -Float3(0.55f, -0.3f, 0.75f).Normalize() + Float3::UnitVUp * 0.2f
-    );
-    // These work fine
-    LOG_INFO("Diffuse Colours For Biome r:" + getCurrentBiome().diffuseColors.r +
-        "g:" + getCurrentBiome().diffuseColors.g + "b:" + getCurrentBiome().diffuseColors.b);
-    LOG_INFO("specular Colours For Biome r:" + getCurrentBiome().diffuseColors.r +
-        "g:" + getCurrentBiome().specularColors.g + "b:" + getCurrentBiome().specularColors.b);
-
-
+    // world.SetLightProperties(getCurrentBiome().diffuseColors, getCurrentBiome().specularColors,
+    //     bs::Vector3(Float3(0.55f, -0.3f, 0.75f).Normalize()), getCurrentBiome().lightPower,
+    //     // https://ogrecave.github.io/ogre/api/2.1/class_ogre_1_1_scene_manager.html#a56cd9aa2c4dee4eec9eb07ce1372fb52
+    //     getCurrentBiome().upperAmbientColor,
+    //     getCurrentBiome().lowerAmbientColor,
+    //     -Float3(0.55f, -0.3f, 0.75f).Normalize() + Float3::UnitVUp * 0.2f
+    // );
 }
 
 // Setting the current biome to a random biome selected from the biome table.

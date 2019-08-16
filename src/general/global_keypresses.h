@@ -23,6 +23,7 @@ public:
 
 private:
     Leviathan::GKey m_screenshot;
+    Leviathan::GKey m_debugOverlay;
 };
 
 } // namespace thrive

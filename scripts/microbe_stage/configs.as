@@ -270,6 +270,36 @@ void toxin_call_Notification(){
     }
 }
 
+//! Returns a material with a basic texture on it. For use on non-organelle models
+bs::HMaterial getBasicMaterialWithTexture(const string &in textureName)
+{
+    bs::HShader shader(bs::BuiltinShader::Standard);
+    bs::HMaterial material(shader);
+    bs::HTexture texture(textureName);
+    material.setTexture("gAlbedoTex", texture);
+
+    return material;
+}
+
+//! Returns a material for organelles
+bs::HMaterial getOrganelleMaterialWithTexture(const string &in textureName,
+    const Float4 &in tint = Float4(1, 1, 1, 1))
+{
+    // TODO: loading the shader just once would be nice
+    bs::HShader shader("organelle.bsl");
+    bs::HMaterial material(shader);
+    bs::HTexture texture(textureName);
+    material.setTexture("gAlbedoTex", texture);
+
+    updateMaterialTint(material, tint);
+    return material;
+}
+
+void updateMaterialTint(bs::HMaterial &in material, const Float4 &in tint)
+{
+    material.setVec4("gTint", bs::Vector4(tint));
+}
+
 // TODO: move this to where axialToCartesian is defined
 // We should use Int2 instead, or MAYBE a derived class defined in c++ if we wanna be really fancy...
 /*
