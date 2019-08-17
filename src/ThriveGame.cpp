@@ -48,14 +48,14 @@ class ThriveGame::Implementation {
 public:
     Implementation(ThriveGame& game) :
         m_game(game), m_playerData("player"),
+        m_patch_manager(std::make_shared<PatchManager>()),
         m_menuKeyPresses(std::make_shared<MainMenuKeyPressListener>()),
         m_globalKeyPresses(std::make_shared<GlobalUtilityKeyHandler>(
             *game.ApplicationConfiguration->GetKeyConfiguration())),
         m_cellStageKeys(std::make_shared<PlayerMicrobeControl>(
             *game.ApplicationConfiguration->GetKeyConfiguration())),
         m_microbeEditorKeys(std::make_shared<MicrobeEditorKeyHandler>(
-            *game.ApplicationConfiguration->GetKeyConfiguration())),
-        m_patch_manager(std::make_shared<PatchManager>())
+            *game.ApplicationConfiguration->GetKeyConfiguration()))
     {}
 
     //! Releases Ogre things. Needs to be called before shutdown
