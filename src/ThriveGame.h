@@ -10,6 +10,7 @@
 #include "Application/KeyConfiguration.h"
 #include "Events/EventHandler.h"
 #include "GUI/GuiManager.h"
+#include "microbe_stage/patch.h"
 
 namespace thrive {
 
@@ -53,6 +54,9 @@ public:
 
     PlayerData&
         playerData();
+
+    PatchManager*
+        getPatchManager();
 
     PlayerMicrobeControl*
         getPlayerInput();

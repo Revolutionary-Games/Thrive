@@ -394,7 +394,11 @@ class Species{
         }
 
         this.stringCode = mutateMicrobe(parent.stringCode,isBacteria);
-
+        // There is a small chance of evolving into a eukaryote
+        if (this.stringCode.findFirst("N") >= 0){
+            this.isBacteria=false;
+            name = randomSpeciesName();
+        }
 
         generateMembranes(parent);
 

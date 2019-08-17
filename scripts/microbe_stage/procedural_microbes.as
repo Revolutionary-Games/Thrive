@@ -312,6 +312,18 @@ string mutateMicrobe(const string &in stringCode, bool isBacteria)
         }
     }
 
+    if (isBacteria){
+        if(GetEngine().GetRandom().GetNumber(0.f, 100.f) <= MUTATION_BACTERIA_TO_EUKARYOTE){
+            const auto organelleList = positionOrganelles(completeString);
+            const auto letter = "N";
+            string name = string(organelleLetters[letter]);
+            const string returnedGenome = translateOrganelleToGene(getRealisticPosition(name,organelleList));
+            //LOG_INFO("Adding");
+            //LOG_INFO("chromosomes:"+returnedGenome);
+            completeString+="|"+returnedGenome;
+        }
+    }
+
     LOG_INFO("Mutated: "+completeString);
     return completeString;
 }
