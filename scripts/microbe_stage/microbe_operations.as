@@ -292,7 +292,7 @@ void respawnPlayer(CellStageWorld@ world)
         sceneNodeComponent.Hidden = false;
         sceneNodeComponent.Marked = true;
 
-        setRandomBiome(world);
+        //setRandomBiome(world);
 
         cast<MicrobeStageHudSystem>(world.GetScriptSystem("MicrobeStageHudSystem")).
             suicideButtonreset();
@@ -706,11 +706,15 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         //This adds the nucleus r (y) so that it can deal with weird nucleus positioning,
         //and that is all we actually need
         int maxR = 2;
+
         for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
             auto organelle = cast<PlacedOrganelle>(microbeComponent.organelles[i]);
             if (organelle.organelle.name == "nucleus"){
                 maxR=maxR+(-organelle.r);
             }
+        }
+        if (microbeComponent.isBacteria){
+            maxR/=2;
         }
 
         //The distance is two hexes away from the back of the microbe.
@@ -730,12 +734,16 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         auto c = cos(finalAngle/180*PI);
         //Bacteria need to be able to shoot closer to themselves
         auto ourHex = HEX_SIZE;
-        if (microbeComponent.isBacteria)
-            ourHex/=2;
         // Membrane coords to world coords
         // Plus bunch more space in world coordinates like we added before with maxr but cleaner
         auto xnew = -(membraneCoords.X) * c + (membraneCoords.Z+maxR*ourHex) * s;
         auto ynew = (membraneCoords.X)* s + (membraneCoords.Z+maxR*ourHex) * c;
+
+        if (microbeComponent.isBacteria){
+            xnew/=1.8;
+            ynew/=1.8;
+        }
+
         // Find the direction the microbe is facing
         auto vec = ( microbeComponent.facingTargetPoint - cellPosition._Position);
         auto direction = vec.Normalize();

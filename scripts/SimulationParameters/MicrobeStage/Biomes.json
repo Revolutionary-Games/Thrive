@@ -10,19 +10,19 @@
                 "b": 0.95
 			},
 		    "diffuseColors": {
-                "r": 1.0,
+                "r": 0.5,
                 "g": 0.9,
-                "b": 1.0
+                "b": 0.8
 			},
 		    "upperAmbientColor": {
-                "r": 0.3,
-                "g": 0.3, 
-                "b": 0.4
+                "r": 0.5,
+                "g": 0.5,
+                "b": 0.7
 			},
 		    "lowerAmbientColor": {
-                "r": 0.2,
-                "g": 0.2, 
-                "b": 0.3
+                "r": 0.5,
+                "g": 0.5,
+                "b": 0.5
 			}
 		},
         
@@ -130,30 +130,30 @@
         }
     },
 
-    "volcanic_vent": {
+    "aavolcanic_vent": {
         "name": "Volcanic vent",
         "background": "Background_Vent",
-        "lightPower": 30.0,
+        "lightPower": 25.0,
 		"colors":{
 		    "specularColors": {
-                "r": 0.1,
-                "g": 0,
+                "r": 0.3,
+                "g": 0.05,
                 "b": 0.01
 			},
 		    "diffuseColors": {
-                "r": 1.0,
-                "g": 0.2,
-                "b": 0.2
+                "r": 0.3,
+                "g": 0.1,
+                "b": 0.1
 			},
 		    "upperAmbientColor": {
-                "r": 0.4,
-                "g": 0.3, 
-                "b": 0.3
+                "r": 0.2,
+                "g": 0.1,
+                "b": 0.1
 			},
 		    "lowerAmbientColor": {
-                "r": 0.3,
-                "g": 0.2, 
-                "b": 0.2
+                "r": 0.4,
+                "g": 0.4,
+                "b": 0.4
 			}
 		},
         
@@ -276,8 +276,8 @@
             },
 
             "hydrogensulfide": {
-                "amount": 225000,
-                "density": 0.00002,
+                "amount": 300000,
+                "density": 0.00004,
                 "dissolved": 0.0
             },
             
@@ -306,24 +306,24 @@
         "lightPower": 40.0,
 		"colors":{
 		    "specularColors": {
-                "r": 0.98,
-                "g": 0.7,
-                "b": 0.75
+                "r": 1.2,
+                "g": 1.2,
+                "b": 1.2
 			},
 		    "diffuseColors": {
-                "r": 1.0,
-                "g": 0.9,
+                "r": 0.9,
+                "g": 1.0,
                 "b": 0.9
 			},
 		    "upperAmbientColor": {
-                "r": 0.3,
-                "g": 0.3, 
-                "b": 0.3
+                "r": 1.8,
+                "g": 1.6, 
+                "b": 1.5
 			},
 		    "lowerAmbientColor": {
-                "r": 0.2,
+                "r": 0.5,
                 "g": 0.2, 
-                "b": 0.2
+                "b": 0.7
 			}
 		},
         
@@ -436,24 +436,24 @@
         "lightPower": 30.0,
 		"colors":{
 		    "specularColors": {
-                "r": 0,
+                "r": 0.1,
                 "g": 0.4,
                 "b": 0.5
 			},
 		    "diffuseColors": {
-                "r": 0,
+                "r": 0.1,
                 "g": 0.4,
                 "b": 0.5
 			},
 		    "upperAmbientColor": {
                 "r": 0.2,
-                "g": 0.5, 
+                "g": 0.4, 
                 "b": 0.5
 			},
 		    "lowerAmbientColor": {
                 "r": 0.1,
-                "g": 0.5, 
-                "b": 0.5
+                "g": 0.2, 
+                "b": 0.2
 			}
 		},
         
@@ -602,16 +602,16 @@
  "abyssopelagic": {
         "name": "Abyssopelagic",
         "background": "Background_Abyssopelagic",
-        "lightPower": 25.0,
+        "lightPower": 10.0,
 		"colors":{
 		    "specularColors": {
-                "r": 0,
-                "g": 0,
+                "r": 0.1,
+                "g": 0.1,
                 "b": 0.1
 			},
 		    "diffuseColors": {
-                "r": 0,
-                "g": 0,
+                "r": 0.05,
+                "g": 0.05,
                 "b": 0.1
 			},
 		    "upperAmbientColor": {
@@ -775,12 +775,12 @@
         "lightPower": 25.0,
 		"colors":{
 		    "specularColors": {
-                "r": 0.1,
+                "r": 0.3,
                 "g": 0.8,
                 "b": 1.0
 			},
 		    "diffuseColors": {
-                "r": 0.1,
+                "r": 0.3,
                 "g": 0.5,
                 "b": 0.5
 			},
@@ -945,14 +945,14 @@
         "lightPower": 40.0,
 		"colors":{
 		    "specularColors": {
-                "r": 0.98,
+                "r": 0.5,
                 "g": 0.7,
                 "b": 0.75
 			},
 		    "diffuseColors": {
                 "r": 1.0,
                 "g": 0.9,
-                "b": 0.9
+                "b": 1.5
 			},
 		    "upperAmbientColor": {
                 "r": 0.4,
@@ -1075,24 +1075,24 @@
         "lightPower": 25.0,
 		"colors":{
 		    "specularColors": {
-                "r": 0,
-                "g": 0,
-                "b": 0
-			},
-		    "diffuseColors": {
-                "r": 0,
-                "g": 0,
-                "b": 0
-			},
-		    "upperAmbientColor": {
-                "r": 0.3,
-                "g": 0.3, 
+                "r": 0.1,
+                "g": 0.3,
                 "b": 0.3
 			},
-		    "lowerAmbientColor": {
+		    "diffuseColors": {
+                "r": 0.1,
+                "g": 0.3,
+                "b": 0.4
+			},
+		    "upperAmbientColor": {
                 "r": 0.2,
-                "g": 0.2, 
-                "b": 0.2
+                "g": 0.4, 
+                "b": 0.5
+			},
+		    "lowerAmbientColor": {
+                "r": 0.1,
+                "g": 0.1, 
+                "b": 0.1
 			}
 		},
         
@@ -1368,24 +1368,24 @@
         "lightPower": 30.0,
 		"colors":{
 		    "specularColors": {
-                "r": 0.7,
+                "r": 0.9,
                 "g": 0.9,
                 "b": 0.75
             },
 		    "diffuseColors": {
-                "r": 0.8,
+                "r": 0.9,
                 "g": 1.0,
                 "b": 0.9
             },
 		    "upperAmbientColor": {
-                "r": 0.3,
-                "g": 0.4, 
-                "b": 0.3
+                "r": 1.8,
+                "g": 1.8, 
+                "b": 1.7
 			},
 		    "lowerAmbientColor": {
-                "r": 0.2,
-                "g": 0.3, 
-                "b": 0.2
+                "r": 0.6,
+                "g": 0.7, 
+                "b": 0.5
 			}
 		},
         
@@ -1499,14 +1499,14 @@
         "lightPower": 25.0,
 		"colors":{
 		    "specularColors": {
-                "r": 0,
-                "g": 0,
-                "b": 0
+                "r": 0.1,
+                "g": 0.1,
+                "b": 0.1
 			},
 		    "diffuseColors": {
-                "r": 0,
-                "g": 0,
-                "b": 0
+                "r": 0.3,
+                "g": 0.3,
+                "b": 0.3
 			},
 		    "upperAmbientColor": {
                 "r": 0.3,
@@ -1514,9 +1514,9 @@
                 "b": 0.3
 			},
 		    "lowerAmbientColor": {
-                "r": 0.2,
-                "g": 0.2, 
-                "b": 0.2
+                "r": 0.1,
+                "g": 0.1, 
+                "b": 0.1
 			}
 		},
         

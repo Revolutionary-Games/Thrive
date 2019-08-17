@@ -173,14 +173,13 @@ void setSunlightForBiome(CellStageWorld@ world){
 }
 
 // Setting the current biome to a random biome selected from the biome table.
-void setRandomBiome(CellStageWorld@ world)
+void setPatchBiome(CellStageWorld@ world)
 {
-    LOG_INFO("setting random biome");
+    LOG_INFO("setting to patch biome");
 
     // Getting the size of the biome table.
     // Selecting a random biome.
-    uint64 biome = GetEngine().GetRandom().GetNumber(0,
-        int(SimulationParameters::biomeRegistry().getSize()-1));
+    uint64 biome = GetThriveGame().getPatchManager().getCurrentPatch().getBiome();
 
     // Switching to that biome if we arent in that biome already
     if (currentBiome != biome)

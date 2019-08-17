@@ -523,7 +523,7 @@ void setupOrganelles(){
     };
 
     _addOrganelleToTable(Organelle(nitrogenPlastid));
-    // Prokaryotic Organelles (all meshes are placeholders)//
+    // Prokaryotic Organelles //
 
     // ------------------------------------ //
     // Respiratory Protein
@@ -534,7 +534,7 @@ void setupOrganelles(){
     respiratoryProtein.mesh = "metabolosome.fbx";
     respiratoryProtein.texture = "metabolosome.png";
     respiratoryProtein.chanceToCreate = 0.5f;
-    respiratoryProtein.prokaryoteChance = 1;
+    respiratoryProtein.prokaryoteChance = 2;
     respiratoryProtein.mpCost = 45;
     respiratoryProtein.initialComposition = {
         {"phosphates", 1},
@@ -561,7 +561,7 @@ void setupOrganelles(){
     photosyntheticProtein.mesh = "chromatophores.fbx";
     photosyntheticProtein.texture = "chromatophores.png";
     photosyntheticProtein.chanceToCreate = 0.5f;
-    photosyntheticProtein.prokaryoteChance = 1;
+    photosyntheticProtein.prokaryoteChance = 2;
     photosyntheticProtein.mpCost = 55;
     photosyntheticProtein.initialComposition = {
         {"phosphates", 1},
@@ -589,7 +589,7 @@ void setupOrganelles(){
     oxytoxyProtein.mesh = "oxytoxy.fbx";
     oxytoxyProtein.texture = "oxytoxy.png";
     oxytoxyProtein.chanceToCreate = 1;
-    oxytoxyProtein.prokaryoteChance = 1;
+    oxytoxyProtein.prokaryoteChance = 0.5f;
     oxytoxyProtein.mpCost = 55;
     oxytoxyProtein.initialComposition = {
         {"phosphates", 1},
@@ -619,7 +619,7 @@ void setupOrganelles(){
     chemoSynthisizingProtein.mesh = "chemoproteins.fbx";
     chemoSynthisizingProtein.texture = "chemoproteins.png";
     chemoSynthisizingProtein.chanceToCreate = 0.5f;
-    chemoSynthisizingProtein.prokaryoteChance = 1;
+    chemoSynthisizingProtein.prokaryoteChance = 2;
     chemoSynthisizingProtein.mpCost = 45;
     chemoSynthisizingProtein.initialComposition = {
         {"phosphates", 1},
@@ -647,7 +647,7 @@ void setupOrganelles(){
     protoplasmParameters.mesh = ""; //it's an empty hex
     protoplasmParameters.texture = "";
     protoplasmParameters.chanceToCreate = 0;
-    protoplasmParameters.prokaryoteChance = 1;
+    protoplasmParameters.prokaryoteChance = 2;
     protoplasmParameters.mpCost = 55;
     protoplasmParameters.initialComposition = {
         {"phosphates", 1},
@@ -673,7 +673,7 @@ void setupOrganelles(){
     nitrogenFixationProtein.mesh = "nitrogenase.fbx";
     nitrogenFixationProtein.texture = "nitrogenase.png";
     nitrogenFixationProtein.chanceToCreate = 1;
-    nitrogenFixationProtein.prokaryoteChance = 1;
+    nitrogenFixationProtein.prokaryoteChance = 2;
     nitrogenFixationProtein.mpCost = 55;
     nitrogenFixationProtein.initialComposition = {
         {"phosphates", 1},
@@ -701,7 +701,7 @@ void setupOrganelles(){
     rusticyanin.mesh = "rusticyanin.fbx";
     rusticyanin.texture = "rusticyanin.png";
     rusticyanin.chanceToCreate = 0.5f;
-    rusticyanin.prokaryoteChance = 1;
+    rusticyanin.prokaryoteChance = 2;
     rusticyanin.mpCost = 45;
     rusticyanin.initialComposition = {
         {"phosphates", 1},

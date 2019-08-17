@@ -60,6 +60,8 @@ set(GROUP_MICROBE_STAGE
   "microbe_stage/spawn_system.h"
   "microbe_stage/species.cpp"
   "microbe_stage/species.h"
+  "microbe_stage/patch.cpp"
+  "microbe_stage/patch.h"
   "microbe_stage/species_component.cpp"
   "microbe_stage/species_component.h"
   "microbe_stage/species_name_controller.cpp"
