@@ -681,8 +681,9 @@ void
 
         m_debugOverlayEnabled = false;
 
-        Leviathan::GenericEvent::pointer event =
-            new Leviathan::GenericEvent("ThriveDebugOverlayData");
+        auto event =
+            Leviathan::GenericEvent::MakeShared<Leviathan::GenericEvent>(
+                "ThriveDebugOverlayData");
 
         auto vars = event->GetVariables();
 
@@ -712,9 +713,9 @@ void
     auto connection = m_network->GetOwner()->OpenConnectionTo(url);
 
     if(!connection) {
-
-        Leviathan::GenericEvent::pointer event =
-            new Leviathan::GenericEvent("ConnectStatusMessage");
+        auto event =
+            Leviathan::GenericEvent::MakeShared<Leviathan::GenericEvent>(
+                "ConnectStatusMessage");
 
         auto vars = event->GetVariables();
 
@@ -728,9 +729,9 @@ void
     } else {
 
         if(!m_network->JoinServer(connection)) {
-
-            Leviathan::GenericEvent::pointer event =
-                new Leviathan::GenericEvent("ConnectStatusMessage");
+            auto event =
+                Leviathan::GenericEvent::MakeShared<Leviathan::GenericEvent>(
+                    "ConnectStatusMessage");
 
             auto vars = event->GetVariables();
 
@@ -744,8 +745,9 @@ void
             return;
         }
 
-        Leviathan::GenericEvent::pointer event =
-            new Leviathan::GenericEvent("ConnectStatusMessage");
+        auto event =
+            Leviathan::GenericEvent::MakeShared<Leviathan::GenericEvent>(
+                "ConnectStatusMessage");
 
         auto vars = event->GetVariables();
 
@@ -782,8 +784,10 @@ void
     }
 
     if(!userInitiated) {
-        Leviathan::GenericEvent::pointer event =
-            new Leviathan::GenericEvent("ConnectStatusMessage");
+
+        auto event =
+            Leviathan::GenericEvent::MakeShared<Leviathan::GenericEvent>(
+                "ConnectStatusMessage");
 
         auto vars = event->GetVariables();
 
@@ -794,8 +798,9 @@ void
 
         Engine::Get()->GetEventHandler()->CallEvent(event.detach());
     } else {
-        Leviathan::GenericEvent::pointer event =
-            new Leviathan::GenericEvent("ConnectStatusMessage");
+        auto event =
+            Leviathan::GenericEvent::MakeShared<Leviathan::GenericEvent>(
+                "ConnectStatusMessage");
 
         auto vars = event->GetVariables();
 
@@ -830,8 +835,9 @@ void
 
     // Hide the join status dialog
     {
-        Leviathan::GenericEvent::pointer event =
-            new Leviathan::GenericEvent("ConnectStatusMessage");
+        auto event =
+            Leviathan::GenericEvent::MakeShared<Leviathan::GenericEvent>(
+                "ConnectStatusMessage");
 
         auto vars = event->GetVariables();
 
@@ -1003,8 +1009,9 @@ void
     ThriveGame::Tick(int mspassed)
 {
     if(m_debugOverlayEnabled) {
-        Leviathan::GenericEvent::pointer event =
-            new Leviathan::GenericEvent("ThriveDebugOverlayData");
+        auto event =
+            Leviathan::GenericEvent::MakeShared<Leviathan::GenericEvent>(
+                "ThriveDebugOverlayData");
 
         auto vars = event->GetVariables();
 
