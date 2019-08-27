@@ -245,7 +245,7 @@ success "Done compiling thrive"
 if OS.windows?
   info "Open build/Thrive.sln and start coding"
 else
-  info "run the game with '#{CurrentDir}/thrive/build/Thrive'"
+  info "run the game with 'cd #{ProjectDir}/build/bin && ./Thrive'"
 end
 
 puts ""
