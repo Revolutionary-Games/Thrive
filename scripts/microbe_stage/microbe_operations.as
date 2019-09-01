@@ -779,21 +779,15 @@ void playSoundWithDistance(CellStageWorld@ world, const string &in soundPath,
 
     // Play sound
     if (microbeComponent.otherAudio is null ||
-                !microbeComponent.otherAudio.Get().isPlaying())
+                !microbeComponent.otherAudio.IsPlaying())
     {
         @microbeComponent.otherAudio = GetEngine().GetSoundDevice().Play2DSound(
-            soundPath, false, true);
+            soundPath, false);
         if(microbeComponent.otherAudio !is null){
-            if(microbeComponent.otherAudio.HasInternalSource()){
-                microbeComponent.otherAudio.Get().setVolume(soundVolume);
-                microbeComponent.otherAudio.Get().play();
-            } else {
-                LOG_ERROR("Created sound player doesn't have internal "
-                    "sound source");
-            }
+            microbeComponent.otherAudio.SetVolume(soundVolume);
         } else {
             //this was happening so often it caused lag
-            //LOG_ERROR("Failed to create sound player");
+            LOG_ERROR("Failed to create sound player");
         }
     }
 }

@@ -1,12 +1,4 @@
 
-// Now in the c++ camera system
-// // Camera limits
-// CAMERA_MIN_HEIGHT = 20;
-// CAMERA_MAX_HEIGHT = 120;
-// CAMERA_VERTICAL_SPEED = 0.015;
-
-bool global_if_already_displayed = false;
-
 const array<string> MICROBE_MUSIC_TRACKS = {
     "microbe-theme-1",
     // This doesn't exist //
@@ -84,23 +76,15 @@ class MicrobeStageHudSystem : ScriptSystem{
     {
         //randomize ambient sounds out of all available sounds
         // The isPlaying check will start a new track when the previous ends
-        if (@ambienceSounds is null || !ambienceSounds.Get().isPlaying())
+        if (@ambienceSounds is null || !ambienceSounds.IsPlaying())
         {
             @ambienceSounds = _playRandomMicrobeMusic();
-            if (@ambienceSounds !is null)
-                {
-                ambienceSounds.Get().play();
-                }
         }
 
         //play ambient track alongside music and loop it (its meant to be played alongside)
-        if (@ambientTrack is null || !ambientTrack.Get().isPlaying())
+        if (@ambientTrack is null || !ambientTrack.IsPlaying())
         {
             @ambientTrack = _playRandomMicrobeAmbience();
-            if (@ambientTrack !is null)
-                {
-                ambientTrack.Get().play();
-                }
         }
     }
 
@@ -210,10 +194,10 @@ class MicrobeStageHudSystem : ScriptSystem{
 
         // Pause to allow resuming
         if(ambientTrack !is null)
-            ambientTrack.Get().pause();
+            ambientTrack.Pause();
 
         if(ambienceSounds !is null)
-            ambienceSounds.Get().pause();
+            ambienceSounds.Pause();
     }
 
     //! This resumes sound when the cell stage world is active again
@@ -222,10 +206,10 @@ class MicrobeStageHudSystem : ScriptSystem{
         LOG_INFO("Resuming microbe stage background sounds");
 
         if(ambientTrack !is null)
-            ambientTrack.Get().play();
+            ambientTrack.Resume();
 
         if(ambienceSounds !is null)
-            ambienceSounds.Get().play();
+            ambienceSounds.Resume();
 
         // This is called when you come back from teh editor, so set reproduction to false
         reproductionDialogOpened=false;
@@ -311,40 +295,35 @@ class MicrobeStageHudSystem : ScriptSystem{
 
         AudioSource@ audio = GetEngine().GetSoundDevice().Play2DSound("Data/Sound/" +
             MICROBE_MUSIC_TRACKS[GetEngine().GetRandom().GetNumber(0,
-                    MICROBE_MUSIC_TRACKS.length() - 1)] + ".ogg", false, true);
+                    MICROBE_MUSIC_TRACKS.length() - 1)] + ".ogg", false);
         if (audio !is null){
-            if(audio.HasInternalSource()){
-                audio.Get().setVolume(0.3);
-            }
-            else {
-                LOG_ERROR("Microbe Music Lacks internal source");
-            }
-        }
-        else {
-        //LOG_ERROR("Failed to create ambiance music source");
+            audio.SetVolume(0.8);
+        } else {
+            LOG_ERROR("Failed to create ambiance music source");
         }
         return audio;
     }
 
-        private AudioSource@ _playRandomMicrobeAmbience(){
-            string track = MICROBE_AMBIENT_TRACKS[GetEngine().GetRandom().GetNumber(0,
-                    MICROBE_AMBIENT_TRACKS.length() - 1)] + ".ogg";
-            AudioSource@ audio = GetEngine().GetSoundDevice().Play2DSound("Data/Sound/soundeffects/" +track, false, true);
+    private AudioSource@ _playRandomMicrobeAmbience(){
+        string track = MICROBE_AMBIENT_TRACKS[GetEngine().GetRandom().GetNumber(0,
+                MICROBE_AMBIENT_TRACKS.length() - 1)] + ".ogg";
+        AudioSource@ audio = GetEngine().GetSoundDevice().Play2DSound(
+            "Data/Sound/soundeffects/" + track, false);
+
         if (audio !is null){
-            if(audio.HasInternalSource()){
-                audio.Get().setVolume(0.2);
-                if (track == "microbe-ambience2.ogg") {
-                    audio.Get().setVolume(0.05);
-                }
-            }else {
-                LOG_ERROR("Microbe Ambiance Lacks internal source");
+            audio.SetVolume(0.2);
+
+            if (track == "microbe-ambience2.ogg") {
+                audio.SetVolume(0.05);
             }
         }
         else {
             LOG_ERROR("Failed to create ambiance sound source");
         }
+
         return audio;
     }
+
     private CellStageWorld@ World;
 
 
