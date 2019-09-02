@@ -205,18 +205,34 @@ div::-webkit-scrollbar-thumb:hover {
 
 .HelpText {
   display: block;
-  width: 100%;
-  height: 100%;
   text-align: center;
-  font-size: 15pt;
+  font-size: 20pt;
+  overflow-y: scroll;
 }
 
 .HelpScroll {
   display: inline-block;
   margin-left: 5%;
-  margin-right: 5%;
-  overflow-y: scroll;
-  height: 600px;
+  padding-right: 5%;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.HelpLeftColumn {
+  width: 48%;
+}
+
+.HelpRightColumn {
+  width: 48%;
+  float: right;
+}
+
+.HelpBox {
+  background: rgba(0, 125, 125, 0.8);
+  margin-top: 20px;
+  padding: 10px;
+  width: 100%;
+  border-radius: 5px;
 }
 
 .MenuButton {
@@ -676,8 +692,8 @@ div::-webkit-scrollbar-thumb:hover {
   /* display:relative; This is the display setting when visible */
   display: none;
   width: 100%;
-  height: 100%;
-  margin-top: 60px;
+  height: 80%;
+  margin-top: 30px;
   background-color: rgb(1, 1, 1, 0);
   z-index: 2;
 }
@@ -686,7 +702,8 @@ div::-webkit-scrollbar-thumb:hover {
 #closeHelpEditor {
   vertical-align: middle;
   position: relative;
-  margin: 0 auto;
+  margin: 50px auto;
+  margin-bottom: 100px;
 }
 
 #tipMsg,
