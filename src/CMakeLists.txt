@@ -214,7 +214,7 @@ set(GROUP_RESC
   "Main_Res.rc"
   )
   
-source_group("res" FILES ${GROUP_RESC})
+source_group("Resource Files" FILES ${GROUP_RESC})
 
 set(CurrentProjectName Thrive)
 set(AllProjectFiles
