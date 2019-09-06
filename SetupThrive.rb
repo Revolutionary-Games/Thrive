@@ -78,7 +78,7 @@ WantedURL = "https://#{$svnUser}@boostslair.com/svn/thrive_assets"
 leviathan = Leviathan.new(
   # Use this if you always want the latest commit
   # version: "develop",
-  version: "fcaa13e340b3ffafe418eefac130fa85ace16702",
+  version: "1667ca1b0719bb5c85f7f3dc57c9b923b6127e09",
   # Doesn't actually work, but leviathan doesn't install with sudo by
   # default, or install at all for that matter
   noInstallSudo: true
