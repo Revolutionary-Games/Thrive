@@ -209,6 +209,13 @@ StandardConfigureExecutableMainAndInclude("${BaseIncludeFileName}" "main.cpp"
 
 include_directories(${CMAKE_CURRENT_LIST_DIR})
 
+# Application Resources
+set(GROUP_RESOURCES
+  "Main_Res.rc"
+  )
+  
+source_group("Resource Files" FILES ${GROUP_RESOURCES})
+
 set(CurrentProjectName Thrive)
 set(AllProjectFiles
   ${BaseIncludeFileName}
@@ -216,6 +223,7 @@ set(AllProjectFiles
   "thrive_world_factory.h" "thrive_world_factory.cpp"
   "generated/thrive_v8_extension.h"
   "thrive_js_interface.h" "thrive_js_interface.cpp"
+  ${GROUP_RESOURCES}
   )
 
 # Compile a common library
