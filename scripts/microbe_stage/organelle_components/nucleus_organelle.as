@@ -36,9 +36,9 @@ class NucleusOrganelle : OrganelleComponent{
             getOrganelleMaterialWithTexture("GolgiApparatus.png", speciesComponent.colour));
 
         sceneNode1.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
-        sceneNode1.Node.setPosition(Hex::axialToCartesian(q + 1, r + 1));
+        sceneNode1.Node.setPosition(Hex::axialToCartesian(q + 0.9f, r + 0.9f));
         sceneNode1.Node.setOrientation(bs::Quaternion(bs::Degree(rotation+180),
-                bs::Vector3(0, 1, -1)));
+                bs::Vector3(0, 1, 0)));
         sceneNode1.Marked = true;
 
         sceneNode1.Node.setParent(microbeNode.Node, false);
@@ -50,10 +50,10 @@ class NucleusOrganelle : OrganelleComponent{
             getOrganelleMaterialWithTexture("ER.png", speciesComponent.colour));
 
         sceneNode2.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
-        sceneNode2.Node.setPosition(Hex::axialToCartesian(q, r+.4));
+        sceneNode2.Node.setPosition(Hex::axialToCartesian(q, r + 1.6f));
 
         sceneNode2.Node.setOrientation(bs::Quaternion(bs::Degree(rotation+190),
-                bs::Vector3(0, 1, -1)));
+                bs::Vector3(0, 1, 0)));
         sceneNode2.Marked = true;
 
         sceneNode2.Node.setParent(microbeNode.Node, false);

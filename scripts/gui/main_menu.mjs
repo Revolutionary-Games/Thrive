@@ -169,12 +169,15 @@ function startMenuMusic(restart = true) {
         const startPaused = Boolean(menuAlreadySkipped);
 
         // Start the menu music
-        Leviathan.Play2DSound("Data/Sound/main-menu-theme-2.ogg", true, startPaused,
+        Leviathan.Play2DSound("Data/Sound/main-menu-theme-2.ogg", true,
             (source) => {
                 jams = source;
+
+                if(startPaused)
+                    jams.Pause();
             });
     } else {
-        jams.Play2D();
+        jams.Resume();
     }
 }
 

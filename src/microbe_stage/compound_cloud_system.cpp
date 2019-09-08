@@ -11,9 +11,6 @@
 #include <bsfCore/Components/BsCRenderable.h>
 #include <bsfCore/Image/BsTexture.h>
 #include <bsfCore/Material/BsMaterial.h>
-// temporary
-#include <bsfCore/Resources/BsResources.h>
-#include <bsfEngine/Resources/BsBuiltinResources.h>
 
 #include <atomic>
 

@@ -407,26 +407,22 @@ class MicrobeSystem : ScriptSystem{
 
             // Play sound
             if (microbeComponent.isPlayerMicrobe &&  (@microbeComponent.engulfAudio is null ||
-                !microbeComponent.engulfAudio.Get().isPlaying()))
+                !microbeComponent.engulfAudio.IsPlaying()))
             {
                 @microbeComponent.engulfAudio = GetEngine().GetSoundDevice().Play2DSound(
-                    "Data/Sound/soundeffects/engulfment.ogg", false, true);
+                    "Data/Sound/soundeffects/engulfment.ogg", false);
 
                 if(microbeComponent.engulfAudio !is null){
-                    if(microbeComponent.engulfAudio.HasInternalSource()){
 
-                        if (microbeComponent.isPlayerMicrobe)
-                        {
-                            microbeComponent.engulfAudio.Get().setVolume(1.0f);
-                        }
-                        microbeComponent.engulfAudio.Get().play();
-                    } else {
-                        LOG_ERROR("Created engulfment sound player doesn't have internal "
-                            "sound source");
+                    if (microbeComponent.isPlayerMicrobe)
+                    {
+                        microbeComponent.engulfAudio.SetVolume(1.0f);
                     }
 
+                    // what about other sound level?
+
                 } else {
-                    //LOG_ERROR("Failed to create engulfment sound player");
+                    LOG_ERROR("Failed to create engulfment sound player");
                 }
             }
 

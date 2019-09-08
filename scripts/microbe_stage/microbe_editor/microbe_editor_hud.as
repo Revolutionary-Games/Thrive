@@ -31,17 +31,12 @@ class MicrobeEditorHudSystem : ScriptSystem{
             MICROBE_EDITOR_AMBIENT_TRACKS[
                 GetEngine().GetRandom().GetNumber(0,
                     MICROBE_EDITOR_AMBIENT_TRACKS.length() - 1)] +
-            ".ogg", false, true);
-        if (audio !is null){
-            if(audio.HasInternalSource()){
-            audio.Get().setVolume(0.2);
-            }
-            else {
-            LOG_ERROR("Failed to create editor music internal source");
-            }
-        }
-        else {
-            //LOG_ERROR("Failed to create editor music sound source");
+            ".ogg", false);
+        if(audio !is null){
+            // audio.SetVolume(0.2);
+            audio.SetVolume(0.9);
+        } else {
+            LOG_ERROR("Failed to create editor music sound source");
         }
 
         return audio;
@@ -52,13 +47,9 @@ class MicrobeEditorHudSystem : ScriptSystem{
     {
         //randomize ambient sounds out of all available sounds
         // The isPlaying check will start a new track when the previous ends
-        if (@ambienceSounds is null || !ambienceSounds.Get().isPlaying())
+        if (@ambienceSounds is null || !ambienceSounds.IsPlaying())
         {
             @ambienceSounds = _playRandomEditorAmbience();
-            if (@ambienceSounds !is null)
-                {
-                ambienceSounds.Get().play();
-                }
         }
     }
 
@@ -67,7 +58,7 @@ class MicrobeEditorHudSystem : ScriptSystem{
     {
         LOG_INFO("Suspending microbe editor background sounds");
         if(ambienceSounds !is null)
-            ambienceSounds.Get().pause();
+            ambienceSounds.Pause();
     }
 
     void Release()
