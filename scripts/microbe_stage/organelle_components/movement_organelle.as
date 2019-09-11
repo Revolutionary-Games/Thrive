@@ -190,8 +190,7 @@ class MovementOrganelle : OrganelleComponent{
         if (renderNode !is null && IsInGraphicalMode())
         {
             renderNode.Node.setPosition(membraneCoords);
-            renderNode.Node.setOrientation(bs::Quaternion(bs::Degree(90),
-                    bs::Vector3(1, 0, 0)) * bs::Quaternion(bs::Degree(180),
+            renderNode.Node.setOrientation(bs::Quaternion(bs::Degree(180),
                         bs::Vector3(0, 1, 0)) * bs::Quaternion(bs::Degree(angle),
                             bs::Vector3(0, 0, 1)));
         }

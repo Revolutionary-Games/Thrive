@@ -658,10 +658,9 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
             // instead of with the position system
             renderNode.Node.setPosition(offset + this.cartesianPosition);
 
-            renderNode.Node.setOrientation(bs::Quaternion(bs::Degree(90),
-                    bs::Vector3(1, 0, 0)) * bs::Quaternion(bs::Degree(180),
-                        bs::Vector3(0, 1, 0)) * bs::Quaternion(bs::Degree(rotation),
-                            bs::Vector3(0, 0, 1)));
+            renderNode.Node.setOrientation(bs::Quaternion(bs::Degree(180),
+                    bs::Vector3(0, 1, 0)) * bs::Quaternion(bs::Degree(rotation),
+                        bs::Vector3(0, 0, 1)));
 
             auto parentRenderNode = world.GetComponent_RenderNode(
                 microbeEntity);
