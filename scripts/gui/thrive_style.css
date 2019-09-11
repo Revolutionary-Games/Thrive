@@ -1007,8 +1007,7 @@ video {
   background-color: #646b28;
 }
 
-#microbeToEditorButton,
-#microbeEditorFinishButton {
+#microbeToEditorButton {
   position: absolute;
   right: 50px;
   bottom: 50px;
@@ -1020,8 +1019,23 @@ video {
   line-height: 30px;
 }
 
-#microbeToEditorButton:hover,
-#microbeEditorFinishButton:hover {
+#microbeEditorFinishButton {
+  width: 150px;
+  height: 44px;
+  vertical-align: middle;
+  line-height: 44px;
+  text-align: center;
+  background-color: #008a42;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 5px;
+  border-color: rgba(17, 255, 213, 1);
+  position: absolute;
+  right: 20px;
+  bottom: 5px;
+}
+
+#microbeToEditorButton:hover {
   background-image: url("../../Textures/gui/bevel/LargeTwoHover.png");
 }
 

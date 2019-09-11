@@ -136,6 +136,27 @@ export function setupMicrobeEditor(){
     document.getElementById("Redo").addEventListener("click",
         onRedoClicked, true);
 
+    // Top navigation Buttons Clicked
+    document.getElementById("report").addEventListener("click", 
+    onPatchReportClicked, true);
+    document.getElementById("patch").addEventListener("click", 
+    onPatchReportClicked, true);
+    document.getElementById("editor").addEventListener("click", 
+    onPatchReportClicked, true);
+
+    // Next Button Clicked
+    document.getElementById("next").addEventListener("click", 
+    onNextButtonClicked, true);
+
+    // Condition buttons clicked
+    var minusBtnObjects = document.getElementsByClassName("minusBtn");
+
+    for (const element of minusBtnObjects) {
+        element.addEventListener("click",
+        onConditionClicked, true);
+    }
+
+    document.getElementsByClassName("minusBtn")
 
     // All of the organelle buttons
     for(const element of organelleSelectionElements){
@@ -334,12 +355,85 @@ function updateGuiButtons(isNucleusPresent){
     }
 }
 
+
+// All panels whitin is possible to navigate
+const panelButtons = ["report", "patch", "editor"];
+
+
+// Patch-Report function
+function onPatchReportClicked(event) {
+    
+    // Fire event
+    if(common.isInEngine()){
+        // Call a function to tell the game to swap to the editor. It
+        // Will notify us when it is done
+        Thrive.patchButtonClicked();
+    } else {
+        // Swap GUI for previewing
+        doEnterMicrobeEditor();
+    }
+
+    for(const [i,button] of panelButtons.entries()) {
+        if(button == this.id) {
+            counter = i;
+            document.getElementById( this.id).style.backgroundImage = 
+                "url(../../Textures/gui/bevel/topLeftButtonActive.png)";
+            document.getElementById( this.id).style.color = "#112B36";
+            document.getElementById( this.id + "Tab").style.visibility = "visible";
+
+            if(this.id == "editor") {
+                document.getElementById("EditorPanelTop").style.display = "block";
+                document.getElementById("EditorPanelBottom").style.visibility = "visible";
+                document.getElementById("next").style.visibility = "hidden";
+                Thrive.editorButtonClicked();
+            }
+        } else {
+            document.getElementById(button).style.backgroundImage = 
+                "url(../../Textures/gui/bevel/topLeftButton.png)";
+            document.getElementById(button).style.color =  "#FAFCFD";
+            document.getElementById( button + "Tab").style.visibility = "hidden";
+            document.getElementById("EditorPanelTop").style.display = "none";
+            document.getElementById("EditorPanelBottom").style.visibility = "hidden";
+            document.getElementById("next").style.visibility = "visible";
+        }
+    }
+}
+
+// Patch node click event
+$(".nodeMap").click(function(event) {
+    const type = $(event.target).attr('data-type');
+    alert("patch: " + type);
+
+    document.getElementById("patchName").innerHTML = type;
+});
+
+
+// Patch Map close button
+function onConditionClicked() {
+    var tab = $(this).attr("data-cond");
+    
+    $("#" + tab).animate({"height": "toggle"});
+    $(this).toggleClass("minus");
+    $(this).toggleClass("plus");   
+}
+    
+
 //! Updates generation points in GUI
 function updateSpeed(speed){
     document.getElementById("speedLabel").textContent =
     speed.toFixed(2);
 }
 
+
+// Next Button clicked
+var counter = 0;
+function onNextButtonClicked() {
+   if(counter == 2) {
+        counter = 0;
+    }
+    counter = counter + 1;
+    $( "#" + panelButtons[counter] ).click();  
+}
 
 
 function onResumeClickedEditor(){

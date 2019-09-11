@@ -51,12 +51,6 @@ export function runMicrobeHUDSetup(){
     document.getElementById("compressPanel").addEventListener("click", onCompressPanelClicked);
     document.getElementById("expandPanel").addEventListener("click", onExpandPanelClicked);
 
-    // Patch-report Buttons
-    document.getElementById("report").addEventListener("click", onPatchReportClicked);
-    document.getElementById("patch").addEventListener("click", onPatchReportClicked);
-    document.getElementById("editor").addEventListener("click", onPatchReportClicked);
-
-
     if(common.isInEngine()){
 
         // Register for the microbe stage events
@@ -398,7 +392,7 @@ function updateHoverInfo(vars){
             // Debug print version
             const values = vars[key].split(":");
             const img = document.createElement("IMG");
-            const src = "../../Textures/gui/bevel/";
+            var src = "../../Textures/gui/bevel/";
             values[0] = values[0].replace(/\s+/, "") 
             src =  src + values[0];
             src = src + ".png";
@@ -602,66 +596,6 @@ function onExpandPanelClicked() {
         barValue.style.left = "120px";
     }
 }
-
-
-// All panels whitin is possible to navigate
-const buttons = ["patch", "report", "editor"];
-
-
-// Patch-Report function
-function onPatchReportClicked() {
-
-    // Fire event
-    if(common.isInEngine()){
-        // Call a function to tell the game to swap to the editor. It
-        // Will notify us when it is done
-        Thrive.patchButtonClicked();
-    } else {
-        // Swap GUI for previewing
-        doEnterMicrobeEditor();
-    }
-
-    for(const button of buttons) {
-        if(button == this.id) {
-
-            $("#" + this.id).css("background-image",
-                "url(../../Textures/gui/bevel/topLeftButtonActive.png)");
-            $("#" + this.id).css("color", "#112B36");
-            $("#"+  this.id + "Tab").css("visibility", "visible");
-
-            if(this.id == "editor") {
-                document.getElementById("EditorPanelTop").style.display = "block";
-                document.getElementById("EditorPanelBottom").style.visibility = "visible";
-                Thrive.editorButtonClicked();
-            }
-        } else {
-            $("#" + button).css("background-image",
-                "url(../../Textures/gui/bevel/topLeftButton.png)");
-            $("#" + button).css("color", "#FAFCFD");
-            $("#" + button + "Tab").css("visibility", "hidden");
-            document.getElementById("EditorPanelTop").style.display = "none";
-            document.getElementById("EditorPanelBottom").style.visibility = "hidden";
-        }
-    }
-}
-
-// Patch node click event
-$(".nodeMap").click(function(event) {
-    const type = $(event.target).attr('data-type');
-    alert("patch: " + type);
-
-    document.getElementById("patchName").innerHTML = type;
-});
-
-
-// Patch Map close button
-$(".minusBtn").click(function() {
-    var tab = $(this).attr("data-cond");
-    $("#" + tab).animate({"height": "toggle"});
-
-    $(this).toggleClass("minus");
-    $(this).toggleClass("plus");
-});
 
 
 //! Updates the GUI bars
