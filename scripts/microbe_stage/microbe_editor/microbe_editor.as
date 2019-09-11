@@ -69,8 +69,8 @@ class MicrobeEditor{
             {"remove", PlacementFunctionType(this.removeOrganelle)}
         };
 
-        invalidMaterial = getBasicMaterialWithTexture("single_hex_invalid.png");
-        validMaterial = getBasicMaterialWithTexture("single_hex.png");
+        invalidMaterial = getBasicTransparentMaterialWithTexture("single_hex_invalid.png");
+        validMaterial = getBasicTransparentMaterialWithTexture("single_hex.png");
     }
 
     //! This is called each time the editor is entered so this needs to properly reset state
