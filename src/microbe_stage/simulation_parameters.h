@@ -5,7 +5,6 @@
 #include "bioprocesses.h"
 #include "compounds.h"
 #include "general/json_registry.h"
-#include "species.h"
 #include "species_name_controller.h"
 
 #include <unordered_map>
@@ -20,13 +19,10 @@ public:
     static TJsonRegistry<Compound> compoundRegistry;
     static TJsonRegistry<BioProcess> bioProcessRegistry;
     static TJsonRegistry<Biome> biomeRegistry;
-    // These are fully in AngelScript
-    // static TJsonRegistry<OrganelleType> organelleRegistry;
-    static TJsonRegistry<Species> speciesRegistry;
+    // These are fully in AngelScript, though it would be nice to move the
+    // parameters to json static TJsonRegistry<OrganelleType> organelleRegistry;
 
     static SpeciesNameController speciesNameController;
-
-    static std::unordered_map<size_t, unsigned int> newSpeciesStartingCompounds;
 
     static void
         init();

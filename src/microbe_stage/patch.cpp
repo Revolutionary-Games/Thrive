@@ -1,75 +1,99 @@
-#include "microbe_stage/patch.h"
+// ------------------------------------ //
+#include "patch.h"
+
 #include "simulation_parameters.h"
 
 using namespace thrive;
-
-Patch::Patch(std::string name)
+// ------------------------------------ //
+Patch::Patch(const std::string& name, int32_t id, const Biome& biomeTemplate) :
+    patchId(id), name(name), biome(biomeTemplate)
+{}
+// ------------------------------------ //
+bool
+    Patch::addNeighbour(int32_t id)
 {
-    this->name = name;
+    if(adjacentPatches.find(id) != adjacentPatches.end())
+        return false;
+
+    adjacentPatches.insert(id);
+    return true;
+}
+// ------------------------------------ //
+Species::pointer
+    Patch::searchSpeciesByName(const std::string& name) const
+{
+    for(const auto& entry : speciesInPatch) {
+        if(entry.species->name == name)
+            return entry.species;
+    }
+
+    return nullptr;
+}
+// ------------------------------------ //
+// Patch map
+bool
+    PatchMap::addPatch(Patch::pointer patch)
+{
+    if(!patch)
+        return false;
+
+    if(patches.find(patch->getId()) != patches.end())
+        return false;
+
+    patches[patch->getId()] = patch;
+    return false;
+}
+// ------------------------------------ //
+Species::pointer
+    PatchMap::findSpeciesByName(const std::string& name)
+{
+    const auto current = patches.find(currentPatchId);
+
+    if(current != patches.end()) {
+
+        const auto result = current->second->searchSpeciesByName(name);
+
+        if(result)
+            return result;
+    }
+
+    for(auto iter = patches.begin(); iter != patches.end(); ++iter) {
+
+        if(iter == current)
+            continue;
+
+        const auto result = current->second->searchSpeciesByName(name);
+
+        if(result)
+            return result;
+    }
+
+    return nullptr;
+}
+// ------------------------------------ //
+Patch::pointer
+    PatchMap::getCurrentPatch()
+{
+    return getPatch(currentPatchId);
 }
 
-Patch::~Patch() {}
+bool
+    PatchMap::setCurrentPatch(int32_t newId)
+{
+    if(patches.find(newId) == patches.end())
+        return false;
 
-std::string
-    Patch::getName()
-{
-    return this->name;
+    currentPatchId = newId;
+    return true;
 }
+// ------------------------------------ //
+Patch::pointer
+    PatchMap::getPatch(int32_t id)
+{
+    if(patches.find(id) == patches.end()) {
+        LOG_ERROR("PatchMap: has no patch with id: " + std::to_string(id));
+        return nullptr;
+    }
 
-void
-    Patch::setName(std::string name)
-{
-    this->name = name;
-}
-
-size_t
-    Patch::getBiome()
-{
-    return this->patchBiome;
-}
-
-void
-    Patch::setBiome(size_t patchBiome)
-{
-    this->patchBiome = patchBiome;
-}
-
-size_t
-    Patch::getId()
-{
-    return this->patchId;
-}
-
-// Patch manager
-PatchManager::PatchManager()
-{
-    this->currentPatchId = generatePatchMap();
-}
-
-PatchManager::~PatchManager()
-{
-    patchMap.clear();
-}
-/// Generate patch map and return the id of the starting patch
-size_t
-    PatchManager::generatePatchMap()
-{
-    // TODO: add proper map generator
-    std::shared_ptr<Patch> p = std::make_shared<Patch>("Pangonian vents");
-    p.get()->setBiome(0);
-    p.get()->patchId = 0;
-
-    patchMap[0] = p;
-    return 0;
-}
-Patch*
-    PatchManager::getCurrentPatch()
-{
-    return patchMap[this->currentPatchId].get();
-}
-
-Patch*
-    PatchManager::getPatchFromKey(size_t key)
-{
-    return patchMap[key].get();
+    return patches[id];
 }

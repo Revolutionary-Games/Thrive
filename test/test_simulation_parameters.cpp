@@ -25,7 +25,6 @@ TEST_CASE("Simulation parameters init works (no malformed json files)",
         CHECK(SimulationParameters::compoundRegistry.getSize() > 0);
         CHECK(SimulationParameters::bioProcessRegistry.getSize() > 0);
         CHECK(SimulationParameters::biomeRegistry.getSize() > 0);
-        CHECK(SimulationParameters::speciesRegistry.getSize() > 0);
         CHECK(SimulationParameters::speciesNameController.cofixes_c.size() > 0);
         CHECK(SimulationParameters::speciesNameController.cofixes_v.size() > 0);
     }

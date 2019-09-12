@@ -1,7 +1,5 @@
-#include "script_initializer.h"
-
-using namespace thrive;
 // ------------------------------------ //
+#include "script_initializer.h"
 
 #include "engine/player_data.h"
 #include "general/hex.h"
@@ -13,15 +11,19 @@ using namespace thrive;
 #include "microbe_stage/patch.h"
 #include "microbe_stage/player_microbe_control.h"
 #include "microbe_stage/simulation_parameters.h"
+#include "microbe_stage/species.h"
 #include "microbe_stage/species_name_controller.h"
 
 #include "ThriveGame.h"
 
 
-#include "Script/Bindings/BindHelpers.h"
-#include "Script/Bindings/StandardWorldBindHelper.h"
-#include "Script/ScriptExecutor.h"
+#include <Script/Bindings/BindHelpers.h>
+#include <Script/Bindings/StandardWorldBindHelper.h>
+#include <Script/ScriptExecutor.h>
 
+
+using namespace thrive;
+// ------------------------------------ //
 
 bool
     registerLockedMap(asIScriptEngine* engine)
@@ -561,6 +563,106 @@ bool
     return true;
 }
 
+bool
+    registerSpecies(asIScriptEngine* engine)
+{
+
+    if(engine->RegisterObjectType("Species", 0, asOBJ_REF | asOBJ_NOCOUNT) <
+        0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    // A bit hacky
+    if(engine->RegisterInterface("SpeciesStoredOrganelleType") < 0) {
+
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("Species",
+           "array<SpeciesStoredOrganelleType@>@ organelles",
+           asOFFSET(Species, organelles)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("Species",
+           "dictionary@ avgCompoundAmounts",
+           asOFFSET(Species, avgCompoundAmounts)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("Species",
+           "MEMBRANE_TYPE speciesMembraneType",
+           asOFFSET(Species, speciesMembraneType)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty(
+           "Species", "string stringCode", asOFFSET(Species, stringCode)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty(
+           "Species", "Float4 colour", asOFFSET(Species, colour)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+    if(engine->RegisterObjectProperty(
+           "Species", "string name", asOFFSET(Species, name)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty(
+           "Species", "string genus", asOFFSET(Species, genus)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty(
+           "Species", "string epithet", asOFFSET(Species, epithet)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty(
+           "Species", "bool isBacteria", asOFFSET(Species, isBacteria)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty(
+           "Species", "double aggression", asOFFSET(Species, aggression)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty(
+           "Species", "double fear", asOFFSET(Species, fear)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty(
+           "Species", "double activity", asOFFSET(Species, activity)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty(
+           "Species", "double focus", asOFFSET(Species, focus)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("Species", "double opportunism",
+           asOFFSET(Species, opportunism)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty(
+           "Species", "int32 population", asOFFSET(Species, population)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty(
+           "Species", "int32 generation", asOFFSET(Species, generation)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    return true;
+}
+
 
 static uint16_t ProcessorComponentTYPEProxy =
     static_cast<uint16_t>(ProcessorComponent::TYPE);
@@ -580,8 +682,6 @@ static uint16_t MembraneComponentTYPEProxy =
     static_cast<uint16_t>(MembraneComponent::TYPE);
 static uint16_t FluidEffectComponentTYPEProxy =
     static_cast<uint16_t>(FluidEffectComponent::TYPE);
-static uint16_t SpeciesComponentTYPEProxy =
-    static_cast<uint16_t>(SpeciesComponent::TYPE);
 static uint16_t CompoundBagComponentTYPEProxy =
     static_cast<uint16_t>(CompoundBagComponent::TYPE);
 static uint16_t CompoundAbsorberComponentTYPEProxy =
@@ -857,106 +957,6 @@ bool
            "bool removeSentOrganelle(double x, double y)",
            asMETHOD(MembraneComponent, removeSentOrganelle),
            asCALL_THISCALL) < 0) {
-        ANGELSCRIPT_REGISTERFAIL;
-    }
-
-
-    // ------------------------------------ //
-
-    if(engine->RegisterObjectType(
-           "SpeciesComponent", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
-        ANGELSCRIPT_REGISTERFAIL;
-    }
-
-    if(!bindComponentTypeId(
-           engine, "SpeciesComponent", &SpeciesComponentTYPEProxy))
-        return false;
-
-    // A bit hacky
-    if(engine->RegisterInterface("SpeciesStoredOrganelleType") < 0) {
-
-        ANGELSCRIPT_REGISTERFAIL;
-    }
-
-    if(engine->RegisterObjectProperty("SpeciesComponent",
-           "array<SpeciesStoredOrganelleType@>@ organelles",
-           asOFFSET(SpeciesComponent, organelles)) < 0) {
-        ANGELSCRIPT_REGISTERFAIL;
-    }
-
-    if(engine->RegisterObjectProperty("SpeciesComponent",
-           "dictionary@ avgCompoundAmounts",
-           asOFFSET(SpeciesComponent, avgCompoundAmounts)) < 0) {
-        ANGELSCRIPT_REGISTERFAIL;
-    }
-
-    if(engine->RegisterObjectProperty("SpeciesComponent",
-           "MEMBRANE_TYPE speciesMembraneType",
-           asOFFSET(SpeciesComponent, speciesMembraneType)) < 0) {
-        ANGELSCRIPT_REGISTERFAIL;
-    }
-
-    if(engine->RegisterObjectProperty("SpeciesComponent", "string stringCode",
-           asOFFSET(SpeciesComponent, stringCode)) < 0) {
-        ANGELSCRIPT_REGISTERFAIL;
-    }
-
-    if(engine->RegisterObjectProperty("SpeciesComponent", "Float4 colour",
-           asOFFSET(SpeciesComponent, colour)) < 0) {
-        ANGELSCRIPT_REGISTERFAIL;
-    }
-    if(engine->RegisterObjectProperty("SpeciesComponent", "string name",
-           asOFFSET(SpeciesComponent, name)) < 0) {
-        ANGELSCRIPT_REGISTERFAIL;
-    }
-
-    if(engine->RegisterObjectProperty("SpeciesComponent", "string genus",
-           asOFFSET(SpeciesComponent, genus)) < 0) {
-        ANGELSCRIPT_REGISTERFAIL;
-    }
-
-    if(engine->RegisterObjectProperty("SpeciesComponent", "string epithet",
-           asOFFSET(SpeciesComponent, epithet)) < 0) {
-        ANGELSCRIPT_REGISTERFAIL;
-    }
-
-    if(engine->RegisterObjectProperty("SpeciesComponent", "bool isBacteria",
-           asOFFSET(SpeciesComponent, isBacteria)) < 0) {
-        ANGELSCRIPT_REGISTERFAIL;
-    }
-
-    if(engine->RegisterObjectProperty("SpeciesComponent", "double aggression",
-           asOFFSET(SpeciesComponent, aggression)) < 0) {
-        ANGELSCRIPT_REGISTERFAIL;
-    }
-
-    if(engine->RegisterObjectProperty("SpeciesComponent", "double fear",
-           asOFFSET(SpeciesComponent, fear)) < 0) {
-        ANGELSCRIPT_REGISTERFAIL;
-    }
-
-    if(engine->RegisterObjectProperty("SpeciesComponent", "double activity",
-           asOFFSET(SpeciesComponent, activity)) < 0) {
-        ANGELSCRIPT_REGISTERFAIL;
-    }
-
-    if(engine->RegisterObjectProperty("SpeciesComponent", "double focus",
-           asOFFSET(SpeciesComponent, focus)) < 0) {
-        ANGELSCRIPT_REGISTERFAIL;
-    }
-
-    if(engine->RegisterObjectProperty("SpeciesComponent", "double opportunism",
-           asOFFSET(SpeciesComponent, opportunism)) < 0) {
-        ANGELSCRIPT_REGISTERFAIL;
-    }
-
-    if(engine->RegisterObjectProperty("SpeciesComponent", "int32 population",
-           asOFFSET(SpeciesComponent, population)) < 0) {
-        ANGELSCRIPT_REGISTERFAIL;
-    }
-
-    if(engine->RegisterObjectProperty("SpeciesComponent", "int32 generation",
-           asOFFSET(SpeciesComponent, generation)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
@@ -1482,84 +1482,59 @@ bool
     return true;
 }
 
-
-//! \todo This might be good to also be available to other c++ files
-ObjectID
-    findSpeciesEntityByName(CellStageWorld* world, const std::string& name)
-{
-
-    if(!world || name.empty())
-        return NULL_OBJECT;
-
-    const auto& allSpecies = world->GetComponentIndex_SpeciesComponent();
-
-    for(const auto& tuple : allSpecies) {
-
-        SpeciesComponent* species = std::get<1>(tuple);
-
-        if(species->name == name)
-            return std::get<0>(tuple);
-    }
-
-    // LOG_ERROR("findSpeciesEntityByName: no species with name: " + name);
-    return NULL_OBJECT;
-}
-
 bool
     registerPatches(asIScriptEngine* engine)
 {
-    if(engine->RegisterObjectType("Patch", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
-        ANGELSCRIPT_REGISTERFAIL;
-    }
+    // ------------------------------------ //
+    // Patch
+    ANGELSCRIPT_REGISTER_REF_TYPE("Patch", Patch);
 
-    if(engine->RegisterObjectMethod("Patch", "string getName()",
+    if(engine->RegisterObjectMethod("Patch", "const string& getName() const",
            asMETHOD(Patch, getName), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-    if(engine->RegisterObjectMethod("Patch", "void setName(string name)",
-           asMETHOD(Patch, setName), asCALL_THISCALL) < 0) {
-        ANGELSCRIPT_REGISTERFAIL;
-    }
-
-    ANGELSCRIPT_ASSUMED_SIZE_T;
-    if(engine->RegisterObjectMethod("Patch", "uint64 getBiome()",
-           asMETHOD(Patch, getBiome), asCALL_THISCALL) < 0) {
-        ANGELSCRIPT_REGISTERFAIL;
-    }
-
-    ANGELSCRIPT_ASSUMED_SIZE_T;
-    if(engine->RegisterObjectMethod("Patch", "void setBiome(uint64 patchBiome)",
-           asMETHOD(Patch, setBiome), asCALL_THISCALL) < 0) {
-        ANGELSCRIPT_REGISTERFAIL;
-    }
-
-    ANGELSCRIPT_ASSUMED_SIZE_T;
-    if(engine->RegisterObjectMethod("Patch", "uint64 getId()",
+    if(engine->RegisterObjectMethod("Patch", "int32 getId() const",
            asMETHOD(Patch, getId), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    // Would be much safer to have reference counting for biomes
+    if(engine->RegisterObjectMethod("Patch", "Biome@ getBiome()",
+           asMETHODPR(Patch, getBiome, (), Biome&), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+
+    // ------------------------------------ //
+    // PatchMap
+    ANGELSCRIPT_REGISTER_REF_TYPE("PatchMap", PatchMap);
+
+    if(engine->RegisterObjectMethod("PatchMap", "Patch@ getCurrentPatch()",
+           asMETHOD(PatchMap, getCurrentPatchWrapper), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("PatchMap",
+           "int32 getCurrentPatchId() const",
+           asMETHOD(PatchMap, getCurrentPatchId), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("PatchMap", "Patch@ getPatch(int32 id)",
+           asMETHOD(PatchMap, getPatchWrapper), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("PatchMap", "bool addPatch(Patch@ patch)",
+           asMETHOD(PatchMap, addPatchWrapper), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    // ------------------------------------ //
+    // PatchManager
     if(engine->RegisterObjectType(
            "PatchManager", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
-        ANGELSCRIPT_REGISTERFAIL;
-    }
-
-    if(engine->RegisterObjectMethod("PatchManager", "Patch@ getCurrentPatch()",
-           asMETHOD(PatchManager, getCurrentPatch), asCALL_THISCALL) < 0) {
-        ANGELSCRIPT_REGISTERFAIL;
-    }
-
-    ANGELSCRIPT_ASSUMED_SIZE_T;
-    if(engine->RegisterObjectMethod("PatchManager",
-           "Patch@ getPatchFromKey(uint64 key)",
-           asMETHOD(PatchManager, getPatchFromKey), asCALL_THISCALL) < 0) {
-        ANGELSCRIPT_REGISTERFAIL;
-    }
-
-    ANGELSCRIPT_ASSUMED_SIZE_T;
-    if(engine->RegisterObjectMethod("PatchManager", "uint64 generatePatchMap()",
-           asMETHOD(PatchManager, generatePatchMap), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
@@ -1704,18 +1679,12 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-    if(engine->RegisterObjectMethod("ThriveGame",
-           "PatchManager@ getPatchManager()",
-           asMETHOD(ThriveGame, getPatchManager), asCALL_THISCALL) < 0) {
-        ANGELSCRIPT_REGISTERFAIL;
-    }
-
-    if(engine->RegisterGlobalFunction(
-           "ObjectID findSpeciesEntityByName(CellStageWorld@ world, "
-           "const string &in name)",
-           asFUNCTION(findSpeciesEntityByName), asCALL_CDECL) < 0) {
-        ANGELSCRIPT_REGISTERFAIL;
-    }
+    // if(engine->RegisterGlobalFunction(
+    //        "ObjectID findSpeciesEntityByName(CellStageWorld@ world, "
+    //        "const string &in name)",
+    //        asFUNCTION(findSpeciesEntityByName), asCALL_CDECL) < 0) {
+    //     ANGELSCRIPT_REGISTERFAIL;
+    // }
 
     return true;
 }

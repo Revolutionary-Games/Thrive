@@ -8,7 +8,6 @@
 #include "generated/microbe_editor_world.h"
 #include "main_menu_keypresses.h"
 #include "microbe_stage/microbe_editor_key_handler.h"
-#include "microbe_stage/patch.h"
 #include "microbe_stage/simulation_parameters.h"
 #include "scripting/script_initializer.h"
 #include "thrive_net_handler.h"
@@ -48,7 +47,6 @@ class ThriveGame::Implementation {
 public:
     Implementation(ThriveGame& game) :
         m_game(game), m_playerData("player"),
-        m_patch_manager(std::make_shared<PatchManager>()),
         m_menuKeyPresses(std::make_shared<MainMenuKeyPressListener>()),
         m_globalKeyPresses(std::make_shared<GlobalUtilityKeyHandler>(
             *game.ApplicationConfiguration->GetKeyConfiguration())),
@@ -159,8 +157,6 @@ public:
     ThriveGame& m_game;
 
     PlayerData m_playerData;
-
-    std::shared_ptr<PatchManager> m_patch_manager;
 
     std::shared_ptr<CellStageWorld> m_cellStage;
     std::shared_ptr<MicrobeEditorWorld> m_microbeEditor;
@@ -442,12 +438,6 @@ CellStageWorld*
     ThriveGame::getCellStage()
 {
     return m_impl->m_cellStage.get();
-}
-
-PatchManager*
-    ThriveGame::getPatchManager()
-{
-    return m_impl->m_patch_manager.get();
 }
 
 PlayerData&

@@ -1,77 +1,39 @@
-// The current biome's id. This is initially set this high because now
-// the biome is only changed if the number changed. So if there ever
-// are more biomes than this initial value something will break.
-uint64 currentBiome = 1000000;
+// Handles setting up spawns etc. for the microbe stage for the current
+// Also runs the patch map generator
 
-const Biome@ getCurrentBiome(){
+// Makes sure the currently selected player patch is correctly setup
+// Should be called each time when entering the stage from either the menu or the editor
+void runPatchSetup(CellStageWorld@ world)
+{
+    assert(world !is null, "runPatchSetup requires world");
 
-    return SimulationParameters::biomeRegistry().getTypeData(currentBiome);
-}
+    PatchManager::enablePatchSettings(world);
 
-ObjectID createCompoundCloud(CellStageWorld@ world, CompoundId compound,
-    float x, float z, float amount
-) {
-    if(amount == 0){
-        amount = getCurrentBiome().getCompound(compound).amount;
-    }
-
-    // This is just a sanity check
-    //if(compoundTable[compoundName] and compoundTable[compoundName].isCloud)
-
-    // addCloud requires integer arguments. This is not true anymore
-    int roundedX = round(x);
-    int roundedZ = round(z);
-
-    // TODO: this isn't the best way to handle this for max performance
-    world.GetCompoundCloudSystem().addCloud(compound, amount, Float3(roundedX, 0, roundedZ));
-
-    // We don't spawn new entities
-    return NULL_OBJECT;
-}
-
-class CloudFactory{
-
-    CloudFactory(CompoundId c){
-
-        compound = c;
-    }
-
-    ObjectID spawn(CellStageWorld@ world, Float3 pos){
-        createCompoundCloud(world, compound, pos.X+2, pos.Z, 0);
-        createCompoundCloud(world, compound, pos.X-2, pos.Z, 0);
-        createCompoundCloud(world, compound, pos.X, pos.Z+2, 0);
-        createCompoundCloud(world, compound, pos.X, pos.Z-2, 0);
-        return createCompoundCloud(world, compound, pos.X, pos.Z, 0);
-    }
-
-    private CompoundId compound;
-}
-
-class Chunkfactory{
-
-    Chunkfactory(uint c){
-
-        chunkId = c;
-    }
-
-    ObjectID spawn(CellStageWorld@ world, Float3 pos){
-        return createChunk(world, chunkId, pos);
-    }
-
-    private uint chunkId;
-}
-
-dictionary compoundSpawnTypes;
-dictionary chunkSpawnTypes;
-
-// Setting the current biome to the one with the specified name.
-void setBiome(uint64 biomeId, CellStageWorld@ world){
-    assert(world !is null, "setBiome requires world");
-
-    LOG_INFO("Setting biome to: " + biomeId);
+    LOG_INFO("Current patch is: " + -1);
     // Getting the base biome to change to.
     currentBiome = biomeId;
     auto biome = getCurrentBiome();
+}
+
+PatchMap@ generatePatchMap()
+{
+
+}
+
+void setActivePatchMap(PatchMap@ map)
+{
+
+}
+
+void setCurrentPlayerPatch(int id)
+{
+
+}
+
+namespace PatchManager{
+
+
+void enablePatchSettings(CellStageWorld@ world){
 
     auto chunks = biome.getChunkKeys();
     LOG_INFO("chunks.length = " + chunks.length());
@@ -81,7 +43,7 @@ void setBiome(uint64 biomeId, CellStageWorld@ world){
         const string typeStr = formatUInt(c);
         if(chunkSpawnTypes.exists(typeStr)){
             world.GetSpawnSystem().removeSpawnType(SpawnerTypeId(
-                chunkSpawnTypes[typeStr]));
+                    chunkSpawnTypes[typeStr]));
             LOG_INFO("deleting chunk spawn");
         }
     }
@@ -92,7 +54,7 @@ void setBiome(uint64 biomeId, CellStageWorld@ world){
         const string typeStr = formatUInt(chunkId);
         // And register new
         const auto density = biome.getChunk(chunkId).density;
-       const auto name = biome.getChunk(chunkId).name;
+        const auto name = biome.getChunk(chunkId).name;
 
         if(density <= 0){
             LOG_WARNING("chunk spawn density is 0. It won't spawn");
@@ -138,11 +100,12 @@ void setBiome(uint64 biomeId, CellStageWorld@ world){
                 CLOUD_SPAWN_RADIUS);
         }
     }
+    
     // Change the lighting
     setSunlightForBiome(world);
     // Changing the background.
     GetThriveGame().setBackgroundMaterial(biome.background);
-    //Update biome for process system
+    // Update environment for process system
     world.GetProcessSystem().setProcessBiome(biomeId);
 
     // Update oxygen and carbon dioxide numbers
@@ -152,11 +115,11 @@ void setBiome(uint64 biomeId, CellStageWorld@ world){
     GenericEvent@ updateDissolvedGasses = GenericEvent("UpdateDissolvedGasses");
     NamedVars@ vars = updateDissolvedGasses.GetNamedVars();
     vars.AddValue(ScriptSafeVariableBlock("oxygenPercent",
-        world.GetProcessSystem().getDissolved(oxyId)*100));
+            world.GetProcessSystem().getDissolved(oxyId)*100));
     vars.AddValue(ScriptSafeVariableBlock("co2Percent",
-        world.GetProcessSystem().getDissolved(c02Id)*100));
+            world.GetProcessSystem().getDissolved(c02Id)*100));
     vars.AddValue(ScriptSafeVariableBlock("n2Percent",
-        world.GetProcessSystem().getDissolved(n2Id)*100));
+            world.GetProcessSystem().getDissolved(n2Id)*100));
     GetEngine().GetEventHandler().CallEvent(updateDissolvedGasses);
 }
 
@@ -172,18 +135,5 @@ void setSunlightForBiome(CellStageWorld@ world){
     // );
 }
 
-// Setting the current biome to a random biome selected from the biome table.
-void setPatchBiome(CellStageWorld@ world)
-{
-    LOG_INFO("setting to patch biome");
-
-    // Getting the size of the biome table.
-    // Selecting a random biome.
-    uint64 biome = GetThriveGame().getPatchManager().getCurrentPatch().getBiome();
-
-    // Switching to that biome if we arent in that biome already
-    if (currentBiome != biome)
-    {
-        setBiome(biome, world);
-    }
 }
+
