@@ -1,14 +1,14 @@
 # Based on a file from the Ogre Wiki Tutorial Framework
 #      http://www.ogre3d.org/tikiwiki/
 #
-# Modified as part of the Thrive project
-# As of the Leviathan engine update this has been mostly rewritten
+# Heavily modified as part of the Thrive project
+# As of the Leviathan engine update this has been mostly rewritten.
+# With the switch to bs::framework this likely has no original parts left
 #-----------------------------------------------------------------------------
 
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.10)
 
 project(Thrive)
-
 
 
 ###################
@@ -23,7 +23,7 @@ set(ASSET_DIRECTORY "${CMAKE_SOURCE_DIR}/assets"
 set(LEVIATHAN_SRC "${PROJECT_SOURCE_DIR}/ThirdParty/Leviathan" CACHE FILEPATH
   "Path to leviathan source folder")
 
-if(NOT IS_DIRECTORY "${ASSET_DIRECTORY}/models")
+if(NOT IS_DIRECTORY "${ASSET_DIRECTORY}/raw_assets")
     message(FATAL_ERROR 
 "Could not find assets in ${ASSET_DIRECTORY}.  
 Please run the SetupThrive.rb script to download them.
@@ -79,14 +79,16 @@ endif()
 
 # Links to libs
 
-# Copy engine lib
+# Copy engine lib and LeviathanEditor
 if(WIN32)
   file(COPY "${LEVIATHAN_SRC}/build/bin/Engine.dll" DESTINATION "${CMAKE_BINARY_DIR}/bin")
   file(COPY "${LEVIATHAN_SRC}/build/bin/Engine.pdb" DESTINATION "${CMAKE_BINARY_DIR}/bin")
   install(FILES "${LEVIATHAN_SRC}/build/bin/Engine.dll" DESTINATION "bin")
+  install(PROGRAMS "${LEVIATHAN_SRC}/build/bin/LeviathanEditor.exe" DESTINATION "bin")
 else()
   file(COPY "${LEVIATHAN_SRC}/build/bin/libEngine.so" DESTINATION "${CMAKE_BINARY_DIR}/bin")
   install(FILES "${LEVIATHAN_SRC}/build/bin/libEngine.so" DESTINATION "bin")
+  install(PROGRAMS "${LEVIATHAN_SRC}/build/bin/LeviathanEditor" DESTINATION "bin")
 endif()
 
 # Link own bin directory
@@ -147,9 +149,9 @@ file(GLOB THRIVE_MATERIALS "materials/*")
 file(COPY ${THRIVE_MATERIALS} DESTINATION "${PROJECT_BINARY_DIR}/bin/Data/Materials/")
 InstallContentsOfFolder("materials" "bin/Data/Materials")
 
-file(GLOB THRIVE_SHADERS "shaders/*")
+file(GLOB THRIVE_SHADERS "assets/Shaders/*")
 file(COPY ${THRIVE_SHADERS} DESTINATION "${PROJECT_BINARY_DIR}/bin/Data/Shaders/")
-InstallContentsOfFolder("shaders" "bin/Data/Shaders")
+InstallContentsOfFolder("assets/Shaders" "bin/Data/Shaders")
 
 # Copy other data assets
 file(GLOB THRIVE_TEXTURES "assets/textures/*")

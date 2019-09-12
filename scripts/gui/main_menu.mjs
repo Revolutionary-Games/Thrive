@@ -79,7 +79,6 @@ export function runMenuSetup(){
 
             event.stopPropagation();
             onEscapePressed();
-
         }
     }, true);
 
@@ -105,6 +104,11 @@ export function runMenuSetup(){
         // Server status message display
         Leviathan.OnGeneric("ConnectStatusMessage", (event, vars) => {
             handleConnectionStatusEvent(vars);
+        });
+
+        // Debug overlay data
+        Leviathan.OnGeneric("ThriveDebugOverlayData", (event, vars) => {
+            handleDebugOverlayData(vars);
         });
 
         // Start intro video
@@ -165,12 +169,15 @@ function startMenuMusic(restart = true) {
         const startPaused = Boolean(menuAlreadySkipped);
 
         // Start the menu music
-        Leviathan.Play2DSound("Data/Sound/main-menu-theme-2.ogg", true, startPaused,
+        Leviathan.Play2DSound("Data/Sound/main-menu-theme-2.ogg", true,
             (source) => {
                 jams = source;
+
+                if(startPaused)
+                    jams.Pause();
             });
     } else {
-        jams.Play2D();
+        jams.Resume();
     }
 }
 
@@ -270,6 +277,27 @@ function handleConnectionStatusEvent(event){
     if(event.server)
         document.getElementById("currentServerAddress").innerText = event.server;
     document.getElementById("currentConnectionStatusMessage").innerText = event.message;
+}
+
+function handleDebugOverlayData(vars){
+    if(vars.show){
+        document.getElementById("debugOverlay").style.display = "block";
+    } else {
+        document.getElementById("debugOverlay").style.display = "none";
+    }
+
+    document.getElementById("currentFPS").innerText = vars.fps;
+    document.getElementById("avgFrameTime").innerText = vars.avgFrameTime.toFixed(1) + "ms";
+    document.getElementById("currentFrameTime").innerText = vars.frameTime.toFixed(1) + "ms";
+    document.getElementById("maxFrameTime").innerText = vars.maxFrameTime.toFixed(1) + "ms";
+    document.getElementById("currentTickTime").innerText = vars.tickTime + "ms";
+
+    if(vars.ticksBehind){
+        document.getElementById("currentTicksBehind").innerText =
+            "TICK UPDATES ARE BEHIND BY " + vars.ticksBehind + " TICKS";
+    } else {
+        document.getElementById("currentTicksBehind").innerText = "";
+    }
 }
 
 function onMicrobeIntroEnded(error){

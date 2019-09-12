@@ -22,7 +22,14 @@
     </script>
     
     
-    
+    <!-- Debug overlay that is on top of everything (except the videos that are on another layer -->
+    <div id="debugOverlay" style="display: none;">
+      <span id="currentFPS">performance data not updated</span>
+      <span>frame: <span id="currentFrameTime"></span> max: <span id="maxFrameTime"></span>
+        avg: <span id="avgFrameTime"></span></span>
+      <span>tick: <span id="currentTickTime"></span></span>
+      <span id="currentTicksBehind"></span>
+    </div>
 
     <!-- This blocks out everything until javascript has loaded (shows the tasteful thrive logo) -->
     <div id="loadingLogo" class="FullScreen"
@@ -407,8 +414,9 @@
     will slow down, lose health and eventually die.
     <br><br> The various compound clouds are:<br><br> White –
 Glucose <br> Yellow – Hydrogen Sulfide <br> Orange - Ammonia  <br> Purple - Phosphates <br> Rust Brown - Iron Ions <br><br>
-
 Glucose makes ATP<br>
+		</div>
+		<div class="HelpBox">
 Hydrogen Sulfide can be converted into glucose via chemoplasts and chemosynthesizing proteins<br>
 Iron Ions can be converted via rusticyanin into ATP<br>
 and Ammonia and Phosphates are crucial for reproduction. <br><br>
@@ -419,23 +427,55 @@ and then collect the spilled compounds if you have a toxin vacuole. <br><br>
 You can also engulf cells and bacteria and iron chunks and cell chunks that are smaller than you by pressing
 G. This will cost additional ATP and will slow you down. Don't forget
 to press G a second time to stop engulfing. <br><br>
-
+Iron can be converted via rusticyanin into ATP.
+		</div>
+		<div class="HelpBox">
 To reproduce you need to divide each of your organelles into two and
 then duplicate the DNA in your nucleus. Each organelle needs 2 ammonia
 and 2 phosphate to split in
 half. 
-<br><br>
-Osmoregulation Now costs ATP, which means the bigger your cell is, the more Mitochondria or Metabolosomes or Rusticyanin (or cytoplasm, which does Glycolysis) you need to avoid losing ATP when you are stationary.
+		</div>
+		<div class="HelpBox">
+But if you survive for twenty generations with 300 population, you are considered to have won, 
+after winning you get a popup and can continue playing as you wish.
+		</div>
+		<div class="HelpBox">
+Be wary because your competitors are evolving alongside you. Every time you enter the editor they evolve as well.
+		</div>
+		</div>
+		
+		<div class="HelpLeftColumn">
+		<div class="HelpBox">
+		W,A,S,D and mouse to move. E to shoot OxyToxy NT if you have a toxin vacuole. G to toggle engulf mode.
+		</div>
+		<div class="HelpBox">
+		Your cell uses <span class="tkey">ATP</span> <span class="compoundIcon" id="ATPIcon"></span> as it's energy source, if it runs out you will die.
+		</div>
+		<div class="HelpBox">
+		To unlock the editor and reproduce you need to gather <span class="tkey">Ammonia</span> <span class="compoundIcon" id="AmmoniaIcon"></span>  (Orange Cloud) and <span class="tkey">Phosphate</span> (Purple Cloud).
+		</div>
+		<div class="HelpBox">
+You can also engulf cells and bacteria and iron chunks and cell chunks that are smaller than you by pressing
+G. This will cost additional ATP and will slow you down. Don't forget
+to press G a second time to stop engulfing.
+		</div>
+		<div class="HelpBox">
+Osmoregulation Now costs ATP, which means the bigger your cell is, the more 
+Mitochondria or Metabolosomes or Rusticyanin (or cytoplasm, which does Glycolysis) you need to avoid losing ATP when you are stationary.
 It works this way: Osmoregulation costs are ((Hex Amount * 1) per second...
-<br><br>
+		</div>
+		<div class="HelpBox">
 There are many Organelles in the editor for you to evolve, allowing for a wide range of different playstyles.
-<br><br>
+		</div>
+		<div class="HelpBox">
 For this Release if your population (top tab) drops to zero you go extinct.
 <br>
 But if you survive for fifteen generations with 200 population, you are considered to have won, after winning you get a popup and can continue playing as you wish.
 <br><br>
 Be wary because your competitors are evolving alongside you. Every time you enter the editor they evolve as well.
 <br><br>
+		</div>
+		</div>
         <div class="MenuButton" id="closeHelp">Close</div>
         </div>
         <div id="tipMsg"></div>
@@ -713,13 +753,13 @@ Be wary because your competitors are evolving alongside you. Every time you ente
         <span class="tooltiptext">
         &emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">45</span> <br> <br> <br> <br>
                 Turns <span class="tkey">Hydrogen Sulfide</span> <span class="compoundIcon" id="HydrogenSulfideIcon"></span> into <span class="tkey">Glucose</span> <span class="compoundIcon" id="GlucoseIcon"></span> . Rate scales with concentration of <span class="tkey">Carbon Dioxide</span> <span class="compoundIcon" id="CO2NormalIcon"></span>&nbsp;. Also turns <span class="tkey">Glucose</span> <span class="compoundIcon" id="GlucoseIcon"></span> into <span class="tkey">ATP</span> <span class="compoundIcon" id="ATPIcon"></span> . <br> <br>
-        <span class="tgold">Hydrogen Sulfide Chemosynthesis</span> <br>
-        <span class="tkey">1.0</span> <span class="compoundIcon" id="HydrogenSulfideIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">1.0</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="tkey">/second&emsp;@&emsp;0.09%</span> <span class="compoundIcon" id="CO2NormalIcon"></span><br> <br>
-        <span class="tgold">Fermentation</span> <br>
-        <span class="tkey">0.13</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">5.00</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="tkey">/second</span> <br> <br>
-        <span class="tbonus">+1</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
-        <span class="tmalus">+1</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
-        <span class="tdesc">Chemosynthesizing proteins are small clusters of protein in the cytoplasm that are able to 
+				<span class="tgold">Hydrogen Sulfide Chemosynthesis</span> <br>
+				<span class="tkey">1.0</span> <span class="compoundIcon" id="HydrogenSulfideIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">2.0</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="tkey">/second&emsp;@&emsp;0.09%</span> <span class="compoundIcon" id="CO2NormalIcon"></span><br> <br>
+				<span class="tgold">Fermentation</span> <br>
+				<span class="tkey">0.13</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">5.00</span> <span class="compoundIcon" id="ATPIcon"></span> <span class="tkey">/second</span> <br> <br>
+				<span class="tbonus">+1</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
+				<span class="tmalus">+1</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
+				<span class="tdesc">Chemosynthesizing proteins are small clusters of protein in the cytoplasm that are able to 
                 convert hydrogen sulfide, water, and gaseous carbon dioxide into glucose in a process called Hydrogen 
                 Sulfide Chemosynthesis. The rate of its glucose production scales with the concentration of carbon dioxide.
                 Since the chemosynthesizing proteins are suspended directly in the cytoplasm, the surrounding fluid performs
@@ -898,11 +938,11 @@ Be wary because your competitors are evolving alongside you. Every time you ente
                 <span class="tooltiptext">
         &emsp;<div class="compoundIcon" id="MutationPointsIcon"></div>&nbsp;<span class="tkey">45</span> <br> <br>
                 Turns <span class="tkey">Hydrogen Sulfide</span> <span class="compoundIcon" id="HydrogenSulfideIcon"></span> into <span class="tkey">Glucose</span> <span class="compoundIcon" id="GlucoseIcon"></span> . Rate scales with concentration of <span class="tkey">Carbon Dioxide</span> <span class="compoundIcon" id="CO2NormalIcon"></span>&nbsp;. <br> <br>
-        <span class="tgold">Hydrogen Sulfide Chemosynthesis</span> <br>
-        <span class="tkey">1.00</span> <span class="compoundIcon" id="HydrogenSulfideIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">2.00</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="tkey">/second&emsp;@&emsp;0.09%</span> <span class="compoundIcon" id="CO2NormalIcon"></span><br> <br>
-        <span class="tbonus">+2</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
-        <span class="tmalus">+2</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
-        <span class="tdesc">The chemoplast is a double membrane structure containing proteins able to convert hydrogen sulfide, 
+				<span class="tgold">Hydrogen Sulfide Chemosynthesis</span> <br>
+				<span class="tkey">1.00</span> <span class="compoundIcon" id="HydrogenSulfideIcon"></span> <span class="compoundIcon" id="WhiteArrow"></span> <span class="tkey">3.00</span> <span class="compoundIcon" id="GlucoseIcon"></span> <span class="tkey">/second&emsp;@&emsp;0.09%</span> <span class="compoundIcon" id="CO2NormalIcon"></span><br> <br>
+				<span class="tbonus">+2</span> <span class="tkey">Storage</span> <span class="compoundIcon" id="VacuoleTooltipIcon"></span> <br>
+				<span class="tmalus">+2</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
+				<span class="tdesc">The chemoplast is a double membrane structure containing proteins able to convert hydrogen sulfide, 
                 water, and gaseous carbon dioxide into glucose in a process called Hydrogen Sulfide Chemosynthesis. The rate
                 of its glucose production scales with the concentration of water and carbon dioxide.</span>
                 </span>
@@ -982,52 +1022,50 @@ Be wary because your competitors are evolving alongside you. Every time you ente
     <div class="MenuButton DisabledButton">Options</div>
     <div class="MenuButton" id="exitToMenuButtonEditor">Main Menu</div>
         <div class="MenuButton" id="quitButtonEditor">Exit</div>
-    </div>
-    <div class="HelpText" id="helpTextEditor">
+		</div>
+		<div class="HelpText" id="helpTextEditor">
             <div class="HelpScroll">
-        <p>Every time you reproduce, you will
-    enter the Microbe Editor, where you can make changes to your
-    species (by adding, moving, or removing organelles) to
-    increase your species' success. <br><br>
-        Each visit to the editor in the Microbe Stage Represents 150 million years of evolution<br>
-Each generation, you have 100 mutation points to spend, and each change
-(or mutation) will cost a certain amount of that MP, removing costs mutation points aswell as adding. <br><br>
-You can rotate your organelles, with A and D<br><br>
 
-Prokaryotic Structures<br>
-Metabolosomes: Produces the same amount of ATP of a mitocondria, but is way way less efficient, it only takes up 1 Hex<br>
-
-Chemosynthisizing Proteins: Produces half of the glucose out of Hydrogen Sulfide as a chemoplast, but also performs glycolysis, takes up 1 Hex <br>
-
-Chromatophores: Produces 1/3rd the amount of glucose as a normal chloroplast, but also performs glycolysis, and takes up 1 Hex.<br>
-
-Rusticyanin: Converts iron into ATP, and takes up 1 Hex.<br>
-
-Nitrogenase: Converts atmospheric nitrogen and ATP into ammonia anaerobically<br>
-
-Cytoplasm: Increases the rate of compound absorbtion and has 4 storage space and performs glycolysis (Produces small amounts of ATP).<br><br>
-
-External Organelles<br>
-
-Flagella: Moves your cell faster by consuming ATP. <br>
-
-Pilus: Can be used to stab other cells. <br><br>
-
-Membrane Bound Organelles <br>
-
-Nucleus: Takes up 11 hexes and allows for evolution of membrane bound organelles. And also doubles your cells size. (Can only be evolved once)<br>
-
-Mitochondrion: Produces ATP out of glucose and atmospheric 02. Much more efficiently then cytoplasm<br>
-
-Chloroplast: Makes glucose out of sunlight and atmospheric CO2. <br>
-
-Chemoplast: Makes glucose out of Hydrogen Sulfide. <br>
-
-Nitrogen Fixing Plastid: Makes ammonia from ATP and atmospheric Nitrogen and Oxygen. <br>
-
-Vacuole: Stores 15 collected compounds. <br>
-
-Toxin Vacuoles: Produces toxins (called OxyToxyNT). <p>
+		<div class="HelpRightColumn">
+		<div class="HelpBox">
+Every time you reproduce, you will
+enter the Microbe Editor, where you can make changes to your
+species (by adding, moving, or removing organelles) to
+increase your species' success. Each visit to the editor in the Microbe Stage Represents 150 million years of evolution
+		</div>
+		<div class="HelpBox">
+Prokaryotic Structures<br><br>
+Metabolosomes: Produces the same amount of ATP of a mitocondria, but is way way less efficient, it only takes up 1 Hex<br><br>
+Chemosynthisizing Proteins: Produces half of the glucose out of Hydrogen Sulfide as a chemoplast, but also performs glycolysis, takes up 1 Hex <br><br>
+Chromatophores: Produces 1/3rd the amount of glucose as a normal chloroplast, but also performs glycolysis, and takes up 1 Hex.<br><br>
+Rusticyanin: Converts iron into ATP, and takes up 1 Hex.<br><br>
+Nitrogenase: Converts atmospheric nitrogen and ATP into ammonia anaerobically<br><br>
+Cytoplasm: Increases the rate of compound absorbtion and has 4 storage space and performs glycolysis (Produces small amounts of ATP).
+		</div>
+		</div>
+		
+		<div class="HelpLeftColumn">
+		<div class="HelpBox">
+		Each generation, you have 100 mutation points to spend, and each change
+(or mutation) will cost a certain amount of that MP, removing costs mutation points aswell as adding.
+You can rotate your organelles, with A and D
+		</div>
+		<div class="HelpBox">
+External Organelles<br><br>
+Flagella: Moves your cell faster by consuming ATP. <br><br>
+Pilus: Can be used to stab other cells.
+		</div>
+		<div class="HelpBox">
+Membrane Bound Organelles <br><br>
+Nucleus: Takes up 11 hexes and allows for evolution of membrane bound organelles. And also doubles your cells size. (Can only be evolved once)<br><br>
+Mitochondrion: Produces ATP out of glucose and atmospheric 02. Much more efficiently then cytoplasm<br><br>
+Chloroplast: Makes glucose out of sunlight and atmospheric CO2. <br><br>
+Chemoplast: Makes glucose out of Hydrogen Sulfide. <br><br>
+Nitrogen Fixing Plastid: Makes ammonia from ATP and atmospheric Nitrogen and Oxygen. <br><br>
+Vacuole: Stores 15 collected compounds. <br><br>
+Toxin Vacuoles: Produces toxins (called OxyToxyNT).
+		</div>
+		</div>
 
           <div class="MenuButton" id="closeHelpEditor">Close</div>
             </div>

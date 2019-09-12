@@ -407,26 +407,22 @@ class MicrobeSystem : ScriptSystem{
 
             // Play sound
             if (microbeComponent.isPlayerMicrobe &&  (@microbeComponent.engulfAudio is null ||
-                !microbeComponent.engulfAudio.Get().isPlaying()))
+                !microbeComponent.engulfAudio.IsPlaying()))
             {
                 @microbeComponent.engulfAudio = GetEngine().GetSoundDevice().Play2DSound(
-                    "Data/Sound/soundeffects/engulfment.ogg", false, true);
+                    "Data/Sound/soundeffects/engulfment.ogg", false);
 
                 if(microbeComponent.engulfAudio !is null){
-                    if(microbeComponent.engulfAudio.HasInternalSource()){
 
-                        if (microbeComponent.isPlayerMicrobe)
-                        {
-                            microbeComponent.engulfAudio.Get().setVolume(1.0f);
-                        }
-                        microbeComponent.engulfAudio.Get().play();
-                    } else {
-                        LOG_ERROR("Created engulfment sound player doesn't have internal "
-                            "sound source");
+                    if (microbeComponent.isPlayerMicrobe)
+                    {
+                        microbeComponent.engulfAudio.SetVolume(1.0f);
                     }
 
+                    // what about other sound level?
+
                 } else {
-                    //LOG_ERROR("Failed to create engulfment sound player");
+                    LOG_ERROR("Failed to create engulfment sound player");
                 }
             }
 
@@ -635,11 +631,12 @@ class MicrobeSystem : ScriptSystem{
                 //     microbeComponent.queuedMovementForce.Z);
 
                 // There is an movement without flagella cost
-                auto cost = (BASE_MOVEMENT_ATP_COST*microbeComponent.totalHexCountCache)/logicTime;
-
-                // TODO: if there isn't enough energy this needs to scale the impulse
-                MicrobeOperations::takeCompound(world, microbeEntity,
-                    SimulationParameters::compoundRegistry().getTypeId("atp"), cost);
+                if (microbeComponent.movementDirection != Float3(0.0f, 0.0f, 0.0f)){
+                    auto cost = (BASE_MOVEMENT_ATP_COST*microbeComponent.totalHexCountCache)/logicTime;
+                    // TODO: if there isn't enough energy this needs to scale the impulse
+                    MicrobeOperations::takeCompound(world, microbeEntity,
+                        SimulationParameters::compoundRegistry().getTypeId("atp"), cost);
+                }
 
                 physics.Body.GiveImpulse(microbeComponent.queuedMovementForce);
             }

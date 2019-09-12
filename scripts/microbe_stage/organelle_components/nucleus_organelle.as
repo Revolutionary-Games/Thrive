@@ -25,57 +25,42 @@ class NucleusOrganelle : OrganelleComponent{
 
         assert(microbeNode !is null, "microbe entity has no RenderNode");
 
-        if(IsInGraphicalMode()){
+        if(!IsInGraphicalMode())
+            return;
 
         golgi = world.CreateEntity();
         ER = world.CreateEntity();
 
         auto sceneNode1 = world.Create_RenderNode(golgi);
-        auto model1 = world.Create_Model(golgi, sceneNode1.Node, "golgi.mesh");
-
-
-        // Tint must be set
-        model1.GraphicalObject.setCustomParameter(1, Ogre::Vector4(speciesComponent.colour));
+        auto model1 = world.Create_Model(golgi, "golgi.fbx",
+            getOrganelleMaterialWithTexture("GolgiApparatus.png", speciesComponent.colour));
 
         sceneNode1.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
-        sceneNode1.Node.setPosition(Hex::axialToCartesian(q + 1, r + 1));
-            //sceneNode1.Node.setOrientation(Ogre::Quaternion(Ogre::Radian(rotation),
-               // Ogre::Vector3(0, .5, 1)));
-        sceneNode1.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(rotation+180),
-                Ogre::Vector3(0, 1, -1)));
+        sceneNode1.Node.setPosition(Hex::axialToCartesian(q + 0.9f, r + 0.9f));
+        sceneNode1.Node.setOrientation(bs::Quaternion(bs::Degree(rotation+180),
+                bs::Vector3(0, 1, 0)));
         sceneNode1.Marked = true;
 
-        sceneNode1.Node.removeFromParent();
-        microbeNode.Node.addChild(sceneNode1.Node);
+        sceneNode1.Node.setParent(microbeNode.Node, false);
 
         world.SetEntitysParent(golgi, microbeEntity);
 
         auto sceneNode2 = world.Create_RenderNode(ER);
-        auto model2 = world.Create_Model(ER, sceneNode2.Node, "ER.mesh");
-
-        // Tint must be set
-        model2.GraphicalObject.setCustomParameter(1, Ogre::Vector4(speciesComponent.colour));
+        auto model2 = world.Create_Model(ER, "ER.fbx",
+            getOrganelleMaterialWithTexture("ER.png", speciesComponent.colour));
 
         sceneNode2.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
-        sceneNode2.Node.setPosition(Hex::axialToCartesian(q, r+.4));
+        sceneNode2.Node.setPosition(Hex::axialToCartesian(q, r + 1.6f));
 
-        sceneNode2.Node.setOrientation(Ogre::Quaternion(Ogre::Degree(rotation+190),
-                Ogre::Vector3(0, 1, -1)));
+        sceneNode2.Node.setOrientation(bs::Quaternion(bs::Degree(rotation+190),
+                bs::Vector3(0, 1, 0)));
         sceneNode2.Marked = true;
 
-        sceneNode2.Node.removeFromParent();
-        microbeNode.Node.addChild(sceneNode2.Node);
+        sceneNode2.Node.setParent(microbeNode.Node, false);
 
         world.SetEntitysParent(ER, microbeEntity);
 
-
-        // This does nothing...
-        // auto speciesColour = speciesComponent.colour;
-        // this.colourSuffix = "" + floor(speciesColour.X * 256) +
-        //     floor(speciesColour.Y * 256) + floor(speciesColour.Z * 256);
-
         organelle._needsColourUpdate = true;
-        }
     }
 
     // Overridded from OrganelleComponent.onRemovedFromMicrobe
@@ -104,11 +89,11 @@ class NucleusOrganelle : OrganelleComponent{
     void hideEntity(PlacedOrganelle@ organelle) override
     {
         auto renderNode = organelle.world.GetComponent_RenderNode(golgi);
-        if(renderNode !is null && renderNode.Node !is null)
+        if(renderNode !is null && renderNode.Node.valid())
             renderNode.Node.removeFromParent();
 
         @renderNode = organelle.world.GetComponent_RenderNode(ER);
-        if(renderNode !is null && renderNode.Node !is null)
+        if(renderNode !is null && renderNode.Node.valid())
             renderNode.Node.removeFromParent();
     }
 

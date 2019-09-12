@@ -11,7 +11,7 @@
 #include <Entities/ScriptComponentHolder.h>
 #include <Window.h>
 
-#include <OgreRay.h>
+#include <bsfUtility/Math/BsRay.h>
 
 using namespace thrive;
 // ------------------------------------ //
@@ -253,8 +253,6 @@ void
     if(controlledEntity == NULL_OBJECT)
         return;
 
-    // TODO: just delegate this to a script to avoid the major
-    // headaches with getting the properties from c++
     ThriveGame* thrive = ThriveGame::Get();
 
     Float3 lookPoint;
@@ -282,10 +280,6 @@ void
         return;
     }
 
-    // Debug for movement keys
-    // std::stringstream msg;
-    // msg << "Input: " << movementDirection << " and look: " << lookPoint;
-    // LOG_WRITE(msg.str());
     ScriptRunningSetup setup("applyCellMovementControl");
     auto result = module->ExecuteOnModule<void>(setup, false, &world,
         controlledEntity, movementDirection.Normalize(), lookPoint);
@@ -352,12 +346,12 @@ Float3
     if(!Engine::Get()->GetWindowEntity())
         return Float3(0, 0, 0);
 
-    float x, y;
-    Engine::Get()->GetWindowEntity()->GetNormalizedRelativeMouse(x, y);
+    int x, y;
+    Engine::Get()->GetWindowEntity()->GetRelativeMouse(x, y);
 
     const auto ray = worldWithCamera.CastRayFromCamera(x, y);
 
-    const auto plane = Ogre::Plane(Ogre::Vector3(0, 1, 0), 0);
+    const auto plane = bs::Plane(bs::Vector3(0, 1, 0), 0);
 
     bool intersects;
     float distance;

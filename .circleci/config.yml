@@ -3,39 +3,39 @@ jobs:
    build:
      working_directory: ~/thrive
      docker:
-       - image: hhyyrylainen/leviathan-deps:latest
+       - image: hhyyrylainen/leviathan-deps:v5
      steps:
        - checkout
        - restore_cache:
            keys:
-             - v3-deps-{{ arch }}-{{ checksum "SetupThrive.rb" }}
-             - v3-deps-{{ arch }}
+             - v4-deps-{{ arch }}-{{ checksum "SetupThrive.rb" }}
+             - v4-deps-{{ arch }}
        - restore_cache:
            keys:
-             - v2-assets-{{ .Branch }}
-             - v2-assets
+             - v3-assets-{{ .Branch }}
+             - v3-assets
        - restore_cache:
            keys:
-             - v3-build-{{ arch }}-{{ .Branch }}
+             - v4-build-{{ arch }}-{{ .Branch }}
        - run: ./SetupThrive.rb --no-packagemanager --no-updates -j 2 --fully-parallel-project-compile --project-parallel 5
        - save_cache:
-           key: v2-assets-{{ .Branch }}
+           key: v3-assets-{{ .Branch }}
            paths:
              - assets
        - save_cache:
-           key: v2-assets
+           key: v3-assets
            paths:
              - assets
        - save_cache:
-           key: v3-deps-{{ arch }}-{{ checksum "SetupThrive.rb" }}
+           key: v4-deps-{{ arch }}-{{ checksum "SetupThrive.rb" }}
            paths:
              - ThirdParty
        - save_cache:
-           key: v3-deps-{{ arch }}
+           key: v4-deps-{{ arch }}
            paths:
              - ThirdParty
        - save_cache:
-           key: v3-build-{{ arch }}-{{ .Branch }}
+           key: v4-build-{{ arch }}-{{ .Branch }}
            paths:
              - build/src
        - run: mkdir -p /reports/reports
@@ -47,3 +47,41 @@ jobs:
        #     working_directory: ~/leviathan/build/bin
        # - store_test_results:
        #     path: /reports/reports
+   format_script:
+     working_directory: ~/Thrive
+     docker:
+       - image: hhyyrylainen/thrive-deps:v1
+     steps:
+       - checkout
+       # eslint is completely silly in refusing to use a globally installed plugin
+       - restore_cache:
+           keys:
+             - v1-npm-{{ checksum ".eslintrc.js" }}       
+       - run: npm install eslint-plugin-html@latest --save-dev
+       - save_cache:
+           key: v1-npm-{{ checksum ".eslintrc.js" }}
+           paths:
+             - node_modules
+       - run: ./RunCodeFormatting.rb
+       - run:
+           when: always
+           command: |
+             git diff > format_diff.patch
+             if grep -q '[^[:space:]]' < clang_format_diff.patch; then
+                 echo "Formatter found things to be fixed:"
+                 cat clang_format_diff.patch
+                 exit 1
+             else
+                 echo "No changes made"
+                 rm -f format_diff.patch
+             fi
+       - store_artifacts:
+          path: format_diff.patch
+
+
+workflows:
+  version: 2
+  build_and_format:
+    jobs:
+      - build
+      - format_script

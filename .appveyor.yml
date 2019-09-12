@@ -1,8 +1,9 @@
 version: 1.0.{build}-{branch}
 
 environment:
-  BOOST_ROOT: C:/Libraries/boost_1_66_0
+  BOOST_ROOT: C:/Libraries/boost_1_69_0
   PATH: C:\Ruby25-x64\bin;$(PATH);C:\cygwin64\bin
+  VULKAN_SDK: C:/VulkanSDK/1.1.114.0
 
 image:
   - Visual Studio 2017
@@ -12,9 +13,12 @@ platform: x64
 cache:
   - ThirdParty
   - assets
+  - VulkanSDK.exe
 
 install:
   - gem install os colorize rubyzip json sha3
+  - if not exist VulkanSDK.exe curl -L --silent --show-error --output VulkanSDK.exe https://vulkan.lunarg.com/sdk/download/1.1.114.0/windows/VulkanSDK-1.1.114.0-Installer.exe?Human=true
+  - VulkanSDK.exe /S
 
 build_script:
   - ruby SetupThrive.rb --precompiled thrive:thrive

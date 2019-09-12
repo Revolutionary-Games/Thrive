@@ -73,11 +73,11 @@ public:
     const std::unordered_set<std::string>&
         locksList() const;
 
-    void
-        load(const StorageContainer& storage);
+    // void
+    //     load(const StorageContainer& storage);
 
-    StorageContainer
-        storage() const;
+    // StorageContainer
+    //     storage() const;
 
 private:
     /**

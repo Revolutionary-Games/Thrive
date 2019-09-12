@@ -8,8 +8,6 @@ set(GROUP_ENGINE
   "engine/player_data.h"
   # "engine/rolling_grid.cpp"
   # "engine/rolling_grid.h"
-  "engine/serialization.cpp"
-  "engine/serialization.h"
   )
 
 set(GROUP_GENERAL
@@ -62,6 +60,8 @@ set(GROUP_MICROBE_STAGE
   "microbe_stage/spawn_system.h"
   "microbe_stage/species.cpp"
   "microbe_stage/species.h"
+  "microbe_stage/patch.cpp"
+  "microbe_stage/patch.h"
   "microbe_stage/species_component.cpp"
   "microbe_stage/species_component.h"
   "microbe_stage/species_name_controller.cpp"
@@ -89,25 +89,25 @@ set(GROUP_UTIL
   "util/pair_hash.h"
   )
 
+file(GLOB MICROBE_GENERATOR_FILES "${PROJECT_SOURCE_DIR}/src/microbe_stage/*.rb")
 
-add_custom_command(OUTPUT "${PROJECT_SOURCE_DIR}/src/generated/cell_stage_world.h"
+
+AddRubyGeneratedFile(OUTPUT "${PROJECT_SOURCE_DIR}/src/generated/cell_stage_world.h"
   "${PROJECT_SOURCE_DIR}/src/generated/cell_stage_world.cpp"
   "${PROJECT_SOURCE_DIR}/src/generated/cell_stage_bindings.h"
-  COMMAND "ruby" "${PROJECT_SOURCE_DIR}/src/microbe_stage/generate_cell_stage_world.rb"
+  PARAMS "${PROJECT_SOURCE_DIR}/src/microbe_stage/generate_cell_stage_world.rb"
   "${PROJECT_SOURCE_DIR}/src/generated/cell_stage_world"
   "${PROJECT_SOURCE_DIR}/src/generated/cell_stage_bindings.h"
-  DEPENDS "${PROJECT_SOURCE_DIR}/src/microbe_stage/generate_cell_stage_world.rb"
-  "${LEVIATHAN_SRC}/Helpers/FileGen.rb"
+  DEPENDS ${MICROBE_GENERATOR_FILES}
   )
 
-add_custom_command(OUTPUT "${PROJECT_SOURCE_DIR}/src/generated/microbe_editor_world.h"
+AddRubyGeneratedFile(OUTPUT "${PROJECT_SOURCE_DIR}/src/generated/microbe_editor_world.h"
   "${PROJECT_SOURCE_DIR}/src/generated/microbe_editor_world.cpp"
   "${PROJECT_SOURCE_DIR}/src/generated/microbe_editor_bindings.h"
-  COMMAND "ruby" "${PROJECT_SOURCE_DIR}/src/microbe_stage/generate_microbe_editor_world.rb"
+  PARAMS "${PROJECT_SOURCE_DIR}/src/microbe_stage/generate_microbe_editor_world.rb"
   "${PROJECT_SOURCE_DIR}/src/generated/microbe_editor_world"
   "${PROJECT_SOURCE_DIR}/src/generated/microbe_editor_bindings.h"
-  DEPENDS "${PROJECT_SOURCE_DIR}/src/microbe_stage/generate_microbe_editor_world.rb"
-  "${LEVIATHAN_SRC}/Helpers/FileGen.rb"
+  DEPENDS ${MICROBE_GENERATOR_FILES}
   )
 
 set(GROUP_MICROBE
@@ -151,7 +151,6 @@ source_group("engine" FILES ${GROUP_ENGINE})
 source_group("general" FILES ${GROUP_GENERAL})
 source_group("gui" FILES ${GROUP_GUI})
 source_group("microbe_stage" FILES ${GROUP_MICROBE_STAGE})
-source_group("ogre" FILES ${GROUP_OGRE})
 source_group("scripting" FILES ${GROUP_SCRIPTING})
 source_group("sound" FILES ${GROUP_SOUND})
 source_group("util" FILES ${GROUP_UTIL})
@@ -164,7 +163,7 @@ source_group("main" FILES ${GROUP_CORE_FILES})
 
 set(THRIVE_FILES ${GROUP_CORE_FILES} ${GROUP_BULLET} ${GROUP_ENGINE}
   ${GROUP_GENERAL} ${GROUP_GUI} ${GROUP_MICROBE_STAGE}
-  ${GROUP_OGRE} ${GROUP_SCRIPTING} ${GROUP_SOUND}
+  ${GROUP_SCRIPTING} ${GROUP_SOUND}
   ${GROUP_UTIL} ${GROUP_MICROBE}
   ${GROUP_MENU}
   )
@@ -210,6 +209,13 @@ StandardConfigureExecutableMainAndInclude("${BaseIncludeFileName}" "main.cpp"
 
 include_directories(${CMAKE_CURRENT_LIST_DIR})
 
+# Application Resources
+set(GROUP_RESOURCES
+  "Main_Res.rc"
+  )
+  
+source_group("Resource Files" FILES ${GROUP_RESOURCES})
+
 set(CurrentProjectName Thrive)
 set(AllProjectFiles
   ${BaseIncludeFileName}
@@ -217,6 +223,7 @@ set(AllProjectFiles
   "thrive_world_factory.h" "thrive_world_factory.cpp"
   "generated/thrive_v8_extension.h"
   "thrive_js_interface.h" "thrive_js_interface.cpp"
+  ${GROUP_RESOURCES}
   )
 
 # Compile a common library

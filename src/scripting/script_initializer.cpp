@@ -10,6 +10,7 @@ using namespace thrive;
 #include "general/timed_life_system.h"
 #include "generated/cell_stage_world.h"
 #include "generated/microbe_editor_world.h"
+#include "microbe_stage/patch.h"
 #include "microbe_stage/player_microbe_control.h"
 #include "microbe_stage/simulation_parameters.h"
 #include "microbe_stage/species_name_controller.h"
@@ -216,32 +217,28 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-    if(engine->RegisterObjectProperty("Compound", "Ogre::ColourValue colour",
-           asOFFSET(Compound, colour)) < 0) {
+    if(engine->RegisterObjectProperty(
+           "Compound", "Float4 colour", asOFFSET(Compound, colour)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
     // ------------------------------------ //
     // Biome
     // define colors for sunglight here aswell
-    if(engine->RegisterObjectProperty("Biome",
-           "Ogre::ColourValue specularColors",
+    if(engine->RegisterObjectProperty("Biome", "Float4 specularColors",
            asOFFSET(Biome, specularColors)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
-    if(engine->RegisterObjectProperty("Biome",
-           "Ogre::ColourValue diffuseColors",
+    if(engine->RegisterObjectProperty("Biome", "Float4 diffuseColors",
            asOFFSET(Biome, diffuseColors)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-    if(engine->RegisterObjectProperty("Biome",
-           "Ogre::ColourValue upperAmbientColor",
+    if(engine->RegisterObjectProperty("Biome", "Float4 upperAmbientColor",
            asOFFSET(Biome, upperAmbientColor)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
-    if(engine->RegisterObjectProperty("Biome",
-           "Ogre::ColourValue lowerAmbientColor",
+    if(engine->RegisterObjectProperty("Biome", "Float4 lowerAmbientColor",
            asOFFSET(Biome, lowerAmbientColor)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
@@ -389,6 +386,13 @@ bool
     if(engine->RegisterObjectMethod("ChunkData",
            "const string getMesh(uint64 index) const",
            asMETHOD(ChunkData, getMesh), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectMethod("ChunkData",
+           "const string getTexture(uint64 index) const",
+           asMETHOD(ChunkData, getTexture), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
@@ -837,7 +841,7 @@ bool
     }
 
     if(engine->RegisterObjectMethod("MembraneComponent",
-           "Ogre::Vector3 GetExternalOrganelle(double x, double y)",
+           "Float3 GetExternalOrganelle(double x, double y)",
            asMETHOD(MembraneComponent, GetExternalOrganelle),
            asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
@@ -1383,7 +1387,6 @@ SpawnerTypeId
 bool
     bindScriptAccessibleSystems(asIScriptEngine* engine)
 {
-
     // ------------------------------------ //
     // SpawnSystem
     if(engine->RegisterFuncdef(
@@ -1456,6 +1459,26 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    // ------------------------------------ //
+    // PlayerMicrobeControlSystem
+
+    // static
+    if(engine->SetDefaultNamespace("PlayerMicrobeControlSystem") < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalFunction(
+           "Float3 getTargetPoint(GameWorld &in worldWithCamera)",
+           asFUNCTION(PlayerMicrobeControlSystem::getTargetPoint),
+           asCALL_CDECL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->SetDefaultNamespace("") < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+
     return true;
 }
 
@@ -1482,6 +1505,66 @@ ObjectID
     return NULL_OBJECT;
 }
 
+bool
+    registerPatches(asIScriptEngine* engine)
+{
+    if(engine->RegisterObjectType("Patch", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("Patch", "string getName()",
+           asMETHOD(Patch, getName), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("Patch", "void setName(string name)",
+           asMETHOD(Patch, setName), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectMethod("Patch", "uint64 getBiome()",
+           asMETHOD(Patch, getBiome), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectMethod("Patch", "void setBiome(uint64 patchBiome)",
+           asMETHOD(Patch, setBiome), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectMethod("Patch", "uint64 getId()",
+           asMETHOD(Patch, getId), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectType(
+           "PatchManager", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("PatchManager", "Patch@ getCurrentPatch()",
+           asMETHOD(PatchManager, getCurrentPatch), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectMethod("PatchManager",
+           "Patch@ getPatchFromKey(uint64 key)",
+           asMETHOD(PatchManager, getPatchFromKey), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectMethod("PatchManager", "uint64 generatePatchMap()",
+           asMETHOD(PatchManager, generatePatchMap), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    return true;
+}
 
 bool
     thrive::registerThriveScriptTypes(asIScriptEngine* engine)
@@ -1527,6 +1610,9 @@ bool
         return false;
 
     if(!registerHexFunctions(engine))
+        return false;
+
+    if(!registerPatches(engine))
         return false;
 
     if(engine->RegisterObjectType("ThriveGame", 0, asOBJ_REF | asOBJ_NOCOUNT) <
@@ -1615,6 +1701,12 @@ bool
     if(engine->RegisterObjectMethod("ThriveGame",
            "CellStageWorld@ getCellStage()", asMETHOD(ThriveGame, getCellStage),
            asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("ThriveGame",
+           "PatchManager@ getPatchManager()",
+           asMETHOD(ThriveGame, getPatchManager), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 

@@ -292,7 +292,7 @@ void respawnPlayer(CellStageWorld@ world)
         sceneNodeComponent.Hidden = false;
         sceneNodeComponent.Marked = true;
 
-        setRandomBiome(world);
+        //setRandomBiome(world);
 
         cast<MicrobeStageHudSystem>(world.GetScriptSystem("MicrobeStageHudSystem")).
             suicideButtonreset();
@@ -501,7 +501,7 @@ void ejectCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId com
 
     auto angle = 180;
     // Find the direction the microbe is facing
-    auto yAxis = Ogre::Quaternion(position._Orientation).yAxis();
+    auto yAxis = bs::Quaternion(position._Orientation).yAxis();
     auto microbeAngle = atan2(yAxis.x, yAxis.y);
     if(microbeAngle < 0){
         microbeAngle = microbeAngle + 2 * PI;
@@ -513,8 +513,8 @@ void ejectCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId com
     auto s = sin(finalAngle/180*PI);
     auto c = cos(finalAngle/180*PI);
 
-    auto xnew = -membraneCoords.x * c + membraneCoords.y * s;
-    auto ynew = membraneCoords.x * s + membraneCoords.y * c;
+    auto xnew = -membraneCoords.X * c + membraneCoords.Y * s;
+    auto ynew = membraneCoords.X * s + membraneCoords.Y * c;
 
     auto amountToEject = amount*10000;
     createCompoundCloud(world, uint64(compoundId),
@@ -706,11 +706,15 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         //This adds the nucleus r (y) so that it can deal with weird nucleus positioning,
         //and that is all we actually need
         int maxR = 2;
+
         for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
             auto organelle = cast<PlacedOrganelle>(microbeComponent.organelles[i]);
             if (organelle.organelle.name == "nucleus"){
                 maxR=maxR+(-organelle.r);
             }
+        }
+        if (microbeComponent.isBacteria){
+            maxR/=2;
         }
 
         //The distance is two hexes away from the back of the microbe.
@@ -718,7 +722,7 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         //for more efficient pooping.
         auto angle = 180;
         // Find the direction the microbe is facing
-        auto yAxis = Ogre::Quaternion(cellPosition._Orientation).zAxis();
+        auto yAxis = bs::Quaternion(cellPosition._Orientation).zAxis();
         auto microbeAngle = atan2(yAxis.x, yAxis.z);
         if(microbeAngle < 0){
             microbeAngle = microbeAngle + 2 * PI;
@@ -730,12 +734,16 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         auto c = cos(finalAngle/180*PI);
         //Bacteria need to be able to shoot closer to themselves
         auto ourHex = HEX_SIZE;
-        if (microbeComponent.isBacteria)
-            ourHex/=2;
         // Membrane coords to world coords
         // Plus bunch more space in world coordinates like we added before with maxr but cleaner
-        auto xnew = -(membraneCoords.x) * c + (membraneCoords.z+maxR*ourHex) * s;
-        auto ynew = (membraneCoords.x)* s + (membraneCoords.z+maxR*ourHex) * c;
+        auto xnew = -(membraneCoords.X) * c + (membraneCoords.Z+maxR*ourHex) * s;
+        auto ynew = (membraneCoords.X)* s + (membraneCoords.Z+maxR*ourHex) * c;
+
+        if (microbeComponent.isBacteria){
+            xnew/=1.8;
+            ynew/=1.8;
+        }
+
         // Find the direction the microbe is facing
         auto vec = ( microbeComponent.facingTargetPoint - cellPosition._Position);
         auto direction = vec.Normalize();
@@ -771,21 +779,15 @@ void playSoundWithDistance(CellStageWorld@ world, const string &in soundPath,
 
     // Play sound
     if (microbeComponent.otherAudio is null ||
-                !microbeComponent.otherAudio.Get().isPlaying())
+                !microbeComponent.otherAudio.IsPlaying())
     {
         @microbeComponent.otherAudio = GetEngine().GetSoundDevice().Play2DSound(
-            soundPath, false, true);
+            soundPath, false);
         if(microbeComponent.otherAudio !is null){
-            if(microbeComponent.otherAudio.HasInternalSource()){
-                microbeComponent.otherAudio.Get().setVolume(soundVolume);
-                microbeComponent.otherAudio.Get().play();
-            } else {
-                LOG_ERROR("Created sound player doesn't have internal "
-                    "sound source");
-            }
+            microbeComponent.otherAudio.SetVolume(soundVolume);
         } else {
             //this was happening so often it caused lag
-            //LOG_ERROR("Failed to create sound player");
+            LOG_ERROR("Failed to create sound player");
         }
     }
 }
@@ -1174,28 +1176,30 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
         auto positionAdded = Float3(GetEngine().GetRandom().GetFloat(-2.0f, 2.0f),0,
             GetEngine().GetRandom().GetFloat(-2.0f, 2.0f));
         auto chunkPosition = world.Create_Position(chunkEntity, position._Position+positionAdded,
-            Ogre::Quaternion(Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
-                Ogre::Vector3(0,1,1)));
+            bs::Quaternion(bs::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
+                bs::Vector3(0,1,1)));
 
         auto renderNode = world.Create_RenderNode(chunkEntity);
         renderNode.Scale = Float3(1.0f, 1.0f, 1.0f);
         renderNode.Marked = true;
-        renderNode.Node.setOrientation(Ogre::Quaternion(
-            Ogre::Degree(GetEngine().GetRandom().GetNumber(0, 360)), Ogre::Vector3(0,1,1)));
+        renderNode.Node.setOrientation(bs::Quaternion(
+            bs::Degree(GetEngine().GetRandom().GetNumber(0, 360)), bs::Vector3(0,1,1)));
         renderNode.Node.setPosition(chunkPosition._Position);
         // Grab random organelle from cell and use that
         auto organelleIndex = GetEngine().GetRandom().GetNumber(0, microbeComponent.organelles.length()-1);
         string mesh = microbeComponent.organelles[organelleIndex].organelle.mesh;
         if (mesh != "")
             {
-            auto model = world.Create_Model(chunkEntity, renderNode.Node, mesh);
-            // Color chunk based on cell
-            model.GraphicalObject.setCustomParameter(1, microbeComponent.speciesColour);
+                auto model = world.Create_Model(chunkEntity, mesh,
+                    getOrganelleMaterialWithTexture(
+                        microbeComponent.organelles[organelleIndex].organelle.texture,
+                        microbeComponent.speciesColour));
             }
         else {
-            auto model = world.Create_Model(chunkEntity, renderNode.Node, "mitochondrion.mesh");
-            // Color chunk based on cell
-            model.GraphicalObject.setCustomParameter(1, microbeComponent.speciesColour);
+            auto model = world.Create_Model(chunkEntity, "mitochondrion.fbx",
+                getOrganelleMaterialWithTexture(
+                    "mitochondrion.png",
+                    microbeComponent.speciesColour));
             }
         auto rigidBody = world.Create_Physics(chunkEntity, chunkPosition);
         auto body = rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),

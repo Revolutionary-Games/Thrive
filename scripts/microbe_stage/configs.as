@@ -39,7 +39,7 @@ const auto MIN_OPACITY_MUTATION = -0.01f;
 const auto MAX_OPACITY_MUTATION = 0.01f;
 
 // Mutation Variables
-const auto MUTATION_BACTERIA_TO_EUKARYOTE = 1;
+const auto MUTATION_BACTERIA_TO_EUKARYOTE = 1.0f;
 const auto MUTATION_CREATION_RATE = 0.5f;
 const auto MUTATION_EXTRA_CREATION_RATE = 0.1f;
 const auto MUTATION_DELETION_RATE = 0.1f;
@@ -268,6 +268,47 @@ void toxin_call_Notification(){
         GetEngine().GetEventHandler().CallEvent(GenericEvent("toxinNotificationenable"));
         toxin_unlocked = true;
     }
+}
+
+//! Returns a material with a basic texture on it. For use on non-organelle models
+bs::HMaterial getBasicMaterialWithTexture(const string &in textureName)
+{
+    bs::HShader shader(bs::BuiltinShader::Standard);
+    bs::HMaterial material(shader);
+    bs::HTexture texture(textureName);
+    material.setTexture("gAlbedoTex", texture);
+
+    return material;
+}
+
+//! Returns a material with a basic texture on it. Supports transparency
+bs::HMaterial getBasicTransparentMaterialWithTexture(const string &in textureName)
+{
+    bs::HShader shader(bs::BuiltinShader::Transparent);
+    bs::HMaterial material(shader);
+    bs::HTexture texture(textureName);
+    material.setTexture("gAlbedoTex", texture);
+
+    return material;
+}
+
+//! Returns a material for organelles
+bs::HMaterial getOrganelleMaterialWithTexture(const string &in textureName,
+    const Float4 &in tint = Float4(1, 1, 1, 1))
+{
+    // TODO: loading the shader just once would be nice
+    bs::HShader shader("organelle.bsl");
+    bs::HMaterial material(shader);
+    bs::HTexture texture(textureName);
+    material.setTexture("gAlbedoTex", texture);
+
+    updateMaterialTint(material, tint);
+    return material;
+}
+
+void updateMaterialTint(bs::HMaterial &in material, const Float4 &in tint)
+{
+    material.setVec4("gTint", bs::Vector4(tint));
 }
 
 // TODO: move this to where axialToCartesian is defined

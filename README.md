@@ -43,7 +43,7 @@ alternatively you can request a newer version from developers, or compile the pr
 After you have obtained a working version of the game, you can place any new assets in the corresponding subdirectories:
 bin/Data/Sound, bin/Data/Models, bin/Data/Materials and gui and the game will automatically detect up your new files, which you can then use in scripts.
 An example of modifying a script to use your model would be to open scripts/microbe_stage/organelle_table.as with a text editor and 
-find 'nucleusParameters.mesh = "nucleus.mesh";' that sets the model used by the nucleus and change that to your new model file.
+find 'nucleusParameters.mesh = "nucleus.fbx";' that sets the model used by the nucleus and change that to your new model file.
 Similarly you can find sections of the scripts that use other assets and replace the assets they use.
 If you are truly uncomfortable with editing scripts you can simply try stealing the names of existing assets. For example 
 going into the sound subdirectory and stealing the name "microbe-theme-1.ogg" by renaming your new sound-file to that and the 

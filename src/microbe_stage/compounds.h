@@ -2,7 +2,7 @@
 
 #include "general/json_registry.h"
 
-#include <OgreColourValue.h>
+#include <Common/Types.h>
 
 namespace thrive {
 
@@ -12,7 +12,7 @@ public:
     bool isCloud = false;
     bool isUseful = false;
     bool isEnvironmental = false;
-    Ogre::ColourValue colour;
+    Float4 colour;
 
     Compound();
 
@@ -22,7 +22,7 @@ public:
         bool isCloud,
         bool isUseful,
         bool isEnvironmental,
-        Ogre::ColourValue colour);
+        Float4 colour);
 
     Compound(Json::Value value);
 };

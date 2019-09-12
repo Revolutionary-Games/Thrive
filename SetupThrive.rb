@@ -78,7 +78,7 @@ WantedURL = "https://#{$svnUser}@boostslair.com/svn/thrive_assets"
 leviathan = Leviathan.new(
   # Use this if you always want the latest commit
   # version: "develop",
-  version: "eb2bba0a5dc08ae1fda6f97cddd8750c0ad06e4b",
+  version: "6d79fa9feb5aed87c0e3c15bb13632ceeba13fc0",
   # Doesn't actually work, but leviathan doesn't install with sudo by
   # default, or install at all for that matter
   noInstallSudo: true
@@ -245,7 +245,7 @@ success "Done compiling thrive"
 if OS.windows?
   info "Open build/Thrive.sln and start coding"
 else
-  info "run the game with '#{CurrentDir}/thrive/build/Thrive'"
+  info "run the game with 'cd #{ProjectDir}/build/bin && ./Thrive'"
 end
 
 puts ""

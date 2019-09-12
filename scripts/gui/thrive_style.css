@@ -65,6 +65,23 @@ video {
   display: flex;
 }
 
+/* scrollbar style */
+div::-webkit-scrollbar {
+  width: 15px;
+}
+
+div::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+div::-webkit-scrollbar-thumb {
+  background: rgb(0, 125, 125, 0.6);
+}
+
+div::-webkit-scrollbar-thumb:hover {
+  background: rgba(89, 210, 255, 0.7);
+}
+
 /* Common quick classes */
 .Centered {
   text-align: center;
@@ -269,18 +286,34 @@ video {
 
 .HelpText {
   display: block;
-  width: 100%;
-  height: 100%;
   text-align: center;
-  font-size: 15pt;
+  font-size: 20pt;
+  overflow-y: scroll;
 }
 
 .HelpScroll {
   display: inline-block;
   margin-left: 5%;
-  margin-right: 5%;
-  overflow-y: scroll;
-  height: 600px;
+  padding-right: 5%;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.HelpLeftColumn {
+  width: 48%;
+}
+
+.HelpRightColumn {
+  width: 48%;
+  float: right;
+}
+
+.HelpBox {
+  background: rgba(0, 125, 125, 0.8);
+  margin-top: 20px;
+  padding: 10px;
+  width: 100%;
+  border-radius: 5px;
 }
 
 .MenuButton {
@@ -376,6 +409,16 @@ video {
   left: 80px;
   right: 40px;
 }
+
+#infoPatch {
+  position: absolute;
+  height: 40px;
+  bottom: 0;
+  left: 160px;
+  right: 40px;
+  font-size: 18pt;
+}
+
 
 #infoBarLeft {
   position: relative;
@@ -1096,8 +1139,8 @@ video {
   /* display:relative; This is the display setting when visible */
   display: none;
   width: 100%;
-  height: 100%;
-  margin-top: 60px;
+  height: 80%;
+  margin-top: 30px;
   background-color: rgb(1, 1, 1, 0);
   z-index: 2;
 }
@@ -1106,7 +1149,8 @@ video {
 #closeHelpEditor {
   vertical-align: middle;
   position: relative;
-  margin: 0 auto;
+  margin: 50px auto;
+  margin-bottom: 100px;
 }
 
 #tipMsg,
@@ -1830,3 +1874,31 @@ video {
   right: 12px;
 }
 
+/* Used for the scientific description text in the final blurb. */
+
+.tdesc {
+  color: #d3d3d3;
+  font-size: 85%;
+}
+
+#debugOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background: none;
+  z-index: 1000;
+  text-shadow: 1px 1px #111a;
+  font-size: 1.2em;
+  font-family: "Sans";
+}
+
+#currentFPS {
+  font-size: 1.8em;
+}
+
+#debugOverlay span {
+  padding-right: 3px;
+  display: inline-block;
+  vertical-align: top;
+}
