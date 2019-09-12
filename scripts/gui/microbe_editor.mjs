@@ -376,7 +376,7 @@ function onPatchReportClicked(event) {
     for(const [i,button] of panelButtons.entries()) {
         if(button == this.id) {
             counter = i;
-            document.getElementById( this.id).style.backgroundImage = 
+            document.getElementById( this.id).style.backgroundImage =
                 "url(../../Textures/gui/bevel/topLeftButtonActive.png)";
             document.getElementById( this.id).style.color = "#112B36";
             document.getElementById( this.id + "Tab").style.visibility = "visible";
@@ -388,7 +388,7 @@ function onPatchReportClicked(event) {
                 Thrive.editorButtonClicked();
             }
         } else {
-            document.getElementById(button).style.backgroundImage = 
+            document.getElementById(button).style.backgroundImage =
                 "url(../../Textures/gui/bevel/topLeftButton.png)";
             document.getElementById(button).style.color =  "#FAFCFD";
             document.getElementById( button + "Tab").style.visibility = "hidden";
@@ -432,7 +432,7 @@ function onNextButtonClicked() {
         counter = 0;
     }
     counter = counter + 1;
-    $( "#" + panelButtons[counter] ).click();  
+    $( "#" + panelButtons[counter] ).click();
 }
 
 
