@@ -149,7 +149,7 @@ export function setupMicrobeEditor(){
     onNextButtonClicked, true);
 
     // Condition buttons clicked
-    var minusBtnObjects = document.getElementsByClassName("minusBtn");
+    let minusBtnObjects = document.getElementsByClassName("minusBtn");
 
     for (const element of minusBtnObjects) {
         element.addEventListener("click",
@@ -410,7 +410,7 @@ $(".nodeMap").click(function(event) {
 
 // Patch Map close button
 function onConditionClicked() {
-    var tab = $(this).attr("data-cond");
+    let tab = $(this).attr("data-cond");
     
     $("#" + tab).animate({"height": "toggle"});
     $(this).toggleClass("minus");
@@ -426,7 +426,7 @@ function updateSpeed(speed){
 
 
 // Next Button clicked
-var counter = 0;
+let counter = 0;
 function onNextButtonClicked() {
    if(counter == 2) {
         counter = 0;
