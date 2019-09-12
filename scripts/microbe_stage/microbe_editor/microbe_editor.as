@@ -69,8 +69,8 @@ class MicrobeEditor{
             {"remove", PlacementFunctionType(this.removeOrganelle)}
         };
 
-        invalidMaterial = getBasicMaterialWithTexture("single_hex_invalid.png");
-        validMaterial = getBasicMaterialWithTexture("single_hex.png");
+        invalidMaterial = getBasicTransparentMaterialWithTexture("single_hex_invalid.png");
+        validMaterial = getBasicTransparentMaterialWithTexture("single_hex.png");
     }
 
     //! This is called each time the editor is entered so this needs to properly reset state
@@ -282,8 +282,7 @@ class MicrobeEditor{
                 auto node = hudSystem.world.GetComponent_RenderNode(organelleModel);
                 node.Node.setPosition(cartesianPosition +
                     organelle.organelle.calculateCenterOffset());
-                node.Node.setOrientation(bs::Quaternion(bs::Degree(90),
-                        bs::Vector3(1, 0, 0)) * bs::Quaternion(bs::Degree(180),
+                node.Node.setOrientation(bs::Quaternion(bs::Degree(180),
                             bs::Vector3(0, 1, 0)) *
                     bs::Quaternion(bs::Degree(organelle.rotation), bs::Vector3(0, 0, 1)));
                 node.Hidden = false;
@@ -962,8 +961,7 @@ class MicrobeEditor{
             auto node = hudSystem.world.GetComponent_RenderNode(organelleModel);
             node.Node.setPosition(cartesianPosition +
                 toBePlacedOrganelle.calculateCenterOffset());
-            node.Node.setOrientation(bs::Quaternion(bs::Degree(90),
-                    bs::Vector3(1, 0, 0)) * bs::Quaternion(bs::Degree(180),
+            node.Node.setOrientation(bs::Quaternion(bs::Degree(180),
                         bs::Vector3(0, 1, 0)) * bs::Quaternion(bs::Degree(rotation),
                             bs::Vector3(0, 0, 1)));
             node.Hidden = false;

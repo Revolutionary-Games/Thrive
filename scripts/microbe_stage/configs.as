@@ -281,6 +281,17 @@ bs::HMaterial getBasicMaterialWithTexture(const string &in textureName)
     return material;
 }
 
+//! Returns a material with a basic texture on it. Supports transparency
+bs::HMaterial getBasicTransparentMaterialWithTexture(const string &in textureName)
+{
+    bs::HShader shader(bs::BuiltinShader::Transparent);
+    bs::HMaterial material(shader);
+    bs::HTexture texture(textureName);
+    material.setTexture("gAlbedoTex", texture);
+
+    return material;
+}
+
 //! Returns a material for organelles
 bs::HMaterial getOrganelleMaterialWithTexture(const string &in textureName,
     const Float4 &in tint = Float4(1, 1, 1, 1))
