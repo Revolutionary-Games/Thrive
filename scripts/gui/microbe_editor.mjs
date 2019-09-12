@@ -361,7 +361,7 @@ const panelButtons = ["report", "patch", "editor"];
 
 
 // Patch-Report function
-function onPatchReportClicked(event) {
+function onPatchReportClicked() {
     
     // Fire event
     if(common.isInEngine()){
