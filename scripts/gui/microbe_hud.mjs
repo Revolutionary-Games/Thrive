@@ -401,13 +401,13 @@ function updateHoverInfo(vars){
             panel.appendChild(document.createElement("br"));
 
             // Debug print version
-            var values = vars[key].split(":");
-            var img = document.createElement("IMG");
-            var src = "../../Textures/gui/bevel/";
+            let values = vars[key].split(":");
+            let img = document.createElement("IMG");
+            let src = "../../Textures/gui/bevel/";
             values[0] = values[0].replace(/\s+/, "") 
             src =  src + values[0];
             src = src + ".png";
-            
+
             img.setAttribute("src", src);
             img.setAttribute("width", "25");
             img.setAttribute("height", "25");
@@ -494,20 +494,20 @@ function onCompressPanelClicked() {
 
     document.getElementById("compoundsPanel").style.width = "251px";
     document.getElementById("compoundsPanel").style.height = "145px";
-    document.getElementById("compoundsPanel").style.backgroundImage = 
+    document.getElementById("compoundsPanel").style.backgroundImage =
         "url('../../Textures/gui/bevel/compoundPanelExpand.png')";
     document.getElementById("compoundsPanel").style.transition = "0.5s";
 
 
-    document.getElementById("compressPanel").style.backgroundImage = 
+    document.getElementById("compressPanel").style.backgroundImage =
         "url('../../Textures/gui/bevel/compressPanelActive.png')";
-    document.getElementById("expandPanel").style.backgroundImage = 
+    document.getElementById("expandPanel").style.backgroundImage =
         "url('../../Textures/gui/bevel/expandPanel.png')";
 
-    var row1 = document.getElementById("row1");
-    var bars = row1.getElementsByClassName("Bar");
-    var title =  row1.getElementsByClassName("BarTitle");
-    var barValues = row1.getElementsByClassName("BarValue");
+    let row1 = document.getElementById("row1");
+    let bars = row1.getElementsByClassName("Bar");
+    let title =  row1.getElementsByClassName("BarTitle");
+    let barValues = row1.getElementsByClassName("BarValue");
 
     for (const bar of bars) {
         bar.style.display = "inline-block";
@@ -526,7 +526,7 @@ function onCompressPanelClicked() {
     }
 
     //! ROW 2
-    var row2 =  document.getElementById("row2");
+    let row2 =  document.getElementById("row2");
     bars = row2.getElementsByClassName("Bar");
     title =  row2.getElementsByClassName("BarTitle");
     barValues = row2.getElementsByClassName("BarValue");
@@ -554,20 +554,20 @@ function onExpandPanelClicked() {
 
     document.getElementById("compoundsPanel").style.width = "249px";
     document.getElementById("compoundsPanel").style.height = "238px";
-    document.getElementById("compoundsPanel").style.backgroundImage = 
+    document.getElementById("compoundsPanel").style.backgroundImage =
         "url('../../Textures/gui/bevel/compoundPanel.png')";
     document.getElementById("compoundsPanel").style.transition = "0.5s";
 
 
-    document.getElementById("compressPanel").style.backgroundImage = 
+    document.getElementById("compressPanel").style.backgroundImage =
         "url('../../Textures/gui/bevel/compressPanel.png')";
-    document.getElementById("expandPanel").style.backgroundImage = 
+    document.getElementById("expandPanel").style.backgroundImage =
         "url('../../Textures/gui/bevel/expandPanelActive.png')";
 
-    var row1 = document.getElementById("row1");
-    var bars = row1.getElementsByClassName("Bar");
-    var title =  row1.getElementsByClassName("BarTitle");
-    var barValues = row1.getElementsByClassName("BarValue");
+    let row1 = document.getElementById("row1");
+    let bars = row1.getElementsByClassName("Bar");
+    let title =  row1.getElementsByClassName("BarTitle");
+    let barValues = row1.getElementsByClassName("BarValue");
 
     for (const bar of bars) {
         bar.style.display = "block";
@@ -586,9 +586,9 @@ function onExpandPanelClicked() {
     }
 
     //! ROW 2
-    var row2 =  document.getElementById("row2");
+    let row2 =  document.getElementById("row2");
     bars = row2.getElementsByClassName("Bar");
-    title =  row2.getElementsByClassName("BarTitle");
+    title = row2.getElementsByClassName("BarTitle");
     barValues = row2.getElementsByClassName("BarValue");
 
     for (const bar of bars) {
@@ -612,8 +612,8 @@ function onExpandPanelClicked() {
 //! Updates the GUI bars
 //! values needs to be an object with properties set with values for everything
 function updateMicrobeHUDBars(values){
-    var progress = 0;
-    
+    let progress = 0;
+
     // The bars
 
     document.getElementById("microbeHUDPlayerHitpoints").textContent =
@@ -626,8 +626,8 @@ function updateMicrobeHUDBars(values){
     document.getElementById("microbeHUDPlayerATPMax").textContent =
          values.ATPMax;
 
-    const valueAtp = common.barHelper(values.compoundATP, values.ATPMax).replace("%","");
-    const valueHp = common.barHelper(values.hitpoints, values.maxHitpoints).replace("%","");
+    const valueAtp = common.barHelper(values.compoundATP, values.ATPMax).replace("%", "");
+    const valueHp = common.barHelper(values.hitpoints, values.maxHitpoints).replace("%", "");
 
     const circles = document.querySelectorAll("#circleBars");
 

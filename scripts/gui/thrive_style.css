@@ -489,8 +489,8 @@ div::-webkit-scrollbar-thumb:hover {
   position: absolute;
   width: 100%;
   height: 89%;
-  top:5%;
-  left:1.5%;
+  top: 5%;
+  left: 1.5%;
 }
 
 #patchTab {
@@ -502,7 +502,8 @@ div::-webkit-scrollbar-thumb:hover {
 }
 
 .nodeMap {
-  border:2px 
+  border:
+    2px 
     solid rgba(0, 1, 28,0.6);
   border-radius:10px;
 }
@@ -560,7 +561,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 
 #Allcondition {
-  position:absolute;
+  position: absolute;
   width: 100%;
   height: calc(100% - 65px);
   font-size: 11pt;
@@ -809,7 +810,7 @@ div::-webkit-scrollbar-thumb:hover {
   float: right;
   margin-top: 10px;
   margin-right: 10px;
-  width:  20px;
+  width: 20px;
   height: 20px;
   background-image: url("../../Textures/gui/bevel/expandPanelActive.png");
   background-repeat: no-repeat;
@@ -838,7 +839,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-size: 22px, 22px;
 }
 
-#Panels{
+#Panels {
   width: 300px;
   height: 600px;
   left: 5px;
@@ -879,7 +880,7 @@ div::-webkit-scrollbar-thumb:hover {
 #agentsPanel {
   position: relative;
   width: 332px;
-  height: 90px; 
+  height: 90px;
   margin-top: 10px;
   background-image: url("../../Textures/gui/bevel/agentsPanel.png");
   text-indent: 45px;
@@ -909,7 +910,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 
 #microbeHUDPlayerOxygenBar {
-  background-color: #0098C3;
+  background-color: #0098c3;
 }
 
 #NitrogenIcon {
@@ -1039,7 +1040,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 
 #microbeHUDPlayerPhosphatesBar {
-  background-color: #6124CC;
+  background-color: #6124cc;
 }
 
 #HydrogenSulfideIcon {

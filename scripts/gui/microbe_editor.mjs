@@ -138,15 +138,15 @@ export function setupMicrobeEditor(){
 
     // Top navigation Buttons Clicked
     document.getElementById("report").addEventListener("click", 
-    onPatchReportClicked, true);
+        onPatchReportClicked, true);
     document.getElementById("patch").addEventListener("click", 
-    onPatchReportClicked, true);
+        onPatchReportClicked, true);
     document.getElementById("editor").addEventListener("click", 
-    onPatchReportClicked, true);
+        onPatchReportClicked, true);
 
     // Next Button Clicked
     document.getElementById("next").addEventListener("click", 
-    onNextButtonClicked, true);
+        onNextButtonClicked, true);
 
     // Condition buttons clicked
     let minusBtnObjects = document.getElementsByClassName("minusBtn");
@@ -156,7 +156,7 @@ export function setupMicrobeEditor(){
         onConditionClicked, true);
     }
 
-    document.getElementsByClassName("minusBtn")
+    document.getElementsByClassName("minusBtn");
 
     // All of the organelle buttons
     for(const element of organelleSelectionElements){
@@ -362,7 +362,7 @@ const panelButtons = ["report", "patch", "editor"];
 
 // Patch-Report function
 function onPatchReportClicked() {
-    
+  
     // Fire event
     if(common.isInEngine()){
         // Call a function to tell the game to swap to the editor. It
@@ -373,7 +373,7 @@ function onPatchReportClicked() {
         doEnterMicrobeEditor();
     }
 
-    for(const [i,button] of panelButtons.entries()) {
+    for(const [i, button] of panelButtons.entries()) {
         if(button == this.id) {
             counter = i;
             document.getElementById( this.id).style.backgroundImage =
@@ -401,20 +401,18 @@ function onPatchReportClicked() {
 
 // Patch node click event
 $(".nodeMap").click(function(event) {
-    const type = $(event.target).attr('data-type');
-    alert("patch: " + type);
-
+    const type = $(event.target).attr("data-type");
     document.getElementById("patchName").innerHTML = type;
 });
 
 
 // Patch Map close button
 function onConditionClicked() {
-    let tab = $(this).attr("data-cond");
-    
+    const tab = $(this).attr("data-cond");
+
     $("#" + tab).animate({"height": "toggle"});
     $(this).toggleClass("minus");
-    $(this).toggleClass("plus");   
+    $(this).toggleClass("plus");
 }
     
 
@@ -427,8 +425,9 @@ function updateSpeed(speed){
 
 // Next Button clicked
 let counter = 0;
+
 function onNextButtonClicked() {
-   if(counter == 2) {
+    if(counter == 2) {
         counter = 0;
     }
     counter = counter + 1;
