@@ -390,8 +390,8 @@ function updateHoverInfo(vars){
             panel.appendChild(document.createElement("br"));
 
             // Debug print version
-            const values = vars[key].split(":");
-            const img = document.createElement("IMG");
+            var values = vars[key].split(":");
+            var img = document.createElement("IMG");
             var src = "../../Textures/gui/bevel/";
             values[0] = values[0].replace(/\s+/, "") 
             src =  src + values[0];
