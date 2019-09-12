@@ -401,11 +401,11 @@ function updateHoverInfo(vars){
             panel.appendChild(document.createElement("br"));
 
             // Debug print version
-            let values = vars[key].split(":");
-            let img = document.createElement("IMG");
+            const values = vars[key].split(":");
+            const img = document.createElement("IMG");
             let src = "../../Textures/gui/bevel/";
-            values[0] = values[0].replace(/\s+/, "") 
-            src =  src + values[0];
+            values[0] = values[0].replace(/\s+/, "")
+            src = src + values[0];
             src = src + ".png";
 
             img.setAttribute("src", src);
@@ -504,9 +504,9 @@ function onCompressPanelClicked() {
     document.getElementById("expandPanel").style.backgroundImage =
         "url('../../Textures/gui/bevel/expandPanel.png')";
 
-    let row1 = document.getElementById("row1");
+    const row1 = document.getElementById("row1");
     let bars = row1.getElementsByClassName("Bar");
-    let title =  row1.getElementsByClassName("BarTitle");
+    let title = row1.getElementsByClassName("BarTitle");
     let barValues = row1.getElementsByClassName("BarValue");
 
     for (const bar of bars) {
@@ -526,9 +526,9 @@ function onCompressPanelClicked() {
     }
 
     //! ROW 2
-    let row2 =  document.getElementById("row2");
+    const row2 = document.getElementById("row2");
     bars = row2.getElementsByClassName("Bar");
-    title =  row2.getElementsByClassName("BarTitle");
+    title = row2.getElementsByClassName("BarTitle");
     barValues = row2.getElementsByClassName("BarValue");
 
     for (const bar of bars) {
@@ -564,9 +564,9 @@ function onExpandPanelClicked() {
     document.getElementById("expandPanel").style.backgroundImage =
         "url('../../Textures/gui/bevel/expandPanelActive.png')";
 
-    let row1 = document.getElementById("row1");
+    const row1 = document.getElementById("row1");
     let bars = row1.getElementsByClassName("Bar");
-    let title =  row1.getElementsByClassName("BarTitle");
+    let title = row1.getElementsByClassName("BarTitle");
     let barValues = row1.getElementsByClassName("BarValue");
 
     for (const bar of bars) {
@@ -581,12 +581,12 @@ function onExpandPanelClicked() {
         tit.style.visibility = "visible";
     }
 
-    for (const barValue of  barValues) {
+    for (const barValue of barValues) {
         barValue.style.left = "120px";
     }
 
     //! ROW 2
-    let row2 =  document.getElementById("row2");
+    const row2 = document.getElementById("row2");
     bars = row2.getElementsByClassName("Bar");
     title = row2.getElementsByClassName("BarTitle");
     barValues = row2.getElementsByClassName("BarValue");
@@ -641,7 +641,7 @@ function updateMicrobeHUDBars(values){
         if(valueAtp < 2.5) {
             circle.querySelector("#shapeAtp").style["stroke-dashoffset"] = 189.117;
         } else {
-            circle.querySelector("#shapeAtp").style["stroke-dashoffset"] = 
+            circle.querySelector("#shapeAtp").style["stroke-dashoffset"] =
                 189.117 * progress / 100;
         }
 

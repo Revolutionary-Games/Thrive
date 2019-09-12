@@ -181,7 +181,7 @@ div::-webkit-scrollbar-thumb:hover {
   width: 180px;
   height: 25px;
   left: 20px;
-  margin-bottom: 0;
+  margin-bottom: 0px;
   margin-top: 6px;
   background-color: rgb(0, 0, 0, 0.2);
 }
@@ -405,7 +405,7 @@ div::-webkit-scrollbar-thumb:hover {
 #infoBar {
   position: absolute;
   height: 40px;
-  bottom: 0;
+  bottom: 0px;
   left: 80px;
   right: 40px;
 }
@@ -413,7 +413,7 @@ div::-webkit-scrollbar-thumb:hover {
 #infoPatch {
   position: absolute;
   height: 40px;
-  bottom: 0;
+  bottom: 0px;
   left: 160px;
   right: 40px;
   font-size: 18pt;
@@ -503,9 +503,9 @@ div::-webkit-scrollbar-thumb:hover {
 
 .nodeMap {
   border:
-    2px 
-    solid rgba(0, 1, 28,0.6);
-  border-radius:10px;
+    2px
+    solid rgba(0, 1, 28, 0.6);
+  border-radius: 10px;
 }
 
 .firstHalf {
@@ -634,7 +634,7 @@ div::-webkit-scrollbar-thumb:hover {
   display: block;
   margin-left: 20px;
   margin-top: 8px;
-  margin-bottom: 0;
+  margin-bottom: 0px;
   width: 100%;
   height: auto;
   vertical-align: middle;
@@ -974,7 +974,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 
 #microbeHUDPlayerOxytoxyBar {
-  background-color: #9F1360;
+  background-color: #9f1360;
 }
 
 #IronIcon {
@@ -1864,7 +1864,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 
 .plus:hover {
-  background-image: url("../../Textures/gui/bevel/plusButtonHover.png"); 
+  background-image: url("../../Textures/gui/bevel/plusButtonHover.png");
 }
 
 

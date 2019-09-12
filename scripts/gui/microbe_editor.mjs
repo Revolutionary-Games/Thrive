@@ -137,15 +137,15 @@ export function setupMicrobeEditor(){
         onRedoClicked, true);
 
     // Top navigation Buttons Clicked
-    document.getElementById("report").addEventListener("click", 
+    document.getElementById("report").addEventListener("click",
         onPatchReportClicked, true);
-    document.getElementById("patch").addEventListener("click", 
+    document.getElementById("patch").addEventListener("click",
         onPatchReportClicked, true);
-    document.getElementById("editor").addEventListener("click", 
+    document.getElementById("editor").addEventListener("click",
         onPatchReportClicked, true);
 
     // Next Button Clicked
-    document.getElementById("next").addEventListener("click", 
+    document.getElementById("next").addEventListener("click",
         onNextButtonClicked, true);
 
     // Condition buttons clicked
@@ -153,7 +153,7 @@ export function setupMicrobeEditor(){
 
     for (const element of minusBtnObjects) {
         element.addEventListener("click",
-        onConditionClicked, true);
+            onConditionClicked, true);
     }
 
     document.getElementsByClassName("minusBtn");
@@ -362,7 +362,7 @@ const panelButtons = ["report", "patch", "editor"];
 
 // Patch-Report function
 function onPatchReportClicked() {
-  
+
     // Fire event
     if(common.isInEngine()){
         // Call a function to tell the game to swap to the editor. It
@@ -414,7 +414,7 @@ function onConditionClicked() {
     $(this).toggleClass("minus");
     $(this).toggleClass("plus");
 }
-    
+
 
 //! Updates generation points in GUI
 function updateSpeed(speed){
