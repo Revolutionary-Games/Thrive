@@ -102,8 +102,6 @@ void
         auto controlledEntity =
             ThriveGame::Get()->playerData().activeCreature();
 
-        const auto& allSpecies = world.GetComponentIndex_SpeciesComponent();
-
         auto& index = CachedComponents.GetIndex();
         for(auto iter = index.begin(); iter != index.end(); ++iter) {
 
@@ -138,6 +136,7 @@ void
                 continue;
             }
 
+            // TODO: this would be nice to verify just once during startup
             if(microbeComponent->GetPropertyTypeId(0) != stringType ||
                 std::strncmp(microbeComponent->GetPropertyName(0),
                     "speciesName", sizeof("speciesName") - 1) != 0) {
@@ -151,23 +150,16 @@ void
             const auto* name = static_cast<std::string*>(
                 microbeComponent->GetAddressOfProperty(0));
 
-            bool found = false;
+            const auto map = world.GetPatchManager().getCurrentMap();
+            const auto species =
+                map ? map->findSpeciesByName(*name) : Species::pointer{};
 
-            for(const auto& tuple : allSpecies) {
 
-                SpeciesComponent* species = std::get<1>(tuple);
-
-                if(species->name == *name) {
-
-                    hovered->PushValue(std::make_unique<VariableBlock>(
-                        new Leviathan::StringBlock(
-                            species->genus + " " + species->epithet)));
-                    found = true;
-                    break;
-                }
-            }
-
-            if(!found) {
+            if(species) {
+                hovered->PushValue(
+                    std::make_unique<VariableBlock>(new Leviathan::StringBlock(
+                        species->genus + " " + species->epithet)));
+            } else {
 
                 // If we can't find the species, assume that it is extinct
                 hovered->PushValue(std::make_unique<VariableBlock>(

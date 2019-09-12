@@ -5,16 +5,6 @@
 
 // TODO: Move the following to C++ (preferably to Leviathan itself)
 
-float clamp(float value, float lowerBound, float upperBound) {
-    if (value > upperBound)
-        return upperBound;
-
-    if (value < lowerBound)
-        return lowerBound;
-
-    return value;
-}
-
 string randomChoice(const array<string>& source) {
     return source[GetEngine().GetRandom().GetNumber(0,
                     source.length() - 1)];
@@ -64,7 +54,7 @@ Float4 randomProkayroteColour(float opaqueness = randomOpacityBacteria())
         opaqueness);
 }
 
-string mutateWord(string name) {
+string mutateWord(const string &in name) {
     //
     const array<string> vowels = {"a", "e", "i", "o", "u"};
     const array<string> pronoucablePermutation = {"th", "sh", "ch", "wh", "Th", "Sh", "Ch", "Wh"};
@@ -314,100 +304,86 @@ string randomBacteriaName()
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-// Species class
+// Species operations
 //
-// Class for representing an individual species (This is stored in the world's
-// SpeciesSystem instance)
 ////////////////////////////////////////////////////////////////////////////////
-//! \todo This should be moved into the SpeciesComponent class to simplify things
 
-class Species{
+// // Creates a mutated version of the species
+// createMutatedSpecies(SpeciesComponent@ parent, CellStageWorld@ world, bool isBacteria)
+// {
+//     this.isBacteria = parent.isBacteria;
+//     LOG_INFO("Gene Code Is:"+parent.stringCode);
 
-    ~Species()
-    {
-        if(templateEntity != NULL_OBJECT){
+//     if (!isBacteria)
+//     {
+//         name = randomSpeciesName();
+//     }
+//     else {
+//         name = randomBacteriaName();
+//     }
 
-            LOG_ERROR("Species object not extinguish()ed before destructor, doing that now");
-            extinguish();
-        }
-    }
+//     //Mutate the epithet
+//     if (GetEngine().GetRandom().GetNumber(0, 100) < MUTATION_WORD_EDIT){
+//         epithet = mutateWord(parent.epithet);
+//     }
+//     else {
+//         epithet = generateNameSection();
+//     }
+//     genus = parent.genus;
+//     colour=parent.colour;
+//     mutateBehavior(parent);
 
-    // Creates a mutated version of the species
-    Species(SpeciesComponent@ parent, CellStageWorld@ world, bool isBacteria)
-    {
-        this.isBacteria = parent.isBacteria;
-        LOG_INFO("Gene Code Is:"+parent.stringCode);
-
-        if (!isBacteria)
-        {
-            name = randomSpeciesName();
-        }
-        else {
-            name = randomBacteriaName();
-        }
-
-        //Mutate the epithet
-        if (GetEngine().GetRandom().GetNumber(0, 100) < MUTATION_WORD_EDIT){
-            epithet = mutateWord(parent.epithet);
-        }
-        else {
-            epithet = generateNameSection();
-        }
-        genus = parent.genus;
-        colour=parent.colour;
-        mutateBehavior(parent);
-
-        // Make sure not over or under our scales
-        cleanPersonality();
+//     // Make sure not over or under our scales
+//     cleanPersonality();
 
 
-        // Subtly mutate color
-        this.colour = Float4(parent.colour.X + randomMutationColourChannel(),
-            parent.colour.Y + randomMutationColourChannel(),
-            parent.colour.Z + randomMutationColourChannel(),
-            parent.colour.W + randomMutationColourChannel());
+//     // Subtly mutate color
+//     this.colour = Float4(parent.colour.X + randomMutationColourChannel(),
+//         parent.colour.Y + randomMutationColourChannel(),
+//         parent.colour.Z + randomMutationColourChannel(),
+//         parent.colour.W + randomMutationColourChannel());
 
-        LOG_INFO("X:"+parent.colour.X+" Y:"+parent.colour.Y+" Z:"+parent.colour.Z+" W:"+parent.colour.W);
-        LOG_INFO("X:"+colour.X+" Y:"+colour.Y+" Z:"+colour.Z+" W:"+colour.W);
-        // Chance of new color needs to be low
-        if (GetEngine().GetRandom().GetNumber(0,100) <= MUTATION_CHANGE_GENUS)
-        {
-            if (!isBacteria)
-            {
-                LOG_INFO("New Genus");
-            }else {
-                LOG_INFO("New Genus of Bacteria");
-            }
+//     LOG_INFO("X:"+parent.colour.X+" Y:"+parent.colour.Y+" Z:"+parent.colour.Z+" W:"+parent.colour.W);
+//     LOG_INFO("X:"+colour.X+" Y:"+colour.Y+" Z:"+colour.Z+" W:"+colour.W);
+//     // Chance of new color needs to be low
+//     if (GetEngine().GetRandom().GetNumber(0,100) <= MUTATION_CHANGE_GENUS)
+//     {
+//         if (!isBacteria)
+//         {
+//             LOG_INFO("New Genus");
+//         }else {
+//             LOG_INFO("New Genus of Bacteria");
+//         }
 
-            // We can do more fun stuff here later
-            if (GetEngine().GetRandom().GetNumber(0, 100) < MUTATION_WORD_EDIT){
-                genus = mutateWord(parent.genus);
-            }
-            else {
-                genus = generateNameSection();
-            }
-            // New genuses get to double their color change
-            this.colour = Float4(parent.colour.X + randomMutationColourChannel(),
-                parent.colour.Y + randomMutationColourChannel(),
-                parent.colour.Z + randomMutationColourChannel(),
-                parent.colour.W + randomMutationColourChannel());
-        }
+//         // We can do more fun stuff here later
+//         if (GetEngine().GetRandom().GetNumber(0, 100) < MUTATION_WORD_EDIT){
+//             genus = mutateWord(parent.genus);
+//         }
+//         else {
+//             genus = generateNameSection();
+//         }
+//         // New genuses get to double their color change
+//         this.colour = Float4(parent.colour.X + randomMutationColourChannel(),
+//             parent.colour.Y + randomMutationColourChannel(),
+//             parent.colour.Z + randomMutationColourChannel(),
+//             parent.colour.W + randomMutationColourChannel());
+//     }
 
-        this.stringCode = mutateMicrobe(parent.stringCode,isBacteria);
-        // There is a small chance of evolving into a eukaryote
-        if (this.stringCode.findFirst("N") >= 0){
-            this.isBacteria=false;
-            name = randomSpeciesName();
-        }
+//     this.stringCode = mutateMicrobe(parent.stringCode,isBacteria);
+//     // There is a small chance of evolving into a eukaryote
+//     if (this.stringCode.findFirst("N") >= 0){
+//         this.isBacteria=false;
+//         name = randomSpeciesName();
+//     }
 
-        generateMembranes(parent);
-
-
-        commonConstructor(world);
+//     generateMembranes(parent);
 
 
-        this.setupSpawn(world);
-    }
+//     commonConstructor(world);
+
+
+//     this.setupSpawn(world);
+// }
 
     private void generateMembranes(SpeciesComponent@ parent){
         if (GetEngine().GetRandom().GetNumber(0,100)<=20){
@@ -667,27 +643,6 @@ class Species{
             BACTERIA_SPAWN_RADIUS);
     }
 
-    //! updates the population count of the species
-    void updatePopulation()
-    {
-        // Numbers incresed so things happen more often
-        this.population += GetEngine().GetRandom().GetNumber(-700, 700);
-    }
-
-    void devestate()
-    {
-        // Occassionally you just need to take a deadly virus and use
-        // it to make things interesting
-        this.population += GetEngine().GetRandom().GetNumber(-1500, -700);
-    }
-
-    void boom()
-    {
-        // Occassionally you just need to give a species a nice pat on
-        // the back
-        this.population += GetEngine().GetRandom().GetNumber(700, 1500);
-    }
-
     int getPopulationFromAutoEvo()
     {
         return this.population;
@@ -707,22 +662,8 @@ class Species{
         }
     }
 
-    string name;
-    string genus;
-    string epithet;
-    bool isBacteria;
-    double aggression = 100.0f;
-    double opportunism = 100.0f;
-    double fear = 100.0f;
-    double activity = 0.0f;
-    double focus = 0.0f;
-    MEMBRANE_TYPE speciesMembraneType;
-    string stringCode;
     int population = GetEngine().GetRandom().GetNumber(600,INITIAL_POPULATION);
     Float4 colour = getRightColourForSpecies();
-
-    //! The species entity that has this species' SpeciesComponent
-    ObjectID templateEntity = NULL_OBJECT;
 
     SpawnerTypeId id;
     bool spawningEnabled = false;
@@ -778,12 +719,8 @@ class SpeciesSystem : ScriptSystem{
         resetAutoEvo();
     }
 
-
     void Run()
     {
-        //LOG_INFO("autoevo running");
-        // Update population numbers and split/extinct species as needed
-
         timeSinceLastCycle++;
         while(this.timeSinceLastCycle > SPECIES_SIM_INTERVAL){
            doAutoEvoStep();
@@ -1117,8 +1054,7 @@ void restoreOrganelleLayout(CellStageWorld@ world, ObjectID microbeEntity,
 
 
 
-//! Creates a species from the initial template. This doesn't register with SpeciesSystem
-//! because this is (currently) only used for the player's species which isn't managed by it
+//! Creates a species from the initial template
 ObjectID createSpecies(CellStageWorld@ world, const string &in name,
     MicrobeTemplate@ fromTemplate)
 {
