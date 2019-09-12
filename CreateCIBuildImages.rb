@@ -7,6 +7,6 @@ require_relative 'ThirdParty/Leviathan/LeviathanLibraries'
 
 runDockerCreate($leviathanLibList, $leviathanSelfLib, extraPackages: ["nodejs"],
                 extraSteps: [
-                  "RUN npm install -g eslint stylelint eslint-plugin-html http-server " +
+                  "RUN npm install -g eslint@5 stylelint eslint-plugin-html http-server " +
                   "&& npm cache clean --force"
                 ])

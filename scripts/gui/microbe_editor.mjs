@@ -188,13 +188,13 @@ export function setupMicrobeEditor(){
         // Event for speed update
         Leviathan.OnGeneric("SpeedUpdated", (event, vars) => {
             // Apply the new values
-            updateSpeed(vars.speed);
+            updateSpeed(vars.speed); 
         });
 
         // Event for undo setting
         Leviathan.OnGeneric("EditorUndoButtonStatus", (event, vars) => {
             // Apply the new values
-            setUndo(vars.enabled);
+            setUndo(vars.enabled)
         });
 
         // Event for redo setting

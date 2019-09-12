@@ -50,18 +50,9 @@ jobs:
    format_script:
      working_directory: ~/Thrive
      docker:
-       - image: hhyyrylainen/thrive-deps:v1
+       - image: hhyyrylainen/thrive-deps:v2
      steps:
        - checkout
-       # eslint is completely silly in refusing to use a globally installed plugin
-       - restore_cache:
-           keys:
-             - v1-npm-{{ checksum ".eslintrc.js" }}       
-       - run: npm install eslint-plugin-html@latest --save-dev
-       - save_cache:
-           key: v1-npm-{{ checksum ".eslintrc.js" }}
-           paths:
-             - node_modules
        - run: ./RunCodeFormatting.rb
        - run:
            when: always
