@@ -64,7 +64,7 @@ export function runMicrobeHUDSetup(){
         });
 
         // Event for patch details
-        Leviathan.OnGeneric("updatePatchDetails", (event, vars) => {
+        Leviathan.OnGeneric("UpdatePatchDetails", (event, vars) => {
 
             // Apply the new values
             updatePatchInfo(vars.patchName);

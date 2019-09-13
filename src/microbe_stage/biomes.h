@@ -111,12 +111,15 @@ public:
 
     std::string
         getTexture(size_t index) const;
+
+    REFERENCE_HANDLE_UNCOUNTED_TYPE(ChunkData);
 };
 
 class SimulationParameters;
 
 class Biome : public RegistryType {
 public:
+    // No clue why these are maps
     std::map<size_t, BiomeCompoundData> compounds;
     std::map<size_t, ChunkData> chunks;
     std::string background = "error";

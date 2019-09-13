@@ -1,6 +1,6 @@
 const auto AGENT_EMISSION_VELOCITY = 20;
 
-
+// NOTE: these aren't currently used
 interface AgentEffect{
 
     void applyEffect();

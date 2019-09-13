@@ -117,7 +117,7 @@ class MicrobeEditor{
     {
         GetThriveGame().playerData().setBool("edited_microbe", true);
 
-        SpeciesComponent@ playerSpecies = MicrobeOperations::getSpeciesComponent(
+        Species@ playerSpecies = MicrobeOperations::getSpecies(
             GetThriveGame().getCellStage(), GetThriveGame().playerData().activeCreature());
 
         assert(playerSpecies !is null, "didn't find edited species");
@@ -159,10 +159,8 @@ class MicrobeEditor{
         updateGuiButtonStatus(checkIsNucleusPresent());
 
         //force add your species
-        cast<SpeciesSystem>(GetThriveGame().getCellStage().GetScriptSystem("SpeciesSystem")).splitSpecies(playerSpecies);
-
-        //force an auto-evo step
-        cast<SpeciesSystem>(GetThriveGame().getCellStage().GetScriptSystem("SpeciesSystem")).doAutoEvoStep();
+        LOG_WRITE("TODO: split off a species from the player");
+        // cast<SpeciesSystem>(GetThriveGame().getCellStage().GetScriptSystem("SpeciesSystem")).splitSpecies(playerSpecies);
 
         // Reset to cytoplasm if nothing is selected
         if(activeActionName == ""){
@@ -1082,7 +1080,7 @@ class MicrobeEditor{
     // Maybe i should do this in the non-editor code instead, to make sure its more decoupled from the player
     int getMicrobeGeneration() const
     {
-        auto playerSpecies = MicrobeOperations::getSpeciesComponent(
+        auto playerSpecies = MicrobeOperations::getSpecies(
             GetThriveGame().getCellStage(), "Default");
 
         // Its plus one because you are updating the next generation
@@ -1121,7 +1119,7 @@ class MicrobeEditor{
             auto player = GetThriveGame().playerData().activeCreature();
 
             // We need to grab the player's species
-            SpeciesComponent@ playerSpecies = MicrobeOperations::getSpeciesComponent(
+            Species@ playerSpecies = MicrobeOperations::getSpecies(
                 world, player);
 
             assert(playerSpecies !is null, "didn't find edited species");

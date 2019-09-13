@@ -123,10 +123,11 @@ class MicrobeAISystem : ScriptSystem{
             Position@ position = components.third;
             // ai interval
             aiComponent.intervalRemaining += logicTime;
+            // TODO: Species is now reference counted and could be stored directly
             // Cache behaviour values as we dont want to be calling "getSpecies" every frame for every microbe
             if (aiComponent.speciesAggression==-1.0f)
             {
-                SpeciesComponent@ ourSpecies = MicrobeOperations::getSpeciesComponent(world, microbeEntity);
+                Species@ ourSpecies = MicrobeOperations::getSpecies(world, microbeEntity);
                 if (ourSpecies !is null){
                     if (aiComponent.speciesAggression == -1.0f){
                         aiComponent.speciesAggression = ourSpecies.aggression;
@@ -488,8 +489,9 @@ class MicrobeAISystem : ScriptSystem{
     }
 
     // For chasing down and killing prey in various ways
-    void dealWithPrey(MicrobeAISystemCached@ components, ObjectID prey, array<ObjectID>@ allMicrobes )
-        {
+    void dealWithPrey(MicrobeAISystemCached@ components, ObjectID prey,
+        array<ObjectID>@ allMicrobes)
+    {
         //LOG_INFO("chasing"+prey);
         // Set Components
         ObjectID microbeEntity = components.entity;
@@ -505,13 +507,13 @@ class MicrobeAISystem : ScriptSystem{
         MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
             world.GetScriptComponentHolder("MicrobeComponent").Find(prey));
         if (secondMicrobeComponent is null){
-        aiComponent.preyPegged=false;
-        aiComponent.prey = NULL_OBJECT;
-        return;
+            aiComponent.preyPegged=false;
+            aiComponent.prey = NULL_OBJECT;
+            return;
         }
         // Agent vacuoles.
         int numberOfAgentVacuoles = int(
-                microbeComponent.specialStorageOrganelles[formatUInt(oxytoxyId)]);
+            microbeComponent.specialStorageOrganelles[formatUInt(oxytoxyId)]);
 
         // Chase your prey if you dont like acting like a plant
         // Allows for emergence of Predatory Plants (Like a single cleed version of a venus fly trap)
@@ -535,64 +537,64 @@ class MicrobeAISystem : ScriptSystem{
             microbeComponent.movementDirection = Float3(0, 0, 0);
         }
 
-            // Turn off engulf if prey is Dead
-            // This is probabbly not working
-            if (secondMicrobeComponent.dead == true){
-                aiComponent.hasTargetPosition = false;
-                aiComponent.prey=getNearestPreyItem(components, allMicrobes);
-                if (aiComponent.prey != NULL_OBJECT ) {
-                    aiComponent.preyPegged=true;
-                }
+        // Turn off engulf if prey is Dead
+        // This is probabbly not working
+        if (secondMicrobeComponent.dead == true){
+            aiComponent.hasTargetPosition = false;
+            aiComponent.prey=getNearestPreyItem(components, allMicrobes);
+            if (aiComponent.prey != NULL_OBJECT ) {
+                aiComponent.preyPegged=true;
+            }
 
-                if (microbeComponent.engulfMode){
-                    MicrobeOperations::toggleEngulfMode(world, microbeEntity);
-                }
-                //  You got a kill, good job
-            auto playerSpecies = MicrobeOperations::getSpeciesComponent(world, "Default");
+            if (microbeComponent.engulfMode){
+                MicrobeOperations::toggleEngulfMode(world, microbeEntity);
+            }
+            //  You got a kill, good job
+            auto playerSpecies = MicrobeOperations::getSpecies(world, "Default");
             if (!microbeComponent.isPlayerMicrobe && microbeComponent.speciesName != playerSpecies.name){
                 MicrobeOperations::alterSpeciesPopulation(world,microbeEntity,CREATURE_KILL_POPULATION_GAIN);
-                }
+            }
 
             if (rollCheck(aiComponent.speciesOpportunism,400.0f)){
                 aiComponent.lifeState= SCAVENGING_STATE;
                 aiComponent.boredom = 0;
             }
 
+        }
+        else
+        {
+            //  Turn on engulfmode if close
+            if (((position._Position -  aiComponent.targetPosition).LengthSquared() <= 300+(microbeComponent.totalHexCountCache*3.0f))
+                && (MicrobeOperations::getCompoundAmount(world,microbeEntity,atpID) >=  1.0f)
+                && !microbeComponent.engulfMode &&
+                (float(microbeComponent.totalHexCountCache) > (
+                    ENGULF_HP_RATIO_REQ*secondMicrobeComponent.totalHexCountCache))){
+                MicrobeOperations::toggleEngulfMode(world, microbeEntity);
+                aiComponent.ticksSinceLastToggle=0;
             }
-            else
-            {
-                //  Turn on engulfmode if close
-                if (((position._Position -  aiComponent.targetPosition).LengthSquared() <= 300+(microbeComponent.totalHexCountCache*3.0f))
-                        && (MicrobeOperations::getCompoundAmount(world,microbeEntity,atpID) >=  1.0f)
-                    && !microbeComponent.engulfMode &&
-                    (float(microbeComponent.totalHexCountCache) > (
-                        ENGULF_HP_RATIO_REQ*secondMicrobeComponent.totalHexCountCache))){
-                    MicrobeOperations::toggleEngulfMode(world, microbeEntity);
-                    aiComponent.ticksSinceLastToggle=0;
-                    }
-                else if (((position._Position -  aiComponent.targetPosition).LengthSquared() >= 500+(microbeComponent.totalHexCountCache*3.0f))
-                        && (microbeComponent.engulfMode && aiComponent.ticksSinceLastToggle >= AI_ENGULF_INTERVAL)){
-                    MicrobeOperations::toggleEngulfMode(world, microbeEntity);
-                    aiComponent.ticksSinceLastToggle=0;
-                    }
-            }
-
-          //  Shoot toxins if able
-          // There should be AI that prefers shooting over engulfing, etc, not sure how to model
-          // that without a million and one variables perhaps its a mix? Maybe a creature with a focus less then a certain amount simply never attacks that way?
-          // Maybe a cvreature with a specific focuis, only ever shoots and never engulfs? Maybe their letharcgicness impacts that? I just dont want each enemy to feal the same you know.
-          // For now creatures with a focus under 100 will never shoot.
-          //LOG_INFO("Our focus is: "+ aiComponent.speciesFocus);
-
-          if (aiComponent.speciesFocus >= 100.0f){
-            if (microbeComponent.hitpoints > 0 && numberOfAgentVacuoles > 0 &&
-                (position._Position -  aiComponent.targetPosition).LengthSquared() <= aiComponent.speciesFocus*10.0f){
-                    if (MicrobeOperations::getCompoundAmount(world,microbeEntity,oxytoxyId) >= MINIMUM_AGENT_EMISSION_AMOUNT){
-                        MicrobeOperations::emitAgent(world,microbeEntity, oxytoxyId,10.0f,aiComponent.speciesFocus*10.0f);
-                        }
-                    }
+            else if (((position._Position -  aiComponent.targetPosition).LengthSquared() >= 500+(microbeComponent.totalHexCountCache*3.0f))
+                && (microbeComponent.engulfMode && aiComponent.ticksSinceLastToggle >= AI_ENGULF_INTERVAL)){
+                MicrobeOperations::toggleEngulfMode(world, microbeEntity);
+                aiComponent.ticksSinceLastToggle=0;
             }
         }
+
+        //  Shoot toxins if able
+        // There should be AI that prefers shooting over engulfing, etc, not sure how to model
+        // that without a million and one variables perhaps its a mix? Maybe a creature with a focus less then a certain amount simply never attacks that way?
+        // Maybe a cvreature with a specific focuis, only ever shoots and never engulfs? Maybe their letharcgicness impacts that? I just dont want each enemy to feal the same you know.
+        // For now creatures with a focus under 100 will never shoot.
+        //LOG_INFO("Our focus is: "+ aiComponent.speciesFocus);
+
+        if (aiComponent.speciesFocus >= 100.0f){
+            if (microbeComponent.hitpoints > 0 && numberOfAgentVacuoles > 0 &&
+                (position._Position -  aiComponent.targetPosition).LengthSquared() <= aiComponent.speciesFocus*10.0f){
+                if (MicrobeOperations::getCompoundAmount(world,microbeEntity,oxytoxyId) >= MINIMUM_AGENT_EMISSION_AMOUNT){
+                    MicrobeOperations::emitAgent(world,microbeEntity, oxytoxyId,10.0f,aiComponent.speciesFocus*10.0f);
+                }
+            }
+        }
+    }
 
     // For chasing down and eating chunka in various ways
     void dealWithChunks(MicrobeAISystemCached@ components, ObjectID chunk, array<ObjectID>@ allChunks )
@@ -635,7 +637,7 @@ class MicrobeAISystem : ScriptSystem{
                 MicrobeOperations::toggleEngulfMode(world, microbeEntity);
             }
             //  You got a consumption, good job
-            auto playerSpecies = MicrobeOperations::getSpeciesComponent(world, "Default");
+            auto playerSpecies = MicrobeOperations::getSpecies(world, "Default");
             if (!microbeComponent.isPlayerMicrobe && microbeComponent.speciesName != playerSpecies.name){
                 MicrobeOperations::alterSpeciesPopulation(world,microbeEntity,CREATURE_SCAVENGE_POPULATION_GAIN);
                 }

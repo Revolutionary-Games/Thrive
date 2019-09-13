@@ -1,11 +1,12 @@
 #pragma once
 
+#include "biomes.h"
+
 #include "engine/component_types.h"
 #include "engine/typedefs.h"
 
 #include <Entities/Component.h>
 #include <Entities/System.h>
-//#include <Entities/Components.h>
 
 #include <unordered_map>
 #include <vector>
@@ -14,10 +15,8 @@ namespace Leviathan {
 class GameWorld;
 }
 
-
-
 // The initial variables of the system.
-#define INITIAL_COMPOUND_PRICE 0.0
+constexpr auto INITIAL_COMPOUND_PRICE = 0.0f;
 
 namespace thrive {
 
@@ -137,14 +136,14 @@ public:
     }
 
     void
-        setProcessBiome(int biomeId);
+        setProcessBiome(const Biome& biome);
 
     double
         getDissolved(CompoundId compoundData);
 
 protected:
 private:
-    int curBiomeId = 0;
+    Biome currentBiome;
     static constexpr double TIME_SCALING_FACTOR = 1000;
 };
 
