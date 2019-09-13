@@ -2,13 +2,11 @@
 #include "agents.as"
 #include "organelle.as"
 
+// TODO: unifying these and options that the C++ side use would be nice
+// Maybe some kind of wrapper class that is loaded from JSON once
+
 // Global defines
-const auto CLOUD_SPAWN_RADIUS = 150;
-const auto POWERUP_SPAWN_RADIUS = 85;
-const auto DEFAULT_SPAWN_DENSITY = 1/25000.f;
-const auto STARTING_SPAWN_DENSITY = 70000.0f;
-const auto DEFAULT_PLAYER_SPAWN_DENSITY = 1/70000.f;
-const auto MAX_SPAWN_DENSITY = 20000.0f;
+const auto MICROBE_SPAWN_RADIUS = 150;
 
 //Corpse info
 const auto CORPSE_COMPOUND_COMPENSATION = 8.0f;
@@ -51,10 +49,6 @@ const auto MUTATION_WORD_EDIT = 75;
 
 //Removal cost
 const auto ORGANELLE_REMOVE_COST = 10;
-
-// Spawn Radius
-const auto MICROBE_SPAWN_RADIUS = 150;
-const auto BACTERIA_SPAWN_RADIUS = 150;
 
 // Max fear and agression and activity
 const auto MAX_SPECIES_AGRESSION = 400.0f;
@@ -433,8 +427,40 @@ const dictionary STARTER_MICROBES = {
     }
 };
 
+// For normal microbes
+const dictionary DEFAULT_INITIAL_COMPOUNDS =
+    {
+        {"atp", InitialCompound(30, 300)},
+        {"glucose", InitialCompound(30, 300)},
+        {"ammonia", InitialCompound(30, 100)},
+        {"phosphates", InitialCompound(0)},
+        {"hydrogensulfide", InitialCompound(0)},
+        {"oxytoxy", InitialCompound(0)},
+        {"iron", InitialCompound(0)}
+    };
 
+// For ferrophillic microbes
+const dictionary DEFAULT_INITIAL_COMPOUNDS_IRON =
+    {
+        {"atp", InitialCompound(30, 300)},
+        {"glucose", InitialCompound(10, 30)},
+        {"ammonia", InitialCompound(30, 100)},
+        {"phosphates", InitialCompound(0)},
+        {"hydrogensulfide", InitialCompound(0)},
+        {"oxytoxy", InitialCompound(0)},
+        {"iron", InitialCompound(30, 300)}
+    };
 
-
+// For chemophillic microbes
+const dictionary DEFAULT_INITIAL_COMPOUNDS_CHEMO =
+    {
+        {"atp", InitialCompound(30, 300)},
+        {"glucose", InitialCompound(10, 30)},
+        {"ammonia", InitialCompound(30, 100)},
+        {"phosphates", InitialCompound(0)},
+        {"hydrogensulfide", InitialCompound(30, 300)},
+        {"oxytoxy", InitialCompound(0)},
+        {"iron", InitialCompound(0)}
+    };
 
 

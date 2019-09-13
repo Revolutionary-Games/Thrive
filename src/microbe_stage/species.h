@@ -48,6 +48,8 @@ public:
     float activity = 0.0f;
     float focus = 0.0f;
 
+    //! This is the global population (the sum of population in all patches)
+    //! \todo This is currently not filled
     int32_t population = 1;
     int32_t generation = 1;
 

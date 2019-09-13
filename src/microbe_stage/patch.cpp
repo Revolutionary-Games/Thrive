@@ -30,6 +30,16 @@ Species::pointer
     return nullptr;
 }
 // ------------------------------------ //
+bool
+    Patch::addSpecies(Species::pointer species, int population)
+{
+    if(!species || searchSpeciesByName(species->name))
+        return false;
+
+    speciesInPatch.emplace_back(SpeciesInPatch{species, population});
+    return true;
+}
+// ------------------------------------ //
 // Patch map
 bool
     PatchMap::addPatch(Patch::pointer patch)

@@ -2,7 +2,6 @@
 #include "hex.as"
 #include "microbe_operations.as"
 #include "microbe_stage_hud.as"
-#include "species_system.as"
 
 //! Why is this needed? Is it for(the future when we don't want to
 //! absorb everything (or does this skip toxins, which aren't in compound registry)
@@ -41,12 +40,15 @@ class MicrobeComponent : ScriptComponent{
     }
 
     //! This has to be called after creating this
-    void init(ObjectID forEntity, bool isPlayerMicrobe, SpeciesComponent@ species)
+    void init(ObjectID forEntity, bool isPlayerMicrobe, Species@ species)
     {
         if (species !is null)
-            {
+        {
             this.speciesName = species.name;
-            }
+        }
+
+        @this.species = species;
+
         this.isPlayerMicrobe = isPlayerMicrobe;
         this.isBacteria = species.isBacteria;
         this.engulfMode = false;
@@ -57,9 +59,9 @@ class MicrobeComponent : ScriptComponent{
         this.dead = false;
         this.speciesColour = Float4(00.0f,0.0f,0.0f,0.0f);
         if (species !is null)
-            {
+        {
             this.speciesColour = species.colour;
-            }
+        }
         this.microbeEntity = forEntity;
         this.agentEmissionCooldown = 0;
 
@@ -132,6 +134,10 @@ class MicrobeComponent : ScriptComponent{
 
     //! \note This is directly read from C++ and MUST BE the first property
     string speciesName;
+
+    //! This is reference counted so this can be stored here
+    //! \note Maybe the hover info should be changed to read this property
+    Species@ species;
 
     // TODO: initialize
     float hitpoints = DEFAULT_HEALTH;
@@ -447,7 +453,7 @@ class MicrobeSystem : ScriptSystem{
             microbeComponent.wasBeingEngulfed = false;
 
             //  You escaped, good job
-            auto playerSpecies = MicrobeOperations::getSpeciesComponent(world, "Default");
+            auto playerSpecies = MicrobeOperations::getSpecies(world, "Default");
             if (!microbeComponent.isPlayerMicrobe &&
                 microbeComponent.speciesName != playerSpecies.name)
             {
@@ -1012,9 +1018,9 @@ class MicrobeSystem : ScriptSystem{
         } else {
 
             // Return the first cell to its normal, non duplicated cell arrangement.
-            if (MicrobeOperations::getSpeciesComponent(world, microbeEntity) !is null)
+            if (MicrobeOperations::getSpecies(world, microbeEntity) !is null)
             {
-                auto playerSpecies = MicrobeOperations::getSpeciesComponent(world, "Default");
+                auto playerSpecies = MicrobeOperations::getSpecies(world, "Default");
                 if (!microbeComponent.isPlayerMicrobe &&
                     microbeComponent.speciesName != playerSpecies.name)
                 {
@@ -1022,7 +1028,7 @@ class MicrobeSystem : ScriptSystem{
                 }
 
                 Species::applyTemplate(world, microbeEntity,
-                    MicrobeOperations::getSpeciesComponent(world, microbeEntity));
+                    MicrobeOperations::getSpecies(world, microbeEntity));
 
                 divide(microbeEntity);
 

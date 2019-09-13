@@ -24,7 +24,123 @@
 
 using namespace thrive;
 // ------------------------------------ //
+// Proxies and helpers
+PatchMap*
+    patchMapFactory()
+{
+    return new PatchMap();
+}
 
+Patch*
+    patchFactory(const std::string& name,
+        int32_t id,
+        const Biome& biomeTemplate)
+{
+    return new Patch(name, id, biomeTemplate);
+}
+
+Species*
+    speciesFactory(const std::string& name)
+{
+    return new Species(name);
+}
+
+
+//! Wrapper for TJsonRegistry::getSize
+template<class RegistryT>
+uint64_t
+    getSizeWrapper(RegistryT* self)
+{
+    return static_cast<uint64_t>(self->getSize());
+}
+
+//! Wrapper for TJsonRegistry::getTypeData
+template<class RegistryT, class ReturnedT>
+const ReturnedT*
+    getTypeDataWrapper(RegistryT* self, uint64_t id)
+{
+    return &self->getTypeData(id);
+}
+
+// Wrappers for registerSimulationDataAndJsons
+
+SpeciesNameController*
+    getNameWrapper()
+{
+    return &SimulationParameters::speciesNameController;
+}
+
+TJsonRegistry<Compound>*
+    getCompoundRegistryWrapper()
+{
+    return &SimulationParameters::compoundRegistry;
+}
+
+TJsonRegistry<BioProcess>*
+    getBioProcessRegistryWrapper()
+{
+    return &SimulationParameters::bioProcessRegistry;
+}
+
+TJsonRegistry<Biome>*
+    getBiomeRegistryWrapper()
+{
+    return &SimulationParameters::biomeRegistry;
+}
+
+class ScriptSpawnerWrapper {
+public:
+    //! \note Caller must have incremented ref count already on func
+    ScriptSpawnerWrapper(asIScriptFunction* func) : m_func(func)
+    {
+
+        if(!m_func)
+            throw std::runtime_error("no func given for ScriptSpawnerWrapper");
+    }
+
+    ~ScriptSpawnerWrapper()
+    {
+
+        m_func->Release();
+    }
+
+    ObjectID
+        run(CellStageWorld& world, Float3 pos)
+    {
+
+        ScriptRunningSetup setup;
+        auto result = Leviathan::ScriptExecutor::Get()->RunScript<ObjectID>(
+            m_func, nullptr, setup, &world, pos);
+
+        if(result.Result != SCRIPT_RUN_RESULT::Success) {
+
+            LOG_ERROR("Failed to run Wrapped SpawnSystem function");
+            // This makes the spawn system just ignore the return value
+            return NULL_OBJECT;
+        }
+
+        return result.Value;
+    }
+
+    asIScriptFunction* m_func;
+};
+
+SpawnerTypeId
+    addSpawnTypeProxy(SpawnSystem* self,
+        asIScriptFunction* func,
+        double spawnDensity,
+        double spawnRadius)
+{
+    auto wrapper = std::make_shared<ScriptSpawnerWrapper>(func);
+
+    return self->addSpawnType(
+        [=](CellStageWorld& world, Float3 pos) -> ObjectID {
+            return wrapper->run(world, pos);
+        },
+        spawnDensity, spawnRadius);
+}
+
+// ------------------------------------ //
 bool
     registerLockedMap(asIScriptEngine* engine)
 {
@@ -92,24 +208,6 @@ bool
     }
 
     return true;
-}
-
-//! Wrapper for TJsonRegistry::getSize
-template<class RegistryT>
-uint64_t
-    getSizeWrapper(RegistryT* self)
-{
-
-    return static_cast<uint64_t>(self->getSize());
-}
-
-//! Wrapper for TJsonRegistry::getTypeData
-template<class RegistryT, class ReturnedT>
-const ReturnedT*
-    getTypeDataWrapper(RegistryT* self, uint64_t id)
-{
-
-    return &self->getTypeData(id);
 }
 
 //! Helper for registerSimulationDataAndJsons
@@ -411,36 +509,6 @@ bool
     return true;
 }
 
-// Wrappers for registerSimulationDataAndJsons
-
-SpeciesNameController*
-    getNameWrapper()
-{
-
-    return &SimulationParameters::speciesNameController;
-}
-
-TJsonRegistry<Compound>*
-    getCompoundRegistryWrapper()
-{
-
-    return &SimulationParameters::compoundRegistry;
-}
-
-TJsonRegistry<BioProcess>*
-    getBioProcessRegistryWrapper()
-{
-
-    return &SimulationParameters::bioProcessRegistry;
-}
-
-TJsonRegistry<Biome>*
-    getBiomeRegistryWrapper()
-{
-
-    return &SimulationParameters::biomeRegistry;
-}
-
 bool
     registerSimulationDataAndJsons(asIScriptEngine* engine)
 {
@@ -566,9 +634,11 @@ bool
 bool
     registerSpecies(asIScriptEngine* engine)
 {
+    ANGELSCRIPT_REGISTER_REF_TYPE("Species", Species);
 
-    if(engine->RegisterObjectType("Species", 0, asOBJ_REF | asOBJ_NOCOUNT) <
-        0) {
+    if(engine->RegisterObjectBehaviour("Species", asBEHAVE_FACTORY,
+           "Species@ f(const string &in name)", asFUNCTION(speciesFactory),
+           asCALL_CDECL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
@@ -1332,58 +1402,6 @@ bool
     return true;
 }
 
-class ScriptSpawnerWrapper {
-public:
-    //! \note Caller must have incremented ref count already on func
-    ScriptSpawnerWrapper(asIScriptFunction* func) : m_func(func)
-    {
-
-        if(!m_func)
-            throw std::runtime_error("no func given for ScriptSpawnerWrapper");
-    }
-
-    ~ScriptSpawnerWrapper()
-    {
-
-        m_func->Release();
-    }
-
-    ObjectID
-        run(CellStageWorld& world, Float3 pos)
-    {
-
-        ScriptRunningSetup setup;
-        auto result = Leviathan::ScriptExecutor::Get()->RunScript<ObjectID>(
-            m_func, nullptr, setup, &world, pos);
-
-        if(result.Result != SCRIPT_RUN_RESULT::Success) {
-
-            LOG_ERROR("Failed to run Wrapped SpawnSystem function");
-            // This makes the spawn system just ignore the return value
-            return NULL_OBJECT;
-        }
-
-        return result.Value;
-    }
-
-    asIScriptFunction* m_func;
-};
-
-SpawnerTypeId
-    addSpawnTypeProxy(SpawnSystem* self,
-        asIScriptFunction* func,
-        double spawnDensity,
-        double spawnRadius)
-{
-    auto wrapper = std::make_shared<ScriptSpawnerWrapper>(func);
-
-    return self->addSpawnType(
-        [=](CellStageWorld& world, Float3 pos) -> ObjectID {
-            return wrapper->run(world, pos);
-        },
-        spawnDensity, spawnRadius);
-}
-
 bool
     bindScriptAccessibleSystems(asIScriptEngine* engine)
 {
@@ -1489,6 +1507,13 @@ bool
     // Patch
     ANGELSCRIPT_REGISTER_REF_TYPE("Patch", Patch);
 
+    if(engine->RegisterObjectBehaviour("Patch", asBEHAVE_FACTORY,
+           "Patch@ f(const string &in name, int32 id, const Biome &in "
+           "biomeTemplate)",
+           asFUNCTION(patchFactory), asCALL_CDECL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     if(engine->RegisterObjectMethod("Patch", "const string& getName() const",
            asMETHOD(Patch, getName), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
@@ -1505,10 +1530,22 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(engine->RegisterObjectMethod("Patch",
+           ("bool addSpecies(Species@ species, int32 population = " +
+               std::to_string(INITIAL_SPECIES_POPULATION) + ")")
+               .c_str(),
+           asMETHOD(Patch, addSpeciesWrapper), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
 
     // ------------------------------------ //
     // PatchMap
     ANGELSCRIPT_REGISTER_REF_TYPE("PatchMap", PatchMap);
+
+    if(engine->RegisterObjectBehaviour("PatchMap", asBEHAVE_FACTORY,
+           "PatchMap@ f()", asFUNCTION(patchMapFactory), asCALL_CDECL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
 
     if(engine->RegisterObjectMethod("PatchMap", "Patch@ getCurrentPatch()",
            asMETHOD(PatchMap, getCurrentPatchWrapper), asCALL_THISCALL) < 0) {
@@ -1531,10 +1568,22 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(engine->RegisterObjectMethod("PatchMap",
+           "Species@ findSpeciesByName(const string &in name)",
+           asMETHOD(PatchMap, findSpeciesByNameWrapper), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+
     // ------------------------------------ //
     // PatchManager
     if(engine->RegisterObjectType(
            "PatchManager", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("PatchManager", "PatchMap@ getCurrentMap()",
+           asMETHOD(PatchManager, getCurrentMapWrapper), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
@@ -1585,6 +1634,9 @@ bool
         return false;
 
     if(!registerHexFunctions(engine))
+        return false;
+
+    if(!registerSpecies(engine))
         return false;
 
     if(!registerPatches(engine))
