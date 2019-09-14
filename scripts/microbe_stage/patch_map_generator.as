@@ -11,11 +11,11 @@ PatchMap@ runGeneration()
 {
     PatchMap@ map = PatchMap();
 
-    Patch@ patch1 = Patch("Pangonian vents", 0, getBiomeTemplate("Volcanic vent"));
+    Patch@ patch1 = Patch("Pangonian vents", 0, getBiomeTemplate("aavolcanic_vent"));
 
     auto defaultSpecies = Species::createDefaultSpecies();
 
-    for(uint i = 0; i <= defaultSpecies.length(); ++i){
+    for(uint i = 0; i < defaultSpecies.length(); ++i){
         patch1.addSpecies(defaultSpecies[i]);
     }
 
