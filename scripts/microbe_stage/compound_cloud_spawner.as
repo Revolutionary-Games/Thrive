@@ -2,25 +2,17 @@
 // The agents aren't a cloud yet but they are also here
 
 // Places a new blob of compound at the specified location
-ObjectID createCompoundCloud(CellStageWorld@ world, CompoundId compound,
+void createCompoundCloud(CellStageWorld@ world, CompoundId compound,
     float x, float z, float amount
 ) {
     if(amount <= 0){
         LOG_ERROR("createCompoundCloud amount is <= 0");
+        // PrintCallStack();
+        return;
     }
 
-    // This is just a sanity check
-    //if(compoundTable[compoundName] and compoundTable[compoundName].isCloud)
-
-    // addCloud requires integer arguments. This is not true anymore
-    int roundedX = round(x);
-    int roundedZ = round(z);
-
     // TODO: this isn't the best way to handle this for max performance
-    world.GetCompoundCloudSystem().addCloud(compound, amount, Float3(roundedX, 0, roundedZ));
-
-    // We don't spawn new entities
-    return NULL_OBJECT;
+    world.GetCompoundCloudSystem().addCloud(compound, amount, Float3(x, 0, z));
 }
 
 //! Spawn system compound spawn

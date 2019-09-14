@@ -54,8 +54,7 @@ Biome::Biome(Json::Value value)
         compoundData.getMemberNames();
 
     for(std::string compoundInternalName : compoundInternalNames) {
-        unsigned int amount =
-            compoundData[compoundInternalName]["amount"].asUInt();
+        float amount = compoundData[compoundInternalName]["amount"].asFloat();
         double density =
             compoundData[compoundInternalName]["density"].asDouble();
         double dissolved =
