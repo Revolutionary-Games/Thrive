@@ -188,9 +188,9 @@ class Organelle{
             auto hex = cast<Hex@>(hexes[keys[i]]);
             offset += Hex::axialToCartesian(hex.q/2, hex.r/2);
         }
+
         return ((offset/=count)/=2)*HEX_SIZE;
     }
-
 
     bool hasComponent(const string &in name) const{
 
