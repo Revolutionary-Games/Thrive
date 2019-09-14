@@ -14,13 +14,13 @@ namespace thrive {
 
 struct BiomeCompoundData {
 public:
-    unsigned int amount = 0;
+    float amount = 0;
     double density = 1.0f;
     double dissolved = 0.0f;
 
     BiomeCompoundData() {}
 
-    BiomeCompoundData(unsigned int amount, double density, double dissolved) :
+    BiomeCompoundData(float amount, double density, double dissolved) :
         amount(amount), density(density), dissolved(dissolved)
     {}
 };

@@ -495,10 +495,13 @@ void ejectCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId com
     auto ynew = membraneCoords.X * s + membraneCoords.Y * c;
 
     auto amountToEject = amount*10000;
-    createCompoundCloud(world, uint64(compoundId),
-        position._Position.X + xnew * ejectionDistance,
-        position._Position.Z + ynew * ejectionDistance,
-       amountToEject);
+
+    if(amountToEject > 0){
+        createCompoundCloud(world, uint64(compoundId),
+            position._Position.X + xnew * ejectionDistance,
+            position._Position.Z + ynew * ejectionDistance,
+            amountToEject);
+    }
 }
 
 // Default version of purgeCompounds that takes ObjectID
