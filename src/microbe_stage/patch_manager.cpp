@@ -21,6 +21,17 @@ PatchManager::PatchManager(GameWorld& world) :
 {}
 // ------------------------------------ //
 void
+    PatchManager::setNewMap(PatchMap::pointer map)
+{
+    LOG_INFO("Setting new patch map");
+    if(map && !map->verify()) {
+        throw Leviathan::InvalidArgument("verify failed for map");
+    }
+
+    currentMap = map;
+}
+// ------------------------------------ //
+void
     PatchManager::applyPatchSettings()
 {
     if(!currentMap)
@@ -32,6 +43,8 @@ void
         throw InvalidState("currently selected patch is invalid");
 
     LOG_INFO("PatchManager: applying patch settings");
+
+    updateSpeciesGlobalPopulation();
 
     unmarkAllSpawners();
 
@@ -372,3 +385,9 @@ void
     }
 }
 // ------------------------------------ //
+void
+    PatchManager::updateSpeciesGlobalPopulation()
+{
+    if(currentMap)
+        currentMap->updateGlobalPopulations();
+}

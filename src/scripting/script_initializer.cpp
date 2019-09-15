@@ -676,7 +676,7 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
     if(engine->RegisterObjectProperty(
-           "Species", "string name", asOFFSET(Species, name)) < 0) {
+           "Species", "const string name", asOFFSET(Species, name)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
@@ -696,26 +696,26 @@ bool
     }
 
     if(engine->RegisterObjectProperty(
-           "Species", "double aggression", asOFFSET(Species, aggression)) < 0) {
+           "Species", "float aggression", asOFFSET(Species, aggression)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
     if(engine->RegisterObjectProperty(
-           "Species", "double fear", asOFFSET(Species, fear)) < 0) {
+           "Species", "float fear", asOFFSET(Species, fear)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
     if(engine->RegisterObjectProperty(
-           "Species", "double activity", asOFFSET(Species, activity)) < 0) {
+           "Species", "float activity", asOFFSET(Species, activity)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
     if(engine->RegisterObjectProperty(
-           "Species", "double focus", asOFFSET(Species, focus)) < 0) {
+           "Species", "float focus", asOFFSET(Species, focus)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-    if(engine->RegisterObjectProperty("Species", "double opportunism",
+    if(engine->RegisterObjectProperty("Species", "float opportunism",
            asOFFSET(Species, opportunism)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
