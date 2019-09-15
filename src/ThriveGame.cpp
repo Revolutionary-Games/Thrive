@@ -398,8 +398,14 @@ void
         // We are keeping a reference to the result
         returned.Value->AddRef();
 
-        m_impl->m_cellStage->GetPatchManager().setNewMap(
-            PatchMap::WrapPtr(returned.Value));
+        try {
+            m_impl->m_cellStage->GetPatchManager().setNewMap(
+                PatchMap::WrapPtr(returned.Value));
+        } catch(const Leviathan::Exception& e) {
+            LOG_ERROR("Something is wrong with the patch map, exception: ");
+            e.PrintToLog();
+            return;
+        }
     }
 
     // Make sure the player species exists (a bunch of places rely on it being

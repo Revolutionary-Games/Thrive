@@ -77,6 +77,12 @@ public:
         return addSpecies(Species::WrapPtr(species), population);
     }
 
+    const auto&
+        getNeighbours() const
+    {
+        return adjacentPatches;
+    }
+
     REFERENCE_COUNTED_PTR_TYPE(Patch);
 
 private:
@@ -108,6 +114,10 @@ public:
     bool
         addPatch(Patch::pointer patch);
 
+    //! \returns True when the map is valid and has no invalid references
+    bool
+        verify();
+
     //! \brief Finds a species in the current patch map with name
     //!
     //! This starts from the current patch and then falls back to checking all
@@ -115,6 +125,10 @@ public:
     //! species in the current patch are looked up
     Species::pointer
         findSpeciesByName(const std::string& name);
+
+    //! \brief Updates the global population numbers in Species
+    void
+        updateGlobalPopulations();
 
     Patch::pointer
         getCurrentPatch();

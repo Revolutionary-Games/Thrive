@@ -54,6 +54,77 @@ bool
     return false;
 }
 // ------------------------------------ //
+bool
+    PatchMap::verify()
+{
+    if(!getCurrentPatch())
+        return false;
+
+    bool result = true;
+
+    // Link verification caches
+    std::unordered_map<int32_t, bool> incomingLinks;
+    std::set<std::tuple<int32_t, int32_t>> seenLinks;
+
+    // Verify all adjacent patches are valid
+    for(const auto& [id, patch] : patches) {
+        if(!patch)
+            return false;
+
+        if(incomingLinks.find(id) == incomingLinks.end())
+            incomingLinks[id] = false;
+
+        for(auto neighbour : patch->getNeighbours()) {
+            if(!getPatch(neighbour)) {
+                LOG_ERROR("patch " + std::to_string(id) +
+                          " links to non-existing patch: " +
+                          std::to_string(neighbour));
+                result = false;
+            }
+
+            incomingLinks[neighbour] = true;
+        }
+    }
+
+    // All patches have an incoming link
+    for(const auto& [id, incoming] : incomingLinks) {
+        if(!incoming) {
+            // Allow the initial patch to not have any incoming links as long as
+            // it is the only one
+            if(patches.size() == 1 && id == currentPatchId)
+                continue;
+
+            LOG_ERROR(
+                "no incoming links found for patch id: " + std::to_string(id));
+            result = false;
+        }
+    }
+
+    // All links are two way
+    // TODO: do we want always two way links?
+    for(const auto [from, to] : seenLinks) {
+        // Find the other way
+        bool found = false;
+
+        for(const auto [findFrom, findTo] : seenLinks) {
+
+            if(findFrom == to && findTo == from) {
+                found = true;
+                break;
+            }
+        }
+
+        if(!found) {
+            LOG_ERROR(
+                "link " + std::to_string(from) + " -> " + std::to_string(to) +
+                " is one way. These types of links are currently not wanted");
+            result = false;
+        }
+    }
+
+    return result;
+}
+// ------------------------------------ //
 Species::pointer
     PatchMap::findSpeciesByName(const std::string& name)
 {
@@ -79,6 +150,31 @@ Species::pointer
     }
 
     return nullptr;
+}
+// ------------------------------------ //
+void
+    PatchMap::updateGlobalPopulations()
+{
+    std::unordered_map<Species*, int32_t> seenPopulations;
+
+    for(const auto& [id, patch] : patches) {
+        for(const auto& patchSpecies : patch->getSpecies()) {
+            Species* ptr = patchSpecies.species.get();
+
+            // Having these checks this way allows this code to set a population
+            // to 0
+            if(seenPopulations.find(ptr) == seenPopulations.end())
+                seenPopulations[ptr] = 0;
+
+            if(patchSpecies.population > 0)
+                seenPopulations[ptr] += patchSpecies.population;
+        }
+    }
+
+    // Apply the populations after calculating them
+    for(const auto [species, population] : seenPopulations) {
+        species->population = population;
+    }
 }
 // ------------------------------------ //
 Patch::pointer
@@ -107,3 +203,4 @@ Patch::pointer
 
     return patches[id];
 }
+// ------------------------------------ //

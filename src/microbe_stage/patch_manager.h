@@ -34,12 +34,14 @@ public:
         applyPatchSettings();
 
     //! \brief Sets the new map. Doesn't apply any settings yet
+    //! \exception Leviathan::InvalidArgument if the map is not valid
     void
-        setNewMap(PatchMap::pointer map)
-    {
-        LOG_INFO("Setting new patch map");
-        currentMap = map;
-    }
+        setNewMap(PatchMap::pointer map);
+
+    //! \brief Updates the global populations of all species in the current map
+    //! from the individual patches
+    void
+        updateSpeciesGlobalPopulation();
 
     PatchMap::pointer
         getCurrentMap()
