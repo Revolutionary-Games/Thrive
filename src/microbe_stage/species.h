@@ -28,6 +28,17 @@ public:
     Species(const std::string& name);
     ~Species();
 
+    void
+        setPopulationFromPatches(int32_t population);
+
+    //! \brief Immediate population change (from the player dying)
+    //! \note This should be made sure to not affect auto-evo. As long as
+    //! auto-evo uses the per patch population numbers this doesn't affect that.
+    //! \note In addition to this an external population effect needs to be sent
+    //! to auto-evo, otherwise this effect disappears when auto-evo finishes
+    void
+        applyImmediatePopulationChange(int32_t change);
+
     // These are reference counted so don't forget to release
     CScriptArray* organelles = nullptr;
     CScriptDictionary* avgCompoundAmounts = nullptr;

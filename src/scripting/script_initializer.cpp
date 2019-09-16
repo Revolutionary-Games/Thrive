@@ -642,6 +642,13 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(engine->RegisterObjectMethod("Species",
+           "void applyImmediatePopulationChange(int32 change)",
+           asMETHOD(Species, applyImmediatePopulationChange),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     // A bit hacky
     if(engine->RegisterInterface("SpeciesStoredOrganelleType") < 0) {
 
@@ -720,8 +727,8 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-    if(engine->RegisterObjectProperty(
-           "Species", "int32 population", asOFFSET(Species, population)) < 0) {
+    if(engine->RegisterObjectProperty("Species", "const int32 population",
+           asOFFSET(Species, population)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
@@ -1705,6 +1712,14 @@ bool
 
     if(engine->RegisterObjectMethod("ThriveGame", "void finishEditingClicked()",
            asMETHOD(ThriveGame, finishEditingClicked), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("ThriveGame",
+           "void addExternalPopulationEffect(Species@ species, int32 change, "
+           "const string &in reason)",
+           asMETHOD(ThriveGame, addExternalPopulationEffect),
+           asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 

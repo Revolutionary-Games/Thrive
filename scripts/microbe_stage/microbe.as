@@ -457,7 +457,12 @@ class MicrobeSystem : ScriptSystem{
             if (!microbeComponent.isPlayerMicrobe &&
                 microbeComponent.speciesName != playerSpecies.name)
             {
-                MicrobeOperations::alterSpeciesPopulation(world,microbeEntity,CREATURE_ESCAPE_POPULATION_GAIN);
+                auto species = MicrobeOperations::getSpecies(world,
+                    microbeComponent.speciesName);
+
+                if(species !is null)
+                    MicrobeOperations::alterSpeciesPopulation(species,
+                        CREATURE_DEATH_POPULATION_LOSS, "escape engulfing");
             }
 
             MicrobeOperations::removeEngulfedEffect(world, microbeEntity);
@@ -1018,13 +1023,15 @@ class MicrobeSystem : ScriptSystem{
         } else {
 
             // Return the first cell to its normal, non duplicated cell arrangement.
-            if (MicrobeOperations::getSpecies(world, microbeEntity) !is null)
+            auto species = MicrobeOperations::getSpecies(world, microbeEntity);
+            if (species !is null)
             {
                 auto playerSpecies = MicrobeOperations::getSpecies(world, "Default");
                 if (!microbeComponent.isPlayerMicrobe &&
                     microbeComponent.speciesName != playerSpecies.name)
                 {
-                    MicrobeOperations::alterSpeciesPopulation(world,microbeEntity,CREATURE_REPRODUCE_POPULATION_GAIN);
+                    MicrobeOperations::alterSpeciesPopulation(species,
+                        CREATURE_REPRODUCE_POPULATION_GAIN, "reproduced");
                 }
 
                 Species::applyTemplate(world, microbeEntity,

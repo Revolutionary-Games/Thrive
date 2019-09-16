@@ -237,7 +237,11 @@ void respawnPlayer(CellStageWorld@ world)
     auto playerSpecies = MicrobeOperations::getSpecies(world, "Default");
     auto playerEntity = GetThriveGame().playerData().activeCreature();
 
-    if (playerSpecies.population > 20)
+    // Decrease the population by 20
+    alterSpeciesPopulation(playerSpecies, -20, "player died", true);
+
+    // Respawn if not extinct
+    if (playerSpecies.population > 0)
     {
         MicrobeComponent@ microbeComponent = getMicrobeComponent(world, playerEntity);
         auto rigidBodyComponent = world.GetComponent_Physics(playerEntity);
@@ -282,15 +286,6 @@ void respawnPlayer(CellStageWorld@ world)
         hideReproductionDialog(world);
         // Reset the player cell to be the same as the species template
         Species::restoreOrganelleLayout(world, playerEntity, microbeComponent, playerSpecies);
-    }
-
-    // Decrease the population by 20
-    if (playerSpecies.population >= 20)
-    {
-        playerSpecies.population -= 20;
-    }else
-    {
-        playerSpecies.population = 0;
     }
 
     // TODO: we already check if the player is extinct here. That logic shouldn't
@@ -1206,7 +1201,10 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
     if (!microbeComponent.isPlayerMicrobe &&
         microbeComponent.speciesName != playerSpecies.name)
     {
-        alterSpeciesPopulation(world, microbeEntity, CREATURE_DEATH_POPULATION_LOSS);
+        auto species = getSpecies(world, microbeComponent.speciesName);
+
+        if(species !is null)
+            alterSpeciesPopulation(species, CREATURE_DEATH_POPULATION_LOSS, "death");
     }
 
 
@@ -1245,24 +1243,27 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
     microbeSceneNode.Marked = true;
 }
 
-// Default version of alterSpeciesPopulation that takes an ObjectID
-void alterSpeciesPopulation(CellStageWorld@ world, ObjectID microbeEntity, int popChange)
+void alterSpeciesPopulation(Species@ species, int popChange, const string &in reason,
+    bool isImmediate = false)
 {
-    MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
-    Species@ ourSpecies = getSpecies(world, microbeEntity);
-    alterSpeciesPopulation(world, ourSpecies, microbeComponent, popChange);
-}
+    if(popChange == 0)
+        return;
 
-void alterSpeciesPopulation(CellStageWorld@ world,
-                            Species@ ourSpecies,
-                            MicrobeComponent@ microbeComponent,
-                            int popChange)
-{
-    if (ourSpecies !is null)
-    {
-        LOG_INFO("TODO: alterSpeciesPopulation");
-        // cast<SpeciesSystem>(world.GetScriptSystem("SpeciesSystem")).
-        //     updatePopulationForSpecies(microbeComponent.speciesName,popChange);
+    assert(species !is null);
+
+    // isImmediate is only allowed to use for the player dying
+    if(isImmediate){
+
+        assert(species.name == "Default" && popChange < 0,
+            "isImmediate is only for the player dying");
+    }
+
+    GetThriveGame().addExternalPopulationEffect(species, popChange, reason);
+
+    if(isImmediate){
+        LOG_INFO(
+            "Applying immediate population effect (should only be used for the player dying)");
+        species.applyImmediatePopulationChange(popChange);
     }
 }
 

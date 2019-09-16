@@ -551,8 +551,15 @@ class MicrobeAISystem : ScriptSystem{
             }
             //  You got a kill, good job
             auto playerSpecies = MicrobeOperations::getSpecies(world, "Default");
-            if (!microbeComponent.isPlayerMicrobe && microbeComponent.speciesName != playerSpecies.name){
-                MicrobeOperations::alterSpeciesPopulation(world,microbeEntity,CREATURE_KILL_POPULATION_GAIN);
+            if (!microbeComponent.isPlayerMicrobe &&
+                microbeComponent.speciesName != playerSpecies.name){
+
+                auto species = MicrobeOperations::getSpecies(world,
+                    microbeComponent.speciesName);
+
+                if(species !is null)
+                    MicrobeOperations::alterSpeciesPopulation(species,
+                        CREATURE_KILL_POPULATION_GAIN, "successful kill");
             }
 
             if (rollCheck(aiComponent.speciesOpportunism,400.0f)){
@@ -597,8 +604,9 @@ class MicrobeAISystem : ScriptSystem{
     }
 
     // For chasing down and eating chunka in various ways
-    void dealWithChunks(MicrobeAISystemCached@ components, ObjectID chunk, array<ObjectID>@ allChunks )
-        {
+    void dealWithChunks(MicrobeAISystemCached@ components, ObjectID chunk,
+        array<ObjectID>@ allChunks)
+    {
         //LOG_INFO("chasing"+prey);
         // Set Components
         ObjectID microbeEntity = components.entity;
@@ -638,27 +646,38 @@ class MicrobeAISystem : ScriptSystem{
             }
             //  You got a consumption, good job
             auto playerSpecies = MicrobeOperations::getSpecies(world, "Default");
-            if (!microbeComponent.isPlayerMicrobe && microbeComponent.speciesName != playerSpecies.name){
-                MicrobeOperations::alterSpeciesPopulation(world,microbeEntity,CREATURE_SCAVENGE_POPULATION_GAIN);
-                }
+            if (!microbeComponent.isPlayerMicrobe &&
+                microbeComponent.speciesName != playerSpecies.name){
+
+                auto species = MicrobeOperations::getSpecies(world,
+                    microbeComponent.speciesName);
+
+                if(species !is null)
+                    MicrobeOperations::alterSpeciesPopulation(species,
+                        CREATURE_SCAVENGE_POPULATION_GAIN, "successful scavenge");
             }
-            else
+        }
+        else
+        {
+            //  Turn on engulfmode if close
+            if (((position._Position -  aiComponent.targetPosition).LengthSquared() <= 300+
+                    (microbeComponent.totalHexCountCache*3.0f))
+                && (MicrobeOperations::getCompoundAmount(world,microbeEntity,atpID) >=  1.0f)
+                && !microbeComponent.engulfMode &&
+                (float(microbeComponent.totalHexCountCache) > (
+                    ENGULF_HP_RATIO_REQ*engulfableComponent.getSize()))){
+                MicrobeOperations::toggleEngulfMode(world, microbeEntity);
+                aiComponent.ticksSinceLastToggle=0;
+            }
+            else if (((position._Position -  aiComponent.targetPosition).LengthSquared() >=
+                    500+(microbeComponent.totalHexCountCache*3.0f))
+                && (microbeComponent.engulfMode && aiComponent.ticksSinceLastToggle >=
+                    AI_ENGULF_INTERVAL))
             {
-                //  Turn on engulfmode if close
-                if (((position._Position -  aiComponent.targetPosition).LengthSquared() <= 300+(microbeComponent.totalHexCountCache*3.0f))
-                        && (MicrobeOperations::getCompoundAmount(world,microbeEntity,atpID) >=  1.0f)
-                    && !microbeComponent.engulfMode &&
-                    (float(microbeComponent.totalHexCountCache) > (
-                        ENGULF_HP_RATIO_REQ*engulfableComponent.getSize()))){
-                    MicrobeOperations::toggleEngulfMode(world, microbeEntity);
-                    aiComponent.ticksSinceLastToggle=0;
-                    }
-                else if (((position._Position -  aiComponent.targetPosition).LengthSquared() >= 500+(microbeComponent.totalHexCountCache*3.0f))
-                        && (microbeComponent.engulfMode && aiComponent.ticksSinceLastToggle >= AI_ENGULF_INTERVAL)){
-                    MicrobeOperations::toggleEngulfMode(world, microbeEntity);
-                    aiComponent.ticksSinceLastToggle=0;
-                    }
+                MicrobeOperations::toggleEngulfMode(world, microbeEntity);
+                aiComponent.ticksSinceLastToggle=0;
             }
+        }
     }
 
     // For self defense (not necessarily fleeing)
