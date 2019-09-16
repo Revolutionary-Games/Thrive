@@ -27,16 +27,6 @@ export function playButtonPressSound(){
     }
 }
 
-//! Hides the loading logo
-export function hideLoadingLogo(){
-    document.getElementById("loadingLogo").style.display = "none";
-}
-
-//! Shows the loading logo
-export function showLoadingLogo(){
-    document.getElementById("loadingLogo").style.display = "flex";
-}
-
 //! Helper for filling bar backgrounds
 export function barHelper(value, max){
     return (value / max) * 100 + "%";

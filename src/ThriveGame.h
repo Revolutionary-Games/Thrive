@@ -25,6 +25,9 @@ class PlayerData;
 
 class PlayerMicrobeControl;
 
+class AutoEvo;
+class Species;
+
 //! This is the main thrive class that is created in main.cpp and then handles
 //! running the engine and the event loop
 class ThriveGame : public Leviathan::ClientApplication, public ThriveCommon {
@@ -57,6 +60,9 @@ public:
     PlayerMicrobeControl*
         getPlayerInput();
 
+    AutoEvo&
+        autoEvo();
+
     void
         setBackgroundMaterial(const std::string& material);
 
@@ -70,6 +76,24 @@ public:
     {
         return m_cheatsEnabled;
     }
+
+    //! \brief Called from scripts to report auto-evo external population
+    //! changes \param species Target species. Assumes reference counted is
+    //! incremented
+    void
+        addExternalPopulationEffect(Species* species,
+            int32_t change,
+            const std::string& reason);
+
+    //! \brief Checks should auto-evo start
+    void
+        checkAutoEvoStart();
+
+    //! \brief Updates loading screen
+    void
+        updateLoadingScreen(bool enabled,
+            const std::string& status,
+            const std::string& message);
 
     // ------------------------------------ //
     // Player input actions
@@ -168,6 +192,9 @@ protected:
 
     bool
         createImpl();
+
+    void
+        _checkIsEditorEntryReady();
 
 private:
     std::unique_ptr<ThriveNetHandler> m_network;

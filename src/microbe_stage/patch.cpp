@@ -173,7 +173,7 @@ void
 
     // Apply the populations after calculating them
     for(const auto [species, population] : seenPopulations) {
-        species->population = population;
+        species->setPopulationFromPatches(population);
     }
 }
 // ------------------------------------ //

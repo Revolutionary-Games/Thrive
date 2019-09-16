@@ -74,6 +74,13 @@ set(GROUP_MICROBE_STAGE
   "microbe_stage/player_hover_info.cpp"
   )
 
+set(GROUP_AUTO-EVO
+  "auto-evo/auto-evo.cpp"
+  "auto-evo/auto-evo.h"
+  "auto-evo/run_parameters.cpp"
+  "auto-evo/run_parameters.h"
+  )
+
 set_source_files_properties("microbe_stage/generate_cell_stage_world.rb"
   PROPERTIES HEADER_FILE_ONLY TRUE)
 
@@ -154,6 +161,7 @@ source_group("microbe_stage" FILES ${GROUP_MICROBE_STAGE})
 source_group("scripting" FILES ${GROUP_SCRIPTING})
 source_group("sound" FILES ${GROUP_SOUND})
 source_group("util" FILES ${GROUP_UTIL})
+source_group("auto-evo" FILES ${GROUP_AUTO-EVO})
 
 source_group("menu_code" FILES ${GROUP_MENU})
 
@@ -164,7 +172,7 @@ source_group("main" FILES ${GROUP_CORE_FILES})
 set(THRIVE_FILES ${GROUP_CORE_FILES} ${GROUP_BULLET} ${GROUP_ENGINE}
   ${GROUP_GENERAL} ${GROUP_GUI} ${GROUP_MICROBE_STAGE}
   ${GROUP_SCRIPTING} ${GROUP_SOUND}
-  ${GROUP_UTIL} ${GROUP_MICROBE}
+  ${GROUP_UTIL} ${GROUP_MICROBE} ${GROUP_AUTO-EVO}
   ${GROUP_MENU}
   )
 

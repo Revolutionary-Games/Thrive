@@ -138,8 +138,6 @@ void onReturnFromEditor(CellStageWorld@ world)
     // Sanity check
     assert(playerSpecies is MicrobeOperations::getSpecies(world, player));
 
-    LOG_INFO("TODO: player population needs to be increased in the current patch");
-    playerSpecies.population += 30;
     ++playerSpecies.generation;
 
     // Call event that checks win conditions
