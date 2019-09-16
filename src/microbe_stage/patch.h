@@ -85,10 +85,10 @@ public:
 
     //get and set coordinates for the patch to be displayed in the gui
     bool
-        setScreenCoordinates(Float2 coodinates);
+        setScreenCoordinates(Float2 coordinates);
 
     Float2
-        getScreenCoordinates()
+        getScreenCoordinates() const
     {
         return screenCoordinates;
     }

@@ -19,14 +19,11 @@ PatchMap@ runGeneration()
         patch1.addSpecies(defaultSpecies[i]);
     }
 
-    //Float2 screenCoordinates;
-    //screenCoordinates.X = 100;
-    //screenCoordinates.Y = 100;
-    //patch2.setScreenCoordinates(screenCoordinates);
+    patch1.setScreenCoordinates(Float2(100,100));
 
     LOG_INFO("**********");
     LOG_INFO("**********");
-    LOG_INFO(patch1.getScreenCoordinates());
+    LOG_INFO("Patch1 Coords = " + patch1.getScreenCoordinates().X + ", " + patch1.getScreenCoordinates().Y);
 
     map.addPatch(patch1);
 
