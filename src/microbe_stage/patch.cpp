@@ -19,6 +19,13 @@ bool
     return true;
 }
 // ------------------------------------ //
+bool
+    Patch::setScreenCoordinates(Float2 coordinates)
+{
+    screenCoordinates = coordinates;
+    return true;
+}
+// ------------------------------------ //
 Species::pointer
     Patch::searchSpeciesByName(const std::string& name) const
 {

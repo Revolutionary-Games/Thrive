@@ -83,11 +83,22 @@ public:
         return adjacentPatches;
     }
 
+    //get and set coordinates for the patch to be displayed in the gui
+    bool
+        setScreenCoordinates(Float2 coodinates);
+
+    Float2
+        getScreenCoordinates()
+    {
+        return screenCoordinates;
+    }
+
     REFERENCE_COUNTED_PTR_TYPE(Patch);
 
 private:
     const int32_t patchId;
     std::string name;
+    Float2 screenCoordinates; //where the patch should be displayed in the gui.
 
     Biome biome;
 
