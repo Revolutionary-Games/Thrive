@@ -76,28 +76,7 @@ class MicrobeEditor{
     //! This is called each time the editor is entered so this needs to properly reset state
     void init()
     {
-        gridSceneNode = hudSystem.world.CreateEntity();
-        auto node = hudSystem.world.Create_RenderNode(gridSceneNode);
-        node.Scale = Float3(HEX_SIZE, 1, HEX_SIZE);
-        // Move to line up with the hexes
-        node.Node.setPosition(Float3(0.72f, 0, 0.18f));
-        node.Marked = true;
-
-        LOG_WRITE("TODO: remake the background grid (if wanted)");
-
-        // auto plane = hudSystem.world.Create_Plane(gridSceneNode, node.Node,
-        //     "EditorGridMaterial", bs::Plane(bs::Vector3(0, 1, 0), 0), Float2(100, 100),
-        //     // This is the UV coordinates direction
-        //     Float3(0, 0, 1));
-
-        // // Move to an early render queue
-        // hudSystem.world.GetScene().getRenderQueue().setRenderQueueMode(
-        //     2, Ogre::RenderQueue::FAST);
-
-        // plane.GraphicalObject.setRenderQueueGroup(2);
-
         mutationPoints = BASE_MUTATION_POINTS;
-        gridVisible = true;
 
         actionIndex = 0;
         organelleRot = 0;
@@ -1215,9 +1194,6 @@ class MicrobeEditor{
     // This is the already placed organelle models
     private array<ObjectID> placedModels;
 
-    private ObjectID gridSceneNode;
-    //! TODO: toggling the grid is not working
-    private bool gridVisible;
     private MicrobeEditorHudSystem@ hudSystem;
 
     private int mutationPoints;
