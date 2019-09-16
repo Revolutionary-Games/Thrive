@@ -186,10 +186,11 @@ class Organelle{
             ++count;
 
             auto hex = cast<Hex@>(hexes[keys[i]]);
-            offset += Hex::axialToCartesian(hex.q/2, hex.r/2);
+            offset += Hex::axialToCartesian(hex.q, hex.r);
         }
 
-        return ((offset/=count)/=2)*HEX_SIZE;
+        offset /= count;
+        return ((offset/=count))*HEX_SIZE;
     }
 
     bool hasComponent(const string &in name) const{
@@ -656,9 +657,9 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
             // For performance reasons we set the position here directly
             // instead of with the position system
             renderNode.Node.setPosition(offset + this.cartesianPosition);
-             renderNode.Node.setOrientation(bs::Quaternion(bs::Degree(180),
-                        bs::Vector3(0, 1, 0)) * bs::Quaternion(bs::Degree(rotation-90),
-                            bs::Vector3(0, -1, 0)));
+            renderNode.Node.setOrientation(bs::Quaternion(bs::Degree(180),
+                    bs::Vector3(0, 1, 0))*bs::Quaternion(bs::Degree(rotation),
+                    bs::Vector3(0, -1, 0)));
 
             auto parentRenderNode = world.GetComponent_RenderNode(
                 microbeEntity);
