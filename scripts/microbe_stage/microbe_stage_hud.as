@@ -36,10 +36,6 @@ class MicrobeStageHudSystem : ScriptSystem{
         // This updates the microbe stage pause menu load button
         this.updateLoadButton();
 
-        this.chloroplastNotificationdisable();
-        this.toxinNotificationdisable();
-        this.editornotificationdisable();
-
         // Store compound ids for lookups in Run
         this.atpId = SimulationParameters::compoundRegistry().getTypeId("atp");
         this.atpVolume = SimulationParameters::compoundRegistry().getTypeData(
@@ -226,36 +222,6 @@ class MicrobeStageHudSystem : ScriptSystem{
         } else {
             //this.rootGUIWindow.getChild("PauseMenu").getChild("LoadGameButton").disable();
         }
-    }
-
-    void chloroplastNotificationenable(){
-        LOG_INFO("TODO: hud");
-        // getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
-        // ).playSound("microbe-pickup-organelle");
-        // this.rootGUIWindow.getChild("chloroplastUnlockNotification").show();
-        chloroplastNotificationOpened = true;
-        // this.rootGUIWindow.getChild("toxinUnlockNotification").hide();
-    }
-
-    void chloroplastNotificationdisable(){
-        LOG_INFO("TODO: hud");
-        //this.rootGUIWindow.getChild("chloroplastUnlockNotification").hide();
-    }
-
-    void toxinNotificationenable(){
-        LOG_INFO("TODO: hud");
-        // getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
-        // ).playSound("microbe-pickup-organelle");
-        // this.rootGUIWindow.getChild("toxinUnlockNotification").show();
-        toxinNotificationEnabled = true;
-        //this.rootGUIWindow.getChild("chloroplastUnlockNotification").hide();
-    }
-
-    void toxinNotificationdisable(){
-        //this.rootGUIWindow.getChild("toxinUnlockNotification").hide();
-    }
-    void editornotificationdisable(){
-        //this.rootGUIWindow.getChild("editornotification").hide();
     }
 
     void showReproductionDialog(){
