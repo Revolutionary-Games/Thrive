@@ -190,7 +190,7 @@ class Organelle{
         }
 
         offset /= count;
-        return offset
+        return offset;
     }
     
     Float3 calculateModelOffset() const
