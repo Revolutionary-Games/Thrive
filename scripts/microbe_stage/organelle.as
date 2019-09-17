@@ -190,9 +190,21 @@ class Organelle{
         }
 
         offset /= count;
-        return ((offset/=count))*HEX_SIZE;
+        return offset
     }
+    
+    Float3 calculateModelOffset() const
+    {
+        int count = 0;
 
+        auto keys = hexes.getKeys();
+        for(uint i = 0; i < keys.length(); ++i){
+            ++count;
+        }
+
+        return ((calculateCenterOffset()/=count))*HEX_SIZE;
+    }
+    
     bool hasComponent(const string &in name) const{
 
         for(uint i = 0; i < components.length(); ++i){
@@ -636,7 +648,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
         assert(organelleEntity == NULL_OBJECT, "PlacedOrganelle already had an entity");
 
-        const Float3 offset = organelle.calculateCenterOffset();
+        const Float3 offset = organelle.calculateModelOffset();
 
         RenderNode@ renderNode;
 

@@ -281,7 +281,7 @@ class MicrobeEditor{
                 ObjectID organelleModel = placedModels[nextFreeOrganelle++];
                 auto node = hudSystem.world.GetComponent_RenderNode(organelleModel);
                 node.Node.setPosition(cartesianPosition +
-                    organelle.organelle.calculateCenterOffset());
+                    organelle.organelle.calculateModelOffset());
                 node.Node.setOrientation(bs::Quaternion(bs::Degree(180),
                     bs::Vector3(0, 1, 0))*bs::Quaternion(bs::Degree(organelle.rotation),
                     bs::Vector3(0, -1, 0)));
@@ -960,7 +960,7 @@ class MicrobeEditor{
             ObjectID organelleModel = hudSystem.hoverOrganelle[usedHoverOrganelle++];
             auto node = hudSystem.world.GetComponent_RenderNode(organelleModel);
             node.Node.setPosition(cartesianPosition +
-                toBePlacedOrganelle.calculateCenterOffset());
+                toBePlacedOrganelle.calculateModelOffset());
             node.Node.setOrientation(bs::Quaternion(bs::Degree(180),
                     bs::Vector3(0, 1, 0))*bs::Quaternion(bs::Degree(rotation),
                     bs::Vector3(0, -1, 0)));
