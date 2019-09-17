@@ -1,6 +1,8 @@
 // ------------------------------------ //
 #include "script_initializer.h"
 
+#include "auto-evo/auto-evo_script_helpers.h"
+#include "auto-evo/run_results.h"
 #include "engine/player_data.h"
 #include "general/hex.h"
 #include "general/locked_map.h"
@@ -37,6 +39,32 @@ Patch*
         const Biome& biomeTemplate)
 {
     return new Patch(name, id, biomeTemplate);
+}
+
+//! This is safe to use as long as scripting module is valid
+static asITypeInfo* mapWrapperTypeInfo = nullptr;
+
+CScriptArray*
+    patchMapGetPatchesWrapper(const PatchMap& self)
+{
+    const auto& patches = self.getPatches();
+
+    LEVIATHAN_ASSERT(
+        mapWrapperTypeInfo, "map wrapper type info is not retrieved");
+
+    CScriptArray* array = CScriptArray::Create(mapWrapperTypeInfo);
+
+    if(!array)
+        return nullptr;
+
+    array->Reserve(static_cast<asUINT>(patches.size()));
+
+    for(auto iter = patches.begin(); iter != patches.end(); ++iter) {
+        Patch* tmp = iter->second.get();
+        array->InsertLast(&tmp);
+    }
+
+    return array;
 }
 
 Species*
@@ -1531,7 +1559,13 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-    // Would be much safer to have reference counting for biomes
+    // TODO: Would be much safer to have reference counting for biomes
+    if(engine->RegisterObjectMethod("Patch", "const Biome@ getBiome() const",
+           asMETHODPR(Patch, getBiome, () const, const Biome&),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     if(engine->RegisterObjectMethod("Patch", "Biome@ getBiome()",
            asMETHODPR(Patch, getBiome, (), Biome&), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
@@ -1542,6 +1576,23 @@ bool
                std::to_string(INITIAL_SPECIES_POPULATION) + ")")
                .c_str(),
            asMETHOD(Patch, addSpeciesWrapper), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("Patch", "uint64 getSpeciesCount() const",
+           asMETHOD(Patch, getSpeciesCount), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("Patch",
+           "Species@ getSpecies(uint64 index) const",
+           asMETHOD(Patch, getSpeciesWrapper), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("Patch",
+           "int32 getSpeciesPopulation(const Species@ species) const",
+           asMETHOD(Patch, getSpeciesPopulationWrapper), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
@@ -1582,6 +1633,21 @@ bool
     }
 
 
+    mapWrapperTypeInfo =
+        Leviathan::ScriptExecutor::Get()->GetASEngine()->GetTypeInfoByDecl(
+            "array<const Patch@>");
+
+    if(!mapWrapperTypeInfo) {
+        LOG_ERROR("could not get type info for map wrapper");
+        return false;
+    }
+
+    if(engine->RegisterObjectMethod("PatchMap",
+           "array<const Patch@>@ getPatches() const",
+           asFUNCTION(patchMapGetPatchesWrapper), asCALL_CDECL_OBJFIRST) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     // ------------------------------------ //
     // PatchManager
     if(engine->RegisterObjectType(
@@ -1591,6 +1657,82 @@ bool
 
     if(engine->RegisterObjectMethod("PatchManager", "PatchMap@ getCurrentMap()",
            asMETHOD(PatchManager, getCurrentMapWrapper), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    return true;
+}
+
+bool
+    registerAutoEvo(asIScriptEngine* engine)
+{
+    // ------------------------------------ //
+    // RunResults
+    ANGELSCRIPT_REGISTER_REF_TYPE("RunResults", autoevo::RunResults);
+
+    if(engine->RegisterObjectBehaviour("RunResults", asBEHAVE_FACTORY,
+           "RunResults@ f()", asFUNCTION(autoevo::RunResults::factory),
+           asCALL_CDECL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    // TODO: it's a bit dirty that this accepts a const Species as the result
+    // apply stage may modify it. Maybe some of the const patch methods should
+    // return non const Species
+    if(engine->RegisterObjectMethod("RunResults",
+           "void addPopulationResultForSpecies(const Species@ species, int32 "
+           "patch, int32 newPopulation)",
+           asMETHOD(autoevo::RunResults, addPopulationResultForSpeciesWrapper),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    // This is fine having const species
+    if(engine->RegisterObjectMethod("RunResults",
+           "int32 getPopulationInPatch(const Species@ species, int32 "
+           "patch)",
+           asMETHOD(autoevo::RunResults, getPopulationInPatchWrapper),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+
+
+    // ------------------------------------ //
+    // SimulationConfiguration
+    ANGELSCRIPT_REGISTER_REF_TYPE(
+        "SimulationConfiguration", autoevo::SimulationConfiguration);
+
+    if(engine->RegisterObjectProperty("SimulationConfiguration", "int32 steps",
+           asOFFSET(autoevo::SimulationConfiguration, steps)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("SimulationConfiguration",
+           "uint64 getExcludedSpeciesCount() const",
+           asMETHOD(autoevo::SimulationConfiguration, getExcludedSpeciesCount),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("SimulationConfiguration",
+           "const Species@ getExcludedSpecies(uint64 index) const",
+           asMETHOD(autoevo::SimulationConfiguration, getExcludedSpecies),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("SimulationConfiguration",
+           "uint64 getExtraSpeciesCount() const",
+           asMETHOD(autoevo::SimulationConfiguration, getExtraSpeciesCount),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("SimulationConfiguration",
+           "const Species@ getExtraSpecies(uint64 index) const",
+           asMETHOD(autoevo::SimulationConfiguration, getExtraSpecies),
+           asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
@@ -1647,6 +1789,9 @@ bool
         return false;
 
     if(!registerPatches(engine))
+        return false;
+
+    if(!registerAutoEvo(engine))
         return false;
 
     if(engine->RegisterObjectType("ThriveGame", 0, asOBJ_REF | asOBJ_NOCOUNT) <

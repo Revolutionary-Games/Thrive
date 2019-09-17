@@ -199,7 +199,10 @@ void
 void
     PatchManager::handleCellSpawns(const Patch& patch)
 {
-    for(const auto& speciesInPatch : patch.getSpecies()) {
+    const auto& species = patch.getSpecies();
+    LOG_INFO("patch species = " + std::to_string(species.size()));
+
+    for(const auto& speciesInPatch : species) {
 
         if(speciesInPatch.population <= 0)
             continue;
@@ -390,4 +393,12 @@ void
 {
     if(currentMap)
         currentMap->updateGlobalPopulations();
+}
+// ------------------------------------ //
+void
+    PatchManager::OnClear()
+{
+    chunkSpawners.clear();
+    cloudSpawners.clear();
+    microbeSpawners.clear();
 }

@@ -137,9 +137,14 @@ class MicrobeEditor{
         // Update GUI buttons now that we have correct organelles
         updateGuiButtonStatus(checkIsNucleusPresent());
 
-        //force add your species
-        LOG_WRITE("TODO: split off a species from the player");
-        // cast<SpeciesSystem>(GetThriveGame().getCellStage().GetScriptSystem("SpeciesSystem")).splitSpecies(playerSpecies);
+        // Create a mutated version of the current gene code to compete against the player
+        if(!GetThriveGame().getCellStage().GetPatchManager().getCurrentMap().getCurrentPatch()
+            .addSpecies(createMutatedSpecies(playerSpecies),
+                GetEngine().GetRandom().GetNumber(INITIAL_SPLIT_POPULATION_MIN,
+                    INITIAL_SPLIT_POPULATION_MAX)))
+        {
+            LOG_ERROR("Failed to create a mutated copy of the player species");
+        }
 
         // Reset to cytoplasm if nothing is selected
         if(activeActionName == ""){

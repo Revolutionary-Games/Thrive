@@ -57,6 +57,9 @@ public:
         return currentMap.get();
     }
 
+    void
+        OnClear() override;
+
 private:
     void
         handleChunkSpawns(const Biome& biome);

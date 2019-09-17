@@ -28,3 +28,9 @@ void
     if(population < 0)
         population = 0;
 }
+// ------------------------------------ //
+bool
+    Species::isPlayerSpecies() const
+{
+    return name == "Default";
+}

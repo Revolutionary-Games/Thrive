@@ -1107,7 +1107,11 @@ void
         return;
     }
 
+    LOG_INFO("Applying external effects and making things go extinct");
     m_impl->m_autoEvoRun->applyExternalEffects();
+    m_impl->m_cellStage->GetPatchManager()
+        .getCurrentMap()
+        ->removeExtinctSpecies();
 
     Leviathan::Engine* engine = Engine::GetEngine();
     Leviathan::Window* window1 = engine->GetWindowEntity();

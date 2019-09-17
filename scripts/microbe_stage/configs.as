@@ -7,6 +7,9 @@
 
 // Global defines
 const auto MICROBE_SPAWN_RADIUS = 150;
+// Right now these are used for species split from the player
+const auto INITIAL_SPLIT_POPULATION_MIN = 600;
+const auto INITIAL_SPLIT_POPULATION_MAX = 2000;
 
 //Corpse info
 const auto CORPSE_COMPOUND_COMPENSATION = 8.0f;
@@ -180,7 +183,7 @@ const bool LARGE_IRON_DISSOLVES = false;
 const double IRON_PER_SMALL_CHUNK = 100.0f;
 const bool SMALL_IRON_DISSOLVES = true;
 
-//Auto Evo Values
+// Darwinian Evo Values
 const int CREATURE_DEATH_POPULATION_LOSS = -60;
 const int CREATURE_KILL_POPULATION_GAIN = 50;
 const int CREATURE_SCAVENGE_POPULATION_GAIN = 10;
