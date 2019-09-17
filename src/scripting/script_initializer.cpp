@@ -1531,6 +1531,11 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(engine->RegisterObjectMethod("Patch", "bool addNeighbour(int32 id)",
+           asMETHOD(Patch, addNeighbour), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     if(engine->RegisterObjectMethod("Patch", "Float2 getScreenCoordinates() const",
            asMETHOD(Patch, getScreenCoordinates), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
