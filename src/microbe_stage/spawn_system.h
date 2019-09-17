@@ -119,6 +119,9 @@ public:
         Release();
 
     void
+        Clear();
+
+    void
         CreateNodes(const std::vector<std::tuple<SpawnedComponent*, ObjectID>>&
                         firstdata,
             const std::vector<std::tuple<Leviathan::Position*, ObjectID>>&

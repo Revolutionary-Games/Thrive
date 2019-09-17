@@ -116,6 +116,15 @@ bool
 void
     SpawnSystem::Release()
 {
+    Clear();
+}
+
+void
+    SpawnSystem::Clear()
+{
+    Leviathan::System<
+        std::tuple<SpawnedComponent&, Leviathan::Position&>>::Clear();
+    LOG_INFO("Clearing spawn system spawners");
     m_impl->spawnTypes.clear();
     m_impl->previousPlayerPosition = Float3(0, 0, 0);
     m_impl->timeSinceLastUpdate = 0;

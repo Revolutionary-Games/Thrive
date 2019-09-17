@@ -39,6 +39,10 @@ public:
     void
         applyImmediatePopulationChange(int32_t change);
 
+    //! \returns True if this is the player species
+    bool
+        isPlayerSpecies() const;
+
     // These are reference counted so don't forget to release
     CScriptArray* organelles = nullptr;
     CScriptDictionary* avgCompoundAmounts = nullptr;

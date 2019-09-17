@@ -79,6 +79,13 @@ set(GROUP_AUTO-EVO
   "auto-evo/auto-evo.h"
   "auto-evo/run_parameters.cpp"
   "auto-evo/run_parameters.h"
+  "auto-evo/run_step.h"
+  "auto-evo/run_results.cpp"
+  "auto-evo/run_results.h"
+  "auto-evo/common_steps.h"
+  "auto-evo/common_steps.cpp"
+  "auto-evo/auto-evo_script_helpers.cpp"
+  "auto-evo/auto-evo_script_helpers.h"
   )
 
 set_source_files_properties("microbe_stage/generate_cell_stage_world.rb"
@@ -126,7 +133,7 @@ set(GROUP_MICROBE
 
 add_custom_command(OUTPUT "${PROJECT_SOURCE_DIR}/src/generated/thrive_v8_extension.h"
   COMMAND "${LEVIATHAN_SRC}/build/bin/FileGenerator" "V8EXT"
-  "\"${PROJECT_SOURCE_DIR}/src/thrive_v8_extension.js\"" 
+  "\"${PROJECT_SOURCE_DIR}/src/thrive_v8_extension.js\""
   "\"${PROJECT_SOURCE_DIR}/src/generated/thrive_v8_extension.h\""
   "thrive"
   DEPENDS "${PROJECT_SOURCE_DIR}/src/thrive_v8_extension.js"
@@ -148,7 +155,7 @@ set(GROUP_CORE_FILES
   "thrive_common.h" "thrive_common.cpp"
   # These might not be needed here
   "server/ThriveServer.h" "server/ThriveServer.cpp"
-  "server/thrive_server_net_handler.h" "server/thrive_server_net_handler.cpp"  
+  "server/thrive_server_net_handler.h" "server/thrive_server_net_handler.cpp"
   )
 
 
@@ -221,7 +228,7 @@ include_directories(${CMAKE_CURRENT_LIST_DIR})
 set(GROUP_RESOURCES
   "Main_Res.rc"
   )
-  
+
 source_group("Resource Files" FILES ${GROUP_RESOURCES})
 
 set(CurrentProjectName Thrive)
@@ -257,5 +264,3 @@ target_link_libraries(Thrive ThriveLib)
 
 # Server target. This also defines a Leviathan program
 add_subdirectory(server)
-
-

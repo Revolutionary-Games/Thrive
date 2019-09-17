@@ -1,13 +1,16 @@
 #pragma once
 
+#include "run_results.h"
+#include "run_step.h"
+
 #include "microbe_stage/patch.h"
 
 // TODO: make a common base class for the species classes for different stages.
 #include "microbe_stage/species.h"
 
-#include <mutex>
-
 #include <atomic>
+#include <deque>
+#include <mutex>
 
 namespace thrive {
 
@@ -16,6 +19,7 @@ class AutoEvo;
 //! \brief Parameters for an auto-evo run
 //! \todo Decide if different types of RunParameters classes should be made for
 //! the different stages or not.
+//! \todo Maybe it would be better to rename this AutoEvoRun
 class RunParameters {
     friend AutoEvo;
 
@@ -87,6 +91,9 @@ protected:
     virtual void
         onBeginExecuting();
 
+    void
+        _gatherInfo();
+
 protected:
     // These are atomic to not require locking in getStatusString
     std::atomic<RUN_STAGE> m_state = {RUN_STAGE::GATHERING_INFO};
@@ -100,13 +107,26 @@ protected:
 
     PatchMap::pointer m_map;
 
+
     //! Locked while stepping or in abort
     std::mutex m_stepMutex;
 
-    //! \todo These aren't handled at all
+    //! The Species may not be messed with while running. These are queued
+    //! changes that will be applied after a run
     std::vector<std::tuple<Species::pointer, int, std::string>>
         m_externalEffects;
     std::mutex m_externalEffectsMutex;
+
+    //! Generated steps are stored here until they are executed
+    std::deque<std::unique_ptr<autoevo::RunStep>> m_runSteps;
+
+    //! Results are stored here until the simulation is complete and then
+    //! applied
+    autoevo::RunResults::pointer m_results;
+
+    // Configuration parameters for auto evo
+    const int m_mutationsPerSpecies = 3;
+    const bool m_allowNoMutation = true;
 };
 
 } // namespace thrive

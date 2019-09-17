@@ -31,7 +31,7 @@ Species::pointer
 }
 // ------------------------------------ //
 bool
-    Patch::addSpecies(Species::pointer species, int population)
+    Patch::addSpecies(const Species::pointer& species, int population)
 {
     if(!species || searchSpeciesByName(species->name))
         return false;
@@ -39,10 +39,66 @@ bool
     speciesInPatch.emplace_back(SpeciesInPatch{species, population});
     return true;
 }
+
+bool
+    Patch::removeSpecies(const Species::pointer& species)
+{
+
+    for(auto iter = speciesInPatch.begin(); iter != speciesInPatch.end();
+        ++iter) {
+        if(iter->species == species) {
+            speciesInPatch.erase(iter);
+            return true;
+        }
+    }
+
+    return false;
+}
+
+bool
+    Patch::updateSpeciesPopulation(const Species::pointer& species,
+        int newPopulation)
+{
+    for(auto& entry : speciesInPatch) {
+        if(entry.species == species) {
+            entry.population = newPopulation;
+            return true;
+        }
+    }
+
+    return false;
+}
+// ------------------------------------ //
+int
+    Patch::getSpeciesPopulation(const Species::pointer& species)
+{
+    for(auto& entry : speciesInPatch) {
+        if(entry.species == species) {
+            return entry.population;
+        }
+    }
+
+    return 0;
+}
+
+uint64_t
+    Patch::getSpeciesCount() const
+{
+    return speciesInPatch.size();
+}
+
+Species::pointer
+    Patch::getSpecies(uint64_t index) const
+{
+    if(index >= speciesInPatch.size())
+        return nullptr;
+
+    return speciesInPatch[index].species;
+}
 // ------------------------------------ //
 // Patch map
 bool
-    PatchMap::addPatch(Patch::pointer patch)
+    PatchMap::addPatch(const Patch::pointer& patch)
 {
     if(!patch)
         return false;
@@ -174,6 +230,30 @@ void
     // Apply the populations after calculating them
     for(const auto [species, population] : seenPopulations) {
         species->setPopulationFromPatches(population);
+    }
+}
+
+void
+    PatchMap::removeExtinctSpecies()
+{
+    std::vector<Species::pointer> extinctSpecies;
+
+    for(const auto& [id, patch] : patches) {
+
+        extinctSpecies.clear();
+
+        for(const auto& patchSpecies : patch->getSpecies()) {
+            if(patchSpecies.population <= 0) {
+                extinctSpecies.push_back(patchSpecies.species);
+            }
+        }
+
+        for(const auto& species : extinctSpecies) {
+
+            LOG_INFO("Species: " + species->name +
+                     " has gone extinct in patch: " + patch->getName());
+            patch->removeSpecies(species);
+        }
     }
 }
 // ------------------------------------ //

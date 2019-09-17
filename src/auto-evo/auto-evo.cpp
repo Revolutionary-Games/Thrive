@@ -96,15 +96,19 @@ void
         currentlyRunning->onBeginExecuting();
 
         while(!stopThread) {
-
-            if(currentlyRunning->step()) {
-                // Complete
-                break;
+            try {
+                if(currentlyRunning->step()) {
+                    // Complete
+                    break;
+                }
+            } catch(const Leviathan::Exception& e) {
+                LOG_ERROR("Exception happened in auto-evo step: ");
+                e.PrintToLog();
             }
         }
 
         if(currentlyRunning->inProgress() ||
-            currentlyRunning->wasSuccessful()) {
+            !currentlyRunning->wasSuccessful()) {
             LOG_INFO("Auto-evo run was aborted or it failed");
         }
 
@@ -117,10 +121,9 @@ void
 
         currentlyRunning.reset();
 
-        LOG_INFO("Auto-evo finished working on a run");
         const auto end = std::chrono::high_resolution_clock::now();
-
         std::chrono::duration<float> elapsed = end - start;
-        LOG_INFO("Auto-evo run took: " + std::to_string(elapsed.count()) + "s");
+        LOG_INFO("Auto-evo finished working on a run. Elapsed time: " +
+                 std::to_string(elapsed.count()) + "s");
     }
 }
