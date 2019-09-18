@@ -83,10 +83,11 @@ public:
         return adjacentPatches;
     }
 
-    //get and set coordinates for the patch to be displayed in the gui
+    //! Set coordinates for the patch to be displayed in the gui
     bool
         setScreenCoordinates(Float2 coordinates);
 
+    //! Get current coordinates for the patch to be displayed in the gui
     Float2
         getScreenCoordinates() const
     {
@@ -98,7 +99,8 @@ public:
 private:
     const int32_t patchId;
     std::string name;
-    Float2 screenCoordinates; //where the patch should be displayed in the gui.
+    //!where the patch should be displayed in the gui.
+    Float2 screenCoordinates;
 
     Biome biome;
 
