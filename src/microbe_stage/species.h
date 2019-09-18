@@ -43,6 +43,10 @@ public:
     bool
         isPlayerSpecies() const;
 
+    //! \returns A formatted name
+    std::string
+        getFormattedName(bool identifier = false);
+
     // These are reference counted so don't forget to release
     CScriptArray* organelles = nullptr;
     CScriptDictionary* avgCompoundAmounts = nullptr;
@@ -65,6 +69,7 @@ public:
 
     //! This is the global population (the sum of population in all patches)
     int32_t population = 1;
+    //! \todo Increment this for non-player species
     int32_t generation = 1;
 
     REFERENCE_COUNTED_PTR_TYPE(Species);

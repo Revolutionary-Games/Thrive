@@ -74,6 +74,13 @@ bool
 
 
     if(!m_tryNoMutation && m_mutationsToTry <= 0) {
+        // Store the best result
+        if(m_bestIsNoMutation) {
+            resultsStore.addMutationResultForSpecies(m_species, nullptr);
+        } else {
+            resultsStore.addMutationResultForSpecies(m_species, m_bestMutation);
+        }
+
         return true;
     } else {
         return false;

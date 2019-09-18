@@ -127,9 +127,8 @@ class MicrobeEditor{
             }
         }
 
-        LOG_INFO(playerSpecies.stringCode);
         LOG_INFO("Starting microbe editor with: " + editedMicrobe.length() +
-            " organelles in the microbe");
+            " organelles in the microbe, genes: " + playerSpecies.stringCode);
 
         // Show existing organelles
         _updateAlreadyPlacedVisuals();
@@ -137,7 +136,7 @@ class MicrobeEditor{
         // Update GUI buttons now that we have correct organelles
         updateGuiButtonStatus(checkIsNucleusPresent());
 
-        // Create a mutated version of the current gene code to compete against the player
+        // Create a mutated version of the current species code to compete against the player
         if(!GetThriveGame().getCellStage().GetPatchManager().getCurrentMap().getCurrentPatch()
             .addSpecies(createMutatedSpecies(playerSpecies),
                 GetEngine().GetRandom().GetNumber(INITIAL_SPLIT_POPULATION_MIN,

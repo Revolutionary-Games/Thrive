@@ -6,8 +6,6 @@ Species@ createMutatedSpecies(Species@ parent)
     bool isBacteria = parent.isBacteria;
     string name = !isBacteria ? randomSpeciesName() : randomBacteriaName();
 
-    LOG_INFO("Gene Code Is: " + parent.stringCode);
-
     string epithet;
 
     //Mutate the epithet
@@ -43,13 +41,6 @@ Species@ createMutatedSpecies(Species@ parent)
 
     if (GetEngine().GetRandom().GetNumber(0,100) <= MUTATION_CHANGE_GENUS)
     {
-        if (!isBacteria)
-        {
-            LOG_INFO("New Genus");
-        }else {
-            LOG_INFO("New Genus of Bacteria");
-        }
-
         // We can do more fun stuff here later
         if (GetEngine().GetRandom().GetNumber(0, 100) < MUTATION_WORD_EDIT){
             genus = MutationHelpers::mutateWord(parent.genus);

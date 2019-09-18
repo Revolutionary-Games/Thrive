@@ -92,7 +92,7 @@ int
 
             for(const auto [patch, population] : entry.newPopulationInPatches) {
 
-                result += std::min(population, 0);
+                result += std::max(population, 0);
             }
 
             return result;
@@ -108,21 +108,74 @@ int
 {
     for(const auto& entry : m_results) {
         if(entry.species == species) {
-
-            int result = 0;
-
-            // This is a bit silly way to find the data in the map, but this is
-            // done this way because this is a copy of getGlobalPopulation
             for(const auto [currentPatch, population] :
                 entry.newPopulationInPatches) {
 
                 if(currentPatch == patch)
-                    result += std::min(population, 0);
+                    return population;
             }
 
-            return result;
+            break;
         }
     }
 
     throw InvalidArgument("no population found for requested species");
+}
+// ------------------------------------ //
+void
+    RunResults::printSummary(
+        const PatchMap::pointer& previousPopulations /*= nullptr*/) const
+{
+    LOG_INFO("Start of auto-evo results summary (entries: " +
+             std::to_string(m_results.size()) + ")");
+
+    for(const auto& entry : m_results) {
+
+        LOG_WRITE(entry.species->getFormattedName(true) + ":");
+
+        if(entry.mutatedProperties) {
+            LOG_WRITE(" has a mutation, gene code: " +
+                      entry.mutatedProperties->stringCode);
+        }
+
+        if(!entry.spreadPatches.empty()) {
+            LOG_WRITE(" spread to patches: ");
+            for(const auto [patch, population] : entry.spreadPatches)
+                LOG_WRITE("  " + std::to_string(patch) +
+                          " pop: " + std::to_string(population));
+        }
+
+        LOG_WRITE(" population in patches: ");
+        for(const auto [patch, population] : entry.newPopulationInPatches) {
+            std::stringstream sstream;
+            sstream << "  " << patch;
+
+            Patch::pointer patchObj;
+
+            if(previousPopulations) {
+                patchObj = previousPopulations->getPatch(patch);
+
+                sstream << " (";
+                if(patchObj) {
+                    sstream << patchObj->getName();
+                } else {
+                    sstream << "error";
+                }
+
+                sstream << ")";
+            }
+
+            sstream << " pop: " << population;
+
+            if(patchObj) {
+
+                sstream << " previous: "
+                        << patchObj->getSpeciesPopulation(entry.species);
+            }
+
+            LOG_WRITE(sstream.str());
+        }
+    }
+
+    LOG_INFO("End of results summary");
 }

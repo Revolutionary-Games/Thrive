@@ -7,7 +7,26 @@
 //! them to the first (that make sense to apply)
 void applyMutatedSpeciesProperties(Species@ target, const Species@ mutatedProperties)
 {
-    LOG_INFO("TODO: applyMutatedSpeciesProperties");
+    @target.organelles = mutatedProperties.organelles;
+    @target.avgCompoundAmounts = mutatedProperties.avgCompoundAmounts;
+
+    target.colour = mutatedProperties.colour;
+    target.isBacteria = mutatedProperties.isBacteria;
+    target.speciesMembraneType = mutatedProperties.speciesMembraneType;
+
+    // These don't mutate for a species
+    // name;
+    // genus;
+    // epithet;
+
+    target.stringCode = mutatedProperties.stringCode;
+
+    // Behavior properties
+    target.aggression = mutatedProperties.aggression;
+    target.opportunism = mutatedProperties.opportunism;
+    target.fear = mutatedProperties.fear;
+    target.activity = mutatedProperties.activity;
+    target.focus = mutatedProperties.focus;
 }
 
 // ------------------------------------ //
@@ -59,9 +78,36 @@ void simulatePatchPopulations(const Patch@ patch, RunResults@ results,
 
     // Prepare population numbers
     for(uint i = 0; i < species.length(); ++i){
-        const int currentPopulation = patch.getSpeciesPopulation(species[i]);
+        const Species@ currentSpecies = species[i];
 
-        results.addPopulationResultForSpecies(species[i], patch.getId(),
+        int currentPopulation = patch.getSpeciesPopulation(currentSpecies);
+
+        // If this is an extra species, this first takes the
+        // population from extra species that match its index, if that
+        // doesn't exist then the population number is used
+        if(currentPopulation == 0){
+
+            bool useGlobal = false;
+
+            for(uint a = 0; a < config.getExtraSpeciesCount(); ++a){
+                if(config.getExtraSpecies(a) is currentSpecies){
+
+                    if(config.getExcludedSpeciesCount() > a){
+                        currentPopulation = patch.getSpeciesPopulation(
+                            config.getExcludedSpecies(a));
+                    } else {
+                        useGlobal = true;
+                    }
+
+                    break;
+                }
+            }
+
+            if(useGlobal)
+                currentPopulation = currentSpecies.population;
+        }
+
+        results.addPopulationResultForSpecies(currentSpecies, patch.getId(),
             currentPopulation);
     }
 
@@ -82,8 +128,11 @@ void simulatePopulation(const Biome@ conditions, int32 patchIdentifier,
         const Species@ currentSpecies = species[i];
         const int currentPopulation = results.getPopulationInPatch(currentSpecies,
             patchIdentifier);
+        const int populationChange = GetEngine().GetRandom().GetNumber(-50, 50);
+
+        // LOG_WRITE("current: " + currentPopulation + " change: " + populationChange);
 
         results.addPopulationResultForSpecies(currentSpecies, patchIdentifier,
-            currentPopulation + GetEngine().GetRandom().GetNumber(-50, 50));
+            currentPopulation + populationChange);
     }
 }

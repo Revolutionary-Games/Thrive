@@ -66,6 +66,11 @@ public:
         getPopulationInPatch(const Species::pointer& species,
             int32_t patch) const;
 
+    //! \brief Prints to log a summary of the results
+    void
+        printSummary(
+            const PatchMap::pointer& previousPopulations = nullptr) const;
+
     void
         addPopulationResultForSpeciesWrapper(Species* species,
             int32_t patch,
