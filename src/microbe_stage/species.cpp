@@ -34,3 +34,16 @@ bool
 {
     return name == "Default";
 }
+// ------------------------------------ //
+std::string
+    Species::getFormattedName(bool identifier)
+{
+    std::string result;
+
+    result = genus + " " + epithet;
+
+    if(identifier)
+        result += " (" + name + ")";
+
+    return result;
+}

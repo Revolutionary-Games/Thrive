@@ -79,7 +79,24 @@ void
     if(m_externalEffects.empty())
         return;
 
-    LOG_INFO("TODO: RunParameters::applyExternalEffects");
+    const auto currentPatch = m_map->getCurrentPatchId();
+
+    // Effects are applied in the current patch
+    for(const auto& [species, amount, eventType] : m_externalEffects) {
+        // TODO: make a log for debugging here from the external effect
+        // parameters
+        try {
+            int currentPop =
+                m_results->getPopulationInPatch(species, currentPatch);
+
+            m_results->addPopulationResultForSpecies(
+                species, currentPatch, currentPop + amount);
+
+        } catch(const Leviathan::InvalidArgument& e) {
+            LOG_WARNING("External effect can't be applied: ");
+            e.PrintToLog();
+        }
+    }
 
     m_results->applyResults(m_map, false);
 }
@@ -132,6 +149,7 @@ bool
         // Remember to call PatchMap::removeExtinctSpecies after applying the
         // external effects
 
+        m_results->printSummary(m_map);
         m_results->applyResults(m_map, true);
 
         m_success = true;
