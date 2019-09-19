@@ -80,11 +80,11 @@ class MovementOrganelle : OrganelleComponent{
             // Set the pos to be "good enough" for now. It will be
             // properly set to the edge of the membrane on next call to
             // update
-
             renderNode.Node.setPosition(organellePos);
 
-            renderNode.Node.setOrientation(bs::Quaternion(bs::Degree(angle),
-                    bs::Vector3(0, 1, 1)));
+            renderNode.Node.setOrientation(bs::Quaternion(bs::Degree(180),
+                    bs::Vector3(0, 1, 0))*bs::Quaternion(bs::Degree(angle),
+                    bs::Vector3(0, 1, 0)));
         }
     }
 
@@ -191,8 +191,8 @@ class MovementOrganelle : OrganelleComponent{
         {
             renderNode.Node.setPosition(membraneCoords);
             renderNode.Node.setOrientation(bs::Quaternion(bs::Degree(180),
-                        bs::Vector3(0, 1, 0)) * bs::Quaternion(bs::Degree(angle),
-                            bs::Vector3(0, 0, 1)));
+                    bs::Vector3(0, 1, 0))*bs::Quaternion(bs::Degree(angle),
+                    bs::Vector3(0, 1, 0)));
         }
 
         //Grab components
