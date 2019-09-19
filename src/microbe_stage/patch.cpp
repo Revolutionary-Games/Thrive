@@ -19,6 +19,12 @@ bool
     return true;
 }
 // ------------------------------------ //
+void
+    Patch::setScreenCoordinates(Float2 coordinates)
+{
+    screenCoordinates = coordinates;
+}
+// ------------------------------------ //
 Species::pointer
     Patch::searchSpeciesByName(const std::string& name) const
 {
@@ -104,6 +110,11 @@ Json::Value
     result["id"] = patchId;
     result["name"] = name;
     result["biome"] = biome.toJSON();
+
+    Json::Value coordinates;
+    coordinates["x"] = screenCoordinates.X;
+    coordinates["y"] = screenCoordinates.Y;
+    result["screenCoordinates"] = coordinates;
 
     Json::Value species(Json::ValueType::arrayValue);
     for(const auto& current : speciesInPatch) {

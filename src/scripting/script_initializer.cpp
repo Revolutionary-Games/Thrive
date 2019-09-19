@@ -1536,6 +1536,23 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(engine->RegisterObjectMethod("Patch", "bool addNeighbour(int32 id)",
+           asMETHOD(Patch, addNeighbour), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("Patch",
+           "Float2 getScreenCoordinates() const",
+           asMETHOD(Patch, getScreenCoordinates), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("Patch",
+           "void setScreenCoordinates(Float2 coordinates)",
+           asMETHOD(Patch, setScreenCoordinates), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     // TODO: Would be much safer to have reference counting for biomes
     if(engine->RegisterObjectMethod("Patch", "const Biome@ getBiome() const",
            asMETHODPR(Patch, getBiome, () const, const Biome&),

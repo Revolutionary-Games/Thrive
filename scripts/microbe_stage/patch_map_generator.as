@@ -11,15 +11,26 @@ PatchMap@ runGeneration()
 {
     PatchMap@ map = PatchMap();
 
-    Patch@ patch1 = Patch("Pangonian vents", 0, getBiomeTemplate("aavolcanic_vent"));
-
+    Patch@ patch0 = Patch("Pangonian vents", 0, getBiomeTemplate("aavolcanic_vent"));
     auto defaultSpecies = Species::createDefaultSpecies();
-
     for(uint i = 0; i < defaultSpecies.length(); ++i){
-        patch1.addSpecies(defaultSpecies[i]);
+        patch0.addSpecies(defaultSpecies[i]);
     }
+    patch0.setScreenCoordinates(Float2(100,200));
 
+    Patch@ patch1 = Patch("Pangonaian Mesopelagic", 1, getBiomeTemplate("mesopelagic"));
+    patch1.setScreenCoordinates(Float2(200,200));
+    patch1.addNeighbour(0);
+    patch0.addNeighbour(1);
+
+    Patch@ patch2 = Patch("Pangonian Epipelagic", 2, getBiomeTemplate("default"));
+    patch2.setScreenCoordinates(Float2(200,100));
+    patch2.addNeighbour(1);
+    patch1.addNeighbour(2);
+
+    map.addPatch(patch0);
     map.addPatch(patch1);
+    map.addPatch(patch2);
 
     return map;
 }
