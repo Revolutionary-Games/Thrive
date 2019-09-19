@@ -193,6 +193,11 @@ class Organelle{
         return offset;
     }
 
+    Float3 calculateModelOffset() const
+    {
+        return ((calculateCenterOffset()/=hexes.getSize()))*HEX_SIZE;
+    }
+
     bool hasComponent(const string &in name) const{
 
         for(uint i = 0; i < components.length(); ++i){
@@ -636,7 +641,6 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
         assert(organelleEntity == NULL_OBJECT, "PlacedOrganelle already had an entity");
 
-        const Float3 offset = organelle.calculateCenterOffset();
 
         RenderNode@ renderNode;
 
@@ -656,11 +660,11 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
             // For performance reasons we set the position here directly
             // instead of with the position system
+            const Float3 offset = organelle.calculateModelOffset();
             renderNode.Node.setPosition(offset + this.cartesianPosition);
-
             renderNode.Node.setOrientation(bs::Quaternion(bs::Degree(180),
-                    bs::Vector3(0, 1, 0)) * bs::Quaternion(bs::Degree(rotation),
-                        bs::Vector3(0, 0, 1)));
+                    bs::Vector3(0, 1, 0))*bs::Quaternion(bs::Degree(rotation),
+                    bs::Vector3(0, -1, 0)));
 
             auto parentRenderNode = world.GetComponent_RenderNode(
                 microbeEntity);

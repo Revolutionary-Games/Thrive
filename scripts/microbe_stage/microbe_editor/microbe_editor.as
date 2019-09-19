@@ -281,10 +281,10 @@ class MicrobeEditor{
                 ObjectID organelleModel = placedModels[nextFreeOrganelle++];
                 auto node = hudSystem.world.GetComponent_RenderNode(organelleModel);
                 node.Node.setPosition(cartesianPosition +
-                    organelle.organelle.calculateCenterOffset());
+                    organelle.organelle.calculateModelOffset());
                 node.Node.setOrientation(bs::Quaternion(bs::Degree(180),
-                            bs::Vector3(0, 1, 0)) *
-                    bs::Quaternion(bs::Degree(organelle.rotation), bs::Vector3(0, 0, 1)));
+                    bs::Vector3(0, 1, 0))*bs::Quaternion(bs::Degree(organelle.rotation),
+                    bs::Vector3(0, -1, 0)));
                 node.Hidden = false;
                 node.Marked = true;
 
@@ -960,10 +960,10 @@ class MicrobeEditor{
             ObjectID organelleModel = hudSystem.hoverOrganelle[usedHoverOrganelle++];
             auto node = hudSystem.world.GetComponent_RenderNode(organelleModel);
             node.Node.setPosition(cartesianPosition +
-                toBePlacedOrganelle.calculateCenterOffset());
+                toBePlacedOrganelle.calculateModelOffset());
             node.Node.setOrientation(bs::Quaternion(bs::Degree(180),
-                        bs::Vector3(0, 1, 0)) * bs::Quaternion(bs::Degree(rotation),
-                            bs::Vector3(0, 0, 1)));
+                    bs::Vector3(0, 1, 0))*bs::Quaternion(bs::Degree(rotation),
+                    bs::Vector3(0, -1, 0)));
             node.Hidden = false;
             node.Marked = true;
 
@@ -988,7 +988,6 @@ class MicrobeEditor{
         node.Marked = true;
         node.Node.setPosition(bs::Vector3(0, 0, 0));
         // bs::Quaternion rot(0.40118, 0.791809, 0.431951, 0.0381477);
-
         node.Node.setOrientation(bs::Quaternion(bs::Degree(90),
                 bs::Vector3(0, 1, 0)) * bs::Quaternion(bs::Degree(180),
                     bs::Vector3(0, 0, 1)));
