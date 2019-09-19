@@ -123,8 +123,8 @@ public:
         return getSpeciesPopulation(Species::WrapPtr(species));
     }
 
-    //! Set coordinates for the patch to be displayed in the gui
-    bool
+    //! \brief Set coordinates for the patch to be displayed in the gui
+    void
         setScreenCoordinates(Float2 coordinates);
 
     //! Get current coordinates for the patch to be displayed in the gui
@@ -139,7 +139,8 @@ public:
 private:
     const int32_t patchId;
     std::string name;
-    //!where the patch should be displayed in the gui.
+
+    //! Where the patch should be displayed in the gui.
     Float2 screenCoordinates;
 
     Biome biome;
