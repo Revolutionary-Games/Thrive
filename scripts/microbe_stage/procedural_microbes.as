@@ -325,6 +325,6 @@ string mutateMicrobe(const string &in stringCode, bool isBacteria)
         }
     }
 
-    LOG_INFO("Mutated: "+completeString);
+    // LOG_INFO("Mutated: "+completeString);
     return completeString;
 }

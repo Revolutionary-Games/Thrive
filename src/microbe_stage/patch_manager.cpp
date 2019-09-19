@@ -199,7 +199,10 @@ void
 void
     PatchManager::handleCellSpawns(const Patch& patch)
 {
-    for(const auto& speciesInPatch : patch.getSpecies()) {
+    const auto& species = patch.getSpecies();
+    LOG_INFO("patch species = " + std::to_string(species.size()));
+
+    for(const auto& speciesInPatch : species) {
 
         if(speciesInPatch.population <= 0)
             continue;
@@ -236,9 +239,9 @@ void
                 [=](CellStageWorld& world, Float3 pos) {
                     if(!speciesInPatch.species->isBacteria) {
 
-                        // TODO: this spawns a ton of things but only one of
-                        // them is returned, meaning the rest may not
-                        // despawn properly
+                        // This spawns a ton of things but only one of
+                        // them is returned, so the called script function must
+                        // manually created SpawnedComponents
                         ScriptRunningSetup setup =
                             ScriptRunningSetup("bacteriaColonySpawn");
 
@@ -290,18 +293,12 @@ void
 void
     PatchManager::updateLight(const Biome& biome)
 {
-    LOG_INFO("TODO: redo PatchManager::updateLight");
-    // Light properties isnt working for some reason
-    // world.SetLightProperties(getCurrentBiome().diffuseColors,
-    // getCurrentBiome().specularColors,
-    //     bs::Vector3(Float3(0.55f, -0.3f, 0.75f).Normalize()),
-    //     getCurrentBiome().lightPower,
-    //     //
-    //     https://ogrecave.github.io/ogre/api/2.1/class_ogre_1_1_scene_manager.html#a56cd9aa2c4dee4eec9eb07ce1372fb52
-    //     getCurrentBiome().upperAmbientColor,
-    //     getCurrentBiome().lowerAmbientColor,
-    //     -Float3(0.55f, -0.3f, 0.75f).Normalize() + Float3::UnitVUp * 0.2f
-    // );
+    // Sunlight
+    InWorld.SetLightProperties(biome.sunlightColor, biome.sunlightIntensity,
+        biome.sunlightDirection, biome.sunlightSourceRadius);
+
+    // Skybox with indirect light
+    ThriveGame::get()->setSkybox(biome.skybox, biome.skyboxLightIntensity);
 }
 // ------------------------------------ //
 void
@@ -390,4 +387,12 @@ void
 {
     if(currentMap)
         currentMap->updateGlobalPopulations();
+}
+// ------------------------------------ //
+void
+    PatchManager::OnClear()
+{
+    chunkSpawners.clear();
+    cloudSpawners.clear();
+    microbeSpawners.clear();
 }

@@ -44,8 +44,33 @@ public:
     //! \brief Adds a new species to this patch
     //! \returns True when added. False if the species was already in this patch
     bool
-        addSpecies(Species::pointer species,
+        addSpecies(const Species::pointer& species,
             int population = INITIAL_SPECIES_POPULATION);
+
+    //! \brief Removes a species from this patch
+    //! \returns True when a species was removed
+    bool
+        removeSpecies(const Species::pointer& species);
+
+    //! \brief Updates a species population in this patch
+    //! \returns True on success
+    bool
+        updateSpeciesPopulation(const Species::pointer& species,
+            int newPopulation);
+
+    int
+        getSpeciesPopulation(const Species::pointer& species);
+
+    uint64_t
+        getSpeciesCount() const;
+
+    Species::pointer
+        getSpecies(uint64_t index) const;
+
+    //! \brief Makes a JSON object representing this patch, including biome and
+    //! species data
+    Json::Value
+        toJSON() const;
 
     int32_t
         getId() const
@@ -71,16 +96,31 @@ public:
         return biome;
     }
 
+    const auto&
+        getNeighbours() const
+    {
+        return adjacentPatches;
+    }
+
     bool
         addSpeciesWrapper(Species* species, int32_t population)
     {
         return addSpecies(Species::WrapPtr(species), population);
     }
 
-    const auto&
-        getNeighbours() const
+    Species*
+        getSpeciesWrapper(uint64_t index) const
     {
-        return adjacentPatches;
+        const auto result = getSpecies(index);
+        if(result)
+            result->AddRef();
+        return result.get();
+    }
+
+    int32_t
+        getSpeciesPopulationWrapper(Species* species)
+    {
+        return getSpeciesPopulation(Species::WrapPtr(species));
     }
 
     //! Set coordinates for the patch to be displayed in the gui
@@ -125,7 +165,7 @@ public:
     //! \returns True on success. False if the id is duplicate or there is some
     //! other problem
     bool
-        addPatch(Patch::pointer patch);
+        addPatch(const Patch::pointer& patch);
 
     //! \returns True when the map is valid and has no invalid references
     bool
@@ -142,6 +182,18 @@ public:
     //! \brief Updates the global population numbers in Species
     void
         updateGlobalPopulations();
+
+    //! \brief Removes species from patches where their population is <= 0
+    void
+        removeExtinctSpecies();
+
+    //! \brief Makes a JSON object representing the entire map
+    Json::Value
+        toJSON() const;
+
+    //! \brief Returns JSON as a string
+    std::string
+        toJSONString() const;
 
     Patch::pointer
         getCurrentPatch();
@@ -192,6 +244,21 @@ public:
             ptr->AddRef();
         return ptr.get();
     }
+
+    auto&
+        getPatches()
+    {
+        return patches;
+    }
+
+    const auto&
+        getPatches() const
+    {
+        return patches;
+    }
+
+    CScriptArray*
+        getPatchesWrapper() const;
 
     REFERENCE_COUNTED_PTR_TYPE(PatchMap);
 

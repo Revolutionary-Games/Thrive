@@ -7,6 +7,7 @@
 
 namespace thrive {
 
+//! \brief Manages applying patch data and setting up spawns
 class PatchManager : public Leviathan::PerWorldData {
     struct ExistingSpawn {
         ExistingSpawn(SpawnerTypeId id,
@@ -56,6 +57,9 @@ public:
             currentMap->AddRef();
         return currentMap.get();
     }
+
+    void
+        OnClear() override;
 
 private:
     void

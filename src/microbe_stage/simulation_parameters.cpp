@@ -5,6 +5,7 @@ using namespace thrive;
 TJsonRegistry<Compound> SimulationParameters::compoundRegistry;
 TJsonRegistry<BioProcess> SimulationParameters::bioProcessRegistry;
 TJsonRegistry<Biome> SimulationParameters::biomeRegistry;
+TJsonRegistry<Background> SimulationParameters::backgroundRegistry;
 // TJsonRegistry<OrganelleType> SimulationParameters::organelleRegistry;
 SpeciesNameController SimulationParameters::speciesNameController;
 
@@ -18,6 +19,8 @@ void
         "./Data/Scripts/SimulationParameters/MicrobeStage/BioProcesses.json");
     SimulationParameters::biomeRegistry = TJsonRegistry<Biome>(
         "./Data/Scripts/SimulationParameters/MicrobeStage/Biomes.json");
+    SimulationParameters::backgroundRegistry = TJsonRegistry<Background>(
+        "./Data/Scripts/SimulationParameters/MicrobeStage/backgrounds.json");
     // SimulationParameters::organelleRegistry =
     // TJsonRegistry<OrganelleType>("./Data/Scripts/SimulationParameters/MicrobeStage/Organelles.json");
 

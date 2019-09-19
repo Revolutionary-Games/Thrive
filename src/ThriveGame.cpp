@@ -90,18 +90,6 @@ public:
             auto shader = graphics->LoadShaderByName("background.bsl");
 
             m_MicrobeBackgroundMaterial = bs::Material::create(shader);
-
-            m_MicrobeBackgroundMaterial->setTexture(
-                "gTexLayer0", graphics->LoadTextureByName("Thrive_ocean0.png"));
-
-            m_MicrobeBackgroundMaterial->setTexture(
-                "gTexLayer1", graphics->LoadTextureByName("Thrive_ocean1.png"));
-
-            m_MicrobeBackgroundMaterial->setTexture(
-                "gTexLayer2", graphics->LoadTextureByName("Thrive_ocean2.png"));
-
-            m_MicrobeBackgroundMaterial->setTexture(
-                "gTexLayer3", graphics->LoadTextureByName("Thrive_ocean3.png"));
         }
 
         if(m_cellStage) {
@@ -128,8 +116,6 @@ public:
                     m_MicrobeBackgroundMaterial);
                 m_microbeBackgroundItem->setMesh(m_microbeBackgroundMesh);
             }
-
-            m_cellStage->SetSkybox("Thrive_ocean_skybox");
         }
 
         // Editor version
@@ -978,14 +964,43 @@ void
 {
     LEVIATHAN_ASSERT(m_impl->m_MicrobeBackgroundMaterial, "no material yet");
 
-    LOG_WRITE("TODO: redo setBackgroundMaterial");
+    auto graphics = Engine::Get()->GetGraphics();
 
-    // // TODO: use material here
-    // bs::HTexture texture =
-    //     Engine::Get()->GetGraphics()->LoadTextureByName("Thrive_ocean0.png");
+    try {
+        const auto& background =
+            SimulationParameters::backgroundRegistry.getTypeData(material);
 
-    // LEVIATHAN_ASSERT(texture, "failed to load background: " + material);
-    // m_impl->m_MicrobeBackgroundMaterial->setTexture("gAlbedoTex", texture);
+        if(background.layers.empty()) {
+            LOG_ERROR("background has no layers: " + material);
+            return;
+        }
+
+        LOG_INFO("Setting background: " + background.internalName);
+
+        for(size_t i = 0; i < 4; ++i) {
+            const auto layer = "gTexLayer" + bs::toString(i);
+            if(i < background.layers.size()) {
+
+                m_impl->m_MicrobeBackgroundMaterial->setTexture(
+                    layer, graphics->LoadTextureByName(background.layers[i]));
+            } else {
+                m_impl->m_MicrobeBackgroundMaterial->setTexture(layer, nullptr);
+            }
+        }
+    } catch(const Leviathan::InvalidArgument&) {
+        LOG_ERROR("Invalid background set: " + material);
+        return;
+    }
+}
+
+void
+    ThriveGame::setSkybox(const std::string& assetName, float lightIntensity)
+{
+    LEVIATHAN_ASSERT(m_impl->m_cellStage, "no world yet");
+
+    m_impl->m_cellStage->SetSkybox(assetName, lightIntensity);
+
+    // TODO: once there are multi scene support in bsf, editor skybox
 }
 
 void
@@ -1107,7 +1122,11 @@ void
         return;
     }
 
+    LOG_INFO("Applying external effects and making things go extinct");
     m_impl->m_autoEvoRun->applyExternalEffects();
+    m_impl->m_cellStage->GetPatchManager()
+        .getCurrentMap()
+        ->removeExtinctSpecies();
 
     Leviathan::Engine* engine = Engine::GetEngine();
     Leviathan::Window* window1 = engine->GetWindowEntity();
@@ -1122,8 +1141,14 @@ void
 
         auto vars = event->GetVariables();
 
-        vars->Add(std::make_shared<NamedVariableList>("patchMapJSON",
-            new Leviathan::StringBlock("{'todo': 'map here'}")));
+        const auto patchMapJSON = m_impl->m_cellStage->GetPatchManager()
+                                      .getCurrentMap()
+                                      ->toJSONString();
+
+        // LOG_WRITE("patch map to GUI:\n" + patchMapJSON);
+
+        vars->Add(std::make_shared<NamedVariableList>(
+            "patchMapJSON", new Leviathan::StringBlock(patchMapJSON)));
 
         Engine::Get()->GetEventHandler()->CallEvent(event);
     }

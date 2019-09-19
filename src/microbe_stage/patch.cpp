@@ -38,7 +38,7 @@ Species::pointer
 }
 // ------------------------------------ //
 bool
-    Patch::addSpecies(Species::pointer species, int population)
+    Patch::addSpecies(const Species::pointer& species, int population)
 {
     if(!species || searchSpeciesByName(species->name))
         return false;
@@ -46,10 +46,96 @@ bool
     speciesInPatch.emplace_back(SpeciesInPatch{species, population});
     return true;
 }
+
+bool
+    Patch::removeSpecies(const Species::pointer& species)
+{
+
+    for(auto iter = speciesInPatch.begin(); iter != speciesInPatch.end();
+        ++iter) {
+        if(iter->species == species) {
+            speciesInPatch.erase(iter);
+            return true;
+        }
+    }
+
+    return false;
+}
+
+bool
+    Patch::updateSpeciesPopulation(const Species::pointer& species,
+        int newPopulation)
+{
+    for(auto& entry : speciesInPatch) {
+        if(entry.species == species) {
+            entry.population = newPopulation;
+            return true;
+        }
+    }
+
+    return false;
+}
+// ------------------------------------ //
+int
+    Patch::getSpeciesPopulation(const Species::pointer& species)
+{
+    for(auto& entry : speciesInPatch) {
+        if(entry.species == species) {
+            return entry.population;
+        }
+    }
+
+    return 0;
+}
+
+uint64_t
+    Patch::getSpeciesCount() const
+{
+    return speciesInPatch.size();
+}
+
+Species::pointer
+    Patch::getSpecies(uint64_t index) const
+{
+    if(index >= speciesInPatch.size())
+        return nullptr;
+
+    return speciesInPatch[index].species;
+}
+// ------------------------------------ //
+Json::Value
+    Patch::toJSON() const
+{
+    Json::Value result;
+
+    result["id"] = patchId;
+    result["name"] = name;
+    result["biome"] = biome.toJSON();
+
+    Json::Value species(Json::ValueType::arrayValue);
+    for(const auto& current : speciesInPatch) {
+
+        Json::Value obj;
+        obj["population"] = current.population;
+        obj["species"] = current.species->toJSON();
+
+        species.append(obj);
+    }
+
+    result["species"] = species;
+
+    Json::Value adjacent(Json::ValueType::arrayValue);
+    for(auto patch : adjacentPatches)
+        adjacent.append(patch);
+
+    result["adjacentPatches"] = adjacent;
+
+    return result;
+}
 // ------------------------------------ //
 // Patch map
 bool
-    PatchMap::addPatch(Patch::pointer patch)
+    PatchMap::addPatch(const Patch::pointer& patch)
 {
     if(!patch)
         return false;
@@ -182,6 +268,62 @@ void
     for(const auto [species, population] : seenPopulations) {
         species->setPopulationFromPatches(population);
     }
+}
+
+void
+    PatchMap::removeExtinctSpecies()
+{
+    std::vector<Species::pointer> extinctSpecies;
+
+    for(const auto& [id, patch] : patches) {
+
+        extinctSpecies.clear();
+
+        for(const auto& patchSpecies : patch->getSpecies()) {
+            if(patchSpecies.population <= 0) {
+                extinctSpecies.push_back(patchSpecies.species);
+            }
+        }
+
+        for(const auto& species : extinctSpecies) {
+
+            LOG_INFO("Species: " + species->name +
+                     " has gone extinct in patch: " + patch->getName());
+            patch->removeSpecies(species);
+        }
+    }
+}
+// ------------------------------------ //
+Json::Value
+    PatchMap::toJSON() const
+{
+    Json::Value result;
+    result["currentPatchId"] = currentPatchId;
+    Json::Value patchesObj(Json::ValueType::objectValue);
+
+    for(const auto& [id, patch] : patches) {
+
+        patchesObj[std::to_string(id)] = patch->toJSON();
+    }
+
+    result["patches"] = patchesObj;
+
+    return result;
+}
+
+std::string
+    PatchMap::toJSONString() const
+{
+    std::stringstream sstream;
+    const Json::Value value = toJSON();
+
+    Json::StreamWriterBuilder builder;
+    builder["indentation"] = "";
+    std::unique_ptr<Json::StreamWriter> writer(builder.newStreamWriter());
+
+    writer->write(value, &sstream);
+
+    return sstream.str();
 }
 // ------------------------------------ //
 Patch::pointer

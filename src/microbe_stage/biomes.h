@@ -119,18 +119,6 @@ class SimulationParameters;
 
 class Biome : public RegistryType {
 public:
-    // No clue why these are maps
-    std::map<size_t, BiomeCompoundData> compounds;
-    std::map<size_t, ChunkData> chunks;
-    std::string background = "error";
-
-    Float4 specularColors;
-    Float4 diffuseColors;
-    // Ambient Lights
-    Float4 upperAmbientColor;
-    Float4 lowerAmbientColor;
-
-    float lightPower;
     Biome();
 
     Biome(Json::Value value);
@@ -145,6 +133,25 @@ public:
 
     ChunkData*
         getChunk(size_t type);
+
+    //! \brief Makes a JSON object representing this biome
+    //! \todo Full mode and compounds and chunks
+    Json::Value
+        toJSON(bool full = false) const;
+
+    // No clue why these are maps
+    std::map<size_t, BiomeCompoundData> compounds;
+    std::map<size_t, ChunkData> chunks;
+    std::string background = "error";
+
+    // skybox
+    std::string skybox = "error";
+    float skyboxLightIntensity;
+
+    Float3 sunlightColor;
+    float sunlightIntensity;
+    Float3 sunlightDirection;
+    float sunlightSourceRadius;
 };
 
 } // namespace thrive
