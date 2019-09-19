@@ -1,7 +1,6 @@
 #include "microbe_editor_hud.as"
 #include "microbe_operations.as"
 #include "organelle_placement.as"
-#include "setup.as"
 /*
 ////////////////////////////////////////////////////////////////////////////////
 // MicrobeEditor
@@ -11,18 +10,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 */
 
-bool freeBuilding = false;
-
 funcdef void EditorActionApply(EditorAction@ action, MicrobeEditor@ editor);
 
 class EditorAction{
 
     EditorAction(int cost, EditorActionApply@ redo, EditorActionApply@ undo)
     {
-        if (freeBuilding)
-        {
-            cost = 0;
-        }
         this.cost = cost;
         @this.redo = redo;
         @this.undo = undo;
@@ -101,6 +94,15 @@ class MicrobeEditor{
     void activate()
     {
         GetThriveGame().playerData().setBool("edited_microbe", true);
+
+        // Detect freebuild
+        if(GetThriveGame().playerData().isFreeBuilding()){
+            LOG_INFO("Editor going to freebuild mode because player has activated freebuild");
+            freeBuilding = true;
+        } else {
+            // Make sure freebuilding doesn't get stuck on
+            freeBuilding = false;
+        }
 
         Species@ playerSpecies = MicrobeOperations::getSpecies(
             GetThriveGame().getCellStage(), GetThriveGame().playerData().activeCreature());
@@ -308,8 +310,11 @@ class MicrobeEditor{
             && organelle.organelle.chanceToCreate != 0 )
                 return;
 
+        int cost = organelle.organelle.mpCost;
+        if(freeBuilding)
+            cost = 0;
 
-        EditorAction@ action = EditorAction(organelle.organelle.mpCost,
+        EditorAction@ action = EditorAction(cost,
             // redo
             function(EditorAction@ action, MicrobeEditor@ editor){
 
@@ -811,13 +816,15 @@ class MicrobeEditor{
                 Int2(q, r));
         PlacedOrganelle@ organelle = cast<PlacedOrganelle>(organelleHere);
 
-
+        int cost = ORGANELLE_REMOVE_COST;
+        if(freeBuilding)
+            cost = 0;
 
         if(organelleHere !is null){
             // Dont allow deletion of nucleus or the last organelle
             // TODO: allow deleting the last cytoplasm if an organelle is about to be placed
             if(!(organelleHere.organelle.name == "nucleus") && getMicrobeSize() > 1) {
-                EditorAction@ action = EditorAction(ORGANELLE_REMOVE_COST,
+                EditorAction@ action = EditorAction(cost,
                 // redo We need data about the organelle we removed, and the location so we can "redo" it
                  function(EditorAction@ action, MicrobeEditor@ editor){
                     LOG_INFO("Redo called");
@@ -1175,6 +1182,9 @@ class MicrobeEditor{
         LOG_ERROR("Microbe editor got unknown event: " + type);
         return -1;
     }
+
+    //! When true nothing costs ATP
+    bool freeBuilding = false;
 
     //! This is used to keep track of used hover organelles
     private uint usedHoverHex = 0;

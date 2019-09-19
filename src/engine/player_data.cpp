@@ -21,6 +21,8 @@ struct PlayerData::Implementation {
 
     LockedMap m_lockedMap;
 
+    bool m_freeBuilding = false;
+
     std::unordered_set<std::string> m_boolSet;
 };
 
@@ -68,44 +70,25 @@ void
         m_impl->m_boolSet.erase(key);
     }
 }
+// ------------------------------------ //
+bool
+    PlayerData::isFreeBuilding() const
+{
+    return m_impl->m_freeBuilding;
+}
 
-// void
-// PlayerData::load(
-//     const StorageContainer& storage
-// ) {
-
-//     if(!m_impl->m_activeCreatureGamestate)
-//         throw std::runtime_error("PlayerData.activeCreatureGamestate is null
-//         in 'load'");
-
-
-//     m_impl->m_playerName = storage.get<std::string>("playerName");
-//     StorageContainer lockedMapStorage =
-//     storage.get<StorageContainer>("lockedMap");
-//     //This isn't the prettiest way to do it, but we need to reobtain a
-//     reference to the players creature DEBUG_BREAK;
-//     // m_impl->m_activeCreature = Entity(m_impl->m_playerName,
-//     //     m_impl->m_activeCreatureGamestate).id();
-//     StorageList boolValues = storage.get<StorageList>("boolValues");
-//     for (const StorageContainer& container : boolValues) {
-//         std::string boolKey = container.get<std::string>("boolKey");
-//         m_impl->m_boolSet.emplace(boolKey);
-//     }
-//     m_impl->m_lockedMap.load(lockedMapStorage);
-// }
-
-// StorageContainer
-// PlayerData::storage() const {
-//     StorageContainer storage;
-//     storage.set("playerName", m_impl->m_playerName);
-//     StorageList boolValues;
-//     boolValues.reserve(m_impl->m_boolSet.size());
-//     for(auto key : m_impl->m_boolSet) {
-//         StorageContainer container;
-//         container.set<std::string>("boolKey", key);
-//         boolValues.append(container);
-//     }
-//     storage.set<StorageList>("boolValues", boolValues);
-//     storage.set("lockedMap", m_impl->m_lockedMap.storage());
-//     return storage;
-// }
+void
+    PlayerData::enterFreeBuild()
+{
+    LOG_INFO("Marking player as having used freebuild");
+    m_impl->m_freeBuilding = true;
+}
+// ------------------------------------ //
+void
+    PlayerData::newGame()
+{
+    LOG_INFO("Clearing PlayerData for new game");
+    // Only name needs to be stored
+    const auto playerName = m_impl->m_playerName;
+    m_impl = std::make_unique<Implementation>(playerName);
+}

@@ -303,6 +303,13 @@ class MicrobeSystem : ScriptSystem{
         } else {
 
             updateAliveCell(components, logicTime);
+
+            // As long as the player has been alive they can go to the editor in freebuild
+            if(microbeComponent.isPlayerMicrobe &&
+                GetThriveGame().playerData().isFreeBuilding())
+            {
+                showReproductionDialog(world);
+            }
         }
     }
 

@@ -104,27 +104,19 @@ public:
     void
         setBool(const std::string& key, bool value);
 
-    //  /**
-    // * @brief Called by the engine during loading of a savegame
-    // *
-    // * @param storage
-    // *
-    // * @see PlayerData::storage()
-    // */
-    // void
-    // load(
-    //     const StorageContainer& storage
-    // );
+    //! \returns True when the player is in freebuild mode and various things
+    //! should be disabled / different
+    bool
+        isFreeBuilding() const;
 
-    // /**
-    // * @brief Called by the engine during savegame creation
-    // *
-    // * @return
-    // *
-    // * @see PlayerData::load()
-    // */
-    // StorageContainer
-    // storage() const;
+    //! Enables freebuild. There is purposefully no way to undo this other than
+    //! calling newGame
+    void
+        enterFreeBuild();
+
+    //! \brief Resets the player data
+    void
+        newGame();
 
 private:
     struct Implementation;

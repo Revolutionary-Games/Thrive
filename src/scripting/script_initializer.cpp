@@ -235,6 +235,11 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(engine->RegisterObjectMethod("PlayerData", "bool isFreeBuilding() const",
+           asMETHOD(PlayerData, isFreeBuilding), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     return true;
 }
 
@@ -1638,6 +1643,11 @@ bool
 
     if(engine->RegisterObjectMethod("PatchMap",
            "array<const Patch@>@ getPatches() const",
+           asFUNCTION(patchMapGetPatchesWrapper), asCALL_CDECL_OBJFIRST) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("PatchMap", "array<Patch@>@ getPatches()",
            asFUNCTION(patchMapGetPatchesWrapper), asCALL_CDECL_OBJFIRST) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }

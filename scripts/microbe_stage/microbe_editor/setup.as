@@ -4,18 +4,6 @@
 // Called from ThriveGame when the editor has been entered and it should be setup
 void onEditorEntry(MicrobeEditorWorld@ world)
 {
-    freeBuilding = false;
-    enterEditor(world);
-}
-
-void onFreebuildEditorEntry(MicrobeEditorWorld@ world)
-{
-    freeBuilding = true;
-    enterEditor(world);
-}
-
-void enterEditor(MicrobeEditorWorld@ world)
-{
     LOG_INFO("Running microbe editor script setup");
 
     // This doesn't overwrite the object when called again so
