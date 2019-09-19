@@ -153,9 +153,42 @@ CScriptArray*
         (chunks | boost::adaptors::map_keys).end(),
         Leviathan::ScriptExecutor::Get()->GetASEngine(), "array<uint64>");
 }
+// ------------------------------------ //
+Json::Value
+    Biome::toJSON(bool full /*= false*/) const
+{
+    Json::Value result = RegistryType::toJSON();
+
+    result["background"] = background;
+
+    // skybox
+    result["skybox"] = skybox;
+    result["skyboxLightIntensity"] = skyboxLightIntensity;
+
+    result["sunlightIntensity"] = sunlightIntensity;
+    result["sunlightSourceRadius"] = sunlightSourceRadius;
+
+    Json::Value color;
+    color["r"] = sunlightColor.X;
+    color["g"] = sunlightColor.Y;
+    color["b"] = sunlightColor.Z;
+    result["sunlightColor"] = color;
+
+    Json::Value direction;
+    direction["x"] = sunlightDirection.X;
+    direction["y"] = sunlightDirection.Y;
+    direction["z"] = sunlightDirection.Z;
+    result["sunlightDirection"] = direction;
+
+    if(full) {
+        LOG_WARNING("Biome: toJSON: full is not implemented");
+    }
+
+    return result;
+}
 
 // ------------------------------------ //
-
+// ChunkData
 ChunkCompoundData*
     ChunkData::getCompound(size_t type)
 {

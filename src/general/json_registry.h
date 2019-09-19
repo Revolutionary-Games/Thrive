@@ -24,6 +24,20 @@ public:
         id(id), displayName(name), internalName(name)
     {}
 
+    //! \brief JSON serializes the properties of this class. Derived types that
+    //! are serialized should overwrite this
+    //!
+    //! But they should call this at the beginning to not duplicate this code
+    Json::Value
+        toJSON() const
+    {
+        Json::Value result;
+        result["id"] = id;
+        result["name"] = displayName;
+        result["internalName"] = internalName;
+        return result;
+    }
+
     // Used to search by id.
     size_t id = std::numeric_limits<size_t>::max(); // This would mean an error.
 

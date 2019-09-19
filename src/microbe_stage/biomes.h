@@ -134,6 +134,11 @@ public:
     ChunkData*
         getChunk(size_t type);
 
+    //! \brief Makes a JSON object representing this biome
+    //! \todo Full mode and compounds and chunks
+    Json::Value
+        toJSON(bool full = false) const;
+
     // No clue why these are maps
     std::map<size_t, BiomeCompoundData> compounds;
     std::map<size_t, ChunkData> chunks;

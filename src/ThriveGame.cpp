@@ -998,7 +998,6 @@ void
 {
     LEVIATHAN_ASSERT(m_impl->m_cellStage, "no world yet");
 
-    // "Thrive_ocean_skybox"
     m_impl->m_cellStage->SetSkybox(assetName, lightIntensity);
 
     // TODO: once there are multi scene support in bsf, editor skybox
@@ -1142,8 +1141,14 @@ void
 
         auto vars = event->GetVariables();
 
-        vars->Add(std::make_shared<NamedVariableList>("patchMapJSON",
-            new Leviathan::StringBlock("{'todo': 'map here'}")));
+        const auto patchMapJSON = m_impl->m_cellStage->GetPatchManager()
+                                      .getCurrentMap()
+                                      ->toJSONString();
+
+        // LOG_WRITE("patch map to GUI:\n" + patchMapJSON);
+
+        vars->Add(std::make_shared<NamedVariableList>(
+            "patchMapJSON", new Leviathan::StringBlock(patchMapJSON)));
 
         Engine::Get()->GetEventHandler()->CallEvent(event);
     }
