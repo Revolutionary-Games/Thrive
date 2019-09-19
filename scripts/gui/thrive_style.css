@@ -95,8 +95,13 @@ div::-webkit-scrollbar-thumb:hover {
   height: 100%;
   top: 0;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
+  z-index: 10;
+  background: black;
+  overflow: hidden;
 }
 
 /* Bars */
@@ -1538,4 +1543,15 @@ div::-webkit-scrollbar-thumb:hover {
   padding-right: 3px;
   display: inline-block;
   vertical-align: top;
+}
+
+
+#loadingScreen {
+  padding-top: 15%;
+  font-size: 3.5em;
+  justify-content: start;
+}
+
+#loadingScreenMessage {
+  font-size: 0.8em;
 }

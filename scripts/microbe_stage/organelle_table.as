@@ -477,8 +477,8 @@ void setupOrganelles(){
     chemoplast.prokaryoteChance = 0;
     chemoplast.mpCost = 45;
     chemoplast.initialComposition = {
-        {"phosphates", 5},
-        {"ammonia", 5}
+        {"phosphates", 2},
+        {"ammonia", 2}
     };
     chemoplast.components = {
         processorOrganelleFactory(1.0f),

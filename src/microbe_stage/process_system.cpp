@@ -134,17 +134,15 @@ double
 }
 
 void
-    ProcessSystem::setProcessBiome(int biomeId)
+    ProcessSystem::setProcessBiome(const Biome& biome)
 {
-    curBiomeId = biomeId;
+    currentBiome = biome;
 }
 
 double
     ProcessSystem::getDissolved(CompoundId compoundData)
 {
-    Biome ourBiome =
-        SimulationParameters::biomeRegistry.getTypeData(curBiomeId);
-    return ourBiome.getCompound(compoundData)->dissolved;
+    return currentBiome.getCompound(compoundData)->dissolved;
 }
 
 // ------------------------------------ //

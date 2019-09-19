@@ -14,13 +14,13 @@ namespace thrive {
 
 struct BiomeCompoundData {
 public:
-    unsigned int amount = 0;
+    float amount = 0;
     double density = 1.0f;
     double dissolved = 0.0f;
 
     BiomeCompoundData() {}
 
-    BiomeCompoundData(unsigned int amount, double density, double dissolved) :
+    BiomeCompoundData(float amount, double density, double dissolved) :
         amount(amount), density(density), dissolved(dissolved)
     {}
 };
@@ -111,23 +111,14 @@ public:
 
     std::string
         getTexture(size_t index) const;
+
+    REFERENCE_HANDLE_UNCOUNTED_TYPE(ChunkData);
 };
 
 class SimulationParameters;
 
 class Biome : public RegistryType {
 public:
-    std::map<size_t, BiomeCompoundData> compounds;
-    std::map<size_t, ChunkData> chunks;
-    std::string background = "error";
-
-    Float4 specularColors;
-    Float4 diffuseColors;
-    // Ambient Lights
-    Float4 upperAmbientColor;
-    Float4 lowerAmbientColor;
-
-    float lightPower;
     Biome();
 
     Biome(Json::Value value);
@@ -142,6 +133,25 @@ public:
 
     ChunkData*
         getChunk(size_t type);
+
+    //! \brief Makes a JSON object representing this biome
+    //! \todo Full mode and compounds and chunks
+    Json::Value
+        toJSON(bool full = false) const;
+
+    // No clue why these are maps
+    std::map<size_t, BiomeCompoundData> compounds;
+    std::map<size_t, ChunkData> chunks;
+    std::string background = "error";
+
+    // skybox
+    std::string skybox = "error";
+    float skyboxLightIntensity;
+
+    Float3 sunlightColor;
+    float sunlightIntensity;
+    Float3 sunlightDirection;
+    float sunlightSourceRadius;
 };
 
 } // namespace thrive

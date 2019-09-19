@@ -4,11 +4,11 @@
 #include "engine/player_data.h"
 #include "general/global_keypresses.h"
 
+#include "auto-evo/auto-evo.h"
 #include "generated/cell_stage_world.h"
 #include "generated/microbe_editor_world.h"
 #include "main_menu_keypresses.h"
 #include "microbe_stage/microbe_editor_key_handler.h"
-#include "microbe_stage/patch.h"
 #include "microbe_stage/simulation_parameters.h"
 #include "scripting/script_initializer.h"
 #include "thrive_net_handler.h"
@@ -48,7 +48,6 @@ class ThriveGame::Implementation {
 public:
     Implementation(ThriveGame& game) :
         m_game(game), m_playerData("player"),
-        m_patch_manager(std::make_shared<PatchManager>()),
         m_menuKeyPresses(std::make_shared<MainMenuKeyPressListener>()),
         m_globalKeyPresses(std::make_shared<GlobalUtilityKeyHandler>(
             *game.ApplicationConfiguration->GetKeyConfiguration())),
@@ -58,7 +57,7 @@ public:
             *game.ApplicationConfiguration->GetKeyConfiguration()))
     {}
 
-    //! Releases Ogre things. Needs to be called before shutdown
+    //! Releases graphical things. Needs to be called before shutdown
     void
         releaseOgreResources()
     {
@@ -91,18 +90,6 @@ public:
             auto shader = graphics->LoadShaderByName("background.bsl");
 
             m_MicrobeBackgroundMaterial = bs::Material::create(shader);
-
-            m_MicrobeBackgroundMaterial->setTexture(
-                "gTexLayer0", graphics->LoadTextureByName("Thrive_ocean0.png"));
-
-            m_MicrobeBackgroundMaterial->setTexture(
-                "gTexLayer1", graphics->LoadTextureByName("Thrive_ocean1.png"));
-
-            m_MicrobeBackgroundMaterial->setTexture(
-                "gTexLayer2", graphics->LoadTextureByName("Thrive_ocean2.png"));
-
-            m_MicrobeBackgroundMaterial->setTexture(
-                "gTexLayer3", graphics->LoadTextureByName("Thrive_ocean3.png"));
         }
 
         if(m_cellStage) {
@@ -129,8 +116,6 @@ public:
                     m_MicrobeBackgroundMaterial);
                 m_microbeBackgroundItem->setMesh(m_microbeBackgroundMesh);
             }
-
-            m_cellStage->SetSkybox("Thrive_ocean_skybox");
         }
 
         // Editor version
@@ -160,7 +145,7 @@ public:
 
     PlayerData m_playerData;
 
-    std::shared_ptr<PatchManager> m_patch_manager;
+    AutoEvo m_autoEvo;
 
     std::shared_ptr<CellStageWorld> m_cellStage;
     std::shared_ptr<MicrobeEditorWorld> m_microbeEditor;
@@ -180,6 +165,18 @@ public:
     std::shared_ptr<GlobalUtilityKeyHandler> m_globalKeyPresses;
     std::shared_ptr<PlayerMicrobeControl> m_cellStageKeys;
     std::shared_ptr<MicrobeEditorKeyHandler> m_microbeEditorKeys;
+
+    //! When true, on tick the auto evo status is checked, if finished entering
+    //! the editor is triggered.
+    //! \todo There's maybe a cleaner way to do this
+    bool m_waitingForAutoEvoForEditor = false;
+
+    //! Setting for starting auto evo while the player is swimming around
+    //! \todo Add this to options menu for players with weak CPUs
+    bool m_autoEvoConcurrentlyWithGameplay = true;
+
+    //! Active microbe stage run
+    std::shared_ptr<RunParameters> m_autoEvoRun;
 };
 
 // ------------------------------------ //
@@ -262,9 +259,6 @@ void
 void
     ThriveGame::startNewGame()
 {
-    // Used to stop it from clearing entities when rwe restart so species can
-    // spawn.
-    bool restarted = false;
     // To work with instant start, we need to invoke this if we have no cell
     // stage world
     if(!m_postLoadRan) {
@@ -296,11 +290,7 @@ void
                 window1, static_cast<int>(THRIVE_WORLD_TYPE::CELL_STAGE),
                 createPhysicsMaterials(), netSettings));
     } else {
-        restarted = true;
         m_impl->m_cellStage->ClearEntities();
-        // We also need to somehow force stop all the music here.
-        LOG_INFO("ThriveGame: startNewGame called after already created once: "
-                 "Creating new cellstage world");
     }
 
     LEVIATHAN_ASSERT(m_impl->m_cellStage, "Cell stage world creation failed");
@@ -318,12 +308,6 @@ void
     // Allow running without GUI
     if(layer)
         layer->SetInputMode(Leviathan::GUI::INPUT_MODE::Gameplay);
-
-
-    // Clear world //
-    if(restarted == false) {
-        m_impl->m_cellStage->ClearEntities();
-    }
 
     // TODO: unpause, if it was paused
 
@@ -393,15 +377,50 @@ void
     // Set background plane //
     m_impl->createBackgroundItem();
 
-    // Gen species if this is a restart//
-    if(restarted) {
-        ScriptRunningSetup setup("resetWorld");
-        auto returned =
-            ThriveGame::Get()->getMicrobeScripts()->ExecuteOnModule<void>(
-                setup, false, m_impl->m_cellStage.get());
+    // Create a PatchMap (it will also contain the initial species)
+    LOG_INFO("Generating new PatchMap");
 
-        if(returned.Result != SCRIPT_RUN_RESULT::Success)
-            LOG_ERROR("Failed to run script side resetWorld");
+    {
+        ScriptRunningSetup setup("generatePatchMap");
+        auto returned =
+            ThriveGame::Get()->getMicrobeScripts()->ExecuteOnModule<PatchMap*>(
+                setup, false);
+
+        if(returned.Result != SCRIPT_RUN_RESULT::Success) {
+            LOG_ERROR("Failed to run generatePatchMap");
+            return;
+        }
+
+        if(!returned.Value) {
+            LOG_ERROR("generatePatchMap didn't return a patch map");
+            return;
+        }
+
+        // We are keeping a reference to the result
+        returned.Value->AddRef();
+
+        try {
+            m_impl->m_cellStage->GetPatchManager().setNewMap(
+                PatchMap::WrapPtr(returned.Value));
+        } catch(const Leviathan::Exception& e) {
+            LOG_ERROR("Something is wrong with the patch map, exception: ");
+            e.PrintToLog();
+            return;
+        }
+    }
+
+    // Make sure the player species exists (a bunch of places rely on it being
+    // named "Default")
+
+    // TODO: it would be nice to make the player species name a
+    // constant or something, other than this magic value
+    auto playerSpecies = m_impl->m_cellStage->GetPatchManager()
+                             .getCurrentMap()
+                             ->findSpeciesByName("Default");
+
+    if(!playerSpecies) {
+        LOG_ERROR("Patch map generation did not generate the default species");
+        return;
     }
 
     // Spawn player //
@@ -415,6 +434,10 @@ void
         LOG_ERROR("Failed to spawn player!");
         return;
     }
+
+    // Apply patch settings
+    m_impl->m_cellStage->GetPatchManager().applyPatchSettings();
+    checkAutoEvoStart();
 }
 
 void
@@ -442,12 +465,6 @@ CellStageWorld*
     ThriveGame::getCellStage()
 {
     return m_impl->m_cellStage.get();
-}
-
-PatchManager*
-    ThriveGame::getPatchManager()
-{
-    return m_impl->m_patch_manager.get();
 }
 
 PlayerData&
@@ -484,98 +501,48 @@ void
 {
     LOG_INFO("Editor button pressed");
 
-    // Fire an event to switch over the GUI
-    Engine::Get()->GetEventHandler()->CallEvent(
-        new Leviathan::GenericEvent("MicrobeEditorEntered"));
+    // Increase player population
+    const auto playerSpecies = m_impl->m_cellStage->GetPatchManager()
+                                   .getCurrentMap()
+                                   ->findSpeciesByName("Default");
+
+    playerSpecies->AddRef();
+    addExternalPopulationEffect(playerSpecies.get(), 30, "player reproduced");
+
+    // Mark that we want to enter the editor
+    m_impl->m_waitingForAutoEvoForEditor = true;
+    checkAutoEvoStart();
+
+    // Move to loading screen to wait for auto-evo to finish (and apply the
+    // external population effects)
+    // This is done here because we unlink the world now to freeze it, the
+    // loading screen hides nothing being drawn under the GUI.
+    // This check makes the loading text not flash on screen if the run is
+    // complete already
+    if(m_impl->m_autoEvo.getQueueSize() > 0) {
+        updateLoadingScreen(true, "Waiting for auto-evo", "Checking status...");
+    }
 
     Leviathan::Engine* engine = Engine::GetEngine();
     Leviathan::Window* window1 = engine->GetWindowEntity();
 
-    // Create an editor world
-    LOG_INFO("Entering MicrobeEditor");
+    // Unlink the world
+    window1->LinkObjects(nullptr);
 
-    // Create world if not already created //
-    if(!m_impl->m_microbeEditor) {
-
-        LOG_INFO("ThriveGame: editorButtonClicked: Creating new microbe editor "
-                 "world");
-
-        Leviathan::WorldNetworkSettings netSettings;
-        netSettings.IsAuthoritative = true;
-        netSettings.DoInterpolation = true;
-
-        m_impl->m_microbeEditor =
-            std::dynamic_pointer_cast<MicrobeEditorWorld>(engine->CreateWorld(
-                window1, static_cast<int>(THRIVE_WORLD_TYPE::MICROBE_EDITOR),
-                createPhysicsMaterials(),
-                Leviathan::WorldNetworkSettings::GetSettingsForSinglePlayer()));
-    }
-
-    LEVIATHAN_ASSERT(
-        m_impl->m_microbeEditor, "Microbe editor world creation failed");
-
-    // Link the new world to the window (this will automatically make
-    // the old one go to the background)
-    window1->LinkObjects(m_impl->m_microbeEditor);
-
-    // Set the right input handlers active //
+    // Disable previous handlers
     m_impl->m_menuKeyPresses->setEnabled(false);
     m_impl->m_cellStageKeys->setEnabled(false);
-    m_impl->m_microbeEditorKeys->setEnabled(true);
-    // // TODO: editor hotkeys. Maybe they should be in the GUI
 
-    // // So using this
-    // // // And switch the GUI mode to allow key presses through
-    // Leviathan::GUI::View* view = window1->GetGui()->GetLayerByIndex(0);
-
-    // // Allow running without GUI
-    // if(view)
-    //     view->SetInputMode(Leviathan::GUI::INPUT_MODE::Menu);
-
-
-    // Clear world //
-    m_impl->m_microbeEditor->ClearEntities();
-
-    // Main camera that will be attached to the player
-    auto camera = Leviathan::ObjectLoader::LoadCamera(*m_impl->m_microbeEditor,
-        Float3(0, 15, 0), bs::Quaternion(bs::Vector3::UNIT_X, bs::Degree(-90)));
-
-    // TODO: attach a ligth to the camera
-    // -- Light
-    //     local light = OgreLightComponent.new()
-    //     light:setRange(200)
-    //     entity:addComponent(light)
-
-    m_impl->m_microbeEditor->SetCamera(camera);
-
-    // Create backgrounds if they don't exist
-    m_impl->createBackgroundItem();
-
-    // Let the script do setup //
-    // This registers all the script defined systems to run and be
-    // available from the world
-    // LEVIATHAN_ASSERT(
-    //     m_impl->m_MicrobeEditorScripts, "microbe editor scripts not loaded");
-
-    LOG_INFO("Calling editor setup script onEditorEntry");
-
-    ScriptRunningSetup setup("onEditorEntry");
-
-    auto result = getMicrobeScripts()->ExecuteOnModule<void>(
-        setup, false, m_impl->m_microbeEditor.get());
-
-    if(result.Result != SCRIPT_RUN_RESULT::Success) {
-
-        LOG_ERROR(
-            "Failed to run editor setup function: " + setup.Entryfunction);
-        return;
-    }
+    LOG_INFO("Waiting for auto-evo to finish before finishing editor entry");
 }
 
 void
     ThriveGame::finishEditingClicked()
 {
     LOG_INFO("Finish editing pressed");
+
+    // Clear last auto-evo run
+    m_impl->m_autoEvoRun = nullptr;
 
     // Fire an event to switch over the GUI
     // And make the Editor apply current changes to the player Species, the
@@ -628,6 +595,10 @@ void
                   setup.Entryfunction);
         return;
     }
+
+    // Apply patch settings
+    m_impl->m_cellStage->GetPatchManager().applyPatchSettings();
+    checkAutoEvoStart();
 }
 
 void
@@ -645,7 +616,17 @@ void
     } else {
 
         // Clear the world
-        m_impl->m_cellStage->ClearEntities();
+        LOG_INFO("Clearing the world before exiting to menu");
+        if(m_impl->m_cellStage)
+            m_impl->m_cellStage->ClearEntities();
+        if(m_impl->m_microbeEditor)
+            m_impl->m_microbeEditor->ClearEntities();
+
+        if(m_impl->m_autoEvoRun) {
+            LOG_INFO("Stopping auto evo run, returning to menu");
+            m_impl->m_autoEvoRun->abort();
+            m_impl->m_autoEvoRun = nullptr;
+        }
     }
 
     // Get proper keys setup
@@ -983,14 +964,43 @@ void
 {
     LEVIATHAN_ASSERT(m_impl->m_MicrobeBackgroundMaterial, "no material yet");
 
-    LOG_WRITE("TODO: redo setBackgroundMaterial");
+    auto graphics = Engine::Get()->GetGraphics();
 
-    // // TODO: use material here
-    // bs::HTexture texture =
-    //     Engine::Get()->GetGraphics()->LoadTextureByName("Thrive_ocean0.png");
+    try {
+        const auto& background =
+            SimulationParameters::backgroundRegistry.getTypeData(material);
 
-    // LEVIATHAN_ASSERT(texture, "failed to load background: " + material);
-    // m_impl->m_MicrobeBackgroundMaterial->setTexture("gAlbedoTex", texture);
+        if(background.layers.empty()) {
+            LOG_ERROR("background has no layers: " + material);
+            return;
+        }
+
+        LOG_INFO("Setting background: " + background.internalName);
+
+        for(size_t i = 0; i < 4; ++i) {
+            const auto layer = "gTexLayer" + bs::toString(i);
+            if(i < background.layers.size()) {
+
+                m_impl->m_MicrobeBackgroundMaterial->setTexture(
+                    layer, graphics->LoadTextureByName(background.layers[i]));
+            } else {
+                m_impl->m_MicrobeBackgroundMaterial->setTexture(layer, nullptr);
+            }
+        }
+    } catch(const Leviathan::InvalidArgument&) {
+        LOG_ERROR("Invalid background set: " + material);
+        return;
+    }
+}
+
+void
+    ThriveGame::setSkybox(const std::string& assetName, float lightIntensity)
+{
+    LEVIATHAN_ASSERT(m_impl->m_cellStage, "no world yet");
+
+    m_impl->m_cellStage->SetSkybox(assetName, lightIntensity);
+
+    // TODO: once there are multi scene support in bsf, editor skybox
 }
 
 void
@@ -1002,6 +1012,64 @@ void
     }
 
     // Editor background is static
+}
+// ------------------------------------ //
+void
+    ThriveGame::addExternalPopulationEffect(Species* species,
+        int32_t change,
+        const std::string& reason)
+{
+    if(!species)
+        return;
+
+    const auto wrapped = Species::WrapPtr(species);
+
+    if(!m_impl->m_autoEvoRun) {
+
+        LOG_ERROR(
+            "No current auto-evo run, losing addExternalPopulationEffect");
+        return;
+    }
+
+    m_impl->m_autoEvoRun->addExternalPopulationEffect(wrapped, change, reason);
+}
+
+void
+    ThriveGame::checkAutoEvoStart()
+{
+    if(!m_impl->m_autoEvoRun) {
+
+        // Auto-evo not running yet
+        if(m_impl->m_waitingForAutoEvoForEditor ||
+            m_impl->m_autoEvoConcurrentlyWithGameplay) {
+
+            m_impl->m_autoEvoRun = std::make_shared<RunParameters>(
+                m_impl->m_cellStage->GetPatchManager().getCurrentMap());
+
+            m_impl->m_autoEvo.beginRun(m_impl->m_autoEvoRun);
+        }
+    }
+}
+// ------------------------------------ //
+void
+    ThriveGame::updateLoadingScreen(bool enabled,
+        const std::string& status,
+        const std::string& message)
+{
+    auto event = GenericEvent::MakeShared<GenericEvent>("UpdateLoadingScreen");
+
+    auto vars = event->GetVariables();
+
+    vars->Add(std::make_shared<NamedVariableList>(
+        "status", new Leviathan::StringBlock(status)));
+
+    vars->Add(std::make_shared<NamedVariableList>(
+        "message", new Leviathan::StringBlock(message)));
+
+    vars->Add(std::make_shared<NamedVariableList>(
+        "show", new Leviathan::BoolBlock(enabled)));
+
+    Engine::Get()->GetEventHandler()->CallEvent(event);
 }
 
 // ------------------------------------ //
@@ -1037,8 +1105,138 @@ void
 
         Engine::Get()->GetEventHandler()->CallEvent(event.detach());
     }
+
+    if(m_impl->m_waitingForAutoEvoForEditor) {
+
+        _checkIsEditorEntryReady();
+    }
 }
 
+void
+    ThriveGame::_checkIsEditorEntryReady()
+{
+    if(m_impl->m_autoEvo.getQueueSize() > 0) {
+        // Not time to enter yet
+        updateLoadingScreen(
+            true, "Waiting for Auto-evo", m_impl->m_autoEvo.getStatusString());
+        return;
+    }
+
+    LOG_INFO("Applying external effects and making things go extinct");
+    m_impl->m_autoEvoRun->applyExternalEffects();
+    m_impl->m_cellStage->GetPatchManager()
+        .getCurrentMap()
+        ->removeExtinctSpecies();
+
+    Leviathan::Engine* engine = Engine::GetEngine();
+    Leviathan::Window* window1 = engine->GetWindowEntity();
+
+    LOG_INFO("Auto-evo queue is now empty, entering editor");
+    m_impl->m_waitingForAutoEvoForEditor = false;
+
+    // Fire an event to switch over the GUI
+    {
+        auto event =
+            GenericEvent::MakeShared<GenericEvent>("MicrobeEditorEntered");
+
+        auto vars = event->GetVariables();
+
+        const auto patchMapJSON = m_impl->m_cellStage->GetPatchManager()
+                                      .getCurrentMap()
+                                      ->toJSONString();
+
+        // LOG_WRITE("patch map to GUI:\n" + patchMapJSON);
+
+        vars->Add(std::make_shared<NamedVariableList>(
+            "patchMapJSON", new Leviathan::StringBlock(patchMapJSON)));
+
+        Engine::Get()->GetEventHandler()->CallEvent(event);
+    }
+
+    // Hide loading screen
+    updateLoadingScreen(false, "", "");
+
+    // Create an editor world
+    LOG_INFO("Entering MicrobeEditor");
+
+    // Create world if not already created //
+    if(!m_impl->m_microbeEditor) {
+
+        LOG_INFO("ThriveGame: editorButtonClicked: Creating new microbe editor "
+                 "world");
+
+        Leviathan::WorldNetworkSettings netSettings;
+        netSettings.IsAuthoritative = true;
+        netSettings.DoInterpolation = true;
+
+        m_impl->m_microbeEditor =
+            std::dynamic_pointer_cast<MicrobeEditorWorld>(engine->CreateWorld(
+                window1, static_cast<int>(THRIVE_WORLD_TYPE::MICROBE_EDITOR),
+                createPhysicsMaterials(),
+                Leviathan::WorldNetworkSettings::GetSettingsForSinglePlayer()));
+    }
+
+    LEVIATHAN_ASSERT(
+        m_impl->m_microbeEditor, "Microbe editor world creation failed");
+
+    // Link the new world to the window (this will automatically make
+    // the old one go to the background)
+    window1->LinkObjects(m_impl->m_microbeEditor);
+
+    // Set the right input handlers active //
+    m_impl->m_menuKeyPresses->setEnabled(false);
+    m_impl->m_cellStageKeys->setEnabled(false);
+    m_impl->m_microbeEditorKeys->setEnabled(true);
+    // // TODO: editor hotkeys. Maybe they should be in the GUI
+
+    // // So using this
+    // // // And switch the GUI mode to allow key presses through
+    // Leviathan::GUI::View* view = window1->GetGui()->GetLayerByIndex(0);
+
+    // // Allow running without GUI
+    // if(view)
+    //     view->SetInputMode(Leviathan::GUI::INPUT_MODE::Menu);
+
+
+    // Clear world //
+    m_impl->m_microbeEditor->ClearEntities();
+
+    // Main camera that will be attached to the player
+    auto camera = Leviathan::ObjectLoader::LoadCamera(*m_impl->m_microbeEditor,
+        Float3(0, 15, 0), bs::Quaternion(bs::Vector3::UNIT_X, bs::Degree(-90)));
+
+    // TODO: attach a ligth to the camera
+    // -- Light
+    //     local light = OgreLightComponent.new()
+    //     light:setRange(200)
+    //     entity:addComponent(light)
+
+    m_impl->m_microbeEditor->SetCamera(camera);
+
+    // Create backgrounds if they don't exist
+    m_impl->createBackgroundItem();
+
+    // Let the script do setup //
+    // This registers all the script defined systems to run and be
+    // available from the world
+    // LEVIATHAN_ASSERT(
+    //     m_impl->m_MicrobeEditorScripts, "microbe editor scripts not loaded");
+
+    LOG_INFO("Calling editor setup script onEditorEntry");
+
+    ScriptRunningSetup setup("onEditorEntry");
+
+    auto result = getMicrobeScripts()->ExecuteOnModule<void>(
+        setup, false, m_impl->m_microbeEditor.get());
+
+    if(result.Result != SCRIPT_RUN_RESULT::Success) {
+
+        LOG_ERROR(
+            "Failed to run editor setup function: " + setup.Entryfunction);
+        return;
+    }
+}
+// ------------------------------------ //
 bool
     ThriveGame::createImpl()
 {
@@ -1116,6 +1314,9 @@ void
 void
     ThriveGame::EnginePreShutdown()
 {
+    // Make sure all simulations have stopped
+    m_impl->m_autoEvo.abortSimulations();
+
     // Shutdown scripting first to allow it to still do anything it wants //
     releaseScripts();
 

@@ -16,6 +16,7 @@ class CellStageWorld;
 // SpawnType
 ////////////////////////////////////////////////////////////////////////////////
 struct SpawnType {
+    // Why are doubles used here?
     double spawnRadius = 0.0;
     double spawnRadiusSqr = 0.0;
     double spawnFrequency = 0.0;
@@ -109,10 +110,16 @@ public:
     void
         removeSpawnType(SpawnerTypeId spawnId);
 
+    bool
+        updateDensity(SpawnerTypeId spawnId, double spawnDensity);
+
     //! Called before shutdown to clear everything
     //! (called automatically when the world is released)
     void
         Release();
+
+    void
+        Clear();
 
     void
         CreateNodes(const std::vector<std::tuple<SpawnedComponent*, ObjectID>>&

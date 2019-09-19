@@ -76,28 +76,7 @@ class MicrobeEditor{
     //! This is called each time the editor is entered so this needs to properly reset state
     void init()
     {
-        gridSceneNode = hudSystem.world.CreateEntity();
-        auto node = hudSystem.world.Create_RenderNode(gridSceneNode);
-        node.Scale = Float3(HEX_SIZE, 1, HEX_SIZE);
-        // Move to line up with the hexes
-        node.Node.setPosition(Float3(0.72f, 0, 0.18f));
-        node.Marked = true;
-
-        LOG_WRITE("TODO: remake the background grid (if wanted)");
-
-        // auto plane = hudSystem.world.Create_Plane(gridSceneNode, node.Node,
-        //     "EditorGridMaterial", bs::Plane(bs::Vector3(0, 1, 0), 0), Float2(100, 100),
-        //     // This is the UV coordinates direction
-        //     Float3(0, 0, 1));
-
-        // // Move to an early render queue
-        // hudSystem.world.GetScene().getRenderQueue().setRenderQueueMode(
-        //     2, Ogre::RenderQueue::FAST);
-
-        // plane.GraphicalObject.setRenderQueueGroup(2);
-
         mutationPoints = BASE_MUTATION_POINTS;
-        gridVisible = true;
 
         actionIndex = 0;
         organelleRot = 0;
@@ -117,7 +96,7 @@ class MicrobeEditor{
     {
         GetThriveGame().playerData().setBool("edited_microbe", true);
 
-        SpeciesComponent@ playerSpecies = MicrobeOperations::getSpeciesComponent(
+        Species@ playerSpecies = MicrobeOperations::getSpecies(
             GetThriveGame().getCellStage(), GetThriveGame().playerData().activeCreature());
 
         assert(playerSpecies !is null, "didn't find edited species");
@@ -148,9 +127,8 @@ class MicrobeEditor{
             }
         }
 
-        LOG_INFO(playerSpecies.stringCode);
         LOG_INFO("Starting microbe editor with: " + editedMicrobe.length() +
-            " organelles in the microbe");
+            " organelles in the microbe, genes: " + playerSpecies.stringCode);
 
         // Show existing organelles
         _updateAlreadyPlacedVisuals();
@@ -158,11 +136,14 @@ class MicrobeEditor{
         // Update GUI buttons now that we have correct organelles
         updateGuiButtonStatus(checkIsNucleusPresent());
 
-        //force add your species
-        cast<SpeciesSystem>(GetThriveGame().getCellStage().GetScriptSystem("SpeciesSystem")).splitSpecies(playerSpecies);
-
-        //force an auto-evo step
-        cast<SpeciesSystem>(GetThriveGame().getCellStage().GetScriptSystem("SpeciesSystem")).doAutoEvoStep();
+        // Create a mutated version of the current species code to compete against the player
+        if(!GetThriveGame().getCellStage().GetPatchManager().getCurrentMap().getCurrentPatch()
+            .addSpecies(createMutatedSpecies(playerSpecies),
+                GetEngine().GetRandom().GetNumber(INITIAL_SPLIT_POPULATION_MIN,
+                    INITIAL_SPLIT_POPULATION_MAX)))
+        {
+            LOG_ERROR("Failed to create a mutated copy of the player species");
+        }
 
         // Reset to cytoplasm if nothing is selected
         if(activeActionName == ""){
@@ -1081,7 +1062,7 @@ class MicrobeEditor{
     // Maybe i should do this in the non-editor code instead, to make sure its more decoupled from the player
     int getMicrobeGeneration() const
     {
-        auto playerSpecies = MicrobeOperations::getSpeciesComponent(
+        auto playerSpecies = MicrobeOperations::getSpecies(
             GetThriveGame().getCellStage(), "Default");
 
         // Its plus one because you are updating the next generation
@@ -1120,7 +1101,7 @@ class MicrobeEditor{
             auto player = GetThriveGame().playerData().activeCreature();
 
             // We need to grab the player's species
-            SpeciesComponent@ playerSpecies = MicrobeOperations::getSpeciesComponent(
+            Species@ playerSpecies = MicrobeOperations::getSpecies(
                 world, player);
 
             assert(playerSpecies !is null, "didn't find edited species");
@@ -1216,9 +1197,6 @@ class MicrobeEditor{
     // This is the already placed organelle models
     private array<ObjectID> placedModels;
 
-    private ObjectID gridSceneNode;
-    //! TODO: toggling the grid is not working
-    private bool gridVisible;
     private MicrobeEditorHudSystem@ hudSystem;
 
     private int mutationPoints;

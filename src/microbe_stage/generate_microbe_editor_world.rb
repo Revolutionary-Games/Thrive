@@ -19,30 +19,11 @@ generator.addInclude "Script/ScriptTypeResolver.h"
 
 generator.addInclude "thrive_world_factory.h"
 
-# generator.addInclude "microbe_stage/membrane_system.h"
-generator.addInclude "microbe_stage/species_component.h"
 
 editorWorld = GameWorldClass.new(
-  "MicrobeEditorWorld", componentTypes: [
-    EntityComponent.new("SpeciesComponent", [ConstructorInfo.new(
-                                               [
-                                                 Variable.new("name", "std::string",
-                                                              noRef: false)
-                                               ])]),
-    # EntityComponent.new("MembraneComponent", [ConstructorInfo.new(
-    #                                             [
-    #                                               #Variable.new("GetScene()", "",
-    #                                               #             nonMethodParam: true),
-    #                                             ])], releaseparams: ["GetScene()"]),    
+  "MicrobeEditorWorld", componentTypes: [  
   ],
   systems: [
-    # EntitySystem.new("MembraneSystem", ["MembraneComponent", "RenderNode"],
-    #                  # This is ran only once and the animation is in
-    #                  # the vertex shader. That's why this isn't in
-    #                  # "runrender"
-    #                  runtick: {group: 100, parameters: [
-    #                              "GetScene()"
-    #                            ]}),
   ],
   systemspreticksetup: (<<-END
   const auto timeAndTickTuple = GetTickAndTime();

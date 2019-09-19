@@ -101,6 +101,11 @@ export function runMenuSetup(){
             switchToMicrobeHUD();
         });
 
+        // Loading screen showing
+        Leviathan.OnGeneric("UpdateLoadingScreen", (event, vars) => {
+            updateLoadingScreen(vars);
+        });
+
         // Server status message display
         Leviathan.OnGeneric("ConnectStatusMessage", (event, vars) => {
             handleConnectionStatusEvent(vars);
@@ -124,7 +129,7 @@ export function runMenuSetup(){
         // common.playVideo("../../Videos/intro.mkv", onIntroEnded);
 
         // Hide the loading logo
-        common.hideLoadingLogo();
+        updateLoadingScreen({show: false});
     }
 
     // This is ran immediately because this needs to register
@@ -194,7 +199,7 @@ function onIntroEnded(error) {
         console.error("failed to play intro video: " + error);
 
     if(common.isInEngine()){
-        common.hideLoadingLogo();
+        updateLoadingScreen({show: false});
         randomizeBackground();
         startMenuMusic();
     }
@@ -228,7 +233,7 @@ function newGame(){
     if(common.isInEngine()){
         Leviathan.PlayCutscene("Data/Videos/MicrobeIntro.mkv", onMicrobeIntroEnded,
             onMicrobeIntroEnded);
-        common.showLoadingLogo();
+        updateLoadingScreen({show: true, status: "Loading Microbe Stage", message: ""});
     } else {
         onMicrobeIntroEnded();
     }
@@ -300,6 +305,32 @@ function handleDebugOverlayData(vars){
     }
 }
 
+function updateLoadingScreen(vars){
+    if(vars.show){
+        if(document.getElementById("loadingScreen").style.display == "none"){
+
+            // TODO: selecting a concept art image or a tip during a loading screen goes here
+            document.getElementById("loadingScreen").style.display = "flex";
+        }
+
+    } else {
+        if(document.getElementById("loadingScreen").style.display == "flex"){
+
+            // If any timers or such were enabled by showing the
+            // loading screen they should be stopped here
+        }
+
+        // Prevent old messages from popping up
+        document.getElementById("loadingScreenStatus").innerText = "";
+        document.getElementById("loadingScreenMessage").innerText = "";
+        document.getElementById("loadingScreen").style.display = "none";
+        return;
+    }
+
+    document.getElementById("loadingScreenStatus").innerText = vars.status;
+    document.getElementById("loadingScreenMessage").innerText = vars.message;
+}
+
 function onMicrobeIntroEnded(error){
 
     if(error)
@@ -309,7 +340,7 @@ function onMicrobeIntroEnded(error){
 
     if(common.isInEngine()){
 
-        common.hideLoadingLogo();
+        updateLoadingScreen({show: false});
 
         // Make sure no video is playing in case we did an immediate start
         Leviathan.CancelCutscene();

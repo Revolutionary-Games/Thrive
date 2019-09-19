@@ -36,10 +36,6 @@ class MicrobeStageHudSystem : ScriptSystem{
         // This updates the microbe stage pause menu load button
         this.updateLoadButton();
 
-        this.chloroplastNotificationdisable();
-        this.toxinNotificationdisable();
-        this.editornotificationdisable();
-
         // Store compound ids for lookups in Run
         this.atpId = SimulationParameters::compoundRegistry().getTypeId("atp");
         this.atpVolume = SimulationParameters::compoundRegistry().getTypeData(
@@ -103,7 +99,10 @@ class MicrobeStageHudSystem : ScriptSystem{
         if(player != NULL_OBJECT){
 
             auto bag = World.GetComponent_CompoundBagComponent(player);
-            auto playerSpecies = MicrobeOperations::getSpeciesComponent(World, "Default");
+
+            Species@ playerSpecies = MicrobeOperations::getSpecies(
+                GetThriveGame().getCellStage(), GetThriveGame().playerData().activeCreature());
+
             MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
                 World.GetScriptComponentHolder("MicrobeComponent").Find(player));
 
@@ -223,36 +222,6 @@ class MicrobeStageHudSystem : ScriptSystem{
         } else {
             //this.rootGUIWindow.getChild("PauseMenu").getChild("LoadGameButton").disable();
         }
-    }
-
-    void chloroplastNotificationenable(){
-        LOG_INFO("TODO: hud");
-        // getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
-        // ).playSound("microbe-pickup-organelle");
-        // this.rootGUIWindow.getChild("chloroplastUnlockNotification").show();
-        chloroplastNotificationOpened = true;
-        // this.rootGUIWindow.getChild("toxinUnlockNotification").hide();
-    }
-
-    void chloroplastNotificationdisable(){
-        LOG_INFO("TODO: hud");
-        //this.rootGUIWindow.getChild("chloroplastUnlockNotification").hide();
-    }
-
-    void toxinNotificationenable(){
-        LOG_INFO("TODO: hud");
-        // getComponent("gui_sounds", g_luaEngine.currentGameState, SoundSourceComponent
-        // ).playSound("microbe-pickup-organelle");
-        // this.rootGUIWindow.getChild("toxinUnlockNotification").show();
-        toxinNotificationEnabled = true;
-        //this.rootGUIWindow.getChild("chloroplastUnlockNotification").hide();
-    }
-
-    void toxinNotificationdisable(){
-        //this.rootGUIWindow.getChild("toxinUnlockNotification").hide();
-    }
-    void editornotificationdisable(){
-        //this.rootGUIWindow.getChild("editornotification").hide();
     }
 
     void showReproductionDialog(){
@@ -420,3 +389,47 @@ void showMessage(const string &in msg){
     //messagePanel.getChild("MessageLabel").setText(msg)
     //messagePanel.show()
 }
+
+// ------------------------------------ //
+// GUI action callbacks
+
+// Targets player cell and kills it (For suicide button)
+void killPlayerCellClicked(CellStageWorld@ world)
+{
+    auto playerEntity = GetThriveGame().playerData().activeCreature();
+    //kill it hard
+    MicrobeOperations::damage(world, playerEntity, 9999.0f, "suicide");
+}
+
+// This is called from c++ system PlayerMicrobeControlSystem
+void applyCellMovementControl(CellStageWorld@ world, ObjectID entity,
+    const Float3 &in movement, const Float3 &in lookPosition)
+{
+    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
+        world.GetScriptComponentHolder("MicrobeComponent").Find(entity));
+
+    if(microbeComponent is null){
+        return;
+    }
+
+    if(!microbeComponent.dead){
+        microbeComponent.facingTargetPoint = lookPosition;
+        microbeComponent.movementDirection = movement;
+    }
+}
+
+// Activate Engulf Mode
+void applyEngulfMode(CellStageWorld@ world, ObjectID entity)
+{
+    MicrobeOperations::toggleEngulfMode(world, entity);
+}
+
+// Player shoot toxin
+void playerShootToxin(CellStageWorld@ world, ObjectID entity)
+{
+    MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
+        world.GetScriptComponentHolder("MicrobeComponent").Find(entity));
+    CompoundId oxytoxyId = SimulationParameters::compoundRegistry().getTypeId("oxytoxy");
+    MicrobeOperations::emitAgent(world, entity, oxytoxyId, 10.0f, 400*10.0f);
+}
+

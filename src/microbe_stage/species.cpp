@@ -1,44 +1,85 @@
+// ------------------------------------ //
 #include "species.h"
-#include "microbe_stage/compounds.h"
-#include "microbe_stage/simulation_parameters.h"
 
 using namespace thrive;
+// ------------------------------------ //
+Species::Species(const std::string& name) : name(name) {}
 
-Species::Species() {}
-
-Species::Species(Json::Value value)
+Species::~Species()
 {
-    spawnDensity = value["spawnDensity"].asDouble();
+    SAFE_RELEASE(organelles);
+    SAFE_RELEASE(avgCompoundAmounts);
+}
+// ------------------------------------ //
+void
+    Species::setPopulationFromPatches(int32_t population)
+{
+    if(population < 0) {
+        this->population = 0;
+    } else {
+        this->population = population;
+    }
+}
+void
+    Species::applyImmediatePopulationChange(int32_t change)
+{
+    population += change;
 
-    // cast an int as a member of the enum (eg (0,1,2)(membrane,wall,chitin))
-    speciesMembraneType =
-        static_cast<MEMBRANE_TYPE>(value["membranetype"].asInt());
-    genus = value["genus"].asString();
-    epithet = value["epithet"].asString();
-    population = value["population"].asInt();
+    if(population < 0)
+        population = 0;
+}
+// ------------------------------------ //
+bool
+    Species::isPlayerSpecies() const
+{
+    return name == "Default";
+}
+// ------------------------------------ //
+std::string
+    Species::getFormattedName(bool identifier)
+{
+    std::string result;
 
-    // Setting the cloud colour.
-    float r = value["colour"]["r"].asFloat();
-    float g = value["colour"]["g"].asFloat();
-    float b = value["colour"]["b"].asFloat();
-    float a = value["colour"]["a"].asFloat();
-    colour = Float4(r, g, b, a);
+    result = genus + " " + epithet;
 
-    // Getting the starting compounds.
-    std::vector<std::string> compoundInternalNames =
-        value["startingCompounds"].getMemberNames();
-    for(std::string compoundInternalName : compoundInternalNames) {
-        unsigned int amount =
-            value["startingCompounds"][compoundInternalName].asUInt();
+    if(identifier)
+        result += " (" + name + ")";
 
-        // Getting the compound id from the compound registry.
-        size_t id = SimulationParameters::compoundRegistry
-                        .getTypeData(compoundInternalName)
-                        .id;
+    return result;
+}
+// ------------------------------------ //
+Json::Value
+    Species::toJSON(bool full /*= false*/) const
+{
+    Json::Value result;
 
-        startingCompounds.emplace(id, amount);
+    result["isBacteria"] = isBacteria;
+    result["speciesMembraneType"] = static_cast<int>(speciesMembraneType);
+    result["name"] = name;
+    result["genus"] = genus;
+    result["epithet"] = epithet;
+    result["stringCode"] = stringCode;
+
+    result["aggression"] = aggression;
+    result["opportunism"] = opportunism;
+    result["fear"] = fear;
+    result["activity"] = activity;
+    result["focus"] = focus;
+    result["population"] = population;
+    result["generation"] = generation;
+
+    result["isPlayerSpecies"] = isPlayerSpecies();
+
+    Json::Value color;
+    color["r"] = colour.X;
+    color["g"] = colour.Y;
+    color["b"] = colour.Z;
+    color["a"] = colour.W;
+    result["color"] = color;
+
+    if(full) {
+        LOG_WARNING("Species: toJSON: full is not implemented");
     }
 
-    // Getting the starting organelles.
-    // TODO
+    return result;
 }
