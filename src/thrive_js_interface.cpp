@@ -180,7 +180,8 @@ bool
 
     } else if(customType == "freebuildEditorButtonClicked") {
 
-        ThriveGame::Get()->editorButtonClicked(true);
+        ThriveGame::Get()->enableFreebuild();
+        ThriveGame::Get()->editorButtonClicked();
         return true;
     } else if(customType == "finishEditingClicked") {
 

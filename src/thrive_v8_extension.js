@@ -9,7 +9,7 @@ var Thrive = {};
                          onSuccess: onSuccess,
                          onFailure: onFailure
                         });
-    }
+    };
 
     native function startNewGame();
     Thrive.start = startNewGame;

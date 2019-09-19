@@ -1,7 +1,7 @@
 // Main menu scripts are here
 import * as common from "./gui_common.mjs";
 import * as microbe_hud from "./microbe_hud.mjs";
-import {setupMicrobeEditor} from "./microbe_editor.mjs";
+import {doEnterMicrobeEditor, setupMicrobeEditor} from "./microbe_editor.mjs";
 
 // eslint off
 // import {doEnterMicrobeEditor} from "./microbe_editor.mjs";
@@ -259,11 +259,15 @@ function newGame(){
 }
 
 function enterFreebuildEditor(){
+    switchToMicrobeHUD();
+
     if(common.isInEngine()){
         Thrive.start();
         Thrive.freebuildEditorButtonClicked();
+    } else {
+        doEnterMicrobeEditor();
     }
-    switchToMicrobeHUD();
+
     document.getElementById("toolsMenu").style.display = "none";
     document.getElementById("mainMenu").style.display = "";
 }

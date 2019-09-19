@@ -353,8 +353,8 @@ function onResumeClickedEditor(){
 }
 
 function onExitToMenuClickedEditor(){
+    document.getElementById("pauseOverlayEditor").style.display = "none";
     if(common.isInEngine()){
-        document.getElementById("pauseOverlayEditor").style.display = "none";
         Thrive.exitToMenuClicked();
     } else {
         main_menu.doExitToMenu();
