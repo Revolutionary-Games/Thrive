@@ -67,6 +67,11 @@ public:
     Species::pointer
         getSpecies(uint64_t index) const;
 
+    //! \brief Makes a JSON object representing this patch, including biome and
+    //! species data
+    Json::Value
+        toJSON() const;
+
     int32_t
         getId() const
     {
@@ -168,6 +173,14 @@ public:
     //! \brief Removes species from patches where their population is <= 0
     void
         removeExtinctSpecies();
+
+    //! \brief Makes a JSON object representing the entire map
+    Json::Value
+        toJSON() const;
+
+    //! \brief Returns JSON as a string
+    std::string
+        toJSONString() const;
 
     Patch::pointer
         getCurrentPatch();

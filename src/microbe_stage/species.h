@@ -7,6 +7,8 @@
 #include <add_on/scriptarray/scriptarray.h>
 #include <add_on/scriptdictionary/scriptdictionary.h>
 
+#include <json/json.h>
+
 #include <map>
 #include <string>
 #include <vector>
@@ -46,6 +48,12 @@ public:
     //! \returns A formatted name
     std::string
         getFormattedName(bool identifier = false);
+
+    //! \brief Makes a JSON object representing this biome
+    //! \todo Implement full mode, right now this skips the avg compounds (and
+    //! organelles, but those are findable in stringCode)
+    Json::Value
+        toJSON(bool full = false) const;
 
     // These are reference counted so don't forget to release
     CScriptArray* organelles = nullptr;
