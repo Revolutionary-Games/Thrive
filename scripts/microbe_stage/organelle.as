@@ -641,7 +641,6 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
         assert(organelleEntity == NULL_OBJECT, "PlacedOrganelle already had an entity");
 
-        const Float3 offset = organelle.calculateModelOffset();
 
         RenderNode@ renderNode;
 
@@ -661,6 +660,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
             // For performance reasons we set the position here directly
             // instead of with the position system
+            const Float3 offset = organelle.calculateModelOffset();
             renderNode.Node.setPosition(offset + this.cartesianPosition);
             renderNode.Node.setOrientation(bs::Quaternion(bs::Degree(180),
                     bs::Vector3(0, 1, 0))*bs::Quaternion(bs::Degree(rotation),
