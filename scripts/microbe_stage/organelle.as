@@ -192,12 +192,12 @@ class Organelle{
         offset /= count;
         return offset;
     }
-    
+
     Float3 calculateModelOffset() const
     {
         return ((calculateCenterOffset()/=hexes.getSize()))*HEX_SIZE;
     }
-    
+
     bool hasComponent(const string &in name) const{
 
         for(uint i = 0; i < components.length(); ++i){
@@ -591,7 +591,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         }
     }
 
-    
+
     // Called by a microbe when this organelle has been added to it
     //
     // @param microbe
