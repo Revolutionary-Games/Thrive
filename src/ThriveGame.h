@@ -66,6 +66,11 @@ public:
     void
         setBackgroundMaterial(const std::string& material);
 
+    //! \brief Sets the skybox by asset on the world and the light intensity of
+    //! indirect light coming from the skybox
+    void
+        setSkybox(const std::string& assetName, float lightIntensity);
+
     //!\brief This is a callback for the camera controller to notify us of the
     //! new needed position of the background
     void
