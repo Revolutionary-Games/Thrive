@@ -8,19 +8,27 @@ o GameModule "microbe_stage"{
     t sourcefiles{
         // It is possible for these files to also include more stuff, but maybe it is clearer
         // if everything is also listed here
-        setup.as
+        chunk_spawner.as
+        compound_cloud_spawner.as
         configs.as
-        organelle_table.as
+        hex.as
+        microbe.as
+        microbe_ai.as
+        microbe_operations.as
+        microbe_spawner.as
+        mutation_helpers.as
+        mutations.as
+        name_generator.as
         organelle.as
         organelle_component.as
         organelle_placement.as
-        microbe_operations.as
-        microbe.as
-        species_system.as
+        organelle_table.as
+        patch_map_generator.as
+        physics_callbacks.as
         procedural_microbes.as
-        microbe_ai.as
-        hex.as
-        biome.as
+        setup.as
+        species.as
+        auto-evo.as
 
         microbe_stage_hud.as
 
@@ -29,6 +37,9 @@ o GameModule "microbe_stage"{
         microbe_editor/microbe_editor.as
         microbe_editor/microbe_editor_hud.as
         microbe_editor/setup.as
+        
+        // TODO: This should be easy to move to another module
+        utility.as
     }
 
     t import{

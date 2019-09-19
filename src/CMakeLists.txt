@@ -32,6 +32,8 @@ set(GROUP_GENERAL
 set(GROUP_MICROBE_STAGE
   "microbe_stage/agent_cloud_system.cpp"
   "microbe_stage/agent_cloud_system.h"
+  "microbe_stage/backgrounds.cpp"
+  "microbe_stage/backgrounds.h"
   "microbe_stage/biomes.cpp"
   "microbe_stage/biomes.h"
   "microbe_stage/bioprocesses.cpp"
@@ -62,8 +64,8 @@ set(GROUP_MICROBE_STAGE
   "microbe_stage/species.h"
   "microbe_stage/patch.cpp"
   "microbe_stage/patch.h"
-  "microbe_stage/species_component.cpp"
-  "microbe_stage/species_component.h"
+  "microbe_stage/patch_manager.cpp"
+  "microbe_stage/patch_manager.h"
   "microbe_stage/species_name_controller.cpp"
   "microbe_stage/species_name_controller.h"
   "microbe_stage/player_microbe_control.h"
@@ -72,6 +74,20 @@ set(GROUP_MICROBE_STAGE
   "microbe_stage/microbe_editor_key_handler.cpp"
   "microbe_stage/player_hover_info.h"
   "microbe_stage/player_hover_info.cpp"
+  )
+
+set(GROUP_AUTO-EVO
+  "auto-evo/auto-evo.cpp"
+  "auto-evo/auto-evo.h"
+  "auto-evo/run_parameters.cpp"
+  "auto-evo/run_parameters.h"
+  "auto-evo/run_step.h"
+  "auto-evo/run_results.cpp"
+  "auto-evo/run_results.h"
+  "auto-evo/common_steps.h"
+  "auto-evo/common_steps.cpp"
+  "auto-evo/auto-evo_script_helpers.cpp"
+  "auto-evo/auto-evo_script_helpers.h"
   )
 
 set_source_files_properties("microbe_stage/generate_cell_stage_world.rb"
@@ -119,7 +135,7 @@ set(GROUP_MICROBE
 
 add_custom_command(OUTPUT "${PROJECT_SOURCE_DIR}/src/generated/thrive_v8_extension.h"
   COMMAND "${LEVIATHAN_SRC}/build/bin/FileGenerator" "V8EXT"
-  "\"${PROJECT_SOURCE_DIR}/src/thrive_v8_extension.js\"" 
+  "\"${PROJECT_SOURCE_DIR}/src/thrive_v8_extension.js\""
   "\"${PROJECT_SOURCE_DIR}/src/generated/thrive_v8_extension.h\""
   "thrive"
   DEPENDS "${PROJECT_SOURCE_DIR}/src/thrive_v8_extension.js"
@@ -141,7 +157,7 @@ set(GROUP_CORE_FILES
   "thrive_common.h" "thrive_common.cpp"
   # These might not be needed here
   "server/ThriveServer.h" "server/ThriveServer.cpp"
-  "server/thrive_server_net_handler.h" "server/thrive_server_net_handler.cpp"  
+  "server/thrive_server_net_handler.h" "server/thrive_server_net_handler.cpp"
   )
 
 
@@ -154,6 +170,7 @@ source_group("microbe_stage" FILES ${GROUP_MICROBE_STAGE})
 source_group("scripting" FILES ${GROUP_SCRIPTING})
 source_group("sound" FILES ${GROUP_SOUND})
 source_group("util" FILES ${GROUP_UTIL})
+source_group("auto-evo" FILES ${GROUP_AUTO-EVO})
 
 source_group("menu_code" FILES ${GROUP_MENU})
 
@@ -164,7 +181,7 @@ source_group("main" FILES ${GROUP_CORE_FILES})
 set(THRIVE_FILES ${GROUP_CORE_FILES} ${GROUP_BULLET} ${GROUP_ENGINE}
   ${GROUP_GENERAL} ${GROUP_GUI} ${GROUP_MICROBE_STAGE}
   ${GROUP_SCRIPTING} ${GROUP_SOUND}
-  ${GROUP_UTIL} ${GROUP_MICROBE}
+  ${GROUP_UTIL} ${GROUP_MICROBE} ${GROUP_AUTO-EVO}
   ${GROUP_MENU}
   )
 
@@ -213,7 +230,7 @@ include_directories(${CMAKE_CURRENT_LIST_DIR})
 set(GROUP_RESOURCES
   "Main_Res.rc"
   )
-  
+
 source_group("Resource Files" FILES ${GROUP_RESOURCES})
 
 set(CurrentProjectName Thrive)
@@ -249,5 +266,3 @@ target_link_libraries(Thrive ThriveLib)
 
 # Server target. This also defines a Leviathan program
 add_subdirectory(server)
-
-

@@ -18,35 +18,28 @@ Biome::Biome(Json::Value value)
     background = value["background"].asString();
 
 
-    // getting colour information
-    Json::Value colorData = value["colors"];
-    Json::Value dData = colorData["diffuseColors"];
-    Json::Value sData = colorData["specularColors"];
-    Json::Value uData = colorData["upperAmbientColor"];
-    Json::Value lData = colorData["lowerAmbientColor"];
+    // Skybox
+    skybox = value["skybox"].asString();
+    skyboxLightIntensity = value["skyboxLightIntensity"].asFloat();
 
-    // Light power
-    lightPower = value["lightPower"].asFloat();
+    // Sunlight
+    const auto sunlight = value["sunlight"];
+    const auto sunlightColorData = sunlight["color"];
+    const auto sunlightDirectionData = sunlight["direction"];
 
-    float r = sData["r"].asFloat();
-    float g = sData["g"].asFloat();
-    float b = sData["b"].asFloat();
-    specularColors = Float4(r, g, b, 1.0);
+    float r = sunlightColorData["r"].asFloat();
+    float g = sunlightColorData["g"].asFloat();
+    float b = sunlightColorData["b"].asFloat();
 
-    r = sData["r"].asFloat();
-    g = sData["g"].asFloat();
-    b = sData["b"].asFloat();
-    diffuseColors = Float4(r, g, b, 1.0);
+    sunlightColor = Float3(r, g, b);
+    sunlightIntensity = sunlight["intensity"].asFloat();
 
-    r = uData["r"].asFloat();
-    g = uData["g"].asFloat();
-    b = uData["b"].asFloat();
-    upperAmbientColor = Float4(r, g, b, 1.0);
+    float x = sunlightDirectionData["x"].asFloat();
+    float y = sunlightDirectionData["y"].asFloat();
+    float z = sunlightDirectionData["z"].asFloat();
 
-    r = lData["r"].asFloat();
-    g = lData["g"].asFloat();
-    b = lData["b"].asFloat();
-    lowerAmbientColor = Float4(r, g, b, 1.0);
+    sunlightDirection = Float3(x, y, z);
+    sunlightSourceRadius = sunlight["sourceRadius"].asFloat();
 
     // Getting the compound information.
     Json::Value compoundData = value["compounds"];
@@ -54,8 +47,7 @@ Biome::Biome(Json::Value value)
         compoundData.getMemberNames();
 
     for(std::string compoundInternalName : compoundInternalNames) {
-        unsigned int amount =
-            compoundData[compoundInternalName]["amount"].asUInt();
+        float amount = compoundData[compoundInternalName]["amount"].asFloat();
         double density =
             compoundData[compoundInternalName]["density"].asDouble();
         double dissolved =
@@ -161,9 +153,42 @@ CScriptArray*
         (chunks | boost::adaptors::map_keys).end(),
         Leviathan::ScriptExecutor::Get()->GetASEngine(), "array<uint64>");
 }
+// ------------------------------------ //
+Json::Value
+    Biome::toJSON(bool full /*= false*/) const
+{
+    Json::Value result = RegistryType::toJSON();
+
+    result["background"] = background;
+
+    // skybox
+    result["skybox"] = skybox;
+    result["skyboxLightIntensity"] = skyboxLightIntensity;
+
+    result["sunlightIntensity"] = sunlightIntensity;
+    result["sunlightSourceRadius"] = sunlightSourceRadius;
+
+    Json::Value color;
+    color["r"] = sunlightColor.X;
+    color["g"] = sunlightColor.Y;
+    color["b"] = sunlightColor.Z;
+    result["sunlightColor"] = color;
+
+    Json::Value direction;
+    direction["x"] = sunlightDirection.X;
+    direction["y"] = sunlightDirection.Y;
+    direction["z"] = sunlightDirection.Z;
+    result["sunlightDirection"] = direction;
+
+    if(full) {
+        LOG_WARNING("Biome: toJSON: full is not implemented");
+    }
+
+    return result;
+}
 
 // ------------------------------------ //
-
+// ChunkData
 ChunkCompoundData*
     ChunkData::getCompound(size_t type)
 {

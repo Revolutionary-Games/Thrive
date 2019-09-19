@@ -1,60 +1,271 @@
 #pragma once
 
-#include <Entities/Component.h>
-#include <Entities/Components.h>
-#include <Entities/System.h>
-#include <microbe_stage/biomes.h>
+#include "biomes.h"
+#include "species.h"
+
+#include <Common/ReferenceCounted.h>
+
 #include <unordered_map>
+#include <unordered_set>
 
 namespace thrive {
 
-class CellStageWorld;
+constexpr auto INITIAL_SPECIES_POPULATION = 100;
 
 //! An object that represents a patch
-class Patch {
+class Patch : public Leviathan::ReferenceCounted {
 public:
-    std::string name;
-    size_t patchId;
+    struct SpeciesInPatch {
 
-    Patch(std::string name);
-    virtual ~Patch();
+        Species::pointer species;
+        int population = 0;
+    };
 
-    std::string
-        getName();
+public:
+    Patch(const std::string& name, int32_t id, const Biome& biomeTemplate);
+    virtual ~Patch() = default;
+
+    //! \brief Adds a connection to patch with id
+    //! \returns True if this was new, false if already added
+    bool
+        addNeighbour(int32_t id);
+
+    //! \brief Returns all species in this patch
+    const auto&
+        getSpecies() const
+    {
+        return speciesInPatch;
+    }
+
+    //! \brief Looks for a species with the specified name in this patch
+    Species::pointer
+        searchSpeciesByName(const std::string& name) const;
+
+    //! \brief Adds a new species to this patch
+    //! \returns True when added. False if the species was already in this patch
+    bool
+        addSpecies(const Species::pointer& species,
+            int population = INITIAL_SPECIES_POPULATION);
+
+    //! \brief Removes a species from this patch
+    //! \returns True when a species was removed
+    bool
+        removeSpecies(const Species::pointer& species);
+
+    //! \brief Updates a species population in this patch
+    //! \returns True on success
+    bool
+        updateSpeciesPopulation(const Species::pointer& species,
+            int newPopulation);
+
+    int
+        getSpeciesPopulation(const Species::pointer& species);
+
+    uint64_t
+        getSpeciesCount() const;
+
+    Species::pointer
+        getSpecies(uint64_t index) const;
+
+    //! \brief Makes a JSON object representing this patch, including biome and
+    //! species data
+    Json::Value
+        toJSON() const;
+
+    int32_t
+        getId() const
+    {
+        return patchId;
+    }
+
+    const std::string&
+        getName() const
+    {
+        return name;
+    }
+
+    Biome&
+        getBiome()
+    {
+        return biome;
+    }
+
+    const Biome&
+        getBiome() const
+    {
+        return biome;
+    }
+
+    const auto&
+        getNeighbours() const
+    {
+        return adjacentPatches;
+    }
+
+    bool
+        addSpeciesWrapper(Species* species, int32_t population)
+    {
+        return addSpecies(Species::WrapPtr(species), population);
+    }
+
+    Species*
+        getSpeciesWrapper(uint64_t index) const
+    {
+        const auto result = getSpecies(index);
+        if(result)
+            result->AddRef();
+        return result.get();
+    }
+
+    int32_t
+        getSpeciesPopulationWrapper(Species* species)
+    {
+        return getSpeciesPopulation(Species::WrapPtr(species));
+    }
+
+    //! \brief Set coordinates for the patch to be displayed in the gui
     void
-        setName(std::string name);
+        setScreenCoordinates(Float2 coordinates);
 
-    size_t
-        getBiome();
-    void
-        setBiome(size_t patchBiome);
+    //! Get current coordinates for the patch to be displayed in the gui
+    Float2
+        getScreenCoordinates() const
+    {
+        return screenCoordinates;
+    }
 
-    size_t
-        getId();
+    REFERENCE_COUNTED_PTR_TYPE(Patch);
 
 private:
-    size_t patchBiome;
-    std::vector<std::weak_ptr<Patch>> adjacentPatches;
+    const int32_t patchId;
+    std::string name;
+
+    //! Where the patch should be displayed in the gui.
+    Float2 screenCoordinates;
+
+    Biome biome;
+
+    //! Species in this patch. The Species objects are shared with other
+    //! patches. They are contained in SpeciesInPatch struct to allow per patch
+    //! properties
+    std::vector<SpeciesInPatch> speciesInPatch;
+
+    //! Links to other patches. These don't use Patch::pointer because that
+    //! doesn't support weak references
+    std::unordered_set<int32_t> adjacentPatches;
 };
 
 
-class PatchManager {
+//! A mesh of connected Patches
+class PatchMap : public Leviathan::ReferenceCounted {
 public:
-    PatchManager();
-    virtual ~PatchManager();
-    size_t
-        generatePatchMap();
+    PatchMap() = default;
+    ~PatchMap() = default;
 
-    Patch*
+    //! \brief Adds a new patch to the map
+    //! \returns True on success. False if the id is duplicate or there is some
+    //! other problem
+    bool
+        addPatch(const Patch::pointer& patch);
+
+    //! \returns True when the map is valid and has no invalid references
+    bool
+        verify();
+
+    //! \brief Finds a species in the current patch map with name
+    //!
+    //! This starts from the current patch and then falls back to checking all
+    //! patches. This is done to improve performance as it is likely that
+    //! species in the current patch are looked up
+    Species::pointer
+        findSpeciesByName(const std::string& name);
+
+    //! \brief Updates the global population numbers in Species
+    void
+        updateGlobalPopulations();
+
+    //! \brief Removes species from patches where their population is <= 0
+    void
+        removeExtinctSpecies();
+
+    //! \brief Makes a JSON object representing the entire map
+    Json::Value
+        toJSON() const;
+
+    //! \brief Returns JSON as a string
+    std::string
+        toJSONString() const;
+
+    Patch::pointer
         getCurrentPatch();
 
-    Patch*
-        getPatchFromKey(size_t key);
+    //! \brief Sets the current patch
+    //! \returns True if the id was valid, false otherwise
+    bool
+        setCurrentPatch(int32_t newId);
 
-protected:
+    inline int32_t
+        getCurrentPatchId() const
+    {
+        return currentPatchId;
+    }
+
+    Patch::pointer
+        getPatch(int32_t id);
+
+    bool
+        addPatchWrapper(Patch* patch)
+    {
+        return addPatch(Patch::WrapPtr(patch));
+    }
+
+    Patch*
+        getCurrentPatchWrapper()
+    {
+        const auto ptr = getCurrentPatch();
+        if(ptr)
+            ptr->AddRef();
+        return ptr.get();
+    }
+
+    Patch*
+        getPatchWrapper(int32_t id)
+    {
+        const auto ptr = getPatch(id);
+        if(ptr)
+            ptr->AddRef();
+        return ptr.get();
+    }
+
+    Species*
+        findSpeciesByNameWrapper(const std::string& name)
+    {
+        const auto ptr = findSpeciesByName(name);
+        if(ptr)
+            ptr->AddRef();
+        return ptr.get();
+    }
+
+    auto&
+        getPatches()
+    {
+        return patches;
+    }
+
+    const auto&
+        getPatches() const
+    {
+        return patches;
+    }
+
+    CScriptArray*
+        getPatchesWrapper() const;
+
+    REFERENCE_COUNTED_PTR_TYPE(PatchMap);
+
 private:
-    std::unordered_map<size_t, std::shared_ptr<Patch>> patchMap;
-    size_t currentPatchId = 0;
+    std::unordered_map<int32_t, Patch::pointer> patches;
+    int32_t currentPatchId = 0;
 };
 
 } // namespace thrive

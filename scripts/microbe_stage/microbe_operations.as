@@ -1,8 +1,6 @@
 // Operations on microbe entities
-#include "biome.as"
 #include "organelle_placement.as"
 #include "setup.as"
-#include "species_system.as"
 
 namespace MicrobeOperations{
 
@@ -24,21 +22,17 @@ double getCompoundAmount(CellStageWorld@ world, ObjectID microbeEntity, Compound
 // Returns handle to the microbe component with a given ID
 MicrobeComponent@ getMicrobeComponent(CellStageWorld@ world, ObjectID microbeEntity)
 {
- return cast<MicrobeComponent>(world.GetScriptComponentHolder("MicrobeComponent")
-    .Find(microbeEntity));
+    return cast<MicrobeComponent>(world.GetScriptComponentHolder("MicrobeComponent")
+        .Find(microbeEntity));
 }
 
 // Getter for microbe species
 //
 // returns the species component or null if it doesn't have a valid species
-SpeciesComponent@ getSpeciesComponent(CellStageWorld@ world, ObjectID microbeEntity)
+Species@ getSpecies(CellStageWorld@ world, ObjectID microbeEntity)
 {
     MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
-
-    // This needs to loop all the components and get the matching one
-    auto entity = findSpeciesEntityByName(world, microbeComponent.speciesName);
-
-    return world.GetComponent_SpeciesComponent(entity);
+    return getSpecies(world, microbeComponent.speciesName);
 }
 
 MicrobeComponent@ getPlayerMicrobe(CellStageWorld@ world)
@@ -49,26 +43,10 @@ MicrobeComponent@ getPlayerMicrobe(CellStageWorld@ world)
 
 // Getter for microbe species
 //
-// returns the species component or null if species with that name doesn't exist
-SpeciesComponent@ getSpeciesComponent(CellStageWorld@ world, const string &in speciesName)
+// returns the species or null if species with that name doesn't exist
+Species@ getSpecies(CellStageWorld@ world, const string &in speciesName)
 {
-    // This needs to loop all the components and get the matching one
-    auto entity = findSpeciesEntityByName(world, speciesName);
-
-    return world.GetComponent_SpeciesComponent(entity);
-}
-
-// Getter for species processor component
-//
-// returns the processor component or null if such species doesn't have that component
-// TODO: check what calls this and make it store the species entity id if it also calls
-// getSpeciesComponent to save searching the whole species component index multiple times
-ProcessorComponent@ getProcessorComponent(CellStageWorld@ world, const string &in speciesName)
-{
-    // This needs to loop all the components and get the matching one
-    auto entity = findSpeciesEntityByName(world, speciesName);
-
-    return world.GetComponent_ProcessorComponent(entity);
+    return world.GetPatchManager().getCurrentMap().findSpeciesByName(speciesName);
 }
 
 // Retrieves the organelle occupying a hex cell
@@ -256,10 +234,14 @@ bool organelleDestroyedByDamage(CellStageWorld@ world, ObjectID microbeEntity, I
 // ------------------------------------ //
 void respawnPlayer(CellStageWorld@ world)
 {
-    auto playerSpecies = MicrobeOperations::getSpeciesComponent(world, "Default");
+    auto playerSpecies = MicrobeOperations::getSpecies(world, "Default");
     auto playerEntity = GetThriveGame().playerData().activeCreature();
 
-    if (playerSpecies.population > 20)
+    // Decrease the population by 20
+    alterSpeciesPopulation(playerSpecies, -20, "player died", true);
+
+    // Respawn if not extinct
+    if (playerSpecies.population > 0)
     {
         MicrobeComponent@ microbeComponent = getMicrobeComponent(world, playerEntity);
         auto rigidBodyComponent = world.GetComponent_Physics(playerEntity);
@@ -306,15 +288,6 @@ void respawnPlayer(CellStageWorld@ world)
         Species::restoreOrganelleLayout(world, playerEntity, microbeComponent, playerSpecies);
     }
 
-    // Decrease the population by 20
-    if (playerSpecies.population >= 20)
-    {
-        playerSpecies.population -= 20;
-    }else
-    {
-        playerSpecies.population = 0;
-    }
-
     // TODO: we already check if the player is extinct here. That logic shouldn't
     // be duplicated in the GUI
     // Creates an event that calls the function in javascript that checks extinction events
@@ -341,10 +314,10 @@ void setupMicrobeHitpoints(MicrobeComponent@ microbeComponent, int health)
 //grabs compounds from template (starter_mcirobes) and stores them)
 void setupMicrobeCompounds(CellStageWorld@ world, ObjectID microbeEntity)
 {
-    auto ids = getSpeciesComponent(world, microbeEntity).avgCompoundAmounts.getKeys();
+    auto ids = getSpecies(world, microbeEntity).avgCompoundAmounts.getKeys();
     for(uint i = 0; i < ids.length(); ++i){
         CompoundId compoundId = parseUInt(ids[i]);
-        InitialCompound amount = InitialCompound(getSpeciesComponent(world, microbeEntity).
+        InitialCompound amount = InitialCompound(getSpecies(world, microbeEntity).
             avgCompoundAmounts[ids[i]]);
         setCompound(world, microbeEntity, compoundId, amount.amount);
     }
@@ -517,10 +490,13 @@ void ejectCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId com
     auto ynew = membraneCoords.X * s + membraneCoords.Y * c;
 
     auto amountToEject = amount*10000;
-    createCompoundCloud(world, uint64(compoundId),
-        position._Position.X + xnew * ejectionDistance,
-        position._Position.Z + ynew * ejectionDistance,
-       amountToEject);
+
+    if(amountToEject > 0){
+        createCompoundCloud(world, uint64(compoundId),
+            position._Position.X + xnew * ejectionDistance,
+            position._Position.Z + ynew * ejectionDistance,
+            amountToEject);
+    }
 }
 
 // Default version of purgeCompounds that takes ObjectID
@@ -587,7 +563,7 @@ void rebuildProcessList(CellStageWorld@ world, ObjectID microbeEntity)
     MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
 
     //Debug Statements
-    //auto@ thisSpecies = getSpeciesComponent(world, microbeEntity);
+    //auto@ thisSpecies = getSpecies(world, microbeEntity);
     //if(thisSpecies !is null)
     //{
         //LOG_INFO("Regenerating Process list for microbe ID# " + microbeEntity + "of species " + thisSpecies.name);
@@ -903,13 +879,18 @@ ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in specie
     assert(world !is null);
     assert(speciesName != "");
 
+    auto species = getSpecies(world, speciesName);
+
+    if(species is null){
+        LOG_ERROR("Can't spawn a microbe from non-existant species: " + speciesName);
+        return NULL_OBJECT;
+    }
+
     if(pos.Y != 0)
         LOG_WARNING("spawnMicrobe: spawning at y-coordinate: " + pos.Y);
 
     // Create microbeEntity with correct template, physics and species name
-    auto microbeEntity = _createMicrobeEntity(world, aiControlled, speciesName,
-        //in editor
-        false);
+    auto microbeEntity = _createMicrobeEntity(world, aiControlled, speciesName, species);
 
     // Teleport the cell to the right position
     auto microbePos = world.GetComponent_Position(microbeEntity);
@@ -917,9 +898,6 @@ ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in specie
     microbePos.Marked = true;
 
     auto physics = world.GetComponent_Physics(microbeEntity);
-
-    auto speciesEntity = findSpeciesEntityByName(world, speciesName);
-    auto species = world.GetComponent_SpeciesComponent(speciesEntity);
 
     physics.JumpTo(microbePos);
 
@@ -939,8 +917,12 @@ ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in specie
         // is in the spawn system. code, if part of colony but not
         // directly spawned give a spawned component
         if (partOfColony){
-            world.Create_SpawnedComponent(microbeEntity, BACTERIA_SPAWN_RADIUS *
-            BACTERIA_SPAWN_RADIUS);
+            // TODO: it would be much nicer for the spawn system to be
+            // changed to allow spawning multiple things (maybe even
+            // allowing queueing them to avoid lag) instead of trying
+            // to create the right components here
+            world.Create_SpawnedComponent(microbeEntity, MICROBE_SPAWN_RADIUS *
+                MICROBE_SPAWN_RADIUS);
         }
     }
 
@@ -951,7 +933,8 @@ ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in specie
 void _applyMicrobeCollisionShape(CellStageWorld@ world, Physics@ rigidBody,
     MicrobeComponent@ microbeComponent, PhysicsShape@ shape)
 {
-    // This compensates for the lack of a nucleus for the player cell at the beginning and makes eukaryotes alot heavier.
+    // This compensates for the lack of a nucleus for the player cell
+    // at the beginning and makes eukaryotes alot heavier.
     float mass = 0.7f;
 
     // Organelles
@@ -983,16 +966,8 @@ void _applyMicrobeCollisionShape(CellStageWorld@ world, Physics@ rigidBody,
 // An object of type Microbe
 // TODO: this should take in the initial position
 ObjectID _createMicrobeEntity(CellStageWorld@ world, bool aiControlled,
-    const string &in speciesName, bool in_editor)
+    const string &in speciesName, Species@ species)
 {
-    assert(speciesName != "", "Empty species name for create microbe");
-
-    auto speciesEntity = findSpeciesEntityByName(world, speciesName);
-    auto species = world.GetComponent_SpeciesComponent(speciesEntity);
-
-    if(speciesEntity == NULL_OBJECT)
-        assert(false, "Trying to create a microbe with invalid species");
-
     ObjectID entity = world.CreateEntity();
 
     // TODO: movement sound for microbes
@@ -1023,13 +998,6 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, bool aiControlled,
 
     if(aiControlled){
         world.GetScriptComponentHolder("MicrobeAIControllerComponent").Create(entity);
-    }
-
-    // Rest of the stuff doesn't really work in_editor
-    // TODO: verify that this is actually the case
-    if(in_editor){
-
-        return entity;
     }
 
     if(microbeComponent.organelles.length() > 0)
@@ -1229,11 +1197,14 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
     playSoundWithDistance(world, "Data/Sound/soundeffects/microbe-death.ogg", microbeEntity);
 
     //subtract population
-    auto playerSpecies = MicrobeOperations::getSpeciesComponent(world, "Default");
+    auto playerSpecies = MicrobeOperations::getSpecies(world, "Default");
     if (!microbeComponent.isPlayerMicrobe &&
         microbeComponent.speciesName != playerSpecies.name)
     {
-        alterSpeciesPopulation(world, microbeEntity, CREATURE_DEATH_POPULATION_LOSS);
+        auto species = getSpecies(world, microbeComponent.speciesName);
+
+        if(species !is null)
+            alterSpeciesPopulation(species, CREATURE_DEATH_POPULATION_LOSS, "death");
     }
 
 
@@ -1272,23 +1243,27 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
     microbeSceneNode.Marked = true;
 }
 
-// Default version of alterSpeciesPopulation that takes an ObjectID
-void alterSpeciesPopulation(CellStageWorld@ world, ObjectID microbeEntity, int popChange)
+void alterSpeciesPopulation(Species@ species, int popChange, const string &in reason,
+    bool isImmediate = false)
 {
-    MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
-    SpeciesComponent@ ourSpecies = getSpeciesComponent(world, microbeEntity);
-    alterSpeciesPopulation(world, ourSpecies, microbeComponent, popChange);
-}
+    if(popChange == 0)
+        return;
 
-void alterSpeciesPopulation(CellStageWorld@ world,
-                            SpeciesComponent@ ourSpecies,
-                            MicrobeComponent@ microbeComponent,
-                            int popChange)
-{
-    if (ourSpecies !is null)
-    {
-        cast<SpeciesSystem>(world.GetScriptSystem("SpeciesSystem")).
-            updatePopulationForSpecies(microbeComponent.speciesName,popChange);
+    assert(species !is null);
+
+    // isImmediate is only allowed to use for the player dying
+    if(isImmediate){
+
+        assert(species.name == "Default" && popChange < 0,
+            "isImmediate is only for the player dying");
+    }
+
+    GetThriveGame().addExternalPopulationEffect(species, popChange, reason);
+
+    if(isImmediate){
+        LOG_INFO(
+            "Applying immediate population effect (should only be used for the player dying)");
+        species.applyImmediatePopulationChange(popChange);
     }
 }
 
@@ -1296,11 +1271,13 @@ void alterSpeciesPopulation(CellStageWorld@ world,
 void removeEngulfedEffect(CellStageWorld@ world, ObjectID microbeEntity)
 {
     MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
-    MicrobeComponent@ hostileMicrobeComponent = getMicrobeComponent(world, microbeComponent.hostileEngulfer);
+    MicrobeComponent@ hostileMicrobeComponent = getMicrobeComponent(world,
+        microbeComponent.hostileEngulfer);
     removeEngulfedEffect(microbeComponent, hostileMicrobeComponent);
 }
 
-void removeEngulfedEffect(MicrobeComponent@ microbeComponent, MicrobeComponent@ hostileMicrobeComponent)
+void removeEngulfedEffect(MicrobeComponent@ microbeComponent,
+    MicrobeComponent@ hostileMicrobeComponent)
 {
     // This kept getting doubled for some reason, so i just set it to default
     microbeComponent.movementFactor = 1.0f;

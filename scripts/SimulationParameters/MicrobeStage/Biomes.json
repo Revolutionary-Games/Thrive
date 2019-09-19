@@ -1,31 +1,24 @@
 {
     "default": {
         "name": "Epipelagic",
-        "background": "Background",
-        "lightPower": 30.0,
-		"colors":{
-		    "specularColors": {
-                "r": 0.98,
-                "g": 0.7,
-                "b": 0.95
+        "background": "ocean",
+        "skybox": "Thrive_ocean_skybox",
+        "skyboxLightIntensity": 0.5,
+        "sunlight": {
+		    "color": {
+                "r": 1.0,
+                "g": 1.0,
+                "b": 1.0
 			},
-		    "diffuseColors": {
-                "r": 0.5,
-                "g": 0.9,
-                "b": 0.8
-			},
-		    "upperAmbientColor": {
-                "r": 0.5,
-                "g": 0.5,
-                "b": 0.7
-			},
-		    "lowerAmbientColor": {
-                "r": 0.5,
-                "g": 0.5,
-                "b": 0.5
-			}
-		},
-        
+            "intensity": 0.0001,
+            "direction": {
+                "x": 0.55,
+                "y": -0.3,
+                "z": 0.75
+            },
+            "sourceRadius": 0.5
+        },
+
         "chunks":{
             "floatingToxin": {
                 "name": "Floating Hazard",
@@ -82,9 +75,9 @@
                 }
             }
         },
-        
+
 		"averageTemperature": 8,
-        
+
         "compounds": {
             "ammonia": {
                 "amount": 200000,
@@ -97,7 +90,7 @@
                 "density": 0.00002,
                 "dissolved": 0.0
             },
-            
+
             "phosphates": {
                 "amount": 200000,
                 "density": 0.00002,
@@ -109,19 +102,19 @@
                 "density": 0.00002,
                 "dissolved": 0.0
             },
-            
+
             "oxygen": {
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.21
             },
-            
+
             "carbondioxide": {
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.09
             },
-            
+
             "nitrogen": {
                 "amount": 0,
                 "density": 0.0,
@@ -132,31 +125,24 @@
 
     "aavolcanic_vent": {
         "name": "Volcanic vent",
-        "background": "Background_Vent",
-        "lightPower": 25.0,
-		"colors":{
-		    "specularColors": {
-                "r": 0.3,
-                "g": 0.05,
-                "b": 0.01
+        "background": "vent",
+        "skybox": "Thrive_vent_skybox",
+        "skyboxLightIntensity": 0.5,
+        "sunlight": {
+		    "color": {
+                "r": 1.0,
+                "g": 1.0,
+                "b": 1.0
 			},
-		    "diffuseColors": {
-                "r": 0.3,
-                "g": 0.1,
-                "b": 0.1
-			},
-		    "upperAmbientColor": {
-                "r": 0.2,
-                "g": 0.1,
-                "b": 0.1
-			},
-		    "lowerAmbientColor": {
-                "r": 0.4,
-                "g": 0.4,
-                "b": 0.4
-			}
-		},
-        
+            "intensity": 0.0001,
+            "direction": {
+                "x": 0.55,
+                "y": -0.3,
+                "z": 0.75
+            },
+            "sourceRadius": 0.5
+        },
+
         "chunks":{
             "floatingToxin": {
                 "name": "Floating Hazard",
@@ -253,9 +239,9 @@
                 }
             }
         },
-        
+
 		"averageTemperature": 98,
-        
+
         "compounds": {
             "ammonia": {
                 "amount": 200000,
@@ -268,7 +254,7 @@
                 "density": 0.00002,
                 "dissolved": 0.0
             },
-            
+
             "phosphates": {
                 "amount": 200000,
                 "density": 0.00002,
@@ -280,19 +266,19 @@
                 "density": 0.00004,
                 "dissolved": 0.0
             },
-            
+
             "oxygen": {
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.21
             },
-            
+
             "carbondioxide": {
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.09
             },
-            
+
             "nitrogen": {
                 "amount": 0,
                 "density": 0.0,
@@ -302,31 +288,24 @@
     },
     "tidepool": {
         "name": "Tidepool",
-        "background": "Background_Tidepool",
-        "lightPower": 40.0,
-		"colors":{
-		    "specularColors": {
-                "r": 1.2,
-                "g": 1.2,
-                "b": 1.2
-			},
-		    "diffuseColors": {
-                "r": 0.9,
+        "background": "tidepool",
+        "skybox": "Thrive_tidepool_skybox",
+        "skyboxLightIntensity": 0.5,
+        "sunlight": {
+		    "color": {
+                "r": 1.0,
                 "g": 1.0,
-                "b": 0.9
+                "b": 1.0
 			},
-		    "upperAmbientColor": {
-                "r": 1.8,
-                "g": 1.6, 
-                "b": 1.5
-			},
-		    "lowerAmbientColor": {
-                "r": 0.5,
-                "g": 0.2, 
-                "b": 0.7
-			}
-		},
-        
+            "intensity": 0.0001,
+            "direction": {
+                "x": 0.55,
+                "y": -0.3,
+                "z": 0.75
+            },
+            "sourceRadius": 0.5
+        },
+
         "chunks":{
             "floatingToxin": {
                 "name": "Floating Hazard",
@@ -383,9 +362,9 @@
                 }
             }
         },
-        
+
 		"averageTemperature": 23,
-        
+
         "compounds": {
             "ammonia": {
                 "amount": 200000,
@@ -398,7 +377,7 @@
                 "density": 0.00002,
                 "dissolved": 0.0
             },
-            
+
             "phosphates": {
                 "amount": 200000,
                 "density": 0.00002,
@@ -416,47 +395,40 @@
                 "density": 0.0,
                 "dissolved": 0.21
             },
-            
+
             "carbondioxide": {
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.09
             },
-            
+
             "nitrogen": {
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.70
-            } 
+            }
         }
     },
     "bathypalagic": {
         "name": "Bathypalagic",
-        "background": "Background_Bathypalagic",
-        "lightPower": 30.0,
-		"colors":{
-		    "specularColors": {
-                "r": 0.1,
-                "g": 0.4,
-                "b": 0.5
+        "background": "bathypalagic",
+        "skybox": "Thrive_bathy_skybox",
+        "skyboxLightIntensity": 0.5,
+        "sunlight": {
+		    "color": {
+                "r": 1.0,
+                "g": 1.0,
+                "b": 1.0
 			},
-		    "diffuseColors": {
-                "r": 0.1,
-                "g": 0.4,
-                "b": 0.5
-			},
-		    "upperAmbientColor": {
-                "r": 0.2,
-                "g": 0.4, 
-                "b": 0.5
-			},
-		    "lowerAmbientColor": {
-                "r": 0.1,
-                "g": 0.2, 
-                "b": 0.2
-			}
-		},
-        
+            "intensity": 0.0001,
+            "direction": {
+                "x": 0.55,
+                "y": -0.3,
+                "z": 0.75
+            },
+            "sourceRadius": 0.5
+        },
+
         "chunks":{
             "floatingToxin": {
                 "name": "Floating Hazard",
@@ -553,7 +525,7 @@
                 }
             }
         },
-        
+
 		"averageTemperature": 4,
         "compounds": {
             "ammonia": {
@@ -567,7 +539,7 @@
                 "density": 0.00002,
                 "dissolved": 0.0
             },
-            
+
             "phosphates": {
                 "amount": 200000,
                 "density": 0.00002,
@@ -585,217 +557,40 @@
                 "density": 0.0,
                 "dissolved": 0.21
             },
-            
+
             "carbondioxide": {
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.09
             },
-            
+
             "nitrogen": {
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.70
-            } 
+            }
         }
     },
  "abyssopelagic": {
         "name": "Abyssopelagic",
-        "background": "Background_Abyssopelagic",
-        "lightPower": 10.0,
-		"colors":{
-		    "specularColors": {
-                "r": 0.1,
-                "g": 0.1,
-                "b": 0.1
-			},
-		    "diffuseColors": {
-                "r": 0.05,
-                "g": 0.05,
-                "b": 0.1
-			},
-		    "upperAmbientColor": {
-                "r": 0.2,
-                "g": 0.2, 
-                "b": 0.4
-			},
-		    "lowerAmbientColor": {
-                "r": 0.1,
-                "g": 0.1, 
-                "b": 0.3
-			}
-		},
-        
-        "chunks":{
-            "floatingToxin": {
-                "name": "Floating Hazard",
-                "meshes": [{"mesh": "oxytoxy", "texture": "oxytoxy_fluid.png"}],
-                "density": 0.00002,
-                "dissolves": false,
-                "radius": 1,
-                "chunkScale": 1.0,
-                "mass": 7,
-                "size": 10000,
-                "ventAmount": 3.0,
-                "damages": 10.0,
-                "deleteOnTouch": true,
-                "compounds": {
-                }
-            },
-            "ironSmallChunk": {
-                "name": "Small Iron Chunk",
-                "meshes": [{"mesh": "iron_rock_01", "texture": "iron_01.png"},
-                           {"mesh": "iron_rock_02", "texture": "iron_01.png"},
-                           {"mesh": "iron_03", "texture": "iron_01.png"},
-                           {"mesh": "iron_04", "texture": "iron_01.png"}],
-                "density": 0.00002,
-                "dissolves": true,
-                "radius": 1,
-                "chunkScale": 1.0,
-                "mass": 100,
-                "size": 2,
-                "ventAmount": 6.0,
-                "damages": 0.0,
-                "deleteOnTouch": false,
-                "compounds": {
-                    "iron": {
-                        "amount": 200.0
-                    }
-                }
-            },
-            "ironBigChunk": {
-                "name": "Big Iron Chunk",
-                "meshes":  [{"mesh": "iron_05", "texture": "iron_01.png"}],
-                "density": 0.00002,
-                "dissolves": true,
-                "radius": 10,
-                "chunkScale": 1.0,
-                "mass": 100,
-                "size": 100,
-                "ventAmount": 20.0,
-                "damages": 0.0,
-                "deleteOnTouch": false,
-                "compounds": {
-                    "iron": {
-                        "amount": 60000.0
-                    }
-                }
-            },
-            "marineSnow": {
-                "name": "Marine snow",
-                "meshes": [{"mesh": "agent_gland", "texture": "oxytoxy_gland.png"},
-                           {"mesh": "nucleus", "texture": "nucleus.png"},
-                           {"mesh": "chloroplast", "texture": "chloroplast.png"},
-                           {"mesh": "oxytoxy", "texture": "oxytoxy.png"},
-                           {"mesh": "flagellum", "texture": "flagellum.png"},
-                           {"mesh": "chemoplast", "texture": "chemoplast.png"},
-                           {"mesh": "rhizoplast", "texture": "nitrogenplastid.png"},
-                           {"mesh": "metabolosome", "texture": "metabolosome.png"},
-                           {"mesh": "chromatophores", "texture": "chromatophores.png"},
-                           {"mesh": "vacuole", "texture": "vacuole.png"},
-                           {"mesh": "mitochondrion", "texture": "mitochondrion.png"},
-                           {"mesh": "chemoproteins", "texture": "chemoproteins.png"},
-                           {"mesh": "nitrogenase", "texture": "nitrogenase.png"},
-                           {"mesh": "rusticyanin", "texture": "rusticyanin.png"}],
-                "density": 0.00002,
-                "dissolves": true,
-                "radius": 1,
-                "chunkScale": 1.0,
-                "mass": 7,
-                "size": 2,
-                "ventAmount": 3.0,
-                "damages": 0.0,
-                "deleteOnTouch": false,
-                "compounds": {
-                    "atp": {
-                        "amount": 100.0
-                    },
-                    "ammonia": {
-                        "amount": 100.0
-                    },
-                    "phosphates": {
-                        "amount": 100.0
-                    },
-                    "glucose": {
-                        "amount": 100.0
-                    }
-                }
-            }
-        },
-        
-		"averageTemperature": 2,
-        "compounds": {
-            "ammonia": {
-                "amount": 200000,
-                "density": 0.00002,
-                "dissolved": 0.0
-            },
-
-            "glucose": {
-                "amount": 250000,
-                "density": 0.00002,
-                "dissolved": 0.0
-            },
-            
-            "phosphates": {
-                "amount": 200000,
-                "density": 0.00002,
-                "dissolved": 0.0
-            },
-
-            "hydrogensulfide": {
-                "amount": 225000,
-                "density": 0.00002,
-                "dissolved": 0.0
-            },
-
-            "oxygen": {
-                "amount": 0,
-                "density": 0.0,
-                "dissolved": 0.21
-            },
-            
-            "carbondioxide": {
-                "amount": 0,
-                "density": 0.0,
-                "dissolved": 0.09
-            },
-            
-            "nitrogen": {
-                "amount": 0,
-                "density": 0.0,
-                "dissolved": 0.70
-            } 
-        }
-    },
-    
-    "mesopelagic": {
-        "name": "Mesopelagic",
-        "background": "Background_Mesopelagic",
-        "lightPower": 25.0,
-		"colors":{
-		    "specularColors": {
-                "r": 0.3,
-                "g": 0.8,
+        "background": "abyssopelagic",
+        "skybox": "Thrive_abyss_skybox",
+        "skyboxLightIntensity": 0.5,
+        "sunlight": {
+		    "color": {
+                "r": 1.0,
+                "g": 1.0,
                 "b": 1.0
 			},
-		    "diffuseColors": {
-                "r": 0.3,
-                "g": 0.5,
-                "b": 0.5
-			},
-		    "upperAmbientColor": {
-                "r": 0.3,
-                "g": 0.4, 
-                "b": 0.4
-			},
-		    "lowerAmbientColor": {
-                "r": 0.2,
-                "g": 0.3, 
-                "b": 0.3
-			}
-		},
-        
+            "intensity": 0.0001,
+            "direction": {
+                "x": 0.55,
+                "y": -0.3,
+                "z": 0.75
+            },
+            "sourceRadius": 0.5
+        },
+
         "chunks":{
             "floatingToxin": {
                 "name": "Floating Hazard",
@@ -892,7 +687,7 @@
                 }
             }
         },
-        
+
 		"averageTemperature": 2,
         "compounds": {
             "ammonia": {
@@ -906,7 +701,7 @@
                 "density": 0.00002,
                 "dissolved": 0.0
             },
-            
+
             "phosphates": {
                 "amount": 200000,
                 "density": 0.00002,
@@ -918,54 +713,210 @@
                 "density": 0.00002,
                 "dissolved": 0.0
             },
-            
+
             "oxygen": {
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.21
             },
-            
+
             "carbondioxide": {
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.09
             },
-            
+
             "nitrogen": {
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.70
-            } 
+            }
         }
     },
-    
+
+    "mesopelagic": {
+        "name": "Mesopelagic",
+        "background": "mesopelagic",
+        "skybox": "Thrive_meso_skybox",
+        "skyboxLightIntensity": 0.5,
+        "sunlight": {
+		    "color": {
+                "r": 1.0,
+                "g": 1.0,
+                "b": 1.0
+			},
+            "intensity": 0.0001,
+            "direction": {
+                "x": 0.55,
+                "y": -0.3,
+                "z": 0.75
+            },
+            "sourceRadius": 0.5
+        },
+
+        "chunks":{
+            "floatingToxin": {
+                "name": "Floating Hazard",
+                "meshes": [{"mesh": "oxytoxy", "texture": "oxytoxy_fluid.png"}],
+                "density": 0.00002,
+                "dissolves": false,
+                "radius": 1,
+                "chunkScale": 1.0,
+                "mass": 7,
+                "size": 10000,
+                "ventAmount": 3.0,
+                "damages": 10.0,
+                "deleteOnTouch": true,
+                "compounds": {
+                }
+            },
+            "ironSmallChunk": {
+                "name": "Small Iron Chunk",
+                "meshes": [{"mesh": "iron_rock_01", "texture": "iron_01.png"},
+                           {"mesh": "iron_rock_02", "texture": "iron_01.png"},
+                           {"mesh": "iron_03", "texture": "iron_01.png"},
+                           {"mesh": "iron_04", "texture": "iron_01.png"}],
+                "density": 0.00002,
+                "dissolves": true,
+                "radius": 1,
+                "chunkScale": 1.0,
+                "mass": 100,
+                "size": 2,
+                "ventAmount": 6.0,
+                "damages": 0.0,
+                "deleteOnTouch": false,
+                "compounds": {
+                    "iron": {
+                        "amount": 200.0
+                    }
+                }
+            },
+            "ironBigChunk": {
+                "name": "Big Iron Chunk",
+                "meshes":  [{"mesh": "iron_05", "texture": "iron_01.png"}],
+                "density": 0.00002,
+                "dissolves": true,
+                "radius": 10,
+                "chunkScale": 1.0,
+                "mass": 100,
+                "size": 100,
+                "ventAmount": 20.0,
+                "damages": 0.0,
+                "deleteOnTouch": false,
+                "compounds": {
+                    "iron": {
+                        "amount": 60000.0
+                    }
+                }
+            },
+            "marineSnow": {
+                "name": "Marine snow",
+                "meshes": [{"mesh": "agent_gland", "texture": "oxytoxy_gland.png"},
+                           {"mesh": "nucleus", "texture": "nucleus.png"},
+                           {"mesh": "chloroplast", "texture": "chloroplast.png"},
+                           {"mesh": "oxytoxy", "texture": "oxytoxy.png"},
+                           {"mesh": "flagellum", "texture": "flagellum.png"},
+                           {"mesh": "chemoplast", "texture": "chemoplast.png"},
+                           {"mesh": "rhizoplast", "texture": "nitrogenplastid.png"},
+                           {"mesh": "metabolosome", "texture": "metabolosome.png"},
+                           {"mesh": "chromatophores", "texture": "chromatophores.png"},
+                           {"mesh": "vacuole", "texture": "vacuole.png"},
+                           {"mesh": "mitochondrion", "texture": "mitochondrion.png"},
+                           {"mesh": "chemoproteins", "texture": "chemoproteins.png"},
+                           {"mesh": "nitrogenase", "texture": "nitrogenase.png"},
+                           {"mesh": "rusticyanin", "texture": "rusticyanin.png"}],
+                "density": 0.00002,
+                "dissolves": true,
+                "radius": 1,
+                "chunkScale": 1.0,
+                "mass": 7,
+                "size": 2,
+                "ventAmount": 3.0,
+                "damages": 0.0,
+                "deleteOnTouch": false,
+                "compounds": {
+                    "atp": {
+                        "amount": 100.0
+                    },
+                    "ammonia": {
+                        "amount": 100.0
+                    },
+                    "phosphates": {
+                        "amount": 100.0
+                    },
+                    "glucose": {
+                        "amount": 100.0
+                    }
+                }
+            }
+        },
+
+		"averageTemperature": 2,
+        "compounds": {
+            "ammonia": {
+                "amount": 200000,
+                "density": 0.00002,
+                "dissolved": 0.0
+            },
+
+            "glucose": {
+                "amount": 250000,
+                "density": 0.00002,
+                "dissolved": 0.0
+            },
+
+            "phosphates": {
+                "amount": 200000,
+                "density": 0.00002,
+                "dissolved": 0.0
+            },
+
+            "hydrogensulfide": {
+                "amount": 225000,
+                "density": 0.00002,
+                "dissolved": 0.0
+            },
+
+            "oxygen": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 0.21
+            },
+
+            "carbondioxide": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 0.09
+            },
+
+            "nitrogen": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 0.70
+            }
+        }
+    },
+
     "coastal": {
         "name": "Coastal",
-        "background": "Background_Coastal",
-        "lightPower": 40.0,
-		"colors":{
-		    "specularColors": {
-                "r": 0.5,
-                "g": 0.7,
-                "b": 0.75
-			},
-		    "diffuseColors": {
+        "background": "coastal",
+        "skybox": "Thrive_shallow_skybox",
+        "skyboxLightIntensity": 0.5,
+        "sunlight": {
+		    "color": {
                 "r": 1.0,
-                "g": 0.9,
-                "b": 1.5
+                "g": 1.0,
+                "b": 1.0
 			},
-		    "upperAmbientColor": {
-                "r": 0.4,
-                "g": 0.4, 
-                "b": 0.4
-			},
-		    "lowerAmbientColor": {
-                "r": 0.3,
-                "g": 0.3, 
-                "b": 0.3
-			}
-		},
-        
+            "intensity": 0.0001,
+            "direction": {
+                "x": 0.55,
+                "y": -0.3,
+                "z": 0.75
+            },
+            "sourceRadius": 0.5
+        },
+
         "chunks":{
             "floatingToxin": {
                 "name": "Floating Hazard",
@@ -1022,7 +973,7 @@
                 }
             }
         },
-        
+
 		"averageTemperature": 17,
         "compounds": {
             "ammonia": {
@@ -1036,7 +987,7 @@
                 "density": 0.00002,
                 "dissolved": 0.0
             },
-            
+
             "phosphates": {
                 "amount": 200000,
                 "density": 0.00002,
@@ -1048,54 +999,47 @@
                 "density": 0.00002,
                 "dissolved": 0.0
             },
-            
+
             "oxygen": {
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.21
             },
-            
+
             "carbondioxide": {
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.09
             },
-            
+
             "nitrogen": {
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.70
-            } 
+            }
         }
     },
-	
+
 	"underwater_cave": {
         "name": "UnderwaterCave",
-        "background": "Background_Cave",
-        "lightPower": 25.0,
-		"colors":{
-		    "specularColors": {
-                "r": 0.1,
-                "g": 0.3,
-                "b": 0.3
+        "background": "cave",
+        "skybox": "Thrive_cave_skybox",
+        "skyboxLightIntensity": 0.5,
+        "sunlight": {
+		    "color": {
+                "r": 1.0,
+                "g": 1.0,
+                "b": 1.0
 			},
-		    "diffuseColors": {
-                "r": 0.1,
-                "g": 0.3,
-                "b": 0.4
-			},
-		    "upperAmbientColor": {
-                "r": 0.2,
-                "g": 0.4, 
-                "b": 0.5
-			},
-		    "lowerAmbientColor": {
-                "r": 0.1,
-                "g": 0.1, 
-                "b": 0.1
-			}
-		},
-        
+            "intensity": 0.0001,
+            "direction": {
+                "x": 0.55,
+                "y": -0.3,
+                "z": 0.75
+            },
+            "sourceRadius": 0.5
+        },
+
         "chunks":{
             "floatingToxin": {
                 "name": "Floating Hazard",
@@ -1152,7 +1096,7 @@
                 }
             }
         },
-        
+
 		"averageTemperature": 23,
         "compounds": {
             "ammonia": {
@@ -1166,7 +1110,7 @@
                 "density": 0.00002,
                 "dissolved": 0.0
             },
-            
+
             "phosphates": {
                 "amount": 200000,
                 "density": 0.00002,
@@ -1178,54 +1122,47 @@
                 "density": 0.00002,
                 "dissolved": 0.0
             },
-            
+
             "oxygen": {
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.21
             },
-            
+
             "carbondioxide": {
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.09
             },
-            
+
             "nitrogen": {
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.70
-            } 
+            }
         }
     },
-	
+
 	"ice_shelf": {
         "name": "IceShelf",
-        "background": "Background_Iceshelf",
-        "lightPower": 40.0,
-		"colors":{
-		    "specularColors": {
-                "r": 0.69,
-                "g": 0.87,
+        "background": "iceshelf",
+        "skybox": "Thrive_iceshelf_skybox",
+        "skyboxLightIntensity": 0.5,
+        "sunlight": {
+		    "color": {
+                "r": 1.0,
+                "g": 1.0,
                 "b": 1.0
-            },
-		    "diffuseColors": {
-                "r": 0.69,
-                "g": 0.87,
-                "b": 1.0
-            },
-		    "upperAmbientColor": {
-                "r": 0.0,
-                "g": 0.2, 
-                "b": 0.2
 			},
-		    "lowerAmbientColor": {
-                "r": 0.0,
-                "g": 0.2, 
-                "b": 0.2
-			}
-		},
-        
+            "intensity": 0.0001,
+            "direction": {
+                "x": 0.55,
+                "y": -0.3,
+                "z": 0.75
+            },
+            "sourceRadius": 0.5
+        },
+
         "chunks":{
             "floatingToxin": {
                 "name": "Floating Hazard",
@@ -1265,7 +1202,7 @@
             },
             // "iceCrystal": {
             //     "name": "Ice Crystal",
-            //     "meshes": [{"mesh": "ice_crystal", "texture": "ice_crystal.png"}, 
+            //     "meshes": [{"mesh": "ice_crystal", "texture": "ice_crystal.png"},
             //                {"mesh": "icecrystal", "texture": "icecrystal.png"}],
             //     "density": 0.0001,
             //     "dissolves": false,
@@ -1281,7 +1218,7 @@
             // },
             // "gianticeCrystal": {
             //     "name": "Giant Ice Crystal",
-            //     "meshes": [{"mesh": "ice_crystal", "texture": "ice_crystal.png"}, 
+            //     "meshes": [{"mesh": "ice_crystal", "texture": "ice_crystal.png"},
             //                {"mesh": "icecrystal", "texture": "icecrystal.png"}],
             //     "density": 0.0001,
             //     "dissolves": false,
@@ -1314,9 +1251,9 @@
                 }
             }
         },
-        
+
 		"averageTemperature": -1,
-        
+
         "compounds": {
             "ammonia": {
                 "amount": 200000,
@@ -1329,7 +1266,7 @@
                 "density": 0.00002,
                 "dissolved": 0.0
             },
-            
+
             "phosphates": {
                 "amount": 200000,
                 "density": 0.00002,
@@ -1347,48 +1284,41 @@
                 "density": 0.0,
                 "dissolved": 0.21
             },
-            
+
             "carbondioxide": {
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.09
             },
-            
+
             "nitrogen": {
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.70
-            } 
+            }
         }
     },
-    
+
     "estuary": {
         "name": "Estuary",
-        "background": "Background_Estuary",
-        "lightPower": 30.0,
-		"colors":{
-		    "specularColors": {
-                "r": 0.9,
-                "g": 0.9,
-                "b": 0.75
-            },
-		    "diffuseColors": {
-                "r": 0.9,
+        "background": "estuary",
+        "skybox": "Thrive_estuary_skybox",
+        "skyboxLightIntensity": 0.5,
+        "sunlight": {
+		    "color": {
+                "r": 1.0,
                 "g": 1.0,
-                "b": 0.9
-            },
-		    "upperAmbientColor": {
-                "r": 1.8,
-                "g": 1.8, 
-                "b": 1.7
+                "b": 1.0
 			},
-		    "lowerAmbientColor": {
-                "r": 0.6,
-                "g": 0.7, 
-                "b": 0.5
-			}
-		},
-        
+            "intensity": 0.0001,
+            "direction": {
+                "x": 0.55,
+                "y": -0.3,
+                "z": 0.75
+            },
+            "sourceRadius": 0.5
+        },
+
         "chunks":{
             "floatingToxin": {
                 "name": "Floating Hazard",
@@ -1445,9 +1375,9 @@
                 }
             }
         },
-        
+
 		"averageTemperature": 17,
-        
+
         "compounds": {
             "ammonia": {
                 "amount": 200000,
@@ -1460,7 +1390,7 @@
                 "density": 0.00002,
                 "dissolved": 0.0
             },
-            
+
             "phosphates": {
                 "amount": 200000,
                 "density": 0.00002,
@@ -1472,54 +1402,47 @@
                 "density": 0.00002,
                 "dissolved": 0.0
             },
-            
+
             "oxygen": {
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.21
             },
-            
+
             "carbondioxide": {
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.09
             },
-            
+
             "nitrogen": {
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.78
-            } 
+            }
         }
     },
-    
+
     "seafloor": {
         "name": "Sea Floor",
-        "background": "Background_Seafloor",
-        "lightPower": 25.0,
-		"colors":{
-		    "specularColors": {
-                "r": 0.1,
-                "g": 0.1,
-                "b": 0.1
+        "background": "seafloor",
+        "skybox": "Thrive_seafloor_skybox",
+        "skyboxLightIntensity": 0.5,
+        "sunlight": {
+		    "color": {
+                "r": 1.0,
+                "g": 1.0,
+                "b": 1.0
 			},
-		    "diffuseColors": {
-                "r": 0.3,
-                "g": 0.3,
-                "b": 0.3
-			},
-		    "upperAmbientColor": {
-                "r": 0.3,
-                "g": 0.3, 
-                "b": 0.3
-			},
-		    "lowerAmbientColor": {
-                "r": 0.1,
-                "g": 0.1, 
-                "b": 0.1
-			}
-		},
-        
+            "intensity": 0.0001,
+            "direction": {
+                "x": 0.55,
+                "y": -0.3,
+                "z": 0.75
+            },
+            "sourceRadius": 0.5
+        },
+
         "chunks":{
             "floatingToxin": {
                 "name": "Floating Hazard",
@@ -1616,7 +1539,7 @@
                 }
             }
         },
-        
+
 		"averageTemperature": 4,
         "compounds": {
             "ammonia": {
@@ -1630,7 +1553,7 @@
                 "density": 0.00002,
                 "dissolved": 0.0
             },
-            
+
             "phosphates": {
                 "amount": 200000,
                 "density": 0.00002,
@@ -1642,19 +1565,19 @@
                 "density": 0.00002,
                 "dissolved": 0.0
             },
-            
+
             "oxygen": {
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.21
             },
-            
+
             "carbondioxide": {
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.09
             },
-            
+
             "nitrogen": {
                 "amount": 0,
                 "density": 0.0,

@@ -30,11 +30,15 @@
       <span>tick: <span id="currentTickTime"></span></span>
       <span id="currentTicksBehind"></span>
     </div>
-
+    
+    <!-- Loading screen which must be on top of everything -->
     <!-- This blocks out everything until javascript has loaded (shows the tasteful thrive logo) -->
-    <div id="loadingLogo" class="FullScreen"
-         style="z-index: 20; background: black;">
+    <div id="loadingScreen" class="FullScreen">
       <div class="Logo"></div>
+      <br>
+      <div id="loadingScreenStatus">Loading GUI</div>
+      <br>
+      <div id="loadingScreenMessage"></div>
     </div>
 
 
@@ -815,7 +819,7 @@ Toxin Vacuoles: Produces toxins (called OxyToxyNT).
            <div id="tipMsgEditor"></div>
           </div>
 	  </div>
-    </div>    
+    </div>
     
   </body>
 </html>

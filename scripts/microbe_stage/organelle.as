@@ -623,7 +623,9 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         bool bacteria = false;
 
         // This should be the only species check any organelle ever makes.
-        auto species = MicrobeOperations::getSpeciesComponent(world, microbeEntity);
+        // TODO: Species is now a reference counted type and it should be safe to
+        // store a handle to it now.
+        auto species = MicrobeOperations::getSpecies(world, microbeEntity);
         if (species !is null){
             this.speciesColour = species.colour;
             bacteria = species.isBacteria;

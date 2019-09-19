@@ -100,9 +100,31 @@ void
     m_impl->spawnTypes.erase(spawnId);
 }
 
+bool
+    SpawnSystem::updateDensity(SpawnerTypeId spawnId, double spawnDensity)
+{
+    const auto found = m_impl->spawnTypes.find(spawnId);
+
+    if(found == m_impl->spawnTypes.end())
+        return false;
+
+    found->second.spawnFrequency =
+        spawnDensity * found->second.spawnRadiusSqr * 4;
+    return true;
+}
+
 void
     SpawnSystem::Release()
 {
+    Clear();
+}
+
+void
+    SpawnSystem::Clear()
+{
+    Leviathan::System<
+        std::tuple<SpawnedComponent&, Leviathan::Position&>>::Clear();
+    LOG_INFO("Clearing spawn system spawners");
     m_impl->spawnTypes.clear();
     m_impl->previousPlayerPosition = Float3(0, 0, 0);
     m_impl->timeSinceLastUpdate = 0;

@@ -67,9 +67,9 @@ jobs:
            when: always
            command: |
              git diff > format_diff.patch
-             if grep -q '[^[:space:]]' < clang_format_diff.patch; then
+             if grep -q '[^[:space:]]' < format_diff.patch; then
                  echo "Formatter found things to be fixed:"
-                 cat clang_format_diff.patch
+                 cat format_diff.patch
                  exit 1
              else
                  echo "No changes made"

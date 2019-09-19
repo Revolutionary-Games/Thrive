@@ -10,7 +10,6 @@
 #include "Application/KeyConfiguration.h"
 #include "Events/EventHandler.h"
 #include "GUI/GuiManager.h"
-#include "microbe_stage/patch.h"
 
 namespace thrive {
 
@@ -25,6 +24,9 @@ class ThriveNetHandler;
 class PlayerData;
 
 class PlayerMicrobeControl;
+
+class AutoEvo;
+class Species;
 
 //! This is the main thrive class that is created in main.cpp and then handles
 //! running the engine and the event loop
@@ -55,14 +57,19 @@ public:
     PlayerData&
         playerData();
 
-    PatchManager*
-        getPatchManager();
-
     PlayerMicrobeControl*
         getPlayerInput();
 
+    AutoEvo&
+        autoEvo();
+
     void
         setBackgroundMaterial(const std::string& material);
+
+    //! \brief Sets the skybox by asset on the world and the light intensity of
+    //! indirect light coming from the skybox
+    void
+        setSkybox(const std::string& assetName, float lightIntensity);
 
     //!\brief This is a callback for the camera controller to notify us of the
     //! new needed position of the background
@@ -74,6 +81,24 @@ public:
     {
         return m_cheatsEnabled;
     }
+
+    //! \brief Called from scripts to report auto-evo external population
+    //! changes \param species Target species. Assumes reference counted is
+    //! incremented
+    void
+        addExternalPopulationEffect(Species* species,
+            int32_t change,
+            const std::string& reason);
+
+    //! \brief Checks should auto-evo start
+    void
+        checkAutoEvoStart();
+
+    //! \brief Updates loading screen
+    void
+        updateLoadingScreen(bool enabled,
+            const std::string& status,
+            const std::string& message);
 
     // ------------------------------------ //
     // Player input actions
@@ -172,6 +197,9 @@ protected:
 
     bool
         createImpl();
+
+    void
+        _checkIsEditorEntryReady();
 
 private:
     std::unique_ptr<ThriveNetHandler> m_network;

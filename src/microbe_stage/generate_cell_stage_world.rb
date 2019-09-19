@@ -23,7 +23,6 @@ generator.addInclude "microbe_stage/membrane_system.h"
 generator.addInclude "microbe_stage/compound_cloud_system.h"
 generator.addInclude "microbe_stage/process_system.h"
 generator.addInclude "microbe_stage/compound_venter_system.h"
-generator.addInclude "microbe_stage/species_component.h"
 generator.addInclude "microbe_stage/spawn_system.h"
 generator.addInclude "microbe_stage/agent_cloud_system.h"
 generator.addInclude "microbe_stage/compound_absorber_system.h"
@@ -31,6 +30,7 @@ generator.addInclude "microbe_stage/microbe_camera_system.h"
 generator.addInclude "microbe_stage/player_microbe_control.h"
 generator.addInclude "microbe_stage/microbe_editor_key_handler.h"
 generator.addInclude "microbe_stage/player_hover_info.h"
+generator.addInclude "microbe_stage/patch_manager.h"
 generator.addInclude "general/properties_component.h"
 generator.addInclude "general/timed_life_system.h"
 
@@ -41,15 +41,6 @@ cellWorld = GameWorldClass.new(
     EntityComponent.new("CompoundBagComponent", [ConstructorInfo.new([])]),
     EntityComponent.new("CompoundVenterComponent", [ConstructorInfo.new([])]),
     EntityComponent.new("EngulfableComponent", [ConstructorInfo.new([])]),
-    EntityComponent.new("SpeciesComponent", [ConstructorInfo.new([
-                                                Variable.new("name", "std::string",
-                                                             memberaccess: "name",
-                                                             noRef: false)
-                                                                 ])],
-                        # Disabled to not send empty species to the
-                        # client. This should be re-enabled ones
-                        # synchronizing species data works
-                        nosynchronize: true),
     EntityComponent.new("MembraneComponent", [ConstructorInfo.new(
                                          [
 											Variable.new("type", "MEMBRANE_TYPE",
@@ -184,7 +175,10 @@ cellWorld = GameWorldClass.new(
   const auto progressInTick = std::get<1>(timeAndTickTuple);
   const auto tick = GetTickNumber();
 END
-                       ),  
+                       ),
+  perworlddata: [
+    Variable.new("_PatchManager", "PatchManager")
+  ]
 )
 
 cellWorld.WorldType = "static_cast<int32_t>(thrive::THRIVE_WORLD_TYPE::CELL_STAGE)"

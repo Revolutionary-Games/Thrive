@@ -1,6 +1,7 @@
 #include "configs.as"
 #include "nucleus_organelle.as"
 #include "hex.as"
+#include "mutation_helpers.as"
 // Lists of valid organelles to choose from for mutation
 dictionary organelleLetters = {};
 array<string> VALID_ORGANELLES = {};
@@ -324,6 +325,6 @@ string mutateMicrobe(const string &in stringCode, bool isBacteria)
         }
     }
 
-    LOG_INFO("Mutated: "+completeString);
+    // LOG_INFO("Mutated: "+completeString);
     return completeString;
 }
