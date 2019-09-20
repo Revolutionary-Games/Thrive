@@ -353,6 +353,7 @@ function onResumeClickedEditor(){
 }
 
 function onExitToMenuClickedEditor(){
+    document.getElementById("pauseOverlayEditor").style.display = "none";
     if(common.isInEngine()){
         Thrive.exitToMenuClicked();
     } else {

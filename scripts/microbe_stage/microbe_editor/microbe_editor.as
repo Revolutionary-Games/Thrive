@@ -10,7 +10,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 */
 
-
 funcdef void EditorActionApply(EditorAction@ action, MicrobeEditor@ editor);
 
 class EditorAction{
@@ -95,6 +94,15 @@ class MicrobeEditor{
     void activate()
     {
         GetThriveGame().playerData().setBool("edited_microbe", true);
+
+        // Detect freebuild
+        if(GetThriveGame().playerData().isFreeBuilding()){
+            LOG_INFO("Editor going to freebuild mode because player has activated freebuild");
+            freeBuilding = true;
+        } else {
+            // Make sure freebuilding doesn't get stuck on
+            freeBuilding = false;
+        }
 
         Species@ playerSpecies = MicrobeOperations::getSpecies(
             GetThriveGame().getCellStage(), GetThriveGame().playerData().activeCreature());
@@ -302,7 +310,11 @@ class MicrobeEditor{
             && organelle.organelle.chanceToCreate != 0 )
                 return;
 
-        EditorAction@ action = EditorAction(organelle.organelle.mpCost,
+        int cost = organelle.organelle.mpCost;
+        if(freeBuilding)
+            cost = 0;
+
+        EditorAction@ action = EditorAction(cost,
             // redo
             function(EditorAction@ action, MicrobeEditor@ editor){
 
@@ -804,44 +816,45 @@ class MicrobeEditor{
                 Int2(q, r));
         PlacedOrganelle@ organelle = cast<PlacedOrganelle>(organelleHere);
 
+        int cost = ORGANELLE_REMOVE_COST;
+        if(freeBuilding)
+            cost = 0;
+
         if(organelleHere !is null){
             // Dont allow deletion of nucleus or the last organelle
             // TODO: allow deleting the last cytoplasm if an organelle is about to be placed
             if(!(organelleHere.organelle.name == "nucleus") && getMicrobeSize() > 1) {
-                EditorAction@ action = EditorAction(ORGANELLE_REMOVE_COST,
-                    // redo We need data about the organelle we removed,
-                    // and the location so we can "redo" it
-                    function(EditorAction@ action, MicrobeEditor@ editor){
-                        LOG_INFO("Redo called");
-                        int q = int(action.data["q"]);
-                        int r = int(action.data["r"]);
-                        // Remove the organelle
-                        OrganellePlacement::removeOrganelleAt(editor.editedMicrobe,Int2(q, r));
-                    },
-                    // undo
-                    function(EditorAction@ action, MicrobeEditor@ editor){
-                        PlacedOrganelle@ organelle = cast<PlacedOrganelle>(
-                            action.data["organelle"]);
-
-                        // Need to set this here to make sure the pointer is updated
-                        @action.data["organelle"]=organelle;
-                        // Check if there is cytoplasm under this organelle.
-                        auto hexes = organelle.organelle.getRotatedHexes(organelle.rotation);
-                        for(uint i = 0; i < hexes.length(); ++i){
-                            int posQ = int(hexes[i].q) + organelle.q;
-                            int posR = int(hexes[i].r) + organelle.r;
-                            auto organelleHere = OrganellePlacement::getOrganelleAt(
-                                editor.editedMicrobe, Int2(posQ, posR));
-                            if(organelleHere !is null &&
-                                organelleHere.organelle.name == "cytoplasm")
-                            {
-                                LOG_INFO("replaced cytoplasm");
-                                OrganellePlacement::removeOrganelleAt(editor.editedMicrobe,
-                                    Int2(posQ, posR));
-                            }
-                        }
-                        editor.editedMicrobe.insertLast(organelle);
-                    });
+                EditorAction@ action = EditorAction(cost,
+                // redo We need data about the organelle we removed, and the location so we can "redo" it
+                 function(EditorAction@ action, MicrobeEditor@ editor){
+                    LOG_INFO("Redo called");
+                    int q = int(action.data["q"]);
+                    int r = int(action.data["r"]);
+                    // Remove the organelle
+                   OrganellePlacement::removeOrganelleAt(editor.editedMicrobe,Int2(q, r));
+                },
+                // undo
+                function(EditorAction@ action, MicrobeEditor@ editor){
+                 PlacedOrganelle@ organelle = cast<PlacedOrganelle>(action.data["organelle"]);
+                // Need to set this here to make sure the pointer is updated
+                @action.data["organelle"]=organelle;
+                // Check if there is cytoplasm under this organelle.
+                auto hexes = organelle.organelle.getRotatedHexes(organelle.rotation);
+                for(uint i = 0; i < hexes.length(); ++i){
+                    int posQ = int(hexes[i].q) + organelle.q;
+                    int posR = int(hexes[i].r) + organelle.r;
+                    auto organelleHere = OrganellePlacement::getOrganelleAt(
+                        editor.editedMicrobe, Int2(posQ, posR));
+                    if(organelleHere !is null &&
+                        organelleHere.organelle.name == "cytoplasm")
+                    {
+                        LOG_INFO("replaced cytoplasm");
+                        OrganellePlacement::removeOrganelleAt(editor.editedMicrobe,
+                            Int2(posQ, posR));
+                    }
+                }
+                editor.editedMicrobe.insertLast(organelle);
+                });
                 // Give the action access to some data
                 @action.data["organelle"] = organelle;
                 action.data["q"] = q;
@@ -1169,6 +1182,9 @@ class MicrobeEditor{
         LOG_ERROR("Microbe editor got unknown event: " + type);
         return -1;
     }
+
+    //! When true nothing costs ATP
+    bool freeBuilding = false;
 
     //! This is used to keep track of used hover organelles
     private uint usedHoverHex = 0;

@@ -1,4 +1,5 @@
 #include "microbe_editor_hud.as"
+#include "microbe_editor.as"
 
 // Called from ThriveGame when the editor has been entered and it should be setup
 void onEditorEntry(MicrobeEditorWorld@ world)

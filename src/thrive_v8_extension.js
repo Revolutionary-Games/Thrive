@@ -9,7 +9,7 @@ var Thrive = {};
                          onSuccess: onSuccess,
                          onFailure: onFailure
                         });
-    }
+    };
 
     native function startNewGame();
     Thrive.start = startNewGame;
@@ -17,9 +17,12 @@ var Thrive = {};
     native function editorButtonClicked();
     Thrive.editorButtonClicked = editorButtonClicked;
 
+    native function freebuildEditorButtonClicked();
+    Thrive.freebuildEditorButtonClicked = freebuildEditorButtonClicked;
+
     native function finishEditingClicked();
     Thrive.finishEditingClicked = finishEditingClicked;
-    
+
     native function killPlayerCellClicked();
     Thrive.killPlayerCellClicked = killPlayerCellClicked;
 

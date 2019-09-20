@@ -275,7 +275,7 @@ void
 }
 
 void
-    PatchMap::removeExtinctSpecies()
+    PatchMap::removeExtinctSpecies(bool playerCantGoExtinct /*= false*/)
 {
     std::vector<Species::pointer> extinctSpecies;
 
@@ -285,6 +285,10 @@ void
 
         for(const auto& patchSpecies : patch->getSpecies()) {
             if(patchSpecies.population <= 0) {
+                if(playerCantGoExtinct &&
+                    patchSpecies.species->isPlayerSpecies())
+                    continue;
+
                 extinctSpecies.push_back(patchSpecies.species);
             }
         }
