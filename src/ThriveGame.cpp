@@ -1403,6 +1403,7 @@ void
     keyconfigobj->AddKeyIfMissing(guard, "ReproduceCheat", {"P"});
     keyconfigobj->AddKeyIfMissing(guard, "SpawnGlucoseCheat", {"O"});
     keyconfigobj->AddKeyIfMissing(guard, "SpawnPhosphateCheat", {"I"});
+    keyconfigobj->AddKeyIfMissing(guard, "SpawnAmmoniaCheat", {"K"});
     keyconfigobj->AddKeyIfMissing(guard, "EngulfMode", {"G"});
     keyconfigobj->AddKeyIfMissing(guard, "ShootToxin", {"E"});
     keyconfigobj->AddKeyIfMissing(guard, "Screenshot", {"PrintScreen"});

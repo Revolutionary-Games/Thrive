@@ -487,6 +487,41 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         return totalLeft;
     }
 
+    //! Calculates how much compounds this organelle has absorbed
+    //! already, adds to the dictionary
+    float calculateAbsorbedCompounds(dictionary &inout result) const
+    {
+        float totalAbsorbed = 0;
+
+        const auto compoundKeys = compoundsLeft.getKeys();
+        for(uint i = 0; i < compoundKeys.length(); ++i){
+
+            float amountLeft;
+            if(!compoundsLeft.get(compoundKeys[i], amountLeft)){
+
+                LOG_ERROR("Invalid type in compoundsLeft");
+                continue;
+            }
+
+            float amountTotal;
+            if(!organelle.initialComposition.get(compoundKeys[i], amountTotal)){
+                LOG_ERROR("Invalid type in organelle.initialComposition");
+                continue;
+            }
+
+            float alreadyInResult;
+            if(!result.get(compoundKeys[i], alreadyInResult))
+                alreadyInResult = 0;
+
+            const auto absorbed = amountTotal - amountLeft;
+
+            result.set(compoundKeys[i], alreadyInResult + absorbed);
+            totalAbsorbed += absorbed;
+        }
+
+        return totalAbsorbed;
+    }
+
     private void recalculateBin()
     {
         // Calculate the new growth growth

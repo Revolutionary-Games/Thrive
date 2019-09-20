@@ -121,7 +121,40 @@ class MicrobeStageHudSystem : ScriptSystem{
                     int(microbeComponent.hitpoints)));
             vars.AddValue(ScriptSafeVariableBlock("maxHitpoints",
                     int(microbeComponent.maxHitpoints)));
-            populationVars.AddValue(ScriptSafeVariableBlock("populationAmount", playerSpecies.population));
+            populationVars.AddValue(ScriptSafeVariableBlock("populationAmount",
+                    playerSpecies.population));
+
+            {
+                // Get player reproduction progress
+                dictionary gatheredCompounds;
+                dictionary totalNeededCompounds;
+                const auto totalProgress = MicrobeOperations::calculateReproductionProgress(
+                    microbeComponent, gatheredCompounds, totalNeededCompounds, bag);
+
+                float fractionOfAmmonia = 0;
+                float fractionOfPhosphates = 0;
+
+                float gatheredAmmonia, neededAmmonia, gatheredPhosphates, neededPhosphates;
+
+                if(gatheredCompounds.get("ammonia", gatheredAmmonia) &&
+                    totalNeededCompounds.get("ammonia", neededAmmonia))
+                {
+                    fractionOfAmmonia = gatheredAmmonia / neededAmmonia;
+                } else {
+                    LOG_WARNING("can't get reproduction ammonia progress");
+                }
+
+                if(gatheredCompounds.get("phosphates", gatheredPhosphates) &&
+                    totalNeededCompounds.get("phosphates", neededPhosphates))
+                {
+                    fractionOfPhosphates = gatheredPhosphates / neededPhosphates;
+                } else {
+                    LOG_WARNING("can't get reproduction phosphates progress");
+                }
+
+                LOG_WRITE("total progress: " + totalProgress + " ammonia: " +
+                    fractionOfAmmonia + " phosphates: " + fractionOfPhosphates);
+            }
 
             if(bag is null){
 

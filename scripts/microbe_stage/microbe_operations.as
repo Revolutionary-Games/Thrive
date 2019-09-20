@@ -1309,5 +1309,108 @@ void setMembraneType(CellStageWorld@ world, ObjectID microbeEntity, MEMBRANE_TYP
     membraneComponent.setMembraneType(type);
 }
 
+//! Calculates the reproduction progress for a cell, used to show how
+//! close the player is getting to the editor
+float calculateReproductionProgress(MicrobeComponent@ microbeComponent,
+    dictionary &out gatheredCompounds, dictionary &out totalCompounds,
+    CompoundBagComponent@ extraHave)
+{
+    // Calculate total compounds needed to split all organelles
+    totalCompounds = calculateTotalCompounds(microbeComponent);
+
+    // Calculate how many compounds the cell already has absorbed to grow
+    gatheredCompounds = calculateAlreadyAbsorbedCompounds(microbeComponent);
+
+    // if(extraHave !is null){
+    //     const auto@ keys = gatheredCompounds.getKeys();
+
+    //     for(uint i = 0; i < keys.length(); ++i){
+    //         float value = extraHave.getCompoundAmount(
+    //             SimulationParameters::compoundRegistry().getTypeId(keys[i]));
+
+    //         if(value > 0){
+    //             float existing;
+
+    //             if(!gatheredCompounds.get(keys[i], existing))
+    //                 existing = 0;
+
+    //             gatheredCompounds.set(keys[i], existing + value);
+    //         }
+    //     }
+    // }
+
+    float totalFraction = 0;
+    const auto@ keys = totalCompounds.getKeys();
+    for(uint i = 0; i < keys.length(); ++i){
+
+        float total;
+
+        if(totalCompounds.get(keys[i], total)){
+
+            float gathered;
+            if(gatheredCompounds.get(keys[i], gathered)){
+
+                totalFraction += gathered / total;
+            }
+        }
+    }
+   
+    return totalFraction / totalCompounds.getSize();
+}
+
+//! Calculates total compounds needed for a cell to reproduce, used by
+//! calculateReproductionProgress to calculate the fraction done
+dictionary calculateTotalCompounds(MicrobeComponent@ microbeComponent)
+{
+    dictionary result;
+
+    for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
+
+        auto organelle = microbeComponent.organelles[i];
+
+        if(organelle.isDuplicate)
+            continue;
+
+        const dictionary@ composition = organelle.organelle.initialComposition;
+
+        const auto@ keys = composition.getKeys();
+
+        for(uint k = 0; k < keys.length(); ++k){
+
+            const string key = keys[k];
+
+            float existing;
+
+            const auto current = float(composition[key]);
+
+            if(!result.get(key, existing)){
+                existing = 0;
+            }
+
+            result.set(key, existing + current);
+        }
+    }
+
+    return result;
+}
+
+//! Calculates how much compounds organelles have already absorbed
+dictionary calculateAlreadyAbsorbedCompounds(MicrobeComponent@ microbeComponent)
+{
+    dictionary result;
+
+    for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
+
+        auto organelle = microbeComponent.organelles[i];
+
+        if(organelle.isDuplicate)
+            continue;
+
+        organelle.calculateAbsorbedCompounds(result);
+    }
+
+    return result;
+}
+
 }//Namespace MicrobeOperations
 

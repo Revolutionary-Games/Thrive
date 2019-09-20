@@ -741,6 +741,8 @@ class MicrobeSystem : ScriptSystem{
 
     //! This method handles reproduction for the cell
     //! It makes calls to many other places to achieve this
+    //! \note If this or growOrganelle is changed,
+    //! MicrobeOperations::calculateReproductionProgress must be changed as well
     void doReproductionStep(MicrobeSystemCached@ &in components, uint logicTime)
     {
         auto microbeEntity = components.entity;
@@ -829,7 +831,7 @@ class MicrobeSystem : ScriptSystem{
             microbeComponent.reproductionStage += 1;
         }
 
-        // To finish the G2 phase we just need more than a threshold of compounds.
+        // Rest of the stages are now unused? and just skipped
         if(microbeComponent.reproductionStage == 2 ||
             microbeComponent.reproductionStage == 3)
         {
