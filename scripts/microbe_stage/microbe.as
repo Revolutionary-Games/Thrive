@@ -805,7 +805,7 @@ class MicrobeSystem : ScriptSystem{
             for(uint i = 0; i < organellesToAdd.length(); ++i){
                 PlacedOrganelle@ organelle = organellesToAdd[i];
 
-                LOG_INFO("ready to split " + organelle.organelle.name);
+                // LOG_INFO("ready to split " + organelle.organelle.name);
 
                 // Mark this organelle as done and return to its normal size.
                 organelle.reset();
@@ -826,7 +826,6 @@ class MicrobeSystem : ScriptSystem{
             }
 
             if(reproductionStageComplete){
-                LOG_WRITE("next stage " + (microbeComponent.reproductionStage + 1));
                 microbeComponent.reproductionStage += 1;
             }
         }
