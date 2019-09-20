@@ -53,6 +53,13 @@ bool
         return true;
     }
 
+    if(!active && cheatAmmoniaCloudsDown &&
+        m_spawnAmmoniaCheat.Match(key, modifiers)) {
+
+        cheatAmmoniaCloudsDown = false;
+        return true;
+    }
+
     if(!active)
         return false;
 

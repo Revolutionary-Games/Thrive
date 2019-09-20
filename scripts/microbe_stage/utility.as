@@ -21,3 +21,23 @@ shared float sumTotalValuesInDictionary(const dictionary &in obj)
 
     return sum;
 }
+
+shared void mergeDictionaries(dictionary &inout target, dictionary &in source)
+{
+    const auto@ keys = source.getKeys();
+
+    for(uint i = 0; i < keys.length(); ++i){
+
+        const string key = keys[i];
+
+        float existing;
+
+        const auto current = float(source[key]);
+
+        if(!target.get(key, existing)){
+            existing = 0;
+        }
+
+        target.set(key, existing + current);
+    }
+}

@@ -152,8 +152,10 @@ class MicrobeStageHudSystem : ScriptSystem{
                     LOG_WARNING("can't get reproduction phosphates progress");
                 }
 
-                LOG_WRITE("total progress: " + totalProgress + " ammonia: " +
-                    fractionOfAmmonia + " phosphates: " + fractionOfPhosphates);
+                vars.AddValue(ScriptSafeVariableBlock("reproductionProgress", totalProgress));
+                vars.AddValue(ScriptSafeVariableBlock("reproductionAmmoniaFraction", fractionOfAmmonia));
+                vars.AddValue(ScriptSafeVariableBlock("reproductionPhosphatesFraction",
+                        fractionOfPhosphates));
             }
 
             if(bag is null){

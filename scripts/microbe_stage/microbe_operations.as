@@ -1321,23 +1321,29 @@ float calculateReproductionProgress(MicrobeComponent@ microbeComponent,
     // Calculate how many compounds the cell already has absorbed to grow
     gatheredCompounds = calculateAlreadyAbsorbedCompounds(microbeComponent);
 
-    // if(extraHave !is null){
-    //     const auto@ keys = gatheredCompounds.getKeys();
+    if(extraHave !is null){
+        const auto@ keys = gatheredCompounds.getKeys();
 
-    //     for(uint i = 0; i < keys.length(); ++i){
-    //         float value = extraHave.getCompoundAmount(
-    //             SimulationParameters::compoundRegistry().getTypeId(keys[i]));
+        for(uint i = 0; i < keys.length(); ++i){
+            float value = max(0.f, extraHave.getCompoundAmount(
+                    SimulationParameters::compoundRegistry().getTypeId(keys[i])) -
+                ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST);
 
-    //         if(value > 0){
-    //             float existing;
+            if(value > 0){
+                float existing;
 
-    //             if(!gatheredCompounds.get(keys[i], existing))
-    //                 existing = 0;
+                if(!gatheredCompounds.get(keys[i], existing))
+                    existing = 0;
 
-    //             gatheredCompounds.set(keys[i], existing + value);
-    //         }
-    //     }
-    // }
+                // Only up to the total needed
+                float total;
+                if(!totalCompounds.get(keys[i], total))
+                    total = 0;
+
+                gatheredCompounds.set(keys[i], min(total, existing + value));
+            }
+        }
+    }
 
     float totalFraction = 0;
     const auto@ keys = totalCompounds.getKeys();
@@ -1354,7 +1360,7 @@ float calculateReproductionProgress(MicrobeComponent@ microbeComponent,
             }
         }
     }
-   
+
     return totalFraction / totalCompounds.getSize();
 }
 
@@ -1371,24 +1377,7 @@ dictionary calculateTotalCompounds(MicrobeComponent@ microbeComponent)
         if(organelle.isDuplicate)
             continue;
 
-        const dictionary@ composition = organelle.organelle.initialComposition;
-
-        const auto@ keys = composition.getKeys();
-
-        for(uint k = 0; k < keys.length(); ++k){
-
-            const string key = keys[k];
-
-            float existing;
-
-            const auto current = float(composition[key]);
-
-            if(!result.get(key, existing)){
-                existing = 0;
-            }
-
-            result.set(key, existing + current);
-        }
+        mergeDictionaries(result, organelle.organelle.initialComposition);
     }
 
     return result;
@@ -1406,11 +1395,19 @@ dictionary calculateAlreadyAbsorbedCompounds(MicrobeComponent@ microbeComponent)
         if(organelle.isDuplicate)
             continue;
 
+        if(organelle.wasSplit){
+            // Organelles are reset on split, so we use the full cost as the gathered amount
+            mergeDictionaries(result, organelle.organelle.initialComposition);
+            continue;
+        }
+
         organelle.calculateAbsorbedCompounds(result);
     }
 
     return result;
 }
+
+
 
 }//Namespace MicrobeOperations
 

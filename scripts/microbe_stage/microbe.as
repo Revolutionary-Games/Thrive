@@ -182,6 +182,7 @@ class MicrobeComponent : ScriptComponent{
     // The one in the organelle class doesn't work
     uint flashDuration = 0;
     Float4 flashColour = Float4(0, 0, 0, 0);
+    //! \todo Change this into an enum
     uint reproductionStage = 0;
 
 
@@ -749,93 +750,95 @@ class MicrobeSystem : ScriptSystem{
 
         MicrobeComponent@ microbeComponent = components.second;
         MembraneComponent@ membraneComponent = components.fifth;
+        CompoundBagComponent@ compoundBag= components.sixth;
+
+        if(microbeComponent.reproductionStage == 3){
+            // Ready to reproduce already. Only the player gets here
+            // as other cells split and reset automatically
+            return;
+        }
+
         auto reproductionStageComplete = true;
-        array<PlacedOrganelle@> organellesToAdd;
 
-        // Grow all the large organelles.
-        for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
+        if(microbeComponent.reproductionStage == 0 || microbeComponent.reproductionStage == 1){
+            array<PlacedOrganelle@> organellesToAdd;
 
-            auto organelle = microbeComponent.organelles[i];
+            // Grow all the organelles.
+            for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
 
-            // We are in G1 phase of the cell cycle, duplicate all organelles.
-            if(organelle.organelle.name != "nucleus" &&
-                microbeComponent.reproductionStage == 0)
-            {
-                // If the organelle is not split, give it some
-                // compounds to make it larger.
-                if(organelle.getCompoundBin() < 2.0 && !organelle.wasSplit){
-                    // Give the organelle access to the
-                    // compound bag to take some compound.
-                    organelle.growOrganelle(
-                        world.GetComponent_CompoundBagComponent(microbeEntity),
-                        logicTime);
+                auto organelle = microbeComponent.organelles[i];
 
-                    reproductionStageComplete = false;
+                // Check if already done
+                if(organelle.wasSplit)
+                    continue;
 
-                    // if the organelle was split and has a
-                    // bin less 1, it must have been damaged.
-                } else if(organelle.getCompoundBin() < 1.0 && organelle.wasSplit){
-                    // Give the organelle access to the
-                    // compound bag to take some compound.
-                    organelle.growOrganelle(
-                        world.GetComponent_CompoundBagComponent(microbeEntity),
-                        logicTime);
+                // We are in G1 phase of the cell cycle, duplicate all organelles.
+                if(organelle.organelle.name != "nucleus" &&
+                    microbeComponent.reproductionStage == 0)
+                {
+                    // If Give it some compounds to make it larger.
+                    organelle.growOrganelle(compoundBag);
 
-                    // If the organelle is twice its size...
-                } else if(organelle.getCompoundBin() >= 2.0){
+                    if(organelle.getGrowthProgress() >= 1.f){
+                        // Queue this organelle for splitting after the loop.
+                        organellesToAdd.insertLast(organelle);
+                    } else {
+                        // Needs more stuff
+                        reproductionStageComplete = false;
+                    }
+                    // In the S phase, the nucleus grows as chromatin is duplicated.
+                } else if (organelle.organelle.name == "nucleus" &&
+                    microbeComponent.reproductionStage == 1)
+                {
+                    // The nucleus hasn't finished replicating
+                    // its DNA, give it some compounds.
+                    organelle.growOrganelle(compoundBag);
 
-                    //Queue this organelle for splitting after the loop.
-                    //(To avoid "cutting down the branch we're sitting on").
-                    organellesToAdd.insertLast(organelle);
+                    if(organelle.getGrowthProgress() < 1.f){
+                        // Nucleus needs more compounds
+                        reproductionStageComplete = false;
+                    }
                 }
-                // In the S phase, the nucleus grows as chromatin is duplicated.
-            } else if (organelle.organelle.name == "nucleus" &&
-                microbeComponent.reproductionStage == 1)
-            {
-                // If the nucleus hasn't finished replicating
-                // its DNA, give it some compounds.
-                if(organelle.getCompoundBin() < 2.0){
-                    // Give the organelle access to the compound
-                    // back to take some compound.
-                    organelle.growOrganelle(
-                        world.GetComponent_CompoundBagComponent(microbeEntity),
-                        logicTime);
-                    reproductionStageComplete = false;
-                }
+            }
+
+            // Splitting the queued organelles.
+            for(uint i = 0; i < organellesToAdd.length(); ++i){
+                PlacedOrganelle@ organelle = organellesToAdd[i];
+
+                LOG_INFO("ready to split " + organelle.organelle.name);
+
+                // Mark this organelle as done and return to its normal size.
+                organelle.reset();
+                organelle.wasSplit = true;
+                // Create a second organelle.
+                auto organelle2 = splitOrganelle(microbeEntity, organelle);
+                organelle2.wasSplit = true;
+                organelle2.isDuplicate = true;
+                @organelle2.sisterOrganelle = organelle;
+            }
+
+            if(organellesToAdd.length() > 0){
+                // Redo the cell membrane.
+                membraneComponent.clear();
+
+                // And allow the new organelles to do processes
+                MicrobeOperations::rebuildProcessList(world, microbeEntity);
+            }
+
+            if(reproductionStageComplete){
+                LOG_WRITE("next stage " + (microbeComponent.reproductionStage + 1));
+                microbeComponent.reproductionStage += 1;
             }
         }
 
-        //Splitting the queued organelles.
-        for(uint i = 0; i < organellesToAdd.length(); ++i){
-            PlacedOrganelle@ organelle = organellesToAdd[i];
-
-            //LOG_INFO("ready to split " + organelle.organelle.name);
-
-            // Mark this organelle as done and return to its normal size.
-            organelle.reset();
-            organelle.wasSplit = true;
-            // Create a second organelle.
-            auto organelle2 = splitOrganelle(microbeEntity, organelle);
-            organelle2.wasSplit = true;
-            organelle2.isDuplicate = true;
-            @organelle2.sisterOrganelle = organelle;
-        }
-
-        if(organellesToAdd.length() > 0){
-            // Redo the cell membrane.
-            membraneComponent.clear();
-            MicrobeOperations::rebuildProcessList(world, microbeEntity);
-        }
-
-        if(reproductionStageComplete && microbeComponent.reproductionStage < 2){
-            microbeComponent.reproductionStage += 1;
-        }
-
-        // Rest of the stages are now unused? and just skipped
-        if(microbeComponent.reproductionStage == 2 ||
-            microbeComponent.reproductionStage == 3)
+        if(microbeComponent.reproductionStage == 2)
         {
+            microbeComponent.reproductionStage += 1;
             readyToReproduce(microbeEntity);
+        }
+
+        if(microbeComponent.reproductionStage == 3){
+            // Nothing to do
         }
 
         // End of reproduction
@@ -1027,7 +1030,7 @@ class MicrobeSystem : ScriptSystem{
 
         if(microbeComponent.isPlayerMicrobe){
             // The player doesn't split automatically
-            microbeComponent.reproductionStage = 0;
+            microbeComponent.reproductionStage = 3;
             showReproductionDialog(world);
         } else {
 
@@ -1048,6 +1051,9 @@ class MicrobeSystem : ScriptSystem{
 
                 divide(microbeEntity);
 
+            } else {
+                // It's extinct and can't split
+                microbeComponent.reproductionStage = 3;
             }
         }
     }
