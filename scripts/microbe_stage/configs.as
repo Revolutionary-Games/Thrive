@@ -11,6 +11,15 @@ const auto MICROBE_SPAWN_RADIUS = 150;
 const auto INITIAL_SPLIT_POPULATION_MIN = 600;
 const auto INITIAL_SPLIT_POPULATION_MAX = 2000;
 
+//! Organelles won't take compounds if there is less available than this amount
+const auto ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST = 0.f;
+
+// Percentage of the compounds that compose the organelle released
+// upon death (between 0.0 and 1.0).
+const auto COMPOUND_MAKEUP_RELEASE_PERCENTAGE = 0.9f;
+const auto COMPOUND_RELEASE_PERCENTAGE = 0.9f;
+
+
 //Corpse info
 const auto CORPSE_COMPOUND_COMPENSATION = 8.0f;
 const int CORPSE_CHUNK_DIVISER = 3;

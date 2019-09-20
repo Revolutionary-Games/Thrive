@@ -26,6 +26,7 @@ PlayerMicrobeControl::PlayerMicrobeControl(KeyConfiguration& keys) :
     m_spawnGlucoseCheat(keys.ResolveControlNameToFirstKey("SpawnGlucoseCheat")),
     m_spawnPhosphateCheat(
         keys.ResolveControlNameToFirstKey("SpawnPhosphateCheat")),
+    m_spawnAmmoniaCheat(keys.ResolveControlNameToFirstKey("SpawnAmmoniaCheat")),
     m_zoomIn(keys.ResolveControlNameToKeyVector("ZoomIn")),
     m_zoomOut(keys.ResolveControlNameToKeyVector("ZoomOut"))
 {}
@@ -49,6 +50,13 @@ bool
         m_spawnPhosphateCheat.Match(key, modifiers)) {
 
         cheatPhosphateCloudsDown = false;
+        return true;
+    }
+
+    if(!active && cheatAmmoniaCloudsDown &&
+        m_spawnAmmoniaCheat.Match(key, modifiers)) {
+
+        cheatAmmoniaCloudsDown = false;
         return true;
     }
 
@@ -92,6 +100,14 @@ bool
 
             LOG_INFO("Phosphate cloud cheat pressed");
             cheatPhosphateCloudsDown = true;
+        }
+        return true;
+    } else if(m_spawnAmmoniaCheat.Match(key, modifiers)) {
+
+        if(ThriveGame::get()->areCheatsEnabled()) {
+
+            LOG_INFO("Ammonia cloud cheat pressed");
+            cheatAmmoniaCloudsDown = true;
         }
         return true;
     }
@@ -335,6 +351,13 @@ void
         world.GetCompoundCloudSystem().addCloud(
             SimulationParameters::compoundRegistry.getTypeId("phosphates"),
             15000, lookPoint);
+    }
+
+    if(thrive->getPlayerInput()->getCheatAmmoniaCloudsDown()) {
+
+        world.GetCompoundCloudSystem().addCloud(
+            SimulationParameters::compoundRegistry.getTypeId("ammonia"), 15000,
+            lookPoint);
     }
 }
 // ------------------------------------ //
