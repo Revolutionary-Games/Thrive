@@ -6,7 +6,7 @@
 using namespace thrive;
 // ------------------------------------ //
 Patch::Patch(const std::string& name, int32_t id, const Biome& biomeTemplate) :
-    patchId(id), name(name), biome(biomeTemplate)
+    patchId(id), name(name), biome(biomeTemplate), biomeTemplate(biomeTemplate)
 {}
 // ------------------------------------ //
 bool

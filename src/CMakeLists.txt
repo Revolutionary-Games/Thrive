@@ -27,6 +27,8 @@ set(GROUP_GENERAL
   "general/thrive_math.h"
   "general/global_keypresses.h"
   "general/global_keypresses.cpp"
+  "general/timed_world_operations.cpp"
+  "general/timed_world_operations.cpp"
   )
 
 set(GROUP_MICROBE_STAGE

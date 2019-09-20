@@ -158,6 +158,8 @@ void
 
             if(existing->setDensity != compound.density) {
 
+                LOG_INFO("Updated density of " + compoundData.internalName +
+                         " to: " + std::to_string(compound.density));
                 existing->setDensity = compound.density;
                 cellWorld.GetSpawnSystem().updateDensity(
                     existing->id, existing->setDensity);

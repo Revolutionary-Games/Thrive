@@ -47,6 +47,10 @@ void setupSystemsForWorld(CellStageWorld@ world)
     world.RegisterScriptSystem("MicrobeSystem", MicrobeSystem());
     world.RegisterScriptSystem("MicrobeStageHudSystem", MicrobeStageHudSystem());
     world.RegisterScriptSystem("MicrobeAISystem", MicrobeAISystem());
+
+    // Add world effects
+    world.GetTimedWorldOperations().registerEffect("reduce glucose over time",
+        @reduceGlucoseOverTime);
 }
 
 //! Server variant of setupSystemsForWorld

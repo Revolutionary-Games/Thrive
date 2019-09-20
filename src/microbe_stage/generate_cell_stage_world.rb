@@ -33,6 +33,7 @@ generator.addInclude "microbe_stage/player_hover_info.h"
 generator.addInclude "microbe_stage/patch_manager.h"
 generator.addInclude "general/properties_component.h"
 generator.addInclude "general/timed_life_system.h"
+generator.addInclude "general/timed_world_operations.h"
 
 cellWorld = GameWorldClass.new(
   "CellStageWorld", componentTypes: [
@@ -177,7 +178,8 @@ cellWorld = GameWorldClass.new(
 END
                        ),
   perworlddata: [
-    Variable.new("_PatchManager", "PatchManager")
+    Variable.new("_PatchManager", "PatchManager"),
+    Variable.new("_TimedWorldOperations", "TimedWorldOperations"),
   ]
 )
 

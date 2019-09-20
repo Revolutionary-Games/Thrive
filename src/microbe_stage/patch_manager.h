@@ -12,7 +12,7 @@ class PatchManager : public Leviathan::PerWorldData {
     struct ExistingSpawn {
         ExistingSpawn(SpawnerTypeId id,
             const std::string& thing,
-            float density) :
+            double density) :
             id(id),
             thing(thing), setDensity(density)
         {}
@@ -21,7 +21,8 @@ class PatchManager : public Leviathan::PerWorldData {
         //! Used to detect existing items based on the chunk type or species
         //! name
         std::string thing;
-        float setDensity;
+        //! This is a double because the compound densities are a double
+        double setDensity;
 
         //! Flag for deleting removed ones. True when this should not be deleted
         bool marked = true;
