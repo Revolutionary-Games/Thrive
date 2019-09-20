@@ -121,21 +121,18 @@ public:
     //! \note Caller must have incremented ref count already on func
     ScriptSpawnerWrapper(asIScriptFunction* func) : m_func(func)
     {
-
         if(!m_func)
             throw std::runtime_error("no func given for ScriptSpawnerWrapper");
     }
 
     ~ScriptSpawnerWrapper()
     {
-
         m_func->Release();
     }
 
     ObjectID
         run(CellStageWorld& world, Float3 pos)
     {
-
         ScriptRunningSetup setup;
         auto result = Leviathan::ScriptExecutor::Get()->RunScript<ObjectID>(
             m_func, nullptr, setup, &world, pos);
@@ -166,6 +163,48 @@ SpawnerTypeId
             return wrapper->run(world, pos);
         },
         spawnDensity, spawnRadius);
+}
+
+
+class WorldEffectScript : public WorldEffect {
+public:
+    //! \note Caller must have incremented ref count already on func
+    WorldEffectScript(asIScriptFunction* func) : m_func(func)
+    {
+        if(!m_func)
+            throw std::runtime_error("no func given to WorldEffectScript");
+    }
+
+    ~WorldEffectScript()
+    {
+        m_func->Release();
+    }
+
+    void
+        onTimePassed(double elapsed, long double totalTimePassed) override
+    {
+        double totalConverted = static_cast<double>(totalTimePassed);
+
+        ScriptRunningSetup setup;
+        auto result = Leviathan::ScriptExecutor::Get()->RunScript<void>(
+            m_func, nullptr, setup, m_world, elapsed, totalConverted);
+
+        if(result.Result != SCRIPT_RUN_RESULT::Success) {
+
+            LOG_ERROR("Failed to run WorldEffectScript function");
+        }
+    }
+
+    asIScriptFunction* m_func;
+};
+
+
+void
+    registerEffectProxy(TimedWorldOperations& self,
+        const std::string& name,
+        asIScriptFunction* func)
+{
+    self.registerEffect(name, std::make_unique<WorldEffectScript>(func));
 }
 
 // ------------------------------------ //
@@ -363,6 +402,7 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    // TODO: reference counting for these
     if(engine->RegisterObjectType(
            "BiomeCompoundData", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
@@ -370,7 +410,14 @@ bool
 
     ANGELSCRIPT_ASSUMED_SIZE_T;
     if(engine->RegisterObjectMethod("Biome",
-           "const BiomeCompoundData& getCompound(uint64 type) const",
+           "const BiomeCompoundData@ getCompound(uint64 type) const",
+           asMETHOD(Biome, getCompound), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectMethod("Biome",
+           "BiomeCompoundData@ getCompound(uint64 type)",
            asMETHOD(Biome, getCompound), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
@@ -1571,6 +1618,13 @@ bool
     }
 
     if(engine->RegisterObjectMethod("Patch",
+           "const Biome@ getBiomeTemplate() const",
+           asMETHODPR(Patch, getBiomeTemplate, () const, const Biome&),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("Patch",
            ("bool addSpecies(Species@ species, int32 population = " +
                std::to_string(INITIAL_SPECIES_POPULATION) + ")")
                .c_str(),
@@ -1661,6 +1715,37 @@ bool
 
     if(engine->RegisterObjectMethod("PatchManager", "PatchMap@ getCurrentMap()",
            asMETHOD(PatchManager, getCurrentMapWrapper), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    return true;
+}
+
+bool
+    registerTimedWorldOperations(asIScriptEngine* engine)
+{
+    // ------------------------------------ //
+    // PatchManager
+    if(engine->RegisterObjectType(
+           "TimedWorldOperations", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("TimedWorldOperations",
+           "void onTimePassed(double timePassed)",
+           asMETHOD(TimedWorldOperations, onTimePassed), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterFuncdef("void ElapsedTimeFunc(GameWorld@ world, double "
+                               "elapsed, double totalTimePassed)") < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("TimedWorldOperations",
+           "void registerEffect(const string &in name, ElapsedTimeFunc@ "
+           "callback)",
+           asFUNCTION(registerEffectProxy), asCALL_CDECL_OBJFIRST) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
@@ -1793,6 +1878,9 @@ bool
         return false;
 
     if(!registerPatches(engine))
+        return false;
+
+    if(!registerTimedWorldOperations(engine))
         return false;
 
     if(!registerAutoEvo(engine))
