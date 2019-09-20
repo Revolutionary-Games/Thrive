@@ -104,6 +104,10 @@ class MicrobeEditor{
             freeBuilding = false;
         }
 
+        LOG_INFO("Elapsing time on editor entry");
+        // TODO: select which units will be used for the master elapsed time counter
+        GetThriveGame().getCellStage().GetTimedWorldOperations().onTimePassed(1);
+
         Species@ playerSpecies = MicrobeOperations::getSpecies(
             GetThriveGame().getCellStage(), GetThriveGame().playerData().activeCreature());
 

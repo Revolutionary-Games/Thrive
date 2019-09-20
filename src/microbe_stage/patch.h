@@ -96,6 +96,12 @@ public:
         return biome;
     }
 
+    const Biome&
+        getBiomeTemplate() const
+    {
+        return biomeTemplate;
+    }
+
     const auto&
         getNeighbours() const
     {
@@ -144,6 +150,10 @@ private:
     Float2 screenCoordinates;
 
     Biome biome;
+
+    //! This is a copy of biome that is set on construction and never allowed to
+    //! change
+    const Biome biomeTemplate;
 
     //! Species in this patch. The Species objects are shared with other
     //! patches. They are contained in SpeciesInPatch struct to allow per patch

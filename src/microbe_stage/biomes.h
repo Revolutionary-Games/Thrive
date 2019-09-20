@@ -139,8 +139,9 @@ public:
     Json::Value
         toJSON(bool full = false) const;
 
-    // No clue why these are maps
+    //! The key is the compound id
     std::map<size_t, BiomeCompoundData> compounds;
+    // No clue why this is a maps
     std::map<size_t, ChunkData> chunks;
     std::string background = "error";
 

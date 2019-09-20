@@ -127,7 +127,12 @@ Biome::Biome(Json::Value value)
 BiomeCompoundData*
     Biome::getCompound(size_t type)
 {
-    return &compounds[type];
+    const auto found = compounds.find(type);
+
+    if(found == compounds.end())
+        return nullptr;
+
+    return &found->second;
 }
 
 CScriptArray*
