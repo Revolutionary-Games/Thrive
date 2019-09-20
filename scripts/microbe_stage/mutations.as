@@ -1,5 +1,24 @@
 // Functions for generating mutated versions of Species
 
+//! Creates a fully random species
+Species@ createRandomSpecies(int steps = 5)
+{
+    array<PlacedOrganelle@> organelles;
+    organelles.insertLast(PlacedOrganelle(
+            getOrganelleDefinition("cytoplasm"), 0, 0, 0));
+
+    Species@ current = Species::createSpecies("random", generateNameSection(),
+        generateNameSection(), organelles, Float4(1, 1, 1, 1),true, MEMBRANE_TYPE::MEMBRANE,
+        DEFAULT_INITIAL_COMPOUNDS,
+        100.0f, 100.0f, 100.0f, 200.0f, 100.0f);
+
+    for(int step = 0; step < steps; ++step){
+        @current = createMutatedSpecies(current);
+    }
+
+    return current;
+}
+
 //! Creates a mutated version of the species
 Species@ createMutatedSpecies(Species@ parent)
 {

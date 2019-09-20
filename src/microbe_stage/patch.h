@@ -186,7 +186,7 @@ public:
 
     //! \brief Removes species from patches where their population is <= 0
     void
-        removeExtinctSpecies();
+        removeExtinctSpecies(bool playerCantGoExtinct = false);
 
     //! \brief Makes a JSON object representing the entire map
     Json::Value

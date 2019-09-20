@@ -43,6 +43,30 @@ float
     return BACKGROUND_Y - height;
 }
 
+PatchMap::pointer
+    generateNewPatchMap()
+{
+    ScriptRunningSetup setup("generatePatchMap");
+    auto returned =
+        ThriveGame::Get()->getMicrobeScripts()->ExecuteOnModule<PatchMap*>(
+            setup, false);
+
+    if(returned.Result != SCRIPT_RUN_RESULT::Success) {
+        LOG_ERROR("Failed to run generatePatchMap");
+        return nullptr;
+    }
+
+    if(!returned.Value) {
+        LOG_ERROR("generatePatchMap didn't return a patch map");
+        return nullptr;
+    }
+
+    // We are keeping a reference to the result
+    returned.Value->AddRef();
+
+    return PatchMap::WrapPtr(returned.Value);
+}
+
 //! Contains properties that would need unnecessary large includes in the header
 class ThriveGame::Implementation {
 public:
@@ -271,6 +295,9 @@ void
 
     LOG_INFO("New game started");
 
+    // Reset player data
+    m_impl->m_playerData.newGame();
+
     Leviathan::Window* window1 = engine->GetWindowEntity();
 
     // Create world if not already created //
@@ -380,33 +407,17 @@ void
     // Create a PatchMap (it will also contain the initial species)
     LOG_INFO("Generating new PatchMap");
 
-    {
-        ScriptRunningSetup setup("generatePatchMap");
-        auto returned =
-            ThriveGame::Get()->getMicrobeScripts()->ExecuteOnModule<PatchMap*>(
-                setup, false);
+    const auto map = generateNewPatchMap();
 
-        if(returned.Result != SCRIPT_RUN_RESULT::Success) {
-            LOG_ERROR("Failed to run generatePatchMap");
-            return;
-        }
+    if(!map)
+        return;
 
-        if(!returned.Value) {
-            LOG_ERROR("generatePatchMap didn't return a patch map");
-            return;
-        }
-
-        // We are keeping a reference to the result
-        returned.Value->AddRef();
-
-        try {
-            m_impl->m_cellStage->GetPatchManager().setNewMap(
-                PatchMap::WrapPtr(returned.Value));
-        } catch(const Leviathan::Exception& e) {
-            LOG_ERROR("Something is wrong with the patch map, exception: ");
-            e.PrintToLog();
-            return;
-        }
+    try {
+        m_impl->m_cellStage->GetPatchManager().setNewMap(map);
+    } catch(const Leviathan::Exception& e) {
+        LOG_ERROR("Something is wrong with the patch map, exception: ");
+        e.PrintToLog();
+        return;
     }
 
     // Make sure the player species exists (a bunch of places rely on it being
@@ -497,9 +508,44 @@ void
 }
 
 void
+    ThriveGame::enableFreebuild()
+{
+    playerData().enterFreeBuild();
+
+    LOG_INFO("Generating new map and some initial species for freebuild");
+
+    const auto map = generateNewPatchMap();
+
+    ScriptRunningSetup setup("generateRandomSpeciesForFreeBuild");
+
+    auto result =
+        getMicrobeScripts()->ExecuteOnModule<void>(setup, false, map.get());
+
+    if(result.Result != SCRIPT_RUN_RESULT::Success) {
+
+        LOG_ERROR("Failed to run generateRandomSpeciesForFreeBuild");
+    }
+
+    try {
+        m_impl->m_cellStage->GetPatchManager().setNewMap(map);
+    } catch(const Leviathan::Exception& e) {
+        LOG_ERROR("Something is wrong with the patch map, exception: ");
+        e.PrintToLog();
+        return;
+    }
+
+    // Apply patch settings
+    m_impl->m_cellStage->GetPatchManager().applyPatchSettings();
+
+    // Abandon previous auto-evo run
+    m_impl->m_autoEvoRun = nullptr;
+    checkAutoEvoStart();
+}
+
+void
     ThriveGame::editorButtonClicked()
 {
-    LOG_INFO("Editor button pressed");
+    LOG_INFO("editorButtonClicked called");
 
     // Increase player population
     const auto playerSpecies = m_impl->m_cellStage->GetPatchManager()
@@ -508,6 +554,7 @@ void
 
     playerSpecies->AddRef();
     addExternalPopulationEffect(playerSpecies.get(), 30, "player reproduced");
+
 
     // Mark that we want to enter the editor
     m_impl->m_waitingForAutoEvoForEditor = true;
@@ -1126,7 +1173,7 @@ void
     m_impl->m_autoEvoRun->applyExternalEffects();
     m_impl->m_cellStage->GetPatchManager()
         .getCurrentMap()
-        ->removeExtinctSpecies();
+        ->removeExtinctSpecies(playerData().isFreeBuilding());
 
     Leviathan::Engine* engine = Engine::GetEngine();
     Leviathan::Window* window1 = engine->GetWindowEntity();

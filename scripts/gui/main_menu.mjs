@@ -1,7 +1,7 @@
 // Main menu scripts are here
 import * as common from "./gui_common.mjs";
 import * as microbe_hud from "./microbe_hud.mjs";
-import {setupMicrobeEditor} from "./microbe_editor.mjs";
+import {doEnterMicrobeEditor, setupMicrobeEditor} from "./microbe_editor.mjs";
 
 // eslint off
 // import {doEnterMicrobeEditor} from "./microbe_editor.mjs";
@@ -73,6 +73,25 @@ export function runMenuSetup(){
         disconnectFromCurrentServer();
     }, true);
 
+    document.getElementById("toolsButton").addEventListener("click", (event) => {
+        event.stopPropagation();
+        common.playButtonPressSound();
+        $("#mainMenu").slideUp("fast", () => {
+            $("#toolsMenu").slideDown("fast");
+        });
+    }, true);
+    document.getElementById("backFromTools").addEventListener("click", (event) => {
+        event.stopPropagation();
+        common.playButtonPressSound();
+        $("#toolsMenu").slideUp("fast", () => {
+            $("#mainMenu").slideDown("fast");
+        });
+    }, true);
+    document.getElementById("freebuildEditorButton").addEventListener("click", (event) => {
+        event.stopPropagation();
+        common.playButtonPressSound();
+        enterFreebuildEditor();
+    }, true);
 
     document.addEventListener("keydown", (event) => {
         if(event.key === "Escape"){
@@ -237,6 +256,20 @@ function newGame(){
     } else {
         onMicrobeIntroEnded();
     }
+}
+
+function enterFreebuildEditor(){
+    switchToMicrobeHUD();
+
+    if(common.isInEngine()){
+        Thrive.start();
+        Thrive.freebuildEditorButtonClicked();
+    } else {
+        doEnterMicrobeEditor();
+    }
+
+    document.getElementById("toolsMenu").style.display = "none";
+    document.getElementById("mainMenu").style.display = "";
 }
 
 function connectToSelectedServerURL(){

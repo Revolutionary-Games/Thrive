@@ -236,12 +236,13 @@ void respawnPlayer(CellStageWorld@ world)
 {
     auto playerSpecies = MicrobeOperations::getSpecies(world, "Default");
     auto playerEntity = GetThriveGame().playerData().activeCreature();
+    bool freeBuild = GetThriveGame().playerData().isFreeBuilding();
 
     // Decrease the population by 20
     alterSpeciesPopulation(playerSpecies, -20, "player died", true);
 
-    // Respawn if not extinct
-    if (playerSpecies.population > 0)
+    // Respawn if not extinct (or freebuild)
+    if (playerSpecies.population > 0 || freeBuild)
     {
         MicrobeComponent@ microbeComponent = getMicrobeComponent(world, playerEntity);
         auto rigidBodyComponent = world.GetComponent_Physics(playerEntity);
@@ -288,13 +289,16 @@ void respawnPlayer(CellStageWorld@ world)
         Species::restoreOrganelleLayout(world, playerEntity, microbeComponent, playerSpecies);
     }
 
-    // TODO: we already check if the player is extinct here. That logic shouldn't
-    // be duplicated in the GUI
-    // Creates an event that calls the function in javascript that checks extinction events
-    GenericEvent@ checkExtinction = GenericEvent("CheckExtinction");
-    NamedVars@ vars = checkExtinction.GetNamedVars();
-    vars.AddValue(ScriptSafeVariableBlock("population", playerSpecies.population));
-    GetEngine().GetEventHandler().CallEvent(checkExtinction);
+    // Can't go extinct in freebuild
+    if(!freeBuild){
+        // TODO: we already check if the player is extinct here. That logic shouldn't
+        // be duplicated in the GUI
+        // Creates an event that calls the function in javascript that checks extinction events
+        GenericEvent@ checkExtinction = GenericEvent("CheckExtinction");
+        NamedVars@ vars = checkExtinction.GetNamedVars();
+        vars.AddValue(ScriptSafeVariableBlock("population", playerSpecies.population));
+        GetEngine().GetEventHandler().CallEvent(checkExtinction);
+    }
 }
 
 

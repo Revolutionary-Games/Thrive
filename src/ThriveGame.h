@@ -106,6 +106,9 @@ public:
         editorButtonClicked();
 
     void
+        enableFreebuild();
+
+    void
         finishEditingClicked();
 
     void
