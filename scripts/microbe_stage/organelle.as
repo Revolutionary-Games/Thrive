@@ -1,14 +1,6 @@
 #include "microbe.as"
 #include "hex.as"
 
-// How fast organelles grow.
-const auto GROWTH_SPEED_MULTILPIER = 0.5f / 1000;
-
-// Percentage of the compounds that compose the organelle released
-// upon death (between 0.0 and 1.0).
-const auto COMPOUND_MAKEUP_RELEASE_PERCENTAGE = 0.9f;
-const auto COMPOUND_RELEASE_PERCENTAGE = 0.9f;
-
 
 //! \todo Replace with Int2
 class Hex{
@@ -256,13 +248,6 @@ class Organelle{
     int mpCost = 0;
 }
 
-enum ORGANELLE_HEALTH{
-    DEAD = 0,
-    ALIVE = 1,
-    // Organelle is ready to divide
-    CAN_DIVIDE = 2
-};
-
 //! These are placed either on an actual microbe where they are
 //! onAddedToMicrobe() OR on templates where these just have positions
 //! set and should be duplicated for the purpose of adding to a
@@ -316,8 +301,6 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         if(_organelle is null)
             assert(false, "PlacedOrganelle created with null Organelle");
 
-        resetHealth();
-
         // Create instances of components //
         for(uint i = 0; i < organelle.components.length(); ++i){
 
@@ -326,13 +309,6 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
         compoundsLeft = organelle.initialComposition;
     }
-
-    void resetHealth()
-    {
-        // Copy //
-        composition = _organelle.initialComposition;
-    }
-
 
     // Called by Microbe.update
     //
@@ -368,102 +344,68 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         _needsColourUpdate = false;
     }
 
-    // Returns the meaning of compoundBin value
-    ORGANELLE_HEALTH getHealth()
+    // Gives organelles more compounds to grow
+    void growOrganelle(CompoundBagComponent@ compoundBagComponent)
     {
-        if(compoundBin <= ORGANELLE_HEALTH::DEAD)
-            return ORGANELLE_HEALTH::DEAD;
-        if(compoundBin < ORGANELLE_HEALTH::CAN_DIVIDE)
-            return ORGANELLE_HEALTH::ALIVE;
-        return ORGANELLE_HEALTH::CAN_DIVIDE;
-    }
+        float totalTaken = 0;
 
-    // This doesnt seem ideal
-    //! \returns compoundBin
-    float getCompoundBin()
-    {
-        return compoundBin;
-    }
-
-    // Gives organelles more compounds
-    void growOrganelle(CompoundBagComponent@ compoundBagComponent, int logicTime)
-    {
-        // Finds the total number of needed compounds.
-        float sum = 0.0f;
-
-        auto compoundKeys = compoundsLeft.getKeys();
-        for(uint i = 0; i < compoundKeys.length(); ++i){
-
-            // Finds which compounds the cell currently has.
-            if(compoundBagComponent.getCompoundAmount(
-                    SimulationParameters::compoundRegistry().getTypeId(compoundKeys[i])) >= 1)
-            {
-                float amount;
-                if(!compoundsLeft.get(compoundKeys[i], amount)){
-
-                    LOG_ERROR("Invalid type in compoundsLeft");
-                    continue;
-                }
-
-                sum += amount;
-            }
-        }
-
-        // If sum is 0, we either have no compounds, in which case we
-        // cannot grow the organelle, or the organelle is ready to
-        // split (i.e. compoundBin = 2), in which case we wait for the
-        // microbe to handle the split.
-        if(sum <= 0.0f)
-            return;
-
-        // Randomly choose which of the compounds are used in reproduction.
-        // Uses a roulette selection.
-        float id = GetEngine().GetRandom().GetFloat(0, 1) * sum;
-
+        const auto compoundKeys = compoundsLeft.getKeys();
         for(uint i = 0; i < compoundKeys.length(); ++i){
 
             const auto compoundName = compoundKeys[i];
 
-            float amount;
-            if(!compoundsLeft.get(compoundName, amount)){
+            float amountNeeded;
+            if(!compoundsLeft.get(compoundName, amountNeeded)){
 
                 LOG_ERROR("Invalid type in compoundsLeft");
                 continue;
             }
 
-            if(id - amount < 0.0f){
+            if(amountNeeded <= 0.f)
+                continue;
 
-                // The random number is from this compound, so attempt to take it.
-                float amountToTake = min(logicTime * GROWTH_SPEED_MULTILPIER, amount);
-                amountToTake = compoundBagComponent.takeCompound(
-                    SimulationParameters::compoundRegistry().getTypeId(compoundName),
-                    amountToTake);
-                compoundsLeft[compoundName] = float(compoundsLeft[compoundName]) -
-                    amountToTake;
-                break;
+            // Take compounds if the cell has what we need
+            // TODO: caching the types would be nice
+            const auto compoundId = SimulationParameters::compoundRegistry().getTypeId(
+                compoundName);
 
-            } else {
-                id -= amount;
-            }
+            const auto amountAvailable = compoundBagComponent.getCompoundAmount(compoundId)
+                // This controls how much of a certain compound must exist before we take some
+                - ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST;
+
+            if(amountAvailable <= 0.f)
+                continue;
+
+            // We can take some
+            const auto amountToTake = min(amountNeeded, amountAvailable);
+
+            const float amount = compoundBagComponent.takeCompound(compoundId, amountToTake);
+            float left = float(compoundsLeft[compoundName]);
+            left -= amount;
+
+            if(left < 0.0001)
+                left = 0;
+            compoundsLeft[compoundName] = left;
+
+            totalTaken += amount;
         }
 
-        // Calculate the new growth value.
-        recalculateBin();
+        if(totalTaken > 0){
+            // Calculate the new growth value.
+            recalculateGrowthValue();
+        }
     }
 
-    private void scaleCompoundsLeft(float scaleFactor)
+    void recalculateGrowthValue()
     {
-        auto compoundKeys = compoundsLeft.getKeys();
-        for(uint i = 0; i < compoundKeys.length(); ++i){
-            float amount;
-            if(!compoundsLeft.get(compoundKeys[i], amount)){
+        duplicateProgress = 1.f - (calculateCompoundsLeft() / organelle.organelleCost);
 
-                LOG_ERROR("Invalid type in compoundsLeft");
-                continue;
-            }
+        applyScale();
+    }
 
-            compoundsLeft[compoundKeys[i]] = amount * scaleFactor;
-        }
+    float getGrowthProgress() const
+    {
+        return duplicateProgress;
     }
 
     // Calculates total number of compounds left until this organelle can divide
@@ -487,89 +429,66 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         return totalLeft;
     }
 
-    private void recalculateBin()
+    //! Calculates how much compounds this organelle has absorbed
+    //! already, adds to the dictionary
+    float calculateAbsorbedCompounds(dictionary &inout result) const
     {
-        // Calculate the new growth growth
-        float totalCompoundsLeft = calculateCompoundsLeft();
+        float totalAbsorbed = 0;
 
-        compoundBin = 2.0 - totalCompoundsLeft / organelle.organelleCost;
+        const auto compoundKeys = compoundsLeft.getKeys();
+        for(uint i = 0; i < compoundKeys.length(); ++i){
 
-        // If the organelle is damaged...
-        if(compoundBin < 1.0){
-            // If it is dead
-            if(compoundBin <= 0.0){
-                // If it was split from a primary organelle, destroy it.
-                if(isDuplicate == true){
+            float amountLeft;
+            if(!compoundsLeft.get(compoundKeys[i], amountLeft)){
 
-                    // Calls different method for possible sound and effects
-                    MicrobeOperations::organelleDestroyedByDamage(world,
-                        microbeEntity, {q, r});
-
-                    // Notify the organelle the sister organelle it is no longer split.
-                    sisterOrganelle.wasSplit = false;
-                    return;
-
-                } else {
-                    // If it is a primary organelle, make sure that
-                    // it's compound bin is not less than 0.
-                    compoundBin = 0.0;
-
-                    scaleCompoundsLeft(2);
-                }
+                LOG_ERROR("Invalid type in compoundsLeft");
+                continue;
             }
 
-            // Scale the model at a slower rate (so that 0.0 is half size).
-            // Nucleus isn't scaled
-            // TODO: This isn't the cheapest call so maybe this should be cached
-            if(!organelle.hasComponent("NucleusOrganelle")){
-
-                RenderNode@ sceneNode = world.GetComponent_RenderNode(
-                    organelleEntity);
-
-                sceneNode.Scale = Float3((1.0 + compoundBin)/2,
-                    (1.0 + compoundBin)/2,
-                    (1.0 + compoundBin)/2) * HEX_SIZE;
-                sceneNode.Marked = true;
+            float amountTotal;
+            if(!organelle.initialComposition.get(compoundKeys[i], amountTotal)){
+                LOG_ERROR("Invalid type in organelle.initialComposition");
+                continue;
             }
 
-            // See update and updateColour for as to why this doesn't work
-            // Darken the color. Will be updated on next call of update()
-            // colourTint = Float4((1.0 + compoundBin)/2, compoundBin, compoundBin, 1);
-            // _needsColourUpdate = true;
+            float alreadyInResult;
+            if(!result.get(compoundKeys[i], alreadyInResult))
+                alreadyInResult = 0;
 
-        } else{
-            // Nucleus isn't scaled
-            if(organelle.hasComponent("NucleusOrganelle"))
-                return;
+            const auto absorbed = amountTotal - amountLeft;
 
-            // Scale the organelle model to reflect the new size.
-            // Only if it is different
-            const Float3 newScale = Float3(compoundBin, compoundBin, compoundBin) * HEX_SIZE;
-
-            RenderNode@ sceneNode = world.GetComponent_RenderNode(
-                organelleEntity);
-
-            if(sceneNode is null){
-
-                LOG_ERROR("Trying to scale organelle that is missing RenderNode component");
-                return;
-            }
-
-            if(newScale != sceneNode.Scale){
-                sceneNode.Scale = newScale;
-                sceneNode.Marked = true;
-            }
+            result.set(compoundKeys[i], alreadyInResult + absorbed);
+            totalAbsorbed += absorbed;
         }
+
+        return totalAbsorbed;
     }
 
     // Resets the state. Used after dividing?
     void reset()
     {
         // Return the compound bin to its original state
-        this.compoundBin = 1.0;
+        duplicateProgress = 0.f;
 
         // Assign (doesn't only copy a reference)
         compoundsLeft = organelle.initialComposition;
+
+        applyScale();
+
+        // If it was split from a primary organelle, destroy it.
+        if(isDuplicate){
+            MicrobeOperations::removeOrganelle(world, microbeEntity,
+                {this.q, this.r});
+        } else {
+            wasSplit = false;
+        }
+    }
+
+    void applyScale()
+    {
+        // Nucleus isn't scaled
+        if(organelle.hasComponent("NucleusOrganelle"))
+            return;
 
         if(IsInGraphicalMode()){
             // Scale the organelle model to reflect the new size.
@@ -578,16 +497,9 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
             RenderNode@ sceneNode = world.GetComponent_RenderNode(
                 organelleEntity);
 
-            sceneNode.Scale = Float3(1, 1, 1) * HEX_SIZE;
+            sceneNode.Scale = Float3(1 + duplicateProgress, 1 + duplicateProgress,
+                1 + duplicateProgress) * HEX_SIZE;
             sceneNode.Marked = true;
-
-            // If it was split from a primary organelle, destroy it.
-            if(isDuplicate){
-                MicrobeOperations::removeOrganelle(world, microbeEntity,
-                    {this.q, this.r});
-            } else {
-                wasSplit = false;
-            }
         }
     }
 
@@ -802,17 +714,12 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
     // If this organelle is a duplicate of another organelle caused by splitting.
     bool isDuplicate = false;
 
-    // The "Health Bar" of the organelle constrained to [0, 2],
-    // ORGANELLE_HEALTH tells what different ranges mean
-    float compoundBin = ORGANELLE_HEALTH::ALIVE;
+    //! Fraction towards duplicating progress
+    float duplicateProgress = 0.f;
 
     // The compounds left to divide this organelle.
     // Decreases every time a required compound is absorbed.
     dictionary compoundsLeft;
-
-    // The compounds that make up this organelle. They get reduced each time
-    // the organelle gets damaged.
-    dictionary composition;
 
     array<OrganelleComponent@> components;
 
