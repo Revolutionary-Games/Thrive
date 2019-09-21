@@ -1566,6 +1566,26 @@ div::-webkit-scrollbar-thumb:hover {
   align-items: center;
   justify-content: center;
   bottom: 0;
-  right: 400px;
+  right: 100px;
   font-size: 18pt;
+}
+
+#reproductionBarContainer {
+  max-width: 400px;
+  width: 400px;
+  height: calc(100% - 6px);
+  margin-left: 5px;
+  border: 3px solid rgb(112, 159, 159, 0.6);
+}
+
+#reproductionAmmoniaBar {
+  background-color: #d9c55d;
+  height: 100%;
+  display: inline-block;
+}
+
+#reproductionPhosphatesBar {
+  background-color: #3b167b;
+  height: 100%;
+  display: inline-block;
 }
