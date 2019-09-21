@@ -1186,8 +1186,9 @@ void
         if(m_impl->m_autoEvoRun && m_impl->m_autoEvoRun->wasSuccessful() &&
             m_impl->m_autoEvoRun->getResults()) {
 
-            result = m_impl->m_autoEvoRun->getResults()->makeSummary(
-                m_impl->m_cellStage->GetPatchManager().getCurrentMap(), true);
+            result = m_impl->m_autoEvoRun->getResults()->getCachedSummary() +
+                     "\n\nexternal effects:\n" +
+                     m_impl->m_autoEvoRun->makeSummaryOfExternalEffects();
         }
 
         vars->Add(std::make_shared<NamedVariableList>(

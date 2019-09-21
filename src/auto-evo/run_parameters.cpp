@@ -101,6 +101,20 @@ void
     m_results->applyResults(m_map, false);
 }
 // ------------------------------------ //
+std::string
+    RunParameters::makeSummaryOfExternalEffects() const
+{
+    std::stringstream sstream;
+
+    for(const auto& [species, amount, eventType] : m_externalEffects) {
+        sstream << species->getFormattedName() << " "
+                << (amount >= 0 ? "gained" : "lost") << " " << amount
+                << " population because of: " << eventType << "\n";
+    }
+
+    return sstream.str();
+}
+// ------------------------------------ //
 bool
     RunParameters::step()
 {
@@ -150,6 +164,10 @@ bool
         // external effects
 
         m_results->printSummary(m_map);
+
+        // Store the summary text to store previous populations
+        m_results->setStoredSummary(m_results->makeSummary(m_map, true));
+
         m_results->applyResults(m_map, true);
 
         m_success = true;

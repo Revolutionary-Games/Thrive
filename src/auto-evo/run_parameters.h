@@ -80,6 +80,10 @@ public:
             int amount,
             const std::string& eventType);
 
+    //! \brief Makes a summary of external effects
+    std::string
+        makeSummaryOfExternalEffects() const;
+
     //! \returns Results
     //! \note Should only be called when inProgress is false and wasSuccessful
     autoevo::RunResults::pointer
