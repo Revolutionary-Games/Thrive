@@ -107,9 +107,8 @@ std::string
     std::stringstream sstream;
 
     for(const auto& [species, amount, eventType] : m_externalEffects) {
-        sstream << species->getFormattedName() << " "
-                << (amount >= 0 ? "gained" : "lost") << " " << amount
-                << " population because of: " << eventType << "\n";
+        sstream << species->getFormattedName() << " population changed by "
+                << amount << " because of: " << eventType << "\n";
     }
 
     return sstream.str();
