@@ -162,10 +162,15 @@ export function runMenuSetup(){
     // onMicrobeIntroEnded();
 
     // Test going to the editor (also uncomment the function call above)
-    // Thrive.editorButtonClicked();
+    const directToEditor = false;
 
-    // For in-browser preview
-    // doEnterMicrobeEditor();
+    if(directToEditor){
+        if(common.isInEngine()){
+            Thrive.editorButtonClicked();
+        } else {
+            doEnterMicrobeEditor();
+        }
+    }
 
     // Skip intro video
     // onIntroEnded();

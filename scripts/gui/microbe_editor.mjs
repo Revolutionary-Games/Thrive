@@ -140,6 +140,22 @@ export function setupMicrobeEditor(){
     document.getElementById("editorNextPageButton").addEventListener("click",
         onNextTabClicked, true);
 
+
+    document.getElementById("editorTabReportButton").addEventListener("click",
+        () => {
+            selectEditorTab("report");
+        }, true);
+
+    document.getElementById("editorTabMapButton").addEventListener("click",
+        () => {
+            selectEditorTab("map");
+        }, true);
+
+    document.getElementById("editorTabCellButton").addEventListener("click",
+        () => {
+            selectEditorTab("cell");
+        }, true);
+
     // All of the organelle buttons
     for(const element of organelleSelectionElements){
 
@@ -241,18 +257,27 @@ function selectEditorTab(tab){
     document.getElementById("topLevelMicrobeEditorPatchMap").style.display = "none";
     document.getElementById("editorNextPageButton").style.display = "none";
 
+    document.getElementById("editorTabReportButton").classList.remove("Active");
+    document.getElementById("editorTabMapButton").classList.remove("Active");
+    document.getElementById("editorTabCellButton").classList.remove("Active");
+
     currentTab = tab;
-    Leviathan.CallGenericEvent("MicrobeEditorSelectedTab", {tab: tab});
+    if(common.isInEngine()){
+        Leviathan.CallGenericEvent("MicrobeEditorSelectedTab", {tab: tab});
+    }
 
     // Show selected
     if(tab == "report"){
         document.getElementById("topLevelMicrobeEditorPatchReport").style.display = "block";
         document.getElementById("editorNextPageButton").style.display = "block";
+        document.getElementById("editorTabReportButton").classList.add("Active");
     } else if(tab == "map"){
         document.getElementById("topLevelMicrobeEditorPatchMap").style.display = "block";
         document.getElementById("editorNextPageButton").style.display = "block";
+        document.getElementById("editorTabMapButton").classList.add("Active");
     } else if(tab == "cell"){
         document.getElementById("topLevelMicrobeEditorCellEditor").style.display = "block";
+        document.getElementById("editorTabCellButton").classList.add("Active");
 
         if(!readyToFinishEdit){
             window.setTimeout(() => {

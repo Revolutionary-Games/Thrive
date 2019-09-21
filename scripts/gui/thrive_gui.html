@@ -392,27 +392,6 @@ For this Release if your population (top tab) drops to zero you go extinct.
     <!-- Microbe editor GUI -->
     <div id="topLevelMicrobeEditor" style="display: none; height: 100%;">
 
-      <!-- common buttons -->
-      <!-- Top left box -->
-	  <div id="MPBox" class="Panel">
-	    <div class="Bar" id="MP"> 
-          <div class="BarBackground" id="microbeHUDPlayerMutationPointsBar">
-		    <div class="BarForeground">
-              <div class="compoundIcon" id="MutationPointsIcon"></div>
-              <div class="BarTitle">Mutation Points</div>
-              <div class="BarValue">
-                <span id="microbeHUDPlayerMutationPoints">100/</span>
-                <span id="microbeHUDPlayerMaxMutationPoints">100</span>
-              </div>
-		    </div>
-          </div>
-	    </div>
-	  </div>
-	  <div id="newButton" >
-        NEW
-	    <div id="NewIcon"></div>
-      </div>      
-
       <div id="topLevelMicrobeEditorCellEditor">
         <!-- This box is just for detecting pressing the mouse buttons
              inside the editor and sending an event for doing the placing -->
@@ -773,6 +752,32 @@ For this Release if your population (top tab) drops to zero you go extinct.
           patch map content goes here
         </div>
       </div>
+
+      <!-- common buttons -->
+      <!-- Top left box -->
+      <div id="editorTabBar">
+        <!-- this must be on a single line otherwise it breaks -->
+        <span id="editorTabReportButton" class="EditorTabButton Active">REPORT</span><span id="editorTabMapButton" class="EditorTabButton">PATCH MAP</span><span id="editorTabCellButton" class="EditorTabButton">CELL EDITOR</span>
+      </div>
+      
+	  <div id="MPBox" class="Panel">
+	    <div class="Bar" id="MP"> 
+          <div class="BarBackground" id="microbeHUDPlayerMutationPointsBar">
+		    <div class="BarForeground">
+              <div class="compoundIcon" id="MutationPointsIcon"></div>
+              <div class="BarTitle">Mutation Points</div>
+              <div class="BarValue">
+                <span id="microbeHUDPlayerMutationPoints">100/</span>
+                <span id="microbeHUDPlayerMaxMutationPoints">100</span>
+              </div>
+		    </div>
+          </div>
+	    </div>
+	  </div>
+	  <div id="newButton" >
+        NEW
+	    <div id="NewIcon"></div>
+      </div>      
 
       <div id="editorNextPageButton">
         Next

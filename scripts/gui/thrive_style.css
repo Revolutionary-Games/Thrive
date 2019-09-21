@@ -1081,7 +1081,7 @@ div::-webkit-scrollbar-thumb:hover {
   width: 480px;
   height: 40px;
   top: 0;
-  left: 0;
+  left: 386px;
   background-image: url("../../Textures/gui/bevel/HealthPanel.png");
   text-indent: 40px;
   line-height: 40px;
@@ -1092,12 +1092,48 @@ div::-webkit-scrollbar-thumb:hover {
   height: 40px;
   width: 120px;
   top: 0;
-  left: 480px;
+  left: calc(480px + 386px);
   background-image: url("../../Textures/gui/bevel/MediumTwoNormal.png");
   font-size: 8pt;
   line-height: 40px;
   text-indent: 40px;
 }
+
+#editorTabBar {
+  position: absolute;
+  height: 40px;
+  width: 386px;
+  top: 0;
+  left: 0;
+  background-image: url("../../Textures/gui/bevel/HealthPanel.png");
+}
+
+.EditorTabButton {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+  padding-left: 3px;
+  padding-right: 6px;
+  border-left: 3px solid rgb(112, 159, 159, 0.6);
+  border-right: 3px solid rgb(112, 159, 159, 0.6);
+}
+
+.EditorTabButton:hover {
+  background: rgb(0, 125, 125, 0.6);
+}
+
+.EditorTabButton.Active {
+  background: rgba(89, 210, 255, 0.7);
+}
+
+.EditorTabButton.Active:hover {
+  background: rgba(89, 210, 255, 0.7);
+}
+
 
 #newButton.DisabledButton {
   background-image: url("../../Textures/gui/bevel/MediumTwoDisabled.png");
