@@ -153,8 +153,9 @@ void
         const Float3 origin = sceneNode.Members._Position;
 
         // This version is used for world coordinate calculations
+        // std::max here buffs compound absorbing for the smallest cells
         const auto grabRadius =
-            std::max(membrane.calculateEncompassingCircleRadius(), 3.0F);
+            std::max(membrane.calculateEncompassingCircleRadius(), 3.0f);
 
         // This version is used when working with cloud local coordinates
         const auto localGrabRadius =
