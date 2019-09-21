@@ -7,6 +7,7 @@ import * as microbe_hud from "./microbe_hud.mjs";
 
 let readyToFinishEdit = false;
 let symmetry = 0;
+let currentTab = null;
 
 //! These are all the organelle selection buttons
 const organelleSelectionElements = [
@@ -136,6 +137,8 @@ export function setupMicrobeEditor(){
     document.getElementById("Redo").addEventListener("click",
         onRedoClicked, true);
 
+    document.getElementById("editorNextPageButton").addEventListener("click",
+        onNextTabClicked, true);
 
     // All of the organelle buttons
     for(const element of organelleSelectionElements){
@@ -227,10 +230,50 @@ export function doEnterMicrobeEditor(){
     document.getElementById("topLevelMicrobeStage").style.display = "none";
     document.getElementById("topLevelMicrobeEditor").style.display = "block";
 
-    window.setTimeout(() => {
-        // Enable finish button
-        onFinishButtonEnable();
-    }, 500);
+    // Select the default tab
+    selectEditorTab("report");
+}
+
+function selectEditorTab(tab){
+    // Hide all
+    document.getElementById("topLevelMicrobeEditorCellEditor").style.display = "none";
+    document.getElementById("topLevelMicrobeEditorPatchReport").style.display = "none";
+    document.getElementById("topLevelMicrobeEditorPatchMap").style.display = "none";
+    document.getElementById("editorNextPageButton").style.display = "none";
+
+    currentTab = tab;
+    Leviathan.CallGenericEvent("MicrobeEditorSelectedTab", {tab: tab});
+
+    // Show selected
+    if(tab == "report"){
+        document.getElementById("topLevelMicrobeEditorPatchReport").style.display = "block";
+        document.getElementById("editorNextPageButton").style.display = "block";
+    } else if(tab == "map"){
+        document.getElementById("topLevelMicrobeEditorPatchMap").style.display = "block";
+        document.getElementById("editorNextPageButton").style.display = "block";
+    } else if(tab == "cell"){
+        document.getElementById("topLevelMicrobeEditorCellEditor").style.display = "block";
+
+        if(!readyToFinishEdit){
+            window.setTimeout(() => {
+                // Enable finish button
+                onFinishButtonEnable();
+            }, 500);
+        }
+
+    } else {
+        throw "invalid tab";
+    }
+}
+
+function onNextTabClicked(){
+    if(currentTab == "report"){
+        selectEditorTab("map");
+    } else if(currentTab == "map"){
+        selectEditorTab("cell");
+    } else {
+        selectEditorTab("cell");
+    }
 }
 
 // Undo
