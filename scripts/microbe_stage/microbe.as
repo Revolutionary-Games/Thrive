@@ -470,7 +470,7 @@ class MicrobeSystem : ScriptSystem{
 
                 if(species !is null)
                     MicrobeOperations::alterSpeciesPopulation(species,
-                        CREATURE_DEATH_POPULATION_LOSS, "escape engulfing");
+                        CREATURE_ESCAPE_POPULATION_GAIN, "escape engulfing");
             }
 
             MicrobeOperations::removeEngulfedEffect(world, microbeEntity);
