@@ -245,7 +245,7 @@ export function setupMicrobeEditor(){
 }
 
 //! Called to enter the editor view
-export function doEnterMicrobeEditor(){
+export function doEnterMicrobeEditor(event, vars){
 
     document.getElementById("topLevelMicrobeStage").style.display = "none";
     document.getElementById("topLevelMicrobeEditor").style.display = "block";
@@ -255,6 +255,14 @@ export function doEnterMicrobeEditor(){
 
     if(!common.isInEngine()){
         updateAutoEvoResults("this is an example\ntext that has multiple\nlines in it.");
+
+        // Load example data and use that
+        $.ajax({url: "example_patch_map.json"}).done(function( data ) {
+            processPatchMapData(data);
+        });
+
+    } else {
+        processPatchMapData(vars.patchMapJSON);
     }
 }
 
@@ -671,4 +679,36 @@ function updateAutoEvoResults(text){
         element.appendChild(document.createTextNode(line));
         element.appendChild(document.createElement("br"));
     }
+}
+
+function processPatchMapData(data){
+
+    if(!data){
+        document.getElementById("patchMapDrawArea").textContent =
+            "no patch map data received";
+        return;
+    }
+
+    let obj = null;
+
+    // The preview returns the object directly
+    if(typeof data === "string" || data instanceof String){
+        try{
+            obj = JSON.parse(data);
+        } catch(err){
+            document.getElementById("patchMapDrawArea").textContent =
+                "invalid json for map: " + err;
+            return;
+        }
+    } else {
+        obj = data;
+    }
+
+
+    if(!obj.patches){
+        document.getElementById("patchMapDrawArea").textContent =
+            "invalid data received it is missing patches";
+    }
+    document.getElementById("patchMapDrawArea").textContent =
+        "parsing map data...";
 }
