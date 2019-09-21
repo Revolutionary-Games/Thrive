@@ -1557,3 +1557,15 @@ div::-webkit-scrollbar-thumb:hover {
 #loadingScreenMessage {
   font-size: 0.8em;
 }
+
+
+#reproduceProgressBar {
+  position: absolute;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  bottom: 0;
+  right: 400px;
+  font-size: 18pt;
+}
