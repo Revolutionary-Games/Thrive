@@ -71,6 +71,12 @@ public:
         printSummary(
             const PatchMap::pointer& previousPopulations = nullptr) const;
 
+    //! \brief Makes summary text
+    //! \param playerReadable if true ids are removed from the output
+    std::string
+        makeSummary(const PatchMap::pointer& previousPopulations = nullptr,
+            bool playerReadable = false) const;
+
     void
         addPopulationResultForSpeciesWrapper(Species* species,
             int32_t patch,

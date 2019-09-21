@@ -1175,6 +1175,27 @@ void
         .getCurrentMap()
         ->removeExtinctSpecies(playerData().isFreeBuilding());
 
+    // Send the auto evo stats to GUI
+    {
+        auto event = GenericEvent::MakeShared<GenericEvent>("AutoEvoResults");
+
+        auto vars = event->GetVariables();
+
+        std::string result = "auto-evo failed to run";
+
+        if(m_impl->m_autoEvoRun && m_impl->m_autoEvoRun->wasSuccessful() &&
+            m_impl->m_autoEvoRun->getResults()) {
+
+            result = m_impl->m_autoEvoRun->getResults()->makeSummary(
+                m_impl->m_cellStage->GetPatchManager().getCurrentMap(), true);
+        }
+
+        vars->Add(std::make_shared<NamedVariableList>(
+            "text", new Leviathan::StringBlock(result)));
+
+        Engine::Get()->GetEventHandler()->CallEvent(event);
+    }
+
     Leviathan::Engine* engine = Engine::GetEngine();
     Leviathan::Window* window1 = engine->GetWindowEntity();
 

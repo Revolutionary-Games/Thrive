@@ -235,6 +235,10 @@ export function setupMicrobeEditor(){
             updateGuiButtons(vars.nucleus);
         });
 
+        Leviathan.OnGeneric("AutoEvoResults", (event, vars) => {
+            updateAutoEvoResults(vars.text);
+        });
+
     } else {
         updateSelectedOrganelle("cytoplasm");
     }
@@ -248,6 +252,10 @@ export function doEnterMicrobeEditor(){
 
     // Select the default tab
     selectEditorTab("report");
+
+    if(!common.isInEngine()){
+        updateAutoEvoResults("this is an example\ntext that has multiple\nlines in it.");
+    }
 }
 
 function selectEditorTab(tab){
@@ -591,26 +599,34 @@ function onSymmetryClicked(event){
     }
 
     // I should make teh editor and the javascript use the same exact variable
-    Leviathan.CallGenericEvent("SymmetryClicked", {symmetry: symmetry});
+    if(common.isInEngine()){
+        Leviathan.CallGenericEvent("SymmetryClicked", {symmetry: symmetry});
+    }
 
     event.stopPropagation();
 }
 
 function OnNewCellClicked(event){
     common.playButtonPressSound();
-    Leviathan.CallGenericEvent("NewCellClicked", {});
+    if(common.isInEngine()){
+        Leviathan.CallGenericEvent("NewCellClicked", {});
+    }
     event.stopPropagation();
 }
 
 function onRedoClicked(event){
     common.playButtonPressSound();
-    Leviathan.CallGenericEvent("RedoClicked", {});
+    if(common.isInEngine()){
+        Leviathan.CallGenericEvent("RedoClicked", {});
+    }
     event.stopPropagation();
 }
 
 function onUndoClicked(event){
     common.playButtonPressSound();
-    Leviathan.CallGenericEvent("UndoClicked", {});
+    if(common.isInEngine()){
+        Leviathan.CallGenericEvent("UndoClicked", {});
+    }
     event.stopPropagation();
 }
 
@@ -645,4 +661,14 @@ function onFinishButtonClicked(event){
     readyToFinishEdit = false;
 
     return true;
+}
+
+function updateAutoEvoResults(text){
+    const element = document.getElementById("editorAutoEvoResults");
+    element.textContent = "";
+
+    for(const line of text.split("\n")){
+        element.appendChild(document.createTextNode(line));
+        element.appendChild(document.createElement("br"));
+    }
 }

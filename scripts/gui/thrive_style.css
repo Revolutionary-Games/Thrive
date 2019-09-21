@@ -1172,6 +1172,8 @@ div::-webkit-scrollbar-thumb:hover {
   right: 5px;
   bottom: 50px;
   top: 50px;
+  padding: 4px;
+  overflow-y: auto;
 }
 
 #editorNextPageButton {

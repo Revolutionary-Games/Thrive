@@ -80,6 +80,14 @@ public:
             int amount,
             const std::string& eventType);
 
+    //! \returns Results
+    //! \note Should only be called when inProgress is false and wasSuccessful
+    autoevo::RunResults::pointer
+        getResults()
+    {
+        return m_results;
+    }
+
 protected:
     //! \brief Performs a single calculation step. This should be quite fast
     //! (5-20 milliseconds) in order to make aborting work fast.
