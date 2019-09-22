@@ -240,7 +240,7 @@ Species::pointer
         if(iter == current)
             continue;
 
-        const auto result = current->second->searchSpeciesByName(name);
+        const auto result = iter->second->searchSpeciesByName(name);
 
         if(result)
             return result;

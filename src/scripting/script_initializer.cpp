@@ -1960,6 +1960,12 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(engine->RegisterObjectMethod("ThriveGame",
+           "void playerMovedToPatch(int32 patch)",
+           asMETHOD(ThriveGame, playerMovedToPatch), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     // if(engine->RegisterObjectMethod("Client",
     //         "bool Connect(const string &in address, string &out
     //         errormessage)", asMETHODPR(Client, Connect, (const std::string&,

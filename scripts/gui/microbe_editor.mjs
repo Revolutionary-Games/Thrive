@@ -7,6 +7,11 @@ import * as microbe_hud from "./microbe_hud.mjs";
 
 let readyToFinishEdit = false;
 let symmetry = 0;
+let currentTab = null;
+
+let currentPatchId = null;
+let selectedPatch = null;
+let selectedPatchElement = null;
 
 //! These are all the organelle selection buttons
 const organelleSelectionElements = [
@@ -136,6 +141,29 @@ export function setupMicrobeEditor(){
     document.getElementById("Redo").addEventListener("click",
         onRedoClicked, true);
 
+    document.getElementById("editorNextPageButton").addEventListener("click",
+        onNextTabClicked, true);
+
+
+    document.getElementById("editorTabReportButton").addEventListener("click",
+        () => {
+            selectEditorTab("report");
+        }, true);
+
+    document.getElementById("editorTabMapButton").addEventListener("click",
+        () => {
+            selectEditorTab("map");
+        }, true);
+
+    document.getElementById("editorTabCellButton").addEventListener("click",
+        () => {
+            selectEditorTab("cell");
+        }, true);
+
+    document.getElementById("moveToPatchButton").addEventListener("click",
+        moveToPatchClicked, true);
+
+
 
     // All of the organelle buttons
     for(const element of organelleSelectionElements){
@@ -216,21 +244,91 @@ export function setupMicrobeEditor(){
             updateGuiButtons(vars.nucleus);
         });
 
+        Leviathan.OnGeneric("AutoEvoResults", (event, vars) => {
+            updateAutoEvoResults(vars.text);
+        });
+
     } else {
         updateSelectedOrganelle("cytoplasm");
     }
 }
 
 //! Called to enter the editor view
-export function doEnterMicrobeEditor(){
+export function doEnterMicrobeEditor(event, vars){
 
     document.getElementById("topLevelMicrobeStage").style.display = "none";
     document.getElementById("topLevelMicrobeEditor").style.display = "block";
 
-    window.setTimeout(() => {
-        // Enable finish button
-        onFinishButtonEnable();
-    }, 500);
+    // Select the default tab
+    selectEditorTab("report");
+
+    // Reset patch data
+    currentPatchId = null;
+    selectedPatchElement = null;
+    updateSelectedPatchData(null);
+
+    if(!common.isInEngine()){
+        updateAutoEvoResults("this is an example\ntext that has multiple\nlines in it.");
+
+        // Load example data and use that
+        $.ajax({url: "example_patch_map.json"}).done(function( data ) {
+            processPatchMapData(data);
+        });
+
+    } else {
+        processPatchMapData(vars.patchMapJSON);
+    }
+}
+
+function selectEditorTab(tab){
+    // Hide all
+    document.getElementById("topLevelMicrobeEditorCellEditor").style.display = "none";
+    document.getElementById("topLevelMicrobeEditorPatchReport").style.display = "none";
+    document.getElementById("topLevelMicrobeEditorPatchMap").style.display = "none";
+    document.getElementById("editorNextPageButton").style.display = "none";
+
+    document.getElementById("editorTabReportButton").classList.remove("Active");
+    document.getElementById("editorTabMapButton").classList.remove("Active");
+    document.getElementById("editorTabCellButton").classList.remove("Active");
+
+    currentTab = tab;
+    if(common.isInEngine()){
+        Leviathan.CallGenericEvent("MicrobeEditorSelectedTab", {tab: tab});
+    }
+
+    // Show selected
+    if(tab == "report"){
+        document.getElementById("topLevelMicrobeEditorPatchReport").style.display = "block";
+        document.getElementById("editorNextPageButton").style.display = "block";
+        document.getElementById("editorTabReportButton").classList.add("Active");
+    } else if(tab == "map"){
+        document.getElementById("topLevelMicrobeEditorPatchMap").style.display = "block";
+        document.getElementById("editorNextPageButton").style.display = "block";
+        document.getElementById("editorTabMapButton").classList.add("Active");
+    } else if(tab == "cell"){
+        document.getElementById("topLevelMicrobeEditorCellEditor").style.display = "block";
+        document.getElementById("editorTabCellButton").classList.add("Active");
+
+        if(!readyToFinishEdit){
+            window.setTimeout(() => {
+                // Enable finish button
+                onFinishButtonEnable();
+            }, 500);
+        }
+
+    } else {
+        throw "invalid tab";
+    }
+}
+
+function onNextTabClicked(){
+    if(currentTab == "report"){
+        selectEditorTab("map");
+    } else if(currentTab == "map"){
+        selectEditorTab("cell");
+    } else {
+        selectEditorTab("cell");
+    }
 }
 
 // Undo
@@ -523,26 +621,34 @@ function onSymmetryClicked(event){
     }
 
     // I should make teh editor and the javascript use the same exact variable
-    Leviathan.CallGenericEvent("SymmetryClicked", {symmetry: symmetry});
+    if(common.isInEngine()){
+        Leviathan.CallGenericEvent("SymmetryClicked", {symmetry: symmetry});
+    }
 
     event.stopPropagation();
 }
 
 function OnNewCellClicked(event){
     common.playButtonPressSound();
-    Leviathan.CallGenericEvent("NewCellClicked", {});
+    if(common.isInEngine()){
+        Leviathan.CallGenericEvent("NewCellClicked", {});
+    }
     event.stopPropagation();
 }
 
 function onRedoClicked(event){
     common.playButtonPressSound();
-    Leviathan.CallGenericEvent("RedoClicked", {});
+    if(common.isInEngine()){
+        Leviathan.CallGenericEvent("RedoClicked", {});
+    }
     event.stopPropagation();
 }
 
 function onUndoClicked(event){
     common.playButtonPressSound();
-    Leviathan.CallGenericEvent("UndoClicked", {});
+    if(common.isInEngine()){
+        Leviathan.CallGenericEvent("UndoClicked", {});
+    }
     event.stopPropagation();
 }
 
@@ -577,4 +683,215 @@ function onFinishButtonClicked(event){
     readyToFinishEdit = false;
 
     return true;
+}
+
+function updateAutoEvoResults(text){
+    const element = document.getElementById("editorAutoEvoResults");
+    element.textContent = "";
+
+    for(const line of text.split("\n")){
+        element.appendChild(document.createTextNode(line));
+        element.appendChild(document.createElement("br"));
+    }
+}
+
+function processPatchMapData(data){
+
+    const targetElement = document.getElementById("patchMapDrawArea");
+
+    if(!data){
+        targetElement.textContent = "no patch map data received";
+        return;
+    }
+
+    let obj = null;
+
+    // The preview returns the object directly
+    if(typeof data === "string" || data instanceof String){
+        try{
+            obj = JSON.parse(data);
+        } catch(err){
+            targetElement.textContent = "invalid json for map: " + err;
+            return;
+        }
+    } else {
+        obj = data;
+    }
+
+
+    if(!obj.patches){
+        targetElement.textContent =
+            "invalid data received it is missing patches";
+    }
+    targetElement.textContent = "";
+
+    //
+    // Patch map building from HTML elements
+    //
+    currentPatchId = obj.currentPatchId;
+
+    // Draw lines first to make them underneath things
+    // NOTE: these lines currently go one way only
+    const madeLines = [];
+
+    for(const [, patch] of Object.entries(obj.patches)){
+
+        const color = "white";
+        const thickness = "5";
+
+        const from = patch.id;
+
+        for(const to of patch.adjacentPatches){
+
+            let skip = false;
+
+            // Skip duplicates
+            for(const existing of madeLines){
+
+                if(existing.from == to && existing.to == from){
+                    skip = true;
+                    break;
+                }
+            }
+
+            if(skip)
+                continue;
+
+            const target = obj.patches[to];
+
+            if(!target){
+                targetElement.appendChild(document.createTextNode("invalid patch connection " +
+                                                                  "target line"));
+                continue;
+            }
+
+            // Line algorithm from https://stackoverflow.com/a/8673281/4371508
+
+            const patchCenterOffset = (40 / 2) + 8;
+
+            const x1 = patch.screenCoordinates.x + patchCenterOffset;
+            const y1 = patch.screenCoordinates.y + patchCenterOffset;
+            const x2 = target.screenCoordinates.x + patchCenterOffset;
+            const y2 = target.screenCoordinates.y + patchCenterOffset;
+
+            madeLines.push({to: to, from: from});
+            const length = Math.sqrt(((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1)));
+
+            // Center position for the line
+            const centerX = ((x1 + x2) / 2) - (length / 2);
+            const centerY = ((y1 + y2) / 2) - (thickness / 2);
+            const angle = Math.atan2(y1 - y2, x1 - x2) * (180 / Math.PI);
+
+            // Create the line object
+            const line = document.createElement("div");
+            line.classList.add("PatchLine");
+            line.style.height = thickness + "px";
+            line.style.backgroundColor = color;
+            line.style.left = centerX + "px";
+            line.style.top = centerY + "px";
+            line.style.width = length + "px";
+
+            // Line.style.transform
+            line.style.webkitTransform = "rotate(" + angle + "deg)";
+
+            targetElement.appendChild(line);
+        }
+    }
+
+    // Draw boxes with the patches on top of that
+    for(const [, patch] of Object.entries(obj.patches)){
+
+        const element = document.createElement("span");
+        element.classList.add("PatchContainer");
+        element.style.left = patch.screenCoordinates.x + "px";
+        element.style.top = patch.screenCoordinates.y + "px";
+
+        element.addEventListener("click",
+            () =>{
+                if(selectedPatch != patch){
+
+                    if(selectedPatchElement){
+                        selectedPatchElement.classList.remove("Selected");
+                    }
+
+                    selectedPatchElement = element;
+                    updateSelectedPatchData(patch);
+                    element.classList.add("Selected");
+                }
+            }, true);
+
+        const inner = document.createElement("span");
+        inner.classList.add("Patch");
+        inner.classList.add("Patch" + common.capitalize(patch.biome.background));
+
+        // Inner.textContent = patch.name;
+
+        element.appendChild(inner);
+
+        targetElement.appendChild(element);
+    }
+}
+
+function updateSelectedPatchData(patch){
+    selectedPatch = patch;
+
+    if(!selectedPatch){
+        document.getElementById("noPatchSelectedText").style.display = "inline-block";
+        document.getElementById("patchInfoBox").style.display = "none";
+        document.getElementById("moveToPatchButton").classList.add("Disabled");
+        return;
+    }
+
+    document.getElementById("noPatchSelectedText").style.display = "none";
+    document.getElementById("patchInfoBox").style.display = "block";
+
+    document.getElementById("editorSelectedPatchName").textContent = patch.name;
+
+    const descriptionElement =
+        document.getElementById("editorSelectedPatchDescription");
+    descriptionElement.textContent = "";
+
+    if(currentPatchId != selectedPatch.id){
+        // Can move here
+        document.getElementById("moveToPatchButton").classList.remove("Disabled");
+    } else {
+        document.getElementById("moveToPatchButton").classList.add("Disabled");
+        descriptionElement.appendChild(document.createTextNode("You are currently in " +
+                                                               "this patch."));
+        descriptionElement.appendChild(document.createElement("br"));
+    }
+
+    // Biome name
+    descriptionElement.appendChild(document.createTextNode("Biome: " + patch.biome.name));
+    descriptionElement.appendChild(document.createElement("br"));
+
+    // Species
+    descriptionElement.appendChild(document.createElement("br"));
+    descriptionElement.appendChild(document.createTextNode("Species in this patch:"));
+    descriptionElement.appendChild(document.createElement("br"));
+
+    for(const species of patch.species){
+        const name = species.species.genus + " " + species.species.epithet;
+
+        descriptionElement.appendChild(document.createTextNode(name + " with population: " +
+                                                               species.population));
+        descriptionElement.appendChild(document.createElement("br"));
+    }
+}
+
+function moveToPatchClicked(){
+    if(currentPatchId == selectedPatch.id){
+        return;
+    }
+
+    currentPatchId = selectedPatch.id;
+
+    if(common.isInEngine()){
+        Leviathan.CallGenericEvent("MicrobeEditorSelectedNewPatch",
+            {patchId: currentPatchId});
+    } else {
+        // Console.log("player chose to move to patch:", currentPatchId);
+    }
+
+    updateSelectedPatchData(selectedPatch);
 }

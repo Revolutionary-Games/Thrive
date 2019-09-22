@@ -47,6 +47,8 @@ class MicrobeEditor{
         eventListener.RegisterForEvent("NewCellClicked");
         eventListener.RegisterForEvent("RedoClicked");
         eventListener.RegisterForEvent("UndoClicked");
+        eventListener.RegisterForEvent("MicrobeEditorSelectedTab");
+        eventListener.RegisterForEvent("MicrobeEditorSelectedNewPatch");
 
         placementFunctions = {
             // {"nucleus", PlacementFunctionType(this.createNewMicrobe)},
@@ -107,6 +109,10 @@ class MicrobeEditor{
         LOG_INFO("Elapsing time on editor entry");
         // TODO: select which units will be used for the master elapsed time counter
         GetThriveGame().getCellStage().GetTimedWorldOperations().onTimePassed(1);
+
+        // Reset this, GUI will tell us to enable it again
+        showHover = false;
+        targetPatch = -1;
 
         Species@ playerSpecies = MicrobeOperations::getSpecies(
             GetThriveGame().getCellStage(), GetThriveGame().playerData().activeCreature());
@@ -194,7 +200,7 @@ class MicrobeEditor{
         usedHoverOrganelle = 0;
 
         // Show the organelle that is about to be placed
-        if(activeActionName != ""){
+        if(activeActionName != "" && showHover){
             int q, r;
             this.getMouseHex(q, r);
 
@@ -1160,6 +1166,12 @@ class MicrobeEditor{
             }
 
             LOG_INFO("MicrobeEditor: updated organelles for species: " + playerSpecies.name);
+
+            if(targetPatch != -1){
+                LOG_INFO("MicrobeEditor: applying player move to patch: " + targetPatch);
+                GetThriveGame().playerMovedToPatch(targetPatch);
+            }
+
             return 1;
         } else if (type == "SymmetryClicked"){
             NamedVars@ vars = event.GetNamedVars();
@@ -1181,6 +1193,14 @@ class MicrobeEditor{
         }else if (type == "RedoClicked"){
             redo();
             return 1;
+        } else if(type == "MicrobeEditorSelectedTab"){
+            NamedVars@ vars = event.GetNamedVars();
+            showHover = string(vars.GetSingleValueByName("tab")) == "cell";
+            return 1;
+        } else if(type == "MicrobeEditorSelectedNewPatch"){
+            NamedVars@ vars = event.GetNamedVars();
+            targetPatch = int(vars.GetSingleValueByName("patchId"));
+            return 1;
         }
 
         LOG_ERROR("Microbe editor got unknown event: " + type);
@@ -1189,6 +1209,12 @@ class MicrobeEditor{
 
     //! When true nothing costs ATP
     bool freeBuilding = false;
+
+    //! Hover hexes and models are only shown if this is true
+    bool showHover = false;
+
+    //! Where the player wants to move after editing
+    int targetPatch = -1;
 
     //! This is used to keep track of used hover organelles
     private uint usedHoverHex = 0;
