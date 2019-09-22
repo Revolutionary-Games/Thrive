@@ -52,3 +52,7 @@ export function getKeys(obj){
         return Object.keys(obj);
     }
 }
+
+export function capitalize(str){
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
