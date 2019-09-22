@@ -865,7 +865,7 @@ class MicrobeEditor{
                         }
                     }
                     editor.editedMicrobe.insertLast(organelle);
-                    editor._updateAlreadyPlacedVisuals();                
+                    editor._updateAlreadyPlacedVisuals();
                 });
                 // Give the action access to some data
                 @action.data["organelle"] = organelle;
