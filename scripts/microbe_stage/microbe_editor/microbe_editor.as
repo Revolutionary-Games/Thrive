@@ -872,6 +872,8 @@ class MicrobeEditor{
                 enqueueAction(action);
             }
         }
+        // Update new visual state of cell
+        _updateAlreadyPlacedVisuals();
     }
 
 
