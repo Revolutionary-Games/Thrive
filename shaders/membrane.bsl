@@ -109,18 +109,25 @@ shader Membrane
         {
             float2 uv = input.uv0 * gUVTile + gUVOffset;
 
-            float3 normal = normalize(gNormalTex.Sample(gNormalSamp, uv).xyz * 2.0f - float3(1, 1, 1));
-            float3 worldNormal = calcWorldNormal(input, normal);
-
             SurfaceData surfaceData;
             surfaceData.albedo = (gAlbedoTex.Sample(gAlbedoSamp, uv) * gHealthFraction +
                         gDamagedTex.Sample(gDamagedSamp, uv) * (1.f - gHealthFraction)) * gTint;
+
+            // The actual lighting is skipped because it was weird on the membrane discs
+#if 0
+            float3 normal = normalize(gNormalTex.Sample(gNormalSamp, uv).xyz * 2.0f - float3(1, 1, 1));
+            float3 worldNormal = calcWorldNormal(input, normal);
+
             surfaceData.worldNormal.xyz = worldNormal;
             surfaceData.worldNormal.w = 1.0f;
             surfaceData.roughness = gRoughnessTex.Sample(gRoughnessSamp, uv).x;
             surfaceData.metalness = gMetalnessTex.Sample(gMetalnessSamp, uv).x;
 
             float3 lighting = calcLighting(input.worldPosition.xyz, input.position, uv, surfaceData);
+#endif
+            // Improvised lighting calculation
+            float3 lighting = surfaceData.albedo.xyz * 0.3f;
+            surfaceData.albedo.a *= 0.8f;
             float3 emissive = gEmissiveColor * gEmissiveMaskTex.Sample(gEmissiveMaskSamp, uv).x;
             return float4(emissive + lighting, surfaceData.albedo.a * gOpacity);
         }
