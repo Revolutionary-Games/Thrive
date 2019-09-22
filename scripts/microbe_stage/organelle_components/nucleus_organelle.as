@@ -70,7 +70,13 @@ class NucleusOrganelle : OrganelleComponent{
     ) override {
 
         auto world = organelle.world;
+        // When nucleus is removed we have to manually destory this entities
+        // They are attached to microbe so remove nucleus don't remove them
+        if(golgi != NULL_OBJECT)
+            world.QueueDestroyEntity(golgi);
 
+        if(ER != NULL_OBJECT)
+            world.QueueDestroyEntity(ER);
         // These also should be destroyed with the cell as they are parented
         golgi = NULL_OBJECT;
         ER = NULL_OBJECT;
