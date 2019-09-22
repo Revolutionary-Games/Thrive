@@ -9,6 +9,10 @@ let readyToFinishEdit = false;
 let symmetry = 0;
 let currentTab = null;
 
+let currentPatchId = null;
+let selectedPatch = null;
+let selectedPatchElement = null;
+
 //! These are all the organelle selection buttons
 const organelleSelectionElements = [
     {
@@ -156,6 +160,11 @@ export function setupMicrobeEditor(){
             selectEditorTab("cell");
         }, true);
 
+    document.getElementById("moveToPatchButton").addEventListener("click",
+        moveToPatchClicked, true);
+
+
+
     // All of the organelle buttons
     for(const element of organelleSelectionElements){
 
@@ -252,6 +261,11 @@ export function doEnterMicrobeEditor(event, vars){
 
     // Select the default tab
     selectEditorTab("report");
+
+    // Reset patch data
+    currentPatchId = null;
+    selectedPatchElement = null;
+    updateSelectedPatchData(null);
 
     if(!common.isInEngine()){
         updateAutoEvoResults("this is an example\ntext that has multiple\nlines in it.");
@@ -683,9 +697,10 @@ function updateAutoEvoResults(text){
 
 function processPatchMapData(data){
 
+    const targetElement = document.getElementById("patchMapDrawArea");
+
     if(!data){
-        document.getElementById("patchMapDrawArea").textContent =
-            "no patch map data received";
+        targetElement.textContent = "no patch map data received";
         return;
     }
 
@@ -696,8 +711,7 @@ function processPatchMapData(data){
         try{
             obj = JSON.parse(data);
         } catch(err){
-            document.getElementById("patchMapDrawArea").textContent =
-                "invalid json for map: " + err;
+            targetElement.textContent = "invalid json for map: " + err;
             return;
         }
     } else {
@@ -706,9 +720,178 @@ function processPatchMapData(data){
 
 
     if(!obj.patches){
-        document.getElementById("patchMapDrawArea").textContent =
+        targetElement.textContent =
             "invalid data received it is missing patches";
     }
-    document.getElementById("patchMapDrawArea").textContent =
-        "parsing map data...";
+    targetElement.textContent = "";
+
+    //
+    // Patch map building from HTML elements
+    //
+    currentPatchId = obj.currentPatchId;
+
+    // Draw lines first to make them underneath things
+    // NOTE: these lines currently go one way only
+    const madeLines = [];
+
+    for(const [, patch] of Object.entries(obj.patches)){
+
+        const color = "white";
+        const thickness = "5";
+
+        const from = patch.id;
+
+        for(const to of patch.adjacentPatches){
+
+            let skip = false;
+
+            // Skip duplicates
+            for(const existing of madeLines){
+
+                if(existing.from == to && existing.to == from){
+                    skip = true;
+                    break;
+                }
+            }
+
+            if(skip)
+                continue;
+
+            const target = obj.patches[to];
+
+            if(!target){
+                targetElement.appendChild(document.createTextNode("invalid patch connection " +
+                                                                  "target line"));
+                continue;
+            }
+
+            // Line algorithm from https://stackoverflow.com/a/8673281/4371508
+
+            const patchCenterOffset = (40 / 2) + 8;
+
+            const x1 = patch.screenCoordinates.x + patchCenterOffset;
+            const y1 = patch.screenCoordinates.y + patchCenterOffset;
+            const x2 = target.screenCoordinates.x + patchCenterOffset;
+            const y2 = target.screenCoordinates.y + patchCenterOffset;
+
+            madeLines.push({to: to, from: from});
+            const length = Math.sqrt(((x2 - x1) * (x2 - x1)) + ((y2 - y1) * (y2 - y1)));
+
+            // Center position for the line
+            const centerX = ((x1 + x2) / 2) - (length / 2);
+            const centerY = ((y1 + y2) / 2) - (thickness / 2);
+            const angle = Math.atan2(y1 - y2, x1 - x2) * (180 / Math.PI);
+
+            // Create the line object
+            const line = document.createElement("div");
+            line.classList.add("PatchLine");
+            line.style.height = thickness + "px";
+            line.style.backgroundColor = color;
+            line.style.left = centerX + "px";
+            line.style.top = centerY + "px";
+            line.style.width = length + "px";
+
+            // Line.style.transform
+            line.style.webkitTransform = "rotate(" + angle + "deg)";
+
+            targetElement.appendChild(line);
+        }
+    }
+
+    // Draw boxes with the patches on top of that
+    for(const [, patch] of Object.entries(obj.patches)){
+
+        const element = document.createElement("span");
+        element.classList.add("PatchContainer");
+        element.style.left = patch.screenCoordinates.x + "px";
+        element.style.top = patch.screenCoordinates.y + "px";
+
+        element.addEventListener("click",
+            () =>{
+                if(selectedPatch != patch){
+
+                    if(selectedPatchElement){
+                        selectedPatchElement.classList.remove("Selected");
+                    }
+
+                    selectedPatchElement = element;
+                    updateSelectedPatchData(patch);
+                    element.classList.add("Selected");
+                }
+            }, true);
+
+        const inner = document.createElement("span");
+        inner.classList.add("Patch");
+        inner.classList.add("Patch" + common.capitalize(patch.biome.background));
+
+        // Inner.textContent = patch.name;
+
+        element.appendChild(inner);
+
+        targetElement.appendChild(element);
+    }
+}
+
+function updateSelectedPatchData(patch){
+    selectedPatch = patch;
+
+    if(!selectedPatch){
+        document.getElementById("noPatchSelectedText").style.display = "inline-block";
+        document.getElementById("patchInfoBox").style.display = "none";
+        document.getElementById("moveToPatchButton").classList.add("Disabled");
+        return;
+    }
+
+    document.getElementById("noPatchSelectedText").style.display = "none";
+    document.getElementById("patchInfoBox").style.display = "block";
+
+    document.getElementById("editorSelectedPatchName").textContent = patch.name;
+
+    const descriptionElement =
+        document.getElementById("editorSelectedPatchDescription");
+    descriptionElement.textContent = "";
+
+    if(currentPatchId != selectedPatch.id){
+        // Can move here
+        document.getElementById("moveToPatchButton").classList.remove("Disabled");
+    } else {
+        document.getElementById("moveToPatchButton").classList.add("Disabled");
+        descriptionElement.appendChild(document.createTextNode("You are currently in " +
+                                                               "this patch."));
+        descriptionElement.appendChild(document.createElement("br"));
+    }
+
+    // Biome name
+    descriptionElement.appendChild(document.createTextNode("Biome: " + patch.biome.name));
+    descriptionElement.appendChild(document.createElement("br"));
+
+    // Species
+    descriptionElement.appendChild(document.createElement("br"));
+    descriptionElement.appendChild(document.createTextNode("Species in this patch:"));
+    descriptionElement.appendChild(document.createElement("br"));
+
+    for(const species of patch.species){
+        const name = species.species.genus + " " + species.species.epithet;
+
+        descriptionElement.appendChild(document.createTextNode(name + " with population: " +
+                                                               species.population));
+        descriptionElement.appendChild(document.createElement("br"));
+    }
+}
+
+function moveToPatchClicked(){
+    if(currentPatchId == selectedPatch.id){
+        return;
+    }
+
+    currentPatchId = selectedPatch.id;
+
+    if(common.isInEngine()){
+        Leviathan.CallGenericEvent("MicrobeEditorSelectedNewPatch",
+            {patchId: currentPatchId});
+    } else {
+        // Console.log("player chose to move to patch:", currentPatchId);
+    }
+
+    updateSelectedPatchData(selectedPatch);
 }

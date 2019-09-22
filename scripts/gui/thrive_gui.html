@@ -753,9 +753,25 @@ For this Release if your population (top tab) drops to zero you go extinct.
 
       <div id="topLevelMicrobeEditorPatchMap">
         <div class="EditorPage">
-          <div id="patchMapDrawArea">
+          <span id="patchMapDrawArea">
             loading patch map...
-          </div>
+          </span>
+          <span id="selectedPatchInfoPanel">
+            <span id="noPatchSelectedText">
+              Select a patch to show details here
+            </span>
+            <div id="patchInfoBox">
+              <div id="editorSelectedPatchName">
+                Selected patch name goes here
+              </div>
+              <br>
+              <div id="editorSelectedPatchDescription">
+              </div>
+            </div>
+            <div id="moveToPatchButton" class="Disabled">
+              Move to This Patch
+            </div>
+          </span>
         </div>
       </div>
 

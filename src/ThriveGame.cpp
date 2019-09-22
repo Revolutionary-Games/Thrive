@@ -593,7 +593,8 @@ void
 
     // Fire an event to switch over the GUI
     // And make the Editor apply current changes to the player Species, the
-    // microbe stage code will apply it to the player cell in onReturnFromEditor
+    // microbe stage code will apply it to the player cell in
+    // onReturnFromEditor. This should also trigger playerMovedToPatch
     Engine::Get()->GetEventHandler()->CallEvent(
         new Leviathan::GenericEvent("MicrobeEditorExited"));
 
@@ -646,6 +647,62 @@ void
     // Apply patch settings
     m_impl->m_cellStage->GetPatchManager().applyPatchSettings();
     checkAutoEvoStart();
+}
+
+void
+    ThriveGame::playerMovedToPatch(int32_t patchId)
+{
+    auto map = m_impl->m_cellStage->GetPatchManager().getCurrentMap();
+    if(!map || map->getCurrentPatchId() == patchId)
+        return;
+
+    const auto patch = map->getPatch(patchId);
+
+    if(!patch) {
+        LOG_ERROR("Attempted to move to non-existant patch: " +
+                  std::to_string(patchId));
+        return;
+    }
+
+    LOG_INFO(
+        "Updating current patch and emptying out some things from the world");
+    map->setCurrentPatch(patchId);
+
+    // Add player species to patch
+    auto playerSpecies = m_impl->m_cellStage->GetPatchManager()
+                             .getCurrentMap()
+                             ->findSpeciesByName("Default");
+
+    if(!playerSpecies) {
+        LOG_ERROR("Failed to find player species! for add to patch");
+        return;
+    }
+
+    if(map->getCurrentPatch()->addSpecies(playerSpecies, 0)) {
+        LOG_INFO("Player species added to current patch");
+    }
+
+    // Destroy everything with a spawned component
+    // Don't trigger cell deaths as we don't want compounds or chunks leaking
+    // out
+    const auto& spawned =
+        m_impl->m_cellStage->GetComponentIndex_SpawnedComponent();
+
+    for(auto iter = spawned.begin(); iter != spawned.end(); ++iter) {
+        m_impl->m_cellStage->QueueDestroyEntity(iter->first);
+    }
+
+    const auto& timed =
+        m_impl->m_cellStage->GetComponentIndex_TimedLifeComponent();
+
+    for(auto iter = timed.begin(); iter != timed.end(); ++iter) {
+        m_impl->m_cellStage->QueueDestroyEntity(iter->first);
+    }
+
+    // TODO: some things may still be missing
+
+    // Clear compound clouds
+    m_impl->m_cellStage->GetCompoundCloudSystem().emptyAllClouds();
 }
 
 void

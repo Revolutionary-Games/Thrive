@@ -238,6 +238,12 @@ void
         m_sceneNode->setPosition(
             bs::Vector3(m_position.X, CLOUD_Y_COORDINATE, m_position.Z));
 
+    clearContents();
+}
+
+void
+    CompoundCloudComponent::clearContents()
+{
     // Clear data. Maybe there is a faster way
     if(m_compoundId1 != NULL_COMPOUND) {
         for(size_t x = 0; x < m_density1.size(); ++x) {
@@ -455,6 +461,14 @@ std::vector<std::tuple<CompoundId, float>>
     }
 
     return result;
+}
+// ------------------------------------ //
+void
+    CompoundCloudSystem::emptyAllClouds()
+{
+    for(auto& cloud : m_managedClouds) {
+        cloud.second->clearContents();
+    }
 }
 // ------------------------------------ //
 bool
