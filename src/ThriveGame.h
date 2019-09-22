@@ -126,6 +126,12 @@ public:
     void
         toggleDebugOverlay();
 
+    //! \brief Moves the player to play in the specified patch
+    //!
+    //! Also does cleanup like despawning old compounds and cells
+    void
+        playerMovedToPatch(int32_t patchId);
+
     // ------------------------------------ //
     //! \brief Begins connecting to server at url
     void

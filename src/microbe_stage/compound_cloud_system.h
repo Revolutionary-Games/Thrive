@@ -258,6 +258,9 @@ public:
     void
         recycleToPosition(const Float3& newPosition);
 
+    void
+        clearContents();
+
 
     REFERENCE_HANDLE_UNCOUNTED_TYPE(CompoundCloudComponent);
 
@@ -387,6 +390,10 @@ public:
     //! \brief Returns the total amount of all compounds at position
     std::vector<std::tuple<CompoundId, float>>
         getAllAvailableAt(const Float3& worldPosition);
+
+    //! \brief Clears the contents of all clouds
+    void
+        emptyAllClouds();
 
     /**
      * @brief Shuts the system down releasing all current compound cloud

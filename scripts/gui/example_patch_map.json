@@ -1,0 +1,153 @@
+{
+  "currentPatchId": 0,
+  "patches": {
+    "0": {
+      "adjacentPatches": [
+        1
+      ],
+      "biome": {
+        "background": "vent",
+        "id": 0,
+        "internalName": "aavolcanic_vent",
+        "name": "Volcanic vent",
+        "skybox": "Thrive_vent_skybox",
+        "skyboxLightIntensity": 0.5,
+        "sunlightColor": {
+          "b": 1.0,
+          "g": 1.0,
+          "r": 1.0
+        },
+        "sunlightDirection": {
+          "x": 0.550000011920929,
+          "y": -0.30000001192092896,
+          "z": 0.75
+        },
+        "sunlightIntensity": 9.999999747378752e-05,
+        "sunlightSourceRadius": 0.5
+      },
+      "id": 0,
+      "name": "Pangonian vents",
+      "screenCoordinates": {
+        "x": 100.0,
+        "y": 200.0
+      },
+      "species": [
+        {
+          "population": 160,
+          "species": {
+            "activity": 100.0,
+            "aggression": 100.0,
+            "color": {
+              "a": 1.0,
+              "b": 1.0,
+              "g": 1.0,
+              "r": 1.0
+            },
+            "epithet": "Thrivium",
+            "fear": 100.0,
+            "focus": 200.0,
+            "generation": 2,
+            "genus": "Primum",
+            "isBacteria": true,
+            "isPlayerSpecies": true,
+            "name": "Default",
+            "opportunism": 100.0,
+            "population": 130,
+            "speciesMembraneType": 1,
+            "stringCode": "Y,0,0,0"
+          }
+        },
+        {
+          "population": 1123,
+          "species": {
+            "activity": 107.53031921386719,
+            "aggression": 85.16497802734375,
+            "color": {
+              "a": 1.7448220252990723,
+              "b": 0.08733419328927994,
+              "g": 0.4105646014213562,
+              "r": 0.378664493560791
+            },
+            "epithet": "Chravaom",
+            "fear": 81.36040496826172,
+            "focus": 195.89895629882812,
+            "generation": 1,
+            "genus": "Primum",
+            "isBacteria": true,
+            "isPlayerSpecies": false,
+            "name": "Bacteria_6317",
+            "opportunism": 104.42748260498047,
+            "population": 1157,
+            "speciesMembraneType": 1,
+            "stringCode": "h,0,0,0|c,0,1,0|i,1,1,0"
+          }
+        }
+      ]
+    },
+    "1": {
+      "adjacentPatches": [
+        2,
+        0
+      ],
+      "biome": {
+        "background": "mesopelagic",
+        "id": 7,
+        "internalName": "mesopelagic",
+        "name": "Mesopelagic",
+        "skybox": "Thrive_meso_skybox",
+        "skyboxLightIntensity": 0.5,
+        "sunlightColor": {
+          "b": 1.0,
+          "g": 1.0,
+          "r": 1.0
+        },
+        "sunlightDirection": {
+          "x": 0.550000011920929,
+          "y": -0.30000001192092896,
+          "z": 0.75
+        },
+        "sunlightIntensity": 9.999999747378752e-05,
+        "sunlightSourceRadius": 0.5
+      },
+      "id": 1,
+      "name": "Pangonaian Mesopelagic",
+      "screenCoordinates": {
+        "x": 200.0,
+        "y": 200.0
+      },
+      "species": []
+    },
+    "2": {
+      "adjacentPatches": [
+        1
+      ],
+      "biome": {
+        "background": "ocean",
+        "id": 4,
+        "internalName": "default",
+        "name": "Epipelagic",
+        "skybox": "Thrive_ocean_skybox",
+        "skyboxLightIntensity": 0.5,
+        "sunlightColor": {
+          "b": 1.0,
+          "g": 1.0,
+          "r": 1.0
+        },
+        "sunlightDirection": {
+          "x": 0.550000011920929,
+          "y": -0.30000001192092896,
+          "z": 0.75
+        },
+        "sunlightIntensity": 9.999999747378752e-05,
+        "sunlightSourceRadius": 0.5
+      },
+      "id": 2,
+      "name": "Pangonian Epipelagic",
+      "screenCoordinates": {
+        "x": 200.0,
+        "y": 100.0
+      },
+      "species": []
+    }
+  }
+}

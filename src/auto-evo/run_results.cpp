@@ -129,43 +129,83 @@ void
     LOG_INFO("Start of auto-evo results summary (entries: " +
              std::to_string(m_results.size()) + ")");
 
+    LOG_WRITE(makeSummary(previousPopulations, false));
+
+    LOG_INFO("End of results summary");
+}
+
+std::string
+    patchNameResolveHelper(const PatchMap::pointer& patches, int32_t patchId)
+{
+    if(!patches)
+        return std::to_string(patchId);
+
+    const auto patch = patches->getPatch(patchId);
+
+    if(!patch)
+        return std::to_string(patchId) + " (invalid)";
+
+    return patch->getName();
+}
+
+std::string
+    RunResults::makeSummary(
+        const PatchMap::pointer& previousPopulations /*= nullptr*/,
+        bool playerReadable /*= false*/) const
+{
+
+    std::stringstream sstream;
+
     for(const auto& entry : m_results) {
 
-        LOG_WRITE(entry.species->getFormattedName(true) + ":");
+        sstream << entry.species->getFormattedName(!playerReadable) << ":"
+                << "\n";
 
         if(entry.mutatedProperties) {
-            LOG_WRITE(" has a mutation, gene code: " +
-                      entry.mutatedProperties->stringCode);
+            sstream << " has a mutation";
+
+            if(!playerReadable)
+                sstream << ", gene code: "
+                        << entry.mutatedProperties->stringCode;
+
+            sstream << "\n";
         }
 
         if(!entry.spreadPatches.empty()) {
-            LOG_WRITE(" spread to patches: ");
-            for(const auto [patch, population] : entry.spreadPatches)
-                LOG_WRITE("  " + std::to_string(patch) +
-                          " pop: " + std::to_string(population));
+            sstream << " spread to patches:\n";
+
+            for(const auto [patch, population] : entry.spreadPatches) {
+                if(playerReadable) {
+                    sstream
+                        << "  "
+                        << patchNameResolveHelper(previousPopulations, patch)
+                        << " population: " << population;
+                } else {
+                    sstream << "  " << patch << " pop: " << population;
+                }
+                sstream << "\n";
+            }
         }
 
-        LOG_WRITE(" population in patches: ");
+        sstream << " population in patches:\n";
         for(const auto [patch, population] : entry.newPopulationInPatches) {
-            std::stringstream sstream;
-            sstream << "  " << patch;
+
+            sstream << "  ";
+
+            if(!playerReadable) {
+                sstream << patch;
+            }
+
+            sstream << " "
+                    << patchNameResolveHelper(previousPopulations, patch);
 
             Patch::pointer patchObj;
 
             if(previousPopulations) {
                 patchObj = previousPopulations->getPatch(patch);
-
-                sstream << " (";
-                if(patchObj) {
-                    sstream << patchObj->getName();
-                } else {
-                    sstream << "error";
-                }
-
-                sstream << ")";
             }
 
-            sstream << " pop: " << population;
+            sstream << " population: " << population;
 
             if(patchObj) {
 
@@ -173,9 +213,12 @@ void
                         << patchObj->getSpeciesPopulation(entry.species);
             }
 
-            LOG_WRITE(sstream.str());
+            sstream << "\n";
         }
+
+        if(playerReadable)
+            sstream << "\n";
     }
 
-    LOG_INFO("End of results summary");
+    return sstream.str();
 }

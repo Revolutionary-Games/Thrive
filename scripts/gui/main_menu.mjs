@@ -3,10 +3,6 @@ import * as common from "./gui_common.mjs";
 import * as microbe_hud from "./microbe_hud.mjs";
 import {doEnterMicrobeEditor, setupMicrobeEditor} from "./microbe_editor.mjs";
 
-// eslint off
-// import {doEnterMicrobeEditor} from "./microbe_editor.mjs";
-// eslint on
-
 let jams = null;
 
 // Pauses the menu music instantly (used for instant start)
@@ -166,10 +162,15 @@ export function runMenuSetup(){
     // onMicrobeIntroEnded();
 
     // Test going to the editor (also uncomment the function call above)
-    // Thrive.editorButtonClicked();
+    const directToEditor = false;
 
-    // For in-browser preview
-    // doEnterMicrobeEditor();
+    if(directToEditor){
+        if(common.isInEngine()){
+            Thrive.editorButtonClicked();
+        } else {
+            doEnterMicrobeEditor();
+        }
+    }
 
     // Skip intro video
     // onIntroEnded();

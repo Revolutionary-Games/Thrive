@@ -71,6 +71,12 @@ public:
         printSummary(
             const PatchMap::pointer& previousPopulations = nullptr) const;
 
+    //! \brief Makes summary text
+    //! \param playerReadable if true ids are removed from the output
+    std::string
+        makeSummary(const PatchMap::pointer& previousPopulations = nullptr,
+            bool playerReadable = false) const;
+
     void
         addPopulationResultForSpeciesWrapper(Species* species,
             int32_t patch,
@@ -86,6 +92,19 @@ public:
         return getPopulationInPatch(Species::WrapPtr(species), patch);
     }
 
+    //! Returns a stored status text
+    std::string
+        getCachedSummary() const
+    {
+        return m_storedSummary;
+    }
+
+    void
+        setStoredSummary(const std::string& text)
+    {
+        m_storedSummary = text;
+    }
+
     static RunResults*
         factory();
 
@@ -94,6 +113,7 @@ public:
 
 private:
     std::vector<SpeciesResult> m_results;
+    std::string m_storedSummary;
 };
 
 }} // namespace thrive::autoevo

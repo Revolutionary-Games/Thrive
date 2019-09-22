@@ -132,6 +132,9 @@ export function runMicrobeHUDSetup(){
             HydrogenSulfideMax: hydrogenSulfide,
             compoundIron: common.randomBetween(0, iron),
             IronMax: iron,
+            reproductionProgress: common.randomBetween(0, 100) / 100.0,
+            reproductionAmmoniaFraction: common.randomBetween(0, 100) / 100.0,
+            reproductionPhosphatesFraction: common.randomBetween(0, 100) / 100.0,
         });
 
         // Pseudo population code
@@ -535,4 +538,12 @@ function updateMicrobeHUDBars(values){
     document.getElementById("microbeHUDPlayerIronBar").style.width =
         common.barHelper(values.compoundIron, values.IronMax);
 
+    document.getElementById("reproductionPercentage").textContent =
+        Math.floor(100 * values.reproductionProgress);
+
+    document.getElementById("reproductionAmmoniaBar").style.width =
+        (200 * values.reproductionAmmoniaFraction) + "px";
+
+    document.getElementById("reproductionPhosphatesBar").style.width =
+        (200 * values.reproductionPhosphatesFraction) + "px";
 }
