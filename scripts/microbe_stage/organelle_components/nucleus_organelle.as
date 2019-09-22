@@ -70,7 +70,8 @@ class NucleusOrganelle : OrganelleComponent{
     ) override {
 
         auto world = organelle.world;
-
+        world.QueueDestroyEntity(golgi);
+        world.QueueDestroyEntity(ER);
         // These also should be destroyed with the cell as they are parented
         golgi = NULL_OBJECT;
         ER = NULL_OBJECT;
