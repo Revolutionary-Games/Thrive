@@ -842,28 +842,30 @@ class MicrobeEditor{
                     int r = int(action.data["r"]);
                     // Remove the organelle
                    OrganellePlacement::removeOrganelleAt(editor.editedMicrobe,Int2(q, r));
+                   editor._updateAlreadyPlacedVisuals();
                 },
                 // undo
                 function(EditorAction@ action, MicrobeEditor@ editor){
-                 PlacedOrganelle@ organelle = cast<PlacedOrganelle>(action.data["organelle"]);
-                // Need to set this here to make sure the pointer is updated
-                @action.data["organelle"]=organelle;
-                // Check if there is cytoplasm under this organelle.
-                auto hexes = organelle.organelle.getRotatedHexes(organelle.rotation);
-                for(uint i = 0; i < hexes.length(); ++i){
-                    int posQ = int(hexes[i].q) + organelle.q;
-                    int posR = int(hexes[i].r) + organelle.r;
-                    auto organelleHere = OrganellePlacement::getOrganelleAt(
-                        editor.editedMicrobe, Int2(posQ, posR));
-                    if(organelleHere !is null &&
-                        organelleHere.organelle.name == "cytoplasm")
-                    {
-                        LOG_INFO("replaced cytoplasm");
-                        OrganellePlacement::removeOrganelleAt(editor.editedMicrobe,
-                            Int2(posQ, posR));
+                    PlacedOrganelle@ organelle = cast<PlacedOrganelle>(action.data["organelle"]);
+                    // Need to set this here to make sure the pointer is updated
+                    @action.data["organelle"]=organelle;
+                    // Check if there is cytoplasm under this organelle.
+                    auto hexes = organelle.organelle.getRotatedHexes(organelle.rotation);
+                    for(uint i = 0; i < hexes.length(); ++i){
+                        int posQ = int(hexes[i].q) + organelle.q;
+                        int posR = int(hexes[i].r) + organelle.r;
+                        auto organelleHere = OrganellePlacement::getOrganelleAt(
+                            editor.editedMicrobe, Int2(posQ, posR));
+                        if(organelleHere !is null &&
+                            organelleHere.organelle.name == "cytoplasm")
+                        {
+                            LOG_INFO("replaced cytoplasm");
+                            OrganellePlacement::removeOrganelleAt(editor.editedMicrobe,
+                                Int2(posQ, posR));
+                        }
                     }
-                }
-                editor.editedMicrobe.insertLast(organelle);
+                    editor.editedMicrobe.insertLast(organelle);
+                    editor._updateAlreadyPlacedVisuals();                
                 });
                 // Give the action access to some data
                 @action.data["organelle"] = organelle;
