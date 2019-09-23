@@ -301,6 +301,9 @@ void
 
     // Skybox with indirect light
     ThriveGame::get()->setSkybox(biome.skybox, biome.skyboxLightIntensity);
+
+    // Eye adaptation settings
+    InWorld.SetAutoExposure(biome.minEyeAdaptation, biome.maxEyeAdaptation);
 }
 // ------------------------------------ //
 void
