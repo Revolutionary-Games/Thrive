@@ -180,6 +180,8 @@ bool
             }
 
             incomingLinks[neighbour] = true;
+
+            seenLinks.insert(std::make_tuple(id, neighbour));
         }
     }
 

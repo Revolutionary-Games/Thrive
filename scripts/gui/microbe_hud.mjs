@@ -161,7 +161,7 @@ function quitGameHud(){
 }
 
 function updatePatchInfo(patchName){
-    document.getElementById("infoPatch").textContent = "Patch Name:" + patchName;
+    document.getElementById("infoPatch").textContent = "Patch: " + patchName;
 }
 
 //! Enables the editor button

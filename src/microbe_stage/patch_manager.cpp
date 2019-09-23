@@ -303,6 +303,9 @@ void
     ThriveGame::get()->setSkybox(biome.skybox, biome.skyboxLightIntensity);
 
     // Eye adaptation settings
+    LOG_INFO("Setting eye adaptation: min: " +
+             std::to_string(biome.minEyeAdaptation) +
+             " max: " + std::to_string(biome.maxEyeAdaptation));
     InWorld.SetAutoExposure(biome.minEyeAdaptation, biome.maxEyeAdaptation);
 }
 // ------------------------------------ //
