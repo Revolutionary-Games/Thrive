@@ -503,16 +503,15 @@ class MicrobeSystem : ScriptSystem{
         //This is per second logic time is the amount of ticks per second.
         //TODO:It seems to happen no matter what (even if it takes away less atp then you generate per second),
         //we should probably make it take into account the amount of atp being generated so resources arent wasted
-        //for now made it not take away if your atp amount is equal to your capacity
         auto osmoCost = (microbeComponent.totalHexCountCache*ATP_COST_FOR_OSMOREGULATION)/(logicTime);
         //auto osmoCost = (microbeComponent.organelles.length()*2)/logicTime;
         double atpAmount = MicrobeOperations::getCompoundAmount(world, microbeEntity,SimulationParameters::compoundRegistry().getTypeId("atp"));
 
-        if (atpAmount >= osmoCost && atpAmount < microbeComponent.capacity-0.2){
+        if (atpAmount >= osmoCost){
             MicrobeOperations::takeCompound(world, microbeEntity,
                 SimulationParameters::compoundRegistry().getTypeId("atp"), osmoCost);
         }
-        else if (atpAmount < microbeComponent.capacity-0.2){
+        else {
             MicrobeOperations::takeCompound(world, microbeEntity,
                 SimulationParameters::compoundRegistry().getTypeId("atp"), atpAmount);
         }

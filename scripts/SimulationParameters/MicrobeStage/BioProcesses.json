@@ -4,11 +4,11 @@
 
         "inputs": {
             "oxygen": 1.0,
-            "glucose": 0.2
+            "glucose": 0.5
         },
 
         "outputs": {
-           "atp": 45.0
+           "atp": 50.0
         }
     },
 	
@@ -40,11 +40,12 @@
         "name": "Photosynthesis",
 
         "inputs": {
-            "carbondioxide": 0.09
+            "carbondioxide": 0.09,
+            "sunlight": 1.0
         },
 
         "outputs": {
-            "glucose": 1.0
+            "glucose": 0.25
         }
     },
 
@@ -144,11 +145,12 @@
         "name": "Bacterial Photosynthesis",
 
         "inputs": {
-            "carbondioxide": 0.09
+            "carbondioxide": 0.09,
+            "sunlight": 1.0
         },
 
         "outputs": {
-            "glucose": 0.15
+            "glucose": 0.06
         }
     },
     

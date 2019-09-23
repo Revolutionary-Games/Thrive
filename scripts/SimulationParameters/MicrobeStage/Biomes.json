@@ -102,8 +102,8 @@
             },
 
             "hydrogensulfide": {
-                "amount": 225000,
-                "density": 0.00002,
+                "amount": 0,
+                "density": 0.0,
                 "dissolved": 0.0
             },
 
@@ -123,6 +123,12 @@
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.70
+            },
+
+            "sunlight": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 1.0
             }
         }
     },
@@ -204,7 +210,7 @@
                            {"mesh": "chemoproteins", "texture": "chemoproteins.png"},
                            {"mesh": "nitrogenase", "texture": "nitrogenase.png"},
                            {"mesh": "rusticyanin", "texture": "rusticyanin.png"}],
-                "density": 0.00004,
+                "density": 0.0,
                 "dissolves": true,
                 "radius": 1,
                 "chunkScale": 1.0,
@@ -252,8 +258,8 @@
 
         "compounds": {
             "ammonia": {
-                "amount": 200000,
-                "density": 0.00002,
+                "amount": 300000,
+                "density": 0.00004,
                 "dissolved": 0.0
             },
 
@@ -264,8 +270,8 @@
             },
 
             "phosphates": {
-                "amount": 200000,
-                "density": 0.00002,
+                "amount": 300000,
+                "density": 0.00004,
                 "dissolved": 0.0
             },
 
@@ -291,6 +297,12 @@
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.70
+            },
+
+            "sunlight": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 0.0
             }
         }
     },
@@ -397,8 +409,8 @@
             },
 
             "hydrogensulfide": {
-                "amount": 225000,
-                "density": 0.00002,
+                "amount": 0,
+                "density": 0.0,
                 "dissolved": 0.0
             },
 
@@ -418,6 +430,12 @@
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.70
+            },
+
+            "sunlight": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 2.0
             }
         }
     },
@@ -563,8 +581,8 @@
             },
 
             "hydrogensulfide": {
-                "amount": 225000,
-                "density": 0.00002,
+                "amount": 0,
+                "density": 0.0,
                 "dissolved": 0.0
             },
 
@@ -584,6 +602,12 @@
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.70
+            },
+
+            "sunlight": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 0.0
             }
         }
     },
@@ -729,8 +753,8 @@
             },
 
             "hydrogensulfide": {
-                "amount": 225000,
-                "density": 0.00002,
+                "amount": 0,
+                "density": 0.0,
                 "dissolved": 0.0
             },
 
@@ -750,6 +774,12 @@
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.70
+            },
+
+            "sunlight": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 0.0
             }
         }
     },
@@ -896,8 +926,8 @@
             },
 
             "hydrogensulfide": {
-                "amount": 225000,
-                "density": 0.00002,
+                "amount": 0,
+                "density": 0.0,
                 "dissolved": 0.0
             },
 
@@ -917,6 +947,12 @@
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.70
+            },
+
+            "sunlight": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 0.01
             }
         }
     },
@@ -1023,8 +1059,8 @@
             },
 
             "hydrogensulfide": {
-                "amount": 225000,
-                "density": 0.00002,
+                "amount": 0,
+                "density": 0.0,
                 "dissolved": 0.0
             },
 
@@ -1044,6 +1080,12 @@
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.70
+            },
+
+            "sunlight": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 1.0
             }
         }
     },
@@ -1171,6 +1213,12 @@
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.70
+            },
+
+            "sunlight": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 0.0
             }
         }
     },
@@ -1310,8 +1358,8 @@
             },
 
             "hydrogensulfide": {
-                "amount": 225000,
-                "density": 0.00002,
+                "amount": 0,
+                "density": 0.0,
                 "dissolved": 0.0
             },
 
@@ -1331,6 +1379,12 @@
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.70
+            },
+
+            "sunlight": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 0.5
             }
         }
     },
@@ -1438,8 +1492,8 @@
             },
 
             "hydrogensulfide": {
-                "amount": 225000,
-                "density": 0.00002,
+                "amount": 0,
+                "density": 0.0,
                 "dissolved": 0.0
             },
 
@@ -1459,6 +1513,12 @@
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.78
+            },
+
+            "sunlight": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 1.5
             }
         }
     },
@@ -1605,8 +1665,8 @@
             },
 
             "hydrogensulfide": {
-                "amount": 225000,
-                "density": 0.00002,
+                "amount": 0,
+                "density": 0.0,
                 "dissolved": 0.0
             },
 
@@ -1626,6 +1686,12 @@
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.70
+            },
+
+            "sunlight": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 1.0
             }
         }
     }
