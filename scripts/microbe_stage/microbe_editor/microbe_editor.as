@@ -98,6 +98,7 @@ class MicrobeEditor{
         GetThriveGame().playerData().setBool("edited_microbe", true);
 
         // Detect freebuild
+        // TODO: send an event to the GUI to allow freely moving between patches in freebuild
         if(GetThriveGame().playerData().isFreeBuilding()){
             LOG_INFO("Editor going to freebuild mode because player has activated freebuild");
             freeBuilding = true;
