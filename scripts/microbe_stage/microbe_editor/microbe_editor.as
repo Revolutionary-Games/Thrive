@@ -619,24 +619,10 @@ class MicrobeEditor{
                 return;
 
         // Every time we make a new action if is in the middle of history of actions
-        // We have to be sure that this action is not a different from what we expect
-        // In the history, if it's different we have to erase all redo history
-        if( actionHistory.length() > 0 && (actionIndex < actionHistory.length() ) ) {
-
-            int q = int(action.data["q"]);
-            int r = int(action.data["r"]);
-
-            int nextQ = int(actionHistory[actionIndex].data["q"]);
-            int nextR = int(actionHistory[actionIndex].data["r"]);
-
-            int i =  actionIndex;
-
-            if( (q != nextQ) || (r != nextR)) {
-                while(i < actionHistory.length()) {
-                    actionHistory.removeAt(i);
-                    i++;
-                }
-                actionIndex = actionHistory.length();
+        // We have to erase all redo history from that point
+        if( actionIndex < actionHistory.length() ) {
+            for( int i = actionIndex; i < actionHistory.length(); i++) {
+                actionHistory.removeAt(i);
             }
         }
 
