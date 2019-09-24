@@ -77,7 +77,7 @@ export function runMicrobeHUDSetup(){
 
         // Event for updating o2 and c02 numbers
         Leviathan.OnGeneric("UpdateDissolvedGasses", (event, vars) => {
-            updateEnvironmentalCompounds(vars.oxygenPercent, vars.co2Percent, vars.n2Percent, 
+            updateEnvironmentalCompounds(vars.oxygenPercent, vars.co2Percent, vars.n2Percent,
                 vars.sunlightPercent);
         });
 
