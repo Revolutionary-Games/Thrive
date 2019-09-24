@@ -618,9 +618,9 @@ class MicrobeEditor{
             if(!takeMutationPoints(action.cost))
                 return;
 
-        //! Evety time we make a new action is in the middle of history of actions
-        // If it is we have to be sure that this action is not a different for what we expect
-        // In the history, if it's different we have to erase all edo history
+        //! Every time we make a new action if is in the middle of history of actions
+        // Wwe have to be sure that this action is not a different from what we expect
+        // In the history, if it's different we have to erase all redo history
         if( actionHistory.length() > 0 && (actionIndex < actionHistory.length() ) ) {
 
             int q = int(action.data["q"]);
