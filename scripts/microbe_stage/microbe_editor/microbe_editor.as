@@ -617,18 +617,36 @@ class MicrobeEditor{
         if(action.cost != 0)
             if(!takeMutationPoints(action.cost))
                 return;
-        // We resize always and insert at the index so that
-        // if we undo something then add something, the new
-        // action is in the right spot on the array.
-        // since we only enqueue when we add new actions
-        actionHistory.resize(actionHistory.length()+1);
+
+        //! Evety time we make a new action is in the middle of history of actions
+        // If it is we have to be sure that this action is not a different for what we expect
+        // In the history, if it's different we have to erase all edo history
+        if( actionHistory.length() > 0 && (actionIndex < actionHistory.length() ) ) {
+
+            int q = int(action.data["q"]);
+            int r = int(action.data["r"]);
+
+            int nextQ = int(actionHistory[actionIndex].data["q"]);
+            int nextR = int(actionHistory[actionIndex].data["r"]);
+
+            int i =  actionIndex;
+
+            if( (q != nextQ) || (r != nextR)) {
+                while(i < actionHistory.length()) {
+                    actionHistory.removeAt(i);
+                    i++;
+                }
+                actionIndex = actionHistory.length();
+            }
+        }
+
+        actionHistory.insertLast(action);
 
         setUndoButtonStatus(true);
         setRedoButtonStatus(false);
 
-        action.redo(action, this);
-        actionHistory.insertAt(actionIndex,action);
         actionIndex++;
+        action.redo(action, this);
 
         // Only called when an action happens, because its an expensive method
         hudSystem.updateSpeed();
@@ -733,9 +751,10 @@ class MicrobeEditor{
 
     void redo()
     {
-        if (actionIndex < int(actionHistory.length())-1){
+
+        if (actionIndex < int(actionHistory.length())){
+            auto action = actionHistory[actionIndex];
             actionIndex += 1;
-            auto action = actionHistory[actionIndex-1];
             action.redo(action, this);
             hudSystem.updateSpeed();
 
@@ -747,7 +766,7 @@ class MicrobeEditor{
         }
 
         //nothing left to redo? disable redo
-        if (actionIndex >= int(actionHistory.length()-2)){
+        if (actionIndex >= int(actionHistory.length())){
             setRedoButtonStatus(false);
         }
     }
