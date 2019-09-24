@@ -41,6 +41,11 @@ Biome::Biome(Json::Value value)
     sunlightDirection = Float3(x, y, z);
     sunlightSourceRadius = sunlight["sourceRadius"].asFloat();
 
+    // Eye adaptation
+    const auto eyeAdaptation = value["eyeAdaptation"];
+    minEyeAdaptation = eyeAdaptation["min"].asFloat();
+    maxEyeAdaptation = eyeAdaptation["max"].asFloat();
+
     // Getting the compound information.
     Json::Value compoundData = value["compounds"];
     std::vector<std::string> compoundInternalNames =

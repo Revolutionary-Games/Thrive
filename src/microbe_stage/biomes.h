@@ -153,6 +153,13 @@ public:
     float sunlightIntensity;
     Float3 sunlightDirection;
     float sunlightSourceRadius;
+
+    // Eye adaptation / auto exposure settings
+    //! Min eye adaptation for camera in this patch, valid range: [0.0f, 10.0f].
+    float minEyeAdaptation = 0.003f;
+
+    //! Max eye adaptation for camera in this patch, valid range: [0.0f, 10.0f].
+    float maxEyeAdaptation = 2.0f;
 };
 
 } // namespace thrive
