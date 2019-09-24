@@ -620,11 +620,8 @@ class MicrobeEditor{
 
         // Every time we make a new action if is in the middle of history of actions
         // We have to erase all redo history from that point
-        if( actionIndex < actionHistory.length() ) {
-            for( size_t i = actionIndex; i < actionHistory.length(); i++) {
-                actionHistory.removeAt(i);
-            }
-        }
+        while(actionIndex < actionHistory.length())
+            actionHistory.removeLast();
 
         actionHistory.insertLast(action);
 
