@@ -23,7 +23,8 @@ export function runMicrobeHUDSetup(){
 
     // Compound Panel
     document.getElementById("compoundsButton").addEventListener("click",
-                onCompoundPanelClicked, true);
+        onCompoundPanelClicked, true);
+
     // Pause Menu Clicked
     document.getElementById("mainMenuButton").addEventListener("click", onMenuClicked, true);
 
@@ -47,20 +48,20 @@ export function runMicrobeHUDSetup(){
     document.getElementById("microbeToEditorButton").classList.add("DisabledButton");
 
     // Compounds eompress Panel button
-        const compressPanels = document.getElementsByClassName("compressPanel");
+    const compressPanels = document.getElementsByClassName("compressPanel");
 
-        for (const element of compressPanels) {
-            element.addEventListener("click",
-                onCompressPanelClicked, true);
-        }
+    for (const element of compressPanels) {
+        element.addEventListener("click",
+            onCompressPanelClicked, true);
+    }
 
-        // Compounds expand Panel button
-        const expandPanels = document.getElementsByClassName("expandPanel");
+    // Compounds expand Panel button
+    const expandPanels = document.getElementsByClassName("expandPanel");
 
-        for (const element of expandPanels) {
-            element.addEventListener("click",
-                onExpandPanelClicked, true);
-        }
+    for (const element of expandPanels) {
+        element.addEventListener("click",
+            onExpandPanelClicked, true);
+    }
 
     if(common.isInEngine()){
 
@@ -422,7 +423,7 @@ function updateHoverInfo(vars){
 
             // Debug print version
             // Panel.appendChild(document.createTextNode(key + ": " + vars[key]));
-            //panel.appendChild(document.createTextNode(vars[key]));
+            // panel.appendChild(document.createTextNode(vars[key]));
 
             const values = vars[key].split(":");
             const img = document.createElement("IMG");
@@ -709,8 +710,10 @@ function updateMicrobeHUDBars(values){
 
         progress = 100 - valueHp;
         circle.querySelector("#shapeHp").style["stroke-dashoffset"] = 231.13 * progress / 100;
-        circle.querySelector("#shapeAmmonia").style["stroke-dashoffset"] = 204.234 * values.reproductionAmmoniaFraction;
-        circle.querySelector("#shapePhosphate").style["stroke-dashoffset"] = 204.234 * values.reproductionPhosphatesFraction;
+        circle.querySelector("#shapeAmmonia").style["stroke-dashoffset"] =
+            204.234 * values.reproductionAmmoniaFraction;
+        circle.querySelector("#shapePhosphate").style["stroke-dashoffset"] =
+            204.234 * values.reproductionPhosphatesFraction;
     }
 
     document.getElementById("microbeHUDPlayerAmmonia").textContent =
