@@ -414,4 +414,3 @@ export function doExitToMenu() {
 
     startMenuMusic(false);
 }
-
