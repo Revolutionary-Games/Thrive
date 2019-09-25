@@ -22,9 +22,8 @@ export function runMicrobeHUDSetup(){
         onEditorButtonClicked, true);
 
     // Compound Panel
-    document.getElementById("compoundExpand").addEventListener("click",
-        onCompoundPanelClicked, true);
-
+    document.getElementById("compoundsButton").addEventListener("click",
+                onCompoundPanelClicked, true);
     // Pause Menu Clicked
     document.getElementById("mainMenuButton").addEventListener("click", onMenuClicked, true);
 
@@ -46,6 +45,22 @@ export function runMicrobeHUDSetup(){
 
     // Editor button is initially disabled
     document.getElementById("microbeToEditorButton").classList.add("DisabledButton");
+
+    // Compounds eompress Panel button
+        const compressPanels = document.getElementsByClassName("compressPanel");
+
+        for (const element of compressPanels) {
+            element.addEventListener("click",
+                onCompressPanelClicked, true);
+        }
+
+        // Compounds expand Panel button
+        const expandPanels = document.getElementsByClassName("expandPanel");
+
+        for (const element of expandPanels) {
+            element.addEventListener("click",
+                onExpandPanelClicked, true);
+        }
 
     if(common.isInEngine()){
 
@@ -183,18 +198,14 @@ export function onResetEditor(){
 
 function onCompoundPanelClicked() {
     common.playButtonPressSound();
+    document.getElementById("compoundsPanel").style.transition = "0s";
 
-    $("#compoundsPanel").slideToggle(400, "swing", function(){
+    $("#environmentPanel").animate({"width": "toggle"});
+    $("#compoundsPanel").animate({"width": "toggle"});
+    $("#agentsPanel").animate({"width": "toggle"});
 
-        const visible = $(this).is(":visible");
-
-        // TODO: could just animate this image to rotate
-        document.getElementById("compoundExpandIcon").style.backgroundImage = visible ?
-            "url(../../Textures/gui/bevel/ExpandDownIcon.png)" :
-            "url(../../Textures/gui/bevel/ExpandUpIcon.png)";
-    });
-
-
+    $("#compoundsButton").toggleClass("active");
+    $("#compoundsButton").toggleClass("inactive");
 }
 
 function openHelp(){
@@ -385,15 +396,21 @@ function updateHoverInfo(vars){
     const panel = document.getElementById("mouseHoverPanel");
     common.clearChildren(panel);
 
-    panel.appendChild(document.createTextNode("Stuff at " + vars.mousePos + ":"));
+    const mainContent = document.createElement("div");
+    mainContent.style.width = "100%";
+    mainContent.style.height = "15px";
+    mainContent.style.color = "white";
+    mainContent.style.textAlign = "center";
+    mainContent.innerHTML = "Hello";
 
     if(vars.noCompounds){
 
         panel.appendChild(document.createElement("br"));
         panel.appendChild(document.createTextNode("Nothing to eat here"));
-
     } else {
 
+        mainContent.innerHTML = "At cursor:";
+        panel.appendChild(mainContent);
         common.getKeys(vars).forEach(function(key){
 
             // Skip things that are handled elsewhere
@@ -405,7 +422,26 @@ function updateHoverInfo(vars){
 
             // Debug print version
             // Panel.appendChild(document.createTextNode(key + ": " + vars[key]));
-            panel.appendChild(document.createTextNode(vars[key]));
+            //panel.appendChild(document.createTextNode(vars[key]));
+
+            const values = vars[key].split(":");
+            const img = document.createElement("IMG");
+            let src = "../../Textures/gui/bevel/";
+            values[0] = values[0].replace(/\s+/, "");
+            src = src + values[0];
+            src = src + ".png";
+
+            img.setAttribute("src", src);
+            img.setAttribute("width", "25");
+            img.setAttribute("height", "25");
+            img.setAttribute("position", "relative");
+            panel.appendChild(img);
+
+            const par = document.createElement("p");
+            par.style.display = "inline-block";
+            const parText = document.createTextNode("" + vars[key]);
+            par.appendChild(parText);
+            panel.appendChild(par);
         });
     }
 
@@ -474,27 +510,208 @@ function hideWinText(){
     document.getElementById("winContainer").style.display = "none";
 }
 
+// Variables needed for changes
+let barToChange = "";
+let titleToChange = "";
+let valuesToChange = "";
+let h = "";
+
+function onCompressPanelClicked() {
+
+    // If panel is already compress cannot compress again
+    const panelToChangeId = $(this).parent().parent().attr("id");
+    const bg = $("#" + panelToChangeId).css("background-image");
+
+    if(bg.includes("Compress"))
+        return;
+
+    // Determine which panel needs to be compress
+    const elementToChange = document.getElementById(panelToChangeId);
+
+    // Determine different values because right now
+    // The two panels a little difference in layout
+
+    if(panelToChangeId == "compoundsPanel") {
+        elementToChange.style.backgroundImage =
+            "url('../../Textures/gui/bevel/compoundsPanelCompress.png')";
+        barToChange = "Bar";
+        titleToChange = "BarTitle";
+        valuesToChange = "BarValue";
+        h = elementToChange.offsetHeight - 92;
+    } else {
+        elementToChange.style.backgroundImage =
+            "url('../../Textures/gui/bevel/environmentPanelCompress.png')";
+        barToChange = "EnvironmentBar";
+        titleToChange = "EnvironmentBarTitle";
+        valuesToChange = "EnvironmentBarValue";
+        h = elementToChange.offsetHeight - 58;
+    }
+
+    elementToChange.style.height = h + "px";
+
+    // Change buttons status
+    elementToChange.querySelector(".compressPanel").style.backgroundImage =
+        "url('../../Textures/gui/bevel/compressPanelActive.png')";
+    elementToChange.querySelector(".expandPanel").style.backgroundImage =
+        "url('../../Textures/gui/bevel/expandPanel.png')";
+
+    //! ROWS
+    const rows = elementToChange.querySelectorAll(".row");
+
+    for(const row of rows) {
+        const bars = row.getElementsByClassName(barToChange);
+        const title = row.getElementsByClassName(titleToChange);
+        const barValues = row.getElementsByClassName(valuesToChange);
+
+        for (const bar of bars) {
+
+            bar.style.display = "inline-block";
+            let w = "";
+
+            if(panelToChangeId == "compoundsPanel") {
+                w = bar.offsetWidth - 150;
+                bar.style.marginLeft = "-25px";
+            } else {
+                w = bar.offsetWidth - 100;
+                bar.style.marginLeft = "5px";
+            }
+            bar.style.width = w + "px";
+            bar.style.marginBottom = "0px";
+            bar.style.marginTop = "6px";
+        }
+
+        for (const tit of title) {
+            tit.style.visibility = "hidden";
+        }
+
+        for (const barValue of barValues) {
+            if(panelToChangeId == "compoundsPanel") {
+                barValue.style.left = "-30px";
+            } else {
+                barValue.style.left = "15px";
+            }
+        }
+    }
+}
+
+//! Expand panel function
+function onExpandPanelClicked() {
+
+    // If panel is already expand cannot expand again
+    const panelToChangeId = $(this).parent().parent().attr("id");
+    const bg = $("#" + panelToChangeId).css("background-image");
+
+    if(bg.includes("Expand"))
+        return;
+
+    // Determine which panel needs to be compress
+    const elementToChange = document.getElementById(panelToChangeId);
+
+    // Determine different values because right now
+    // The two panels a little difference in layout
+
+    if(panelToChangeId == "compoundsPanel") {
+        elementToChange.style.backgroundImage =
+            "url('../../Textures/gui/bevel/compoundsPanelExpand.png')";
+        barToChange = "Bar";
+        titleToChange = "BarTitle";
+        valuesToChange = "BarValue";
+        h = elementToChange.offsetHeight + 92;
+    } else {
+        elementToChange.style.backgroundImage =
+            "url('../../Textures/gui/bevel/environmentPanelExpand.png')";
+        barToChange = "EnvironmentBar";
+        titleToChange = "EnvironmentBarTitle";
+        valuesToChange = "EnvironmentBarValue";
+        h = elementToChange.offsetHeight + 58;
+    }
+
+    elementToChange.style.height = h + "px";
+
+    // Change buttons status
+    elementToChange.querySelector(".compressPanel").style.backgroundImage =
+        "url('../../Textures/gui/bevel/compressPanel.png')";
+    elementToChange.querySelector(".expandPanel").style.backgroundImage =
+        "url('../../Textures/gui/bevel/expandPanelActive.png')";
+
+    const rows = elementToChange.querySelectorAll(".row");
+
+    for(const row of rows) {
+        const bars = row.getElementsByClassName(barToChange);
+        const title = row.getElementsByClassName(titleToChange);
+        const barValues = row.getElementsByClassName(valuesToChange);
+
+        for (const bar of bars) {
+            bar.style.display = "block";
+            let w = "";
+
+            if(panelToChangeId == "compoundsPanel") {
+                w = bar.offsetWidth + 150;
+                bar.style.marginLeft = "20px";
+            } else {
+                w = bar.offsetWidth + 100;
+                bar.style.marginLeft = "20px";
+            }
+
+            bar.style.marginBottom = "4px";
+            bar.style.marginTop = "6px";
+            bar.style.width = w + "px";
+        }
+
+        for (const tit of title) {
+            tit.style.visibility = "visible";
+        }
+
+        for (const barValue of barValues) {
+            if(panelToChangeId == "compoundsPanel") {
+                barValue.style.left = "120px";
+            } else {
+                barValue.style.left = "100px";
+            }
+        }
+    }
+}
+
 //! Updates the GUI bars
 //! values needs to be an object with properties set with values for everything
 function updateMicrobeHUDBars(values){
+    let progress = 0;
+
+    // The bars
     document.getElementById("microbeHUDPlayerHitpoints").textContent =
         values.hitpoints;
     document.getElementById("microbeHUDPlayerMaxHitpoints").textContent =
         values.maxHitpoints;
-    document.getElementById("microbeHUDPlayerHitpointsBar").style.width =
-        common.barHelper(values.hitpoints, values.maxHitpoints);
 
-    // TODO: remove this debug code
-    document.getElementById("microbeHUDPlayerATP").textContent =
-        values.compoundATP.toFixed(1);
-
-    // The bars
     document.getElementById("microbeHUDPlayerATPCompound").textContent =
          values.compoundATP.toFixed(1);
     document.getElementById("microbeHUDPlayerATPMax").textContent =
          values.ATPMax;
-    document.getElementById("microbeHUDPlayerATPBar").style.width =
-         common.barHelper(values.compoundATP, values.ATPMax);
+
+    const valueAtp = common.barHelper(values.compoundATP, values.ATPMax).replace("%", "");
+    const valueHp = common.barHelper(values.hitpoints, values.maxHitpoints).replace("%", "");
+
+    const circles = document.querySelectorAll("#circleBars");
+
+    // ! instead of using totalProgress var, two hardCoded value are used
+    // They are in thrive_gui.html at line 117 and 134.
+    // two loops could be used but this need draw two differents svg for each circle
+
+    for(const circle of circles) {
+
+        progress = 100 - valueAtp;
+        if(valueAtp < 2.5) {
+            circle.querySelector("#shapeAtp").style["stroke-dashoffset"] = 189.117;
+        } else {
+            circle.querySelector("#shapeAtp").style["stroke-dashoffset"] =
+                189.117 * progress / 100;
+        }
+
+        progress = 100 - valueHp;
+        circle.querySelector("#shapeHp").style["stroke-dashoffset"] = 231.13 * progress / 100;
+        circle.querySelector("#shapeAmmonia").style["stroke-dashoffset"] = 204.234 * values.reproductionAmmoniaFraction;
+        circle.querySelector("#shapePhosphate").style["stroke-dashoffset"] = 204.234 * values.reproductionPhosphatesFraction;
+    }
 
     document.getElementById("microbeHUDPlayerAmmonia").textContent =
         values.compoundAmmonia.toFixed(1);
@@ -537,13 +754,4 @@ function updateMicrobeHUDBars(values){
         values.IronMax;
     document.getElementById("microbeHUDPlayerIronBar").style.width =
         common.barHelper(values.compoundIron, values.IronMax);
-
-    document.getElementById("reproductionPercentage").textContent =
-        Math.floor(100 * values.reproductionProgress);
-
-    document.getElementById("reproductionAmmoniaBar").style.width =
-        (200 * values.reproductionAmmoniaFraction) + "px";
-
-    document.getElementById("reproductionPhosphatesBar").style.width =
-        (200 * values.reproductionPhosphatesFraction) + "px";
 }
