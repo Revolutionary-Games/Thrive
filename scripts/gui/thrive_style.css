@@ -1,6 +1,8 @@
 /* Thrive stylesheet */
 
+
 /* Fonts */
+
 @font-face {
   font-family: "thrive";
   src: url("../../Fonts/thrive.ttf") format("truetype");
@@ -36,15 +38,15 @@
   font-style: normal;
 }
 
+
 /* Element styling */
+
 html {
   width: 100%;
   height: 100%;
   font-family: "Jura";
-
   /* By default all text is white */
   color: white;
-
   /* Custom cursor everywhere */
   cursor: url("../../Textures/gui/cursors/default.png"), auto;
 }
@@ -54,18 +56,23 @@ body {
   margin: 0;
 }
 
+
 /* button{
     background-color: blue;
 } */
 
+
 /* Videos are centered inside their elements and made to fit */
+
 video {
   width: 100%;
   height: 100%;
   display: flex;
 }
 
+
 /* scrollbar style */
+
 div::-webkit-scrollbar {
   width: 15px;
 }
@@ -82,13 +89,17 @@ div::-webkit-scrollbar-thumb:hover {
   background: rgba(89, 210, 255, 0.7);
 }
 
+
 /* Common quick classes */
+
 .Centered {
   text-align: center;
   vertical-align: middle;
 }
 
+
 /* Centered fullscreen container */
+
 .FullScreen {
   position: absolute;
   width: 100%;
@@ -104,18 +115,20 @@ div::-webkit-scrollbar-thumb:hover {
   overflow: hidden;
 }
 
+
 /* Bars */
+
 .Bar {
-    display: block;
-    position: relative;
-    width: 215px;
-    height: 25px;
-    margin-left: 20px;
-    margin-right: 32px;
-    margin-bottom: 4px;
-    margin-top: 6px;
-    background-color: rgb(0, 0, 0, 0.2);
-    transition: 0.5s;
+  display: block;
+  position: relative;
+  width: 215px;
+  height: 25px;
+  margin-left: 20px;
+  margin-right: 32px;
+  margin-bottom: 4px;
+  margin-top: 6px;
+  background-color: rgb(0, 0, 0, 0.2);
+  transition: 0.5s;
 }
 
 #MP.Bar {
@@ -179,7 +192,9 @@ div::-webkit-scrollbar-thumb:hover {
   font-size: 10pt;
 }
 
+
 /* Menu things */
+
 .MenuContainer {
   display: flex;
   justify-content: center;
@@ -260,7 +275,6 @@ div::-webkit-scrollbar-thumb:hover {
   font-size: 11pt;
   transition: 0.5s;
 }
-
 
 .environmentIcon {
   position: relative;
@@ -380,7 +394,9 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/MenuDisabled.png");
 }
 
+
 /* Background planet and logo */
+
 .BackgroundMenu {
   background-image: url("../../Textures/gui/BG_Menu02.png");
   background-size: cover;
@@ -393,7 +409,6 @@ div::-webkit-scrollbar-thumb:hover {
 
 .BackgroundPlanet {
   background: url("../../Textures/gui/planet.png");
-
   /* Keep this original image file size here */
   width: 593px;
   height: 486px;
@@ -404,7 +419,6 @@ div::-webkit-scrollbar-thumb:hover {
 
 .Logo {
   background: url("../../Textures/gui/logo.png");
-
   /* Keep this original image file size here */
   width: 167px;
   height: 168px;
@@ -413,9 +427,12 @@ div::-webkit-scrollbar-thumb:hover {
   background-position: center;
 }
 
+
 /* Cell stage things */
 
+
 /* Any type of panel like the bottom bar and health window */
+
 
 /* .Panel{
     background-color: rgb(0, 125, 125, 0.4);
@@ -439,7 +456,6 @@ div::-webkit-scrollbar-thumb:hover {
   display: flex;
   align-items: center;
 }
-
 
 #infoBarLeft {
   position: relative;
@@ -519,7 +535,6 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/compoundsButtonActive.png");
 }
 
-
 #compoundsButton.inactive {
   background-image: url("../../Textures/gui/bevel/compoundsButton.png");
 }
@@ -541,7 +556,6 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/chemicalButtonHover.png");
 }
 
-
 #searchButton {
   position: relative;
   display: inline-block;
@@ -550,7 +564,6 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/searchButton.png");
   text-align: center;
 }
-
 
 #searchButton:hover {
   background-image: url("../../Textures/gui/bevel/searchButtonHover.png");
@@ -703,7 +716,6 @@ div::-webkit-scrollbar-thumb:hover {
   background-repeat: no-repeat;
 }
 
-
 #OxygenBar {
   background-color: #2dcbf0;
 }
@@ -816,9 +828,9 @@ div::-webkit-scrollbar-thumb:hover {
 }
 
 .reproductionBars {
-    position: absolute;
-    bottom: 50px;
-    right: 60px;
+  position: absolute;
+  bottom: 50px;
+  right: 60px;
 }
 
 #microbeHUDPlayerHitpointsBar {
@@ -1013,26 +1025,27 @@ div::-webkit-scrollbar-thumb:hover {
 }
 
 #atp {
-    position: absolute;
-    right: 88px;
-    bottom: 160px;
-    font-size: 12pt;
-    font-family: thrive;
+  position: absolute;
+  right: 88px;
+  bottom: 160px;
+  font-size: 12pt;
+  font-family: thrive;
 }
 
 #hp {
-    position: absolute;
-    right: 88px;
-    bottom: 185px;
-    font-size: 12pt;
-    font-family: thrive;
+  position: absolute;
+  right: 88px;
+  bottom: 185px;
+  font-size: 12pt;
+  font-family: thrive;
 }
+
 .population {
-    position: absolute;
-    bottom: 150px;
-    right: 65px;
-    width: 200px;
-    height: 120px;
+  position: absolute;
+  bottom: 150px;
+  right: 65px;
+  width: 200px;
+  height: 120px;
 }
 
 #populationText {
@@ -1043,7 +1056,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 
 #populationCount {
- background-image: url("../../Textures/gui/bevel/LongTwoNormal.png");
+  background-image: url("../../Textures/gui/bevel/LongTwoNormal.png");
   font-size: 15pt;
   line-height: 40px;
   text-indent: 10px;
@@ -1199,15 +1212,15 @@ div::-webkit-scrollbar-thumb:hover {
 }
 
 #mouseHoverPanel {
-    position: absolute;
-    background-image: url("../../Textures/gui/bevel/mouseHoverBg.png");
-    top: 5px;
-    right: 5px;
-    width: 300px;
-    height: 210px;
-    padding-left: 3px;
-    padding-top: 10px;
-    background-repeat: no-repeat;
+  position: absolute;
+  background-image: url("../../Textures/gui/bevel/mouseHoverBg.png");
+  top: 5px;
+  right: 5px;
+  width: 300px;
+  height: 210px;
+  padding-left: 3px;
+  padding-top: 10px;
+  background-repeat: no-repeat;
 }
 
 #topLevelMicrobeStage {
@@ -1342,12 +1355,9 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/SmallThreeDisabled.png");
 }
 
-
-
 #Redo.DisabledButton {
   background-image: url("../../Textures/gui/bevel/SmallFourDisabled.png");
 }
-
 
 #MPBox {
   position: absolute;
@@ -1407,7 +1417,6 @@ div::-webkit-scrollbar-thumb:hover {
   background: rgba(89, 210, 255, 0.7);
 }
 
-
 #newButton.DisabledButton {
   background-image: url("../../Textures/gui/bevel/MediumTwoDisabled.png");
 }
@@ -1464,7 +1473,6 @@ div::-webkit-scrollbar-thumb:hover {
   background: rgba(89, 210, 255, 0.7);
 }
 
-
 #topLevelMicrobeEditorCellEditor {
   width: 100%;
   height: 100%;
@@ -1485,7 +1493,6 @@ div::-webkit-scrollbar-thumb:hover {
   overflow-x: hidden;
   display: inline-block;
 }
-
 
 #StructurePanelTop {
   display: inline-block;
@@ -1603,9 +1610,12 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/CytoplasmIcon.png");
 }
 
+
 /* TOOLTIP ENTRIES */
 
+
 /* The following few entries are for elements regarding tooltips. */
+
 
 /* Used to place the headers as a second, transparent background tooltip on top of the actual text containing tooltip. This way the headers can be center aligned while the rest of the tooltip is left aligned. */
 
@@ -1628,6 +1638,7 @@ div::-webkit-scrollbar-thumb:hover {
 .OrganelleListItem:hover .tooltipheader {
   visibility: visible;
 }
+
 
 /* Regular tooltip text aside from the header. */
 
@@ -1660,7 +1671,6 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/NitroplastidIcon.png");
 }
 
-
 #MitochondrionIcon {
   position: relative;
   left: calc(50% - 30px);
@@ -1669,7 +1679,6 @@ div::-webkit-scrollbar-thumb:hover {
   background-size: contain;
   background-image: url("../../Textures/gui/bevel/MitochondrionIcon.png");
 }
-
 
 #ChloroplastIcon {
   position: relative;
@@ -1689,7 +1698,6 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/ThermoplastIcon.png");
 }
 
-
 #VacuoleIcon {
   position: relative;
   left: calc(50% - 30px);
@@ -1698,6 +1706,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-size: contain;
   background-image: url("../../Textures/gui/bevel/VacuoleIcon.png");
 }
+
 
 /* Used to place the vacuole's icon inside tooltips as an icon for storage. */
 
@@ -1732,7 +1741,6 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/ChemoplastIcon.png");
 }
 
-
 #FlagellumIcon {
   position: relative;
   left: calc(50% - 30px);
@@ -1741,6 +1749,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-size: contain;
   background-image: url("../../Textures/gui/bevel/FlagellumIcon.png");
 }
+
 
 /* Used to place the flagellum's icon inside tooltips as an icon for storage. */
 
@@ -1811,6 +1820,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/CiliaIcon.png");
 }
 
+
 /* Used in formulas in tooltips. */
 
 #WhiteArrow {
@@ -1829,6 +1839,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/Pressure.png");
 }
 
+
 /* Used for the headers of tooltips. */
 
 .thead {
@@ -1838,6 +1849,7 @@ div::-webkit-scrollbar-thumb:hover {
   text-align: center;
 }
 
+
 /* Used everytime an input or output is mentioned in the initial blurb of the tooltip. */
 
 .tkey {
@@ -1845,6 +1857,7 @@ div::-webkit-scrollbar-thumb:hover {
   font-size: 100%;
   font-weight: 1000;
 }
+
 
 /* Used for formula names in tooltips. */
 
@@ -1854,6 +1867,7 @@ div::-webkit-scrollbar-thumb:hover {
   font-weight: 1000;
 }
 
+
 /* Used for highlighting beneficial values. */
 
 .tbonus {
@@ -1861,6 +1875,7 @@ div::-webkit-scrollbar-thumb:hover {
   font-size: 100%;
   font-weight: 1000;
 }
+
 
 /* Used for highlighting deleterious values. */
 
@@ -1870,12 +1885,14 @@ div::-webkit-scrollbar-thumb:hover {
   font-weight: 1000;
 }
 
+
 /* Used for the regular text in the initial blurb. */
 
 .tbody {
   color: #d3d3d3;
   font-size: 100%;
 }
+
 
 /* Used for the scientific description text in the final blurb. */
 
@@ -1906,7 +1923,6 @@ div::-webkit-scrollbar-thumb:hover {
   vertical-align: top;
 }
 
-
 #loadingScreen {
   padding-top: 15%;
   font-size: 3.5em;
@@ -1916,7 +1932,6 @@ div::-webkit-scrollbar-thumb:hover {
 #loadingScreenMessage {
   font-size: 0.8em;
 }
-
 
 #reproduceProgressBar {
   position: absolute;
@@ -1951,6 +1966,7 @@ div::-webkit-scrollbar-thumb:hover {
 
 
 /* Patch classes */
+
 .PatchContainer {
   display: inline-block;
   position: absolute;
