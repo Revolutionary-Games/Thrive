@@ -553,7 +553,7 @@ void setupOrganelles(){
 
     _addOrganelleToTable(Organelle(respiratoryProtein));
 
-    // chromatophors, now called thakyloids in the gui
+    // chromatophors, now called thylakoids in the gui
     auto photosyntheticProtein = OrganelleParameters("chromatophors");
 
     photosyntheticProtein.mass = 0.1;
