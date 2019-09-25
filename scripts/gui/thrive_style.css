@@ -806,8 +806,8 @@ div::-webkit-scrollbar-thumb:hover {
   position: absolute;
   width: 19px;
   height: 19px;
-  bottom: -23px;
-  right: 270px;
+  bottom: -19px;
+  right: 267px;
   background-image: url("../../Textures/gui/bevel/Hitpoints.png");
   background-repeat: no-repeat;
 }
@@ -816,8 +816,8 @@ div::-webkit-scrollbar-thumb:hover {
   position: absolute;
   width: 19px;
   height: 19px;
-  bottom: -10px;
-  right: 253px;
+  bottom: 0;
+  right: 249px;
   background-image: url("../../Textures/gui/bevel/AtpIconBar.png");
 }
 
@@ -886,14 +886,14 @@ div::-webkit-scrollbar-thumb:hover {
 
 #microbeToEditorButton {
   position: absolute;
-  right: 133px;
-  bottom: 62px;
-  width: 120px;
-  height: 120px;
+  right: 67.5px;
+  bottom: 21.5px;
+  width: 196px;
+  height: 196px;
   background-image: url("../../Textures/gui/bevel/LargeTwoNormal.png");
   font-size: 0;
-  text-align: center;
-  line-height: 30px;
+  background-position: center;
+  z-index: -1;
 }
 
 #microbeEditorFinishButton {
@@ -1026,21 +1026,40 @@ div::-webkit-scrollbar-thumb:hover {
   left: 0;
 }
 
+#dataValueBackground {
+  position: absolute;
+  width: 85px;
+  height: 51px;
+  right: 85px;
+  bottom: 178px;
+  background-image: url("../../Textures/gui/bevel/dataValueBackground.png");
+  font-size: 10pt;
+  font-family: thrive;
+}
+
 #atp {
   position: absolute;
-  right: 88px;
-  bottom: 160px;
-  font-size: 12pt;
-  font-family: thrive;
+  left: -30px;
+  bottom: 10px;
+  height: 25px;
+  display: block;
 }
 
 #hp {
   position: absolute;
-  right: 88px;
-  bottom: 185px;
-  font-size: 12pt;
-  font-family: thrive;
+  left: -30px;
+  bottom: 30px;
+  height: 25px;
+  display: block;
 }
+
+/* #shapePhosphate {
+  transform: scaleY(-1);
+}
+
+#pho {
+  transform: scaleY(-1);
+} */
 
 .population {
   position: absolute;

@@ -107,17 +107,18 @@
 
      <!-- Bottom right box -->
         <div id="microbeHealthBox" class="Panel">
-
-             <div id="atp">
-                <span id="microbeHUDPlayerATPCompound">0</span>
-                <span>/</span>
-                <span id="microbeHUDPlayerATPMax">0</span>
-            </div>
-           <div id="hp">
-               <span id="microbeHUDPlayerHitpoints">0</span>
-                <span>/</span>
-                <span id="microbeHUDPlayerMaxHitpoints">100</span>
-           </div>
+            <div id="dataValueBackground">
+                <div id="atp">
+                    <span id="microbeHUDPlayerATPCompound">0</span>
+                    <span>/</span>
+                    <span id="microbeHUDPlayerATPMax">0</span>
+                </div>
+               <div id="hp">
+                   <span id="microbeHUDPlayerHitpoints">0</span>
+                    <span>/</span>
+                    <span id="microbeHUDPlayerMaxHitpoints">100</span>
+               </div>
+              </div
 
            <!-- Population bar -->
            <div class="population">
@@ -128,7 +129,7 @@
         <div id="HealthIcon"> </div>
         <div id="ATPIconBar"> </div>
         <svg version="1.1" id="circleBars" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	     width="200px" height="200px" viewBox="0 0 200 200" style="enable-background: new 0 0 200 200;" xml:space="preserve">
+	     width="250px" height="200px" viewBox="0 0 200 200" style="enable-background: new 0 0 200 200;" xml:space="preserve">
 
           <defs>
              <linearGradient id="gradient" gradientUnits="userSpaceOnUse" x1="1760.5862" y1="-3411.8777" x2="3127.7505" y2="-3411.8777" gradientTransform="matrix(0.6926 0 0 -0.6926 -1666.4285 -3608.3777)">
@@ -138,76 +139,71 @@
           </defs>
 
      <!-- HP bar -->
-    <path transform="matrix(0.90607549,0,0,0.90607543,374.28411,1208.9183)" inkscape:transform-center-x="9.1731555" inkscape:transform-center-y="-9.357511" class="st0" d="
-	    M-378.6-1154.2c-43-71.7,14.3-173.3,96.5-165.5"
-        stroke-width="10";
-        fill="transparent"
-        stroke="black"
-        stroke-dasharray="231.13";
-        stroke-dashoffset="0"
-        stroke-linecap="round"/>
+    <path transform="matrix(0.8007549,0,0,0.90207543,374.28411,1208.9183)"  d=" M-399.6-1169.1c-41.9-87.2,25.4-165.5,96.2-164.6"
+       stroke-width="10";
+       fill="transparent"
+       stroke="black"
+       stroke-dasharray="231.13";
+       stroke-dashoffset="0"
+       stroke-linecap="round"/>
 
 
-
-    <path id="shapeHp" transform="matrix(0.90607549,0,0,0.90607543,374.28411,1208.9183)" inkscape:transform-center-x="9.1731555" inkscape:transform-center-y="-9.357511" class="st0" d="
-	  M-378.6-1154.2c-43-71.7,14.3-173.3,96.5-165.5"
-      stroke-width="10";
-      fill="transparent"
-      stroke="url(#gradient)"
-      stroke-dasharray="231.13";
-      stroke-dashoffset="0"
-      stroke-linecap="round"/>
+    <path id="shapeHp" transform="matrix(0.8007549,0,0,0.90207543,374.28411,1208.9183)"  d=" M-399.6-1169.1c-41.9-87.2,25.4-165.5,96.2-164.6"
+       stroke-width="10";
+       fill="transparent"
+       stroke="url(#gradient)"
+       stroke-dasharray="231.13";
+       stroke-dashoffset="0"
+       stroke-linecap="round"/>
 
     <!-- ATP bar -->
-    <path transform="matrix(0.89453589,0,0,0.89453583,421.46881,1215.6707)" inkscape:transform-center-x="7.2075595" inkscape:transform-center-y="-7.3875037" class="st0" d="
-	M-420-1188.4c-32.7-56.7,6.7-143.1,79.4-136.4"
-        stroke-width="10";
-        fill="transparent"
-        stroke="green"
-        stroke-dasharray="189.117";
-        stroke-dashoffset="0"
-        stroke-linecap="round"/>
+    <path transform="matrix(0.76453589,0,0,0.87453583,421.46881,1215.6707)" d="M-459.4-1226.6c-3.8-6.6-5.2-9.8-7.2-17.2c-1.5-5.4-4.7-17.2-4.6-26.7c0.2-26.1,12.8-55.2,36.3-71.1c24.5-16.6,49.9-17.3,58.8-17.3"
+       stroke-width="9";
+	   fill="transparent"
+       stroke="black"
+       stroke-dasharray="231.13";
+       stroke-dashoffset="0"
+       stroke-linecap="round"/>
 
-        <path id="shapeAtp" transform="matrix(0.89453589,0,0,0.89453583,421.46881,1215.6707)" inkscape:transform-center-x="7.2075595" inkscape:transform-center-y="-7.3875037" class="st0" d="
-	M-420-1188.4c-32.7-56.7,6.7-143.1,79.4-136.4"
-        stroke-width="10";
+    <path id="shapeAtp" transform="matrix(0.76453589,0,0,0.87453583,421.46881,1215.6707)" d="M-459.4-1226.6c-3.8-6.6-5.2-9.8-7.2-17.2c-1.5-5.4-4.7-17.2-4.6-26.7c0.2-26.1,12.8-55.2,36.3-71.1c24.5-16.6,49.9-17.3,58.8-17.3"
+        stroke-width="9";
         fill="transparent"
         stroke="green"
         stroke-dasharray="204.234";
         stroke-dashoffset="0"
         stroke-linecap="round"/>
 
-    <path id="ammonia" d="M120,180c-35.9,0-65-29.1-65-65s29.1-65,65-65"
-            stroke-width="11";
-            fill="transparent"
-            stroke="#d9c55d"
-            stroke-dasharray="204.234";
-            stroke-dashoffset="0"
-            stroke-linecap="square"/>
+    <path d="M144.5,169c-33.7,0-61-27.3-61-61s27.3-61,61-61"
+        stroke-width="8";
+        fill="transparent"
+        stroke="#d9c55d"
+        stroke-dasharray="204.234";
+        stroke-dashoffset="0"
+        stroke-linecap="square"/>
 
-    <path id="shapeAmmonia" d="M120,180c-35.9,0-65-29.1-65-65s29.1-65,65-65"
-            stroke-width="11";
-            fill="transparent"
-            stroke="black"
-            stroke-dasharray="204.234";
-            stroke-dashoffset="0"
-            stroke-linecap="square"/>
+    <path id="shapeAmmonia" d="M144.5,169c-33.7,0-61-27.3-61-61s27.3-61,61-61"
+        stroke-width="8";
+        fill="transparent"
+        stroke="black"
+        stroke-dasharray="204.234";
+        stroke-dashoffset="0"
+        stroke-linecap="square"/>
 
-    <path id="phosphate"  d="M130,50c35.9,0,65,29.1,65,65s-29.1,65-65,65"
-            stroke-width="11";
-            fill="transparent"
-            stroke="#3b167b"
-            stroke-dasharray="204.234";
-            stroke-dashoffset="0"
-            stroke-linecap="square"/>
+    <path id="pho" d="M145,47c33.7,0,61,27.3,61,61s-27.3,61-61,61"
+        stroke-width="8";
+        fill="transparent"
+        stroke="#3b167b"
+        stroke-dasharray="204.234";
+        stroke-dashoffset="0"
+        stroke-linecap="square"/>
 
-     <path id="shapePhosphate" d="M130,50c35.9,0,65,29.1,65,65s-29.1,65-65,65"
-            stroke-width="11";
-            fill="transparent"
-            stroke="black"
-            stroke-dasharray="204.234";
-            stroke-dashoffset="0"
-            stroke-linecap="square"/>
+     <path id="shapePhosphate" d="M145,47c33.7,0,61,27.3,61,61s-27.3,61-61,61"
+        stroke-width="8";
+        fill="transparent"
+        stroke="black"
+        stroke-dasharray="204.234";
+        stroke-dashoffset="0"
+        stroke-linecap="square"/>
       </svg>
     </div>
 	  <div id="pauseButton"><div id="pauseIcon"></div></div>
