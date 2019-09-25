@@ -45,8 +45,10 @@ html {
   width: 100%;
   height: 100%;
   font-family: "Jura";
+
   /* By default all text is white */
   color: white;
+
   /* Custom cursor everywhere */
   cursor: url("../../Textures/gui/cursors/default.png"), auto;
 }
@@ -409,6 +411,7 @@ div::-webkit-scrollbar-thumb:hover {
 
 .BackgroundPlanet {
   background: url("../../Textures/gui/planet.png");
+
   /* Keep this original image file size here */
   width: 593px;
   height: 486px;
@@ -419,6 +422,7 @@ div::-webkit-scrollbar-thumb:hover {
 
 .Logo {
   background: url("../../Textures/gui/logo.png");
+
   /* Keep this original image file size here */
   width: 167px;
   height: 168px;

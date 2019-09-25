@@ -198,7 +198,7 @@ export function onResetEditor(){
 
 
 function onCompoundPanelClicked() {
-    common.playButtonPressSound();
+    common.playButtonPressSound(); 
     document.getElementById("compoundsPanel").style.transition = "0s";
 
     $("#environmentPanel").animate({"width": "toggle"});
