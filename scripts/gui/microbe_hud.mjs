@@ -147,6 +147,8 @@ export function runMicrobeHUDSetup(){
             ammonia0: "Ammonia: 12.2",
         });
 
+        updatePatchInfo("Browser patch");
+
         onReadyToEnterEditor();
     }
 
