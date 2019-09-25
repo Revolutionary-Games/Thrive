@@ -19,7 +19,7 @@ PatchMap@ runGeneration()
     patch0.setScreenCoordinates(Float2(100, 400));
     patch0.addNeighbour(10);
 
-    Patch@ patch1 = Patch("Pangonaian Mesopelagic", 1, getBiomeTemplate("mesopelagic"));
+    Patch@ patch1 = Patch("Pangonian Mesopelagic", 1, getBiomeTemplate("mesopelagic"));
     patch1.setScreenCoordinates(Float2(200, 200));
     patch1.addNeighbour(4);
     patch1.addNeighbour(2);
