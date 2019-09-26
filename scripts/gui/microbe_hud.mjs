@@ -371,6 +371,8 @@ function onExitToMenuClicked() {
         document.getElementById("extinctionTitle").style.display = "none";
         document.getElementById("extinctionBody").style.display = "none";
         document.getElementById("extinctionContainer").style.display = "none";
+        document.getElementById("microbeToEditorButton").classList.add("DisabledButton");
+        readyToEdit = false;
         hideWinText();
 
         // Gotta reset this
