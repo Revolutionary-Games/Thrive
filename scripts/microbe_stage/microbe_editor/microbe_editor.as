@@ -106,11 +106,11 @@ class MicrobeEditor{
         }
 
         // Sent freebuild value to GUI
-        GenericEvent@ event = GenericEvent("MicrobeEditorFreeBuildToggle");
-        NamedVars@ vars = event.GetNamedVars();
+        GenericEvent@ freebuildEvent = GenericEvent("MicrobeEditorFreeBuildToggle");
+        NamedVars@ vars = freebuildEvent.GetNamedVars();
         vars.AddValue(ScriptSafeVariableBlock("freebuild", freeBuilding));
 
-        GetEngine().GetEventHandler().CallEvent(event);
+        GetEngine().GetEventHandler().CallEvent(freebuildEvent);
 
         LOG_INFO("Elapsing time on editor entry");
         // TODO: select which units will be used for the master elapsed time counter
