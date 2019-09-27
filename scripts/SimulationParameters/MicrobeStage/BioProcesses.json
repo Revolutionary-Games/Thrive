@@ -4,11 +4,11 @@
 
         "inputs": {
             "oxygen": 1.0,
-            "glucose": 0.2
+            "glucose": 0.5
         },
 
         "outputs": {
-           "atp": 45.0
+           "atp": 50.0
         }
     },
 	
@@ -40,11 +40,12 @@
         "name": "Photosynthesis",
 
         "inputs": {
-            "carbondioxide": 0.09
+            "carbondioxide": 0.09,
+            "sunlight": 1.0
         },
 
         "outputs": {
-            "glucose": 1.0
+            "glucose": 0.25
         }
     },
 
@@ -79,11 +80,11 @@
 
         "inputs": {
             "carbondioxide": 0.09,
-            "hydrogensulfide": 1.0
+            "hydrogensulfide": 0.15
         },
 
         "outputs": {
-            "glucose": 3.0
+            "glucose": 0.2
         }
     },
     
@@ -92,11 +93,11 @@
 
         "inputs": {
             "carbondioxide": 0.09,
-            "hydrogensulfide": 1.0
+            "hydrogensulfide": 0.15
         },
 
         "outputs": {
-            "glucose": 2.0
+            "glucose": 0.15
         }
     },
     
@@ -104,13 +105,13 @@
         "name": "Aerobic Nitrogen Fixing",
 
         "inputs": {
-            "oxygen": 1.0,
+            "oxygen": 0.21,
             "nitrogen": 1.0,
-            "atp": 5
+            "atp": 2.5
         },
 
         "outputs": {
-            "ammonia": 0.5
+            "ammonia": 0.125
         }
     },
     
@@ -118,12 +119,12 @@
         "name": "Anaerobic Nitrogen Fixation",
 
         "inputs": {
-            "nitrogen": 2.0,
-            "atp": 10
+            "nitrogen": 1.0,
+            "atp": 2.5
         },
 
         "outputs": {
-            "ammonia": 0.02
+            "ammonia": 0.08
         }
     },
     
@@ -144,11 +145,12 @@
         "name": "Bacterial Photosynthesis",
 
         "inputs": {
-            "carbondioxide": 0.09
+            "carbondioxide": 0.09,
+            "sunlight": 1.0
         },
 
         "outputs": {
-            "glucose": 0.15
+            "glucose": 0.06
         }
     },
     
@@ -158,7 +160,7 @@
         "inputs": {
             "carbondioxide": 0.09,
             "oxygen": 0.21,
-            "iron": 0.175
+            "iron": 0.12
         },
 
         "outputs": {

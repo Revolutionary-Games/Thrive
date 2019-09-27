@@ -18,6 +18,10 @@
             },
             "sourceRadius": 0.5
         },
+        "eyeAdaptation":{
+            "min": 0.003,
+            "max": 2.0
+        },
 
         "chunks":{
             "floatingToxin": {
@@ -41,7 +45,7 @@
                            {"mesh": "iron_rock_02", "texture": "iron_01.png"},
                            {"mesh": "iron_03", "texture": "iron_01.png"},
                            {"mesh": "iron_04", "texture": "iron_01.png"}],
-                "density": 0.00002,
+                "density": 0.0,
                 "dissolves": true,
                 "radius": 1,
                 "chunkScale": 1.0,
@@ -59,7 +63,7 @@
             "ironBigChunk": {
                 "name": "Big Iron Chunk",
                 "meshes":  [{"mesh": "iron_05", "texture": "iron_01.png"}],
-                "density": 0.00002,
+                "density": 0.0,
                 "dissolves": true,
                 "radius": 10,
                 "chunkScale": 1.0,
@@ -98,8 +102,8 @@
             },
 
             "hydrogensulfide": {
-                "amount": 225000,
-                "density": 0.00002,
+                "amount": 0,
+                "density": 0.0,
                 "dissolved": 0.0
             },
 
@@ -119,6 +123,12 @@
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.70
+            },
+
+            "sunlight": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 1.0
             }
         }
     },
@@ -141,6 +151,10 @@
                 "z": 0.75
             },
             "sourceRadius": 0.5
+        },
+        "eyeAdaptation":{
+            "min": 0.003,
+            "max": 0.8
         },
 
         "chunks":{
@@ -196,7 +210,7 @@
                            {"mesh": "chemoproteins", "texture": "chemoproteins.png"},
                            {"mesh": "nitrogenase", "texture": "nitrogenase.png"},
                            {"mesh": "rusticyanin", "texture": "rusticyanin.png"}],
-                "density": 0.00004,
+                "density": 0.0,
                 "dissolves": true,
                 "radius": 1,
                 "chunkScale": 1.0,
@@ -244,8 +258,8 @@
 
         "compounds": {
             "ammonia": {
-                "amount": 200000,
-                "density": 0.00002,
+                "amount": 300000,
+                "density": 0.00004,
                 "dissolved": 0.0
             },
 
@@ -256,8 +270,8 @@
             },
 
             "phosphates": {
-                "amount": 200000,
-                "density": 0.00002,
+                "amount": 300000,
+                "density": 0.00004,
                 "dissolved": 0.0
             },
 
@@ -283,6 +297,12 @@
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.70
+            },
+
+            "sunlight": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 0.0
             }
         }
     },
@@ -304,6 +324,10 @@
                 "z": 0.75
             },
             "sourceRadius": 0.5
+        },
+        "eyeAdaptation":{
+            "min": 0.003,
+            "max": 2.0
         },
 
         "chunks":{
@@ -385,8 +409,8 @@
             },
 
             "hydrogensulfide": {
-                "amount": 225000,
-                "density": 0.00002,
+                "amount": 0,
+                "density": 0.0,
                 "dissolved": 0.0
             },
 
@@ -406,6 +430,12 @@
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.70
+            },
+
+            "sunlight": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 2.0
             }
         }
     },
@@ -427,6 +457,10 @@
                 "z": 0.75
             },
             "sourceRadius": 0.5
+        },
+        "eyeAdaptation":{
+            "min": 0.003,
+            "max": 1.5
         },
 
         "chunks":{
@@ -547,8 +581,8 @@
             },
 
             "hydrogensulfide": {
-                "amount": 225000,
-                "density": 0.00002,
+                "amount": 0,
+                "density": 0.0,
                 "dissolved": 0.0
             },
 
@@ -568,6 +602,12 @@
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.70
+            },
+
+            "sunlight": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 0.0
             }
         }
     },
@@ -589,6 +629,10 @@
                 "z": 0.75
             },
             "sourceRadius": 0.5
+        },
+        "eyeAdaptation":{
+            "min": 0.003,
+            "max": 0.8
         },
 
         "chunks":{
@@ -613,7 +657,7 @@
                            {"mesh": "iron_rock_02", "texture": "iron_01.png"},
                            {"mesh": "iron_03", "texture": "iron_01.png"},
                            {"mesh": "iron_04", "texture": "iron_01.png"}],
-                "density": 0.00002,
+                "density": 0.0,
                 "dissolves": true,
                 "radius": 1,
                 "chunkScale": 1.0,
@@ -631,7 +675,7 @@
             "ironBigChunk": {
                 "name": "Big Iron Chunk",
                 "meshes":  [{"mesh": "iron_05", "texture": "iron_01.png"}],
-                "density": 0.00002,
+                "density": 0.0,
                 "dissolves": true,
                 "radius": 10,
                 "chunkScale": 1.0,
@@ -709,8 +753,8 @@
             },
 
             "hydrogensulfide": {
-                "amount": 225000,
-                "density": 0.00002,
+                "amount": 0,
+                "density": 0.0,
                 "dissolved": 0.0
             },
 
@@ -730,6 +774,12 @@
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.70
+            },
+
+            "sunlight": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 0.0
             }
         }
     },
@@ -753,6 +803,10 @@
             },
             "sourceRadius": 0.5
         },
+        "eyeAdaptation":{
+            "min": 0.003,
+            "max": 1.7
+        },
 
         "chunks":{
             "floatingToxin": {
@@ -872,8 +926,8 @@
             },
 
             "hydrogensulfide": {
-                "amount": 225000,
-                "density": 0.00002,
+                "amount": 0,
+                "density": 0.0,
                 "dissolved": 0.0
             },
 
@@ -893,6 +947,12 @@
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.70
+            },
+
+            "sunlight": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 0.01
             }
         }
     },
@@ -915,6 +975,10 @@
                 "z": 0.75
             },
             "sourceRadius": 0.5
+        },
+        "eyeAdaptation":{
+            "min": 0.003,
+            "max": 2.0
         },
 
         "chunks":{
@@ -995,8 +1059,8 @@
             },
 
             "hydrogensulfide": {
-                "amount": 225000,
-                "density": 0.00002,
+                "amount": 0,
+                "density": 0.0,
                 "dissolved": 0.0
             },
 
@@ -1016,6 +1080,12 @@
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.70
+            },
+
+            "sunlight": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 1.0
             }
         }
     },
@@ -1038,6 +1108,10 @@
                 "z": 0.75
             },
             "sourceRadius": 0.5
+        },
+        "eyeAdaptation":{
+            "min": 0.003,
+            "max": 0.8
         },
 
         "chunks":{
@@ -1139,6 +1213,12 @@
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.70
+            },
+
+            "sunlight": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 0.0
             }
         }
     },
@@ -1161,6 +1241,10 @@
                 "z": 0.75
             },
             "sourceRadius": 0.5
+        },
+        "eyeAdaptation":{
+            "min": 0.003,
+            "max": 2.0
         },
 
         "chunks":{
@@ -1200,38 +1284,21 @@
                     }
                 }
             },
-            // "iceCrystal": {
-            //     "name": "Ice Crystal",
-            //     "meshes": [{"mesh": "ice_crystal", "texture": "ice_crystal.png"},
-            //                {"mesh": "icecrystal", "texture": "icecrystal.png"}],
-            //     "density": 0.0001,
-            //     "dissolves": false,
-            //     "radius": 1,
-            //     "chunkScale": 1.0,
-            //     "mass": 100,
-            //     "size": 1000,
-            //     "ventAmount": 3.0,
-            //     "damages": 0.5,
-            //     "deleteOnTouch": false,
-            //     "compounds": {
-            //     }
-            // },
-            // "gianticeCrystal": {
-            //     "name": "Giant Ice Crystal",
-            //     "meshes": [{"mesh": "ice_crystal", "texture": "ice_crystal.png"},
-            //                {"mesh": "icecrystal", "texture": "icecrystal.png"}],
-            //     "density": 0.0001,
-            //     "dissolves": false,
-            //     "radius": 5,
-            //     "chunkScale": 5.0,
-            //     "mass": 100,
-            //     "size": 1000,
-            //     "ventAmount": 3.0,
-            //     "damages": 0.5,
-            //     "deleteOnTouch": false,
-            //     "compounds": {
-            //     }
-            // },
+            "iceShard": {
+                "name": "Ice Shard",
+                "meshes": [{"mesh": "iceshard1", "texture": "iceshard.png"}],
+                "density": 0.0006,
+                "dissolves": false,
+                "radius": 1,
+                "chunkScale": 1.0,
+                "mass": 100,
+                "size": 1000,
+                "ventAmount": 3.0,
+                "damages": 0.5,
+                "deleteOnTouch": false,
+                "compounds": {
+                }
+            },
             "ironBigChunk": {
                 "name": "Big Iron Chunk",
                 "meshes":  [{"mesh": "iron_05", "texture": "iron_01.png"}],
@@ -1274,8 +1341,8 @@
             },
 
             "hydrogensulfide": {
-                "amount": 225000,
-                "density": 0.00002,
+                "amount": 0,
+                "density": 0.0,
                 "dissolved": 0.0
             },
 
@@ -1295,6 +1362,12 @@
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.70
+            },
+
+            "sunlight": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 0.5
             }
         }
     },
@@ -1317,6 +1390,10 @@
                 "z": 0.75
             },
             "sourceRadius": 0.5
+        },
+        "eyeAdaptation":{
+            "min": 0.003,
+            "max": 2.0
         },
 
         "chunks":{
@@ -1398,8 +1475,8 @@
             },
 
             "hydrogensulfide": {
-                "amount": 225000,
-                "density": 0.00002,
+                "amount": 0,
+                "density": 0.0,
                 "dissolved": 0.0
             },
 
@@ -1419,6 +1496,12 @@
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.78
+            },
+
+            "sunlight": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 1.5
             }
         }
     },
@@ -1441,6 +1524,10 @@
                 "z": 0.75
             },
             "sourceRadius": 0.5
+        },
+        "eyeAdaptation":{
+            "min": 0.003,
+            "max": 1.0
         },
 
         "chunks":{
@@ -1561,8 +1648,8 @@
             },
 
             "hydrogensulfide": {
-                "amount": 225000,
-                "density": 0.00002,
+                "amount": 0,
+                "density": 0.0,
                 "dissolved": 0.0
             },
 
@@ -1582,6 +1669,12 @@
                 "amount": 0,
                 "density": 0.0,
                 "dissolved": 0.70
+            },
+
+            "sunlight": {
+                "amount": 0,
+                "density": 0.0,
+                "dissolved": 0.0
             }
         }
     }

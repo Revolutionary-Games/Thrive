@@ -50,14 +50,14 @@ const auto MAX_OPACITY_MUTATION = 0.01f;
 
 // Mutation Variables
 const auto MUTATION_BACTERIA_TO_EUKARYOTE = 1.0f;
-const auto MUTATION_CREATION_RATE = 0.5f;
+const auto MUTATION_CREATION_RATE = 0.1f;
 const auto MUTATION_EXTRA_CREATION_RATE = 0.1f;
 const auto MUTATION_DELETION_RATE = 0.1f;
-const auto MUTATION_REPLACEMENT_RATE = 0.3f;
+const auto MUTATION_REPLACEMENT_RATE = 0.1f;
 
 // Genus splitting and name mutation
 const auto MUTATION_CHANGE_GENUS = 33;
-const auto MUTATION_WORD_EDIT = 75;
+const auto MUTATION_WORD_EDIT = 10;
 
 //Removal cost
 const auto ORGANELLE_REMOVE_COST = 10;

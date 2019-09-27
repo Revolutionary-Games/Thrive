@@ -301,6 +301,12 @@ void
 
     // Skybox with indirect light
     ThriveGame::get()->setSkybox(biome.skybox, biome.skyboxLightIntensity);
+
+    // Eye adaptation settings
+    LOG_INFO("Setting eye adaptation: min: " +
+             std::to_string(biome.minEyeAdaptation) +
+             " max: " + std::to_string(biome.maxEyeAdaptation));
+    InWorld.SetAutoExposure(biome.minEyeAdaptation, biome.maxEyeAdaptation);
 }
 // ------------------------------------ //
 void
@@ -311,7 +317,7 @@ void
     auto c02Id =
         SimulationParameters::compoundRegistry.getTypeId("carbondioxide");
     auto n2Id = SimulationParameters::compoundRegistry.getTypeId("nitrogen");
-
+    auto lightId = SimulationParameters::compoundRegistry.getTypeId("sunlight");
     auto updateDissolvedGasses =
         GenericEvent::MakeShared<GenericEvent>("UpdateDissolvedGasses");
 
@@ -328,6 +334,10 @@ void
     vars->Add(std::make_shared<NamedVariableList>("n2Percent",
         new Leviathan::IntBlock(
             cellWorld.GetProcessSystem().getDissolved(n2Id) * 100)));
+
+    vars->Add(std::make_shared<NamedVariableList>("sunlightPercent",
+        new Leviathan::IntBlock(
+            cellWorld.GetProcessSystem().getDissolved(lightId) * 100)));
 
     Engine::Get()->GetEventHandler()->CallEvent(updateDissolvedGasses);
 }
