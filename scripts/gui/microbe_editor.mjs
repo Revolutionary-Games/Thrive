@@ -212,9 +212,9 @@ export function setupMicrobeEditor(){
 
         // Event for detecting freebuild boolean value if is true we have no
         // Limitation on moves on patchMap
-        Leviathan.OnGeneric("MicrobeEditorFreeBuildToggle", (event, vars) => {
+        Leviathan.OnGeneric("MicrobeEditorFreeBuildStatus", (event, vars) => {
             // Apply freeBuilding toggle
-            onFreeBuildToggle(vars.freebuild);
+            onFreeBuildStatus(vars.freebuild);
         });
 
         // Event for size update
@@ -380,7 +380,7 @@ function onSelectNewOrganelle(organelle){
     }
 }
 
-function onFreeBuildToggle(toggle) {
+function onFreeBuildStatus(toggle) {
     limitMovesPerSession = !toggle;
 }
 
@@ -830,7 +830,7 @@ function processPatchMapData(data){
         element.classList.add("PatchContainer");
         element.style.left = patch.screenCoordinates.x + "px";
         element.style.top = patch.screenCoordinates.y + "px";
-        element.id = patch.id;
+        element.id = "patchMapNode_" + patch.id;
         element.addEventListener("click",
             () =>{
                 if(selectedPatch != patch){
@@ -856,7 +856,7 @@ function processPatchMapData(data){
     }
 
     // Highlight current patch
-    document.getElementById(currentPatchId).classList.add("Current");
+    document.getElementById("patchMapNode_" + currentPatchId).classList.add("Current");
 }
 
 function updateSelectedPatchData(patch){
@@ -936,9 +936,10 @@ function moveToPatchClicked(){
         return;
 
     // Switch patch in which we are
-    document.getElementById(currentPatchId).classList.remove("Current");
+    document.getElementById("patchMapNode_" + currentPatchId).classList.remove("Current");
     currentPatchId = selectedPatch.id;
-    document.getElementById(currentPatchId).classList.add("Current");
+    document.getElementById("patchMapNode_" + currentPatchId).classList.add("Current");
+
     if(limitMovesPerSession)
         alreadyMovedThisSession = currentPatchId != patchIdOnEnter;
 

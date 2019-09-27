@@ -106,7 +106,7 @@ class MicrobeEditor{
         }
 
         // Sent freebuild value to GUI
-        GenericEvent@ freebuildEvent = GenericEvent("MicrobeEditorFreeBuildToggle");
+        GenericEvent@ freebuildEvent = GenericEvent("MicrobeEditorFreeBuildStatus");
         NamedVars@ freebuildVars = freebuildEvent.GetNamedVars();
         freebuildVars.AddValue(ScriptSafeVariableBlock("freebuild", freeBuilding));
 
