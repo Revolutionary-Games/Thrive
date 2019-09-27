@@ -210,7 +210,7 @@ export function setupMicrobeEditor(){
             updateMutationPoints(vars.mutationPoints, vars.maxMutationPoints);
         });
 
-        // Event for detecting freebuild boolean value if is active we have
+        // Event for detecting freebuild boolean value if is true we have no
         // Limitation on moves on patchMap
         Leviathan.OnGeneric("MicrobeEditorFreeBuildToggle", (event, vars) => {
             // Apply freeBuilding toggle
