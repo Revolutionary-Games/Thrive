@@ -1717,6 +1717,26 @@ div::-webkit-scrollbar-thumb:hover {
   border-radius: 3px;
 }
 
+.PatchContainer.Current {
+  border: 4px solid rgb(89, 210, 255, 0.7);
+  padding: 1px;
+}
+
+.PatchContainer.Current:hover {
+  border: 4px solid rgb(89, 210, 255, 1);
+  padding: 1px;
+}
+
+.PatchContainer.Current.Selected {
+  border: 4px solid rgb(89, 210, 255, 0.7);
+  padding: 1px;
+}
+
+.PatchContainer.Current.Selected:hover {
+  border: 4px solid rgb(89, 210, 255, 0.7);
+  padding: 1px;
+}
+
 .PatchContainer.Selected {
   border: 3px solid rgb(89, 210, 255, 0.7);
   padding: 1px;

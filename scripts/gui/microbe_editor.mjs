@@ -818,7 +818,7 @@ function processPatchMapData(data){
         element.classList.add("PatchContainer");
         element.style.left = patch.screenCoordinates.x + "px";
         element.style.top = patch.screenCoordinates.y + "px";
-
+        element.id = patch.id;
         element.addEventListener("click",
             () =>{
                 if(selectedPatch != patch){
@@ -826,7 +826,6 @@ function processPatchMapData(data){
                     if(selectedPatchElement){
                         selectedPatchElement.classList.remove("Selected");
                     }
-
                     selectedPatchElement = element;
                     updateSelectedPatchData(patch);
                     element.classList.add("Selected");
@@ -843,6 +842,9 @@ function processPatchMapData(data){
 
         targetElement.appendChild(element);
     }
+
+    // Highlight current patch
+    document.getElementById(currentPatchId).classList.add("Current");
 }
 
 function updateSelectedPatchData(patch){
@@ -865,6 +867,7 @@ function updateSelectedPatchData(patch){
     descriptionElement.textContent = "";
 
     if(patchMoveAllowed(selectedPatch.id)){
+        document.getElementById(selectedPatch.id).classList.add("selectedPatch");
         document.getElementById("moveToPatchButton").classList.remove("Disabled");
     } else {
         document.getElementById("moveToPatchButton").classList.add("Disabled");
