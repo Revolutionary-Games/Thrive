@@ -867,7 +867,6 @@ function updateSelectedPatchData(patch){
     descriptionElement.textContent = "";
 
     if(patchMoveAllowed(selectedPatch.id)){
-        document.getElementById(selectedPatch.id).classList.add("selectedPatch");
         document.getElementById("moveToPatchButton").classList.remove("Disabled");
     } else {
         document.getElementById("moveToPatchButton").classList.add("Disabled");
