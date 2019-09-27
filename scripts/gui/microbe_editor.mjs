@@ -16,7 +16,8 @@ let patchIdOnEnter = null;
 
 // Allows only one move per session
 let alreadyMovedThisSession = false;
-const limitMovesPerSession = true;
+let limitMovesPerSession = true;
+
 
 // The full patch data
 let patchData = null;
@@ -209,6 +210,13 @@ export function setupMicrobeEditor(){
             updateMutationPoints(vars.mutationPoints, vars.maxMutationPoints);
         });
 
+        // Event for detecting freebuild boolean value if is active we have
+        // Limitation on moves on patchMap
+        Leviathan.OnGeneric("MicrobeEditorFreeBuildToggle", (event, vars) => {
+            // Apply freeBuilding toggle
+            onFreeBuildToggle(vars.freebuild);
+        });
+
         // Event for size update
         Leviathan.OnGeneric("SizeUpdated", (event, vars) => {
             // Apply the new values
@@ -370,6 +378,10 @@ function onSelectNewOrganelle(organelle){
 
         updateSelectedOrganelle(organelle);
     }
+}
+
+function onFreeBuildToggle(toggle) {
+    limitMovesPerSession = !toggle;
 }
 
 //! Updates the GUI buttons based on selected organelle
@@ -923,8 +935,10 @@ function moveToPatchClicked(){
     if(!patchMoveAllowed(selectedPatch.id))
         return;
 
+    // Switch patch in which we are
+    document.getElementById(currentPatchId).classList.remove("Current");
     currentPatchId = selectedPatch.id;
-
+    document.getElementById(currentPatchId).classList.add("Current");
     if(limitMovesPerSession)
         alreadyMovedThisSession = currentPatchId != patchIdOnEnter;
 
@@ -932,6 +946,5 @@ function moveToPatchClicked(){
         Leviathan.CallGenericEvent("MicrobeEditorSelectedNewPatch",
             {patchId: currentPatchId});
     }
-
     updateSelectedPatchData(selectedPatch);
 }

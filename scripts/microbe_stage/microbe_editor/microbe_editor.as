@@ -97,8 +97,6 @@ class MicrobeEditor{
     {
         GetThriveGame().playerData().setBool("edited_microbe", true);
 
-        // Detect freebuild
-        // TODO: send an event to the GUI to allow freely moving between patches in freebuild
         if(GetThriveGame().playerData().isFreeBuilding()){
             LOG_INFO("Editor going to freebuild mode because player has activated freebuild");
             freeBuilding = true;
@@ -107,6 +105,13 @@ class MicrobeEditor{
             freeBuilding = false;
         }
 
+        // Sent freebuild value to GUI
+        GenericEvent@ event = GenericEvent("MicrobeEditorFreeBuildToggle");
+        NamedVars@ vars = event.GetNamedVars();
+        vars.AddValue(ScriptSafeVariableBlock("freebuild", freeBuilding));
+
+        GetEngine().GetEventHandler().CallEvent(event);
+        
         LOG_INFO("Elapsing time on editor entry");
         // TODO: select which units will be used for the master elapsed time counter
         GetThriveGame().getCellStage().GetTimedWorldOperations().onTimePassed(1);
