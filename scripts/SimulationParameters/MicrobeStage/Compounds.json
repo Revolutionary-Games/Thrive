@@ -84,7 +84,7 @@
         "isUseful": false,
         "isEnvironmental": false,
         "colour": {
-            "r": 0.28,
+            "r": 0.45,
             "g": 0.098,
             "b": 0.02
         }
@@ -118,6 +118,19 @@
     
     "nitrogen": {
         "name": "Nitrogen",
+        "volume": 1,
+        "isCloud": false,
+        "isUseful": true,
+        "isEnvironmental": true,
+        "colour": {
+            "r": 1.0,
+            "g": 0.0,
+            "b": 0.0
+        }
+    },
+
+    "sunlight": {
+        "name": "Sunlight",
         "volume": 1,
         "isCloud": false,
         "isUseful": true,
