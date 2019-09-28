@@ -829,12 +829,6 @@ div::-webkit-scrollbar-thumb:hover {
   z-index: 0;
 }
 
-.reproductionBars {
-  position: absolute;
-  bottom: 50px;
-  right: 60px;
-}
-
 #microbeHUDPlayerHitpointsBar {
   background-image: url("../../Textures/gui/bevel/HitpointsBar.png");
   background-color: #004001;
@@ -887,9 +881,9 @@ div::-webkit-scrollbar-thumb:hover {
 #microbeToEditorButton {
   position: absolute;
   right: 67.5px;
-  bottom: 21.5px;
-  width: 196px;
-  height: 196px;
+  bottom: -17.5px;
+  width: 195px;
+  height: 195px;
   background-image: url("../../Textures/gui/bevel/LargeTwoNormal.png");
   font-size: 0;
   background-position: center;
@@ -918,6 +912,8 @@ div::-webkit-scrollbar-thumb:hover {
 
 #microbeToEditorButton:hover {
   background-image: url("../../Textures/gui/bevel/LargeTwoHover.png");
+  animation: 0;
+  opacity: 1;
 }
 
 #microbeToEditorButton.DisabledButton {
@@ -1031,7 +1027,7 @@ div::-webkit-scrollbar-thumb:hover {
   width: 85px;
   height: 51px;
   right: 85px;
-  bottom: 178px;
+  bottom: 188px;
   background-image: url("../../Textures/gui/bevel/dataValueBackground.png");
   font-size: 10pt;
   font-family: thrive;
@@ -1063,8 +1059,8 @@ div::-webkit-scrollbar-thumb:hover {
 
 .population {
   position: absolute;
-  bottom: 150px;
-  right: 65px;
+  bottom: 160px;
+  right: 9px;
   width: 200px;
   height: 120px;
 }
@@ -1072,13 +1068,14 @@ div::-webkit-scrollbar-thumb:hover {
 #populationText {
   line-height: 40px;
   background-image: url("../../Textures/gui/bevel/LongTwoNormal.png");
+  font-size: 12pt;
   background-repeat: no-repeat;
   text-indent: 10px;
 }
 
 #populationCount {
   background-image: url("../../Textures/gui/bevel/LongTwoNormal.png");
-  font-size: 15pt;
+  font-size: 12pt;
   line-height: 40px;
   text-indent: 10px;
 }
@@ -2073,4 +2070,53 @@ div::-webkit-scrollbar-thumb:hover {
 
 .PatchOcean {
   background-image: url("../../Textures/gui/bevel/epipelagic.png");
+}
+
+/* ANIMATION OF EDITOR BUTTON */
+
+
+.pulseEditor {
+  animation: pulseInset 2.4s infinite;
+  border-radius: 50%;
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-box-shadow: 0 0 45px -57px rgba(255, 255, 255, 1);
+    -moz-box-shadow: 0 0 45px -57px rgba(255, 255, 255, 1);
+    box-shadow: 0 0 45px -57px rgba(255, 255, 255, 1);
+  }
+
+  50% {
+    -webkit-box-shadow: 0 0 45px 16px rgba(255, 255, 255, 1);
+    -moz-box-shadow: 0 0 45px 16px rgba(255, 255, 255, 1);
+    box-shadow: 0 0 45px 16px rgba(255, 255, 255, 1);
+  }
+
+  100% {
+    -webkit-box-shadow: 0 0 45px -57px rgba(255, 255, 255, 1);
+    -moz-box-shadow: 0 0 45px -57px rgba(255, 255, 255, 1);
+    box-shadow: 0 0 45px -57px rgba(255, 255, 255, 1);
+  }
+}
+
+
+@-webkit-keyframes pulseInset {
+  0% {
+    -webkit-box-shadow: inset 0 0 300px -200px rgba(255, 255, 255, 1);
+    -moz-box-shadow: inset 0 0 300px -200px rgba(255, 255, 255, 1);
+    box-shadow: inset 0 0 300px -200px rgba(255, 255, 255, 1);
+  }
+
+  50% {
+    -webkit-box-shadow: inset 0 0 300px -99px rgba(255, 255, 255, 1);
+    -moz-box-shadow: inset 0 0 300px -99px rgba(255, 255, 255, 1);
+    box-shadow: inset 0 0 300px -99px rgba(255, 255, 255, 1);
+  }
+
+  100% {
+    -webkit-box-shadow: inset 0 0 300px -200px rgba(255, 255, 255, 1);
+    -moz-box-shadow: inset 0 0 300px -200px rgba(255, 255, 255, 1);
+    box-shadow: inset 0 0 300px -200px rgba(255, 255, 255, 1);
+  }
 }

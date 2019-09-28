@@ -118,7 +118,8 @@
                     <span>/</span>
                     <span id="microbeHUDPlayerMaxHitpoints">100</span>
                </div>
-              </div
+           </div>
+
 
            <!-- Population bar -->
            <div class="population">
@@ -157,7 +158,7 @@
        stroke-linecap="round"/>
 
     <!-- ATP bar -->
-    <path transform="matrix(0.76453589,0,0,0.87453583,421.46881,1215.6707)" d="M-459.4-1226.6c-3.8-6.6-5.2-9.8-7.2-17.2c-1.5-5.4-4.7-17.2-4.6-26.7c0.2-26.1,12.8-55.2,36.3-71.1c24.5-16.6,49.9-17.3,58.8-17.3"
+    <path transform="matrix(0.76453589,0,0,0.87453583,421.46881,1215.6707)" d="M-459.4-1226.6c-3.8-6.6-5.2-9.8-7.2-17.2c-1.5-5.4-4.7-17.2-4.6-26.7c0.2-26.1,12.8-55.2,36.3-71.1c24.5-18.6,49.9-20.3,58.8-20.3"
        stroke-width="9";
 	   fill="transparent"
        stroke="black"
@@ -165,7 +166,7 @@
        stroke-dashoffset="0"
        stroke-linecap="round"/>
 
-    <path id="shapeAtp" transform="matrix(0.76453589,0,0,0.87453583,421.46881,1215.6707)" d="M-459.4-1226.6c-3.8-6.6-5.2-9.8-7.2-17.2c-1.5-5.4-4.7-17.2-4.6-26.7c0.2-26.1,12.8-55.2,36.3-71.1c24.5-16.6,49.9-17.3,58.8-17.3"
+    <path id="shapeAtp" transform="matrix(0.76453589,0,0,0.87453583,421.46881,1215.6707)" d="M-459.4-1226.6c-3.8-6.6-5.2-9.8-7.2-17.2c-1.5-5.4-4.7-17.2-4.6-26.7c0.2-26.1,12.8-55.2,36.3-71.1c24.5-18.6,49.9-20.3,58.8-20.3"
         stroke-width="9";
         fill="transparent"
         stroke="green"
@@ -173,8 +174,8 @@
         stroke-dashoffset="0"
         stroke-linecap="round"/>
 
-    <path d="M144.5,169c-33.7,0-61-27.3-61-61s27.3-61,61-61"
-        stroke-width="8";
+    <path class="reproductionBars" d="M144.5,169c-33.7,0-61-27.3-61-61s27.3-61,61-61"
+        stroke-width="4";
         fill="transparent"
         stroke="#d9c55d"
         stroke-dasharray="204.234";
@@ -182,28 +183,33 @@
         stroke-linecap="square"/>
 
     <path id="shapeAmmonia" d="M144.5,169c-33.7,0-61-27.3-61-61s27.3-61,61-61"
-        stroke-width="8";
+        stroke-width="4";
         fill="transparent"
         stroke="black"
         stroke-dasharray="204.234";
         stroke-dashoffset="0"
         stroke-linecap="square"/>
 
-    <path id="pho" d="M145,47c33.7,0,61,27.3,61,61s-27.3,61-61,61"
-        stroke-width="8";
+    <path id="pho" d="M144.5,47c33.7,0,61,27.3,61,61s-27.3,61-61,61"
+        stroke-width="4";
         fill="transparent"
         stroke="#3b167b"
         stroke-dasharray="204.234";
         stroke-dashoffset="0"
         stroke-linecap="square"/>
 
-     <path id="shapePhosphate" d="M145,47c33.7,0,61,27.3,61,61s-27.3,61-61,61"
-        stroke-width="8";
+     <path id="shapePhosphate" d="M144.5,47c33.7,0,61,27.3,61,61s-27.3,61-61,61"
+        stroke-width="4";
         fill="transparent"
         stroke="black"
         stroke-dasharray="204.234";
         stroke-dashoffset="0"
         stroke-linecap="square"/>
+
+
+        <!-- Editor button -->
+        <div class="DisabledButton" id="microbeToEditorButton">
+        </div>
       </svg>
     </div>
 	  <div id="pauseButton"><div id="pauseIcon"></div></div>
@@ -430,11 +436,6 @@
                   </div>
             </div>
           </div>
-
-
-      <!-- Editor button -->
-      <div class="microbeToEditorButton DisabledButton" id="microbeToEditorButton">
-      </div>
 
 	  <!-- Pause menu -->
 	  <div id="pauseOverlay" class="Overlay">

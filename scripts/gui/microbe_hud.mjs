@@ -185,6 +185,8 @@ export function onReadyToEnterEditor(){
 
     readyToEdit = true;
     document.getElementById("microbeToEditorButton").classList.remove("DisabledButton");
+    document.getElementById("microbeToEditorButton").style.zIndex = "1";
+    document.getElementById("microbeToEditorButton").classList.add("pulseEditor");
 }
 
 
@@ -369,6 +371,8 @@ function onEditorButtonClicked(event){
 
     // Disable
     document.getElementById("microbeToEditorButton").classList.add("DisabledButton");
+    document.getElementById("microbeToEditorButton").style.zIndex = "-1";
+    document.getElementById("microbeToEditorButton").classList.remove("pulseEditor");
     readyToEdit = false;
 
     return true;
@@ -380,6 +384,9 @@ function onExitToMenuClicked() {
         document.getElementById("extinctionTitle").style.display = "none";
         document.getElementById("extinctionBody").style.display = "none";
         document.getElementById("extinctionContainer").style.display = "none";
+        document.getElementById("microbeToEditorButton").classList.add("DisabledButton");
+        document.getElementById("microbeToEditorButton").classList.remove("pulse");
+        readyToEdit = false;
         hideWinText();
 
         // Gotta reset this
@@ -390,6 +397,7 @@ function onExitToMenuClicked() {
         main_menu.doExitToMenu();
     }
 }
+
 
 //! Updates the mouse hover box with stuff
 function updateHoverInfo(vars){
@@ -713,7 +721,7 @@ function updateMicrobeHUDBars(values){
         circle.querySelector("#shapeAmmonia").style["stroke-dashoffset"] =
             204.234 * values.reproductionAmmoniaFraction;
         circle.querySelector("#shapePhosphate").style["stroke-dashoffset"] =
-            204.234 * values.reproductionPhosphatesFraction;
+            -204.234 * values.reproductionPhosphatesFraction;
     }
 
     document.getElementById("microbeHUDPlayerAmmonia").textContent =
