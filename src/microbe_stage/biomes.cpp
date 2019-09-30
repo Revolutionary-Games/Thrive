@@ -190,6 +190,23 @@ Json::Value
     direction["z"] = sunlightDirection.Z;
     result["sunlightDirection"] = direction;
 
+    Json::Value compoundsData;
+
+    for(auto compoundRef : compounds) {
+        thrive::Compound compound =
+            SimulationParameters::compoundRegistry.getTypeData(
+                SimulationParameters::compoundRegistry.getInternalName(
+                    compoundRef.first));
+        Json::Value compoundData;
+        compoundData["name"] = compound.displayName;
+        compoundData["amount"] = compoundRef.second.amount;
+        compoundData["density"] = compoundRef.second.density;
+        compoundData["dissolved"] = compoundRef.second.dissolved;
+        compoundsData[compound.internalName] = compoundData;
+    }
+
+    result["compounds"] = compoundsData;
+
     if(full) {
         LOG_WARNING("Biome: toJSON: full is not implemented");
     }
