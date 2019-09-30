@@ -345,7 +345,7 @@ class MicrobeEditor{
                         organelleHere.organelle.name == "cytoplasm")
                     {
                         // First we save the organelle data and then delete it
-                        action.data["replacedCyto"] = organelleHere;
+                        @action.data["replacedCyto"] = organelleHere;
 
                         LOG_INFO("replaced cytoplasm");
                         OrganellePlacement::removeOrganelleAt(editor.editedMicrobe,
