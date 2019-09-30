@@ -418,8 +418,8 @@ function updateHoverInfo(vars){
 
     if(vars.noCompounds){
 
-        panel.appendChild(document.createElement("br"));
-        panel.appendChild(document.createTextNode("Nothing to eat here"));
+        mainContent.innerHTML = "Nothing to eat here";
+        panel.appendChild(mainContent);
     } else {
 
         mainContent.innerHTML = "At cursor:";
@@ -448,6 +448,7 @@ function updateHoverInfo(vars){
             img.setAttribute("width", "25");
             img.setAttribute("height", "25");
             img.setAttribute("position", "relative");
+            img.setAttribute("display", "inline-block");
             panel.appendChild(img);
 
             const par = document.createElement("p");
@@ -484,14 +485,10 @@ function updatePopulation(population){
 
 // Update dissolved gasses
 function updateEnvironmentalCompounds(oxygen, c02, n2, light){
-    document.getElementById("oxygenPercent").innerHTML =
-    "O<sub>2</sub>" + ": " + oxygen + "%";
-    document.getElementById("carbonDioxidePercent").innerHTML =
-    "CO<sub>2</sub>" + ": " + c02 + "%";
-    document.getElementById("nitrogenPercent").innerHTML =
-    "N<sub>2</sub>" + ": " + n2 + "%";
-    document.getElementById("sunlightPercent").innerHTML =
-    "Light" + ": " + light + "%";
+    document.getElementById("oxygenPercent").innerHTML = oxygen + "%";
+    document.getElementById("carbonDioxidePercent").innerHTML = c02 + "%";
+    document.getElementById("nitrogenPercent").innerHTML = n2 + "%";
+    document.getElementById("sunlightPercent").innerHTML = light + "%";
 }
 
 
