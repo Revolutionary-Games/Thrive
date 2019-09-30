@@ -893,6 +893,7 @@ function updateSelectedPatchData(patch){
         descriptionElement.appendChild(document.createElement("br"));
     }
 
+    descriptionElement.appendChild(document.createElement("br"));
     descriptionElement.appendChild(document.createTextNode("Environment:"));
     descriptionElement.appendChild(document.createElement("br"));
     descriptionElement.appendChild(document.createTextNode("O2: " +
