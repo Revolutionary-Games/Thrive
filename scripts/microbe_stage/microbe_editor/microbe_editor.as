@@ -374,13 +374,11 @@ class MicrobeEditor{
                     auto organelleHere = OrganellePlacement::getOrganelleAt(
                         editor.editedMicrobe, Int2(posQ, posR));
                     if(organelleHere !is null){
-                        LOG_INFO("RIMUOVO: " + organelle.organelle.name);
                         OrganellePlacement::removeOrganelleAt(editor.editedMicrobe,
                             Int2(posQ, posR));
 
                         // If an cyto was replaced here, we have to replace it back on undo of this action
                         if(action.data.exists("replacedCyto")) {
-                            LOG_INFO("I'm going to replace cyto");
                             PlacedOrganelle@ replacedCyto =  cast<PlacedOrganelle>(action.data["replacedCyto"]);
 
                             LOG_INFO("Replacing" + replacedCyto.organelle.name + "' at: " +
@@ -641,8 +639,6 @@ class MicrobeEditor{
         setRedoButtonStatus(false);
 
         actionIndex++;
-        LOG_INFO("ACTION INDEX: " + actionIndex );
-        LOG_INFO("HISTORY LENGTH: " + actionHistory.length() );
         action.redo(action, this);
 
         // Only called when an action happens, because its an expensive method
@@ -765,9 +761,7 @@ class MicrobeEditor{
         //nothing left to redo? disable redo
         if (actionIndex >= int(actionHistory.length())){
             setRedoButtonStatus(false);
-        }
-        LOG_INFO("ACTION INDEX REDO: " + actionIndex );
-        LOG_INFO("HISTORY LENGTH REDO: " + actionHistory.length() );
+        }a
     }
 
     void undo()
@@ -791,8 +785,6 @@ class MicrobeEditor{
         if (actionIndex <= 0){
             setUndoButtonStatus(false);
         }
-        LOG_INFO("ACTION INDEX UNDO: " + actionIndex );
-        LOG_INFO("HISTORY LENGTH UNDO: " + actionHistory.length() );
     }
 
     // Don't call directly. Should be used through actions
