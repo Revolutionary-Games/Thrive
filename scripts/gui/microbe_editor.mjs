@@ -830,7 +830,6 @@ function processPatchMapData(data){
         element.classList.add("PatchContainer");
         element.style.left = patch.screenCoordinates.x + "px";
         element.style.top = patch.screenCoordinates.y + "px";
-        element.id = "patchMapNode_" + patch.id;
         element.addEventListener("click",
             () =>{
                 if(selectedPatch != patch){
@@ -846,6 +845,7 @@ function processPatchMapData(data){
 
         const inner = document.createElement("span");
         inner.classList.add("Patch");
+        inner.id = "patchMapNode_" + patch.id;
         inner.classList.add("Patch" + common.capitalize(patch.biome.background));
 
         // Inner.textContent = patch.name;
