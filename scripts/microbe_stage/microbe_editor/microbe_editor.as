@@ -761,7 +761,7 @@ class MicrobeEditor{
         //nothing left to redo? disable redo
         if (actionIndex >= int(actionHistory.length())){
             setRedoButtonStatus(false);
-        }a
+        }
     }
 
     void undo()
