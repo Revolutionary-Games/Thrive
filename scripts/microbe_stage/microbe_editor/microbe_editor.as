@@ -98,6 +98,7 @@ class MicrobeEditor{
         GetThriveGame().playerData().setBool("edited_microbe", true);
 
         // Detect freebuild
+        // TODO: send an event to the GUI to allow freely moving between patches in freebuild
         if(GetThriveGame().playerData().isFreeBuilding()){
             LOG_INFO("Editor going to freebuild mode because player has activated freebuild");
             freeBuilding = true;
@@ -617,18 +618,19 @@ class MicrobeEditor{
         if(action.cost != 0)
             if(!takeMutationPoints(action.cost))
                 return;
-        // We resize always and insert at the index so that
-        // if we undo something then add something, the new
-        // action is in the right spot on the array.
-        // since we only enqueue when we add new actions
-        actionHistory.resize(actionHistory.length()+1);
+
+        // Every time we make a new action if is in the middle of history of actions
+        // We have to erase all redo history from that point
+        while(actionIndex < int(actionHistory.length()))
+            actionHistory.removeLast();
+
+        actionHistory.insertLast(action);
 
         setUndoButtonStatus(true);
         setRedoButtonStatus(false);
 
-        action.redo(action, this);
-        actionHistory.insertAt(actionIndex,action);
         actionIndex++;
+        action.redo(action, this);
 
         // Only called when an action happens, because its an expensive method
         hudSystem.updateSpeed();
@@ -733,9 +735,10 @@ class MicrobeEditor{
 
     void redo()
     {
-        if (actionIndex < int(actionHistory.length())-1){
+
+        if (actionIndex < int(actionHistory.length())){
+            auto action = actionHistory[actionIndex];
             actionIndex += 1;
-            auto action = actionHistory[actionIndex-1];
             action.redo(action, this);
             hudSystem.updateSpeed();
 
@@ -747,7 +750,7 @@ class MicrobeEditor{
         }
 
         //nothing left to redo? disable redo
-        if (actionIndex >= int(actionHistory.length()-2)){
+        if (actionIndex >= int(actionHistory.length())){
             setRedoButtonStatus(false);
         }
     }

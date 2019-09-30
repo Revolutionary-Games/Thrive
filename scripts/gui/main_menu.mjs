@@ -152,6 +152,9 @@ export function runMenuSetup(){
     // editor
     setupMicrobeEditor();
 
+    // This needs to be registered here as well
+    microbe_hud.runMicrobeHUDSetup();
+
     //
     // Use these to immediately test some specific menu
     //
@@ -402,7 +405,6 @@ function switchToMicrobeHUD(){
 
     // And show microbe gui
     document.getElementById("topLevelMicrobeStage").style.display = "block";
-    microbe_hud.runMicrobeHUDSetup();
 }
 
 //! Called once C++ has finished exiting to menu

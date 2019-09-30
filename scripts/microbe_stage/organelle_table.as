@@ -326,7 +326,7 @@ void setupOrganelles(){
     chloroplastParameters.texture = "chloroplast.png";
     chloroplastParameters.chanceToCreate = 1;
     chloroplastParameters.prokaryoteChance = 0;
-    chloroplastParameters.mpCost = 55;
+    chloroplastParameters.mpCost = 50;
     chloroplastParameters.initialComposition = {
         {"phosphates", 2},
         {"ammonia", 2}
@@ -553,7 +553,7 @@ void setupOrganelles(){
 
     _addOrganelleToTable(Organelle(respiratoryProtein));
 
-    // chromatophors
+    // chromatophors, now called thylakoids in the gui
     auto photosyntheticProtein = OrganelleParameters("chromatophors");
 
     photosyntheticProtein.mass = 0.1;
@@ -562,7 +562,7 @@ void setupOrganelles(){
     photosyntheticProtein.texture = "chromatophores.png";
     photosyntheticProtein.chanceToCreate = 0.5f;
     photosyntheticProtein.prokaryoteChance = 2;
-    photosyntheticProtein.mpCost = 55;
+    photosyntheticProtein.mpCost = 50;
     photosyntheticProtein.initialComposition = {
         {"phosphates", 1},
         {"ammonia", 1}

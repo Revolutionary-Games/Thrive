@@ -12,6 +12,14 @@ let currentTab = null;
 let currentPatchId = null;
 let selectedPatch = null;
 let selectedPatchElement = null;
+let patchIdOnEnter = null;
+
+// Allows only one move per session
+let alreadyMovedThisSession = false;
+const limitMovesPerSession = true;
+
+// The full patch data
+let patchData = null;
 
 //! These are all the organelle selection buttons
 const organelleSelectionElements = [
@@ -266,6 +274,8 @@ export function doEnterMicrobeEditor(event, vars){
     currentPatchId = null;
     selectedPatchElement = null;
     updateSelectedPatchData(null);
+    alreadyMovedThisSession = false;
+    patchData = null;
 
     if(!common.isInEngine()){
         updateAutoEvoResults("this is an example\ntext that has multiple\nlines in it.");
@@ -729,6 +739,9 @@ function processPatchMapData(data){
     // Patch map building from HTML elements
     //
     currentPatchId = obj.currentPatchId;
+    patchIdOnEnter = currentPatchId;
+
+    patchData = obj;
 
     // Draw lines first to make them underneath things
     // NOTE: these lines currently go one way only
@@ -851,11 +864,13 @@ function updateSelectedPatchData(patch){
         document.getElementById("editorSelectedPatchDescription");
     descriptionElement.textContent = "";
 
-    if(currentPatchId != selectedPatch.id){
-        // Can move here
+    if(patchMoveAllowed(selectedPatch.id)){
         document.getElementById("moveToPatchButton").classList.remove("Disabled");
     } else {
         document.getElementById("moveToPatchButton").classList.add("Disabled");
+    }
+
+    if(currentPatchId == selectedPatch.id){
         descriptionElement.appendChild(document.createTextNode("You are currently in " +
                                                                "this patch."));
         descriptionElement.appendChild(document.createElement("br"));
@@ -877,20 +892,59 @@ function updateSelectedPatchData(patch){
                                                                species.population));
         descriptionElement.appendChild(document.createElement("br"));
     }
+
+    descriptionElement.appendChild(document.createElement("br"));
+    descriptionElement.appendChild(document.createTextNode("Environment:"));
+    descriptionElement.appendChild(document.createElement("br"));
+    descriptionElement.appendChild(document.createTextNode("O2: " +
+        (patch.biome.compounds.oxygen.dissolved * 100).toString() + "%"));
+    descriptionElement.appendChild(document.createElement("br"));
+    descriptionElement.appendChild(document.createTextNode("CO2: " +
+        (patch.biome.compounds.carbondioxide.dissolved * 100).toString() + "%"));
+    descriptionElement.appendChild(document.createElement("br"));
+    descriptionElement.appendChild(document.createTextNode("N2: " +
+        (patch.biome.compounds.nitrogen.dissolved * 100).toString() + "%"));
+    descriptionElement.appendChild(document.createElement("br"));
+    descriptionElement.appendChild(document.createTextNode("Sunlight: " +
+        (patch.biome.compounds.sunlight.dissolved * 100).toString() + "%"));
+    descriptionElement.appendChild(document.createElement("br"));
+}
+
+function patchMoveAllowed(targetId){
+    if(currentPatchId == targetId){
+        return false;
+    }
+
+    // Always allow moving back to initial one (even with no links)
+    if(targetId == patchIdOnEnter)
+        return true;
+
+    // Disallow extra moves
+    if(alreadyMovedThisSession && targetId != patchIdOnEnter)
+        return false;
+
+    // Disallow moving if no connection
+    for(const adjacent of patchData.patches[currentPatchId].adjacentPatches){
+        if(adjacent == targetId)
+            return true;
+    }
+
+    return false;
 }
 
 function moveToPatchClicked(){
-    if(currentPatchId == selectedPatch.id){
+
+    if(!patchMoveAllowed(selectedPatch.id))
         return;
-    }
 
     currentPatchId = selectedPatch.id;
+
+    if(limitMovesPerSession)
+        alreadyMovedThisSession = currentPatchId != patchIdOnEnter;
 
     if(common.isInEngine()){
         Leviathan.CallGenericEvent("MicrobeEditorSelectedNewPatch",
             {patchId: currentPatchId});
-    } else {
-        // Console.log("player chose to move to patch:", currentPatchId);
     }
 
     updateSelectedPatchData(selectedPatch);

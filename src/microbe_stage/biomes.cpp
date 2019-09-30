@@ -41,6 +41,11 @@ Biome::Biome(Json::Value value)
     sunlightDirection = Float3(x, y, z);
     sunlightSourceRadius = sunlight["sourceRadius"].asFloat();
 
+    // Eye adaptation
+    const auto eyeAdaptation = value["eyeAdaptation"];
+    minEyeAdaptation = eyeAdaptation["min"].asFloat();
+    maxEyeAdaptation = eyeAdaptation["max"].asFloat();
+
     // Getting the compound information.
     Json::Value compoundData = value["compounds"];
     std::vector<std::string> compoundInternalNames =
@@ -184,6 +189,23 @@ Json::Value
     direction["y"] = sunlightDirection.Y;
     direction["z"] = sunlightDirection.Z;
     result["sunlightDirection"] = direction;
+
+    Json::Value compoundsData;
+
+    for(auto compoundRef : compounds) {
+        thrive::Compound compound =
+            SimulationParameters::compoundRegistry.getTypeData(
+                SimulationParameters::compoundRegistry.getInternalName(
+                    compoundRef.first));
+        Json::Value compoundData;
+        compoundData["name"] = compound.displayName;
+        compoundData["amount"] = compoundRef.second.amount;
+        compoundData["density"] = compoundRef.second.density;
+        compoundData["dissolved"] = compoundRef.second.dissolved;
+        compoundsData[compound.internalName] = compoundData;
+    }
+
+    result["compounds"] = compoundsData;
 
     if(full) {
         LOG_WARNING("Biome: toJSON: full is not implemented");

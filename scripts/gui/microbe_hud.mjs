@@ -93,7 +93,8 @@ export function runMicrobeHUDSetup(){
 
         // Event for updating o2 and c02 numbers
         Leviathan.OnGeneric("UpdateDissolvedGasses", (event, vars) => {
-            updateDissolvedGasses(vars.oxygenPercent, vars.co2Percent, vars.n2Percent);
+            updateEnvironmentalCompounds(vars.oxygenPercent, vars.co2Percent, vars.n2Percent,
+                vars.sunlightPercent);
         });
 
         // Event for checking win conditions
@@ -162,6 +163,8 @@ export function runMicrobeHUDSetup(){
             ammonia0: "Ammonia: 12.2",
         });
 
+        updatePatchInfo("Browser patch");
+
         onReadyToEnterEditor();
     }
 
@@ -177,7 +180,7 @@ function quitGameHud(){
 }
 
 function updatePatchInfo(patchName){
-    document.getElementById("infoPatch").textContent = "Patch Name:" + patchName;
+    document.getElementById("infoPatch").textContent = "Patch: " + patchName;
 }
 
 //! Enables the editor button
@@ -386,6 +389,7 @@ function onExitToMenuClicked() {
         document.getElementById("extinctionContainer").style.display = "none";
         document.getElementById("microbeToEditorButton").classList.add("DisabledButton");
         document.getElementById("microbeToEditorButton").classList.remove("pulse");
+
         readyToEdit = false;
         hideWinText();
 
@@ -479,13 +483,15 @@ function updatePopulation(population){
 }
 
 // Update dissolved gasses
-function updateDissolvedGasses(oxygen, c02, n2){
+function updateEnvironmentalCompounds(oxygen, c02, n2, light){
     document.getElementById("oxygenPercent").innerHTML =
     "O<sub>2</sub>" + ": " + oxygen + "%";
     document.getElementById("carbonDioxidePercent").innerHTML =
     "CO<sub>2</sub>" + ": " + c02 + "%";
     document.getElementById("nitrogenPercent").innerHTML =
     "N<sub>2</sub>" + ": " + n2 + "%";
+    document.getElementById("sunlightPercent").innerHTML =
+    "Light" + ": " + light + "%";
 }
 
 
