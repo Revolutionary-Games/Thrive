@@ -11,6 +11,9 @@ let readyToEdit = false;
 
 let wonOnce = false;
 
+// Variable to show data useful during develop
+const showMouseCoordinates = false;
+
 //! Registers all the stuff for this to work.
 //! This makes sure it does something only once
 export function runMicrobeHUDSetup(){
@@ -228,8 +231,8 @@ function onCompoundPanelClicked() {
     $("#compoundsPanel").animate({"width": "toggle"});
     $("#agentsPanel").animate({"width": "toggle"});
 
-    $("#compoundsButton").toggleClass("active");
-    $("#compoundsButton").toggleClass("inactive");
+    document.getElementById("compoundsButton").classList.toggleClass("active");
+    document.getElementById("compoundsButton").classList.toggleClass("inactive");
 }
 
 function openHelp() {
@@ -431,6 +434,11 @@ function updateHoverInfo(vars){
 
     const panel = document.getElementById("mouseHoverPanel");
     common.clearChildren(panel);
+
+    if(showMouseCoordinates) {
+        panel.appendChild(document.createTextNode("Stuff at " + vars.mousePos + ":"));
+        panel.appendChild(document.createElement("br"));
+    }
 
     const mainContent = document.createElement("div");
     mainContent.style.width = "100%";
