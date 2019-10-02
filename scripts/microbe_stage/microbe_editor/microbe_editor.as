@@ -349,11 +349,12 @@ class MicrobeEditor{
                     if(organelleHere !is null &&
                         organelleHere.organelle.name == "cytoplasm")
                     {
+                        // First we save the organelle data and then delete it
+                        @action.data["replacedCyto"] = organelleHere;
+
                         LOG_INFO("replaced cytoplasm");
                         OrganellePlacement::removeOrganelleAt(editor.editedMicrobe,
                             Int2(posQ, posR));
-
-                        // TODO: store the fact that there was cytoplasm here
                     }
                 }
 
@@ -368,7 +369,6 @@ class MicrobeEditor{
             },
             // undo
             function(EditorAction@ action, MicrobeEditor@ editor){
-                // TODO: this doesn't restore cytoplasm
                 LOG_INFO("Undo called");
                 const PlacedOrganelle@ organelle = cast<PlacedOrganelle>(action.data["organelle"]);
                 auto hexes = organelle.organelle.getRotatedHexes(organelle.rotation);
@@ -380,11 +380,19 @@ class MicrobeEditor{
                     if(organelleHere !is null){
                         OrganellePlacement::removeOrganelleAt(editor.editedMicrobe,
                             Int2(posQ, posR));
-                        editor._updateAlreadyPlacedVisuals();
-                    }
 
+                        // If an cyto was replaced here, we have to replace it back on undo of this action
+                        if(action.data.exists("replacedCyto")) {
+                            PlacedOrganelle@ replacedCyto =  cast<PlacedOrganelle>(action.data["replacedCyto"]);
+
+                            LOG_INFO("Replacing " + replacedCyto.organelle.name + "' at: " +
+                                replacedCyto.q + ", " + replacedCyto.r);
+                            editor.editedMicrobe.insertLast(replacedCyto);
+                        }
+                    }
                 }
 
+                editor._updateAlreadyPlacedVisuals();
                 // send to gui current status of cell
                 editor.updateGuiButtonStatus(editor.checkIsNucleusPresent());
             });
@@ -530,7 +538,7 @@ class MicrobeEditor{
         }
     }
 
-    // TODO: this might need fixing with the initial species being only a single cytoplasm
+    // Wipes clean the current cell. Seems to work fine
     void createNewMicrobe(const string &in)
     {
         // organelleCount = 0;
@@ -1190,17 +1198,16 @@ class MicrobeEditor{
         } else if (type == "PressedRightRotate"){
             organelleRot+=(360/6);
             return 1;
-        }else if (type == "PressedLeftRotate"){
+        } else if (type == "PressedLeftRotate"){
             organelleRot-=(360/6);
             return 1;
         } else if (type == "NewCellClicked"){
-            // TODO: this is likely broken
             createNewMicrobe("");
             return 1;
-        }else if (type == "UndoClicked"){
+        } else if (type == "UndoClicked"){
             undo();
             return 1;
-        }else if (type == "RedoClicked"){
+        } else if (type == "RedoClicked"){
             redo();
             return 1;
         } else if(type == "MicrobeEditorSelectedTab"){

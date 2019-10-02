@@ -282,9 +282,6 @@ void respawnPlayer(CellStageWorld@ world)
 
         // Reset membrane color to fix the bug that made membranes sometimes red after you respawn.
         MicrobeOperations::applyMembraneColour(world, playerEntity);
-        //If you died before entering the editor disable that
-        microbeComponent.reproductionStage = 0;
-        hideReproductionDialog(world);
         // Reset the player cell to be the same as the species template
         Species::restoreOrganelleLayout(world, playerEntity, microbeComponent, playerSpecies);
     }
@@ -1237,6 +1234,10 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
             // cell entity is destroyed
             microbeComponent.organelles[i].hideEntity();
         }
+    } else {
+        //If you died before entering the editor disable that
+        microbeComponent.reproductionStage = 0;
+        hideReproductionDialog(world);
     }
 
     if(microbeComponent.wasBeingEngulfed){

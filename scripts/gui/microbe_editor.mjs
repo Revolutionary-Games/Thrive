@@ -906,6 +906,22 @@ function updateSelectedPatchData(patch){
                                                                species.population));
         descriptionElement.appendChild(document.createElement("br"));
     }
+
+    descriptionElement.appendChild(document.createElement("br"));
+    descriptionElement.appendChild(document.createTextNode("Environment:"));
+    descriptionElement.appendChild(document.createElement("br"));
+    descriptionElement.appendChild(document.createTextNode("O2: " +
+        (patch.biome.compounds.oxygen.dissolved * 100).toString() + "%"));
+    descriptionElement.appendChild(document.createElement("br"));
+    descriptionElement.appendChild(document.createTextNode("CO2: " +
+        (patch.biome.compounds.carbondioxide.dissolved * 100).toString() + "%"));
+    descriptionElement.appendChild(document.createElement("br"));
+    descriptionElement.appendChild(document.createTextNode("N2: " +
+        (patch.biome.compounds.nitrogen.dissolved * 100).toString() + "%"));
+    descriptionElement.appendChild(document.createElement("br"));
+    descriptionElement.appendChild(document.createTextNode("Sunlight: " +
+        (patch.biome.compounds.sunlight.dissolved * 100).toString() + "%"));
+    descriptionElement.appendChild(document.createElement("br"));
 }
 
 function patchMoveAllowed(targetId){
