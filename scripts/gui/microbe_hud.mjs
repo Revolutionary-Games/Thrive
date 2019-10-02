@@ -307,6 +307,9 @@ function hideTipMsg() {
 function onMenuClicked(){
 
     common.playButtonPressSound();
+    document.getElementById("mainMenuButton").classList.add("MainMenuActive");
+    document.getElementById("mainMenuButton").classList.remove("MainMenuNormal");
+    "url('../../Textures/gui/bevel/MainMenuActive.png')";
     const pause = document.getElementById("pauseOverlay");
     pause.style.display = "block";
     const help = document.getElementById("helpText");
@@ -316,6 +319,8 @@ function onMenuClicked(){
 function onResumeClicked(){
 
     common.playButtonPressSound();
+    document.getElementById("mainMenuButton").classList.remove("MainMenuActive");
+    document.getElementById("mainMenuButton").classList.add("MainMenuNormal");
     const pause = document.getElementById("pauseOverlay");
     pause.style.display = "none";
 }
@@ -443,7 +448,7 @@ function updateHoverInfo(vars){
             values[0] = values[0].replace(/\s+/, "");
             src = src + values[0];
             src = src + ".png";
-
+            console.log(src);
             img.setAttribute("src", src);
             img.setAttribute("width", "25");
             img.setAttribute("height", "25");
@@ -545,7 +550,7 @@ function onCompressPanelClicked() {
 
     if(panelToChangeId == "compoundsPanel") {
         elementToChange.style.backgroundImage =
-            "url('../../Textures/gui/bevel/compoundsPanelCompress.png')";
+            "url('../../Textures/gui/bevel/CompoundPanelCompress.png')";
         barToChange = "Bar";
         titleToChange = "BarTitle";
         valuesToChange = "BarValue";
@@ -624,7 +629,7 @@ function onExpandPanelClicked() {
 
     if(panelToChangeId == "compoundsPanel") {
         elementToChange.style.backgroundImage =
-            "url('../../Textures/gui/bevel/compoundsPanelExpand.png')";
+            "url('../../Textures/gui/bevel/compoundPanelExpand.png')";
         barToChange = "Bar";
         titleToChange = "BarTitle";
         valuesToChange = "BarValue";
@@ -713,18 +718,18 @@ function updateMicrobeHUDBars(values){
 
         progress = 100 - valueAtp;
         if(valueAtp < 2.5) {
-            circle.querySelector("#shapeAtp").style["stroke-dashoffset"] = 189.117;
+            circle.querySelector("#shapeAtp").style["stroke-dashoffset"] = 192.042;
         } else {
             circle.querySelector("#shapeAtp").style["stroke-dashoffset"] =
-                189.117 * progress / 100;
+                192.042 * progress / 100;
         }
 
         progress = 100 - valueHp;
         circle.querySelector("#shapeHp").style["stroke-dashoffset"] = 231.13 * progress / 100;
         circle.querySelector("#shapeAmmonia").style["stroke-dashoffset"] =
-            204.234 * values.reproductionAmmoniaFraction;
+            191.673 * values.reproductionAmmoniaFraction;
         circle.querySelector("#shapePhosphate").style["stroke-dashoffset"] =
-            -204.234 * values.reproductionPhosphatesFraction;
+            -191.673 * values.reproductionPhosphatesFraction;
     }
 
     document.getElementById("microbeHUDPlayerAmmonia").textContent =

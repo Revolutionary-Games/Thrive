@@ -503,12 +503,19 @@ div::-webkit-scrollbar-thumb:hover {
   display: inline-block;
   width: 55px;
   height: 42px;
-  background-image: url("../../Textures/gui/bevel/MainMenu.png");
   text-align: center;
 }
 
 #mainMenuButton:hover {
   background-image: url("../../Textures/gui/bevel/MainMenuHover.png");
+}
+
+.MainMenuActive {
+  background-image: url("../../Textures/gui/bevel/MainMenuActive.png");
+}
+
+.MainMenuNormal {
+  background-image: url("../../Textures/gui/bevel/MainMenu.png");
 }
 
 #pauseButtonBottom {
@@ -747,7 +754,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 
 #microbeHUDPlayerGlucoseBar {
-  background-color: #657071;
+  background-color: #919c9d;
 }
 
 #CO2Icon {
@@ -1142,7 +1149,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 
 #suicideButton:hover {
-  background-image: url("../../Textures/gui/bevel/EditPanelHeaderHover.png");
+  background-image: url("../../Textures/gui/bevel/suicideButtonHover.png");
 }
 
 #suicideIcon {
@@ -1903,13 +1910,13 @@ div::-webkit-scrollbar-thumb:hover {
 }
 
 #reproductionAmmoniaBar {
-  background-color: #d9c55d;
+  background-color: #ffa01f;
   height: 100%;
   display: inline-block;
 }
 
 #reproductionPhosphatesBar {
-  background-color: #3b167b;
+  background-color: #b06cff;
   height: 100%;
   display: inline-block;
 }
