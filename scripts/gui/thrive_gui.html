@@ -245,10 +245,10 @@
 
        <div id="Panels">
         <!-- Environment panel -->
-        <div id="environmentPanel" class="Panel">
+        <div id="environmentPanel" class="Panel Expand">
           <div id="panelTitle"> Environment
-            <div  class="compressPanel" src="../../Textures/gui/bevel/compressPanel.png"> </div>
-            <div  class="expandPanel"   src="../../Textures/gui/bevel/expandPanelActive.png"> </div>
+            <div  class="compressPanel" data-parentId="environmentPanel" src="../../Textures/gui/bevel/compressPanel.png"> </div>
+            <div  class="expandPanel"   data-parentId="environmentPanel" src="../../Textures/gui/bevel/expandPanelActive.png"> </div>
           </div>
 
         <div class="row">
@@ -298,7 +298,7 @@
             <div class="EnvironmentBar">
               <div class="EmptyBarBackground" id="microbeHUDPlayerTempBar">
                 <div class="BarForeground">
-                    <div class="environmentIcon TempIcon"></div>
+                    <div class="environmentIcon TemperatureIcon"></div>
                     <div class="EnvironmentBarTitle">Temp.</div>
                       <div class="EnvironmentBarValue">
                         <span id="microbeHUDPlayerTemp">55° C</span>
@@ -338,10 +338,10 @@
     </div>
 
       <!-- Compounds panel -->
-      <div id="compoundsPanel" class="Panel">
+      <div id="compoundsPanel" class="Panel Expand">
           <div id="panelTitle"> Compounds
-            <div  class="compressPanel" src="../../Textures/gui/bevel/compressPanel.png"> </div>
-            <div  class="expandPanel"   src="../../Textures/gui/bevel/expandPanelActive.png"> </div>
+            <div  class="compressPanel" data-parentId="compoundsPanel" src="../../Textures/gui/bevel/compressPanel.png"> </div>
+            <div  class="expandPanel"   data-parentId="compoundsPanel" src="../../Textures/gui/bevel/expandPanelActive.png"> </div>
           </div>
 
           <!-- Glucose -->
