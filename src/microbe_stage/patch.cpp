@@ -137,6 +137,14 @@ Json::Value
     return result;
 }
 // ------------------------------------ //
+Patch*
+    Patch::factory(const std::string& name,
+        int32_t id,
+        const Biome& biomeTemplate)
+{
+    return new Patch(name, id, biomeTemplate);
+}
+// ------------------------------------ //
 // Patch map
 bool
     PatchMap::addPatch(const Patch::pointer& patch)
@@ -363,3 +371,8 @@ Patch::pointer
     return patches[id];
 }
 // ------------------------------------ //
+PatchMap*
+    PatchMap::factory()
+{
+    return new PatchMap();
+}
