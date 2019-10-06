@@ -107,6 +107,11 @@ set(GROUP_UTIL
   "util/pair_hash.h"
   )
 
+set(GROUP_SIMULATION
+  "simulation/star_and_planet_generator.h"
+  "simulation/star_and_planet_generator.cpp"
+  )
+
 file(GLOB MICROBE_GENERATOR_FILES "${PROJECT_SOURCE_DIR}/src/microbe_stage/*.rb")
 
 
@@ -172,6 +177,7 @@ source_group("microbe_stage" FILES ${GROUP_MICROBE_STAGE})
 source_group("scripting" FILES ${GROUP_SCRIPTING})
 source_group("sound" FILES ${GROUP_SOUND})
 source_group("util" FILES ${GROUP_UTIL})
+source_group("simulation" FILES ${GROUP_SIMULATION})
 source_group("auto-evo" FILES ${GROUP_AUTO-EVO})
 
 source_group("menu_code" FILES ${GROUP_MENU})
@@ -183,7 +189,7 @@ source_group("main" FILES ${GROUP_CORE_FILES})
 set(THRIVE_FILES ${GROUP_CORE_FILES} ${GROUP_BULLET} ${GROUP_ENGINE}
   ${GROUP_GENERAL} ${GROUP_GUI} ${GROUP_MICROBE_STAGE}
   ${GROUP_SCRIPTING} ${GROUP_SOUND}
-  ${GROUP_UTIL} ${GROUP_MICROBE} ${GROUP_AUTO-EVO}
+  ${GROUP_UTIL} ${GROUP_SIMULATION} ${GROUP_MICROBE} ${GROUP_AUTO-EVO}
   ${GROUP_MENU}
   )
 

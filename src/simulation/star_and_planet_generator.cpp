@@ -1,4 +1,4 @@
-#include "planet_generator2.h"
+#include "star_and_planet_generator.h"
 
 #include <iostream>
 #include <math.h>
@@ -554,8 +554,7 @@ void Planet::update()
 }
 
 //!send the star and planet data to a Json object
-Json::Value
-    Planet::toJSON() const
+Json::Value Planet::toJSON() const
 {
     Json::Value result;
 
