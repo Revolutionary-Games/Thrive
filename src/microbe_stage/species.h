@@ -26,8 +26,13 @@ namespace thrive {
 //! epithet are used for display purposes. So the name is just an unique
 //! identifier, which may as well be a number
 class Species : public Leviathan::ReferenceCounted {
-public:
+protected:
+    // These are protected for only constructing properly reference
+    // counted instances through MakeShared
+    friend ReferenceCounted;
     Species(const std::string& name);
+
+public:
     ~Species();
 
     void
@@ -54,6 +59,11 @@ public:
     //! organelles, but those are findable in stringCode)
     Json::Value
         toJSON(bool full = false) const;
+
+    //! Factory for scripts
+    static Species*
+        factory(const std::string& name);
+
 
     // These are reference counted so don't forget to release
     CScriptArray* organelles = nullptr;
