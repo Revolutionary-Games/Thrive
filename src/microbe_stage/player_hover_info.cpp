@@ -65,19 +65,31 @@ void
             "noCompounds", new Leviathan::BoolBlock(true)));
 
     } else {
+
+        Json::Value compoundsJson;
+
         for(const auto& tuple : compounds) {
 
-            std::stringstream compoundInfo;
-            compoundInfo << std::fixed << std::setprecision(2)
-                         << SimulationParameters::compoundRegistry
-                                .getTypeData(std::get<0>(tuple))
-                                .displayName
-                         << ": " << std::get<1>(tuple);
-
-            vars->Add(std::make_shared<NamedVariableList>(
-                "compound" + std::to_string(std::get<0>(tuple)),
-                new Leviathan::StringBlock(compoundInfo.str())));
+            Json::Value compound;
+            Json::Value quantity;
+            Json::Value name;
+            compound["name"] = SimulationParameters::compoundRegistry
+                                   .getTypeData(std::get<0>(tuple))
+                                   .displayName;
+            compound["quantity"] = std::to_string(std::get<1>(tuple));
+            compoundsJson.append(compound);
         }
+
+        std::stringstream sstream;
+
+        Json::StreamWriterBuilder builder;
+        builder["indentation"] = "";
+        std::unique_ptr<Json::StreamWriter> writer(builder.newStreamWriter());
+
+        writer->write(compoundsJson, &sstream);
+
+        vars->Add(std::make_shared<NamedVariableList>(
+            "compounds", new Leviathan::StringBlock(sstream.str())));
     }
 
     // Hovered over cells

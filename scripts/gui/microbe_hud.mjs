@@ -453,6 +453,28 @@ function updateHoverInfo(vars){
         panel.appendChild(mainContent);
     } else {
 
+        if(!vars.compounds){
+            mainContent.innerHTML = "Error reading compounds Data";
+            return;
+        }
+        let objCompoundsData = null;
+
+
+
+        if(typeof vars.compounds === "string" || vars.compounds instanceof String){
+            try{
+                objCompoundsData = JSON.parse(vars.compounds);
+            } catch(err){
+                mainContent.innerHTML = "invalid json for mouseHover info: " + err;
+                return;
+            }
+        } else {
+            objCompoundsData = vars.compounds;
+        }
+
+        // Compounds data are store in json format, so we need parse it
+        objCompoundsData = JSON.parse(vars.compounds);
+
         mainContent.innerHTML = "At cursor:";
         panel.appendChild(mainContent);
 
@@ -463,25 +485,15 @@ function updateHoverInfo(vars){
         const titleText = document.createTextNode("Compounds: ");
         title.appendChild(titleText);
         panel.appendChild(title);
-        common.getKeys(vars).forEach(function(key){
 
-            // Skip things that are handled elsewhere
-            if(key == "mousePos" || key == "hoveredCells")
-                return;
 
+        // Create for each compound the information in GUI
+        objCompoundsData.forEach(function(compoundData){
             // Line breaks between elements
             panel.appendChild(document.createElement("br"));
-
-            // Debug print version
-            // Panel.appendChild(document.createTextNode(key + ": " + vars[key]));
-            // panel.appendChild(document.createTextNode(vars[key]));
-
-            const values = vars[key].split(":");
             const img = document.createElement("IMG");
             let src = "../../Textures/gui/bevel/";
-            values[0] = values[0].replace(/\s+/, "");
-            src = src + values[0];
-            src = src + ".png";
+            src = src + compoundData.name + ".png";
 
             const par = document.createElement("p");
 
@@ -493,7 +505,7 @@ function updateHoverInfo(vars){
             img.setAttribute("width", "25");
             img.setAttribute("height", "25");
             par.appendChild(img);
-            const parText = document.createTextNode("" + vars[key]);
+            const parText = document.createTextNode("" + compoundData.quantity);
             par.appendChild(parText);
             panel.appendChild(par);
         });
