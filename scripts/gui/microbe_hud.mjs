@@ -455,6 +455,14 @@ function updateHoverInfo(vars){
 
         mainContent.innerHTML = "At cursor:";
         panel.appendChild(mainContent);
+
+        const title = document.createElement("p");
+        title.style.fontSize = "12pt";
+        title.style.marginTop = "0";
+        title.style.marginBottom = "5px";
+        const titleText = document.createTextNode("Compounds: ");
+        title.appendChild(titleText);
+        panel.appendChild(title);
         common.getKeys(vars).forEach(function(key){
 
             // Skip things that are handled elsewhere
@@ -474,15 +482,17 @@ function updateHoverInfo(vars){
             values[0] = values[0].replace(/\s+/, "");
             src = src + values[0];
             src = src + ".png";
-            img.setAttribute("src", src);
-            img.setAttribute("width", "25");
-            img.setAttribute("height", "25");
-            img.setAttribute("position", "relative");
-            img.setAttribute("display", "inline-block");
-            panel.appendChild(img);
 
             const par = document.createElement("p");
-            par.style.display = "inline-block";
+
+            par.style.marginBottom = "0";
+            par.style.paddingBottom = "10px";
+            par.style.marginTop = "0";
+            img.setAttribute("src", src);
+            img.style.verticalAlign = "text-bottom";
+            img.setAttribute("width", "25");
+            img.setAttribute("height", "25");
+            par.appendChild(img);
             const parText = document.createTextNode("" + vars[key]);
             par.appendChild(parText);
             panel.appendChild(par);

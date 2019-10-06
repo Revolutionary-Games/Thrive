@@ -803,7 +803,6 @@ div::-webkit-scrollbar-thumb:hover {
   bottom: -19px;
   right: 267px;
   background-image: url("../../Textures/gui/bevel/Hitpoints.png");
-  background-repeat: no-repeat;
 }
 
 #ATPIconBar {
@@ -1162,12 +1161,18 @@ div::-webkit-scrollbar-thumb:hover {
 
 #mouseHoverPanel {
   position: absolute;
-  background-image: url("../../Textures/gui/bevel/mouseHoverBg.png");
+  background-color: #0021248f;
+  border: 0.5px;
+  border-color: #11ffd5ff;
+  border-style: solid;
+  border-radius: 5px;
   top: 5px;
   right: 5px;
   width: 300px;
-  height: 210px;
-  padding-left: 3px;
+  min-height: 100px;
+  height: auto;
+  padding-left: 10px;
+  padding-right: 3px;
   padding-top: 10px;
   background-repeat: no-repeat;
 }
