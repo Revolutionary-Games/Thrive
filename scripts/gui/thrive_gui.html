@@ -404,11 +404,9 @@ For this Release if your population (top tab) drops to zero you go extinct.
              style="position: relative; width: 100%; height: 100%;"></div>
 
         <div id="microbeEditorLeftPanel" class="Panel">
-	      <div id="StructurePanelTop"><div id="StructureTitle">STRUCTURE</div></div>
-	      <div id="AppearanceButton" class="DisabledButton">
-            <div id="AppearanceTitle">APPEARANCE</div></div>
-	      <div id="BehaviorButton" class="DisabledButton">
-            <div id="BehaviorTitle">BEHAVIOR</div></div>
+	      <div id="StructurePanelTop" class="CellTabButton">STRUCTURE</div>
+	      <div id="AppearanceButton" class="CellTabButton">APPEARANCE</div>
+	      <div id="BehaviorButton" class="CellTabButton">BEHAVIOR</div>
 	      <div id="StructurePanelMid">
 	        <div class="OrganelleListTitle">STRUCTURAL ORGANELLES</div>
 	        <table class="OrganelleTable"><tr>
@@ -729,6 +727,34 @@ For this Release if your population (top tab) drops to zero you go extinct.
 			      <div id="BioluminescentIcon"></div>Bioluminescent Vacuole<br>N/A MP</td>
 	        </tr></table>
 	      </div>
+        <div id="AppearancePanelMid">
+          <div class="OrganelleListTitle">MEMBRANE TYPES</div>
+          <table class="OrganelleTable">
+            <tr>
+              <td id="setMembraneMembrane" class="OrganelleListItem">
+                <div id="CytoplasmIcon"></div>
+                Normal<br>50 MP
+              </td>
+              <td id="setMembraneWall" class="OrganelleListItem">
+               <div id="CytoplasmIcon"></div>
+                Wall<br>50 MP
+              </td>
+              <td id="setMembraneChitin" class="OrganelleListItem">
+                <div id="CytoplasmIcon"></div>
+                Chitin<br>50 MP
+              </td>
+            </tr><tr>
+              <td id="setMembraneDouble" class="OrganelleListItem">
+                <div id="CytoplasmIcon"></div>
+                Double<br>50 MP
+              </td>
+            </tr>
+          </table>
+          <div class="OrganelleListTitle">COLOUR</div>
+          <div id="ColourWheel"></div>
+          <div id="ColourDisplay"></div>
+          <div id="ValueBar"></div>
+        </div>
         </div>
         <!-- end of left panel -->
 	    <!-- Edit tools -->
@@ -817,7 +843,7 @@ For this Release if your population (top tab) drops to zero you go extinct.
 	    <div id="infoBarLeft" class="Panel"></div>
 		<div id="infoBarCentreEditor" class="Panel">
 		  <div id="species">SPECIES <div id="speciesNameBox" class="TextBox">
-              <span id="speciesName">Primum Thrivieum</span></div></div>
+              <input id="speciesName" type="text" value="Genus Epithet"></div></div>
 		<div id="generation">GENERATION <span id="generationLabel">N/A</span></div>
 		<div id="speed">SPEED <span id="speedLabel">2.0</span></div>
 		<div id="size">SIZE <span id="sizeLabel">N/A</span></div>

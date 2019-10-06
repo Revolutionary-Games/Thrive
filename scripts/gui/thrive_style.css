@@ -987,6 +987,14 @@ div::-webkit-scrollbar-thumb:hover {
   margin-left: 10px;
 }
 
+#speciesName {
+  border: none;
+  background: none;
+  font-size: 12pt;
+  color: white;
+  font-family: "Jura";
+}
+
 .TextBox {
   display: inline-block;
   height: 26px;
@@ -1246,7 +1254,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 
 
-#StructurePanelTop {
+/* #StructurePanelTop {
   display: inline-block;
   position: relative;
   width: 120px;
@@ -1291,9 +1299,45 @@ div::-webkit-scrollbar-thumb:hover {
   z-index: -1;
   padding: 0;
   margin: 0;
+} */
+
+.CellTabButton {
+  font-size: 12pt;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+  display: inline-flex;
+  align-items: center;
+  height: 5%;
+  padding-left: 0px;
+  padding-right: 0px;
+  border: 3px solid rgb(112, 159, 159, 0.6);
+  background: rgb(0, 125, 125, 0.2);
+}
+
+.CellTabButton:hover {
+  background: rgb(0, 125, 125, 0.6);
+}
+
+.CellTabButton.Active {
+  background: rgba(89, 210, 255, 0.7);
+}
+
+.CellTabButton.Active:hover {
+  background: rgba(89, 210, 255, 0.7);
 }
 
 #StructurePanelMid {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 360px;
+  height: calc(100% - 40px);
+  background-image: url("../../Textures/gui/bevel/EditPanelMid.png");
+  overflow-y: scroll;
+}
+
+#AppearancePanelMid {
   position: relative;
   top: 0;
   left: 0;
@@ -1641,6 +1685,39 @@ div::-webkit-scrollbar-thumb:hover {
 .tdesc {
   color: #d3d3d3;
   font-size: 85%;
+}
+
+#ColourWheel {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  left: 15px;
+  top: 350px;
+  border-radius: 50%;
+  background-size: 200px 200px;
+  background-image: url("../../Textures/gui/colour_wheel.png");
+}
+
+#ColourDisplay {
+  position: absolute;
+  width: 10px;
+  height: 30px;
+  left: 0px;
+  top: 435px;
+  border-radius: 10%;
+  background-size: 10px 30px;
+  background-color: rgb(255, 255, 255);
+}
+
+#ValueBar {
+  position: absolute;
+  width: 20px;
+  height: 200px;
+  left: 220px;
+  top: 350px;
+  border-radius: 10%;
+  background-size: 20px 200px;
+  background-image: linear-gradient(white, black);
 }
 
 #debugOverlay {

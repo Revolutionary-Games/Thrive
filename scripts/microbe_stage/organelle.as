@@ -338,7 +338,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
         if(model !is null && IsInGraphicalMode()){
 
-            updateMaterialTint(model.Material, calculateHSLForOrganelle(this.speciesColour));
+            updateMaterialTint(model.Material, calculateHSLForOrganelle(this.species.colour));
         }
 
         _needsColourUpdate = false;
@@ -532,16 +532,10 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
         microbeEntity = microbe;
 
-        bool bacteria = false;
-
         // This should be the only species check any organelle ever makes.
         // TODO: Species is now a reference counted type and it should be safe to
         // store a handle to it now.
-        auto species = MicrobeOperations::getSpecies(world, microbeEntity);
-        if (species !is null){
-            this.speciesColour = species.colour;
-            bacteria = species.isBacteria;
-        }
+        @this.species = MicrobeOperations::getSpecies(world, microbeEntity);
 
         // Our coordinates are already set when this is called
         // so just cache this
@@ -550,7 +544,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         float hexSize = HEX_SIZE;
 
         // Scale the hex size down for bacteria
-        if(bacteria)
+        if(this.species.isBacteria)
             hexSize /= 2.f;
 
         assert(organelleEntity == NULL_OBJECT, "PlacedOrganelle already had an entity");
@@ -589,7 +583,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
             if(organelle.mesh != ""){
                 auto model = world.Create_Model(organelleEntity, organelle.mesh,
                     getOrganelleMaterialWithTexture(organelle.texture,
-                        calculateHSLForOrganelle(this.speciesColour)));
+                        calculateHSLForOrganelle(this.species.colour)));
             }
         }
 
@@ -604,7 +598,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
             Float3 translation = Hex::axialToCartesian(hex.q, hex.r) + this.cartesianPosition;
 
             // Scale for bacteria physics. This might be pretty expensive to be in this loop...
-            if(bacteria)
+            if(this.species.isBacteria)
                 translation /= 2.f;
 
             PhysicsShape@ hexCollision = world.GetPhysicalWorld().CreateSphere(hexSize * 2);
@@ -725,12 +719,10 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
     ObjectID microbeEntity = NULL_OBJECT;
     ObjectID organelleEntity = NULL_OBJECT;
+    Species@ species;
 
     // This is the world in which the entities for this organelle exists
     CellStageWorld@ world;
-
-    // Target colour for this
-    Float4 speciesColour = Float4(0.0f, 0.0f, 0.0f, 0.0f);
 
     PlacedOrganelle@ sisterOrganelle = null;
 

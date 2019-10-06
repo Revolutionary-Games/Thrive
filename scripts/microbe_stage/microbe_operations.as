@@ -32,7 +32,7 @@ MicrobeComponent@ getMicrobeComponent(CellStageWorld@ world, ObjectID microbeEnt
 Species@ getSpecies(CellStageWorld@ world, ObjectID microbeEntity)
 {
     MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
-    return getSpecies(world, microbeComponent.speciesName);
+    return getSpecies(world, microbeComponent.species.name);
 }
 
 MicrobeComponent@ getPlayerMicrobe(CellStageWorld@ world)
@@ -638,9 +638,8 @@ void flashMembraneColour(CellStageWorld@ world, ObjectID microbeEntity, uint dur
 void applyMembraneColour(CellStageWorld@ world, ObjectID microbeEntity)
 {
     MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
-    auto speciesColour = microbeComponent.speciesColour;
     auto membraneComponent = world.GetComponent_MembraneComponent(microbeEntity);
-    membraneComponent.setColour(speciesColour);
+    membraneComponent.setColour(microbeComponent.species.colour);
 }
 
 
@@ -690,7 +689,7 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
                 maxR=maxR+(-organelle.r);
             }
         }
-        if (microbeComponent.isBacteria){
+        if (microbeComponent.species.isBacteria){
             maxR/=2;
         }
 
@@ -716,7 +715,7 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         auto xnew = -(membraneCoords.X) * c + (membraneCoords.Z+maxR*ourHex) * s;
         auto ynew = (membraneCoords.X)* s + (membraneCoords.Z+maxR*ourHex) * c;
 
-        if (microbeComponent.isBacteria){
+        if (microbeComponent.species.isBacteria){
             xnew/=1.8;
             ynew/=1.8;
         }
@@ -731,7 +730,7 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         {
             playSoundWithDistance(world, "Data/Sound/soundeffects/microbe-release-toxin.ogg",microbeEntity);
             createAgentCloud(world, compoundId, cellPosition._Position+Float3(xnew,0,ynew),
-                    direction, amountToEject, lifeTime, microbeComponent.speciesName, microbeEntity);
+                    direction, amountToEject, lifeTime, microbeComponent.species.name, microbeEntity);
 
 
             // The cooldown time is inversely proportional to the amount of agent vacuoles.
@@ -1094,7 +1093,7 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
                 0, GetEngine().GetRandom().GetNumber(0.0f, 1.0f) * 2 - 1);
 
             createAgentCloud(world, compoundId, position._Position, direction, ejectedAmount,
-                2000, microbeComponent.speciesName, NULL_OBJECT);
+                2000, microbeComponent.species.name, NULL_OBJECT);
             //take oxytoxy
             takeCompound(world,microbeEntity,compoundId,ejectedAmount);
             ++createdAgents;
@@ -1162,13 +1161,13 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
                 auto model = world.Create_Model(chunkEntity, mesh,
                     getOrganelleMaterialWithTexture(
                         microbeComponent.organelles[organelleIndex].organelle.texture,
-                        microbeComponent.speciesColour));
+                        microbeComponent.species.colour));
             }
         else {
             auto model = world.Create_Model(chunkEntity, "mitochondrion.fbx",
                 getOrganelleMaterialWithTexture(
                     "mitochondrion.png",
-                    microbeComponent.speciesColour));
+                    microbeComponent.species.colour));
             }
         auto rigidBody = world.Create_Physics(chunkEntity, chunkPosition);
         auto body = rigidBody.CreatePhysicsBody(world.GetPhysicalWorld(),
@@ -1200,9 +1199,9 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
     //subtract population
     auto playerSpecies = MicrobeOperations::getSpecies(world, "Default");
     if (!microbeComponent.isPlayerMicrobe &&
-        microbeComponent.speciesName != playerSpecies.name)
+        microbeComponent.species.name != playerSpecies.name)
     {
-        auto species = getSpecies(world, microbeComponent.speciesName);
+        auto species = getSpecies(world, microbeComponent.species.name);
 
         if(species !is null)
             alterSpeciesPopulation(species, CREATURE_DEATH_POPULATION_LOSS, "death");

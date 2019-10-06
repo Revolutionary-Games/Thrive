@@ -288,17 +288,15 @@ void
 
 
     // Set the membrane material //
-    if(!coloredMaterial) {
-        auto baseMaterial = chooseMaterialByType();
+    auto baseMaterial = chooseMaterialByType();
 
-        LEVIATHAN_ASSERT(baseMaterial, "no material for membrane");
+    LEVIATHAN_ASSERT(baseMaterial, "no material for membrane");
 
-        // The baseMaterial fetch makes a new instance so this is fine
-        coloredMaterial = baseMaterial;
+    // The baseMaterial fetch makes a new instance so this is fine
+    coloredMaterial = baseMaterial;
 
-        coloredMaterial->setVec4("gTint", colour);
-        coloredMaterial->setFloat("gHealthFraction", healthFraction);
-    }
+    coloredMaterial->setVec4("gTint", colour);
+    coloredMaterial->setFloat("gHealthFraction", healthFraction);
 
     if(!m_item)
         m_item = parentComponentPos->addComponent<bs::CRenderable>();
