@@ -493,7 +493,8 @@ function updateHoverInfo(vars){
             panel.appendChild(document.createElement("br"));
             const img = document.createElement("IMG");
             let src = "../../Textures/gui/bevel/";
-            src = src + compoundData.name + ".png";
+
+            src = src + unescape( compoundData.name).replace(" ", "") + ".png";
 
             const par = document.createElement("p");
 
