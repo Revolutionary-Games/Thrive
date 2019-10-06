@@ -14,6 +14,7 @@
 #include "thrive_net_handler.h"
 #include "thrive_version.h"
 #include "thrive_world_factory.h"
+#include "simulation/star_and_planet_generator.h"
 
 
 #include <Common/DataStoring/DataStore.h>
@@ -403,6 +404,11 @@ void
 
     // Set background plane //
     m_impl->createBackgroundItem();
+
+    //create star and planet objects
+    LOG_INFO("Creating star and planet.");
+    Star star;
+    Planet planet(&star);
 
     // Create a PatchMap (it will also contain the initial species)
     LOG_INFO("Generating new PatchMap");
