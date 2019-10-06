@@ -27,19 +27,6 @@
 using namespace thrive;
 // ------------------------------------ //
 // Proxies and helpers
-PatchMap*
-    patchMapFactory()
-{
-    return new PatchMap();
-}
-
-Patch*
-    patchFactory(const std::string& name,
-        int32_t id,
-        const Biome& biomeTemplate)
-{
-    return new Patch(name, id, biomeTemplate);
-}
 
 //! This is safe to use as long as scripting module is valid
 static asITypeInfo* mapWrapperTypeInfo = nullptr;
@@ -66,13 +53,6 @@ CScriptArray*
 
     return array;
 }
-
-Species*
-    speciesFactory(const std::string& name)
-{
-    return new Species(name);
-}
-
 
 //! Wrapper for TJsonRegistry::getSize
 template<class RegistryT>
@@ -694,7 +674,7 @@ bool
     ANGELSCRIPT_REGISTER_REF_TYPE("Species", Species);
 
     if(engine->RegisterObjectBehaviour("Species", asBEHAVE_FACTORY,
-           "Species@ f(const string &in name)", asFUNCTION(speciesFactory),
+           "Species@ f(const string &in name)", asFUNCTION(Species::factory),
            asCALL_CDECL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
@@ -1574,7 +1554,7 @@ bool
     if(engine->RegisterObjectBehaviour("Patch", asBEHAVE_FACTORY,
            "Patch@ f(const string &in name, int32 id, const Biome &in "
            "biomeTemplate)",
-           asFUNCTION(patchFactory), asCALL_CDECL) < 0) {
+           asFUNCTION(Patch::factory), asCALL_CDECL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
@@ -1654,7 +1634,7 @@ bool
     ANGELSCRIPT_REGISTER_REF_TYPE("PatchMap", PatchMap);
 
     if(engine->RegisterObjectBehaviour("PatchMap", asBEHAVE_FACTORY,
-           "PatchMap@ f()", asFUNCTION(patchMapFactory), asCALL_CDECL) < 0) {
+           "PatchMap@ f()", asFUNCTION(PatchMap::factory), asCALL_CDECL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
