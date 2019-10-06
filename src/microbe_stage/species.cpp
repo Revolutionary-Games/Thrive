@@ -83,3 +83,9 @@ Json::Value
 
     return result;
 }
+// ------------------------------------ //
+Species*
+    Species::factory(const std::string& name)
+{
+    return new Species(name);
+}
