@@ -74,7 +74,7 @@ void
             compound["name"] = SimulationParameters::compoundRegistry
                                    .getTypeData(std::get<0>(tuple))
                                    .displayName;
-            compound["quantity"] = std::to_string(std::get<1>(tuple));
+            compound["quantity"] = std::get<1>(tuple);
             compoundsJson.append(compound);
         }
 
