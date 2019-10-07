@@ -54,7 +54,6 @@ body {
   margin: 0;
 }
 
-
 /* button{
     background-color: blue;
 } */
@@ -66,7 +65,6 @@ video {
   height: 100%;
   display: flex;
 }
-
 
 /* scrollbar style */
 div::-webkit-scrollbar {
@@ -85,13 +83,11 @@ div::-webkit-scrollbar-thumb:hover {
   background: rgba(89, 210, 255, 0.7);
 }
 
-
 /* Common quick classes */
 .Centered {
   text-align: center;
   vertical-align: middle;
 }
-
 
 /* Centered fullscreen container */
 .FullScreen {
@@ -108,7 +104,6 @@ div::-webkit-scrollbar-thumb:hover {
   background: black;
   overflow: hidden;
 }
-
 
 /* Bars */
 .Bar {
@@ -184,7 +179,6 @@ div::-webkit-scrollbar-thumb:hover {
   line-height: 0;
   font-size: 10pt;
 }
-
 
 /* Menu things */
 .MenuContainer {
@@ -386,7 +380,6 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/MenuDisabled.png");
 }
 
-
 /* Background planet and logo */
 .BackgroundMenu {
   background-image: url("../../Textures/gui/BG_Menu02.png");
@@ -420,11 +413,9 @@ div::-webkit-scrollbar-thumb:hover {
   background-position: center;
 }
 
-
 /* Cell stage things */
 
 /* Any type of panel like the bottom bar and health window */
-
 
 /* .Panel{
     background-color: rgb(0, 125, 125, 0.4);
@@ -1031,14 +1022,6 @@ div::-webkit-scrollbar-thumb:hover {
   height: 25px;
   display: block;
 }
-
-/* #shapePhosphate {
-  transform: scaleY(-1);
-}
-
-#pho {
-  transform: scaleY(-1);
-} */
 
 .population {
   position: absolute;
