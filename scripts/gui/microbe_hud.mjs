@@ -642,6 +642,7 @@ function hideWinText(){
 
 function onCompressPanelClicked(panelToChange, dataToChange) {
 
+    $("#Panels").animate({height: $("#Panels").height() - dataToChange.height + "px"}, 300);
 
     panelToChange.style.backgroundImage = dataToChange.background;
     panelToChange.style.height = panelToChange.offsetHeight - dataToChange.height + "px";
@@ -681,6 +682,9 @@ function onCompressPanelClicked(panelToChange, dataToChange) {
 
 //! Expand panel function
 function onExpandPanelClicked(panelToChange, dataToChange) {
+
+
+    $("#Panels").animate({height: $("#Panels").height() + dataToChange.height + "px"}, 300);
 
     // Change buttons status
     panelToChange.querySelector(".compressPanel").style.backgroundImage =
