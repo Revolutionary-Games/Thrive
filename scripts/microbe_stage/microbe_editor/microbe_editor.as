@@ -1220,6 +1220,7 @@ class MicrobeEditor{
             LOG_INFO("MicrobeEditor: Player species colour is now RGB: " + playerSpecies.colour.X + " " + playerSpecies.colour.Y + " " + playerSpecies.colour.Z);
             membraneComponent.setColour(colour);
             membraneComponent.clear();
+            @cast<MicrobeComponent>(world.GetScriptComponentHolder("MicrobeComponent").Find(player)).species = playerSpecies;
 
             return 1;
         } else if (type == "SymmetryClicked"){
