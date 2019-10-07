@@ -11,10 +11,10 @@
 #include "microbe_stage/microbe_editor_key_handler.h"
 #include "microbe_stage/simulation_parameters.h"
 #include "scripting/script_initializer.h"
+#include "simulation/star_and_planet_generator.h"
 #include "thrive_net_handler.h"
 #include "thrive_version.h"
 #include "thrive_world_factory.h"
-#include "simulation/star_and_planet_generator.h"
 
 
 #include <Common/DataStoring/DataStore.h>
@@ -405,10 +405,12 @@ void
     // Set background plane //
     m_impl->createBackgroundItem();
 
-    //create star and planet objects
+    // create star and planet objects
     LOG_INFO("Creating star and planet.");
     Star star;
     Planet planet(&star);
+    star.printVerbose();
+    planet.printVerbose();
 
     // Create a PatchMap (it will also contain the initial species)
     LOG_INFO("Generating new PatchMap");
