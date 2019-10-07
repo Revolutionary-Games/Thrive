@@ -66,13 +66,11 @@ void
 
     } else {
 
-        Json::Value compoundsJson;
+        Json::Value compoundsJson(Json::arrayValue);
 
         for(const auto& tuple : compounds) {
 
             Json::Value compound;
-            Json::Value quantity;
-            Json::Value name;
             compound["name"] = SimulationParameters::compoundRegistry
                                    .getTypeData(std::get<0>(tuple))
                                    .displayName;

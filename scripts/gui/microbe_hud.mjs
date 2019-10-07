@@ -61,8 +61,6 @@ export function runMicrobeHUDSetup(){
                     panelToChange.classList.add("Compress");
                     panelToChange.classList.remove("Expand");
                     onCompressPanelClicked(panelToChange);
-                } else {
-                    alert("ALREADY COMPRESS");
                 }
             }, true);
     }
@@ -78,8 +76,6 @@ export function runMicrobeHUDSetup(){
                     panelToChange.classList.add("Expand");
                     panelToChange.classList.remove("Compress");
                     onExpandPanelClicked(panelToChange);
-                } else {
-                    alert("ALREADY EXPAND");
                 }
             }, true);
     }
@@ -330,7 +326,6 @@ function onMenuClicked(){
     common.playButtonPressSound();
     document.getElementById("mainMenuButton").classList.add("MainMenuActive");
     document.getElementById("mainMenuButton").classList.remove("MainMenuNormal");
-    "url('../../Textures/gui/bevel/MainMenuActive.png')";
     const pause = document.getElementById("pauseOverlay");
     pause.style.display = "block";
     const help = document.getElementById("helpText");
@@ -460,7 +455,7 @@ function updateHoverInfo(vars){
         let objCompoundsData = null;
 
 
-
+        // Compounds data are store in json format, so we need parse it
         if(typeof vars.compounds === "string" || vars.compounds instanceof String){
             try{
                 objCompoundsData = JSON.parse(vars.compounds);
@@ -471,9 +466,6 @@ function updateHoverInfo(vars){
         } else {
             objCompoundsData = vars.compounds;
         }
-
-        // Compounds data are store in json format, so we need parse it
-        objCompoundsData = JSON.parse(vars.compounds);
 
         mainContent.innerHTML = "At cursor:";
         panel.appendChild(mainContent);
@@ -491,10 +483,10 @@ function updateHoverInfo(vars){
         objCompoundsData.forEach(function(compoundData){
             // Line breaks between elements
             panel.appendChild(document.createElement("br"));
-            const img = document.createElement("IMG");
+            const img = document.createElement("img");
             let src = "../../Textures/gui/bevel/";
 
-            src = src + unescape( compoundData.name).replace(" ", "") + ".png";
+            src = src + compoundData.name.replace(/\s/g, "") + ".png";
 
             const par = document.createElement("p");
 
@@ -506,6 +498,7 @@ function updateHoverInfo(vars){
             img.setAttribute("width", "25");
             img.setAttribute("height", "25");
             par.appendChild(img);
+            par.appendChild(document.createTextNode("  " + compoundData.name + ": "));
             const parText = document.createTextNode("" + compoundData.quantity);
             par.appendChild(parText);
             panel.appendChild(par);
@@ -724,8 +717,6 @@ function onExpandPanelClicked(panelToChange) {
 //! Updates the GUI bars
 //! values needs to be an object with properties set with values for everything
 function updateMicrobeHUDBars(values){
-    let progress = 0;
-
     // The bars
     document.getElementById("microbeHUDPlayerHitpoints").textContent =
         values.hitpoints;
@@ -748,7 +739,8 @@ function updateMicrobeHUDBars(values){
 
     for(const circle of circles) {
 
-        progress = 100 - valueAtp;
+        let progress = 100 - valueAtp;
+
         if(valueAtp < 2.5) {
             circle.querySelector("#shapeAtp").style["stroke-dashoffset"] = 192.042;
         } else {

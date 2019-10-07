@@ -1,7 +1,6 @@
 /* Thrive stylesheet */
 
 /* Fonts */
-
 @font-face {
   font-family: "thrive";
   src: url("../../Fonts/thrive.ttf") format("truetype");
@@ -38,7 +37,6 @@
 }
 
 /* Element styling */
-
 html {
   width: 100%;
   height: 100%;
@@ -63,7 +61,6 @@ body {
 
 
 /* Videos are centered inside their elements and made to fit */
-
 video {
   width: 100%;
   height: 100%;
@@ -72,7 +69,6 @@ video {
 
 
 /* scrollbar style */
-
 div::-webkit-scrollbar {
   width: 15px;
 }
@@ -91,7 +87,6 @@ div::-webkit-scrollbar-thumb:hover {
 
 
 /* Common quick classes */
-
 .Centered {
   text-align: center;
   vertical-align: middle;
@@ -99,7 +94,6 @@ div::-webkit-scrollbar-thumb:hover {
 
 
 /* Centered fullscreen container */
-
 .FullScreen {
   position: absolute;
   width: 100%;
@@ -117,7 +111,6 @@ div::-webkit-scrollbar-thumb:hover {
 
 
 /* Bars */
-
 .Bar {
   display: block;
   position: relative;
@@ -194,7 +187,6 @@ div::-webkit-scrollbar-thumb:hover {
 
 
 /* Menu things */
-
 .MenuContainer {
   display: flex;
   justify-content: center;
@@ -396,7 +388,6 @@ div::-webkit-scrollbar-thumb:hover {
 
 
 /* Background planet and logo */
-
 .BackgroundMenu {
   background-image: url("../../Textures/gui/BG_Menu02.png");
   background-size: cover;
@@ -431,7 +422,6 @@ div::-webkit-scrollbar-thumb:hover {
 
 
 /* Cell stage things */
-
 
 /* Any type of panel like the bottom bar and health window */
 
@@ -1603,7 +1593,6 @@ div::-webkit-scrollbar-thumb:hover {
 
 
 /* Regular tooltip text aside from the header. */
-
 .tooltiptext {
   visibility: hidden;
   width: 400px;
@@ -1671,7 +1660,6 @@ div::-webkit-scrollbar-thumb:hover {
 
 
 /* Used to place the vacuole's icon inside tooltips as an icon for storage. */
-
 #VacuoleTooltipIcon {
   background-image: url("../../Textures/gui/bevel/VacuoleIcon.png");
 }
@@ -1714,7 +1702,6 @@ div::-webkit-scrollbar-thumb:hover {
 
 
 /* Used to place the flagellum's icon inside tooltips as an icon for storage. */
-
 #FlagellumTooltipIcon {
   background-image: url("../../Textures/gui/bevel/FlagellumIcon.png");
 }
@@ -1784,7 +1771,6 @@ div::-webkit-scrollbar-thumb:hover {
 
 
 /* Used in formulas in tooltips. */
-
 #WhiteArrow {
   background-image: url("../../Textures/gui/bevel/WhiteArrow.png");
 }
@@ -1803,7 +1789,6 @@ div::-webkit-scrollbar-thumb:hover {
 
 
 /* Used for the headers of tooltips. */
-
 .thead {
   color: white;
   font-size: 150%;
@@ -1813,7 +1798,6 @@ div::-webkit-scrollbar-thumb:hover {
 
 
 /* Used everytime an input or output is mentioned in the initial blurb of the tooltip. */
-
 .tkey {
   color: white;
   font-size: 100%;
@@ -1822,7 +1806,6 @@ div::-webkit-scrollbar-thumb:hover {
 
 
 /* Used for formula names in tooltips. */
-
 .tgold {
   color: #ffd700;
   font-size: 100%;
@@ -1831,7 +1814,6 @@ div::-webkit-scrollbar-thumb:hover {
 
 
 /* Used for highlighting beneficial values. */
-
 .tbonus {
   color: #0f0;
   font-size: 100%;
@@ -1849,7 +1831,6 @@ div::-webkit-scrollbar-thumb:hover {
 
 
 /* Used for the regular text in the initial blurb. */
-
 .tbody {
   color: #d3d3d3;
   font-size: 100%;
@@ -1857,7 +1838,6 @@ div::-webkit-scrollbar-thumb:hover {
 
 
 /* Used for the scientific description text in the final blurb. */
-
 .tdesc {
   color: #d3d3d3;
   font-size: 85%;
@@ -1928,7 +1908,6 @@ div::-webkit-scrollbar-thumb:hover {
 
 
 /* Patch classes */
-
 .PatchContainer {
   display: inline-block;
   position: absolute;
