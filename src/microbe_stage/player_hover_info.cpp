@@ -18,6 +18,13 @@
 
 using namespace thrive;
 
+PlayerHoverInfoSystem::PlayerHoverInfoSystem()
+{
+    Json::StreamWriterBuilder builder;
+    builder["indentation"] = "";
+    writer = std::unique_ptr<Json::StreamWriter>(builder.newStreamWriter());
+}
+
 void
     PlayerHoverInfoSystem::Run(CellStageWorld& world)
 {
@@ -79,11 +86,6 @@ void
         }
 
         std::stringstream sstream;
-
-        Json::StreamWriterBuilder builder;
-        builder["indentation"] = "";
-        std::unique_ptr<Json::StreamWriter> writer(builder.newStreamWriter());
-
         writer->write(compoundsJson, &sstream);
 
         vars->Add(std::make_shared<NamedVariableList>(
