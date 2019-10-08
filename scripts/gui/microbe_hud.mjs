@@ -299,8 +299,8 @@ function onCompoundPanelClicked() {
     $("#compoundsPanel").animate({"width": "toggle"});
     $("#agentsPanel").animate({"width": "toggle"});
 
-    document.getElementById("compoundsButton").classList.toggleClass("active");
-    document.getElementById("compoundsButton").classList.toggleClass("inactive");
+    document.getElementById("compoundsButton").classList.toggle("active");
+    document.getElementById("compoundsButton").classList.toggle("inactive");
 }
 
 function openHelp() {
