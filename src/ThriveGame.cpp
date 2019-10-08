@@ -411,6 +411,8 @@ void
     Planet planet(&star);
     star.printVerbose();
     planet.printVerbose();
+    auto planetJson = planet.toJSONString();
+    LOG_INFO("planetJson \n" + planetJson);
 
     // Create a PatchMap (it will also contain the initial species)
     LOG_INFO("Generating new PatchMap");

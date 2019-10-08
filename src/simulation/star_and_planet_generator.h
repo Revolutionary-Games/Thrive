@@ -110,8 +110,8 @@ public:
     void
         update();
 
-    Json::Value
-        toJSON() const;
+    std::string
+        toJSONString() const;
 
 private:
     void
@@ -148,4 +148,7 @@ private:
         attenuationParameter(char gas);
     void
         computeLightFilter();
+
+    Json::Value
+        toJSON() const;
 };

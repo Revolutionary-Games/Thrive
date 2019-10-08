@@ -607,10 +607,8 @@ void
 {
     // these would all be replaced with log info's
     LOG_INFO("Info about the current planet.");
-    LOG_INFO("Orbiting star with mass: " +
-             Convert::ToString(orbitingStar->starMass));
-    LOG_INFO("OrbitalRadius: " + Convert::ToString(orbitalRadius));
-    LOG_INFO("PlanetRadius: " + Convert::ToString(planetRadius));
+    LOG_INFO("OrbitalRadius: " + Convert::ToString(orbitalRadius) + "m");
+    LOG_INFO("PlanetRadius: " + Convert::ToString(planetRadius) + "m.");
     LOG_INFO("Planet Mass = " + Convert::ToString(planetMass) + " kg.");
     LOG_INFO(
         "Planet Orbital Period = " + Convert::ToString(planetOrbitalPeriod) +
@@ -619,6 +617,7 @@ void
     LOG_INFO("Mass of atmosphere : " + Convert::ToString(atmosphereMass) +
              ", Mass of Ocean : " + Convert::ToString(oceanMass) +
              ", Mass of Lithosphere : " + Convert::ToString(lithosphereMass) +
+             ", Mass of Atmosphere : " + Convert::ToString(atmosphereMass) +
              " kg.");
     LOG_INFO("Water : " + Convert::ToString(atmosphereWater) +
              ", Oxygen : " + Convert::ToString(atmosphereOxygen) +
@@ -661,34 +660,57 @@ Json::Value
     Json::Value stellarSpectrumJ(Json::ValueType::arrayValue);
     for(auto spectrum : orbitingStar->stellarSpectrum)
         stellarSpectrumJ.append(spectrum);
-
-    result["stellarSpectrum"] = stellarSpectrumJ;
+    star["stellarSpectrum"] = stellarSpectrumJ;
 
     Json::Value habitabilityScoreJ(Json::ValueType::arrayValue);
     for(auto habitability : orbitingStar->habitabilityScore)
         habitabilityScoreJ.append(habitability);
+    star["habitabilityScore"] = habitabilityScoreJ;
 
-    result["habitabilityScore"] = habitabilityScoreJ;
+    result["star"] = star;
 
+    // add the planet variables
+    Json::Value planet;
+    planet["orbitalRadius"] = orbitalRadius;
+    planet["planetMass"] = planetMass;
+    planet["planetRadius"] = planetRadius;
+    planet["planetOrbitalPeriod"] = planetOrbitalPeriod;
+    planet["atmosphereMass"] = atmosphereMass;
+    planet["lithosphereMass"] = lithosphereMass;
+    planet["atmosphereMass"] = atmosphereMass;
+    planet["atmosphereWater"] = atmosphereWater;
+    planet["atmosphereOxygen"] = atmosphereOxygen;
+    planet["atmosphereNitrogen"] = atmosphereNitrogen;
+    planet["atmosphereCarbonDioxide"] = atmosphereCarbonDioxide;
+    planet["planetTemperature"] = planetTemperature;
+
+    Json::Value atmosphericFilterJ(Json::ValueType::arrayValue);
+    for(auto spectrum : atmosphericFilter)
+        atmosphericFilterJ.append(spectrum);
+    planet["atmosphericFilter"] = atmosphericFilterJ;
+
+    Json::Value terrestrialSpectrumJ(Json::ValueType::arrayValue);
+    for(auto spectrum : terrestrialSpectrum)
+        terrestrialSpectrumJ.append(spectrum);
+    planet["terrestrialSpectrum"] = terrestrialSpectrumJ;
+
+    result["planet"] = planet;
 
     return result;
 }
 
+//! convert the json object to a string.
+std::string
+    Planet::toJSONString() const
+{
+    std::stringstream sstream;
+    const Json::Value value = toJSON();
 
-/*
-int main(){
+    Json::StreamWriterBuilder builder;
+    builder["indentation"] = "";
+    std::unique_ptr<Json::StreamWriter> writer(builder.newStreamWriter());
 
-    Star star;
-    Planet planet(&star);
-    star.print();
-    planet.print();
-    star.setSol();
-    star.print();
-    star.update();
-    star.print();
-    planet.update();
-    planet.print();
-    planet.setEarth();
-    planet.print();
-    return 0;
-} */
+    writer->write(value, &sstream);
+
+    return sstream.str();
+}
