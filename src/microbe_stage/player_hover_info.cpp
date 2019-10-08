@@ -14,8 +14,6 @@
 #include <Events/EventHandler.h>
 #include <Script/ScriptTypeResolver.h>
 
-#include <iomanip>
-
 using namespace thrive;
 
 PlayerHoverInfoSystem::PlayerHoverInfoSystem()

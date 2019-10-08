@@ -18,12 +18,10 @@ class MembraneComponent;
 class PlayerHoverInfoSystem
     : public Leviathan::System<
           std::tuple<MembraneComponent&, Leviathan::Position&>> {
-
-    PlayerHoverInfoSystem::PlayerHoverInfoSystem() {}
-
 public:
+    PlayerHoverInfoSystem();
+
     static constexpr auto RUN_EVERY_MS = 100;
-    std::unique_ptr<Json::StreamWriter> writer;
 
     void
         Run(CellStageWorld& world);
@@ -54,5 +52,6 @@ public:
 private:
     // Used to run every RUN_EVERY_MS
     int passed = 0;
+    std::unique_ptr<Json::StreamWriter> writer;
 };
 } // namespace thrive
