@@ -2,6 +2,7 @@
 
 #include <array>
 #include <json/json.h>
+#include <memory>
 
 #define LENGTH_OF_ARRAYS 50
 #define NUMBER_OF_TESTS 100 // number of different planetary locations to test
@@ -75,7 +76,7 @@ class Planet { // : public Leviathan::PerWorldData{
 
 public:
     // planet properties
-    Star* orbitingStar;
+    std::shared_ptr<Star> orbitingStar;
     double orbitalRadius;
     double planetRadius;
     double planetMass;
@@ -91,7 +92,7 @@ public:
     std::array<double, LENGTH_OF_ARRAYS> terrestrialSpectrum;
     double planetTemperature;
 
-    Planet(Star* star)
+    Planet(std::shared_ptr<Star> star)
     {
         orbitingStar = star;
         generatePropertiesOrbitalRadius(0);

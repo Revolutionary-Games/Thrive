@@ -175,6 +175,10 @@ public:
     std::shared_ptr<CellStageWorld> m_cellStage;
     std::shared_ptr<MicrobeEditorWorld> m_microbeEditor;
 
+    //! Star and planet Objects
+    std::shared_ptr<Star> m_star;
+    std::shared_ptr<Planet> m_planet;
+
     //! This is the background object of the cell stage
     bs::HMesh m_microbeBackgroundMesh;
 
@@ -407,11 +411,13 @@ void
 
     // create star and planet objects
     LOG_INFO("Creating star and planet.");
-    Star star;
-    Planet planet(&star);
-    star.printVerbose();
-    planet.printVerbose();
-    auto planetJson = planet.toJSONString();
+    auto m_star = std::make_shared<Star>();
+    auto m_planet = std::make_shared<Planet>(m_star);
+
+    // test star and planet implementation
+    m_star->printVerbose();
+    m_planet->printVerbose();
+    auto planetJson = m_planet->toJSONString();
     LOG_INFO("planetJson \n" + planetJson);
 
     // Create a PatchMap (it will also contain the initial species)
