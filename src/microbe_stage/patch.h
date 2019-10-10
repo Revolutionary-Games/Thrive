@@ -21,8 +21,13 @@ public:
         int population = 0;
     };
 
-public:
+protected:
+    // These are protected for only constructing properly reference
+    // counted instances through MakeShared
+    friend ReferenceCounted;
     Patch(const std::string& name, int32_t id, const Biome& biomeTemplate);
+
+public:
     virtual ~Patch() = default;
 
     //! \brief Adds a connection to patch with id
@@ -140,6 +145,12 @@ public:
         return screenCoordinates;
     }
 
+    //! Factory for scripts
+    static Patch*
+        factory(const std::string& name,
+            int32_t id,
+            const Biome& biomeTemplate);
+
     REFERENCE_COUNTED_PTR_TYPE(Patch);
 
 private:
@@ -168,8 +179,13 @@ private:
 
 //! A mesh of connected Patches
 class PatchMap : public Leviathan::ReferenceCounted {
-public:
+protected:
+    // These are protected for only constructing properly reference
+    // counted instances through MakeShared
+    friend ReferenceCounted;
     PatchMap() = default;
+
+public:
     ~PatchMap() = default;
 
     //! \brief Adds a new patch to the map
@@ -270,6 +286,10 @@ public:
 
     CScriptArray*
         getPatchesWrapper() const;
+
+    //! Factory for scripts
+    static PatchMap*
+        factory();
 
     REFERENCE_COUNTED_PTR_TYPE(PatchMap);
 
