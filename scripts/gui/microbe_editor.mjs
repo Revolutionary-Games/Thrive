@@ -322,6 +322,7 @@ export function setupMicrobeEditor(){
             colour.b = vars.colour_b;
             colour.value = valueFromRGB(colour);
             updateColourDisplay(colour);
+            updateValueBar(colour);
         });
 
         // Event for detecting the current membrane
@@ -336,6 +337,7 @@ export function setupMicrobeEditor(){
             colour.b = vars.colour_b;
             colour.value = valueFromRGB(colour);
             updateColourDisplay(colour);
+            updateValueBar(colour);
         });
 
     } else {
@@ -513,10 +515,7 @@ function hsvToRGB(hsv){
 }
 
 function valueFromRGB(rgb){
-    let r = rgb.r / 255.0;
-    let g = rgb.g / 255.0;
-    let b = rgb.b / 255.0;
-    return r > g && r > b ? r : (g > b ? g : b);
+    return (rgb.r > rgb.g && rgb.r > rgb.b ? rgb.r : (rgb.g > rgb.b ? rgb.g : rgb.b)) / 255.0;
 }
 
 function onColourWheelClicked(event){
@@ -525,6 +524,7 @@ function onColourWheelClicked(event){
     let y = event.clientY - rect.top;
     colour = hsvToRGB(xyToHSV(x, y));
     updateColourDisplay(colour);
+    updateValueBar(colour);
     if(common.isInEngine())
         Leviathan.CallGenericEvent("MicrobeEditorColourSelected", {r: colour.r, g: colour.g, b: colour.b});
     event.stopPropagation();
@@ -534,8 +534,7 @@ function onValueBarClicked(event){
     let rect = event.target.getBoundingClientRect();
     let y = event.clientY - rect.top;
     colour.value = Math.min(Math.max((200 - y) / 200.0, 0), 1);
-    let v = valueFromRGB(colour);
-    let div = v / colour.value;
+    let div = valueFromRGB(colour) / colour.value;
     colour.r = Math.round(colour.r / div);
     colour.g = Math.round(colour.g / div);
     colour.b = Math.round(colour.b / div);
@@ -547,6 +546,14 @@ function onValueBarClicked(event){
 
 function updateColourDisplay(colour){
     document.getElementById("ColourDisplay").style.backgroundColor = "rgb(" + colour.r + "," + colour.g + "," + colour.b + ")";
+}
+
+function updateValueBar(rgb){
+    let div = valueFromRGB(rgb);
+    let r = Math.round(rgb.r / div);
+    let g = Math.round(rgb.g / div);
+    let b = Math.round(rgb.b / div);
+    document.getElementById("ValueBar").style.backgroundImage = "linear-gradient(rgb(" + r + "," + g + "," + b + "),black)";
 }
 
 // Undo
