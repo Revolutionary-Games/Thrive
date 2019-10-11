@@ -1221,7 +1221,7 @@ class MicrobeEditor{
             membraneComponent.setColour(colour);
             membraneComponent.clear();
             MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(world.GetScriptComponentHolder("MicrobeComponent").Find(player));
-            
+
             if(@microbeComponent.species != @playerSpecies)
                 LOG_WARNING("MicrobeEditor: @microbeComponent.species != @playerSpecies");
                 @microbeComponent.species = playerSpecies;

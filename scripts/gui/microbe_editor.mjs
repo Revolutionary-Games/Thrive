@@ -237,7 +237,8 @@ export function setupMicrobeEditor(){
         }, true);
     }
 
-    document.getElementById("ColourWheel").addEventListener("click", onColourWheelClicked, true);
+    document.getElementById("ColourWheel").addEventListener("click",
+        onColourWheelClicked, true);
     document.getElementById("ValueBar").addEventListener("click", onValueBarClicked, true);
 
     if(common.isInEngine()){
@@ -473,39 +474,66 @@ function selectCellTab(tab){
 
 function xyToHSV(x, y){
     // Colour wheel is 200x200px
-	let cx = 100; // width / 2
-	let cy = 100; // height / 2
-	let rx = x - cx;
-	let ry = y - cy;
-	let dist = Math.sqrt(rx**2 + ry**2);
-	let scaledDist = dist / 80; // 80 was (0.4 * width)
-	let angle = Math.atan2(ry, rx);
-	let scaledAngle = (angle + Math.PI) / (2 * Math.PI);
-	return {
-		h: scaledAngle,
-		s: scaledDist,
-		v: colour.value
-	};
+    const cx = 100; // Width / 2
+    const cy = 100; // Height / 2
+    const rx = x - cx;
+    const ry = y - cy;
+    const dist = Math.sqrt(rx ** 2 + ry ** 2);
+    const scaledDist = dist / 80; // 80 was (0.4 * width)
+    const angle = Math.atan2(ry, rx);
+    const scaledAngle = (angle + Math.PI) / (2 * Math.PI);
+
+    return {
+        h: scaledAngle,
+        s: scaledDist,
+        v: colour.value
+    };
 }
 
 function hsvToRGB(hsv){
-    let r, g, b, i, f, p, q, t;
-    let h = hsv.h;
-    let s = hsv.s;
-    let v = hsv.v;
-    i = Math.floor(h * 6);
-    f = h * 6 - i;
-    p = v * (1 - s);
-    q = v * (1 - f * s);
-    t = v * (1 - (1 - f) * s);
+    let r = 0, g = 0, b = 0;
+    const h = hsv.h;
+    const s = hsv.s;
+    const v = hsv.v;
+    const i = Math.floor(h * 6);
+    const f = h * 6 - i;
+    const p = v * (1 - s);
+    const q = v * (1 - f * s);
+    const t = v * (1 - (1 - f) * s);
+
     switch (i % 6) {
-        case 0: r = v, g = t, b = p; break;
-        case 1: r = q, g = v, b = p; break;
-        case 2: r = p, g = v, b = t; break;
-        case 3: r = p, g = q, b = v; break;
-        case 4: r = t, g = p, b = v; break;
-        case 5: r = v, g = p, b = q; break;
+    case 0:
+        r = v;
+        g = t;
+        b = p;
+        break;
+    case 1:
+        r = q;
+        g = v;
+        b = p;
+        break;
+    case 2:
+        r = p;
+        g = v;
+        b = t;
+        break;
+    case 3:
+        r = p;
+        g = q;
+        b = v;
+        break;
+    case 4:
+        r = t;
+        g = p;
+        b = v;
+        break;
+    case 5:
+        r = v;
+        g = p;
+        b = q;
+        break;
     }
+
     return {
         r: Math.max(Math.round(r * 255), 0),
         g: Math.max(Math.round(g * 255), 0),
@@ -515,45 +543,49 @@ function hsvToRGB(hsv){
 }
 
 function valueFromRGB(rgb){
-    return (rgb.r > rgb.g && rgb.r > rgb.b ? rgb.r : (rgb.g > rgb.b ? rgb.g : rgb.b)) / 255.0;
+    return (rgb.r > rgb.g && rgb.r > rgb.b ? rgb.r : rgb.g > rgb.b ? rgb.g : rgb.b) / 255.0;
 }
 
 function onColourWheelClicked(event){
-    let rect = event.target.getBoundingClientRect();
-    let x = event.clientX - rect.left;
-    let y = event.clientY - rect.top;
+    const rect = event.target.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
     colour = hsvToRGB(xyToHSV(x, y));
     updateColourDisplay(colour);
     updateValueBar(colour);
     if(common.isInEngine())
-        Leviathan.CallGenericEvent("MicrobeEditorColourSelected", {r: colour.r, g: colour.g, b: colour.b});
+        Leviathan.CallGenericEvent("MicrobeEditorColourSelected",
+            {r: colour.r, g: colour.g, b: colour.b});
     event.stopPropagation();
 }
 
 function onValueBarClicked(event){
-    let rect = event.target.getBoundingClientRect();
-    let y = event.clientY - rect.top;
+    const rect = event.target.getBoundingClientRect();
+    const y = event.clientY - rect.top;
     colour.value = Math.min(Math.max((200 - y) / 200.0, 0), 1);
-    let div = valueFromRGB(colour) / colour.value;
+    const div = valueFromRGB(colour) / colour.value;
     colour.r = Math.round(colour.r / div);
     colour.g = Math.round(colour.g / div);
     colour.b = Math.round(colour.b / div);
     updateColourDisplay(colour);
     if(common.isInEngine())
-        Leviathan.CallGenericEvent("MicrobeEditorColourSelected", {r: colour.r, g: colour.g, b: colour.b});
+        Leviathan.CallGenericEvent("MicrobeEditorColourSelected",
+            {r: colour.r, g: colour.g, b: colour.b});
     event.stopPropagation();
 }
 
 function updateColourDisplay(colour){
-    document.getElementById("ColourDisplay").style.backgroundColor = "rgb(" + colour.r + "," + colour.g + "," + colour.b + ")";
+    document.getElementById("ColourDisplay").style.backgroundColor =
+        "rgb(" + colour.r + "," + colour.g + "," + colour.b + ")";
 }
 
 function updateValueBar(rgb){
-    let div = valueFromRGB(rgb);
-    let r = Math.round(rgb.r / div);
-    let g = Math.round(rgb.g / div);
-    let b = Math.round(rgb.b / div);
-    document.getElementById("ValueBar").style.backgroundImage = "linear-gradient(rgb(" + r + "," + g + "," + b + "),black)";
+    const div = valueFromRGB(rgb);
+    const r = Math.round(rgb.r / div);
+    const g = Math.round(rgb.g / div);
+    const b = Math.round(rgb.b / div);
+    document.getElementById("ValueBar").style.backgroundImage =
+        "linear-gradient(rgb(" + r + "," + g + "," + b + "),black)";
 }
 
 // Undo

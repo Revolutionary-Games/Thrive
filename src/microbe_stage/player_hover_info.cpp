@@ -148,7 +148,7 @@ void
             const auto** speciesHandle = static_cast<const Species**>(
                 microbeComponent->GetAddressOfProperty(0));
 
-			const Species* species = *speciesHandle;
+            const Species* species = *speciesHandle;
 
             if(species != nullptr) {
                 hovered->PushValue(
@@ -157,8 +157,9 @@ void
             } else {
 
                 // If we can't find the species, assume that it is extinct
-                hovered->PushValue(std::make_unique<VariableBlock>(
-                    new Leviathan::StringBlock("Extinct(" + species->name + ")")));
+                hovered->PushValue(
+                    std::make_unique<VariableBlock>(new Leviathan::StringBlock(
+                        "Extinct(" + species->name + ")")));
             }
         }
     }

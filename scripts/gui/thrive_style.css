@@ -1309,8 +1309,8 @@ div::-webkit-scrollbar-thumb:hover {
   display: inline-flex;
   align-items: center;
   height: 5%;
-  padding-left: 0px;
-  padding-right: 0px;
+  padding-left: 0;
+  padding-right: 0;
   border: 3px solid rgb(112, 159, 159, 0.6);
   background: rgb(0, 125, 125, 0.2);
 }
@@ -1702,7 +1702,7 @@ div::-webkit-scrollbar-thumb:hover {
   position: absolute;
   width: 10px;
   height: 30px;
-  left: 0px;
+  left: 0;
   top: 435px;
   border-radius: 10%;
   background-size: 10px 30px;
