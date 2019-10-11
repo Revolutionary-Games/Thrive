@@ -21,7 +21,12 @@ const limitMovesPerSession = true;
 // The full patch data
 let patchData = null;
 
-let value = 1;
+let colour = {
+    r: 255,
+    g: 255,
+    b: 255,
+    value: 1
+};
 
 //! These are all the organelle selection buttons
 const organelleSelectionElements = [
@@ -312,7 +317,11 @@ export function setupMicrobeEditor(){
             // Apply the new values
             document.getElementById("speciesName").value = vars.name;
             updateCurrentMembrane(vars.membrane);
-            updateColourDisplay({r: vars.colour_r, g: vars.colour_g, b: vars.colour_b});
+            colour.r = vars.colour_r;
+            colour.g = vars.colour_g;
+            colour.b = vars.colour_b;
+            colour.value = valueFromRGB(colour);
+            updateColourDisplay(colour);
         });
 
         // Event for detecting the current membrane
@@ -320,9 +329,13 @@ export function setupMicrobeEditor(){
             updateCurrentMembrane(vars.membrane);
         });
 
-         // Event for detecting the current colour
-         Leviathan.OnGeneric("MicrobeEditorColourUpdated", (event, vars) => {
-            updateColourDisplay({r: vars.r, g: vars.g, b: vars.b});
+        // Event for detecting the current colour
+        Leviathan.OnGeneric("MicrobeEditorColourUpdated", (event, vars) => {
+            colour.r = vars.colour_r;
+            colour.g = vars.colour_g;
+            colour.b = vars.colour_b;
+            colour.value = valueFromRGB(colour);
+            updateColourDisplay(colour);
         });
 
     } else {
@@ -469,13 +482,15 @@ function xyToHSV(x, y){
 	return {
 		h: scaledAngle,
 		s: scaledDist,
-		v: value
+		v: colour.value
 	};
 }
 
 function hsvToRGB(hsv){
     let r, g, b, i, f, p, q, t;
-    let h = hsv.h, s = hsv.s, v = hsv.v;
+    let h = hsv.h;
+    let s = hsv.s;
+    let v = hsv.v;
     i = Math.floor(h * 6);
     f = h * 6 - i;
     p = v * (1 - s);
@@ -492,17 +507,24 @@ function hsvToRGB(hsv){
     return {
         r: Math.max(Math.round(r * 255), 0),
         g: Math.max(Math.round(g * 255), 0),
-        b: Math.max(Math.round(b * 255), 0)
+        b: Math.max(Math.round(b * 255), 0),
+        value: v
     };
+}
+
+function valueFromRGB(rgb){
+    let r = rgb.r / 255.0;
+    let g = rgb.g / 255.0;
+    let b = rgb.b / 255.0;
+    return r > g && r > b ? r : (g > b ? g : b);
 }
 
 function onColourWheelClicked(event){
     let rect = event.target.getBoundingClientRect();
     let x = event.clientX - rect.left;
     let y = event.clientY - rect.top;
-    let colour = hsvToRGB(xyToHSV(x, y));
+    colour = hsvToRGB(xyToHSV(x, y));
     updateColourDisplay(colour);
-    console.log("Colour wheel clicked. RGB: " + colour.r.toString() + " " + colour.g.toString() + " " + colour.b.toString());
     if(common.isInEngine())
         Leviathan.CallGenericEvent("MicrobeEditorColourSelected", {r: colour.r, g: colour.g, b: colour.b});
     event.stopPropagation();
@@ -511,7 +533,16 @@ function onColourWheelClicked(event){
 function onValueBarClicked(event){
     let rect = event.target.getBoundingClientRect();
     let y = event.clientY - rect.top;
-    value = (200 - y) / 200.0;
+    colour.value = Math.min(Math.max((200 - y) / 200.0, 0), 1);
+    let v = valueFromRGB(colour);
+    let div = v / colour.value;
+    colour.r = Math.round(colour.r / div);
+    colour.g = Math.round(colour.g / div);
+    colour.b = Math.round(colour.b / div);
+    updateColourDisplay(colour);
+    if(common.isInEngine())
+        Leviathan.CallGenericEvent("MicrobeEditorColourSelected", {r: colour.r, g: colour.g, b: colour.b});
+    event.stopPropagation();
 }
 
 function updateColourDisplay(colour){
