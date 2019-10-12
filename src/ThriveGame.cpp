@@ -512,9 +512,14 @@ void
 {
     playerData().enterFreeBuild();
 
+    // To prevent problems if a run was already started
+    if(m_impl->m_autoEvoRun) {
+        m_impl->m_autoEvoRun->abort();
+    }
+
     LOG_INFO("Generating new map and some initial species for freebuild");
 
-    const auto map = generateNewPatchMap();
+    const auto map = m_impl->m_cellStage->GetPatchManager().getCurrentMap();
 
     ScriptRunningSetup setup("generateRandomSpeciesForFreeBuild");
 
@@ -524,14 +529,6 @@ void
     if(result.Result != SCRIPT_RUN_RESULT::Success) {
 
         LOG_ERROR("Failed to run generateRandomSpeciesForFreeBuild");
-    }
-
-    try {
-        m_impl->m_cellStage->GetPatchManager().setNewMap(map);
-    } catch(const Leviathan::Exception& e) {
-        LOG_ERROR("Something is wrong with the patch map, exception: ");
-        e.PrintToLog();
-        return;
     }
 
     // Apply patch settings

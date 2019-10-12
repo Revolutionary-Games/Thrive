@@ -22,10 +22,10 @@ const limitMovesPerSession = true;
 let patchData = null;
 
 let colour = {
-    r: 255,
-    g: 255,
-    b: 255,
-    hsvValue: 1
+    r: 1.0,
+    g: 1.0,
+    b: 1.0,
+    hsvValue: 1.0
 };
 
 //! These are all the organelle selection buttons
@@ -108,19 +108,19 @@ const organelleSelectionElements = [
 const membraneSelectionElements = [
     {
         element: document.getElementById("setMembraneMembrane"),
-        membrane: 0
+        membrane: "membrane"
     },
     {
         element: document.getElementById("setMembraneWall"),
-        membrane: 1
+        membrane: "wall"
     },
     {
         element: document.getElementById("setMembraneChitin"),
-        membrane: 2
+        membrane: "chitin"
     },
     {
         element: document.getElementById("setMembraneDouble"),
-        membrane: 3
+        membrane: "double"
     }
 ];
 
@@ -541,9 +541,9 @@ function hsvToRGB(hsv){
     }
 
     return {
-        r: Math.max(Math.round(r * 255), 0),
-        g: Math.max(Math.round(g * 255), 0),
-        b: Math.max(Math.round(b * 255), 0),
+        r: Math.max(r, 0),
+        g: Math.max(g, 0),
+        b: Math.max(b, 0),
         hsvValue: v
     };
 }
@@ -561,9 +561,7 @@ function hsvValueFromRGB(rgb){
         result = rgb.b;
     }
 
-
-    // Divide by 255.0 to get a number within 0 and 1
-    return result / 255.0;
+    return result;
 }
 
 function onColourWheelClicked(event){
@@ -586,9 +584,9 @@ function onColourValueBarClicked(event){
 
     // Change color to make (hsv) value match the input one
     const div = hsvValueFromRGB(colour) / colour.hsvValue;
-    colour.r = Math.round(colour.r / div);
-    colour.g = Math.round(colour.g / div);
-    colour.b = Math.round(colour.b / div);
+    colour.r /= div;
+    colour.g /= div;
+    colour.b /= div;
     updateColourDisplay(colour);
     if(common.isInEngine())
         Leviathan.CallGenericEvent("MicrobeEditorColourSelected",
@@ -598,14 +596,16 @@ function onColourValueBarClicked(event){
 
 function updateColourDisplay(colour){
     document.getElementById("ColourDisplay").style.backgroundColor =
-        "rgb(" + colour.r + "," + colour.g + "," + colour.b + ")";
+        "rgb(" + Math.round(colour.r * 255) +
+        "," + Math.round(colour.g * 255) +
+        "," + Math.round(colour.b * 255) + ")";
 }
 
 function updateColourValueBar(rgb){
     const div = hsvValueFromRGB(rgb);
-    const r = Math.round(rgb.r / div);
-    const g = Math.round(rgb.g / div);
-    const b = Math.round(rgb.b / div);
+    const r = Math.round(rgb.r / div * 255);
+    const g = Math.round(rgb.g / div * 255);
+    const b = Math.round(rgb.b / div * 255);
     document.getElementById("ColourValueBar").style.backgroundImage =
         "linear-gradient(rgb(" + r + "," + g + "," + b + "),black)";
 }

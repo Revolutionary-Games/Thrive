@@ -189,10 +189,10 @@ class MicrobeEditor{
         NamedVars@ vars = event.GetNamedVars();
 
         vars.AddValue(ScriptSafeVariableBlock("name", newName));
-        vars.AddValue(ScriptSafeVariableBlock("membrane", int(membrane)));
-        vars.AddValue(ScriptSafeVariableBlock("colourR", int(colour.X * 255)));
-        vars.AddValue(ScriptSafeVariableBlock("colourG", int(colour.Y * 255)));
-        vars.AddValue(ScriptSafeVariableBlock("colourB", int(colour.Z * 255)));
+        vars.AddValue(ScriptSafeVariableBlock("membrane", membraneTypeToString(membrane)));
+        vars.AddValue(ScriptSafeVariableBlock("colourR", colour.X));
+        vars.AddValue(ScriptSafeVariableBlock("colourG", colour.Y));
+        vars.AddValue(ScriptSafeVariableBlock("colourB", colour.Z));
 
         GetEngine().GetEventHandler().CallEvent(event);
     }
@@ -1121,6 +1121,40 @@ class MicrobeEditor{
         return (playerSpecies.generation+1);
     }
 
+    MEMBRANE_TYPE stringToMembraneType(string name)
+    {
+        if(name == "membrane"){
+            return MEMBRANE_TYPE::MEMBRANE;
+        } else if (name == "wall"){
+            return MEMBRANE_TYPE::WALL;
+        } else if(name == "chitin"){
+            return MEMBRANE_TYPE::CHITIN;
+        } else if(name == "double"){
+            return MEMBRANE_TYPE::DOUBLEMEMBRANE;
+        }
+
+        // Return default membrane if invalid
+        return MEMBRANE_TYPE::MEMBRANE;
+    }
+
+    string membraneTypeToString(MEMBRANE_TYPE type)
+    {
+        switch (type)
+        {
+            case MEMBRANE_TYPE::MEMBRANE:
+                return "membrane";
+            case MEMBRANE_TYPE::WALL:
+                return "wall";
+            case MEMBRANE_TYPE::CHITIN:
+                return "chitin";
+            case MEMBRANE_TYPE::DOUBLEMEMBRANE:
+                return "double";
+        }
+
+        // Return empty string if invalid
+        return "";
+    }
+
     int onGeneric(GenericEvent@ event)
     {
         auto type = event.GetType();
@@ -1222,11 +1256,6 @@ class MicrobeEditor{
             membraneComponent.clear();
             MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(world.GetScriptComponentHolder("MicrobeComponent").Find(player));
 
-            if(microbeComponent.species !is playerSpecies){
-                LOG_WARNING("MicrobeEditor: microbeComponent.species !is playerSpecies");
-                @microbeComponent.species = playerSpecies;
-            }
-
             return 1;
         } else if (type == "SymmetryClicked"){
             NamedVars@ vars = event.GetNamedVars();
@@ -1269,7 +1298,7 @@ class MicrobeEditor{
                     editor.membrane = MEMBRANE_TYPE(action.data["membrane"]);
                     GenericEvent@ event = GenericEvent("MicrobeEditorMembraneUpdated");
                     NamedVars@ vars = event.GetNamedVars();
-                    vars.AddValue(ScriptSafeVariableBlock("membrane", int(editor.membrane)));
+                    vars.AddValue(ScriptSafeVariableBlock("membrane", editor.membraneTypeToString(editor.membrane)));
                     GetEngine().GetEventHandler().CallEvent(event);
                 },
                 // undo
@@ -1277,19 +1306,19 @@ class MicrobeEditor{
                     editor.membrane = MEMBRANE_TYPE(action.data["prevMembrane"]);
                     GenericEvent@ event = GenericEvent("MicrobeEditorMembraneUpdated");
                     NamedVars@ vars = event.GetNamedVars();
-                    vars.AddValue(ScriptSafeVariableBlock("membrane", int(editor.membrane)));
+                    vars.AddValue(ScriptSafeVariableBlock("membrane", editor.membraneTypeToString(editor.membrane)));
                     GetEngine().GetEventHandler().CallEvent(event);
                 }
             );
 
-            action.data["membrane"] = MEMBRANE_TYPE(int(vars.GetSingleValueByName("membrane")));
+            action.data["membrane"] = stringToMembraneType(string(vars.GetSingleValueByName("membrane")));
             action.data["prevMembrane"] = membrane;
 
             enqueueAction(action);
             return 1;
         } else if(type == "MicrobeEditorColourSelected"){
             NamedVars@ vars = event.GetNamedVars();
-            colour = Float4(vars.GetSingleValueByName("r") / 255.0, vars.GetSingleValueByName("g") / 255.0, vars.GetSingleValueByName("b") / 255.0, 1);
+            colour = Float4(vars.GetSingleValueByName("r"), vars.GetSingleValueByName("g"), vars.GetSingleValueByName("b"), 1);
             return 1;
         }
 
