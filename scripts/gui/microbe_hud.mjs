@@ -108,10 +108,10 @@ export function runMicrobeHUDSetup(){
 
 
         // Event for updating player pecies name
-        Leviathan.OnGeneric("upateSpeciesName", (event, vars) => {
+        Leviathan.OnGeneric("updateSpeciesName", (event, vars) => {
 
             // Apply the new species name
-            upateSpeciesName(vars.speciesName);
+            updateSpeciesName(vars.speciesName);
         });
 
     } else {
@@ -392,7 +392,7 @@ function onExitToMenuClicked() {
     }
 }
 
-function upateSpeciesName(speciesName) {
+function updateSpeciesName(speciesName) {
     document.getElementById("speciesName").innerHTML = speciesName;
 }
 
