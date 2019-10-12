@@ -403,7 +403,7 @@ class MicrobeAISystem : ScriptSystem{
             MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
                 world.GetScriptComponentHolder("MicrobeComponent").Find(allMicrobes[i]));
 
-            if (allMicrobes[i] != microbeEntity && (secondMicrobeComponent.species.name != microbeComponent.species.name) && !secondMicrobeComponent.dead){
+            if (allMicrobes[i] != microbeEntity && (secondMicrobeComponent.species !is microbeComponent.species) && !secondMicrobeComponent.dead){
             if ((aiComponent.speciesAggression==MAX_SPECIES_AGRESSION) or
                     ((((numberOfAgentVacuoles+microbeComponent.totalHexCountCache)*1.0f)*(aiComponent.speciesAggression/AGRESSION_DIVISOR)) >
                     (secondMicrobeComponent.totalHexCountCache*1.0f))){
@@ -460,7 +460,7 @@ class MicrobeAISystem : ScriptSystem{
             int numberOfAgentVacuoles = int(
                 secondMicrobeComponent.specialStorageOrganelles[formatUInt(oxytoxyId)]);
             // At max fear add them all
-            if (allMicrobes[i] != microbeEntity && (secondMicrobeComponent.species.name != microbeComponent.species.name) && !secondMicrobeComponent.dead){
+            if (allMicrobes[i] != microbeEntity && (secondMicrobeComponent.species !is microbeComponent.species) && !secondMicrobeComponent.dead){
             if ((aiComponent.speciesFear==MAX_SPECIES_FEAR) or
             ((((numberOfAgentVacuoles+secondMicrobeComponent.totalHexCountCache)*1.0f)*(aiComponent.speciesFear/FEAR_DIVISOR)) >
             (microbeComponent.totalHexCountCache*1.0f))){
@@ -552,10 +552,9 @@ class MicrobeAISystem : ScriptSystem{
             //  You got a kill, good job
             auto playerSpecies = MicrobeOperations::getSpecies(world, "Default");
             if (!microbeComponent.isPlayerMicrobe &&
-                microbeComponent.species.name != playerSpecies.name){
+                microbeComponent.species !is playerSpecies){
 
-                auto species = MicrobeOperations::getSpecies(world,
-                    microbeComponent.species.name);
+                auto species = microbeComponent.species;
 
                 if(species !is null)
                     MicrobeOperations::alterSpeciesPopulation(species,
@@ -647,10 +646,9 @@ class MicrobeAISystem : ScriptSystem{
             //  You got a consumption, good job
             auto playerSpecies = MicrobeOperations::getSpecies(world, "Default");
             if (!microbeComponent.isPlayerMicrobe &&
-                microbeComponent.species.name != playerSpecies.name){
+                microbeComponent.species !is playerSpecies){
 
-                auto species = MicrobeOperations::getSpecies(world,
-                    microbeComponent.species.name);
+                auto species = microbeComponent.species;
 
                 if(species !is null)
                     MicrobeOperations::alterSpeciesPopulation(species,

@@ -25,7 +25,7 @@ let colour = {
     r: 255,
     g: 255,
     b: 255,
-    value: 1
+    hsvValue: 1
 };
 
 //! These are all the organelle selection buttons
@@ -239,7 +239,8 @@ export function setupMicrobeEditor(){
 
     document.getElementById("ColourWheel").addEventListener("click",
         onColourWheelClicked, true);
-    document.getElementById("ValueBar").addEventListener("click", onValueBarClicked, true);
+    document.getElementById("ColourValueBar").addEventListener("click",
+        onColourValueBarClicked, true);
 
     if(common.isInEngine()){
 
@@ -318,12 +319,12 @@ export function setupMicrobeEditor(){
             // Apply the new values
             document.getElementById("speciesName").value = vars.name;
             updateCurrentMembrane(vars.membrane);
-            colour.r = vars.colour_r;
-            colour.g = vars.colour_g;
-            colour.b = vars.colour_b;
-            colour.value = valueFromRGB(colour);
+            colour.r = vars.colourR;
+            colour.g = vars.colourG;
+            colour.b = vars.colourB;
+            colour.hsvValue = hsvValueFromRGB(colour);
             updateColourDisplay(colour);
-            updateValueBar(colour);
+            updateColourValueBar(colour);
         });
 
         // Event for detecting the current membrane
@@ -333,12 +334,12 @@ export function setupMicrobeEditor(){
 
         // Event for detecting the current colour
         Leviathan.OnGeneric("MicrobeEditorColourUpdated", (event, vars) => {
-            colour.r = vars.colour_r;
-            colour.g = vars.colour_g;
-            colour.b = vars.colour_b;
-            colour.value = valueFromRGB(colour);
+            colour.r = vars.colourR;
+            colour.g = vars.colourG;
+            colour.b = vars.colourB;
+            colour.hsvValue = hsvValueFromRGB(colour);
             updateColourDisplay(colour);
-            updateValueBar(colour);
+            updateColourValueBar(colour);
         });
 
     } else {
@@ -428,6 +429,11 @@ function onNextTabClicked(){
 }
 
 function onNameInput(event){
+    if(event.target.value.split(" ").length - 1 != 1){
+        event.target.style.color = "red";
+    } else {
+        event.target.style.color = "white";
+    }
     if(common.isInEngine()){
         Leviathan.CallGenericEvent("MicrobeEditorNameChanged", {value: event.target.value});
     }
@@ -486,7 +492,7 @@ function xyToHSV(x, y){
     return {
         h: scaledAngle,
         s: scaledDist,
-        v: colour.value
+        v: colour.hsvValue
     };
 }
 
@@ -538,12 +544,26 @@ function hsvToRGB(hsv){
         r: Math.max(Math.round(r * 255), 0),
         g: Math.max(Math.round(g * 255), 0),
         b: Math.max(Math.round(b * 255), 0),
-        value: v
+        hsvValue: v
     };
 }
 
-function valueFromRGB(rgb){
-    return (rgb.r > rgb.g && rgb.r > rgb.b ? rgb.r : rgb.g > rgb.b ? rgb.g : rgb.b) / 255.0;
+function hsvValueFromRGB(rgb){
+    let result = 0;
+
+
+    // Find the greatest component for the hsv value
+    if(rgb.r > rgb.g && rgb.r > rgb.b){
+        result = rgb.r;
+    } else if(rgb.g > rgb.b){
+        result = rgb.g;
+    } else {
+        result = rgb.b;
+    }
+
+
+    // Divide by 255.0 to get a number within 0 and 1
+    return result / 255.0;
 }
 
 function onColourWheelClicked(event){
@@ -552,18 +572,20 @@ function onColourWheelClicked(event){
     const y = event.clientY - rect.top;
     colour = hsvToRGB(xyToHSV(x, y));
     updateColourDisplay(colour);
-    updateValueBar(colour);
+    updateColourValueBar(colour);
     if(common.isInEngine())
         Leviathan.CallGenericEvent("MicrobeEditorColourSelected",
             {r: colour.r, g: colour.g, b: colour.b});
     event.stopPropagation();
 }
 
-function onValueBarClicked(event){
+function onColourValueBarClicked(event){
     const rect = event.target.getBoundingClientRect();
     const y = event.clientY - rect.top;
-    colour.value = Math.min(Math.max((200 - y) / 200.0, 0), 1);
-    const div = valueFromRGB(colour) / colour.value;
+    colour.hsvValue = Math.min(Math.max((200 - y) / 200.0, 0), 1);
+
+    // Change color to make (hsv) value match the input one
+    const div = hsvValueFromRGB(colour) / colour.hsvValue;
     colour.r = Math.round(colour.r / div);
     colour.g = Math.round(colour.g / div);
     colour.b = Math.round(colour.b / div);
@@ -579,12 +601,12 @@ function updateColourDisplay(colour){
         "rgb(" + colour.r + "," + colour.g + "," + colour.b + ")";
 }
 
-function updateValueBar(rgb){
-    const div = valueFromRGB(rgb);
+function updateColourValueBar(rgb){
+    const div = hsvValueFromRGB(rgb);
     const r = Math.round(rgb.r / div);
     const g = Math.round(rgb.g / div);
     const b = Math.round(rgb.b / div);
-    document.getElementById("ValueBar").style.backgroundImage =
+    document.getElementById("ColourValueBar").style.backgroundImage =
         "linear-gradient(rgb(" + r + "," + g + "," + b + "),black)";
 }
 

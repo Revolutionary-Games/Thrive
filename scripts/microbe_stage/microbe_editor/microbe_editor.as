@@ -190,9 +190,9 @@ class MicrobeEditor{
 
         vars.AddValue(ScriptSafeVariableBlock("name", newName));
         vars.AddValue(ScriptSafeVariableBlock("membrane", int(membrane)));
-        vars.AddValue(ScriptSafeVariableBlock("colour_r", int(colour.X * 255)));
-        vars.AddValue(ScriptSafeVariableBlock("colour_g", int(colour.Y * 255)));
-        vars.AddValue(ScriptSafeVariableBlock("colour_b", int(colour.Z * 255)));
+        vars.AddValue(ScriptSafeVariableBlock("colourR", int(colour.X * 255)));
+        vars.AddValue(ScriptSafeVariableBlock("colourG", int(colour.Y * 255)));
+        vars.AddValue(ScriptSafeVariableBlock("colourB", int(colour.Z * 255)));
 
         GetEngine().GetEventHandler().CallEvent(event);
     }
@@ -1202,7 +1202,7 @@ class MicrobeEditor{
             }
 
             // Change species name
-            if(newName.findFirst(" ") > -1){
+            if(newName.split(" ").length() - 1 == 1){
                 playerSpecies.genus = newName.split(" ")[0];
                 playerSpecies.epithet = newName.split(" ")[1];
                 LOG_INFO("MicrobeEditor: Player species name is now " + playerSpecies.genus + " " + playerSpecies.epithet);
@@ -1222,9 +1222,10 @@ class MicrobeEditor{
             membraneComponent.clear();
             MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(world.GetScriptComponentHolder("MicrobeComponent").Find(player));
 
-            if(@microbeComponent.species != @playerSpecies)
-                LOG_WARNING("MicrobeEditor: @microbeComponent.species != @playerSpecies");
+            if(microbeComponent.species !is playerSpecies){
+                LOG_WARNING("MicrobeEditor: microbeComponent.species !is playerSpecies");
                 @microbeComponent.species = playerSpecies;
+            }
 
             return 1;
         } else if (type == "SymmetryClicked"){
@@ -1288,7 +1289,7 @@ class MicrobeEditor{
             return 1;
         } else if(type == "MicrobeEditorColourSelected"){
             NamedVars@ vars = event.GetNamedVars();
-            colour = Float4(float(vars.GetSingleValueByName("r")) / 255, float(vars.GetSingleValueByName("g")) / 255, float(vars.GetSingleValueByName("b")) / 255, 1);
+            colour = Float4(vars.GetSingleValueByName("r") / 255.0, vars.GetSingleValueByName("g") / 255.0, vars.GetSingleValueByName("b") / 255.0, 1);
             return 1;
         }
 

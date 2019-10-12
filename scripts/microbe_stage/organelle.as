@@ -719,7 +719,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
     ObjectID microbeEntity = NULL_OBJECT;
     ObjectID organelleEntity = NULL_OBJECT;
-    Species@ species;
+    const Species@ species;
 
     // This is the world in which the entities for this organelle exists
     CellStageWorld@ world;

@@ -32,7 +32,7 @@ MicrobeComponent@ getMicrobeComponent(CellStageWorld@ world, ObjectID microbeEnt
 Species@ getSpecies(CellStageWorld@ world, ObjectID microbeEntity)
 {
     MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
-    return getSpecies(world, microbeComponent.species.name);
+    return microbeComponent.species;
 }
 
 MicrobeComponent@ getPlayerMicrobe(CellStageWorld@ world)

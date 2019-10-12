@@ -150,7 +150,7 @@ void
 
             const Species* species = *speciesHandle;
 
-            if(species != nullptr) {
+            if(species) {
                 hovered->PushValue(
                     std::make_unique<VariableBlock>(new Leviathan::StringBlock(
                         species->genus + " " + species->epithet)));

@@ -122,6 +122,7 @@ class MicrobeComponent : ScriptComponent{
     }
 
     //! This is reference counted so this can be stored here
+    //! \note This is directly read from C++ and MUST BE the first property
     Species@ species;
 
     // TODO: initialize
@@ -1021,7 +1022,7 @@ class MicrobeSystem : ScriptSystem{
             {
                 auto playerSpecies = MicrobeOperations::getSpecies(world, "Default");
                 if (!microbeComponent.isPlayerMicrobe &&
-                    microbeComponent.species.name != playerSpecies.name)
+                    microbeComponent.species !is playerSpecies)
                 {
                     MicrobeOperations::alterSpeciesPopulation(species,
                         CREATURE_REPRODUCE_POPULATION_GAIN, "reproduced");

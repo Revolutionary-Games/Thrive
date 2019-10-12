@@ -286,7 +286,8 @@ void
     //     /*, false*/);
     // m_mesh->_setBoundingSphereRadius(50);
 
-
+    // TODO: the material needs to be only recreated when the species properties
+    // change, not every time an organelle is added or removed
     // Set the membrane material //
     auto baseMaterial = chooseMaterialByType();
 

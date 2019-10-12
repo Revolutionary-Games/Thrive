@@ -1253,54 +1253,6 @@ div::-webkit-scrollbar-thumb:hover {
   display: inline-block;
 }
 
-
-/* #StructurePanelTop {
-  display: inline-block;
-  position: relative;
-  width: 120px;
-  height: 40px;
-  background-image: url("../../Textures/gui/bevel/EditPanelTop.png");
-  z-index: 1;
-  padding: 0;
-}
-
-#StructureTitle,
-#AppearanceTitle,
-#BehaviorTitle {
-  font-size: 12pt;
-  width: 120px;
-  height: 40px;
-  text-align: center;
-  line-height: 40px;
-  padding: 0;
-}
-
-#AppearanceButton {
-  display: inline-block;
-  background-image: url("../../Textures/gui/bevel/EditPanelHeaderDisabled.png");
-  position: relative;
-  width: 120px;
-  height: 40px;
-  left: -5px;
-  top: 0;
-  z-index: -1;
-  padding: 0;
-  margin: 0;
-}
-
-#BehaviorButton {
-  display: inline-block;
-  background-image: url("../../Textures/gui/bevel/EditPanelHeaderDisabled.png");
-  position: relative;
-  width: 120px;
-  height: 40px;
-  left: -10px;
-  top: 0;
-  z-index: -1;
-  padding: 0;
-  margin: 0;
-} */
-
 .CellTabButton {
   font-size: 12pt;
   font-weight: bold;
@@ -1311,12 +1263,12 @@ div::-webkit-scrollbar-thumb:hover {
   height: 5%;
   padding-left: 0;
   padding-right: 0;
-  border: 3px solid rgb(112, 159, 159, 0.6);
-  background: rgb(0, 125, 125, 0.2);
+  border: 3px solid rgba(112, 159, 159, 0.6);
+  background: rgba(0, 125, 125, 0.2);
 }
 
 .CellTabButton:hover {
-  background: rgb(0, 125, 125, 0.6);
+  background: rgba(0, 125, 125, 0.6);
 }
 
 .CellTabButton.Active {
@@ -1325,6 +1277,14 @@ div::-webkit-scrollbar-thumb:hover {
 
 .CellTabButton.Active:hover {
   background: rgba(89, 210, 255, 0.7);
+}
+
+.CellTabButton.Disabled {
+  background: rgba(0, 50, 50, 0.25);
+}
+
+.CellTabButton.Disabled:hover {
+  background: rgba(0, 50, 50, 0.25);
 }
 
 #StructurePanelMid {
@@ -1709,7 +1669,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-color: rgb(255, 255, 255);
 }
 
-#ValueBar {
+#ColourValueBar {
   position: absolute;
   width: 20px;
   height: 200px;
