@@ -1243,10 +1243,10 @@ class MicrobeEditor{
                 LOG_INFO("MicrobeEditor: Player species name is now " + playerSpecies.genus + " " + playerSpecies.epithet);
 
                 // Send new name to GUI
-                GenericEvent@ event = GenericEvent("updateSpeciesName");
-                NamedVars@  vars = event.GetNamedVars();
+                GenericEvent@ nameEvent = GenericEvent("updateSpeciesName");
+                NamedVars@  vars = nameEvent.GetNamedVars();
                 vars.AddValue(ScriptSafeVariableBlock("speciesName", playerSpecies.genus + " " + playerSpecies.epithet));
-                GetEngine().GetEventHandler().CallEvent(event);
+                GetEngine().GetEventHandler().CallEvent(nameEvent);
             } else {
                 LOG_INFO("MicrobeEditor: Invalid newName: " + newName);
             }
