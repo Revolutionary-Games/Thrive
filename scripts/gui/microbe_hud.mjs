@@ -106,6 +106,14 @@ export function runMicrobeHUDSetup(){
         document.getElementById("suicideButton").addEventListener("click",
             killPlayerCell, true);
 
+
+        // Event for updating player pecies name
+        Leviathan.OnGeneric("upateSpeciesName", (event, vars) => {
+
+            // Apply the new species name
+            upateSpeciesName(vars.speciesName);
+        });
+
     } else {
 
         // Update random values to make it prettier to look at
@@ -382,6 +390,10 @@ function onExitToMenuClicked() {
     } else {
         main_menu.doExitToMenu();
     }
+}
+
+function upateSpeciesName(speciesName) {
+    document.getElementById("speciesName").innerHTML = speciesName;
 }
 
 //! Updates the mouse hover box with stuff
