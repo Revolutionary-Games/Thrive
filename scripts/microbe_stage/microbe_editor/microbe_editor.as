@@ -1133,6 +1133,7 @@ class MicrobeEditor{
             return MEMBRANE_TYPE::DOUBLEMEMBRANE;
         }
 
+        LOG_ERROR("MicrobeEditor: No MEMBRANE_TYPE match for name: " + name);
         // Return default membrane if invalid
         return MEMBRANE_TYPE::MEMBRANE;
     }
@@ -1151,7 +1152,7 @@ class MicrobeEditor{
                 return "double";
         }
 
-        // Return empty string if invalid
+        assert(false, "No string counterpart for MEMBRANE_TYPE of index " + type);
         return "";
     }
 

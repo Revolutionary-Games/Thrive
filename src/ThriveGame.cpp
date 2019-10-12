@@ -517,7 +517,7 @@ void
         m_impl->m_autoEvoRun->abort();
     }
 
-    LOG_INFO("Generating new map and some initial species for freebuild");
+    LOG_INFO("Generating initial species for freebuild");
 
     const auto map = m_impl->m_cellStage->GetPatchManager().getCurrentMap();
 
