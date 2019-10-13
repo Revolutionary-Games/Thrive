@@ -286,19 +286,18 @@ void
     //     /*, false*/);
     // m_mesh->_setBoundingSphereRadius(50);
 
-
+    // TODO: the material needs to be only recreated when the species properties
+    // change, not every time an organelle is added or removed
     // Set the membrane material //
-    if(!coloredMaterial) {
-        auto baseMaterial = chooseMaterialByType();
+    auto baseMaterial = chooseMaterialByType();
 
-        LEVIATHAN_ASSERT(baseMaterial, "no material for membrane");
+    LEVIATHAN_ASSERT(baseMaterial, "no material for membrane");
 
-        // The baseMaterial fetch makes a new instance so this is fine
-        coloredMaterial = baseMaterial;
+    // The baseMaterial fetch makes a new instance so this is fine
+    coloredMaterial = baseMaterial;
 
-        coloredMaterial->setVec4("gTint", colour);
-        coloredMaterial->setFloat("gHealthFraction", healthFraction);
-    }
+    coloredMaterial->setVec4("gTint", colour);
+    coloredMaterial->setFloat("gHealthFraction", healthFraction);
 
     if(!m_item)
         m_item = parentComponentPos->addComponent<bs::CRenderable>();

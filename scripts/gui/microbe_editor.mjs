@@ -21,6 +21,13 @@ let limitMovesPerSession = true;
 // The full patch data
 let patchData = null;
 
+let colour = {
+    r: 1.0,
+    g: 1.0,
+    b: 1.0,
+    hsvValue: 1.0
+};
+
 //! These are all the organelle selection buttons
 const organelleSelectionElements = [
     {
@@ -98,10 +105,34 @@ const organelleSelectionElements = [
     // addCilia
 ];
 
+const membraneSelectionElements = [
+    {
+        element: document.getElementById("setMembraneMembrane"),
+        membrane: "membrane"
+    },
+    {
+        element: document.getElementById("setMembraneWall"),
+        membrane: "wall"
+    },
+    {
+        element: document.getElementById("setMembraneChitin"),
+        membrane: "chitin"
+    },
+    {
+        element: document.getElementById("setMembraneDouble"),
+        membrane: "double"
+    }
+];
+
 //! Selected organelle label
 const selectedOrganelleListItem = document.createElement("div");
 selectedOrganelleListItem.classList.add("OrganelleSelectedText");
 selectedOrganelleListItem.appendChild(document.createTextNode("Selected"));
+
+//! Current membrane label
+const currentMembraneListItem = document.createElement("div");
+currentMembraneListItem.classList.add("OrganelleSelectedText");
+currentMembraneListItem.appendChild(document.createTextNode("Current"));
 
 //! Setup for editor callbacks
 export function setupMicrobeEditor(){
@@ -152,6 +183,8 @@ export function setupMicrobeEditor(){
     document.getElementById("editorNextPageButton").addEventListener("click",
         onNextTabClicked, true);
 
+    document.getElementById("speciesName").addEventListener("input",
+        onNameInput, true);
 
     document.getElementById("editorTabReportButton").addEventListener("click",
         () => {
@@ -171,6 +204,15 @@ export function setupMicrobeEditor(){
     document.getElementById("moveToPatchButton").addEventListener("click",
         moveToPatchClicked, true);
 
+    document.getElementById("StructurePanelTop").addEventListener("click",
+        () => {
+            selectCellTab("structure");
+        }, true);
+
+    document.getElementById("AppearanceButton").addEventListener("click",
+        () => {
+            selectCellTab("appearance");
+        }, true);
 
 
     // All of the organelle buttons
@@ -183,6 +225,22 @@ export function setupMicrobeEditor(){
             }
         }, true);
     }
+
+    // All of the membrane buttons
+    for(const element of membraneSelectionElements){
+
+        element.element.addEventListener("click", (event) => {
+            event.stopPropagation();
+            if(!element.element.classList.contains("DisabledButton")) {
+                onSelectMembrane(element.membrane);
+            }
+        }, true);
+    }
+
+    document.getElementById("ColourWheel").addEventListener("click",
+        onColourWheelClicked, true);
+    document.getElementById("ColourValueBar").addEventListener("click",
+        onColourValueBarClicked, true);
 
     if(common.isInEngine()){
 
@@ -263,6 +321,34 @@ export function setupMicrobeEditor(){
             updateAutoEvoResults(vars.text);
         });
 
+        // Event for setting values initially
+        Leviathan.OnGeneric("MicrobeEditorActivated", (event, vars) => {
+            // Apply the new values
+            document.getElementById("speciesName").value = vars.name;
+            updateCurrentMembrane(vars.membrane);
+            colour.r = vars.colourR;
+            colour.g = vars.colourG;
+            colour.b = vars.colourB;
+            colour.hsvValue = hsvValueFromRGB(colour);
+            updateColourDisplay(colour);
+            updateColourValueBar(colour);
+        });
+
+        // Event for detecting the current membrane
+        Leviathan.OnGeneric("MicrobeEditorMembraneUpdated", (event, vars) => {
+            updateCurrentMembrane(vars.membrane);
+        });
+
+        // Event for detecting the current colour
+        Leviathan.OnGeneric("MicrobeEditorColourUpdated", (event, vars) => {
+            colour.r = vars.colourR;
+            colour.g = vars.colourG;
+            colour.b = vars.colourB;
+            colour.hsvValue = hsvValueFromRGB(colour);
+            updateColourDisplay(colour);
+            updateColourValueBar(colour);
+        });
+
     } else {
         updateSelectedOrganelle("cytoplasm");
     }
@@ -276,6 +362,7 @@ export function doEnterMicrobeEditor(event, vars){
 
     // Select the default tab
     selectEditorTab("report");
+    selectCellTab("structure");
 
     // Reset patch data
     currentPatchId = null;
@@ -348,6 +435,188 @@ function onNextTabClicked(){
     }
 }
 
+function onNameInput(event){
+    if(event.target.value.split(" ").length - 1 != 1){
+        event.target.style.color = "red";
+    } else {
+        event.target.style.color = "white";
+    }
+    if(common.isInEngine()){
+        Leviathan.CallGenericEvent("MicrobeEditorNameChanged", {value: event.target.value});
+    }
+    event.stopPropagation();
+}
+
+function selectCellTab(tab){
+    // Hide all
+    document.getElementById("StructurePanelMid").style.display = "none";
+    document.getElementById("AppearancePanelMid").style.display = "none";
+
+    document.getElementById("StructurePanelTop").classList.remove("Active");
+    document.getElementById("AppearanceButton").classList.remove("Active");
+
+    for(const element of organelleSelectionElements){
+        element.element.style.display = "none";
+    }
+
+    for(const element of membraneSelectionElements){
+        element.element.style.display = "none";
+    }
+
+    // Show selected
+    if(tab == "structure"){
+        document.getElementById("StructurePanelMid").style.display = "block";
+
+        for(const element of organelleSelectionElements){
+            element.element.style.display = "";
+        }
+
+        document.getElementById("StructurePanelTop").classList.add("Active");
+    } else if(tab == "appearance"){
+        document.getElementById("AppearancePanelMid").style.display = "block";
+
+        for(const element of membraneSelectionElements){
+            element.element.style.display = "";
+        }
+
+        document.getElementById("AppearanceButton").classList.add("Active");
+    } else {
+        throw "invalid tab";
+    }
+}
+
+function xyToHSV(x, y){
+    // Colour wheel is 200x200px
+    const cx = 100; // Width / 2
+    const cy = 100; // Height / 2
+    const rx = x - cx;
+    const ry = y - cy;
+    const dist = Math.sqrt(rx ** 2 + ry ** 2);
+    const scaledDist = dist / 80; // 80 was (0.4 * width)
+    const angle = Math.atan2(ry, rx);
+    const scaledAngle = (angle + Math.PI) / (2 * Math.PI);
+
+    return {
+        h: scaledAngle,
+        s: scaledDist,
+        v: colour.hsvValue
+    };
+}
+
+function hsvToRGB(hsv){
+    let r = 0, g = 0, b = 0;
+    const h = hsv.h;
+    const s = hsv.s;
+    const v = hsv.v;
+    const i = Math.floor(h * 6);
+    const f = h * 6 - i;
+    const p = v * (1 - s);
+    const q = v * (1 - f * s);
+    const t = v * (1 - (1 - f) * s);
+
+    switch (i % 6) {
+    case 0:
+        r = v;
+        g = t;
+        b = p;
+        break;
+    case 1:
+        r = q;
+        g = v;
+        b = p;
+        break;
+    case 2:
+        r = p;
+        g = v;
+        b = t;
+        break;
+    case 3:
+        r = p;
+        g = q;
+        b = v;
+        break;
+    case 4:
+        r = t;
+        g = p;
+        b = v;
+        break;
+    case 5:
+        r = v;
+        g = p;
+        b = q;
+        break;
+    }
+
+    return {
+        r: Math.max(r, 0),
+        g: Math.max(g, 0),
+        b: Math.max(b, 0),
+        hsvValue: v
+    };
+}
+
+function hsvValueFromRGB(rgb){
+    let result = 0;
+
+
+    // Find the greatest component for the hsv value
+    if(rgb.r > rgb.g && rgb.r > rgb.b){
+        result = rgb.r;
+    } else if(rgb.g > rgb.b){
+        result = rgb.g;
+    } else {
+        result = rgb.b;
+    }
+
+    return result;
+}
+
+function onColourWheelClicked(event){
+    const rect = event.target.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+    colour = hsvToRGB(xyToHSV(x, y));
+    updateColourDisplay(colour);
+    updateColourValueBar(colour);
+    if(common.isInEngine())
+        Leviathan.CallGenericEvent("MicrobeEditorColourSelected",
+            {r: colour.r, g: colour.g, b: colour.b});
+    event.stopPropagation();
+}
+
+function onColourValueBarClicked(event){
+    const rect = event.target.getBoundingClientRect();
+    const y = event.clientY - rect.top;
+    colour.hsvValue = Math.min(Math.max((200 - y) / 200.0, 0), 1);
+
+    // Change color to make (hsv) value match the input one
+    const div = hsvValueFromRGB(colour) / colour.hsvValue;
+    colour.r /= div;
+    colour.g /= div;
+    colour.b /= div;
+    updateColourDisplay(colour);
+    if(common.isInEngine())
+        Leviathan.CallGenericEvent("MicrobeEditorColourSelected",
+            {r: colour.r, g: colour.g, b: colour.b});
+    event.stopPropagation();
+}
+
+function updateColourDisplay(colour){
+    document.getElementById("ColourDisplay").style.backgroundColor =
+        "rgb(" + Math.round(colour.r * 255) +
+        "," + Math.round(colour.g * 255) +
+        "," + Math.round(colour.b * 255) + ")";
+}
+
+function updateColourValueBar(rgb){
+    const div = hsvValueFromRGB(rgb);
+    const r = Math.round(rgb.r / div * 255);
+    const g = Math.round(rgb.g / div * 255);
+    const b = Math.round(rgb.b / div * 255);
+    document.getElementById("ColourValueBar").style.backgroundImage =
+        "linear-gradient(rgb(" + r + "," + g + "," + b + "),black)";
+}
+
 // Undo
 function setUndo(enabled){
     if (enabled) {
@@ -401,6 +670,43 @@ function updateSelectedOrganelle(organelle){
         if(element.organelle === organelle){
             element.element.classList.add("Selected");
             element.element.prepend(selectedOrganelleListItem);
+        } else {
+            element.element.classList.remove("Selected");
+        }
+    }
+}
+
+//! Sends membrane selection to the Game
+function onSelectMembrane(membrane){
+
+    if(common.isInEngine()){
+
+        Leviathan.CallGenericEvent("MicrobeEditorMembraneSelected", {membrane: membrane});
+
+    } else {
+
+        updateCurrentMembrane(membrane);
+    }
+}
+
+//! Updates the GUI buttons based on current membrane
+function updateCurrentMembrane(membrane){
+
+    // Remove the current text from existing ones
+    for(const element of membraneSelectionElements){
+
+        if(element.element.contains(currentMembraneListItem)){
+            element.element.removeChild(currentMembraneListItem);
+            break;
+        }
+    }
+
+    // Make all buttons uncurrent except the one that is now current
+    for(const element of membraneSelectionElements){
+
+        if(element.membrane === membrane){
+            element.element.classList.add("Selected");
+            element.element.prepend(currentMembraneListItem);
         } else {
             element.element.classList.remove("Selected");
         }

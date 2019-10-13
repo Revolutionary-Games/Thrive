@@ -94,8 +94,8 @@ void
         // reduce chance of leaks)
         microbeComponents->Release();
 
-        const auto stringType =
-            Leviathan::AngelScriptTypeIDResolver<std::string>::Get(
+        const auto speciesType =
+            Leviathan::AngelScriptTypeIDResolver<Species>::Get(
                 Leviathan::GetCurrentGlobalScriptExecutor());
 
         // This is used to skip the player
@@ -137,23 +137,18 @@ void
             }
 
             // TODO: this would be nice to verify just once during startup
-            if(microbeComponent->GetPropertyTypeId(0) != stringType ||
-                std::strncmp(microbeComponent->GetPropertyName(0),
-                    "speciesName", sizeof("speciesName") - 1) != 0) {
+            if(microbeComponent->GetPropertyTypeId(0) != speciesType) {
 
                 LOG_ERROR("PlayerHoverInfoSystem: Run: MicrobeComponent object "
                           "doesn't "
-                          "have \"string speciesName\" as the first property");
+                          "have \"Species@ species\" as the first property");
                 continue;
             }
 
-            const auto* name = static_cast<std::string*>(
+            const auto** speciesHandle = static_cast<const Species**>(
                 microbeComponent->GetAddressOfProperty(0));
 
-            const auto map = world.GetPatchManager().getCurrentMap();
-            const auto species =
-                map ? map->findSpeciesByName(*name) : Species::pointer{};
-
+            const Species* species = *speciesHandle;
 
             if(species) {
                 hovered->PushValue(
@@ -162,8 +157,9 @@ void
             } else {
 
                 // If we can't find the species, assume that it is extinct
-                hovered->PushValue(std::make_unique<VariableBlock>(
-                    new Leviathan::StringBlock("Extinct(" + *name + ")")));
+                hovered->PushValue(
+                    std::make_unique<VariableBlock>(new Leviathan::StringBlock(
+                        "Extinct(" + species->name + ")")));
             }
         }
     }
