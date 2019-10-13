@@ -18,7 +18,6 @@ let patchIdOnEnter = null;
 let alreadyMovedThisSession = false;
 let limitMovesPerSession = true;
 
-
 // The full patch data
 let patchData = null;
 
@@ -830,6 +829,7 @@ function processPatchMapData(data){
         element.classList.add("PatchContainer");
         element.style.left = patch.screenCoordinates.x + "px";
         element.style.top = patch.screenCoordinates.y + "px";
+
         element.addEventListener("click",
             () =>{
                 if(selectedPatch != patch){
@@ -837,6 +837,7 @@ function processPatchMapData(data){
                     if(selectedPatchElement){
                         selectedPatchElement.classList.remove("Selected");
                     }
+
                     selectedPatchElement = element;
                     updateSelectedPatchData(patch);
                     element.classList.add("Selected");
@@ -963,5 +964,6 @@ function moveToPatchClicked(){
         Leviathan.CallGenericEvent("MicrobeEditorSelectedNewPatch",
             {patchId: currentPatchId});
     }
+
     updateSelectedPatchData(selectedPatch);
 }
