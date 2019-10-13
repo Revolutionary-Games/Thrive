@@ -49,6 +49,9 @@ class MicrobeEditor{
         eventListener.RegisterForEvent("UndoClicked");
         eventListener.RegisterForEvent("MicrobeEditorSelectedTab");
         eventListener.RegisterForEvent("MicrobeEditorSelectedNewPatch");
+        eventListener.RegisterForEvent("MicrobeEditorNameChanged");
+        eventListener.RegisterForEvent("MicrobeEditorMembraneSelected");
+        eventListener.RegisterForEvent("MicrobeEditorColourSelected");
 
         placementFunctions = {
             // {"nucleus", PlacementFunctionType(this.createNewMicrobe)},
@@ -82,6 +85,9 @@ class MicrobeEditor{
         actionIndex = 0;
         organelleRot = 0;
         symmetry = 0;
+        newName = "";
+        membrane = MEMBRANE_TYPE::MEMBRANE;
+        colour = Float4(1, 1, 1, 1);
         setUndoButtonStatus(false);
         setRedoButtonStatus(false);
 
@@ -131,11 +137,11 @@ class MicrobeEditor{
         auto@ templateOrganelles = cast<array<SpeciesStoredOrganelleType@>>(
             playerSpecies.organelles);
 
-        editedMicrobe.resize(0);
+        editedMicrobeOrganelles.resize(0);
         playerSpecies.stringCode="";
         for(uint i = 0; i < templateOrganelles.length(); ++i){
             auto organelle = cast<PlacedOrganelle>(templateOrganelles[i]);
-            editedMicrobe.insertLast(organelle);
+            editedMicrobeOrganelles.insertLast(organelle);
             playerSpecies.stringCode += organelle.organelle.gene;
             // This will always be added after each organelle so its safe to assume its there
             playerSpecies.stringCode+=","+organelle.q+","+
@@ -146,7 +152,7 @@ class MicrobeEditor{
             }
         }
 
-        LOG_INFO("Starting microbe editor with: " + editedMicrobe.length() +
+        LOG_INFO("Starting microbe editor with: " + editedMicrobeOrganelles.length() +
             " organelles in the microbe, genes: " + playerSpecies.stringCode);
 
         // Show existing organelles
@@ -175,6 +181,20 @@ class MicrobeEditor{
 
             GetEngine().GetEventHandler().CallEvent(event);
         }
+
+        newName = playerSpecies.genus + " " + playerSpecies.epithet;
+        membrane = playerSpecies.speciesMembraneType;
+        colour = playerSpecies.colour;
+        GenericEvent@ event = GenericEvent("MicrobeEditorActivated");
+        NamedVars@ vars = event.GetNamedVars();
+
+        vars.AddValue(ScriptSafeVariableBlock("name", newName));
+        vars.AddValue(ScriptSafeVariableBlock("membrane", membraneTypeToString(membrane)));
+        vars.AddValue(ScriptSafeVariableBlock("colourR", colour.X));
+        vars.AddValue(ScriptSafeVariableBlock("colourG", colour.Y));
+        vars.AddValue(ScriptSafeVariableBlock("colourB", colour.Z));
+
+        GetEngine().GetEventHandler().CallEvent(event);
     }
 
     void update(int logicTime)
@@ -236,7 +256,7 @@ class MicrobeEditor{
     }
 
     // This destroys and creates again entities to represent all the
-    // currently placed organelles. Call this whenever editedMicrobe
+    // currently placed organelles. Call this whenever editedMicrobeOrganelles
     // is changed
     void _updateAlreadyPlacedVisuals()
     {
@@ -246,9 +266,9 @@ class MicrobeEditor{
         placedModels;
 
         // Build the entities to show the current microbe
-        for(uint i = 0; i < editedMicrobe.length(); ++i){
+        for(uint i = 0; i < editedMicrobeOrganelles.length(); ++i){
 
-            const PlacedOrganelle@ organelle = editedMicrobe[i];
+            const PlacedOrganelle@ organelle = editedMicrobeOrganelles[i];
             auto hexes = organelle.organelle.getRotatedHexes(organelle.rotation);
 
             for(uint a = 0; a < hexes.length(); ++a){
@@ -322,8 +342,6 @@ class MicrobeEditor{
                 return;
 
         int cost = organelle.organelle.mpCost;
-        if(freeBuilding)
-            cost = 0;
 
         EditorAction@ action = EditorAction(cost,
             // redo
@@ -339,7 +357,7 @@ class MicrobeEditor{
                     int posR = int(hexes[i].r) + organelle.r;
 
                     auto organelleHere = OrganellePlacement::getOrganelleAt(
-                        editor.editedMicrobe, Int2(posQ, posR));
+                        editor.editedMicrobeOrganelles, Int2(posQ, posR));
 
                     if(organelleHere !is null &&
                         organelleHere.organelle.name == "cytoplasm")
@@ -348,14 +366,14 @@ class MicrobeEditor{
                         @action.data["replacedCyto"] = organelleHere;
 
                         LOG_INFO("replaced cytoplasm");
-                        OrganellePlacement::removeOrganelleAt(editor.editedMicrobe,
+                        OrganellePlacement::removeOrganelleAt(editor.editedMicrobeOrganelles,
                             Int2(posQ, posR));
                     }
                 }
 
                 LOG_INFO("Placing organelle '" + organelle.organelle.name + "' at: " +
                     organelle.q + ", " + organelle.r);
-                editor.editedMicrobe.insertLast(organelle);
+                editor.editedMicrobeOrganelles.insertLast(organelle);
 
                 editor._updateAlreadyPlacedVisuals();
 
@@ -371,9 +389,9 @@ class MicrobeEditor{
                     int posQ = int(hexes[c].q) + organelle.q;
                     int posR = int(hexes[c].r) + organelle.r;
                     auto organelleHere = OrganellePlacement::getOrganelleAt(
-                        editor.editedMicrobe, Int2(posQ, posR));
+                        editor.editedMicrobeOrganelles, Int2(posQ, posR));
                     if(organelleHere !is null){
-                        OrganellePlacement::removeOrganelleAt(editor.editedMicrobe,
+                        OrganellePlacement::removeOrganelleAt(editor.editedMicrobeOrganelles,
                             Int2(posQ, posR));
 
                         // If an cyto was replaced here, we have to replace it back on undo of this action
@@ -382,7 +400,7 @@ class MicrobeEditor{
 
                             LOG_INFO("Replacing " + replacedCyto.organelle.name + "' at: " +
                                 replacedCyto.q + ", " + replacedCyto.r);
-                            editor.editedMicrobe.insertLast(replacedCyto);
+                            editor.editedMicrobeOrganelles.insertLast(replacedCyto);
                         }
                     }
                 }
@@ -539,7 +557,7 @@ class MicrobeEditor{
         // organelleCount = 0;
         auto previousMP = mutationPoints;
         // Copy current microbe to a new array
-        array<PlacedOrganelle@> oldEditedMicrobe = editedMicrobe;
+        array<PlacedOrganelle@> oldEditedMicrobeOrganelles = editedMicrobeOrganelles;
 
         EditorAction@ action = EditorAction(0,
             // redo
@@ -547,16 +565,16 @@ class MicrobeEditor{
                 // Delete the organelles (all except the nucleus) and set mutation points
                 // (just undoing and redoing the cost like other actions doesn't work in this case due to its nature)
                 editor.setMutationPoints(BASE_MUTATION_POINTS);
-                for(uint i = editor.editedMicrobe.length()-1; i > 0; --i){
-                    const PlacedOrganelle@ organelle = editor.editedMicrobe[i];
+                for(uint i = editor.editedMicrobeOrganelles.length()-1; i > 0; --i){
+                    const PlacedOrganelle@ organelle = editor.editedMicrobeOrganelles[i];
                     auto hexes = organelle.organelle.getRotatedHexes(organelle.rotation);
                     for(uint c = 0; c < hexes.length(); ++c){
                         int posQ = int(hexes[c].q) + organelle.q;
                         int posR = int(hexes[c].r) + organelle.r;
                         auto organelleHere = OrganellePlacement::getOrganelleAt(
-                            editor.editedMicrobe, Int2(posQ, posR));
+                            editor.editedMicrobeOrganelles, Int2(posQ, posR));
                         if(organelleHere !is null){
-                            OrganellePlacement::removeOrganelleAt(editor.editedMicrobe,
+                            OrganellePlacement::removeOrganelleAt(editor.editedMicrobeOrganelles,
                                 Int2(posQ, posR));
                             }
 
@@ -567,18 +585,18 @@ class MicrobeEditor{
 
             },
             function(EditorAction@ action, MicrobeEditor@ editor){
-                editor.editedMicrobe.resize(0);
+                editor.editedMicrobeOrganelles.resize(0);
                 editor.setMutationPoints(int(action.data["previousMP"]));
                 // Load old microbe
-                array<PlacedOrganelle@> oldEditedMicrobe =
-                    cast<array<PlacedOrganelle@>>(action.data["oldEditedMicrobe"]);
-                for(uint i = 0; i < oldEditedMicrobe.length(); ++i){
-                    editor.editedMicrobe.insertLast(cast<PlacedOrganelle>(oldEditedMicrobe[i]));
+                array<PlacedOrganelle@> oldEditedMicrobeOrganelles =
+                    cast<array<PlacedOrganelle@>>(action.data["oldEditedMicrobeOrganelles"]);
+                for(uint i = 0; i < oldEditedMicrobeOrganelles.length(); ++i){
+                    editor.editedMicrobeOrganelles.insertLast(cast<PlacedOrganelle>(oldEditedMicrobeOrganelles[i]));
                 }
 
                 editor._updateAlreadyPlacedVisuals();
             });
-            @action.data["oldEditedMicrobe"] = oldEditedMicrobe;
+            @action.data["oldEditedMicrobeOrganelles"] = oldEditedMicrobeOrganelles;
             action.data["previousMP"] = previousMP;
             enqueueAction(action);
 
@@ -623,7 +641,7 @@ class MicrobeEditor{
     // table. It will be used automatically.
     void enqueueAction(EditorAction@ action)
     {
-        if(action.cost != 0)
+        if(action.cost != 0 && !freeBuilding)
             if(!takeMutationPoints(action.cost))
                 return;
 
@@ -660,8 +678,8 @@ class MicrobeEditor{
 
     bool checkIsNucleusPresent()
     {
-        for(uint i = 0; i < editedMicrobe.length(); ++i){
-            auto organelle = cast<PlacedOrganelle>(editedMicrobe[i]);
+        for(uint i = 0; i < editedMicrobeOrganelles.length(); ++i){
+            auto organelle = cast<PlacedOrganelle>(editedMicrobeOrganelles[i]);
             if (organelle.organelle.name == "nucleus"){
                 return true;
             }
@@ -688,7 +706,7 @@ class MicrobeEditor{
             int posQ = int(hexes[i].q+q);
             int posR = int(hexes[i].r+r);
 
-            auto organelleHere = OrganellePlacement::getOrganelleAt(editedMicrobe,
+            auto organelleHere = OrganellePlacement::getOrganelleAt(editedMicrobeOrganelles,
                 Int2(posQ, posR));
 
             if(organelleHere !is null)
@@ -714,12 +732,12 @@ class MicrobeEditor{
     bool surroundsOrganelle(int q, int r)
     {
         return
-            OrganellePlacement::getOrganelleAt(editedMicrobe, Int2(q + 0, r - 1)) !is null ||
-            OrganellePlacement::getOrganelleAt(editedMicrobe, Int2(q + 1, r - 1)) !is null ||
-            OrganellePlacement::getOrganelleAt(editedMicrobe, Int2(q + 1, r + 0)) !is null ||
-            OrganellePlacement::getOrganelleAt(editedMicrobe, Int2(q + 0, r + 1)) !is null ||
-            OrganellePlacement::getOrganelleAt(editedMicrobe, Int2(q - 1, r + 1)) !is null ||
-            OrganellePlacement::getOrganelleAt(editedMicrobe, Int2(q - 1, r + 0)) !is null;
+            OrganellePlacement::getOrganelleAt(editedMicrobeOrganelles, Int2(q + 0, r - 1)) !is null ||
+            OrganellePlacement::getOrganelleAt(editedMicrobeOrganelles, Int2(q + 1, r - 1)) !is null ||
+            OrganellePlacement::getOrganelleAt(editedMicrobeOrganelles, Int2(q + 1, r + 0)) !is null ||
+            OrganellePlacement::getOrganelleAt(editedMicrobeOrganelles, Int2(q + 0, r + 1)) !is null ||
+            OrganellePlacement::getOrganelleAt(editedMicrobeOrganelles, Int2(q - 1, r + 1)) !is null ||
+            OrganellePlacement::getOrganelleAt(editedMicrobeOrganelles, Int2(q - 1, r + 0)) !is null;
     }
 
     void loadMicrobe(int entityId){
@@ -750,7 +768,7 @@ class MicrobeEditor{
             action.redo(action, this);
             hudSystem.updateSpeed();
 
-            if (action.cost > 0){
+            if (action.cost > 0 && !freeBuilding){
                 mutationPoints -= action.cost;
             }
             //upon redoing, undoing is possible
@@ -769,7 +787,7 @@ class MicrobeEditor{
         if (actionIndex > 0){
             //LOG_INFO("Attempting to call undo");
             auto action = actionHistory[actionIndex-1];
-            if (action.cost > 0){
+            if (action.cost > 0 && !freeBuilding){
                 mutationPoints += action.cost;
             }
             action.undo(action, this);
@@ -833,13 +851,11 @@ class MicrobeEditor{
 
     void removeOrganelleAt(int q, int r)
     {
-        auto organelleHere = OrganellePlacement::getOrganelleAt(editedMicrobe,
+        auto organelleHere = OrganellePlacement::getOrganelleAt(editedMicrobeOrganelles,
                 Int2(q, r));
         PlacedOrganelle@ organelle = cast<PlacedOrganelle>(organelleHere);
 
         int cost = ORGANELLE_REMOVE_COST;
-        if(freeBuilding)
-            cost = 0;
 
         if(organelleHere !is null){
             // Dont allow deletion of nucleus or the last organelle
@@ -852,7 +868,7 @@ class MicrobeEditor{
                     int q = int(action.data["q"]);
                     int r = int(action.data["r"]);
                     // Remove the organelle
-                   OrganellePlacement::removeOrganelleAt(editor.editedMicrobe,Int2(q, r));
+                   OrganellePlacement::removeOrganelleAt(editor.editedMicrobeOrganelles,Int2(q, r));
                    editor._updateAlreadyPlacedVisuals();
                 },
                 // undo
@@ -866,16 +882,16 @@ class MicrobeEditor{
                         int posQ = int(hexes[i].q) + organelle.q;
                         int posR = int(hexes[i].r) + organelle.r;
                         auto organelleHere = OrganellePlacement::getOrganelleAt(
-                            editor.editedMicrobe, Int2(posQ, posR));
+                            editor.editedMicrobeOrganelles, Int2(posQ, posR));
                         if(organelleHere !is null &&
                             organelleHere.organelle.name == "cytoplasm")
                         {
                             LOG_INFO("replaced cytoplasm");
-                            OrganellePlacement::removeOrganelleAt(editor.editedMicrobe,
+                            OrganellePlacement::removeOrganelleAt(editor.editedMicrobeOrganelles,
                                 Int2(posQ, posR));
                         }
                     }
-                    editor.editedMicrobe.insertLast(organelle);
+                    editor.editedMicrobeOrganelles.insertLast(organelle);
                     editor._updateAlreadyPlacedVisuals();
                 });
                 // Give the action access to some data
@@ -911,7 +927,7 @@ class MicrobeEditor{
             const Float3 pos = Hex::axialToCartesian(posQ, posR);
 
             // Detect can it be placed there
-            auto organelleHere = OrganellePlacement::getOrganelleAt(editedMicrobe,
+            auto organelleHere = OrganellePlacement::getOrganelleAt(editedMicrobeOrganelles,
                 Int2(posQ, posR));
 
             bool canPlace = false;
@@ -1062,14 +1078,14 @@ class MicrobeEditor{
 
     int getMicrobeSize() const
     {
-        return editedMicrobe.length();
+        return editedMicrobeOrganelles.length();
     }
 
     int getActualMicrobeSize() const
     {
         int lengthMicrobe = 0;
-        for(uint i = 0; i < editedMicrobe.length(); ++i){
-            auto organelle = cast<PlacedOrganelle>(editedMicrobe[i]);
+        for(uint i = 0; i < editedMicrobeOrganelles.length(); ++i){
+            auto organelle = cast<PlacedOrganelle>(editedMicrobeOrganelles[i]);
             lengthMicrobe += organelle.organelle.getHexCount();
         }
         return lengthMicrobe;
@@ -1081,8 +1097,8 @@ class MicrobeEditor{
         double finalSpeed = 0;
         int flagCount=0;
         double lengthMicrobe = 0;
-        for(uint i = 0; i < editedMicrobe.length(); ++i){
-            auto organelle = cast<PlacedOrganelle>(editedMicrobe[i]);
+        for(uint i = 0; i < editedMicrobeOrganelles.length(); ++i){
+            auto organelle = cast<PlacedOrganelle>(editedMicrobeOrganelles[i]);
             lengthMicrobe+=organelle.organelle.getHexCount();
             auto name = organelle.organelle.name;
             if (name=="flagellum"){
@@ -1103,6 +1119,41 @@ class MicrobeEditor{
 
         // Its plus one because you are updating the next generation
         return (playerSpecies.generation+1);
+    }
+
+    MEMBRANE_TYPE stringToMembraneType(string name)
+    {
+        if(name == "membrane"){
+            return MEMBRANE_TYPE::MEMBRANE;
+        } else if (name == "wall"){
+            return MEMBRANE_TYPE::WALL;
+        } else if(name == "chitin"){
+            return MEMBRANE_TYPE::CHITIN;
+        } else if(name == "double"){
+            return MEMBRANE_TYPE::DOUBLEMEMBRANE;
+        }
+
+        LOG_ERROR("MicrobeEditor: No MEMBRANE_TYPE match for name: " + name);
+        // Return default membrane if invalid
+        return MEMBRANE_TYPE::MEMBRANE;
+    }
+
+    string membraneTypeToString(MEMBRANE_TYPE type)
+    {
+        switch (type)
+        {
+            case MEMBRANE_TYPE::MEMBRANE:
+                return "membrane";
+            case MEMBRANE_TYPE::WALL:
+                return "wall";
+            case MEMBRANE_TYPE::CHITIN:
+                return "chitin";
+            case MEMBRANE_TYPE::DOUBLEMEMBRANE:
+                return "double";
+        }
+
+        assert(false, "No string counterpart for MEMBRANE_TYPE of index " + type);
+        return "";
     }
 
     int onGeneric(GenericEvent@ event)
@@ -1149,9 +1200,9 @@ class MicrobeEditor{
             // It is easiest to just replace all
             array<SpeciesStoredOrganelleType@> newOrganelles;
 
-            for(uint i = 0; i < editedMicrobe.length(); ++i){
+            for(uint i = 0; i < editedMicrobeOrganelles.length(); ++i){
 
-                newOrganelles.insertLast(editedMicrobe[i]);
+                newOrganelles.insertLast(editedMicrobeOrganelles[i]);
             }
 
             templateOrganelles = newOrganelles;
@@ -1185,6 +1236,33 @@ class MicrobeEditor{
                 GetThriveGame().playerMovedToPatch(targetPatch);
             }
 
+            // Change species name
+            if(newName.split(" ").length() - 1 == 1){
+                playerSpecies.genus = newName.split(" ")[0];
+                playerSpecies.epithet = newName.split(" ")[1];
+                LOG_INFO("MicrobeEditor: Player species name is now " + playerSpecies.genus + " " + playerSpecies.epithet);
+
+                // Send new name to GUI
+                GenericEvent@ nameEvent = GenericEvent("updateSpeciesName");
+                NamedVars@  vars = nameEvent.GetNamedVars();
+                vars.AddValue(ScriptSafeVariableBlock("speciesName", playerSpecies.genus + " " + playerSpecies.epithet));
+                GetEngine().GetEventHandler().CallEvent(nameEvent);
+            } else {
+                LOG_INFO("MicrobeEditor: Invalid newName: " + newName);
+            }
+
+            auto membraneComponent = world.GetComponent_MembraneComponent(player);
+            // Change species membrane
+            playerSpecies.speciesMembraneType = membrane;
+            LOG_INFO("MicrobeEditor: Player species membrane type is now " + int(playerSpecies.speciesMembraneType));
+            membraneComponent.setMembraneType(membrane);
+            // Change species membrane color
+            playerSpecies.colour = colour;
+            LOG_INFO("MicrobeEditor: Player species colour is now RGB: " + playerSpecies.colour.X + " " + playerSpecies.colour.Y + " " + playerSpecies.colour.Z);
+            membraneComponent.setColour(colour);
+            membraneComponent.clear();
+            MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(world.GetScriptComponentHolder("MicrobeComponent").Find(player));
+
             return 1;
         } else if (type == "SymmetryClicked"){
             NamedVars@ vars = event.GetNamedVars();
@@ -1213,13 +1291,49 @@ class MicrobeEditor{
             NamedVars@ vars = event.GetNamedVars();
             targetPatch = int(vars.GetSingleValueByName("patchId"));
             return 1;
+        } else if(type == "MicrobeEditorNameChanged"){
+            NamedVars@ vars = event.GetNamedVars();
+            newName = string(vars.GetSingleValueByName("value"));
+            return 1;
+        } else if(type == "MicrobeEditorMembraneSelected"){
+            NamedVars@ vars = event.GetNamedVars();
+            int cost = 50; // Will need some changes once membrane types are more fleshed out
+
+            EditorAction@ action = EditorAction(cost,
+                // redo
+                function(EditorAction@ action, MicrobeEditor@ editor){
+                    editor.membrane = MEMBRANE_TYPE(action.data["membrane"]);
+                    GenericEvent@ event = GenericEvent("MicrobeEditorMembraneUpdated");
+                    NamedVars@ vars = event.GetNamedVars();
+                    vars.AddValue(ScriptSafeVariableBlock("membrane", editor.membraneTypeToString(editor.membrane)));
+                    GetEngine().GetEventHandler().CallEvent(event);
+                },
+                // undo
+                function(EditorAction@ action, MicrobeEditor@ editor){
+                    editor.membrane = MEMBRANE_TYPE(action.data["prevMembrane"]);
+                    GenericEvent@ event = GenericEvent("MicrobeEditorMembraneUpdated");
+                    NamedVars@ vars = event.GetNamedVars();
+                    vars.AddValue(ScriptSafeVariableBlock("membrane", editor.membraneTypeToString(editor.membrane)));
+                    GetEngine().GetEventHandler().CallEvent(event);
+                }
+            );
+
+            action.data["membrane"] = stringToMembraneType(string(vars.GetSingleValueByName("membrane")));
+            action.data["prevMembrane"] = membrane;
+
+            enqueueAction(action);
+            return 1;
+        } else if(type == "MicrobeEditorColourSelected"){
+            NamedVars@ vars = event.GetNamedVars();
+            colour = Float4(vars.GetSingleValueByName("r"), vars.GetSingleValueByName("g"), vars.GetSingleValueByName("b"), 1);
+            return 1;
         }
 
         LOG_ERROR("Microbe editor got unknown event: " + type);
         return -1;
     }
 
-    //! When true nothing costs ATP
+    //! When true nothing costs MP
     bool freeBuilding = false;
 
     //! Hover hexes and models are only shown if this is true
@@ -1245,9 +1359,8 @@ class MicrobeEditor{
     private string activeActionName;
     // This is the container that has the edited organelles in it.
     // This is populated when entering and used to update the player's species template on exit
-    // TODO: rename to editedMicrobeOrganelles
     // This is not private because anonymous callbacks want to access this
-    array<PlacedOrganelle@> editedMicrobe;
+    array<PlacedOrganelle@> editedMicrobeOrganelles;
 
     // This is the already placed hexes
     private array<ObjectID> placedHexes;
@@ -1266,6 +1379,13 @@ class MicrobeEditor{
     //0 is no symmetry, 1 is x-axis symmetry, 2 is 4-way symmetry, and 3 is 6-way symmetry.
     // TODO: change to enum
     private int symmetry = 0;
+
+    private string newName;
+
+    // Not private so anonymous callbacks can access this, same as editedMicrobeOrganelles
+    MEMBRANE_TYPE membrane;
+
+    private Float4 colour;
 
     private bool microbeHasBeenInEditor = false;
 
