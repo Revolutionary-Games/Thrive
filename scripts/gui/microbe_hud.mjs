@@ -554,7 +554,7 @@ function updateHoverInfo(vars){
             img.setAttribute("height", "25");
             par.appendChild(img);
             par.appendChild(document.createTextNode("  " + compoundData.name + ": "));
-            const parText = document.createTextNode("" + compoundData.quantity);
+            const parText = document.createTextNode("" + compoundData.quantity.toFixed(2));
             par.appendChild(parText);
             panel.appendChild(par);
         });
