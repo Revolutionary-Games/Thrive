@@ -1176,6 +1176,14 @@ div::-webkit-scrollbar-thumb:hover {
   margin-left: 10px;
 }
 
+#speciesName {
+  border: none;
+  background: none;
+  font-size: 12pt;
+  color: white;
+  font-family: "Jura";
+}
+
 .TextBox {
   display: inline-block;
   height: 26px;
@@ -1429,54 +1437,52 @@ div::-webkit-scrollbar-thumb:hover {
   display: inline-block;
 }
 
-#StructurePanelTop {
-  display: inline-block;
-  position: relative;
-  width: 120px;
-  height: 40px;
-  background-image: url("../../Textures/gui/bevel/EditPanelTop.png");
-  z-index: 1;
-  padding: 0;
-}
 
-#StructureTitle,
-#AppearanceTitle,
-#BehaviorTitle {
+.CellTabButton {
   font-size: 12pt;
-  width: 120px;
-  height: 40px;
+  font-weight: bold;
   text-align: center;
-  line-height: 40px;
-  padding: 0;
+  vertical-align: middle;
+  display: inline-flex;
+  align-items: center;
+  height: 5%;
+  padding-left: 0;
+  padding-right: 0;
+  border: 3px solid rgba(112, 159, 159, 0.6);
+  background: rgba(0, 125, 125, 0.2);
 }
 
-#AppearanceButton {
-  display: inline-block;
-  background-image: url("../../Textures/gui/bevel/EditPanelHeaderDisabled.png");
-  position: relative;
-  width: 120px;
-  height: 40px;
-  left: -5px;
-  top: 0;
-  z-index: -1;
-  padding: 0;
-  margin: 0;
+.CellTabButton:hover {
+  background: rgba(0, 125, 125, 0.6);
 }
 
-#BehaviorButton {
-  display: inline-block;
-  background-image: url("../../Textures/gui/bevel/EditPanelHeaderDisabled.png");
-  position: relative;
-  width: 120px;
-  height: 40px;
-  left: -10px;
-  top: 0;
-  z-index: -1;
-  padding: 0;
-  margin: 0;
+.CellTabButton.Active {
+  background: rgba(89, 210, 255, 0.7);
+}
+
+.CellTabButton.Active:hover {
+  background: rgba(89, 210, 255, 0.7);
+}
+
+.CellTabButton.Disabled {
+  background: rgba(0, 50, 50, 0.25);
+}
+
+.CellTabButton.Disabled:hover {
+  background: rgba(0, 50, 50, 0.25);
 }
 
 #StructurePanelMid {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 360px;
+  height: calc(100% - 40px);
+  background-image: url("../../Textures/gui/bevel/EditPanelMid.png");
+  overflow-y: scroll;
+}
+
+#AppearancePanelMid {
   position: relative;
   top: 0;
   left: 0;
@@ -1826,6 +1832,39 @@ div::-webkit-scrollbar-thumb:hover {
   font-size: 85%;
 }
 
+#ColourWheel {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  left: 15px;
+  top: 350px;
+  border-radius: 50%;
+  background-size: 200px 200px;
+  background-image: url("../../Textures/gui/colour_wheel.png");
+}
+
+#ColourDisplay {
+  position: absolute;
+  width: 10px;
+  height: 50px;
+  left: 0;
+  top: 425px;
+  border-radius: 10%;
+  background-size: 10px 50px;
+  background-color: rgb(255, 255, 255);
+}
+
+#ColourValueBar {
+  position: absolute;
+  width: 20px;
+  height: 200px;
+  left: 220px;
+  top: 350px;
+  border-radius: 10%;
+  background-size: 20px 200px;
+  background-image: linear-gradient(white, black);
+}
+
 #debugOverlay {
   position: absolute;
   top: 0;
@@ -1929,6 +1968,10 @@ div::-webkit-scrollbar-thumb:hover {
   min-width: 40px;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.Patch.Current {
+  border: 3px solid rgb(24, 143, 0);
 }
 
 #editorSelectedPatchName {

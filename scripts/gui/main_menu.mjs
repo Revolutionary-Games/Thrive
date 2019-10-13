@@ -323,16 +323,18 @@ function handleConnectionStatusEvent(event){
 
 function handleDebugOverlayData(vars){
     if(vars.show){
+        document.getElementById("currentFPS").innerText = vars.fps;
+        document.getElementById("avgFrameTime").innerText = vars.avgFrameTime.
+            toFixed(1) + "ms";
+        document.getElementById("currentFrameTime").innerText = vars.frameTime.
+            toFixed(1) + "ms";
+        document.getElementById("maxFrameTime").innerText = vars.maxFrameTime.
+            toFixed(1) + "ms";
+        document.getElementById("currentTickTime").innerText = vars.tickTime + "ms";
         document.getElementById("debugOverlay").style.display = "block";
     } else {
         document.getElementById("debugOverlay").style.display = "none";
     }
-
-    document.getElementById("currentFPS").innerText = vars.fps;
-    document.getElementById("avgFrameTime").innerText = vars.avgFrameTime.toFixed(1) + "ms";
-    document.getElementById("currentFrameTime").innerText = vars.frameTime.toFixed(1) + "ms";
-    document.getElementById("maxFrameTime").innerText = vars.maxFrameTime.toFixed(1) + "ms";
-    document.getElementById("currentTickTime").innerText = vars.tickTime + "ms";
 
     if(vars.ticksBehind){
         document.getElementById("currentTicksBehind").innerText =
