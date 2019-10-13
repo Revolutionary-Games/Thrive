@@ -63,7 +63,6 @@ export function runMicrobeHUDSetup(){
                     // Determine different values because right now
                     // The two panels are  different in layout
                     if(panelToChange.id == "compoundsPanel") {
-
                         onCompressPanelClicked(panelToChange, {
                             bar: "Bar",
                             title: "BarTitle",
@@ -96,18 +95,6 @@ export function runMicrobeHUDSetup(){
 
     // Compounds expand Panel button
     const expandPanels = document.getElementsByClassName("expandPanel");
-
-    // Variables needed for changes
-    const dataToChange = {
-        bar: "",
-        title: "",
-        value: "",
-        height: "",
-        width: "",
-        background: "",
-        leftMargin: "",
-        valueLeft: ""
-    };
 
     for (const element of expandPanels) {
         const panelToChange = document.getElementById(element.getAttribute("data-parentId"));
