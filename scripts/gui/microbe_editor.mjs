@@ -16,7 +16,7 @@ let patchIdOnEnter = null;
 
 // Allows only one move per session
 let alreadyMovedThisSession = false;
-const limitMovesPerSession = true;
+let limitMovesPerSession = true;
 
 // The full patch data
 let patchData = null;
@@ -265,6 +265,13 @@ export function setupMicrobeEditor(){
         Leviathan.OnGeneric("MutationPointsUpdated", (event, vars) => {
             // Apply the new values
             updateMutationPoints(vars.mutationPoints, vars.maxMutationPoints);
+        });
+
+        // Event for detecting freebuild boolean value if is true we have no
+        // Limitation on moves on patchMap
+        Leviathan.OnGeneric("MicrobeEditorFreeBuildStatus", (event, vars) => {
+            // Apply freeBuilding toggle
+            onFreeBuildStatus(vars.freebuild);
         });
 
         // Event for size update
@@ -639,6 +646,10 @@ function onSelectNewOrganelle(organelle){
 
         updateSelectedOrganelle(organelle);
     }
+}
+
+function onFreeBuildStatus(toggle) {
+    limitMovesPerSession = !toggle;
 }
 
 //! Updates the GUI buttons based on selected organelle
@@ -1141,6 +1152,7 @@ function processPatchMapData(data){
 
         const inner = document.createElement("span");
         inner.classList.add("Patch");
+        inner.id = "patchMapNode_" + patch.id;
         inner.classList.add("Patch" + common.capitalize(patch.biome.background));
 
         // Inner.textContent = patch.name;
@@ -1149,6 +1161,9 @@ function processPatchMapData(data){
 
         targetElement.appendChild(element);
     }
+
+    // Highlight current patch
+    document.getElementById("patchMapNode_" + currentPatchId).classList.add("Current");
 }
 
 function updateSelectedPatchData(patch){
@@ -1243,7 +1258,10 @@ function moveToPatchClicked(){
     if(!patchMoveAllowed(selectedPatch.id))
         return;
 
+    // Switch patch in which we are
+    document.getElementById("patchMapNode_" + currentPatchId).classList.remove("Current");
     currentPatchId = selectedPatch.id;
+    document.getElementById("patchMapNode_" + currentPatchId).classList.add("Current");
 
     if(limitMovesPerSession)
         alreadyMovedThisSession = currentPatchId != patchIdOnEnter;
