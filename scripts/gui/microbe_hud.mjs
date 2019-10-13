@@ -54,17 +54,6 @@ export function runMicrobeHUDSetup(){
     const compressPanels = document.getElementsByClassName("compressPanel");
 
     for (const element of compressPanels) {
-        // Variables needed for changes
-        const dataToChange = {
-            bar: "",
-            title: "",
-            value: "",
-            height: "",
-            width: "",
-            background: "",
-            leftMargin: "",
-            valueLeft: ""
-        };
 
         const panelToChange = document.getElementById(element.getAttribute("data-parentId"));
         element.addEventListener("click",
@@ -74,29 +63,33 @@ export function runMicrobeHUDSetup(){
                     // Determine different values because right now
                     // The two panels are  different in layout
                     if(panelToChange.id == "compoundsPanel") {
-                        dataToChange.bar = "Bar";
-                        dataToChange.title = "BarTitle";
-                        dataToChange.value = "BarValue";
-                        dataToChange.height = 92;
-                        dataToChange.width = 150;
-                        dataToChange.background =
-                            "url('../../Textures/gui/bevel/CompoundPanelCompress.png')";
-                        dataToChange.leftMargin = -25;
-                        dataToChange.valueLeft = -30;
+
+                        onCompressPanelClicked(panelToChange, {
+                            bar: "Bar",
+                            title: "BarTitle",
+                            value: "BarValue",
+                            height: 92,
+                            width: 150,
+                            background:
+                                "url('../../Textures/gui/bevel/CompoundPanelCompress.png')",
+                            leftMargin: -25,
+                            valueLeft: -30
+                        });
                     } else {
-                        dataToChange.bar = "EnvironmentBar";
-                        dataToChange.title = "EnvironmentBarTitle";
-                        dataToChange.value = "EnvironmentBarValue";
-                        dataToChange.height = 58;
-                        dataToChange.width = 100;
-                        dataToChange.background =
-                            "url('../../Textures/gui/bevel/environmentPanelCompress.png')";
-                        dataToChange.leftMargin = 5;
-                        dataToChange.valueLeft = 15;
+                        onCompressPanelClicked(panelToChange, {
+                            bar: "EnvironmentBar",
+                            title: "EnvironmentBarTitle",
+                            value: "EnvironmentBarValue",
+                            height: 58,
+                            width: 100,
+                            background:
+                                "url('../../Textures/gui/bevel/environmentPanelCompress.png')",
+                            leftMargin: 5,
+                            valueLeft: 15
+                        });
                     }
                     panelToChange.classList.add("Compress");
                     panelToChange.classList.remove("Expand");
-                    onCompressPanelClicked(panelToChange, dataToChange);
                 }
             }, true);
     }
@@ -125,29 +118,32 @@ export function runMicrobeHUDSetup(){
                     // Determine different values because right now
                     // The two panels are  different in layout
                     if(panelToChange.id == "compoundsPanel") {
-                        dataToChange.bar = "Bar";
-                        dataToChange.title = "BarTitle";
-                        dataToChange.value = "BarValue";
-                        dataToChange.height = 92;
-                        dataToChange.width = 150;
-                        dataToChange.background =
-                            "url('../../Textures/gui/bevel/CompoundPanelExpand.png')";
-                        dataToChange.leftMargin = 20;
-                        dataToChange.valueLeft = 120;
+                        onExpandPanelClicked(panelToChange, {
+                            bar: "Bar",
+                            title: "BarTitle",
+                            value: "BarValue",
+                            height: 92,
+                            width: 150,
+                            background:
+                                "url('../../Textures/gui/bevel/CompoundPanelExpand.png')",
+                            leftMargin: 20,
+                            valueLeft: 120
+                        });
                     } else {
-                        dataToChange.bar = "EnvironmentBar";
-                        dataToChange.title = "EnvironmentBarTitle";
-                        dataToChange.value = "EnvironmentBarValue";
-                        dataToChange.height = 58;
-                        dataToChange.width = 100;
-                        dataToChange.background =
-                            "url('../../Textures/gui/bevel/environmentPanelExpand.png')";
-                        dataToChange.leftMargin = 20;
-                        dataToChange.valueLeft = 100;
+                        onExpandPanelClicked(panelToChange, {
+                            bar: "EnvironmentBar",
+                            title: "EnvironmentBarTitle",
+                            value: "EnvironmentBarValue",
+                            height: 58,
+                            width: 100,
+                            background:
+                                "url('../../Textures/gui/bevel/environmentPanelExpand.png')",
+                            leftMargin: 20,
+                            valueLeft: 100
+                        });
                     }
                     panelToChange.classList.add("Expand");
                     panelToChange.classList.remove("Compress");
-                    onExpandPanelClicked(panelToChange, dataToChange);
                 }
             }, true);
     }
@@ -303,7 +299,7 @@ function onCompoundPanelClicked() {
     document.getElementById("compoundsButton").classList.toggle("inactive");
 }
 
-function openHelp() {
+function openHelp(){
 
     common.playButtonPressSound();
 
@@ -739,7 +735,7 @@ function updateMicrobeHUDBars(values){
 
     const circles = document.querySelectorAll("#circleBars");
 
-    // ! instead of using totalProgress var, two hardCoded value are used
+    // Instead of using totalProgress var, two hardCoded value are used
     // They are in thrive_gui.html at line 117 and 134.
     // two loops could be used but this need draw two differents svg for each circle
 
