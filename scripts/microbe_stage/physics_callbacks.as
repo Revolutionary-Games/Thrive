@@ -158,7 +158,7 @@ void cellHitAgent(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
     MicrobeComponent@ microbeComponent = MicrobeOperations::getMicrobeComponent(asCellWorld,cellEntity);
 
     if (propertiesComponent !is null && microbeComponent !is null){
-        if (propertiesComponent.getSpeciesName() != microbeComponent.speciesName && !microbeComponent.dead){
+        if (propertiesComponent.getSpeciesName() != microbeComponent.species.name && !microbeComponent.dead){
             MicrobeOperations::damage(asCellWorld, cellEntity, double(OXY_TOXY_DAMAGE), "toxin");
             world.QueueDestroyEntity(floatingEntity);
         }
@@ -181,10 +181,10 @@ void cellOnCellActualContact(GameWorld@ world, ObjectID firstEntity, ObjectID se
         int firstMicrobeComponentHexCount = firstMicrobeComponent.totalHexCountCache;
         int secondMicrobeComponentHexCount = secondMicrobeComponent.totalHexCountCache;
 
-        if(firstMicrobeComponent.isBacteria)
+        if(firstMicrobeComponent.species.isBacteria)
             firstMicrobeComponentHexCount /= 2;
 
-        if(secondMicrobeComponent.isBacteria)
+        if(secondMicrobeComponent.species.isBacteria)
             secondMicrobeComponentHexCount /= 2;
 
         if (firstMicrobeComponent.engulfMode)
@@ -230,10 +230,10 @@ bool beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity
         int firstMicrobeComponentHexCount = firstMicrobeComponent.totalHexCountCache;
         int secondMicrobeComponentHexCount = secondMicrobeComponent.totalHexCountCache;
 
-        if(firstMicrobeComponent.isBacteria)
+        if(firstMicrobeComponent.species.isBacteria)
             firstMicrobeComponentHexCount /= 2;
 
-        if(secondMicrobeComponent.isBacteria)
+        if(secondMicrobeComponent.species.isBacteria)
             secondMicrobeComponentHexCount /= 2;
 
         // If either cell is engulfing we need to do things
@@ -295,7 +295,7 @@ bool hitAgent(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
     {
         if (firstPropertiesComponent !is null && secondMicrobeComponent !is null)
         {
-            if (firstPropertiesComponent.getSpeciesName()==secondMicrobeComponent.speciesName ||
+            if (firstPropertiesComponent.getSpeciesName()==secondMicrobeComponent.species.name ||
                 firstPropertiesComponent.getParentEntity()==secondEntity)
             {
                 shouldCollide = false;
@@ -304,7 +304,7 @@ bool hitAgent(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
         }
         else if (secondPropertiesComponent !is null && firstMicrobeComponent !is null)
         {
-            if (secondPropertiesComponent.getSpeciesName()==firstMicrobeComponent.speciesName ||
+            if (secondPropertiesComponent.getSpeciesName()==firstMicrobeComponent.species.name ||
                 secondPropertiesComponent.getParentEntity()==firstEntity)
             {
                 shouldCollide = false;

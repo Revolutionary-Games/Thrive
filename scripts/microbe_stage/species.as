@@ -17,7 +17,6 @@ void applyTemplate(CellStageWorld@ world, ObjectID microbe, Species@ species,
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbe));
 
-    microbeComponent.speciesName = species.name;
     MicrobeOperations::setMembraneType(world, microbe, species.speciesMembraneType);
     MicrobeOperations::setMembraneColour(world, microbe, species.colour);
 
@@ -60,10 +59,6 @@ void restoreOrganelleLayout(CellStageWorld@ world, ObjectID microbeEntity,
 
         MicrobeOperations::addOrganelle(world, microbeEntity, organelle, editShape);
     }
-
-    // Cache isBacteria from species. This can be changed depending on
-    // the added organelles in the editor
-    microbeComponent.isBacteria = species.isBacteria;
 
     // Call this  to reset processor component
     MicrobeOperations::rebuildProcessList(world,microbeEntity);
