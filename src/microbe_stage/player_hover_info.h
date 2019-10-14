@@ -3,7 +3,7 @@
 #include <Entities/Component.h>
 #include <Entities/Components.h>
 #include <Entities/System.h>
-
+#include <json/json.h>
 #include <unordered_map>
 
 namespace thrive {
@@ -19,6 +19,8 @@ class PlayerHoverInfoSystem
     : public Leviathan::System<
           std::tuple<MembraneComponent&, Leviathan::Position&>> {
 public:
+    PlayerHoverInfoSystem();
+
     static constexpr auto RUN_EVERY_MS = 100;
 
     void
@@ -50,5 +52,6 @@ public:
 private:
     // Used to run every RUN_EVERY_MS
     int passed = 0;
+    std::unique_ptr<Json::StreamWriter> writer;
 };
 } // namespace thrive

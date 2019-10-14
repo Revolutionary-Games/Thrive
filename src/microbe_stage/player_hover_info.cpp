@@ -14,9 +14,14 @@
 #include <Events/EventHandler.h>
 #include <Script/ScriptTypeResolver.h>
 
-#include <iomanip>
-
 using namespace thrive;
+
+PlayerHoverInfoSystem::PlayerHoverInfoSystem()
+{
+    Json::StreamWriterBuilder builder;
+    builder["indentation"] = "";
+    writer = std::unique_ptr<Json::StreamWriter>(builder.newStreamWriter());
+}
 
 void
     PlayerHoverInfoSystem::Run(CellStageWorld& world)
@@ -65,19 +70,24 @@ void
             "noCompounds", new Leviathan::BoolBlock(true)));
 
     } else {
+
+        Json::Value compoundsJson(Json::arrayValue);
+
         for(const auto& tuple : compounds) {
 
-            std::stringstream compoundInfo;
-            compoundInfo << std::fixed << std::setprecision(2)
-                         << SimulationParameters::compoundRegistry
-                                .getTypeData(std::get<0>(tuple))
-                                .displayName
-                         << ": " << std::get<1>(tuple);
-
-            vars->Add(std::make_shared<NamedVariableList>(
-                "compound" + std::to_string(std::get<0>(tuple)),
-                new Leviathan::StringBlock(compoundInfo.str())));
+            Json::Value compound;
+            compound["name"] = SimulationParameters::compoundRegistry
+                                   .getTypeData(std::get<0>(tuple))
+                                   .displayName;
+            compound["quantity"] = std::get<1>(tuple);
+            compoundsJson.append(compound);
         }
+
+        std::stringstream sstream;
+        writer->write(compoundsJson, &sstream);
+
+        vars->Add(std::make_shared<NamedVariableList>(
+            "compounds", new Leviathan::StringBlock(sstream.str())));
     }
 
     // Hovered over cells
@@ -94,8 +104,8 @@ void
         // reduce chance of leaks)
         microbeComponents->Release();
 
-        const auto stringType =
-            Leviathan::AngelScriptTypeIDResolver<std::string>::Get(
+        const auto speciesType =
+            Leviathan::AngelScriptTypeIDResolver<Species>::Get(
                 Leviathan::GetCurrentGlobalScriptExecutor());
 
         // This is used to skip the player
@@ -137,23 +147,18 @@ void
             }
 
             // TODO: this would be nice to verify just once during startup
-            if(microbeComponent->GetPropertyTypeId(0) != stringType ||
-                std::strncmp(microbeComponent->GetPropertyName(0),
-                    "speciesName", sizeof("speciesName") - 1) != 0) {
+            if(microbeComponent->GetPropertyTypeId(0) != speciesType) {
 
                 LOG_ERROR("PlayerHoverInfoSystem: Run: MicrobeComponent object "
                           "doesn't "
-                          "have \"string speciesName\" as the first property");
+                          "have \"Species@ species\" as the first property");
                 continue;
             }
 
-            const auto* name = static_cast<std::string*>(
+            const auto** speciesHandle = static_cast<const Species**>(
                 microbeComponent->GetAddressOfProperty(0));
 
-            const auto map = world.GetPatchManager().getCurrentMap();
-            const auto species =
-                map ? map->findSpeciesByName(*name) : Species::pointer{};
-
+            const Species* species = *speciesHandle;
 
             if(species) {
                 hovered->PushValue(
@@ -162,8 +167,9 @@ void
             } else {
 
                 // If we can't find the species, assume that it is extinct
-                hovered->PushValue(std::make_unique<VariableBlock>(
-                    new Leviathan::StringBlock("Extinct(" + *name + ")")));
+                hovered->PushValue(
+                    std::make_unique<VariableBlock>(new Leviathan::StringBlock(
+                        "Extinct(" + species->name + ")")));
             }
         }
     }

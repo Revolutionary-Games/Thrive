@@ -32,7 +32,7 @@ class NucleusOrganelle : OrganelleComponent{
 
         auto sceneNode1 = world.Create_RenderNode(golgi);
         auto model1 = world.Create_Model(golgi, "golgi.fbx",
-            getOrganelleMaterialWithTexture("GolgiApparatus.png", organelle.speciesColour));
+            getOrganelleMaterialWithTexture("GolgiApparatus.png", organelle.species.colour));
 
         sceneNode1.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
         sceneNode1.Node.setPosition(Hex::axialToCartesian(q + 0.9f, r + 0.9f));
@@ -46,7 +46,7 @@ class NucleusOrganelle : OrganelleComponent{
 
         auto sceneNode2 = world.Create_RenderNode(ER);
         auto model2 = world.Create_Model(ER, "ER.fbx",
-            getOrganelleMaterialWithTexture("ER.png", organelle.speciesColour));
+            getOrganelleMaterialWithTexture("ER.png", organelle.species.colour));
 
         sceneNode2.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
         sceneNode2.Node.setPosition(Hex::axialToCartesian(q, r + 1.6f));

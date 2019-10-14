@@ -42,26 +42,15 @@ class MicrobeComponent : ScriptComponent{
     //! This has to be called after creating this
     void init(ObjectID forEntity, bool isPlayerMicrobe, Species@ species)
     {
-        if (species !is null)
-        {
-            this.speciesName = species.name;
-        }
-
         @this.species = species;
 
         this.isPlayerMicrobe = isPlayerMicrobe;
-        this.isBacteria = species.isBacteria;
         this.engulfMode = false;
         this.isBeingEngulfed = false;
         this.hostileEngulfer = NULL_OBJECT;
         this.wasBeingEngulfed = false;
         this.isCurrentlyEngulfing = false;
         this.dead = false;
-        this.speciesColour = Float4(00.0f,0.0f,0.0f,0.0f);
-        if (species !is null)
-        {
-            this.speciesColour = species.colour;
-        }
         this.microbeEntity = forEntity;
         this.agentEmissionCooldown = 0;
 
@@ -132,11 +121,8 @@ class MicrobeComponent : ScriptComponent{
         queuedMovementForce += force;
     }
 
-    //! \note This is directly read from C++ and MUST BE the first property
-    string speciesName;
-
     //! This is reference counted so this can be stored here
-    //! \note Maybe the hover info should be changed to read this property
+    //! \note This is directly read from C++ and MUST BE the first property
     Species@ species;
 
     // TODO: initialize
@@ -145,7 +131,6 @@ class MicrobeComponent : ScriptComponent{
     float maxHitpoints = DEFAULT_HEALTH;
     bool dead = false;
     uint deathTimer = 0;
-    Float4 speciesColour = Float4(0, 0, 0, 0);
 
     // The organelles in this microbe
     array<PlacedOrganelle@> organelles;
@@ -172,7 +157,6 @@ class MicrobeComponent : ScriptComponent{
     double stored = 0;
     bool initialized = false;
     bool isPlayerMicrobe = false;
-    bool isBacteria = false;
     float maxBandwidth = 10.0 * BANDWIDTH_PER_ORGANELLE; // wtf is a bandwidth anyway?
     float remainingBandwidth = 0.0;
     uint compoundCollectionTimer = EXCESS_COMPOUND_COLLECTION_INTERVAL;
@@ -463,10 +447,10 @@ class MicrobeSystem : ScriptSystem{
             //  You escaped, good job
             auto playerSpecies = MicrobeOperations::getSpecies(world, "Default");
             if (!microbeComponent.isPlayerMicrobe &&
-                microbeComponent.speciesName != playerSpecies.name)
+                microbeComponent.species.name != playerSpecies.name)
             {
                 auto species = MicrobeOperations::getSpecies(world,
-                    microbeComponent.speciesName);
+                    microbeComponent.species.name);
 
                 if(species !is null)
                     MicrobeOperations::alterSpeciesPopulation(species,
@@ -484,7 +468,7 @@ class MicrobeSystem : ScriptSystem{
              auto circleRad = predatorMembraneComponent.calculateEncompassingCircleRadius();
              MicrobeComponent@ hostileMicrobeComponent = cast<MicrobeComponent>(
                 world.GetScriptComponentHolder("MicrobeComponent").Find(microbeComponent.hostileEngulfer));
-            if (hostileMicrobeComponent.isBacteria){
+            if (hostileMicrobeComponent.species.isBacteria){
                 circleRad = circleRad/2;
             }
             if ((hostileMicrobeComponent is null) || (!hostileMicrobeComponent.engulfMode) ||
@@ -979,7 +963,7 @@ class MicrobeSystem : ScriptSystem{
 
         // Create the one daughter cell.
         auto copyEntity = MicrobeOperations::spawnMicrobe(world, position._Position,
-            microbeComponent.speciesName, true);
+            microbeComponent.species.name, true);
 
         // Grab its microbe_component
         MicrobeComponent@ microbeComponentCopy = cast<MicrobeComponent>(
@@ -1038,7 +1022,7 @@ class MicrobeSystem : ScriptSystem{
             {
                 auto playerSpecies = MicrobeOperations::getSpecies(world, "Default");
                 if (!microbeComponent.isPlayerMicrobe &&
-                    microbeComponent.speciesName != playerSpecies.name)
+                    microbeComponent.species !is playerSpecies)
                 {
                     MicrobeOperations::alterSpeciesPopulation(species,
                         CREATURE_REPRODUCE_POPULATION_GAIN, "reproduced");
