@@ -223,6 +223,13 @@ Json::Value
 // ------------------------------------ //
 
 void
+	Star::setSol()
+{
+    mass = MASS_OF_OUR_SUN;
+    generateProperties(1);
+}
+
+void
     Star::generateProperties(int step)
 {
     if(step <= 0) {

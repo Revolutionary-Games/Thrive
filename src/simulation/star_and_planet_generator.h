@@ -46,11 +46,7 @@ public:
     }
 
     void
-        setSol()
-    {
-        mass = MASS_OF_OUR_SUN;
-        generateProperties(1);
-    }
+        setSol();
 
     void
         setMass(double newMass)
