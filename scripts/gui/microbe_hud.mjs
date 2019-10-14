@@ -11,6 +11,9 @@ let readyToEdit = false;
 
 let wonOnce = false;
 
+// Variable to show data useful during develop
+const showMouseCoordinates = false;
+
 //! Registers all the stuff for this to work.
 //! This makes sure it does something only once
 export function runMicrobeHUDSetup(){
@@ -22,7 +25,7 @@ export function runMicrobeHUDSetup(){
         onEditorButtonClicked, true);
 
     // Compound Panel
-    document.getElementById("compoundExpand").addEventListener("click",
+    document.getElementById("compoundsButton").addEventListener("click",
         onCompoundPanelClicked, true);
 
     // Pause Menu Clicked
@@ -46,6 +49,91 @@ export function runMicrobeHUDSetup(){
 
     // Editor button is initially disabled
     document.getElementById("microbeToEditorButton").classList.add("DisabledButton");
+
+    // Compounds eompress Panel button
+    const compressPanels = document.getElementsByClassName("compressPanel");
+
+    for (const element of compressPanels) {
+
+        const panelToChange = document.getElementById(element.getAttribute("data-parentId"));
+        element.addEventListener("click",
+            () => {
+                if(!panelToChange.classList.contains("Compress")) {
+
+                    // Determine different values because right now
+                    // The two panels are  different in layout
+                    if(panelToChange.id == "compoundsPanel") {
+                        onCompressPanelClicked(panelToChange, {
+                            bar: "Bar",
+                            title: "BarTitle",
+                            value: "BarValue",
+                            height: 92,
+                            width: 150,
+                            background:
+                                "url('../../Textures/gui/bevel/CompoundPanelCompress.png')",
+                            leftMargin: -25,
+                            valueLeft: -30
+                        });
+                    } else {
+                        onCompressPanelClicked(panelToChange, {
+                            bar: "EnvironmentBar",
+                            title: "EnvironmentBarTitle",
+                            value: "EnvironmentBarValue",
+                            height: 58,
+                            width: 100,
+                            background:
+                                "url('../../Textures/gui/bevel/environmentPanelCompress.png')",
+                            leftMargin: 5,
+                            valueLeft: 15
+                        });
+                    }
+                    panelToChange.classList.add("Compress");
+                    panelToChange.classList.remove("Expand");
+                }
+            }, true);
+    }
+
+    // Compounds expand Panel button
+    const expandPanels = document.getElementsByClassName("expandPanel");
+
+    for (const element of expandPanels) {
+        const panelToChange = document.getElementById(element.getAttribute("data-parentId"));
+        element.addEventListener("click",
+            () => {
+                if(!panelToChange.classList.contains("Expand")) {
+
+                    // Determine different values because right now
+                    // The two panels are  different in layout
+                    if(panelToChange.id == "compoundsPanel") {
+                        onExpandPanelClicked(panelToChange, {
+                            bar: "Bar",
+                            title: "BarTitle",
+                            value: "BarValue",
+                            height: 92,
+                            width: 150,
+                            background:
+                                "url('../../Textures/gui/bevel/CompoundPanelExpand.png')",
+                            leftMargin: 20,
+                            valueLeft: 120
+                        });
+                    } else {
+                        onExpandPanelClicked(panelToChange, {
+                            bar: "EnvironmentBar",
+                            title: "EnvironmentBarTitle",
+                            value: "EnvironmentBarValue",
+                            height: 58,
+                            width: 100,
+                            background:
+                                "url('../../Textures/gui/bevel/environmentPanelExpand.png')",
+                            leftMargin: 20,
+                            valueLeft: 100
+                        });
+                    }
+                    panelToChange.classList.add("Expand");
+                    panelToChange.classList.remove("Compress");
+                }
+            }, true);
+    }
 
     if(common.isInEngine()){
 
@@ -180,6 +268,8 @@ export function onReadyToEnterEditor(){
 
     readyToEdit = true;
     document.getElementById("microbeToEditorButton").classList.remove("DisabledButton");
+    document.getElementById("microbeToEditorButton").style.zIndex = "1";
+    document.getElementById("microbeToEditorButton").classList.add("pulseEditor");
 }
 
 
@@ -194,18 +284,14 @@ export function onResetEditor(){
 
 function onCompoundPanelClicked() {
     common.playButtonPressSound();
+    document.getElementById("compoundsPanel").style.transition = "0s";
 
-    $("#compoundsPanel").slideToggle(400, "swing", function(){
+    $("#environmentPanel").animate({"width": "toggle"});
+    $("#compoundsPanel").animate({"width": "toggle"});
+    $("#agentsPanel").animate({"width": "toggle"});
 
-        const visible = $(this).is(":visible");
-
-        // TODO: could just animate this image to rotate
-        document.getElementById("compoundExpandIcon").style.backgroundImage = visible ?
-            "url(../../Textures/gui/bevel/ExpandDownIcon.png)" :
-            "url(../../Textures/gui/bevel/ExpandUpIcon.png)";
-    });
-
-
+    document.getElementById("compoundsButton").classList.toggle("active");
+    document.getElementById("compoundsButton").classList.toggle("inactive");
 }
 
 function openHelp(){
@@ -301,6 +387,8 @@ function hideTipMsg() {
 function onMenuClicked(){
 
     common.playButtonPressSound();
+    document.getElementById("mainMenuButton").classList.add("MainMenuActive");
+    document.getElementById("mainMenuButton").classList.remove("MainMenuNormal");
     const pause = document.getElementById("pauseOverlay");
     pause.style.display = "block";
     const help = document.getElementById("helpText");
@@ -310,6 +398,8 @@ function onMenuClicked(){
 function onResumeClicked(){
 
     common.playButtonPressSound();
+    document.getElementById("mainMenuButton").classList.remove("MainMenuActive");
+    document.getElementById("mainMenuButton").classList.add("MainMenuNormal");
     const pause = document.getElementById("pauseOverlay");
     pause.style.display = "none";
 }
@@ -368,6 +458,8 @@ function onEditorButtonClicked(event){
 
     // Disable
     document.getElementById("microbeToEditorButton").classList.add("DisabledButton");
+    document.getElementById("microbeToEditorButton").style.zIndex = "-1";
+    document.getElementById("microbeToEditorButton").classList.remove("pulseEditor");
     readyToEdit = false;
 
     return true;
@@ -380,6 +472,8 @@ function onExitToMenuClicked() {
         document.getElementById("extinctionBody").style.display = "none";
         document.getElementById("extinctionContainer").style.display = "none";
         document.getElementById("microbeToEditorButton").classList.add("DisabledButton");
+        document.getElementById("microbeToEditorButton").classList.remove("pulse");
+
         readyToEdit = false;
         hideWinText();
 
@@ -392,9 +486,11 @@ function onExitToMenuClicked() {
     }
 }
 
+
 function updateSpeciesName(speciesName) {
     document.getElementById("speciesName").innerHTML = speciesName;
 }
+
 
 //! Updates the mouse hover box with stuff
 function updateHoverInfo(vars){
@@ -402,27 +498,78 @@ function updateHoverInfo(vars){
     const panel = document.getElementById("mouseHoverPanel");
     common.clearChildren(panel);
 
-    panel.appendChild(document.createTextNode("Stuff at " + vars.mousePos + ":"));
+    if(showMouseCoordinates) {
+        panel.appendChild(document.createTextNode("Stuff at " + vars.mousePos + ":"));
+        panel.appendChild(document.createElement("br"));
+    }
+
+    const mainContent = document.createElement("div");
+    mainContent.style.width = "100%";
+    mainContent.style.height = "15px";
+    mainContent.style.color = "white";
+    mainContent.style.textAlign = "center";
+    mainContent.innerHTML = "Hello";
 
     if(vars.noCompounds){
 
-        panel.appendChild(document.createElement("br"));
-        panel.appendChild(document.createTextNode("Nothing to eat here"));
-
+        mainContent.innerHTML = "Nothing to eat here";
+        panel.appendChild(mainContent);
     } else {
 
-        common.getKeys(vars).forEach(function(key){
+        if(!vars.compounds){
+            mainContent.innerHTML = "Error reading compounds Data";
+            return;
+        }
+        let objCompoundsData = null;
 
-            // Skip things that are handled elsewhere
-            if(key == "mousePos" || key == "hoveredCells")
+
+        // Compounds data are store in json format, so we need parse it
+        if(typeof vars.compounds === "string" || vars.compounds instanceof String){
+            try{
+                objCompoundsData = JSON.parse(vars.compounds);
+            } catch(err){
+                mainContent.innerHTML = "invalid json for mouseHover info: " + err;
                 return;
+            }
+        } else {
+            objCompoundsData = vars.compounds;
+        }
 
+        mainContent.innerHTML = "At cursor:";
+        panel.appendChild(mainContent);
+
+        const title = document.createElement("p");
+        title.style.fontSize = "12pt";
+        title.style.marginTop = "0";
+        title.style.marginBottom = "5px";
+        const titleText = document.createTextNode("Compounds: ");
+        title.appendChild(titleText);
+        panel.appendChild(title);
+
+
+        // Create for each compound the information in GUI
+        objCompoundsData.forEach(function(compoundData){
             // Line breaks between elements
             panel.appendChild(document.createElement("br"));
+            const img = document.createElement("img");
+            let src = "../../Textures/gui/bevel/";
 
-            // Debug print version
-            // Panel.appendChild(document.createTextNode(key + ": " + vars[key]));
-            panel.appendChild(document.createTextNode(vars[key]));
+            src = src + compoundData.name.replace(/\s/g, "") + ".png";
+
+            const par = document.createElement("p");
+
+            par.style.marginBottom = "0";
+            par.style.paddingBottom = "10px";
+            par.style.marginTop = "0";
+            img.setAttribute("src", src);
+            img.style.verticalAlign = "text-bottom";
+            img.setAttribute("width", "25");
+            img.setAttribute("height", "25");
+            par.appendChild(img);
+            par.appendChild(document.createTextNode("  " + compoundData.name + ": "));
+            const parText = document.createTextNode("" + compoundData.quantity.toFixed(2));
+            par.appendChild(parText);
+            panel.appendChild(par);
         });
     }
 
@@ -452,14 +599,10 @@ function updatePopulation(population){
 
 // Update dissolved gasses
 function updateEnvironmentalCompounds(oxygen, c02, n2, light){
-    document.getElementById("oxygenPercent").innerHTML =
-    "O<sub>2</sub>" + ": " + oxygen + "%";
-    document.getElementById("carbonDioxidePercent").innerHTML =
-    "CO<sub>2</sub>" + ": " + c02 + "%";
-    document.getElementById("nitrogenPercent").innerHTML =
-    "N<sub>2</sub>" + ": " + n2 + "%";
-    document.getElementById("sunlightPercent").innerHTML =
-    "Light" + ": " + light + "%";
+    document.getElementById("oxygenPercent").innerHTML = oxygen + "%";
+    document.getElementById("carbonDioxidePercent").innerHTML = c02 + "%";
+    document.getElementById("nitrogenPercent").innerHTML = n2 + "%";
+    document.getElementById("sunlightPercent").innerHTML = light + "%";
 }
 
 
@@ -493,27 +636,127 @@ function hideWinText(){
     document.getElementById("winContainer").style.display = "none";
 }
 
+function onCompressPanelClicked(panelToChange, dataToChange) {
+
+    $("#Panels").animate({height: $("#Panels").height() - dataToChange.height + "px"}, 300);
+
+    panelToChange.style.backgroundImage = dataToChange.background;
+    panelToChange.style.height = panelToChange.offsetHeight - dataToChange.height + "px";
+
+    // Change buttons status
+    panelToChange.querySelector(".compressPanel").style.backgroundImage =
+        "url('../../Textures/gui/bevel/compressPanelActive.png')";
+    panelToChange.querySelector(".expandPanel").style.backgroundImage =
+        "url('../../Textures/gui/bevel/expandPanel.png')";
+
+    //! ROWS
+    const rows = panelToChange.querySelectorAll(".row");
+
+    for(const row of rows) {
+        const bars = row.getElementsByClassName(dataToChange.bar);
+        const title = row.getElementsByClassName(dataToChange.title);
+        const barValues = row.getElementsByClassName(dataToChange.value);
+
+        for (const bar of bars) {
+
+            bar.style.display = "inline-block";
+            bar.style.width = bar.offsetWidth - dataToChange.width + "px";
+            bar.style.marginLeft = dataToChange.leftMargin + "px";
+            bar.style.marginBottom = "0px";
+            bar.style.marginTop = "6px";
+        }
+
+        for (const tit of title) {
+            tit.style.visibility = "hidden";
+        }
+
+        for (const barValue of barValues) {
+            barValue.style.left = dataToChange.valueLeft + "px";
+        }
+    }
+}
+
+//! Expand panel function
+function onExpandPanelClicked(panelToChange, dataToChange) {
+
+
+    $("#Panels").animate({height: $("#Panels").height() + dataToChange.height + "px"}, 300);
+
+    // Change buttons status
+    panelToChange.querySelector(".compressPanel").style.backgroundImage =
+        "url('../../Textures/gui/bevel/compressPanel.png')";
+    panelToChange.querySelector(".expandPanel").style.backgroundImage =
+        "url('../../Textures/gui/bevel/expandPanelActive.png')";
+
+    panelToChange.style.backgroundImage = dataToChange.background;
+    panelToChange.style.height = panelToChange.offsetHeight + dataToChange.height + "px";
+
+    const rows = panelToChange.querySelectorAll(".row");
+
+    for(const row of rows) {
+        const bars = row.getElementsByClassName(dataToChange.bar);
+        const title = row.getElementsByClassName(dataToChange.title);
+        const barValues = row.getElementsByClassName(dataToChange.value);
+
+        for (const bar of bars) {
+            bar.style.display = "block";
+            bar.style.marginBottom = "4px";
+            bar.style.marginTop = "6px";
+            bar.style.width = bar.offsetWidth + dataToChange.width + "px";
+            bar.style.marginLeft = dataToChange.leftMargin + "px";
+        }
+
+        for (const tit of title) {
+            tit.style.visibility = "visible";
+        }
+
+        for (const barValue of barValues) {
+            barValue.style.left = dataToChange.valueLeft + "px";
+        }
+    }
+}
+
 //! Updates the GUI bars
 //! values needs to be an object with properties set with values for everything
 function updateMicrobeHUDBars(values){
+    // The bars
     document.getElementById("microbeHUDPlayerHitpoints").textContent =
         values.hitpoints;
     document.getElementById("microbeHUDPlayerMaxHitpoints").textContent =
         values.maxHitpoints;
-    document.getElementById("microbeHUDPlayerHitpointsBar").style.width =
-        common.barHelper(values.hitpoints, values.maxHitpoints);
 
-    // TODO: remove this debug code
-    document.getElementById("microbeHUDPlayerATP").textContent =
-        values.compoundATP.toFixed(1);
-
-    // The bars
     document.getElementById("microbeHUDPlayerATPCompound").textContent =
          values.compoundATP.toFixed(1);
     document.getElementById("microbeHUDPlayerATPMax").textContent =
          values.ATPMax;
-    document.getElementById("microbeHUDPlayerATPBar").style.width =
-         common.barHelper(values.compoundATP, values.ATPMax);
+
+    const valueAtp = common.barHelper(values.compoundATP, values.ATPMax).replace("%", "");
+    const valueHp = common.barHelper(values.hitpoints, values.maxHitpoints).replace("%", "");
+
+    const circles = document.querySelectorAll("#circleBars");
+
+    // Instead of using totalProgress var, two hardCoded value are used
+    // They are in thrive_gui.html at line 117 and 134.
+    // two loops could be used but this need draw two differents svg for each circle
+
+    for(const circle of circles) {
+
+        let progress = 100 - valueAtp;
+
+        if(valueAtp < 2.5) {
+            circle.querySelector("#shapeAtp").style["stroke-dashoffset"] = 192.042;
+        } else {
+            circle.querySelector("#shapeAtp").style["stroke-dashoffset"] =
+                192.042 * progress / 100;
+        }
+
+        progress = 100 - valueHp;
+        circle.querySelector("#shapeHp").style["stroke-dashoffset"] = 231.13 * progress / 100;
+        circle.querySelector("#shapeAmmonia").style["stroke-dashoffset"] =
+            191.673 * values.reproductionAmmoniaFraction;
+        circle.querySelector("#shapePhosphate").style["stroke-dashoffset"] =
+            -191.673 * values.reproductionPhosphatesFraction;
+    }
 
     document.getElementById("microbeHUDPlayerAmmonia").textContent =
         values.compoundAmmonia.toFixed(1);
@@ -556,13 +799,4 @@ function updateMicrobeHUDBars(values){
         values.IronMax;
     document.getElementById("microbeHUDPlayerIronBar").style.width =
         common.barHelper(values.compoundIron, values.IronMax);
-
-    document.getElementById("reproductionPercentage").textContent =
-        Math.floor(100 * values.reproductionProgress);
-
-    document.getElementById("reproductionAmmoniaBar").style.width =
-        (200 * values.reproductionAmmoniaFraction) + "px";
-
-    document.getElementById("reproductionPhosphatesBar").style.width =
-        (200 * values.reproductionPhosphatesFraction) + "px";
 }
