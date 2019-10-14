@@ -14,9 +14,14 @@
 #include <Events/EventHandler.h>
 #include <Script/ScriptTypeResolver.h>
 
-#include <iomanip>
-
 using namespace thrive;
+
+PlayerHoverInfoSystem::PlayerHoverInfoSystem()
+{
+    Json::StreamWriterBuilder builder;
+    builder["indentation"] = "";
+    writer = std::unique_ptr<Json::StreamWriter>(builder.newStreamWriter());
+}
 
 void
     PlayerHoverInfoSystem::Run(CellStageWorld& world)
@@ -65,19 +70,24 @@ void
             "noCompounds", new Leviathan::BoolBlock(true)));
 
     } else {
+
+        Json::Value compoundsJson(Json::arrayValue);
+
         for(const auto& tuple : compounds) {
 
-            std::stringstream compoundInfo;
-            compoundInfo << std::fixed << std::setprecision(2)
-                         << SimulationParameters::compoundRegistry
-                                .getTypeData(std::get<0>(tuple))
-                                .displayName
-                         << ": " << std::get<1>(tuple);
-
-            vars->Add(std::make_shared<NamedVariableList>(
-                "compound" + std::to_string(std::get<0>(tuple)),
-                new Leviathan::StringBlock(compoundInfo.str())));
+            Json::Value compound;
+            compound["name"] = SimulationParameters::compoundRegistry
+                                   .getTypeData(std::get<0>(tuple))
+                                   .displayName;
+            compound["quantity"] = std::get<1>(tuple);
+            compoundsJson.append(compound);
         }
+
+        std::stringstream sstream;
+        writer->write(compoundsJson, &sstream);
+
+        vars->Add(std::make_shared<NamedVariableList>(
+            "compounds", new Leviathan::StringBlock(sstream.str())));
     }
 
     // Hovered over cells
