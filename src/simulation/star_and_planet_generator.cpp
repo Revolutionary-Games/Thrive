@@ -223,7 +223,7 @@ Json::Value
 // ------------------------------------ //
 
 void
-	Star::setSol()
+    Star::setSol()
 {
     mass = MASS_OF_OUR_SUN;
     generateProperties(1);
@@ -255,7 +255,8 @@ void
 {
     // these would all be replaced with log info's
     LOG_INFO("The Star.");
-    LOG_INFO("Mass: " + Convert::ToString(mass) + " kg = " + Convert::ToString(mass / MASS_OF_OUR_SUN) + " Solar Masses.");
+    LOG_INFO("Mass: " + Convert::ToString(mass) + " kg = " +
+             Convert::ToString(mass / MASS_OF_OUR_SUN) + " Solar Masses.");
     LOG_INFO("Life Span: " + Convert::ToString(lifeSpan) + " of our years.");
     LOG_INFO("Luminosity: " + Convert::ToString(luminosity) + " watts.");
     LOG_INFO("Radius: " + Convert::ToString(radius) + " meters.");
