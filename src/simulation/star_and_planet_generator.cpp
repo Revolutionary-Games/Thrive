@@ -21,8 +21,9 @@ constexpr double RADIUS_OF_OUR_SUN = 6.96e8; // meters
 constexpr double RADIUS_OF_THE_EARTH = 6.371e6; // meters
 constexpr double STEPHAN = 5.67e-8; // Watts meters^-2 Kelvin^-4 constant
 constexpr double PI = 3.14159265358979323846;
-constexpr double HC = 1.98e-25; // planks constant time speed of light
-constexpr double HC2 = 5.95e-17; // planks constant times speed of light squared
+constexpr double HC = 1.98e-25; // plank's constant times speed of light
+constexpr double HC2 =
+    5.95e-17; // plank's constant times speed of light squared
 constexpr double KB = 1.38e-23; // Boltzmanns constant
 constexpr double WAVELENGTH_STEP =
     5e-8; // 0.05 microns per step, there are 50 steps so this is 2.5 microns.
@@ -36,7 +37,7 @@ constexpr double BASE_MAX_ORBITAL_DIAMETER =
 constexpr double BASE_MIN_ORBITAL_DIAMETER =
     5.5e10; // meters (radius of mercury)
 constexpr double OXYGEN_PARAMETER =
-    0.3; // amount of sunlght ozone can block if atmosphere is 100 oxgen
+    0.3; // amount of sunlight ozone can block if atmosphere is 100% oxygen
 constexpr double CARBON_DIOXIODE_PARAMETER = 0.3; // same
 constexpr double WATER_VAPOUR_PARAMETER = 0.3; // same
 constexpr double NUMBER_OF_GAS_CHECKS =
@@ -182,15 +183,58 @@ void
 
 
 // ------------------------------------ //
+// CelestialBody
+// ------------------------------------ //
+
+// compute the orbital period using Kepler's law
+// https://en.wikipedia.org/wiki/Orbital_period
+void
+    CelestialBody::setOrbitalPeriod()
+{
+    orbitalPeriod =
+        2 * PI *
+        pow(((pow(orbitalRadius, 3)) / orbitingBody->gravitationalParameter),
+            0.5);
+}
+
+Json::Value
+    CelestialBody::toJSON() const
+{
+    Json::Value result;
+
+    // don't know if recursiveness here might be bad...
+    result["orbitingBody"] = orbitingBody->toJSON();
+
+    Json::Value orbit;
+    orbit["radius"] = orbitalRadius;
+    orbit["period"] = orbitalPeriod;
+
+    result["orbit"] = orbit;
+    result["mass"] = mass;
+    result["radius"] = radius;
+    result["gravitationalParameter"] = gravitationalParameter;
+
+    return result;
+}
+
+
+// ------------------------------------ //
 // Star
 // ------------------------------------ //
+
+void
+    Star::setSol()
+{
+    mass = MASS_OF_OUR_SUN;
+    generateProperties(1);
+}
 
 void
     Star::generateProperties(int step)
 {
     if(step <= 0) {
         // randomly choose the mass of the star
-        starMass = fRand(0.5, 3); // solar masses
+        mass = fRand(0.5, 3) * MASS_OF_OUR_SUN; // kilograms
     }
     if(step <= 1) {
         // compute the other variables like lifespan, luminosity etc
@@ -199,11 +243,10 @@ void
         setRadius();
         setTemperature();
         setStellarSpectrum();
-        minOrbitalDiameter = starMass * BASE_MIN_ORBITAL_DIAMETER;
-        maxOrbitalDiameter = starMass * BASE_MAX_ORBITAL_DIAMETER;
+        minOrbitalDiameter = mass / MASS_OF_OUR_SUN * BASE_MIN_ORBITAL_DIAMETER;
+        maxOrbitalDiameter = mass / MASS_OF_OUR_SUN * BASE_MAX_ORBITAL_DIAMETER;
         computeHabitableZone();
-        gravitationalParameter =
-            GRAVITATIONAL_CONSTANT * starMass * MASS_OF_OUR_SUN;
+        gravitationalParameter = GRAVITATIONAL_CONSTANT * mass;
     }
 }
 
@@ -212,11 +255,12 @@ void
 {
     // these would all be replaced with log info's
     LOG_INFO("The Star.");
-    LOG_INFO("Star Mass = " + Convert::ToString(starMass) + " Solar Masses.");
-    LOG_INFO("Life Span = " + Convert::ToString(lifeSpan) + " of our years.");
-    LOG_INFO("Luminosity = " + Convert::ToString(luminosity) + " watts.");
-    LOG_INFO("Radius = " + Convert::ToString(radius) + " meters.");
-    LOG_INFO("Temperature = " + Convert::ToString(temperature) + " Kelvin.");
+    LOG_INFO("Mass: " + Convert::ToString(mass) + " kg = " +
+             Convert::ToString(mass / MASS_OF_OUR_SUN) + " Solar Masses.");
+    LOG_INFO("Life Span: " + Convert::ToString(lifeSpan) + " of our years.");
+    LOG_INFO("Luminosity: " + Convert::ToString(luminosity) + " watts.");
+    LOG_INFO("Radius: " + Convert::ToString(radius) + " meters.");
+    LOG_INFO("Temperature: " + Convert::ToString(temperature) + " Kelvin.");
 }
 
 void
@@ -238,14 +282,14 @@ void
 void
     Star::setLifeSpan()
 {
-    lifeSpan = 1e10 / (pow(starMass, 3));
+    lifeSpan = 1e10 / (pow(mass / MASS_OF_OUR_SUN, 3));
 }
 
 // from wikipedia https://en.wikipedia.org/wiki/Mass%E2%80%93luminosity_relation
 void
     Star::setLuminosity()
 {
-    luminosity = LUMINOSITY_OF_OUR_SUN * (pow(starMass, 3.5));
+    luminosity = LUMINOSITY_OF_OUR_SUN * (pow(mass / MASS_OF_OUR_SUN, 3.5));
 }
 
 // from (7.14c) of
@@ -253,7 +297,7 @@ void
 void
     Star::setRadius()
 {
-    radius = RADIUS_OF_OUR_SUN * (pow(starMass, 0.9));
+    radius = RADIUS_OF_OUR_SUN * (pow(mass / MASS_OF_OUR_SUN, 0.9));
 }
 
 // from the same page as luminosity using the formula for temperature and
@@ -310,7 +354,28 @@ void
 void
     Star::update()
 {
-    starMass++;
+    mass += MASS_OF_OUR_SUN;
+}
+
+Json::Value
+    Star::toJSON() const
+{
+    Json::Value result = CelestialBody::toJSON();
+
+    result["lifeSpan"] = lifeSpan;
+    result["temperature"] = temperature;
+
+    Json::Value stellarSpectrumJ(Json::ValueType::arrayValue);
+    for(auto spectrum : stellarSpectrum)
+        stellarSpectrumJ.append(spectrum);
+    result["stellarSpectrum"] = stellarSpectrumJ;
+
+    Json::Value habitabilityScoreJ(Json::ValueType::arrayValue);
+    for(auto habitability : habitabilityScore)
+        habitabilityScoreJ.append(habitability);
+    result["habitabilityScore"] = habitabilityScoreJ;
+
+    return result;
 }
 
 // ------------------------------------ //
@@ -322,7 +387,7 @@ void
 void
     Planet::setEarth()
 {
-    planetRadius = RADIUS_OF_THE_EARTH;
+    radius = RADIUS_OF_THE_EARTH;
     generatePropertiesOrbitalRadius(0);
     generatePropertiesPlanetRadius(1);
     setAtmosphereConstituentsEarth();
@@ -336,7 +401,7 @@ void
         computeOptimalOrbitalRadius();
     }
     if(step <= 1) {
-        setPlanetPeriod();
+        setOrbitalPeriod();
     }
 }
 
@@ -344,6 +409,8 @@ void
 void
     Planet::computeOptimalOrbitalRadius()
 {
+    std::shared_ptr<Star> orbitingStar =
+        std::static_pointer_cast<Star>(orbitingBody);
     int maxHabitability = 0;
     int entryLocation = 0;
     for(int i = 0; i < NUMBER_OF_TESTS; i++) {
@@ -355,42 +422,31 @@ void
     orbitalRadius = orbitingStar->orbitalDistances[entryLocation];
 }
 
-// compute the planets orbital period using Kepler's law
-// https://en.wikipedia.org/wiki/Orbital_period
-void
-    Planet::setPlanetPeriod()
-{
-    planetOrbitalPeriod =
-        2 * PI *
-        pow(((pow(orbitalRadius, 3)) / orbitingStar->gravitationalParameter),
-            0.5);
-}
-
 void
     Planet::generatePropertiesPlanetRadius(int step)
 {
     if(step <= 0) {
-        planetRadius = fRand(MIN_PLANET_RADIUS, MAX_PLANET_RADIUS);
+        radius = fRand(MIN_PLANET_RADIUS, MAX_PLANET_RADIUS);
     }
     if(step <= 1) {
         setPlanetMass();
-        setoSphereMasses();
+        setSphereMasses();
     }
 }
 
 void
     Planet::setPlanetMass()
 {
-    planetMass = DENSITY_OF_EARTH * 4 * PI * (pow(planetRadius, 3)) / 3;
+    mass = DENSITY_OF_EARTH * 4 * PI * (pow(radius, 3)) / 3;
 }
 
-// set the masses of hte atmosphere, ocean and lithosphere
+// set the masses of the atmosphere, ocean and lithosphere
 void
-    Planet::setoSphereMasses()
+    Planet::setSphereMasses()
 {
-    atmosphereMass = planetMass * PERCENTAGE_ATMOSPHERE;
-    oceanMass = planetMass * PERCENTAGE_OCEAN;
-    lithosphereMass = planetMass * PERCENTAGE_LITHOSPHERE;
+    atmosphereMass = mass * PERCENTAGE_ATMOSPHERE;
+    oceanMass = mass * PERCENTAGE_OCEAN;
+    lithosphereMass = mass * PERCENTAGE_LITHOSPHERE;
 }
 
 void
@@ -402,8 +458,9 @@ void
     if(step <= 1) {
         setPlanetTemperature();
         computeLightFilter();
-        multiplyArrays(orbitingStar->stellarSpectrum, atmosphericFilter,
-            terrestrialSpectrum);
+        multiplyArrays(
+            std::static_pointer_cast<Star>(orbitingBody)->stellarSpectrum,
+            atmosphericFilter, terrestrialSpectrum);
     }
 }
 
@@ -456,8 +513,10 @@ void
 void
     Planet::setPlanetTemperature()
 {
+    // For now let's assume it's a star...
     double incomingSunlight =
-        orbitingStar->luminosity / (4 * PI * (pow(orbitalRadius, 2)));
+        std::static_pointer_cast<Star>(orbitingBody)->luminosity /
+        (4 * PI * (pow(orbitalRadius, 2)));
     float oxygen;
     float carbonDioxide;
     massOfGasToClimateParameter(oxygen, carbonDioxide);
@@ -469,7 +528,7 @@ void
 double
     Planet::computeSurfaceAreaFromRadius()
 {
-    return 4 * PI * (pow(planetRadius, 2));
+    return 4 * PI * (pow(radius, 2));
 }
 
 // how much gas is there in a column above 1sq meter of land?
@@ -607,24 +666,23 @@ void
 {
     // these would all be replaced with log info's
     LOG_INFO("Info about the current planet.");
-    LOG_INFO("OrbitalRadius: " + Convert::ToString(orbitalRadius) + "m");
-    LOG_INFO("PlanetRadius: " + Convert::ToString(planetRadius) + "m.");
-    LOG_INFO("Planet Mass = " + Convert::ToString(planetMass) + " kg.");
-    LOG_INFO(
-        "Planet Orbital Period = " + Convert::ToString(planetOrbitalPeriod) +
-        " seconds = " + Convert::ToString(planetOrbitalPeriod / 3.154e+7) +
-        " earth years.");
-    LOG_INFO("Mass of atmosphere : " + Convert::ToString(atmosphereMass) +
-             ", Mass of Ocean : " + Convert::ToString(oceanMass) +
-             ", Mass of Lithosphere : " + Convert::ToString(lithosphereMass) +
-             ", Mass of Atmosphere : " + Convert::ToString(atmosphereMass) +
+    LOG_INFO("Orbital Radius: " + Convert::ToString(orbitalRadius) + " m.");
+    LOG_INFO("Radius: " + Convert::ToString(radius) + " m.");
+    LOG_INFO("Planet Mass: " + Convert::ToString(mass) + " kg.");
+    LOG_INFO("Orbital Period: " + Convert::ToString(orbitalPeriod) +
+             " seconds = " + Convert::ToString(orbitalPeriod / 3.154e+7) +
+             " earth years.");
+    LOG_INFO("Mass of atmosphere: " + Convert::ToString(atmosphereMass) +
+             ", Mass of Ocean: " + Convert::ToString(oceanMass) +
+             ", Mass of Lithosphere: " + Convert::ToString(lithosphereMass) +
+             ", Mass of Atmosphere: " + Convert::ToString(atmosphereMass) +
              " kg.");
-    LOG_INFO("Water : " + Convert::ToString(atmosphereWater) +
-             ", Oxygen : " + Convert::ToString(atmosphereOxygen) +
-             ", Nitrogen : " + Convert::ToString(atmosphereNitrogen) +
+    LOG_INFO("Water: " + Convert::ToString(atmosphereWater) +
+             ", Oxygen: " + Convert::ToString(atmosphereOxygen) +
+             ", Nitrogen: " + Convert::ToString(atmosphereNitrogen) +
              ", CO2: " + Convert::ToString(atmosphereCarbonDioxide) +
              " kg in Atmosphere.");
-    LOG_INFO("Planet Temperature = " + Convert::ToString(planetTemperature) +
+    LOG_INFO("Planet Temperature: " + Convert::ToString(planetTemperature) +
              " Kelvin.");
 }
 
@@ -644,57 +702,30 @@ void
     orbitalRadius++;
 }
 
-//! send the star and planet data to a Json object
+//! send the planet data to a Json object
 Json::Value
     Planet::toJSON() const
 {
-    Json::Value result;
+    Json::Value result = CelestialBody::toJSON();
 
-    // add star variables
-    Json::Value star;
-    star["starMass"] = orbitingStar->starMass;
-    star["lifeSpan"] = orbitingStar->lifeSpan;
-    star["radius"] = orbitingStar->radius;
-    star["temperature"] = orbitingStar->temperature;
-
-    Json::Value stellarSpectrumJ(Json::ValueType::arrayValue);
-    for(auto spectrum : orbitingStar->stellarSpectrum)
-        stellarSpectrumJ.append(spectrum);
-    star["stellarSpectrum"] = stellarSpectrumJ;
-
-    Json::Value habitabilityScoreJ(Json::ValueType::arrayValue);
-    for(auto habitability : orbitingStar->habitabilityScore)
-        habitabilityScoreJ.append(habitability);
-    star["habitabilityScore"] = habitabilityScoreJ;
-
-    result["star"] = star;
-
-    // add the planet variables
-    Json::Value planet;
-    planet["orbitalRadius"] = orbitalRadius;
-    planet["planetMass"] = planetMass;
-    planet["planetRadius"] = planetRadius;
-    planet["planetOrbitalPeriod"] = planetOrbitalPeriod;
-    planet["atmosphereMass"] = atmosphereMass;
-    planet["lithosphereMass"] = lithosphereMass;
-    planet["atmosphereMass"] = atmosphereMass;
-    planet["atmosphereWater"] = atmosphereWater;
-    planet["atmosphereOxygen"] = atmosphereOxygen;
-    planet["atmosphereNitrogen"] = atmosphereNitrogen;
-    planet["atmosphereCarbonDioxide"] = atmosphereCarbonDioxide;
-    planet["planetTemperature"] = planetTemperature;
+    result["atmosphereMass"] = atmosphereMass;
+    result["lithosphereMass"] = lithosphereMass;
+    result["atmosphereMass"] = atmosphereMass;
+    result["atmosphereWater"] = atmosphereWater;
+    result["atmosphereOxygen"] = atmosphereOxygen;
+    result["atmosphereNitrogen"] = atmosphereNitrogen;
+    result["atmosphereCarbonDioxide"] = atmosphereCarbonDioxide;
+    result["planetTemperature"] = planetTemperature;
 
     Json::Value atmosphericFilterJ(Json::ValueType::arrayValue);
     for(auto spectrum : atmosphericFilter)
         atmosphericFilterJ.append(spectrum);
-    planet["atmosphericFilter"] = atmosphericFilterJ;
+    result["atmosphericFilter"] = atmosphericFilterJ;
 
     Json::Value terrestrialSpectrumJ(Json::ValueType::arrayValue);
     for(auto spectrum : terrestrialSpectrum)
         terrestrialSpectrumJ.append(spectrum);
-    planet["terrestrialSpectrum"] = terrestrialSpectrumJ;
-
-    result["planet"] = planet;
+    result["terrestrialSpectrum"] = terrestrialSpectrumJ;
 
     return result;
 }

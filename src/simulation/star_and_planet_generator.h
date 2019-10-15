@@ -7,21 +7,38 @@
 #define LENGTH_OF_ARRAYS 50
 #define NUMBER_OF_TESTS 100 // number of different planetary locations to test
 
-class Star { // : public Leviathan::PerWorldData{
+class CelestialBody {
+
+public:
+    // properties
+    std::shared_ptr<CelestialBody> orbitingBody;
+    double orbitalRadius;
+    double orbitalPeriod;
+    // More orbital parameters like eccentricity inclination...?
+    double mass;
+    double radius;
+    double gravitationalParameter;
+
+protected:
+    void
+        setOrbitalPeriod();
+
+    Json::Value
+        toJSON() const;
+};
+
+class Star : public CelestialBody { // : public Leviathan::PerWorldData{
 
 public:
     // star properties
-    double starMass;
     double lifeSpan;
     double luminosity;
-    double radius;
     double temperature;
     std::array<double, LENGTH_OF_ARRAYS> stellarSpectrum;
     double minOrbitalDiameter;
     double maxOrbitalDiameter;
     std::array<double, NUMBER_OF_TESTS> orbitalDistances;
     std::array<double, NUMBER_OF_TESTS> habitabilityScore;
-    double gravitationalParameter;
 
     Star()
     {
@@ -29,16 +46,12 @@ public:
     }
 
     void
-        setSol()
-    {
-        starMass = 1.0; // solar masses
-        generateProperties(1);
-    }
+        setSol();
 
     void
-        setMass(double mass)
+        setMass(double newMass)
     {
-        starMass = mass;
+        mass = newMass;
         generateProperties(1);
     }
 
@@ -70,17 +83,15 @@ private:
         setStellarSpectrum();
     void
         computeHabitableZone();
+
+    Json::Value
+        toJSON() const;
 };
 
-class Planet { // : public Leviathan::PerWorldData{
+class Planet : public CelestialBody { // : public Leviathan::PerWorldData{
 
 public:
     // planet properties
-    std::shared_ptr<Star> orbitingStar;
-    double orbitalRadius;
-    double planetRadius;
-    double planetMass;
-    double planetOrbitalPeriod;
     double lithosphereMass;
     double atmosphereMass;
     double oceanMass;
@@ -92,9 +103,10 @@ public:
     std::array<double, LENGTH_OF_ARRAYS> terrestrialSpectrum;
     double planetTemperature;
 
+    // Limit to star for now
     Planet(std::shared_ptr<Star> star)
     {
-        orbitingStar = star;
+        orbitingBody = star;
         generatePropertiesOrbitalRadius(0);
         generatePropertiesPlanetRadius(0);
         generatePropertiesAtmosphere(0);
@@ -119,13 +131,11 @@ private:
         generatePropertiesOrbitalRadius(int step);
     void
         computeOptimalOrbitalRadius();
-    void
-        setPlanetPeriod();
 
     void
         generatePropertiesPlanetRadius(int step);
     void
-        setoSphereMasses();
+        setSphereMasses();
     void
         setPlanetMass();
 
