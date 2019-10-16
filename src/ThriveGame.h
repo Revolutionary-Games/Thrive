@@ -103,6 +103,12 @@ public:
     // ------------------------------------ //
     // Player input actions
     void
+        enterPlanetEditor();
+
+	void
+        editPlanet(const std::string& editType, double value);
+
+    void
         editorButtonClicked();
 
     void

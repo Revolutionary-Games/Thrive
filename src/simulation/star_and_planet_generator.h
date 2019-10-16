@@ -7,6 +7,8 @@
 #define LENGTH_OF_ARRAYS 50
 #define NUMBER_OF_TESTS 100 // number of different planetary locations to test
 
+namespace thrive {
+
 class CelestialBody {
 
 public:
@@ -128,6 +130,12 @@ public:
         mass = newMass;
         generatePropertiesPlanetMass(1);
     }
+    void
+        setPlanetRadius(double newRadius)
+    {
+        radius = newRadius;
+        generatePropertiesPlanetRadius(1);
+    }
     // end
 
     void
@@ -150,7 +158,11 @@ private:
     void
         generatePropertiesPlanetMass(int step);
     void
+        generatePropertiesPlanetRadius(int step);
+    void
         setSphereMasses();
+    void
+        setPlanetMass();
     void
         setPlanetRadius();
 
@@ -178,3 +190,5 @@ private:
     Json::Value
         toJSON() const;
 };
+
+} // namespace thrive

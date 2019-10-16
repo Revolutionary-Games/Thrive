@@ -1,7 +1,8 @@
 // Main menu scripts are here
 import * as common from "./gui_common.mjs";
 import * as microbe_hud from "./microbe_hud.mjs";
-import {doEnterMicrobeEditor, setupMicrobeEditor} from "./microbe_editor.mjs";
+import { doEnterMicrobeEditor, setupMicrobeEditor } from "./microbe_editor.mjs";
+import { setupPlanetEditor } from "./planet_editor.mjs";
 
 let jams = null;
 
@@ -253,13 +254,11 @@ function newGame(){
         jams.Pause();
     }
 
-    if(common.isInEngine()){
-        Leviathan.PlayCutscene("Data/Videos/MicrobeIntro.mkv", onMicrobeIntroEnded,
-            onMicrobeIntroEnded);
-        updateLoadingScreen({show: true, status: "Loading Microbe Stage", message: ""});
-    } else {
-        onMicrobeIntroEnded();
-    }
+    document.getElementById("topLevelMenuContainer").style.display = "none";
+    document.getElementById("topLevelPlanetEditor").style.display = "block";
+
+    Thrive.enterPlanetEditor();
+    setupPlanetEditor();
 }
 
 function enterFreebuildEditor(){
@@ -344,7 +343,7 @@ function handleDebugOverlayData(vars){
     }
 }
 
-function updateLoadingScreen(vars){
+export function updateLoadingScreen(vars){
     if(vars.show){
         if(document.getElementById("loadingScreen").style.display == "none"){
 
@@ -370,48 +369,10 @@ function updateLoadingScreen(vars){
     document.getElementById("loadingScreenMessage").innerText = vars.message;
 }
 
-function onMicrobeIntroEnded(error){
-
-    if(error)
-        console.error("failed to play microbe intro video: " + error);
-
-    menuAlreadySkipped = true;
-
-    if(common.isInEngine()){
-
-        updateLoadingScreen({show: false});
-
-        // Make sure no video is playing in case we did an immediate start
-        Leviathan.CancelCutscene();
-        Thrive.start();
-
-    } else {
-
-        // Show the microbe GUI anyway for testing purposes
-    }
-
-    switchToMicrobeHUD();
-}
-
-function switchToMicrobeHUD(){
-
-    // Stop menu music
-    if(jams){
-
-        jams.Pause();
-    }
-
-    // Hide main menu
-    // If this is ever restored this needs to be set to "flex"
-    document.getElementById("topLevelMenuContainer").style.display = "none";
-
-    // And show microbe gui
-    document.getElementById("topLevelMicrobeStage").style.display = "block";
-}
-
 //! Called once C++ has finished exiting to menu
 export function doExitToMenu() {
     document.getElementById("topLevelMenuContainer").style.display = "";
+    document.getElementById("topLevelPlanetEditor").style.display = "none";
     document.getElementById("topLevelMicrobeEditor").style.display = "none";
     document.getElementById("topLevelMicrobeStage").style.display = "none";
     document.getElementById("pauseOverlay").style.display = "none";

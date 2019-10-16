@@ -7,7 +7,7 @@
 #include <stdio.h>
 #include <time.h>
 
-
+using namespace thrive;
 
 // ------------------------------------ //
 // Constants
@@ -184,7 +184,6 @@ void
     }
 }
 
-
 // ------------------------------------ //
 // CelestialBody
 // ------------------------------------ //
@@ -206,7 +205,9 @@ Json::Value
     Json::Value result;
 
     // don't know if recursiveness here might be bad...
-    result["orbitingBody"] = orbitingBody->toJSON();
+    if(orbitingBody) {
+        result["orbitingBody"] = orbitingBody->toJSON();
+    }
 
     Json::Value orbit;
     orbit["radius"] = orbitalRadius;
@@ -438,9 +439,28 @@ void
 }
 
 void
+    Planet::generatePropertiesPlanetRadius(int step)
+{
+    if(step <= 0) {
+        radius = fRand(MIN_PLANET_RADIUS, MAX_PLANET_RADIUS);
+    }
+    if(step <= 1) {
+        setPlanetMass();
+        setSphereMasses();
+    }
+}
+
+// From radius
+void
+    Planet::setPlanetMass()
+{
+    mass = DENSITY_OF_EARTH * 4 * PI * pow(radius, 3) / 3;
+}
+
+void
     Planet::setPlanetRadius()
 {
-    radius = pow((3 * mass) / (DENSITY_OF_EARTH * 4 * PI), 0.333);
+    radius = std::cbrt(3 * mass / (DENSITY_OF_EARTH * 4 * PI));
 }
 
 // set the masses of the atmosphere, ocean and lithosphere

@@ -2,6 +2,7 @@
 
 #include "biomes.h"
 #include "species.h"
+#include "simulation/star_and_planet_generator.h"
 
 #include <Common/ReferenceCounted.h>
 
@@ -177,7 +178,7 @@ private:
 };
 
 
-//! A mesh of connected Patches
+//! A mesh of connected Patches and the planet
 class PatchMap : public Leviathan::ReferenceCounted {
 protected:
     // These are protected for only constructing properly reference
@@ -284,6 +285,18 @@ public:
         return patches;
     }
 
+	auto&
+		getPlanet()
+	{
+        return planet;
+	}
+
+	void
+		setPlanet(std::shared_ptr<Planet>& newPlanet)
+	{
+        planet = newPlanet;
+	}
+
     CScriptArray*
         getPatchesWrapper() const;
 
@@ -296,6 +309,7 @@ public:
 private:
     std::unordered_map<int32_t, Patch::pointer> patches;
     int32_t currentPatchId = 0;
+    std::shared_ptr<Planet> planet;
 };
 
 } // namespace thrive
