@@ -45,15 +45,16 @@ public:
         generateProperties(0);
     }
 
+    // start of the functions the player can call from the gui
     void
         setSol();
-
     void
         setMass(double newMass)
     {
         mass = newMass;
         generateProperties(1);
     }
+    // end
 
     //! print the properties of the star
     void
@@ -108,12 +109,26 @@ public:
     {
         orbitingBody = star;
         generatePropertiesOrbitalRadius(0);
-        generatePropertiesPlanetRadius(0);
+        generatePropertiesPlanetMass(0);
         generatePropertiesAtmosphere(0);
     }
 
+    // start of the functions the player can call from the gui
     void
         setEarth();
+    void
+        setOrbitalRadius(double newRadius)
+    {
+        orbitalRadius = radius;
+        generatePropertiesOrbitalRadius(1);
+    }
+    void
+        setPlanetMass(double newMass)
+    {
+        mass = newMass;
+        generatePropertiesPlanetMass(1);
+    }
+    // end
 
     void
         print();
@@ -133,11 +148,11 @@ private:
         computeOptimalOrbitalRadius();
 
     void
-        generatePropertiesPlanetRadius(int step);
+        generatePropertiesPlanetMass(int step);
     void
         setSphereMasses();
     void
-        setPlanetMass();
+        setPlanetRadius();
 
     void
         generatePropertiesAtmosphere(int step);

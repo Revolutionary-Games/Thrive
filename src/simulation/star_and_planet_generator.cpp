@@ -19,6 +19,7 @@ constexpr double LUMINOSITY_OF_OUR_SUN = 3.846e26; // watts
 constexpr double MASS_OF_OUR_SUN = 1.989e30; // kg
 constexpr double RADIUS_OF_OUR_SUN = 6.96e8; // meters
 constexpr double RADIUS_OF_THE_EARTH = 6.371e6; // meters
+constexpr double MASS_OF_THE_EARTH = 5.972e24; // kg
 constexpr double STEPHAN = 5.67e-8; // Watts meters^-2 Kelvin^-4 constant
 constexpr double PI = 3.14159265358979323846;
 constexpr double HC = 1.98e-25; // plank's constant times speed of light
@@ -47,6 +48,8 @@ constexpr double MIN_PLANET_RADIUS =
     5375699.0; // smallest radius allowed, see
                // http://forum.revolutionarygamesstudio.com/t/planet-generation/182/10
 constexpr double MAX_PLANET_RADIUS = 9191080.0; // largest radius allowed
+constexpr double MIN_PLANET_MASS = 1.5528927539e24;
+constexpr double MAX_PLANET_MASS = 1.79373143543e25;
 constexpr double DENSITY_OF_EARTH =
     5515.3; // kg m^-3 assume all planets are the same density as earth
 constexpr double PERCENTAGE_ATMOSPHERE =
@@ -387,9 +390,9 @@ Json::Value
 void
     Planet::setEarth()
 {
-    radius = RADIUS_OF_THE_EARTH;
+    mass = MASS_OF_THE_EARTH;
     generatePropertiesOrbitalRadius(0);
-    generatePropertiesPlanetRadius(1);
+    generatePropertiesPlanetMass(1);
     setAtmosphereConstituentsEarth();
     generatePropertiesAtmosphere(1);
 }
@@ -423,21 +426,21 @@ void
 }
 
 void
-    Planet::generatePropertiesPlanetRadius(int step)
+    Planet::generatePropertiesPlanetMass(int step)
 {
     if(step <= 0) {
-        radius = fRand(MIN_PLANET_RADIUS, MAX_PLANET_RADIUS);
+        mass = fRand(MIN_PLANET_MASS, MAX_PLANET_MASS);
     }
     if(step <= 1) {
-        setPlanetMass();
+        setPlanetRadius();
         setSphereMasses();
     }
 }
 
 void
-    Planet::setPlanetMass()
+    Planet::setPlanetRadius()
 {
-    mass = DENSITY_OF_EARTH * 4 * PI * (pow(radius, 3)) / 3;
+    radius = pow((3 * mass) / (DENSITY_OF_EARTH * 4 * PI), 0.333);
 }
 
 // set the masses of the atmosphere, ocean and lithosphere
