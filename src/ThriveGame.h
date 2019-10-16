@@ -105,7 +105,7 @@ public:
     void
         enterPlanetEditor();
 
-	void
+    void
         editPlanet(const std::string& editType, double value);
 
     void

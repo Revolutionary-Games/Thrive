@@ -1,13 +1,13 @@
 // Main menu scripts are here
 import * as common from "./gui_common.mjs";
 import * as microbe_hud from "./microbe_hud.mjs";
-import { doEnterMicrobeEditor, setupMicrobeEditor } from "./microbe_editor.mjs";
-import { setupPlanetEditor } from "./planet_editor.mjs";
+import {doEnterMicrobeEditor, setupMicrobeEditor} from "./microbe_editor.mjs";
+import {setupPlanetEditor} from "./planet_editor.mjs";
 
 let jams = null;
 
 // Pauses the menu music instantly (used for instant start)
-let menuAlreadySkipped = false;
+const menuAlreadySkipped = false;
 
 //! Setup callbacks for buttons
 export function runMenuSetup(){
@@ -262,11 +262,16 @@ function newGame(){
 }
 
 function enterFreebuildEditor(){
-    switchToMicrobeHUD();
+    if(jams){
+        jams.Pause();
+    }
+
+    document.getElementById("topLevelMenuContainer").style.display = "none";
+    document.getElementById("topLevelPlanetEditor").style.display = "block";
 
     if(common.isInEngine()){
-        Thrive.start();
-        Thrive.freebuildEditorButtonClicked();
+        Thrive.enterPlanetEditor();
+        setupPlanetEditor(true);
     } else {
         doEnterMicrobeEditor();
     }

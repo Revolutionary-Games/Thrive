@@ -1,8 +1,8 @@
 #pragma once
 
 #include "biomes.h"
-#include "species.h"
 #include "simulation/star_and_planet_generator.h"
+#include "species.h"
 
 #include <Common/ReferenceCounted.h>
 
@@ -285,17 +285,17 @@ public:
         return patches;
     }
 
-	auto&
-		getPlanet()
-	{
+    auto&
+        getPlanet()
+    {
         return planet;
-	}
+    }
 
-	void
-		setPlanet(std::shared_ptr<Planet>& newPlanet)
-	{
+    void
+        setPlanet(std::shared_ptr<Planet>& newPlanet)
+    {
         planet = newPlanet;
-	}
+    }
 
     CScriptArray*
         getPatchesWrapper() const;

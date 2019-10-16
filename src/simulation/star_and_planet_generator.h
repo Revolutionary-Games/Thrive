@@ -14,12 +14,12 @@ class CelestialBody {
 public:
     // properties
     std::shared_ptr<CelestialBody> orbitingBody;
-    double orbitalRadius;
-    double orbitalPeriod;
+    double orbitalRadius = 0;
+    double orbitalPeriod = 0;
     // More orbital parameters like eccentricity inclination...?
-    double mass;
-    double radius;
-    double gravitationalParameter;
+    double mass = 0;
+    double radius = 0;
+    double gravitationalParameter = 0;
 
 protected:
     void
@@ -33,12 +33,12 @@ class Star : public CelestialBody { // : public Leviathan::PerWorldData{
 
 public:
     // star properties
-    double lifeSpan;
-    double luminosity;
-    double temperature;
+    double lifeSpan = 0;
+    double luminosity = 0;
+    double temperature = 0;
     std::array<double, LENGTH_OF_ARRAYS> stellarSpectrum;
-    double minOrbitalDiameter;
-    double maxOrbitalDiameter;
+    double minOrbitalDiameter = 0;
+    double maxOrbitalDiameter = 0;
     std::array<double, NUMBER_OF_TESTS> orbitalDistances;
     std::array<double, NUMBER_OF_TESTS> habitabilityScore;
 
@@ -95,16 +95,16 @@ class Planet : public CelestialBody { // : public Leviathan::PerWorldData{
 
 public:
     // planet properties
-    double lithosphereMass;
-    double atmosphereMass;
-    double oceanMass;
-    double atmosphereWater;
-    double atmosphereCarbonDioxide;
-    double atmosphereOxygen;
-    double atmosphereNitrogen;
+    double lithosphereMass = 0;
+    double atmosphereMass = 0;
+    double oceanMass = 0;
+    double atmosphereWater = 0;
+    double atmosphereCarbonDioxide = 0;
+    double atmosphereOxygen = 0;
+    double atmosphereNitrogen = 0;
     std::array<double, LENGTH_OF_ARRAYS> atmosphericFilter;
     std::array<double, LENGTH_OF_ARRAYS> terrestrialSpectrum;
-    double planetTemperature;
+    double planetTemperature = 0;
 
     // Limit to star for now
     Planet(std::shared_ptr<Star> star)

@@ -163,7 +163,7 @@ void
         std::array<double, LENGTH_OF_ARRAYS>& target)
 {
     for(int i = 0; i < LENGTH_OF_ARRAYS; i++) {
-        target[i] = Array1[i] * Array2[i];
+        target.at(i) = Array1.at(i) * Array2.at(i);
     }
 }
 
@@ -180,7 +180,7 @@ void
     LOG_INFO("Wavelength meters : Energy Watts");
     for(int i = 0; i < LENGTH_OF_ARRAYS; i++) {
         LOG_INFO(Convert::ToString(WAVELENGTH_STEP * (i + 1)) + ": " +
-                 Convert::ToString(Array1[i]));
+                 Convert::ToString(Array1.at(i)));
     }
 }
 
@@ -193,10 +193,15 @@ void
 void
     CelestialBody::setOrbitalPeriod()
 {
-    orbitalPeriod =
-        2 * PI *
-        pow(((pow(orbitalRadius, 3)) / orbitingBody->gravitationalParameter),
-            0.5);
+    if(orbitalRadius > 0 && orbitingBody &&
+        orbitingBody->gravitationalParameter > 0) {
+        orbitalPeriod = 2 * PI *
+                        pow(((pow(orbitalRadius, 3)) /
+                                orbitingBody->gravitationalParameter),
+                            0.5);
+    } else {
+        orbitalPeriod = 0;
+    }
 }
 
 Json::Value
@@ -276,8 +281,8 @@ void
     printSpectrum(stellarSpectrum);
     LOG_INFO("Habitability Scores in form Radius(m): Habitability Score.");
     for(int i = 0; i < NUMBER_OF_TESTS; i++) {
-        LOG_INFO(Convert::ToString(orbitalDistances[i]) + " : " +
-                 Convert::ToString(habitabilityScore[i]));
+        LOG_INFO(Convert::ToString(orbitalDistances.at(i)) + " : " +
+                 Convert::ToString(habitabilityScore.at(i)));
     }
 }
 
@@ -317,7 +322,8 @@ void
     Star::setStellarSpectrum()
 {
     for(int i = 0; i < LENGTH_OF_ARRAYS; i++) {
-        stellarSpectrum[i] = planksLaw(temperature, WAVELENGTH_STEP * (i + 1));
+        stellarSpectrum.at(i) =
+            planksLaw(temperature, WAVELENGTH_STEP * (i + 1));
     }
 }
 
@@ -325,13 +331,12 @@ void
 void
     Star::computeHabitableZone()
 {
-    double diameterStep =
-        (maxOrbitalDiameter - minOrbitalDiameter) / NUMBER_OF_TESTS;
-    int counter = 0;
     // start at a close distance
     double currentDiameter = minOrbitalDiameter;
-    while(currentDiameter < maxOrbitalDiameter) {
-        habitabilityScore[counter] = 0;
+    double diameterStep =
+        (maxOrbitalDiameter - minOrbitalDiameter) / NUMBER_OF_TESTS;
+    for(int i = 0; i < NUMBER_OF_TESTS; i++) {
+        habitabilityScore.at(i) = 0;
         // work out incoming sunlight
         double incomingSunlight =
             luminosity / (4 * PI * (pow(currentDiameter, 2)));
@@ -343,16 +348,15 @@ void
                 float temp =
                     computeTemperature(incomingSunlight, carbonDioxide, oxygen);
                 if(temp < 373 && temp > 273) {
-                    habitabilityScore[counter]++;
+                    habitabilityScore.at(i)++;
                 }
             }
         }
-        orbitalDistances[counter] = currentDiameter;
-        // increase the distance
-        counter++;
+        orbitalDistances.at(i) =
+            currentDiameter; // We'd better hope this is the EXACT SAME SIZE
         currentDiameter += diameterStep;
     }
-    habitabilityScore[0] = 0; // fixing a weird bug I found, sorry :(
+    // habitabilityScore.at(0) = 0; // fixing a weird bug I found, sorry :(
 }
 
 void
@@ -418,12 +422,12 @@ void
     int maxHabitability = 0;
     int entryLocation = 0;
     for(int i = 0; i < NUMBER_OF_TESTS; i++) {
-        if(orbitingStar->habitabilityScore[i] > maxHabitability) {
-            maxHabitability = orbitingStar->habitabilityScore[i];
+        if(orbitingStar->habitabilityScore.at(i) > maxHabitability) {
+            maxHabitability = orbitingStar->habitabilityScore.at(i);
             entryLocation = i;
         }
     }
-    orbitalRadius = orbitingStar->orbitalDistances[entryLocation];
+    orbitalRadius = orbitingStar->orbitalDistances.at(entryLocation);
 }
 
 void
@@ -632,56 +636,56 @@ void
         largestFilter = carbonDioxide;
     }
     // define the values of the filter
-    atmosphericFilter[0] = (pow(nitrogen, 0.3)) * (pow(oxygen, 2.2)) * water;
-    atmosphericFilter[1] = (pow(nitrogen, 0.3)) * (pow(oxygen, 2.2)) * water;
-    atmosphericFilter[2] = (pow(oxygen, 2.2)) * (pow(water, 2.2));
-    atmosphericFilter[3] = (pow(oxygen, 2.2)) * (pow(water, 2.2));
-    atmosphericFilter[4] = (pow(oxygen, 2.2));
-    atmosphericFilter[5] = (pow(oxygen, 2.2));
-    atmosphericFilter[6] = (pow(oxygen, 2.2));
-    atmosphericFilter[7] = pow(oxygen, 1.7);
-    atmosphericFilter[8] = pow(oxygen, 1.7);
-    atmosphericFilter[9] = pow(oxygen, 1.7);
-    atmosphericFilter[10] = pow(oxygen, 1.7);
-    atmosphericFilter[11] = (pow(oxygen, 1.7)) * (pow(water, 2.2));
-    atmosphericFilter[12] = (pow(oxygen, 1.7)) * (pow(water, 2.2));
-    atmosphericFilter[13] = (pow(water, 2.2)) * (pow(oxygen, 1.7));
-    atmosphericFilter[14] = (pow(oxygen, 1.7));
-    atmosphericFilter[15] = (pow(water, 2.2)) * 1 * oxygen;
-    atmosphericFilter[16] = (pow(oxygen, 1.7));
-    atmosphericFilter[17] = largestFilter;
-    atmosphericFilter[18] = (pow(water, 2.2));
-    atmosphericFilter[19] = largestFilter;
-    atmosphericFilter[20] = (pow(oxygen, 1.7));
-    atmosphericFilter[21] = (pow(water, 2.2));
-    atmosphericFilter[22] = largestFilter;
-    atmosphericFilter[23] = largestFilter;
-    atmosphericFilter[24] = (pow(oxygen, 1.7));
-    atmosphericFilter[25] = largestFilter;
-    atmosphericFilter[26] = 1 * water;
-    atmosphericFilter[27] = pow(carbonDioxide, 0.75);
-    atmosphericFilter[28] = largestFilter;
-    atmosphericFilter[29] = pow(carbonDioxide, 2.3);
-    atmosphericFilter[30] = largestFilter;
-    atmosphericFilter[31] = (pow(oxygen, 1.7));
-    atmosphericFilter[32] = largestFilter;
-    atmosphericFilter[33] = largestFilter;
-    atmosphericFilter[34] = largestFilter;
-    atmosphericFilter[35] = largestFilter;
-    atmosphericFilter[36] = 1 * water;
-    atmosphericFilter[37] = largestFilter;
-    atmosphericFilter[38] = largestFilter;
-    atmosphericFilter[39] = 1 * carbonDioxide;
-    atmosphericFilter[40] = largestFilter;
-    atmosphericFilter[41] = largestFilter;
-    atmosphericFilter[42] = largestFilter;
-    atmosphericFilter[43] = largestFilter;
-    atmosphericFilter[44] = largestFilter;
-    atmosphericFilter[45] = largestFilter;
-    atmosphericFilter[46] = largestFilter;
-    atmosphericFilter[47] = (pow(water, 0.1));
-    atmosphericFilter[48] = (pow(water, 0.1));
-    atmosphericFilter[49] = largestFilter;
+    atmosphericFilter.at(0) = (pow(nitrogen, 0.3)) * (pow(oxygen, 2.2)) * water;
+    atmosphericFilter.at(1) = (pow(nitrogen, 0.3)) * (pow(oxygen, 2.2)) * water;
+    atmosphericFilter.at(2) = (pow(oxygen, 2.2)) * (pow(water, 2.2));
+    atmosphericFilter.at(3) = (pow(oxygen, 2.2)) * (pow(water, 2.2));
+    atmosphericFilter.at(4) = (pow(oxygen, 2.2));
+    atmosphericFilter.at(5) = (pow(oxygen, 2.2));
+    atmosphericFilter.at(6) = (pow(oxygen, 2.2));
+    atmosphericFilter.at(7) = pow(oxygen, 1.7);
+    atmosphericFilter.at(8) = pow(oxygen, 1.7);
+    atmosphericFilter.at(9) = pow(oxygen, 1.7);
+    atmosphericFilter.at(10) = pow(oxygen, 1.7);
+    atmosphericFilter.at(11) = (pow(oxygen, 1.7)) * (pow(water, 2.2));
+    atmosphericFilter.at(12) = (pow(oxygen, 1.7)) * (pow(water, 2.2));
+    atmosphericFilter.at(13) = (pow(water, 2.2)) * (pow(oxygen, 1.7));
+    atmosphericFilter.at(14) = (pow(oxygen, 1.7));
+    atmosphericFilter.at(15) = (pow(water, 2.2)) * 1 * oxygen;
+    atmosphericFilter.at(16) = (pow(oxygen, 1.7));
+    atmosphericFilter.at(17) = largestFilter;
+    atmosphericFilter.at(18) = (pow(water, 2.2));
+    atmosphericFilter.at(19) = largestFilter;
+    atmosphericFilter.at(20) = (pow(oxygen, 1.7));
+    atmosphericFilter.at(21) = (pow(water, 2.2));
+    atmosphericFilter.at(22) = largestFilter;
+    atmosphericFilter.at(23) = largestFilter;
+    atmosphericFilter.at(24) = (pow(oxygen, 1.7));
+    atmosphericFilter.at(25) = largestFilter;
+    atmosphericFilter.at(26) = 1 * water;
+    atmosphericFilter.at(27) = pow(carbonDioxide, 0.75);
+    atmosphericFilter.at(28) = largestFilter;
+    atmosphericFilter.at(29) = pow(carbonDioxide, 2.3);
+    atmosphericFilter.at(30) = largestFilter;
+    atmosphericFilter.at(31) = (pow(oxygen, 1.7));
+    atmosphericFilter.at(32) = largestFilter;
+    atmosphericFilter.at(33) = largestFilter;
+    atmosphericFilter.at(34) = largestFilter;
+    atmosphericFilter.at(35) = largestFilter;
+    atmosphericFilter.at(36) = 1 * water;
+    atmosphericFilter.at(37) = largestFilter;
+    atmosphericFilter.at(38) = largestFilter;
+    atmosphericFilter.at(39) = 1 * carbonDioxide;
+    atmosphericFilter.at(40) = largestFilter;
+    atmosphericFilter.at(41) = largestFilter;
+    atmosphericFilter.at(42) = largestFilter;
+    atmosphericFilter.at(43) = largestFilter;
+    atmosphericFilter.at(44) = largestFilter;
+    atmosphericFilter.at(45) = largestFilter;
+    atmosphericFilter.at(46) = largestFilter;
+    atmosphericFilter.at(47) = (pow(water, 0.1));
+    atmosphericFilter.at(48) = (pow(water, 0.1));
+    atmosphericFilter.at(49) = largestFilter;
 }
 
 void
@@ -731,7 +735,7 @@ Json::Value
 {
     Json::Value result = CelestialBody::toJSON();
 
-    result["atmosphereMass"] = atmosphereMass;
+    result["oceanMass"] = oceanMass;
     result["lithosphereMass"] = lithosphereMass;
     result["atmosphereMass"] = atmosphereMass;
     result["atmosphereWater"] = atmosphereWater;
@@ -761,10 +765,10 @@ std::string
     const Json::Value value = toJSON();
 
     Json::StreamWriterBuilder builder;
-    builder["indentation"] = "";
+    builder["indentation"] = " ";
     std::unique_ptr<Json::StreamWriter> writer(builder.newStreamWriter());
 
     writer->write(value, &sstream);
-
+    LOG_INFO(sstream.str());
     return sstream.str();
 }
