@@ -332,10 +332,10 @@ void
     Star::computeHabitableZone()
 {
     // start at a close distance
-    double currentDiameter = minOrbitalDiameter;
     double diameterStep =
         (maxOrbitalDiameter - minOrbitalDiameter) / NUMBER_OF_TESTS;
     for(int i = 0; i < NUMBER_OF_TESTS; i++) {
+        double currentDiameter = minOrbitalDiameter + i*diameterStep;
         habitabilityScore.at(i) = 0;
         // work out incoming sunlight
         double incomingSunlight =
@@ -353,8 +353,7 @@ void
             }
         }
         orbitalDistances.at(i) =
-            currentDiameter; // We'd better hope this is the EXACT SAME SIZE
-        currentDiameter += diameterStep;
+            currentDiameter; 
     }
     // habitabilityScore.at(0) = 0; // fixing a weird bug I found, sorry :(
 }
