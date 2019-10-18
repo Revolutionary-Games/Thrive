@@ -5,7 +5,21 @@ import * as common from "./gui_common.mjs";
 
 let freebuild = false;
 
+function updatePlanetValues(data){
+    //add the star GetVariables
+    document.getElementById("starMassSlider").value = data.orbitingBody.mass;
+    document.getElementById("starMassValueBox").innerHTML = "Star Mass <br>" + data.orbitingBody.mass;
+    //add the planet variables
+    document.getElementById("massSlider").value = data.mass;
+    document.getElementById("planetMassValueBox").innerHTML = "Planet Mass <br>" + data.mass;
+    document.getElementById("radiusSlider").value = data.radius;
+    document.getElementById("planetRadiusValueBox").innerHTML = "Planet Radius <br>" + data.radius;
+}
+
 export function setupPlanetEditor(fromFreebuild){
+    document.getElementById("starMassSlider").addEventListener("input",
+        onStarMassInput, true);
+
     document.getElementById("massSlider").addEventListener("input",
         onMassInput, true);
 
@@ -20,8 +34,7 @@ export function setupPlanetEditor(fromFreebuild){
 
     Leviathan.OnGeneric("PlanetEditorPlanetModified", (event, vars) => {
         const data = JSON.parse(vars.data);
-        document.getElementById("massSlider").value = data.mass;
-        document.getElementById("radiusSlider").value = data.radius;
+        updatePlanetValues(data);
     });
 
     document.addEventListener("keydown", (event) => {
@@ -33,6 +46,10 @@ export function setupPlanetEditor(fromFreebuild){
     }, true);
 
     freebuild = fromFreebuild;
+}
+
+function onStarMassInput(event){
+    Thrive.editPlanet("starMass", parseFloat(event.target.value));
 }
 
 function onMassInput(event){

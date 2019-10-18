@@ -104,8 +104,20 @@
 
     <!-- Planet editor GUI -->
     <div id="topLevelPlanetEditor" style="display: none; height: 100%;">
+      <!-- test slider for smoothness -->
+      <div id="testValueBox" class="planetValueBox">TEST SLIDER</div>
+      <input id="testValueSlider" type="range" min="0" max="1000000" class="planetSlider">
+
+      <!-- elements for displaying star values and sliders for input -->
+      <div id="starMassValueBox" class="planetValueBox"></div>
+      <input type="range" min="0" max="1000" id="starMassSlider" class="planetSlider">
+
+      <!-- elements for displaying planet values and sliders for input -->
+      <div id="planetMassValueBox" class="planetValueBox"></div>
       <input type="range" min="3.588910102735962e+24" max="1.7937313085760207e+25" id="massSlider" class="planetSlider">
+      <div id="planetRadiusValueBox" class="planetValueBox"></div>
       <input type="range" min="5375699.0" max="9191080.0" id="radiusSlider" class="planetSlider">
+
       <div class="MenuButton" id="planetEditorStartGame">Start Game</div>
       <div class="MenuButton" id="planetEditorBack">Back</div>
     </div>

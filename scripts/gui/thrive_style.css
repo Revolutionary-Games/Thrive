@@ -82,6 +82,17 @@ div::-webkit-scrollbar-thumb:hover {
   background: rgba(89, 210, 255, 0.7);
 }
 
+/*CSS for Star and Planet editor screen */
+.planetValueBox{
+    width:20%;
+    height:60px;
+    background-color:green;
+}
+.planetSlider{
+    width:75%;
+    height:30px;
+}
+
 /* Common quick classes */
 .Centered {
   text-align: center;

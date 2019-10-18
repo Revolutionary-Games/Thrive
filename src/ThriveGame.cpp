@@ -531,7 +531,9 @@ void
 {
     auto planet = m_impl->m_planet;
 
-    if(editType == "mass") {
+    if (editType == "starMass"){
+        planet->orbitingBody->setMass(value);
+    } else if(editType == "mass") {
         planet->setPlanetMass(value);
     } else if(editType == "radius") {
         planet->setPlanetRadius(value);
