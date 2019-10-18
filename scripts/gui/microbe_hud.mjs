@@ -23,7 +23,7 @@ export function runMicrobeHUDSetup(){
 
     if(microbeHudSetupRan)
         return;
-    
+
     document.getElementById("pauseButtonBottom").addEventListener("click",
         onPauseButtonClicked, true);
 
@@ -415,6 +415,7 @@ function onResumeClicked(){
     document.getElementById("mainMenuButton").classList.add("MainMenuNormal");
     const pause = document.getElementById("pauseOverlay");
     pause.style.display = "none";
+
     // Use paused here so the game won't be unpaused when also paused by the pause button.
     Thrive.pause(paused);
 }
