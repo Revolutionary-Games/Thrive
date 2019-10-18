@@ -349,6 +349,14 @@ export function setupMicrobeEditor(){
             updateColourValueBar(colour);
         });
 
+        // Condition buttons clicked
+        const minusBtnObjects = document.getElementsByClassName("minusBtn");
+
+        for (const element of minusBtnObjects) {
+            element.addEventListener("click",
+                onConditionClicked, true);
+        }
+
     } else {
         updateSelectedOrganelle("cytoplasm");
     }
@@ -760,6 +768,15 @@ function updateGuiButtons(isNucleusPresent){
         document.getElementById("addVacuole").classList.remove("DisabledButton");
         document.getElementById("addToxinVacuole").classList.remove("DisabledButton");
     }
+}
+
+// Patch Map close button
+function onConditionClicked() {
+    const tab = $(this).attr("data-cond");
+
+    $("#" + tab).animate({"height": "toggle"});
+    $(this).toggleClass("minus");
+    $(this).toggleClass("plus");
 }
 
 //! Updates generation points in GUI
@@ -1181,10 +1198,6 @@ function updateSelectedPatchData(patch){
 
     document.getElementById("editorSelectedPatchName").textContent = patch.name;
 
-    const descriptionElement =
-        document.getElementById("editorSelectedPatchDescription");
-    descriptionElement.textContent = "";
-
     if(patchMoveAllowed(selectedPatch.id)){
         document.getElementById("moveToPatchButton").classList.remove("Disabled");
     } else {
@@ -1192,43 +1205,44 @@ function updateSelectedPatchData(patch){
     }
 
     if(currentPatchId == selectedPatch.id){
-        descriptionElement.appendChild(document.createTextNode("You are currently in " +
-                                                               "this patch."));
-        descriptionElement.appendChild(document.createElement("br"));
+        document.getElementById("editorSelectedPatchName").textContent =
+        "You are currently in " + "this patch.";
+        document.getElementById("editorSelectedPatchName").innerHTML += "<br>";
     }
 
     // Biome name
-    descriptionElement.appendChild(document.createTextNode("Biome: " + patch.biome.name));
-    descriptionElement.appendChild(document.createElement("br"));
+    document.getElementById("patchName").textContent = "Biome: " + patch.biome.name;
 
-    // Species
-    descriptionElement.appendChild(document.createElement("br"));
-    descriptionElement.appendChild(document.createTextNode("Species in this patch:"));
-    descriptionElement.appendChild(document.createElement("br"));
+    // Set all environment data from objects received
+    document.getElementById("microbeHUDPatchTemperature").innerHTML = patch.biome.temperature;
+
+    // Document.getElementById("microbeHUDPatchPressure").textContent = patch.temperature;
+    document.getElementById("microbeHUDPatchLight").innerHTML =
+        (patch.biome.compounds.sunlight.dissolved * 100) + "%";
+    document.getElementById("microbeHUDPatchOxygen").innerHTML =
+        (patch.biome.compounds.oxygen.dissolved * 100) + "%";
+    document.getElementById("microbeHUDPatchNitrogen").innerHTML =
+        (patch.biome.compounds.nitrogen.dissolved * 100) + "%";
+    document.getElementById("microbeHUDPatchCO2").innerHTML =
+        (patch.biome.compounds.carbondioxide.dissolved * 100) + "%";
+    document.getElementById("microbeHUDPatchHydrogenSulfide").innerHTML =
+        (patch.biome.compounds.hydrogensulfide.dissolved * 100) + "%";
+    document.getElementById("microbeHUDPatchAmmonia").innerHTML =
+        (patch.biome.compounds.ammonia.dissolved * 100) + "%";
+    document.getElementById("microbeHUDPatchGlucose").innerHTML =
+        (patch.biome.compounds.glucose.dissolved * 100) + "%";
+    document.getElementById("microbeHUDPatchPhosphate").innerHTML =
+        (patch.biome.compounds.ammonia.dissolved * 100) + "%";
+
+    // Document.getElementById("microbeHUDPatchIr").textContent = patch.temperature;
 
     for(const species of patch.species){
         const name = species.species.genus + " " + species.species.epithet;
 
-        descriptionElement.appendChild(document.createTextNode(name + " with population: " +
-                                                               species.population));
-        descriptionElement.appendChild(document.createElement("br"));
+        document.getElementById("speciesInPatch").innerHTML +=
+            name + " with populatiuon " + species.population;
+        document.getElementById("speciesInPatch").appendChild(document.createElement("br"));
     }
-
-    descriptionElement.appendChild(document.createElement("br"));
-    descriptionElement.appendChild(document.createTextNode("Environment:"));
-    descriptionElement.appendChild(document.createElement("br"));
-    descriptionElement.appendChild(document.createTextNode("O2: " +
-        (patch.biome.compounds.oxygen.dissolved * 100).toString() + "%"));
-    descriptionElement.appendChild(document.createElement("br"));
-    descriptionElement.appendChild(document.createTextNode("CO2: " +
-        (patch.biome.compounds.carbondioxide.dissolved * 100).toString() + "%"));
-    descriptionElement.appendChild(document.createElement("br"));
-    descriptionElement.appendChild(document.createTextNode("N2: " +
-        (patch.biome.compounds.nitrogen.dissolved * 100).toString() + "%"));
-    descriptionElement.appendChild(document.createElement("br"));
-    descriptionElement.appendChild(document.createTextNode("Sunlight: " +
-        (patch.biome.compounds.sunlight.dissolved * 100).toString() + "%"));
-    descriptionElement.appendChild(document.createElement("br"));
 }
 
 function patchMoveAllowed(targetId){
