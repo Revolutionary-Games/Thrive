@@ -1214,27 +1214,36 @@ function updateSelectedPatchData(patch){
     document.getElementById("patchName").textContent = "Biome: " + patch.biome.name;
 
     // Set all environment data from objects received
-    document.getElementById("microbeHUDPatchTemperature").innerHTML = patch.biome.temperature;
+    document.getElementById("microbeHUDPatchTemperature").textContent =
+        patch.biome.temperature;
 
     // Document.getElementById("microbeHUDPatchPressure").textContent = patch.temperature;
-    document.getElementById("microbeHUDPatchLight").innerHTML =
+    document.getElementById("microbeHUDPatchLight").textContent =
         (patch.biome.compounds.sunlight.dissolved * 100) + "%";
-    document.getElementById("microbeHUDPatchOxygen").innerHTML =
+    document.getElementById("microbeHUDPatchOxygen").textContent =
         (patch.biome.compounds.oxygen.dissolved * 100) + "%";
-    document.getElementById("microbeHUDPatchNitrogen").innerHTML =
-        (patch.biome.compounds.nitrogen.dissolved * 100) + "%";
-    document.getElementById("microbeHUDPatchCO2").innerHTML =
-        (patch.biome.compounds.carbondioxide.dissolved * 100) + "%";
-    document.getElementById("microbeHUDPatchHydrogenSulfide").innerHTML =
-        (patch.biome.compounds.hydrogensulfide.dissolved * 100) + "%";
-    document.getElementById("microbeHUDPatchAmmonia").innerHTML =
-        (patch.biome.compounds.ammonia.dissolved * 100) + "%";
-    document.getElementById("microbeHUDPatchGlucose").innerHTML =
-        (patch.biome.compounds.glucose.dissolved * 100) + "%";
-    document.getElementById("microbeHUDPatchPhosphate").innerHTML =
-        (patch.biome.compounds.ammonia.dissolved * 100) + "%";
+    document.getElementById("microbeHUDPatchNitrogen").textContent =
+        (patch.biome.compounds.nitrogen.density * 100) + "%";
+    document.getElementById("microbeHUDPatchCO2").textContent =
+        (patch.biome.compounds.carbondioxide.density * 100) + "%";
 
-    // Document.getElementById("microbeHUDPatchIr").textContent = patch.temperature;
+    document.getElementById("microbeHUDPatchHydrogenSulfide").textContent =
+     (patch.biome.compounds.hydrogensulfide.density *
+     patch.biome.compounds.hydrogensulfide.amount).toFixed(1) + "%";
+    document.getElementById("microbeHUDPatchAmmonia").textContent =
+     (patch.biome.compounds.ammonia.density *
+     patch.biome.compounds.ammonia.amount).toFixed(1) + "%";
+    document.getElementById("microbeHUDPatchGlucose").textContent =
+     (patch.biome.compounds.glucose.density *
+     patch.biome.compounds.glucose.amount).toFixed(1) + "%";
+    document.getElementById("microbeHUDPatchPhosphate").textContent =
+     (patch.biome.compounds.ammonia.density *
+    patch.biome.compounds.ammonia.amount).toFixed(1) + "%";
+
+    // TODO: add iron chunck, theese needs some calculation
+    // Document.getElementById("microbeHUDPatchIr").textContent =
+    // (patch.biome.compounds.iron.density *
+    // patch.biome.compounds.iron.amount).toFixed(1) + "%";
 
     for(const species of patch.species){
         const name = species.species.genus + " " + species.species.epithet;

@@ -49,9 +49,8 @@ Biome::Biome(Json::Value value)
     // Getting the compound information.
     Json::Value compoundData = value["compounds"];
 
-	float averageTemperatureData = value["averageTemperature"].asFloat();
+    float averageTemperatureData = value["averageTemperature"].asFloat();
     averageTemperature = averageTemperatureData;
-  
     std::vector<std::string> compoundInternalNames =
         compoundData.getMemberNames();
 
@@ -194,6 +193,7 @@ Json::Value
     direction["z"] = sunlightDirection.Z;
     result["sunlightDirection"] = direction;
 
+    result["temperature"] = averageTemperature;
     Json::Value compoundsData;
 
     for(auto compoundRef : compounds) {
@@ -209,7 +209,6 @@ Json::Value
         compoundsData[compound.internalName] = compoundData;
     }
 
-    result["temperature"] = averageTemperature;
     result["compounds"] = compoundsData;
 
     if(full) {
