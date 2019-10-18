@@ -747,6 +747,12 @@ void
         new Leviathan::GenericEvent("ExitedToMenu"));
 }
 
+void
+    ThriveGame::pause(bool pause)
+{
+    m_impl->m_cellStage->SetPaused(pause);
+}
+
 // ------------------------------------ //
 void
     ThriveGame::onZoomChange(float amount)

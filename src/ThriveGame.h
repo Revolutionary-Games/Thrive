@@ -116,6 +116,8 @@ public:
 
     void
         exitToMenuClicked();
+    void
+        pause(bool pause);
 
     //! \param amount The amount the camera is moved. Positive moves away
     //! \todo Needs to detect the active camera system. Now always sends to the

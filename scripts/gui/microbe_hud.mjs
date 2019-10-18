@@ -14,12 +14,18 @@ let wonOnce = false;
 // Variable to show data useful during develop
 const showMouseCoordinates = false;
 
+// For toggling paused with the pause button
+let paused = false;
+
 //! Registers all the stuff for this to work.
 //! This makes sure it does something only once
 export function runMicrobeHUDSetup(){
 
     if(microbeHudSetupRan)
         return;
+    
+    document.getElementById("pauseButtonBottom").addEventListener("click",
+        onPauseButtonClicked, true);
 
     document.getElementById("microbeToEditorButton").addEventListener("click",
         onEditorButtonClicked, true);
@@ -282,6 +288,12 @@ export function onResetEditor(){
 }
 
 
+function onPauseButtonClicked(){
+    paused = !paused;
+    Thrive.pause(paused);
+    document.getElementById("pauseButtonBottom").classList.toggle("paused");
+}
+
 function onCompoundPanelClicked() {
     common.playButtonPressSound();
     document.getElementById("compoundsPanel").style.transition = "0s";
@@ -393,6 +405,7 @@ function onMenuClicked(){
     pause.style.display = "block";
     const help = document.getElementById("helpText");
     help.style.display = "none";
+    Thrive.pause(true);
 }
 
 function onResumeClicked(){
@@ -402,6 +415,8 @@ function onResumeClicked(){
     document.getElementById("mainMenuButton").classList.add("MainMenuNormal");
     const pause = document.getElementById("pauseOverlay");
     pause.style.display = "none";
+    // Use paused here so the game won't be unpaused when also paused by the pause button.
+    Thrive.pause(paused);
 }
 
 function killPlayerCell(){
