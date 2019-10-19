@@ -1186,6 +1186,9 @@ function processPatchMapData(data){
 function updateSelectedPatchData(patch){
     selectedPatch = patch;
 
+    // Reset species shown
+    document.getElementById("speciesInPatch").innerHTML = "";
+
     if(!selectedPatch){
         document.getElementById("noPatchSelectedText").style.display = "inline-block";
         document.getElementById("patchInfoBox").style.display = "none";
@@ -1240,10 +1243,10 @@ function updateSelectedPatchData(patch){
      (patch.biome.compounds.ammonia.density *
     patch.biome.compounds.ammonia.amount).toFixed(1) + "%";
 
-    // TODO: add iron chunck, theese needs some calculation
-    // Document.getElementById("microbeHUDPatchIr").textContent =
-    // (patch.biome.compounds.iron.density *
-    // patch.biome.compounds.iron.amount).toFixed(1) + "%";
+
+    document.getElementById("microbeHUDPatchIron").textContent =
+     ((patch.biome.smallIronChunck +
+    patch.biome.bigIronChunck) / 2.0).toFixed(1) + "%";
 
     for(const species of patch.species){
         const name = species.species.genus + " " + species.species.epithet;

@@ -102,6 +102,16 @@ Biome::Biome(Json::Value value)
         std::vector<std::string> compoundChunkNames =
             chunkCompoundData.getMemberNames();
 
+        // Calculate iron values to send to GUI
+        if(name == "Small Iron Chunk") {
+            smallIronChunk =
+                chunkCompoundData["iron"]["amount"].asDouble() * density;
+
+        } else if(name == "Big Iron Chunk") {
+            bigIronChunk =
+                chunkCompoundData["iron"]["amount"].asDouble() * density;
+        }
+
         // Can this support empty chunks?
         for(std::string compoundChunkName : compoundChunkNames) {
             unsigned int amount =
@@ -193,7 +203,6 @@ Json::Value
     direction["z"] = sunlightDirection.Z;
     result["sunlightDirection"] = direction;
 
-    result["temperature"] = averageTemperature;
     Json::Value compoundsData;
 
     for(auto compoundRef : compounds) {
@@ -209,7 +218,10 @@ Json::Value
         compoundsData[compound.internalName] = compoundData;
     }
 
+    result["temperature"] = averageTemperature;
     result["compounds"] = compoundsData;
+    result["smallIronChunck"] = smallIronChunk;
+    result["bigIronChunck"] = bigIronChunk;
 
     if(full) {
         LOG_WARNING("Biome: toJSON: full is not implemented");
