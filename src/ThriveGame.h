@@ -116,6 +116,7 @@ public:
 
     void
         exitToMenuClicked();
+
     void
         pause(bool pause);
 

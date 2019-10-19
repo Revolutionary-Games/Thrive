@@ -495,6 +495,7 @@ function onExitToMenuClicked() {
 
         // Gotta reset this
         wonOnce = false;
+        paused = false;
         Thrive.exitToMenuClicked();
 
     } else {

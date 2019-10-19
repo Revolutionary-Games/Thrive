@@ -750,7 +750,11 @@ void
 void
     ThriveGame::pause(bool pause)
 {
-    m_impl->m_cellStage->SetPaused(pause);
+    if(m_impl->m_cellStage) {
+        m_impl->m_cellStage->SetPaused(pause);
+    } else {
+        LOG_ERROR("Tried to pause but the cell stage was not initialized");
+    }
 }
 
 // ------------------------------------ //
