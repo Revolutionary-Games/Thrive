@@ -35,4 +35,7 @@ var Thrive = {};
     native function disconnectFromServer();
     Thrive.disconnectFromServer = disconnectFromServer;
 
+    native function pause(value);
+    Thrive.pause = pause;
+
 }());
