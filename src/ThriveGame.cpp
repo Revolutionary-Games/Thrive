@@ -336,7 +336,7 @@ void
     if(layer)
         layer->SetInputMode(Leviathan::GUI::INPUT_MODE::Gameplay);
 
-    // TODO: unpause, if it was paused
+    // Unpaused in exitToMenuClicked
 
     // Main camera that will be attached to the player
     m_cellCamera = Leviathan::ObjectLoader::LoadCamera(*m_impl->m_cellStage,
@@ -723,6 +723,8 @@ void
         if(m_impl->m_microbeEditor)
             m_impl->m_microbeEditor->ClearEntities();
 
+        pause(false);
+
         if(m_impl->m_autoEvoRun) {
             LOG_INFO("Stopping auto evo run, returning to menu");
             m_impl->m_autoEvoRun->abort();
@@ -745,6 +747,16 @@ void
     // Fire an event to switch over the GUI
     Engine::Get()->GetEventHandler()->CallEvent(
         new Leviathan::GenericEvent("ExitedToMenu"));
+}
+
+void
+    ThriveGame::pause(bool pause)
+{
+    if(m_impl->m_cellStage) {
+        m_impl->m_cellStage->SetPaused(pause);
+    } else {
+        LOG_ERROR("Tried to pause but the cell stage was not initialized");
+    }
 }
 
 // ------------------------------------ //
