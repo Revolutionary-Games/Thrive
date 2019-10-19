@@ -21,6 +21,9 @@ public:
     double radius = 0;
     double gravitationalParameter = 0;
 
+    //virtual void setSol();
+    //virtual void setMass(double newMass);
+
 protected:
     void
         setOrbitalPeriod();
