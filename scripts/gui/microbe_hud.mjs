@@ -489,6 +489,9 @@ function onExitToMenuClicked() {
         document.getElementById("extinctionContainer").style.display = "none";
         document.getElementById("microbeToEditorButton").classList.add("DisabledButton");
         document.getElementById("microbeToEditorButton").classList.remove("pulse");
+        document.getElementById("mainMenuButton").classList.remove("MainMenuActive");
+        document.getElementById("mainMenuButton").classList.add("MainMenuNormal");
+        document.getElementById("pauseButtonBottom").classList.remove("paused");
 
         readyToEdit = false;
         hideWinText();
