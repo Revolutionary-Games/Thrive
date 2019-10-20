@@ -195,7 +195,7 @@ Json::Value
 
     Json::Value compoundsData;
 
-    for(auto compoundRef : compounds) {       
+    for(auto compoundRef : compounds) {
         thrive::Compound compound =
             SimulationParameters::compoundRegistry.getTypeData(
                 SimulationParameters::compoundRegistry.getInternalName(
@@ -208,12 +208,12 @@ Json::Value
         compoundsData[compound.internalName] = compoundData;
     }
 
-	Json::Value chuncksData;
+    Json::Value chuncksData;
 
-	for(const auto& [id, chunk] : chunks) {
-      
-		for(const auto& [id, compound] : chunk.chunkCompounds) {  
-			Json::Value chunckCompounds;
+    for(const auto& [id, chunk] : chunks) {
+
+        for(const auto& [id, compound] : chunk.chunkCompounds) {
+            Json::Value chunckCompounds;
             chunckCompounds["name"] = compound.name;
             chunckCompounds["density"] = chunk.density;
             chunckCompounds["amount"] = compound.amount;
