@@ -1286,7 +1286,7 @@ function updateSelectedPatchData(patch){
     for(const species of patch.species){
         const name = species.species.genus + " " + species.species.epithet;
 
-        document.getElementById("speciesInPatch").textContent +=
+        document.getElementById("speciesInPatch").innerHTML +=
             name + " with populatiuon " + species.population;
         document.getElementById("speciesInPatch").appendChild(document.createElement("br"));
     }
