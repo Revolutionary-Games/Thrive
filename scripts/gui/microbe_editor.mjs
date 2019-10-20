@@ -1183,7 +1183,6 @@ function processPatchMapData(data){
     document.getElementById("patchMapNode_" + currentPatchId).classList.add("Current");
 }
 
-
 function updateSelectedPatchData(patch){
     selectedPatch = patch;
 

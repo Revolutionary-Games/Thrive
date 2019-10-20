@@ -101,7 +101,6 @@ Biome::Biome(Json::Value value)
         std::vector<std::string> compoundChunkNames =
             chunkCompoundData.getMemberNames();
 
-
         // Can this support empty chunks?
         for(std::string compoundChunkName : compoundChunkNames) {
             unsigned int amount =
