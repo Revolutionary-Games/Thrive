@@ -1243,12 +1243,6 @@ function updateSelectedPatchData(patch){
         updateDifferentCondition(patch, patchData.patches[currentPatchId]);
     }
 
-    // If(patch.biome.chuncks["Marine snow"] != null && patch.biome.chuncks["Marine snow"].density != 0) {
-    // console.log("IM HERE!");
-    // } else {
-    // console.log("IM NOT!");
-    // }
-    // }
     let chunkGlucose = 0;
     let chunkPhoshpates = 0;
     let chunkAmmonia = 0;
