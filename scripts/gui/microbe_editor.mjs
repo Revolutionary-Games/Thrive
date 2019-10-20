@@ -1285,7 +1285,6 @@ function updateSelectedPatchData(patch){
             }
         }
     }
-    console.log("IN THIS PATCH THERE IS: " + chunkiron + " IRON");
 
     // Biome name
     document.getElementById("patchName").textContent = "Biome: " + patch.biome.name;
