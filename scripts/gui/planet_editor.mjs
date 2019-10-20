@@ -17,9 +17,9 @@ function updatePlanetValues(data){
     drawGraph(document.getElementById("stellarSpectrumGraph"), data.orbitingBody.stellarSpectrum);
 
     //add the planet variables
-    document.getElementById("massSlider").value = data.mass;
+    document.getElementById("planetMassSlider").value = data.mass;
     document.getElementById("planetMassValueBox").innerHTML = "Planet Mass <br>" + data.mass;
-    document.getElementById("radiusSlider").value = data.radius;
+    document.getElementById("planetRadiusSlider").value = data.radius;
     document.getElementById("planetRadiusValueBox").innerHTML = "Planet Radius <br>" + data.radius;
     document.getElementById("planetOceanMassValueBox").innerHTML = "Ocean Mass <br>" + data.oceanMass;
     document.getElementById("planetLithosphereMassValueBox").innerHTML = "Lithosphere Mass <br>" + data.lithosphereMass;
@@ -28,6 +28,13 @@ function updatePlanetValues(data){
     document.getElementById("planetAtmosphereOxygenValueBox").innerHTML = "Atmosphere Oxygen <br>" + data.atmosphereOxygen;
     document.getElementById("planetAtmosphereNitrogenValueBox").innerHTML = "Atmosphere Nitrogen <br>" + data.atmosphereNitrogen;
     document.getElementById("planetCarbonDioxideValueBox").innerHTML = "Atmosphere CarbonDioxide <br>" + data.atmosphereCarbonDioxide;
+
+    drawGraph(document.getElementById("habitabilityGraph"), data.orbitingBody.habitabilityScore);
+
+    document.getElementById("planetOrbitalRadiusSlider").value = data.orbit.radius;
+    document.getElementById("planetOrbitalRadiusValueBox").innerHTML = "Orbital Radius <br>" + data.orbit.radius;
+    document.getElementById("planetOrbitalPeriodValueBox").innerHTML = "Orbital Period <br>" + data.orbit.period;
+
     document.getElementById("planetTemperatureValueBox").innerHTML = "Planet Temperature <br>" + data.planetTemperature;
 
     //drawGraph(document.getElementById("atmosphericFilterGraph"), data.atmosphericFilter);
@@ -40,11 +47,14 @@ export function setupPlanetEditor(fromFreebuild){
     document.getElementById("starMassSlider").addEventListener("input",
         onStarMassInput, true);
 
-    document.getElementById("massSlider").addEventListener("input",
-        onMassInput, true);
+    document.getElementById("planetMassSlider").addEventListener("input",
+        onPlanetMassInput, true);
 
-    document.getElementById("radiusSlider").addEventListener("input",
-        onRadiusInput, true);
+    document.getElementById("planetRadiusSlider").addEventListener("input",
+        onPlanetRadiusInput, true);
+
+    document.getElementById("planetOrbitalRadiusSlider").addEventListener("input",
+            onPlanetOrbitalRadiusInput, true);
 
     document.getElementById("planetEditorBack").addEventListener("click",
         Thrive.exitToMenuClicked, true);
@@ -72,12 +82,16 @@ function onStarMassInput(event){
     Thrive.editPlanet("starMass", parseFloat(event.target.value));
 }
 
-function onMassInput(event){
-    Thrive.editPlanet("mass", parseFloat(event.target.value));
+function onPlanetMassInput(event){
+    Thrive.editPlanet("planetMass", parseFloat(event.target.value));
 }
 
-function onRadiusInput(event){
-    Thrive.editPlanet("radius", parseFloat(event.target.value));
+function onPlanetRadiusInput(event){
+    Thrive.editPlanet("planetRadius", parseFloat(event.target.value));
+}
+
+function onPlanetOrbitalRadiusInput(event){
+    Thrive.editPlanet("planetOrbitalRadius", parseFloat(event.target.value));
 }
 
 function startGame(){
@@ -151,6 +165,7 @@ function drawGraph(graph, data)
     if (data === undefined || data.length == 0) {
         return;
     }
+    graph.innerHTML = "";
 	//get the size of the container
 	var positionInfo = graph.getBoundingClientRect();
 	var height = positionInfo.height;

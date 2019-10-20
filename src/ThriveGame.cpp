@@ -530,14 +530,17 @@ void
     ThriveGame::editPlanet(const std::string& editType, double value)
 {
     auto planet = m_impl->m_planet;
+    std::shared_ptr<Star> orbitingStar =
+        std::static_pointer_cast<Star>(planet->orbitingBody);
 
-//    if (editType == "starMass"){
-//        planet->orbitingBody->setMass(value);
-//    } else
-    if(editType == "mass") {
+    if (editType == "starMass"){
+        orbitingStar->setMass(value);
+    } else if(editType == "planetMass") {
         planet->setPlanetMass(value);
-    } else if(editType == "radius") {
+    } else if(editType == "planetRadius") {
         planet->setPlanetRadius(value);
+    } else if(editType == "planetOrbitalRadius") {
+        planet->setOrbitalRadius(value);
     }
 
     // Notify GUI

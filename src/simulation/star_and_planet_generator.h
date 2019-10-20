@@ -9,11 +9,14 @@
 
 namespace thrive {
 
+enum CelestialBodyType { STAR, PLANET };
+
 class CelestialBody {
 
 public:
     // properties
     std::shared_ptr<CelestialBody> orbitingBody;
+    CelestialBodyType celestialBodyType;
     double orbitalRadius = 0;
     double orbitalPeriod = 0;
     // More orbital parameters like eccentricity inclination...?
@@ -21,15 +24,12 @@ public:
     double radius = 0;
     double gravitationalParameter = 0;
 
-    //virtual void setSol();
-    //virtual void setMass(double newMass);
+    Json::Value
+        toJSON() const;
 
 protected:
     void
         setOrbitalPeriod();
-
-    Json::Value
-        toJSON() const;
 };
 
 class Star : public CelestialBody { // : public Leviathan::PerWorldData{
@@ -71,6 +71,9 @@ public:
     void
         update();
 
+    Json::Value
+        toJSON() const;
+
 private:
     //! set all the properties of the star, if step == 0 mass will be
     //! randomised, if step == 1 it will not be
@@ -90,8 +93,6 @@ private:
     void
         computeHabitableZone();
 
-    Json::Value
-        toJSON() const;
 };
 
 class Planet : public CelestialBody { // : public Leviathan::PerWorldData{
@@ -113,6 +114,7 @@ public:
     Planet(std::shared_ptr<Star> star)
     {
         orbitingBody = star;
+        orbitingBody->celestialBodyType = STAR;
         generatePropertiesOrbitalRadius(0);
         generatePropertiesPlanetMass(0);
         generatePropertiesAtmosphere(0);
@@ -126,6 +128,7 @@ public:
     {
         orbitalRadius = radius;
         generatePropertiesOrbitalRadius(1);
+        generatePropertiesAtmosphere(1);
     }
     void
         setPlanetMass(double newMass)
@@ -148,6 +151,9 @@ public:
 
     void
         update();
+
+    Json::Value
+        toJSON() const;
 
     std::string
         toJSONString() const;
@@ -190,8 +196,6 @@ private:
     void
         computeLightFilter();
 
-    Json::Value
-        toJSON() const;
 };
 
 } // namespace thrive

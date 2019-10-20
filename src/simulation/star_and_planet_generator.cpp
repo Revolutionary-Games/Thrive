@@ -211,7 +211,17 @@ Json::Value
 
     // don't know if recursiveness here might be bad...
     if(orbitingBody) {
-        result["orbitingBody"] = orbitingBody->toJSON();
+        if (orbitingBody->celestialBodyType == STAR){
+            std::shared_ptr<Star> orbitingStar =
+                std::static_pointer_cast<Star>(orbitingBody);
+            result["orbitingBody"] = orbitingStar->toJSON();
+        } else if (orbitingBody->celestialBodyType == PLANET){
+            std::shared_ptr<Planet> orbitingPlanet =
+                std::static_pointer_cast<Planet>(orbitingBody);
+            result["orbitingBody"] = orbitingPlanet->toJSON();
+        } else {
+            result["orbitingBody"] = orbitingBody->toJSON();
+        }
     }
 
     Json::Value orbit;
@@ -353,7 +363,7 @@ void
             }
         }
         orbitalDistances.at(i) =
-            currentDiameter; 
+            currentDiameter;
     }
     // habitabilityScore.at(0) = 0; // fixing a weird bug I found, sorry :(
 }
@@ -768,6 +778,6 @@ std::string
     std::unique_ptr<Json::StreamWriter> writer(builder.newStreamWriter());
 
     writer->write(value, &sstream);
-    LOG_INFO(sstream.str());
+    //LOG_INFO(sstream.str());
     return sstream.str();
 }

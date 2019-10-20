@@ -110,7 +110,7 @@
 
       <!-- elements for displaying star values and sliders for input -->
       <div id="starMassValueBox" class="planetValueBox"></div>
-      <input type="range" min="0" max="1000" id="starMassSlider" class="planetSlider">
+      <input type="range" min="9.945e+29" max="5.967e+30" id="starMassSlider" class="planetSlider">
       <div id="starRadiusValueBox" class="planetValueBox"></div>
       <div id="starGravitationalParameterValueBox" class="planetValueBox"></div>
       <div id="starLifespanValueBox" class="planetValueBox"></div>
@@ -120,9 +120,9 @@
 
       <!-- elements for displaying planet values and sliders for input -->
       <div id="planetMassValueBox" class="planetValueBox"></div>
-      <input type="range" min="3.588910102735962e+24" max="1.7937313085760207e+25" id="massSlider" class="planetSlider">
+      <input type="range" min="3.588910102735962e+24" max="1.7937313085760207e+25" id="planetMassSlider" class="planetSlider">
       <div id="planetRadiusValueBox" class="planetValueBox"></div>
-      <input type="range" min="5375699.0" max="9191080.0" id="radiusSlider" class="planetSlider">
+      <input type="range" min="5375699.0" max="9191080.0" id="planetRadiusSlider" class="planetSlider">
       <div id="planetOceanMassValueBox" class="planetValueBox"></div>
       <div id="planetLithosphereMassValueBox" class="planetValueBox"></div>
       <div id="planetAtmosphereMassValueBox" class="planetValueBox"></div>
@@ -130,6 +130,13 @@
       <div id="planetAtmosphereOxygenValueBox" class="planetValueBox"></div>
       <div id="planetAtmosphereNitrogenValueBox" class="planetValueBox"></div>
       <div id="planetCarbonDioxideValueBox" class="planetValueBox"></div>
+
+
+      <svg id="habitabilityGraph" height="200" width="400"></svg>
+      <div id="planetOrbitalRadiusValueBox" class="planetValueBox"></div>
+      <input type="range" min="5375699.0" max="9191080.0" id="planetOrbitalRadiusSlider" class="planetSlider">
+      <div id="planetOrbitalPeriodValueBox" class="planetValueBox"></div>
+
       <div id="planetTemperatureValueBox" class="planetValueBox"></div>
 
       <svg id="atmosphericFilterGraph" height="200" width="400"></svg>
