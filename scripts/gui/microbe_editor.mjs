@@ -1254,7 +1254,8 @@ function updateSelectedPatchData(patch){
     let chunkAmmonia = 0;
     let chunkHydrogenSulfide = 0;
     let chunkiron = 0;
-    let chunkAtp = 0;
+
+    // Let chunkAtp = 0;
 
     for(const chunk of patch.biome.chunks ) {
         if(chunk.density != 0) {
@@ -1276,7 +1277,7 @@ function updateSelectedPatchData(patch){
                     chunkiron += chunk.density * compound.amount;
                     break;
                 case "atp":
-                    chunkAtp += chunk.density * compound.amount;
+                    // ChunkAtp += chunk.density * compound.amount;
                     break;
                 default:
                     break;
@@ -1376,7 +1377,8 @@ function updateDifferentCondition(selectedPatch, currentPatchData) {
     let oldChunkAmmonia = 0;
     let oldChunkHydrogenSulfide = 0;
     let oldChunkiron = 0;
-    let oldChunkAtp = 0;
+
+    // Let oldChunkAtp = 0;
 
 
     for(const chunk of currentPatchData.biome.chunks ) {
@@ -1399,7 +1401,7 @@ function updateDifferentCondition(selectedPatch, currentPatchData) {
                     oldChunkiron += chunk.density * compound.amount;
                     break;
                 case "atp":
-                    oldChunkAtp += chunk.density * compound.amount;
+                    // OldChunkAtp += chunk.density * compound.amount;
                     break;
                 default:
                     break;
@@ -1413,7 +1415,8 @@ function updateDifferentCondition(selectedPatch, currentPatchData) {
     let selChunkAmmonia = 0;
     let selChunkHydrogenSulfide = 0;
     let selChunkiron = 0;
-    let selChunkAtp = 0;
+
+    // Let selChunkAtp = 0;
 
     for(const chunk of selectedPatch.biome.chunks ) {
         if(chunk.density != 0) {
@@ -1435,7 +1438,7 @@ function updateDifferentCondition(selectedPatch, currentPatchData) {
                     selChunkiron += chunk.density * compound.amount;
                     break;
                 case "atp":
-                    selChunkAtp += chunk.density * compound.amount;
+                    // SelChunkAtp += chunk.density * compound.amount;
                     break;
                 default:
                     break;
