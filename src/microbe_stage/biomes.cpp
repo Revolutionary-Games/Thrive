@@ -49,8 +49,7 @@ Biome::Biome(Json::Value value)
     // Getting the compound information.
     Json::Value compoundData = value["compounds"];
 
-    float averageTemperatureData = value["averageTemperature"].asFloat();
-    averageTemperature = averageTemperatureData;
+    averageTemperature = value["averageTemperature"].asFloat();
     std::vector<std::string> compoundInternalNames =
         compoundData.getMemberNames();
 
@@ -102,15 +101,6 @@ Biome::Biome(Json::Value value)
         std::vector<std::string> compoundChunkNames =
             chunkCompoundData.getMemberNames();
 
-        // Calculate iron values to send to GUI
-        if(name == "Small Iron Chunk") {
-            smallIronChunk =
-                chunkCompoundData["iron"]["amount"].asDouble() * density;
-
-        } else if(name == "Big Iron Chunk") {
-            bigIronChunk =
-                chunkCompoundData["iron"]["amount"].asDouble() * density;
-        }
 
         // Can this support empty chunks?
         for(std::string compoundChunkName : compoundChunkNames) {
@@ -205,7 +195,7 @@ Json::Value
 
     Json::Value compoundsData;
 
-    for(auto compoundRef : compounds) {
+    for(auto compoundRef : compounds) {       
         thrive::Compound compound =
             SimulationParameters::compoundRegistry.getTypeData(
                 SimulationParameters::compoundRegistry.getInternalName(
@@ -218,10 +208,22 @@ Json::Value
         compoundsData[compound.internalName] = compoundData;
     }
 
+	Json::Value chuncksData;
+
+	for(const auto& [id, chunk] : chunks) {
+      
+		for(const auto& [id, compound] : chunk.chunkCompounds) {  
+			Json::Value chunckCompounds;
+            chunckCompounds["name"] = compound.name;
+            chunckCompounds["density"] = chunk.density;
+            chunckCompounds["amount"] = compound.amount;
+            chuncksData[chunk.name] = chunckCompounds;
+        }
+    }
+
+    result["chuncks"] = chuncksData;
     result["temperature"] = averageTemperature;
     result["compounds"] = compoundsData;
-    result["smallIronChunck"] = smallIronChunk;
-    result["bigIronChunck"] = bigIronChunk;
 
     if(full) {
         LOG_WARNING("Biome: toJSON: full is not implemented");
