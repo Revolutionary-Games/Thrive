@@ -208,20 +208,24 @@ Json::Value
         compoundsData[compound.internalName] = compoundData;
     }
 
-    Json::Value chuncksData;
+    Json::Value chunksData(Json::arrayValue);
 
     for(const auto& [id, chunk] : chunks) {
-
+        Json::Value chunkData;
+        Json::Value chunkDataCompounds(Json::arrayValue);
+        chunkData["name"] = chunk.name;
+        chunkData["density"] = chunk.density;
         for(const auto& [id, compound] : chunk.chunkCompounds) {
-            Json::Value chunckCompounds;
-            chunckCompounds["name"] = compound.name;
-            chunckCompounds["density"] = chunk.density;
-            chunckCompounds["amount"] = compound.amount;
-            chuncksData[chunk.name] = chunckCompounds;
+            Json::Value chunkCompound;
+            chunkCompound["name"] = compound.name;
+            chunkCompound["amount"] = compound.amount;
+            chunkDataCompounds.append(chunkCompound);
         }
+        chunkData["compounds"] = chunkDataCompounds;
+        chunksData.append(chunkData);
     }
 
-    result["chuncks"] = chuncksData;
+    result["chunks"] = chunksData;
     result["temperature"] = averageTemperature;
     result["compounds"] = compoundsData;
 
