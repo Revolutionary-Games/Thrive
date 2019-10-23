@@ -239,7 +239,7 @@ void
         microbeSpawners.emplace_back(
             cellWorld.GetSpawnSystem().addSpawnType(
                 [=](CellStageWorld& world, Float3 pos) {
-                    if(!speciesInPatch.species->isBacteria) {
+                    if(speciesInPatch.species->isBacteria) {
 
                         // This spawns a ton of things but only one of
                         // them is returned, so the called script function must
