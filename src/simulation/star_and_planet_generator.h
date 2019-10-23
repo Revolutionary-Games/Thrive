@@ -126,7 +126,7 @@ public:
     void
         setOrbitalRadius(double newRadius)
     {
-        orbitalRadius = radius;
+        orbitalRadius = newRadius;
         generatePropertiesOrbitalRadius(1);
         generatePropertiesAtmosphere(1);
     }
