@@ -146,6 +146,24 @@ float
     return temperature;
 }
 
+// compute the habiltability score for a given amount of incoming sunlight
+int computeHabitabilityScore(double incomingSunlight)
+{
+    int habitability = 0;
+    for(int i = 0; i <= NUMBER_OF_GAS_CHECKS; i++) {
+        float carbonDioxide = i * ((float)1 / (float)NUMBER_OF_GAS_CHECKS);
+        for(int j = 0; j <= NUMBER_OF_GAS_CHECKS; j++) {
+            float oxygen = j * ((float)1 / (float)NUMBER_OF_GAS_CHECKS);
+            float temp =
+                computeTemperature(incomingSunlight, carbonDioxide, oxygen);;
+            if(temp < 373 && temp > 273) {
+                habitability++;
+            }
+        }
+    }
+    return habitability;
+}
+
 // generate a random real number between two bounds
 double
     fRand(double fMin, double fMax)
@@ -264,7 +282,6 @@ void
         setStellarSpectrum();
         minOrbitalDiameter = (mass / MASS_OF_OUR_SUN) * BASE_MIN_ORBITAL_DIAMETER;
         maxOrbitalDiameter = (mass / MASS_OF_OUR_SUN) * BASE_MAX_ORBITAL_DIAMETER;
-        LOG_INFO("**** Min Oribtal " + Convert::ToString(minOrbitalDiameter) + ", Max Orbital " + Convert::ToString(maxOrbitalDiameter));
         computeHabitableZone();
         gravitationalParameter = GRAVITATIONAL_CONSTANT * mass;
     }
@@ -348,26 +365,11 @@ void
     for(int i = 0; i < NUMBER_OF_TESTS; i++) {
         double currentDiameter = minOrbitalDiameter + i*diameterStep;
         habitabilityScore.at(i) = 0;
-        LOG_INFO("Current Diameter " + Convert::ToString(currentDiameter));
         // work out incoming sunlight
         double incomingSunlight =
             luminosity / (4 * PI * (pow(currentDiameter, 2)));
-        LOG_INFO("incomingSunlight " + Convert::ToString(incomingSunlight));
         // test different values of CO2 and O2 in the atmosphere
-        for(int i = 0; i <= NUMBER_OF_GAS_CHECKS; i++) {
-            float carbonDioxide = i * ((float)1 / (float)NUMBER_OF_GAS_CHECKS);
-            for(int j = 0; j <= NUMBER_OF_GAS_CHECKS; j++) {
-                float oxygen = j * ((float)1 / (float)NUMBER_OF_GAS_CHECKS);
-                float temp =
-                    computeTemperature(incomingSunlight, carbonDioxide, oxygen);;
-                if(temp < 373 && temp > 273) {
-                    LOG_INFO("adding");
-                    habitabilityScore.at(i)++;
-                    LOG_INFO("Habitability " + Convert::ToString(habitabilityScore.at(i)));
-                }
-            }
-        }
-        LOG_INFO("Habitability " + Convert::ToString(habitabilityScore.at(i)));
+        habitabilityScore.at(i) = computeHabitabilityScore(incomingSunlight);
         orbitalDistances.at(i) =
             currentDiameter;
     }
@@ -425,6 +427,10 @@ void
     }
     if(step <= 1) {
         setOrbitalPeriod();
+        //work out where in the habitability graph to draw the planet
+        double minOrbitalDiameter = (orbitingBody->mass / MASS_OF_OUR_SUN) * BASE_MIN_ORBITAL_DIAMETER;
+        double maxOrbitalDiameter = (orbitingBody->mass / MASS_OF_OUR_SUN) * BASE_MAX_ORBITAL_DIAMETER;
+        orbitalRadiusGraphFraction = (orbitalRadius - minOrbitalDiameter)/(maxOrbitalDiameter - minOrbitalDiameter);
     }
 }
 
@@ -498,6 +504,12 @@ void
         setAtmosphereConstituentsRandom();
     }
     if(step <= 1) {
+        //compute the habitability of the planet
+        std::shared_ptr<Star> orbitingStar =
+            std::static_pointer_cast<Star>(orbitingBody);
+        double incomingSunlight =
+            orbitingStar->luminosity / (4 * PI * (pow(orbitalRadius, 2)));
+        habitability = computeHabitabilityScore(incomingSunlight);
         setPlanetTemperature();
         computeLightFilter();
         multiplyArrays(
@@ -758,6 +770,8 @@ Json::Value
     result["atmosphereNitrogen"] = atmosphereNitrogen;
     result["atmosphereCarbonDioxide"] = atmosphereCarbonDioxide;
     result["planetTemperature"] = planetTemperature;
+    result["habitability"] = habitability;
+    result["orbitalRadiusGraphFraction"] = orbitalRadiusGraphFraction;
 
     Json::Value atmosphericFilterJ(Json::ValueType::arrayValue);
     for(auto spectrum : atmosphericFilter)

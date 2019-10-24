@@ -109,6 +109,9 @@ public:
     std::array<double, LENGTH_OF_ARRAYS> atmosphericFilter;
     std::array<double, LENGTH_OF_ARRAYS> terrestrialSpectrum;
     double planetTemperature = 0;
+    int habitability = 0;
+    //where to draw the current orbital radius on the habitavility graph
+    double orbitalRadiusGraphFraction = 0;
 
     // Limit to star for now
     Planet(std::shared_ptr<Star> star)

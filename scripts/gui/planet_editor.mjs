@@ -30,6 +30,8 @@ function updatePlanetValues(data){
     document.getElementById("planetCarbonDioxideValueBox").innerHTML = "Atmosphere CarbonDioxide <br>" + data.atmosphereCarbonDioxide;
 
     drawGraph(document.getElementById("habitabilityGraph"), data.orbitingBody.habitabilityScore);
+    drawPointOnGraph(document.getElementById("habitabilityGraph"), data.orbitalRadiusGraphFraction)
+    document.getElementById("planetHabitabilityValueBox").innerHTML = "Habitability <br>" + data.habitability;
 
     document.getElementById("planetOrbitalRadiusSlider").value = data.orbit.radius;
     document.getElementById("planetOrbitalRadiusValueBox").innerHTML = "Orbital Radius <br>" + data.orbit.radius;
@@ -157,7 +159,13 @@ function drawLine(graph, x1,y1,x2,y2, stroke, strokeWidth)
 {
 	graph.innerHTML += "<line x1=\"" + x1 + "\" y1=\"" + y1 + "\" x2=\"" + x2 + "\" y2=\"" + y2 + "\" style=\"stroke:" + stroke + ";stroke-width:" + strokeWidth + "\" />";
 }
-
+//draw circle in the graph HelpBox
+function drawCircle(graph, x, y, r, stroke, strokeWidth, fill)
+{
+	graph.innerHTML += "<circle cx=\"" + x + "\" cy=\"" + y + "\" r=\"" + r + "\" stroke=\"" + stroke + "\" stroke-width=\"" + strokeWidth + "\" fill=\"" + fill + "\" />";
+}
+// padding for the x and y axis which is used by drawGraph and drawPoint
+var offset = 10;
 //draw the graph
 function drawGraph(graph, data)
 {
@@ -194,4 +202,16 @@ function drawGraph(graph, data)
 		oldX = newX;
 		oldY = newY;
 	}
+}
+
+function drawPointOnGraph(graph, point)
+{
+    //get the size of the container
+    var positionInfo = graph.getBoundingClientRect();
+    var height = positionInfo.height;
+    var width = positionInfo.width;
+    var x = offset + (width - 2*offset)*point;
+    var y = height - offset;
+    var r = 10;
+    drawCircle(graph, x, y, r, "green", 3, "green")
 }
