@@ -15,22 +15,9 @@ project(Thrive)
 # Cache Variables #
 ###################
 
-set(ASSET_DIRECTORY "${CMAKE_SOURCE_DIR}/assets"
-  CACHE PATH "Path to assets"
-  )
-
 # This isn't really meant to be modified
 set(LEVIATHAN_SRC "${PROJECT_SOURCE_DIR}/ThirdParty/Leviathan" CACHE FILEPATH
   "Path to leviathan source folder")
-
-if(NOT IS_DIRECTORY "${ASSET_DIRECTORY}/raw_assets")
-    message(FATAL_ERROR 
-"Could not find assets in ${ASSET_DIRECTORY}.  
-Please run the SetupThrive.rb script to download them.
-Use 'thrive' for the username and password
-"
-    )
-endif()
 
 
 ###########
