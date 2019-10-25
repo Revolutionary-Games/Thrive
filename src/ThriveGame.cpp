@@ -537,8 +537,6 @@ void
         orbitingStar->setMass(value);
     } else if(editType == "planetMass") {
         planet->setPlanetMass(value);
-    } else if(editType == "planetRadius") {
-        planet->setPlanetRadius(value);
     } else if(editType == "planetOrbitalRadius") {
         planet->setOrbitalRadius(value);
     }

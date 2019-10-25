@@ -8,36 +8,35 @@ let freebuild = false;
 function updatePlanetValues(data){
     //add the star GetVariables
     document.getElementById("starMassSlider").value = data.orbitingBody.mass;
-    document.getElementById("starMassValueBox").innerHTML = "Star Mass <br>" + data.orbitingBody.mass;
-    document.getElementById("starRadiusValueBox").innerHTML = "Star Radius <br>" + data.orbitingBody.radius;
-    document.getElementById("starGravitationalParameterValueBox").innerHTML = "Star Gravitational Parameter <br>" + data.orbitingBody.gravitationalParameter;
-    document.getElementById("starLifespanValueBox").innerHTML = "Star Lifespan <br>" + data.orbitingBody.lifeSpan;
-    document.getElementById("starTemperatureValueBox").innerHTML = "Star Temperature <br>" + data.orbitingBody.temperature;
+    document.getElementById("starMassValueBox").innerHTML = "Star Mass <br>" + scienceNumber(data.orbitingBody.mass) + " kg.";
+    document.getElementById("starRadiusValueBox").innerHTML = "Star Radius <br>" + scienceNumber(data.orbitingBody.radius) + " meters.";
+    document.getElementById("starGravitationalParameterValueBox").innerHTML = "Star Gravitational Parameter <br>" + scienceNumber(data.orbitingBody.gravitationalParameter);
+    document.getElementById("starLifespanValueBox").innerHTML = "Star Lifespan <br>" + scienceNumber(data.orbitingBody.lifeSpan) + " earth years.";
+    document.getElementById("starTemperatureValueBox").innerHTML = "Star Temperature <br>" + scienceNumber(data.orbitingBody.temperature) + " kelvin.";
 
     drawGraph(document.getElementById("stellarSpectrumGraph"), data.orbitingBody.stellarSpectrum);
 
     //add the planet variables
     document.getElementById("planetMassSlider").value = data.mass;
-    document.getElementById("planetMassValueBox").innerHTML = "Planet Mass <br>" + data.mass;
-    document.getElementById("planetRadiusSlider").value = data.radius;
-    document.getElementById("planetRadiusValueBox").innerHTML = "Planet Radius <br>" + data.radius;
-    document.getElementById("planetOceanMassValueBox").innerHTML = "Ocean Mass <br>" + data.oceanMass;
-    document.getElementById("planetLithosphereMassValueBox").innerHTML = "Lithosphere Mass <br>" + data.lithosphereMass;
-    document.getElementById("planetAtmosphereMassValueBox").innerHTML = "Atmosphere Mass <br>" + data.atmosphereMass;
-    document.getElementById("planetAtmosphereWaterValueBox").innerHTML = "Atmosphere Water <br>" + data.atmosphereWater;
-    document.getElementById("planetAtmosphereOxygenValueBox").innerHTML = "Atmosphere Oxygen <br>" + data.atmosphereOxygen;
-    document.getElementById("planetAtmosphereNitrogenValueBox").innerHTML = "Atmosphere Nitrogen <br>" + data.atmosphereNitrogen;
-    document.getElementById("planetCarbonDioxideValueBox").innerHTML = "Atmosphere CarbonDioxide <br>" + data.atmosphereCarbonDioxide;
+    document.getElementById("planetMassValueBox").innerHTML = "Planet Mass <br>" + scienceNumber(data.mass) + " kg.";
+    document.getElementById("planetRadiusValueBox").innerHTML = "Planet Radius <br>" + scienceNumber(data.radius) + " meters";
+    document.getElementById("planetOceanMassValueBox").innerHTML = "Ocean Mass <br>" + scienceNumber(data.oceanMass) + " kg.";
+    document.getElementById("planetLithosphereMassValueBox").innerHTML = "Lithosphere Mass <br>" + scienceNumber(data.lithosphereMass) + " kg.";
+    document.getElementById("planetAtmosphereMassValueBox").innerHTML = "Atmosphere Mass <br>" + scienceNumber(data.atmosphereMass) + " kg.";
+    document.getElementById("planetAtmosphereWaterValueBox").innerHTML = "Atmosphere Water <br>" + scienceNumber(data.atmosphereWater) + " kg.";
+    document.getElementById("planetAtmosphereOxygenValueBox").innerHTML = "Atmosphere Oxygen <br>" + scienceNumber(data.atmosphereOxygen) + " kg.";
+    document.getElementById("planetAtmosphereNitrogenValueBox").innerHTML = "Atmosphere Nitrogen <br>" + scienceNumber(data.atmosphereNitrogen) + " kg.";
+    document.getElementById("planetCarbonDioxideValueBox").innerHTML = "Atmosphere CarbonDioxide <br>" + scienceNumber(data.atmosphereCarbonDioxide) + " kg.";
 
     drawGraph(document.getElementById("habitabilityGraph"), data.orbitingBody.habitabilityScore);
     drawPointOnGraph(document.getElementById("habitabilityGraph"), data.orbitalRadiusGraphFraction)
-    document.getElementById("planetHabitabilityValueBox").innerHTML = "Habitability <br>" + data.habitability;
+    document.getElementById("planetHabitabilityValueBox").innerHTML = "Habitability <br>" + data.habitability + "%.";
 
     document.getElementById("planetOrbitalRadiusSlider").value = data.orbit.radius;
-    document.getElementById("planetOrbitalRadiusValueBox").innerHTML = "Orbital Radius <br>" + data.orbit.radius;
-    document.getElementById("planetOrbitalPeriodValueBox").innerHTML = "Orbital Period <br>" + data.orbit.period;
+    document.getElementById("planetOrbitalRadiusValueBox").innerHTML = "Orbital Radius <br>" + scienceNumber(data.orbit.radius) + " meters.";
+    document.getElementById("planetOrbitalPeriodValueBox").innerHTML = "Orbital Period <br>" + scienceNumber(data.orbit.period) + " earth years.";
 
-    document.getElementById("planetTemperatureValueBox").innerHTML = "Planet Temperature <br>" + data.planetTemperature;
+    document.getElementById("planetTemperatureValueBox").innerHTML = "Planet Average Temperature <br>" + data.planetTemperature.toPrecision(3) + " kelvin.";
 
     //drawGraph(document.getElementById("atmosphericFilterGraph"), data.atmosphericFilter);
     drawGraph(document.getElementById("atmosphericFilterGraph"), data.atmosphericFilter);
@@ -51,9 +50,6 @@ export function setupPlanetEditor(fromFreebuild){
 
     document.getElementById("planetMassSlider").addEventListener("input",
         onPlanetMassInput, true);
-
-    document.getElementById("planetRadiusSlider").addEventListener("input",
-        onPlanetRadiusInput, true);
 
     document.getElementById("planetOrbitalRadiusSlider").addEventListener("input",
             onPlanetOrbitalRadiusInput, true);
@@ -86,10 +82,6 @@ function onStarMassInput(event){
 
 function onPlanetMassInput(event){
     Thrive.editPlanet("planetMass", parseFloat(event.target.value));
-}
-
-function onPlanetRadiusInput(event){
-    Thrive.editPlanet("planetRadius", parseFloat(event.target.value));
 }
 
 function onPlanetOrbitalRadiusInput(event){
@@ -214,4 +206,10 @@ function drawPointOnGraph(graph, point)
     var y = height - offset;
     var r = 10;
     drawCircle(graph, x, y, r, "green", 3, "green")
+}
+
+function scienceNumber(a)
+{
+    var rounded = parseFloat(a.toPrecision(3));
+    return rounded.toExponential();
 }

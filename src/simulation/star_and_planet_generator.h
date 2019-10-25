@@ -139,12 +139,6 @@ public:
         mass = newMass;
         generatePropertiesPlanetMass(1);
     }
-    void
-        setPlanetRadius(double newRadius)
-    {
-        radius = newRadius;
-        generatePropertiesPlanetRadius(1);
-    }
     // end
 
     void
@@ -169,8 +163,6 @@ private:
 
     void
         generatePropertiesPlanetMass(int step);
-    void
-        generatePropertiesPlanetRadius(int step);
     void
         setSphereMasses();
     void

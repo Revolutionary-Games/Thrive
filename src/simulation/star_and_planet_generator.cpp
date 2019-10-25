@@ -60,9 +60,9 @@ constexpr double PERCENTAGE_LITHOSPHERE =
 constexpr double FUDGE_FACTOR_NITROGEN =
     7.28704114055e-10; // calibrate the spectral computations using earths
                        // atmosphere
-constexpr double FUDGE_FACTOR_WATER = 6.34362956432e-09; // same
+constexpr double FUDGE_FACTOR_WATER = 6.34362956432e-10; // same, was e-09
 constexpr double FUDGE_FACTOR_CARBON_DIOXIDE = 1.55066500461e-08; // same
-constexpr double FUDGE_FACTOR_OXYGEN = 3.42834549545e-09; // same
+constexpr double FUDGE_FACTOR_OXYGEN = 3.42834549545e-10; // same, was e-09
 constexpr double AVOGADRO =
     6.022e23; // avagadros constant relating number of atoms to mass
 constexpr double MOLECULAR_MASS_CARBON_DIOXIDE =
@@ -464,25 +464,6 @@ void
 }
 
 void
-    Planet::generatePropertiesPlanetRadius(int step)
-{
-    if(step <= 0) {
-        radius = fRand(MIN_PLANET_RADIUS, MAX_PLANET_RADIUS);
-    }
-    if(step <= 1) {
-        setPlanetMass();
-        setSphereMasses();
-    }
-}
-
-// From radius
-void
-    Planet::setPlanetMass()
-{
-    mass = DENSITY_OF_EARTH * 4 * PI * pow(radius, 3) / 3;
-}
-
-void
     Planet::setPlanetRadius()
 {
     radius = std::cbrt(3 * mass / (DENSITY_OF_EARTH * 4 * PI));
@@ -662,6 +643,8 @@ void
     if(carbonDioxide > largestFilter) {
         largestFilter = carbonDioxide;
     }
+    LOG_INFO("Filters: w,n,o,c" + Convert::ToString(water) + ", " + Convert::ToString(nitrogen) + ", "
+        + Convert::ToString(oxygen) + ", " + Convert::ToString(carbonDioxide));
     // define the values of the filter
     atmosphericFilter.at(0) = (pow(nitrogen, 0.3)) * (pow(oxygen, 2.2)) * water;
     atmosphericFilter.at(1) = (pow(nitrogen, 0.3)) * (pow(oxygen, 2.2)) * water;
@@ -798,6 +781,6 @@ std::string
     std::unique_ptr<Json::StreamWriter> writer(builder.newStreamWriter());
 
     writer->write(value, &sstream);
-    //LOG_INFO(sstream.str());
+    LOG_INFO(sstream.str());
     return sstream.str();
 }
