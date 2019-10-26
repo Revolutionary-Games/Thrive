@@ -643,8 +643,6 @@ void
     if(carbonDioxide > largestFilter) {
         largestFilter = carbonDioxide;
     }
-    LOG_INFO("Filters: w,n,o,c" + Convert::ToString(water) + ", " + Convert::ToString(nitrogen) + ", "
-        + Convert::ToString(oxygen) + ", " + Convert::ToString(carbonDioxide));
     // define the values of the filter
     atmosphericFilter.at(0) = (pow(nitrogen, 0.3)) * (pow(oxygen, 2.2)) * water;
     atmosphericFilter.at(1) = (pow(nitrogen, 0.3)) * (pow(oxygen, 2.2)) * water;
@@ -781,6 +779,6 @@ std::string
     std::unique_ptr<Json::StreamWriter> writer(builder.newStreamWriter());
 
     writer->write(value, &sstream);
-    LOG_INFO(sstream.str());
+    //LOG_INFO(sstream.str());
     return sstream.str();
 }

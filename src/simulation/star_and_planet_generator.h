@@ -138,6 +138,9 @@ public:
     {
         mass = newMass;
         generatePropertiesPlanetMass(1);
+        generatePropertiesOrbitalRadius(0);
+        generatePropertiesAtmosphere(0);
+
     }
     // end
 

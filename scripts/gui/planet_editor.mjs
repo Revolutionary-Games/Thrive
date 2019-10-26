@@ -48,8 +48,14 @@ export function setupPlanetEditor(fromFreebuild){
     document.getElementById("starMassSlider").addEventListener("input",
         onStarMassInput, true);
 
+    document.getElementById("starMassSetSolButton").addEventListener("click",
+        onStarSetSolInput, true);
+
     document.getElementById("planetMassSlider").addEventListener("input",
         onPlanetMassInput, true);
+
+    document.getElementById("planetMassSetEarthButton").addEventListener("click",
+        onPlanetSetEarthInput, true);
 
     document.getElementById("planetOrbitalRadiusSlider").addEventListener("input",
             onPlanetOrbitalRadiusInput, true);
@@ -77,15 +83,23 @@ export function setupPlanetEditor(fromFreebuild){
 }
 
 function onStarMassInput(event){
-    Thrive.editPlanet("starMass", parseFloat(event.target.value));
+    Thrive.editPlanet("onStarMassInput", parseFloat(event.target.value));
+}
+
+function onStarSetSolInput(event){
+    Thrive.editPlanet("onStarSetSolInput", parseFloat(event.target.value));
 }
 
 function onPlanetMassInput(event){
-    Thrive.editPlanet("planetMass", parseFloat(event.target.value));
+    Thrive.editPlanet("onPlanetMassInput", parseFloat(event.target.value));
+}
+
+function onPlanetSetEarthInput(event){
+    Thrive.editPlanet("onPlanetSetEarthInput", parseFloat(event.target.value));
 }
 
 function onPlanetOrbitalRadiusInput(event){
-    Thrive.editPlanet("planetOrbitalRadius", parseFloat(event.target.value));
+    Thrive.editPlanet("onPlanetOrbitalRadiusInput", parseFloat(event.target.value));
 }
 
 function startGame(){

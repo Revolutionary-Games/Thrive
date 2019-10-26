@@ -533,11 +533,15 @@ void
     std::shared_ptr<Star> orbitingStar =
         std::static_pointer_cast<Star>(planet->orbitingBody);
 
-    if (editType == "starMass"){
+    if (editType == "onStarMassInput"){
         orbitingStar->setMass(value);
-    } else if(editType == "planetMass") {
+    } else if(editType == "onStarSetSolInput") {
+        orbitingStar->setSol();
+    } else if(editType == "onPlanetMassInput") {
         planet->setPlanetMass(value);
-    } else if(editType == "planetOrbitalRadius") {
+    } else if(editType == "onPlanetSetEarthInput") {
+        planet->setEarth();
+    } else if(editType == "onPlanetOrbitalRadiusInput") {
         planet->setOrbitalRadius(value);
     }
 
