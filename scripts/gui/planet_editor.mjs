@@ -6,7 +6,7 @@ import * as common from "./gui_common.mjs";
 let freebuild = false;
 
 function updatePlanetValues(data){
-    //add the star GetVariables
+    // Add the star GetVariables
     document.getElementById("starMassSlider").value = data.orbitingBody.mass;
     document.getElementById("starMassValueBox").innerHTML = "Star Mass <br>" + scienceNumber(data.orbitingBody.mass) + " kg.";
     document.getElementById("starRadiusValueBox").innerHTML = "Star Radius <br>" + scienceNumber(data.orbitingBody.radius) + " meters.";
@@ -16,7 +16,7 @@ function updatePlanetValues(data){
 
     drawGraph(document.getElementById("stellarSpectrumGraph"), data.orbitingBody.stellarSpectrum);
 
-    //add the planet variables
+    // Add the planet variables
     document.getElementById("planetMassSlider").value = data.mass;
     document.getElementById("planetMassValueBox").innerHTML = "Planet Mass <br>" + scienceNumber(data.mass) + " kg.";
     document.getElementById("planetRadiusValueBox").innerHTML = "Planet Radius <br>" + scienceNumber(data.radius) + " meters";
@@ -29,7 +29,7 @@ function updatePlanetValues(data){
     document.getElementById("planetCarbonDioxideValueBox").innerHTML = "Atmosphere CarbonDioxide <br>" + scienceNumber(data.atmosphereCarbonDioxide) + " kg.";
 
     drawGraph(document.getElementById("habitabilityGraph"), data.orbitingBody.habitabilityScore);
-    drawPointOnGraph(document.getElementById("habitabilityGraph"), data.orbitalRadiusGraphFraction)
+    drawPointOnGraph(document.getElementById("habitabilityGraph"), data.orbitalRadiusGraphFraction);
     document.getElementById("planetHabitabilityValueBox").innerHTML = "Habitability <br>" + data.habitability + "%.";
 
     document.getElementById("planetOrbitalRadiusSlider").value = data.orbit.radius;
@@ -38,7 +38,7 @@ function updatePlanetValues(data){
 
     document.getElementById("planetTemperatureValueBox").innerHTML = "Planet Average Temperature <br>" + data.planetTemperature.toPrecision(3) + " kelvin.";
 
-    //drawGraph(document.getElementById("atmosphericFilterGraph"), data.atmosphericFilter);
+    // DrawGraph(document.getElementById("atmosphericFilterGraph"), data.atmosphericFilter);
     drawGraph(document.getElementById("atmosphericFilterGraph"), data.atmosphericFilter);
     drawGraph(document.getElementById("terrestrialSpectrumGraph"), data.terrestrialSpectrum);
 
@@ -58,7 +58,7 @@ export function setupPlanetEditor(fromFreebuild){
         onPlanetSetEarthInput, true);
 
     document.getElementById("planetOrbitalRadiusSlider").addEventListener("input",
-            onPlanetOrbitalRadiusInput, true);
+        onPlanetOrbitalRadiusInput, true);
 
     document.getElementById("planetEditorBack").addEventListener("click",
         Thrive.exitToMenuClicked, true);
@@ -159,71 +159,75 @@ function switchToMicrobeHUD(){
     document.getElementById("topLevelMicrobeStage").style.display = "block";
 }
 
-//functions for graph drawing
-//draw a line in the graph box
-function drawLine(graph, x1,y1,x2,y2, stroke, strokeWidth)
-{
-	graph.innerHTML += "<line x1=\"" + x1 + "\" y1=\"" + y1 + "\" x2=\"" + x2 + "\" y2=\"" + y2 + "\" style=\"stroke:" + stroke + ";stroke-width:" + strokeWidth + "\" />";
+// Functions for graph drawing
+// draw a line in the graph box
+function drawLine(graph, x1, y1, x2, y2, stroke, strokeWidth) {
+    graph.innerHTML += "<line x1=\"" + x1 + "\" y1=\"" + y1 + "\" x2=\"" + x2 + "\" y2=\"" + y2 + "\" style=\"stroke:" + stroke + ";stroke-width:" + strokeWidth + "\" />";
 }
-//draw circle in the graph HelpBox
-function drawCircle(graph, x, y, r, stroke, strokeWidth, fill)
-{
-	graph.innerHTML += "<circle cx=\"" + x + "\" cy=\"" + y + "\" r=\"" + r + "\" stroke=\"" + stroke + "\" stroke-width=\"" + strokeWidth + "\" fill=\"" + fill + "\" />";
+
+// Draw circle in the graph HelpBox
+function drawCircle(graph, x, y, r, stroke, strokeWidth, fill) {
+    graph.innerHTML += "<circle cx=\"" + x + "\" cy=\"" + y + "\" r=\"" + r + "\" stroke=\"" + stroke + "\" stroke-width=\"" + strokeWidth + "\" fill=\"" + fill + "\" />";
 }
-// padding for the x and y axis which is used by drawGraph and drawPoint
-var offset = 10;
-//draw the graph
-function drawGraph(graph, data)
-{
-    //check if there is good data
+
+// Padding for the x and y axis which is used by drawGraph and drawPoint
+const offset = 10;
+
+
+// Draw the graph
+function drawGraph(graph, data) {
+    // Check if there is good data
     if (data === undefined || data.length == 0) {
         return;
     }
     graph.innerHTML = "";
-	//get the size of the container
-	var positionInfo = graph.getBoundingClientRect();
-	var height = positionInfo.height;
-	var width = positionInfo.width;
-	//work out the bounds of the data
-	var xRange = data.length;
-	var yMax = Math.max(...data);
-	var yMin = Math.min(...data);
-	var yRange = yMax - yMin;
-	//draw the axes
-	var offset = 10; // padding for the x and y axis
-	drawLine(graph,offset,offset,offset,height - offset,"rgb(0,0,200)", "3");
-	drawLine(graph,offset,height - offset,width - offset,height - offset,"rgb(0,0,200)", "3");
-	//draw the points of the graph
-    var newX = 0;
-    var newY = 0;
-	var oldX = offset;
-	var oldY = height - offset;
-	var xStep = (width - 2*offset)/xRange;
-	var yStep = (height - 2*offset)/yRange;
-	for (var i in data)
-	{
-		newX = oldX + xStep;
-		newY = (height - offset) - yStep*data[i];
-		drawLine(graph,oldX,oldY,newX,newY,"rgb(200,10,50)", "3");
-		oldX = newX;
-		oldY = newY;
-	}
+
+    // Get the size of the container
+    const positionInfo = graph.getBoundingClientRect();
+    const height = positionInfo.height;
+    const width = positionInfo.width;
+
+    // Work out the bounds of the data
+    const xRange = data.length;
+    const yMax = Math.max(...data);
+    const yMin = Math.min(...data);
+    const yRange = yMax - yMin;
+
+    // Draw the axes
+    const offset = 10; // Padding for the x and y axis
+    drawLine(graph, offset, offset, offset, height - offset, "rgb(0,0,200)", "3");
+    drawLine(graph, offset, height - offset, width - offset, height - offset, "rgb(0,0,200)", "3");
+
+    // Draw the points of the graph
+    let newX = 0;
+    let newY = 0;
+    let oldX = offset;
+    let oldY = height - offset;
+    const xStep = (width - 2 * offset) / xRange;
+    const yStep = (height - 2 * offset) / yRange;
+
+    for (const i in data) {
+        newX = oldX + xStep;
+        newY = (height - offset) - yStep * data[i];
+        drawLine(graph, oldX, oldY, newX, newY, "rgb(200,10,50)", "3");
+        oldX = newX;
+        oldY = newY;
+    }
 }
 
-function drawPointOnGraph(graph, point)
-{
-    //get the size of the container
-    var positionInfo = graph.getBoundingClientRect();
-    var height = positionInfo.height;
-    var width = positionInfo.width;
-    var x = offset + (width - 2*offset)*point;
-    var y = height - offset;
-    var r = 10;
-    drawCircle(graph, x, y, r, "green", 3, "green")
+function drawPointOnGraph(graph, point) {
+    // Get the size of the container
+    const positionInfo = graph.getBoundingClientRect();
+    const height = positionInfo.height;
+    const width = positionInfo.width;
+    const x = offset + (width - 2 * offset) * point;
+    const y = height - offset;
+    const r = 10;
+    drawCircle(graph, x, y, r, "green", 3, "green");
 }
 
-function scienceNumber(a)
-{
-    var rounded = parseFloat(a.toPrecision(3));
+function scienceNumber(a) {
+    const rounded = parseFloat(a.toPrecision(3));
+
     return rounded.toExponential();
 }

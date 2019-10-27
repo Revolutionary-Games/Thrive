@@ -147,7 +147,8 @@ float
 }
 
 // compute the habiltability score for a given amount of incoming sunlight
-int computeHabitabilityScore(double incomingSunlight)
+int
+    computeHabitabilityScore(double incomingSunlight)
 {
     int habitability = 0;
     for(int i = 0; i <= NUMBER_OF_GAS_CHECKS; i++) {
@@ -155,7 +156,8 @@ int computeHabitabilityScore(double incomingSunlight)
         for(int j = 0; j <= NUMBER_OF_GAS_CHECKS; j++) {
             float oxygen = j * ((float)1 / (float)NUMBER_OF_GAS_CHECKS);
             float temp =
-                computeTemperature(incomingSunlight, carbonDioxide, oxygen);;
+                computeTemperature(incomingSunlight, carbonDioxide, oxygen);
+            ;
             if(temp < 373 && temp > 273) {
                 habitability++;
             }
@@ -229,11 +231,11 @@ Json::Value
 
     // don't know if recursiveness here might be bad...
     if(orbitingBody) {
-        if (orbitingBody->celestialBodyType == STAR){
+        if(orbitingBody->celestialBodyType == STAR) {
             std::shared_ptr<Star> orbitingStar =
                 std::static_pointer_cast<Star>(orbitingBody);
             result["orbitingBody"] = orbitingStar->toJSON();
-        } else if (orbitingBody->celestialBodyType == PLANET){
+        } else if(orbitingBody->celestialBodyType == PLANET) {
             std::shared_ptr<Planet> orbitingPlanet =
                 std::static_pointer_cast<Planet>(orbitingBody);
             result["orbitingBody"] = orbitingPlanet->toJSON();
@@ -280,8 +282,10 @@ void
         setRadius();
         setTemperature();
         setStellarSpectrum();
-        minOrbitalDiameter = (mass / MASS_OF_OUR_SUN) * BASE_MIN_ORBITAL_DIAMETER;
-        maxOrbitalDiameter = (mass / MASS_OF_OUR_SUN) * BASE_MAX_ORBITAL_DIAMETER;
+        minOrbitalDiameter =
+            (mass / MASS_OF_OUR_SUN) * BASE_MIN_ORBITAL_DIAMETER;
+        maxOrbitalDiameter =
+            (mass / MASS_OF_OUR_SUN) * BASE_MAX_ORBITAL_DIAMETER;
         computeHabitableZone();
         gravitationalParameter = GRAVITATIONAL_CONSTANT * mass;
     }
@@ -363,15 +367,14 @@ void
     double diameterStep =
         (maxOrbitalDiameter - minOrbitalDiameter) / NUMBER_OF_TESTS;
     for(int i = 0; i < NUMBER_OF_TESTS; i++) {
-        double currentDiameter = minOrbitalDiameter + i*diameterStep;
+        double currentDiameter = minOrbitalDiameter + i * diameterStep;
         habitabilityScore.at(i) = 0;
         // work out incoming sunlight
         double incomingSunlight =
             luminosity / (4 * PI * (pow(currentDiameter, 2)));
         // test different values of CO2 and O2 in the atmosphere
         habitabilityScore.at(i) = computeHabitabilityScore(incomingSunlight);
-        orbitalDistances.at(i) =
-            currentDiameter;
+        orbitalDistances.at(i) = currentDiameter;
     }
     // habitabilityScore.at(0) = 0; // fixing a weird bug I found, sorry :(
 }
@@ -427,10 +430,13 @@ void
     }
     if(step <= 1) {
         setOrbitalPeriod();
-        //work out where in the habitability graph to draw the planet
-        double minOrbitalDiameter = (orbitingBody->mass / MASS_OF_OUR_SUN) * BASE_MIN_ORBITAL_DIAMETER;
-        double maxOrbitalDiameter = (orbitingBody->mass / MASS_OF_OUR_SUN) * BASE_MAX_ORBITAL_DIAMETER;
-        orbitalRadiusGraphFraction = (orbitalRadius - minOrbitalDiameter)/(maxOrbitalDiameter - minOrbitalDiameter);
+        // work out where in the habitability graph to draw the planet
+        double minOrbitalDiameter =
+            (orbitingBody->mass / MASS_OF_OUR_SUN) * BASE_MIN_ORBITAL_DIAMETER;
+        double maxOrbitalDiameter =
+            (orbitingBody->mass / MASS_OF_OUR_SUN) * BASE_MAX_ORBITAL_DIAMETER;
+        orbitalRadiusGraphFraction = (orbitalRadius - minOrbitalDiameter) /
+                                     (maxOrbitalDiameter - minOrbitalDiameter);
     }
 }
 
@@ -485,7 +491,7 @@ void
         setAtmosphereConstituentsRandom();
     }
     if(step <= 1) {
-        //compute the habitability of the planet
+        // compute the habitability of the planet
         std::shared_ptr<Star> orbitingStar =
             std::static_pointer_cast<Star>(orbitingBody);
         double incomingSunlight =
@@ -779,6 +785,6 @@ std::string
     std::unique_ptr<Json::StreamWriter> writer(builder.newStreamWriter());
 
     writer->write(value, &sstream);
-    //LOG_INFO(sstream.str());
+    // LOG_INFO(sstream.str());
     return sstream.str();
 }

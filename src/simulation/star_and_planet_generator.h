@@ -92,7 +92,6 @@ private:
         setStellarSpectrum();
     void
         computeHabitableZone();
-
 };
 
 class Planet : public CelestialBody { // : public Leviathan::PerWorldData{
@@ -110,7 +109,7 @@ public:
     std::array<double, LENGTH_OF_ARRAYS> terrestrialSpectrum;
     double planetTemperature = 0;
     int habitability = 0;
-    //where to draw the current orbital radius on the habitavility graph
+    // where to draw the current orbital radius on the habitavility graph
     double orbitalRadiusGraphFraction = 0;
 
     // Limit to star for now
@@ -140,7 +139,6 @@ public:
         generatePropertiesPlanetMass(1);
         generatePropertiesOrbitalRadius(0);
         generatePropertiesAtmosphere(0);
-
     }
     // end
 
@@ -193,7 +191,6 @@ private:
         attenuationParameter(char gas);
     void
         computeLightFilter();
-
 };
 
 } // namespace thrive

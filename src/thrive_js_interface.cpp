@@ -167,10 +167,28 @@ bool
         Owner->SendCustomExtensionMessage(message);
         return true;
     }
+}
+else if(name == "pause")
+{
 
-    // This might be a bit expensive...
-    exception = L"Unknown ThriveJSHandler function: " + name.ToWString();
+    if(arguments.size() < 1 || !arguments[0]->IsBool()) {
+        // Invalid arguments //
+        exception = "Invalid arguments passed, expected: bool";
+        return true;
+    }
+
+    auto message = CefProcessMessage::Create("Custom");
+    auto args = message->GetArgumentList();
+    args->SetString(0, "pause");
+    args->SetBool(1, arguments[0]->GetBoolValue());
+
+    Owner->SendCustomExtensionMessage(message);
     return true;
+}
+
+// This might be a bit expensive...
+exception = L"Unknown ThriveJSHandler function: " + name.ToWString();
+return true;
 }
 // ------------------------------------ //
 // Factory
@@ -227,13 +245,20 @@ bool
 
         ThriveGame::Get()->disconnectFromServer(true);
         return true;
+
     } else if(customType == "enterPlanetEditor") {
 
         ThriveGame::Get()->enterPlanetEditor();
         return true;
+
     } else if(customType == "editPlanet") {
 
         ThriveGame::Get()->editPlanet(args->GetString(1), args->GetDouble(2));
+        return true;
+
+    } else if(customType == "pause") {
+
+        ThriveGame::Get()->pause(args->GetBool(1));
         return true;
     }
 

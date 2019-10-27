@@ -41,4 +41,7 @@ var Thrive = {};
     native function editPlanet(editType, value);
     Thrive.editPlanet = editPlanet;
 
+    native function pause(value);
+    Thrive.pause = pause;
+
 }());
