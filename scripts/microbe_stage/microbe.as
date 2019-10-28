@@ -444,23 +444,24 @@ class MicrobeSystem : ScriptSystem{
             // Else If we were but are no longer, being engulfed
         } else if(microbeComponent.wasBeingEngulfed && !microbeComponent.isBeingEngulfed){
             microbeComponent.wasBeingEngulfed = false;
+            auto playerSpecies = MicrobeOperations::getSpecies(world, "Default");
 
             if (!microbeComponent.isPlayerMicrobe &&
                 microbeComponent.species.name != playerSpecies.name)
             {
-                 hasEscaped = false;
-                 escapeInterval = 0;
+                 microbeComponent.hasEscaped = false;
+                 microbeComponent.escapeInterval = 0;
             }
 
             MicrobeOperations::removeEngulfedEffect(world, microbeEntity);
         }
 
         // Still considered to be chased for CREATURE_ESCAPE_INTERVAL milisecunds
-        if(!hasEscaped){
+        if(!microbeComponent.hasEscaped){
             microbeComponent.escapeInterval += logicTime;
             if(microbeComponent.escapeInterval >= CREATURE_ESCAPE_INTERVAL){
-                hasEscaped = true;
-                escapeInterval = 0;
+                microbeComponent.hasEscaped = true;
+                microbeComponent.escapeInterval = 0;
                 auto species = MicrobeOperations::getSpecies(world,
                     microbeComponent.species.name);
                 if(species !is null)
