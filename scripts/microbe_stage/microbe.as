@@ -434,7 +434,7 @@ class MicrobeSystem : ScriptSystem{
             microbeComponent.movementFactor =  microbeComponent.movementFactor/ENGULFING_MOVEMENT_DIVISION;
         }
 
-		microbeComponent.escapeInterval = microbeComponent.escapeInterval + logicTime;
+        microbeComponent.escapeInterval = microbeComponent.escapeInterval + logicTime;
 
         if(microbeComponent.isBeingEngulfed){
             microbeComponent.movementFactor =  microbeComponent.movementFactor/ENGULFED_MOVEMENT_DIVISION;
@@ -442,7 +442,7 @@ class MicrobeSystem : ScriptSystem{
             MicrobeOperations::damage(world,microbeEntity,ENGULF_DAMAGE/logicTime,
                 "isBeingEngulfed - Microbe.update()s");
             microbeComponent.wasBeingEngulfed = true;
-			microbeComponent.escapeInterval = 0;
+            microbeComponent.escapeInterval = 0;
             // Else If we were but are no longer, being engulfed
         } else if(microbeComponent.wasBeingEngulfed && !microbeComponent.isBeingEngulfed && microbeComponent.escapeInterval > CREATURE_ESCAPE_INTERVAL){
 
