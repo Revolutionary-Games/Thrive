@@ -176,7 +176,7 @@ class MicrobeComponent : ScriptComponent{
     bool isCurrentlyEngulfing = false;
     bool isBeingEngulfed = false;
     bool wasBeingEngulfed = false;
-    bool hasEscaped = true;
+    bool hasEscaped = false;
     ObjectID hostileEngulfer = NULL_OBJECT;
     AudioSource@ engulfAudio;
     AudioSource@ otherAudio;
@@ -440,7 +440,7 @@ class MicrobeSystem : ScriptSystem{
             //LOG_INFO("doing engulf damage");
             MicrobeOperations::damage(world,microbeEntity,ENGULF_DAMAGE/logicTime,
                 "isBeingEngulfed - Microbe.update()s");
-            microbeComponent.wasBeingEngulfed = true;
+            microbeComponent.wasBeingEngulfed = false;
             // Else If we were but are no longer, being engulfed
         } else if(microbeComponent.wasBeingEngulfed && !microbeComponent.isBeingEngulfed){
             microbeComponent.wasBeingEngulfed = false;
@@ -449,7 +449,7 @@ class MicrobeSystem : ScriptSystem{
             if (!microbeComponent.isPlayerMicrobe &&
                 microbeComponent.species.name != playerSpecies.name)
             {
-                 microbeComponent.hasEscaped = false;
+                 microbeComponent.hasEscaped = true;
                  microbeComponent.escapeInterval = 0;
             }
 
@@ -457,10 +457,10 @@ class MicrobeSystem : ScriptSystem{
         }
 
         // Still considered to be chased for CREATURE_ESCAPE_INTERVAL milisecunds
-        if(!microbeComponent.hasEscaped){
+        if(microbeComponent.hasEscaped){
             microbeComponent.escapeInterval += logicTime;
             if(microbeComponent.escapeInterval >= CREATURE_ESCAPE_INTERVAL){
-                microbeComponent.hasEscaped = true;
+                microbeComponent.hasEscaped = false;
                 microbeComponent.escapeInterval = 0;
                 auto species = MicrobeOperations::getSpecies(world,
                     microbeComponent.species.name);
