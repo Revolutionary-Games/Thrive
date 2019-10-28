@@ -435,31 +435,34 @@ class MicrobeSystem : ScriptSystem{
             microbeComponent.movementFactor =  microbeComponent.movementFactor/ENGULFING_MOVEMENT_DIVISION;
         }
 
-        microbeComponent.escapeInterval = microbeComponent.escapeInterval + logicTime;
-
         if(microbeComponent.isBeingEngulfed){
             microbeComponent.movementFactor =  microbeComponent.movementFactor/ENGULFED_MOVEMENT_DIVISION;
             //LOG_INFO("doing engulf damage");
             MicrobeOperations::damage(world,microbeEntity,ENGULF_DAMAGE/logicTime,
                 "isBeingEngulfed - Microbe.update()s");
             microbeComponent.wasBeingEngulfed = true;
-            microbeComponent.hasEscaped = false;
-            microbeComponent.escapeInterval = 0;
             // Else If we were but are no longer, being engulfed
         } else if(microbeComponent.wasBeingEngulfed && !microbeComponent.isBeingEngulfed){
             microbeComponent.wasBeingEngulfed = false;
-            MicrobeOperations::removeEngulfedEffect(world, microbeEntity);
-        } else if(microbeComponent.escapeInterval > CREATURE_ESCAPE_INTERVAL && microbeComponent.hasEscaped == false)
-            microbeComponent.hasEscaped = true;
 
-            //  You escaped, good job
-            auto playerSpecies = MicrobeOperations::getSpecies(world, "Default");
             if (!microbeComponent.isPlayerMicrobe &&
                 microbeComponent.species.name != playerSpecies.name)
             {
+                 hasEscaped = false;
+                 escapeInterval = 0;
+            }
+
+            MicrobeOperations::removeEngulfedEffect(world, microbeEntity);
+        }
+
+        // Still considered to be chased for CREATURE_ESCAPE_INTERVAL milisecunds
+        if(!hasEscaped){
+            microbeComponent.escapeInterval += logicTime;
+            if(microbeComponent.escapeInterval >= CREATURE_ESCAPE_INTERVAL){
+                hasEscaped = true;
+                escapeInterval = 0;
                 auto species = MicrobeOperations::getSpecies(world,
                     microbeComponent.species.name);
-
                 if(species !is null)
                     MicrobeOperations::alterSpeciesPopulation(species,
                         CREATURE_ESCAPE_POPULATION_GAIN, "escape engulfing");
