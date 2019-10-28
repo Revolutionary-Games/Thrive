@@ -176,6 +176,7 @@ class MicrobeComponent : ScriptComponent{
     bool isCurrentlyEngulfing = false;
     bool isBeingEngulfed = false;
     bool wasBeingEngulfed = false;
+    bool hasEscaped = true;
     ObjectID hostileEngulfer = NULL_OBJECT;
     AudioSource@ engulfAudio;
     AudioSource@ otherAudio;
@@ -442,11 +443,14 @@ class MicrobeSystem : ScriptSystem{
             MicrobeOperations::damage(world,microbeEntity,ENGULF_DAMAGE/logicTime,
                 "isBeingEngulfed - Microbe.update()s");
             microbeComponent.wasBeingEngulfed = true;
+            microbeComponent.hasEscaped = false;
             microbeComponent.escapeInterval = 0;
             // Else If we were but are no longer, being engulfed
-        } else if(microbeComponent.wasBeingEngulfed && !microbeComponent.isBeingEngulfed && microbeComponent.escapeInterval > CREATURE_ESCAPE_INTERVAL){
-
+        } else if(microbeComponent.wasBeingEngulfed && !microbeComponent.isBeingEngulfed){
             microbeComponent.wasBeingEngulfed = false;
+            MicrobeOperations::removeEngulfedEffect(world, microbeEntity);
+        } else if(microbeComponent.escapeInterval > CREATURE_ESCAPE_INTERVAL && microbeComponent.hasEscaped == false)
+            microbeComponent.hasEscaped = true;
 
             //  You escaped, good job
             auto playerSpecies = MicrobeOperations::getSpecies(world, "Default");
@@ -460,8 +464,6 @@ class MicrobeSystem : ScriptSystem{
                     MicrobeOperations::alterSpeciesPopulation(species,
                         CREATURE_ESCAPE_POPULATION_GAIN, "escape engulfing");
             }
-
-            MicrobeOperations::removeEngulfedEffect(world, microbeEntity);
         }
 
         // Check whether we should not be being engulfed anymore
