@@ -160,7 +160,7 @@ class MicrobeComponent : ScriptComponent{
     float maxBandwidth = 10.0 * BANDWIDTH_PER_ORGANELLE; // wtf is a bandwidth anyway?
     float remainingBandwidth = 0.0;
     uint compoundCollectionTimer = EXCESS_COMPOUND_COLLECTION_INTERVAL;
-    uint escapeInterval = CREATURE_ESCAPE_INTERVAL;
+    uint escapeInterval = 0;
     int agentEmissionCooldown = 0;
 
     // Is this the place where the actual flash duration works?
