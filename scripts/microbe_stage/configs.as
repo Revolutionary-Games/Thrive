@@ -198,6 +198,7 @@ const int CREATURE_KILL_POPULATION_GAIN = 50;
 const int CREATURE_SCAVENGE_POPULATION_GAIN = 10;
 const int CREATURE_REPRODUCE_POPULATION_GAIN = 50;
 const int CREATURE_ESCAPE_POPULATION_GAIN = 50;
+const uint CREATURE_ESCAPE_INTERVAL = 5000;
 
 // TODO: move these into gamestate (this is very dirty)
 // must be global
