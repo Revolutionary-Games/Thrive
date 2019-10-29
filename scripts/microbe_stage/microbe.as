@@ -440,9 +440,10 @@ class MicrobeSystem : ScriptSystem{
             //LOG_INFO("doing engulf damage");
             MicrobeOperations::damage(world,microbeEntity,ENGULF_DAMAGE/logicTime,
                 "isBeingEngulfed - Microbe.update()s");
-            microbeComponent.wasBeingEngulfed = false;
+            microbeComponent.wasBeingEngulfed = true;
             // Else If we were but are no longer, being engulfed
         } else if(microbeComponent.wasBeingEngulfed && !microbeComponent.isBeingEngulfed){
+
             microbeComponent.wasBeingEngulfed = false;
             auto playerSpecies = MicrobeOperations::getSpecies(world, "Default");
 
@@ -456,7 +457,7 @@ class MicrobeSystem : ScriptSystem{
             MicrobeOperations::removeEngulfedEffect(world, microbeEntity);
         }
 
-        // Still considered to be chased for CREATURE_ESCAPE_INTERVAL milisecunds
+        //still considered to be chased for CREATURE_ESCAPE_INTERVAL milliseconds
         if(microbeComponent.hasEscaped){
             microbeComponent.escapeInterval += logicTime;
             if(microbeComponent.escapeInterval >= CREATURE_ESCAPE_INTERVAL){
