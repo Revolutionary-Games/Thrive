@@ -529,6 +529,18 @@ void
     atmosphereNitrogen = atmosphereMass * 0.72;
 }
 
+void
+    Planet::setOxygen(double percentageAtmosphereOxygen)
+{
+    LOG_INFO("%O2 = " + Convert::ToString(percentageAtmosphereOxygen));
+}
+
+void
+    Planet::setCarbonDioxide(double percentageAtmosphereCarbonDioxide)
+{
+    LOG_INFO("%CO2 = " + Convert::ToString(percentageAtmosphereCarbonDioxide));
+}
+
 // compute the atmospheric parameters from the mass of gas
 void
     Planet::massOfGasToClimateParameter(float& oxygen, float& carbonDioxide)

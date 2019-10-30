@@ -23,14 +23,14 @@ function updatePlanetValues(data){
     document.getElementById("planetOceanMassValueBox").innerHTML = "Ocean Mass <br>" + scienceNumber(data.oceanMass) + " kg.";
     document.getElementById("planetLithosphereMassValueBox").innerHTML = "Lithosphere Mass <br>" + scienceNumber(data.lithosphereMass) + " kg.";
     document.getElementById("planetAtmosphereMassValueBox").innerHTML = "Atmosphere Mass <br>" + scienceNumber(data.atmosphereMass) + " kg.";
-    document.getElementById("planetAtmosphereWaterValueBox").innerHTML = "Atmosphere Water <br>" + scienceNumber(data.atmosphereWater) + " kg.";
-    document.getElementById("planetAtmosphereOxygenValueBox").innerHTML = "Atmosphere Oxygen <br>" + scienceNumber(data.atmosphereOxygen) + " kg.";
-    document.getElementById("planetAtmosphereNitrogenValueBox").innerHTML = "Atmosphere Nitrogen <br>" + scienceNumber(data.atmosphereNitrogen) + " kg.";
-    document.getElementById("planetCarbonDioxideValueBox").innerHTML = "Atmosphere CarbonDioxide <br>" + scienceNumber(data.atmosphereCarbonDioxide) + " kg.";
+    document.getElementById("planetAtmosphereWaterValueBox").innerHTML = "Mass of Water in Atmosphere <br>" + scienceNumber(data.atmosphereWater) + " kg.";
+    document.getElementById("planetAtmosphereOxygenValueBox").innerHTML = "Masss of Oxygen in Atmosphere <br>" + scienceNumber(data.atmosphereOxygen) + " kg.";
+    document.getElementById("planetAtmosphereNitrogenValueBox").innerHTML = "Mass of Nitrogen in Atmosphere <br>" + scienceNumber(data.atmosphereNitrogen) + " kg.";
+    document.getElementById("planetCarbonDioxideValueBox").innerHTML = "Mass of Carbon Dioxide in Atmosphere <br>" + scienceNumber(data.atmosphereCarbonDioxide) + " kg.";
 
     drawGraph(document.getElementById("habitabilityGraph"), data.orbitingBody.habitabilityScore);
     drawPointOnGraph(document.getElementById("habitabilityGraph"), data.orbitalRadiusGraphFraction);
-    document.getElementById("planetHabitabilityValueBox").innerHTML = "Habitability <br>" + data.habitability + "%.";
+    document.getElementById("planetHabitabilityValueBox").innerHTML = "Habitability Score <br>" + data.habitability + "%.";
 
     document.getElementById("planetOrbitalRadiusSlider").value = data.orbit.radius;
     document.getElementById("planetOrbitalRadiusValueBox").innerHTML = "Orbital Radius <br>" + scienceNumber(data.orbit.radius) + " meters.";
@@ -56,6 +56,12 @@ export function setupPlanetEditor(fromFreebuild){
 
     document.getElementById("planetMassSetEarthButton").addEventListener("click",
         onPlanetSetEarthInput, true);
+
+    document.getElementById("planetAtmosphereOxygenSlider").addEventListener("input",
+        onPlanetSetOxygenInput, true);
+
+    document.getElementById("planetAtmosphereCarbonDioxideSlider").addEventListener("input",
+        onPlanetSetCarbonDioxideInput, true);
 
     document.getElementById("planetOrbitalRadiusSlider").addEventListener("input",
         onPlanetOrbitalRadiusInput, true);
@@ -92,6 +98,14 @@ function onStarSetSolInput(event){
 
 function onPlanetMassInput(event){
     Thrive.editPlanet("onPlanetMassInput", parseFloat(event.target.value));
+}
+
+function onPlanetSetOxygenInput(event){
+    Thrive.editPlanet("onPlanetSetOxygenInput", parseFloat(event.target.value));
+}
+
+function onPlanetSetCarbonDioxideInput(event){
+    Thrive.editPlanet("onPlanetSetCarbonDioxideInput", parseFloat(event.target.value));
 }
 
 function onPlanetSetEarthInput(event){
@@ -191,7 +205,7 @@ function drawGraph(graph, data) {
     const xRange = data.length;
     const yMax = Math.max(...data);
     const yMin = Math.min(...data);
-    const yRange = yMax - yMin;
+    const yRange = Math.max(1, yMax - yMin);
 
     // Draw the axes
     const offset = 10; // Padding for the x and y axis

@@ -87,15 +87,26 @@ div::-webkit-scrollbar-thumb:hover {
     width:20%;
     height:60px;
     background-color:blue;
+    float:left;
 }
 .planetValueBox{
     width:20%;
-    height:60px;
     background-color:green;
+    float:left;
 }
 .planetSlider{
     width:75%;
     height:30px;
+}
+.planetValuesContainer{
+    width:100%;
+    background-color:#404040;
+    display: inline-block;
+    font-size:25px;
+}
+.planetTitle{
+    width:100%;
+    float:left;
 }
 
 /* Common quick classes */

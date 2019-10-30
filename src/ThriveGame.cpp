@@ -541,6 +541,10 @@ void
         planet->setPlanetMass(value);
     } else if(editType == "onPlanetSetEarthInput") {
         planet->setEarth();
+    } else if(editType == "onPlanetSetOxygenInput") {
+        planet->setOxygen(value);
+    } else if(editType == "onPlanetSetCarbonDioxideInput") {
+        planet->setCarbonDioxide(value);
     } else if(editType == "onPlanetOrbitalRadiusInput") {
         planet->setOrbitalRadius(value);
     }

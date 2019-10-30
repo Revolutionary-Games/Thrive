@@ -105,44 +105,86 @@
     <!-- Planet editor GUI -->
     <div id="topLevelPlanetEditor" style="display: none; height:100%; overflow-y: scroll;">
       <!-- test slider for smoothness -->
-      <div id="testValueBox" class="planetValueBox">TEST SLIDER</div>
+      <div class="planetValuesContainer">
+          <div id="testValueBox" class="planetValueBox">TEST SLIDER</div>
+      </div>
       <input id="testValueSlider" type="range" min="0" max="1000000" class="planetSlider">
 
       <!-- elements for displaying star values and sliders for input -->
-      <div id="starMassValueBox" class="planetValueBox"></div>
-      <div id="starMassSetSolButton" class="planetButton">Set Mass equal to Sol (Our sun)</div>
+      <div class="planetValuesContainer">
+        <div class="planetTitle">Choose a mass for your star with the slider below or this button to make it like Sol. </div>
+        <div id="starMassValueBox" class="planetValueBox"></div>
+        <div id="starMassSetSolButton" class="planetButton">Set Mass equal to Sol (Our sun)</div>
+      </div>
       <input type="range" min="9.945e+29" max="5.967e+30" id="starMassSlider" class="planetSlider">
-      <div id="starRadiusValueBox" class="planetValueBox"></div>
-      <div id="starGravitationalParameterValueBox" class="planetValueBox"></div>
-      <div id="starLifespanValueBox" class="planetValueBox"></div>
-      <div id="starTemperatureValueBox" class="planetValueBox"></div>
-
-      <svg id="stellarSpectrumGraph" height="200" width="400"></svg>
+      <div class="planetValuesContainer">
+        <div class="planetTitle">This mass leads to a star with these properties. </div>
+        <div id="starRadiusValueBox" class="planetValueBox"></div>
+        <div id="starGravitationalParameterValueBox" class="planetValueBox"></div>
+        <div id="starLifespanValueBox" class="planetValueBox"></div>
+        <div id="starTemperatureValueBox" class="planetValueBox"></div>
+      </div>
+      <div class="planetValuesContainer">
+        <div class="planetTitle">This is a graph of the spectrum of light emitted by your star, x axis wavelength, y axis intenstiy. </div>
+        <svg id="stellarSpectrumGraph" height="200" width="400"></svg>
+      </div>
 
       <!-- elements for displaying planet values and sliders for input -->
-      <div id="planetMassValueBox" class="planetValueBox"></div>
-      <div id="planetMassSetEarthButton" class="planetButton">Set the planet to be like the Earth</div>
+      <div class="planetValuesContainer">
+        <div class="planetTitle">Choose a mass for your planet with the slider below or this button to make it like Earth. </div>
+        <div id="planetMassValueBox" class="planetValueBox"></div>
+        <div id="planetMassSetEarthButton" class="planetButton">Set the planet to be like the Earth</div>
+      </div>
       <input type="range" min="3.588910102735962e+24" max="1.7937313085760207e+25" id="planetMassSlider" class="planetSlider">
-      <div id="planetRadiusValueBox" class="planetValueBox"></div>
-      <div id="planetOceanMassValueBox" class="planetValueBox"></div>
-      <div id="planetLithosphereMassValueBox" class="planetValueBox"></div>
-      <div id="planetAtmosphereMassValueBox" class="planetValueBox"></div>
-      <div id="planetAtmosphereWaterValueBox" class="planetValueBox"></div>
-      <div id="planetAtmosphereOxygenValueBox" class="planetValueBox"></div>
-      <div id="planetAtmosphereNitrogenValueBox" class="planetValueBox"></div>
-      <div id="planetCarbonDioxideValueBox" class="planetValueBox"></div>
 
+      <div class="planetValuesContainer">
+        <div class="planetTitle">This mass leads to a planet with these properties. </div>
+        <div id="planetRadiusValueBox" class="planetValueBox"></div>
+        <div id="planetOceanMassValueBox" class="planetValueBox"></div>
+        <div id="planetLithosphereMassValueBox" class="planetValueBox"></div>
+        <div id="planetAtmosphereMassValueBox" class="planetValueBox"></div>
+      </div>
+      <div class="planetValuesContainer">
+        <div class="planetTitle">Set the proportion of Oxygen in your atmosphere. </div>
+        <div id="planetOxygenPercentageValueBox" class="planetValueBox"></div>
+      </div>
+      <input type="range" min="0" max="100" id="planetAtmosphereOxygenSlider" class="planetSlider">
+      <div class="planetValuesContainer">
+        <div class="planetTitle">Set the proportion of Carbon Dioxide in your atmosphere. </div>
+        <div id="planetCarbonDioxidePercentageValueBox" class="planetValueBox"></div>
+      </div>
+      <input type="range" min="0" max="100" id="planetAtmosphereCarbonDioxideSlider" class="planetSlider">
+      <div class="planetValuesContainer">
+        <div class="planetTitle">These are the amounts of different gasses in your atmosphere. </div>
+        <div id="planetAtmosphereWaterValueBox" class="planetValueBox"></div>
+        <div id="planetAtmosphereOxygenValueBox" class="planetValueBox"></div>
+        <div id="planetAtmosphereNitrogenValueBox" class="planetValueBox"></div>
+        <div id="planetCarbonDioxideValueBox" class="planetValueBox"></div>
+      </div>
 
-      <svg id="habitabilityGraph" height="200" width="400"></svg>
-      <div id="planetHabitabilityValueBox" class="planetValueBox"></div>
-      <div id="planetOrbitalRadiusValueBox" class="planetValueBox"></div>
+      <div class="planetValuesContainer">
+        <div class="planetTitle">Choose an orbital radius for your planet with the slider below.</div>
+        <div id="planetOrbitalRadiusValueBox" class="planetValueBox"></div>
+      </div>
       <input type="range" min="2.25e+10" max="2.334e+12" id="planetOrbitalRadiusSlider" class="planetSlider">
-      <div id="planetOrbitalPeriodValueBox" class="planetValueBox"></div>
+      <div class="planetValuesContainer">
+        <div class="planetTitle">This leads to a planet with the following
+            properties.</div>
+        <div id="planetOrbitalPeriodValueBox" class="planetValueBox"></div>
+        <div id="planetTemperatureValueBox" class="planetValueBox"></div>
+        <div id="planetHabitabilityValueBox" class="planetValueBox"></div>
+      </div>
 
-      <div id="planetTemperatureValueBox" class="planetValueBox"></div>
-
-      <svg id="atmosphericFilterGraph" height="200" width="400"></svg>
-      <svg id="terrestrialSpectrumGraph" height="200" width="400"></svg>
+      <div class="planetValuesContainer">
+        <div class="planetTitle">These graphs are 1. orbital distance (x axis)
+            vs habitability percentae score (y-axis). 2. wavelength (x axis) vs
+            percentage of absorbed by the atmosphere (y axis) and 3. Wavelength
+            (x axis) vs amount of light hitting the planets surface (y axis).
+            </div>
+        <svg id="habitabilityGraph" height="200" width="400"></svg>
+        <svg id="atmosphericFilterGraph" height="200" width="400"></svg>
+        <svg id="terrestrialSpectrumGraph" height="200" width="400"></svg>
+      </div>
 
       <div class="MenuButton" id="planetEditorStartGame">Start Game</div>
       <div class="MenuButton" id="planetEditorBack">Back</div>

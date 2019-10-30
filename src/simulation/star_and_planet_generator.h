@@ -140,6 +140,10 @@ public:
         generatePropertiesOrbitalRadius(0);
         generatePropertiesAtmosphere(0);
     }
+    void
+        setOxygen(double percentageAtmosphereOxygen);
+    void
+        setCarbonDioxide(double percentageAtmosphereCarbonDioxide);
     // end
 
     void
