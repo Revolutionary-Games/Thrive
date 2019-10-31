@@ -23,6 +23,18 @@ function updatePlanetValues(data){
     document.getElementById("planetOceanMassValueBox").innerHTML = "Ocean Mass <br>" + scienceNumber(data.oceanMass) + " kg.";
     document.getElementById("planetLithosphereMassValueBox").innerHTML = "Lithosphere Mass <br>" + scienceNumber(data.lithosphereMass) + " kg.";
     document.getElementById("planetAtmosphereMassValueBox").innerHTML = "Atmosphere Mass <br>" + scienceNumber(data.atmosphereMass) + " kg.";
+
+    var oxygenPercentage = parseInt(100*data.atmosphereOxygen/data.atmosphereMass);
+    var carbonDioxidePercentage = parseInt(100*data.atmosphereCarbonDioxide/data.atmosphereMass);
+    var waterPercentage = parseInt(100*data.atmosphereWater/data.atmosphereMass);
+    var nitrogenPercentage = parseInt(100*data.atmosphereNitrogen/data.atmosphereMass);
+    document.getElementById("planetOxygenPercentageValueBox").innerHTML = "Percentage of Oxygen in Atmosphere <br>" + oxygenPercentage + "%.";
+    document.getElementById("planetCarbonDioxidePercentageValueBox").innerHTML = "Percentage of Carbon Dioxide in Atmosphere <br>" + carbonDioxidePercentage + " %.";
+    document.getElementById("planetWaterPercentageValueBox").innerHTML = "Percentage of Water in Atmosphere <br>" + waterPercentage + "%.";
+    document.getElementById("planetNitrogenPercentageValueBox").innerHTML = "Percentage of Nitrogen in Atmosphere <br>" + nitrogenPercentage + " %.";
+    document.getElementById("planetAtmosphereOxygenSlider").value = oxygenPercentage;
+    document.getElementById("planetAtmosphereCarbonDioxideSlider").value = carbonDioxidePercentage;
+
     document.getElementById("planetAtmosphereWaterValueBox").innerHTML = "Mass of Water in Atmosphere <br>" + scienceNumber(data.atmosphereWater) + " kg.";
     document.getElementById("planetAtmosphereOxygenValueBox").innerHTML = "Masss of Oxygen in Atmosphere <br>" + scienceNumber(data.atmosphereOxygen) + " kg.";
     document.getElementById("planetAtmosphereNitrogenValueBox").innerHTML = "Mass of Nitrogen in Atmosphere <br>" + scienceNumber(data.atmosphereNitrogen) + " kg.";
@@ -101,11 +113,11 @@ function onPlanetMassInput(event){
 }
 
 function onPlanetSetOxygenInput(event){
-    Thrive.editPlanet("onPlanetSetOxygenInput", parseFloat(event.target.value));
+    Thrive.editPlanet("onPlanetSetOxygenInput", parseFloat(0.01*event.target.value));
 }
 
 function onPlanetSetCarbonDioxideInput(event){
-    Thrive.editPlanet("onPlanetSetCarbonDioxideInput", parseFloat(event.target.value));
+    Thrive.editPlanet("onPlanetSetCarbonDioxideInput", parseFloat(0.01*event.target.value));
 }
 
 function onPlanetSetEarthInput(event){

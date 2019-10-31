@@ -532,13 +532,20 @@ void
 void
     Planet::setOxygen(double percentageAtmosphereOxygen)
 {
-    LOG_INFO("%O2 = " + Convert::ToString(percentageAtmosphereOxygen));
+    atmosphereOxygen = atmosphereMass * percentageAtmosphereOxygen;
+    atmosphereWater = std::min(atmosphereMass * 0.04, atmosphereMass - atmosphereOxygen);
+    atmosphereCarbonDioxide = std::max(0.0d,std::min(atmosphereCarbonDioxide, atmosphereMass - atmosphereOxygen - atmosphereWater));
+    atmosphereNitrogen = std::max(0.0d, atmosphereMass - atmosphereOxygen - atmosphereWater - atmosphereCarbonDioxide);
+
 }
 
 void
     Planet::setCarbonDioxide(double percentageAtmosphereCarbonDioxide)
 {
-    LOG_INFO("%CO2 = " + Convert::ToString(percentageAtmosphereCarbonDioxide));
+    atmosphereCarbonDioxide = atmosphereMass * percentageAtmosphereCarbonDioxide;
+    atmosphereWater = std::min(atmosphereMass * 0.04, atmosphereMass - atmosphereCarbonDioxide);
+    atmosphereOxygen = std::max(0.0d,std::min(atmosphereOxygen, atmosphereMass - atmosphereCarbonDioxide - atmosphereWater));
+    atmosphereNitrogen = std::max(0.0d, atmosphereMass - atmosphereOxygen - atmosphereWater - atmosphereCarbonDioxide);
 }
 
 // compute the atmospheric parameters from the mass of gas
