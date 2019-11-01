@@ -56,7 +56,7 @@ struct SpawnSystem::Implementation {
     SpawnerTypeId nextId = 0;
     std::unordered_map<SpawnerTypeId, SpawnType> spawnTypes;
     Float3 previousPlayerPosition = Float3(0, 0, 0);
-    unsigned int timeSinceLastUpdate = 0;
+    float timeSinceLastUpdate = 0;
 };
 
 // void SpawnSystem::luaBindings(
