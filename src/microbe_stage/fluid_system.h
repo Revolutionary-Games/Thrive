@@ -26,7 +26,7 @@ public:
     FluidSystem();
 
     void
-        Run(GameWorld& world);
+        Run(GameWorld& world, float elapsed);
 
     void
         CreateNodes(

@@ -166,7 +166,7 @@ public:
     // etc.
 
     void
-        Tick(int mspassed) override;
+        Tick(float elapsed) override;
 
     void
         CustomizeEnginePostLoad() override;

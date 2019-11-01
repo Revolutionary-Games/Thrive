@@ -109,7 +109,7 @@ public:
      * @brief Updates the system
      */
     void
-        Run(GameWorld& world);
+        Run(GameWorld& world, float elapsed);
 
     void
         CreateNodes(

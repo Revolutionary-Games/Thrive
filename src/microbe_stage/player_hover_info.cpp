@@ -24,18 +24,19 @@ PlayerHoverInfoSystem::PlayerHoverInfoSystem()
 }
 
 void
-    PlayerHoverInfoSystem::Run(CellStageWorld& world)
+    PlayerHoverInfoSystem::Run(CellStageWorld& world, float elapsed)
 {
     // Only on client
     if(!ThriveGame::Get())
         return;
 
-    passed += Leviathan::TICKSPEED;
+    passed += elapsed;
 
-    if(passed < RUN_EVERY_MS)
+    if(passed < RUN_EVERY_SECOND)
         return;
 
-    passed -= RUN_EVERY_MS;
+    // This doesn't need to try to run any queued runs
+    passed = 0;
 
     Float3 lookPoint;
 

@@ -275,11 +275,6 @@ void respawnPlayer(CellStageWorld@ world)
         sceneNodeComponent.Hidden = false;
         sceneNodeComponent.Marked = true;
 
-        //setRandomBiome(world);
-
-        cast<MicrobeStageHudSystem>(world.GetScriptSystem("MicrobeStageHudSystem")).
-            suicideButtonreset();
-
         // Reset membrane color to fix the bug that made membranes sometimes red after you respawn.
         MicrobeOperations::applyMembraneColour(world, playerEntity);
         // Reset the player cell to be the same as the species template
@@ -309,7 +304,7 @@ void setupMicrobeHitpoints(MicrobeComponent@ microbeComponent, int health)
 {
     microbeComponent.maxHitpoints = health;
     microbeComponent.hitpoints = microbeComponent.maxHitpoints;
-    microbeComponent.agentEmissionCooldown=uint(0);
+    microbeComponent.agentEmissionCooldown = 0.f;
 }
 
 //grabs compounds from template (starter_mcirobes) and stores them)
@@ -734,8 +729,8 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
 
 
             // The cooldown time is inversely proportional to the amount of agent vacuoles.
-            microbeComponent.agentEmissionCooldown = uint(AGENT_EMISSION_COOLDOWN /
-                numberOfAgentVacuoles);
+            microbeComponent.agentEmissionCooldown = AGENT_EMISSION_COOLDOWN /
+                numberOfAgentVacuoles;
         }
     }
 }
@@ -1093,7 +1088,7 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
                 0, GetEngine().GetRandom().GetNumber(0.0f, 1.0f) * 2 - 1);
 
             createAgentCloud(world, compoundId, position._Position, direction, ejectedAmount,
-                2000, microbeComponent.species.name, NULL_OBJECT);
+                2.f, microbeComponent.species.name, NULL_OBJECT);
             //take oxytoxy
             takeCompound(world,microbeEntity,compoundId,ejectedAmount);
             ++createdAgents;
@@ -1209,7 +1204,7 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
 
 
     microbeComponent.dead = true;
-    microbeComponent.deathTimer = 5000;
+    microbeComponent.deathTimer = 5.f;
     microbeComponent.movementDirection = Float3(0,0,0);
     //so they stop absorbing the compounds from the chunks they release immediately
     auto compoundAbsorberComponent = world.GetComponent_CompoundAbsorberComponent(

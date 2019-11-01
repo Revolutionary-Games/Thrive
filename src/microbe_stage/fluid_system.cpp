@@ -12,10 +12,9 @@ FluidSystem::FluidSystem() :
 {}
 
 void
-    FluidSystem::Run(GameWorld& world)
+    FluidSystem::Run(GameWorld& world, float elapsed)
 {
-    millisecondsPassed +=
-        Leviathan::TICKSPEED; // TODO: get this thing plugged to FPS.
+    millisecondsPassed += elapsed / 1000.f;
 
     for(auto& [id, components] : CachedComponents.GetIndex()) {
         Leviathan::PhysicsBody* rigidBody = std::get<1>(*components).GetBody();

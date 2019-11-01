@@ -136,12 +136,12 @@ SpawnSystem::SpawnSystem() : m_impl(new Implementation()) {}
 SpawnSystem::~SpawnSystem() {}
 
 void
-    SpawnSystem::Run(CellStageWorld& world)
+    SpawnSystem::Run(CellStageWorld& world, float elapsed)
 {
     if(!world.GetNetworkSettings().IsAuthoritative)
         return;
 
-    m_impl->timeSinceLastUpdate += Leviathan::TICKSPEED;
+    m_impl->timeSinceLastUpdate += elapsed;
 
     while(m_impl->timeSinceLastUpdate > SPAWN_INTERVAL) {
         m_impl->timeSinceLastUpdate -= SPAWN_INTERVAL;

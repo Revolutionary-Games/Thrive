@@ -66,10 +66,8 @@ class MicrobeEditorHudSystem : ScriptSystem{
 
     }
 
-    void Run()
+    void Run(float elapsed)
     {
-        int logicTime = TICKSPEED;
-
         // We move all the hexes and the hover hexes to 0,0,0 so that
         // the editor is free to replace them wherever
         // TODO: it would be way better if we didn't have to do this
@@ -88,7 +86,7 @@ class MicrobeEditorHudSystem : ScriptSystem{
             node.Marked = true;
         }
 
-        this.editor.update(logicTime);
+        this.editor.update(elapsed);
 
         //since this is ran every step this is a good place to do music code
         handleAmbientSound();

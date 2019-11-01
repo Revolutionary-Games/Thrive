@@ -218,7 +218,7 @@ std::shared_ptr<CellStageWorld>
 }
 // ------------------------------------ //
 void
-    ThriveServer::Tick(int mspassed)
+    ThriveServer::Tick(float elapsed)
 {}
 
 void
