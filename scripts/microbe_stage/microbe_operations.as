@@ -618,12 +618,12 @@ void rebuildProcessList(CellStageWorld@ world, ObjectID microbeEntity)
     }
 }
 
-void flashMembraneColour(CellStageWorld@ world, ObjectID microbeEntity, uint duration,
+void flashMembraneColour(CellStageWorld@ world, ObjectID microbeEntity, float duration,
     Float4 colour)
 {
     MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
 
-    if(microbeComponent.flashDuration <= 0){
+    if(microbeComponent.flashDuration <= 0.f){
         microbeComponent.flashColour = colour;
         microbeComponent.flashDuration = duration;
     }
@@ -803,17 +803,19 @@ void damage(CellStageWorld@ world, ObjectID microbeEntity, double amount, const 
     MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
     // auto soundSourceComponent = world.GetComponent_SoundSourceComponent(microbeEntity);
     if (microbeComponent !is null)
-        {
+    {
         if(damageType == "toxin"){
             // Play the toxin sound
-            playSoundWithDistance(world, "Data/Sound/soundeffects/microbe-toxin-damage.ogg", microbeEntity);
+            playSoundWithDistance(world, "Data/Sound/soundeffects/microbe-toxin-damage.ogg",
+                microbeEntity);
         }
 
         microbeComponent.hitpoints -= amount;
+
         // Flash the microbe red
-        //LOG_INFO("DAMAGE FLASH");
-        flashMembraneColour(world, microbeEntity, 1000,
+        flashMembraneColour(world, microbeEntity, 1.f,
             Float4(1,0,0,0.5));
+
         // Find out the amount of health the microbe has.
         if(microbeComponent.hitpoints <= 0.0f){
             microbeComponent.hitpoints = 0.0f;

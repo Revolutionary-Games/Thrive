@@ -95,6 +95,8 @@ const auto AI_COMPOUND_BIAS = -10.0f;
 // So we dont run the AI system every single frame
 const auto AI_TIME_INTERVAL = 0.2f;
 
+const auto AI_CELL_THINK_INTERVAL = 3.f;
+
 // Osmoregulation ATP cost
 const auto ATP_COST_FOR_OSMOREGULATION = 1.0f;
 

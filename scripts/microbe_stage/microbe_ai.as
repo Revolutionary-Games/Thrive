@@ -30,8 +30,8 @@ class MicrobeAIControllerComponent : ScriptComponent{
     }
 
     float movementRadius = 2000;
-    // That means they evaluate every 5 seconds
-    float reevalutationInterval = 5.f;
+    // That means they evaluate every AI_CELL_THINK_INTERVAL seconds
+    float reevalutationInterval = AI_CELL_THINK_INTERVAL;
     float intervalRemaining;
     int boredom = 0;
     //! This needs to be changed to use elapsed time instead of elapsed frames

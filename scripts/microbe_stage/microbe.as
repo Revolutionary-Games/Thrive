@@ -293,7 +293,7 @@ class MicrobeSystem : ScriptSystem{
         }
 
         // Flash membrane if something happens.
-        if(microbeComponent.flashDuration != 0 &&
+        if(microbeComponent.flashDuration > 0 &&
             microbeComponent.flashColour != Float4(0, 0, 0, 0)
         ){
             microbeComponent.flashDuration -= elapsed;
@@ -365,7 +365,7 @@ class MicrobeSystem : ScriptSystem{
             }
 
             // Flash the membrane blue.
-            MicrobeOperations::flashMembraneColour(world, microbeEntity, 1000,
+            MicrobeOperations::flashMembraneColour(world, microbeEntity, 1,
                 Float4(0.2,0.5,1.0,0.5));
         }
 
@@ -420,23 +420,32 @@ class MicrobeSystem : ScriptSystem{
             auto ourPosition = world.GetComponent_Position(microbeEntity);
             auto predatorMembraneComponent = world.GetComponent_MembraneComponent(
                 microbeComponent.hostileEngulfer);
-             auto circleRad = predatorMembraneComponent.calculateEncompassingCircleRadius();
 
-             MicrobeComponent@ hostileMicrobeComponent = cast<MicrobeComponent>(
-                world.GetScriptComponentHolder("MicrobeComponent").Find(
-                    microbeComponent.hostileEngulfer));
-
-            if (hostileMicrobeComponent.species.isBacteria){
-                circleRad = circleRad/2;
-            }
-
-            if ((hostileMicrobeComponent is null) || (!hostileMicrobeComponent.engulfMode) ||
-                (hostileMicrobeComponent.dead) ||
-                (ourPosition._Position -  predatorPosition._Position).LengthSquared() >=
-                circleRad){
-
+            if(predatorMembraneComponent is null){
+                // Can't be engulfed by something with no membrane
                 microbeComponent.hostileEngulfer = NULL_OBJECT;
                 microbeComponent.isBeingEngulfed = false;
+            } else {
+
+                auto circleRad = predatorMembraneComponent.calculateEncompassingCircleRadius();
+
+                MicrobeComponent@ hostileMicrobeComponent = cast<MicrobeComponent>(
+                    world.GetScriptComponentHolder("MicrobeComponent").Find(
+                        microbeComponent.hostileEngulfer));
+
+                if (hostileMicrobeComponent.species.isBacteria){
+                    circleRad = circleRad/2;
+                }
+
+                if ((hostileMicrobeComponent is null) ||
+                    (!hostileMicrobeComponent.engulfMode) ||
+                    (hostileMicrobeComponent.dead) ||
+                    (ourPosition._Position -  predatorPosition._Position).LengthSquared() >=
+                    circleRad){
+
+                    microbeComponent.hostileEngulfer = NULL_OBJECT;
+                    microbeComponent.isBeingEngulfed = false;
+                }
             }
         }
         else {
