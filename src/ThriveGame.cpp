@@ -305,12 +305,6 @@ void
 
         Leviathan::WorldNetworkSettings netSettings =
             Leviathan::WorldNetworkSettings::GetSettingsForSinglePlayer();
-        // netSettings.IsAuthoritative = true;
-        // netSettings.DoInterpolation = true;
-
-        // TODO: switch to
-        // Leviathan::WorldNetworkSettings::GetSettingsForSinglePlayer() once we
-        // no longer do the interpolation once variable rate ticks are supported
 
         LOG_INFO("ThriveGame: startNewGame: Creating new cellstage world");
         m_impl->m_cellStage =
