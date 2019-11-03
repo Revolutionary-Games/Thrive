@@ -128,10 +128,12 @@ CScriptArray*
 ////////////////////////////////////////////////////////////////////////////////
 void
     CompoundAbsorberSystem::Run(CellStageWorld& world,
-        std::unordered_map<ObjectID, CompoundCloudComponent*>& clouds)
+        std::unordered_map<ObjectID, CompoundCloudComponent*>& clouds,
+        float elapsed)
 {
     auto& absorbersIndex = m_absorbers.CachedComponents.GetIndex();
     auto& agentsIndex = m_agents.CachedComponents.GetIndex();
+    UNUSED(agentsIndex);
 
     // For all entities that have a membrane and are able to absorb stuff do...
     for(const auto& value : absorbersIndex) {

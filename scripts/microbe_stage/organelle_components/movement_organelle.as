@@ -103,8 +103,10 @@ class MovementOrganelle : OrganelleComponent{
     // return storage
     // }
 
+    // The final calculated force is multiplied by elapsed before
+    // applying. So we don't have to do that. But we need to take the right amount of atp
     Float3 calculateMovementForce(ObjectID microbeEntity, PlacedOrganelle@ organelle,
-        int milliseconds, MicrobeComponent@ microbeComponent, Position@ pos
+        float elapsed, MicrobeComponent@ microbeComponent, Position@ pos
     ) {
         // The movementDirection is the player or AI input
         Float3 direction = microbeComponent.movementDirection;
@@ -127,31 +129,26 @@ class MovementOrganelle : OrganelleComponent{
 
             // 7 per second per flagella (according to microbe descisions)
             //dropped to 7
-            double energy = abs(FLAGELLA_ENERGY_COST/milliseconds);
+            double energy = abs(FLAGELLA_ENERGY_COST * elapsed);
 
             auto availableEnergy = MicrobeOperations::takeCompound(organelle.world,
                 microbeEntity, SimulationParameters::compoundRegistry().getTypeId("atp"),
                 energy);
 
             if(availableEnergy <= 0.0f){
-                forceMagnitude = sign(forceMagnitude) * availableEnergy * 1000.f /
-                    milliseconds;
+                forceMagnitude = sign(forceMagnitude) * availableEnergy * 20.f;
                 this.movingTail = false;
 
                 _setSpeedFactor(animated, 0.25f);
             }
 
             float impulseMagnitude = (FLAGELLA_BASE_FORCE * microbeComponent.movementFactor *
-                milliseconds * forceMagnitude) / 1000.f;
+                forceMagnitude) / 100.f;
 
             // Rotate the 'thrust' based on our orientation
             direction = pos._Orientation.RotateVector(direction);
 
-            // This isn't needed
-            //direction.Y = 0;
-            //direction = direction.Normalize();
-            // Float3 impulse = direction * impulseMagnitude;
-            return direction * impulseMagnitude /* impulse */;
+            return direction * impulseMagnitude;
         } else {
             if(this.movingTail){
                 this.movingTail = false;
@@ -167,7 +164,7 @@ class MovementOrganelle : OrganelleComponent{
     update(
         ObjectID microbeEntity,
         PlacedOrganelle@ organelle,
-        int logicTime
+        float elapsed
     ) override {
 
         // TODO: find a cleaner way than having to call this every tick
@@ -201,7 +198,7 @@ class MovementOrganelle : OrganelleComponent{
         auto pos = organelle.world.GetComponent_Position(microbeEntity);
 
 
-        const auto force = calculateMovementForce(microbeEntity, organelle, logicTime,
+        const auto force = calculateMovementForce(microbeEntity, organelle, elapsed,
             microbeComponent, pos);
 
 

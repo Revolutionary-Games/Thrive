@@ -408,7 +408,7 @@ public:
      * milliseconds. this needs the support of variable timestep
      */
     void
-        Run(CellStageWorld& world);
+        Run(CellStageWorld& world, float elapsed);
 
     //! \brief Returns true when the cloud at cloudPosition contains
     //! worldPosition
@@ -507,7 +507,7 @@ private:
 
     void
         processCloud(CompoundCloudComponent& cloud,
-            int renderTime,
+            float elapsed,
             FluidSystem& fluidSystem);
 
     void
@@ -523,12 +523,12 @@ private:
         diffuse(float diffRate,
             std::vector<std::vector<float>>& oldDens,
             const std::vector<std::vector<float>>& density,
-            int dt);
+            float dt);
 
     void
         advect(const std::vector<std::vector<float>>& oldDens,
             std::vector<std::vector<float>>& density,
-            int dt,
+            float dt,
             FluidSystem& fluidSystem,
             Float2 pos);
 

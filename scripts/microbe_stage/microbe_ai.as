@@ -30,10 +30,11 @@ class MicrobeAIControllerComponent : ScriptComponent{
     }
 
     float movementRadius = 2000;
-    // That means they evaluate every 5 seconds or so, correct?
-    int reevalutationInterval = 500;
-    int intervalRemaining;
+    // That means they evaluate every AI_CELL_THINK_INTERVAL seconds
+    float reevalutationInterval = AI_CELL_THINK_INTERVAL;
+    float intervalRemaining;
     int boredom = 0;
+    //! This needs to be changed to use elapsed time instead of elapsed frames
     int ticksSinceLastToggle = 600;
     double previousStoredCompounds = 0.0f;
     Float3 direction = Float3(0, 0, 0);
@@ -100,11 +101,10 @@ class MicrobeAISystem : ScriptSystem{
 
     void Release(){}
 
-    void Run(){
-        const int logicTime = TICKSPEED;
-        passedTime+=logicTime;
+    void Run(float elapsed){
+        passedTime += elapsed;
         if (passedTime >= AI_TIME_INTERVAL){
-            passedTime=0;
+            passedTime = 0.f;
 
         // TODO: this could be cached better
         CompoundId oxytoxyId = SimulationParameters::compoundRegistry().getTypeId("oxytoxy");
@@ -122,7 +122,7 @@ class MicrobeAISystem : ScriptSystem{
             MicrobeComponent@ microbeComponent = components.second;
             Position@ position = components.third;
             // ai interval
-            aiComponent.intervalRemaining += logicTime;
+            aiComponent.intervalRemaining += AI_TIME_INTERVAL;
             // TODO: Species is now reference counted and could be stored directly
             // Cache behaviour values as we dont want to be calling "getSpecies" every frame for every microbe
             if (aiComponent.speciesAggression==-1.0f)
@@ -596,7 +596,7 @@ class MicrobeAISystem : ScriptSystem{
             if (microbeComponent.hitpoints > 0 && numberOfAgentVacuoles > 0 &&
                 (position._Position -  aiComponent.targetPosition).LengthSquared() <= aiComponent.speciesFocus*10.0f){
                 if (MicrobeOperations::getCompoundAmount(world,microbeEntity,oxytoxyId) >= MINIMUM_AGENT_EMISSION_AMOUNT){
-                    MicrobeOperations::emitAgent(world,microbeEntity, oxytoxyId,10.0f,aiComponent.speciesFocus*10.0f);
+                    MicrobeOperations::emitAgent(world,microbeEntity, oxytoxyId,10.0f,aiComponent.speciesFocus / 100.f);
                 }
             }
         }
@@ -741,7 +741,7 @@ class MicrobeAISystem : ScriptSystem{
             if (microbeComponent.hitpoints > 0 && numberOfAgentVacuoles > 0 &&
                 (position._Position -  aiComponent.targetPosition).LengthSquared() <= aiComponent.speciesFocus*10.0f){
                     if (MicrobeOperations::getCompoundAmount(world,microbeEntity,oxytoxyId) >= MINIMUM_AGENT_EMISSION_AMOUNT){
-                        MicrobeOperations::emitAgent(world,microbeEntity, oxytoxyId,10.0f,aiComponent.speciesFocus*10.0f);
+                        MicrobeOperations::emitAgent(world,microbeEntity, oxytoxyId,10.0f,aiComponent.speciesFocus / 100.f);
                         }
                     }
           }
@@ -923,5 +923,5 @@ class MicrobeAISystem : ScriptSystem{
         ScriptSystemUses(Position::TYPE)
     };
 
-    int passedTime=0;
+    float passedTime = 0;
 }
