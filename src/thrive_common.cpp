@@ -273,6 +273,28 @@ void
     }
 }
 
+void
+    pilusHitCellContact(Leviathan::PhysicalWorld& physicalWorld,
+        Leviathan::PhysicsBody& first,
+        Leviathan::PhysicsBody& second)
+{
+    LOG_WRITE("Pilus hit cell");
+
+    // This will call a script to deal damage to the target cell
+    GameWorld* gameWorld = physicalWorld.GetGameWorld();
+
+    // ScriptRunningSetup setup("pilusHitCellContact");
+
+    // auto returned =
+    //     ThriveCommon::get()->getMicrobeScripts()->ExecuteOnModule<void>(setup,
+    //         false, gameWorld, first.GetOwningEntity(),
+    //         second.GetOwningEntity());
+
+    // if(returned.Result != SCRIPT_RUN_RESULT::Success) {
+    //     LOG_ERROR("Failed to run script side pilusHitCellContact");
+    // }
+}
+
 std::unique_ptr<Leviathan::PhysicsMaterialManager>
     ThriveCommon::createPhysicsMaterials() const
 {
@@ -287,6 +309,8 @@ std::unique_ptr<Leviathan::PhysicsMaterialManager>
         std::make_unique<Leviathan::PhysicalMaterial>("engulfableMaterial", 4);
     auto chunkDamageMaterial =
         std::make_unique<Leviathan::PhysicalMaterial>("chunkDamageMaterial", 5);
+    auto pilusMaterial =
+        std::make_unique<Leviathan::PhysicalMaterial>("pilus", 6);
 
     // Set callbacks //
 
@@ -307,6 +331,10 @@ std::unique_ptr<Leviathan::PhysicsMaterialManager>
     cellMaterial->FormPairWith(*cellMaterial)
         .SetCallbacks(cellOnCellAABBHitCallback, cellOnCellActualContact);
 
+    // Stabbing
+    pilusMaterial->FormPairWith(*cellMaterial)
+        .SetCallbacks(nullptr, pilusHitCellContact);
+
     auto manager = std::make_unique<Leviathan::PhysicsMaterialManager>();
 
     manager->LoadedMaterialAdd(std::move(cellMaterial));
@@ -314,6 +342,7 @@ std::unique_ptr<Leviathan::PhysicsMaterialManager>
     manager->LoadedMaterialAdd(std::move(agentMaterial));
     manager->LoadedMaterialAdd(std::move(engulfableMaterial));
     manager->LoadedMaterialAdd(std::move(chunkDamageMaterial));
+    manager->LoadedMaterialAdd(std::move(pilusMaterial));
 
     return manager;
 }
