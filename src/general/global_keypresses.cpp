@@ -11,7 +11,8 @@ using namespace thrive;
 
 GlobalUtilityKeyHandler::GlobalUtilityKeyHandler(KeyConfiguration& keys) :
     m_screenshot(keys.ResolveControlNameToFirstKey("Screenshot")),
-    m_debugOverlay(keys.ResolveControlNameToFirstKey("ToggleDebugOverlay"))
+    m_debugOverlay(keys.ResolveControlNameToFirstKey("ToggleDebugOverlay")),
+    m_debugPhysics(keys.ResolveControlNameToFirstKey("ToggleDebugPhysics"))
 {}
 // ------------------------------------ //
 bool
@@ -33,6 +34,15 @@ bool
             ThriveGame::Get()->toggleDebugOverlay();
         } else {
             LOG_WARNING("Can't toggle debug overlay");
+        }
+        return true;
+    }
+
+    if(m_debugPhysics.Match(key, modifiers)) {
+        if(ThriveGame::Get()) {
+            ThriveGame::Get()->toggleDebugPhysics();
+        } else {
+            LOG_WARNING("Can't toggle debug physics");
         }
         return true;
     }

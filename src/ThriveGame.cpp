@@ -788,6 +788,27 @@ void
         // The data event will make it visible
     }
 }
+
+void
+    ThriveGame::toggleDebugPhysics()
+{
+    if(m_physicsDebugEnabled) {
+
+        m_physicsDebugEnabled = false;
+
+        if(m_impl->m_cellStage) {
+            m_impl->m_cellStage->DisablePhysicsDebugDraw();
+        }
+
+    } else {
+
+        m_physicsDebugEnabled = true;
+
+        if(m_impl->m_cellStage) {
+            m_impl->m_cellStage->EnablePhysicsDebugDraw();
+        }
+    }
+}
 // ------------------------------------ //
 void
     ThriveGame::connectToServer(const std::string& url)
@@ -1495,6 +1516,7 @@ void
     keyconfigobj->AddKeyIfMissing(guard, "RotateRight", {"A"});
     keyconfigobj->AddKeyIfMissing(guard, "RotateLeft", {"D"});
     keyconfigobj->AddKeyIfMissing(guard, "ToggleDebugOverlay", {"F3"});
+    keyconfigobj->AddKeyIfMissing(guard, "ToggleDebugPhysics", {"F4"});
 }
 // ------------------------------------ //
 bool
