@@ -675,8 +675,10 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
     void hideEntity()
     {
         auto renderNode = world.GetComponent_RenderNode(organelleEntity);
-        if(renderNode !is null && renderNode.Node.valid())
-            renderNode.Node.removeFromParent();
+        if(renderNode !is null && renderNode.Node.valid()){
+            renderNode.Hidden = true;
+            renderNode.Marked = true;
+        }
 
         // Also hide components as they also can have entities
         for(uint i = 0; i < components.length(); ++i){
