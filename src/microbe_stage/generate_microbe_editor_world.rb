@@ -5,51 +5,37 @@
 require_relative '../../RubySetupSystem/RubyCommon.rb'
 require_relative '../../ThirdParty/Leviathan/Helpers/FileGen.rb'
 
-abort "no target files provided" if ARGV.count < 2
+abort 'no target files provided' if ARGV.count < 2
 
 generator = Generator.new ARGV[0], separateFiles: true
 
-generator.useNamespace "thrive"
+generator.useNamespace 'thrive'
 # generator.useExportMacro "THRIVE_EXPORT"
 generator.useExportMacro nil
-generator.addInclude "Entities/GameWorld.h"
-generator.addInclude "Generated/StandardWorld.h"
+generator.addInclude 'Entities/GameWorld.h'
+generator.addInclude 'Generated/StandardWorld.h'
 # Needs script include for basic world functionality
-generator.addInclude "Script/ScriptTypeResolver.h"
+generator.addInclude 'Script/ScriptTypeResolver.h'
 
-generator.addInclude "thrive_world_factory.h"
+generator.addInclude 'thrive_world_factory.h'
 
-
-editorWorld = GameWorldClass.new(
-  "MicrobeEditorWorld", componentTypes: [  
-  ],
-  systems: [
-  ],
-  systemspreticksetup: (<<-END
-  const auto timeAndTickTuple = GetTickAndTime();
-  const auto calculatedTick = std::get<0>(timeAndTickTuple);
-  const auto progressInTick = std::get<1>(timeAndTickTuple);
-  const auto tick = GetTickNumber();
-END
-                       ),
+editor_world = GameWorldClass.new(
+  'MicrobeEditorWorld',
+  componentTypes: [],
+  systems: [],
   networking: false
 )
 
-editorWorld.WorldType = "static_cast<int32_t>(thrive::THRIVE_WORLD_TYPE::MICROBE_EDITOR)"
-editorWorld.base "Leviathan::StandardWorld"
+editor_world.WorldType = 'static_cast<int32_t>(thrive::THRIVE_WORLD_TYPE::MICROBE_EDITOR)'
+editor_world.base 'Leviathan::StandardWorld'
 
-generator.add editorWorld
-
-
+generator.add editor_world
 
 # Output the file
 generator.run
 
+bind_generator = Generator.new ARGV[1], bareOutput: true
 
-bindGenerator = Generator.new ARGV[1], bareOutput: true
+bind_generator.add OutputText.new(editor_world.genAngelScriptBindings)
 
-
-bindGenerator.add OutputText.new(editorWorld.genAngelScriptBindings)
-
-
-bindGenerator.run
+bind_generator.run

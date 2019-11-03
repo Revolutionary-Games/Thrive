@@ -68,5 +68,5 @@ void createAgentCloud(CellStageWorld@ world, CompoundId compoundId,
     // // Need to set the tint
     // model.GraphicalObject.setCustomParameter(1, bs::Vector4(1, 1, 1, 1));
 
-    auto timedLifeComponent = world.Create_TimedLifeComponent(agentEntity, int(lifetime));
+    auto timedLifeComponent = world.Create_TimedLifeComponent(agentEntity, lifetime);
 }

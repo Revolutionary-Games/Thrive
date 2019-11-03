@@ -314,9 +314,9 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
     //
     // Override this to make your organelle class do something at regular intervals
     //
-    // @param logicTime
+    // @param elapsed
     //  The time since the last call to update()
-    void update(int logicTime)
+    void update(float elapsed)
     {
         // If the organelle is supposed to be another color.
         if(_needsColourUpdate){
@@ -325,7 +325,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
         // Update each OrganelleComponent
         for(uint i = 0; i < components.length(); ++i){
-            components[i].update(microbeEntity, this, logicTime);
+            components[i].update(microbeEntity, this, elapsed);
         }
     }
 
