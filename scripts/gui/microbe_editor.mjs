@@ -1196,6 +1196,9 @@ function updateSelectedPatchData(patch){
         return;
     }
 
+    // Get chunck values of patch
+    const chunk = getPatchChunk(patch);
+
     document.getElementById("noPatchSelectedText").style.display = "none";
     document.getElementById("patchInfoBox").style.display = "block";
 
@@ -1243,42 +1246,6 @@ function updateSelectedPatchData(patch){
         updateDifferentCondition(patch, patchData.patches[currentPatchId]);
     }
 
-    let chunkGlucose = 0;
-    let chunkPhoshpates = 0;
-    let chunkAmmonia = 0;
-    let chunkHydrogenSulfide = 0;
-    let chunkiron = 0;
-
-    // Let chunkAtp = 0;
-
-    for(const chunk of patch.biome.chunks ) {
-        if(chunk.density != 0) {
-            for(const compound of chunk.compounds) {
-                switch (compound.name) {
-                case "glucose":
-                    chunkGlucose += chunk.density * compound.amount;
-                    break;
-                case "phoshpates":
-                    chunkPhoshpates += chunk.density * compound.amount;
-                    break;
-                case "ammonia":
-                    chunkAmmonia += chunk.density * compound.amount;
-                    break;
-                case "hydrogensulfide":
-                    chunkHydrogenSulfide += chunk.density * compound.amount;
-                    break;
-                case "iron":
-                    chunkiron += chunk.density * compound.amount;
-                    break;
-                case "atp":
-                    // ChunkAtp += chunk.density * compound.amount;
-                    break;
-                default:
-                    break;
-                }
-            }
-        }
-    }
 
     // Biome name
     document.getElementById("patchName").textContent = "Biome: " + patch.biome.name;
@@ -1298,18 +1265,18 @@ function updateSelectedPatchData(patch){
 
     document.getElementById("microbeHUDPatchHydrogenSulfide").textContent =
      (patch.biome.compounds.hydrogensulfide.density *
-     patch.biome.compounds.hydrogensulfide.amount + chunkHydrogenSulfide).toFixed(3) + "%";
+     patch.biome.compounds.hydrogensulfide.amount + chunk.hydrogensulfide).toFixed(3) + "%";
     document.getElementById("microbeHUDPatchAmmonia").textContent =
      (patch.biome.compounds.ammonia.density *
-     patch.biome.compounds.ammonia.amount + chunkAmmonia).toFixed(3) + "%";
+     patch.biome.compounds.ammonia.amount + chunk.ammonia).toFixed(3) + "%";
     document.getElementById("microbeHUDPatchGlucose").textContent =
      (patch.biome.compounds.glucose.density *
-     patch.biome.compounds.glucose.amount + chunkGlucose).toFixed(3) + "%";
+     patch.biome.compounds.glucose.amount + chunk.glucose).toFixed(3) + "%";
     document.getElementById("microbeHUDPatchPhosphate").textContent =
      (patch.biome.compounds.phosphates.density *
-    patch.biome.compounds.phosphates.amount + chunkPhoshpates).toFixed(3) + "%";
+    patch.biome.compounds.phosphates.amount + chunk.phosphates).toFixed(3) + "%";
 
-    document.getElementById("microbeHUDPatchIron").textContent = chunkiron.toFixed(3) + "%";
+    document.getElementById("microbeHUDPatchIron").textContent = chunk.iron.toFixed(3) + "%";
 
     for(const species of patch.species){
         const name = species.species.genus + " " + species.species.epithet;
@@ -1364,92 +1331,21 @@ function moveToPatchClicked(){
 }
 
 
-function updateDifferentCondition(selectedPatch, currentPatchData) {
-
-    let oldChunkGlucose = 0;
-    let oldChunkPhoshpates = 0;
-    let oldChunkAmmonia = 0;
-    let oldChunkHydrogenSulfide = 0;
-    let oldChunkiron = 0;
-
-    // Let oldChunkAtp = 0;
+function updateDifferentCondition(selectedPatch, currentPatch) {
 
 
-    for(const chunk of currentPatchData.biome.chunks ) {
-        if(chunk.density != 0) {
-            for(const compound of chunk.compounds) {
-                switch (compound.name) {
-                case "glucose":
-                    oldChunkGlucose += chunk.density * compound.amount;
-                    break;
-                case "phoshpates":
-                    oldChunkPhoshpates += chunk.density * compound.amount;
-                    break;
-                case "ammonia":
-                    oldChunkAmmonia += chunk.density * compound.amount;
-                    break;
-                case "hydrogensulfide":
-                    oldChunkHydrogenSulfide += chunk.density * compound.amount;
-                    break;
-                case "iron":
-                    oldChunkiron += chunk.density * compound.amount;
-                    break;
-                case "atp":
-                    // OldChunkAtp += chunk.density * compound.amount;
-                    break;
-                default:
-                    break;
-                }
-            }
-        }
-    }
-
-    let selChunkGlucose = 0;
-    let selChunkPhoshpates = 0;
-    let selChunkAmmonia = 0;
-    let selChunkHydrogenSulfide = 0;
-    let selChunkiron = 0;
-
-    // Let selChunkAtp = 0;
-
-    for(const chunk of selectedPatch.biome.chunks ) {
-        if(chunk.density != 0) {
-            for(const compound of chunk.compounds) {
-                switch (compound.name) {
-                case "glucose":
-                    selChunkGlucose += chunk.density * compound.amount;
-                    break;
-                case "phoshpates":
-                    selChunkPhoshpates += chunk.density * compound.amount;
-                    break;
-                case "ammonia":
-                    selChunkAmmonia += chunk.density * compound.amount;
-                    break;
-                case "hydrogensulfide":
-                    selChunkHydrogenSulfide += chunk.density * compound.amount;
-                    break;
-                case "iron":
-                    selChunkiron += chunk.density * compound.amount;
-                    break;
-                case "atp":
-                    // SelChunkAtp += chunk.density * compound.amount;
-                    break;
-                default:
-                    break;
-                }
-            }
-        }
-    }
+    const selectedPatchChunk = getPatchChunk(selectedPatch);
+    const currentPatchChunk = getPatchChunk(currentPatch);
 
     // ========================== TEMPERATURE ========================== //
     let nextCompound = selectedPatch.biome.temperature;
 
-    if(nextCompound > currentPatchData.biome.temperature) {
+    if(nextCompound > currentPatch.biome.temperature) {
 
         document.getElementById("microbeHUDPatchTemperatureSituation").style.backgroundImage =
         "url('../../Textures/gui/bevel/increase.png')";
 
-    } else if(nextCompound < currentPatchData.biome.temperature) {
+    } else if(nextCompound < currentPatch.biome.temperature) {
 
         document.getElementById("microbeHUDPatchTemperatureSituation").style.backgroundImage =
         "url('../../Textures/gui/bevel/decrease.png')";
@@ -1462,12 +1358,12 @@ function updateDifferentCondition(selectedPatch, currentPatchData) {
     // ========================== SUNLIGHT ==========================  //
     nextCompound = selectedPatch.biome.compounds.sunlight.dissolved;
 
-    if( nextCompound > currentPatchData.biome.compounds.sunlight.dissolved ) {
+    if( nextCompound > currentPatch.biome.compounds.sunlight.dissolved ) {
 
         document.getElementById("microbeHUDPatchLightSituation").style.backgroundImage =
         "url('../../Textures/gui/bevel/increase.png')";
 
-    } else if( nextCompound < currentPatchData.biome.compounds.sunlight.dissolved ) {
+    } else if( nextCompound < currentPatch.biome.compounds.sunlight.dissolved ) {
 
         document.getElementById("microbeHUDPatchLightSituation").style.backgroundImage =
         "url('../../Textures/gui/bevel/decrease.png')";
@@ -1479,16 +1375,16 @@ function updateDifferentCondition(selectedPatch, currentPatchData) {
 
     // ========================== HYDROGEN SULFIDE ========================== //
     nextCompound = selectedPatch.biome.compounds.hydrogensulfide.density *
-    selectedPatch.biome.compounds.hydrogensulfide.amount + selChunkHydrogenSulfide;
+    selectedPatch.biome.compounds.hydrogensulfide.amount + selectedPatchChunk.hydrogensulfide;
 
-    if( nextCompound > currentPatchData.biome.compounds.hydrogensulfide.density *
-    currentPatchData.biome.compounds.hydrogensulfide.amount + oldChunkHydrogenSulfide ) {
+    if( nextCompound > currentPatch.biome.compounds.hydrogensulfide.density *
+    currentPatch.biome.compounds.hydrogensulfide.amount + currentPatchChunk.hydrogensulfide ) {
 
         document.getElementById("microbeHUDPatchHydrogenSulfideSituation").
             style.backgroundImage = "url('../../Textures/gui/bevel/increase.png')";
 
-    } else if( nextCompound < currentPatchData.biome.compounds.hydrogensulfide.density *
-    currentPatchData.biome.compounds.hydrogensulfide.amount + oldChunkHydrogenSulfide) {
+    } else if( nextCompound < currentPatch.biome.compounds.hydrogensulfide.density *
+    currentPatch.biome.compounds.hydrogensulfide.amount + currentPatchChunk.hydrogensulfide) {
 
         document.getElementById("microbeHUDPatchHydrogenSulfideSituation").
             style.backgroundImage = "url('../../Textures/gui/bevel/decrease.png')";
@@ -1500,16 +1396,16 @@ function updateDifferentCondition(selectedPatch, currentPatchData) {
 
     // ========================== GLUCOSE ==========================  //
     nextCompound = selectedPatch.biome.compounds.glucose.density *
-    selectedPatch.biome.compounds.glucose.amount + selChunkGlucose;
+    selectedPatch.biome.compounds.glucose.amount + selectedPatchChunk.glucose;
 
-    if( nextCompound > currentPatchData.biome.compounds.glucose.density *
-    currentPatchData.biome.compounds.glucose.amount + oldChunkGlucose) {
+    if( nextCompound > currentPatch.biome.compounds.glucose.density *
+    currentPatch.biome.compounds.glucose.amount + currentPatchChunk.glucose) {
 
         document.getElementById("microbeHUDPatchGlucoseSituation").style.backgroundImage =
         "url('../../Textures/gui/bevel/increase.png')";
 
-    } else if( nextCompound < currentPatchData.biome.compounds.glucose.density *
-    currentPatchData.biome.compounds.glucose.amount + oldChunkGlucose) {
+    } else if( nextCompound < currentPatch.biome.compounds.glucose.density *
+    currentPatch.biome.compounds.glucose.amount + currentPatchChunk.glucose) {
 
         document.getElementById("microbeHUDPatchGlucoseSituation").style.backgroundImage =
         "url('../../Textures/gui/bevel/decrease.png')";
@@ -1520,14 +1416,14 @@ function updateDifferentCondition(selectedPatch, currentPatchData) {
     }
 
     // ========================== IRON ==========================  //
-    nextCompound = selChunkiron;
+    nextCompound = selectedPatchChunk.iron;
 
-    if( nextCompound > oldChunkiron ) {
+    if( nextCompound > currentPatch.iron ) {
 
         document.getElementById("microbeHUDPatchIronSituation").style.backgroundImage =
         "url('../../Textures/gui/bevel/increase.png')";
 
-    } else if( nextCompound < oldChunkiron) {
+    } else if( nextCompound < currentPatchChunk.iron) {
 
         document.getElementById("microbeHUDPatchIronSituation").style.backgroundImage =
         "url('../../Textures/gui/bevel/decrease.png')";
@@ -1539,16 +1435,16 @@ function updateDifferentCondition(selectedPatch, currentPatchData) {
 
     // ========================== AMMONIA ==========================  //
     nextCompound = selectedPatch.biome.compounds.ammonia.density *
-    selectedPatch.biome.compounds.ammonia.amount + selChunkAmmonia;
+    selectedPatch.biome.compounds.ammonia.amount + selectedPatchChunk.ammonia;
 
-    if( nextCompound > currentPatchData.biome.compounds.ammonia.density *
-    currentPatchData.biome.compounds.ammonia.amount + oldChunkAmmonia) {
+    if( nextCompound > currentPatch.biome.compounds.ammonia.density *
+    currentPatch.biome.compounds.ammonia.amount + currentPatchChunk.ammonia) {
 
         document.getElementById("microbeHUDPatchAmmoniaSituation").style.backgroundImage =
         "url('../../Textures/gui/bevel/increase.png')";
 
-    } else if( nextCompound < currentPatchData.biome.compounds.ammonia.density *
-    currentPatchData.biome.compounds.ammonia.amount + oldChunkAmmonia) {
+    } else if( nextCompound < currentPatch.biome.compounds.ammonia.density *
+    currentPatch.biome.compounds.ammonia.amount + currentPatchChunk.ammonia) {
 
         document.getElementById("microbeHUDPatchAmmoniaSituation").style.backgroundImage =
         "url('../../Textures/gui/bevel/decrease.png')";
@@ -1560,16 +1456,16 @@ function updateDifferentCondition(selectedPatch, currentPatchData) {
 
     // ========================== PHOSPHATES ==========================  //
     nextCompound = selectedPatch.biome.compounds.phosphates.density *
-    selectedPatch.biome.compounds.phosphates.amount + selChunkPhoshpates;
+    selectedPatch.biome.compounds.phosphates.amount + selectedPatchChunk.phosphates;
 
-    if( nextCompound > currentPatchData.biome.compounds.phosphates.density *
-    currentPatchData.biome.compounds.phosphates.amount + oldChunkPhoshpates) {
+    if( nextCompound > currentPatch.biome.compounds.phosphates.density *
+    currentPatch.biome.compounds.phosphates.amount + currentPatchChunk.phosphates) {
 
         document.getElementById("microbeHUDPatchPhosphateSituation").style.backgroundImage =
         "url('../../Textures/gui/bevel/increase.png')";
 
-    } else if( nextCompound < currentPatchData.biome.compounds.phosphates.density *
-    currentPatchData.biome.compounds.phosphates.amount + oldChunkPhoshpates) {
+    } else if( nextCompound < currentPatch.biome.compounds.phosphates.density *
+    currentPatch.biome.compounds.phosphates.amount + currentPatchChunk.phosphates) {
 
         document.getElementById("microbeHUDPatchPhosphateSituation").style.backgroundImage =
         "url('../../Textures/gui/bevel/decrease.png')";
@@ -1579,4 +1475,52 @@ function updateDifferentCondition(selectedPatch, currentPatchData) {
         "none";
     }
 
+}
+
+function getPatchChunk(patch) {
+
+
+    let glucose = 0;
+    let phosphates = 0;
+    let ammonia = 0;
+    let hydrogensulfide = 0;
+    let iron = 0;
+
+
+    for(const chunk of patch.biome.chunks ) {
+        if(chunk.density != 0) {
+            for(const compound of chunk.compounds) {
+                switch (compound.name) {
+                case "glucose":
+                    glucose += chunk.density * compound.amount;
+                    break;
+                case "phoshpates":
+                    phosphates += chunk.density * compound.amount;
+                    break;
+                case "ammonia":
+                    ammonia += chunk.density * compound.amount;
+                    break;
+                case "hydrogensulfide":
+                    hydrogensulfide += chunk.density * compound.amount;
+                    break;
+                case "iron":
+                    iron += chunk.density * compound.amount;
+                    break;
+                case "atp":
+                    // ChunkAtp += chunk.density * compound.amount;
+                    break;
+                default:
+                    break;
+                }
+            }
+        }
+    }
+
+    return {
+        glucose,
+        phosphates,
+        ammonia,
+        hydrogensulfide,
+        iron
+    };
 }
