@@ -119,6 +119,8 @@ class Pilus : OrganelleComponent{
 
         @pilusShape = organelle.world.GetPhysicalWorld().CreateCone(pilusSize / 10.f,
             pilusSize);
+
+        pilusShape.SetCustomTag(PHYSICS_PILUS_TAG);
     }
 
     //! Needed to calculate final pos on update

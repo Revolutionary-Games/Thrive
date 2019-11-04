@@ -4,7 +4,9 @@
 #include "microbe_stage/simulation_parameters.h"
 
 #include <Addons/GameModuleLoader.h>
+#include <BulletCollision/NarrowPhaseCollision/btPersistentManifold.h>
 #include <Engine.h>
+#include <Entities/ScriptComponentHolder.h>
 #include <Physics/PhysicsMaterialManager.h>
 #include <Script/Bindings/BindHelpers.h>
 #include <Script/Bindings/StandardWorldBindHelper.h>
@@ -251,25 +253,72 @@ void
     }
 }
 
-
-
 void
-    cellOnCellActualContact(Leviathan::PhysicalWorld& physicalWorld,
+    cellOnManifoldCallback(Leviathan::PhysicalWorld& physicalWorld,
         Leviathan::PhysicsBody& first,
-        Leviathan::PhysicsBody& second)
+        Leviathan::PhysicsBody& second,
+        const btPersistentManifold& manifold)
 {
+    Leviathan::PhysicsShape* shape1 = first.GetShape();
+    Leviathan::PhysicsShape* shape2 = second.GetShape();
+
+    LEVIATHAN_ASSERT(
+        shape1 && shape2, "some body in physics callback has no shape");
+
     // This will call a script that pulls cells in towards engulfers
     GameWorld* gameWorld = physicalWorld.GetGameWorld();
+    auto holder = gameWorld->GetScriptComponentHolder("MicrobeComponent");
+
+    // The world will hold the holder while we do our thing
+    holder->Release();
+
+    asIScriptObject* obj1 = nullptr;
+    asIScriptObject* obj2;
+
+    LEVIATHAN_ASSERT(holder, "GameWorld has no microbe component holder");
+
+    bool appliedEffect = false;
+
+    const int numContacts = manifold.getNumContacts();
 
     ScriptRunningSetup setup("cellOnCellActualContact");
 
-    auto returned =
-        ThriveCommon::get()->getMicrobeScripts()->ExecuteOnModule<void>(setup,
-            false, gameWorld, first.GetOwningEntity(),
-            second.GetOwningEntity());
+    for(int i = 0; i < numContacts; ++i) {
 
-    if(returned.Result != SCRIPT_RUN_RESULT::Success) {
-        LOG_ERROR("Failed to run script side beingEngulfed");
+        const btManifoldPoint& contactPoint = manifold.getContactPoint(i);
+
+        if(contactPoint.getDistance() < 0.f) {
+            if(!obj1) {
+
+                // The holder will keep the references alive, so we can release
+                // them immediately
+                obj1 = holder->Find(first.GetOwningEntity());
+
+                if(!obj1)
+                    return;
+                obj1->Release();
+
+                obj2 = holder->Find(second.GetOwningEntity());
+
+                if(!obj2)
+                    return;
+                obj2->Release();
+            }
+
+            auto returned =
+                ThriveCommon::get()->getMicrobeScripts()->ExecuteOnModule<bool>(
+                    setup, false, gameWorld, shape1, obj1, shape2, obj2,
+                    contactPoint.m_index0, contactPoint.m_index1,
+                    std::abs(static_cast<float>(contactPoint.getDistance())),
+                    appliedEffect);
+
+            if(returned.Result != SCRIPT_RUN_RESULT::Success) {
+                LOG_ERROR("Failed to run script side cell on cell collision");
+                break;
+            }
+
+            appliedEffect = returned.Value;
+        }
     }
 }
 
@@ -332,7 +381,8 @@ std::unique_ptr<Leviathan::PhysicsMaterialManager>
 
     // Engulfing
     cellMaterial->FormPairWith(*cellMaterial)
-        .SetCallbacks(cellOnCellAABBHitCallback, cellOnCellActualContact);
+        .SetCallbacks(
+            cellOnCellAABBHitCallback, nullptr, cellOnManifoldCallback);
 
     // // Stabbing
     // pilusMaterial->FormPairWith(*cellMaterial)
