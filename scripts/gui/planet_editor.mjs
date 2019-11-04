@@ -30,7 +30,6 @@ function updatePlanetValues(data){
     var nitrogenPercentage = parseInt(100*data.atmosphereNitrogen/data.atmosphereMass);
     document.getElementById("planetOxygenPercentageValueBox").innerHTML = "Percentage of Oxygen in Atmosphere <br>" + oxygenPercentage + "%.";
     document.getElementById("planetCarbonDioxidePercentageValueBox").innerHTML = "Percentage of Carbon Dioxide in Atmosphere <br>" + carbonDioxidePercentage + " %.";
-    document.getElementById("planetWaterPercentageValueBox").innerHTML = "Percentage of Water in Atmosphere <br>" + waterPercentage + "%.";
     document.getElementById("planetNitrogenPercentageValueBox").innerHTML = "Percentage of Nitrogen in Atmosphere <br>" + nitrogenPercentage + " %.";
     document.getElementById("planetAtmosphereOxygenSlider").value = oxygenPercentage;
     document.getElementById("planetAtmosphereCarbonDioxideSlider").value = carbonDioxidePercentage;

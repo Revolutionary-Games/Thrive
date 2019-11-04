@@ -22,3 +22,26 @@ void reduceGlucoseOverTime(GameWorld@ world, double elapsed, double totalElapsed
         }
     }
 }
+
+//! Updates the CO2 and O2 levels based on the planets current global state.
+void updatePatchGasses(GameWorld@ world, double elapsed, double totalElapsed)
+{
+    CellStageWorld@ casted = cast<CellStageWorld>(world);
+    assert(casted !is null, "non-microbe world given");
+
+    const auto compoundIdCarbonDioxide = SimulationParameters::compoundRegistry().getTypeId("carbondioxide");
+    const auto compoundIdOxygen = SimulationParameters::compoundRegistry().getTypeId("oxygen");
+
+    auto patches = casted.GetPatchManager().getCurrentMap().getPatches();
+
+    for(uint i = 0; i < patches.length(); ++i){
+
+        Patch@ patch = patches[i];
+
+        BiomeCompoundData@ dataCarbonDioxide = patch.getBiome().getCompound(compoundIdCarbonDioxide);
+        LOG_INFO("**** compoundIdCarbonDioxide" + dataCarbonDioxide.dissolved);
+
+        BiomeCompoundData@ dataOxygen = patch.getBiome().getCompound(compoundIdOxygen);
+        LOG_INFO("**** compoundIdOxygen" + dataOxygen.dissolved);
+    }
+}

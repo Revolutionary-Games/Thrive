@@ -51,6 +51,8 @@ void setupSystemsForWorld(CellStageWorld@ world)
     // Add world effects
     world.GetTimedWorldOperations().registerEffect("reduce glucose over time",
         @reduceGlucoseOverTime);
+    world.GetTimedWorldOperations().registerEffect("update patch gasses",
+        @updatePatchGasses);
 }
 
 //! Server variant of setupSystemsForWorld

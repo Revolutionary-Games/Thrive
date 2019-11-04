@@ -513,12 +513,10 @@ void
     atmosphereOxygen = atmosphereMass * currentPercentage;
     double newRange = 1 - currentPercentage;
     currentPercentage = fRand(0, newRange);
-    atmosphereWater = atmosphereMass * currentPercentage;
-    newRange = newRange - currentPercentage;
-    currentPercentage = fRand(0, newRange);
     atmosphereCarbonDioxide = atmosphereMass * currentPercentage;
     newRange = newRange - currentPercentage;
     atmosphereNitrogen = atmosphereMass * newRange;
+    atmosphereWater = atmosphereMass * 0.04;
 }
 void
     Planet::setAtmosphereConstituentsEarth()
@@ -527,25 +525,27 @@ void
     atmosphereWater = atmosphereMass * 0.04;
     atmosphereCarbonDioxide = atmosphereMass * 0.04;
     atmosphereNitrogen = atmosphereMass * 0.72;
+    generatePropertiesAtmosphere(1);
 }
 
 void
     Planet::setOxygen(double percentageAtmosphereOxygen)
 {
     atmosphereOxygen = atmosphereMass * percentageAtmosphereOxygen;
-    atmosphereWater = std::min(atmosphereMass * 0.04, atmosphereMass - atmosphereOxygen);
-    atmosphereCarbonDioxide = std::max(0.0d,std::min(atmosphereCarbonDioxide, atmosphereMass - atmosphereOxygen - atmosphereWater));
-    atmosphereNitrogen = std::max(0.0d, atmosphereMass - atmosphereOxygen - atmosphereWater - atmosphereCarbonDioxide);
-
+    atmosphereCarbonDioxide = std::max(0.0d,std::min(atmosphereCarbonDioxide, atmosphereMass - atmosphereOxygen));
+    atmosphereNitrogen = std::max(0.0d, atmosphereMass - atmosphereOxygen - atmosphereCarbonDioxide);
+    atmosphereWater = atmosphereMass * 0.04;
+    generatePropertiesAtmosphere(1);
 }
 
 void
     Planet::setCarbonDioxide(double percentageAtmosphereCarbonDioxide)
 {
     atmosphereCarbonDioxide = atmosphereMass * percentageAtmosphereCarbonDioxide;
-    atmosphereWater = std::min(atmosphereMass * 0.04, atmosphereMass - atmosphereCarbonDioxide);
-    atmosphereOxygen = std::max(0.0d,std::min(atmosphereOxygen, atmosphereMass - atmosphereCarbonDioxide - atmosphereWater));
-    atmosphereNitrogen = std::max(0.0d, atmosphereMass - atmosphereOxygen - atmosphereWater - atmosphereCarbonDioxide);
+    atmosphereOxygen = std::max(0.0d,std::min(atmosphereOxygen, atmosphereMass - atmosphereCarbonDioxide));
+    atmosphereNitrogen = std::max(0.0d, atmosphereMass - atmosphereOxygen - atmosphereCarbonDioxide);
+    atmosphereWater = atmosphereMass * 0.04;
+    generatePropertiesAtmosphere(1);
 }
 
 // compute the atmospheric parameters from the mass of gas
