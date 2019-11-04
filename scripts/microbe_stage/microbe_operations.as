@@ -62,6 +62,25 @@ PlacedOrganelle@ getOrganelleAt(CellStageWorld@ world, ObjectID microbeEntity, I
     return OrganellePlacement::getOrganelleAt(microbeComponent.organelles, hex);
 }
 
+//! Helper for other code to mess with a microbe collision. After editing you must call
+//! finishMicrobeCollisionShapeEditing.
+//! \note If at all possible you should use another method to edit the collision
+PhysicsShape@ getMicrobeCollisionShapeForEditing(CellStageWorld@ world, ObjectID microbeEntity)
+{
+    // Adding after cell creation
+    auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
+    if(rigidBodyComponent is null || rigidBodyComponent.Body is null)
+        return null;
+    return rigidBodyComponent.Body.Shape;
+}
+
+void finishMicrobeCollisionShapeEditing(CellStageWorld@ world, ObjectID microbeEntity)
+{
+    auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
+    rigidBodyComponent.ChangeShape(world.GetPhysicalWorld(),
+        rigidBodyComponent.Body.Shape);
+}
+
 // Removes the organelle at a hex cell
 // Note that this renders the organelle unusable as we destroy its underlying entity
 //

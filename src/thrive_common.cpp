@@ -281,7 +281,7 @@ void
     LOG_WRITE("Pilus hit cell");
 
     // This will call a script to deal damage to the target cell
-    GameWorld* gameWorld = physicalWorld.GetGameWorld();
+    // GameWorld* gameWorld = physicalWorld.GetGameWorld();
 
     // ScriptRunningSetup setup("pilusHitCellContact");
 
@@ -309,6 +309,9 @@ std::unique_ptr<Leviathan::PhysicsMaterialManager>
         std::make_unique<Leviathan::PhysicalMaterial>("engulfableMaterial", 4);
     auto chunkDamageMaterial =
         std::make_unique<Leviathan::PhysicalMaterial>("chunkDamageMaterial", 5);
+
+    // Not currently used as the pilus is a part of the cell in order for it to
+    // not spaz out. So it can't have a separate material
     auto pilusMaterial =
         std::make_unique<Leviathan::PhysicalMaterial>("pilus", 6);
 
@@ -331,9 +334,9 @@ std::unique_ptr<Leviathan::PhysicsMaterialManager>
     cellMaterial->FormPairWith(*cellMaterial)
         .SetCallbacks(cellOnCellAABBHitCallback, cellOnCellActualContact);
 
-    // Stabbing
-    pilusMaterial->FormPairWith(*cellMaterial)
-        .SetCallbacks(nullptr, pilusHitCellContact);
+    // // Stabbing
+    // pilusMaterial->FormPairWith(*cellMaterial)
+    //     .SetCallbacks(nullptr, pilusHitCellContact);
 
     auto manager = std::make_unique<Leviathan::PhysicsMaterialManager>();
 
@@ -342,7 +345,7 @@ std::unique_ptr<Leviathan::PhysicsMaterialManager>
     manager->LoadedMaterialAdd(std::move(agentMaterial));
     manager->LoadedMaterialAdd(std::move(engulfableMaterial));
     manager->LoadedMaterialAdd(std::move(chunkDamageMaterial));
-    manager->LoadedMaterialAdd(std::move(pilusMaterial));
+    // manager->LoadedMaterialAdd(std::move(pilusMaterial));
 
     return manager;
 }
