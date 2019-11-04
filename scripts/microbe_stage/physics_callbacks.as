@@ -188,6 +188,8 @@ bool cellOnCellActualContact(GameWorld@ world,
     if(firstIsPilus && secondIsPilus){
         // Pilus on pilus doesn't deal damage and you can't engulf
         // Maybe we should always return true here to prevent engulfing from happening
+        // in any case. By not forcing true return here a subsequent call might allow
+        // engulfing to happen (if the membranes are touching in addition to the piluses)
         return handled;
     } else if(firstIsPilus || secondIsPilus){
 

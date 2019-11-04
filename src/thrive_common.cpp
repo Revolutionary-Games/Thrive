@@ -268,14 +268,13 @@ void
     // This will call a script that pulls cells in towards engulfers
     GameWorld* gameWorld = physicalWorld.GetGameWorld();
     auto holder = gameWorld->GetScriptComponentHolder("MicrobeComponent");
+    LEVIATHAN_ASSERT(holder, "GameWorld has no microbe component holder");
 
     // The world will hold the holder while we do our thing
     holder->Release();
 
     asIScriptObject* obj1 = nullptr;
     asIScriptObject* obj2;
-
-    LEVIATHAN_ASSERT(holder, "GameWorld has no microbe component holder");
 
     bool appliedEffect = false;
 
@@ -320,28 +319,6 @@ void
             appliedEffect = returned.Value;
         }
     }
-}
-
-void
-    pilusHitCellContact(Leviathan::PhysicalWorld& physicalWorld,
-        Leviathan::PhysicsBody& first,
-        Leviathan::PhysicsBody& second)
-{
-    LOG_WRITE("Pilus hit cell");
-
-    // This will call a script to deal damage to the target cell
-    // GameWorld* gameWorld = physicalWorld.GetGameWorld();
-
-    // ScriptRunningSetup setup("pilusHitCellContact");
-
-    // auto returned =
-    //     ThriveCommon::get()->getMicrobeScripts()->ExecuteOnModule<void>(setup,
-    //         false, gameWorld, first.GetOwningEntity(),
-    //         second.GetOwningEntity());
-
-    // if(returned.Result != SCRIPT_RUN_RESULT::Success) {
-    //     LOG_ERROR("Failed to run script side pilusHitCellContact");
-    // }
 }
 
 std::unique_ptr<Leviathan::PhysicsMaterialManager>

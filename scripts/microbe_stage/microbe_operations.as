@@ -67,7 +67,6 @@ PlacedOrganelle@ getOrganelleAt(CellStageWorld@ world, ObjectID microbeEntity, I
 //! \note If at all possible you should use another method to edit the collision
 PhysicsShape@ getMicrobeCollisionShapeForEditing(CellStageWorld@ world, ObjectID microbeEntity)
 {
-    // Adding after cell creation
     auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
     if(rigidBodyComponent is null || rigidBodyComponent.Body is null)
         return null;

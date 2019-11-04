@@ -1,5 +1,4 @@
-// Adds a stabby thing to microbe
-
+//! Adds a stabby thing to microbe
 class Pilus : OrganelleComponent{
     Pilus(){
     }
