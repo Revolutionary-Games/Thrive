@@ -827,6 +827,12 @@ void damage(CellStageWorld@ world, ObjectID microbeEntity, double amount, const 
             // Play the toxin sound
             playSoundWithDistance(world, "Data/Sound/soundeffects/microbe-toxin-damage.ogg",
                 microbeEntity);
+        } else if(damageType == "pilus"){
+            // Play the pilus sound
+            playSoundWithDistance(world, "Data/Sound/soundeffects/pilus_puncture_stab.ogg",
+                microbeEntity);
+            // TODO: this may get triggered a lot more than the toxin
+            // so this might need to be rate limited or something
         }
 
         microbeComponent.hitpoints -= amount;
