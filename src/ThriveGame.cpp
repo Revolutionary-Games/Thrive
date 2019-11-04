@@ -307,9 +307,10 @@ void
     // Create world if not already created //
     if(!m_impl->m_cellStage) {
 
-        Leviathan::WorldNetworkSettings netSettings;
-        netSettings.IsAuthoritative = true;
-        netSettings.DoInterpolation = true;
+        Leviathan::WorldNetworkSettings netSettings =
+            Leviathan::WorldNetworkSettings::GetSettingsForSinglePlayer();
+        // netSettings.IsAuthoritative = true;
+        // netSettings.DoInterpolation = true;
 
         // TODO: switch to
         // Leviathan::WorldNetworkSettings::GetSettingsForSinglePlayer() once we
@@ -1258,7 +1259,7 @@ void
 
 // ------------------------------------ //
 void
-    ThriveGame::Tick(int mspassed)
+    ThriveGame::Tick(float elapsed)
 {
     if(m_debugOverlayEnabled) {
         auto event =

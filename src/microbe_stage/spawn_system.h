@@ -5,9 +5,6 @@
 
 #include <Entities/System.h>
 
-// Time between spawn cycles
-#define SPAWN_INTERVAL 100
-
 namespace thrive {
 
 class CellStageWorld;
@@ -80,26 +77,8 @@ public:
      */
     ~SpawnSystem();
 
-    // /**
-    // * @brief Lua bindings
-    // *
-    // * Exposes:
-    // * - SpawnSystem
-    // * - init
-    // * - AddSpawnType
-    // * - RemoveSpawnType
-    // *
-    // * @return
-    // */
-    // static void luaBindings(sol::state &lua);
-
-    /**
-     * @brief Updates the system
-     *
-     * @param milliSeconds
-     */
     void
-        Run(CellStageWorld& world);
+        Run(CellStageWorld& world, float elapsed);
 
     SpawnerTypeId
         addSpawnType(
@@ -144,6 +123,9 @@ public:
     }
 
 private:
+    // Time between spawn cycles
+    static constexpr float SPAWN_INTERVAL = 0.1f;
+
     struct Implementation;
     std::unique_ptr<Implementation> m_impl;
 };

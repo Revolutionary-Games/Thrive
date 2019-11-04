@@ -548,12 +548,10 @@ Float3
 
 // ------------------------------------ //
 void
-    CompoundCloudSystem::Run(CellStageWorld& world)
+    CompoundCloudSystem::Run(CellStageWorld& world, float elapsed)
 {
     if(!world.GetNetworkSettings().IsAuthoritative)
         return;
-
-    const int renderTime = Leviathan::TICKSPEED;
 
     Float3 position = Float3(0, 0, 0);
 
@@ -592,7 +590,7 @@ void
                                     "it didn't initialize");
         }
 
-        processCloud(*value.second, renderTime, world.GetFluidSystem());
+        processCloud(*value.second, elapsed, world.GetFluidSystem());
     }
 }
 
@@ -910,39 +908,34 @@ void
 // ------------------------------------ //
 void
     CompoundCloudSystem::processCloud(CompoundCloudComponent& cloud,
-        int renderTime,
+        float elapsed,
         FluidSystem& fluidSystem)
 {
-    // Try to slow things down (doesn't seem to work great)
-    renderTime /= 10;
+    elapsed *= 100.f;
     Float2 pos(cloud.m_position.X, cloud.m_position.Z);
 
     // The diffusion rate seems to have a bigger effect
 
     // Compound clouds move from area of high concentration to area of low.
     if(cloud.m_compoundId1 != NULL_COMPOUND) {
-        diffuse(0.007f, cloud.m_oldDens1, cloud.m_density1, renderTime);
+        diffuse(0.007f, cloud.m_oldDens1, cloud.m_density1, elapsed);
         // Move the compound clouds about the velocity field.
-        advect(
-            cloud.m_oldDens1, cloud.m_density1, renderTime, fluidSystem, pos);
+        advect(cloud.m_oldDens1, cloud.m_density1, elapsed, fluidSystem, pos);
     }
     if(cloud.m_compoundId2 != NULL_COMPOUND) {
-        diffuse(0.007f, cloud.m_oldDens2, cloud.m_density2, renderTime);
+        diffuse(0.007f, cloud.m_oldDens2, cloud.m_density2, elapsed);
         // Move the compound clouds about the velocity field.
-        advect(
-            cloud.m_oldDens2, cloud.m_density2, renderTime, fluidSystem, pos);
+        advect(cloud.m_oldDens2, cloud.m_density2, elapsed, fluidSystem, pos);
     }
     if(cloud.m_compoundId3 != NULL_COMPOUND) {
-        diffuse(0.007f, cloud.m_oldDens3, cloud.m_density3, renderTime);
+        diffuse(0.007f, cloud.m_oldDens3, cloud.m_density3, elapsed);
         // Move the compound clouds about the velocity field.
-        advect(
-            cloud.m_oldDens3, cloud.m_density3, renderTime, fluidSystem, pos);
+        advect(cloud.m_oldDens3, cloud.m_density3, elapsed, fluidSystem, pos);
     }
     if(cloud.m_compoundId4 != NULL_COMPOUND) {
-        diffuse(0.007f, cloud.m_oldDens4, cloud.m_density4, renderTime);
+        diffuse(0.007f, cloud.m_oldDens4, cloud.m_density4, elapsed);
         // Move the compound clouds about the velocity field.
-        advect(
-            cloud.m_oldDens4, cloud.m_density4, renderTime, fluidSystem, pos);
+        advect(cloud.m_oldDens4, cloud.m_density4, elapsed, fluidSystem, pos);
     }
 
     // No graphics check
@@ -1027,7 +1020,7 @@ void
     CompoundCloudSystem::diffuse(float diffRate,
         std::vector<std::vector<float>>& oldDens,
         const std::vector<std::vector<float>>& density,
-        int dt)
+        float dt)
 {
     float a = dt * diffRate;
     for(int x = 1; x < CLOUD_SIMULATION_WIDTH - 1; x++) {
@@ -1043,7 +1036,7 @@ void
 void
     CompoundCloudSystem::advect(const std::vector<std::vector<float>>& oldDens,
         std::vector<std::vector<float>>& density,
-        int dt,
+        float dt,
         FluidSystem& fluidSystem,
         Float2 pos)
 {

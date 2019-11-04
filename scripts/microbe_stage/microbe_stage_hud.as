@@ -88,8 +88,8 @@ class MicrobeStageHudSystem : ScriptSystem{
 
     }
 
-    void Run(){
-
+    void Run(float elapsed)
+    {
         ObjectID player = GetThriveGame().playerData().activeCreature();
 
         //since this is ran every step this is a good place to do music code
@@ -222,8 +222,8 @@ class MicrobeStageHudSystem : ScriptSystem{
     }
 
     //! This stops sound while the cell stage world isn't active
-    void Suspend(){
-
+    void Suspend()
+    {
         LOG_INFO("Suspending microbe stage background sounds");
 
         // Pause to allow resuming
@@ -235,8 +235,8 @@ class MicrobeStageHudSystem : ScriptSystem{
     }
 
     //! This resumes sound when the cell stage world is active again
-    void Resume(){
-
+    void Resume()
+    {
         LOG_INFO("Resuming microbe stage background sounds");
 
         if(ambientTrack !is null)
@@ -250,8 +250,8 @@ class MicrobeStageHudSystem : ScriptSystem{
     }
 
 
-    void updateLoadButton(){
-
+    void updateLoadButton()
+    {
         if(FileSystem::FileExists("quick.sav")){
             //this.rootGUIWindow.getChild("PauseMenu").getChild("LoadGameButton").enable();
         } else {
@@ -259,7 +259,8 @@ class MicrobeStageHudSystem : ScriptSystem{
         }
     }
 
-    void showReproductionDialog(){
+    void showReproductionDialog()
+    {
         // print("Reproduction Dialog called but currently disabled. Is it needed? Note that the editor button has been enabled")
         //global_activeMicrobeStageHudSystem.rootGUIWindow.getChild("ReproductionPanel").show()
         if(reproductionDialogOpened == false){
@@ -274,25 +275,11 @@ class MicrobeStageHudSystem : ScriptSystem{
         }
     }
 
-    void hideReproductionDialog(){
+    void hideReproductionDialog()
+    {
          reproductionDialogOpened = false;
          GenericEvent@ event = GenericEvent("PlayerDiedBeforeEnter");
          GetEngine().GetEventHandler().CallEvent(event);
-    }
-
-
-
-    void suicideButtonClicked(){
-        // getComponent("gui_sounds", this.gameState, SoundSourceComponent).playSound("button-hover-click");
-        if(boolean2 == false){
-            boolean = true;
-        }
-    }
-    void suicideButtondisable(){
-        // this.rootGUIWindow.getChild("SuicideButton").disable();
-    }
-    void suicideButtonreset(){
-        boolean2 = false;
     }
 
     private AudioSource@ _playRandomMicrobeMusic(){
@@ -330,51 +317,7 @@ class MicrobeStageHudSystem : ScriptSystem{
 
     private CellStageWorld@ World;
 
-
-    int t1 = 0;
-    int t2 = 0;
-    int t3 = 0;
-    //TODO: These need more informative names
-    bool chloroplastNotificationOpened = false;
-    bool toxinNotificationEnabled = false;
     bool reproductionDialogOpened = false;
-    // suicideButton setting up
-    // really creative naming scheme
-    // TODO: Why? Just Why? Ill be honest im not even sure what these are supposed to do
-    bool boolean = false;
-    bool boolean2 = false;
-    //hints setting up
-    bool hintsPanelOpned = false;
-    bool healthHint = false;
-    bool atpHint = false;
-    bool glucoseHint = false;
-    bool ammoniaHint = false;
-    bool phosphateHint = false;
-    bool hydrogenSulfideHint = false;
-    bool toxinHint = false;
-    bool chloroplastHint = false;
-    dictionary activeHints = {};
-    int hintN = 0;
-    int currentHint = 1;
-    bool HHO = false;
-    bool AHO = false;
-    bool GHO = false;
-    bool AMHO = false;
-    bool OHO = false;
-    bool THO = false;
-    bool CHO = false;
-    int glucoseNeeded = 0;
-    int atpNeeded = 0;
-    int ammoniaNeeded = 0;
-    int chloroplastNeeded = 0;
-    int toxinNeeded = 0;
-
-    // TODO: rewrite using Leviathan GuiCollection objects
-    bool helpOpen = false;
-    bool menuOpen = false;
-    // Not this one as this isn't really a collection, just a
-    // toggleable panel with a single button
-    bool compoundsOpen = true;
 
     //instantiate our ambient music source
     AudioSource@ ambienceSounds;
@@ -401,28 +344,27 @@ class MicrobeStageHudSystem : ScriptSystem{
 
     CompoundId ironId;
     float ironVolume;
-
 }
 
 
 // ------------------------------------ //
 // Wrappers for calling GUI update things from random places
 
-void showReproductionDialog(GameWorld@ world){
+void showReproductionDialog(GameWorld@ world)
+{
     cast<MicrobeStageHudSystem@>(world.GetScriptSystem("MicrobeStageHudSystem")).
         showReproductionDialog();
 }
 
-void hideReproductionDialog(GameWorld@ world){
+void hideReproductionDialog(GameWorld@ world)
+{
     cast<MicrobeStageHudSystem@>(world.GetScriptSystem("MicrobeStageHudSystem")).
         hideReproductionDialog();
 }
 
-void showMessage(const string &in msg){
-    LOG_INFO(msg + " (note, in-game messages currently disabled)");
-    //auto messagePanel = Engine.currentGameState().rootGUIWindow().getChild("MessagePanel")
-    //messagePanel.getChild("MessageLabel").setText(msg)
-    //messagePanel.show()
+void playOrganellePickupSound()
+{
+    GetEngine().GetSoundDevice().Play2DSoundEffect("Data/Sound/microbe-pickup-organelle.ogg");
 }
 
 // ------------------------------------ //
@@ -465,6 +407,6 @@ void playerShootToxin(CellStageWorld@ world, ObjectID entity)
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(entity));
     CompoundId oxytoxyId = SimulationParameters::compoundRegistry().getTypeId("oxytoxy");
-    MicrobeOperations::emitAgent(world, entity, oxytoxyId, 10.0f, 400*10.0f);
+    MicrobeOperations::emitAgent(world, entity, oxytoxyId, 10.0f, 10.0f);
 }
 
