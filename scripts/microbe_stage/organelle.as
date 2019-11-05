@@ -526,6 +526,8 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
                 "removed from previous microbe. Previous entity: " + microbeEntity);
         }
 
+        @this.beingConstructedShape = collisionShape;
+
         @this.world = world;
 
         assert(this.world !is null, "trying to create placed organelle without world");
@@ -614,6 +616,8 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
             // Organelle::addHex during construction
             components[i].onAddedToMicrobe(microbeEntity, q, r, rotation, this);
         }
+
+        @this.beingConstructedShape = null;
     }
 
     //! Alternative to onRemovedFromMicrobe called when the microbe
@@ -671,12 +675,25 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         @world = null;
     }
 
+    //! This method is provided for OrganelleComponents to be able to add extra
+    //! collision shapes
+    //! \note Untested
+    void addChildCollision(PhysicsShape@ shape, Float3 offset, Float4 orientation)
+    {
+        assert(beingConstructedShape !is null,
+            "addChildCollision shape called while not being added to a microbe");
+        beingConstructedShape.AddChildShape(shape, offset, orientation);
+        _addedCollisions.insertLast(shape);
+    }
+
     //! \todo This might not work anymore
     void hideEntity()
     {
         auto renderNode = world.GetComponent_RenderNode(organelleEntity);
-        if(renderNode !is null && renderNode.Node.valid())
-            renderNode.Node.removeFromParent();
+        if(renderNode !is null && renderNode.Node.valid()){
+            renderNode.Hidden = true;
+            renderNode.Marked = true;
+        }
 
         // Also hide components as they also can have entities
         for(uint i = 0; i < components.length(); ++i){
@@ -728,6 +745,9 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
     // Used for removing the added sub collisions when we are removed from a microbe
     private array<PhysicsShape@> _addedCollisions;
+
+    // Used for addChildCollision, only valid during onAddedToMicrobe
+    private PhysicsShape@ beingConstructedShape;
 
     bool _needsColourUpdate = false;
 }

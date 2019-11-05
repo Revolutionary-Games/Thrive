@@ -99,10 +99,13 @@ const organelleSelectionElements = [
     {
         element: document.getElementById("addNucleus"),
         organelle: "nucleus"
+    },
+    {
+        element: document.getElementById("addPilus"),
+        organelle: "pilus"
     }
 
-    // AddPilus
-    // addCilia
+    // AddCilia
 ];
 
 const membraneSelectionElements = [

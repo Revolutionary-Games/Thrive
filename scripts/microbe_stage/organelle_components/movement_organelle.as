@@ -15,7 +15,6 @@ Float3 calculateForce(int q, int r, float momentum){
     return delta.Normalize() * momentum;
 }
 
-//! \todo flagellum animation
 class MovementOrganelle : OrganelleComponent{
 
     // Constructor

@@ -202,6 +202,11 @@ const int CREATURE_REPRODUCE_POPULATION_GAIN = 50;
 const int CREATURE_ESCAPE_POPULATION_GAIN = 50;
 const uint CREATURE_ESCAPE_INTERVAL = 5000;
 
+// Used in the cell collision callback to know if something hit was a pilus
+const int PHYSICS_PILUS_TAG = 1;
+const auto PILUS_BASE_DAMAGE = 1.f;
+const auto PILUS_PENETRATION_DISTANCE_DAMAGE_MULTIPLIER = 10.f;
+
 
 //! Returns a material with a basic texture on it. For use on non-organelle models
 bs::HMaterial getBasicMaterialWithTexture(const string &in textureName)

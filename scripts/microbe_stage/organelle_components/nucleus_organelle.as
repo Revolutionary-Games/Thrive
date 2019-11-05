@@ -94,12 +94,16 @@ class NucleusOrganelle : OrganelleComponent{
     void hideEntity(PlacedOrganelle@ organelle) override
     {
         auto renderNode = organelle.world.GetComponent_RenderNode(golgi);
-        if(renderNode !is null && renderNode.Node.valid())
-            renderNode.Node.removeFromParent();
+        if(renderNode !is null && renderNode.Node.valid()){
+            renderNode.Hidden = true;
+            renderNode.Marked = true;
+        }
 
         @renderNode = organelle.world.GetComponent_RenderNode(ER);
-        if(renderNode !is null && renderNode.Node.valid())
-            renderNode.Node.removeFromParent();
+        if(renderNode !is null && renderNode.Node.valid()){
+            renderNode.Hidden = true;
+            renderNode.Marked = true;
+        }
     }
 
     private ObjectID golgi = NULL_OBJECT;
