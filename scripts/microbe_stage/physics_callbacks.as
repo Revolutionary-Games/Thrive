@@ -166,50 +166,83 @@ void cellHitAgent(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
 
 }
 
-void cellOnCellActualContact(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
+bool cellOnCellActualContact(GameWorld@ world,
+    const PhysicsShape@ firstShape,
+    MicrobeComponent@ firstMicrobeComponent,
+    const PhysicsShape@ secondShape,
+    MicrobeComponent@ secondMicrobeComponent,
+    int firstSubCollision, int secondSubCollision, float overlapAmount, bool handled)
 {
-    //We are going to cheat here and set variables when you hit something, and hopefully the AABB will take care of the rest
-    // Grab the microbe components
-    MicrobeComponent@ firstMicrobeComponent = cast<MicrobeComponent>(
-        world.GetScriptComponentHolder("MicrobeComponent").Find(firstEntity));
-    MicrobeComponent@ secondMicrobeComponent = cast<MicrobeComponent>(
-        world.GetScriptComponentHolder("MicrobeComponent").Find(secondEntity));
-    //Check if they were null *because if null the cast failed)
-    if (firstMicrobeComponent !is null && secondMicrobeComponent !is null)
+    // Disallow cannibalism
+    if(firstMicrobeComponent.species is secondMicrobeComponent.species)
+        return true;
+
+    // Handle stabbing
+    bool firstIsPilus = firstShape.GetChildCustomTag(firstSubCollision) ==
+        PHYSICS_PILUS_TAG;
+    bool secondIsPilus = secondShape.GetChildCustomTag(secondSubCollision) ==
+        PHYSICS_PILUS_TAG;
+
+    // LOG_WRITE("first pilus: " + firstIsPilus + " second: " + secondIsPilus);
+
+    if(firstIsPilus && secondIsPilus){
+        // Pilus on pilus doesn't deal damage and you can't engulf
+        // Maybe we should always return true here to prevent engulfing from happening
+        // in any case. By not forcing true return here a subsequent call might allow
+        // engulfing to happen (if the membranes are touching in addition to the piluses)
+        return handled;
+    } else if(firstIsPilus || secondIsPilus){
+
+        // First attacking second OR second attacking first
+        ObjectID target = firstIsPilus ? secondMicrobeComponent.microbeEntity :
+            firstMicrobeComponent.microbeEntity;
+
+        MicrobeOperations::damage(cast<CellStageWorld>(world),
+            target,
+            PILUS_BASE_DAMAGE * overlapAmount * PILUS_PENETRATION_DISTANCE_DAMAGE_MULTIPLIER,
+            "pilus");
+
+        return true;
+    }
+
+    // Engulf is handled just once
+    if(handled)
+        return true;
+
+    // Get microbe sizes here
+    int firstMicrobeComponentHexCount = firstMicrobeComponent.totalHexCountCache;
+    int secondMicrobeComponentHexCount = secondMicrobeComponent.totalHexCountCache;
+
+    if(firstMicrobeComponent.species.isBacteria)
+        firstMicrobeComponentHexCount /= 2;
+
+    if(secondMicrobeComponent.species.isBacteria)
+        secondMicrobeComponentHexCount /= 2;
+
+    if (firstMicrobeComponent.engulfMode)
     {
-        // Get microbe sizes here
-        int firstMicrobeComponentHexCount = firstMicrobeComponent.totalHexCountCache;
-        int secondMicrobeComponentHexCount = secondMicrobeComponent.totalHexCountCache;
-
-        if(firstMicrobeComponent.species.isBacteria)
-            firstMicrobeComponentHexCount /= 2;
-
-        if(secondMicrobeComponent.species.isBacteria)
-            secondMicrobeComponentHexCount /= 2;
-
-        if (firstMicrobeComponent.engulfMode)
+        if(firstMicrobeComponentHexCount >
+            (ENGULF_HP_RATIO_REQ * secondMicrobeComponentHexCount) &&
+            firstMicrobeComponent.dead == false && secondMicrobeComponent.dead == false)
         {
-            if(firstMicrobeComponentHexCount >
-                (ENGULF_HP_RATIO_REQ * secondMicrobeComponentHexCount) &&
-                firstMicrobeComponent.dead == false && secondMicrobeComponent.dead == false)
-            {
-                secondMicrobeComponent.isBeingEngulfed = true;
-                secondMicrobeComponent.hostileEngulfer = firstEntity;
-                secondMicrobeComponent.wasBeingEngulfed = true;
-            }
-        }
-        if (secondMicrobeComponent.engulfMode)
-        {
-            if(secondMicrobeComponentHexCount >
-                (ENGULF_HP_RATIO_REQ * firstMicrobeComponentHexCount) &&
-                secondMicrobeComponent.dead == false && firstMicrobeComponent.dead == false)
-            {
-                firstMicrobeComponent.isBeingEngulfed = true;
-                firstMicrobeComponent.hostileEngulfer = secondEntity;
-                firstMicrobeComponent.wasBeingEngulfed = true;
-            }
+            secondMicrobeComponent.isBeingEngulfed = true;
+            secondMicrobeComponent.hostileEngulfer = firstMicrobeComponent.microbeEntity;
+            secondMicrobeComponent.wasBeingEngulfed = true;
         }
     }
+    if (secondMicrobeComponent.engulfMode)
+    {
+        if(secondMicrobeComponentHexCount >
+            (ENGULF_HP_RATIO_REQ * firstMicrobeComponentHexCount) &&
+            secondMicrobeComponent.dead == false && firstMicrobeComponent.dead == false)
+        {
+            firstMicrobeComponent.isBeingEngulfed = true;
+            firstMicrobeComponent.hostileEngulfer = secondMicrobeComponent.microbeEntity;
+            firstMicrobeComponent.wasBeingEngulfed = true;
+        }
+    }
+
+    return true;
 }
 
 // Returns false if being engulfed, probabbly also damages the cell being

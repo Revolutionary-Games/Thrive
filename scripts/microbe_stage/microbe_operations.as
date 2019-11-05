@@ -62,6 +62,24 @@ PlacedOrganelle@ getOrganelleAt(CellStageWorld@ world, ObjectID microbeEntity, I
     return OrganellePlacement::getOrganelleAt(microbeComponent.organelles, hex);
 }
 
+//! Helper for other code to mess with a microbe collision. After editing you must call
+//! finishMicrobeCollisionShapeEditing.
+//! \note If at all possible you should use another method to edit the collision
+PhysicsShape@ getMicrobeCollisionShapeForEditing(CellStageWorld@ world, ObjectID microbeEntity)
+{
+    auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
+    if(rigidBodyComponent is null || rigidBodyComponent.Body is null)
+        return null;
+    return rigidBodyComponent.Body.Shape;
+}
+
+void finishMicrobeCollisionShapeEditing(CellStageWorld@ world, ObjectID microbeEntity)
+{
+    auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
+    rigidBodyComponent.ChangeShape(world.GetPhysicalWorld(),
+        rigidBodyComponent.Body.Shape);
+}
+
 // Removes the organelle at a hex cell
 // Note that this renders the organelle unusable as we destroy its underlying entity
 //
@@ -808,6 +826,12 @@ void damage(CellStageWorld@ world, ObjectID microbeEntity, double amount, const 
             // Play the toxin sound
             playSoundWithDistance(world, "Data/Sound/soundeffects/microbe-toxin-damage.ogg",
                 microbeEntity);
+        } else if(damageType == "pilus"){
+            // Play the pilus sound
+            playSoundWithDistance(world, "Data/Sound/soundeffects/pilus_puncture_stab.ogg",
+                microbeEntity);
+            // TODO: this may get triggered a lot more than the toxin
+            // so this might need to be rate limited or something
         }
 
         microbeComponent.hitpoints -= amount;

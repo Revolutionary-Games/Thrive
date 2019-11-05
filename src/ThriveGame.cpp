@@ -305,12 +305,6 @@ void
 
         Leviathan::WorldNetworkSettings netSettings =
             Leviathan::WorldNetworkSettings::GetSettingsForSinglePlayer();
-        // netSettings.IsAuthoritative = true;
-        // netSettings.DoInterpolation = true;
-
-        // TODO: switch to
-        // Leviathan::WorldNetworkSettings::GetSettingsForSinglePlayer() once we
-        // no longer do the interpolation once variable rate ticks are supported
 
         LOG_INFO("ThriveGame: startNewGame: Creating new cellstage world");
         m_impl->m_cellStage =
@@ -792,6 +786,27 @@ void
         m_debugOverlayEnabled = true;
 
         // The data event will make it visible
+    }
+}
+
+void
+    ThriveGame::toggleDebugPhysics()
+{
+    if(m_physicsDebugEnabled) {
+
+        m_physicsDebugEnabled = false;
+
+        if(m_impl->m_cellStage) {
+            m_impl->m_cellStage->DisablePhysicsDebugDraw();
+        }
+
+    } else {
+
+        m_physicsDebugEnabled = true;
+
+        if(m_impl->m_cellStage) {
+            m_impl->m_cellStage->EnablePhysicsDebugDraw();
+        }
     }
 }
 // ------------------------------------ //
@@ -1501,6 +1516,7 @@ void
     keyconfigobj->AddKeyIfMissing(guard, "RotateRight", {"A"});
     keyconfigobj->AddKeyIfMissing(guard, "RotateLeft", {"D"});
     keyconfigobj->AddKeyIfMissing(guard, "ToggleDebugOverlay", {"F3"});
+    keyconfigobj->AddKeyIfMissing(guard, "ToggleDebugPhysics", {"F4"});
 }
 // ------------------------------------ //
 bool

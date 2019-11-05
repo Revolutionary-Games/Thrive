@@ -33,6 +33,8 @@ o GameModule "microbe_stage"{
 
         microbe_stage_hud.as
 
+        organelle_components/pilus.as
+
         // This would maybe ideally be a separate module but there needs to be a lot
         // of untangling to allow proper sharing of the parts that are used by both
         microbe_editor/microbe_editor.as

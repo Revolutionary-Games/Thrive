@@ -70,6 +70,7 @@ class MicrobeEditor{
             {"rusticyanin", PlacementFunctionType(this.addOrganelle)},
             {"nitrogenase", PlacementFunctionType(this.addOrganelle)},
             {"oxytoxyProteins", PlacementFunctionType(this.addOrganelle)},
+            {"pilus", PlacementFunctionType(this.addOrganelle)},
             {"remove", PlacementFunctionType(this.removeOrganelle)}
         };
 

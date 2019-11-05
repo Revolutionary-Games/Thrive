@@ -24,6 +24,7 @@ public:
 private:
     Leviathan::GKey m_screenshot;
     Leviathan::GKey m_debugOverlay;
+    Leviathan::GKey m_debugPhysics;
 };
 
 } // namespace thrive
