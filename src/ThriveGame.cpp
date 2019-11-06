@@ -303,13 +303,8 @@ void
     // Create world if not already created //
     if(!m_impl->m_cellStage) {
 
-        Leviathan::WorldNetworkSettings netSettings;
-        netSettings.IsAuthoritative = true;
-        netSettings.DoInterpolation = true;
-
-        // TODO: switch to
-        // Leviathan::WorldNetworkSettings::GetSettingsForSinglePlayer() once we
-        // no longer do the interpolation once variable rate ticks are supported
+        Leviathan::WorldNetworkSettings netSettings =
+            Leviathan::WorldNetworkSettings::GetSettingsForSinglePlayer();
 
         LOG_INFO("ThriveGame: startNewGame: Creating new cellstage world");
         m_impl->m_cellStage =
@@ -336,7 +331,7 @@ void
     if(layer)
         layer->SetInputMode(Leviathan::GUI::INPUT_MODE::Gameplay);
 
-    // TODO: unpause, if it was paused
+    // Unpaused in exitToMenuClicked
 
     // Main camera that will be attached to the player
     m_cellCamera = Leviathan::ObjectLoader::LoadCamera(*m_impl->m_cellStage,
@@ -723,6 +718,8 @@ void
         if(m_impl->m_microbeEditor)
             m_impl->m_microbeEditor->ClearEntities();
 
+        pause(false);
+
         if(m_impl->m_autoEvoRun) {
             LOG_INFO("Stopping auto evo run, returning to menu");
             m_impl->m_autoEvoRun->abort();
@@ -745,6 +742,16 @@ void
     // Fire an event to switch over the GUI
     Engine::Get()->GetEventHandler()->CallEvent(
         new Leviathan::GenericEvent("ExitedToMenu"));
+}
+
+void
+    ThriveGame::pause(bool pause)
+{
+    if(m_impl->m_cellStage) {
+        m_impl->m_cellStage->SetPaused(pause);
+    } else {
+        LOG_ERROR("Tried to pause but the cell stage was not initialized");
+    }
 }
 
 // ------------------------------------ //
@@ -779,6 +786,27 @@ void
         m_debugOverlayEnabled = true;
 
         // The data event will make it visible
+    }
+}
+
+void
+    ThriveGame::toggleDebugPhysics()
+{
+    if(m_physicsDebugEnabled) {
+
+        m_physicsDebugEnabled = false;
+
+        if(m_impl->m_cellStage) {
+            m_impl->m_cellStage->DisablePhysicsDebugDraw();
+        }
+
+    } else {
+
+        m_physicsDebugEnabled = true;
+
+        if(m_impl->m_cellStage) {
+            m_impl->m_cellStage->EnablePhysicsDebugDraw();
+        }
     }
 }
 // ------------------------------------ //
@@ -1175,7 +1203,7 @@ void
 
 // ------------------------------------ //
 void
-    ThriveGame::Tick(int mspassed)
+    ThriveGame::Tick(float elapsed)
 {
     if(m_debugOverlayEnabled) {
         auto event =
@@ -1488,6 +1516,7 @@ void
     keyconfigobj->AddKeyIfMissing(guard, "RotateRight", {"A"});
     keyconfigobj->AddKeyIfMissing(guard, "RotateLeft", {"D"});
     keyconfigobj->AddKeyIfMissing(guard, "ToggleDebugOverlay", {"F3"});
+    keyconfigobj->AddKeyIfMissing(guard, "ToggleDebugPhysics", {"F4"});
 }
 // ------------------------------------ //
 bool

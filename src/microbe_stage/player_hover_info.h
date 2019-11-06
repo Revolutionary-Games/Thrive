@@ -21,10 +21,10 @@ class PlayerHoverInfoSystem
 public:
     PlayerHoverInfoSystem();
 
-    static constexpr auto RUN_EVERY_MS = 100;
+    static constexpr auto RUN_EVERY_SECOND = 0.1f;
 
     void
-        Run(CellStageWorld& world);
+        Run(CellStageWorld& world, float elapsed);
 
     void
         CreateNodes(const std::vector<std::tuple<MembraneComponent*, ObjectID>>&
@@ -50,8 +50,8 @@ public:
     }
 
 private:
-    // Used to run every RUN_EVERY_MS
-    int passed = 0;
+    // Used to run every RUN_EVERY_SECOND
+    float passed = 0;
     std::unique_ptr<Json::StreamWriter> writer;
 };
 } // namespace thrive

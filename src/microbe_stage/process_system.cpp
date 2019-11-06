@@ -149,12 +149,13 @@ double
 // ProcessSystem
 
 void
-    ProcessSystem::Run(GameWorld& world)
+    ProcessSystem::Run(GameWorld& world, float elapsed)
 {
     if(!world.GetNetworkSettings().IsAuthoritative)
         return;
 
-    const auto logicTime = Leviathan::TICKSPEED;
+    // Processes are now every second
+    const double processLimitCapacity = elapsed * 1000.f;
 
     // Iterating on each entity with a CompoundBagComponent and a
     // ProcessorComponent
@@ -178,9 +179,6 @@ void
             // If capacity is 0 dont do it
             if(processCapacity <= 0.0f)
                 continue;
-
-            // Processes are now every second
-            const double processLimitCapacity = logicTime;
 
             // This is a sanity check for incorrect process configuration
             if(processId >=

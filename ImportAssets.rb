@@ -8,45 +8,63 @@ require 'open3'
 
 require_relative 'RubySetupSystem/RubyCommon'
 
-editor = "ThirdParty/Leviathan/build/bin/LeviathanEditor"
+ASSETS_REPO = 'https://github.com/Revolutionary-Games/Thrive-Raw-Assets.git'.freeze
+ASSETS_FOLDER = '../Thrive-Raw-Assets'.freeze
 
-if OS.windows?
-  editor += ".exe"
+unless File.exist? ASSETS_FOLDER
+  info "Raw assets folder (#{ASSETS_FOLDER}) doesn't exist. Trying to clone it."
+  puts 'If you are using ssh to access Github you should manually clone it instead...'
+
+  runOpen3Checked('git', 'clone', ASSETS_REPO, ASSETS_FOLDER)
+
+  onError 'Failed to clone assets repo' unless File.exist? ASSETS_FOLDER
 end
 
-if !File.exists? editor
+puts 'Note: this script does not automatically pull the raw assets repo. ' \
+     'Make sure you are using the right commit manually.'
 
-  onError "LeviathanEditor is not at expected path"
+info "Doing git lfs pull to make sure it's up to date"
+
+Dir.chdir(ASSETS_FOLDER) do
+  runOpen3Checked('git', 'lfs', 'pull')
 end
+
+success 'Done making sure raw assets repo is good'
+
+editor = 'ThirdParty/Leviathan/build/bin/LeviathanEditor'
+
+editor += '.exe' if OS.windows?
+
+onError 'LeviathanEditor is not at expected path' unless File.exist? editor
 
 editor = File.realpath editor
 
-info "Importing assets. When importing shaders, this may take multiple minutes."
+info 'Importing assets. When importing shaders, this may take multiple minutes.'
 
-Open3.popen3(editor, "--import", File.realpath("shaders"), File.realpath("assets"),
-             "--import", File.realpath("assets/raw_assets"), File.realpath("assets"),
-             chdir: File.realpath(File.dirname editor)) {
-  |stdin, stdout, stderr, wait_thr|
+Open3.popen3(editor, '--import', File.realpath('shaders'), File.realpath('assets'),
+             '--import', File.realpath(File.join(ASSETS_FOLDER, 'raw_assets')),
+             File.realpath('assets'),
+             chdir: File.realpath(File.dirname(editor))) do |_stdin, stdout, stderr, wait_thr|
 
-  outThread = Thread.new{
-    stdout.each {|line|
+  out_thread = Thread.new do
+    stdout.each do |line|
       puts line
-    }
-  }
+    end
+  end
 
-  errThread = Thread.new{
-    stderr.each {|line|
-      puts (line).red
-    }
-  }
+  err_thread = Thread.new do
+    stderr.each do |line|
+      puts line.red
+    end
+  end
 
   exit_status = wait_thr.value
-  outThread.join
-  errThread.join
+  out_thread.join
+  err_thread.join
 
-  if exit_status != 0
-    onError "Failed to run import with LeviathanEditor"
-  end
-}
+  onError 'Failed to run import with LeviathanEditor' if exit_status != 0
+end
 
-success "Done importing"
+info "NOTE: import failures aren't reported as exit codes so this script " \
+     "can't currently detect failures (other than serious ones)"
+success 'Done importing'

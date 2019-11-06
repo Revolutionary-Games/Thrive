@@ -117,6 +117,9 @@ public:
     void
         exitToMenuClicked();
 
+    void
+        pause(bool pause);
+
     //! \param amount The amount the camera is moved. Positive moves away
     //! \todo Needs to detect the active camera system. Now always sends to the
     //! cell stage camera system
@@ -125,6 +128,9 @@ public:
 
     void
         toggleDebugOverlay();
+
+    void
+        toggleDebugPhysics();
 
     //! \brief Moves the player to play in the specified patch
     //!
@@ -163,7 +169,7 @@ public:
     // etc.
 
     void
-        Tick(int mspassed) override;
+        Tick(float elapsed) override;
 
     void
         CustomizeEnginePostLoad() override;
@@ -226,6 +232,8 @@ private:
 
     //! True when debug overlay is enabled and updates should be sent to it
     bool m_debugOverlayEnabled = false;
+
+    bool m_physicsDebugEnabled = false;
 
     // Some variables that have complex types are hidden here to not
     // have to include tons of headers here

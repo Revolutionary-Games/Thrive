@@ -4,7 +4,7 @@
 
 using namespace thrive;
 
-TimedLifeComponent::TimedLifeComponent(int timeToLive) :
+TimedLifeComponent::TimedLifeComponent(float timeToLive) :
     Leviathan::Component(TYPE), m_timeToLive(timeToLive)
 {}
 
@@ -31,11 +31,12 @@ TimedLifeComponent::TimedLifeComponent(int timeToLive) :
 
 void
     TimedLifeSystem::Run(GameWorld& world,
-        std::unordered_map<ObjectID, TimedLifeComponent*>& components)
+        std::unordered_map<ObjectID, TimedLifeComponent*>& components,
+        float elapsed)
 {
     for(auto& value : components) {
         TimedLifeComponent* timedLifeComponent = value.second;
-        timedLifeComponent->m_timeToLive -= Leviathan::TICKSPEED;
+        timedLifeComponent->m_timeToLive -= elapsed;
         if(timedLifeComponent->m_timeToLive <= 0) {
 
             world.QueueDestroyEntity(value.first);

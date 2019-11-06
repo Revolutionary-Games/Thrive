@@ -91,6 +91,8 @@ public:
 
 /**
  * @brief Moves the compound clouds.
+ * @note This system currently does nothing but is kept for the future when this
+ * is planned to be used
  */
 class AgentCloudSystem
     : public Leviathan::System<std::tuple<Leviathan::Position&,

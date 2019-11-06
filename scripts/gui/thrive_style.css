@@ -511,6 +511,14 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/pauseButtonHover.png");
 }
 
+#pauseButtonBottom.paused {
+  background-image: url("../../Textures/gui/bevel/pauseButtonPaused.png");
+}
+
+#pauseButtonBottom.paused:hover {
+  background-image: url("../../Textures/gui/bevel/pauseButtonPausedHover.png");
+}
+
 #compoundsButton {
   position: relative;
   display: inline-block;
@@ -675,7 +683,7 @@ div::-webkit-scrollbar-thumb:hover {
   overflow-x: hidden;
 }
 
-#ATPIcon {
+.ATPIcon {
   background-image: url("../../Textures/gui/bevel/ATP.png");
 }
 
@@ -687,7 +695,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/Oxygen.png");
 }
 
-#OxygenNormalIcon {
+.OxygenNormalIcon {
   background-image: url("../../Textures/gui/bevel/Oxygen.png");
   background-repeat: no-repeat;
 }
@@ -700,11 +708,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/Nitrogen.png");
 }
 
-.TemperatureIcon {
-  background-image: url("../../Textures/gui/bevel/Temperature.png");
-}
-
-#NitrogenNormalIcon {
+.NitrogenNormalIcon {
   background-image: url("../../Textures/gui/bevel/Nitrogen.png");
   background-repeat: no-repeat;
 }
@@ -713,7 +717,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-color: #f94b97;
 }
 
-#AmmoniaIcon {
+.AmmoniaIcon {
   background-image: url("../../Textures/gui/bevel/Ammonia.png");
 }
 
@@ -721,7 +725,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-color: #a16500;
 }
 
-#GlucoseIcon {
+.GlucoseIcon {
   background-image: url("../../Textures/gui/bevel/Glucose.png");
   background-repeat: no-repeat;
 }
@@ -741,7 +745,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/CO2.png");
 }
 
-#CO2NormalIcon {
+.CO2NormalIcon {
   background-image: url("../../Textures/gui/bevel/CO2.png");
   background-repeat: no-repeat;
 }
@@ -759,7 +763,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-color: #d3c1aa;
 }
 
-#OxyToxyIcon {
+.OxyToxyIcon {
   background-image: url("../../Textures/gui/bevel/OxyToxy.png");
 }
 
@@ -767,7 +771,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-color: #9f1360;
 }
 
-#IronIcon {
+.IronIcon {
   background-image: url("../../Textures/gui/bevel/Iron.png");
   background-repeat: no-repeat;
 }
@@ -808,7 +812,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-color: #004001;
 }
 
-#MutationPointsIcon {
+.MutationPointsIcon {
   background-image: url("../../Textures/gui/bevel/MP.png");
   background-repeat: no-repeat;
 }
@@ -844,7 +848,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-color: #6124cc;
 }
 
-#HydrogenSulfideIcon {
+.HydrogenSulfideIcon {
   background-image: url("../../Textures/gui/bevel/HydrogenSulfide.png");
 }
 
@@ -1542,7 +1546,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/NucleusIcon.png");
 }
 
-#CytoplasmIcon {
+.CytoplasmIcon {
   position: relative;
   left: calc(50% - 30px);
   width: 60px;
@@ -1649,11 +1653,11 @@ div::-webkit-scrollbar-thumb:hover {
 
 
 /* Used to place the vacuole's icon inside tooltips as an icon for storage. */
-#VacuoleTooltipIcon {
+.VacuoleTooltipIcon {
   background-image: url("../../Textures/gui/bevel/VacuoleIcon.png");
 }
 
-#ToxinVacuoleIcon {
+.ToxinVacuoleIcon {
   position: relative;
   left: calc(50% - 30px);
   width: 60px;
@@ -1760,15 +1764,15 @@ div::-webkit-scrollbar-thumb:hover {
 
 
 /* Used in formulas in tooltips. */
-#WhiteArrow {
+.WhiteArrow {
   background-image: url("../../Textures/gui/bevel/WhiteArrow.png");
 }
 
-#TemperatureIcon {
+.TemperatureIcon {
   background-image: url("../../Textures/gui/bevel/Temperature.png");
 }
 
-#LightIcon {
+.LightIcon {
   background-image: url("../../Textures/gui/bevel/Light.png");
 }
 

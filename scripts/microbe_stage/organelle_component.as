@@ -63,13 +63,13 @@ abstract class OrganelleComponent{
     //  The organelle that has this component.
     //
     // @param logicTime
-    //  The time transcurred (in milliseconds) between this call
+    //  The time transcurred (in seconds) between this call
     //  to OrganelleComponent:update() and the previous one.
     void
     update(
         ObjectID microbeEntity,
         PlacedOrganelle@ organelle,
-        int logicTime
+        float elapsed
     ) {
 
     }

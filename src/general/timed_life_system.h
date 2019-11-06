@@ -14,7 +14,7 @@ namespace thrive {
  */
 class TimedLifeComponent : public Leviathan::Component {
 public:
-    TimedLifeComponent(int timeToLive);
+    TimedLifeComponent(float timeToLive);
 
     // void
     // load(
@@ -31,8 +31,10 @@ public:
 
     /**
      * @brief The time until the owning entity despawns
+     *
+     * This is now in seconds (previously was in milliseconds)
      */
-    int m_timeToLive = 0;
+    float m_timeToLive = 0;
 };
 
 
@@ -40,14 +42,11 @@ public:
  * @brief Despawns entities after they've reached their lifetime
  */
 class TimedLifeSystem {
-
 public:
-    /**
-     * @brief Updates the system
-     */
     void
         Run(GameWorld& world,
-            std::unordered_map<ObjectID, TimedLifeComponent*>& components);
+            std::unordered_map<ObjectID, TimedLifeComponent*>& components,
+            float elapsed);
 };
 
 } // namespace thrive

@@ -165,10 +165,13 @@ public:
     /**
      * @brief Updates the system
      * @todo Once agents are a cloud this needs to absorb them
+     * @todo Currently this does not take 'elapsed' into account so cells absorb
+     * stuff faster at higher framerates
      */
     void
         Run(CellStageWorld& world,
-            std::unordered_map<ObjectID, CompoundCloudComponent*>& clouds);
+            std::unordered_map<ObjectID, CompoundCloudComponent*>& clouds,
+            float elapsed);
 
     void
         CreateNodes(

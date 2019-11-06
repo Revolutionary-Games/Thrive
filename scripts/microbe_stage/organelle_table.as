@@ -53,6 +53,7 @@ Organelle atributes:
 #include "organelle_components/processor_organelle.as"
 #include "organelle_components/agent_vacuole.as"
 #include "organelle_components/movement_organelle.as"
+#include "organelle_components/pilus.as"
 
 //! Factory typedef for OrganelleComponent
 funcdef OrganelleComponent@ OrganelleComponentFactoryFunc();
@@ -234,6 +235,25 @@ OrganelleComponentFactory@ movementOrganelleFactory(float momentum, float torque
         "MovementOrganelle");
 }
 
+
+class PilusOrganelleFactory{
+
+    PilusOrganelleFactory()
+    {
+    }
+
+    OrganelleComponent@ makePilusOrganelle(){
+        return Pilus();
+    }
+}
+
+OrganelleComponentFactory@ pilusOrganelleFactory()
+{
+    auto factory = PilusOrganelleFactory();
+    return OrganelleComponentFactory(
+        OrganelleComponentFactoryFunc(factory.makePilusOrganelle),
+        "Pilus");
+}
 
 // ------------------------------------ //
 // Sets up the organelle table
@@ -719,6 +739,31 @@ void setupOrganelles(){
     };
 
     _addOrganelleToTable(Organelle(rusticyanin));
+
+    // Pilus
+    auto pilus = OrganelleParameters("pilus");
+
+    pilus.mass = 0.5;
+    pilus.gene = "P";
+    pilus.mesh = "pilus.fbx";
+    pilus.texture = "pilus.png";
+    pilus.chanceToCreate = 0.5f;
+    pilus.prokaryoteChance = 0.5f;
+    pilus.mpCost = 30;
+    pilus.initialComposition = {
+        {"phosphates", 1},
+        {"ammonia", 1}
+    };
+    pilus.components = {
+        pilusOrganelleFactory()
+    };
+    pilus.processes = {
+    };
+    pilus.hexes = {
+        Int2(0, 0),
+    };
+
+    _addOrganelleToTable(Organelle(pilus));
     // ------------------------------------ //
     // Setup the organelle letters
     setupOrganelleLetters();
