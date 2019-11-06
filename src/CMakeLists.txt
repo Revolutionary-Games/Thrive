@@ -76,6 +76,8 @@ set(GROUP_MICROBE_STAGE
   "microbe_stage/microbe_editor_key_handler.cpp"
   "microbe_stage/player_hover_info.h"
   "microbe_stage/player_hover_info.cpp"
+  "microbe_stage/organelle_types.h"
+  "microbe_stage/organelle_types.cpp"
   )
 
 set(GROUP_AUTO-EVO
