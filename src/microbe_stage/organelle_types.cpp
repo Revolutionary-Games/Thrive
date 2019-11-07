@@ -1,8 +1,9 @@
 #include "organelle_types.h"
-#include "microbe_stage/compounds.h"
-#include "microbe_stage/simulation_parameters.h"
 
-#include "Common/Types.h"
+#include <Script/ScriptConversionHelpers.h>
+#include <Script/ScriptExecutor.h>
+
+#include <boost/range/adaptor/map.hpp>
 
 #include <map>
 #include <string>
@@ -14,7 +15,7 @@ OrganelleType::OrganelleType() {}
 
 OrganelleType::OrganelleType(Json::Value value)
 {
-    name = value["name"];
+    name = value["name"].asString();
     gene = value["gene"].asString();
     mesh = value["mesh"].asString();
     texture = value["texture"].asString();
@@ -27,11 +28,12 @@ OrganelleType::OrganelleType(Json::Value value)
 
     for(std::string componentName : componentNames) {
         Json::Value parameterData = componentData[componentName];
-        Json::Value parameterNames = parameterData.getMemberNames();
-        std::map<std::string, double> parameters;
+        std::vector<std::string> parameterNames =
+            parameterData.getMemberNames();
+        std::map<std::string, Json::Value> parameters;
 
         for(std::string parameterName : parameterNames) {
-            parameters[parameterName] = parameterData[parameterName].asDouble();
+            parameters[parameterName] = parameterData[parameterName];
         }
 
         components[componentName] = parameters;
@@ -57,14 +59,78 @@ OrganelleType::OrganelleType(Json::Value value)
         initialCompositionData.getMemberNames();
 
     for(std::string compoundInternalName : compoundInternalNames) {
-        // Getting the compound id from the compound registry.
-        size_t id = SimulationParameters::compoundRegistry
-                        .getTypeData(compoundInternalName)
-                        .id;
-
-        initialComposition[id] =
+        initialComposition[compoundInternalName] =
             initialCompositionData[compoundInternalName].asDouble();
     }
 
     mpCost = value["mpCost"].asInt();
+}
+
+CScriptArray*
+    OrganelleType::getComponentKeys() const
+{
+    return Leviathan::ConvertIteratorToASArray(
+        (components | boost::adaptors::map_keys).begin(),
+        (components | boost::adaptors::map_keys).end(),
+        Leviathan::ScriptExecutor::Get()->GetASEngine(), "array<string>");
+}
+
+CScriptArray*
+    OrganelleType::getComponentParameterKeys(std::string component)
+{
+    return Leviathan::ConvertIteratorToASArray(
+        (components[component] | boost::adaptors::map_keys).begin(),
+        (components[component] | boost::adaptors::map_keys).end(),
+        Leviathan::ScriptExecutor::Get()->GetASEngine(), "array<string>");
+}
+
+double
+    OrganelleType::getComponentParameterAsDouble(std::string component,
+        std::string parameter)
+{
+    return components[component][parameter].asDouble();
+}
+
+std::string
+    OrganelleType::getComponentParameterAsString(std::string component,
+        std::string parameter)
+{
+    return components[component][parameter].asString();
+}
+
+CScriptArray*
+    OrganelleType::getProcessKeys() const
+{
+    return Leviathan::ConvertIteratorToASArray(
+        (processes | boost::adaptors::map_keys).begin(),
+        (processes | boost::adaptors::map_keys).end(),
+        Leviathan::ScriptExecutor::Get()->GetASEngine(), "array<string>");
+}
+
+float
+    OrganelleType::getProcessTweakRate(std::string process)
+{
+    return processes[process];
+}
+
+CScriptArray*
+    OrganelleType::getHexes() const
+{
+    return Leviathan::ConvertIteratorToASArray(hexes.begin(), hexes.end(),
+        Leviathan::ScriptExecutor::Get()->GetASEngine(), "array<Int2>");
+}
+
+CScriptArray*
+    OrganelleType::getInitialCompositionKeys() const
+{
+    return Leviathan::ConvertIteratorToASArray(
+        (initialComposition | boost::adaptors::map_keys).begin(),
+        (initialComposition | boost::adaptors::map_keys).end(),
+        Leviathan::ScriptExecutor::Get()->GetASEngine(), "array<string>");
+}
+
+double
+    OrganelleType::getInitialComposition(std::string compound)
+{
+    return initialComposition[compound];
 }
