@@ -18,7 +18,7 @@ float maxProkaryoteScore = 0;
 //! Called from setupOrganelles
 void setupOrganelleLetters(){
 
-    auto keys = _mainOrganelleTable.getKeys();
+    auto keys = _organelleTable.getKeys();
 
     for(uint i = 0; i < keys.length(); ++i){
 

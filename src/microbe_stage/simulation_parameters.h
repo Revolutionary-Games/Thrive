@@ -4,8 +4,8 @@
 #include "biomes.h"
 #include "bioprocesses.h"
 #include "compounds.h"
-#include "organelle_types.h"
 #include "general/json_registry.h"
+#include "organelle_types.h"
 #include "species_name_controller.h"
 
 #include <unordered_map>
