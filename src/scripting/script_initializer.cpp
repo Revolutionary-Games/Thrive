@@ -1686,6 +1686,11 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(engine->RegisterObjectMethod("PatchMap", "Planet@ getPlanet()",
+           asMETHOD(PatchMap, getPlanet), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     // ------------------------------------ //
     // PatchManager
     if(engine->RegisterObjectType(

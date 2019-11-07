@@ -33,6 +33,7 @@ void updatePatchGasses(GameWorld@ world, double elapsed, double totalElapsed)
     const auto compoundIdOxygen = SimulationParameters::compoundRegistry().getTypeId("oxygen");
 
     auto patches = casted.GetPatchManager().getCurrentMap().getPatches();
+    auto planet = casted.GetPatchManager().getCurrentMap().getPlanet();
 
     for(uint i = 0; i < patches.length(); ++i){
 
