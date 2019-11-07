@@ -73,10 +73,10 @@ class CompoundVenterSystem
 public:
     /**
      * @brief Updates the system
-     * @todo Make it releases a specific amount of compounds each second
+     * @todo Make it releases a specific amount of compounds each second.
      */
     void
-        Run(CellStageWorld& world);
+        Run(CellStageWorld& world, float elapsed);
 
     void
         CreateNodes(
@@ -110,7 +110,7 @@ public:
 
 protected:
 private:
-    static constexpr double TIME_SCALING_FACTOR = 20;
-    int timeSinceLastCycle = 0;
+    static constexpr float TIME_SCALING_FACTOR = 0.2f;
+    float timeSinceLastCycle = 0;
 };
 } // namespace thrive

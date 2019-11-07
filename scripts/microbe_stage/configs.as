@@ -93,7 +93,9 @@ const uint AI_ENGULF_INTERVAL=300;
 // if you are gaining less then this amount of compound per turn you are much more likely to turn randomly
 const auto AI_COMPOUND_BIAS = -10.0f;
 // So we dont run the AI system every single frame
-const auto AI_TIME_INTERVAL = 150;
+const auto AI_TIME_INTERVAL = 0.2f;
+
+const auto AI_CELL_THINK_INTERVAL = 3.f;
 
 // Osmoregulation ATP cost
 const auto ATP_COST_FOR_OSMOREGULATION = 1.0f;
@@ -109,7 +111,7 @@ const auto BASE_MOVEMENT_ATP_COST = 1.0f;
 const auto PLAYER_NAME = "Player";
 
 const auto DEFAULT_HEALTH = 100;
-// Amount of health pers econd regened in percent
+// Amount of health per second regenerated
 const auto REGENERATION_RATE = 1.0f;
 
 // Movement stuff
@@ -141,7 +143,7 @@ const float BANDWIDTH_PER_ORGANELLE = 1.0;
 
 // The of time it takes for the microbe to regenerate an amount of
 // bandwidth equal to maxBandwidth
-const uint BANDWIDTH_REFILL_DURATION = 800;
+const float BANDWIDTH_REFILL_DURATION = 0.8f;
 
 // No idea what this does (if anything), but it isn't used in the
 // process system, or when ejecting compounds.
@@ -149,7 +151,7 @@ const float STORAGE_EJECTION_THRESHHOLD = 0.8;
 
 // The amount of time between each loop to maintaining a fill level
 // below STORAGE_EJECTION_THRESHHOLD and eject useless compounds
-const uint EXCESS_COMPOUND_COLLECTION_INTERVAL = 1000;
+const float EXCESS_COMPOUND_COLLECTION_INTERVAL = 1.f;
 
 // The amount of hitpoints each organelle provides to a microbe.
 const uint MICROBE_HITPOINTS_PER_ORGANELLE = 10;
@@ -181,8 +183,8 @@ const float ENGULF_DAMAGE = 80.0f;
 // Oxytoxy Damage
 const float OXY_TOXY_DAMAGE = 10.0f;
 
-// Cooldown between agent emissions, in milliseconds.
-const uint AGENT_EMISSION_COOLDOWN = 2000;
+// Cooldown between agent emissions, in seconds.
+const float AGENT_EMISSION_COOLDOWN = 2.f;
 
 // Iron amounts per chunk.
 // big iron ejects ten per 20 clicks , so about 30 per second, so ill give it enough for 1000 seconds)
@@ -198,83 +200,13 @@ const int CREATURE_KILL_POPULATION_GAIN = 50;
 const int CREATURE_SCAVENGE_POPULATION_GAIN = 10;
 const int CREATURE_REPRODUCE_POPULATION_GAIN = 50;
 const int CREATURE_ESCAPE_POPULATION_GAIN = 50;
+const uint CREATURE_ESCAPE_INTERVAL = 5000;
 
-// TODO: move these into gamestate (this is very dirty)
-// must be global
-int chloroplast_Organelle_Number = 0;
-int toxin_Organelle_Number = 0;
-bool chloroplast_unlocked = false;
-bool toxin_unlocked = false;
+// Used in the cell collision callback to know if something hit was a pilus
+const int PHYSICS_PILUS_TAG = 1;
+const auto PILUS_BASE_DAMAGE = 1.f;
+const auto PILUS_PENETRATION_DISTANCE_DAMAGE_MULTIPLIER = 10.f;
 
-
-// this count the toxin Organelle Number
-bool toxin_number(){
-    toxin_Organelle_Number = toxin_Organelle_Number + 1;
-    LOG_WRITE("toxin_Organelle_Number: " + toxin_Organelle_Number);
-    if(toxin_Organelle_Number >= 3){ // 3 is an example
-        unlockToxinIfStillLocked();
-        toxin_call_Notification();
-    }
-
-    return true;
-}
-
-// this count the chloroplast Organelle Number
-void chloroplast_number(){
-    chloroplast_Organelle_Number = chloroplast_Organelle_Number + 1;
-    LOG_WRITE("chloroplast_Organelle_Number: " + chloroplast_Organelle_Number);
-
-    if(chloroplast_Organelle_Number >= 3){  // 3 is an example
-        unlockChloroplastIfStillLocked();
-        chloroplast_call_Notification();
-    }
-}
-
-void playOrganellePickupSound(){
-    GetEngine().GetSoundDevice().Play2DSoundEffect("Data/Sound/microbe-pickup-organelle.ogg");
-}
-
-// TODO: remove this code duplication
-
-// this where the Unlock Happen
-void unlockToxinIfStillLocked(){
-    if(!GetThriveGame().playerData().lockedMap().isLocked("Toxin"))
-        return;
-
-    showMessage("Toxin Unlocked!");
-    GetThriveGame().playerData().lockedMap().unlock("Toxin");
-
-    playOrganellePickupSound();
-}
-
-//this where the Unlock Happen
-void unlockChloroplastIfStillLocked(){
-
-    if(!GetThriveGame().playerData().lockedMap().isLocked("chloroplast"))
-        return;
-
-    showMessage("Chloroplast Unlocked!");
-    GetThriveGame().playerData().lockedMap().unlock("chloroplast");
-
-    playOrganellePickupSound();
-}
-
-
-void chloroplast_call_Notification(){
-    if(chloroplast_unlocked == false){
-        // global_activeMicrobeStageHudSystem.chloroplastNotificationenable();
-        GetEngine().GetEventHandler().CallEvent(GenericEvent("chloroplastNotificationenable"));
-        chloroplast_unlocked = true;
-    }
-}
-
-void toxin_call_Notification(){
-    if(toxin_unlocked == false){
-        // global_activeMicrobeStageHudSystem.toxinNotificationenable();
-        GetEngine().GetEventHandler().CallEvent(GenericEvent("toxinNotificationenable"));
-        toxin_unlocked = true;
-    }
-}
 
 //! Returns a material with a basic texture on it. For use on non-organelle models
 bs::HMaterial getBasicMaterialWithTexture(const string &in textureName)
@@ -317,22 +249,6 @@ void updateMaterialTint(bs::HMaterial &in material, const Float4 &in tint)
     material.setVec4("gTint", bs::Vector4(tint));
 }
 
-// TODO: move this to where axialToCartesian is defined
-// We should use Int2 instead, or MAYBE a derived class defined in c++ if we wanna be really fancy...
-/*
-class AxialCoordinates{
-
-    AxialCoordinates(int q, int r){
-
-        this.q = q;
-        this.r = r;
-    }
-
-    // q and r are radial coordinates instead of cartesian
-    int q;
-    int r;
-}
-*/
 
 // Note this is an old comment
 /*

@@ -38,14 +38,12 @@ float
 
 
 void
-    CompoundVenterSystem::Run(CellStageWorld& world)
+    CompoundVenterSystem::Run(CellStageWorld& world, float elapsed)
 {
     if(!world.GetNetworkSettings().IsAuthoritative)
         return;
 
-    const auto logicTime = Leviathan::TICKSPEED;
-
-    timeSinceLastCycle++;
+    timeSinceLastCycle += elapsed;
     while(timeSinceLastCycle > TIME_SCALING_FACTOR) {
         timeSinceLastCycle -= TIME_SCALING_FACTOR;
         for(auto& value : CachedComponents.GetIndex()) {

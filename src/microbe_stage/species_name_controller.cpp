@@ -15,17 +15,18 @@ SpeciesNameController::SpeciesNameController(std::string jsonFilePath)
 {
     // Getting the JSON file where the data is stored.
     std::ifstream jsonFile;
-    jsonFile.open(
-        "./Data/Scripts/SimulationParameters/MicrobeStage/SpeciesNames.json");
-    LEVIATHAN_ASSERT(jsonFile.is_open(), "The file "
-                                         "'./Data/Scripts/SimulationParameters/"
-                                         "MicrobeStage/StartingCompounds.json' "
-                                         "failed to load!");
+    jsonFile.open("./Data/Scripts/simulation_parameters/microbe_stage/"
+                  "species_names.json");
+    LEVIATHAN_ASSERT(jsonFile.is_open(),
+        "The file "
+        "'./Data/Scripts/simulation_parameters/"
+        "microbe_stage/starting_compounds.json' "
+        "failed to load!");
     Json::Value rootElement;
     try {
         jsonFile >> rootElement;
     } catch(const Json::RuntimeError& e) {
-        LOG_ERROR(std::string("Syntax error in json file: SpeciesNames.json") +
+        LOG_ERROR(std::string("Syntax error in json file: species_names.json") +
                   ", description: " + std::string(e.what()));
         throw e;
     }

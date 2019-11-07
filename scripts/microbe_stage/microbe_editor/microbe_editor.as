@@ -70,6 +70,7 @@ class MicrobeEditor{
             {"rusticyanin", PlacementFunctionType(this.addOrganelle)},
             {"nitrogenase", PlacementFunctionType(this.addOrganelle)},
             {"oxytoxyProteins", PlacementFunctionType(this.addOrganelle)},
+            {"pilus", PlacementFunctionType(this.addOrganelle)},
             {"remove", PlacementFunctionType(this.removeOrganelle)}
         };
 
@@ -202,7 +203,7 @@ class MicrobeEditor{
         GetEngine().GetEventHandler().CallEvent(event);
     }
 
-    void update(int logicTime)
+    void update(float elapsed)
     {
         // TODO: this is really dirty to call this all the time
         // This updates the mutation point counts to the GUI

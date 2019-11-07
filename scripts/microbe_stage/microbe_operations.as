@@ -62,6 +62,24 @@ PlacedOrganelle@ getOrganelleAt(CellStageWorld@ world, ObjectID microbeEntity, I
     return OrganellePlacement::getOrganelleAt(microbeComponent.organelles, hex);
 }
 
+//! Helper for other code to mess with a microbe collision. After editing you must call
+//! finishMicrobeCollisionShapeEditing.
+//! \note If at all possible you should use another method to edit the collision
+PhysicsShape@ getMicrobeCollisionShapeForEditing(CellStageWorld@ world, ObjectID microbeEntity)
+{
+    auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
+    if(rigidBodyComponent is null || rigidBodyComponent.Body is null)
+        return null;
+    return rigidBodyComponent.Body.Shape;
+}
+
+void finishMicrobeCollisionShapeEditing(CellStageWorld@ world, ObjectID microbeEntity)
+{
+    auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
+    rigidBodyComponent.ChangeShape(world.GetPhysicalWorld(),
+        rigidBodyComponent.Body.Shape);
+}
+
 // Removes the organelle at a hex cell
 // Note that this renders the organelle unusable as we destroy its underlying entity
 //
@@ -275,11 +293,6 @@ void respawnPlayer(CellStageWorld@ world)
         sceneNodeComponent.Hidden = false;
         sceneNodeComponent.Marked = true;
 
-        //setRandomBiome(world);
-
-        cast<MicrobeStageHudSystem>(world.GetScriptSystem("MicrobeStageHudSystem")).
-            suicideButtonreset();
-
         // Reset membrane color to fix the bug that made membranes sometimes red after you respawn.
         MicrobeOperations::applyMembraneColour(world, playerEntity);
         // Reset the player cell to be the same as the species template
@@ -309,7 +322,7 @@ void setupMicrobeHitpoints(MicrobeComponent@ microbeComponent, int health)
 {
     microbeComponent.maxHitpoints = health;
     microbeComponent.hitpoints = microbeComponent.maxHitpoints;
-    microbeComponent.agentEmissionCooldown=uint(0);
+    microbeComponent.agentEmissionCooldown = 0.f;
 }
 
 //grabs compounds from template (starter_mcirobes) and stores them)
@@ -623,12 +636,12 @@ void rebuildProcessList(CellStageWorld@ world, ObjectID microbeEntity)
     }
 }
 
-void flashMembraneColour(CellStageWorld@ world, ObjectID microbeEntity, uint duration,
+void flashMembraneColour(CellStageWorld@ world, ObjectID microbeEntity, float duration,
     Float4 colour)
 {
     MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
 
-    if(microbeComponent.flashDuration <= 0){
+    if(microbeComponent.flashDuration <= 0.f){
         microbeComponent.flashColour = colour;
         microbeComponent.flashDuration = duration;
     }
@@ -734,8 +747,8 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
 
 
             // The cooldown time is inversely proportional to the amount of agent vacuoles.
-            microbeComponent.agentEmissionCooldown = uint(AGENT_EMISSION_COOLDOWN /
-                numberOfAgentVacuoles);
+            microbeComponent.agentEmissionCooldown = AGENT_EMISSION_COOLDOWN /
+                numberOfAgentVacuoles;
         }
     }
 }
@@ -808,17 +821,25 @@ void damage(CellStageWorld@ world, ObjectID microbeEntity, double amount, const 
     MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
     // auto soundSourceComponent = world.GetComponent_SoundSourceComponent(microbeEntity);
     if (microbeComponent !is null)
-        {
+    {
         if(damageType == "toxin"){
             // Play the toxin sound
-            playSoundWithDistance(world, "Data/Sound/soundeffects/microbe-toxin-damage.ogg", microbeEntity);
+            playSoundWithDistance(world, "Data/Sound/soundeffects/microbe-toxin-damage.ogg",
+                microbeEntity);
+        } else if(damageType == "pilus"){
+            // Play the pilus sound
+            playSoundWithDistance(world, "Data/Sound/soundeffects/pilus_puncture_stab.ogg",
+                microbeEntity);
+            // TODO: this may get triggered a lot more than the toxin
+            // so this might need to be rate limited or something
         }
 
         microbeComponent.hitpoints -= amount;
+
         // Flash the microbe red
-        //LOG_INFO("DAMAGE FLASH");
-        flashMembraneColour(world, microbeEntity, 1000,
+        flashMembraneColour(world, microbeEntity, 1.f,
             Float4(1,0,0,0.5));
+
         // Find out the amount of health the microbe has.
         if(microbeComponent.hitpoints <= 0.0f){
             microbeComponent.hitpoints = 0.0f;
@@ -1093,7 +1114,7 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
                 0, GetEngine().GetRandom().GetNumber(0.0f, 1.0f) * 2 - 1);
 
             createAgentCloud(world, compoundId, position._Position, direction, ejectedAmount,
-                2000, microbeComponent.species.name, NULL_OBJECT);
+                2.f, microbeComponent.species.name, NULL_OBJECT);
             //take oxytoxy
             takeCompound(world,microbeEntity,compoundId,ejectedAmount);
             ++createdAgents;
@@ -1209,7 +1230,7 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
 
 
     microbeComponent.dead = true;
-    microbeComponent.deathTimer = 5000;
+    microbeComponent.deathTimer = 5.f;
     microbeComponent.movementDirection = Float3(0,0,0);
     //so they stop absorbing the compounds from the chunks they release immediately
     auto compoundAbsorberComponent = world.GetComponent_CompoundAbsorberComponent(

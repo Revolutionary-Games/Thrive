@@ -142,6 +142,21 @@ bool
 
         Owner->SendCustomExtensionMessage(message);
         return true;
+    } else if(name == "pause") {
+
+        if(arguments.size() < 1 || !arguments[0]->IsBool()) {
+            // Invalid arguments //
+            exception = "Invalid arguments passed, expected: bool";
+            return true;
+        }
+
+        auto message = CefProcessMessage::Create("Custom");
+        auto args = message->GetArgumentList();
+        args->SetString(0, "pause");
+        args->SetBool(1, arguments[0]->GetBoolValue());
+
+        Owner->SendCustomExtensionMessage(message);
+        return true;
     }
 
     // This might be a bit expensive...
@@ -202,6 +217,10 @@ bool
     } else if(customType == "disconnectFromServer") {
 
         ThriveGame::Get()->disconnectFromServer(true);
+        return true;
+    } else if(customType == "pause") {
+
+        ThriveGame::Get()->pause(args->GetBool(1));
         return true;
     }
 
