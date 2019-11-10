@@ -1216,9 +1216,10 @@ function updateSelectedPatchData(patch){
     // Reset all arrows and text when we select a patch
     // Is called when we move on another patch or we select one
     if(currentPatchId == selectedPatch.id){
-        document.getElementById("editorSelectedPatchName").textContent =
-        "You are currently in " + "this patch.";
-        document.getElementById("editorSelectedPatchName").innerHTML += "<br>";
+        document.getElementById("editorSelectedPatchName").textContent = patch.name;
+        document.getElementById("editorSelectedPatchSituation").textContent =
+            "You are currently in this patch";
+
 
         // Reset all box that show up or down arrow on selected patch
         document.getElementById("microbeHUDPatchTemperatureSituation").style.backgroundImage =
@@ -1246,6 +1247,7 @@ function updateSelectedPatchData(patch){
         document.getElementById("microbeHUDPatchIronSituation").style.backgroundImage = "none";
 
     } else {
+        document.getElementById("editorSelectedPatchSituation").textContent = "";
         updateDifferentCondition(patch, patchData.patches[currentPatchId]);
     }
 
