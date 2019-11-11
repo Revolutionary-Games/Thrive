@@ -1200,7 +1200,7 @@ function updateSelectedPatchData(patch){
     }
 
     // Get chunck values of patch
-    const chunk = getPatchChunk(patch);
+    const chunk = getPatchChunkTotalCompoundAmounts(patch);
 
     document.getElementById("noPatchSelectedText").style.display = "none";
     document.getElementById("patchInfoBox").style.display = "block";
@@ -1248,7 +1248,7 @@ function updateSelectedPatchData(patch){
 
     } else {
         document.getElementById("editorSelectedPatchSituation").textContent = "";
-        updateDifferentCondition(patch, patchData.patches[currentPatchId]);
+        updateConditionDifferencesBetweenPatches(patch, patchData.patches[currentPatchId]);
     }
 
 
@@ -1335,12 +1335,13 @@ function moveToPatchClicked(){
     updateSelectedPatchData(selectedPatch);
 }
 
+// TODO: this function should be cleaned up by generalizing the adding
+// the increase or decrease icons in order to remove the duplicated
+// logic here
+function updateConditionDifferencesBetweenPatches(selectedPatch, currentPatch) {
 
-function updateDifferentCondition(selectedPatch, currentPatch) {
-
-
-    const selectedPatchChunk = getPatchChunk(selectedPatch);
-    const currentPatchChunk = getPatchChunk(currentPatch);
+    const selectedPatchChunk = getPatchChunkTotalCompoundAmounts(selectedPatch);
+    const currentPatchChunk = getPatchChunkTotalCompoundAmounts(currentPatch);
 
     // ========================== TEMPERATURE ========================== //
     let nextCompound = selectedPatch.biome.temperature;
@@ -1482,8 +1483,7 @@ function updateDifferentCondition(selectedPatch, currentPatch) {
 
 }
 
-function getPatchChunk(patch) {
-
+function getPatchChunkTotalCompoundAmounts(patch) {
 
     let glucose = 0;
     let phosphates = 0;
