@@ -301,7 +301,7 @@
                     <div class="environmentIcon TemperatureIcon"></div>
                     <div class="EnvironmentBarTitle">Temp.</div>
                       <div class="EnvironmentBarValue">
-                        <span id="microbeHUDPlayerTemp">55° C</span>
+                        <span id="microbeHUDPlayerTemperature">55° C</span>
                       </div>
                 </div>
               </div>
@@ -912,12 +912,73 @@ For this Release if your population (top tab) drops to zero you go extinct.
               Select a patch to show details here
             </span>
             <div id="patchInfoBox">
-              <div id="editorSelectedPatchName">
-                Selected patch name goes here
-              </div>
+                <div class="editorSelectedPatchTopInformation">
+                    <div id="editorSelectedPatchName">
+                        Selected patch name goes here
+                    </div>
+                    <div id="editorSelectedPatchSituation">
+                    </div>
+                </div>
               <br>
-              <div id="editorSelectedPatchDescription">
-              </div>
+                  <div class="editorSelectedPatchDescription">
+                      <div id="patchName" > Statistics </div>
+                      <div id="Allcondition">
+                      <p id="microbeHUDPatchMeters"> 200-340m below sea level </p>
+
+                        <!-- Phsysical Conditions -->
+                        <div class="topBar">
+                          <div class="minusBtn minus" data-cond="PhysicalCondition"></div> <div class="condTitle">  Physical Conditions </div>
+                        </div>
+                        <div class="ConditionTab" id="PhysicalCondition">
+                            <div class="condition"><img src="../../Textures/gui/bevel/Temperature.png"  class="patchIcon">
+                              <span id="microbeHUDPatchTemperature" class="value"> 6
+                              </span><span>&nbsp;°C</span> <div class="situation" id="microbeHUDPatchTemperatureSituation"></div> </div>
+                            <div class="condition"><img src="../../Textures/gui/bevel/Pressure.png"  class="patchIcon">
+                              <span id="microbeHUDPatchPressure" class="value"> 20
+                              </span> <span>&nbsp;bar</span> <div class="situation" id="microbeHUDPatchPressureSituation"></div> </div>
+                            <div class="condition"><img src="../../Textures/gui/bevel/Light.png"  class="patchIcon">
+                              <span id="microbeHUDPatchLight" class="value"> 40
+                              </span><span>&nbsp;lux</span> <div class="situation" id="microbeHUDPatchLightSituation"></div> </div>
+                        </div>
+
+                        <!-- Atmospheric Conditions -->
+                        <div class="topBar">
+                          <div class="minusBtn minus" data-cond="AtmosphericCondition"></div> <div class="condTitle"> Atmospheric Gasses </div>
+                        </div>
+                        <div class="ConditionTab" id="AtmosphericCondition">
+                            <div class="condition"><img src="../../Textures/gui/bevel/Oxygen.png"  class="patchIcon">
+                              <span id="microbeHUDPatchOxygen" class="value"> 23
+                              </span><div class="situation" id="microbeHUDPatchOxygenSituation"></div> </div>
+                            <div class="condition"><img src="../../Textures/gui/bevel/Nitrogen.png"  class="patchIcon">
+                              <span id="microbeHUDPatchNitrogen" class="value"> 3
+                                </span><span>&nbsp;ppm</span> <div class="situation" id="microbeHUDPatchNitrogenSituation"></div> </div>
+                            <div class="condition"><img src="../../Textures/gui/bevel/CO2.png" class="patchIcon">
+                              <span id="microbeHUDPatchCO2" class="value"> 43
+                                </span><span>&nbsp;ppm</span> <div class="situation" id="microbeHUDPatchCO2Situation"></div> </div>
+                        </div>
+
+                        <!--Compounds Cimposition -->
+                        <div class="topBar">
+                          <div class="minusBtn minus" data-cond="CompoundsComposition"></div> <div class="condTitle"> Compounds</div>
+                        </div>
+                        <div class="ConditionTab" id="CompoundsComposition">
+                            <div class="condition"><img src="../../Textures/gui/bevel/HydrogenSulfide.png" class="patchIcon">
+                              <span id="microbeHUDPatchHydrogenSulfide" class="value"> >1ppb </span><div class="situation" id="microbeHUDPatchHydrogenSulfideSituation"></div> </div>
+                            <div class="condition"><img src="../../Textures/gui/bevel/Ammonia.png"  class="patchIcon">
+                              <span id="microbeHUDPatchAmmonia" class="value"> 4ppm </span> <div class="situation" id="microbeHUDPatchAmmoniaSituation"></div> </div>
+                            <div class="condition"><img src="../../Textures/gui/bevel/Glucose.png" class="patchIcon">
+                              <span id="microbeHUDPatchGlucose" class="value"> 4ppm </span> <div class="situation" id="microbeHUDPatchGlucoseSituation"></div> </div>
+                            <div class="condition"><img src="../../Textures/gui/bevel/Phosphate.png" class="patchIcon">
+                              <span id="microbeHUDPatchPhosphate" class="value"> 26ppm </span>  <div class="situation" id="microbeHUDPatchPhosphateSituation"></div></div>
+                             <div class="condition"><img src="../../Textures/gui/bevel/Iron.png" class="patchIcon">
+                              <span id="microbeHUDPatchIron" class="value"> 9ppm </span> <div class="situation" id="microbeHUDPatchIronSituation"></div> </div>
+                        </div>
+                        <div class="topBar">
+                          <div class="minusBtn minus" data-cond="speciesInPatch"></div> <div class="condTitle"> Species Present</div>
+                              <div id="speciesInPatch"> </div>
+                        </div>
+                      </div>
+                  </div>
             </div>
             <div id="moveToPatchButton" class="Disabled">
               Move to This Patch

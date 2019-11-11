@@ -54,10 +54,6 @@ body {
   margin: 0;
 }
 
-/* button{
-    background-color: blue;
-} */
-
 /* Videos are centered inside their elements and made to fit */
 video {
   width: 100%;
@@ -468,6 +464,103 @@ div::-webkit-scrollbar-thumb:hover {
   height: 40px;
   background-image: url("../../Textures/gui/bevel/LowerBarRight.png");
   display: inline-block;
+}
+
+.tabTitle {
+  text-align: center;
+  position: relative;
+  width: 100%;
+  margin-top: 15px;
+  height: 50px;
+  font-size: 28pt;
+}
+
+#Allcondition {
+  position: relative;
+  width: 100%;
+  height: calc(100% - 65px);
+  font-size: 11pt;
+}
+
+.ConditionTab {
+  position: relative;
+  display: inline-block;
+  height: auto;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.condition {
+  position: relative;
+  display: inline-block;
+  margin-top: 5px;
+  width: 45%;
+  height: auto;
+}
+
+.value {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 16pt;
+}
+
+.situation {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 10px;
+  width: 12px;
+  height: 12px;
+}
+
+.patchIcon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 40px;
+  height: auto;
+}
+
+#microbeHUDPatchMeters {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  font-size: 14pt;
+}
+
+.minusBtn {
+  position: relative;
+  display: inline-block;
+  width: 27px;
+  height: 27px;
+  background-size: 27px, 27px;
+  background-image: url("../../Textures/gui/bevel/minusButtonHover.png");
+  background-position: center;
+  vertical-align: middle;
+}
+
+.minusBtn:hover {
+  background-image: url("../../Textures/gui/bevel/minusButtonHover.png");
+}
+
+.topBar {
+  display: block;
+  margin-left: 5px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  width: calc(100% - 8px);
+  height: 27px;
+}
+
+.condTitle {
+  display: inline-block;
+  position: relative;
+  height: auto;
+  font-size: 13pt;
+  vertical-align: middle;
+  margin-left: 5px;
+}
+
+#speciesInPatch {
+  font-size: 18px;
 }
 
 #microbeBottomBar {
@@ -1978,16 +2071,33 @@ div::-webkit-scrollbar-thumb:hover {
   border: 3px solid rgb(24, 143, 0);
 }
 
-#editorSelectedPatchName {
-  font-size: 26px;
+#patchName {
+  font-size: 20px;
   text-align: center;
   width: 100%;
 }
 
+.editorSelectedPatchDescription {
+  width: 99%;
+}
+
+.editorSelectedPatchTopInformation {
+  text-align: center;
+  width: 100%;
+}
+
+#editorSelectedPatchName {
+  font-size: 26px;
+}
+
+#editorSelectedPatchSituation {
+  font-size: 18px;
+}
+
+
 #patchInfoBox {
   overflow-y: auto;
-  max-height: 90%;
-  min-height: 90%;
+  height: 80%;
 }
 
 #moveToPatchButton {
@@ -2072,6 +2182,18 @@ div::-webkit-scrollbar-thumb:hover {
     -moz-box-shadow: inset 0 0 300px -200px rgba(255, 255, 255, 1);
     box-shadow: inset 0 0 300px -200px rgba(255, 255, 255, 1);
   }
+}
+
+.minus {
+  background-image: url("../../Textures/gui/bevel/minusButton.png");
+}
+
+.plus {
+  background-image: url("../../Textures/gui/bevel/plusButton.png");
+}
+
+.plus:hover {
+  background-image: url("../../Textures/gui/bevel/plusButtonHover.png");
 }
 
 .PatchTidepool {
