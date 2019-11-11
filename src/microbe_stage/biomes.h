@@ -153,6 +153,7 @@ public:
     float sunlightIntensity;
     Float3 sunlightDirection;
     float sunlightSourceRadius;
+    float averageTemperature;
 
     // Eye adaptation / auto exposure settings
     //! Min eye adaptation for camera in this patch, valid range: [0.0f, 10.0f].

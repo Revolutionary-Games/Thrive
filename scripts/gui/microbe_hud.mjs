@@ -282,8 +282,10 @@ export function onReadyToEnterEditor(){
 //! Disabled the editor button
 export function onResetEditor(){
 
-    // Disable
+    // Disable and remove animation
     document.getElementById("microbeToEditorButton").classList.add("DisabledButton");
+    document.getElementById("microbeToEditorButton").classList.remove("pulseEditor");
+    document.getElementById("microbeToEditorButton").style.zIndex = "-1";
     readyToEdit = false;
 }
 
