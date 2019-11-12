@@ -10,6 +10,9 @@ This document assumes that you have an understanding of [entities, components an
 Graphics
 --------
 
+NOTE: this section is outdated. See:
+[#897](https://github.com/Revolutionary-Games/Thrive/issues/897)
+
 Thrive uses the Ogre3D graphics engine for rendering. Rendering is done as one
 of the last things in each frame. The most notable systems are listed here.
 
@@ -41,9 +44,9 @@ is quite lacking, help writing this is welcome)
 Physics
 -------
 
-For physics, we use the Newton dynamics library. Rigid bodies are
-created by adding a Physics component to an entity. The physics system
-then updates the entity's Position based on the physics simulation.
+For physics, we use Bullet library. Rigid bodies are created by adding
+a Physics component to an entity. The physics system then updates the
+entity's Position based on the physics simulation.
 
 The authority on the position and orientation is the Physics component.
 

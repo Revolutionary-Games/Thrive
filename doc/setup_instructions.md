@@ -101,17 +101,12 @@ on github and use the url of that instead of the one above.
 Running Setup
 -------------
 
-Now you can run the setup script with (make sure you have setup prerequisites):
+Now you can run the setup script with (make sure you have finished
+with the prerequisites first):
 
 ```
-ruby SetupThrive.rb thrive
+ruby SetupThrive.rb
 ```
-
-The last part of the command (thrive) is the svn username. If you have
-an svn assets username (ask on slack) use it instead of "thrive" here.
-
-When asked to login to svn type in your svn password. Or if you are
-using "thrive" as username type in "thrive" as the password as well.
 
 Note: if you have a small amount of ram you may want to limit the
 setup script to only use a few CPU cores for building or don't want to
@@ -137,10 +132,11 @@ If the setup script succeeds then congratulations you have just
 successfully built Thrive and can start working.
 
 If it didn't work you can try these:
+
 - [Leviathan Troubleshoothing tips](https://leviathanengine.com/doc/develop/Documentation/html/dc/dca/compiling_leviathan.html#compile_troubleshooting)
 - Thrive forums
 - Thrive discord
-- Thrive developer chat on slack
+- Thrive developer discord
 
 to get help
 
@@ -183,3 +179,6 @@ git push fork master
 
 Now you can open a pull request by visiting the Github page for your
 fork.
+
+There is an indepth guide for working with forks
+[here](https://gist.github.com/Chaser324/ce0505fbed06b947d962)
