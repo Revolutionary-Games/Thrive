@@ -169,19 +169,28 @@ void
 void
     cellHitDamageChunk(Leviathan::PhysicalWorld& physicalWorld,
         Leviathan::PhysicsBody& first,
-        Leviathan::PhysicsBody& second)
+        Leviathan::PhysicsBody& second,
+        const btPersistentManifold& manifold)
 {
     GameWorld* gameWorld = physicalWorld.GetGameWorld();
+	
+	Leviathan::PhysicsShape* shape = second.GetShape();
+
+	const int numContacts = manifold.getNumContacts();
 
     ScriptRunningSetup setup("cellHitDamageChunk");
 
-    auto result =
-        ThriveCommon::get()->getMicrobeScripts()->ExecuteOnModule<void>(setup,
-            false, gameWorld, first.GetOwningEntity(),
-            second.GetOwningEntity());
+	for(int i = 0; i < numContacts; ++i) {
+        const btManifoldPoint& contactPoint = manifold.getContactPoint(i);
 
-    if(result.Result != SCRIPT_RUN_RESULT::Success)
-        LOG_ERROR("Failed to run script side cellHitDamageChunk");
+        auto returned =
+            ThriveCommon::get()->getMicrobeScripts()->ExecuteOnModule<void>(
+                setup, false, gameWorld, first.GetOwningEntity(),
+                second.GetOwningEntity(), shape, contactPoint.m_index0);
+
+        if(returned.Result != SCRIPT_RUN_RESULT::Success)
+            LOG_ERROR("Failed to run script side cellHitDamageChunk");
+    } 
 }
 
 
@@ -236,21 +245,30 @@ bool
 void
     agentCollided(Leviathan::PhysicalWorld& physicalWorld,
         Leviathan::PhysicsBody& first,
-        Leviathan::PhysicsBody& second)
+        Leviathan::PhysicsBody& second,
+        const btPersistentManifold& manifold)
 {
     // This will call a script that pulls cells in towards engulfers
     GameWorld* gameWorld = physicalWorld.GetGameWorld();
+	
+	Leviathan::PhysicsShape* shape = second.GetShape();
 
     ScriptRunningSetup setup("cellHitAgent");
 
-    auto returned =
-        ThriveCommon::get()->getMicrobeScripts()->ExecuteOnModule<void>(setup,
-            false, gameWorld, first.GetOwningEntity(),
-            second.GetOwningEntity());
+	const int numContacts = manifold.getNumContacts();
 
-    if(returned.Result != SCRIPT_RUN_RESULT::Success) {
-        LOG_ERROR("Failed to run script side beingEngulfed");
-    }
+	for(int i = 0; i < numContacts; ++i) {
+        const btManifoldPoint& contactPoint = manifold.getContactPoint(i);
+
+		 auto returned =
+            ThriveCommon::get()->getMicrobeScripts()->ExecuteOnModule<void>(
+                setup, false, gameWorld, first.GetOwningEntity(),
+                second.GetOwningEntity(), shape, contactPoint.m_index0);
+
+        if(returned.Result != SCRIPT_RUN_RESULT::Success) {
+            LOG_ERROR("Failed to run script side beingEngulfed");
+        }
+	} 
 }
 
 void
@@ -351,10 +369,10 @@ std::unique_ptr<Leviathan::PhysicsMaterialManager>
     cellMaterial->FormPairWith(*engulfableMaterial)
         .SetCallbacks(nullptr, cellHitEngulfable);
     cellMaterial->FormPairWith(*chunkDamageMaterial)
-        .SetCallbacks(nullptr, *cellHitDamageChunk);
+        .SetCallbacks(nullptr, nullptr, *cellHitDamageChunk);
     // Agents
     cellMaterial->FormPairWith(*agentMaterial)
-        .SetCallbacks(agentCallback, agentCollided);
+        .SetCallbacks(agentCallback, nullptr, agentCollided);
 
     // Engulfing
     cellMaterial->FormPairWith(*cellMaterial)
