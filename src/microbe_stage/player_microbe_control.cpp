@@ -112,7 +112,7 @@ bool
 
         if(ThriveGame::get()->areCheatsEnabled()) {
 
-            if(intialAmmoniaCloudsPress) {
+            if(initialAmmoniaCloudsPress) {
                 LOG_INFO("Ammonia cloud cheat pressed");
                 initialAmmoniaCloudsPress = false;
             }
