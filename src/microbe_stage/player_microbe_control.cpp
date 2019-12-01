@@ -90,7 +90,7 @@ bool
 
         if(ThriveGame::get()->areCheatsEnabled()) {
 
-            if (initialCloudsPress){
+            if(initialCloudsPress) {
                 LOG_INFO("Glucose cloud cheat pressed");
                 initialCloudsPress = false;
             }
@@ -101,7 +101,7 @@ bool
 
         if(ThriveGame::get()->areCheatsEnabled()) {
 
-            if (initialPhosphateCloudsPress){
+            if(initialPhosphateCloudsPress) {
                 LOG_INFO("Phosphate cloud cheat pressed");
                 initialPhosphateCloudsPress = false;
             }
@@ -111,8 +111,8 @@ bool
     } else if(m_spawnAmmoniaCheat.Match(key, modifiers)) {
 
         if(ThriveGame::get()->areCheatsEnabled()) {
-            
-            if (intialAmmoniaCloudsPress){
+
+            if(intialAmmoniaCloudsPress) {
                 LOG_INFO("Ammonia cloud cheat pressed");
                 initialAmmoniaCloudsPress = false;
             }
