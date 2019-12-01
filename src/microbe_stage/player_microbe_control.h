@@ -117,11 +117,20 @@ private:
     //! True when cheat clouds should be spawned all the time
     bool cheatCloudsDown = false;
 
+    //! False when the cheat is pressed for the first time, used for only one log output
+    bool initialCloudsPress = false
+
     //! Phosphate cheat cloud
     bool cheatPhosphateCloudsDown = false;
 
+    //! //! False when the cheat is pressed for the first time, used for one log output
+    bool initialPhosphateCloudsPress = false
+
     //! Ammonia cheat cloud
     bool cheatAmmoniaCloudsDown = false;
+
+    //! //! False when the cheat is pressed for the first time, used for one log output
+    bool initialAmmoniaCloudsPress = false
 
     //! Set to false when not in the microbe stage (or maybe editor as
     //! well could use this) to not send control events
