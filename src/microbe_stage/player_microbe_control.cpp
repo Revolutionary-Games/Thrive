@@ -90,7 +90,10 @@ bool
 
         if(ThriveGame::get()->areCheatsEnabled()) {
 
-            LOG_INFO("Glucose cloud cheat pressed");
+            if(initialCloudsPress) {
+                LOG_INFO("Glucose cloud cheat pressed");
+                initialCloudsPress = false;
+            }
             cheatCloudsDown = true;
         }
         return true;
@@ -98,7 +101,10 @@ bool
 
         if(ThriveGame::get()->areCheatsEnabled()) {
 
-            LOG_INFO("Phosphate cloud cheat pressed");
+            if(initialPhosphateCloudsPress) {
+                LOG_INFO("Phosphate cloud cheat pressed");
+                initialPhosphateCloudsPress = false;
+            }
             cheatPhosphateCloudsDown = true;
         }
         return true;
@@ -106,7 +112,10 @@ bool
 
         if(ThriveGame::get()->areCheatsEnabled()) {
 
-            LOG_INFO("Ammonia cloud cheat pressed");
+            if(initialAmmoniaCloudsPress) {
+                LOG_INFO("Ammonia cloud cheat pressed");
+                initialAmmoniaCloudsPress = false;
+            }
             cheatAmmoniaCloudsDown = true;
         }
         return true;
@@ -308,8 +317,6 @@ void
     // Activate engulf mode
     if(thrive->getPlayerInput()->getPressedEngulf()) {
 
-        LOG_INFO("Engulf mode pressed");
-
         thrive->getPlayerInput()->setPressedEngulf(false);
 
         ScriptRunningSetup setup("applyEngulfMode");
@@ -324,8 +331,6 @@ void
 
     // Fire Toxin
     if(thrive->getPlayerInput()->getPressedToxin()) {
-
-        LOG_INFO("Toxin Shoot pressed");
 
         thrive->getPlayerInput()->setPressedToxin(false);
 

@@ -20,12 +20,10 @@ bool
 
 
     if(m_rotateRight.Match(key, modifiers)) {
-        LOG_INFO("Right pressed");
         Engine::Get()->GetEventHandler()->CallEvent(
             new Leviathan::GenericEvent("PressedRightRotate"));
         return true;
     } else if(m_rotateLeft.Match(key, modifiers)) {
-        LOG_INFO("Left pressed");
         Engine::Get()->GetEventHandler()->CallEvent(
             new Leviathan::GenericEvent("PressedLeftRotate"));
         return true;
