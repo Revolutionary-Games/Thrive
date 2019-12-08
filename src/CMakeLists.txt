@@ -248,9 +248,11 @@ set(AllProjectFiles
 # Compile a common library
 add_library(ThriveLib STATIC ${THRIVE_FILES})
 
-set_target_properties(ThriveLib PROPERTIES
-  OUTPUT_NAME Thrive
-  )
+# All of a sudden this started causing problems on windows
+# So ThriveLib now needs to have a different name than the main executable
+# set_target_properties(ThriveLib PROPERTIES
+#   OUTPUT_NAME Thrive
+#   )
 
 set_property(TARGET ThriveLib PROPERTY CXX_STANDARD 17)
 set_property(TARGET ThriveLib PROPERTY CXX_EXTENSIONS OFF)
