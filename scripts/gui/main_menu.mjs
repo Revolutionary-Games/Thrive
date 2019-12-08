@@ -254,7 +254,7 @@ function newGame(){
     }
 
     if(common.isInEngine()){
-        Leviathan.PlayCutscene("Data/Videos/MicrobeIntro.mkv", onMicrobeIntroEnded,
+        Leviathan.PlayCutscene("Data/Videos/microbe_intro.mkv", onMicrobeIntroEnded,
             onMicrobeIntroEnded);
         updateLoadingScreen({show: true, status: "Loading Microbe Stage", message: ""});
     } else {
