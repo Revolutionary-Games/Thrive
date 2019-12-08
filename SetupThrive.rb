@@ -17,7 +17,7 @@ if !File.exist? 'RubySetupSystem/RubySetupSystem.rb'
 else
   # Make sure RubySetupSystem is up to date
   # This may make debugging RubySetupSystem harder so feel free to comment out
-  system 'git submodule update'
+  system 'git submodule update --init'
 end
 
 require 'fileutils'
@@ -45,7 +45,7 @@ require_relative 'RubySetupSystem/Libraries/SetupLeviathan.rb'
 leviathan = Leviathan.new(
   # Use this if you always want the latest commit
   # version: "develop",
-  version: '10ef0415497a81f5113af21bcd13fc74bd62815a',
+  version: '4f1ee9af75de0df5f07c21c24ad159b4563b81ff',
   # Doesn't actually work, but leviathan doesn't install with sudo by
   # default, or install at all for that matter
   noInstallSudo: true
