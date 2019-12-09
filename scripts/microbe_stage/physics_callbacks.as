@@ -1,28 +1,4 @@
 // Callbacks for cell stage physics materials
-void cellHitFloatingOrganelle(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
-{
-    // Determine which is the organelle
-    CellStageWorld@ asCellWorld = cast<CellStageWorld>(world);
-
-    auto model = asCellWorld.GetComponent_Model(firstEntity);
-    auto floatingEntity = firstEntity;
-    auto cellEntity = secondEntity;
-
-    // Cell doesn't have a model
-    if(model is null){
-
-        @model = asCellWorld.GetComponent_Model(secondEntity);
-        floatingEntity = secondEntity;
-        cellEntity = firstEntity;
-    }
-
-    // // TODO: use this to detect stuff
-    // LOG_INFO("Model: " + model.GraphicalObject.getMesh().getName());
-    // LOG_INFO("TODO: organelle unlock progress if cell: " + cellEntity + " is the player");
-
-    world.QueueDestroyEntity(floatingEntity);
-}
-
 
 // Used for chunks
 void cellHitEngulfable(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
@@ -261,8 +237,7 @@ bool cellOnCellActualContact(GameWorld@ world,
     return true;
 }
 
-// Returns false if being engulfed, probabbly also damages the cell being
-// engulfed, we should probabbly check cell size and such here aswell.
+// Checks if cells should collide or not and applies the being engulfed status
 bool beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
 {
     bool shouldCollide = false;
@@ -324,6 +299,7 @@ bool beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity
     return true;
 }
 
+//! \brief Skips collision if agent shouldn't damange the given cell
 bool hitAgent(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
 {
     // TODO: why is this used here when each place that sets this return immediately?
