@@ -223,32 +223,74 @@ bool
 }
 
 void
-    agentCollided(Leviathan::PhysicalWorld& physicalWorld,
+    agentCollidedManifold(Leviathan::PhysicalWorld& physicalWorld,
         Leviathan::PhysicsBody& first,
         Leviathan::PhysicsBody& second,
         const btPersistentManifold& manifold)
 {
-    // This will call a script that pulls cells in towards engulfers
+    Leviathan::PhysicsShape* cellShape = first.GetShape();
+    Leviathan::PhysicsShape* otherShape = second.GetShape();
+
     GameWorld* gameWorld = physicalWorld.GetGameWorld();
-	
-	Leviathan::PhysicsShape* shape = second.GetShape();
+    auto holder = gameWorld->GetScriptComponentHolder("MicrobeComponent");
+    LEVIATHAN_ASSERT(holder, "GameWorld has no microbe component holder");
+
+    // The world will hold this object while we do our thing so we can
+    // immediately release our reference
+    holder->Release();
+
+    asIScriptObject* microbeComponent = nullptr;
+    ObjectID otherId;
+    ObjectID cellEntity;
+    int cellSubCollision;
+
+    const int numContacts = manifold.getNumContacts();
 
     ScriptRunningSetup setup("cellHitAgent");
 
-	const int numContacts = manifold.getNumContacts();
+    for(int i = 0; i < numContacts; ++i) {
 
-	for(int i = 0; i < numContacts; ++i) {
         const btManifoldPoint& contactPoint = manifold.getContactPoint(i);
 
-		 auto returned =
-            ThriveCommon::get()->getMicrobeScripts()->ExecuteOnModule<void>(
-                setup, false, gameWorld, first.GetOwningEntity(),
-                second.GetOwningEntity(), shape, contactPoint.m_index0);
+        if(contactPoint.getDistance() < 0.f) {
+            if(!microbeComponent) {
 
-        if(returned.Result != SCRIPT_RUN_RESULT::Success) {
-            LOG_ERROR("Failed to run script side beingEngulfed");
+                // The holder will keep the references alive, so we can release
+                // them immediately
+                microbeComponent = holder->Find(first.GetOwningEntity());
+
+                if(!microbeComponent) {
+                    microbeComponent = holder->Find(second.GetOwningEntity());
+                    std::swap(cellShape, otherShape);
+                    otherId = first.GetOwningEntity();
+                    cellEntity = second.GetOwningEntity();
+                    cellSubCollision = contactPoint.m_index1;
+                } else {
+                    otherId = second.GetOwningEntity();
+                    cellEntity = first.GetOwningEntity();
+                    cellSubCollision = contactPoint.m_index0;
+                }
+
+                if(!microbeComponent)
+                    return;
+
+                microbeComponent->Release();
+            }
+
+            auto returned =
+                ThriveCommon::get()->getMicrobeScripts()->ExecuteOnModule<bool>(
+                    setup, false, gameWorld, otherId, cellEntity,
+                    microbeComponent, cellShape, cellSubCollision);
+
+            if(returned.Result != SCRIPT_RUN_RESULT::Success) {
+                LOG_ERROR("Failed to run script side cell on agent collision");
+                break;
+            }
+
+            if(returned.Value)
+                break;
         }
-	} 
+    }
 }
 
 void
@@ -334,13 +376,19 @@ std::unique_ptr<Leviathan::PhysicsMaterialManager>
     // Set callbacks //
 
     // Chunks
+    // These two should be still updated
     cellMaterial->FormPairWith(*engulfableMaterial)
         .SetCallbacks(nullptr, cellHitEngulfable);
     cellMaterial->FormPairWith(*chunkDamageMaterial)
-        .SetCallbacks(nullptr, nullptr, *cellHitDamageChunk);
+        .SetCallbacks(nullptr, nullptr, cellHitDamageChunk);
+    // to be like this (copy code from agentCollidedManifold):
+    // cellMaterial->FormPairWith(*engulfableMaterial)
+    //     .SetCallbacks(nullptr, cellHitEngulfableManifold);
+    // cellMaterial->FormPairWith(*chunkDamageMaterial)
+    //     .SetCallbacks(nullptr, nullptr, cellHitDamageChunkManifold);
     // Agents
     cellMaterial->FormPairWith(*agentMaterial)
-        .SetCallbacks(agentCallback, nullptr, agentCollided);
+        .SetCallbacks(agentCallback, nullptr, agentCollidedManifold);
 
     // Engulfing and stabbing
     cellMaterial->FormPairWith(*cellMaterial)
