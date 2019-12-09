@@ -109,53 +109,38 @@ void cellHitDamageChunk(GameWorld@ world,
     }
 }
 
-// Returns false if you hit an agent and calls the hit effect code
-// Cell Hit Oxytoxy
-// We can make this generic using the dictionary in agents.as
-// eventually, but for now all we have is oxytoxy
-void cellHitAgent(GameWorld@ world,
-    ObjectID firstEntity,
-    ObjectID secondEntity,
-    const PhysicsShape@ contactShape,
+// Actual collision between agent and cell, applies damage and removes
+// the agent if the hit was valid
+bool cellHitAgent(GameWorld@ world,
+    ObjectID otherEntity,
+    ObjectID cellEntity,
+    MicrobeComponent@ microbeComponent,
+    const PhysicsShape@ cellShape,
     int cellSubCollision)
 {
-
-    bool isPilus = contactShape.GetChildCustomTag(cellSubCollision) ==
+    bool isPilus = cellShape.GetChildCustomTag(cellSubCollision) ==
         PHYSICS_PILUS_TAG;
-    LOG_INFO("" + isPilus);
-    // Determine which is the organelle
+
+    // Agent can't hit through a pilus
+    if(isPilus)
+        return false;
+
     CellStageWorld@ asCellWorld = cast<CellStageWorld>(world);
 
-    auto model = asCellWorld.GetComponent_Model(firstEntity);
-    auto floatingEntity = firstEntity;
-    auto cellEntity = secondEntity;
-
-    // Cell doesn't have a model
-    if(model is null){
-        @model = asCellWorld.GetComponent_Model(secondEntity);
-        floatingEntity = secondEntity;
-        cellEntity = firstEntity;
-    }
-
-    if(model is null){
-
-        LOG_ERROR("cellHitAgent: neither body has a Model");
-        return;
-    }
-
-
     AgentProperties@ propertiesComponent =
-        asCellWorld.GetComponent_AgentProperties(floatingEntity);
+        asCellWorld.GetComponent_AgentProperties(otherEntity);
 
-    MicrobeComponent@ microbeComponent = MicrobeOperations::getMicrobeComponent(asCellWorld,cellEntity);
+    if (propertiesComponent !is null){
+        if (propertiesComponent.getSpeciesName() != microbeComponent.species.name &&
+            !microbeComponent.dead){
 
-    if (propertiesComponent !is null && microbeComponent !is null){
-        if (propertiesComponent.getSpeciesName() != microbeComponent.species.name && !microbeComponent.dead){
-            MicrobeOperations::damage(asCellWorld, cellEntity, double(OXY_TOXY_DAMAGE), "toxin");
-            world.QueueDestroyEntity(floatingEntity);
+            MicrobeOperations::damage(asCellWorld, cellEntity, double(OXY_TOXY_DAMAGE),
+                "toxin");
+            world.QueueDestroyEntity(otherEntity);
         }
     }
 
+    return true;
 }
 
 bool cellOnCellActualContact(GameWorld@ world,
