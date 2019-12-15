@@ -68,7 +68,7 @@ public:
         getStatusString() const;
 
     //! \brief Applies things added by addExternalPopulationEffect
-    //! \note This has to be called after thus run is finished
+    //! \note This has to be called after this run is finished
     void
         applyExternalEffects();
 
