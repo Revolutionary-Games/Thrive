@@ -128,88 +128,105 @@ bool
 }
 // ------------------------------------ //
 // Physics materials
-
-
+//! \todo The callbacks could be looked up on startup to speed this up
 void
-    cellHitFloatingOrganelle(Leviathan::PhysicalWorld& physicalWorld,
-        Leviathan::PhysicsBody& first,
-        Leviathan::PhysicsBody& second)
+    cellHitSomethingElseManifoldHelper(Leviathan::PhysicsBody& first,
+        Leviathan::PhysicsBody& second,
+        const btPersistentManifold& manifold,
+        Leviathan::GameModule* scripts,
+        GameWorld* gameWorld,
+        const char* scriptCallback)
 {
-    GameWorld* gameWorld = physicalWorld.GetGameWorld();
+    Leviathan::PhysicsShape* cellShape = first.GetShape();
+    Leviathan::PhysicsShape* otherShape = second.GetShape();
 
-    ScriptRunningSetup setup("cellHitFloatingOrganelle");
+    auto holder = gameWorld->GetScriptComponentHolder("MicrobeComponent");
+    LEVIATHAN_ASSERT(holder, "GameWorld has no microbe component holder");
 
-    auto result =
-        ThriveCommon::get()->getMicrobeScripts()->ExecuteOnModule<void>(setup,
-            false, gameWorld, first.GetOwningEntity(),
-            second.GetOwningEntity());
+    // The world will hold this object while we do our thing so we can
+    // immediately release our reference
+    holder->Release();
 
-    if(result.Result != SCRIPT_RUN_RESULT::Success)
-        LOG_ERROR("Failed to run script side cellHitFloatingOrganelle");
-}
+    asIScriptObject* microbeComponent = nullptr;
+    ObjectID otherId;
+    ObjectID cellEntity;
+    int cellSubCollision;
 
-void
-    cellHitEngulfable(Leviathan::PhysicalWorld& physicalWorld,
-        Leviathan::PhysicsBody& first,
-        Leviathan::PhysicsBody& second)
-{
-    GameWorld* gameWorld = physicalWorld.GetGameWorld();
+    const int numContacts = manifold.getNumContacts();
 
-    ScriptRunningSetup setup("cellHitEngulfable");
+    ScriptRunningSetup setup(scriptCallback);
 
-    auto result =
-        ThriveCommon::get()->getMicrobeScripts()->ExecuteOnModule<void>(setup,
-            false, gameWorld, first.GetOwningEntity(),
-            second.GetOwningEntity());
+    for(int i = 0; i < numContacts; ++i) {
 
-    if(result.Result != SCRIPT_RUN_RESULT::Success)
-        LOG_ERROR("Failed to run script side cellHitEngulfable");
-}
+        const btManifoldPoint& contactPoint = manifold.getContactPoint(i);
 
-void
-    cellHitDamageChunk(Leviathan::PhysicalWorld& physicalWorld,
-        Leviathan::PhysicsBody& first,
-        Leviathan::PhysicsBody& second)
-{
-    GameWorld* gameWorld = physicalWorld.GetGameWorld();
+        if(contactPoint.getDistance() < 0.f) {
+            if(!microbeComponent) {
 
-    ScriptRunningSetup setup("cellHitDamageChunk");
+                // The holder will keep the references alive, so we can release
+                // them immediately
+                microbeComponent = holder->Find(first.GetOwningEntity());
 
-    auto result =
-        ThriveCommon::get()->getMicrobeScripts()->ExecuteOnModule<void>(setup,
-            false, gameWorld, first.GetOwningEntity(),
-            second.GetOwningEntity());
+                if(!microbeComponent) {
+                    microbeComponent = holder->Find(second.GetOwningEntity());
+                    std::swap(cellShape, otherShape);
+                    otherId = first.GetOwningEntity();
+                    cellEntity = second.GetOwningEntity();
+                    cellSubCollision = contactPoint.m_index1;
+                } else {
+                    otherId = second.GetOwningEntity();
+                    cellEntity = first.GetOwningEntity();
+                    cellSubCollision = contactPoint.m_index0;
+                }
 
-    if(result.Result != SCRIPT_RUN_RESULT::Success)
-        LOG_ERROR("Failed to run script side cellHitDamageChunk");
-}
+                if(!microbeComponent)
+                    return;
 
+                microbeComponent->Release();
+            }
 
-//! \todo This should return false when either cell is engulfing and apply the
-//! damaging effect
-bool
-    cellOnCellAABBHitCallback(Leviathan::PhysicalWorld& physicalWorld,
-        Leviathan::PhysicsBody& first,
-        Leviathan::PhysicsBody& second)
-{
-    GameWorld* gameWorld = physicalWorld.GetGameWorld();
+            auto returned =
+                scripts->ExecuteOnModule<bool>(setup, false, gameWorld, otherId,
+                    cellEntity, microbeComponent, cellShape, cellSubCollision);
 
-    ScriptRunningSetup setup("beingEngulfed");
+            if(returned.Result != SCRIPT_RUN_RESULT::Success) {
+                LOG_ERROR("Failed to run script side cell on " +
+                          std::string(scriptCallback) + " collision");
+                break;
+            }
 
-    auto returned =
-        ThriveCommon::get()->getMicrobeScripts()->ExecuteOnModule<bool>(setup,
-            false, gameWorld, first.GetOwningEntity(),
-            second.GetOwningEntity());
-
-    if(returned.Result != SCRIPT_RUN_RESULT::Success) {
-        LOG_ERROR("Failed to run script side beingEngulfed");
-        return true;
+            if(returned.Value)
+                break;
+        }
     }
-
-    return returned.Value;
 }
 
+// ------------------------------------ //
+// Chunks hit cell
+void
+    cellHitEngulfableManifold(Leviathan::PhysicalWorld& physicalWorld,
+        Leviathan::PhysicsBody& first,
+        Leviathan::PhysicsBody& second,
+        const btPersistentManifold& manifold)
+{
+    cellHitSomethingElseManifoldHelper(first, second, manifold,
+        ThriveCommon::get()->getMicrobeScripts(), physicalWorld.GetGameWorld(),
+        "cellHitEngulfable");
+}
 
+void
+    cellHitDamageChunkManifold(Leviathan::PhysicalWorld& physicalWorld,
+        Leviathan::PhysicsBody& first,
+        Leviathan::PhysicsBody& second,
+        const btPersistentManifold& manifold)
+{
+    cellHitSomethingElseManifoldHelper(first, second, manifold,
+        ThriveCommon::get()->getMicrobeScripts(), physicalWorld.GetGameWorld(),
+        "cellHitDamageChunk");
+}
+// ------------------------------------ //
+// Agent on cell
+//! \brief Used to skip agents hitting cells of their own species
 bool
     agentCallback(Leviathan::PhysicalWorld& physicalWorld,
         Leviathan::PhysicsBody& first,
@@ -234,23 +251,39 @@ bool
 }
 
 void
-    agentCollided(Leviathan::PhysicalWorld& physicalWorld,
+    agentCollidedManifold(Leviathan::PhysicalWorld& physicalWorld,
+        Leviathan::PhysicsBody& first,
+        Leviathan::PhysicsBody& second,
+        const btPersistentManifold& manifold)
+{
+    cellHitSomethingElseManifoldHelper(first, second, manifold,
+        ThriveCommon::get()->getMicrobeScripts(), physicalWorld.GetGameWorld(),
+        "cellHitAgent");
+}
+// ------------------------------------ //
+// Cell on cell
+//! \todo This should return false when either cell is engulfing and apply the
+//! damaging effect
+bool
+    cellOnCellAABBHitCallback(Leviathan::PhysicalWorld& physicalWorld,
         Leviathan::PhysicsBody& first,
         Leviathan::PhysicsBody& second)
 {
-    // This will call a script that pulls cells in towards engulfers
     GameWorld* gameWorld = physicalWorld.GetGameWorld();
 
-    ScriptRunningSetup setup("cellHitAgent");
+    ScriptRunningSetup setup("beingEngulfed");
 
     auto returned =
-        ThriveCommon::get()->getMicrobeScripts()->ExecuteOnModule<void>(setup,
+        ThriveCommon::get()->getMicrobeScripts()->ExecuteOnModule<bool>(setup,
             false, gameWorld, first.GetOwningEntity(),
             second.GetOwningEntity());
 
     if(returned.Result != SCRIPT_RUN_RESULT::Success) {
         LOG_ERROR("Failed to run script side beingEngulfed");
+        return true;
     }
+
+    return returned.Value;
 }
 
 void
@@ -265,7 +298,6 @@ void
     LEVIATHAN_ASSERT(
         shape1 && shape2, "some body in physics callback has no shape");
 
-    // This will call a script that pulls cells in towards engulfers
     GameWorld* gameWorld = physicalWorld.GetGameWorld();
     auto holder = gameWorld->GetScriptComponentHolder("MicrobeComponent");
     LEVIATHAN_ASSERT(holder, "GameWorld has no microbe component holder");
@@ -327,8 +359,6 @@ std::unique_ptr<Leviathan::PhysicsMaterialManager>
     // Setup materials
     auto cellMaterial =
         std::make_unique<Leviathan::PhysicalMaterial>("cell", 1);
-    auto floatingOrganelleMaterial =
-        std::make_unique<Leviathan::PhysicalMaterial>("floatingOrganelle", 2);
     auto agentMaterial =
         std::make_unique<Leviathan::PhysicalMaterial>("agentCollision", 3);
     auto engulfableMaterial =
@@ -336,43 +366,29 @@ std::unique_ptr<Leviathan::PhysicsMaterialManager>
     auto chunkDamageMaterial =
         std::make_unique<Leviathan::PhysicalMaterial>("chunkDamageMaterial", 5);
 
-    // Not currently used as the pilus is a part of the cell in order for it to
-    // not spaz out. So it can't have a separate material
-    auto pilusMaterial =
-        std::make_unique<Leviathan::PhysicalMaterial>("pilus", 6);
-
     // Set callbacks //
-
-    // Floating organelles
-    cellMaterial->FormPairWith(*floatingOrganelleMaterial)
-        .SetCallbacks(nullptr, cellHitFloatingOrganelle);
 
     // Chunks
     cellMaterial->FormPairWith(*engulfableMaterial)
-        .SetCallbacks(nullptr, cellHitEngulfable);
+        .SetCallbacks(nullptr, nullptr, cellHitEngulfableManifold);
     cellMaterial->FormPairWith(*chunkDamageMaterial)
-        .SetCallbacks(nullptr, *cellHitDamageChunk);
+        .SetCallbacks(nullptr, nullptr, cellHitDamageChunkManifold);
+
     // Agents
     cellMaterial->FormPairWith(*agentMaterial)
-        .SetCallbacks(agentCallback, agentCollided);
+        .SetCallbacks(agentCallback, nullptr, agentCollidedManifold);
 
-    // Engulfing
+    // Engulfing and stabbing
     cellMaterial->FormPairWith(*cellMaterial)
         .SetCallbacks(
             cellOnCellAABBHitCallback, nullptr, cellOnManifoldCallback);
 
-    // // Stabbing
-    // pilusMaterial->FormPairWith(*cellMaterial)
-    //     .SetCallbacks(nullptr, pilusHitCellContact);
-
     auto manager = std::make_unique<Leviathan::PhysicsMaterialManager>();
 
     manager->LoadedMaterialAdd(std::move(cellMaterial));
-    manager->LoadedMaterialAdd(std::move(floatingOrganelleMaterial));
     manager->LoadedMaterialAdd(std::move(agentMaterial));
     manager->LoadedMaterialAdd(std::move(engulfableMaterial));
     manager->LoadedMaterialAdd(std::move(chunkDamageMaterial));
-    // manager->LoadedMaterialAdd(std::move(pilusMaterial));
 
     return manager;
 }
