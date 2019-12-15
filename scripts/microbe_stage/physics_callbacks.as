@@ -1,112 +1,114 @@
 // Callbacks for cell stage physics materials
 
 // Used for chunks
-void cellHitEngulfable(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity)
+bool cellHitEngulfable(GameWorld@ world,
+    ObjectID otherEntity,
+    ObjectID cellEntity,
+    MicrobeComponent@ microbeComponent,
+    const PhysicsShape@ cellShape,
+    int cellSubCollision)
 {
-    // Determine which is the chunk
+    const bool isPilus = cellShape.GetChildCustomTag(cellSubCollision) ==
+        PHYSICS_PILUS_TAG;
+
+    // Chunk can't be engulfed through a pilus
+    if(isPilus)
+        return false;
+
     CellStageWorld@ asCellWorld = cast<CellStageWorld>(world);
 
-    auto model = asCellWorld.GetComponent_Model(firstEntity);
-    auto floatingEntity = firstEntity;
-    auto cellEntity = secondEntity;
-
-    // Cell doesn't have a model
-    if(model is null){
-
-        @model = asCellWorld.GetComponent_Model(secondEntity);
-        floatingEntity = secondEntity;
-        cellEntity = firstEntity;
-    }
-    auto microbeComponent = MicrobeOperations::getMicrobeComponent(asCellWorld,cellEntity);
-
-    auto engulfableComponent = asCellWorld.GetComponent_EngulfableComponent(floatingEntity);
+    auto engulfableComponent = asCellWorld.GetComponent_EngulfableComponent(otherEntity);
 
     auto compoundBagComponent = asCellWorld.GetComponent_CompoundBagComponent(cellEntity);
 
-    auto floatBag = asCellWorld.GetComponent_CompoundBagComponent(floatingEntity);
+    auto floatBag = asCellWorld.GetComponent_CompoundBagComponent(otherEntity);
 
+    // TODO: this code is almost an exact duplicate of block of code in cellHitDamageChunk
     if (microbeComponent !is null && engulfableComponent !is null
         && compoundBagComponent !is null && floatBag !is null)
     {
         if (microbeComponent.engulfMode && microbeComponent.totalHexCountCache >=
-            engulfableComponent.getSize()*ENGULF_HP_RATIO_REQ)
+            engulfableComponent.getSize() * ENGULF_HP_RATIO_REQ)
         {
             uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
             for(uint compoundId = 0; compoundId < compoundCount; ++compoundId){
                 CompoundId realCompoundId = compoundId;
-                double amountToTake =
-                    floatBag.takeCompound(realCompoundId,floatBag.getCompoundAmount(realCompoundId));
+                double amountToTake = floatBag.takeCompound(
+                    realCompoundId, floatBag.getCompoundAmount(realCompoundId));
                 // Right now you get way too much compounds for engulfing the things but hey
-                compoundBagComponent.giveCompound(realCompoundId, (amountToTake/CHUNK_ENGULF_COMPOUND_DIVISOR));
+                compoundBagComponent.giveCompound(
+                    realCompoundId, (amountToTake / CHUNK_ENGULF_COMPOUND_DIVISOR));
             }
-            world.QueueDestroyEntity(floatingEntity);
+            world.QueueDestroyEntity(otherEntity);
         }
     }
+
+    return true;
 }
 
 // Used for chunks that also can damage
-void cellHitDamageChunk(GameWorld@ world,
-    ObjectID firstEntity,
-    ObjectID secondEntity,
-    const PhysicsShape@ contactShape,
+bool cellHitDamageChunk(GameWorld@ world,
+    ObjectID otherEntity,
+    ObjectID cellEntity,
+    MicrobeComponent@ microbeComponent,
+    const PhysicsShape@ cellShape,
     int cellSubCollision)
 {
-    // Determine which is the chunk
+    const bool isPilus = cellShape.GetChildCustomTag(cellSubCollision) ==
+        PHYSICS_PILUS_TAG;
+
+    // Chunk can't hit through a pilus
+    if(isPilus)
+        return false;
+
     CellStageWorld@ asCellWorld = cast<CellStageWorld>(world);
 
-    auto model = asCellWorld.GetComponent_Model(firstEntity);
-    auto floatingEntity = firstEntity;
-    auto cellEntity = secondEntity;
-    bool disappear=false;
-    // Cell doesn't have a model
-    if(model is null){
-        @model = asCellWorld.GetComponent_Model(secondEntity);
-        floatingEntity = secondEntity;
-        cellEntity = firstEntity;
-    }
-    bool isPilus = contactShape.GetChildCustomTag(cellSubCollision) ==
-        PHYSICS_PILUS_TAG;
-    LOG_INFO("" + isPilus);
+    bool disappear = false;
 
-    auto damage = asCellWorld.GetComponent_DamageOnTouchComponent(floatingEntity);
-    MicrobeComponent@ microbeComponent = MicrobeOperations::getMicrobeComponent(asCellWorld,cellEntity);
+    auto damage = asCellWorld.GetComponent_DamageOnTouchComponent(otherEntity);
 
     if (damage !is null && microbeComponent !is null){
         if (damage.getDeletes() && !microbeComponent.dead){
-            MicrobeOperations::damage(asCellWorld, cellEntity, double(damage.getDamage()), "toxin");
-            disappear=true;
+            MicrobeOperations::damage(asCellWorld, cellEntity, double(damage.getDamage()),
+                "toxin");
+            disappear = true;
         }
         else if (!damage.getDeletes() && !microbeComponent.dead){
-            MicrobeOperations::damage(asCellWorld, cellEntity, double(damage.getDamage()), "chunk");
+            MicrobeOperations::damage(asCellWorld, cellEntity, double(damage.getDamage()),
+                "chunk");
         }
     }
 
-    // Do engulfing stuff in the case that we have an engulfable component
-    auto engulfableComponent = asCellWorld.GetComponent_EngulfableComponent(floatingEntity);
+    // Do engulfing stuff in the case that the non-cell entity has an engulfable component
+    auto engulfableComponent = asCellWorld.GetComponent_EngulfableComponent(otherEntity);
     auto compoundBagComponent = asCellWorld.GetComponent_CompoundBagComponent(cellEntity);
-    auto floatBag = asCellWorld.GetComponent_CompoundBagComponent(floatingEntity);
+    auto floatBag = asCellWorld.GetComponent_CompoundBagComponent(otherEntity);
 
     if (microbeComponent !is null && engulfableComponent !is null
         && compoundBagComponent !is null && floatBag !is null)
     {
         if (microbeComponent.engulfMode && microbeComponent.totalHexCountCache >=
-            engulfableComponent.getSize()*ENGULF_HP_RATIO_REQ)
+            engulfableComponent.getSize() * ENGULF_HP_RATIO_REQ)
         {
             uint64 compoundCount = SimulationParameters::compoundRegistry().getSize();
             for(uint compoundId = 0; compoundId < compoundCount; ++compoundId){
                 CompoundId realCompoundId = compoundId;
-                double amountToTake =
-                    floatBag.takeCompound(realCompoundId,floatBag.getCompoundAmount(realCompoundId));
+                double amountToTake = floatBag.takeCompound(
+                    realCompoundId, floatBag.getCompoundAmount(realCompoundId));
                 // Right now you get way too much compounds for engulfing the things but hey
-                compoundBagComponent.giveCompound(realCompoundId, (amountToTake/CHUNK_ENGULF_COMPOUND_DIVISOR));
+                compoundBagComponent.giveCompound(
+                    realCompoundId, (amountToTake / CHUNK_ENGULF_COMPOUND_DIVISOR));
             }
-            disappear=true;
+
+            disappear = true;
         }
     }
 
     if (disappear){
-        world.QueueDestroyEntity(floatingEntity);
+        world.QueueDestroyEntity(otherEntity);
     }
+
+    return true;
 }
 
 // Actual collision between agent and cell, applies damage and removes
@@ -118,7 +120,7 @@ bool cellHitAgent(GameWorld@ world,
     const PhysicsShape@ cellShape,
     int cellSubCollision)
 {
-    bool isPilus = cellShape.GetChildCustomTag(cellSubCollision) ==
+    const bool isPilus = cellShape.GetChildCustomTag(cellSubCollision) ==
         PHYSICS_PILUS_TAG;
 
     // Agent can't hit through a pilus
@@ -155,9 +157,9 @@ bool cellOnCellActualContact(GameWorld@ world,
         return true;
 
     // Handle stabbing
-    bool firstIsPilus = firstShape.GetChildCustomTag(firstSubCollision) ==
+    const bool firstIsPilus = firstShape.GetChildCustomTag(firstSubCollision) ==
         PHYSICS_PILUS_TAG;
-    bool secondIsPilus = secondShape.GetChildCustomTag(secondSubCollision) ==
+    const bool secondIsPilus = secondShape.GetChildCustomTag(secondSubCollision) ==
         PHYSICS_PILUS_TAG;
 
     // LOG_WRITE("first pilus: " + firstIsPilus + " second: " + secondIsPilus);

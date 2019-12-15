@@ -128,110 +128,18 @@ bool
 }
 // ------------------------------------ //
 // Physics materials
+//! \todo The callbacks could be looked up on startup to speed this up
 void
-    cellHitEngulfable(Leviathan::PhysicalWorld& physicalWorld,
-        Leviathan::PhysicsBody& first,
-        Leviathan::PhysicsBody& second)
-{
-    GameWorld* gameWorld = physicalWorld.GetGameWorld();
-
-    ScriptRunningSetup setup("cellHitEngulfable");
-
-    auto result =
-        ThriveCommon::get()->getMicrobeScripts()->ExecuteOnModule<void>(setup,
-            false, gameWorld, first.GetOwningEntity(),
-            second.GetOwningEntity());
-
-    if(result.Result != SCRIPT_RUN_RESULT::Success)
-        LOG_ERROR("Failed to run script side cellHitEngulfable");
-}
-
-void
-    cellHitDamageChunk(Leviathan::PhysicalWorld& physicalWorld,
-        Leviathan::PhysicsBody& first,
+    cellHitSomethingElseManifoldHelper(Leviathan::PhysicsBody& first,
         Leviathan::PhysicsBody& second,
-        const btPersistentManifold& manifold)
-{
-    GameWorld* gameWorld = physicalWorld.GetGameWorld();
-
-    Leviathan::PhysicsShape* shape = second.GetShape();
-
-    const int numContacts = manifold.getNumContacts();
-
-    ScriptRunningSetup setup("cellHitDamageChunk");
-
-    for(int i = 0; i < numContacts; ++i) {
-        const btManifoldPoint& contactPoint = manifold.getContactPoint(i);
-
-        auto returned =
-            ThriveCommon::get()->getMicrobeScripts()->ExecuteOnModule<void>(
-                setup, false, gameWorld, first.GetOwningEntity(),
-                second.GetOwningEntity(), shape, contactPoint.m_index0);
-
-        if(returned.Result != SCRIPT_RUN_RESULT::Success)
-            LOG_ERROR("Failed to run script side cellHitDamageChunk");
-    }
-}
-
-
-//! \todo This should return false when either cell is engulfing and apply the
-//! damaging effect
-bool
-    cellOnCellAABBHitCallback(Leviathan::PhysicalWorld& physicalWorld,
-        Leviathan::PhysicsBody& first,
-        Leviathan::PhysicsBody& second)
-{
-    GameWorld* gameWorld = physicalWorld.GetGameWorld();
-
-    ScriptRunningSetup setup("beingEngulfed");
-
-    auto returned =
-        ThriveCommon::get()->getMicrobeScripts()->ExecuteOnModule<bool>(setup,
-            false, gameWorld, first.GetOwningEntity(),
-            second.GetOwningEntity());
-
-    if(returned.Result != SCRIPT_RUN_RESULT::Success) {
-        LOG_ERROR("Failed to run script side beingEngulfed");
-        return true;
-    }
-
-    return returned.Value;
-}
-
-//! \brief Used to skip agents hitting cells of their own species
-bool
-    agentCallback(Leviathan::PhysicalWorld& physicalWorld,
-        Leviathan::PhysicsBody& first,
-        Leviathan::PhysicsBody& second)
-{
-    GameWorld* gameWorld = physicalWorld.GetGameWorld();
-
-    // Now we can do more interetsing things with agents
-    ScriptRunningSetup setup("hitAgent");
-
-    auto returned =
-        ThriveCommon::get()->getMicrobeScripts()->ExecuteOnModule<bool>(setup,
-            false, gameWorld, first.GetOwningEntity(),
-            second.GetOwningEntity());
-
-    if(returned.Result != SCRIPT_RUN_RESULT::Success) {
-        LOG_ERROR("Failed to run script side hitAgent");
-        return true;
-    }
-
-    return returned.Value;
-}
-
-void
-    agentCollidedManifold(Leviathan::PhysicalWorld& physicalWorld,
-        Leviathan::PhysicsBody& first,
-        Leviathan::PhysicsBody& second,
-        const btPersistentManifold& manifold)
+        const btPersistentManifold& manifold,
+        Leviathan::GameModule* scripts,
+        GameWorld* gameWorld,
+        const char* scriptCallback)
 {
     Leviathan::PhysicsShape* cellShape = first.GetShape();
     Leviathan::PhysicsShape* otherShape = second.GetShape();
 
-    GameWorld* gameWorld = physicalWorld.GetGameWorld();
     auto holder = gameWorld->GetScriptComponentHolder("MicrobeComponent");
     LEVIATHAN_ASSERT(holder, "GameWorld has no microbe component holder");
 
@@ -246,7 +154,7 @@ void
 
     const int numContacts = manifold.getNumContacts();
 
-    ScriptRunningSetup setup("cellHitAgent");
+    ScriptRunningSetup setup(scriptCallback);
 
     for(int i = 0; i < numContacts; ++i) {
 
@@ -278,12 +186,12 @@ void
             }
 
             auto returned =
-                ThriveCommon::get()->getMicrobeScripts()->ExecuteOnModule<bool>(
-                    setup, false, gameWorld, otherId, cellEntity,
-                    microbeComponent, cellShape, cellSubCollision);
+                scripts->ExecuteOnModule<bool>(setup, false, gameWorld, otherId,
+                    cellEntity, microbeComponent, cellShape, cellSubCollision);
 
             if(returned.Result != SCRIPT_RUN_RESULT::Success) {
-                LOG_ERROR("Failed to run script side cell on agent collision");
+                LOG_ERROR("Failed to run script side cell on " +
+                          std::string(scriptCallback) + " collision");
                 break;
             }
 
@@ -291,6 +199,91 @@ void
                 break;
         }
     }
+}
+
+// ------------------------------------ //
+// Chunks hit cell
+void
+    cellHitEngulfableManifold(Leviathan::PhysicalWorld& physicalWorld,
+        Leviathan::PhysicsBody& first,
+        Leviathan::PhysicsBody& second,
+        const btPersistentManifold& manifold)
+{
+    cellHitSomethingElseManifoldHelper(first, second, manifold,
+        ThriveCommon::get()->getMicrobeScripts(), physicalWorld.GetGameWorld(),
+        "cellHitEngulfable");
+}
+
+void
+    cellHitDamageChunkManifold(Leviathan::PhysicalWorld& physicalWorld,
+        Leviathan::PhysicsBody& first,
+        Leviathan::PhysicsBody& second,
+        const btPersistentManifold& manifold)
+{
+    cellHitSomethingElseManifoldHelper(first, second, manifold,
+        ThriveCommon::get()->getMicrobeScripts(), physicalWorld.GetGameWorld(),
+        "cellHitDamageChunk");
+}
+// ------------------------------------ //
+// Agent on cell
+//! \brief Used to skip agents hitting cells of their own species
+bool
+    agentCallback(Leviathan::PhysicalWorld& physicalWorld,
+        Leviathan::PhysicsBody& first,
+        Leviathan::PhysicsBody& second)
+{
+    GameWorld* gameWorld = physicalWorld.GetGameWorld();
+
+    // Now we can do more interetsing things with agents
+    ScriptRunningSetup setup("hitAgent");
+
+    auto returned =
+        ThriveCommon::get()->getMicrobeScripts()->ExecuteOnModule<bool>(setup,
+            false, gameWorld, first.GetOwningEntity(),
+            second.GetOwningEntity());
+
+    if(returned.Result != SCRIPT_RUN_RESULT::Success) {
+        LOG_ERROR("Failed to run script side hitAgent");
+        return true;
+    }
+
+    return returned.Value;
+}
+
+void
+    agentCollidedManifold(Leviathan::PhysicalWorld& physicalWorld,
+        Leviathan::PhysicsBody& first,
+        Leviathan::PhysicsBody& second,
+        const btPersistentManifold& manifold)
+{
+    cellHitSomethingElseManifoldHelper(first, second, manifold,
+        ThriveCommon::get()->getMicrobeScripts(), physicalWorld.GetGameWorld(),
+        "cellHitAgent");
+}
+// ------------------------------------ //
+// Cell on cell
+//! \todo This should return false when either cell is engulfing and apply the
+//! damaging effect
+bool
+    cellOnCellAABBHitCallback(Leviathan::PhysicalWorld& physicalWorld,
+        Leviathan::PhysicsBody& first,
+        Leviathan::PhysicsBody& second)
+{
+    GameWorld* gameWorld = physicalWorld.GetGameWorld();
+
+    ScriptRunningSetup setup("beingEngulfed");
+
+    auto returned =
+        ThriveCommon::get()->getMicrobeScripts()->ExecuteOnModule<bool>(setup,
+            false, gameWorld, first.GetOwningEntity(),
+            second.GetOwningEntity());
+
+    if(returned.Result != SCRIPT_RUN_RESULT::Success) {
+        LOG_ERROR("Failed to run script side beingEngulfed");
+        return true;
+    }
+
+    return returned.Value;
 }
 
 void
@@ -376,16 +369,11 @@ std::unique_ptr<Leviathan::PhysicsMaterialManager>
     // Set callbacks //
 
     // Chunks
-    // These two should be still updated
     cellMaterial->FormPairWith(*engulfableMaterial)
-        .SetCallbacks(nullptr, cellHitEngulfable);
+        .SetCallbacks(nullptr, nullptr, cellHitEngulfableManifold);
     cellMaterial->FormPairWith(*chunkDamageMaterial)
-        .SetCallbacks(nullptr, nullptr, cellHitDamageChunk);
-    // to be like this (copy code from agentCollidedManifold):
-    // cellMaterial->FormPairWith(*engulfableMaterial)
-    //     .SetCallbacks(nullptr, cellHitEngulfableManifold);
-    // cellMaterial->FormPairWith(*chunkDamageMaterial)
-    //     .SetCallbacks(nullptr, nullptr, cellHitDamageChunkManifold);
+        .SetCallbacks(nullptr, nullptr, cellHitDamageChunkManifold);
+
     // Agents
     cellMaterial->FormPairWith(*agentMaterial)
         .SetCallbacks(agentCallback, nullptr, agentCollidedManifold);
