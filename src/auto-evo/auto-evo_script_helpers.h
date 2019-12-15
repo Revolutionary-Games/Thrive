@@ -9,12 +9,70 @@
 
 namespace thrive { namespace autoevo {
 
+//! \brief Holds data for a species migration
+struct SpeciesMigration : public Leviathan::ReferenceCounted {
+    // These are protected for only constructing properly reference
+    // counted instances through MakeShared
+    friend ReferenceCounted;
+    SpeciesMigration(Species::pointer species) : species(species) {}
+
+    SpeciesMigration(Species::pointer species,
+        int fromPatch,
+        int toPatch,
+        int population) :
+        species(species),
+        fromPatch(fromPatch), toPatch(toPatch), population(population)
+    {}
+
+public:
+    bool
+        valid() const
+    {
+        return species && fromPatch >= 0 && toPatch >= 0 && population > 0;
+    }
+
+    // Access helpers for scripts
+    // The returned Species (and other objects) have increased ref count
+    const Species*
+        getSpecies() const;
+
+
+    REFERENCE_COUNTED_PTR_TYPE(SpeciesMigration);
+
+public:
+    Species::pointer species;
+    int32_t fromPatch;
+    int32_t toPatch;
+    int32_t population;
+};
+
+//! \brief Configuration for simulating species populations
 class SimulationConfiguration : public Leviathan::ReferenceCounted {
 
     // These are protected for only constructing properly reference
     // counted instances through MakeShared
     friend ReferenceCounted;
     SimulationConfiguration() = default;
+
+public:
+    // Access helpers for scripts
+    // The returned Species (and other objects) have increased ref count
+    uint64_t
+        getExcludedSpeciesCount() const;
+    Species const*
+        getExcludedSpecies(uint64_t index) const;
+
+    uint64_t
+        getExtraSpeciesCount() const;
+    Species const*
+        getExtraSpecies(uint64_t index) const;
+
+    uint64_t
+        getMigrationsCount() const;
+    const SpeciesMigration*
+        getMigration(uint64_t index) const;
+
+    REFERENCE_COUNTED_PTR_TYPE(SimulationConfiguration);
 
 public:
     int32_t steps = 1;
@@ -27,19 +85,8 @@ public:
     //! population property
     std::vector<Species::pointer> extraSpecies;
 
-    // Access helpers for scripts
-    // The returned Species have increased ref count
-    uint64_t
-        getExcludedSpeciesCount() const;
-    Species const*
-        getExcludedSpecies(uint64_t index) const;
-
-    uint64_t
-        getExtraSpeciesCount() const;
-    Species const*
-        getExtraSpecies(uint64_t index) const;
-
-    REFERENCE_COUNTED_PTR_TYPE(SimulationConfiguration);
+    //! Any migrations listed here are performed *before* the simulation is ran
+    std::vector<SpeciesMigration::pointer> migrations;
 };
 
 //! \returns a mutated version of a species
@@ -64,5 +111,9 @@ void
         RunResults& results,
         const SimulationConfiguration::pointer& config);
 
+//! \returns a valid move (or nullptr) for a species
+SpeciesMigration::pointer
+    getMigrationForSpecies(const PatchMap::pointer& map,
+        const Species::pointer& species);
 
 }} // namespace thrive::autoevo

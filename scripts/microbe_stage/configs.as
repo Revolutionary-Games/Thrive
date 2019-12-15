@@ -202,6 +202,20 @@ const int CREATURE_REPRODUCE_POPULATION_GAIN = 50;
 const int CREATURE_ESCAPE_POPULATION_GAIN = 50;
 const uint CREATURE_ESCAPE_INTERVAL = 5000;
 
+
+// Auto-evo tweak variables (TODO: move to JSON)
+const int AUTO_EVO_MINIMUM_MOVE_POPULATION = 250;
+const float AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION = 0.1f;
+const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.9f;
+
+// Some (placeholder) auto-evo algorithm tweak parameters
+const auto AUTO_EVO_LOW_SPECIES_THRESHOLD = 3;
+const auto AUTO_EVO_LOW_SPECIES_BOOST = 500;
+const auto AUTO_EVO_HIGH_SPECIES_THRESHOLD = 11;
+const auto AUTO_EVO_HIGH_SPECIES_PENALTY = 500;
+const auto AUTO_EVO_RANDOM_POPULATION_CHANGE = 500;
+
+
 // Used in the cell collision callback to know if something hit was a pilus
 const int PHYSICS_PILUS_TAG = 1;
 const auto PILUS_BASE_DAMAGE = 1.f;

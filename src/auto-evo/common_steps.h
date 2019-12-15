@@ -1,5 +1,6 @@
 #pragma once
 
+#include "auto-evo_script_helpers.h"
 #include "run_results.h"
 #include "run_step.h"
 
@@ -48,7 +49,7 @@ public:
 
 private:
     const PatchMap::pointer m_map;
-    const Species::pointer& m_species;
+    const Species::pointer m_species;
     bool m_tryNoMutation;
     int m_mutationsToTry;
 
@@ -57,8 +58,30 @@ private:
     bool m_bestIsNoMutation = false;
 };
 
+//! \brief Step that finds the best migration for a single species
+class FindBestMigration : public RunStep {
+public:
+    FindBestMigration(const PatchMap::pointer& map,
+        const Species::pointer& species,
+        int migrationsToTry);
 
-//! \brief Step that finds the best mutation for a single species
+    bool
+        step(RunResults& resultsStore) override;
+
+    int
+        getTotalSteps() const override;
+
+private:
+    const PatchMap::pointer m_map;
+    const Species::pointer m_species;
+    int m_migrationsToTry;
+
+    SpeciesMigration::pointer m_bestMigration;
+    int m_bestScore = -1;
+};
+
+
+//! \brief Step that calculate the populations for all species
 class CalculatePopulation : public RunStep {
 public:
     CalculatePopulation(const PatchMap::pointer& map);

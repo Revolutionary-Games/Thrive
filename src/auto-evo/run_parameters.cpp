@@ -193,11 +193,15 @@ void
 
             ++totalSpecies;
 
-            // The player species doesn't get random mutations
+            // The player species doesn't get random mutations. And also doesn't
+            // spread automatically
             if(!species.species->isPlayerSpecies()) {
 
                 m_runSteps.push_back(std::make_unique<FindBestMutation>(m_map,
                     species.species, m_mutationsPerSpecies, m_allowNoMutation));
+
+                m_runSteps.push_back(std::make_unique<FindBestMigration>(
+                    m_map, species.species, m_moveAttemptsPerSpecies));
 
             } else {
             }

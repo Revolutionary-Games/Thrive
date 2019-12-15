@@ -8,6 +8,17 @@
 using namespace thrive;
 using namespace autoevo;
 // ------------------------------------ //
+// SpeciesMigration
+const Species*
+    SpeciesMigration::getSpecies() const
+{
+    if(species)
+        species->AddRef();
+
+    return species.get();
+}
+// ------------------------------------ //
+// SimulationConfiguration
 uint64_t
     SimulationConfiguration::getExcludedSpeciesCount() const
 {
@@ -39,7 +50,24 @@ Species const*
     extraSpecies[index]->AddRef();
     return extraSpecies[index].get();
 }
+
+uint64_t
+    SimulationConfiguration::getMigrationsCount() const
+{
+    return migrations.size();
+}
+
+const SpeciesMigration*
+    SimulationConfiguration::getMigration(uint64_t index) const
+{
+    if(index >= migrations.size())
+        throw Leviathan::InvalidArgument("index out of range");
+
+    migrations[index]->AddRef();
+    return migrations[index].get();
+}
 // ------------------------------------ //
+// namespace functions
 Species::pointer
     thrive::autoevo::getMutationForSpecies(const Species::pointer& species)
 {
@@ -126,4 +154,31 @@ void
 
         LOG_ERROR("Failed to run simulatePatchPopulations");
     }
+}
+// ------------------------------------ //
+SpeciesMigration::pointer
+    thrive::autoevo::getMigrationForSpecies(const PatchMap::pointer& map,
+        const Species::pointer& species)
+{
+    auto migration = SpeciesMigration::MakeShared<SpeciesMigration>(species);
+
+    ScriptRunningSetup setup = ScriptRunningSetup("createMigrationForSpecies");
+
+    auto result =
+        ThriveCommon::get()->getMicrobeScripts()->ExecuteOnModule<bool>(
+            setup, false, species.get(), map.get(), migration.get());
+
+    if(result.Result != SCRIPT_RUN_RESULT::Success) {
+
+        LOG_ERROR("Failed to run createMigrationForSpecies");
+        return nullptr;
+    }
+
+    if(!result.Value || !migration->valid()) {
+        // Failed to run
+        LOG_WARNING("createMigrationForSpecies failed to create a migration");
+        return nullptr;
+    }
+
+    return migration;
 }

@@ -146,8 +146,10 @@ protected:
     autoevo::RunResults::pointer m_results;
 
     // Configuration parameters for auto evo
+    // TODO: allow loading these from JSON
     const int m_mutationsPerSpecies = 3;
     const bool m_allowNoMutation = true;
+    const int m_moveAttemptsPerSpecies = 5;
 };
 
 } // namespace thrive
