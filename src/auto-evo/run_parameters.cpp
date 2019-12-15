@@ -187,11 +187,18 @@ void
 
     int totalSpecies = 0;
 
+    std::unordered_set<Species*> alreadyHandledSpecies;
+
     for(const auto& [id, patch] : m_map->getPatches()) {
 
         for(const auto& species : patch->getSpecies()) {
 
+            if(alreadyHandledSpecies.find(species.species.get()) !=
+                alreadyHandledSpecies.end())
+                continue;
+
             ++totalSpecies;
+            alreadyHandledSpecies.insert(species.species.get());
 
             // The player species doesn't get random mutations. And also doesn't
             // spread automatically
