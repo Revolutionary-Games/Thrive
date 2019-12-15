@@ -92,6 +92,13 @@ public:
         return m_results;
     }
 
+    //! \returns A PatchMap with the previous populations
+    PatchMap::pointer
+        getPreviousPopulations() const
+    {
+        return m_mapWithPreviousPopulations;
+    }
+
 protected:
     //! \brief Performs a single calculation step. This should be quite fast
     //! (5-20 milliseconds) in order to make aborting work fast.
@@ -118,6 +125,8 @@ protected:
     std::atomic<int> m_completeSteps = {0};
 
     PatchMap::pointer m_map;
+
+    PatchMap::pointer m_mapWithPreviousPopulations;
 
 
     //! Locked while stepping or in abort

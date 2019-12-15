@@ -179,7 +179,7 @@ std::string
                     sstream
                         << "  "
                         << patchNameResolveHelper(previousPopulations, patch)
-                        << " population: " << population;
+                        << " by sending: " << population << " population";
                 } else {
                     sstream << "  " << patch << " pop: " << population;
                 }

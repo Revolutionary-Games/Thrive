@@ -1268,7 +1268,10 @@ void
         if(m_impl->m_autoEvoRun && m_impl->m_autoEvoRun->wasSuccessful() &&
             m_impl->m_autoEvoRun->getResults()) {
 
-            result = m_impl->m_autoEvoRun->getResults()->getCachedSummary() +
+            // We have already applied the external effects so the summary
+            // generated here is accurate
+            result = m_impl->m_autoEvoRun->getResults()->makeSummary(
+                         m_impl->m_autoEvoRun->getPreviousPopulations(), true) +
                      "\n\nexternal effects:\n" +
                      m_impl->m_autoEvoRun->makeSummaryOfExternalEffects();
         }

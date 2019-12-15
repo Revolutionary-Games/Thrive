@@ -162,10 +162,10 @@ bool
         // Remember to call PatchMap::removeExtinctSpecies after applying the
         // external effects
 
-        m_results->printSummary(m_map);
+        // Store the previous populations
+        m_mapWithPreviousPopulations = m_map->clone();
 
-        // Store the summary text to store previous populations
-        m_results->setStoredSummary(m_results->makeSummary(m_map, true));
+        m_results->printSummary(m_map);
 
         m_results->applyResults(m_map, true);
 
