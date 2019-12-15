@@ -265,14 +265,16 @@ std::string
         }
 
         sstream << " population in patches:\n";
-        for(auto [patch, population] : entry.newPopulationInPatches) {
+        for(const auto [patch, population] : entry.newPopulationInPatches) {
+
+            auto adjustedPopulation = population;
 
             if(resolveMoves) {
-                population +=
+                adjustedPopulation +=
                     countSpeciesSpreadPopulation(entry.species, patch);
             }
 
-            outputPopulationForPatch(entry.species, patch, population);
+            outputPopulationForPatch(entry.species, patch, adjustedPopulation);
         }
 
         // Also print new patches the species moved to (as the moves don't get
