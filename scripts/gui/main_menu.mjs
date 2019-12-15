@@ -225,6 +225,9 @@ function onIntroEnded(error) {
         updateLoadingScreen({show: false});
         randomizeBackground();
         startMenuMusic();
+
+        // Make sure no video is playing in case we have intro skip on
+        Leviathan.CancelCutscene();
     }
 }
 
