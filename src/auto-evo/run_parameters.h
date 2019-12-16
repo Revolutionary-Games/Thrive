@@ -92,6 +92,13 @@ public:
         return m_results;
     }
 
+    //! \returns A PatchMap with the previous populations
+    PatchMap::pointer
+        getPreviousPopulations() const
+    {
+        return m_mapWithPreviousPopulations;
+    }
+
 protected:
     //! \brief Performs a single calculation step. This should be quite fast
     //! (5-20 milliseconds) in order to make aborting work fast.
@@ -119,6 +126,8 @@ protected:
 
     PatchMap::pointer m_map;
 
+    PatchMap::pointer m_mapWithPreviousPopulations;
+
 
     //! Locked while stepping or in abort
     std::mutex m_stepMutex;
@@ -137,8 +146,11 @@ protected:
     autoevo::RunResults::pointer m_results;
 
     // Configuration parameters for auto evo
+    // TODO: allow loading these from JSON
     const int m_mutationsPerSpecies = 3;
     const bool m_allowNoMutation = true;
+    const int m_moveAttemptsPerSpecies = 5;
+    const bool m_allowNoMigration = true;
 };
 
 } // namespace thrive

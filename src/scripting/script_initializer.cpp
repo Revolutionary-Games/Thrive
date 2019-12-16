@@ -54,6 +54,15 @@ CScriptArray*
     return array;
 }
 
+CScriptArray*
+    patchGetNeighboursWrapper(const Patch& self)
+{
+    const auto& patches = self.getNeighbours();
+    return Leviathan::ConvertIteratorToASArray(patches.begin(), patches.end(),
+        Leviathan::ScriptExecutor::Get()->GetASEngine());
+}
+
+
 //! Wrapper for TJsonRegistry::getSize
 template<class RegistryT>
 uint64_t
@@ -1629,6 +1638,12 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(engine->RegisterObjectMethod("Patch",
+           "array<int32>@ getNeighbours() const",
+           asFUNCTION(patchGetNeighboursWrapper), asCALL_CDECL_OBJFIRST) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     // ------------------------------------ //
     // PatchMap
     ANGELSCRIPT_REGISTER_REF_TYPE("PatchMap", PatchMap);
@@ -1765,7 +1780,32 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    // ------------------------------------ //
+    // SpeciesMigration
+    ANGELSCRIPT_REGISTER_REF_TYPE(
+        "SpeciesMigration", autoevo::SpeciesMigration);
 
+    if(engine->RegisterObjectProperty("SpeciesMigration", "int32 fromPatch",
+           asOFFSET(autoevo::SpeciesMigration, fromPatch)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("SpeciesMigration", "int32 toPatch",
+           asOFFSET(autoevo::SpeciesMigration, toPatch)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("SpeciesMigration", "int32 population",
+           asOFFSET(autoevo::SpeciesMigration, population)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("SpeciesMigration",
+           "const Species@ getSpecies() const",
+           asMETHOD(autoevo::SpeciesMigration, getSpecies),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
 
     // ------------------------------------ //
     // SimulationConfiguration
@@ -1801,6 +1841,20 @@ bool
     if(engine->RegisterObjectMethod("SimulationConfiguration",
            "const Species@ getExtraSpecies(uint64 index) const",
            asMETHOD(autoevo::SimulationConfiguration, getExtraSpecies),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("SimulationConfiguration",
+           "uint64 getMigrationsCount() const",
+           asMETHOD(autoevo::SimulationConfiguration, getMigrationsCount),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("SimulationConfiguration",
+           "const SpeciesMigration@ getMigration(uint64 index) const",
+           asMETHOD(autoevo::SimulationConfiguration, getMigration),
            asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
