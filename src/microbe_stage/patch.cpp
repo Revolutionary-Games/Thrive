@@ -137,6 +137,19 @@ Json::Value
     return result;
 }
 // ------------------------------------ //
+Patch::pointer
+    Patch::clone() const
+{
+    auto cloned = Patch::MakeShared<Patch>(name, patchId, biomeTemplate);
+
+    cloned->screenCoordinates = screenCoordinates;
+    cloned->biome = biome;
+    cloned->speciesInPatch = speciesInPatch;
+    cloned->adjacentPatches = adjacentPatches;
+
+    return cloned;
+}
+// ------------------------------------ //
 Patch*
     Patch::factory(const std::string& name,
         int32_t id,
@@ -342,6 +355,23 @@ std::string
     writer->write(value, &sstream);
 
     return sstream.str();
+}
+// ------------------------------------ //
+PatchMap::pointer
+    PatchMap::clone() const
+{
+    auto cloned = PatchMap::MakeShared<PatchMap>();
+
+    cloned->currentPatchId = currentPatchId;
+
+    cloned->patches.reserve(patches.size());
+
+    for(const auto& [patchId, patch] : patches) {
+
+        cloned->patches[patchId] = patch->clone();
+    }
+
+    return cloned;
 }
 // ------------------------------------ //
 Patch::pointer
