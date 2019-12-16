@@ -47,7 +47,8 @@ Species const*
     if(index >= extraSpecies.size())
         throw Leviathan::InvalidArgument("index out of range");
 
-    extraSpecies[index]->AddRef();
+    if(extraSpecies[index])
+        extraSpecies[index]->AddRef();
     return extraSpecies[index].get();
 }
 
@@ -63,7 +64,8 @@ const SpeciesMigration*
     if(index >= migrations.size())
         throw Leviathan::InvalidArgument("index out of range");
 
-    migrations[index]->AddRef();
+    if(migrations[index])
+        migrations[index]->AddRef();
     return migrations[index].get();
 }
 // ------------------------------------ //
