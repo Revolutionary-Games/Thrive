@@ -98,26 +98,27 @@ int
 // FindBestMigration
 FindBestMigration::FindBestMigration(const PatchMap::pointer& map,
     const Species::pointer& species,
-    int migrationsToTry) :
+    int migrationsToTry,
+    bool allowNoMigration /*= true*/) :
     m_map(map),
-    m_species(species), m_migrationsToTry(migrationsToTry)
+    m_species(species), m_tryNoMigration(allowNoMigration),
+    m_migrationsToTry(migrationsToTry)
 {}
 // ------------------------------------ //
 bool
     FindBestMigration::step(RunResults& resultsStore)
 {
-    if(m_migrationsToTry > 0) {
-        const auto migration = getMigrationForSpecies(m_map, m_species);
+    bool ran = false;
+    if(m_tryNoMigration) {
 
+        // TODO: this is duplicate work compared to no mutation score
+        // computation so maybe there is a way to compute this score just once
+        // and share it. However if the way the migration is computed is changed
+        // this also needs to save the per patch results...
         auto config =
             SimulationConfiguration::MakeShared<SimulationConfiguration>();
         config->steps = STEPS_TO_SIMULATE_FOR;
-        config->migrations.push_back(migration);
 
-        // TODO: this could be faster to just simulate the source and
-        // destination patches (assuming in the future no global effects of
-        // migrations are added, which would need a full patch map simulation
-        // anyway)
         const auto result = simulatePatchMapPopulations(m_map, config);
 
         const int population = result->getGlobalPopulation(m_species);
@@ -125,13 +126,48 @@ bool
         if(population > m_bestScore) {
 
             m_bestScore = population;
-            m_bestMigration = migration;
+            m_bestMigration = nullptr;
+        }
+
+        m_tryNoMigration = false;
+        ran = true;
+    }
+
+
+    if(m_migrationsToTry > 0 && !ran) {
+        const auto migration = getMigrationForSpecies(m_map, m_species);
+
+        if(!migration) {
+            // Did not find a migration, this was a failed attempt
+            LOG_INFO(
+                "Auto-evo migration generation failed, skipping this step");
+        } else {
+
+            auto config =
+                SimulationConfiguration::MakeShared<SimulationConfiguration>();
+            config->steps = STEPS_TO_SIMULATE_FOR;
+            config->migrations.push_back(migration);
+
+            // TODO: this could be faster to just simulate the source and
+            // destination patches (assuming in the future no global effects of
+            // migrations are added, which would need a full patch map
+            // simulation anyway)
+            const auto result = simulatePatchMapPopulations(m_map, config);
+
+            const int population = result->getGlobalPopulation(m_species);
+
+            if(population > m_bestScore) {
+
+                m_bestScore = population;
+                m_bestMigration = migration;
+            }
         }
 
         --m_migrationsToTry;
+        ran = true;
     }
 
-    if(m_migrationsToTry <= 0) {
+    if(m_migrationsToTry <= 0 && !m_tryNoMigration) {
         // All attempts exhausted
 
         // Store the best result
@@ -150,7 +186,7 @@ bool
 int
     FindBestMigration::getTotalSteps() const
 {
-    return m_migrationsToTry;
+    return m_migrationsToTry + (m_tryNoMigration ? 1 : 0);
 }
 // ------------------------------------ //
 // CalculatePopulation

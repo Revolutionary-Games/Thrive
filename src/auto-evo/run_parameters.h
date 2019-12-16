@@ -150,6 +150,7 @@ protected:
     const int m_mutationsPerSpecies = 3;
     const bool m_allowNoMutation = true;
     const int m_moveAttemptsPerSpecies = 5;
+    const bool m_allowNoMigration = true;
 };
 
 } // namespace thrive

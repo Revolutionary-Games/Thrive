@@ -207,8 +207,9 @@ void
                 m_runSteps.push_back(std::make_unique<FindBestMutation>(m_map,
                     species.species, m_mutationsPerSpecies, m_allowNoMutation));
 
-                m_runSteps.push_back(std::make_unique<FindBestMigration>(
-                    m_map, species.species, m_moveAttemptsPerSpecies));
+                m_runSteps.push_back(
+                    std::make_unique<FindBestMigration>(m_map, species.species,
+                        m_moveAttemptsPerSpecies, m_allowNoMigration));
 
             } else {
             }

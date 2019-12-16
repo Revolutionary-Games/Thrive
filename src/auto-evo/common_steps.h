@@ -63,7 +63,8 @@ class FindBestMigration : public RunStep {
 public:
     FindBestMigration(const PatchMap::pointer& map,
         const Species::pointer& species,
-        int migrationsToTry);
+        int migrationsToTry,
+        bool allowNoMigration = true);
 
     bool
         step(RunResults& resultsStore) override;
@@ -74,6 +75,7 @@ public:
 private:
     const PatchMap::pointer m_map;
     const Species::pointer m_species;
+    bool m_tryNoMigration;
     int m_migrationsToTry;
 
     SpeciesMigration::pointer m_bestMigration;
