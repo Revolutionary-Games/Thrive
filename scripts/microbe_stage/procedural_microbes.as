@@ -15,10 +15,20 @@ array<float> VALID_PROKARYOTE_ORGANELLE_CHANCES = {};
 float maxEukaryoteScore = 0;
 float maxProkaryoteScore = 0;
 
-//! Called from setupOrganelles
+//! Called from world new game setup
 void setupOrganelleLetters(){
 
-    auto keys = _organelleTable.getKeys();
+    // Reset everything
+    organelleLetters = {};
+    VALID_ORGANELLES = {};
+    VALID_ORGANELLE_LETTERS = {};
+    VALID_ORGANELLE_CHANCES = {};
+    VALID_PROKARYOTE_ORGANELLE_CHANCES = {};
+    maxEukaryoteScore = 0;
+    maxProkaryoteScore = 0;
+
+    // Setup the organelle letters
+    auto keys = getOrganelleNames();
 
     for(uint i = 0; i < keys.length(); ++i){
 
@@ -28,16 +38,17 @@ void setupOrganelleLetters(){
         // Getting the organelle letters from the organelle table.
         organelleLetters[organelleInfo.gene] = organelleName;
 
-        if(!organelleInfo.hasComponent(nucleusComponentFactory.name)){
+        // TODO: doesn't the procedural generation also add a nucleus? why is this check here?
+        if(!organelleInfo.hasComponent("nucleus")){
 
             VALID_ORGANELLES.insertLast(organelleName);
             VALID_ORGANELLE_CHANCES.insertLast(organelleInfo.chanceToCreate);
             VALID_PROKARYOTE_ORGANELLE_CHANCES.insertLast(organelleInfo.prokaryoteChance);
             VALID_ORGANELLE_LETTERS.insertLast(organelleInfo.gene);
 
-        // Getting the max chance score for the roulette selection.
-        maxEukaryoteScore += organelleInfo.chanceToCreate;
-        maxProkaryoteScore += organelleInfo.prokaryoteChance;
+            // Getting the max chance score for the roulette selection.
+            maxEukaryoteScore += organelleInfo.chanceToCreate;
+            maxProkaryoteScore += organelleInfo.prokaryoteChance;
         }
     }
 }
@@ -100,8 +111,8 @@ bool isValidPlacement(const string &in organelleName, int q, int r, int rotation
             {
                 const auto hex = organelleHexes[thisHexIndex];
                 const auto otherHex = otherOrganelleHexes[otherHexIndex];
-                if(hex.q + q == otherHex.q + otherOrganelle.q &&
-                    hex.r + r == otherHex.r + otherOrganelle.r)
+                if(hex.X + q == otherHex.X + otherOrganelle.q &&
+                    hex.Y + r == otherHex.Y + otherOrganelle.r)
                 {
                     return false;
                 }
@@ -144,8 +155,8 @@ OrganelleTemplatePlaced@ getRealisticPosition(const string &in organelleName,
 
         for(uint z = 0; z < hexes.length(); ++z){
             // Off set by hexes in organelle we are looking at
-            q+=hexes[z].q;
-            r+=hexes[z].r;
+            q += hexes[z].X;
+            r += hexes[z].Y;
 
             for(int side = 1; side <= 6; ++side){
                 Int2 offset = Int2(HEX_NEIGHBOUR_OFFSET[formatInt(side)]);

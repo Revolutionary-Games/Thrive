@@ -9,6 +9,7 @@
 #include "generated/microbe_editor_world.h"
 #include "main_menu_keypresses.h"
 #include "microbe_stage/microbe_editor_key_handler.h"
+#include "microbe_stage/organelle_table.h"
 #include "microbe_stage/simulation_parameters.h"
 #include "scripting/script_initializer.h"
 #include "thrive_net_handler.h"
@@ -377,6 +378,27 @@ void
     // This registers all the script defined systems to run and be
     // available from the world
     LEVIATHAN_ASSERT(getMicrobeScripts(), "microbe scripts not loaded");
+
+    if(OrganelleTable::initIfNeeded()) {
+        // Also init organelle letters in scripts
+
+        LOG_INFO("Calling world setup script setupOrganelleLetters");
+
+        ScriptRunningSetup setup;
+        setup.SetEntrypoint("setupOrganelleLetters");
+
+        auto result = getMicrobeScripts()->ExecuteOnModule<void>(setup, false);
+
+        if(result.Result != SCRIPT_RUN_RESULT::Success) {
+
+            LOG_ERROR(
+                "Failed to run script setup function: " + setup.Entryfunction);
+            MarkAsClosing();
+            return;
+        }
+
+        LOG_INFO("Finished calling setupOrganelleLetters");
+    }
 
     LOG_INFO("Calling world setup script setupScriptsForWorld");
 
@@ -1470,6 +1492,8 @@ void
 {
     // Make sure all simulations have stopped
     m_impl->m_autoEvo.abortSimulations();
+
+    OrganelleTable::release();
 
     // Shutdown scripting first to allow it to still do anything it wants //
     releaseScripts();
