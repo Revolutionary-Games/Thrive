@@ -148,35 +148,14 @@ TJsonRegistry<T>::TJsonRegistry(const std::string& defaultTypesFilePath) :
 }
 
 template<class T>
-bool
-    TJsonRegistry<T>::RegisterType(const T& Properties)
-{
-    // TODO
-    /*
-    for (const auto& Type : RegisteredTypes) {
-
-        if (Type.InternalName == Properties.InternalName) {
-
-            UE_LOG(ThriveLog, Error, TEXT("Type internal name is already in use:
-    %s"), *Properties.InternalName.ToString()); return false;
-        }
-    }
-
-    RegisteredTypes.Add(Properties);
-    return true;
-    */
-    DEBUG_BREAK;
-    return false;
-}
-
-template<class T>
 T const&
     TJsonRegistry<T>::getTypeData(size_t id)
 {
     // The type exists.
     const auto iter = registeredTypes.find(id);
     if(iter == registeredTypes.end())
-        throw Leviathan::InvalidArgument("Type not found!");
+        throw Leviathan::InvalidArgument(
+            "Type not found! id: " + std::to_string(id));
     return iter->second;
 }
 
@@ -187,7 +166,8 @@ T const&
     // The type exists.
     const auto iter = internalNameIndex.find(internalName);
     if(iter == internalNameIndex.end())
-        throw Leviathan::InvalidArgument("Type not found!");
+        throw Leviathan::InvalidArgument(
+            "Type not found! name: " + internalName);
     return getTypeData(iter->second);
 }
 
@@ -198,7 +178,8 @@ size_t
 {
     const auto iter = internalNameIndex.find(internalName);
     if(iter == internalNameIndex.end())
-        throw Leviathan::InvalidArgument("Type not found!");
+        throw Leviathan::InvalidArgument(
+            "Type not found! name: " + internalName);
     return iter->second;
 }
 

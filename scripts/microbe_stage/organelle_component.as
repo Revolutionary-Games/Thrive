@@ -1,9 +1,11 @@
 
 //! Base class for organelle components.
-//! \note Unlike Organelle and PlacedOrganelle instanced of classes derived from this
+//!
+//! This inherits from OrganelleComponentType in order to make C++ interoperability work
+//! \note Unlike OrganelleTemplate and PlacedOrganelle instanced of classes derived from this
 //! are directly added to PlacedOrganelle so these classes may change state in
 //! the update methods
-abstract class OrganelleComponent{
+abstract class OrganelleComponent : OrganelleComponentType{
 
     // Constructor.
     OrganelleComponent(){

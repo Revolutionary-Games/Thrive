@@ -279,8 +279,8 @@ class MicrobeEditor{
 
             for(uint a = 0; a < hexes.length(); ++a){
 
-                const Float3 pos = Hex::axialToCartesian(hexes[a].q + organelle.q,
-                    hexes[a].r + organelle.r);
+                const Float3 pos = Hex::axialToCartesian(hexes[a].X + organelle.q,
+                    hexes[a].Y + organelle.r);
 
                 if(nextFreeHex >= placedHexes.length()){
                     // New hex needed
@@ -359,8 +359,8 @@ class MicrobeEditor{
                 // Check if there is cytoplasm under this organelle.
                 auto hexes = organelle.organelle.getRotatedHexes(organelle.rotation);
                 for(uint i = 0; i < hexes.length(); ++i){
-                    int posQ = int(hexes[i].q) + organelle.q;
-                    int posR = int(hexes[i].r) + organelle.r;
+                    int posQ = int(hexes[i].X) + organelle.q;
+                    int posR = int(hexes[i].Y) + organelle.r;
 
                     auto organelleHere = OrganellePlacement::getOrganelleAt(
                         editor.editedMicrobeOrganelles, Int2(posQ, posR));
@@ -392,8 +392,8 @@ class MicrobeEditor{
                 const PlacedOrganelle@ organelle = cast<PlacedOrganelle>(action.data["organelle"]);
                 auto hexes = organelle.organelle.getRotatedHexes(organelle.rotation);
                 for(uint c = 0; c < hexes.length(); ++c){
-                    int posQ = int(hexes[c].q) + organelle.q;
-                    int posR = int(hexes[c].r) + organelle.r;
+                    int posQ = int(hexes[c].X) + organelle.q;
+                    int posR = int(hexes[c].Y) + organelle.r;
                     auto organelleHere = OrganellePlacement::getOrganelleAt(
                         editor.editedMicrobeOrganelles, Int2(posQ, posR));
                     if(organelleHere !is null){
@@ -575,8 +575,8 @@ class MicrobeEditor{
                     const PlacedOrganelle@ organelle = editor.editedMicrobeOrganelles[i];
                     auto hexes = organelle.organelle.getRotatedHexes(organelle.rotation);
                     for(uint c = 0; c < hexes.length(); ++c){
-                        int posQ = int(hexes[c].q) + organelle.q;
-                        int posR = int(hexes[c].r) + organelle.r;
+                        int posQ = int(hexes[c].X) + organelle.q;
+                        int posR = int(hexes[c].Y) + organelle.r;
                         auto organelleHere = OrganellePlacement::getOrganelleAt(
                             editor.editedMicrobeOrganelles, Int2(posQ, posR));
                         if(organelleHere !is null){
@@ -701,7 +701,7 @@ class MicrobeEditor{
         bool empty = true;
         bool touching = false;
 
-        Organelle@ toBePlacedOrganelle = getOrganelleDefinition(activeActionName);
+        OrganelleTemplate@ toBePlacedOrganelle = getOrganelleDefinition(activeActionName);
 
         assert(toBePlacedOrganelle !is null, "invalid action name in microbe editor");
 
@@ -709,8 +709,8 @@ class MicrobeEditor{
 
         for(uint i = 0; i < hexes.length(); ++i){
 
-            int posQ = int(hexes[i].q+q);
-            int posR = int(hexes[i].r+r);
+            int posQ = int(hexes[i].X + q);
+            int posR = int(hexes[i].Y + r);
 
             auto organelleHere = OrganellePlacement::getOrganelleAt(editedMicrobeOrganelles,
                 Int2(posQ, posR));
@@ -885,8 +885,8 @@ class MicrobeEditor{
                     // Check if there is cytoplasm under this organelle.
                     auto hexes = organelle.organelle.getRotatedHexes(organelle.rotation);
                     for(uint i = 0; i < hexes.length(); ++i){
-                        int posQ = int(hexes[i].q) + organelle.q;
-                        int posR = int(hexes[i].r) + organelle.r;
+                        int posQ = int(hexes[i].X) + organelle.q;
+                        int posR = int(hexes[i].Y) + organelle.r;
                         auto organelleHere = OrganellePlacement::getOrganelleAt(
                             editor.editedMicrobeOrganelles, Int2(posQ, posR));
                         if(organelleHere !is null &&
@@ -917,7 +917,7 @@ class MicrobeEditor{
             return;
 
         // If not hovering over an organelle render the to-be-placed organelle
-        Organelle@ toBePlacedOrganelle = getOrganelleDefinition(activeActionName);
+        OrganelleTemplate@ toBePlacedOrganelle = getOrganelleDefinition(activeActionName);
 
         assert(toBePlacedOrganelle !is null, "invalid action name in microbe editor");
 
@@ -927,8 +927,8 @@ class MicrobeEditor{
 
         for(uint i = 0; i < hexes.length(); ++i){
 
-            int posQ = int(hexes[i].q) + q;
-            int posR = int(hexes[i].r) + r;
+            int posQ = int(hexes[i].X) + q;
+            int posR = int(hexes[i].Y) + r;
 
             const Float3 pos = Hex::axialToCartesian(posQ, posR);
 

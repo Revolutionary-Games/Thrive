@@ -8,13 +8,12 @@
 #include "organelle_types.h"
 #include "species_name_controller.h"
 
-#include <unordered_map>
-
 namespace thrive {
 
 class BioProcess;
 class Biome;
 
+//! \brief Handles loading parameters from json files
 class SimulationParameters {
 public:
     static TJsonRegistry<Compound> compoundRegistry;

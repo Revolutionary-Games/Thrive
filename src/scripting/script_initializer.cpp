@@ -1998,6 +1998,31 @@ bool
 }
 
 bool
+    registerTweakedProcess(asIScriptEngine* engine)
+{
+    ANGELSCRIPT_REGISTER_REF_TYPE("TweakedProcess", TweakedProcess);
+
+    if(engine->RegisterObjectMethod("TweakedProcess",
+           "float get_tweakRate() const",
+           asMETHOD(TweakedProcess, getTweakRate), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("TweakedProcess",
+           "float get_capacity() const", asMETHOD(TweakedProcess, getCapacity),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("TweakedProcess",
+           "const BioProcess process", asOFFSET(TweakedProcess, process)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    return true;
+}
+
+bool
     thrive::registerThriveScriptTypes(asIScriptEngine* engine)
 {
     if(!registerLockedMap(engine))
@@ -2053,6 +2078,12 @@ bool
         return false;
 
     if(!registerAutoEvo(engine))
+        return false;
+
+    if(!registerTweakedProcess(engine))
+        return false;
+
+    if(!registerOrganelles(engine))
         return false;
 
     if(engine->RegisterObjectType("ThriveGame", 0, asOBJ_REF | asOBJ_NOCOUNT) <

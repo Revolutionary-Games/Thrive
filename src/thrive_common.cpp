@@ -90,40 +90,22 @@ void
 bool
     ThriveCommon::scriptSetup()
 {
-    LOG_INFO("Calling global setup script setupProcesses");
+    // Nothing to do here now...
+    // LOG_INFO("Calling global setup script setupProcesses");
 
-    ScriptRunningSetup setup("setupProcesses");
+    // ScriptRunningSetup setup("setupProcesses");
 
-    auto result =
-        m_commonImpl->m_microbeScripts->ExecuteOnModule<void>(setup, false);
+    // auto result =
+    //     m_commonImpl->m_microbeScripts->ExecuteOnModule<void>(setup, false);
 
-    if(result.Result != SCRIPT_RUN_RESULT::Success) {
+    // if(result.Result != SCRIPT_RUN_RESULT::Success) {
 
-        LOG_ERROR(
-            "Failed to run script setup function: " + setup.Entryfunction);
-        return false;
-    }
+    //     LOG_ERROR(
+    //         "Failed to run script setup function: " + setup.Entryfunction);
+    //     return false;
+    // }
 
-    LOG_INFO("Finished calling the above setup script");
-
-    LOG_INFO("Calling global setup script setupOrganelles");
-
-    setup = ScriptRunningSetup("setupOrganelles");
-
-    result =
-        m_commonImpl->m_microbeScripts->ExecuteOnModule<void>(setup, false);
-
-    if(result.Result != SCRIPT_RUN_RESULT::Success) {
-
-        LOG_ERROR(
-            "Failed to run script setup function: " + setup.Entryfunction);
-        return false;
-    }
-
-    LOG_INFO("Finished calling the above setup script");
-
-
-    LOG_INFO("Finished calling script setup");
+    // LOG_INFO("Finished calling the above setup script");
     return true;
 }
 // ------------------------------------ //

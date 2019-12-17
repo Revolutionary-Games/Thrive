@@ -12,17 +12,19 @@ Please note the coordinate system we use is
 horizontally symmetric to the one shown in the page.
 */
 
+namespace thrive {
+
 // The default size of the hexagons, used in calculations.
 // The script will also retrieve this on startup
-#define DEFAULT_HEX_SIZE 0.75
+constexpr float DEFAULT_HEX_SIZE = 0.75f;
 
 // Maximum hex coordinate value that can be encoded with encodeAxial()
-#define ENCODE_AXIAL_OFFSET 256
+constexpr int ENCODE_AXIAL_OFFSET = 256;
 
 // Multiplier for the q coordinate used in encodeAxial()
-#define ENCODE_AXIAL_SHIFT (ENCODE_AXIAL_OFFSET * 10)
+constexpr int ENCODE_AXIAL_SHIFT = (ENCODE_AXIAL_OFFSET * 10);
 
-namespace thrive {
+//! \brief Contains utility functions for axial coordinates
 class Hex {
 public:
     // This will cause a lot of issues if this is called

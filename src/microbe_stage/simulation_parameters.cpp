@@ -1,4 +1,5 @@
 #include "microbe_stage/simulation_parameters.h"
+#include "microbe_stage/organelle_template.h"
 
 using namespace thrive;
 
