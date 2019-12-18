@@ -28,7 +28,7 @@ OrganelleTemplate::OrganelleComponentType::~OrganelleComponentType()
 }
 
 OrganelleTemplate::OrganelleComponentType::OrganelleComponentType(
-    OrganelleComponentType&& other) :
+    OrganelleComponentType&& other) noexcept :
     name(other.name),
     factoryFunction(other.factoryFunction),
     factoryParams(std::move(other.factoryParams))
@@ -357,20 +357,10 @@ void
     m_initialCompositionDictionary = CScriptDictionary::Create(
         Leviathan::ScriptExecutor::Get()->GetASEngine());
 
-    const auto floatType = Leviathan::AngelScriptTypeIDResolver<float>::Get(
-        Leviathan::ScriptExecutor::Get());
-
     for(const auto [compound, amount] : m_initialComposition) {
-
-        const std::string key = std::to_string(compound);
-
-        // float amountFloat = amount;
-
-        // m_initialCompositionDictionary->Set(key, &amountFloat, floatType);
-
         // This seems to be the right way to set the data so that the scripts
         // can read it like they expect
         m_initialCompositionDictionary->Set(
-            key, static_cast<double>(floatType));
+            std::to_string(compound), static_cast<double>(amount));
     }
 }

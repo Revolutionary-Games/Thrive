@@ -495,7 +495,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
     // The compounds left to divide this organelle.
     // Decreases every time a required compound is absorbed.
-    dictionary compoundsLeft;
+    private dictionary compoundsLeft;
 
     array<OrganelleComponent@> components;
 
