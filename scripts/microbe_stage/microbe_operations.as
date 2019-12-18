@@ -1130,7 +1130,6 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
     for(uint compoundId = 0; compoundId < compoundCount; ++compoundId){
         auto total = getCompoundAmount(world, microbeEntity, compoundId)*COMPOUND_RELEASE_PERCENTAGE;
         compoundsToRelease[formatInt(compoundId)] = float(total);
-        //LOG_INFO(""+float(compoundsToRelease[formatInt(compoundId)]));
     }
 
     // Eject some part of the build cost of all the organelles
@@ -1140,11 +1139,10 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
         for(uint a = 0; a < keys.length(); ++a){
             float amount = float(organelle.organelle.initialComposition[keys[a]]);
             auto compoundId = parseInt(keys[a]);
-            auto key = formatInt(compoundId);
-            if(!compoundsToRelease.exists(key)){
-                compoundsToRelease[key] = amount * COMPOUND_MAKEUP_RELEASE_PERCENTAGE;
+            if(!compoundsToRelease.exists(keys[a])){
+                compoundsToRelease[keys[a]] = amount * COMPOUND_MAKEUP_RELEASE_PERCENTAGE;
             } else {
-                compoundsToRelease[key] = float(compoundsToRelease[key]) +
+                compoundsToRelease[keys[a]] = float(compoundsToRelease[keys[a]]) +
                     (amount * COMPOUND_MAKEUP_RELEASE_PERCENTAGE);
             }
         }

@@ -30,7 +30,7 @@ class OrganelleTemplate : public Leviathan::ReferenceCounted {
         OrganelleComponentType(const OrganelleComponentType& other) = delete;
         OrganelleComponentType
             operator=(const OrganelleComponentType& other) = delete;
-        OrganelleComponentType(OrganelleComponentType&& other);
+        OrganelleComponentType(OrganelleComponentType&& other) noexcept;
 
 
         const std::string name;
@@ -44,6 +44,7 @@ class OrganelleTemplate : public Leviathan::ReferenceCounted {
     OrganelleTemplate(const OrganelleType& parameters);
 
 public:
+    //! When passed to scripts as a dictionary the keys are converted to strings
     using OrganelleComposition = std::map<CompoundId, float>;
 
     ~OrganelleTemplate();
