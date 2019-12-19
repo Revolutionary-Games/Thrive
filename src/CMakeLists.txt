@@ -76,6 +76,12 @@ set(GROUP_MICROBE_STAGE
   "microbe_stage/microbe_editor_key_handler.cpp"
   "microbe_stage/player_hover_info.h"
   "microbe_stage/player_hover_info.cpp"
+  "microbe_stage/organelle_types.h"
+  "microbe_stage/organelle_types.cpp"
+  "microbe_stage/organelle_template.h"
+  "microbe_stage/organelle_template.cpp"
+  "microbe_stage/organelle_table.h"
+  "microbe_stage/organelle_table.cpp"
   )
 
 set(GROUP_AUTO-EVO
@@ -101,6 +107,7 @@ set_source_files_properties("microbe_stage/generate_microbe_editor_world.rb"
 set(GROUP_SCRIPTING
   "scripting/script_initializer.cpp"
   "scripting/script_initializer.h"
+  "scripting/register_organelle.cpp"
   )
 
 set(GROUP_UTIL
