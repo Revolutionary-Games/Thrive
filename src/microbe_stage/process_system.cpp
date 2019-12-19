@@ -335,3 +335,19 @@ void
         }
     }
 }
+// ------------------------------------ //
+std::string
+    ProcessSystem::computeOrganelleProcessEfficiencies(
+        const std::vector<OrganelleTemplate::pointer>& organelles,
+        const Biome& biome) const
+{
+    return "TODO: implement computeOrganelleProcessEfficiencies";
+}
+// ------------------------------------ //
+std::string
+    ProcessSystem::computeEnergyBalance(
+        const std::vector<OrganelleTemplate::pointer>& organelles,
+        const Biome& biome) const
+{
+    return "TODO: implement computeEnergyBalance";
+}

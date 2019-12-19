@@ -1,6 +1,7 @@
 #pragma once
 
 #include "biomes.h"
+#include "organelle_template.h"
 
 #include "engine/component_types.h"
 #include "engine/typedefs.h"
@@ -140,6 +141,24 @@ public:
 
     double
         getDissolved(CompoundId compoundData);
+
+    // These are some process related query functions
+
+    //! \brief Computes the process numbers for given organelles given the
+    //! active biome data
+    //! \returns The data as a JSON string
+    std::string
+        computeOrganelleProcessEfficiencies(
+            const std::vector<OrganelleTemplate::pointer>& organelles,
+            const Biome& biome) const;
+
+    //! \brief Computes the energy balance for the given organelles in biome
+    //! \returns The data as a JSON string
+    std::string
+        computeEnergyBalance(
+            const std::vector<OrganelleTemplate::pointer>& organelles,
+            const Biome& biome) const;
+
 
 protected:
 private:
