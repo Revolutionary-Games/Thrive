@@ -2,17 +2,6 @@
 #include "hex.as"
 
 
-//! \todo Replace with Int2
-class Hex{
-
-    Hex(int q, int r){
-        this.q = q;
-        this.r = r;
-    }
-
-    int q;
-    int r;
-}
 
 Float4 calculateHSLForOrganelle(const Float4 &in oldColour)
 {
@@ -26,237 +15,15 @@ Float4 calculateHSLForOrganelle(const Float4 &in oldColour)
 }
 
 
-//! Class that is given a definition of organelle and it represents its data
-//! \note Before there was an instance of this class for each microbe. Now this is global and
-//! each microbe has a PlacedOrganelle instance instead (which also has many properties
-//! that this class used to have)
-class Organelle{
-
-    Organelle(const OrganelleParameters &in parameters)
-    {
-        _name = parameters.name;
-        mass = parameters.mass;
-        mesh = parameters.mesh;
-        texture = parameters.texture;
-        gene = parameters.gene;
-        chanceToCreate = parameters.chanceToCreate;
-        prokaryoteChance = parameters.prokaryoteChance;
-        mpCost = parameters.mpCost;
-
-        initialComposition = parameters.initialComposition;
-        components = parameters.components;
-        processes = parameters.processes;
-
-        // Sanity check processes //
-        for(uint i = 0; i < processes.length(); ++i){
-
-            if(processes[i] is null){
-
-                assert(false, "Organelle created with null process at index: " + i);
-            }
-        }
-
-        // Add hexes //
-        for(uint i = 0; i < parameters.hexes.length(); ++i){
-
-            addHex(parameters.hexes[i].X, parameters.hexes[i].Y);
-        }
-
-        // Calculate organelleCost and compoundsLeft//
-        // This method sets organelleCost
-        calculateCost(initialComposition);
-    }
-
-    ~Organelle()
-    {
-
-    }
-
-    protected void calculateCost(dictionary composition)
-    {
-        organelleCost = 0;
-
-        auto keys = composition.getKeys();
-
-        for(uint i = 0; i < keys.length(); ++i){
-
-            const auto compoundName = keys[i];
-            int amount;
-
-            if(!composition.get(keys[i], amount)){
-
-                LOG_ERROR("Invalid value in calculateCost composition");
-                continue;
-            }
-
-            // compoundsLeft[compoundName] = amount;
-            initialComposition[compoundName] = amount;
-            organelleCost += amount;
-        }
-    }
-
-    // Adds a hex to this organelle
-    //
-    // @param q, r
-    //  Axial coordinates of the new hex
-    //
-    // @returns success
-    //  True if the hex could be added, false if there already is a hex at (q,r)
-    // @note This needs to be done only once when this class is instantiated
-    protected bool addHex(int q, int r)
-    {
-        int64 s = Hex::encodeAxial(q, r);
-        if(hexes.exists(formatInt(s)))
-            return false;
-
-        Hex@ hex = Hex(q, r);
-
-        @hexes[formatInt(s)] = hex;
-
-        return true;
-    }
-
-    // Retrieves a hex
-    //
-    // @param q, r
-    //  Axial coordinates of the hex
-    //
-    // @returns hex
-    //  The hex at (q, r) or nil if there's no hex at that position
-    Hex@ getHex(int q, int r) const
-    {
-        int64 s = Hex::encodeAxial(q, r);
-        Hex@ hex;
-
-        if(hexes.get(formatInt(s), @hex))
-            return hex;
-        return null;
-    }
-
-    array<Hex@>@ getHexes() const
-    {
-        array<Hex@>@ result = array<Hex@>();
-
-        auto keys = hexes.getKeys();
-        for(uint i = 0; i < keys.length(); ++i){
-
-            result.insertLast(cast<Hex@>(hexes[keys[i]]));
-        }
-
-        return result;
-    }
-
-    //! \returns The hexes but rotated (rotation degrees)
-    //! \todo Should this and the normal getHexes return handles to arrays
-    array<Hex@>@ getRotatedHexes(int rotation) const
-    {
-        array<Hex@>@ result = array<Hex@>();
-
-        int times = rotation / 60;
-
-        auto keys = hexes.getKeys();
-        for(uint i = 0; i < keys.length(); ++i){
-
-            Hex@ hex = cast<Hex@>(hexes[keys[i]]);
-
-            auto rotated = Hex::rotateAxialNTimes({hex.q, hex.r}, times);
-            result.insertLast(Hex(rotated.X, rotated.Y));
-        }
-
-        return result;
-    }
-
-    Float3 calculateCenterOffset() const
-    {
-        int count = 0;
-
-        Float3 offset = Float3(0, 0, 0);
-
-        auto keys = hexes.getKeys();
-        for(uint i = 0; i < keys.length(); ++i){
-
-            ++count;
-
-            auto hex = cast<Hex@>(hexes[keys[i]]);
-            offset += Hex::axialToCartesian(hex.q, hex.r);
-        }
-
-        offset /= count;
-        return offset;
-    }
-
-    Float3 calculateModelOffset() const
-    {
-        return ((calculateCenterOffset()/=hexes.getSize()))*HEX_SIZE;
-    }
-
-    bool hasComponent(const string &in name) const{
-
-        for(uint i = 0; i < components.length(); ++i){
-            if(components[i].name == name)
-                return true;
-        }
-
-        return false;
-    }
-
-    // ------------------------------------ //
-
-    // Prevent modification
-    string name {
-
-        get const{
-            return _name;
-        }
-    }
-
-    int getHexCount() const
-    {
-        return hexes.getSize();
-    }
-
-    private string _name;
-    float mass;
-    string gene;
-
-    array<OrganelleComponentFactory@> components;
-    private dictionary hexes;
-
-
-    // The initial amount of compounds this organelle consists of
-    dictionary initialComposition;
-
-    // The names in the processes need to match the ones in bioProcessRegistry
-    // Or better yet, be loaded from the registry that reads the json files
-    // so that the processes can be configured that way
-    array<TweakedProcess@> processes;
-
-    // The total number of compounds we need before we can split.
-    int organelleCost;
-
-    // Name of the model used for this organelle. For example "nucleus.fbx"
-    string mesh;
-
-    //! Name of the texture used for this model
-    string texture;
-
-    //! Chance of randomly generating this (used by procedural_microbes.as)
-    float chanceToCreate = 0.0;
-    float prokaryoteChance = 0.0;
-
-    //! Cost in mutation points
-    int mpCost = 0;
-}
-
 //! These are placed either on an actual microbe where they are
 //! onAddedToMicrobe() OR on templates where these just have positions
 //! set and should be duplicated for the purpose of adding to a
 //! microbe
 class PlacedOrganelle : SpeciesStoredOrganelleType{
 
-    PlacedOrganelle(Organelle@ organelle, int q, int r, int rotation)
+    PlacedOrganelle(OrganelleTemplate@ organelle, int q, int r, int rotation)
     {
-        @this._organelle = organelle;
+        @this.organelle = organelle;
         this.q = q;
         this.r = r;
         this.rotation = rotation;
@@ -267,7 +34,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
     //! Takes type from another PlacedOrganelle
     PlacedOrganelle(PlacedOrganelle@ typefromother, int q, int r, int rotation)
     {
-        @this._organelle = typefromother._organelle;
+        @this.organelle = typefromother.organelle;
         this.q = q;
         this.r = r;
         this.rotation = rotation;
@@ -278,7 +45,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
     //! Takes everything that's sensible to copy from another PlacedOrganelle
     PlacedOrganelle(PlacedOrganelle@ other)
     {
-        @this._organelle = other._organelle;
+        @this.organelle = other.organelle;
         this.q = other.q;
         this.r = other.r;
         this.rotation = other.rotation;
@@ -298,13 +65,18 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
     private void _commonConstructor()
     {
         // Sanity check
-        if(_organelle is null)
-            assert(false, "PlacedOrganelle created with null Organelle");
+        if(organelle is null)
+            assert(false, "PlacedOrganelle created with null OrganelleTemplate");
 
         // Create instances of components //
-        for(uint i = 0; i < organelle.components.length(); ++i){
+        for(uint i = 0; i < organelle.getComponentCount(); ++i){
+            auto@ component = cast<OrganelleComponent>(organelle.createComponent(i));
 
-            components.insertLast(organelle.components[i].factory());
+            if(component is null)
+                assert(false,
+                    "failed to cast created organelle component to OrganelleComponent");
+
+            components.insertLast(component);
         }
 
         compoundsLeft = organelle.initialComposition;
@@ -352,10 +124,10 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         const auto compoundKeys = compoundsLeft.getKeys();
         for(uint i = 0; i < compoundKeys.length(); ++i){
 
-            const auto compoundName = compoundKeys[i];
+            const auto compoundKey = compoundKeys[i];
 
             float amountNeeded;
-            if(!compoundsLeft.get(compoundName, amountNeeded)){
+            if(!compoundsLeft.get(compoundKey, amountNeeded)){
 
                 LOG_ERROR("Invalid type in compoundsLeft");
                 continue;
@@ -366,8 +138,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
             // Take compounds if the cell has what we need
             // TODO: caching the types would be nice
-            const auto compoundId = SimulationParameters::compoundRegistry().getTypeId(
-                compoundName);
+            const auto compoundId = parseInt(compoundKey);
 
             const auto amountAvailable = compoundBagComponent.getCompoundAmount(compoundId)
                 // This controls how much of a certain compound must exist before we take some
@@ -380,12 +151,12 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
             const auto amountToTake = min(amountNeeded, amountAvailable);
 
             const float amount = compoundBagComponent.takeCompound(compoundId, amountToTake);
-            float left = float(compoundsLeft[compoundName]);
+            float left = float(compoundsLeft[compoundKey]);
             left -= amount;
 
             if(left < 0.0001)
                 left = 0;
-            compoundsLeft[compoundName] = left;
+            compoundsLeft[compoundKey] = left;
 
             totalTaken += amount;
         }
@@ -590,14 +361,14 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
         }
 
         // Add hex collision shapes
-        auto hexes = organelle.getHexes();
+        // Applying the rotation here is new, hopefully doesn't break collisions
+        auto hexes = organelle.getRotatedHexes(rotation);
 
         for(uint i = 0; i < hexes.length(); ++i){
 
-            Hex@ hex = hexes[i];
-
             // Also add our offset to the hex offset
-            Float3 translation = Hex::axialToCartesian(hex.q, hex.r) + this.cartesianPosition;
+            Float3 translation = Hex::axialToCartesian(hexes[i].X, hexes[i].Y) +
+                this.cartesianPosition;
 
             // Scale for bacteria physics. This might be pretty expensive to be in this loop...
             if(this.species.isBacteria)
@@ -702,13 +473,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
     }
     // ------------------------------------ //
 
-    const Organelle@ organelle {
-        get const{
-            return _organelle;
-        }
-    }
-
-    private Organelle@ _organelle;
+    const OrganelleTemplate@ organelle;
 
     // q and r are radial coordinates instead of cartesian
     // Could use the class AxialCoordinates here
@@ -730,7 +495,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
     // The compounds left to divide this organelle.
     // Decreases every time a required compound is absorbed.
-    dictionary compoundsLeft;
+    private dictionary compoundsLeft;
 
     array<OrganelleComponent@> components;
 

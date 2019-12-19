@@ -123,15 +123,16 @@ bool removeOrganelle(CellStageWorld@ world, ObjectID microbeEntity, Int2 hex)
     auto localR = organelle.r - organelle.r;
 
     // I guess this might skip sending organelles that have no hexes? to the membrane
-    if(organelle.organelle.getHex(localQ, localR) !is null){
+    if(organelle.organelle.containsHex(localQ, localR)){
 
-        auto hexes = organelle.organelle.getHexes();
+        // We get hexes with 0 rotation here as the plain get hexes is not exposed to scripts
+        auto hexes = organelle.organelle.getRotatedHexes(0);
         for(uint i = 0; i < hexes.length(); ++i){
 
             auto removedHex = hexes[i];
 
-            auto q = removedHex.q + organelle.q;
-            auto r = removedHex.r + organelle.r;
+            auto q = removedHex.X + organelle.q;
+            auto r = removedHex.Y + organelle.r;
             Float3 membranePoint = Hex::axialToCartesian(q, r);
 
             // TODO: this is added here to make it impossible for our
@@ -222,15 +223,15 @@ bool addOrganelle(CellStageWorld@ world, ObjectID microbeEntity, PlacedOrganelle
     auto localR = organelle.r - organelle.r;
 
     // I guess this might skip sending organelles that have no hexes? to the membrane
-    if(organelle.organelle.getHex(localQ, localR) !is null){
+    if(organelle.organelle.containsHex(localQ, localR)){
 
-        auto hexes = organelle.organelle.getHexes();
+        auto hexes = organelle.organelle.getRotatedHexes(0);
         for(uint i = 0; i < hexes.length(); ++i){
 
             auto hex = hexes[i];
 
-            auto q = hex.q + organelle.q;
-            auto r = hex.r + organelle.r;
+            auto q = hex.X + organelle.q;
+            auto r = hex.Y + organelle.r;
             Float3 membranePoint = Hex::axialToCartesian(q, r);
             // TODO: this is added here to make it impossible for our
             // caller to forget to call this, and this basically only
@@ -472,11 +473,11 @@ void ejectCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId com
     auto maxR = 0;
     for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
         auto organelle = microbeComponent.organelles[i];
-        auto hexes = organelle.organelle.getHexes();
+        auto hexes = organelle.organelle.getRotatedHexes(0);
         for(uint a = 0; a < hexes.length(); ++a){
             auto hex = hexes[a];
-            if(hex.r + organelle.r > maxR){
-                maxR = hex.r + organelle.r;
+            if(hex.X + organelle.r > maxR){
+                maxR = hex.X + organelle.r;
             }
         }
     }
@@ -570,23 +571,17 @@ void purgeCompounds(CellStageWorld@ world, ObjectID microbeEntity,
     }
 }
 
-//
+// Rebuilds the list of processes a cell does. Needs to be called
+// after adding or removing organelles
 void rebuildProcessList(CellStageWorld@ world, ObjectID microbeEntity)
 {
     ProcessorComponent@ processorComponent = world.GetComponent_ProcessorComponent(microbeEntity);
     MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
 
-    //Debug Statements
-    //auto@ thisSpecies = getSpecies(world, microbeEntity);
-    //if(thisSpecies !is null)
-    //{
-        //LOG_INFO("Regenerating Process list for microbe ID# " + microbeEntity + "of species " + thisSpecies.name);
-    //}
-
     dictionary capacities;
     for(uint i = 0; i < microbeComponent.organelles.length(); i++){
 
-        const Organelle@ organelleDefinition = microbeComponent.organelles[i].organelle;
+        const OrganelleTemplate@ organelleDefinition = microbeComponent.organelles[i].organelle;
         if(organelleDefinition is null){
 
             LOG_ERROR("Organelle table has a null organelle in it, position: " + i +
@@ -595,10 +590,10 @@ void rebuildProcessList(CellStageWorld@ world, ObjectID microbeEntity)
         }
 
         for(uint processNumber = 0;
-            processNumber < organelleDefinition.processes.length(); ++processNumber)
+            processNumber < organelleDefinition.getProcessCount(); ++processNumber)
         {
             // This name needs to match the one in bioProcessRegistry
-            TweakedProcess@ process = organelleDefinition.processes[processNumber];
+            TweakedProcess@ process = organelleDefinition.getProcess(processNumber);
 
             if(!capacities.exists(process.process.internalName)){
                 capacities[process.process.internalName] = double(0.0f);
@@ -854,19 +849,20 @@ void damage(CellStageWorld@ world, ObjectID microbeEntity, double amount, const 
 // They probably should all use the same one.
 // We'll probably need a rotation for this, although maybe it should be done in c++ where
 // sets are a thing?
-bool validPlacement(CellStageWorld@ world, ObjectID microbeEntity, const Organelle@ organelle,
+bool validPlacement(CellStageWorld@ world, ObjectID microbeEntity,
+    const OrganelleTemplate@ organelle,
     Int2 posToCheck)
 {
     auto touching = false;
     //TODO: should this hex list here be rotated, this doesn't seem to
     //take a rotation parameter in
-    auto hexes = organelle.getHexes();
+    auto hexes = organelle.getRotatedHexes(0);
     for(uint i = 0; i < hexes.length(); ++i){
 
         auto hex = hexes[i];
 
-        auto existingOrganelle = getOrganelleAt(world, microbeEntity, {hex.q + posToCheck.X,
-                    hex.r + posToCheck.Y});
+        auto existingOrganelle = getOrganelleAt(world, microbeEntity, {hex.X + posToCheck.X,
+                    hex.Y + posToCheck.Y});
         if(existingOrganelle !is null){
             if(existingOrganelle.organelle.name != "cytoplasm"){
                 return false ;
@@ -874,18 +870,18 @@ bool validPlacement(CellStageWorld@ world, ObjectID microbeEntity, const Organel
         }
 
         // These are pretty expensive methods
-        if(getOrganelleAt(world, microbeEntity, {hex.q + posToCheck.X + 0,
-                        hex.r + posToCheck.Y - 1}) !is null ||
-            getOrganelleAt(world, microbeEntity, {hex.q + posToCheck.X + 1,
-                        hex.r + posToCheck.Y - 1}) !is null ||
-            getOrganelleAt(world, microbeEntity, {hex.q + posToCheck.X + 1,
-                        hex.r + posToCheck.Y + 0}) !is null ||
-            getOrganelleAt(world, microbeEntity, {hex.q + posToCheck.X + 0,
-                        hex.r + posToCheck.Y + 1}) !is null ||
-            getOrganelleAt(world, microbeEntity, {hex.q + posToCheck.X - 1,
-                        hex.r + posToCheck.Y + 1}) !is null ||
-            getOrganelleAt(world, microbeEntity, {hex.q + posToCheck.X - 1,
-                        hex.r + posToCheck.Y + 0})  !is null)
+        if(getOrganelleAt(world, microbeEntity, {hex.X + posToCheck.X + 0,
+                        hex.Y + posToCheck.Y - 1}) !is null ||
+            getOrganelleAt(world, microbeEntity, {hex.X + posToCheck.X + 1,
+                        hex.Y + posToCheck.Y - 1}) !is null ||
+            getOrganelleAt(world, microbeEntity, {hex.X + posToCheck.X + 1,
+                        hex.Y + posToCheck.Y + 0}) !is null ||
+            getOrganelleAt(world, microbeEntity, {hex.X + posToCheck.X + 0,
+                        hex.Y + posToCheck.Y + 1}) !is null ||
+            getOrganelleAt(world, microbeEntity, {hex.X + posToCheck.X - 1,
+                        hex.Y + posToCheck.Y + 1}) !is null ||
+            getOrganelleAt(world, microbeEntity, {hex.X + posToCheck.X - 1,
+                        hex.Y + posToCheck.Y + 0})  !is null)
         {
             touching = true;
         }
@@ -1134,7 +1130,6 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
     for(uint compoundId = 0; compoundId < compoundCount; ++compoundId){
         auto total = getCompoundAmount(world, microbeEntity, compoundId)*COMPOUND_RELEASE_PERCENTAGE;
         compoundsToRelease[formatInt(compoundId)] = float(total);
-        //LOG_INFO(""+float(compoundsToRelease[formatInt(compoundId)]));
     }
 
     // Eject some part of the build cost of all the organelles
@@ -1143,12 +1138,11 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
         auto keys = organelle.organelle.initialComposition.getKeys();
         for(uint a = 0; a < keys.length(); ++a){
             float amount = float(organelle.organelle.initialComposition[keys[a]]);
-            auto compoundId = SimulationParameters::compoundRegistry().getTypeId(keys[a]);
-            auto key = formatInt(compoundId);
-            if(!compoundsToRelease.exists(key)){
-                compoundsToRelease[key] = amount * COMPOUND_MAKEUP_RELEASE_PERCENTAGE;
+            auto compoundId = parseInt(keys[a]);
+            if(!compoundsToRelease.exists(keys[a])){
+                compoundsToRelease[keys[a]] = amount * COMPOUND_MAKEUP_RELEASE_PERCENTAGE;
             } else {
-                compoundsToRelease[key] = float(compoundsToRelease[key]) +
+                compoundsToRelease[keys[a]] = float(compoundsToRelease[keys[a]]) +
                     (amount * COMPOUND_MAKEUP_RELEASE_PERCENTAGE);
             }
         }
@@ -1346,8 +1340,7 @@ float calculateReproductionProgress(MicrobeComponent@ microbeComponent,
         const auto@ keys = gatheredCompounds.getKeys();
 
         for(uint i = 0; i < keys.length(); ++i){
-            float value = max(0.f, extraHave.getCompoundAmount(
-                    SimulationParameters::compoundRegistry().getTypeId(keys[i])) -
+            float value = max(0.f, extraHave.getCompoundAmount(parseInt(keys[i])) -
                 ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST);
 
             if(value > 0){

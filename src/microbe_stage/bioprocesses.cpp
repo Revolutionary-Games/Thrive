@@ -39,3 +39,10 @@ BioProcess::BioProcess(Json::Value value)
         outputs.emplace(id, amount);
     }
 }
+// ------------------------------------ //
+// TweakedProcess
+TweakedProcess::TweakedProcess(const std::string& processName,
+    float tweakRate) :
+    process(SimulationParameters::bioProcessRegistry.getTypeData(processName)),
+    m_tweakRate(tweakRate)
+{}

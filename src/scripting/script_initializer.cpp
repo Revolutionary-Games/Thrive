@@ -10,6 +10,7 @@
 #include "general/timed_life_system.h"
 #include "generated/cell_stage_world.h"
 #include "generated/microbe_editor_world.h"
+#include "microbe_stage/organelle_types.h"
 #include "microbe_stage/patch.h"
 #include "microbe_stage/player_microbe_control.h"
 #include "microbe_stage/simulation_parameters.h"
@@ -103,6 +104,12 @@ TJsonRegistry<Biome>*
     getBiomeRegistryWrapper()
 {
     return &SimulationParameters::biomeRegistry;
+}
+
+TJsonRegistry<OrganelleType>*
+    getOrganelleRegistryWrapper()
+{
+    return &SimulationParameters::organelleRegistry;
 }
 
 class ScriptSpawnerWrapper {
@@ -345,14 +352,16 @@ bool
 bool
     registerJsonRegistryHeldTypes(asIScriptEngine* engine)
 {
-
     if(!registerRegistryHeldHelperBases<Compound>(engine, "Compound"))
         return false;
 
-    if(!registerRegistryHeldHelperBases<Compound>(engine, "BioProcess"))
+    if(!registerRegistryHeldHelperBases<BioProcess>(engine, "BioProcess"))
         return false;
 
-    if(!registerRegistryHeldHelperBases<Compound>(engine, "Biome"))
+    if(!registerRegistryHeldHelperBases<Biome>(engine, "Biome"))
+        return false;
+
+    if(!registerRegistryHeldHelperBases<OrganelleType>(engine, "OrganelleType"))
         return false;
 
     // Compound specific properties //
@@ -552,6 +561,121 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    // ------------------------------------ //
+    // OrganelleType
+    if(engine->RegisterObjectProperty("OrganelleType", "const string name",
+           asOFFSET(OrganelleType, name)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("OrganelleType", "const string gene",
+           asOFFSET(OrganelleType, gene)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("OrganelleType", "const string mesh",
+           asOFFSET(OrganelleType, mesh)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("OrganelleType", "const string texture",
+           asOFFSET(OrganelleType, texture)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("OrganelleType", "const float mass",
+           asOFFSET(OrganelleType, mass)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("OrganelleType",
+           "const float chanceToCreate",
+           asOFFSET(OrganelleType, chanceToCreate)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("OrganelleType",
+           "const float prokaryoteChance",
+           asOFFSET(OrganelleType, prokaryoteChance)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectMethod("OrganelleType",
+           "const array<string>@ getComponentKeys() const",
+           asMETHOD(OrganelleType, getComponentKeys), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectMethod("OrganelleType",
+           "const array<string>@ getComponentParameterKeys(string component) "
+           "const",
+           asMETHOD(OrganelleType, getComponentParameterKeys),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectMethod("OrganelleType",
+           "const double getComponentParameterAsDouble(string component, "
+           "string parameter) const",
+           asMETHOD(OrganelleType, getComponentParameterAsDouble),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectMethod("OrganelleType",
+           "const string getComponentParameterAsString(string component, "
+           "string parameter) const",
+           asMETHOD(OrganelleType, getComponentParameterAsString),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectMethod("OrganelleType",
+           "const array<string>@ getProcessKeys() const",
+           asMETHOD(OrganelleType, getProcessKeys), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectMethod("OrganelleType",
+           "const float getProcessTweakRate(string process) const",
+           asMETHOD(OrganelleType, getProcessTweakRate), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectMethod("OrganelleType",
+           "const array<Int2>@ getHexes() const",
+           asMETHOD(OrganelleType, getHexes), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectMethod("OrganelleType",
+           "const array<string>@ getInitialCompositionKeys() const",
+           asMETHOD(OrganelleType, getInitialCompositionKeys),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    ANGELSCRIPT_ASSUMED_SIZE_T;
+    if(engine->RegisterObjectMethod("OrganelleType",
+           "const double getInitialComposition(string compound) const",
+           asMETHOD(OrganelleType, getInitialComposition),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("OrganelleType", "const int mpCost",
+           asOFFSET(OrganelleType, mpCost)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     return true;
 }
 
@@ -642,6 +766,11 @@ bool
         return false;
     }
 
+    if(!registerJsonRegistry<TJsonRegistry<OrganelleType>, OrganelleType>(
+           engine, "TJsonRegistryOrganelleType", "OrganelleType")) {
+        return false;
+    }
+
 
     if(engine->SetDefaultNamespace("SimulationParameters") < 0) {
         ANGELSCRIPT_REGISTERFAIL;
@@ -667,6 +796,12 @@ bool
 
     if(engine->RegisterGlobalFunction("TJsonRegistryBiome@ biomeRegistry()",
            asFUNCTION(getBiomeRegistryWrapper), asCALL_CDECL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalFunction(
+           "TJsonRegistryOrganelleType@ organelleRegistry()",
+           asFUNCTION(getOrganelleRegistryWrapper), asCALL_CDECL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
@@ -1863,6 +1998,31 @@ bool
 }
 
 bool
+    registerTweakedProcess(asIScriptEngine* engine)
+{
+    ANGELSCRIPT_REGISTER_REF_TYPE("TweakedProcess", TweakedProcess);
+
+    if(engine->RegisterObjectMethod("TweakedProcess",
+           "float get_tweakRate() const",
+           asMETHOD(TweakedProcess, getTweakRate), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("TweakedProcess",
+           "float get_capacity() const", asMETHOD(TweakedProcess, getCapacity),
+           asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("TweakedProcess",
+           "const BioProcess process", asOFFSET(TweakedProcess, process)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    return true;
+}
+
+bool
     thrive::registerThriveScriptTypes(asIScriptEngine* engine)
 {
     if(!registerLockedMap(engine))
@@ -1918,6 +2078,12 @@ bool
         return false;
 
     if(!registerAutoEvo(engine))
+        return false;
+
+    if(!registerTweakedProcess(engine))
+        return false;
+
+    if(!registerOrganelles(engine))
         return false;
 
     if(engine->RegisterObjectType("ThriveGame", 0, asOBJ_REF | asOBJ_NOCOUNT) <
