@@ -9,6 +9,8 @@
 #include <Script/Bindings/BindHelpers.h>
 #include <Script/ScriptExecutor.h>
 
+#include <boost/scope_exit.hpp>
+
 using namespace thrive;
 // ------------------------------------ //
 class ScriptSpawnerWrapper {
@@ -65,13 +67,15 @@ std::string
         const CScriptArray* organelles,
         const Patch* patch)
 {
-    // Assume that our caller has their own reference so that we can immediately
-    // release these references
-    if(organelles)
-        organelles->Release();
+    BOOST_SCOPE_EXIT(&organelles, &patch)
+    {
+        if(organelles)
+            organelles->Release();
 
-    if(patch)
-        patch->Release();
+        if(patch)
+            patch->Release();
+    }
+    BOOST_SCOPE_EXIT_END;
 
     if(!patch) {
         asGetActiveContext()->SetException("patch may not be null");
@@ -99,8 +103,7 @@ std::string
     convertedOrganelles.reserve(organelles->GetSize());
 
     for(unsigned i = 0; i < organelles->GetSize(); ++i) {
-
-        convertedOrganelles.push_back(OrganelleTemplate::WrapPtr(
+        convertedOrganelles.push_back(OrganelleTemplate::pointer(
             *reinterpret_cast<OrganelleTemplate* const*>(organelles->At(i))));
     }
 
