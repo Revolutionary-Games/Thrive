@@ -1657,6 +1657,33 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/CytoplasmIcon.png");
 }
 
+.ATPBalanceContainer {
+  position: absolute;
+  height: 60px;
+  width: calc(100% - (480px + 386px + 120px + 6px));
+  top: 0;
+  right: 0;
+  border: 3px solid rgb(112, 159, 159, 0.6);
+  background: rgb(0, 125, 125, 0.6);
+  box-sizing: border-box;
+}
+
+#atpProductionBar {
+  text-align: center;
+  height: 15px;
+  background: green;
+}
+
+#atpConsumptionBar {
+  text-align: center;
+  height: 15px;
+  background: red;
+}
+
+.Red {
+  color: #f33;
+}
+
 
 /* TOOLTIP ENTRIES */
 

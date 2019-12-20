@@ -15,6 +15,15 @@
 
 using namespace thrive;
 // ------------------------------------ //
+// Constants for computing energy balances
+constexpr auto FLAGELLA_COMPONENT_NAME = "movement";
+
+// These constants must match what is in configs.as
+constexpr auto FLAGELLA_ENERGY_COST = 7.1f;
+constexpr auto ATP_COST_FOR_OSMOREGULATION = 1.0f;
+constexpr auto BASE_MOVEMENT_ATP_COST = 1.0f;
+
+// ------------------------------------ //
 ProcessorComponent::ProcessorComponent() : Leviathan::Component(TYPE) {}
 
 ProcessorComponent::ProcessorComponent(ProcessorComponent&& other) noexcept :
@@ -421,5 +430,115 @@ std::string
         const std::vector<OrganelleTemplate::pointer>& organelles,
         const Biome& biome) const
 {
-    return "TODO: implement computeEnergyBalance";
+    Json::Value value(Json::objectValue);
+    Json::Value production(Json::objectValue);
+    Json::Value consumption(Json::objectValue);
+    Json::Value errors(Json::arrayValue);
+
+    float totalATPProduction = 0.f;
+    float processATPConsumption = 0.f;
+    float movementATPConsumption = 0.f;
+
+    int hexCount = 0;
+
+    for(const auto& organelle : organelles) {
+        if(!organelle) {
+            errors.append(Json::Value("organelle pointer is null"));
+            continue;
+        }
+
+        const auto& name = organelle->getName();
+
+        // This uses the same efficiency computation as
+        // computeOrganelleProcessEfficiencies and just reads data back from the
+        // json results, because I'm too lazy to generalize the efficiency
+        // computation function
+        for(const auto& process : organelle->getProcesses()) {
+            const auto processData =
+                calculateProcessMaximumSpeed(process, biome);
+
+            // Find process inputs and outputs that use/produce ATP and add to
+            // totals
+            if(processData["inputs"]["atp"]) {
+                const auto amount =
+                    processData["inputs"]["atp"]["amount"].asFloat();
+
+                processATPConsumption += amount;
+
+                if(!consumption.isMember(name)) {
+                    consumption[name] = 0.f;
+                }
+
+                consumption[name] = consumption[name].asFloat() + amount;
+            }
+
+            if(processData["outputs"]["atp"]) {
+                const auto amount =
+                    processData["outputs"]["atp"]["amount"].asFloat();
+
+                totalATPProduction += amount;
+
+                if(!production.isMember(name)) {
+                    production[name] = 0.f;
+                }
+
+                production[name] = production[name].asFloat() + amount;
+            }
+        }
+
+        // Take special cell components that take energy into account
+        if(organelle->hasComponent(FLAGELLA_COMPONENT_NAME)) {
+            const auto amount = FLAGELLA_ENERGY_COST;
+
+            movementATPConsumption += amount;
+
+            if(!consumption.isMember(name)) {
+                consumption[name] = 0.f;
+            }
+
+            consumption[name] = consumption[name].asFloat() + amount;
+        }
+
+        // Store hex count
+        hexCount += organelle->getHexCount();
+    }
+
+    // Add movement consumption together
+    const auto totalMovementConsumption =
+        movementATPConsumption + BASE_MOVEMENT_ATP_COST;
+
+    consumption["baseMovement"] = BASE_MOVEMENT_ATP_COST;
+
+    // Add osmoregulation
+    const float osmoregulation = ATP_COST_FOR_OSMOREGULATION * hexCount;
+
+    consumption["osmoregulation"] = osmoregulation;
+
+    // Compute totals
+    const auto totalATPConsumption =
+        processATPConsumption + totalMovementConsumption + osmoregulation;
+
+    const auto totalBalanceStationary =
+        totalATPProduction - totalATPConsumption;
+    const auto totalBalance = totalBalanceStationary + totalMovementConsumption;
+
+    // Finish building the result object
+    value["production"] = production;
+    value["consumption"] = consumption;
+    value["total"]["production"] = totalATPProduction;
+    value["total"]["consumption"] = totalATPConsumption;
+    value["total"]["balance"] = totalBalance;
+    value["total"]["balanceStationary"] = totalBalanceStationary;
+
+    if(errors.size() > 0)
+        value["errors"] = errors;
+
+    std::stringstream sstream;
+    Json::StreamWriterBuilder builder;
+    builder["indentation"] = "";
+    std::unique_ptr<Json::StreamWriter> writer(builder.newStreamWriter());
+
+    writer->write(value, &sstream);
+
+    return sstream.str();
 }

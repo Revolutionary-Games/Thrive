@@ -62,6 +62,43 @@ SpawnerTypeId
         spawnDensity, spawnRadius);
 }
 
+bool
+    commonScriptReceivedOrganelleArrayHelper(const CScriptArray* organelles,
+        const Patch* patch,
+        std::vector<OrganelleTemplate::pointer>& convertedOrganelles)
+{
+    if(!patch) {
+        asGetActiveContext()->SetException("patch may not be null");
+        return false;
+    }
+    if(!organelles) {
+        asGetActiveContext()->SetException("organelles may not be null");
+        return false;
+    }
+
+    static const auto wantedId =
+        Leviathan::AngelScriptTypeIDResolver<OrganelleTemplate>::Get(
+            Leviathan::ScriptExecutor::Get());
+    static const auto wantedIdConst =
+        Leviathan::AngelScriptTypeIDResolver<const OrganelleTemplate>::Get(
+            Leviathan::ScriptExecutor::Get());
+
+    if(organelles->GetElementTypeId() != wantedId &&
+        organelles->GetElementTypeId() != wantedIdConst) {
+        asGetActiveContext()->SetException("organelles array type mismatch");
+        return false;
+    }
+
+    convertedOrganelles.reserve(organelles->GetSize());
+
+    for(unsigned i = 0; i < organelles->GetSize(); ++i) {
+        convertedOrganelles.push_back(OrganelleTemplate::pointer(
+            *reinterpret_cast<OrganelleTemplate* const*>(organelles->At(i))));
+    }
+
+    return true;
+}
+
 std::string
     computeOrganelleProcessEfficienciesWrapper(ProcessSystem& self,
         const CScriptArray* organelles,
@@ -77,38 +114,36 @@ std::string
     }
     BOOST_SCOPE_EXIT_END;
 
-    if(!patch) {
-        asGetActiveContext()->SetException("patch may not be null");
-        return "";
-    }
-    if(!organelles) {
-        asGetActiveContext()->SetException("organelles may not be null");
-        return "";
-    }
-
-    static const auto wantedId =
-        Leviathan::AngelScriptTypeIDResolver<OrganelleTemplate>::Get(
-            Leviathan::ScriptExecutor::Get());
-    static const auto wantedIdConst =
-        Leviathan::AngelScriptTypeIDResolver<const OrganelleTemplate>::Get(
-            Leviathan::ScriptExecutor::Get());
-
-    if(organelles->GetElementTypeId() != wantedId &&
-        organelles->GetElementTypeId() != wantedIdConst) {
-        asGetActiveContext()->SetException("organelles array type mismatch");
-        return "";
-    }
-
     std::vector<OrganelleTemplate::pointer> convertedOrganelles;
-    convertedOrganelles.reserve(organelles->GetSize());
-
-    for(unsigned i = 0; i < organelles->GetSize(); ++i) {
-        convertedOrganelles.push_back(OrganelleTemplate::pointer(
-            *reinterpret_cast<OrganelleTemplate* const*>(organelles->At(i))));
-    }
+    if(!commonScriptReceivedOrganelleArrayHelper(
+           organelles, patch, convertedOrganelles))
+        return "";
 
     return self.computeOrganelleProcessEfficiencies(
         convertedOrganelles, patch->getBiome());
+}
+
+std::string
+    computeEnergyBalanceWrapper(ProcessSystem& self,
+        const CScriptArray* organelles,
+        const Patch* patch)
+{
+    BOOST_SCOPE_EXIT(&organelles, &patch)
+    {
+        if(organelles)
+            organelles->Release();
+
+        if(patch)
+            patch->Release();
+    }
+    BOOST_SCOPE_EXIT_END;
+
+    std::vector<OrganelleTemplate::pointer> convertedOrganelles;
+    if(!commonScriptReceivedOrganelleArrayHelper(
+           organelles, patch, convertedOrganelles))
+        return "";
+
+    return self.computeEnergyBalance(convertedOrganelles, patch->getBiome());
 }
 // ------------------------------------ //
 class WorldEffectScript : public WorldEffect {
@@ -215,6 +250,15 @@ bool
            asCALL_CDECL_OBJFIRST) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
+
+    if(engine->RegisterObjectMethod("ProcessSystem",
+           "string computeEnergyBalance(const "
+           "array<const OrganelleTemplate@>@ organelles, const Patch@ patch)",
+           asFUNCTION(computeEnergyBalanceWrapper),
+           asCALL_CDECL_OBJFIRST) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     // ------------------------------------ //
     // CompoundCloudSystem
     if(engine->RegisterObjectType(

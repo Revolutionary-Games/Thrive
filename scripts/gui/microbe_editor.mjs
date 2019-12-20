@@ -365,12 +365,20 @@ export function setupMicrobeEditor(){
             updateOrganelleEfficiencies(JSON.parse(vars.data));
         });
 
+        Leviathan.OnGeneric("MicrobeEditorEnergyBalanceUpdated", (event, vars) => {
+            // Just let any exceptions buble up from json parse
+            updateEnergyBalanceBars(JSON.parse(vars.data));
+        });
+
     } else {
         updateSelectedOrganelle("cytoplasm");
 
         // Load example data and use that
         $.ajax({url: "example_organelle_efficiency.json"}).done(function( data ) {
             updateOrganelleEfficiencies(data);
+        });
+        $.ajax({url: "example_energy_balance.json"}).done(function( data ) {
+            updateEnergyBalanceBars(data);
         });
     }
 }
@@ -1724,3 +1732,35 @@ function updateOrganelleEfficiencies(data) {
     }
 }
 
+// Updates the energy balance bars shown in the editor
+function updateEnergyBalanceBars(data){
+    // Crunch the numbers
+    const maxBarValue = Math.max(data.total.consumption, data.total.production);
+
+    const endPointInBar = (Math.floor(maxBarValue / 10.0) + 1) * 10.0;
+
+    const notProducingEnough = data.total.consumption >= data.total.production;
+
+    const productionBarFillAmount = data.total.production / endPointInBar;
+    const consumptionBarFillAmount = data.total.consumption / endPointInBar;
+
+    // Set the label
+    const balanceLabel = document.getElementById("atpBalanceLabel");
+
+    if(notProducingEnough){
+        balanceLabel.textContent = "Not producing enough ATP!";
+        balanceLabel.classList.add("Red");
+    } else {
+        balanceLabel.textContent = "ATP balance";
+        balanceLabel.classList.remove("Red");
+    }
+
+    // Set the bar lengths
+    const productionBar = document.getElementById("atpProductionBar");
+    productionBar.style.width = (productionBarFillAmount * 100).toFixed(1) + "%";
+    productionBar.textContent = data.total.production.toFixed(1);
+
+    const consumptionBar = document.getElementById("atpConsumptionBar");
+    consumptionBar.style.width = (consumptionBarFillAmount * 100).toFixed(1) + "%";
+    consumptionBar.textContent = data.total.consumption.toFixed(1);
+}

@@ -272,7 +272,7 @@ class MicrobeEditor{
         _updateAlreadyPlacedVisuals();
 
         // Calculate and send energy balance to the GUI
-        calculateEnergyBalanceWithOrganelles();
+        calculateEnergyBalanceWithOrganelles(editedMicrobeOrganelles, targetPatch);
     }
 
     // This destroys and creates again entities to represent all the

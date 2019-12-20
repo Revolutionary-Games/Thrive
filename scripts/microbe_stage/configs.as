@@ -98,6 +98,7 @@ const auto AI_TIME_INTERVAL = 0.2f;
 const auto AI_CELL_THINK_INTERVAL = 3.f;
 
 // Osmoregulation ATP cost
+//! If you change this you must also change the value in process_system.cpp
 const auto ATP_COST_FOR_OSMOREGULATION = 1.0f;
 
 //Purge Divisor
@@ -105,6 +106,7 @@ const auto COMPOUND_PURGE_MODIFIER = 2.0f;
 
 // BASE MOVEMENT COST ATP cost
 // Cancels out a little bit more then one cytoplasm's glycolysis
+//! If you change this you must also change the value in process_system.cpp
 const auto BASE_MOVEMENT_ATP_COST = 1.0f;
 
 // The player's name
@@ -115,6 +117,7 @@ const auto DEFAULT_HEALTH = 100;
 const auto REGENERATION_RATE = 1.0f;
 
 // Movement stuff
+//! If you change this you must also change the value in process_system.cpp
 const auto FLAGELLA_ENERGY_COST = 7.1f;
 const auto FLAGELLA_BASE_FORCE = 0.7f;
 const auto CELL_BASE_THRUST = 1.6f;
