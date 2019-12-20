@@ -1679,8 +1679,43 @@ function updateOrganelleEfficiencies(data) {
         {
             name: "metabolosome",
             processList: "metabolosomeProcessList"
-        }
-
+        },
+        {
+            name: "chemoSynthisizingProteins",
+            processList: "chemoSynthisizingProteinsProcessList"
+        },
+        {
+            name: "rusticyanin",
+            processList: "rusticyaninProcessList"
+        },
+        {
+            name: "nitrogenase",
+            processList: "nitrogenaseProcessList"
+        },
+        {
+            name: "oxytoxyProteins",
+            processList: "oxytoxyProteinsProcessList"
+        },
+        {
+            name: "mitochondrion",
+            processList: "mitochondrionProcessList"
+        },
+        {
+            name: "chloroplast",
+            processList: "chloroplastProcessList"
+        },
+        {
+            name: "chemoplast",
+            processList: "chemoplastProcessList"
+        },
+        {
+            name: "nitrogenfixingplastid",
+            processList: "nitrogenfixingplastidProcessList"
+        },
+        {
+            name: "oxytoxy",
+            processList: "oxytoxyProcessList"
+        },
     ];
 
     for(const organelle of organelles){

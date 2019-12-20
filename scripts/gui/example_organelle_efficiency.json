@@ -19,7 +19,7 @@
               "name": "Hydrogen Sulfide"
             }
           },
-          "name": "Bacterial Chemosynthesis",
+          "name": "Chemo Synthesis",
           "outputs": {
             "glucose": {
               "amount": 0.15,
@@ -40,7 +40,7 @@
               "name": "Glucose"
             }
           },
-          "name": "Glycolosis",
+          "name": "Glycolysis",
           "outputs": {
             "atp": {
               "amount": 5.0,
@@ -49,7 +49,7 @@
             }
           },
           "processId": 4,
-          "processName": "glycolosis",
+          "processName": "glycolysis",
           "speedFactor": 1.0
         }
       ]
@@ -141,7 +141,7 @@
             }
           },
           "inputs": null,
-          "name": "Bacterial Photosynthesis",
+          "name": "Photosynthesis",
           "outputs": {
             "glucose": {
               "amount": 0.0,
@@ -162,7 +162,7 @@
               "name": "Glucose"
             }
           },
-          "name": "Glycolosis",
+          "name": "Glycolysis",
           "outputs": {
             "atp": {
               "amount": 5.0,
@@ -171,7 +171,7 @@
             }
           },
           "processId": 4,
-          "processName": "glycolosis",
+          "processName": "glycolysis",
           "speedFactor": 1.0
         }
       ]
@@ -196,7 +196,7 @@
             }
           },
           "processId": 5,
-          "processName": "glycolosis_cytoplasm",
+          "processName": "glycolysis_cytoplasm",
           "speedFactor": 1.0
         }
       ]
@@ -223,7 +223,7 @@
               "name": "Glucose"
             }
           },
-          "name": "RespirationProtein",
+          "name": "Respiration",
           "outputs": {
             "atp": {
               "amount": 7.979999750852585,
@@ -281,7 +281,7 @@
               "name": "Glucose"
             }
           },
-          "name": "Glycolosis",
+          "name": "Glycolysis",
           "outputs": {
             "atp": {
               "amount": 5.0,
@@ -290,7 +290,7 @@
             }
           },
           "processId": 4,
-          "processName": "glycolosis",
+          "processName": "glycolysis",
           "speedFactor": 1.0
         },
         {
@@ -419,7 +419,7 @@
               "name": "ATP"
             }
           },
-          "name": "Bacterial Oxytoxy Synthesis",
+          "name": "Oxytoxy Synthesis",
           "outputs": {
             "oxytoxy": {
               "amount": 0.5,
@@ -440,7 +440,7 @@
               "name": "Glucose"
             }
           },
-          "name": "Glycolosis",
+          "name": "Glycolysis",
           "outputs": {
             "atp": {
               "amount": 5.0,
@@ -449,7 +449,7 @@
             }
           },
           "processId": 4,
-          "processName": "glycolosis",
+          "processName": "glycolysis",
           "speedFactor": 1.0
         }
       ]
@@ -468,7 +468,7 @@
               "name": "Glucose"
             }
           },
-          "name": "Glycolosis",
+          "name": "Glycolysis",
           "outputs": {
             "atp": {
               "amount": 5.0,
@@ -477,7 +477,7 @@
             }
           },
           "processId": 4,
-          "processName": "glycolosis",
+          "processName": "glycolysis",
           "speedFactor": 1.0
         }
       ]

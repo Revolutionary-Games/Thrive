@@ -127,8 +127,8 @@
               <span id="populationCount">0</span>
           </div>
 
-        <div id="HealthIcon"> </div>
-        <div id="ATPIconBar"> </div>
+        <div class="HealthIcon"> </div>
+        <div class="ATPIconBar"> </div>
         <svg version="1.1" id="circleBars" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	     width="250px" height="200px" viewBox="0 0 200 200" style="enable-background: new 0 0 200 200;" xml:space="preserve">
 
@@ -212,7 +212,7 @@
         </div>
       </svg>
     </div>
-	  <div id="pauseButton"><div id="pauseIcon"></div></div>
+	  <div id="pauseButton"><div class="pauseIcon"></div></div>
 
 	  <div id="winContainer">
 		<span id="winTitle">YOU HAVE THRIVED!</span>
@@ -256,7 +256,7 @@
             <div class="EnvironmentBar">
               <div class="OxygenBarBackground" id="microbeHUDPlayerOxygenBar">
                 <div class="BarForeground">
-                    <div class="environmentIcon" id="OxygenIcon"></div>
+                    <div class="environmentIcon OxygenIcon"></div>
                     <div class="EnvironmentBarTitle">O₂</div>
                       <div class="EnvironmentBarValue">
                         <span id="oxygenPercent">O<sub>2</sub>: 21%</span>
@@ -269,7 +269,7 @@
             <div class="EnvironmentBar">
               <div class="CO2BarBackground" id="microbeHUDPlayerCO2Bar">
                 <div class="BarForeground">
-                    <div class="environmentIcon" id="CO2Icon"></div>
+                    <div class="environmentIcon CO2Icon"></div>
                     <div class="EnvironmentBarTitle">CO₂</div>
                       <div class="EnvironmentBarValue">
                          <span id="carbonDioxidePercent">CO<sub>2</sub>: 9%</span>
@@ -284,7 +284,7 @@
             <div class="EnvironmentBar">
               <div class="NitrogenBarBackground" id="microbeHUDPlayerNitrogenBar">
                 <div class="BarForeground">
-                    <div class="environmentIcon" id="NitrogenIcon"></div>
+                    <div class="environmentIcon NitrogenIcon"></div>
                     <div class="EnvironmentBarTitle">N₂</div>
                       <div class="EnvironmentBarValue">
                         <span id="nitrogenPercent">N<sub>2</sub>: 70%</span>
@@ -326,7 +326,7 @@
             <div class="EnvironmentBar">
               <div class="EmptyBarBackground" id="microbeHUDPlayerPressureBar">
                 <div class="BarForeground">
-                    <div class="environmentIcon" id="PressureIcon"></div>
+                    <div class="environmentIcon PressureIcon"></div>
                     <div class="EnvironmentBarTitle">Press.</div>
                       <div class="EnvironmentBarValue">
                         <span id="microbeHUDPlayerPressure">200 kPa</span>
@@ -377,7 +377,7 @@
               <div class="Bar">
                 <div class="BarBackground" id="microbeHUDPlayerPhosphatesBar">
                   <div class="BarForeground">
-                      <div class="compoundIcon" id="PhosphatesIcon"></div>
+                      <div class="compoundIcon PhosphatesIcon"></div>
                       <div class="BarTitle">Phosphate</div>
                         <div class="BarValue">
                           <span id="microbeHUDPlayerPhosphates">0</span> /
@@ -571,7 +571,7 @@ For this Release if your population (top tab) drops to zero you go extinct.
 				  <span class="tooltipheader">
 				    <span class="thead">Metabolosomes</span>
 				  </span>
-                  <div id="MetabolosomeIcon"></div>Metabolosomes<br>45 MP</td>
+                  <div class="MetabolosomeIcon"></div>Metabolosomes<br>45 MP</td>
                 <td id="addChromatophor" class="OrganelleListItem">
                   <span class="tooltiptext">
 				    &emsp;<div class="compoundIcon MutationPointsIcon"></div>&nbsp;<span class="tkey">50</span> <br> <br>
@@ -590,15 +590,14 @@ For this Release if your population (top tab) drops to zero you go extinct.
 				  <span class="tooltipheader">
 				    <span class="thead">Thylakoids</span>
 				  </span>
-                  <div id="ChromatophorIcon"></div>Thylakoid<br>50 MP</td>
+                  <div class="ChromatophorIcon"></div>Thylakoid<br>50 MP</td>
                 <td id="addChemoSynthisizingProteins" class="OrganelleListItem">
 				  <span class="tooltiptext">
 				    &emsp;<div class="compoundIcon MutationPointsIcon"></div>&nbsp;<span class="tkey">45</span> <br> <br> <br> <br>
                     Turns <span class="tkey">Hydrogen Sulfide</span> <span class="compoundIcon HydrogenSulfideIcon"></span> into <span class="tkey">Glucose</span> <span class="compoundIcon GlucoseIcon"></span> . Rate scales with concentration of <span class="tkey">Carbon Dioxide</span> <span class="compoundIcon CO2NormalIcon"></span>&nbsp;. Also turns <span class="tkey">Glucose</span> <span class="compoundIcon GlucoseIcon"></span> into <span class="tkey">ATP</span> <span class="compoundIcon ATPIcon"></span> . <br> <br>
-				    <span class="tgold">Hydrogen Sulfide Chemosynthesis</span> <br>
-				    <span class="tkey">0.15</span> <span class="compoundIcon HydrogenSulfideIcon"></span> <span class="compoundIcon WhiteArrow"></span> <span class="tkey">0.15</span> <span class="compoundIcon GlucoseIcon"></span> <span class="tkey">/second&emsp;@&emsp;0.09%</span> <span class="compoundIcon CO2NormalIcon"></span><br> <br>
-				    <span class="tgold">Fermentation</span> <br>
-				    <span class="tkey">0.13</span> <span class="compoundIcon GlucoseIcon"></span> <span class="compoundIcon WhiteArrow"></span> <span class="tkey">5.00</span> <span class="compoundIcon ATPIcon"></span> <span class="tkey">/second</span> <br> <br>
+                    <span class="ProcessList" id="chemoSynthisizingProteinsProcessList">
+                      Process info loading...
+                    </span>
 				    <span class="tbonus">+1</span> <span class="tkey">Storage</span> <span class="compoundIcon VacuoleTooltipIcon"></span> <br>
 				    <span class="tmalus">+1</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
 				    <span class="tdesc">Chemosynthesizing proteins are small clusters of protein in the cytoplasm that are able to
@@ -610,15 +609,16 @@ For this Release if your population (top tab) drops to zero you go extinct.
 				  <span class="tooltipheader">
 				    <span class="thead">Chemosynth-<br>esizing Proteins</span>
 				  </span>
-                  <div id="ChemosynthisizingProteinsIcon"></div>Chemosynthesizing Proteins<br>45 MP</td>
+                  <div class="ChemosynthisizingProteinsIcon"></div>Chemosynthesizing Proteins<br>45 MP</td>
               </tr>
               <tr>
 	            <td id="addRusticyanin" class="OrganelleListItem">
 				  <span class="tooltiptext">
 				    &emsp;<div class="compoundIcon MutationPointsIcon"></div>&nbsp;<span class="tkey">45</span> <br> <br>
                     Turns <span class="tkey">Iron</span> <span class="compoundIcon IronIcon"></span> into <span class="tkey">ATP</span> <span class="compoundIcon ATPIcon"></span> . Rate scales with concentration of <span class="tkey">Carbon Dioxide</span> <span class="compoundIcon CO2NormalIcon"></span> and <span class="tkey">Oxygen</span> &nbsp;<span class="compoundIcon OxygenNormalIcon"></span>&nbsp;. <br> <br>
-				    <span class="tgold">Iron Respiration</span> <br>
-				    <span class="tkey">0.12</span> <span class="compoundIcon IronIcon"></span> <span class="compoundIcon WhiteArrow"></span> <span class="tkey">10.00</span> <span class="compoundIcon ATPIcon"></span> <span class="tkey">/second&emsp;@&emsp;0.09%</span> <span class="compoundIcon CO2NormalIcon"></span> <span class="tkey">, 0.21%</span> <span class="compoundIcon OxygenNormalIcon"></span> <br> <br>
+                    <span class="ProcessList" id="rusticyaninProcessList">
+                      Process info loading...
+                    </span>
 				    <span class="tbonus">+1</span> <span class="tkey">Storage</span> <span class="compoundIcon VacuoleTooltipIcon"></span> <br>
 				    <span class="tmalus">+1</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
 				    <span class="tdesc">Rusticyanin is a protein able to use gaseous carbon dioxide and oxygen to oxidize iron from one
@@ -628,15 +628,14 @@ For this Release if your population (top tab) drops to zero you go extinct.
 				  <span class="tooltipheader">
 				    <span class="thead">Rusticyanin</span>
 				  </span>
-				  <div id="RusticyaninIcon"></div>Rusticyanin<br>45 MP</td>
+				  <div class="RusticyaninIcon"></div>Rusticyanin<br>45 MP</td>
                 <td id="addNitrogenase" class="OrganelleListItem">
 				  <span class="tooltiptext">
 				    &emsp;<div class="compoundIcon MutationPointsIcon"></div>&nbsp;<span class="tkey">55</span> <br> <br>
                     Turns <span class="tkey">ATP</span> <span class="compoundIcon ATPIcon"></span> into <span class="tkey">Ammonia</span> <span class="compoundIcon AmmoniaIcon"></span>. Rate scales with concentration of <span class="tkey">Nitrogen</span> <span class="compoundIcon NitrogenNormalIcon"></span>&nbsp;. <br> <br>
-				    <span class="tgold">Nitrogen Fixation</span> <br>
-				    <span class="tkey">2</span> <span class="compoundIcon ATPIcon"></span> <span class="compoundIcon WhiteArrow"></span> <span class="tkey">0.06</span> <span class="compoundIcon AmmoniaIcon"></span> <span class="tkey">/second&emsp;@&emsp;78.00%</span> <span class="compoundIcon NitrogenNormalIcon"></span> <br> <br>
-				    <span class="tgold">Fermentation</span> <br>
-				    <span class="tkey">0.13</span> <span class="compoundIcon GlucoseIcon"></span> <span class="compoundIcon WhiteArrow"></span> <span class="tkey">5.00</span> <span class="compoundIcon ATPIcon"></span> <span class="tkey">/second</span> <br> <br>
+                    <span class="ProcessList" id="nitrogenaseProcessList">
+                      Process info loading...
+                    </span>
 				    <span class="tbonus">+2</span> <span class="tkey">Storage</span> <span class="compoundIcon VacuoleTooltipIcon"></span> <br>
 				    <span class="tmalus">+1</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
 				    <span class="tdesc">Nitrogenase is a protein able to use gaseous nitrogen and cellular energy in the form of ATP to
@@ -646,16 +645,15 @@ For this Release if your population (top tab) drops to zero you go extinct.
 				  <span class="tooltipheader">
 				    <span class="thead">Nitrogenase</span>
 				  </span>
-                  <div id="NitrogenaseIcon">
+                  <div class="NitrogenaseIcon">
                   </div>Nitrogenase<br>55 MP</td>
                 <td id="addToxinProtein" class="OrganelleListItem">
                   <span class="tooltiptext">
 				    &emsp;<div class="compoundIcon MutationPointsIcon"></div>&nbsp;<span class="tkey">55</span> <br> <br>
                     Turns <span class="tkey">ATP</span> <span class="compoundIcon ATPIcon"></span> into <span class="tkey">Oxytoxy</span> <span class="compoundIcon OxyToxyIcon"></span>. Can release toxins by pressing <span class="tkey">E</span>. Rate scales with concentration of <span class="tkey">Oxygen</span> <span class="compoundIcon OxygenNormalIcon"></span>&nbsp;. <br> <br>
-				    <span class="tgold">Agent Synthesis</span> <br>
-				    <span class="tkey">5.00</span> <span class="compoundIcon ATPIcon"></span> <span class="compoundIcon WhiteArrow"></span> <span class="tkey">0.5</span> <span class="compoundIcon OxyToxyIcon"></span> <span class="tkey">/second&emsp;@&emsp;21.00%</span> <span class="compoundIcon OxygenNormalIcon"></span> <br> <br>
-				    <span class="tgold">Fermentation</span> <br>
-				    <span class="tkey">0.13</span> <span class="compoundIcon GlucoseIcon"></span> <span class="compoundIcon WhiteArrow"></span> <span class="tkey">5.00</span> <span class="compoundIcon ATPIcon"></span> <span class="tkey">/second</span> <br> <br>
+                    <span class="ProcessList" id="oxytoxyProteinsProcessList">
+                      Process info loading...
+                    </span>
                     <span class="tbonus">+4</span> <span class="tkey">Storage</span> <span class="compoundIcon VacuoleTooltipIcon"></span> <br>
 				    <span class="tmalus">+1</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
 				    <span class="tdesc">A modified metabolosome responsible for the production of a primitive form of the toxic agent Oxytoxy NT.</span>
@@ -671,7 +669,7 @@ For this Release if your population (top tab) drops to zero you go extinct.
                   <span class="tooltiptext">
 				    &emsp;<div class="compoundIcon MutationPointsIcon"></div>&nbsp;<span class="tkey">55</span> <br> <br>
                     Uses <span class="tkey">ATP</span> <span class="compoundIcon ATPIcon"></span> to increase the movement speed of the cell. <br> <br>
-				    <span class="tbonus">+0.7</span> <span class="tkey">Speed</span> <span class="compoundIcon" id="FlagellumTooltipIcon"></span> <br>
+				    <span class="tbonus">+0.7</span> <span class="tkey">Speed</span> <span class="compoundIcon FlagellumTooltipIcon"></span> <br>
 				    <span class="tbonus">+1</span> <span class="tkey">Storage</span> <span class="compoundIcon VacuoleTooltipIcon"></span> <br>
 				    <span class="tmalus">+1</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
 				    <span class="tdesc">The flagellum (plural: flagella) is a whip-like bundle of protein fibers extending from the
@@ -680,16 +678,17 @@ For this Release if your population (top tab) drops to zero you go extinct.
 				  <span class="tooltipheader">
 				    <span class="thead">Flagellum</span>
 				  </span>
-                  <div id="FlagellumIcon"></div>Flagellum<br>55 MP</td>
+                  <div class="FlagellumIcon"></div>Flagellum<br>55 MP</td>
                 <td id="addPilus" class="OrganelleListItem">
                   <span class="tooltiptext">
-				    &emsp;<div class="compoundIcon MutationPointsIcon"></div>&nbsp;<span class="tkey">0</span> <br> <br>
+                    <div class="compoundIcon MutationPointsIcon">
+                    </div>&nbsp;<span class="tkey">30</span> <br> <br>
                     Stab other cells with this.
                   </span>
 				  <span class="tooltipheader">
 				    <span class="thead">Predatory Pilus</span>
 				  </span>
-				  <div id="PilusIcon"></div>Predatory Pilus<br>30 MP</td>
+				  <div class="PilusIcon"></div>Predatory Pilus<br>30 MP</td>
                 <td id="addCilia" class="OrganelleListItem DisabledButton">
 				  <span class="tooltiptext">
 				    &emsp;<div class="compoundIcon MutationPointsIcon"></div>&nbsp;<span class="tkey">0</span> <br> <br>
@@ -698,7 +697,7 @@ For this Release if your population (top tab) drops to zero you go extinct.
 				  <span class="tooltipheader">
 				    <span class="thead">Cilia</span>
 				  </span>
-				  <div id="CiliaIcon"></div>Cilia<br>40 MP</td>
+				  <div class="CiliaIcon"></div>Cilia<br>40 MP</td>
             </tr></table>
 	        <div class="OrganelleListTitle">INTERNAL ORGANELLES</div>
 	        <table class="OrganelleTable"><tr>
@@ -718,14 +717,15 @@ For this Release if your population (top tab) drops to zero you go extinct.
 				  <span class="tooltipheader">
 				    <span class="thead">Nucleus</span>
 				  </span>
-                  <div id="NucleusIcon">
+                  <div class="NucleusIcon">
                   </div>Nucleus<br>100 MP</td>
 	            <td id="addMitochondrion" class="OrganelleListItem">
 				  <span class="tooltiptext">
 				    &emsp;<div class="compoundIcon MutationPointsIcon"></div>&nbsp;<span class="tkey">55</span> <br> <br>
 				    Turns <span class="tkey">Glucose</span> <span class="compoundIcon GlucoseIcon"></span> into <span class="tkey">ATP</span> <span class="compoundIcon ATPIcon"></span> . Rate scales with concentration of <span class="tkey">Oxygen</span> <span class="compoundIcon OxygenNormalIcon"></span>&nbsp;. <br> <br>
-				    <span class="tgold">Aerobic Respiration</span> <br>
-				    <span class="tkey">0.1</span> <span class="compoundIcon GlucoseIcon"></span> <span class="compoundIcon WhiteArrow"></span> <span class="tkey">10.5</span> <span class="compoundIcon ATPIcon"></span> <span class="tkey">/second&emsp;@&emsp;21.00%</span> <span class="compoundIcon OxygenNormalIcon"></span><br> <br>
+                    <span class="ProcessList" id="mitochondrionProcessList">
+                      Process info loading...
+                    </span>
 				    <span class="tbonus">+2</span> <span class="tkey">Storage</span> <span class="compoundIcon VacuoleTooltipIcon"></span> <br>
 				    <span class="tmalus">+2</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
 				    <span class="tdesc">The powerhouse of the cell. The mitochondrion (plural: mitochondria) is a double membrane structure filled
@@ -737,14 +737,15 @@ For this Release if your population (top tab) drops to zero you go extinct.
 				  <span class="tooltipheader">
 				    <span class="thead">Mitochondrion</span>
 				  </span>
-                  <div id="MitochondrionIcon">
+                  <div class="MitochondrionIcon">
                   </div>Mitochondrion<br>45 MP</td>
 	            <td id="addChloroplast" class="OrganelleListItem">
 				  <span class="tooltiptext">
 				    &emsp;<div class="compoundIcon MutationPointsIcon"></div>&nbsp;<span class="tkey">50</span> <br> <br>
                     Produces <span class="tkey">Glucose</span> <span class="compoundIcon GlucoseIcon"></span> . Rate scales with concentration of <span class="tkey">Carbon Dioxide</span> <span class="compoundIcon CO2NormalIcon"></span> and intensity of <span class="tkey">Light</span> <span class="compoundIcon LightIcon"></span>&nbsp;. <br> <br>
-				    <span class="tgold">Photosynthesis</span> <br>
-				    <span class="tkey">+0.25</span> <span class="compoundIcon GlucoseIcon"></span> <span class="tkey">/second&emsp;@&emsp;0.09%</span> <span class="compoundIcon CO2NormalIcon"></span> <span class="tkey">, 10,000 lux</span> <span class="compoundIcon LightIcon"></span><br> <br>
+                    <span class="ProcessList" id="chloroplastProcessList">
+                      Process info loading...
+                    </span>
 				    <span class="tbonus">+2</span> <span class="tkey">Storage</span> <span class="compoundIcon VacuoleTooltipIcon"></span> <br>
 				    <span class="tmalus">+3</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
 				    <span class="tdesc">The chloroplast is a double membrane structure containing photosensitive pigments stacked together in membranous sacs.
@@ -756,7 +757,7 @@ For this Release if your population (top tab) drops to zero you go extinct.
 				  <span class="tooltipheader">
 				    <span class="thead">Chloroplast</span>
 				  </span>
-                  <div id="ChloroplastIcon"></div>Chloroplast<br>50 MP</td>
+                  <div class="ChloroplastIcon"></div>Chloroplast<br>50 MP</td>
 	          </tr><tr>
                 <td id="addThermoplast" class="OrganelleListItem DisabledButton">
                   <span class="tooltiptext">
@@ -775,13 +776,14 @@ For this Release if your population (top tab) drops to zero you go extinct.
 				  <span class="tooltipheader">
 				    <span class="thead">Thermoplast</span>
 				  </span>
-                  <div id="ThermoplastIcon"></div>Thermoplast<br>40 MP</td>
+                  <div class="ThermoplastIcon"></div>Thermoplast<br>40 MP</td>
                 <td id="addChemoplast" class="OrganelleListItem">
                   <span class="tooltiptext">
 				    &emsp;<div class="compoundIcon MutationPointsIcon"></div>&nbsp;<span class="tkey">45</span> <br> <br>
                     Turns <span class="tkey">Hydrogen Sulfide</span> <span class="compoundIcon HydrogenSulfideIcon"></span> into <span class="tkey">Glucose</span> <span class="compoundIcon GlucoseIcon"></span> . Rate scales with concentration of <span class="tkey">Carbon Dioxide</span> <span class="compoundIcon CO2NormalIcon"></span>&nbsp;. <br> <br>
-				    <span class="tgold">Hydrogen Sulfide Chemosynthesis</span> <br>
-				    <span class="tkey">0.15</span> <span class="compoundIcon HydrogenSulfideIcon"></span> <span class="compoundIcon WhiteArrow"></span> <span class="tkey">0.2</span> <span class="compoundIcon GlucoseIcon"></span> <span class="tkey">/second&emsp;@&emsp;0.09%</span> <span class="compoundIcon CO2NormalIcon"></span><br> <br>
+                    <span class="ProcessList" id="chemoplastProcessList">
+                      Process info loading...
+                    </span>
 				    <span class="tbonus">+2</span> <span class="tkey">Storage</span> <span class="compoundIcon VacuoleTooltipIcon"></span> <br>
 				    <span class="tmalus">+2</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
 				    <span class="tdesc">The chemoplast is a double membrane structure containing proteins able to convert hydrogen sulfide,
@@ -791,13 +793,14 @@ For this Release if your population (top tab) drops to zero you go extinct.
 				  <span class="tooltipheader">
 				    <span class="thead">Chemoplast</span>
 				  </span>
-                  <div id="ChemoplastIcon"></div>Chemoplast<br>45 MP</td>
+                  <div class="ChemoplastIcon"></div>Chemoplast<br>45 MP</td>
                 <td id="addNitrogenFixingPlastid" class="OrganelleListItem">
                   <span class="tooltiptext">
 				    &emsp;<div class="compoundIcon MutationPointsIcon"></div>&nbsp;<span class="tkey">50</span> <br> <br><br>
                     Turns <span class="tkey">ATP</span> <span class="compoundIcon ATPIcon"></span> into <span class="tkey">Ammonia</span> <span class="compoundIcon AmmoniaIcon"></span>. Rate scales with concentration of <span class="tkey">Nitrogen</span> <span class="compoundIcon NitrogenNormalIcon"></span> and <span class="tkey">Oxygen</span> <span class="compoundIcon OxygenNormalIcon"></span>&nbsp;. <br> <br>
-				    <span class="tgold">Nitrogen Fixation</span> <br>
-				    <span class="tkey">2</span> <span class="compoundIcon ATPIcon"></span> <span class="compoundIcon WhiteArrow"></span> <span class="tkey">0.1</span> <span class="compoundIcon AmmoniaIcon"></span> <span class="tkey">/second&emsp;@&emsp;78.00%</span> <span class="compoundIcon NitrogenNormalIcon"></span> <span class="tkey">, 21.00%</span> <span class="compoundIcon OxygenNormalIcon"></span><br> <br>
+                    <span class="ProcessList" id="nitrogenfixingplastidProcessList">
+                      Process info loading...
+                    </span>
 				    <span class="tbonus">+2</span> <span class="tkey">Storage</span> <span class="compoundIcon VacuoleTooltipIcon"></span> <br>
 				    <span class="tmalus">+2</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
 				    <span class="tdesc">The Nitrogen Fixing Plastid is a protein able to use gaseous nitrogen and oxygen and
@@ -807,7 +810,7 @@ For this Release if your population (top tab) drops to zero you go extinct.
 				  <span class="tooltipheader">
 				    <span class="thead">Nitrogen Fixing<br> Plastid</span>
 				  </span>
-                  <div id="PlastidIcon"></div>Nitrogen Fixing<br> Plastid<br>50 MP</td>
+                  <div class="PlastidIcon"></div>Nitrogen Fixing<br> Plastid<br>50 MP</td>
 	          </tr><tr>
                 <td id="addVacuole" class="OrganelleListItem">
                   <span class="tooltiptext">
@@ -823,13 +826,14 @@ For this Release if your population (top tab) drops to zero you go extinct.
 				  <span class="tooltipheader">
 				    <span class="thead">Vacuole</span>
 				  </span>
-                  <div id="VacuoleIcon"></div>Vacuole<br>50 MP</td>
+                  <div class="VacuoleIcon"></div>Vacuole<br>50 MP</td>
                 <td id="addToxinVacuole" class="OrganelleListItem">
                   <span class="tooltiptext">
 				    &emsp;<div class="compoundIcon MutationPointsIcon"></div>&nbsp;<span class="tkey">70</span> <br> <br>
                     Turns <span class="tkey">ATP</span> <span class="compoundIcon ATPIcon"></span> into <span class="tkey">Oxytoxy</span> <span class="compoundIcon OxyToxyIcon"></span>. Can release toxins by pressing <span class="tkey">E</span>. Rate scales with concentration of <span class="tkey">Oxygen</span> <span class="compoundIcon OxygenNormalIcon"></span>&nbsp;. <br> <br>
-				    <span class="tgold">Agent Synthesis</span> <br>
-				    <span class="tkey">1.05</span> <span class="compoundIcon ATPIcon"></span> <span class="compoundIcon WhiteArrow"></span> <span class="tkey">1.05</span> <span class="compoundIcon OxyToxyIcon"></span> <span class="tkey">/second&emsp;@&emsp;21.00%</span> <span class="compoundIcon OxygenNormalIcon"></span> <br> <br>
+                    <span class="ProcessList" id="oxytoxyProcessList">
+                      Process info loading...
+                    </span>
 				    <span class="tbonus">+5</span> <span class="tkey">Storage</span> <span class="compoundIcon VacuoleTooltipIcon"></span> <br>
 				    <span class="tmalus">+1</span> <span class="tkey">Osmoregulation Cost</span> <br> <br> <hr>
 				    <span class="tdesc">The toxin vacuole is a vacuole that has been modified for the specific production, storage,
@@ -845,7 +849,7 @@ For this Release if your population (top tab) drops to zero you go extinct.
 				    &emsp;<div class="compoundIcon MutationPointsIcon"></div>&nbsp;<span class="tkey">0</span> <span class="thead">&emsp;Bioluminescent Vacuole&emsp;&ensp;</span> <br> <br>
                     To be implemented.
                   </span>
-			      <div id="BioluminescentIcon"></div>Bioluminescent Vacuole<br>N/A MP</td>
+			      <div class="BioluminescentIcon"></div>Bioluminescent Vacuole<br>N/A MP</td>
 	        </tr></table>
 	      </div>
         <div id="AppearancePanelMid">
@@ -879,12 +883,12 @@ For this Release if your population (top tab) drops to zero you go extinct.
         </div>
         <!-- end of left panel -->
 	    <!-- Edit tools -->
-	    <div id="Undo"><div id="UndoIcon"></div></div>
+	    <div id="Undo"><div class="UndoIcon"></div></div>
 	    <div id="SymmetryButton">
-	      <div id="SymmetryIcon"></div>
+	      <div id="SymmetryIcon" class="SymmetryIcon"></div>
 	      SYMMETRY
 	    </div>
-	    <div id="Redo"><div id="RedoIcon"></div></div>
+	    <div id="Redo"><div class="RedoIcon"></div></div>
 
         <!-- Finish button -->
 	    <div id="microbeEditorFinishButton" class="DisabledButton">CONFIRM
@@ -1009,7 +1013,7 @@ For this Release if your population (top tab) drops to zero you go extinct.
 	  </div>
 	  <div id="newButton" >
         NEW
-	    <div id="NewIcon"></div>
+	    <div class="NewIcon"></div>
       </div>
 
       <div id="editorNextPageButton">
