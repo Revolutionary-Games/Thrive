@@ -82,10 +82,6 @@ std::string
         return "";
     }
 
-    LOG_WRITE(
-        "array elem type: " + Leviathan::ScriptExecutor::Get()->GetTypeName(
-                                  organelles->GetElementTypeId()));
-
     static const auto wantedId =
         Leviathan::AngelScriptTypeIDResolver<OrganelleTemplate>::Get(
             Leviathan::ScriptExecutor::Get());
@@ -118,7 +114,7 @@ public:
     WorldEffectScript(asIScriptFunction* func) : m_func(func)
     {
         if(!m_func)
-            throw std::runtime_error("no func given to WorldEffectScript");
+            throw InvalidArgument("no func given to WorldEffectScript");
     }
 
     ~WorldEffectScript()

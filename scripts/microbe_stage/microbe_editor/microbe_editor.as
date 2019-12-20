@@ -715,7 +715,7 @@ class MicrobeEditor{
         bool empty = true;
         bool touching = false;
 
-        OrganelleTemplate@ toBePlacedOrganelle = getOrganelleDefinition(activeActionName);
+        const auto@ toBePlacedOrganelle = getOrganelleDefinition(activeActionName);
 
         assert(toBePlacedOrganelle !is null, "invalid action name in microbe editor");
 
@@ -931,7 +931,7 @@ class MicrobeEditor{
             return;
 
         // If not hovering over an organelle render the to-be-placed organelle
-        OrganelleTemplate@ toBePlacedOrganelle = getOrganelleDefinition(activeActionName);
+        const auto@ toBePlacedOrganelle = getOrganelleDefinition(activeActionName);
 
         assert(toBePlacedOrganelle !is null, "invalid action name in microbe editor");
 

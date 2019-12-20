@@ -21,7 +21,7 @@ Float4 calculateHSLForOrganelle(const Float4 &in oldColour)
 //! microbe
 class PlacedOrganelle : SpeciesStoredOrganelleType{
 
-    PlacedOrganelle(OrganelleTemplate@ organelle, int q, int r, int rotation)
+    PlacedOrganelle(const OrganelleTemplate@ organelle, int q, int r, int rotation)
     {
         @this.organelle = organelle;
         this.q = q;

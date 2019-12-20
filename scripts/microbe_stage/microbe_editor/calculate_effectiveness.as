@@ -22,7 +22,7 @@ void calculateOrganelleEffectivenessInPatch(int patchId = -1)
 
     auto keys = getOrganelleNames();
 
-    array<OrganelleTemplate@> organelles;
+    array<const OrganelleTemplate@> organelles;
 
     for(uint i = 0; i < keys.length(); ++i){
         organelles.insertLast(getOrganelleDefinition(keys[i]));
