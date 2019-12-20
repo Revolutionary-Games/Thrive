@@ -100,6 +100,9 @@ public:
     ChunkCompoundData*
         getCompound(size_t type);
 
+    const ChunkCompoundData*
+        getCompound(size_t type) const;
+
     CScriptArray*
         getCompoundKeys() const;
 
@@ -125,6 +128,10 @@ public:
 
     BiomeCompoundData*
         getCompound(size_t type);
+
+    const BiomeCompoundData*
+        getCompound(size_t type) const;
+
     CScriptArray*
         getCompoundKeys() const;
 

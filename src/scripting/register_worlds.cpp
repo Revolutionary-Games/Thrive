@@ -112,14 +112,15 @@ bool
     }
 
     if(engine->RegisterObjectMethod("ProcessorComponent",
-           "void setCapacity(BioProcessId id, double capacity)",
-           asMETHOD(ProcessorComponent, setCapacity), asCALL_THISCALL) < 0) {
+           "void setProcessRate(BioProcessId id, float rate)",
+           asMETHOD(ProcessorComponent, setProcessRate), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
     if(engine->RegisterObjectMethod("ProcessorComponent",
-           "double getCapacity(BioProcessId id)",
-           asMETHOD(ProcessorComponent, getCapacity), asCALL_THISCALL) < 0) {
+           "void clearProcessRates()",
+           asMETHOD(ProcessorComponent, clearProcessRates),
+           asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
     // ------------------------------------ //

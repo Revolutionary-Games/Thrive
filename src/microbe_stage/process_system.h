@@ -39,15 +39,16 @@ public:
         operator=(ProcessorComponent&& other) noexcept;
 
     inline void
-        setCapacity(BioProcessId id, double capacity)
+        setProcessRate(BioProcessId id, float rate)
     {
-        m_processCapacities[id] = capacity;
+        m_processRates[id] = rate;
     }
 
-    inline double
-        getCapacity(BioProcessId id)
+    //! \brief Used to reset the previous rates when rebuilding the process list
+    void
+        clearProcessRates()
     {
-        return m_processCapacities[id];
+        m_processRates.clear();
     }
 
     REFERENCE_HANDLE_UNCOUNTED_TYPE(ProcessorComponent);
@@ -55,7 +56,7 @@ public:
     static constexpr auto TYPE =
         componentTypeConvert(THRIVE_COMPONENT::PROCESSOR);
 
-    std::unordered_map<BioProcessId, double> m_processCapacities;
+    std::unordered_map<BioProcessId, double> m_processRates;
 };
 
 // Helper structure to store the economic information of the compounds.

@@ -31,7 +31,7 @@ void calculateOrganelleEffectivenessInPatch(int patchId = -1)
     const string result = world.GetProcessSystem().computeOrganelleProcessEfficiencies(
         organelles, patch);
 
-    LOG_WRITE("OrganellePatchEfficiencyData: \n" + result);
+    // LOG_WRITE("OrganellePatchEfficiencyData: \n" + result);
 
     GenericEvent@ event = GenericEvent("OrganellePatchEfficiencyData");
     NamedVars@ vars = event.GetNamedVars();

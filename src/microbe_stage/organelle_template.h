@@ -174,6 +174,18 @@ public:
         return m_organelleCost;
     }
 
+    std::string
+        getName() const
+    {
+        return m_name;
+    }
+
+    const auto&
+        getProcesses() const
+    {
+        return m_processes;
+    }
+
 
     REFERENCE_COUNTED_PTR_TYPE(OrganelleTemplate);
 

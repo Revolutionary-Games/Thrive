@@ -189,14 +189,17 @@ bool
     ANGELSCRIPT_ASSUMED_SIZE_T;
     if(engine->RegisterObjectMethod("Biome",
            "const BiomeCompoundData@ getCompound(uint64 type) const",
-           asMETHOD(Biome, getCompound), asCALL_THISCALL) < 0) {
+           asMETHODPR(
+               Biome, getCompound, (size_t) const, const BiomeCompoundData*),
+           asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
     ANGELSCRIPT_ASSUMED_SIZE_T;
     if(engine->RegisterObjectMethod("Biome",
            "BiomeCompoundData@ getCompound(uint64 type)",
-           asMETHOD(Biome, getCompound), asCALL_THISCALL) < 0) {
+           asMETHODPR(Biome, getCompound, (size_t), BiomeCompoundData*),
+           asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
@@ -299,7 +302,9 @@ bool
     ANGELSCRIPT_ASSUMED_SIZE_T;
     if(engine->RegisterObjectMethod("ChunkData",
            "const ChunkCompoundData& getCompound(uint64 type) const",
-           asMETHOD(ChunkData, getCompound), asCALL_THISCALL) < 0) {
+           asMETHODPR(ChunkData, getCompound, (size_t) const,
+               const ChunkCompoundData*),
+           asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
@@ -600,12 +605,6 @@ bool
     if(engine->RegisterObjectMethod("TweakedProcess",
            "float get_tweakRate() const",
            asMETHOD(TweakedProcess, getTweakRate), asCALL_THISCALL) < 0) {
-        ANGELSCRIPT_REGISTERFAIL;
-    }
-
-    if(engine->RegisterObjectMethod("TweakedProcess",
-           "float get_capacity() const", asMETHOD(TweakedProcess, getCapacity),
-           asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
