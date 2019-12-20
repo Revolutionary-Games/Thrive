@@ -94,7 +94,7 @@ if OS.windows?
                 convertPathToWindows(File.join(ProjectDir, 'assets', 'fonts'))
   runSystemSafe 'cmd', '/c', 'mklink', '/J',
                 convertPathToWindows(File.join(ProjectDir, 'JSVendor')),
-                convertPathToWindows(File.join(ProjectDir, 'ThirdParty/Leviathan/bin/Data',
+                convertPathToWindows(File.join(ProjectDir, 'ThirdParty/Leviathan/Assets',
                                                'JSVendor'))
 else
   unless File.exist? File.join(ProjectDir, 'Textures')
@@ -108,7 +108,7 @@ else
   end
 
   unless File.exist? File.join(ProjectDir, 'JSVendor')
-    FileUtils.ln_sf File.join(ProjectDir, 'ThirdParty/Leviathan/bin/Data', 'JSVendor'),
+    FileUtils.ln_sf File.join(ProjectDir, 'ThirdParty/Leviathan/Assets', 'JSVendor'),
                     File.join(ProjectDir, 'JSVendor')
   end
 end
