@@ -245,6 +245,14 @@ export function setupMicrobeEditor(){
     document.getElementById("ColourValueBar").addEventListener("click",
         onColourValueBarClicked, true);
 
+    // Condition buttons clicked
+    const minusBtnObjects = document.getElementsByClassName("minusBtn");
+
+    for (const element of minusBtnObjects) {
+        element.addEventListener("click",
+            onConditionClicked, true);
+    }
+
     if(common.isInEngine()){
 
         // The editor area was clicked, do send press to AngelScript
@@ -352,13 +360,6 @@ export function setupMicrobeEditor(){
             updateColourValueBar(colour);
         });
 
-        // Condition buttons clicked
-        const minusBtnObjects = document.getElementsByClassName("minusBtn");
-
-        for (const element of minusBtnObjects) {
-            element.addEventListener("click",
-                onConditionClicked, true);
-        }
 
     } else {
         updateSelectedOrganelle("cytoplasm");
