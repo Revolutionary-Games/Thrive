@@ -504,10 +504,11 @@ std::string
     }
 
     // Add movement consumption together
+    const float baseMovementCost = BASE_MOVEMENT_ATP_COST * hexCount;
     const auto totalMovementConsumption =
-        movementATPConsumption + BASE_MOVEMENT_ATP_COST;
+        movementATPConsumption + baseMovementCost;
 
-    consumption["baseMovement"] = BASE_MOVEMENT_ATP_COST;
+    consumption["baseMovement"] = baseMovementCost;
 
     // Add osmoregulation
     const float osmoregulation = ATP_COST_FOR_OSMOREGULATION * hexCount;

@@ -104,8 +104,9 @@ const auto ATP_COST_FOR_OSMOREGULATION = 1.0f;
 //Purge Divisor
 const auto COMPOUND_PURGE_MODIFIER = 2.0f;
 
-// BASE MOVEMENT COST ATP cost
-// Cancels out a little bit more then one cytoplasm's glycolysis
+//! BASE MOVEMENT COST ATP cost
+//! Cancels out a little bit more then one cytoplasm's glycolysis
+//! Note: this is applied *per* hex
 //! If you change this you must also change the value in process_system.cpp
 const auto BASE_MOVEMENT_ATP_COST = 1.0f;
 
