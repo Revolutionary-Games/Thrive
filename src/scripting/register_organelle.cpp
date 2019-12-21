@@ -162,7 +162,8 @@ bool
     // ------------------------------------ //
     // global access
     if(engine->RegisterGlobalFunction(
-           "OrganelleTemplate@ getOrganelleDefinition(const string &in name)",
+           "const OrganelleTemplate@ getOrganelleDefinition(const string &in "
+           "name)",
            asFUNCTION(OrganelleTable::getOrganelleDefinition),
            asCALL_CDECL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;

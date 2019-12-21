@@ -292,7 +292,9 @@ export function onResetEditor(){
 
 function onPauseButtonClicked(){
     paused = !paused;
-    Thrive.pause(paused);
+    if(common.isInEngine()){
+        Thrive.pause(paused);
+    }
     document.getElementById("pauseButtonBottom").classList.toggle("paused");
 }
 
@@ -407,7 +409,10 @@ function onMenuClicked(){
     pause.style.display = "block";
     const help = document.getElementById("helpText");
     help.style.display = "none";
-    Thrive.pause(true);
+
+    if(common.isInEngine()){
+        Thrive.pause(true);
+    }
 }
 
 function onResumeClicked(){
@@ -418,8 +423,10 @@ function onResumeClicked(){
     const pause = document.getElementById("pauseOverlay");
     pause.style.display = "none";
 
-    // Use paused here so the game won't be unpaused when also paused by the pause button.
-    Thrive.pause(paused);
+    if(common.isInEngine()){
+        // Use paused here so the game won't be unpaused when also paused by the pause button.
+        Thrive.pause(paused);
+    }
 }
 
 function killPlayerCell(){

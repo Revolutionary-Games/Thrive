@@ -245,6 +245,14 @@ export function setupMicrobeEditor(){
     document.getElementById("ColourValueBar").addEventListener("click",
         onColourValueBarClicked, true);
 
+    // Condition buttons clicked
+    const minusBtnObjects = document.getElementsByClassName("minusBtn");
+
+    for (const element of minusBtnObjects) {
+        element.addEventListener("click",
+            onConditionClicked, true);
+    }
+
     if(common.isInEngine()){
 
         // The editor area was clicked, do send press to AngelScript
@@ -352,16 +360,26 @@ export function setupMicrobeEditor(){
             updateColourValueBar(colour);
         });
 
-        // Condition buttons clicked
-        const minusBtnObjects = document.getElementsByClassName("minusBtn");
+        Leviathan.OnGeneric("OrganellePatchEfficiencyData", (event, vars) => {
+            // Just let any exceptions buble up from json parse
+            updateOrganelleEfficiencies(JSON.parse(vars.data));
+        });
 
-        for (const element of minusBtnObjects) {
-            element.addEventListener("click",
-                onConditionClicked, true);
-        }
+        Leviathan.OnGeneric("MicrobeEditorEnergyBalanceUpdated", (event, vars) => {
+            // Just let any exceptions buble up from json parse
+            updateEnergyBalanceBars(JSON.parse(vars.data));
+        });
 
     } else {
         updateSelectedOrganelle("cytoplasm");
+
+        // Load example data and use that
+        $.ajax({url: "example_organelle_efficiency.json"}).done(function( data ) {
+            updateOrganelleEfficiencies(data);
+        });
+        $.ajax({url: "example_energy_balance.json"}).done(function( data ) {
+            updateEnergyBalanceBars(data);
+        });
     }
 }
 
@@ -1528,4 +1546,221 @@ function getPatchChunkTotalCompoundAmounts(patch) {
         hydrogensulfide,
         iron
     };
+}
+
+function createCompoundIcon(compoundName){
+    const icon = document.createElement("span");
+    icon.classList.add("compoundIcon");
+    icon.classList.add(compoundName.replace(" ", "") + "Icon");
+
+    return icon;
+}
+
+function writeOrganelleProcessList(organelleProcesses, targetElement){
+
+    targetElement.textContent = "";
+
+    if(!organelleProcesses){
+        targetElement.textContent = "No processes";
+        return;
+    }
+
+    for(const process of organelleProcesses){
+
+        const processTitle = document.createElement("span");
+        processTitle.classList.add("tgold");
+        processTitle.textContent = process.name;
+
+        targetElement.appendChild(processTitle);
+        targetElement.appendChild(document.createElement("br"));
+
+        const processBody = document.createElement("span");
+
+        let usePlus = true;
+
+        // TODO: if the output amount is 0 it should be highlighted in red
+        if(!process.inputs){
+            // Just environmental stuff
+            usePlus = true;
+        } else {
+            // Something turns into something else, uses the arrow notation
+            usePlus = false;
+
+            // Show the inputs
+            // TODO: add commas or maybe pluses for multiple inputs
+            for(const key in process.inputs){
+                const inputCompound = process.inputs[key];
+
+                const amount = document.createElement("span");
+                amount.classList.add("tkey");
+                amount.textContent = inputCompound.amount.toFixed(2) + " ";
+
+                processBody.appendChild(amount);
+                processBody.appendChild(createCompoundIcon(inputCompound.name));
+            }
+
+            // And the arrow
+            const arrow = document.createElement("span");
+            arrow.classList.add("compoundIcon");
+            arrow.classList.add("WhiteArrow");
+
+            processBody.appendChild(document.createTextNode(" "));
+            processBody.appendChild(arrow);
+            processBody.appendChild(document.createTextNode(" "));
+        }
+
+        // Outputs of the process. It's assumed that every process has outputs
+        for(const key in process.outputs){
+            const outputCompound = process.outputs[key];
+
+            const amount = document.createElement("span");
+            amount.classList.add("tkey");
+
+            let amountText = "";
+
+            if(usePlus){
+                amountText += outputCompound.amount >= 0 ? "+" : "";
+            }
+
+            amountText += outputCompound.amount.toFixed(2) + " ";
+
+            amount.textContent = amountText;
+
+            processBody.appendChild(amount);
+            processBody.appendChild(createCompoundIcon(outputCompound.name));
+        }
+
+        const perSecond = document.createElement("span");
+        perSecond.textContent = "/second";
+
+        processBody.appendChild(perSecond);
+
+        // Environment conditions
+        if(process.environment){
+
+            const atSymbol = document.createElement("span");
+
+            // The special entities need handling
+            atSymbol.innerHTML = "&emsp;@&emsp;";
+            processBody.appendChild(atSymbol);
+
+            let first = true;
+
+            for(const key in process.environment){
+                if(!first){
+                    processBody.appendChild(document.createTextNode(", "));
+                }
+                first = false;
+
+                const environmentCompound = process.environment[key];
+
+                // To percentage
+                const percentage = document.createElement("span");
+                percentage.classList.add("tkey");
+
+                // TODO: sunlight needs some special handling (it used to say the lux amount)
+                percentage.textContent = (environmentCompound.availableAmount * 100).
+                    toFixed(1) + "%";
+
+                processBody.appendChild(percentage);
+                processBody.appendChild(createCompoundIcon(environmentCompound.name));
+            }
+        }
+
+        targetElement.appendChild(processBody);
+        targetElement.appendChild(document.createElement("br"));
+        targetElement.appendChild(document.createElement("br"));
+    }
+}
+
+// Updates the organelle efficiencies in tooltips
+function updateOrganelleEfficiencies(data) {
+    const organelles = [
+        {
+            name: "chromatophors",
+            processList: "chromatophorProcessList"
+        },
+        {
+            name: "cytoplasm",
+            processList: "cytoplasmProcessList"
+        },
+        {
+            name: "metabolosome",
+            processList: "metabolosomeProcessList"
+        },
+        {
+            name: "chemoSynthisizingProteins",
+            processList: "chemoSynthisizingProteinsProcessList"
+        },
+        {
+            name: "rusticyanin",
+            processList: "rusticyaninProcessList"
+        },
+        {
+            name: "nitrogenase",
+            processList: "nitrogenaseProcessList"
+        },
+        {
+            name: "oxytoxyProteins",
+            processList: "oxytoxyProteinsProcessList"
+        },
+        {
+            name: "mitochondrion",
+            processList: "mitochondrionProcessList"
+        },
+        {
+            name: "chloroplast",
+            processList: "chloroplastProcessList"
+        },
+        {
+            name: "chemoplast",
+            processList: "chemoplastProcessList"
+        },
+        {
+            name: "nitrogenfixingplastid",
+            processList: "nitrogenfixingplastidProcessList"
+        },
+        {
+            name: "oxytoxy",
+            processList: "oxytoxyProcessList"
+        },
+    ];
+
+    for(const organelle of organelles){
+        writeOrganelleProcessList(data.organelles[organelle.name].processes,
+            document.getElementById(organelle.processList));
+    }
+}
+
+// Updates the energy balance bars shown in the editor
+function updateEnergyBalanceBars(data){
+    // Crunch the numbers
+    const maxBarValue = Math.max(data.total.consumption, data.total.production);
+
+    const endPointInBar = (Math.floor(maxBarValue / 10.0) + 1) * 10.0;
+
+    const notProducingEnough = data.total.consumption >= data.total.production;
+
+    const productionBarFillAmount = data.total.production / endPointInBar;
+    const consumptionBarFillAmount = data.total.consumption / endPointInBar;
+
+    // Set the label
+    const balanceLabel = document.getElementById("atpBalanceLabel");
+
+    if(notProducingEnough){
+        balanceLabel.textContent = "Not producing enough ATP!";
+        balanceLabel.classList.add("Red");
+    } else {
+        balanceLabel.textContent = "ATP balance";
+        balanceLabel.classList.remove("Red");
+    }
+
+    // Set the bar lengths
+    const productionBar = document.getElementById("atpProductionBar");
+    productionBar.style.width = (productionBarFillAmount * 100).toFixed(1) + "%";
+    productionBar.textContent = data.total.production.toFixed(1);
+
+    const consumptionBar = document.getElementById("atpConsumptionBar");
+    consumptionBar.style.width = (consumptionBarFillAmount * 100).toFixed(1) + "%";
+    consumptionBar.textContent = data.total.consumption.toFixed(1);
 }
