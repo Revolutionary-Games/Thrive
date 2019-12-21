@@ -108,6 +108,10 @@ set(GROUP_SCRIPTING
   "scripting/script_initializer.cpp"
   "scripting/script_initializer.h"
   "scripting/register_organelle.cpp"
+  "scripting/register_systems.cpp"
+  "scripting/register_worlds.cpp"
+  "scripting/register_patches.cpp"
+  "scripting/register_registries.cpp"
   )
 
 set(GROUP_UTIL

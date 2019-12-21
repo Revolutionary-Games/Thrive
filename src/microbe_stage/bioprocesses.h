@@ -32,19 +32,11 @@ class TweakedProcess : public Leviathan::ReferenceCounted {
     TweakedProcess(const std::string& processName, float tweakRate);
 
 public:
+    //! \brief The rate at which this process can be done
     float
         getTweakRate() const
     {
         return m_tweakRate;
-    }
-
-    //! The setup needs the process capacity for some reason
-    //! This isn't even configrable anywhere
-    float
-        getCapacity() const
-    {
-        return 1.0f;
-        // return capacity;
     }
 
     REFERENCE_COUNTED_PTR_TYPE(TweakedProcess);

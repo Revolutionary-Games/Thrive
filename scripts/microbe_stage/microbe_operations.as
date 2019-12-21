@@ -575,59 +575,49 @@ void purgeCompounds(CellStageWorld@ world, ObjectID microbeEntity,
 // after adding or removing organelles
 void rebuildProcessList(CellStageWorld@ world, ObjectID microbeEntity)
 {
-    ProcessorComponent@ processorComponent = world.GetComponent_ProcessorComponent(microbeEntity);
+    ProcessorComponent@ processorComponent =
+        world.GetComponent_ProcessorComponent(microbeEntity);
     MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
 
-    dictionary capacities;
+    processorComponent.clearProcessRates();
+
+    dictionary rates;
     for(uint i = 0; i < microbeComponent.organelles.length(); i++){
 
-        const OrganelleTemplate@ organelleDefinition = microbeComponent.organelles[i].organelle;
-        if(organelleDefinition is null){
-
-            LOG_ERROR("Organelle table has a null organelle in it, position: " + i +
-                "', that was added to a microbe entity");
+        const OrganelleTemplate@ organelle = microbeComponent.organelles[i].organelle;
+        if(organelle is null){
+            LOG_ERROR("Microbe has an organelle in it that has no OrganelleTemplate");
             continue;
         }
 
         for(uint processNumber = 0;
-            processNumber < organelleDefinition.getProcessCount(); ++processNumber)
+            processNumber < organelle.getProcessCount(); ++processNumber)
         {
-            // This name needs to match the one in bioProcessRegistry
-            TweakedProcess@ process = organelleDefinition.getProcess(processNumber);
+            const TweakedProcess@ process = organelle.getProcess(processNumber);
 
-            if(!capacities.exists(process.process.internalName)){
-                capacities[process.process.internalName] = double(0.0f);
+            const auto idStr = formatInt(process.process.id);
+
+            if(!rates.exists(idStr)){
+                rates[idStr] = float(0.0f);
             }
 
-            // Here the second capacities[process.name] was initially capacities[process]
-            // but the processes are just strings inside the Organelle class
-            capacities[process.process.internalName] = double(capacities[
-                    process.process.internalName]) +
-                process.capacity;
+            rates[idStr] = float(rates[idStr]) + process.tweakRate;
         }
     }
 
-    uint64 processCount = SimulationParameters::bioProcessRegistry().getSize();
-    for(BioProcessId bioProcessId = 0; bioProcessId < processCount; ++bioProcessId){
-        auto processName = SimulationParameters::bioProcessRegistry().getInternalName(
-            bioProcessId);
+    const auto processes = rates.getKeys();
 
-        if(capacities.exists(processName)){
-            double capacity;
-            if(!capacities.get(processName, capacity)){
-                LOG_ERROR("capacities has invalid value");
-                continue;
-            }
+    for(uint i = 0; i < processes.length(); ++i){
 
-            // LOG_INFO("Process: " + processName + " Capacity: " + capacity);
-            processorComponent.setCapacity(bioProcessId, capacity);
-        } else {
-            // If it doesnt exist:
-            capacities.set(processName, 0.0f);
+        const int bioProcessId = parseInt(processes[i]);
 
-            // This is related to https://github.com/Revolutionary-Games/Thrive/issues/599
-            processorComponent.setCapacity(bioProcessId, 0.0f);
+        float rate;
+        if(!rates.get(processes[i], rate)){
+            LOG_ERROR("rates has invalid value");
+            continue;
         }
+
+        processorComponent.setProcessRate(bioProcessId, rate);
     }
 }
 

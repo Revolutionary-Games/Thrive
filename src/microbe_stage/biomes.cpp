@@ -142,6 +142,17 @@ BiomeCompoundData*
     return &found->second;
 }
 
+const BiomeCompoundData*
+    Biome::getCompound(size_t type) const
+{
+    const auto found = compounds.find(type);
+
+    if(found == compounds.end())
+        return nullptr;
+
+    return &found->second;
+}
+
 CScriptArray*
     Biome::getCompoundKeys() const
 {
@@ -241,6 +252,17 @@ ChunkCompoundData*
     ChunkData::getCompound(size_t type)
 {
     return &chunkCompounds[type];
+}
+
+const ChunkCompoundData*
+    ChunkData::getCompound(size_t type) const
+{
+    const auto found = chunkCompounds.find(type);
+
+    if(found == chunkCompounds.end())
+        return nullptr;
+
+    return &found->second;
 }
 
 CScriptArray*

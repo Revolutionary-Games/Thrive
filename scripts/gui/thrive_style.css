@@ -784,7 +784,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-color: #6edd6b;
 }
 
-#OxygenIcon {
+.OxygenIcon {
   background-image: url("../../Textures/gui/bevel/Oxygen.png");
 }
 
@@ -797,7 +797,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-color: #2dcbf0;
 }
 
-#NitrogenIcon {
+.NitrogenIcon {
   background-image: url("../../Textures/gui/bevel/Nitrogen.png");
 }
 
@@ -834,7 +834,11 @@ div::-webkit-scrollbar-thumb:hover {
   background-color: #919c9d;
 }
 
-#CO2Icon {
+.CO2Icon {
+  background-image: url("../../Textures/gui/bevel/CO2.png");
+}
+
+.CarbonDioxideIcon {
   background-image: url("../../Textures/gui/bevel/CO2.png");
 }
 
@@ -847,7 +851,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-color: #153665;
 }
 
-#FattyAcidsIcon {
+.FattyAcidsIcon {
   background-image: url("../../Textures/gui/bevel/FattyAcids.png");
   background-repeat: no-repeat;
 }
@@ -857,6 +861,10 @@ div::-webkit-scrollbar-thumb:hover {
 }
 
 .OxyToxyIcon {
+  background-image: url("../../Textures/gui/bevel/OxyToxy.png");
+}
+
+.OxytoxyNTIcon {
   background-image: url("../../Textures/gui/bevel/OxyToxy.png");
 }
 
@@ -873,7 +881,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-color: #792011;
 }
 
-#HealthIcon {
+.HealthIcon {
   position: absolute;
   width: 19px;
   height: 19px;
@@ -883,7 +891,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/Hitpoints.png");
 }
 
-#ATPIconBar {
+.ATPIconBar {
   position: absolute;
   width: 19px;
   height: 19px;
@@ -933,7 +941,7 @@ div::-webkit-scrollbar-thumb:hover {
   font-size: 10pt;
 }
 
-#PhosphatesIcon {
+.PhosphatesIcon {
   background-image: url("../../Textures/gui/bevel/Phosphates.png");
 }
 
@@ -995,7 +1003,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/LargeTwoDisabled.png");
 }
 
-#microbeEditorIcon {
+.microbeEditorIcon {
   background-image: url("../../Textures/gui/bevel/EditorIcon.png");
   width: 120px;
   height: 80px;
@@ -1084,7 +1092,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/SmallOneHover.png");
 }
 
-#pauseIcon {
+.pauseIcon {
   /* Needs some Javascript to replace image with Textures/gui/bevel/PlayIcon.png when hidden */
   background-image: url("../../Textures/gui/bevel/PauseIcon.png");
   width: 40px;
@@ -1221,7 +1229,8 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/suicideButtonHover.png");
 }
 
-#suicideIcon {
+
+.suicideIcon {
   width: 40px;
   height: 40px;
   top: 0;
@@ -1343,7 +1352,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/SymmetryHover.png");
 }
 
-#SymmetryIcon {
+.SymmetryIcon {
   /* Needs Javascript to switch between empty background, 2xSymmetry, 4xSymmetry and 6xSymmetry */
   width: 80px;
   height: 62px;
@@ -1362,7 +1371,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/SmallThreeHover.png");
 }
 
-#UndoIcon {
+.UndoIcon {
   background-image: url("../../Textures/gui/bevel/UndoIcon.png");
   width: 40px;
   height: 40px;
@@ -1383,7 +1392,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/SmallFourHover.png");
 }
 
-#RedoIcon {
+.RedoIcon {
   background-image: url("../../Textures/gui/bevel/RedoIcon.png");
   width: 40px;
   height: 40px;
@@ -1469,7 +1478,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/MediumTwoHover.png");
 }
 
-#NewIcon {
+.NewIcon {
   background-image: url("../../Textures/gui/bevel/NewIcon.png");
   width: 40px;
   height: 40px;
@@ -1630,7 +1639,7 @@ div::-webkit-scrollbar-thumb:hover {
   top: 15px;
 }
 
-#NucleusIcon {
+.NucleusIcon {
   position: relative;
   left: calc(50% - 30px);
   width: 60px;
@@ -1646,6 +1655,33 @@ div::-webkit-scrollbar-thumb:hover {
   height: 60px;
   background-size: contain;
   background-image: url("../../Textures/gui/bevel/CytoplasmIcon.png");
+}
+
+.ATPBalanceContainer {
+  position: absolute;
+  height: 60px;
+  width: calc(100% - (480px + 386px + 120px + 6px));
+  top: 0;
+  right: 0;
+  border: 3px solid rgb(112, 159, 159, 0.6);
+  background: rgb(0, 125, 125, 0.6);
+  box-sizing: border-box;
+}
+
+#atpProductionBar {
+  text-align: center;
+  height: 15px;
+  background: #61bd13;
+}
+
+#atpConsumptionBar {
+  text-align: center;
+  height: 15px;
+  background: #ce3830;
+}
+
+.Red {
+  color: #f33;
 }
 
 
@@ -1699,7 +1735,7 @@ div::-webkit-scrollbar-thumb:hover {
   visibility: visible;
 }
 
-#PlastidIcon {
+.PlastidIcon {
   position: relative;
   left: calc(50% - 30px);
   width: 60px;
@@ -1708,7 +1744,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/NitroplastidIcon.png");
 }
 
-#MitochondrionIcon {
+.MitochondrionIcon {
   position: relative;
   left: calc(50% - 30px);
   width: 60px;
@@ -1717,7 +1753,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/MitochondrionIcon.png");
 }
 
-#ChloroplastIcon {
+.ChloroplastIcon {
   position: relative;
   left: calc(50% - 30px);
   width: 60px;
@@ -1726,7 +1762,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/ChloroplastIcon.png");
 }
 
-#ThermoplastIcon {
+.ThermoplastIcon {
   position: relative;
   left: calc(50% - 30px);
   width: 60px;
@@ -1735,7 +1771,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/ThermoplastIcon.png");
 }
 
-#VacuoleIcon {
+.VacuoleIcon {
   position: relative;
   left: calc(50% - 30px);
   width: 60px;
@@ -1759,7 +1795,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/ToxinVacuoleIcon.png");
 }
 
-#BioluminescentIcon {
+.BioluminescentIcon {
   position: relative;
   left: calc(50% - 30px);
   width: 60px;
@@ -1768,7 +1804,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/BioluminescentIcon.png");
 }
 
-#ChemoplastIcon {
+.ChemoplastIcon {
   position: relative;
   left: calc(50% - 30px);
   width: 60px;
@@ -1777,7 +1813,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/ChemoplastIcon.png");
 }
 
-#FlagellumIcon {
+.FlagellumIcon {
   position: relative;
   left: calc(50% - 30px);
   width: 60px;
@@ -1788,11 +1824,11 @@ div::-webkit-scrollbar-thumb:hover {
 
 
 /* Used to place the flagellum's icon inside tooltips as an icon for storage. */
-#FlagellumTooltipIcon {
+.FlagellumTooltipIcon {
   background-image: url("../../Textures/gui/bevel/FlagellumIcon.png");
 }
 
-#MetabolosomeIcon {
+.MetabolosomeIcon {
   position: relative;
   left: calc(50% - 30px);
   width: 60px;
@@ -1801,7 +1837,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/MetabolosomeIcon.png");
 }
 
-#NitrogenaseIcon {
+.NitrogenaseIcon {
   position: relative;
   left: calc(50% - 30px);
   width: 60px;
@@ -1810,7 +1846,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/NitrogenaseIcon.png");
 }
 
-#ChromatophorIcon {
+.ChromatophorIcon {
   position: relative;
   left: calc(50% - 30px);
   width: 60px;
@@ -1819,7 +1855,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/ChromatophorIcon.png");
 }
 
-#ChemosynthisizingProteinsIcon {
+.ChemosynthisizingProteinsIcon {
   position: relative;
   left: calc(50% - 30px);
   width: 60px;
@@ -1828,7 +1864,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/ChemoproteinsIcon.png");
 }
 
-#RusticyaninIcon {
+.RusticyaninIcon {
   position: relative;
   left: calc(50% - 30px);
   width: 60px;
@@ -1837,7 +1873,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/RusticyaninIcon.png");
 }
 
-#PilusIcon {
+.PilusIcon {
   position: relative;
   left: calc(50% - 30px);
   width: 60px;
@@ -1846,7 +1882,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/PilusIcon.png");
 }
 
-#CiliaIcon {
+.CiliaIcon {
   position: relative;
   left: calc(50% - 30px);
   width: 60px;
@@ -1869,7 +1905,11 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/Light.png");
 }
 
-#PressureIcon {
+.SunlightIcon {
+  background-image: url("../../Textures/gui/bevel/Light.png");
+}
+
+.PressureIcon {
   background-image: url("../../Textures/gui/bevel/Pressure.png");
 }
 

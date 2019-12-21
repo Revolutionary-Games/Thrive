@@ -138,6 +138,10 @@ public:
     void
         playerMovedToPatch(int32_t patchId);
 
+    //! \returns The current patch
+    int32_t
+        getCurrentPatch() const;
+
     // ------------------------------------ //
     //! \brief Begins connecting to server at url
     void

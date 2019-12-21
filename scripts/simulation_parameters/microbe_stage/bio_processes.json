@@ -12,8 +12,8 @@
         }
     },
 	
-	"glycolosis": {
-        "name": "Glycolosis",
+	"glycolysis": {
+        "name": "Glycolysis",
 
         "inputs": {
             "glucose": 0.125
@@ -24,7 +24,7 @@
         }
     },
     
-	"glycolosis_cytoplasm": {
+	"glycolysis_cytoplasm": {
         "name": "Cytoplasm Glycolysis",
 
         "inputs": {
@@ -63,7 +63,7 @@
     },
     
     "bacterial_oxytoxySynthesis": {
-        "name": "Bacterial Oxytoxy Synthesis",
+        "name": "Oxytoxy Synthesis",
 
         "inputs": {
             "oxygen": 0.21,
@@ -89,7 +89,7 @@
     },
     
 	"bacterial_ChemoSynthesis": {
-        "name": "Bacterial Chemosynthesis",
+        "name": "Chemo Synthesis",
 
         "inputs": {
             "carbondioxide": 0.09,
@@ -129,7 +129,7 @@
     },
     
     "protein_respiration": {
-        "name": "RespirationProtein",
+        "name": "Respiration",
 
         "inputs": {
             "oxygen": 1.0,
@@ -142,7 +142,7 @@
     },
     
     "chromatophore_photosynthesis": {
-        "name": "Bacterial Photosynthesis",
+        "name": "Photosynthesis",
 
         "inputs": {
             "carbondioxide": 0.09,

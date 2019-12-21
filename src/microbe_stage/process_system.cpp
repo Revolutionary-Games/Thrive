@@ -1,35 +1,46 @@
+// ------------------------------------ //
 #include "process_system.h"
-
-#include <algorithm>
-#include <cmath>
-#include <iostream>
-#include <map>
 
 #include "general/thrive_math.h"
 #include "simulation_parameters.h"
 
 #include <Entities/GameWorld.h>
 
-using namespace thrive;
+#include <json/json.h>
 
+#include <algorithm>
+#include <cmath>
+#include <iostream>
+#include <map>
+
+using namespace thrive;
+// ------------------------------------ //
+// Constants for computing energy balances
+constexpr auto FLAGELLA_COMPONENT_NAME = "movement";
+
+// These constants must match what is in configs.as
+constexpr auto FLAGELLA_ENERGY_COST = 7.1f;
+constexpr auto ATP_COST_FOR_OSMOREGULATION = 1.0f;
+constexpr auto BASE_MOVEMENT_ATP_COST = 1.0f;
+
+// ------------------------------------ //
 ProcessorComponent::ProcessorComponent() : Leviathan::Component(TYPE) {}
 
 ProcessorComponent::ProcessorComponent(ProcessorComponent&& other) noexcept :
-    Leviathan::Component(TYPE),
-    m_processCapacities(std::move(other.m_processCapacities))
+    Leviathan::Component(TYPE), m_processRates(std::move(other.m_processRates))
 {}
 // ------------------------------------ //
 ProcessorComponent&
     ProcessorComponent::operator=(const ProcessorComponent& other)
 {
-    m_processCapacities = other.m_processCapacities;
+    m_processRates = other.m_processRates;
     return *this;
 }
 
 ProcessorComponent&
     ProcessorComponent::operator=(ProcessorComponent&& other) noexcept
 {
-    m_processCapacities = std::move(other.m_processCapacities);
+    m_processRates = std::move(other.m_processRates);
     return *this;
 }
 
@@ -47,38 +58,6 @@ CompoundBagComponent::CompoundBagComponent() : Leviathan::Component(TYPE)
     }
 }
 
-/*
-void
-CompoundBagComponent::load(const StorageContainer& storage)
-{
-    Component::load(storage);
-
-    StorageContainer amounts = storage.get<StorageContainer>("amounts");
-    StorageContainer prices = storage.get<StorageContainer>("prices");
-    StorageContainer uninflatedPrices =
-storage.get<StorageContainer>("uninflatedPrices"); StorageContainer demand =
-storage.get<StorageContainer>("demand");
-
-    for (const std::string& id : amounts.keys())
-    {
-        CompoundId compoundId = std::atoi(id.c_str());
-        this->compounds[compoundId].amount = amounts.get<double>(id);
-        this->compounds[compoundId].price = prices.get<double>(id);
-        this->compounds[compoundId].uninflatedPrice =
-uninflatedPrices.get<double>(id); this->compounds[compoundId].demand =
-demand.get<double>(id);
-    }
-
-    this->storageSpace = storage.get<float>("storageSpace");
-
-    this->speciesName = storage.get<std::string>("speciesName");
-    this->processor = static_cast<ProcessorComponent*>(Entity(this->speciesName,
-            Game::instance().engine().getCurrentGameStateFromLua()).
-        getComponent(ProcessorComponent::TYPE_ID));
-}*/
-
-// helper methods for integrating compound bags with current, un-refactored, lua
-// microbes
 double
     CompoundBagComponent::getCompoundAmount(CompoundId id)
 {
@@ -132,30 +111,13 @@ double
 {
     return compounds[compoundId].usedLastTime;
 }
-
-void
-    ProcessSystem::setProcessBiome(const Biome& biome)
-{
-    currentBiome = biome;
-}
-
-double
-    ProcessSystem::getDissolved(CompoundId compoundData)
-{
-    return currentBiome.getCompound(compoundData)->dissolved;
-}
-
 // ------------------------------------ //
 // ProcessSystem
-
 void
     ProcessSystem::Run(GameWorld& world, float elapsed)
 {
     if(!world.GetNetworkSettings().IsAuthoritative)
         return;
-
-    // Processes are now every second
-    const double processLimitCapacity = elapsed * 1000.f;
 
     // Iterating on each entity with a CompoundBagComponent and a
     // ProcessorComponent
@@ -172,26 +134,12 @@ void
             compoundData.price = 0;
         }
 
-        for(const auto& process : processor.m_processCapacities) {
-            const BioProcessId processId = process.first;
-            const double processCapacity = process.second;
-
-            // If capacity is 0 dont do it
-            if(processCapacity <= 0.0f)
+        for(const auto& [processId, processRate] : processor.m_processRates) {
+            // If rate is 0 dont do it
+            // The rate specifies how fast fraction of the specified process
+            // numbers this cell can do
+            if(processRate <= 0.0f)
                 continue;
-
-            // This is a sanity check for incorrect process configuration
-            if(processId >=
-                SimulationParameters::bioProcessRegistry.getSize()) {
-
-                LOG_ERROR(
-                    "ProcessSystem: Run: entity: " +
-                    std::to_string(value.first) + " has invalid process: " +
-                    std::to_string(processId) + ", process count is: " +
-                    std::to_string(
-                        SimulationParameters::bioProcessRegistry.getSize()));
-                continue;
-            }
 
             // This does a map lookup so only do this once
             const auto& processData =
@@ -207,45 +155,40 @@ void
             // sure you wont run out of space when you do add the compounds.
             // Input
             // Defaults to 1
-            double environmentModifier = 1.0f;
+            float environmentModifier = 1.0f;
 
-            for(const auto& input : processData.inputs) {
+            for(const auto [inputId, inputAmount] : processData.inputs) {
 
-                const CompoundId inputId = input.first;
                 auto compoundData =
                     SimulationParameters::compoundRegistry.getTypeData(inputId);
                 // Set price of used compounds to 1, we dont want to purge
                 // those
                 bag.compounds[inputId].price = 1;
 
-                double inputRemoved =
-                    ((input.second * processCapacity) / (processLimitCapacity));
+                const auto inputRemoved = inputAmount * processRate * elapsed;
 
                 // do environmental modifier here, and save it for later
                 if(compoundData.isEnvironmental) {
-                    environmentModifier =
-                        environmentModifier *
-                        (getDissolved(inputId) / input.second);
-                    inputRemoved = inputRemoved * environmentModifier;
-                }
-
-                // If not enough compound we can't do the process
-                // If the compound is environmental the cell doesnt actually
-                // contain it right now and theres no where to take it from
-                if(!compoundData.isEnvironmental) {
-                    if(bag.compounds[inputId].amount < inputRemoved ||
-                        environmentModifier == 0.0f) {
+                    environmentModifier *= getDissolved(inputId) / inputAmount;
+                } else {
+                    // If not enough compound we can't do the process
+                    // If the compound is environmental the cell doesnt actually
+                    // contain it right now and theres no where to take it from
+                    if(bag.compounds[inputId].amount < inputRemoved) {
                         canDoProcess = false;
                     }
                 }
             }
 
-            // Output
-            // This is now always looped because the is useful part is always
-            // done
-            for(const auto& output : processData.outputs) {
+            if(environmentModifier <= Leviathan::EPSILON) {
+                canDoProcess = false;
+            }
 
-                const CompoundId outputId = output.first;
+            // Output
+            // This is now always looped (even when we can't do the process)
+            // because the is useful part is needs to be always be done
+            for(const auto [outputId, outputAmount] : processData.outputs) {
+
                 auto compoundData =
                     SimulationParameters::compoundRegistry.getTypeData(
                         outputId);
@@ -253,19 +196,20 @@ void
                 // useful
                 bag.compounds[outputId].price = 1;
 
-                double outputAdded = ((output.second * processCapacity) /
-                                      (processLimitCapacity));
-                // Apply the environmental modifier
-                outputAdded = outputAdded * environmentModifier;
+                // Apply the general modifiers and
+                // apply the environmental modifier
+                const auto outputAdded =
+                    outputAmount * processRate * elapsed * environmentModifier;
 
                 // If no space we can't do the process, and if environmental
                 // right now this isnt released anywhere
-                if(!compoundData.isEnvironmental) {
-                    if((bag.getCompoundAmount(outputId) + outputAdded >
-                           bag.storageSpace) ||
-                        environmentModifier == 0.0f) {
-                        canDoProcess = false;
-                    }
+                if(compoundData.isEnvironmental) {
+                    continue;
+                }
+
+                if((bag.getCompoundAmount(outputId) + outputAdded >
+                       bag.storageSpace)) {
+                    canDoProcess = false;
                 }
             }
 
@@ -273,42 +217,41 @@ void
             // ingredients and enough space for the outputs
             if(canDoProcess) {
                 // Inputs.
-                for(const auto& input : processData.inputs) {
-                    const CompoundId inputId = input.first;
+                for(const auto [inputId, inputAmount] : processData.inputs) {
                     auto compoundData =
                         SimulationParameters::compoundRegistry.getTypeData(
                             inputId);
-                    double inputRemoved = ((input.second * processCapacity) /
-                                           (processLimitCapacity));
 
-                    // Apply the environmental modifier
-                    inputRemoved = inputRemoved * environmentModifier;
+                    if(compoundData.isEnvironmental)
+                        continue;
+
+                    // Note: the enviroment modifier is applied here, but not
+                    // when checking if we have enough compounds. So sometimes
+                    // we might not run a process when we actually would have
+                    // enough compounds to run it
+                    const auto inputRemoved = inputAmount * processRate *
+                                              elapsed * environmentModifier;
 
                     // This should always be true (due to the earlier check) so
                     // it is always assumed here that the process succeeded
-                    if(!compoundData.isEnvironmental) {
-                        if(bag.compounds[inputId].amount >= inputRemoved) {
-                            bag.compounds[inputId].amount -= inputRemoved;
-                        }
+                    if(bag.compounds[inputId].amount >= inputRemoved) {
+                        bag.compounds[inputId].amount -= inputRemoved;
                     }
                 }
 
                 // Outputs.
-                for(const auto& output : processData.outputs) {
-                    const CompoundId outputId = output.first;
+                for(const auto [outputId, outputAmount] : processData.outputs) {
                     auto compoundData =
                         SimulationParameters::compoundRegistry.getTypeData(
                             outputId);
-                    double outputGenerated =
-                        ((output.second * processCapacity) /
-                            (processLimitCapacity));
 
-                    // Apply the environmental modifier
-                    outputGenerated = outputGenerated * environmentModifier;
+                    if(compoundData.isEnvironmental)
+                        continue;
 
-                    if(!compoundData.isEnvironmental) {
-                        bag.compounds[outputId].amount += outputGenerated;
-                    }
+                    const auto outputGenerated = outputAmount * processRate *
+                                                 elapsed * environmentModifier;
+
+                    bag.compounds[outputId].amount += outputGenerated;
                 }
             }
         }
@@ -334,4 +277,269 @@ void
             compoundData.usedLastTime = compoundData.price;
         }
     }
+}
+// ------------------------------------ //
+void
+    ProcessSystem::setProcessBiome(const Biome& biome)
+{
+    currentBiome = biome;
+}
+
+double
+    ProcessSystem::getDissolved(CompoundId compoundData)
+{
+    return currentBiome.getCompound(compoundData)->dissolved;
+}
+// ------------------------------------ //
+Json::Value
+    calculateProcessMaximumSpeed(const TweakedProcess::pointer& process,
+        const Biome& biome)
+{
+    Json::Value result;
+
+    const float multiplier = process->getTweakRate();
+
+    float speedFactor = 1.f;
+
+    Json::Value environmentInputs;
+    Json::Value inputs;
+
+    // Environmental inputs need to be processed first
+    for(const auto& [compoundId, amount] : process->process.inputs) {
+        const auto& data =
+            SimulationParameters::compoundRegistry.getTypeData(compoundId);
+        if(!data.isEnvironmental)
+            continue;
+
+        // Environmental compound that can limit the rate
+
+        Json::Value obj;
+
+        obj["id"] = compoundId;
+        obj["amount"] = amount;
+        obj["name"] = data.displayName;
+
+        const auto availableInEnvironment =
+            biome.getCompound(compoundId)->dissolved;
+
+        obj["availableAmount"] = availableInEnvironment;
+
+        // More than needed environment value boosts the effectiveness
+        float availableRate = availableInEnvironment / amount;
+
+        obj["availableRate"] = availableRate;
+
+        speedFactor *= availableRate;
+
+        environmentInputs[data.internalName] = obj;
+    }
+
+    speedFactor *= multiplier;
+
+    // So that the speedfactor is available here
+    for(const auto& [compoundId, amount] : process->process.inputs) {
+        const auto& data =
+            SimulationParameters::compoundRegistry.getTypeData(compoundId);
+        if(data.isEnvironmental)
+            continue;
+
+        // Normal, cloud input
+
+        Json::Value obj;
+        obj["id"] = compoundId;
+        obj["amount"] = amount * speedFactor;
+        obj["name"] = data.displayName;
+
+        inputs[data.internalName] = obj;
+    }
+
+    Json::Value outputs;
+
+    for(const auto& [compoundId, amount] : process->process.outputs) {
+        Json::Value obj;
+
+        obj["id"] = compoundId;
+        obj["amount"] = amount * speedFactor;
+
+        const auto& data =
+            SimulationParameters::compoundRegistry.getTypeData(compoundId);
+
+        obj["name"] = data.displayName;
+
+        outputs[data.internalName] = obj;
+    }
+
+    result["name"] = process->process.displayName;
+    result["processName"] = process->process.internalName;
+    result["processId"] = process->process.id;
+    result["inputs"] = inputs;
+    result["outputs"] = outputs;
+    result["environment"] = environmentInputs;
+    result["speedFactor"] = speedFactor;
+
+    return result;
+}
+
+std::string
+    ProcessSystem::computeOrganelleProcessEfficiencies(
+        const std::vector<OrganelleTemplate::pointer>& organelles,
+        const Biome& biome) const
+{
+    Json::Value value(Json::objectValue);
+    Json::Value organellesData(Json::objectValue);
+    Json::Value errors(Json::arrayValue);
+
+    for(const auto& organelle : organelles) {
+        if(!organelle) {
+            errors.append(Json::Value("organelle pointer is null"));
+            continue;
+        }
+
+        const auto& name = organelle->getName();
+
+        Json::Value obj;
+        Json::Value processes;
+
+        for(const auto& process : organelle->getProcesses()) {
+
+            processes.append(calculateProcessMaximumSpeed(process, biome));
+        }
+
+        obj["processes"] = processes;
+
+        organellesData[name] = obj;
+    }
+
+    value["organelles"] = organellesData;
+
+    if(errors.size() > 0)
+        value["errors"] = errors;
+
+    std::stringstream sstream;
+    Json::StreamWriterBuilder builder;
+    builder["indentation"] = "";
+    std::unique_ptr<Json::StreamWriter> writer(builder.newStreamWriter());
+
+    writer->write(value, &sstream);
+
+    return sstream.str();
+}
+// ------------------------------------ //
+std::string
+    ProcessSystem::computeEnergyBalance(
+        const std::vector<OrganelleTemplate::pointer>& organelles,
+        const Biome& biome) const
+{
+    Json::Value value(Json::objectValue);
+    Json::Value production(Json::objectValue);
+    Json::Value consumption(Json::objectValue);
+    Json::Value errors(Json::arrayValue);
+
+    float totalATPProduction = 0.f;
+    float processATPConsumption = 0.f;
+    float movementATPConsumption = 0.f;
+
+    int hexCount = 0;
+
+    for(const auto& organelle : organelles) {
+        if(!organelle) {
+            errors.append(Json::Value("organelle pointer is null"));
+            continue;
+        }
+
+        const auto& name = organelle->getName();
+
+        // This uses the same efficiency computation as
+        // computeOrganelleProcessEfficiencies and just reads data back from the
+        // json results, because I'm too lazy to generalize the efficiency
+        // computation function
+        for(const auto& process : organelle->getProcesses()) {
+            const auto processData =
+                calculateProcessMaximumSpeed(process, biome);
+
+            // Find process inputs and outputs that use/produce ATP and add to
+            // totals
+            if(processData["inputs"]["atp"]) {
+                const auto amount =
+                    processData["inputs"]["atp"]["amount"].asFloat();
+
+                processATPConsumption += amount;
+
+                if(!consumption.isMember(name)) {
+                    consumption[name] = 0.f;
+                }
+
+                consumption[name] = consumption[name].asFloat() + amount;
+            }
+
+            if(processData["outputs"]["atp"]) {
+                const auto amount =
+                    processData["outputs"]["atp"]["amount"].asFloat();
+
+                totalATPProduction += amount;
+
+                if(!production.isMember(name)) {
+                    production[name] = 0.f;
+                }
+
+                production[name] = production[name].asFloat() + amount;
+            }
+        }
+
+        // Take special cell components that take energy into account
+        if(organelle->hasComponent(FLAGELLA_COMPONENT_NAME)) {
+            const auto amount = FLAGELLA_ENERGY_COST;
+
+            movementATPConsumption += amount;
+
+            if(!consumption.isMember(name)) {
+                consumption[name] = 0.f;
+            }
+
+            consumption[name] = consumption[name].asFloat() + amount;
+        }
+
+        // Store hex count
+        hexCount += organelle->getHexCount();
+    }
+
+    // Add movement consumption together
+    const float baseMovementCost = BASE_MOVEMENT_ATP_COST * hexCount;
+    const auto totalMovementConsumption =
+        movementATPConsumption + baseMovementCost;
+
+    consumption["baseMovement"] = baseMovementCost;
+
+    // Add osmoregulation
+    const float osmoregulation = ATP_COST_FOR_OSMOREGULATION * hexCount;
+
+    consumption["osmoregulation"] = osmoregulation;
+
+    // Compute totals
+    const auto totalATPConsumption =
+        processATPConsumption + totalMovementConsumption + osmoregulation;
+
+    const auto totalBalanceStationary =
+        totalATPProduction - totalATPConsumption;
+    const auto totalBalance = totalBalanceStationary + totalMovementConsumption;
+
+    // Finish building the result object
+    value["production"] = production;
+    value["consumption"] = consumption;
+    value["total"]["production"] = totalATPProduction;
+    value["total"]["consumption"] = totalATPConsumption;
+    value["total"]["balance"] = totalBalance;
+    value["total"]["balanceStationary"] = totalBalanceStationary;
+
+    if(errors.size() > 0)
+        value["errors"] = errors;
+
+    std::stringstream sstream;
+    Json::StreamWriterBuilder builder;
+    builder["indentation"] = "";
+    std::unique_ptr<Json::StreamWriter> writer(builder.newStreamWriter());
+
+    writer->write(value, &sstream);
+
+    return sstream.str();
 }

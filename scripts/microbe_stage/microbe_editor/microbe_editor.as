@@ -1,6 +1,8 @@
 #include "microbe_editor_hud.as"
 #include "microbe_operations.as"
 #include "organelle_placement.as"
+#include "calculate_effectiveness.as"
+
 /*
 ////////////////////////////////////////////////////////////////////////////////
 // MicrobeEditor
@@ -123,6 +125,9 @@ class MicrobeEditor{
         // TODO: select which units will be used for the master elapsed time counter
         GetThriveGame().getCellStage().GetTimedWorldOperations().onTimePassed(1);
 
+        // Send info to the GUI about the organelle effectiveness in the current patch
+        calculateOrganelleEffectivenessInPatch();
+
         // Reset this, GUI will tell us to enable it again
         showHover = false;
         targetPatch = -1;
@@ -162,7 +167,7 @@ class MicrobeEditor{
             " organelles in the microbe, genes: " + playerSpecies.stringCode);
 
         // Show existing organelles
-        _updateAlreadyPlacedVisuals();
+        _onEditedCellChanged();
 
         // Update GUI buttons now that we have correct organelles
         updateGuiButtonStatus(checkIsNucleusPresent());
@@ -259,6 +264,15 @@ class MicrobeEditor{
                 break;
             }
         }
+    }
+
+    // Called whenever the edited cell changes
+    void _onEditedCellChanged()
+    {
+        _updateAlreadyPlacedVisuals();
+
+        // Calculate and send energy balance to the GUI
+        calculateEnergyBalanceWithOrganelles(editedMicrobeOrganelles, targetPatch);
     }
 
     // This destroys and creates again entities to represent all the
@@ -381,7 +395,7 @@ class MicrobeEditor{
                     organelle.q + ", " + organelle.r);
                 editor.editedMicrobeOrganelles.insertLast(organelle);
 
-                editor._updateAlreadyPlacedVisuals();
+                editor._onEditedCellChanged();
 
                 // send to gui current status of cell
                 editor.updateGuiButtonStatus(editor.checkIsNucleusPresent());
@@ -411,7 +425,7 @@ class MicrobeEditor{
                     }
                 }
 
-                editor._updateAlreadyPlacedVisuals();
+                editor._onEditedCellChanged();
                 // send to gui current status of cell
                 editor.updateGuiButtonStatus(editor.checkIsNucleusPresent());
             });
@@ -587,7 +601,7 @@ class MicrobeEditor{
                     }
                 }
 
-                editor._updateAlreadyPlacedVisuals();
+                editor._onEditedCellChanged();
 
             },
             function(EditorAction@ action, MicrobeEditor@ editor){
@@ -600,7 +614,7 @@ class MicrobeEditor{
                     editor.editedMicrobeOrganelles.insertLast(cast<PlacedOrganelle>(oldEditedMicrobeOrganelles[i]));
                 }
 
-                editor._updateAlreadyPlacedVisuals();
+                editor._onEditedCellChanged();
             });
             @action.data["oldEditedMicrobeOrganelles"] = oldEditedMicrobeOrganelles;
             action.data["previousMP"] = previousMP;
@@ -701,7 +715,7 @@ class MicrobeEditor{
         bool empty = true;
         bool touching = false;
 
-        OrganelleTemplate@ toBePlacedOrganelle = getOrganelleDefinition(activeActionName);
+        const auto@ toBePlacedOrganelle = getOrganelleDefinition(activeActionName);
 
         assert(toBePlacedOrganelle !is null, "invalid action name in microbe editor");
 
@@ -875,7 +889,7 @@ class MicrobeEditor{
                     int r = int(action.data["r"]);
                     // Remove the organelle
                    OrganellePlacement::removeOrganelleAt(editor.editedMicrobeOrganelles,Int2(q, r));
-                   editor._updateAlreadyPlacedVisuals();
+                   editor._onEditedCellChanged();
                 },
                 // undo
                 function(EditorAction@ action, MicrobeEditor@ editor){
@@ -898,7 +912,7 @@ class MicrobeEditor{
                         }
                     }
                     editor.editedMicrobeOrganelles.insertLast(organelle);
-                    editor._updateAlreadyPlacedVisuals();
+                    editor._onEditedCellChanged();
                 });
                 // Give the action access to some data
                 @action.data["organelle"] = organelle;
@@ -917,7 +931,7 @@ class MicrobeEditor{
             return;
 
         // If not hovering over an organelle render the to-be-placed organelle
-        OrganelleTemplate@ toBePlacedOrganelle = getOrganelleDefinition(activeActionName);
+        const auto@ toBePlacedOrganelle = getOrganelleDefinition(activeActionName);
 
         assert(toBePlacedOrganelle !is null, "invalid action name in microbe editor");
 
@@ -1296,6 +1310,8 @@ class MicrobeEditor{
         } else if(type == "MicrobeEditorSelectedNewPatch"){
             NamedVars@ vars = event.GetNamedVars();
             targetPatch = int(vars.GetSingleValueByName("patchId"));
+            // Update organelle effectiveness
+            calculateOrganelleEffectivenessInPatch(targetPatch);
             return 1;
         } else if(type == "MicrobeEditorNameChanged"){
             NamedVars@ vars = event.GetNamedVars();
