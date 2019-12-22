@@ -6,7 +6,7 @@ __Note: if you have an idea, share it on our [community
 forums](https://community.revolutionarygamesstudio.com/)!__ and don't
 create an issue about it.
 
-# Github Issues
+## Github Issues
 
 Issues on our Github are not meant for general feedback. We only
 accept bug reports about something not working. Team members after
@@ -14,7 +14,7 @@ consulting other team members are allowed to create issues about new
 or improved features. If someone else creates such an issue, that
 wasn't planned, it will be closed.
 
-# Pull requests
+## Pull requests
 
 First select an issue to work on. We have some issues tagged as good
 first issue. You can also check the issues tagged as easy to find
@@ -40,7 +40,7 @@ menu that could be used to enable inbuilt mods, so this is a bit
 difficult at the time of writing.
 
 
-# Getting help
+## Getting help
 
 If you have a question about an issue on how it should be solved,
 please post your question on the issue itself.
@@ -48,7 +48,7 @@ please post your question on the issue itself.
 If you need more general help check this category on our forums:
 https://community.revolutionarygamesstudio.com/c/25-dev-help
 
-# Joining the team
+## Joining the team
 
 If you want to join the Revolutionary Games team, see this page:
 https://revolutionarygamesstudio.com/get-involved/
