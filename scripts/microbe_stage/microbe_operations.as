@@ -726,7 +726,7 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
 
         if (amountToEject >= MINIMUM_AGENT_EMISSION_AMOUNT)
         {
-            playSoundWithDistance(world, "Data/Sound/soundeffects/microbe-release-toxin.ogg",microbeEntity);
+            playSoundWithDistance(world, "Data/Sound/soundeffects/microbe-release-toxin.ogg",microbeEntity, 1.0f);
             createAgentCloud(world, compoundId, cellPosition._Position+Float3(xnew,0,ynew),
                     direction, amountToEject, lifeTime, microbeComponent.species.name, microbeEntity);
 
@@ -739,17 +739,24 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
 }
 
 void playSoundWithDistance(CellStageWorld@ world, const string &in soundPath,
-    ObjectID microbeEntity)
+    ObjectID microbeEntity, float netSoundModifier)
 {
     auto location = world.GetComponent_Position(microbeEntity)._Position;
+    MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
+
     auto playerEntity = GetThriveGame().playerData().activeCreature();
 
     Position@ thisPosition = world.GetComponent_Position(playerEntity);
-    MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
-
     // Length is squared so also square the variable we are dividing
     float thisVolume = 1000.0f/(sqrt(((thisPosition._Position-location).LengthSquared()))+1);
-    float soundVolume = thisVolume;
+    float soundVolume;
+    if (thisVolume > 1.0f)
+    {
+       soundVolume = netSoundModifier;
+    }else
+    {
+       soundVolume = thisVolume * netSoundModifier;
+    }
 
     // Play sound
     if (microbeComponent.otherAudio is null ||
@@ -810,11 +817,11 @@ void damage(CellStageWorld@ world, ObjectID microbeEntity, double amount, const 
         if(damageType == "toxin"){
             // Play the toxin sound
             playSoundWithDistance(world, "Data/Sound/soundeffects/microbe-toxin-damage.ogg",
-                microbeEntity);
+                microbeEntity, 1.0f);
         } else if(damageType == "pilus"){
             // Play the pilus sound
             playSoundWithDistance(world, "Data/Sound/soundeffects/pilus_puncture_stab.ogg",
-                microbeEntity);
+                microbeEntity, 0.5f);
             // TODO: this may get triggered a lot more than the toxin
             // so this might need to be rate limited or something
         }
@@ -1199,7 +1206,7 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
             }
     }
     // Play the death sound
-    playSoundWithDistance(world, "Data/Sound/soundeffects/microbe-death.ogg", microbeEntity);
+    playSoundWithDistance(world, "Data/Sound/soundeffects/microbe-death.ogg", microbeEntity, 1.0f);
 
     //subtract population
     auto playerSpecies = MicrobeOperations::getSpecies(world, "Default");
