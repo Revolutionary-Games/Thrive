@@ -967,7 +967,7 @@ class MicrobeSystem : ScriptSystem{
         world.Create_SpawnedComponent(copyEntity, MICROBE_SPAWN_RADIUS * MICROBE_SPAWN_RADIUS);
 
         // Play the split sound
-        MicrobeOperations::playSoundWithDistance(world, "Data/Sound/soundeffects/reproduction.ogg", microbeEntity, 1.0f);
+        MicrobeOperations::playSoundWithDistance(world, "Data/Sound/soundeffects/reproduction.ogg",microbeEntity);
     }
 
     // Copies this microbe (if this isn't the player). The new microbe
