@@ -66,7 +66,7 @@ CompoundCloudComponent::~CompoundCloudComponent()
 }
 
 void
-    CompoundCloudComponent::Release(bs::Scene* scene)
+    CompoundCloudComponent::Release(Leviathan::Scene* scene)
 {
     if(m_sceneNode && !m_sceneNode.isDestroyed()) {
 
@@ -806,7 +806,7 @@ void
 
 void
     CompoundCloudSystem::initializeCloud(CompoundCloudComponent& cloud,
-        bs::Scene* scene)
+        Leviathan::Scene* scene)
 {
     // All the densities
     if(cloud.m_compoundId1 != NULL_COMPOUND) {
@@ -843,7 +843,7 @@ void
     cloud.m_sceneNode = bs::SceneObject::create("cloud");
 
     cloud.m_renderable = cloud.m_sceneNode->addComponent<bs::CRenderable>();
-    cloud.m_renderable->setLayer(1 << *scene);
+    cloud.m_renderable->setLayer(1 << scene->GetInternal());
     cloud.m_renderable->setMesh(m_planeMesh);
 
 

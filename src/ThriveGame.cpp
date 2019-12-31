@@ -88,14 +88,23 @@ public:
     {
         m_microbeBackgroundMesh = nullptr;
         m_microbeBackgroundItem = nullptr;
-        if(!m_backgroundRenderNode.isDestroyed())
-            m_backgroundRenderNode->destroy();
-        m_backgroundRenderNode = nullptr;
+
+        if(m_backgroundRenderNode) {
+
+            m_backgroundRenderNode->DetachFromParent();
+            m_cellStage->GetScene()->DestroySceneNode(m_backgroundRenderNode);
+            m_backgroundRenderNode = nullptr;
+        }
 
         m_microbeEditorBackgroundItem = nullptr;
-        if(!m_editorBackgroundRenderNode.isDestroyed())
-            m_editorBackgroundRenderNode->destroy();
-        m_editorBackgroundRenderNode = nullptr;
+
+        if(m_editorBackgroundRenderNode) {
+
+            m_editorBackgroundRenderNode->DetachFromParent();
+            m_microbeEditor->GetScene()->DestroySceneNode(
+                m_editorBackgroundRenderNode);
+            m_editorBackgroundRenderNode = nullptr;
+        }
 
         m_MicrobeBackgroundMaterial = nullptr;
     }
@@ -120,22 +129,23 @@ public:
         if(m_cellStage) {
             if(!m_microbeBackgroundItem) {
                 m_backgroundRenderNode =
-                    bs::SceneObject::create("microbe background");
-                m_backgroundRenderNode->setParent(
-                    m_cellStage->GetCameraSceneObject(), false);
+                    m_cellStage->GetScene()->CreateSceneNode();
+
+                m_cellStage->GetCameraSceneObject()->AttachObject(
+                    m_backgroundRenderNode);
 
                 // m_backgroundRenderNode->setPosition(Float3(0, 0, 100));
 
-                m_backgroundRenderNode->setPosition(Float3(
+                m_backgroundRenderNode->SetPosition(Float3(
                     0, 0, backgroundYForCameraHeight(INITIAL_CAMERA_HEIGHT)));
 
-                m_backgroundRenderNode->setRotation(
+                m_backgroundRenderNode->SetRotation(
                     bs::Quaternion(bs::Vector3::UNIT_X, bs::Degree(90)));
-                m_microbeBackgroundItem =
-                    m_backgroundRenderNode->addComponent<bs::CRenderable>();
+                m_microbeBackgroundItem = m_backgroundRenderNode->GetInternal()
+                                              ->addComponent<bs::CRenderable>();
 
                 m_microbeBackgroundItem->setLayer(
-                    1 << *m_cellStage->GetScene());
+                    1 << m_cellStage->GetScene()->GetInternal());
 
                 m_microbeBackgroundItem->setMaterial(
                     m_MicrobeBackgroundMaterial);
@@ -147,17 +157,17 @@ public:
         if(m_microbeEditor) {
             if(!m_microbeEditorBackgroundItem) {
                 m_editorBackgroundRenderNode =
-                    bs::SceneObject::create("microbe editor background");
+                    m_microbeEditor->GetScene()->CreateSceneNode();
 
-                m_editorBackgroundRenderNode->setPosition(
+                m_editorBackgroundRenderNode->SetPosition(
                     Float3(0, BACKGROUND_Y, 0));
 
                 m_microbeEditorBackgroundItem =
-                    m_editorBackgroundRenderNode
+                    m_editorBackgroundRenderNode->GetInternal()
                         ->addComponent<bs::CRenderable>();
 
                 m_microbeEditorBackgroundItem->setLayer(
-                    1 << *m_microbeEditor->GetScene());
+                    1 << m_microbeEditor->GetScene()->GetInternal());
 
                 m_microbeEditorBackgroundItem->setMaterial(
                     m_MicrobeBackgroundMaterial);
@@ -180,11 +190,12 @@ public:
 
     bs::HMaterial m_MicrobeBackgroundMaterial;
 
+    //! \todo Change to Leviathan::Renderable
     bs::HRenderable m_microbeBackgroundItem;
-    bs::HSceneObject m_backgroundRenderNode;
+    Leviathan::SceneNode::pointer m_backgroundRenderNode;
 
     bs::HRenderable m_microbeEditorBackgroundItem;
-    bs::HSceneObject m_editorBackgroundRenderNode;
+    Leviathan::SceneNode::pointer m_editorBackgroundRenderNode;
 
     std::shared_ptr<MainMenuKeyPressListener> m_menuKeyPresses;
     std::shared_ptr<GlobalUtilityKeyHandler> m_globalKeyPresses;
@@ -1158,7 +1169,7 @@ void
     ThriveGame::notifyCameraDistance(float height)
 {
     if(m_impl->m_backgroundRenderNode) {
-        m_impl->m_backgroundRenderNode->setPosition(
+        m_impl->m_backgroundRenderNode->SetPosition(
             Float3(0, 0, backgroundYForCameraHeight(height)));
     }
 

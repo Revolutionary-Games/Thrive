@@ -48,7 +48,7 @@ MembraneComponent::getMembraneType()
 }
 
 void
-    MembraneComponent::Release(bs::Scene* scene)
+    MembraneComponent::Release(Leviathan::Scene* scene)
 {
     releaseCurrentMesh();
 
@@ -208,8 +208,8 @@ Float4
 }
 // ------------------------------------ //
 void
-    MembraneComponent::Update(bs::Scene* scene,
-        const bs::HSceneObject& parentComponentPos,
+    MembraneComponent::Update(Leviathan::Scene* scene,
+        const Leviathan::SceneNode::pointer& parentComponentPos,
         const bs::SPtr<bs::VertexDataDesc>& vertexDesc)
 {
     if(clearNeeded) {
@@ -300,11 +300,12 @@ void
     coloredMaterial->setFloat("gHealthFraction", healthFraction);
 
     if(!m_item)
-        m_item = parentComponentPos->addComponent<bs::CRenderable>();
+        m_item =
+            parentComponentPos->GetInternal()->addComponent<bs::CRenderable>();
 
     m_item->setMaterial(coloredMaterial);
     m_item->setMesh(m_mesh);
-    m_item->setLayer(1 << *scene);
+    m_item->setLayer(1 << scene->GetInternal());
 }
 
 void
@@ -659,8 +660,8 @@ MembraneSystem::~MembraneSystem() {}
 
 void
     MembraneSystem::UpdateComponent(MembraneComponent& component,
-        bs::Scene* scene,
-        const bs::HSceneObject& parentComponentPos)
+        Leviathan::Scene* scene,
+        const Leviathan::SceneNode::pointer& parentComponentPos)
 {
     component.Update(scene, parentComponentPos, m_impl->m_vertexDesc);
 }

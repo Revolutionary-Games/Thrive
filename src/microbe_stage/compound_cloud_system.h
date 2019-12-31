@@ -194,7 +194,7 @@ public:
     ~CompoundCloudComponent();
 
     void
-        Release(bs::Scene* scene);
+        Release(Leviathan::Scene* scene);
 
     //! \returns Index for CompoundId or throws if not found
     SLOT
@@ -269,6 +269,7 @@ public:
 
 protected:
     bs::HSceneObject m_sceneNode;
+    //! \todo Switch to Leviathan::Renderable
     bs::HRenderable m_renderable;
 
     // True once initialized by CompoundCloudSystem
@@ -511,7 +512,7 @@ private:
             FluidSystem& fluidSystem);
 
     void
-        initializeCloud(CompoundCloudComponent& cloud, bs::Scene* scene);
+        initializeCloud(CompoundCloudComponent& cloud, Leviathan::Scene* scene);
 
     void
         fillCloudChannel(const std::vector<std::vector<float>>& density,

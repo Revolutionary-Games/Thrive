@@ -49,7 +49,7 @@ public:
     getMembraneType();
 
     void
-        Release(bs::Scene* scene);
+        Release(Leviathan::Scene* scene);
 
     //! Should set the colour of the membrane once working
     void
@@ -111,8 +111,8 @@ public:
     //! fully created data, instead of creating the buffers first and then
     //! filling them with data
     void
-        Update(bs::Scene* scene,
-            const bs::HSceneObject& parentComponentPos,
+        Update(Leviathan::Scene* scene,
+            const Leviathan::SceneNode::pointer& parentComponentPos,
             const bs::SPtr<bs::VertexDataDesc>& vertexDesc);
 
     // Adds absorbed compound to the membrane.
@@ -234,7 +234,7 @@ public:
 
     //! Updates the membrane calculations every frame
     void
-        Run(GameWorld& world, bs::Scene* scene)
+        Run(GameWorld& world, Leviathan::Scene* scene)
     {
         auto& index = CachedComponents.GetIndex();
         for(auto iter = index.begin(); iter != index.end(); ++iter) {
@@ -270,8 +270,8 @@ public:
 private:
     void
         UpdateComponent(MembraneComponent& component,
-            bs::Scene* scene,
-            const bs::HSceneObject& parentComponentPos);
+            Leviathan::Scene* scene,
+            const Leviathan::SceneNode::pointer& parentComponentPos);
 
 private:
     std::unique_ptr<Implementation> m_impl;
