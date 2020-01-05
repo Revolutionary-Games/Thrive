@@ -37,8 +37,8 @@ void createAgentCloud(CellStageWorld@ world, CompoundId compoundId,
     auto agentEntity = world.CreateEntity();
 
     auto position = world.Create_Position(agentEntity, pos + (direction * 1.5),
-        bs::Quaternion(bs::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
-            bs::Vector3(0,1, 0)));
+        Quaternion(Float3(0, 1, 0),
+            Degree(GetEngine().GetRandom().GetNumber(0, 360))));
 
     // Agent
     auto agentProperties = world.Create_AgentProperties(agentEntity);
