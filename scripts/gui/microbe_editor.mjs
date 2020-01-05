@@ -111,7 +111,7 @@ const organelleSelectionElements = [
 const membraneSelectionElements = [
     {
         element: document.getElementById("setMembraneMembrane"),
-        membrane: "membrane"
+        membrane: "single"
     },
     {
         element: document.getElementById("setMembraneWall"),

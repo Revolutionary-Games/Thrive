@@ -128,8 +128,8 @@ bool
     }
 
     if(engine->RegisterObjectProperty("Species",
-           "MEMBRANE_TYPE speciesMembraneType",
-           asOFFSET(Species, speciesMembraneType)) < 0) {
+           "MembraneTypeId membraneType",
+           asOFFSET(Species, membraneType)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
@@ -488,6 +488,11 @@ bool
     }
 
     if(engine->RegisterTypedef("BioProcessId", "uint16") < 0) {
+
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterTypedef("MembraneTypeId", "uint16") < 0) {
 
         ANGELSCRIPT_REGISTERFAIL;
     }

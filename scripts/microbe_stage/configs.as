@@ -305,7 +305,7 @@ class MicrobeTemplate{
         array<OrganelleTemplatePlaced@> organelles,
         Float4 colour,
     bool isBacteria,
-    MEMBRANE_TYPE speciesMembraneType,
+    string membraneType,
     string genus,
     string epithet
     ) {
@@ -314,7 +314,7 @@ class MicrobeTemplate{
         this.organelles = organelles;
         this.colour = colour;
         this.isBacteria = isBacteria;
-        this.speciesMembraneType = speciesMembraneType;
+        this.membraneType = membraneType;
         this.genus = genus;
         this.epithet = epithet;
     }
@@ -326,7 +326,7 @@ class MicrobeTemplate{
     array<OrganelleTemplatePlaced@> organelles;
     Float4 colour;
     bool isBacteria;
-    MEMBRANE_TYPE speciesMembraneType;
+    string membraneType;
 }
 
 class InitialCompound{
@@ -367,7 +367,7 @@ const dictionary STARTER_MICROBES = {
             Float4(1, 1, 1, 1),
             // Player starts as bacteria
             true,
-            MEMBRANE_TYPE::MEMBRANE,
+            "single",
             "Primum",
             "Thrivium")
     }

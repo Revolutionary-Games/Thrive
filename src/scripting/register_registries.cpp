@@ -57,6 +57,12 @@ TJsonRegistry<OrganelleType>*
 {
     return &SimulationParameters::organelleRegistry;
 }
+
+TJsonRegistry<MembraneType>*
+    getMembraneRegistryWrapper()
+{
+    return &SimulationParameters::membraneRegistry;
+}
 // ------------------------------------ //
 //! Helper for registerSimulationDataAndJsons
 template<class RegistryT, class ReturnedT>
@@ -142,6 +148,9 @@ bool
         return false;
 
     if(!registerRegistryHeldHelperBases<OrganelleType>(engine, "OrganelleType"))
+        return false;
+
+    if(!registerRegistryHeldHelperBases<MembraneType>(engine, "MembraneType"))
         return false;
 
     // Compound specific properties //
@@ -461,6 +470,18 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    // ------------------------------------ //
+    // MembraneType
+    if(engine->RegisterObjectProperty(
+           "MembraneType", "bool cellWall", asOFFSET(MembraneType, cellWall)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty(
+           "MembraneType", "float hitpoints", asOFFSET(MembraneType, hitpoints)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     return true;
 }
 
@@ -556,6 +577,11 @@ bool
         return false;
     }
 
+    if(!registerJsonRegistry<TJsonRegistry<MembraneType>, MembraneType>(
+           engine, "TJsonRegistryMembraneType", "MembraneType")) {
+        return false;
+    }
+
 
     if(engine->SetDefaultNamespace("SimulationParameters") < 0) {
         ANGELSCRIPT_REGISTERFAIL;
@@ -587,6 +613,12 @@ bool
     if(engine->RegisterGlobalFunction(
            "TJsonRegistryOrganelleType@ organelleRegistry()",
            asFUNCTION(getOrganelleRegistryWrapper), asCALL_CDECL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalFunction(
+           "TJsonRegistryMembraneType@ membraneRegistry()",
+           asFUNCTION(getMembraneRegistryWrapper), asCALL_CDECL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 

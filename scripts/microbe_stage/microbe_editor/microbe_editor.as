@@ -89,7 +89,7 @@ class MicrobeEditor{
         organelleRot = 0;
         symmetry = 0;
         newName = "";
-        membrane = MEMBRANE_TYPE::MEMBRANE;
+        membrane = 0;
         colour = Float4(1, 1, 1, 1);
         setUndoButtonStatus(false);
         setRedoButtonStatus(false);
@@ -194,13 +194,13 @@ class MicrobeEditor{
         }
 
         newName = playerSpecies.genus + " " + playerSpecies.epithet;
-        membrane = playerSpecies.speciesMembraneType;
+        membrane = playerSpecies.membraneType;
         colour = playerSpecies.colour;
         GenericEvent@ event = GenericEvent("MicrobeEditorActivated");
         NamedVars@ vars = event.GetNamedVars();
 
         vars.AddValue(ScriptSafeVariableBlock("name", newName));
-        vars.AddValue(ScriptSafeVariableBlock("membrane", membraneTypeToString(membrane)));
+        vars.AddValue(ScriptSafeVariableBlock("membrane", SimulationParameters::membraneRegistry().getInternalName(membrane)));
         vars.AddValue(ScriptSafeVariableBlock("colourR", colour.X));
         vars.AddValue(ScriptSafeVariableBlock("colourG", colour.Y));
         vars.AddValue(ScriptSafeVariableBlock("colourB", colour.Z));
@@ -1141,41 +1141,6 @@ class MicrobeEditor{
         return (playerSpecies.generation+1);
     }
 
-    MEMBRANE_TYPE stringToMembraneType(string name)
-    {
-        if(name == "membrane"){
-            return MEMBRANE_TYPE::MEMBRANE;
-        } else if (name == "wall"){
-            return MEMBRANE_TYPE::WALL;
-        } else if(name == "chitin"){
-            return MEMBRANE_TYPE::CHITIN;
-        } else if(name == "double"){
-            return MEMBRANE_TYPE::DOUBLEMEMBRANE;
-        }
-
-        LOG_ERROR("MicrobeEditor: No MEMBRANE_TYPE match for name: " + name);
-        // Return default membrane if invalid
-        return MEMBRANE_TYPE::MEMBRANE;
-    }
-
-    string membraneTypeToString(MEMBRANE_TYPE type)
-    {
-        switch (type)
-        {
-            case MEMBRANE_TYPE::MEMBRANE:
-                return "membrane";
-            case MEMBRANE_TYPE::WALL:
-                return "wall";
-            case MEMBRANE_TYPE::CHITIN:
-                return "chitin";
-            case MEMBRANE_TYPE::DOUBLEMEMBRANE:
-                return "double";
-        }
-
-        assert(false, "No string counterpart for MEMBRANE_TYPE of index " + type);
-        return "";
-    }
-
     int onGeneric(GenericEvent@ event)
     {
         auto type = event.GetType();
@@ -1273,8 +1238,8 @@ class MicrobeEditor{
 
             auto membraneComponent = world.GetComponent_MembraneComponent(player);
             // Change species membrane
-            playerSpecies.speciesMembraneType = membrane;
-            LOG_INFO("MicrobeEditor: Player species membrane type is now " + int(playerSpecies.speciesMembraneType));
+            playerSpecies.membraneType = membrane;
+            LOG_INFO("MicrobeEditor: Player species membrane type is now " + int(playerSpecies.membraneType));
             membraneComponent.setMembraneType(membrane);
             // Change species membrane color
             playerSpecies.colour = colour;
@@ -1324,23 +1289,23 @@ class MicrobeEditor{
             EditorAction@ action = EditorAction(cost,
                 // redo
                 function(EditorAction@ action, MicrobeEditor@ editor){
-                    editor.membrane = MEMBRANE_TYPE(action.data["membrane"]);
+                    editor.membrane = MembraneTypeId(action.data["membrane"]);
                     GenericEvent@ event = GenericEvent("MicrobeEditorMembraneUpdated");
                     NamedVars@ vars = event.GetNamedVars();
-                    vars.AddValue(ScriptSafeVariableBlock("membrane", editor.membraneTypeToString(editor.membrane)));
+                    vars.AddValue(ScriptSafeVariableBlock("membrane", SimulationParameters::membraneRegistry().getInternalName(editor.membrane)));
                     GetEngine().GetEventHandler().CallEvent(event);
                 },
                 // undo
                 function(EditorAction@ action, MicrobeEditor@ editor){
-                    editor.membrane = MEMBRANE_TYPE(action.data["prevMembrane"]);
+                    editor.membrane = MembraneTypeId(action.data["prevMembrane"]);
                     GenericEvent@ event = GenericEvent("MicrobeEditorMembraneUpdated");
                     NamedVars@ vars = event.GetNamedVars();
-                    vars.AddValue(ScriptSafeVariableBlock("membrane", editor.membraneTypeToString(editor.membrane)));
+                    vars.AddValue(ScriptSafeVariableBlock("membrane", SimulationParameters::membraneRegistry().getInternalName(editor.membrane)));
                     GetEngine().GetEventHandler().CallEvent(event);
                 }
             );
 
-            action.data["membrane"] = stringToMembraneType(string(vars.GetSingleValueByName("membrane")));
+            action.data["membrane"] = SimulationParameters::membraneRegistry().getTypeId(string(vars.GetSingleValueByName("membrane")));
             action.data["prevMembrane"] = membrane;
 
             enqueueAction(action);
@@ -1405,7 +1370,7 @@ class MicrobeEditor{
     private string newName;
 
     // Not private so anonymous callbacks can access this, same as editedMicrobeOrganelles
-    MEMBRANE_TYPE membrane;
+    MembraneTypeId membrane;
 
     private Float4 colour;
 

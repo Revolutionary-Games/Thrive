@@ -54,7 +54,7 @@ Json::Value
     Json::Value result;
 
     result["isBacteria"] = isBacteria;
-    result["speciesMembraneType"] = static_cast<int>(speciesMembraneType);
+    result["membraneType"] = membraneType;
     result["name"] = name;
     result["genus"] = genus;
     result["epithet"] = epithet;

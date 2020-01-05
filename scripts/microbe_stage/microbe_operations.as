@@ -277,7 +277,7 @@ void respawnPlayer(CellStageWorld@ world)
             microbeComponent.organelles[i].reset();
         }
 
-        setupMicrobeHitpoints(microbeComponent, DEFAULT_HEALTH);
+        setupMicrobeHitpoints(microbeComponent, SimulationParameters::membraneRegistry().getTypeData(microbeComponent.species.membraneType).hitpoints);
         // Setup compounds
         setupMicrobeCompounds(world,playerEntity);
         // Reset position //
@@ -982,7 +982,7 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, bool aiControlled,
     auto position = world.Create_Position(entity, Float3(0, 0, 0), Float4::IdentityQuaternion);
 
     auto membraneComponent = world.Create_MembraneComponent(entity,
-        species.speciesMembraneType);
+        species.membraneType);
 
     auto compoundAbsorberComponent = world.Create_CompoundAbsorberComponent(entity);
 
@@ -1308,7 +1308,7 @@ void setMembraneColour(CellStageWorld@ world, ObjectID microbeEntity, Float4 col
 }
 
 // Sets the type of the microbe's membrane.
-void setMembraneType(CellStageWorld@ world, ObjectID microbeEntity, MEMBRANE_TYPE type)
+void setMembraneType(CellStageWorld@ world, ObjectID microbeEntity, MembraneTypeId type)
 {
     auto membraneComponent = world.GetComponent_MembraneComponent(microbeEntity);
     membraneComponent.setMembraneType(type);

@@ -6,6 +6,7 @@
 #include "compounds.h"
 #include "general/json_registry.h"
 #include "organelle_types.h"
+#include "membrane_types.h"
 #include "species_name_controller.h"
 
 namespace thrive {
@@ -21,6 +22,7 @@ public:
     static TJsonRegistry<Biome> biomeRegistry;
     static TJsonRegistry<Background> backgroundRegistry;
     static TJsonRegistry<OrganelleType> organelleRegistry;
+    static TJsonRegistry<MembraneType> membraneRegistry;
 
     static SpeciesNameController speciesNameController;
 

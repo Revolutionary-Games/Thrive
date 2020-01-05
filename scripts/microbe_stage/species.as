@@ -17,7 +17,7 @@ void applyTemplate(CellStageWorld@ world, ObjectID microbe, Species@ species,
     MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(
         world.GetScriptComponentHolder("MicrobeComponent").Find(microbe));
 
-    MicrobeOperations::setMembraneType(world, microbe, species.speciesMembraneType);
+    MicrobeOperations::setMembraneType(world, microbe, species.membraneType);
     MicrobeOperations::setMembraneColour(world, microbe, species.colour);
 
     restoreOrganelleLayout(world, microbe, microbeComponent, species, editShape);
@@ -80,7 +80,7 @@ Species@ createSpecies(const string &in name, MicrobeTemplate@ fromTemplate)
     }
 
     return createSpecies(name, fromTemplate.genus, fromTemplate.epithet, convertedOrganelles,
-        fromTemplate.colour, fromTemplate.isBacteria, fromTemplate.speciesMembraneType,
+        fromTemplate.colour, fromTemplate.isBacteria, fromTemplate.membraneType,
         fromTemplate.compounds, 100.0f, 100.0f, 100.0f, 200.0f, 100.0f);
 }
 
@@ -89,7 +89,7 @@ Species@ createSpecies(const string &in name, MicrobeTemplate@ fromTemplate)
 //! to reduce the number of parameters
 Species@ createSpecies(const string &in name, const string &in genus,
     const string &in epithet, array<PlacedOrganelle@> organelles, Float4 colour,
-    bool isBacteria, MEMBRANE_TYPE speciesMembraneType,  const dictionary &in compounds,
+    bool isBacteria, string membraneType,  const dictionary &in compounds,
     float aggression, float fear, float activity, float focus, float opportunism)
 {
     Species@ species = Species(name);
@@ -131,7 +131,7 @@ Species@ createSpecies(const string &in name, const string &in genus,
 
     species.colour = colour;
 
-    species.speciesMembraneType = speciesMembraneType;
+    species.membraneType = SimulationParameters::membraneRegistry().getTypeId(membraneType);
 
     //We need to know this is baceria
     species.isBacteria = isBacteria;

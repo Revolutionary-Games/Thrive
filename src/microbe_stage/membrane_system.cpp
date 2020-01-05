@@ -1,4 +1,5 @@
 #include "membrane_system.h"
+#include "engine/typedefs.h"
 
 #include <Engine.h>
 #include <Rendering/Graphics.h>
@@ -20,10 +21,11 @@ using namespace thrive;
 //! This must be big enough that no organelle can be at this position
 constexpr auto INVALID_FOUND_ORGANELLE = -999999.f;
 
-MembraneComponent::MembraneComponent(MEMBRANE_TYPE type) :
+MembraneComponent::MembraneComponent(MembraneTypeId type) :
     Leviathan::Component(TYPE)
 {
     membraneType = type;
+    rawMembraneType = &SimulationParameters::membraneRegistry.getTypeData(membraneType);
 }
 
 MembraneComponent::~MembraneComponent()
@@ -36,12 +38,13 @@ MembraneComponent::~MembraneComponent()
 }
 
 void
-    MembraneComponent::setMembraneType(MEMBRANE_TYPE type)
+    MembraneComponent::setMembraneType(MembraneTypeId type)
 {
-    membraneType = static_cast<MEMBRANE_TYPE>(type);
+    membraneType = type;
+    rawMembraneType = &SimulationParameters::membraneRegistry.getTypeData(membraneType);
 }
 
-MEMBRANE_TYPE
+MembraneTypeId
 MembraneComponent::getMembraneType()
 {
     return membraneType;
@@ -310,11 +313,10 @@ void
 void
     MembraneComponent::DrawCorrectMembrane()
 {
-    switch(membraneType) {
-    case MEMBRANE_TYPE::MEMBRANE: DrawMembrane(); break;
-    case MEMBRANE_TYPE::DOUBLEMEMBRANE: DrawMembrane(); break;
-    case MEMBRANE_TYPE::WALL: DrawCellWall(); break;
-    case MEMBRANE_TYPE::CHITIN: DrawCellWall(); break;
+    if (rawMembraneType->cellWall) {
+        DrawCellWall();
+    } else {
+        DrawMembrane();
     }
 }
 
@@ -329,27 +331,7 @@ size_t
     float height = .1;
     const bs::Vector2 center(0.5, 0.5);
 
-    switch(membraneType) {
-    case MEMBRANE_TYPE::MEMBRANE:
-    case MEMBRANE_TYPE::DOUBLEMEMBRANE:
-        meshVertices[writeIndex++] = {bs::Vector3(0, height / 2, 0), center};
-
-        for(size_t i = 0, end = vertices2D.size(); i < end + 1; i++) {
-            // Finds the UV coordinates be projecting onto a plane and
-            // stretching to fit a circle.
-
-            const double currentRadians = 2.0 * 3.1416 * i / end;
-
-            meshVertices[writeIndex++] = {
-                bs::Vector3(
-                    vertices2D[i % end].X, height / 2, vertices2D[i % end].Y),
-                center + bs::Vector2(std::cos(currentRadians),
-                             std::sin(currentRadians)) /
-                             2};
-        }
-        break;
-    case MEMBRANE_TYPE::WALL:
-    case MEMBRANE_TYPE::CHITIN:
+    if (rawMembraneType->cellWall) {
         // cell walls need obvious inner/outer memrbranes (we can worry
         // about chitin later)
         height = .05;
@@ -365,7 +347,22 @@ size_t
                 center +
                     bs::Vector2(cos(currentRadians), sin(currentRadians)) / 2};
         }
-        break;
+    } else {
+        meshVertices[writeIndex++] = {bs::Vector3(0, height / 2, 0), center};
+
+        for(size_t i = 0, end = vertices2D.size(); i < end + 1; i++) {
+            // Finds the UV coordinates be projecting onto a plane and
+            // stretching to fit a circle.
+
+            const double currentRadians = 2.0 * 3.1416 * i / end;
+
+            meshVertices[writeIndex++] = {
+                bs::Vector3(
+                    vertices2D[i % end].X, height / 2, vertices2D[i % end].Y),
+                center + bs::Vector2(std::cos(currentRadians),
+                             std::sin(currentRadians)) /
+                             2};
+        }
     }
 
 
@@ -380,37 +377,11 @@ bs::HMaterial
 
     bs::HTexture normal;
     bs::HTexture damaged;
-    // When true the shader adds animation to the membrane
-    bool wiggly = true;
 
-    switch(membraneType) {
-    case MEMBRANE_TYPE::MEMBRANE:
-        normal = Engine::Get()->GetGraphics()->LoadTextureByName(
-            "FresnelGradient.png");
+    normal = Engine::Get()->GetGraphics()->LoadTextureByName(
+            rawMembraneType->normalTexture);
         damaged = Engine::Get()->GetGraphics()->LoadTextureByName(
-            "FresnelGradientDamaged.png");
-        break;
-    case MEMBRANE_TYPE::DOUBLEMEMBRANE:
-        normal = Engine::Get()->GetGraphics()->LoadTextureByName(
-            "DoubleCellMembrane.png");
-        damaged = Engine::Get()->GetGraphics()->LoadTextureByName(
-            "DoubleCellMembraneDamaged.png");
-        break;
-    case MEMBRANE_TYPE::WALL:
-        normal = Engine::Get()->GetGraphics()->LoadTextureByName(
-            "CellWallGradient.png");
-        damaged = Engine::Get()->GetGraphics()->LoadTextureByName(
-            "CellWallGradientDamaged.png");
-        wiggly = false;
-        break;
-    case MEMBRANE_TYPE::CHITIN:
-        normal = Engine::Get()->GetGraphics()->LoadTextureByName(
-            "ChitinCellWallGradient.png");
-        damaged = Engine::Get()->GetGraphics()->LoadTextureByName(
-            "ChitinCellWallGradientDamaged.png");
-        wiggly = false;
-        break;
-    }
+            rawMembraneType->damagedTexture);
 
     LEVIATHAN_ASSERT(
         normal && damaged && shader, "failed to load some membrane resource");
@@ -420,7 +391,7 @@ bs::HMaterial
     material->setTexture("gDamagedTex", damaged);
 
     bs::ShaderVariation variation;
-    variation.setBool("WIGGLY", wiggly);
+    variation.setBool("WIGGLY", !rawMembraneType->cellWall);
     material->setVariation(variation);
 
     return material;

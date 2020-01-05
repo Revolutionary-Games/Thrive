@@ -1,0 +1,30 @@
+{
+	"single":
+	{
+		"cellWall": false,
+		"normalTexture": "FresnelGradient.png",
+		"damagedTexture": "FresnelGradientDamaged.png",
+		"hitpoints": 70
+	},
+	"double":
+	{
+		"cellWall": false,
+		"normalTexture": "DoubleCellMembrane.png",
+		"damagedTexture": "DoubleCellMembraneDamaged.png",
+		"hitpoints": 100
+	},
+	"wall":
+	{
+		"cellWall": true,
+		"normalTexture": "CellWallGradient.png",
+		"damagedTexture": "CellWallGradientDamaged.png",
+		"hitpoints": 130
+	},
+	"chitin":
+	{
+		"cellWall": true,
+		"normalTexture": "ChitinCellWallGradient.png",
+		"damagedTexture": "ChitinCellWallGradientDamaged.png",
+		"hitpoints": 100
+	}
+}
