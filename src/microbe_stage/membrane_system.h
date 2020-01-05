@@ -5,9 +5,7 @@
 #include <Entities/Component.h>
 #include <Entities/Components.h>
 #include <Entities/System.h>
-
-#include <bsfUtility/Math/BsVector2.h>
-#include <bsfUtility/Math/BsVector3.h>
+#include <Rendering/Renderable.h>
 
 #include <atomic>
 
@@ -25,8 +23,8 @@ enum class MEMBRANE_TYPE { MEMBRANE, WALL, CHITIN, DOUBLEMEMBRANE };
 class MembraneComponent : public Leviathan::Component {
     struct MembraneVertex {
 
-        bs::Vector3 m_pos;
-        bs::Vector2 m_uv;
+        Float3 m_pos;
+        Float2 m_uv;
     };
 
     static_assert(sizeof(MembraneVertex) == 5 * sizeof(float));
@@ -147,7 +145,7 @@ public:
     code for generic things
     */
 
-    bs::HMaterial
+    Leviathan::Material::pointer
         chooseMaterialByType();
 
     void
@@ -201,16 +199,13 @@ protected:
     //! Cached circle radius
     mutable float m_encompassingCircleRadius;
 
-    bs::HMesh m_mesh;
-
     //! Actual object that is attached to a scenenode
-    bs::HRenderable m_item;
+    Leviathan::Renderable::pointer m_item;
+
+    Leviathan::Mesh::pointer m_mesh;
 
     //! A material created from the base material that can be colored
-    bs::HMaterial coloredMaterial;
-
-    //! The amount of compounds stored in the membrane.
-    int compoundAmount = 0;
+    Leviathan::Material::pointer coloredMaterial;
 
     // The health percentage of a cell, in the range [0.0, 1.0], used to get
     // damage effects in the membrane.
