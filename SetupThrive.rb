@@ -45,7 +45,7 @@ require_relative 'RubySetupSystem/Libraries/SetupLeviathan.rb'
 leviathan = Leviathan.new(
   # Use this if you always want the latest commit
   # version: "develop",
-  version: '81c4357ca9e624dee3ee2ffc1c1473048d6e93e7',
+  version: '569a8b7c4f5691ac6a1d0cf9a577666f86a87a96',
   # Doesn't actually work, but leviathan doesn't install with sudo by
   # default, or install at all for that matter
   noInstallSudo: true
