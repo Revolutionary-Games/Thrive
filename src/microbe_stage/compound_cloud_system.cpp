@@ -8,9 +8,7 @@
 
 #include <Rendering/GeometryHelpers.h>
 #include <Rendering/Graphics.h>
-#include <bsfCore/Components/BsCRenderable.h>
 #include <bsfCore/Image/BsTexture.h>
-#include <bsfCore/Material/BsMaterial.h>
 
 #include <atomic>
 
@@ -68,16 +66,20 @@ CompoundCloudComponent::~CompoundCloudComponent()
 void
     CompoundCloudComponent::Release(Leviathan::Scene* scene)
 {
-    if(m_sceneNode && !m_sceneNode.isDestroyed()) {
-
-        m_sceneNode->destroy();
-        m_sceneNode = nullptr;
+    if(m_renderable) {
+        m_renderable->DetachFromParent();
         m_renderable = nullptr;
+    }
+
+    if(m_sceneNode) {
+        m_sceneNode->DetachFromParent();
+        m_sceneNode = nullptr;
     }
 
     m_initialized = false;
 
-    // Other resources are held by smart pointers
+    // Other resources are held by smart pointers that don't have timing
+    // constraints for releasing
 }
 
 // ------------------------------------ //
@@ -235,8 +237,8 @@ void
 
     // This check is for non-graphical mode
     if(m_sceneNode)
-        m_sceneNode->setPosition(
-            bs::Vector3(m_position.X, CLOUD_Y_COORDINATE, m_position.Z));
+        m_sceneNode->SetPosition(
+            Float3(m_position.X, CLOUD_Y_COORDINATE, m_position.Z));
 
     clearContents();
 }
@@ -300,8 +302,8 @@ void
     m_planeMesh = Leviathan::GeometryHelpers::CreateXZPlane(
         CLOUD_X_EXTENT, CLOUD_Y_EXTENT);
 
-    m_perlinNoise =
-        Engine::Get()->GetGraphics()->LoadTextureByName("PerlinNoise.jpg");
+    m_perlinNoise = Leviathan::Texture::MakeShared<Leviathan::Texture>(
+        Engine::Get()->GetGraphics()->LoadTextureByName("PerlinNoise.jpg"));
 
     LEVIATHAN_ASSERT(m_perlinNoise, "failed to load perlin noise texture");
 }
@@ -840,16 +842,17 @@ void
     if(!Engine::Get()->IsInGraphicalMode())
         return;
 
-    cloud.m_sceneNode = bs::SceneObject::create("cloud");
+    cloud.m_sceneNode = scene->CreateSceneNode();
 
-    cloud.m_renderable = cloud.m_sceneNode->addComponent<bs::CRenderable>();
-    cloud.m_renderable->setLayer(1 << scene->GetInternal());
-    cloud.m_renderable->setMesh(m_planeMesh);
+    cloud.m_renderable =
+        Leviathan::Renderable::MakeShared<Leviathan::Renderable>(
+            *cloud.m_sceneNode);
 
+    cloud.m_renderable->SetMesh(m_planeMesh);
 
     // Set initial position
-    cloud.m_sceneNode->setPosition(bs::Vector3(
-        cloud.m_position.X, CLOUD_Y_COORDINATE, cloud.m_position.Z));
+    cloud.m_sceneNode->SetPosition(
+        Float3(cloud.m_position.X, CLOUD_Y_COORDINATE, cloud.m_position.Z));
 
     cloud.m_textureData1 = bs::PixelData::create(
         CLOUD_SIMULATION_WIDTH, CLOUD_SIMULATION_HEIGHT, 1, BS_PIXEL_FORMAT);
@@ -866,26 +869,28 @@ void
 
     // cloud.m_compoundCloudsPlane->setRenderQueueGroup(2);
 
-    cloud.m_texture = bs::Texture::create(cloud.m_textureData1, bs::TU_DYNAMIC);
+    cloud.m_texture = Leviathan::Texture::MakeShared<Leviathan::Texture>(
+        bs::Texture::create(cloud.m_textureData1, bs::TU_DYNAMIC));
 
     // TODO: this should be loaded just once to be more efficient
     auto shader =
         Engine::Get()->GetGraphics()->LoadShaderByName("compound_cloud.bsl");
 
-    bs::HMaterial material = bs::Material::create(shader);
-    material->setTexture("gDensityTex", cloud.m_texture);
+    auto material = Leviathan::Material::MakeShared<Leviathan::Material>(
+        Leviathan::Shader::MakeShared<Leviathan::Shader>(shader));
+    material->SetTexture("gDensityTex", cloud.m_texture);
 
     // Set colour parameters //
-    material->setVec4("gCloudColour1", cloud.m_color1);
-    material->setVec4("gCloudColour2", cloud.m_color2);
-    material->setVec4("gCloudColour3", cloud.m_color3);
-    material->setVec4("gCloudColour4", cloud.m_color4);
+    material->SetFloat4("gCloudColour1", cloud.m_color1);
+    material->SetFloat4("gCloudColour2", cloud.m_color2);
+    material->SetFloat4("gCloudColour3", cloud.m_color3);
+    material->SetFloat4("gCloudColour4", cloud.m_color4);
 
     // The perlin noise texture needs to be tileable. We can't do tricks with
     // the cloud's position
-    material->setTexture("gNoiseTex", m_perlinNoise);
+    material->SetTexture("gNoiseTex", m_perlinNoise);
 
-    cloud.m_renderable->setMaterial(material);
+    cloud.m_renderable->SetMaterial(material);
 
     // cloud.m_planeMaterial->setReceiveShadows(false);
 }
@@ -986,7 +991,7 @@ void
         fillCloudChannel(cloud.m_density4, 3, rowBytes, pDest);
 
     // Submit the updated data
-    cloud.m_texture->writeData(cloud.m_textureData1, 0, 0, true);
+    cloud.m_texture->GetInternal()->writeData(cloud.m_textureData1, 0, 0, true);
 }
 
 void
