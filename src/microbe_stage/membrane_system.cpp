@@ -22,7 +22,8 @@ MembraneComponent::MembraneComponent(MembraneTypeId type) :
     Leviathan::Component(TYPE)
 {
     membraneType = type;
-    rawMembraneType = &SimulationParameters::membraneRegistry.getTypeData(membraneType);
+    rawMembraneType =
+        &SimulationParameters::membraneRegistry.getTypeData(membraneType);
 }
 
 MembraneComponent::~MembraneComponent()
@@ -38,11 +39,12 @@ void
     MembraneComponent::setMembraneType(MembraneTypeId type)
 {
     membraneType = type;
-    rawMembraneType = &SimulationParameters::membraneRegistry.getTypeData(membraneType);
+    rawMembraneType =
+        &SimulationParameters::membraneRegistry.getTypeData(membraneType);
 }
 
 MembraneTypeId
-MembraneComponent::getMembraneType()
+    MembraneComponent::getMembraneType()
 {
     return membraneType;
 }
@@ -311,7 +313,7 @@ void
 void
     MembraneComponent::DrawCorrectMembrane()
 {
-    if (rawMembraneType->cellWall) {
+    if(rawMembraneType->cellWall) {
         DrawCellWall();
     } else {
         DrawMembrane();
@@ -329,7 +331,7 @@ size_t
     float height = .1;
     const Float2 center(0.5, 0.5);
 
-    if (rawMembraneType->cellWall) {
+    if(rawMembraneType->cellWall) {
         // cell walls need obvious inner/outer memrbranes (we can worry
         // about chitin later)
         height = .05;
@@ -356,9 +358,9 @@ size_t
             meshVertices[writeIndex++] = {
                 Float3(
                     vertices2D[i % end].X, height / 2, vertices2D[i % end].Y),
-                center + Float2(std::cos(currentRadians),
-                             std::sin(currentRadians)) /
-                             2};
+                center +
+                    Float2(std::cos(currentRadians), std::sin(currentRadians)) /
+                        2};
         }
     }
 
@@ -381,9 +383,9 @@ Leviathan::Material::pointer
     bs::HTexture damaged;
 
     normal = Engine::Get()->GetGraphics()->LoadTextureByName(
-            rawMembraneType->normalTexture);
-        damaged = Engine::Get()->GetGraphics()->LoadTextureByName(
-            rawMembraneType->damagedTexture);
+        rawMembraneType->normalTexture);
+    damaged = Engine::Get()->GetGraphics()->LoadTextureByName(
+        rawMembraneType->damagedTexture);
 
     LEVIATHAN_ASSERT(
         normal && damaged && shader, "failed to load some membrane resource");

@@ -224,8 +224,9 @@ export function setupMicrobeEditor(){
         () => {
             selectCellTab("membrane");
         }, true);
-    
-    document.getElementById("rigiditySlider").addEventListener("input", onRigidityChanged, true);
+
+    document.getElementById("rigiditySlider").addEventListener("input",
+        onRigidityChanged, true);
 
 
     // All of the organelle buttons
@@ -736,7 +737,8 @@ function onSelectMembrane(membrane){
 
 function onRigidityChanged(event){
     if (common.isInEngine()) {
-        Leviathan.CallGenericEvent("MicrobeEditorRigidityChanged", {rigidity: parseInt(event.target.value)});
+        Leviathan.CallGenericEvent("MicrobeEditorRigidityChanged",
+            {rigidity: parseInt(event.target.value)});
     }
 }
 
@@ -781,7 +783,10 @@ function updateMutationPoints(mutationPoints, maxMutationPoints){
 //! Updates size points in GUI
 function updateSize(size){
     document.getElementById("sizeLabel").textContent =
-        size;// + " / Osmoregulation Cost: (" + size + ") ATP/s"; Is this still needed with the balance bars?
+        size;
+
+    // + " / Osmoregulation Cost: (" + size + ") ATP/s";
+    // Is this still needed with the balance bars?
 }
 
 //! Updates generation points in GUI

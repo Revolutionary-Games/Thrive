@@ -5,8 +5,8 @@
 #include "bioprocesses.h"
 #include "compounds.h"
 #include "general/json_registry.h"
-#include "organelle_types.h"
 #include "membrane_types.h"
+#include "organelle_types.h"
 #include "species_name_controller.h"
 
 namespace thrive {

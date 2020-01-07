@@ -127,14 +127,12 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-    if(engine->RegisterObjectProperty("Species",
-           "MembraneTypeId membraneType",
+    if(engine->RegisterObjectProperty("Species", "MembraneTypeId membraneType",
            asOFFSET(Species, membraneType)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-    if(engine->RegisterObjectProperty("Species",
-           "float membraneRigidity",
+    if(engine->RegisterObjectProperty("Species", "float membraneRigidity",
            asOFFSET(Species, membraneRigidity)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }

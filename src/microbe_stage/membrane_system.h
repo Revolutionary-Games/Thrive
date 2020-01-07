@@ -1,7 +1,7 @@
 #pragma once
 
-#include "membrane_types.h"
 #include "engine/component_types.h"
+#include "membrane_types.h"
 #include "simulation_parameters.h"
 
 #include <Entities/Component.h>
@@ -44,7 +44,7 @@ public:
         setMembraneType(MembraneTypeId type);
 
     MembraneTypeId
-    getMembraneType();
+        getMembraneType();
 
     void
         Release(Leviathan::Scene* scene);

@@ -125,7 +125,8 @@ std::string
 
 std::string
     computeEnergyBalanceWrapper(ProcessSystem& self,
-        const CScriptArray* organelles, const MembraneTypeId membraneType,
+        const CScriptArray* organelles,
+        const MembraneTypeId membraneType,
         const Patch* patch)
 {
     BOOST_SCOPE_EXIT(&organelles, &patch)
@@ -143,7 +144,9 @@ std::string
            organelles, patch, convertedOrganelles))
         return "";
 
-    return self.computeEnergyBalance(convertedOrganelles, SimulationParameters::membraneRegistry.getTypeData(membraneType), patch->getBiome());
+    return self.computeEnergyBalance(convertedOrganelles,
+        SimulationParameters::membraneRegistry.getTypeData(membraneType),
+        patch->getBiome());
 }
 // ------------------------------------ //
 class WorldEffectScript : public WorldEffect {
@@ -253,7 +256,8 @@ bool
 
     if(engine->RegisterObjectMethod("ProcessSystem",
            "string computeEnergyBalance(const "
-           "array<const OrganelleTemplate@>@ organelles, const MembraneTypeId membraneType, const Patch@ patch)",
+           "array<const OrganelleTemplate@>@ organelles, const MembraneTypeId "
+           "membraneType, const Patch@ patch)",
            asFUNCTION(computeEnergyBalanceWrapper),
            asCALL_CDECL_OBJFIRST) < 0) {
         ANGELSCRIPT_REGISTERFAIL;

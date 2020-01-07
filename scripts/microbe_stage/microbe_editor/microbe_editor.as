@@ -1354,7 +1354,7 @@ class MicrobeEditor{
 
                 enqueueAction(action);
             }
-            
+
             return 1;
         }
 

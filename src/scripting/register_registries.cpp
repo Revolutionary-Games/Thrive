@@ -29,7 +29,8 @@ const ReturnedT*
 //! Wrapper for TJsonRegistry::getTypeData
 template<class RegistryT, class ReturnedT>
 const ReturnedT*
-    getTypeDataWithInternalNameWrapper(RegistryT* self, const std::string& internalName)
+    getTypeDataWithInternalNameWrapper(RegistryT* self,
+        const std::string& internalName)
 {
     return &self->getTypeData(internalName);
 }
@@ -97,8 +98,11 @@ bool
     }
 
     if(engine->RegisterObjectMethod(classname,
-           ("const " + returnedTypeName + "@ getTypeData(const string &in internalName)").c_str(),
-           asFUNCTION((getTypeDataWithInternalNameWrapper<RegistryT, ReturnedT>)),
+           ("const " + returnedTypeName +
+               "@ getTypeData(const string &in internalName)")
+               .c_str(),
+           asFUNCTION(
+               (getTypeDataWithInternalNameWrapper<RegistryT, ReturnedT>)),
            asCALL_CDECL_OBJFIRST) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
@@ -487,38 +491,41 @@ bool
 
     // ------------------------------------ //
     // MembraneType
-    if(engine->RegisterObjectProperty(
-           "MembraneType", "float movementFactor", asOFFSET(MembraneType, movementFactor)) < 0) {
+    if(engine->RegisterObjectProperty("MembraneType", "float movementFactor",
+           asOFFSET(MembraneType, movementFactor)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-    if(engine->RegisterObjectProperty(
-           "MembraneType", "float osmoregulationFactor", asOFFSET(MembraneType, osmoregulationFactor)) < 0) {
+    if(engine->RegisterObjectProperty("MembraneType",
+           "float osmoregulationFactor",
+           asOFFSET(MembraneType, osmoregulationFactor)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-    if(engine->RegisterObjectProperty(
-           "MembraneType", "float resourceAbsorptionFactor", asOFFSET(MembraneType, resourceAbsorptionFactor)) < 0) {
+    if(engine->RegisterObjectProperty("MembraneType",
+           "float resourceAbsorptionFactor",
+           asOFFSET(MembraneType, resourceAbsorptionFactor)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-    if(engine->RegisterObjectProperty(
-           "MembraneType", "float hitpoints", asOFFSET(MembraneType, hitpoints)) < 0) {
+    if(engine->RegisterObjectProperty("MembraneType", "float hitpoints",
+           asOFFSET(MembraneType, hitpoints)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-    if(engine->RegisterObjectProperty(
-           "MembraneType", "float physicalResistance", asOFFSET(MembraneType, physicalResistance)) < 0) {
+    if(engine->RegisterObjectProperty("MembraneType",
+           "float physicalResistance",
+           asOFFSET(MembraneType, physicalResistance)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-    if(engine->RegisterObjectProperty(
-           "MembraneType", "float toxinResistance", asOFFSET(MembraneType, toxinResistance)) < 0) {
+    if(engine->RegisterObjectProperty("MembraneType", "float toxinResistance",
+           asOFFSET(MembraneType, toxinResistance)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-    if(engine->RegisterObjectProperty(
-           "MembraneType", "int editorCost", asOFFSET(MembraneType, editorCost)) < 0) {
+    if(engine->RegisterObjectProperty("MembraneType", "int editorCost",
+           asOFFSET(MembraneType, editorCost)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 

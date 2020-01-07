@@ -427,7 +427,8 @@ std::string
 // ------------------------------------ //
 std::string
     ProcessSystem::computeEnergyBalance(
-        const std::vector<OrganelleTemplate::pointer>& organelles, const MembraneType& membraneType,
+        const std::vector<OrganelleTemplate::pointer>& organelles,
+        const MembraneType& membraneType,
         const Biome& biome) const
 {
     Json::Value value(Json::objectValue);
@@ -511,7 +512,8 @@ std::string
     consumption["baseMovement"] = baseMovementCost;
 
     // Add osmoregulation
-    const float osmoregulation = ATP_COST_FOR_OSMOREGULATION * hexCount * membraneType.osmoregulationFactor;
+    const float osmoregulation = ATP_COST_FOR_OSMOREGULATION * hexCount *
+                                 membraneType.osmoregulationFactor;
 
     consumption["osmoregulation"] = osmoregulation;
 
