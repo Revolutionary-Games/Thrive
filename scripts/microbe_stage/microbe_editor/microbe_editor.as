@@ -76,8 +76,8 @@ class MicrobeEditor{
             {"remove", PlacementFunctionType(this.removeOrganelle)}
         };
 
-        invalidMaterial = getBasicTransparentMaterialWithTexture("single_hex_invalid.png");
-        validMaterial = getBasicTransparentMaterialWithTexture("single_hex.png");
+        @invalidMaterial = getBasicTransparentMaterialWithTexture("single_hex_invalid.png");
+        @validMaterial = getBasicTransparentMaterialWithTexture("single_hex.png");
     }
 
     //! This is called each time the editor is entered so this needs to properly reset state
@@ -224,7 +224,7 @@ class MicrobeEditor{
             ObjectID hex = placedHexes[i];
             auto model = hudSystem.world.GetComponent_Model(hex);
 
-            model.Material = validMaterial;
+            @model.ObjectMaterial = validMaterial;
             model.Marked = true;
         }
 
@@ -303,7 +303,7 @@ class MicrobeEditor{
 
                 ObjectID hex = placedHexes[nextFreeHex++];
                 auto node = hudSystem.world.GetComponent_RenderNode(hex);
-                node.Node.setPosition(pos);
+                node.Node.SetPosition(pos);
                 node.Hidden = false;
                 node.Marked = true;
             }
@@ -320,11 +320,10 @@ class MicrobeEditor{
 
                 ObjectID organelleModel = placedModels[nextFreeOrganelle++];
                 auto node = hudSystem.world.GetComponent_RenderNode(organelleModel);
-                node.Node.setPosition(cartesianPosition +
+                node.Node.SetPosition(cartesianPosition +
                     organelle.organelle.calculateModelOffset());
-                node.Node.setOrientation(bs::Quaternion(bs::Degree(180),
-                    bs::Vector3(0, 1, 0))*bs::Quaternion(bs::Degree(organelle.rotation),
-                    bs::Vector3(0, -1, 0)));
+
+                node.Node.SetOrientation(createRotationForOrganelle(organelle.rotation));
                 node.Hidden = false;
                 node.Marked = true;
 
@@ -332,7 +331,7 @@ class MicrobeEditor{
 
                 if(model.MeshName != organelle.organelle.mesh){
                     model.MeshName = organelle.organelle.mesh;
-                    model.Material = getOrganelleMaterialWithTexture(
+                    @model.ObjectMaterial = getOrganelleMaterialWithTexture(
                         organelle.organelle.texture);
                     model.Marked = true;
                 }
@@ -969,13 +968,13 @@ class MicrobeEditor{
 
                 ObjectID hex = placedHexes[placedIndex];
                 auto node = hudSystem.world.GetComponent_RenderNode(hex);
-                if(pos == node.Node.getPosition()){
+                if(pos == node.Node.GetPosition()){
                     duplicate = true;
 
                     if(!canPlace){
                         // Mark as invalid
                         auto model = hudSystem.world.GetComponent_Model(hex);
-                        model.Material = invalidMaterial;
+                        @model.ObjectMaterial = invalidMaterial;
                         model.Marked = true;
 
                         showModel = false;
@@ -990,16 +989,16 @@ class MicrobeEditor{
 
             ObjectID hex = hudSystem.hoverHex[usedHoverHex++];
             auto node = hudSystem.world.GetComponent_RenderNode(hex);
-            node.Node.setPosition(pos);
+            node.Node.SetPosition(pos);
             node.Hidden = false;
             node.Marked = true;
 
             auto model = hudSystem.world.GetComponent_Model(hex);
 
             if(canPlace){
-                model.Material = validMaterial;
+                @model.ObjectMaterial = validMaterial;
             } else {
-                model.Material = invalidMaterial;
+                @model.ObjectMaterial = invalidMaterial;
             }
 
             model.Marked = true;
@@ -1012,11 +1011,9 @@ class MicrobeEditor{
 
             ObjectID organelleModel = hudSystem.hoverOrganelle[usedHoverOrganelle++];
             auto node = hudSystem.world.GetComponent_RenderNode(organelleModel);
-            node.Node.setPosition(cartesianPosition +
+            node.Node.SetPosition(cartesianPosition +
                 toBePlacedOrganelle.calculateModelOffset());
-            node.Node.setOrientation(bs::Quaternion(bs::Degree(180),
-                    bs::Vector3(0, 1, 0))*bs::Quaternion(bs::Degree(rotation),
-                    bs::Vector3(0, -1, 0)));
+            node.Node.SetOrientation(createRotationForOrganelle(rotation));
             node.Hidden = false;
             node.Marked = true;
 
@@ -1024,7 +1021,8 @@ class MicrobeEditor{
 
             if(model.MeshName != toBePlacedOrganelle.mesh){
                 model.MeshName = toBePlacedOrganelle.mesh;
-                model.Material = getOrganelleMaterialWithTexture(toBePlacedOrganelle.texture);
+                @model.ObjectMaterial = getOrganelleMaterialWithTexture(
+                    toBePlacedOrganelle.texture);
                 model.Marked = true;
             }
         }
@@ -1039,11 +1037,10 @@ class MicrobeEditor{
         node.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
         node.Hidden = true;
         node.Marked = true;
-        node.Node.setPosition(bs::Vector3(0, 0, 0));
-        // bs::Quaternion rot(0.40118, 0.791809, 0.431951, 0.0381477);
-        node.Node.setOrientation(bs::Quaternion(bs::Degree(90),
-                bs::Vector3(0, 1, 0)) * bs::Quaternion(bs::Degree(180),
-                    bs::Vector3(0, 0, 1)));
+        node.Node.SetPosition(Float3(0, 0, 0));
+        // Quaternion rot(0.40118, 0.791809, 0.431951, 0.0381477);
+        node.Node.SetOrientation(Quaternion(Float3(0, 1, 0), Degree(90))
+            * Quaternion(Float3(0, 0, 1), Degree(180)));
         return hex;
     }
 
@@ -1055,9 +1052,9 @@ class MicrobeEditor{
         node.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
         node.Hidden = true;
         node.Marked = true;
-        node.Node.setPosition(bs::Vector3(0, 0, 0));
+        node.Node.SetPosition(Float3(0, 0, 0));
 
-        hudSystem.world.Create_Model(organelle, "", bs::HMaterial());
+        hudSystem.world.Create_Model(organelle, "", Material());
 
         return organelle;
     }
@@ -1413,6 +1410,6 @@ class MicrobeEditor{
 
     private EventListener@ eventListener;
 
-    private bs::HMaterial invalidMaterial;
-    private bs::HMaterial validMaterial;
+    private Material@ invalidMaterial;
+    private Material@ validMaterial;
 };

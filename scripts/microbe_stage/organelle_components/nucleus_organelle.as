@@ -34,13 +34,12 @@ class NucleusOrganelle : OrganelleComponent{
         auto model1 = world.Create_Model(golgi, "golgi.fbx",
             getOrganelleMaterialWithTexture("GolgiApparatus.png", organelle.species.colour));
 
-        sceneNode1.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
-        sceneNode1.Node.setPosition(Hex::axialToCartesian(q + 0.9f, r + 0.9f));
-        sceneNode1.Node.setOrientation(bs::Quaternion(bs::Degree(rotation+180),
-                bs::Vector3(0, 1, 0)));
-        sceneNode1.Marked = true;
+        microbeNode.Node.AttachObject(sceneNode1.Node);
 
-        sceneNode1.Node.setParent(microbeNode.Node, false);
+        sceneNode1.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
+        sceneNode1.Node.SetPosition(Hex::axialToCartesian(q + 0.9f, r + 0.9f));
+        sceneNode1.Node.SetOrientation(Quaternion(Float3(0, 1, 0), Degree(rotation + 180)));
+        sceneNode1.Marked = true;
 
         world.SetEntitysParent(golgi, microbeEntity);
 
@@ -48,14 +47,13 @@ class NucleusOrganelle : OrganelleComponent{
         auto model2 = world.Create_Model(ER, "ER.fbx",
             getOrganelleMaterialWithTexture("ER.png", organelle.species.colour));
 
+        microbeNode.Node.AttachObject(sceneNode2.Node);
+
         sceneNode2.Scale = Float3(HEX_SIZE, HEX_SIZE, HEX_SIZE);
-        sceneNode2.Node.setPosition(Hex::axialToCartesian(q, r + 1.6f));
+        sceneNode2.Node.SetPosition(Hex::axialToCartesian(q, r + 1.6f));
 
-        sceneNode2.Node.setOrientation(bs::Quaternion(bs::Degree(rotation+190),
-                bs::Vector3(0, 1, 0)));
+        sceneNode2.Node.SetOrientation(Quaternion(Float3(0, 1, 0), Degree(rotation + 190)));
         sceneNode2.Marked = true;
-
-        sceneNode2.Node.setParent(microbeNode.Node, false);
 
         world.SetEntitysParent(ER, microbeEntity);
 
@@ -94,13 +92,13 @@ class NucleusOrganelle : OrganelleComponent{
     void hideEntity(PlacedOrganelle@ organelle) override
     {
         auto renderNode = organelle.world.GetComponent_RenderNode(golgi);
-        if(renderNode !is null && renderNode.Node.valid()){
+        if(renderNode !is null && renderNode.Node !is null){
             renderNode.Hidden = true;
             renderNode.Marked = true;
         }
 
         @renderNode = organelle.world.GetComponent_RenderNode(ER);
-        if(renderNode !is null && renderNode.Node.valid()){
+        if(renderNode !is null && renderNode.Node !is null){
             renderNode.Hidden = true;
             renderNode.Marked = true;
         }

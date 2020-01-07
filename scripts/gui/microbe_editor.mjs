@@ -1087,6 +1087,7 @@ function processPatchMapData(data){
     if(!obj.patches){
         targetElement.textContent =
             "invalid data received it is missing patches";
+        return;
     }
     targetElement.textContent = "";
 
