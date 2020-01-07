@@ -1322,7 +1322,7 @@ class MicrobeEditor{
         } else if(type == "MicrobeEditorRigidityChanged"){
             NamedVars@ vars = event.GetNamedVars();
             float newRigidity = float(vars.GetSingleValueByName("rigidity")) / 10.f;
-            int cost = abs(newRigidity - rigidity) * 100;
+            int cost = int(abs(newRigidity - rigidity) * 100);
 
             if (cost > 0) {
                 if (cost > mutationPoints){

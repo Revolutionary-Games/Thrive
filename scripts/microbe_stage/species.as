@@ -19,7 +19,7 @@ void applyTemplate(CellStageWorld@ world, ObjectID microbe, Species@ species,
 
     MicrobeOperations::setMembraneType(world, microbe, species.membraneType);
     MicrobeOperations::setMembraneColour(world, microbe, species.colour);
-    MicrobeOperations::setupMicrobeHitpoints(world, microbe, SimulationParameters::membraneRegistry().getTypeData(species.membraneType).hitpoints + (microbeComponent.species.membraneRigidity - 0.5) * MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER * 2);
+    MicrobeOperations::setupMicrobeHitpoints(world, microbe, int(SimulationParameters::membraneRegistry().getTypeData(species.membraneType).hitpoints + (microbeComponent.species.membraneRigidity - 0.5) * MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER * 2));
 
     restoreOrganelleLayout(world, microbe, microbeComponent, species, editShape);
 
