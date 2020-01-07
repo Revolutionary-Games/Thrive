@@ -527,7 +527,7 @@ For this Release if your population (top tab) drops to zero you go extinct.
 
         <div id="microbeEditorLeftPanel" class="Panel">
 	      <div id="StructurePanelTop" class="CellTabButton">STRUCTURE</div>
-	      <div id="AppearanceButton" class="CellTabButton">APPEARANCE</div>
+	      <div id="MembraneButton" class="CellTabButton">MEMBRANE</div>
 	      <div id="BehaviorButton" class="CellTabButton Disabled">BEHAVIOR</div>
 	      <div id="StructurePanelMid">
 	        <div class="OrganelleListTitle">STRUCTURAL ORGANELLES</div>
@@ -852,29 +852,41 @@ For this Release if your population (top tab) drops to zero you go extinct.
 			      <div class="BioluminescentIcon"></div>Bioluminescent Vacuole<br>N/A MP</td>
 	        </tr></table>
 	      </div>
-        <div id="AppearancePanelMid">
+        <div id="MembranePanelMid">
           <div class="OrganelleListTitle">MEMBRANE TYPES</div>
           <table class="OrganelleTable">
             <tr>
-              <td id="setMembraneMembrane" class="OrganelleListItem">
-                <div class="CytoplasmIcon"></div>
+              <td id="setMembraneSingle" class="OrganelleListItem">
+                <div class="SingleMembraneIcon"></div>
                 Normal<br>50 MP
               </td>
-              <td id="setMembraneWall" class="OrganelleListItem">
-               <div class="CytoplasmIcon"></div>
-                Wall<br>50 MP
+              <td id="setMembraneDouble" class="OrganelleListItem">
+                <div class="DoubleMembraneIcon"></div>
+                Double<br>50 MP
               </td>
-              <td id="setMembraneChitin" class="OrganelleListItem">
-                <div class="CytoplasmIcon"></div>
-                Chitin<br>50 MP
+              <td id="setMembraneCellulose" class="OrganelleListItem">
+                <div class="CelluloseMembraneIcon"></div>
+                Cellulose<br>50 MP
               </td>
             </tr><tr>
-              <td id="setMembraneDouble" class="OrganelleListItem">
-                <div class="CytoplasmIcon"></div>
-                Double<br>50 MP
+              <td id="setMembraneChitin" class="OrganelleListItem">
+                <div class="ChitinMembraneIcon"></div>
+                Chitin<br>50 MP
+              </td>
+              <td id="setMembraneCalciumCarbonate" class="OrganelleListItem">
+                <div class="CalciumCarboMembraneIcon"></div>
+                Calcium Carbonate<br>50 MP
+              </td>
+              <td id="setMembraneSilica" class="OrganelleListItem">
+                <div class="SilicaMembraneIcon"></div>
+                Silica<br>50 MP
               </td>
             </tr>
           </table>
+          <div class="OrganelleListTitle">FLUIDITY/RIGIDITY</div>
+          <div id="rigiditySliderContainer">
+            <input type="range" min="0" max="10" value="50" class="slider" id="rigiditySlider">
+          </div>
           <div class="OrganelleListTitle">COLOUR</div>
           <div id="ColourWheel"></div>
           <div id="ColourDisplay"></div>

@@ -55,6 +55,7 @@ Json::Value
 
     result["isBacteria"] = isBacteria;
     result["membraneType"] = membraneType;
+    result["membraneRigidity"] = membraneRigidity;
     result["name"] = name;
     result["genus"] = genus;
     result["epithet"] = epithet;

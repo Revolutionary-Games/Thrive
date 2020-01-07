@@ -54,6 +54,7 @@ class MicrobeEditor{
         eventListener.RegisterForEvent("MicrobeEditorNameChanged");
         eventListener.RegisterForEvent("MicrobeEditorMembraneSelected");
         eventListener.RegisterForEvent("MicrobeEditorColourSelected");
+        eventListener.RegisterForEvent("MicrobeEditorRigidityChanged");
 
         placementFunctions = {
             // {"nucleus", PlacementFunctionType(this.createNewMicrobe)},
@@ -91,6 +92,7 @@ class MicrobeEditor{
         newName = "";
         membrane = 0;
         colour = Float4(1, 1, 1, 1);
+        rigidity = 0;
         setUndoButtonStatus(false);
         setRedoButtonStatus(false);
 
@@ -195,6 +197,7 @@ class MicrobeEditor{
 
         newName = playerSpecies.genus + " " + playerSpecies.epithet;
         membrane = playerSpecies.membraneType;
+        rigidity = playerSpecies.membraneRigidity;
         colour = playerSpecies.colour;
         GenericEvent@ event = GenericEvent("MicrobeEditorActivated");
         NamedVars@ vars = event.GetNamedVars();
@@ -204,6 +207,7 @@ class MicrobeEditor{
         vars.AddValue(ScriptSafeVariableBlock("colourR", colour.X));
         vars.AddValue(ScriptSafeVariableBlock("colourG", colour.Y));
         vars.AddValue(ScriptSafeVariableBlock("colourB", colour.Z));
+        vars.AddValue(ScriptSafeVariableBlock("rigidity", rigidity * 10));
 
         GetEngine().GetEventHandler().CallEvent(event);
     }
@@ -272,7 +276,7 @@ class MicrobeEditor{
         _updateAlreadyPlacedVisuals();
 
         // Calculate and send energy balance to the GUI
-        calculateEnergyBalanceWithOrganelles(editedMicrobeOrganelles, targetPatch);
+        calculateEnergyBalanceWithOrganellesAndMembraneType(editedMicrobeOrganelles, membrane, targetPatch);
     }
 
     // This destroys and creates again entities to represent all the
@@ -1111,7 +1115,7 @@ class MicrobeEditor{
         return lengthMicrobe;
     }
 
-    // Make sure this is only called when you add organelles, as it is an expensive
+    // Make sure this is only called when you add organelles (or change membrane types), as it is expensive
     double getMicrobeSpeed() const
     {
         double finalSpeed = 0;
@@ -1125,20 +1129,19 @@ class MicrobeEditor{
                 flagCount++;
             }
         }
-        //This is complex, i Know
-        finalSpeed= ((CELL_BASE_THRUST+((flagCount/(lengthMicrobe-flagCount))*FLAGELLA_BASE_FORCE))+
-            (CELL_DRAG_MULTIPLIER-(CELL_SIZE_DRAG_MULTIPLIER*lengthMicrobe)));
+        // This is complex, I know
+        finalSpeed = (((CELL_BASE_THRUST + ((flagCount / (lengthMicrobe - flagCount)) * FLAGELLA_BASE_FORCE)) + (CELL_DRAG_MULTIPLIER - (CELL_SIZE_DRAG_MULTIPLIER * lengthMicrobe)))) * (SimulationParameters::membraneRegistry().getTypeData(membrane).movementFactor - (rigidity - 0.5) * MEMBRANE_RIGIDITY_MOBILITY_MODIFIER * 2);
         return finalSpeed;
     }
 
-    // Maybe i should do this in the non-editor code instead, to make sure its more decoupled from the player
+    // Maybe this should be done in the non-editor code instead, to make sure it's more decoupled from the player
     int getMicrobeGeneration() const
     {
         auto playerSpecies = MicrobeOperations::getSpecies(
             GetThriveGame().getCellStage(), "Default");
 
         // Its plus one because you are updating the next generation
-        return (playerSpecies.generation+1);
+        return (playerSpecies.generation + 1);
     }
 
     int onGeneric(GenericEvent@ event)
@@ -1246,7 +1249,12 @@ class MicrobeEditor{
             LOG_INFO("MicrobeEditor: Player species colour is now RGB: " + playerSpecies.colour.X + " " + playerSpecies.colour.Y + " " + playerSpecies.colour.Z);
             membraneComponent.setColour(colour);
             membraneComponent.clear();
+            playerSpecies.membraneRigidity = rigidity;
+            // Change player health
             MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(world.GetScriptComponentHolder("MicrobeComponent").Find(player));
+            float hpFraction = microbeComponent.hitpoints / microbeComponent.maxHitpoints;
+            microbeComponent.maxHitpoints = SimulationParameters::membraneRegistry().getTypeData(membrane).hitpoints + (microbeComponent.species.membraneRigidity - 0.5) * MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER * 2;
+            microbeComponent.hitpoints = microbeComponent.maxHitpoints * hpFraction;
 
             return 1;
         } else if (type == "SymmetryClicked"){
@@ -1284,7 +1292,7 @@ class MicrobeEditor{
             return 1;
         } else if(type == "MicrobeEditorMembraneSelected"){
             NamedVars@ vars = event.GetNamedVars();
-            int cost = 50; // Will need some changes once membrane types are more fleshed out
+            int cost = SimulationParameters::membraneRegistry().getTypeData(string(vars.GetSingleValueByName("membrane"))).editorCost;
 
             EditorAction@ action = EditorAction(cost,
                 // redo
@@ -1313,6 +1321,43 @@ class MicrobeEditor{
         } else if(type == "MicrobeEditorColourSelected"){
             NamedVars@ vars = event.GetNamedVars();
             colour = Float4(vars.GetSingleValueByName("r"), vars.GetSingleValueByName("g"), vars.GetSingleValueByName("b"), 1);
+            return 1;
+        } else if(type == "MicrobeEditorRigidityChanged"){
+            NamedVars@ vars = event.GetNamedVars();
+            float newRigidity = float(vars.GetSingleValueByName("rigidity")) / 10.f;
+            int cost = abs(newRigidity - rigidity) * 100;
+
+            if (cost > 0) {
+                if (cost > mutationPoints){
+                    newRigidity = rigidity + (newRigidity < rigidity ? -mutationPoints : mutationPoints) / 100.f;
+                    cost = mutationPoints;
+                }
+
+                EditorAction@ action = EditorAction(cost,
+                    // redo
+                    function(EditorAction@ action, MicrobeEditor@ editor){
+                        editor.rigidity = float(action.data["rigidity"]);
+                        GenericEvent@ event = GenericEvent("MicrobeEditorRigidityUpdated");
+                        NamedVars@ vars = event.GetNamedVars();
+                        vars.AddValue(ScriptSafeVariableBlock("rigidity", int(editor.rigidity * 10)));
+                        GetEngine().GetEventHandler().CallEvent(event);
+                    },
+                    // undo
+                    function(EditorAction@ action, MicrobeEditor@ editor){
+                        editor.rigidity = float(action.data["prevRigidity"]);
+                        GenericEvent@ event = GenericEvent("MicrobeEditorRigidityUpdated");
+                        NamedVars@ vars = event.GetNamedVars();
+                        vars.AddValue(ScriptSafeVariableBlock("rigidity", int(editor.rigidity * 10)));
+                        GetEngine().GetEventHandler().CallEvent(event);
+                    }
+                );
+
+                action.data["rigidity"] = newRigidity;
+                action.data["prevRigidity"] = rigidity;
+
+                enqueueAction(action);
+            }
+            
             return 1;
         }
 
@@ -1373,6 +1418,9 @@ class MicrobeEditor{
     MembraneTypeId membrane;
 
     private Float4 colour;
+
+    // Not private so anonymous callbacks can access this, same as the two above...
+    float rigidity;
 
     private bool microbeHasBeenInEditor = false;
 

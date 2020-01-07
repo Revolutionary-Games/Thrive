@@ -3,7 +3,7 @@
 //! Used by the editor to collect info to send to the GUI
 #include "calculate_effectiveness.as"
 
-void calculateEnergyBalanceWithOrganelles(const array<PlacedOrganelle@>@ organelles,
+void calculateEnergyBalanceWithOrganellesAndMembraneType(const array<PlacedOrganelle@>@ organelles, const MembraneTypeId membraneType,
     int patchId = -1)
 {
     auto world = GetThriveGame().getCellStage();
@@ -20,7 +20,7 @@ void calculateEnergyBalanceWithOrganelles(const array<PlacedOrganelle@>@ organel
     }
 
     if(patch is null){
-        LOG_ERROR("calculateEnergyBalanceWithOrganelles: could not find patch: " + patchId);
+        LOG_ERROR("calculateEnergyBalanceWithOrganellesAndMembraneType: could not find patch: " + patchId);
         return;
     }
 
@@ -31,7 +31,7 @@ void calculateEnergyBalanceWithOrganelles(const array<PlacedOrganelle@>@ organel
     }
 
     const string result = world.GetProcessSystem().computeEnergyBalance(
-        organelleTemplates, patch);
+        organelleTemplates, membraneType, patch);
 
     // LOG_WRITE("Energy balance data: \n" + result);
 

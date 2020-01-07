@@ -133,6 +133,12 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    if(engine->RegisterObjectProperty("Species",
+           "float membraneRigidity",
+           asOFFSET(Species, membraneRigidity)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     if(engine->RegisterObjectProperty(
            "Species", "string stringCode", asOFFSET(Species, stringCode)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;

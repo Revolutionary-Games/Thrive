@@ -2,6 +2,7 @@
 
 #include "biomes.h"
 #include "organelle_template.h"
+#include "membrane_types.h"
 
 #include "engine/component_types.h"
 #include "engine/typedefs.h"
@@ -157,7 +158,7 @@ public:
     //! \returns The data as a JSON string
     std::string
         computeEnergyBalance(
-            const std::vector<OrganelleTemplate::pointer>& organelles,
+            const std::vector<OrganelleTemplate::pointer>& organelles, const MembraneType& membraneType,
             const Biome& biome) const;
 
 

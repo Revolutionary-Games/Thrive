@@ -277,7 +277,7 @@ void respawnPlayer(CellStageWorld@ world)
             microbeComponent.organelles[i].reset();
         }
 
-        setupMicrobeHitpoints(microbeComponent, SimulationParameters::membraneRegistry().getTypeData(microbeComponent.species.membraneType).hitpoints);
+        setupMicrobeHitpoints(microbeComponent, SimulationParameters::membraneRegistry().getTypeData(microbeComponent.species.membraneType).hitpoints + (microbeComponent.species.membraneRigidity - 0.5) * MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER * 2);
         // Setup compounds
         setupMicrobeCompounds(world,playerEntity);
         // Reset position //
@@ -369,7 +369,7 @@ float getBandwidth(MicrobeComponent@ microbeComponent, float maxAmount,
 
     auto amount = min(maxAmount * compoundVolume, microbeComponent.remainingBandwidth);
     microbeComponent.remainingBandwidth = microbeComponent.remainingBandwidth - amount;
-    return amount / compoundVolume;
+    return (amount / compoundVolume)  * SimulationParameters::membraneRegistry().getTypeData(microbeComponent.species.membraneType).resourceAbsorptionFactor;
 }
 
 // Stores an compound in the microbe's storage organelles
@@ -811,12 +811,16 @@ void damage(CellStageWorld@ world, ObjectID microbeEntity, double amount, const 
             // Play the toxin sound
             playSoundWithDistance(world, "Data/Sound/soundeffects/microbe-toxin-damage.ogg",
                 microbeEntity);
+            // Divide damage by toxin resistance
+            amount /= SimulationParameters::membraneRegistry().getTypeData(microbeComponent.species.membraneType).toxinResistance;
         } else if(damageType == "pilus"){
             // Play the pilus sound
             playSoundWithDistance(world, "Data/Sound/soundeffects/pilus_puncture_stab.ogg",
                 microbeEntity);
             // TODO: this may get triggered a lot more than the toxin
             // so this might need to be rate limited or something
+            // Divide damage by physical resistance
+            amount /= SimulationParameters::membraneRegistry().getTypeData(microbeComponent.species.membraneType).physicalResistance;
         }
 
         microbeComponent.hitpoints -= amount;

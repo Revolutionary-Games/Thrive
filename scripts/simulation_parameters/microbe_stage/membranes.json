@@ -1,30 +1,74 @@
 {
-	"single":
-	{
+	"single": {
 		"cellWall": false,
 		"normalTexture": "FresnelGradient.png",
 		"damagedTexture": "FresnelGradientDamaged.png",
-		"hitpoints": 70
+		"movementFactor": 1.1,
+		"osmoregulationFactor": 1.1,
+		"resourceAbsorptionFactor": 1.1,
+		"hitpoints": 70,
+		"physicalResistance": 1,
+		"toxinResistance": 1,
+		"editorCost": 50
 	},
-	"double":
-	{
+	"double": {
 		"cellWall": false,
 		"normalTexture": "DoubleCellMembrane.png",
 		"damagedTexture": "DoubleCellMembraneDamaged.png",
-		"hitpoints": 100
+		"movementFactor": 1,
+		"osmoregulationFactor": 1,
+		"resourceAbsorptionFactor": 1,
+		"hitpoints": 100,
+		"physicalResistance": 1,
+		"toxinResistance": 1,
+		"editorCost": 50
 	},
-	"wall":
-	{
+	"cellulose": {
 		"cellWall": true,
 		"normalTexture": "CellWallGradient.png",
 		"damagedTexture": "CellWallGradientDamaged.png",
-		"hitpoints": 130
+		"movementFactor": 0.8,
+		"osmoregulationFactor": 0.8,
+		"resourceAbsorptionFactor": 0.9,
+		"hitpoints": 100,
+		"physicalResistance": 1.2,
+		"toxinResistance": 1,
+		"editorCost": 50
 	},
-	"chitin":
-	{
+	"chitin": {
 		"cellWall": true,
 		"normalTexture": "ChitinCellWallGradient.png",
 		"damagedTexture": "ChitinCellWallGradientDamaged.png",
-		"hitpoints": 100
+		"movementFactor": 0.8,
+		"osmoregulationFactor": 0.8,
+		"resourceAbsorptionFactor": 0.9,
+		"hitpoints": 100,
+		"physicalResistance": 1,
+		"toxinResistance": 1.2,
+		"editorCost": 50
+	},
+	"calcium_carbonate": {
+		"cellWall": true,
+		"normalTexture": "CellWallGradient.png",
+		"damagedTexture": "CellWallGradientDamaged.png",
+		"movementFactor": 0.7,
+		"osmoregulationFactor": 0.8,
+		"resourceAbsorptionFactor": 0.9,
+		"hitpoints": 130,
+		"physicalResistance": 1.2,
+		"toxinResistance": 1.2,
+		"editorCost": 50
+	},
+	"silica": {
+		"cellWall": true,
+		"normalTexture": "SilicaMembrane.png",
+		"damagedTexture": "SilicaMembraneDamaged.png",
+		"movementFactor": 0.6,
+		"osmoregulationFactor": 0.8,
+		"resourceAbsorptionFactor": 0.9,
+		"hitpoints": 130,
+		"physicalResistance": 1.4,
+		"toxinResistance": 1.2,
+		"editorCost": 50
 	}
 }

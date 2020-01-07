@@ -459,7 +459,7 @@ class MicrobeSystem : ScriptSystem{
         // TODO:It seems to happen no matter what (even if it takes away less atp then
         // you generate per second), we should probably make it take into account the amount
         // of atp being generated so resources arent wasted
-        auto osmoCost = (microbeComponent.totalHexCountCache*ATP_COST_FOR_OSMOREGULATION) *
+        auto osmoCost = (microbeComponent.totalHexCountCache * SimulationParameters::membraneRegistry().getTypeData(microbeComponent.species.membraneType).osmoregulationFactor * ATP_COST_FOR_OSMOREGULATION) *
             elapsed;
 
         MicrobeOperations::takeCompound(world, microbeEntity,
@@ -574,7 +574,7 @@ class MicrobeSystem : ScriptSystem{
             microbeComponent.movementDirection.Z != 0.f)
         {
             const auto cost = (BASE_MOVEMENT_ATP_COST * microbeComponent.totalHexCountCache)
-                * elapsed;
+                * elapsed; // Should membrane osmoregulation factor be taken into account here?
 
             const auto got = MicrobeOperations::takeCompound(world, microbeEntity,
                 SimulationParameters::compoundRegistry().getTypeId("atp"), cost);
@@ -589,7 +589,8 @@ class MicrobeSystem : ScriptSystem{
 
             microbeComponent.queuedMovementForce += pos._Orientation.RotateVector(
                 microbeComponent.movementDirection * force *
-                microbeComponent.movementFactor);
+                microbeComponent.movementFactor *
+                (SimulationParameters::membraneRegistry().getTypeData(microbeComponent.species.membraneType).movementFactor - (microbeComponent.species.membraneRigidity - 0.5) * MEMBRANE_RIGIDITY_MOBILITY_MODIFIER * 2));
         }
 
         // Update organelles and then apply the movement force that was generated

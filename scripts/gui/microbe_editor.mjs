@@ -110,20 +110,28 @@ const organelleSelectionElements = [
 
 const membraneSelectionElements = [
     {
-        element: document.getElementById("setMembraneMembrane"),
+        element: document.getElementById("setMembraneSingle"),
         membrane: "single"
     },
     {
-        element: document.getElementById("setMembraneWall"),
-        membrane: "wall"
+        element: document.getElementById("setMembraneDouble"),
+        membrane: "double"
+    },
+    {
+        element: document.getElementById("setMembraneCellulose"),
+        membrane: "cellulose"
     },
     {
         element: document.getElementById("setMembraneChitin"),
         membrane: "chitin"
     },
     {
-        element: document.getElementById("setMembraneDouble"),
-        membrane: "double"
+        element: document.getElementById("setMembraneCalciumCarbonate"),
+        membrane: "calcium_carbonate"
+    },
+    {
+        element: document.getElementById("setMembraneSilica"),
+        membrane: "silica"
     }
 ];
 
@@ -212,10 +220,12 @@ export function setupMicrobeEditor(){
             selectCellTab("structure");
         }, true);
 
-    document.getElementById("AppearanceButton").addEventListener("click",
+    document.getElementById("MembraneButton").addEventListener("click",
         () => {
-            selectCellTab("appearance");
+            selectCellTab("membrane");
         }, true);
+    
+    document.getElementById("rigiditySlider").addEventListener("input", onRigidityChanged, true);
 
 
     // All of the organelle buttons
@@ -343,6 +353,7 @@ export function setupMicrobeEditor(){
             colour.hsvValue = hsvValueFromRGB(colour);
             updateColourDisplay(colour);
             updateColourValueBar(colour);
+            updateRigidity(vars.rigidity);
         });
 
         // Event for detecting the current membrane
@@ -358,6 +369,11 @@ export function setupMicrobeEditor(){
             colour.hsvValue = hsvValueFromRGB(colour);
             updateColourDisplay(colour);
             updateColourValueBar(colour);
+        });
+
+        // Event for detecting the membrane rigidity
+        Leviathan.OnGeneric("MicrobeEditorRigidityUpdated", (event, vars) => {
+            updateRigidity(vars.rigidity);
         });
 
         Leviathan.OnGeneric("OrganellePatchEfficiencyData", (event, vars) => {
@@ -479,10 +495,10 @@ function onNameInput(event){
 function selectCellTab(tab){
     // Hide all
     document.getElementById("StructurePanelMid").style.display = "none";
-    document.getElementById("AppearancePanelMid").style.display = "none";
+    document.getElementById("MembranePanelMid").style.display = "none";
 
     document.getElementById("StructurePanelTop").classList.remove("Active");
-    document.getElementById("AppearanceButton").classList.remove("Active");
+    document.getElementById("MembraneButton").classList.remove("Active");
 
     for(const element of organelleSelectionElements){
         element.element.style.display = "none";
@@ -501,14 +517,14 @@ function selectCellTab(tab){
         }
 
         document.getElementById("StructurePanelTop").classList.add("Active");
-    } else if(tab == "appearance"){
-        document.getElementById("AppearancePanelMid").style.display = "block";
+    } else if(tab == "membrane"){
+        document.getElementById("MembranePanelMid").style.display = "block";
 
         for(const element of membraneSelectionElements){
             element.element.style.display = "";
         }
 
-        document.getElementById("AppearanceButton").classList.add("Active");
+        document.getElementById("MembraneButton").classList.add("Active");
     } else {
         throw "invalid tab";
     }
@@ -718,6 +734,12 @@ function onSelectMembrane(membrane){
     }
 }
 
+function onRigidityChanged(event){
+    if (common.isInEngine()) {
+        Leviathan.CallGenericEvent("MicrobeEditorRigidityChanged", {rigidity: parseInt(event.target.value)});
+    }
+}
+
 //! Updates the GUI buttons based on current membrane
 function updateCurrentMembrane(membrane){
 
@@ -742,6 +764,10 @@ function updateCurrentMembrane(membrane){
     }
 }
 
+function updateRigidity(rigidity){
+    document.getElementById("rigiditySlider").value = rigidity;
+}
+
 //! Updates mutation points in GUI
 function updateMutationPoints(mutationPoints, maxMutationPoints){
     document.getElementById("microbeHUDPlayerMutationPoints").textContent =
@@ -755,7 +781,7 @@ function updateMutationPoints(mutationPoints, maxMutationPoints){
 //! Updates size points in GUI
 function updateSize(size){
     document.getElementById("sizeLabel").textContent =
-    size + " / Osmoregulation Cost: (" + size + ") ATP/s";
+        size;// + " / Osmoregulation Cost: (" + size + ") ATP/s"; Is this still needed with the balance bars?
 }
 
 //! Updates generation points in GUI
