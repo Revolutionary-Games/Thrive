@@ -587,7 +587,7 @@ class MicrobeSystem : ScriptSystem{
                 force *= 0.5f;
             }
 
-            microbeComponent.queuedMovementForce += pos._Orientation.RotateVector(
+            microbeComponent.queuedMovementForce += pos._Orientation * (
                 microbeComponent.movementDirection * force *
                 microbeComponent.movementFactor);
         }
@@ -613,7 +613,7 @@ class MicrobeSystem : ScriptSystem{
 
         // Rotation (this is unaffected by everything currently)
         {
-            const auto target = Float4::QuaternionLookAt(pos._Position,
+            const auto target = Quaternion::LookAt(pos._Position,
                 microbeComponent.facingTargetPoint);
             const auto current = pos._Orientation;
             // Slerp 50% of the way each call

@@ -5,9 +5,7 @@
 #include <Entities/Component.h>
 #include <Entities/Components.h>
 #include <Entities/System.h>
-
-#include <bsfUtility/Math/BsVector2.h>
-#include <bsfUtility/Math/BsVector3.h>
+#include <Rendering/Renderable.h>
 
 #include <atomic>
 
@@ -25,8 +23,8 @@ enum class MEMBRANE_TYPE { MEMBRANE, WALL, CHITIN, DOUBLEMEMBRANE };
 class MembraneComponent : public Leviathan::Component {
     struct MembraneVertex {
 
-        bs::Vector3 m_pos;
-        bs::Vector2 m_uv;
+        Float3 m_pos;
+        Float2 m_uv;
     };
 
     static_assert(sizeof(MembraneVertex) == 5 * sizeof(float));
@@ -49,7 +47,7 @@ public:
     getMembraneType();
 
     void
-        Release(bs::Scene* scene);
+        Release(Leviathan::Scene* scene);
 
     //! Should set the colour of the membrane once working
     void
@@ -111,8 +109,8 @@ public:
     //! fully created data, instead of creating the buffers first and then
     //! filling them with data
     void
-        Update(bs::Scene* scene,
-            const bs::HSceneObject& parentComponentPos,
+        Update(Leviathan::Scene* scene,
+            const Leviathan::SceneNode::pointer& parentComponentPos,
             const bs::SPtr<bs::VertexDataDesc>& vertexDesc);
 
     // Adds absorbed compound to the membrane.
@@ -147,7 +145,7 @@ public:
     code for generic things
     */
 
-    bs::HMaterial
+    Leviathan::Material::pointer
         chooseMaterialByType();
 
     void
@@ -201,16 +199,13 @@ protected:
     //! Cached circle radius
     mutable float m_encompassingCircleRadius;
 
-    bs::HMesh m_mesh;
-
     //! Actual object that is attached to a scenenode
-    bs::HRenderable m_item;
+    Leviathan::Renderable::pointer m_item;
+
+    Leviathan::Mesh::pointer m_mesh;
 
     //! A material created from the base material that can be colored
-    bs::HMaterial coloredMaterial;
-
-    //! The amount of compounds stored in the membrane.
-    int compoundAmount = 0;
+    Leviathan::Material::pointer coloredMaterial;
 
     // The health percentage of a cell, in the range [0.0, 1.0], used to get
     // damage effects in the membrane.
@@ -234,7 +229,7 @@ public:
 
     //! Updates the membrane calculations every frame
     void
-        Run(GameWorld& world, bs::Scene* scene)
+        Run(GameWorld& world, Leviathan::Scene* scene)
     {
         auto& index = CachedComponents.GetIndex();
         for(auto iter = index.begin(); iter != index.end(); ++iter) {
@@ -270,8 +265,8 @@ public:
 private:
     void
         UpdateComponent(MembraneComponent& component,
-            bs::Scene* scene,
-            const bs::HSceneObject& parentComponentPos);
+            Leviathan::Scene* scene,
+            const Leviathan::SceneNode::pointer& parentComponentPos);
 
 private:
     std::unique_ptr<Implementation> m_impl;

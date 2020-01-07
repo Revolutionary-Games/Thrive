@@ -41,3 +41,15 @@ shared void mergeDictionaries(dictionary &inout target, dictionary &in source)
         target.set(key, existing + current);
     }
 }
+
+shared Quaternion createRotationForOrganelle(float rotation)
+{
+    return Quaternion(Float3(0, 1, 0), Degree(180))
+        * Quaternion(Float3(0, -1, 0), Degree(rotation));
+}
+
+shared Quaternion createRotationForExternal(float angle)
+{
+    return Quaternion(Float3(0, 1, 0), Degree(180)) *
+        Quaternion(Float3(0, 1, 0), Degree(angle));
+}

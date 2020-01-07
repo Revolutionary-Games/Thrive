@@ -283,7 +283,7 @@ void respawnPlayer(CellStageWorld@ world)
         // Reset position //
         rigidBodyComponent.Body.SetPosition(Float3(GetEngine().GetRandom().GetNumber(MIN_SPAWN_DISTANCE, MAX_SPAWN_DISTANCE),
             0, GetEngine().GetRandom().GetNumber(MIN_SPAWN_DISTANCE, MAX_SPAWN_DISTANCE)),
-            Float4::IdentityQuaternion);
+            Quaternion::IDENTITY);
 
         // The physics body will set the Position on next tick
 
@@ -489,8 +489,8 @@ void ejectCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId com
 
     auto angle = 180;
     // Find the direction the microbe is facing
-    auto yAxis = bs::Quaternion(position._Orientation).yAxis();
-    auto microbeAngle = atan2(yAxis.x, yAxis.y);
+    auto yAxis = position._Orientation.YAxis();
+    auto microbeAngle = atan2(yAxis.X, yAxis.Y);
     if(microbeAngle < 0){
         microbeAngle = microbeAngle + 2 * PI;
     }
@@ -696,8 +696,10 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         //for more efficient pooping.
         auto angle = 180;
         // Find the direction the microbe is facing
-        auto yAxis = bs::Quaternion(cellPosition._Orientation).zAxis();
-        auto microbeAngle = atan2(yAxis.x, yAxis.z);
+        // TODO: for some reason Z-axis is used here even though the variable is
+        // named Y-axis. Is this a typo?
+        auto yAxis = cellPosition._Orientation.ZAxis();
+        auto microbeAngle = atan2(yAxis.X, yAxis.Z);
         if(microbeAngle < 0){
             microbeAngle = microbeAngle + 2 * PI;
         }
@@ -913,7 +915,7 @@ ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in specie
     auto node = world.GetComponent_RenderNode(microbeEntity);
 
     if(IsInGraphicalMode())
-        node.Node.setPosition(pos);
+        node.Node.SetPosition(pos);
 
     // Checks if the cell is a bacteria/prokaryote
     if(species.isBacteria){
@@ -979,7 +981,7 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, bool aiControlled,
 
     // TODO: movement sound for microbes
 
-    auto position = world.Create_Position(entity, Float3(0, 0, 0), Float4::IdentityQuaternion);
+    auto position = world.Create_Position(entity, Float3(0, 0, 0), Quaternion::IDENTITY);
 
     auto membraneComponent = world.Create_MembraneComponent(entity,
         species.speciesMembraneType);
@@ -1148,16 +1150,16 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
         world.Create_FluidEffectComponent(chunkEntity);
         auto positionAdded = Float3(GetEngine().GetRandom().GetFloat(-2.0f, 2.0f),0,
             GetEngine().GetRandom().GetFloat(-2.0f, 2.0f));
-        auto chunkPosition = world.Create_Position(chunkEntity, position._Position+positionAdded,
-            bs::Quaternion(bs::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
-                bs::Vector3(0,1,1)));
+        auto chunkPosition = world.Create_Position(chunkEntity,
+            position._Position + positionAdded,
+            Quaternion(Float3(0, 1, 1), Degree(GetEngine().GetRandom().GetNumber(0, 360))));
 
         auto renderNode = world.Create_RenderNode(chunkEntity);
         renderNode.Scale = Float3(1.0f, 1.0f, 1.0f);
         renderNode.Marked = true;
-        renderNode.Node.setOrientation(bs::Quaternion(
-            bs::Degree(GetEngine().GetRandom().GetNumber(0, 360)), bs::Vector3(0,1,1)));
-        renderNode.Node.setPosition(chunkPosition._Position);
+        renderNode.Node.SetOrientation(Quaternion(Float3(0, 1, 1),
+            Degree(GetEngine().GetRandom().GetNumber(0, 360))));
+        renderNode.Node.SetPosition(chunkPosition._Position);
         // Grab random organelle from cell and use that
         auto organelleIndex = GetEngine().GetRandom().GetNumber(0, microbeComponent.organelles.length()-1);
         string mesh = microbeComponent.organelles[organelleIndex].organelle.mesh;
