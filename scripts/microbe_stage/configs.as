@@ -232,44 +232,39 @@ const float MEMBRANE_RIGIDITY_MOBILITY_MODIFIER = 0.1f;
 
 
 //! Returns a material with a basic texture on it. For use on non-organelle models
-bs::HMaterial getBasicMaterialWithTexture(const string &in textureName)
+Material@ getBasicMaterialWithTexture(const string &in textureName)
 {
-    bs::HShader shader(bs::BuiltinShader::Standard);
-    bs::HMaterial material(shader);
-    bs::HTexture texture(textureName);
-    material.setTexture("gAlbedoTex", texture);
+    Material@ material = Material(Shader("BuiltinShader::Standard"));
+    material.SetTexture("gAlbedoTex", Texture(textureName));
 
     return material;
 }
 
 //! Returns a material with a basic texture on it. Supports transparency
-bs::HMaterial getBasicTransparentMaterialWithTexture(const string &in textureName)
+Material@ getBasicTransparentMaterialWithTexture(const string &in textureName)
 {
-    bs::HShader shader(bs::BuiltinShader::Transparent);
-    bs::HMaterial material(shader);
-    bs::HTexture texture(textureName);
-    material.setTexture("gAlbedoTex", texture);
+    Material@ material = Material(Shader("BuiltinShader::Transparent"));
+    material.SetTexture("gAlbedoTex", Texture(textureName));
 
     return material;
 }
 
 //! Returns a material for organelles
-bs::HMaterial getOrganelleMaterialWithTexture(const string &in textureName,
+Material@ getOrganelleMaterialWithTexture(const string &in textureName,
     const Float4 &in tint = Float4(1, 1, 1, 1))
 {
     // TODO: loading the shader just once would be nice
-    bs::HShader shader("organelle.bsl");
-    bs::HMaterial material(shader);
-    bs::HTexture texture(textureName);
-    material.setTexture("gAlbedoTex", texture);
+    Shader@ shader = Shader("organelle.bsl");
+    Material@ material = Material(shader);
+    material.SetTexture("gAlbedoTex", Texture(textureName));
 
     updateMaterialTint(material, tint);
     return material;
 }
 
-void updateMaterialTint(bs::HMaterial &in material, const Float4 &in tint)
+void updateMaterialTint(Material@ material, const Float4 &in tint)
 {
-    material.setVec4("gTint", bs::Vector4(tint));
+    material.SetFloat4("gTint", tint);
 }
 
 
