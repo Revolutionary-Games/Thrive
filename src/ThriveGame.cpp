@@ -30,6 +30,9 @@
 #include <Script/ScriptExecutor.h>
 #include <Window.h>
 
+#include <bsfCore/Components/BsCRenderable.h>
+#include <bsfCore/Material/BsMaterial.h>
+
 using namespace thrive;
 
 // ------------------------------------ //
@@ -85,23 +88,14 @@ public:
     {
         m_microbeBackgroundMesh = nullptr;
         m_microbeBackgroundItem = nullptr;
-
-        if(m_backgroundRenderNode) {
-
-            m_backgroundRenderNode->DetachFromParent();
-            m_cellStage->GetScene()->DestroySceneNode(m_backgroundRenderNode);
-            m_backgroundRenderNode = nullptr;
-        }
+        if(!m_backgroundRenderNode.isDestroyed())
+            m_backgroundRenderNode->destroy();
+        m_backgroundRenderNode = nullptr;
 
         m_microbeEditorBackgroundItem = nullptr;
-
-        if(m_editorBackgroundRenderNode) {
-
-            m_editorBackgroundRenderNode->DetachFromParent();
-            m_microbeEditor->GetScene()->DestroySceneNode(
-                m_editorBackgroundRenderNode);
-            m_editorBackgroundRenderNode = nullptr;
-        }
+        if(!m_editorBackgroundRenderNode.isDestroyed())
+            m_editorBackgroundRenderNode->destroy();
+        m_editorBackgroundRenderNode = nullptr;
 
         m_MicrobeBackgroundMaterial = nullptr;
     }
@@ -120,32 +114,32 @@ public:
 
             auto shader = graphics->LoadShaderByName("background.bsl");
 
-            m_MicrobeBackgroundMaterial =
-                Leviathan::Material::MakeShared<Leviathan::Material>(
-                    Leviathan::Shader::MakeShared<Leviathan::Shader>(shader));
+            m_MicrobeBackgroundMaterial = bs::Material::create(shader);
         }
 
         if(m_cellStage) {
             if(!m_microbeBackgroundItem) {
                 m_backgroundRenderNode =
-                    m_cellStage->GetScene()->CreateSceneNode();
+                    bs::SceneObject::create("microbe background");
+                m_backgroundRenderNode->setParent(
+                    m_cellStage->GetCameraSceneObject(), false);
 
-                m_cellStage->GetCameraSceneObject()->AttachObject(
-                    m_backgroundRenderNode);
+                // m_backgroundRenderNode->setPosition(Float3(0, 0, 100));
 
-                m_backgroundRenderNode->SetPosition(Float3(
+                m_backgroundRenderNode->setPosition(Float3(
                     0, 0, backgroundYForCameraHeight(INITIAL_CAMERA_HEIGHT)));
 
-                m_backgroundRenderNode->SetRotation(
-                    Quaternion(Float3::UnitXAxis, Degree(90)));
-
+                m_backgroundRenderNode->setRotation(
+                    bs::Quaternion(bs::Vector3::UNIT_X, bs::Degree(90)));
                 m_microbeBackgroundItem =
-                    Leviathan::Renderable::MakeShared<Leviathan::Renderable>(
-                        *m_backgroundRenderNode);
+                    m_backgroundRenderNode->addComponent<bs::CRenderable>();
 
-                m_microbeBackgroundItem->SetMaterial(
+                m_microbeBackgroundItem->setLayer(
+                    1 << *m_cellStage->GetScene());
+
+                m_microbeBackgroundItem->setMaterial(
                     m_MicrobeBackgroundMaterial);
-                m_microbeBackgroundItem->SetMesh(m_microbeBackgroundMesh);
+                m_microbeBackgroundItem->setMesh(m_microbeBackgroundMesh);
             }
         }
 
@@ -153,18 +147,21 @@ public:
         if(m_microbeEditor) {
             if(!m_microbeEditorBackgroundItem) {
                 m_editorBackgroundRenderNode =
-                    m_microbeEditor->GetScene()->CreateSceneNode();
+                    bs::SceneObject::create("microbe editor background");
 
-                m_editorBackgroundRenderNode->SetPosition(
+                m_editorBackgroundRenderNode->setPosition(
                     Float3(0, BACKGROUND_Y, 0));
 
                 m_microbeEditorBackgroundItem =
-                    Leviathan::Renderable::MakeShared<Leviathan::Renderable>(
-                        *m_editorBackgroundRenderNode);
+                    m_editorBackgroundRenderNode
+                        ->addComponent<bs::CRenderable>();
 
-                m_microbeEditorBackgroundItem->SetMaterial(
+                m_microbeEditorBackgroundItem->setLayer(
+                    1 << *m_microbeEditor->GetScene());
+
+                m_microbeEditorBackgroundItem->setMaterial(
                     m_MicrobeBackgroundMaterial);
-                m_microbeEditorBackgroundItem->SetMesh(m_microbeBackgroundMesh);
+                m_microbeEditorBackgroundItem->setMesh(m_microbeBackgroundMesh);
             }
         }
     }
@@ -179,15 +176,15 @@ public:
     std::shared_ptr<MicrobeEditorWorld> m_microbeEditor;
 
     //! This is the background object of the cell stage
-    Leviathan::Mesh::pointer m_microbeBackgroundMesh;
+    bs::HMesh m_microbeBackgroundMesh;
 
-    Leviathan::Material::pointer m_MicrobeBackgroundMaterial;
+    bs::HMaterial m_MicrobeBackgroundMaterial;
 
-    Leviathan::Renderable::pointer m_microbeBackgroundItem;
-    Leviathan::SceneNode::pointer m_backgroundRenderNode;
+    bs::HRenderable m_microbeBackgroundItem;
+    bs::HSceneObject m_backgroundRenderNode;
 
-    Leviathan::Renderable::pointer m_microbeEditorBackgroundItem;
-    Leviathan::SceneNode::pointer m_editorBackgroundRenderNode;
+    bs::HRenderable m_microbeEditorBackgroundItem;
+    bs::HSceneObject m_editorBackgroundRenderNode;
 
     std::shared_ptr<MainMenuKeyPressListener> m_menuKeyPresses;
     std::shared_ptr<GlobalUtilityKeyHandler> m_globalKeyPresses;
@@ -339,7 +336,7 @@ void
 
     // Main camera that will be attached to the player
     m_cellCamera = Leviathan::ObjectLoader::LoadCamera(*m_impl->m_cellStage,
-        Float3(0, 15, 0), Quaternion(Float3::UnitXAxis, Degree(-90)));
+        Float3(0, 15, 0), bs::Quaternion(bs::Vector3::UNIT_X, bs::Degree(-90)));
 
     // Link the camera to the camera control system
     m_impl->m_cellStage->GetMicrobeCameraSystem().setCameraEntity(m_cellCamera);
@@ -1004,7 +1001,7 @@ void
 
     // Main camera that will be attached to the player
     m_cellCamera = Leviathan::ObjectLoader::LoadCamera(*m_impl->m_cellStage,
-        Float3(0, 15, 0), Quaternion(Float3::UnitXAxis, Degree(-90)));
+        Float3(0, 15, 0), bs::Quaternion(bs::Vector3::UNIT_X, bs::Degree(-90)));
 
     // Link the camera to the camera control system
     m_impl->m_cellStage->GetMicrobeCameraSystem().setCameraEntity(m_cellCamera);
@@ -1132,14 +1129,13 @@ void
         LOG_INFO("Setting background: " + background.internalName);
 
         for(size_t i = 0; i < 4; ++i) {
-            const auto layer = "gTexLayer" + std::to_string(i);
+            const auto layer = "gTexLayer" + bs::toString(i);
             if(i < background.layers.size()) {
 
-                m_impl->m_MicrobeBackgroundMaterial->SetTexture(layer,
-                    Leviathan::Texture::MakeShared<Leviathan::Texture>(
-                        graphics->LoadTextureByName(background.layers[i])));
+                m_impl->m_MicrobeBackgroundMaterial->setTexture(
+                    layer, graphics->LoadTextureByName(background.layers[i]));
             } else {
-                m_impl->m_MicrobeBackgroundMaterial->SetTexture(layer, nullptr);
+                m_impl->m_MicrobeBackgroundMaterial->setTexture(layer, nullptr);
             }
         }
     } catch(const Leviathan::InvalidArgument&) {
@@ -1162,7 +1158,7 @@ void
     ThriveGame::notifyCameraDistance(float height)
 {
     if(m_impl->m_backgroundRenderNode) {
-        m_impl->m_backgroundRenderNode->SetPosition(
+        m_impl->m_backgroundRenderNode->setPosition(
             Float3(0, 0, backgroundYForCameraHeight(height)));
     }
 
@@ -1383,7 +1379,7 @@ void
 
     // Main camera that will be attached to the player
     auto camera = Leviathan::ObjectLoader::LoadCamera(*m_impl->m_microbeEditor,
-        Float3(0, 15, 0), Quaternion(Float3::UnitXAxis, Degree(-90)));
+        Float3(0, 15, 0), bs::Quaternion(bs::Vector3::UNIT_X, bs::Degree(-90)));
 
     // TODO: attach a ligth to the camera
     // -- Light

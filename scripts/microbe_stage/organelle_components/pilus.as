@@ -45,14 +45,16 @@ class Pilus : OrganelleComponent{
 
             angle = ((angle * 180)/PI - 90) % 360;
 
-            Quaternion rotation = createRotationForExternal(angle);
+            bs::Quaternion rotation = bs::Quaternion(bs::Degree(180),
+                bs::Vector3(0, 1, 0))*bs::Quaternion(bs::Degree(angle),
+                    bs::Vector3(0, 1, 0));
 
             auto renderNode = organelle.world.GetComponent_RenderNode(
                 organelle.organelleEntity);
             if(renderNode !is null && IsInGraphicalMode())
             {
-                renderNode.Node.SetPosition(membraneCoords);
-                renderNode.Node.SetOrientation(rotation);
+                renderNode.Node.setPosition(membraneCoords);
+                renderNode.Node.setOrientation(rotation);
             }
 
             const Float3 membranePointDirection = (membraneCoords - middle).Normalize();
@@ -63,8 +65,9 @@ class Pilus : OrganelleComponent{
                 membraneCoords /= 2.f;
             }
 
-            Quaternion physicsRotation = Quaternion(Float3(-1, 0, 0), Degree(90)) *
-                Quaternion(Float3(0, 0, -1), Degree(180 - angle));
+            bs::Quaternion physicsRotation = bs::Quaternion(bs::Degree(90),
+                bs::Vector3(-1, 0, 0)) * bs::Quaternion(bs::Degree(180-angle),
+                    bs::Vector3(0, 0, -1));
 
             PhysicsShape@ collisionShape =
                 MicrobeOperations::getMicrobeCollisionShapeForEditing(organelle.world,

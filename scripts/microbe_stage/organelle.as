@@ -10,9 +10,8 @@ Float4 calculateHSLForOrganelle(const Float4 &in oldColour)
     float brightness = 0;
     float hue = 0;
 
-    oldColour.ConvertToHSB(hue, saturation, brightness);
-
-    return Float4::FromHSB(hue, saturation * 2, brightness);
+    bs::Color(oldColour).getHSB(hue, saturation, brightness);
+    return bs::Color::fromHSB(hue, saturation*2, brightness);
 }
 
 
@@ -111,8 +110,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
         if(model !is null && IsInGraphicalMode()){
 
-            updateMaterialTint(model.ObjectMaterial,
-                calculateHSLForOrganelle(this.species.colour));
+            updateMaterialTint(model.Material, calculateHSLForOrganelle(this.species.colour));
         }
 
         _needsColourUpdate = false;
@@ -343,14 +341,16 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
 
             // For performance reasons we set the position here directly
             // instead of with the position system
+            const Float3 offset = organelle.calculateModelOffset();
+            renderNode.Node.setPosition(offset + this.cartesianPosition);
+            renderNode.Node.setOrientation(bs::Quaternion(bs::Degree(180),
+                    bs::Vector3(0, 1, 0))*bs::Quaternion(bs::Degree(rotation),
+                    bs::Vector3(0, -1, 0)));
+
             auto parentRenderNode = world.GetComponent_RenderNode(
                 microbeEntity);
 
-            parentRenderNode.Node.AttachObject(renderNode.Node);
-
-            const Float3 offset = organelle.calculateModelOffset();
-            renderNode.Node.SetPosition(offset + this.cartesianPosition);
-            renderNode.Node.SetOrientation(createRotationForOrganelle(rotation));
+            renderNode.Node.setParent(parentRenderNode.Node, false);
 
             // Adding a mesh for the organelle.
             if(organelle.mesh != ""){
@@ -461,7 +461,7 @@ class PlacedOrganelle : SpeciesStoredOrganelleType{
     void hideEntity()
     {
         auto renderNode = world.GetComponent_RenderNode(organelleEntity);
-        if(renderNode !is null && renderNode.Node !is null){
+        if(renderNode !is null && renderNode.Node.valid()){
             renderNode.Hidden = true;
             renderNode.Marked = true;
         }

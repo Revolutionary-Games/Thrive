@@ -203,8 +203,8 @@ public:
 
         thrive.playerData().setActiveCreature(player);
 
-        REQUIRE_NOTHROW(playerPos = &world.Create_Position(
-                            player, Float3(0, 0, 0), Quaternion::IDENTITY));
+        REQUIRE_NOTHROW(playerPos = &world.Create_Position(player,
+                            Float3(0, 0, 0), Float4::IdentityQuaternion()));
     }
     ~CloudManagerTestsFixture()
     {

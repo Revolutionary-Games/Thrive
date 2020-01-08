@@ -7,7 +7,6 @@
 
 #include <Addons/GameModule.h>
 #include <Application/KeyConfiguration.h>
-#include <Common/Plane.h>
 #include <Entities/GameWorld.h>
 #include <Entities/ScriptComponentHolder.h>
 #include <Window.h>
@@ -380,13 +379,13 @@ Float3
 
     const auto ray = worldWithCamera.CastRayFromCamera(x, y);
 
-    const auto plane = Plane(Float3(0, 1, 0), 0);
+    const auto plane = bs::Plane(bs::Vector3(0, 1, 0), 0);
 
     bool intersects;
     float distance;
 
-    std::tie(intersects, distance) = ray.CalculateIntersection(plane);
+    std::tie(intersects, distance) = ray.intersects(plane);
 
     // TODO: could check that intersects is true
-    return ray.GetPoint(distance);
+    return ray.getPoint(distance);
 }

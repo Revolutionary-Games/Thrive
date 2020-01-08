@@ -37,8 +37,8 @@ void createAgentCloud(CellStageWorld@ world, CompoundId compoundId,
     auto agentEntity = world.CreateEntity();
 
     auto position = world.Create_Position(agentEntity, pos + (direction * 1.5),
-        Quaternion(Float3(0, 1, 0),
-            Degree(GetEngine().GetRandom().GetNumber(0, 360))));
+        bs::Quaternion(bs::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
+            bs::Vector3(0,1, 0)));
 
     // Agent
     auto agentProperties = world.Create_AgentProperties(agentEntity);
@@ -64,6 +64,9 @@ void createAgentCloud(CellStageWorld@ world, CompoundId compoundId,
     auto sceneNode = world.Create_RenderNode(agentEntity);
     auto model = world.Create_Model(agentEntity, "oxytoxy.fbx",
         getBasicMaterialWithTexture("oxytoxy_fluid.png"));
+
+    // // Need to set the tint
+    // model.GraphicalObject.setCustomParameter(1, bs::Vector4(1, 1, 1, 1));
 
     auto timedLifeComponent = world.Create_TimedLifeComponent(agentEntity, lifetime);
 }

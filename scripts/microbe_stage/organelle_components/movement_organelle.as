@@ -79,9 +79,11 @@ class MovementOrganelle : OrganelleComponent{
             // Set the pos to be "good enough" for now. It will be
             // properly set to the edge of the membrane on next call to
             // update
-            renderNode.Node.SetPosition(organellePos);
+            renderNode.Node.setPosition(organellePos);
 
-            renderNode.Node.SetOrientation(createRotationForExternal(angle));
+            renderNode.Node.setOrientation(bs::Quaternion(bs::Degree(180),
+                    bs::Vector3(0, 1, 0))*bs::Quaternion(bs::Degree(angle),
+                    bs::Vector3(0, 1, 0)));
         }
     }
 
@@ -143,7 +145,7 @@ class MovementOrganelle : OrganelleComponent{
                 forceMagnitude) / 100.f;
 
             // Rotate the 'thrust' based on our orientation
-            direction = pos._Orientation * direction;
+            direction = pos._Orientation.RotateVector(direction);
 
             return direction * impulseMagnitude;
         } else {
@@ -183,8 +185,10 @@ class MovementOrganelle : OrganelleComponent{
         auto renderNode = organelle.world.GetComponent_RenderNode(organelle.organelleEntity);
         if (renderNode !is null && IsInGraphicalMode())
         {
-            renderNode.Node.SetPosition(membraneCoords);
-            renderNode.Node.SetOrientation(createRotationForExternal(angle));
+            renderNode.Node.setPosition(membraneCoords);
+            renderNode.Node.setOrientation(bs::Quaternion(bs::Degree(180),
+                    bs::Vector3(0, 1, 0))*bs::Quaternion(bs::Degree(angle),
+                    bs::Vector3(0, 1, 0)));
         }
 
         //Grab components

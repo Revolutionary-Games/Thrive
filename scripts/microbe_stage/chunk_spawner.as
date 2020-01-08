@@ -7,7 +7,8 @@ ObjectID spawnChunk(CellStageWorld@ world, const ChunkData@ chunk, const Float3 
 
     //Position and render node
     auto position = world.Create_Position(chunkEntity, pos,
-        Quaternion(Float3(0, 1, 1), Degree(GetEngine().GetRandom().GetNumber(0, 360))));
+        bs::Quaternion(bs::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
+            bs::Vector3(0,1,1)));
 
 
     auto renderNode = world.Create_RenderNode(chunkEntity);
@@ -15,10 +16,11 @@ ObjectID spawnChunk(CellStageWorld@ world, const ChunkData@ chunk, const Float3 
     double chunkScale = chunk.chunkScale;
     renderNode.Scale = Float3(chunkScale, chunkScale, chunkScale);
     renderNode.Marked = true;
-    renderNode.Node.SetOrientation(Quaternion(Float3(0, 1, 1),
-            Degree(GetEngine().GetRandom().GetNumber(0, 360))));
+    renderNode.Node.setOrientation(bs::Quaternion(
+            bs::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
+            bs::Vector3(0,1,1)));
 
-    renderNode.Node.SetPosition(pos);
+    renderNode.Node.setPosition(pos);
 
     //Grab data
     double ventAmount= chunk.ventAmount;

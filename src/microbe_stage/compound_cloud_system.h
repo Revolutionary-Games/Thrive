@@ -8,8 +8,10 @@
 
 #include <Entities/Component.h>
 #include <Entities/System.h>
-#include <Rendering/Renderable.h>
-#include <Rendering/SceneNode.h>
+
+#include <bsfCore/BsCorePrerequisites.h>
+#include <bsfUtility/Math/BsVector2.h>
+#include <bsfUtility/Math/BsVector3.h>
 
 #include <vector>
 
@@ -192,7 +194,7 @@ public:
     ~CompoundCloudComponent();
 
     void
-        Release(Leviathan::Scene* scene);
+        Release(bs::Scene* scene);
 
     //! \returns Index for CompoundId or throws if not found
     SLOT
@@ -266,15 +268,17 @@ public:
         componentTypeConvert(THRIVE_COMPONENT::COMPOUND_CLOUD);
 
 protected:
-    Leviathan::SceneNode::pointer m_sceneNode;
-    Leviathan::Renderable::pointer m_renderable;
+    bs::HSceneObject m_sceneNode;
+    bs::HRenderable m_renderable;
 
     // True once initialized by CompoundCloudSystem
     bool m_initialized = false;
 
     //! This is customized with the parameters of this cloud
-    Leviathan::Material::pointer m_planeMaterial;
-    Leviathan::Texture::pointer m_texture;
+    //! \todo Check if one material could be used by setting custom parameters
+    //! on it
+    bs::HMaterial m_planeMaterial;
+    bs::HTexture m_texture;
     //! \todo Might have to have two buffers for rotating if it happens often
     //! that the previous buffer is still locked while processing next frame is
     //! happening
@@ -333,6 +337,11 @@ protected:
 //! \see \ref how_compound_clouds_work
 class CompoundCloudSystem {
     friend CompoundCloudComponent;
+
+    struct CloudPlaneVertex {
+        bs::Vector3 m_pos;
+        bs::Vector2 m_uv;
+    };
 
 public:
     /**
@@ -502,7 +511,7 @@ private:
             FluidSystem& fluidSystem);
 
     void
-        initializeCloud(CompoundCloudComponent& cloud, Leviathan::Scene* scene);
+        initializeCloud(CompoundCloudComponent& cloud, bs::Scene* scene);
 
     void
         fillCloudChannel(const std::vector<std::vector<float>>& density,
@@ -540,9 +549,9 @@ private:
     //! one cloud
     std::vector<Compound> m_cloudTypes;
 
-    Leviathan::Mesh::pointer m_planeMesh;
+    bs::HMesh m_planeMesh;
 
-    Leviathan::Texture::pointer m_perlinNoise;
+    bs::HTexture m_perlinNoise;
 
     //! This is here to not have to allocate memory every tick
     std::vector<CompoundCloudComponent*> m_tooFarAwayClouds;
