@@ -168,6 +168,9 @@ class MicrobeEditor{
         LOG_INFO("Starting microbe editor with: " + editedMicrobeOrganelles.length() +
             " organelles in the microbe, genes: " + playerSpecies.stringCode);
 
+        // We need to set the membrane type here so the ATP balance bar can take it into account (the bar is updated in _onEditedCellChanged)
+        membrane = playerSpecies.membraneType;
+
         // Show existing organelles
         _onEditedCellChanged();
 
@@ -196,7 +199,6 @@ class MicrobeEditor{
         }
 
         newName = playerSpecies.genus + " " + playerSpecies.epithet;
-        membrane = playerSpecies.membraneType;
         rigidity = playerSpecies.membraneRigidity;
         colour = playerSpecies.colour;
         GenericEvent@ event = GenericEvent("MicrobeEditorActivated");
@@ -1299,6 +1301,8 @@ class MicrobeEditor{
                     NamedVars@ vars = event.GetNamedVars();
                     vars.AddValue(ScriptSafeVariableBlock("membrane", SimulationParameters::membraneRegistry().getInternalName(editor.membrane)));
                     GetEngine().GetEventHandler().CallEvent(event);
+                    // Calculate and send energy balance to the GUI
+                    calculateEnergyBalanceWithOrganellesAndMembraneType(editor.editedMicrobeOrganelles, editor.membrane, editor.targetPatch); // not using _onEditedCellChange due to visuals not needing update
                 },
                 // undo
                 function(EditorAction@ action, MicrobeEditor@ editor){
@@ -1307,6 +1311,8 @@ class MicrobeEditor{
                     NamedVars@ vars = event.GetNamedVars();
                     vars.AddValue(ScriptSafeVariableBlock("membrane", SimulationParameters::membraneRegistry().getInternalName(editor.membrane)));
                     GetEngine().GetEventHandler().CallEvent(event);
+                    // Calculate and send energy balance to the GUI
+                    calculateEnergyBalanceWithOrganellesAndMembraneType(editor.editedMicrobeOrganelles, editor.membrane, editor.targetPatch);
                 }
             );
 
