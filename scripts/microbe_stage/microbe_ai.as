@@ -103,7 +103,7 @@ class MicrobeAISystem : ScriptSystem{
 
     void Run(float elapsed){
         passedTime += elapsed;
-		ForceRun()
+		ForceRun(elapsed);
         if (passedTime >= AI_TIME_INTERVAL){
             passedTime = 0.f;
 
