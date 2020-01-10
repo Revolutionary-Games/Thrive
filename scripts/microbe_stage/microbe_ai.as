@@ -103,6 +103,7 @@ class MicrobeAISystem : ScriptSystem{
 
     void Run(float elapsed){
         passedTime += elapsed;
+		ForceRun()
         if (passedTime >= AI_TIME_INTERVAL){
             passedTime = 0.f;
 
@@ -359,7 +360,7 @@ class MicrobeAISystem : ScriptSystem{
                 LOG_INFO("AI Activity"+aiComponent.speciesActivity);*/
 
             if (aiComponent.aiInitialized == false){
-                aiComponent.aiInitialized = true
+                aiComponent.aiInitialized = true;
                 int numberOfAgentVacuoles = int(
                     microbeComponent.specialStorageOrganelles[formatUInt(oxytoxyId)]);
 
