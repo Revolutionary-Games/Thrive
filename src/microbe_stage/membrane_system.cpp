@@ -3,11 +3,8 @@
 
 #include <Engine.h>
 #include <Rendering/Graphics.h>
-#include <bsfCore/Components/BsCRenderable.h>
-#include <bsfCore/Material/BsMaterial.h>
 #include <bsfCore/Mesh/BsMesh.h>
 #include <bsfCore/RenderAPI/BsVertexDataDesc.h>
-#include <bsfCore/Scene/BsSceneObject.h>
 
 #include <algorithm>
 #include <atomic>
@@ -53,12 +50,12 @@ MembraneTypeId
 }
 
 void
-    MembraneComponent::Release(bs::Scene* scene)
+    MembraneComponent::Release(Leviathan::Scene* scene)
 {
     releaseCurrentMesh();
 
-    if(m_item && !m_item.isDestroyed()) {
-        m_item->destroy();
+    if(m_item) {
+        m_item->DetachFromParent();
         m_item = nullptr;
     }
 }
@@ -174,23 +171,19 @@ float
 void
     MembraneComponent::setColour(const Float4& value)
 {
-    colour = value;
-
     // Desaturate it here so it looks nicer (could implement as method that
     // could be called i suppose)
     float saturation;
     float brightness;
     float hue;
 
-    bs::Color tmp = colour;
-
-    tmp.getHSB(&hue, &saturation, &brightness);
-    colour = Float4(bs::Color::fromHSB(hue, saturation * .75, brightness));
+    value.ConvertToHSB(hue, saturation, brightness);
+    colour = Float4::FromHSB(hue, saturation * .75, brightness);
 
     // If we already have created a material we need to re-apply it
     if(coloredMaterial) {
 
-        coloredMaterial->setVec4("gTint", colour);
+        coloredMaterial->SetFloat4("gTint", colour);
     }
 }
 
@@ -202,7 +195,7 @@ void
     // If we already have created a material we need to re-apply it
     if(coloredMaterial) {
 
-        coloredMaterial->setFloat("gHealthFraction", healthFraction);
+        coloredMaterial->SetFloat("gHealthFraction", healthFraction);
     }
 }
 
@@ -213,8 +206,8 @@ Float4
 }
 // ------------------------------------ //
 void
-    MembraneComponent::Update(bs::Scene* scene,
-        const bs::HSceneObject& parentComponentPos,
+    MembraneComponent::Update(Leviathan::Scene* scene,
+        const Leviathan::SceneNode::pointer& parentComponentPos,
         const bs::SPtr<bs::VertexDataDesc>& vertexDesc)
 {
     if(clearNeeded) {
@@ -284,7 +277,8 @@ void
                                                "fill vertex buffer");
 
 
-    m_mesh = bs::Mesh::create(meshData, meshDesc);
+    m_mesh = Leviathan::Mesh::MakeShared<Leviathan::Mesh>(
+        bs::Mesh::create(meshData, meshDesc));
     // // Set the bounds to get frustum culling and LOD to work correctly.
     // // TODO: make this more accurate by calculating the actual extents
     // m_mesh->_setBounds(Ogre::Aabb(Float3::ZERO, Float3::UNIT_SCALE * 50)
@@ -298,18 +292,22 @@ void
 
     LEVIATHAN_ASSERT(baseMaterial, "no material for membrane");
 
-    // The baseMaterial fetch makes a new instance so this is fine
+    // The baseMaterial fetch makes a new instance so this is fine without
+    // cloning
     coloredMaterial = baseMaterial;
 
-    coloredMaterial->setVec4("gTint", colour);
-    coloredMaterial->setFloat("gHealthFraction", healthFraction);
+    coloredMaterial->SetFloat4("gTint", colour);
+    coloredMaterial->SetFloat("gHealthFraction", healthFraction);
 
-    if(!m_item)
-        m_item = parentComponentPos->addComponent<bs::CRenderable>();
+    if(!m_item) {
 
-    m_item->setMaterial(coloredMaterial);
-    m_item->setMesh(m_mesh);
-    m_item->setLayer(1 << *scene);
+        m_item = Leviathan::Renderable::MakeShared<Leviathan::Renderable>(
+            *parentComponentPos);
+    }
+
+    m_item->SetMaterial(coloredMaterial);
+    m_item->SetMesh(m_mesh);
+    // m_item->setLayer(1 << scene->GetInternal());
 }
 
 void
@@ -331,26 +329,25 @@ size_t
 
     // common variables
     float height = .1;
-    const bs::Vector2 center(0.5, 0.5);
+    const Float2 center(0.5, 0.5);
 
     if(rawMembraneType->cellWall) {
         // cell walls need obvious inner/outer memrbranes (we can worry
         // about chitin later)
         height = .05;
-        meshVertices[writeIndex++] = {bs::Vector3(0, height / 2, 0), center};
+        meshVertices[writeIndex++] = {Float3(0, height / 2, 0), center};
 
         for(size_t i = 0, end = vertices2D.size(); i < end + 1; i++) {
             // Finds the UV coordinates be projecting onto a plane and
             // stretching to fit a circle.
             const double currentRadians = 3.1416 * i / end;
             meshVertices[writeIndex++] = {
-                bs::Vector3(
+                Float3(
                     vertices2D[i % end].X, height / 2, vertices2D[i % end].Y),
-                center +
-                    bs::Vector2(cos(currentRadians), sin(currentRadians)) / 2};
+                center + Float2(cos(currentRadians), sin(currentRadians)) / 2};
         }
     } else {
-        meshVertices[writeIndex++] = {bs::Vector3(0, height / 2, 0), center};
+        meshVertices[writeIndex++] = {Float3(0, height / 2, 0), center};
 
         for(size_t i = 0, end = vertices2D.size(); i < end + 1; i++) {
             // Finds the UV coordinates be projecting onto a plane and
@@ -359,11 +356,11 @@ size_t
             const double currentRadians = 2.0 * 3.1416 * i / end;
 
             meshVertices[writeIndex++] = {
-                bs::Vector3(
+                Float3(
                     vertices2D[i % end].X, height / 2, vertices2D[i % end].Y),
-                center + bs::Vector2(std::cos(currentRadians),
-                             std::sin(currentRadians)) /
-                             2};
+                center +
+                    Float2(std::cos(currentRadians), std::sin(currentRadians)) /
+                        2};
         }
     }
 
@@ -371,12 +368,17 @@ size_t
     return writeIndex;
 }
 
-bs::HMaterial
+Leviathan::Material::pointer
     MembraneComponent::chooseMaterialByType()
 {
-    auto shader =
-        Engine::Get()->GetGraphics()->LoadShaderByName("membrane.bsl");
+    auto shader = Leviathan::Shader::MakeShared<Leviathan::Shader>(
+        Engine::Get()->GetGraphics()->LoadShaderByName("membrane.bsl"));
 
+    auto material =
+        Leviathan::Material::MakeShared<Leviathan::Material>(shader);
+
+    // This is just a tiny bit of graphics engine specific code so this is left
+    // as is
     bs::HTexture normal;
     bs::HTexture damaged;
 
@@ -388,13 +390,12 @@ bs::HMaterial
     LEVIATHAN_ASSERT(
         normal && damaged && shader, "failed to load some membrane resource");
 
-    bs::HMaterial material = bs::Material::create(shader);
-    material->setTexture("gAlbedoTex", normal);
-    material->setTexture("gDamagedTex", damaged);
+    material->SetTexture("gAlbedoTex",
+        Leviathan::Texture::MakeShared<Leviathan::Texture>(normal));
+    material->SetTexture("gDamagedTex",
+        Leviathan::Texture::MakeShared<Leviathan::Texture>(damaged));
 
-    bs::ShaderVariation variation;
-    variation.setBool("WIGGLY", !rawMembraneType->cellWall);
-    material->setVariation(variation);
+    material->SetVariation("WIGGLY", !rawMembraneType->cellWall);
 
     return material;
 }
@@ -632,8 +633,8 @@ MembraneSystem::~MembraneSystem() {}
 
 void
     MembraneSystem::UpdateComponent(MembraneComponent& component,
-        bs::Scene* scene,
-        const bs::HSceneObject& parentComponentPos)
+        Leviathan::Scene* scene,
+        const Leviathan::SceneNode::pointer& parentComponentPos)
 {
     component.Update(scene, parentComponentPos, m_impl->m_vertexDesc);
 }

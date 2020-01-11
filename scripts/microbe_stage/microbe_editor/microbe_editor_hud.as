@@ -74,14 +74,14 @@ class MicrobeEditorHudSystem : ScriptSystem{
         for(uint i = 0; i < hoverHex.length(); ++i){
 
             auto node = world.GetComponent_RenderNode(hoverHex[i]);
-            node.Node.setPosition(Float3(0, 0, 0));
+            node.Node.SetPosition(Float3(0, 0, 0));
             node.Hidden = true;
             node.Marked = true;
         }
 
         for(uint i = 0; i < hoverOrganelle.length(); ++i){
             auto node = world.GetComponent_RenderNode(hoverOrganelle[i]);
-            node.Node.setPosition(Float3(0, 0, 0));
+            node.Node.SetPosition(Float3(0, 0, 0));
             node.Hidden = true;
             node.Marked = true;
         }
