@@ -277,7 +277,9 @@ void respawnPlayer(CellStageWorld@ world)
             microbeComponent.organelles[i].reset();
         }
 
-        setupMicrobeHitpoints(microbeComponent, int(SimulationParameters::membraneRegistry().getTypeData(microbeComponent.species.membraneType).hitpoints + (microbeComponent.species.membraneRigidity - 0.5) * MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER * 2));
+        setupMicrobeHitpoints(microbeComponent,
+            int(SimulationParameters::membraneRegistry().getTypeData(microbeComponent.species.membraneType).hitpoints +
+            microbeComponent.species.membraneRigidity * MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER));
         // Setup compounds
         setupMicrobeCompounds(world,playerEntity);
         // Reset position //

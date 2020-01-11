@@ -110,7 +110,7 @@ Species@ createMutatedSpecies(Species@ parent)
         membraneType = SimulationParameters::membraneRegistry().getInternalName(parent.membraneType);
     }
 
-    float membraneRigidity = GetEngine().GetRandom().GetNumber(0, 100) / 100.0f;
+    float membraneRigidity = GetEngine().GetRandom().GetNumber(-100, 100) / 100.f;
 
     // This translates the genetic code into positions
     auto organelles = positionOrganelles(stringCode);

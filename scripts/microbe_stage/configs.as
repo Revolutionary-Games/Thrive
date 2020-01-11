@@ -371,7 +371,7 @@ const dictionary STARTER_MICROBES = {
             // Player starts as bacteria
             true,
             "single",
-            0.5f,
+            0.f,
             "Primum",
             "Thrivium")
     }

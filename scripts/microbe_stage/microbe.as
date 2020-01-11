@@ -574,7 +574,7 @@ class MicrobeSystem : ScriptSystem{
             microbeComponent.movementDirection.Z != 0.f)
         {
             const auto cost = (BASE_MOVEMENT_ATP_COST * microbeComponent.totalHexCountCache)
-                * elapsed; // Should membrane osmoregulation factor be taken into account here?
+                * elapsed;
 
             const auto got = MicrobeOperations::takeCompound(world, microbeEntity,
                 SimulationParameters::compoundRegistry().getTypeId("atp"), cost);
@@ -590,7 +590,8 @@ class MicrobeSystem : ScriptSystem{
             microbeComponent.queuedMovementForce += pos._Orientation * (
                 microbeComponent.movementDirection * force *
                 microbeComponent.movementFactor *
-                (SimulationParameters::membraneRegistry().getTypeData(microbeComponent.species.membraneType).movementFactor - (microbeComponent.species.membraneRigidity - 0.5) * MEMBRANE_RIGIDITY_MOBILITY_MODIFIER * 2));
+                (SimulationParameters::membraneRegistry().getTypeData(microbeComponent.species.membraneType).movementFactor -
+                microbeComponent.species.membraneRigidity * MEMBRANE_RIGIDITY_MOBILITY_MODIFIER));
         }
 
         // Update organelles and then apply the movement force that was generated

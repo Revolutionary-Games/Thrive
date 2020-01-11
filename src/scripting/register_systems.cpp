@@ -136,7 +136,7 @@ std::string
 
         if(patch)
             patch->Release();
-    } // Will we have issues with membraneType here...?
+    }
     BOOST_SCOPE_EXIT_END;
 
     std::vector<OrganelleTemplate::pointer> convertedOrganelles;

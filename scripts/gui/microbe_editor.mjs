@@ -354,7 +354,7 @@ export function setupMicrobeEditor(){
             colour.hsvValue = hsvValueFromRGB(colour);
             updateColourDisplay(colour);
             updateColourValueBar(colour);
-            updateRigidity(vars.rigidity);
+            updateRigidity((vars.rigidity + 1) / 2 * 10);
         });
 
         // Event for detecting the current membrane
@@ -374,7 +374,7 @@ export function setupMicrobeEditor(){
 
         // Event for detecting the membrane rigidity
         Leviathan.OnGeneric("MicrobeEditorRigidityUpdated", (event, vars) => {
-            updateRigidity(vars.rigidity);
+            updateRigidity((vars.rigidity + 1) / 2 * 10);
         });
 
         Leviathan.OnGeneric("OrganellePatchEfficiencyData", (event, vars) => {
@@ -738,7 +738,7 @@ function onSelectMembrane(membrane){
 function onRigidityChanged(event){
     if (common.isInEngine()) {
         Leviathan.CallGenericEvent("MicrobeEditorRigidityChanged",
-            {rigidity: parseInt(event.target.value)});
+            {rigidity: parseInt(event.target.value) * 2.0 / 10 - 1});
     }
 }
 

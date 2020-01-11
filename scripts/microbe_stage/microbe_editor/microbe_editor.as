@@ -209,7 +209,7 @@ class MicrobeEditor{
         vars.AddValue(ScriptSafeVariableBlock("colourR", colour.X));
         vars.AddValue(ScriptSafeVariableBlock("colourG", colour.Y));
         vars.AddValue(ScriptSafeVariableBlock("colourB", colour.Z));
-        vars.AddValue(ScriptSafeVariableBlock("rigidity", rigidity * 10));
+        vars.AddValue(ScriptSafeVariableBlock("rigidity", rigidity));
 
         GetEngine().GetEventHandler().CallEvent(event);
     }
@@ -1129,7 +1129,11 @@ class MicrobeEditor{
             }
         }
         // This is complex, I know
-        finalSpeed = (((CELL_BASE_THRUST + ((flagCount / (lengthMicrobe - flagCount)) * FLAGELLA_BASE_FORCE)) + (CELL_DRAG_MULTIPLIER - (CELL_SIZE_DRAG_MULTIPLIER * lengthMicrobe)))) * (SimulationParameters::membraneRegistry().getTypeData(membrane).movementFactor - (rigidity - 0.5) * MEMBRANE_RIGIDITY_MOBILITY_MODIFIER * 2);
+        finalSpeed = (((CELL_BASE_THRUST +
+            ((flagCount / (lengthMicrobe - flagCount)) * FLAGELLA_BASE_FORCE)) +
+            (CELL_DRAG_MULTIPLIER - (CELL_SIZE_DRAG_MULTIPLIER * lengthMicrobe)))) *
+            (SimulationParameters::membraneRegistry().getTypeData(membrane).movementFactor -
+            rigidity * MEMBRANE_RIGIDITY_MOBILITY_MODIFIER);
         return finalSpeed;
     }
 
@@ -1252,7 +1256,8 @@ class MicrobeEditor{
             // Change player health
             MicrobeComponent@ microbeComponent = cast<MicrobeComponent>(world.GetScriptComponentHolder("MicrobeComponent").Find(player));
             float hpFraction = microbeComponent.hitpoints / microbeComponent.maxHitpoints;
-            microbeComponent.maxHitpoints = SimulationParameters::membraneRegistry().getTypeData(membrane).hitpoints + (microbeComponent.species.membraneRigidity - 0.5) * MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER * 2;
+            microbeComponent.maxHitpoints = SimulationParameters::membraneRegistry().getTypeData(membrane).hitpoints +
+                microbeComponent.species.membraneRigidity * MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
             microbeComponent.hitpoints = microbeComponent.maxHitpoints * hpFraction;
 
             return 1;
@@ -1327,12 +1332,12 @@ class MicrobeEditor{
             return 1;
         } else if(type == "MicrobeEditorRigidityChanged"){
             NamedVars@ vars = event.GetNamedVars();
-            float newRigidity = float(vars.GetSingleValueByName("rigidity")) / 10.f;
-            int cost = int(abs(newRigidity - rigidity) * 100);
+            float newRigidity = float(vars.GetSingleValueByName("rigidity"));
+            int cost = int(abs(newRigidity - rigidity) / 2 * 100);
 
             if (cost > 0) {
                 if (cost > mutationPoints){
-                    newRigidity = rigidity + (newRigidity < rigidity ? -mutationPoints : mutationPoints) / 100.f;
+                    newRigidity = rigidity + (newRigidity < rigidity ? -mutationPoints : mutationPoints) * 2 / 100.f;
                     cost = mutationPoints;
                 }
 
@@ -1342,7 +1347,7 @@ class MicrobeEditor{
                         editor.rigidity = float(action.data["rigidity"]);
                         GenericEvent@ event = GenericEvent("MicrobeEditorRigidityUpdated");
                         NamedVars@ vars = event.GetNamedVars();
-                        vars.AddValue(ScriptSafeVariableBlock("rigidity", int(editor.rigidity * 10)));
+                        vars.AddValue(ScriptSafeVariableBlock("rigidity", editor.rigidity));
                         GetEngine().GetEventHandler().CallEvent(event);
                     },
                     // undo
@@ -1350,7 +1355,7 @@ class MicrobeEditor{
                         editor.rigidity = float(action.data["prevRigidity"]);
                         GenericEvent@ event = GenericEvent("MicrobeEditorRigidityUpdated");
                         NamedVars@ vars = event.GetNamedVars();
-                        vars.AddValue(ScriptSafeVariableBlock("rigidity", int(editor.rigidity * 10)));
+                        vars.AddValue(ScriptSafeVariableBlock("rigidity", editor.rigidity));
                         GetEngine().GetEventHandler().CallEvent(event);
                     }
                 );
