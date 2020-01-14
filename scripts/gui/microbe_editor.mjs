@@ -173,7 +173,7 @@ export function setupMicrobeEditor(){
 
     // New Cell Button Clicked
     document.getElementById("newButton").addEventListener("click",
-        OnNewCellClicked, true);
+        onNewCellClicked, true);
 
     // Undo Button Clicked
     document.getElementById("Undo").addEventListener("click",
@@ -677,8 +677,14 @@ function onSelectNewOrganelle(organelle){
     }
 }
 
-function onFreeBuildStatus(toggle) {
+function onFreeBuildStatus(toggle){
     limitMovesPerSession = !toggle;
+
+    if(toggle){
+        document.getElementById("newButton").classList.remove("DisabledButton");
+    } else {
+        document.getElementById("newButton").classList.add("DisabledButton");
+    }
 }
 
 //! Updates the GUI buttons based on selected organelle
@@ -993,12 +999,14 @@ function onSymmetryClicked(event){
     event.stopPropagation();
 }
 
-function OnNewCellClicked(event){
-    common.playButtonPressSound();
-    if(common.isInEngine()){
-        Leviathan.CallGenericEvent("NewCellClicked", {});
+function onNewCellClicked(event){
+    if (!document.getElementById("newButton").classList.contains("DisabledButton")){
+        common.playButtonPressSound();
+        if (common.isInEngine()){
+            Leviathan.CallGenericEvent("NewCellClicked", {});
+        }
+        event.stopPropagation();
     }
-    event.stopPropagation();
 }
 
 function onRedoClicked(event){
