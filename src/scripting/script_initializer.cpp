@@ -127,9 +127,13 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-    if(engine->RegisterObjectProperty("Species",
-           "MEMBRANE_TYPE speciesMembraneType",
-           asOFFSET(Species, speciesMembraneType)) < 0) {
+    if(engine->RegisterObjectProperty("Species", "MembraneTypeId membraneType",
+           asOFFSET(Species, membraneType)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("Species", "float membraneRigidity",
+           asOFFSET(Species, membraneRigidity)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
@@ -488,6 +492,11 @@ bool
     }
 
     if(engine->RegisterTypedef("BioProcessId", "uint16") < 0) {
+
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterTypedef("MembraneTypeId", "uint16") < 0) {
 
         ANGELSCRIPT_REGISTERFAIL;
     }

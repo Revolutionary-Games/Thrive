@@ -226,6 +226,11 @@ const auto PILUS_BASE_DAMAGE = 1.f;
 const auto PILUS_PENETRATION_DISTANCE_DAMAGE_MULTIPLIER = 10.f;
 
 
+// For rigidity stat modifications
+const int MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER = 30;
+const float MEMBRANE_RIGIDITY_MOBILITY_MODIFIER = 0.1f;
+
+
 //! Returns a material with a basic texture on it. For use on non-organelle models
 Material@ getBasicMaterialWithTexture(const string &in textureName)
 {
@@ -300,7 +305,8 @@ class MicrobeTemplate{
         array<OrganelleTemplatePlaced@> organelles,
         Float4 colour,
     bool isBacteria,
-    MEMBRANE_TYPE speciesMembraneType,
+    string membraneType,
+    float membraneRigidity,
     string genus,
     string epithet
     ) {
@@ -309,7 +315,8 @@ class MicrobeTemplate{
         this.organelles = organelles;
         this.colour = colour;
         this.isBacteria = isBacteria;
-        this.speciesMembraneType = speciesMembraneType;
+        this.membraneType = membraneType;
+        this.membraneRigidity = membraneRigidity;
         this.genus = genus;
         this.epithet = epithet;
     }
@@ -321,7 +328,8 @@ class MicrobeTemplate{
     array<OrganelleTemplatePlaced@> organelles;
     Float4 colour;
     bool isBacteria;
-    MEMBRANE_TYPE speciesMembraneType;
+    string membraneType;
+    float membraneRigidity;
 }
 
 class InitialCompound{
@@ -362,7 +370,8 @@ const dictionary STARTER_MICROBES = {
             Float4(1, 1, 1, 1),
             // Player starts as bacteria
             true,
-            MEMBRANE_TYPE::MEMBRANE,
+            "single",
+            0.f,
             "Primum",
             "Thrivium")
     }

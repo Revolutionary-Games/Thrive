@@ -1588,7 +1588,7 @@ div::-webkit-scrollbar-thumb:hover {
   overflow-y: scroll;
 }
 
-#AppearancePanelMid {
+#MembranePanelMid {
   position: relative;
   top: 0;
   left: 0;
@@ -1655,6 +1655,60 @@ div::-webkit-scrollbar-thumb:hover {
   height: 60px;
   background-size: contain;
   background-image: url("../../Textures/gui/bevel/CytoplasmIcon.png");
+}
+
+.SingleMembraneIcon {
+  position: relative;
+  left: calc(50% - 30px);
+  width: 60px;
+  height: 60px;
+  background-size: contain;
+  background-image: url("../../Textures/gui/bevel/membraneStandard.png");
+}
+
+.DoubleMembraneIcon {
+  position: relative;
+  left: calc(50% - 30px);
+  width: 60px;
+  height: 60px;
+  background-size: contain;
+  background-image: url("../../Textures/gui/bevel/membraneDouble.png");
+}
+
+.CelluloseMembraneIcon {
+  position: relative;
+  left: calc(50% - 30px);
+  width: 60px;
+  height: 60px;
+  background-size: contain;
+  background-image: url("../../Textures/gui/bevel/membraneCellulose.png");
+}
+
+.ChitinMembraneIcon {
+  position: relative;
+  left: calc(50% - 30px);
+  width: 60px;
+  height: 60px;
+  background-size: contain;
+  background-image: url("../../Textures/gui/bevel/membraneChitin.png");
+}
+
+.CalciumCarboMembraneIcon {
+  position: relative;
+  left: calc(50% - 30px);
+  width: 60px;
+  height: 60px;
+  background-size: contain;
+  background-image: url("../../Textures/gui/bevel/membraneCalciumCarbo.png");
+}
+
+.SilicaMembraneIcon {
+  position: relative;
+  left: calc(50% - 30px);
+  width: 60px;
+  height: 60px;
+  background-size: contain;
+  background-image: url("../../Textures/gui/bevel/membraneSilica.png");
 }
 
 .ATPBalanceContainer {
@@ -1969,12 +2023,39 @@ div::-webkit-scrollbar-thumb:hover {
   font-size: 85%;
 }
 
+#rigiditySliderContainer {
+  margin-left: 20px;
+  width: 50%;
+}
+
+#rigiditySlider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 10px;
+  background: rgb(112, 159, 159, 0.7);
+  outline: none;
+}
+
+#rigiditySlider:hover {
+  background: rgb(112, 159, 159, 1);
+}
+
+#rigiditySlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 45px;
+  height: 25px;
+  background: #aad;
+  cursor: pointer;
+}
+
 #ColourWheel {
   position: absolute;
   width: 200px;
   height: 200px;
   left: 15px;
-  top: 350px;
+  top: 425px;
   border-radius: 50%;
   background-size: 200px 200px;
   background-image: url("../../Textures/gui/colour_wheel.png");
@@ -1985,7 +2066,7 @@ div::-webkit-scrollbar-thumb:hover {
   width: 10px;
   height: 50px;
   left: 0;
-  top: 425px;
+  top: 500px;
   border-radius: 10%;
   background-size: 10px 50px;
   background-color: rgb(255, 255, 255);
@@ -1996,7 +2077,7 @@ div::-webkit-scrollbar-thumb:hover {
   width: 20px;
   height: 200px;
   left: 220px;
-  top: 350px;
+  top: 425px;
   border-radius: 10%;
   background-size: 20px 200px;
   background-image: linear-gradient(white, black);

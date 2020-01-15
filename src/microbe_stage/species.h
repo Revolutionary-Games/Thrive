@@ -71,7 +71,8 @@ public:
 
     Float4 colour = Float4::ColourWhite;
     bool isBacteria = false;
-    MEMBRANE_TYPE speciesMembraneType = MEMBRANE_TYPE::MEMBRANE;
+    MembraneTypeId membraneType;
+    float membraneRigidity;
     std::string name;
     std::string genus;
     std::string epithet;

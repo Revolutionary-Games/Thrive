@@ -1,6 +1,8 @@
 #pragma once
 
 #include "engine/component_types.h"
+#include "membrane_types.h"
+#include "simulation_parameters.h"
 
 #include <Entities/Component.h>
 #include <Entities/Components.h>
@@ -10,9 +12,6 @@
 #include <atomic>
 
 namespace thrive {
-
-// enumerable for membrane type
-enum class MEMBRANE_TYPE { MEMBRANE, WALL, CHITIN, DOUBLEMEMBRANE };
 
 /**
  * @brief Adds a membrane to an entity
@@ -30,21 +29,22 @@ class MembraneComponent : public Leviathan::Component {
     static_assert(sizeof(MembraneVertex) == 5 * sizeof(float));
 
 public:
-    MembraneComponent(MEMBRANE_TYPE type);
+    MembraneComponent(MembraneTypeId type);
     virtual ~MembraneComponent();
 
 
 
-    // Holder for membrane type
-    MEMBRANE_TYPE membraneType;
+    // Holder for membrane type id
+    MembraneTypeId membraneType;
+    const MembraneType* rawMembraneType;
 
     // This does not take affect without resetting this membrane as only that
     // causes the mesh to actually be re-generated.
     void
-        setMembraneType(MEMBRANE_TYPE type);
+        setMembraneType(MembraneTypeId type);
 
-    MEMBRANE_TYPE
-    getMembraneType();
+    MembraneTypeId
+        getMembraneType();
 
     void
         Release(Leviathan::Scene* scene);

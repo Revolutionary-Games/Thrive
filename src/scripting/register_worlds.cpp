@@ -278,24 +278,14 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
-
-    if(engine->RegisterEnum("MEMBRANE_TYPE") < 0) {
-        ANGELSCRIPT_REGISTERFAIL;
-    }
-
-    ANGELSCRIPT_REGISTER_ENUM_VALUE(MEMBRANE_TYPE, MEMBRANE);
-    ANGELSCRIPT_REGISTER_ENUM_VALUE(MEMBRANE_TYPE, DOUBLEMEMBRANE);
-    ANGELSCRIPT_REGISTER_ENUM_VALUE(MEMBRANE_TYPE, WALL);
-    ANGELSCRIPT_REGISTER_ENUM_VALUE(MEMBRANE_TYPE, CHITIN);
-
     if(engine->RegisterObjectMethod("MembraneComponent",
-           "MEMBRANE_TYPE getMembraneType() const",
+           "MembraneTypeId getMembraneType() const",
            asMETHOD(MembraneComponent, getMembraneType), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
     if(engine->RegisterObjectMethod("MembraneComponent",
-           "void setMembraneType(MEMBRANE_TYPE type)",
+           "void setMembraneType(MembraneTypeId type)",
            asMETHOD(MembraneComponent, setMembraneType), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }

@@ -1,0 +1,74 @@
+{
+    "single": {
+        "cellWall": false,
+        "normalTexture": "FresnelGradient.png",
+        "damagedTexture": "FresnelGradientDamaged.png",
+        "movementFactor": 1.1,
+        "osmoregulationFactor": 1.1,
+        "resourceAbsorptionFactor": 1.1,
+        "hitpoints": 70,
+        "physicalResistance": 1,
+        "toxinResistance": 1,
+        "editorCost": 50
+    },
+    "double": {
+        "cellWall": false,
+        "normalTexture": "DoubleCellMembrane.png",
+        "damagedTexture": "DoubleCellMembraneDamaged.png",
+        "movementFactor": 1,
+        "osmoregulationFactor": 1,
+        "resourceAbsorptionFactor": 1,
+        "hitpoints": 100,
+        "physicalResistance": 1,
+        "toxinResistance": 1,
+        "editorCost": 50
+    },
+    "cellulose": {
+        "cellWall": true,
+        "normalTexture": "CellWallGradient.png",
+        "damagedTexture": "CellWallGradientDamaged.png",
+        "movementFactor": 0.8,
+        "osmoregulationFactor": 0.8,
+        "resourceAbsorptionFactor": 0.9,
+        "hitpoints": 100,
+        "physicalResistance": 1.2,
+        "toxinResistance": 1,
+        "editorCost": 50
+    },
+    "chitin": {
+        "cellWall": true,
+        "normalTexture": "ChitinCellWallGradient.png",
+        "damagedTexture": "ChitinCellWallGradientDamaged.png",
+        "movementFactor": 0.8,
+        "osmoregulationFactor": 0.8,
+        "resourceAbsorptionFactor": 0.9,
+        "hitpoints": 100,
+        "physicalResistance": 1,
+        "toxinResistance": 1.2,
+        "editorCost": 50
+    },
+    "calcium_carbonate": {
+        "cellWall": true,
+        "normalTexture": "CalciumCarboMembrane.png",
+        "damagedTexture": "CalciumCarboMembraneDamaged.png",
+        "movementFactor": 0.7,
+        "osmoregulationFactor": 0.8,
+        "resourceAbsorptionFactor": 0.9,
+        "hitpoints": 130,
+        "physicalResistance": 1.2,
+        "toxinResistance": 1.2,
+        "editorCost": 50
+    },
+    "silica": {
+        "cellWall": true,
+        "normalTexture": "SilicaMembrane.png",
+        "damagedTexture": "SilicaMembraneDamaged.png",
+        "movementFactor": 0.6,
+        "osmoregulationFactor": 0.8,
+        "resourceAbsorptionFactor": 0.9,
+        "hitpoints": 130,
+        "physicalResistance": 1.4,
+        "toxinResistance": 1.2,
+        "editorCost": 50
+    }
+}
