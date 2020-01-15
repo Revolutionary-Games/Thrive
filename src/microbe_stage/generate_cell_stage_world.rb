@@ -45,7 +45,7 @@ cellWorld = GameWorldClass.new(
     EntityComponent.new('EngulfableComponent', [ConstructorInfo.new([])]),
     EntityComponent.new('MembraneComponent', [ConstructorInfo.new(
       [
-        Variable.new('type', 'MEMBRANE_TYPE',
+        Variable.new('type', 'MembraneTypeId',
                      noRef: true,
                      memberaccess: 'membraneType',
                      serializeas: 'uint16_t')

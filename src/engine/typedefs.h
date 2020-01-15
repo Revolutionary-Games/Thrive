@@ -14,6 +14,8 @@ using CompoundId = uint16_t;
 
 using BioProcessId = uint16_t;
 
+using MembraneTypeId = uint16_t;
+
 using Milliseconds = int;
 
 constexpr CompoundId NULL_COMPOUND = -1;
