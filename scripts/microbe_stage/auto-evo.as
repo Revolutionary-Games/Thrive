@@ -14,7 +14,8 @@ void applyMutatedSpeciesProperties(Species@ target, const Species@ mutatedProper
 
     target.colour = mutatedProperties.colour;
     target.isBacteria = mutatedProperties.isBacteria;
-    target.speciesMembraneType = mutatedProperties.speciesMembraneType;
+    target.membraneType = mutatedProperties.membraneType;
+    target.membraneRigidity = mutatedProperties.membraneRigidity;
 
     // These don't mutate for a species
     // name;

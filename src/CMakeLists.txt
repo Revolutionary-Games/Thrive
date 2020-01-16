@@ -82,6 +82,8 @@ set(GROUP_MICROBE_STAGE
   "microbe_stage/organelle_template.cpp"
   "microbe_stage/organelle_table.h"
   "microbe_stage/organelle_table.cpp"
+  "microbe_stage/membrane_types.h"
+  "microbe_stage/membrane_types.cpp"
   )
 
 set(GROUP_AUTO-EVO

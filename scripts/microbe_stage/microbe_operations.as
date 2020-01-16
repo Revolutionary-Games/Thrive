@@ -277,7 +277,9 @@ void respawnPlayer(CellStageWorld@ world)
             microbeComponent.organelles[i].reset();
         }
 
-        setupMicrobeHitpoints(microbeComponent, DEFAULT_HEALTH);
+        setupMicrobeHitpoints(microbeComponent,
+            int(SimulationParameters::membraneRegistry().getTypeData(microbeComponent.species.membraneType).hitpoints +
+            microbeComponent.species.membraneRigidity * MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER));
         // Setup compounds
         setupMicrobeCompounds(world,playerEntity);
         // Reset position //
@@ -369,7 +371,7 @@ float getBandwidth(MicrobeComponent@ microbeComponent, float maxAmount,
 
     auto amount = min(maxAmount * compoundVolume, microbeComponent.remainingBandwidth);
     microbeComponent.remainingBandwidth = microbeComponent.remainingBandwidth - amount;
-    return amount / compoundVolume;
+    return (amount / compoundVolume)  * SimulationParameters::membraneRegistry().getTypeData(microbeComponent.species.membraneType).resourceAbsorptionFactor;
 }
 
 // Stores an compound in the microbe's storage organelles
@@ -813,12 +815,16 @@ void damage(CellStageWorld@ world, ObjectID microbeEntity, double amount, const 
             // Play the toxin sound
             playSoundWithDistance(world, "Data/Sound/soundeffects/microbe-toxin-damage.ogg",
                 microbeEntity);
+            // Divide damage by toxin resistance
+            amount /= SimulationParameters::membraneRegistry().getTypeData(microbeComponent.species.membraneType).toxinResistance;
         } else if(damageType == "pilus"){
             // Play the pilus sound
             playSoundWithDistance(world, "Data/Sound/soundeffects/pilus_puncture_stab.ogg",
                 microbeEntity);
             // TODO: this may get triggered a lot more than the toxin
             // so this might need to be rate limited or something
+            // Divide damage by physical resistance
+            amount /= SimulationParameters::membraneRegistry().getTypeData(microbeComponent.species.membraneType).physicalResistance;
         }
 
         microbeComponent.hitpoints -= amount;
@@ -984,7 +990,7 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, bool aiControlled,
     auto position = world.Create_Position(entity, Float3(0, 0, 0), Quaternion::IDENTITY);
 
     auto membraneComponent = world.Create_MembraneComponent(entity,
-        species.speciesMembraneType);
+        species.membraneType);
 
     auto compoundAbsorberComponent = world.Create_CompoundAbsorberComponent(entity);
 
@@ -1310,7 +1316,7 @@ void setMembraneColour(CellStageWorld@ world, ObjectID microbeEntity, Float4 col
 }
 
 // Sets the type of the microbe's membrane.
-void setMembraneType(CellStageWorld@ world, ObjectID microbeEntity, MEMBRANE_TYPE type)
+void setMembraneType(CellStageWorld@ world, ObjectID microbeEntity, MembraneTypeId type)
 {
     auto membraneComponent = world.GetComponent_MembraneComponent(microbeEntity);
     membraneComponent.setMembraneType(type);

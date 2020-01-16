@@ -26,6 +26,15 @@ const ReturnedT*
     return &self->getTypeData(id);
 }
 
+//! Wrapper for TJsonRegistry::getTypeData
+template<class RegistryT, class ReturnedT>
+const ReturnedT*
+    getTypeDataWithInternalNameWrapper(RegistryT* self,
+        const std::string& internalName)
+{
+    return &self->getTypeData(internalName);
+}
+
 // Wrappers for registerSimulationDataAndJsons
 
 SpeciesNameController*
@@ -57,6 +66,12 @@ TJsonRegistry<OrganelleType>*
 {
     return &SimulationParameters::organelleRegistry;
 }
+
+TJsonRegistry<MembraneType>*
+    getMembraneRegistryWrapper()
+{
+    return &SimulationParameters::membraneRegistry;
+}
 // ------------------------------------ //
 //! Helper for registerSimulationDataAndJsons
 template<class RegistryT, class ReturnedT>
@@ -78,6 +93,16 @@ bool
     if(engine->RegisterObjectMethod(classname,
            ("const " + returnedTypeName + "@ getTypeData(uint64 id)").c_str(),
            asFUNCTION((getTypeDataWrapper<RegistryT, ReturnedT>)),
+           asCALL_CDECL_OBJFIRST) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod(classname,
+           ("const " + returnedTypeName +
+               "@ getTypeData(const string &in internalName)")
+               .c_str(),
+           asFUNCTION(
+               (getTypeDataWithInternalNameWrapper<RegistryT, ReturnedT>)),
            asCALL_CDECL_OBJFIRST) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
@@ -142,6 +167,9 @@ bool
         return false;
 
     if(!registerRegistryHeldHelperBases<OrganelleType>(engine, "OrganelleType"))
+        return false;
+
+    if(!registerRegistryHeldHelperBases<MembraneType>(engine, "MembraneType"))
         return false;
 
     // Compound specific properties //
@@ -461,6 +489,46 @@ bool
         ANGELSCRIPT_REGISTERFAIL;
     }
 
+    // ------------------------------------ //
+    // MembraneType
+    if(engine->RegisterObjectProperty("MembraneType", "float movementFactor",
+           asOFFSET(MembraneType, movementFactor)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("MembraneType",
+           "float osmoregulationFactor",
+           asOFFSET(MembraneType, osmoregulationFactor)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("MembraneType",
+           "float resourceAbsorptionFactor",
+           asOFFSET(MembraneType, resourceAbsorptionFactor)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("MembraneType", "float hitpoints",
+           asOFFSET(MembraneType, hitpoints)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("MembraneType",
+           "float physicalResistance",
+           asOFFSET(MembraneType, physicalResistance)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("MembraneType", "float toxinResistance",
+           asOFFSET(MembraneType, toxinResistance)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("MembraneType", "int editorCost",
+           asOFFSET(MembraneType, editorCost)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
     return true;
 }
 
@@ -556,6 +624,11 @@ bool
         return false;
     }
 
+    if(!registerJsonRegistry<TJsonRegistry<MembraneType>, MembraneType>(
+           engine, "TJsonRegistryMembraneType", "MembraneType")) {
+        return false;
+    }
+
 
     if(engine->SetDefaultNamespace("SimulationParameters") < 0) {
         ANGELSCRIPT_REGISTERFAIL;
@@ -587,6 +660,12 @@ bool
     if(engine->RegisterGlobalFunction(
            "TJsonRegistryOrganelleType@ organelleRegistry()",
            asFUNCTION(getOrganelleRegistryWrapper), asCALL_CDECL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterGlobalFunction(
+           "TJsonRegistryMembraneType@ membraneRegistry()",
+           asFUNCTION(getMembraneRegistryWrapper), asCALL_CDECL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 

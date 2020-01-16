@@ -1,6 +1,7 @@
 #pragma once
 
 #include "biomes.h"
+#include "membrane_types.h"
 #include "organelle_template.h"
 
 #include "engine/component_types.h"
@@ -158,6 +159,7 @@ public:
     std::string
         computeEnergyBalance(
             const std::vector<OrganelleTemplate::pointer>& organelles,
+            const MembraneType& membraneType,
             const Biome& biome) const;
 
 

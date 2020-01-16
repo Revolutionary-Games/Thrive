@@ -8,6 +8,7 @@ TJsonRegistry<BioProcess> SimulationParameters::bioProcessRegistry;
 TJsonRegistry<Biome> SimulationParameters::biomeRegistry;
 TJsonRegistry<Background> SimulationParameters::backgroundRegistry;
 TJsonRegistry<OrganelleType> SimulationParameters::organelleRegistry;
+TJsonRegistry<MembraneType> SimulationParameters::membraneRegistry;
 SpeciesNameController SimulationParameters::speciesNameController;
 
 void
@@ -25,6 +26,8 @@ void
         "./Data/Scripts/simulation_parameters/microbe_stage/backgrounds.json");
     SimulationParameters::organelleRegistry = TJsonRegistry<OrganelleType>(
         "./Data/Scripts/simulation_parameters/microbe_stage/organelles.json");
+    SimulationParameters::membraneRegistry = TJsonRegistry<MembraneType>(
+        "./Data/Scripts/simulation_parameters/microbe_stage/membranes.json");
 
     SimulationParameters::speciesNameController =
         SpeciesNameController("./Data/Scripts/simulation_parameters/"
