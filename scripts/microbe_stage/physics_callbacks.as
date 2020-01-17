@@ -237,6 +237,10 @@ bool beingEngulfed(GameWorld@ world, ObjectID firstEntity, ObjectID secondEntity
     //Check if they were null *because if null the cast failed)
     if (firstMicrobeComponent !is null && secondMicrobeComponent !is null)
     {
+        // Disallow cannibalism
+        if(firstMicrobeComponent.species is secondMicrobeComponent.species)
+            return true;
+
         // Get microbe sizes here
         int firstMicrobeComponentHexCount = firstMicrobeComponent.totalHexCountCache;
         int secondMicrobeComponentHexCount = secondMicrobeComponent.totalHexCountCache;
