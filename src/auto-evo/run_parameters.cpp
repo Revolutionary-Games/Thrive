@@ -105,8 +105,32 @@ std::string
     RunParameters::makeSummaryOfExternalEffects() const
 {
     std::stringstream sstream;
+    std::vector<std::tuple<Species::pointer, int, std::string>>
+        combinedExternalEffects;
 
     for(const auto& [species, amount, eventType] : m_externalEffects) {
+        int combinedIdx = 0;
+        bool combined = false;
+
+        for(const auto& [combinedSpecies, combinedAmount, combinedEventType] :
+            combinedExternalEffects) {
+            if(species == combinedSpecies && eventType == combinedEventType) {
+                combinedExternalEffects.at(combinedIdx) =
+                    std::make_tuple(combinedSpecies, combinedAmount + amount,
+                        combinedEventType);
+                combined = true;
+                break;
+            }
+
+            combinedIdx++;
+        }
+
+        if(!combined)
+            combinedExternalEffects.push_back(
+                std::make_tuple(species, amount, eventType));
+    }
+
+    for(const auto& [species, amount, eventType] : combinedExternalEffects) {
         sstream << species->getFormattedName() << " population changed by "
                 << amount << " because of: " << eventType << "\n";
     }
