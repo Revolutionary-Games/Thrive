@@ -109,20 +109,15 @@ std::string
         combinedExternalEffects;
 
     for(const auto& [species, amount, eventType] : m_externalEffects) {
-        int combinedIdx = 0;
         bool combined = false;
 
-        for(const auto& [combinedSpecies, combinedAmount, combinedEventType] :
+        for(auto& [combinedSpecies, combinedAmount, combinedEventType] :
             combinedExternalEffects) {
             if(species == combinedSpecies && eventType == combinedEventType) {
-                combinedExternalEffects.at(combinedIdx) =
-                    std::make_tuple(combinedSpecies, combinedAmount + amount,
-                        combinedEventType);
+                combinedAmount += amount;
                 combined = true;
                 break;
             }
-
-            combinedIdx++;
         }
 
         if(!combined)
