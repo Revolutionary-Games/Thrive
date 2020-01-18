@@ -1266,10 +1266,18 @@ class MicrobeEditor{
             symmetry = int(vars.GetSingleValueByName("symmetry"));
             return 1;
         } else if (type == "PressedRightRotate"){
-            organelleRot+=(360/6);
+            organelleRot += 360 / 6;
+
+            if (organelleRot >= 360)
+                organelleRot -= 360;
+
             return 1;
         } else if (type == "PressedLeftRotate"){
-            organelleRot-=(360/6);
+            organelleRot -= 360 / 6;
+
+            if (organelleRot < 0)
+                organelleRot += 360;
+
             return 1;
         } else if (type == "NewCellClicked"){
             createNewMicrobe("");
