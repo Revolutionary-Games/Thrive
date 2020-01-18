@@ -99,28 +99,39 @@ const organelleSelectionElements = [
     {
         element: document.getElementById("addNucleus"),
         organelle: "nucleus"
+    },
+    {
+        element: document.getElementById("addPilus"),
+        organelle: "pilus"
     }
 
-    // AddPilus
-    // addCilia
+    // AddCilia
 ];
 
 const membraneSelectionElements = [
     {
-        element: document.getElementById("setMembraneMembrane"),
-        membrane: "membrane"
+        element: document.getElementById("setMembraneSingle"),
+        membrane: "single"
     },
     {
-        element: document.getElementById("setMembraneWall"),
-        membrane: "wall"
+        element: document.getElementById("setMembraneDouble"),
+        membrane: "double"
+    },
+    {
+        element: document.getElementById("setMembraneCellulose"),
+        membrane: "cellulose"
     },
     {
         element: document.getElementById("setMembraneChitin"),
         membrane: "chitin"
     },
     {
-        element: document.getElementById("setMembraneDouble"),
-        membrane: "double"
+        element: document.getElementById("setMembraneCalciumCarbonate"),
+        membrane: "calcium_carbonate"
+    },
+    {
+        element: document.getElementById("setMembraneSilica"),
+        membrane: "silica"
     }
 ];
 
@@ -170,7 +181,7 @@ export function setupMicrobeEditor(){
 
     // New Cell Button Clicked
     document.getElementById("newButton").addEventListener("click",
-        OnNewCellClicked, true);
+        onNewCellClicked, true);
 
     // Undo Button Clicked
     document.getElementById("Undo").addEventListener("click",
@@ -209,10 +220,13 @@ export function setupMicrobeEditor(){
             selectCellTab("structure");
         }, true);
 
-    document.getElementById("AppearanceButton").addEventListener("click",
+    document.getElementById("MembraneButton").addEventListener("click",
         () => {
-            selectCellTab("appearance");
+            selectCellTab("membrane");
         }, true);
+
+    document.getElementById("rigiditySlider").addEventListener("input",
+        onRigidityChanged, true);
 
 
     // All of the organelle buttons
@@ -241,6 +255,14 @@ export function setupMicrobeEditor(){
         onColourWheelClicked, true);
     document.getElementById("ColourValueBar").addEventListener("click",
         onColourValueBarClicked, true);
+
+    // Condition buttons clicked
+    const minusBtnObjects = document.getElementsByClassName("minusBtn");
+
+    for (const element of minusBtnObjects) {
+        element.addEventListener("click",
+            onConditionClicked, true);
+    }
 
     if(common.isInEngine()){
 
@@ -332,6 +354,7 @@ export function setupMicrobeEditor(){
             colour.hsvValue = hsvValueFromRGB(colour);
             updateColourDisplay(colour);
             updateColourValueBar(colour);
+            updateRigidity((vars.rigidity + 1) / 2 * 10);
         });
 
         // Event for detecting the current membrane
@@ -349,8 +372,31 @@ export function setupMicrobeEditor(){
             updateColourValueBar(colour);
         });
 
+        // Event for detecting the membrane rigidity
+        Leviathan.OnGeneric("MicrobeEditorRigidityUpdated", (event, vars) => {
+            updateRigidity((vars.rigidity + 1) / 2 * 10);
+        });
+
+        Leviathan.OnGeneric("OrganellePatchEfficiencyData", (event, vars) => {
+            // Just let any exceptions buble up from json parse
+            updateOrganelleEfficiencies(JSON.parse(vars.data));
+        });
+
+        Leviathan.OnGeneric("MicrobeEditorEnergyBalanceUpdated", (event, vars) => {
+            // Just let any exceptions buble up from json parse
+            updateEnergyBalanceBars(JSON.parse(vars.data));
+        });
+
     } else {
         updateSelectedOrganelle("cytoplasm");
+
+        // Load example data and use that
+        $.ajax({url: "example_organelle_efficiency.json"}).done(function( data ) {
+            updateOrganelleEfficiencies(data);
+        });
+        $.ajax({url: "example_energy_balance.json"}).done(function( data ) {
+            updateEnergyBalanceBars(data);
+        });
     }
 }
 
@@ -450,10 +496,10 @@ function onNameInput(event){
 function selectCellTab(tab){
     // Hide all
     document.getElementById("StructurePanelMid").style.display = "none";
-    document.getElementById("AppearancePanelMid").style.display = "none";
+    document.getElementById("MembranePanelMid").style.display = "none";
 
     document.getElementById("StructurePanelTop").classList.remove("Active");
-    document.getElementById("AppearanceButton").classList.remove("Active");
+    document.getElementById("MembraneButton").classList.remove("Active");
 
     for(const element of organelleSelectionElements){
         element.element.style.display = "none";
@@ -472,14 +518,14 @@ function selectCellTab(tab){
         }
 
         document.getElementById("StructurePanelTop").classList.add("Active");
-    } else if(tab == "appearance"){
-        document.getElementById("AppearancePanelMid").style.display = "block";
+    } else if(tab == "membrane"){
+        document.getElementById("MembranePanelMid").style.display = "block";
 
         for(const element of membraneSelectionElements){
             element.element.style.display = "";
         }
 
-        document.getElementById("AppearanceButton").classList.add("Active");
+        document.getElementById("MembraneButton").classList.add("Active");
     } else {
         throw "invalid tab";
     }
@@ -648,8 +694,14 @@ function onSelectNewOrganelle(organelle){
     }
 }
 
-function onFreeBuildStatus(toggle) {
+function onFreeBuildStatus(toggle){
     limitMovesPerSession = !toggle;
+
+    if(toggle){
+        document.getElementById("newButton").classList.remove("DisabledButton");
+    } else {
+        document.getElementById("newButton").classList.add("DisabledButton");
+    }
 }
 
 //! Updates the GUI buttons based on selected organelle
@@ -689,6 +741,13 @@ function onSelectMembrane(membrane){
     }
 }
 
+function onRigidityChanged(event){
+    if (common.isInEngine()) {
+        Leviathan.CallGenericEvent("MicrobeEditorRigidityChanged",
+            {rigidity: parseInt(event.target.value) * 2.0 / 10 - 1});
+    }
+}
+
 //! Updates the GUI buttons based on current membrane
 function updateCurrentMembrane(membrane){
 
@@ -713,6 +772,10 @@ function updateCurrentMembrane(membrane){
     }
 }
 
+function updateRigidity(rigidity){
+    document.getElementById("rigiditySlider").value = rigidity;
+}
+
 //! Updates mutation points in GUI
 function updateMutationPoints(mutationPoints, maxMutationPoints){
     document.getElementById("microbeHUDPlayerMutationPoints").textContent =
@@ -726,7 +789,10 @@ function updateMutationPoints(mutationPoints, maxMutationPoints){
 //! Updates size points in GUI
 function updateSize(size){
     document.getElementById("sizeLabel").textContent =
-    size + " / Osmoregulation Cost: (" + size + ") ATP/s";
+        size;
+
+    // + " / Osmoregulation Cost: (" + size + ") ATP/s";
+    // Is this still needed with the balance bars?
 }
 
 //! Updates generation points in GUI
@@ -760,6 +826,15 @@ function updateGuiButtons(isNucleusPresent){
         document.getElementById("addVacuole").classList.remove("DisabledButton");
         document.getElementById("addToxinVacuole").classList.remove("DisabledButton");
     }
+}
+
+// Patch Map close button
+function onConditionClicked() {
+    const tab = $(this).attr("data-cond");
+
+    $("#" + tab).animate({"height": "toggle"});
+    $(this).toggleClass("minus");
+    $(this).toggleClass("plus");
 }
 
 //! Updates generation points in GUI
@@ -955,12 +1030,14 @@ function onSymmetryClicked(event){
     event.stopPropagation();
 }
 
-function OnNewCellClicked(event){
-    common.playButtonPressSound();
-    if(common.isInEngine()){
-        Leviathan.CallGenericEvent("NewCellClicked", {});
+function onNewCellClicked(event){
+    if (!document.getElementById("newButton").classList.contains("DisabledButton")){
+        common.playButtonPressSound();
+        if (common.isInEngine()){
+            Leviathan.CallGenericEvent("NewCellClicked", {});
+        }
+        event.stopPropagation();
     }
-    event.stopPropagation();
 }
 
 function onRedoClicked(event){
@@ -1049,6 +1126,7 @@ function processPatchMapData(data){
     if(!obj.patches){
         targetElement.textContent =
             "invalid data received it is missing patches";
+        return;
     }
     targetElement.textContent = "";
 
@@ -1169,6 +1247,9 @@ function processPatchMapData(data){
 function updateSelectedPatchData(patch){
     selectedPatch = patch;
 
+    // Reset species shown
+    document.getElementById("speciesInPatch").textContent = "";
+
     if(!selectedPatch){
         document.getElementById("noPatchSelectedText").style.display = "inline-block";
         document.getElementById("patchInfoBox").style.display = "none";
@@ -1176,14 +1257,13 @@ function updateSelectedPatchData(patch){
         return;
     }
 
+    // Get chunck values of patch
+    const chunk = getPatchChunkTotalCompoundAmounts(patch);
+
     document.getElementById("noPatchSelectedText").style.display = "none";
     document.getElementById("patchInfoBox").style.display = "block";
 
     document.getElementById("editorSelectedPatchName").textContent = patch.name;
-
-    const descriptionElement =
-        document.getElementById("editorSelectedPatchDescription");
-    descriptionElement.textContent = "";
 
     if(patchMoveAllowed(selectedPatch.id)){
         document.getElementById("moveToPatchButton").classList.remove("Disabled");
@@ -1191,44 +1271,83 @@ function updateSelectedPatchData(patch){
         document.getElementById("moveToPatchButton").classList.add("Disabled");
     }
 
+    // Reset all arrows and text when we select a patch
+    // Is called when we move on another patch or we select one
     if(currentPatchId == selectedPatch.id){
-        descriptionElement.appendChild(document.createTextNode("You are currently in " +
-                                                               "this patch."));
-        descriptionElement.appendChild(document.createElement("br"));
+        document.getElementById("editorSelectedPatchName").textContent = patch.name;
+        document.getElementById("editorSelectedPatchSituation").textContent =
+            "You are currently in this patch";
+
+
+        // Reset all box that show up or down arrow on selected patch
+        document.getElementById("microbeHUDPatchTemperatureSituation").style.backgroundImage =
+        "none";
+        document.getElementById("microbeHUDPatchPressureSituation").style.backgroundImage =
+        "none";
+        document.getElementById("microbeHUDPatchLightSituation").style.backgroundImage =
+        "none";
+
+        document.getElementById("microbeHUDPatchOxygenSituation").style.backgroundImage =
+        "none";
+        document.getElementById("microbeHUDPatchNitrogenSituation").style.backgroundImage =
+        "none";
+        document.getElementById("microbeHUDPatchCO2Situation").style.backgroundImage =
+        "none";
+
+        document.getElementById("microbeHUDPatchGlucoseSituation").style.backgroundImage =
+        "none";
+        document.getElementById("microbeHUDPatchPhosphateSituation").style.backgroundImage =
+        "none";
+        document.getElementById("microbeHUDPatchHydrogenSulfideSituation").
+            style.backgroundImage = "none";
+        document.getElementById("microbeHUDPatchAmmoniaSituation").
+            style.backgroundImage = "none";
+        document.getElementById("microbeHUDPatchIronSituation").style.backgroundImage = "none";
+
+    } else {
+        document.getElementById("editorSelectedPatchSituation").textContent = "";
+        updateConditionDifferencesBetweenPatches(patch, patchData.patches[currentPatchId]);
     }
 
-    // Biome name
-    descriptionElement.appendChild(document.createTextNode("Biome: " + patch.biome.name));
-    descriptionElement.appendChild(document.createElement("br"));
 
-    // Species
-    descriptionElement.appendChild(document.createElement("br"));
-    descriptionElement.appendChild(document.createTextNode("Species in this patch:"));
-    descriptionElement.appendChild(document.createElement("br"));
+    // Biome name
+    document.getElementById("patchName").textContent = "Biome: " + patch.biome.name;
+
+    // Set all environment data from objects received
+    document.getElementById("microbeHUDPatchTemperature").textContent =
+        patch.biome.temperature;
+
+    document.getElementById("microbeHUDPatchLight").textContent =
+        (patch.biome.compounds.sunlight.dissolved * 100) + "%";
+    document.getElementById("microbeHUDPatchOxygen").textContent =
+        (patch.biome.compounds.oxygen.dissolved * 100) + "%";
+    document.getElementById("microbeHUDPatchNitrogen").textContent =
+        (patch.biome.compounds.nitrogen.dissolved * 100) + "%";
+    document.getElementById("microbeHUDPatchCO2").textContent =
+        (patch.biome.compounds.carbondioxide.dissolved * 100) + "%";
+
+    document.getElementById("microbeHUDPatchHydrogenSulfide").textContent =
+     (patch.biome.compounds.hydrogensulfide.density *
+     patch.biome.compounds.hydrogensulfide.amount + chunk.hydrogensulfide).toFixed(3) + "%";
+    document.getElementById("microbeHUDPatchAmmonia").textContent =
+     (patch.biome.compounds.ammonia.density *
+     patch.biome.compounds.ammonia.amount + chunk.ammonia).toFixed(3) + "%";
+    document.getElementById("microbeHUDPatchGlucose").textContent =
+     (patch.biome.compounds.glucose.density *
+     patch.biome.compounds.glucose.amount + chunk.glucose).toFixed(3) + "%";
+    document.getElementById("microbeHUDPatchPhosphate").textContent =
+     (patch.biome.compounds.phosphates.density *
+    patch.biome.compounds.phosphates.amount + chunk.phosphates).toFixed(3) + "%";
+
+    document.getElementById("microbeHUDPatchIron").textContent = chunk.iron.toFixed(3) + "%";
 
     for(const species of patch.species){
         const name = species.species.genus + " " + species.species.epithet;
 
-        descriptionElement.appendChild(document.createTextNode(name + " with population: " +
-                                                               species.population));
-        descriptionElement.appendChild(document.createElement("br"));
+        const par = document.createElement("p");
+        par.textContent = name + " with population: " + species.population;
+        document.getElementById("speciesInPatch").appendChild(par);
     }
-
-    descriptionElement.appendChild(document.createElement("br"));
-    descriptionElement.appendChild(document.createTextNode("Environment:"));
-    descriptionElement.appendChild(document.createElement("br"));
-    descriptionElement.appendChild(document.createTextNode("O2: " +
-        (patch.biome.compounds.oxygen.dissolved * 100).toString() + "%"));
-    descriptionElement.appendChild(document.createElement("br"));
-    descriptionElement.appendChild(document.createTextNode("CO2: " +
-        (patch.biome.compounds.carbondioxide.dissolved * 100).toString() + "%"));
-    descriptionElement.appendChild(document.createElement("br"));
-    descriptionElement.appendChild(document.createTextNode("N2: " +
-        (patch.biome.compounds.nitrogen.dissolved * 100).toString() + "%"));
-    descriptionElement.appendChild(document.createElement("br"));
-    descriptionElement.appendChild(document.createTextNode("Sunlight: " +
-        (patch.biome.compounds.sunlight.dissolved * 100).toString() + "%"));
-    descriptionElement.appendChild(document.createElement("br"));
 }
 
 function patchMoveAllowed(targetId){
@@ -1272,4 +1391,416 @@ function moveToPatchClicked(){
     }
 
     updateSelectedPatchData(selectedPatch);
+}
+
+// TODO: this function should be cleaned up by generalizing the adding
+// the increase or decrease icons in order to remove the duplicated
+// logic here
+function updateConditionDifferencesBetweenPatches(selectedPatch, currentPatch) {
+
+    const selectedPatchChunk = getPatchChunkTotalCompoundAmounts(selectedPatch);
+    const currentPatchChunk = getPatchChunkTotalCompoundAmounts(currentPatch);
+
+    // ========================== TEMPERATURE ========================== //
+    let nextCompound = selectedPatch.biome.temperature;
+
+    if(nextCompound > currentPatch.biome.temperature) {
+
+        document.getElementById("microbeHUDPatchTemperatureSituation").style.backgroundImage =
+        "url('../../Textures/gui/bevel/increase.png')";
+
+    } else if(nextCompound < currentPatch.biome.temperature) {
+
+        document.getElementById("microbeHUDPatchTemperatureSituation").style.backgroundImage =
+        "url('../../Textures/gui/bevel/decrease.png')";
+
+    } else {
+        document.getElementById("microbeHUDPatchTemperatureSituation").style.backgroundImage =
+        "none";
+    }
+
+    // ========================== SUNLIGHT ==========================  //
+    nextCompound = selectedPatch.biome.compounds.sunlight.dissolved;
+
+    if( nextCompound > currentPatch.biome.compounds.sunlight.dissolved ) {
+
+        document.getElementById("microbeHUDPatchLightSituation").style.backgroundImage =
+        "url('../../Textures/gui/bevel/increase.png')";
+
+    } else if( nextCompound < currentPatch.biome.compounds.sunlight.dissolved ) {
+
+        document.getElementById("microbeHUDPatchLightSituation").style.backgroundImage =
+        "url('../../Textures/gui/bevel/decrease.png')";
+
+    } else {
+        document.getElementById("microbeHUDPatchLightSituation").style.backgroundImage =
+        "none";
+    }
+
+    // ========================== HYDROGEN SULFIDE ========================== //
+    nextCompound = selectedPatch.biome.compounds.hydrogensulfide.density *
+    selectedPatch.biome.compounds.hydrogensulfide.amount + selectedPatchChunk.hydrogensulfide;
+
+    if( nextCompound > currentPatch.biome.compounds.hydrogensulfide.density *
+    currentPatch.biome.compounds.hydrogensulfide.amount + currentPatchChunk.hydrogensulfide ) {
+
+        document.getElementById("microbeHUDPatchHydrogenSulfideSituation").
+            style.backgroundImage = "url('../../Textures/gui/bevel/increase.png')";
+
+    } else if( nextCompound < currentPatch.biome.compounds.hydrogensulfide.density *
+    currentPatch.biome.compounds.hydrogensulfide.amount + currentPatchChunk.hydrogensulfide) {
+
+        document.getElementById("microbeHUDPatchHydrogenSulfideSituation").
+            style.backgroundImage = "url('../../Textures/gui/bevel/decrease.png')";
+
+    } else {
+        document.getElementById("microbeHUDPatchHydrogenSulfideSituation").
+            style.backgroundImage = "none";
+    }
+
+    // ========================== GLUCOSE ==========================  //
+    nextCompound = selectedPatch.biome.compounds.glucose.density *
+    selectedPatch.biome.compounds.glucose.amount + selectedPatchChunk.glucose;
+
+    if( nextCompound > currentPatch.biome.compounds.glucose.density *
+    currentPatch.biome.compounds.glucose.amount + currentPatchChunk.glucose) {
+
+        document.getElementById("microbeHUDPatchGlucoseSituation").style.backgroundImage =
+        "url('../../Textures/gui/bevel/increase.png')";
+
+    } else if( nextCompound < currentPatch.biome.compounds.glucose.density *
+    currentPatch.biome.compounds.glucose.amount + currentPatchChunk.glucose) {
+
+        document.getElementById("microbeHUDPatchGlucoseSituation").style.backgroundImage =
+        "url('../../Textures/gui/bevel/decrease.png')";
+
+    } else {
+        document.getElementById("microbeHUDPatchGlucoseSituation").style.backgroundImage =
+        "none";
+    }
+
+    // ========================== IRON ==========================  //
+    nextCompound = selectedPatchChunk.iron;
+
+    if( nextCompound > currentPatch.iron ) {
+
+        document.getElementById("microbeHUDPatchIronSituation").style.backgroundImage =
+        "url('../../Textures/gui/bevel/increase.png')";
+
+    } else if( nextCompound < currentPatchChunk.iron) {
+
+        document.getElementById("microbeHUDPatchIronSituation").style.backgroundImage =
+        "url('../../Textures/gui/bevel/decrease.png')";
+
+    } else {
+        document.getElementById("microbeHUDPatchIronSituation").style.backgroundImage =
+        "none";
+    }
+
+    // ========================== AMMONIA ==========================  //
+    nextCompound = selectedPatch.biome.compounds.ammonia.density *
+    selectedPatch.biome.compounds.ammonia.amount + selectedPatchChunk.ammonia;
+
+    if( nextCompound > currentPatch.biome.compounds.ammonia.density *
+    currentPatch.biome.compounds.ammonia.amount + currentPatchChunk.ammonia) {
+
+        document.getElementById("microbeHUDPatchAmmoniaSituation").style.backgroundImage =
+        "url('../../Textures/gui/bevel/increase.png')";
+
+    } else if( nextCompound < currentPatch.biome.compounds.ammonia.density *
+    currentPatch.biome.compounds.ammonia.amount + currentPatchChunk.ammonia) {
+
+        document.getElementById("microbeHUDPatchAmmoniaSituation").style.backgroundImage =
+        "url('../../Textures/gui/bevel/decrease.png')";
+
+    } else {
+        document.getElementById("microbeHUDPatchAmmoniaSituation").style.backgroundImage =
+        "none";
+    }
+
+    // ========================== PHOSPHATES ==========================  //
+    nextCompound = selectedPatch.biome.compounds.phosphates.density *
+    selectedPatch.biome.compounds.phosphates.amount + selectedPatchChunk.phosphates;
+
+    if( nextCompound > currentPatch.biome.compounds.phosphates.density *
+    currentPatch.biome.compounds.phosphates.amount + currentPatchChunk.phosphates) {
+
+        document.getElementById("microbeHUDPatchPhosphateSituation").style.backgroundImage =
+        "url('../../Textures/gui/bevel/increase.png')";
+
+    } else if( nextCompound < currentPatch.biome.compounds.phosphates.density *
+    currentPatch.biome.compounds.phosphates.amount + currentPatchChunk.phosphates) {
+
+        document.getElementById("microbeHUDPatchPhosphateSituation").style.backgroundImage =
+        "url('../../Textures/gui/bevel/decrease.png')";
+
+    } else {
+        document.getElementById("microbeHUDPatchPhosphateSituation").style.backgroundImage =
+        "none";
+    }
+
+}
+
+function getPatchChunkTotalCompoundAmounts(patch) {
+
+    let glucose = 0;
+    let phosphates = 0;
+    let ammonia = 0;
+    let hydrogensulfide = 0;
+    let iron = 0;
+
+
+    for(const chunk of patch.biome.chunks ) {
+        if(chunk.density != 0) {
+            for(const compound of chunk.compounds) {
+                switch (compound.name) {
+                case "glucose":
+                    glucose += chunk.density * compound.amount;
+                    break;
+                case "phoshpates":
+                    phosphates += chunk.density * compound.amount;
+                    break;
+                case "ammonia":
+                    ammonia += chunk.density * compound.amount;
+                    break;
+                case "hydrogensulfide":
+                    hydrogensulfide += chunk.density * compound.amount;
+                    break;
+                case "iron":
+                    iron += chunk.density * compound.amount;
+                    break;
+                case "atp":
+                    // ChunkAtp += chunk.density * compound.amount;
+                    break;
+                default:
+                    break;
+                }
+            }
+        }
+    }
+
+    return {
+        glucose,
+        phosphates,
+        ammonia,
+        hydrogensulfide,
+        iron
+    };
+}
+
+function createCompoundIcon(compoundName){
+    const icon = document.createElement("span");
+    icon.classList.add("compoundIcon");
+    icon.classList.add(compoundName.replace(" ", "") + "Icon");
+
+    return icon;
+}
+
+function writeOrganelleProcessList(organelleProcesses, targetElement){
+
+    targetElement.textContent = "";
+
+    if(!organelleProcesses){
+        targetElement.textContent = "No processes";
+        return;
+    }
+
+    for(const process of organelleProcesses){
+
+        const processTitle = document.createElement("span");
+        processTitle.classList.add("tgold");
+        processTitle.textContent = process.name;
+
+        targetElement.appendChild(processTitle);
+        targetElement.appendChild(document.createElement("br"));
+
+        const processBody = document.createElement("span");
+
+        let usePlus = true;
+
+        // TODO: if the output amount is 0 it should be highlighted in red
+        if(!process.inputs){
+            // Just environmental stuff
+            usePlus = true;
+        } else {
+            // Something turns into something else, uses the arrow notation
+            usePlus = false;
+
+            // Show the inputs
+            // TODO: add commas or maybe pluses for multiple inputs
+            for(const key in process.inputs){
+                const inputCompound = process.inputs[key];
+
+                const amount = document.createElement("span");
+                amount.classList.add("tkey");
+                amount.textContent = inputCompound.amount.toFixed(2) + " ";
+
+                processBody.appendChild(amount);
+                processBody.appendChild(createCompoundIcon(inputCompound.name));
+            }
+
+            // And the arrow
+            const arrow = document.createElement("span");
+            arrow.classList.add("compoundIcon");
+            arrow.classList.add("WhiteArrow");
+
+            processBody.appendChild(document.createTextNode(" "));
+            processBody.appendChild(arrow);
+            processBody.appendChild(document.createTextNode(" "));
+        }
+
+        // Outputs of the process. It's assumed that every process has outputs
+        for(const key in process.outputs){
+            const outputCompound = process.outputs[key];
+
+            const amount = document.createElement("span");
+            amount.classList.add("tkey");
+
+            let amountText = "";
+
+            if(usePlus){
+                amountText += outputCompound.amount >= 0 ? "+" : "";
+            }
+
+            amountText += outputCompound.amount.toFixed(2) + " ";
+
+            amount.textContent = amountText;
+
+            processBody.appendChild(amount);
+            processBody.appendChild(createCompoundIcon(outputCompound.name));
+        }
+
+        const perSecond = document.createElement("span");
+        perSecond.textContent = "/second";
+
+        processBody.appendChild(perSecond);
+
+        // Environment conditions
+        if(process.environment){
+
+            const atSymbol = document.createElement("span");
+
+            // The special entities need handling
+            atSymbol.innerHTML = "&emsp;@&emsp;";
+            processBody.appendChild(atSymbol);
+
+            let first = true;
+
+            for(const key in process.environment){
+                if(!first){
+                    processBody.appendChild(document.createTextNode(", "));
+                }
+                first = false;
+
+                const environmentCompound = process.environment[key];
+
+                // To percentage
+                const percentage = document.createElement("span");
+                percentage.classList.add("tkey");
+
+                // TODO: sunlight needs some special handling (it used to say the lux amount)
+                percentage.textContent = (environmentCompound.availableAmount * 100).
+                    toFixed(1) + "%";
+
+                processBody.appendChild(percentage);
+                processBody.appendChild(createCompoundIcon(environmentCompound.name));
+            }
+        }
+
+        targetElement.appendChild(processBody);
+        targetElement.appendChild(document.createElement("br"));
+        targetElement.appendChild(document.createElement("br"));
+    }
+}
+
+// Updates the organelle efficiencies in tooltips
+function updateOrganelleEfficiencies(data) {
+    const organelles = [
+        {
+            name: "chromatophors",
+            processList: "chromatophorProcessList"
+        },
+        {
+            name: "cytoplasm",
+            processList: "cytoplasmProcessList"
+        },
+        {
+            name: "metabolosome",
+            processList: "metabolosomeProcessList"
+        },
+        {
+            name: "chemoSynthisizingProteins",
+            processList: "chemoSynthisizingProteinsProcessList"
+        },
+        {
+            name: "rusticyanin",
+            processList: "rusticyaninProcessList"
+        },
+        {
+            name: "nitrogenase",
+            processList: "nitrogenaseProcessList"
+        },
+        {
+            name: "oxytoxyProteins",
+            processList: "oxytoxyProteinsProcessList"
+        },
+        {
+            name: "mitochondrion",
+            processList: "mitochondrionProcessList"
+        },
+        {
+            name: "chloroplast",
+            processList: "chloroplastProcessList"
+        },
+        {
+            name: "chemoplast",
+            processList: "chemoplastProcessList"
+        },
+        {
+            name: "nitrogenfixingplastid",
+            processList: "nitrogenfixingplastidProcessList"
+        },
+        {
+            name: "oxytoxy",
+            processList: "oxytoxyProcessList"
+        },
+    ];
+
+    for(const organelle of organelles){
+        writeOrganelleProcessList(data.organelles[organelle.name].processes,
+            document.getElementById(organelle.processList));
+    }
+}
+
+// Updates the energy balance bars shown in the editor
+function updateEnergyBalanceBars(data){
+    // Crunch the numbers
+    const maxBarValue = Math.max(data.total.consumption, data.total.production);
+
+    const endPointInBar = (Math.floor(maxBarValue / 10.0) + 1) * 10.0;
+
+    const notProducingEnough = data.total.consumption >= data.total.production;
+
+    const productionBarFillAmount = data.total.production / endPointInBar;
+    const consumptionBarFillAmount = data.total.consumption / endPointInBar;
+
+    // Set the label
+    const balanceLabel = document.getElementById("atpBalanceLabel");
+
+    if(notProducingEnough){
+        balanceLabel.textContent = "Not producing enough ATP!";
+        balanceLabel.classList.add("Red");
+    } else {
+        balanceLabel.textContent = "ATP balance";
+        balanceLabel.classList.remove("Red");
+    }
+
+    // Set the bar lengths
+    const productionBar = document.getElementById("atpProductionBar");
+    productionBar.style.width = (productionBarFillAmount * 100).toFixed(1) + "%";
+    productionBar.textContent = data.total.production.toFixed(1);
+
+    const consumptionBar = document.getElementById("atpConsumptionBar");
+    consumptionBar.style.width = (consumptionBarFillAmount * 100).toFixed(1) + "%";
+    consumptionBar.textContent = data.total.consumption.toFixed(1);
 }

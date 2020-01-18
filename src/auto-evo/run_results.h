@@ -26,10 +26,10 @@ public:
         Species::pointer mutatedProperties;
 
         //! List of patches this species has spread to
-        //! \todo Doesn't do anything yet
-        //! The first part of the tuple is the patch id, the second is the
-        //! population in that patch
-        std::vector<std::tuple<int32_t, int>> spreadPatches;
+        //! The first part of the tuple is the patch id of the source patch, the
+        //! second is the patch the population is moved to, and the third is the
+        //! amount of population to move
+        std::vector<std::tuple<int32_t, int32_t, int>> spreadToPatches;
     };
 
 protected:
@@ -50,6 +50,12 @@ public:
         addPopulationResultForSpecies(const Species::pointer& species,
             int32_t patch,
             int newPopulation);
+
+    void
+        addMigrationResultForSpecies(const Species::pointer& species,
+            int32_t fromPatch,
+            int32_t toPatch,
+            int populationAmount);
 
     void
         applyResults(const PatchMap::pointer& map, bool skipMutations);
@@ -92,19 +98,6 @@ public:
         return getPopulationInPatch(Species::WrapPtr(species), patch);
     }
 
-    //! Returns a stored status text
-    std::string
-        getCachedSummary() const
-    {
-        return m_storedSummary;
-    }
-
-    void
-        setStoredSummary(const std::string& text)
-    {
-        m_storedSummary = text;
-    }
-
     static RunResults*
         factory();
 
@@ -112,8 +105,15 @@ public:
     REFERENCE_COUNTED_PTR_TYPE(RunResults);
 
 private:
+    void
+        makeSureResultExistsForSpecies(const Species::pointer& species);
+
+    int
+        countSpeciesSpreadPopulation(const Species::pointer& species,
+            int32_t targetPatch) const;
+
+private:
     std::vector<SpeciesResult> m_results;
-    std::string m_storedSummary;
 };
 
 }} // namespace thrive::autoevo

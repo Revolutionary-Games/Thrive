@@ -3,41 +3,41 @@ jobs:
    build:
      working_directory: ~/thrive
      docker:
-       - image: hhyyrylainen/leviathan-deps:v6
+       - image: hhyyrylainen/leviathan-deps:v7
      environment:
        GIT_LFS_SKIP_SMUDGE: 1
      steps:
        - checkout
        - restore_cache:
            keys:
-             - v1-lfs-{{ .Branch }}
-             - v1-lfs-master
+             - v2-lfs-{{ .Branch }}
+             - v2-lfs-master
        - shell:
            name: Pull Git LFS files, retry until done
            command: |
              while true; do git reset --hard HEAD && git clean -fd && git lfs pull && break; done
        - save_cache:
-          key: v1-lfs-{{ .Branch }}
+          key: v2-lfs-{{ .Branch }}
           paths:
             - .git/lfs
        - restore_cache:
            keys:
-             - v4-deps-{{ arch }}-{{ checksum "SetupThrive.rb" }}
-             - v4-deps-{{ arch }}
+             - v5-deps-{{ arch }}-{{ checksum "SetupThrive.rb" }}
+             - v5-deps-{{ arch }}
        - restore_cache:
            keys:
-             - v4-build-{{ arch }}-{{ .Branch }}
-       - run: ./SetupThrive.rb --no-packagemanager --no-updates -j 2 --fully-parallel-project-compile --project-parallel 5
+             - v5-build-{{ arch }}-{{ .Branch }}
+       - run: ./SetupThrive.rb --no-packagemanager --no-updates --precompiled -j 2 --fully-parallel-project-compile --project-parallel 5
        - save_cache:
-           key: v4-deps-{{ arch }}-{{ checksum "SetupThrive.rb" }}
+           key: v5-deps-{{ arch }}-{{ checksum "SetupThrive.rb" }}
            paths:
              - ThirdParty
        - save_cache:
-           key: v4-deps-{{ arch }}
+           key: v5-deps-{{ arch }}
            paths:
              - ThirdParty
        - save_cache:
-           key: v4-build-{{ arch }}-{{ .Branch }}
+           key: v5-build-{{ arch }}-{{ .Branch }}
            paths:
              - build/src
        - run: mkdir -p /reports/reports

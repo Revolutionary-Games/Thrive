@@ -66,6 +66,8 @@ class MicrobeStageHudSystem : ScriptSystem{
         this.ironVolume = SimulationParameters::compoundRegistry().getTypeData(
             this.ironId).volume;
 
+        ammoniaIdStr = formatInt(ammoniaId);
+        phosphateIdStr = formatInt(phosphateId);
     }
 
     void handleAmbientSound()
@@ -136,16 +138,16 @@ class MicrobeStageHudSystem : ScriptSystem{
 
                 float gatheredAmmonia, neededAmmonia, gatheredPhosphates, neededPhosphates;
 
-                if(gatheredCompounds.get("ammonia", gatheredAmmonia) &&
-                    totalNeededCompounds.get("ammonia", neededAmmonia))
+                if(gatheredCompounds.get(ammoniaIdStr, gatheredAmmonia) &&
+                    totalNeededCompounds.get(ammoniaIdStr, neededAmmonia))
                 {
                     fractionOfAmmonia = gatheredAmmonia / neededAmmonia;
                 } else {
                     LOG_WARNING("can't get reproduction ammonia progress");
                 }
 
-                if(gatheredCompounds.get("phosphates", gatheredPhosphates) &&
-                    totalNeededCompounds.get("phosphates", neededPhosphates))
+                if(gatheredCompounds.get(phosphateIdStr, gatheredPhosphates) &&
+                    totalNeededCompounds.get(phosphateIdStr, neededPhosphates))
                 {
                     fractionOfPhosphates = gatheredPhosphates / neededPhosphates;
                 } else {
@@ -344,6 +346,9 @@ class MicrobeStageHudSystem : ScriptSystem{
 
     CompoundId ironId;
     float ironVolume;
+
+    string phosphateIdStr;
+    string ammoniaIdStr;
 }
 
 

@@ -98,13 +98,16 @@ const auto AI_TIME_INTERVAL = 0.2f;
 const auto AI_CELL_THINK_INTERVAL = 3.f;
 
 // Osmoregulation ATP cost
+//! If you change this you must also change the value in process_system.cpp
 const auto ATP_COST_FOR_OSMOREGULATION = 1.0f;
 
 //Purge Divisor
 const auto COMPOUND_PURGE_MODIFIER = 2.0f;
 
-// BASE MOVEMENT COST ATP cost
-// Cancels out a little bit more then one cytoplasm's glycolysis
+//! BASE MOVEMENT COST ATP cost
+//! Cancels out a little bit more then one cytoplasm's glycolysis
+//! Note: this is applied *per* hex
+//! If you change this you must also change the value in process_system.cpp
 const auto BASE_MOVEMENT_ATP_COST = 1.0f;
 
 // The player's name
@@ -115,6 +118,7 @@ const auto DEFAULT_HEALTH = 100;
 const auto REGENERATION_RATE = 1.0f;
 
 // Movement stuff
+//! If you change this you must also change the value in process_system.cpp
 const auto FLAGELLA_ENERGY_COST = 7.1f;
 const auto FLAGELLA_BASE_FORCE = 0.7f;
 const auto CELL_BASE_THRUST = 1.6f;
@@ -203,45 +207,64 @@ const int CREATURE_ESCAPE_POPULATION_GAIN = 50;
 const uint CREATURE_ESCAPE_INTERVAL = 5000;
 
 
+// Auto-evo tweak variables (TODO: move to JSON)
+const int AUTO_EVO_MINIMUM_MOVE_POPULATION = 250;
+const float AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION = 0.1f;
+const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.9f;
+
+// Some (placeholder) auto-evo algorithm tweak parameters
+const auto AUTO_EVO_LOW_SPECIES_THRESHOLD = 3;
+const auto AUTO_EVO_LOW_SPECIES_BOOST = 500;
+const auto AUTO_EVO_HIGH_SPECIES_THRESHOLD = 11;
+const auto AUTO_EVO_HIGH_SPECIES_PENALTY = 500;
+const auto AUTO_EVO_RANDOM_POPULATION_CHANGE = 500;
+
+
+// Used in the cell collision callback to know if something hit was a pilus
+const int PHYSICS_PILUS_TAG = 1;
+const auto PILUS_BASE_DAMAGE = 1.f;
+const auto PILUS_PENETRATION_DISTANCE_DAMAGE_MULTIPLIER = 10.f;
+
+
+// For rigidity stat modifications
+const int MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER = 30;
+const float MEMBRANE_RIGIDITY_MOBILITY_MODIFIER = 0.1f;
+
+
 //! Returns a material with a basic texture on it. For use on non-organelle models
-bs::HMaterial getBasicMaterialWithTexture(const string &in textureName)
+Material@ getBasicMaterialWithTexture(const string &in textureName)
 {
-    bs::HShader shader(bs::BuiltinShader::Standard);
-    bs::HMaterial material(shader);
-    bs::HTexture texture(textureName);
-    material.setTexture("gAlbedoTex", texture);
+    Material@ material = Material(Shader("BuiltinShader::Standard"));
+    material.SetTexture("gAlbedoTex", Texture(textureName));
 
     return material;
 }
 
 //! Returns a material with a basic texture on it. Supports transparency
-bs::HMaterial getBasicTransparentMaterialWithTexture(const string &in textureName)
+Material@ getBasicTransparentMaterialWithTexture(const string &in textureName)
 {
-    bs::HShader shader(bs::BuiltinShader::Transparent);
-    bs::HMaterial material(shader);
-    bs::HTexture texture(textureName);
-    material.setTexture("gAlbedoTex", texture);
+    Material@ material = Material(Shader("BuiltinShader::Transparent"));
+    material.SetTexture("gAlbedoTex", Texture(textureName));
 
     return material;
 }
 
 //! Returns a material for organelles
-bs::HMaterial getOrganelleMaterialWithTexture(const string &in textureName,
+Material@ getOrganelleMaterialWithTexture(const string &in textureName,
     const Float4 &in tint = Float4(1, 1, 1, 1))
 {
     // TODO: loading the shader just once would be nice
-    bs::HShader shader("organelle.bsl");
-    bs::HMaterial material(shader);
-    bs::HTexture texture(textureName);
-    material.setTexture("gAlbedoTex", texture);
+    Shader@ shader = Shader("organelle.bsl");
+    Material@ material = Material(shader);
+    material.SetTexture("gAlbedoTex", Texture(textureName));
 
     updateMaterialTint(material, tint);
     return material;
 }
 
-void updateMaterialTint(bs::HMaterial &in material, const Float4 &in tint)
+void updateMaterialTint(Material@ material, const Float4 &in tint)
 {
-    material.setVec4("gTint", bs::Vector4(tint));
+    material.SetFloat4("gTint", tint);
 }
 
 
@@ -282,7 +305,8 @@ class MicrobeTemplate{
         array<OrganelleTemplatePlaced@> organelles,
         Float4 colour,
     bool isBacteria,
-    MEMBRANE_TYPE speciesMembraneType,
+    string membraneType,
+    float membraneRigidity,
     string genus,
     string epithet
     ) {
@@ -291,7 +315,8 @@ class MicrobeTemplate{
         this.organelles = organelles;
         this.colour = colour;
         this.isBacteria = isBacteria;
-        this.speciesMembraneType = speciesMembraneType;
+        this.membraneType = membraneType;
+        this.membraneRigidity = membraneRigidity;
         this.genus = genus;
         this.epithet = epithet;
     }
@@ -303,7 +328,8 @@ class MicrobeTemplate{
     array<OrganelleTemplatePlaced@> organelles;
     Float4 colour;
     bool isBacteria;
-    MEMBRANE_TYPE speciesMembraneType;
+    string membraneType;
+    float membraneRigidity;
 }
 
 class InitialCompound{
@@ -344,7 +370,8 @@ const dictionary STARTER_MICROBES = {
             Float4(1, 1, 1, 1),
             // Player starts as bacteria
             true,
-            MEMBRANE_TYPE::MEMBRANE,
+            "single",
+            0.f,
             "Primum",
             "Thrivium")
     }

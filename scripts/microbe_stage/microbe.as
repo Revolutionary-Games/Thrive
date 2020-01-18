@@ -459,22 +459,13 @@ class MicrobeSystem : ScriptSystem{
         // TODO:It seems to happen no matter what (even if it takes away less atp then
         // you generate per second), we should probably make it take into account the amount
         // of atp being generated so resources arent wasted
-        auto osmoCost = (microbeComponent.totalHexCountCache*ATP_COST_FOR_OSMOREGULATION) *
+        auto osmoCost = (microbeComponent.totalHexCountCache * SimulationParameters::membraneRegistry().getTypeData(microbeComponent.species.membraneType).osmoregulationFactor * ATP_COST_FOR_OSMOREGULATION) *
             elapsed;
 
-        // TODO: takeCompound shouldn't be able to make the amount negative,
-        // so this extra check is not needed
-        double atpAmount = MicrobeOperations::getCompoundAmount(world, microbeEntity,
-            SimulationParameters::compoundRegistry().getTypeId("atp"));
+        MicrobeOperations::takeCompound(world, microbeEntity,
+            SimulationParameters::compoundRegistry().getTypeId("atp"), osmoCost);
 
-        if (atpAmount >= osmoCost){
-            MicrobeOperations::takeCompound(world, microbeEntity,
-                SimulationParameters::compoundRegistry().getTypeId("atp"), osmoCost);
-        }
-        else {
-            MicrobeOperations::takeCompound(world, microbeEntity,
-                SimulationParameters::compoundRegistry().getTypeId("atp"), atpAmount);
-        }
+        // Reset compound absorption
         compoundAbsorberComponent.setAbsorbtionCapacity(microbeComponent.capacity);
 
         microbeComponent.compoundCollectionTimer += elapsed;
@@ -576,21 +567,31 @@ class MicrobeSystem : ScriptSystem{
             microbeComponent.queuedMovementForce.Z += -velocity.Z;
         }
 
+        // Add base movement. The movementDirection is the player or
+        // AI input which is then rotated based on the cell
+        // orientation
+        if(microbeComponent.movementDirection.X != 0.f ||
+            microbeComponent.movementDirection.Z != 0.f)
+        {
+            const auto cost = (BASE_MOVEMENT_ATP_COST * microbeComponent.totalHexCountCache)
+                * elapsed;
 
-        // Add base movement
-        // The movementDirection is the player or AI input
-        // Rotate the 'thrust' based on our orientation
-        // Halve speed if out of ATP
-        if (MicrobeOperations::getCompoundAmount(world, microbeEntity,
-                SimulationParameters::compoundRegistry().getTypeId("atp")) <= 0.0f){
-            microbeComponent.queuedMovementForce += pos._Orientation.RotateVector(
-            microbeComponent.movementDirection * (CELL_BASE_THRUST/2.0f) *
-            microbeComponent.movementFactor);
-        }
-        else {
-            microbeComponent.queuedMovementForce += pos._Orientation.RotateVector(
-            microbeComponent.movementDirection * CELL_BASE_THRUST *
-            microbeComponent.movementFactor);
+            const auto got = MicrobeOperations::takeCompound(world, microbeEntity,
+                SimulationParameters::compoundRegistry().getTypeId("atp"), cost);
+
+            float force = CELL_BASE_THRUST;
+
+            // Halve speed if out of ATP
+            if(got < cost){
+                // Not enough ATP to move at full speed
+                force *= 0.5f;
+            }
+
+            microbeComponent.queuedMovementForce += pos._Orientation * (
+                microbeComponent.movementDirection * force *
+                microbeComponent.movementFactor *
+                (SimulationParameters::membraneRegistry().getTypeData(microbeComponent.species.membraneType).movementFactor -
+                microbeComponent.species.membraneRigidity * MEMBRANE_RIGIDITY_MOBILITY_MODIFIER));
         }
 
         // Update organelles and then apply the movement force that was generated
@@ -606,19 +607,6 @@ class MicrobeSystem : ScriptSystem{
                     "Skipping microbe movement apply for microbe without physics body");
             } else {
 
-                // LOG_WRITE("cell thrust: " + microbeComponent.queuedMovementForce.X + ", " +
-                //     microbeComponent.queuedMovementForce.Y + ", " +
-                //     microbeComponent.queuedMovementForce.Z);
-
-                // There is an movement without flagella cost
-                if (microbeComponent.movementDirection != Float3(0.0f, 0.0f, 0.0f)){
-                    auto cost = (BASE_MOVEMENT_ATP_COST * microbeComponent.totalHexCountCache)
-                        * elapsed;
-                    // TODO: if there isn't enough energy this needs to scale the impulse
-                    MicrobeOperations::takeCompound(world, microbeEntity,
-                        SimulationParameters::compoundRegistry().getTypeId("atp"), cost);
-                }
-
                 // Scale movement by elapsed time (not by framerate). We aren't Fallout 4
                 microbeComponent.queuedMovementForce *= elapsed * 10.f;
                 physics.Body.GiveImpulse(microbeComponent.queuedMovementForce);
@@ -627,7 +615,7 @@ class MicrobeSystem : ScriptSystem{
 
         // Rotation (this is unaffected by everything currently)
         {
-            const auto target = Float4::QuaternionLookAt(pos._Position,
+            const auto target = Quaternion::LookAt(pos._Position,
                 microbeComponent.facingTargetPoint);
             const auto current = pos._Orientation;
             // Slerp 50% of the way each call

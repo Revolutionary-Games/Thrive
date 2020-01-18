@@ -9,6 +9,7 @@
 #include "generated/microbe_editor_world.h"
 #include "main_menu_keypresses.h"
 #include "microbe_stage/microbe_editor_key_handler.h"
+#include "microbe_stage/organelle_table.h"
 #include "microbe_stage/simulation_parameters.h"
 #include "scripting/script_initializer.h"
 #include "simulation/star_and_planet_generator.h"
@@ -29,9 +30,6 @@
 #include <Script/Bindings/StandardWorldBindHelper.h>
 #include <Script/ScriptExecutor.h>
 #include <Window.h>
-
-#include <bsfCore/Components/BsCRenderable.h>
-#include <bsfCore/Material/BsMaterial.h>
 
 using namespace thrive;
 
@@ -88,14 +86,23 @@ public:
     {
         m_microbeBackgroundMesh = nullptr;
         m_microbeBackgroundItem = nullptr;
-        if(!m_backgroundRenderNode.isDestroyed())
-            m_backgroundRenderNode->destroy();
-        m_backgroundRenderNode = nullptr;
+
+        if(m_backgroundRenderNode) {
+
+            m_backgroundRenderNode->DetachFromParent();
+            m_cellStage->GetScene()->DestroySceneNode(m_backgroundRenderNode);
+            m_backgroundRenderNode = nullptr;
+        }
 
         m_microbeEditorBackgroundItem = nullptr;
-        if(!m_editorBackgroundRenderNode.isDestroyed())
-            m_editorBackgroundRenderNode->destroy();
-        m_editorBackgroundRenderNode = nullptr;
+
+        if(m_editorBackgroundRenderNode) {
+
+            m_editorBackgroundRenderNode->DetachFromParent();
+            m_microbeEditor->GetScene()->DestroySceneNode(
+                m_editorBackgroundRenderNode);
+            m_editorBackgroundRenderNode = nullptr;
+        }
 
         m_MicrobeBackgroundMaterial = nullptr;
     }
@@ -114,32 +121,32 @@ public:
 
             auto shader = graphics->LoadShaderByName("background.bsl");
 
-            m_MicrobeBackgroundMaterial = bs::Material::create(shader);
+            m_MicrobeBackgroundMaterial =
+                Leviathan::Material::MakeShared<Leviathan::Material>(
+                    Leviathan::Shader::MakeShared<Leviathan::Shader>(shader));
         }
 
         if(m_cellStage) {
             if(!m_microbeBackgroundItem) {
                 m_backgroundRenderNode =
-                    bs::SceneObject::create("microbe background");
-                m_backgroundRenderNode->setParent(
-                    m_cellStage->GetCameraSceneObject(), false);
+                    m_cellStage->GetScene()->CreateSceneNode();
 
-                // m_backgroundRenderNode->setPosition(Float3(0, 0, 100));
+                m_cellStage->GetCameraSceneObject()->AttachObject(
+                    m_backgroundRenderNode);
 
-                m_backgroundRenderNode->setPosition(Float3(
+                m_backgroundRenderNode->SetPosition(Float3(
                     0, 0, backgroundYForCameraHeight(INITIAL_CAMERA_HEIGHT)));
 
-                m_backgroundRenderNode->setRotation(
-                    bs::Quaternion(bs::Vector3::UNIT_X, bs::Degree(90)));
+                m_backgroundRenderNode->SetRotation(
+                    Quaternion(Float3::UnitXAxis, Degree(90)));
+
                 m_microbeBackgroundItem =
-                    m_backgroundRenderNode->addComponent<bs::CRenderable>();
+                    Leviathan::Renderable::MakeShared<Leviathan::Renderable>(
+                        *m_backgroundRenderNode);
 
-                m_microbeBackgroundItem->setLayer(
-                    1 << *m_cellStage->GetScene());
-
-                m_microbeBackgroundItem->setMaterial(
+                m_microbeBackgroundItem->SetMaterial(
                     m_MicrobeBackgroundMaterial);
-                m_microbeBackgroundItem->setMesh(m_microbeBackgroundMesh);
+                m_microbeBackgroundItem->SetMesh(m_microbeBackgroundMesh);
             }
         }
 
@@ -147,21 +154,18 @@ public:
         if(m_microbeEditor) {
             if(!m_microbeEditorBackgroundItem) {
                 m_editorBackgroundRenderNode =
-                    bs::SceneObject::create("microbe editor background");
+                    m_microbeEditor->GetScene()->CreateSceneNode();
 
-                m_editorBackgroundRenderNode->setPosition(
+                m_editorBackgroundRenderNode->SetPosition(
                     Float3(0, BACKGROUND_Y, 0));
 
                 m_microbeEditorBackgroundItem =
-                    m_editorBackgroundRenderNode
-                        ->addComponent<bs::CRenderable>();
+                    Leviathan::Renderable::MakeShared<Leviathan::Renderable>(
+                        *m_editorBackgroundRenderNode);
 
-                m_microbeEditorBackgroundItem->setLayer(
-                    1 << *m_microbeEditor->GetScene());
-
-                m_microbeEditorBackgroundItem->setMaterial(
+                m_microbeEditorBackgroundItem->SetMaterial(
                     m_MicrobeBackgroundMaterial);
-                m_microbeEditorBackgroundItem->setMesh(m_microbeBackgroundMesh);
+                m_microbeEditorBackgroundItem->SetMesh(m_microbeBackgroundMesh);
             }
         }
     }
@@ -179,15 +183,15 @@ public:
     std::shared_ptr<Planet> m_planet;
 
     //! This is the background object of the cell stage
-    bs::HMesh m_microbeBackgroundMesh;
+    Leviathan::Mesh::pointer m_microbeBackgroundMesh;
 
-    bs::HMaterial m_MicrobeBackgroundMaterial;
+    Leviathan::Material::pointer m_MicrobeBackgroundMaterial;
 
-    bs::HRenderable m_microbeBackgroundItem;
-    bs::HSceneObject m_backgroundRenderNode;
+    Leviathan::Renderable::pointer m_microbeBackgroundItem;
+    Leviathan::SceneNode::pointer m_backgroundRenderNode;
 
-    bs::HRenderable m_microbeEditorBackgroundItem;
-    bs::HSceneObject m_editorBackgroundRenderNode;
+    Leviathan::Renderable::pointer m_microbeEditorBackgroundItem;
+    Leviathan::SceneNode::pointer m_editorBackgroundRenderNode;
 
     std::shared_ptr<MainMenuKeyPressListener> m_menuKeyPresses;
     std::shared_ptr<GlobalUtilityKeyHandler> m_globalKeyPresses;
@@ -309,12 +313,6 @@ void
 
         Leviathan::WorldNetworkSettings netSettings =
             Leviathan::WorldNetworkSettings::GetSettingsForSinglePlayer();
-        // netSettings.IsAuthoritative = true;
-        // netSettings.DoInterpolation = true;
-
-        // TODO: switch to
-        // Leviathan::WorldNetworkSettings::GetSettingsForSinglePlayer() once we
-        // no longer do the interpolation once variable rate ticks are supported
 
         LOG_INFO("ThriveGame: startNewGame: Creating new cellstage world");
         m_impl->m_cellStage =
@@ -345,7 +343,7 @@ void
 
     // Main camera that will be attached to the player
     m_cellCamera = Leviathan::ObjectLoader::LoadCamera(*m_impl->m_cellStage,
-        Float3(0, 15, 0), bs::Quaternion(bs::Vector3::UNIT_X, bs::Degree(-90)));
+        Float3(0, 15, 0), Quaternion(Float3::UnitXAxis, Degree(-90)));
 
     // Link the camera to the camera control system
     m_impl->m_cellStage->GetMicrobeCameraSystem().setCameraEntity(m_cellCamera);
@@ -387,6 +385,27 @@ void
     // This registers all the script defined systems to run and be
     // available from the world
     LEVIATHAN_ASSERT(getMicrobeScripts(), "microbe scripts not loaded");
+
+    if(OrganelleTable::initIfNeeded()) {
+        // Also init organelle letters in scripts
+
+        LOG_INFO("Calling world setup script setupOrganelleLetters");
+
+        ScriptRunningSetup setup;
+        setup.SetEntrypoint("setupOrganelleLetters");
+
+        auto result = getMicrobeScripts()->ExecuteOnModule<void>(setup, false);
+
+        if(result.Result != SCRIPT_RUN_RESULT::Success) {
+
+            LOG_ERROR(
+                "Failed to run script setup function: " + setup.Entryfunction);
+            MarkAsClosing();
+            return;
+        }
+
+        LOG_INFO("Finished calling setupOrganelleLetters");
+    }
 
     LOG_INFO("Calling world setup script setupScriptsForWorld");
 
@@ -865,6 +884,27 @@ void
         // The data event will make it visible
     }
 }
+
+void
+    ThriveGame::toggleDebugPhysics()
+{
+    if(m_physicsDebugEnabled) {
+
+        m_physicsDebugEnabled = false;
+
+        if(m_impl->m_cellStage) {
+            m_impl->m_cellStage->DisablePhysicsDebugDraw();
+        }
+
+    } else {
+
+        m_physicsDebugEnabled = true;
+
+        if(m_impl->m_cellStage) {
+            m_impl->m_cellStage->EnablePhysicsDebugDraw();
+        }
+    }
+}
 // ------------------------------------ //
 void
     ThriveGame::connectToServer(const std::string& url)
@@ -1035,7 +1075,7 @@ void
 
     // Main camera that will be attached to the player
     m_cellCamera = Leviathan::ObjectLoader::LoadCamera(*m_impl->m_cellStage,
-        Float3(0, 15, 0), bs::Quaternion(bs::Vector3::UNIT_X, bs::Degree(-90)));
+        Float3(0, 15, 0), Quaternion(Float3::UnitXAxis, Degree(-90)));
 
     // Link the camera to the camera control system
     m_impl->m_cellStage->GetMicrobeCameraSystem().setCameraEntity(m_cellCamera);
@@ -1163,13 +1203,14 @@ void
         LOG_INFO("Setting background: " + background.internalName);
 
         for(size_t i = 0; i < 4; ++i) {
-            const auto layer = "gTexLayer" + bs::toString(i);
+            const auto layer = "gTexLayer" + std::to_string(i);
             if(i < background.layers.size()) {
 
-                m_impl->m_MicrobeBackgroundMaterial->setTexture(
-                    layer, graphics->LoadTextureByName(background.layers[i]));
+                m_impl->m_MicrobeBackgroundMaterial->SetTexture(layer,
+                    Leviathan::Texture::MakeShared<Leviathan::Texture>(
+                        graphics->LoadTextureByName(background.layers[i])));
             } else {
-                m_impl->m_MicrobeBackgroundMaterial->setTexture(layer, nullptr);
+                m_impl->m_MicrobeBackgroundMaterial->SetTexture(layer, nullptr);
             }
         }
     } catch(const Leviathan::InvalidArgument&) {
@@ -1192,7 +1233,7 @@ void
     ThriveGame::notifyCameraDistance(float height)
 {
     if(m_impl->m_backgroundRenderNode) {
-        m_impl->m_backgroundRenderNode->setPosition(
+        m_impl->m_backgroundRenderNode->SetPosition(
             Float3(0, 0, backgroundYForCameraHeight(height)));
     }
 
@@ -1324,7 +1365,10 @@ void
         if(m_impl->m_autoEvoRun && m_impl->m_autoEvoRun->wasSuccessful() &&
             m_impl->m_autoEvoRun->getResults()) {
 
-            result = m_impl->m_autoEvoRun->getResults()->getCachedSummary() +
+            // We have already applied the external effects so the summary
+            // generated here is accurate
+            result = m_impl->m_autoEvoRun->getResults()->makeSummary(
+                         m_impl->m_autoEvoRun->getPreviousPopulations(), true) +
                      "\n\nexternal effects:\n" +
                      m_impl->m_autoEvoRun->makeSummaryOfExternalEffects();
         }
@@ -1410,7 +1454,7 @@ void
 
     // Main camera that will be attached to the player
     auto camera = Leviathan::ObjectLoader::LoadCamera(*m_impl->m_microbeEditor,
-        Float3(0, 15, 0), bs::Quaternion(bs::Vector3::UNIT_X, bs::Degree(-90)));
+        Float3(0, 15, 0), Quaternion(Float3::UnitXAxis, Degree(-90)));
 
     // TODO: attach a ligth to the camera
     // -- Light
@@ -1524,6 +1568,8 @@ void
     // Make sure all simulations have stopped
     m_impl->m_autoEvo.abortSimulations();
 
+    OrganelleTable::release();
+
     // Shutdown scripting first to allow it to still do anything it wants //
     releaseScripts();
 
@@ -1572,6 +1618,7 @@ void
     keyconfigobj->AddKeyIfMissing(guard, "RotateRight", {"A"});
     keyconfigobj->AddKeyIfMissing(guard, "RotateLeft", {"D"});
     keyconfigobj->AddKeyIfMissing(guard, "ToggleDebugOverlay", {"F3"});
+    keyconfigobj->AddKeyIfMissing(guard, "ToggleDebugPhysics", {"F4"});
 }
 // ------------------------------------ //
 bool

@@ -17,7 +17,7 @@ if !File.exist? 'RubySetupSystem/RubySetupSystem.rb'
 else
   # Make sure RubySetupSystem is up to date
   # This may make debugging RubySetupSystem harder so feel free to comment out
-  system 'git submodule update'
+  system 'git submodule update --init'
 end
 
 require 'fileutils'
@@ -45,7 +45,7 @@ require_relative 'RubySetupSystem/Libraries/SetupLeviathan.rb'
 leviathan = Leviathan.new(
   # Use this if you always want the latest commit
   # version: "develop",
-  version: 'e410f6a27808f181daa8b6e82102c505a6527bdd',
+  version: '569a8b7c4f5691ac6a1d0cf9a577666f86a87a96',
   # Doesn't actually work, but leviathan doesn't install with sudo by
   # default, or install at all for that matter
   noInstallSudo: true
@@ -94,7 +94,7 @@ if OS.windows?
                 convertPathToWindows(File.join(ProjectDir, 'assets', 'fonts'))
   runSystemSafe 'cmd', '/c', 'mklink', '/J',
                 convertPathToWindows(File.join(ProjectDir, 'JSVendor')),
-                convertPathToWindows(File.join(ProjectDir, 'ThirdParty/Leviathan/bin/Data',
+                convertPathToWindows(File.join(ProjectDir, 'ThirdParty/Leviathan/Assets',
                                                'JSVendor'))
 else
   unless File.exist? File.join(ProjectDir, 'Textures')
@@ -108,7 +108,7 @@ else
   end
 
   unless File.exist? File.join(ProjectDir, 'JSVendor')
-    FileUtils.ln_sf File.join(ProjectDir, 'ThirdParty/Leviathan/bin/Data', 'JSVendor'),
+    FileUtils.ln_sf File.join(ProjectDir, 'ThirdParty/Leviathan/Assets', 'JSVendor'),
                     File.join(ProjectDir, 'JSVendor')
   end
 end

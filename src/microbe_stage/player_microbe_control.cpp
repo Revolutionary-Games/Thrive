@@ -7,6 +7,7 @@
 
 #include <Addons/GameModule.h>
 #include <Application/KeyConfiguration.h>
+#include <Common/Plane.h>
 #include <Entities/GameWorld.h>
 #include <Entities/ScriptComponentHolder.h>
 #include <Window.h>
@@ -90,7 +91,10 @@ bool
 
         if(ThriveGame::get()->areCheatsEnabled()) {
 
-            LOG_INFO("Glucose cloud cheat pressed");
+            if(initialCloudsPress) {
+                LOG_INFO("Glucose cloud cheat pressed");
+                initialCloudsPress = false;
+            }
             cheatCloudsDown = true;
         }
         return true;
@@ -98,7 +102,10 @@ bool
 
         if(ThriveGame::get()->areCheatsEnabled()) {
 
-            LOG_INFO("Phosphate cloud cheat pressed");
+            if(initialPhosphateCloudsPress) {
+                LOG_INFO("Phosphate cloud cheat pressed");
+                initialPhosphateCloudsPress = false;
+            }
             cheatPhosphateCloudsDown = true;
         }
         return true;
@@ -106,7 +113,10 @@ bool
 
         if(ThriveGame::get()->areCheatsEnabled()) {
 
-            LOG_INFO("Ammonia cloud cheat pressed");
+            if(initialAmmoniaCloudsPress) {
+                LOG_INFO("Ammonia cloud cheat pressed");
+                initialAmmoniaCloudsPress = false;
+            }
             cheatAmmoniaCloudsDown = true;
         }
         return true;
@@ -308,8 +318,6 @@ void
     // Activate engulf mode
     if(thrive->getPlayerInput()->getPressedEngulf()) {
 
-        LOG_INFO("Engulf mode pressed");
-
         thrive->getPlayerInput()->setPressedEngulf(false);
 
         ScriptRunningSetup setup("applyEngulfMode");
@@ -324,8 +332,6 @@ void
 
     // Fire Toxin
     if(thrive->getPlayerInput()->getPressedToxin()) {
-
-        LOG_INFO("Toxin Shoot pressed");
 
         thrive->getPlayerInput()->setPressedToxin(false);
 
@@ -374,13 +380,13 @@ Float3
 
     const auto ray = worldWithCamera.CastRayFromCamera(x, y);
 
-    const auto plane = bs::Plane(bs::Vector3(0, 1, 0), 0);
+    const auto plane = Plane(Float3(0, 1, 0), 0);
 
     bool intersects;
     float distance;
 
-    std::tie(intersects, distance) = ray.intersects(plane);
+    std::tie(intersects, distance) = ray.CalculateIntersection(plane);
 
     // TODO: could check that intersects is true
-    return ray.getPoint(distance);
+    return ray.GetPoint(distance);
 }

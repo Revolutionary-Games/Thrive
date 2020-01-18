@@ -21,23 +21,28 @@ o GameModule "microbe_stage"{
         name_generator.as
         organelle.as
         organelle_component.as
+        organelle_component_factories.as
         organelle_placement.as
-        organelle_table.as
         patch_map_generator.as
         physics_callbacks.as
         procedural_microbes.as
         setup.as
         species.as
         auto-evo.as
+        ai_migration.as
         timed_effects.as
 
         microbe_stage_hud.as
+
+        organelle_components/pilus.as
 
         // This would maybe ideally be a separate module but there needs to be a lot
         // of untangling to allow proper sharing of the parts that are used by both
         microbe_editor/microbe_editor.as
         microbe_editor/microbe_editor_hud.as
         microbe_editor/setup.as
+        microbe_editor/calculate_effectiveness.as
+        microbe_editor/energy_balance.as
         
         // TODO: This should be easy to move to another module
         utility.as

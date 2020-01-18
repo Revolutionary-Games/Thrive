@@ -16,6 +16,11 @@ BioProcess::BioProcess(Json::Value value)
 
         const double amount = value["inputs"][compoundInternalName].asDouble();
 
+        if(amount <= 0) {
+            throw InvalidArgument(
+                "bio process may not have 0 or negative value as amount");
+        }
+
         // Getting the compound id from the compound registry.
         size_t id = SimulationParameters::compoundRegistry
                         .getTypeData(compoundInternalName)
@@ -31,6 +36,11 @@ BioProcess::BioProcess(Json::Value value)
 
         const double amount = value["outputs"][compoundInternalName].asDouble();
 
+        if(amount <= 0) {
+            throw InvalidArgument(
+                "bio process may not have 0 or negative value as amount");
+        }
+
         // Getting the compound id from the compound registry.
         size_t id = SimulationParameters::compoundRegistry
                         .getTypeData(compoundInternalName)
@@ -39,3 +49,10 @@ BioProcess::BioProcess(Json::Value value)
         outputs.emplace(id, amount);
     }
 }
+// ------------------------------------ //
+// TweakedProcess
+TweakedProcess::TweakedProcess(const std::string& processName,
+    float tweakRate) :
+    process(SimulationParameters::bioProcessRegistry.getTypeData(processName)),
+    m_tweakRate(tweakRate)
+{}

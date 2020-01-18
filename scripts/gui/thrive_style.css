@@ -54,10 +54,6 @@ body {
   margin: 0;
 }
 
-/* button{
-    background-color: blue;
-} */
-
 /* Videos are centered inside their elements and made to fit */
 video {
   width: 100%;
@@ -497,6 +493,103 @@ div::-webkit-scrollbar-thumb:hover {
   display: inline-block;
 }
 
+.tabTitle {
+  text-align: center;
+  position: relative;
+  width: 100%;
+  margin-top: 15px;
+  height: 50px;
+  font-size: 28pt;
+}
+
+#Allcondition {
+  position: relative;
+  width: 100%;
+  height: calc(100% - 65px);
+  font-size: 11pt;
+}
+
+.ConditionTab {
+  position: relative;
+  display: inline-block;
+  height: auto;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.condition {
+  position: relative;
+  display: inline-block;
+  margin-top: 5px;
+  width: 45%;
+  height: auto;
+}
+
+.value {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 16pt;
+}
+
+.situation {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 10px;
+  width: 12px;
+  height: 12px;
+}
+
+.patchIcon {
+  display: inline-block;
+  vertical-align: middle;
+  width: 40px;
+  height: auto;
+}
+
+#microbeHUDPatchMeters {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  font-size: 14pt;
+}
+
+.minusBtn {
+  position: relative;
+  display: inline-block;
+  width: 27px;
+  height: 27px;
+  background-size: 27px, 27px;
+  background-image: url("../../Textures/gui/bevel/minusButtonHover.png");
+  background-position: center;
+  vertical-align: middle;
+}
+
+.minusBtn:hover {
+  background-image: url("../../Textures/gui/bevel/minusButtonHover.png");
+}
+
+.topBar {
+  display: block;
+  margin-left: 5px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  width: calc(100% - 8px);
+  height: 27px;
+}
+
+.condTitle {
+  display: inline-block;
+  position: relative;
+  height: auto;
+  font-size: 13pt;
+  vertical-align: middle;
+  margin-left: 5px;
+}
+
+#speciesInPatch {
+  font-size: 18px;
+}
+
 #microbeBottomBar {
   width: 500px;
   height: 46px;
@@ -718,7 +811,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-color: #6edd6b;
 }
 
-#OxygenIcon {
+.OxygenIcon {
   background-image: url("../../Textures/gui/bevel/Oxygen.png");
 }
 
@@ -731,7 +824,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-color: #2dcbf0;
 }
 
-#NitrogenIcon {
+.NitrogenIcon {
   background-image: url("../../Textures/gui/bevel/Nitrogen.png");
 }
 
@@ -768,7 +861,11 @@ div::-webkit-scrollbar-thumb:hover {
   background-color: #919c9d;
 }
 
-#CO2Icon {
+.CO2Icon {
+  background-image: url("../../Textures/gui/bevel/CO2.png");
+}
+
+.CarbonDioxideIcon {
   background-image: url("../../Textures/gui/bevel/CO2.png");
 }
 
@@ -781,7 +878,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-color: #153665;
 }
 
-#FattyAcidsIcon {
+.FattyAcidsIcon {
   background-image: url("../../Textures/gui/bevel/FattyAcids.png");
   background-repeat: no-repeat;
 }
@@ -791,6 +888,10 @@ div::-webkit-scrollbar-thumb:hover {
 }
 
 .OxyToxyIcon {
+  background-image: url("../../Textures/gui/bevel/OxyToxy.png");
+}
+
+.OxytoxyNTIcon {
   background-image: url("../../Textures/gui/bevel/OxyToxy.png");
 }
 
@@ -807,7 +908,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-color: #792011;
 }
 
-#HealthIcon {
+.HealthIcon {
   position: absolute;
   width: 19px;
   height: 19px;
@@ -817,7 +918,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/Hitpoints.png");
 }
 
-#ATPIconBar {
+.ATPIconBar {
   position: absolute;
   width: 19px;
   height: 19px;
@@ -867,7 +968,7 @@ div::-webkit-scrollbar-thumb:hover {
   font-size: 10pt;
 }
 
-#PhosphatesIcon {
+.PhosphatesIcon {
   background-image: url("../../Textures/gui/bevel/Phosphates.png");
 }
 
@@ -929,7 +1030,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/LargeTwoDisabled.png");
 }
 
-#microbeEditorIcon {
+.microbeEditorIcon {
   background-image: url("../../Textures/gui/bevel/EditorIcon.png");
   width: 120px;
   height: 80px;
@@ -1018,7 +1119,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/SmallOneHover.png");
 }
 
-#pauseIcon {
+.pauseIcon {
   /* Needs some Javascript to replace image with Textures/gui/bevel/PlayIcon.png when hidden */
   background-image: url("../../Textures/gui/bevel/PauseIcon.png");
   width: 40px;
@@ -1155,7 +1256,8 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/suicideButtonHover.png");
 }
 
-#suicideIcon {
+
+.suicideIcon {
   width: 40px;
   height: 40px;
   top: 0;
@@ -1277,7 +1379,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/SymmetryHover.png");
 }
 
-#SymmetryIcon {
+.SymmetryIcon {
   /* Needs Javascript to switch between empty background, 2xSymmetry, 4xSymmetry and 6xSymmetry */
   width: 80px;
   height: 62px;
@@ -1296,7 +1398,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/SmallThreeHover.png");
 }
 
-#UndoIcon {
+.UndoIcon {
   background-image: url("../../Textures/gui/bevel/UndoIcon.png");
   width: 40px;
   height: 40px;
@@ -1317,7 +1419,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/SmallFourHover.png");
 }
 
-#RedoIcon {
+.RedoIcon {
   background-image: url("../../Textures/gui/bevel/RedoIcon.png");
   width: 40px;
   height: 40px;
@@ -1403,7 +1505,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/MediumTwoHover.png");
 }
 
-#NewIcon {
+.NewIcon {
   background-image: url("../../Textures/gui/bevel/NewIcon.png");
   width: 40px;
   height: 40px;
@@ -1513,7 +1615,7 @@ div::-webkit-scrollbar-thumb:hover {
   overflow-y: scroll;
 }
 
-#AppearancePanelMid {
+#MembranePanelMid {
   position: relative;
   top: 0;
   left: 0;
@@ -1564,7 +1666,7 @@ div::-webkit-scrollbar-thumb:hover {
   top: 15px;
 }
 
-#NucleusIcon {
+.NucleusIcon {
   position: relative;
   left: calc(50% - 30px);
   width: 60px;
@@ -1580,6 +1682,87 @@ div::-webkit-scrollbar-thumb:hover {
   height: 60px;
   background-size: contain;
   background-image: url("../../Textures/gui/bevel/CytoplasmIcon.png");
+}
+
+.SingleMembraneIcon {
+  position: relative;
+  left: calc(50% - 30px);
+  width: 60px;
+  height: 60px;
+  background-size: contain;
+  background-image: url("../../Textures/gui/bevel/membraneStandard.png");
+}
+
+.DoubleMembraneIcon {
+  position: relative;
+  left: calc(50% - 30px);
+  width: 60px;
+  height: 60px;
+  background-size: contain;
+  background-image: url("../../Textures/gui/bevel/membraneDouble.png");
+}
+
+.CelluloseMembraneIcon {
+  position: relative;
+  left: calc(50% - 30px);
+  width: 60px;
+  height: 60px;
+  background-size: contain;
+  background-image: url("../../Textures/gui/bevel/membraneCellulose.png");
+}
+
+.ChitinMembraneIcon {
+  position: relative;
+  left: calc(50% - 30px);
+  width: 60px;
+  height: 60px;
+  background-size: contain;
+  background-image: url("../../Textures/gui/bevel/membraneChitin.png");
+}
+
+.CalciumCarboMembraneIcon {
+  position: relative;
+  left: calc(50% - 30px);
+  width: 60px;
+  height: 60px;
+  background-size: contain;
+  background-image: url("../../Textures/gui/bevel/membraneCalciumCarbo.png");
+}
+
+.SilicaMembraneIcon {
+  position: relative;
+  left: calc(50% - 30px);
+  width: 60px;
+  height: 60px;
+  background-size: contain;
+  background-image: url("../../Textures/gui/bevel/membraneSilica.png");
+}
+
+.ATPBalanceContainer {
+  position: absolute;
+  height: 60px;
+  width: calc(100% - (480px + 386px + 120px + 6px));
+  top: 0;
+  right: 0;
+  border: 3px solid rgb(112, 159, 159, 0.6);
+  background: rgb(0, 125, 125, 0.6);
+  box-sizing: border-box;
+}
+
+#atpProductionBar {
+  text-align: center;
+  height: 15px;
+  background: #61bd13;
+}
+
+#atpConsumptionBar {
+  text-align: center;
+  height: 15px;
+  background: #ce3830;
+}
+
+.Red {
+  color: #f33;
 }
 
 
@@ -1633,7 +1816,7 @@ div::-webkit-scrollbar-thumb:hover {
   visibility: visible;
 }
 
-#PlastidIcon {
+.PlastidIcon {
   position: relative;
   left: calc(50% - 30px);
   width: 60px;
@@ -1642,7 +1825,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/NitroplastidIcon.png");
 }
 
-#MitochondrionIcon {
+.MitochondrionIcon {
   position: relative;
   left: calc(50% - 30px);
   width: 60px;
@@ -1651,7 +1834,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/MitochondrionIcon.png");
 }
 
-#ChloroplastIcon {
+.ChloroplastIcon {
   position: relative;
   left: calc(50% - 30px);
   width: 60px;
@@ -1660,7 +1843,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/ChloroplastIcon.png");
 }
 
-#ThermoplastIcon {
+.ThermoplastIcon {
   position: relative;
   left: calc(50% - 30px);
   width: 60px;
@@ -1669,7 +1852,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/ThermoplastIcon.png");
 }
 
-#VacuoleIcon {
+.VacuoleIcon {
   position: relative;
   left: calc(50% - 30px);
   width: 60px;
@@ -1693,7 +1876,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/ToxinVacuoleIcon.png");
 }
 
-#BioluminescentIcon {
+.BioluminescentIcon {
   position: relative;
   left: calc(50% - 30px);
   width: 60px;
@@ -1702,7 +1885,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/BioluminescentIcon.png");
 }
 
-#ChemoplastIcon {
+.ChemoplastIcon {
   position: relative;
   left: calc(50% - 30px);
   width: 60px;
@@ -1711,7 +1894,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/ChemoplastIcon.png");
 }
 
-#FlagellumIcon {
+.FlagellumIcon {
   position: relative;
   left: calc(50% - 30px);
   width: 60px;
@@ -1722,11 +1905,11 @@ div::-webkit-scrollbar-thumb:hover {
 
 
 /* Used to place the flagellum's icon inside tooltips as an icon for storage. */
-#FlagellumTooltipIcon {
+.FlagellumTooltipIcon {
   background-image: url("../../Textures/gui/bevel/FlagellumIcon.png");
 }
 
-#MetabolosomeIcon {
+.MetabolosomeIcon {
   position: relative;
   left: calc(50% - 30px);
   width: 60px;
@@ -1735,7 +1918,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/MetabolosomeIcon.png");
 }
 
-#NitrogenaseIcon {
+.NitrogenaseIcon {
   position: relative;
   left: calc(50% - 30px);
   width: 60px;
@@ -1744,7 +1927,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/NitrogenaseIcon.png");
 }
 
-#ChromatophorIcon {
+.ChromatophorIcon {
   position: relative;
   left: calc(50% - 30px);
   width: 60px;
@@ -1753,7 +1936,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/ChromatophorIcon.png");
 }
 
-#ChemosynthisizingProteinsIcon {
+.ChemosynthisizingProteinsIcon {
   position: relative;
   left: calc(50% - 30px);
   width: 60px;
@@ -1762,7 +1945,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/ChemoproteinsIcon.png");
 }
 
-#RusticyaninIcon {
+.RusticyaninIcon {
   position: relative;
   left: calc(50% - 30px);
   width: 60px;
@@ -1771,7 +1954,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/RusticyaninIcon.png");
 }
 
-#PilusIcon {
+.PilusIcon {
   position: relative;
   left: calc(50% - 30px);
   width: 60px;
@@ -1780,7 +1963,7 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/PilusIcon.png");
 }
 
-#CiliaIcon {
+.CiliaIcon {
   position: relative;
   left: calc(50% - 30px);
   width: 60px;
@@ -1803,7 +1986,11 @@ div::-webkit-scrollbar-thumb:hover {
   background-image: url("../../Textures/gui/bevel/Light.png");
 }
 
-#PressureIcon {
+.SunlightIcon {
+  background-image: url("../../Textures/gui/bevel/Light.png");
+}
+
+.PressureIcon {
   background-image: url("../../Textures/gui/bevel/Pressure.png");
 }
 
@@ -1863,12 +2050,39 @@ div::-webkit-scrollbar-thumb:hover {
   font-size: 85%;
 }
 
+#rigiditySliderContainer {
+  margin-left: 20px;
+  width: 50%;
+}
+
+#rigiditySlider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 10px;
+  background: rgb(112, 159, 159, 0.7);
+  outline: none;
+}
+
+#rigiditySlider:hover {
+  background: rgb(112, 159, 159, 1);
+}
+
+#rigiditySlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 45px;
+  height: 25px;
+  background: #aad;
+  cursor: pointer;
+}
+
 #ColourWheel {
   position: absolute;
   width: 200px;
   height: 200px;
   left: 15px;
-  top: 350px;
+  top: 425px;
   border-radius: 50%;
   background-size: 200px 200px;
   background-image: url("../../Textures/gui/colour_wheel.png");
@@ -1879,7 +2093,7 @@ div::-webkit-scrollbar-thumb:hover {
   width: 10px;
   height: 50px;
   left: 0;
-  top: 425px;
+  top: 500px;
   border-radius: 10%;
   background-size: 10px 50px;
   background-color: rgb(255, 255, 255);
@@ -1890,7 +2104,7 @@ div::-webkit-scrollbar-thumb:hover {
   width: 20px;
   height: 200px;
   left: 220px;
-  top: 350px;
+  top: 425px;
   border-radius: 10%;
   background-size: 20px 200px;
   background-image: linear-gradient(white, black);
@@ -2005,16 +2219,33 @@ div::-webkit-scrollbar-thumb:hover {
   border: 3px solid rgb(24, 143, 0);
 }
 
-#editorSelectedPatchName {
-  font-size: 26px;
+#patchName {
+  font-size: 20px;
   text-align: center;
   width: 100%;
 }
 
+.editorSelectedPatchDescription {
+  width: 99%;
+}
+
+.editorSelectedPatchTopInformation {
+  text-align: center;
+  width: 100%;
+}
+
+#editorSelectedPatchName {
+  font-size: 26px;
+}
+
+#editorSelectedPatchSituation {
+  font-size: 18px;
+}
+
+
 #patchInfoBox {
   overflow-y: auto;
-  max-height: 90%;
-  min-height: 90%;
+  height: 80%;
 }
 
 #moveToPatchButton {
@@ -2099,6 +2330,18 @@ div::-webkit-scrollbar-thumb:hover {
     -moz-box-shadow: inset 0 0 300px -200px rgba(255, 255, 255, 1);
     box-shadow: inset 0 0 300px -200px rgba(255, 255, 255, 1);
   }
+}
+
+.minus {
+  background-image: url("../../Textures/gui/bevel/minusButton.png");
+}
+
+.plus {
+  background-image: url("../../Textures/gui/bevel/plusButton.png");
+}
+
+.plus:hover {
+  background-image: url("../../Textures/gui/bevel/plusButtonHover.png");
 }
 
 .PatchTidepool {

@@ -105,8 +105,27 @@ std::string
     RunParameters::makeSummaryOfExternalEffects() const
 {
     std::stringstream sstream;
+    std::vector<std::tuple<Species::pointer, int, std::string>>
+        combinedExternalEffects;
 
     for(const auto& [species, amount, eventType] : m_externalEffects) {
+        bool combined = false;
+
+        for(auto& [combinedSpecies, combinedAmount, combinedEventType] :
+            combinedExternalEffects) {
+            if(species == combinedSpecies && eventType == combinedEventType) {
+                combinedAmount += amount;
+                combined = true;
+                break;
+            }
+        }
+
+        if(!combined)
+            combinedExternalEffects.push_back(
+                std::make_tuple(species, amount, eventType));
+    }
+
+    for(const auto& [species, amount, eventType] : combinedExternalEffects) {
         sstream << species->getFormattedName() << " population changed by "
                 << amount << " because of: " << eventType << "\n";
     }
@@ -162,10 +181,10 @@ bool
         // Remember to call PatchMap::removeExtinctSpecies after applying the
         // external effects
 
-        m_results->printSummary(m_map);
+        // Store the previous populations
+        m_mapWithPreviousPopulations = m_map->clone();
 
-        // Store the summary text to store previous populations
-        m_results->setStoredSummary(m_results->makeSummary(m_map, true));
+        m_results->printSummary(m_map);
 
         m_results->applyResults(m_map, true);
 
@@ -187,17 +206,29 @@ void
 
     int totalSpecies = 0;
 
+    std::unordered_set<Species*> alreadyHandledSpecies;
+
     for(const auto& [id, patch] : m_map->getPatches()) {
 
         for(const auto& species : patch->getSpecies()) {
 
-            ++totalSpecies;
+            if(alreadyHandledSpecies.find(species.species.get()) !=
+                alreadyHandledSpecies.end())
+                continue;
 
-            // The player species doesn't get random mutations
+            ++totalSpecies;
+            alreadyHandledSpecies.insert(species.species.get());
+
+            // The player species doesn't get random mutations. And also doesn't
+            // spread automatically
             if(!species.species->isPlayerSpecies()) {
 
                 m_runSteps.push_back(std::make_unique<FindBestMutation>(m_map,
                     species.species, m_mutationsPerSpecies, m_allowNoMutation));
+
+                m_runSteps.push_back(
+                    std::make_unique<FindBestMigration>(m_map, species.species,
+                        m_moveAttemptsPerSpecies, m_allowNoMigration));
 
             } else {
             }

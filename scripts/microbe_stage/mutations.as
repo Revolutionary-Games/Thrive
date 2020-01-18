@@ -8,7 +8,7 @@ Species@ createRandomSpecies(int steps = 5)
             getOrganelleDefinition("cytoplasm"), 0, 0, 0));
 
     Species@ current = Species::createSpecies("random", generateNameSection(),
-        generateNameSection(), organelles, Float4(1, 1, 1, 1),true, MEMBRANE_TYPE::MEMBRANE,
+        generateNameSection(), organelles, Float4(1, 1, 1, 1), true, "single", 0.5f,
         DEFAULT_INITIAL_COMPOUNDS,
         100.0f, 100.0f, 100.0f, 200.0f, 100.0f);
 
@@ -81,26 +81,36 @@ Species@ createMutatedSpecies(Species@ parent)
         MutationHelpers::randomColour();
 
     // This used to be a method
-    MEMBRANE_TYPE speciesMembraneType = MEMBRANE_TYPE::MEMBRANE;
-    if (GetEngine().GetRandom().GetNumber(0,100)<=20){
+    string membraneType = "single";
+    if (GetEngine().GetRandom().GetNumber(0,100)<=20){ // Could perhaps use a weighted entry model here... the earlier one is listed, the more likely currently (I think). That may be an issue.
         if (GetEngine().GetRandom().GetNumber(0,100) < 50){
-            speciesMembraneType = MEMBRANE_TYPE::MEMBRANE;
+            membraneType = "single";
         }
         else if (GetEngine().GetRandom().GetNumber(0,100) < 50) {
-            speciesMembraneType = MEMBRANE_TYPE::DOUBLEMEMBRANE;
+            membraneType = "double";
+            colour.W = MutationHelpers::randomOpacityChitin(); // Why on double? Should this be on cellulose instead?
+        }
+        else if (GetEngine().GetRandom().GetNumber(0,100) < 50) {
+            membraneType = "cellulose";
+        }
+        else if (GetEngine().GetRandom().GetNumber(0,100) < 50) {
+            membraneType = "chitin";
             colour.W = MutationHelpers::randomOpacityChitin();
         }
         else if (GetEngine().GetRandom().GetNumber(0,100) < 50) {
-            speciesMembraneType = MEMBRANE_TYPE::WALL;
+            membraneType = "calcium_carbonate";
+            colour.W = MutationHelpers::randomOpacityChitin();
         }
         else {
-            speciesMembraneType = MEMBRANE_TYPE::CHITIN;
+            membraneType = "silica";
             colour.W = MutationHelpers::randomOpacityChitin();
         }
     }
     else{
-        speciesMembraneType = parent.speciesMembraneType;
+        membraneType = SimulationParameters::membraneRegistry().getInternalName(parent.membraneType);
     }
+
+    float membraneRigidity = GetEngine().GetRandom().GetNumber(-100, 100) / 100.f;
 
     // This translates the genetic code into positions
     auto organelles = positionOrganelles(stringCode);
@@ -121,7 +131,7 @@ Species@ createMutatedSpecies(Species@ parent)
     }
 
     Species@ newSpecies = Species::createSpecies(name, genus, epithet,
-        organelles, colour, isBacteria, speciesMembraneType,
+        organelles, colour, isBacteria, membraneType, membraneRigidity,
         initialCompounds, aggression, fear, activity, focus, opportunism);
 
     return newSpecies;

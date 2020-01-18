@@ -154,6 +154,11 @@ public:
 
     REFERENCE_COUNTED_PTR_TYPE(Patch);
 
+    //! \brief Creates a clone from this Patch doesn't deep clone the species as
+    //! that doesn't make sense
+    Patch::pointer
+        clone() const;
+
 private:
     const int32_t patchId;
     std::string name;
@@ -305,6 +310,10 @@ public:
         factory();
 
     REFERENCE_COUNTED_PTR_TYPE(PatchMap);
+
+    //! \brief Clones this PatchMap to help store previous populations
+    PatchMap::pointer
+        clone() const;
 
 private:
     std::unordered_map<int32_t, Patch::pointer> patches;

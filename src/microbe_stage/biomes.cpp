@@ -48,6 +48,8 @@ Biome::Biome(Json::Value value)
 
     // Getting the compound information.
     Json::Value compoundData = value["compounds"];
+
+    averageTemperature = value["averageTemperature"].asFloat();
     std::vector<std::string> compoundInternalNames =
         compoundData.getMemberNames();
 
@@ -140,6 +142,17 @@ BiomeCompoundData*
     return &found->second;
 }
 
+const BiomeCompoundData*
+    Biome::getCompound(size_t type) const
+{
+    const auto found = compounds.find(type);
+
+    if(found == compounds.end())
+        return nullptr;
+
+    return &found->second;
+}
+
 CScriptArray*
     Biome::getCompoundKeys() const
 {
@@ -205,6 +218,25 @@ Json::Value
         compoundsData[compound.internalName] = compoundData;
     }
 
+    Json::Value chunksData(Json::arrayValue);
+
+    for(const auto& [id, chunk] : chunks) {
+        Json::Value chunkData;
+        Json::Value chunkDataCompounds(Json::arrayValue);
+        chunkData["name"] = chunk.name;
+        chunkData["density"] = chunk.density;
+        for(const auto& [id, compound] : chunk.chunkCompounds) {
+            Json::Value chunkCompound;
+            chunkCompound["name"] = compound.name;
+            chunkCompound["amount"] = compound.amount;
+            chunkDataCompounds.append(chunkCompound);
+        }
+        chunkData["compounds"] = chunkDataCompounds;
+        chunksData.append(chunkData);
+    }
+
+    result["chunks"] = chunksData;
+    result["temperature"] = averageTemperature;
     result["compounds"] = compoundsData;
 
     if(full) {
@@ -220,6 +252,17 @@ ChunkCompoundData*
     ChunkData::getCompound(size_t type)
 {
     return &chunkCompounds[type];
+}
+
+const ChunkCompoundData*
+    ChunkData::getCompound(size_t type) const
+{
+    const auto found = chunkCompounds.find(type);
+
+    if(found == chunkCompounds.end())
+        return nullptr;
+
+    return &found->second;
 }
 
 CScriptArray*

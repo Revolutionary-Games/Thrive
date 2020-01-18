@@ -4,7 +4,7 @@
 
         "inputs": {
             "oxygen": 1.0,
-            "glucose": 0.5
+            "glucose": 0.1
         },
 
         "outputs": {
@@ -12,11 +12,11 @@
         }
     },
 	
-	"glycolosis": {
-        "name": "Glycolosis",
+	"glycolysis": {
+        "name": "Glycolysis",
 
         "inputs": {
-            "glucose": 0.125
+            "glucose": 0.025
         },
 
         "outputs": {
@@ -24,11 +24,11 @@
         }
     },
     
-	"glycolosis_cytoplasm": {
+	"glycolysis_cytoplasm": {
         "name": "Cytoplasm Glycolysis",
 
         "inputs": {
-            "glucose": 0.06
+            "glucose": 0.012
         },
 
         "outputs": {
@@ -45,7 +45,7 @@
         },
 
         "outputs": {
-            "glucose": 0.25
+            "glucose": 0.05
         }
     },
 
@@ -58,12 +58,12 @@
         },
 
         "outputs": {
-            "oxytoxy": 5.0
+            "oxytoxy": 1.0
         }
     },
     
     "bacterial_oxytoxySynthesis": {
-        "name": "Bacterial Oxytoxy Synthesis",
+        "name": "Oxytoxy Synthesis",
 
         "inputs": {
             "oxygen": 0.21,
@@ -71,7 +71,7 @@
         },
 
         "outputs": {
-            "oxytoxy": 0.5
+            "oxytoxy": 0.1
         }
     },
 	
@@ -80,24 +80,24 @@
 
         "inputs": {
             "carbondioxide": 0.09,
-            "hydrogensulfide": 0.15
+            "hydrogensulfide": 0.03
         },
 
         "outputs": {
-            "glucose": 0.2
+            "glucose": 0.04
         }
     },
     
 	"bacterial_ChemoSynthesis": {
-        "name": "Bacterial Chemosynthesis",
+        "name": "Chemo Synthesis",
 
         "inputs": {
             "carbondioxide": 0.09,
-            "hydrogensulfide": 0.15
+            "hydrogensulfide": 0.03
         },
 
         "outputs": {
-            "glucose": 0.15
+            "glucose": 0.03
         }
     },
     
@@ -111,7 +111,7 @@
         },
 
         "outputs": {
-            "ammonia": 0.125
+            "ammonia": 0.025
         }
     },
     
@@ -124,16 +124,16 @@
         },
 
         "outputs": {
-            "ammonia": 0.08
+            "ammonia": 0.016
         }
     },
     
     "protein_respiration": {
-        "name": "RespirationProtein",
+        "name": "Respiration",
 
         "inputs": {
             "oxygen": 1.0,
-            "glucose": 1.0
+            "glucose": 0.2
         },
 
         "outputs": {
@@ -142,7 +142,7 @@
     },
     
     "chromatophore_photosynthesis": {
-        "name": "Bacterial Photosynthesis",
+        "name": "Photosynthesis",
 
         "inputs": {
             "carbondioxide": 0.09,
@@ -150,7 +150,7 @@
         },
 
         "outputs": {
-            "glucose": 0.06
+            "glucose": 0.012
         }
     },
     

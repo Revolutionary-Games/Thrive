@@ -100,6 +100,9 @@ public:
     ChunkCompoundData*
         getCompound(size_t type);
 
+    const ChunkCompoundData*
+        getCompound(size_t type) const;
+
     CScriptArray*
         getCompoundKeys() const;
 
@@ -125,6 +128,10 @@ public:
 
     BiomeCompoundData*
         getCompound(size_t type);
+
+    const BiomeCompoundData*
+        getCompound(size_t type) const;
+
     CScriptArray*
         getCompoundKeys() const;
 
@@ -153,6 +160,7 @@ public:
     float sunlightIntensity;
     Float3 sunlightDirection;
     float sunlightSourceRadius;
+    float averageTemperature;
 
     // Eye adaptation / auto exposure settings
     //! Min eye adaptation for camera in this patch, valid range: [0.0f, 10.0f].

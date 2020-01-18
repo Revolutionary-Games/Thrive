@@ -135,11 +135,18 @@ public:
     void
         toggleDebugOverlay();
 
+    void
+        toggleDebugPhysics();
+
     //! \brief Moves the player to play in the specified patch
     //!
     //! Also does cleanup like despawning old compounds and cells
     void
         playerMovedToPatch(int32_t patchId);
+
+    //! \returns The current patch
+    int32_t
+        getCurrentPatch() const;
 
     // ------------------------------------ //
     //! \brief Begins connecting to server at url
@@ -235,6 +242,8 @@ private:
 
     //! True when debug overlay is enabled and updates should be sent to it
     bool m_debugOverlayEnabled = false;
+
+    bool m_physicsDebugEnabled = false;
 
     // Some variables that have complex types are hidden here to not
     // have to include tons of headers here

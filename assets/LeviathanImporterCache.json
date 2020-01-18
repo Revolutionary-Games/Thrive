@@ -21,6 +21,11 @@
       "fileHash" : "65982858199dc28c9decba72a86d4fb7",
       "optionsHash" : "99914b932bd37a50b983c5e7c90ae93b"
     },
+    "models/Pilus.fbx" : 
+    {
+      "fileHash" : "ed0f80ac87ec9f3d2b550bbd682309c9",
+      "optionsHash" : "99914b932bd37a50b983c5e7c90ae93b"
+    },
     "models/agent_gland.fbx" : 
     {
       "fileHash" : "2422a1630c1c21a7e5f65cd0e229e8c1",
@@ -116,6 +121,11 @@
       "fileHash" : "a8eb9ca7f369e19fc44dff19f8584416",
       "optionsHash" : "99914b932bd37a50b983c5e7c90ae93b"
     },
+    "models/pilus.fbx" : 
+    {
+      "fileHash" : "6e255ea957116aca8bf396bf20d826d6",
+      "optionsHash" : "99914b932bd37a50b983c5e7c90ae93b"
+    },
     "models/rhizoplast.fbx" : 
     {
       "fileHash" : "ecdcab0bfbc15839bcdeb0cd2faf30d6",
@@ -138,12 +148,22 @@
     },
     "textures/AgentVacuole.png" : 
     {
-      "fileHash" : "",
+      "fileHash" : "d954d77b577ded2bf451c2be55a51e28",
+      "optionsHash" : "956931cc405a5e023f29875d541db72a"
+    },
+    "textures/CalciumCarboMembrane.png" : 
+    {
+      "fileHash" : "6fe8039a22c9dc07143315cbcfdc2bbb",
+      "optionsHash" : "956931cc405a5e023f29875d541db72a"
+    },
+    "textures/CalciumCarboMembraneDamaged.png" : 
+    {
+      "fileHash" : "d4cec28073947645730f70a0b1ae01c6",
       "optionsHash" : "956931cc405a5e023f29875d541db72a"
     },
     "textures/CellWallGradient.png" : 
     {
-      "fileHash" : "",
+      "fileHash" : "4ac32426d5b16437975afe9d44401a8e",
       "optionsHash" : "956931cc405a5e023f29875d541db72a"
     },
     "textures/CellWallGradientBackup.png" : 
@@ -153,57 +173,67 @@
     },
     "textures/CellWallGradientDamaged.png" : 
     {
-      "fileHash" : "",
+      "fileHash" : "71b0154039660fc487be86cb6c5b7253",
       "optionsHash" : "956931cc405a5e023f29875d541db72a"
     },
     "textures/ChitinCellWallGradient.png" : 
     {
-      "fileHash" : "",
+      "fileHash" : "6b3d3acb476eafcbdd4db6bd5473e4fe",
       "optionsHash" : "956931cc405a5e023f29875d541db72a"
     },
     "textures/ChitinCellWallGradientDamaged.png" : 
     {
-      "fileHash" : "",
+      "fileHash" : "8bbeac7620ef82c1980b9104cf70ea6d",
       "optionsHash" : "956931cc405a5e023f29875d541db72a"
     },
     "textures/DiscoBall.jpg" : 
     {
-      "fileHash" : "",
+      "fileHash" : "df2852d8f772a4b516552b35f4acd1f7",
       "optionsHash" : "956931cc405a5e023f29875d541db72a"
     },
     "textures/DoubleCellMembrane.png" : 
     {
-      "fileHash" : "",
+      "fileHash" : "869a42626a22833357a3bfbfa32c2328",
       "optionsHash" : "956931cc405a5e023f29875d541db72a"
     },
     "textures/DoubleCellMembraneDamaged.png" : 
     {
-      "fileHash" : "",
+      "fileHash" : "af8fd75e4186723ec12e4b64217e0054",
       "optionsHash" : "956931cc405a5e023f29875d541db72a"
     },
     "textures/ER.png" : 
     {
-      "fileHash" : "",
+      "fileHash" : "5e65f90540dc8c8152f48098d797d08f",
       "optionsHash" : "956931cc405a5e023f29875d541db72a"
     },
     "textures/FresnelGradient.png" : 
     {
-      "fileHash" : "",
+      "fileHash" : "c50c45b3d264918fd8dc84bc9f32c860",
       "optionsHash" : "956931cc405a5e023f29875d541db72a"
     },
     "textures/FresnelGradientDamaged.png" : 
     {
-      "fileHash" : "",
+      "fileHash" : "b8c7dbb32d08ae66434cb47a36c7756d",
       "optionsHash" : "956931cc405a5e023f29875d541db72a"
     },
     "textures/GolgiApparatus.png" : 
     {
-      "fileHash" : "",
+      "fileHash" : "51bd7ef47cdafed5003acaf8e2826776",
       "optionsHash" : "956931cc405a5e023f29875d541db72a"
     },
     "textures/PerlinNoise.jpg" : 
     {
-      "fileHash" : "",
+      "fileHash" : "d91b05028ab423cd91b88881bfc07eb7",
+      "optionsHash" : "956931cc405a5e023f29875d541db72a"
+    },
+    "textures/SilicaMembrane.png" : 
+    {
+      "fileHash" : "069a9f95ad01008630958dc35c3846e9",
+      "optionsHash" : "956931cc405a5e023f29875d541db72a"
+    },
+    "textures/SilicaMembraneDamaged.png" : 
+    {
+      "fileHash" : "66ea754daabd4adbc2110f7bb34ae011",
       "optionsHash" : "956931cc405a5e023f29875d541db72a"
     },
     "textures/background/Thrive_abyss0.png" : 
@@ -618,97 +648,102 @@
     },
     "textures/chemoproteins.png" : 
     {
-      "fileHash" : "",
+      "fileHash" : "dd76a5dfa46c6b1a1342e3d791591ef4",
       "optionsHash" : "956931cc405a5e023f29875d541db72a"
     },
     "textures/chloroplast.png" : 
     {
-      "fileHash" : "",
+      "fileHash" : "a9a664bab2abbfdec8244682b6c10584",
       "optionsHash" : "956931cc405a5e023f29875d541db72a"
     },
     "textures/chromatophores.png" : 
     {
-      "fileHash" : "",
+      "fileHash" : "74f8120ac28a578bd0f20694e31ae029",
       "optionsHash" : "956931cc405a5e023f29875d541db72a"
     },
     "textures/editor_grid.png" : 
     {
-      "fileHash" : "",
+      "fileHash" : "c543c949838e525ae979e088a1e3de9b",
       "optionsHash" : "956931cc405a5e023f29875d541db72a"
     },
     "textures/flagellum.png" : 
     {
-      "fileHash" : "",
+      "fileHash" : "8362a5fd47cd44fc3aec744fd794c46a",
       "optionsHash" : "956931cc405a5e023f29875d541db72a"
     },
     "textures/ice_crystal.png" : 
     {
-      "fileHash" : "",
+      "fileHash" : "347cc9f8b2fcbba30946cb432a8eb9e3",
       "optionsHash" : "956931cc405a5e023f29875d541db72a"
     },
     "textures/icecrystal.png" : 
     {
-      "fileHash" : "",
+      "fileHash" : "b29dcdf59538c8f69f93fb06e083e7cf",
       "optionsHash" : "956931cc405a5e023f29875d541db72a"
     },
     "textures/iceshard.png" : 
     {
-      "fileHash" : "",
+      "fileHash" : "e81dcb8c976e16749e2a4ab459bf6b24",
       "optionsHash" : "956931cc405a5e023f29875d541db72a"
     },
     "textures/iron_01.png" : 
     {
-      "fileHash" : "",
+      "fileHash" : "054b9ec26805801a3594f0aee708bb20",
       "optionsHash" : "956931cc405a5e023f29875d541db72a"
     },
     "textures/iron_bump.png" : 
     {
-      "fileHash" : "",
+      "fileHash" : "4b10c6d6b391f9632c87adba73ebe775",
       "optionsHash" : "956931cc405a5e023f29875d541db72a"
     },
     "textures/metabolosome.png" : 
     {
-      "fileHash" : "",
+      "fileHash" : "8a101f83b77ce7efb8562a8910dc327a",
       "optionsHash" : "956931cc405a5e023f29875d541db72a"
     },
     "textures/mitochondrion.png" : 
     {
-      "fileHash" : "",
+      "fileHash" : "1cf5b7490ddcf7504ed5e8242eb65dc4",
       "optionsHash" : "956931cc405a5e023f29875d541db72a"
     },
     "textures/nitrogenase.png" : 
     {
-      "fileHash" : "",
+      "fileHash" : "a17d1968d022dcb25b6ef4c32fb61b41",
       "optionsHash" : "956931cc405a5e023f29875d541db72a"
     },
     "textures/nitrogenplastid.png" : 
     {
-      "fileHash" : "",
+      "fileHash" : "1302e7f567e47401e975cca76c38498b",
       "optionsHash" : "956931cc405a5e023f29875d541db72a"
     },
     "textures/nucleus.png" : 
     {
-      "fileHash" : "",
+      "fileHash" : "7ef5ef7c4fc37e7976a8d92c07be4336",
       "optionsHash" : "956931cc405a5e023f29875d541db72a"
     },
     "textures/oxytoxy.png" : 
     {
-      "fileHash" : "",
+      "fileHash" : "fe4eaba4774ac5cb4e354d7c9a77d8c2",
       "optionsHash" : "956931cc405a5e023f29875d541db72a"
     },
     "textures/oxytoxy_fluid.png" : 
     {
-      "fileHash" : "",
+      "fileHash" : "d0ca56be232a042c0fc932f15b55fb6f",
       "optionsHash" : "956931cc405a5e023f29875d541db72a"
     },
     "textures/oxytoxy_gland.png" : 
     {
-      "fileHash" : "",
+      "fileHash" : "7859c6e237d803e29a1434f774793653",
+      "optionsHash" : "956931cc405a5e023f29875d541db72a"
+    },
+    "textures/pilus.png" : 
+    {
+      "fileHash" : "f526eeb6542dd090ae82f8239e535dd5",
       "optionsHash" : "956931cc405a5e023f29875d541db72a"
     },
     "textures/rusticyanin.png" : 
     {
-      "fileHash" : "",
+      "fileHash" : "b1ac57a1ddde83797617b05712f0a0b3",
       "optionsHash" : "956931cc405a5e023f29875d541db72a"
     },
     "textures/single_hex.png" : 

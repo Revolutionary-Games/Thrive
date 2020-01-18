@@ -3,6 +3,8 @@
 // These functions are coded as scripts to allow easier tweaking. Note: all of these are ran
 // in a background thread and touching global variables is not allowed.
 
+// AI species migration is implemented in ai_migration.as
+
 //! This takes the properties from the second parameter and applies
 //! them to the first (that make sense to apply)
 void applyMutatedSpeciesProperties(Species@ target, const Species@ mutatedProperties)
@@ -12,7 +14,8 @@ void applyMutatedSpeciesProperties(Species@ target, const Species@ mutatedProper
 
     target.colour = mutatedProperties.colour;
     target.isBacteria = mutatedProperties.isBacteria;
-    target.speciesMembraneType = mutatedProperties.speciesMembraneType;
+    target.membraneType = mutatedProperties.membraneType;
+    target.membraneRigidity = mutatedProperties.membraneRigidity;
 
     // These don't mutate for a species
     // name;
@@ -53,6 +56,7 @@ void simulatePatchPopulations(const Patch@ patch, RunResults@ results,
     const SimulationConfiguration@ config)
 {
     array<const Species@> species;
+    const auto patchId = patch.getId();
 
     // Populate the species from the patch taking config into account
     for(uint i = 0; i < patch.getSpeciesCount(); ++i){
@@ -107,7 +111,24 @@ void simulatePatchPopulations(const Patch@ patch, RunResults@ results,
                 currentPopulation = currentSpecies.population;
         }
 
-        results.addPopulationResultForSpecies(currentSpecies, patch.getId(),
+        // Apply migrations
+        // TODO: looping these here in scripts all the time might be slow
+        // if we have many migrations
+        for(uint64 migrationIndex = 0; migrationIndex < config.getMigrationsCount();
+            ++migrationIndex){
+
+            const auto migration = config.getMigration(migrationIndex);
+
+            if(migration.getSpecies() is currentSpecies){
+                if(migration.fromPatch == patchId){
+                    currentPopulation -= migration.population;
+                } else if(migration.toPatch == patchId){
+                    currentPopulation += migration.population;
+                }
+            }
+        }
+
+        results.addPopulationResultForSpecies(currentSpecies, patchId,
             currentPopulation);
     }
 
@@ -124,13 +145,27 @@ void simulatePopulation(const Biome@ conditions, int32 patchIdentifier,
     const array<const Species@> &in species, RunResults@ results)
 {
     // TODO: this is where the proper auto-evo algorithm goes
+
+    // Here's a temporary boost when there are few species and penalty
+    // when there are many species
+    const bool lowSpecies = species.length() <= AUTO_EVO_LOW_SPECIES_THRESHOLD;
+    const bool highSpecies = species.length() >= AUTO_EVO_HIGH_SPECIES_THRESHOLD;
+
     for(uint i = 0; i < species.length(); ++i){
         const Species@ currentSpecies = species[i];
         const int currentPopulation = results.getPopulationInPatch(currentSpecies,
             patchIdentifier);
-        const int populationChange = GetEngine().GetRandom().GetNumber(-50, 50);
+        int populationChange = GetEngine().GetRandom().GetNumber(
+            -AUTO_EVO_RANDOM_POPULATION_CHANGE, AUTO_EVO_RANDOM_POPULATION_CHANGE);
 
         // LOG_WRITE("current: " + currentPopulation + " change: " + populationChange);
+
+        if(lowSpecies){
+            populationChange += AUTO_EVO_LOW_SPECIES_BOOST;
+
+        } else if(highSpecies){
+            populationChange -= AUTO_EVO_HIGH_SPECIES_PENALTY;
+        }
 
         results.addPopulationResultForSpecies(currentSpecies, patchIdentifier,
             currentPopulation + populationChange);

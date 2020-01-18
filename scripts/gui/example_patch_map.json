@@ -7,6 +7,105 @@
       ],
       "biome": {
         "background": "vent",
+        "chunks": [
+          {
+            "compounds": [],
+            "density": 2e-05,
+            "name": "Floating Hazard"
+          },
+          {
+            "compounds": [
+              {
+                "amount": 60000.0,
+                "name": "iron"
+              }
+            ],
+            "density": 2e-05,
+            "name": "Big Iron Chunk"
+          },
+          {
+            "compounds": [
+              {
+                "amount": 200.0,
+                "name": "iron"
+              }
+            ],
+            "density": 2e-05,
+            "name": "Small Iron Chunk"
+          },
+          {
+            "compounds": [
+              {
+                "amount": 100.0,
+                "name": "ammonia"
+              },
+              {
+                "amount": 100.0,
+                "name": "atp"
+              },
+              {
+                "amount": 100.0,
+                "name": "glucose"
+              },
+              {
+                "amount": 100.0,
+                "name": "phosphates"
+              }
+            ],
+            "density": 0.0,
+            "name": "Marine snow"
+          }
+        ],
+        "compounds": {
+          "ammonia": {
+            "amount": 300000.0,
+            "density": 4e-05,
+            "dissolved": 0.0,
+            "name": "Ammonia"
+          },
+          "carbondioxide": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.09,
+            "name": "Carbon Dioxide"
+          },
+          "glucose": {
+            "amount": 250000.0,
+            "density": 2e-05,
+            "dissolved": 0.0,
+            "name": "Glucose"
+          },
+          "hydrogensulfide": {
+            "amount": 300000.0,
+            "density": 4e-05,
+            "dissolved": 0.0,
+            "name": "Hydrogen Sulfide"
+          },
+          "nitrogen": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.7,
+            "name": "Nitrogen"
+          },
+          "oxygen": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.21,
+            "name": "Oxygen"
+          },
+          "phosphates": {
+            "amount": 300000.0,
+            "density": 4e-05,
+            "dissolved": 0.0,
+            "name": "Phosphate"
+          },
+          "sunlight": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.0,
+            "name": "Sunlight"
+          }
+        },
         "id": 0,
         "internalName": "aavolcanic_vent",
         "name": "Volcanic vent",
@@ -23,7 +122,8 @@
           "z": 0.75
         },
         "sunlightIntensity": 9.999999747378752e-05,
-        "sunlightSourceRadius": 0.5
+        "sunlightSourceRadius": 0.5,
+        "temperature": 98.0
       },
       "id": 0,
       "name": "Pangonian vents",
@@ -53,33 +153,58 @@
             "name": "Default",
             "opportunism": 100.0,
             "population": 100,
-            "speciesMembraneType": 1,
+            "membraneType": 0,
             "stringCode": "Y,0,0,0"
           }
         },
         {
-          "population": 676,
+          "population": 910,
           "species": {
-            "activity": 68.91304016113281,
-            "aggression": 69.9828872680664,
+            "activity": 142.5770263671875,
+            "aggression": 106.02101135253906,
             "color": {
-              "a": 1.1320524215698242,
-              "b": 0.7873843312263489,
-              "g": 0.8746888637542725,
-              "r": 0.37713879346847534
+              "a": 2.3350484371185303,
+              "b": 0.34082743525505066,
+              "g": 0.22009728848934174,
+              "r": 0.8089148998260498
             },
-            "epithet": "Acopsis",
-            "fear": 36.87720489501953,
-            "focus": 156.8455352783203,
+            "epithet": "Vestir",
+            "fear": 65.15615844726562,
+            "focus": 200.6097412109375,
             "generation": 1,
-            "genus": "Osocotor",
+            "genus": "Ucunsis",
             "isBacteria": true,
             "isPlayerSpecies": false,
-            "name": "Bacteria_4638",
-            "opportunism": 46.51727294921875,
-            "population": 718,
-            "speciesMembraneType": 0,
-            "stringCode": "c,0,0,0|f,0,1,0|m,2,0,0|h,2,1,0"
+            "name": "Bacteria_3586",
+            "opportunism": 51.79974365234375,
+            "population": 1009,
+            "membraneType": 3,
+            "stringCode": "Y,0,0,0|y,0,1,0|m,1,1,0|i,2,0,0|i,1,2,0"
+          }
+        },
+        {
+          "population": 438,
+          "species": {
+            "activity": 85.27888488769531,
+            "aggression": 28.89729881286621,
+            "color": {
+              "a": 0.8008559942245483,
+              "b": 0.6199309825897217,
+              "g": 0.1854361891746521,
+              "r": 0.2219180464744568
+            },
+            "epithet": "Etes",
+            "fear": 94.35063171386719,
+            "focus": 238.97360229492188,
+            "generation": 1,
+            "genus": "Preceae",
+            "isBacteria": true,
+            "isPlayerSpecies": false,
+            "name": "Bacteria_9319",
+            "opportunism": 91.24236297607422,
+            "population": 1126,
+            "membraneType": 3,
+            "stringCode": "c,0,0,0|F,1,1,0|c,0,1,0"
           }
         }
       ]
@@ -92,6 +217,105 @@
       ],
       "biome": {
         "background": "mesopelagic",
+        "chunks": [
+          {
+            "compounds": [],
+            "density": 2e-05,
+            "name": "Floating Hazard"
+          },
+          {
+            "compounds": [
+              {
+                "amount": 60000.0,
+                "name": "iron"
+              }
+            ],
+            "density": 2e-05,
+            "name": "Big Iron Chunk"
+          },
+          {
+            "compounds": [
+              {
+                "amount": 200.0,
+                "name": "iron"
+              }
+            ],
+            "density": 2e-05,
+            "name": "Small Iron Chunk"
+          },
+          {
+            "compounds": [
+              {
+                "amount": 100.0,
+                "name": "ammonia"
+              },
+              {
+                "amount": 100.0,
+                "name": "atp"
+              },
+              {
+                "amount": 100.0,
+                "name": "glucose"
+              },
+              {
+                "amount": 100.0,
+                "name": "phosphates"
+              }
+            ],
+            "density": 2e-05,
+            "name": "Marine snow"
+          }
+        ],
+        "compounds": {
+          "ammonia": {
+            "amount": 200000.0,
+            "density": 2e-05,
+            "dissolved": 0.0,
+            "name": "Ammonia"
+          },
+          "carbondioxide": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.09,
+            "name": "Carbon Dioxide"
+          },
+          "glucose": {
+            "amount": 250000.0,
+            "density": 2e-05,
+            "dissolved": 0.0,
+            "name": "Glucose"
+          },
+          "hydrogensulfide": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.0,
+            "name": "Hydrogen Sulfide"
+          },
+          "nitrogen": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.7,
+            "name": "Nitrogen"
+          },
+          "oxygen": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.21,
+            "name": "Oxygen"
+          },
+          "phosphates": {
+            "amount": 200000.0,
+            "density": 2e-05,
+            "dissolved": 0.0,
+            "name": "Phosphate"
+          },
+          "sunlight": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.01,
+            "name": "Sunlight"
+          }
+        },
         "id": 7,
         "internalName": "mesopelagic",
         "name": "Mesopelagic",
@@ -108,50 +332,225 @@
           "z": 0.75
         },
         "sunlightIntensity": 9.999999747378752e-05,
-        "sunlightSourceRadius": 0.5
+        "sunlightSourceRadius": 0.5,
+        "temperature": 2.0
       },
       "id": 1,
-      "name": "Pangonaian Mesopelagic",
+      "name": "Pangonian Mesopelagic",
       "screenCoordinates": {
         "x": 200.0,
         "y": 200.0
       },
       "species": [
         {
-          "population": 994,
+          "population": 1985,
           "species": {
-            "activity": 102.7973403930664,
-            "aggression": 63.03837585449219,
+            "activity": 79.22402954101562,
+            "aggression": 100.96920776367188,
             "color": {
-              "a": 0.7396413683891296,
-              "b": 0.16373491287231445,
-              "g": 0.383655309677124,
-              "r": 0.7653495669364929
+              "a": 1.2044403553009033,
+              "b": 0.6002978086471558,
+              "g": 0.5268750190734863,
+              "r": 0.5174400210380554
             },
-            "epithet": "Nhcosgia",
-            "fear": 99.52568054199219,
-            "focus": 187.7390594482422,
+            "epithet": "Phulpiun",
+            "fear": 68.56336212158203,
+            "focus": 211.8581085205078,
             "generation": 1,
-            "genus": "Asodrius",
+            "genus": "Uyes",
             "isBacteria": true,
             "isPlayerSpecies": false,
-            "name": "Bacteria_3842",
-            "opportunism": 74.615478515625,
-            "population": 979,
-            "speciesMembraneType": 0,
-            "stringCode": "f,0,0,0|f,1,1,0|c,1,2,0|y,2,2,0|Y,2,3,0"
+            "name": "Bacteria_4930",
+            "opportunism": 134.14244079589844,
+            "population": 1392,
+            "membraneType": 0,
+            "stringCode": "Y,0,0,0|m,0,1,0|m,1,1,0"
+          }
+        },
+        {
+          "population": 1185,
+          "species": {
+            "activity": 132.44357299804688,
+            "aggression": 77.31134033203125,
+            "color": {
+              "a": 0.7752885222434998,
+              "b": 0.7520893216133118,
+              "g": 0.2975112497806549,
+              "r": 0.5541540384292603
+            },
+            "epithet": "Plimomis",
+            "fear": 42.324012756347656,
+            "focus": 200.52386474609375,
+            "generation": 1,
+            "genus": "Sahialia",
+            "isBacteria": true,
+            "isPlayerSpecies": false,
+            "name": "Bacteria_4628",
+            "opportunism": 86.94546508789062,
+            "population": 1582,
+            "membraneType": 3,
+            "stringCode": "Y,0,0,0|Y,0,1,0|y,1,1,0|c,0,2,0"
+          }
+        },
+        {
+          "population": 494,
+          "species": {
+            "activity": 60.322776794433594,
+            "aggression": 121.54933166503906,
+            "color": {
+              "a": 1.539587378501892,
+              "b": 0.5729194283485413,
+              "g": 0.5899871587753296,
+              "r": 0.06364317983388901
+            },
+            "epithet": "Pihaeepsis",
+            "fear": 88.37799835205078,
+            "focus": 167.39297485351562,
+            "generation": 1,
+            "genus": "Untepsis",
+            "isBacteria": true,
+            "isPlayerSpecies": false,
+            "name": "Bacteria_4418",
+            "opportunism": 119.13199615478516,
+            "population": 1691,
+            "membraneType": 3,
+            "stringCode": "Y,0,0,0|m,0,1,0"
+          }
+        },
+        {
+          "population": 1986,
+          "species": {
+            "activity": 99.45964813232422,
+            "aggression": 98.69328308105469,
+            "color": {
+              "a": 1.7078649997711182,
+              "b": 0.3335843086242676,
+              "g": 0.5987754464149475,
+              "r": 0.890482485294342
+            },
+            "epithet": "Ikocoansis",
+            "fear": 123.49300384521484,
+            "focus": 175.6163787841797,
+            "generation": 1,
+            "genus": "Ubepsis",
+            "isBacteria": true,
+            "isPlayerSpecies": false,
+            "name": "Bacteria_3018",
+            "opportunism": 73.59481811523438,
+            "population": 1266,
+            "membraneType": 0,
+            "stringCode": "h,0,0,0|f,0,1,0"
           }
         }
       ]
     },
     "10": {
       "adjacentPatches": [
-        0,
         4,
+        0,
         5
       ],
       "biome": {
         "background": "seafloor",
+        "chunks": [
+          {
+            "compounds": [],
+            "density": 2e-05,
+            "name": "Floating Hazard"
+          },
+          {
+            "compounds": [
+              {
+                "amount": 60000.0,
+                "name": "iron"
+              }
+            ],
+            "density": 2e-05,
+            "name": "Big Iron Chunk"
+          },
+          {
+            "compounds": [
+              {
+                "amount": 200.0,
+                "name": "iron"
+              }
+            ],
+            "density": 2e-05,
+            "name": "Small Iron Chunk"
+          },
+          {
+            "compounds": [
+              {
+                "amount": 100.0,
+                "name": "ammonia"
+              },
+              {
+                "amount": 100.0,
+                "name": "atp"
+              },
+              {
+                "amount": 100.0,
+                "name": "glucose"
+              },
+              {
+                "amount": 100.0,
+                "name": "phosphates"
+              }
+            ],
+            "density": 4e-05,
+            "name": "Marine snow"
+          }
+        ],
+        "compounds": {
+          "ammonia": {
+            "amount": 200000.0,
+            "density": 2e-05,
+            "dissolved": 0.0,
+            "name": "Ammonia"
+          },
+          "carbondioxide": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.09,
+            "name": "Carbon Dioxide"
+          },
+          "glucose": {
+            "amount": 250000.0,
+            "density": 2e-05,
+            "dissolved": 0.0,
+            "name": "Glucose"
+          },
+          "hydrogensulfide": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.0,
+            "name": "Hydrogen Sulfide"
+          },
+          "nitrogen": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.7,
+            "name": "Nitrogen"
+          },
+          "oxygen": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.21,
+            "name": "Oxygen"
+          },
+          "phosphates": {
+            "amount": 200000.0,
+            "density": 2e-05,
+            "dissolved": 0.0,
+            "name": "Phosphate"
+          },
+          "sunlight": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.0,
+            "name": "Sunlight"
+          }
+        },
         "id": 8,
         "internalName": "seafloor",
         "name": "Sea Floor",
@@ -168,7 +567,8 @@
           "z": 0.75
         },
         "sunlightIntensity": 9.999999747378752e-05,
-        "sunlightSourceRadius": 0.5
+        "sunlightSourceRadius": 0.5,
+        "temperature": 4.0
       },
       "id": 10,
       "name": "Pangonian Sea Floor",
@@ -178,78 +578,203 @@
       },
       "species": [
         {
-          "population": 1279,
+          "population": 1369,
           "species": {
-            "activity": 64.86860656738281,
-            "aggression": 69.87793731689453,
+            "activity": 107.0150146484375,
+            "aggression": 125.82792663574219,
             "color": {
-              "a": 1.8431260585784912,
-              "b": 0.6418325901031494,
-              "g": 0.8206911087036133,
-              "r": 0.3273298740386963
+              "a": 1.1373146772384644,
+              "b": 0.6816132068634033,
+              "g": 0.6988924741744995,
+              "r": 0.8443915247917175
             },
-            "epithet": "Vqiuucer",
-            "fear": 48.29514694213867,
-            "focus": 160.9938507080078,
+            "epithet": "Ohocoansis",
+            "fear": 89.28135681152344,
+            "focus": 164.3190155029297,
             "generation": 1,
-            "genus": "Vaoecruus",
+            "genus": "Erux",
             "isBacteria": true,
             "isPlayerSpecies": false,
-            "name": "Bacteria_904",
-            "opportunism": 39.63493347167969,
-            "population": 1310,
-            "speciesMembraneType": 0,
-            "stringCode": "i,0,0,0|F,0,1,0|h,0,2,0|f,1,2,0|y,2,1,0|m,1,1,0"
+            "name": "Bacteria_4408",
+            "opportunism": 93.39665222167969,
+            "population": 1561,
+            "membraneType": 3,
+            "stringCode": "F,1,1,0|m,1,2,0|h,2,0,0|h,2,2,0|F,3,1,0"
           }
         },
         {
-          "population": 801,
+          "population": 1344,
           "species": {
-            "activity": 96.06175994873047,
-            "aggression": 112.95396423339844,
+            "activity": 85.27888488769531,
+            "aggression": 28.89729881286621,
             "color": {
-              "a": 0.816489577293396,
-              "b": 0.4025565981864929,
-              "g": 0.661613404750824,
-              "r": 0.8950262069702148
+              "a": 0.8008559942245483,
+              "b": 0.6199309825897217,
+              "g": 0.1854361891746521,
+              "r": 0.2219180464744568
             },
-            "epithet": "Cyesia",
-            "fear": 137.79339599609375,
-            "focus": 138.3848876953125,
+            "epithet": "Etes",
+            "fear": 94.35063171386719,
+            "focus": 238.97360229492188,
             "generation": 1,
-            "genus": "Veoitnsus",
+            "genus": "Preceae",
             "isBacteria": true,
             "isPlayerSpecies": false,
-            "name": "Bacteria_8149",
-            "opportunism": 100.8493423461914,
-            "population": 807,
-            "speciesMembraneType": 2,
-            "stringCode": "Y,0,0,0|f,0,1,0|F,1,1,0|m,0,2,0|i,2,0,0|Y,2,-1,0|m,1,2,0|c,1,-1,0"
+            "name": "Bacteria_9319",
+            "opportunism": 91.24236297607422,
+            "population": 1126,
+            "membraneType": 3,
+            "stringCode": "c,0,0,0|F,1,1,0|c,0,1,0"
           }
         },
         {
-          "population": 1380,
+          "population": 598,
           "species": {
-            "activity": 71.58614349365234,
-            "aggression": 107.98641204833984,
+            "activity": 87.61964416503906,
+            "aggression": 128.5528564453125,
             "color": {
-              "a": 2.6519370079040527,
-              "b": 0.6701975464820862,
-              "g": 0.40082740783691406,
-              "r": 0.742712676525116
+              "a": 1.4763840436935425,
+              "b": 0.4651273190975189,
+              "g": 0.546474277973175,
+              "r": 0.7018135786056519
             },
-            "epithet": "Phupodaza",
-            "fear": 51.742977142333984,
-            "focus": 210.95370483398438,
+            "epithet": "Nitrum",
+            "fear": 118.28910064697266,
+            "focus": 145.01853942871094,
             "generation": 1,
-            "genus": "Cmakehum",
+            "genus": "Cyahaeien",
             "isBacteria": true,
             "isPlayerSpecies": false,
-            "name": "Bacteria_7208",
-            "opportunism": 90.10749053955078,
-            "population": 1424,
-            "speciesMembraneType": 0,
-            "stringCode": "i,0,0,0|F,0,1,0|i,1,2,0|y,2,1,0|m,1,3,0"
+            "name": "Bacteria_1231",
+            "opportunism": 83.3882827758789,
+            "population": 923,
+            "membraneType": 0,
+            "stringCode": "h,0,1,0|m,0,3,0"
+          }
+        },
+        {
+          "population": 1335,
+          "species": {
+            "activity": 44.674591064453125,
+            "aggression": 67.29032897949219,
+            "color": {
+              "a": 1.5052073001861572,
+              "b": 0.7221283316612244,
+              "g": 0.4888051152229309,
+              "r": 0.1856643706560135
+            },
+            "epithet": "Sarocomia",
+            "fear": 85.42568969726562,
+            "focus": 212.38763427734375,
+            "generation": 1,
+            "genus": "Ebepceae",
+            "isBacteria": true,
+            "isPlayerSpecies": false,
+            "name": "Bacteria_4163",
+            "opportunism": 140.3348388671875,
+            "population": 958,
+            "membraneType": 1,
+            "stringCode": "Y,0,0,0|i,0,1,0|h,0,2,0|P,1,2,0|F,1,1,0|m,1,3,0|y,1,4,0"
+          }
+        },
+        {
+          "population": 312,
+          "species": {
+            "activity": 130.85009765625,
+            "aggression": 147.52618408203125,
+            "color": {
+              "a": 1.8746706247329712,
+              "b": 0.8090651631355286,
+              "g": 0.5392714142799377,
+              "r": 0.70566326379776
+            },
+            "epithet": "Glili",
+            "fear": 113.95305633544922,
+            "focus": 184.42813110351562,
+            "generation": 1,
+            "genus": "Sotus",
+            "isBacteria": true,
+            "isPlayerSpecies": false,
+            "name": "Bacteria_3271",
+            "opportunism": 152.72271728515625,
+            "population": 699,
+            "membraneType": 0,
+            "stringCode": "y,0,0,0|i,1,1,0"
+          }
+        },
+        {
+          "population": 502,
+          "species": {
+            "activity": 142.5770263671875,
+            "aggression": 106.02101135253906,
+            "color": {
+              "a": 2.3350484371185303,
+              "b": 0.34082743525505066,
+              "g": 0.22009728848934174,
+              "r": 0.8089148998260498
+            },
+            "epithet": "Vestir",
+            "fear": 65.15615844726562,
+            "focus": 200.6097412109375,
+            "generation": 1,
+            "genus": "Ucunsis",
+            "isBacteria": true,
+            "isPlayerSpecies": false,
+            "name": "Bacteria_3586",
+            "opportunism": 51.79974365234375,
+            "population": 1009,
+            "membraneType": 3,
+            "stringCode": "Y,0,0,0|y,0,1,0|m,1,1,0|i,2,0,0|i,1,2,0"
+          }
+        },
+        {
+          "population": 1640,
+          "species": {
+            "activity": 113.41082763671875,
+            "aggression": 71.73286437988281,
+            "color": {
+              "a": 1.6618475914001465,
+              "b": 0.40634047985076904,
+              "g": 0.27273914217948914,
+              "r": 0.34881532192230225
+            },
+            "epithet": "Pranaolera",
+            "fear": 117.881103515625,
+            "focus": 177.80923461914062,
+            "generation": 1,
+            "genus": "Okepsis",
+            "isBacteria": true,
+            "isPlayerSpecies": false,
+            "name": "Bacteria_1476",
+            "opportunism": 108.982666015625,
+            "population": 922,
+            "membraneType": 1,
+            "stringCode": "Y,0,0,0|m,0,2,0|t,1,2,0|Y,1,3,0|F,2,3,0"
+          }
+        },
+        {
+          "population": 932,
+          "species": {
+            "activity": 23.781639099121094,
+            "aggression": 132.46432495117188,
+            "color": {
+              "a": 2.24454665184021,
+              "b": 0.040556538850069046,
+              "g": 0.8222581148147583,
+              "r": 0.6924219131469727
+            },
+            "epithet": "Atipceae",
+            "fear": 143.76364135742188,
+            "focus": 205.8397979736328,
+            "generation": 1,
+            "genus": "Gduykus",
+            "isBacteria": true,
+            "isPlayerSpecies": false,
+            "name": "Bacteria_4255",
+            "opportunism": 78.81646728515625,
+            "population": 1188,
+            "membraneType": 0,
+            "stringCode": "m,0,0,0|F,0,1,0|t,0,2,0"
           }
         }
       ]
@@ -263,6 +788,83 @@
       ],
       "biome": {
         "background": "ocean",
+        "chunks": [
+          {
+            "compounds": [],
+            "density": 2e-05,
+            "name": "Floating Hazard"
+          },
+          {
+            "compounds": [
+              {
+                "amount": 60000.0,
+                "name": "iron"
+              }
+            ],
+            "density": 0.0,
+            "name": "Big Iron Chunk"
+          },
+          {
+            "compounds": [
+              {
+                "amount": 200.0,
+                "name": "iron"
+              }
+            ],
+            "density": 0.0,
+            "name": "Small Iron Chunk"
+          }
+        ],
+        "compounds": {
+          "ammonia": {
+            "amount": 200000.0,
+            "density": 2e-05,
+            "dissolved": 0.0,
+            "name": "Ammonia"
+          },
+          "carbondioxide": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.09,
+            "name": "Carbon Dioxide"
+          },
+          "glucose": {
+            "amount": 250000.0,
+            "density": 2e-05,
+            "dissolved": 0.0,
+            "name": "Glucose"
+          },
+          "hydrogensulfide": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.0,
+            "name": "Hydrogen Sulfide"
+          },
+          "nitrogen": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.7,
+            "name": "Nitrogen"
+          },
+          "oxygen": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.21,
+            "name": "Oxygen"
+          },
+          "phosphates": {
+            "amount": 200000.0,
+            "density": 2e-05,
+            "dissolved": 0.0,
+            "name": "Phosphate"
+          },
+          "sunlight": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 1.0,
+            "name": "Sunlight"
+          }
+        },
         "id": 4,
         "internalName": "default",
         "name": "Epipelagic",
@@ -279,7 +881,8 @@
           "z": 0.75
         },
         "sunlightIntensity": 9.999999747378752e-05,
-        "sunlightSourceRadius": 0.5
+        "sunlightSourceRadius": 0.5,
+        "temperature": 8.0
       },
       "id": 2,
       "name": "Pangonian Epipelagic",
@@ -289,103 +892,153 @@
       },
       "species": [
         {
-          "population": 1095,
+          "population": 1313,
           "species": {
-            "activity": 133.40785217285156,
-            "aggression": 149.79454040527344,
+            "activity": 84.29283905029297,
+            "aggression": 94.30519104003906,
             "color": {
-              "a": 0.6072385311126709,
-              "b": 0.8943746089935303,
-              "g": 0.600149929523468,
-              "r": 0.4918753206729889
+              "a": 0.5450894236564636,
+              "b": 0.5574211478233337,
+              "g": 0.5875855088233948,
+              "r": 0.4260633587837219
             },
-            "epithet": "Neroxili",
-            "fear": 108.612548828125,
-            "focus": 229.025390625,
+            "epithet": "Cenomrius",
+            "fear": 62.054908752441406,
+            "focus": 207.7431640625,
             "generation": 1,
-            "genus": "Vimosinsis",
+            "genus": "Meceae",
             "isBacteria": true,
             "isPlayerSpecies": false,
-            "name": "Bacteria_3104",
-            "opportunism": 129.1481170654297,
-            "population": 1059,
-            "speciesMembraneType": 0,
-            "stringCode": "h,0,0,0|F,0,1,0|i,2,2,0|y,1,2,0|y,2,0,0|m,1,1,0"
+            "name": "Bacteria_7051",
+            "opportunism": 80.33609771728516,
+            "population": 645,
+            "membraneType": 2,
+            "stringCode": "P,0,0,0|y,0,1,0|f,1,1,0|F,0,2,0"
           }
         },
         {
-          "population": 1409,
+          "population": 1949,
           "species": {
-            "activity": 97.64484405517578,
-            "aggression": 91.6400146484375,
+            "activity": 66.86286163330078,
+            "aggression": 121.73059844970703,
             "color": {
-              "a": 1.028185248374939,
-              "b": 0.49394890666007996,
-              "g": 0.19252024590969086,
-              "r": 0.050888191908597946
+              "a": 2.65262770652771,
+              "b": 0.8054046630859375,
+              "g": 0.501338005065918,
+              "r": 0.5434147119522095
             },
-            "epithet": "Duowbuepces",
-            "fear": 142.52230834960938,
-            "focus": 187.34600830078125,
+            "epithet": "Cytepcys",
+            "fear": 74.03485870361328,
+            "focus": 194.90609741210938,
             "generation": 1,
-            "genus": "Boijmaaseas",
+            "genus": "Lirius",
             "isBacteria": true,
             "isPlayerSpecies": false,
-            "name": "Bacteria_2320",
-            "opportunism": 47.90995788574219,
-            "population": 1412,
-            "speciesMembraneType": 3,
-            "stringCode": "F,0,1,0|c,1,1,0|f,1,2,0|F,1,3,0"
+            "name": "Bacteria_2581",
+            "opportunism": 43.985198974609375,
+            "population": 1349,
+            "membraneType": 3,
+            "stringCode": "Y,0,0,0|h,0,1,0|i,0,2,0"
           }
         },
         {
-          "population": 1505,
+          "population": 604,
           "species": {
-            "activity": 81.67362976074219,
-            "aggression": 121.17594146728516,
+            "activity": 114.84548950195312,
+            "aggression": 49.56753158569336,
             "color": {
-              "a": 2.01316499710083,
-              "b": 0.018735775724053383,
-              "g": 0.07783729583024979,
-              "r": 0.6339148879051208
+              "a": 1.7814387083053589,
+              "b": 0.5224060416221619,
+              "g": 0.011958381161093712,
+              "r": 0.8837519288063049
             },
-            "epithet": "Sanien",
-            "fear": 115.23507690429688,
-            "focus": 181.52728271484375,
+            "epithet": "Cyehidian",
+            "fear": 97.58657836914062,
+            "focus": 218.27044677734375,
             "generation": 1,
-            "genus": "Qibasaiycuivo",
-            "isBacteria": true,
+            "genus": "Ujuge",
+            "isBacteria": false,
             "isPlayerSpecies": false,
-            "name": "Bacteria_903",
-            "opportunism": 77.26948547363281,
-            "population": 1514,
-            "speciesMembraneType": 0,
-            "stringCode": "f,0,1,0|f,1,1,0|h,1,2,0|c,0,2,0|h,1,3,0"
+            "name": "Species_6943",
+            "opportunism": 101.36190795898438,
+            "population": 1013,
+            "membraneType": 0,
+            "stringCode": "i,0,1,0|h,0,2,0|y,0,3,0|i,0,4,0|P,1,2,0|N,2,3,0"
           }
         },
         {
-          "population": 1828,
+          "population": 1618,
           "species": {
-            "activity": 100.41659545898438,
-            "aggression": 110.41661071777344,
+            "activity": 145.89474487304688,
+            "aggression": 97.28976440429688,
             "color": {
-              "a": 2.769697904586792,
-              "b": 0.7185924649238586,
-              "g": 0.8426401615142822,
-              "r": 0.5581479668617249
+              "a": 0.6214473843574524,
+              "b": 0.24929456412792206,
+              "g": 0.433440625667572,
+              "r": 0.6370019912719727
             },
-            "epithet": "Untupsis",
-            "fear": 84.70662689208984,
-            "focus": 197.12619018554688,
+            "epithet": "Nzhaca",
+            "fear": 99.69805908203125,
+            "focus": 182.0430908203125,
             "generation": 1,
-            "genus": "Kappin",
+            "genus": "Virex",
             "isBacteria": true,
             "isPlayerSpecies": false,
-            "name": "Bacteria_8952",
-            "opportunism": 90.87218475341797,
-            "population": 1853,
-            "speciesMembraneType": 0,
-            "stringCode": "F,0,1,0|y,1,1,0|F,0,2,0|F,2,0,0|y,0,3,0|c,2,1,0"
+            "name": "Bacteria_2477",
+            "opportunism": 80.25383758544922,
+            "population": 1052,
+            "membraneType": 0,
+            "stringCode": "f,0,2,0|i,0,3,0"
+          }
+        },
+        {
+          "population": 722,
+          "species": {
+            "activity": 105.02281188964844,
+            "aggression": 95.52050018310547,
+            "color": {
+              "a": 1.1528899669647217,
+              "b": 0.15935903787612915,
+              "g": 0.806786298751831,
+              "r": 0.02302854135632515
+            },
+            "epithet": "Daea",
+            "fear": 95.02226257324219,
+            "focus": 195.63084411621094,
+            "generation": 1,
+            "genus": "Uncotpien",
+            "isBacteria": true,
+            "isPlayerSpecies": false,
+            "name": "Bacteria_403",
+            "opportunism": 76.87152099609375,
+            "population": 1395,
+            "membraneType": 1,
+            "stringCode": "h,0,0,0|h,0,1,0|t,0,2,0|i,1,2,0|h,1,3,0"
+          }
+        },
+        {
+          "population": 756,
+          "species": {
+            "activity": 79.22402954101562,
+            "aggression": 100.96920776367188,
+            "color": {
+              "a": 1.2044403553009033,
+              "b": 0.6002978086471558,
+              "g": 0.5268750190734863,
+              "r": 0.5174400210380554
+            },
+            "epithet": "Phulpiun",
+            "fear": 68.56336212158203,
+            "focus": 211.8581085205078,
+            "generation": 1,
+            "genus": "Uyes",
+            "isBacteria": true,
+            "isPlayerSpecies": false,
+            "name": "Bacteria_4930",
+            "opportunism": 134.14244079589844,
+            "population": 1392,
+            "membraneType": 0,
+            "stringCode": "Y,0,0,0|m,0,1,0|m,1,1,0"
           }
         }
       ]
@@ -396,6 +1049,83 @@
       ],
       "biome": {
         "background": "tidepool",
+        "chunks": [
+          {
+            "compounds": [],
+            "density": 2e-05,
+            "name": "Floating Hazard"
+          },
+          {
+            "compounds": [
+              {
+                "amount": 60000.0,
+                "name": "iron"
+              }
+            ],
+            "density": 2e-05,
+            "name": "Big Iron Chunk"
+          },
+          {
+            "compounds": [
+              {
+                "amount": 200.0,
+                "name": "iron"
+              }
+            ],
+            "density": 2e-05,
+            "name": "Small Iron Chunk"
+          }
+        ],
+        "compounds": {
+          "ammonia": {
+            "amount": 200000.0,
+            "density": 2e-05,
+            "dissolved": 0.0,
+            "name": "Ammonia"
+          },
+          "carbondioxide": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.09,
+            "name": "Carbon Dioxide"
+          },
+          "glucose": {
+            "amount": 250000.0,
+            "density": 2e-05,
+            "dissolved": 0.0,
+            "name": "Glucose"
+          },
+          "hydrogensulfide": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.0,
+            "name": "Hydrogen Sulfide"
+          },
+          "nitrogen": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.7,
+            "name": "Nitrogen"
+          },
+          "oxygen": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.21,
+            "name": "Oxygen"
+          },
+          "phosphates": {
+            "amount": 200000.0,
+            "density": 2e-05,
+            "dissolved": 0.0,
+            "name": "Phosphate"
+          },
+          "sunlight": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 2.0,
+            "name": "Sunlight"
+          }
+        },
         "id": 9,
         "internalName": "tidepool",
         "name": "Tidepool",
@@ -412,7 +1142,8 @@
           "z": 0.75
         },
         "sunlightIntensity": 9.999999747378752e-05,
-        "sunlightSourceRadius": 0.5
+        "sunlightSourceRadius": 0.5,
+        "temperature": 23.0
       },
       "id": 3,
       "name": "Pangonian Tidepool",
@@ -422,78 +1153,28 @@
       },
       "species": [
         {
-          "population": 1749,
+          "population": 2759,
           "species": {
-            "activity": 105.448974609375,
-            "aggression": 124.9063720703125,
+            "activity": 86.50239562988281,
+            "aggression": 80.45164489746094,
             "color": {
-              "a": 1.0021424293518066,
-              "b": 0.2924789786338806,
-              "g": 0.44531211256980896,
-              "r": 0.6428595185279846
+              "a": 2.2189149856567383,
+              "b": 0.29278624057769775,
+              "g": 0.8010231852531433,
+              "r": 0.519940972328186
             },
-            "epithet": "Zuulquma",
-            "fear": 131.05215454101562,
-            "focus": 207.01840209960938,
+            "epithet": "Cymum",
+            "fear": 102.69386291503906,
+            "focus": 213.88125610351562,
             "generation": 1,
-            "genus": "Dmia",
+            "genus": "Cemanun",
             "isBacteria": true,
             "isPlayerSpecies": false,
-            "name": "Bacteria_565",
-            "opportunism": 130.47579956054688,
-            "population": 1765,
-            "speciesMembraneType": 2,
-            "stringCode": "i,0,0,0|c,0,2,0|h,0,1,0|c,1,1,0|c,2,0,0|h,2,-1,0"
-          }
-        },
-        {
-          "population": 1913,
-          "species": {
-            "activity": 79.61288452148438,
-            "aggression": 76.19485473632812,
-            "color": {
-              "a": 1.033291220664978,
-              "b": 0.5387240052223206,
-              "g": 0.37372374534606934,
-              "r": 0.062192659825086594
-            },
-            "epithet": "Bfen",
-            "fear": 128.16488647460938,
-            "focus": 183.6317138671875,
-            "generation": 1,
-            "genus": "Kkfoyan",
-            "isBacteria": true,
-            "isPlayerSpecies": false,
-            "name": "Bacteria_8972",
-            "opportunism": 60.00373458862305,
-            "population": 1931,
-            "speciesMembraneType": 3,
-            "stringCode": "i,0,0,0|h,1,2,0|y,0,1,0"
-          }
-        },
-        {
-          "population": 1095,
-          "species": {
-            "activity": 68.26815795898438,
-            "aggression": 125.51808166503906,
-            "color": {
-              "a": 1.378391981124878,
-              "b": 0.1499638557434082,
-              "g": 0.010488014668226242,
-              "r": 0.8160991668701172
-            },
-            "epithet": "Gobfila",
-            "fear": 124.232666015625,
-            "focus": 229.05569458007812,
-            "generation": 1,
-            "genus": "Lamamum",
-            "isBacteria": true,
-            "isPlayerSpecies": false,
-            "name": "Bacteria_3977",
-            "opportunism": 102.984130859375,
-            "population": 1125,
-            "speciesMembraneType": 3,
-            "stringCode": "F,0,1,0|h,1,1,0|y,2,0,0|y,2,-1,0|c,0,2,0|h,1,-1,0|f,1,2,0|h,2,2,0"
+            "name": "Bacteria_4863",
+            "opportunism": 130.77743530273438,
+            "population": 1862,
+            "membraneType": 0,
+            "stringCode": "c,0,2,0|m,0,3,0"
           }
         }
       ]
@@ -506,6 +1187,105 @@
       ],
       "biome": {
         "background": "bathypalagic",
+        "chunks": [
+          {
+            "compounds": [],
+            "density": 1.5e-05,
+            "name": "Floating Hazard"
+          },
+          {
+            "compounds": [
+              {
+                "amount": 60000.0,
+                "name": "iron"
+              }
+            ],
+            "density": 1.5e-05,
+            "name": "Big Iron Chunk"
+          },
+          {
+            "compounds": [
+              {
+                "amount": 200.0,
+                "name": "iron"
+              }
+            ],
+            "density": 1.5e-05,
+            "name": "Small Iron Chunk"
+          },
+          {
+            "compounds": [
+              {
+                "amount": 100.0,
+                "name": "ammonia"
+              },
+              {
+                "amount": 100.0,
+                "name": "atp"
+              },
+              {
+                "amount": 100.0,
+                "name": "glucose"
+              },
+              {
+                "amount": 100.0,
+                "name": "phosphates"
+              }
+            ],
+            "density": 0.0002,
+            "name": "Marine snow"
+          }
+        ],
+        "compounds": {
+          "ammonia": {
+            "amount": 200000.0,
+            "density": 2e-05,
+            "dissolved": 0.0,
+            "name": "Ammonia"
+          },
+          "carbondioxide": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.09,
+            "name": "Carbon Dioxide"
+          },
+          "glucose": {
+            "amount": 250000.0,
+            "density": 2e-05,
+            "dissolved": 0.0,
+            "name": "Glucose"
+          },
+          "hydrogensulfide": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.0,
+            "name": "Hydrogen Sulfide"
+          },
+          "nitrogen": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.7,
+            "name": "Nitrogen"
+          },
+          "oxygen": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.21,
+            "name": "Oxygen"
+          },
+          "phosphates": {
+            "amount": 200000.0,
+            "density": 2e-05,
+            "dissolved": 0.0,
+            "name": "Phosphate"
+          },
+          "sunlight": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.0,
+            "name": "Sunlight"
+          }
+        },
         "id": 2,
         "internalName": "bathypalagic",
         "name": "Bathypalagic",
@@ -522,7 +1302,8 @@
           "z": 0.75
         },
         "sunlightIntensity": 9.999999747378752e-05,
-        "sunlightSourceRadius": 0.5
+        "sunlightSourceRadius": 0.5,
+        "temperature": 4.0
       },
       "id": 4,
       "name": "Pangonian Bathypalagic",
@@ -532,53 +1313,103 @@
       },
       "species": [
         {
-          "population": 1229,
+          "population": 358,
           "species": {
-            "activity": 47.50263214111328,
-            "aggression": 109.93511962890625,
+            "activity": 113.41082763671875,
+            "aggression": 71.73286437988281,
             "color": {
-              "a": 0.8174930810928345,
-              "b": 0.4909813106060028,
-              "g": 0.47110721468925476,
-              "r": 0.15422295033931732
+              "a": 1.6618475914001465,
+              "b": 0.40634047985076904,
+              "g": 0.27273914217948914,
+              "r": 0.34881532192230225
             },
-            "epithet": "Muster",
-            "fear": 98.20452117919922,
-            "focus": 213.70733642578125,
+            "epithet": "Pranaolera",
+            "fear": 117.881103515625,
+            "focus": 177.80923461914062,
             "generation": 1,
-            "genus": "Gariilaa",
+            "genus": "Okepsis",
             "isBacteria": true,
             "isPlayerSpecies": false,
-            "name": "Bacteria_4074",
-            "opportunism": 68.03644561767578,
-            "population": 1210,
-            "speciesMembraneType": 3,
-            "stringCode": "Y,0,0,0|f,0,2,0|i,1,2,0|t,0,1,0|y,1,1,0|t,1,3,0"
+            "name": "Bacteria_1476",
+            "opportunism": 108.982666015625,
+            "population": 922,
+            "membraneType": 1,
+            "stringCode": "Y,0,0,0|m,0,2,0|t,1,2,0|Y,1,3,0|F,2,3,0"
           }
         },
         {
-          "population": 822,
+          "population": 869,
           "species": {
-            "activity": 111.50784301757812,
-            "aggression": 90.43775939941406,
+            "activity": 23.781639099121094,
+            "aggression": 132.46432495117188,
             "color": {
-              "a": 0.8217694163322449,
-              "b": 0.28494778275489807,
-              "g": 0.2626626789569855,
-              "r": 0.02917269617319107
+              "a": 2.24454665184021,
+              "b": 0.040556538850069046,
+              "g": 0.8222581148147583,
+              "r": 0.6924219131469727
             },
-            "epithet": "Ctafoeagjis",
-            "fear": 87.9479751586914,
-            "focus": 235.17422485351562,
+            "epithet": "Atipceae",
+            "fear": 143.76364135742188,
+            "focus": 205.8397979736328,
             "generation": 1,
-            "genus": "Atescanus",
-            "isBacteria": false,
+            "genus": "Gduykus",
+            "isBacteria": true,
             "isPlayerSpecies": false,
-            "name": "Species_6719",
-            "opportunism": 123.69187927246094,
-            "population": 825,
-            "speciesMembraneType": 0,
-            "stringCode": "c,0,1,0|N,1,2,0|T,1,5,0|F,2,0,0"
+            "name": "Bacteria_4255",
+            "opportunism": 78.81646728515625,
+            "population": 1188,
+            "membraneType": 0,
+            "stringCode": "m,0,0,0|F,0,1,0|t,0,2,0"
+          }
+        },
+        {
+          "population": 1483,
+          "species": {
+            "activity": 117.19973754882812,
+            "aggression": 124.01670837402344,
+            "color": {
+              "a": 2.1129932403564453,
+              "b": 0.21959130465984344,
+              "g": 0.10503410547971725,
+              "r": 0.1594899296760559
+            },
+            "epithet": "Pacilos",
+            "fear": 73.30442810058594,
+            "focus": 231.83963012695312,
+            "generation": 1,
+            "genus": "Kiroella",
+            "isBacteria": true,
+            "isPlayerSpecies": false,
+            "name": "Bacteria_3919",
+            "opportunism": 71.3021011352539,
+            "population": 1003,
+            "membraneType": 0,
+            "stringCode": "y,0,1,0|P,0,2,0|m,0,3,0|i,0,4,0|f,1,3,0"
+          }
+        },
+        {
+          "population": 322,
+          "species": {
+            "activity": 87.61964416503906,
+            "aggression": 128.5528564453125,
+            "color": {
+              "a": 1.4763840436935425,
+              "b": 0.4651273190975189,
+              "g": 0.546474277973175,
+              "r": 0.7018135786056519
+            },
+            "epithet": "Nitrum",
+            "fear": 118.28910064697266,
+            "focus": 145.01853942871094,
+            "generation": 1,
+            "genus": "Cyahaeien",
+            "isBacteria": true,
+            "isPlayerSpecies": false,
+            "name": "Bacteria_1231",
+            "opportunism": 83.3882827758789,
+            "population": 923,
+            "membraneType": 0,
+            "stringCode": "h,0,1,0|m,0,3,0"
           }
         }
       ]
@@ -590,6 +1421,105 @@
       ],
       "biome": {
         "background": "abyssopelagic",
+        "chunks": [
+          {
+            "compounds": [],
+            "density": 2e-05,
+            "name": "Floating Hazard"
+          },
+          {
+            "compounds": [
+              {
+                "amount": 60000.0,
+                "name": "iron"
+              }
+            ],
+            "density": 0.0,
+            "name": "Big Iron Chunk"
+          },
+          {
+            "compounds": [
+              {
+                "amount": 200.0,
+                "name": "iron"
+              }
+            ],
+            "density": 0.0,
+            "name": "Small Iron Chunk"
+          },
+          {
+            "compounds": [
+              {
+                "amount": 100.0,
+                "name": "ammonia"
+              },
+              {
+                "amount": 100.0,
+                "name": "atp"
+              },
+              {
+                "amount": 100.0,
+                "name": "glucose"
+              },
+              {
+                "amount": 100.0,
+                "name": "phosphates"
+              }
+            ],
+            "density": 2e-05,
+            "name": "Marine snow"
+          }
+        ],
+        "compounds": {
+          "ammonia": {
+            "amount": 200000.0,
+            "density": 2e-05,
+            "dissolved": 0.0,
+            "name": "Ammonia"
+          },
+          "carbondioxide": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.09,
+            "name": "Carbon Dioxide"
+          },
+          "glucose": {
+            "amount": 250000.0,
+            "density": 2e-05,
+            "dissolved": 0.0,
+            "name": "Glucose"
+          },
+          "hydrogensulfide": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.0,
+            "name": "Hydrogen Sulfide"
+          },
+          "nitrogen": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.7,
+            "name": "Nitrogen"
+          },
+          "oxygen": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.21,
+            "name": "Oxygen"
+          },
+          "phosphates": {
+            "amount": 200000.0,
+            "density": 2e-05,
+            "dissolved": 0.0,
+            "name": "Phosphate"
+          },
+          "sunlight": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.0,
+            "name": "Sunlight"
+          }
+        },
         "id": 1,
         "internalName": "abyssopelagic",
         "name": "Abyssopelagic",
@@ -606,7 +1536,8 @@
           "z": 0.75
         },
         "sunlightIntensity": 9.999999747378752e-05,
-        "sunlightSourceRadius": 0.5
+        "sunlightSourceRadius": 0.5,
+        "temperature": 2.0
       },
       "id": 5,
       "name": "Pangonian Abyssopelagic",
@@ -616,103 +1547,53 @@
       },
       "species": [
         {
-          "population": 1604,
+          "population": 829,
           "species": {
-            "activity": 88.4369125366211,
-            "aggression": 101.1849365234375,
+            "activity": 130.85009765625,
+            "aggression": 147.52618408203125,
             "color": {
-              "a": 2.2920780181884766,
-              "b": 0.336425244808197,
-              "g": 0.6836618185043335,
-              "r": 0.44528526067733765
+              "a": 1.8746706247329712,
+              "b": 0.8090651631355286,
+              "g": 0.5392714142799377,
+              "r": 0.70566326379776
             },
-            "epithet": "Vlapcoae",
-            "fear": 93.31248474121094,
-            "focus": 213.3863067626953,
+            "epithet": "Glili",
+            "fear": 113.95305633544922,
+            "focus": 184.42813110351562,
             "generation": 1,
-            "genus": "Mitidia",
+            "genus": "Sotus",
             "isBacteria": true,
             "isPlayerSpecies": false,
-            "name": "Bacteria_5985",
-            "opportunism": 78.45359802246094,
-            "population": 1601,
-            "speciesMembraneType": 0,
-            "stringCode": "f,0,0,0|f,0,1,0|h,0,2,0|c,1,1,0|m,0,3,0|f,1,2,0"
+            "name": "Bacteria_3271",
+            "opportunism": 152.72271728515625,
+            "population": 699,
+            "membraneType": 0,
+            "stringCode": "y,0,0,0|i,1,1,0"
           }
         },
         {
-          "population": 1180,
+          "population": 1106,
           "species": {
-            "activity": 139.95684814453125,
-            "aggression": 69.38182067871094,
+            "activity": 107.0150146484375,
+            "aggression": 125.82792663574219,
             "color": {
-              "a": 1.8019012212753296,
-              "b": 0.025444108992815018,
-              "g": 0.4431728422641754,
-              "r": 0.11860591173171997
+              "a": 1.1373146772384644,
+              "b": 0.6816132068634033,
+              "g": 0.6988924741744995,
+              "r": 0.8443915247917175
             },
-            "epithet": "Praguar",
-            "fear": 111.56735229492188,
-            "focus": 138.5042724609375,
+            "epithet": "Ohocoansis",
+            "fear": 89.28135681152344,
+            "focus": 164.3190155029297,
             "generation": 1,
-            "genus": "Fremata",
+            "genus": "Erux",
             "isBacteria": true,
             "isPlayerSpecies": false,
-            "name": "Bacteria_577",
-            "opportunism": 192.1452178955078,
-            "population": 1142,
-            "speciesMembraneType": 0,
-            "stringCode": "f,0,1,0|y,0,2,0|h,1,2,0|f,2,1,0|c,0,3,0"
-          }
-        },
-        {
-          "population": 627,
-          "species": {
-            "activity": 32.68401336669922,
-            "aggression": 124.27804565429688,
-            "color": {
-              "a": 2.1905102729797363,
-              "b": 0.6822834610939026,
-              "g": 0.7050905823707581,
-              "r": 0.6789549589157104
-            },
-            "epithet": "Chaonogixia",
-            "fear": 92.63652801513672,
-            "focus": 206.0487823486328,
-            "generation": 1,
-            "genus": "Jzios",
-            "isBacteria": true,
-            "isPlayerSpecies": false,
-            "name": "Bacteria_8933",
-            "opportunism": 84.94842529296875,
-            "population": 622,
-            "speciesMembraneType": 0,
-            "stringCode": "f,0,0,0|h,1,1,0|h,2,0,0|f,2,1,0|F,2,2,0|h,0,1,0|c,1,2,0|i,3,1,0"
-          }
-        },
-        {
-          "population": 993,
-          "species": {
-            "activity": 122.19429016113281,
-            "aggression": 120.91481018066406,
-            "color": {
-              "a": 1.4122966527938843,
-              "b": 0.8109526038169861,
-              "g": 0.7170194983482361,
-              "r": 0.2812628746032715
-            },
-            "epithet": "Vagumeta",
-            "fear": 111.357666015625,
-            "focus": 190.7345733642578,
-            "generation": 1,
-            "genus": "Kpos",
-            "isBacteria": true,
-            "isPlayerSpecies": false,
-            "name": "Bacteria_7112",
-            "opportunism": 72.09545135498047,
-            "population": 953,
-            "speciesMembraneType": 0,
-            "stringCode": "h,0,0,0|y,0,1,0|F,0,2,0|f,1,1,0|f,2,0,0|Y,2,-1,0|c,1,-1,0"
+            "name": "Bacteria_4408",
+            "opportunism": 93.39665222167969,
+            "population": 1561,
+            "membraneType": 3,
+            "stringCode": "F,1,1,0|m,1,2,0|h,2,0,0|h,2,2,0|F,3,1,0"
           }
         }
       ]
@@ -724,6 +1605,83 @@
       ],
       "biome": {
         "background": "coastal",
+        "chunks": [
+          {
+            "compounds": [],
+            "density": 2e-05,
+            "name": "Floating Hazard"
+          },
+          {
+            "compounds": [
+              {
+                "amount": 60000.0,
+                "name": "iron"
+              }
+            ],
+            "density": 2e-05,
+            "name": "Big Iron Chunk"
+          },
+          {
+            "compounds": [
+              {
+                "amount": 200.0,
+                "name": "iron"
+              }
+            ],
+            "density": 2e-05,
+            "name": "Small Iron Chunk"
+          }
+        ],
+        "compounds": {
+          "ammonia": {
+            "amount": 200000.0,
+            "density": 2e-05,
+            "dissolved": 0.0,
+            "name": "Ammonia"
+          },
+          "carbondioxide": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.09,
+            "name": "Carbon Dioxide"
+          },
+          "glucose": {
+            "amount": 250000.0,
+            "density": 2e-05,
+            "dissolved": 0.0,
+            "name": "Glucose"
+          },
+          "hydrogensulfide": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.0,
+            "name": "Hydrogen Sulfide"
+          },
+          "nitrogen": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.7,
+            "name": "Nitrogen"
+          },
+          "oxygen": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.21,
+            "name": "Oxygen"
+          },
+          "phosphates": {
+            "amount": 200000.0,
+            "density": 2e-05,
+            "dissolved": 0.0,
+            "name": "Phosphate"
+          },
+          "sunlight": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 1.0,
+            "name": "Sunlight"
+          }
+        },
         "id": 3,
         "internalName": "coastal",
         "name": "Coastal",
@@ -740,7 +1698,8 @@
           "z": 0.75
         },
         "sunlightIntensity": 9.999999747378752e-05,
-        "sunlightSourceRadius": 0.5
+        "sunlightSourceRadius": 0.5,
+        "temperature": 17.0
       },
       "id": 6,
       "name": "Pangonian Coast",
@@ -750,78 +1709,103 @@
       },
       "species": [
         {
-          "population": 1177,
+          "population": 1212,
           "species": {
-            "activity": 119.54564666748047,
-            "aggression": 124.95869445800781,
+            "activity": 105.02281188964844,
+            "aggression": 95.52050018310547,
             "color": {
-              "a": 0.6138984560966492,
-              "b": 0.7179461121559143,
-              "g": 0.22691060602664948,
-              "r": 0.5832387804985046
+              "a": 1.1528899669647217,
+              "b": 0.15935903787612915,
+              "g": 0.806786298751831,
+              "r": 0.02302854135632515
             },
-            "epithet": "Baxooje",
-            "fear": 152.71705627441406,
-            "focus": 220.16851806640625,
+            "epithet": "Daea",
+            "fear": 95.02226257324219,
+            "focus": 195.63084411621094,
             "generation": 1,
-            "genus": "Mijseaan",
+            "genus": "Uncotpien",
             "isBacteria": true,
             "isPlayerSpecies": false,
-            "name": "Bacteria_7281",
-            "opportunism": 117.53250122070312,
-            "population": 1219,
-            "speciesMembraneType": 0,
-            "stringCode": "F,0,1,0|f,0,2,0|y,2,1,0|F,1,3,0|i,2,0,0|y,2,2,0"
+            "name": "Bacteria_403",
+            "opportunism": 76.87152099609375,
+            "population": 1395,
+            "membraneType": 1,
+            "stringCode": "h,0,0,0|h,0,1,0|t,0,2,0|i,1,2,0|h,1,3,0"
           }
         },
         {
-          "population": 1987,
+          "population": 2483,
           "species": {
-            "activity": 126.08737182617188,
-            "aggression": 115.10560607910156,
+            "activity": 76.60596466064453,
+            "aggression": 78.56554412841797,
             "color": {
-              "a": 2.079009771347046,
-              "b": 0.2102976143360138,
-              "g": 0.2287447303533554,
-              "r": 0.1676883101463318
+              "a": 0.8848069906234741,
+              "b": 0.5320385098457336,
+              "g": 0.08450556546449661,
+              "r": 0.8812670707702637
             },
-            "epithet": "Pejikoiys",
-            "fear": 121.71296691894531,
-            "focus": 182.3118896484375,
+            "epithet": "Glinguar",
+            "fear": 72.42518615722656,
+            "focus": 210.81771850585938,
             "generation": 1,
-            "genus": "Cytin",
+            "genus": "Fisepguar",
             "isBacteria": true,
             "isPlayerSpecies": false,
-            "name": "Bacteria_8343",
-            "opportunism": 104.44873809814453,
-            "population": 1944,
-            "speciesMembraneType": 0,
-            "stringCode": "y,0,1,0|F,0,2,0|F,1,2,0|h,1,1,0"
+            "name": "Bacteria_3037",
+            "opportunism": 133.56552124023438,
+            "population": 1682,
+            "membraneType": 0,
+            "stringCode": "F,1,1,0|h,0,2,0|h,1,2,0|f,1,3,0|F,2,2,0|F,2,3,0"
           }
         },
         {
-          "population": 906,
+          "population": 1248,
           "species": {
-            "activity": 126.60617065429688,
-            "aggression": 144.46658325195312,
+            "activity": 131.5343017578125,
+            "aggression": 101.89071655273438,
             "color": {
-              "a": 1.4210017919540405,
-              "b": 0.23763655126094818,
-              "g": 0.7332617044448853,
-              "r": 0.5829447507858276
+              "a": 0.5522082448005676,
+              "b": 0.14880840480327606,
+              "g": 0.28569522500038147,
+              "r": 0.18970902264118195
             },
-            "epithet": "Zeyaien",
-            "fear": 115.78543853759766,
-            "focus": 162.49072265625,
+            "epithet": "Taximrius",
+            "fear": 133.68118286132812,
+            "focus": 205.52671813964844,
             "generation": 1,
-            "genus": "Untomra",
+            "genus": "Acansis",
             "isBacteria": true,
             "isPlayerSpecies": false,
-            "name": "Bacteria_5564",
-            "opportunism": 95.9248275756836,
-            "population": 889,
-            "speciesMembraneType": 0,
-            "stringCode": "c,0,0,0|i,0,1,0|i,0,2,0|f,1,2,0|i,1,1,0"
+            "name": "Bacteria_7266",
+            "opportunism": 110.38206481933594,
+            "population": 1209,
+            "membraneType": 0,
+            "stringCode": "f,0,1,0|i,0,2,0|i,1,2,0"
+          }
+        },
+        {
+          "population": 430,
+          "species": {
+            "activity": 143.15440368652344,
+            "aggression": 104.57225036621094,
+            "color": {
+              "a": 1.5188928842544556,
+              "b": 0.07703326642513275,
+              "g": 0.8843362331390381,
+              "r": 0.2273118942975998
+            },
+            "epithet": "Ohunsis",
+            "fear": 129.87203979492188,
+            "focus": 151.67396545410156,
+            "generation": 1,
+            "genus": "Tuliian",
+            "isBacteria": true,
+            "isPlayerSpecies": false,
+            "name": "Bacteria_9837",
+            "opportunism": 168.56161499023438,
+            "population": 1409,
+            "membraneType": 0,
+            "stringCode": "Y,0,0,0|c,0,1,0|c,0,2,0|F,0,3,0"
           }
         }
       ]
@@ -832,6 +1816,83 @@
       ],
       "biome": {
         "background": "estuary",
+        "chunks": [
+          {
+            "compounds": [],
+            "density": 2e-05,
+            "name": "Floating Hazard"
+          },
+          {
+            "compounds": [
+              {
+                "amount": 60000.0,
+                "name": "iron"
+              }
+            ],
+            "density": 2e-05,
+            "name": "Big Iron Chunk"
+          },
+          {
+            "compounds": [
+              {
+                "amount": 200.0,
+                "name": "iron"
+              }
+            ],
+            "density": 2e-05,
+            "name": "Small Iron Chunk"
+          }
+        ],
+        "compounds": {
+          "ammonia": {
+            "amount": 200000.0,
+            "density": 2e-05,
+            "dissolved": 0.0,
+            "name": "Ammonia"
+          },
+          "carbondioxide": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.09,
+            "name": "Carbon Dioxide"
+          },
+          "glucose": {
+            "amount": 250000.0,
+            "density": 2e-05,
+            "dissolved": 0.0,
+            "name": "Glucose"
+          },
+          "hydrogensulfide": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.0,
+            "name": "Hydrogen Sulfide"
+          },
+          "nitrogen": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.78,
+            "name": "Nitrogen"
+          },
+          "oxygen": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.21,
+            "name": "Oxygen"
+          },
+          "phosphates": {
+            "amount": 200000.0,
+            "density": 2e-05,
+            "dissolved": 0.0,
+            "name": "Phosphate"
+          },
+          "sunlight": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 1.5,
+            "name": "Sunlight"
+          }
+        },
         "id": 5,
         "internalName": "estuary",
         "name": "Estuary",
@@ -848,7 +1909,8 @@
           "z": 0.75
         },
         "sunlightIntensity": 9.999999747378752e-05,
-        "sunlightSourceRadius": 0.5
+        "sunlightSourceRadius": 0.5,
+        "temperature": 17.0
       },
       "id": 7,
       "name": "Pangonian Estuary",
@@ -858,28 +1920,78 @@
       },
       "species": [
         {
-          "population": 783,
+          "population": 1317,
           "species": {
-            "activity": 61.43613052368164,
-            "aggression": 118.60307312011719,
+            "activity": 131.5343017578125,
+            "aggression": 101.89071655273438,
             "color": {
-              "a": 2.1100096702575684,
-              "b": 0.24256151914596558,
-              "g": 0.5116802453994751,
-              "r": 0.4463115334510803
+              "a": 0.5522082448005676,
+              "b": 0.14880840480327606,
+              "g": 0.28569522500038147,
+              "r": 0.18970902264118195
             },
-            "epithet": "Chalowi",
-            "fear": 110.83234405517578,
-            "focus": 229.65945434570312,
+            "epithet": "Taximrius",
+            "fear": 133.68118286132812,
+            "focus": 205.52671813964844,
             "generation": 1,
-            "genus": "Jjemanonkis",
+            "genus": "Acansis",
             "isBacteria": true,
             "isPlayerSpecies": false,
-            "name": "Bacteria_8638",
-            "opportunism": 66.65670776367188,
-            "population": 799,
-            "speciesMembraneType": 3,
-            "stringCode": "y,0,0,0|c,0,1,0|h,0,2,0|m,1,2,0|m,1,1,0|Y,2,0,0|c,2,1,0|Y,0,3,0|f,1,3,0"
+            "name": "Bacteria_7266",
+            "opportunism": 110.38206481933594,
+            "population": 1209,
+            "membraneType": 0,
+            "stringCode": "f,0,1,0|i,0,2,0|i,1,2,0"
+          }
+        },
+        {
+          "population": 2535,
+          "species": {
+            "activity": 80.37118530273438,
+            "aggression": 15.774534225463867,
+            "color": {
+              "a": 2.55985164642334,
+              "b": 0.6420436501502991,
+              "g": 0.6138013601303101,
+              "r": 0.7257780432701111
+            },
+            "epithet": "Pritor",
+            "fear": 59.836761474609375,
+            "focus": 201.7574462890625,
+            "generation": 1,
+            "genus": "Novix",
+            "isBacteria": true,
+            "isPlayerSpecies": false,
+            "name": "Bacteria_1048",
+            "opportunism": 104.21394348144531,
+            "population": 1864,
+            "membraneType": 0,
+            "stringCode": "Y,0,0,0|i,0,1,0|F,1,1,0|F,2,0,0|h,2,-1,0"
+          }
+        },
+        {
+          "population": 1848,
+          "species": {
+            "activity": 143.15440368652344,
+            "aggression": 104.57225036621094,
+            "color": {
+              "a": 1.5188928842544556,
+              "b": 0.07703326642513275,
+              "g": 0.8843362331390381,
+              "r": 0.2273118942975998
+            },
+            "epithet": "Ohunsis",
+            "fear": 129.87203979492188,
+            "focus": 151.67396545410156,
+            "generation": 1,
+            "genus": "Tuliian",
+            "isBacteria": true,
+            "isPlayerSpecies": false,
+            "name": "Bacteria_9837",
+            "opportunism": 168.56161499023438,
+            "population": 1409,
+            "membraneType": 0,
+            "stringCode": "Y,0,0,0|c,0,1,0|c,0,2,0|F,0,3,0"
           }
         }
       ]
@@ -890,6 +2002,83 @@
       ],
       "biome": {
         "background": "cave",
+        "chunks": [
+          {
+            "compounds": [],
+            "density": 0.0002,
+            "name": "Floating Hazard"
+          },
+          {
+            "compounds": [
+              {
+                "amount": 60000.0,
+                "name": "iron"
+              }
+            ],
+            "density": 6e-05,
+            "name": "Big Iron Chunk"
+          },
+          {
+            "compounds": [
+              {
+                "amount": 200.0,
+                "name": "iron"
+              }
+            ],
+            "density": 6e-05,
+            "name": "Small Iron Chunk"
+          }
+        ],
+        "compounds": {
+          "ammonia": {
+            "amount": 200000.0,
+            "density": 2e-05,
+            "dissolved": 0.0,
+            "name": "Ammonia"
+          },
+          "carbondioxide": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.09,
+            "name": "Carbon Dioxide"
+          },
+          "glucose": {
+            "amount": 250000.0,
+            "density": 2e-05,
+            "dissolved": 0.0,
+            "name": "Glucose"
+          },
+          "hydrogensulfide": {
+            "amount": 225000.0,
+            "density": 2e-05,
+            "dissolved": 0.0,
+            "name": "Hydrogen Sulfide"
+          },
+          "nitrogen": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.7,
+            "name": "Nitrogen"
+          },
+          "oxygen": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.21,
+            "name": "Oxygen"
+          },
+          "phosphates": {
+            "amount": 200000.0,
+            "density": 2e-05,
+            "dissolved": 0.0,
+            "name": "Phosphate"
+          },
+          "sunlight": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.0,
+            "name": "Sunlight"
+          }
+        },
         "id": 10,
         "internalName": "underwater_cave",
         "name": "UnderwaterCave",
@@ -906,7 +2095,8 @@
           "z": 0.75
         },
         "sunlightIntensity": 9.999999747378752e-05,
-        "sunlightSourceRadius": 0.5
+        "sunlightSourceRadius": 0.5,
+        "temperature": 23.0
       },
       "id": 8,
       "name": "Cave",
@@ -916,78 +2106,103 @@
       },
       "species": [
         {
-          "population": 1831,
+          "population": 2222,
           "species": {
-            "activity": 55.674720764160156,
-            "aggression": 61.72332763671875,
+            "activity": 60.322776794433594,
+            "aggression": 121.54933166503906,
             "color": {
-              "a": 0.9466313123703003,
-              "b": 0.854051947593689,
-              "g": 0.6129132509231567,
-              "r": 0.34873202443122864
+              "a": 1.539587378501892,
+              "b": 0.5729194283485413,
+              "g": 0.5899871587753296,
+              "r": 0.06364317983388901
             },
-            "epithet": "Egagguar",
-            "fear": 70.0741195678711,
-            "focus": 202.26651000976562,
+            "epithet": "Pihaeepsis",
+            "fear": 88.37799835205078,
+            "focus": 167.39297485351562,
             "generation": 1,
-            "genus": "Varaspien",
+            "genus": "Untepsis",
             "isBacteria": true,
             "isPlayerSpecies": false,
-            "name": "Bacteria_2064",
-            "opportunism": 94.03759765625,
-            "population": 1784,
-            "speciesMembraneType": 2,
-            "stringCode": "i,1,1,0|i,0,2,0|F,1,2,0|y,0,3,0|F,2,1,0|c,2,2,0|i,3,1,0|m,1,3,0"
+            "name": "Bacteria_4418",
+            "opportunism": 119.13199615478516,
+            "population": 1691,
+            "membraneType": 3,
+            "stringCode": "Y,0,0,0|m,0,1,0"
           }
         },
         {
-          "population": 1969,
+          "population": 748,
           "species": {
-            "activity": 99.52132415771484,
-            "aggression": 115.4244384765625,
+            "activity": 99.45964813232422,
+            "aggression": 98.69328308105469,
             "color": {
-              "a": 2.1954092979431152,
-              "b": 0.5143099427223206,
-              "g": 0.6917526721954346,
-              "r": 0.04925471171736717
+              "a": 1.7078649997711182,
+              "b": 0.3335843086242676,
+              "g": 0.5987754464149475,
+              "r": 0.890482485294342
             },
-            "epithet": "Teehrum",
-            "fear": 120.83964538574219,
-            "focus": 149.8509063720703,
+            "epithet": "Ikocoansis",
+            "fear": 123.49300384521484,
+            "focus": 175.6163787841797,
             "generation": 1,
-            "genus": "Xpos",
+            "genus": "Ubepsis",
             "isBacteria": true,
             "isPlayerSpecies": false,
-            "name": "Bacteria_4538",
-            "opportunism": 109.68527221679688,
-            "population": 1956,
-            "speciesMembraneType": 0,
-            "stringCode": "f,0,0,0|m,0,1,0|m,0,2,0|m,1,1,0|i,2,0,0"
+            "name": "Bacteria_3018",
+            "opportunism": 73.59481811523438,
+            "population": 1266,
+            "membraneType": 0,
+            "stringCode": "h,0,0,0|f,0,1,0"
           }
         },
         {
-          "population": 1585,
+          "population": 1875,
           "species": {
-            "activity": 96.88370513916016,
-            "aggression": 56.037757873535156,
+            "activity": 161.89682006835938,
+            "aggression": 91.42898559570312,
             "color": {
-              "a": 2.143953800201416,
-              "b": 0.8826334476470947,
-              "g": 0.04118696227669716,
-              "r": 0.7045424580574036
+              "a": 1.422203540802002,
+              "b": 0.7318810224533081,
+              "g": 0.3084251284599304,
+              "r": 0.8498781323432922
             },
-            "epithet": "Vlafoshoja",
-            "fear": 113.439453125,
-            "focus": 245.51651000976562,
+            "epithet": "Istir",
+            "fear": 92.36692810058594,
+            "focus": 216.59071350097656,
             "generation": 1,
-            "genus": "Qkimabojsis",
+            "genus": "Ectalia",
             "isBacteria": true,
             "isPlayerSpecies": false,
-            "name": "Bacteria_9828",
-            "opportunism": 83.07237243652344,
-            "population": 1561,
-            "speciesMembraneType": 0,
-            "stringCode": "f,0,2,0|m,0,1,0|c,0,4,0|i,1,2,0|h,0,3,0"
+            "name": "Bacteria_2345",
+            "opportunism": 155.6583709716797,
+            "population": 1092,
+            "membraneType": 0,
+            "stringCode": "F,0,0,0|F,0,1,0|f,1,2,0|c,2,3,0|c,0,3,0"
+          }
+        },
+        {
+          "population": 1240,
+          "species": {
+            "activity": 132.44357299804688,
+            "aggression": 77.31134033203125,
+            "color": {
+              "a": 0.7752885222434998,
+              "b": 0.7520893216133118,
+              "g": 0.2975112497806549,
+              "r": 0.5541540384292603
+            },
+            "epithet": "Plimomis",
+            "fear": 42.324012756347656,
+            "focus": 200.52386474609375,
+            "generation": 1,
+            "genus": "Sahialia",
+            "isBacteria": true,
+            "isPlayerSpecies": false,
+            "name": "Bacteria_4628",
+            "opportunism": 86.94546508789062,
+            "population": 1582,
+            "membraneType": 3,
+            "stringCode": "Y,0,0,0|Y,0,1,0|y,1,1,0|c,0,2,0"
           }
         }
       ]
@@ -998,6 +2213,88 @@
       ],
       "biome": {
         "background": "iceshelf",
+        "chunks": [
+          {
+            "compounds": [],
+            "density": 2e-05,
+            "name": "Floating Hazard"
+          },
+          {
+            "compounds": [],
+            "density": 0.0006,
+            "name": "Ice Shard"
+          },
+          {
+            "compounds": [
+              {
+                "amount": 60000.0,
+                "name": "iron"
+              }
+            ],
+            "density": 2e-05,
+            "name": "Big Iron Chunk"
+          },
+          {
+            "compounds": [
+              {
+                "amount": 200.0,
+                "name": "iron"
+              }
+            ],
+            "density": 2e-05,
+            "name": "Small Iron Chunk"
+          }
+        ],
+        "compounds": {
+          "ammonia": {
+            "amount": 200000.0,
+            "density": 2e-05,
+            "dissolved": 0.0,
+            "name": "Ammonia"
+          },
+          "carbondioxide": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.09,
+            "name": "Carbon Dioxide"
+          },
+          "glucose": {
+            "amount": 250000.0,
+            "density": 2e-05,
+            "dissolved": 0.0,
+            "name": "Glucose"
+          },
+          "hydrogensulfide": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.0,
+            "name": "Hydrogen Sulfide"
+          },
+          "nitrogen": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.7,
+            "name": "Nitrogen"
+          },
+          "oxygen": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.21,
+            "name": "Oxygen"
+          },
+          "phosphates": {
+            "amount": 200000.0,
+            "density": 2e-05,
+            "dissolved": 0.0,
+            "name": "Phosphate"
+          },
+          "sunlight": {
+            "amount": 0.0,
+            "density": 0.0,
+            "dissolved": 0.5,
+            "name": "Sunlight"
+          }
+        },
         "id": 6,
         "internalName": "ice_shelf",
         "name": "IceShelf",
@@ -1014,7 +2311,8 @@
           "z": 0.75
         },
         "sunlightIntensity": 9.999999747378752e-05,
-        "sunlightSourceRadius": 0.5
+        "sunlightSourceRadius": 0.5,
+        "temperature": -1.0
       },
       "id": 9,
       "name": "Ice Shelf",
@@ -1024,103 +2322,78 @@
       },
       "species": [
         {
-          "population": 1436,
+          "population": 1216,
           "species": {
-            "activity": 101.61552429199219,
-            "aggression": 103.82591247558594,
+            "activity": 114.84548950195312,
+            "aggression": 49.56753158569336,
             "color": {
-              "a": 0.8897371292114258,
-              "b": 0.05384538695216179,
-              "g": 0.10340854525566101,
-              "r": 0.49561652541160583
+              "a": 1.7814387083053589,
+              "b": 0.5224060416221619,
+              "g": 0.011958381161093712,
+              "r": 0.8837519288063049
             },
-            "epithet": "Tecwsfs",
-            "fear": 101.77655029296875,
-            "focus": 200.37510681152344,
+            "epithet": "Cyehidian",
+            "fear": 97.58657836914062,
+            "focus": 218.27044677734375,
             "generation": 1,
-            "genus": "Ulurux",
-            "isBacteria": true,
+            "genus": "Ujuge",
+            "isBacteria": false,
             "isPlayerSpecies": false,
-            "name": "Bacteria_4565",
-            "opportunism": 122.70742797851562,
-            "population": 1467,
-            "speciesMembraneType": 0,
-            "stringCode": "m,0,0,0|F,0,1,0|F,2,0,0|h,2,-1,0|F,0,2,0|Y,1,2,0|m,2,1,0"
+            "name": "Species_6943",
+            "opportunism": 101.36190795898438,
+            "population": 1013,
+            "membraneType": 0,
+            "stringCode": "i,0,1,0|h,0,2,0|y,0,3,0|i,0,4,0|P,1,2,0|N,2,3,0"
           }
         },
         {
-          "population": 1309,
+          "population": 1129,
           "species": {
-            "activity": 119.07820129394531,
-            "aggression": 78.48435974121094,
+            "activity": 145.89474487304688,
+            "aggression": 97.28976440429688,
             "color": {
-              "a": 2.0230021476745605,
-              "b": 0.315926194190979,
-              "g": 0.5950775146484375,
-              "r": 0.03338810056447983
+              "a": 0.6214473843574524,
+              "b": 0.24929456412792206,
+              "g": 0.433440625667572,
+              "r": 0.6370019912719727
             },
-            "epithet": "Viroxguar",
-            "fear": 129.99331665039062,
-            "focus": 182.2116241455078,
+            "epithet": "Nzhaca",
+            "fear": 99.69805908203125,
+            "focus": 182.0430908203125,
             "generation": 1,
-            "genus": "Nodata",
+            "genus": "Virex",
             "isBacteria": true,
             "isPlayerSpecies": false,
-            "name": "Bacteria_1876",
-            "opportunism": 100.31243133544922,
-            "population": 1259,
-            "speciesMembraneType": 0,
-            "stringCode": "y,0,1,0|Y,1,1,0|m,1,2,0|m,0,2,0"
+            "name": "Bacteria_2477",
+            "opportunism": 80.25383758544922,
+            "population": 1052,
+            "membraneType": 0,
+            "stringCode": "f,0,2,0|i,0,3,0"
           }
         },
         {
-          "population": 1965,
+          "population": 370,
           "species": {
-            "activity": 103.61138916015625,
-            "aggression": 74.87185668945312,
+            "activity": 84.29283905029297,
+            "aggression": 94.30519104003906,
             "color": {
-              "a": 0.7973648309707642,
-              "b": 0.1315585970878601,
-              "g": 0.45274999737739563,
-              "r": 0.7362709641456604
+              "a": 0.5450894236564636,
+              "b": 0.5574211478233337,
+              "g": 0.5875855088233948,
+              "r": 0.4260633587837219
             },
-            "epithet": "Juaea",
-            "fear": 115.2388916015625,
-            "focus": 218.56600952148438,
+            "epithet": "Cenomrius",
+            "fear": 62.054908752441406,
+            "focus": 207.7431640625,
             "generation": 1,
-            "genus": "Paxocuem",
+            "genus": "Meceae",
             "isBacteria": true,
             "isPlayerSpecies": false,
-            "name": "Bacteria_2740",
-            "opportunism": 118.72926330566406,
-            "population": 1945,
-            "speciesMembraneType": 2,
-            "stringCode": "m,0,2,0|f,1,3,0|F,2,3,0|c,1,4,0|F,0,1,0|f,0,3,0"
-          }
-        },
-        {
-          "population": 1848,
-          "species": {
-            "activity": 129.55548095703125,
-            "aggression": 126.94204711914062,
-            "color": {
-              "a": 1.6424990892410278,
-              "b": 0.6680091619491577,
-              "g": 0.1456211805343628,
-              "r": 0.6388230919837952
-            },
-            "epithet": "Qwnoyqoqaazo",
-            "fear": 126.68438720703125,
-            "focus": 214.1448211669922,
-            "generation": 1,
-            "genus": "Yvolnien",
-            "isBacteria": true,
-            "isPlayerSpecies": false,
-            "name": "Bacteria_8562",
-            "opportunism": 99.33039855957031,
-            "population": 1844,
-            "speciesMembraneType": 0,
-            "stringCode": "i,0,0,0|h,0,2,0|t,0,1,0|m,1,1,0|f,1,2,0"
+            "name": "Bacteria_7051",
+            "opportunism": 80.33609771728516,
+            "population": 645,
+            "membraneType": 2,
+            "stringCode": "P,0,0,0|y,0,1,0|f,1,1,0|F,0,2,0"
           }
         }
       ]

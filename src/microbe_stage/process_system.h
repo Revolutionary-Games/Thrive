@@ -1,6 +1,8 @@
 #pragma once
 
 #include "biomes.h"
+#include "membrane_types.h"
+#include "organelle_template.h"
 
 #include "engine/component_types.h"
 #include "engine/typedefs.h"
@@ -38,15 +40,16 @@ public:
         operator=(ProcessorComponent&& other) noexcept;
 
     inline void
-        setCapacity(BioProcessId id, double capacity)
+        setProcessRate(BioProcessId id, float rate)
     {
-        m_processCapacities[id] = capacity;
+        m_processRates[id] = rate;
     }
 
-    inline double
-        getCapacity(BioProcessId id)
+    //! \brief Used to reset the previous rates when rebuilding the process list
+    void
+        clearProcessRates()
     {
-        return m_processCapacities[id];
+        m_processRates.clear();
     }
 
     REFERENCE_HANDLE_UNCOUNTED_TYPE(ProcessorComponent);
@@ -54,7 +57,7 @@ public:
     static constexpr auto TYPE =
         componentTypeConvert(THRIVE_COMPONENT::PROCESSOR);
 
-    std::unordered_map<BioProcessId, double> m_processCapacities;
+    std::unordered_map<BioProcessId, double> m_processRates;
 };
 
 // Helper structure to store the economic information of the compounds.
@@ -140,6 +143,25 @@ public:
 
     double
         getDissolved(CompoundId compoundData);
+
+    // These are some process related query functions
+
+    //! \brief Computes the process numbers for given organelles given the
+    //! active biome data
+    //! \returns The data as a JSON string
+    std::string
+        computeOrganelleProcessEfficiencies(
+            const std::vector<OrganelleTemplate::pointer>& organelles,
+            const Biome& biome) const;
+
+    //! \brief Computes the energy balance for the given organelles in biome
+    //! \returns The data as a JSON string
+    std::string
+        computeEnergyBalance(
+            const std::vector<OrganelleTemplate::pointer>& organelles,
+            const MembraneType& membraneType,
+            const Biome& biome) const;
+
 
 protected:
 private:

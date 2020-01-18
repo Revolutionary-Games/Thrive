@@ -62,6 +62,24 @@ PlacedOrganelle@ getOrganelleAt(CellStageWorld@ world, ObjectID microbeEntity, I
     return OrganellePlacement::getOrganelleAt(microbeComponent.organelles, hex);
 }
 
+//! Helper for other code to mess with a microbe collision. After editing you must call
+//! finishMicrobeCollisionShapeEditing.
+//! \note If at all possible you should use another method to edit the collision
+PhysicsShape@ getMicrobeCollisionShapeForEditing(CellStageWorld@ world, ObjectID microbeEntity)
+{
+    auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
+    if(rigidBodyComponent is null || rigidBodyComponent.Body is null)
+        return null;
+    return rigidBodyComponent.Body.Shape;
+}
+
+void finishMicrobeCollisionShapeEditing(CellStageWorld@ world, ObjectID microbeEntity)
+{
+    auto rigidBodyComponent = world.GetComponent_Physics(microbeEntity);
+    rigidBodyComponent.ChangeShape(world.GetPhysicalWorld(),
+        rigidBodyComponent.Body.Shape);
+}
+
 // Removes the organelle at a hex cell
 // Note that this renders the organelle unusable as we destroy its underlying entity
 //
@@ -105,15 +123,16 @@ bool removeOrganelle(CellStageWorld@ world, ObjectID microbeEntity, Int2 hex)
     auto localR = organelle.r - organelle.r;
 
     // I guess this might skip sending organelles that have no hexes? to the membrane
-    if(organelle.organelle.getHex(localQ, localR) !is null){
+    if(organelle.organelle.containsHex(localQ, localR)){
 
-        auto hexes = organelle.organelle.getHexes();
+        // We get hexes with 0 rotation here as the plain get hexes is not exposed to scripts
+        auto hexes = organelle.organelle.getRotatedHexes(0);
         for(uint i = 0; i < hexes.length(); ++i){
 
             auto removedHex = hexes[i];
 
-            auto q = removedHex.q + organelle.q;
-            auto r = removedHex.r + organelle.r;
+            auto q = removedHex.X + organelle.q;
+            auto r = removedHex.Y + organelle.r;
             Float3 membranePoint = Hex::axialToCartesian(q, r);
 
             // TODO: this is added here to make it impossible for our
@@ -204,15 +223,15 @@ bool addOrganelle(CellStageWorld@ world, ObjectID microbeEntity, PlacedOrganelle
     auto localR = organelle.r - organelle.r;
 
     // I guess this might skip sending organelles that have no hexes? to the membrane
-    if(organelle.organelle.getHex(localQ, localR) !is null){
+    if(organelle.organelle.containsHex(localQ, localR)){
 
-        auto hexes = organelle.organelle.getHexes();
+        auto hexes = organelle.organelle.getRotatedHexes(0);
         for(uint i = 0; i < hexes.length(); ++i){
 
             auto hex = hexes[i];
 
-            auto q = hex.q + organelle.q;
-            auto r = hex.r + organelle.r;
+            auto q = hex.X + organelle.q;
+            auto r = hex.Y + organelle.r;
             Float3 membranePoint = Hex::axialToCartesian(q, r);
             // TODO: this is added here to make it impossible for our
             // caller to forget to call this, and this basically only
@@ -258,13 +277,15 @@ void respawnPlayer(CellStageWorld@ world)
             microbeComponent.organelles[i].reset();
         }
 
-        setupMicrobeHitpoints(microbeComponent, DEFAULT_HEALTH);
+        setupMicrobeHitpoints(microbeComponent,
+            int(SimulationParameters::membraneRegistry().getTypeData(microbeComponent.species.membraneType).hitpoints +
+            microbeComponent.species.membraneRigidity * MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER));
         // Setup compounds
         setupMicrobeCompounds(world,playerEntity);
         // Reset position //
         rigidBodyComponent.Body.SetPosition(Float3(GetEngine().GetRandom().GetNumber(MIN_SPAWN_DISTANCE, MAX_SPAWN_DISTANCE),
             0, GetEngine().GetRandom().GetNumber(MIN_SPAWN_DISTANCE, MAX_SPAWN_DISTANCE)),
-            Float4::IdentityQuaternion);
+            Quaternion::IDENTITY);
 
         // The physics body will set the Position on next tick
 
@@ -350,7 +371,7 @@ float getBandwidth(MicrobeComponent@ microbeComponent, float maxAmount,
 
     auto amount = min(maxAmount * compoundVolume, microbeComponent.remainingBandwidth);
     microbeComponent.remainingBandwidth = microbeComponent.remainingBandwidth - amount;
-    return amount / compoundVolume;
+    return (amount / compoundVolume)  * SimulationParameters::membraneRegistry().getTypeData(microbeComponent.species.membraneType).resourceAbsorptionFactor;
 }
 
 // Stores an compound in the microbe's storage organelles
@@ -454,11 +475,11 @@ void ejectCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId com
     auto maxR = 0;
     for(uint i = 0; i < microbeComponent.organelles.length(); ++i){
         auto organelle = microbeComponent.organelles[i];
-        auto hexes = organelle.organelle.getHexes();
+        auto hexes = organelle.organelle.getRotatedHexes(0);
         for(uint a = 0; a < hexes.length(); ++a){
             auto hex = hexes[a];
-            if(hex.r + organelle.r > maxR){
-                maxR = hex.r + organelle.r;
+            if(hex.X + organelle.r > maxR){
+                maxR = hex.X + organelle.r;
             }
         }
     }
@@ -470,8 +491,8 @@ void ejectCompound(CellStageWorld@ world, ObjectID microbeEntity, CompoundId com
 
     auto angle = 180;
     // Find the direction the microbe is facing
-    auto yAxis = bs::Quaternion(position._Orientation).yAxis();
-    auto microbeAngle = atan2(yAxis.x, yAxis.y);
+    auto yAxis = position._Orientation.YAxis();
+    auto microbeAngle = atan2(yAxis.X, yAxis.Y);
     if(microbeAngle < 0){
         microbeAngle = microbeAngle + 2 * PI;
     }
@@ -552,69 +573,53 @@ void purgeCompounds(CellStageWorld@ world, ObjectID microbeEntity,
     }
 }
 
-//
+// Rebuilds the list of processes a cell does. Needs to be called
+// after adding or removing organelles
 void rebuildProcessList(CellStageWorld@ world, ObjectID microbeEntity)
 {
-    ProcessorComponent@ processorComponent = world.GetComponent_ProcessorComponent(microbeEntity);
+    ProcessorComponent@ processorComponent =
+        world.GetComponent_ProcessorComponent(microbeEntity);
     MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
 
-    //Debug Statements
-    //auto@ thisSpecies = getSpecies(world, microbeEntity);
-    //if(thisSpecies !is null)
-    //{
-        //LOG_INFO("Regenerating Process list for microbe ID# " + microbeEntity + "of species " + thisSpecies.name);
-    //}
+    processorComponent.clearProcessRates();
 
-    dictionary capacities;
+    dictionary rates;
     for(uint i = 0; i < microbeComponent.organelles.length(); i++){
 
-        const Organelle@ organelleDefinition = microbeComponent.organelles[i].organelle;
-        if(organelleDefinition is null){
-
-            LOG_ERROR("Organelle table has a null organelle in it, position: " + i +
-                "', that was added to a microbe entity");
+        const OrganelleTemplate@ organelle = microbeComponent.organelles[i].organelle;
+        if(organelle is null){
+            LOG_ERROR("Microbe has an organelle in it that has no OrganelleTemplate");
             continue;
         }
 
         for(uint processNumber = 0;
-            processNumber < organelleDefinition.processes.length(); ++processNumber)
+            processNumber < organelle.getProcessCount(); ++processNumber)
         {
-            // This name needs to match the one in bioProcessRegistry
-            TweakedProcess@ process = organelleDefinition.processes[processNumber];
+            const TweakedProcess@ process = organelle.getProcess(processNumber);
 
-            if(!capacities.exists(process.process.internalName)){
-                capacities[process.process.internalName] = double(0.0f);
+            const auto idStr = formatInt(process.process.id);
+
+            if(!rates.exists(idStr)){
+                rates[idStr] = float(0.0f);
             }
 
-            // Here the second capacities[process.name] was initially capacities[process]
-            // but the processes are just strings inside the Organelle class
-            capacities[process.process.internalName] = double(capacities[
-                    process.process.internalName]) +
-                process.capacity;
+            rates[idStr] = float(rates[idStr]) + process.tweakRate;
         }
     }
 
-    uint64 processCount = SimulationParameters::bioProcessRegistry().getSize();
-    for(BioProcessId bioProcessId = 0; bioProcessId < processCount; ++bioProcessId){
-        auto processName = SimulationParameters::bioProcessRegistry().getInternalName(
-            bioProcessId);
+    const auto processes = rates.getKeys();
 
-        if(capacities.exists(processName)){
-            double capacity;
-            if(!capacities.get(processName, capacity)){
-                LOG_ERROR("capacities has invalid value");
-                continue;
-            }
+    for(uint i = 0; i < processes.length(); ++i){
 
-            // LOG_INFO("Process: " + processName + " Capacity: " + capacity);
-            processorComponent.setCapacity(bioProcessId, capacity);
-        } else {
-            // If it doesnt exist:
-            capacities.set(processName, 0.0f);
+        const int bioProcessId = parseInt(processes[i]);
 
-            // This is related to https://github.com/Revolutionary-Games/Thrive/issues/599
-            processorComponent.setCapacity(bioProcessId, 0.0f);
+        float rate;
+        if(!rates.get(processes[i], rate)){
+            LOG_ERROR("rates has invalid value");
+            continue;
         }
+
+        processorComponent.setProcessRate(bioProcessId, rate);
     }
 }
 
@@ -693,8 +698,10 @@ void emitAgent(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoun
         //for more efficient pooping.
         auto angle = 180;
         // Find the direction the microbe is facing
-        auto yAxis = bs::Quaternion(cellPosition._Orientation).zAxis();
-        auto microbeAngle = atan2(yAxis.x, yAxis.z);
+        // TODO: for some reason Z-axis is used here even though the variable is
+        // named Y-axis. Is this a typo?
+        auto yAxis = cellPosition._Orientation.ZAxis();
+        auto microbeAngle = atan2(yAxis.X, yAxis.Z);
         if(microbeAngle < 0){
             microbeAngle = microbeAngle + 2 * PI;
         }
@@ -808,6 +815,16 @@ void damage(CellStageWorld@ world, ObjectID microbeEntity, double amount, const 
             // Play the toxin sound
             playSoundWithDistance(world, "Data/Sound/soundeffects/microbe-toxin-damage.ogg",
                 microbeEntity);
+            // Divide damage by toxin resistance
+            amount /= SimulationParameters::membraneRegistry().getTypeData(microbeComponent.species.membraneType).toxinResistance;
+        } else if(damageType == "pilus"){
+            // Play the pilus sound
+            playSoundWithDistance(world, "Data/Sound/soundeffects/pilus_puncture_stab.ogg",
+                microbeEntity);
+            // TODO: this may get triggered a lot more than the toxin
+            // so this might need to be rate limited or something
+            // Divide damage by physical resistance
+            amount /= SimulationParameters::membraneRegistry().getTypeData(microbeComponent.species.membraneType).physicalResistance;
         }
 
         microbeComponent.hitpoints -= amount;
@@ -830,19 +847,20 @@ void damage(CellStageWorld@ world, ObjectID microbeEntity, double amount, const 
 // They probably should all use the same one.
 // We'll probably need a rotation for this, although maybe it should be done in c++ where
 // sets are a thing?
-bool validPlacement(CellStageWorld@ world, ObjectID microbeEntity, const Organelle@ organelle,
+bool validPlacement(CellStageWorld@ world, ObjectID microbeEntity,
+    const OrganelleTemplate@ organelle,
     Int2 posToCheck)
 {
     auto touching = false;
     //TODO: should this hex list here be rotated, this doesn't seem to
     //take a rotation parameter in
-    auto hexes = organelle.getHexes();
+    auto hexes = organelle.getRotatedHexes(0);
     for(uint i = 0; i < hexes.length(); ++i){
 
         auto hex = hexes[i];
 
-        auto existingOrganelle = getOrganelleAt(world, microbeEntity, {hex.q + posToCheck.X,
-                    hex.r + posToCheck.Y});
+        auto existingOrganelle = getOrganelleAt(world, microbeEntity, {hex.X + posToCheck.X,
+                    hex.Y + posToCheck.Y});
         if(existingOrganelle !is null){
             if(existingOrganelle.organelle.name != "cytoplasm"){
                 return false ;
@@ -850,18 +868,18 @@ bool validPlacement(CellStageWorld@ world, ObjectID microbeEntity, const Organel
         }
 
         // These are pretty expensive methods
-        if(getOrganelleAt(world, microbeEntity, {hex.q + posToCheck.X + 0,
-                        hex.r + posToCheck.Y - 1}) !is null ||
-            getOrganelleAt(world, microbeEntity, {hex.q + posToCheck.X + 1,
-                        hex.r + posToCheck.Y - 1}) !is null ||
-            getOrganelleAt(world, microbeEntity, {hex.q + posToCheck.X + 1,
-                        hex.r + posToCheck.Y + 0}) !is null ||
-            getOrganelleAt(world, microbeEntity, {hex.q + posToCheck.X + 0,
-                        hex.r + posToCheck.Y + 1}) !is null ||
-            getOrganelleAt(world, microbeEntity, {hex.q + posToCheck.X - 1,
-                        hex.r + posToCheck.Y + 1}) !is null ||
-            getOrganelleAt(world, microbeEntity, {hex.q + posToCheck.X - 1,
-                        hex.r + posToCheck.Y + 0})  !is null)
+        if(getOrganelleAt(world, microbeEntity, {hex.X + posToCheck.X + 0,
+                        hex.Y + posToCheck.Y - 1}) !is null ||
+            getOrganelleAt(world, microbeEntity, {hex.X + posToCheck.X + 1,
+                        hex.Y + posToCheck.Y - 1}) !is null ||
+            getOrganelleAt(world, microbeEntity, {hex.X + posToCheck.X + 1,
+                        hex.Y + posToCheck.Y + 0}) !is null ||
+            getOrganelleAt(world, microbeEntity, {hex.X + posToCheck.X + 0,
+                        hex.Y + posToCheck.Y + 1}) !is null ||
+            getOrganelleAt(world, microbeEntity, {hex.X + posToCheck.X - 1,
+                        hex.Y + posToCheck.Y + 1}) !is null ||
+            getOrganelleAt(world, microbeEntity, {hex.X + posToCheck.X - 1,
+                        hex.Y + posToCheck.Y + 0})  !is null)
         {
             touching = true;
         }
@@ -903,7 +921,7 @@ ObjectID spawnMicrobe(CellStageWorld@ world, Float3 pos, const string &in specie
     auto node = world.GetComponent_RenderNode(microbeEntity);
 
     if(IsInGraphicalMode())
-        node.Node.setPosition(pos);
+        node.Node.SetPosition(pos);
 
     // Checks if the cell is a bacteria/prokaryote
     if(species.isBacteria){
@@ -969,10 +987,10 @@ ObjectID _createMicrobeEntity(CellStageWorld@ world, bool aiControlled,
 
     // TODO: movement sound for microbes
 
-    auto position = world.Create_Position(entity, Float3(0, 0, 0), Float4::IdentityQuaternion);
+    auto position = world.Create_Position(entity, Float3(0, 0, 0), Quaternion::IDENTITY);
 
     auto membraneComponent = world.Create_MembraneComponent(entity,
-        species.speciesMembraneType);
+        species.membraneType);
 
     auto compoundAbsorberComponent = world.Create_CompoundAbsorberComponent(entity);
 
@@ -1110,7 +1128,6 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
     for(uint compoundId = 0; compoundId < compoundCount; ++compoundId){
         auto total = getCompoundAmount(world, microbeEntity, compoundId)*COMPOUND_RELEASE_PERCENTAGE;
         compoundsToRelease[formatInt(compoundId)] = float(total);
-        //LOG_INFO(""+float(compoundsToRelease[formatInt(compoundId)]));
     }
 
     // Eject some part of the build cost of all the organelles
@@ -1119,12 +1136,11 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
         auto keys = organelle.organelle.initialComposition.getKeys();
         for(uint a = 0; a < keys.length(); ++a){
             float amount = float(organelle.organelle.initialComposition[keys[a]]);
-            auto compoundId = SimulationParameters::compoundRegistry().getTypeId(keys[a]);
-            auto key = formatInt(compoundId);
-            if(!compoundsToRelease.exists(key)){
-                compoundsToRelease[key] = amount * COMPOUND_MAKEUP_RELEASE_PERCENTAGE;
+            auto compoundId = parseInt(keys[a]);
+            if(!compoundsToRelease.exists(keys[a])){
+                compoundsToRelease[keys[a]] = amount * COMPOUND_MAKEUP_RELEASE_PERCENTAGE;
             } else {
-                compoundsToRelease[key] = float(compoundsToRelease[key]) +
+                compoundsToRelease[keys[a]] = float(compoundsToRelease[keys[a]]) +
                     (amount * COMPOUND_MAKEUP_RELEASE_PERCENTAGE);
             }
         }
@@ -1140,16 +1156,16 @@ void kill(CellStageWorld@ world, ObjectID microbeEntity)
         world.Create_FluidEffectComponent(chunkEntity);
         auto positionAdded = Float3(GetEngine().GetRandom().GetFloat(-2.0f, 2.0f),0,
             GetEngine().GetRandom().GetFloat(-2.0f, 2.0f));
-        auto chunkPosition = world.Create_Position(chunkEntity, position._Position+positionAdded,
-            bs::Quaternion(bs::Degree(GetEngine().GetRandom().GetNumber(0, 360)),
-                bs::Vector3(0,1,1)));
+        auto chunkPosition = world.Create_Position(chunkEntity,
+            position._Position + positionAdded,
+            Quaternion(Float3(0, 1, 1), Degree(GetEngine().GetRandom().GetNumber(0, 360))));
 
         auto renderNode = world.Create_RenderNode(chunkEntity);
         renderNode.Scale = Float3(1.0f, 1.0f, 1.0f);
         renderNode.Marked = true;
-        renderNode.Node.setOrientation(bs::Quaternion(
-            bs::Degree(GetEngine().GetRandom().GetNumber(0, 360)), bs::Vector3(0,1,1)));
-        renderNode.Node.setPosition(chunkPosition._Position);
+        renderNode.Node.SetOrientation(Quaternion(Float3(0, 1, 1),
+            Degree(GetEngine().GetRandom().GetNumber(0, 360))));
+        renderNode.Node.SetPosition(chunkPosition._Position);
         // Grab random organelle from cell and use that
         auto organelleIndex = GetEngine().GetRandom().GetNumber(0, microbeComponent.organelles.length()-1);
         string mesh = microbeComponent.organelles[organelleIndex].organelle.mesh;
@@ -1300,7 +1316,7 @@ void setMembraneColour(CellStageWorld@ world, ObjectID microbeEntity, Float4 col
 }
 
 // Sets the type of the microbe's membrane.
-void setMembraneType(CellStageWorld@ world, ObjectID microbeEntity, MEMBRANE_TYPE type)
+void setMembraneType(CellStageWorld@ world, ObjectID microbeEntity, MembraneTypeId type)
 {
     auto membraneComponent = world.GetComponent_MembraneComponent(microbeEntity);
     membraneComponent.setMembraneType(type);
@@ -1322,8 +1338,7 @@ float calculateReproductionProgress(MicrobeComponent@ microbeComponent,
         const auto@ keys = gatheredCompounds.getKeys();
 
         for(uint i = 0; i < keys.length(); ++i){
-            float value = max(0.f, extraHave.getCompoundAmount(
-                    SimulationParameters::compoundRegistry().getTypeId(keys[i])) -
+            float value = max(0.f, extraHave.getCompoundAmount(parseInt(keys[i])) -
                 ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST);
 
             if(value > 0){

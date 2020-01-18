@@ -226,6 +226,9 @@ function onIntroEnded(error) {
         updateLoadingScreen({show: false});
         randomizeBackground();
         startMenuMusic();
+
+        // Make sure no video is playing in case we have intro skip on
+        Leviathan.CancelCutscene();
     }
 }
 
@@ -259,6 +262,14 @@ function newGame(){
 
     Thrive.enterPlanetEditor();
     setupPlanetEditor();
+
+    // MASTER: if(common.isInEngine()){
+    //     Leviathan.PlayCutscene("Data/Videos/microbe_intro.mkv", onMicrobeIntroEnded,
+    //         onMicrobeIntroEnded);
+    //     updateLoadingScreen({show: true, status: "Loading Microbe Stage", message: ""});
+    // } else {
+    //     onMicrobeIntroEnded();
+    // }
 }
 
 function enterFreebuildEditor(){
