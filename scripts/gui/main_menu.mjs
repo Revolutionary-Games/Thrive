@@ -114,7 +114,7 @@ export function runMenuSetup(){
         });
 
         Leviathan.OnGeneric("MicrobeStageEnteredClient", () => {
-            switchToMicrobeHUD();
+            // UNDEF: switchToMicrobeHUD(); Servers don't even work anyway...
         });
 
         // Loading screen showing

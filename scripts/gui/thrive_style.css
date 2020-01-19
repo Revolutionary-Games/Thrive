@@ -78,31 +78,35 @@ div::-webkit-scrollbar-thumb:hover {
   background: rgba(89, 210, 255, 0.7);
 }
 
-/*CSS for Star and Planet editor screen */
-.planetButton{
-    width:20%;
-    height:60px;
-    background-color:blue;
-    float:left;
+/* CSS for Star and Planet editor screen */
+.planetButton {
+  width: 20%;
+  height: 60px;
+  background-color: blue;
+  float: left;
 }
-.planetValueBox{
-    width:20%;
-    background-color:green;
-    float:left;
+
+.planetValueBox {
+  width: 20%;
+  background-color: green;
+  float: left;
 }
-.planetSlider{
-    width:75%;
-    height:30px;
+
+.planetSlider {
+  width: 75%;
+  height: 30px;
 }
-.planetValuesContainer{
-    width:100%;
-    background-color:#404040;
-    display: inline-block;
-    font-size:25px;
+
+.planetValuesContainer {
+  width: 100%;
+  background-color: #404040;
+  display: inline-block;
+  font-size: 25px;
 }
-.planetTitle{
-    width:100%;
-    float:left;
+
+.planetTitle {
+  width: 100%;
+  float: left;
 }
 
 /* Common quick classes */

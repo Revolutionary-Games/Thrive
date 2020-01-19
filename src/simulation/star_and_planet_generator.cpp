@@ -532,8 +532,10 @@ void
     Planet::setOxygen(double percentageAtmosphereOxygen)
 {
     atmosphereOxygen = atmosphereMass * percentageAtmosphereOxygen;
-    atmosphereCarbonDioxide = std::max(0.0d,std::min(atmosphereCarbonDioxide, atmosphereMass - atmosphereOxygen));
-    atmosphereNitrogen = std::max(0.0d, atmosphereMass - atmosphereOxygen - atmosphereCarbonDioxide);
+    atmosphereCarbonDioxide = std::max(0.0d,
+        std::min(atmosphereCarbonDioxide, atmosphereMass - atmosphereOxygen));
+    atmosphereNitrogen = std::max(
+        0.0d, atmosphereMass - atmosphereOxygen - atmosphereCarbonDioxide);
     atmosphereWater = atmosphereMass * 0.04;
     generatePropertiesAtmosphere(1);
 }
@@ -541,9 +543,12 @@ void
 void
     Planet::setCarbonDioxide(double percentageAtmosphereCarbonDioxide)
 {
-    atmosphereCarbonDioxide = atmosphereMass * percentageAtmosphereCarbonDioxide;
-    atmosphereOxygen = std::max(0.0d,std::min(atmosphereOxygen, atmosphereMass - atmosphereCarbonDioxide));
-    atmosphereNitrogen = std::max(0.0d, atmosphereMass - atmosphereOxygen - atmosphereCarbonDioxide);
+    atmosphereCarbonDioxide =
+        atmosphereMass * percentageAtmosphereCarbonDioxide;
+    atmosphereOxygen = std::max(0.0d,
+        std::min(atmosphereOxygen, atmosphereMass - atmosphereCarbonDioxide));
+    atmosphereNitrogen = std::max(
+        0.0d, atmosphereMass - atmosphereOxygen - atmosphereCarbonDioxide);
     atmosphereWater = atmosphereMass * 0.04;
     generatePropertiesAtmosphere(1);
 }

@@ -136,6 +136,12 @@ bool
     }
 
     // ------------------------------------ //
+    // Planet
+    if(engine->RegisterObjectType("Planet", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    // ------------------------------------ //
     // PatchMap
     ANGELSCRIPT_REGISTER_REF_TYPE("PatchMap", PatchMap);
 
@@ -168,6 +174,11 @@ bool
     if(engine->RegisterObjectMethod("PatchMap",
            "Species@ findSpeciesByName(const string &in name)",
            asMETHOD(PatchMap, findSpeciesByNameWrapper), asCALL_THISCALL) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectMethod("PatchMap", "Planet@ getPlanet()",
+           asMETHOD(PatchMap, getPlanet), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
