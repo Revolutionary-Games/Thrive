@@ -232,12 +232,12 @@ Json::Value
     // don't know if recursiveness here might be bad...
     if(orbitingBody) {
         if(orbitingBody->celestialBodyType == STAR) {
-            std::shared_ptr<Star> orbitingStar =
-                std::static_pointer_cast<Star>(orbitingBody);
+            Star::pointer orbitingStar =
+                boost::static_pointer_cast<Star>(orbitingBody);
             result["orbitingBody"] = orbitingStar->toJSON();
         } else if(orbitingBody->celestialBodyType == PLANET) {
-            std::shared_ptr<Planet> orbitingPlanet =
-                std::static_pointer_cast<Planet>(orbitingBody);
+            Planet::pointer orbitingPlanet =
+                boost::static_pointer_cast<Planet>(orbitingBody);
             result["orbitingBody"] = orbitingPlanet->toJSON();
         } else {
             result["orbitingBody"] = orbitingBody->toJSON();
@@ -444,8 +444,7 @@ void
 void
     Planet::computeOptimalOrbitalRadius()
 {
-    std::shared_ptr<Star> orbitingStar =
-        std::static_pointer_cast<Star>(orbitingBody);
+    Star::pointer orbitingStar = boost::static_pointer_cast<Star>(orbitingBody);
     int maxHabitability = 0;
     int entryLocation = 0;
     for(int i = 0; i < NUMBER_OF_TESTS; i++) {
@@ -492,16 +491,15 @@ void
     }
     if(step <= 1) {
         // compute the habitability of the planet
-        std::shared_ptr<Star> orbitingStar =
-            std::static_pointer_cast<Star>(orbitingBody);
+        Star::pointer orbitingStar =
+            boost::static_pointer_cast<Star>(orbitingBody);
         double incomingSunlight =
             orbitingStar->luminosity / (4 * PI * (pow(orbitalRadius, 2)));
         habitability = computeHabitabilityScore(incomingSunlight);
         setPlanetTemperature();
         computeLightFilter();
-        multiplyArrays(
-            std::static_pointer_cast<Star>(orbitingBody)->stellarSpectrum,
-            atmosphericFilter, terrestrialSpectrum);
+        multiplyArrays(orbitingStar->stellarSpectrum, atmosphericFilter,
+            terrestrialSpectrum);
     }
 }
 
@@ -532,10 +530,10 @@ void
     Planet::setOxygen(double percentageAtmosphereOxygen)
 {
     atmosphereOxygen = atmosphereMass * percentageAtmosphereOxygen;
-    atmosphereCarbonDioxide = std::max(0.0d,
+    atmosphereCarbonDioxide = std::max(0.0,
         std::min(atmosphereCarbonDioxide, atmosphereMass - atmosphereOxygen));
     atmosphereNitrogen = std::max(
-        0.0d, atmosphereMass - atmosphereOxygen - atmosphereCarbonDioxide);
+        0.0, atmosphereMass - atmosphereOxygen - atmosphereCarbonDioxide);
     atmosphereWater = atmosphereMass * 0.04;
     generatePropertiesAtmosphere(1);
 }
@@ -545,10 +543,10 @@ void
 {
     atmosphereCarbonDioxide =
         atmosphereMass * percentageAtmosphereCarbonDioxide;
-    atmosphereOxygen = std::max(0.0d,
+    atmosphereOxygen = std::max(0.0,
         std::min(atmosphereOxygen, atmosphereMass - atmosphereCarbonDioxide));
     atmosphereNitrogen = std::max(
-        0.0d, atmosphereMass - atmosphereOxygen - atmosphereCarbonDioxide);
+        0.0, atmosphereMass - atmosphereOxygen - atmosphereCarbonDioxide);
     atmosphereWater = atmosphereMass * 0.04;
     generatePropertiesAtmosphere(1);
 }
@@ -580,7 +578,7 @@ void
 {
     // For now let's assume it's a star...
     double incomingSunlight =
-        std::static_pointer_cast<Star>(orbitingBody)->luminosity /
+        boost::static_pointer_cast<Star>(orbitingBody)->luminosity /
         (4 * PI * (pow(orbitalRadius, 2)));
     float oxygen;
     float carbonDioxide;

@@ -180,7 +180,7 @@ public:
     std::shared_ptr<MicrobeEditorWorld> m_microbeEditor;
 
     //! Planet object
-    std::shared_ptr<Planet> m_planet;
+    Planet::pointer m_planet;
 
     //! This is the background object of the cell stage
     Leviathan::Mesh::pointer m_microbeBackgroundMesh;
@@ -531,8 +531,7 @@ void
 {
     LOG_INFO("Entering planet editor in preparation of starting new game");
 
-    m_impl->m_planet =
-        std::make_shared<Planet>(Planet(std::make_shared<Star>(Star())));
+    m_impl->m_planet = Planet::MakeShared<Planet>(Star::MakeShared<Star>());
 
     // Notify GUI
     auto event = Leviathan::GenericEvent::MakeShared<Leviathan::GenericEvent>(
@@ -550,8 +549,8 @@ void
     ThriveGame::editPlanet(const std::string& editType, double value)
 {
     auto planet = m_impl->m_planet;
-    std::shared_ptr<Star> orbitingStar =
-        std::static_pointer_cast<Star>(planet->orbitingBody);
+    Star::pointer orbitingStar =
+        boost::static_pointer_cast<Star>(planet->orbitingBody);
 
     if(editType == "onStarMassInput") {
         orbitingStar->setMass(value);

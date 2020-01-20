@@ -296,8 +296,17 @@ public:
         return planet;
     }
 
+    Planet*
+        getPlanetWrapper()
+    {
+        const auto ptr = getPlanet();
+        if(ptr)
+            ptr->AddRef();
+        return ptr.get();
+    }
+
     void
-        setPlanet(std::shared_ptr<Planet>& newPlanet)
+        setPlanet(Planet::pointer& newPlanet)
     {
         planet = newPlanet;
     }
@@ -318,7 +327,7 @@ public:
 private:
     std::unordered_map<int32_t, Patch::pointer> patches;
     int32_t currentPatchId = 0;
-    std::shared_ptr<Planet> planet;
+    Planet::pointer planet;
 };
 
 } // namespace thrive

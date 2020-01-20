@@ -729,7 +729,6 @@ div::-webkit-scrollbar-thumb:hover {
 }
 
 .expandPanel {
-  display: inline-block;
   float: right;
   margin-top: 10px;
   margin-right: 10px;
@@ -746,7 +745,6 @@ div::-webkit-scrollbar-thumb:hover {
 }
 
 .compressPanel {
-  display: inline-block;
   float: right;
   margin-top: 9.5px;
   margin-right: 15px;
@@ -2295,7 +2293,7 @@ div::-webkit-scrollbar-thumb:hover {
   border-radius: 50%;
 }
 
-@-webkit-keyframes pulse {
+@keyframes pulse {
   0% {
     -webkit-box-shadow: 0 0 45px -57px rgba(255, 255, 255, 1);
     -moz-box-shadow: 0 0 45px -57px rgba(255, 255, 255, 1);
@@ -2316,7 +2314,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 
 
-@-webkit-keyframes pulseInset {
+@keyframes pulseInset {
   0% {
     -webkit-box-shadow: inset 0 0 300px -200px rgba(255, 255, 255, 1);
     -moz-box-shadow: inset 0 0 300px -200px rgba(255, 255, 255, 1);

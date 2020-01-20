@@ -137,7 +137,26 @@ bool
 
     // ------------------------------------ //
     // Planet
-    if(engine->RegisterObjectType("Planet", 0, asOBJ_REF | asOBJ_NOCOUNT) < 0) {
+    ANGELSCRIPT_REGISTER_REF_TYPE("Planet", Planet);
+
+    if(engine->RegisterObjectProperty("Planet", "double atmosphereMass",
+           asOFFSET(Planet, atmosphereMass)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("Planet",
+           "double atmosphereCarbonDioxide",
+           asOFFSET(Planet, atmosphereCarbonDioxide)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("Planet", "double atmosphereOxygen",
+           asOFFSET(Planet, atmosphereOxygen)) < 0) {
+        ANGELSCRIPT_REGISTERFAIL;
+    }
+
+    if(engine->RegisterObjectProperty("Planet", "double atmosphereNitrogen",
+           asOFFSET(Planet, atmosphereNitrogen)) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 
@@ -178,7 +197,7 @@ bool
     }
 
     if(engine->RegisterObjectMethod("PatchMap", "Planet@ getPlanet()",
-           asMETHOD(PatchMap, getPlanet), asCALL_THISCALL) < 0) {
+           asMETHOD(PatchMap, getPlanetWrapper), asCALL_THISCALL) < 0) {
         ANGELSCRIPT_REGISTERFAIL;
     }
 

@@ -627,11 +627,19 @@ function updatePopulation(population){
 }
 
 // Update dissolved gasses
-function updateEnvironmentalCompounds(oxygen, c02, n2, light){
-    document.getElementById("oxygenPercent").innerHTML = oxygen + "%";
-    document.getElementById("carbonDioxidePercent").innerHTML = c02 + "%";
+function updateEnvironmentalCompounds(oxygen, co2, n2, light){
+    document.getElementById("oxygenPercent").textContent = oxygen + "%";
+    document.getElementById("microbeHUDPlayerOxygenBar").style.width =
+        common.barHelper(oxygen, 100);
+    document.getElementById("carbonDioxidePercent").innerHTML = co2 + "%";
+    document.getElementById("microbeHUDPlayerCO2Bar").style.width =
+        common.barHelper(co2, 100);
     document.getElementById("nitrogenPercent").innerHTML = n2 + "%";
+    document.getElementById("microbeHUDPlayerNitrogenBar").style.width =
+        common.barHelper(n2, 100);
     document.getElementById("sunlightPercent").innerHTML = light + "%";
+    document.getElementById("microbeHUDPlayerLightBar").style.width =
+        common.barHelper(light, 100);
 }
 
 

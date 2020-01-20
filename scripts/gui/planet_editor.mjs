@@ -56,7 +56,7 @@ function updatePlanetValues(data){
     document.getElementById("planetAtmosphereWaterValueBox").innerHTML =
         "Mass of Water in Atmosphere <br>" + scienceNumber(data.atmosphereWater) + " kg.";
     document.getElementById("planetAtmosphereOxygenValueBox").innerHTML =
-        "Masss of Oxygen in Atmosphere <br>" + scienceNumber(data.atmosphereOxygen) + " kg.";
+        "Mass of Oxygen in Atmosphere <br>" + scienceNumber(data.atmosphereOxygen) + " kg.";
     document.getElementById("planetAtmosphereNitrogenValueBox").innerHTML =
         "Mass of Nitrogen in Atmosphere <br>" + scienceNumber(data.atmosphereNitrogen) +
         " kg.";

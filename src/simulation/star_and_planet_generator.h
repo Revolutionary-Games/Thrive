@@ -1,5 +1,7 @@
 #pragma once
 
+#include <Common/ReferenceCounted.h>
+
 #include <array>
 #include <json/json.h>
 #include <memory>
@@ -11,11 +13,14 @@ namespace thrive {
 
 enum CelestialBodyType { STAR, PLANET };
 
-class CelestialBody {
+class CelestialBody : public Leviathan::ReferenceCounted {
+protected:
+    friend ReferenceCounted;
 
 public:
+    REFERENCE_COUNTED_PTR_TYPE(CelestialBody);
     // properties
-    std::shared_ptr<CelestialBody> orbitingBody;
+    CelestialBody::pointer orbitingBody;
     CelestialBodyType celestialBodyType;
     double orbitalRadius = 0;
     double orbitalPeriod = 0;
@@ -74,6 +79,8 @@ public:
     Json::Value
         toJSON() const;
 
+    REFERENCE_COUNTED_PTR_TYPE(Star);
+
 private:
     //! set all the properties of the star, if step == 0 mass will be
     //! randomised, if step == 1 it will not be
@@ -112,8 +119,9 @@ public:
     // where to draw the current orbital radius on the habitavility graph
     double orbitalRadiusGraphFraction = 0;
 
-    // Limit to star for now
-    Planet(std::shared_ptr<Star> star)
+    // Limit to star for now (may eventually want to allow binary planetary
+    // systems, though that would need a "Barycenter" CelestialBody)
+    Planet(Star::pointer star)
     {
         orbitingBody = star;
         orbitingBody->celestialBodyType = STAR;
@@ -159,6 +167,8 @@ public:
 
     std::string
         toJSONString() const;
+
+    REFERENCE_COUNTED_PTR_TYPE(Planet);
 
 private:
     void

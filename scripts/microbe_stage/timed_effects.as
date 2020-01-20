@@ -23,7 +23,7 @@ void reduceGlucoseOverTime(GameWorld@ world, double elapsed, double totalElapsed
     }
 }
 
-//! Updates the CO2 and O2 levels based on the planets current global state.
+//! Updates the CO2, O2, and N2 levels based on the planets current global state.
 void updatePatchGasses(GameWorld@ world, double elapsed, double totalElapsed)
 {
     CellStageWorld@ casted = cast<CellStageWorld>(world);
@@ -31,6 +31,7 @@ void updatePatchGasses(GameWorld@ world, double elapsed, double totalElapsed)
 
     const auto compoundIdCarbonDioxide = SimulationParameters::compoundRegistry().getTypeId("carbondioxide");
     const auto compoundIdOxygen = SimulationParameters::compoundRegistry().getTypeId("oxygen");
+    const auto compoundIdNitrogen = SimulationParameters::compoundRegistry().getTypeId("nitrogen");
 
     auto patches = casted.GetPatchManager().getCurrentMap().getPatches();
     auto planet = casted.GetPatchManager().getCurrentMap().getPlanet();
@@ -40,9 +41,21 @@ void updatePatchGasses(GameWorld@ world, double elapsed, double totalElapsed)
         Patch@ patch = patches[i];
 
         BiomeCompoundData@ dataCarbonDioxide = patch.getBiome().getCompound(compoundIdCarbonDioxide);
-        LOG_INFO("**** compoundIdCarbonDioxide" + dataCarbonDioxide.dissolved);
+        LOG_INFO("**** atmosphereCarbonDioxide = " + planet.atmosphereCarbonDioxide);
+        LOG_INFO("**** atmosphereMass = " + planet.atmosphereMass);
+        dataCarbonDioxide.dissolved = planet.atmosphereCarbonDioxide / planet.atmosphereMass;
+        LOG_INFO("**** compoundIdCarbonDioxide = " + dataCarbonDioxide.dissolved);
 
         BiomeCompoundData@ dataOxygen = patch.getBiome().getCompound(compoundIdOxygen);
-        LOG_INFO("**** compoundIdOxygen" + dataOxygen.dissolved);
+        LOG_INFO("**** atmosphereOxygen = " + planet.atmosphereOxygen);
+        LOG_INFO("**** atmosphereMass = " + planet.atmosphereMass);
+        dataOxygen.dissolved = planet.atmosphereOxygen / planet.atmosphereMass;
+        LOG_INFO("**** compoundIdOxygen = " + dataOxygen.dissolved);
+
+        BiomeCompoundData@ dataNitrogen = patch.getBiome().getCompound(compoundIdNitrogen);
+        LOG_INFO("**** atmosphereNitrogen = " + planet.atmosphereNitrogen);
+        LOG_INFO("**** atmosphereMass = " + planet.atmosphereMass);
+        dataNitrogen.dissolved = planet.atmosphereNitrogen / planet.atmosphereMass;
+        LOG_INFO("**** compoundIdNitrogen = " + dataNitrogen.dissolved);
     }
 }
