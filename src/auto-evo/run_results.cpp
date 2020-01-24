@@ -39,7 +39,7 @@ void
     for(auto& entry : m_results) {
         if(entry.species == species) {
 
-            entry.newPopulationInPatches[patch] = newPopulation;
+            entry.newPopulationInPatches[patch] = std::max(newPopulation, 0);
             return;
         }
     }
