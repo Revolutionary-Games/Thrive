@@ -283,6 +283,16 @@ export function setupMicrobeEditor(){
                     return true;
                 }, false);
 
+        document.getElementById("microbeEditorClickDetector").addEventListener("mouseenter",
+            (event) => {
+                Leviathan.CallGenericEvent("MicrobeEditorHovered", {hovered: true});
+            }, false);
+
+        document.getElementById("microbeEditorClickDetector").addEventListener("mouseleave",
+            (event) => {
+                Leviathan.CallGenericEvent("MicrobeEditorHovered", {hovered: false});
+            }, false);
+
         // Event for mutation point amount
         Leviathan.OnGeneric("MutationPointsUpdated", (event, vars) => {
             // Apply the new values

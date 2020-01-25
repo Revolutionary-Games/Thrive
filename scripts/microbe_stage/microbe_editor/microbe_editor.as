@@ -43,6 +43,7 @@ class MicrobeEditor{
         eventListener.RegisterForEvent("MicrobeEditorOrganelleSelected");
         eventListener.RegisterForEvent("SymmetryClicked");
         eventListener.RegisterForEvent("MicrobeEditorClicked");
+        eventListener.RegisterForEvent("MicrobeEditorHovered");
         eventListener.RegisterForEvent("MicrobeEditorExited");
         eventListener.RegisterForEvent("PressedRightRotate");
         eventListener.RegisterForEvent("PressedLeftRotate");
@@ -1171,7 +1172,19 @@ class MicrobeEditor{
             }
 
             return 1;
+        } else if(type == "MicrobeEditorHovered"){
 
+            NamedVars@ vars = event.GetNamedVars();
+
+            bool hovered = bool(vars.GetSingleValueByName("hovered"));
+
+            if(!hovered){
+                showHover = false;
+            } else {
+                showHover = true;
+            }
+
+            return 1;
         } else if(type == "MicrobeEditorExited"){
             LOG_INFO("MicrobeEditor: applying changes to player Species");
 
