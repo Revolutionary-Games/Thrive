@@ -284,12 +284,12 @@ export function setupMicrobeEditor(){
                 }, false);
 
         document.getElementById("microbeEditorClickDetector").addEventListener("mouseenter",
-            (event) => {
+            () => {
                 Leviathan.CallGenericEvent("MicrobeEditorHovered", {hovered: true});
             }, false);
 
         document.getElementById("microbeEditorClickDetector").addEventListener("mouseleave",
-            (event) => {
+            () => {
                 Leviathan.CallGenericEvent("MicrobeEditorHovered", {hovered: false});
             }, false);
 
