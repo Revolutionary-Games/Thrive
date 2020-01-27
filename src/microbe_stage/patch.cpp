@@ -67,7 +67,12 @@ bool
 {
     for(auto& entry : speciesInPatch) {
         if(entry.species == species) {
-            entry.population = newPopulation;
+            if(newPopulation < 0) {
+                entry.population = 0;
+            } else {
+                entry.population = newPopulation;
+            }
+
             return true;
         }
     }
