@@ -220,7 +220,7 @@ std::string
             patchObj = previousPopulations->getPatch(patch);
         }
 
-        sstream << " population: " << population;
+        sstream << " population: " << std::max(population, 0);
 
         if(patchObj) {
 
