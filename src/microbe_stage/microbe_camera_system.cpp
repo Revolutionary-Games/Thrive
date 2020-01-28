@@ -57,7 +57,7 @@ void
         if(cameraPos.Members._Position != targetPos) {
 
             cameraPos.Members._Position = cameraPos.Members._Position.Lerp(
-                targetPos, elapsed / CAMERA_FLOW);
+                targetPos, CAMERA_FLOW * elapsed);
             cameraPos.Marked = true;
         }
 

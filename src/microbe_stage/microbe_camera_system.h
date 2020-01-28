@@ -13,7 +13,7 @@ namespace thrive {
 constexpr float INITIAL_CAMERA_HEIGHT = 40;
 constexpr float MIN_CAMERA_HEIGHT = 4;
 constexpr float MAX_CAMERA_HEIGHT = 80;
-constexpr float CAMERA_FLOW = 0.145f;
+constexpr float CAMERA_FLOW = 7;
 
 
 /**
