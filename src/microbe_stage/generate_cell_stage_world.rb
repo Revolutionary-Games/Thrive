@@ -148,7 +148,7 @@ cellWorld = GameWorldClass.new(
                      ] }),
 
     EntitySystem.new('MicrobeCameraSystem', [],
-                     runtick: { group: 1000, parameters: [] }),
+                     runtick: { group: 1000, parameters: ['elapsed'] }),
     EntitySystem.new('PlayerMicrobeControlSystem', [],
                      runtick: { group: 5, parameters: [] }),
     EntitySystem.new('PlayerHoverInfoSystem', %w[MembraneComponent Position],
