@@ -13,7 +13,7 @@ namespace thrive {
 constexpr float INITIAL_CAMERA_HEIGHT = 40;
 constexpr float MIN_CAMERA_HEIGHT = 4;
 constexpr float MAX_CAMERA_HEIGHT = 80;
-constexpr float CAMERA_FLOW = 0.185f;
+constexpr float CAMERA_FLOW = 7;
 
 
 /**
@@ -43,7 +43,7 @@ public:
     //! \todo Should this directly use the CellStageWorld or be templated to
     //! have more performant component lookups
     void
-        Run(Leviathan::GameWorld& world);
+        Run(Leviathan::GameWorld& world, float elapsed);
 
 private:
     ObjectID m_cameraEntity = 0;

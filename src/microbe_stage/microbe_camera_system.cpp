@@ -31,7 +31,7 @@ void
 }
 // ------------------------------------ //
 void
-    MicrobeCameraSystem::Run(Leviathan::GameWorld& world)
+    MicrobeCameraSystem::Run(Leviathan::GameWorld& world, float elapsed)
 {
     if(m_cameraEntity == 0)
         return;
@@ -56,8 +56,8 @@ void
 
         if(cameraPos.Members._Position != targetPos) {
 
-            cameraPos.Members._Position =
-                cameraPos.Members._Position.Lerp(targetPos, CAMERA_FLOW);
+            cameraPos.Members._Position = cameraPos.Members._Position.Lerp(
+                targetPos, CAMERA_FLOW * elapsed);
             cameraPos.Marked = true;
         }
 
