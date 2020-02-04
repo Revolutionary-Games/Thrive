@@ -254,7 +254,7 @@ void
                         previousDisplacement.LengthSquared();
 
                     if(squaredDistance <= spawnType.spawnRadiusSqr &&
-                        previousSquaredDistance > spawnType.spawnRadiusSqr) {
+                        squaredDistance + 100 > spawnType.spawnRadiusSqr) {
                         // Second condition passed. Spawn the entity.
                         ObjectID spawnedEntity = spawnType.factoryFunction(
                             world, playerPosition + displacement);
