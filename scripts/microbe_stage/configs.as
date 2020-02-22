@@ -182,7 +182,7 @@ const float ENGULFING_ATP_COST_SECOND = 1.5;
 const float ENGULF_HP_RATIO_REQ = 1.5f;
 
 // The amount of hp per second of damage
-const float ENGULF_DAMAGE = 80.0f;
+const float ENGULF_DAMAGE = 45.0f;
 
 // Oxytoxy Damage
 const float OXY_TOXY_DAMAGE = 10.0f;
