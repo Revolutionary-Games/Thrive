@@ -16,7 +16,32 @@ _global_script_class_icons={
 [application]
 
 config/name="Thrive"
+config/description="Thrive is an open source evolution simulation game. Play as a microbe on an alien world trying to survive and adapt to your surroundings in order to thrive.
+
+https://revolutionarygamesstudio.com/"
+run/main_scene="res://scripts/microbe_stage/MicrobeStage.tscn"
+boot_splash/image="res://assets/misc/thrive_logo_big.png"
+boot_splash/bg_color=Color( 0.0666667, 0.0666667, 0.0666667, 1 )
 config/icon="res://assets/misc/icon.png"
+config/windows_native_icon="res://assets/misc/icon.ico"
+
+[display]
+
+window/size/width=1280
+window/size/height=720
+mouse_cursor/custom_image="res://assets/textures/gui/cursors/default.png"
+
+[editor]
+
+search_in_file_extensions=PoolStringArray( "gd", "shader", "cs" )
+
+[mono]
+
+export/aot/enabled=true
+
+[physics]
+
+3d/default_gravity=9.81
 
 [rendering]
 
