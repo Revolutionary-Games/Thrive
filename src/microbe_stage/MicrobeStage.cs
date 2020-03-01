@@ -2,14 +2,16 @@ using Godot;
 
 public class MicrobeStage : Node
 {
-    private Spatial world;
+    private Node world;
+    private Node rootOfDynamicallySpawned;
     private SpawnSystem spawner;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        world = GetNode<Spatial>("World");
-        spawner = new SpawnSystem(world);
+        world = GetNode<Node>("World");
+        rootOfDynamicallySpawned = GetNode<Node>("World/DynamicallySpawned");
+        spawner = new SpawnSystem(rootOfDynamicallySpawned);
         SetupStage();
     }
 
