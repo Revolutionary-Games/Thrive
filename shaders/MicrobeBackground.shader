@@ -6,8 +6,6 @@ uniform sampler2D layer1;
 uniform sampler2D layer2;
 uniform sampler2D layer3;
 
-uniform vec3 cameraPos = vec3(0, 0, 0);
-
 const float speed0 = 1100.0f;
 const float speed01 = 2200.0f;
 const float speed1 = 850.0f;
@@ -21,14 +19,15 @@ varying vec2 UV3;
 varying vec2 UV4;
 
 void vertex(){
-    UV.x = (UV.x + cameraPos.x / speed0) * 1.0f;
-    UV.y = (UV.y + cameraPos.z / speed01) * 1.0f;
-    UV2.x = (0.12f + UV.x + cameraPos.x / speed1) * 1.0f;
-    UV2.y = (0.12f + UV.y + cameraPos.z / speed11) * 1.0f;
-    UV3.x = (0.512f + UV.x + cameraPos.x / speed2) * 1.0f;
-    UV3.y = (0.512f + UV.y + cameraPos.z / speed21) * 1.0f;
-    UV4.x = (0.05f + UV.x + cameraPos.x / speed3) * 1.0f;
-    UV4.y = (0.05f + UV.y + cameraPos.z / speed31) * 1.0f;
+    vec3 worldPos = (CAMERA_MATRIX * vec4(0.0, 0.0, 0.0, 1.0)).xyz;
+    UV.x = (UV.x + worldPos.x / speed0) * 1.0f;
+    UV.y = (UV.y + worldPos.z / speed01) * 1.0f;
+    UV2.x = (0.12f + UV.x + worldPos.x / speed1) * 1.0f;
+    UV2.y = (0.12f + UV.y + worldPos.z / speed11) * 1.0f;
+    UV3.x = (0.512f + UV.x + worldPos.x / speed2) * 1.0f;
+    UV3.y = (0.512f + UV.y + worldPos.z / speed21) * 1.0f;
+    UV4.x = (0.05f + UV.x + worldPos.x / speed3) * 1.0f;
+    UV4.y = (0.05f + UV.y + worldPos.z / speed31) * 1.0f;
 }
 
 void fragment(){

@@ -45,9 +45,5 @@ public class MicrobeCamera : Camera
         velocity = velocity.Normalized() * 40.0f * delta;
 
         Translation = (Translation + velocity);
-
-        // I couldn't figure out a way to get this neatly in the
-        // shader code, so this is passed there
-        materialToUpdate.SetShaderParam("cameraPos", Translation);
     }
 }
