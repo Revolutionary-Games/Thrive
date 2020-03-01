@@ -1,6 +1,30 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
+[ext_resource path="res://shaders/CompoundCloudPlane.shader" type="Shader" id=2]
+[ext_resource path="res://assets/textures/PerlinNoise.jpg" type="Texture" id=3]
+[ext_resource path="res://src/microbe_stage/CompoundCloudPlane.tscn" type="PackedScene" id=4]
 
-[node name="MicrobeStage" type="Spatial"]
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
+render_priority = -1
+shader = ExtResource( 2 )
+shader_param/colour1 = Plane( 0, 0, 0, 0 )
+shader_param/colour2 = Plane( 0, 0, 0, 0 )
+shader_param/colour3 = Plane( 0, 0, 0, 0 )
+shader_param/colour4 = Plane( 0, 0, 0, 0 )
+shader_param/noise = ExtResource( 3 )
+
+[node name="MicrobeStage" type="Node"]
 script = ExtResource( 1 )
+
+[node name="World" type="Spatial" parent="."]
+
+[node name="InterpolatedCamera" type="InterpolatedCamera" parent="World"]
+transform = Transform( 1, 0, 0, 0, 0.774128, 0.63303, 0, -0.63303, 0.774128, 0, 1.20424, 1.36065 )
+current = true
+fov = 90.0
+enabled = true
+
+[node name="CompoundCloudPlane" parent="World" instance=ExtResource( 4 )]
+material = SubResource( 1 )
