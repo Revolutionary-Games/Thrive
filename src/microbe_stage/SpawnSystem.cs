@@ -12,9 +12,9 @@ public class SpawnSystem
 
     private float elapsed = 0.0f;
 
-    private Spatial worldRoot;
+    private Node worldRoot;
 
-    public SpawnSystem(Spatial root)
+    public SpawnSystem(Node root)
     {
         worldRoot = root;
     }

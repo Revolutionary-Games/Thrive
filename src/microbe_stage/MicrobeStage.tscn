@@ -1,30 +1,41 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
-[ext_resource path="res://shaders/CompoundCloudPlane.shader" type="Shader" id=2]
-[ext_resource path="res://assets/textures/PerlinNoise.jpg" type="Texture" id=3]
-[ext_resource path="res://src/microbe_stage/CompoundCloudPlane.tscn" type="PackedScene" id=4]
+[ext_resource path="res://shaders/MicrobeBackground.shader" type="Shader" id=2]
+[ext_resource path="res://assets/textures/background/Thrive_vent0.png" type="Texture" id=3]
+[ext_resource path="res://assets/textures/background/Thrive_vent3.png" type="Texture" id=4]
+[ext_resource path="res://assets/textures/background/Thrive_vent1.png" type="Texture" id=5]
+[ext_resource path="res://assets/textures/background/Thrive_vent2.png" type="Texture" id=6]
+[ext_resource path="res://src/microbe_stage/MicrobeCamera.cs" type="Script" id=8]
 
-[sub_resource type="ShaderMaterial" id=1]
+[sub_resource type="PlaneMesh" id=3]
+size = Vector2( 100, 100 )
+
+[sub_resource type="ShaderMaterial" id=2]
 resource_local_to_scene = true
-render_priority = -1
+render_priority = -2
 shader = ExtResource( 2 )
-shader_param/colour1 = Plane( 0, 0, 0, 0 )
-shader_param/colour2 = Plane( 0, 0, 0, 0 )
-shader_param/colour3 = Plane( 0, 0, 0, 0 )
-shader_param/colour4 = Plane( 0, 0, 0, 0 )
-shader_param/noise = ExtResource( 3 )
+shader_param/cameraPos = Vector3( 0, 0, 0 )
+shader_param/layer0 = ExtResource( 3 )
+shader_param/layer1 = ExtResource( 5 )
+shader_param/layer2 = ExtResource( 6 )
+shader_param/layer3 = ExtResource( 4 )
 
 [node name="MicrobeStage" type="Node"]
 script = ExtResource( 1 )
 
-[node name="World" type="Spatial" parent="."]
+[node name="World" type="Node" parent="."]
 
-[node name="InterpolatedCamera" type="InterpolatedCamera" parent="World"]
-transform = Transform( 1, 0, 0, 0, 0.774128, 0.63303, 0, -0.63303, 0.774128, 0, 1.20424, 1.36065 )
+[node name="PrimaryCamera" type="Camera" parent="World"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, 1, 0, -1, -1.62921e-07, 0, 10, 0 )
 current = true
 fov = 90.0
-enabled = true
+script = ExtResource( 8 )
 
-[node name="CompoundCloudPlane" parent="World" instance=ExtResource( 4 )]
-material = SubResource( 1 )
+[node name="BackgroundPlane" type="CSGMesh" parent="World/PrimaryCamera"]
+transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 5.96247e-08, -15 )
+cast_shadow = 0
+mesh = SubResource( 3 )
+material = SubResource( 2 )
+
+[node name="DynamicallySpawned" type="Node" parent="World"]
