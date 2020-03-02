@@ -12,7 +12,7 @@ public class Membrane : MeshInstance
     private bool dirty = true;
     private ArrayMesh generatedMesh;
 
-    private ShaderMaterial materialToEdit;
+    [Export] public ShaderMaterial materialToEdit;
 
     private float healthFraction = 1.0f;
     private float wigglyNess = 1.0f;
@@ -70,7 +70,6 @@ public class Membrane : MeshInstance
     {
         generatedMesh = new ArrayMesh();
         Mesh = generatedMesh;
-        materialToEdit = (ShaderMaterial)MaterialOverride;
         dirty = true;
     }
 
@@ -85,10 +84,11 @@ public class Membrane : MeshInstance
 
     private void ApplyAllMaterialParameters()
     {
+        BuildMesh(); // Only here for testing purposes, should be moved to after adding organelles.
         ApplyWiggly();
         ApplyHealth();
         ApplyTint();
-        ApplyTextures();
+        //ApplyTextures();
     }
 
     private void ApplyWiggly()
@@ -110,5 +110,40 @@ public class Membrane : MeshInstance
     {
         materialToEdit.SetShaderParam("albedoTexture", WigglyNess);
         materialToEdit.SetShaderParam("damagedTexture", WigglyNess);
+    }
+
+    public void BuildMesh() {
+        var arrays = new Godot.Collections.Array();
+        arrays.Resize((int)Mesh.ArrayType.Max);
+        var vectors = new Vector3[Constants.Instance.MEMBRANE_RESOLUTION + 2];
+        var uvs = new Vector2[Constants.Instance.MEMBRANE_RESOLUTION + 2];
+
+        vectors[0] = new Vector3(0.0f, 0.0f, 0.0f);
+        uvs[0] = new Vector2(0.5f, 0.5f);
+
+        for(int i = 1; i < Constants.Instance.MEMBRANE_RESOLUTION + 2; i++)
+        {
+            var t = i * 2 * Math.PI / Constants.Instance.MEMBRANE_RESOLUTION;
+            var r = 50; // TODO: find the membrane border
+
+            vectors[i] = new Vector3(
+                (float)Math.Cos(t),
+                0,
+                (float)Math.Sin(t)
+            ) * r;
+
+            uvs[i] = new Vector2(
+                (float)Math.Cos(t) / 2.0f + 0.5f,
+                (float)Math.Sin(t) / 2.0f + 0.5f
+            );
+        }
+
+        arrays[(int)Mesh.ArrayType.Vertex] = vectors;
+        arrays[(int)Mesh.ArrayType.TexUv] = uvs;
+
+        // TODO: Check if triangles + indices is better than triangle fan.
+        var surfaceIndex = generatedMesh.GetSurfaceCount();
+        generatedMesh.AddSurfaceFromArrays(Mesh.PrimitiveType.TriangleFan, arrays);
+        SetSurfaceMaterial(surfaceIndex, materialToEdit);
     }
 }

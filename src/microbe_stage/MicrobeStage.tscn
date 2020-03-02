@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://shaders/MicrobeBackground.shader" type="Shader" id=2]
@@ -6,7 +6,11 @@
 [ext_resource path="res://assets/textures/background/Thrive_vent3.png" type="Texture" id=4]
 [ext_resource path="res://assets/textures/background/Thrive_vent1.png" type="Texture" id=5]
 [ext_resource path="res://assets/textures/background/Thrive_vent2.png" type="Texture" id=6]
+[ext_resource path="res://shaders/Membrane.shader" type="Shader" id=7]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.cs" type="Script" id=8]
+[ext_resource path="res://assets/textures/FresnelGradient.png" type="Texture" id=9]
+[ext_resource path="res://assets/textures/FresnelGradientDamaged.png" type="Texture" id=10]
+[ext_resource path="res://src/microbe_stage/Membrane.cs" type="Script" id=11]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 100, 100 )
@@ -19,6 +23,14 @@ shader_param/layer0 = ExtResource( 3 )
 shader_param/layer1 = ExtResource( 5 )
 shader_param/layer2 = ExtResource( 6 )
 shader_param/layer3 = ExtResource( 4 )
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = ExtResource( 7 )
+shader_param/wigglyNess = 1.0
+shader_param/healthFraction = 0.5
+shader_param/tint = Plane( 1, 1, 1, 1 )
+shader_param/albedoTexture = ExtResource( 9 )
+shader_param/damagedTexture = ExtResource( 10 )
 
 [node name="MicrobeStage" type="Node"]
 script = ExtResource( 1 )
@@ -36,6 +48,12 @@ transform = Transform( 1, 0, 0, 0, -1.62921e-07, -1, 0, 1, -1.62921e-07, 0, 5.96
 cast_shadow = 0
 mesh = SubResource( 1 )
 material = SubResource( 2 )
+
+[node name="Membrane" type="MeshInstance" parent="World/PrimaryCamera"]
+transform = Transform( 0.0387077, 0, 0, 0, -1.62921e-07, -0.0387077, 0, 1, -6.30629e-09, 0, -2.67695e-07, -12.9909 )
+cast_shadow = 0
+script = ExtResource( 11 )
+materialToEdit = SubResource( 3 )
 
 [node name="DynamicallySpawned" type="Node" parent="World"]
 

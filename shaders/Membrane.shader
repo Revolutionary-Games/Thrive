@@ -11,11 +11,12 @@ uniform vec4 tint = vec4(1, 1, 1, 1);
 
 void vertex(){
     vec3 worldVertex = (WORLD_MATRIX * vec4(VERTEX, 1.0)).xyz;
+    float size = length(VERTEX);
     
-    VERTEX.x += (sin(worldVertex.z * 2.f + sign(worldVertex.x) * TIME) / 10.f) 
-        * wigglyNess;
-    VERTEX.z += (sin(worldVertex.x * 2.f - sign(worldVertex.z) * TIME) / 10.f) 
-        * wigglyNess;
+    VERTEX.x += sin(VERTEX.z * 2.f + sign(VERTEX.x) * TIME / 4.0f) / 10.f
+        * wigglyNess * size;
+    VERTEX.z += sin(VERTEX.x * 2.f - sign(VERTEX.z) * TIME / 4.0f) / 10.f
+        * wigglyNess * size;
 }
 
 void fragment(){
