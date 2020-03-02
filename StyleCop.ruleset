@@ -76,24 +76,24 @@
     <Rule Id="SA1117" Action="None" /> <!-- Parameters should be on same line or separate lines -->
     <Rule Id="SA1118" Action="None" /> <!-- Parameter should not span multiple lines -->
     <Rule Id="SA1122" Action="Warning" /> <!-- Use string.Empty for empty strings -->
-    <Rule Id="SA1127" Action="None" /> <!-- Generic type constraints should be on their own line -->
+    <Rule Id="SA1127" Action="Warning" /> <!-- Generic type constraints should be on their own line -->
     <Rule Id="SA1128" Action="None" /> <!-- Put constructor initializers on their own line -->
     <Rule Id="SA1132" Action="None" /> <!-- Do not combine fields -->
     <Rule Id="SA1133" Action="None" /> <!-- Do not combine attributes -->
     <Rule Id="SA1137" Action="Warning" /> <!-- Elements should have the same indentation --> 
-    <Rule Id="SA1201" Action="None" /> <!-- Elements should appear in the correct order -->
-    <Rule Id="SA1214" Action="None" /> <!-- Readonly fields should appear before non-readonly fields -->
+    <Rule Id="SA1201" Action="Warning" /> <!-- Elements should appear in the correct order -->
+    <Rule Id="SA1214" Action="Warning" /> <!-- Readonly fields should appear before non-readonly fields -->
     <Rule Id="SA1309" Action="None" /> <!-- Field names should not begin with underscore -->
     <Rule Id="SA1401" Action="None" /> <!-- Fields should be private -->
     <Rule Id="SA1407" Action="None" /> <!-- Arithmetic expressions should declare precedence -->
-    <Rule Id="SA1501" Action="None" /> <!-- Statement should not be on a single line -->
+    <Rule Id="SA1501" Action="Warning" /> <!-- Statement should not be on a single line -->
     <Rule Id="SA1502" Action="None" /> <!-- Element should not be on a single line -->
     <Rule Id="SA1503" Action="None" /> <!--  -->
     <Rule Id="SA1512" Action="None" /> <!-- Single-line comments should not be followed by blank line -->
-    <Rule Id="SA1515" Action="None" /> <!-- Single-line comment should be preceded by blank line -->
+    <Rule Id="SA1515" Action="Warning" /> <!-- Single-line comment should be preceded by blank line -->
     <Rule Id="SA1516" Action="None" /> <!-- Elements should be separated by blank line -->
     <Rule Id="SA1600" Action="None" /> <!-- Elements should be documented -->
-    <Rule Id="SA1601" Action="None" /> <!-- Partial elements should be documented -->
+    <Rule Id="SA1601" Action="Warning" /> <!-- Partial elements should be documented -->
     <Rule Id="SA1604" Action="None" /> <!-- Element documentation should have summary -->
     <Rule Id="SA1633" Action="None" /> <!-- File should have header -->
   </Rules>
