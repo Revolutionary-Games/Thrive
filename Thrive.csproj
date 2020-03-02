@@ -70,6 +70,17 @@
     <Compile Include="scripts\simulation_parameters\InvalidRegistryData.cs" />
     <Compile Include="src\microbe_stage\BioProcess.cs" />
     <Compile Include="scripts\simulation_parameters\IRegistryType.cs" />
+    <Compile Include="src\microbe_stage\Compound.cs" />
+    <Compile Include="src\microbe_stage\NameGenerator.cs" />
+    <Compile Include="src\microbe_stage\OrganelleDefinition.cs" />
+    <Compile Include="src\general\Hex.cs" />
+    <Compile Include="src\microbe_stage\IOrganelleComponentFactory.cs" />
+    <Compile Include="src\microbe_stage\IOrganelleComponent.cs" />
+    <Compile Include="src\microbe_stage\organelle_components\NucleusComponent.cs" />
+    <Compile Include="src\microbe_stage\organelle_components\StorageComponent.cs" />
+    <Compile Include="src\microbe_stage\organelle_components\AgentVacuoleComponent.cs" />
+    <Compile Include="src\microbe_stage\organelle_components\MovementComponent.cs" />
+    <Compile Include="src\microbe_stage\organelle_components\PilusComponent.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="StyleCop.ruleset" />
@@ -77,6 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="shaders\" />
+    <Folder Include="src\microbe_stage\organelle_components\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

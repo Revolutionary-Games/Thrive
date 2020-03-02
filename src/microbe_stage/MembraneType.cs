@@ -14,10 +14,6 @@ public class MembraneType : IRegistryType
     public int EditorCost = 50;
     public bool CellWall = false;
 
-    public MembraneType()
-    {
-    }
-
     public void Check(string name)
     {
         if (NormalTexture == string.Empty || DamagedTexture == string.Empty)

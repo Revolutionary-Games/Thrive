@@ -3,8 +3,7 @@
     {
 	    "name": "nucleus",
 	    "gene": "N",
-	    "mesh": "nucleus.fbx",
-	    "texture": "nucleus.png",
+	    "displayScene": "nucleus.fbx",
 	    "mass": 0.7,
 	    "chanceToCreate": 0,
 	    "prokaryoteChance": 0,
@@ -71,8 +70,7 @@
     {
 	    "name": "cytoplasm",
 	    "gene": "Y",
-	    "mesh": "",
-	    "texture": "",
+	    "displayScene": "",
 	    "mass": 0.1,
 	    "chanceToCreate": 1,
 	    "prokaryoteChance": 1,
@@ -108,8 +106,7 @@
     "chloroplast": {
 	    "name": "chloroplast",
 	    "gene": "H",
-	    "mesh": "chloroplast.fbx",
-	    "texture": "chloroplast.png",
+	    "displayScene": "chloroplast.fbx",
 	    "mass": 0.4,
 	    "chanceToCreate": 1,
 	    "prokaryoteChance": 0,
@@ -154,8 +151,7 @@
     {
 	    "name": "oxytoxy",
 	    "gene": "T",
-	    "mesh": "agent_gland.fbx",
-	    "texture": "oxytoxy_gland.png",
+	    "displayScene": "agent_gland.fbx",
 	    "mass": 0.3,
 	    "chanceToCreate": 1,
 	    "prokaryoteChance": 0,
@@ -193,8 +189,7 @@
     {
 	    "name": "mitochondrion",
 	    "gene": "M",
-	    "mesh": "mitochondrion.fbx",
-	    "texture": "mitochondrion.png",
+	    "displayScene": "mitochondrion.fbx",
 	    "mass": 0.3,
 	    "chanceToCreate": 3,
 	    "prokaryoteChance": 0,
@@ -235,8 +230,7 @@
     {
 	    "name": "vacuole",
 	    "gene": "V",
-	    "mesh": "vacuole.fbx",
-	    "texture": "vacuole.png",
+	    "displayScene": "vacuole.fbx",
 	    "mass": 0.4,
 	    "chanceToCreate": 3,
 	    "prokaryoteChance": 0,
@@ -266,8 +260,7 @@
     {
 	    "name": "flagellum",
 	    "gene": "F",
-	    "mesh": "flagellum.fbx",
-	    "texture": "flagellum.png",
+	    "displayScene": "flagellum.fbx",
 	    "mass": 0.3,
 	    "chanceToCreate": 6,
 	    "prokaryoteChance": 2,
@@ -302,8 +295,7 @@
     {
 	    "name": "chemoplast",
 	    "gene": "C",
-	    "mesh": "chemoplast.fbx",
-	    "texture": "chemoplast.png",
+	    "displayScene": "chemoplast.fbx",
 	    "mass": 0.1,
 	    "chanceToCreate": 1,
 	    "prokaryoteChance": 0,
@@ -344,8 +336,7 @@
     {
 	    "name": "nitrogenfixingplastid",
 	    "gene": "I",
-	    "mesh": "rhizoplast.fbx",
-	    "texture": "nitrogenplastid.png",
+	    "displayScene": "rhizoplast.fbx",
 	    "mass": 0.1,
 	    "chanceToCreate": 1,
 	    "prokaryoteChance": 0,
@@ -386,8 +377,7 @@
     {
 	    "name": "metabolosome",
 	    "gene": "m",
-	    "mesh": "metabolosome.fbx",
-	    "texture": "metabolosome.png",
+	    "displayScene": "metabolosome.fbx",
 	    "mass": 0.1,
 	    "chanceToCreate": 0.5,
 	    "prokaryoteChance": 2,
@@ -424,8 +414,7 @@
     {
 	    "name": "chromatophors",
 	    "gene": "h",
-	    "mesh": "chromatophores.fbx",
-	    "texture": "chromatophores.png",
+	    "displayScene": "chromatophores.fbx",
 	    "mass": 0.1,
 	    "chanceToCreate": 0.5,
 	    "prokaryoteChance": 2,
@@ -463,8 +452,7 @@
     {
 	    "name": "oxytoxyProteins",
 	    "gene": "t",
-	    "mesh": "oxytoxy.fbx",
-	    "texture": "oxytoxy.png",
+	    "displayScene": "oxytoxy.fbx",
 	    "mass": 0.1,
 	    "chanceToCreate": 1,
 	    "prokaryoteChance": 0.5,
@@ -507,8 +495,7 @@
     {
 	    "name": "chemoSynthisizingProteins",
 	    "gene": "c",
-	    "mesh": "chemoproteins.fbx",
-	    "texture": "chemoproteins.png",
+	    "displayScene": "chemoproteins.fbx",
 	    "mass": 0.1,
 	    "chanceToCreate": 0.5,
 	    "prokaryoteChance": 2,
@@ -546,8 +533,7 @@
     {
 	    "name": "protoplasm",
 	    "gene": "y",
-	    "mesh": "",
-	    "texture": "",
+	    "displayScene": "",
 	    "mass": 0.1,
 	    "chanceToCreate": 0,
 	    "prokaryoteChance": 2,
@@ -584,8 +570,7 @@
     {
 	    "name": "nitrogenase",
 	    "gene": "i",
-	    "mesh": "nitrogenase.fbx",
-	    "texture": "nitrogenase.png",
+	    "displayScene": "nitrogenase.fbx",
 	    "mass": 0.1,
 	    "chanceToCreate": 1,
 	    "prokaryoteChance": 2,
@@ -623,8 +608,7 @@
     {
 	    "name": "rusticyanin",
 	    "gene": "f",
-	    "mesh": "rusticyanin.fbx",
-	    "texture": "rusticyanin.png",
+	    "displayScene": "rusticyanin.fbx",
 	    "mass": 0.1,
 	    "chanceToCreate": 0.5,
 	    "prokaryoteChance": 2,
@@ -661,8 +645,7 @@
     {
 	    "name": "pilus",
 	    "gene": "P",
-	    "mesh": "pilus.fbx",
-	    "texture": "pilus.png",
+	    "displayScene": "pilus.fbx",
 	    "mass": 0.5,
 	    "chanceToCreate": 0.5,
 	    "prokaryoteChance": 0.5,
