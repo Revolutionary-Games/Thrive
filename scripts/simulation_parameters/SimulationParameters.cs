@@ -9,6 +9,7 @@ public class SimulationParameters
 
     private Dictionary<string, MembraneType> membranes;
     private Dictionary<string, Background> backgrounds;
+    private Dictionary<string, Biome> biomes;
 
     static SimulationParameters()
     {
@@ -23,10 +24,20 @@ public class SimulationParameters
             "res://scripts/simulation_parameters/microbe_stage/membranes.json");
         backgrounds = LoadRegistry<Background>(
             "res://scripts/simulation_parameters/microbe_stage/backgrounds.json");
+        biomes = LoadRegistry<Biome>(
+            "res://scripts/simulation_parameters/microbe_stage/biomes.json");
 
         GD.Print("SimulationParameters loading ended");
         CheckForInvalidValues();
         GD.Print("SimulationParameters are good");
+    }
+
+    public static SimulationParameters Instance
+    {
+        get
+        {
+            return INSTANCE;
+        }
     }
 
     public MembraneType GetMembrane(string name)
@@ -37,6 +48,11 @@ public class SimulationParameters
     public Background GetBackground(string name)
     {
         return backgrounds[name];
+    }
+
+    public Biome GetBiome(string name)
+    {
+        return biomes[name];
     }
 
     private Dictionary<string, T> LoadRegistry<T>(string path)
@@ -65,13 +81,10 @@ public class SimulationParameters
         {
             entry.Value.Check(entry.Key);
         }
-    }
 
-    public static SimulationParameters Instance
-    {
-        get
+        foreach (var entry in biomes)
         {
-            return INSTANCE;
+            entry.Value.Check(entry.Key);
         }
     }
 }
