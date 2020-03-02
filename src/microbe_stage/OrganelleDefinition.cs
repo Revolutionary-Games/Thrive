@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Definition for a type of an organelle. This is not a placed organelle in a microbe
@@ -22,6 +23,9 @@ public class OrganelleDefinition : IRegistryType
 
     public float Mass;
 
+    /// <summary>
+    ///   The chance this organelle is placed in an eukaryote when applying mutations
+    /// </summary>
     public float ChanceToCreate;
 
     /// <summary>
@@ -36,6 +40,9 @@ public class OrganelleDefinition : IRegistryType
     /// </summary>
     public Dictionary<string, float> Processes;
 
+    /// <summary>
+    ///   List of hexes this organelle occupies
+    /// </summary>
     public List<Hex> Hexes;
 
     /// <summary>
@@ -49,12 +56,20 @@ public class OrganelleDefinition : IRegistryType
     /// </summary>
     public int MPCost;
 
+    [JsonIgnore]
     public List<IOrganelleComponentFactory> ComponentFactories
     {
         get
         {
             return Components.Factories;
         }
+    }
+
+    [JsonIgnore]
+    public List<TweakedProcess> RunnableProcesses
+    {
+        get;
+        private set;
     }
 
     public void Check(string name)
@@ -108,8 +123,24 @@ public class OrganelleDefinition : IRegistryType
             throw new InvalidRegistryData(name, this.GetType().Name,
                 "Hexes is empty");
         }
+    }
 
-        // TODO: check processes
+    /// <summary>
+    ///   Resolves references to external resources so that during
+    ///   runtime they don't need to be looked up
+    /// </summary>
+    public void Resolve(SimulationParameters parameters)
+    {
+        RunnableProcesses = new List<TweakedProcess>();
+
+        if (Processes == null)
+            return;
+
+        foreach (var process in Processes)
+        {
+            RunnableProcesses.Add(new TweakedProcess(parameters.GetBioProcess(process.Key),
+                    process.Value));
+        }
     }
 
     public class OrganelleComponentFactoryInfo
@@ -123,6 +154,7 @@ public class OrganelleDefinition : IRegistryType
         private readonly List<IOrganelleComponentFactory> allFactories =
             new List<IOrganelleComponentFactory>();
 
+        [JsonIgnore]
         private int count = -1;
 
         /// <summary>

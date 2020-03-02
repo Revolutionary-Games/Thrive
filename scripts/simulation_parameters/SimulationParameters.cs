@@ -40,10 +40,10 @@ public class SimulationParameters
             "res://scripts/simulation_parameters/microbe_stage/species_names.json");
 
         GD.Print("SimulationParameters loading ended");
-        CheckForInvalidValues();
 
-        // TODO: there could also be a check for making sure
-        // non-existant compounds, processes etc. are not used
+        CheckForInvalidValues();
+        ResolveValueRelationships();
+
         GD.Print("SimulationParameters are good");
     }
 
@@ -133,5 +133,16 @@ public class SimulationParameters
         {
             entry.Value.Check(entry.Key);
         }
+    }
+
+    private void ResolveValueRelationships()
+    {
+        foreach (var entry in organelles)
+        {
+            entry.Value.Resolve(this);
+        }
+
+        // TODO: there could also be a check for making sure
+        // non-existant compounds, processes etc. are not used
     }
 }
