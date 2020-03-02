@@ -28,4 +28,12 @@ public class Constants
             return 50;
         }
     }
+
+    public int MEMBRANE_RESOLUTION
+    {
+        get
+        {
+            return 10;
+        }
+    }
 }
