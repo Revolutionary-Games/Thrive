@@ -1,6 +1,7 @@
-﻿using System;
-using Godot;
-
+﻿
+/// <summary>
+///   Defines properties of a membrane type
+/// </summary>
 public class MembraneType
 {
     public string NormalTexture = "res://assets/textures/FresnelGradient.png";
