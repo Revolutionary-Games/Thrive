@@ -11,6 +11,8 @@ public class SimulationParameters
     private Dictionary<string, Background> backgrounds;
     private Dictionary<string, Biome> biomes;
     private Dictionary<string, BioProcess> bioProcesses;
+    private Dictionary<string, Compound> compounds;
+    private Dictionary<string, OrganelleDefinition> organelles;
 
     static SimulationParameters()
     {
@@ -29,9 +31,19 @@ public class SimulationParameters
             "res://scripts/simulation_parameters/microbe_stage/biomes.json");
         bioProcesses = LoadRegistry<BioProcess>(
             "res://scripts/simulation_parameters/microbe_stage/bio_processes.json");
+        compounds = LoadRegistry<Compound>(
+            "res://scripts/simulation_parameters/microbe_stage/compounds.json");
+        organelles = LoadRegistry<OrganelleDefinition>(
+                    "res://scripts/simulation_parameters/microbe_stage/organelles.json");
+
+        NameGenerator = LoadDirectObject<NameGenerator>(
+            "res://scripts/simulation_parameters/microbe_stage/species_names.json");
 
         GD.Print("SimulationParameters loading ended");
         CheckForInvalidValues();
+
+        // TODO: there could also be a check for making sure
+        // non-existant compounds, processes etc. are not used
         GD.Print("SimulationParameters are good");
     }
 
@@ -41,6 +53,13 @@ public class SimulationParameters
         {
             return INSTANCE;
         }
+    }
+
+    public NameGenerator NameGenerator { get; }
+
+    public OrganelleDefinition GetOrganelleType(string name)
+    {
+        return organelles[name];
     }
 
     public MembraneType GetMembrane(string name)
@@ -58,19 +77,41 @@ public class SimulationParameters
         return biomes[name];
     }
 
-    private Dictionary<string, T> LoadRegistry<T>(string path)
+    public BioProcess GetBioProcess(string name)
+    {
+        return bioProcesses[name];
+    }
+
+    public Compound GetCompound(string name)
+    {
+        return compounds[name];
+    }
+
+    private static string ReadJSONFile(string path)
     {
         using (var file = new File())
         {
             file.Open(path, File.ModeFlags.Read);
-            var result = JsonConvert.DeserializeObject<Dictionary<string, T>>(
-                file.GetAsText());
+            var result = file.GetAsText();
 
-            // file.Close();
+            // This might be completely unnecessary
+            file.Close();
 
-            GD.Print($"Loaded registry for {typeof(T)} with {result.Count} items");
             return result;
         }
+    }
+
+    private Dictionary<string, T> LoadRegistry<T>(string path)
+    {
+        var result = JsonConvert.DeserializeObject<Dictionary<string, T>>(ReadJSONFile(path));
+
+        GD.Print($"Loaded registry for {typeof(T)} with {result.Count} items");
+        return result;
+    }
+
+    private T LoadDirectObject<T>(string path)
+    {
+        return JsonConvert.DeserializeObject<T>(ReadJSONFile(path));
     }
 
     private void CheckForInvalidValues()
@@ -79,6 +120,10 @@ public class SimulationParameters
         CheckRegistryType(backgrounds);
         CheckRegistryType(biomes);
         CheckRegistryType(bioProcesses);
+        CheckRegistryType(compounds);
+        CheckRegistryType(organelles);
+
+        NameGenerator.Check(string.Empty);
     }
 
     private void CheckRegistryType<T>(Dictionary<string, T> registry)

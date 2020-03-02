@@ -85,6 +85,7 @@
     <Rule Id="SA1214" Action="Warning" /> <!-- Readonly fields should appear before non-readonly fields -->
     <Rule Id="SA1309" Action="None" /> <!-- Field names should not begin with underscore -->
     <Rule Id="SA1401" Action="None" /> <!-- Fields should be private -->
+    <Rule Id="SA1402" Action="None" /> <!-- File should contain one type -->
     <Rule Id="SA1407" Action="None" /> <!-- Arithmetic expressions should declare precedence -->
     <Rule Id="SA1501" Action="Warning" /> <!-- Statement should not be on a single line -->
     <Rule Id="SA1502" Action="None" /> <!-- Element should not be on a single line -->
