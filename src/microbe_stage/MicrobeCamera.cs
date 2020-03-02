@@ -21,12 +21,13 @@ public class MicrobeCamera : Camera
     /// </summary>
     public override void _Process(float delta)
     {
-        var velocity = new Vector3();
+        var velocity = default(Vector3);
 
         if (Input.IsActionPressed("ui_right"))
         {
             velocity.x += 1;
         }
+
         if (Input.IsActionPressed("ui_left"))
         {
             velocity.x -= 1;
@@ -44,6 +45,6 @@ public class MicrobeCamera : Camera
 
         velocity = velocity.Normalized() * 40.0f * delta;
 
-        Translation = (Translation + velocity);
+        Translation = Translation + velocity;
     }
 }
