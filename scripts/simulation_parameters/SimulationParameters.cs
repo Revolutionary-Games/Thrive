@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
 
@@ -24,6 +25,8 @@ public class SimulationParameters
             "res://scripts/simulation_parameters/microbe_stage/backgrounds.json");
 
         GD.Print("SimulationParameters loading ended");
+        CheckForInvalidValues();
+        GD.Print("SimulationParameters are good");
     }
 
     public MembraneType GetMembrane(string name)
@@ -48,6 +51,19 @@ public class SimulationParameters
 
             GD.Print($"Loaded registry for {typeof(T)} with {result.Count} items");
             return result;
+        }
+    }
+
+    private void CheckForInvalidValues()
+    {
+        foreach (var entry in membranes)
+        {
+            entry.Value.Check(entry.Key);
+        }
+
+        foreach (var entry in backgrounds)
+        {
+            entry.Value.Check(entry.Key);
         }
     }
 
