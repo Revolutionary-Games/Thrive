@@ -1,7 +1,7 @@
 ﻿/// <summary>
 ///   Defines properties of a membrane type
 /// </summary>
-public class MembraneType
+public class MembraneType : IRegistryType
 {
     public string NormalTexture;
     public string DamagedTexture;

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 ///   Base microbe biome with some parameters that are used for a Patch.
 ///   Modifiable versions of a Biome are stored in patches.
 /// </summary>
-public class Biome
+public class Biome : IRegistryType
 {
     /// <summary>
     ///   Name of the biome, for showing to the player in the GUI

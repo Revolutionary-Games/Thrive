@@ -10,6 +10,7 @@ public class SimulationParameters
     private Dictionary<string, MembraneType> membranes;
     private Dictionary<string, Background> backgrounds;
     private Dictionary<string, Biome> biomes;
+    private Dictionary<string, BioProcess> bioProcesses;
 
     static SimulationParameters()
     {
@@ -26,6 +27,8 @@ public class SimulationParameters
             "res://scripts/simulation_parameters/microbe_stage/backgrounds.json");
         biomes = LoadRegistry<Biome>(
             "res://scripts/simulation_parameters/microbe_stage/biomes.json");
+        bioProcesses = LoadRegistry<BioProcess>(
+            "res://scripts/simulation_parameters/microbe_stage/bio_processes.json");
 
         GD.Print("SimulationParameters loading ended");
         CheckForInvalidValues();
@@ -72,17 +75,16 @@ public class SimulationParameters
 
     private void CheckForInvalidValues()
     {
-        foreach (var entry in membranes)
-        {
-            entry.Value.Check(entry.Key);
-        }
+        CheckRegistryType(membranes);
+        CheckRegistryType(backgrounds);
+        CheckRegistryType(biomes);
+        CheckRegistryType(bioProcesses);
+    }
 
-        foreach (var entry in backgrounds)
-        {
-            entry.Value.Check(entry.Key);
-        }
-
-        foreach (var entry in biomes)
+    private void CheckRegistryType<T>(Dictionary<string, T> registry)
+        where T : IRegistryType
+    {
+        foreach (var entry in registry)
         {
             entry.Value.Check(entry.Key);
         }
