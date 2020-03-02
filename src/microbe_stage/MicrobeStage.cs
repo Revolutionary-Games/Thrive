@@ -19,6 +19,10 @@ public class MicrobeStage : Node
     // Also begins a new game if one hasn't been started yet for easier debugging
     public void SetupStage()
     {
+        // Make sure simulation parameters is loaded
+        if (SimulationParameters.Instance == null)
+            GD.PrintErr("Something bad happened with SimulationParameters loading");
+
         spawner.Init();
     }
 

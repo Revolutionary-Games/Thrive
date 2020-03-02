@@ -14,18 +14,22 @@ public class Membrane : MeshInstance
 
     private ShaderMaterial materialToEdit;
 
+    private float healthFraction = 1.0f;
+    private float wigglyNess = 1.0f;
+    private Color tint = new Color(1, 1, 1, 1);
+
     /// <summary>
     ///   How healthy the cell is, mixes in a damaged texture. Range 0.0f - 1.0f
     /// </summary>
-    public float healthFraction
+    public float HealthFraction
     {
         get
         {
-            return _healthFraction;
+            return healthFraction;
         }
         set
         {
-            _healthFraction = MathUtils.Clamp(value, 0.0f, 1.0f);
+            healthFraction = value.Clamp(0.0f, 1.0f);
             if (materialToEdit != null)
                 ApplyHealth();
         }
@@ -34,37 +38,33 @@ public class Membrane : MeshInstance
     /// <summary>
     ///   How much the membrane wiggles. Used values are 0 and 1
     /// </summary>
-    public float wigglyNess
+    public float WigglyNess
     {
         get
         {
-            return _wigglyNess;
+            return wigglyNess;
         }
         set
         {
-            _wigglyNess = value;
+            wigglyNess = value;
             if (materialToEdit != null)
                 ApplyWiggly();
         }
     }
 
-    public Color tint
+    public Color Tint
     {
         get
         {
-            return _tint;
+            return tint;
         }
         set
         {
-            _tint = value;
+            tint = value;
             if (materialToEdit != null)
                 ApplyTint();
         }
     }
-
-    private float _healthFraction = 1.0f;
-    private float _wigglyNess = 1.0f;
-    private Color _tint = new Color(1, 1, 1, 1);
 
     public override void _Ready()
     {
@@ -93,22 +93,22 @@ public class Membrane : MeshInstance
 
     private void ApplyWiggly()
     {
-        materialToEdit.SetShaderParam("wigglyNess", wigglyNess);
+        materialToEdit.SetShaderParam("wigglyNess", WigglyNess);
     }
 
     private void ApplyHealth()
     {
-        materialToEdit.SetShaderParam("healthFraction", healthFraction);
+        materialToEdit.SetShaderParam("healthFraction", HealthFraction);
     }
 
     private void ApplyTint()
     {
-        materialToEdit.SetShaderParam("tint", tint);
+        materialToEdit.SetShaderParam("tint", Tint);
     }
 
     private void ApplyTextures()
     {
-        materialToEdit.SetShaderParam("albedoTexture", wigglyNess);
-        materialToEdit.SetShaderParam("damagedTexture", wigglyNess);
+        materialToEdit.SetShaderParam("albedoTexture", WigglyNess);
+        materialToEdit.SetShaderParam("damagedTexture", WigglyNess);
     }
 }
