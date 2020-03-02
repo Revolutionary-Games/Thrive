@@ -1,5 +1,4 @@
-﻿
-/// <summary>
+﻿/// <summary>
 ///   Defines properties of a membrane type
 /// </summary>
 public class MembraneType
@@ -21,7 +20,7 @@ public class MembraneType
 
     public void Check(string name)
     {
-        if (NormalTexture == "" || DamagedTexture == "")
+        if (NormalTexture == string.Empty || DamagedTexture == string.Empty)
         {
             throw new InvalidRegistryData(name, this.GetType().Name,
                 "Empty normal or damaged texture");
