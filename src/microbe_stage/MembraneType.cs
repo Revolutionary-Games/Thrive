@@ -4,8 +4,8 @@
 /// </summary>
 public class MembraneType
 {
-    public string NormalTexture = "res://assets/textures/FresnelGradient.png";
-    public string DamagedTexture = "res://assets/textures/FresnelGradientDamaged.png";
+    public string NormalTexture;
+    public string DamagedTexture;
     public float MovementFactor = 1.0f;
     public float OsmoregulationFactor = 1.0f;
     public float ResourceAbsorptionFactor = 1.0f;
@@ -17,5 +17,14 @@ public class MembraneType
 
     public MembraneType()
     {
+    }
+
+    public void Check(string name)
+    {
+        if (NormalTexture == "" || DamagedTexture == "")
+        {
+            throw new InvalidRegistryData(name, this.GetType().Name,
+                "Empty normal or damaged texture");
+        }
     }
 }

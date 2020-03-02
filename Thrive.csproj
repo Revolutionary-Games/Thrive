@@ -66,6 +66,8 @@
     <Compile Include="src\microbe_stage\MembraneType.cs" />
     <Compile Include="scripts\simulation_parameters\SimulationParameters.cs" />
     <Compile Include="src\microbe_stage\Background.cs" />
+    <Compile Include="src\microbe_stage\Biome.cs" />
+    <Compile Include="scripts\simulation_parameters\InvalidRegistryData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="StyleCop.ruleset" />
