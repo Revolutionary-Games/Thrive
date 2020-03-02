@@ -57,10 +57,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="scripts\simulation_parameters\Constants.cs" />
     <Compile Include="src\microbe_stage\CompoundCloudPlane.cs" />
+    <Compile Include="src\microbe_stage\Membrane.cs" />
     <Compile Include="src\microbe_stage\MicrobeCamera.cs" />
     <Compile Include="src\microbe_stage\MicrobeStage.cs" />
     <Compile Include="src\microbe_stage\SpawnSystem.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="src\general\MathUtils.cs" />
+    <Compile Include="src\microbe_stage\MembraneType.cs" />
+    <Compile Include="scripts\simulation_parameters\SimulationParameters.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="StyleCop.ruleset" />

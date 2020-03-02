@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/microbe_stage/Membrane.tscn" type="PackedScene" id=1]
+
+[node name="Microbe" type="Spatial"]
+
+[node name="Membrane" parent="." instance=ExtResource( 1 )]
