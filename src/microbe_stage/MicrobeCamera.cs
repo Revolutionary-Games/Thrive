@@ -7,7 +7,7 @@ public class MicrobeCamera : Camera
     public override void _Ready()
     {
         var material = GetNode<CSGMesh>("BackgroundPlane").Material;
-        if (material is null)
+        if (material == null)
         {
             GD.PrintErr("MicrobeCamera didn't find material to update");
             return;
@@ -17,7 +17,7 @@ public class MicrobeCamera : Camera
     }
 
     /// <summary>
-    ///   Sets the world pos of the camera to the shader
+    ///   Updates camera pos
     /// </summary>
     public override void _Process(float delta)
     {
