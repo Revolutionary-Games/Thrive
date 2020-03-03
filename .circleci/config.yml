@@ -28,7 +28,7 @@ jobs:
        # This is here to reimport assets, but this build would fail due to missing nuget packages
        # if C# was compiled here
        - run: godot --export "Linux/X11" "builds/a.x86_64"
-       - run: ./headless_project_refresh.rb
+       # - run: ./headless_project_refresh.rb
        - save_cache:
            key: v2-import-{{ .Branch }}
            paths:
