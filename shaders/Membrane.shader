@@ -3,6 +3,8 @@ shader_type spatial;
 // Set to 0 to disable wiggle
 uniform float wigglyNess = 1.f;
 
+uniform float movementWigglyNess = 1.f;
+
 uniform sampler2D albedoTexture;
 uniform sampler2D damagedTexture;
 
@@ -13,9 +15,9 @@ void vertex(){
     vec3 worldVertex = (WORLD_MATRIX * vec4(VERTEX, 1.0)).xyz;
     float size = length(VERTEX);
     
-    VERTEX.x += sin(VERTEX.z * 2.f + sign(VERTEX.x) * TIME / 4.0f) / 10.f
+    VERTEX.x += sin(worldVertex.z * movementWigglyNess + sign(worldVertex.x) * TIME / 4.0f) / 10.f
         * wigglyNess * size;
-    VERTEX.z += sin(VERTEX.x * 2.f - sign(VERTEX.z) * TIME / 4.0f) / 10.f
+    VERTEX.z += sin(worldVertex.x * movementWigglyNess - sign(worldVertex.z) * TIME / 4.0f) / 10.f
         * wigglyNess * size;
 }
 

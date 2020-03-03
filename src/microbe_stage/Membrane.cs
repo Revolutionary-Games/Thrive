@@ -17,6 +17,7 @@ public class Membrane : MeshInstance
 
     private float healthFraction = 1.0f;
     private float wigglyNess = 1.0f;
+    private float movementWigglyNess = 1.0f;
     private Color tint = new Color(1, 1, 1, 1);
 
     /// <summary>
@@ -50,6 +51,20 @@ public class Membrane : MeshInstance
             wigglyNess = value;
             if (MaterialToEdit != null)
                 ApplyWiggly();
+        }
+    }
+
+    public float MovementWigglyNess
+    {
+        get
+        {
+            return movementWigglyNess;
+        }
+        set
+        {
+            movementWigglyNess = value;
+            if (MaterialToEdit != null)
+                ApplyMovementWiggly();
         }
     }
 
@@ -88,6 +103,7 @@ public class Membrane : MeshInstance
         // Only here for testing purposes, should be moved to after adding organelles.
         BuildMesh();
         ApplyWiggly();
+        ApplyMovementWiggly();
         ApplyHealth();
         ApplyTint();
 
@@ -97,6 +113,11 @@ public class Membrane : MeshInstance
     private void ApplyWiggly()
     {
         MaterialToEdit.SetShaderParam("wigglyNess", WigglyNess);
+    }
+
+    private void ApplyMovementWiggly()
+    {
+        MaterialToEdit.SetShaderParam("movementWigglyNess", MovementWigglyNess);
     }
 
     private void ApplyHealth()
@@ -111,6 +132,7 @@ public class Membrane : MeshInstance
 
     private void ApplyTextures()
     {
+        // TODO.
         MaterialToEdit.SetShaderParam("albedoTexture", WigglyNess);
         MaterialToEdit.SetShaderParam("damagedTexture", WigglyNess);
     }
