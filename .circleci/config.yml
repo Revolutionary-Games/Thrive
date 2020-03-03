@@ -3,83 +3,59 @@ jobs:
    build:
      working_directory: ~/thrive
      docker:
-       - image: hhyyrylainen/leviathan-deps:v7
+       - image: hhyyrylainen/godot-ci:v1
      environment:
        GIT_LFS_SKIP_SMUDGE: 1
      steps:
        - checkout
        - restore_cache:
            keys:
-             - v2-lfs-{{ .Branch }}
-             - v2-lfs-master
+             - v3-lfs-{{ .Branch }}
+             - v3-lfs-master
        - shell:
            name: Pull Git LFS files, retry until done
            command: |
              while true; do git reset --hard HEAD && git clean -fd && git lfs pull && break; done
        - save_cache:
-          key: v2-lfs-{{ .Branch }}
+          key: v3-lfs-{{ .Branch }}
           paths:
             - .git/lfs
        - restore_cache:
            keys:
-             - v5-deps-{{ arch }}-{{ checksum "SetupThrive.rb" }}
-             - v5-deps-{{ arch }}
+             - v1-import-{{ .Branch }}
+             - v1-import-master
+       - run: ./headless_project_refresh.rb
        - restore_cache:
            keys:
-             - v5-build-{{ arch }}-{{ .Branch }}
-       - run: ./SetupThrive.rb --no-packagemanager --no-updates --precompiled -j 2 --fully-parallel-project-compile --project-parallel 5
+             - v1-nuget-{{ .Branch }}
+       - nuget restore
        - save_cache:
-           key: v5-deps-{{ arch }}-{{ checksum "SetupThrive.rb" }}
-           paths:
-             - ThirdParty
+          key: - v1-nuget-{{ .Branch }}
+          paths:
+            - ~/.nuget/packages
+       - run: godot --export "linux_x11_64_release" "builds/thrive_linux.zip"
        - save_cache:
-           key: v5-deps-{{ arch }}
+           key: v1-import-{{ .Branch }}
            paths:
-             - ThirdParty
-       - save_cache:
-           key: v5-build-{{ arch }}-{{ .Branch }}
-           paths:
-             - build/src
-       - run: mkdir -p /reports/reports
-       - run:
-           command: ./ThriveTest "~[xrequired]"
-           working_directory: ~/thrive/build/bin
-       # - run:
-       #     command: ./LeviathanTest --reporter junit --out /reports/reports/test_run.xml "~[xrequired]"
-       #     working_directory: ~/leviathan/build/bin
-       # - store_test_results:
-       #     path: /reports/reports
+             - .import
    format_script:
      working_directory: ~/Thrive
      docker:
-       - image: hhyyrylainen/thrive-deps:v1
+       - image: hhyyrylainen/godot-ci:v1
+     environment:
+       GIT_LFS_SKIP_SMUDGE: 1
      steps:
        - checkout
-       # eslint is completely silly in refusing to use a globally installed plugin
+       - run: ./headless_project_refresh.rb
        - restore_cache:
            keys:
-             - v1-npm-{{ checksum ".eslintrc.js" }}       
-       - run: npm install eslint-plugin-html@latest --save-dev
+             - v1-nuget-{{ .Branch }}
+       - nuget restore
        - save_cache:
-           key: v1-npm-{{ checksum ".eslintrc.js" }}
-           paths:
-             - node_modules
-       - run: ./RunCodeFormatting.rb
-       - run:
-           when: always
-           command: |
-             git diff > format_diff.patch
-             if grep -q '[^[:space:]]' < format_diff.patch; then
-                 echo "Formatter found things to be fixed:"
-                 cat format_diff.patch
-                 exit 1
-             else
-                 echo "No changes made"
-                 rm -f format_diff.patch
-             fi
-       - store_artifacts:
-          path: format_diff.patch
-
+          key: - v1-nuget-{{ .Branch }}
+          paths:
+            - ~/.nuget/packages
+       - run: ./check_formatting.rb
 
 workflows:
   version: 2
