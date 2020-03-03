@@ -33,9 +33,9 @@ public class Compound : IRegistryType
         }
 
         // Guards against uninitialized alpha
-#pragma warning disable RECS0018 // Comparison of floating point numbers with equality operator
+#pragma warning disable RECS0018
         if (Colour.a == 0.0f)
-#pragma warning restore RECS0018 // Comparison of floating point numbers with equality operator
+#pragma warning restore RECS0018
             Colour.a = 1;
 
         if (Math.Abs(Colour.a - 1.0f) > MathUtils.EPSILON)

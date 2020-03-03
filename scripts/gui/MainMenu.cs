@@ -81,7 +81,8 @@ public class MainMenu : Node
     {
         if (ButtonPressSound == null)
         {
-            ButtonPressSound = GD.Load<AudioStream>("res://assets/sounds/soundeffects/gui/button-hover-click.ogg");
+            ButtonPressSound = GD.Load<AudioStream>(
+                "res://assets/sounds/soundeffects/gui/button-hover-click.ogg");
         }
 
         GuiAudio.Stream = ButtonPressSound;
@@ -98,7 +99,8 @@ public class MainMenu : Node
         }
 
         ScreenFade.MouseFilter = Control.MouseFilterEnum.Stop;
-        fader.InterpolateProperty(ScreenFade, "color", null, new Color(0, 0, 0, 1), fadeDuration);
+        fader.InterpolateProperty(ScreenFade, "color", null,
+            new Color(0, 0, 0, 1), fadeDuration);
         fader.Start();
         CurrentScene = scene;
         CurrentCutscene = cutscene;

@@ -11,7 +11,7 @@ abort("\nBuild generated warnings or errors.") if $CHILD_STATUS.exitstatus != 0
 
 # Skip some files that would otherwise be processed
 def skip_file?(path)
-  path =~ %r{/ThirdParty/}i || path =~ %r{^\.\/}
+  path =~ %r{/ThirdParty/}i || path =~ %r{^\.\/\.\/} || path =~ /GlobalSuppressions.cs/
 end
 
 # Different handle functions
@@ -29,12 +29,12 @@ def handle_cs_file(path)
     line_number += 1
 
     if line.include? "\t"
-      puts "Line #{lineNumber} contains a tab"
+      puts "Line #{line_number} contains a tab"
       errors = true
     end
 
     if line.length > MAX_LINE_LENGTH
-      puts "Line #{lineNumber} is too long. #{line.length} > {MAX_LINE_LENGTH}"
+      puts "Line #{line_number} is too long. #{line.length} > #{MAX_LINE_LENGTH}"
       errors = true
     end
   end
@@ -57,6 +57,7 @@ end
 def run
   issues_found = false
   Find.find('.') do |path|
+    # path = path[2..-1]
     next if skip_file? path
 
     begin

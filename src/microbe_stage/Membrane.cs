@@ -85,7 +85,8 @@ public class Membrane : MeshInstance
 
     private void ApplyAllMaterialParameters()
     {
-        BuildMesh(); // Only here for testing purposes, should be moved to after adding organelles.
+        // Only here for testing purposes, should be moved to after adding organelles.
+        BuildMesh();
         ApplyWiggly();
         ApplyHealth();
         ApplyTint();
