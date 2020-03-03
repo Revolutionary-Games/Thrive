@@ -53,7 +53,7 @@ material = SubResource( 2 )
 transform = Transform( 0.0387077, 0, 0, 0, -1.62921e-07, -0.0387077, 0, 1, -6.30629e-09, 0, -2.67695e-07, -12.9909 )
 cast_shadow = 0
 script = ExtResource( 11 )
-materialToEdit = SubResource( 3 )
+MaterialToEdit = SubResource( 3 )
 
 [node name="DynamicallySpawned" type="Node" parent="World"]
 
