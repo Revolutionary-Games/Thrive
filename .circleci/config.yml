@@ -1,7 +1,7 @@
 version: 2
 jobs:
    build:
-     working_directory: ~/thrive
+     working_directory: ~/Thrive
      docker:
        - image: hhyyrylainen/godot-ci:v1
      environment:
@@ -36,7 +36,7 @@ jobs:
        - restore_cache:
            keys:
              - v1-nuget-{{ .Branch }}
-       - run: nuget restore Thrive.sln
+       - run: nuget restore ~/Thrive/Thrive.sln
        - save_cache:
           key: v1-nuget-{{ .Branch }}
           paths:
