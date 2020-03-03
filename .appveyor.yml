@@ -24,11 +24,11 @@ install:
 
 build_script:
   - git lfs pull  
-  - ruby SetupThrive.rb --precompiled
+#   - ruby SetupThrive.rb --precompiled
 
-test_script:
-  - cd build\bin
-  - .\ThriveTest ~[xrequired]
+# test_script:
+#   - cd build\bin
+#   - .\ThriveTest ~[xrequired]
 
 # This takes too much space to work
 # artifacts:
