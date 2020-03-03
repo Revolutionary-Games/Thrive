@@ -1,7 +1,9 @@
 # Godot files
 .import/
 export.cfg
-export_presets.cfg
+
+# Seems really like this is needed for CI
+# export_presets.cfg
 
 # Godot-Mono-specific ignores
 .mono/
