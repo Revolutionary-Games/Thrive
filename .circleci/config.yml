@@ -28,7 +28,7 @@ jobs:
        - restore_cache:
            keys:
              - v1-nuget-{{ .Branch }}
-       - nuget restore
+       - run: nuget restore
        - save_cache:
           key: v1-nuget-{{ .Branch }}
           paths:
@@ -50,7 +50,7 @@ jobs:
        - restore_cache:
            keys:
              - v1-nuget-{{ .Branch }}
-       - nuget restore
+       - run: nuget restore
        - save_cache:
           key: v1-nuget-{{ .Branch }}
           paths:
