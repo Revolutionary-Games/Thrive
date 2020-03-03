@@ -33,33 +33,35 @@ jobs:
           key: v1-nuget-{{ .Branch }}
           paths:
             - ~/.nuget/packages
+       - run: ./check_formatting.rb
        - run: godot --export "linux_x11_64_release" "builds/thrive_linux.zip"
        - save_cache:
            key: v1-import-{{ .Branch }}
            paths:
              - .import
-   format_script:
-     working_directory: ~/Thrive
-     docker:
-       - image: hhyyrylainen/godot-ci:v1
-     environment:
-       GIT_LFS_SKIP_SMUDGE: 1
-     steps:
-       - checkout
-       - run: ./headless_project_refresh.rb
-       - restore_cache:
-           keys:
-             - v1-nuget-{{ .Branch }}
-       - run: nuget restore
-       - save_cache:
-          key: v1-nuget-{{ .Branch }}
-          paths:
-            - ~/.nuget/packages
-       - run: ./check_formatting.rb
+   # format_script:
+   #   working_directory: ~/Thrive
+   #   docker:
+   #     - image: hhyyrylainen/godot-ci:v1
+   #   environment:
+   #     GIT_LFS_SKIP_SMUDGE: 1
+   #   steps:
+   #     - checkout
+   #     - run: ./headless_project_refresh.rb
+   #     - restore_cache:
+   #         keys:
+   #           - v1-nuget-{{ .Branch }}
+   #     - run: nuget restore
+   #     - save_cache:
+   #        key: v1-nuget-{{ .Branch }}
+   #        paths:
+   #          - ~/.nuget/packages
+   #     - run: ./check_formatting.rb
 
 workflows:
   version: 2
   build_and_format:
+    # Unfortunately godot is setup so that a build can't happen without having all the assets processed
     jobs:
       - build
-      - format_script
+      # - format_script
