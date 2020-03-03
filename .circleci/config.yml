@@ -24,7 +24,8 @@ jobs:
            keys:
              - v1-import-{{ .Branch }}
              - v1-import-master
-       - run: ./headless_project_refresh.rb
+       # - run: ./headless_project_refresh.rb
+       - run: godot --export "linux_x11_64_release" "builds/thrive_linux.zip"
        - restore_cache:
            keys:
              - v1-nuget-{{ .Branch }}
