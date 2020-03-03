@@ -25,7 +25,12 @@ jobs:
              - v1-import-{{ .Branch }}
              - v1-import-master
        # - run: ./headless_project_refresh.rb
-       - run: godot --export "linux_x11_64_release" "builds/thrive_linux.zip"
+       # This is here to reimport assets, but this build fails due to missing nuget packages
+       - run: godot --export "Linux/X11" "builds/a.x86_64"
+       - save_cache:
+           key: v1-import-{{ .Branch }}
+           paths:
+             - .import
        - restore_cache:
            keys:
              - v1-nuget-{{ .Branch }}
@@ -34,12 +39,10 @@ jobs:
           key: v1-nuget-{{ .Branch }}
           paths:
             - ~/.nuget/packages
+       # Format check before making final packages
        - run: ./check_formatting.rb
-       - run: godot --export "linux_x11_64_release" "builds/thrive_linux.zip"
-       - save_cache:
-           key: v1-import-{{ .Branch }}
-           paths:
-             - .import
+       # Proper packages
+       - run: godot --export "Linux/X11" "builds/thrive_linux.x86_64"
    # format_script:
    #   working_directory: ~/Thrive
    #   docker:
