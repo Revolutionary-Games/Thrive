@@ -17,7 +17,8 @@ public class OrganelleDefinition : IRegistryType
     public string Gene;
 
     /// <summary>
-    ///   A path to a scene to display this organelle with. If empty won't have a display model
+    ///   A path to a scene to display this organelle with.
+    ///   If empty won't have a display model.
     /// </summary>
     public string DisplayScene;
 
