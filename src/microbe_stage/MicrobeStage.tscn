@@ -27,6 +27,7 @@ shader_param/layer3 = ExtResource( 4 )
 [sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 7 )
 shader_param/wigglyNess = 1.0
+shader_param/movementWigglyNess = 1.0
 shader_param/healthFraction = 0.5
 shader_param/tint = Plane( 1, 1, 1, 1 )
 shader_param/albedoTexture = ExtResource( 9 )
