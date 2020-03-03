@@ -30,7 +30,7 @@ jobs:
              - v1-nuget-{{ .Branch }}
        - nuget restore
        - save_cache:
-          key: - v1-nuget-{{ .Branch }}
+          key: v1-nuget-{{ .Branch }}
           paths:
             - ~/.nuget/packages
        - run: godot --export "linux_x11_64_release" "builds/thrive_linux.zip"
@@ -52,7 +52,7 @@ jobs:
              - v1-nuget-{{ .Branch }}
        - nuget restore
        - save_cache:
-          key: - v1-nuget-{{ .Branch }}
+          key: v1-nuget-{{ .Branch }}
           paths:
             - ~/.nuget/packages
        - run: ./check_formatting.rb
