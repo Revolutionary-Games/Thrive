@@ -1,0 +1,225 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scripts/gui/MainMenu.cs" type="Script" id=1]
+[ext_resource path="res://assets/textures/gui/thrive_theme.tres" type="Theme" id=2]
+[ext_resource path="res://assets/textures/gui/logo.png" type="Texture" id=3]
+[ext_resource path="res://assets/sounds/main-menu-theme-2.ogg" type="AudioStream" id=4]
+
+[node name="MainMenu" type="Node"]
+script = ExtResource( 1 )
+
+[node name="Background" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MenuItems" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LogoCenterContainer" type="CenterContainer" parent="MenuItems"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -297.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Logo" type="TextureRect" parent="MenuItems/LogoCenterContainer"]
+margin_left = 556.0
+margin_top = 127.0
+margin_right = 723.0
+margin_bottom = 295.0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonsCenterContainer" type="CenterContainer" parent="MenuItems"]
+anchor_left = 0.00196686
+anchor_top = 0.4125
+anchor_right = 1.00197
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menu" type="VBoxContainer" parent="MenuItems/ButtonsCenterContainer"]
+margin_left = 540.0
+margin_top = 59.0
+margin_right = 740.0
+margin_bottom = 364.0
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NewGame" type="Button" parent="MenuItems/ButtonsCenterContainer/Menu"]
+margin_right = 200.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 200, 35 )
+focus_mode = 0
+mouse_filter = 1
+theme = ExtResource( 2 )
+enabled_focus_mode = 0
+text = "New Game"
+
+[node name="LoadGame" type="Button" parent="MenuItems/ButtonsCenterContainer/Menu"]
+margin_top = 45.0
+margin_right = 200.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 200, 35 )
+mouse_filter = 1
+theme = ExtResource( 2 )
+disabled = true
+enabled_focus_mode = 0
+text = "Load Game"
+
+[node name="Options" type="Button" parent="MenuItems/ButtonsCenterContainer/Menu"]
+margin_top = 90.0
+margin_right = 200.0
+margin_bottom = 125.0
+rect_min_size = Vector2( 200, 35 )
+mouse_filter = 1
+theme = ExtResource( 2 )
+disabled = true
+enabled_focus_mode = 0
+text = "Options"
+
+[node name="Tools" type="Button" parent="MenuItems/ButtonsCenterContainer/Menu"]
+margin_top = 135.0
+margin_right = 200.0
+margin_bottom = 170.0
+rect_min_size = Vector2( 200, 35 )
+focus_mode = 0
+mouse_filter = 1
+theme = ExtResource( 2 )
+enabled_focus_mode = 0
+text = "Tools"
+
+[node name="Extras" type="Button" parent="MenuItems/ButtonsCenterContainer/Menu"]
+margin_top = 180.0
+margin_right = 200.0
+margin_bottom = 215.0
+rect_min_size = Vector2( 200, 35 )
+mouse_filter = 1
+theme = ExtResource( 2 )
+disabled = true
+enabled_focus_mode = 0
+text = "Extras"
+
+[node name="Credits" type="Button" parent="MenuItems/ButtonsCenterContainer/Menu"]
+margin_top = 225.0
+margin_right = 200.0
+margin_bottom = 260.0
+rect_min_size = Vector2( 200, 35 )
+mouse_filter = 1
+theme = ExtResource( 2 )
+disabled = true
+enabled_focus_mode = 0
+text = "Credits"
+
+[node name="Quit" type="Button" parent="MenuItems/ButtonsCenterContainer/Menu"]
+margin_top = 270.0
+margin_right = 200.0
+margin_bottom = 305.0
+rect_min_size = Vector2( 200, 35 )
+focus_mode = 0
+mouse_filter = 1
+theme = ExtResource( 2 )
+enabled_focus_mode = 0
+text = "Quit"
+
+[node name="Tools" type="VBoxContainer" parent="MenuItems/ButtonsCenterContainer"]
+visible = false
+margin_left = 540.0
+margin_top = 104.0
+margin_right = 740.0
+margin_bottom = 319.0
+custom_constants/separation = 10
+
+[node name="Freebuild Editor" type="Button" parent="MenuItems/ButtonsCenterContainer/Tools"]
+margin_right = 200.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 200, 35 )
+mouse_filter = 1
+theme = ExtResource( 2 )
+disabled = true
+text = "Freebuild editor"
+
+[node name="\?" type="Button" parent="MenuItems/ButtonsCenterContainer/Tools"]
+margin_top = 45.0
+margin_right = 200.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 200, 35 )
+mouse_filter = 1
+theme = ExtResource( 2 )
+disabled = true
+text = "???"
+
+[node name="\?2" type="Button" parent="MenuItems/ButtonsCenterContainer/Tools"]
+margin_top = 90.0
+margin_right = 200.0
+margin_bottom = 125.0
+rect_min_size = Vector2( 200, 35 )
+mouse_filter = 1
+theme = ExtResource( 2 )
+disabled = true
+text = "???"
+
+[node name="\?3" type="Button" parent="MenuItems/ButtonsCenterContainer/Tools"]
+margin_top = 135.0
+margin_right = 200.0
+margin_bottom = 170.0
+rect_min_size = Vector2( 200, 35 )
+mouse_filter = 1
+theme = ExtResource( 2 )
+disabled = true
+text = "???"
+
+[node name="Back" type="Button" parent="MenuItems/ButtonsCenterContainer/Tools"]
+margin_top = 180.0
+margin_right = 200.0
+margin_bottom = 215.0
+rect_min_size = Vector2( 200, 35 )
+mouse_filter = 1
+theme = ExtResource( 2 )
+disabled = true
+text = "Back"
+
+[node name="MicrobeIntro" type="VideoPlayer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScreenFade" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -10.0
+autoplay = true
+
+[node name="GUIAudio" type="AudioStreamPlayer" parent="."]
+
+[node name="Fader" type="Tween" parent="."]
+[connection signal="pressed" from="MenuItems/ButtonsCenterContainer/Menu/NewGame" to="." method="NewGamePressed"]
+[connection signal="pressed" from="MenuItems/ButtonsCenterContainer/Menu/Tools" to="." method="ToolsPressed"]
+[connection signal="pressed" from="MenuItems/ButtonsCenterContainer/Menu/Quit" to="." method="QuitPressed"]
+[connection signal="finished" from="MicrobeIntro" to="." method="OnMicrobeIntroEnded"]
+[connection signal="tween_completed" from="Fader" to="." method="OnFaderFinished"]
