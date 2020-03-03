@@ -6,13 +6,14 @@ using Godot;
 /// </summary>
 public class Membrane : MeshInstance
 {
+    [Export]
+    public ShaderMaterial MaterialToEdit;
+
     /// <summary>
     ///   When true the mesh needs to be regenerated
     /// </summary>
     private bool dirty = true;
     private ArrayMesh generatedMesh;
-
-    [Export] public ShaderMaterial materialToEdit;
 
     private float healthFraction = 1.0f;
     private float wigglyNess = 1.0f;
@@ -30,7 +31,7 @@ public class Membrane : MeshInstance
         set
         {
             healthFraction = value.Clamp(0.0f, 1.0f);
-            if (materialToEdit != null)
+            if (MaterialToEdit != null)
                 ApplyHealth();
         }
     }
@@ -47,7 +48,7 @@ public class Membrane : MeshInstance
         set
         {
             wigglyNess = value;
-            if (materialToEdit != null)
+            if (MaterialToEdit != null)
                 ApplyWiggly();
         }
     }
@@ -61,7 +62,7 @@ public class Membrane : MeshInstance
         set
         {
             tint = value;
-            if (materialToEdit != null)
+            if (MaterialToEdit != null)
                 ApplyTint();
         }
     }
@@ -88,31 +89,33 @@ public class Membrane : MeshInstance
         ApplyWiggly();
         ApplyHealth();
         ApplyTint();
-        //ApplyTextures();
+
+        // ApplyTextures();
     }
 
     private void ApplyWiggly()
     {
-        materialToEdit.SetShaderParam("wigglyNess", WigglyNess);
+        MaterialToEdit.SetShaderParam("wigglyNess", WigglyNess);
     }
 
     private void ApplyHealth()
     {
-        materialToEdit.SetShaderParam("healthFraction", HealthFraction);
+        MaterialToEdit.SetShaderParam("healthFraction", HealthFraction);
     }
 
     private void ApplyTint()
     {
-        materialToEdit.SetShaderParam("tint", Tint);
+        MaterialToEdit.SetShaderParam("tint", Tint);
     }
 
     private void ApplyTextures()
     {
-        materialToEdit.SetShaderParam("albedoTexture", WigglyNess);
-        materialToEdit.SetShaderParam("damagedTexture", WigglyNess);
+        MaterialToEdit.SetShaderParam("albedoTexture", WigglyNess);
+        MaterialToEdit.SetShaderParam("damagedTexture", WigglyNess);
     }
 
-    public void BuildMesh() {
+    private void BuildMesh()
+    {
         var arrays = new Godot.Collections.Array();
         arrays.Resize((int)Mesh.ArrayType.Max);
         var vectors = new Vector3[Constants.Instance.MEMBRANE_RESOLUTION + 2];
@@ -121,7 +124,7 @@ public class Membrane : MeshInstance
         vectors[0] = new Vector3(0.0f, 0.0f, 0.0f);
         uvs[0] = new Vector2(0.5f, 0.5f);
 
-        for(int i = 1; i < Constants.Instance.MEMBRANE_RESOLUTION + 2; i++)
+        for (int i = 1; i < Constants.Instance.MEMBRANE_RESOLUTION + 2; i++)
         {
             var t = i * 2 * Math.PI / Constants.Instance.MEMBRANE_RESOLUTION;
             var r = 50; // TODO: find the membrane border
@@ -129,13 +132,11 @@ public class Membrane : MeshInstance
             vectors[i] = new Vector3(
                 (float)Math.Cos(t),
                 0,
-                (float)Math.Sin(t)
-            ) * r;
+                (float)Math.Sin(t)) * r;
 
             uvs[i] = new Vector2(
-                (float)Math.Cos(t) / 2.0f + 0.5f,
-                (float)Math.Sin(t) / 2.0f + 0.5f
-            );
+                ((float)Math.Cos(t) / 2.0f) + 0.5f,
+                ((float)Math.Sin(t) / 2.0f) + 0.5f);
         }
 
         arrays[(int)Mesh.ArrayType.Vertex] = vectors;
@@ -144,6 +145,6 @@ public class Membrane : MeshInstance
         // TODO: Check if triangles + indices is better than triangle fan.
         var surfaceIndex = generatedMesh.GetSurfaceCount();
         generatedMesh.AddSurfaceFromArrays(Mesh.PrimitiveType.TriangleFan, arrays);
-        SetSurfaceMaterial(surfaceIndex, materialToEdit);
+        SetSurfaceMaterial(surfaceIndex, MaterialToEdit);
     }
 }
