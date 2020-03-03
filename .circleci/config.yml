@@ -24,6 +24,7 @@ jobs:
            keys:
              - v1-import-{{ .Branch }}
              - v1-import-master
+       - run: mkdir -p builds
        # - run: ./headless_project_refresh.rb
        # This is here to reimport assets, but this build fails due to missing nuget packages
        - run: godot --export "Linux/X11" "builds/a.x86_64"
