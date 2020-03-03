@@ -25,9 +25,10 @@ jobs:
              - v1-import-{{ .Branch }}
              - v1-import-master
        - run: mkdir -p builds
-       # - run: ./headless_project_refresh.rb
-       # This is here to reimport assets, but this build fails due to missing nuget packages
+       # This is here to reimport assets, but this build would fail due to missing nuget packages
+       # if C# was compiled here
        - run: godot --export "Linux/X11" "builds/a.x86_64"
+       - run: ./headless_project_refresh.rb
        - save_cache:
            key: v1-import-{{ .Branch }}
            paths:
@@ -35,7 +36,7 @@ jobs:
        - restore_cache:
            keys:
              - v1-nuget-{{ .Branch }}
-       - run: nuget restore
+       - run: nuget restore Thrive.sln
        - save_cache:
           key: v1-nuget-{{ .Branch }}
           paths:
