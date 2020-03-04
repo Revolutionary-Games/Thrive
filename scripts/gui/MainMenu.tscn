@@ -7,6 +7,9 @@
 
 [node name="MainMenu" type="Node"]
 script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": "Note: changing the node names may break the script"
+}
 
 [node name="Background" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -14,16 +17,21 @@ anchor_bottom = 1.0
 expand = true
 stretch_mode = 7
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": false,
+"_editor_description_": "Randomizeable background"
 }
 
 [node name="MenuContainers" type="Node" parent="."]
+__meta__ = {
+"_editor_description_": "The UI for the main menu is contained here"
+}
 
 [node name="LogoCenterContainer" type="CenterContainer" parent="MenuContainers"]
 anchor_right = 1.0
 anchor_bottom = 0.4
 __meta__ = {
-"_edit_use_anchors_": true
+"_edit_use_anchors_": true,
+"_editor_description_": "Centering fo the Thrive logo"
 }
 
 [node name="Logo" type="TextureRect" parent="MenuContainers/LogoCenterContainer"]
@@ -45,7 +53,8 @@ margin_left = 0.482419
 margin_top = -135.0
 margin_right = 0.478271
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": false,
+"_editor_description_": "Centering for the menu items"
 }
 
 [node name="MenuItems" type="Control" parent="MenuContainers/ButtonsCenterContainer"]
@@ -54,6 +63,9 @@ margin_top = 279.0
 margin_right = 640.0
 margin_bottom = 279.0
 theme = ExtResource( 2 )
+__meta__ = {
+"_editor_description_": "All of the menu stuff goes here"
+}
 
 [node name="MainMenu" type="VBoxContainer" parent="MenuContainers/ButtonsCenterContainer/MenuItems"]
 anchor_right = 1.0
@@ -202,13 +214,17 @@ theme = ExtResource( 2 )
 text = "Back"
 
 [node name="MenuTween" type="Tween" parent="MenuContainers"]
+__meta__ = {
+"_editor_description_": "For the menu animations and interpolations"
+}
 
 [node name="MicrobeIntro" type="VideoPlayer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": false,
+"_editor_description_": "Should only play the  microbe intro, this later need to be able to play various cutscenes"
 }
 
 [node name="ScreenFade" type="ColorRect" parent="."]
