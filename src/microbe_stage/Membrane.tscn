@@ -5,21 +5,23 @@
 [ext_resource path="res://assets/textures/FresnelGradient.png" type="Texture" id=3]
 [ext_resource path="res://assets/textures/FresnelGradientDamaged.png" type="Texture" id=4]
 
+[sub_resource type="CubeMesh" id=1]
+size = Vector3( 2, 0.539, 2 )
+
 [sub_resource type="ShaderMaterial" id=2]
 resource_local_to_scene = true
 render_priority = 1
 shader = ExtResource( 2 )
 shader_param/wigglyNess = 1.0
+shader_param/movementWigglyNess = 1.0
 shader_param/healthFraction = 0.25
 shader_param/tint = Plane( 1, 1, 1, 1 )
 shader_param/albedoTexture = ExtResource( 3 )
 shader_param/damagedTexture = ExtResource( 4 )
 
-[sub_resource type="CubeMesh" id=3]
-
 [node name="Membrane" type="MeshInstance"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00755703, 0, 0.034008 )
-material_override = SubResource( 2 )
-mesh = SubResource( 3 )
+mesh = SubResource( 1 )
 material/0 = null
 script = ExtResource( 1 )
+MaterialToEdit = SubResource( 2 )

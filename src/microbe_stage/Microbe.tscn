@@ -1,7 +1,23 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/microbe_stage/Membrane.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/textures/FresnelGradient.png" type="Texture" id=2]
+[ext_resource path="res://assets/textures/FresnelGradientDamaged.png" type="Texture" id=3]
+[ext_resource path="res://shaders/Membrane.shader" type="Shader" id=4]
+
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
+render_priority = 1
+shader = ExtResource( 4 )
+shader_param/wigglyNess = 1.0
+shader_param/movementWigglyNess = 1.0
+shader_param/healthFraction = 0.25
+shader_param/tint = Plane( 1, 1, 1, 1 )
+shader_param/albedoTexture = ExtResource( 2 )
+shader_param/damagedTexture = ExtResource( 3 )
 
 [node name="Microbe" type="Spatial"]
 
 [node name="Membrane" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+MaterialToEdit = SubResource( 1 )

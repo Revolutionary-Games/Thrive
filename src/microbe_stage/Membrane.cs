@@ -9,6 +9,8 @@ public class Membrane : MeshInstance
     [Export]
     public ShaderMaterial MaterialToEdit;
 
+    public MembraneType Type;
+
     /// <summary>
     ///   When true the mesh needs to be regenerated
     /// </summary>
@@ -19,6 +21,9 @@ public class Membrane : MeshInstance
     private float wigglyNess = 1.0f;
     private float movementWigglyNess = 1.0f;
     private Color tint = new Color(1, 1, 1, 1);
+
+    private Texture normalTexture;
+    private Texture damagedTexture;
 
     /// <summary>
     ///   How healthy the cell is, mixes in a damaged texture. Range 0.0f - 1.0f
@@ -84,8 +89,15 @@ public class Membrane : MeshInstance
 
     public override void _Ready()
     {
+        if (Type == null)
+            Type = SimulationParameters.Instance.GetMembrane("single");
+
         generatedMesh = new ArrayMesh();
         Mesh = generatedMesh;
+
+        if (MaterialToEdit == null)
+            GD.PrintErr("MaterialToEdit on Membrane is not set");
+
         dirty = true;
     }
 
@@ -106,8 +118,7 @@ public class Membrane : MeshInstance
         ApplyMovementWiggly();
         ApplyHealth();
         ApplyTint();
-
-        // ApplyTextures();
+        ApplyTextures();
     }
 
     private void ApplyWiggly()
@@ -132,9 +143,14 @@ public class Membrane : MeshInstance
 
     private void ApplyTextures()
     {
-        // TODO.
-        MaterialToEdit.SetShaderParam("albedoTexture", WigglyNess);
-        MaterialToEdit.SetShaderParam("damagedTexture", WigglyNess);
+        if (normalTexture != null)
+            return;
+
+        normalTexture = GD.Load<Texture>(Type.NormalTexture);
+        damagedTexture = GD.Load<Texture>(Type.DamagedTexture);
+
+        MaterialToEdit.SetShaderParam("albedoTexture", normalTexture);
+        MaterialToEdit.SetShaderParam("damagedTexture", damagedTexture);
     }
 
     private void BuildMesh()
@@ -150,7 +166,7 @@ public class Membrane : MeshInstance
         for (int i = 1; i < Constants.Instance.MEMBRANE_RESOLUTION + 2; i++)
         {
             var t = i * 2 * Math.PI / Constants.Instance.MEMBRANE_RESOLUTION;
-            var r = 50; // TODO: find the membrane border
+            var r = 5; // TODO: find the membrane border
 
             vectors[i] = new Vector3(
                 (float)Math.Cos(t),
