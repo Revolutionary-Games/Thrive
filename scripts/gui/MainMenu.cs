@@ -6,25 +6,27 @@ using Godot;
 /// </summary>
 public class MainMenu : Node
 {
+    [Export]
+    public uint CurrentMenuIndex;
+
     public Godot.Collections.Array MenuArray;
     public Texture BackgroundImage;
     public TextureRect Background;
     public ColorRect ScreenFade;
 
     public AudioStreamPlayer MusicAudio;
-    public AudioStreamPlayer GuiAudio;
+    public AudioStreamPlayer GUIAudio;
     public AudioStream ButtonPressSound;
     public VideoPlayer MicrobeIntro;
 
     public string CurrentScene;
     public string CurrentCutscene;
-    public int CurrentMenuIndex;
 
     public override void _Ready()
     {
         Background = GetNode<TextureRect>("Background");
         ScreenFade = GetNode<ColorRect>("ScreenFade");
-        GuiAudio = GetNode<AudioStreamPlayer>("GUIAudio");
+        GUIAudio = GetNode<AudioStreamPlayer>("GUIAudio");
         MusicAudio = GetNode<AudioStreamPlayer>("Music");
         MicrobeIntro = GetNode<VideoPlayer>("MicrobeIntro");
         ScreenFade.MouseFilter = Control.MouseFilterEnum.Ignore;
@@ -43,6 +45,9 @@ public class MainMenu : Node
 
     public void RunMenuSetup()
     {
+        if (MenuArray != null)
+            MenuArray.Clear();
+
         MenuArray = GetNode<Control>("MenuContainers/ButtonsCenterContainer/MenuItems")
             .GetChildren();
         if (MenuArray == null)
@@ -50,6 +55,8 @@ public class MainMenu : Node
             GD.PrintErr("Failed to find all the menu items!");
             return;
         }
+
+        SetCurrentMenu(CurrentMenuIndex, false);
     }
 
     public void RandomizeBackground()
@@ -85,8 +92,8 @@ public class MainMenu : Node
                 "res://assets/sounds/soundeffects/gui/button-hover-click.ogg");
         }
 
-        GuiAudio.Stream = ButtonPressSound;
-        GuiAudio.Play();
+        GUIAudio.Stream = ButtonPressSound;
+        GUIAudio.Play();
     }
 
     public void FadeInWithCutsceneTo(string scene, string cutscene, float fadeDuration)
@@ -102,6 +109,7 @@ public class MainMenu : Node
         fader.InterpolateProperty(ScreenFade, "color", null,
             new Color(0, 0, 0, 1), fadeDuration);
         fader.Start();
+
         CurrentScene = scene;
         CurrentCutscene = cutscene;
     }
@@ -135,18 +143,33 @@ public class MainMenu : Node
         GetTree().ChangeScene(CurrentScene);
     }
 
-    public void SetCurrentMenu(int index)
+    public void SetCurrentMenu(uint index, bool slide = true)
     {
         var tween = GetNode<Tween>("MenuContainers/MenuTween");
-        var curMenu = (Control)MenuArray[CurrentMenuIndex];
-        var selectedMenu = (Control)MenuArray[index];
 
-        // Play the slide down animation
-        curMenu.Hide();
-        selectedMenu.Show();
-        tween.InterpolateProperty(selectedMenu, "custom_constants/separation", -35, 10, 0.3f,
-            Tween.TransitionType.Sine);
-        tween.Start();
+        if (index > MenuArray.Count - 1)
+        {
+            GD.PrintErr("Selected menu index is out of range!");
+            return;
+        }
+
+        foreach (Control menu in MenuArray)
+        {
+            menu.Hide();
+
+            if (menu.GetIndex() == index)
+            {
+                menu.Show();
+
+                // Play the slide down animation
+                if (slide)
+                {
+                    tween.InterpolateProperty(menu, "custom_constants/separation", -35,
+                        10, 0.3f, Tween.TransitionType.Sine);
+                    tween.Start();
+                }
+            }
+        }
 
         CurrentMenuIndex = index;
     }
