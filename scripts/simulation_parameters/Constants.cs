@@ -74,5 +74,4 @@ public class Constants
             return 5.6f;
         }
     }
-
 }

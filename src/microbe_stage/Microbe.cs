@@ -7,6 +7,11 @@ using Godot;
 public class Microbe : RigidBody
 {
     /// <summary>
+    ///   The stored compounds in this microbe
+    /// </summary>
+    public readonly CompoundBag Compounds = new CompoundBag(0.0f);
+
+    /// <summary>
     ///   The point towards which the microbe will move to point to
     /// </summary>
     public Vector3 LookAtPoint = new Vector3(0, 0, -1);
@@ -15,11 +20,6 @@ public class Microbe : RigidBody
     ///   The direction the microbe wants to move. Doesn't need to be normalized
     /// </summary>
     public Vector3 MovementDirection = new Vector3(0, 0, 0);
-
-    /// <summary>
-    ///   The stored compounds in this microbe
-    /// </summary>
-    public readonly CompoundBag Compounds = new CompoundBag(0.0f);
 
     public int HexCount
     {
@@ -38,7 +38,6 @@ public class Microbe : RigidBody
 
     public override void _Process(float delta)
     {
-
         if (MovementDirection != new Vector3(0, 0, 0))
         {
             // Make sure the direction is normalized
@@ -50,6 +49,15 @@ public class Microbe : RigidBody
 
             ApplyMovementImpulse(totalMovement, delta);
         }
+
+        // ApplyRotation();
+    }
+
+    public override void _IntegrateForces(PhysicsDirectBodyState state)
+    {
+        // TODO: should movement also be applied here?
+
+        state.Transform = GetNewPhysicsRotation(state.Transform);
     }
 
     private Vector3 DoBaseMovementForce(float delta)
@@ -70,13 +78,13 @@ public class Microbe : RigidBody
             force *= 0.5f;
         }
 
-        return Transform.basis.Xform((MovementDirection.Normalized() * force));
+        return Transform.basis.Xform(MovementDirection.Normalized() * force);
 
-        // microbeComponent.queuedMovementForce += pos._Orientation * (
-        //     microbeComponent.movementDirection * force *
-        //     microbeComponent.movementFactor *
-        //     (SimulationParameters::membraneRegistry().getTypeData(microbeComponent.species.membraneType).movementFactor -
-        //     microbeComponent.species.membraneRigidity * MEMBRANE_RIGIDITY_MOBILITY_MODIFIER));
+        // * microbeComponent.movementFactor *
+        // (SimulationParameters::membraneRegistry().getTypeData(
+        // microbeComponent.species.membraneType).movementFactor -
+        //     microbeComponent.species.membraneRigidity *
+        // MEMBRANE_RIGIDITY_MOBILITY_MODIFIER));
     }
 
     private void ApplyMovementImpulse(Vector3 movement, float delta)
@@ -85,5 +93,15 @@ public class Microbe : RigidBody
             return;
 
         ApplyCentralImpulse(movement * delta);
+    }
+
+    /// <summary>
+    ///   Just slerps towards a fixed amount the target point
+    /// </summary
+    private Transform GetNewPhysicsRotation(Transform transform)
+    {
+        var target = Transform.LookingAt(LookAtPoint, new Vector3(0, 1, 0));
+
+        return new Transform(Transform.basis.Slerp(target.basis, 0.2f), Transform.origin);
     }
 }
