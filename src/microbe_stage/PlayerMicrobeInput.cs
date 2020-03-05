@@ -88,6 +88,9 @@ public class PlayerMicrobeInput : Node
         }
 
         if (stage.Player != null)
+        {
             stage.Player.MovementDirection = movement;
+            stage.Player.LookAtPoint = stage.Camera.CursorWorldPos;
+        }
     }
 }

@@ -12,6 +12,8 @@ public class MicrobeStage : Node
     private PackedScene playerScene;
     public Microbe Player { get; private set; }
 
+    public MicrobeCamera Camera { get; private set; }
+
     /// <summary>
     ///   This should get called the first time the stage scene is put
     ///   into an active scene tree. So returning from the editor
@@ -24,6 +26,7 @@ public class MicrobeStage : Node
         world = GetNode<Node>("World");
         rootOfDynamicallySpawned = GetNode<Node>("World/DynamicallySpawned");
         spawner = new SpawnSystem(rootOfDynamicallySpawned);
+        Camera = world.GetNode<MicrobeCamera>("PrimaryCamera");
 
         // Do stage setup to spawn things and setup all parts of the stage
         SetupStage();

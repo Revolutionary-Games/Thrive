@@ -1,10 +1,31 @@
 using Godot;
 
+/// <summary>
+///   Camera script for the microbe stage and the cell editor
+/// </summary>
 public class MicrobeCamera : Camera
 {
     private ShaderMaterial materialToUpdate;
 
-    public Vector3 CursorWorldPos { get; private set; }
+    private Vector3 cursorWorldPos;
+    private bool cursorDirty = true;
+
+    /// <summary>
+    ///   Returns the position the player is pointing to with their cursor
+    /// </summary>
+    public Vector3 CursorWorldPos
+    {
+        get
+        {
+            if (cursorDirty)
+                UpdateCursorWorldPos();
+            return cursorWorldPos;
+        }
+        private set
+        {
+            cursorWorldPos = value;
+        }
+    }
 
     public override void _Ready()
     {
@@ -51,7 +72,7 @@ public class MicrobeCamera : Camera
 
         Translation = Translation + velocity;
 
-        UpdateCursorWorldPos();
+        cursorDirty = true;
     }
 
     private void UpdateCursorWorldPos()
@@ -67,5 +88,7 @@ public class MicrobeCamera : Camera
         {
             CursorWorldPos = intersection.Value;
         }
+
+        cursorDirty = false;
     }
 }
