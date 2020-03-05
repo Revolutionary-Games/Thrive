@@ -25,6 +25,7 @@ can_sleep = false
 axis_lock_linear_y = true
 axis_lock_angular_x = true
 axis_lock_angular_y = true
+linear_damp = 0.961
 script = ExtResource( 5 )
 
 [node name="Membrane" parent="." instance=ExtResource( 1 )]
