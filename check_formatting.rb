@@ -33,8 +33,11 @@ def handle_cs_file(path)
       errors = true
     end
 
-    if line.length > MAX_LINE_LENGTH
-      puts "Line #{line_number} is too long. #{line.length} > #{MAX_LINE_LENGTH}"
+    # For some reason this reports 1 too high
+    length = line.length - 1
+
+    if length > MAX_LINE_LENGTH
+      puts "Line #{line_number} is too long. #{length} > #{MAX_LINE_LENGTH}"
       errors = true
     end
   end
