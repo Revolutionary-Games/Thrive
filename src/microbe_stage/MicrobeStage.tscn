@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://shaders/MicrobeBackground.shader" type="Shader" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/textures/background/Thrive_vent3.png" type="Texture" id=4]
 [ext_resource path="res://assets/textures/background/Thrive_vent1.png" type="Texture" id=5]
 [ext_resource path="res://assets/textures/background/Thrive_vent2.png" type="Texture" id=6]
+[ext_resource path="res://src/microbe_stage/PlayerMicrobeInput.cs" type="Script" id=7]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.cs" type="Script" id=8]
 
 [sub_resource type="PlaneMesh" id=1]
@@ -40,6 +41,7 @@ material = SubResource( 2 )
 [node name="DynamicallySpawned" type="Node" parent="World"]
 
 [node name="PlayerMicrobeInput" type="Node" parent="."]
+script = ExtResource( 7 )
 
 [node name="MicrobeHUD" type="Node" parent="."]
 

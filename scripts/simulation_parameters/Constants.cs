@@ -36,4 +36,43 @@ public class Constants
             return 10;
         }
     }
+
+    /// <summary>
+    ///   BASE MOVEMENT ATP cost. Cancels out a little bit more then one cytoplasm's glycolysis
+    /// </summary>
+    /// <remarks>
+    ///   this is applied *per* hex
+    /// </remarks>
+    public float BASE_MOVEMENT_ATP_COST
+    {
+        get
+        {
+            return 1.0f;
+        }
+    }
+
+    public float FLAGELLA_ENERGY_COST
+    {
+        get
+        {
+            return 7.1f;
+        }
+    }
+
+    public float FLAGELLA_BASE_FORCE
+    {
+        get
+        {
+            return 0.7f;
+        }
+    }
+
+    public float CELL_BASE_THRUST
+    {
+        get
+        {
+            return 1.6f;
+        }
+    }
+
 }

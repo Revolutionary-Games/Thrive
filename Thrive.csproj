@@ -62,6 +62,7 @@
     <Compile Include="src\microbe_stage\Microbe.cs" />
     <Compile Include="src\microbe_stage\MicrobeCamera.cs" />
     <Compile Include="src\microbe_stage\MicrobeStage.cs" />
+    <Compile Include="src\microbe_stage\PlayerMicrobeInput.cs" />
     <Compile Include="src\microbe_stage\SpawnSystem.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="src\general\MathUtils.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="src\microbe_stage\organelle_components\MovementComponent.cs" />
     <Compile Include="src\microbe_stage\organelle_components\PilusComponent.cs" />
     <Compile Include="src\microbe_stage\TweakedProcess.cs" />
+    <Compile Include="src\microbe_stage\CompoundBag.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="StyleCop.ruleset" />
