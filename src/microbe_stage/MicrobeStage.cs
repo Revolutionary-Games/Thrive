@@ -42,6 +42,7 @@ public class MicrobeStage : Node
 
         spawner.Init();
         SpawnPlayer();
+        Camera.ResetHeight();
     }
 
     /// <summary>
@@ -55,6 +56,8 @@ public class MicrobeStage : Node
         Player = (Microbe)playerScene.Instance();
         rootOfDynamicallySpawned.AddChild(Player);
         Player.AddToGroup("player");
+
+        Camera.ObjectToFollow = Player;
     }
 
     public override void _Process(float delta)

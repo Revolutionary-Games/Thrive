@@ -5,6 +5,19 @@ using Godot;
 /// </summary>
 public class MicrobeCamera : Camera
 {
+    /// <summary>
+    ///   Object the camera positions itself over
+    /// </summary>
+    public Spatial ObjectToFollow;
+
+    public float CameraHeight;
+
+    public float DefaultCameraHeight = 10.0f;
+    public float MinCameraHeight = 3.0f;
+    public float MaxCameraHeight = 25.0f;
+
+    public float InterpolateSpeed = 0.3f;
+
     private ShaderMaterial materialToUpdate;
 
     private Vector3 cursorWorldPos;
@@ -27,6 +40,11 @@ public class MicrobeCamera : Camera
         }
     }
 
+    public void ResetHeight()
+    {
+        CameraHeight = DefaultCameraHeight;
+    }
+
     public override void _Ready()
     {
         var material = GetNode<CSGMesh>("BackgroundPlane").Material;
@@ -42,35 +60,16 @@ public class MicrobeCamera : Camera
     }
 
     /// <summary>
-    ///   Updates camera pos
+    ///   Updates camera position to follow the object
     /// </summary>
     public override void _Process(float delta)
     {
-        var velocity = default(Vector3);
-
-        if (Input.IsActionPressed("ui_right"))
+        if (ObjectToFollow != null)
         {
-            velocity.x += 1;
+            var target = ObjectToFollow.Transform.origin + new Vector3(0, CameraHeight, 0);
+
+            Translation = Translation.LinearInterpolate(target, InterpolateSpeed);
         }
-
-        if (Input.IsActionPressed("ui_left"))
-        {
-            velocity.x -= 1;
-        }
-
-        if (Input.IsActionPressed("ui_down"))
-        {
-            velocity.z += 1;
-        }
-
-        if (Input.IsActionPressed("ui_up"))
-        {
-            velocity.z -= 1;
-        }
-
-        velocity = velocity.Normalized() * 40.0f * delta;
-
-        Translation = Translation + velocity;
 
         cursorDirty = true;
     }
