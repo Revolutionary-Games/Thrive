@@ -10,8 +10,14 @@ public class MicrobeCamera : Camera
     /// </summary>
     public Spatial ObjectToFollow;
 
+    /// <summary>
+    ///   Background plane that is moved farther away from the camera when zooming out
+    /// </summary>
+    public Spatial BackgroundPlane;
+
     public float CameraHeight;
 
+    public float ZoomSpeed = 0.6f;
     public float DefaultCameraHeight = 10.0f;
     public float MinCameraHeight = 3.0f;
     public float MaxCameraHeight = 25.0f;
@@ -57,6 +63,24 @@ public class MicrobeCamera : Camera
         materialToUpdate = (ShaderMaterial)material;
 
         CursorWorldPos = new Vector3(0, 0, 0);
+
+        if (HasNode("BackgroundPlane"))
+            BackgroundPlane = GetNode<Spatial>("BackgroundPlane");
+    }
+
+    public override void _Input(InputEvent @event)
+    {
+        if (@event.IsActionPressed("g_zoom_in", true))
+        {
+            CameraHeight -= ZoomSpeed;
+        }
+
+        if (@event.IsActionPressed("g_zoom_out", true))
+        {
+            CameraHeight += ZoomSpeed;
+        }
+
+        CameraHeight = CameraHeight.Clamp(MinCameraHeight, MaxCameraHeight);
     }
 
     /// <summary>
@@ -69,6 +93,14 @@ public class MicrobeCamera : Camera
             var target = ObjectToFollow.Transform.origin + new Vector3(0, CameraHeight, 0);
 
             Translation = Translation.LinearInterpolate(target, InterpolateSpeed);
+        }
+
+        if (BackgroundPlane != null)
+        {
+            var target = new Vector3(0, 0, -15 - CameraHeight);
+
+            BackgroundPlane.Translation = BackgroundPlane.Translation.LinearInterpolate(
+                target, InterpolateSpeed);
         }
 
         cursorDirty = true;

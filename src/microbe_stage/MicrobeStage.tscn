@@ -10,7 +10,9 @@
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.cs" type="Script" id=8]
 
 [sub_resource type="PlaneMesh" id=1]
-size = Vector2( 100, 100 )
+size = Vector2( 250, 250 )
+subdivide_width = 1
+subdivide_depth = 1
 
 [sub_resource type="ShaderMaterial" id=2]
 resource_local_to_scene = true
