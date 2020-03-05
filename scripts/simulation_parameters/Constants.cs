@@ -63,7 +63,7 @@ public class Constants
     {
         get
         {
-            return 4.7f;
+            return 40.7f;
         }
     }
 
@@ -71,7 +71,7 @@ public class Constants
     {
         get
         {
-            return 5.6f;
+            return 50.6f;
         }
     }
 }
