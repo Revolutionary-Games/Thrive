@@ -34,6 +34,9 @@ public class Microbe : RigidBody
     {
         // TODO: reimplement capacity calculation
         Compounds.Capacity = 50.0f;
+
+        // Add some ATP for testing
+        Compounds.AddCompound("atp", 30);
     }
 
     public override void _Process(float delta)

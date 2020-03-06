@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://shaders/MicrobeBackground.shader" type="Shader" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://assets/textures/background/Thrive_vent2.png" type="Texture" id=6]
 [ext_resource path="res://src/microbe_stage/PlayerMicrobeInput.cs" type="Script" id=7]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.cs" type="Script" id=8]
+[ext_resource path="res://src/microbe_stage/MicrobeHUD.cs" type="Script" id=9]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 250, 250 )
@@ -46,6 +47,8 @@ material = SubResource( 2 )
 script = ExtResource( 7 )
 
 [node name="MicrobeHUD" type="Node" parent="."]
+script = ExtResource( 9 )
+CompoundsLabelPath = NodePath("CompoundsPanel/VBoxContainer/CompoundsList")
 
 [node name="PanelContainer" type="PanelContainer" parent="MicrobeHUD"]
 modulate = Color( 0.290196, 0.713726, 0.901961, 0.478431 )
@@ -65,3 +68,33 @@ margin_right = 194.0
 margin_bottom = 200.0
 bbcode_text = "Things under cursor"
 text = "Things under cursor"
+
+[node name="CompoundsPanel" type="PanelContainer" parent="MicrobeHUD"]
+anchor_top = 0.639
+anchor_right = 0.218
+anchor_bottom = 0.995
+margin_left = 2.0
+margin_top = -0.0800476
+margin_right = -0.0400085
+margin_bottom = -0.400024
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeHUD/CompoundsPanel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 270.0
+margin_bottom = 249.0
+
+[node name="Label" type="Label" parent="MicrobeHUD/CompoundsPanel/VBoxContainer"]
+margin_right = 263.0
+margin_bottom = 14.0
+text = "Compounds"
+
+[node name="CompoundsList" type="RichTextLabel" parent="MicrobeHUD/CompoundsPanel/VBoxContainer"]
+margin_top = 18.0
+margin_right = 263.0
+margin_bottom = 242.0
+grow_vertical = 2
+size_flags_vertical = 3
