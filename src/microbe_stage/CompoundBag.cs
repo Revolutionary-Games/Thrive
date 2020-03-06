@@ -80,6 +80,4 @@ public class CompoundBag
             return 0.0f;
         }
     }
-
-
 }

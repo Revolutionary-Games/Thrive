@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://shaders/MicrobeBackground.shader" type="Shader" id=2]
@@ -9,6 +9,11 @@
 [ext_resource path="res://src/microbe_stage/PlayerMicrobeInput.cs" type="Script" id=7]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.cs" type="Script" id=8]
 [ext_resource path="res://src/microbe_stage/MicrobeHUD.cs" type="Script" id=9]
+[ext_resource path="res://src/microbe_stage/CompoundCloudSystem.cs" type="Script" id=10]
+[ext_resource path="res://assets/textures/TestCloudConcentrations.png" type="Texture" id=11]
+[ext_resource path="res://src/microbe_stage/CompoundCloudPlane.tscn" type="PackedScene" id=12]
+[ext_resource path="res://shaders/CompoundCloudPlane.shader" type="Shader" id=13]
+[ext_resource path="res://assets/textures/PerlinNoise.jpg" type="Texture" id=14]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 250, 250 )
@@ -23,6 +28,17 @@ shader_param/layer0 = ExtResource( 3 )
 shader_param/layer1 = ExtResource( 5 )
 shader_param/layer2 = ExtResource( 6 )
 shader_param/layer3 = ExtResource( 4 )
+
+[sub_resource type="ShaderMaterial" id=3]
+resource_local_to_scene = true
+render_priority = -1
+shader = ExtResource( 13 )
+shader_param/colour1 = Plane( 0.2, 0.3, 0, 1 )
+shader_param/colour2 = Plane( 1, 0, 1, 1 )
+shader_param/colour3 = Plane( 1, 0, 0, 1 )
+shader_param/colour4 = Plane( 0, 1, 1, 1 )
+shader_param/densities = ExtResource( 11 )
+shader_param/noise = ExtResource( 14 )
 
 [node name="MicrobeStage" type="Node"]
 script = ExtResource( 1 )
@@ -42,6 +58,44 @@ mesh = SubResource( 1 )
 material = SubResource( 2 )
 
 [node name="DynamicallySpawned" type="Node" parent="World"]
+
+[node name="CompoundClouds" type="Node" parent="World"]
+script = ExtResource( 10 )
+
+[node name="Plane1" parent="World/CompoundClouds" instance=ExtResource( 12 )]
+material = SubResource( 3 )
+
+[node name="Plane2" parent="World/CompoundClouds" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 100, 0, 0 )
+material = SubResource( 3 )
+
+[node name="Plane3" parent="World/CompoundClouds" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -100, 0, 0 )
+material = SubResource( 3 )
+
+[node name="Plane4" parent="World/CompoundClouds" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 100 )
+material = SubResource( 3 )
+
+[node name="Plane5" parent="World/CompoundClouds" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -100 )
+material = SubResource( 3 )
+
+[node name="Plane6" parent="World/CompoundClouds" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -100, 0, -100 )
+material = SubResource( 3 )
+
+[node name="Plane7" parent="World/CompoundClouds" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 100, 0, -100 )
+material = SubResource( 3 )
+
+[node name="Plane8" parent="World/CompoundClouds" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -100, 0, 100 )
+material = SubResource( 3 )
+
+[node name="Plane9" parent="World/CompoundClouds" instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 100, 0, 100 )
+material = SubResource( 3 )
 
 [node name="PlayerMicrobeInput" type="Node" parent="."]
 script = ExtResource( 7 )
