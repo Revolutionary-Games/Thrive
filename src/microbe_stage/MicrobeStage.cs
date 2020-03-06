@@ -14,6 +14,8 @@ public class MicrobeStage : Node
 
     public MicrobeCamera Camera { get; private set; }
 
+    public MicrobeHUD HUD { get; private set; }
+
     /// <summary>
     ///   This should get called the first time the stage scene is put
     ///   into an active scene tree. So returning from the editor
@@ -24,9 +26,12 @@ public class MicrobeStage : Node
         playerScene = GD.Load<PackedScene>("res://src/microbe_stage/Microbe.tscn");
 
         world = GetNode<Node>("World");
+        HUD = GetNode<MicrobeHUD>("MicrobeHUD");
         rootOfDynamicallySpawned = GetNode<Node>("World/DynamicallySpawned");
         spawner = new SpawnSystem(rootOfDynamicallySpawned);
         Camera = world.GetNode<MicrobeCamera>("PrimaryCamera");
+
+        HUD.Stage = this;
 
         // Do stage setup to spawn things and setup all parts of the stage
         SetupStage();
