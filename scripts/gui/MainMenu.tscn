@@ -1,14 +1,14 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/gui/MainMenu.cs" type="Script" id=1]
-[ext_resource path="res://assets/textures/gui/thrive_theme.tres" type="Theme" id=2]
+[ext_resource path="res://assets/textures/gui/menu_theme.tres" type="Theme" id=2]
 [ext_resource path="res://assets/textures/gui/logo.png" type="Texture" id=3]
 [ext_resource path="res://assets/sounds/main-menu-theme-2.ogg" type="AudioStream" id=4]
 
 [node name="MainMenu" type="Node"]
 script = ExtResource( 1 )
 __meta__ = {
-"_editor_description_": "Note: changing the node names may break the script"
+"_editor_description_": "The root and controller for the main menu"
 }
 
 [node name="Background" type="TextureRect" parent="."]
@@ -27,7 +27,8 @@ __meta__ = {
 }
 
 [node name="LogoCenterContainer" type="CenterContainer" parent="MenuContainers"]
-anchor_right = 1.0
+anchor_left = 0.00207033
+anchor_right = 1.00207
 anchor_bottom = 0.4
 __meta__ = {
 "_edit_use_anchors_": true,
@@ -50,7 +51,7 @@ anchor_top = 0.4125
 anchor_right = 1.00197
 anchor_bottom = 1.0
 margin_left = 0.482419
-margin_top = -135.0
+margin_top = -82.0
 margin_right = 0.478271
 __meta__ = {
 "_edit_use_anchors_": false,
@@ -59,15 +60,17 @@ __meta__ = {
 
 [node name="MenuItems" type="Control" parent="MenuContainers/ButtonsCenterContainer"]
 margin_left = 640.0
-margin_top = 279.0
+margin_top = 252.0
 margin_right = 640.0
-margin_bottom = 279.0
+margin_bottom = 252.0
 theme = ExtResource( 2 )
 __meta__ = {
 "_editor_description_": "All of the menu stuff goes here"
 }
 
-[node name="MainMenu" type="VBoxContainer" parent="MenuContainers/ButtonsCenterContainer/MenuItems"]
+[node name="MainMenu" type="VBoxContainer" parent="MenuContainers/ButtonsCenterContainer/MenuItems" groups=[
+"MenuItem",
+]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -125.0
@@ -85,7 +88,6 @@ margin_bottom = 40.0
 rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
-theme = ExtResource( 2 )
 enabled_focus_mode = 0
 text = "New Game"
 
@@ -95,7 +97,6 @@ margin_right = 250.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
-theme = ExtResource( 2 )
 disabled = true
 enabled_focus_mode = 0
 text = "Load Game"
@@ -106,7 +107,6 @@ margin_right = 250.0
 margin_bottom = 140.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
-theme = ExtResource( 2 )
 disabled = true
 enabled_focus_mode = 0
 text = "Options"
@@ -118,7 +118,6 @@ margin_bottom = 190.0
 rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
-theme = ExtResource( 2 )
 enabled_focus_mode = 0
 text = "Tools"
 
@@ -128,7 +127,6 @@ margin_right = 250.0
 margin_bottom = 240.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
-theme = ExtResource( 2 )
 disabled = true
 enabled_focus_mode = 0
 text = "Extras"
@@ -139,7 +137,6 @@ margin_right = 250.0
 margin_bottom = 290.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
-theme = ExtResource( 2 )
 disabled = true
 enabled_focus_mode = 0
 text = "Credits"
@@ -151,11 +148,12 @@ margin_bottom = 340.0
 rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
-theme = ExtResource( 2 )
 enabled_focus_mode = 0
 text = "Quit"
 
-[node name="Tools" type="VBoxContainer" parent="MenuContainers/ButtonsCenterContainer/MenuItems"]
+[node name="Tools" type="VBoxContainer" parent="MenuContainers/ButtonsCenterContainer/MenuItems" groups=[
+"MenuItem",
+]]
 visible = false
 margin_left = -125.0
 margin_top = -150.0
@@ -170,9 +168,10 @@ __meta__ = {
 margin_right = 250.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 250, 40 )
+focus_mode = 0
 mouse_filter = 1
-theme = ExtResource( 2 )
-text = "Freebuild editor"
+enabled_focus_mode = 0
+text = "Microbe Freebuild Editor"
 
 [node name="\?\?" type="Button" parent="MenuContainers/ButtonsCenterContainer/MenuItems/Tools"]
 margin_top = 50.0
@@ -180,8 +179,8 @@ margin_right = 250.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
-theme = ExtResource( 2 )
 disabled = true
+enabled_focus_mode = 0
 text = "???"
 
 [node name="\?\?_2" type="Button" parent="MenuContainers/ButtonsCenterContainer/MenuItems/Tools"]
@@ -190,8 +189,8 @@ margin_right = 250.0
 margin_bottom = 140.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
-theme = ExtResource( 2 )
 disabled = true
+enabled_focus_mode = 0
 text = "???"
 
 [node name="\?\?_3" type="Button" parent="MenuContainers/ButtonsCenterContainer/MenuItems/Tools"]
@@ -200,8 +199,8 @@ margin_right = 250.0
 margin_bottom = 190.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
-theme = ExtResource( 2 )
 disabled = true
+enabled_focus_mode = 0
 text = "???"
 
 [node name="Back" type="Button" parent="MenuContainers/ButtonsCenterContainer/MenuItems/Tools"]
@@ -209,8 +208,9 @@ margin_top = 200.0
 margin_right = 250.0
 margin_bottom = 240.0
 rect_min_size = Vector2( 250, 40 )
+focus_mode = 0
 mouse_filter = 1
-theme = ExtResource( 2 )
+enabled_focus_mode = 0
 text = "Back"
 
 [node name="MenuTween" type="Tween" parent="MenuContainers"]
@@ -218,35 +218,20 @@ __meta__ = {
 "_editor_description_": "For the menu animations and interpolations"
 }
 
-[node name="MicrobeIntro" type="VideoPlayer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": "Should only play the  microbe intro, this later need to be able to play various cutscenes"
-}
-
-[node name="ScreenFade" type="ColorRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
-volume_db = -10.0
+volume_db = -20.0
 autoplay = true
+__meta__ = {
+"_editor_description_": "Audio player for Thrive soundtrack"
+}
 
 [node name="GUIAudio" type="AudioStreamPlayer" parent="."]
-
-[node name="Fader" type="Tween" parent="."]
+__meta__ = {
+"_editor_description_": "Audio player for UI sound effects"
+}
 [connection signal="pressed" from="MenuContainers/ButtonsCenterContainer/MenuItems/MainMenu/NewGame" to="." method="NewGamePressed"]
 [connection signal="pressed" from="MenuContainers/ButtonsCenterContainer/MenuItems/MainMenu/Tools" to="." method="ToolsPressed"]
 [connection signal="pressed" from="MenuContainers/ButtonsCenterContainer/MenuItems/MainMenu/Quit" to="." method="QuitPressed"]
 [connection signal="pressed" from="MenuContainers/ButtonsCenterContainer/MenuItems/Tools/Freebuild Editor" to="." method="FreebuildEditorPressed"]
 [connection signal="pressed" from="MenuContainers/ButtonsCenterContainer/MenuItems/Tools/Back" to="." method="BackFromToolsPressed"]
-[connection signal="finished" from="MicrobeIntro" to="." method="OnMicrobeIntroEnded"]
-[connection signal="tween_completed" from="Fader" to="." method="OnFaderFinished"]

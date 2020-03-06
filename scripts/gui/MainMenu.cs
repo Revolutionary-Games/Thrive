@@ -12,25 +12,15 @@ public class MainMenu : Node
     public Godot.Collections.Array MenuArray;
     public Texture BackgroundImage;
     public TextureRect Background;
-    public ColorRect ScreenFade;
 
     public AudioStreamPlayer MusicAudio;
     public AudioStreamPlayer GUIAudio;
-    public AudioStream ButtonPressSound;
-    public VideoPlayer MicrobeIntro;
 
-    public string CurrentScene;
-    public string CurrentCutscene;
+    public Node CurrentCutsceneInstance;
+    public Node CurrentFaderInstance;
 
     public override void _Ready()
     {
-        Background = GetNode<TextureRect>("Background");
-        ScreenFade = GetNode<ColorRect>("ScreenFade");
-        GUIAudio = GetNode<AudioStreamPlayer>("GUIAudio");
-        MusicAudio = GetNode<AudioStreamPlayer>("Music");
-        MicrobeIntro = GetNode<VideoPlayer>("MicrobeIntro");
-        ScreenFade.MouseFilter = Control.MouseFilterEnum.Ignore;
-
         RunMenuSetup();
         RandomizeBackground();
     }
@@ -45,11 +35,20 @@ public class MainMenu : Node
 
     public void RunMenuSetup()
     {
+        if (HasNode("Background"))
+            Background = GetNode<TextureRect>("Background");
+
+        if (HasNode("GUIAudio"))
+            GUIAudio = GetNode<AudioStreamPlayer>("GUIAudio");
+
+        if (HasNode("Music"))
+            MusicAudio = GetNode<AudioStreamPlayer>("Music");
+
         if (MenuArray != null)
             MenuArray.Clear();
 
-        MenuArray = GetNode<Control>("MenuContainers/ButtonsCenterContainer/MenuItems")
-            .GetChildren();
+        MenuArray = GetTree().GetNodesInGroup("MenuItem");
+
         if (MenuArray == null)
         {
             GD.PrintErr("Failed to find all the menu items!");
@@ -80,67 +79,74 @@ public class MainMenu : Node
 
     public void SetBackground(string filepath)
     {
+        if (Background == null)
+        {
+            GD.PrintErr("Background object doesn't exist");
+            return;
+        }
+
         BackgroundImage = GD.Load<Texture>(filepath);
         Background.Texture = BackgroundImage;
     }
 
     public void PlayButtonPressSound()
     {
-        if (ButtonPressSound == null)
-        {
-            ButtonPressSound = GD.Load<AudioStream>(
-                "res://assets/sounds/soundeffects/gui/button-hover-click.ogg");
-        }
+        var sound = GD.Load<AudioStream>(
+            "res://assets/sounds/soundeffects/gui/button-hover-click.ogg");
 
-        GUIAudio.Stream = ButtonPressSound;
+        GUIAudio.Stream = sound;
         GUIAudio.Play();
     }
 
-    public void FadeInWithCutsceneTo(string scene, string cutscene, float fadeDuration)
+    public void FadeIn(string onFinishedMethod, float fadeDuration)
     {
-        var fader = GetNode<Tween>("Fader");
-        if (fader == null)
+        var scene = GD.Load<PackedScene>("res://scripts/gui/Fade.tscn");
+
+        CurrentFaderInstance = scene.Instance();
+        AddChild(CurrentFaderInstance);
+
+        var rect = CurrentFaderInstance.GetNode<ColorRect>("Rect");
+        var fader = CurrentFaderInstance.GetNode<Tween>("Fader");
+
+        rect.MouseFilter = Control.MouseFilterEnum.Stop;
+
+        fader.InterpolateProperty(rect, "color", null,
+            new Color(0, 0, 0, 1), fadeDuration);
+
+        fader.Start();
+        fader.Connect("tween_completed", this, onFinishedMethod, null, 1);
+    }
+
+    public void PlayCutscene(string path, string onFinishedMethod)
+    {
+        var scene = GD.Load<PackedScene>("res://scripts/gui/Cutscene.tscn");
+
+        if (scene == null)
         {
-            GD.PrintErr("Failed to find fader node!");
+            GD.PrintErr("Failed to load the cutscene player scene");
             return;
         }
 
-        ScreenFade.MouseFilter = Control.MouseFilterEnum.Stop;
-        fader.InterpolateProperty(ScreenFade, "color", null,
-            new Color(0, 0, 0, 1), fadeDuration);
-        fader.Start();
+        CurrentCutsceneInstance = scene.Instance();
+        AddChild(CurrentCutsceneInstance);
 
-        CurrentScene = scene;
-        CurrentCutscene = cutscene;
-    }
-
-    public void PlayCutscene(string path)
-    {
         var stream = GD.Load<VideoStream>(path);
-        MicrobeIntro.Stream = stream;
-        if (stream != null)
-            MicrobeIntro.Play();
+        var videoPlayer = CurrentCutsceneInstance.GetNode<VideoPlayer>("VideoPlayer");
+
+        videoPlayer.Stream = stream;
+        videoPlayer.Play();
+        videoPlayer.Connect("finished", this, onFinishedMethod, null, 1);
     }
 
     public void CancelCutscene()
     {
-        if (!MicrobeIntro.IsPlaying())
+        if (CurrentCutsceneInstance == null)
+        {
+            GD.PrintErr("Cutscene instance doesn't exist");
             return;
+        }
 
-        MicrobeIntro.Stop();
-        OnMicrobeIntroEnded();
-    }
-
-    public void OnFaderFinished(Godot.Object obj, NodePath key)
-    {
-        ScreenFade.Color = new Color(0, 0, 0, 0);
-        PlayCutscene(CurrentCutscene);
-    }
-
-    public void OnMicrobeIntroEnded()
-    {
-        ScreenFade.MouseFilter = Control.MouseFilterEnum.Ignore;
-        GetTree().ChangeScene(CurrentScene);
+        CurrentCutsceneInstance.GetNode<VideoPlayer>("VideoPlayer").EmitSignal("finished");
     }
 
     public void SetCurrentMenu(uint index, bool slide = true)
@@ -174,12 +180,29 @@ public class MainMenu : Node
         CurrentMenuIndex = index;
     }
 
+    public void OnNewGameFadeFinished(Godot.Object obj, NodePath key)
+    {
+        // Remove the screen fade node instance
+        CurrentFaderInstance.QueueFree();
+        CurrentFaderInstance = null;
+
+        PlayCutscene("res://assets/videos/microbe_intro2.webm", "OnMicrobeIntroEnded");
+    }
+
+    public void OnMicrobeIntroEnded()
+    {
+        // Remove the cutscene node instance
+        CurrentCutsceneInstance.QueueFree();
+        CurrentCutsceneInstance = null;
+
+        GetTree().ChangeScene("res://src/microbe_stage/MicrobeStage.tscn");
+    }
+
     public void NewGamePressed()
     {
         PlayButtonPressSound();
         MusicAudio.Stop();
-        FadeInWithCutsceneTo("res://src/microbe_stage/MicrobeStage.tscn",
-            "res://assets/videos/microbe_intro2.webm", 1f);
+        FadeIn("OnNewGameFadeFinished", 1f);
     }
 
     public void ToolsPressed()
