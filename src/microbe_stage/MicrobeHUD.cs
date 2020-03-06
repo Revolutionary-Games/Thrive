@@ -39,7 +39,7 @@ public class MicrobeHUD : Node
 
     private string CompoundsToString(Dictionary<string, float> compounds)
     {
-        StringBuilder compoundsText = new StringBuilder("", 150);
+        StringBuilder compoundsText = new StringBuilder(string.Empty, 150);
 
         bool first = true;
 
