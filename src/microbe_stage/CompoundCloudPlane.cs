@@ -33,6 +33,9 @@ public class CompoundCloudPlane : CSGMesh
             new Color(0, 0, 0, 0),
             new Color(0, 0, 0, 0),
             new Color(0, 0, 0, 0));
+
+        var material = (ShaderMaterial)this.Material;
+        material.SetShaderParam("densities", texture);
     }
 
     public void SetCloudColours(Color cloud1, Color cloud2, Color cloud3, Color cloud4)
