@@ -1,7 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Text;
 using Godot;
-
 
 /// <summary>
 ///   Manages the microbe HUD display
@@ -31,22 +31,27 @@ public class MicrobeHUD : Node
 
         if (Stage.Player != null)
         {
-            var compounds = Stage.Player.Compounds.Compounds;
-            StringBuilder compoundsText = new StringBuilder("", 150);
-
-            bool first = true;
-
-            foreach (var entry in compounds)
-            {
-                if (!first)
-                    compoundsText.Append("\n");
-                first = false;
-
-
-                compoundsText.Append($"{entry.Key}: {entry.Value}");
-            }
-
-            CompoundsLabel.Text = compoundsText.ToString();
+            CompoundsLabel.Text = CompoundsToString(Stage.Player.Compounds.Compounds);
         }
+
+        // Stage.
+    }
+
+    private string CompoundsToString(Dictionary<string, float> compounds)
+    {
+        StringBuilder compoundsText = new StringBuilder("", 150);
+
+        bool first = true;
+
+        foreach (var entry in compounds)
+        {
+            if (!first)
+                compoundsText.Append("\n");
+            first = false;
+
+            compoundsText.Append($"{entry.Key}: {entry.Value}");
+        }
+
+        return compoundsText.ToString();
     }
 }

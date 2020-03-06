@@ -16,6 +16,8 @@ public class MicrobeStage : Node
 
     public MicrobeHUD HUD { get; private set; }
 
+    public CompoundCloudSystem Clouds { get; private set; }
+
     /// <summary>
     ///   This should get called the first time the stage scene is put
     ///   into an active scene tree. So returning from the editor
@@ -30,6 +32,7 @@ public class MicrobeStage : Node
         rootOfDynamicallySpawned = GetNode<Node>("World/DynamicallySpawned");
         spawner = new SpawnSystem(rootOfDynamicallySpawned);
         Camera = world.GetNode<MicrobeCamera>("PrimaryCamera");
+        Clouds = world.GetNode<CompoundCloudSystem>("CompoundClouds");
 
         HUD.Stage = this;
 
@@ -48,6 +51,7 @@ public class MicrobeStage : Node
         spawner.Init();
         SpawnPlayer();
         Camera.ResetHeight();
+        Clouds.Init();
     }
 
     /// <summary>
