@@ -10,7 +10,6 @@ public class MainMenu : Node
     public uint CurrentMenuIndex;
 
     public Godot.Collections.Array MenuArray;
-    public Texture BackgroundImage;
     public TextureRect Background;
 
     public AudioStreamPlayer MusicAudio;
@@ -18,6 +17,8 @@ public class MainMenu : Node
 
     public Node CurrentCutsceneInstance;
     public Node CurrentFaderInstance;
+
+    private Vector2 cutsceneSize;
 
     public override void _Ready()
     {
@@ -85,8 +86,8 @@ public class MainMenu : Node
             return;
         }
 
-        BackgroundImage = GD.Load<Texture>(filepath);
-        Background.Texture = BackgroundImage;
+        var backgroundImage = GD.Load<Texture>(filepath);
+        Background.Texture = backgroundImage;
     }
 
     public void PlayButtonPressSound()
@@ -107,8 +108,6 @@ public class MainMenu : Node
 
         var rect = CurrentFaderInstance.GetNode<ColorRect>("Rect");
         var fader = CurrentFaderInstance.GetNode<Tween>("Fader");
-
-        rect.MouseFilter = Control.MouseFilterEnum.Stop;
 
         fader.InterpolateProperty(rect, "color", null,
             new Color(0, 0, 0, 1), fadeDuration);
@@ -133,20 +132,58 @@ public class MainMenu : Node
         var stream = GD.Load<VideoStream>(path);
         var videoPlayer = CurrentCutsceneInstance.GetNode<VideoPlayer>("VideoPlayer");
 
+        // Temporarily save the video player size for any resizing
+        cutsceneSize = videoPlayer.RectSize;
+
         videoPlayer.Stream = stream;
         videoPlayer.Play();
+
         videoPlayer.Connect("finished", this, onFinishedMethod, null, 1);
+
+        var viewport = GetViewport();
+
+        // Disconnect signal if it's already connected
+        if (viewport.IsConnected("size_changed", this, "OnCutsceneResized"))
+            viewport.Disconnect("size_changed", this, "OnCutsceneResized");
+
+        viewport.Connect("size_changed", this, "OnCutsceneResized");
+    }
+
+    public void OnCutsceneResized()
+    {
+        if (CurrentCutsceneInstance == null)
+        {
+            GD.PrintErr("Can't handle resizing on a null cutscene instance");
+            return;
+        }
+
+        var videoPlayer = CurrentCutsceneInstance.GetNode<VideoPlayer>("VideoPlayer");
+        var currentSize = OS.WindowSize;
+
+        // Scaling factors
+        var scaleHeight = currentSize.x / cutsceneSize.x;
+        var scaleWidth = currentSize.y / cutsceneSize.y;
+
+        var scale = Math.Min(scaleHeight, scaleWidth);
+
+        var newSize = new Vector2(cutsceneSize.x * scale, cutsceneSize.y * scale);
+
+        // Adjust the cutscene size and center it
+        videoPlayer.SetSize(newSize);
+        videoPlayer.SetAnchorsAndMarginsPreset(Control.LayoutPreset.Center,
+            Control.LayoutPresetMode.KeepSize);
     }
 
     public void CancelCutscene()
     {
         if (CurrentCutsceneInstance == null)
         {
-            GD.PrintErr("Cutscene instance doesn't exist");
+            GD.PrintErr("Cutscene instance doesn't exist, nothing to skip");
             return;
         }
 
-        CurrentCutsceneInstance.GetNode<VideoPlayer>("VideoPlayer").EmitSignal("finished");
+        CurrentCutsceneInstance.GetNode<VideoPlayer>(
+            "VideoPlayer").EmitSignal("finished");
     }
 
     public void SetCurrentMenu(uint index, bool slide = true)
@@ -202,7 +239,7 @@ public class MainMenu : Node
     {
         PlayButtonPressSound();
         MusicAudio.Stop();
-        FadeIn("OnNewGameFadeFinished", 1f);
+        FadeIn("OnNewGameFadeFinished", 0.8f);
     }
 
     public void ToolsPressed()
