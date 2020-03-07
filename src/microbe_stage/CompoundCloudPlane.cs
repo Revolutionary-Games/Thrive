@@ -6,28 +6,30 @@ public class CompoundCloudPlane : CSGMesh
     private Image image;
     private ImageTexture texture;
 
+    private int size;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        int size = Constants.Instance.CLOUD_SIMULATION_WIDTH;
+        size = Constants.Instance.CLOUD_SIMULATION_WIDTH;
         image = new Image();
         image.Create(size, size, false, Image.Format.Rgba8);
         texture = new ImageTexture();
-        texture.CreateFromImage(image, (uint)Texture.FlagsEnum.Filter);
 
+        // Blank out the image
         image.Lock();
 
-        var data = image.GetData();
-
-        for (int i = 0; i < data.Length; i += 4)
+        for (int y = 0; y < size; ++y)
         {
-            data[i + 0] = 196;
-            data[i + 1] = 0;
-            data[i + 2] = 0;
-            data[i + 3] = 0;
+            for (int x = 0; x < size; ++x)
+            {
+                image.SetPixel(x, y, new Color(0, 0, 0, 0));
+            }
         }
 
         image.Unlock();
+
+        texture.CreateFromImage(image, (uint)Texture.FlagsEnum.Filter);
 
         SetCloudColours(new Color(0.786f, 0.211f, 0.98f, 1.0f),
             new Color(0, 0, 0, 0),
@@ -52,10 +54,16 @@ public class CompoundCloudPlane : CSGMesh
     {
         image.Lock();
 
-        var data = image.GetData();
-
-        // Array.Copy(, data, data.Length);
+        for (int y = 0; y < size; ++y)
+        {
+            for (int x = 0; x < size; ++x)
+            {
+                image.SetPixel(x, y, new Color(0.852f, 0, 0, 0));
+            }
+        }
 
         image.Unlock();
+
+        texture.CreateFromImage(image, (uint)Texture.FlagsEnum.Filter);
     }
 }
