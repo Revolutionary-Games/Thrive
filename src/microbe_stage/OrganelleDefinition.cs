@@ -73,6 +73,8 @@ public class OrganelleDefinition : IRegistryType
         private set;
     }
 
+    public string InternalName { get; set; }
+
     public void Check(string name)
     {
         if (Components == null)

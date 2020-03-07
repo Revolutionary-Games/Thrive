@@ -23,6 +23,8 @@ public class Biome : IRegistryType
 
     public Dictionary<string, ChunkConfiguration> Chunks;
 
+    public string InternalName { get; set; }
+
     public void Check(string name)
     {
         if (Name == string.Empty || Background == string.Empty)

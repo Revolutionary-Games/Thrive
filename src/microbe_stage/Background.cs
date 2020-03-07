@@ -7,6 +7,8 @@ public class Background : IRegistryType
 {
     public List<string> Textures;
 
+    public string InternalName { get; set; }
+
     public void Check(string name)
     {
         if (Textures.Count != 4)
