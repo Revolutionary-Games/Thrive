@@ -13,6 +13,11 @@ public class CompoundCloudPlane : CSGMesh
     private float[,] densities3;
     private float[,] densities4;
 
+    private Compound compound1;
+    private Compound compound2;
+    private Compound compound3;
+    private Compound compound4;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -36,11 +41,6 @@ public class CompoundCloudPlane : CSGMesh
 
         texture.CreateFromImage(image, (uint)Texture.FlagsEnum.Filter);
 
-        SetCloudColours(new Color(0.786f, 0.211f, 0.98f, 1.0f),
-            new Color(0, 0, 0, 0),
-            new Color(0, 0, 0, 0),
-            new Color(0, 0, 0, 0));
-
         var material = (ShaderMaterial)this.Material;
         material.SetShaderParam("densities", texture);
     }
@@ -48,13 +48,28 @@ public class CompoundCloudPlane : CSGMesh
     /// <summary>
     ///   Initializes this cloud. The unset colour channels are not used
     /// </summary>
-    public void Init(Color cloud1, Color? cloud2, Color? cloud3, Color? cloud4)
+    public void Init(Compound cloud1, Compound cloud2, Compound cloud3, Compound cloud4)
     {
         // For simplicity all the densities always exist, even on the unused clouds
         densities1 = new float[size, size];
         densities2 = new float[size, size];
         densities3 = new float[size, size];
         densities4 = new float[size, size];
+
+        compound1 = cloud1;
+        compound2 = cloud2;
+        compound3 = cloud3;
+        compound4 = cloud4;
+
+        var material = (ShaderMaterial)this.Material;
+
+        material.SetShaderParam("colour1", compound1.Colour);
+
+        var blank = new Color(0, 0, 0, 0);
+
+        material.SetShaderParam("colour2", compound2 != null ? compound2.Colour : blank);
+        material.SetShaderParam("colour3", compound3 != null ? compound3.Colour : blank);
+        material.SetShaderParam("colour4", compound4 != null ? compound4.Colour : blank);
     }
 
     /// <summary>
@@ -82,14 +97,5 @@ public class CompoundCloudPlane : CSGMesh
         image.Unlock();
 
         texture.CreateFromImage(image, (uint)Texture.FlagsEnum.Filter);
-    }
-
-    private void SetCloudColours(Color cloud1, Color cloud2, Color cloud3, Color cloud4)
-    {
-        var material = (ShaderMaterial)this.Material;
-        material.SetShaderParam("colour1", cloud1);
-        material.SetShaderParam("colour2", cloud2);
-        material.SetShaderParam("colour3", cloud3);
-        material.SetShaderParam("colour4", cloud4);
     }
 }

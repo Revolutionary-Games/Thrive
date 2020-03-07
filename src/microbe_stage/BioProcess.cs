@@ -17,6 +17,8 @@ public class BioProcess : IRegistryType
 
     public Dictionary<string, float> Outputs;
 
+    public string InternalName { get; set; }
+
     public void Check(string name)
     {
         if (Inputs == null || Outputs == null)

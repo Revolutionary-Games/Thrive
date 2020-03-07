@@ -11,6 +11,12 @@ public class NameGenerator : IRegistryType
     public List<string> SuffixesV;
     public List<string> SuffixesC;
 
+    /// <summary>
+    /// Unused
+    /// </summary>
+    /// <value>The name of the internal.</value>
+    public string InternalName { get; set; }
+
     public void Check(string name)
     {
         if (PrefixCofix.Count < 1)

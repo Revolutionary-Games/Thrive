@@ -87,6 +87,24 @@ public class SimulationParameters
         return compounds[name];
     }
 
+    /// <summary>
+    ///   Returns all compounds that are clouds
+    /// </summary>
+    public List<Compound> GetCloudCompounds()
+    {
+        var result = new List<Compound>();
+
+        foreach (var entry in compounds)
+        {
+            if (entry.Value.IsCloud)
+            {
+                result.Add(entry.Value);
+            }
+        }
+
+        return result;
+    }
+
     private static string ReadJSONFile(string path)
     {
         using (var file = new File())
@@ -131,6 +149,7 @@ public class SimulationParameters
     {
         foreach (var entry in registry)
         {
+            entry.Value.InternalName = entry.Key;
             entry.Value.Check(entry.Key);
         }
     }

@@ -24,6 +24,8 @@ public class Compound : IRegistryType
 
     public Color Colour;
 
+    public string InternalName { get; set; }
+
     public void Check(string name)
     {
         if (Name == string.Empty)

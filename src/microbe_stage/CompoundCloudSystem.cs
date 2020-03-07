@@ -10,20 +10,88 @@ public class CompoundCloudSystem : Node
 {
     private readonly List<Task> tasks = new List<Task>();
 
+    private int neededCloudsAtOnePosition;
+
     private List<CompoundCloudPlane> clouds = new List<CompoundCloudPlane>();
+    private PackedScene cloudScene;
 
     public override void _Ready()
     {
+        cloudScene = GD.Load<PackedScene>("res://src/microbe_stage/CompoundCloudPlane.tscn");
+    }
+
+    public override void _Process(float delta)
+    {
+        PositionClouds();
+        UpdateCloudContents(delta);
+    }
+
+    /// <summary>
+    ///   Resets the cloud contents and positions
+    /// </summary>
+    public void Init()
+    {
+        var config = SimulationParameters.Instance;
+
+        clouds.Clear();
+
         foreach (var child in GetChildren())
         {
             clouds.Add((CompoundCloudPlane)child);
         }
 
-        if (clouds.Count != 9)
-            GD.PrintErr("CompoundCloudSystem doesn't have 9 child cloud objects");
+        var compounds = config.GetCloudCompounds();
+
+        // Count the number of clouds needed at one position from the loaded compound types
+        neededCloudsAtOnePosition = (int)Math.Ceiling(compounds.Count / 4.0f);
+
+        // We need to dynamically spawn more / delete some if this doesn't match
+        while (clouds.Count < 9 * neededCloudsAtOnePosition)
+        {
+            var createdCloud = (CompoundCloudPlane)cloudScene.Instance();
+            clouds.Add(createdCloud);
+            AddChild(createdCloud);
+        }
+
+        while (clouds.Count > 9 * neededCloudsAtOnePosition)
+        {
+            var cloud = clouds[0];
+            RemoveChild(cloud);
+            cloud.Free();
+            clouds.Remove(cloud);
+        }
+
+        for (int i = 0; i < clouds.Count; i += neededCloudsAtOnePosition)
+        {
+            Compound cloud1;
+            Compound cloud2 = null;
+            Compound cloud3 = null;
+            Compound cloud4 = null;
+
+            int startOffset = (i % neededCloudsAtOnePosition) * neededCloudsAtOnePosition;
+
+            cloud1 = compounds[startOffset + 0];
+
+            if (startOffset + 1 < compounds.Count)
+                cloud2 = compounds[startOffset + 1];
+
+            if (startOffset + 2 < compounds.Count)
+                cloud3 = compounds[startOffset + 2];
+
+            if (startOffset + 3 < compounds.Count)
+                cloud4 = compounds[startOffset + 3];
+
+            clouds[i].Init(cloud1, cloud2, cloud3, cloud4);
+        }
+
+        PositionClouds();
     }
 
-    public override void _Process(float delta)
+    private void PositionClouds()
+    {
+    }
+
+    private void UpdateCloudContents(float delta)
     {
         // The clouds are processed here in order to take advantage of threading
 
@@ -64,12 +132,5 @@ public class CompoundCloudSystem : Node
         }
 
         tasks.Clear();
-    }
-
-    /// <summary>
-    ///   Resets the cloud contents and positions
-    /// </summary>
-    public void Init()
-    {
     }
 }

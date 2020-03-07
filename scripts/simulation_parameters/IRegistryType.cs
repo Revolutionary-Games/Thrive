@@ -1,6 +1,11 @@
 ﻿public interface IRegistryType
 {
     /// <summary>
+    ///   The name referred to this registry object in json
+    /// </summary>
+    string InternalName { get; set; }
+
+    /// <summary>
     /// Checks that values are valid. Throws InvalidRegistryData if not good.
     /// </summary>
     /// <param name="name">Name of the current object for easier reporting.</param>
