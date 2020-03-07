@@ -8,6 +8,11 @@ public class CompoundCloudPlane : CSGMesh
 
     private int size;
 
+    private float[,] densities1;
+    private float[,] densities2;
+    private float[,] densities3;
+    private float[,] densities4;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
@@ -40,17 +45,29 @@ public class CompoundCloudPlane : CSGMesh
         material.SetShaderParam("densities", texture);
     }
 
-    public void SetCloudColours(Color cloud1, Color cloud2, Color cloud3, Color cloud4)
+    /// <summary>
+    ///   Initializes this cloud. The unset colour channels are not used
+    /// </summary>
+    public void Init(Color cloud1, Color? cloud2, Color? cloud3, Color? cloud4)
     {
-        var material = (ShaderMaterial)this.Material;
-        material.SetShaderParam("colour1", cloud1);
-        material.SetShaderParam("colour2", cloud2);
-        material.SetShaderParam("colour3", cloud3);
-        material.SetShaderParam("colour4", cloud4);
+        // For simplicity all the densities always exist, even on the unused clouds
+        densities1 = new float[size, size];
+        densities2 = new float[size, size];
+        densities3 = new float[size, size];
+        densities4 = new float[size, size];
     }
 
-    public void UpdateDensities(float[][] densities1, float[][] densities2,
-        float[][] densities3, float[][] densities4)
+    /// <summary>
+    ///   Applies diffuse and advect for this single cloud
+    /// </summary>
+    public void UpdateCloud(float delta)
+    {
+    }
+
+    /// <summary>
+    ///   Updates the texture with the new densities
+    /// </summary>
+    public void UploadTexture()
     {
         image.Lock();
 
@@ -65,5 +82,14 @@ public class CompoundCloudPlane : CSGMesh
         image.Unlock();
 
         texture.CreateFromImage(image, (uint)Texture.FlagsEnum.Filter);
+    }
+
+    private void SetCloudColours(Color cloud1, Color cloud2, Color cloud3, Color cloud4)
+    {
+        var material = (ShaderMaterial)this.Material;
+        material.SetShaderParam("colour1", cloud1);
+        material.SetShaderParam("colour2", cloud2);
+        material.SetShaderParam("colour3", cloud3);
+        material.SetShaderParam("colour4", cloud4);
     }
 }
