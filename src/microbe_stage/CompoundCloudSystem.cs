@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Godot;
 
 /// <summary>
@@ -7,6 +8,8 @@ using Godot;
 /// </summary>
 public class CompoundCloudSystem : Node
 {
+    private readonly List<Task> tasks = new List<Task>();
+
     private List<CompoundCloudPlane> clouds = new List<CompoundCloudPlane>();
 
     public override void _Ready()
@@ -22,6 +25,45 @@ public class CompoundCloudSystem : Node
 
     public override void _Process(float delta)
     {
+        // The clouds are processed here in order to take advantage of threading
+
+        // The first cloud is processed on the main thread
+        bool first = true;
+
+        var executor = TaskExecutor.Instance;
+
+        foreach (var cloud in clouds)
+        {
+            var task = new Task(() => cloud.UpdateCloud(delta));
+
+            tasks.Add(task);
+
+            if (!first)
+            {
+                executor.AddTask(task);
+            }
+
+            first = false;
+        }
+
+        // Run the first task on this thread
+        tasks[0].RunSynchronously();
+
+        // Wait for all tasks to complete
+        foreach (var task in tasks)
+        {
+            task.Wait();
+        }
+
+        // TODO: moving compounds between next to each other clouds
+
+        // Update the cloud textures
+        foreach (var cloud in clouds)
+        {
+            cloud.UploadTexture();
+        }
+
+        tasks.Clear();
     }
 
     /// <summary>
