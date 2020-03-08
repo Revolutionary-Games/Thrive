@@ -18,6 +18,8 @@ public class MicrobeStage : Node
 
     public CompoundCloudSystem Clouds { get; private set; }
 
+    public FluidSystem FluidSystem { get; private set; }
+
     /// <summary>
     ///   This should get called the first time the stage scene is put
     ///   into an active scene tree. So returning from the editor
@@ -48,10 +50,12 @@ public class MicrobeStage : Node
         if (SimulationParameters.Instance == null)
             GD.PrintErr("Something bad happened with SimulationParameters loading");
 
+        FluidSystem = new FluidSystem();
+
         spawner.Init();
         SpawnPlayer();
         Camera.ResetHeight();
-        Clouds.Init();
+        Clouds.Init(FluidSystem);
     }
 
     /// <summary>
@@ -72,5 +76,10 @@ public class MicrobeStage : Node
     public override void _Process(float delta)
     {
         spawner.Process(delta);
+
+        if (Player != null)
+        {
+            Clouds.ReportPlayerPosition(Player.Translation);
+        }
     }
 }
