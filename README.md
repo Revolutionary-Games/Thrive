@@ -21,7 +21,7 @@ to get your development environment set up.
 
 Read the [contribution guidelines](CONTRIBUTING.md) first. If you need
 help please ask [on our
-forums](https://community.revolutionarygamesstudio.com/c/25-dev-help).
+forums](https://community.revolutionarygamesstudio.com/c/dev-help).
 
 There are also other useful documents in the [doc](doc) folder not mentioned here.
 
