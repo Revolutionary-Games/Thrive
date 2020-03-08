@@ -237,8 +237,7 @@ public class CompoundCloudSystem : Node
         // Find the target cloud //
         foreach (var cloud in clouds)
         {
-            int x, y;
-            if (cloud.ContainsPosition(worldPosition, out x, out y))
+            if (cloud.ContainsPosition(worldPosition, out int x, out int y))
             {
                 // Within cloud
 
@@ -257,7 +256,7 @@ public class CompoundCloudSystem : Node
     /// <summary>
     ///   Takes compound at world position
     /// </summary>
-    /// <param name="fraction">The fraction of compound to take. Should be <= 1</param>
+    /// <param name="fraction">The fraction of compound to take. Should be &lt;= 1</param>
     public float TakeCompound(Compound compound, Vector3 worldPosition, float fraction)
     {
         foreach (var cloud in clouds)
