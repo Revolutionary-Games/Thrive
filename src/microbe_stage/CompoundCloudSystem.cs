@@ -492,44 +492,13 @@ public class CompoundCloudSystem : Node
 
     private void UpdateCloudContents(float delta)
     {
-        // The clouds are processed here in order to take advantage of threading
-
-        // The first cloud is processed on the main thread
-        bool first = true;
-
-        var executor = TaskExecutor.Instance;
-
-        foreach (var cloud in clouds)
-        {
-            var task = new Task(() => cloud.UpdateCloud(delta));
-
-            tasks.Add(task);
-
-            if (!first)
-            {
-                executor.AddTask(task);
-            }
-
-            first = false;
-        }
-
-        // Run the first task on this thread
-        tasks[0].RunSynchronously();
-
-        // Wait for all tasks to complete
-        foreach (var task in tasks)
-        {
-            task.Wait();
-        }
-
-        // TODO: moving compounds between next to each other clouds
-
         // Update the cloud textures
+        // TODO: update the clouds in some positional order
+        // (like top left -> top center -> top right).
         foreach (var cloud in clouds)
         {
+            cloud.UpdateCloud(delta);
             cloud.UploadTexture();
         }
-
-        tasks.Clear();
     }
 }
