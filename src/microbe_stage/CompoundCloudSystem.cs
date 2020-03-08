@@ -410,7 +410,7 @@ public class CompoundCloudSystem : Node
             {
                 // An exact check might work but just to be safe slight
                 // inaccuracy is allowed here
-                if ((cloud.Translation - requiredPos).Length() < 0.01f)
+                if ((cloud.Translation - requiredPos).LengthSquared() < 0.01f)
                 {
                     matched = true;
                     break;
@@ -442,7 +442,7 @@ public class CompoundCloudSystem : Node
                 {
                     // An exact check might work but just to be safe slight
                     // inaccuracy is allowed here
-                    if ((cloud.Translation - requiredPos).Length() < 0.01f)
+                    if ((cloud.Translation - requiredPos).LengthSquared() < 0.01f)
                     {
                         // Check that the group of the cloud is correct
                         if (groupType == cloud.Compound1)
