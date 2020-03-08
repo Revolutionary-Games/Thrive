@@ -66,35 +66,35 @@ script = ExtResource( 10 )
 material = SubResource( 3 )
 
 [node name="Plane2" parent="World/CompoundClouds" instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 100, 0, 0 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 200, 0, 0 )
 material = SubResource( 3 )
 
 [node name="Plane3" parent="World/CompoundClouds" instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -100, 0, 0 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -200, 0, 0 )
 material = SubResource( 3 )
 
 [node name="Plane4" parent="World/CompoundClouds" instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 100 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 200 )
 material = SubResource( 3 )
 
 [node name="Plane5" parent="World/CompoundClouds" instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -100 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, -200 )
 material = SubResource( 3 )
 
 [node name="Plane6" parent="World/CompoundClouds" instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -100, 0, -100 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -200, 0, -200 )
 material = SubResource( 3 )
 
 [node name="Plane7" parent="World/CompoundClouds" instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 100, 0, -100 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 200, 0, -200 )
 material = SubResource( 3 )
 
 [node name="Plane8" parent="World/CompoundClouds" instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -100, 0, 100 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -200, 0, 200 )
 material = SubResource( 3 )
 
 [node name="Plane9" parent="World/CompoundClouds" instance=ExtResource( 12 )]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 100, 0, 100 )
+transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 200, 0, 200 )
 material = SubResource( 3 )
 
 [node name="PlayerMicrobeInput" type="Node" parent="."]
