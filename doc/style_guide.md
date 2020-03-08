@@ -1,60 +1,55 @@
 Code Style Guide
 ================
 
-To maintain a consistent coding style, contributors should follow the rules
-outlined on this page. This style guide is separated into four parts: common
-rules, rules specific for C++, rules specific for AngelScript and guidelines for
-using git.
+To maintain a consistent coding style, contributors should follow the
+rules outlined on this page. This style guide is separated into three
+parts: code rules, other file rules, and guidelines for using git.
 
-The style rules are intended to increase readability of the source code. The
-most important rule of all is: **Use common sense**. If you have to break
-some rules to make the code more readable (and not just for you, but for
-everyone who has to read your code), break it.
+The style rules are intended to increase readability of the source
+code. The most important rule of all is: **Use common sense**. If you
+have to break some rules to make the code more readable (and not just
+for you, but for everyone who has to read your code), break
+it. Breaking stylecop enforced rules should only be done in special
+cases.
 
-Common (Both C++ and AngelScript)
---------------------------------------
+Note: we are new to using StyleCop so the list of rules and options
+for it can be debated and changed in the future.
+
+Code style rules
+----------------
 
 - Indentation is 4 spaces
 
-- Names (that includes variables, functions and classes) should be descriptive.
-  Avoid abbreviations. Do not shorten variable names just to save key strokes,
-  it will be read far more often than it will be written.
+- Names (that includes variables, functions and classes) should be
+  descriptive.  Avoid abbreviations. Do not shorten variable names
+  just to save key strokes, it will be read far more often than it
+  will be written.
 
-- Variables and functions are camelCase with leading lower case. Classes are
-  CamelCase with leading upper case. Constants are CONSTANT_CASE with
-  underscores.
+- Variables and functions are camelCase or PascalCase depending on
+  their visibilty. Classes are PascalCase with leading upper
+  case. StyleCop enforces these rules. Constants are all upper case
+  with SNAKE_CASE (underscores).
 
-- Filenames are lower_case with underscores. The reason for this is
-  that Thrive is a cross-platform project and some platforms use
-  case-sensitive file systems (Unix) while others use case-insensitive
-  file systems (Windows). Exceptions are the CMakeLists.txt files and
-  a few of the other core files, which need to be named like this for
-  them to work.
+- Code filenames are the same case as the primary class in them,
+  ie. PascalCase. Also Godot scenes and other resources should be
+  named in PascalCase and saved in files that match their name. Thrive
+  is a cross-platform project and some platforms use case-sensitive
+  file systems (Unix).  Other files and folders that don't need to be
+  named the same as the class in them are named with all lowercase
+  with underscores separating the words.
 
-C++
----
-
-- Format your code with [clang-format](clang_format.md) this is the
-  official formatting and most important thing to consider. If you
-  don't automatic checks on your code will fail.
-
-- Macros are CONSTANT_CASE
-
-- Header files end in .h, source files in .cpp
-
-- Header files should begin with `#pragma once`. Old-style header
-  guards (with `ifdef`) are discouraged because they are very verbose and
-  the pragma is understood by all relevant compilers.
-
-- Keep header files minimal. Ideally, they show only functions / classes that
-  are useful to other code. All internal helper functions / classes should be
-  declared and defined in the source file.
+- Build your code with warnings enabled to see things StyleCop
+  complains about. If you don't automatic checks on your code will
+  fail.
+  
+- Due to StyleCop not having rules for everything, there are
+  additional rules implemented by `check_formatting.rb` which you
+  should run before committing to make sure there are no issues in
+  your code.
 
 - All classes and their public and protected members should be documented by
-  doxygen comments in the header file. If the function's purpose is clear
-  from the name and its parameters (which should be the usual case), the
-  comment can be very basic and only serves to shut up doxygen warnings about
-  undocumented stuff.
+  xml comments in the header file. If the function's purpose is clear
+  from the name and its parameters documentation can be omitted.
 
 - Inline comments inside functions can and should be used to describe why
   you wrote the function like this (and, sometimes more importantly, why you
@@ -62,120 +57,20 @@ C++
 
 - Empty lines are encouraged between blocks of code to improve readability.
 
-- Member variables of classes are prefixed with \p m_. This is to
-  differentiate them from local or global variables when using their
-  unqualified name (without `this->`) inside member functions. The prefix can
-  be omitted for very simple structs if they don't have member functions and
-  serve only as data container.
+- Variables should be private by default and only be made public if
+  that is required. Properties should be used when some action is
+  needed when a variable is changed, instead of creating setter or
+  getter methods.
 
-- When calling member functions from another member function, their names may be
-  qualified with `this->` to differentiate them from global non-member
-  functions. This rule is not enforced.
-
-- For non-trivial classes that would pull in a lot of other headers,
-  use the pimpl idiom to hide implementation details and only include
-  the ton of headers in the .cpp file.
-
-  ```cpp
-    // In the header:
-    #include <memory> // Include for std::unique_ptr
-
-    class MyClass {
-        // ...
-
-    public:
-
-        // Constructor required, doesn't need to be
-        // default constructor, though
-        MyClass();
-
-        // Destructor required.
-        ~MyClass();
-
-    private:
-
-        struct Implementation;
-        std::unique_ptr<Implementation> m_impl;
-    };
-  ```
-
-  ```cpp
-    // In the source file:
-
-    struct MyClass::Implementation {
-        // Private stuff here
-    };
-
-    MyClass::MyClass()
-      : m_impl(new Implementation()) // Initialize pimpl
-    {
-    }
-
-    MyClass::~MyClass() {} // Define destructor
-  ```
-
-- Try to avoid include statements inside header files. Prefer forward
-  declarations and put the include inside the source file instead. And
-  use the pimpl idiom if this cannot be avoided and the headers are
-  large.
-
-- Use C++11's `using` over `typedef`. With the `using` keyword, type
-  aliases look more like familiar variable assignment, with no ambiguity as
-  to which is the newly defined type name.
-
-- Virtual member functions overridden in derived classes are marked with the
-  C++11 `override` keyword. This will (correctly) cause a compile time error
-  when the function signature in the base class changes and the programmer
-  forgot to update the derived class.
-
-- Classes not intended as base classes are marked with the `final` keyword
-  like this:
-
-  ```cpp
-    class MyClass final {
-        // ...
-    };
-  ```
-
-- Header includes should be split by project with an empty line
-  between. The order is first Thrive headers then Leviathan headers
-  then any other library and finally standard headers. All of these
-  blocks are sorted alphabetically. Example:
-
-  ```cpp
-      #include "engine/component_types.h"
-      #include "engine/typedefs.h"
-
-      #include <Entities/Component.h>
-      #include <Entities/System.h>
-
-      #include <OgreMatrix4.h>
-
-      #include <vector>
-      #include <unordered_map>
-  ```
-
-- Functions and data members inside classes should be split and ordered logically.
-
-
-AngelScript
+Other files
 -----------
 
-- A class's public data members don't need to be prefixed by `m_`, unlike C++.
+- At this time GDScript is not allowed. No .gd files should exist in
+  the Thrive repository.
+  
+- Simulation configuration json files should be named using snake_case.
 
-- A class's private data members and functions are declared `private`
-  (everything is public by default) and optionally prefixed with an
-  underscore. This is a convention adopted from Python's PEP8 style
-  guide. This same rule may also be used in C++.
-
-- Doxygen does not support AngelScript natively, but for consistency's
-  sake, AngelScript classes and functions are still documented with
-  doxygen style comments.
-
-- For consistency with C++ adding semicolons after class declarations
-  is recommended, but not an error if omitted. This is one of the
-  biggest syntax differences of AngelScript vs C++ besides the handle
-  types.
+- JSON files should be sensibly intended.
 
 Git
 ---
@@ -196,11 +91,11 @@ Git
   be short, but descriptive enough that you know what the feature branch is
   about without looking up the GitHub ticket.
 
-- Commit early and frequently, even if the code doesn't run or even compile.
-  I recommend git-cola (available for all major platforms) as a tool for
-  composing good commits. It lets you stage files linewise in a convenient
-  interface. So even if you have unrelated changes within the same file,
-  you can still separate them.
+- Commit early and frequently, even if the code doesn't run or even
+  compile. It is recommended to use an interactive program for staging
+  parts of files. So even if you have unrelated changes within the
+  same file, you can still separate them. And you don't accidentally
+  commit something you didn't intent to.
 
 - When the master branch is updated, you should usually keep your
   feature branch as-is. If you really need the new features from
@@ -210,9 +105,11 @@ Git
   cleaner if the pull request is rebased onto master, but this is not
   required.
 
-- When a feature branch is done, open a pull request on GitHub so that others
-  can review it. Chances are that during this review, there will still be
-  issues to be resolved before the branch can be merged into master.
+- When a feature branch is done, open a pull request on GitHub so that
+  others can review it. Chances are that during this review, there
+  will still be issues to be resolved before the branch can be merged
+  into master. You can make a draft pull request if you want feedback
+  but want to clearly state that your changes are not ready yet.
 
 - To keep master's commit history somewhat clean, your commits in the
   feature branch will be "squashed" into a single commit. This can be
