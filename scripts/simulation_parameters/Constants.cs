@@ -76,6 +76,14 @@ public class Constants
         }
     }
 
+    public float MEMBRANE_BORDER
+    {
+        get
+        {
+            return 1.0f;
+        }
+    }
+
     /// <summary>
     ///   BASE MOVEMENT ATP cost. Cancels out a little bit more then one cytoplasm's glycolysis
     /// </summary>
