@@ -522,7 +522,11 @@ public class CompoundCloudSystem : Node
             task.Wait();
         }
 
-        // TODO: moving compounds between next to each other clouds
+        // Do moving compounds on the edges of the clouds serially
+        foreach (var cloud in clouds)
+        {
+            cloud.UpdateEdges(delta);
+        }
 
         // Update the cloud textures
         foreach (var cloud in clouds)
