@@ -64,20 +64,6 @@ public class CompoundCloudPlane : CSGMesh
         image = new Image();
         image.Create(size, size, false, Image.Format.Rgba8);
         texture = new ImageTexture();
-
-        // Blank out the image
-        image.Lock();
-
-        for (int y = 0; y < size; ++y)
-        {
-            for (int x = 0; x < size; ++x)
-            {
-                image.SetPixel(x, y, new Color(0, 0, 0, 0));
-            }
-        }
-
-        image.Unlock();
-
         texture.CreateFromImage(image, (uint)Texture.FlagsEnum.Filter);
 
         var material = (ShaderMaterial)this.Material;
