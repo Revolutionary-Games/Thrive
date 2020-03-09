@@ -43,9 +43,10 @@ public class TaskExecutor
             // // One thread for auto-evo
             // targetTaskCount -= 1;
 
-            if (targetTaskCount < 1)
+            // There needs to be 2 threads as when auto-evo is running it hogs one thread
+            if (targetTaskCount < 2)
             {
-                ParallelTasks = 1;
+                ParallelTasks = 2;
             }
             else
             {

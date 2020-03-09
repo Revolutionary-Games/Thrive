@@ -114,7 +114,8 @@ public class CompoundCloudPlane : CSGMesh
     }
 
     /// <summary>
-    ///   Applies diffuse and advect for this single cloud
+    ///   Applies diffuse and advect for this single cloud. This is
+    ///   ran in parallel for all clouds.
     /// </summary>
     public void UpdateCloud(float delta)
     {
@@ -126,6 +127,14 @@ public class CompoundCloudPlane : CSGMesh
         slot2.Update(delta, pos);
         slot3.Update(delta, pos);
         slot4.Update(delta, pos);
+    }
+
+    /// <summary>
+    ///   Updates the edge concentrations of this cloud. This is not ran in parallel.
+    /// </summary>
+    public void UpdateEdges(float delta)
+    {
+        // TODO: implement
     }
 
     /// <summary>
