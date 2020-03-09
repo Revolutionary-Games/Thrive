@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Godot;
@@ -96,6 +97,38 @@ public class TaskExecutor
         if (task != null)
         {
             queuedTasks.Add(new ThreadCommand(ThreadCommand.Type.Task, task));
+        }
+    }
+
+    /// <summary>
+    ///   Runs a list of tasks and waits for them to complete. The
+    ///   first task is ran on the calling thread before waiting.
+    /// </summary>
+    public void RunTasks(IEnumerable<Task> tasks)
+    {
+        // Queue all but the first task
+        Task firstTask = null;
+
+        foreach (var task in tasks)
+        {
+            if (firstTask != null)
+            {
+                AddTask(task);
+            }
+            else
+            {
+                firstTask = task;
+            }
+        }
+
+        // Run the first task on this thread
+        if (firstTask != null)
+            firstTask.RunSynchronously();
+
+        // Wait for all tasks to complete
+        foreach (var task in tasks)
+        {
+            task.Wait();
         }
     }
 
