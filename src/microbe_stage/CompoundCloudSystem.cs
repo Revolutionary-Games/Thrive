@@ -216,7 +216,7 @@ public class CompoundCloudSystem : Node
             // Position the cloud taking into account how many clouds
             // need to be at the same position.
             // Doing this here makes the cloud reposition logic simpler.
-            clouds[i].Translation = positions[positionIndex] - new Vector3(0, startOffset * 0.01f, 0);
+            clouds[i].Translation = positions[positionIndex];
 
             ++positionedCounter;
 

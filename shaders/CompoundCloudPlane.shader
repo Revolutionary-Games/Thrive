@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode unshaded;
+render_mode unshaded, blend_add;
 
 uniform sampler2D densities;
 uniform sampler2D noise;
