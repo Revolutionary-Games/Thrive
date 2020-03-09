@@ -130,20 +130,25 @@ public class CompoundCloudPlane : CSGMesh
     {
         image.Lock();
 
-        for (int y = 0; y < size; ++y)
+        for (int x = 0; x < size; ++x)
         {
-            for (int x = 0; x < size; ++x)
+            for (int y = 0; y < size; ++y)
             {
                 // This formula smoothens the cloud density so that we get gradients
                 // of transparency.
-                float intensity1 = (float)(2 * Math.Atan(
-                        0.003f * slot1.Density[x, y])).Clamp(0.0f, 1.0f);
-                float intensity2 = (float)(2 * Math.Atan(
-                        0.003f * slot2.Density[x, y])).Clamp(0.0f, 1.0f);
-                float intensity3 = (float)(2 * Math.Atan(
-                        0.003f * slot3.Density[x, y])).Clamp(0.0f, 1.0f);
-                float intensity4 = (float)(2 * Math.Atan(
-                        0.003f * slot4.Density[x, y])).Clamp(0.0f, 1.0f);
+                float intensity1 = 2 * Mathf.Atan(
+                        0.003f * slot1.Density[x, y]);
+                float intensity2 = 2 * Mathf.Atan(
+                        0.003f * slot2.Density[x, y]);
+                float intensity3 = 2 * Mathf.Atan(
+                        0.003f * slot3.Density[x, y]);
+                float intensity4 = 2 * Mathf.Atan(
+                        0.003f * slot4.Density[x, y]);
+
+                // There used to be a clamp(0.0f, 1.0f) for all the
+                // values but that has been taken out to improve
+                // performance as with Godot it doesn't seem to have
+                // much effect
 
                 image.SetPixel(x, y,
                     new Color(intensity1, intensity2, intensity3, intensity4));
