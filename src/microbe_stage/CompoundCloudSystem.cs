@@ -141,6 +141,8 @@ public class CompoundCloudSystem : Node
     /// </summary>
     private List<CompoundCloudPlane> tooFarAwayClouds = new List<CompoundCloudPlane>();
 
+    private float elapsed = 0.0f;
+
     public override void _Ready()
     {
         cloudScene = GD.Load<PackedScene>("res://src/microbe_stage/CompoundCloudPlane.tscn");
@@ -148,7 +150,15 @@ public class CompoundCloudSystem : Node
 
     public override void _Process(float delta)
     {
-        UpdateCloudContents(delta);
+        elapsed += delta;
+
+        // Limit the rate at which the clouds are processed as they
+        // are a major performance sink
+        if (elapsed >= Constants.Instance.CLOUD_UPDATE_INTERVAL)
+        {
+            UpdateCloudContents(elapsed);
+            elapsed = 0.0f;
+        }
     }
 
     /// <summary>
