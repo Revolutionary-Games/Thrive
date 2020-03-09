@@ -51,6 +51,26 @@ public class Constants
     }
 
     /// <summary>
+    ///   If this is over 0 then this limits how often compound clouds
+    ///   are updated. The default value of 0.020 at 60 FPS makes
+    ///   every other frame not update the clouds.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This should be made user configurable for different
+    ///     computers. The choises should probably be:
+    ///     0.0f, 0.020f, 0.040f, 0.1f, 0.25f
+    ///   </para>
+    /// </remarks>
+    public float CLOUD_UPDATE_INTERVAL
+    {
+        get
+        {
+            return 0.040f;
+        }
+    }
+
+    /// <summary>
     /// </summary>
     public int CLOUD_SIMULATION_WIDTH
     {
