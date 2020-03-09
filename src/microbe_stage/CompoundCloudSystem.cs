@@ -511,11 +511,17 @@ public class CompoundCloudSystem : Node
             cloud.UpdateEdges(delta);
         }
 
-        // Update the cloud textures
+        tasks.Clear();
+
+        // Update the cloud textures in parallel
         foreach (var cloud in clouds)
         {
-            cloud.UploadTexture();
+            var task = new Task(() => cloud.UploadTexture());
+
+            tasks.Add(task);
         }
+
+        executor.RunTasks(tasks);
 
         tasks.Clear();
     }
