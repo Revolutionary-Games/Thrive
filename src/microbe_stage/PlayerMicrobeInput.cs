@@ -17,7 +17,9 @@ public class PlayerMicrobeInput : Node
     private bool left = false;
     private bool right = false;
 
-    // TODO: readd cheats
+    private bool cheatGlucose = false;
+    private bool cheatAmmonia = false;
+    private bool cheatPhosphates = false;
 
     public override void _Ready()
     {
@@ -61,6 +63,38 @@ public class PlayerMicrobeInput : Node
         {
             right = false;
         }
+
+        if (@event.IsActionPressed("g_cheat_editor"))
+        {
+            // TODO: reimplement editor enter cheat
+        }
+
+        if (@event.IsActionPressed("g_cheat_glucose"))
+        {
+            cheatGlucose = true;
+        }
+        else if (@event.IsActionReleased("g_cheat_glucose"))
+        {
+            cheatGlucose = false;
+        }
+
+        if (@event.IsActionPressed("g_cheat_ammonia"))
+        {
+            cheatAmmonia = true;
+        }
+        else if (@event.IsActionReleased("g_cheat_ammonia"))
+        {
+            cheatAmmonia = false;
+        }
+
+        if (@event.IsActionPressed("g_cheat_phosphates"))
+        {
+            cheatPhosphates = true;
+        }
+        else if (@event.IsActionReleased("g_cheat_phosphates"))
+        {
+            cheatPhosphates = false;
+        }
     }
 
     public override void _Process(float delta)
@@ -92,5 +126,26 @@ public class PlayerMicrobeInput : Node
             stage.Player.MovementDirection = movement;
             stage.Player.LookAtPoint = stage.Camera.CursorWorldPos;
         }
+
+        if (cheatAmmonia)
+        {
+            SpawnCheatCloud("ammonia", delta);
+        }
+
+        if (cheatGlucose)
+        {
+            SpawnCheatCloud("glucose", delta);
+        }
+
+        if (cheatPhosphates)
+        {
+            SpawnCheatCloud("phosphates", delta);
+        }
+    }
+
+    private void SpawnCheatCloud(string name, float delta)
+    {
+        stage.Clouds.AddCloud(SimulationParameters.Instance.GetCompound(name),
+            8000.0f * delta, stage.Camera.CursorWorldPos);
     }
 }
