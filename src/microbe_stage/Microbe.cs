@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   Main script on each cell in the game
 /// </summary>
-public class Microbe : RigidBody
+public class Microbe : RigidBody, ISpawned
 {
     /// <summary>
     ///   The stored compounds in this microbe
@@ -27,6 +27,16 @@ public class Microbe : RigidBody
         {
             // TODO: add computation and caching for this
             return 1;
+        }
+    }
+
+    public float DespawnRadiusSqr { get; set; }
+
+    public Node SpawnedNode
+    {
+        get
+        {
+            return this;
         }
     }
 

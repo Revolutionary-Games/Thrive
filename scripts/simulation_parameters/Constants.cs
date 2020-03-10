@@ -18,6 +18,11 @@ public class Constants
 
     public static readonly float CLOUD_Y_COORDINATE = 0;
 
+    /// <summary>
+    ///   All Nodes tagged with this are handled by the spawn system for despawning
+    /// </summary>
+    public static readonly string SPAWNED_GROUP = "spawned";
+
     private static readonly Constants INSTANCE = new Constants();
 
     static Constants()

@@ -75,11 +75,11 @@ public class MicrobeStage : Node
 
     public override void _Process(float delta)
     {
-        spawner.Process(delta);
         FluidSystem.Process(delta);
 
         if (Player != null)
         {
+            spawner.Process(delta, Player.Translation);
             Clouds.ReportPlayerPosition(Player.Translation);
         }
     }
