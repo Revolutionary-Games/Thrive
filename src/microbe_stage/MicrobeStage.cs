@@ -36,7 +36,7 @@ public class MicrobeStage : Node
         Camera = world.GetNode<MicrobeCamera>("PrimaryCamera");
         Clouds = world.GetNode<CompoundCloudSystem>("CompoundClouds");
 
-        HUD.Stage = this;
+        HUD.Init(this);
 
         // Do stage setup to spawn things and setup all parts of the stage
         SetupStage();
