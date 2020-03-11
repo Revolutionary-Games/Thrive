@@ -30,7 +30,7 @@ public class Microbe : RigidBody, ISpawned
         }
     }
 
-    public float DespawnRadiusSqr { get; set; }
+    public int DespawnRadiusSqr { get; set; }
 
     public Node SpawnedNode
     {

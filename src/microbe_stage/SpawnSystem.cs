@@ -36,6 +36,11 @@ public class SpawnSystem
     /// </summary>
     private int maxAliveEntities = 1000;
 
+    /// <summary>
+    ///   Max tries per spawner to avoid very high spawn densities lagging
+    /// </summary>
+    private int maxTriesPerSpawner = 500;
+
     public SpawnSystem(Node root)
     {
         worldRoot = root;
@@ -46,7 +51,7 @@ public class SpawnSystem
     ///   and frequency fields based on the parameters of this
     ///   function.
     /// </summary>
-    public void AddSpawnType(ISpawner spawner, float spawnDensity, float spawnRadius)
+    public void AddSpawnType(ISpawner spawner, int spawnDensity, int spawnRadius)
     {
         spawner.SpawnRadius = spawnRadius;
         spawner.SpawnFrequency = 122;
@@ -72,7 +77,7 @@ public class SpawnSystem
         Clear();
 
         // For testing
-        AddSpawnType(Spawners.MakeSpeciesSpawner(), 7000, 150);
+        AddSpawnType(Spawners.MakeSpeciesSpawner(), 700, 150);
     }
 
     /// <summary>
@@ -136,7 +141,7 @@ public class SpawnSystem
             numAttempts stores how many times the SpawnSystem attempts
             to spawn the given entity.
             */
-            int numAttempts = Math.Max((int)spawnType.SpawnFrequency * 2, 1);
+            int numAttempts = Math.Min(Math.Max(spawnType.SpawnFrequency * 2, 1), maxTriesPerSpawner);
 
             for (int i = 0; i < numAttempts; i++)
             {
@@ -212,7 +217,7 @@ public class SpawnSystem
         // Despawn entities
         var spawnedEntities = worldRoot.GetTree().GetNodesInGroup(Constants.SPAWNED_GROUP);
 
-        foreach (Node entity in worldRoot.GetChildren())
+        foreach (Node entity in spawnedEntities)
         {
             var spawned = entity as ISpawned;
 

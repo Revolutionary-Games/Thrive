@@ -10,19 +10,19 @@ public abstract class ISpawner
     /// <summary>
     ///   The distance at which spawning happens
     /// </summary>
-    public float SpawnRadius { get; set; }
+    public int SpawnRadius { get; set; }
 
     /// <summary>
     ///   Squared spawn distance for faster computations when spawning
     /// </summary>
     /// <value>The spawn radius sqr.</value>
-    public float SpawnRadiusSqr { get; set; }
+    public int SpawnRadiusSqr { get; set; }
 
     /// <summary>
     ///   How much stuff spawns
     /// </summary>
     /// <value>The spawn frequency.</value>
-    public float SpawnFrequency { get; set; }
+    public int SpawnFrequency { get; set; }
 
     /// <summary>
     ///   If this is queued to be destroyed the spawn system will remove this on next update
@@ -32,7 +32,7 @@ public abstract class ISpawner
 
     public abstract List<ISpawned> Spawn(Node worldNode, Vector3 location);
 
-    public void SetFrequencyFromDensity(float spawnDensity)
+    public void SetFrequencyFromDensity(int spawnDensity)
     {
         SpawnFrequency = spawnDensity * SpawnRadiusSqr * 4;
     }
