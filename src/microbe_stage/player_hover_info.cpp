@@ -61,36 +61,6 @@ void
     vars->Add(std::make_shared<NamedVariableList>(
         "mousePos", new Leviathan::StringBlock(posStr.str())));
 
-    // Detect compounds
-    const auto compounds =
-        world.GetCompoundCloudSystem().getAllAvailableAt(lookPoint);
-
-    if(compounds.empty()) {
-
-        vars->Add(std::make_shared<NamedVariableList>(
-            "noCompounds", new Leviathan::BoolBlock(true)));
-
-    } else {
-
-        Json::Value compoundsJson(Json::arrayValue);
-
-        for(const auto& tuple : compounds) {
-
-            Json::Value compound;
-            compound["name"] = SimulationParameters::compoundRegistry
-                                   .getTypeData(std::get<0>(tuple))
-                                   .displayName;
-            compound["quantity"] = std::get<1>(tuple);
-            compoundsJson.append(compound);
-        }
-
-        std::stringstream sstream;
-        writer->write(compoundsJson, &sstream);
-
-        vars->Add(std::make_shared<NamedVariableList>(
-            "compounds", new Leviathan::StringBlock(sstream.str())));
-    }
-
     // Hovered over cells
     auto hovered = std::make_shared<NamedVariableList>("hoveredCells");
 

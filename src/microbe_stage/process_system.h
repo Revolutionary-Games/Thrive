@@ -67,43 +67,6 @@ struct CompoundData {
     double usedLastTime;
 };
 
-//! \brief A thing that holds compounds
-class CompoundBagComponent : public Leviathan::Component {
-public:
-    CompoundBagComponent();
-
-    double storageSpace;
-    double storageSpaceOccupied;
-    std::unordered_map<CompoundId, CompoundData> compounds;
-
-    double getCompoundAmount(CompoundId);
-
-    double
-        getStorageSpaceUsed() const;
-
-    double getPrice(CompoundId);
-
-
-    double getUsedLastTime(CompoundId);
-
-    double
-        takeCompound(CompoundId, double); // remove up to a certain amount of
-                                          // compound, returning how much was
-                                          // removed
-
-    void
-        giveCompound(CompoundId, double);
-
-
-    void
-        setCompound(CompoundId, double);
-
-    REFERENCE_HANDLE_UNCOUNTED_TYPE(CompoundBagComponent);
-
-    static constexpr auto TYPE =
-        componentTypeConvert(THRIVE_COMPONENT::COMPOUND_BAG);
-};
-
 class ProcessSystem
     : public Leviathan::System<
           std::tuple<CompoundBagComponent&, ProcessorComponent&>> {
