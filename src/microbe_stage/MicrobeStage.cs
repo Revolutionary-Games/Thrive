@@ -20,6 +20,10 @@ public class MicrobeStage : Node
 
     public FluidSystem FluidSystem { get; private set; }
 
+    public TimedLifeSystem TimedLifeSystem { get; private set; }
+
+    public TimedWorldOperations TimedEffects { get; private set; }
+
     /// <summary>
     ///   This should get called the first time the stage scene is put
     ///   into an active scene tree. So returning from the editor
@@ -35,6 +39,7 @@ public class MicrobeStage : Node
         spawner = new SpawnSystem(rootOfDynamicallySpawned);
         Camera = world.GetNode<MicrobeCamera>("PrimaryCamera");
         Clouds = world.GetNode<CompoundCloudSystem>("CompoundClouds");
+        TimedLifeSystem = new TimedLifeSystem(rootOfDynamicallySpawned);
 
         HUD.Init(this);
 
@@ -51,11 +56,18 @@ public class MicrobeStage : Node
             GD.PrintErr("Something bad happened with SimulationParameters loading");
 
         FluidSystem = new FluidSystem();
+        TimedEffects = new TimedWorldOperations();
 
         spawner.Init();
         SpawnPlayer();
         Camera.ResetHeight();
         Clouds.Init(FluidSystem);
+
+        // Register glucose reduction
+        TimedEffects.RegisterEffect("reduce_glucose", new WorldEffectLambda((elapsed, total) =>
+        {
+            GD.Print("TODO: reduce glucose");
+        }));
     }
 
     /// <summary>
@@ -76,6 +88,7 @@ public class MicrobeStage : Node
     public override void _Process(float delta)
     {
         FluidSystem.Process(delta);
+        TimedLifeSystem.Process(delta);
 
         if (Player != null)
         {
