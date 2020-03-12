@@ -4,24 +4,35 @@
 public class Constants
 {
     /// <summary>
+    ///   The (default) size of the hexagons, used in
+    ///   calculations. Don't change this.
+    /// </summary>
+    public const float DEFAULT_HEX_SIZE = 0.75f;
+
+    /// <summary>
     ///   Don't change this, so much stuff will break
     /// </summary>
-    public static readonly int CLOUDS_IN_ONE = 4;
+    public const int CLOUDS_IN_ONE = 4;
 
     // NOTE: these 4 constants need to match what is setup in CompoundCloudPlane.tscn
-    public static readonly int CLOUD_WIDTH = 100;
-    public static readonly int CLOUD_X_EXTENT = CLOUD_WIDTH * 2;
-    public static readonly int CLOUD_HEIGHT = 100;
+    public const int CLOUD_WIDTH = 100;
+    public const int CLOUD_X_EXTENT = CLOUD_WIDTH * 2;
+    public const int CLOUD_HEIGHT = 100;
 
     // This is cloud local Y not world Y
-    public static readonly int CLOUD_Y_EXTENT = CLOUD_HEIGHT * 2;
+    public const int CLOUD_Y_EXTENT = CLOUD_HEIGHT * 2;
 
-    public static readonly float CLOUD_Y_COORDINATE = 0;
+    public const float CLOUD_Y_COORDINATE = 0;
 
     /// <summary>
     ///   All Nodes tagged with this are handled by the spawn system for despawning
     /// </summary>
-    public static readonly string SPAWNED_GROUP = "spawned";
+    public const string SPAWNED_GROUP = "spawned";
+
+    /// <summary>
+    ///   All Nodes tagged with this are handled by the timed life system for despawning
+    /// </summary>
+    public const string TIMED_GROUP = "timed";
 
     private static readonly Constants INSTANCE = new Constants();
 

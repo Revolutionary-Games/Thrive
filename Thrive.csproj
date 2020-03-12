@@ -94,6 +94,15 @@
     <Compile Include="src\microbe_stage\ISpawner.cs" />
     <Compile Include="src\microbe_stage\ISpawned.cs" />
     <Compile Include="src\microbe_stage\Spawners.cs" />
+    <Compile Include="src\engine\Settings.cs" />
+    <Compile Include="src\general\Int3.cs" />
+    <Compile Include="src\general\GameProperties.cs" />
+    <Compile Include="src\microbe_stage\AgentProperties.cs" />
+    <Compile Include="src\microbe_stage\Species.cs" />
+    <Compile Include="src\general\TimedLifeSystem.cs" />
+    <Compile Include="src\general\ITimedLife.cs" />
+    <Compile Include="src\general\IWorldEffect.cs" />
+    <Compile Include="src\general\TimedWorldOperations.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="StyleCop.ruleset" />

@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "Thrive", "Thrive.csproj", "{748C7086-2D54-4657-BBDA-3A08F0A152DD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrive", "Thrive.csproj", "{D38E3F51-1E8C-4F32-99B2-641320B0AC3C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,12 +9,12 @@ Global
 		Tools|Any CPU = Tools|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{748C7086-2D54-4657-BBDA-3A08F0A152DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{748C7086-2D54-4657-BBDA-3A08F0A152DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{748C7086-2D54-4657-BBDA-3A08F0A152DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{748C7086-2D54-4657-BBDA-3A08F0A152DD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{748C7086-2D54-4657-BBDA-3A08F0A152DD}.Tools|Any CPU.ActiveCfg = Tools|Any CPU
-		{748C7086-2D54-4657-BBDA-3A08F0A152DD}.Tools|Any CPU.Build.0 = Tools|Any CPU
+		{D38E3F51-1E8C-4F32-99B2-641320B0AC3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D38E3F51-1E8C-4F32-99B2-641320B0AC3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D38E3F51-1E8C-4F32-99B2-641320B0AC3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D38E3F51-1E8C-4F32-99B2-641320B0AC3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D38E3F51-1E8C-4F32-99B2-641320B0AC3C}.Tools|Any CPU.ActiveCfg = Tools|Any CPU
+		{D38E3F51-1E8C-4F32-99B2-641320B0AC3C}.Tools|Any CPU.Build.0 = Tools|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		Policies = $0
@@ -24,20 +24,11 @@ Global
 		$2.scope = text/x-csharp
 		$0.CSharpFormattingPolicy = $3
 		$3.IndentSwitchSection = False
-		$3.NewLinesForBracesInProperties = False
-		$3.NewLinesForBracesInAccessors = False
-		$3.NewLinesForBracesInAnonymousMethods = False
-		$3.NewLinesForBracesInControlBlocks = False
-		$3.NewLinesForBracesInAnonymousTypes = False
-		$3.NewLinesForBracesInObjectCollectionArrayInitializers = False
-		$3.NewLinesForBracesInLambdaExpressionBody = False
-		$3.NewLineForElse = False
 		$3.NewLineForCatch = False
 		$3.NewLineForFinally = False
 		$3.NewLineForMembersInObjectInit = False
 		$3.NewLineForMembersInAnonymousTypes = False
 		$3.NewLineForClausesInQuery = False
-		$3.SpaceAfterControlFlowStatementKeyword = False
 		$3.scope = text/x-csharp
 		$0.TextStylePolicy = $4
 		$4.FileWidth = 95
