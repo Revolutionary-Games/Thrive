@@ -18,9 +18,9 @@ public class MicrobeCamera : Camera
     public float CameraHeight;
 
     public float ZoomSpeed = 0.6f;
-    public float DefaultCameraHeight = 10.0f;
+    public float DefaultCameraHeight = 40.0f;
     public float MinCameraHeight = 3.0f;
-    public float MaxCameraHeight = 25.0f;
+    public float MaxCameraHeight = 80.0f;
 
     public float InterpolateSpeed = 0.3f;
 
