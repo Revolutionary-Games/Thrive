@@ -13,9 +13,9 @@ jobs:
              - v4-lfs-{{ .Branch }}
              - v4-lfs-master
        - shell:
-           name: Pull Git LFS files, retry until done
+           name: Pull Git LFS files, retry up to 5 times
            command: |
-             while true; do git reset --hard HEAD && git clean -fd && git lfs pull && break; done
+             for i in {1..5}; do git reset --hard HEAD && git clean -fd && git lfs pull && exit 0; done; exit 1
        - save_cache:
           key: v4-lfs-{{ .Branch }}
           paths:
