@@ -1,5 +1,6 @@
 using System;
 using System.Reflection;
+
 /// <summary>
 ///   Holds some constants that must be kept constant after first setting
 /// </summary>
@@ -78,8 +79,11 @@ public class Constants
     {
         get
         {
-            Version version = Assembly.GetEntryAssembly().GetName().Version;
-            return version.ToString();
+            var assembly = Assembly.GetExecutingAssembly();
+            Version version = assembly.GetName().Version;
+            var versionSuffix = (AssemblyInformationalVersionAttribute[])assembly.
+                GetCustomAttributes(typeof(AssemblyInformationalVersionAttribute), false);
+            return version.ToString() + versionSuffix[0].InformationalVersion;
         }
     }
 }
