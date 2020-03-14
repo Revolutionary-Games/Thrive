@@ -55,6 +55,10 @@ public class MicrobeStage : Node
         if (SimulationParameters.Instance == null)
             GD.PrintErr("Something bad happened with SimulationParameters loading");
 
+        // Make sure settings is loaded
+        if (Settings.Instance == null)
+            GD.PrintErr("Settings load problem");
+
         FluidSystem = new FluidSystem();
         TimedEffects = new TimedWorldOperations();
 

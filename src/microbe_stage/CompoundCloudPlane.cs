@@ -59,8 +59,8 @@ public class CompoundCloudPlane : CSGMesh
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        size = Constants.Instance.CLOUD_SIMULATION_WIDTH;
-        resolution = Constants.Instance.CLOUD_RESOLUTION;
+        size = Settings.Instance.CloudSimulationWidth;
+        resolution = Settings.Instance.CloudResolution;
         image = new Image();
         image.Create(size, size, false, Image.Format.Rgba8);
         texture = new ImageTexture();
