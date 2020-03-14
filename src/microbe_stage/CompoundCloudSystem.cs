@@ -154,7 +154,7 @@ public class CompoundCloudSystem : Node
 
         // Limit the rate at which the clouds are processed as they
         // are a major performance sink
-        if (elapsed >= Constants.Instance.CLOUD_UPDATE_INTERVAL)
+        if (elapsed >= Settings.Instance.CloudUpdateInterval)
         {
             UpdateCloudContents(elapsed);
             elapsed = 0.0f;

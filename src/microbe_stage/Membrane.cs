@@ -157,15 +157,15 @@ public class Membrane : MeshInstance
     {
         var arrays = new Godot.Collections.Array();
         arrays.Resize((int)Mesh.ArrayType.Max);
-        var vectors = new Vector3[Constants.Instance.MEMBRANE_RESOLUTION + 2];
-        var uvs = new Vector2[Constants.Instance.MEMBRANE_RESOLUTION + 2];
+        var vectors = new Vector3[Constants.MEMBRANE_RESOLUTION + 2];
+        var uvs = new Vector2[Constants.MEMBRANE_RESOLUTION + 2];
 
         vectors[0] = new Vector3(0.0f, 0.0f, 0.0f);
         uvs[0] = new Vector2(0.5f, 0.5f);
 
-        for (int i = 1; i < Constants.Instance.MEMBRANE_RESOLUTION + 2; i++)
+        for (int i = 1; i < Constants.MEMBRANE_RESOLUTION + 2; i++)
         {
-            var t = i * 2 * Math.PI / Constants.Instance.MEMBRANE_RESOLUTION;
+            var t = i * 2 * Math.PI / Constants.MEMBRANE_RESOLUTION;
             var r = 5; // TODO: find the membrane border
 
             vectors[i] = new Vector3(

@@ -75,14 +75,11 @@ public class Microbe : RigidBody, ISpawned
 
     private Vector3 DoBaseMovementForce(float delta)
     {
-        Constants constants =
-            Constants.Instance;
-
-        var cost = (constants.BASE_MOVEMENT_ATP_COST * HexCount) * delta;
+        var cost = (Constants.BASE_MOVEMENT_ATP_COST * HexCount) * delta;
 
         var got = Compounds.TakeCompound("atp", cost);
 
-        float force = constants.CELL_BASE_THRUST;
+        float force = Constants.CELL_BASE_THRUST;
 
         // Halve speed if out of ATP
         if (got < cost)
