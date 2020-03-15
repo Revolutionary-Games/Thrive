@@ -4,9 +4,12 @@ using Godot;
 
 public class PlacedOrganelle : Spatial
 {
-    public float Health = 1.0f;
     public OrganelleDefinition Definition;
     public Hex Position;
+
+    /// <summary>
+    ///   This is now the number of times to rotate. This used to be the angle in degrees
+    /// </summary>
     public int Orientation;
 
     private Microbe parentMicrobe;
@@ -15,29 +18,38 @@ public class PlacedOrganelle : Spatial
     public void OnAddedToMicrobe(Microbe microbe, Hex position, int rotation)
     {
         microbe.AddChild(this);
-        parentMicrobe = microbe;
-        microbe.Mass += Definition.Mass;
 
-        var displayScene = GD.Load<PackedScene>(Definition.DisplayScene);
-        var x = displayScene.Instance();
+        // Store parameters
+        parentMicrobe = microbe;
         Position = position;
         Orientation = rotation;
-        AddChild(x);
 
+        // Graphical display
+        if (Definition.LoadedScene != null)
+        {
+            AddChild(Definition.LoadedScene.Instance());
+        }
+
+        // Position relative to origin of cell
         RotateY(rotation * 60);
         Translation = Hex.AxialToCartesian(position);
         Scale = Vector3.One * Constants.DEFAULT_HEX_SIZE;
 
+        // Physics
+        microbe.Mass += Definition.Mass;
+
         foreach (Hex hex in Definition.Hexes)
         {
             var shape = new SphereShape();
-            shape.Radius = Constants.DEFAULT_HEX_SIZE / 2.0f;
+            shape.Radius = Constants.DEFAULT_HEX_SIZE * 2.0f;
+
             var ownerId = microbe.CreateShapeOwner(shape);
             microbe.ShapeOwnerAddShape(ownerId, shape);
             Vector3 shapePosition = Hex.AxialToCartesian(
                 Hex.RotateAxialNTimes(hex, rotation) + position);
             var transform = new Transform(Quat.Identity, shapePosition);
             microbe.ShapeOwnerSetTransform(ownerId, transform);
+
             shapes.Add(ownerId);
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -21,6 +22,11 @@ public class OrganelleDefinition : IRegistryType
     ///   If empty won't have a display model.
     /// </summary>
     public string DisplayScene;
+
+    /// <summary>
+    ///   Loaded scene instance to be used when organelle of this type is placed
+    /// </summary>
+    public PackedScene LoadedScene;
 
     public float Mass;
 
@@ -135,6 +141,11 @@ public class OrganelleDefinition : IRegistryType
     public void Resolve(SimulationParameters parameters)
     {
         RunnableProcesses = new List<TweakedProcess>();
+
+        if (DisplayScene != string.Empty)
+        {
+            LoadedScene = GD.Load<PackedScene>(DisplayScene);
+        }
 
         if (Processes == null)
             return;
