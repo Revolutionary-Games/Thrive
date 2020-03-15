@@ -17,7 +17,10 @@ public class GameWorld
 
     public GameWorld(WorldGenerationSettings settings)
     {
+        Map = PatchMapGenerator.Generate(settings);
     }
+
+    public PatchMap Map { get; private set; }
 
     public MicrobeSpecies NewMicrobeSpecies()
     {

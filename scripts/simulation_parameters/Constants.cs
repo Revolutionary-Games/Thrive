@@ -59,6 +59,8 @@ public class Constants
 
     public const int MICROBE_AI_OBJECTS_PER_TASK = 15;
 
+    public const int INITIAL_SPECIES_POPULATION = 100;
+
     /// <summary>
     ///   All Nodes tagged with this are handled by the spawn system for despawning
     /// </summary>
