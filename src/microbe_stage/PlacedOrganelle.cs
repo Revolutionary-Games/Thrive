@@ -1,6 +1,6 @@
-using Godot;
 using System;
 using System.Collections.Generic;
+using Godot;
 
 public class PlacedOrganelle : Spatial
 {
@@ -9,16 +9,17 @@ public class PlacedOrganelle : Spatial
     public Hex Position;
     public int Orientation;
 
-    private Microbe ParentMicrobe;
-    private List<uint> Shapes = new List<uint>();
+    private Microbe parentMicrobe;
+    private List<uint> shapes = new List<uint>();
 
-    public void OnAddedToMicrobe(Microbe microbe, Hex position, int rotation) {
+    public void OnAddedToMicrobe(Microbe microbe, Hex position, int rotation)
+    {
         microbe.AddChild(this);
-        ParentMicrobe = microbe;
+        parentMicrobe = microbe;
         microbe.Mass += Definition.Mass;
 
-        var DisplayScene = GD.Load<PackedScene>(Definition.DisplayScene);
-        var x = DisplayScene.Instance();
+        var displayScene = GD.Load<PackedScene>(Definition.DisplayScene);
+        var x = displayScene.Instance();
         Position = position;
         Orientation = rotation;
         AddChild(x);
@@ -27,7 +28,8 @@ public class PlacedOrganelle : Spatial
         Translation = Hex.AxialToCartesian(position);
         Scale = Vector3.One * Constants.DEFAULT_HEX_SIZE;
 
-        foreach(Hex hex in Definition.Hexes) {
+        foreach (Hex hex in Definition.Hexes)
+        {
             var shape = new SphereShape();
             shape.Radius = Constants.DEFAULT_HEX_SIZE / 2.0f;
             var ownerId = microbe.CreateShapeOwner(shape);
@@ -35,11 +37,11 @@ public class PlacedOrganelle : Spatial
             Vector3 shapePosition = Hex.AxialToCartesian(Hex.RotateAxialNTimes(hex, rotation) + position);
             var transform = new Transform(Quat.Identity, shapePosition);
             microbe.ShapeOwnerSetTransform(ownerId, transform);
-            Shapes.Add(ownerId);
+            shapes.Add(ownerId);
         }
     }
 
-    public void OnRemovedFromMicrobe() {
-
+    public void OnRemovedFromMicrobe()
+    {
     }
 }

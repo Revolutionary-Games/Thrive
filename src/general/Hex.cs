@@ -16,18 +16,20 @@ public struct Hex
         R = r;
     }
 
-    public static Hex operator +(Hex a, Hex b) {
+    public static Hex operator +(Hex a, Hex b)
+    {
         return new Hex(a.Q + b.Q, a.R + b.R);
     }
 
-    public static Hex operator -(Hex a, Hex b) {
+    public static Hex operator -(Hex a, Hex b)
+    {
         return new Hex(a.Q - b.Q, a.R - b.R);
     }
 
     /// <summary>
     ///   Converts axial hex coordinates to cartesian coordinates.
     /// </summary>
-    /// <returns>Cartesian coordinates of the hex's center.</return>
+    /// <returns>Cartesian coordinates of the hex's center.</returns>
     public static Vector3 AxialToCartesian(Hex hex)
     {
         float x = hex.Q * Constants.DEFAULT_HEX_SIZE * 3.0f / 2.0f;
@@ -38,7 +40,7 @@ public struct Hex
     /// <summary>
     ///   Converts cartesian coordinates to axial hex coordinates.
     /// </summary>
-    /// <returns>Hex position.</return>
+    /// <returns>Hex position.</returns>
     public static Hex CartesianToAxial(Vector3 pos)
     {
         // Getting the cube coordinates.
@@ -80,7 +82,7 @@ public struct Hex
     ///   Converts cube based hex coordinates to axial hex
     ///   coordinates. Basically just seems to discard the z value.
     /// </summary>
-    /// <returns>hex coordinates.</return>
+    /// <returns>hex coordinates.</returns>
     public static Hex CubeToAxial(Int3 cube)
     {
         return new Hex(cube.x, cube.y);
