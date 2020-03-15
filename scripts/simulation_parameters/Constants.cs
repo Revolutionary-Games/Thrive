@@ -10,7 +10,7 @@ public class Constants
     ///   The (default) size of the hexagons, used in
     ///   calculations. Don't change this.
     /// </summary>
-    public const float DEFAULT_HEX_SIZE = 2.0f;
+    public const float DEFAULT_HEX_SIZE = 0.75f;
 
     /// <summary>
     ///   Don't change this, so much stuff will break
