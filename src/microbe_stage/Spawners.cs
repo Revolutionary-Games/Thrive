@@ -78,3 +78,36 @@ public class CompoundCloudSpawner : ISpawner
         return null;
     }
 }
+
+/// <summary>
+///   Spawns chunks of a specific type
+/// </summary>
+public class ChunkSpawner : ISpawner
+{
+    private readonly PackedScene chunkScene;
+    private readonly Biome.ChunkConfiguration chunkType;
+    private readonly Random random = new Random();
+
+    public ChunkSpawner(Biome.ChunkConfiguration chunkType)
+    {
+        this.chunkType = chunkType;
+        chunkScene = GD.Load<PackedScene>("res://src/microbe_stage/FloatingChunk.tscn");
+    }
+
+    public override List<ISpawned> Spawn(Node worldNode, Vector3 location)
+    {
+        var entities = new List<ISpawned>();
+
+        var chunk = (FloatingChunk)chunkScene.Instance();
+
+        // Settings need to be applied before adding it to the scene
+        chunk.GraphicsScene = chunkType.Meshes[random.Next(chunkType.Meshes.Count)].
+            LoadedScene;
+
+        worldNode.AddChild(chunk);
+        chunk.Translation = location;
+        entities.Add(chunk);
+
+        return entities;
+    }
+}

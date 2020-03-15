@@ -8,29 +8,6 @@
 
 using namespace thrive;
 // ------------------------------------ //
-
-constexpr auto MICROBE_SPAWN_RADIUS = 150;
-constexpr auto CLOUD_SPAWN_RADIUS = 150;
-
-constexpr auto STARTING_SPAWN_DENSITY = 70000.0f;
-constexpr auto MAX_SPAWN_DENSITY = 20000.0f;
-
-PatchManager::PatchManager(GameWorld& world) :
-    Leviathan::PerWorldData(world),
-    cellWorld(dynamic_cast<CellStageWorld&>(world))
-{}
-// ------------------------------------ //
-void
-    PatchManager::setNewMap(PatchMap::pointer map)
-{
-    LOG_INFO("Setting new patch map");
-    if(map && !map->verify()) {
-        throw Leviathan::InvalidArgument("verify failed for map");
-    }
-
-    currentMap = map;
-}
-// ------------------------------------ //
 void
     PatchManager::applyPatchSettings()
 {

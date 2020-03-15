@@ -21,6 +21,8 @@ public class Patch
     [JsonProperty]
     public readonly ISet<Patch> Adjacent = new HashSet<Patch>();
 
+    public Biome Biome;
+
     [JsonProperty]
     private readonly Biome biomeTemplate;
 
@@ -29,6 +31,9 @@ public class Patch
         Name = name;
         this.ID = id;
         this.biomeTemplate = biomeTemplate;
+
+        // TODO: implement clone for biome
+        // Biome = biomeTemplate.Clone();
     }
 
     [JsonProperty]
