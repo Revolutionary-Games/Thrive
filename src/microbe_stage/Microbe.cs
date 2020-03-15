@@ -1,10 +1,11 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
 ///   Main script on each cell in the game
 /// </summary>
-public class Microbe : RigidBody, ISpawned
+public class Microbe : RigidBody, ISpawned, IProcessable
 {
     /// <summary>
     ///   The stored compounds in this microbe
@@ -38,6 +39,15 @@ public class Microbe : RigidBody, ISpawned
         {
             return this;
         }
+    }
+
+    // TODO: implement process list
+    public List<TweakedProcess> ActiveProcesses { get; private set; } =
+        new List<TweakedProcess>();
+
+    public CompoundBag ProcessCompoundStorage
+    {
+        get { return Compounds; }
     }
 
     public override void _Ready()

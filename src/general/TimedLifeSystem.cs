@@ -14,7 +14,7 @@ public class TimedLifeSystem
         this.worldRoot = worldRoot;
     }
 
-    internal void Process(float delta)
+    public void Process(float delta)
     {
         var nodes = worldRoot.GetTree().GetNodesInGroup(Constants.TIMED_GROUP);
 

@@ -3,7 +3,7 @@
         "name": "ATP",
         "volume": 1,
         "isCloud": false,
-        "isUseful": true,
+        "isAlwaysUseful": true,
         "isEnvironmental": false,
         "colour": {
             "r": 0.235,
@@ -16,7 +16,7 @@
         "name": "Ammonia",
         "volume": 1,
         "isCloud": true,
-        "isUseful": true,
+        "isAlwaysUseful": true,
         "isEnvironmental": false,
         "colour": {
             "r": 1.0,
@@ -29,7 +29,7 @@
         "name": "Phosphate",
         "volume": 1,
         "isCloud": true,
-        "isUseful": true,
+        "isAlwaysUseful": true,
         "isEnvironmental": false,
         "colour": {
             "r": 0.8,
@@ -42,7 +42,7 @@
         "name": "Hydrogen Sulfide",
         "volume": 1,
         "isCloud": true,
-        "isUseful": false,
+        "isAlwaysUseful": false,
         "isEnvironmental": false,
         "colour": {
             "r": 0.6,
@@ -55,7 +55,7 @@
         "name": "Glucose",
         "volume": 1,
         "isCloud": true,
-        "isUseful": false,
+        "isAlwaysUseful": false,
         "isEnvironmental": false,
         "colour": {
             "r": 0.9,
@@ -68,7 +68,7 @@
         "name": "Oxytoxy NT",
         "volume": 1,
         "isCloud": false,
-        "isUseful": true,
+        "isAlwaysUseful": true,
         "isEnvironmental": false,
         "colour": {
             "r": 0.078,
@@ -81,7 +81,7 @@
         "name": "Iron",
         "volume": 1,
         "isCloud": true,
-        "isUseful": false,
+        "isAlwaysUseful": false,
         "isEnvironmental": false,
         "colour": {
             "r": 0.45,
@@ -94,7 +94,7 @@
         "name": "Oxygen",
         "volume": 1,
         "isCloud": false,
-        "isUseful": true,
+        "isAlwaysUseful": false,
         "isEnvironmental": true,
         "colour": {
             "r": 0.0,
@@ -107,7 +107,7 @@
         "name": "Carbon Dioxide",
         "volume": 1,
         "isCloud": false,
-        "isUseful": true,
+        "isAlwaysUseful": false,
         "isEnvironmental": true,
         "colour": {
             "r": 1.0,
@@ -120,7 +120,7 @@
         "name": "Nitrogen",
         "volume": 1,
         "isCloud": false,
-        "isUseful": true,
+        "isAlwaysUseful": true,
         "isEnvironmental": true,
         "colour": {
             "r": 1.0,
@@ -133,7 +133,7 @@
         "name": "Sunlight",
         "volume": 1,
         "isCloud": false,
-        "isUseful": true,
+        "isAlwaysUseful": false,
         "isEnvironmental": true,
         "colour": {
             "r": 1.0,
