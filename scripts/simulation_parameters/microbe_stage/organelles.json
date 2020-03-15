@@ -3,7 +3,7 @@
     {
 	    "name": "nucleus",
 	    "gene": "N",
-	    "displayScene": "nucleus.fbx",
+	    "displayScene": "res://src/microbe_stage/organelles/Nucleus.tscn",
 	    "mass": 0.7,
 	    "chanceToCreate": 0,
 	    "prokaryoteChance": 0,
@@ -70,7 +70,7 @@
     {
 	    "name": "cytoplasm",
 	    "gene": "Y",
-	    "displayScene": "",
+	    "displayScene": "res://src/microbe_stage/organelles/Cytoplasm.tscn",
 	    "mass": 0.1,
 	    "chanceToCreate": 1,
 	    "prokaryoteChance": 1,
@@ -106,7 +106,7 @@
     "chloroplast": {
 	    "name": "chloroplast",
 	    "gene": "H",
-	    "displayScene": "chloroplast.fbx",
+	    "displayScene": "res://src/microbe_stage/organelles/Chloroplast.tscn",
 	    "mass": 0.4,
 	    "chanceToCreate": 1,
 	    "prokaryoteChance": 0,
@@ -151,7 +151,7 @@
     {
 	    "name": "oxytoxy",
 	    "gene": "T",
-	    "displayScene": "agent_gland.fbx",
+	    "displayScene": "res://src/microbe_stage/organelles/Oxytoxy.tscn",
 	    "mass": 0.3,
 	    "chanceToCreate": 1,
 	    "prokaryoteChance": 0,
@@ -189,7 +189,7 @@
     {
 	    "name": "mitochondrion",
 	    "gene": "M",
-	    "displayScene": "mitochondrion.fbx",
+	    "displayScene": "res://src/microbe_stage/organelles/Mitochondrion.tscn",
 	    "mass": 0.3,
 	    "chanceToCreate": 3,
 	    "prokaryoteChance": 0,
@@ -230,7 +230,7 @@
     {
 	    "name": "vacuole",
 	    "gene": "V",
-	    "displayScene": "vacuole.fbx",
+	    "displayScene": "res://src/microbe_stage/organelles/Vacuole.tscn",
 	    "mass": 0.4,
 	    "chanceToCreate": 3,
 	    "prokaryoteChance": 0,
@@ -260,7 +260,7 @@
     {
 	    "name": "flagellum",
 	    "gene": "F",
-	    "displayScene": "flagellum.fbx",
+	    "displayScene": "res://src/microbe_stage/organelles/Flagellum.tscn",
 	    "mass": 0.3,
 	    "chanceToCreate": 6,
 	    "prokaryoteChance": 2,
@@ -295,7 +295,7 @@
     {
 	    "name": "chemoplast",
 	    "gene": "C",
-	    "displayScene": "chemoplast.fbx",
+	    "displayScene": "res://src/microbe_stage/organelles/Chemoplast.tscn",
 	    "mass": 0.1,
 	    "chanceToCreate": 1,
 	    "prokaryoteChance": 0,
@@ -336,7 +336,7 @@
     {
 	    "name": "nitrogenfixingplastid",
 	    "gene": "I",
-	    "displayScene": "rhizoplast.fbx",
+	    "displayScene": "res://src/microbe_stage/organelles/NitrogenFixingPlastid.tscn",
 	    "mass": 0.1,
 	    "chanceToCreate": 1,
 	    "prokaryoteChance": 0,
@@ -377,7 +377,7 @@
     {
 	    "name": "metabolosome",
 	    "gene": "m",
-	    "displayScene": "metabolosome.fbx",
+	    "displayScene": "res://src/microbe_stage/organelles/Metabolosome.tscn",
 	    "mass": 0.1,
 	    "chanceToCreate": 0.5,
 	    "prokaryoteChance": 2,
@@ -410,11 +410,11 @@
 	    },
 	    "mpCost": 45
     },
-    "chromatophors":
+    "chromatophore":
     {
-	    "name": "chromatophors",
+	    "name": "chromatophore",
 	    "gene": "h",
-	    "displayScene": "chromatophores.fbx",
+	    "displayScene": "res://src/microbe_stage/organelles/Chromatophore.tscn",
 	    "mass": 0.1,
 	    "chanceToCreate": 0.5,
 	    "prokaryoteChance": 2,
@@ -452,7 +452,7 @@
     {
 	    "name": "oxytoxyProteins",
 	    "gene": "t",
-	    "displayScene": "oxytoxy.fbx",
+	    "displayScene": "res://src/microbe_stage/organelles/OxytoxyProteins.tscn",
 	    "mass": 0.1,
 	    "chanceToCreate": 1,
 	    "prokaryoteChance": 0.5,
@@ -491,11 +491,11 @@
 	    },
 	    "mpCost": 55
     },
-    "chemoSynthisizingProteins":
+    "chemoSynthesizingProteins":
     {
-	    "name": "chemoSynthisizingProteins",
+	    "name": "chemoSynthesizingProteins",
 	    "gene": "c",
-	    "displayScene": "chemoproteins.fbx",
+	    "displayScene": "res://src/microbe_stage/organelles/ChemoSynthesizingProteins.tscn",
 	    "mass": 0.1,
 	    "chanceToCreate": 0.5,
 	    "prokaryoteChance": 2,
@@ -533,7 +533,7 @@
     {
 	    "name": "protoplasm",
 	    "gene": "y",
-	    "displayScene": "",
+	    "displayScene": "res://src/microbe_stage/organelles/Protoplasm.tscn",
 	    "mass": 0.1,
 	    "chanceToCreate": 0,
 	    "prokaryoteChance": 2,
@@ -570,7 +570,7 @@
     {
 	    "name": "nitrogenase",
 	    "gene": "i",
-	    "displayScene": "nitrogenase.fbx",
+	    "displayScene": "res://src/microbe_stage/organelles/Nitrogenase.tscn",
 	    "mass": 0.1,
 	    "chanceToCreate": 1,
 	    "prokaryoteChance": 2,
@@ -608,7 +608,7 @@
     {
 	    "name": "rusticyanin",
 	    "gene": "f",
-	    "displayScene": "rusticyanin.fbx",
+	    "displayScene": "res://src/microbe_stage/organelles/Rusticyanin.tscn",
 	    "mass": 0.1,
 	    "chanceToCreate": 0.5,
 	    "prokaryoteChance": 2,
@@ -645,7 +645,7 @@
     {
 	    "name": "pilus",
 	    "gene": "P",
-	    "displayScene": "pilus.fbx",
+	    "displayScene": "res://src/microbe_stage/organelles/Pilus.tscn",
 	    "mass": 0.5,
 	    "chanceToCreate": 0.5,
 	    "prokaryoteChance": 0.5,
