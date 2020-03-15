@@ -1,671 +1,566 @@
 {
-    "nucleus":
-    {
-	    "name": "nucleus",
-	    "gene": "N",
-	    "displayScene": "res://src/microbe_stage/organelles/Nucleus.tscn",
-	    "mass": 0.7,
-	    "chanceToCreate": 0,
-	    "prokaryoteChance": 0,
-	    "components":
-	    {
-	        "nucleus": {},
-	        "storage":
-	        {
-		        "capacity": 15
-	        }
-	    },
-	    "processes": {},
-	    "hexes":
-	    [
-	        {
-		        "q": 0,
-		        "r": 0
-	        },
-	        {
-		        "q": 1,
-		        "r": 0
-	        },
-	        {
-		        "q": 0,
-		        "r": 1
-	        },
-	        {
-		        "q": 0,
-		        "r": -1
-	        },
-	        {
-		        "q": 1,
-		        "r": -1
-	        },
-	        {
-		        "q": -1,
-		        "r": 1
-	        },
-	        {
-		        "q": -1,
-		        "r": 0
-	        },
-	        {
-		        "q": 1,
-		        "r": 1
-	        },
-	        {
-		        "q": 0,
-		        "r": 2
-	        },
-	        {
-		        "q": -1,
-		        "r": 2
-	        }
-	    ],
-	    "initialComposition":
-	    {
-	        "phosphates": 2,
-	        "ammonia": 2
-	    },
-	    "mpCost": 100
+    "pilus": {
+        "mpCost": 30,
+        "initialComposition": {
+            "ammonia": 1,
+            "phosphates": 1
+        },
+        "hexes": [
+            {
+                "r": 0,
+                "q": 0
+            }
+        ],
+        "processes": {
+        },
+        "components": {
+            "pilus": {
+            }
+        },
+        "prokaryoteChance": 0.5,
+        "chanceToCreate": 0.5,
+        "mass": 0.5,
+        "displayScene": "res://assets/models/organelles/Pilus.tscn",
+        "gene": "P",
+        "name": "pilus"
     },
-    "cytoplasm":
-    {
-	    "name": "cytoplasm",
-	    "gene": "Y",
-	    "displayScene": "res://src/microbe_stage/organelles/Cytoplasm.tscn",
-	    "mass": 0.1,
-	    "chanceToCreate": 1,
-	    "prokaryoteChance": 1,
-	    "components":
-	    {
-	        "processor":
-	        {
-		        "colourChangeFactor": 1
-	        },
-	        "storage":
-	        {
-		        "capacity": 4
-	        }
-	    },
-	    "processes":
-	    {
-	        "glycolysis_cytoplasm": 1
-	    },
-	    "hexes":
-	    [
-	        {
-		        "q": 0,
-		        "r": 0
-	        }
-	    ],
-	    "initialComposition":
-	    {
-	        "phosphates": 2,
-	        "ammonia": 2
-	    },
-	    "mpCost": 22
+    "rusticyanin": {
+        "mpCost": 45,
+        "initialComposition": {
+            "ammonia": 1,
+            "phosphates": 1
+        },
+        "hexes": [
+            {
+                "r": 0,
+                "q": 0
+            }
+        ],
+        "processes": {
+            "iron_chemolithoautotrophy": 2
+        },
+        "components": {
+            "storage": {
+                "capacity": 1
+            },
+            "processor": {
+                "colourChangeFactor": 1
+            }
+        },
+        "prokaryoteChance": 2,
+        "chanceToCreate": 0.5,
+        "mass": 0.1,
+        "displayScene": "res://assets/models/organelles/Rusticyanin.tscn",
+        "gene": "f",
+        "name": "rusticyanin"
+    },
+    "nitrogenase": {
+        "mpCost": 55,
+        "initialComposition": {
+            "ammonia": 1,
+            "phosphates": 1
+        },
+        "hexes": [
+            {
+                "r": 0,
+                "q": 0
+            }
+        ],
+        "processes": {
+            "glycolysis": 1,
+            "nitrogenaseReaction": 1
+        },
+        "components": {
+            "storage": {
+                "capacity": 2
+            },
+            "processor": {
+                "colourChangeFactor": 1
+            }
+        },
+        "prokaryoteChance": 2,
+        "chanceToCreate": 1,
+        "mass": 0.1,
+        "displayScene": "res://assets/models/organelles/Nitrogenase.tscn",
+        "gene": "i",
+        "name": "nitrogenase"
+    },
+    "protoplasm": {
+        "mpCost": 55,
+        "initialComposition": {
+            "ammonia": 1,
+            "phosphates": 1
+        },
+        "hexes": [
+            {
+                "r": 0,
+                "q": 0
+            }
+        ],
+        "processes": {
+            "glycolysis": 1
+        },
+        "components": {
+            "storage": {
+                "capacity": 15
+            },
+            "processor": {
+                "colourChangeFactor": 1
+            }
+        },
+        "prokaryoteChance": 2,
+        "chanceToCreate": 0,
+        "mass": 0.1,
+        "displayScene": "res://assets/models/organelles/Protoplasm.tscn",
+        "gene": "y",
+        "name": "protoplasm"
+    },
+    "chemoSynthesizingProteins": {
+        "mpCost": 45,
+        "initialComposition": {
+            "ammonia": 1,
+            "phosphates": 1
+        },
+        "hexes": [
+            {
+                "r": 0,
+                "q": 0
+            }
+        ],
+        "processes": {
+            "glycolysis": 1,
+            "bacterial_ChemoSynthesis": 1
+        },
+        "components": {
+            "storage": {
+                "capacity": 1
+            },
+            "processor": {
+                "colourChangeFactor": 1
+            }
+        },
+        "prokaryoteChance": 2,
+        "chanceToCreate": 0.5,
+        "mass": 0.1,
+        "displayScene": "res://assets/models/organelles/ChemoSynthesizingProteins.tscn",
+        "gene": "c",
+        "name": "chemoSynthesizingProteins"
+    },
+    "oxytoxyProteins": {
+        "mpCost": 55,
+        "initialComposition": {
+            "ammonia": 1,
+            "phosphates": 1
+        },
+        "hexes": [
+            {
+                "r": 0,
+                "q": 0
+            }
+        ],
+        "processes": {
+            "glycolysis": 1,
+            "bacterial_oxytoxySynthesis": 1
+        },
+        "components": {
+            "processor": {
+                "colourChangeFactor": 1
+            },
+            "storage": {
+                "capacity": 4
+            },
+            "agentVacuole": {
+                "process": "bacterial_oxytoxySynthesis",
+                "compound": "oxytoxy"
+            }
+        },
+        "prokaryoteChance": 0.5,
+        "chanceToCreate": 1,
+        "mass": 0.1,
+        "displayScene": "res://assets/models/organelles/OxytoxyProteins.tscn",
+        "gene": "t",
+        "name": "oxytoxyProteins"
+    },
+    "chromatophore": {
+        "mpCost": 50,
+        "initialComposition": {
+            "ammonia": 1,
+            "phosphates": 1
+        },
+        "hexes": [
+            {
+                "r": 0,
+                "q": 0
+            }
+        ],
+        "processes": {
+            "glycolysis": 1,
+            "chromatophore_photosynthesis": 1
+        },
+        "components": {
+            "storage": {
+                "capacity": 1
+            },
+            "processor": {
+                "colourChangeFactor": 1
+            }
+        },
+        "prokaryoteChance": 2,
+        "chanceToCreate": 0.5,
+        "mass": 0.1,
+        "displayScene": "res://assets/models/organelles/Chromatophore.tscn",
+        "gene": "h",
+        "name": "chromatophore"
+    },
+    "metabolosome": {
+        "mpCost": 45,
+        "initialComposition": {
+            "ammonia": 1,
+            "phosphates": 1
+        },
+        "hexes": [
+            {
+                "r": 0,
+                "q": 0
+            }
+        ],
+        "processes": {
+            "protein_respiration": 1
+        },
+        "components": {
+            "storage": {
+                "capacity": 1
+            },
+            "processor": {
+                "colourChangeFactor": 1
+            }
+        },
+        "prokaryoteChance": 2,
+        "chanceToCreate": 0.5,
+        "mass": 0.1,
+        "displayScene": "res://assets/models/organelles/Metabolosome.tscn",
+        "gene": "m",
+        "name": "metabolosome"
+    },
+    "nitrogenfixingplastid": {
+        "mpCost": 50,
+        "initialComposition": {
+            "ammonia": 2,
+            "phosphates": 2
+        },
+        "hexes": [
+            {
+                "r": 0,
+                "q": 0
+            },
+            {
+                "r": -1,
+                "q": 0
+            }
+        ],
+        "processes": {
+            "nitrogenFixing": 1
+        },
+        "components": {
+            "storage": {
+                "capacity": 2
+            },
+            "processor": {
+                "colourChangeFactor": 1
+            }
+        },
+        "prokaryoteChance": 0,
+        "chanceToCreate": 1,
+        "mass": 0.1,
+        "displayScene": "res://assets/models/organelles/NitrogenFixingPlastid.tscn",
+        "gene": "I",
+        "name": "nitrogenfixingplastid"
+    },
+    "chemoplast": {
+        "mpCost": 45,
+        "initialComposition": {
+            "ammonia": 2,
+            "phosphates": 2
+        },
+        "hexes": [
+            {
+                "r": 0,
+                "q": 0
+            },
+            {
+                "r": -1,
+                "q": 0
+            }
+        ],
+        "processes": {
+            "chemoSynthesis": 1
+        },
+        "components": {
+            "storage": {
+                "capacity": 2
+            },
+            "processor": {
+                "colourChangeFactor": 1
+            }
+        },
+        "prokaryoteChance": 0,
+        "chanceToCreate": 1,
+        "mass": 0.1,
+        "displayScene": "res://assets/models/organelles/Chemoplast.tscn",
+        "gene": "C",
+        "name": "chemoplast"
+    },
+    "flagellum": {
+        "mpCost": 55,
+        "initialComposition": {
+            "ammonia": 2,
+            "phosphates": 2
+        },
+        "hexes": [
+            {
+                "r": 0,
+                "q": 0
+            }
+        ],
+        "processes": {
+        },
+        "components": {
+            "storage": {
+                "capacity": 1
+            },
+            "movement": {
+                "torque": 300,
+                "momentum": 20
+            }
+        },
+        "prokaryoteChance": 2,
+        "chanceToCreate": 6,
+        "mass": 0.3,
+        "displayScene": "res://assets/models/organelles/Flagellum.tscn",
+        "gene": "F",
+        "name": "flagellum"
+    },
+    "vacuole": {
+        "mpCost": 50,
+        "initialComposition": {
+            "ammonia": 2,
+            "phosphates": 2
+        },
+        "hexes": [
+            {
+                "r": 0,
+                "q": 0
+            }
+        ],
+        "processes": {
+        },
+        "components": {
+            "storage": {
+                "capacity": 15
+            }
+        },
+        "prokaryoteChance": 0,
+        "chanceToCreate": 3,
+        "mass": 0.4,
+        "displayScene": "res://assets/models/organelles/Vacuole.tscn",
+        "gene": "V",
+        "name": "vacuole"
+    },
+    "mitochondrion": {
+        "mpCost": 45,
+        "initialComposition": {
+            "ammonia": 2,
+            "phosphates": 2
+        },
+        "hexes": [
+            {
+                "r": 0,
+                "q": 0
+            },
+            {
+                "r": -1,
+                "q": 0
+            }
+        ],
+        "processes": {
+            "respiration": 1
+        },
+        "components": {
+            "storage": {
+                "capacity": 2
+            },
+            "processor": {
+                "colourChangeFactor": 1
+            }
+        },
+        "prokaryoteChance": 0,
+        "chanceToCreate": 3,
+        "mass": 0.3,
+        "displayScene": "res://assets/models/organelles/Mitochondrion.tscn",
+        "gene": "M",
+        "name": "mitochondrion"
+    },
+    "oxytoxy": {
+        "mpCost": 70,
+        "initialComposition": {
+            "ammonia": 2,
+            "phosphates": 2
+        },
+        "hexes": [
+            {
+                "r": 0,
+                "q": 0
+            }
+        ],
+        "processes": {
+            "oxytoxySynthesis": 1
+        },
+        "components": {
+            "storage": {
+                "capacity": 5
+            },
+            "agentVacuole": {
+                "process": "oxytoxySynthesis",
+                "compound": "oxytoxy"
+            }
+        },
+        "prokaryoteChance": 0,
+        "chanceToCreate": 1,
+        "mass": 0.3,
+        "displayScene": "res://assets/models/organelles/Oxytoxy.tscn",
+        "gene": "T",
+        "name": "oxytoxy"
     },
     "chloroplast": {
-	    "name": "chloroplast",
-	    "gene": "H",
-	    "displayScene": "res://src/microbe_stage/organelles/Chloroplast.tscn",
-	    "mass": 0.4,
-	    "chanceToCreate": 1,
-	    "prokaryoteChance": 0,
-	    "components":
-	    {
-	        "processor":
-	        {
-		        "colourChangeFactor": 1
-	        },
-	        "storage":
-	        {
-		        "capacity": 2
-	        }
-	    },
-	    "processes":
-	    {
-	        "photosynthesis": 1
-	    },
-	    "hexes":
-	    [
-	        {
-		        "q": 0,
-		        "r": 0
-	        },
-	        {
-		        "q": 0,
-		        "r": -1
-	        },
-	        {
-		        "q": 1,
-		        "r": -1
-	        }
-	    ],
-	    "initialComposition":
-	    {
-	        "phosphates": 2,
-	        "ammonia": 2
-	    },
-	    "mpCost": 50
+        "mpCost": 50,
+        "initialComposition": {
+            "ammonia": 2,
+            "phosphates": 2
+        },
+        "hexes": [
+            {
+                "r": 0,
+                "q": 0
+            },
+            {
+                "r": -1,
+                "q": 0
+            },
+            {
+                "r": -1,
+                "q": 1
+            }
+        ],
+        "processes": {
+            "photosynthesis": 1
+        },
+        "components": {
+            "storage": {
+                "capacity": 2
+            },
+            "processor": {
+                "colourChangeFactor": 1
+            }
+        },
+        "prokaryoteChance": 0,
+        "chanceToCreate": 1,
+        "mass": 0.4,
+        "displayScene": "res://assets/models/organelles/Chloroplast.tscn",
+        "gene": "H",
+        "name": "chloroplast"
     },
-    "oxytoxy":
-    {
-	    "name": "oxytoxy",
-	    "gene": "T",
-	    "displayScene": "res://src/microbe_stage/organelles/Oxytoxy.tscn",
-	    "mass": 0.3,
-	    "chanceToCreate": 1,
-	    "prokaryoteChance": 0,
-	    "components":
-	    {
-	        "agentVacuole":
-	        {
-		        "compound": "oxytoxy",
-		        "process": "oxytoxySynthesis"
-	        },
-	        "storage":
-	        {
-		        "capacity": 5
-	        }
-	    },
-	    "processes":
-	    {
-	        "oxytoxySynthesis": 1
-	    },
-	    "hexes":
-	    [
-	        {
-		        "q": 0,
-		        "r": 0
-	        }
-	    ],
-	    "initialComposition":
-	    {
-	        "phosphates": 2,
-	        "ammonia": 2
-	    },
-	    "mpCost": 70
+    "cytoplasm": {
+        "mpCost": 22,
+        "initialComposition": {
+            "ammonia": 2,
+            "phosphates": 2
+        },
+        "hexes": [
+            {
+                "r": 0,
+                "q": 0
+            }
+        ],
+        "processes": {
+            "glycolysis_cytoplasm": 1
+        },
+        "components": {
+            "storage": {
+                "capacity": 4
+            },
+            "processor": {
+                "colourChangeFactor": 1
+            }
+        },
+        "prokaryoteChance": 1,
+        "chanceToCreate": 1,
+        "mass": 0.1,
+        "displayScene": "res://assets/models/organelles/Cytoplasm.tscn",
+        "gene": "Y",
+        "name": "cytoplasm"
     },
-    "mitochondrion":
-    {
-	    "name": "mitochondrion",
-	    "gene": "M",
-	    "displayScene": "res://src/microbe_stage/organelles/Mitochondrion.tscn",
-	    "mass": 0.3,
-	    "chanceToCreate": 3,
-	    "prokaryoteChance": 0,
-	    "components":
-	    {
-	        "processor":
-	        {
-		        "colourChangeFactor": 1
-	        },
-	        "storage":
-	        {
-		        "capacity": 2
-	        }
-	    },
-	    "processes":
-	    {
-	        "respiration": 1
-	    },
-	    "hexes":
-	    [
-	        {
-		        "q": 0,
-		        "r": 0
-	        },
-	        {
-		        "q": 0,
-		        "r": -1
-	        }
-	    ],
-	    "initialComposition":
-	    {
-	        "phosphates": 2,
-	        "ammonia": 2
-	    },
-	    "mpCost": 45
-    },
-    "vacuole":
-    {
-	    "name": "vacuole",
-	    "gene": "V",
-	    "displayScene": "res://src/microbe_stage/organelles/Vacuole.tscn",
-	    "mass": 0.4,
-	    "chanceToCreate": 3,
-	    "prokaryoteChance": 0,
-	    "components":
-	    {
-	        "storage":
-	        {
-		        "capacity": 15
-	        }
-	    },
-	    "processes": {},
-	    "hexes":
-	    [
-	        {
-		        "q": 0,
-		        "r": 0
-	        }
-	    ],
-	    "initialComposition":
-	    {
-	        "phosphates": 2,
-	        "ammonia": 2
-	    },
-	    "mpCost": 50
-    },
-    "flagellum":
-    {
-	    "name": "flagellum",
-	    "gene": "F",
-	    "displayScene": "res://src/microbe_stage/organelles/Flagellum.tscn",
-	    "mass": 0.3,
-	    "chanceToCreate": 6,
-	    "prokaryoteChance": 2,
-	    "components":
-	    {
-	        "movement":
-	        {
-		        "momentum": 20,
-		        "torque": 300
-	        },
-	        "storage":
-	        {
-		        "capacity": 1
-	        }
-	    },
-	    "processes": {},
-	    "hexes":
-	    [
-	        {
-		        "q": 0,
-		        "r": 0
-	        }
-	    ],
-	    "initialComposition":
-	    {
-	        "phosphates": 2,
-	        "ammonia": 2
-	    },
-	    "mpCost": 55
-    },
-    "chemoplast":
-    {
-	    "name": "chemoplast",
-	    "gene": "C",
-	    "displayScene": "res://src/microbe_stage/organelles/Chemoplast.tscn",
-	    "mass": 0.1,
-	    "chanceToCreate": 1,
-	    "prokaryoteChance": 0,
-	    "components":
-	    {
-	        "processor":
-	        {
-		        "colourChangeFactor": 1
-	        },
-	        "storage":
-	        {
-		        "capacity": 2
-	        }
-	    },
-	    "processes":
-	    {
-	        "chemoSynthesis": 1
-	    },
-	    "hexes":
-	    [
-	        {
-		        "q": 0,
-		        "r": 0
-	        },
-	        {
-		        "q": 0,
-		        "r": -1
-	        }
-	    ],
-	    "initialComposition":
-	    {
-	        "phosphates": 2,
-	        "ammonia": 2
-	    },
-	    "mpCost": 45
-    },
-    "nitrogenfixingplastid":
-    {
-	    "name": "nitrogenfixingplastid",
-	    "gene": "I",
-	    "displayScene": "res://src/microbe_stage/organelles/NitrogenFixingPlastid.tscn",
-	    "mass": 0.1,
-	    "chanceToCreate": 1,
-	    "prokaryoteChance": 0,
-	    "components":
-	    {
-	        "processor":
-	        {
-		        "colourChangeFactor": 1
-	        },
-	        "storage":
-	        {
-		        "capacity": 2
-	        }
-	    },
-	    "processes":
-	    {
-	        "nitrogenFixing": 1
-	    },
-	    "hexes":
-	    [
-	        {
-		        "q": 0,
-		        "r": 0
-	        },
-	        {
-		        "q": 0,
-		        "r": -1
-	        }
-	    ],
-	    "initialComposition":
-	    {
-	        "phosphates": 2,
-	        "ammonia": 2
-	    },
-	    "mpCost": 50
-    },
-    "metabolosome":
-    {
-	    "name": "metabolosome",
-	    "gene": "m",
-	    "displayScene": "res://src/microbe_stage/organelles/Metabolosome.tscn",
-	    "mass": 0.1,
-	    "chanceToCreate": 0.5,
-	    "prokaryoteChance": 2,
-	    "components":
-	    {
-	        "processor":
-	        {
-		        "colourChangeFactor": 1
-	        },
-	        "storage":
-	        {
-		        "capacity": 1
-	        }
-	    },
-	    "processes":
-	    {
-	        "protein_respiration": 1
-	    },
-	    "hexes":
-	    [
-	        {
-		        "q": 0,
-		        "r": 0
-	        }
-	    ],
-	    "initialComposition":
-	    {
-	        "phosphates": 1,
-	        "ammonia": 1
-	    },
-	    "mpCost": 45
-    },
-    "chromatophore":
-    {
-	    "name": "chromatophore",
-	    "gene": "h",
-	    "displayScene": "res://src/microbe_stage/organelles/Chromatophore.tscn",
-	    "mass": 0.1,
-	    "chanceToCreate": 0.5,
-	    "prokaryoteChance": 2,
-	    "components":
-	    {
-	        "processor":
-	        {
-		        "colourChangeFactor": 1
-	        },
-	        "storage":
-	        {
-		        "capacity": 1
-	        }
-	    },
-	    "processes":
-	    {
-	        "chromatophore_photosynthesis": 1,
-	        "glycolysis": 1
-	    },
-	    "hexes":
-	    [
-	        {
-		        "q": 0,
-		        "r": 0
-	        }
-	    ],
-	    "initialComposition":
-	    {
-	        "phosphates": 1,
-	        "ammonia": 1
-	    },
-	    "mpCost": 50
-    },
-    "oxytoxyProteins":
-    {
-	    "name": "oxytoxyProteins",
-	    "gene": "t",
-	    "displayScene": "res://src/microbe_stage/organelles/OxytoxyProteins.tscn",
-	    "mass": 0.1,
-	    "chanceToCreate": 1,
-	    "prokaryoteChance": 0.5,
-	    "components":
-	    {
-	        "agentVacuole":
-	        {
-		        "compound": "oxytoxy",
-		        "process": "bacterial_oxytoxySynthesis"
-	        },
-	        "storage":
-	        {
-		        "capacity": 4
-	        },
-	        "processor":
-	        {
-		        "colourChangeFactor": 1
-	        }
-	    },
-	    "processes":
-	    {
-	        "bacterial_oxytoxySynthesis": 1,
-	        "glycolysis": 1
-	    },
-	    "hexes":
-	    [
-	        {
-		        "q": 0,
-		        "r": 0
-	        }
-	    ],
-	    "initialComposition":
-	    {
-	        "phosphates": 1,
-	        "ammonia": 1
-	    },
-	    "mpCost": 55
-    },
-    "chemoSynthesizingProteins":
-    {
-	    "name": "chemoSynthesizingProteins",
-	    "gene": "c",
-	    "displayScene": "res://src/microbe_stage/organelles/ChemoSynthesizingProteins.tscn",
-	    "mass": 0.1,
-	    "chanceToCreate": 0.5,
-	    "prokaryoteChance": 2,
-	    "components":
-	    {
-	        "processor":
-	        {
-		        "colourChangeFactor": 1
-	        },
-	        "storage":
-	        {
-		        "capacity": 1
-	        }
-	    },
-	    "processes":
-	    {
-	        "bacterial_ChemoSynthesis": 1,
-	        "glycolysis": 1
-	    },
-	    "hexes":
-	    [
-	        {
-		        "q": 0,
-		        "r": 0
-	        }
-	    ],
-	    "initialComposition":
-	    {
-	        "phosphates": 1,
-	        "ammonia": 1
-	    },
-	    "mpCost": 45
-    },
-    "protoplasm":
-    {
-	    "name": "protoplasm",
-	    "gene": "y",
-	    "displayScene": "res://src/microbe_stage/organelles/Protoplasm.tscn",
-	    "mass": 0.1,
-	    "chanceToCreate": 0,
-	    "prokaryoteChance": 2,
-	    "components":
-	    {
-	        "processor":
-	        {
-		        "colourChangeFactor": 1
-	        },
-	        "storage":
-	        {
-		        "capacity": 15
-	        }
-	    },
-	    "processes":
-	    {
-	        "glycolysis": 1
-	    },
-	    "hexes":
-	    [
-	        {
-		        "q": 0,
-		        "r": 0
-	        }
-	    ],
-	    "initialComposition":
-	    {
-	        "phosphates": 1,
-	        "ammonia": 1
-	    },
-	    "mpCost": 55
-    },
-    "nitrogenase":
-    {
-	    "name": "nitrogenase",
-	    "gene": "i",
-	    "displayScene": "res://src/microbe_stage/organelles/Nitrogenase.tscn",
-	    "mass": 0.1,
-	    "chanceToCreate": 1,
-	    "prokaryoteChance": 2,
-	    "components":
-	    {
-	        "processor":
-	        {
-		        "colourChangeFactor": 1
-	        },
-	        "storage":
-	        {
-		        "capacity": 2
-	        }
-	    },
-	    "processes":
-	    {
-	        "nitrogenaseReaction": 1,
-	        "glycolysis": 1
-	    },
-	    "hexes":
-	    [
-	        {
-		        "q": 0,
-		        "r": 0
-	        }
-	    ],
-	    "initialComposition":
-	    {
-	        "phosphates": 1,
-	        "ammonia": 1
-	    },
-	    "mpCost": 55
-    },
-    "rusticyanin":
-    {
-	    "name": "rusticyanin",
-	    "gene": "f",
-	    "displayScene": "res://src/microbe_stage/organelles/Rusticyanin.tscn",
-	    "mass": 0.1,
-	    "chanceToCreate": 0.5,
-	    "prokaryoteChance": 2,
-	    "components":
-	    {
-	        "processor":
-	        {
-		        "colourChangeFactor": 1
-	        },
-	        "storage":
-	        {
-		        "capacity": 1
-	        }
-	    },
-	    "processes":
-	    {
-	        "iron_chemolithoautotrophy": 2
-	    },
-	    "hexes":
-	    [
-	        {
-		        "q": 0,
-		        "r": 0
-	        }
-	    ],
-	    "initialComposition":
-	    {
-	        "phosphates": 1,
-	        "ammonia": 1
-	    },
-	    "mpCost": 45
-    },    
-    "pilus":
-    {
-	    "name": "pilus",
-	    "gene": "P",
-	    "displayScene": "res://src/microbe_stage/organelles/Pilus.tscn",
-	    "mass": 0.5,
-	    "chanceToCreate": 0.5,
-	    "prokaryoteChance": 0.5,
-	    "components":
-	    {
-	        "pilus": {}
-	    },
-	    "processes": {},
-	    "hexes":
-	    [
-	        {
-		        "q": 0,
-		        "r": 0
-	        }
-	    ],
-	    "initialComposition":
-	    {
-	        "phosphates": 1,
-	        "ammonia": 1
-	    },
-	    "mpCost": 30
+    "nucleus": {
+        "mpCost": 100,
+        "initialComposition": {
+            "ammonia": 2,
+            "phosphates": 2
+        },
+        "hexes": [
+            {
+                "r": 0,
+                "q": 0
+            },
+            {
+                "r": 0,
+                "q": 1
+            },
+            {
+                "r": 1,
+                "q": 0
+            },
+            {
+                "r": -1,
+                "q": 0
+            },
+            {
+                "r": -1,
+                "q": 1
+            },
+            {
+                "r": 1,
+                "q": -1
+            },
+            {
+                "r": 0,
+                "q": -1
+            },
+            {
+                "r": 1,
+                "q": 1
+            },
+            {
+                "r": 2,
+                "q": 0
+            },
+            {
+                "r": 2,
+                "q": -1
+            }
+        ],
+        "processes": {
+        },
+        "components": {
+            "storage": {
+                "capacity": 15
+            },
+            "nucleus": {
+            }
+        },
+        "prokaryoteChance": 0,
+        "chanceToCreate": 0,
+        "mass": 0.7,
+        "displayScene": "res://assets/models/organelles/Nucleus.tscn",
+        "gene": "N",
+        "name": "nucleus"
     }
 }
