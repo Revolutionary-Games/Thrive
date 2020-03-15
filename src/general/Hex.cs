@@ -16,6 +16,14 @@ public struct Hex
         R = r;
     }
 
+    public static Hex operator +(Hex a, Hex b) {
+        return new Hex(a.Q + b.Q, a.R + b.R);
+    }
+
+    public static Hex operator -(Hex a, Hex b) {
+        return new Hex(a.Q - b.Q, a.R - b.R);
+    }
+
     /// <summary>
     ///   Converts axial hex coordinates to cartesian coordinates.
     /// </summary>
