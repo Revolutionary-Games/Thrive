@@ -34,7 +34,8 @@ public class PlacedOrganelle : Spatial
             shape.Radius = Constants.DEFAULT_HEX_SIZE / 2.0f;
             var ownerId = microbe.CreateShapeOwner(shape);
             microbe.ShapeOwnerAddShape(ownerId, shape);
-            Vector3 shapePosition = Hex.AxialToCartesian(Hex.RotateAxialNTimes(hex, rotation) + position);
+            Vector3 shapePosition = Hex.AxialToCartesian(
+                Hex.RotateAxialNTimes(hex, rotation) + position);
             var transform = new Transform(Quat.Identity, shapePosition);
             microbe.ShapeOwnerSetTransform(ownerId, transform);
             shapes.Add(ownerId);
