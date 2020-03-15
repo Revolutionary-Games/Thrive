@@ -15,9 +15,12 @@ public class PlacedOrganelle : Spatial
     public void OnAddedToMicrobe(Microbe microbe, Hex position, int rotation) {
         microbe.AddChild(this);
         ParentMicrobe = microbe;
+        microbe.Mass += Definition.Mass;
 
         var DisplayScene = GD.Load<PackedScene>(Definition.DisplayScene);
         var x = DisplayScene.Instance();
+        Position = position;
+        Orientation = rotation;
         AddChild(x);
 
         RotateY(rotation * 60);
