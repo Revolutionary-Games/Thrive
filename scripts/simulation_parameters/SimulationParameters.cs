@@ -161,6 +161,11 @@ public class SimulationParameters
             entry.Value.Resolve(this);
         }
 
+        foreach (var entry in biomes)
+        {
+            entry.Value.Resolve(this);
+        }
+
         // TODO: there could also be a check for making sure
         // non-existant compounds, processes etc. are not used
     }

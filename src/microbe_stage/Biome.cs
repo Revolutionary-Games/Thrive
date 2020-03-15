@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Base microbe biome with some parameters that are used for a Patch.
@@ -46,6 +48,20 @@ public class Biome : IRegistryType
         }
     }
 
+    /// <summary>
+    ///   Loads the needed scenes for the chunks
+    /// </summary>
+    public void Resolve(SimulationParameters parameters)
+    {
+        foreach (var entry in Chunks)
+        {
+            foreach (var meshEntry in entry.Value.Meshes)
+            {
+                meshEntry.LoadedScene = GD.Load<PackedScene>(meshEntry.ScenePath);
+            }
+        }
+    }
+
     public struct EnvironmentalCompoundProperties
     {
         public float Amount;
@@ -79,9 +95,11 @@ public class Biome : IRegistryType
             public float Amount;
         }
 
-        public struct ChunkScene
+        public class ChunkScene
         {
             public string ScenePath;
+            [JsonIgnore]
+            public PackedScene LoadedScene;
         }
     }
 }

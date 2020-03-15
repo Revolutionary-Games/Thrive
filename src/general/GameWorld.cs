@@ -18,6 +18,9 @@ public class GameWorld
     public GameWorld(WorldGenerationSettings settings)
     {
         Map = PatchMapGenerator.Generate(settings);
+
+        if (!Map.Verify())
+            throw new ArgumentException("generated patch map with settings is not valid");
     }
 
     public PatchMap Map { get; private set; }

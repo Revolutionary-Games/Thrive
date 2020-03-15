@@ -9,6 +9,7 @@ public class MicrobeStage : Node
     private Node rootOfDynamicallySpawned;
     private SpawnSystem spawner;
     private MicrobeAISystem microbeAISystem;
+    private PatchManager patchManager;
 
     private PackedScene playerScene;
     public Microbe Player { get; private set; }
@@ -46,6 +47,8 @@ public class MicrobeStage : Node
         ProcessSystem = new ProcessSystem(rootOfDynamicallySpawned);
         microbeAISystem = new MicrobeAISystem(rootOfDynamicallySpawned);
 
+        patchManager = new PatchManager(spawner, ProcessSystem);
+
         HUD.Init(this);
 
         // Do stage setup to spawn things and setup all parts of the stage
@@ -71,6 +74,8 @@ public class MicrobeStage : Node
         SpawnPlayer();
         Camera.ResetHeight();
         Clouds.Init(FluidSystem);
+
+        // patchManager.ApplyChangedPatchSettingsIfNeeded(Patch currentPatch);
 
         ProcessSystem.SetBiome(SimulationParameters.Instance.GetBiome("default"));
 
