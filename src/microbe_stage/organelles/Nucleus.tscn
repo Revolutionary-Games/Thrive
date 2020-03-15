@@ -7,11 +7,11 @@
 [node name="Nucleus" type="Spatial"]
 
 [node name="MeshInstance" type="MeshInstance" parent="."]
-transform = Transform( 0.546979, 0, 0, 0, 0.546979, 0, 0, 0, 0.584849, 0, 0, 0 )
+transform = Transform( 1.23477, 0, 0, 0, 1.33702, 0, 0, 0, 1.41309, 0.0650368, -0.0929909, 0.117161 )
 mesh = SubResource( 1 )
 material/0 = null
 
 [node name="MeshInstance2" type="MeshInstance" parent="."]
-transform = Transform( 0.123568, 0, 0.284739, 0, 0.293574, 0, -0.293895, 0, 0.145813, -0.165521, 0.0222338, 0.919132 )
+transform = Transform( 0.278946, 0, 0.642778, 0, 0.717606, 0, -0.7101, 0, 0.352309, -0.308615, -0.0386431, 2.33794 )
 mesh = SubResource( 2 )
 material/0 = null

@@ -87,6 +87,11 @@ public class MicrobeStage : Node
         Player.AddToGroup("player");
 
         Camera.ObjectToFollow = Player;
+
+        // For testing purposes only, please remove on release.
+        PlacedOrganelle testOrganelle = new PlacedOrganelle();
+        testOrganelle.Definition = SimulationParameters.Instance.GetOrganelleType("nucleus");
+        testOrganelle.OnAddedToMicrobe(Player, new Hex(0, -5), 3);
     }
 
     public override void _Process(float delta)
