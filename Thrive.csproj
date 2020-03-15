@@ -111,6 +111,8 @@
     <Compile Include="src\general\GameWorld.cs" />
     <Compile Include="src\general\WorldGenerationSettings.cs" />
     <Compile Include="src\microbe_stage\OrganelleLayout.cs" />
+    <Compile Include="src\microbe_stage\ProcessSystem.cs" />
+    <Compile Include="src\microbe_stage\IProcessable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="StyleCop.ruleset" />

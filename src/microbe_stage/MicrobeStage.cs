@@ -24,6 +24,8 @@ public class MicrobeStage : Node
 
     public TimedWorldOperations TimedEffects { get; private set; }
 
+    public ProcessSystem ProcessSystem { get; private set; }
+
     /// <summary>
     ///   This should get called the first time the stage scene is put
     ///   into an active scene tree. So returning from the editor
@@ -40,6 +42,7 @@ public class MicrobeStage : Node
         Camera = world.GetNode<MicrobeCamera>("PrimaryCamera");
         Clouds = world.GetNode<CompoundCloudSystem>("CompoundClouds");
         TimedLifeSystem = new TimedLifeSystem(rootOfDynamicallySpawned);
+        ProcessSystem = new ProcessSystem(rootOfDynamicallySpawned);
 
         HUD.Init(this);
 
@@ -67,6 +70,8 @@ public class MicrobeStage : Node
         Camera.ResetHeight();
         Clouds.Init(FluidSystem);
 
+        ProcessSystem.SetBiome(SimulationParameters.Instance.GetBiome("default"));
+
         // Register glucose reduction
         TimedEffects.RegisterEffect("reduce_glucose", new WorldEffectLambda((elapsed, total) =>
         {
@@ -85,6 +90,7 @@ public class MicrobeStage : Node
         Player = (Microbe)playerScene.Instance();
         rootOfDynamicallySpawned.AddChild(Player);
         Player.AddToGroup("player");
+        Player.AddToGroup("process");
 
         Camera.ObjectToFollow = Player;
 
@@ -98,6 +104,7 @@ public class MicrobeStage : Node
     {
         FluidSystem.Process(delta);
         TimedLifeSystem.Process(delta);
+        ProcessSystem.Process(delta);
 
         if (Player != null)
         {

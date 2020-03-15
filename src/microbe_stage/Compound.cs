@@ -17,8 +17,11 @@ public class Compound : IRegistryType
 
     public bool IsCloud;
 
-    [Obsolete("This is now inferred from the used processes")]
-    public bool IsUseful;
+    /// <summary>
+    ///   When this is true the compound is always considered to be
+    ///   useful and is not dumped.
+    /// </summary>
+    public bool IsAlwaysUseful;
 
     public bool IsEnvironmental;
 

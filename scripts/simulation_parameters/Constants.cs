@@ -43,7 +43,14 @@ public class Constants
 
     public const float FLAGELLA_BASE_FORCE = 40.7f;
 
+    /// <summary>
+    ///   Used for energy balance calculations
+    /// </summary>
+    public const string FLAGELLA_COMPONENT_NAME = "movement";
+
     public const float CELL_BASE_THRUST = 50.6f;
+
+    public const int PROCESS_OBJECTS_PER_TASK = 50;
 
     /// <summary>
     ///   All Nodes tagged with this are handled by the spawn system for despawning
@@ -54,6 +61,16 @@ public class Constants
     ///   All Nodes tagged with this are handled by the timed life system for despawning
     /// </summary>
     public const string TIMED_GROUP = "timed";
+
+    /// <summary>
+    ///   All Nodes tagged with this are handled by the process system
+    /// </summary>
+    public const string PROCESS_GROUP = "process";
+
+    /// <summary>
+    ///   All Nodes tagged with this are handled by the ai system
+    /// </summary>
+    public const string AI_GROUP = "ai";
 
     public const string CONFIGURATION_FILE = "user://thrive_settings.json";
 

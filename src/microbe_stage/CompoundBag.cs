@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 /// <summary>
 ///   Object that stores compound amounts and capacities
@@ -11,7 +12,7 @@ public class CompoundBag
     /// </summary>
     public float Capacity;
 
-    private Dictionary<string, float> compounds = new Dictionary<string, float>();
+    private readonly HashSet<string> usefulCompounds = new HashSet<string>();
 
     public CompoundBag(float initialCapacity)
     {
@@ -21,21 +22,15 @@ public class CompoundBag
     /// <summary>
     ///   Returns all compounds. Don't modify the returned value!
     /// </summary>
-    public Dictionary<string, float> Compounds
-    {
-        get
-        {
-            return compounds;
-        }
-    }
+    public Dictionary<string, float> Compounds { get; } = new Dictionary<string, float>();
 
     /// <summary>
     ///   Returns the stored amount of the compound in this
     /// </summary>
     public float GetCompoundAmount(string compound)
     {
-        if (compounds.ContainsKey(compound))
-            return compounds[compound];
+        if (Compounds.ContainsKey(compound))
+            return Compounds[compound];
         return 0.0f;
     }
 
@@ -45,12 +40,12 @@ public class CompoundBag
     /// </summary>
     public float TakeCompound(string compound, float amount)
     {
-        if (!compounds.ContainsKey(compound) || amount <= 0.0f)
+        if (!Compounds.ContainsKey(compound) || amount <= 0.0f)
             return 0.0f;
 
-        amount = Math.Min(compounds[compound], amount);
+        amount = Math.Min(Compounds[compound], amount);
 
-        compounds[compound] -= amount;
+        Compounds[compound] -= amount;
         return amount;
     }
 
@@ -67,7 +62,7 @@ public class CompoundBag
 
         float newAmount = Math.Min(existingAmount + amount, Capacity);
 
-        compounds[compound] = newAmount;
+        Compounds[compound] = newAmount;
 
         float didntFit = amount - newAmount;
 
@@ -78,6 +73,44 @@ public class CompoundBag
         else
         {
             return 0.0f;
+        }
+    }
+
+    public void ClearUseful()
+    {
+        usefulCompounds.Clear();
+    }
+
+    public void SetUseful(string compound)
+    {
+        usefulCompounds.Add(compound);
+    }
+
+    public bool IsUseful(Compound compound)
+    {
+        if (compound.IsAlwaysUseful)
+        {
+            return true;
+        }
+
+        return IsUseful(compound.Name);
+    }
+
+    public bool IsUseful(string compound)
+    {
+        return usefulCompounds.Contains(compound);
+    }
+
+    /// <summary>
+    ///   Makes sure no compound amount is negative
+    /// </summary>
+    public void ClampNegativeCompoundAmounts()
+    {
+        var negative = Compounds.Where(c => c.Value < 0.0f);
+
+        foreach (var entry in negative)
+        {
+            Compounds[entry.Key] = 0;
         }
     }
 }

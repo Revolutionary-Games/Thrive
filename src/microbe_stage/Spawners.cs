@@ -47,6 +47,9 @@ public class MicrobeSpawner : ISpawner
         microbe.Translation = location;
         entities.Add(microbe);
 
+        microbe.AddToGroup("process");
+        microbe.AddToGroup("ai");
+
         return entities;
     }
 }
