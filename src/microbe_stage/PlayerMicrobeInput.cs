@@ -123,7 +123,7 @@ public class PlayerMicrobeInput : Node
 
         if (stage.Player != null)
         {
-            stage.Player.MovementDirection = movement;
+            stage.Player.MovementDirection = movement.Normalized();
             stage.Player.LookAtPoint = stage.Camera.CursorWorldPos;
         }
 

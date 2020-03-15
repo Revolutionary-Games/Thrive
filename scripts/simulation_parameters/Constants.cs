@@ -53,6 +53,13 @@ public class Constants
     public const int PROCESS_OBJECTS_PER_TASK = 50;
 
     /// <summary>
+    ///   Added 2 seconds here to make the random implementation look a bit better
+    /// </summary>
+    public const float MICROBE_AI_THINK_INTERVAL = 2.3f;
+
+    public const int MICROBE_AI_OBJECTS_PER_TASK = 15;
+
+    /// <summary>
     ///   All Nodes tagged with this are handled by the spawn system for despawning
     /// </summary>
     public const string SPAWNED_GROUP = "spawned";
