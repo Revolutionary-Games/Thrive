@@ -113,6 +113,8 @@
     <Compile Include="src\microbe_stage\OrganelleLayout.cs" />
     <Compile Include="src\microbe_stage\ProcessSystem.cs" />
     <Compile Include="src\microbe_stage\IProcessable.cs" />
+    <Compile Include="src\microbe_stage\MicrobeAISystem.cs" />
+    <Compile Include="src\microbe_stage\IMicrobeAI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="StyleCop.ruleset" />

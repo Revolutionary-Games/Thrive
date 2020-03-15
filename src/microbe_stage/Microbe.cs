@@ -5,7 +5,7 @@ using Godot;
 /// <summary>
 ///   Main script on each cell in the game
 /// </summary>
-public class Microbe : RigidBody, ISpawned, IProcessable
+public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 {
     /// <summary>
     ///   The stored compounds in this microbe
@@ -50,6 +50,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable
         get { return Compounds; }
     }
 
+    public float TimeUntilNextAIUpdate { get; set; } = 0;
+
     public override void _Ready()
     {
         // TODO: reimplement capacity calculation
@@ -63,9 +65,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable
     {
         if (MovementDirection != new Vector3(0, 0, 0))
         {
-            // Make sure the direction is normalized
-            MovementDirection = MovementDirection.Normalized();
-
+            // Movement direction should not be normalized to allow different speeds
             Vector3 totalMovement = new Vector3(0, 0, 0);
 
             totalMovement += DoBaseMovementForce(delta);
@@ -98,7 +98,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable
             force *= 0.5f;
         }
 
-        return Transform.basis.Xform(MovementDirection.Normalized() * force);
+        return Transform.basis.Xform(MovementDirection * force);
 
         // * microbeComponent.movementFactor *
         // (SimulationParameters::membraneRegistry().getTypeData(

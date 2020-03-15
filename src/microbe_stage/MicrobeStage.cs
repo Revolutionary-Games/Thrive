@@ -8,6 +8,7 @@ public class MicrobeStage : Node
     private Node world;
     private Node rootOfDynamicallySpawned;
     private SpawnSystem spawner;
+    private MicrobeAISystem microbeAISystem;
 
     private PackedScene playerScene;
     public Microbe Player { get; private set; }
@@ -43,6 +44,7 @@ public class MicrobeStage : Node
         Clouds = world.GetNode<CompoundCloudSystem>("CompoundClouds");
         TimedLifeSystem = new TimedLifeSystem(rootOfDynamicallySpawned);
         ProcessSystem = new ProcessSystem(rootOfDynamicallySpawned);
+        microbeAISystem = new MicrobeAISystem(rootOfDynamicallySpawned);
 
         HUD.Init(this);
 
@@ -105,6 +107,7 @@ public class MicrobeStage : Node
         FluidSystem.Process(delta);
         TimedLifeSystem.Process(delta);
         ProcessSystem.Process(delta);
+        microbeAISystem.Process(delta);
 
         if (Player != null)
         {
