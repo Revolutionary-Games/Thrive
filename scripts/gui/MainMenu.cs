@@ -18,13 +18,22 @@ public class MainMenu : Node
     public AudioStreamPlayer MusicAudio;
     public AudioStreamPlayer GUIAudio;
 
-    public Node CurrentCutsceneInstance;
-    public Node CurrentFaderInstance;
+    /// <summary>
+    ///   Reference to the instanced cutscene node.
+    /// </summary>
+    /// <remarks>Set this to null after use.</remarks>
+    private Cutscene cutscene;
 
-    private Vector2 cutsceneFrameSize;
+    /// <summary>
+    ///   Reference to the instanced screen fade node.
+    /// </summary>
+    /// <remarks>Set this to null after use.</remarks>
+    private Fade screenFade;
 
     public override void _Ready()
     {
+        GetViewport().Connect("size_changed", this, "OnCutsceneResized");
+
         // Start intro video
         PlayCutscene("res://assets/videos/intro.webm", "RunMenuSetup");
     }
@@ -43,11 +52,7 @@ public class MainMenu : Node
     public void RunMenuSetup()
     {
         // Remove the instantiated intro cutscene
-        if (CurrentCutsceneInstance != null)
-        {
-            CurrentCutsceneInstance.QueueFree();
-            CurrentCutsceneInstance = null;
-        }
+        cutscene = null;
 
         if (HasNode("Background"))
             Background = GetNode<TextureRect>("Background");
@@ -126,30 +131,25 @@ public class MainMenu : Node
     }
 
     /// <summary>
-    ///   Smoothly fades screen to black and
-    ///   calls a method when finished.
+    ///   Helper method for fading to black.
+    ///   Calls a method when finished.
     /// </summary>
     public void FadeIn(string onFinishedMethod, float fadeDuration)
     {
         var scene = GD.Load<PackedScene>("res://scripts/gui/Fade.tscn");
 
         // Instantiate scene
-        CurrentFaderInstance = scene.Instance();
-        AddChild(CurrentFaderInstance);
+        screenFade = (Fade)scene.Instance();
+        AddChild(screenFade);
 
-        var rect = CurrentFaderInstance.GetNode<ColorRect>("Rect");
-        var fader = CurrentFaderInstance.GetNode<Tween>("Fader");
+        screenFade.FadeToBlack(fadeDuration);
 
-        fader.InterpolateProperty(rect, "color", null,
-            new Color(0, 0, 0, 1), fadeDuration);
-
-        // Connect finished signal
-        fader.Start();
-        fader.Connect("tween_all_completed", this, onFinishedMethod, null);
+        screenFade.Connect("FadeFinished", this, onFinishedMethod);
     }
 
     /// <summary>
-    ///   Plays a video stream and calls a method when finished.
+    ///   Helper method for playing a video stream.
+    ///   Calls a method when finished.
     /// </summary>
     public void PlayCutscene(string path, string onFinishedMethod)
     {
@@ -162,28 +162,17 @@ public class MainMenu : Node
         }
 
         // Instantiate scene
-        CurrentCutsceneInstance = scene.Instance();
-        AddChild(CurrentCutsceneInstance);
+        cutscene = (Cutscene)scene.Instance();
+        AddChild(cutscene);
 
         var stream = GD.Load<VideoStream>(path);
-        var videoPlayer = CurrentCutsceneInstance.GetNode<VideoPlayer>("VideoPlayer");
 
-        // Temporarily save the video player size for any resizing
-        cutsceneFrameSize = videoPlayer.RectSize;
-
-        videoPlayer.Stream = stream;
-        videoPlayer.Play();
+        // Play the video stream
+        cutscene.CutsceneVideoPlayer.Stream = stream;
+        cutscene.CutsceneVideoPlayer.Play();
 
         // Connect finished signal
-        videoPlayer.Connect("finished", this, onFinishedMethod);
-
-        var viewport = GetViewport();
-
-        // Disconnect signal if it's already connected
-        if (viewport.IsConnected("size_changed", this, "OnCutsceneResized"))
-            viewport.Disconnect("size_changed", this, "OnCutsceneResized");
-
-        viewport.Connect("size_changed", this, "OnCutsceneResized");
+        cutscene.Connect("CutsceneFinished", this, onFinishedMethod);
 
         // Initially adjust video player frame size
         OnCutsceneResized();
@@ -195,27 +184,24 @@ public class MainMenu : Node
     /// </summary>
     public void OnCutsceneResized()
     {
-        if (CurrentCutsceneInstance == null)
-        {
-            GD.PrintErr("Can't handle resizing on a null cutscene instance");
+        if (cutscene == null)
             return;
-        }
 
-        var videoPlayer = CurrentCutsceneInstance.GetNode<VideoPlayer>("VideoPlayer");
         var currentSize = OS.WindowSize;
 
         // Scaling factors
-        var scaleHeight = currentSize.x / cutsceneFrameSize.x;
-        var scaleWidth = currentSize.y / cutsceneFrameSize.y;
+        var scaleHeight = currentSize.x / cutscene.FrameSize.x;
+        var scaleWidth = currentSize.y / cutscene.FrameSize.y;
 
         var scale = Math.Min(scaleHeight, scaleWidth);
 
-        var newSize = new Vector2(cutsceneFrameSize.x * scale, cutsceneFrameSize.y * scale);
+        var newSize = new Vector2(cutscene.FrameSize.x * scale,
+            cutscene.FrameSize.y * scale);
 
         // Adjust the cutscene size and center it
-        videoPlayer.SetSize(newSize);
-        videoPlayer.SetAnchorsAndMarginsPreset(Control.LayoutPreset.Center,
-            Control.LayoutPresetMode.KeepSize);
+        cutscene.CutsceneVideoPlayer.SetSize(newSize);
+        cutscene.CutsceneVideoPlayer.SetAnchorsAndMarginsPreset(
+            Control.LayoutPreset.Center, Control.LayoutPresetMode.KeepSize);
     }
 
     /// <summary>
@@ -224,21 +210,19 @@ public class MainMenu : Node
     public void CancelCutscene()
     {
         // Also skips the fade sequence if there is any
-        if (CurrentCutsceneInstance == null && CurrentFaderInstance != null)
+        if (cutscene == null && screenFade != null)
         {
-            CurrentFaderInstance.GetNode<Tween>("Fader").
-                EmitSignal("tween_all_completed");
+            screenFade.OnTweenCompleted();
         }
 
-        if (CurrentCutsceneInstance != null && CurrentFaderInstance == null)
+        if (cutscene != null && screenFade == null)
         {
-            CurrentCutsceneInstance.GetNode<VideoPlayer>(
-                "VideoPlayer").EmitSignal("finished");
+            cutscene.OnStreamFinished();
         }
     }
 
     /// <summary>
-    ///   Change the menu displayed on screen to the one
+    ///   Change the menu displayed on screen to one
     ///   with the menu of the given index.
     /// </summary>
     public void SetCurrentMenu(uint index, bool slide = true)
@@ -278,12 +262,7 @@ public class MainMenu : Node
 
     public void OnNewGameFadeFinished()
     {
-        // Remove the screen fade node instance
-        if (CurrentFaderInstance != null)
-        {
-            CurrentFaderInstance.QueueFree();
-            CurrentFaderInstance = null;
-        }
+        screenFade = null;
 
         // Start microbe intro
         PlayCutscene("res://assets/videos/microbe_intro2.webm", "OnMicrobeIntroEnded");
@@ -291,12 +270,7 @@ public class MainMenu : Node
 
     public void OnMicrobeIntroEnded()
     {
-        // Remove the cutscene node instance
-        if (CurrentCutsceneInstance != null)
-        {
-            CurrentCutsceneInstance.QueueFree();
-            CurrentCutsceneInstance = null;
-        }
+        cutscene = null;
 
         // Change the current scene to microbe stage
         // TODO: Add loading screen while changing between scenes
