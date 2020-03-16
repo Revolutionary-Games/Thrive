@@ -70,7 +70,8 @@ public class Biome : IRegistryType, ICloneable
             Background = Background,
             AverageTemperature = AverageTemperature,
             InternalName = InternalName,
-            Compounds = new Dictionary<string, EnvironmentalCompoundProperties>(Compounds.Count),
+            Compounds = new Dictionary<string, EnvironmentalCompoundProperties>(
+                Compounds.Count),
             Chunks = new Dictionary<string, ChunkConfiguration>(Chunks.Count),
         };
 

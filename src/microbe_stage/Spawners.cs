@@ -74,7 +74,9 @@ public class MicrobeSpawner : ISpawner
     {
         var entities = new List<ISpawned>();
 
-        var microbe = SpawnHelpers.SpawnMicrobe(species, location, worldNode, microbeScene, true);
+        // The true here is that this is AI controlled
+        var microbe = SpawnHelpers.SpawnMicrobe(species, location, worldNode, microbeScene,
+            true);
 
         entities.Add(microbe);
         return entities;
