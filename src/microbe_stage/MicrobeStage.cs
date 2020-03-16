@@ -11,7 +11,6 @@ public class MicrobeStage : Node
     private MicrobeAISystem microbeAISystem;
     private PatchManager patchManager;
 
-    private PackedScene playerScene;
     public Microbe Player { get; private set; }
 
     public MicrobeCamera Camera { get; private set; }
@@ -28,6 +27,8 @@ public class MicrobeStage : Node
 
     public ProcessSystem ProcessSystem { get; private set; }
 
+    public GameWorld GameWorld { get; private set; }
+
     /// <summary>
     ///   This should get called the first time the stage scene is put
     ///   into an active scene tree. So returning from the editor
@@ -35,8 +36,6 @@ public class MicrobeStage : Node
     /// </summary>
     public override void _Ready()
     {
-        playerScene = GD.Load<PackedScene>("res://src/microbe_stage/Microbe.tscn");
-
         world = GetNode<Node>("World");
         HUD = GetNode<MicrobeHUD>("MicrobeHUD");
         rootOfDynamicallySpawned = GetNode<Node>("World/DynamicallySpawned");
@@ -47,7 +46,7 @@ public class MicrobeStage : Node
         ProcessSystem = new ProcessSystem(rootOfDynamicallySpawned);
         microbeAISystem = new MicrobeAISystem(rootOfDynamicallySpawned);
 
-        patchManager = new PatchManager(spawner, ProcessSystem);
+        patchManager = new PatchManager(spawner, ProcessSystem, Clouds, TimedLifeSystem);
 
         HUD.Init(this);
 
@@ -71,19 +70,28 @@ public class MicrobeStage : Node
         TimedEffects = new TimedWorldOperations();
 
         spawner.Init();
-        SpawnPlayer();
-        Camera.ResetHeight();
         Clouds.Init(FluidSystem);
 
-        // patchManager.ApplyChangedPatchSettingsIfNeeded(Patch currentPatch);
+        if (GameWorld == null)
+        {
+            StartNewGame();
+        }
+    }
 
-        ProcessSystem.SetBiome(SimulationParameters.Instance.GetBiome("default"));
+    public void StartNewGame()
+    {
+        GameWorld = new GameWorld(new WorldGenerationSettings());
+
+        patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch);
 
         // Register glucose reduction
         TimedEffects.RegisterEffect("reduce_glucose", new WorldEffectLambda((elapsed, total) =>
         {
             GD.Print("TODO: reduce glucose");
         }));
+
+        SpawnPlayer();
+        Camera.ResetHeight();
     }
 
     /// <summary>
@@ -94,17 +102,11 @@ public class MicrobeStage : Node
         if (Player != null)
             return;
 
-        Player = (Microbe)playerScene.Instance();
-        rootOfDynamicallySpawned.AddChild(Player);
+        Player = SpawnHelpers.SpawnMicrobe(GameWorld.PlayerSpecies, new Vector3(0, 0, 0),
+            rootOfDynamicallySpawned, SpawnHelpers.LoadMicrobeScene(), false);
         Player.AddToGroup("player");
-        Player.AddToGroup("process");
 
         Camera.ObjectToFollow = Player;
-
-        // For testing purposes only, please remove on release.
-        PlacedOrganelle testOrganelle = new PlacedOrganelle();
-        testOrganelle.Definition = SimulationParameters.Instance.GetOrganelleType("nucleus");
-        testOrganelle.OnAddedToMicrobe(Player, new Hex(0, -5), 3);
     }
 
     public override void _Process(float delta)

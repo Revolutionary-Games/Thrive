@@ -21,7 +21,7 @@ public class PatchMap
     {
         get
         {
-            return CurrentPatch;
+            return currentPatch;
         }
         set
         {

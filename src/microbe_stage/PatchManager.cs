@@ -10,6 +10,8 @@ public class PatchManager
 {
     private SpawnSystem spawnSystem;
     private ProcessSystem processSystem;
+    private CompoundCloudSystem compoundCloudSystem;
+    private TimedLifeSystem timedLife;
 
     private Patch previousPatch;
 
@@ -18,10 +20,13 @@ public class PatchManager
     private List<CreatedSpawner> cloudSpawners = new List<CreatedSpawner>();
     private List<CreatedSpawner> microbeSpawners = new List<CreatedSpawner>();
 
-    public PatchManager(SpawnSystem spawnSystem, ProcessSystem processSystem)
+    public PatchManager(SpawnSystem spawnSystem, ProcessSystem processSystem,
+        CompoundCloudSystem compoundCloudSystem, TimedLifeSystem timedLife)
     {
         this.spawnSystem = spawnSystem;
         this.processSystem = processSystem;
+        this.compoundCloudSystem = compoundCloudSystem;
+        this.timedLife = timedLife;
     }
 
     /// <summary>
@@ -34,7 +39,13 @@ public class PatchManager
         if (previousPatch != currentPatch)
         {
             // Despawn old entities
-            throw new NotImplementedException();
+            spawnSystem.DespawnAll();
+
+            // And also all timed entities
+            timedLife.DespawnAll();
+
+            // Clear compounds
+            compoundCloudSystem.EmptyAllClouds();
         }
 
         previousPatch = currentPatch;
@@ -47,14 +58,16 @@ public class PatchManager
         // Apply spawn system settings
         UnmarkAllSpawners();
 
-        HandleChunkSpawns(currentPatch.Biome);
+        // Cloud spawners should be added first due to the way the
+        // total entity count is limited
         HandleCloudSpawns(currentPatch.Biome);
+        HandleChunkSpawns(currentPatch.Biome);
         HandleCellSpawns(currentPatch);
 
         RemoveNonMarkedSpawners();
 
-        // // Change the lighting
-        // updateLight(biome);
+        // Change the lighting
+        UpdateLight(currentPatch.Biome);
 
         // // Changing the background.
         // ThriveGame::get()->setBackgroundMaterial(biome.background);
@@ -69,62 +82,171 @@ public class PatchManager
 
         foreach (var entry in biome.Chunks)
         {
-            if (entry.Value.Density <= 0)
-            {
-                GD.Print("chunk spawn density is 0. It won't spawn");
-                continue;
-            }
+            HandleSpawnHelper(chunkSpawners, entry.Value.Name, entry.Value.Density,
+                () =>
+                    {
+                        var spawner = new CreatedSpawner(entry.Value.Name);
+                        spawner.Spawner = Spawners.MakeChunkSpawner(entry.Value);
 
-            var existing = chunkSpawners.Find((c) => c.Name == entry.Value.Name);
-
-            if (existing != null)
-            {
-                existing.Marked = true;
-
-                // TODO: change this in json to be int to not have this cast here
-                existing.Spawner.SetFrequencyFromDensity((int)entry.Value.Density);
-            }
-            else
-            {
-                // New spawner needed
-                GD.Print("Registering chunk: Name: ", entry.Value.Name,
-                    " density: ", entry.Value.Density);
-
-                var spawner = new CreatedSpawner();
-                spawner.Marked = true;
-                spawner.Name = entry.Value.Name;
-                spawner.Spawner = new ChunkSpawner(entry.Value);
-
-                spawnSystem.AddSpawnType(spawner.Spawner, (int)entry.Value.Density,
-                    Constants.MICROBE_SPAWN_RADIUS);
-
-                chunkSpawners.Add(spawner);
-            }
+                        spawnSystem.AddSpawnType(spawner.Spawner, (int)entry.Value.Density,
+                            Constants.MICROBE_SPAWN_RADIUS);
+                        return spawner;
+                    });
         }
     }
 
-    private void HandleCloudSpawns(Biome biome) { }
+    private void HandleCloudSpawns(Biome biome)
+    {
+        GD.Print("Number of clouds in this patch = ", biome.Compounds.Count);
 
-    private void HandleCellSpawns(Patch patch) { }
+        foreach (var entry in biome.Compounds)
+        {
+            HandleSpawnHelper(chunkSpawners, entry.Key, entry.Value.Density,
+                () =>
+                    {
+                        var spawner = new CreatedSpawner(entry.Key);
+                        spawner.Spawner = Spawners.MakeCompoundSpawner(
+                            SimulationParameters.Instance.GetCompound(entry.Key),
+                            compoundCloudSystem, entry.Value.Amount);
 
-    private void UpdateLight(Biome biome) { }
+                        spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density,
+                            Constants.CLOUD_SPAWN_RADIUS);
+                        return spawner;
+                    });
+        }
+    }
 
-    private void UpdateBiomeStatsForGUI(Biome biome) { }
+    private void HandleCellSpawns(Patch patch)
+    {
+        GD.Print("Number of species in this patch = ", patch.SpeciesInPatch.Count);
 
-    private void UpdateCurrentPatchInfoForGUI(Patch patch) { }
+        foreach (var entry in patch.SpeciesInPatch)
+        {
+            var species = entry.Key;
 
-    private void UnmarkAllSpawners() { }
+            if (species.Population <= 0)
+                continue;
 
-    private void UnmarkSingle(List<ISpawner> spawners) { }
+            var density = 1.0f / (Constants.STARTING_SPAWN_DENSITY -
+                                Math.Min(Constants.MAX_SPAWN_DENSITY,
+                                    species.Population * 5));
 
-    private void RemoveNonMarkedSpawners() { }
+            var name = species.ID.ToString();
 
-    private void ClearUnmarkedSingle(List<ISpawner> spawners) { }
+            HandleSpawnHelper(chunkSpawners, name, density,
+                () =>
+                    {
+                        var spawner = new CreatedSpawner(name);
+                        spawner.Spawner = Spawners.MakeMicrobeSpawner(species);
+
+                        spawnSystem.AddSpawnType(spawner.Spawner, density,
+                            Constants.MICROBE_SPAWN_RADIUS);
+                        return spawner;
+                    });
+        }
+    }
+
+    private void HandleSpawnHelper(List<CreatedSpawner> existingSpawners, string itemName,
+        float density, Func<CreatedSpawner> createNew)
+    {
+        if (density <= 0)
+        {
+            GD.Print(itemName, " spawn density is 0. It won't spawn");
+            return;
+        }
+
+        var existing = existingSpawners.Find((s) => s.Name == itemName);
+
+        if (existing != null)
+        {
+            existing.Marked = true;
+
+            existing.Spawner.SetFrequencyFromDensity(density);
+        }
+        else
+        {
+            // New spawner needed
+            GD.Print("Registering new spawner: Name: ", itemName, " density: ", density);
+
+            chunkSpawners.Add(createNew());
+        }
+    }
+
+    private void UpdateLight(Biome biome)
+    {
+        // // Sunlight
+        // InWorld.SetLightProperties(biome.sunlightColor, biome.sunlightIntensity,
+        //     biome.sunlightDirection, biome.sunlightSourceRadius);
+
+        // // Skybox with indirect light
+        // ThriveGame::get()->setSkybox(biome.skybox, biome.skyboxLightIntensity);
+
+        // // Eye adaptation settings
+        // LOG_INFO("Setting eye adaptation: min: " +
+        //          std::to_string(biome.minEyeAdaptation) +
+        //          " max: " + std::to_string(biome.maxEyeAdaptation));
+        // InWorld.SetAutoExposure(biome.minEyeAdaptation, biome.maxEyeAdaptation);
+    }
+
+    private void UpdateBiomeStatsForGUI(Biome biome)
+    {
+        // vars->Add(std::make_shared<NamedVariableList>("oxygenPercent",
+        //     new Leviathan::IntBlock(
+        //         cellWorld.GetProcessSystem().getDissolved(oxyId) * 100)));
+
+        // vars->Add(std::make_shared<NamedVariableList>("co2Percent",
+        //     new Leviathan::IntBlock(
+        //         cellWorld.GetProcessSystem().getDissolved(c02Id) * 100)));
+
+        // vars->Add(std::make_shared<NamedVariableList>("n2Percent",
+        //     new Leviathan::IntBlock(
+        //         cellWorld.GetProcessSystem().getDissolved(n2Id) * 100)));
+
+        // vars->Add(std::make_shared<NamedVariableList>("sunlightPercent",
+        //     new Leviathan::IntBlock(
+        //         cellWorld.GetProcessSystem().getDissolved(lightId) * 100)));
+    }
+
+    private void UpdateCurrentPatchInfoForGUI(Patch patch)
+    {
+        // vars->Add(std::make_shared<NamedVariableList>(
+        //     "patchName", new Leviathan::StringBlock(patch.getName())));
+    }
+
+    private void UnmarkAllSpawners()
+    {
+        UnmarkSingle(chunkSpawners);
+        UnmarkSingle(cloudSpawners);
+        UnmarkSingle(microbeSpawners);
+    }
+
+    private void UnmarkSingle(List<CreatedSpawner> spawners)
+    {
+        foreach (var spawner in spawners)
+            spawner.Marked = false;
+    }
+
+    private void RemoveNonMarkedSpawners()
+    {
+        ClearUnmarkedSingle(chunkSpawners);
+        ClearUnmarkedSingle(cloudSpawners);
+        ClearUnmarkedSingle(microbeSpawners);
+    }
+
+    private void ClearUnmarkedSingle(List<CreatedSpawner> spawners)
+    {
+        spawners.RemoveAll((item) => item.Marked == false);
+    }
 
     private class CreatedSpawner
     {
         public ISpawner Spawner;
         public string Name;
-        public bool Marked;
+        public bool Marked = true;
+
+        public CreatedSpawner(string name)
+        {
+            Name = name;
+        }
     }
 }

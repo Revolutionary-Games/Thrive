@@ -31,9 +31,7 @@ public class Patch
         Name = name;
         this.ID = id;
         this.biomeTemplate = biomeTemplate;
-
-        // TODO: implement clone for biome
-        // Biome = biomeTemplate.Clone();
+        Biome = (Biome)biomeTemplate.Clone();
     }
 
     [JsonProperty]

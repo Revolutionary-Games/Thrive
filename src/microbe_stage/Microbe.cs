@@ -22,6 +22,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// </summary>
     public Vector3 MovementDirection = new Vector3(0, 0, 0);
 
+    /// <summary>
+    ///   The species of this microbe
+    /// </summary>
+    public MicrobeSpecies Species { get; private set; }
+
     public int HexCount
     {
         get
@@ -82,6 +87,20 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
         state.Transform = GetNewPhysicsRotation(state.Transform);
     }
+
+    /// <summary>
+    ///   Applies the species for this cell. Called when spawned
+    /// </summary>
+    public void ApplySpecies(Species species)
+    {
+        Species = (MicrobeSpecies)species;
+        ResetOrganelleLayout();
+        SetInitialCompounds();
+    }
+
+    public void ResetOrganelleLayout() { }
+
+    public void SetInitialCompounds() { }
 
     private Vector3 DoBaseMovementForce(float delta)
     {

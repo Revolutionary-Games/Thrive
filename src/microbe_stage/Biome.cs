@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 ///   Base microbe biome with some parameters that are used for a Patch.
 ///   Modifiable versions of a Biome are stored in patches.
 /// </summary>
-public class Biome : IRegistryType
+public class Biome : IRegistryType, ICloneable
 {
     /// <summary>
     ///   Name of the biome, for showing to the player in the GUI
@@ -62,6 +62,31 @@ public class Biome : IRegistryType
         }
     }
 
+    public object Clone()
+    {
+        Biome result = new Biome
+        {
+            Name = Name,
+            Background = Background,
+            AverageTemperature = AverageTemperature,
+            InternalName = InternalName,
+            Compounds = new Dictionary<string, EnvironmentalCompoundProperties>(Compounds.Count),
+            Chunks = new Dictionary<string, ChunkConfiguration>(Chunks.Count),
+        };
+
+        foreach (var entry in Compounds)
+        {
+            result.Compounds.Add(entry.Key, entry.Value);
+        }
+
+        foreach (var entry in Chunks)
+        {
+            result.Chunks.Add(entry.Key, entry.Value);
+        }
+
+        return result;
+    }
+
     public struct EnvironmentalCompoundProperties
     {
         public float Amount;
@@ -95,6 +120,9 @@ public class Biome : IRegistryType
             public float Amount;
         }
 
+        /// <summary>
+        ///   Don't modify instances of this class
+        /// </summary>
         public class ChunkScene
         {
             public string ScenePath;

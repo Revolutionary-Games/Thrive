@@ -32,8 +32,8 @@ public abstract class ISpawner
 
     public abstract List<ISpawned> Spawn(Node worldNode, Vector3 location);
 
-    public void SetFrequencyFromDensity(int spawnDensity)
+    public void SetFrequencyFromDensity(float spawnDensity)
     {
-        SpawnFrequency = spawnDensity * SpawnRadiusSqr * 4;
+        SpawnFrequency = (int)(spawnDensity * SpawnRadiusSqr * 4);
     }
 }

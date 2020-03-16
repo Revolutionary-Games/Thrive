@@ -17,16 +17,45 @@ public class GameWorld
 
     public GameWorld(WorldGenerationSettings settings)
     {
-        Map = PatchMapGenerator.Generate(settings);
+        PlayerSpecies = CreatePlayerSpecies();
+
+        Map = PatchMapGenerator.Generate(settings, PlayerSpecies);
 
         if (!Map.Verify())
             throw new ArgumentException("generated patch map with settings is not valid");
     }
 
+    public Species PlayerSpecies { get; private set; }
+
     public PatchMap Map { get; private set; }
 
+    /// <summary>
+    ///   Creates an empty species object
+    /// </summary>
     public MicrobeSpecies NewMicrobeSpecies()
     {
         return new MicrobeSpecies(++speciesIdCounter);
+    }
+
+    /// <summary>
+    ///   Creates the initial (player) species
+    /// </summary>
+    public MicrobeSpecies CreatePlayerSpecies()
+    {
+        var species = NewMicrobeSpecies();
+        species.BecomePlayerSpecies();
+
+        species.IsBacteria = true;
+        species.AvgCompoundAmounts.Add("atp", 30);
+        species.AvgCompoundAmounts.Add("glucose", 10);
+        species.Genus = "Primum";
+        species.Epithet = "Thrivium";
+
+        species.MembraneType = SimulationParameters.Instance.GetMembrane("single");
+
+        species.Organelles.Add(new Hex(0, 0), 0,
+            SimulationParameters.Instance.GetOrganelleType("cytoplasm"));
+
+        return species;
     }
 }
