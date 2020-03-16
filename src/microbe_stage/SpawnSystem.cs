@@ -51,7 +51,7 @@ public class SpawnSystem
     ///   and frequency fields based on the parameters of this
     ///   function.
     /// </summary>
-    public void AddSpawnType(ISpawner spawner, int spawnDensity, int spawnRadius)
+    public void AddSpawnType(ISpawner spawner, float spawnDensity, int spawnRadius)
     {
         spawner.SpawnRadius = spawnRadius;
         spawner.SpawnFrequency = 122;
@@ -75,9 +75,6 @@ public class SpawnSystem
     public void Init()
     {
         Clear();
-
-        // For testing
-        AddSpawnType(Spawners.MakeSpeciesSpawner(), 700, 150);
     }
 
     /// <summary>
@@ -88,6 +85,20 @@ public class SpawnSystem
         spawnTypes.Clear();
         previousPlayerPosition = new Vector3(0, 0, 0);
         elapsed = 0;
+    }
+
+    /// <summary>
+    ///   Despawns all spawned entities
+    /// </summary>
+    public void DespawnAll()
+    {
+        var spawnedEntities = worldRoot.GetTree().GetNodesInGroup(Constants.SPAWNED_GROUP);
+
+        foreach (Node entity in spawnedEntities)
+        {
+            if (!entity.IsQueuedForDeletion())
+                entity.QueueFree();
+        }
     }
 
     /// <summary>

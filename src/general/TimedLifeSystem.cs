@@ -37,4 +37,18 @@ public class TimedLifeSystem
             }
         }
     }
+
+    /// <summary>
+    ///   Despawns all timed entities
+    /// </summary>
+    public void DespawnAll()
+    {
+        var spawnedEntities = worldRoot.GetTree().GetNodesInGroup(Constants.TIMED_GROUP);
+
+        foreach (Node entity in spawnedEntities)
+        {
+            if (!entity.IsQueuedForDeletion())
+                entity.QueueFree();
+        }
+    }
 }

@@ -10,9 +10,14 @@ using Godot;
 /// </summary>
 public static class Spawners
 {
-    public static MicrobeSpawner MakeSpeciesSpawner()
+    public static MicrobeSpawner MakeMicrobeSpawner(Species species)
     {
-        return new MicrobeSpawner();
+        return new MicrobeSpawner(species);
+    }
+
+    public static ChunkSpawner MakeChunkSpawner(Biome.ChunkConfiguration chunkType)
+    {
+        return new ChunkSpawner(chunkType);
     }
 
     public static CompoundCloudSpawner MakeCompoundSpawner(Compound compound,
@@ -23,33 +28,55 @@ public static class Spawners
 }
 
 /// <summary>
+///   Helper functions for spawning various things
+/// </summary>
+public static class SpawnHelpers
+{
+    public static Microbe SpawnMicrobe(Species species, Vector3 location,
+        Node worldRoot, PackedScene microbeScene, bool aiControlled)
+    {
+        var microbe = (Microbe)microbeScene.Instance();
+
+        worldRoot.AddChild(microbe);
+        microbe.Translation = location;
+
+        microbe.AddToGroup("process");
+
+        if (aiControlled)
+            microbe.AddToGroup("ai");
+
+        microbe.ApplySpecies(species);
+        return microbe;
+    }
+
+    public static PackedScene LoadMicrobeScene()
+    {
+        return GD.Load<PackedScene>("res://src/microbe_stage/Microbe.tscn");
+    }
+}
+
+/// <summary>
 ///   Spawns microbes of a specific species
 /// </summary>
 public class MicrobeSpawner : ISpawner
 {
     private readonly PackedScene microbeScene;
+    private readonly Species species;
 
-    public MicrobeSpawner()
+    public MicrobeSpawner(Species species)
     {
-        // if(species == null)
-        //     throw new ArgumentException("species is null");
+        this.species = species ?? throw new ArgumentException("species is null");
 
-        microbeScene = GD.Load<PackedScene>("res://src/microbe_stage/Microbe.tscn");
+        microbeScene = SpawnHelpers.LoadMicrobeScene();
     }
 
     public override List<ISpawned> Spawn(Node worldNode, Vector3 location)
     {
         var entities = new List<ISpawned>();
 
-        var microbe = (Microbe)microbeScene.Instance();
+        var microbe = SpawnHelpers.SpawnMicrobe(species, location, worldNode, microbeScene, true);
 
-        worldNode.AddChild(microbe);
-        microbe.Translation = location;
         entities.Add(microbe);
-
-        microbe.AddToGroup("process");
-        microbe.AddToGroup("ai");
-
         return entities;
     }
 }
