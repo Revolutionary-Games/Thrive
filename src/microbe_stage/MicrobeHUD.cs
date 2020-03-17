@@ -14,9 +14,13 @@ public class MicrobeHUD : Node
     [Export]
     public NodePath HoveredItemsLabelPath;
 
+    public AudioStreamPlayer GUIAudio;
+
     private RichTextLabel compoundsLabel;
 
     private RichTextLabel hoveredItemsLabel;
+
+    private VBoxContainer menu;
 
     /// <summary>
     ///   Access to the stage to retrieve information for display as
@@ -28,6 +32,8 @@ public class MicrobeHUD : Node
     {
         compoundsLabel = GetNode<RichTextLabel>(CompoundsLabelPath);
         hoveredItemsLabel = GetNode<RichTextLabel>(HoveredItemsLabelPath);
+        GUIAudio = GetNode<AudioStreamPlayer>("MicrobeGUIAudio");
+        menu = GetNode<VBoxContainer>("CenterContainer/MicrobeStageMenu");
     }
 
     public override void _Process(float delta)
@@ -79,5 +85,28 @@ public class MicrobeHUD : Node
         }
 
         return compoundsText.ToString();
+    }
+
+    // Function to play a blinky sound when a button is pressed
+    public void PlayButtonPressSound()
+    {
+        var sound = GD.Load<AudioStream>(
+            "res://assets/sounds/soundeffects/gui/button-hover-click.ogg");
+
+        GUIAudio.Stream = sound;
+        GUIAudio.Play();
+    }
+
+    // Received for button that opens the menu inside the Microbe Stage
+    public void OpenMicrobeStageMenuPressed()
+    {
+        if (menu.IsVisible())
+        {
+            menu.Hide();
+        }else
+        {
+            menu.Show();
+        }
+        PlayButtonPressSound();
     }
 }
