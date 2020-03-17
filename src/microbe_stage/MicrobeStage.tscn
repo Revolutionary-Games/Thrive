@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://shaders/MicrobeBackground.shader" type="Shader" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.cs" type="Script" id=8]
 [ext_resource path="res://src/microbe_stage/MicrobeHUD.cs" type="Script" id=9]
 [ext_resource path="res://src/microbe_stage/CompoundCloudSystem.cs" type="Script" id=10]
+[ext_resource path="res://assets/textures/gui/menu_theme.tres" type="Theme" id=11]
 
 [sub_resource type="PlaneMesh" id=1]
 size = Vector2( 400, 400 )
@@ -76,10 +77,9 @@ text = "Things under cursor"
 anchor_top = 0.639
 anchor_right = 0.218
 anchor_bottom = 0.995
-margin_left = 2.0
-margin_top = -0.0800476
-margin_right = -0.0400085
-margin_bottom = -0.400024
+margin_top = -40.08
+margin_right = -2.04004
+margin_bottom = -40.3998
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -101,3 +101,100 @@ margin_right = 262.0
 margin_bottom = 242.0
 grow_vertical = 2
 size_flags_vertical = 3
+
+[node name="OpenMicrobeMenu" type="Button" parent="MicrobeHUD"]
+margin_left = 1.36038
+margin_top = 680.0
+margin_right = 251.36
+margin_bottom = 720.0
+theme = ExtResource( 11 )
+text = "Menu"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="MicrobeHUD"]
+margin_top = 112.85
+margin_right = 1280.0
+margin_bottom = 617.85
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MicrobeStageMenu" type="VBoxContainer" parent="MicrobeHUD/CenterContainer"]
+visible = false
+margin_left = 515.0
+margin_top = 75.0
+margin_right = 765.0
+margin_bottom = 430.0
+theme = ExtResource( 11 )
+custom_constants/separation = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Resume" type="Button" parent="MicrobeHUD/CenterContainer/MicrobeStageMenu"]
+margin_right = 250.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 250, 40 )
+text = "Resume"
+
+[node name="SaveGame" type="Button" parent="MicrobeHUD/CenterContainer/MicrobeStageMenu"]
+margin_top = 45.0
+margin_right = 250.0
+margin_bottom = 85.0
+rect_min_size = Vector2( 250, 40 )
+disabled = true
+text = "Save Game"
+
+[node name="LoadGame" type="Button" parent="MicrobeHUD/CenterContainer/MicrobeStageMenu"]
+margin_top = 90.0
+margin_right = 250.0
+margin_bottom = 130.0
+rect_min_size = Vector2( 250, 40 )
+disabled = true
+text = "Load Game"
+
+[node name="Statistics" type="Button" parent="MicrobeHUD/CenterContainer/MicrobeStageMenu"]
+margin_top = 135.0
+margin_right = 250.0
+margin_bottom = 175.0
+rect_min_size = Vector2( 250, 40 )
+disabled = true
+text = "Statistics"
+
+[node name="Help" type="Button" parent="MicrobeHUD/CenterContainer/MicrobeStageMenu"]
+margin_top = 180.0
+margin_right = 250.0
+margin_bottom = 220.0
+rect_min_size = Vector2( 250, 40 )
+disabled = true
+text = "Help"
+
+[node name="Options" type="Button" parent="MicrobeHUD/CenterContainer/MicrobeStageMenu"]
+margin_top = 225.0
+margin_right = 250.0
+margin_bottom = 265.0
+rect_min_size = Vector2( 250, 40 )
+disabled = true
+text = "Options"
+
+[node name="ReturnToMenu" type="Button" parent="MicrobeHUD/CenterContainer/MicrobeStageMenu"]
+margin_top = 270.0
+margin_right = 250.0
+margin_bottom = 310.0
+rect_min_size = Vector2( 250, 40 )
+disabled = true
+text = "Return to Menu"
+
+[node name="Exit" type="Button" parent="MicrobeHUD/CenterContainer/MicrobeStageMenu"]
+margin_top = 315.0
+margin_right = 250.0
+margin_bottom = 355.0
+rect_min_size = Vector2( 250, 40 )
+disabled = true
+text = "Exit"
+
+[node name="MicrobeGUIAudio" type="AudioStreamPlayer" parent="MicrobeHUD"]
+[connection signal="pressed" from="MicrobeHUD/OpenMicrobeMenu" to="MicrobeHUD" method="OpenMicrobeStageMenuPressed"]
+[connection signal="pressed" from="MicrobeHUD/CenterContainer/MicrobeStageMenu/Resume" to="MicrobeHUD" method="OpenMicrobeStageMenuPressed"]
