@@ -65,6 +65,31 @@ public class MicrobeHUD : Node
         this.stage = stage;
     }
 
+    // Function to play a blinky sound when a button is pressed
+    public void PlayButtonPressSound()
+    {
+        var sound = GD.Load<AudioStream>(
+            "res://assets/sounds/soundeffects/gui/button-hover-click.ogg");
+
+        GUIAudio.Stream = sound;
+        GUIAudio.Play();
+    }
+
+    // Received for button that opens the menu inside the Microbe Stage
+    public void OpenMicrobeStageMenuPressed()
+    {
+        if (menu.Visible)
+        {
+            menu.Hide();
+        }
+        else
+        {
+            menu.Show();
+        }
+
+        PlayButtonPressSound();
+    }
+
     private string CompoundsToString(Dictionary<string, float> compounds)
     {
         var simulation = SimulationParameters.Instance;
@@ -85,28 +110,5 @@ public class MicrobeHUD : Node
         }
 
         return compoundsText.ToString();
-    }
-
-    // Function to play a blinky sound when a button is pressed
-    public void PlayButtonPressSound()
-    {
-        var sound = GD.Load<AudioStream>(
-            "res://assets/sounds/soundeffects/gui/button-hover-click.ogg");
-
-        GUIAudio.Stream = sound;
-        GUIAudio.Play();
-    }
-
-    // Received for button that opens the menu inside the Microbe Stage
-    public void OpenMicrobeStageMenuPressed()
-    {
-        if (menu.IsVisible())
-        {
-            menu.Hide();
-        }else
-        {
-            menu.Show();
-        }
-        PlayButtonPressSound();
     }
 }
