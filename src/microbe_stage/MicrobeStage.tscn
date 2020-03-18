@@ -194,9 +194,9 @@ margin_top = 315.0
 margin_right = 250.0
 margin_bottom = 355.0
 rect_min_size = Vector2( 250, 40 )
-disabled = true
 text = "Exit"
 
 [node name="MicrobeGUIAudio" type="AudioStreamPlayer" parent="MicrobeHUD"]
 [connection signal="pressed" from="MicrobeHUD/OpenMicrobeMenu" to="MicrobeHUD" method="OpenMicrobeStageMenuPressed"]
 [connection signal="pressed" from="MicrobeHUD/CenterContainer/MicrobeStageMenu/Resume" to="MicrobeHUD" method="OpenMicrobeStageMenuPressed"]
+[connection signal="pressed" from="MicrobeHUD/CenterContainer/MicrobeStageMenu/Exit" to="MicrobeHUD" method="ExitPressed"]

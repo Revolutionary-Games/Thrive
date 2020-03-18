@@ -90,6 +90,13 @@ public class MicrobeHUD : Node
         PlayButtonPressSound();
     }
 
+    // Receiver for exiting game from microbe stage
+    private void ExitPressed()
+    {
+        PlayButtonPressSound();
+        GetTree().Quit();
+    }
+
     private string CompoundsToString(Dictionary<string, float> compounds)
     {
         var simulation = SimulationParameters.Instance;
