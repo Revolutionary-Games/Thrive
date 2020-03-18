@@ -68,6 +68,16 @@ public class Constants
     public const int INITIAL_SPECIES_POPULATION = 100;
 
     /// <summary>
+    ///   How much of a compound is actually given to a cell when absorbed
+    /// </summary>
+    public const float ABSORPTION_RATIO = 0.0000125f;
+
+    /// <summary>
+    ///   Should be greater than ABSORPTION_RATIO
+    /// </summary>
+    public const float SKIP_TRYING_TO_ABSORB_RATIO = 0.0002f;
+
+    /// <summary>
     ///   All Nodes tagged with this are handled by the spawn system for despawning
     /// </summary>
     public const string SPAWNED_GROUP = "spawned";

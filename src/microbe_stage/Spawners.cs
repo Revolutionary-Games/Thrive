@@ -10,9 +10,10 @@ using Godot;
 /// </summary>
 public static class Spawners
 {
-    public static MicrobeSpawner MakeMicrobeSpawner(Species species)
+    public static MicrobeSpawner MakeMicrobeSpawner(Species species,
+        CompoundCloudSystem cloudSystem)
     {
-        return new MicrobeSpawner(species);
+        return new MicrobeSpawner(species, cloudSystem);
     }
 
     public static ChunkSpawner MakeChunkSpawner(Biome.ChunkConfiguration chunkType)
@@ -33,9 +34,11 @@ public static class Spawners
 public static class SpawnHelpers
 {
     public static Microbe SpawnMicrobe(Species species, Vector3 location,
-        Node worldRoot, PackedScene microbeScene, bool aiControlled)
+        Node worldRoot, PackedScene microbeScene, bool aiControlled,
+        CompoundCloudSystem cloudSystem)
     {
         var microbe = (Microbe)microbeScene.Instance();
+        microbe.Init(cloudSystem);
 
         worldRoot.AddChild(microbe);
         microbe.Translation = location;
@@ -62,12 +65,14 @@ public class MicrobeSpawner : ISpawner
 {
     private readonly PackedScene microbeScene;
     private readonly Species species;
+    private readonly CompoundCloudSystem cloudSystem;
 
-    public MicrobeSpawner(Species species)
+    public MicrobeSpawner(Species species, CompoundCloudSystem cloudSystem)
     {
         this.species = species ?? throw new ArgumentException("species is null");
 
         microbeScene = SpawnHelpers.LoadMicrobeScene();
+        this.cloudSystem = cloudSystem;
     }
 
     public override List<ISpawned> Spawn(Node worldNode, Vector3 location)
@@ -76,7 +81,7 @@ public class MicrobeSpawner : ISpawner
 
         // The true here is that this is AI controlled
         var microbe = SpawnHelpers.SpawnMicrobe(species, location, worldNode, microbeScene,
-            true);
+            true, cloudSystem);
 
         entities.Add(microbe);
         return entities;

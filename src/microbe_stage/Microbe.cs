@@ -22,6 +22,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// </summary>
     public Vector3 MovementDirection = new Vector3(0, 0, 0);
 
+    private CompoundCloudSystem cloudSystem;
+    private Membrane membrane;
+
     /// <summary>
     ///   The species of this microbe
     /// </summary>
@@ -57,13 +60,60 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
     public float TimeUntilNextAIUpdate { get; set; } = 0;
 
+    /// <summary>
+    ///   For use by the AI to do run and tumble to find compounds
+    /// </summary>
+    public Dictionary<string, float> TotalAbsorbedCompounds { get; set; } =
+        new Dictionary<string, float>();
+
+    /// <summary>
+    ///   Must be called when spawned to provide access to the needed systems
+    /// </summary>
+    public void Init(CompoundCloudSystem cloudSystem)
+    {
+        this.cloudSystem = cloudSystem;
+    }
+
     public override void _Ready()
     {
+        if (cloudSystem == null)
+        {
+            throw new Exception("Microbe not initialized");
+        }
+
+        membrane = GetNode<Membrane>("Membrane");
+
         // TODO: reimplement capacity calculation
         Compounds.Capacity = 50.0f;
+    }
 
-        // Add some ATP for testing
-        Compounds.AddCompound("atp", 30);
+    /// <summary>
+    ///   Applies the species for this cell. Called when spawned
+    /// </summary>
+    public void ApplySpecies(Species species)
+    {
+        Species = (MicrobeSpecies)species;
+        ResetOrganelleLayout();
+        SetInitialCompounds();
+    }
+
+    public void ResetOrganelleLayout()
+    {
+        // TODO: send hexes to membrane
+        // membrane
+    }
+
+    /// <summary>
+    ///   Resets the compounds to be the ones this species spawns with
+    /// </summary>
+    public void SetInitialCompounds()
+    {
+        Compounds.ClearCompounds();
+
+        foreach (var entry in Species.InitialCompounds)
+        {
+            Compounds.AddCompound(entry.Key, entry.Value);
+        }
     }
 
     public override void _Process(float delta)
@@ -79,6 +129,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         }
 
         // ApplyRotation();
+
+        HandleCompoundAbsorbing();
+
+        HandleCompoundVenting();
     }
 
     public override void _IntegrateForces(PhysicsDirectBodyState state)
@@ -88,19 +142,34 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         state.Transform = GetNewPhysicsRotation(state.Transform);
     }
 
-    /// <summary>
-    ///   Applies the species for this cell. Called when spawned
-    /// </summary>
-    public void ApplySpecies(Species species)
+    private void HandleCompoundAbsorbing()
     {
-        Species = (MicrobeSpecies)species;
-        ResetOrganelleLayout();
-        SetInitialCompounds();
+        float scale = 1.0f;
+
+        if (Species.IsBacteria)
+            scale = 0.5f;
+
+        // This grab radius version is used for world coordinate calculations
+        // TODO: switch back to using the radius from membrane
+        float grabRadius = 3.0f;
+
+        // // max here buffs compound absorbing for the smallest cells
+        // const auto grabRadius =
+        //     std::max(membrane.calculateEncompassingCircleRadius(), 3.0f);
+
+        cloudSystem.AbsorbCompounds(Translation, grabRadius * scale, Compounds,
+            TotalAbsorbedCompounds);
     }
 
-    public void ResetOrganelleLayout() { }
-
-    public void SetInitialCompounds() { }
+    /// <summary>
+    ///   Vents (throws out) non-useful compounds from this cell
+    /// </summary>
+    private void HandleCompoundVenting()
+    {
+        // Skip if process system has not run yet
+        if (!Compounds.HasAnyBeenSetUseful())
+            return;
+    }
 
     private Vector3 DoBaseMovementForce(float delta)
     {

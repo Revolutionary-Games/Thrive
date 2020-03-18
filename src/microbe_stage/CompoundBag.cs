@@ -76,6 +76,14 @@ public class CompoundBag
         }
     }
 
+    /// <summary>
+    ///   Clears the held compounds
+    /// </summary>
+    public void ClearCompounds()
+    {
+        Compounds.Clear();
+    }
+
     public void ClearUseful()
     {
         usefulCompounds.Clear();
@@ -84,6 +92,16 @@ public class CompoundBag
     public void SetUseful(string compound)
     {
         usefulCompounds.Add(compound);
+    }
+
+    /// <summary>
+    ///   Returns true if at least one compound type has been marked
+    ///   useful. This is used to detect that process system has ran
+    ///   before venting.
+    /// </summary>
+    public bool HasAnyBeenSetUseful()
+    {
+        return usefulCompounds.Count > 0;
     }
 
     public bool IsUseful(Compound compound)

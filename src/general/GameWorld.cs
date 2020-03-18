@@ -46,8 +46,8 @@ public class GameWorld
         species.BecomePlayerSpecies();
 
         species.IsBacteria = true;
-        species.AvgCompoundAmounts.Add("atp", 30);
-        species.AvgCompoundAmounts.Add("glucose", 10);
+        species.InitialCompounds.Add("atp", 30);
+        species.InitialCompounds.Add("glucose", 10);
         species.Genus = "Primum";
         species.Epithet = "Thrivium";
 

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Godot;
+using Newtonsoft.Json;
 
 public class CompoundCloudPlane : CSGMesh
 {
@@ -15,14 +16,11 @@ public class CompoundCloudPlane : CSGMesh
     private Image image;
     private ImageTexture texture;
 
-    private int size;
-    private int resolution;
-
     private Slot slot1;
     private Slot slot2;
     private Slot slot3;
     private Slot slot4;
-    private Slot[] slots = new Slot[4];
+    private List<Slot> slots;
 
     public Compound Compound1
     {
@@ -56,13 +54,19 @@ public class CompoundCloudPlane : CSGMesh
         }
     }
 
+    [JsonProperty]
+    public int Resolution { get; private set; }
+
+    [JsonProperty]
+    public int Size { get; private set; }
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        size = Settings.Instance.CloudSimulationWidth;
-        resolution = Settings.Instance.CloudResolution;
+        Size = Settings.Instance.CloudSimulationWidth;
+        Resolution = Settings.Instance.CloudResolution;
         image = new Image();
-        image.Create(size, size, false, Image.Format.Rgba8);
+        image.Create(Size, Size, false, Image.Format.Rgba8);
         texture = new ImageTexture();
         texture.CreateFromImage(image, (uint)Texture.FlagsEnum.Filter);
 
@@ -77,15 +81,27 @@ public class CompoundCloudPlane : CSGMesh
         Compound cloud3, Compound cloud4)
     {
         // Setup slots
-        slot1 = new Slot(cloud1, size, resolution, fluidSystem);
-        slot2 = new Slot(cloud2, size, resolution, fluidSystem);
-        slot3 = new Slot(cloud3, size, resolution, fluidSystem);
-        slot4 = new Slot(cloud4, size, resolution, fluidSystem);
+        slot1 = new Slot(cloud1, Size, Resolution, fluidSystem);
+        slot2 = new Slot(cloud2, Size, Resolution, fluidSystem);
+        slot3 = new Slot(cloud3, Size, Resolution, fluidSystem);
+        slot4 = new Slot(cloud4, Size, Resolution, fluidSystem);
 
-        slots[0] = slot1;
-        slots[1] = slot2;
-        slots[2] = slot3;
-        slots[3] = slot4;
+        // These slots are used in many places where it probably helps
+        // to not have null checks so this is dynamically sized. But
+        // all of the slots always exist to make the texture upload
+        // tight loop not have if conditions
+        slots = new List<Slot>();
+
+        slots.Add(slot1);
+
+        if (cloud2 != null)
+            slots.Add(slot2);
+
+        if (cloud3 != null)
+            slots.Add(slot3);
+
+        if (cloud4 != null)
+            slots.Add(slot4);
 
         // Setup colours
         var material = (ShaderMaterial)this.Material;
@@ -130,9 +146,9 @@ public class CompoundCloudPlane : CSGMesh
     {
         image.Lock();
 
-        for (int x = 0; x < size; ++x)
+        for (int x = 0; x < Size; ++x)
         {
-            for (int y = 0; y < size; ++y)
+            for (int y = 0; y < Size; ++y)
             {
                 // This formula smoothens the cloud density so that we get gradients
                 // of transparency.
@@ -185,14 +201,7 @@ public class CompoundCloudPlane : CSGMesh
     /// <returns>The amount of compound taken</returns>
     public float TakeCompound(Compound compound, int x, int y, float fraction = 1.0f)
     {
-        var slot = GetSlot(compound);
-
-        float amountToGive = slot.Density[x, y] * fraction;
-        slot.Density[x, y] -= amountToGive;
-        if (slot.Density[x, y] < 0.1f)
-            slot.Density[x, y] = 0;
-
-        return amountToGive;
+        return GetSlot(compound).TakeCompound(x, y, fraction);
     }
 
     /// <summary>
@@ -246,11 +255,7 @@ public class CompoundCloudPlane : CSGMesh
     /// </summary>
     public bool ContainsPosition(Vector3 worldPosition, out int x, out int y)
     {
-        var topLeftRelative = worldPosition - Translation;
-
-        // Floor is used here because otherwise the last coordinate is wrong
-        x = (int)Math.Floor((topLeftRelative.x + Constants.CLOUD_WIDTH) / resolution);
-        y = (int)Math.Floor((topLeftRelative.z + Constants.CLOUD_HEIGHT) / resolution);
+        ConvertToCloudLocal(worldPosition, out x, out y);
 
         return x >= 0 && y >= 0 && x < Constants.CLOUD_WIDTH && y < Constants.CLOUD_HEIGHT;
     }
@@ -259,7 +264,7 @@ public class CompoundCloudPlane : CSGMesh
     ///   Returns true if position with radius around it contains any
     ///   points that are within this cloud.
     /// </summary>
-    public bool CloudContainsPositionWithRadius(Vector3 worldPosition,
+    public bool ContainsPositionWithRadius(Vector3 worldPosition,
         float radius)
     {
         if (worldPosition.x + radius < Translation.x - Constants.CLOUD_WIDTH ||
@@ -268,6 +273,57 @@ public class CompoundCloudPlane : CSGMesh
             worldPosition.z - radius >= Translation.z + Constants.CLOUD_HEIGHT)
             return false;
         return true;
+    }
+
+    /// <summary>
+    ///   Converts world coordinate to cloud relative (top left) coordinates
+    /// </summary>
+    public void ConvertToCloudLocal(Vector3 worldPosition, out int x, out int y)
+    {
+        var topLeftRelative = worldPosition - Translation;
+
+        // Floor is used here because otherwise the last coordinate is wrong
+        x = (int)Math.Floor((topLeftRelative.x + Constants.CLOUD_WIDTH) / Resolution);
+        y = (int)Math.Floor((topLeftRelative.z + Constants.CLOUD_HEIGHT) / Resolution);
+    }
+
+    /// <summary>
+    ///   Absorbs compounds from this cloud
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: this doesn't take elapsed time into account
+    ///   </para>
+    /// </remarks>
+    public void AbsorbCompounds(int localX, int localY, CompoundBag storage,
+        Dictionary<string, float> totals)
+    {
+        const float fractionToTakeOnce = 0.4f;
+
+        foreach (var slot in slots)
+        {
+            // Overestimate of how much compounds we get
+            float generousAmount = slot.Density[localX, localY] *
+                Constants.SKIP_TRYING_TO_ABSORB_RATIO;
+
+            // Skip if there isn't enough to absorb
+            if (generousAmount < MathUtils.EPSILON)
+                continue;
+
+            var compound = slot.Compound.InternalName;
+
+            float freeSpace = storage.GetCompoundAmount(compound);
+
+            // Can't absorb
+            if (freeSpace < generousAmount)
+                continue;
+
+            float taken = slot.TakeCompound(localX, localY, fractionToTakeOnce) *
+                Constants.ABSORPTION_RATIO;
+            storage.AddCompound(compound, taken);
+
+            totals[compound] += taken;
+        }
     }
 
     public void RecycleToPosition(Vector3 position)
@@ -351,6 +407,16 @@ public class CompoundCloudPlane : CSGMesh
 
             // Move the compound clouds about the velocity field.
             Advect(OldDensity, Density, delta, pos);
+        }
+
+        public float TakeCompound(int x, int y, float fraction)
+        {
+            float amountToGive = Density[x, y] * fraction;
+            Density[x, y] -= amountToGive;
+            if (Density[x, y] < 0.1f)
+                Density[x, y] = 0;
+
+            return amountToGive;
         }
 
         private void Diffuse(float diffRate, float[,] oldDens, float[,] density,

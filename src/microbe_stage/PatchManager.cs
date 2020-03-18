@@ -137,7 +137,8 @@ public class PatchManager
                 () =>
                     {
                         var spawner = new CreatedSpawner(name);
-                        spawner.Spawner = Spawners.MakeMicrobeSpawner(species);
+                        spawner.Spawner = Spawners.MakeMicrobeSpawner(species,
+                            compoundCloudSystem);
 
                         spawnSystem.AddSpawnType(spawner.Spawner, density,
                             Constants.MICROBE_SPAWN_RADIUS);
