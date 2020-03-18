@@ -312,8 +312,9 @@ public class CompoundCloudPlane : CSGMesh
 
             var compound = slot.Compound.InternalName;
 
-            float freeSpace = storage.GetCompoundAmount(compound);
+            float freeSpace = storage.Capacity - storage.GetCompoundAmount(compound);
 
+            // TODO: it would be nice to be able to absorb part of the compounds
             // Can't absorb
             if (freeSpace < generousAmount)
                 continue;
@@ -322,7 +323,15 @@ public class CompoundCloudPlane : CSGMesh
                 Constants.ABSORPTION_RATIO;
             storage.AddCompound(compound, taken);
 
-            totals[compound] += taken;
+            // Keep track of total compounds absorbed for the cell
+            if (!totals.ContainsKey(compound))
+            {
+                totals.Add(compound, taken);
+            }
+            else
+            {
+                totals[compound] += taken;
+            }
         }
     }
 
