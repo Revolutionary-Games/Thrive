@@ -143,6 +143,17 @@ public class CompoundCloudSystem : Node
 
     private float elapsed = 0.0f;
 
+    /// <summary>
+    ///   The cloud resolution of the first cloud
+    /// </summary>
+    public int Resolution
+    {
+        get
+        {
+            return clouds[0].Resolution;
+        }
+    }
+
     public override void _Ready()
     {
         cloudScene = GD.Load<PackedScene>("res://src/microbe_stage/CompoundCloudPlane.tscn");
@@ -324,6 +335,80 @@ public class CompoundCloudSystem : Node
         }
 
         return result;
+    }
+
+    /// <summary>
+    ///   Absorbs compounds from clouds into a bag
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: finding a way to add threading here probably helps quite a bit
+    ///   </para>
+    /// </remarks>
+    public void AbsorbCompounds(Vector3 position, float radius, CompoundBag storage,
+        Dictionary<string, float> totals)
+    {
+        // It might be fine to remove this check but this was in the old code
+        if (radius < 1.0f)
+        {
+            GD.PrintErr("Grab radius < 1 is not allowed");
+            return;
+        }
+
+        int resolution = Resolution;
+
+        // This version is used when working with cloud local coordinates
+        float localGrabRadius = radius / resolution;
+
+        float localGrabRadiusSquared = Mathf.Pow(radius / resolution, 2);
+
+        // Find clouds that are in range for absorbing
+        foreach (var cloud in clouds)
+        {
+            // Skip clouds that are out of range
+            if (!cloud.ContainsPositionWithRadius(position, radius))
+                continue;
+
+            int cloudRelativeX, cloudRelativeY;
+            cloud.ConvertToCloudLocal(position, out cloudRelativeX, out cloudRelativeY);
+
+            // Calculate all circle positions and grab from all the valid
+            // positions
+
+            // For simplicity all points within a bounding box around the
+            // relative origin point is calculated and that is restricted by
+            // checking if the point is within the circle before grabbing
+            int xEnd = (int)Mathf.Round(cloudRelativeX + localGrabRadius);
+            int yEnd = (int)Mathf.Round(cloudRelativeY + localGrabRadius);
+
+            for (int x = (int)Mathf.Round(cloudRelativeX - localGrabRadius);
+                x <= xEnd; x += 1)
+            {
+                for (int y = (int)Mathf.Round(cloudRelativeY - localGrabRadius);
+                    y <= yEnd; y += 1)
+                {
+                    // Negative coordinates are always outside the cloud area
+                    if (x < 0 || y < 0)
+                        continue;
+
+                    // Circle check
+                    if (Mathf.Pow(x - cloudRelativeX, 2) +
+                            Mathf.Pow(y - cloudRelativeY, 2) >
+                        localGrabRadiusSquared)
+                    {
+                        // Not in it
+                        continue;
+                    }
+
+                    // Then just need to check that it is within the cloud simulation array
+                    if (x < cloud.Size && y < cloud.Size)
+                    {
+                        // Absorb all compounds in the cloud
+                        cloud.AbsorbCompounds(x, y, storage, totals);
+                    }
+                }
+            }
+        }
     }
 
     /// <summary>

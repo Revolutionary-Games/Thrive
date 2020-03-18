@@ -10,9 +10,9 @@ using Newtonsoft.Json;
 public abstract class Species
 {
     /// <summary>
-    ///   I *think* this is the amount of compounds members of this species consist of
+    ///   This is the amount of compounds cells of this type spawn with
     /// </summary>
-    public readonly Dictionary<string, float> AvgCompoundAmounts =
+    public readonly Dictionary<string, float> InitialCompounds =
         new Dictionary<string, float>();
 
     public string Genus;

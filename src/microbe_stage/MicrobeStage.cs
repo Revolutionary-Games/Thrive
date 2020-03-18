@@ -103,7 +103,7 @@ public class MicrobeStage : Node
             return;
 
         Player = SpawnHelpers.SpawnMicrobe(GameWorld.PlayerSpecies, new Vector3(0, 0, 0),
-            rootOfDynamicallySpawned, SpawnHelpers.LoadMicrobeScene(), false);
+            rootOfDynamicallySpawned, SpawnHelpers.LoadMicrobeScene(), false, Clouds);
         Player.AddToGroup("player");
 
         Camera.ObjectToFollow = Player;
