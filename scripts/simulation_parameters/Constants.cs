@@ -78,6 +78,13 @@ public class Constants
     public const float SKIP_TRYING_TO_ABSORB_RATIO = 0.0002f;
 
     /// <summary>
+    ///   How much compounds a cell can vent per second
+    /// </summary>
+    public const float COMPOUNDS_TO_VENT_PER_SECOND = 5.0f;
+
+    public const float CHUNK_VENT_COMPOUND_MULTIPLIER = 1000.0f;
+
+    /// <summary>
     ///   All Nodes tagged with this are handled by the spawn system for despawning
     /// </summary>
     public const string SPAWNED_GROUP = "spawned";

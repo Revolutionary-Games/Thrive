@@ -275,6 +275,27 @@ public class CompoundCloudSystem : Node
     }
 
     /// <summary>
+    ///   AddCloud but taking compound name as I couldn't figure out a
+    ///   way to do this with generics.
+    /// </summary>
+    public bool AddCloud(string compound, float density, Vector3 worldPosition)
+    {
+        foreach (var cloud in clouds)
+        {
+            if (cloud.ContainsPosition(worldPosition, out int x, out int y))
+            {
+                if (!cloud.HandlesCompound(compound))
+                    continue;
+
+                cloud.AddCloud(compound, density, x, y);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /// <summary>
     ///   Takes compound at world position
     /// </summary>
     /// <param name="fraction">The fraction of compound to take. Should be &lt;= 1</param>
