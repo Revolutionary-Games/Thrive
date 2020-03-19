@@ -187,10 +187,26 @@ public class CompoundCloudPlane : CSGMesh
         return false;
     }
 
+    public bool HandlesCompound(string compound)
+    {
+        foreach (var slot in slots)
+        {
+            if (slot.Compound.InternalName == compound)
+                return true;
+        }
+
+        return false;
+    }
+
     /// <summary>
     ///   Adds some compound in cloud local coordinates
     /// </summary>
     public void AddCloud(Compound compound, float density, int x, int y)
+    {
+        GetSlot(compound).Density[x, y] += density;
+    }
+
+    public void AddCloud(string compound, float density, int x, int y)
     {
         GetSlot(compound).Density[x, y] += density;
     }
@@ -362,6 +378,17 @@ public class CompoundCloudPlane : CSGMesh
         foreach (var slot in slots)
         {
             if (slot.Compound == compound)
+                return slot;
+        }
+
+        throw new ArgumentException("compound not handled by this cloud", nameof(compound));
+    }
+
+    private Slot GetSlot(string compound)
+    {
+        foreach (var slot in slots)
+        {
+            if (slot.Compound.InternalName == compound)
                 return slot;
         }
 

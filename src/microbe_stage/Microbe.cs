@@ -130,9 +130,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
         // ApplyRotation();
 
+        // TODO: make this take elapsed time into account
         HandleCompoundAbsorbing();
 
-        HandleCompoundVenting();
+        HandleCompoundVenting(delta);
     }
 
     public override void _IntegrateForces(PhysicsDirectBodyState state)
@@ -164,11 +165,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// <summary>
     ///   Vents (throws out) non-useful compounds from this cell
     /// </summary>
-    private void HandleCompoundVenting()
+    private void HandleCompoundVenting(float delta)
     {
         // Skip if process system has not run yet
         if (!Compounds.HasAnyBeenSetUseful())
             return;
+
+        // float amountToVent = Constants.COMPOUNDS_TO_VENT_PER_SECOND;
     }
 
     private Vector3 DoBaseMovementForce(float delta)

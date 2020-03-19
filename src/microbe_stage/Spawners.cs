@@ -16,9 +16,10 @@ public static class Spawners
         return new MicrobeSpawner(species, cloudSystem);
     }
 
-    public static ChunkSpawner MakeChunkSpawner(Biome.ChunkConfiguration chunkType)
+    public static ChunkSpawner MakeChunkSpawner(Biome.ChunkConfiguration chunkType,
+        CompoundCloudSystem cloudSystem)
     {
-        return new ChunkSpawner(chunkType);
+        return new ChunkSpawner(chunkType, cloudSystem);
     }
 
     public static CompoundCloudSpawner MakeCompoundSpawner(Compound compound,
@@ -121,10 +122,12 @@ public class ChunkSpawner : ISpawner
     private readonly PackedScene chunkScene;
     private readonly Biome.ChunkConfiguration chunkType;
     private readonly Random random = new Random();
+    private readonly CompoundCloudSystem cloudSystem;
 
-    public ChunkSpawner(Biome.ChunkConfiguration chunkType)
+    public ChunkSpawner(Biome.ChunkConfiguration chunkType, CompoundCloudSystem cloudSystem)
     {
         this.chunkType = chunkType;
+        this.cloudSystem = cloudSystem;
         chunkScene = GD.Load<PackedScene>("res://src/microbe_stage/FloatingChunk.tscn");
     }
 
@@ -137,6 +140,8 @@ public class ChunkSpawner : ISpawner
         // Settings need to be applied before adding it to the scene
         chunk.GraphicsScene = chunkType.Meshes[random.Next(chunkType.Meshes.Count)].
             LoadedScene;
+
+        chunk.Init(cloudSystem);
 
         worldNode.AddChild(chunk);
         chunk.Translation = location;
