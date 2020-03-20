@@ -592,7 +592,7 @@ public class Membrane : MeshInstance
             // Check to see if the gap between two points in the membrane is too
             // small.
             if ((newPositions[(i + 1) % newPositions.Count] -
-                   newPositions[Math.Abs((i - 1) % newPositions.Count)])
+                   newPositions[(i + newPositions.Count - 1) % newPositions.Count])
                 .Length() < cellDimensions / membraneResolution)
             {
                 // Delete the ith term.
