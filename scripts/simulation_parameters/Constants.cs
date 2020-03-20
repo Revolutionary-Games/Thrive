@@ -29,8 +29,6 @@ public class Constants
 
     public const int MEMBRANE_RESOLUTION = 10;
 
-    public const float MEMBRANE_BORDER = DEFAULT_HEX_SIZE;
-
     /// <summary>
     ///   BASE MOVEMENT ATP cost. Cancels out a little bit more then one cytoplasm's glycolysis
     /// </summary>
