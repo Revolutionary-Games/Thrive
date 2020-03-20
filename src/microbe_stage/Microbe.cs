@@ -99,8 +99,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
     public void ResetOrganelleLayout()
     {
-        // TODO: send hexes to membrane
-        // membrane
+        // Send organelles to membrane
+        var organellePositions = new List<Vector2>();
+        organellePositions.Add(new Vector2(0, 0));
+
+        // TODO: finish
+        membrane.OrganellePositions = organellePositions;
+        membrane.Dirty = true;
     }
 
     /// <summary>
