@@ -93,6 +93,15 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     public void ApplySpecies(Species species)
     {
         Species = (MicrobeSpecies)species;
+
+        float scale = 1.0f;
+
+        // Bacteria are 50% the size of other cells
+        if (Species.IsBacteria)
+            scale = 0.5f;
+
+        Scale = new Vector3(scale, scale, scale);
+
         ResetOrganelleLayout();
         SetInitialCompounds();
     }
@@ -216,8 +225,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// </summary
     private Transform GetNewPhysicsRotation(Transform transform)
     {
-        var target = Transform.LookingAt(LookAtPoint, new Vector3(0, 1, 0));
+        var target = transform.LookingAt(LookAtPoint, new Vector3(0, 1, 0));
 
-        return new Transform(Transform.basis.Slerp(target.basis, 0.2f), Transform.origin);
+        // Need to manually normalize everything, otherwise the slerp fails
+        Quat slerped = transform.basis.Quat().Normalized().Slerp(
+            target.basis.Quat().Normalized(), 0.2f);
+
+        return new Transform(new Basis(slerped), transform.origin);
     }
 }
