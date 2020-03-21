@@ -214,13 +214,14 @@ mouse_filter = 1
 enabled_focus_mode = 0
 text = "Back"
 
-[node name="MenuTween" type="Tween" parent="MenuContainers"]
+[node name="MenuTween" type="Tween" parent="."]
 __meta__ = {
 "_editor_description_": "For the menu animations and interpolations"
 }
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
+volume_db = -10.0
 __meta__ = {
 "_editor_description_": "Audio player for Thrive soundtrack"
 }

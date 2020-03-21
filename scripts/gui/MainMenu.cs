@@ -90,7 +90,7 @@ public class MainMenu : Node
     public void RandomizeBackground()
     {
         Random rand = new Random();
-        int num = rand.Next() % 9;
+        int num = rand.Next(0, 9);
 
         if (num <= 3)
         {
@@ -131,8 +131,8 @@ public class MainMenu : Node
     }
 
     /// <summary>
-    ///   Helper method for fading to black.
-    ///   Calls a method when finished.
+    ///   Helper function for fading to black.
+    ///   Calls a function when finished.
     /// </summary>
     public void FadeIn(string onFinishedMethod, float fadeDuration)
     {
@@ -148,8 +148,8 @@ public class MainMenu : Node
     }
 
     /// <summary>
-    ///   Helper method for playing a video stream.
-    ///   Calls a method when finished.
+    ///   Helper function for playing a video stream.
+    ///   Calls a function when finished.
     /// </summary>
     public void PlayCutscene(string path, string onFinishedMethod)
     {
@@ -228,7 +228,7 @@ public class MainMenu : Node
     public void SetCurrentMenu(uint index, bool slide = true)
     {
         // Using tween for value interpolation
-        var tween = GetNode<Tween>("MenuContainers/MenuTween");
+        var tween = GetNode<Tween>("MenuTween");
 
         if (index > MenuArray.Count - 1)
         {
@@ -280,7 +280,18 @@ public class MainMenu : Node
     public void NewGamePressed()
     {
         PlayButtonPressSound();
-        MusicAudio.Stop();
+
+        var tween = GetNode<Tween>("MenuTween");
+
+        if (MusicAudio.Playing)
+        {
+            // Tween music volume down to 0, in this case -80 decibles
+            tween.InterpolateProperty(MusicAudio, "volume_db", null, -80, 1.5f,
+                Tween.TransitionType.Linear, Tween.EaseType.In);
+            tween.Start();
+        }
+
+        // Start fade
         FadeIn("OnNewGameFadeFinished", 0.8f);
     }
 
