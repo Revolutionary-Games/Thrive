@@ -66,6 +66,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     public Dictionary<string, float> TotalAbsorbedCompounds { get; set; } =
         new Dictionary<string, float>();
 
+    public float AgentEmissionCooldown { get; private set; } = 0.0f;
+
     /// <summary>
     ///   Must be called when spawned to provide access to the needed systems
     /// </summary>
@@ -118,6 +120,30 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     }
 
     /// <summary>
+    ///   Tries to fire a toxin if possible
+    /// </summary>
+    public void EmitToxin()
+    {
+        if (AgentEmissionCooldown > 0)
+            return;
+
+        // TODO: port over the proper logic
+
+        AgentEmissionCooldown = 1.0f;
+
+        var props = new AgentProperties();
+        props.Compound = SimulationParameters.Instance.GetCompound("oxytoxy");
+        props.Species = Species;
+
+        // Find the direction the microbe is facing
+        var vec = LookAtPoint - Translation;
+        var direction = vec.Normalized();
+
+        SpawnHelpers.SpawnAgent(props, 10.0f, 5.0f, Translation, direction, GetParent(),
+            SpawnHelpers.LoadAgentScene());
+    }
+
+    /// <summary>
     ///   Resets the compounds to be the ones this species spawns with
     /// </summary>
     public void SetInitialCompounds()
@@ -148,6 +174,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         HandleCompoundAbsorbing();
 
         HandleCompoundVenting(delta);
+
+        // Reduce agent emission cooldown
+        AgentEmissionCooldown -= delta;
+        if (AgentEmissionCooldown < 0)
+            AgentEmissionCooldown = 0;
     }
 
     public override void _IntegrateForces(PhysicsDirectBodyState state)

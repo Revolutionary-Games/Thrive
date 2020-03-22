@@ -66,6 +66,11 @@ public class Constants
     public const int INITIAL_SPECIES_POPULATION = 100;
 
     /// <summary>
+    ///   Controls with how much force agents are fired
+    /// </summary>
+    public const float AGENT_EMISSION_IMPULSE_STRENGTH = 20.0f;
+
+    /// <summary>
     ///   How much of a compound is actually given to a cell when absorbed
     /// </summary>
     public const float ABSORPTION_RATIO = 0.0000125f;
