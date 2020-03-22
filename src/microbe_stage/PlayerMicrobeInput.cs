@@ -95,6 +95,14 @@ public class PlayerMicrobeInput : Node
         {
             cheatPhosphates = false;
         }
+
+        if (@event.IsActionPressed("g_fire_toxin", true))
+        {
+            if (stage.Player != null)
+            {
+                stage.Player.EmitToxin();
+            }
+        }
     }
 
     public override void _Process(float delta)

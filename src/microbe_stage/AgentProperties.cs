@@ -6,5 +6,6 @@
 public class AgentProperties
 {
     public Species Species { get; set; }
-    public string AgentType { get; set; }
+    public string AgentType { get; set; } = "oxytoxy";
+    public Compound Compound { get; set; }
 }

@@ -44,10 +44,10 @@ public static class SpawnHelpers
         worldRoot.AddChild(microbe);
         microbe.Translation = location;
 
-        microbe.AddToGroup("process");
+        microbe.AddToGroup(Constants.PROCESS_GROUP);
 
         if (aiControlled)
-            microbe.AddToGroup("ai");
+            microbe.AddToGroup(Constants.AI_GROUP);
 
         microbe.ApplySpecies(species);
         return microbe;
@@ -56,11 +56,6 @@ public static class SpawnHelpers
     public static PackedScene LoadMicrobeScene()
     {
         return GD.Load<PackedScene>("res://src/microbe_stage/Microbe.tscn");
-    }
-
-    public static PackedScene LoadChunkScene()
-    {
-        return GD.Load<PackedScene>("res://src/microbe_stage/FloatingChunk.tscn");
     }
 
     public static FloatingChunk SpawnChunk(Biome.ChunkConfiguration chunkType,
@@ -86,6 +81,54 @@ public static class SpawnHelpers
             chunkType.ChunkScale);
 
         return chunk;
+    }
+
+    public static PackedScene LoadChunkScene()
+    {
+        return GD.Load<PackedScene>("res://src/microbe_stage/FloatingChunk.tscn");
+    }
+
+    public static void SpawnCloud(CompoundCloudSystem clouds, Vector3 location,
+        Compound compound, float amount)
+    {
+        int resolution = Settings.Instance.CloudResolution;
+
+        // This spreads out the cloud spawn a bit
+        clouds.AddCloud(compound, amount, location + new Vector3(0 + resolution, 0, 0));
+        clouds.AddCloud(compound, amount, location + new Vector3(0 - resolution, 0, 0));
+        clouds.AddCloud(compound, amount, location + new Vector3(0, 0, 0 + resolution));
+        clouds.AddCloud(compound, amount, location + new Vector3(0, 0, 0 - resolution));
+        clouds.AddCloud(compound, amount, location + new Vector3(0, 0, 0));
+    }
+
+    /// <summary>
+    ///   Spawns an agent projectile
+    /// </summary>
+    public static void SpawnAgent(AgentProperties properties, float amount,
+        float lifetime, Vector3 location, Vector3 direction,
+        Node worldRoot, PackedScene agentScene)
+    {
+        var normalizedDirection = direction.Normalized();
+
+        var agent = (AgentProjectile)agentScene.Instance();
+        agent.Properties = properties;
+        agent.Amount = amount;
+        agent.TimeToLiveRemaining = lifetime;
+
+        worldRoot.AddChild(agent);
+        agent.Translation = location + (direction * 1.5f);
+        // TODO: pass in this random from somewhere
+        agent.Rotate(new Vector3(0, 1, 0), 2 * Mathf.Pi * (float)new Random().NextDouble());
+
+        agent.ApplyCentralImpulse(normalizedDirection *
+            Constants.AGENT_EMISSION_IMPULSE_STRENGTH);
+
+        agent.AddToGroup(Constants.TIMED_GROUP);
+    }
+
+    public static PackedScene LoadAgentScene()
+    {
+        return GD.Load<PackedScene>("res://src/microbe_stage/AgentProjectile.tscn");
     }
 }
 
@@ -137,7 +180,7 @@ public class CompoundCloudSpawner : ISpawner
 
     public override List<ISpawned> Spawn(Node worldNode, Vector3 location)
     {
-        clouds.AddCloud(compound, amount, location);
+        SpawnHelpers.SpawnCloud(clouds, location, compound, amount);
 
         // We don't spawn entities
         return null;
