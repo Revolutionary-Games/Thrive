@@ -53,8 +53,8 @@ public class GameWorld
 
         species.MembraneType = SimulationParameters.Instance.GetMembrane("single");
 
-        species.Organelles.Add(new Hex(0, 0), 0,
-            SimulationParameters.Instance.GetOrganelleType("cytoplasm"));
+        species.Organelles.Add(new OrganelleTemplate(
+            SimulationParameters.Instance.GetOrganelleType("cytoplasm"), new Hex(0, 0), 0));
 
         return species;
     }

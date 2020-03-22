@@ -2,12 +2,12 @@
 using Newtonsoft.Json;
 
 /// <summary>
-///   This class is part of OrganelleLayout. Basically just adding the
+///   Basically just adding the
 ///   positioning info on top of OrganelleDefinition when the layout
 ///   is instantiated in a cell, PlacedOrganelle class is used.
 /// </summary>
 [JsonConverter(typeof(PlacedOrganelleConverter))]
-public class OrganelleTemplate
+public class OrganelleTemplate : IPositionedOrganelle
 {
     [JsonProperty]
     public readonly OrganelleDefinition Definition;
@@ -25,4 +25,12 @@ public class OrganelleTemplate
     ///   This is now the number of times to rotate. This used to be the angle in degrees
     /// </summary>
     public int Orientation { get; set; } = 0;
+
+    OrganelleDefinition IPositionedOrganelle.Definition
+    {
+        get
+        {
+            return Definition;
+        }
+    }
 }
