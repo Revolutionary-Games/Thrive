@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -7,6 +8,36 @@ using Godot;
 /// </summary>
 public struct Hex
 {
+    /// <summary>
+    ///   Maps a hex side to its direct opposite
+    /// </summary>
+    public static readonly Dictionary<HEX_SIDE, HEX_SIDE> OppositeHexSide =
+        new Dictionary<HEX_SIDE, HEX_SIDE>()
+        {
+            { HEX_SIDE.TOP, HEX_SIDE.BOTTOM },
+            { HEX_SIDE.TOP_RIGHT, HEX_SIDE.BOTTOM_LEFT },
+            { HEX_SIDE.BOTTOM_RIGHT, HEX_SIDE.TOP_LEFT },
+            { HEX_SIDE.BOTTOM, HEX_SIDE.TOP },
+            { HEX_SIDE.BOTTOM_LEFT, HEX_SIDE.TOP_RIGHT },
+            { HEX_SIDE.TOP_LEFT, HEX_SIDE.BOTTOM_RIGHT },
+        };
+
+    /// <summary>
+    ///   Each hex has six neighbours, one for each side. This table
+    ///   maps the hex side to the coordinate offset of the neighbour
+    ///   adjacent to that side.
+    /// </summary>
+    public static readonly Dictionary<HEX_SIDE, Int2> HexNeighbourOffset =
+        new Dictionary<HEX_SIDE, Int2>()
+        {
+            { HEX_SIDE.TOP, new Int2(0,  1) },
+            { HEX_SIDE.TOP_RIGHT, new Int2(1,  0) },
+            { HEX_SIDE.BOTTOM_RIGHT, new Int2(1, -1) },
+            { HEX_SIDE.BOTTOM, new Int2(0, -1) },
+            { HEX_SIDE.BOTTOM_LEFT, new Int2(-1,  0) },
+            { HEX_SIDE.TOP_LEFT, new Int2(-1,  1) },
+        };
+
     public int Q;
     public int R;
 
@@ -14,6 +45,19 @@ public struct Hex
     {
         Q = q;
         R = r;
+    }
+
+    /// <summary>
+    ///   Enumeration of the hex sides, clock-wise
+    /// </summary>
+    public enum HEX_SIDE
+    {
+        TOP = 1,
+        TOP_RIGHT = 2,
+        BOTTOM_RIGHT = 3,
+        BOTTOM = 4,
+        BOTTOM_LEFT = 5,
+        TOP_LEFT = 6,
     }
 
     public static Hex operator +(Hex a, Hex b)
@@ -121,8 +165,7 @@ public struct Hex
     /// <summary>
     ///   Rotates a hex by 60 degrees about the origin clock-wise.
     /// </summary>
-    public static Hex
-        RotateAxial(Hex hex)
+    public static Hex RotateAxial(Hex hex)
     {
         return new Hex(-hex.R, hex.Q + hex.R);
     }
@@ -130,8 +173,7 @@ public struct Hex
     /// <summary>
     ///   Rotates a hex by (60 * n) degrees about the origin clock-wise.
     /// </summary>
-    public static Hex
-        RotateAxialNTimes(Hex original, int n)
+    public static Hex RotateAxialNTimes(Hex original, int n)
     {
         Hex result = original;
 
@@ -144,8 +186,7 @@ public struct Hex
     /// <summary>
     ///   Symmetrizes a hex horizontally about the (0,x) axis.
     /// </summary>
-    public static Hex
-        FlipHorizontally(Hex hex)
+    public static Hex FlipHorizontally(Hex hex)
     {
         return new Hex(-hex.Q, hex.Q + hex.R);
     }
