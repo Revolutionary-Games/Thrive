@@ -25,6 +25,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     private CompoundCloudSystem cloudSystem;
     private Membrane membrane;
 
+    private OrganelleLayout<PlacedOrganelle> organelles;
+
+    private bool processesDirty = true;
+    private List<TweakedProcess> processes;
+
     /// <summary>
     ///   The species of this microbe
     /// </summary>
@@ -50,8 +55,15 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     }
 
     // TODO: implement process list
-    public List<TweakedProcess> ActiveProcesses { get; private set; } =
-        new List<TweakedProcess>();
+    public List<TweakedProcess> ActiveProcesses
+    {
+        get
+        {
+            if (processesDirty)
+                RefreshProcesses();
+            return processes;
+        }
+    }
 
     public CompoundBag ProcessCompoundStorage
     {
@@ -106,15 +118,46 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
         ResetOrganelleLayout();
         SetInitialCompounds();
+
+        // TODO: set membrane type on the membrane
     }
 
+    /// <summary>
+    ///   Resets the organelles in this microbe to match the species definition
+    /// </summary>
     public void ResetOrganelleLayout()
     {
-        // Send organelles to membrane
-        var organellePositions = new List<Vector2>();
-        organellePositions.Add(new Vector2(0, 0));
+        // TODO: It would be much better if only organelles that need
+        // to be removed where removed, instead of everything
 
-        // TODO: finish
+        if (organelles == null)
+        {
+            organelles = new OrganelleLayout<PlacedOrganelle>(this.OnOrganelleAdded,
+                this.OnOrganelleRemoved);
+        }
+        else
+        {
+            // Just clear the existing ones
+            organelles.RemoveAll();
+        }
+
+        var organellePositions = new List<Vector2>();
+
+        foreach (var entry in Species.Organelles.Organelles)
+        {
+            var placed = new PlacedOrganelle
+            {
+                Definition = entry.Definition,
+                Position = entry.Position,
+                Orientation = entry.Orientation,
+            };
+
+            organelles.Add(placed);
+            var cartesian = Hex.AxialToCartesian(entry.Position);
+            organellePositions.Add(new Vector2(cartesian.x, cartesian.z));
+        }
+
+        // Send organelles to membrane
         membrane.OrganellePositions = organellePositions;
         membrane.Dirty = true;
     }
@@ -263,5 +306,38 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             target.basis.Quat().Normalized(), 0.2f);
 
         return new Transform(new Basis(slerped), transform.origin);
+    }
+
+    private void OnOrganelleAdded(PlacedOrganelle organelle)
+    {
+        organelle.OnAddedToMicrobe(this);
+        processesDirty = true;
+    }
+
+    private void OnOrganelleRemoved(PlacedOrganelle organelle)
+    {
+        organelle.OnRemovedFromMicrobe();
+
+        // The organelle only detaches but doesn't delete itself
+        organelle.QueueFree();
+
+        processesDirty = true;
+    }
+
+    /// <summary>
+    ///   Updates the list of processes organelles do
+    /// </summary>
+    private void RefreshProcesses()
+    {
+        processes = new List<TweakedProcess>();
+        processesDirty = false;
+
+        if (organelles == null)
+            return;
+
+        foreach (var entry in organelles.Organelles)
+        {
+            processes.AddRange(entry.Definition.RunnableProcesses);
+        }
     }
 }

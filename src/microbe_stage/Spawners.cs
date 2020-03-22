@@ -117,6 +117,7 @@ public static class SpawnHelpers
 
         worldRoot.AddChild(agent);
         agent.Translation = location + (direction * 1.5f);
+
         // TODO: pass in this random from somewhere
         agent.Rotate(new Vector3(0, 1, 0), 2 * Mathf.Pi * (float)new Random().NextDouble());
 

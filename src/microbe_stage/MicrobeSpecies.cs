@@ -13,9 +13,9 @@ public class MicrobeSpecies : Species
     public MicrobeSpecies(uint id)
         : base(id)
     {
-        Organelles = new OrganelleLayout();
+        Organelles = new OrganelleLayout<OrganelleTemplate>();
     }
 
     [JsonIgnore]
-    public OrganelleLayout Organelles { get; set; }
+    public OrganelleLayout<OrganelleTemplate> Organelles { get; set; }
 }
