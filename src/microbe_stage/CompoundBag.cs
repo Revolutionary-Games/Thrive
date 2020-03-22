@@ -21,6 +21,7 @@ public class CompoundBag
 
     /// <summary>
     ///   Returns all compounds. Don't modify the returned value!
+    ///   Except if you want to ignore capacity...
     /// </summary>
     public Dictionary<string, float> Compounds { get; } = new Dictionary<string, float>();
 

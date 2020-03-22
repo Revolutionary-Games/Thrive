@@ -24,7 +24,7 @@ public class FloatingChunk : RigidBody, ISpawned
     /// <summary>
     ///   Determines how big this chunk is for engulfing calculations
     /// </summary>
-    public float Size { get; set; }
+    public float Size { get; set; } = 1000.0f;
 
     /// <summary>
     ///   Compounds this chunk contains, and vents
@@ -41,9 +41,57 @@ public class FloatingChunk : RigidBody, ISpawned
     /// </summary>
     public bool Disolves { get; set; } = false;
 
-    public void Init(CompoundCloudSystem compoundClouds)
+    /// <summary>
+    ///   If > 0 applies damage to a cell on touch
+    /// </summary>
+    public float Damages { get; set; } = 0.0f;
+
+    /// <summary>
+    ///   If true this gets deleted when a cell touches this
+    /// </summary>
+    public bool DeleteOnTouch { get; set; } = false;
+
+    /// <summary>
+    ///   Grabs data from the type to initialize this
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Doesn't initialize the graphics scene which needs to be set separately
+    ///   </para>
+    /// </remarks>
+    public void Init(Biome.ChunkConfiguration chunkType, CompoundCloudSystem compoundClouds)
     {
         this.compoundClouds = compoundClouds;
+
+        // Grab data
+        VentPerSecond = chunkType.VentAmount;
+        Disolves = chunkType.Dissolves;
+        Size = chunkType.Size;
+        Damages = chunkType.Damages;
+        DeleteOnTouch = chunkType.DeleteOnTouch;
+
+        Mass = chunkType.Mass;
+
+        // Apply physics shape
+        var shape = GetNode<CollisionShape>("CollisionShape");
+
+        // This only works as long as the sphere shape type is not changed in the editor
+        ((SphereShape)shape.Shape).Radius = chunkType.Radius;
+
+        // Copy compounds to vent
+        if (chunkType.Compounds != null && chunkType.Compounds.Count > 0)
+        {
+            // Capacity is set to 0 so that no compounds can be added
+            // the normal way to the chunk
+            ContainedCompounds = new CompoundBag(0);
+
+            foreach (var entry in chunkType.Compounds)
+            {
+                ContainedCompounds.Compounds.Add(entry.Key, entry.Value.Amount);
+            }
+        }
+
+        // TODO: setup physics callbacks
     }
 
     public override void _Ready()
@@ -67,6 +115,8 @@ public class FloatingChunk : RigidBody, ISpawned
     {
         if (ContainedCompounds != null)
             VentCompounds(delta);
+
+        // TODO: apply fluid system force
     }
 
     /// <summary>

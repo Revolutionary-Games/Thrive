@@ -95,6 +95,9 @@ public class Biome : IRegistryType, ICloneable
         public float Dissolved;
     }
 
+    /// <summary>
+    ///   See FloatingChunk for what many of the fields here do
+    /// </summary>
     public struct ChunkConfiguration
     {
         public string Name;
@@ -110,7 +113,15 @@ public class Biome : IRegistryType, ICloneable
         public float ChunkScale;
         public float Mass;
         public float Size;
+
+        /// <summary>
+        ///   How much compound is vented per second
+        /// </summary>
         public float VentAmount;
+
+        /// <summary>
+        ///   If > 0 the amount of damage to deal on touch
+        /// </summary>
         public float Damages;
         public bool DeleteOnTouch;
 

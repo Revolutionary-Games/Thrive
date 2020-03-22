@@ -57,6 +57,36 @@ public static class SpawnHelpers
     {
         return GD.Load<PackedScene>("res://src/microbe_stage/Microbe.tscn");
     }
+
+    public static PackedScene LoadChunkScene()
+    {
+        return GD.Load<PackedScene>("res://src/microbe_stage/FloatingChunk.tscn");
+    }
+
+    public static FloatingChunk SpawnChunk(Biome.ChunkConfiguration chunkType,
+        Vector3 location, Node worldNode, PackedScene chunkScene,
+        CompoundCloudSystem cloudSystem, Random random)
+    {
+        var chunk = (FloatingChunk)chunkScene.Instance();
+
+        // Settings need to be applied before adding it to the scene
+        chunk.GraphicsScene = chunkType.Meshes[random.Next(chunkType.Meshes.Count)].
+            LoadedScene;
+
+        // Pass on the chunk data
+        chunk.Init(chunkType, cloudSystem);
+
+        worldNode.AddChild(chunk);
+
+        // Chunk is spawned with random rotation
+        chunk.Transform = new Transform(new Quat(
+                new Vector3(0, 1, 1), 2 * Mathf.Pi * (float)random.NextDouble()), location);
+
+        chunk.Scale = new Vector3(chunkType.ChunkScale, chunkType.ChunkScale,
+            chunkType.ChunkScale);
+
+        return chunk;
+    }
 }
 
 /// <summary>
@@ -128,25 +158,17 @@ public class ChunkSpawner : ISpawner
     {
         this.chunkType = chunkType;
         this.cloudSystem = cloudSystem;
-        chunkScene = GD.Load<PackedScene>("res://src/microbe_stage/FloatingChunk.tscn");
+        chunkScene = SpawnHelpers.LoadChunkScene();
     }
 
     public override List<ISpawned> Spawn(Node worldNode, Vector3 location)
     {
         var entities = new List<ISpawned>();
 
-        var chunk = (FloatingChunk)chunkScene.Instance();
+        var chunk = SpawnHelpers.SpawnChunk(chunkType, location, worldNode, chunkScene,
+            cloudSystem, random);
 
-        // Settings need to be applied before adding it to the scene
-        chunk.GraphicsScene = chunkType.Meshes[random.Next(chunkType.Meshes.Count)].
-            LoadedScene;
-
-        chunk.Init(cloudSystem);
-
-        worldNode.AddChild(chunk);
-        chunk.Translation = location;
         entities.Add(chunk);
-
         return entities;
     }
 }
