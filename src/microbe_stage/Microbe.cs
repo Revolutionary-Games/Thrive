@@ -23,24 +23,83 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     public Vector3 MovementDirection = new Vector3(0, 0, 0);
 
     private CompoundCloudSystem cloudSystem;
+
+    // Child components
     private Membrane membrane;
 
+    /// <summary>
+    ///   The organelles in this microbe
+    /// </summary>
     private OrganelleLayout<PlacedOrganelle> organelles;
 
     private bool processesDirty = true;
     private List<TweakedProcess> processes;
+
+    private bool cachedHexCountDirty = true;
+    private int cachedHexCount;
+
+    private Vector3 queuedMovementForce;
+
+    // // variables for engulfing
+    // private bool engulfMode = false;
+    // private bool isBeingEngulfed = false;
+    // private Microbe hostileEngulfer = null;
+    // private bool wasBeingEngulfed = false;
+    // private bool isCurrentlyEngulfing = false;
+
+    // private float hitpoints = Constants.DEFAULT_HEALTH;
+    // private float previousHitpoints = Constants.DEFAULT_HEALTH;
+    // private float maxHitpoints = Constants.DEFAULT_HEALTH;
+
+    /// <summary>
+    ///   The microbe stores here the sum of capacity of all the
+    ///   current organelles. This is here to prevent anyone from
+    ///   messing with this value if we used the Capacity from the
+    ///   CompoundBag for the calculations that use this.
+    /// </summary>
+    private float organellesCapacity = 0.0f;
+
+    /// <summary>
+    ///   Multiplied on the movement speed of the microbe.
+    /// </summary>
+    private float movementFactor = 1.0f;
+
+    // private float compoundCollectionTimer = EXCESS_COMPOUND_COLLECTION_INTERVAL;
+
+    // private float escapeInterval = 0;
+    // private bool hasEscaped = false;
+
+    // /// <summary>
+    // ///   Controls for how long the flashColour is held before going
+    // ///   back to species colour.
+    // /// </summary>
+    // private float flashDuration = 0;
+    // private Color flashColour = new Color(0, 0, 0, 0);
+
+    // private bool allOrganellesDivided = false;
+
+    private AudioStreamPlayer3D engulfAudio;
+    private AudioStreamPlayer3D otherAudio;
+    private AudioStreamPlayer3D movementAudio;
 
     /// <summary>
     ///   The species of this microbe
     /// </summary>
     public MicrobeSpecies Species { get; private set; }
 
+    /// <summary>
+    ///    True when this is the player's microbe
+    /// </summary>
+    public bool IsPlayerMicrobe { get; private set; }
+
     public int HexCount
     {
         get
         {
-            // TODO: add computation and caching for this
-            return 1;
+            if (cachedHexCountDirty)
+                CountHexes();
+
+            return cachedHexCount;
         }
     }
 
@@ -83,9 +142,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// <summary>
     ///   Must be called when spawned to provide access to the needed systems
     /// </summary>
-    public void Init(CompoundCloudSystem cloudSystem)
+    public void Init(CompoundCloudSystem cloudSystem, bool isPlayer)
     {
         this.cloudSystem = cloudSystem;
+        IsPlayerMicrobe = isPlayer;
+
+        if (IsPlayerMicrobe)
+            GD.Print("Player Microbe spawned");
     }
 
     public override void _Ready()
@@ -96,9 +159,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         }
 
         membrane = GetNode<Membrane>("Membrane");
-
-        // TODO: reimplement capacity calculation
-        Compounds.Capacity = 50.0f;
+        engulfAudio = GetNode<AudioStreamPlayer3D>("EngulfAudio");
+        otherAudio = GetNode<AudioStreamPlayer3D>("OtherAudio");
+        movementAudio = GetNode<AudioStreamPlayer3D>("MovementAudio");
     }
 
     /// <summary>
@@ -187,6 +250,14 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     }
 
     /// <summary>
+    ///   Called from movement organelles to add movement force
+    /// </summary>
+    public void AddMovementForce(Vector3 force)
+    {
+        queuedMovementForce += force;
+    }
+
+    /// <summary>
     ///   Resets the compounds to be the ones this species spawns with
     /// </summary>
     public void SetInitialCompounds()
@@ -207,8 +278,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             Vector3 totalMovement = new Vector3(0, 0, 0);
 
             totalMovement += DoBaseMovementForce(delta);
+            totalMovement += queuedMovementForce;
 
-            ApplyMovementImpulse(totalMovement, delta);
+            ApplyMovementImpulse(totalMovement * movementFactor, delta);
         }
 
         // ApplyRotation();
@@ -312,16 +384,28 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     {
         organelle.OnAddedToMicrobe(this);
         processesDirty = true;
+        cachedHexCountDirty = true;
+
+        // This is calculated here as it would be a bit difficult to
+        // hook up computing this when the StorageBag needs this info.
+        organellesCapacity += organelle.StorageCapacity;
+        Compounds.Capacity = organellesCapacity;
+        GD.Print("Capacity is: ", Compounds.Capacity);
     }
 
     private void OnOrganelleRemoved(PlacedOrganelle organelle)
     {
+        organellesCapacity -= organelle.StorageCapacity;
         organelle.OnRemovedFromMicrobe();
 
-        // The organelle only detaches but doesn't delete itself
+        // The organelle only detaches but doesn't delete itself, so we delete it here
         organelle.QueueFree();
 
         processesDirty = true;
+        cachedHexCountDirty = true;
+
+        Compounds.Capacity = organellesCapacity;
+        GD.Print("Capacity is: ", Compounds.Capacity);
     }
 
     /// <summary>
@@ -339,5 +423,20 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         {
             processes.AddRange(entry.Definition.RunnableProcesses);
         }
+    }
+
+    private void CountHexes()
+    {
+        cachedHexCount = 0;
+
+        if (organelles == null)
+            return;
+
+        foreach (var entry in organelles.Organelles)
+        {
+            cachedHexCount += entry.Definition.Hexes.Count;
+        }
+
+        cachedHexCountDirty = false;
     }
 }

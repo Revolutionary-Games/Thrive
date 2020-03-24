@@ -14,17 +14,14 @@ public class StorageComponent : IOrganelleComponent
 
     public void OnAttachToCell()
     {
-        throw new NotImplementedException();
     }
 
     public void OnDetachFromCell()
     {
-        throw new NotImplementedException();
     }
 
     public void Update(float elapsed)
     {
-        throw new NotImplementedException();
     }
 }
 
