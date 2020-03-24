@@ -8,7 +8,7 @@ public interface IOrganelleComponentFactory
     /// <summary>
     ///   Creates a new organelle component of the type that this factory makes
     /// </summary>
-    /// <returns>The create.</returns>
+    /// <returns>The created component.</returns>
     IOrganelleComponent Create();
 
     /// <summary>

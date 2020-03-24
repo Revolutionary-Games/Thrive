@@ -21,7 +21,6 @@ public class NucleusComponent : IOrganelleComponent
 
     public void Update(float elapsed)
     {
-        throw new NotImplementedException();
     }
 }
 

@@ -21,6 +21,35 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
 
     public int Orientation { get; set; }
 
+    /// <summary>
+    ///   The components instantiated for this placed organelle
+    /// </summary>
+    [JsonIgnore]
+    public List<IOrganelleComponent> Components { get; private set; }
+
+    /// <summary>
+    ///   Computes the total storage capacity of this organelle. Works
+    ///   only after being added to a microbe and before being
+    ///   removed.
+    /// </summary>
+    public float StorageCapacity
+    {
+        get
+        {
+            float value = 0.0f;
+
+            foreach (var component in Components)
+            {
+                if (component is StorageComponent storage)
+                {
+                    value += storage.Capacity;
+                }
+            }
+
+            return value;
+        }
+    }
+
     public void OnAddedToMicrobe(Microbe microbe)
     {
         if (Definition == null)
@@ -61,6 +90,18 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
 
             shapes.Add(ownerId);
         }
+
+        // Components
+        Components = new List<IOrganelleComponent>();
+
+        foreach (var factory in Definition.ComponentFactories)
+        {
+            var component = factory.Create();
+
+            component.OnAttachToCell();
+
+            Components.Add(component);
+        }
     }
 
     public void OnRemovedFromMicrobe()
@@ -75,7 +116,23 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
             parentMicrobe.RemoveShapeOwner(shape);
         }
 
+        // Remove components
+        foreach (var component in Components)
+        {
+            component.OnDetachFromCell();
+        }
+
+        Components = null;
+
         parentMicrobe = null;
+    }
+
+    public void Update(float delta)
+    {
+        foreach (var component in Components)
+        {
+            component.Update(delta);
+        }
     }
 }
 

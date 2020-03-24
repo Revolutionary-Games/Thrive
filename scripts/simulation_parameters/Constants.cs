@@ -88,6 +88,13 @@ public class Constants
     public const float CHUNK_VENT_COMPOUND_MULTIPLIER = 1000.0f;
 
     /// <summary>
+    ///   This is used just as the default value for health and max
+    ///   health of a microbe. The default membrane actually
+    ///   determines the default health.
+    /// </summary>
+    public const float DEFAULT_HEALTH = 100.0f;
+
+    /// <summary>
     ///   All Nodes tagged with this are handled by the spawn system for despawning
     /// </summary>
     public const string SPAWNED_GROUP = "spawned";
