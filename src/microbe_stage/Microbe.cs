@@ -26,6 +26,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
     // Child components
     private Membrane membrane;
+    private AudioStreamPlayer3D engulfAudio;
+    private AudioStreamPlayer3D otherAudio;
+    private AudioStreamPlayer3D movementAudio;
 
     /// <summary>
     ///   The organelles in this microbe
@@ -40,16 +43,18 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
     private Vector3 queuedMovementForce;
 
-    // // variables for engulfing
-    // private bool engulfMode = false;
-    // private bool isBeingEngulfed = false;
-    // private Microbe hostileEngulfer = null;
-    // private bool wasBeingEngulfed = false;
+    // variables for engulfing
+    private bool engulfMode = false;
+    private bool isBeingEngulfed = false;
+    private Microbe hostileEngulfer = null;
+    private bool wasBeingEngulfed = false;
+
     // private bool isCurrentlyEngulfing = false;
 
-    // private float hitpoints = Constants.DEFAULT_HEALTH;
-    // private float previousHitpoints = Constants.DEFAULT_HEALTH;
-    // private float maxHitpoints = Constants.DEFAULT_HEALTH;
+    private float hitpoints = Constants.DEFAULT_HEALTH;
+    private float maxHitpoints = Constants.DEFAULT_HEALTH;
+
+    private float lastCheckedATPDamage = 0.0f;
 
     /// <summary>
     ///   The microbe stores here the sum of capacity of all the
@@ -66,21 +71,17 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
     // private float compoundCollectionTimer = EXCESS_COMPOUND_COLLECTION_INTERVAL;
 
-    // private float escapeInterval = 0;
-    // private bool hasEscaped = false;
+    private float escapeInterval = 0;
+    private bool hasEscaped = false;
 
-    // /// <summary>
-    // ///   Controls for how long the flashColour is held before going
-    // ///   back to species colour.
-    // /// </summary>
-    // private float flashDuration = 0;
-    // private Color flashColour = new Color(0, 0, 0, 0);
+    /// <summary>
+    ///   Controls for how long the flashColour is held before going
+    ///   back to species colour.
+    /// </summary>
+    private float flashDuration = 0;
+    private Color flashColour = new Color(0, 0, 0, 0);
 
-    // private bool allOrganellesDivided = false;
-
-    private AudioStreamPlayer3D engulfAudio;
-    private AudioStreamPlayer3D otherAudio;
-    private AudioStreamPlayer3D movementAudio;
+    private bool allOrganellesDivided = false;
 
     /// <summary>
     ///   The species of this microbe
@@ -92,6 +93,32 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// </summary>
     public bool IsPlayerMicrobe { get; private set; }
 
+    /// <summary>
+    ///   True only when this has been deleted to let know things
+    ///   being engulfed by us that we are dead.
+    /// </summary>
+    public bool Dead { get; private set; } = false;
+
+    /// <summary>
+    ///   If true cell is in engulf mode.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Prefer setting this instead of directly setting the private variable.
+    ///   </para>
+    /// </remarks>
+    public bool EngulfMode
+    {
+        get
+        {
+            return engulfMode;
+        }
+        set
+        {
+            engulfMode = value;
+        }
+    }
+
     public int HexCount
     {
         get
@@ -100,6 +127,19 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
                 CountHexes();
 
             return cachedHexCount;
+        }
+    }
+
+    public float Radius
+    {
+        get
+        {
+            var radius = membrane.EncompassingCircleRadius;
+
+            if (Species.IsBacteria)
+                radius *= 0.5f;
+
+            return radius;
         }
     }
 
@@ -180,9 +220,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         Scale = new Vector3(scale, scale, scale);
 
         ResetOrganelleLayout();
-        SetInitialCompounds();
 
         // TODO: set membrane type on the membrane
+
+        membrane.Tint = Species.Colour;
     }
 
     /// <summary>
@@ -250,6 +291,29 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     }
 
     /// <summary>
+    ///   Flashes the membrane a specific colour for duration. A new
+    ///   flash is not started if currently flashing.
+    /// </summary>
+    /// <returns>True when a new flash was started, false if already flashing</returns>
+    public bool Flash(float duration, Color colour)
+    {
+        if (flashDuration > 0)
+            return false;
+
+        flashDuration = duration;
+        flashColour = colour;
+        return true;
+    }
+
+    /// <summary>
+    ///   Applies damage to this cell
+    /// </summary>
+    public void Damage(float amount, string source)
+    {
+        // TODO: fix
+    }
+
+    /// <summary>
     ///   Called from movement organelles to add movement force
     /// </summary>
     public void AddMovementForce(Vector3 force)
@@ -258,7 +322,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     }
 
     /// <summary>
-    ///   Resets the compounds to be the ones this species spawns with
+    ///   Resets the compounds to be the ones this species spawns with. Called by spawn helpers
     /// </summary>
     public void SetInitialCompounds()
     {
@@ -272,28 +336,76 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
     public override void _Process(float delta)
     {
-        if (MovementDirection != new Vector3(0, 0, 0))
-        {
-            // Movement direction should not be normalized to allow different speeds
-            Vector3 totalMovement = new Vector3(0, 0, 0);
-
-            totalMovement += DoBaseMovementForce(delta);
-            totalMovement += queuedMovementForce;
-
-            ApplyMovementImpulse(totalMovement * movementFactor, delta);
-        }
-
-        // ApplyRotation();
-
         // TODO: make this take elapsed time into account
         HandleCompoundAbsorbing();
 
-        HandleCompoundVenting(delta);
+        queuedMovementForce = new Vector3(0, 0, 0);
 
         // Reduce agent emission cooldown
         AgentEmissionCooldown -= delta;
         if (AgentEmissionCooldown < 0)
             AgentEmissionCooldown = 0;
+
+        HandleFlashing(delta);
+        HandleHitpointsRegeneration(delta);
+        HandleReproduction(delta);
+        HandleEngulfing(delta);
+        HandleOsmoregulation(delta);
+
+        // Let organelles do stuff (this for example gets the movement force from flagella)
+        foreach (var organelle in organelles.Organelles)
+        {
+            organelle.Update(delta);
+        }
+
+        ApplyCustomDrag(delta);
+
+        // Movement
+        if (MovementDirection != new Vector3(0, 0, 0) ||
+            queuedMovementForce != new Vector3(0, 0, 0))
+        {
+            // Movement direction should not be normalized to allow different speeds
+            Vector3 totalMovement = new Vector3(0, 0, 0);
+
+            if (MovementDirection != new Vector3(0, 0, 0))
+            {
+                totalMovement += DoBaseMovementForce(delta);
+            }
+
+            totalMovement += queuedMovementForce;
+
+            ApplyMovementImpulse(totalMovement, delta);
+        }
+
+        // Rotation is applied in the physics force callback as that's
+        // the place where the body rotation can be directly set
+        // without problems
+
+        HandleCompoundVenting(delta);
+
+        lastCheckedATPDamage += delta;
+
+        while (lastCheckedATPDamage >= Constants.ATP_DAMAGE_CHECK_INTERVAL)
+        {
+            lastCheckedATPDamage -= Constants.ATP_DAMAGE_CHECK_INTERVAL;
+            ApplyATPDamage();
+        }
+
+        membrane.HealthFraction = hitpoints / maxHitpoints;
+
+        if (hitpoints <= 0)
+        {
+            HandleDeath();
+        }
+        else
+        {
+            // TODO: fix
+            // // As long as the player has been alive they can go to the editor in freebuild
+            // if(IsPlayerMicrobe && GetThriveGame().playerData().isFreeBuilding())
+            // {
+            //     showReproductionDialog(world);
+            // }
+        }
     }
 
     public override void _IntegrateForces(PhysicsDirectBodyState state)
@@ -305,20 +417,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
     private void HandleCompoundAbsorbing()
     {
-        float scale = 1.0f;
+        // max here buffs compound absorbing for the smallest cells
+        var grabRadius = Mathf.Max(Radius, 3.0f);
 
-        if (Species.IsBacteria)
-            scale = 0.5f;
-
-        // This grab radius version is used for world coordinate calculations
-        // TODO: switch back to using the radius from membrane
-        float grabRadius = 3.0f;
-
-        // // max here buffs compound absorbing for the smallest cells
-        // const auto grabRadius =
-        //     std::max(membrane.calculateEncompassingCircleRadius(), 3.0f);
-
-        cloudSystem.AbsorbCompounds(Translation, grabRadius * scale, Compounds,
+        cloudSystem.AbsorbCompounds(Translation, grabRadius, Compounds,
             TotalAbsorbedCompounds);
     }
 
@@ -332,6 +434,200 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             return;
 
         // float amountToVent = Constants.COMPOUNDS_TO_VENT_PER_SECOND;
+    }
+
+    /// <summary>
+    ///   Flashes the membrane colour when Flash has been called
+    /// </summary>
+    private void HandleFlashing(float delta)
+    {
+        // Flash membrane if something happens.
+        if (flashDuration > 0 && flashColour != new Color(0, 0, 0, 0))
+        {
+            flashDuration -= delta;
+
+            // How frequent it flashes, would be nice to update
+            // the flash void to have this variable{
+            if ((flashDuration % 0.6f) < 0.3f)
+            {
+                membrane.Tint = flashColour;
+            }
+            else
+            {
+                // Restore colour
+                membrane.Tint = Species.Colour;
+            }
+
+            // Flashing ended
+            if (flashDuration <= 0)
+            {
+                flashDuration = 0;
+
+                // Restore colour
+                membrane.Tint = Species.Colour;
+            }
+        }
+    }
+
+    /// <summary>
+    ///   Regenerate hitpoints while the cell has atp
+    /// </summary>
+    private void HandleHitpointsRegeneration(float delta)
+    {
+        if (hitpoints < maxHitpoints)
+        {
+            if (Compounds.GetCompoundAmount("atp") >= 1.0f)
+            {
+                hitpoints += Constants.REGENERATION_RATE * delta;
+                if (hitpoints > maxHitpoints)
+                {
+                    hitpoints = maxHitpoints;
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    ///   Handles feeding the organelles in this microbe in order for
+    ///   them to split. After all are split this is ready to
+    ///   reproduce.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     AI cells will immediately reproduce when they can. On the
+    ///     player cell the editor is unlocked when reproducing is
+    ///     possible.
+    ///   </para>
+    /// </remarks>
+    private void HandleReproduction(float delta)
+    {
+        if (allOrganellesDivided)
+            return;
+    }
+
+    /// <summary>
+    ///   Handles things related to engulfing. Works together with the physics callbacks
+    /// </summary>
+    private void HandleEngulfing(float delta)
+    {
+        if (EngulfMode)
+        {
+            // Drain atp
+            var cost = Constants.ENGULFING_ATP_COST_SECOND * delta;
+
+            if (Compounds.TakeCompound("atp", cost) < cost - 0.001f)
+            {
+                EngulfMode = false;
+            }
+        }
+
+        // Play sound
+        if (EngulfMode)
+        {
+            if (!engulfAudio.Playing)
+                engulfAudio.Play();
+
+            // Flash the membrane blue.
+            Flash(1, new Color(0.2f, 0.5f, 1.0f, 0.5f));
+        }
+        else
+        {
+            if (engulfAudio.Playing)
+                engulfAudio.Stop();
+        }
+
+        // Movement modifier
+        if (EngulfMode)
+        {
+            movementFactor /= Constants.ENGULFING_MOVEMENT_DIVISION;
+        }
+
+        if (isBeingEngulfed)
+        {
+            movementFactor /= Constants.ENGULFED_MOVEMENT_DIVISION;
+
+            Damage(Constants.ENGULF_DAMAGE * delta, "isBeingEngulfed");
+            wasBeingEngulfed = true;
+        }
+        else if (wasBeingEngulfed && !isBeingEngulfed)
+        {
+            // Else If we were but are no longer, being engulfed
+            wasBeingEngulfed = false;
+
+            if (!IsPlayerMicrobe && Species.PlayerSpecies)
+            {
+                hasEscaped = true;
+                escapeInterval = 0;
+            }
+
+            RemoveEngulfedEffect();
+        }
+
+        // Still considered to be chased for CREATURE_ESCAPE_INTERVAL milliseconds
+        if (hasEscaped)
+        {
+            escapeInterval += delta;
+            if (escapeInterval >= Constants.CREATURE_ESCAPE_INTERVAL)
+            {
+                hasEscaped = false;
+                escapeInterval = 0;
+
+                // TODO: apply escape population gain
+                // MicrobeOperations::alterSpeciesPopulation(species,
+                //     Constants.CREATURE_ESCAPE_POPULATION_GAIN, "escape engulfing");
+            }
+        }
+
+        // Check whether we should not be being engulfed anymore
+        if (hostileEngulfer != null)
+        {
+            Vector3 predatorPosition = new Vector3(0, 0, 0);
+
+            var ourPosition = Translation;
+
+            float circleRad = 0.0f;
+
+            if (!hostileEngulfer.Dead)
+            {
+                predatorPosition = hostileEngulfer.Translation;
+                circleRad = hostileEngulfer.Radius;
+            }
+
+            if (!hostileEngulfer.EngulfMode || hostileEngulfer.Dead ||
+                (ourPosition - predatorPosition).LengthSquared() >= circleRad)
+            {
+                hostileEngulfer = null;
+                isBeingEngulfed = false;
+            }
+        }
+        else
+        {
+            isBeingEngulfed = false;
+        }
+    }
+
+    private void RemoveEngulfedEffect()
+    {
+        // TODO: fix
+    }
+
+    private void HandleOsmoregulation(float delta)
+    {
+        var osmoCost = (HexCount * Species.MembraneType.OsmoregulationFactor *
+            Constants.ATP_COST_FOR_OSMOREGULATION) * delta;
+
+        Compounds.TakeCompound("atp", osmoCost);
+    }
+
+    private void ApplyATPDamage() { }
+
+    /// <summary>
+    ///   Handles the death of this microbe. This queues this object
+    ///   for deletion and handles some pre-death actions.
+    /// </summary>
+    private void HandleDeath()
+    {
+        QueueFree();
     }
 
     private Vector3 DoBaseMovementForce(float delta)
@@ -349,13 +645,41 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             force *= 0.5f;
         }
 
-        return Transform.basis.Xform(MovementDirection * force);
+        return Transform.basis.Xform(MovementDirection * force) * movementFactor *
+            (Species.MembraneType.MovementFactor -
+                (Species.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER));
+    }
 
-        // * microbeComponent.movementFactor *
-        // (SimulationParameters::membraneRegistry().getTypeData(
-        // microbeComponent.species.membraneType).movementFactor -
-        //     microbeComponent.species.membraneRigidity *
-        // MEMBRANE_RIGIDITY_MOBILITY_MODIFIER));
+    /// <summary>
+    ///   Applies some custom drag logic on cells to make their
+    ///   movement better. TODO: determine if this is still needed.
+    /// </summary>
+    private void ApplyCustomDrag(float delta)
+    {
+        // const Float3 velocity = physics.Body.GetVelocity();
+
+        // // There should be no Y velocity so it should be zero
+        // const Float3 drag(velocity.X * (CELL_DRAG_MULTIPLIER + (CELL_SIZE_DRAG_MULTIPLIER *
+        //             microbeComponent.totalHexCountCache)),
+        //     velocity.Y * (CELL_DRAG_MULTIPLIER + (CELL_SIZE_DRAG_MULTIPLIER *
+        //             microbeComponent.totalHexCountCache)),
+        //     velocity.Z * (CELL_DRAG_MULTIPLIER + (CELL_SIZE_DRAG_MULTIPLIER *
+        //             microbeComponent.totalHexCountCache)));
+
+        // // Only add drag if it is over CELL_REQUIRED_DRAG_BEFORE_APPLY
+        // if(abs(drag.X) >= CELL_REQUIRED_DRAG_BEFORE_APPLY){
+        //     microbeComponent.queuedMovementForce.X += drag.X;
+        // }
+        // else if (abs(velocity.X) >  .001){
+        //     microbeComponent.queuedMovementForce.X += -velocity.X;
+        // }
+
+        // if(abs(drag.Z) >= CELL_REQUIRED_DRAG_BEFORE_APPLY){
+        //     microbeComponent.queuedMovementForce.Z += drag.Z;
+        // }
+        // else if (abs(velocity.Z) >  .001){
+        //     microbeComponent.queuedMovementForce.Z += -velocity.Z;
+        // }
     }
 
     private void ApplyMovementImpulse(Vector3 movement, float delta)
@@ -363,6 +687,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         if (movement.x == 0.0f && movement.z == 0.0f)
             return;
 
+        // Scale movement by delta time (not by framerate). We aren't Fallout 4
         ApplyCentralImpulse(movement * delta);
     }
 
@@ -390,7 +715,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         // hook up computing this when the StorageBag needs this info.
         organellesCapacity += organelle.StorageCapacity;
         Compounds.Capacity = organellesCapacity;
-        GD.Print("Capacity is: ", Compounds.Capacity);
     }
 
     private void OnOrganelleRemoved(PlacedOrganelle organelle)
@@ -405,7 +729,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         cachedHexCountDirty = true;
 
         Compounds.Capacity = organellesCapacity;
-        GD.Print("Capacity is: ", Compounds.Capacity);
     }
 
     /// <summary>
