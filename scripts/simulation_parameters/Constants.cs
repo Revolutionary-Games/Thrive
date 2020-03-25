@@ -95,6 +95,68 @@ public class Constants
     public const float DEFAULT_HEALTH = 100.0f;
 
     /// <summary>
+    ///   Amount of health per second regenerated
+    /// </summary>
+    public const float REGENERATION_RATE = 1.0f;
+
+    /// <summary>
+    ///   How often in seconds ATP damage is checked and applied if cell has no ATP
+    /// </summary>
+    public const float ATP_DAMAGE_CHECK_INTERVAL = 0.9f;
+
+    /// <summary>
+    ///   How much fully rigid membrane adds hitpoints
+    /// </summary>
+    public const float MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER = 30;
+
+    /// <summary>
+    ///   How much fully rigid membrane reduces movement factor of a cell
+    /// </summary>
+    public const float MEMBRANE_RIGIDITY_MOBILITY_MODIFIER = 0.1f;
+
+    /// <summary>
+    ///   How much ATP does engulf mode cost per second
+    /// </summary>
+    public const float ENGULFING_ATP_COST_SECOND = 1.5f;
+
+    /// <summary>
+    ///   The speed reduction when a cell is in engulfing mode.
+    /// </summary>
+    public const float ENGULFING_MOVEMENT_DIVISION = 2.0f;
+
+    /// <summary>
+    ///   The speed reduction when a cell is being engulfed.
+    /// </summary>
+    public const float ENGULFED_MOVEMENT_DIVISION = 10.0f;
+
+    /// <summary>
+    ///   The minimum HP ratio between a cell and a possible engulfing victim.
+    /// </summary>
+    public const float ENGULF_HP_RATIO_REQ = 1.5f;
+
+    /// <summary>
+    ///   The amount of hp per second of damage when being engulfed
+    /// </summary>
+    public const float ENGULF_DAMAGE = 45.0f;
+
+    /// <summary>
+    ///   Osmoregulation ATP cost per second per hex
+    /// </summary>
+    public const float ATP_COST_FOR_OSMOREGULATION = 1.0f;
+
+    // Darwinian Evo Values
+    public const int CREATURE_DEATH_POPULATION_LOSS = -60;
+    public const int CREATURE_KILL_POPULATION_GAIN = 50;
+    public const int CREATURE_SCAVENGE_POPULATION_GAIN = 10;
+    public const int CREATURE_REPRODUCE_POPULATION_GAIN = 50;
+    public const int CREATURE_ESCAPE_POPULATION_GAIN = 50;
+
+    /// <summary>
+    ///   How often a microbe can get the engulf escape population bonus
+    /// </summary>
+    public const float CREATURE_ESCAPE_INTERVAL = 5;
+
+    /// <summary>
     ///   All Nodes tagged with this are handled by the spawn system for despawning
     /// </summary>
     public const string SPAWNED_GROUP = "spawned";

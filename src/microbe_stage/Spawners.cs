@@ -53,6 +53,7 @@ public static class SpawnHelpers
             microbe.AddToGroup(Constants.AI_GROUP);
 
         microbe.ApplySpecies(species);
+        microbe.SetInitialCompounds();
         return microbe;
     }
 
