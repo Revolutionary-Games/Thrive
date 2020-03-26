@@ -111,6 +111,11 @@ public class Constants
     public const float NO_ATP_DAMAGE_FRACTION = 0.04f;
 
     /// <summary>
+    ///   Organelles won't take compounds if there is less available than this amount
+    /// </summary>
+    public const float ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST = 0.0f;
+
+    /// <summary>
     ///   How much fully rigid membrane adds hitpoints
     /// </summary>
     public const float MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER = 30;
