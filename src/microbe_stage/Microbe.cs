@@ -245,7 +245,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             organelles.RemoveAll();
         }
 
-
         foreach (var entry in Species.Organelles.Organelles)
         {
             var placed = new PlacedOrganelle
@@ -348,7 +347,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         copyEntity.Compounds.ClearCompounds();
 
         // Split the compounds evenly between the two cells.
-
         foreach (var compound in Compounds.Compounds.Keys)
         {
             var amount = Compounds.GetCompoundAmount(compound);
@@ -364,7 +362,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
                     // TODO: handle the excess compound that didn't fit in the other cell
                 }
             }
-
         }
 
         // Play the split sound
@@ -570,7 +567,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             // If Give it some compounds to make it larger.
             organelle.GrowOrganelle(Compounds);
 
-            if (organelle.GrowthProgress >= 1.0f)
+            if (organelle.GrowthValue >= 1.0f)
             {
                 // Queue this organelle for splitting after the loop.
                 organellesToAdd.Add(organelle);
@@ -622,7 +619,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
                 // its DNA, give it some compounds.
                 organelle.GrowOrganelle(Compounds);
 
-                if (organelle.GrowthProgress < 1.0f)
+                if (organelle.GrowthValue < 1.0f)
                 {
                     // Nucleus needs more compounds
                     reproductionStageComplete = false;

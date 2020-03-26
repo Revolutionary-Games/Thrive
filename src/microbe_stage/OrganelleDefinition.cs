@@ -63,6 +63,11 @@ public class OrganelleDefinition : IRegistryType
     /// </summary>
     public int MPCost;
 
+    /// <summary>
+    ///   The total amount of compounds in InitialComposition
+    /// </summary>
+    public float OrganelleCost { get; private set; }
+
     [JsonIgnore]
     public List<IOrganelleComponentFactory> ComponentFactories
     {
@@ -142,18 +147,28 @@ public class OrganelleDefinition : IRegistryType
     {
         RunnableProcesses = new List<TweakedProcess>();
 
+        // Preload the scene for instantiating in microbes
         if (DisplayScene != string.Empty)
         {
             LoadedScene = GD.Load<PackedScene>(DisplayScene);
         }
 
-        if (Processes == null)
-            return;
-
-        foreach (var process in Processes)
+        // Resolve process names
+        if (Processes != null)
         {
-            RunnableProcesses.Add(new TweakedProcess(parameters.GetBioProcess(process.Key),
-                    process.Value));
+            foreach (var process in Processes)
+            {
+                RunnableProcesses.Add(new TweakedProcess(parameters.GetBioProcess(process.Key),
+                        process.Value));
+            }
+        }
+
+        // Compute total cost from the initial composition
+        OrganelleCost = 0;
+
+        foreach (var entry in InitialComposition)
+        {
+            OrganelleCost += entry.Value;
         }
     }
 

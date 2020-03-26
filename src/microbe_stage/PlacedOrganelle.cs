@@ -15,6 +15,24 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     [JsonIgnore]
     private List<uint> shapes = new List<uint>();
 
+    private bool needsColourUpdate = true;
+    private Color colour = new Color(1, 1, 1, 1);
+
+    private bool growthValueDirty = true;
+    private float growthValue = 0.0f;
+
+    /// <summary>
+    ///   Used to update the tint
+    /// </summary>
+#pragma warning disable CS0649 // remove when implemented
+    private ShaderMaterial organelleMaterial;
+#pragma warning restore CS0649
+
+    /// <summary>
+    ///   The compounds still needed to divide. Initialized from Definition.InitialComposition
+    /// </summary>
+    private Dictionary<string, float> compoundsLeft;
+
     public OrganelleDefinition Definition { get; set; }
 
     public Hex Position { get; set; }
@@ -22,9 +40,52 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     public int Orientation { get; set; }
 
     /// <summary>
+    ///   The tint colour of this organelle. TODO: reimplement
+    /// </summary>
+    public Color Colour
+    {
+        get
+        {
+            return colour;
+        }
+        set
+        {
+            colour = value;
+            needsColourUpdate = true;
+        }
+    }
+
+    /// <summary>
+    ///   Value between 0 and 1 on how far along to splitting this organelle is
+    /// </summary>
+    public float GrowthValue
+    {
+        get
+        {
+            if (growthValueDirty)
+                RecalculateGrowthValue();
+            return growthValue;
+        }
+    }
+
+    /// <summary>
     ///   True when organelle was split in preparation for reproducing
     /// </summary>
     public bool WasSplit { get; set; } = false;
+
+    /// <summary>
+    ///   True in the organelle that was created as a result of a split
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     In the original organelle WasSplit is true and in the
+    ///     created duplicate IsDuplicate is true. SisterOrganelle is
+    ///     set in the original organelle.
+    ///   </para>
+    /// </remarks>
+    public bool IsDuplicate { get; set; } = false;
+
+    public PlacedOrganelle SisterOrganelle { get; set; }
 
     /// <summary>
     ///   The components instantiated for this placed organelle
@@ -71,6 +132,18 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
         return false;
     }
 
+    /// <summary>
+    ///   Guards against adding this to the scene not through OnAddedToMicrobe
+    /// </summary>
+    public override void _Ready()
+    {
+        if (Definition == null)
+            GD.PrintErr("Definition of PlacedOrganelle is null");
+
+        if (parentMicrobe == null)
+            GD.PrintErr("PlacedOrganelle not added to scene through OnAddedToMicrobe");
+    }
+
     public void OnAddedToMicrobe(Microbe microbe)
     {
         if (Definition == null)
@@ -81,18 +154,24 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
         // Store parameters
         parentMicrobe = microbe;
 
+        // Grab the species colour for us
+        Colour = microbe.Species.Colour;
+
         parentMicrobe.AddChild(this);
 
         // Graphical display
         if (Definition.LoadedScene != null)
         {
-            AddChild(Definition.LoadedScene.Instance());
+            var graphics = Definition.LoadedScene.Instance();
+            AddChild(graphics);
+
+            // TODO: capture the material somehow from the model in
+            // order to be able to update the tint (store it in organelleMaterial)
         }
 
         // Position relative to origin of cell
         RotateY(Orientation * 60);
         Translation = Hex.AxialToCartesian(Position);
-        Scale = Vector3.One * Constants.DEFAULT_HEX_SIZE;
 
         // Physics
         parentMicrobe.Mass += Definition.Mass;
@@ -119,10 +198,15 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
         {
             var component = factory.Create();
 
+            if (component == null)
+                throw new Exception("PlacedOrganelle component factory returned null");
+
             component.OnAttachToCell();
 
             Components.Add(component);
         }
+
+        ResetGrowth();
     }
 
     public void OnRemovedFromMicrobe()
@@ -148,12 +232,185 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
         parentMicrobe = null;
     }
 
+    /// <summary>
+    ///   Called by Microbe.Update
+    /// </summary>
     public void Update(float delta)
     {
+        // Update each OrganelleComponent
         foreach (var component in Components)
         {
             component.Update(delta);
         }
+
+        // If the organelle is supposed to be another color.
+        if (needsColourUpdate)
+        {
+            UpdateColour();
+        }
+    }
+
+    /// <summary>
+    ///   Gives organelles more compounds to grow
+    /// </summary>
+    public void GrowOrganelle(CompoundBag compounds)
+    {
+        float totalTaken = 0;
+
+        foreach (var key in compoundsLeft.Keys)
+        {
+            var amountNeeded = compoundsLeft[key];
+
+            if (amountNeeded <= 0.0f)
+                continue;
+
+            // Take compounds if the cell has what we need
+            // ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST controls how
+            // much of a certain compound must exist before we take
+            // some
+            var amountAvailable = compounds.GetCompoundAmount(key)
+                - Constants.ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST;
+
+            if (amountAvailable <= 0.0f)
+                continue;
+
+            // We can take some
+            var amountToTake = Mathf.Min(amountNeeded, amountAvailable);
+
+            var amount = compounds.TakeCompound(key, amountToTake);
+            var left = amountNeeded - amount;
+
+            if (left < 0.0001)
+                left = 0;
+
+            compoundsLeft[key] = left;
+
+            totalTaken += amount;
+        }
+
+        if (totalTaken > 0)
+        {
+            growthValueDirty = true;
+
+            ApplyScale();
+        }
+    }
+
+    /// <summary>
+    ///   Calculates total number of compounds left until this organelle can divide
+    /// </summary>
+    public float CalculateCompoundsLeft()
+    {
+        float totalLeft = 0;
+
+        foreach (var entry in compoundsLeft)
+        {
+            totalLeft += entry.Value;
+        }
+
+        return totalLeft;
+    }
+
+    /// <summary>
+    ///   Calculates how much compounds this organelle has absorbed
+    ///   already, adds to the dictionary
+    /// </summary>
+    public float CalculateAbsorbedCompounds(Dictionary<string, float> result)
+    {
+        float totalAbsorbed = 0;
+
+        foreach (var entry in compoundsLeft)
+        {
+            var amountLeft = entry.Value;
+
+            var amountTotal = Definition.InitialComposition[entry.Key];
+
+            var absorbed = amountTotal - amountLeft;
+
+            float alreadyInResult = 0;
+
+            if (result.ContainsKey(entry.Key))
+                alreadyInResult = result[entry.Key];
+
+            result[entry.Key] = alreadyInResult + absorbed;
+
+            totalAbsorbed += absorbed;
+        }
+
+        return totalAbsorbed;
+    }
+
+    /// <summary>
+    ///   Resets the state. Used after dividing
+    /// </summary>
+    public void ResetGrowth()
+    {
+        // Return the compound bin to its original state
+        growthValue = 0.0f;
+        growthValueDirty = true;
+
+        // Deep copy
+        compoundsLeft = new Dictionary<string, float>();
+
+        foreach (var entry in Definition.InitialComposition)
+        {
+            compoundsLeft.Add(entry.Key, entry.Value);
+        }
+
+        ApplyScale();
+
+        // If it was split from a primary organelle, destroy it.
+        if (IsDuplicate)
+        {
+            GD.PrintErr("ResetGrowth called on a duplicate organelle, " +
+                "this is currently unsupported");
+
+            // parentMicrobe.RemoveOrganelle(this);
+        }
+        else
+        {
+            WasSplit = false;
+            SisterOrganelle = null;
+        }
+    }
+
+    private static Color CalculateHSLForOrganelle(Color rawColour)
+    {
+        // Get hue saturation and brightness for the colour
+        float saturation = 0;
+        float brightness = 0;
+        float hue = 0;
+
+        // According to stack overflow HSV and HSB are the same thing
+        rawColour.ToHsv(out hue, out saturation, out brightness);
+
+        return Color.FromHsv(hue, saturation * 2, brightness);
+    }
+
+    private void RecalculateGrowthValue()
+    {
+        growthValueDirty = false;
+
+        growthValue = 1.0f - (CalculateCompoundsLeft() / Definition.OrganelleCost);
+    }
+
+    private void ApplyScale()
+    {
+        // Nucleus isn't scaled
+        if (HasComponent<NucleusComponent>())
+            return;
+
+        Scale = new Vector3(1 + GrowthValue, 1 + GrowthValue, 1 + GrowthValue);
+    }
+
+    private void UpdateColour()
+    {
+        if (organelleMaterial != null)
+        {
+            organelleMaterial.SetShaderParam("tint", CalculateHSLForOrganelle(Colour));
+        }
+
+        needsColourUpdate = false;
     }
 }
 
