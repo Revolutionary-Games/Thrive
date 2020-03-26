@@ -105,6 +105,12 @@ public class Constants
     public const float ATP_DAMAGE_CHECK_INTERVAL = 0.9f;
 
     /// <summary>
+    ///   Determines how big of a fraction of damage (of total health)
+    ///   is dealt to a microbe at a time when it is out of ATP.
+    /// </summary>
+    public const float NO_ATP_DAMAGE_FRACTION = 0.04f;
+
+    /// <summary>
     ///   How much fully rigid membrane adds hitpoints
     /// </summary>
     public const float MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER = 30;

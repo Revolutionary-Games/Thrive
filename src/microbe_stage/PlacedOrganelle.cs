@@ -22,6 +22,11 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     public int Orientation { get; set; }
 
     /// <summary>
+    ///   True when organelle was split in preparation for reproducing
+    /// </summary>
+    public bool WasSplit { get; set; } = false;
+
+    /// <summary>
     ///   The components instantiated for this placed organelle
     /// </summary>
     [JsonIgnore]
@@ -48,6 +53,22 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
 
             return value;
         }
+    }
+
+    /// <summary>
+    ///   Checks if this organelle has the specified component type
+    /// </summary>
+    public bool HasComponent<T>()
+        where T : class
+    {
+        foreach (var component in Components)
+        {
+            // TODO: determine if is T or as T is better
+            if (component as T != null)
+                return true;
+        }
+
+        return false;
     }
 
     public void OnAddedToMicrobe(Microbe microbe)
@@ -137,7 +158,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
 }
 
 /// <summary>
-///   Custom serializer for PlacedOrganelle and PlacedOrganelle
+///   Custom serializer for PlacedOrganelle and OrganelleTemplate
 /// </summary>
 internal class PlacedOrganelleConverter : JsonConverter
 {
