@@ -9,18 +9,39 @@ using Godot;
 public class MicrobeHUD : Node
 {
     [Export]
-    public NodePath CompoundsLabelPath;
-
-    [Export]
     public NodePath HoveredItemsLabelPath;
 
-    public AudioStreamPlayer GUIAudio;
+    [Export]
+    public NodePath AtpLabelPath;
 
-    private RichTextLabel compoundsLabel;
+    [Export]
+    public NodePath PauseButtonContainerPath;
+
+    [Export]
+    public Godot.Collections.Array<AudioStream> MusicTracks;
+
+    [Export]
+    public Godot.Collections.Array<AudioStream> AmbientTracks;
 
     private RichTextLabel hoveredItemsLabel;
 
-    private VBoxContainer menu;
+    private Control menu;
+
+    private Control pauseButtonContainer;
+
+    private Label atpLabel;
+
+    public AudioStreamPlayer MusicAudio;
+    public AudioStreamPlayer AmbientAudio;
+    public AudioStreamPlayer GUIAudio;
+
+    private AnimationPlayer animationPlayer;
+
+    /// <summary>
+    ///   The HUD bars is contained in this array to avoid
+    ///   having tons of separate variables.
+    /// </summary>
+    private Godot.Collections.Array hudBars;
 
     /// <summary>
     ///   Access to the stage to retrieve information for display as
@@ -28,12 +49,27 @@ public class MicrobeHUD : Node
     /// </summary>
     private MicrobeStage stage;
 
+    private bool paused = false;
+    private bool environmentCompressed = false;
+    private bool compundCompressed = false;
+    private bool leftPanelsActive = false;
+
     public override void _Ready()
     {
-        compoundsLabel = GetNode<RichTextLabel>(CompoundsLabelPath);
         hoveredItemsLabel = GetNode<RichTextLabel>(HoveredItemsLabelPath);
+        pauseButtonContainer = GetNode<Control>(PauseButtonContainerPath);
+        atpLabel = GetNode<Label>(AtpLabelPath);
+        MusicAudio = GetNode<AudioStreamPlayer>("MusicAudio");
+        AmbientAudio = GetNode<AudioStreamPlayer>("AmbientAudio");
         GUIAudio = GetNode<AudioStreamPlayer>("MicrobeGUIAudio");
-        menu = GetNode<VBoxContainer>("CenterContainer/MicrobeStageMenu");
+        menu = GetNode<Control>("PauseMenu");
+        animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+        hudBars = GetTree().GetNodesInGroup("MicrobeHUDBar");
+
+        // Play the tracks
+        PlayRandomMusic();
+
+        PlayRandomAmbience();
     }
 
     public override void _Process(float delta)
@@ -43,7 +79,7 @@ public class MicrobeHUD : Node
 
         if (stage.Player != null)
         {
-            compoundsLabel.Text = CompoundsToString(stage.Player.Compounds.Compounds);
+            UpdateBars();
         }
 
         if (stage.Camera != null)
@@ -57,6 +93,14 @@ public class MicrobeHUD : Node
             builder.Append(CompoundsToString(compounds));
 
             hoveredItemsLabel.Text = builder.ToString();
+        }
+    }
+
+    public override void _Input(InputEvent @event)
+    {
+        if (@event.IsActionPressed("ui_cancel"))
+        {
+            OpenMicrobeStageMenuPressed();
         }
     }
 
@@ -81,13 +125,93 @@ public class MicrobeHUD : Node
         if (menu.Visible)
         {
             menu.Hide();
+
+            if (!paused)
+                GetTree().Paused = false;
         }
         else
         {
             menu.Show();
+            GetTree().Paused = true;
         }
 
         PlayButtonPressSound();
+    }
+
+    public void PauseButtonPressed()
+    {
+        PlayButtonPressSound();
+
+        var pauseButton = pauseButtonContainer.
+            GetNode<TextureButton>("Pause");
+        var pausedButton = pauseButtonContainer.
+            GetNode<TextureButton>("Resume");
+
+        paused = !paused;
+        if (paused)
+        {
+            pauseButton.Hide();
+            pausedButton.Show();
+            pauseButton.Pressed = false;
+
+            // Pause the game
+            GetTree().Paused = true;
+        }
+        else
+        {
+            pauseButton.Show();
+            pausedButton.Hide();
+            pausedButton.Pressed = false;
+
+            // Unpause the game
+            GetTree().Paused = false;
+        }
+    }
+
+    public void CompoundButtonPressed()
+    {
+        PlayButtonPressSound();
+
+        if (!leftPanelsActive)
+        {
+            animationPlayer.Play("HideLeftPanels");
+            leftPanelsActive = true;
+        }
+        else
+        {
+            animationPlayer.Play("ShowLeftPanels");
+            leftPanelsActive = false;
+        }
+    }
+
+    public void ResizeEnvironmentPanel(string mode)
+    {
+        if (mode == "compress" && !environmentCompressed)
+        {
+            animationPlayer.Play("EnvironmentPanelCompress");
+            environmentCompressed = true;
+        }
+
+        if (mode == "expand" && environmentCompressed)
+        {
+            animationPlayer.Play("EnvironmentPanelExpand");
+            environmentCompressed = false;
+        }
+    }
+
+    public void ResizeCompoundPanel(string mode)
+    {
+        if (mode == "compress" && !compundCompressed)
+        {
+            animationPlayer.Play("CompoundPanelCompress");
+            compundCompressed = true;
+        }
+
+        if (mode == "expand" && compundCompressed)
+        {
+            animationPlayer.Play("CompoundPanelExpand");
+            compundCompressed = false;
+        }
     }
 
     // Receiver for exiting game from microbe stage
@@ -95,6 +219,48 @@ public class MicrobeHUD : Node
     {
         PlayButtonPressSound();
         GetTree().Quit();
+    }
+
+    private void PlayRandomMusic()
+    {
+        if (MusicTracks == null)
+        {
+            GD.Print("No music track found");
+            return;
+        }
+
+        var random = new Random();
+        int index = random.Next(MusicTracks.Count);
+
+        MusicAudio.Stream = MusicTracks[index];
+        MusicAudio.Play();
+    }
+
+    private void PlayRandomAmbience()
+    {
+        if (AmbientTracks == null)
+        {
+            GD.Print("No ambient track found");
+            return;
+        }
+
+        var random = new Random();
+        int index = random.Next(AmbientTracks.Count);
+
+        // Lower the audio volume if the current track playing
+        // is microbe-ambience2 as it is quite loud.
+        // todo: eventually use audio mixing?
+        if (index == 1)
+        {
+            AmbientAudio.VolumeDb = -25;
+        }
+        else
+        {
+            AmbientAudio.VolumeDb = -5;
+        }
+
+        AmbientAudio.Stream = AmbientTracks[index];
+        AmbientAudio.Play();
     }
 
     private string CompoundsToString(Dictionary<string, float> compounds)
@@ -117,5 +283,69 @@ public class MicrobeHUD : Node
         }
 
         return compoundsText.ToString();
+    }
+
+    private void UpdateBars()
+    {
+        var compounds = stage.Player.Compounds;
+
+        foreach (Node node in hudBars)
+        {
+            if (node.GetClass() == "ProgressBar")
+            {
+                var bar = (ProgressBar)node;
+
+                if (bar.Name == "GlucoseBar")
+                {
+                    bar.MaxValue = compounds.Capacity;
+                    bar.Value = compounds.GetCompoundAmount("glucose");
+                    bar.GetNode<Label>("Value").Text =
+                        bar.Value + " / " + bar.MaxValue;
+                }
+
+                if (bar.Name == "AmmoniaBar")
+                {
+                    bar.MaxValue = compounds.Capacity;
+                    bar.Value = compounds.GetCompoundAmount("ammonia");
+                    bar.GetNode<Label>("Value").Text =
+                        bar.Value + " / " + bar.MaxValue;
+                }
+
+                if (bar.Name == "PhosphateBar")
+                {
+                    bar.MaxValue = compounds.Capacity;
+                    bar.Value = compounds.GetCompoundAmount("phosphates");
+                    bar.GetNode<Label>("Value").Text =
+                        bar.Value + " / " + bar.MaxValue;
+                }
+
+                if (bar.Name == "HydrogenSulfideBar")
+                {
+                    bar.MaxValue = compounds.Capacity;
+                    bar.Value = compounds.GetCompoundAmount("hydrogensulfide");
+                    bar.GetNode<Label>("Value").Text =
+                        bar.Value + " / " + bar.MaxValue;
+                }
+
+                if (bar.Name == "IronBar")
+                {
+                    bar.MaxValue = compounds.Capacity;
+                    bar.Value = compounds.GetCompoundAmount("iron");
+                    bar.GetNode<Label>("Value").Text =
+                        bar.Value + " / " + bar.MaxValue;
+                }
+            }
+            else if (node.GetClass() == "TextureProgress")
+            {
+                var bar = (TextureProgress)node;
+
+                if (node.Name == "ATPBar")
+                {
+                    bar.MaxValue = compounds.Capacity;
+                    bar.Value = compounds.GetCompoundAmount("atp");
+                    atpLabel.Text = bar.Value + " / " + bar.MaxValue;
+                }
+            }
+        }
     }
 }
