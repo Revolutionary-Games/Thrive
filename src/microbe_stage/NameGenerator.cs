@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 public class NameGenerator : IRegistryType
 {
@@ -12,10 +13,78 @@ public class NameGenerator : IRegistryType
     public List<string> SuffixesC;
 
     /// <summary>
+    ///   List of all suffixes
+    /// </summary>
+    [JsonIgnore]
+    public List<string> Suffixes;
+
+    /// <summary>
     /// Unused
     /// </summary>
     /// <value>The name of the internal.</value>
     public string InternalName { get; set; }
+
+    /// <summary>
+    ///   Generates a single name section
+    /// </summary>
+    public string GenerateNameSection(Random random = null)
+    {
+        if (random == null)
+            random = new Random();
+
+        string newName;
+
+        if (random.Next(0, 100) >= 10)
+        {
+            switch (random.Next(0, 3))
+            {
+                case 0:
+                    newName = PrefixesC.Random(random) + SuffixesV.Random(random);
+                    break;
+                case 1:
+                    newName = PrefixesV.Random(random) + SuffixesC.Random(random);
+                    break;
+                case 2:
+                    newName = PrefixesV.Random(random) + CofixesC.Random(random) +
+                        SuffixesV.Random(random);
+                    break;
+                case 3:
+                    newName = PrefixesC.Random(random) + CofixesV.Random(random) +
+                        SuffixesC.Random(random);
+                    break;
+                default:
+                    throw new Exception("unreachable");
+            }
+        }
+        else
+        {
+            // Developer Easter Eggs and really silly long names here
+            // Our own version of wigglesoworthia for example
+            switch (random.Next(0, 3))
+            {
+                case 0:
+                case 1:
+                    newName = PrefixCofix.Random(random) + Suffixes.Random(random);
+                    break;
+                case 2:
+                    newName = PrefixesV.Random(random) + CofixesC.Random(random) +
+                        Suffixes.Random(random);
+                    break;
+                case 3:
+                    newName = PrefixesC.Random(random) + CofixesV.Random(random) +
+                        Suffixes.Random(random);
+                    break;
+                default:
+                    throw new Exception("unreachable");
+            }
+        }
+
+        // TODO: DO more stuff here to improve names (remove double
+        // letters when the prefix ends with and the cofix starts with
+        // the same letter Remove weird things that come up like "rc"
+        // (Implemented through vowels and consonants)
+        return newName;
+    }
 
     public void Check(string name)
     {
@@ -60,5 +129,12 @@ public class NameGenerator : IRegistryType
             throw new InvalidRegistryData("NameGenerator", this.GetType().Name,
                 "SuffixesC is empty");
         }
+    }
+
+    public void Resolve(SimulationParameters parameters)
+    {
+        Suffixes = new List<string>();
+        Suffixes.AddRange(SuffixesC);
+        Suffixes.AddRange(SuffixesV);
     }
 }

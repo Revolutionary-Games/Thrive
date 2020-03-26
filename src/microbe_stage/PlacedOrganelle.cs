@@ -8,34 +8,59 @@ using Newtonsoft.Json;
 ///   And organelle that has been placed in a microbe.
 /// </summary>
 [JsonConverter(typeof(PlacedOrganelleConverter))]
-public class PlacedOrganelle : Spatial
+public class PlacedOrganelle : Spatial, IPositionedOrganelle
 {
-    public OrganelleDefinition Definition;
-    public Hex Position;
-
-    /// <summary>
-    ///   This is now the number of times to rotate. This used to be the angle in degrees
-    /// </summary>
-    public int Orientation;
-
     [JsonIgnore]
     private Microbe parentMicrobe;
     [JsonIgnore]
     private List<uint> shapes = new List<uint>();
 
-    public void OnAddedToMicrobe(Microbe microbe, Hex position, int rotation)
+    public OrganelleDefinition Definition { get; set; }
+
+    public Hex Position { get; set; }
+
+    public int Orientation { get; set; }
+
+    /// <summary>
+    ///   The components instantiated for this placed organelle
+    /// </summary>
+    [JsonIgnore]
+    public List<IOrganelleComponent> Components { get; private set; }
+
+    /// <summary>
+    ///   Computes the total storage capacity of this organelle. Works
+    ///   only after being added to a microbe and before being
+    ///   removed.
+    /// </summary>
+    public float StorageCapacity
+    {
+        get
+        {
+            float value = 0.0f;
+
+            foreach (var component in Components)
+            {
+                if (component is StorageComponent storage)
+                {
+                    value += storage.Capacity;
+                }
+            }
+
+            return value;
+        }
+    }
+
+    public void OnAddedToMicrobe(Microbe microbe)
     {
         if (Definition == null)
         {
             throw new Exception("PlacedOrganelle has no definition set");
         }
 
-        microbe.AddChild(this);
-
         // Store parameters
         parentMicrobe = microbe;
-        Position = position;
-        Orientation = rotation;
+
+        parentMicrobe.AddChild(this);
 
         // Graphical display
         if (Definition.LoadedScene != null)
@@ -49,26 +74,65 @@ public class PlacedOrganelle : Spatial
         Scale = Vector3.One * Constants.DEFAULT_HEX_SIZE;
 
         // Physics
-        microbe.Mass += Definition.Mass;
+        parentMicrobe.Mass += Definition.Mass;
 
         foreach (Hex hex in Definition.Hexes)
         {
             var shape = new SphereShape();
             shape.Radius = Constants.DEFAULT_HEX_SIZE * 2.0f;
 
-            var ownerId = microbe.CreateShapeOwner(shape);
-            microbe.ShapeOwnerAddShape(ownerId, shape);
+            var ownerId = parentMicrobe.CreateShapeOwner(shape);
+            parentMicrobe.ShapeOwnerAddShape(ownerId, shape);
             Vector3 shapePosition = Hex.AxialToCartesian(
                 Hex.RotateAxialNTimes(hex, Orientation) + Position);
             var transform = new Transform(Quat.Identity, shapePosition);
-            microbe.ShapeOwnerSetTransform(ownerId, transform);
+            parentMicrobe.ShapeOwnerSetTransform(ownerId, transform);
 
             shapes.Add(ownerId);
+        }
+
+        // Components
+        Components = new List<IOrganelleComponent>();
+
+        foreach (var factory in Definition.ComponentFactories)
+        {
+            var component = factory.Create();
+
+            component.OnAttachToCell();
+
+            Components.Add(component);
         }
     }
 
     public void OnRemovedFromMicrobe()
     {
+        parentMicrobe.RemoveChild(this);
+
+        // Remove physics
+        parentMicrobe.Mass -= Definition.Mass;
+
+        foreach (var shape in shapes)
+        {
+            parentMicrobe.RemoveShapeOwner(shape);
+        }
+
+        // Remove components
+        foreach (var component in Components)
+        {
+            component.OnDetachFromCell();
+        }
+
+        Components = null;
+
+        parentMicrobe = null;
+    }
+
+    public void Update(float delta)
+    {
+        foreach (var component in Components)
+        {
+            component.Update(delta);
+        }
     }
 }
 

@@ -60,6 +60,7 @@
     <Compile Include="scripts\gui\MainMenu.cs" />
     <Compile Include="scripts\gui\VersionNumber.cs" />
     <Compile Include="scripts\simulation_parameters\Constants.cs" />
+    <Compile Include="src\microbe_stage\AgentProjectile.cs" />
     <Compile Include="src\microbe_stage\CompoundCloudPlane.cs" />
     <Compile Include="src\microbe_stage\FloatingChunk.cs" />
     <Compile Include="src\microbe_stage\Membrane.cs" />
@@ -121,6 +122,9 @@
     <Compile Include="src\microbe_stage\PatchMapGenerator.cs" />
     <Compile Include="src\microbe_stage\PatchManager.cs" />
     <Compile Include="src\microbe_stage\OrganelleTemplate.cs" />
+    <Compile Include="src\general\Int2.cs" />
+    <Compile Include="src\microbe_stage\IPositionedOrganelle.cs" />
+    <Compile Include="src\general\ListUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="StyleCop.ruleset" />

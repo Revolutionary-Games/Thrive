@@ -3,6 +3,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/MenuHover.png" type="Texture" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/MenuDisabled.png" type="Texture" id=2]
 [ext_resource path="res://assets/textures/gui/bevel/MenuNormal.png" type="Texture" id=3]
+[ext_resource path="res://assets/fonts/Jura-DemiBold.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 2 )
@@ -22,14 +23,12 @@ region_rect = Rect2( 0, 0, 250, 40 )
 texture = ExtResource( 1 )
 region_rect = Rect2( 0, 0, 250, 40 )
 
-[sub_resource type="DynamicFontData" id=6]
-font_path = "res://assets/fonts/thrive.ttf"
-
-[sub_resource type="DynamicFont" id=7]
-font_data = SubResource( 6 )
+[sub_resource type="DynamicFont" id=6]
+size = 20
+font_data = ExtResource( 4 )
 
 [resource]
-default_font = SubResource( 7 )
+default_font = SubResource( 6 )
 Button/colors/font_color = Color( 1, 1, 1, 1 )
 Button/colors/font_color_disabled = Color( 1, 1, 1, 1 )
 Button/colors/font_color_hover = Color( 1, 1, 1, 1 )

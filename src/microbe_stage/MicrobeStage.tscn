@@ -251,6 +251,9 @@ cast_shadow = 0
 mesh = SubResource( 1 )
 material = SubResource( 2 )
 
+[node name="Listener" type="Listener" parent="World/PrimaryCamera"]
+current = true
+
 [node name="DynamicallySpawned" type="Node" parent="World"]
 
 [node name="CompoundClouds" type="Node" parent="World"]
