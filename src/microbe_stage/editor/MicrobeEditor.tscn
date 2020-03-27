@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
+[ext_resource path="res://src/microbe_stage/editor/EditorHex.tscn" type="PackedScene" id=3]
+
+[node name="MicrobeEditor" type="Node"]
+script = ExtResource( 2 )
+
+[node name="PrimaryCamera" parent="." instance=ExtResource( 1 )]
+DefaultCameraHeight = 10.0
+MaxCameraHeight = 40.0
+
+[node name="CameraLookAt" type="Spatial" parent="."]
+__meta__ = {
+"_editor_description_": "Just something to make the microbe camera look at the right place"
+}
+
+[node name="World" type="Node" parent="."]
+
+[node name="EditorHex" parent="World" instance=ExtResource( 3 )]
+
+[node name="MicrobeEditorGUI" type="Node" parent="."]
