@@ -87,7 +87,21 @@ public class MicrobeStage : Node
         // Register glucose reduction
         TimedEffects.RegisterEffect("reduce_glucose", new WorldEffectLambda((elapsed, total) =>
         {
-            GD.Print("TODO: reduce glucose");
+            foreach (var key in GameWorld.Map.Patches.Keys)
+            {
+                var patch = GameWorld.Map.Patches[key];
+
+                foreach (var compound in patch.Biome.Compounds.Keys)
+                {
+                    if (compound == "glucose")
+                    {
+                        var data = patch.Biome.Compounds[compound];
+
+                        // TODO: verify that this change is picked up by the patch manager
+                        data.Density *= 0.8f;
+                    }
+                }
+            }
         }));
 
         SpawnPlayer();
