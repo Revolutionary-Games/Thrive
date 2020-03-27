@@ -23,6 +23,28 @@ public class MicrobeEditor : Node
     {
     }
 
+    public override void _Input(InputEvent @event)
+    {
+        if (@event.IsActionPressed("e_rotate_right"))
+        {
+            GD.Print("Editor: Rotate right");
+        }
+
+        if (@event.IsActionPressed("e_rotate_left"))
+        {
+            GD.Print("Editor: Rotate left");
+        }
+
+        if (@event.IsActionPressed("e_redo"))
+        {
+            GD.Print("Editor: redo");
+        }
+        else if (@event.IsActionPressed("e_undo"))
+        {
+            GD.Print("Editor: undo");
+        }
+    }
+
     public override void _Process(float delta)
     {
     }
