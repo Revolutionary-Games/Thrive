@@ -144,12 +144,16 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
             GD.PrintErr("PlacedOrganelle not added to scene through OnAddedToMicrobe");
     }
 
+    /// <summary>
+    ///   Called by a microbe when this organelle has been added to it
+    /// </summary>
     public void OnAddedToMicrobe(Microbe microbe)
     {
         if (Definition == null)
-        {
             throw new Exception("PlacedOrganelle has no definition set");
-        }
+
+        if (parentMicrobe != null)
+            throw new InvalidOperationException("PlacedOrganelle is already in a microbe");
 
         // Store parameters
         parentMicrobe = microbe;
@@ -165,6 +169,10 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
             var graphics = Definition.LoadedScene.Instance();
             AddChild(graphics);
 
+            var transform = new Transform(MathUtils.CreateRotationForOrganelle(Orientation),
+            Definition.CalculateModelOffset());
+            ((Spatial)graphics).Transform = transform;
+
             // TODO: capture the material somehow from the model in
             // order to be able to update the tint (store it in organelleMaterial)
         }
@@ -172,19 +180,39 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
         // Position relative to origin of cell
         RotateY(Orientation * 60);
         Translation = Hex.AxialToCartesian(Position);
+        Scale = new Vector3(Constants.DEFAULT_HEX_SIZE, Constants.DEFAULT_HEX_SIZE,
+            Constants.DEFAULT_HEX_SIZE);
+
+        // // Our coordinates are already set when this is called
+        // // so just cache this
+        // this.cartesianPosition = Hex::axialToCartesian(q, r);
+
+        float hexSize = Constants.DEFAULT_HEX_SIZE;
+
+        // Scale the hex size down for bacteria
+        if (microbe.Species.IsBacteria)
+            hexSize *= 0.5f;
 
         // Physics
         parentMicrobe.Mass += Definition.Mass;
 
-        foreach (Hex hex in Definition.Hexes)
+        // Add hex collision shapes
+        foreach (Hex hex in Definition.GetRotatedHexes(Orientation))
         {
             var shape = new SphereShape();
-            shape.Radius = Constants.DEFAULT_HEX_SIZE * 2.0f;
+            shape.Radius = hexSize * 2.0f;
 
             var ownerId = parentMicrobe.CreateShapeOwner(shape);
             parentMicrobe.ShapeOwnerAddShape(ownerId, shape);
-            Vector3 shapePosition = Hex.AxialToCartesian(
-                Hex.RotateAxialNTimes(hex, Orientation) + Position);
+
+            // The shape is in our parent so the final position is our
+            // offset plus the hex offset
+            Vector3 shapePosition = Hex.AxialToCartesian(hex) + Translation;
+
+            // Scale for bacteria physics.
+            if (microbe.Species.IsBacteria)
+                shapePosition *= 0.5f;
+
             var transform = new Transform(Quat.Identity, shapePosition);
             parentMicrobe.ShapeOwnerSetTransform(ownerId, transform);
 
@@ -209,6 +237,9 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
         ResetGrowth();
     }
 
+    /// <summary>
+    ///   Called by a microbe when this organelle has been removed from it
+    /// </summary>
     public void OnRemovedFromMicrobe()
     {
         parentMicrobe.RemoveChild(this);
@@ -216,10 +247,13 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
         // Remove physics
         parentMicrobe.Mass -= Definition.Mass;
 
+        // Remove our sub collisions
         foreach (var shape in shapes)
         {
             parentMicrobe.RemoveShapeOwner(shape);
         }
+
+        shapes.Clear();
 
         // Remove components
         foreach (var component in Components)
