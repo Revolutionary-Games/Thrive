@@ -95,6 +95,14 @@ public class PlayerMicrobeInput : Node
         {
             cheatPhosphates = false;
         }
+        
+        if (@event.IsActionPressed("g_toggle_engulf", true))
+        {
+            if (stage.Player != null)
+            {
+                stage.Player.EngulfMode = !stage.Player.EngulfMode;
+            }
+        }
 
         if (@event.IsActionPressed("g_fire_toxin", true))
         {
