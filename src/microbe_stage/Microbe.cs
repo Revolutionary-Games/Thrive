@@ -377,6 +377,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         // TODO: make this take elapsed time into account
         HandleCompoundAbsorbing();
 
+        movementFactor = 1.0f;
         queuedMovementForce = new Vector3(0, 0, 0);
 
         // Reduce agent emission cooldown
