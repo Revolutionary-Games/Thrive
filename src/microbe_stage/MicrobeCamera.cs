@@ -107,7 +107,7 @@ public class MicrobeCamera : Camera
     /// <summary>
     ///   Updates camera position to follow the object
     /// </summary>
-    public override void _Process(float delta)
+    public override void _PhysicsProcess(float delta)
     {
         if (ObjectToFollow != null)
         {
