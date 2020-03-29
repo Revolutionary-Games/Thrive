@@ -17,9 +17,28 @@ public class MicrobeCamera : Camera
 
     public float CameraHeight;
 
-    public float ZoomSpeed = 1.1f;
+    /// <summary>
+    ///   How fast the camera zooming is
+    /// </summary>
+    [Export]
+    public float ZoomSpeed = 1.4f;
+
+    /// <summary>
+    ///   The height at which the camera starts at
+    /// </summary>
+    [Export]
     public float DefaultCameraHeight = 40.0f;
+
+    /// <summary>
+    ///   Min height the camera can be scrolled to
+    /// </summary>
+    [Export]
     public float MinCameraHeight = 3.0f;
+
+    /// <summary>
+    ///   Maximum height the camera can be scrolled to
+    /// </summary>
+    [Export]
     public float MaxCameraHeight = 80.0f;
 
     public float InterpolateSpeed = 0.3f;
@@ -66,6 +85,8 @@ public class MicrobeCamera : Camera
 
         if (HasNode("BackgroundPlane"))
             BackgroundPlane = GetNode<Spatial>("BackgroundPlane");
+
+        ResetHeight();
     }
 
     public override void _Input(InputEvent @event)

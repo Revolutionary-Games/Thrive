@@ -1,10 +1,4 @@
 // Common functions
-shared const string& randomChoice(const array<string> &in source)
-{
-    return source[GetEngine().GetRandom().GetNumber(0,
-            source.length() - 1)];
-}
-
 shared float sumTotalValuesInDictionary(const dictionary &in obj)
 {
     const auto@ keys = obj.getKeys();
@@ -40,16 +34,4 @@ shared void mergeDictionaries(dictionary &inout target, dictionary &in source)
 
         target.set(key, existing + current);
     }
-}
-
-shared Quaternion createRotationForOrganelle(float rotation)
-{
-    return Quaternion(Float3(0, 1, 0), Degree(180))
-        * Quaternion(Float3(0, -1, 0), Degree(rotation));
-}
-
-shared Quaternion createRotationForExternal(float angle)
-{
-    return Quaternion(Float3(0, 1, 0), Degree(180)) *
-        Quaternion(Float3(0, 1, 0), Degree(angle));
 }

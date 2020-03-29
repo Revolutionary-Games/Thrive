@@ -245,8 +245,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             organelles.RemoveAll();
         }
 
-        var organellePositions = new List<Vector2>();
-
         foreach (var entry in Species.Organelles.Organelles)
         {
             var placed = new PlacedOrganelle
@@ -257,13 +255,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             };
 
             organelles.Add(placed);
-            var cartesian = Hex.AxialToCartesian(entry.Position);
-            organellePositions.Add(new Vector2(cartesian.x, cartesian.z));
         }
 
-        // Send organelles to membrane
-        membrane.OrganellePositions = organellePositions;
-        membrane.Dirty = true;
+        SendOrganellePositionsToMembrane();
+
+        // Reproduction progress is lost
+        allOrganellesDivided = false;
     }
 
     /// <summary>
@@ -332,6 +329,47 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         {
             Compounds.AddCompound(entry.Key, entry.Value);
         }
+    }
+
+    /// <summary>
+    ///   Triggers reproduction on this cell (even if not ready)
+    /// </summary>
+    public void Divide()
+    {
+        // Separate the two cells.
+        var separation = new Vector3(Radius, 0, 0);
+
+        // Create the one daughter cell.
+        var copyEntity = SpawnHelpers.SpawnMicrobe(Species, Translation + separation,
+            GetParent(), SpawnHelpers.LoadMicrobeScene(), true, cloudSystem);
+
+        // Remove the compounds from the created cell
+        copyEntity.Compounds.ClearCompounds();
+
+        // Split the compounds evenly between the two cells.
+        foreach (var compound in Compounds.Compounds.Keys)
+        {
+            var amount = Compounds.GetCompoundAmount(compound);
+
+            if (amount > 0)
+            {
+                Compounds.TakeCompound(compound, amount * 0.5f);
+
+                var didntFit = copyEntity.Compounds.AddCompound(compound, amount * 0.5f);
+
+                if (didntFit > 0)
+                {
+                    // TODO: handle the excess compound that didn't fit in the other cell
+                }
+            }
+        }
+
+        // Play the split sound
+        var sound = GD.Load<AudioStream>(
+            "res://assets/sounds/soundeffects/reproduction.ogg");
+
+        otherAudio.Stream = sound;
+        otherAudio.Play();
     }
 
     public override void _Process(float delta)
@@ -502,7 +540,184 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     private void HandleReproduction(float delta)
     {
         if (allOrganellesDivided)
+        {
+            // Ready to reproduce already. Only the player gets here
+            // as other cells split and reset automatically
             return;
+        }
+
+        bool reproductionStageComplete = true;
+
+        // Organelles that are ready to split
+        var organellesToAdd = new List<PlacedOrganelle>();
+
+        // Grow all the organelles, except the nucleus which is given compounds last
+        foreach (var organelle in organelles.Organelles)
+        {
+            // Check if already done
+            if (organelle.WasSplit)
+                continue;
+
+            // We are in G1 phase of the cell cycle, duplicate all organelles.
+
+            // Except the nucleus
+            if (organelle.Definition.InternalName == "nucleus")
+                continue;
+
+            // If Give it some compounds to make it larger.
+            organelle.GrowOrganelle(Compounds);
+
+            if (organelle.GrowthValue >= 1.0f)
+            {
+                // Queue this organelle for splitting after the loop.
+                organellesToAdd.Add(organelle);
+            }
+            else
+            {
+                // Needs more stuff
+                reproductionStageComplete = false;
+            }
+        }
+
+        // Splitting the queued organelles.
+        foreach (var organelle in organellesToAdd)
+        {
+            // Mark this organelle as done and return to its normal size.
+            organelle.ResetGrowth();
+            organelle.WasSplit = true;
+
+            // Create a second organelle.
+            var organelle2 = SplitOrganelle(organelle);
+            organelle2.WasSplit = true;
+            organelle2.IsDuplicate = true;
+            organelle2.SisterOrganelle = organelle;
+        }
+
+        if (organellesToAdd.Count > 0)
+        {
+            // Redo the cell membrane.
+            SendOrganellePositionsToMembrane();
+
+            // Process list is automatically marked dirty when the split organelle is added
+        }
+
+        if (reproductionStageComplete)
+        {
+            // All organelles have split. Now give the nucleus compounds
+
+            foreach (var organelle in organelles.Organelles)
+            {
+                // Check if already done
+                if (organelle.WasSplit)
+                    continue;
+
+                // In the S phase, the nucleus grows as chromatin is duplicated.
+                if (organelle.Definition.InternalName != "nucleus")
+                    continue;
+
+                // The nucleus hasn't finished replicating
+                // its DNA, give it some compounds.
+                organelle.GrowOrganelle(Compounds);
+
+                if (organelle.GrowthValue < 1.0f)
+                {
+                    // Nucleus needs more compounds
+                    reproductionStageComplete = false;
+                }
+            }
+        }
+
+        if (reproductionStageComplete)
+        {
+            // Nucleus is also now ready to reproduce
+            allOrganellesDivided = true;
+
+            // For NPC cells this immediately splits them and the
+            // allOrganellesDivided flag is reset
+            ReadyToReproduce();
+        }
+    }
+
+    private PlacedOrganelle SplitOrganelle(PlacedOrganelle organelle)
+    {
+        var q = organelle.Position.Q;
+        var r = organelle.Position.R;
+
+        var newOrganelle = new PlacedOrganelle();
+        newOrganelle.Definition = organelle.Definition;
+
+        // Spiral search for space for the organelle
+        int radius = 1;
+        while (true)
+        {
+            // Moves into the ring of radius "radius" and center the old organelle
+            var radiusOffset = Hex.HexNeighbourOffset[Hex.HEX_SIDE.BOTTOM_LEFT];
+            q = q + radiusOffset.x;
+            r = r + radiusOffset.y;
+
+            // Iterates in the ring
+            for (int side = 1; side <= 6; ++side)
+            {
+                var offset = Hex.HexNeighbourOffset[(Hex.HEX_SIDE)side];
+
+                // Moves "radius" times into each direction
+                for (int i = 1; i <= radius; ++i)
+                {
+                    q = q + offset.x;
+                    r = r + offset.y;
+
+                    // Checks every possible rotation value.
+                    for (int j = 0; j <= 5; ++j)
+                    {
+                        newOrganelle.Position = new Hex(q, r);
+
+                        // TODO: in the old code this was always i *
+                        // 60 so this didn't actually do what it meant
+                        // to do. But perhaps that was right? This is
+                        // now fixed to actually try the different
+                        // rotations.
+                        newOrganelle.Orientation = j;
+                        if (organelles.CanPlace(newOrganelle))
+                        {
+                            organelles.Add(newOrganelle);
+                            return newOrganelle;
+                        }
+                    }
+                }
+            }
+
+            ++radius;
+        }
+    }
+
+    /// <summary>
+    ///   Copies this microbe (if this isn't the player). The new
+    ///   microbe will not have the stored compounds of this one.
+    /// </summary>
+    private void ReadyToReproduce()
+    {
+        if (IsPlayerMicrobe)
+        {
+            // The player doesn't split automatically
+            allOrganellesDivided = true;
+
+            // TODO: fix
+            // showReproductionDialog(world);
+        }
+        else
+        {
+            // Return the first cell to its normal, non duplicated cell arrangement.
+            if (!Species.PlayerSpecies)
+            {
+                // TODO: fix
+                // MicrobeOperations::alterSpeciesPopulation(species,
+                //     CREATURE_REPRODUCE_POPULATION_GAIN, "reproduced");
+            }
+
+            ResetOrganelleLayout();
+
+            Divide();
+        }
     }
 
     /// <summary>
@@ -619,7 +834,22 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         Compounds.TakeCompound("atp", osmoCost);
     }
 
-    private void ApplyATPDamage() { }
+    /// <summary>
+    ///   Damage the microbe if its too low on ATP.
+    /// </summary>
+    private void ApplyATPDamage()
+    {
+        if (Compounds.GetCompoundAmount("atp") <= 0.0f)
+        {
+            // TODO: put this on a GUI notification.
+            // if(microbeComponent.isPlayerMicrobe and not this.playerAlreadyShownAtpDamage){
+            //     this.playerAlreadyShownAtpDamage = true
+            //     showMessage("No ATP hurts you!")
+            // }
+
+            Damage(maxHitpoints * Constants.NO_ATP_DAMAGE_FRACTION, "atpDamage");
+        }
+    }
 
     /// <summary>
     ///   Handles the death of this microbe. This queues this object
@@ -761,5 +991,19 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         }
 
         cachedHexCountDirty = false;
+    }
+
+    private void SendOrganellePositionsToMembrane()
+    {
+        var organellePositions = new List<Vector2>();
+
+        foreach (var entry in organelles.Organelles)
+        {
+            var cartesian = Hex.AxialToCartesian(entry.Position);
+            organellePositions.Add(new Vector2(cartesian.x, cartesian.z));
+        }
+
+        membrane.OrganellePositions = organellePositions;
+        membrane.Dirty = true;
     }
 }

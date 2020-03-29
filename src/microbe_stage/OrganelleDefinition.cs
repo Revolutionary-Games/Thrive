@@ -5,8 +5,43 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Definition for a type of an organelle. This is not a placed organelle in a microbe
 /// </summary>
+/// <remarks>
+///   <para>
+///     Actual concrete placed organelles are PlacedOrganelle
+///     objects. There should be only a single OrganelleTemplate
+///     instance in existance for each organelle defined in
+///     organelles.json.
+///   </para>
+/// </remarks>
 public class OrganelleDefinition : IRegistryType
 {
+    /*
+    Organelle atributes:
+    mass:   How heavy an organelle is. Affects speed, mostly.
+
+    mpCost: The cost (in mutation points) an organelle costs in the
+    microbe editor.
+
+    mesh:   The name of the mesh file of the organelle.
+    It has to be in the models folder.
+
+    texture: The name of the texture file to use
+
+    hexes:  A table of the hexes that the organelle occupies.
+
+    gene:   The letter that will be used by the auto-evo system to
+    identify this organelle.
+
+    chanceToCreate: The (relative) chance this organelle will appear in a
+    randomly generated or mutated microbe (to do roulette selection).
+
+    prokaryoteChance: The (relative) chance this organelle will appear in a
+    randomly generated or mutated prokaryotes (to do roulette selection).
+
+    processes:  A table with all the processes this organelle does,
+    and the capacity of the process
+    */
+
     /// <summary>
     ///   User readable name
     /// </summary>
@@ -63,6 +98,16 @@ public class OrganelleDefinition : IRegistryType
     /// </summary>
     public int MPCost;
 
+    /// <summary>
+    ///   Caches the rotated hexes
+    /// </summary>
+    private Dictionary<int, List<Hex>> rotatedHexesCache = new Dictionary<int, List<Hex>>();
+
+    /// <summary>
+    ///   The total amount of compounds in InitialComposition
+    /// </summary>
+    public float OrganelleCost { get; private set; }
+
     [JsonIgnore]
     public List<IOrganelleComponentFactory> ComponentFactories
     {
@@ -79,7 +124,70 @@ public class OrganelleDefinition : IRegistryType
         private set;
     }
 
+    [JsonIgnore]
+    public int HexCount
+    {
+        get
+        {
+            return Hexes.Count;
+        }
+    }
+
     public string InternalName { get; set; }
+
+    public bool ContainsHex(Hex hex)
+    {
+        foreach (var existingHex in Hexes)
+        {
+            if (existingHex.Equals(hex))
+                return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    ///   Returns The hexes but rotated (rotation is the number of 60 degree rotations)
+    /// </summary>
+    public IEnumerable<Hex> GetRotatedHexes(int rotation)
+    {
+        // The rotations repeat every 6 steps
+        rotation = rotation % 6;
+
+        if (!rotatedHexesCache.ContainsKey(rotation))
+        {
+            var rotated = new List<Hex>();
+
+            foreach (var hex in Hexes)
+            {
+                rotated.Add(Hex.RotateAxialNTimes(hex, rotation));
+            }
+
+            rotatedHexesCache[rotation] = rotated;
+        }
+
+        return rotatedHexesCache[rotation];
+    }
+
+    public Vector3 CalculateCenterOffset()
+    {
+        var offset = new Vector3(0, 0, 0);
+
+        foreach (var hex in Hexes)
+        {
+            offset += Hex.AxialToCartesian(hex);
+        }
+
+        offset /= Hexes.Count;
+        return offset;
+    }
+
+    public Vector3 CalculateModelOffset()
+    {
+        var temp = CalculateCenterOffset();
+        temp /= HexCount;
+        return temp * Constants.DEFAULT_HEX_SIZE;
+    }
 
     public void Check(string name)
     {
@@ -132,6 +240,27 @@ public class OrganelleDefinition : IRegistryType
             throw new InvalidRegistryData(name, this.GetType().Name,
                 "Hexes is empty");
         }
+
+        // Check for duplicate position hexes
+        for (int i = 0; i < Hexes.Count; ++i)
+        {
+            bool duplicate = false;
+
+            for (int j = i + 1; j < Hexes.Count; ++j)
+            {
+                if (Hexes[i].Equals(Hexes[j]))
+                {
+                    duplicate = true;
+                    break;
+                }
+            }
+
+            if (duplicate)
+            {
+                throw new InvalidRegistryData(name, this.GetType().Name,
+                    "Duplicate hex position");
+            }
+        }
     }
 
     /// <summary>
@@ -142,19 +271,33 @@ public class OrganelleDefinition : IRegistryType
     {
         RunnableProcesses = new List<TweakedProcess>();
 
+        // Preload the scene for instantiating in microbes
         if (DisplayScene != string.Empty)
         {
             LoadedScene = GD.Load<PackedScene>(DisplayScene);
         }
 
-        if (Processes == null)
-            return;
-
-        foreach (var process in Processes)
+        // Resolve process names
+        if (Processes != null)
         {
-            RunnableProcesses.Add(new TweakedProcess(parameters.GetBioProcess(process.Key),
-                    process.Value));
+            foreach (var process in Processes)
+            {
+                RunnableProcesses.Add(new TweakedProcess(parameters.GetBioProcess(process.Key),
+                        process.Value));
+            }
         }
+
+        // Compute total cost from the initial composition
+        OrganelleCost = 0;
+
+        foreach (var entry in InitialComposition)
+        {
+            OrganelleCost += entry.Value;
+        }
+
+        // Precompute rotations
+        for (int i = 0; i < 6; ++i)
+            GetRotatedHexes(i);
     }
 
     public class OrganelleComponentFactoryInfo

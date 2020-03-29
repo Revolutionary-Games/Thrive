@@ -6,7 +6,7 @@ using Godot;
 ///   2D axial coordinate pair.
 ///   As well as some helper functions for converting to cartesian
 /// </summary>
-public struct Hex
+public struct Hex : IEquatable<Hex>
 {
     /// <summary>
     ///   Maps a hex side to its direct opposite
@@ -189,5 +189,26 @@ public struct Hex
     public static Hex FlipHorizontally(Hex hex)
     {
         return new Hex(-hex.Q, hex.Q + hex.R);
+    }
+
+    public override bool Equals(object obj)
+    {
+        if (!(obj is Hex))
+            return false;
+
+        return this.Equals((Hex)obj);
+    }
+
+    public bool Equals(Hex other)
+    {
+        return Q == other.Q && R == other.R;
+    }
+
+    public override int GetHashCode()
+    {
+        var hashCode = -1997189103;
+        hashCode = (hashCode * -1521134295) + Q.GetHashCode();
+        hashCode = (hashCode * -1521134295) + R.GetHashCode();
+        return hashCode;
     }
 }
