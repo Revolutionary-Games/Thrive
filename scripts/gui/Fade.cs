@@ -9,10 +9,10 @@ public class Fade : CanvasLayer
     public ColorRect Rect;
     public Tween Fader;
 
+    public bool AllowSkipping = true;
+
     [Signal]
     public delegate void FadeFinished();
-
-    public bool AllowSkipping = true;
 
     public override void _Ready()
     {
