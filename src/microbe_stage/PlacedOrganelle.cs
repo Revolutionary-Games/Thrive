@@ -290,8 +290,9 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     public void GrowOrganelle(CompoundBag compounds)
     {
         float totalTaken = 0;
+        var keys = new List<string>(compoundsLeft.Keys);
 
-        foreach (var key in compoundsLeft.Keys)
+        foreach (var key in keys)
         {
             var amountNeeded = compoundsLeft[key];
 

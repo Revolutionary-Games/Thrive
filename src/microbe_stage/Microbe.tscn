@@ -20,6 +20,7 @@ shader_param/albedoTexture = ExtResource( 2 )
 shader_param/damagedTexture = ExtResource( 3 )
 
 [node name="Microbe" type="RigidBody"]
+collision_layer = 3
 contact_monitor = true
 can_sleep = false
 axis_lock_linear_y = true
