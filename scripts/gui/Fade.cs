@@ -12,11 +12,21 @@ public class Fade : CanvasLayer
     [Signal]
     public delegate void FadeFinished();
 
+    public bool AllowSkipping = true;
+
     public override void _Ready()
     {
         Rect = GetNode<ColorRect>("Rect");
         Fader = GetNode<Tween>("Fader");
         Fader.Connect("tween_all_completed", this, "OnTweenCompleted");
+    }
+
+    public override void _Input(InputEvent @event)
+    {
+        if (@event.IsActionPressed("ui_cancel") && AllowSkipping)
+        {
+            OnTweenCompleted();
+        }
     }
 
     public void FadeToBlack(float fadeDuration)

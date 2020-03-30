@@ -18,32 +18,10 @@ public class MainMenu : Node
     public AudioStreamPlayer MusicAudio;
     public AudioStreamPlayer GUIAudio;
 
-    /// <summary>
-    ///   Reference to the instanced cutscene node.
-    /// </summary>
-    /// <remarks>Set this to null after use.</remarks>
-    private Cutscene cutscene;
-
-    /// <summary>
-    ///   Reference to the instanced screen fade node.
-    /// </summary>
-    /// <remarks>Set this to null after use.</remarks>
-    private Fade screenFade;
-
     public override void _Ready()
     {
-        GetViewport().Connect("size_changed", this, "OnCutsceneResized");
-
         // Start intro video
-        PlayCutscene("res://assets/videos/intro.webm", "RunMenuSetup");
-    }
-
-    public override void _Input(InputEvent @event)
-    {
-        if (Input.IsKeyPressed((int)Godot.KeyList.Escape))
-        {
-            CancelCutscene();
-        }
+        PlayCutscene("res://assets/videos/intro.webm", "RunMenuSetup", true);
     }
 
     /// <summary>
@@ -51,8 +29,7 @@ public class MainMenu : Node
     /// </summary>
     public void RunMenuSetup()
     {
-        // Remove the instantiated intro cutscene
-        cutscene = null;
+        Fade(1, string.Empty, 1.5f, false);
 
         if (HasNode("Background"))
             Background = GetNode<TextureRect>("Background");
@@ -134,24 +111,38 @@ public class MainMenu : Node
     ///   Helper function for fading to black.
     ///   Calls a function when finished.
     /// </summary>
-    public void FadeIn(string onFinishedMethod, float fadeDuration)
+    /// <param name="transition">
+    ///   Set 0 for fading to black, and 1 for fading to white.
+    /// </param>
+    public void Fade(int transition, string onFinishedMethod,
+        float fadeDuration, bool allowSkipping)
     {
         var scene = GD.Load<PackedScene>("res://scripts/gui/Fade.tscn");
 
         // Instantiate scene
-        screenFade = (Fade)scene.Instance();
+        var screenFade = (Fade)scene.Instance();
         AddChild(screenFade);
 
-        screenFade.FadeToBlack(fadeDuration);
+        screenFade.AllowSkipping = allowSkipping;
 
-        screenFade.Connect("FadeFinished", this, onFinishedMethod);
+        if (transition == 0)
+        {
+            screenFade.FadeToBlack(fadeDuration);
+        }
+        else if (transition == 1)
+        {
+            screenFade.FadeToWhite(fadeDuration);
+        }
+
+        if (onFinishedMethod != string.Empty)
+            screenFade.Connect("FadeFinished", this, onFinishedMethod);
     }
 
     /// <summary>
     ///   Helper function for playing a video stream.
     ///   Calls a function when finished.
     /// </summary>
-    public void PlayCutscene(string path, string onFinishedMethod)
+    public void PlayCutscene(string path, string onFinishedMethod, bool allowSkipping)
     {
         var scene = GD.Load<PackedScene>("res://scripts/gui/Cutscene.tscn");
 
@@ -162,8 +153,10 @@ public class MainMenu : Node
         }
 
         // Instantiate scene
-        cutscene = (Cutscene)scene.Instance();
+        var cutscene = (Cutscene)scene.Instance();
         AddChild(cutscene);
+
+        cutscene.AllowSkipping = allowSkipping;
 
         var stream = GD.Load<VideoStream>(path);
 
@@ -172,53 +165,11 @@ public class MainMenu : Node
         cutscene.CutsceneVideoPlayer.Play();
 
         // Connect finished signal
-        cutscene.Connect("CutsceneFinished", this, onFinishedMethod);
+        if (onFinishedMethod != string.Empty)
+            cutscene.Connect("CutsceneFinished", this, onFinishedMethod);
 
         // Initially adjust video player frame size
-        OnCutsceneResized();
-    }
-
-    /// <summary>
-    ///   Keeps aspect ratio of the cutscene whenever
-    ///   the window is being resized.
-    /// </summary>
-    public void OnCutsceneResized()
-    {
-        if (cutscene == null)
-            return;
-
-        var currentSize = OS.WindowSize;
-
-        // Scaling factors
-        var scaleHeight = currentSize.x / cutscene.FrameSize.x;
-        var scaleWidth = currentSize.y / cutscene.FrameSize.y;
-
-        var scale = Math.Min(scaleHeight, scaleWidth);
-
-        var newSize = new Vector2(cutscene.FrameSize.x * scale,
-            cutscene.FrameSize.y * scale);
-
-        // Adjust the cutscene size and center it
-        cutscene.CutsceneVideoPlayer.SetSize(newSize);
-        cutscene.CutsceneVideoPlayer.SetAnchorsAndMarginsPreset(
-            Control.LayoutPreset.Center, Control.LayoutPresetMode.KeepSize);
-    }
-
-    /// <summary>
-    ///   Skips the current playing cutscene.
-    /// </summary>
-    public void CancelCutscene()
-    {
-        // Also skips the fade sequence if there is any
-        if (cutscene == null && screenFade != null)
-        {
-            screenFade.OnTweenCompleted();
-        }
-
-        if (cutscene != null && screenFade == null)
-        {
-            cutscene.OnStreamFinished();
-        }
+        cutscene.OnCutsceneResized();
     }
 
     /// <summary>
@@ -262,16 +213,13 @@ public class MainMenu : Node
 
     public void OnNewGameFadeFinished()
     {
-        screenFade = null;
-
         // Start microbe intro
-        PlayCutscene("res://assets/videos/microbe_intro2.webm", "OnMicrobeIntroEnded");
+        PlayCutscene("res://assets/videos/microbe_intro2.webm", "OnMicrobeIntroEnded",
+            true);
     }
 
     public void OnMicrobeIntroEnded()
     {
-        cutscene = null;
-
         // Change the current scene to microbe stage
         // TODO: Add loading screen while changing between scenes
         GetTree().ChangeScene("res://src/microbe_stage/MicrobeStage.tscn");
@@ -292,7 +240,7 @@ public class MainMenu : Node
         }
 
         // Start fade
-        FadeIn("OnNewGameFadeFinished", 0.8f);
+        Fade(0, "OnNewGameFadeFinished", 0.8f, true);
     }
 
     public void ToolsPressed()
