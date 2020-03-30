@@ -346,8 +346,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         // Remove the compounds from the created cell
         copyEntity.Compounds.ClearCompounds();
 
+        var keys = new List<string>(Compounds.Compounds.Keys);
+
         // Split the compounds evenly between the two cells.
-        foreach (var compound in Compounds.Compounds.Keys)
+        foreach (var compound in keys)
         {
             var amount = Compounds.GetCompoundAmount(compound);
 
@@ -924,7 +926,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
     /// <summary>
     ///   Just slerps towards a fixed amount the target point
-    /// </summary
+    /// </summary>
     private Transform GetNewPhysicsRotation(Transform transform)
     {
         var target = transform.LookingAt(LookAtPoint, new Vector3(0, 1, 0));
