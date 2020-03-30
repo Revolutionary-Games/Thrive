@@ -21,11 +21,9 @@ public class MicrobeHUD : Node
     private AnimationPlayer animationPlayer;
 
     private PanelContainer mouseHoverPanel;
-
     private VBoxContainer hoveredItems;
 
     private Control menu;
-
     private Control pauseButtonContainer;
 
     /// <summary>
@@ -295,7 +293,6 @@ public class MicrobeHUD : Node
                 image.Texture = GD.Load<Texture>(src);
                 image.Expand = true;
                 image.RectMinSize = new Vector2(25, 25);
-                image.SizeFlagsVertical = 0;
 
                 StringBuilder compoundsText = new StringBuilder(readableName, 150);
                 compoundsText.AppendFormat(": {0:F1}", entry.Value);
