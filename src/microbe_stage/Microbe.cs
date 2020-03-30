@@ -284,7 +284,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         var direction = vec.Normalized();
 
         SpawnHelpers.SpawnAgent(props, 10.0f, 5.0f, Translation, direction, GetParent(),
-            SpawnHelpers.LoadAgentScene());
+            SpawnHelpers.LoadAgentScene(), this);
     }
 
     /// <summary>

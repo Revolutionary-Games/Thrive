@@ -70,6 +70,8 @@ public class Constants
     /// </summary>
     public const float AGENT_EMISSION_IMPULSE_STRENGTH = 20.0f;
 
+    public const float OXYTOXY_DAMAGE = 10.0f;
+
     /// <summary>
     ///   How much of a compound is actually given to a cell when absorbed
     /// </summary>
