@@ -25,7 +25,8 @@ public class AgentProjectile : RigidBody, ITimedLife
             var microbe = (Microbe)body;
             if (microbe.Species != Properties.Species)
             {
-                // If more stuff needs to be damaged we could make an IAgentDamageable interface.
+                // If more stuff needs to be damaged we
+                // could make an IAgentDamageable interface.
                 microbe.Damage(Constants.OXYTOXY_DAMAGE, Properties.AgentType);
             }
         }
