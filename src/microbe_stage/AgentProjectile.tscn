@@ -8,7 +8,11 @@ radius = 0.75
 
 [node name="AgentProjectile" type="RigidBody"]
 input_ray_pickable = false
+collision_layer = 0
+collision_mask = 2
 mass = 0.5
+contacts_reported = 1
+contact_monitor = true
 axis_lock_linear_y = true
 script = ExtResource( 1 )
 

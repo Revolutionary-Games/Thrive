@@ -110,7 +110,7 @@ public static class SpawnHelpers
     /// </summary>
     public static void SpawnAgent(AgentProperties properties, float amount,
         float lifetime, Vector3 location, Vector3 direction,
-        Node worldRoot, PackedScene agentScene)
+        Node worldRoot, PackedScene agentScene, Node emitter)
     {
         var normalizedDirection = direction.Normalized();
 
@@ -118,6 +118,7 @@ public static class SpawnHelpers
         agent.Properties = properties;
         agent.Amount = amount;
         agent.TimeToLiveRemaining = lifetime;
+        agent.Emitter = emitter;
 
         worldRoot.AddChild(agent);
         agent.Translation = location + (direction * 1.5f);
