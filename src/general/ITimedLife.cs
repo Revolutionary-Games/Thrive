@@ -6,4 +6,6 @@
 public interface ITimedLife
 {
     float TimeToLiveRemaining { get; set; }
+
+    void OnTimeOver();
 }

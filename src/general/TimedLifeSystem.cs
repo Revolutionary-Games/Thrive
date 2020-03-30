@@ -33,7 +33,7 @@ public class TimedLifeSystem
 
             if (timed.TimeToLiveRemaining <= 0.0f)
             {
-                entity.QueueFree();
+                timed.OnTimeOver();
             }
         }
     }

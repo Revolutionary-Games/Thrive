@@ -10,6 +10,8 @@ public class AgentProjectile : RigidBody, ITimedLife
     public AgentProperties Properties { get; set; }
     public Node Emitter { get; set; }
 
+    public void OnTimeOver() => Destroy();
+
     public override void _Ready()
     {
         Connect("body_entered", this, "OnBodyEntered");
@@ -33,15 +35,6 @@ public class AgentProjectile : RigidBody, ITimedLife
 
         // GD.Print("Collision with " + body.Name);
         Destroy();
-    }
-
-    public override void _Process(float delta)
-    {
-        TimeToLiveRemaining -= delta;
-        if (TimeToLiveRemaining <= 0.0f)
-        {
-            Destroy();
-        }
     }
 
     private void Destroy()
