@@ -17,11 +17,13 @@ public class AgentProjectile : RigidBody, ITimedLife
 
     public void OnBodyEntered(Node body)
     {
-        if (body == Emitter) return; // Kinda hacky.
+        if (body == Emitter)
+            return; // Kinda hacky.
+
         if (body is Microbe)
         {
             var microbe = (Microbe)body;
-            if(microbe.Species != Properties.Species)
+            if (microbe.Species != Properties.Species)
             {
                 // If more stuff needs to be damaged we could make an IAgentDamageable interface.
                 microbe.Damage(Constants.OXYTOXY_DAMAGE, Properties.AgentType);
@@ -35,7 +37,7 @@ public class AgentProjectile : RigidBody, ITimedLife
     public override void _Process(float delta)
     {
         TimeToLiveRemaining -= delta;
-        if(TimeToLiveRemaining <= 0.0f)
+        if (TimeToLiveRemaining <= 0.0f)
         {
             Destroy();
         }

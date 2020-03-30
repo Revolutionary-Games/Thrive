@@ -95,7 +95,7 @@ public class PlayerMicrobeInput : Node
         {
             cheatPhosphates = false;
         }
-        
+
         if (@event.IsActionPressed("g_toggle_engulf", true))
         {
             if (stage.Player != null)
