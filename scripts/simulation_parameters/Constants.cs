@@ -65,6 +65,10 @@ public class Constants
 
     public const int INITIAL_SPECIES_POPULATION = 100;
 
+    // Right now these are used for species split from the player
+    public const int INITIAL_SPLIT_POPULATION_MIN = 600;
+    public const int INITIAL_SPLIT_POPULATION_MAX = 2000;
+
     /// <summary>
     ///   Controls with how much force agents are fired
     /// </summary>
@@ -168,6 +172,28 @@ public class Constants
     ///   How often a microbe can get the engulf escape population bonus
     /// </summary>
     public const float CREATURE_ESCAPE_INTERVAL = 5;
+
+    public const int BASE_MUTATION_POINTS = 100;
+
+    public const int ORGANELLE_REMOVE_COST = 10;
+
+    /// <summary>
+    ///   The drag force is calculated by taking the current velocity
+    ///   and multiplying it by this. This must be negative!
+    /// </summary>
+    public const float CELL_DRAG_MULTIPLIER = -0.12f;
+    public const float CELL_SIZE_DRAG_MULTIPLIER = -0.003f;
+
+    /// <summary>
+    ///   If drag is below this it isn't applied to let the cells come to a halt properly
+    /// </summary>
+    public const float CELL_REQUIRED_DRAG_BEFORE_APPLY = 0.0033f;
+
+    /// <summary>
+    ///   This should be the max needed hexes (nucleus {10} * 6-way symmetry)
+    /// </summary>
+    public const int MAX_HOVER_HEXES = 60;
+    public const int MAX_SYMMETRY = 6;
 
     /// <summary>
     ///   All Nodes tagged with this are handled by the spawn system for despawning

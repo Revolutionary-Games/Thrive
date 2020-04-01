@@ -5,8 +5,14 @@ using Newtonsoft.Json;
 /// <summary>
 ///   A list of positioned organelles. Verifies that they don't overlap
 /// </summary>
+/// <remarks>
+///   <para>
+///     TODO: implement a method to check if can place and is touching
+///     an existing hex for use by the editor.
+///   </para>
+/// </remarks>
 public class OrganelleLayout<T>
-    where T : IPositionedOrganelle
+    where T : class, IPositionedOrganelle
 {
     [JsonProperty]
     public readonly List<T> Organelles = new List<T>();
@@ -36,14 +42,96 @@ public class OrganelleLayout<T>
     /// <summary>
     ///   Returns true if organelle can be placed at location
     /// </summary>
-    public bool CanPlace(T organelle)
+    public bool CanPlace(T organelle, bool allowCytoplasmOverlap = false)
     {
-        // TODO: implement by checking hexes not overlapping
+        // Check for overlapping hexes with existing organelles
+        foreach (var hex in organelle.Definition.GetRotatedHexes(organelle.Orientation))
+        {
+            var overlapping = GetOrganelleAt(hex + organelle.Position);
+            if (overlapping != null && (allowCytoplasmOverlap == false ||
+                    overlapping.Definition.InternalName != "cytoplasm"))
+                return false;
+        }
+
+        // Basic placing doesn't have the restriction that the
+        // organelle needs to touch an existing one
         return true;
     }
 
-    // TODO: implement a method to check if can place and is touching
-    // an existing hex for use by the editor
+    /// <summary>
+    ///   Returns true if CanPlace would return true and an existing
+    ///   hex touches one of the new hexes.
+    /// </summary>
+    public bool CanPlaceAndIsTouching(T organelle, bool allowCytoplasmOverlap = false)
+    {
+        if (!CanPlace(organelle, allowCytoplasmOverlap))
+            return false;
+
+        return IsTouchingExistingHex(organelle);
+    }
+
+    /// <summary>
+    ///   Returns true if the specified organelle is touching an already added hex
+    /// </summary>
+    public bool IsTouchingExistingHex(T organelle)
+    {
+        foreach (var hex in organelle.Definition.GetRotatedHexes(organelle.Orientation))
+        {
+            if (CheckIfAHexIsNextTo(hex + organelle.Position))
+                return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    ///   Returns true if there is some placed organelle that has a
+    ///   hex next to the specified location.
+    /// </summary>
+    public bool CheckIfAHexIsNextTo(Hex location)
+    {
+        return
+            GetOrganelleAt(location + new Hex(0, -1)) != null ||
+            GetOrganelleAt(location + new Hex(1, -1)) != null ||
+            GetOrganelleAt(location + new Hex(1, 0)) != null ||
+            GetOrganelleAt(location + new Hex(0, 1)) != null ||
+            GetOrganelleAt(location + new Hex(-1, 1)) != null ||
+            GetOrganelleAt(location + new Hex(-1, 0)) != null;
+    }
+
+    /// <summary>
+    ///   Searches organelle list for an organelle at the specified hex
+    /// </summary>
+    public T GetOrganelleAt(Hex location)
+    {
+        foreach (var organelle in Organelles)
+        {
+            var relative = location - organelle.Position;
+            foreach (var hex in organelle.Definition.GetRotatedHexes(organelle.Orientation))
+            {
+                if (hex.Equals(relative))
+                {
+                    return organelle;
+                }
+            }
+        }
+
+        return default(T);
+    }
+
+    /// <summary>
+    ///   Removes organelle that contains hex
+    /// </summary>
+    /// <returns>True when removed, false if there was nothing at this position</returns>
+    public bool RemoveOrganelleAt(Hex location)
+    {
+        var organelle = GetOrganelleAt(location);
+
+        if (organelle == null)
+            return false;
+
+        return Remove(organelle);
+    }
 
     /// <summary>
     ///   Removes a previously placed organelle
@@ -56,7 +144,7 @@ public class OrganelleLayout<T>
         Organelles.Remove(organelle);
         if (onRemoved != null)
             onRemoved(organelle);
-        return false;
+        return true;
     }
 
     /// <summary>

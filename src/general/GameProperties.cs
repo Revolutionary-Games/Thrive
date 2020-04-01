@@ -12,9 +12,15 @@ public class GameProperties
         new Dictionary<string, bool>();
     private bool freeBuild = false;
 
-    public GameProperties()
+    private GameProperties()
     {
+        GameWorld = new GameWorld(new WorldGenerationSettings());
     }
+
+    /// <summary>
+    ///   The world this game is played in. Has all the species and map data
+    /// </summary>
+    public GameWorld GameWorld { get; private set; }
 
     /// <summary>
     ///   When true the player is in freebuild mode and various things
@@ -26,6 +32,14 @@ public class GameProperties
         {
             return freeBuild;
         }
+    }
+
+    /// <summary>
+    ///   Starts a new game in the microbe stage
+    /// </summary>
+    public static GameProperties StartNewMicrobeGame()
+    {
+        return new GameProperties();
     }
 
     /// <summary>

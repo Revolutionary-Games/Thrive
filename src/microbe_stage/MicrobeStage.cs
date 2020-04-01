@@ -23,11 +23,20 @@ public class MicrobeStage : Node
 
     public TimedLifeSystem TimedLifeSystem { get; private set; }
 
-    public TimedWorldOperations TimedEffects { get; private set; }
-
     public ProcessSystem ProcessSystem { get; private set; }
 
-    public GameWorld GameWorld { get; private set; }
+    /// <summary>
+    ///   The main current game object holding various details
+    /// </summary>
+    public GameProperties CurrentGame { get; set; }
+
+    public GameWorld GameWorld
+    {
+        get
+        {
+            return CurrentGame.GameWorld;
+        }
+    }
 
     /// <summary>
     ///   This should get called the first time the stage scene is put
@@ -67,12 +76,11 @@ public class MicrobeStage : Node
             GD.PrintErr("Settings load problem");
 
         FluidSystem = new FluidSystem();
-        TimedEffects = new TimedWorldOperations();
 
         spawner.Init();
         Clouds.Init(FluidSystem);
 
-        if (GameWorld == null)
+        if (CurrentGame == null)
         {
             StartNewGame();
         }
@@ -80,29 +88,9 @@ public class MicrobeStage : Node
 
     public void StartNewGame()
     {
-        GameWorld = new GameWorld(new WorldGenerationSettings());
+        CurrentGame = GameProperties.StartNewMicrobeGame();
 
         patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch);
-
-        // Register glucose reduction
-        TimedEffects.RegisterEffect("reduce_glucose", new WorldEffectLambda((elapsed, total) =>
-        {
-            foreach (var key in GameWorld.Map.Patches.Keys)
-            {
-                var patch = GameWorld.Map.Patches[key];
-
-                foreach (var compound in patch.Biome.Compounds.Keys)
-                {
-                    if (compound == "glucose")
-                    {
-                        var data = patch.Biome.Compounds[compound];
-
-                        // TODO: verify that this change is picked up by the patch manager
-                        data.Density *= 0.8f;
-                    }
-                }
-            }
-        }));
 
         SpawnPlayer();
         Camera.ResetHeight();

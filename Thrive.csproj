@@ -63,6 +63,7 @@
     <Compile Include="src\microbe_stage\AgentProjectile.cs" />
     <Compile Include="src\microbe_stage\CompoundCloudPlane.cs" />
     <Compile Include="src\microbe_stage\editor\MicrobeEditor.cs" />
+    <Compile Include="src\microbe_stage\editor\MicrobeEditorGUI.cs" />
     <Compile Include="src\microbe_stage\FloatingChunk.cs" />
     <Compile Include="src\microbe_stage\Membrane.cs" />
     <Compile Include="src\microbe_stage\Microbe.cs" />
@@ -126,6 +127,9 @@
     <Compile Include="src\general\Int2.cs" />
     <Compile Include="src\microbe_stage\IPositionedOrganelle.cs" />
     <Compile Include="src\general\ListUtils.cs" />
+    <Compile Include="src\general\ActionHistory.cs" />
+    <Compile Include="src\general\ReversableAction.cs" />
+    <Compile Include="src\general\Mutations.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="StyleCop.ruleset" />

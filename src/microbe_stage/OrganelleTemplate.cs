@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -7,7 +8,7 @@ using Newtonsoft.Json;
 ///   is instantiated in a cell, PlacedOrganelle class is used.
 /// </summary>
 [JsonConverter(typeof(PlacedOrganelleConverter))]
-public class OrganelleTemplate : IPositionedOrganelle
+public class OrganelleTemplate : IPositionedOrganelle, ICloneable
 {
     [JsonProperty]
     public readonly OrganelleDefinition Definition;
@@ -32,5 +33,18 @@ public class OrganelleTemplate : IPositionedOrganelle
         {
             return Definition;
         }
+    }
+
+    public IEnumerable<Hex> RotatedHexes
+    {
+        get
+        {
+            return Definition.GetRotatedHexes(Orientation);
+        }
+    }
+
+    public object Clone()
+    {
+        return new OrganelleTemplate(Definition, Position, Orientation);
     }
 }
