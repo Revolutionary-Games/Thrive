@@ -4,6 +4,6 @@
 [ext_resource path="res://src/microbe_stage/editor/ValidHex.material" type="Material" id=2]
 
 [node name="EditorHex" type="MeshInstance"]
-transform = Transform( 100, 0, 0, 0, -1.62921e-05, -100, 0, 100, -1.62921e-05, 0, 0, 0 )
+transform = Transform( -1.62921e-05, 100, -1.62921e-05, 0, -1.62921e-05, -100, -100, -1.62921e-05, 2.65431e-12, 0, 0, 0 )
 mesh = ExtResource( 1 )
 material/0 = ExtResource( 2 )

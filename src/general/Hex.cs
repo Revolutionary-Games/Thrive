@@ -211,4 +211,9 @@ public struct Hex : IEquatable<Hex>
         hashCode = (hashCode * -1521134295) + R.GetHashCode();
         return hashCode;
     }
+
+    public override string ToString()
+    {
+        return Q + ", " + R;
+    }
 }

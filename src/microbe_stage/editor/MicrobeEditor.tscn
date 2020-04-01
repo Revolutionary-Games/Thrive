@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=2]
+[gd_scene load_steps=90 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
@@ -44,13 +44,14 @@
 [ext_resource path="res://assets/textures/gui/bevel/MpBarOpaque.png" type="Texture" id=42]
 [ext_resource path="res://assets/textures/gui/bevel/MP.png" type="Texture" id=43]
 [ext_resource path="res://assets/textures/gui/bevel/HealthPanel.png" type="Texture" id=44]
+[ext_resource path="res://src/microbe_stage/editor/MicrobeEditorGUI.cs" type="Script" id=45]
 
-[sub_resource type="StyleBoxTexture" id=45]
+[sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 37 )
 region_rect = Rect2( 0, 0, 120, 40 )
 modulate_color = Color( 1, 1, 1, 0.392157 )
 
-[sub_resource type="StyleBoxFlat" id=47]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0.34902, 0.823529, 1, 0.627451 )
 border_width_left = 3
 border_width_top = 3
@@ -58,25 +59,25 @@ border_width_right = 3
 border_width_bottom = 3
 border_color = Color( 0.439216, 0.623529, 0.623529, 0.392157 )
 
-[sub_resource type="StyleBoxTexture" id=1]
+[sub_resource type="StyleBoxTexture" id=3]
 texture = ExtResource( 41 )
 region_rect = Rect2( 0, 0, 120, 40 )
 modulate_color = Color( 1, 1, 1, 0.392157 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=4]
 size = 20
 font_data = ExtResource( 5 )
 
-[sub_resource type="ButtonGroup" id=48]
+[sub_resource type="ButtonGroup" id=5]
 
-[sub_resource type="StyleBoxTexture" id=3]
+[sub_resource type="StyleBoxTexture" id=6]
 texture = ExtResource( 44 )
 region_rect = Rect2( 0, 0, 480, 40 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=7]
 font_data = ExtResource( 5 )
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=8]
 bg_color = Color( 0, 0.490196, 0.490196, 0.392157 )
 border_width_left = 3
 border_width_top = 3
@@ -84,30 +85,30 @@ border_width_right = 3
 border_width_bottom = 3
 border_color = Color( 0.439216, 0.623529, 0.623529, 0.392157 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=9]
 size = 14
 font_data = ExtResource( 5 )
 
-[sub_resource type="StyleBoxEmpty" id=7]
+[sub_resource type="StyleBoxEmpty" id=10]
 
-[sub_resource type="StyleBoxFlat" id=8]
+[sub_resource type="StyleBoxFlat" id=11]
 bg_color = Color( 0.380392, 0.741176, 0.0745098, 1 )
 
-[sub_resource type="StyleBoxEmpty" id=9]
+[sub_resource type="StyleBoxEmpty" id=12]
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="DynamicFont" id=13]
 size = 15
 font_data = ExtResource( 5 )
 
-[sub_resource type="StyleBoxFlat" id=11]
+[sub_resource type="StyleBoxFlat" id=14]
 bg_color = Color( 0.807843, 0.219608, 0.188235, 1 )
 
-[sub_resource type="StyleBoxTexture" id=46]
+[sub_resource type="StyleBoxTexture" id=15]
 texture = ExtResource( 37 )
 region_rect = Rect2( 0, 0, 120, 40 )
 modulate_color = Color( 1, 1, 1, 0.392157 )
 
-[sub_resource type="StyleBoxFlat" id=13]
+[sub_resource type="StyleBoxFlat" id=16]
 bg_color = Color( 0.34902, 0.823529, 1, 0.627451 )
 border_width_left = 3
 border_width_top = 3
@@ -115,7 +116,7 @@ border_width_right = 3
 border_width_bottom = 3
 border_color = Color( 0.439216, 0.623529, 0.623529, 0.392157 )
 
-[sub_resource type="StyleBoxFlat" id=14]
+[sub_resource type="StyleBoxFlat" id=17]
 bg_color = Color( 0, 0.196078, 0.196078, 0.27451 )
 border_width_left = 3
 border_width_top = 3
@@ -123,37 +124,37 @@ border_width_right = 3
 border_width_bottom = 3
 border_color = Color( 0.439216, 0.623529, 0.623529, 0.392157 )
 
-[sub_resource type="StyleBoxTexture" id=44]
+[sub_resource type="StyleBoxTexture" id=18]
 texture = ExtResource( 41 )
 region_rect = Rect2( 0, 0, 120, 40 )
 modulate_color = Color( 1, 1, 1, 0.392157 )
 
-[sub_resource type="DynamicFont" id=16]
+[sub_resource type="DynamicFont" id=19]
 size = 14
 font_data = ExtResource( 5 )
 
-[sub_resource type="ButtonGroup" id=17]
+[sub_resource type="ButtonGroup" id=20]
 
-[sub_resource type="StyleBoxTexture" id=18]
+[sub_resource type="StyleBoxTexture" id=21]
 texture = ExtResource( 4 )
 region_rect = Rect2( 0, 0, 360, 120 )
 modulate_color = Color( 1, 1, 1, 0.392157 )
 
-[sub_resource type="StyleBoxFlat" id=19]
+[sub_resource type="StyleBoxFlat" id=22]
 bg_color = Color( 0, 0.313726, 0.313726, 1 )
 
-[sub_resource type="StyleBoxFlat" id=20]
+[sub_resource type="StyleBoxFlat" id=23]
 bg_color = Color( 0.34902, 0.823529, 1, 0.392157 )
 
-[sub_resource type="StyleBoxFlat" id=21]
+[sub_resource type="StyleBoxFlat" id=24]
 bg_color = Color( 0.34902, 0.823529, 1, 0.392157 )
 
-[sub_resource type="StyleBoxFlat" id=22]
+[sub_resource type="StyleBoxFlat" id=25]
 bg_color = Color( 0, 0, 0, 1 )
 border_width_left = 15
 border_color = Color( 1, 1, 1, 0 )
 
-[sub_resource type="Theme" id=23]
+[sub_resource type="Theme" id=26]
 Button/colors/font_color = Color( 0, 0, 0, 1 )
 Button/colors/font_color_disabled = Color( 0, 0, 0, 1 )
 Button/colors/font_color_hover = Color( 0, 0, 0, 1 )
@@ -545,10 +546,10 @@ VScrollBar/icons/decrement = null
 VScrollBar/icons/decrement_highlight = null
 VScrollBar/icons/increment = null
 VScrollBar/icons/increment_highlight = null
-VScrollBar/styles/grabber = SubResource( 19 )
-VScrollBar/styles/grabber_highlight = SubResource( 20 )
-VScrollBar/styles/grabber_pressed = SubResource( 21 )
-VScrollBar/styles/scroll = SubResource( 22 )
+VScrollBar/styles/grabber = SubResource( 22 )
+VScrollBar/styles/grabber_highlight = SubResource( 23 )
+VScrollBar/styles/grabber_pressed = SubResource( 24 )
+VScrollBar/styles/scroll = SubResource( 25 )
 VScrollBar/styles/scroll_focus = null
 VSeparator/constants/separation = 4
 VSeparator/styles/separator = null
@@ -572,40 +573,40 @@ WindowDialog/icons/close = null
 WindowDialog/icons/close_highlight = null
 WindowDialog/styles/panel = null
 
-[sub_resource type="DynamicFont" id=24]
+[sub_resource type="DynamicFont" id=27]
 size = 22
 font_data = ExtResource( 5 )
 
-[sub_resource type="StyleBoxTexture" id=25]
+[sub_resource type="StyleBoxTexture" id=28]
 texture = ExtResource( 7 )
 region_rect = Rect2( 5.20404, 4.97093, 112.302, 112.371 )
 
-[sub_resource type="StyleBoxTexture" id=26]
+[sub_resource type="StyleBoxTexture" id=29]
 texture = ExtResource( 7 )
 region_rect = Rect2( 4.85779, 4.94419, 112.816, 112.27 )
 
-[sub_resource type="StyleBoxTexture" id=27]
+[sub_resource type="StyleBoxTexture" id=30]
 texture = ExtResource( 6 )
 region_rect = Rect2( 10, 10, 100, 100.047 )
 
-[sub_resource type="StyleBoxTexture" id=28]
+[sub_resource type="StyleBoxTexture" id=31]
 texture = ExtResource( 8 )
 region_rect = Rect2( 10.048, 9.90325, 100.041, 100.087 )
 
-[sub_resource type="DynamicFont" id=29]
+[sub_resource type="DynamicFont" id=32]
 size = 10
 font_data = ExtResource( 5 )
 
-[sub_resource type="StyleBoxTexture" id=30]
+[sub_resource type="StyleBoxTexture" id=33]
 texture = ExtResource( 31 )
 region_rect = Rect2( 0, 0, 1000, 40 )
 
-[sub_resource type="StyleBoxEmpty" id=31]
+[sub_resource type="StyleBoxEmpty" id=34]
 
-[sub_resource type="DynamicFont" id=32]
+[sub_resource type="DynamicFont" id=35]
 font_data = ExtResource( 5 )
 
-[sub_resource type="StyleBoxFlat" id=33]
+[sub_resource type="StyleBoxFlat" id=36]
 bg_color = Color( 1, 1, 1, 0.0784314 )
 
 [sub_resource type="StyleBoxFlat" id=37]
@@ -617,12 +618,24 @@ font_data = ExtResource( 5 )
 [sub_resource type="StyleBoxFlat" id=39]
 bg_color = Color( 0, 0.490196, 0.490196, 0.235294 )
 
-[sub_resource type="DynamicFont" id=36]
+[sub_resource type="DynamicFont" id=40]
 size = 10
 font_data = ExtResource( 5 )
 
-[sub_resource type="StyleBoxFlat" id=42]
+[sub_resource type="StyleBoxFlat" id=41]
 bg_color = Color( 0.0156863, 0.811765, 0.396078, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.0666667, 1, 0.835294, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=42]
+bg_color = Color( 0, 0.541176, 0.258824, 1 )
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -645,19 +658,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxFlat" id=40]
-bg_color = Color( 0, 0.541176, 0.258824, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color( 0.0666667, 1, 0.835294, 1 )
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
-[sub_resource type="DynamicFont" id=41]
+[sub_resource type="DynamicFont" id=44]
 size = 20
 font_data = ExtResource( 5 )
 
@@ -700,12 +701,12 @@ __meta__ = {
 margin_right = 85.0
 margin_bottom = 45.0
 rect_min_size = Vector2( 85, 40 )
-custom_styles/hover = SubResource( 45 )
-custom_styles/pressed = SubResource( 47 )
-custom_styles/normal = SubResource( 1 )
-custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 toggle_mode = true
-group = SubResource( 48 )
+group = SubResource( 5 )
 text = "REPORT"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -716,12 +717,12 @@ margin_left = 85.0
 margin_right = 205.0
 margin_bottom = 45.0
 rect_min_size = Vector2( 120, 40 )
-custom_styles/hover = SubResource( 45 )
-custom_styles/pressed = SubResource( 47 )
-custom_styles/normal = SubResource( 1 )
-custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 toggle_mode = true
-group = SubResource( 48 )
+group = SubResource( 5 )
 text = "PATCH MAP"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -732,12 +733,12 @@ margin_left = 205.0
 margin_right = 340.0
 margin_bottom = 45.0
 rect_min_size = Vector2( 135, 40 )
-custom_styles/hover = SubResource( 45 )
-custom_styles/pressed = SubResource( 47 )
-custom_styles/normal = SubResource( 1 )
-custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
 toggle_mode = true
-group = SubResource( 48 )
+group = SubResource( 5 )
 text = "CELL EDITOR"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -748,7 +749,7 @@ self_modulate = Color( 1, 1, 1, 0.392157 )
 margin_left = 340.0
 margin_right = 810.0
 margin_bottom = 45.0
-custom_styles/panel = SubResource( 3 )
+custom_styles/panel = SubResource( 6 )
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer/MPBox"]
 margin_right = 470.0
@@ -818,7 +819,7 @@ margin_left = 25.0
 margin_top = 3.0
 margin_right = 145.0
 margin_bottom = 21.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 7 )
 text = "Mutation Points"
 align = 1
 valign = 1
@@ -831,7 +832,7 @@ margin_left = 190.0
 margin_top = 3.0
 margin_right = 258.0
 margin_bottom = 21.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 7 )
 text = "100 / 100"
 align = 1
 valign = 1
@@ -844,7 +845,7 @@ anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -330.0
 margin_bottom = 78.0
-custom_styles/panel = SubResource( 5 )
+custom_styles/panel = SubResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -869,7 +870,7 @@ custom_constants/separation = 0
 [node name="Label" type="Label" parent="MicrobeEditorGUI/ATPBalancePanel/MarginContainer/VBoxContainer"]
 margin_right = 318.0
 margin_bottom = 15.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 9 )
 text = "ATP Balance"
 
 [node name="VSeparator" type="VSeparator" parent="MicrobeEditorGUI/ATPBalancePanel/MarginContainer/VBoxContainer"]
@@ -877,16 +878,16 @@ margin_top = 15.0
 margin_right = 318.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 0, 5 )
-custom_styles/separator = SubResource( 7 )
+custom_styles/separator = SubResource( 10 )
 
 [node name="AtpProductionBar" type="ProgressBar" parent="MicrobeEditorGUI/ATPBalancePanel/MarginContainer/VBoxContainer"]
 margin_top = 20.0
 margin_right = 318.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 0, 20 )
-custom_styles/fg = SubResource( 8 )
-custom_styles/bg = SubResource( 9 )
-custom_fonts/font = SubResource( 10 )
+custom_styles/fg = SubResource( 11 )
+custom_styles/bg = SubResource( 12 )
+custom_fonts/font = SubResource( 13 )
 value = 50.0
 
 [node name="AtpProductionBar2" type="ProgressBar" parent="MicrobeEditorGUI/ATPBalancePanel/MarginContainer/VBoxContainer"]
@@ -894,9 +895,9 @@ margin_top = 40.0
 margin_right = 318.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 0, 20 )
-custom_styles/fg = SubResource( 11 )
-custom_styles/bg = SubResource( 9 )
-custom_fonts/font = SubResource( 10 )
+custom_styles/fg = SubResource( 14 )
+custom_styles/bg = SubResource( 12 )
+custom_fonts/font = SubResource( 13 )
 value = 26.6
 
 [node name="LeftPanel" type="Control" parent="MicrobeEditorGUI"]
@@ -922,14 +923,14 @@ margin_right = 80.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 80, 0 )
 size_flags_horizontal = 0
-custom_styles/hover = SubResource( 46 )
-custom_styles/pressed = SubResource( 13 )
-custom_styles/disabled = SubResource( 14 )
-custom_styles/normal = SubResource( 44 )
-custom_fonts/font = SubResource( 16 )
+custom_styles/hover = SubResource( 15 )
+custom_styles/pressed = SubResource( 16 )
+custom_styles/disabled = SubResource( 17 )
+custom_styles/normal = SubResource( 18 )
+custom_fonts/font = SubResource( 19 )
 toggle_mode = true
 pressed = true
-group = SubResource( 17 )
+group = SubResource( 20 )
 text = "STRUCTURE"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -941,13 +942,13 @@ margin_right = 164.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 80, 0 )
 size_flags_horizontal = 0
-custom_styles/hover = SubResource( 46 )
-custom_styles/pressed = SubResource( 13 )
-custom_styles/disabled = SubResource( 14 )
-custom_styles/normal = SubResource( 44 )
-custom_fonts/font = SubResource( 16 )
+custom_styles/hover = SubResource( 15 )
+custom_styles/pressed = SubResource( 16 )
+custom_styles/disabled = SubResource( 17 )
+custom_styles/normal = SubResource( 18 )
+custom_fonts/font = SubResource( 19 )
 toggle_mode = true
-group = SubResource( 17 )
+group = SubResource( 20 )
 text = "MEMBRANE"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -959,15 +960,15 @@ margin_right = 248.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 80, 0 )
 size_flags_horizontal = 0
-custom_styles/hover = SubResource( 46 )
-custom_styles/pressed = SubResource( 13 )
-custom_styles/disabled = SubResource( 14 )
-custom_styles/normal = SubResource( 44 )
-custom_fonts/font = SubResource( 16 )
+custom_styles/hover = SubResource( 15 )
+custom_styles/pressed = SubResource( 16 )
+custom_styles/disabled = SubResource( 17 )
+custom_styles/normal = SubResource( 18 )
+custom_fonts/font = SubResource( 19 )
 custom_colors/font_color_disabled = Color( 0.870588, 0.870588, 0.870588, 1 )
 disabled = true
 toggle_mode = true
-group = SubResource( 17 )
+group = SubResource( 20 )
 text = "BEHAVIOR"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -980,7 +981,7 @@ margin_right = 330.0
 mouse_filter = 2
 size_flags_horizontal = 12
 size_flags_vertical = 12
-custom_styles/panel = SubResource( 18 )
+custom_styles/panel = SubResource( 21 )
 __meta__ = {
 "_edit_use_anchors_": true
 }
@@ -1011,7 +1012,7 @@ margin_right = 330.0
 margin_bottom = 568.0
 rect_min_size = Vector2( 320, 0 )
 size_flags_horizontal = 0
-theme = SubResource( 23 )
+theme = SubResource( 26 )
 scroll_horizontal_enabled = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/LeftPanel/Panel/Structure/MarginContainer/ScrollContainer"]
@@ -1027,7 +1028,7 @@ __meta__ = {
 margin_right = 294.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 0, 35 )
-custom_fonts/font = SubResource( 24 )
+custom_fonts/font = SubResource( 27 )
 text = "Structural Organelles"
 valign = 1
 uppercase = true
@@ -1047,10 +1048,10 @@ margin_right = 90.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 90, 90 )
 focus_mode = 0
-custom_styles/hover = SubResource( 25 )
-custom_styles/pressed = SubResource( 26 )
-custom_styles/disabled = SubResource( 27 )
-custom_styles/normal = SubResource( 28 )
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
 enabled_focus_mode = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/LeftPanel/Panel/Structure/MarginContainer/ScrollContainer/VBoxContainer/StructuralOrganelles/Cytoplasm"]
@@ -1095,7 +1096,7 @@ expand = true
 margin_top = 60.0
 margin_right = 80.0
 margin_bottom = 82.0
-custom_fonts/font = SubResource( 29 )
+custom_fonts/font = SubResource( 32 )
 custom_constants/line_spacing = -2
 text = "Cytoplasm
 22 MP"
@@ -1106,7 +1107,7 @@ margin_top = 145.0
 margin_right = 294.0
 margin_bottom = 180.0
 rect_min_size = Vector2( 0, 35 )
-custom_fonts/font = SubResource( 24 )
+custom_fonts/font = SubResource( 27 )
 text = "Prokaryotic Structures"
 valign = 1
 uppercase = true
@@ -1126,10 +1127,10 @@ margin_right = 90.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 90, 90 )
 focus_mode = 0
-custom_styles/hover = SubResource( 25 )
-custom_styles/pressed = SubResource( 26 )
-custom_styles/disabled = SubResource( 27 )
-custom_styles/normal = SubResource( 28 )
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
 enabled_focus_mode = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/LeftPanel/Panel/Structure/MarginContainer/ScrollContainer/VBoxContainer/ProkaryoticStructures/Metabolosomes"]
@@ -1174,7 +1175,7 @@ expand = true
 margin_top = 60.0
 margin_right = 80.0
 margin_bottom = 82.0
-custom_fonts/font = SubResource( 29 )
+custom_fonts/font = SubResource( 32 )
 custom_constants/line_spacing = -2
 text = "Metabolosomes
 45 MP"
@@ -1186,10 +1187,10 @@ margin_right = 192.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 90, 90 )
 focus_mode = 0
-custom_styles/hover = SubResource( 25 )
-custom_styles/pressed = SubResource( 26 )
-custom_styles/disabled = SubResource( 27 )
-custom_styles/normal = SubResource( 28 )
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
 enabled_focus_mode = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/LeftPanel/Panel/Structure/MarginContainer/ScrollContainer/VBoxContainer/ProkaryoticStructures/Thylakoid"]
@@ -1234,7 +1235,7 @@ expand = true
 margin_top = 60.0
 margin_right = 80.0
 margin_bottom = 82.0
-custom_fonts/font = SubResource( 29 )
+custom_fonts/font = SubResource( 32 )
 custom_constants/line_spacing = -2
 text = "Thylakoid
 50 MP"
@@ -1246,10 +1247,10 @@ margin_right = 294.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 90, 90 )
 focus_mode = 0
-custom_styles/hover = SubResource( 25 )
-custom_styles/pressed = SubResource( 26 )
-custom_styles/disabled = SubResource( 27 )
-custom_styles/normal = SubResource( 28 )
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
 enabled_focus_mode = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/LeftPanel/Panel/Structure/MarginContainer/ScrollContainer/VBoxContainer/ProkaryoticStructures/ChemosynthesizingProteins"]
@@ -1300,7 +1301,7 @@ custom_constants/margin_left = -10
 margin_left = -10.0
 margin_right = 90.0
 margin_bottom = 32.0
-custom_fonts/font = SubResource( 29 )
+custom_fonts/font = SubResource( 32 )
 custom_constants/line_spacing = -2
 text = "Chemosynthesizing
 Proteins
@@ -1313,10 +1314,10 @@ margin_right = 90.0
 margin_bottom = 195.0
 rect_min_size = Vector2( 90, 90 )
 focus_mode = 0
-custom_styles/hover = SubResource( 25 )
-custom_styles/pressed = SubResource( 26 )
-custom_styles/disabled = SubResource( 27 )
-custom_styles/normal = SubResource( 28 )
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
 enabled_focus_mode = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/LeftPanel/Panel/Structure/MarginContainer/ScrollContainer/VBoxContainer/ProkaryoticStructures/Rusticyanin"]
@@ -1361,7 +1362,7 @@ expand = true
 margin_top = 60.0
 margin_right = 80.0
 margin_bottom = 82.0
-custom_fonts/font = SubResource( 29 )
+custom_fonts/font = SubResource( 32 )
 custom_constants/line_spacing = -2
 text = "Rusticyanin	
 45 MP"
@@ -1374,10 +1375,10 @@ margin_right = 192.0
 margin_bottom = 195.0
 rect_min_size = Vector2( 90, 90 )
 focus_mode = 0
-custom_styles/hover = SubResource( 25 )
-custom_styles/pressed = SubResource( 26 )
-custom_styles/disabled = SubResource( 27 )
-custom_styles/normal = SubResource( 28 )
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
 enabled_focus_mode = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/LeftPanel/Panel/Structure/MarginContainer/ScrollContainer/VBoxContainer/ProkaryoticStructures/Nitrogenase"]
@@ -1422,7 +1423,7 @@ expand = true
 margin_top = 60.0
 margin_right = 80.0
 margin_bottom = 82.0
-custom_fonts/font = SubResource( 29 )
+custom_fonts/font = SubResource( 32 )
 custom_constants/line_spacing = -2
 text = "Nitrogenase
 55 MP"
@@ -1435,10 +1436,10 @@ margin_right = 294.0
 margin_bottom = 195.0
 rect_min_size = Vector2( 90, 90 )
 focus_mode = 0
-custom_styles/hover = SubResource( 25 )
-custom_styles/pressed = SubResource( 26 )
-custom_styles/disabled = SubResource( 27 )
-custom_styles/normal = SubResource( 28 )
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
 enabled_focus_mode = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/LeftPanel/Panel/Structure/MarginContainer/ScrollContainer/VBoxContainer/ProkaryoticStructures/Oxytoxisome"]
@@ -1483,7 +1484,7 @@ expand = true
 margin_top = 60.0
 margin_right = 80.0
 margin_bottom = 82.0
-custom_fonts/font = SubResource( 29 )
+custom_fonts/font = SubResource( 32 )
 custom_constants/line_spacing = -2
 text = "Oxytoxisome
 55 MP"
@@ -1494,7 +1495,7 @@ margin_top = 395.0
 margin_right = 294.0
 margin_bottom = 430.0
 rect_min_size = Vector2( 0, 35 )
-custom_fonts/font = SubResource( 24 )
+custom_fonts/font = SubResource( 27 )
 text = "External Organelles"
 valign = 1
 uppercase = true
@@ -1514,10 +1515,10 @@ margin_right = 90.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 90, 90 )
 focus_mode = 0
-custom_styles/hover = SubResource( 25 )
-custom_styles/pressed = SubResource( 26 )
-custom_styles/disabled = SubResource( 27 )
-custom_styles/normal = SubResource( 28 )
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
 enabled_focus_mode = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/LeftPanel/Panel/Structure/MarginContainer/ScrollContainer/VBoxContainer/ExternalOrganelles/Flagellum"]
@@ -1562,7 +1563,7 @@ expand = true
 margin_top = 60.0
 margin_right = 80.0
 margin_bottom = 82.0
-custom_fonts/font = SubResource( 29 )
+custom_fonts/font = SubResource( 32 )
 custom_constants/line_spacing = -2
 text = "Flagellum
 55 MP"
@@ -1574,10 +1575,10 @@ margin_right = 192.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 90, 90 )
 focus_mode = 0
-custom_styles/hover = SubResource( 25 )
-custom_styles/pressed = SubResource( 26 )
-custom_styles/disabled = SubResource( 27 )
-custom_styles/normal = SubResource( 28 )
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
 enabled_focus_mode = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/LeftPanel/Panel/Structure/MarginContainer/ScrollContainer/VBoxContainer/ExternalOrganelles/PredatoryPilus"]
@@ -1622,7 +1623,7 @@ expand = true
 margin_top = 60.0
 margin_right = 80.0
 margin_bottom = 82.0
-custom_fonts/font = SubResource( 29 )
+custom_fonts/font = SubResource( 32 )
 custom_constants/line_spacing = -2
 text = "Predatory Pilus
 30 MP"
@@ -1634,10 +1635,10 @@ margin_right = 294.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 90, 90 )
 focus_mode = 0
-custom_styles/hover = SubResource( 25 )
-custom_styles/pressed = SubResource( 26 )
-custom_styles/disabled = SubResource( 27 )
-custom_styles/normal = SubResource( 28 )
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
 disabled = true
 enabled_focus_mode = 0
 
@@ -1683,7 +1684,7 @@ expand = true
 margin_top = 60.0
 margin_right = 80.0
 margin_bottom = 82.0
-custom_fonts/font = SubResource( 29 )
+custom_fonts/font = SubResource( 32 )
 custom_constants/line_spacing = -2
 text = "Cilia
 40 MP"
@@ -1694,7 +1695,7 @@ margin_top = 540.0
 margin_right = 294.0
 margin_bottom = 575.0
 rect_min_size = Vector2( 0, 35 )
-custom_fonts/font = SubResource( 24 )
+custom_fonts/font = SubResource( 27 )
 text = "Internal Organelles"
 valign = 1
 uppercase = true
@@ -1714,10 +1715,10 @@ margin_right = 90.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 90, 90 )
 focus_mode = 0
-custom_styles/hover = SubResource( 25 )
-custom_styles/pressed = SubResource( 26 )
-custom_styles/disabled = SubResource( 27 )
-custom_styles/normal = SubResource( 28 )
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
 enabled_focus_mode = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/LeftPanel/Panel/Structure/MarginContainer/ScrollContainer/VBoxContainer/InternalOrganelles2/Nucleus"]
@@ -1762,7 +1763,7 @@ expand = true
 margin_top = 60.0
 margin_right = 80.0
 margin_bottom = 82.0
-custom_fonts/font = SubResource( 29 )
+custom_fonts/font = SubResource( 32 )
 custom_constants/line_spacing = -2
 text = "Nucleus
 100 MP"
@@ -1774,10 +1775,10 @@ margin_right = 192.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 90, 90 )
 focus_mode = 0
-custom_styles/hover = SubResource( 25 )
-custom_styles/pressed = SubResource( 26 )
-custom_styles/disabled = SubResource( 27 )
-custom_styles/normal = SubResource( 28 )
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
 disabled = true
 enabled_focus_mode = 0
 
@@ -1823,7 +1824,7 @@ expand = true
 margin_top = 60.0
 margin_right = 80.0
 margin_bottom = 82.0
-custom_fonts/font = SubResource( 29 )
+custom_fonts/font = SubResource( 32 )
 custom_constants/line_spacing = -2
 text = "Mitochondrion
 45 MP"
@@ -1835,10 +1836,10 @@ margin_right = 294.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 90, 90 )
 focus_mode = 0
-custom_styles/hover = SubResource( 25 )
-custom_styles/pressed = SubResource( 26 )
-custom_styles/disabled = SubResource( 27 )
-custom_styles/normal = SubResource( 28 )
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
 disabled = true
 enabled_focus_mode = 0
 
@@ -1884,7 +1885,7 @@ expand = true
 margin_top = 60.0
 margin_right = 80.0
 margin_bottom = 82.0
-custom_fonts/font = SubResource( 29 )
+custom_fonts/font = SubResource( 32 )
 custom_constants/line_spacing = -2
 text = "Chloroplast
 50 MP"
@@ -1896,10 +1897,10 @@ margin_right = 90.0
 margin_bottom = 195.0
 rect_min_size = Vector2( 90, 90 )
 focus_mode = 0
-custom_styles/hover = SubResource( 25 )
-custom_styles/pressed = SubResource( 26 )
-custom_styles/disabled = SubResource( 27 )
-custom_styles/normal = SubResource( 28 )
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
 enabled_focus_mode = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/LeftPanel/Panel/Structure/MarginContainer/ScrollContainer/VBoxContainer/InternalOrganelles2/Thermoplast"]
@@ -1944,7 +1945,7 @@ expand = true
 margin_top = 60.0
 margin_right = 80.0
 margin_bottom = 82.0
-custom_fonts/font = SubResource( 29 )
+custom_fonts/font = SubResource( 32 )
 custom_constants/line_spacing = -2
 text = "Thermoplast
 40 MP"
@@ -1957,10 +1958,10 @@ margin_right = 192.0
 margin_bottom = 195.0
 rect_min_size = Vector2( 90, 90 )
 focus_mode = 0
-custom_styles/hover = SubResource( 25 )
-custom_styles/pressed = SubResource( 26 )
-custom_styles/disabled = SubResource( 27 )
-custom_styles/normal = SubResource( 28 )
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
 enabled_focus_mode = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/LeftPanel/Panel/Structure/MarginContainer/ScrollContainer/VBoxContainer/InternalOrganelles2/Chemoplast"]
@@ -2005,7 +2006,7 @@ expand = true
 margin_top = 60.0
 margin_right = 80.0
 margin_bottom = 82.0
-custom_fonts/font = SubResource( 29 )
+custom_fonts/font = SubResource( 32 )
 custom_constants/line_spacing = -2
 text = "Chemoplast
 45 MP"
@@ -2018,10 +2019,10 @@ margin_right = 294.0
 margin_bottom = 195.0
 rect_min_size = Vector2( 90, 90 )
 focus_mode = 0
-custom_styles/hover = SubResource( 25 )
-custom_styles/pressed = SubResource( 26 )
-custom_styles/disabled = SubResource( 27 )
-custom_styles/normal = SubResource( 28 )
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
 enabled_focus_mode = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/LeftPanel/Panel/Structure/MarginContainer/ScrollContainer/VBoxContainer/InternalOrganelles2/NitrogenFixingPlastid"]
@@ -2066,7 +2067,7 @@ expand = true
 margin_top = 50.0
 margin_right = 80.0
 margin_bottom = 82.0
-custom_fonts/font = SubResource( 29 )
+custom_fonts/font = SubResource( 32 )
 custom_constants/line_spacing = -2
 text = "Nitrogen Fixing
 Plastid
@@ -2079,10 +2080,10 @@ margin_right = 90.0
 margin_bottom = 300.0
 rect_min_size = Vector2( 90, 90 )
 focus_mode = 0
-custom_styles/hover = SubResource( 25 )
-custom_styles/pressed = SubResource( 26 )
-custom_styles/disabled = SubResource( 27 )
-custom_styles/normal = SubResource( 28 )
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
 enabled_focus_mode = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/LeftPanel/Panel/Structure/MarginContainer/ScrollContainer/VBoxContainer/InternalOrganelles2/Vacuole"]
@@ -2127,7 +2128,7 @@ expand = true
 margin_top = 60.0
 margin_right = 80.0
 margin_bottom = 82.0
-custom_fonts/font = SubResource( 29 )
+custom_fonts/font = SubResource( 32 )
 custom_constants/line_spacing = -2
 text = "Vacuole
 50 MP"
@@ -2140,10 +2141,10 @@ margin_right = 192.0
 margin_bottom = 300.0
 rect_min_size = Vector2( 90, 90 )
 focus_mode = 0
-custom_styles/hover = SubResource( 25 )
-custom_styles/pressed = SubResource( 26 )
-custom_styles/disabled = SubResource( 27 )
-custom_styles/normal = SubResource( 28 )
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
 enabled_focus_mode = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/LeftPanel/Panel/Structure/MarginContainer/ScrollContainer/VBoxContainer/InternalOrganelles2/ToxinVacuole"]
@@ -2188,7 +2189,7 @@ expand = true
 margin_top = 60.0
 margin_right = 80.0
 margin_bottom = 82.0
-custom_fonts/font = SubResource( 29 )
+custom_fonts/font = SubResource( 32 )
 custom_constants/line_spacing = -2
 text = "Toxin Vacuole
 70 MP"
@@ -2201,10 +2202,10 @@ margin_right = 294.0
 margin_bottom = 300.0
 rect_min_size = Vector2( 90, 90 )
 focus_mode = 0
-custom_styles/hover = SubResource( 25 )
-custom_styles/pressed = SubResource( 26 )
-custom_styles/disabled = SubResource( 27 )
-custom_styles/normal = SubResource( 28 )
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
 disabled = true
 enabled_focus_mode = 0
 
@@ -2250,7 +2251,7 @@ expand = true
 margin_top = 50.0
 margin_right = 80.0
 margin_bottom = 82.0
-custom_fonts/font = SubResource( 29 )
+custom_fonts/font = SubResource( 32 )
 custom_constants/line_spacing = -2
 text = "Biolumescent
 Vacuole
@@ -2314,7 +2315,7 @@ margin_bottom = -6.10352e-05
 rect_min_size = Vector2( 0, 40 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_styles/panel = SubResource( 30 )
+custom_styles/panel = SubResource( 33 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -2337,7 +2338,7 @@ margin_bottom = 35.0
 margin_right = 40.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 40, 30 )
-custom_styles/separator = SubResource( 31 )
+custom_styles/separator = SubResource( 34 )
 
 [node name="SpeciesName" type="HBoxContainer" parent="MicrobeEditorGUI/BottomBar/LowerBarCentre/MarginContainer/HBoxContainer"]
 margin_left = 44.0
@@ -2353,7 +2354,7 @@ margin_top = 6.0
 margin_right = 70.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 70, 0 )
-custom_fonts/font = SubResource( 32 )
+custom_fonts/font = SubResource( 35 )
 text = "Species"
 uppercase = true
 
@@ -2362,7 +2363,7 @@ margin_left = 80.0
 margin_right = 300.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 220, 0 )
-custom_styles/panel = SubResource( 33 )
+custom_styles/panel = SubResource( 36 )
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/BottomBar/LowerBarCentre/MarginContainer/HBoxContainer/SpeciesName/SpeciesNameBox"]
 margin_right = 220.0
@@ -2384,12 +2385,11 @@ caret_blink = true
 
 [node name="GenerationLabel" type="Label" parent="MicrobeEditorGUI/BottomBar/LowerBarCentre/MarginContainer/HBoxContainer/SpeciesName"]
 margin_left = 310.0
-margin_top = -1.0
 margin_right = 417.0
-margin_bottom = 29.0
+margin_bottom = 30.0
 rect_min_size = Vector2( 70, 30 )
 custom_styles/normal = SubResource( 39 )
-custom_fonts/font = SubResource( 32 )
+custom_fonts/font = SubResource( 35 )
 text = "Generation 2"
 align = 1
 valign = 1
@@ -2397,12 +2397,11 @@ uppercase = true
 
 [node name="SpeedLabel" type="Label" parent="MicrobeEditorGUI/BottomBar/LowerBarCentre/MarginContainer/HBoxContainer/SpeciesName"]
 margin_left = 427.0
-margin_top = -1.0
 margin_right = 502.0
-margin_bottom = 29.0
+margin_bottom = 30.0
 rect_min_size = Vector2( 70, 30 )
 custom_styles/normal = SubResource( 39 )
-custom_fonts/font = SubResource( 32 )
+custom_fonts/font = SubResource( 35 )
 text = "Speed 2.0"
 align = 1
 valign = 1
@@ -2410,12 +2409,11 @@ uppercase = true
 
 [node name="SizeLabel" type="Label" parent="MicrobeEditorGUI/BottomBar/LowerBarCentre/MarginContainer/HBoxContainer/SpeciesName"]
 margin_left = 512.0
-margin_top = -1.0
 margin_right = 582.0
-margin_bottom = 29.0
+margin_bottom = 30.0
 rect_min_size = Vector2( 70, 30 )
 custom_styles/normal = SubResource( 39 )
-custom_fonts/font = SubResource( 32 )
+custom_fonts/font = SubResource( 35 )
 text = "Size 1"
 align = 1
 valign = 1
@@ -2458,7 +2456,7 @@ expand = true
 margin_top = 62.0
 margin_right = 80.0
 margin_bottom = 74.0
-custom_fonts/font = SubResource( 36 )
+custom_fonts/font = SubResource( 40 )
 text = "Symmetry"
 align = 1
 uppercase = true
@@ -2524,11 +2522,12 @@ margin_left = -170.0
 margin_top = -84.0
 margin_right = -20.0
 margin_bottom = -40.0
-custom_styles/hover = SubResource( 42 )
-custom_styles/pressed = SubResource( 43 )
-custom_styles/normal = SubResource( 40 )
-custom_fonts/font = SubResource( 41 )
+custom_styles/hover = SubResource( 41 )
+custom_styles/pressed = SubResource( 42 )
+custom_styles/normal = SubResource( 43 )
+custom_fonts/font = SubResource( 44 )
 text = "CONFIRM"
+script = ExtResource( 45 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

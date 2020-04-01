@@ -62,6 +62,14 @@ public class SimulationParameters
         return organelles[name];
     }
 
+    /// <summary>
+    ///   Returns all organelles
+    /// </summary>
+    public IEnumerable<OrganelleDefinition> GetAllOrganelles()
+    {
+        return organelles.Values;
+    }
+
     public MembraneType GetMembrane(string name)
     {
         return membranes[name];
