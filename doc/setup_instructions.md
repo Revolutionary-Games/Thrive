@@ -164,11 +164,6 @@ check_formatting.rb` in order to automatically run all of the
 formatting tools. Make sure that that script doesn't report any errors
 before committing.
 
-Additionally, for local testing, you might want to install `http-server`
-via `npm install -g http-server`. If you're on Linux you will probably
-need `sudo`. You can then run a test web server with `http-server -c-1`
-in the thrive base folder.
-
 
 Building Thrive
 ===============
