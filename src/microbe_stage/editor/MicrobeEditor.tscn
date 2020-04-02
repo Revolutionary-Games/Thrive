@@ -679,6 +679,7 @@ __meta__ = {
 [node name="EditorHex" parent="World" instance=ExtResource( 3 )]
 
 [node name="MicrobeEditorGUI" type="Node" parent="."]
+script = ExtResource( 45 )
 
 [node name="LeftTopBar" type="Control" parent="MicrobeEditorGUI"]
 anchor_right = 1.0

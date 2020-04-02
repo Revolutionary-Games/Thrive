@@ -747,6 +747,11 @@ public class MicrobeEditor : Node
             editedMicrobeOrganelles.Add((OrganelleTemplate)organelle.Clone());
         }
 
+        // temporary hack (remove later)
+        // The string code is causing the crash, probably it
+        // has not been initialized yet?
+        species.StringCode = string.Empty;
+
         GD.Print("Starting microbe editor with: ", editedMicrobeOrganelles.Organelles.Count,
             " organelles in the microbe, genes: ", species.StringCode);
 
