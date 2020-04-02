@@ -48,17 +48,17 @@ public class MicrobeEditorGUI : Node
 
     internal void SetUndoButtonStatus(bool v)
     {
-        throw new NotImplementedException();
+        // throw new NotImplementedException();
     }
 
     internal void SetRedoButtonStatus(bool v)
     {
-        throw new NotImplementedException();
+        // throw new NotImplementedException();
     }
 
     internal void NotifyFreebuild(object freebuilding)
     {
-        throw new NotImplementedException();
+        // throw new NotImplementedException();
     }
 
     /// <summary>
@@ -71,7 +71,7 @@ public class MicrobeEditorGUI : Node
     /// </remarks>
     internal void UpdateGuiButtonStatus(bool hasNucleus)
     {
-        throw new NotImplementedException();
+        // throw new NotImplementedException();
     }
 
     internal void OnOrganelleToPlaceSelected(string organelle)
@@ -82,6 +82,6 @@ public class MicrobeEditorGUI : Node
     internal void SetSpeciesInfo(string name, MembraneType membrane, Color colour,
         float rigidity)
     {
-        throw new NotImplementedException();
+        // throw new NotImplementedException();
     }
 }
