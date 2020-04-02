@@ -480,21 +480,34 @@ internal class PlacedOrganelleConverter : JsonConverter
             (p) => !p.CustomAttributes.Any(
                 (a) => a.AttributeType == typeof(JsonIgnoreAttribute)));
 
+        // And fields
+        var fields = value.GetType().GetFields().Where(
+            (p) => !p.CustomAttributes.Any(
+                (a) => a.AttributeType == typeof(JsonIgnoreAttribute)));
+
         writer.WriteStartObject();
 
         foreach (var property in properties)
         {
             writer.WritePropertyName(property.Name);
 
-            // Use default serializer on everything except Definition
-            if (property.Name == "Definition")
+            // Use default serializer on everything except Definition (definition is a field)
+            serializer.Serialize(writer, property.GetValue(value, null));
+        }
+
+        foreach (var field in fields)
+        {
+            writer.WritePropertyName(field.Name);
+
+            // Use default serializer on everything except Definition (definition is a field)
+            if (field.Name == "Definition")
             {
                 serializer.Serialize(writer,
-                    ((OrganelleDefinition)property.GetValue(value, null)).InternalName);
+                    ((OrganelleDefinition)field.GetValue(value)).InternalName);
             }
             else
             {
-                serializer.Serialize(writer, property.GetValue(value, null));
+                serializer.Serialize(writer, field.GetValue(value));
             }
         }
 

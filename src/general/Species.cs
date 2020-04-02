@@ -60,7 +60,7 @@ public abstract class Species
     /// <summary>
     ///   This is the genome of the species
     /// </summary>
-    public string StringCode { get; set; }
+    public abstract string StringCode { get; set; }
 
     /// <summary>
     ///   When true this is the player species
@@ -68,6 +68,7 @@ public abstract class Species
     [JsonProperty]
     public bool PlayerSpecies { get; private set; } = false;
 
+    [JsonIgnore]
     public string FormattedName
     {
         get
@@ -76,6 +77,7 @@ public abstract class Species
         }
     }
 
+    [JsonIgnore]
     public string FormattedIdentifier
     {
         get

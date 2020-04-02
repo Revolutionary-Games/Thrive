@@ -35,6 +35,7 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable
         }
     }
 
+    [JsonIgnore]
     public IEnumerable<Hex> RotatedHexes
     {
         get
