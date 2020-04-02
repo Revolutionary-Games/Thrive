@@ -26,10 +26,12 @@ public class MicrobeEditorGUI : Node
 
     public void OnPlaceOrganelleClicked()
     {
+        editor.PlaceOrganelle();
     }
 
     public void OnRemoveOrganelleClicked()
     {
+        editor.RemoveOrganelle();
     }
 
     public void UpdateSize()
@@ -39,25 +41,30 @@ public class MicrobeEditorGUI : Node
 
     public void UpdateGeneration(int generation)
     {
+        // TODO: fix
     }
 
     public void UpdateSpeed()
     {
+        // TODO: fix
         // var speed = editor.MicrobeSpeed;
     }
 
     internal void SetUndoButtonStatus(bool v)
     {
+        // TODO: fix
         // throw new NotImplementedException();
     }
 
     internal void SetRedoButtonStatus(bool v)
     {
+        // TODO: fix
         // throw new NotImplementedException();
     }
 
     internal void NotifyFreebuild(object freebuilding)
     {
+        // TODO: fix
         // throw new NotImplementedException();
     }
 
@@ -71,17 +78,20 @@ public class MicrobeEditorGUI : Node
     /// </remarks>
     internal void UpdateGuiButtonStatus(bool hasNucleus)
     {
+        // TODO: fix
         // throw new NotImplementedException();
     }
 
     internal void OnOrganelleToPlaceSelected(string organelle)
     {
+        // TODO: fix
         throw new NotImplementedException();
     }
 
     internal void SetSpeciesInfo(string name, MembraneType membrane, Color colour,
         float rigidity)
     {
+        // TODO: fix
         // throw new NotImplementedException();
     }
 }

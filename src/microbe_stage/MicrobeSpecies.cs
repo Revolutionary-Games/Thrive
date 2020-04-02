@@ -16,6 +16,25 @@ public class MicrobeSpecies : Species
         Organelles = new OrganelleLayout<OrganelleTemplate>();
     }
 
-    [JsonIgnore]
     public OrganelleLayout<OrganelleTemplate> Organelles { get; set; }
+
+    [JsonIgnore]
+    public override string StringCode
+    {
+        get
+        {
+            return ToString();
+        }
+        set
+        {
+            // TODO: allow replacing Organelles from value
+            throw new NotImplementedException();
+        }
+    }
+
+    public override string ToString()
+    {
+        // TODO: custom serializer to store the membrane type by name
+        return JsonConvert.SerializeObject(this);
+    }
 }
