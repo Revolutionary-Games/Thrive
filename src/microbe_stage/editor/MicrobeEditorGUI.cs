@@ -50,6 +50,21 @@ public class MicrobeEditorGUI : Node
         // var speed = editor.MicrobeSpeed;
     }
 
+    /// <summary>
+    ///   Called once when the mouse enters the editor GUI.
+    /// </summary>
+    internal void OnMouseEnter()
+    {
+    }
+
+    /// <summary>
+    ///   Called when the mouse is no longer hovering
+    //    the editor GUI.
+    /// </summary>
+    internal void OnMouseExit()
+    {
+    }
+
     internal void SetUndoButtonStatus(bool v)
     {
         // TODO: fix

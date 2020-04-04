@@ -461,6 +461,10 @@ public class MicrobeHUD : Node
         }
     }
 
+    private void EditorButtonPressed()
+    {
+    }
+
     /// <summary>
     ///   Receiver for exiting game from microbe stage.
     /// </summary>
