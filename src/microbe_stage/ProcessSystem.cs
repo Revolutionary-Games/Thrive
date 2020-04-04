@@ -19,21 +19,118 @@ public class ProcessSystem
     }
 
     /// <summary>
-    ///   Computes the process numbers for given organelles given the active biome data
+    ///   Computes the process efficiency numbers for given organelles
+    ///   given the active biome data.
     /// </summary>
-    public static string ComputeOrganelleProcessEfficiencies(
-        List<OrganelleDefinition> organelles, Biome biome)
+    public static Dictionary<string, OrganelleEfficiency> ComputeOrganelleProcessEfficiencies(
+        IEnumerable<OrganelleDefinition> organelles, Biome biome)
     {
-        throw new NotImplementedException();
+        var result = new Dictionary<string, OrganelleEfficiency>();
+
+        foreach (var organelle in organelles)
+        {
+            var info = new OrganelleEfficiency(organelle);
+
+            foreach (var process in organelle.RunnableProcesses)
+            {
+                info.Processes.Add(CalculateProcessMaximumSpeed(process, biome));
+            }
+
+            result[organelle.InternalName] = info;
+        }
+
+        return result;
     }
 
     /// <summary>
     ///   Computes the energy balance for the given organelles in biome
     /// </summary>
-    public static string ComputeEnergyBalance(List<OrganelleDefinition> organelles,
-        Biome biome, MembraneType membrane)
+    public static EnergyBalanceInfo ComputeEnergyBalance(
+        IEnumerable<OrganelleDefinition> organelles, Biome biome, MembraneType membrane)
     {
-        throw new NotImplementedException();
+        var result = new EnergyBalanceInfo();
+
+        // Json::Value value(Json::objectValue);
+        // Json::Value production(Json::objectValue);
+        // Json::Value consumption(Json::objectValue);
+
+        float totalATPProduction = 0.0f;
+        float processATPConsumption = 0.0f;
+        float movementATPConsumption = 0.0f;
+
+        int hexCount = 0;
+
+        var atp = SimulationParameters.Instance.GetCompound("atp");
+
+        foreach (var organelle in organelles)
+        {
+            foreach (var efficiencyInfo in
+                ComputeOrganelleProcessEfficiencies(organelles, biome))
+            {
+                foreach (var processData in efficiencyInfo.Value.Processes)
+                {
+                    // Find process inputs and outputs that use/produce ATP and add to
+                    // totals
+                    if (processData.OtherInputs.ContainsKey(atp.InternalName))
+                    {
+                        var amount = processData.OtherInputs[atp.InternalName].Amount;
+
+                        processATPConsumption += amount;
+
+                        result.AddConsumption(organelle.Name, amount);
+                    }
+
+                    if (processData.Outputs.ContainsKey(atp.InternalName))
+                    {
+                        var amount = processData.Outputs[atp.InternalName].Amount;
+
+                        totalATPProduction += amount;
+
+                        result.AddProduction(organelle.Name, amount);
+                    }
+                }
+            }
+
+            // Take special cell components that take energy into account
+            if (organelle.HasComponentFactory<MovementComponentFactory>())
+            {
+                var amount = Constants.FLAGELLA_ENERGY_COST;
+
+                movementATPConsumption += amount;
+
+                result.AddConsumption(organelle.Name, amount);
+            }
+
+            // Store hex count
+            hexCount += organelle.HexCount;
+        }
+
+        // Add movement consumption together
+        result.BaseMovement = Constants.BASE_MOVEMENT_ATP_COST * hexCount;
+        var totalMovementConsumption =
+            movementATPConsumption + result.BaseMovement;
+
+        // Add osmoregulation
+        result.Osmoregulation = Constants.ATP_COST_FOR_OSMOREGULATION * hexCount *
+                                     membrane.OsmoregulationFactor;
+
+        result.AddConsumption("osmoregulation", result.Osmoregulation);
+
+        // Compute totals
+        var totalATPConsumption =
+            processATPConsumption + totalMovementConsumption + result.Osmoregulation;
+
+        var totalBalanceStationary =
+            totalATPProduction - totalATPConsumption;
+        var totalBalance = totalBalanceStationary + totalMovementConsumption;
+
+        // Finish building the result object
+        result.TotalProduction = totalATPProduction;
+        result.TotalConsumption = totalATPConsumption;
+        result.FinalBalance = totalBalance;
+        result.FinalBalanceStationary = totalBalanceStationary;
+
+        return result;
     }
 
     public void Process(float delta)
@@ -83,9 +180,84 @@ public class ProcessSystem
     /// </summary>
     public float GetDissolved(string compoundName)
     {
+        return GetDissolvedInBiome(compoundName, biome);
+    }
+
+    private static float GetDissolvedInBiome(string compoundName, Biome biome)
+    {
         if (!biome.Compounds.ContainsKey(compoundName))
             return 0;
         return biome.Compounds[compoundName].Dissolved;
+    }
+
+    /// <summary>
+    ///   Calculates the maximum speed a process can run at in a biome
+    ///   based on the environmental compounds.
+    /// </summary>
+    private static ProcessSpeedInformation CalculateProcessMaximumSpeed(TweakedProcess process,
+        Biome biome)
+    {
+        var simulation = SimulationParameters.Instance;
+
+        var result = new ProcessSpeedInformation(process.Process);
+
+        float speedFactor = 1.0f;
+
+        // Environmental inputs need to be processed first
+        foreach (var entry in process.Process.Inputs)
+        {
+            var data = simulation.GetCompound(entry.Key);
+
+            if (!data.IsEnvironmental)
+                continue;
+
+            // Environmental compound that can limit the rate
+
+            var input = new ProcessSpeedInformation.EnvironmentalInput(data, entry.Value);
+
+            var availableInEnvironment = GetDissolvedInBiome(entry.Key, biome);
+
+            input.AvailableAmount = availableInEnvironment;
+
+            // More than needed environment value boosts the effectiveness
+            input.AvailableRate = availableInEnvironment / entry.Value;
+
+            speedFactor *= input.AvailableRate;
+
+            result.EnvironmentInputs[entry.Key] = input;
+        }
+
+        speedFactor *= process.Rate;
+
+        // So that the speedfactor is available here
+        foreach (var entry in process.Process.Inputs)
+        {
+            var data = simulation.GetCompound(entry.Key);
+
+            if (data.IsEnvironmental)
+                continue;
+
+            // Normal, cloud input
+
+            var input = new ProcessSpeedInformation.CompoundAmount(data,
+                entry.Value * speedFactor);
+
+            result.OtherInputs.Add(entry.Key, input);
+        }
+
+        foreach (var entry in process.Process.Outputs)
+        {
+            var data = simulation.GetCompound(entry.Key);
+
+            var output = new ProcessSpeedInformation.CompoundAmount(data,
+                entry.Value * speedFactor);
+
+            result.Outputs[entry.Key] = output;
+        }
+
+        result.SpeedFactor = speedFactor;
+
+        return result;
     }
 
     private void ProcessNode(IProcessable processor, float delta)
