@@ -2742,30 +2742,30 @@ margin_top = -50.0
 margin_right = 120.0
 margin_bottom = 145.0
 focus_mode = 0
-disabled = true
 enabled_focus_mode = 0
 texture_normal = ExtResource( 39 )
-texture_pressed = ExtResource( 39 )
+texture_pressed = ExtResource( 40 )
 texture_hover = ExtResource( 40 )
 texture_disabled = ExtResource( 41 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ReproductionBar" type="Control" parent="MicrobeHUD/BottomRight"]
+[node name="ReproductionBar" type="Control" parent="MicrobeHUD/BottomRight/EditorButton"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -75.0
-margin_top = -50.0
-margin_right = 120.0
-margin_bottom = 145.0
+margin_left = -97.5
+margin_top = -97.5
+margin_right = 97.5
+margin_bottom = 97.5
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BarBackground" type="TextureRect" parent="MicrobeHUD/BottomRight/ReproductionBar"]
+[node name="BarBackground" type="TextureRect" parent="MicrobeHUD/BottomRight/EditorButton/ReproductionBar"]
 modulate = Color( 0, 0, 0, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
@@ -2780,7 +2780,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AmmoniaBar" type="TextureProgress" parent="MicrobeHUD/BottomRight/ReproductionBar" groups=[
+[node name="AmmoniaBar" type="TextureProgress" parent="MicrobeHUD/BottomRight/EditorButton/ReproductionBar" groups=[
 "MicrobeHUDBar",
 ]]
 anchor_left = 0.5
@@ -2800,7 +2800,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PhosphateBar" type="TextureProgress" parent="MicrobeHUD/BottomRight/ReproductionBar" groups=[
+[node name="PhosphateBar" type="TextureProgress" parent="MicrobeHUD/BottomRight/EditorButton/ReproductionBar" groups=[
 "MicrobeHUDBar",
 ]]
 anchor_left = 0.5
@@ -2939,6 +2939,7 @@ anims/ShowLeftPanels = SubResource( 50 )
 [connection signal="pressed" from="MicrobeHUD/BottomBar/PauseButtonMargin/Pause" to="MicrobeHUD" method="PauseButtonPressed"]
 [connection signal="pressed" from="MicrobeHUD/BottomBar/PauseButtonMargin/Resume" to="MicrobeHUD" method="PauseButtonPressed"]
 [connection signal="pressed" from="MicrobeHUD/BottomBar/CompoundsButton" to="MicrobeHUD" method="CompoundButtonPressed"]
+[connection signal="pressed" from="MicrobeHUD/BottomRight/EditorButton" to="MicrobeHUD" method="EditorButtonPressed"]
 [connection signal="pressed" from="MicrobeHUD/PauseMenu/CenterContainer/MicrobeStageMenu/Resume" to="MicrobeHUD" method="OpenMicrobeStageMenuPressed"]
 [connection signal="pressed" from="MicrobeHUD/PauseMenu/CenterContainer/MicrobeStageMenu/Exit" to="MicrobeHUD" method="ExitPressed"]
 [connection signal="finished" from="MicrobeHUD/MusicAudio" to="MicrobeHUD" method="PlayRandomMusic"]
