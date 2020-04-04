@@ -189,6 +189,29 @@ public class OrganelleDefinition : IRegistryType
         return temp * Constants.DEFAULT_HEX_SIZE;
     }
 
+    /// <summary>
+    ///   Returns true when this has the specified component
+    ///   factory. For example MovementComponentFactory.
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     The PlacedOrganelle.HasComponent method checks for the
+    ///     actual component class this checks for the *factory*
+    ///     class.
+    ///   </para>
+    /// </remarks>
+    public bool HasComponentFactory<T>()
+        where T : IOrganelleComponentFactory
+    {
+        foreach (var factory in ComponentFactories)
+        {
+            if (factory is T)
+                return true;
+        }
+
+        return false;
+    }
+
     public void Check(string name)
     {
         if (Components == null)

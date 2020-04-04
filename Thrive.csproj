@@ -130,6 +130,9 @@
     <Compile Include="src\general\ActionHistory.cs" />
     <Compile Include="src\general\ReversableAction.cs" />
     <Compile Include="src\general\Mutations.cs" />
+    <Compile Include="src\microbe_stage\ProcessSpeedInformation.cs" />
+    <Compile Include="src\microbe_stage\OrganelleEfficiency.cs" />
+    <Compile Include="src\microbe_stage\EnergyBalanceInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="StyleCop.ruleset" />
