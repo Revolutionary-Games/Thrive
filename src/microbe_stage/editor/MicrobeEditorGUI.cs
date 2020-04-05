@@ -109,4 +109,28 @@ public class MicrobeEditorGUI : Node
         // TODO: fix
         // throw new NotImplementedException();
     }
+
+    private void SetCellTab(string tab)
+    {
+        var structureTab = GetNode<Control>("LeftPanel/Panel/Structure");
+        var membraneTab = GetNode<Control>("LeftPanel/Panel/Membrane");
+
+        // Hide all
+        structureTab.Hide();
+        membraneTab.Hide();
+
+        // Show selected
+        if (tab == "structure")
+        {
+            structureTab.Show();
+        }
+        else if (tab == "membrane")
+        {
+            membraneTab.Show();
+        }
+        else
+        {
+            GD.PrintErr("Invalid tab");
+        }
+    }
 }
