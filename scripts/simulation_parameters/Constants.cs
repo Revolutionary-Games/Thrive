@@ -195,6 +195,34 @@ public class Constants
     public const int MAX_HOVER_HEXES = 60;
     public const int MAX_SYMMETRY = 6;
 
+    // Cell Colors
+    public const float MIN_COLOR = 0.0f;
+    public const float MAX_COLOR = 0.9f;
+
+    public const float MIN_COLOR_MUTATION = -0.2f;
+    public const float MAX_COLOR_MUTATION = 0.2f;
+
+    public const float MIN_OPACITY = 0.5f;
+    public const float MAX_OPACITY = 1.8f;
+
+    public const float MIN_OPACITY_CHITIN = 0.4f;
+    public const float MAX_OPACITY_CHITIN = 1.2f;
+
+    // Min Opacity Mutation
+    public const float MIN_OPACITY_MUTATION = -0.01f;
+    public const float MAX_OPACITY_MUTATION = 0.01f;
+
+    // Mutation Variables
+    public const float MUTATION_BACTERIA_TO_EUKARYOTE = 1.0f;
+    public const float MUTATION_CREATION_RATE = 0.1f;
+    public const float MUTATION_EXTRA_CREATION_RATE = 0.1f;
+    public const float MUTATION_DELETION_RATE = 0.1f;
+    public const float MUTATION_REPLACEMENT_RATE = 0.1f;
+
+    // Genus splitting and name mutation
+    public const int MUTATION_CHANGE_GENUS = 33;
+    public const int MUTATION_WORD_EDIT = 10;
+
     /// <summary>
     ///   All Nodes tagged with this are handled by the spawn system for despawning
     /// </summary>
