@@ -1,4 +1,4 @@
-[gd_scene load_steps=125 format=2]
+[gd_scene load_steps=126 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -258,6 +258,35 @@ size = 14
 font_data = ExtResource( 69 )
 
 [sub_resource type="Animation" id=45]
+resource_name = "EditorButtonFlash"
+length = 5.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Highlight:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.1, 2.5, 3.5, 4.5 ),
+"transitions": PoolRealArray( 0.5, 1, 0.5, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Highlight/Light2D:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.1, 2.5, 3.5, 4.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 1.0, 1.0, 0.0, 0.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=46]
 tracks/0/type = "value"
 tracks/0/path = NodePath("LeftPanels/CompoundsPanel:rect_min_size")
 tracks/0/interp = 1
@@ -367,7 +396,7 @@ tracks/8/keys = {
 "values": [ Vector2( 100, 75 ), Vector2( 65, 25 ) ]
 }
 
-[sub_resource type="Animation" id=46]
+[sub_resource type="Animation" id=47]
 tracks/0/type = "value"
 tracks/0/path = NodePath("LeftPanels/CompoundsPanel/Expand/VBoxContainer/MarginContainer2/MarginContainer/VBoxContainer:rect_size")
 tracks/0/interp = 1
@@ -453,7 +482,7 @@ tracks/6/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=47]
+[sub_resource type="Animation" id=48]
 tracks/0/type = "value"
 tracks/0/path = NodePath("LeftPanels/EnvironmentPanel/Compress:visible")
 tracks/0/interp = 1
@@ -551,7 +580,7 @@ tracks/7/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[sub_resource type="Animation" id=48]
+[sub_resource type="Animation" id=49]
 tracks/0/type = "value"
 tracks/0/path = NodePath("LeftPanels/EnvironmentPanel:rect_min_size")
 tracks/0/interp = 1
@@ -637,7 +666,7 @@ tracks/6/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=49]
+[sub_resource type="Animation" id=50]
 tracks/0/type = "value"
 tracks/0/path = NodePath("LeftPanels:modulate")
 tracks/0/interp = 1
@@ -699,7 +728,7 @@ tracks/4/keys = {
 "values": [ 0.0, -1.0 ]
 }
 
-[sub_resource type="Animation" id=50]
+[sub_resource type="Animation" id=51]
 tracks/0/type = "value"
 tracks/0/path = NodePath("LeftPanels:modulate")
 tracks/0/interp = 1
@@ -1239,7 +1268,6 @@ texture = ExtResource( 52 )
 expand = true
 
 [node name="Compress" type="PanelContainer" parent="MicrobeHUD/LeftPanels/EnvironmentPanel"]
-visible = false
 modulate = Color( 1, 1, 1, 0 )
 margin_right = 195.0
 margin_bottom = 224.0
@@ -1253,7 +1281,7 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeHUD/LeftPanels/EnvironmentPanel/Compress"]
 margin_right = 195.0
-margin_bottom = 209.512
+margin_bottom = 224.0
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeHUD/LeftPanels/EnvironmentPanel/Compress/VBoxContainer"]
 margin_right = 195.0
@@ -2751,6 +2779,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Highlight" type="TextureRect" parent="MicrobeHUD/BottomRight/EditorButton"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 40 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Light2D" type="Light2D" parent="MicrobeHUD/BottomRight/EditorButton/Highlight"]
+position = Vector2( 97.4353, 97.5359 )
+texture = ExtResource( 40 )
+
 [node name="ReproductionBar" type="Control" parent="MicrobeHUD/BottomRight/EditorButton"]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -2819,6 +2860,9 @@ radial_fill_degrees = 180.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MicrobeHUD/BottomRight/EditorButton"]
+anims/EditorButtonFlash = SubResource( 45 )
 
 [node name="PauseMenu" type="Control" parent="MicrobeHUD"]
 visible = false
@@ -2925,12 +2969,12 @@ volume_db = -5.0
 volume_db = -5.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MicrobeHUD"]
-anims/CompoundPanelCompress = SubResource( 45 )
-anims/CompoundPanelExpand = SubResource( 46 )
-anims/EnvironmentPanelCompress = SubResource( 47 )
-anims/EnvironmentPanelExpand = SubResource( 48 )
-anims/HideLeftPanels = SubResource( 49 )
-anims/ShowLeftPanels = SubResource( 50 )
+anims/CompoundPanelCompress = SubResource( 46 )
+anims/CompoundPanelExpand = SubResource( 47 )
+anims/EnvironmentPanelCompress = SubResource( 48 )
+anims/EnvironmentPanelExpand = SubResource( 49 )
+anims/HideLeftPanels = SubResource( 50 )
+anims/ShowLeftPanels = SubResource( 51 )
 [connection signal="pressed" from="MicrobeHUD/LeftPanels/EnvironmentPanel/MarginContainer4/EnvironmentExpandButton" to="MicrobeHUD" method="ResizeEnvironmentPanel" binds= [ "expand" ]]
 [connection signal="pressed" from="MicrobeHUD/LeftPanels/EnvironmentPanel/MarginContainer3/EnvironmentCompressButton" to="MicrobeHUD" method="ResizeEnvironmentPanel" binds= [ "compress" ]]
 [connection signal="pressed" from="MicrobeHUD/LeftPanels/CompoundsPanel/MarginContainer3/CompoundExpandButton" to="MicrobeHUD" method="ResizeCompoundPanel" binds= [ "expand" ]]
