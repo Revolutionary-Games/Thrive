@@ -8,13 +8,13 @@ public class MicrobeEditorGUI : Node
 {
     private MicrobeEditor editor;
 
-    private Godot.Collections.Array OrganelleSelectionElements;
-    private Godot.Collections.Array MembraneSelectionElements;
+    private Godot.Collections.Array organelleSelectionElements;
+    private Godot.Collections.Array membraneSelectionElements;
 
     public override void _Ready()
     {
-        OrganelleSelectionElements = GetTree().GetNodesInGroup("OrganelleSelectionElement");
-        MembraneSelectionElements = GetTree().GetNodesInGroup("MembraneSelectionElement");
+        organelleSelectionElements = GetTree().GetNodesInGroup("OrganelleSelectionElement");
+        membraneSelectionElements = GetTree().GetNodesInGroup("MembraneSelectionElement");
     }
 
     public void Init(MicrobeEditor editor)
@@ -107,7 +107,7 @@ public class MicrobeEditorGUI : Node
         editor.ActiveActionName = organelle;
 
         // Make all buttons unselected except the one that is now selected
-        foreach (Button element in OrganelleSelectionElements)
+        foreach (Button element in organelleSelectionElements)
         {
             var selectedLabel = element.GetNode<Label>(
                 "MarginContainer/VBoxContainer/SelectedLabelMargin/SelectedLabel");
@@ -133,7 +133,7 @@ public class MicrobeEditorGUI : Node
         // todo: Send selected membrane to the editor script
 
         // Updates the GUI buttons based on current membrane
-        foreach (Button element in MembraneSelectionElements)
+        foreach (Button element in membraneSelectionElements)
         {
             var selectedLabel = element.GetNode<Label>(
                 "MarginContainer/VBoxContainer/SelectedLabelMargin/SelectedLabel");
