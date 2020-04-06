@@ -8,8 +8,13 @@ public class MicrobeEditorGUI : Node
 {
     private MicrobeEditor editor;
 
+    private Godot.Collections.Array OrganelleSelectionElements;
+    private Godot.Collections.Array MembraneSelectionElements;
+
     public override void _Ready()
     {
+        OrganelleSelectionElements = GetTree().GetNodesInGroup("OrganelleSelectionElement");
+        MembraneSelectionElements = GetTree().GetNodesInGroup("MembraneSelectionElement");
     }
 
     public void Init(MicrobeEditor editor)
@@ -99,8 +104,52 @@ public class MicrobeEditorGUI : Node
 
     internal void OnOrganelleToPlaceSelected(string organelle)
     {
-        // TODO: fix
-        throw new NotImplementedException();
+        editor.ActiveActionName = organelle;
+
+        // Make all buttons unselected except the one that is now selected
+        foreach (Button element in OrganelleSelectionElements)
+        {
+            var selectedLabel = element.GetNode<Label>(
+                "MarginContainer/VBoxContainer/SelectedLabelMargin/SelectedLabel");
+
+            if (element.Name == organelle)
+            {
+                if (!element.Pressed)
+                    element.Pressed = true;
+
+                selectedLabel.Show();
+            }
+            else
+            {
+                selectedLabel.Hide();
+            }
+        }
+
+        GD.Print("Editor action is now: " + editor.ActiveActionName);
+    }
+
+    internal void OnMembraneSelected(string membrane)
+    {
+        // todo: Send selected membrane to the editor script
+
+        // Updates the GUI buttons based on current membrane
+        foreach (Button element in MembraneSelectionElements)
+        {
+            var selectedLabel = element.GetNode<Label>(
+                "MarginContainer/VBoxContainer/SelectedLabelMargin/SelectedLabel");
+
+            if (element.Name == membrane)
+            {
+                if (!element.Pressed)
+                    element.Pressed = true;
+
+                selectedLabel.Show();
+            }
+            else
+            {
+                selectedLabel.Hide();
+            }
+        }
     }
 
     internal void SetSpeciesInfo(string name, MembraneType membrane, Color colour,

@@ -32,6 +32,7 @@ public class MicrobeHUD : Node
     private Control dataValue;
 
     private Label atpLabel;
+    private Label hpLabel;
 
     /// <summary>
     ///   The HUD bars is contained in this array to avoid
@@ -58,9 +59,7 @@ public class MicrobeHUD : Node
 
     // Checks
     private bool environmentCompressed = false;
-
     private bool compundCompressed = false;
-
     private bool leftPanelsActive = false;
 
     public override void _Ready()
@@ -69,8 +68,8 @@ public class MicrobeHUD : Node
         pauseButtonContainer = GetNode("BottomBar").
             GetNode<MarginContainer>("PauseButtonMargin");
         dataValue = GetNode("BottomRight").GetNode<PanelContainer>("DataValue");
-        atpLabel = dataValue.GetNode("Margin").GetNode("VBox").
-            GetNode<Label>("ATPValue");
+        atpLabel = dataValue.GetNode<Label>("Margin/VBox/ATPValue");
+        hpLabel = dataValue.GetNode<Label>("Margin/VBox/HPValue");
         MusicAudio = GetNode<AudioStreamPlayer>("MusicAudio");
         AmbientAudio = GetNode<AudioStreamPlayer>("AmbientAudio");
         GUIAudio = GetNode<AudioStreamPlayer>("MicrobeGUIAudio");
@@ -162,7 +161,13 @@ public class MicrobeHUD : Node
     /// </summary>
     public void ShowReproductionDialog()
     {
-        // code goes here
+        var editorButton = GetNode<TextureButton>("BottomRight/EditorButton");
+
+        editorButton.Disabled = false;
+        editorButton.GetNode<TextureRect>("Highlight").Show();
+        editorButton.GetNode<Control>("ReproductionBar").Hide();
+        editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Play(
+            "EditorButtonFlash");
     }
 
     /// <summary>
@@ -170,7 +175,12 @@ public class MicrobeHUD : Node
     /// </summary>
     public void HideReproductionDialog()
     {
-        // code goes here
+        var editorButton = GetNode<TextureButton>("BottomRight/EditorButton");
+
+        editorButton.Disabled = true;
+        editorButton.GetNode<TextureRect>("Highlight").Hide();
+        editorButton.GetNode<Control>("ReproductionBar").Show();
+        editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Stop();
     }
 
     public void PlayRandomMusic()
@@ -391,7 +401,7 @@ public class MicrobeHUD : Node
                     atpLabel.Text = bar.Value + " / " + bar.MaxValue;
                 }
 
-                // todo: Health bar
+                // todo: Health bar and reproduction progress calculation
             }
         }
     }
