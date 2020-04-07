@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
@@ -11,7 +12,7 @@ using Newtonsoft.Json;
 ///     an existing hex for use by the editor.
 ///   </para>
 /// </remarks>
-public class OrganelleLayout<T>
+public class OrganelleLayout<T> : IEnumerable<T>
     where T : class, IPositionedOrganelle
 {
     [JsonProperty]
@@ -161,5 +162,15 @@ public class OrganelleLayout<T>
     public override string ToString()
     {
         return JsonConvert.SerializeObject(this);
+    }
+
+    public IEnumerator<T> GetEnumerator()
+    {
+        return Organelles.GetEnumerator();
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return Organelles.GetEnumerator();
     }
 }

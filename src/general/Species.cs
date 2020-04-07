@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 ///   Class that represents a species. This is an abstract base for
 ///   use by all stage-specific species classes.
 /// </summary>
-public abstract class Species
+public abstract class Species : ICloneable
 {
     /// <summary>
     ///   This is the amount of compounds cells of this type spawn with
@@ -128,5 +128,35 @@ public abstract class Species
     public void BecomePlayerSpecies()
     {
         PlayerSpecies = true;
+    }
+
+    /// <summary>
+    ///   Creates a cloned version of the species. This should only
+    ///   really be used if you need to modify a species while
+    ///   referring to the old data. In for example the Mutations
+    ///   code.
+    /// </summary>
+    public abstract object Clone();
+
+    /// <summary>
+    ///   Helper for child classes to implement Clone
+    /// </summary>
+    protected void ClonePropertiesTo(Species species)
+    {
+        foreach (var entry in InitialCompounds)
+            species.InitialCompounds[entry.Key] = entry.Value;
+
+        species.Genus = Genus;
+        species.Epithet = Epithet;
+        species.Colour = Colour;
+        species.Aggression = Aggression;
+        species.Opportunism = Opportunism;
+        species.Fear = Fear;
+        species.Activity = Activity;
+        species.Focus = Focus;
+        species.Population = Population;
+        species.Generation = Generation;
+        species.ID = ID;
+        species.PlayerSpecies = PlayerSpecies;
     }
 }

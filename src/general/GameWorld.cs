@@ -57,6 +57,19 @@ public class GameWorld
 
     public TimedWorldOperations TimedEffects { get; private set; }
 
+    public static void SetInitialSpeciesProperties(MicrobeSpecies species)
+    {
+        species.IsBacteria = true;
+        species.SetInitialCompoundsForDefault();
+        species.Genus = "Primum";
+        species.Epithet = "Thrivium";
+
+        species.MembraneType = SimulationParameters.Instance.GetMembrane("single");
+
+        species.Organelles.Add(new OrganelleTemplate(
+            SimulationParameters.Instance.GetOrganelleType("cytoplasm"), new Hex(0, 0), 0));
+    }
+
     /// <summary>
     ///   Creates an empty species object
     /// </summary>
@@ -73,16 +86,7 @@ public class GameWorld
         var species = NewMicrobeSpecies();
         species.BecomePlayerSpecies();
 
-        species.IsBacteria = true;
-        species.InitialCompounds.Add("atp", 30);
-        species.InitialCompounds.Add("glucose", 10);
-        species.Genus = "Primum";
-        species.Epithet = "Thrivium";
-
-        species.MembraneType = SimulationParameters.Instance.GetMembrane("single");
-
-        species.Organelles.Add(new OrganelleTemplate(
-            SimulationParameters.Instance.GetOrganelleType("cytoplasm"), new Hex(0, 0), 0));
+        SetInitialSpeciesProperties(species);
 
         return species;
     }
@@ -102,10 +106,10 @@ public class GameWorld
     {
         switch (species)
         {
-            case MicrobeSpecies s:
-                return mutator.CreateMutatedSpecies(s, NewMicrobeSpecies());
-            default:
-                throw new ArgumentException("unhandled species type for CreateMutatedSpecies");
+        case MicrobeSpecies s:
+            return mutator.CreateMutatedSpecies(s, NewMicrobeSpecies());
+        default:
+            throw new ArgumentException("unhandled species type for CreateMutatedSpecies");
         }
     }
 }
