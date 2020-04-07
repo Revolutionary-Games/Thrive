@@ -219,6 +219,17 @@ public class Constants
     public const float MUTATION_DELETION_RATE = 0.1f;
     public const float MUTATION_REPLACEMENT_RATE = 0.1f;
 
+    // Max fear and agression and activity
+    public const float MAX_SPECIES_AGRESSION = 400.0f;
+    public const float MAX_SPECIES_FEAR = 400.0f;
+    public const float MAX_SPECIES_ACTIVITY = 400.0f;
+    public const float MAX_SPECIES_FOCUS = 400.0f;
+    public const float MAX_SPECIES_OPPORTUNISM = 400.0f;
+
+    // Personality Mutation
+    public const float MAX_SPECIES_PERSONALITY_MUTATION = 20.0f;
+    public const float MIN_SPECIES_PERSONALITY_MUTATION = -20.0f;
+
     // Genus splitting and name mutation
     public const int MUTATION_CHANGE_GENUS = 33;
     public const int MUTATION_WORD_EDIT = 10;

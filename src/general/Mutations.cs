@@ -28,10 +28,174 @@ public class Mutations
     /// <summary>
     ///   Creates a mutated version of a species
     /// </summary>
-    public MicrobeSpecies CreateMutatedSpecies(MicrobeSpecies original, MicrobeSpecies mutated)
+    public MicrobeSpecies CreateMutatedSpecies(MicrobeSpecies parent, MicrobeSpecies mutated)
     {
-        // TODO: fix
+        var simulation = SimulationParameters.Instance;
+        var nameGenerator = simulation.NameGenerator;
+
+        mutated.IsBacteria = parent.IsBacteria;
+
+        // Mutate the epithet
+        if (random.Next(0, 100) < Constants.MUTATION_WORD_EDIT)
+        {
+            mutated.Epithet = MutateWord(parent.Epithet);
+        }
+        else
+        {
+            mutated.Epithet = nameGenerator.GenerateNameSection();
+        }
+
+        mutated.Genus = parent.Genus;
+
+        MutateBehaviour(parent, mutated);
+
+        if (random.Next(0, 100) <= Constants.MUTATION_CHANGE_GENUS)
+        {
+            // We can do more fun stuff here later
+            if (random.Next(0, 100) < Constants.MUTATION_WORD_EDIT)
+            {
+                mutated.Genus = MutateWord(parent.Genus);
+            }
+            else
+            {
+                mutated.Genus = nameGenerator.GenerateNameSection();
+            }
+        }
+
+        MutateMicrobeOrganelles(parent.Organelles, mutated.Organelles, mutated.IsBacteria);
+
+        // There is a small chance of evolving into a eukaryote
+        var nucleus = simulation.GetOrganelleType("nucleus");
+
+        if (mutated.Organelles.Any(o => o.Definition == nucleus))
+        {
+            mutated.IsBacteria = false;
+        }
+
+        var colour = mutated.IsBacteria ? RandomProkayroteColour() :
+            RandomColour();
+
+        if (random.Next(0, 100) <= 20)
+        {
+            // Could perhaps use a weighted entry model here... the
+            // earlier one is listed, the more likely currently (I
+            // think). That may be an issue.
+            if (random.Next(0, 100) < 50)
+            {
+                mutated.MembraneType = simulation.GetMembrane("single");
+            }
+            else if (random.Next(0, 100) < 50)
+            {
+                mutated.MembraneType = simulation.GetMembrane("double");
+                colour.a = RandomOpacityChitin();
+            }
+            else if (random.Next(0, 100) < 50)
+            {
+                mutated.MembraneType = simulation.GetMembrane("cellulose");
+            }
+            else if (random.Next(0, 100) < 50)
+            {
+                mutated.MembraneType = simulation.GetMembrane("chitin");
+                colour.a = RandomOpacityChitin();
+            }
+            else if (random.Next(0, 100) < 50)
+            {
+                mutated.MembraneType = simulation.GetMembrane("calcium_carbonate");
+                colour.a = RandomOpacityChitin();
+            }
+            else
+            {
+                mutated.MembraneType = simulation.GetMembrane("silica");
+                colour.a = RandomOpacityChitin();
+            }
+        }
+        else
+        {
+            mutated.MembraneType = parent.MembraneType;
+        }
+
+        mutated.MembraneRigidity = Math.Max(Math.Min(parent.MembraneRigidity +
+                random.Next(-25, 25) / 100.0f, 1), -1);
+
+        // If you have iron (f is the symbol for rusticyanin)
+        var rusticyanin = simulation.GetOrganelleType("rusticyanin");
+        var chemo = simulation.GetOrganelleType("chemoplast");
+        var chemoProtein = simulation.GetOrganelleType("chemoSynthesizingProteins");
+
+        if (mutated.Organelles.Any(o => o.Definition == rusticyanin))
+        {
+            mutated.SetInitialCompoundsForIron();
+        }
+        else if (mutated.Organelles.Any(o => o.Definition == chemo ||
+                o.Definition == chemoProtein))
+        {
+            mutated.SetInitialCompoundsForChemo();
+        }
+        else
+        {
+            mutated.SetInitialCompoundsForDefault();
+        }
+
         return mutated;
+    }
+
+    /// <summary>
+    ///   Creates a fully random species starting with one cytoplasm
+    /// </summary>
+    public MicrobeSpecies CreateRandomSpecies(MicrobeSpecies mutated, int steps = 5)
+    {
+        // Temporarily create species with just cytoplasm to start mutating from
+        var temp = new MicrobeSpecies(int.MaxValue);
+
+        GameWorld.SetInitialSpeciesProperties(temp);
+
+        // TODO: in the old code GenerateNameSection was used to
+        // override the default species name here
+
+        for (int step = 0; step < steps; ++step)
+        {
+            CreateMutatedSpecies(temp, mutated);
+            temp = (MicrobeSpecies)mutated.Clone();
+        }
+
+        return mutated;
+    }
+
+    private void MutateBehaviour(MicrobeSpecies parent, MicrobeSpecies mutated)
+    {
+        // Variables used in AI to determine general behavior mutate these
+        float aggression = parent.Aggression + random.Next(
+            Constants.MIN_SPECIES_PERSONALITY_MUTATION,
+            Constants.MAX_SPECIES_PERSONALITY_MUTATION);
+        float fear = parent.Fear + random.Next(
+            Constants.MIN_SPECIES_PERSONALITY_MUTATION,
+            Constants.MAX_SPECIES_PERSONALITY_MUTATION);
+        float activity = parent.Activity + random.Next(
+            Constants.MIN_SPECIES_PERSONALITY_MUTATION,
+            Constants.MAX_SPECIES_PERSONALITY_MUTATION);
+        float focus = parent.Focus + random.Next(
+            Constants.MIN_SPECIES_PERSONALITY_MUTATION,
+            Constants.MAX_SPECIES_PERSONALITY_MUTATION);
+        float opportunism = parent.Opportunism + random.Next(
+            Constants.MIN_SPECIES_PERSONALITY_MUTATION,
+            Constants.MAX_SPECIES_PERSONALITY_MUTATION);
+
+        // Make sure not over or under our scales
+        // This used to be a method as well
+        mutated.Aggression = aggression.Clamp(0.0f, Constants.MAX_SPECIES_AGRESSION);
+        mutated.Fear = fear.Clamp(0.0f, Constants.MAX_SPECIES_FEAR);
+        mutated.Activity = activity.Clamp(0.0f, Constants.MAX_SPECIES_ACTIVITY);
+        mutated.Focus = focus.Clamp(0.0f, Constants.MAX_SPECIES_FOCUS);
+        mutated.Opportunism = opportunism.Clamp(0.0f, Constants.MAX_SPECIES_OPPORTUNISM);
+    }
+
+    /// <summary>
+    ///   Creates a mutated version of parentOrganelles in organelles
+    /// </summary>
+    private void MutateMicrobeOrganelles(OrganelleLayout<OrganelleTemplate> parentOrganelles,
+        OrganelleLayout<OrganelleTemplate> organelles, bool isBacteria)
+    {
+        organelles.RemoveAll();
     }
 
     private float RandomColourChannel()
@@ -151,28 +315,28 @@ public class Mutations
                     changes++;
                     switch (random.Next(0, 5))
                     {
-                        case 0:
-                            newName.Insert(index, Vowels.Random(random)
-                                + Consonants.Random(random));
-                            break;
-                        case 1:
-                            newName.Insert(index, Consonants.Random(random)
-                                + Vowels.Random(random));
-                            break;
-                        case 2:
-                            newName.Insert(index, original + Consonants.Random(random));
-                            break;
-                        case 3:
-                            newName.Insert(index, Consonants.Random(random) + original);
-                            break;
-                        case 4:
-                            newName.Insert(index, original + Consonants.Random(random)
-                                + Vowels.Random(random));
-                            break;
-                        case 5:
-                            newName.Insert(index, Vowels.Random(random) +
-                                Consonants.Random(random) + original);
-                            break;
+                    case 0:
+                        newName.Insert(index, Vowels.Random(random)
+                            + Consonants.Random(random));
+                        break;
+                    case 1:
+                        newName.Insert(index, Consonants.Random(random)
+                            + Vowels.Random(random));
+                        break;
+                    case 2:
+                        newName.Insert(index, original + Consonants.Random(random));
+                        break;
+                    case 3:
+                        newName.Insert(index, Consonants.Random(random) + original);
+                        break;
+                    case 4:
+                        newName.Insert(index, original + Consonants.Random(random)
+                            + Vowels.Random(random));
+                        break;
+                    case 5:
+                        newName.Insert(index, Vowels.Random(random) +
+                            Consonants.Random(random) + original);
+                        break;
                     }
                 }
 
