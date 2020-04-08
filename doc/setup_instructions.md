@@ -1,6 +1,5 @@
 What's this?
 ============
-
 These are the setup instructions for compiling Thrive.
 
 Important Note: If you run into any trouble with the setup process, please
@@ -79,28 +78,57 @@ https://github.com/godotengine/godot-monodevelop-addin This is not
 needed for basic usage, so you can skip if you can't figure out how to
 install it.
 
-On Windows you should be able to install visual studio 2019 with the
+On Windows you should be able to install Visual Studio 2019 with the
 desktop development featureset, that should have everything needed for
 C# development. Please be patient with this as this is going to take
 tens of minutes to install and take a lot of disk space.
 
-It is also be possible to make things work with visual studio code
-as well, but the setup process is more complicated and more likely to not work. Note: that Godot requirements say that visual studio build tools are enough but they may not include nuget, which is needed, so if you go that route you may need to manually install nuget.
+It might also be possible to make things work with Visual Studio Code
+as well, but there are no instructions for that. Note: that Godot
+requirements say that Visual Studio build tools are enough but they
+may not include nuget, which is needed, so if you go that route you
+may need to manually install nuget.
 
-### Visual Studio Code
-To setup visual studio code to work with Godot, you'll need to have visual studio code, where you can install it here: https://code.visualstudio.com/
+### Visual Studio Codeto
+To setup Visual Studio Code  work with Godot, you'll need
+Visual Studio Code, where you can install it here:
+https://code.visualstudio.com/
 
-Note: Setting up with visual studio code is possible in Linux, but is not recommended, use MonoDevelop instead.
+Note: Setting up Visual Studio Code with Linux is possible,
+however it is recommended to use Monodevelp instead
 
-Next, install build tools for visual studio here: https://visualstudio.microsoft.com/downloads/?q=build+tools For the installation process, make sure MSBuild tools is listed under Installation details, it should be there by default.
+Next, install Build Tools for Visual Studio here:
+https://visualstudio.microsoft.com/downloads/?q=build+tools During the
+installation process, make sure MSBuild tools is listed under
+Installation details.
 
-Go to https://dotnet.microsoft.com/download Under the .NET Core section, click on _Download .NET Core SDK_. Run the installer. Go back to the main download page and find _All .NET Framework Downloads_ under the .NET framework section. Install 4.7 and select the Developer Pack.
+Go to https://dotnet.microsoft.com/download Under the .NET Core
+section, click on _Download .NET Core SDK_ and run the installer.
+Go back to the main download page and find
+_All .NET Framework Downloads_ Choose version 4.7 and select the Developer Pack.
 
-On visual studio code, go to the Extensions tab. Get the extensions _C#_, _Mono Debug_, and _godot-tools_.
+On Visual Studio Code, go to the Extensions tab. Get the extensions
+_C#_, _Mono Debug_, and _godot-tools_.
 
-Open up a new Godot Project. On the top, go to Editor -> Editor Settings. Scroll to the bottom, where you'll find Mono. Click on Editor and set External Editor to visual studio code. Click on Builds and set Build Tool to MSBuild (VS Build Tools).
+Open up a new Godot Project. On the top toolbar, go to Editor -> Editor
+Settings. Scroll down on the left window until you find Mono.
+Click on Editor and set External Editor to Visual Studio Code. Click on
+Builds and set Build Tool to MSBuild (VS Build Tools).
 
-If you want to setup live debugging with Godot, on the top, go to Project -> Project Settings. Near the bottom, you will find Mono. Click on Debugger Agent. When you want to use the Debugger, turn the Wait for Debugger on. Set the Wait Timeout to how many milliseconds you want Godot to wait for visual studio code debugging, recommended to be set around 15000. Copy the port number and go to visual studio code. Make sure visual studio code is open to your Godot folder. Go to the debug tab and click on _create a launch.json file_. Select C# Mono. When the _launch.json_ file is opened, change the port number to the one you copied previously. Save the file and you can close it. On the Debug tab, switch Launch to Attach. Now, whenever you want to debug, make sure Wait for Debugger is on in Godot, run the project, and press the green arrow in the debugger in visual studio code.
+If you want to setup live debugging with Godot, go to the top tooblar,
+go to Project -> Project Settings. Scroll down on the left window until
+you find Mono. Click on Debugger Agent. When you want to use the debugger,
+turn the _Wait for Debugger_ setting on. Set the _Wait Timeout_ to how
+many milliseconds you want Godot to wait for your debugger to connect.
+Setting it to 15000 is recommended. Copy the port number and open up
+Visual Studio Code. Make sure Visual Studio Code has the Godot projcect 
+folder open. Go to the debug tab and click on
+_create a launch.json file_. Select C# Mono from the dropdown menu.
+When the _launch.json_ file is automatically opened, change the port
+number to the number you copied previously. Save the file.
+On the Debug tab, switch the Run setting from Launch to
+Attach. Whenever you want to debug, make sure _Wait for Debugger_ is
+turned on in Godot, run the project, and run the debugger in Visual Studio Code.
 
 Optional
 --------
@@ -246,7 +274,8 @@ code editor.
 Thrive uses some external C# packages which need to be restored before
 compiling.
 
-On Linux, or if you're using visual studio code, open a terminal to the thrive folder and run the following
+On Linux, or if you're using Visual Studio Code, open a terminal to
+the thrive folder and run the following
 command: `nuget restore` it should download the missing nuget
 packages. You may need to rerun this command when new package
 dependencies are added to Thrive. Note: if you use MonoDevelop it
@@ -254,14 +283,14 @@ dependencies are added to Thrive. Note: if you use MonoDevelop it
 compiling the game within MonoDevelop. 
 
 
-On Windows you should use visual Studio to restore the packages. To do
+On Windows you should use Visual Studio to restore the packages. To do
 this open `Thrive.sln` in the Thrive folder. The package restore might
 automatically happen if you compile the solution. If it doesn't please
-refer to this page on how to restore the nuget packages with visual
+refer to this page on how to restore the nuget packages with Visual
 Studio:
 https://docs.microsoft.com/en-us/nuget/consume-packages/package-restore
 
-If you have nuget in path or you use the visual studio command prompt
+If you have nuget in path or you use the Visual Studio command prompt
 you should also be able to restore the packages by running `nuget
 restore` in the Thrive folder.
 
@@ -277,7 +306,7 @@ good to go.
 For developing Thrive you can also compile from your development
 environment (and not the Godot editor) to see warnings and get
 highlighting of errors in the source code. However running the game
-from visual studio is a bit complicated.
+from Visual Studio is a bit complicated.
 
 From MonoDevelop you can use the plugin mentioned before, that adds a
 toolbar with a button to launch the game. To do that open `Thrive.sln`
