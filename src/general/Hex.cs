@@ -27,15 +27,15 @@ public struct Hex : IEquatable<Hex>
     ///   maps the hex side to the coordinate offset of the neighbour
     ///   adjacent to that side.
     /// </summary>
-    public static readonly Dictionary<HEX_SIDE, Int2> HexNeighbourOffset =
-        new Dictionary<HEX_SIDE, Int2>()
+    public static readonly Dictionary<HEX_SIDE, Hex> HexNeighbourOffset =
+        new Dictionary<HEX_SIDE, Hex>()
         {
-            { HEX_SIDE.TOP, new Int2(0,  1) },
-            { HEX_SIDE.TOP_RIGHT, new Int2(1,  0) },
-            { HEX_SIDE.BOTTOM_RIGHT, new Int2(1, -1) },
-            { HEX_SIDE.BOTTOM, new Int2(0, -1) },
-            { HEX_SIDE.BOTTOM_LEFT, new Int2(-1,  0) },
-            { HEX_SIDE.TOP_LEFT, new Int2(-1,  1) },
+            { HEX_SIDE.TOP, new Hex(0, 1) },
+            { HEX_SIDE.TOP_RIGHT, new Hex(1, 0) },
+            { HEX_SIDE.BOTTOM_RIGHT, new Hex(1, -1) },
+            { HEX_SIDE.BOTTOM, new Hex(0, -1) },
+            { HEX_SIDE.BOTTOM_LEFT, new Hex(-1, 0) },
+            { HEX_SIDE.TOP_LEFT, new Hex(-1, 1) },
         };
 
     public int Q;

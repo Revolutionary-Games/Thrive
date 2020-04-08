@@ -14,6 +14,12 @@ public class SimulationParameters
     private Dictionary<string, Compound> compounds;
     private Dictionary<string, OrganelleDefinition> organelles;
 
+    // These are for mutations to be able to randomly pick items in a weighted manner
+    private List<OrganelleDefinition> prokaryoticOrganelles;
+    private float prokaryoticOrganellesTotalChance;
+    private List<OrganelleDefinition> eukaryoticOrganelles;
+    private float eukaryoticOrganellesChance;
+
     static SimulationParameters()
     {
     }
@@ -113,6 +119,36 @@ public class SimulationParameters
         return result;
     }
 
+    public OrganelleDefinition GetRandomProkaryoticOrganelle(Random random)
+    {
+        float valueLeft = random.Next(0.0f, prokaryoticOrganellesTotalChance);
+
+        foreach (var organelle in prokaryoticOrganelles)
+        {
+            valueLeft -= organelle.ProkaryoteChance;
+
+            if (valueLeft <= 0.00001f)
+                return organelle;
+        }
+
+        return prokaryoticOrganelles[prokaryoticOrganelles.Count - 1];
+    }
+
+    public OrganelleDefinition GetRandomEukaryoticOrganelle(Random random)
+    {
+        float valueLeft = random.Next(0.0f, eukaryoticOrganellesChance);
+
+        foreach (var organelle in eukaryoticOrganelles)
+        {
+            valueLeft -= organelle.ChanceToCreate;
+
+            if (valueLeft <= 0.00001f)
+                return organelle;
+        }
+
+        return eukaryoticOrganelles[eukaryoticOrganelles.Count - 1];
+    }
+
     private static string ReadJSONFile(string path)
     {
         using (var file = new File())
@@ -176,7 +212,34 @@ public class SimulationParameters
 
         NameGenerator.Resolve(this);
 
+        BuildOrganelleChances();
+
         // TODO: there could also be a check for making sure
         // non-existant compounds, processes etc. are not used
+    }
+
+    private void BuildOrganelleChances()
+    {
+        prokaryoticOrganelles = new List<OrganelleDefinition>();
+        eukaryoticOrganelles = new List<OrganelleDefinition>();
+        prokaryoticOrganellesTotalChance = 0.0f;
+        eukaryoticOrganellesChance = 0.0f;
+
+        foreach (var entry in organelles)
+        {
+            var organelle = entry.Value;
+
+            if (organelle.ChanceToCreate > 0)
+            {
+                eukaryoticOrganelles.Add(organelle);
+                eukaryoticOrganellesChance += organelle.ChanceToCreate;
+            }
+
+            if (organelle.ProkaryoteChance > 0)
+            {
+                prokaryoticOrganelles.Add(organelle);
+                prokaryoticOrganellesTotalChance += organelle.ChanceToCreate;
+            }
+        }
     }
 }

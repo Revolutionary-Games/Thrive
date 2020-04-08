@@ -92,6 +92,29 @@ public class GameWorld
     }
 
     /// <summary>
+    ///   Generates a few random species in all patches
+    /// </summary>
+    public void GenerateRandomSpeciesForFreeBuild()
+    {
+        throw new NotImplementedException();
+
+        // auto@ patches = map.getPatches();
+        //
+        // for (uint i = 0; i < patches.length(); ++i)
+        // {
+        //
+        //     const int species = GetEngine().GetRandom().GetNumber(1, 4);
+        //     for (int count = 0; count < species; ++count)
+        //     {
+        //
+        //         patches[i].addSpecies(createRandomSpecies(),
+        //             GetEngine().GetRandom().GetNumber(INITIAL_SPLIT_POPULATION_MIN,
+        //                 INITIAL_SPLIT_POPULATION_MAX));
+        //     }
+        // }
+    }
+
+    /// <summary>
     ///   Simulate long term world time passing
     /// </summary>
     public void OnTimePassed(double timePassed)
