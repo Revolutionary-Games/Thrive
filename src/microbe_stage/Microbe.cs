@@ -655,8 +655,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         {
             // Moves into the ring of radius "radius" and center the old organelle
             var radiusOffset = Hex.HexNeighbourOffset[Hex.HEX_SIDE.BOTTOM_LEFT];
-            q = q + radiusOffset.x;
-            r = r + radiusOffset.y;
+            q = q + radiusOffset.Q;
+            r = r + radiusOffset.R;
 
             // Iterates in the ring
             for (int side = 1; side <= 6; ++side)
@@ -666,8 +666,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
                 // Moves "radius" times into each direction
                 for (int i = 1; i <= radius; ++i)
                 {
-                    q = q + offset.x;
-                    r = r + offset.y;
+                    q = q + offset.Q;
+                    r = r + offset.R;
 
                     // Checks every possible rotation value.
                     for (int j = 0; j <= 5; ++j)

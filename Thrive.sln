@@ -24,8 +24,6 @@ Global
 		$2.scope = text/x-csharp
 		$0.CSharpFormattingPolicy = $3
 		$3.IndentSwitchSection = False
-		$3.NewLineForCatch = False
-		$3.NewLineForFinally = False
 		$3.NewLineForMembersInObjectInit = False
 		$3.NewLineForMembersInAnonymousTypes = False
 		$3.NewLineForClausesInQuery = False

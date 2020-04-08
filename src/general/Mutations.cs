@@ -195,7 +195,164 @@ public class Mutations
     private void MutateMicrobeOrganelles(OrganelleLayout<OrganelleTemplate> parentOrganelles,
         OrganelleLayout<OrganelleTemplate> organelles, bool isBacteria)
     {
+        var nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
+
         organelles.RemoveAll();
+
+        // Delete or replace an organelle randomly
+        for (int i = 0; i < parentOrganelles.Count; i++)
+        {
+            bool copy = true;
+
+            var organelle = parentOrganelles[i];
+
+            if (parentOrganelles.Count < 2)
+            {
+                // Removing last organelle would be silly
+            }
+            else if (organelle.Definition != nucleus)
+            {
+                // Chance to replace or remove if not a nucleus
+
+                if (random.Next(0.0f, 1.0f) < Constants.MUTATION_DELETION_RATE)
+                {
+                    copy = false;
+                }
+                else if (random.Next(0.0f, 1.0f) < Constants.MUTATION_REPLACEMENT_RATE)
+                {
+                    copy = false;
+
+                    var replacer = new OrganelleTemplate(GetRandomOrganelle(isBacteria),
+                        organelle.Position, organelle.Orientation);
+
+                    // The replacing organelle might not fit at the same position
+                    try
+                    {
+                        organelles.Add(replacer);
+                    }
+                    catch (ArgumentException)
+                    {
+                        // Couldn't replace it
+                        copy = true;
+                    }
+                }
+            }
+
+            if (!copy)
+                continue;
+
+            // Copy the organelle
+            try
+            {
+                organelles.Add((OrganelleTemplate)organelle.Clone());
+            }
+            catch (ArgumentException)
+            {
+                // Add the organelle randomly back to the list to make
+                // sure we don't throw it away
+                AddNewOrganelle(organelles, organelle.Definition);
+            }
+        }
+
+        // Can add up to 6 new organelles (Which should allow AI to catch up to player more
+        // We can insert new organelles at the end of the list
+        if (random.Next(0.0f, 1.0f) < Constants.MUTATION_CREATION_RATE)
+        {
+            AddNewOrganelle(organelles, GetRandomOrganelle(isBacteria));
+        }
+
+        /*
+        Probability of mutation occuring 5 time(s) = 0.15 = 1.0E-5
+        Probability of mutation NOT occuring = (1 - 0.1)5 = 0.59049
+        Probability of mutation occuring = 1 - (1 - 0.1)5 = 0.40951
+        */
+
+        // We can insert new organelles at the end of the list
+        for (int n = 0; n < 5; ++n)
+        {
+            if (random.Next(0.0f, 1.0f) < Constants.MUTATION_EXTRA_CREATION_RATE)
+            {
+                AddNewOrganelle(organelles, GetRandomOrganelle(isBacteria));
+            }
+        }
+
+        if (isBacteria)
+        {
+            if (random.Next(0.0f, 100.0f) <= Constants.MUTATION_BACTERIA_TO_EUKARYOTE)
+            {
+                AddNewOrganelle(organelles, nucleus);
+            }
+        }
+    }
+
+    /// <summary>
+    ///   Adds a new organelle to a mutation result
+    /// </summary>
+    private void AddNewOrganelle(OrganelleLayout<OrganelleTemplate> organelles,
+        OrganelleDefinition organelle)
+    {
+        try
+        {
+            organelles.Add(GetRealisticPosition(organelle, organelles));
+        }
+        catch (ArgumentException)
+        {
+            // Failing to add a mutation is not serious
+        }
+    }
+
+    private OrganelleDefinition GetRandomOrganelle(bool isBacteria)
+    {
+        if (isBacteria)
+        {
+            return SimulationParameters.Instance.GetRandomProkaryoticOrganelle(random);
+        }
+        else
+        {
+            return SimulationParameters.Instance.GetRandomEukaryoticOrganelle(random);
+        }
+    }
+
+    private OrganelleTemplate GetRealisticPosition(OrganelleDefinition organelle,
+        OrganelleLayout<OrganelleTemplate> existingOrganelles)
+    {
+        var result = new OrganelleTemplate(organelle, new Hex(0, 0), 0);
+
+        // Loop through all the organelles and find an open spot to
+        // place our new organelle attached to existing organelles
+        // This almost always is over at the first iteration, so its
+        // not a huge performance hog
+        foreach (var otherOrganelle in existingOrganelles.OrderBy(_ => random.Next()))
+        {
+            // The otherOrganelle is the organelle we wish to be next to
+            // Loop its hexes and check positions next to them
+            foreach (var hex in otherOrganelle.RotatedHexes)
+            {
+                // Offset by hexes in organelle we are looking at
+                var pos = otherOrganelle.Position + hex;
+
+                for (int side = 1; side <= 6; ++side)
+                {
+                    // Offset by hex offset
+                    result.Position = pos + Hex.HexNeighbourOffset[(Hex.HEX_SIDE)side];
+
+                    // Check every possible rotation value.
+                    for (int rotation = 0; rotation <= 5; ++rotation)
+                    {
+                        result.Orientation = rotation;
+
+                        if (existingOrganelles.CanPlace(result))
+                        {
+                            return result;
+                        }
+                    }
+                }
+            }
+        }
+
+        // We didnt find an open spot, this doesn't make much sense
+        throw new Exception("Mutation code could not find a good position " +
+            "for a new organelle");
     }
 
     private float RandomColourChannel()
@@ -315,28 +472,28 @@ public class Mutations
                     changes++;
                     switch (random.Next(0, 5))
                     {
-                    case 0:
-                        newName.Insert(index, Vowels.Random(random)
-                            + Consonants.Random(random));
-                        break;
-                    case 1:
-                        newName.Insert(index, Consonants.Random(random)
-                            + Vowels.Random(random));
-                        break;
-                    case 2:
-                        newName.Insert(index, original + Consonants.Random(random));
-                        break;
-                    case 3:
-                        newName.Insert(index, Consonants.Random(random) + original);
-                        break;
-                    case 4:
-                        newName.Insert(index, original + Consonants.Random(random)
-                            + Vowels.Random(random));
-                        break;
-                    case 5:
-                        newName.Insert(index, Vowels.Random(random) +
-                            Consonants.Random(random) + original);
-                        break;
+                        case 0:
+                            newName.Insert(index, Vowels.Random(random)
+                                + Consonants.Random(random));
+                            break;
+                        case 1:
+                            newName.Insert(index, Consonants.Random(random)
+                                + Vowels.Random(random));
+                            break;
+                        case 2:
+                            newName.Insert(index, original + Consonants.Random(random));
+                            break;
+                        case 3:
+                            newName.Insert(index, Consonants.Random(random) + original);
+                            break;
+                        case 4:
+                            newName.Insert(index, original + Consonants.Random(random)
+                                + Vowels.Random(random));
+                            break;
+                        case 5:
+                            newName.Insert(index, Vowels.Random(random) +
+                                Consonants.Random(random) + original);
+                            break;
                     }
                 }
 
