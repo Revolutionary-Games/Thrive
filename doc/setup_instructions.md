@@ -1,5 +1,6 @@
 What's this?
 ============
+
 These are the setup instructions for compiling Thrive.
 
 Important Note: If you run into any trouble with the setup process, please
@@ -89,13 +90,14 @@ requirements say that Visual Studio build tools are enough but they
 may not include nuget, which is needed, so if you go that route you
 may need to manually install nuget.
 
-### Visual Studio Codeto
+### Visual Studio Code
+
 To setup Visual Studio Code  work with Godot, you'll need
-Visual Studio Code, where you can install it here:
+Visual Studio Code. You can install Visual Studio Code from here:
 https://code.visualstudio.com/
 
 Note: Setting up Visual Studio Code with Linux is possible,
-however it is recommended to use Monodevelp instead
+however it is recommended to use MonoDevelop instead
 
 Next, install Build Tools for Visual Studio here:
 https://visualstudio.microsoft.com/downloads/?q=build+tools During the
@@ -107,28 +109,29 @@ section, click on _Download .NET Core SDK_ and run the installer.
 Go back to the main download page and find
 _All .NET Framework Downloads_ Choose version 4.7 and select the Developer Pack.
 
-On Visual Studio Code, go to the Extensions tab. Get the extensions
+Open Visual Studio Code and go to the Extensions tab. Get the extensions
 _C#_, _Mono Debug_, and _godot-tools_.
 
-Open up a new Godot Project. On the top toolbar, go to Editor -> Editor
-Settings. Scroll down on the left window until you find Mono.
-Click on Editor and set External Editor to Visual Studio Code. Click on
-Builds and set Build Tool to MSBuild (VS Build Tools).
+Open up a new Godot Project in the Godot editor. On the top toolbar,
+go to Editor -> Editor Settings. Scroll down on the left window until 
+you find Mono. Click on Editor and set External Editor to Visual
+Studio Code. Click on Builds and set Build Tool to MSBuild (VS Build Tools).
 
-If you want to setup live debugging with Godot, go to the top tooblar,
+If you want to setup live debugging with Godot, go to the top toolbar,
 go to Project -> Project Settings. Scroll down on the left window until
 you find Mono. Click on Debugger Agent. When you want to use the debugger,
 turn the _Wait for Debugger_ setting on. Set the _Wait Timeout_ to how
 many milliseconds you want Godot to wait for your debugger to connect.
 Setting it to 15000 is recommended. Copy the port number and open up
-Visual Studio Code. Make sure Visual Studio Code has the Godot projcect 
+Visual Studio Code. Make sure Visual Studio Code has the Godot project 
 folder open. Go to the debug tab and click on
 _create a launch.json file_. Select C# Mono from the dropdown menu.
 When the _launch.json_ file is automatically opened, change the port
 number to the number you copied previously. Save the file.
 On the Debug tab, switch the Run setting from Launch to
 Attach. Whenever you want to debug, make sure _Wait for Debugger_ is
-turned on in Godot, run the project, and run the debugger in Visual Studio Code.
+turned on in Godot, run the project, and run the debugger in Visual 
+Studio Code.
 
 Optional
 --------
