@@ -99,10 +99,10 @@ https://code.visualstudio.com/
 Note: Setting up Visual Studio Code with Linux is possible,
 however it is recommended to use MonoDevelop instead
 
-Next, install Build Tools for Visual Studio here:
+Next, install Build Tools for Visual Studio from here:
 https://visualstudio.microsoft.com/downloads/?q=build+tools During the
 installation process, make sure MSBuild tools is listed under
-Installation details.
+the installation details.
 
 Go to https://dotnet.microsoft.com/download Under the .NET Core
 section, click on _Download .NET Core SDK_ and run the installer.
