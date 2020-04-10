@@ -69,11 +69,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// </summary>
     private int agentVacuoleCount = 0;
 
-    /// <summary>
-    ///   Multiplied on the movement speed of the microbe.
-    /// </summary>
-    private float movementFactor = 1.0f;
-
     // private float compoundCollectionTimer = EXCESS_COMPOUND_COLLECTION_INTERVAL;
 
     private float escapeInterval = 0;
@@ -108,6 +103,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     ///   being engulfed by us that we are dead.
     /// </summary>
     public bool Dead { get; private set; } = false;
+
+    /// <summary>
+    ///   Multiplied on the movement speed of the microbe.
+    /// </summary>
+    public float MovementFactor { get; private set; } = 1.0f;
 
     /// <summary>
     ///   If true cell is in engulf mode.
@@ -389,7 +389,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         // TODO: make this take elapsed time into account
         HandleCompoundAbsorbing();
 
-        movementFactor = 1.0f;
+        MovementFactor = 1.0f;
         queuedMovementForce = new Vector3(0, 0, 0);
 
         // Reduce agent emission cooldown
@@ -767,12 +767,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         // Movement modifier
         if (EngulfMode)
         {
-            movementFactor /= Constants.ENGULFING_MOVEMENT_DIVISION;
+            MovementFactor /= Constants.ENGULFING_MOVEMENT_DIVISION;
         }
 
         if (isBeingEngulfed)
         {
-            movementFactor /= Constants.ENGULFED_MOVEMENT_DIVISION;
+            MovementFactor /= Constants.ENGULFED_MOVEMENT_DIVISION;
 
             Damage(Constants.ENGULF_DAMAGE * delta, "isBeingEngulfed");
             wasBeingEngulfed = true;
@@ -888,7 +888,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             force *= 0.5f;
         }
 
-        return Transform.basis.Xform(MovementDirection * force) * movementFactor *
+        return Transform.basis.Xform(MovementDirection * force) * MovementFactor *
             (Species.MembraneType.MovementFactor -
                 (Species.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER));
     }
