@@ -6,15 +6,34 @@ using Godot;
 /// </summary>
 public class MicrobeEditorGUI : Node
 {
+    public AudioStreamPlayer MusicAudio;
+    public AudioStreamPlayer UiAudio;
+
     private MicrobeEditor editor;
+
+    private GUICommon guiCommon;
 
     private Godot.Collections.Array organelleSelectionElements;
     private Godot.Collections.Array membraneSelectionElements;
 
     public override void _Ready()
     {
+        guiCommon = GetNode<GUICommon>("/root/GUICommon");
+        UiAudio = GetNode<AudioStreamPlayer>("UiAudio");
+
         organelleSelectionElements = GetTree().GetNodesInGroup("OrganelleSelectionElement");
         membraneSelectionElements = GetTree().GetNodesInGroup("MembraneSelectionElement");
+
+        // Fade out for that smooth satisfying transition
+        guiCommon.Fade(1, null, string.Empty, 0.5f, false);
+    }
+
+    public override void _Input(InputEvent @event)
+    {
+        if (@event.IsActionPressed("ui_cancel"))
+        {
+            MenuButtonPressed();
+        }
     }
 
     public void Init(MicrobeEditor editor)
@@ -161,8 +180,8 @@ public class MicrobeEditorGUI : Node
 
     private void SetCellTab(string tab)
     {
-        var structureTab = GetNode<Control>("LeftPanel/Panel/Structure");
-        var membraneTab = GetNode<Control>("LeftPanel/Panel/Membrane");
+        var structureTab = GetNode<Control>("CellEditor/LeftPanel/Panel/Structure");
+        var membraneTab = GetNode<Control>("CellEditor/LeftPanel/Panel/Membrane");
 
         // Hide all
         structureTab.Hide();
@@ -181,5 +200,27 @@ public class MicrobeEditorGUI : Node
         {
             GD.PrintErr("Invalid tab");
         }
+    }
+
+    private void MenuButtonPressed()
+    {
+        var menu = GetNode<Control>("PauseMenu");
+
+        if (menu.Visible)
+        {
+            menu.Hide();
+        }
+        else
+        {
+            menu.Show();
+        }
+
+        guiCommon.PlayButtonPressSound(UiAudio);
+    }
+
+    private void ExitPressed()
+    {
+        guiCommon.PlayButtonPressSound(UiAudio);
+        GetTree().Quit();
     }
 }

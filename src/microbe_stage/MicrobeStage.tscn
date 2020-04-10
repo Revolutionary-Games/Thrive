@@ -1,4 +1,4 @@
-[gd_scene load_steps=126 format=2]
+[gd_scene load_steps=125 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -67,7 +67,6 @@
 [ext_resource path="res://assets/sounds/microbe-theme-7.ogg" type="AudioStream" id=70]
 [ext_resource path="res://assets/sounds/microbe-theme-6.ogg" type="AudioStream" id=71]
 [ext_resource path="res://assets/sounds/soundeffects/microbe-ambience.ogg" type="AudioStream" id=72]
-[ext_resource path="res://assets/sounds/soundeffects/microbe-ambience2.ogg" type="AudioStream" id=73]
 [ext_resource path="res://assets/sounds/microbe-theme-5.ogg" type="AudioStream" id=74]
 [ext_resource path="res://assets/sounds/microbe-theme-1.ogg" type="AudioStream" id=75]
 [ext_resource path="res://assets/sounds/microbe-theme-4.ogg" type="AudioStream" id=76]
@@ -808,8 +807,12 @@ script = ExtResource( 7 )
 [node name="MicrobeHUD" type="Node" parent="."]
 pause_mode = 2
 script = ExtResource( 9 )
+__meta__ = {
+"_editor_description_": "one ambient track for now, since the other one is too loud.
+Todo: fix it lol"
+}
 MusicTracks = [ ExtResource( 75 ), ExtResource( 77 ), ExtResource( 76 ), ExtResource( 74 ), ExtResource( 71 ), ExtResource( 70 ) ]
-AmbientTracks = [ ExtResource( 72 ), ExtResource( 73 ) ]
+AmbientTracks = [ ExtResource( 72 ) ]
 
 [node name="MouseHoverPanel" type="PanelContainer" parent="MicrobeHUD"]
 anchor_left = 1.0
@@ -2076,14 +2079,14 @@ expand = true
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeHUD/LeftPanels/CompoundsPanel/Compress/VBoxContainer/MarginContainer4/HBoxContainer/HBoxContainer"]
 show_behind_parent = true
 margin_left = 12.0
-margin_right = 77.0
+margin_right = 112.0
 margin_bottom = 75.0
 custom_constants/separation = 25
 
 [node name="GlucoseBar" type="ProgressBar" parent="MicrobeHUD/LeftPanels/CompoundsPanel/Compress/VBoxContainer/MarginContainer4/HBoxContainer/HBoxContainer/VBoxContainer" groups=[
 "MicrobeHUDBar",
 ]]
-margin_right = 65.0
+margin_right = 100.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 65, 25 )
 custom_styles/fg = SubResource( 23 )
@@ -2114,7 +2117,7 @@ __meta__ = {
 "MicrobeHUDBar",
 ]]
 margin_top = 50.0
-margin_right = 65.0
+margin_right = 100.0
 margin_bottom = 75.0
 rect_min_size = Vector2( 65, 25 )
 custom_styles/fg = SubResource( 26 )
@@ -2172,14 +2175,14 @@ expand = true
 [node name="VBoxContainer2" type="VBoxContainer" parent="MicrobeHUD/LeftPanels/CompoundsPanel/Compress/VBoxContainer/MarginContainer4/HBoxContainer/HBoxContainer2"]
 show_behind_parent = true
 margin_left = 12.0
-margin_right = 77.0
+margin_right = 112.0
 margin_bottom = 75.0
 custom_constants/separation = 25
 
 [node name="PhosphateBar" type="ProgressBar" parent="MicrobeHUD/LeftPanels/CompoundsPanel/Compress/VBoxContainer/MarginContainer4/HBoxContainer/HBoxContainer2/VBoxContainer2" groups=[
 "MicrobeHUDBar",
 ]]
-margin_right = 65.0
+margin_right = 100.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 65, 25 )
 custom_styles/fg = SubResource( 27 )
@@ -2210,7 +2213,7 @@ __meta__ = {
 "MicrobeHUDBar",
 ]]
 margin_top = 50.0
-margin_right = 65.0
+margin_right = 100.0
 margin_bottom = 75.0
 rect_min_size = Vector2( 65, 25 )
 custom_styles/fg = SubResource( 28 )
@@ -2260,15 +2263,15 @@ expand = true
 [node name="VBoxContainer3" type="VBoxContainer" parent="MicrobeHUD/LeftPanels/CompoundsPanel/Compress/VBoxContainer/MarginContainer4/HBoxContainer/HBoxContainer3"]
 show_behind_parent = true
 margin_left = 12.0
-margin_right = 77.0
-margin_bottom = 25.0
+margin_right = 112.0
+margin_bottom = 75.0
 size_flags_vertical = 0
 custom_constants/separation = 6
 
 [node name="IronBar" type="ProgressBar" parent="MicrobeHUD/LeftPanels/CompoundsPanel/Compress/VBoxContainer/MarginContainer4/HBoxContainer/HBoxContainer3/VBoxContainer3" groups=[
 "MicrobeHUDBar",
 ]]
-margin_right = 65.0
+margin_right = 100.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 65, 25 )
 custom_styles/fg = SubResource( 29 )
@@ -2526,6 +2529,7 @@ margin_bottom = 43.0
 focus_mode = 0
 toggle_mode = true
 pressed = true
+action_mode = 0
 enabled_focus_mode = 0
 texture_normal = ExtResource( 22 )
 texture_pressed = ExtResource( 35 )
@@ -2890,11 +2894,11 @@ __meta__ = {
 
 [node name="MicrobeStageMenu" type="VBoxContainer" parent="MicrobeHUD/PauseMenu/CenterContainer"]
 margin_left = 515.0
-margin_top = 182.0
+margin_top = 165.0
 margin_right = 765.0
-margin_bottom = 537.0
+margin_bottom = 555.0
 theme = ExtResource( 11 )
-custom_constants/separation = 5
+custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -2906,57 +2910,57 @@ rect_min_size = Vector2( 250, 40 )
 text = "Resume"
 
 [node name="SaveGame" type="Button" parent="MicrobeHUD/PauseMenu/CenterContainer/MicrobeStageMenu"]
-margin_top = 45.0
+margin_top = 50.0
 margin_right = 250.0
-margin_bottom = 85.0
+margin_bottom = 90.0
 rect_min_size = Vector2( 250, 40 )
 disabled = true
 text = "Save Game"
 
 [node name="LoadGame" type="Button" parent="MicrobeHUD/PauseMenu/CenterContainer/MicrobeStageMenu"]
-margin_top = 90.0
+margin_top = 100.0
 margin_right = 250.0
-margin_bottom = 130.0
+margin_bottom = 140.0
 rect_min_size = Vector2( 250, 40 )
 disabled = true
 text = "Load Game"
 
 [node name="Statistics" type="Button" parent="MicrobeHUD/PauseMenu/CenterContainer/MicrobeStageMenu"]
-margin_top = 135.0
+margin_top = 150.0
 margin_right = 250.0
-margin_bottom = 175.0
+margin_bottom = 190.0
 rect_min_size = Vector2( 250, 40 )
 disabled = true
 text = "Statistics"
 
 [node name="Help" type="Button" parent="MicrobeHUD/PauseMenu/CenterContainer/MicrobeStageMenu"]
-margin_top = 180.0
+margin_top = 200.0
 margin_right = 250.0
-margin_bottom = 220.0
+margin_bottom = 240.0
 rect_min_size = Vector2( 250, 40 )
 disabled = true
 text = "Help"
 
 [node name="Options" type="Button" parent="MicrobeHUD/PauseMenu/CenterContainer/MicrobeStageMenu"]
-margin_top = 225.0
+margin_top = 250.0
 margin_right = 250.0
-margin_bottom = 265.0
+margin_bottom = 290.0
 rect_min_size = Vector2( 250, 40 )
 disabled = true
 text = "Options"
 
 [node name="ReturnToMenu" type="Button" parent="MicrobeHUD/PauseMenu/CenterContainer/MicrobeStageMenu"]
-margin_top = 270.0
+margin_top = 300.0
 margin_right = 250.0
-margin_bottom = 310.0
+margin_bottom = 340.0
 rect_min_size = Vector2( 250, 40 )
 disabled = true
 text = "Return to Menu"
 
 [node name="Exit" type="Button" parent="MicrobeHUD/PauseMenu/CenterContainer/MicrobeStageMenu"]
-margin_top = 315.0
+margin_top = 350.0
 margin_right = 250.0
-margin_bottom = 355.0
+margin_bottom = 390.0
 rect_min_size = Vector2( 250, 40 )
 text = "Exit"
 
@@ -2986,5 +2990,3 @@ anims/ShowLeftPanels = SubResource( 51 )
 [connection signal="pressed" from="MicrobeHUD/BottomRight/EditorButton" to="MicrobeHUD" method="EditorButtonPressed"]
 [connection signal="pressed" from="MicrobeHUD/PauseMenu/CenterContainer/MicrobeStageMenu/Resume" to="MicrobeHUD" method="OpenMicrobeStageMenuPressed"]
 [connection signal="pressed" from="MicrobeHUD/PauseMenu/CenterContainer/MicrobeStageMenu/Exit" to="MicrobeHUD" method="ExitPressed"]
-[connection signal="finished" from="MicrobeHUD/MusicAudio" to="MicrobeHUD" method="PlayRandomMusic"]
-[connection signal="finished" from="MicrobeHUD/AmbientAudio" to="MicrobeHUD" method="PlayRandomAmbience"]

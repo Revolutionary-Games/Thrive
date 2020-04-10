@@ -16,12 +16,19 @@ public class MainMenu : Node
     public TextureRect Background;
 
     public AudioStreamPlayer MusicAudio;
-    public AudioStreamPlayer GUIAudio;
+    public AudioStreamPlayer UiAudio;
+
+    private GUICommon guiCommon;
 
     public override void _Ready()
     {
+        guiCommon = GetNode<GUICommon>("/root/GUICommon");
+
         // Start intro video
-        PlayCutscene("res://assets/videos/intro.webm", "RunMenuSetup", true);
+        guiCommon.PlayCutscene("res://assets/videos/intro.webm", this,
+            "OnIntroEnded", true);
+
+        RunMenuSetup();
     }
 
     /// <summary>
@@ -29,19 +36,9 @@ public class MainMenu : Node
     /// </summary>
     public void RunMenuSetup()
     {
-        Fade(1, string.Empty, 1.5f, false);
-
-        if (HasNode("Background"))
-            Background = GetNode<TextureRect>("Background");
-
-        if (HasNode("GUIAudio"))
-            GUIAudio = GetNode<AudioStreamPlayer>("GUIAudio");
-
-        if (HasNode("Music"))
-            MusicAudio = GetNode<AudioStreamPlayer>("Music");
-
-        // Play the menu music
-        MusicAudio.Play();
+        Background = GetNode<TextureRect>("Background");
+        UiAudio = GetNode<AudioStreamPlayer>("UiAudio");
+        MusicAudio = GetNode<AudioStreamPlayer>("Music");
 
         if (MenuArray != null)
             MenuArray.Clear();
@@ -96,83 +93,6 @@ public class MainMenu : Node
     }
 
     /// <summary>
-    ///   Plays the button click sound effect.
-    /// </summary>
-    public void PlayButtonPressSound()
-    {
-        var sound = GD.Load<AudioStream>(
-            "res://assets/sounds/soundeffects/gui/button-hover-click.ogg");
-
-        GUIAudio.Stream = sound;
-        GUIAudio.Play();
-    }
-
-    /// <summary>
-    ///   Helper function for fading to black.
-    ///   Calls a function when finished.
-    /// </summary>
-    /// <param name="transition">
-    ///   Set 0 for fading to black, and 1 for fading to white.
-    /// </param>
-    public void Fade(int transition, string onFinishedMethod,
-        float fadeDuration, bool allowSkipping)
-    {
-        var scene = GD.Load<PackedScene>("res://scripts/gui/Fade.tscn");
-
-        // Instantiate scene
-        var screenFade = (Fade)scene.Instance();
-        AddChild(screenFade);
-
-        screenFade.AllowSkipping = allowSkipping;
-
-        if (transition == 0)
-        {
-            screenFade.FadeToBlack(fadeDuration);
-        }
-        else if (transition == 1)
-        {
-            screenFade.FadeToWhite(fadeDuration);
-        }
-
-        if (onFinishedMethod != string.Empty)
-            screenFade.Connect("FadeFinished", this, onFinishedMethod);
-    }
-
-    /// <summary>
-    ///   Helper function for playing a video stream.
-    ///   Calls a function when finished.
-    /// </summary>
-    public void PlayCutscene(string path, string onFinishedMethod, bool allowSkipping)
-    {
-        var scene = GD.Load<PackedScene>("res://scripts/gui/Cutscene.tscn");
-
-        if (scene == null)
-        {
-            GD.PrintErr("Failed to load the cutscene player scene");
-            return;
-        }
-
-        // Instantiate scene
-        var cutscene = (Cutscene)scene.Instance();
-        AddChild(cutscene);
-
-        cutscene.AllowSkipping = allowSkipping;
-
-        var stream = GD.Load<VideoStream>(path);
-
-        // Play the video stream
-        cutscene.CutsceneVideoPlayer.Stream = stream;
-        cutscene.CutsceneVideoPlayer.Play();
-
-        // Connect finished signal
-        if (onFinishedMethod != string.Empty)
-            cutscene.Connect("CutsceneFinished", this, onFinishedMethod);
-
-        // Initially adjust video player frame size
-        cutscene.OnCutsceneResized();
-    }
-
-    /// <summary>
     ///   Change the menu displayed on screen to one
     ///   with the menu of the given index.
     /// </summary>
@@ -211,23 +131,31 @@ public class MainMenu : Node
         CurrentMenuIndex = index;
     }
 
-    public void OnNewGameFadeFinished()
+    private void OnIntroEnded()
     {
-        // Start microbe intro
-        PlayCutscene("res://assets/videos/microbe_intro2.webm", "OnMicrobeIntroEnded",
-            true);
+        guiCommon.Fade(1, null, string.Empty, 0.5f, false);
+
+        // Play the menu music
+        MusicAudio.Play();
     }
 
-    public void OnMicrobeIntroEnded()
+    private void OnNewGameFadeFinished()
     {
-        // Change the current scene to microbe stage
+        // Start microbe intro
+        guiCommon.PlayCutscene("res://assets/videos/microbe_intro2.webm", this,
+            "OnMicrobeIntroEnded", true);
+    }
+
+    private void OnMicrobeIntroEnded()
+    {
+        // Instantiate a new microbe stage scene
         // TODO: Add loading screen while changing between scenes
         GetTree().ChangeScene("res://src/microbe_stage/MicrobeStage.tscn");
     }
 
-    public void NewGamePressed()
+    private void NewGamePressed()
     {
-        PlayButtonPressSound();
+        guiCommon.PlayButtonPressSound(UiAudio);
 
         var tween = GetNode<Tween>("MenuTween");
 
@@ -240,29 +168,32 @@ public class MainMenu : Node
         }
 
         // Start fade
-        Fade(0, "OnNewGameFadeFinished", 0.8f, true);
+        guiCommon.Fade(0, this, "OnNewGameFadeFinished", 0.5f, true);
     }
 
-    public void ToolsPressed()
+    private void ToolsPressed()
     {
-        PlayButtonPressSound();
+        guiCommon.PlayButtonPressSound(UiAudio);
         SetCurrentMenu(1);
     }
 
-    public void FreebuildEditorPressed()
+    private void FreebuildEditorPressed()
     {
-        PlayButtonPressSound();
+        guiCommon.PlayButtonPressSound(UiAudio);
+
+        // Instantiate a new editor scene
+        GetTree().ChangeScene("res://src/microbe_stage/editor/MicrobeEditor.tscn");
     }
 
-    public void BackFromToolsPressed()
+    private void BackFromToolsPressed()
     {
-        PlayButtonPressSound();
+        guiCommon.PlayButtonPressSound(UiAudio);
         SetCurrentMenu(0);
     }
 
-    public void QuitPressed()
+    private void QuitPressed()
     {
-        PlayButtonPressSound();
+        guiCommon.PlayButtonPressSound(UiAudio);
         GetTree().Quit();
     }
 }

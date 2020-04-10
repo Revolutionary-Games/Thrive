@@ -16,7 +16,7 @@ public class MicrobeHUD : Node
 
     public AudioStreamPlayer MusicAudio;
     public AudioStreamPlayer AmbientAudio;
-    public AudioStreamPlayer GUIAudio;
+    public AudioStreamPlayer UiAudio;
 
     private AnimationPlayer animationPlayer;
 
@@ -46,6 +46,8 @@ public class MicrobeHUD : Node
     /// </summary>
     private MicrobeStage stage;
 
+    private GUICommon guiCommon;
+
     /// <summary>
     ///   Show mouse coordinates data in the mouse
     ///   hover box, useful during develop.
@@ -64,6 +66,7 @@ public class MicrobeHUD : Node
 
     public override void _Ready()
     {
+        guiCommon = GetNode<GUICommon>("/root/GUICommon");
         mouseHoverPanel = GetNode<PanelContainer>("MouseHoverPanel");
         pauseButtonContainer = GetNode("BottomBar").
             GetNode<MarginContainer>("PauseButtonMargin");
@@ -72,7 +75,7 @@ public class MicrobeHUD : Node
         hpLabel = dataValue.GetNode<Label>("Margin/VBox/HPValue");
         MusicAudio = GetNode<AudioStreamPlayer>("MusicAudio");
         AmbientAudio = GetNode<AudioStreamPlayer>("AmbientAudio");
-        GUIAudio = GetNode<AudioStreamPlayer>("MicrobeGUIAudio");
+        UiAudio = GetNode<AudioStreamPlayer>("MicrobeGUIAudio");
         menu = GetNode<Control>("PauseMenu");
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
         hudBars = GetTree().GetNodesInGroup("MicrobeHUDBar");
@@ -80,9 +83,11 @@ public class MicrobeHUD : Node
             GetNode<VBoxContainer>("HoveredItems");
 
         // Play the tracks
-        PlayRandomMusic();
+        guiCommon.PlayRandomAudioTrack(MusicAudio, MusicTracks, true);
+        guiCommon.PlayRandomAudioTrack(AmbientAudio, AmbientTracks, true);
 
-        PlayRandomAmbience();
+        // Fade out for that smooth satisfying transition
+        guiCommon.Fade(1, null, string.Empty, 0.5f, false);
     }
 
     public override void _Process(float delta)
@@ -112,18 +117,6 @@ public class MicrobeHUD : Node
     public void Init(MicrobeStage stage)
     {
         this.stage = stage;
-    }
-
-    /// <summary>
-    ///   Function to play a blinky sound when a button is pressed.
-    /// </summary>
-    public void PlayButtonPressSound()
-    {
-        var sound = GD.Load<AudioStream>(
-            "res://assets/sounds/soundeffects/gui/button-hover-click.ogg");
-
-        GUIAudio.Stream = sound;
-        GUIAudio.Play();
     }
 
     public void ResizeEnvironmentPanel(string mode)
@@ -181,48 +174,6 @@ public class MicrobeHUD : Node
         editorButton.GetNode<TextureRect>("Highlight").Hide();
         editorButton.GetNode<Control>("ReproductionBar").Show();
         editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Stop();
-    }
-
-    public void PlayRandomMusic()
-    {
-        if (MusicTracks == null)
-        {
-            GD.Print("No music track found");
-            return;
-        }
-
-        var random = new Random();
-        int index = random.Next(MusicTracks.Count);
-
-        MusicAudio.Stream = MusicTracks[index];
-        MusicAudio.Play();
-    }
-
-    public void PlayRandomAmbience()
-    {
-        if (AmbientTracks == null)
-        {
-            GD.Print("No ambient track found");
-            return;
-        }
-
-        var random = new Random();
-        int index = random.Next(AmbientTracks.Count);
-
-        // Lower the audio volume if the current track playing
-        // is microbe-ambience2 as it is quite loud.
-        // todo: eventually use audio mixing?
-        if (index == 1)
-        {
-            AmbientAudio.VolumeDb = -25;
-        }
-        else
-        {
-            AmbientAudio.VolumeDb = -5;
-        }
-
-        AmbientAudio.Stream = AmbientTracks[index];
-        AmbientAudio.Play();
     }
 
     /// <summary>
@@ -424,12 +375,12 @@ public class MicrobeHUD : Node
             GetTree().Paused = true;
         }
 
-        PlayButtonPressSound();
+        guiCommon.PlayButtonPressSound(UiAudio);
     }
 
     private void PauseButtonPressed()
     {
-        PlayButtonPressSound();
+        guiCommon.PlayButtonPressSound(UiAudio);
 
         var pauseButton = pauseButtonContainer.GetNode<TextureButton>("Pause");
         var pausedButton = pauseButtonContainer.GetNode<TextureButton>("Resume");
@@ -457,7 +408,7 @@ public class MicrobeHUD : Node
 
     private void CompoundButtonPressed()
     {
-        PlayButtonPressSound();
+        guiCommon.PlayButtonPressSound(UiAudio);
 
         if (!leftPanelsActive)
         {
@@ -480,7 +431,7 @@ public class MicrobeHUD : Node
     /// </summary>
     private void ExitPressed()
     {
-        PlayButtonPressSound();
+        guiCommon.PlayButtonPressSound(UiAudio);
         GetTree().Quit();
     }
 }
