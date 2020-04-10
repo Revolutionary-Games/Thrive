@@ -14,12 +14,12 @@ public class MovementComponent : IOrganelleComponent
         Torque = torque;
     }
 
-    public void OnAttachToCell()
+    public void OnAttachToCell(PlacedOrganelle organelle)
     {
         throw new NotImplementedException();
     }
 
-    public void OnDetachFromCell()
+    public void OnDetachFromCell(PlacedOrganelle organelle)
     {
         throw new NotImplementedException();
     }

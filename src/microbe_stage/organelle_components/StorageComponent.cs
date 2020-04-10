@@ -12,11 +12,11 @@ public class StorageComponent : IOrganelleComponent
 
     public float Capacity { get; }
 
-    public void OnAttachToCell()
+    public void OnAttachToCell(PlacedOrganelle organelle)
     {
     }
 
-    public void OnDetachFromCell()
+    public void OnDetachFromCell(PlacedOrganelle organelle)
     {
     }
 

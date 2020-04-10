@@ -41,9 +41,22 @@ public static class MathUtils
             new Quat(new Vector3(0, -1, 0), rotation * 60 * DEGREES_TO_RADIANS);
     }
 
+    /// <summary>
+    ///   This still takes the angle in degrees as this is used from
+    ///   places that calculate the angle in degrees.
+    /// </summary>
     public static Quat CreateRotationForExternal(float angle)
     {
         return new Quat(new Vector3(0, 1, 0), 180 * DEGREES_TO_RADIANS) *
             new Quat(new Vector3(0, 1, 0), angle * DEGREES_TO_RADIANS);
+    }
+
+    /// <summary>
+    ///   Rotation for the pilus physics cone
+    /// </summary>
+    public static Quat CreateRotationForPhysicsOrganelle(float angle)
+    {
+        return new Quat(new Vector3(-1, 0, 0), 90 * DEGREES_TO_RADIANS) *
+                new Quat(new Vector3(0, 0, -1), (180 - angle) * DEGREES_TO_RADIANS);
     }
 }

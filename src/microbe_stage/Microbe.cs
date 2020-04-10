@@ -25,7 +25,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     private CompoundCloudSystem cloudSystem;
 
     // Child components
-    private Membrane membrane;
     private AudioStreamPlayer3D engulfAudio;
     private AudioStreamPlayer3D otherAudio;
     private AudioStreamPlayer3D movementAudio;
@@ -65,6 +64,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     private float organellesCapacity = 0.0f;
 
     /// <summary>
+    ///   The number of agent vacuoles. Determines the time between
+    ///   toxin shots.
+    /// </summary>
+    private int agentVacuoleCount = 0;
+
+    /// <summary>
     ///   Multiplied on the movement speed of the microbe.
     /// </summary>
     private float movementFactor = 1.0f;
@@ -82,6 +87,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     private Color flashColour = new Color(0, 0, 0, 0);
 
     private bool allOrganellesDivided = false;
+
+    /// <summary>
+    ///   The membrane of this Microbe. Used for grabbing radius / points from this.
+    /// </summary>
+    public Membrane Membrane { get; private set; }
 
     /// <summary>
     ///   The species of this microbe
@@ -134,7 +144,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     {
         get
         {
-            var radius = membrane.EncompassingCircleRadius;
+            var radius = Membrane.EncompassingCircleRadius;
 
             if (Species.IsBacteria)
                 radius *= 0.5f;
@@ -198,7 +208,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             throw new Exception("Microbe not initialized");
         }
 
-        membrane = GetNode<Membrane>("Membrane");
+        Membrane = GetNode<Membrane>("Membrane");
         engulfAudio = GetNode<AudioStreamPlayer3D>("EngulfAudio");
         otherAudio = GetNode<AudioStreamPlayer3D>("OtherAudio");
         movementAudio = GetNode<AudioStreamPlayer3D>("MovementAudio");
@@ -223,7 +233,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
         // TODO: set membrane type on the membrane
 
-        membrane.Tint = Species.Colour;
+        Membrane.Tint = Species.Colour;
     }
 
     /// <summary>
@@ -432,7 +442,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             ApplyATPDamage();
         }
 
-        membrane.HealthFraction = hitpoints / maxHitpoints;
+        Membrane.HealthFraction = hitpoints / maxHitpoints;
 
         if (hitpoints <= 0)
         {
@@ -491,12 +501,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             // the flash void to have this variable{
             if ((flashDuration % 0.6f) < 0.3f)
             {
-                membrane.Tint = flashColour;
+                Membrane.Tint = flashColour;
             }
             else
             {
                 // Restore colour
-                membrane.Tint = Species.Colour;
+                Membrane.Tint = Species.Colour;
             }
 
             // Flashing ended
@@ -505,7 +515,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
                 flashDuration = 0;
 
                 // Restore colour
-                membrane.Tint = Species.Colour;
+                Membrane.Tint = Species.Colour;
             }
         }
     }
@@ -944,6 +954,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         processesDirty = true;
         cachedHexCountDirty = true;
 
+        if (organelle.IsAgentVacuole)
+            agentVacuoleCount += 1;
+
         // This is calculated here as it would be a bit difficult to
         // hook up computing this when the StorageBag needs this info.
         organellesCapacity += organelle.StorageCapacity;
@@ -953,6 +966,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     private void OnOrganelleRemoved(PlacedOrganelle organelle)
     {
         organellesCapacity -= organelle.StorageCapacity;
+        if (organelle.IsAgentVacuole)
+            agentVacuoleCount -= 1;
         organelle.OnRemovedFromMicrobe();
 
         // The organelle only detaches but doesn't delete itself, so we delete it here
@@ -1006,7 +1021,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             organellePositions.Add(new Vector2(cartesian.x, cartesian.z));
         }
 
-        membrane.OrganellePositions = organellePositions;
-        membrane.Dirty = true;
+        Membrane.OrganellePositions = organellePositions;
+        Membrane.Dirty = true;
     }
 }
