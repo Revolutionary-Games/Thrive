@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 /// <summary>
 ///   Common helpers for the GUI to work with.
@@ -7,43 +6,36 @@ using System;
 /// </summary>
 public class GUICommon : Node
 {
-    /// <summary>
-    ///   Plays the button click sound effect
-    ///   when a button is pressed.
-    /// </summary>
-    public void PlayButtonPressSound(AudioStreamPlayer audioPlayer)
-    {
-        var sound = GD.Load<AudioStream>(
-            "res://assets/sounds/soundeffects/gui/button-hover-click.ogg");
+    public AudioStreamPlayer UiAudio;
 
-        audioPlayer.Stream = sound;
-        audioPlayer.Play();
+    private AudioStream buttonPressSound;
+
+    public enum FadeType
+    {
+        FadeIn,
+        FadeOut,
     }
 
-    /// <summmary>
-    ///   Play a random audio track from an audio array.
-    /// </summary>
-    /// <param name="continuous">
-    ///   Start a new track when the previous ends.
-    /// </param>
-    public void PlayRandomAudioTrack(AudioStreamPlayer audioPlayer,
-        Godot.Collections.Array<AudioStream> audioTrack, bool continuous = false)
+    public override void _Ready()
     {
-        var random = new Random();
-        int index = random.Next(audioTrack.Count);
+        UiAudio = new AudioStreamPlayer();
+        AddChild(UiAudio);
 
-        if (continuous)
-        {
-            audioPlayer.Connect("finished", this, nameof(PlayRandomAudioTrack));
-        }
-        else
-        {
-            if (audioPlayer.IsConnected("finished", this, nameof(PlayRandomAudioTrack)))
-                audioPlayer.Disconnect("finished", this, nameof(PlayRandomAudioTrack));
-        }
+        // Keep running the audio player process when the game paused
+        UiAudio.PauseMode = PauseModeEnum.Process;
 
-        audioPlayer.Stream = audioTrack[index];
-        audioPlayer.Play();
+        buttonPressSound = GD.Load<AudioStream>(
+            "res://assets/sounds/soundeffects/gui/button-hover-click.ogg");
+    }
+
+    /// <summary>
+    ///   Play the button click sound effect
+    ///   when a button is pressed.
+    /// </summary>
+    public void PlayButtonPressSound()
+    {
+        UiAudio.Stream = buttonPressSound;
+        UiAudio.Play();
     }
 
     /// <summary>
@@ -51,9 +43,9 @@ public class GUICommon : Node
     ///   Calls a function when finished.
     /// </summary>
     /// <param name="transition">
-    ///   Set 0 for fading to black, and 1 for fading to white.
+    ///   The FadeType enum.
     /// </param>
-    public void Fade(int transition, Godot.Object target, string onFinishedMethod,
+    public void Fade(FadeType transition, Godot.Object target, string onFinishedMethod,
         float fadeDuration, bool allowSkipping)
     {
         var scene = GD.Load<PackedScene>("res://scripts/gui/Fade.tscn");
@@ -64,11 +56,11 @@ public class GUICommon : Node
 
         screenFade.AllowSkipping = allowSkipping;
 
-        if (transition == 0)
+        if (transition == FadeType.FadeIn)
         {
             screenFade.FadeToBlack(fadeDuration);
         }
-        else if (transition == 1)
+        else if (transition == FadeType.FadeOut)
         {
             screenFade.FadeToWhite(fadeDuration);
         }

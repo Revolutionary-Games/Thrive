@@ -6,9 +6,6 @@ using Godot;
 /// </summary>
 public class MicrobeEditorGUI : Node
 {
-    public AudioStreamPlayer MusicAudio;
-    public AudioStreamPlayer UiAudio;
-
     private MicrobeEditor editor;
 
     private GUICommon guiCommon;
@@ -19,13 +16,12 @@ public class MicrobeEditorGUI : Node
     public override void _Ready()
     {
         guiCommon = GetNode<GUICommon>("/root/GUICommon");
-        UiAudio = GetNode<AudioStreamPlayer>("UiAudio");
 
         organelleSelectionElements = GetTree().GetNodesInGroup("OrganelleSelectionElement");
         membraneSelectionElements = GetTree().GetNodesInGroup("MembraneSelectionElement");
 
         // Fade out for that smooth satisfying transition
-        guiCommon.Fade(1, null, string.Empty, 0.5f, false);
+        guiCommon.Fade(GUICommon.FadeType.FadeOut, null, string.Empty, 0.5f, false);
     }
 
     public override void _Input(InputEvent @event)
@@ -215,12 +211,12 @@ public class MicrobeEditorGUI : Node
             menu.Show();
         }
 
-        guiCommon.PlayButtonPressSound(UiAudio);
+        guiCommon.PlayButtonPressSound();
     }
 
     private void ExitPressed()
     {
-        guiCommon.PlayButtonPressSound(UiAudio);
+        guiCommon.PlayButtonPressSound();
         GetTree().Quit();
     }
 }
