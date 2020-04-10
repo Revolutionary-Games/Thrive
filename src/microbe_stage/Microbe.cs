@@ -221,6 +221,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     {
         Species = (MicrobeSpecies)species;
 
+        if (Species.Organelles.Count < 1)
+            throw new ArgumentException("Species with no organelles is not valid");
+
         float scale = 1.0f;
 
         // Bacteria are 50% the size of other cells
@@ -231,9 +234,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
         ResetOrganelleLayout();
 
-        // TODO: set membrane type on the membrane
-
+        // Set membrane type on the membrane
+        Membrane.Type = Species.MembraneType;
         Membrane.Tint = Species.Colour;
+        Membrane.Dirty = true;
+
+        SetupMicrobeHitpoints();
     }
 
     /// <summary>
@@ -539,6 +545,19 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
                 }
             }
         }
+    }
+
+    /// <summary>
+    ///   Sets up the hitpoints of this microbe based on the Species membrane
+    /// </summary>
+    private void SetupMicrobeHitpoints()
+    {
+        float currentHealth = hitpoints / maxHitpoints;
+
+        maxHitpoints = Species.MembraneType.Hitpoints +
+            (Species.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER);
+
+        hitpoints = maxHitpoints * currentHealth;
     }
 
     /// <summary>
