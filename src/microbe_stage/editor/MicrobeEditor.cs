@@ -322,6 +322,8 @@ public class MicrobeEditor : Node
             playerCell.ApplySpecies(editedSpecies);
         }
 
+        ReturnToStage.OnReturnFromEditor();
+
         // TODO: switch to ReturnToStage scene
         throw new NotImplementedException();
     }

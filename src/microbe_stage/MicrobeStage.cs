@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 /// <summary>
@@ -123,5 +124,31 @@ public class MicrobeStage : Node
             spawner.Process(delta, Player.Translation);
             Clouds.ReportPlayerPosition(Player.Translation);
         }
+    }
+
+    /// <summary>
+    ///   Called when returning from the editor
+    /// </summary>
+    public void OnReturnFromEditor()
+    {
+        // Now the editor increases the generation so we don't do that here anymore
+
+        // TODO: fix
+        // // Call event that checks win conditions
+        // if(!GetThriveGame().playerData().isFreeBuilding()){
+        //     GenericEvent@ event = GenericEvent("CheckWin");
+        //     NamedVars@ vars = event.GetNamedVars();
+        //     vars.AddValue(ScriptSafeVariableBlock("generation", playerSpecies.generation));
+        //     vars.AddValue(ScriptSafeVariableBlock("population", playerSpecies.population));
+        //     GetEngine().GetEventHandler().CallEvent(event);
+        // }
+
+        // Make sure player is spawned
+        SpawnPlayer();
+
+        // Spawn another cell from the player species
+        Player.ResetOrganelleLayout();
+
+        Player.Divide();
     }
 }

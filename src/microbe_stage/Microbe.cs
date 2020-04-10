@@ -353,6 +353,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         var copyEntity = SpawnHelpers.SpawnMicrobe(Species, Translation + separation,
             GetParent(), SpawnHelpers.LoadMicrobeScene(), true, cloudSystem);
 
+        // Make it despawn like normal
+        SpawnSystem.AddEntityToTrack(copyEntity);
+
         // Remove the compounds from the created cell
         copyEntity.Compounds.ClearCompounds();
 
