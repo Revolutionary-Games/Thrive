@@ -5,7 +5,7 @@
 /// </summary>
 public interface IOrganelleComponent
 {
-    void OnAttachToCell();
-    void OnDetachFromCell();
+    void OnAttachToCell(PlacedOrganelle organelle);
+    void OnDetachFromCell(PlacedOrganelle organelle);
     void Update(float elapsed);
 }

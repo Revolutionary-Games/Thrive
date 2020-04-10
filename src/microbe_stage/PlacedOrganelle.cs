@@ -5,13 +5,11 @@ using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
-///   And organelle that has been placed in a microbe.
+///   An organelle that has been placed in a microbe.
 /// </summary>
 [JsonConverter(typeof(PlacedOrganelleConverter))]
 public class PlacedOrganelle : Spatial, IPositionedOrganelle
 {
-    [JsonIgnore]
-    private Microbe parentMicrobe;
     [JsonIgnore]
     private List<uint> shapes = new List<uint>();
 
@@ -38,6 +36,14 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     public Hex Position { get; set; }
 
     public int Orientation { get; set; }
+
+    [JsonIgnore]
+    public Microbe ParentMicrobe { get; private set; }
+
+    /// <summary>
+    ///   The graphics child node of this organelle
+    /// </summary>
+    public Spatial OrganelleGraphics { get; private set; }
 
     /// <summary>
     ///   The tint colour of this organelle. TODO: reimplement
@@ -117,6 +123,18 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     }
 
     /// <summary>
+    ///   True if this is an agent vacuole. Number of agent vacuoles
+    ///   determine how often a cell can shoot toxins.
+    /// </summary>
+    public bool IsAgentVacuole
+    {
+        get
+        {
+            return HasComponent<AgentVacuoleComponent>();
+        }
+    }
+
+    /// <summary>
     ///   Checks if this organelle has the specified component type
     /// </summary>
     public bool HasComponent<T>()
@@ -140,7 +158,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
         if (Definition == null)
             GD.PrintErr("Definition of PlacedOrganelle is null");
 
-        if (parentMicrobe == null)
+        if (ParentMicrobe == null)
             GD.PrintErr("PlacedOrganelle not added to scene through OnAddedToMicrobe");
     }
 
@@ -152,26 +170,26 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
         if (Definition == null)
             throw new Exception("PlacedOrganelle has no definition set");
 
-        if (parentMicrobe != null)
+        if (ParentMicrobe != null)
             throw new InvalidOperationException("PlacedOrganelle is already in a microbe");
 
         // Store parameters
-        parentMicrobe = microbe;
+        ParentMicrobe = microbe;
 
         // Grab the species colour for us
         Colour = microbe.Species.Colour;
 
-        parentMicrobe.AddChild(this);
+        ParentMicrobe.AddChild(this);
 
         // Graphical display
         if (Definition.LoadedScene != null)
         {
-            var graphics = Definition.LoadedScene.Instance();
-            AddChild(graphics);
+            OrganelleGraphics = (Spatial)Definition.LoadedScene.Instance();
+            AddChild(OrganelleGraphics);
 
             var transform = new Transform(MathUtils.CreateRotationForOrganelle(Orientation),
             Definition.CalculateModelOffset());
-            ((Spatial)graphics).Transform = transform;
+            OrganelleGraphics.Transform = transform;
 
             // TODO: capture the material somehow from the model in
             // order to be able to update the tint (store it in organelleMaterial)
@@ -194,7 +212,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
             hexSize *= 0.5f;
 
         // Physics
-        parentMicrobe.Mass += Definition.Mass;
+        ParentMicrobe.Mass += Definition.Mass;
 
         // Add hex collision shapes
         foreach (Hex hex in Definition.GetRotatedHexes(Orientation))
@@ -202,8 +220,10 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
             var shape = new SphereShape();
             shape.Radius = hexSize * 2.0f;
 
-            var ownerId = parentMicrobe.CreateShapeOwner(shape);
-            parentMicrobe.ShapeOwnerAddShape(ownerId, shape);
+            var ownerId = ParentMicrobe.CreateShapeOwner(shape);
+
+            // This is needed to actually add the shape
+            ParentMicrobe.ShapeOwnerAddShape(ownerId, shape);
 
             // The shape is in our parent so the final position is our
             // offset plus the hex offset
@@ -214,7 +234,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
                 shapePosition *= 0.5f;
 
             var transform = new Transform(Quat.Identity, shapePosition);
-            parentMicrobe.ShapeOwnerSetTransform(ownerId, transform);
+            ParentMicrobe.ShapeOwnerSetTransform(ownerId, transform);
 
             shapes.Add(ownerId);
         }
@@ -229,7 +249,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
             if (component == null)
                 throw new Exception("PlacedOrganelle component factory returned null");
 
-            component.OnAttachToCell();
+            component.OnAttachToCell(this);
 
             Components.Add(component);
         }
@@ -242,15 +262,15 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     /// </summary>
     public void OnRemovedFromMicrobe()
     {
-        parentMicrobe.RemoveChild(this);
+        ParentMicrobe.RemoveChild(this);
 
         // Remove physics
-        parentMicrobe.Mass -= Definition.Mass;
+        ParentMicrobe.Mass -= Definition.Mass;
 
         // Remove our sub collisions
         foreach (var shape in shapes)
         {
-            parentMicrobe.RemoveShapeOwner(shape);
+            ParentMicrobe.RemoveShapeOwner(shape);
         }
 
         shapes.Clear();
@@ -258,12 +278,12 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
         // Remove components
         foreach (var component in Components)
         {
-            component.OnDetachFromCell();
+            component.OnDetachFromCell(this);
         }
 
         Components = null;
 
-        parentMicrobe = null;
+        ParentMicrobe = null;
     }
 
     /// <summary>

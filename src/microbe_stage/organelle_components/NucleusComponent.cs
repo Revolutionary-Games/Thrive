@@ -1,7 +1,8 @@
 ﻿using System;
 
 /// <summary>
-///   Just adds some nucleus extra graphics
+///   Literally does nothing anymore. If this isn't used as PlacedOrganelle.HasComponent type
+///   This serves no purpose anymore.
 /// </summary>
 public class NucleusComponent : IOrganelleComponent
 {
@@ -9,14 +10,12 @@ public class NucleusComponent : IOrganelleComponent
     {
     }
 
-    public void OnAttachToCell()
+    public void OnAttachToCell(PlacedOrganelle organelle)
     {
-        throw new NotImplementedException();
     }
 
-    public void OnDetachFromCell()
+    public void OnDetachFromCell(PlacedOrganelle organelle)
     {
-        throw new NotImplementedException();
     }
 
     public void Update(float elapsed)

@@ -12,19 +12,16 @@ public class AgentVacuoleComponent : IOrganelleComponent
         Compound = compound;
     }
 
-    public void OnAttachToCell()
+    public void OnAttachToCell(PlacedOrganelle organelle)
     {
-        throw new NotImplementedException();
     }
 
-    public void OnDetachFromCell()
+    public void OnDetachFromCell(PlacedOrganelle organelle)
     {
-        throw new NotImplementedException();
     }
 
     public void Update(float elapsed)
     {
-        throw new NotImplementedException();
     }
 }
 

@@ -1,27 +1,93 @@
 ﻿using System;
+using System.Collections.Generic;
+using Godot;
 
 /// <summary>
 ///   Adds a stabby thing to the cell, positioned similarly to the flagellum
 /// </summary>
-public class PilusComponent : IOrganelleComponent
+public class PilusComponent : ExternallyPositionedComponent
 {
-    public PilusComponent()
+    private List<uint> addedChildShapes = new List<uint>();
+
+    protected override void CustomDetach()
     {
+        DestroyShape();
     }
 
-    public void OnAttachToCell()
+    protected override bool NeedsUpdateAnyway()
     {
-        throw new NotImplementedException();
+        return addedChildShapes.Count < 1;
     }
 
-    public void OnDetachFromCell()
+    protected override void OnPositionChanged(Quat rotation, float angle,
+        Vector3 membraneCoords)
     {
-        throw new NotImplementedException();
+        organelle.OrganelleGraphics.Transform = new Transform(rotation, membraneCoords);
+
+        Vector3 middle = Hex.AxialToCartesian(new Hex(0, 0));
+        Vector3 membranePointDirection = (membraneCoords - middle).Normalized();
+
+        membraneCoords += membranePointDirection * Constants.DEFAULT_HEX_SIZE * 2;
+
+        // TODO: currently the microbe physics body is scaled as
+        // well, which is not recommended. So this scaling is not
+        // currently used.
+
+        // if (organelle.parentMicrobe.Species.IsBacteria)
+        // {
+        //     membraneCoords /= 2.0f;
+        // }
+
+        float pilusSize = 4.6f;
+
+        // // Scale the size down for bacteria
+        // if (organelle.parentMicrobe.Species.IsBacteria)
+        // {
+        //     pilusSize /= 2.0f;
+        // }
+
+        var physicsRotation = MathUtils.CreateRotationForPhysicsOrganelle(angle);
+
+        // Need to remove the old copy first
+        DestroyShape();
+
+        // TODO: Godot doesn't have Cone shape.
+        // https://github.com/godotengine/godot-proposals/issues/610
+        // So this uses a cylinder for now
+
+        // @pilusShape = organelle.world.GetPhysicalWorld().CreateCone(pilusSize / 10.f,
+        //     pilusSize);
+
+        var shape = new CylinderShape();
+        shape.Radius = pilusSize / 10.0f;
+        shape.Height = pilusSize;
+
+        var parentMicrobe = organelle.ParentMicrobe;
+
+        var ownerId = parentMicrobe.CreateShapeOwner(shape);
+        parentMicrobe.ShapeOwnerAddShape(ownerId, shape);
+
+        // TODO: find a way to pass the information to the shape /
+        // parentMicrobe what is a pilus part of the collision
+        // pilusShape.SetCustomTag(PHYSICS_PILUS_TAG);
+
+        var transform = new Transform(physicsRotation, membraneCoords);
+        parentMicrobe.ShapeOwnerSetTransform(ownerId, transform);
+
+        addedChildShapes.Add(ownerId);
     }
 
-    public void Update(float elapsed)
+    private void DestroyShape()
     {
-        throw new NotImplementedException();
+        if (addedChildShapes.Count > 0)
+        {
+            foreach (var shape in addedChildShapes)
+            {
+                organelle.ParentMicrobe.RemoveShapeOwner(shape);
+            }
+
+            addedChildShapes.Clear();
+        }
     }
 }
 
