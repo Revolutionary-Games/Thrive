@@ -16,7 +16,6 @@ public class MainMenu : Node
     public TextureRect Background;
 
     public AudioStreamPlayer MusicAudio;
-    public AudioStreamPlayer UiAudio;
 
     private GUICommon guiCommon;
 
@@ -37,7 +36,6 @@ public class MainMenu : Node
     public void RunMenuSetup()
     {
         Background = GetNode<TextureRect>("Background");
-        UiAudio = GetNode<AudioStreamPlayer>("UiAudio");
         MusicAudio = GetNode<AudioStreamPlayer>("Music");
 
         if (MenuArray != null)
@@ -133,7 +131,7 @@ public class MainMenu : Node
 
     private void OnIntroEnded()
     {
-        guiCommon.Fade(1, null, string.Empty, 0.5f, false);
+        guiCommon.Fade(GUICommon.FadeType.FadeOut, null, string.Empty, 0.5f, false);
 
         // Play the menu music
         MusicAudio.Play();
@@ -155,7 +153,7 @@ public class MainMenu : Node
 
     private void NewGamePressed()
     {
-        guiCommon.PlayButtonPressSound(UiAudio);
+        guiCommon.PlayButtonPressSound();
 
         var tween = GetNode<Tween>("MenuTween");
 
@@ -168,18 +166,19 @@ public class MainMenu : Node
         }
 
         // Start fade
-        guiCommon.Fade(0, this, "OnNewGameFadeFinished", 0.5f, true);
+        guiCommon.Fade(GUICommon.FadeType.FadeIn, this,
+            "OnNewGameFadeFinished", 0.5f, true);
     }
 
     private void ToolsPressed()
     {
-        guiCommon.PlayButtonPressSound(UiAudio);
+        guiCommon.PlayButtonPressSound();
         SetCurrentMenu(1);
     }
 
     private void FreebuildEditorPressed()
     {
-        guiCommon.PlayButtonPressSound(UiAudio);
+        guiCommon.PlayButtonPressSound();
 
         // Instantiate a new editor scene
         GetTree().ChangeScene("res://src/microbe_stage/editor/MicrobeEditor.tscn");
@@ -187,13 +186,13 @@ public class MainMenu : Node
 
     private void BackFromToolsPressed()
     {
-        guiCommon.PlayButtonPressSound(UiAudio);
+        guiCommon.PlayButtonPressSound();
         SetCurrentMenu(0);
     }
 
     private void QuitPressed()
     {
-        guiCommon.PlayButtonPressSound(UiAudio);
+        guiCommon.PlayButtonPressSound();
         GetTree().Quit();
     }
 }
