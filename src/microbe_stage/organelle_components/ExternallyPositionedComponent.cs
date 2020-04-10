@@ -33,7 +33,7 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
         this.organelle = null;
     }
 
-    public void Update(float elapsed)
+    public virtual void Update(float elapsed)
     {
         // TODO: it would be nicer if this were notified when the
         // membrane changes to not recheck this constantly
