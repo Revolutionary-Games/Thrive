@@ -47,6 +47,16 @@ public class SpawnSystem
     }
 
     /// <summary>
+    ///   Adds an externally spawned entity to be despawned
+    /// </summary>
+    public static void AddEntityToTrack(ISpawned entity,
+        float radius = Constants.MICROBE_SPAWN_RADIUS)
+    {
+        entity.DespawnRadiusSqr = (int)(radius * radius);
+        entity.SpawnedNode.AddToGroup(Constants.SPAWNED_GROUP);
+    }
+
+    /// <summary>
     ///   Adds a new spawner. Sets up the spawn radius, radius sqr,
     ///   and frequency fields based on the parameters of this
     ///   function.
