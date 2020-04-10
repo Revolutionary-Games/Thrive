@@ -31,6 +31,8 @@ public class Fade : CanvasLayer
 
     public void FadeToBlack(float fadeDuration)
     {
+        Rect.Color = new Color(0, 0, 0, 0);
+
         Fader.InterpolateProperty(Rect, "color", new Color(0, 0, 0, 0),
             new Color(0, 0, 0, 1), fadeDuration);
 
@@ -39,6 +41,8 @@ public class Fade : CanvasLayer
 
     public void FadeToWhite(float fadeDuration)
     {
+        Rect.Color = new Color(0, 0, 0, 1);
+
         Fader.InterpolateProperty(Rect, "color", new Color(0, 0, 0, 1),
             new Color(0, 0, 0, 0), fadeDuration);
 

@@ -28,6 +28,10 @@ boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://assets/misc/icon.png"
 config/windows_native_icon="res://assets/misc/icon.ico"
 
+[autoload]
+
+GUICommon="*res://scripts/gui/GUICommon.cs"
+
 [display]
 
 window/size/width=1280

@@ -28,9 +28,14 @@ __meta__ = {
 }
 
 [node name="LogoCenterContainer" type="CenterContainer" parent="MenuContainers"]
-anchor_left = 0.00207033
-anchor_right = 1.00207
-anchor_bottom = 0.4
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -637.35
+margin_top = -360.0
+margin_right = 642.65
+margin_bottom = -72.0
 __meta__ = {
 "_edit_use_anchors_": true,
 "_editor_description_": "Centering fo the Thrive logo"
@@ -47,13 +52,14 @@ __meta__ = {
 }
 
 [node name="MenuCenterContainer" type="CenterContainer" parent="MenuContainers"]
-anchor_left = 0.00196686
-anchor_top = 0.4125
-anchor_right = 1.00197
-anchor_bottom = 1.0
-margin_left = 0.482419
-margin_top = -82.0
-margin_right = 0.478271
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -637.0
+margin_top = -145.0
+margin_right = 643.0
+margin_bottom = 360.0
 __meta__ = {
 "_edit_use_anchors_": false,
 "_editor_description_": "Centering for the menu items"
@@ -226,7 +232,7 @@ __meta__ = {
 "_editor_description_": "Audio player for Thrive soundtrack"
 }
 
-[node name="GUIAudio" type="AudioStreamPlayer" parent="."]
+[node name="UiAudio" type="AudioStreamPlayer" parent="."]
 __meta__ = {
 "_editor_description_": "Audio player for UI sound effects"
 }
