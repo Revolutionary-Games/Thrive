@@ -146,6 +146,8 @@ public class MicrobeStage : Node
         // Make sure player is spawned
         SpawnPlayer();
 
+        Player.ApplySpecies(Player.Species);
+
         // Spawn another cell from the player species
         Player.ResetOrganelleLayout();
 
