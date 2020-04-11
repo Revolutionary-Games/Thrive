@@ -11,9 +11,9 @@ using Godot;
 public static class Spawners
 {
     public static MicrobeSpawner MakeMicrobeSpawner(Species species,
-        CompoundCloudSystem cloudSystem)
+        CompoundCloudSystem cloudSystem, GameWorld world)
     {
-        return new MicrobeSpawner(species, cloudSystem);
+        return new MicrobeSpawner(species, cloudSystem, world);
     }
 
     public static ChunkSpawner MakeChunkSpawner(Biome.ChunkConfiguration chunkType,
@@ -36,13 +36,13 @@ public static class SpawnHelpers
 {
     public static Microbe SpawnMicrobe(Species species, Vector3 location,
         Node worldRoot, PackedScene microbeScene, bool aiControlled,
-        CompoundCloudSystem cloudSystem)
+        CompoundCloudSystem cloudSystem, GameWorld world)
     {
         var microbe = (Microbe)microbeScene.Instance();
 
         // The second parameter is (isPlayer), and we assume that if the
         // cell is not AI controlled it is the player's cell
-        microbe.Init(cloudSystem, !aiControlled);
+        microbe.Init(cloudSystem, world, !aiControlled);
 
         worldRoot.AddChild(microbe);
         microbe.Translation = location;
@@ -146,13 +146,15 @@ public class MicrobeSpawner : ISpawner
     private readonly PackedScene microbeScene;
     private readonly Species species;
     private readonly CompoundCloudSystem cloudSystem;
+    private readonly GameWorld world;
 
-    public MicrobeSpawner(Species species, CompoundCloudSystem cloudSystem)
+    public MicrobeSpawner(Species species, CompoundCloudSystem cloudSystem, GameWorld world)
     {
         this.species = species ?? throw new ArgumentException("species is null");
 
         microbeScene = SpawnHelpers.LoadMicrobeScene();
         this.cloudSystem = cloudSystem;
+        this.world = world;
     }
 
     public override List<ISpawned> Spawn(Node worldNode, Vector3 location)
@@ -161,7 +163,7 @@ public class MicrobeSpawner : ISpawner
 
         // The true here is that this is AI controlled
         var microbe = SpawnHelpers.SpawnMicrobe(species, location, worldNode, microbeScene,
-            true, cloudSystem);
+            true, cloudSystem, world);
 
         entities.Add(microbe);
         return entities;

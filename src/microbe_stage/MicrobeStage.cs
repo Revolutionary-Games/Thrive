@@ -68,8 +68,6 @@ public class MicrobeStage : Node
         ProcessSystem = new ProcessSystem(rootOfDynamicallySpawned);
         microbeAISystem = new MicrobeAISystem(rootOfDynamicallySpawned);
 
-        patchManager = new PatchManager(spawner, ProcessSystem, Clouds, TimedLifeSystem);
-
         HUD.Init(this);
 
         // Do stage setup to spawn things and setup all parts of the stage
@@ -97,6 +95,10 @@ public class MicrobeStage : Node
         {
             StartNewGame();
         }
+
+        // This needs the GameWorld so this is created here
+        patchManager = new PatchManager(spawner, ProcessSystem, Clouds, TimedLifeSystem,
+            GameWorld);
     }
 
     public void StartNewGame()
@@ -118,7 +120,8 @@ public class MicrobeStage : Node
             return;
 
         Player = SpawnHelpers.SpawnMicrobe(GameWorld.PlayerSpecies, new Vector3(0, 0, 0),
-            rootOfDynamicallySpawned, SpawnHelpers.LoadMicrobeScene(), false, Clouds);
+            rootOfDynamicallySpawned, SpawnHelpers.LoadMicrobeScene(), false, Clouds,
+            GameWorld);
         Player.AddToGroup("player");
 
         Camera.ObjectToFollow = Player;
