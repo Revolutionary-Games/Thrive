@@ -112,6 +112,7 @@ public class PlayerMicrobeInput : Node
             }
         }
     }
+
     public override void _Notification(int focus)
     {
         if (focus == MainLoop.NotificationWmFocusOut)
@@ -121,7 +122,6 @@ public class PlayerMicrobeInput : Node
             left = false;
             right = false;
         }
-        
     }
 
     public override void _Process(float delta)
