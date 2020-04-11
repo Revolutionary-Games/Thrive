@@ -12,6 +12,18 @@ public class MicrobeStage : Node
     private MicrobeAISystem microbeAISystem;
     private PatchManager patchManager;
 
+    /// <summary>
+    ///   Used to differentiate between spawning the player and respawning
+    /// </summary>
+    private bool spawnedPlayer = false;
+
+    /// <summary>
+    ///   True when the player is extinct
+    /// </summary>
+    private bool gameOver = false;
+
+    private float playerRespawnTimer;
+
     public Microbe Player { get; private set; }
 
     public MicrobeCamera Camera { get; private set; }
@@ -110,6 +122,18 @@ public class MicrobeStage : Node
         Player.AddToGroup("player");
 
         Camera.ObjectToFollow = Player;
+
+        if (spawnedPlayer)
+        {
+            // Random location on respawn
+            var random = new Random();
+            Player.Translation = new Vector3(
+                random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE), 0,
+                random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE));
+        }
+
+        spawnedPlayer = true;
+        playerRespawnTimer = Constants.PLAYER_RESPAWN_TIME;
     }
 
     public override void _Process(float delta)
@@ -119,10 +143,35 @@ public class MicrobeStage : Node
         ProcessSystem.Process(delta);
         microbeAISystem.Process(delta);
 
+        if (gameOver)
+        {
+            // Player is extinct and has lost the game
+            // TODO: show the game lost popup if not already visible
+            return;
+        }
+
         if (Player != null)
         {
             spawner.Process(delta, Player.Translation);
             Clouds.ReportPlayerPosition(Player.Translation);
+        }
+        else
+        {
+            if (!spawnedPlayer)
+            {
+                GD.PrintErr("MicrobeStage was entered without spawning the player");
+                SpawnPlayer();
+            }
+            else
+            {
+                // Respawn the player once the timer is up
+                playerRespawnTimer -= delta;
+
+                if (playerRespawnTimer <= 0)
+                {
+                    HandlePlayerRespawn();
+                }
+            }
         }
     }
 
@@ -152,5 +201,27 @@ public class MicrobeStage : Node
         Player.ResetOrganelleLayout();
 
         Player.Divide();
+    }
+
+    /// <summary>
+    ///   Handles respawning the player and checking for extinction
+    /// </summary>
+    private void HandlePlayerRespawn()
+    {
+        var playerSpecies = GameWorld.PlayerSpecies;
+
+        // Decrease the population by 20
+        GameWorld.AlterSpeciesPopulation(playerSpecies, -20, "player died", true);
+
+        // Respawn if not extinct (or freebuild)
+        if (playerSpecies.Population <= 0 && !CurrentGame.FreeBuild)
+        {
+            gameOver = true;
+        }
+        else
+        {
+            // Player is not extinct, so can respawn
+            SpawnPlayer();
+        }
     }
 }
