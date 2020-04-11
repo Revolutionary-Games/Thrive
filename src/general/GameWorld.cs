@@ -135,4 +135,17 @@ public class GameWorld
             throw new ArgumentException("unhandled species type for CreateMutatedSpecies");
         }
     }
+
+    /// <summary>
+    ///   Adds an external population effect to a species
+    /// </summary>
+    /// <param name="immediate">
+    ///   If true applied immediately. Should only be used for the player dying
+    /// </param>
+    public void AlterSpeciesPopulation(Species species, int amount, string description,
+        bool immediate = false)
+    {
+        // TODO: fix
+        throw new NotImplementedException();
+    }
 }

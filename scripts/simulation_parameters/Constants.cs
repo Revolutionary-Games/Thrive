@@ -7,6 +7,15 @@ using System.Reflection;
 public class Constants
 {
     /// <summary>
+    ///   How long the player stays dead before respawning
+    /// </summary>
+    public const float PLAYER_RESPAWN_TIME = 5.0f;
+
+    // Variance in the player position when respawning
+    public const float MIN_SPAWN_DISTANCE = -5000.0f;
+    public const float MAX_SPAWN_DISTANCE = 5000.0f;
+
+    /// <summary>
     ///   The (default) size of the hexagons, used in
     ///   calculations. Don't change this.
     /// </summary>
