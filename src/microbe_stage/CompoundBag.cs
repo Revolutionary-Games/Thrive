@@ -36,6 +36,14 @@ public class CompoundBag
     }
 
     /// <summary>
+    ///   Variant taking Compound
+    /// </summary>
+    public float GetCompoundAmount(Compound compound)
+    {
+        return GetCompoundAmount(compound.InternalName);
+    }
+
+    /// <summary>
     ///   Takes some compound out of this bag. Returns the amount
     ///   taken, which can be less than the requested amount.
     /// </summary>
@@ -48,6 +56,14 @@ public class CompoundBag
 
         Compounds[compound] -= amount;
         return amount;
+    }
+
+    /// <summary>
+    ///   Variant taking Compound
+    /// </summary>
+    public float TakeCompound(Compound compound, float amount)
+    {
+        return TakeCompound(compound.InternalName, amount);
     }
 
     /// <summary>

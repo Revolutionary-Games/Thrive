@@ -4,62 +4,12 @@
 
 namespace MicrobeOperations{
 
-// Queries the currently stored amount of an compound
-//
-// @param compoundId
-// The id of the compound to query
-//
-// @returns amount
-// The amount stored in the microbe's storage oraganelles
-double getCompoundAmount(CellStageWorld@ world, ObjectID microbeEntity, CompoundId compoundId)
-{
-    return world.GetComponent_CompoundBagComponent(microbeEntity).
-        getCompoundAmount(compoundId);
-}
-
-// Getter for generic microbe component
-//
-// Returns handle to the microbe component with a given ID
-MicrobeComponent@ getMicrobeComponent(CellStageWorld@ world, ObjectID microbeEntity)
-{
-    return cast<MicrobeComponent>(world.GetScriptComponentHolder("MicrobeComponent")
-        .Find(microbeEntity));
-}
-
-// Getter for microbe species
-//
-// returns the species component or null if it doesn't have a valid species
-Species@ getSpecies(CellStageWorld@ world, ObjectID microbeEntity)
-{
-    MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
-    return microbeComponent.species;
-}
-
-MicrobeComponent@ getPlayerMicrobe(CellStageWorld@ world)
-{
-    auto playerMicrobe = GetThriveGame().playerData().activeCreature();
-    return getMicrobeComponent(world, playerMicrobe);
-}
-
 // Getter for microbe species
 //
 // returns the species or null if species with that name doesn't exist
 Species@ getSpecies(CellStageWorld@ world, const string &in speciesName)
 {
     return world.GetPatchManager().getCurrentMap().findSpeciesByName(speciesName);
-}
-
-// Retrieves the organelle occupying a hex cell
-//
-// @param q, r
-// Axial coordinates, relative to the microbe's center
-//
-// @returns organelle
-// The organelle at (q,r) or null if the hex is unoccupied
-PlacedOrganelle@ getOrganelleAt(CellStageWorld@ world, ObjectID microbeEntity, Int2 hex)
-{
-    MicrobeComponent@ microbeComponent = getMicrobeComponent(world, microbeEntity);
-    return OrganellePlacement::getOrganelleAt(microbeComponent.organelles, hex);
 }
 
 //! Helper for other code to mess with a microbe collision. After editing you must call
