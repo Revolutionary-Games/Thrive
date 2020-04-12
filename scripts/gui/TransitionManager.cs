@@ -11,19 +11,19 @@ public class TransitionManager : Node
     public PackedScene CutsceneScene;
 
     /// <summary>
+    ///   Sequence of transitions on queue waiting
+    ///   to be started.
+    /// </summary>
+    private Queue<ITransition> queuedTransitions = new Queue<ITransition>();
+
+    [Signal]
+    public delegate void QueuedTransitionsFinished();
+
+    /// <summary>
     ///   List of all the existing transitions after calling StartTransitions.
     /// </summary>
     public List<ITransition> TransitionSequence { get; private set; } =
         new List<ITransition>();
-
-    /// <summary>
-    ///   Sequence of transitions on queue waiting
-    ///   to be started.
-    /// </summary>
-    private Queue<ITransition> QueuedTransitions = new Queue<ITransition>();
-
-    [Signal]
-    public delegate void QueuedTransitionsFinished();
 
     public override void _Ready()
     {
@@ -58,7 +58,7 @@ public class TransitionManager : Node
 
         screenFade.Connect("OnFinishedSignal", this, nameof(StartNextQueuedTransition));
 
-        QueuedTransitions.Enqueue(screenFade);
+        queuedTransitions.Enqueue(screenFade);
     }
 
     /// <summary>
@@ -80,7 +80,7 @@ public class TransitionManager : Node
 
         cutscene.Connect("OnFinishedSignal", this, nameof(StartNextQueuedTransition));
 
-        QueuedTransitions.Enqueue(cutscene);
+        queuedTransitions.Enqueue(cutscene);
     }
 
     /// <summary>
@@ -89,7 +89,7 @@ public class TransitionManager : Node
     /// </summary>
     public void StartTransitions(Godot.Object target, string onFinishedMethod)
     {
-        if (QueuedTransitions.Count == 0 || QueuedTransitions == null)
+        if (queuedTransitions.Count == 0 || queuedTransitions == null)
         {
             GD.PrintErr("Queued transitions is either empty or null");
             return;
@@ -107,7 +107,7 @@ public class TransitionManager : Node
         // Keep the queued transitions as a reference, so that
         // we can cancel the remaining transitions anytime
         // Todo: is this hackish?
-        foreach (var entry in QueuedTransitions)
+        foreach (var entry in queuedTransitions)
         {
             TransitionSequence.Add(entry);
         }
@@ -143,14 +143,14 @@ public class TransitionManager : Node
     private void StartNextQueuedTransition()
     {
         // Assume it's finished when the queue list is empty.
-        if (QueuedTransitions.Count == 0)
+        if (queuedTransitions.Count == 0)
         {
             EmitSignal(nameof(QueuedTransitionsFinished));
             TransitionSequence.Clear();
             return;
         }
 
-        var currentTransition = QueuedTransitions.Dequeue();
+        var currentTransition = queuedTransitions.Dequeue();
         currentTransition.OnStarted();
     }
 }
