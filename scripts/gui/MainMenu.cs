@@ -18,14 +18,16 @@ public class MainMenu : Node
     public AudioStreamPlayer MusicAudio;
 
     private GUICommon guiCommon;
+    private TransitionManager transition;
 
     public override void _Ready()
     {
         guiCommon = GetNode<GUICommon>("/root/GUICommon");
+        transition = GetNode<TransitionManager>("/root/TransitionManager");
 
         // Start intro video
-        guiCommon.PlayCutscene("res://assets/videos/intro.webm", this,
-            "OnIntroEnded", true);
+        transition.AddCutscene("res://assets/videos/intro.webm");
+        transition.StartTransitions(this, nameof(OnIntroEnded));
 
         RunMenuSetup();
     }
@@ -131,17 +133,11 @@ public class MainMenu : Node
 
     private void OnIntroEnded()
     {
-        guiCommon.Fade(GUICommon.FadeType.FadeOut, null, string.Empty, 0.5f, false);
+        transition.AddFade(Fade.FadeType.FadeOut, 0.5f, false);
+        transition.StartTransitions(null, string.Empty);
 
         // Play the menu music
         MusicAudio.Play();
-    }
-
-    private void OnNewGameFadeFinished()
-    {
-        // Start microbe intro
-        guiCommon.PlayCutscene("res://assets/videos/microbe_intro2.webm", this,
-            "OnMicrobeIntroEnded", true);
     }
 
     private void OnMicrobeIntroEnded()
@@ -165,9 +161,9 @@ public class MainMenu : Node
             tween.Start();
         }
 
-        // Start fade
-        guiCommon.Fade(GUICommon.FadeType.FadeIn, this,
-            "OnNewGameFadeFinished", 0.5f, true);
+        transition.AddFade(Fade.FadeType.FadeIn, 0.5f);
+        transition.AddCutscene("res://assets/videos/microbe_intro2.webm");
+        transition.StartTransitions(this, nameof(OnMicrobeIntroEnded));
     }
 
     private void ToolsPressed()

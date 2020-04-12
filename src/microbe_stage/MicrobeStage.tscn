@@ -801,8 +801,7 @@ script = ExtResource( 7 )
 pause_mode = 2
 script = ExtResource( 9 )
 __meta__ = {
-"_editor_description_": "one ambient track for now, since the other one is too loud.
-Todo: fix it lol"
+"_editor_description_": ""
 }
 
 [node name="MouseHoverPanel" type="PanelContainer" parent="MicrobeHUD"]
@@ -2819,7 +2818,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AmmoniaBar" type="TextureProgress" parent="MicrobeHUD/BottomRight/EditorButton/ReproductionBar" groups=[
+[node name="AmmoniaReproductionBar" type="TextureProgress" parent="MicrobeHUD/BottomRight/EditorButton/ReproductionBar" groups=[
 "MicrobeHUDBar",
 ]]
 anchor_left = 0.5
@@ -2839,7 +2838,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PhosphateBar" type="TextureProgress" parent="MicrobeHUD/BottomRight/EditorButton/ReproductionBar" groups=[
+[node name="PhosphateReproductionBar" type="TextureProgress" parent="MicrobeHUD/BottomRight/EditorButton/ReproductionBar" groups=[
 "MicrobeHUDBar",
 ]]
 anchor_left = 0.5

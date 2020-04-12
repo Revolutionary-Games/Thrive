@@ -4,33 +4,32 @@ using Godot;
 /// <summary>
 ///   Controls the cutscene
 /// </summary>
-public class Cutscene : CanvasLayer
+public class Cutscene : CanvasLayer, ITransition
 {
     public VideoPlayer CutsceneVideoPlayer;
-    public VideoStream CutsceneVideoStream;
-
     public Vector2 FrameSize;
 
-    public bool AllowSkipping = true;
-
     [Signal]
-    public delegate void CutsceneFinished();
+    public delegate void OnFinishedSignal();
+
+    public Control ControlNode { get; private set; }
+
+    public bool Skippable { get; set; } = true;
 
     public override void _Ready()
     {
-        CutsceneVideoPlayer = GetNode<VideoPlayer>("VideoPlayer");
-        CutsceneVideoPlayer.Connect("finished", this, "OnStreamFinished");
+        CutsceneVideoPlayer = GetNode<VideoPlayer>("Control/VideoPlayer");
+        ControlNode = GetNode<Control>("Control");
+
         FrameSize = CutsceneVideoPlayer.RectSize;
 
-        GetViewport().Connect("size_changed", this, "OnCutsceneResized");
-    }
+        CutsceneVideoPlayer.Connect("finished", this, nameof(OnFinished));
+        GetViewport().Connect("size_changed", this, nameof(OnCutsceneResized));
 
-    public override void _Input(InputEvent @event)
-    {
-        if (@event.IsActionPressed("ui_cancel") && AllowSkipping)
-        {
-            OnStreamFinished();
-        }
+        // Initially adjust video player frame size
+        OnCutsceneResized();
+
+        ControlNode.Hide();
     }
 
     /// <summary>
@@ -56,9 +55,15 @@ public class Cutscene : CanvasLayer
             Control.LayoutPreset.Center, Control.LayoutPresetMode.KeepSize);
     }
 
-    public void OnStreamFinished()
+    public void OnStarted()
     {
-        EmitSignal(nameof(CutsceneFinished));
+        ControlNode.Show();
+        CutsceneVideoPlayer.Play();
+    }
+
+    public void OnFinished()
+    {
+        EmitSignal(nameof(OnFinishedSignal));
         QueueFree();
     }
 }
