@@ -37,6 +37,7 @@ public class MicrobeHUD : Node
     private MicrobeStage stage;
 
     private GUICommon guiCommon;
+    private TransitionManager transition;
 
     /// <summary>
     ///   Show mouse coordinates data in the mouse
@@ -57,6 +58,8 @@ public class MicrobeHUD : Node
     public override void _Ready()
     {
         guiCommon = GetNode<GUICommon>("/root/GUICommon");
+        transition = GetNode<TransitionManager>("/root/TransitionManager");
+
         mouseHoverPanel = GetNode<PanelContainer>("MouseHoverPanel");
         pauseButtonContainer = GetNode("BottomBar").
             GetNode<MarginContainer>("PauseButtonMargin");
@@ -70,7 +73,8 @@ public class MicrobeHUD : Node
             GetNode<VBoxContainer>("HoveredItems");
 
         // Fade out for that smooth satisfying transition
-        guiCommon.Fade(GUICommon.FadeType.FadeOut, null, string.Empty, 0.5f, false);
+        transition.AddFade(Fade.FadeType.FadeOut, 0.5f);
+        transition.StartTransitions(null, string.Empty);
     }
 
     public override void _Process(float delta)

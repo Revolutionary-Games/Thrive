@@ -9,6 +9,7 @@ public class MicrobeEditorGUI : Node
     private MicrobeEditor editor;
 
     private GUICommon guiCommon;
+    private TransitionManager transition;
 
     private Godot.Collections.Array organelleSelectionElements;
     private Godot.Collections.Array membraneSelectionElements;
@@ -16,12 +17,14 @@ public class MicrobeEditorGUI : Node
     public override void _Ready()
     {
         guiCommon = GetNode<GUICommon>("/root/GUICommon");
+        transition = GetNode<TransitionManager>("/root/TransitionManager");
 
         organelleSelectionElements = GetTree().GetNodesInGroup("OrganelleSelectionElement");
         membraneSelectionElements = GetTree().GetNodesInGroup("MembraneSelectionElement");
 
         // Fade out for that smooth satisfying transition
-        guiCommon.Fade(GUICommon.FadeType.FadeOut, null, string.Empty, 0.5f, false);
+        transition.AddFade(Fade.FadeType.FadeOut, 0.5f);
+        transition.StartTransitions(null, string.Empty);
     }
 
     public override void _Input(InputEvent @event)
