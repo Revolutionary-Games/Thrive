@@ -195,6 +195,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     public float AgentEmissionCooldown { get; private set; } = 0.0f;
 
     /// <summary>
+    /// Called when this Microbe dies
+    /// </summary>
+    public Action<Microbe> OnDeath { get; set; }
+
+    /// <summary>
     ///   Must be called when spawned to provide access to the needed systems
     /// </summary>
     public void Init(CompoundCloudSystem cloudSystem, GameWorld world, bool isPlayer)
@@ -419,6 +424,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             return;
 
         Dead = true;
+
+        if (OnDeath != null)
+        {
+            OnDeath(this);
+        }
 
         // Reset some stuff
         EngulfMode = false;
