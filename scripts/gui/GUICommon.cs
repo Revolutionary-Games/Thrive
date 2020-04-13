@@ -2,35 +2,46 @@ using Godot;
 
 /// <summary>
 ///   Common helpers for the GUI to work with.
-///   This singleton class is placed on AutoLoad.
+///   This class is placed on AutoLoad for global access
+///   while still inheriting Node.
 /// </summary>
 public class GUICommon : Node
 {
-    public static AudioStreamPlayer UiAudio;
+    private static GUICommon instance;
 
-    private static AudioStream buttonPressSound;
+    private AudioStream buttonPressSound;
 
-    public static Node NodeInstance { get; private set; }
-
-    public override void _Ready()
+    private GUICommon()
     {
-        NodeInstance = this;
+        instance = this;
 
         UiAudio = new AudioStreamPlayer();
         AddChild(UiAudio);
 
-        // Keep running the audio player process when the game paused
+        // Keep running the audio player process while paused
         UiAudio.PauseMode = PauseModeEnum.Process;
 
         buttonPressSound = GD.Load<AudioStream>(
             "res://assets/sounds/soundeffects/gui/button-hover-click.ogg");
     }
 
+    public static GUICommon Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
+
     /// <summary>
-    ///   Play the button click sound effect
-    ///   when a button is pressed.
+    ///   The audio player for UI sound effects.
     /// </summary>
-    public static void PlayButtonPressSound()
+    public AudioStreamPlayer UiAudio { get; private set; }
+
+    /// <summary>
+    ///   Play the button click sound effect.
+    /// </summary>
+    public void PlayButtonPressSound()
     {
         UiAudio.Stream = buttonPressSound;
         UiAudio.Play();

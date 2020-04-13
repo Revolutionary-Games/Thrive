@@ -67,8 +67,8 @@ public class MicrobeHUD : Node
             GetNode<VBoxContainer>("HoveredItems");
 
         // Fade out for that smooth satisfying transition
-        TransitionManager.AddFade(Fade.FadeType.FadeOut, 0.5f);
-        TransitionManager.StartTransitions(null, string.Empty);
+        TransitionManager.Instance.AddFade(Fade.FadeType.FadeOut, 0.5f);
+        TransitionManager.Instance.StartTransitions(null, string.Empty);
     }
 
     public override void _Process(float delta)
@@ -356,12 +356,12 @@ public class MicrobeHUD : Node
             GetTree().Paused = true;
         }
 
-        GUICommon.PlayButtonPressSound();
+        GUICommon.Instance.PlayButtonPressSound();
     }
 
     private void PauseButtonPressed()
     {
-        GUICommon.PlayButtonPressSound();
+        GUICommon.Instance.PlayButtonPressSound();
 
         var pauseButton = pauseButtonContainer.GetNode<TextureButton>("Pause");
         var pausedButton = pauseButtonContainer.GetNode<TextureButton>("Resume");
@@ -389,7 +389,7 @@ public class MicrobeHUD : Node
 
     private void CompoundButtonPressed()
     {
-        GUICommon.PlayButtonPressSound();
+        GUICommon.Instance.PlayButtonPressSound();
 
         if (!leftPanelsActive)
         {
@@ -412,7 +412,7 @@ public class MicrobeHUD : Node
     /// </summary>
     private void ExitPressed()
     {
-        GUICommon.PlayButtonPressSound();
+        GUICommon.Instance.PlayButtonPressSound();
         GetTree().Quit();
     }
 }
