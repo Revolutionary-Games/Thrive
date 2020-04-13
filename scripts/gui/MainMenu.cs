@@ -18,8 +18,8 @@ public class MainMenu : Node
     public override void _Ready()
     {
         // Start intro video
-        TransitionManager.AddCutscene("res://assets/videos/intro.webm");
-        TransitionManager.StartTransitions(this, nameof(OnIntroEnded));
+        TransitionManager.Instance.AddCutscene("res://assets/videos/intro.webm");
+        TransitionManager.Instance.StartTransitions(this, nameof(OnIntroEnded));
 
         RunMenuSetup();
     }
@@ -124,10 +124,10 @@ public class MainMenu : Node
 
     private void OnIntroEnded()
     {
-        TransitionManager.AddFade(Fade.FadeType.FadeOut, 0.5f, false);
-        TransitionManager.StartTransitions(null, string.Empty);
+        TransitionManager.Instance.AddFade(Fade.FadeType.FadeOut, 0.5f, false);
+        TransitionManager.Instance.StartTransitions(null, string.Empty);
 
-        //Jukebox.PlayFromCategory("main_menu");
+        // Jukebox.PlayFromCategory("menu");
     }
 
     private void OnMicrobeIntroEnded()
@@ -139,24 +139,24 @@ public class MainMenu : Node
 
     private void NewGamePressed()
     {
-        GUICommon.PlayButtonPressSound();
+        GUICommon.Instance.PlayButtonPressSound();
 
         var tween = GetNode<Tween>("MenuTween");
 
-        TransitionManager.AddFade(Fade.FadeType.FadeIn, 0.5f);
-        TransitionManager.AddCutscene("res://assets/videos/microbe_intro2.webm");
-        TransitionManager.StartTransitions(this, nameof(OnMicrobeIntroEnded));
+        TransitionManager.Instance.AddFade(Fade.FadeType.FadeIn, 0.5f);
+        TransitionManager.Instance.AddCutscene("res://assets/videos/microbe_intro2.webm");
+        TransitionManager.Instance.StartTransitions(this, nameof(OnMicrobeIntroEnded));
     }
 
     private void ToolsPressed()
     {
-        GUICommon.PlayButtonPressSound();
+        GUICommon.Instance.PlayButtonPressSound();
         SetCurrentMenu(1);
     }
 
     private void FreebuildEditorPressed()
     {
-        GUICommon.PlayButtonPressSound();
+        GUICommon.Instance.PlayButtonPressSound();
 
         // Instantiate a new editor scene
         GetTree().ChangeScene("res://src/microbe_stage/editor/MicrobeEditor.tscn");
@@ -164,13 +164,13 @@ public class MainMenu : Node
 
     private void BackFromToolsPressed()
     {
-        GUICommon.PlayButtonPressSound();
+        GUICommon.Instance.PlayButtonPressSound();
         SetCurrentMenu(0);
     }
 
     private void QuitPressed()
     {
-        GUICommon.PlayButtonPressSound();
+        GUICommon.Instance.PlayButtonPressSound();
         GetTree().Quit();
     }
 }

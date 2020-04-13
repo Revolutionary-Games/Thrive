@@ -17,8 +17,8 @@ public class MicrobeEditorGUI : Node
         membraneSelectionElements = GetTree().GetNodesInGroup("MembraneSelectionElement");
 
         // Fade out for that smooth satisfying transition
-        TransitionManager.AddFade(Fade.FadeType.FadeOut, 0.5f);
-        TransitionManager.StartTransitions(null, string.Empty);
+        TransitionManager.Instance.AddFade(Fade.FadeType.FadeOut, 0.5f);
+        TransitionManager.Instance.StartTransitions(null, string.Empty);
     }
 
     public override void _Input(InputEvent @event)
@@ -208,12 +208,12 @@ public class MicrobeEditorGUI : Node
             menu.Show();
         }
 
-        GUICommon.PlayButtonPressSound();
+        GUICommon.Instance.PlayButtonPressSound();
     }
 
     private void ExitPressed()
     {
-        GUICommon.PlayButtonPressSound();
+        GUICommon.Instance.PlayButtonPressSound();
         GetTree().Quit();
     }
 }
