@@ -68,8 +68,6 @@ public class MicrobeStage : Node
         ProcessSystem = new ProcessSystem(rootOfDynamicallySpawned);
         microbeAISystem = new MicrobeAISystem(rootOfDynamicallySpawned);
 
-        patchManager = new PatchManager(spawner, ProcessSystem, Clouds, TimedLifeSystem);
-
         HUD.Init(this);
 
         // Do stage setup to spawn things and setup all parts of the stage
@@ -97,11 +95,15 @@ public class MicrobeStage : Node
         {
             StartNewGame();
         }
+
+        CreatePatchManagerIfNeeded();
     }
 
     public void StartNewGame()
     {
         CurrentGame = GameProperties.StartNewMicrobeGame();
+
+        CreatePatchManagerIfNeeded();
 
         patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch);
 
@@ -118,8 +120,16 @@ public class MicrobeStage : Node
             return;
 
         Player = SpawnHelpers.SpawnMicrobe(GameWorld.PlayerSpecies, new Vector3(0, 0, 0),
-            rootOfDynamicallySpawned, SpawnHelpers.LoadMicrobeScene(), false, Clouds);
+            rootOfDynamicallySpawned, SpawnHelpers.LoadMicrobeScene(), false, Clouds,
+            GameWorld);
         Player.AddToGroup("player");
+
+        Player.OnDeath = (microbe) =>
+        {
+            GD.Print("The player has died");
+            Player = null;
+            Camera.ObjectToFollow = null;
+        };
 
         Camera.ObjectToFollow = Player;
 
@@ -201,6 +211,14 @@ public class MicrobeStage : Node
         Player.ResetOrganelleLayout();
 
         Player.Divide();
+    }
+
+    private void CreatePatchManagerIfNeeded()
+    {
+        if (patchManager != null)
+            return;
+        patchManager = new PatchManager(spawner, ProcessSystem, Clouds, TimedLifeSystem,
+            GameWorld);
     }
 
     /// <summary>

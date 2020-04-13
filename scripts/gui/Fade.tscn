@@ -5,7 +5,14 @@
 [node name="Fade" type="CanvasLayer"]
 script = ExtResource( 1 )
 
-[node name="Rect" type="ColorRect" parent="."]
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Rect" type="ColorRect" parent="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 0 )
@@ -13,7 +20,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Fader" type="Tween" parent="."]
+[node name="Fader" type="Tween" parent="Control"]
 __meta__ = {
 "_editor_description_": "Fades the screen"
 }

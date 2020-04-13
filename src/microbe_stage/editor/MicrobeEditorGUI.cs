@@ -8,20 +8,17 @@ public class MicrobeEditorGUI : Node
 {
     private MicrobeEditor editor;
 
-    private GUICommon guiCommon;
-
     private Godot.Collections.Array organelleSelectionElements;
     private Godot.Collections.Array membraneSelectionElements;
 
     public override void _Ready()
     {
-        guiCommon = GetNode<GUICommon>("/root/GUICommon");
-
         organelleSelectionElements = GetTree().GetNodesInGroup("OrganelleSelectionElement");
         membraneSelectionElements = GetTree().GetNodesInGroup("MembraneSelectionElement");
 
         // Fade out for that smooth satisfying transition
-        guiCommon.Fade(GUICommon.FadeType.FadeOut, null, string.Empty, 0.5f, false);
+        TransitionManager.AddFade(Fade.FadeType.FadeOut, 0.5f);
+        TransitionManager.StartTransitions(null, string.Empty);
     }
 
     public override void _Input(InputEvent @event)
@@ -211,12 +208,12 @@ public class MicrobeEditorGUI : Node
             menu.Show();
         }
 
-        guiCommon.PlayButtonPressSound();
+        GUICommon.PlayButtonPressSound();
     }
 
     private void ExitPressed()
     {
-        guiCommon.PlayButtonPressSound();
+        GUICommon.PlayButtonPressSound();
         GetTree().Quit();
     }
 }

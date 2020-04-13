@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -126,18 +127,22 @@ public class FloatingChunk : RigidBody, ISpawned
     {
         var pos = Translation;
 
+        var keys = new List<string>(ContainedCompounds.Compounds.Keys);
+
         // Loop through all the compounds in the storage bag and eject them
         bool vented = false;
-        foreach (var entry in ContainedCompounds.Compounds)
+        foreach (var compound in keys)
         {
-            if (entry.Value <= 0)
+            var amount = ContainedCompounds.GetCompoundAmount(compound);
+
+            if (amount <= 0)
                 continue;
 
-            var got = ContainedCompounds.TakeCompound(entry.Key, VentPerSecond * delta);
+            var got = ContainedCompounds.TakeCompound(compound, VentPerSecond * delta);
 
             if (got > MathUtils.EPSILON)
             {
-                VentCompound(pos, entry.Key, got);
+                VentCompound(pos, compound, got);
                 vented = true;
             }
         }

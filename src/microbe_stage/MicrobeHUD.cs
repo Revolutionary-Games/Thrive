@@ -36,8 +36,6 @@ public class MicrobeHUD : Node
     /// </summary>
     private MicrobeStage stage;
 
-    private GUICommon guiCommon;
-
     /// <summary>
     ///   Show mouse coordinates data in the mouse
     ///   hover box, useful during develop.
@@ -56,7 +54,6 @@ public class MicrobeHUD : Node
 
     public override void _Ready()
     {
-        guiCommon = GetNode<GUICommon>("/root/GUICommon");
         mouseHoverPanel = GetNode<PanelContainer>("MouseHoverPanel");
         pauseButtonContainer = GetNode("BottomBar").
             GetNode<MarginContainer>("PauseButtonMargin");
@@ -70,7 +67,8 @@ public class MicrobeHUD : Node
             GetNode<VBoxContainer>("HoveredItems");
 
         // Fade out for that smooth satisfying transition
-        guiCommon.Fade(GUICommon.FadeType.FadeOut, null, string.Empty, 0.5f, false);
+        TransitionManager.AddFade(Fade.FadeType.FadeOut, 0.5f);
+        TransitionManager.StartTransitions(null, string.Empty);
     }
 
     public override void _Process(float delta)
@@ -358,12 +356,12 @@ public class MicrobeHUD : Node
             GetTree().Paused = true;
         }
 
-        guiCommon.PlayButtonPressSound();
+        GUICommon.PlayButtonPressSound();
     }
 
     private void PauseButtonPressed()
     {
-        guiCommon.PlayButtonPressSound();
+        GUICommon.PlayButtonPressSound();
 
         var pauseButton = pauseButtonContainer.GetNode<TextureButton>("Pause");
         var pausedButton = pauseButtonContainer.GetNode<TextureButton>("Resume");
@@ -391,7 +389,7 @@ public class MicrobeHUD : Node
 
     private void CompoundButtonPressed()
     {
-        guiCommon.PlayButtonPressSound();
+        GUICommon.PlayButtonPressSound();
 
         if (!leftPanelsActive)
         {
@@ -414,7 +412,7 @@ public class MicrobeHUD : Node
     /// </summary>
     private void ExitPressed()
     {
-        guiCommon.PlayButtonPressSound();
+        GUICommon.PlayButtonPressSound();
         GetTree().Quit();
     }
 }

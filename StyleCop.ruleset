@@ -80,7 +80,8 @@
     <Rule Id="SA1128" Action="None" /> <!-- Put constructor initializers on their own line -->
     <Rule Id="SA1132" Action="None" /> <!-- Do not combine fields -->
     <Rule Id="SA1133" Action="None" /> <!-- Do not combine attributes -->
-    <Rule Id="SA1137" Action="Warning" /> <!-- Elements should have the same indentation --> 
+    <Rule Id="SA1137" Action="Warning" /> <!-- Elements should have the same indentation -->
+    <Rule Id="SA1200" Action="Warning" /> <!-- Usings should be in a namespace -->
     <Rule Id="SA1201" Action="Warning" /> <!-- Elements should appear in the correct order -->
     <Rule Id="SA1214" Action="Warning" /> <!-- Readonly fields should appear before non-readonly fields -->
     <Rule Id="SA1309" Action="None" /> <!-- Field names should not begin with underscore -->
