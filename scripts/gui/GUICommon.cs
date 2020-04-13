@@ -6,12 +6,16 @@ using Godot;
 /// </summary>
 public class GUICommon : Node
 {
-    public AudioStreamPlayer UiAudio;
+    public static AudioStreamPlayer UiAudio;
 
-    private AudioStream buttonPressSound;
+    private static AudioStream buttonPressSound;
+
+    public static Node NodeInstance { get; private set; }
 
     public override void _Ready()
     {
+        NodeInstance = this;
+
         UiAudio = new AudioStreamPlayer();
         AddChild(UiAudio);
 
@@ -26,7 +30,7 @@ public class GUICommon : Node
     ///   Play the button click sound effect
     ///   when a button is pressed.
     /// </summary>
-    public void PlayButtonPressSound()
+    public static void PlayButtonPressSound()
     {
         UiAudio.Stream = buttonPressSound;
         UiAudio.Play();

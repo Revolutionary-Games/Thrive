@@ -2957,14 +2957,6 @@ margin_bottom = 390.0
 rect_min_size = Vector2( 250, 40 )
 text = "Exit"
 
-[node name="MicrobeGUIAudio" type="AudioStreamPlayer" parent="MicrobeHUD"]
-
-[node name="MusicAudio" type="AudioStreamPlayer" parent="MicrobeHUD"]
-volume_db = -5.0
-
-[node name="AmbientAudio" type="AudioStreamPlayer" parent="MicrobeHUD"]
-volume_db = -5.0
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MicrobeHUD"]
 anims/CompoundPanelCompress = SubResource( 46 )
 anims/CompoundPanelExpand = SubResource( 47 )
