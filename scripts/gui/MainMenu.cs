@@ -15,19 +15,11 @@ public class MainMenu : Node
     public Godot.Collections.Array MenuArray;
     public TextureRect Background;
 
-    public AudioStreamPlayer MusicAudio;
-
-    private GUICommon guiCommon;
-    private TransitionManager transition;
-
     public override void _Ready()
     {
-        guiCommon = GetNode<GUICommon>("/root/GUICommon");
-        transition = GetNode<TransitionManager>("/root/TransitionManager");
-
         // Start intro video
-        transition.AddCutscene("res://assets/videos/intro.webm");
-        transition.StartTransitions(this, nameof(OnIntroEnded));
+        TransitionManager.AddCutscene("res://assets/videos/intro.webm");
+        TransitionManager.StartTransitions(this, nameof(OnIntroEnded));
 
         RunMenuSetup();
     }
@@ -38,7 +30,6 @@ public class MainMenu : Node
     public void RunMenuSetup()
     {
         Background = GetNode<TextureRect>("Background");
-        MusicAudio = GetNode<AudioStreamPlayer>("Music");
 
         if (MenuArray != null)
             MenuArray.Clear();
@@ -133,11 +124,10 @@ public class MainMenu : Node
 
     private void OnIntroEnded()
     {
-        transition.AddFade(Fade.FadeType.FadeOut, 0.5f, false);
-        transition.StartTransitions(null, string.Empty);
+        TransitionManager.AddFade(Fade.FadeType.FadeOut, 0.5f, false);
+        TransitionManager.StartTransitions(null, string.Empty);
 
-        // Play the menu music
-        MusicAudio.Play();
+        //Jukebox.PlayFromCategory("main_menu");
     }
 
     private void OnMicrobeIntroEnded()
@@ -149,32 +139,24 @@ public class MainMenu : Node
 
     private void NewGamePressed()
     {
-        guiCommon.PlayButtonPressSound();
+        GUICommon.PlayButtonPressSound();
 
         var tween = GetNode<Tween>("MenuTween");
 
-        if (MusicAudio.Playing)
-        {
-            // Tween music volume down to 0, in this case -80 decibles
-            tween.InterpolateProperty(MusicAudio, "volume_db", null, -80, 1.5f,
-                Tween.TransitionType.Linear, Tween.EaseType.In);
-            tween.Start();
-        }
-
-        transition.AddFade(Fade.FadeType.FadeIn, 0.5f);
-        transition.AddCutscene("res://assets/videos/microbe_intro2.webm");
-        transition.StartTransitions(this, nameof(OnMicrobeIntroEnded));
+        TransitionManager.AddFade(Fade.FadeType.FadeIn, 0.5f);
+        TransitionManager.AddCutscene("res://assets/videos/microbe_intro2.webm");
+        TransitionManager.StartTransitions(this, nameof(OnMicrobeIntroEnded));
     }
 
     private void ToolsPressed()
     {
-        guiCommon.PlayButtonPressSound();
+        GUICommon.PlayButtonPressSound();
         SetCurrentMenu(1);
     }
 
     private void FreebuildEditorPressed()
     {
-        guiCommon.PlayButtonPressSound();
+        GUICommon.PlayButtonPressSound();
 
         // Instantiate a new editor scene
         GetTree().ChangeScene("res://src/microbe_stage/editor/MicrobeEditor.tscn");
@@ -182,13 +164,13 @@ public class MainMenu : Node
 
     private void BackFromToolsPressed()
     {
-        guiCommon.PlayButtonPressSound();
+        GUICommon.PlayButtonPressSound();
         SetCurrentMenu(0);
     }
 
     private void QuitPressed()
     {
-        guiCommon.PlayButtonPressSound();
+        GUICommon.PlayButtonPressSound();
         GetTree().Quit();
     }
 }

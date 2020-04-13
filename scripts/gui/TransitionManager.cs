@@ -7,14 +7,14 @@ using Godot;
 /// </summary>
 public class TransitionManager : Node
 {
-    public PackedScene ScreenFadeScene;
-    public PackedScene CutsceneScene;
+    public static PackedScene ScreenFadeScene;
+    public static PackedScene CutsceneScene;
 
     /// <summary>
     ///   Sequence of transitions on queue waiting
     ///   to be started.
     /// </summary>
-    private Queue<ITransition> queuedTransitions = new Queue<ITransition>();
+    private static Queue<ITransition> queuedTransitions = new Queue<ITransition>();
 
     [Signal]
     public delegate void QueuedTransitionsFinished();
@@ -22,11 +22,15 @@ public class TransitionManager : Node
     /// <summary>
     ///   List of all the existing transitions after calling StartTransitions.
     /// </summary>
-    public List<ITransition> TransitionSequence { get; private set; } =
+    public static List<ITransition> TransitionSequence { get; private set; } =
         new List<ITransition>();
+
+    public static Node NodeInstance { get; private set; }
 
     public override void _Ready()
     {
+        NodeInstance = this;
+
         ScreenFadeScene = GD.Load<PackedScene>("res://scripts/gui/Fade.tscn");
         CutsceneScene = GD.Load<PackedScene>("res://scripts/gui/Cutscene.tscn");
     }
@@ -46,17 +50,17 @@ public class TransitionManager : Node
     /// <param name="type">
     ///   The type of fade to transition to.
     /// </param>
-    public void AddFade(Fade.FadeType type, float fadeDuration, bool allowSkipping = true)
+    public static void AddFade(Fade.FadeType type, float fadeDuration, bool allowSkipping = true)
     {
         // Instantiate scene
         var screenFade = (Fade)ScreenFadeScene.Instance();
-        AddChild(screenFade);
+        NodeInstance.AddChild(screenFade);
 
         screenFade.Skippable = allowSkipping;
         screenFade.FadeTransition = type;
         screenFade.FadeDuration = fadeDuration;
 
-        screenFade.Connect("OnFinishedSignal", this, nameof(StartNextQueuedTransition));
+        screenFade.Connect("OnFinishedSignal", NodeInstance, nameof(StartNextQueuedTransition));
 
         queuedTransitions.Enqueue(screenFade);
     }
@@ -65,11 +69,11 @@ public class TransitionManager : Node
     ///   Helper function for instantiating
     ///   and queues a cutscene.
     /// </summary>
-    public void AddCutscene(string path, bool allowSkipping = true)
+    public static void AddCutscene(string path, bool allowSkipping = true)
     {
         // Instantiate scene
         var cutscene = (Cutscene)CutsceneScene.Instance();
-        AddChild(cutscene);
+        NodeInstance.AddChild(cutscene);
 
         cutscene.Skippable = allowSkipping;
 
@@ -78,7 +82,7 @@ public class TransitionManager : Node
         // Play the video stream
         cutscene.CutsceneVideoPlayer.Stream = stream;
 
-        cutscene.Connect("OnFinishedSignal", this, nameof(StartNextQueuedTransition));
+        cutscene.Connect("OnFinishedSignal", NodeInstance, nameof(StartNextQueuedTransition));
 
         queuedTransitions.Enqueue(cutscene);
     }
@@ -87,7 +91,7 @@ public class TransitionManager : Node
     ///   Starts the transitions on the queue.
     ///   Calls a method when all the transition finished.
     /// </summary>
-    public void StartTransitions(Godot.Object target, string onFinishedMethod)
+    public static void StartTransitions(Godot.Object target, string onFinishedMethod)
     {
         if (queuedTransitions.Count == 0 || queuedTransitions == null)
         {
@@ -97,9 +101,9 @@ public class TransitionManager : Node
 
         if (onFinishedMethod != string.Empty)
         {
-            if (!IsConnected(nameof(QueuedTransitionsFinished), target, onFinishedMethod))
+            if (!NodeInstance.IsConnected(nameof(QueuedTransitionsFinished), target, onFinishedMethod))
             {
-                Connect(nameof(QueuedTransitionsFinished), target, onFinishedMethod, null,
+                NodeInstance.Connect(nameof(QueuedTransitionsFinished), target, onFinishedMethod, null,
                     (uint)ConnectFlags.Oneshot);
             }
         }
@@ -119,7 +123,7 @@ public class TransitionManager : Node
     /// <summary>
     ///   Skips all the transitions, and emits finished signal.
     /// </summary>
-    public void CancelQueuedTransitions()
+    public static void CancelQueuedTransitions()
     {
         if (TransitionSequence.Count == 0 || TransitionSequence == null)
             return;
@@ -140,12 +144,12 @@ public class TransitionManager : Node
     ///   Starts the next transition on the
     ///   queue when the previous ends.
     /// </summary>
-    private void StartNextQueuedTransition()
+    private static void StartNextQueuedTransition()
     {
         // Assume it's finished when the queue list is empty.
         if (queuedTransitions.Count == 0)
         {
-            EmitSignal(nameof(QueuedTransitionsFinished));
+            NodeInstance.EmitSignal(nameof(QueuedTransitionsFinished));
             TransitionSequence.Clear();
             return;
         }
