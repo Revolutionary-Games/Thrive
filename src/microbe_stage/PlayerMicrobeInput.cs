@@ -118,17 +118,22 @@ public class PlayerMicrobeInput : Node
 
         if (@event.IsActionPressed("normal_color"))
         {
-            screenFilterMaterial.SetShaderParam("mode", 0);
+            screenFilter.Material = null;
+            screenFilter.Hide();
         }
 
         if (@event.IsActionPressed("red_green"))
         {
+            screenFilter.Material = screenFilterMaterial;
             screenFilterMaterial.SetShaderParam("mode", 1);
+            screenFilter.Show();
         }
 
         if (@event.IsActionPressed("blue_yellow"))
         {
+            screenFilter.Material = screenFilterMaterial;
             screenFilterMaterial.SetShaderParam("mode", 2);
+            screenFilter.Show();
         }
     }
 
