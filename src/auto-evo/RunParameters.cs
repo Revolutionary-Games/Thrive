@@ -11,7 +11,7 @@
 
         public RunParameters(GameWorld world)
         {
-            World = world;
+            World = world ?? throw new ArgumentException("GameWorld is null");
         }
     }
 }
