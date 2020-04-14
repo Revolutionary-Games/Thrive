@@ -4,54 +4,74 @@ using Godot;
 /// <summary>
 ///   Controls the screen fading
 /// </summary>
-public class Fade : CanvasLayer
+public class Fade : CanvasLayer, ITransition
 {
     public ColorRect Rect;
     public Tween Fader;
 
-    public bool AllowSkipping = true;
+    public float FadeDuration;
+    public FadeType FadeTransition;
 
     [Signal]
-    public delegate void FadeFinished();
+    public delegate void OnFinishedSignal();
+
+    public enum FadeType
+    {
+        FadeIn,
+        FadeOut,
+    }
+
+    public Control ControlNode { get; private set; }
+
+    public bool Skippable { get; set; } = true;
 
     public override void _Ready()
     {
-        Rect = GetNode<ColorRect>("Rect");
-        Fader = GetNode<Tween>("Fader");
-        Fader.Connect("tween_all_completed", this, "OnTweenCompleted");
+        ControlNode = GetNode<Control>("Control");
+        Rect = GetNode<ColorRect>("Control/Rect");
+        Fader = GetNode<Tween>("Control/Fader");
+        Fader.Connect("tween_all_completed", this, "OnFinished");
+
+        ControlNode.Hide();
     }
 
-    public override void _Input(InputEvent @event)
-    {
-        if (@event.IsActionPressed("ui_cancel") && AllowSkipping)
-        {
-            OnTweenCompleted();
-        }
-    }
-
-    public void FadeToBlack(float fadeDuration)
+    public void FadeToBlack()
     {
         Rect.Color = new Color(0, 0, 0, 0);
 
         Fader.InterpolateProperty(Rect, "color", new Color(0, 0, 0, 0),
-            new Color(0, 0, 0, 1), fadeDuration);
+            new Color(0, 0, 0, 1), FadeDuration);
 
         Fader.Start();
     }
 
-    public void FadeToWhite(float fadeDuration)
+    public void FadeToWhite()
     {
         Rect.Color = new Color(0, 0, 0, 1);
 
         Fader.InterpolateProperty(Rect, "color", new Color(0, 0, 0, 1),
-            new Color(0, 0, 0, 0), fadeDuration);
+            new Color(0, 0, 0, 0), FadeDuration);
 
         Fader.Start();
     }
 
-    public void OnTweenCompleted()
+    public void OnStarted()
     {
-        EmitSignal(nameof(FadeFinished));
+        ControlNode.Show();
+
+        if (FadeTransition == FadeType.FadeIn)
+        {
+            FadeToBlack();
+        }
+        else if (FadeTransition == FadeType.FadeOut)
+        {
+            FadeToWhite();
+        }
+    }
+
+    public void OnFinished()
+    {
+        EmitSignal(nameof(OnFinishedSignal));
         QueueFree();
     }
 }

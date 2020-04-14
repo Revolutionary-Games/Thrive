@@ -4259,8 +4259,6 @@ margin_right = 250.0
 margin_bottom = 390.0
 rect_min_size = Vector2( 250, 40 )
 text = "Exit"
-
-[node name="UiAudio" type="AudioStreamPlayer" parent="MicrobeEditorGUI"]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/LeftTopBar" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/LeftTopBar" to="MicrobeEditorGUI" method="OnMouseExit"]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/LeftTopBar/HBoxContainer/ReportButton" to="MicrobeEditorGUI" method="OnMouseEnter"]

@@ -85,6 +85,34 @@ public class Constants
 
     public const float OXYTOXY_DAMAGE = 10.0f;
 
+    public const float AGENT_EMISSION_DISTANCE_OFFSET = 0.5f;
+
+    public const float EMITTED_AGENT_LIFETIME = 5.0f;
+
+    public const int MAX_EMITTED_AGENTS_ON_DEATH = 5;
+
+    /// <summary>
+    ///   Percentage of the compounds that compose the organelle
+    ///   released upon death (between 0.0 and 1.0).
+    /// </summary>
+    public const float COMPOUND_MAKEUP_RELEASE_PERCENTAGE = 0.9f;
+    public const float COMPOUND_RELEASE_PERCENTAGE = 0.9f;
+
+    /// <summary>
+    ///   Base mass all microbes have on top of their organelle masses
+    /// </summary>
+    public const float MICROBE_BASE_MASS = 0.7f;
+
+    /// <summary>
+    ///   Cooldown between agent emissions, in seconds.
+    /// </summary>
+    public const float AGENT_EMISSION_COOLDOWN = 2.0f;
+
+    /// <summary>
+    ///   The minimum amount of oxytoxy (or any agent) needed to be able to shoot.
+    /// </summary>
+    public const float MINIMUM_AGENT_EMISSION_AMOUNT = 1;
+
     /// <summary>
     ///   How much of a compound is actually given to a cell when absorbed
     /// </summary>
@@ -101,6 +129,8 @@ public class Constants
     public const float COMPOUNDS_TO_VENT_PER_SECOND = 5.0f;
 
     public const float CHUNK_VENT_COMPOUND_MULTIPLIER = 1000.0f;
+
+    public const float MICROBE_VENT_COMPOUND_MULTIPLIER = 10000.0f;
 
     /// <summary>
     ///   This is used just as the default value for health and max
@@ -186,6 +216,12 @@ public class Constants
 
     public const int ORGANELLE_REMOVE_COST = 10;
 
+    // Corpse info
+    public const float CORPSE_COMPOUND_COMPENSATION = 8.0f;
+    public const int CORPSE_CHUNK_DIVISER = 3;
+    public const float CORPSE_CHUNK_AMOUNT_DIVISER = 3.0f;
+    public const float CHUNK_ENGULF_COMPOUND_DIVISOR = 30.0f;
+
     /// <summary>
     ///   The drag force is calculated by taking the current velocity
     ///   and multiplying it by this. This must be negative!
@@ -242,6 +278,23 @@ public class Constants
     // Genus splitting and name mutation
     public const int MUTATION_CHANGE_GENUS = 33;
     public const int MUTATION_WORD_EDIT = 10;
+
+    /// <summary>
+    ///   How many steps forward of the population simulation to do when auto-evo looks at the results of mutations
+    ///   etc. for which is the most beneficial
+    /// </summary>
+    public const int AUTOEVO_VARIANT_SIMULATION_STEPS = 10;
+
+    public const int AUTO_EVO_MINIMUM_MOVE_POPULATION = 250;
+    public const float AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION = 0.1f;
+    public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.9f;
+
+    // Some (placeholder) auto-evo algorithm tweak parameters
+    public const int AUTO_EVO_LOW_SPECIES_THRESHOLD = 3;
+    public const int AUTO_EVO_LOW_SPECIES_BOOST = 500;
+    public const int AUTO_EVO_HIGH_SPECIES_THRESHOLD = 11;
+    public const int AUTO_EVO_HIGH_SPECIES_PENALTY = 500;
+    public const int AUTO_EVO_RANDOM_POPULATION_CHANGE = 500;
 
     /// <summary>
     ///   All Nodes tagged with this are handled by the spawn system for despawning

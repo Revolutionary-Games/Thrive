@@ -58,7 +58,9 @@
     <Compile Include="scripts\gui\Cutscene.cs" />
     <Compile Include="scripts\gui\Fade.cs" />
     <Compile Include="scripts\gui\GUICommon.cs" />
+    <Compile Include="scripts\gui\ITransition.cs" />
     <Compile Include="scripts\gui\MainMenu.cs" />
+    <Compile Include="scripts\gui\TransitionManager.cs" />
     <Compile Include="scripts\gui\VersionNumber.cs" />
     <Compile Include="scripts\simulation_parameters\Constants.cs" />
     <Compile Include="src\microbe_stage\AgentProjectile.cs" />
@@ -137,6 +139,19 @@
     <Compile Include="src\general\RandomUtils.cs" />
     <Compile Include="src\microbe_stage\organelle_components\ExternallyPositionedComponent.cs" />
     <Compile Include="src\general\DictionaryUtils.cs" />
+    <Compile Include="src\auto-evo\AutoEvo.cs" />
+    <Compile Include="src\auto-evo\AutoEvoRun.cs" />
+    <Compile Include="src\auto-evo\IRunStep.cs" />
+    <Compile Include="src\auto-evo\RunResults.cs" />
+    <Compile Include="src\auto-evo\RunParameters.cs" />
+    <Compile Include="src\auto-evo\steps\LambdaStep.cs" />
+    <Compile Include="src\auto-evo\steps\FindBestMutation.cs" />
+    <Compile Include="src\auto-evo\steps\FindBestMigration.cs" />
+    <Compile Include="src\auto-evo\steps\CalculatePopulation.cs" />
+    <Compile Include="src\auto-evo\SpeciesMigration.cs" />
+    <Compile Include="src\auto-evo\simulation\SimulationConfiguration.cs" />
+    <Compile Include="src\auto-evo\simulation\PopulationSimulation.cs" />
+    <Compile Include="src\auto-evo\steps\VariantTryingStep.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="StyleCop.ruleset" />
@@ -145,6 +160,8 @@
   <ItemGroup>
     <Folder Include="shaders\" />
     <Folder Include="src\microbe_stage\organelle_components\" />
+    <Folder Include="src\auto-evo\steps\" />
+    <Folder Include="src\auto-evo\simulation\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

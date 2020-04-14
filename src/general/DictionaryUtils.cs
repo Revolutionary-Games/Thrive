@@ -1,8 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public static class DictionaryUtils
 {
+    /// <summary>
+    ///   Returns a random value item from a dictionary
+    /// </summary>
+    /// <returns>The random item.</returns>
+    /// <param name="items">Dictionary to select from</param>
+    /// <param name="random">Randomnes source</param>
+    /// <typeparam name="T">Type of dictionary items.</typeparam>
+    public static T Random<TKey, T>(this Dictionary<TKey, T> items, Random random)
+    {
+        if (items == null || items.Count < 1)
+            return default(T);
+
+        // TODO: maybe there is a better way to do this
+        return items[items.Keys.ToList()[random.Next(0, items.Keys.Count - 1)]];
+    }
+
     // Apparently C# doesn't support operator constraints on generics,
     // so this ends up being like this
 

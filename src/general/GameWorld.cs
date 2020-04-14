@@ -1,4 +1,5 @@
 ﻿using System;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -145,7 +146,26 @@ public class GameWorld
     public void AlterSpeciesPopulation(Species species, int amount, string description,
         bool immediate = false)
     {
+        if (amount == 0)
+            return;
+
+        if (species == null)
+            throw new ArgumentException("species is null");
+
+        // Immediate is only allowed to use for the player dying
+        if (immediate)
+        {
+            if (!species.PlayerSpecies)
+                throw new ArgumentException("immediate effect is only for player dying");
+
+            GD.Print("Applying immediate population effect " +
+                "(should only be used for the player dying)");
+            species.ApplyImmediatePopulationChange(amount);
+        }
+
         // TODO: fix
         throw new NotImplementedException();
+
+        // GetThriveGame().addExternalPopulationEffect(species, popChange, reason);
     }
 }

@@ -38,6 +38,11 @@ Code style rules
   named the same as the class in them are named with all lowercase
   with underscores separating the words.
 
+- C# file lines should have a maximum width of 120 columns.
+
+- C# code should by default not be in a namespace. When code is in a
+  namespace all using statements should be within the namespace.
+
 - Build your code with warnings enabled to see things StyleCop
   complains about. If you don't automatic checks on your code will
   fail.

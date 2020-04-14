@@ -4,7 +4,7 @@
 require 'English'
 require 'find'
 
-MAX_LINE_LENGTH = 95
+MAX_LINE_LENGTH = 120
 
 system(%(msbuild Thrive.sln /t:Clean,Build /warnaserror))
 abort("\nBuild generated warnings or errors.") if $CHILD_STATUS.exitstatus != 0

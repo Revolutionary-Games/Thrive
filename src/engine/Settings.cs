@@ -36,6 +36,12 @@ public class Settings
     public bool PlayMicrobeIntroVideo { get; set; } = true;
 
     /// <summary>
+    ///   If true an auto-evo run is started during gameplay,
+    ///   taking up one of the background threads.
+    /// </summary>
+    public bool RunAutoEvoDuringGamePlay { get; set; } = true;
+
+    /// <summary>
     ///   This can be freely adjusted to adjust the performance The
     ///   higher this value is the smaller the size of the simulated
     ///   cloud is and the performance is better. Don't change this to
