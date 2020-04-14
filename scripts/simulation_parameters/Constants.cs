@@ -280,6 +280,23 @@ public class Constants
     public const int MUTATION_WORD_EDIT = 10;
 
     /// <summary>
+    ///   How many steps forward of the population simulation to do when auto-evo looks at the results of mutations
+    ///   etc. for which is the most beneficial
+    /// </summary>
+    public const int AUTOEVO_VARIANT_SIMULATION_STEPS = 10;
+
+    public const int AUTO_EVO_MINIMUM_MOVE_POPULATION = 250;
+    public const float AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION = 0.1f;
+    public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.9f;
+
+    // Some (placeholder) auto-evo algorithm tweak parameters
+    public const int AUTO_EVO_LOW_SPECIES_THRESHOLD = 3;
+    public const int AUTO_EVO_LOW_SPECIES_BOOST = 500;
+    public const int AUTO_EVO_HIGH_SPECIES_THRESHOLD = 11;
+    public const int AUTO_EVO_HIGH_SPECIES_PENALTY = 500;
+    public const int AUTO_EVO_RANDOM_POPULATION_CHANGE = 500;
+
+    /// <summary>
     ///   All Nodes tagged with this are handled by the spawn system for despawning
     /// </summary>
     public const string SPAWNED_GROUP = "spawned";

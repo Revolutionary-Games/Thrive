@@ -33,9 +33,14 @@
 
         public void AddMigrationResultForSpecies(Species species, Patch fromPatch, Patch toPatch, int populationAmount)
         {
+            AddMigrationResultForSpecies(species, new SpeciesMigration(fromPatch, toPatch, populationAmount));
+        }
+
+        public void AddMigrationResultForSpecies(Species species, SpeciesMigration migration)
+        {
             MakeSureResultExistsForSpecies(species);
 
-            results[species].SpreadToPatches.Add(new Tuple<Patch, Patch, int>(fromPatch, toPatch, populationAmount));
+            results[species].SpreadToPatches.Add(migration);
         }
 
         public void ApplyResults(GameWorld world, bool skipMutations)
@@ -66,9 +71,8 @@
 
                 foreach (var spreadEntry in entry.Value.SpreadToPatches)
                 {
-                    var from = world.Map.GetPatch(spreadEntry.Item1.ID);
-                    var to = world.Map.GetPatch(spreadEntry.Item2.ID);
-                    var amount = spreadEntry.Item3;
+                    var from = world.Map.GetPatch(spreadEntry.From.ID);
+                    var to = world.Map.GetPatch(spreadEntry.To.ID);
 
                     if (from == null || to == null)
                     {
@@ -77,9 +81,9 @@
                     }
 
                     var remainingPopulation =
-                        from.GetSpeciesPopulation(entry.Key) - amount;
+                        from.GetSpeciesPopulation(entry.Key) - spreadEntry.Population;
                     var newPopulation =
-                        to.GetSpeciesPopulation(entry.Key) + amount;
+                        to.GetSpeciesPopulation(entry.Key) + spreadEntry.Population;
 
                     if (!from.UpdateSpeciesPopulation(entry.Key, remainingPopulation))
                     {
@@ -210,21 +214,21 @@
                         if (playerReadable)
                         {
                             builder.Append("  ");
-                            builder.Append(spreadEntry.Item2.Name);
+                            builder.Append(spreadEntry.To.Name);
                             builder.Append(" by sending: ");
-                            builder.Append(spreadEntry.Item3);
+                            builder.Append(spreadEntry.Population);
                             builder.Append("population");
                             builder.Append(" from patch: ");
-                            builder.Append(spreadEntry.Item1.Name);
+                            builder.Append(spreadEntry.From.Name);
                         }
                         else
                         {
                             builder.Append("  ");
-                            builder.Append(spreadEntry.Item2.Name);
+                            builder.Append(spreadEntry.To.Name);
                             builder.Append(" pop: ");
-                            builder.Append(spreadEntry.Item3);
+                            builder.Append(spreadEntry.Population);
                             builder.Append(" from: ");
-                            builder.Append(spreadEntry.Item1.Name);
+                            builder.Append(spreadEntry.From.Name);
                         }
 
                         builder.Append("\n");
@@ -254,7 +258,7 @@
                     {
                         bool found = false;
 
-                        var to = spreadEntry.Item2;
+                        var to = spreadEntry.To;
 
                         foreach (var populationEntry in entry.NewPopulationInPatches)
                         {
@@ -285,6 +289,7 @@
         /// </summary>
         private static void ApplySpeciesMutation(Species species, Species mutation)
         {
+            // TODO: fix
             throw new NotImplementedException();
         }
 
@@ -309,13 +314,13 @@
 
             foreach (var entry in results[species].SpreadToPatches)
             {
-                if (entry.Item1 == targetPatch)
+                if (entry.From == targetPatch)
                 {
-                    totalPopulation -= entry.Item3;
+                    totalPopulation -= entry.Population;
                 }
-                else if (entry.Item2 == targetPatch)
+                else if (entry.To == targetPatch)
                 {
-                    totalPopulation += entry.Item3;
+                    totalPopulation += entry.Population;
                 }
             }
 
@@ -336,13 +341,7 @@
             /// <summary>
             ///   List of patches this species has spread to
             /// </summary>
-            /// <remarks>
-            ///   <para>
-            ///     The first part of the tuple is the patch id of the source patch, the second is the patch the
-            ///     population is moved to, and the third is the amount of population to move
-            ///   </para>
-            /// </remarks>
-            public List<Tuple<Patch, Patch, int>> SpreadToPatches = new List<Tuple<Patch, Patch, int>>();
+            public List<SpeciesMigration> SpreadToPatches = new List<SpeciesMigration>();
 
             public SpeciesResult(Species species)
             {

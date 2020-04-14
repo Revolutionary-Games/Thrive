@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public static class ListUtils
 {
     /// <summary>
-    ///   Returns a random items from a list
+    ///   Returns a random item from a list
     /// </summary>
     /// <returns>The random item.</returns>
     /// <param name="items">List to select from</param>
