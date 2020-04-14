@@ -10,6 +10,8 @@ public class PlayerMicrobeInput : Node
     ///   and also the cloud spawning.
     /// </summary>
     private MicrobeStage stage;
+    private TextureRect screenFilter;
+    private ShaderMaterial screenFilterMaterial;
 
     // // All the input actions
     private bool forward = false;
@@ -24,6 +26,8 @@ public class PlayerMicrobeInput : Node
     public override void _Ready()
     {
         stage = (MicrobeStage)GetParent();
+        screenFilter = (TextureRect)stage.GetNode("ScreenFilter");
+        screenFilterMaterial = (ShaderMaterial)screenFilter.Material;
     }
 
     public override void _Input(InputEvent @event)
@@ -110,6 +114,21 @@ public class PlayerMicrobeInput : Node
             {
                 stage.Player.EmitToxin();
             }
+        }
+
+        if (@event.IsActionPressed("normal_color"))
+        {
+            screenFilterMaterial.SetShaderParam("mode", 0);
+        }
+
+        if (@event.IsActionPressed("red_green"))
+        {
+            screenFilterMaterial.SetShaderParam("mode", 1);
+        }
+
+        if (@event.IsActionPressed("blue_yellow"))
+        {
+            screenFilterMaterial.SetShaderParam("mode", 2);
         }
     }
 
