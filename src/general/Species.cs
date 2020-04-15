@@ -123,6 +123,32 @@ public abstract class Species : ICloneable
     }
 
     /// <summary>
+    ///   Apply properties from the mutation that are mutatable
+    /// </summary>
+    public virtual void ApplyMutation(Species mutation)
+    {
+        InitialCompounds.Clear();
+
+        foreach (var entry in mutation.InitialCompounds)
+        {
+            InitialCompounds.Add(entry.Key, entry.Value);
+        }
+
+        Colour = mutation.Colour;
+
+        // These don't mutate for a species
+        // genus;
+        // epithet;
+
+        // Behavior properties
+        Aggression = mutation.Aggression;
+        Opportunism = mutation.Opportunism;
+        Fear = mutation.Fear;
+        Activity = mutation.Activity;
+        Focus = mutation.Focus;
+    }
+
+    /// <summary>
     ///   Makes this the player species. This is a method as this is an important change
     /// </summary>
     public void BecomePlayerSpecies()

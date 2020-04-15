@@ -130,10 +130,10 @@ public class GameWorld
     {
         switch (species)
         {
-        case MicrobeSpecies s:
-            return mutator.CreateMutatedSpecies(s, NewMicrobeSpecies());
-        default:
-            throw new ArgumentException("unhandled species type for CreateMutatedSpecies");
+            case MicrobeSpecies s:
+                return mutator.CreateMutatedSpecies(s, NewMicrobeSpecies());
+            default:
+                throw new ArgumentException("unhandled species type for CreateMutatedSpecies");
         }
     }
 
@@ -164,7 +164,7 @@ public class GameWorld
         }
 
         // TODO: fix
-        throw new NotImplementedException();
+        // throw new NotImplementedException();
 
         // GetThriveGame().addExternalPopulationEffect(species, popChange, reason);
     }
