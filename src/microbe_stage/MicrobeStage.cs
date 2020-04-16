@@ -109,6 +109,8 @@ public class MicrobeStage : Node
 
         SpawnPlayer();
         Camera.ResetHeight();
+
+        HUD.UpdatePatchInfo(GameWorld.Map.CurrentPatch.Name);
     }
 
     /// <summary>
@@ -240,7 +242,9 @@ public class MicrobeStage : Node
 
         Player.Divide();
 
+        HUD.OnEnterStageTransition();
         HUD.HideReproductionDialog();
+        HUD.UpdatePatchInfo(GameWorld.Map.CurrentPatch.Name);
     }
 
     private void CreatePatchManagerIfNeeded()

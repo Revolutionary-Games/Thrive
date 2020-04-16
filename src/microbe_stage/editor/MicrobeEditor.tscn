@@ -1140,6 +1140,7 @@ __meta__ = {
 [node name="EditorHex" parent="World" instance=ExtResource( 3 )]
 
 [node name="MicrobeEditorGUI" type="Node" parent="."]
+pause_mode = 2
 script = ExtResource( 45 )
 
 [node name="LeftTopBar" type="Control" parent="MicrobeEditorGUI"]

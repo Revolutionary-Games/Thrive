@@ -88,6 +88,14 @@ public class MicrobeEditor : Node
 
     private int organelleRot = 0;
 
+    public MicrobeCamera Camera
+    {
+        get
+        {
+            return camera;
+        }
+    }
+
     /// <summary>
     ///   The selected membrane rigidity
     /// </summary>

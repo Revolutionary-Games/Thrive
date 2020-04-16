@@ -124,10 +124,8 @@ public class MainMenu : Node
 
     private void OnIntroEnded()
     {
-        TransitionManager.Instance.AddFade(Fade.FadeType.FadeOut, 0.5f, false);
+        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeOut, 0.5f, false);
         TransitionManager.Instance.StartTransitions(null, string.Empty);
-
-        // Jukebox.PlayFromCategory("menu");
     }
 
     private void OnMicrobeIntroEnded()
@@ -137,13 +135,17 @@ public class MainMenu : Node
         GetTree().ChangeScene("res://src/microbe_stage/MicrobeStage.tscn");
     }
 
+    private void OnFreebuildFadeInEnded()
+    {
+        // Instantiate a new editor scene
+        GetTree().ChangeScene("res://src/microbe_stage/editor/MicrobeEditor.tscn");
+    }
+
     private void NewGamePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        var tween = GetNode<Tween>("MenuTween");
-
-        TransitionManager.Instance.AddFade(Fade.FadeType.FadeIn, 0.5f);
+        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.5f);
         TransitionManager.Instance.AddCutscene("res://assets/videos/microbe_intro2.webm");
         TransitionManager.Instance.StartTransitions(this, nameof(OnMicrobeIntroEnded));
     }
@@ -158,8 +160,8 @@ public class MainMenu : Node
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        // Instantiate a new editor scene
-        GetTree().ChangeScene("res://src/microbe_stage/editor/MicrobeEditor.tscn");
+        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.5f, false);
+        TransitionManager.Instance.StartTransitions(this, nameof(OnFreebuildFadeInEnded));
     }
 
     private void BackFromToolsPressed()
