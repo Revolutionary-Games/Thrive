@@ -30,6 +30,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     private AudioStreamPlayer3D movementAudio;
 
     /// <summary>
+    ///   Init can call _Ready if it hasn't been called yet
+    /// </summary>
+    private bool onReadyCalled = false;
+
+    /// <summary>
     ///   The organelles in this microbe
     /// </summary>
     private OrganelleLayout<PlacedOrganelle> organelles;
@@ -49,9 +54,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     private bool wasBeingEngulfed = false;
 
     // private bool isCurrentlyEngulfing = false;
-
-    private float hitpoints = Constants.DEFAULT_HEALTH;
-    private float maxHitpoints = Constants.DEFAULT_HEALTH;
 
     private float lastCheckedATPDamage = 0.0f;
 
@@ -103,6 +105,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     ///   being engulfed by us that we are dead.
     /// </summary>
     public bool Dead { get; private set; } = false;
+
+    public float Hitpoints { get; private set; } = Constants.DEFAULT_HEALTH;
+    public float MaxHitpoints { get; private set; } = Constants.DEFAULT_HEALTH;
 
     /// <summary>
     ///   Multiplied on the movement speed of the microbe.
@@ -195,9 +200,14 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     public float AgentEmissionCooldown { get; private set; } = 0.0f;
 
     /// <summary>
-    /// Called when this Microbe dies
+    ///   Called when this Microbe dies
     /// </summary>
     public Action<Microbe> OnDeath { get; set; }
+
+    /// <summary>
+    ///   Called when the reproduction status of this microbe changes
+    /// </summary>
+    public Action<Microbe, bool> OnReproductionStatus { get; set; }
 
     /// <summary>
     ///   Must be called when spawned to provide access to the needed systems
@@ -210,6 +220,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
         if (IsPlayerMicrobe)
             GD.Print("Player Microbe spawned");
+
+        // Needed for immediately applying the species
+        _Ready();
     }
 
     public override void _Ready()
@@ -219,12 +232,16 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             throw new Exception("Microbe not initialized");
         }
 
+        if (onReadyCalled)
+            return;
+
         Membrane = GetNode<Membrane>("Membrane");
         engulfAudio = GetNode<AudioStreamPlayer3D>("EngulfAudio");
         otherAudio = GetNode<AudioStreamPlayer3D>("OtherAudio");
         movementAudio = GetNode<AudioStreamPlayer3D>("MovementAudio");
 
         Mass = Constants.MICROBE_BASE_MASS;
+        onReadyCalled = true;
     }
 
     /// <summary>
@@ -389,15 +406,15 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             amount /= Species.MembraneType.PhysicalResistance;
         }
 
-        hitpoints -= amount;
+        Hitpoints -= amount;
 
         // Flash the microbe red
         Flash(1.0f, new Color(1, 0, 0, 0.5f));
 
         // Kill if ran out of health
-        if (hitpoints <= 0.0f)
+        if (Hitpoints <= 0.0f)
         {
-            hitpoints = 0.0f;
+            Hitpoints = 0.0f;
             Kill();
         }
     }
@@ -576,9 +593,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
         if (IsPlayerMicrobe)
         {
-            // TODO: fix
             // If you died before entering the editor disable that
-            // HideReproductionDialog();
+            if (OnReproductionStatus != null)
+            {
+                OnReproductionStatus(this, false);
+            }
         }
 
         // It used to be that the physics shape was removed here and
@@ -821,20 +840,19 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             ApplyATPDamage();
         }
 
-        Membrane.HealthFraction = hitpoints / maxHitpoints;
+        Membrane.HealthFraction = Hitpoints / MaxHitpoints;
 
-        if (hitpoints <= 0)
+        if (Hitpoints <= 0)
         {
             HandleDeath();
         }
         else
         {
-            // TODO: fix
-            // // As long as the player has been alive they can go to the editor in freebuild
-            // if(IsPlayerMicrobe && GetThriveGame().playerData().isFreeBuilding())
-            // {
-            //     showReproductionDialog(world);
-            // }
+            // As long as the player has been alive they can go to the editor in freebuild
+            if (OnReproductionStatus != null)
+            {
+                OnReproductionStatus(this, true);
+            }
         }
     }
 
@@ -925,14 +943,14 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// </summary>
     private void HandleHitpointsRegeneration(float delta)
     {
-        if (hitpoints < maxHitpoints)
+        if (Hitpoints < MaxHitpoints)
         {
             if (Compounds.GetCompoundAmount("atp") >= 1.0f)
             {
-                hitpoints += Constants.REGENERATION_RATE * delta;
-                if (hitpoints > maxHitpoints)
+                Hitpoints += Constants.REGENERATION_RATE * delta;
+                if (Hitpoints > MaxHitpoints)
                 {
-                    hitpoints = maxHitpoints;
+                    Hitpoints = MaxHitpoints;
                 }
             }
         }
@@ -943,12 +961,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// </summary>
     private void SetupMicrobeHitpoints()
     {
-        float currentHealth = hitpoints / maxHitpoints;
+        float currentHealth = Hitpoints / MaxHitpoints;
 
-        maxHitpoints = Species.MembraneType.Hitpoints +
+        MaxHitpoints = Species.MembraneType.Hitpoints +
             (Species.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER);
 
-        hitpoints = maxHitpoints * currentHealth;
+        Hitpoints = MaxHitpoints * currentHealth;
     }
 
     /// <summary>
@@ -1124,11 +1142,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     {
         if (IsPlayerMicrobe)
         {
-            // The player doesn't split varmatically
+            // The player doesn't split automatically
             allOrganellesDivided = true;
 
-            // TODO: fix
-            // showReproductionDialog(world);
+            if (OnReproductionStatus != null)
+            {
+                OnReproductionStatus(this, true);
+            }
         }
         else
         {
@@ -1284,7 +1304,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             //     showMessage("No ATP hurts you!")
             // }
 
-            Damage(maxHitpoints * Constants.NO_ATP_DAMAGE_FRACTION, "atpDamage");
+            Damage(MaxHitpoints * Constants.NO_ATP_DAMAGE_FRACTION, "atpDamage");
         }
     }
 

@@ -79,12 +79,16 @@ public class MicrobeHUD : Node
         if (stage.Player != null)
         {
             UpdateBars();
+            UpdateReproductionProgress();
+            UpdateHealth();
         }
 
         if (stage.Camera != null)
         {
             UpdateHoverInfo();
         }
+
+        UpdatePopulation();
     }
 
     public override void _Input(InputEvent @event)
@@ -135,6 +139,11 @@ public class MicrobeHUD : Node
     /// </summary>
     public void ShowReproductionDialog()
     {
+        // TODO: add a flag for only doing this once even when called repeatedly
+        // also add a reverse check to HideReproductionDialog
+
+        // TODO: sound "Data/Sound/soundeffects/microbe-pickup-organelle.ogg"
+
         var editorButton = GetNode<TextureButton>("BottomRight/EditorButton");
 
         editorButton.Disabled = false;
@@ -155,6 +164,15 @@ public class MicrobeHUD : Node
         editorButton.GetNode<TextureRect>("Highlight").Hide();
         editorButton.GetNode<Control>("ReproductionBar").Show();
         editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Stop();
+    }
+
+    public void OnSuicide()
+    {
+        // TODO: hook this up to the button
+        if (stage.Player != null)
+        {
+            stage.Player.Damage(9999.0f, "suicide");
+        }
     }
 
     /// <summary>
@@ -338,6 +356,52 @@ public class MicrobeHUD : Node
         }
     }
 
+    private void UpdateReproductionProgress()
+    {
+        // Get player reproduction progress
+        float totalProgress = stage.Player.CalculateReproductionProgress(
+            out Dictionary<string, float> gatheredCompounds, out Dictionary<string, float> totalNeededCompounds);
+
+        float fractionOfAmmonia = 0;
+        float fractionOfPhosphates = 0;
+
+        try
+        {
+            fractionOfAmmonia = gatheredCompounds["ammonia"] / totalNeededCompounds["ammonia"];
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("can't get reproduction ammonia progress: ", e);
+        }
+
+        try
+        {
+            fractionOfPhosphates = gatheredCompounds["phosphates"] / totalNeededCompounds["phosphates"];
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("can't get reproduction phosphates progress: ", e);
+        }
+
+        // TODO: update the bars in the GUI
+        // reproductionProgress = totalProgress
+        // reproductionAmmoniaFraction = fractionOfAmmonia
+        // reproductionPhosphatesFraction = fractionOfPhosphates
+    }
+
+    private void UpdateHealth()
+    {
+        // TODO: fix
+        // stage.Player.hitpoints;
+        // stage.Player.maxHitpoints;
+    }
+
+    private void UpdatePopulation()
+    {
+        // TODO: fix
+        // stage.GameWorld.PlayerSpecies.Population;
+    }
+
     /// <summary>
     ///   Received for button that opens the menu inside the Microbe Stage.
     /// </summary>
@@ -405,6 +469,8 @@ public class MicrobeHUD : Node
 
     private void EditorButtonPressed()
     {
+        GD.Print("Move to editor pressed");
+        stage.MoveToEditor();
     }
 
     /// <summary>

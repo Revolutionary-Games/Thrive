@@ -4308,5 +4308,6 @@ text = "Exit"
 [connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/UndoButton" to="MicrobeEditorGUI" method="OnMouseExit"]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/FinishButton" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/FinishButton" to="MicrobeEditorGUI" method="OnMouseExit"]
+[connection signal="pressed" from="MicrobeEditorGUI/CellEditor/FinishButton" to="MicrobeEditorGUI" method="OnFinishEditingClicked"]
 [connection signal="pressed" from="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu/Resume" to="MicrobeEditorGUI" method="MenuButtonPressed"]
 [connection signal="pressed" from="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu/Exit" to="MicrobeEditorGUI" method="ExitPressed"]

@@ -140,6 +140,11 @@ public class MicrobeEditorGUI : Node
         GD.Print("Editor action is now: " + editor.ActiveActionName);
     }
 
+    internal void OnFinishEditingClicked()
+    {
+        editor.OnFinishEditing();
+    }
+
     internal void OnMembraneSelected(string membrane)
     {
         // todo: Send selected membrane to the editor script
