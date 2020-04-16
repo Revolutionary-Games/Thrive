@@ -4,6 +4,7 @@
 require 'optparse'
 require 'sha3'
 
+require_relative 'bootstrap_rubysetupsystem'
 require_relative 'RubySetupSystem/RubyCommon'
 
 FileUtils.mkdir_p 'builds'

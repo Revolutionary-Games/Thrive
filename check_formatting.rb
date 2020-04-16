@@ -3,6 +3,7 @@
 # and then runs some custom line length checks
 require 'find'
 
+require_relative 'bootstrap_rubysetupsystem'
 require_relative 'RubySetupSystem/RubyCommon'
 
 MAX_LINE_LENGTH = 120
