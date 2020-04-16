@@ -131,6 +131,18 @@ public class MicrobeStage : Node
             Camera.ObjectToFollow = null;
         };
 
+        Player.OnReproductionStatus = (microbe, ready) =>
+        {
+            if (ready)
+            {
+                HUD.ShowReproductionDialog();
+            }
+            else
+            {
+                HUD.HideReproductionDialog();
+            }
+        };
+
         Camera.ObjectToFollow = Player;
 
         if (spawnedPlayer)
@@ -186,6 +198,22 @@ public class MicrobeStage : Node
     }
 
     /// <summary>
+    ///   Switches to the editor
+    /// </summary>
+    public void MoveToEditor()
+    {
+        var scene = GD.Load<PackedScene>("res://src/microbe_stage/editor/MicrobeEditor.tscn");
+
+        var editor = (MicrobeEditor)scene.Instance();
+
+        editor.CurrentGame = CurrentGame;
+        editor.ReturnToStage = this;
+        var parent = GetParent();
+        parent.RemoveChild(this);
+        parent.AddChild(editor);
+    }
+
+    /// <summary>
     ///   Called when returning from the editor
     /// </summary>
     public void OnReturnFromEditor()
@@ -211,6 +239,8 @@ public class MicrobeStage : Node
         Player.ResetOrganelleLayout();
 
         Player.Divide();
+
+        HUD.HideReproductionDialog();
     }
 
     private void CreatePatchManagerIfNeeded()

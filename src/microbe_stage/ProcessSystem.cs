@@ -50,10 +50,6 @@ public class ProcessSystem
     {
         var result = new EnergyBalanceInfo();
 
-        // Json::Value value(Json::objectValue);
-        // Json::Value production(Json::objectValue);
-        // Json::Value consumption(Json::objectValue);
-
         float totalATPProduction = 0.0f;
         float processATPConsumption = 0.0f;
         float movementATPConsumption = 0.0f;
@@ -317,7 +313,7 @@ public class ProcessSystem
                 else
                 {
                     // If not enough compound we can't do the process
-                    if (bag.Compounds[entry.Key] < inputRemoved)
+                    if (bag.GetCompoundAmount(entry.Key) < inputRemoved)
                     {
                         canDoProcess = false;
                     }
@@ -349,7 +345,7 @@ public class ProcessSystem
                     continue;
                 }
 
-                if (bag.Compounds[entry.Key] + outputAdded > bag.Capacity)
+                if (bag.GetCompoundAmount(entry.Key) + outputAdded > bag.Capacity)
                 {
                     canDoProcess = false;
                 }
@@ -374,12 +370,9 @@ public class ProcessSystem
                     var inputRemoved = entry.Value * process.Rate * delta *
                         environmentModifier;
 
-                    // This should always be true (due to the earlier check) so
+                    // This should always succeed (due to the earlier check) so
                     // it is always assumed here that the process succeeded
-                    if (bag.Compounds[entry.Key] >= inputRemoved)
-                    {
-                        bag.Compounds[entry.Key] -= inputRemoved;
-                    }
+                    bag.TakeCompound(entry.Key, inputRemoved);
                 }
 
                 // Outputs.
@@ -391,7 +384,7 @@ public class ProcessSystem
                     var outputGenerated = entry.Value * process.Rate * delta *
                         environmentModifier;
 
-                    bag.Compounds[entry.Key] += outputGenerated;
+                    bag.AddCompound(entry.Key, outputGenerated);
                 }
             }
         }

@@ -323,9 +323,10 @@ public class MicrobeEditor : Node
         }
 
         ReturnToStage.OnReturnFromEditor();
-
-        // TODO: switch to ReturnToStage scene
-        throw new NotImplementedException();
+        var parent = GetParent();
+        parent.RemoveChild(this);
+        parent.AddChild(ReturnToStage);
+        QueueFree();
     }
 
     public override void _Input(InputEvent @event)
