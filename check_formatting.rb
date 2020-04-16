@@ -1,13 +1,16 @@
 #!/usr/bin/env ruby
 # This script first builds using msbuild treating warnings as errors
 # and then runs some custom line length checks
-require 'English'
 require 'find'
+
+require_relative 'RubySetupSystem/RubyCommon'
 
 MAX_LINE_LENGTH = 120
 
-system(%(msbuild Thrive.sln /t:Clean,Build /warnaserror))
-abort("\nBuild generated warnings or errors.") if $CHILD_STATUS.exitstatus != 0
+if runSystemSafe('msbuild', 'Thrive.sln', '/t:Clean,Build', '/warnaserror') != 0
+  error "\nBuild generated warnings or errors."
+  exit 1
+end
 
 # Skip some files that would otherwise be processed
 def skip_file?(path)
@@ -16,7 +19,7 @@ end
 
 # Different handle functions
 def handle_gd_file(_path)
-  puts 'GD scripts should not exist'
+  error 'GD scripts should not exist'
   true
 end
 
@@ -29,7 +32,7 @@ def handle_cs_file(path)
     line_number += 1
 
     if line.include? "\t"
-      puts "Line #{line_number} contains a tab"
+      error "Line #{line_number} contains a tab"
       errors = true
     end
 
@@ -37,7 +40,7 @@ def handle_cs_file(path)
     length = line.length - 1
 
     if length > MAX_LINE_LENGTH
-      puts "Line #{line_number} is too long. #{length} > #{MAX_LINE_LENGTH}"
+      error "Line #{line_number} is too long. #{length} > #{MAX_LINE_LENGTH}"
       errors = true
     end
   end
@@ -80,9 +83,9 @@ def run
 end
 
 if run
-  puts 'Code format issues detected'
+  error 'Code format issues detected'
   exit 2
 else
-  puts 'No code format issues found'
+  success 'No code format issues found'
   exit 0
 end
