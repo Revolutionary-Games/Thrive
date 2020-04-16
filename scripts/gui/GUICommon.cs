@@ -2,8 +2,8 @@ using Godot;
 
 /// <summary>
 ///   Common helpers for the GUI to work with.
-///   This class is placed on AutoLoad for global access
-///   while still inheriting Node.
+///   This singleton class is placed on AutoLoad for
+///   global access while still inheriting from Node.
 /// </summary>
 public class GUICommon : Node
 {
@@ -11,15 +11,20 @@ public class GUICommon : Node
 
     private AudioStream buttonPressSound;
 
+    private Tween tween;
+
     private GUICommon()
     {
         instance = this;
 
         UiAudio = new AudioStreamPlayer();
-        AddChild(UiAudio);
+        tween = new Tween();
 
-        // Keep running the audio player process while paused
-        UiAudio.PauseMode = PauseModeEnum.Process;
+        AddChild(UiAudio);
+        AddChild(tween);
+
+        // Keep this node running while paused
+        PauseMode = PauseModeEnum.Process;
 
         buttonPressSound = GD.Load<AudioStream>(
             "res://assets/sounds/soundeffects/gui/button-hover-click.ogg");

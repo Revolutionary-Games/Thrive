@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using Godot;
 
 /// <summary>
-///   Manages the transitions.
-///   This class is placed on AutoLoad for global access
-///   while still inheriting Node.
+///   Manages the screen transitions, usually used for when
+///   switching scenes. This singleton class is placed on
+///   AutoLoad for global access while still inheriting from Node.
 /// </summary>
 public class TransitionManager : Node
 {
@@ -54,12 +54,12 @@ public class TransitionManager : Node
 
     /// <summary>
     ///   Helper function for instantiating
-    ///   and queues a screen fade.
+    ///   and queuing a screen fade.
     /// </summary>
     /// <param name="type">
     ///   The type of fade to transition to.
     /// </param>
-    public void AddFade(Fade.FadeType type, float fadeDuration, bool allowSkipping = true)
+    public void AddScreenFade(Fade.FadeType type, float fadeDuration, bool allowSkipping = true)
     {
         // Instantiate scene
         var screenFade = (Fade)screenFadeScene.Instance();
@@ -76,7 +76,7 @@ public class TransitionManager : Node
 
     /// <summary>
     ///   Helper function for instantiating
-    ///   and queues a cutscene.
+    ///   and queuing a cutscene.
     /// </summary>
     public void AddCutscene(string path, bool allowSkipping = true)
     {
