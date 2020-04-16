@@ -89,7 +89,7 @@ public class MicrobeCamera : Camera
         ResetHeight();
     }
 
-    public override void _Input(InputEvent @event)
+    public override void _UnhandledInput(InputEvent @event)
     {
         if (@event.IsActionPressed("g_zoom_in", true))
         {

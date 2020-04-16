@@ -72,7 +72,6 @@ public class MicrobeEditorGUI : Node
     /// </summary>
     internal void OnMouseEnter()
     {
-        editor.Camera.SetProcessInput(false);
     }
 
     /// <summary>
@@ -81,7 +80,6 @@ public class MicrobeEditorGUI : Node
     /// </summary>
     internal void OnMouseExit()
     {
-        editor.Camera.SetProcessInput(true);
     }
 
     internal void SetUndoButtonStatus(bool v)
