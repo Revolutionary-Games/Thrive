@@ -193,6 +193,14 @@ public class MicrobeHUD : Node
         patchLabel.Text = "Patch: " + patchName;
     }
 
+    public void EditorButtonPressed()
+    {
+        GD.Print("Move to editor pressed");
+
+        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.3f, false);
+        TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.MoveToEditor));
+    }
+
     /// <summary>
     ///   Updates the mouse hover box with stuff.
     /// </summary>
@@ -484,14 +492,6 @@ public class MicrobeHUD : Node
             animationPlayer.Play("ShowLeftPanels");
             leftPanelsActive = false;
         }
-    }
-
-    public void EditorButtonPressed()
-    {
-        GD.Print("Move to editor pressed");
-
-        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.3f, false);
-        TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.MoveToEditor));
     }
 
     /// <summary>
