@@ -24,14 +24,20 @@ implemented feel free to ask on the issue.
 Then follow the the standard fork workflow:
 https://gist.github.com/Chaser324/ce0505fbed06b947d962 to do the
 required changes to fix the issue. You should check the documentation
-in the "doc" folder as well as check the engine documentation
-[here](https://leviathanengine.com/doc/develop/Documentation/html/index.html).
+in the "doc" folder as well as check Godot's
+[documentation](https://docs.godotengine.org/en/stable/). Note that
+you should check the [setup instructions](doc/setup_instructions.md)
+for which version of Godot you need, as well as the version of the
+Godot documentation you should read.
 
 Please follow our [styleguide](doc/style_guide.md) when making your
 changes to Thrive.
 
 Once your changes are complete, then open a pull request to this repo
-and someone from the team will review your pull request.
+and someone from the team will review your pull request. Note that
+currently it is not possible commit changes to Git LFS if you are not
+a team member, so you need to ask someone from the team for help if
+your PR includes changes to assets.
 
 
 If you want to contribute a non-planned feature, then you must add
@@ -46,7 +52,7 @@ If you have a question about an issue on how it should be solved,
 please post your question on the issue itself.
 
 If you need more general help check this category on our forums:
-https://community.revolutionarygamesstudio.com/c/25-dev-help
+https://community.revolutionarygamesstudio.com/c/dev-help
 
 ## Joining the team
 

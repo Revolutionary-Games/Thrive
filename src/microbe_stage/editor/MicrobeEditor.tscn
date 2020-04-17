@@ -1,0 +1,4314 @@
+[gd_scene load_steps=104 format=2]
+
+[ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
+[ext_resource path="res://src/microbe_stage/editor/EditorHex.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/textures/gui/bevel/EditPanelMid.png" type="Texture" id=4]
+[ext_resource path="res://assets/fonts/Jura-DemiBold.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://assets/textures/gui/bevel/OrganelleDisabled.png" type="Texture" id=6]
+[ext_resource path="res://assets/textures/gui/bevel/OrganelleHover.png" type="Texture" id=7]
+[ext_resource path="res://assets/textures/gui/bevel/OrganelleNormal.png" type="Texture" id=8]
+[ext_resource path="res://assets/textures/gui/bevel/CytoplasmIcon.png" type="Texture" id=9]
+[ext_resource path="res://assets/textures/gui/bevel/ChromatophorIcon.png" type="Texture" id=10]
+[ext_resource path="res://assets/textures/gui/bevel/MetabolosomeIcon.png" type="Texture" id=11]
+[ext_resource path="res://assets/textures/gui/bevel/ChemoproteinsIcon.png" type="Texture" id=12]
+[ext_resource path="res://assets/textures/gui/bevel/CiliaIcon.png" type="Texture" id=13]
+[ext_resource path="res://assets/textures/gui/bevel/NitrogenaseIcon.png" type="Texture" id=14]
+[ext_resource path="res://assets/textures/gui/bevel/PilusIcon.png" type="Texture" id=15]
+[ext_resource path="res://assets/textures/gui/bevel/ToxinVacuoleIcon.png" type="Texture" id=16]
+[ext_resource path="res://assets/textures/gui/bevel/FlagellumIcon.png" type="Texture" id=17]
+[ext_resource path="res://assets/textures/gui/bevel/RusticyaninIcon.png" type="Texture" id=18]
+[ext_resource path="res://assets/textures/gui/bevel/NitroplastidIcon.png" type="Texture" id=19]
+[ext_resource path="res://assets/textures/gui/bevel/ThermoplastIcon.png" type="Texture" id=20]
+[ext_resource path="res://assets/textures/gui/bevel/MitochondrionIcon.png" type="Texture" id=21]
+[ext_resource path="res://assets/textures/gui/bevel/ChloroplastIcon.png" type="Texture" id=22]
+[ext_resource path="res://assets/textures/gui/bevel/VacuoleIcon.png" type="Texture" id=23]
+[ext_resource path="res://assets/textures/gui/bevel/ChemoplastIcon.png" type="Texture" id=24]
+[ext_resource path="res://assets/textures/gui/bevel/BioluminescentIcon.png" type="Texture" id=25]
+[ext_resource path="res://assets/textures/gui/bevel/NucleusIcon.png" type="Texture" id=26]
+[ext_resource path="res://assets/textures/gui/bevel/MainMenuHover.png" type="Texture" id=27]
+[ext_resource path="res://assets/textures/gui/bevel/MainMenu.png" type="Texture" id=28]
+[ext_resource path="res://assets/textures/gui/bevel/MainMenuActive.png" type="Texture" id=29]
+[ext_resource path="res://assets/textures/gui/bevel/LowerBarLeft.png" type="Texture" id=30]
+[ext_resource path="res://assets/textures/gui/bevel/LowerBarCentre.png" type="Texture" id=31]
+[ext_resource path="res://assets/textures/gui/bevel/SmallThreeNormal.png" type="Texture" id=32]
+[ext_resource path="res://assets/textures/gui/bevel/SmallFourNormal.png" type="Texture" id=33]
+[ext_resource path="res://assets/textures/gui/bevel/SymmetryNormal.png" type="Texture" id=34]
+[ext_resource path="res://assets/textures/gui/bevel/UndoIcon.png" type="Texture" id=35]
+[ext_resource path="res://assets/textures/gui/bevel/RedoIcon.png" type="Texture" id=36]
+[ext_resource path="res://assets/textures/gui/bevel/EditPanelHeaderHover.png" type="Texture" id=37]
+[ext_resource path="res://assets/textures/gui/bevel/SymmetryHover.png" type="Texture" id=38]
+[ext_resource path="res://assets/textures/gui/bevel/SmallFourHover.png" type="Texture" id=39]
+[ext_resource path="res://assets/textures/gui/bevel/SmallThreeHover.png" type="Texture" id=40]
+[ext_resource path="res://assets/textures/gui/bevel/EditPanelHeaderNormal.png" type="Texture" id=41]
+[ext_resource path="res://assets/textures/gui/bevel/MpBarOpaque.png" type="Texture" id=42]
+[ext_resource path="res://assets/textures/gui/bevel/MP.png" type="Texture" id=43]
+[ext_resource path="res://assets/textures/gui/bevel/HealthPanel.png" type="Texture" id=44]
+[ext_resource path="res://src/microbe_stage/editor/MicrobeEditorGUI.cs" type="Script" id=45]
+[ext_resource path="res://assets/textures/gui/bevel/membraneDouble.png" type="Texture" id=46]
+[ext_resource path="res://assets/textures/gui/bevel/membraneStandard.png" type="Texture" id=47]
+[ext_resource path="res://assets/textures/gui/bevel/membraneSilica.png" type="Texture" id=48]
+[ext_resource path="res://assets/textures/gui/bevel/membraneCalciumCarbo.png" type="Texture" id=49]
+[ext_resource path="res://assets/textures/gui/bevel/membraneChitin.png" type="Texture" id=50]
+[ext_resource path="res://assets/textures/gui/bevel/membraneCellulose.png" type="Texture" id=51]
+[ext_resource path="res://assets/textures/gui/menu_theme.tres" type="Theme" id=52]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 37 )
+region_rect = Rect2( 0, 0, 120, 40 )
+modulate_color = Color( 0.392157, 0.392157, 0.392157, 1 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.34902, 0.823529, 1, 0.627451 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.439216, 0.623529, 0.623529, 0.392157 )
+
+[sub_resource type="StyleBoxTexture" id=3]
+texture = ExtResource( 41 )
+region_rect = Rect2( 0, 0, 120, 40 )
+modulate_color = Color( 1, 1, 1, 0.352941 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 20
+font_data = ExtResource( 5 )
+
+[sub_resource type="ButtonGroup" id=5]
+
+[sub_resource type="StyleBoxTexture" id=6]
+texture = ExtResource( 44 )
+region_rect = Rect2( 0, 0, 480, 40 )
+
+[sub_resource type="DynamicFont" id=7]
+font_data = ExtResource( 5 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0, 0.490196, 0.490196, 0.392157 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.439216, 0.623529, 0.623529, 0.392157 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 14
+font_data = ExtResource( 5 )
+
+[sub_resource type="StyleBoxEmpty" id=10]
+
+[sub_resource type="StyleBoxFlat" id=11]
+bg_color = Color( 0.380392, 0.741176, 0.0745098, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=12]
+
+[sub_resource type="DynamicFont" id=13]
+size = 15
+font_data = ExtResource( 5 )
+
+[sub_resource type="StyleBoxFlat" id=14]
+bg_color = Color( 0.807843, 0.219608, 0.188235, 1 )
+
+[sub_resource type="StyleBoxTexture" id=15]
+texture = ExtResource( 37 )
+region_rect = Rect2( 0, 0, 120, 40 )
+modulate_color = Color( 0.392157, 0.392157, 0.392157, 1 )
+
+[sub_resource type="StyleBoxFlat" id=16]
+bg_color = Color( 0.34902, 0.823529, 1, 0.627451 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.439216, 0.623529, 0.623529, 0.392157 )
+
+[sub_resource type="StyleBoxFlat" id=17]
+bg_color = Color( 0.184314, 0.352941, 0.352941, 0.27451 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.294118, 0.466667, 0.466667, 0.392157 )
+
+[sub_resource type="StyleBoxTexture" id=18]
+texture = ExtResource( 41 )
+region_rect = Rect2( 0, 0, 120, 40 )
+modulate_color = Color( 1, 1, 1, 0.352941 )
+
+[sub_resource type="DynamicFont" id=19]
+size = 14
+font_data = ExtResource( 5 )
+
+[sub_resource type="ButtonGroup" id=20]
+
+[sub_resource type="StyleBoxTexture" id=21]
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 360, 120 )
+modulate_color = Color( 1, 1, 1, 0.392157 )
+
+[sub_resource type="StyleBoxFlat" id=22]
+bg_color = Color( 0, 0.313726, 0.313726, 1 )
+
+[sub_resource type="StyleBoxFlat" id=23]
+bg_color = Color( 0.34902, 0.823529, 1, 0.392157 )
+
+[sub_resource type="StyleBoxFlat" id=24]
+bg_color = Color( 0.34902, 0.823529, 1, 0.392157 )
+
+[sub_resource type="StyleBoxFlat" id=25]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 15
+border_color = Color( 1, 1, 1, 0 )
+
+[sub_resource type="Theme" id=26]
+Button/colors/font_color = Color( 0, 0, 0, 1 )
+Button/colors/font_color_disabled = Color( 0, 0, 0, 1 )
+Button/colors/font_color_hover = Color( 0, 0, 0, 1 )
+Button/colors/font_color_pressed = Color( 0, 0, 0, 1 )
+Button/constants/hseparation = 2
+Button/fonts/font = null
+Button/styles/disabled = null
+Button/styles/focus = null
+Button/styles/hover = null
+Button/styles/normal = null
+Button/styles/pressed = null
+CheckBox/colors/font_color = Color( 0, 0, 0, 1 )
+CheckBox/colors/font_color_disabled = Color( 0, 0, 0, 1 )
+CheckBox/colors/font_color_hover = Color( 0, 0, 0, 1 )
+CheckBox/colors/font_color_hover_pressed = Color( 0, 0, 0, 1 )
+CheckBox/colors/font_color_pressed = Color( 0, 0, 0, 1 )
+CheckBox/constants/check_vadjust = 0
+CheckBox/constants/hseparation = 4
+CheckBox/fonts/font = null
+CheckBox/icons/checked = null
+CheckBox/icons/radio_checked = null
+CheckBox/icons/radio_unchecked = null
+CheckBox/icons/unchecked = null
+CheckBox/styles/disabled = null
+CheckBox/styles/focus = null
+CheckBox/styles/hover = null
+CheckBox/styles/hover_pressed = null
+CheckBox/styles/normal = null
+CheckBox/styles/pressed = null
+CheckButton/colors/font_color = Color( 0, 0, 0, 1 )
+CheckButton/colors/font_color_disabled = Color( 0, 0, 0, 1 )
+CheckButton/colors/font_color_hover = Color( 0, 0, 0, 1 )
+CheckButton/colors/font_color_hover_pressed = Color( 0, 0, 0, 1 )
+CheckButton/colors/font_color_pressed = Color( 0, 0, 0, 1 )
+CheckButton/constants/check_vadjust = 0
+CheckButton/constants/hseparation = 4
+CheckButton/fonts/font = null
+CheckButton/icons/off = null
+CheckButton/icons/off_disabled = null
+CheckButton/icons/on = null
+CheckButton/icons/on_disabled = null
+CheckButton/styles/disabled = null
+CheckButton/styles/focus = null
+CheckButton/styles/hover = null
+CheckButton/styles/hover_pressed = null
+CheckButton/styles/normal = null
+CheckButton/styles/pressed = null
+ColorPicker/constants/h_width = 30
+ColorPicker/constants/label_width = 10
+ColorPicker/constants/margin = 4
+ColorPicker/constants/sv_height = 256
+ColorPicker/constants/sv_width = 256
+ColorPicker/icons/add_preset = null
+ColorPicker/icons/color_hue = null
+ColorPicker/icons/color_sample = null
+ColorPicker/icons/overbright_indicator = null
+ColorPicker/icons/preset_bg = null
+ColorPicker/icons/screen_picker = null
+ColorPickerButton/colors/font_color = Color( 0, 0, 0, 1 )
+ColorPickerButton/colors/font_color_disabled = Color( 0, 0, 0, 1 )
+ColorPickerButton/colors/font_color_hover = Color( 0, 0, 0, 1 )
+ColorPickerButton/colors/font_color_pressed = Color( 0, 0, 0, 1 )
+ColorPickerButton/constants/hseparation = 2
+ColorPickerButton/fonts/font = null
+ColorPickerButton/icons/bg = null
+ColorPickerButton/styles/disabled = null
+ColorPickerButton/styles/focus = null
+ColorPickerButton/styles/hover = null
+ColorPickerButton/styles/normal = null
+ColorPickerButton/styles/pressed = null
+Dialogs/constants/button_margin = 32
+Dialogs/constants/margin = 8
+FileDialog/colors/files_disabled = Color( 0, 0, 0, 1 )
+FileDialog/colors/folder_icon_modulate = Color( 0, 0, 0, 1 )
+FileDialog/icons/folder = null
+FileDialog/icons/parent_folder = null
+FileDialog/icons/reload = null
+FileDialog/icons/toggle_hidden = null
+Fonts/fonts/large = null
+Fonts/fonts/normal = null
+GraphEdit/colors/activity = Color( 0, 0, 0, 1 )
+GraphEdit/colors/grid_major = Color( 0, 0, 0, 1 )
+GraphEdit/colors/grid_minor = Color( 0, 0, 0, 1 )
+GraphEdit/colors/selection_fill = Color( 0, 0, 0, 1 )
+GraphEdit/colors/selection_stroke = Color( 0, 0, 0, 1 )
+GraphEdit/constants/bezier_len_neg = 160
+GraphEdit/constants/bezier_len_pos = 80
+GraphEdit/constants/port_grab_distance_horizontal = 48
+GraphEdit/constants/port_grab_distance_vertical = 6
+GraphEdit/icons/minus = null
+GraphEdit/icons/more = null
+GraphEdit/icons/reset = null
+GraphEdit/icons/snap = null
+GraphEdit/styles/bg = null
+GraphNode/colors/close_color = Color( 0, 0, 0, 1 )
+GraphNode/colors/resizer_color = Color( 0, 0, 0, 1 )
+GraphNode/colors/title_color = Color( 0, 0, 0, 1 )
+GraphNode/constants/close_offset = 18
+GraphNode/constants/port_offset = 3
+GraphNode/constants/separation = 1
+GraphNode/constants/title_offset = 20
+GraphNode/fonts/title_font = null
+GraphNode/icons/close = null
+GraphNode/icons/port = null
+GraphNode/icons/resizer = null
+GraphNode/styles/breakpoint = null
+GraphNode/styles/comment = null
+GraphNode/styles/commentfocus = null
+GraphNode/styles/defaultfocus = null
+GraphNode/styles/defaultframe = null
+GraphNode/styles/frame = null
+GraphNode/styles/position = null
+GraphNode/styles/selectedframe = null
+GridContainer/constants/hseparation = 4
+GridContainer/constants/vseparation = 4
+HBoxContainer/constants/separation = 4
+HScrollBar/icons/decrement = null
+HScrollBar/icons/decrement_highlight = null
+HScrollBar/icons/increment = null
+HScrollBar/icons/increment_highlight = null
+HScrollBar/styles/grabber = null
+HScrollBar/styles/grabber_highlight = null
+HScrollBar/styles/grabber_pressed = null
+HScrollBar/styles/scroll = null
+HScrollBar/styles/scroll_focus = null
+HSeparator/constants/separation = 4
+HSeparator/styles/separator = null
+HSlider/icons/grabber = null
+HSlider/icons/grabber_disabled = null
+HSlider/icons/grabber_highlight = null
+HSlider/icons/tick = null
+HSlider/styles/grabber_area = null
+HSlider/styles/slider = null
+HSplitContainer/constants/autohide = 1
+HSplitContainer/constants/separation = 12
+HSplitContainer/icons/grabber = null
+HSplitContainer/styles/bg = null
+Icons/icons/close = null
+ItemList/colors/font_color = Color( 0, 0, 0, 1 )
+ItemList/colors/font_color_selected = Color( 0, 0, 0, 1 )
+ItemList/colors/guide_color = Color( 0, 0, 0, 1 )
+ItemList/constants/hseparation = 4
+ItemList/constants/icon_margin = 4
+ItemList/constants/line_separation = 2
+ItemList/constants/vseparation = 2
+ItemList/fonts/font = null
+ItemList/styles/bg = null
+ItemList/styles/bg_focus = null
+ItemList/styles/cursor = null
+ItemList/styles/cursor_unfocused = null
+ItemList/styles/selected = null
+ItemList/styles/selected_focus = null
+Label/colors/font_color = Color( 1, 1, 1, 1 )
+Label/colors/font_color_shadow = Color( 0, 0, 0, 0 )
+Label/colors/font_outline_modulate = Color( 0, 0, 0, 0 )
+Label/constants/line_spacing = 3
+Label/constants/shadow_as_outline = 0
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/fonts/font = null
+Label/styles/normal = null
+LineEdit/colors/clear_button_color = Color( 0, 0, 0, 1 )
+LineEdit/colors/clear_button_color_pressed = Color( 0, 0, 0, 1 )
+LineEdit/colors/cursor_color = Color( 0, 0, 0, 1 )
+LineEdit/colors/font_color = Color( 0, 0, 0, 1 )
+LineEdit/colors/font_color_selected = Color( 0, 0, 0, 1 )
+LineEdit/colors/font_color_uneditable = Color( 0, 0, 0, 1 )
+LineEdit/colors/selection_color = Color( 0, 0, 0, 1 )
+LineEdit/constants/minimum_spaces = 12
+LineEdit/fonts/font = null
+LineEdit/icons/clear = null
+LineEdit/styles/focus = null
+LineEdit/styles/normal = null
+LineEdit/styles/read_only = null
+LinkButton/colors/font_color = Color( 0, 0, 0, 1 )
+LinkButton/colors/font_color_hover = Color( 0, 0, 0, 1 )
+LinkButton/colors/font_color_pressed = Color( 0, 0, 0, 1 )
+LinkButton/constants/underline_spacing = 2
+LinkButton/fonts/font = null
+LinkButton/styles/focus = null
+MarginContainer/constants/margin_bottom = 0
+MarginContainer/constants/margin_left = 0
+MarginContainer/constants/margin_right = 0
+MarginContainer/constants/margin_top = 0
+MenuButton/colors/font_color = Color( 0, 0, 0, 1 )
+MenuButton/colors/font_color_disabled = Color( 0, 0, 0, 1 )
+MenuButton/colors/font_color_hover = Color( 0, 0, 0, 1 )
+MenuButton/colors/font_color_pressed = Color( 0, 0, 0, 1 )
+MenuButton/constants/hseparation = 3
+MenuButton/fonts/font = null
+MenuButton/styles/disabled = null
+MenuButton/styles/focus = null
+MenuButton/styles/hover = null
+MenuButton/styles/normal = null
+MenuButton/styles/pressed = null
+OptionButton/colors/font_color = Color( 0, 0, 0, 1 )
+OptionButton/colors/font_color_disabled = Color( 0, 0, 0, 1 )
+OptionButton/colors/font_color_hover = Color( 0, 0, 0, 1 )
+OptionButton/colors/font_color_pressed = Color( 0, 0, 0, 1 )
+OptionButton/constants/arrow_margin = 2
+OptionButton/constants/hseparation = 2
+OptionButton/fonts/font = null
+OptionButton/icons/arrow = null
+OptionButton/styles/disabled = null
+OptionButton/styles/focus = null
+OptionButton/styles/hover = null
+OptionButton/styles/normal = null
+OptionButton/styles/pressed = null
+Panel/styles/panel = null
+PanelContainer/styles/panel = null
+PopupDialog/styles/panel = null
+PopupMenu/colors/font_color = Color( 0, 0, 0, 1 )
+PopupMenu/colors/font_color_accel = Color( 0, 0, 0, 1 )
+PopupMenu/colors/font_color_disabled = Color( 0, 0, 0, 1 )
+PopupMenu/colors/font_color_hover = Color( 0, 0, 0, 1 )
+PopupMenu/constants/hseparation = 4
+PopupMenu/constants/vseparation = 4
+PopupMenu/fonts/font = null
+PopupMenu/icons/checked = null
+PopupMenu/icons/radio_checked = null
+PopupMenu/icons/radio_unchecked = null
+PopupMenu/icons/submenu = null
+PopupMenu/icons/unchecked = null
+PopupMenu/styles/hover = null
+PopupMenu/styles/labeled_separator_left = null
+PopupMenu/styles/labeled_separator_right = null
+PopupMenu/styles/panel = null
+PopupMenu/styles/panel_disabled = null
+PopupMenu/styles/separator = null
+PopupPanel/styles/panel = null
+ProgressBar/colors/font_color = Color( 0, 0, 0, 1 )
+ProgressBar/colors/font_color_shadow = Color( 0, 0, 0, 1 )
+ProgressBar/fonts/font = null
+ProgressBar/styles/bg = null
+ProgressBar/styles/fg = null
+RichTextLabel/colors/default_color = Color( 0, 0, 0, 1 )
+RichTextLabel/colors/font_color_selected = Color( 0, 0, 0, 1 )
+RichTextLabel/colors/font_color_shadow = Color( 0, 0, 0, 1 )
+RichTextLabel/colors/selection_color = Color( 0, 0, 0, 1 )
+RichTextLabel/constants/line_separation = 1
+RichTextLabel/constants/shadow_as_outline = 0
+RichTextLabel/constants/shadow_offset_x = 1
+RichTextLabel/constants/shadow_offset_y = 1
+RichTextLabel/constants/table_hseparation = 3
+RichTextLabel/constants/table_vseparation = 3
+RichTextLabel/fonts/bold_font = null
+RichTextLabel/fonts/bold_italics_font = null
+RichTextLabel/fonts/italics_font = null
+RichTextLabel/fonts/mono_font = null
+RichTextLabel/fonts/normal_font = null
+RichTextLabel/styles/focus = null
+RichTextLabel/styles/normal = null
+ScrollContainer/styles/bg = null
+SpinBox/icons/updown = null
+TabContainer/colors/font_color_bg = Color( 0, 0, 0, 1 )
+TabContainer/colors/font_color_disabled = Color( 0, 0, 0, 1 )
+TabContainer/colors/font_color_fg = Color( 0, 0, 0, 1 )
+TabContainer/constants/hseparation = 4
+TabContainer/constants/label_valign_bg = 2
+TabContainer/constants/label_valign_fg = 0
+TabContainer/constants/side_margin = 8
+TabContainer/constants/top_margin = 24
+TabContainer/fonts/font = null
+TabContainer/icons/decrement = null
+TabContainer/icons/decrement_highlight = null
+TabContainer/icons/increment = null
+TabContainer/icons/increment_highlight = null
+TabContainer/icons/menu = null
+TabContainer/icons/menu_highlight = null
+TabContainer/styles/panel = null
+TabContainer/styles/tab_bg = null
+TabContainer/styles/tab_disabled = null
+TabContainer/styles/tab_fg = null
+Tabs/colors/font_color_bg = Color( 0, 0, 0, 1 )
+Tabs/colors/font_color_disabled = Color( 0, 0, 0, 1 )
+Tabs/colors/font_color_fg = Color( 0, 0, 0, 1 )
+Tabs/constants/hseparation = 4
+Tabs/constants/label_valign_bg = 2
+Tabs/constants/label_valign_fg = 0
+Tabs/constants/top_margin = 24
+Tabs/fonts/font = null
+Tabs/icons/close = null
+Tabs/icons/decrement = null
+Tabs/icons/decrement_highlight = null
+Tabs/icons/increment = null
+Tabs/icons/increment_highlight = null
+Tabs/styles/button = null
+Tabs/styles/button_pressed = null
+Tabs/styles/panel = null
+Tabs/styles/tab_bg = null
+Tabs/styles/tab_disabled = null
+Tabs/styles/tab_fg = null
+TextEdit/colors/background_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/bookmark_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/brace_mismatch_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/breakpoint_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/caret_background_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/caret_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/code_folding_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/completion_background_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/completion_existing_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/completion_font_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/completion_scroll_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/completion_selected_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/current_line_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/executing_line_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/font_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/font_color_readonly = Color( 0, 0, 0, 1 )
+TextEdit/colors/font_color_selected = Color( 0, 0, 0, 1 )
+TextEdit/colors/function_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/line_number_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/mark_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/member_variable_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/number_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/safe_line_number_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/selection_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/symbol_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/word_highlighted_color = Color( 0, 0, 0, 1 )
+TextEdit/constants/completion_lines = 7
+TextEdit/constants/completion_max_width = 50
+TextEdit/constants/completion_scroll_width = 3
+TextEdit/constants/line_spacing = 4
+TextEdit/fonts/font = null
+TextEdit/icons/fold = null
+TextEdit/icons/folded = null
+TextEdit/icons/space = null
+TextEdit/icons/tab = null
+TextEdit/styles/completion = null
+TextEdit/styles/focus = null
+TextEdit/styles/normal = null
+TextEdit/styles/read_only = null
+ToolButton/colors/font_color = Color( 0, 0, 0, 1 )
+ToolButton/colors/font_color_disabled = Color( 0, 0, 0, 1 )
+ToolButton/colors/font_color_hover = Color( 0, 0, 0, 1 )
+ToolButton/colors/font_color_pressed = Color( 0, 0, 0, 1 )
+ToolButton/constants/hseparation = 3
+ToolButton/fonts/font = null
+ToolButton/styles/disabled = null
+ToolButton/styles/focus = null
+ToolButton/styles/hover = null
+ToolButton/styles/normal = null
+ToolButton/styles/pressed = null
+TooltipLabel/colors/font_color = Color( 0, 0, 0, 1 )
+TooltipLabel/colors/font_color_shadow = Color( 0, 0, 0, 1 )
+TooltipLabel/constants/shadow_offset_x = 1
+TooltipLabel/constants/shadow_offset_y = 1
+TooltipLabel/fonts/font = null
+TooltipPanel/styles/panel = null
+Tree/colors/cursor_color = Color( 0, 0, 0, 1 )
+Tree/colors/custom_button_font_highlight = Color( 0, 0, 0, 1 )
+Tree/colors/drop_position_color = Color( 0, 0, 0, 1 )
+Tree/colors/font_color = Color( 0, 0, 0, 1 )
+Tree/colors/font_color_selected = Color( 0, 0, 0, 1 )
+Tree/colors/guide_color = Color( 0, 0, 0, 1 )
+Tree/colors/relationship_line_color = Color( 0, 0, 0, 1 )
+Tree/colors/selection_color = Color( 0, 0, 0, 1 )
+Tree/colors/title_button_color = Color( 0, 0, 0, 1 )
+Tree/constants/button_margin = 4
+Tree/constants/draw_guides = 1
+Tree/constants/draw_relationship_lines = 0
+Tree/constants/hseparation = 4
+Tree/constants/item_margin = 12
+Tree/constants/scroll_border = 4
+Tree/constants/scroll_speed = 12
+Tree/constants/vseparation = 4
+Tree/fonts/font = null
+Tree/fonts/title_button_font = null
+Tree/icons/arrow = null
+Tree/icons/arrow_collapsed = null
+Tree/icons/checked = null
+Tree/icons/select_arrow = null
+Tree/icons/unchecked = null
+Tree/icons/updown = null
+Tree/styles/bg = null
+Tree/styles/bg_focus = null
+Tree/styles/button_pressed = null
+Tree/styles/cursor = null
+Tree/styles/cursor_unfocused = null
+Tree/styles/custom_button = null
+Tree/styles/custom_button_hover = null
+Tree/styles/custom_button_pressed = null
+Tree/styles/selected = null
+Tree/styles/selected_focus = null
+Tree/styles/title_button_hover = null
+Tree/styles/title_button_normal = null
+Tree/styles/title_button_pressed = null
+VBoxContainer/constants/separation = 4
+VScrollBar/icons/decrement = null
+VScrollBar/icons/decrement_highlight = null
+VScrollBar/icons/increment = null
+VScrollBar/icons/increment_highlight = null
+VScrollBar/styles/grabber = SubResource( 22 )
+VScrollBar/styles/grabber_highlight = SubResource( 23 )
+VScrollBar/styles/grabber_pressed = SubResource( 24 )
+VScrollBar/styles/scroll = SubResource( 25 )
+VScrollBar/styles/scroll_focus = null
+VSeparator/constants/separation = 4
+VSeparator/styles/separator = null
+VSlider/icons/grabber = null
+VSlider/icons/grabber_disabled = null
+VSlider/icons/grabber_highlight = null
+VSlider/icons/tick = null
+VSlider/styles/grabber_area = null
+VSlider/styles/slider = null
+VSplitContainer/constants/autohide = 1
+VSplitContainer/constants/separation = 12
+VSplitContainer/icons/grabber = null
+VSplitContainer/styles/bg = null
+WindowDialog/colors/title_color = Color( 0, 0, 0, 1 )
+WindowDialog/constants/close_h_ofs = 18
+WindowDialog/constants/close_v_ofs = 18
+WindowDialog/constants/scaleborder_size = 4
+WindowDialog/constants/title_height = 20
+WindowDialog/fonts/title_font = null
+WindowDialog/icons/close = null
+WindowDialog/icons/close_highlight = null
+WindowDialog/styles/panel = null
+
+[sub_resource type="DynamicFont" id=27]
+size = 22
+font_data = ExtResource( 5 )
+
+[sub_resource type="StyleBoxTexture" id=28]
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 122, 122 )
+expand_margin_left = 8.0
+expand_margin_right = 8.0
+expand_margin_top = 8.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id=29]
+texture = ExtResource( 7 )
+region_rect = Rect2( 0, 0, 122, 122 )
+expand_margin_left = 8.0
+expand_margin_right = 8.0
+expand_margin_top = 8.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id=30]
+texture = ExtResource( 6 )
+region_rect = Rect2( 0, 0, 120, 120 )
+expand_margin_left = 8.0
+expand_margin_right = 8.0
+expand_margin_top = 8.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="StyleBoxTexture" id=31]
+texture = ExtResource( 8 )
+region_rect = Rect2( 0, 0, 120, 120 )
+expand_margin_left = 8.0
+expand_margin_right = 8.0
+expand_margin_top = 8.0
+expand_margin_bottom = 8.0
+
+[sub_resource type="ButtonGroup" id=32]
+
+[sub_resource type="DynamicFont" id=33]
+size = 9
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=34]
+size = 9
+font_data = ExtResource( 5 )
+
+[sub_resource type="ButtonGroup" id=35]
+
+[sub_resource type="StyleBoxFlat" id=36]
+border_width_top = 15
+border_color = Color( 0.439216, 0.623529, 0.623529, 0.666667 )
+
+[sub_resource type="StyleBoxEmpty" id=37]
+
+[sub_resource type="DynamicFont" id=38]
+size = 12
+font_data = ExtResource( 5 )
+
+[sub_resource type="Theme" id=39]
+default_font = SubResource( 38 )
+Button/colors/font_color = Color( 1, 1, 1, 1 )
+Button/colors/font_color_disabled = Color( 1, 1, 1, 1 )
+Button/colors/font_color_hover = Color( 1, 1, 1, 1 )
+Button/colors/font_color_pressed = Color( 1, 1, 1, 1 )
+Button/constants/hseparation = 2
+Button/fonts/font = null
+Button/styles/disabled = null
+Button/styles/focus = null
+Button/styles/hover = null
+Button/styles/normal = null
+Button/styles/pressed = null
+CheckBox/colors/font_color = Color( 0, 0, 0, 1 )
+CheckBox/colors/font_color_disabled = Color( 0, 0, 0, 1 )
+CheckBox/colors/font_color_hover = Color( 0, 0, 0, 1 )
+CheckBox/colors/font_color_hover_pressed = Color( 0, 0, 0, 1 )
+CheckBox/colors/font_color_pressed = Color( 0, 0, 0, 1 )
+CheckBox/constants/check_vadjust = 0
+CheckBox/constants/hseparation = 4
+CheckBox/fonts/font = null
+CheckBox/icons/checked = null
+CheckBox/icons/radio_checked = null
+CheckBox/icons/radio_unchecked = null
+CheckBox/icons/unchecked = null
+CheckBox/styles/disabled = null
+CheckBox/styles/focus = null
+CheckBox/styles/hover = null
+CheckBox/styles/hover_pressed = null
+CheckBox/styles/normal = null
+CheckBox/styles/pressed = null
+CheckButton/colors/font_color = Color( 1, 1, 1, 1 )
+CheckButton/colors/font_color_disabled = Color( 1, 1, 1, 1 )
+CheckButton/colors/font_color_hover = Color( 1, 1, 1, 1 )
+CheckButton/colors/font_color_hover_pressed = Color( 1, 1, 1, 1 )
+CheckButton/colors/font_color_pressed = Color( 1, 1, 1, 1 )
+CheckButton/constants/check_vadjust = 0
+CheckButton/constants/hseparation = 4
+CheckButton/fonts/font = null
+CheckButton/icons/off = null
+CheckButton/icons/off_disabled = null
+CheckButton/icons/on = null
+CheckButton/icons/on_disabled = null
+CheckButton/styles/disabled = null
+CheckButton/styles/focus = null
+CheckButton/styles/hover = null
+CheckButton/styles/hover_pressed = null
+CheckButton/styles/normal = null
+CheckButton/styles/pressed = null
+ColorPicker/constants/h_width = 30
+ColorPicker/constants/label_width = 10
+ColorPicker/constants/margin = 4
+ColorPicker/constants/sv_height = 256
+ColorPicker/constants/sv_width = 256
+ColorPicker/icons/add_preset = null
+ColorPicker/icons/color_hue = null
+ColorPicker/icons/color_sample = null
+ColorPicker/icons/overbright_indicator = null
+ColorPicker/icons/preset_bg = null
+ColorPicker/icons/screen_picker = null
+ColorPickerButton/colors/font_color = Color( 0, 0, 0, 1 )
+ColorPickerButton/colors/font_color_disabled = Color( 0, 0, 0, 1 )
+ColorPickerButton/colors/font_color_hover = Color( 0, 0, 0, 1 )
+ColorPickerButton/colors/font_color_pressed = Color( 0, 0, 0, 1 )
+ColorPickerButton/constants/hseparation = 2
+ColorPickerButton/fonts/font = null
+ColorPickerButton/icons/bg = null
+ColorPickerButton/styles/disabled = null
+ColorPickerButton/styles/focus = null
+ColorPickerButton/styles/hover = null
+ColorPickerButton/styles/normal = null
+ColorPickerButton/styles/pressed = null
+Dialogs/constants/button_margin = 32
+Dialogs/constants/margin = 8
+FileDialog/colors/files_disabled = Color( 0, 0, 0, 1 )
+FileDialog/colors/folder_icon_modulate = Color( 0, 0, 0, 1 )
+FileDialog/icons/folder = null
+FileDialog/icons/parent_folder = null
+FileDialog/icons/reload = null
+FileDialog/icons/toggle_hidden = null
+Fonts/fonts/large = null
+Fonts/fonts/normal = null
+GraphEdit/colors/activity = Color( 0, 0, 0, 1 )
+GraphEdit/colors/grid_major = Color( 0, 0, 0, 1 )
+GraphEdit/colors/grid_minor = Color( 0, 0, 0, 1 )
+GraphEdit/colors/selection_fill = Color( 0, 0, 0, 1 )
+GraphEdit/colors/selection_stroke = Color( 0, 0, 0, 1 )
+GraphEdit/constants/bezier_len_neg = 160
+GraphEdit/constants/bezier_len_pos = 80
+GraphEdit/constants/port_grab_distance_horizontal = 48
+GraphEdit/constants/port_grab_distance_vertical = 6
+GraphEdit/icons/minus = null
+GraphEdit/icons/more = null
+GraphEdit/icons/reset = null
+GraphEdit/icons/snap = null
+GraphEdit/styles/bg = null
+GraphNode/colors/close_color = Color( 0, 0, 0, 1 )
+GraphNode/colors/resizer_color = Color( 0, 0, 0, 1 )
+GraphNode/colors/title_color = Color( 0, 0, 0, 1 )
+GraphNode/constants/close_offset = 18
+GraphNode/constants/port_offset = 3
+GraphNode/constants/separation = 1
+GraphNode/constants/title_offset = 20
+GraphNode/fonts/title_font = null
+GraphNode/icons/close = null
+GraphNode/icons/port = null
+GraphNode/icons/resizer = null
+GraphNode/styles/breakpoint = null
+GraphNode/styles/comment = null
+GraphNode/styles/commentfocus = null
+GraphNode/styles/defaultfocus = null
+GraphNode/styles/defaultframe = null
+GraphNode/styles/frame = null
+GraphNode/styles/position = null
+GraphNode/styles/selectedframe = null
+GridContainer/constants/hseparation = 4
+GridContainer/constants/vseparation = 4
+HBoxContainer/constants/separation = 4
+HScrollBar/icons/decrement = null
+HScrollBar/icons/decrement_highlight = null
+HScrollBar/icons/increment = null
+HScrollBar/icons/increment_highlight = null
+HScrollBar/styles/grabber = null
+HScrollBar/styles/grabber_highlight = null
+HScrollBar/styles/grabber_pressed = null
+HScrollBar/styles/scroll = null
+HScrollBar/styles/scroll_focus = null
+HSeparator/constants/separation = 4
+HSeparator/styles/separator = null
+HSlider/icons/grabber = null
+HSlider/icons/grabber_disabled = null
+HSlider/icons/grabber_highlight = null
+HSlider/icons/tick = null
+HSlider/styles/grabber_area = null
+HSlider/styles/slider = null
+HSplitContainer/constants/autohide = 1
+HSplitContainer/constants/separation = 12
+HSplitContainer/icons/grabber = null
+HSplitContainer/styles/bg = null
+Icons/icons/close = null
+ItemList/colors/font_color = Color( 0, 0, 0, 1 )
+ItemList/colors/font_color_selected = Color( 0, 0, 0, 1 )
+ItemList/colors/guide_color = Color( 0, 0, 0, 1 )
+ItemList/constants/hseparation = 4
+ItemList/constants/icon_margin = 4
+ItemList/constants/line_separation = 2
+ItemList/constants/vseparation = 2
+ItemList/fonts/font = null
+ItemList/styles/bg = null
+ItemList/styles/bg_focus = null
+ItemList/styles/cursor = null
+ItemList/styles/cursor_unfocused = null
+ItemList/styles/selected = null
+ItemList/styles/selected_focus = null
+Label/colors/font_color = Color( 1, 1, 1, 1 )
+Label/colors/font_color_shadow = Color( 1, 1, 1, 0 )
+Label/colors/font_outline_modulate = Color( 1, 1, 1, 0 )
+Label/constants/line_spacing = 3
+Label/constants/shadow_as_outline = 0
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/fonts/font = null
+Label/styles/normal = null
+LineEdit/colors/clear_button_color = Color( 1, 1, 1, 1 )
+LineEdit/colors/clear_button_color_pressed = Color( 1, 1, 1, 1 )
+LineEdit/colors/cursor_color = Color( 1, 1, 1, 1 )
+LineEdit/colors/font_color = Color( 1, 1, 1, 1 )
+LineEdit/colors/font_color_selected = Color( 1, 1, 1, 1 )
+LineEdit/colors/font_color_uneditable = Color( 1, 1, 1, 1 )
+LineEdit/colors/selection_color = Color( 1, 1, 1, 1 )
+LineEdit/constants/minimum_spaces = 12
+LineEdit/fonts/font = null
+LineEdit/icons/clear = null
+LineEdit/styles/focus = null
+LineEdit/styles/normal = null
+LineEdit/styles/read_only = null
+LinkButton/colors/font_color = Color( 0, 0, 0, 1 )
+LinkButton/colors/font_color_hover = Color( 0, 0, 0, 1 )
+LinkButton/colors/font_color_pressed = Color( 0, 0, 0, 1 )
+LinkButton/constants/underline_spacing = 2
+LinkButton/fonts/font = null
+LinkButton/styles/focus = null
+MarginContainer/constants/margin_bottom = 0
+MarginContainer/constants/margin_left = 0
+MarginContainer/constants/margin_right = 0
+MarginContainer/constants/margin_top = 0
+MenuButton/colors/font_color = Color( 0, 0, 0, 1 )
+MenuButton/colors/font_color_disabled = Color( 0, 0, 0, 1 )
+MenuButton/colors/font_color_hover = Color( 0, 0, 0, 1 )
+MenuButton/colors/font_color_pressed = Color( 0, 0, 0, 1 )
+MenuButton/constants/hseparation = 3
+MenuButton/fonts/font = null
+MenuButton/styles/disabled = null
+MenuButton/styles/focus = null
+MenuButton/styles/hover = null
+MenuButton/styles/normal = null
+MenuButton/styles/pressed = null
+OptionButton/colors/font_color = Color( 0, 0, 0, 1 )
+OptionButton/colors/font_color_disabled = Color( 0, 0, 0, 1 )
+OptionButton/colors/font_color_hover = Color( 0, 0, 0, 1 )
+OptionButton/colors/font_color_pressed = Color( 0, 0, 0, 1 )
+OptionButton/constants/arrow_margin = 2
+OptionButton/constants/hseparation = 2
+OptionButton/fonts/font = null
+OptionButton/icons/arrow = null
+OptionButton/styles/disabled = null
+OptionButton/styles/focus = null
+OptionButton/styles/hover = null
+OptionButton/styles/normal = null
+OptionButton/styles/pressed = null
+Panel/styles/panel = null
+PanelContainer/styles/panel = null
+PopupDialog/styles/panel = null
+PopupMenu/colors/font_color = Color( 0, 0, 0, 1 )
+PopupMenu/colors/font_color_accel = Color( 0, 0, 0, 1 )
+PopupMenu/colors/font_color_disabled = Color( 0, 0, 0, 1 )
+PopupMenu/colors/font_color_hover = Color( 0, 0, 0, 1 )
+PopupMenu/constants/hseparation = 4
+PopupMenu/constants/vseparation = 4
+PopupMenu/fonts/font = null
+PopupMenu/icons/checked = null
+PopupMenu/icons/radio_checked = null
+PopupMenu/icons/radio_unchecked = null
+PopupMenu/icons/submenu = null
+PopupMenu/icons/unchecked = null
+PopupMenu/styles/hover = null
+PopupMenu/styles/labeled_separator_left = null
+PopupMenu/styles/labeled_separator_right = null
+PopupMenu/styles/panel = null
+PopupMenu/styles/panel_disabled = null
+PopupMenu/styles/separator = null
+PopupPanel/styles/panel = null
+ProgressBar/colors/font_color = Color( 0, 0, 0, 1 )
+ProgressBar/colors/font_color_shadow = Color( 0, 0, 0, 1 )
+ProgressBar/fonts/font = null
+ProgressBar/styles/bg = null
+ProgressBar/styles/fg = null
+RichTextLabel/colors/default_color = Color( 0, 0, 0, 1 )
+RichTextLabel/colors/font_color_selected = Color( 0, 0, 0, 1 )
+RichTextLabel/colors/font_color_shadow = Color( 0, 0, 0, 1 )
+RichTextLabel/colors/selection_color = Color( 0, 0, 0, 1 )
+RichTextLabel/constants/line_separation = 1
+RichTextLabel/constants/shadow_as_outline = 0
+RichTextLabel/constants/shadow_offset_x = 1
+RichTextLabel/constants/shadow_offset_y = 1
+RichTextLabel/constants/table_hseparation = 3
+RichTextLabel/constants/table_vseparation = 3
+RichTextLabel/fonts/bold_font = null
+RichTextLabel/fonts/bold_italics_font = null
+RichTextLabel/fonts/italics_font = null
+RichTextLabel/fonts/mono_font = null
+RichTextLabel/fonts/normal_font = null
+RichTextLabel/styles/focus = null
+RichTextLabel/styles/normal = null
+ScrollContainer/styles/bg = null
+SpinBox/icons/updown = null
+TabContainer/colors/font_color_bg = Color( 0, 0, 0, 1 )
+TabContainer/colors/font_color_disabled = Color( 0, 0, 0, 1 )
+TabContainer/colors/font_color_fg = Color( 0, 0, 0, 1 )
+TabContainer/constants/hseparation = 4
+TabContainer/constants/label_valign_bg = 2
+TabContainer/constants/label_valign_fg = 0
+TabContainer/constants/side_margin = 8
+TabContainer/constants/top_margin = 24
+TabContainer/fonts/font = null
+TabContainer/icons/decrement = null
+TabContainer/icons/decrement_highlight = null
+TabContainer/icons/increment = null
+TabContainer/icons/increment_highlight = null
+TabContainer/icons/menu = null
+TabContainer/icons/menu_highlight = null
+TabContainer/styles/panel = null
+TabContainer/styles/tab_bg = null
+TabContainer/styles/tab_disabled = null
+TabContainer/styles/tab_fg = null
+Tabs/colors/font_color_bg = Color( 0, 0, 0, 1 )
+Tabs/colors/font_color_disabled = Color( 0, 0, 0, 1 )
+Tabs/colors/font_color_fg = Color( 0, 0, 0, 1 )
+Tabs/constants/hseparation = 4
+Tabs/constants/label_valign_bg = 2
+Tabs/constants/label_valign_fg = 0
+Tabs/constants/top_margin = 24
+Tabs/fonts/font = null
+Tabs/icons/close = null
+Tabs/icons/decrement = null
+Tabs/icons/decrement_highlight = null
+Tabs/icons/increment = null
+Tabs/icons/increment_highlight = null
+Tabs/styles/button = null
+Tabs/styles/button_pressed = null
+Tabs/styles/panel = null
+Tabs/styles/tab_bg = null
+Tabs/styles/tab_disabled = null
+Tabs/styles/tab_fg = null
+TextEdit/colors/background_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/bookmark_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/brace_mismatch_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/breakpoint_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/caret_background_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/caret_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/code_folding_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/completion_background_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/completion_existing_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/completion_font_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/completion_scroll_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/completion_selected_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/current_line_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/executing_line_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/font_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/font_color_readonly = Color( 0, 0, 0, 1 )
+TextEdit/colors/font_color_selected = Color( 0, 0, 0, 1 )
+TextEdit/colors/function_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/line_number_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/mark_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/member_variable_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/number_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/safe_line_number_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/selection_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/symbol_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/word_highlighted_color = Color( 0, 0, 0, 1 )
+TextEdit/constants/completion_lines = 7
+TextEdit/constants/completion_max_width = 50
+TextEdit/constants/completion_scroll_width = 3
+TextEdit/constants/line_spacing = 4
+TextEdit/fonts/font = null
+TextEdit/icons/fold = null
+TextEdit/icons/folded = null
+TextEdit/icons/space = null
+TextEdit/icons/tab = null
+TextEdit/styles/completion = null
+TextEdit/styles/focus = null
+TextEdit/styles/normal = null
+TextEdit/styles/read_only = null
+ToolButton/colors/font_color = Color( 0, 0, 0, 1 )
+ToolButton/colors/font_color_disabled = Color( 0, 0, 0, 1 )
+ToolButton/colors/font_color_hover = Color( 0, 0, 0, 1 )
+ToolButton/colors/font_color_pressed = Color( 0, 0, 0, 1 )
+ToolButton/constants/hseparation = 3
+ToolButton/fonts/font = null
+ToolButton/styles/disabled = null
+ToolButton/styles/focus = null
+ToolButton/styles/hover = null
+ToolButton/styles/normal = null
+ToolButton/styles/pressed = null
+TooltipLabel/colors/font_color = Color( 0, 0, 0, 1 )
+TooltipLabel/colors/font_color_shadow = Color( 0, 0, 0, 1 )
+TooltipLabel/constants/shadow_offset_x = 1
+TooltipLabel/constants/shadow_offset_y = 1
+TooltipLabel/fonts/font = null
+TooltipPanel/styles/panel = null
+Tree/colors/cursor_color = Color( 0, 0, 0, 1 )
+Tree/colors/custom_button_font_highlight = Color( 0, 0, 0, 1 )
+Tree/colors/drop_position_color = Color( 0, 0, 0, 1 )
+Tree/colors/font_color = Color( 0, 0, 0, 1 )
+Tree/colors/font_color_selected = Color( 0, 0, 0, 1 )
+Tree/colors/guide_color = Color( 0, 0, 0, 1 )
+Tree/colors/relationship_line_color = Color( 0, 0, 0, 1 )
+Tree/colors/selection_color = Color( 0, 0, 0, 1 )
+Tree/colors/title_button_color = Color( 0, 0, 0, 1 )
+Tree/constants/button_margin = 4
+Tree/constants/draw_guides = 1
+Tree/constants/draw_relationship_lines = 0
+Tree/constants/hseparation = 4
+Tree/constants/item_margin = 12
+Tree/constants/scroll_border = 4
+Tree/constants/scroll_speed = 12
+Tree/constants/vseparation = 4
+Tree/fonts/font = null
+Tree/fonts/title_button_font = null
+Tree/icons/arrow = null
+Tree/icons/arrow_collapsed = null
+Tree/icons/checked = null
+Tree/icons/select_arrow = null
+Tree/icons/unchecked = null
+Tree/icons/updown = null
+Tree/styles/bg = null
+Tree/styles/bg_focus = null
+Tree/styles/button_pressed = null
+Tree/styles/cursor = null
+Tree/styles/cursor_unfocused = null
+Tree/styles/custom_button = null
+Tree/styles/custom_button_hover = null
+Tree/styles/custom_button_pressed = null
+Tree/styles/selected = null
+Tree/styles/selected_focus = null
+Tree/styles/title_button_hover = null
+Tree/styles/title_button_normal = null
+Tree/styles/title_button_pressed = null
+VBoxContainer/constants/separation = 4
+VScrollBar/icons/decrement = null
+VScrollBar/icons/decrement_highlight = null
+VScrollBar/icons/increment = null
+VScrollBar/icons/increment_highlight = null
+VScrollBar/styles/grabber = null
+VScrollBar/styles/grabber_highlight = null
+VScrollBar/styles/grabber_pressed = null
+VScrollBar/styles/scroll = null
+VScrollBar/styles/scroll_focus = null
+VSeparator/constants/separation = 4
+VSeparator/styles/separator = null
+VSlider/icons/grabber = null
+VSlider/icons/grabber_disabled = null
+VSlider/icons/grabber_highlight = null
+VSlider/icons/tick = null
+VSlider/styles/grabber_area = null
+VSlider/styles/slider = null
+VSplitContainer/constants/autohide = 1
+VSplitContainer/constants/separation = 12
+VSplitContainer/icons/grabber = null
+VSplitContainer/styles/bg = null
+WindowDialog/colors/title_color = Color( 0, 0, 0, 1 )
+WindowDialog/constants/close_h_ofs = 18
+WindowDialog/constants/close_v_ofs = 18
+WindowDialog/constants/scaleborder_size = 4
+WindowDialog/constants/title_height = 20
+WindowDialog/fonts/title_font = null
+WindowDialog/icons/close = null
+WindowDialog/icons/close_highlight = null
+WindowDialog/styles/panel = null
+
+[sub_resource type="StyleBoxTexture" id=40]
+texture = ExtResource( 31 )
+region_rect = Rect2( 0, 0, 1000, 40 )
+
+[sub_resource type="StyleBoxEmpty" id=41]
+
+[sub_resource type="DynamicFont" id=42]
+font_data = ExtResource( 5 )
+
+[sub_resource type="StyleBoxFlat" id=43]
+bg_color = Color( 1, 1, 1, 0.0784314 )
+
+[sub_resource type="StyleBoxFlat" id=44]
+bg_color = Color( 1, 1, 1, 0 )
+
+[sub_resource type="DynamicFont" id=45]
+font_data = ExtResource( 5 )
+
+[sub_resource type="StyleBoxFlat" id=46]
+bg_color = Color( 0, 0.490196, 0.490196, 0.235294 )
+
+[sub_resource type="DynamicFont" id=47]
+size = 10
+font_data = ExtResource( 5 )
+
+[sub_resource type="StyleBoxFlat" id=48]
+bg_color = Color( 0.0156863, 0.811765, 0.396078, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.0666667, 1, 0.835294, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=49]
+bg_color = Color( 0, 0.541176, 0.258824, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.0666667, 1, 0.835294, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=50]
+bg_color = Color( 0, 0.541176, 0.258824, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.0666667, 1, 0.835294, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="DynamicFont" id=51]
+size = 20
+font_data = ExtResource( 5 )
+
+[node name="MicrobeEditor" type="Node"]
+script = ExtResource( 2 )
+
+[node name="PrimaryCamera" parent="." instance=ExtResource( 1 )]
+DefaultCameraHeight = 10.0
+MaxCameraHeight = 40.0
+
+[node name="CameraLookAt" type="Spatial" parent="."]
+__meta__ = {
+"_editor_description_": "Just something to make the microbe camera look at the right place"
+}
+
+[node name="World" type="Node" parent="."]
+
+[node name="EditorHex" parent="World" instance=ExtResource( 3 )]
+
+[node name="MicrobeEditorGUI" type="Node" parent="."]
+pause_mode = 2
+script = ExtResource( 45 )
+
+[node name="LeftTopBar" type="Control" parent="MicrobeEditorGUI"]
+margin_right = 810.0
+margin_bottom = 45.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/LeftTopBar"]
+anchor_right = 1.0
+margin_bottom = 45.0
+rect_min_size = Vector2( 0, 40 )
+custom_constants/separation = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ReportButton" type="Button" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer"]
+margin_right = 85.0
+margin_bottom = 45.0
+rect_min_size = Vector2( 85, 40 )
+focus_mode = 0
+mouse_filter = 1
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
+toggle_mode = true
+action_mode = 0
+enabled_focus_mode = 0
+group = SubResource( 5 )
+text = "REPORT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PatchMapButton" type="Button" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer"]
+margin_left = 85.0
+margin_right = 205.0
+margin_bottom = 45.0
+rect_min_size = Vector2( 120, 40 )
+focus_mode = 0
+mouse_filter = 1
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
+toggle_mode = true
+action_mode = 0
+enabled_focus_mode = 0
+group = SubResource( 5 )
+text = "PATCH MAP"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CellEditorButton" type="Button" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer"]
+margin_left = 205.0
+margin_right = 340.0
+margin_bottom = 45.0
+rect_min_size = Vector2( 135, 40 )
+focus_mode = 0
+mouse_filter = 1
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
+toggle_mode = true
+pressed = true
+action_mode = 0
+enabled_focus_mode = 0
+group = SubResource( 5 )
+text = "CELL EDITOR"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MPBox" type="PanelContainer" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer"]
+self_modulate = Color( 1, 1, 1, 0.392157 )
+margin_left = 340.0
+margin_right = 810.0
+margin_bottom = 45.0
+mouse_filter = 1
+custom_styles/panel = SubResource( 6 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer/MPBox"]
+margin_right = 470.0
+margin_bottom = 45.0
+mouse_filter = 1
+size_flags_vertical = 0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer/MPBox/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 460.0
+margin_bottom = 35.0
+custom_constants/separation = -15
+
+[node name="MPIcon" type="TextureRect" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer/MPBox/MarginContainer/HBoxContainer"]
+margin_right = 25.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 43 )
+expand = true
+
+[node name="MPBar" type="TextureProgress" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer/MPBox/MarginContainer/HBoxContainer"]
+self_modulate = Color( 0.705882, 0.705882, 0.705882, 1 )
+show_behind_parent = true
+margin_left = 10.0
+margin_right = 450.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 440, 25 )
+size_flags_vertical = 0
+step = 0.1
+value = 100.0
+texture_progress = ExtResource( 42 )
+nine_patch_stretch = true
+
+[node name="Background" type="ColorRect" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer/MPBox/MarginContainer/HBoxContainer/MPBar"]
+show_behind_parent = true
+margin_right = 440.0
+margin_bottom = 25.0
+mouse_filter = 1
+color = Color( 0.117647, 0.117647, 0.117647, 0.392157 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer/MPBox/MarginContainer/HBoxContainer/MPBar"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/separation = 45
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer/MPBox/MarginContainer/HBoxContainer/MPBar/HBoxContainer"]
+margin_right = 145.0
+margin_bottom = 25.0
+mouse_filter = 2
+custom_constants/margin_left = 25
+
+[node name="MPLabel" type="Label" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer/MPBox/MarginContainer/HBoxContainer/MPBar/HBoxContainer/MarginContainer"]
+margin_left = 25.0
+margin_top = 3.0
+margin_right = 145.0
+margin_bottom = 21.0
+custom_fonts/font = SubResource( 7 )
+text = "Mutation Points"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Value" type="Label" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer/MPBox/MarginContainer/HBoxContainer/MPBar/HBoxContainer"]
+margin_left = 190.0
+margin_top = 3.0
+margin_right = 258.0
+margin_bottom = 21.0
+custom_fonts/font = SubResource( 7 )
+text = "100 / 100"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CellEditor" type="Control" parent="MicrobeEditorGUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ATPBalancePanel" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -330.0
+margin_bottom = 66.0
+custom_styles/panel = SubResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/ATPBalancePanel"]
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 327.0
+margin_bottom = 63.0
+mouse_filter = 1
+custom_constants/margin_right = 3
+custom_constants/margin_top = 3
+custom_constants/margin_left = 3
+custom_constants/margin_bottom = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/ATPBalancePanel/MarginContainer"]
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 321.0
+margin_bottom = 57.0
+custom_constants/separation = 0
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer"]
+margin_right = 318.0
+margin_bottom = 15.0
+custom_fonts/font = SubResource( 9 )
+text = "ATP Balance"
+
+[node name="VSeparator" type="VSeparator" parent="MicrobeEditorGUI/CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer"]
+margin_top = 15.0
+margin_right = 318.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 0, 5 )
+mouse_filter = 2
+custom_styles/separator = SubResource( 10 )
+
+[node name="AtpProductionBar" type="ProgressBar" parent="MicrobeEditorGUI/CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer"]
+margin_top = 20.0
+margin_right = 318.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 0, 15 )
+mouse_filter = 1
+custom_styles/fg = SubResource( 11 )
+custom_styles/bg = SubResource( 12 )
+custom_fonts/font = SubResource( 13 )
+
+[node name="AtpProductionBar2" type="ProgressBar" parent="MicrobeEditorGUI/CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer"]
+margin_top = 37.0
+margin_right = 318.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 0, 15 )
+mouse_filter = 1
+custom_styles/fg = SubResource( 14 )
+custom_styles/bg = SubResource( 12 )
+custom_fonts/font = SubResource( 13 )
+
+[node name="LeftPanel" type="Control" parent="MicrobeEditorGUI/CellEditor"]
+anchor_bottom = 1.0
+margin_top = 44.0
+margin_right = 330.0
+margin_bottom = -58.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tab" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel"]
+margin_right = 330.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Structure" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Tab"]
+margin_right = 80.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 80, 0 )
+focus_mode = 0
+mouse_filter = 1
+size_flags_horizontal = 0
+custom_styles/hover = SubResource( 15 )
+custom_styles/pressed = SubResource( 16 )
+custom_styles/disabled = SubResource( 17 )
+custom_styles/normal = SubResource( 18 )
+custom_fonts/font = SubResource( 19 )
+custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
+toggle_mode = true
+pressed = true
+action_mode = 0
+enabled_focus_mode = 0
+group = SubResource( 20 )
+text = "STRUCTURE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Membrane" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Tab"]
+margin_left = 84.0
+margin_right = 164.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 80, 0 )
+focus_mode = 0
+mouse_filter = 1
+size_flags_horizontal = 0
+custom_styles/hover = SubResource( 15 )
+custom_styles/pressed = SubResource( 16 )
+custom_styles/disabled = SubResource( 17 )
+custom_styles/normal = SubResource( 18 )
+custom_fonts/font = SubResource( 19 )
+custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
+toggle_mode = true
+action_mode = 0
+enabled_focus_mode = 0
+group = SubResource( 20 )
+text = "MEMBRANE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Behavior" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Tab"]
+margin_left = 168.0
+margin_right = 248.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 80, 0 )
+mouse_filter = 1
+size_flags_horizontal = 0
+custom_styles/hover = SubResource( 15 )
+custom_styles/pressed = SubResource( 16 )
+custom_styles/disabled = SubResource( 17 )
+custom_styles/normal = SubResource( 18 )
+custom_fonts/font = SubResource( 19 )
+custom_colors/font_color_disabled = Color( 0.870588, 0.870588, 0.870588, 1 )
+disabled = true
+toggle_mode = true
+action_mode = 0
+enabled_focus_mode = 0
+group = SubResource( 20 )
+text = "BEHAVIOR"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel"]
+anchor_bottom = 1.0
+margin_top = 40.0
+margin_right = 330.0
+mouse_filter = 1
+size_flags_horizontal = 12
+size_flags_vertical = 12
+custom_styles/panel = SubResource( 21 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Structure" type="Control" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel"]
+margin_right = 330.0
+margin_bottom = 578.0
+mouse_filter = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -20.0
+mouse_filter = 1
+size_flags_horizontal = 0
+theme = SubResource( 26 )
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer"]
+margin_right = 304.0
+margin_bottom = 905.0
+mouse_filter = 1
+custom_constants/margin_right = 0
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 304.0
+margin_bottom = 895.0
+size_flags_vertical = 0
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StructuralOrganellesLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_right = 294.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 0, 35 )
+custom_fonts/font = SubResource( 27 )
+text = "Structural Organelles"
+valign = 1
+uppercase = true
+
+[node name="StructuralOrganelles" type="GridContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 45.0
+margin_right = 265.0
+margin_bottom = 135.0
+rect_min_size = Vector2( 265, 0 )
+size_flags_horizontal = 0
+custom_constants/vseparation = 15
+custom_constants/hseparation = 12
+columns = 3
+
+[node name="cytoplasm" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/StructuralOrganelles" groups=[
+"OrganelleSelectionElement",
+]]
+margin_right = 90.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 90, 90 )
+focus_mode = 0
+mouse_filter = 1
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
+toggle_mode = true
+action_mode = 0
+enabled_focus_mode = 0
+group = SubResource( 32 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/StructuralOrganelles/cytoplasm"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/StructuralOrganelles/cytoplasm/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 85.0
+margin_bottom = 85.0
+custom_constants/separation = -2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelectedLabelMargin" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/StructuralOrganelles/cytoplasm/MarginContainer/VBoxContainer"]
+margin_right = 80.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 80, 10 )
+mouse_filter = 1
+
+[node name="SelectedLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/StructuralOrganelles/cytoplasm/MarginContainer/VBoxContainer/SelectedLabelMargin"]
+visible = false
+margin_right = 80.0
+margin_bottom = 10.0
+custom_fonts/font = SubResource( 33 )
+text = "Selected"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/StructuralOrganelles/cytoplasm/MarginContainer/VBoxContainer"]
+margin_top = 8.0
+margin_right = 80.0
+margin_bottom = 64.0
+mouse_filter = 2
+custom_constants/margin_top = -4
+custom_constants/margin_left = 10
+
+[node name="TextureRect" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/StructuralOrganelles/cytoplasm/MarginContainer/VBoxContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = -4.0
+margin_right = 70.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 60, 60 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 9 )
+expand = true
+
+[node name="OrganelleLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/StructuralOrganelles/cytoplasm/MarginContainer/VBoxContainer"]
+margin_top = 62.0
+margin_right = 80.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 34 )
+custom_constants/line_spacing = -2
+text = "Cytoplasm
+22 MP"
+align = 1
+
+[node name="ProkaryoticStructuresLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 145.0
+margin_right = 294.0
+margin_bottom = 180.0
+rect_min_size = Vector2( 0, 35 )
+custom_fonts/font = SubResource( 27 )
+text = "Prokaryotic Structures"
+valign = 1
+uppercase = true
+
+[node name="ProkaryoticStructures" type="GridContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 190.0
+margin_right = 294.0
+margin_bottom = 385.0
+rect_min_size = Vector2( 265, 0 )
+size_flags_horizontal = 0
+custom_constants/vseparation = 15
+custom_constants/hseparation = 12
+columns = 3
+
+[node name="metabolosome" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures" groups=[
+"OrganelleSelectionElement",
+]]
+margin_right = 90.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 90, 90 )
+focus_mode = 0
+mouse_filter = 1
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
+toggle_mode = true
+action_mode = 0
+enabled_focus_mode = 0
+group = SubResource( 32 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/metabolosome"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/metabolosome/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 85.0
+margin_bottom = 85.0
+custom_constants/separation = -2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelectedLabelMargin" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/metabolosome/MarginContainer/VBoxContainer"]
+margin_right = 80.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 80, 10 )
+mouse_filter = 1
+
+[node name="SelectedLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/metabolosome/MarginContainer/VBoxContainer/SelectedLabelMargin"]
+visible = false
+margin_right = 80.0
+margin_bottom = 10.0
+custom_fonts/font = SubResource( 33 )
+text = "Selected"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/metabolosome/MarginContainer/VBoxContainer"]
+margin_top = 8.0
+margin_right = 80.0
+margin_bottom = 64.0
+mouse_filter = 2
+custom_constants/margin_top = -4
+custom_constants/margin_left = 10
+
+[node name="TextureRect" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/metabolosome/MarginContainer/VBoxContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = -4.0
+margin_right = 70.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 60, 60 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 11 )
+expand = true
+
+[node name="OrganelleLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/metabolosome/MarginContainer/VBoxContainer"]
+margin_top = 62.0
+margin_right = 80.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 34 )
+custom_constants/line_spacing = -2
+text = "Metabolosomes
+45 MP"
+align = 1
+
+[node name="chromatophore" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures" groups=[
+"OrganelleSelectionElement",
+]]
+margin_left = 102.0
+margin_right = 192.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 90, 90 )
+focus_mode = 0
+mouse_filter = 1
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
+toggle_mode = true
+action_mode = 0
+enabled_focus_mode = 0
+group = SubResource( 32 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/chromatophore"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/chromatophore/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 85.0
+margin_bottom = 85.0
+custom_constants/separation = -2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelectedLabelMargin" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/chromatophore/MarginContainer/VBoxContainer"]
+margin_right = 80.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 80, 10 )
+mouse_filter = 1
+
+[node name="SelectedLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/chromatophore/MarginContainer/VBoxContainer/SelectedLabelMargin"]
+visible = false
+margin_right = 80.0
+margin_bottom = 10.0
+custom_fonts/font = SubResource( 33 )
+text = "Selected"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/chromatophore/MarginContainer/VBoxContainer"]
+margin_top = 8.0
+margin_right = 80.0
+margin_bottom = 64.0
+mouse_filter = 2
+custom_constants/margin_top = -4
+custom_constants/margin_left = 10
+
+[node name="TextureRect" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/chromatophore/MarginContainer/VBoxContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = -4.0
+margin_right = 70.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 60, 60 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 10 )
+expand = true
+
+[node name="OrganelleLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/chromatophore/MarginContainer/VBoxContainer"]
+margin_top = 62.0
+margin_right = 80.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 34 )
+custom_constants/line_spacing = -2
+text = "Thylakoid
+50 MP"
+align = 1
+
+[node name="chemoSynthesizingProteins" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures" groups=[
+"OrganelleSelectionElement",
+]]
+margin_left = 204.0
+margin_right = 294.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 90, 90 )
+focus_mode = 0
+mouse_filter = 1
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
+toggle_mode = true
+action_mode = 0
+enabled_focus_mode = 0
+group = SubResource( 32 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/chemoSynthesizingProteins"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/chemoSynthesizingProteins/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 92.0
+margin_bottom = 85.0
+custom_constants/separation = -2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelectedLabelMargin" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/chemoSynthesizingProteins/MarginContainer/VBoxContainer"]
+margin_right = 87.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 80, 10 )
+mouse_filter = 1
+
+[node name="SelectedLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/chemoSynthesizingProteins/MarginContainer/VBoxContainer/SelectedLabelMargin"]
+visible = false
+margin_right = 80.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 80, 0 )
+size_flags_horizontal = 0
+custom_fonts/font = SubResource( 33 )
+text = "Selected"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/chemoSynthesizingProteins/MarginContainer/VBoxContainer"]
+margin_top = 8.0
+margin_right = 87.0
+margin_bottom = 54.0
+mouse_filter = 2
+custom_constants/margin_top = -4
+custom_constants/margin_left = 15
+
+[node name="TextureRect" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/chemoSynthesizingProteins/MarginContainer/VBoxContainer/MarginContainer"]
+margin_left = 15.0
+margin_top = -4.0
+margin_right = 65.0
+margin_bottom = 46.0
+rect_min_size = Vector2( 50, 50 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 12 )
+expand = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/chemoSynthesizingProteins/MarginContainer/VBoxContainer"]
+margin_top = 52.0
+margin_right = 87.0
+margin_bottom = 78.0
+mouse_filter = 2
+custom_constants/margin_left = -5
+
+[node name="OrganelleLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/chemoSynthesizingProteins/MarginContainer/VBoxContainer/MarginContainer2"]
+margin_left = -5.0
+margin_right = 87.0
+margin_bottom = 26.0
+custom_fonts/font = SubResource( 34 )
+custom_constants/line_spacing = -2
+text = "Chemosynthesizing
+Proteins
+45 MP"
+align = 1
+
+[node name="rusticyanin" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures" groups=[
+"OrganelleSelectionElement",
+]]
+margin_top = 105.0
+margin_right = 90.0
+margin_bottom = 195.0
+rect_min_size = Vector2( 90, 90 )
+focus_mode = 0
+mouse_filter = 1
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
+toggle_mode = true
+action_mode = 0
+enabled_focus_mode = 0
+group = SubResource( 32 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/rusticyanin"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/rusticyanin/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 85.0
+margin_bottom = 85.0
+custom_constants/separation = -2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelectedLabelMargin" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/rusticyanin/MarginContainer/VBoxContainer"]
+margin_right = 80.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 80, 10 )
+mouse_filter = 1
+
+[node name="SelectedLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/rusticyanin/MarginContainer/VBoxContainer/SelectedLabelMargin"]
+visible = false
+margin_right = 80.0
+margin_bottom = 10.0
+custom_fonts/font = SubResource( 33 )
+text = "Selected"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/rusticyanin/MarginContainer/VBoxContainer"]
+margin_top = 8.0
+margin_right = 80.0
+margin_bottom = 64.0
+mouse_filter = 2
+custom_constants/margin_top = -4
+custom_constants/margin_left = 10
+
+[node name="TextureRect" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/rusticyanin/MarginContainer/VBoxContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = -4.0
+margin_right = 70.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 60, 60 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 18 )
+expand = true
+
+[node name="OrganelleLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/rusticyanin/MarginContainer/VBoxContainer"]
+margin_top = 62.0
+margin_right = 80.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 34 )
+custom_constants/line_spacing = -2
+text = "Rusticyanin	
+45 MP"
+align = 1
+
+[node name="nitrogenase" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures" groups=[
+"OrganelleSelectionElement",
+]]
+margin_left = 102.0
+margin_top = 105.0
+margin_right = 192.0
+margin_bottom = 195.0
+rect_min_size = Vector2( 90, 90 )
+focus_mode = 0
+mouse_filter = 1
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
+toggle_mode = true
+action_mode = 0
+enabled_focus_mode = 0
+group = SubResource( 32 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/nitrogenase"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/nitrogenase/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 85.0
+margin_bottom = 85.0
+custom_constants/separation = -2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelectedLabelMargin" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/nitrogenase/MarginContainer/VBoxContainer"]
+margin_right = 80.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 80, 10 )
+mouse_filter = 1
+
+[node name="SelectedLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/nitrogenase/MarginContainer/VBoxContainer/SelectedLabelMargin"]
+visible = false
+margin_right = 80.0
+margin_bottom = 10.0
+custom_fonts/font = SubResource( 33 )
+text = "Selected"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/nitrogenase/MarginContainer/VBoxContainer"]
+margin_top = 8.0
+margin_right = 80.0
+margin_bottom = 64.0
+mouse_filter = 2
+custom_constants/margin_top = -4
+custom_constants/margin_left = 10
+
+[node name="TextureRect" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/nitrogenase/MarginContainer/VBoxContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = -4.0
+margin_right = 70.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 60, 60 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 14 )
+expand = true
+
+[node name="OrganelleLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/nitrogenase/MarginContainer/VBoxContainer"]
+margin_top = 62.0
+margin_right = 80.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 34 )
+custom_constants/line_spacing = -2
+text = "Nitrogenase
+55 MP"
+align = 1
+
+[node name="oxytoxyProteins" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures" groups=[
+"OrganelleSelectionElement",
+]]
+margin_left = 204.0
+margin_top = 105.0
+margin_right = 294.0
+margin_bottom = 195.0
+rect_min_size = Vector2( 90, 90 )
+focus_mode = 0
+mouse_filter = 1
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
+toggle_mode = true
+action_mode = 0
+enabled_focus_mode = 0
+group = SubResource( 32 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/oxytoxyProteins"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/oxytoxyProteins/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 85.0
+margin_bottom = 85.0
+custom_constants/separation = -2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelectedLabelMargin" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/oxytoxyProteins/MarginContainer/VBoxContainer"]
+margin_right = 80.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 80, 10 )
+mouse_filter = 1
+
+[node name="SelectedLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/oxytoxyProteins/MarginContainer/VBoxContainer/SelectedLabelMargin"]
+visible = false
+margin_right = 80.0
+margin_bottom = 10.0
+custom_fonts/font = SubResource( 33 )
+text = "Selected"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/oxytoxyProteins/MarginContainer/VBoxContainer"]
+margin_top = 8.0
+margin_right = 80.0
+margin_bottom = 64.0
+mouse_filter = 2
+custom_constants/margin_top = -4
+custom_constants/margin_left = 10
+
+[node name="TextureRect" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/oxytoxyProteins/MarginContainer/VBoxContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = -4.0
+margin_right = 70.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 60, 60 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 16 )
+expand = true
+
+[node name="OrganelleLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/oxytoxyProteins/MarginContainer/VBoxContainer"]
+margin_top = 62.0
+margin_right = 80.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 34 )
+custom_constants/line_spacing = -2
+text = "Oxytoxisome
+55 MP"
+align = 1
+
+[node name="ExternalOrganellesLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 395.0
+margin_right = 294.0
+margin_bottom = 430.0
+rect_min_size = Vector2( 0, 35 )
+custom_fonts/font = SubResource( 27 )
+text = "External Organelles"
+valign = 1
+uppercase = true
+
+[node name="ExternalOrganelles" type="GridContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 440.0
+margin_right = 294.0
+margin_bottom = 530.0
+rect_min_size = Vector2( 265, 0 )
+size_flags_horizontal = 0
+custom_constants/vseparation = 15
+custom_constants/hseparation = 12
+columns = 3
+
+[node name="flagellum" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ExternalOrganelles" groups=[
+"OrganelleSelectionElement",
+]]
+margin_right = 90.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 90, 90 )
+focus_mode = 0
+mouse_filter = 1
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
+toggle_mode = true
+action_mode = 0
+enabled_focus_mode = 0
+group = SubResource( 32 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ExternalOrganelles/flagellum"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ExternalOrganelles/flagellum/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 85.0
+margin_bottom = 85.0
+custom_constants/separation = -2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelectedLabelMargin" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ExternalOrganelles/flagellum/MarginContainer/VBoxContainer"]
+margin_right = 80.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 80, 10 )
+mouse_filter = 1
+
+[node name="SelectedLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ExternalOrganelles/flagellum/MarginContainer/VBoxContainer/SelectedLabelMargin"]
+visible = false
+margin_right = 80.0
+margin_bottom = 10.0
+custom_fonts/font = SubResource( 33 )
+text = "Selected"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ExternalOrganelles/flagellum/MarginContainer/VBoxContainer"]
+margin_top = 8.0
+margin_right = 80.0
+margin_bottom = 64.0
+mouse_filter = 2
+custom_constants/margin_top = -4
+custom_constants/margin_left = 10
+
+[node name="TextureRect" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ExternalOrganelles/flagellum/MarginContainer/VBoxContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = -4.0
+margin_right = 70.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 60, 60 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 17 )
+expand = true
+
+[node name="OrganelleLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ExternalOrganelles/flagellum/MarginContainer/VBoxContainer"]
+margin_top = 62.0
+margin_right = 80.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 34 )
+custom_constants/line_spacing = -2
+text = "Flagellum
+55 MP"
+align = 1
+
+[node name="pilus" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ExternalOrganelles" groups=[
+"OrganelleSelectionElement",
+]]
+margin_left = 102.0
+margin_right = 192.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 90, 90 )
+focus_mode = 0
+mouse_filter = 1
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
+toggle_mode = true
+action_mode = 0
+enabled_focus_mode = 0
+group = SubResource( 32 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ExternalOrganelles/pilus"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ExternalOrganelles/pilus/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 85.0
+margin_bottom = 85.0
+custom_constants/separation = -2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelectedLabelMargin" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ExternalOrganelles/pilus/MarginContainer/VBoxContainer"]
+margin_right = 80.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 80, 10 )
+mouse_filter = 1
+
+[node name="SelectedLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ExternalOrganelles/pilus/MarginContainer/VBoxContainer/SelectedLabelMargin"]
+visible = false
+margin_right = 80.0
+margin_bottom = 10.0
+custom_fonts/font = SubResource( 33 )
+text = "Selected"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ExternalOrganelles/pilus/MarginContainer/VBoxContainer"]
+margin_top = 8.0
+margin_right = 80.0
+margin_bottom = 64.0
+mouse_filter = 2
+custom_constants/margin_top = -4
+custom_constants/margin_left = 10
+
+[node name="TextureRect" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ExternalOrganelles/pilus/MarginContainer/VBoxContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = -4.0
+margin_right = 70.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 60, 60 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 15 )
+expand = true
+
+[node name="OrganelleLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ExternalOrganelles/pilus/MarginContainer/VBoxContainer"]
+margin_top = 62.0
+margin_right = 80.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 34 )
+custom_constants/line_spacing = -2
+text = "Predatory Pilus
+30 MP"
+align = 1
+
+[node name="cilia" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ExternalOrganelles" groups=[
+"OrganelleSelectionElement",
+]]
+margin_left = 204.0
+margin_right = 294.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 90, 90 )
+focus_mode = 0
+mouse_filter = 1
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
+disabled = true
+toggle_mode = true
+action_mode = 0
+enabled_focus_mode = 0
+group = SubResource( 32 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ExternalOrganelles/cilia"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ExternalOrganelles/cilia/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 85.0
+margin_bottom = 85.0
+custom_constants/separation = -2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelectedLabelMargin" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ExternalOrganelles/cilia/MarginContainer/VBoxContainer"]
+margin_right = 80.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 80, 10 )
+mouse_filter = 1
+
+[node name="SelectedLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ExternalOrganelles/cilia/MarginContainer/VBoxContainer/SelectedLabelMargin"]
+visible = false
+margin_right = 80.0
+margin_bottom = 10.0
+custom_fonts/font = SubResource( 33 )
+text = "Selected"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ExternalOrganelles/cilia/MarginContainer/VBoxContainer"]
+margin_top = 8.0
+margin_right = 80.0
+margin_bottom = 64.0
+mouse_filter = 2
+custom_constants/margin_top = -4
+custom_constants/margin_left = 10
+
+[node name="TextureRect" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ExternalOrganelles/cilia/MarginContainer/VBoxContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = -4.0
+margin_right = 70.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 60, 60 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 13 )
+expand = true
+
+[node name="OrganelleLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ExternalOrganelles/cilia/MarginContainer/VBoxContainer"]
+margin_top = 62.0
+margin_right = 80.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 34 )
+custom_constants/line_spacing = -2
+text = "Cilia
+40 MP"
+align = 1
+
+[node name="InternalOrganelles" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 540.0
+margin_right = 294.0
+margin_bottom = 575.0
+rect_min_size = Vector2( 0, 35 )
+custom_fonts/font = SubResource( 27 )
+text = "Internal Organelles"
+valign = 1
+uppercase = true
+
+[node name="InternalOrganelles2" type="GridContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 585.0
+margin_right = 294.0
+margin_bottom = 885.0
+rect_min_size = Vector2( 265, 0 )
+size_flags_horizontal = 0
+custom_constants/vseparation = 15
+custom_constants/hseparation = 12
+columns = 3
+
+[node name="nucleus" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2" groups=[
+"OrganelleSelectionElement",
+]]
+margin_right = 90.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 90, 90 )
+focus_mode = 0
+mouse_filter = 1
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
+toggle_mode = true
+action_mode = 0
+enabled_focus_mode = 0
+group = SubResource( 32 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/nucleus"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/nucleus/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 85.0
+margin_bottom = 85.0
+custom_constants/separation = -2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelectedLabelMargin" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/nucleus/MarginContainer/VBoxContainer"]
+margin_right = 80.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 80, 10 )
+mouse_filter = 1
+
+[node name="SelectedLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/nucleus/MarginContainer/VBoxContainer/SelectedLabelMargin"]
+visible = false
+margin_right = 80.0
+margin_bottom = 10.0
+custom_fonts/font = SubResource( 33 )
+text = "Selected"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/nucleus/MarginContainer/VBoxContainer"]
+margin_top = 8.0
+margin_right = 80.0
+margin_bottom = 64.0
+mouse_filter = 2
+custom_constants/margin_top = -4
+custom_constants/margin_left = 10
+
+[node name="TextureRect" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/nucleus/MarginContainer/VBoxContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = -4.0
+margin_right = 70.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 60, 60 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 26 )
+expand = true
+
+[node name="OrganelleLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/nucleus/MarginContainer/VBoxContainer"]
+margin_top = 62.0
+margin_right = 80.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 34 )
+custom_constants/line_spacing = -2
+text = "Nucleus
+100 MP"
+align = 1
+
+[node name="mitochondrion" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2" groups=[
+"OrganelleSelectionElement",
+]]
+margin_left = 102.0
+margin_right = 192.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 90, 90 )
+focus_mode = 0
+mouse_filter = 1
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
+toggle_mode = true
+action_mode = 0
+enabled_focus_mode = 0
+group = SubResource( 32 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/mitochondrion"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/mitochondrion/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 85.0
+margin_bottom = 85.0
+custom_constants/separation = -2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelectedLabelMargin" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/mitochondrion/MarginContainer/VBoxContainer"]
+margin_right = 80.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 80, 10 )
+mouse_filter = 1
+
+[node name="SelectedLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/mitochondrion/MarginContainer/VBoxContainer/SelectedLabelMargin"]
+visible = false
+margin_right = 80.0
+margin_bottom = 10.0
+custom_fonts/font = SubResource( 33 )
+text = "Selected"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/mitochondrion/MarginContainer/VBoxContainer"]
+margin_top = 8.0
+margin_right = 80.0
+margin_bottom = 64.0
+mouse_filter = 2
+custom_constants/margin_top = -4
+custom_constants/margin_left = 10
+
+[node name="TextureRect" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/mitochondrion/MarginContainer/VBoxContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = -4.0
+margin_right = 70.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 60, 60 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 21 )
+expand = true
+
+[node name="OrganelleLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/mitochondrion/MarginContainer/VBoxContainer"]
+margin_top = 62.0
+margin_right = 80.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 34 )
+custom_constants/line_spacing = -2
+text = "Mitochondrion
+45 MP"
+align = 1
+
+[node name="chloroplast" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2" groups=[
+"OrganelleSelectionElement",
+]]
+margin_left = 204.0
+margin_right = 294.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 90, 90 )
+focus_mode = 0
+mouse_filter = 1
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
+toggle_mode = true
+action_mode = 0
+enabled_focus_mode = 0
+group = SubResource( 32 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/chloroplast"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/chloroplast/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 85.0
+margin_bottom = 85.0
+custom_constants/separation = -2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelectedLabelMargin" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/chloroplast/MarginContainer/VBoxContainer"]
+margin_right = 80.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 80, 10 )
+mouse_filter = 1
+
+[node name="SelectedLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/chloroplast/MarginContainer/VBoxContainer/SelectedLabelMargin"]
+visible = false
+margin_right = 80.0
+margin_bottom = 10.0
+custom_fonts/font = SubResource( 33 )
+text = "Selected"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/chloroplast/MarginContainer/VBoxContainer"]
+margin_top = 8.0
+margin_right = 80.0
+margin_bottom = 64.0
+mouse_filter = 2
+custom_constants/margin_top = -4
+custom_constants/margin_left = 10
+
+[node name="TextureRect" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/chloroplast/MarginContainer/VBoxContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = -4.0
+margin_right = 70.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 60, 60 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 22 )
+expand = true
+
+[node name="OrganelleLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/chloroplast/MarginContainer/VBoxContainer"]
+margin_top = 62.0
+margin_right = 80.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 34 )
+custom_constants/line_spacing = -2
+text = "Chloroplast
+50 MP"
+align = 1
+
+[node name="thermoplast" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2" groups=[
+"OrganelleSelectionElement",
+]]
+margin_top = 105.0
+margin_right = 90.0
+margin_bottom = 195.0
+rect_min_size = Vector2( 90, 90 )
+focus_mode = 0
+mouse_filter = 1
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
+disabled = true
+toggle_mode = true
+action_mode = 0
+enabled_focus_mode = 0
+group = SubResource( 32 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/thermoplast"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/thermoplast/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 85.0
+margin_bottom = 85.0
+custom_constants/separation = -2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelectedLabelMargin" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/thermoplast/MarginContainer/VBoxContainer"]
+margin_right = 80.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 80, 10 )
+mouse_filter = 1
+
+[node name="SelectedLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/thermoplast/MarginContainer/VBoxContainer/SelectedLabelMargin"]
+visible = false
+margin_right = 80.0
+margin_bottom = 10.0
+custom_fonts/font = SubResource( 33 )
+text = "Selected"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/thermoplast/MarginContainer/VBoxContainer"]
+margin_top = 8.0
+margin_right = 80.0
+margin_bottom = 64.0
+mouse_filter = 2
+custom_constants/margin_top = -4
+custom_constants/margin_left = 10
+
+[node name="TextureRect" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/thermoplast/MarginContainer/VBoxContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = -4.0
+margin_right = 70.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 60, 60 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 20 )
+expand = true
+
+[node name="OrganelleLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/thermoplast/MarginContainer/VBoxContainer"]
+margin_top = 62.0
+margin_right = 80.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 34 )
+custom_constants/line_spacing = -2
+text = "Thermoplast
+40 MP"
+align = 1
+
+[node name="chemoplast" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2" groups=[
+"OrganelleSelectionElement",
+]]
+margin_left = 102.0
+margin_top = 105.0
+margin_right = 192.0
+margin_bottom = 195.0
+rect_min_size = Vector2( 90, 90 )
+focus_mode = 0
+mouse_filter = 1
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
+toggle_mode = true
+action_mode = 0
+enabled_focus_mode = 0
+group = SubResource( 32 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/chemoplast"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/chemoplast/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 85.0
+margin_bottom = 85.0
+custom_constants/separation = -2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelectedLabelMargin" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/chemoplast/MarginContainer/VBoxContainer"]
+margin_right = 80.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 80, 10 )
+mouse_filter = 1
+
+[node name="SelectedLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/chemoplast/MarginContainer/VBoxContainer/SelectedLabelMargin"]
+visible = false
+margin_right = 80.0
+margin_bottom = 10.0
+custom_fonts/font = SubResource( 33 )
+text = "Selected"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/chemoplast/MarginContainer/VBoxContainer"]
+margin_top = 8.0
+margin_right = 80.0
+margin_bottom = 64.0
+mouse_filter = 2
+custom_constants/margin_top = -4
+custom_constants/margin_left = 10
+
+[node name="TextureRect" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/chemoplast/MarginContainer/VBoxContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = -4.0
+margin_right = 70.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 60, 60 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 24 )
+expand = true
+
+[node name="OrganelleLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/chemoplast/MarginContainer/VBoxContainer"]
+margin_top = 62.0
+margin_right = 80.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 34 )
+custom_constants/line_spacing = -2
+text = "Chemoplast
+45 MP"
+align = 1
+
+[node name="nitrogenfixingplastid" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2" groups=[
+"OrganelleSelectionElement",
+]]
+margin_left = 204.0
+margin_top = 105.0
+margin_right = 294.0
+margin_bottom = 195.0
+rect_min_size = Vector2( 90, 90 )
+focus_mode = 0
+mouse_filter = 1
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
+toggle_mode = true
+action_mode = 0
+enabled_focus_mode = 0
+group = SubResource( 32 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/nitrogenfixingplastid"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/nitrogenfixingplastid/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 85.0
+margin_bottom = 85.0
+custom_constants/separation = -2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelectedLabelMargin" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/nitrogenfixingplastid/MarginContainer/VBoxContainer"]
+margin_right = 80.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 80, 10 )
+mouse_filter = 1
+
+[node name="SelectedLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/nitrogenfixingplastid/MarginContainer/VBoxContainer/SelectedLabelMargin"]
+visible = false
+margin_right = 80.0
+margin_bottom = 10.0
+custom_fonts/font = SubResource( 33 )
+text = "Selected"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/nitrogenfixingplastid/MarginContainer/VBoxContainer"]
+margin_top = 8.0
+margin_right = 80.0
+margin_bottom = 54.0
+mouse_filter = 2
+custom_constants/margin_top = -4
+custom_constants/margin_left = 15
+
+[node name="TextureRect" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/nitrogenfixingplastid/MarginContainer/VBoxContainer/MarginContainer"]
+margin_left = 15.0
+margin_top = -4.0
+margin_right = 65.0
+margin_bottom = 46.0
+rect_min_size = Vector2( 50, 50 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 19 )
+expand = true
+
+[node name="OrganelleLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/nitrogenfixingplastid/MarginContainer/VBoxContainer"]
+margin_top = 52.0
+margin_right = 80.0
+margin_bottom = 78.0
+custom_fonts/font = SubResource( 34 )
+custom_constants/line_spacing = -2
+text = "Nitrogen Fixing
+Plastid
+50 MP"
+align = 1
+
+[node name="vacuole" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2" groups=[
+"OrganelleSelectionElement",
+]]
+margin_top = 210.0
+margin_right = 90.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 90, 90 )
+focus_mode = 0
+mouse_filter = 1
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
+toggle_mode = true
+action_mode = 0
+enabled_focus_mode = 0
+group = SubResource( 32 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/vacuole"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/vacuole/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 85.0
+margin_bottom = 85.0
+custom_constants/separation = -2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelectedLabelMargin" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/vacuole/MarginContainer/VBoxContainer"]
+margin_right = 80.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 80, 10 )
+mouse_filter = 1
+
+[node name="SelectedLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/vacuole/MarginContainer/VBoxContainer/SelectedLabelMargin"]
+visible = false
+margin_right = 80.0
+margin_bottom = 10.0
+custom_fonts/font = SubResource( 33 )
+text = "Selected"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/vacuole/MarginContainer/VBoxContainer"]
+margin_top = 8.0
+margin_right = 80.0
+margin_bottom = 64.0
+mouse_filter = 2
+custom_constants/margin_top = -4
+custom_constants/margin_left = 10
+
+[node name="TextureRect" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/vacuole/MarginContainer/VBoxContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = -4.0
+margin_right = 70.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 60, 60 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 23 )
+expand = true
+
+[node name="OrganelleLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/vacuole/MarginContainer/VBoxContainer"]
+margin_top = 62.0
+margin_right = 80.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 34 )
+custom_constants/line_spacing = -2
+text = "Vacuole
+50 MP"
+align = 1
+
+[node name="oxytoxy" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2" groups=[
+"OrganelleSelectionElement",
+]]
+margin_left = 102.0
+margin_top = 210.0
+margin_right = 192.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 90, 90 )
+focus_mode = 0
+mouse_filter = 1
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
+toggle_mode = true
+action_mode = 0
+enabled_focus_mode = 0
+group = SubResource( 32 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/oxytoxy"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/oxytoxy/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 85.0
+margin_bottom = 85.0
+custom_constants/separation = -2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelectedLabelMargin" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/oxytoxy/MarginContainer/VBoxContainer"]
+margin_right = 80.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 80, 10 )
+mouse_filter = 1
+
+[node name="SelectedLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/oxytoxy/MarginContainer/VBoxContainer/SelectedLabelMargin"]
+visible = false
+margin_right = 80.0
+margin_bottom = 10.0
+custom_fonts/font = SubResource( 33 )
+text = "Selected"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/oxytoxy/MarginContainer/VBoxContainer"]
+margin_top = 8.0
+margin_right = 80.0
+margin_bottom = 64.0
+mouse_filter = 2
+custom_constants/margin_top = -4
+custom_constants/margin_left = 10
+
+[node name="TextureRect" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/oxytoxy/MarginContainer/VBoxContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = -4.0
+margin_right = 70.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 60, 60 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 16 )
+expand = true
+
+[node name="OrganelleLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/oxytoxy/MarginContainer/VBoxContainer"]
+margin_top = 62.0
+margin_right = 80.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 34 )
+custom_constants/line_spacing = -2
+text = "Toxin Vacuole
+70 MP"
+align = 1
+
+[node name="bioluminescentVacuole" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2" groups=[
+"OrganelleSelectionElement",
+]]
+margin_left = 204.0
+margin_top = 210.0
+margin_right = 294.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 90, 90 )
+focus_mode = 0
+mouse_filter = 1
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
+disabled = true
+toggle_mode = true
+action_mode = 0
+enabled_focus_mode = 0
+group = SubResource( 32 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/bioluminescentVacuole"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/bioluminescentVacuole/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 85.0
+margin_bottom = 85.0
+custom_constants/separation = -2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelectedLabelMargin" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/bioluminescentVacuole/MarginContainer/VBoxContainer"]
+margin_right = 80.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 80, 10 )
+mouse_filter = 1
+
+[node name="SelectedLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/bioluminescentVacuole/MarginContainer/VBoxContainer/SelectedLabelMargin"]
+visible = false
+margin_right = 80.0
+margin_bottom = 10.0
+custom_fonts/font = SubResource( 33 )
+text = "Selected"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/bioluminescentVacuole/MarginContainer/VBoxContainer"]
+margin_top = 8.0
+margin_right = 80.0
+margin_bottom = 54.0
+mouse_filter = 2
+custom_constants/margin_top = -4
+custom_constants/margin_left = 15
+
+[node name="TextureRect" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/bioluminescentVacuole/MarginContainer/VBoxContainer/MarginContainer"]
+margin_left = 15.0
+margin_top = -4.0
+margin_right = 65.0
+margin_bottom = 46.0
+rect_min_size = Vector2( 50, 50 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 25 )
+expand = true
+
+[node name="OrganelleLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/bioluminescentVacuole/MarginContainer/VBoxContainer"]
+margin_top = 52.0
+margin_right = 80.0
+margin_bottom = 78.0
+custom_fonts/font = SubResource( 34 )
+custom_constants/line_spacing = -2
+text = "Biolumescent
+Vacuole
+N/A MP"
+align = 1
+
+[node name="Membrane" type="Control" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel"]
+visible = false
+margin_right = 330.0
+margin_bottom = 578.0
+mouse_filter = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -20.0
+rect_min_size = Vector2( 320, 0 )
+mouse_filter = 1
+size_flags_horizontal = 0
+theme = SubResource( 26 )
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer"]
+margin_right = 304.0
+margin_bottom = 821.0
+mouse_filter = 1
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 304.0
+margin_bottom = 811.0
+custom_constants/separation = 10
+
+[node name="MembraneTypesLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_right = 294.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 0, 35 )
+custom_fonts/font = SubResource( 27 )
+text = "Membrane Types"
+valign = 1
+uppercase = true
+
+[node name="MembraneTypes" type="GridContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 45.0
+margin_right = 294.0
+margin_bottom = 240.0
+rect_min_size = Vector2( 265, 0 )
+size_flags_horizontal = 0
+custom_constants/vseparation = 15
+custom_constants/hseparation = 12
+columns = 3
+
+[node name="single" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes" groups=[
+"MembraneSelectionElement",
+]]
+margin_right = 90.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 90, 90 )
+focus_mode = 0
+mouse_filter = 1
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
+toggle_mode = true
+action_mode = 0
+enabled_focus_mode = 0
+group = SubResource( 35 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/single"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 2.0
+mouse_filter = 2
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/single/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 85.0
+margin_bottom = 87.0
+custom_constants/separation = -2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelectedLabelMargin" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/single/MarginContainer/VBoxContainer"]
+margin_right = 80.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 80, 10 )
+mouse_filter = 1
+
+[node name="SelectedLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/single/MarginContainer/VBoxContainer/SelectedLabelMargin"]
+visible = false
+margin_right = 80.0
+margin_bottom = 10.0
+custom_fonts/font = SubResource( 33 )
+text = "Selected"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/single/MarginContainer/VBoxContainer"]
+margin_top = 8.0
+margin_right = 80.0
+margin_bottom = 64.0
+mouse_filter = 2
+custom_constants/margin_top = -4
+custom_constants/margin_left = 10
+
+[node name="TextureRect" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/single/MarginContainer/VBoxContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = -4.0
+margin_right = 70.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 60, 60 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 47 )
+expand = true
+
+[node name="OrganelleLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/single/MarginContainer/VBoxContainer"]
+margin_top = 62.0
+margin_right = 80.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 34 )
+custom_constants/line_spacing = -2
+text = "Normal
+50 MP"
+align = 1
+
+[node name="double" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes" groups=[
+"MembraneSelectionElement",
+]]
+margin_left = 102.0
+margin_right = 192.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 90, 90 )
+focus_mode = 0
+mouse_filter = 1
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
+toggle_mode = true
+action_mode = 0
+enabled_focus_mode = 0
+group = SubResource( 35 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/double"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 2.0
+mouse_filter = 2
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/double/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 85.0
+margin_bottom = 87.0
+custom_constants/separation = -2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelectedLabelMargin" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/double/MarginContainer/VBoxContainer"]
+margin_right = 80.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 80, 10 )
+mouse_filter = 1
+
+[node name="SelectedLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/double/MarginContainer/VBoxContainer/SelectedLabelMargin"]
+visible = false
+margin_right = 80.0
+margin_bottom = 10.0
+custom_fonts/font = SubResource( 33 )
+text = "Selected"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/double/MarginContainer/VBoxContainer"]
+margin_top = 8.0
+margin_right = 80.0
+margin_bottom = 64.0
+mouse_filter = 2
+custom_constants/margin_top = -4
+custom_constants/margin_left = 10
+
+[node name="TextureRect" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/double/MarginContainer/VBoxContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = -4.0
+margin_right = 70.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 60, 60 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 46 )
+expand = true
+
+[node name="OrganelleLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/double/MarginContainer/VBoxContainer"]
+margin_top = 62.0
+margin_right = 80.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 34 )
+custom_constants/line_spacing = -2
+text = "Double
+50 MP"
+align = 1
+
+[node name="cellulose" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes" groups=[
+"MembraneSelectionElement",
+]]
+margin_left = 204.0
+margin_right = 294.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 90, 90 )
+focus_mode = 0
+mouse_filter = 1
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
+toggle_mode = true
+action_mode = 0
+enabled_focus_mode = 0
+group = SubResource( 35 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/cellulose"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 2.0
+mouse_filter = 2
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/cellulose/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 85.0
+margin_bottom = 87.0
+custom_constants/separation = -2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelectedLabelMargin" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/cellulose/MarginContainer/VBoxContainer"]
+margin_right = 80.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 80, 10 )
+mouse_filter = 1
+
+[node name="SelectedLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/cellulose/MarginContainer/VBoxContainer/SelectedLabelMargin"]
+visible = false
+margin_right = 80.0
+margin_bottom = 10.0
+custom_fonts/font = SubResource( 33 )
+text = "Selected"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/cellulose/MarginContainer/VBoxContainer"]
+margin_top = 8.0
+margin_right = 80.0
+margin_bottom = 64.0
+mouse_filter = 2
+custom_constants/margin_top = -4
+custom_constants/margin_left = 10
+
+[node name="TextureRect" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/cellulose/MarginContainer/VBoxContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = -4.0
+margin_right = 70.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 60, 60 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 51 )
+expand = true
+
+[node name="OrganelleLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/cellulose/MarginContainer/VBoxContainer"]
+margin_top = 62.0
+margin_right = 80.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 34 )
+custom_constants/line_spacing = -2
+text = "Cellulose
+50 MP"
+align = 1
+
+[node name="chitin" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes" groups=[
+"MembraneSelectionElement",
+]]
+margin_top = 105.0
+margin_right = 90.0
+margin_bottom = 195.0
+rect_min_size = Vector2( 90, 90 )
+focus_mode = 0
+mouse_filter = 1
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
+toggle_mode = true
+action_mode = 0
+enabled_focus_mode = 0
+group = SubResource( 35 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/chitin"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 2.0
+mouse_filter = 2
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/chitin/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 85.0
+margin_bottom = 87.0
+custom_constants/separation = -2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelectedLabelMargin" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/chitin/MarginContainer/VBoxContainer"]
+margin_right = 80.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 80, 10 )
+mouse_filter = 1
+
+[node name="SelectedLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/chitin/MarginContainer/VBoxContainer/SelectedLabelMargin"]
+visible = false
+margin_right = 80.0
+margin_bottom = 10.0
+custom_fonts/font = SubResource( 33 )
+text = "Selected"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/chitin/MarginContainer/VBoxContainer"]
+margin_top = 8.0
+margin_right = 80.0
+margin_bottom = 64.0
+mouse_filter = 2
+custom_constants/margin_top = -4
+custom_constants/margin_left = 10
+
+[node name="TextureRect" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/chitin/MarginContainer/VBoxContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = -4.0
+margin_right = 70.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 60, 60 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 50 )
+expand = true
+
+[node name="OrganelleLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/chitin/MarginContainer/VBoxContainer"]
+margin_top = 62.0
+margin_right = 80.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 34 )
+custom_constants/line_spacing = -2
+text = "Chitin
+50 MP"
+align = 1
+
+[node name="calcium_carbonate" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes" groups=[
+"MembraneSelectionElement",
+]]
+margin_left = 102.0
+margin_top = 105.0
+margin_right = 192.0
+margin_bottom = 195.0
+rect_min_size = Vector2( 90, 90 )
+focus_mode = 0
+mouse_filter = 1
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
+toggle_mode = true
+action_mode = 0
+enabled_focus_mode = 0
+group = SubResource( 35 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/calcium_carbonate"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 2.0
+mouse_filter = 2
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/calcium_carbonate/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 86.0
+margin_bottom = 87.0
+custom_constants/separation = -2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelectedLabelMargin" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/calcium_carbonate/MarginContainer/VBoxContainer"]
+margin_right = 81.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 80, 10 )
+mouse_filter = 1
+
+[node name="SelectedLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/calcium_carbonate/MarginContainer/VBoxContainer/SelectedLabelMargin"]
+visible = false
+margin_right = 81.0
+margin_bottom = 10.0
+custom_fonts/font = SubResource( 33 )
+text = "Selected"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/calcium_carbonate/MarginContainer/VBoxContainer"]
+margin_top = 8.0
+margin_right = 81.0
+margin_bottom = 64.0
+mouse_filter = 2
+custom_constants/margin_top = -4
+custom_constants/margin_left = 10
+
+[node name="TextureRect" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/calcium_carbonate/MarginContainer/VBoxContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = -4.0
+margin_right = 70.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 60, 60 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 49 )
+expand = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/calcium_carbonate/MarginContainer/VBoxContainer"]
+margin_top = 62.0
+margin_right = 81.0
+margin_bottom = 80.0
+custom_constants/margin_left = -5
+
+[node name="OrganelleLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/calcium_carbonate/MarginContainer/VBoxContainer/MarginContainer2"]
+margin_left = -5.0
+margin_right = 81.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 34 )
+custom_constants/line_spacing = -2
+text = "Calcium  Carbonate
+50 MP"
+align = 1
+
+[node name="silica" type="Button" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes" groups=[
+"MembraneSelectionElement",
+]]
+margin_left = 204.0
+margin_top = 105.0
+margin_right = 294.0
+margin_bottom = 195.0
+rect_min_size = Vector2( 90, 90 )
+focus_mode = 0
+mouse_filter = 1
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/disabled = SubResource( 30 )
+custom_styles/normal = SubResource( 31 )
+toggle_mode = true
+action_mode = 0
+enabled_focus_mode = 0
+group = SubResource( 35 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/silica"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 2.0
+mouse_filter = 2
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/silica/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 85.0
+margin_bottom = 87.0
+custom_constants/separation = -2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SelectedLabelMargin" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/silica/MarginContainer/VBoxContainer"]
+margin_right = 80.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 80, 10 )
+mouse_filter = 1
+
+[node name="SelectedLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/silica/MarginContainer/VBoxContainer/SelectedLabelMargin"]
+visible = false
+margin_right = 80.0
+margin_bottom = 10.0
+custom_fonts/font = SubResource( 33 )
+text = "Selected"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/silica/MarginContainer/VBoxContainer"]
+margin_top = 8.0
+margin_right = 80.0
+margin_bottom = 64.0
+mouse_filter = 2
+custom_constants/margin_top = -4
+custom_constants/margin_left = 10
+
+[node name="TextureRect" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/silica/MarginContainer/VBoxContainer/MarginContainer"]
+margin_left = 10.0
+margin_top = -4.0
+margin_right = 70.0
+margin_bottom = 56.0
+rect_min_size = Vector2( 60, 60 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 48 )
+expand = true
+
+[node name="OrganelleLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/silica/MarginContainer/VBoxContainer"]
+margin_top = 62.0
+margin_right = 80.0
+margin_bottom = 80.0
+custom_fonts/font = SubResource( 34 )
+custom_constants/line_spacing = -2
+text = "Silica
+50 MP"
+align = 1
+
+[node name="RigidityLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 250.0
+margin_right = 294.0
+margin_bottom = 285.0
+rect_min_size = Vector2( 0, 35 )
+custom_fonts/font = SubResource( 27 )
+text = "Fluidity/Rigidity"
+valign = 1
+uppercase = true
+
+[node name="RigiditySlider" type="HSlider" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 295.0
+margin_right = 294.0
+margin_bottom = 311.0
+mouse_filter = 1
+custom_styles/slider = SubResource( 36 )
+custom_styles/grabber_area = SubResource( 37 )
+
+[node name="ColourLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 321.0
+margin_right = 294.0
+margin_bottom = 356.0
+rect_min_size = Vector2( 0, 35 )
+custom_fonts/font = SubResource( 27 )
+text = "Colour"
+valign = 1
+uppercase = true
+
+[node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 4.0
+margin_bottom = 4.0
+theme = SubResource( 39 )
+edit_alpha = false
+
+[node name="Behavior" type="Control" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -20.0
+margin_bottom = -40.0
+mouse_filter = 1
+
+[node name="BottomBar" type="Control" parent="MicrobeEditorGUI/CellEditor"]
+anchor_top = 0.944
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -17.68
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MenuButton" type="TextureButton" parent="MicrobeEditorGUI/CellEditor/BottomBar"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 20.0
+margin_top = -50.0
+margin_right = 75.0
+margin_bottom = -8.0
+focus_mode = 0
+mouse_filter = 1
+enabled_focus_mode = 0
+texture_normal = ExtResource( 28 )
+texture_pressed = ExtResource( 29 )
+texture_hover = ExtResource( 27 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LowerBarLeft" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/BottomBar"]
+modulate = Color( 1, 1, 1, 0.392157 )
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 90.0
+margin_top = -40.0
+margin_right = 135.0
+texture = ExtResource( 30 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LowerBarCentre" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/BottomBar"]
+self_modulate = Color( 1, 1, 1, 0.392157 )
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 130.0
+margin_top = -40.0001
+margin_bottom = -6.10352e-05
+rect_min_size = Vector2( 0, 40 )
+mouse_filter = 1
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_styles/panel = SubResource( 40 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/BottomBar/LowerBarCentre"]
+margin_right = 1150.0
+margin_bottom = 40.0
+mouse_filter = 1
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/BottomBar/LowerBarCentre/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 1145.0
+margin_bottom = 35.0
+
+[node name="HSeparator" type="HSeparator" parent="MicrobeEditorGUI/CellEditor/BottomBar/LowerBarCentre/MarginContainer/HBoxContainer"]
+margin_right = 40.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 40, 30 )
+mouse_filter = 2
+custom_styles/separator = SubResource( 41 )
+
+[node name="SpeciesName" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/BottomBar/LowerBarCentre/MarginContainer/HBoxContainer"]
+margin_left = 44.0
+margin_right = 626.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 150, 30 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_constants/separation = 10
+
+[node name="SpeciesLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/BottomBar/LowerBarCentre/MarginContainer/HBoxContainer/SpeciesName"]
+margin_top = 6.0
+margin_right = 70.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 70, 0 )
+custom_fonts/font = SubResource( 42 )
+text = "Species"
+uppercase = true
+
+[node name="SpeciesNameBox" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/BottomBar/LowerBarCentre/MarginContainer/HBoxContainer/SpeciesName"]
+margin_left = 80.0
+margin_right = 300.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 220, 0 )
+mouse_filter = 1
+custom_styles/panel = SubResource( 43 )
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/BottomBar/LowerBarCentre/MarginContainer/HBoxContainer/SpeciesName/SpeciesNameBox"]
+margin_right = 220.0
+margin_bottom = 30.0
+mouse_filter = 1
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="LineEdit" type="LineEdit" parent="MicrobeEditorGUI/CellEditor/BottomBar/LowerBarCentre/MarginContainer/HBoxContainer/SpeciesName/SpeciesNameBox/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 215.0
+margin_bottom = 25.0
+mouse_filter = 1
+custom_styles/normal = SubResource( 44 )
+custom_fonts/font = SubResource( 45 )
+text = "Primum Thrivium"
+caret_blink = true
+
+[node name="GenerationLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/BottomBar/LowerBarCentre/MarginContainer/HBoxContainer/SpeciesName"]
+margin_left = 310.0
+margin_right = 417.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 70, 30 )
+custom_styles/normal = SubResource( 46 )
+custom_fonts/font = SubResource( 42 )
+text = "Generation 2"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="SpeedLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/BottomBar/LowerBarCentre/MarginContainer/HBoxContainer/SpeciesName"]
+margin_left = 427.0
+margin_right = 502.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 70, 30 )
+custom_styles/normal = SubResource( 46 )
+custom_fonts/font = SubResource( 42 )
+text = "Speed 2.0"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="SizeLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/BottomBar/LowerBarCentre/MarginContainer/HBoxContainer/SpeciesName"]
+margin_left = 512.0
+margin_right = 582.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 70, 30 )
+custom_styles/normal = SubResource( 46 )
+custom_fonts/font = SubResource( 42 )
+text = "Size 1"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="SymmetryButton" type="TextureButton" parent="MicrobeEditorGUI/CellEditor"]
+self_modulate = Color( 1, 1, 1, 0.392157 )
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -40.0
+margin_top = -120.0
+margin_right = 40.0
+margin_bottom = -40.0
+focus_mode = 0
+enabled_focus_mode = 0
+texture_normal = ExtResource( 34 )
+texture_pressed = ExtResource( 38 )
+texture_hover = ExtResource( 38 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/SymmetryButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -6.0
+custom_constants/separation = -18
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SymmetryIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/SymmetryButton/VBoxContainer"]
+margin_right = 80.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 80, 80 )
+size_flags_horizontal = 0
+expand = true
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/SymmetryButton/VBoxContainer"]
+margin_top = 62.0
+margin_right = 80.0
+margin_bottom = 74.0
+custom_fonts/font = SubResource( 47 )
+text = "Symmetry"
+align = 1
+uppercase = true
+
+[node name="RedoButton" type="TextureButton" parent="MicrobeEditorGUI/CellEditor"]
+self_modulate = Color( 1, 1, 1, 0.392157 )
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 40.0001
+margin_top = -80.0
+margin_right = 120.0
+margin_bottom = -40.0
+focus_mode = 0
+enabled_focus_mode = 0
+texture_normal = ExtResource( 33 )
+texture_pressed = ExtResource( 39 )
+texture_hover = ExtResource( 39 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/RedoButton"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -20.0
+margin_right = 42.0
+margin_bottom = 20.0
+texture = ExtResource( 36 )
+
+[node name="UndoButton" type="TextureButton" parent="MicrobeEditorGUI/CellEditor"]
+self_modulate = Color( 1, 1, 1, 0.392157 )
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -120.0
+margin_top = -80.0
+margin_right = -40.0
+margin_bottom = -40.0
+focus_mode = 0
+enabled_focus_mode = 0
+texture_normal = ExtResource( 32 )
+texture_pressed = ExtResource( 40 )
+texture_hover = ExtResource( 40 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/UndoButton"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -40.0
+margin_top = -20.0
+margin_bottom = 20.0
+texture = ExtResource( 35 )
+
+[node name="FinishButton" type="Button" parent="MicrobeEditorGUI/CellEditor"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -170.0
+margin_top = -84.0
+margin_right = -20.0
+margin_bottom = -40.0
+focus_mode = 0
+custom_styles/hover = SubResource( 48 )
+custom_styles/pressed = SubResource( 49 )
+custom_styles/normal = SubResource( 50 )
+custom_fonts/font = SubResource( 51 )
+enabled_focus_mode = 0
+text = "CONFIRM"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PauseMenu" type="Control" parent="MicrobeEditorGUI"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Overlay" type="ColorRect" parent="MicrobeEditorGUI/PauseMenu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.588235 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="MicrobeEditorGUI/PauseMenu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EditorPauseMenu" type="VBoxContainer" parent="MicrobeEditorGUI/PauseMenu/CenterContainer"]
+margin_left = 515.0
+margin_top = 165.0
+margin_right = 765.0
+margin_bottom = 555.0
+theme = ExtResource( 52 )
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Resume" type="Button" parent="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu"]
+margin_right = 250.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 250, 40 )
+text = "Resume"
+
+[node name="SaveGame" type="Button" parent="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu"]
+margin_top = 50.0
+margin_right = 250.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 250, 40 )
+disabled = true
+text = "Save Game"
+
+[node name="LoadGame" type="Button" parent="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu"]
+margin_top = 100.0
+margin_right = 250.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 250, 40 )
+disabled = true
+text = "Load Game"
+
+[node name="Statistics" type="Button" parent="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu"]
+margin_top = 150.0
+margin_right = 250.0
+margin_bottom = 190.0
+rect_min_size = Vector2( 250, 40 )
+disabled = true
+text = "Statistics"
+
+[node name="Help" type="Button" parent="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu"]
+margin_top = 200.0
+margin_right = 250.0
+margin_bottom = 240.0
+rect_min_size = Vector2( 250, 40 )
+disabled = true
+text = "Help"
+
+[node name="Options" type="Button" parent="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu"]
+margin_top = 250.0
+margin_right = 250.0
+margin_bottom = 290.0
+rect_min_size = Vector2( 250, 40 )
+disabled = true
+text = "Options"
+
+[node name="ReturnToMenu" type="Button" parent="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu"]
+margin_top = 300.0
+margin_right = 250.0
+margin_bottom = 340.0
+rect_min_size = Vector2( 250, 40 )
+disabled = true
+text = "Return to Menu"
+
+[node name="Exit" type="Button" parent="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu"]
+margin_top = 350.0
+margin_right = 250.0
+margin_bottom = 390.0
+rect_min_size = Vector2( 250, 40 )
+text = "Exit"
+[connection signal="mouse_entered" from="MicrobeEditorGUI/LeftTopBar" to="MicrobeEditorGUI" method="OnMouseEnter"]
+[connection signal="mouse_exited" from="MicrobeEditorGUI/LeftTopBar" to="MicrobeEditorGUI" method="OnMouseExit"]
+[connection signal="mouse_entered" from="MicrobeEditorGUI/LeftTopBar/HBoxContainer/ReportButton" to="MicrobeEditorGUI" method="OnMouseEnter"]
+[connection signal="mouse_exited" from="MicrobeEditorGUI/LeftTopBar/HBoxContainer/ReportButton" to="MicrobeEditorGUI" method="OnMouseExit"]
+[connection signal="mouse_entered" from="MicrobeEditorGUI/LeftTopBar/HBoxContainer/PatchMapButton" to="MicrobeEditorGUI" method="OnMouseEnter"]
+[connection signal="mouse_exited" from="MicrobeEditorGUI/LeftTopBar/HBoxContainer/PatchMapButton" to="MicrobeEditorGUI" method="OnMouseExit"]
+[connection signal="mouse_entered" from="MicrobeEditorGUI/LeftTopBar/HBoxContainer/CellEditorButton" to="MicrobeEditorGUI" method="OnMouseEnter"]
+[connection signal="mouse_exited" from="MicrobeEditorGUI/LeftTopBar/HBoxContainer/CellEditorButton" to="MicrobeEditorGUI" method="OnMouseExit"]
+[connection signal="mouse_entered" from="MicrobeEditorGUI/LeftTopBar/HBoxContainer/MPBox/MarginContainer" to="MicrobeEditorGUI" method="OnMouseEnter"]
+[connection signal="mouse_exited" from="MicrobeEditorGUI/LeftTopBar/HBoxContainer/MPBox/MarginContainer" to="MicrobeEditorGUI" method="OnMouseExit"]
+[connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/ATPBalancePanel" to="MicrobeEditorGUI" method="OnMouseEnter"]
+[connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/ATPBalancePanel" to="MicrobeEditorGUI" method="OnMouseExit"]
+[connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/LeftPanel" to="MicrobeEditorGUI" method="OnMouseEnter"]
+[connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/LeftPanel" to="MicrobeEditorGUI" method="OnMouseExit"]
+[connection signal="pressed" from="MicrobeEditorGUI/CellEditor/LeftPanel/Tab/Structure" to="MicrobeEditorGUI" method="SetCellTab" binds= [ "structure" ]]
+[connection signal="pressed" from="MicrobeEditorGUI/CellEditor/LeftPanel/Tab/Membrane" to="MicrobeEditorGUI" method="SetCellTab" binds= [ "membrane" ]]
+[connection signal="pressed" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/StructuralOrganelles/cytoplasm" to="MicrobeEditorGUI" method="OnOrganelleToPlaceSelected" binds= [ "cytoplasm" ]]
+[connection signal="pressed" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/metabolosome" to="MicrobeEditorGUI" method="OnOrganelleToPlaceSelected" binds= [ "metabolosome" ]]
+[connection signal="pressed" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/chromatophore" to="MicrobeEditorGUI" method="OnOrganelleToPlaceSelected" binds= [ "chromatophore" ]]
+[connection signal="pressed" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/chemoSynthesizingProteins" to="MicrobeEditorGUI" method="OnOrganelleToPlaceSelected" binds= [ "chemoSynthesizingProteins" ]]
+[connection signal="pressed" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/rusticyanin" to="MicrobeEditorGUI" method="OnOrganelleToPlaceSelected" binds= [ "rusticyanin" ]]
+[connection signal="pressed" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/nitrogenase" to="MicrobeEditorGUI" method="OnOrganelleToPlaceSelected" binds= [ "nitrogenase" ]]
+[connection signal="pressed" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ProkaryoticStructures/oxytoxyProteins" to="MicrobeEditorGUI" method="OnOrganelleToPlaceSelected" binds= [ "oxytoxyProteins" ]]
+[connection signal="pressed" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ExternalOrganelles/flagellum" to="MicrobeEditorGUI" method="OnOrganelleToPlaceSelected" binds= [ "flagellum" ]]
+[connection signal="pressed" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ExternalOrganelles/pilus" to="MicrobeEditorGUI" method="OnOrganelleToPlaceSelected" binds= [ "pilus" ]]
+[connection signal="pressed" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/nucleus" to="MicrobeEditorGUI" method="OnOrganelleToPlaceSelected" binds= [ "nucleus" ]]
+[connection signal="pressed" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/mitochondrion" to="MicrobeEditorGUI" method="OnOrganelleToPlaceSelected" binds= [ "mitochondrion" ]]
+[connection signal="pressed" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/chloroplast" to="MicrobeEditorGUI" method="OnOrganelleToPlaceSelected" binds= [ "chloroplast" ]]
+[connection signal="pressed" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/chemoplast" to="MicrobeEditorGUI" method="OnOrganelleToPlaceSelected" binds= [ "chemoplast" ]]
+[connection signal="pressed" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/nitrogenfixingplastid" to="MicrobeEditorGUI" method="OnOrganelleToPlaceSelected" binds= [ "nitrogenfixingplastid" ]]
+[connection signal="pressed" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/vacuole" to="MicrobeEditorGUI" method="OnOrganelleToPlaceSelected" binds= [ "vacuole" ]]
+[connection signal="pressed" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/oxytoxy" to="MicrobeEditorGUI" method="OnOrganelleToPlaceSelected" binds= [ "oxytoxy" ]]
+[connection signal="pressed" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/single" to="MicrobeEditorGUI" method="OnMembraneSelected" binds= [ "single" ]]
+[connection signal="pressed" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/double" to="MicrobeEditorGUI" method="OnMembraneSelected" binds= [ "double" ]]
+[connection signal="pressed" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/cellulose" to="MicrobeEditorGUI" method="OnMembraneSelected" binds= [ "cellulose" ]]
+[connection signal="pressed" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/chitin" to="MicrobeEditorGUI" method="OnMembraneSelected" binds= [ "chitin" ]]
+[connection signal="pressed" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/calcium_carbonate" to="MicrobeEditorGUI" method="OnMembraneSelected" binds= [ "calcium_carbonate" ]]
+[connection signal="pressed" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/silica" to="MicrobeEditorGUI" method="OnMembraneSelected" binds= [ "silica" ]]
+[connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/BottomBar" to="MicrobeEditorGUI" method="OnMouseEnter"]
+[connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/BottomBar" to="MicrobeEditorGUI" method="OnMouseExit"]
+[connection signal="pressed" from="MicrobeEditorGUI/CellEditor/BottomBar/MenuButton" to="MicrobeEditorGUI" method="MenuButtonPressed"]
+[connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/SymmetryButton" to="MicrobeEditorGUI" method="OnMouseEnter"]
+[connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/SymmetryButton" to="MicrobeEditorGUI" method="OnMouseExit"]
+[connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/RedoButton" to="MicrobeEditorGUI" method="OnMouseEnter"]
+[connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/RedoButton" to="MicrobeEditorGUI" method="OnMouseExit"]
+[connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/UndoButton" to="MicrobeEditorGUI" method="OnMouseEnter"]
+[connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/UndoButton" to="MicrobeEditorGUI" method="OnMouseExit"]
+[connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/FinishButton" to="MicrobeEditorGUI" method="OnMouseEnter"]
+[connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/FinishButton" to="MicrobeEditorGUI" method="OnMouseExit"]
+[connection signal="pressed" from="MicrobeEditorGUI/CellEditor/FinishButton" to="MicrobeEditorGUI" method="OnFinishEditingClicked"]
+[connection signal="pressed" from="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu/Resume" to="MicrobeEditorGUI" method="MenuButtonPressed"]
+[connection signal="pressed" from="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu/Exit" to="MicrobeEditorGUI" method="ExitPressed"]
