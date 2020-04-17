@@ -1,9 +1,7 @@
-[gd_scene load_steps=121 format=2]
+[gd_scene load_steps=118 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/textures/rusticyanin.png" type="Texture" id=3]
-[ext_resource path="res://shaders/ScreenFilter.shader" type="Shader" id=4]
 [ext_resource path="res://src/microbe_stage/PlayerMicrobeInput.cs" type="Script" id=7]
 [ext_resource path="res://src/microbe_stage/MicrobeHUD.cs" type="Script" id=9]
 [ext_resource path="res://src/microbe_stage/CompoundCloudSystem.cs" type="Script" id=10]
@@ -783,10 +781,6 @@ tracks/4/keys = {
 "update": 0,
 "values": [ -2.0, 0.0 ]
 }
-
-[sub_resource type="ShaderMaterial" id=52]
-shader = ExtResource( 4 )
-shader_param/mode = 0
 
 [node name="MicrobeStage" type="Node"]
 script = ExtResource( 1 )
@@ -2971,16 +2965,6 @@ anims/EnvironmentPanelCompress = SubResource( 48 )
 anims/EnvironmentPanelExpand = SubResource( 49 )
 anims/HideLeftPanels = SubResource( 50 )
 anims/ShowLeftPanels = SubResource( 51 )
-
-[node name="ScreenFilter" type="TextureRect" parent="."]
-material = SubResource( 52 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture = ExtResource( 3 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 [connection signal="pressed" from="MicrobeHUD/LeftPanels/EnvironmentPanel/MarginContainer4/EnvironmentExpandButton" to="MicrobeHUD" method="ResizeEnvironmentPanel" binds= [ "expand" ]]
 [connection signal="pressed" from="MicrobeHUD/LeftPanels/EnvironmentPanel/MarginContainer3/EnvironmentCompressButton" to="MicrobeHUD" method="ResizeEnvironmentPanel" binds= [ "compress" ]]
 [connection signal="pressed" from="MicrobeHUD/LeftPanels/CompoundsPanel/MarginContainer3/CompoundExpandButton" to="MicrobeHUD" method="ResizeCompoundPanel" binds= [ "expand" ]]
