@@ -1,3 +1,18 @@
-[gd_scene format=2]
+[gd_scene load_steps=5 format=2]
 
-[node name="Spatial" type="Spatial"]
+[ext_resource path="res://assets/textures/oxytoxy_fluid.png" type="Texture" id=1]
+[ext_resource path="res://shaders/Organelle.shader" type="Shader" id=2]
+
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
+shader = ExtResource( 2 )
+shader_param/tint = Color( 1, 1, 1, 1 )
+shader_param/texture = ExtResource( 1 )
+
+[sub_resource type="CubeMesh" id=2]
+size = Vector3( 1, 1, 1 )
+
+[node name="OxytoxyProteins" type="MeshInstance"]
+material_override = SubResource( 1 )
+mesh = SubResource( 2 )
+material/0 = null
