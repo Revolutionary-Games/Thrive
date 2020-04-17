@@ -1,10 +1,10 @@
 shader_type spatial;
 render_mode unshaded;
 
-uniform sampler2D layer0;
-uniform sampler2D layer1;
-uniform sampler2D layer2;
-uniform sampler2D layer3;
+uniform sampler2D layer0 : hint_albedo;
+uniform sampler2D layer1 : hint_albedo;
+uniform sampler2D layer2 : hint_albedo;
+uniform sampler2D layer3 : hint_albedo;
 
 const float speed0 = 1100.0f;
 const float speed01 = 2200.0f;

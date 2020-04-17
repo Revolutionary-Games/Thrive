@@ -4,10 +4,10 @@ render_mode unshaded, blend_add;
 uniform sampler2D densities;
 uniform sampler2D noise;
 
-uniform vec4 colour1 = vec4(0, 0, 0, 0);
-uniform vec4 colour2 = vec4(0, 0, 0, 0);
-uniform vec4 colour3 = vec4(0, 0, 0, 0);
-uniform vec4 colour4 = vec4(0, 0, 0, 0);
+uniform vec4 colour1 : hint_color = vec4(0, 0, 0, 0);
+uniform vec4 colour2 : hint_color  = vec4(0, 0, 0, 0);
+uniform vec4 colour3 : hint_color  = vec4(0, 0, 0, 0);
+uniform vec4 colour4 : hint_color  = vec4(0, 0, 0, 0);
 
 // Setting this too high makes the clouds invisible
 const float CLOUD_DISSIPATION = 2.0;
