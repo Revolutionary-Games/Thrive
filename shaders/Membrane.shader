@@ -5,11 +5,11 @@ uniform float wigglyNess = 1.f;
 
 uniform float movementWigglyNess = 1.f;
 
-uniform sampler2D albedoTexture;
-uniform sampler2D damagedTexture;
+uniform sampler2D albedoTexture : hint_albedo;
+uniform sampler2D damagedTexture : hint_albedo;
 
 uniform float healthFraction = 0.5f;
-uniform vec4 tint = vec4(1, 1, 1, 1);
+uniform vec4 tint : hint_color = vec4(1, 1, 1, 1);
 
 void vertex(){
     vec3 worldVertex = (WORLD_MATRIX * vec4(VERTEX, 1.0)).xyz;
