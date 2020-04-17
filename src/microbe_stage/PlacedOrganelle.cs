@@ -44,7 +44,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     public Spatial OrganelleGraphics { get; private set; }
 
     /// <summary>
-    ///   The tint colour of this organelle. TODO: reimplement
+    ///   The tint colour of this organelle.
     /// </summary>
     public Color Colour
     {
