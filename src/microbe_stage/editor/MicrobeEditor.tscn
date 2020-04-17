@@ -51,7 +51,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/membraneCalciumCarbo.png" type="Texture" id=49]
 [ext_resource path="res://assets/textures/gui/bevel/membraneChitin.png" type="Texture" id=50]
 [ext_resource path="res://assets/textures/gui/bevel/membraneCellulose.png" type="Texture" id=51]
-[ext_resource path="res://assets/textures/gui/menu_theme.tres" type="Theme" id=52]
+[ext_resource path="res://scripts/gui/PauseMenu.tscn" type="PackedScene" id=52]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 37 )
@@ -4165,101 +4165,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PauseMenu" type="Control" parent="MicrobeEditorGUI"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Overlay" type="ColorRect" parent="MicrobeEditorGUI/PauseMenu"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.588235 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CenterContainer" type="CenterContainer" parent="MicrobeEditorGUI/PauseMenu"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="EditorPauseMenu" type="VBoxContainer" parent="MicrobeEditorGUI/PauseMenu/CenterContainer"]
-margin_left = 515.0
-margin_top = 165.0
-margin_right = 765.0
-margin_bottom = 555.0
-theme = ExtResource( 52 )
-custom_constants/separation = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Resume" type="Button" parent="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu"]
-margin_right = 250.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 250, 40 )
-text = "Resume"
-
-[node name="SaveGame" type="Button" parent="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu"]
-margin_top = 50.0
-margin_right = 250.0
-margin_bottom = 90.0
-rect_min_size = Vector2( 250, 40 )
-disabled = true
-text = "Save Game"
-
-[node name="LoadGame" type="Button" parent="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu"]
-margin_top = 100.0
-margin_right = 250.0
-margin_bottom = 140.0
-rect_min_size = Vector2( 250, 40 )
-disabled = true
-text = "Load Game"
-
-[node name="Statistics" type="Button" parent="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu"]
-margin_top = 150.0
-margin_right = 250.0
-margin_bottom = 190.0
-rect_min_size = Vector2( 250, 40 )
-disabled = true
-text = "Statistics"
-
-[node name="Help" type="Button" parent="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu"]
-margin_top = 200.0
-margin_right = 250.0
-margin_bottom = 240.0
-rect_min_size = Vector2( 250, 40 )
-disabled = true
-text = "Help"
-
-[node name="Options" type="Button" parent="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu"]
-margin_top = 250.0
-margin_right = 250.0
-margin_bottom = 290.0
-rect_min_size = Vector2( 250, 40 )
-disabled = true
-text = "Options"
-
-[node name="ReturnToMenu" type="Button" parent="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu"]
-margin_top = 300.0
-margin_right = 250.0
-margin_bottom = 340.0
-rect_min_size = Vector2( 250, 40 )
-disabled = true
-text = "Return to Menu"
-
-[node name="Exit" type="Button" parent="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu"]
-margin_top = 350.0
-margin_right = 250.0
-margin_bottom = 390.0
-rect_min_size = Vector2( 250, 40 )
-text = "Exit"
+[node name="PauseMenu" parent="MicrobeEditorGUI" instance=ExtResource( 52 )]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/LeftTopBar" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/LeftTopBar" to="MicrobeEditorGUI" method="OnMouseExit"]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/LeftTopBar/HBoxContainer/ReportButton" to="MicrobeEditorGUI" method="OnMouseEnter"]
@@ -4310,5 +4216,3 @@ text = "Exit"
 [connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/FinishButton" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/FinishButton" to="MicrobeEditorGUI" method="OnMouseExit"]
 [connection signal="pressed" from="MicrobeEditorGUI/CellEditor/FinishButton" to="MicrobeEditorGUI" method="OnFinishEditingClicked"]
-[connection signal="pressed" from="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu/Resume" to="MicrobeEditorGUI" method="MenuButtonPressed"]
-[connection signal="pressed" from="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu/Exit" to="MicrobeEditorGUI" method="ExitPressed"]

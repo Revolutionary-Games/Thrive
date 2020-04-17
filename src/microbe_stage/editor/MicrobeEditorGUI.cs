@@ -218,10 +218,4 @@ public class MicrobeEditorGUI : Node
 
         GUICommon.Instance.PlayButtonPressSound();
     }
-
-    private void ExitPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-        GetTree().Quit();
-    }
 }

@@ -2,10 +2,10 @@
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/gui/PauseMenu.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/microbe_stage/PlayerMicrobeInput.cs" type="Script" id=7]
 [ext_resource path="res://src/microbe_stage/MicrobeHUD.cs" type="Script" id=9]
 [ext_resource path="res://src/microbe_stage/CompoundCloudSystem.cs" type="Script" id=10]
-[ext_resource path="res://assets/textures/gui/menu_theme.tres" type="Theme" id=11]
 [ext_resource path="res://assets/fonts/Jura-DemiBold.ttf" type="DynamicFontData" id=12]
 [ext_resource path="res://assets/textures/gui/bevel/CompoundPanelExpand.png" type="Texture" id=13]
 [ext_resource path="res://assets/textures/gui/bevel/environmentPanelExpand.png" type="Texture" id=14]
@@ -800,9 +800,6 @@ script = ExtResource( 7 )
 [node name="MicrobeHUD" type="Node" parent="."]
 pause_mode = 2
 script = ExtResource( 9 )
-__meta__ = {
-"_editor_description_": ""
-}
 
 [node name="MouseHoverPanel" type="PanelContainer" parent="MicrobeHUD"]
 anchor_left = 1.0
@@ -2862,101 +2859,7 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MicrobeHUD/BottomRight/EditorButton"]
 anims/EditorButtonFlash = SubResource( 45 )
 
-[node name="PauseMenu" type="Control" parent="MicrobeHUD"]
-visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Overlay" type="ColorRect" parent="MicrobeHUD/PauseMenu"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.588235 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CenterContainer" type="CenterContainer" parent="MicrobeHUD/PauseMenu"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MicrobeStageMenu" type="VBoxContainer" parent="MicrobeHUD/PauseMenu/CenterContainer"]
-margin_left = 515.0
-margin_top = 165.0
-margin_right = 765.0
-margin_bottom = 555.0
-theme = ExtResource( 11 )
-custom_constants/separation = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Resume" type="Button" parent="MicrobeHUD/PauseMenu/CenterContainer/MicrobeStageMenu"]
-margin_right = 250.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 250, 40 )
-text = "Resume"
-
-[node name="SaveGame" type="Button" parent="MicrobeHUD/PauseMenu/CenterContainer/MicrobeStageMenu"]
-margin_top = 50.0
-margin_right = 250.0
-margin_bottom = 90.0
-rect_min_size = Vector2( 250, 40 )
-disabled = true
-text = "Save Game"
-
-[node name="LoadGame" type="Button" parent="MicrobeHUD/PauseMenu/CenterContainer/MicrobeStageMenu"]
-margin_top = 100.0
-margin_right = 250.0
-margin_bottom = 140.0
-rect_min_size = Vector2( 250, 40 )
-disabled = true
-text = "Load Game"
-
-[node name="Statistics" type="Button" parent="MicrobeHUD/PauseMenu/CenterContainer/MicrobeStageMenu"]
-margin_top = 150.0
-margin_right = 250.0
-margin_bottom = 190.0
-rect_min_size = Vector2( 250, 40 )
-disabled = true
-text = "Statistics"
-
-[node name="Help" type="Button" parent="MicrobeHUD/PauseMenu/CenterContainer/MicrobeStageMenu"]
-margin_top = 200.0
-margin_right = 250.0
-margin_bottom = 240.0
-rect_min_size = Vector2( 250, 40 )
-disabled = true
-text = "Help"
-
-[node name="Options" type="Button" parent="MicrobeHUD/PauseMenu/CenterContainer/MicrobeStageMenu"]
-margin_top = 250.0
-margin_right = 250.0
-margin_bottom = 290.0
-rect_min_size = Vector2( 250, 40 )
-disabled = true
-text = "Options"
-
-[node name="ReturnToMenu" type="Button" parent="MicrobeHUD/PauseMenu/CenterContainer/MicrobeStageMenu"]
-margin_top = 300.0
-margin_right = 250.0
-margin_bottom = 340.0
-rect_min_size = Vector2( 250, 40 )
-disabled = true
-text = "Return to Menu"
-
-[node name="Exit" type="Button" parent="MicrobeHUD/PauseMenu/CenterContainer/MicrobeStageMenu"]
-margin_top = 350.0
-margin_right = 250.0
-margin_bottom = 390.0
-rect_min_size = Vector2( 250, 40 )
-text = "Exit"
+[node name="PauseMenu" parent="MicrobeHUD" instance=ExtResource( 3 )]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MicrobeHUD"]
 anims/CompoundPanelCompress = SubResource( 46 )
@@ -2975,5 +2878,3 @@ anims/ShowLeftPanels = SubResource( 51 )
 [connection signal="pressed" from="MicrobeHUD/BottomBar/CompoundsButton" to="MicrobeHUD" method="CompoundButtonPressed"]
 [connection signal="pressed" from="MicrobeHUD/BottomBar/SuicideButton" to="MicrobeHUD" method="OnSuicide"]
 [connection signal="pressed" from="MicrobeHUD/BottomRight/EditorButton" to="MicrobeHUD" method="EditorButtonPressed"]
-[connection signal="pressed" from="MicrobeHUD/PauseMenu/CenterContainer/MicrobeStageMenu/Resume" to="MicrobeHUD" method="OpenMicrobeStageMenuPressed"]
-[connection signal="pressed" from="MicrobeHUD/PauseMenu/CenterContainer/MicrobeStageMenu/Exit" to="MicrobeHUD" method="ExitPressed"]
