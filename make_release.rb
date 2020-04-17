@@ -31,6 +31,8 @@ OptionParser.new do |opts|
   end
 end.parse!
 
+onError "Unhandled parameters: #{ARGV}" unless ARGV.empty?
+
 ASSEMBLY_VERSION = /AssemblyVersion\(\"([\d\.]+)\"\)/.freeze
 INFORMATIONAL_VERSION = /AssemblyInformationalVersion\(\"([^\"]*)\"\)/.freeze
 
