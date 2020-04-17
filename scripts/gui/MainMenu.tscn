@@ -1,0 +1,253 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scripts/gui/MainMenu.cs" type="Script" id=1]
+[ext_resource path="res://assets/textures/gui/menu_theme.tres" type="Theme" id=2]
+[ext_resource path="res://assets/textures/gui/logo.png" type="Texture" id=3]
+[ext_resource path="res://scripts/gui/VersionNumber.cs" type="Script" id=5]
+
+[node name="MainMenu" type="Node"]
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": "The root and controller for the main menu"
+}
+
+[node name="Background" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand = true
+stretch_mode = 7
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": "Randomizeable background"
+}
+
+[node name="MenuContainers" type="Node" parent="."]
+__meta__ = {
+"_editor_description_": "The UI for the main menu is contained here"
+}
+
+[node name="LogoCenterContainer" type="CenterContainer" parent="MenuContainers"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -637.35
+margin_top = -360.0
+margin_right = 642.65
+margin_bottom = -72.0
+__meta__ = {
+"_edit_use_anchors_": true,
+"_editor_description_": "Centering fo the Thrive logo"
+}
+
+[node name="Logo" type="TextureRect" parent="MenuContainers/LogoCenterContainer"]
+margin_left = 556.0
+margin_top = 60.0
+margin_right = 723.0
+margin_bottom = 228.0
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MenuCenterContainer" type="CenterContainer" parent="MenuContainers"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -637.0
+margin_top = -145.0
+margin_right = 643.0
+margin_bottom = 360.0
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": "Centering for the menu items"
+}
+
+[node name="MenuItems" type="Control" parent="MenuContainers/MenuCenterContainer"]
+margin_left = 640.0
+margin_top = 252.0
+margin_right = 640.0
+margin_bottom = 252.0
+theme = ExtResource( 2 )
+__meta__ = {
+"_editor_description_": "All of the menu stuff goes here"
+}
+
+[node name="MainMenu" type="VBoxContainer" parent="MenuContainers/MenuCenterContainer/MenuItems" groups=[
+"MenuItem",
+]]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -125.0
+margin_top = -150.0
+margin_right = 125.0
+margin_bottom = 190.0
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NewGame" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/MainMenu"]
+margin_right = 250.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 250, 40 )
+focus_mode = 0
+mouse_filter = 1
+enabled_focus_mode = 0
+text = "New Game"
+
+[node name="LoadGame" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/MainMenu"]
+margin_top = 50.0
+margin_right = 250.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 250, 40 )
+mouse_filter = 1
+disabled = true
+enabled_focus_mode = 0
+text = "Load Game"
+
+[node name="Options" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/MainMenu"]
+margin_top = 100.0
+margin_right = 250.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 250, 40 )
+mouse_filter = 1
+disabled = true
+enabled_focus_mode = 0
+text = "Options"
+
+[node name="Tools" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/MainMenu"]
+margin_top = 150.0
+margin_right = 250.0
+margin_bottom = 190.0
+rect_min_size = Vector2( 250, 40 )
+focus_mode = 0
+mouse_filter = 1
+enabled_focus_mode = 0
+text = "Tools"
+
+[node name="Extras" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/MainMenu"]
+margin_top = 200.0
+margin_right = 250.0
+margin_bottom = 240.0
+rect_min_size = Vector2( 250, 40 )
+mouse_filter = 1
+disabled = true
+enabled_focus_mode = 0
+text = "Extras"
+
+[node name="Credits" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/MainMenu"]
+margin_top = 250.0
+margin_right = 250.0
+margin_bottom = 290.0
+rect_min_size = Vector2( 250, 40 )
+mouse_filter = 1
+disabled = true
+enabled_focus_mode = 0
+text = "Credits"
+
+[node name="Quit" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/MainMenu"]
+margin_top = 300.0
+margin_right = 250.0
+margin_bottom = 340.0
+rect_min_size = Vector2( 250, 40 )
+focus_mode = 0
+mouse_filter = 1
+enabled_focus_mode = 0
+text = "Quit"
+
+[node name="Tools" type="VBoxContainer" parent="MenuContainers/MenuCenterContainer/MenuItems" groups=[
+"MenuItem",
+]]
+visible = false
+margin_left = -125.0
+margin_top = -150.0
+margin_right = 125.0
+margin_bottom = 90.0
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Freebuild Editor" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/Tools"]
+margin_right = 250.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 250, 40 )
+focus_mode = 0
+mouse_filter = 1
+enabled_focus_mode = 0
+text = "Microbe Freebuild Editor"
+
+[node name="\?\?" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/Tools"]
+margin_top = 50.0
+margin_right = 250.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 250, 40 )
+mouse_filter = 1
+disabled = true
+enabled_focus_mode = 0
+text = "???"
+
+[node name="\?\?_2" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/Tools"]
+margin_top = 100.0
+margin_right = 250.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 250, 40 )
+mouse_filter = 1
+disabled = true
+enabled_focus_mode = 0
+text = "???"
+
+[node name="\?\?_3" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/Tools"]
+margin_top = 150.0
+margin_right = 250.0
+margin_bottom = 190.0
+rect_min_size = Vector2( 250, 40 )
+mouse_filter = 1
+disabled = true
+enabled_focus_mode = 0
+text = "???"
+
+[node name="Back" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/Tools"]
+margin_top = 200.0
+margin_right = 250.0
+margin_bottom = 240.0
+rect_min_size = Vector2( 250, 40 )
+focus_mode = 0
+mouse_filter = 1
+enabled_focus_mode = 0
+text = "Back"
+
+[node name="MenuTween" type="Tween" parent="."]
+__meta__ = {
+"_editor_description_": "For the menu animations and interpolations"
+}
+
+[node name="VersionNumber" type="Label" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -391.0
+margin_top = -26.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+size_flags_horizontal = 2
+size_flags_vertical = 6
+theme = ExtResource( 2 )
+text = "x.y.z"
+align = 2
+valign = 2
+clip_text = true
+max_lines_visible = 1
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="MenuContainers/MenuCenterContainer/MenuItems/MainMenu/NewGame" to="." method="NewGamePressed"]
+[connection signal="pressed" from="MenuContainers/MenuCenterContainer/MenuItems/MainMenu/Tools" to="." method="ToolsPressed"]
+[connection signal="pressed" from="MenuContainers/MenuCenterContainer/MenuItems/MainMenu/Quit" to="." method="QuitPressed"]
+[connection signal="pressed" from="MenuContainers/MenuCenterContainer/MenuItems/Tools/Freebuild Editor" to="." method="FreebuildEditorPressed"]
+[connection signal="pressed" from="MenuContainers/MenuCenterContainer/MenuItems/Tools/Back" to="." method="BackFromToolsPressed"]

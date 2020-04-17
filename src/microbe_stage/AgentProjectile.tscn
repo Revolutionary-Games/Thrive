@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://src/microbe_stage/AgentProjectile.cs" type="Script" id=1]
+[ext_resource path="res://assets/textures/blurry_circle.png" type="Texture" id=3]
+
+[sub_resource type="SphereShape" id=1]
+radius = 0.75
+
+[sub_resource type="ParticlesMaterial" id=2]
+emission_shape = 1
+emission_sphere_radius = 1.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 2.0
+initial_velocity_random = 1.0
+
+[sub_resource type="SpatialMaterial" id=3]
+flags_transparent = true
+albedo_texture = ExtResource( 3 )
+
+[sub_resource type="PlaneMesh" id=4]
+material = SubResource( 3 )
+size = Vector2( 5, 5 )
+
+[node name="AgentProjectile" type="RigidBody"]
+input_ray_pickable = false
+collision_layer = 0
+collision_mask = 2
+mass = 0.5
+contacts_reported = 1
+contact_monitor = true
+axis_lock_linear_y = true
+script = ExtResource( 1 )
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+shape = SubResource( 1 )
+
+[node name="Particles" type="Particles" parent="."]
+amount = 16
+lifetime = 0.1
+local_coords = false
+process_material = SubResource( 2 )
+draw_pass_1 = SubResource( 4 )
