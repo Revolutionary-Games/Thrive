@@ -22,9 +22,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     /// <summary>
     ///   Used to update the tint
     /// </summary>
-#pragma warning disable CS0649 // remove when implemented
     private ShaderMaterial organelleMaterial;
-#pragma warning restore CS0649
 
     /// <summary>
     ///   The compounds still needed to divide. Initialized from Definition.InitialComposition
@@ -191,8 +189,8 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
             Definition.CalculateModelOffset());
             OrganelleGraphics.Transform = transform;
 
-            // TODO: capture the material somehow from the model in
-            // order to be able to update the tint (store it in organelleMaterial)
+            // Store the material of the organelle to be updated
+            organelleMaterial = (ShaderMaterial)((GeometryInstance)OrganelleGraphics).MaterialOverride;
         }
 
         // Position relative to origin of cell
