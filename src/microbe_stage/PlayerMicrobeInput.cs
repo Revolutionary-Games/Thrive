@@ -10,6 +10,7 @@ public class PlayerMicrobeInput : Node
     ///   and also the cloud spawning.
     /// </summary>
     private MicrobeStage stage;
+    private MicrobeHUD microbeHUD;
 
     // // All the input actions
     private bool forward = false;
@@ -24,6 +25,7 @@ public class PlayerMicrobeInput : Node
     public override void _Ready()
     {
         stage = (MicrobeStage)GetParent();
+        microbeHUD = (MicrobeHUD)stage.GetNode("MicrobeHUD");
     }
 
     public override void _Input(InputEvent @event)
@@ -66,7 +68,7 @@ public class PlayerMicrobeInput : Node
 
         if (@event.IsActionPressed("g_cheat_editor"))
         {
-            // TODO: reimplement editor enter cheat
+            microbeHUD.EditorButtonPressed();
         }
 
         if (@event.IsActionPressed("g_cheat_glucose"))

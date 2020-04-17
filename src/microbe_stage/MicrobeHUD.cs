@@ -486,7 +486,7 @@ public class MicrobeHUD : Node
         }
     }
 
-    private void EditorButtonPressed()
+    public void EditorButtonPressed()
     {
         GD.Print("Move to editor pressed");
 
