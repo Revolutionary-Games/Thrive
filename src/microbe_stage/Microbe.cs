@@ -168,7 +168,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         }
     }
 
-    // TODO: implement process list
     public List<TweakedProcess> ActiveProcesses
     {
         get
