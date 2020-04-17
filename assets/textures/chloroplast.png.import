@@ -2,33 +2,35 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/chloroplast.png-a53bd502107edb7c9ab98a55920036db.stex"
+path.s3tc="res://.import/chloroplast.png-a53bd502107edb7c9ab98a55920036db.s3tc.stex"
+path.etc2="res://.import/chloroplast.png-a53bd502107edb7c9ab98a55920036db.etc2.stex"
 metadata={
-"vram_texture": false
+"imported_formats": [ "s3tc", "etc2" ],
+"vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/chloroplast.png"
-dest_files=[ "res://.import/chloroplast.png-a53bd502107edb7c9ab98a55920036db.stex" ]
+dest_files=[ "res://.import/chloroplast.png-a53bd502107edb7c9ab98a55920036db.s3tc.stex", "res://.import/chloroplast.png-a53bd502107edb7c9ab98a55920036db.etc2.stex" ]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=0
+flags/repeat=true
 flags/filter=true
-flags/mipmaps=false
+flags/mipmaps=true
 flags/anisotropic=false
-flags/srgb=2
+flags/srgb=1
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=true
+detect_3d=false
 svg/scale=1.0
