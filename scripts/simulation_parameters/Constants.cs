@@ -156,12 +156,6 @@ public class Constants
     public const float NO_ATP_DAMAGE_FRACTION = 0.04f;
 
     /// <summary>
-    ///   Determines how big of a fraction of damage (of total health)
-    ///   is dealt to a microbe at a time when it is out of ATP.
-    /// </summary>
-    public const float NO_ATP_DAMAGE_TIME = 10.0f;
-
-    /// <summary>
     ///   Organelles won't take compounds if there is less available than this amount
     /// </summary>
     public const float ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST = 0.0f;
