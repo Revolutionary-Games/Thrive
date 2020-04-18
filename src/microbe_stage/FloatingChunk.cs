@@ -110,14 +110,13 @@ public class FloatingChunk : RigidBody, ISpawned
         }
 
         AddChild(GraphicsScene.Instance());
+        AddToGroup(Constants.FLUID_EFFECT_GROUP);
     }
 
     public override void _Process(float delta)
     {
         if (ContainedCompounds != null)
             VentCompounds(delta);
-
-        // TODO: apply fluid system force
     }
 
     /// <summary>
