@@ -66,7 +66,7 @@ public class PlayerMicrobeInput : Node
 
         if (@event.IsActionPressed("g_cheat_editor"))
         {
-            stage.HUD.EditorButtonPressed();
+            stage.HUD.ShowReproductionDialog();
         }
 
         if (@event.IsActionPressed("g_cheat_glucose"))
