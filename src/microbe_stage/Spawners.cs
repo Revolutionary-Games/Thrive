@@ -11,9 +11,9 @@ using Godot;
 public static class Spawners
 {
     public static MicrobeSpawner MakeMicrobeSpawner(Species species,
-        CompoundCloudSystem cloudSystem, GameWorld world)
+        CompoundCloudSystem cloudSystem, GameProperties currentGame)
     {
-        return new MicrobeSpawner(species, cloudSystem, world);
+        return new MicrobeSpawner(species, cloudSystem, currentGame);
     }
 
     public static ChunkSpawner MakeChunkSpawner(Biome.ChunkConfiguration chunkType,
@@ -36,13 +36,13 @@ public static class SpawnHelpers
 {
     public static Microbe SpawnMicrobe(Species species, Vector3 location,
         Node worldRoot, PackedScene microbeScene, bool aiControlled,
-        CompoundCloudSystem cloudSystem, GameWorld world)
+        CompoundCloudSystem cloudSystem, GameProperties currentGame)
     {
         var microbe = (Microbe)microbeScene.Instance();
 
         // The second parameter is (isPlayer), and we assume that if the
         // cell is not AI controlled it is the player's cell
-        microbe.Init(cloudSystem, world, !aiControlled);
+        microbe.Init(cloudSystem, currentGame, !aiControlled);
 
         worldRoot.AddChild(microbe);
         microbe.Translation = location;
@@ -147,15 +147,15 @@ public class MicrobeSpawner : ISpawner
     private readonly PackedScene microbeScene;
     private readonly Species species;
     private readonly CompoundCloudSystem cloudSystem;
-    private readonly GameWorld world;
+    private readonly GameProperties currentGame;
 
-    public MicrobeSpawner(Species species, CompoundCloudSystem cloudSystem, GameWorld world)
+    public MicrobeSpawner(Species species, CompoundCloudSystem cloudSystem, GameProperties currentGame)
     {
         this.species = species ?? throw new ArgumentException("species is null");
 
         microbeScene = SpawnHelpers.LoadMicrobeScene();
         this.cloudSystem = cloudSystem;
-        this.world = world;
+        this.currentGame = currentGame;
     }
 
     public override List<ISpawned> Spawn(Node worldNode, Vector3 location)
@@ -164,7 +164,7 @@ public class MicrobeSpawner : ISpawner
 
         // The true here is that this is AI controlled
         var microbe = SpawnHelpers.SpawnMicrobe(species, location, worldNode, microbeScene,
-            true, cloudSystem, world);
+            true, cloudSystem, currentGame);
 
         entities.Add(microbe);
         return entities;
