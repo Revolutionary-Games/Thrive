@@ -4,7 +4,6 @@ using Godot;
 ///   Places the ScreenFilter scene after the main scene in the root
 ///   Filter must be after the main scene to take any effect
 /// </summary>
-
 public class FilterLoader : Node
 {
     private Node textureFilter;

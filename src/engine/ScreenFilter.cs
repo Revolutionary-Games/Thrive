@@ -1,37 +1,39 @@
 using Godot;
 
+/// <summary>
+///   Handles what colorblind filter is show
+///   Turns off filter if set to "normal_color"
+/// </summary>
 public class ScreenFilter : TextureRect
 {
-    private TextureRect screenFilter;
     private ShaderMaterial screenFilterMaterial;
     public override void _Ready()
     {
-        screenFilter = (TextureRect)this;
-        screenFilterMaterial = (ShaderMaterial)screenFilter.Material;
-        screenFilter.Material = null;
-        screenFilter.Hide();
+        screenFilterMaterial = (ShaderMaterial)Material;
+        Material = null;
+        Hide();
     }
 
     public override void _Input(InputEvent @event)
     {
         if (@event.IsActionPressed("normal_color"))
         {
-            screenFilter.Material = null;
-            screenFilter.Hide();
+            Material = null;
+            Hide();
         }
 
         if (@event.IsActionPressed("red_green"))
         {
-            screenFilter.Material = screenFilterMaterial;
+            Material = screenFilterMaterial;
             screenFilterMaterial.SetShaderParam("mode", 1);
-            screenFilter.Show();
+            Show();
         }
 
         if (@event.IsActionPressed("blue_yellow"))
         {
-            screenFilter.Material = screenFilterMaterial;
+            Material = screenFilterMaterial;
             screenFilterMaterial.SetShaderParam("mode", 2);
-            screenFilter.Show();
+            Show();
         }
     }
 }
