@@ -114,6 +114,11 @@ public class Constants
     public const float MINIMUM_AGENT_EMISSION_AMOUNT = 1;
 
     /// <summary>
+    ///   The time (in seconds) it takes a cloud being absorbed to halve its compunds.
+    /// </summary>
+    public const float CLOUD_ABSORPTION_HALF_LIFE = 0.02291666666f;
+
+    /// <summary>
     ///   How much of a compound is actually given to a cell when absorbed
     /// </summary>
     public const float ABSORPTION_RATIO = 0.0000125f;

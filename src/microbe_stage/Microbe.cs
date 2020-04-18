@@ -789,7 +789,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     public override void _Process(float delta)
     {
         // TODO: make this take elapsed time into account
-        HandleCompoundAbsorbing();
+        HandleCompoundAbsorbing(delta);
 
         // Movement factor is reset here. HandleEngulfing will set the right value
         MovementFactor = 1.0f;
@@ -873,13 +873,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         state.Transform = GetNewPhysicsRotation(state.Transform);
     }
 
-    private void HandleCompoundAbsorbing()
+    private void HandleCompoundAbsorbing(float delta)
     {
         // max here buffs compound absorbing for the smallest cells
         var grabRadius = Mathf.Max(Radius, 3.0f);
 
         cloudSystem.AbsorbCompounds(Translation, grabRadius, Compounds,
-            TotalAbsorbedCompounds);
+            TotalAbsorbedCompounds, delta);
     }
 
     /// <summary>

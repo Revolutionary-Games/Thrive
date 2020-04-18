@@ -367,7 +367,7 @@ public class CompoundCloudSystem : Node
     ///   </para>
     /// </remarks>
     public void AbsorbCompounds(Vector3 position, float radius, CompoundBag storage,
-        Dictionary<string, float> totals)
+        Dictionary<string, float> totals, float delta)
     {
         // It might be fine to remove this check but this was in the old code
         if (radius < 1.0f)
@@ -425,7 +425,7 @@ public class CompoundCloudSystem : Node
                     if (x < cloud.Size && y < cloud.Size)
                     {
                         // Absorb all compounds in the cloud
-                        cloud.AbsorbCompounds(x, y, storage, totals);
+                        cloud.AbsorbCompounds(x, y, storage, totals, delta);
                     }
                 }
             }
