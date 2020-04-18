@@ -10,7 +10,6 @@ public class PlayerMicrobeInput : Node
     ///   and also the cloud spawning.
     /// </summary>
     private MicrobeStage stage;
-    private MicrobeHUD microbeHUD;
 
     // // All the input actions
     private bool forward = false;
@@ -25,7 +24,6 @@ public class PlayerMicrobeInput : Node
     public override void _Ready()
     {
         stage = (MicrobeStage)GetParent();
-        microbeHUD = (MicrobeHUD)stage.GetNode("MicrobeHUD");
     }
 
     public override void _Input(InputEvent @event)
@@ -68,7 +66,7 @@ public class PlayerMicrobeInput : Node
 
         if (@event.IsActionPressed("g_cheat_editor"))
         {
-            microbeHUD.EditorButtonPressed();
+            stage.HUD.EditorButtonPressed();
         }
 
         if (@event.IsActionPressed("g_cheat_glucose"))
@@ -117,8 +115,8 @@ public class PlayerMicrobeInput : Node
 
     public override void _Notification(int focus)
     {
-        // Checks if the game window is not in focus
-        // If so, the player stops moving
+        // If the window goes out of focus, we don't receive the key released events
+        // We reset our held down keys if the player tabs out while pressing a key
         if (focus == MainLoop.NotificationWmFocusOut)
         {
             forward = false;
