@@ -40,7 +40,7 @@ corner_radius_top_right = 7
 corner_radius_bottom_right = 7
 corner_radius_bottom_left = 7
 
-[sub_resource type="StyleBoxFlat" id=7]
+[sub_resource type="StyleBoxFlat" id=5]
 bg_color = Color( 0, 0.435294, 0.52549, 1 )
 border_width_left = 1
 border_width_top = 1
@@ -69,7 +69,7 @@ Button/styles/disabled = SubResource( 1 )
 Button/styles/focus = SubResource( 2 )
 Button/styles/hover = SubResource( 3 )
 Button/styles/normal = SubResource( 4 )
-Button/styles/pressed = SubResource( 7 )
+Button/styles/pressed = SubResource( 5 )
 CheckBox/colors/font_color = Color( 0, 0, 0, 1 )
 CheckBox/colors/font_color_disabled = Color( 0, 0, 0, 1 )
 CheckBox/colors/font_color_hover = Color( 0, 0, 0, 1 )
