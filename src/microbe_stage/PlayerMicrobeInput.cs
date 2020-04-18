@@ -117,6 +117,8 @@ public class PlayerMicrobeInput : Node
 
     public override void _Notification(int focus)
     {
+        //Checks if the game window is not in focus
+        //If so, the player stops moving
         if (focus == MainLoop.NotificationWmFocusOut)
         {
             forward = false;
