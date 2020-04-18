@@ -1,7 +1,7 @@
 using Godot;
 
 /// <summary>
-///   Handles what colorblind filter is show
+///   Handles what colorblind filter is used
 ///   Turns off filter if set to "normal_color"
 /// </summary>
 public class ScreenFilter : TextureRect
