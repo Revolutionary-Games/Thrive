@@ -8,8 +8,6 @@ using Newtonsoft.Json;
 /// </summary>
 /// <remarks>
 ///   <para>
-///     TODO: implement a method to check if can place and is touching
-///     an existing hex for use by the editor.
 ///   </para>
 /// </remarks>
 public class OrganelleLayout<T> : IEnumerable<T>

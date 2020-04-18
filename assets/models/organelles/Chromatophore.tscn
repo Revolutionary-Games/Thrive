@@ -1,3 +1,17 @@
-[gd_scene format=2]
+[gd_scene load_steps=5 format=2]
 
-[node name="Spatial" type="Spatial"]
+[ext_resource path="res://assets/models/organelles/Chromatophore.mesh" type="ArrayMesh" id=1]
+[ext_resource path="res://assets/textures/chromatophores.png" type="Texture" id=2]
+[ext_resource path="res://shaders/Organelle.shader" type="Shader" id=3]
+
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
+shader = ExtResource( 3 )
+shader_param/tint = Color( 1, 1, 1, 1 )
+shader_param/texture = ExtResource( 2 )
+
+[node name="Chromatophore" type="MeshInstance"]
+transform = Transform( 100, 0, 0, 0, -1.62921e-05, 100, 0, -100, -1.62921e-05, 0, 0, 0 )
+material_override = SubResource( 1 )
+mesh = ExtResource( 1 )
+material/0 = null

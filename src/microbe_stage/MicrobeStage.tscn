@@ -2573,6 +2573,7 @@ margin_left = 323.0
 margin_right = 365.0
 margin_bottom = 43.0
 focus_mode = 0
+action_mode = 0
 enabled_focus_mode = 0
 texture_normal = ExtResource( 19 )
 texture_pressed = ExtResource( 19 )
@@ -2604,7 +2605,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeHUD/BottomRight"]
+[node name="PopulationData" type="HBoxContainer" parent="MicrobeHUD/BottomRight"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -2617,7 +2618,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PopulationLabel" type="Label" parent="MicrobeHUD/BottomRight/HBoxContainer"]
+[node name="Label" type="Label" parent="MicrobeHUD/BottomRight/PopulationData"]
 margin_right = 79.0
 margin_bottom = 18.0
 custom_styles/normal = SubResource( 41 )
@@ -2627,7 +2628,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PopulationValue" type="Label" parent="MicrobeHUD/BottomRight/HBoxContainer"]
+[node name="Value" type="Label" parent="MicrobeHUD/BottomRight/PopulationData"]
 margin_left = 83.0
 margin_right = 111.0
 margin_bottom = 18.0
@@ -2682,7 +2683,7 @@ custom_fonts/font = SubResource( 44 )
 text = "ATP"
 
 [node name="ATPBar" type="TextureProgress" parent="MicrobeHUD/BottomRight" groups=[
-"MicrobeHUDBar",
+"MicrobeTextureHUDBar",
 ]]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -2720,15 +2721,15 @@ __meta__ = {
 }
 
 [node name="HealthBar" type="TextureProgress" parent="MicrobeHUD/BottomRight" groups=[
-"MicrobeHUDBar",
+"MicrobeTextureHUDBar",
 ]]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -127.691
+margin_left = -126.948
 margin_top = -101.615
-margin_right = 172.309
+margin_right = 173.052
 margin_bottom = 198.385
 step = 0.1
 value = 100.0
@@ -2819,7 +2820,7 @@ __meta__ = {
 }
 
 [node name="AmmoniaReproductionBar" type="TextureProgress" parent="MicrobeHUD/BottomRight/EditorButton/ReproductionBar" groups=[
-"MicrobeHUDBar",
+"MicrobeTextureHUDBar",
 ]]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -2839,7 +2840,7 @@ __meta__ = {
 }
 
 [node name="PhosphateReproductionBar" type="TextureProgress" parent="MicrobeHUD/BottomRight/EditorButton/ReproductionBar" groups=[
-"MicrobeHUDBar",
+"MicrobeTextureHUDBar",
 ]]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -2972,6 +2973,7 @@ anims/ShowLeftPanels = SubResource( 51 )
 [connection signal="pressed" from="MicrobeHUD/BottomBar/PauseButtonMargin/Pause" to="MicrobeHUD" method="PauseButtonPressed"]
 [connection signal="pressed" from="MicrobeHUD/BottomBar/PauseButtonMargin/Resume" to="MicrobeHUD" method="PauseButtonPressed"]
 [connection signal="pressed" from="MicrobeHUD/BottomBar/CompoundsButton" to="MicrobeHUD" method="CompoundButtonPressed"]
+[connection signal="pressed" from="MicrobeHUD/BottomBar/SuicideButton" to="MicrobeHUD" method="OnSuicide"]
 [connection signal="pressed" from="MicrobeHUD/BottomRight/EditorButton" to="MicrobeHUD" method="EditorButtonPressed"]
 [connection signal="pressed" from="MicrobeHUD/PauseMenu/CenterContainer/MicrobeStageMenu/Resume" to="MicrobeHUD" method="OpenMicrobeStageMenuPressed"]
 [connection signal="pressed" from="MicrobeHUD/PauseMenu/CenterContainer/MicrobeStageMenu/Exit" to="MicrobeHUD" method="ExitPressed"]

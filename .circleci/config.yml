@@ -42,32 +42,38 @@ jobs:
           paths:
             - ~/.nuget/packages
        # Format check before making final packages
-       - run: ./check_formatting.rb
+       - run: ./check_formatting.rb -c compile
        # Proper packages
        - run: godot --export "Linux/X11" "builds/thrive_linux.x86_64"
-   # format_script:
-   #   working_directory: ~/Thrive
-   #   docker:
-   #     - image: hhyyrylainen/godot-ci:v1
-   #   environment:
-   #     GIT_LFS_SKIP_SMUDGE: 1
-   #   steps:
-   #     - checkout
-   #     - run: ./headless_project_refresh.rb
-   #     - restore_cache:
-   #         keys:
-   #           - v1-nuget-{{ .Branch }}
-   #     - run: nuget restore
-   #     - save_cache:
-   #        key: v1-nuget-{{ .Branch }}
-   #        paths:
-   #          - ~/.nuget/packages
-   #     - run: ./check_formatting.rb
+   format_script:
+     working_directory: ~/Thrive
+     docker:
+       - image: hhyyrylainen/thrive-lint:v1
+     environment:
+       GIT_LFS_SKIP_SMUDGE: 1
+     steps:
+       - checkout
+       - run: ./check_formatting.rb -c files
+       - run:
+           when: always
+           command: |
+             git diff > format_diff.patch
+             if grep -q '[^[:space:]]' < format_diff.patch; then
+                 echo "Formatter found things to be fixed:"
+                 cat format_diff.patch
+                 exit 1
+             else
+                 echo "No changes made"
+                 rm -f format_diff.patch
+             fi
+       - store_artifacts:
+          path: format_diff.patch
 
 workflows:
   version: 2
   build_and_format:
     # Unfortunately godot is setup so that a build can't happen without having all the assets processed
+    # so the format script can't check C# files
     jobs:
       - build
-      # - format_script
+      - format_script

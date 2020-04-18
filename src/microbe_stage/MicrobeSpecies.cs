@@ -51,6 +51,24 @@ public class MicrobeSpecies : Species
         InitialCompounds.Add("hydrogensulfide", 10);
     }
 
+    public override void ApplyMutation(Species mutation)
+    {
+        base.ApplyMutation(mutation);
+
+        var casted = (MicrobeSpecies)mutation;
+
+        Organelles.RemoveAll();
+
+        foreach (var organelle in casted.Organelles)
+        {
+            Organelles.Add((OrganelleTemplate)organelle.Clone());
+        }
+
+        IsBacteria = casted.IsBacteria;
+        MembraneType = casted.MembraneType;
+        MembraneRigidity = casted.MembraneRigidity;
+    }
+
     public override string ToString()
     {
         // TODO: custom serializer to store the membrane type by name

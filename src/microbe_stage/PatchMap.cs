@@ -218,6 +218,27 @@ public class PatchMap
         }
     }
 
+    /// <summary>
+    ///   Returns all species on the map with > 0 population
+    /// </summary>
+    public List<Species> FindAllSpeciesWithPopulation()
+    {
+        var found = new HashSet<Species>();
+
+        foreach (var entry in Patches)
+        {
+            foreach (var speciesEntry in entry.Value.SpeciesInPatch)
+            {
+                if (speciesEntry.Value > 0)
+                {
+                    found.Add(speciesEntry.Key);
+                }
+            }
+        }
+
+        return found.ToList();
+    }
+
     public Patch GetPatch(int id)
     {
         return Patches[id];

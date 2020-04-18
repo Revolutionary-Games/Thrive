@@ -16,6 +16,8 @@ using System.Reflection;
 // The form "{Major}.{Minor}.*" will automatically update the build and revision,
 // and "{Major}.{Minor}.{Build}.*" will update just the revision.
 
+// NOTE: the version info is read by a regex in a script so don't add complicated thins to this file
+
 [assembly: AssemblyVersion("0.5.0.0")]
 
 [assembly: AssemblyInformationalVersion("-pre-alpha")]

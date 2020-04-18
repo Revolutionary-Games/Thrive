@@ -49,7 +49,7 @@
             {
                 if (!skipMutations && entry.Value.MutatedProperties != null)
                 {
-                    ApplySpeciesMutation(entry.Key, entry.Value.MutatedProperties);
+                    entry.Key.ApplyMutation(entry.Value.MutatedProperties);
                 }
 
                 foreach (var populationEntry in entry.Value.NewPopulationInPatches)
@@ -282,15 +282,6 @@
             }
 
             return builder.ToString();
-        }
-
-        /// <summary>
-        ///   Applies the gene code and other property changes to a species
-        /// </summary>
-        private static void ApplySpeciesMutation(Species species, Species mutation)
-        {
-            // TODO: fix
-            throw new NotImplementedException();
         }
 
         private void MakeSureResultExistsForSpecies(Species species)

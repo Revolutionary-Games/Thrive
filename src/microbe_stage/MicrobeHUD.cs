@@ -23,12 +23,19 @@ public class MicrobeHUD : Node
 
     private Label atpLabel;
     private Label hpLabel;
+    private Label populationLabel;
+    private Label patchLabel;
 
     /// <summary>
     ///   The HUD bars is contained in this array to avoid
     ///   having tons of extra separate variables.
     /// </summary>
     private Godot.Collections.Array hudBars;
+
+    /// <summary>
+    ///   The TextureProgress node version of the bars.
+    /// </summary>
+    private Godot.Collections.Array textureHudBars;
 
     /// <summary>
     ///   Access to the stage to retrieve information for display as
@@ -55,19 +62,25 @@ public class MicrobeHUD : Node
     public override void _Ready()
     {
         mouseHoverPanel = GetNode<PanelContainer>("MouseHoverPanel");
-        pauseButtonContainer = GetNode("BottomBar").
-            GetNode<MarginContainer>("PauseButtonMargin");
-        dataValue = GetNode("BottomRight").GetNode<PanelContainer>("DataValue");
+        pauseButtonContainer = GetNode<MarginContainer>("BottomBar/PauseButtonMargin");
+        dataValue = GetNode<PanelContainer>("BottomRight/DataValue");
         atpLabel = dataValue.GetNode<Label>("Margin/VBox/ATPValue");
         hpLabel = dataValue.GetNode<Label>("Margin/VBox/HPValue");
         menu = GetNode<Control>("PauseMenu");
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
         hudBars = GetTree().GetNodesInGroup("MicrobeHUDBar");
-        hoveredItems = mouseHoverPanel.GetChild(0).GetChild(0).
-            GetNode<VBoxContainer>("HoveredItems");
+        textureHudBars = GetTree().GetNodesInGroup("MicrobeTextureHUDBar");
+        hoveredItems = mouseHoverPanel.GetChild(0).GetChild(0).GetNode<VBoxContainer>("HoveredItems");
+        populationLabel = GetNode<Label>("BottomRight/PopulationData/Value");
+        patchLabel = GetNode<Label>("BottomBar/PatchLabel");
 
+        OnEnterStageTransition();
+    }
+
+    public void OnEnterStageTransition()
+    {
         // Fade out for that smooth satisfying transition
-        TransitionManager.Instance.AddFade(Fade.FadeType.FadeOut, 0.5f);
+        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeOut, 0.5f);
         TransitionManager.Instance.StartTransitions(null, string.Empty);
     }
 
@@ -79,12 +92,17 @@ public class MicrobeHUD : Node
         if (stage.Player != null)
         {
             UpdateBars();
+            UpdateReproductionProgress();
+            UpdateATP();
+            UpdateHealth();
         }
 
         if (stage.Camera != null)
         {
             UpdateHoverInfo();
         }
+
+        UpdatePopulation();
     }
 
     public override void _Input(InputEvent @event)
@@ -135,6 +153,11 @@ public class MicrobeHUD : Node
     /// </summary>
     public void ShowReproductionDialog()
     {
+        // TODO: add a flag for only doing this once even when called repeatedly
+        // also add a reverse check to HideReproductionDialog
+
+        // TODO: sound "Data/Sound/soundeffects/microbe-pickup-organelle.ogg"
+
         var editorButton = GetNode<TextureButton>("BottomRight/EditorButton");
 
         editorButton.Disabled = false;
@@ -157,6 +180,27 @@ public class MicrobeHUD : Node
         editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Stop();
     }
 
+    public void OnSuicide()
+    {
+        if (stage.Player != null)
+        {
+            stage.Player.Damage(9999.0f, "suicide");
+        }
+    }
+
+    public void UpdatePatchInfo(string patchName)
+    {
+        patchLabel.Text = "Patch: " + patchName;
+    }
+
+    public void EditorButtonPressed()
+    {
+        GD.Print("Move to editor pressed");
+
+        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.3f, false);
+        TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.MoveToEditor));
+    }
+
     /// <summary>
     ///   Updates the mouse hover box with stuff.
     /// </summary>
@@ -167,7 +211,7 @@ public class MicrobeHUD : Node
     ///     how the old JS code do it anyway.
     ///   </para>
     /// </remarks>
-    public void UpdateHoverInfo()
+    private void UpdateHoverInfo()
     {
         foreach (Node children in hoveredItems.GetChildren())
         {
@@ -269,73 +313,120 @@ public class MicrobeHUD : Node
     /// <summary>
     ///   Updates the GUI bars with the correct values.
     /// </summary>
-    public void UpdateBars()
+    private void UpdateBars()
     {
         var compounds = stage.Player.Compounds;
 
-        foreach (Node node in hudBars)
+        foreach (ProgressBar bar in hudBars)
         {
-            if (node.GetClass() == "ProgressBar")
+            var label = bar.GetNode<Label>("Value");
+
+            if (bar.Name == "GlucoseBar")
             {
-                var bar = (ProgressBar)node;
-                var label = bar.GetNode<Label>("Value");
-
-                if (bar.Name == "GlucoseBar")
-                {
-                    bar.MaxValue = compounds.Capacity;
-                    bar.Value = compounds.GetCompoundAmount("glucose");
-                    label.Text = bar.Value + " / " + bar.MaxValue;
-                }
-
-                if (bar.Name == "AmmoniaBar")
-                {
-                    bar.MaxValue = compounds.Capacity;
-                    bar.Value = compounds.GetCompoundAmount("ammonia");
-                    label.Text = bar.Value + " / " + bar.MaxValue;
-                }
-
-                if (bar.Name == "PhosphateBar")
-                {
-                    bar.MaxValue = compounds.Capacity;
-                    bar.Value = compounds.GetCompoundAmount("phosphates");
-                    label.Text = bar.Value + " / " + bar.MaxValue;
-                }
-
-                if (bar.Name == "HydrogenSulfideBar")
-                {
-                    bar.MaxValue = compounds.Capacity;
-                    bar.Value = compounds.GetCompoundAmount("hydrogensulfide");
-                    label.Text = bar.Value + " / " + bar.MaxValue;
-                }
-
-                if (bar.Name == "IronBar")
-                {
-                    bar.MaxValue = compounds.Capacity;
-                    bar.Value = compounds.GetCompoundAmount("iron");
-                    label.Text = bar.Value + " / " + bar.MaxValue;
-                }
-
-                if (bar.Name == "OxyToxyBar")
-                {
-                    bar.MaxValue = compounds.Capacity;
-                    bar.Value = compounds.GetCompoundAmount("oxytoxy");
-                    label.Text = bar.Value + " / " + bar.MaxValue;
-                }
+                bar.MaxValue = compounds.Capacity;
+                bar.Value = compounds.GetCompoundAmount("glucose");
+                label.Text = bar.Value + " / " + bar.MaxValue;
             }
-            else if (node.GetClass() == "TextureProgress")
+
+            if (bar.Name == "AmmoniaBar")
             {
-                var bar = (TextureProgress)node;
+                bar.MaxValue = compounds.Capacity;
+                bar.Value = compounds.GetCompoundAmount("ammonia");
+                label.Text = bar.Value + " / " + bar.MaxValue;
+            }
 
-                if (node.Name == "ATPBar")
-                {
-                    bar.MaxValue = compounds.Capacity;
-                    bar.Value = compounds.GetCompoundAmount("atp");
-                    atpLabel.Text = bar.Value + " / " + bar.MaxValue;
-                }
+            if (bar.Name == "PhosphateBar")
+            {
+                bar.MaxValue = compounds.Capacity;
+                bar.Value = compounds.GetCompoundAmount("phosphates");
+                label.Text = bar.Value + " / " + bar.MaxValue;
+            }
 
-                // todo: Health bar and reproduction progress calculation
+            if (bar.Name == "HydrogenSulfideBar")
+            {
+                bar.MaxValue = compounds.Capacity;
+                bar.Value = compounds.GetCompoundAmount("hydrogensulfide");
+                label.Text = bar.Value + " / " + bar.MaxValue;
+            }
+
+            if (bar.Name == "IronBar")
+            {
+                bar.MaxValue = compounds.Capacity;
+                bar.Value = compounds.GetCompoundAmount("iron");
+                label.Text = bar.Value + " / " + bar.MaxValue;
+            }
+
+            if (bar.Name == "OxyToxyBar")
+            {
+                bar.MaxValue = compounds.Capacity;
+                bar.Value = compounds.GetCompoundAmount("oxytoxy");
+                label.Text = bar.Value + " / " + bar.MaxValue;
             }
         }
+    }
+
+    private void UpdateReproductionProgress()
+    {
+        // Get player reproduction progress
+        float totalProgress = stage.Player.CalculateReproductionProgress(
+            out Dictionary<string, float> gatheredCompounds, out Dictionary<string, float> totalNeededCompounds);
+
+        float fractionOfAmmonia = 0;
+        float fractionOfPhosphates = 0;
+
+        try
+        {
+            fractionOfAmmonia = gatheredCompounds["ammonia"] / totalNeededCompounds["ammonia"];
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("can't get reproduction ammonia progress: ", e);
+        }
+
+        try
+        {
+            fractionOfPhosphates = gatheredCompounds["phosphates"] / totalNeededCompounds["phosphates"];
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("can't get reproduction phosphates progress: ", e);
+        }
+
+        // TODO: update the bars in the GUI
+        // reproductionProgress = totalProgress
+        // reproductionAmmoniaFraction = fractionOfAmmonia
+        // reproductionPhosphatesFraction = fractionOfPhosphates
+    }
+
+    private void UpdateATP()
+    {
+        foreach (TextureProgress bar in textureHudBars)
+        {
+            if (bar.Name == "ATPBar")
+            {
+                bar.MaxValue = stage.Player.Compounds.Capacity;
+                bar.Value = stage.Player.Compounds.GetCompoundAmount("atp");
+                atpLabel.Text = bar.Value + " / " + bar.MaxValue;
+            }
+        }
+    }
+
+    private void UpdateHealth()
+    {
+        foreach (TextureProgress bar in textureHudBars)
+        {
+            if (bar.Name == "HealthBar")
+            {
+                bar.MaxValue = stage.Player.MaxHitpoints;
+                bar.Value = stage.Player.Hitpoints;
+                hpLabel.Text = bar.Value + " / " + bar.MaxValue;
+            }
+        }
+    }
+
+    private void UpdatePopulation()
+    {
+        populationLabel.Text = stage.GameWorld.PlayerSpecies.Population.ToString();
     }
 
     /// <summary>
@@ -401,10 +492,6 @@ public class MicrobeHUD : Node
             animationPlayer.Play("ShowLeftPanels");
             leftPanelsActive = false;
         }
-    }
-
-    private void EditorButtonPressed()
-    {
     }
 
     /// <summary>

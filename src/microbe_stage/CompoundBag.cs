@@ -128,7 +128,7 @@ public class CompoundBag
             return true;
         }
 
-        return IsUseful(compound.Name);
+        return IsUseful(compound.InternalName);
     }
 
     public bool IsUseful(string compound)

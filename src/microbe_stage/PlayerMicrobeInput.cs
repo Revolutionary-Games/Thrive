@@ -66,7 +66,7 @@ public class PlayerMicrobeInput : Node
 
         if (@event.IsActionPressed("g_cheat_editor"))
         {
-            // TODO: reimplement editor enter cheat
+            stage.HUD.ShowReproductionDialog();
         }
 
         if (@event.IsActionPressed("g_cheat_glucose"))
@@ -115,6 +115,8 @@ public class PlayerMicrobeInput : Node
 
     public override void _Notification(int focus)
     {
+        // If the window goes out of focus, we don't receive the key released events
+        // We reset our held down keys if the player tabs out while pressing a key
         if (focus == MainLoop.NotificationWmFocusOut)
         {
             forward = false;
