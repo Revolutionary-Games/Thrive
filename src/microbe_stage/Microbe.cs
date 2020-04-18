@@ -184,9 +184,20 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     }
 
     /// <summary>
+    ///   For checking if the player is in freebuild mode or not
+    /// </summary>
+    public GameProperties CurrentGame { get; private set; }
+
+    /// <summary>
     ///   Needs access to the world for population changes
     /// </summary>
-    public GameWorld GameWorld { get; private set; }
+    public GameWorld GameWorld
+    {
+        get
+        {
+            return CurrentGame.GameWorld;
+        }
+    }
 
     public float TimeUntilNextAIUpdate { get; set; } = 0;
 
@@ -211,10 +222,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// <summary>
     ///   Must be called when spawned to provide access to the needed systems
     /// </summary>
-    public void Init(CompoundCloudSystem cloudSystem, GameWorld world, bool isPlayer)
+    public void Init(CompoundCloudSystem cloudSystem, GameProperties currentGame, bool isPlayer)
     {
         this.cloudSystem = cloudSystem;
-        GameWorld = world;
+        CurrentGame = currentGame;
         IsPlayerMicrobe = isPlayer;
 
         if (IsPlayerMicrobe)
@@ -636,7 +647,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
         // Create the one daughter cell.
         var copyEntity = SpawnHelpers.SpawnMicrobe(Species, Translation + separation,
-            GetParent(), SpawnHelpers.LoadMicrobeScene(), true, cloudSystem, GameWorld);
+            GetParent(), SpawnHelpers.LoadMicrobeScene(), true, cloudSystem, CurrentGame);
 
         // Make it despawn like normal
         SpawnSystem.AddEntityToTrack(copyEntity);
@@ -848,7 +859,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         else
         {
             // As long as the player has been alive they can go to the editor in freebuild
-            if (OnReproductionStatus != null)
+            if (OnReproductionStatus != null && CurrentGame.FreeBuild)
             {
                 OnReproductionStatus(this, true);
             }
