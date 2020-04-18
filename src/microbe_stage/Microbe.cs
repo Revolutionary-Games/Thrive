@@ -56,7 +56,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     // private bool isCurrentlyEngulfing = false;
 
     private float lastCheckedATPDamage = 0.0f;
-    private float ATPNoDamageWait = 0.0f;
+    private float noATPDamageWait = 0.0f;
 
     /// <summary>
     ///   The microbe stores here the sum of capacity of all the
@@ -833,7 +833,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         HandleCompoundVenting(delta);
 
         lastCheckedATPDamage += delta;
-        ATPNoDamageWait += delta;
+        noATPDamageWait += delta;
 
         while (lastCheckedATPDamage >= Constants.ATP_DAMAGE_CHECK_INTERVAL)
         {
@@ -1297,7 +1297,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// </summary>
     private void ApplyATPDamage()
     {
-        if(ATPNoDamageWait>=Constants.ATP_NO_DAMAGE_TIME)
+        if (noATPDamageWait >= Constants.NO_ATP_DAMAGE_TIME)
         {
             if (Compounds.GetCompoundAmount("atp") <= 0.0f)
             {
