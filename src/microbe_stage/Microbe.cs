@@ -56,6 +56,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     // private bool isCurrentlyEngulfing = false;
 
     private float lastCheckedATPDamage = 0.0f;
+    private float ATPNoDamageWait = 0.0f;
 
     /// <summary>
     ///   The microbe stores here the sum of capacity of all the
@@ -832,6 +833,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         HandleCompoundVenting(delta);
 
         lastCheckedATPDamage += delta;
+        ATPNoDamageWait += delta;
 
         while (lastCheckedATPDamage >= Constants.ATP_DAMAGE_CHECK_INTERVAL)
         {
@@ -1295,15 +1297,18 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// </summary>
     private void ApplyATPDamage()
     {
-        if (Compounds.GetCompoundAmount("atp") <= 0.0f)
+        if(ATPNoDamageWait>=Constants.ATP_NO_DAMAGE_TIME)
         {
-            // TODO: put this on a GUI notification.
-            // if(microbeComponent.isPlayerMicrobe and not this.playerAlreadyShownAtpDamage){
-            //     this.playerAlreadyShownAtpDamage = true
-            //     showMessage("No ATP hurts you!")
-            // }
+            if (Compounds.GetCompoundAmount("atp") <= 0.0f)
+            {
+                // TODO: put this on a GUI notification.
+                // if(microbeComponent.isPlayerMicrobe and not this.playerAlreadyShownAtpDamage){
+                //     this.playerAlreadyShownAtpDamage = true
+                //     showMessage("No ATP hurts you!")
+                // }
 
-            Damage(MaxHitpoints * Constants.NO_ATP_DAMAGE_FRACTION, "atpDamage");
+                Damage(MaxHitpoints * Constants.NO_ATP_DAMAGE_FRACTION, "atpDamage");
+            }
         }
     }
 
