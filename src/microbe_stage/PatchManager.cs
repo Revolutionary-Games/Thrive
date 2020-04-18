@@ -12,7 +12,7 @@ public class PatchManager
     private ProcessSystem processSystem;
     private CompoundCloudSystem compoundCloudSystem;
     private TimedLifeSystem timedLife;
-    private GameWorld world;
+    private GameProperties currentGame;
 
     private Patch previousPatch;
 
@@ -22,13 +22,13 @@ public class PatchManager
     private List<CreatedSpawner> microbeSpawners = new List<CreatedSpawner>();
 
     public PatchManager(SpawnSystem spawnSystem, ProcessSystem processSystem,
-        CompoundCloudSystem compoundCloudSystem, TimedLifeSystem timedLife, GameWorld world)
+        CompoundCloudSystem compoundCloudSystem, TimedLifeSystem timedLife, GameProperties currentGame)
     {
         this.spawnSystem = spawnSystem;
         this.processSystem = processSystem;
         this.compoundCloudSystem = compoundCloudSystem;
         this.timedLife = timedLife;
-        this.world = world;
+        this.currentGame = currentGame;
     }
 
     /// <summary>
@@ -141,7 +141,7 @@ public class PatchManager
                     {
                         var spawner = new CreatedSpawner(name);
                         spawner.Spawner = Spawners.MakeMicrobeSpawner(species,
-                            compoundCloudSystem, world);
+                            compoundCloudSystem, currentGame);
 
                         spawnSystem.AddSpawnType(spawner.Spawner, density,
                             Constants.MICROBE_SPAWN_RADIUS);
