@@ -123,7 +123,7 @@ public class MicrobeStage : Node
 
         Player = SpawnHelpers.SpawnMicrobe(GameWorld.PlayerSpecies, new Vector3(0, 0, 0),
             rootOfDynamicallySpawned, SpawnHelpers.LoadMicrobeScene(), false, Clouds,
-            GameWorld);
+            CurrentGame);
         Player.AddToGroup("player");
 
         Player.OnDeath = (microbe) =>
@@ -252,7 +252,7 @@ public class MicrobeStage : Node
         if (patchManager != null)
             return;
         patchManager = new PatchManager(spawner, ProcessSystem, Clouds, TimedLifeSystem,
-            GameWorld);
+            CurrentGame);
     }
 
     /// <summary>
