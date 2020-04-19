@@ -453,7 +453,7 @@ public class Mutations
                 bool isVowel = Vowels.Any(item => item == part);
 
                 bool isPermute = false;
-                if (i > 1)
+                if (i > 1 && index - 2 >= 0)
                 {
                     var part1 = newName.ToString(index - 1, 2);
                     var part2 = newName.ToString(index - 2, 2);

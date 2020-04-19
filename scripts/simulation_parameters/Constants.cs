@@ -79,6 +79,9 @@ public class Constants
 
     public const int INITIAL_SPECIES_POPULATION = 100;
 
+    public const int INITIAL_FREEBUILD_POPULATION_VARIANCE_MIN = 0;
+    public const int INITIAL_FREEBUILD_POPULATION_VARIANCE_MAX = 400;
+
     // Right now these are used for species split from the player
     public const int INITIAL_SPLIT_POPULATION_MIN = 600;
     public const int INITIAL_SPLIT_POPULATION_MAX = 2000;
