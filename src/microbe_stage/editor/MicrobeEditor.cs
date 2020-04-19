@@ -916,17 +916,14 @@ public class MicrobeEditor : Node
             var pos = Hex.AxialToCartesian(new Hex(posQ, posR));
 
             // Detect can it be placed there
-            var organelleHere = editedMicrobeOrganelles.GetOrganelleAt(new Hex(posQ, posR));
-
             bool canPlace = isPlacementProbablyValid;
 
             bool duplicate = false;
 
             // Skip if there is a placed organelle here already
-
             foreach (var placed in placedHexes)
             {
-                if ((pos - placed.Translation).LengthSquared() < 0.01f)
+                if ((pos - placed.Translation).LengthSquared() < 0.001f)
                 {
                     duplicate = true;
 
@@ -1238,6 +1235,7 @@ public class MicrobeEditor : Node
                 }
 
                 var hexNode = placedHexes[nextFreeHex++];
+                hexNode.MaterialOverride = validMaterial;
                 hexNode.Translation = pos;
 
                 hexNode.Visible = true;
