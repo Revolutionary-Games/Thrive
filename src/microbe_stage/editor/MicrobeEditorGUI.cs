@@ -35,6 +35,7 @@ public class MicrobeEditorGUI : Node
     private const string ATP_BALANCE_DEFAULT_TEXT = "ATP Balance";
 
     private MicrobeEditor editor;
+    private LoadingScreen loadingScreen;
 
     private Godot.Collections.Array organelleSelectionElements;
     private Godot.Collections.Array membraneSelectionElements;
@@ -56,6 +57,8 @@ public class MicrobeEditorGUI : Node
     {
         organelleSelectionElements = GetTree().GetNodesInGroup("OrganelleSelectionElement");
         membraneSelectionElements = GetTree().GetNodesInGroup("MembraneSelectionElement");
+
+        loadingScreen = GetNode<LoadingScreen>("LoadingScreen");
 
         sizeLabel = GetNode<Label>(SizeLabelPath);
         speedLabel = GetNode<Label>(SpeedLabelPath);
@@ -132,6 +135,17 @@ public class MicrobeEditorGUI : Node
 
         aTPConsumptionBar.MaxValue = maxValue;
         aTPConsumptionBar.Value = energyBalance.TotalConsumption;
+    }
+
+    public void SetLoadingStatus(bool loading)
+    {
+        loadingScreen.Visible = loading;
+    }
+
+    public void SetLoadingText(string status, string description = "")
+    {
+        loadingScreen.LoadingMessage = status;
+        loadingScreen.LoadingDescription = description;
     }
 
     /// <summary>

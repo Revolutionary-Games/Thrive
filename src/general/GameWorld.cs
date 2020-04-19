@@ -167,6 +167,13 @@ public class GameWorld
         return autoEvo.Finished;
     }
 
+    public string GetAutoEvoStatus()
+    {
+        IsAutoEvoFinished(true);
+
+        return autoEvo.Status;
+    }
+
     /// <summary>
     ///   Stops and removes any auto-evo runs for this world
     /// </summary>

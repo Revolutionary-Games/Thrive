@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=2]
+[gd_scene load_steps=105 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
@@ -52,6 +52,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/membraneChitin.png" type="Texture" id=50]
 [ext_resource path="res://assets/textures/gui/bevel/membraneCellulose.png" type="Texture" id=51]
 [ext_resource path="res://assets/textures/gui/menu_theme.tres" type="Theme" id=52]
+[ext_resource path="res://src/general/LoadingScreen.tscn" type="PackedScene" id=53]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 37 )
@@ -4277,6 +4278,9 @@ margin_right = 250.0
 margin_bottom = 390.0
 rect_min_size = Vector2( 250, 40 )
 text = "Exit"
+
+[node name="LoadingScreen" parent="MicrobeEditorGUI" instance=ExtResource( 53 )]
+visible = false
 [connection signal="mouse_entered" from="MicrobeEditorGUI/LeftTopBar" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/LeftTopBar" to="MicrobeEditorGUI" method="OnMouseExit"]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/LeftTopBar/HBoxContainer/ReportButton" to="MicrobeEditorGUI" method="OnMouseEnter"]
