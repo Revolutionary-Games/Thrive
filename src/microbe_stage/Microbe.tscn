@@ -36,6 +36,8 @@ __meta__ = {
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 MaterialToEdit = SubResource( 1 )
 
+[node name="OrganelleParent" type="Spatial" parent="."]
+
 [node name="EngulfAudio" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 6 )
 

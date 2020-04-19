@@ -177,35 +177,37 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
         // Grab the species colour for us
         Colour = microbe.Species.Colour;
 
-        ParentMicrobe.AddChild(this);
+        ParentMicrobe.OrganelleParent.AddChild(this);
 
         // Graphical display
         if (Definition.LoadedScene != null)
         {
-            OrganelleGraphics = (Spatial)Definition.LoadedScene.Instance();
+            // There is an intermediate node so that the organelle scene root rotation and scale work
+            OrganelleGraphics = new Spatial();
+            var organelleSceneInstance = (Spatial)Definition.LoadedScene.Instance();
+
             AddChild(OrganelleGraphics);
 
+            OrganelleGraphics.Scale = new Vector3(Constants.DEFAULT_HEX_SIZE, Constants.DEFAULT_HEX_SIZE,
+                Constants.DEFAULT_HEX_SIZE);
+
             var transform = new Transform(MathUtils.CreateRotationForOrganelle(Orientation),
-            Definition.CalculateModelOffset());
+                Definition.CalculateModelOffset());
             OrganelleGraphics.Transform = transform;
 
             // Store the material of the organelle to be updated
-            organelleMaterial = (ShaderMaterial)((GeometryInstance)OrganelleGraphics).MaterialOverride;
+            organelleMaterial = (ShaderMaterial)((GeometryInstance)organelleSceneInstance).MaterialOverride;
+
+            OrganelleGraphics.AddChild(organelleSceneInstance);
         }
 
         // Position relative to origin of cell
         RotateY(Orientation * 60);
         Translation = Hex.AxialToCartesian(Position);
-        Scale = new Vector3(Constants.DEFAULT_HEX_SIZE, Constants.DEFAULT_HEX_SIZE,
-            Constants.DEFAULT_HEX_SIZE);
-
-        // // Our coordinates are already set when this is called
-        // // so just cache this
-        // this.cartesianPosition = Hex::axialToCartesian(q, r);
 
         float hexSize = Constants.DEFAULT_HEX_SIZE;
 
-        // Scale the hex size down for bacteria
+        // Scale the physics hex size down for bacteria
         if (microbe.Species.IsBacteria)
             hexSize *= 0.5f;
 
@@ -260,7 +262,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     /// </summary>
     public void OnRemovedFromMicrobe()
     {
-        ParentMicrobe.RemoveChild(this);
+        ParentMicrobe.OrganelleParent.RemoveChild(this);
 
         // Remove physics
         ParentMicrobe.Mass -= Definition.Mass;
