@@ -206,6 +206,10 @@ public class MicrobeStage : Node
                 }
             }
         }
+
+        // Start auto-evo if not already and settings have auto-evo be started during gameplay
+        if (Settings.Instance.RunAutoEvoDuringGamePlay)
+            GameWorld.IsAutoEvoFinished(true);
     }
 
     /// <summary>

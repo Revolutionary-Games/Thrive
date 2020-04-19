@@ -19,6 +19,17 @@ public class GameWorld
     [JsonProperty]
     private Mutations mutator;
 
+    /// <summary>
+    ///   This world's auto-evo run
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Once saving is implemented this probably shouldn't be attempted to be saved. But the list of external
+    ///     population effects need to be saved.
+    ///   </para>
+    /// </remarks>
+    private AutoEvoRun autoEvo;
+
     public GameWorld(WorldGenerationSettings settings)
     {
         mutator = new Mutations();
@@ -28,6 +39,9 @@ public class GameWorld
 
         if (!Map.Verify())
             throw new ArgumentException("generated patch map with settings is not valid");
+
+        // Apply initial populations
+        Map.UpdateGlobalPopulations();
 
         TimedEffects = new TimedWorldOperations();
 
@@ -134,6 +148,35 @@ public class GameWorld
                 return mutator.CreateMutatedSpecies(s, NewMicrobeSpecies());
             default:
                 throw new ArgumentException("unhandled species type for CreateMutatedSpecies");
+        }
+    }
+
+    /// <summary>
+    ///   Checks if an auto-evo run for this world is finished, optionally starting one if not in-progress already
+    /// </summary>
+    public bool IsAutoEvoFinished(bool autostart = true)
+    {
+        if (autoEvo == null && autostart)
+        {
+            autoEvo = AutoEvo.AutoEvo.CreateRun(this);
+            autoEvo.Start();
+        }
+
+        if (autoEvo == null)
+            return false;
+
+        return autoEvo.Finished;
+    }
+
+    /// <summary>
+    ///   Stops and removes any auto-evo runs for this world
+    /// </summary>
+    public void ResetAutoEvoRun()
+    {
+        if (autoEvo != null)
+        {
+            autoEvo.Abort();
+            autoEvo = null;
         }
     }
 
