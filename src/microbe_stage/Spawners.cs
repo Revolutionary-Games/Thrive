@@ -85,6 +85,7 @@ public static class SpawnHelpers
         chunk.Scale = new Vector3(chunkType.ChunkScale, chunkType.ChunkScale,
             chunkType.ChunkScale);
 
+        chunk.AddToGroup(Constants.FLUID_EFFECT_GROUP);
         return chunk;
     }
 
