@@ -229,6 +229,9 @@ public class MicrobeStage : Node
     /// </summary>
     public void OnReturnFromEditor()
     {
+        patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch);
+        HUD.UpdatePatchInfo(GameWorld.Map.CurrentPatch.Name);
+
         // Now the editor increases the generation so we don't do that here anymore
 
         // Check win conditions
