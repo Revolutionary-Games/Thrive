@@ -610,6 +610,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             }
         }
 
+        var deathScene = GD.Load<PackedScene>("res://src/microbe_stage/MicrobeDeathEffect.tscn");
+        var deathEffects = (MicrobeDeathEffect)deathScene.Instance();
+        deathEffects.Transform = Transform;
+        GetParent().AddChild(deathEffects);
+
         // It used to be that the physics shape was removed here and
         // graphics hidden, but now this is destroyed
         QueueFree();
