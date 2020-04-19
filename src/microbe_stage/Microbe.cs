@@ -1229,7 +1229,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             // Else If we were but are no longer, being engulfed
             wasBeingEngulfed = false;
 
-            if (!IsPlayerMicrobe && Species.PlayerSpecies)
+            if (!IsPlayerMicrobe && !Species.PlayerSpecies)
             {
                 hasEscaped = true;
                 escapeInterval = 0;
