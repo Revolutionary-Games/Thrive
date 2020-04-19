@@ -1171,7 +1171,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             if (!Species.PlayerSpecies)
             {
                 GameWorld.AlterSpeciesPopulation(Species,
-                Constants.CREATURE_REPRODUCE_POPULATION_GAIN, "reproduced");
+                    Constants.CREATURE_REPRODUCE_POPULATION_GAIN, "reproduced");
             }
 
             ResetOrganelleLayout();
@@ -1248,7 +1248,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
                 escapeInterval = 0;
 
                 GameWorld.AlterSpeciesPopulation(Species,
-                Constants.CREATURE_ESCAPE_POPULATION_GAIN, "escape engulfind");
+                    Constants.CREATURE_ESCAPE_POPULATION_GAIN, "escape engulfing");
             }
         }
 
