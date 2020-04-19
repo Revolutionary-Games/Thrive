@@ -1,7 +1,8 @@
-[gd_scene load_steps=118 format=2]
+[gd_scene load_steps=119 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/gui/ExtinctionBox.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/microbe_stage/PlayerMicrobeInput.cs" type="Script" id=7]
 [ext_resource path="res://src/microbe_stage/MicrobeHUD.cs" type="Script" id=9]
 [ext_resource path="res://src/microbe_stage/CompoundCloudSystem.cs" type="Script" id=10]
@@ -2576,7 +2577,7 @@ focus_mode = 0
 action_mode = 0
 enabled_focus_mode = 0
 texture_normal = ExtResource( 19 )
-texture_pressed = ExtResource( 19 )
+texture_pressed = ExtResource( 28 )
 texture_hover = ExtResource( 28 )
 
 [node name="HSeparator" type="HSeparator" parent="MicrobeHUD/BottomBar"]
@@ -2863,6 +2864,17 @@ __meta__ = {
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MicrobeHUD/BottomRight/EditorButton"]
 anims/EditorButtonFlash = SubResource( 45 )
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MicrobeHUD"]
+anims/CompoundPanelCompress = SubResource( 46 )
+anims/CompoundPanelExpand = SubResource( 47 )
+anims/EnvironmentPanelCompress = SubResource( 48 )
+anims/EnvironmentPanelExpand = SubResource( 49 )
+anims/HideLeftPanels = SubResource( 50 )
+anims/ShowLeftPanels = SubResource( 51 )
+
+[node name="ExtinctionBox" parent="MicrobeHUD" instance=ExtResource( 3 )]
+visible = false
+
 [node name="PauseMenu" type="Control" parent="MicrobeHUD"]
 visible = false
 anchor_right = 1.0
@@ -2958,14 +2970,6 @@ margin_right = 250.0
 margin_bottom = 390.0
 rect_min_size = Vector2( 250, 40 )
 text = "Exit"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MicrobeHUD"]
-anims/CompoundPanelCompress = SubResource( 46 )
-anims/CompoundPanelExpand = SubResource( 47 )
-anims/EnvironmentPanelCompress = SubResource( 48 )
-anims/EnvironmentPanelExpand = SubResource( 49 )
-anims/HideLeftPanels = SubResource( 50 )
-anims/ShowLeftPanels = SubResource( 51 )
 [connection signal="pressed" from="MicrobeHUD/LeftPanels/EnvironmentPanel/MarginContainer4/EnvironmentExpandButton" to="MicrobeHUD" method="ResizeEnvironmentPanel" binds= [ "expand" ]]
 [connection signal="pressed" from="MicrobeHUD/LeftPanels/EnvironmentPanel/MarginContainer3/EnvironmentCompressButton" to="MicrobeHUD" method="ResizeEnvironmentPanel" binds= [ "compress" ]]
 [connection signal="pressed" from="MicrobeHUD/LeftPanels/CompoundsPanel/MarginContainer3/CompoundExpandButton" to="MicrobeHUD" method="ResizeCompoundPanel" binds= [ "expand" ]]
