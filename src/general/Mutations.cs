@@ -336,6 +336,8 @@ public class Mutations
                     // Offset by hex offset
                     result.Position = pos + Hex.HexNeighbourOffset[(Hex.HEX_SIDE)side];
 
+                    // TODO: checking one or two extra hexes in the direction would make this succeed more often
+
                     // Check every possible rotation value.
                     for (int rotation = 0; rotation <= 5; ++rotation)
                     {
@@ -351,7 +353,7 @@ public class Mutations
         }
 
         // We didnt find an open spot, this doesn't make much sense
-        throw new Exception("Mutation code could not find a good position " +
+        throw new ArgumentException("Mutation code could not find a good position " +
             "for a new organelle");
     }
 
@@ -472,28 +474,28 @@ public class Mutations
                     changes++;
                     switch (random.Next(0, 5))
                     {
-                    case 0:
-                        newName.Insert(index, Vowels.Random(random)
-                            + Consonants.Random(random));
-                        break;
-                    case 1:
-                        newName.Insert(index, Consonants.Random(random)
-                            + Vowels.Random(random));
-                        break;
-                    case 2:
-                        newName.Insert(index, original + Consonants.Random(random));
-                        break;
-                    case 3:
-                        newName.Insert(index, Consonants.Random(random) + original);
-                        break;
-                    case 4:
-                        newName.Insert(index, original + Consonants.Random(random)
-                            + Vowels.Random(random));
-                        break;
-                    case 5:
-                        newName.Insert(index, Vowels.Random(random) +
-                            Consonants.Random(random) + original);
-                        break;
+                        case 0:
+                            newName.Insert(index, Vowels.Random(random)
+                                + Consonants.Random(random));
+                            break;
+                        case 1:
+                            newName.Insert(index, Consonants.Random(random)
+                                + Vowels.Random(random));
+                            break;
+                        case 2:
+                            newName.Insert(index, original + Consonants.Random(random));
+                            break;
+                        case 3:
+                            newName.Insert(index, Consonants.Random(random) + original);
+                            break;
+                        case 4:
+                            newName.Insert(index, original + Consonants.Random(random)
+                                + Vowels.Random(random));
+                            break;
+                        case 5:
+                            newName.Insert(index, Vowels.Random(random) +
+                                Consonants.Random(random) + original);
+                            break;
                     }
                 }
 
