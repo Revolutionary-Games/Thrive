@@ -8,4 +8,5 @@ script = ExtResource( 2 )
 
 [node name="DeathSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 1 )
+unit_size = 10.0
 autoplay = true
