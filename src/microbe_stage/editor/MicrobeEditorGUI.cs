@@ -25,6 +25,14 @@ public class MicrobeEditorGUI : Node
     public NodePath RedoButtonPath;
     [Export]
     public NodePath SymmetryButtonPath;
+    [Export]
+    public NodePath ATPBalanceLabelPath;
+    [Export]
+    public NodePath ATPProductionBarPath;
+    [Export]
+    public NodePath ATPConsumptionBarPath;
+
+    private const string ATP_BALANCE_DEFAULT_TEXT = "ATP Balance";
 
     private MicrobeEditor editor;
 
@@ -40,6 +48,9 @@ public class MicrobeEditorGUI : Node
     private TextureButton undoButton;
     private TextureButton redoButton;
     private TextureButton symmetryButton;
+    private Label aTPBalanceLabel;
+    private ProgressBar aTPProductionBar;
+    private ProgressBar aTPConsumptionBar;
 
     public override void _Ready()
     {
@@ -55,6 +66,9 @@ public class MicrobeEditorGUI : Node
         undoButton = GetNode<TextureButton>(UndoButtonPath);
         redoButton = GetNode<TextureButton>(RedoButtonPath);
         symmetryButton = GetNode<TextureButton>(SymmetryButtonPath);
+        aTPBalanceLabel = GetNode<Label>(ATPBalanceLabelPath);
+        aTPProductionBar = GetNode<ProgressBar>(ATPProductionBarPath);
+        aTPConsumptionBar = GetNode<ProgressBar>(ATPConsumptionBarPath);
 
         // Fade out for that smooth satisfying transition
         TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeOut, 0.5f);
@@ -96,6 +110,28 @@ public class MicrobeEditorGUI : Node
     public void UpdateSpeed(float speed)
     {
         speedLabel.Text = "Speed " + string.Format("{0:F1}", speed);
+    }
+
+    public void UpdateEnergyBalance(EnergyBalanceInfo energyBalance)
+    {
+        if (energyBalance.FinalBalance > 0)
+        {
+            aTPBalanceLabel.Text = ATP_BALANCE_DEFAULT_TEXT;
+            aTPBalanceLabel.AddColorOverride("font_color", new Color(1.0f, 1.0f, 1.0f, 1.0f));
+        }
+        else
+        {
+            aTPBalanceLabel.Text = ATP_BALANCE_DEFAULT_TEXT + " - ATP PRODUCTION TOO LOW!";
+            aTPBalanceLabel.AddColorOverride("font_color", new Color(1.0f, 0.2f, 0.2f, 1.0f));
+        }
+
+        float maxValue = Math.Max(energyBalance.TotalConsumption, energyBalance.TotalProduction);
+
+        aTPProductionBar.MaxValue = maxValue;
+        aTPProductionBar.Value = energyBalance.TotalProduction;
+
+        aTPConsumptionBar.MaxValue = maxValue;
+        aTPConsumptionBar.Value = energyBalance.TotalConsumption;
     }
 
     /// <summary>
