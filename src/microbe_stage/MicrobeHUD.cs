@@ -26,6 +26,8 @@ public class MicrobeHUD : Node
     private Label populationLabel;
     private Label patchLabel;
 
+    private PanelContainer extinctionBox;
+
     /// <summary>
     ///   The HUD bars is contained in this array to avoid
     ///   having tons of extra separate variables.
@@ -73,6 +75,7 @@ public class MicrobeHUD : Node
         hoveredItems = mouseHoverPanel.GetChild(0).GetChild(0).GetNode<VBoxContainer>("HoveredItems");
         populationLabel = GetNode<Label>("BottomRight/PopulationData/Value");
         patchLabel = GetNode<Label>("BottomBar/PatchLabel");
+        extinctionBox = GetNode<PanelContainer>("ExtinctionBox");
 
         OnEnterStageTransition();
     }
@@ -199,6 +202,15 @@ public class MicrobeHUD : Node
 
         TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.3f, false);
         TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.MoveToEditor));
+    }
+
+    public void ShowExtinctionBox()
+    {
+        if (!extinctionBox.Visible)
+        {
+            extinctionBox.Show();
+            extinctionBox.GetNode<AnimationPlayer>("AnimationPlayer").Play("FadeIn");
+        }
     }
 
     /// <summary>
@@ -392,10 +404,18 @@ public class MicrobeHUD : Node
             GD.PrintErr("can't get reproduction phosphates progress: ", e);
         }
 
-        // TODO: update the bars in the GUI
-        // reproductionProgress = totalProgress
-        // reproductionAmmoniaFraction = fractionOfAmmonia
-        // reproductionPhosphatesFraction = fractionOfPhosphates
+        foreach (TextureProgress bar in textureHudBars)
+        {
+            if (bar.Name == "AmmoniaReproductionBar")
+            {
+               bar.Value = fractionOfAmmonia * bar.MaxValue;
+            }
+
+            if (bar.Name == "PhosphateReproductionBar")
+            {
+                bar.Value = fractionOfPhosphates * bar.MaxValue;
+            }
+        }
     }
 
     private void UpdateATP()
