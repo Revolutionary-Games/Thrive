@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -393,10 +394,15 @@ public class MicrobeEditor : Node
     ///   Calculates the energy balance for a cell with the given organelles
     /// </summary>
     public void CalculateEnergyBalanceWithOrganellesAndMembraneType(
-        List<OrganelleTemplate> organelles, MembraneType membrane, Patch path = null)
+        List<OrganelleTemplate> organelles, MembraneType membrane, Patch patch = null)
     {
-        // TODO: fix
-        // ProcessSystem.ComputeEnergyBalance
+        if (patch == null)
+        {
+            patch = TargetPatch ?? CurrentGame.GameWorld.Map.CurrentPatch;
+        }
+
+        gui.UpdateEnergyBalance(ProcessSystem.ComputeEnergyBalance(organelles.Select((i) => i.Definition), patch.Biome,
+                membrane));
     }
 
     /// <summary>
@@ -405,7 +411,7 @@ public class MicrobeEditor : Node
     /// </summary>
     public void CalculateOrganelleEffectivenessInPatch(Patch patch = null)
     {
-        // TODO: fix
+        // TODO: fix (needed for the editor tooltips)
         // ProcessSystem.ComputeOrganelleProcessEfficiencies
         SimulationParameters.Instance.GetAllOrganelles();
     }

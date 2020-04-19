@@ -118,7 +118,7 @@ public class ProcessSystem
 
         var totalBalanceStationary =
             totalATPProduction - totalATPConsumption;
-        var totalBalance = totalBalanceStationary + totalMovementConsumption;
+        var totalBalance = totalBalanceStationary - totalMovementConsumption;
 
         // Finish building the result object
         result.TotalProduction = totalATPProduction;

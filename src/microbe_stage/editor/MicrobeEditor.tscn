@@ -1151,6 +1151,9 @@ SpeciesNameEditPath = NodePath("CellEditor/BottomBar/LowerBarCentre/MarginContai
 UndoButtonPath = NodePath("CellEditor/UndoButton")
 RedoButtonPath = NodePath("CellEditor/RedoButton")
 SymmetryButtonPath = NodePath("CellEditor/SymmetryButton")
+ATPBalanceLabelPath = NodePath("CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer/Label")
+ATPProductionBarPath = NodePath("CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer/AtpProductionBar")
+ATPConsumptionBarPath = NodePath("CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer/AtpConsumptionBar")
 
 [node name="LeftTopBar" type="Control" parent="MicrobeEditorGUI"]
 margin_right = 810.0
@@ -1381,22 +1384,24 @@ custom_styles/separator = SubResource( 10 )
 [node name="AtpProductionBar" type="ProgressBar" parent="MicrobeEditorGUI/CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer"]
 margin_top = 20.0
 margin_right = 318.0
-margin_bottom = 37.0
+margin_bottom = 35.0
 rect_min_size = Vector2( 0, 15 )
 mouse_filter = 1
 custom_styles/fg = SubResource( 11 )
 custom_styles/bg = SubResource( 12 )
 custom_fonts/font = SubResource( 13 )
+percent_visible = false
 
-[node name="AtpProductionBar2" type="ProgressBar" parent="MicrobeEditorGUI/CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer"]
-margin_top = 37.0
+[node name="AtpConsumptionBar" type="ProgressBar" parent="MicrobeEditorGUI/CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer"]
+margin_top = 35.0
 margin_right = 318.0
-margin_bottom = 54.0
+margin_bottom = 50.0
 rect_min_size = Vector2( 0, 15 )
 mouse_filter = 1
 custom_styles/fg = SubResource( 14 )
 custom_styles/bg = SubResource( 12 )
 custom_fonts/font = SubResource( 13 )
+percent_visible = false
 
 [node name="LeftPanel" type="Control" parent="MicrobeEditorGUI/CellEditor"]
 anchor_bottom = 1.0
