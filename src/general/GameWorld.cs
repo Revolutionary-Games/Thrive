@@ -111,22 +111,21 @@ public class GameWorld
     /// </summary>
     public void GenerateRandomSpeciesForFreeBuild()
     {
-        throw new NotImplementedException();
+        var random = new Random();
 
-        // auto@ patches = map.getPatches();
-        //
-        // for (uint i = 0; i < patches.length(); ++i)
-        // {
-        //
-        //     const int species = GetEngine().GetRandom().GetNumber(1, 4);
-        //     for (int count = 0; count < species; ++count)
-        //     {
-        //
-        //         patches[i].addSpecies(createRandomSpecies(),
-        //             GetEngine().GetRandom().GetNumber(INITIAL_SPLIT_POPULATION_MIN,
-        //                 INITIAL_SPLIT_POPULATION_MAX));
-        //     }
-        // }
+        foreach (var entry in Map.Patches)
+        {
+            int speciesToAdd = random.Next(1, 4);
+
+            for (int i = 0; i < speciesToAdd; ++i)
+            {
+                int population = Constants.INITIAL_SPECIES_POPULATION +
+                    random.Next(Constants.INITIAL_FREEBUILD_POPULATION_VARIANCE_MIN,
+                        Constants.INITIAL_FREEBUILD_POPULATION_VARIANCE_MAX);
+
+                entry.Value.AddSpecies(mutator.CreateRandomSpecies(NewMicrobeSpecies()), population);
+            }
+        }
     }
 
     /// <summary>
