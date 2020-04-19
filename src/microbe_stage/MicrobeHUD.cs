@@ -392,10 +392,18 @@ public class MicrobeHUD : Node
             GD.PrintErr("can't get reproduction phosphates progress: ", e);
         }
 
-        // TODO: update the bars in the GUI
-        // reproductionProgress = totalProgress
-        // reproductionAmmoniaFraction = fractionOfAmmonia
-        // reproductionPhosphatesFraction = fractionOfPhosphates
+        foreach (TextureProgress bar in textureHudBars)
+        {
+            if (bar.Name == "AmmoniaReproductionBar")
+            {
+               bar.Value = fractionOfAmmonia * bar.MaxValue;
+            }
+
+            if (bar.Name == "PhosphateReproductionBar")
+            {
+                bar.Value = fractionOfPhosphates * bar.MaxValue;
+            }
+        }
     }
 
     private void UpdateATP()
