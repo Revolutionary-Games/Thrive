@@ -329,7 +329,7 @@ public class CompoundCloudPlane : CSGMesh
             // Can't absorb
             if (freeSpace < generousAmount)
                 continue;
-  
+
             float taken = slot.TakeCompound(localX, localY, fractionToTake) *
                 Constants.ABSORPTION_RATIO;
             storage.AddCompound(compound, taken);
