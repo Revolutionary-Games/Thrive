@@ -788,7 +788,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
     public override void _Process(float delta)
     {
-        // TODO: make this take elapsed time into account
         HandleCompoundAbsorbing(delta);
 
         // Movement factor is reset here. HandleEngulfing will set the right value

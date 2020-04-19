@@ -306,14 +306,11 @@ public class CompoundCloudPlane : CSGMesh
     /// <summary>
     ///   Absorbs compounds from this cloud
     /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     TODO: this doesn't take elapsed time into account
-    ///   </para>
-    /// </remarks>
     public void AbsorbCompounds(int localX, int localY, CompoundBag storage,
         Dictionary<string, float> totals, float delta)
     {
+        var fractionToTake = 1.0f - (float)Math.Pow(0.5f, delta / Constants.CLOUD_ABSORPTION_HALF_LIFE);
+
         foreach (var slot in slots)
         {
             // Overestimate of how much compounds we get
@@ -332,9 +329,7 @@ public class CompoundCloudPlane : CSGMesh
             // Can't absorb
             if (freeSpace < generousAmount)
                 continue;
-
-            var fractionToTake = 1.0f - (float)Math.Pow(0.5f, delta / Constants.CLOUD_ABSORPTION_HALF_LIFE);
-
+  
             float taken = slot.TakeCompound(localX, localY, fractionToTake) *
                 Constants.ABSORPTION_RATIO;
             storage.AddCompound(compound, taken);
