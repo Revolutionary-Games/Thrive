@@ -18,9 +18,9 @@ public class FluidSystem
 
     private readonly Vector2 scale = new Vector2(0.05f, 0.05f);
 
-    private float millisecondsPassed = 0.0f;
-
     private readonly Node worldRoot;
+
+    private float millisecondsPassed = 0.0f;
 
     public FluidSystem(Node worldRoot)
     {

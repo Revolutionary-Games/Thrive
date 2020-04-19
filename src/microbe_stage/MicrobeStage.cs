@@ -159,7 +159,8 @@ public class MicrobeStage : Node
         playerRespawnTimer = Constants.PLAYER_RESPAWN_TIME;
     }
 
-    public override void _PhysicsProcess(float delta) {
+    public override void _PhysicsProcess(float delta)
+    {
         FluidSystem.PhysicsProcess(delta);
     }
 
