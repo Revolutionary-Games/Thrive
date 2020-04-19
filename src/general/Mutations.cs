@@ -472,28 +472,28 @@ public class Mutations
                     changes++;
                     switch (random.Next(0, 5))
                     {
-                        case 0:
-                            newName.Insert(index, Vowels.Random(random)
-                                + Consonants.Random(random));
-                            break;
-                        case 1:
-                            newName.Insert(index, Consonants.Random(random)
-                                + Vowels.Random(random));
-                            break;
-                        case 2:
-                            newName.Insert(index, original + Consonants.Random(random));
-                            break;
-                        case 3:
-                            newName.Insert(index, Consonants.Random(random) + original);
-                            break;
-                        case 4:
-                            newName.Insert(index, original + Consonants.Random(random)
-                                + Vowels.Random(random));
-                            break;
-                        case 5:
-                            newName.Insert(index, Vowels.Random(random) +
-                                Consonants.Random(random) + original);
-                            break;
+                    case 0:
+                        newName.Insert(index, Vowels.Random(random)
+                            + Consonants.Random(random));
+                        break;
+                    case 1:
+                        newName.Insert(index, Consonants.Random(random)
+                            + Vowels.Random(random));
+                        break;
+                    case 2:
+                        newName.Insert(index, original + Consonants.Random(random));
+                        break;
+                    case 3:
+                        newName.Insert(index, Consonants.Random(random) + original);
+                        break;
+                    case 4:
+                        newName.Insert(index, original + Consonants.Random(random)
+                            + Vowels.Random(random));
+                        break;
+                    case 5:
+                        newName.Insert(index, Vowels.Random(random) +
+                            Consonants.Random(random) + original);
+                        break;
                     }
                 }
 
@@ -523,7 +523,7 @@ public class Mutations
             int index = newName.Length - i - 1;
 
             bool isPermute = false;
-            if (i > 1)
+            if (i > 2)
             {
                 var part1 = newName.ToString(index - 1, 2);
                 var part2 = newName.ToString(index - 2, 2);
