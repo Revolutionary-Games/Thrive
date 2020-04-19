@@ -18,19 +18,43 @@ public class FluidSystem
 
     private readonly Vector2 scale = new Vector2(0.05f, 0.05f);
 
+    private readonly Node worldRoot;
+
     private float millisecondsPassed = 0.0f;
 
-    public FluidSystem()
+    public FluidSystem(Node worldRoot)
     {
         noiseDisturbancesX = new PerlinNoise(69);
         noiseDisturbancesY = new PerlinNoise(13);
         noiseCurrentsX = new PerlinNoise(420);
         noiseCurrentsY = new PerlinNoise(1337);
+        this.worldRoot = worldRoot;
     }
 
     public void Process(float delta)
     {
         millisecondsPassed += delta / 1000.0f;
+    }
+
+    public void PhysicsProcess(float delta)
+    {
+        var nodes = worldRoot.GetTree().GetNodesInGroup(Constants.FLUID_EFFECT_GROUP);
+
+        foreach (Node entity in nodes)
+        {
+            var body = entity as RigidBody;
+
+            if (body == null)
+            {
+                GD.PrintErr("A node has been put in the fluid effect group " +
+                    "but it isn't a rigidbody");
+                continue;
+            }
+
+            var pos = new Vector2(body.Translation.x, body.Translation.z);
+            var vel = VelocityAt(pos) * Constants.MAX_FORCE_APPLIED_BY_CURRENTS;
+            body.ApplyCentralImpulse(new Vector3(vel.x, 0, vel.y));
+        }
     }
 
     public Vector2 VelocityAt(Vector2 position)

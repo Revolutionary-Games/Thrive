@@ -116,8 +116,6 @@ public class FloatingChunk : RigidBody, ISpawned
     {
         if (ContainedCompounds != null)
             VentCompounds(delta);
-
-        // TODO: apply fluid system force
     }
 
     /// <summary>

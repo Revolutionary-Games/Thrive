@@ -67,6 +67,7 @@ public class MicrobeStage : Node
         TimedLifeSystem = new TimedLifeSystem(rootOfDynamicallySpawned);
         ProcessSystem = new ProcessSystem(rootOfDynamicallySpawned);
         microbeAISystem = new MicrobeAISystem(rootOfDynamicallySpawned);
+        FluidSystem = new FluidSystem(rootOfDynamicallySpawned);
 
         HUD.Init(this);
 
@@ -85,8 +86,6 @@ public class MicrobeStage : Node
         // Make sure settings is loaded
         if (Settings.Instance == null)
             GD.PrintErr("Settings load problem");
-
-        FluidSystem = new FluidSystem();
 
         spawner.Init();
         Clouds.Init(FluidSystem);
@@ -160,6 +159,11 @@ public class MicrobeStage : Node
         playerRespawnTimer = Constants.PLAYER_RESPAWN_TIME;
     }
 
+    public override void _PhysicsProcess(float delta)
+    {
+        FluidSystem.PhysicsProcess(delta);
+    }
+
     public override void _Process(float delta)
     {
         FluidSystem.Process(delta);
@@ -170,7 +174,10 @@ public class MicrobeStage : Node
         if (gameOver)
         {
             // Player is extinct and has lost the game
-            // TODO: show the game lost popup if not already visible
+
+            // Show the game lost popup if not already visible
+            HUD.ShowExtinctionBox();
+
             return;
         }
 

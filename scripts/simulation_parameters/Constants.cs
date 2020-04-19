@@ -66,6 +66,11 @@ public class Constants
     public const float MAX_SPAWN_DENSITY = 20000.0f;
 
     /// <summary>
+    ///   The maximum force that can be applied by currents in the fluid system
+    /// </summary>
+    public const float MAX_FORCE_APPLIED_BY_CURRENTS = 0.525f;
+
+    /// <summary>
     ///   Added 2 seconds here to make the random implementation look a bit better
     /// </summary>
     public const float MICROBE_AI_THINK_INTERVAL = 2.3f;
@@ -305,6 +310,11 @@ public class Constants
     ///   All Nodes tagged with this are handled by the timed life system for despawning
     /// </summary>
     public const string TIMED_GROUP = "timed";
+
+    /// <summary>
+    ///   All RigidBody nodes tagged with this are affected by currents by the fluid system
+    /// </summary>
+    public const string FLUID_EFFECT_GROUP = "fluid_effect";
 
     /// <summary>
     ///   All Nodes tagged with this are handled by the process system
