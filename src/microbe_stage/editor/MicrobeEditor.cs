@@ -88,6 +88,11 @@ public class MicrobeEditor : Node
     /// </summary>
     private List<SceneDisplayer> placedModels;
 
+    /// <summary>
+    ///   True once auto-evo (and possibly other stuff) we need to wait for is ready
+    /// </summary>
+    private bool ready = false;
+
     private int organelleRot = 0;
 
     public MicrobeCamera Camera
@@ -368,6 +373,21 @@ public class MicrobeEditor : Node
 
     public override void _Process(float delta)
     {
+        if (!ready)
+        {
+            if (!CurrentGame.GameWorld.IsAutoEvoFinished())
+            {
+                gui.SetLoadingText("Loading Microbe Editor", "Waiting for auto-evo: " +
+                    CurrentGame.GameWorld.GetAutoEvoStatus());
+                return;
+            }
+            else
+            {
+                ready = true;
+                gui.SetLoadingStatus(false);
+            }
+        }
+
         // We move all the hexes and the hover hexes to 0,0,0 so that
         // the editor is free to replace them wherever
         // TODO: it would be way better if we didn't have to do this and instead only updated
@@ -701,6 +721,19 @@ public class MicrobeEditor : Node
     /// </summary>
     private void InitEditor()
     {
+        // For now we only show a loading screen if auto-evo is not ready yet
+        if (!CurrentGame.GameWorld.IsAutoEvoFinished())
+        {
+            ready = false;
+            gui.SetLoadingStatus(true);
+            gui.SetLoadingText("Loading Microbe Editor", CurrentGame.GameWorld.GetAutoEvoStatus());
+        }
+        else
+        {
+            ready = true;
+            gui.SetLoadingStatus(false);
+        }
+
         MutationPoints = Constants.BASE_MUTATION_POINTS;
         editedMicrobeOrganelles = new OrganelleLayout<OrganelleTemplate>(
             OnOrganelleAdded, OnOrganelleRemoved);

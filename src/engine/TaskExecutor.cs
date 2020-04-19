@@ -169,6 +169,11 @@ public class TaskExecutor
                 else if (command.CommandType == ThreadCommand.Type.Task)
                 {
                     command.Task.RunSynchronously();
+
+                    // Make sure task exceptions aren't ignored.
+                    // Could perhaps in the future find some othre way to handle this
+                    if (command.Task.Exception != null)
+                        throw command.Task.Exception;
                 }
                 else
                 {

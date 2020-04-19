@@ -92,6 +92,8 @@
                         }
                     }
 
+                    // All species even ones not in a patch need to have their population numbers added
+                    // as the simulation expects to be able to get the populations
                     parameters.Results.AddPopulationResultForSpecies(currentSpecies, patch, currentPopulation);
                 }
             }
