@@ -1169,9 +1169,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             // Return the first cell to its normal, non duplicated cell arrangement.
             if (!Species.PlayerSpecies)
             {
-                // TODO: fix
-                // MicrobeOperations::alterSpeciesPopulation(species,
-                //     CREATURE_REPRODUCE_POPULATION_GAIN, "reproduced");
+                GameWorld.AlterSpeciesPopulation(Species,
+                    Constants.CREATURE_REPRODUCE_POPULATION_GAIN, "reproduced");
             }
 
             ResetOrganelleLayout();
@@ -1229,7 +1228,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             // Else If we were but are no longer, being engulfed
             wasBeingEngulfed = false;
 
-            if (!IsPlayerMicrobe && Species.PlayerSpecies)
+            if (!IsPlayerMicrobe && !Species.PlayerSpecies)
             {
                 hasEscaped = true;
                 escapeInterval = 0;
@@ -1247,9 +1246,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
                 hasEscaped = false;
                 escapeInterval = 0;
 
-                // TODO: apply escape population gain
-                // MicrobeOperations::alterSpeciesPopulation(species,
-                //     Constants.CREATURE_ESCAPE_POPULATION_GAIN, "escape engulfing");
+                GameWorld.AlterSpeciesPopulation(Species,
+                    Constants.CREATURE_ESCAPE_POPULATION_GAIN, "escape engulfing");
             }
         }
 
