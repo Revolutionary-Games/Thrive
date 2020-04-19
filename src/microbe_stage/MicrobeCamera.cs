@@ -115,6 +115,12 @@ public class MicrobeCamera : Camera
 
             Translation = Translation.LinearInterpolate(target, InterpolateSpeed);
         }
+        else
+        {
+            var target = new Vector3(Translation.x, CameraHeight, Translation.z);
+
+            Translation = Translation.LinearInterpolate(target, InterpolateSpeed);
+        }
 
         if (BackgroundPlane != null)
         {
