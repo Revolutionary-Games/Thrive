@@ -337,25 +337,35 @@ public class MicrobeEditor : Node
         QueueFree();
     }
 
-    public override void _Input(InputEvent @event)
+    public override void _UnhandledInput(InputEvent @event)
     {
         if (@event.IsActionPressed("e_rotate_right"))
         {
-            GD.Print("Editor: Rotate right");
+            RotateRight();
         }
 
         if (@event.IsActionPressed("e_rotate_left"))
         {
-            GD.Print("Editor: Rotate left");
+            RotateLeft();
         }
 
         if (@event.IsActionPressed("e_redo"))
         {
-            GD.Print("Editor: redo");
+            Redo();
         }
         else if (@event.IsActionPressed("e_undo"))
         {
-            GD.Print("Editor: undo");
+            Undo();
+        }
+
+        if (@event.IsActionPressed("e_primary"))
+        {
+            PlaceOrganelle();
+        }
+
+        if (@event.IsActionPressed("e_secondary"))
+        {
+            RemoveOrganelle();
         }
     }
 
@@ -484,7 +494,7 @@ public class MicrobeEditor : Node
 
     public void PlaceOrganelle()
     {
-        if (ActiveActionName != string.Empty)
+        if (ActiveActionName != null)
             AddOrganelle(ActiveActionName);
     }
 
@@ -768,7 +778,7 @@ public class MicrobeEditor : Node
         CreateMutatedSpeciesCopy(species);
 
         // Reset to cytoplasm if nothing is selected
-        if (ActiveActionName == string.Empty)
+        if (ActiveActionName == null)
         {
             gui.OnOrganelleToPlaceSelected("cytoplasm");
         }
@@ -813,7 +823,7 @@ public class MicrobeEditor : Node
         usedHoverOrganelle = 0;
 
         // Show the organelle that is about to be placed
-        if (ActiveActionName != string.Empty && ShowHover)
+        if (ActiveActionName != null && ShowHover)
         {
             GetMouseHex(out int q, out int r);
 
@@ -854,7 +864,7 @@ public class MicrobeEditor : Node
     /// </summary>
     private void RenderHighlightedOrganelle(int unused, int q, int r, int rotation)
     {
-        if (ActiveActionName == string.Empty)
+        if (ActiveActionName == null)
             return;
 
         // TODO: this should be changed into a function parameter
@@ -1152,7 +1162,7 @@ public class MicrobeEditor : Node
         UpdateAlreadyPlacedVisuals();
 
         // send to gui current status of cell
-        gui.UpdateSize();
+        gui.UpdateSize(MicrobeHexSize);
         gui.UpdateGuiButtonStatus(HasNucleus);
 
         // TODO: if this turns out to be expensive this should only be
@@ -1163,7 +1173,7 @@ public class MicrobeEditor : Node
             editedMicrobeOrganelles.Organelles, Membrane, TargetPatch);
 
         // TODO: this might also be expensive
-        gui.UpdateSpeed();
+        gui.UpdateSpeed(CalculateSpeed());
     }
 
     /// <summary>

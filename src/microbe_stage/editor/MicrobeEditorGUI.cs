@@ -6,15 +6,55 @@ using Godot;
 /// </summary>
 public class MicrobeEditorGUI : Node
 {
+    // The labels to update are at really long relative paths, so they are set in the Godot editor
+    [Export]
+    public NodePath SizeLabelPath;
+    [Export]
+    public NodePath SpeedLabelPath;
+    [Export]
+    public NodePath GenerationLabelPath;
+    [Export]
+    public NodePath MutationPointsLabelPath;
+    [Export]
+    public NodePath MutationPointsBarPath;
+    [Export]
+    public NodePath SpeciesNameEditPath;
+    [Export]
+    public NodePath UndoButtonPath;
+    [Export]
+    public NodePath RedoButtonPath;
+    [Export]
+    public NodePath SymmetryButtonPath;
+
     private MicrobeEditor editor;
 
     private Godot.Collections.Array organelleSelectionElements;
     private Godot.Collections.Array membraneSelectionElements;
 
+    private Label sizeLabel;
+    private Label speedLabel;
+    private Label generationLabel;
+    private Label mutationPointsLabel;
+    private TextureProgress mutationPointsBar;
+    private LineEdit speciesNameEdit;
+    private TextureButton undoButton;
+    private TextureButton redoButton;
+    private TextureButton symmetryButton;
+
     public override void _Ready()
     {
         organelleSelectionElements = GetTree().GetNodesInGroup("OrganelleSelectionElement");
         membraneSelectionElements = GetTree().GetNodesInGroup("MembraneSelectionElement");
+
+        sizeLabel = GetNode<Label>(SizeLabelPath);
+        speedLabel = GetNode<Label>(SpeedLabelPath);
+        generationLabel = GetNode<Label>(GenerationLabelPath);
+        mutationPointsLabel = GetNode<Label>(MutationPointsLabelPath);
+        mutationPointsBar = GetNode<TextureProgress>(MutationPointsBarPath);
+        speciesNameEdit = GetNode<LineEdit>(SpeciesNameEditPath);
+        undoButton = GetNode<TextureButton>(UndoButtonPath);
+        redoButton = GetNode<TextureButton>(RedoButtonPath);
+        symmetryButton = GetNode<TextureButton>(SymmetryButtonPath);
 
         // Fade out for that smooth satisfying transition
         TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeOut, 0.5f);
@@ -36,35 +76,26 @@ public class MicrobeEditorGUI : Node
 
     public override void _Process(float delta)
     {
-        // TODO: set these
-        // editor.mutationPoints;
-        // Constants.BASE_MUTATION_POINTS;
+        // Update mutation points
+        mutationPointsBar.MaxValue = Constants.BASE_MUTATION_POINTS;
+        mutationPointsBar.Value = editor.MutationPoints;
+        mutationPointsLabel.Text = string.Format("{0:F0} / {1:F0}", editor.MutationPoints,
+            Constants.BASE_MUTATION_POINTS);
     }
 
-    public void OnPlaceOrganelleClicked()
+    public void UpdateSize(int size)
     {
-        editor.PlaceOrganelle();
-    }
-
-    public void OnRemoveOrganelleClicked()
-    {
-        editor.RemoveOrganelle();
-    }
-
-    public void UpdateSize()
-    {
-        // var size = editor.ActualMicrobeSize;
+        sizeLabel.Text = "Size " + size.ToString();
     }
 
     public void UpdateGeneration(int generation)
     {
-        // TODO: fix
+        generationLabel.Text = "Generation " + generation.ToString();
     }
 
-    public void UpdateSpeed()
+    public void UpdateSpeed(float speed)
     {
-        // TODO: fix
-        // var speed = editor.MicrobeSpeed;
+        speedLabel.Text = "Speed " + string.Format("{0:F1}", speed);
     }
 
     /// <summary>
@@ -72,6 +103,7 @@ public class MicrobeEditorGUI : Node
     /// </summary>
     internal void OnMouseEnter()
     {
+        editor.ShowHover = false;
     }
 
     /// <summary>
@@ -80,18 +112,17 @@ public class MicrobeEditorGUI : Node
     /// </summary>
     internal void OnMouseExit()
     {
+        editor.ShowHover = true;
     }
 
-    internal void SetUndoButtonStatus(bool v)
+    internal void SetUndoButtonStatus(bool enabled)
     {
-        // TODO: fix
-        // throw new NotImplementedException();
+        undoButton.Disabled = !enabled;
     }
 
-    internal void SetRedoButtonStatus(bool v)
+    internal void SetRedoButtonStatus(bool enabled)
     {
-        // TODO: fix
-        // throw new NotImplementedException();
+        redoButton.Disabled = !enabled;
     }
 
     internal void NotifyFreebuild(object freebuilding)
@@ -146,6 +177,11 @@ public class MicrobeEditorGUI : Node
         TransitionManager.Instance.StartTransitions(editor, nameof(MicrobeEditor.OnFinishEditing));
     }
 
+    internal void OnSymmetryClicked()
+    {
+        // TODO: fix
+    }
+
     internal void OnMembraneSelected(string membrane)
     {
         // todo: Send selected membrane to the editor script
@@ -175,6 +211,8 @@ public class MicrobeEditorGUI : Node
     {
         // TODO: fix
         // throw new NotImplementedException();
+
+        speciesNameEdit.Text = name;
     }
 
     private void SetCellTab(string tab)

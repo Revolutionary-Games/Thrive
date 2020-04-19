@@ -1142,6 +1142,15 @@ __meta__ = {
 [node name="MicrobeEditorGUI" type="Node" parent="."]
 pause_mode = 2
 script = ExtResource( 45 )
+SizeLabelPath = NodePath("CellEditor/BottomBar/LowerBarCentre/MarginContainer/HBoxContainer/SpeciesName/SizeLabel")
+SpeedLabelPath = NodePath("CellEditor/BottomBar/LowerBarCentre/MarginContainer/HBoxContainer/SpeciesName/SpeedLabel")
+GenerationLabelPath = NodePath("CellEditor/BottomBar/LowerBarCentre/MarginContainer/HBoxContainer/SpeciesName/GenerationLabel")
+MutationPointsLabelPath = NodePath("LeftTopBar/HBoxContainer/MPBox/MarginContainer/HBoxContainer/MPBar/HBoxContainer/Value")
+MutationPointsBarPath = NodePath("LeftTopBar/HBoxContainer/MPBox/MarginContainer/HBoxContainer/MPBar")
+SpeciesNameEditPath = NodePath("CellEditor/BottomBar/LowerBarCentre/MarginContainer/HBoxContainer/SpeciesName/SpeciesNameBox/MarginContainer/LineEdit")
+UndoButtonPath = NodePath("CellEditor/UndoButton")
+RedoButtonPath = NodePath("CellEditor/RedoButton")
+SymmetryButtonPath = NodePath("CellEditor/SymmetryButton")
 
 [node name="LeftTopBar" type="Control" parent="MicrobeEditorGUI"]
 margin_right = 810.0
@@ -3265,7 +3274,7 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer"]
-margin_right = 304.0
+margin_right = 313.0
 margin_bottom = 821.0
 mouse_filter = 1
 custom_constants/margin_top = 10
@@ -3278,7 +3287,7 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 304.0
+margin_right = 313.0
 margin_bottom = 811.0
 custom_constants/separation = 10
 
@@ -4123,9 +4132,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -120.0
-margin_top = -80.0
+margin_top = -81.0
 margin_right = -40.0
-margin_bottom = -40.0
+margin_bottom = -41.0
 focus_mode = 0
 enabled_focus_mode = 0
 texture_normal = ExtResource( 32 )
@@ -4144,6 +4153,9 @@ margin_left = -40.0
 margin_top = -20.0
 margin_bottom = 20.0
 texture = ExtResource( 35 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="FinishButton" type="Button" parent="MicrobeEditorGUI/CellEditor"]
 anchor_left = 1.0
@@ -4303,10 +4315,13 @@ text = "Exit"
 [connection signal="pressed" from="MicrobeEditorGUI/CellEditor/BottomBar/MenuButton" to="MicrobeEditorGUI" method="MenuButtonPressed"]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/SymmetryButton" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/SymmetryButton" to="MicrobeEditorGUI" method="OnMouseExit"]
+[connection signal="pressed" from="MicrobeEditorGUI/CellEditor/SymmetryButton" to="MicrobeEditorGUI" method="OnSymmetryClicked"]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/RedoButton" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/RedoButton" to="MicrobeEditorGUI" method="OnMouseExit"]
+[connection signal="pressed" from="MicrobeEditorGUI/CellEditor/RedoButton" to="." method="Redo"]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/UndoButton" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/UndoButton" to="MicrobeEditorGUI" method="OnMouseExit"]
+[connection signal="pressed" from="MicrobeEditorGUI/CellEditor/UndoButton" to="." method="Undo"]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/FinishButton" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/FinishButton" to="MicrobeEditorGUI" method="OnMouseExit"]
 [connection signal="pressed" from="MicrobeEditorGUI/CellEditor/FinishButton" to="MicrobeEditorGUI" method="OnFinishEditingClicked"]
