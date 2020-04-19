@@ -170,7 +170,10 @@ public class MicrobeStage : Node
         if (gameOver)
         {
             // Player is extinct and has lost the game
-            // TODO: show the game lost popup if not already visible
+
+            // Show the game lost popup if not already visible
+            HUD.ShowExtinctionBox();
+
             return;
         }
 
