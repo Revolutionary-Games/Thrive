@@ -274,8 +274,10 @@ public class MicrobeEditor : Node
         {
             GD.Print("Creating new microbe stage as there isn't one yet");
 
-            // TODO: fix
-            throw new NotImplementedException();
+            var scene = GD.Load<PackedScene>("res://src/microbe_stage/MicrobeStage.tscn");
+
+            ReturnToStage = (MicrobeStage)scene.Instance();
+            ReturnToStage.CurrentGame = CurrentGame;
         }
 
         // Apply changes to the species organelles
@@ -330,10 +332,11 @@ public class MicrobeEditor : Node
             playerCell.ApplySpecies(editedSpecies);
         }
 
-        ReturnToStage.OnReturnFromEditor();
         var parent = GetParent();
         parent.RemoveChild(this);
         parent.AddChild(ReturnToStage);
+        ReturnToStage.OnReturnFromEditor();
+
         QueueFree();
     }
 
