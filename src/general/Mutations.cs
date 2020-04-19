@@ -523,7 +523,7 @@ public class Mutations
             int index = newName.Length - i - 1;
 
             bool isPermute = false;
-            if (i > 2)
+            if (index - 2 > 0 && i > 1)
             {
                 var part1 = newName.ToString(index - 1, 2);
                 var part2 = newName.ToString(index - 2, 2);

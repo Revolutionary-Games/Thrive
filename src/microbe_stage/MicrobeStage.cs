@@ -245,6 +245,7 @@ public class MicrobeStage : Node
         // Make sure player is spawned
         SpawnPlayer();
 
+        // Update the player's cell
         Player.ApplySpecies(Player.Species);
 
         // Spawn another cell from the player species
