@@ -37,6 +37,18 @@ public class MicrobeEditorGUI : Node
     public NodePath ExternalEffectsLabelPath;
     [Export]
     public NodePath MapDrawerPath;
+    [Export]
+    public NodePath PatchNothingSelectedPath;
+    [Export]
+    public NodePath PatchDetailsPath;
+    [Export]
+    public NodePath PatchNamePath;
+    [Export]
+    public NodePath PatchPlayerHerePath;
+    [Export]
+    public NodePath PatchBiomePath;
+    [Export]
+    public NodePath MoveToPatchButtonPath;
 
     private const string ATP_BALANCE_DEFAULT_TEXT = "ATP Balance";
 
@@ -61,6 +73,12 @@ public class MicrobeEditorGUI : Node
     private Label autoEvoLabel;
     private Label externalEffectsLabel;
     private PatchMapDrawer mapDrawer;
+    private Control patchNothingSelected;
+    private Control patchDetails;
+    private Label patchName;
+    private Control patchPlayerHere;
+    private Label patchBiome;
+    private Button moveToPatchButton;
 
     private bool inEditorTab = false;
 
@@ -86,6 +104,17 @@ public class MicrobeEditorGUI : Node
         autoEvoLabel = GetNode<Label>(AutoEvoLabelPath);
         externalEffectsLabel = GetNode<Label>(ExternalEffectsLabelPath);
         mapDrawer = GetNode<PatchMapDrawer>(MapDrawerPath);
+        patchNothingSelected = GetNode<Control>(PatchNothingSelectedPath);
+        patchDetails = GetNode<Control>(PatchDetailsPath);
+        patchName = GetNode<Label>(PatchNamePath);
+        patchPlayerHere = GetNode<Control>(PatchPlayerHerePath);
+        patchBiome = GetNode<Label>(PatchBiomePath);
+        moveToPatchButton = GetNode<Button>(MoveToPatchButtonPath);
+
+        mapDrawer.OnSelectedPatchChanged = (drawer) =>
+        {
+            UpdateShownPatchDetails();
+        };
 
         // Fade out for that smooth satisfying transition
         TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeOut, 0.5f);
@@ -117,6 +146,21 @@ public class MicrobeEditorGUI : Node
     public void SetMap(PatchMap map)
     {
         mapDrawer.Map = map;
+    }
+
+    public void UpdatePlayerPatch(Patch patch)
+    {
+        if (patch == null)
+        {
+            mapDrawer.PlayerPatch = editor.CurrentPatch;
+        }
+        else
+        {
+            mapDrawer.PlayerPatch = patch;
+        }
+
+        // Just in case this didn't get called already. Note that this may result in duplicate calls here
+        UpdateShownPatchDetails();
     }
 
     public void UpdateSize(int size)
@@ -290,6 +334,14 @@ public class MicrobeEditorGUI : Node
         speciesNameEdit.Text = name;
     }
 
+    private void MoveToPatchClicked()
+    {
+        var target = mapDrawer.SelectedPatch;
+
+        if (editor.IsPatchMoveValid(target))
+            editor.SetPlayerPatch(target);
+    }
+
     private void SetEditorTab(string tab)
     {
         // Hide all
@@ -383,5 +435,30 @@ public class MicrobeEditorGUI : Node
     {
         GUICommon.Instance.PlayButtonPressSound();
         GetTree().Quit();
+    }
+
+    private void UpdateShownPatchDetails()
+    {
+        var patch = mapDrawer.SelectedPatch;
+
+        if (patch == null)
+        {
+            patchDetails.Visible = false;
+            patchNothingSelected.Visible = true;
+
+            return;
+        }
+
+        patchDetails.Visible = true;
+        patchNothingSelected.Visible = false;
+
+        patchName.Text = patch.Name;
+        patchBiome.Text = "Biome: " + patch.Biome.Name;
+        patchPlayerHere.Visible = editor.CurrentPatch == patch;
+
+        // TODO: fix (show patch details like before)
+
+        // Enable move to patch button if this is a valid move
+        moveToPatchButton.Disabled = !editor.IsPatchMoveValid(patch);
     }
 }

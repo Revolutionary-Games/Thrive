@@ -25,15 +25,21 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+IconPath = NodePath("MarginContainer/MarginContainer/TextureRect")
+HighlightPanelPath = NodePath("HoveredHighlight")
+MarkPanelPath = NodePath("MarginContainer/PlayerHereHighlight")
 
-[node name="HoveredHighLight" type="Panel" parent="."]
+[node name="HoveredHighlight" type="Panel" parent="."]
+visible = false
 margin_right = 64.0
 margin_bottom = 64.0
+mouse_filter = 1
 custom_styles/panel = SubResource( 1 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 margin_right = 64.0
 margin_bottom = 64.0
+mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 4
@@ -42,10 +48,12 @@ custom_constants/margin_left = 4
 custom_constants/margin_bottom = 4
 
 [node name="PlayerHereHighlight" type="Panel" parent="MarginContainer"]
+visible = false
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 60.0
 margin_bottom = 60.0
+mouse_filter = 1
 custom_styles/panel = SubResource( 2 )
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
@@ -53,6 +61,7 @@ margin_left = 4.0
 margin_top = 4.0
 margin_right = 60.0
 margin_bottom = 60.0
+mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 1
@@ -68,3 +77,5 @@ margin_bottom = 55.0
 texture = ExtResource( 1 )
 expand = true
 stretch_mode = 6
+[connection signal="mouse_entered" from="." to="." method="OnMouseEnter"]
+[connection signal="mouse_exited" from="." to="." method="OnMouseExit"]

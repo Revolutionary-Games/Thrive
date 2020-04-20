@@ -9,11 +9,6 @@ using Godot;
 public class MicrobeEditor : Node
 {
     /// <summary>
-    ///   Where the player wants to move after editing
-    /// </summary>
-    public Patch TargetPatch = null;
-
-    /// <summary>
     ///   The new to set on the species after exiting
     /// </summary>
     public string NewName;
@@ -38,6 +33,19 @@ public class MicrobeEditor : Node
     private Material validMaterial;
     private PackedScene hexScene;
     private PackedScene modelScene;
+
+    /// <summary>
+    ///   Where the player wants to move after editing
+    /// </summary>
+    private Patch targetPatch = null;
+
+    /// <summary>
+    ///   When false the player is no longer allowed to move patches (other than going back to where they were at the
+    ///   start)
+    /// </summary>
+    private bool canStillMove;
+
+    private Patch playerPatchOnEntry;
 
     /// <summary>
     ///   The hexes that are positioned under the cursor to show where
@@ -210,6 +218,17 @@ public class MicrobeEditor : Node
         }
     }
 
+    /// <summary>
+    ///   Returns the current patch the player is in
+    /// </summary>
+    public Patch CurrentPatch
+    {
+        get
+        {
+            return targetPatch ?? playerPatchOnEntry;
+        }
+    }
+
     public override void _Ready()
     {
         camera = GetNode<MicrobeCamera>("PrimaryCamera");
@@ -325,10 +344,10 @@ public class MicrobeEditor : Node
         editedSpecies.MembraneRigidity = Rigidity;
 
         // Move patches
-        if (TargetPatch != null)
+        if (targetPatch != null)
         {
-            GD.Print("MicrobeEditor: applying player move to patch: ", TargetPatch.Name);
-            CurrentGame.GameWorld.Map.CurrentPatch = TargetPatch;
+            GD.Print("MicrobeEditor: applying player move to patch: ", targetPatch.Name);
+            CurrentGame.GameWorld.Map.CurrentPatch = targetPatch;
         }
 
         var parent = GetParent();
@@ -398,7 +417,7 @@ public class MicrobeEditor : Node
     {
         if (patch == null)
         {
-            patch = TargetPatch ?? CurrentGame.GameWorld.Map.CurrentPatch;
+            patch = CurrentPatch;
         }
 
         gui.UpdateEnergyBalance(ProcessSystem.ComputeEnergyBalance(organelles.Select((i) => i.Definition), patch.Biome,
@@ -686,6 +705,62 @@ public class MicrobeEditor : Node
     }
 
     /// <summary>
+    ///   Returns true when the player is allowed to move to the specified patch
+    /// </summary>
+    public bool IsPatchMoveValid(Patch patch)
+    {
+        if (patch == null)
+            return false;
+
+        var from = CurrentPatch;
+
+        // Can't go to the patch you are in
+        if (from == patch)
+            return false;
+
+        // Can return to the patch the player started in, as a way to "undo" the change
+        if (patch == playerPatchOnEntry)
+            return true;
+
+        // Can't move if out of moves
+        if (!canStillMove)
+            return false;
+
+        // Need to have a connection to move
+        foreach (var adjacent in from.Adjacent)
+        {
+            if (adjacent == patch)
+                return true;
+        }
+
+        return false;
+    }
+
+    public void SetPlayerPatch(Patch patch)
+    {
+        if (!IsPatchMoveValid(patch))
+            throw new ArgumentException("can't move to the specified patch");
+
+        // One move per editor cycle allowed, unless freebuilding
+        if (!FreeBuilding)
+            canStillMove = false;
+
+        if (patch == playerPatchOnEntry)
+        {
+            targetPatch = null;
+
+            // Undoing the move, restores the move
+            canStillMove = true;
+        }
+        else
+        {
+            targetPatch = patch;
+        }
+
+        gui.UpdatePlayerPatch(targetPatch);
+    }
+
+    /// <summary>
     ///   Changes the number of mutation points left. Should only be called by EditorAction
     /// </summary>
     internal void ChangeMutationPoints(int change)
@@ -752,7 +827,12 @@ public class MicrobeEditor : Node
 
         // Reset this, GUI will tell us to enable it again
         ShowHover = false;
-        TargetPatch = null;
+        targetPatch = null;
+
+        canStillMove = true;
+
+        playerPatchOnEntry = CurrentGame.GameWorld.Map.CurrentPatch;
+
 
         gui.SetMap(CurrentGame.GameWorld.Map);
 
@@ -1197,7 +1277,7 @@ public class MicrobeEditor : Node
         // organelle
         // Calculate and send energy balance to the GUI
         CalculateEnergyBalanceWithOrganellesAndMembraneType(
-            editedMicrobeOrganelles.Organelles, Membrane, TargetPatch);
+            editedMicrobeOrganelles.Organelles, Membrane, targetPatch);
 
         // TODO: this might also be expensive
         gui.UpdateSpeed(CalculateSpeed());

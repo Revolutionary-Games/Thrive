@@ -19,12 +19,19 @@ public class PatchMapDrawer : Control
     [Export]
     public float PatchNodeHeight = 64.0f;
 
-    public PatchMap map;
+    [Export]
+    public Color ConnectionColour = new Color(1.0f, 1.0f, 1.0f, 1.0f);
+
+    private PatchMap map;
     private bool dirty = true;
 
     private PackedScene nodeScene;
 
     private List<PatchMapNode> nodes = new List<PatchMapNode>();
+
+    private Patch selectedPatch;
+
+    private Patch playerPatch;
 
     public PatchMap Map
     {
@@ -36,8 +43,50 @@ public class PatchMapDrawer : Control
         {
             map = value;
             dirty = true;
+
+            if (playerPatch == null)
+                playerPatch = Map.CurrentPatch;
         }
     }
+
+    public Patch PlayerPatch
+    {
+        get
+        {
+            return playerPatch;
+        }
+        set
+        {
+            if (playerPatch == value)
+                return;
+
+            playerPatch = value;
+            UpdateNodeSelections();
+            NotifySelectionChanged();
+        }
+    }
+
+    public Patch SelectedPatch
+    {
+        get
+        {
+            return selectedPatch;
+        }
+        set
+        {
+            if (selectedPatch == value)
+                return;
+
+            selectedPatch = value;
+            UpdateNodeSelections();
+            NotifySelectionChanged();
+        }
+    }
+
+    /// <summary>
+    ///   Called when the currently shown patch properties should be looked up again
+    /// </summary>
+    public Action<PatchMapDrawer> OnSelectedPatchChanged { get; set; }
 
     public override void _Ready()
     {
@@ -88,7 +137,7 @@ public class PatchMapDrawer : Control
 
     private void DrawNodeLink(Vector2 center1, Vector2 center2)
     {
-        DrawLine(center1, center2, new Color(0.05f, 0.05f, 0.05f, 1), 2, true);
+        DrawLine(center1, center2, ConnectionColour, ConnectionLineWidth, true);
     }
 
     private void RebuildMapNodes()
@@ -110,7 +159,34 @@ public class PatchMapDrawer : Control
             node.MarginTop = entry.Value.ScreenCoordinates.y;
             node.RectSize = new Vector2(PatchNodeWidth, PatchNodeHeight);
 
+            node.Patch = entry.Value;
+            node.Icon = entry.Value.Biome.LoadedIcon;
+
+            node.SelectCallback = (clicked) =>
+            {
+                SelectedPatch = clicked.Patch;
+            };
+
             AddChild(node);
+            nodes.Add(node);
         }
+
+        UpdateNodeSelections();
+        NotifySelectionChanged();
+    }
+
+    private void UpdateNodeSelections()
+    {
+        foreach (var node in nodes)
+        {
+            node.Selected = node.Patch == selectedPatch;
+            node.Marked = node.Patch == playerPatch;
+        }
+    }
+
+    private void NotifySelectionChanged()
+    {
+        if (OnSelectedPatchChanged != null)
+            OnSelectedPatchChanged(this);
     }
 }
