@@ -58,10 +58,9 @@
 
                     if (patch != null)
                     {
-                        if (!patch.UpdateSpeciesPopulation(entry.Key, populationEntry.Value))
-                        {
-                            GD.PrintErr("RunResults failed to update population for a species in a patch");
-                        }
+                        // We ignore the return value as population results are added for all existing patches for all
+                        // species (if the species is not in the patch the population is 0 in the results)
+                        patch.UpdateSpeciesPopulation(entry.Key, populationEntry.Value);
                     }
                     else
                     {
@@ -147,8 +146,9 @@
         /// </summary>
         /// <param name="previousPopulations">If provided comparisons to previous populations is included</param>
         /// <param name="playerReadable">if true ids are removed from the output</param>
+        /// <param name="effects">if not null these effects are applied to the population numbers</param>
         public string MakeSummary(PatchMap previousPopulations = null,
-            bool playerReadable = false)
+            bool playerReadable = false, List<ExternalEffect> effects = null)
         {
             const bool resolveMoves = true;
 
@@ -217,7 +217,7 @@
                             builder.Append(spreadEntry.To.Name);
                             builder.Append(" by sending: ");
                             builder.Append(spreadEntry.Population);
-                            builder.Append("population");
+                            builder.Append(" population");
                             builder.Append(" from patch: ");
                             builder.Append(spreadEntry.From.Name);
                         }
@@ -247,7 +247,37 @@
                             CountSpeciesSpreadPopulation(entry.Species, patchPopulation.Key);
                     }
 
-                    outputPopulationForPatch(entry.Species, patchPopulation.Key, adjustedPopulation);
+                    // Apply external effects
+                    if (effects != null && previousPopulations != null &&
+                        previousPopulations.CurrentPatch.ID == patchPopulation.Key.ID)
+                    {
+                        foreach (var effect in effects)
+                        {
+                            if (effect.Species == entry.Species)
+                                adjustedPopulation += effect.Amount;
+                        }
+                    }
+
+                    // As the populations are added to all patches, even when the species is not there, we remove those
+                    // from output if there is currently no population in a patch and there isn't one in
+                    // previousPopulations
+                    bool include = false;
+
+                    if (adjustedPopulation > 0)
+                    {
+                        include = true;
+                    }
+                    else if (previousPopulations != null)
+                    {
+                        if (previousPopulations.GetPatch(patchPopulation.Key.ID).
+                            GetSpeciesPopulation(entry.Species) > 0)
+                        {
+                            include = true;
+                        }
+                    }
+
+                    if (include)
+                        outputPopulationForPatch(entry.Species, patchPopulation.Key, adjustedPopulation);
                 }
 
                 // Also print new patches the species moved to (as the moves don't get

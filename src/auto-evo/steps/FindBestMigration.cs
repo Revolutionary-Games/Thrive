@@ -79,6 +79,8 @@
 
             while (attemptsLeft > 0)
             {
+                --attemptsLeft;
+
                 // Randomly select starting patch
                 var entry = map.Patches.Where((pair) => pair.Value.SpeciesInPatch.ContainsKey(species)).
                     OrderBy(_ => random.Next()).Take(1).ToList();
@@ -111,8 +113,6 @@
                         return new SpeciesMigration(patch, target, moveAmount);
                     }
                 }
-
-                --attemptsLeft;
             }
 
             // Could not find a valid move

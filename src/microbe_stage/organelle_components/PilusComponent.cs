@@ -29,22 +29,18 @@ public class PilusComponent : ExternallyPositionedComponent
 
         membraneCoords += membranePointDirection * Constants.DEFAULT_HEX_SIZE * 2;
 
-        // TODO: currently the microbe physics body is scaled as
-        // well, which is not recommended. So this scaling is not
-        // currently used.
-
-        // if (organelle.parentMicrobe.Species.IsBacteria)
-        // {
-        //     membraneCoords /= 2.0f;
-        // }
+        if (organelle.ParentMicrobe.Species.IsBacteria)
+        {
+            membraneCoords *= 0.5f;
+        }
 
         float pilusSize = 4.6f;
 
-        // // Scale the size down for bacteria
-        // if (organelle.parentMicrobe.Species.IsBacteria)
-        // {
-        //     pilusSize /= 2.0f;
-        // }
+        // Scale the size down for bacteria
+        if (organelle.ParentMicrobe.Species.IsBacteria)
+        {
+            pilusSize *= 0.5f;
+        }
 
         var physicsRotation = MathUtils.CreateRotationForPhysicsOrganelle(angle);
 

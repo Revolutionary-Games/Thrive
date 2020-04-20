@@ -210,6 +210,11 @@ public class SimulationParameters
             entry.Value.Resolve(this);
         }
 
+        foreach (var entry in backgrounds)
+        {
+            entry.Value.Resolve(this);
+        }
+
         NameGenerator.Resolve(this);
 
         BuildOrganelleChances();

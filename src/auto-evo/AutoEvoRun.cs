@@ -38,11 +38,6 @@ public class AutoEvoRun
     private volatile int completeSteps = 0;
 
     /// <summary>
-    ///   The Species may not be messed with while running. These are queued changes that will be applied after a run
-    /// </summary>
-    private List<Tuple<Species, int, string>> externalEffects = new List<Tuple<Species, int, string>>();
-
-    /// <summary>
     ///   Generated steps are stored here until they are executed
     /// </summary>
     private Queue<AutoEvo.IRunStep> runSteps = new Queue<AutoEvo.IRunStep>();
@@ -70,6 +65,11 @@ public class AutoEvoRun
         /// </summary>
         ENDED,
     }
+
+    /// <summary>
+    ///   The Species may not be messed with while running. These are queued changes that will be applied after a run
+    /// </summary>
+    public List<ExternalEffect> ExternalEffects { get; private set; } = new List<ExternalEffect>();
 
     /// <summary>
     ///   True while running
@@ -126,7 +126,7 @@ public class AutoEvoRun
             {
                 var percentage = CompletionFraction * 100;
 
-                return string.Format("{0:F1}% done. {1:n}/{2:n} steps.", percentage, completeSteps, total);
+                return string.Format("{0:F1}% done. {1:n0}/{2:n0} steps.", percentage, completeSteps, total);
             }
             else
             {
@@ -206,26 +206,24 @@ public class AutoEvoRun
     /// </remarks>
     public void ApplyExternalEffects()
     {
-        if (externalEffects.Count < 1)
-            return;
-
-        // Effects are applied in the current patch
-        var currentPatch = parameters.World.Map.CurrentPatch;
-
-        foreach (var entry in externalEffects)
+        if (ExternalEffects.Count > 0)
         {
-            entry.Deconstruct(out Species species, out int amount, out string eventType);
+            // Effects are applied in the current patch
+            var currentPatch = parameters.World.Map.CurrentPatch;
 
-            try
+            foreach (var entry in ExternalEffects)
             {
-                int currentPop = results.GetPopulationInPatch(species, currentPatch);
+                try
+                {
+                    int currentPop = results.GetPopulationInPatch(entry.Species, currentPatch);
 
-                results.AddPopulationResultForSpecies(
-                    species, currentPatch, currentPop + amount);
-            }
-            catch (Exception e)
-            {
-                GD.PrintErr("External effect can't be applied: ", e);
+                    results.AddPopulationResultForSpecies(
+                        entry.Species, currentPatch, currentPop + entry.Amount);
+                }
+                catch (Exception e)
+                {
+                    GD.PrintErr("External effect can't be applied: ", e);
+                }
             }
         }
 
@@ -240,7 +238,7 @@ public class AutoEvoRun
     /// <param name="eventType">The external event type.</param>
     public void AddExternalPopulationEffect(Species species, int amount, string eventType)
     {
-        externalEffects.Add(new Tuple<Species, int, string>(species, amount, eventType));
+        ExternalEffects.Add(new ExternalEffect(species, amount, eventType));
     }
 
     /// <summary>
@@ -251,19 +249,17 @@ public class AutoEvoRun
     {
         var combinedExternalEffects = new Dictionary<Tuple<Species, string>, int>();
 
-        foreach (var entry in externalEffects)
+        foreach (var entry in ExternalEffects)
         {
-            entry.Deconstruct(out Species species, out int amount, out string eventType);
-
-            var key = new Tuple<Species, string>(species, eventType);
+            var key = new Tuple<Species, string>(entry.Species, entry.EventType);
 
             if (combinedExternalEffects.ContainsKey(key))
             {
-                combinedExternalEffects[key] += amount;
+                combinedExternalEffects[key] += entry.Amount;
             }
             else
             {
-                combinedExternalEffects[key] = amount;
+                combinedExternalEffects[key] = entry.Amount;
             }
         }
 
@@ -292,7 +288,15 @@ public class AutoEvoRun
 
         while (!Aborted && !complete)
         {
-            complete = Step();
+            try
+            {
+                complete = Step();
+            }
+            catch (Exception e)
+            {
+                Aborted = true;
+                GD.PrintErr("Auto-evo failed with an exception: ", e);
+            }
         }
 
         Running = false;

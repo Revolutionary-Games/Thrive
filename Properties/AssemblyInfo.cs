@@ -20,7 +20,7 @@ using System.Reflection;
 
 [assembly: AssemblyVersion("0.5.0.0")]
 
-[assembly: AssemblyInformationalVersion("-pre-alpha")]
+[assembly: AssemblyInformationalVersion("-alpha")]
 
 // The following attributes are used to specify the signing key for the assembly,
 // if desired. See the Mono documentation for more information about signing.

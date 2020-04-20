@@ -40,7 +40,7 @@ public class ActionHistory<T>
         if (!CanUndo())
             return false;
 
-        var action = actions[actionIndex--];
+        var action = actions[--actionIndex];
         action.Undo();
         return true;
     }
@@ -55,7 +55,7 @@ public class ActionHistory<T>
             actions.RemoveAt(actions.Count - 1);
 
         if (actionIndex != actions.Count)
-            throw new NotImplementedException();
+            throw new Exception("action history logic is wrong");
 
         action.Perform();
         actions.Add(action);
