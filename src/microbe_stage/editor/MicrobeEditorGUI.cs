@@ -35,6 +35,8 @@ public class MicrobeEditorGUI : Node
     public NodePath AutoEvoLabelPath;
     [Export]
     public NodePath ExternalEffectsLabelPath;
+    [Export]
+    public NodePath MapDrawerPath;
 
     private const string ATP_BALANCE_DEFAULT_TEXT = "ATP Balance";
 
@@ -58,6 +60,7 @@ public class MicrobeEditorGUI : Node
     private ProgressBar atpConsumptionBar;
     private Label autoEvoLabel;
     private Label externalEffectsLabel;
+    private PatchMapDrawer mapDrawer;
 
     private bool inEditorTab = false;
 
@@ -82,6 +85,7 @@ public class MicrobeEditorGUI : Node
         atpConsumptionBar = GetNode<ProgressBar>(ATPConsumptionBarPath);
         autoEvoLabel = GetNode<Label>(AutoEvoLabelPath);
         externalEffectsLabel = GetNode<Label>(ExternalEffectsLabelPath);
+        mapDrawer = GetNode<PatchMapDrawer>(MapDrawerPath);
 
         // Fade out for that smooth satisfying transition
         TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeOut, 0.5f);
@@ -108,6 +112,11 @@ public class MicrobeEditorGUI : Node
         mutationPointsBar.Value = editor.MutationPoints;
         mutationPointsLabel.Text = string.Format("{0:F0} / {1:F0}", editor.MutationPoints,
             Constants.BASE_MUTATION_POINTS);
+    }
+
+    public void SetMap(PatchMap map)
+    {
+        mapDrawer.Map = map;
     }
 
     public void UpdateSize(int size)

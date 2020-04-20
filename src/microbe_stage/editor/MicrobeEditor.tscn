@@ -1,4 +1,4 @@
-[gd_scene load_steps=105 format=2]
+[gd_scene load_steps=106 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
@@ -53,6 +53,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/membraneCellulose.png" type="Texture" id=51]
 [ext_resource path="res://assets/textures/gui/menu_theme.tres" type="Theme" id=52]
 [ext_resource path="res://src/general/LoadingScreen.tscn" type="PackedScene" id=53]
+[ext_resource path="res://src/microbe_stage/editor/PatchMapDrawer.tscn" type="PackedScene" id=54]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 37 )
@@ -1157,6 +1158,7 @@ ATPProductionBarPath = NodePath("CellEditor/ATPBalancePanel/MarginContainer/VBox
 ATPConsumptionBarPath = NodePath("CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer/AtpConsumptionBar")
 AutoEvoLabelPath = NodePath("Report/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/AutoEvoResults")
 ExternalEffectsLabelPath = NodePath("Report/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/ExternalEffectsList")
+MapDrawerPath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/ScrollContainer/PatchMapDrawer")
 
 [node name="LeftTopBar" type="Control" parent="MicrobeEditorGUI"]
 margin_right = 810.0
@@ -4324,11 +4326,12 @@ margin_bottom = 660.0
 rect_min_size = Vector2( 700, 0 )
 follow_focus = true
 
-[node name="PatchMapDrawer" type="Control" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/ScrollContainer"]
+[node name="PatchMapDrawer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/ScrollContainer" instance=ExtResource( 54 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
 margin_right = 700.0
 margin_bottom = 660.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
+DrawDefaultMapIfEmpty = false
 
 [node name="RightPanel" type="PanelContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer"]
 margin_left = 712.0

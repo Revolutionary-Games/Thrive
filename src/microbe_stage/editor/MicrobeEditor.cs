@@ -754,6 +754,8 @@ public class MicrobeEditor : Node
         ShowHover = false;
         TargetPatch = null;
 
+        gui.SetMap(CurrentGame.GameWorld.Map);
+
         var playerSpecies = CurrentGame.GameWorld.PlayerSpecies;
 
         SetupEditedSpecies(playerSpecies as MicrobeSpecies);
