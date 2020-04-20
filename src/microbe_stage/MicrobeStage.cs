@@ -231,8 +231,7 @@ public class MicrobeStage : Node
     {
         // Now the editor increases the generation so we don't do that here anymore
 
-        // TODO: fix
-        // // Call event that checks win conditions
+        // Check win conditions
         if (!CurrentGame.FreeBuild && Player.Species.Generation >= 20 &&
             Player.Species.Population >= 300 && !wonOnce)
         {
