@@ -167,11 +167,11 @@ public class GameWorld
         return autoEvo.Finished;
     }
 
-    public string GetAutoEvoStatus()
+    public AutoEvoRun GetAutoEvoRun()
     {
         IsAutoEvoFinished(true);
 
-        return autoEvo.Status;
+        return autoEvo;
     }
 
     /// <summary>

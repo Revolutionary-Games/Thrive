@@ -378,36 +378,16 @@ public class MicrobeEditor : Node
             if (!CurrentGame.GameWorld.IsAutoEvoFinished())
             {
                 gui.SetLoadingText("Loading Microbe Editor", "Waiting for auto-evo: " +
-                    CurrentGame.GameWorld.GetAutoEvoStatus());
+                    CurrentGame.GameWorld.GetAutoEvoRun().Status);
                 return;
             }
             else
             {
-                ready = true;
-                gui.SetLoadingStatus(false);
+                OnEditorReady();
             }
         }
 
-        // We move all the hexes and the hover hexes to 0,0,0 so that
-        // the editor is free to replace them wherever
-        // TODO: it would be way better if we didn't have to do this and instead only updated
-        // the hover hexes and organelles when there is some change to them
-        foreach (var hex in hoverHexes)
-        {
-            hex.Translation = new Vector3(0, 0, 0);
-            hex.Visible = false;
-        }
-
-        foreach (var organelle in hoverOrganelles)
-        {
-            organelle.Translation = new Vector3(0, 0, 0);
-            organelle.Visible = false;
-        }
-
         UpdateEditor(delta);
-
-        // since this is ran every step this is a good place to do music code
-        HandleAmbientSound();
     }
 
     /// <summary>
@@ -726,12 +706,11 @@ public class MicrobeEditor : Node
         {
             ready = false;
             gui.SetLoadingStatus(true);
-            gui.SetLoadingText("Loading Microbe Editor", CurrentGame.GameWorld.GetAutoEvoStatus());
+            gui.SetLoadingText("Loading Microbe Editor", CurrentGame.GameWorld.GetAutoEvoRun().Status);
         }
         else
         {
-            ready = true;
-            gui.SetLoadingStatus(false);
+            OnEditorReady();
         }
 
         MutationPoints = Constants.BASE_MUTATION_POINTS;
@@ -767,11 +746,6 @@ public class MicrobeEditor : Node
 
         // Sent freebuild value to GUI
         gui.NotifyFreebuild(FreeBuilding);
-
-        GD.Print("Elapsing time on editor entry");
-
-        // TODO: select which units will be used for the master elapsed time counter
-        CurrentGame.GameWorld.OnTimePassed(1);
 
         // Send info to the GUI about the organelle effectiveness in the current patch
         CalculateOrganelleEffectivenessInPatch();
@@ -845,6 +819,22 @@ public class MicrobeEditor : Node
 
     private void UpdateEditor(float delta)
     {
+        // We move all the hexes and the hover hexes to 0,0,0 so that
+        // the editor is free to replace them wherever
+        // TODO: it would be way better if we didn't have to do this and instead only updated
+        // the hover hexes and organelles when there is some change to them
+        foreach (var hex in hoverHexes)
+        {
+            hex.Translation = new Vector3(0, 0, 0);
+            hex.Visible = false;
+        }
+
+        foreach (var organelle in hoverOrganelles)
+        {
+            organelle.Translation = new Vector3(0, 0, 0);
+            organelle.Visible = false;
+        }
+
         // This is also highly non-optimal to update the hex locations
         // and materials all the time
 
@@ -1310,7 +1300,40 @@ public class MicrobeEditor : Node
         gui.SetRedoButtonStatus(history.CanRedo());
     }
 
-    private void HandleAmbientSound() { }
+    /// <summary>
+    ///   Called once auto-evo results are ready
+    /// </summary>
+    private void OnEditorReady()
+    {
+        ready = true;
+        gui.SetLoadingStatus(false);
+
+        GD.Print("Elapsing time on editor entry");
+
+        // TODO: select which units will be used for the master elapsed time counter
+        CurrentGame.GameWorld.OnTimePassed(1);
+
+        // Get summary before applying results in order to get comparisons to the previous populations
+        // TODO: need to make sure that the external effects are also included in the summary to make things clearer
+        var summary = CurrentGame.GameWorld.GetAutoEvoRun().Results.MakeSummary(CurrentGame.GameWorld.Map, true);
+        var external = CurrentGame.GameWorld.GetAutoEvoRun().MakeSummaryOfExternalEffects();
+
+        GD.Print(summary);
+        GD.Print(external);
+
+        ApplyAutoEvoResults();
+    }
+
+    private void ApplyAutoEvoResults()
+    {
+        GD.Print("Applying auto-evo results");
+        CurrentGame.GameWorld.GetAutoEvoRun().ApplyExternalEffects();
+
+        CurrentGame.GameWorld.Map.RemoveExtinctSpecies(FreeBuilding);
+
+        // Clear the run to make the cell stage start a new run when we go back there
+        CurrentGame.GameWorld.ResetAutoEvoRun();
+    }
 
     /// <summary>
     ///   Done actions are stored here to provide undo/redo functionality
