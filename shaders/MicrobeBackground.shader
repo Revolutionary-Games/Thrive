@@ -6,14 +6,14 @@ uniform sampler2D layer1 : hint_albedo;
 uniform sampler2D layer2 : hint_albedo;
 uniform sampler2D layer3 : hint_albedo;
 
-const float speed0 = 1100.0f;
-const float speed01 = 2200.0f;
-const float speed1 = 850.0f;
-const float speed11 = 1700.0f;
-const float speed2 = 600.0f;
-const float speed21 = 1200.0f;
-const float speed3 = 350.0f;
-const float speed31 = 700.0f;
+const float speed0 = 3300.0f;
+const float speed01 = 6600.0f;
+const float speed1 = 2550.0f;
+const float speed11 = 5100.0f;
+const float speed2 = 1800.0f;
+const float speed21 = 3200.0f;
+const float speed3 = 1050.0f;
+const float speed31 = 2100.0f;
 
 varying vec2 UV3;
 varying vec2 UV4;
