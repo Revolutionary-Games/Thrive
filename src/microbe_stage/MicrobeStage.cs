@@ -107,6 +107,7 @@ public class MicrobeStage : Node
         CreatePatchManagerIfNeeded();
 
         patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch);
+        UpdateBackground();
 
         SpawnPlayer();
         Camera.ResetHeight();
@@ -206,6 +207,10 @@ public class MicrobeStage : Node
                 }
             }
         }
+
+        // Start auto-evo if not already and settings have auto-evo be started during gameplay
+        if (Settings.Instance.RunAutoEvoDuringGamePlay)
+            GameWorld.IsAutoEvoFinished(true);
     }
 
     /// <summary>
@@ -229,6 +234,10 @@ public class MicrobeStage : Node
     /// </summary>
     public void OnReturnFromEditor()
     {
+        patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch);
+        HUD.UpdatePatchInfo(GameWorld.Map.CurrentPatch.Name);
+        UpdateBackground();
+
         // Now the editor increases the generation so we don't do that here anymore
 
         // Check win conditions
@@ -242,6 +251,7 @@ public class MicrobeStage : Node
         // Make sure player is spawned
         SpawnPlayer();
 
+        // Update the player's cell
         Player.ApplySpecies(Player.Species);
 
         // Spawn another cell from the player species
@@ -282,5 +292,10 @@ public class MicrobeStage : Node
             // Player is not extinct, so can respawn
             SpawnPlayer();
         }
+    }
+
+    private void UpdateBackground()
+    {
+        Camera.SetBackground(SimulationParameters.Instance.GetBackground(GameWorld.Map.CurrentPatch.Biome.Background));
     }
 }

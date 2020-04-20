@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -7,11 +8,6 @@ using Godot;
 /// </summary>
 public class MicrobeEditor : Node
 {
-    /// <summary>
-    ///   Where the player wants to move after editing
-    /// </summary>
-    public Patch TargetPatch = null;
-
     /// <summary>
     ///   The new to set on the species after exiting
     /// </summary>
@@ -36,6 +32,20 @@ public class MicrobeEditor : Node
     private Material invalidMaterial;
     private Material validMaterial;
     private PackedScene hexScene;
+    private PackedScene modelScene;
+
+    /// <summary>
+    ///   Where the player wants to move after editing
+    /// </summary>
+    private Patch targetPatch = null;
+
+    /// <summary>
+    ///   When false the player is no longer allowed to move patches (other than going back to where they were at the
+    ///   start)
+    /// </summary>
+    private bool canStillMove;
+
+    private Patch playerPatchOnEntry;
 
     /// <summary>
     ///   The hexes that are positioned under the cursor to show where
@@ -47,7 +57,7 @@ public class MicrobeEditor : Node
     ///   The organelle models that are positioned to show what the
     ///   player is about to place.
     /// </summary>
-    private List<Spatial> hoverOrganelles;
+    private List<SceneDisplayer> hoverOrganelles;
 
     /// <summary>
     ///   This is used to keep track of used hover organelles
@@ -84,7 +94,12 @@ public class MicrobeEditor : Node
     /// <summary>
     ///   This is the organelle models for editedMicrobeorganelles
     /// </summary>
-    private List<Spatial> placedModels;
+    private List<SceneDisplayer> placedModels;
+
+    /// <summary>
+    ///   True once auto-evo (and possibly other stuff) we need to wait for is ready
+    /// </summary>
+    private bool ready = false;
 
     private int organelleRot = 0;
 
@@ -203,6 +218,17 @@ public class MicrobeEditor : Node
         }
     }
 
+    /// <summary>
+    ///   Returns the current patch the player is in
+    /// </summary>
+    public Patch CurrentPatch
+    {
+        get
+        {
+            return targetPatch ?? playerPatchOnEntry;
+        }
+    }
+
     public override void _Ready()
     {
         camera = GetNode<MicrobeCamera>("PrimaryCamera");
@@ -213,6 +239,7 @@ public class MicrobeEditor : Node
             "res://src/microbe_stage/editor/InvalidHex.material");
         validMaterial = GD.Load<Material>("res://src/microbe_stage/editor/ValidHex.material");
         hexScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/EditorHex.tscn");
+        modelScene = GD.Load<PackedScene>("res://src/general/SceneDisplayer.tscn");
 
         camera.ObjectToFollow = GetNode<Spatial>("CameraLookAt");
 
@@ -234,7 +261,7 @@ public class MicrobeEditor : Node
 
         // Let go of old resources
         hoverHexes = new List<MeshInstance>();
-        hoverOrganelles = new List<Spatial>();
+        hoverOrganelles = new List<SceneDisplayer>();
 
         history = new ActionHistory<EditorAction>();
 
@@ -274,8 +301,10 @@ public class MicrobeEditor : Node
         {
             GD.Print("Creating new microbe stage as there isn't one yet");
 
-            // TODO: fix
-            throw new NotImplementedException();
+            var scene = GD.Load<PackedScene>("res://src/microbe_stage/MicrobeStage.tscn");
+
+            ReturnToStage = (MicrobeStage)scene.Instance();
+            ReturnToStage.CurrentGame = CurrentGame;
         }
 
         // Apply changes to the species organelles
@@ -287,6 +316,9 @@ public class MicrobeEditor : Node
         {
             editedSpecies.Organelles.Add((OrganelleTemplate)organelle.Clone());
         }
+
+        // Update bacteria status
+        editedSpecies.IsBacteria = !HasNucleus;
 
         GD.Print("MicrobeEditor: updated organelles for species: ",
             editedSpecies.FormattedName);
@@ -312,85 +344,84 @@ public class MicrobeEditor : Node
         editedSpecies.MembraneRigidity = Rigidity;
 
         // Move patches
-        if (TargetPatch != null)
+        if (targetPatch != null)
         {
-            GD.Print("MicrobeEditor: applying player move to patch: ", TargetPatch.Name);
-            CurrentGame.GameWorld.Map.CurrentPatch = TargetPatch;
+            GD.Print("MicrobeEditor: applying player move to patch: ", targetPatch.Name);
+            CurrentGame.GameWorld.Map.CurrentPatch = targetPatch;
         }
 
-        // Update the player's cell
-        Microbe playerCell = null;
-
-        if (ReturnToStage != null && ReturnToStage.Player != null)
-            playerCell = ReturnToStage.Player;
-
-        if (playerCell != null && editedSpecies == playerCell.Species)
-        {
-            // TODO: verify that this properly reapplies everything
-            playerCell.ApplySpecies(editedSpecies);
-        }
-
-        ReturnToStage.OnReturnFromEditor();
         var parent = GetParent();
         parent.RemoveChild(this);
         parent.AddChild(ReturnToStage);
+        ReturnToStage.OnReturnFromEditor();
+
         QueueFree();
     }
 
-    public override void _Input(InputEvent @event)
+    public override void _UnhandledInput(InputEvent @event)
     {
         if (@event.IsActionPressed("e_rotate_right"))
         {
-            GD.Print("Editor: Rotate right");
+            RotateRight();
         }
 
         if (@event.IsActionPressed("e_rotate_left"))
         {
-            GD.Print("Editor: Rotate left");
+            RotateLeft();
         }
 
         if (@event.IsActionPressed("e_redo"))
         {
-            GD.Print("Editor: redo");
+            Redo();
         }
         else if (@event.IsActionPressed("e_undo"))
         {
-            GD.Print("Editor: undo");
+            Undo();
+        }
+
+        if (@event.IsActionPressed("e_primary"))
+        {
+            PlaceOrganelle();
+        }
+
+        if (@event.IsActionPressed("e_secondary"))
+        {
+            RemoveOrganelle();
         }
     }
 
     public override void _Process(float delta)
     {
-        // We move all the hexes and the hover hexes to 0,0,0 so that
-        // the editor is free to replace them wherever
-        // TODO: it would be way better if we didn't have to do this and instead only updated
-        // the hover hexes and organelles when there is some change to them
-        foreach (var hex in hoverHexes)
+        if (!ready)
         {
-            hex.Translation = new Vector3(0, 0, 0);
-            hex.Visible = false;
-        }
-
-        foreach (var organelle in hoverOrganelles)
-        {
-            organelle.Translation = new Vector3(0, 0, 0);
-            organelle.Visible = false;
+            if (!CurrentGame.GameWorld.IsAutoEvoFinished())
+            {
+                gui.SetLoadingText("Loading Microbe Editor", "Waiting for auto-evo: " +
+                    CurrentGame.GameWorld.GetAutoEvoRun().Status);
+                return;
+            }
+            else
+            {
+                OnEditorReady();
+            }
         }
 
         UpdateEditor(delta);
-
-        // since this is ran every step this is a good place to do music code
-        HandleAmbientSound();
     }
 
     /// <summary>
     ///   Calculates the energy balance for a cell with the given organelles
     /// </summary>
     public void CalculateEnergyBalanceWithOrganellesAndMembraneType(
-        List<OrganelleTemplate> organelles, MembraneType membrane, Patch path = null)
+        List<OrganelleTemplate> organelles, MembraneType membrane, Patch patch = null)
     {
-        // TODO: fix
-        // ProcessSystem.ComputeEnergyBalance
+        if (patch == null)
+        {
+            patch = CurrentPatch;
+        }
+
+        gui.UpdateEnergyBalance(ProcessSystem.ComputeEnergyBalance(organelles.Select((i) => i.Definition), patch.Biome,
+                membrane));
     }
 
     /// <summary>
@@ -399,7 +430,7 @@ public class MicrobeEditor : Node
     /// </summary>
     public void CalculateOrganelleEffectivenessInPatch(Patch patch = null)
     {
-        // TODO: fix
+        // TODO: fix (needed for the editor tooltips)
         // ProcessSystem.ComputeOrganelleProcessEfficiencies
         SimulationParameters.Instance.GetAllOrganelles();
     }
@@ -484,7 +515,7 @@ public class MicrobeEditor : Node
 
     public void PlaceOrganelle()
     {
-        if (ActiveActionName != string.Empty)
+        if (ActiveActionName != null)
             AddOrganelle(ActiveActionName);
     }
 
@@ -674,6 +705,63 @@ public class MicrobeEditor : Node
     }
 
     /// <summary>
+    ///   Returns true when the player is allowed to move to the specified patch
+    /// </summary>
+    public bool IsPatchMoveValid(Patch patch)
+    {
+        if (patch == null)
+            return false;
+
+        var from = CurrentPatch;
+
+        // Can't go to the patch you are in
+        if (from == patch)
+            return false;
+
+        // Can return to the patch the player started in, as a way to "undo" the change
+        if (patch == playerPatchOnEntry)
+            return true;
+
+        // Can't move if out of moves
+        if (!canStillMove)
+            return false;
+
+        // Need to have a connection to move
+        foreach (var adjacent in from.Adjacent)
+        {
+            if (adjacent == patch)
+                return true;
+        }
+
+        return false;
+    }
+
+    public void SetPlayerPatch(Patch patch)
+    {
+        if (!IsPatchMoveValid(patch))
+            throw new ArgumentException("can't move to the specified patch");
+
+        // One move per editor cycle allowed, unless freebuilding
+        if (!FreeBuilding)
+            canStillMove = false;
+
+        if (patch == playerPatchOnEntry)
+        {
+            targetPatch = null;
+
+            // Undoing the move, restores the move
+            canStillMove = true;
+        }
+        else
+        {
+            targetPatch = patch;
+        }
+
+        gui.UpdatePlayerPatch(targetPatch);
+        UpdatePatchBackgroundImage();
+    }
+
+    /// <summary>
     ///   Changes the number of mutation points left. Should only be called by EditorAction
     /// </summary>
     internal void ChangeMutationPoints(int change)
@@ -689,6 +777,18 @@ public class MicrobeEditor : Node
     /// </summary>
     private void InitEditor()
     {
+        // For now we only show a loading screen if auto-evo is not ready yet
+        if (!CurrentGame.GameWorld.IsAutoEvoFinished())
+        {
+            ready = false;
+            gui.SetLoadingStatus(true);
+            gui.SetLoadingText("Loading Microbe Editor", CurrentGame.GameWorld.GetAutoEvoRun().Status);
+        }
+        else
+        {
+            OnEditorReady();
+        }
+
         MutationPoints = Constants.BASE_MUTATION_POINTS;
         editedMicrobeOrganelles = new OrganelleLayout<OrganelleTemplate>(
             OnOrganelleAdded, OnOrganelleRemoved);
@@ -703,7 +803,7 @@ public class MicrobeEditor : Node
 
         // The world is reset each time so these are gone
         placedHexes = new List<MeshInstance>();
-        placedModels = new List<Spatial>();
+        placedModels = new List<SceneDisplayer>();
 
         // Check generation and set it here.
 
@@ -723,17 +823,20 @@ public class MicrobeEditor : Node
         // Sent freebuild value to GUI
         gui.NotifyFreebuild(FreeBuilding);
 
-        GD.Print("Elapsing time on editor entry");
-
-        // TODO: select which units will be used for the master elapsed time counter
-        CurrentGame.GameWorld.OnTimePassed(1);
-
         // Send info to the GUI about the organelle effectiveness in the current patch
         CalculateOrganelleEffectivenessInPatch();
 
         // Reset this, GUI will tell us to enable it again
         ShowHover = false;
-        TargetPatch = null;
+        targetPatch = null;
+
+        canStillMove = true;
+
+        playerPatchOnEntry = CurrentGame.GameWorld.Map.CurrentPatch;
+
+        UpdatePatchBackgroundImage();
+
+        gui.SetMap(CurrentGame.GameWorld.Map);
 
         var playerSpecies = CurrentGame.GameWorld.PlayerSpecies;
 
@@ -768,7 +871,7 @@ public class MicrobeEditor : Node
         CreateMutatedSpeciesCopy(species);
 
         // Reset to cytoplasm if nothing is selected
-        if (ActiveActionName == string.Empty)
+        if (ActiveActionName == null)
         {
             gui.OnOrganelleToPlaceSelected("cytoplasm");
         }
@@ -800,6 +903,22 @@ public class MicrobeEditor : Node
 
     private void UpdateEditor(float delta)
     {
+        // We move all the hexes and the hover hexes to 0,0,0 so that
+        // the editor is free to replace them wherever
+        // TODO: it would be way better if we didn't have to do this and instead only updated
+        // the hover hexes and organelles when there is some change to them
+        foreach (var hex in hoverHexes)
+        {
+            hex.Translation = new Vector3(0, 0, 0);
+            hex.Visible = false;
+        }
+
+        foreach (var organelle in hoverOrganelles)
+        {
+            organelle.Translation = new Vector3(0, 0, 0);
+            organelle.Visible = false;
+        }
+
         // This is also highly non-optimal to update the hex locations
         // and materials all the time
 
@@ -813,7 +932,7 @@ public class MicrobeEditor : Node
         usedHoverOrganelle = 0;
 
         // Show the organelle that is about to be placed
-        if (ActiveActionName != string.Empty && ShowHover)
+        if (ActiveActionName != null && ShowHover)
         {
             GetMouseHex(out int q, out int r);
 
@@ -854,7 +973,7 @@ public class MicrobeEditor : Node
     /// </summary>
     private void RenderHighlightedOrganelle(int unused, int q, int r, int rotation)
     {
-        if (ActiveActionName == string.Empty)
+        if (ActiveActionName == null)
             return;
 
         // TODO: this should be changed into a function parameter
@@ -871,17 +990,14 @@ public class MicrobeEditor : Node
             var pos = Hex.AxialToCartesian(new Hex(posQ, posR));
 
             // Detect can it be placed there
-            var organelleHere = editedMicrobeOrganelles.GetOrganelleAt(new Hex(posQ, posR));
-
             bool canPlace = isPlacementProbablyValid;
 
             bool duplicate = false;
 
             // Skip if there is a placed organelle here already
-
             foreach (var placed in placedHexes)
             {
-                if ((pos - placed.Translation).LengthSquared() < 0.01f)
+                if ((pos - placed.Translation).LengthSquared() < 0.001f)
                 {
                     duplicate = true;
 
@@ -919,6 +1035,9 @@ public class MicrobeEditor : Node
                 MathUtils.CreateRotationForOrganelle(rotation),
                 cartesianPosition + toBePlacedOrganelle.CalculateModelOffset());
 
+            organelleModel.Scale = new Vector3(Constants.DEFAULT_HEX_SIZE, Constants.DEFAULT_HEX_SIZE,
+                Constants.DEFAULT_HEX_SIZE);
+
             organelleModel.Visible = true;
 
             UpdateOrganellePlaceHolderScene(organelleModel, toBePlacedOrganelle.DisplayScene);
@@ -947,9 +1066,9 @@ public class MicrobeEditor : Node
         return hex;
     }
 
-    private Spatial CreateEditorOrganelle()
+    private SceneDisplayer CreateEditorOrganelle()
     {
-        var node = new Spatial();
+        var node = (SceneDisplayer)modelScene.Instance();
         world.AddChild(node);
         return node;
     }
@@ -1152,7 +1271,7 @@ public class MicrobeEditor : Node
         UpdateAlreadyPlacedVisuals();
 
         // send to gui current status of cell
-        gui.UpdateSize();
+        gui.UpdateSize(MicrobeHexSize);
         gui.UpdateGuiButtonStatus(HasNucleus);
 
         // TODO: if this turns out to be expensive this should only be
@@ -1160,10 +1279,10 @@ public class MicrobeEditor : Node
         // organelle
         // Calculate and send energy balance to the GUI
         CalculateEnergyBalanceWithOrganellesAndMembraneType(
-            editedMicrobeOrganelles.Organelles, Membrane, TargetPatch);
+            editedMicrobeOrganelles.Organelles, Membrane, targetPatch);
 
         // TODO: this might also be expensive
-        gui.UpdateSpeed();
+        gui.UpdateSpeed(CalculateSpeed());
     }
 
     /// <summary>
@@ -1190,6 +1309,7 @@ public class MicrobeEditor : Node
                 }
 
                 var hexNode = placedHexes[nextFreeHex++];
+                hexNode.MaterialOverride = validMaterial;
                 hexNode.Translation = pos;
 
                 hexNode.Visible = true;
@@ -1211,6 +1331,9 @@ public class MicrobeEditor : Node
 
                 organelleModel.Transform = new Transform(
                     MathUtils.CreateRotationForOrganelle(1 * organelle.Orientation), pos);
+
+                organelleModel.Scale = new Vector3(Constants.DEFAULT_HEX_SIZE, Constants.DEFAULT_HEX_SIZE,
+                    Constants.DEFAULT_HEX_SIZE);
 
                 organelleModel.Visible = true;
 
@@ -1236,9 +1359,9 @@ public class MicrobeEditor : Node
     /// <summary>
     ///   Updates the organelle model displayer to have the specified scene in it
     /// </summary>
-    private void UpdateOrganellePlaceHolderScene(Spatial organelleModel, string displayScene)
+    private void UpdateOrganellePlaceHolderScene(SceneDisplayer organelleModel, string displayScene)
     {
-        // TODO: fix
+        organelleModel.Scene = displayScene;
     }
 
     /// <summary>
@@ -1261,7 +1384,47 @@ public class MicrobeEditor : Node
         gui.SetRedoButtonStatus(history.CanRedo());
     }
 
-    private void HandleAmbientSound() { }
+    /// <summary>
+    ///   Called once auto-evo results are ready
+    /// </summary>
+    private void OnEditorReady()
+    {
+        ready = true;
+        gui.SetLoadingStatus(false);
+
+        GD.Print("Elapsing time on editor entry");
+
+        // TODO: select which units will be used for the master elapsed time counter
+        CurrentGame.GameWorld.OnTimePassed(1);
+
+        // Get summary before applying results in order to get comparisons to the previous populations
+        var run = CurrentGame.GameWorld.GetAutoEvoRun();
+        var summary = run.Results.MakeSummary(CurrentGame.GameWorld.Map, true, run.ExternalEffects);
+        var external = run.MakeSummaryOfExternalEffects();
+
+        gui.UpdateAutoEvoResults(summary, external);
+
+        ApplyAutoEvoResults();
+    }
+
+    private void ApplyAutoEvoResults()
+    {
+        GD.Print("Applying auto-evo results");
+        CurrentGame.GameWorld.GetAutoEvoRun().ApplyExternalEffects();
+
+        CurrentGame.GameWorld.Map.RemoveExtinctSpecies(FreeBuilding);
+
+        // Clear the run to make the cell stage start a new run when we go back there
+        CurrentGame.GameWorld.ResetAutoEvoRun();
+    }
+
+    /// <summary>
+    ///   Updates the background shown in the editor
+    /// </summary>
+    private void UpdatePatchBackgroundImage()
+    {
+        camera.SetBackground(SimulationParameters.Instance.GetBackground(CurrentPatch.Biome.Background));
+    }
 
     /// <summary>
     ///   Done actions are stored here to provide undo/redo functionality

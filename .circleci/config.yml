@@ -3,34 +3,34 @@ jobs:
    build:
      working_directory: ~/Thrive
      docker:
-       - image: hhyyrylainen/godot-ci:v1
+       - image: hhyyrylainen/godot-ci:v2
      environment:
        GIT_LFS_SKIP_SMUDGE: 1
      steps:
        - checkout
        - restore_cache:
            keys:
-             - v4-lfs-{{ .Branch }}
-             - v4-lfs-master
+             - v5-lfs-{{ .Branch }}
+             - v5-lfs-master
        - shell:
            name: Pull Git LFS files, retry up to 5 times
            command: |
              for i in {1..5}; do git reset --hard HEAD && git clean -fd && git lfs pull && exit 0; done; exit 1
        - save_cache:
-          key: v4-lfs-{{ .Branch }}
+          key: v5-lfs-{{ .Branch }}
           paths:
             - .git/lfs
        - restore_cache:
            keys:
-             - v2-import-{{ .Branch }}
-             - v2-import-master
+             - v3-import-{{ .Branch }}
+             - v3-import-master
        - run: mkdir -p builds
        # This is here to reimport assets, but this build would fail due to missing nuget packages
        # if C# was compiled here
        - run: godot --export "Linux/X11" "builds/a.x86_64"
        # - run: ./headless_project_refresh.rb
        - save_cache:
-           key: v2-import-{{ .Branch }}
+           key: v3-import-{{ .Branch }}
            paths:
              - .import
        - restore_cache:

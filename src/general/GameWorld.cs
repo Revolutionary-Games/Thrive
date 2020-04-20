@@ -19,6 +19,17 @@ public class GameWorld
     [JsonProperty]
     private Mutations mutator;
 
+    /// <summary>
+    ///   This world's auto-evo run
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Once saving is implemented this probably shouldn't be attempted to be saved. But the list of external
+    ///     population effects need to be saved.
+    ///   </para>
+    /// </remarks>
+    private AutoEvoRun autoEvo;
+
     public GameWorld(WorldGenerationSettings settings)
     {
         mutator = new Mutations();
@@ -28,6 +39,9 @@ public class GameWorld
 
         if (!Map.Verify())
             throw new ArgumentException("generated patch map with settings is not valid");
+
+        // Apply initial populations
+        Map.UpdateGlobalPopulations();
 
         TimedEffects = new TimedWorldOperations();
 
@@ -97,22 +111,21 @@ public class GameWorld
     /// </summary>
     public void GenerateRandomSpeciesForFreeBuild()
     {
-        throw new NotImplementedException();
+        var random = new Random();
 
-        // auto@ patches = map.getPatches();
-        //
-        // for (uint i = 0; i < patches.length(); ++i)
-        // {
-        //
-        //     const int species = GetEngine().GetRandom().GetNumber(1, 4);
-        //     for (int count = 0; count < species; ++count)
-        //     {
-        //
-        //         patches[i].addSpecies(createRandomSpecies(),
-        //             GetEngine().GetRandom().GetNumber(INITIAL_SPLIT_POPULATION_MIN,
-        //                 INITIAL_SPLIT_POPULATION_MAX));
-        //     }
-        // }
+        foreach (var entry in Map.Patches)
+        {
+            int speciesToAdd = random.Next(1, 4);
+
+            for (int i = 0; i < speciesToAdd; ++i)
+            {
+                int population = Constants.INITIAL_SPECIES_POPULATION +
+                    random.Next(Constants.INITIAL_FREEBUILD_POPULATION_VARIANCE_MIN,
+                        Constants.INITIAL_FREEBUILD_POPULATION_VARIANCE_MAX);
+
+                entry.Value.AddSpecies(mutator.CreateRandomSpecies(NewMicrobeSpecies()), population);
+            }
+        }
     }
 
     /// <summary>
@@ -134,6 +147,42 @@ public class GameWorld
                 return mutator.CreateMutatedSpecies(s, NewMicrobeSpecies());
             default:
                 throw new ArgumentException("unhandled species type for CreateMutatedSpecies");
+        }
+    }
+
+    /// <summary>
+    ///   Checks if an auto-evo run for this world is finished, optionally starting one if not in-progress already
+    /// </summary>
+    public bool IsAutoEvoFinished(bool autostart = true)
+    {
+        if (autoEvo == null && autostart)
+        {
+            CreateRunIfMissing();
+            autoEvo.Start();
+        }
+
+        if (autoEvo == null)
+            return false;
+
+        return autoEvo.Finished;
+    }
+
+    public AutoEvoRun GetAutoEvoRun()
+    {
+        IsAutoEvoFinished(true);
+
+        return autoEvo;
+    }
+
+    /// <summary>
+    ///   Stops and removes any auto-evo runs for this world
+    /// </summary>
+    public void ResetAutoEvoRun()
+    {
+        if (autoEvo != null)
+        {
+            autoEvo.Abort();
+            autoEvo = null;
         }
     }
 
@@ -163,9 +212,16 @@ public class GameWorld
             species.ApplyImmediatePopulationChange(amount);
         }
 
-        // TODO: fix
-        // throw new NotImplementedException();
+        CreateRunIfMissing();
 
-        // GetThriveGame().addExternalPopulationEffect(species, popChange, reason);
+        autoEvo.AddExternalPopulationEffect(species, amount, description);
+    }
+
+    private void CreateRunIfMissing()
+    {
+        if (autoEvo != null)
+            return;
+
+        autoEvo = AutoEvo.AutoEvo.CreateRun(this);
     }
 }

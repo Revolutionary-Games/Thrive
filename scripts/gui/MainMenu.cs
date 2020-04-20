@@ -138,7 +138,17 @@ public class MainMenu : Node
     private void OnFreebuildFadeInEnded()
     {
         // Instantiate a new editor scene
-        GetTree().ChangeScene("res://src/microbe_stage/editor/MicrobeEditor.tscn");
+        var scene = GD.Load<PackedScene>("res://src/microbe_stage/editor/MicrobeEditor.tscn");
+
+        var editor = (MicrobeEditor)scene.Instance();
+
+        // Start freebuild game
+        editor.CurrentGame = GameProperties.StartNewMicrobeGame(true);
+
+        // Switch to the editor scene
+        var parent = GetParent();
+        parent.RemoveChild(this);
+        parent.AddChild(editor);
     }
 
     private void NewGamePressed()

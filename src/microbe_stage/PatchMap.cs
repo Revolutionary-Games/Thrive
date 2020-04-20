@@ -207,7 +207,7 @@ public class PatchMap
         foreach (var entry in Patches)
         {
             var toRemove = entry.Value.SpeciesInPatch.Where((v) => v.Value <= 0 &&
-                (playerCantGoExtinct || !v.Key.PlayerSpecies));
+                (playerCantGoExtinct || !v.Key.PlayerSpecies)).ToList();
 
             foreach (var item in toRemove)
             {

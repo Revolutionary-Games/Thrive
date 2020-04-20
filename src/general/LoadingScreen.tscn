@@ -1,0 +1,150 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://src/general/LoadingScreen.cs" type="Script" id=1]
+[ext_resource path="res://assets/textures/gui/planet.png" type="Texture" id=2]
+[ext_resource path="res://assets/misc/icon.png" type="Texture" id=3]
+[ext_resource path="res://assets/textures/gui/menu_theme.tres" type="Theme" id=4]
+[ext_resource path="res://assets/fonts/Jura-Regular.ttf" type="DynamicFontData" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 5 )
+
+[node name="LoadingScreen" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 4 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+ArtDescriptionPath = NodePath("CenterContainer/VSplitContainer/ArtDescription")
+LoadingMessagePath = NodePath("CenterContainer2/VBoxContainer/LoadingMessage")
+LoadingDescriptionPath = NodePath("CenterContainer2/VBoxContainer/LoadingDescription")
+TipLabelPath = NodePath("TipLabel")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 0.656
+margin_right = 1.0
+margin_bottom = 45.68
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VSplitContainer" type="VBoxContainer" parent="CenterContainer"]
+margin_left = 390.0
+margin_top = 36.0
+margin_right = 890.0
+margin_bottom = 482.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CoolArt" type="TextureRect" parent="CenterContainer/VSplitContainer"]
+margin_right = 500.0
+margin_bottom = 420.0
+rect_min_size = Vector2( 500, 420 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_editor_description_": "For some reason I can't force this to be the size I want"
+}
+
+[node name="ArtDescription" type="Label" parent="CenterContainer/VSplitContainer"]
+margin_top = 424.0
+margin_right = 500.0
+margin_bottom = 446.0
+text = "Shown image description goes here"
+align = 1
+valign = 2
+autowrap = true
+max_lines_visible = 4
+
+[node name="Spinner" type="MarginContainer" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -70.0
+margin_top = -69.9999
+margin_right = -6.0
+margin_bottom = -5.99994
+rect_min_size = Vector2( 64, 64 )
+rect_pivot_offset = Vector2( 32, 32 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="Spinner"]
+margin_right = 64.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 64, 64 )
+texture = ExtResource( 3 )
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_editor_description_": "This also doesn't resize"
+}
+
+[node name="CenterContainer2" type="CenterContainer" parent="."]
+anchor_top = 0.717
+anchor_right = 1.0
+anchor_bottom = 0.94
+margin_left = 2.0
+margin_top = 0.76001
+margin_right = -3.0
+margin_bottom = 0.199951
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer2"]
+margin_left = 598.0
+margin_top = 56.0
+margin_right = 677.0
+margin_bottom = 104.0
+
+[node name="LoadingMessage" type="Label" parent="CenterContainer2/VBoxContainer"]
+margin_right = 79.0
+margin_bottom = 22.0
+text = "Loading"
+
+[node name="LoadingDescription" type="Label" parent="CenterContainer2/VBoxContainer"]
+margin_top = 26.0
+margin_right = 79.0
+margin_bottom = 48.0
+
+[node name="TipLabel" type="Label" parent="."]
+anchor_top = 0.945
+anchor_right = 0.934
+anchor_bottom = 1.0
+margin_left = 2.0
+margin_top = 9.60004
+margin_right = -3.52002
+margin_bottom = -1.99994
+size_flags_horizontal = 3
+size_flags_vertical = 6
+custom_fonts/font = SubResource( 1 )
+text = "TIP: not set"
+valign = 2
+clip_text = true
+max_lines_visible = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

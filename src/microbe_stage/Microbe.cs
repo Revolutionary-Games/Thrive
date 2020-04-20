@@ -158,6 +158,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         }
     }
 
+    /// <summary>
+    ///   All organelle nodes need to be added to this node to make scale work
+    /// </summary>
+    public Spatial OrganelleParent { get; private set; }
+
     public int DespawnRadiusSqr { get; set; }
 
     public Node SpawnedNode
@@ -246,6 +251,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             return;
 
         Membrane = GetNode<Membrane>("Membrane");
+        OrganelleParent = GetNode<Spatial>("OrganelleParent");
         engulfAudio = GetNode<AudioStreamPlayer3D>("EngulfAudio");
         otherAudio = GetNode<AudioStreamPlayer3D>("OtherAudio");
         movementAudio = GetNode<AudioStreamPlayer3D>("MovementAudio");
@@ -264,13 +270,15 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         if (Species.Organelles.Count < 1)
             throw new ArgumentException("Species with no organelles is not valid");
 
-        float scale = 1.0f;
+        var scale = new Vector3(1.0f, 1.0f, 1.0f);
 
         // Bacteria are 50% the size of other cells
         if (Species.IsBacteria)
-            scale = 0.5f;
+            scale = new Vector3(0.5f, 0.5f, 0.5f);
 
-        Scale = new Vector3(scale, scale, scale);
+        // Scale only the graphics parts to not have physics affected
+        Membrane.Scale = scale;
+        OrganelleParent.Scale = scale;
 
         ResetOrganelleLayout();
 
@@ -288,7 +296,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     public void ResetOrganelleLayout()
     {
         // TODO: It would be much better if only organelles that need
-        // to be removed where removed, instead of everything
+        // to be removed where removed, instead of everything.
+        // When doing that all organelles will need to be readded anyway if this turned from a prokaryote to eukaryote
 
         if (organelles == null)
         {

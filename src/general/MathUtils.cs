@@ -37,8 +37,7 @@ public static class MathUtils
     /// </summary>
     public static Quat CreateRotationForOrganelle(float rotation)
     {
-        return new Quat(new Vector3(0, 1, 0), 180 * DEGREES_TO_RADIANS) *
-            new Quat(new Vector3(0, -1, 0), rotation * 60 * DEGREES_TO_RADIANS);
+        return new Quat(new Vector3(0, -1, 0), rotation * 60 * DEGREES_TO_RADIANS);
     }
 
     /// <summary>

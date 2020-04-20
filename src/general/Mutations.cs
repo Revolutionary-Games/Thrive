@@ -336,6 +336,8 @@ public class Mutations
                     // Offset by hex offset
                     result.Position = pos + Hex.HexNeighbourOffset[(Hex.HEX_SIDE)side];
 
+                    // TODO: checking one or two extra hexes in the direction would make this succeed more often
+
                     // Check every possible rotation value.
                     for (int rotation = 0; rotation <= 5; ++rotation)
                     {
@@ -351,7 +353,7 @@ public class Mutations
         }
 
         // We didnt find an open spot, this doesn't make much sense
-        throw new Exception("Mutation code could not find a good position " +
+        throw new ArgumentException("Mutation code could not find a good position " +
             "for a new organelle");
     }
 
@@ -451,7 +453,7 @@ public class Mutations
                 bool isVowel = Vowels.Any(item => item == part);
 
                 bool isPermute = false;
-                if (i > 1)
+                if (i > 1 && index - 2 >= 0)
                 {
                     var part1 = newName.ToString(index - 1, 2);
                     var part2 = newName.ToString(index - 2, 2);
@@ -523,7 +525,7 @@ public class Mutations
             int index = newName.Length - i - 1;
 
             bool isPermute = false;
-            if (i > 1)
+            if (index - 2 > 0 && i > 1)
             {
                 var part1 = newName.ToString(index - 1, 2);
                 var part2 = newName.ToString(index - 2, 2);

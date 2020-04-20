@@ -19,6 +19,14 @@ public class Biome : IRegistryType, ICloneable
     /// </summary>
     public string Background;
 
+    /// <summary>
+    ///   Icon of the biome to be used in the patch map
+    /// </summary>
+    public string Icon;
+
+    [JsonIgnore]
+    public Texture LoadedIcon;
+
     public float AverageTemperature;
 
     public Dictionary<string, EnvironmentalCompoundProperties> Compounds;
@@ -46,6 +54,12 @@ public class Biome : IRegistryType, ICloneable
             throw new InvalidRegistryData(name, this.GetType().Name,
                 "Chunks missing");
         }
+
+        if (Icon == null)
+        {
+            throw new InvalidRegistryData(name, this.GetType().Name,
+                "icon missing");
+        }
     }
 
     /// <summary>
@@ -60,6 +74,8 @@ public class Biome : IRegistryType, ICloneable
                 meshEntry.LoadedScene = GD.Load<PackedScene>(meshEntry.ScenePath);
             }
         }
+
+        LoadedIcon = GD.Load<Texture>(Icon);
     }
 
     public object Clone()
@@ -73,6 +89,8 @@ public class Biome : IRegistryType, ICloneable
             Compounds = new Dictionary<string, EnvironmentalCompoundProperties>(
                 Compounds.Count),
             Chunks = new Dictionary<string, ChunkConfiguration>(Chunks.Count),
+            Icon = Icon,
+            LoadedIcon = LoadedIcon,
         };
 
         foreach (var entry in Compounds)

@@ -37,9 +37,17 @@ public class GameProperties
     /// <summary>
     ///   Starts a new game in the microbe stage
     /// </summary>
-    public static GameProperties StartNewMicrobeGame()
+    public static GameProperties StartNewMicrobeGame(bool freebuild = false)
     {
-        return new GameProperties();
+        var game = new GameProperties();
+
+        if (freebuild)
+        {
+            game.EnterFreeBuild();
+            game.GameWorld.GenerateRandomSpeciesForFreeBuild();
+        }
+
+        return game;
     }
 
     /// <summary>

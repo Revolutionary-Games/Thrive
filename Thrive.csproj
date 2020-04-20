@@ -65,10 +65,14 @@
     <Compile Include="scripts\simulation_parameters\Constants.cs" />
     <Compile Include="src\engine\ScreenFilter.cs" />
     <Compile Include="src\engine\FilterLoader.cs" />
+    <Compile Include="src\general\LoadingScreen.cs" />
+    <Compile Include="src\general\SceneDisplayer.cs" />
     <Compile Include="src\microbe_stage\AgentProjectile.cs" />
     <Compile Include="src\microbe_stage\CompoundCloudPlane.cs" />
     <Compile Include="src\microbe_stage\editor\MicrobeEditor.cs" />
     <Compile Include="src\microbe_stage\editor\MicrobeEditorGUI.cs" />
+    <Compile Include="src\microbe_stage\editor\PatchMapDrawer.cs" />
+    <Compile Include="src\microbe_stage\editor\PatchMapNode.cs" />
     <Compile Include="src\microbe_stage\FloatingChunk.cs" />
     <Compile Include="src\microbe_stage\Membrane.cs" />
     <Compile Include="src\microbe_stage\Microbe.cs" />
@@ -155,6 +159,7 @@
     <Compile Include="src\auto-evo\simulation\SimulationConfiguration.cs" />
     <Compile Include="src\auto-evo\simulation\PopulationSimulation.cs" />
     <Compile Include="src\auto-evo\steps\VariantTryingStep.cs" />
+    <Compile Include="src\auto-evo\ExternalEffect.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="StyleCop.ruleset" />
