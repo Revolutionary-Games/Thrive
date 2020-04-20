@@ -32,7 +32,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[node name="ExtinctionBox" type="PanelContainer"]
+[node name="WinBox" type="PanelContainer"]
 modulate = Color( 1, 1, 1, 0 )
 anchor_top = 0.277778
 anchor_right = 1.0
@@ -50,27 +50,30 @@ margin_bottom = 300.0
 alignment = 1
 
 [node name="Title" type="Label" parent="VBoxContainer"]
-margin_top = 62.0
+margin_top = 75.0
 margin_right = 1280.0
-margin_bottom = 128.0
+margin_bottom = 141.0
 custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 1, 0.2, 0.2, 1 )
-text = "EXTINCTION"
+text = "YOU HAVE THRIVED!"
 align = 1
 valign = 1
 
 [node name="Message" type="Label" parent="VBoxContainer"]
-margin_top = 132.0
+margin_top = 145.0
 margin_right = 1280.0
-margin_bottom = 237.0
+margin_bottom = 223.0
 custom_fonts/font = SubResource( 3 )
-text = "Just like 99% of all species that have ever existed,
-your species has gone extinct.  Others will go on to fill in your
-niche  and thrive, but that won’t be you. You will be forgotten,
-a failed  experiment in evolution."
+text = "Congratulations you have won this version of Thrive!
+You may continue playing after this screen closes if you wish,
+or start a new game in a new world."
 align = 1
 valign = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "FadeIn"
 anims/FadeIn = SubResource( 4 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+autostart = true

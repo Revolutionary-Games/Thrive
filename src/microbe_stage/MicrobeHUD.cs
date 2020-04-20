@@ -28,7 +28,11 @@ public class MicrobeHUD : Node
 
     private TextureButton editorButton;
 
-    private PanelContainer extinctionBox;
+    private PackedScene extinctionBoxScene;
+    private PackedScene winBoxScene;
+
+    private Node extinctionBox;
+    private Node winBox;
 
     /// <summary>
     ///   The HUD bars is contained in this array to avoid
@@ -70,14 +74,15 @@ public class MicrobeHUD : Node
         dataValue = GetNode<PanelContainer>("BottomRight/DataValue");
         atpLabel = dataValue.GetNode<Label>("Margin/VBox/ATPValue");
         hpLabel = dataValue.GetNode<Label>("Margin/VBox/HPValue");
-        menu = GetNode<Control>("PauseMenu");
+        menu = GetNode<Control>("CanvasLayer/PauseMenu");
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
         hudBars = GetTree().GetNodesInGroup("MicrobeHUDBar");
         textureHudBars = GetTree().GetNodesInGroup("MicrobeTextureHUDBar");
         hoveredItems = mouseHoverPanel.GetNode<VBoxContainer>("MarginContainer/VBoxContainer/HoveredItems");
         populationLabel = GetNode<Label>("BottomRight/PopulationData/Value");
         patchLabel = GetNode<Label>("BottomBar/PatchLabel");
-        extinctionBox = GetNode<PanelContainer>("ExtinctionBox");
+        extinctionBoxScene = GD.Load<PackedScene>("res://scripts/gui/ExtinctionBox.tscn");
+        winBoxScene = GD.Load<PackedScene>("res://scripts/gui/WinBox.tscn");
         editorButton = GetNode<TextureButton>("BottomRight/EditorButton");
 
         OnEnterStageTransition();
@@ -208,10 +213,25 @@ public class MicrobeHUD : Node
 
     public void ShowExtinctionBox()
     {
-        if (!extinctionBox.Visible)
+        if (extinctionBox == null)
         {
-            extinctionBox.Show();
-            extinctionBox.GetNode<AnimationPlayer>("AnimationPlayer").Play("FadeIn");
+            extinctionBox = extinctionBoxScene.Instance();
+            AddChild(extinctionBox);
+        }
+    }
+
+    public void ToggleWinBox()
+    {
+        if (winBox == null)
+        {
+            winBox = winBoxScene.Instance();
+            AddChild(winBox);
+
+            winBox.GetNode<Timer>("Timer").Connect("timeout", this, nameof(ToggleWinBox));
+        }
+        else
+        {
+            winBox.QueueFree();
         }
     }
 

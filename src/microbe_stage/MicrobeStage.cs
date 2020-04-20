@@ -22,6 +22,8 @@ public class MicrobeStage : Node
     /// </summary>
     private bool gameOver = false;
 
+    private bool wonOnce = false;
+
     private float playerRespawnTimer;
 
     public Microbe Player { get; private set; }
@@ -231,13 +233,12 @@ public class MicrobeStage : Node
 
         // TODO: fix
         // // Call event that checks win conditions
-        // if(!GetThriveGame().playerData().isFreeBuilding()){
-        //     GenericEvent@ event = GenericEvent("CheckWin");
-        //     NamedVars@ vars = event.GetNamedVars();
-        //     vars.AddValue(ScriptSafeVariableBlock("generation", playerSpecies.generation));
-        //     vars.AddValue(ScriptSafeVariableBlock("population", playerSpecies.population));
-        //     GetEngine().GetEventHandler().CallEvent(event);
-        // }
+        if (!CurrentGame.FreeBuild && Player.Species.Generation >= 20 &&
+            Player.Species.Population >= 300 && !wonOnce)
+        {
+            HUD.ToggleWinBox();
+            wonOnce = true;
+        }
 
         // Make sure player is spawned
         SpawnPlayer();
