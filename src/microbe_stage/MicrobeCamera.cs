@@ -133,6 +133,20 @@ public class MicrobeCamera : Camera
         cursorDirty = true;
     }
 
+    /// <summary>
+    ///   Set the used background images
+    /// </summary>
+    public void SetBackground(Background background)
+    {
+        // TODO: skip duplicate background changes
+
+        for (int i = 0; i < 4; ++i)
+        {
+            GD.Print("set layer: ", string.Format("layer{0:n0}", i));
+            materialToUpdate.SetShaderParam(string.Format("layer{0:n0}", i), GD.Load<Texture>(background.Textures[i]));
+        }
+    }
+
     private void UpdateCursorWorldPos()
     {
         var worldPlane = new Plane(new Vector3(0, 1, 0), 0.0f);

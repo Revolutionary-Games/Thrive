@@ -107,6 +107,7 @@ public class MicrobeStage : Node
         CreatePatchManagerIfNeeded();
 
         patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch);
+        UpdateBackground();
 
         SpawnPlayer();
         Camera.ResetHeight();
@@ -235,6 +236,7 @@ public class MicrobeStage : Node
     {
         patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch);
         HUD.UpdatePatchInfo(GameWorld.Map.CurrentPatch.Name);
+        UpdateBackground();
 
         // Now the editor increases the generation so we don't do that here anymore
 
@@ -290,5 +292,10 @@ public class MicrobeStage : Node
             // Player is not extinct, so can respawn
             SpawnPlayer();
         }
+    }
+
+    private void UpdateBackground()
+    {
+        Camera.SetBackground(SimulationParameters.Instance.GetBackground(GameWorld.Map.CurrentPatch.Biome.Background));
     }
 }
