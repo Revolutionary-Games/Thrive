@@ -13,13 +13,26 @@ public class LoadingScreen : Control
     public NodePath LoadingMessagePath;
     [Export]
     public NodePath LoadingDescriptionPath;
+    [Export]
+    public NodePath TipLabelPath;
+
+    /// <summary>
+    ///   How fast the loading indicator spins
+    /// </summary>
+    [Export]
+    public float SpinnerSpeed = 180.0f;
 
     private Label artDescription;
     private Label loadingMessageLabel;
     private Label loadingDescriptionLabel;
+    private Label tipLabel;
+    private Control spinner;
 
     private string loadingMessage = "Loading";
     private string loadingDescription = string.Empty;
+    private string tip = "TIP: press the undo button in the editor to correct a mistake";
+
+    private float totalElapsed = 0;
 
     public string LoadingMessage
     {
@@ -61,21 +74,50 @@ public class LoadingScreen : Control
         }
     }
 
+    public string Tip
+    {
+        get
+        {
+            return tip;
+        }
+        set
+        {
+            if (tip == value)
+                return;
+
+            tip = value;
+
+            if (tipLabel != null)
+            {
+                UpdateTip();
+            }
+        }
+    }
+
     public override void _Ready()
     {
         artDescription = GetNode<Label>(ArtDescriptionPath);
         loadingMessageLabel = GetNode<Label>(LoadingMessagePath);
         loadingDescriptionLabel = GetNode<Label>(LoadingDescriptionPath);
+        tipLabel = GetNode<Label>(TipLabelPath);
+
+        spinner = GetNode<Control>("Spinner");
 
         // TODO: implement randomized art showing
 
+        // TODO: implement randomized tip showing
+
         UpdateMessage();
         UpdateDescription();
+        UpdateTip();
     }
 
     public override void _Process(float delta)
     {
-        // TODO: spinning thrive logo in the bottom right
+        // Spin the spinner
+        totalElapsed += delta;
+
+        spinner.RectRotation = (int)(totalElapsed * SpinnerSpeed) % 360;
     }
 
     private void UpdateMessage()
@@ -86,5 +128,10 @@ public class LoadingScreen : Control
     private void UpdateDescription()
     {
         loadingDescriptionLabel.Text = LoadingDescription;
+    }
+
+    private void UpdateTip()
+    {
+        tipLabel.Text = Tip;
     }
 }
