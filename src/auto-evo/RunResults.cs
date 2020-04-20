@@ -216,7 +216,7 @@
                             builder.Append(spreadEntry.To.Name);
                             builder.Append(" by sending: ");
                             builder.Append(spreadEntry.Population);
-                            builder.Append("population");
+                            builder.Append(" population");
                             builder.Append(" from patch: ");
                             builder.Append(spreadEntry.From.Name);
                         }
