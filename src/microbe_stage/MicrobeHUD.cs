@@ -26,7 +26,13 @@ public class MicrobeHUD : Node
     private Label populationLabel;
     private Label patchLabel;
 
-    private PanelContainer extinctionBox;
+    private TextureButton editorButton;
+
+    private PackedScene extinctionBoxScene;
+    private PackedScene winBoxScene;
+
+    private Node extinctionBox;
+    private Node winBox;
 
     /// <summary>
     ///   The HUD bars is contained in this array to avoid
@@ -68,14 +74,16 @@ public class MicrobeHUD : Node
         dataValue = GetNode<PanelContainer>("BottomRight/DataValue");
         atpLabel = dataValue.GetNode<Label>("Margin/VBox/ATPValue");
         hpLabel = dataValue.GetNode<Label>("Margin/VBox/HPValue");
-        menu = GetNode<Control>("PauseMenu");
+        menu = GetNode<Control>("CanvasLayer/PauseMenu");
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
         hudBars = GetTree().GetNodesInGroup("MicrobeHUDBar");
         textureHudBars = GetTree().GetNodesInGroup("MicrobeTextureHUDBar");
-        hoveredItems = mouseHoverPanel.GetChild(0).GetChild(0).GetNode<VBoxContainer>("HoveredItems");
+        hoveredItems = mouseHoverPanel.GetNode<VBoxContainer>("MarginContainer/VBoxContainer/HoveredItems");
         populationLabel = GetNode<Label>("BottomRight/PopulationData/Value");
         patchLabel = GetNode<Label>("BottomBar/PatchLabel");
-        extinctionBox = GetNode<PanelContainer>("ExtinctionBox");
+        extinctionBoxScene = GD.Load<PackedScene>("res://scripts/gui/ExtinctionBox.tscn");
+        winBoxScene = GD.Load<PackedScene>("res://scripts/gui/WinBox.tscn");
+        editorButton = GetNode<TextureButton>("BottomRight/EditorButton");
 
         OnEnterStageTransition();
     }
@@ -156,18 +164,16 @@ public class MicrobeHUD : Node
     /// </summary>
     public void ShowReproductionDialog()
     {
-        // TODO: add a flag for only doing this once even when called repeatedly
-        // also add a reverse check to HideReproductionDialog
+        if (editorButton.Disabled)
+        {
+            var sound = GD.Load<AudioStream>("res://assets/sounds/soundeffects/microbe-pickup-organelle.ogg");
+            GUICommon.Instance.PlayCustomSound(sound);
 
-        // TODO: sound "Data/Sound/soundeffects/microbe-pickup-organelle.ogg"
-
-        var editorButton = GetNode<TextureButton>("BottomRight/EditorButton");
-
-        editorButton.Disabled = false;
-        editorButton.GetNode<TextureRect>("Highlight").Show();
-        editorButton.GetNode<Control>("ReproductionBar").Hide();
-        editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Play(
-            "EditorButtonFlash");
+            editorButton.Disabled = false;
+            editorButton.GetNode<TextureRect>("Highlight").Show();
+            editorButton.GetNode<Control>("ReproductionBar").Hide();
+            editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Play("EditorButtonFlash");
+        }
     }
 
     /// <summary>
@@ -175,12 +181,13 @@ public class MicrobeHUD : Node
     /// </summary>
     public void HideReproductionDialog()
     {
-        var editorButton = GetNode<TextureButton>("BottomRight/EditorButton");
-
-        editorButton.Disabled = true;
-        editorButton.GetNode<TextureRect>("Highlight").Hide();
-        editorButton.GetNode<Control>("ReproductionBar").Show();
-        editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Stop();
+        if (!editorButton.Disabled)
+        {
+            editorButton.Disabled = true;
+            editorButton.GetNode<TextureRect>("Highlight").Hide();
+            editorButton.GetNode<Control>("ReproductionBar").Show();
+            editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Stop();
+        }
     }
 
     public void OnSuicide()
@@ -206,10 +213,25 @@ public class MicrobeHUD : Node
 
     public void ShowExtinctionBox()
     {
-        if (!extinctionBox.Visible)
+        if (extinctionBox == null)
         {
-            extinctionBox.Show();
-            extinctionBox.GetNode<AnimationPlayer>("AnimationPlayer").Play("FadeIn");
+            extinctionBox = extinctionBoxScene.Instance();
+            AddChild(extinctionBox);
+        }
+    }
+
+    public void ToggleWinBox()
+    {
+        if (winBox == null)
+        {
+            winBox = winBoxScene.Instance();
+            AddChild(winBox);
+
+            winBox.GetNode<Timer>("Timer").Connect("timeout", this, nameof(ToggleWinBox));
+        }
+        else
+        {
+            winBox.QueueFree();
         }
     }
 

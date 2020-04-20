@@ -11,17 +11,13 @@ public class GUICommon : Node
 
     private AudioStream buttonPressSound;
 
-    private Tween tween;
-
     private GUICommon()
     {
         instance = this;
 
-        UiAudio = new AudioStreamPlayer();
-        tween = new Tween();
+        AudioSource = new AudioStreamPlayer();
 
-        AddChild(UiAudio);
-        AddChild(tween);
+        AddChild(AudioSource);
 
         // Keep this node running while paused
         PauseMode = PauseModeEnum.Process;
@@ -41,14 +37,23 @@ public class GUICommon : Node
     /// <summary>
     ///   The audio player for UI sound effects.
     /// </summary>
-    public AudioStreamPlayer UiAudio { get; private set; }
+    public AudioStreamPlayer AudioSource { get; private set; }
 
     /// <summary>
     ///   Play the button click sound effect.
     /// </summary>
     public void PlayButtonPressSound()
     {
-        UiAudio.Stream = buttonPressSound;
-        UiAudio.Play();
+        AudioSource.Stream = buttonPressSound;
+        AudioSource.Play();
+    }
+
+    /// <summary>
+    ///   Plays the given sound non-positionally.
+    /// </summary>
+    public void PlayCustomSound(AudioStream sound)
+    {
+        AudioSource.Stream = sound;
+        AudioSource.Play();
     }
 }
