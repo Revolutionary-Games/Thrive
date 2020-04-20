@@ -206,26 +206,26 @@ public class AutoEvoRun
     /// </remarks>
     public void ApplyExternalEffects()
     {
-        if (externalEffects.Count < 1)
-            return;
-
-        // Effects are applied in the current patch
-        var currentPatch = parameters.World.Map.CurrentPatch;
-
-        foreach (var entry in externalEffects)
+        if (externalEffects.Count > 0)
         {
-            entry.Deconstruct(out Species species, out int amount, out string eventType);
+            // Effects are applied in the current patch
+            var currentPatch = parameters.World.Map.CurrentPatch;
 
-            try
+            foreach (var entry in externalEffects)
             {
-                int currentPop = results.GetPopulationInPatch(species, currentPatch);
+                entry.Deconstruct(out Species species, out int amount, out string eventType);
 
-                results.AddPopulationResultForSpecies(
-                    species, currentPatch, currentPop + amount);
-            }
-            catch (Exception e)
-            {
-                GD.PrintErr("External effect can't be applied: ", e);
+                try
+                {
+                    int currentPop = results.GetPopulationInPatch(species, currentPatch);
+
+                    results.AddPopulationResultForSpecies(
+                        species, currentPatch, currentPop + amount);
+                }
+                catch (Exception e)
+                {
+                    GD.PrintErr("External effect can't be applied: ", e);
+                }
             }
         }
 

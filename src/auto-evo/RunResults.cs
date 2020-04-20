@@ -58,10 +58,9 @@
 
                     if (patch != null)
                     {
-                        if (!patch.UpdateSpeciesPopulation(entry.Key, populationEntry.Value))
-                        {
-                            GD.PrintErr("RunResults failed to update population for a species in a patch");
-                        }
+                        // We ignore the return value as population results are added for all existing patches for all
+                        // species (if the species is not in the patch the population is 0 in the results)
+                        patch.UpdateSpeciesPopulation(entry.Key, populationEntry.Value);
                     }
                     else
                     {
@@ -247,7 +246,26 @@
                             CountSpeciesSpreadPopulation(entry.Species, patchPopulation.Key);
                     }
 
-                    outputPopulationForPatch(entry.Species, patchPopulation.Key, adjustedPopulation);
+                    // As the populations are added to all patches, even when the species is not there, we remove those
+                    // from output if there is currently no population in a patch and there isn't one in
+                    // previousPopulations
+                    bool include = false;
+
+                    if (adjustedPopulation > 0)
+                    {
+                        include = true;
+                    }
+                    else if (previousPopulations != null)
+                    {
+                        if (previousPopulations.GetPatch(patchPopulation.Key.ID).
+                            GetSpeciesPopulation(entry.Species) > 0)
+                        {
+                            include = true;
+                        }
+                    }
+
+                    if (include)
+                        outputPopulationForPatch(entry.Species, patchPopulation.Key, adjustedPopulation);
                 }
 
                 // Also print new patches the species moved to (as the moves don't get
