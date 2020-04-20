@@ -1,7 +1,21 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://assets/textures/gui/bevel/vents.png" type="Texture" id=1]
 [ext_resource path="res://src/microbe_stage/editor/PatchMapNode.cs" type="Script" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.054902, 0.0313726, 0.85098, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.027451, 0.827451, 0.956863, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [node name="PatchMapNode" type="MarginContainer"]
 margin_right = 64.0
@@ -12,10 +26,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HoveredHighLight" type="ColorRect" parent="."]
+[node name="HoveredHighLight" type="Panel" parent="."]
 margin_right = 64.0
 margin_bottom = 64.0
-color = Color( 0.054902, 0.0313726, 0.85098, 1 )
+custom_styles/panel = SubResource( 1 )
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 margin_right = 64.0
@@ -27,12 +41,12 @@ custom_constants/margin_top = 4
 custom_constants/margin_left = 4
 custom_constants/margin_bottom = 4
 
-[node name="PlayerHereHighlight" type="ColorRect" parent="MarginContainer"]
+[node name="PlayerHereHighlight" type="Panel" parent="MarginContainer"]
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 60.0
 margin_bottom = 60.0
-color = Color( 0.027451, 0.827451, 0.956863, 1 )
+custom_styles/panel = SubResource( 2 )
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
 margin_left = 4.0
