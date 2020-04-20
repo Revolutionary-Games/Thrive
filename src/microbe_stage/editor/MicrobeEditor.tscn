@@ -1183,6 +1183,7 @@ custom_styles/pressed = SubResource( 2 )
 custom_styles/normal = SubResource( 3 )
 custom_fonts/font = SubResource( 4 )
 toggle_mode = true
+pressed = true
 action_mode = 0
 enabled_focus_mode = 0
 group = SubResource( 5 )
@@ -1223,7 +1224,6 @@ custom_styles/pressed = SubResource( 2 )
 custom_styles/normal = SubResource( 3 )
 custom_fonts/font = SubResource( 4 )
 toggle_mode = true
-pressed = true
 action_mode = 0
 enabled_focus_mode = 0
 group = SubResource( 5 )
@@ -1333,6 +1333,7 @@ __meta__ = {
 }
 
 [node name="CellEditor" type="Control" parent="MicrobeEditorGUI"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -4183,6 +4184,61 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Report" type="Control" parent="MicrobeEditorGUI"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -0.200001
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ATPBalancePanel2" type="PanelContainer" parent="MicrobeEditorGUI/Report"]
+anchor_top = 0.067
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = -0.253403
+margin_right = 1.0
+margin_bottom = 0.799988
+custom_styles/panel = SubResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/Report/ATPBalancePanel2"]
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 1277.0
+margin_bottom = 670.0
+mouse_filter = 1
+custom_constants/margin_right = 3
+custom_constants/margin_top = 3
+custom_constants/margin_left = 3
+custom_constants/margin_bottom = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/Report/ATPBalancePanel2/MarginContainer"]
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 1271.0
+margin_bottom = 664.0
+custom_constants/separation = 0
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/Report/ATPBalancePanel2/MarginContainer/VBoxContainer"]
+margin_right = 1268.0
+margin_bottom = 15.0
+custom_fonts/font = SubResource( 9 )
+text = "Auto-evo results:"
+
+[node name="PatchMap" type="Control" parent="MicrobeEditorGUI"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="PauseMenu" type="Control" parent="MicrobeEditorGUI"]
 visible = false
 anchor_right = 1.0
@@ -4285,10 +4341,13 @@ visible = false
 [connection signal="mouse_exited" from="MicrobeEditorGUI/LeftTopBar" to="MicrobeEditorGUI" method="OnMouseExit"]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/LeftTopBar/HBoxContainer/ReportButton" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/LeftTopBar/HBoxContainer/ReportButton" to="MicrobeEditorGUI" method="OnMouseExit"]
+[connection signal="pressed" from="MicrobeEditorGUI/LeftTopBar/HBoxContainer/ReportButton" to="MicrobeEditorGUI" method="SetEditorTab" binds= [ "report" ]]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/LeftTopBar/HBoxContainer/PatchMapButton" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/LeftTopBar/HBoxContainer/PatchMapButton" to="MicrobeEditorGUI" method="OnMouseExit"]
+[connection signal="pressed" from="MicrobeEditorGUI/LeftTopBar/HBoxContainer/PatchMapButton" to="MicrobeEditorGUI" method="SetEditorTab" binds= [ "patch" ]]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/LeftTopBar/HBoxContainer/CellEditorButton" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/LeftTopBar/HBoxContainer/CellEditorButton" to="MicrobeEditorGUI" method="OnMouseExit"]
+[connection signal="pressed" from="MicrobeEditorGUI/LeftTopBar/HBoxContainer/CellEditorButton" to="MicrobeEditorGUI" method="SetEditorTab" binds= [ "editor" ]]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/LeftTopBar/HBoxContainer/MPBox/MarginContainer" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/LeftTopBar/HBoxContainer/MPBox/MarginContainer" to="MicrobeEditorGUI" method="OnMouseExit"]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/ATPBalancePanel" to="MicrobeEditorGUI" method="OnMouseEnter"]
@@ -4334,5 +4393,7 @@ visible = false
 [connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/FinishButton" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/FinishButton" to="MicrobeEditorGUI" method="OnMouseExit"]
 [connection signal="pressed" from="MicrobeEditorGUI/CellEditor/FinishButton" to="MicrobeEditorGUI" method="OnFinishEditingClicked"]
+[connection signal="mouse_entered" from="MicrobeEditorGUI/Report/ATPBalancePanel2" to="MicrobeEditorGUI" method="OnMouseEnter"]
+[connection signal="mouse_exited" from="MicrobeEditorGUI/Report/ATPBalancePanel2" to="MicrobeEditorGUI" method="OnMouseExit"]
 [connection signal="pressed" from="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu/Resume" to="MicrobeEditorGUI" method="MenuButtonPressed"]
 [connection signal="pressed" from="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu/Exit" to="MicrobeEditorGUI" method="ExitPressed"]
