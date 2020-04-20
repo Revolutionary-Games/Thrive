@@ -9,7 +9,7 @@ RUN git lfs install
 RUN gem install os colorize rubyzip json sha3
 
 # Godot install
-ENV GODOT_VERSION "3.2"
+ENV GODOT_VERSION "3.2.1"
 
 RUN wget https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/mono/Godot_v${GODOT_VERSION}-stable_mono_linux_headless_64.zip \
     && wget https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/mono/Godot_v${GODOT_VERSION}-stable_mono_export_templates.tpz \
