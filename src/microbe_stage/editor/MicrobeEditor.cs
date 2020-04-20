@@ -1398,9 +1398,9 @@ public class MicrobeEditor : Node
         CurrentGame.GameWorld.OnTimePassed(1);
 
         // Get summary before applying results in order to get comparisons to the previous populations
-        // TODO: need to make sure that the external effects are also included in the summary to make things clearer
-        var summary = CurrentGame.GameWorld.GetAutoEvoRun().Results.MakeSummary(CurrentGame.GameWorld.Map, true);
-        var external = CurrentGame.GameWorld.GetAutoEvoRun().MakeSummaryOfExternalEffects();
+        var run = CurrentGame.GameWorld.GetAutoEvoRun();
+        var summary = run.Results.MakeSummary(CurrentGame.GameWorld.Map, true, run.ExternalEffects);
+        var external = run.MakeSummaryOfExternalEffects();
 
         gui.UpdateAutoEvoResults(summary, external);
 
