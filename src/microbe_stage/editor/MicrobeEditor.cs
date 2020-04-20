@@ -758,6 +758,7 @@ public class MicrobeEditor : Node
         }
 
         gui.UpdatePlayerPatch(targetPatch);
+        UpdatePatchBackgroundImage();
     }
 
     /// <summary>
@@ -833,6 +834,7 @@ public class MicrobeEditor : Node
 
         playerPatchOnEntry = CurrentGame.GameWorld.Map.CurrentPatch;
 
+        UpdatePatchBackgroundImage();
 
         gui.SetMap(CurrentGame.GameWorld.Map);
 
@@ -1414,6 +1416,14 @@ public class MicrobeEditor : Node
 
         // Clear the run to make the cell stage start a new run when we go back there
         CurrentGame.GameWorld.ResetAutoEvoRun();
+    }
+
+    /// <summary>
+    ///   Updates the background shown in the editor
+    /// </summary>
+    private void UpdatePatchBackgroundImage()
+    {
+        camera.SetBackground(SimulationParameters.Instance.GetBackground(CurrentPatch.Biome.Background));
     }
 
     /// <summary>
