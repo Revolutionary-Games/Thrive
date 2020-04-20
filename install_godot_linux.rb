@@ -8,7 +8,7 @@ require 'fileutils'
 require 'tmpdir'
 require 'httparty'
 
-GODOT_VERSION = '3.2'.freeze
+GODOT_VERSION = '3.2.1'.freeze
 INSTALL_TARGET = '/usr/local/bin/'.freeze
 
 def download(godot_folder, target)

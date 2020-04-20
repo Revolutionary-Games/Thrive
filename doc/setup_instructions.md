@@ -28,7 +28,7 @@ issues please don't hesitate to bring them up.
 Godot with mono
 ---------------
 
-The currently used Godot version is __3.2 mono__. You can find it on
+The currently used Godot version is __3.2.1 mono__. You can find it on
 the Godot download page: https://godotengine.org/download/ if it is
 still the latest stable version. If a new version of Godot has been
 released but Thrive has not been updated yet, you need to look through
