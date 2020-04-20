@@ -26,6 +26,8 @@ public class MicrobeHUD : Node
     private Label populationLabel;
     private Label patchLabel;
 
+    private TextureButton editorButton;
+
     private PanelContainer extinctionBox;
 
     /// <summary>
@@ -72,10 +74,11 @@ public class MicrobeHUD : Node
         animationPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
         hudBars = GetTree().GetNodesInGroup("MicrobeHUDBar");
         textureHudBars = GetTree().GetNodesInGroup("MicrobeTextureHUDBar");
-        hoveredItems = mouseHoverPanel.GetChild(0).GetChild(0).GetNode<VBoxContainer>("HoveredItems");
+        hoveredItems = mouseHoverPanel.GetNode<VBoxContainer>("MarginContainer/VBoxContainer/HoveredItems");
         populationLabel = GetNode<Label>("BottomRight/PopulationData/Value");
         patchLabel = GetNode<Label>("BottomBar/PatchLabel");
         extinctionBox = GetNode<PanelContainer>("ExtinctionBox");
+        editorButton = GetNode<TextureButton>("BottomRight/EditorButton");
 
         OnEnterStageTransition();
     }
@@ -156,18 +159,16 @@ public class MicrobeHUD : Node
     /// </summary>
     public void ShowReproductionDialog()
     {
-        // TODO: add a flag for only doing this once even when called repeatedly
-        // also add a reverse check to HideReproductionDialog
+        if (editorButton.Disabled)
+        {
+            var sound = GD.Load<AudioStream>("res://assets/sounds/soundeffects/microbe-pickup-organelle.ogg");
+            GUICommon.Instance.PlayCustomSound(sound);
 
-        // TODO: sound "Data/Sound/soundeffects/microbe-pickup-organelle.ogg"
-
-        var editorButton = GetNode<TextureButton>("BottomRight/EditorButton");
-
-        editorButton.Disabled = false;
-        editorButton.GetNode<TextureRect>("Highlight").Show();
-        editorButton.GetNode<Control>("ReproductionBar").Hide();
-        editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Play(
-            "EditorButtonFlash");
+            editorButton.Disabled = false;
+            editorButton.GetNode<TextureRect>("Highlight").Show();
+            editorButton.GetNode<Control>("ReproductionBar").Hide();
+            editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Play("EditorButtonFlash");
+        }
     }
 
     /// <summary>
@@ -175,12 +176,13 @@ public class MicrobeHUD : Node
     /// </summary>
     public void HideReproductionDialog()
     {
-        var editorButton = GetNode<TextureButton>("BottomRight/EditorButton");
-
-        editorButton.Disabled = true;
-        editorButton.GetNode<TextureRect>("Highlight").Hide();
-        editorButton.GetNode<Control>("ReproductionBar").Show();
-        editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Stop();
+        if (!editorButton.Disabled)
+        {
+            editorButton.Disabled = true;
+            editorButton.GetNode<TextureRect>("Highlight").Hide();
+            editorButton.GetNode<Control>("ReproductionBar").Show();
+            editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Stop();
+        }
     }
 
     public void OnSuicide()
