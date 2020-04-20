@@ -1159,6 +1159,12 @@ ATPConsumptionBarPath = NodePath("CellEditor/ATPBalancePanel/MarginContainer/VBo
 AutoEvoLabelPath = NodePath("Report/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/AutoEvoResults")
 ExternalEffectsLabelPath = NodePath("Report/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/ExternalEffectsList")
 MapDrawerPath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/ScrollContainer/PatchMapDrawer")
+PatchNothingSelectedPath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/NothingSelected")
+PatchDetailsPath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer")
+PatchNamePath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/PatchName")
+PatchPlayerHerePath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/PlayerHereLabel")
+PatchBiomePath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/Biome")
+MoveToPatchButtonPath = NodePath("PatchMap/MoveToPatchButton")
 
 [node name="LeftTopBar" type="Control" parent="MicrobeEditorGUI"]
 margin_right = 810.0
@@ -4333,31 +4339,75 @@ margin_right = 700.0
 margin_bottom = 660.0
 DrawDefaultMapIfEmpty = false
 
-[node name="RightPanel" type="PanelContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer"]
 margin_left = 712.0
 margin_right = 1268.0
-margin_bottom = 594.0
-size_flags_vertical = 0
+margin_bottom = 660.0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/RightPanel"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 549.0
-margin_bottom = 587.0
+[node name="VSeparator" type="VSeparator" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer"]
+margin_right = 4.0
+margin_bottom = 660.0
+
+[node name="ScrollContainer2" type="ScrollContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer"]
+margin_left = 8.0
+margin_right = 556.0
+margin_bottom = 580.0
 rect_min_size = Vector2( 0, 580 )
 size_flags_horizontal = 3
-size_flags_vertical = 3
+size_flags_vertical = 2
 follow_focus = true
 scroll_horizontal_enabled = false
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/RightPanel/ScrollContainer"]
-margin_right = 134.0
-margin_bottom = 14.0
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2"]
+margin_right = 548.0
+margin_bottom = 580.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/RightPanel/ScrollContainer/VBoxContainer"]
-margin_right = 134.0
+[node name="NothingSelected" type="VBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer"]
+margin_right = 548.0
 margin_bottom = 14.0
-text = "Selected patch info..."
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/NothingSelected"]
+margin_right = 548.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Select a patch to show details here"
+align = 1
+
+[node name="PatchDetailsContainer" type="VBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer"]
+visible = false
+margin_top = 18.0
+margin_right = 548.0
+margin_bottom = 68.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PatchName" type="Label" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer"]
+margin_right = 548.0
+margin_bottom = 14.0
+text = "Patch Name Goes Here"
+align = 1
+
+[node name="PlayerHereLabel" type="Label" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer"]
+margin_top = 18.0
+margin_right = 548.0
+margin_bottom = 32.0
+text = "YOU ARE IN THIS PATCH"
+
+[node name="Biome" type="Label" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer"]
+margin_top = 36.0
+margin_right = 548.0
+margin_bottom = 50.0
+text = "Biome: BIOME HERE"
+align = 1
+
+[node name="Label2" type="Label" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "TODO: patch conditions and present species"
 
 [node name="NextTabButton" type="Button" parent="MicrobeEditorGUI/PatchMap"]
 anchor_left = 1.0
@@ -4375,6 +4425,27 @@ custom_styles/normal = SubResource( 50 )
 custom_fonts/font = SubResource( 51 )
 enabled_focus_mode = 0
 text = "NEXT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MoveToPatchButton" type="Button" parent="MicrobeEditorGUI/PatchMap"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -469.0
+margin_top = -60.0
+margin_right = -237.0
+margin_bottom = -16.0
+focus_mode = 0
+custom_styles/hover = SubResource( 48 )
+custom_styles/pressed = SubResource( 49 )
+custom_styles/normal = SubResource( 50 )
+custom_fonts/font = SubResource( 51 )
+disabled = true
+enabled_focus_mode = 0
+text = "Move to This Patch"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -4539,5 +4610,6 @@ visible = false
 [connection signal="mouse_entered" from="MicrobeEditorGUI/PatchMap/MapPanel" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/PatchMap/MapPanel" to="MicrobeEditorGUI" method="OnMouseExit"]
 [connection signal="pressed" from="MicrobeEditorGUI/PatchMap/NextTabButton" to="MicrobeEditorGUI" method="GoToEditorTab"]
+[connection signal="pressed" from="MicrobeEditorGUI/PatchMap/MoveToPatchButton" to="MicrobeEditorGUI" method="MoveToPatchClicked"]
 [connection signal="pressed" from="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu/Resume" to="MicrobeEditorGUI" method="MenuButtonPressed"]
 [connection signal="pressed" from="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu/Exit" to="MicrobeEditorGUI" method="ExitPressed"]
