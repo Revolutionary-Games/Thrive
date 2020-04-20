@@ -38,11 +38,6 @@ public class AutoEvoRun
     private volatile int completeSteps = 0;
 
     /// <summary>
-    ///   The Species may not be messed with while running. These are queued changes that will be applied after a run
-    /// </summary>
-    private List<ExternalEffect> externalEffects = new List<ExternalEffect>();
-
-    /// <summary>
     ///   Generated steps are stored here until they are executed
     /// </summary>
     private Queue<AutoEvo.IRunStep> runSteps = new Queue<AutoEvo.IRunStep>();
@@ -70,6 +65,11 @@ public class AutoEvoRun
         /// </summary>
         ENDED,
     }
+
+    /// <summary>
+    ///   The Species may not be messed with while running. These are queued changes that will be applied after a run
+    /// </summary>
+    public List<ExternalEffect> ExternalEffects { get; private set; } = new List<ExternalEffect>();
 
     /// <summary>
     ///   True while running
@@ -206,12 +206,12 @@ public class AutoEvoRun
     /// </remarks>
     public void ApplyExternalEffects()
     {
-        if (externalEffects.Count > 0)
+        if (ExternalEffects.Count > 0)
         {
             // Effects are applied in the current patch
             var currentPatch = parameters.World.Map.CurrentPatch;
 
-            foreach (var entry in externalEffects)
+            foreach (var entry in ExternalEffects)
             {
                 try
                 {
@@ -238,7 +238,7 @@ public class AutoEvoRun
     /// <param name="eventType">The external event type.</param>
     public void AddExternalPopulationEffect(Species species, int amount, string eventType)
     {
-        externalEffects.Add(new ExternalEffect(species, amount, eventType));
+        ExternalEffects.Add(new ExternalEffect(species, amount, eventType));
     }
 
     /// <summary>
@@ -249,7 +249,7 @@ public class AutoEvoRun
     {
         var combinedExternalEffects = new Dictionary<Tuple<Species, string>, int>();
 
-        foreach (var entry in externalEffects)
+        foreach (var entry in ExternalEffects)
         {
             var key = new Tuple<Species, string>(entry.Species, entry.EventType);
 

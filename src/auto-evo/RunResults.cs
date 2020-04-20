@@ -146,8 +146,9 @@
         /// </summary>
         /// <param name="previousPopulations">If provided comparisons to previous populations is included</param>
         /// <param name="playerReadable">if true ids are removed from the output</param>
+        /// <param name="effects">if not null these effects are applied to the population numbers</param>
         public string MakeSummary(PatchMap previousPopulations = null,
-            bool playerReadable = false)
+            bool playerReadable = false, List<ExternalEffect> effects = null)
         {
             const bool resolveMoves = true;
 
@@ -244,6 +245,17 @@
                     {
                         adjustedPopulation +=
                             CountSpeciesSpreadPopulation(entry.Species, patchPopulation.Key);
+                    }
+
+                    // Apply external effects
+                    if (effects != null && previousPopulations != null &&
+                        previousPopulations.CurrentPatch.ID == patchPopulation.Key.ID)
+                    {
+                        foreach (var effect in effects)
+                        {
+                            if (effect.Species == entry.Species)
+                                adjustedPopulation += effect.Amount;
+                        }
                     }
 
                     // As the populations are added to all patches, even when the species is not there, we remove those
