@@ -53,6 +53,8 @@ public class MicrobeEditorGUI : Node
     private ProgressBar aTPProductionBar;
     private ProgressBar aTPConsumptionBar;
 
+    private bool inEditorTab = false;
+
     public override void _Ready()
     {
         organelleSelectionElements = GetTree().GetNodesInGroup("OrganelleSelectionElement");
@@ -162,7 +164,7 @@ public class MicrobeEditorGUI : Node
     /// </summary>
     internal void OnMouseExit()
     {
-        editor.ShowHover = true;
+        editor.ShowHover = true && inEditorTab;
     }
 
     internal void SetUndoButtonStatus(bool enabled)
@@ -263,6 +265,39 @@ public class MicrobeEditorGUI : Node
         // throw new NotImplementedException();
 
         speciesNameEdit.Text = name;
+    }
+
+    private void SetEditorTab(string tab)
+    {
+        // Hide all
+        var cellEditor = GetNode<Control>("CellEditor");
+        var report = GetNode<Control>("Report");
+        var patchMap = GetNode<Control>("PatchMap");
+
+        report.Hide();
+        patchMap.Hide();
+        cellEditor.Hide();
+
+        inEditorTab = false;
+
+        // Show selected
+        if (tab == "report")
+        {
+            report.Show();
+        }
+        else if (tab == "patch")
+        {
+            patchMap.Show();
+        }
+        else if (tab == "editor")
+        {
+            cellEditor.Show();
+            inEditorTab = true;
+        }
+        else
+        {
+            GD.PrintErr("Invalid tab");
+        }
     }
 
     private void SetCellTab(string tab)

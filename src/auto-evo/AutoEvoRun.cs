@@ -40,7 +40,7 @@ public class AutoEvoRun
     /// <summary>
     ///   The Species may not be messed with while running. These are queued changes that will be applied after a run
     /// </summary>
-    private List<Tuple<Species, int, string>> externalEffects = new List<Tuple<Species, int, string>>();
+    private List<ExternalEffect> externalEffects = new List<ExternalEffect>();
 
     /// <summary>
     ///   Generated steps are stored here until they are executed
@@ -213,14 +213,12 @@ public class AutoEvoRun
 
             foreach (var entry in externalEffects)
             {
-                entry.Deconstruct(out Species species, out int amount, out string eventType);
-
                 try
                 {
-                    int currentPop = results.GetPopulationInPatch(species, currentPatch);
+                    int currentPop = results.GetPopulationInPatch(entry.Species, currentPatch);
 
                     results.AddPopulationResultForSpecies(
-                        species, currentPatch, currentPop + amount);
+                        entry.Species, currentPatch, currentPop + entry.Amount);
                 }
                 catch (Exception e)
                 {
@@ -240,7 +238,7 @@ public class AutoEvoRun
     /// <param name="eventType">The external event type.</param>
     public void AddExternalPopulationEffect(Species species, int amount, string eventType)
     {
-        externalEffects.Add(new Tuple<Species, int, string>(species, amount, eventType));
+        externalEffects.Add(new ExternalEffect(species, amount, eventType));
     }
 
     /// <summary>
@@ -253,17 +251,15 @@ public class AutoEvoRun
 
         foreach (var entry in externalEffects)
         {
-            entry.Deconstruct(out Species species, out int amount, out string eventType);
-
-            var key = new Tuple<Species, string>(species, eventType);
+            var key = new Tuple<Species, string>(entry.Species, entry.EventType);
 
             if (combinedExternalEffects.ContainsKey(key))
             {
-                combinedExternalEffects[key] += amount;
+                combinedExternalEffects[key] += entry.Amount;
             }
             else
             {
-                combinedExternalEffects[key] = amount;
+                combinedExternalEffects[key] = entry.Amount;
             }
         }
 
