@@ -1155,6 +1155,8 @@ SymmetryButtonPath = NodePath("CellEditor/SymmetryButton")
 ATPBalanceLabelPath = NodePath("CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer/Label")
 ATPProductionBarPath = NodePath("CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer/AtpProductionBar")
 ATPConsumptionBarPath = NodePath("CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer/AtpConsumptionBar")
+AutoEvoLabelPath = NodePath("Report/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/AutoEvoResults")
+ExternalEffectsLabelPath = NodePath("Report/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/ExternalEffectsList")
 
 [node name="LeftTopBar" type="Control" parent="MicrobeEditorGUI"]
 margin_right = 810.0
@@ -4193,7 +4195,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ATPBalancePanel2" type="PanelContainer" parent="MicrobeEditorGUI/Report"]
+[node name="EvoResultsPanel" type="PanelContainer" parent="MicrobeEditorGUI/Report"]
 anchor_top = 0.067
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -4206,7 +4208,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/Report/ATPBalancePanel2"]
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/Report/EvoResultsPanel"]
 margin_left = 3.0
 margin_top = 3.0
 margin_right = 1277.0
@@ -4217,24 +4219,159 @@ custom_constants/margin_top = 3
 custom_constants/margin_left = 3
 custom_constants/margin_bottom = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/Report/ATPBalancePanel2/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MicrobeEditorGUI/Report/EvoResultsPanel/MarginContainer"]
 margin_left = 3.0
 margin_top = 3.0
 margin_right = 1271.0
 margin_bottom = 664.0
+follow_focus = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/Report/EvoResultsPanel/MarginContainer/ScrollContainer"]
+margin_right = 122.0
+margin_bottom = 82.0
 custom_constants/separation = 0
 
-[node name="Label" type="Label" parent="MicrobeEditorGUI/Report/ATPBalancePanel2/MarginContainer/VBoxContainer"]
-margin_right = 1268.0
+[node name="Label" type="Label" parent="MicrobeEditorGUI/Report/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_right = 122.0
 margin_bottom = 15.0
 custom_fonts/font = SubResource( 9 )
 text = "Auto-evo results:"
+
+[node name="AutoEvoResults" type="Label" parent="MicrobeEditorGUI/Report/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 15.0
+margin_right = 122.0
+margin_bottom = 29.0
+
+[node name="HSeparator" type="HSeparator" parent="MicrobeEditorGUI/Report/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 29.0
+margin_right = 122.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 0, 25 )
+
+[node name="Label2" type="Label" parent="MicrobeEditorGUI/Report/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 54.0
+margin_right = 122.0
+margin_bottom = 68.0
+text = "External effects:"
+
+[node name="ExternalEffectsList" type="Label" parent="MicrobeEditorGUI/Report/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 68.0
+margin_right = 122.0
+margin_bottom = 82.0
+
+[node name="NextTabButton" type="Button" parent="MicrobeEditorGUI/Report"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -165.0
+margin_top = -59.0
+margin_right = -15.0
+margin_bottom = -15.0
+focus_mode = 0
+custom_styles/hover = SubResource( 48 )
+custom_styles/pressed = SubResource( 49 )
+custom_styles/normal = SubResource( 50 )
+custom_fonts/font = SubResource( 51 )
+enabled_focus_mode = 0
+text = "NEXT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="PatchMap" type="Control" parent="MicrobeEditorGUI"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MapPanel" type="PanelContainer" parent="MicrobeEditorGUI/PatchMap"]
+anchor_top = 0.067
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = -0.440002
+margin_right = 1.0
+margin_bottom = 0.613403
+custom_styles/panel = SubResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel"]
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 1277.0
+margin_bottom = 669.813
+mouse_filter = 1
+custom_constants/margin_right = 3
+custom_constants/margin_top = 3
+custom_constants/margin_left = 3
+custom_constants/margin_bottom = 3
+
+[node name="HSplitContainer" type="HSplitContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer"]
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 1271.0
+margin_bottom = 663.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer"]
+margin_right = 700.0
+margin_bottom = 660.0
+rect_min_size = Vector2( 700, 0 )
+follow_focus = true
+
+[node name="PatchMapDrawer" type="Control" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/ScrollContainer"]
+margin_right = 700.0
+margin_bottom = 660.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="RightPanel" type="PanelContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer"]
+margin_left = 712.0
+margin_right = 1268.0
+margin_bottom = 594.0
+size_flags_vertical = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/RightPanel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 549.0
+margin_bottom = 587.0
+rect_min_size = Vector2( 0, 580 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+follow_focus = true
+scroll_horizontal_enabled = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/RightPanel/ScrollContainer"]
+margin_right = 134.0
+margin_bottom = 14.0
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/RightPanel/ScrollContainer/VBoxContainer"]
+margin_right = 134.0
+margin_bottom = 14.0
+text = "Selected patch info..."
+
+[node name="NextTabButton" type="Button" parent="MicrobeEditorGUI/PatchMap"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -165.0
+margin_top = -59.0
+margin_right = -15.0
+margin_bottom = -15.0
+focus_mode = 0
+custom_styles/hover = SubResource( 48 )
+custom_styles/pressed = SubResource( 49 )
+custom_styles/normal = SubResource( 50 )
+custom_fonts/font = SubResource( 51 )
+enabled_focus_mode = 0
+text = "NEXT"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -4393,7 +4530,11 @@ visible = false
 [connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/FinishButton" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/FinishButton" to="MicrobeEditorGUI" method="OnMouseExit"]
 [connection signal="pressed" from="MicrobeEditorGUI/CellEditor/FinishButton" to="MicrobeEditorGUI" method="OnFinishEditingClicked"]
-[connection signal="mouse_entered" from="MicrobeEditorGUI/Report/ATPBalancePanel2" to="MicrobeEditorGUI" method="OnMouseEnter"]
-[connection signal="mouse_exited" from="MicrobeEditorGUI/Report/ATPBalancePanel2" to="MicrobeEditorGUI" method="OnMouseExit"]
+[connection signal="mouse_entered" from="MicrobeEditorGUI/Report/EvoResultsPanel" to="MicrobeEditorGUI" method="OnMouseEnter"]
+[connection signal="mouse_exited" from="MicrobeEditorGUI/Report/EvoResultsPanel" to="MicrobeEditorGUI" method="OnMouseExit"]
+[connection signal="pressed" from="MicrobeEditorGUI/Report/NextTabButton" to="MicrobeEditorGUI" method="GoToPatchTab"]
+[connection signal="mouse_entered" from="MicrobeEditorGUI/PatchMap/MapPanel" to="MicrobeEditorGUI" method="OnMouseEnter"]
+[connection signal="mouse_exited" from="MicrobeEditorGUI/PatchMap/MapPanel" to="MicrobeEditorGUI" method="OnMouseExit"]
+[connection signal="pressed" from="MicrobeEditorGUI/PatchMap/NextTabButton" to="MicrobeEditorGUI" method="GoToEditorTab"]
 [connection signal="pressed" from="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu/Resume" to="MicrobeEditorGUI" method="MenuButtonPressed"]
 [connection signal="pressed" from="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu/Exit" to="MicrobeEditorGUI" method="ExitPressed"]

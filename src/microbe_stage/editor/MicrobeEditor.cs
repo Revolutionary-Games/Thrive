@@ -1318,8 +1318,7 @@ public class MicrobeEditor : Node
         var summary = CurrentGame.GameWorld.GetAutoEvoRun().Results.MakeSummary(CurrentGame.GameWorld.Map, true);
         var external = CurrentGame.GameWorld.GetAutoEvoRun().MakeSummaryOfExternalEffects();
 
-        GD.Print(summary);
-        GD.Print(external);
+        gui.UpdateAutoEvoResults(summary, external);
 
         ApplyAutoEvoResults();
     }
