@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Godot;
 
 /// <summary>
 ///   Background in the microbe stage, needs to have 4 layers (textures)
@@ -15,6 +16,24 @@ public class Background : IRegistryType
         {
             throw new InvalidRegistryData(name, this.GetType().Name,
                 "Background needs 4 layers");
+        }
+    }
+
+    /// <summary>
+    ///   Checks that resource paths are valid. This doesn't preload the images as they are big and there are a lot of
+    ///   them.
+    /// </summary>
+    public void Resolve(SimulationParameters parameters)
+    {
+        var directory = new Directory();
+
+        foreach (var resource in Textures)
+        {
+            if (!directory.FileExists(resource))
+            {
+                throw new InvalidRegistryData(InternalName, this.GetType().Name,
+                    "Background contains non-existant image: " + resource);
+            }
         }
     }
 }
