@@ -31,6 +31,10 @@ public class MicrobeEditorGUI : Node
     public NodePath ATPProductionBarPath;
     [Export]
     public NodePath ATPConsumptionBarPath;
+    [Export]
+    public NodePath AutoEvoLabelPath;
+    [Export]
+    public NodePath ExternalEffectsLabelPath;
 
     private const string ATP_BALANCE_DEFAULT_TEXT = "ATP Balance";
 
@@ -49,9 +53,11 @@ public class MicrobeEditorGUI : Node
     private TextureButton undoButton;
     private TextureButton redoButton;
     private TextureButton symmetryButton;
-    private Label aTPBalanceLabel;
-    private ProgressBar aTPProductionBar;
-    private ProgressBar aTPConsumptionBar;
+    private Label atpBalanceLabel;
+    private ProgressBar atpProductionBar;
+    private ProgressBar atpConsumptionBar;
+    private Label autoEvoLabel;
+    private Label externalEffectsLabel;
 
     private bool inEditorTab = false;
 
@@ -71,9 +77,11 @@ public class MicrobeEditorGUI : Node
         undoButton = GetNode<TextureButton>(UndoButtonPath);
         redoButton = GetNode<TextureButton>(RedoButtonPath);
         symmetryButton = GetNode<TextureButton>(SymmetryButtonPath);
-        aTPBalanceLabel = GetNode<Label>(ATPBalanceLabelPath);
-        aTPProductionBar = GetNode<ProgressBar>(ATPProductionBarPath);
-        aTPConsumptionBar = GetNode<ProgressBar>(ATPConsumptionBarPath);
+        atpBalanceLabel = GetNode<Label>(ATPBalanceLabelPath);
+        atpProductionBar = GetNode<ProgressBar>(ATPProductionBarPath);
+        atpConsumptionBar = GetNode<ProgressBar>(ATPConsumptionBarPath);
+        autoEvoLabel = GetNode<Label>(AutoEvoLabelPath);
+        externalEffectsLabel = GetNode<Label>(ExternalEffectsLabelPath);
 
         // Fade out for that smooth satisfying transition
         TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeOut, 0.5f);
@@ -121,22 +129,22 @@ public class MicrobeEditorGUI : Node
     {
         if (energyBalance.FinalBalance > 0)
         {
-            aTPBalanceLabel.Text = ATP_BALANCE_DEFAULT_TEXT;
-            aTPBalanceLabel.AddColorOverride("font_color", new Color(1.0f, 1.0f, 1.0f, 1.0f));
+            atpBalanceLabel.Text = ATP_BALANCE_DEFAULT_TEXT;
+            atpBalanceLabel.AddColorOverride("font_color", new Color(1.0f, 1.0f, 1.0f, 1.0f));
         }
         else
         {
-            aTPBalanceLabel.Text = ATP_BALANCE_DEFAULT_TEXT + " - ATP PRODUCTION TOO LOW!";
-            aTPBalanceLabel.AddColorOverride("font_color", new Color(1.0f, 0.2f, 0.2f, 1.0f));
+            atpBalanceLabel.Text = ATP_BALANCE_DEFAULT_TEXT + " - ATP PRODUCTION TOO LOW!";
+            atpBalanceLabel.AddColorOverride("font_color", new Color(1.0f, 0.2f, 0.2f, 1.0f));
         }
 
         float maxValue = Math.Max(energyBalance.TotalConsumption, energyBalance.TotalProduction);
 
-        aTPProductionBar.MaxValue = maxValue;
-        aTPProductionBar.Value = energyBalance.TotalProduction;
+        atpProductionBar.MaxValue = maxValue;
+        atpProductionBar.Value = energyBalance.TotalProduction;
 
-        aTPConsumptionBar.MaxValue = maxValue;
-        aTPConsumptionBar.Value = energyBalance.TotalConsumption;
+        atpConsumptionBar.MaxValue = maxValue;
+        atpConsumptionBar.Value = energyBalance.TotalConsumption;
     }
 
     public void SetLoadingStatus(bool loading)
@@ -148,6 +156,12 @@ public class MicrobeEditorGUI : Node
     {
         loadingScreen.LoadingMessage = status;
         loadingScreen.LoadingDescription = description;
+    }
+
+    public void UpdateAutoEvoResults(string results, string external)
+    {
+        autoEvoLabel.Text = results;
+        externalEffectsLabel.Text = external;
     }
 
     /// <summary>
@@ -298,6 +312,20 @@ public class MicrobeEditorGUI : Node
         {
             GD.PrintErr("Invalid tab");
         }
+    }
+
+    private void GoToPatchTab()
+    {
+        var button = GetNode<Button>("LeftTopBar/HBoxContainer/PatchMapButton");
+        button.Pressed = true;
+        SetEditorTab("patch");
+    }
+
+    private void GoToEditorTab()
+    {
+        var button = GetNode<Button>("LeftTopBar/HBoxContainer/CellEditorButton");
+        button.Pressed = true;
+        SetEditorTab("editor");
     }
 
     private void SetCellTab(string tab)
