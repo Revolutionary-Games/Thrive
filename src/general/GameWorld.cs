@@ -157,7 +157,7 @@ public class GameWorld
     {
         if (autoEvo == null && autostart)
         {
-            autoEvo = AutoEvo.AutoEvo.CreateRun(this);
+            CreateRunIfMissing();
             autoEvo.Start();
         }
 
@@ -212,9 +212,16 @@ public class GameWorld
             species.ApplyImmediatePopulationChange(amount);
         }
 
-        // TODO: fix
-        // throw new NotImplementedException();
+        CreateRunIfMissing();
 
-        // GetThriveGame().addExternalPopulationEffect(species, popChange, reason);
+        autoEvo.AddExternalPopulationEffect(species, amount, description);
+    }
+
+    private void CreateRunIfMissing()
+    {
+        if (autoEvo != null)
+            return;
+
+        autoEvo = AutoEvo.AutoEvo.CreateRun(this);
     }
 }
