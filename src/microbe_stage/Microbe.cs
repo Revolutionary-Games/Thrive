@@ -286,7 +286,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         engulfDetector.Connect("body_entered", this, "OnBodyEnteredEngulfArea");
         engulfDetector.Connect("body_exited", this, "OnBodyExitedEngulfArea");
 
-        ContactsReported = 4;
+        ContactsReported = Constants.DEFAULT_STORE_CONTACTS_COUNT;
         Connect("body_shape_entered", this, "OnContactBegin");
         Connect("body_shape_exited", this, "OnContactEnd");
 
@@ -1336,44 +1336,42 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         {
             try
             {
+                // Dead things can't engulf us
+                if (hostileEngulfer.Dead)
+                {
+                    hostileEngulfer = null;
+                    isBeingEngulfed = false;
+                }
+                else
+                {
+                    // This check used to be just to get some distance away and you are no longer being engulfed, now
+                    // the engulfer overlap end callback is used to reset this
 
+                    // Vector3 predatorPosition = new Vector3(0, 0, 0);
+
+                    // var ourPosition = Translation;
+
+                    // float circleRad = 0.0f;
+
+                    // if (!hostileEngulfer.Dead)
+                    // {
+                    //     predatorPosition = hostileEngulfer.Translation;
+                    //     circleRad = hostileEngulfer.Radius;
+                    // }
+
+                    // if (!hostileEngulfer.EngulfMode || hostileEngulfer.Dead ||
+                    //     (ourPosition - predatorPosition).LengthSquared() >= circleRad)
+                    // {
+                    //     hostileEngulfer = null;
+                    //     isBeingEngulfed = false;
+                    // }
+                }
             }
             catch (ObjectDisposedException)
             {
                 // Something that's disposed can't engulf us
                 hostileEngulfer = null;
                 isBeingEngulfed = false;
-            }
-
-            // Dead things can't engulf us
-            if (hostileEngulfer.Dead)
-            {
-                hostileEngulfer = null;
-                isBeingEngulfed = false;
-            }
-            else
-            {
-                // This check used to be just to get some distance away and you are no longer being engulfed, now the
-                // engulfer overlap end callback is used to reset this
-
-                // Vector3 predatorPosition = new Vector3(0, 0, 0);
-
-                // var ourPosition = Translation;
-
-                // float circleRad = 0.0f;
-
-                // if (!hostileEngulfer.Dead)
-                // {
-                //     predatorPosition = hostileEngulfer.Translation;
-                //     circleRad = hostileEngulfer.Radius;
-                // }
-
-                // if (!hostileEngulfer.EngulfMode || hostileEngulfer.Dead ||
-                //     (ourPosition - predatorPosition).LengthSquared() >= circleRad)
-                // {
-                //     hostileEngulfer = null;
-                //     isBeingEngulfed = false;
-                // }
             }
         }
         else
@@ -1403,7 +1401,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         if (!previousEngulfMode)
             CheckStartEngulfingOnCandidates();
 
-        // Apply engulf effect and damage to the cells we are engulfing
+        // Apply engulf effect (which will cause damage in their process call) to the cells we are engulfing
         foreach (var microbe in attemptingToEngulf)
         {
             microbe.hostileEngulfer = this;
@@ -1673,10 +1671,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         return Translation + (ejectionDirection * ejectionDistance);
     }
 
-    private void OnContactBegin(int bodyID, Node body, uint bodyShape, uint localShape)
+    private void OnContactBegin(int bodyID, Node body, int bodyShape, int localShape)
     {
         if (body is Microbe microbe)
         {
+            bool otherIsPilus = microbe.IsPilus(microbe.ShapeFindOwner(bodyShape));
+            bool oursIsPilus = IsPilus(ShapeFindOwner(localShape));
+
             if (touchedMicrobes.Add(microbe))
             {
                 CheckStartEngulfingOnCandidates();
@@ -1684,10 +1685,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         }
     }
 
-    private void OnContactEnd(int bodyID, Node body, uint bodyShape, uint localShape)
+    private void OnContactEnd(int bodyID, Node body, int bodyShape, int localShape)
     {
         if (body is Microbe microbe)
         {
+            // TODO: should this also check for pilus before removing the collision?
             touchedMicrobes.Remove(microbe);
         }
     }
@@ -1725,7 +1727,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         if (!EngulfMode)
             return;
 
-        foreach (var microbe in touchedMicrobes.Concat(otherMicrobesInEngulfRange))
+        // In the case that the microbe first comes into engulf range, we don't want to start engulfing yet
+        // foreach (var microbe in touchedMicrobes.Concat(otherMicrobesInEngulfRange))
+        foreach (var microbe in touchedMicrobes)
         {
             if (!attemptingToEngulf.Contains(microbe))
             {
