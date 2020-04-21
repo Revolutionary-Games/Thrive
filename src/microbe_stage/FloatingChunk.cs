@@ -7,15 +7,15 @@ using Godot;
 /// </summary>
 public class FloatingChunk : RigidBody, ISpawned
 {
-    /// <summary>
-    ///   Used to check if a microbe wants to engulf this
-    /// </summary>
-    private HashSet<Microbe> touchingMicrobes = new HashSet<Microbe>();
-
     [Export]
     public PackedScene GraphicsScene;
 
     private CompoundCloudSystem compoundClouds;
+
+    /// <summary>
+    ///   Used to check if a microbe wants to engulf this
+    /// </summary>
+    private HashSet<Microbe> touchingMicrobes = new HashSet<Microbe>();
 
     public int DespawnRadiusSqr { get; set; }
 
@@ -28,7 +28,7 @@ public class FloatingChunk : RigidBody, ISpawned
     }
 
     /// <summary>
-    ///   Determines how big this chunk is for engulfing calculations. Set to <= 0 to disable
+    ///   Determines how big this chunk is for engulfing calculations. Set to &lt;= 0 to disable
     /// </summary>
     public float Size { get; set; } = -1.0f;
 
@@ -139,6 +139,7 @@ public class FloatingChunk : RigidBody, ISpawned
             if (Damages > 0)
             {
                 float totalDamage = Damages * delta;
+
                 // TODO: Not the cleanest way to play the damage sound
                 if (DeleteOnTouch)
                 {
@@ -156,7 +157,7 @@ public class FloatingChunk : RigidBody, ISpawned
             if (Size > 0 && microbe.EngulfMode)
             {
                 // Check can engulf based on the size of the chunk compared to the cell size
-                if (microbe.HexCount >= Size * Constants.ENGULF_SIZE_RATIO_REQ)
+                if (microbe.EngulfSize >= Size * Constants.ENGULF_SIZE_RATIO_REQ)
                 {
                     // Can engulf
                     if (ContainedCompounds != null)

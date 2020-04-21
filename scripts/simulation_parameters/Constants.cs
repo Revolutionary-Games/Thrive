@@ -209,6 +209,11 @@ public class Constants
     public const float ENGULF_DAMAGE = 45.0f;
 
     /// <summary>
+    ///   Damage a single pilus stab does
+    /// </summary>
+    public const float PILUS_BASE_DAMAGE = 30.0f;
+
+    /// <summary>
     ///   Osmoregulation ATP cost per second per hex
     /// </summary>
     public const float ATP_COST_FOR_OSMOREGULATION = 1.0f;

@@ -168,6 +168,24 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         }
     }
 
+    /// <summary>
+    ///   The size this microbe is for engulfing calculations
+    /// </summary>
+    public float EngulfSize
+    {
+        get
+        {
+            if (Species.IsBacteria)
+            {
+                return HexCount * 0.5f;
+            }
+            else
+            {
+                return HexCount;
+            }
+        }
+    }
+
     public float Radius
     {
         get
@@ -482,8 +500,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// </summary>
     public bool CanEngulf(Microbe target)
     {
-        // TODO: fix
-        return true;
+        // Disallow cannibalism
+        if (target.Species == Species)
+            return false;
+
+        // Needs to be big enough to engulf
+        return EngulfSize >= target.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ;
     }
 
     /// <summary>
@@ -1675,9 +1697,34 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     {
         if (body is Microbe microbe)
         {
+            // TODO: does this need to check for disposed exception?
+            if (microbe.Dead)
+                return;
+
             bool otherIsPilus = microbe.IsPilus(microbe.ShapeFindOwner(bodyShape));
             bool oursIsPilus = IsPilus(ShapeFindOwner(localShape));
 
+            // Pilus logic
+            if (otherIsPilus && oursIsPilus)
+            {
+                // Pilus on pilus doesn't deal damage and you can't engulf
+                return;
+            }
+            else if (otherIsPilus || oursIsPilus)
+            {
+                // Us attacking the other microbe, or it is attacking us
+
+                // Disallow cannibalism
+                if (microbe.Species == Species)
+                    return;
+
+                var target = otherIsPilus ? this : microbe;
+
+                target.Damage(Constants.PILUS_BASE_DAMAGE, "pilus");
+                return;
+            }
+
+            // Pili don't stop engulfing
             if (touchedMicrobes.Add(microbe))
             {
                 CheckStartEngulfingOnCandidates();
@@ -1701,6 +1748,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
         if (body is Microbe microbe)
         {
+            // TODO: does this need to check for disposed exception?
+            if (microbe.Dead)
+                return;
+
             if (otherMicrobesInEngulfRange.Add(microbe))
             {
                 CheckStartEngulfingOnCandidates();
@@ -1731,7 +1782,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         // foreach (var microbe in touchedMicrobes.Concat(otherMicrobesInEngulfRange))
         foreach (var microbe in touchedMicrobes)
         {
-            if (!attemptingToEngulf.Contains(microbe))
+            if (!attemptingToEngulf.Contains(microbe) && CanEngulf(microbe))
             {
                 StartEngulfingTarget(microbe);
             }
@@ -1759,6 +1810,4 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         RemoveCollisionExceptionWith(microbe);
         microbe.hostileEngulfer = null;
     }
-
-
 }
