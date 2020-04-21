@@ -1,4 +1,4 @@
-[gd_scene load_steps=108 format=2]
+[gd_scene load_steps=127 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
@@ -56,6 +56,19 @@
 [ext_resource path="res://src/microbe_stage/editor/PatchMapDrawer.tscn" type="PackedScene" id=54]
 [ext_resource path="res://assets/textures/gui/bevel/SmallFourDisabled.png" type="Texture" id=55]
 [ext_resource path="res://assets/textures/gui/bevel/SmallThreeDisabled.png" type="Texture" id=56]
+[ext_resource path="res://assets/textures/gui/bevel/Light.png" type="Texture" id=57]
+[ext_resource path="res://assets/textures/gui/bevel/Nitrogen.png" type="Texture" id=58]
+[ext_resource path="res://assets/textures/gui/bevel/HydrogenSulfide.png" type="Texture" id=59]
+[ext_resource path="res://assets/textures/gui/bevel/Oxygen.png" type="Texture" id=60]
+[ext_resource path="res://assets/textures/gui/bevel/CO2.png" type="Texture" id=61]
+[ext_resource path="res://assets/textures/gui/bevel/Temperature.png" type="Texture" id=62]
+[ext_resource path="res://assets/textures/gui/bevel/Ammonia.png" type="Texture" id=63]
+[ext_resource path="res://assets/textures/gui/bevel/Iron.png" type="Texture" id=64]
+[ext_resource path="res://assets/textures/gui/bevel/Pressure.png" type="Texture" id=65]
+[ext_resource path="res://assets/textures/gui/bevel/Glucose.png" type="Texture" id=66]
+[ext_resource path="res://assets/textures/gui/bevel/minusButton.png" type="Texture" id=67]
+[ext_resource path="res://assets/textures/gui/bevel/minusButtonHover.png" type="Texture" id=68]
+[ext_resource path="res://assets/textures/gui/bevel/Phosphate.png" type="Texture" id=69]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 37 )
@@ -1127,6 +1140,33 @@ corner_radius_bottom_left = 5
 size = 20
 font_data = ExtResource( 5 )
 
+[sub_resource type="DynamicFont" id=52]
+size = 30
+use_filter = true
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=53]
+use_filter = true
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=54]
+size = 20
+use_filter = true
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=55]
+size = 18
+use_filter = true
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=56]
+size = 18
+use_filter = true
+font_data = ExtResource( 5 )
+
+[sub_resource type="Theme" id=57]
+default_font = SubResource( 56 )
+
 [node name="MicrobeEditor" type="Node"]
 script = ExtResource( 2 )
 
@@ -1163,9 +1203,21 @@ ExternalEffectsLabelPath = NodePath("Report/EvoResultsPanel/MarginContainer/Scro
 MapDrawerPath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/ScrollContainer/PatchMapDrawer")
 PatchNothingSelectedPath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/NothingSelected")
 PatchDetailsPath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer")
-PatchNamePath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/PatchName")
-PatchPlayerHerePath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/PlayerHereLabel")
+PatchNamePath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/VBoxContainer/PatchName")
+PatchPlayerHerePath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/VBoxContainer/PlayerHereLabel")
 PatchBiomePath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/Biome")
+PatchTemperaturePath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/PhysicalConditions/GridContainer/Temperature/Label")
+PatchPressurePath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/PhysicalConditions/GridContainer/Pressure/Label")
+PatchLightPath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/PhysicalConditions/GridContainer/Light/Label")
+PatchOxygenPath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/AtmosphericConditions/GridContainer/Oxygen/Label")
+PatchNitrogenPath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/AtmosphericConditions/GridContainer/Nitrogen/Label")
+PatchCO2Path = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/AtmosphericConditions/GridContainer/CO2/Label")
+PatchHydrogenSulfidePath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer/HydrogenSulfide/Label")
+PatchAmmoniaPath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer/Ammonia/Label")
+PatchGlucosePath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer/Glucose/Label")
+PatchPhosphatePath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer/Phosphate/Label")
+PatchIronPath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer/Iron/Label")
+SpeciesListPath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/SpeciesPresent/SpeciesList")
 MoveToPatchButtonPath = NodePath("PatchMap/MoveToPatchButton")
 
 [node name="LeftTopBar" type="Control" parent="MicrobeEditorGUI"]
@@ -4199,6 +4251,7 @@ __meta__ = {
 }
 
 [node name="Report" type="Control" parent="MicrobeEditorGUI"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -0.200001
@@ -4292,7 +4345,6 @@ __meta__ = {
 }
 
 [node name="PatchMap" type="Control" parent="MicrobeEditorGUI"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -4369,6 +4421,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="NothingSelected" type="VBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer"]
+visible = false
 margin_right = 548.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
@@ -4381,38 +4434,397 @@ text = "Select a patch to show details here"
 align = 1
 
 [node name="PatchDetailsContainer" type="VBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer"]
-visible = false
-margin_top = 18.0
 margin_right = 548.0
-margin_bottom = 86.0
+margin_bottom = 543.0
+custom_constants/separation = 15
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PatchName" type="Label" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer"]
 margin_right = 548.0
-margin_bottom = 14.0
+margin_bottom = 50.0
+custom_constants/separation = 0
+
+[node name="PatchName" type="Label" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/VBoxContainer"]
+margin_right = 548.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 52 )
 text = "Patch Name Goes Here"
 align = 1
 
-[node name="PlayerHereLabel" type="Label" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer"]
-margin_top = 18.0
-margin_right = 548.0
-margin_bottom = 32.0
-text = "YOU ARE IN THIS PATCH"
-
-[node name="Biome" type="Label" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer"]
-margin_top = 36.0
+[node name="PlayerHereLabel" type="Label" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/VBoxContainer"]
+margin_top = 32.0
 margin_right = 548.0
 margin_bottom = 50.0
+custom_fonts/font = SubResource( 53 )
+text = "YOU ARE CURRENTLY IN THIS PATCH"
+align = 1
+
+[node name="Biome" type="Label" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer"]
+margin_top = 65.0
+margin_right = 548.0
+margin_bottom = 87.0
+custom_fonts/font = SubResource( 54 )
 text = "Biome: BIOME HERE"
 align = 1
 
-[node name="Label2" type="Label" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer"]
-margin_top = 54.0
+[node name="Depth" type="Label" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer"]
+margin_top = 102.0
 margin_right = 548.0
-margin_bottom = 68.0
-text = "TODO: patch conditions and present species"
+margin_bottom = 124.0
+custom_fonts/font = SubResource( 54 )
+text = "200-340m below sea level"
+align = 1
+
+[node name="PhysicalConditions" type="VBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer"]
+margin_top = 139.0
+margin_right = 548.0
+margin_bottom = 235.0
+custom_constants/separation = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/PhysicalConditions"]
+margin_right = 548.0
+margin_bottom = 27.0
+
+[node name="TextureButton" type="TextureButton" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/PhysicalConditions/HBoxContainer"]
+margin_right = 27.0
+margin_bottom = 27.0
+texture_normal = ExtResource( 67 )
+texture_hover = ExtResource( 68 )
+
+[node name="Label2" type="Label" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/PhysicalConditions/HBoxContainer"]
+margin_left = 31.0
+margin_top = 4.0
+margin_right = 208.0
+margin_bottom = 23.0
+custom_fonts/font = SubResource( 55 )
+text = "Physical Conditions"
+
+[node name="GridContainer" type="GridContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/PhysicalConditions"]
+margin_top = 42.0
+margin_right = 548.0
+margin_bottom = 96.0
+columns = 2
+
+[node name="Temperature" type="HBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/PhysicalConditions/GridContainer"]
+margin_right = 272.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/PhysicalConditions/GridContainer/Temperature"]
+margin_right = 30.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 30, 25 )
+texture = ExtResource( 62 )
+expand = true
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/PhysicalConditions/GridContainer/Temperature"]
+margin_left = 34.0
+margin_top = 3.0
+margin_right = 146.0
+margin_bottom = 22.0
+custom_fonts/font = SubResource( 55 )
+text = "Temperature"
+
+[node name="Pressure" type="HBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/PhysicalConditions/GridContainer"]
+margin_left = 276.0
+margin_right = 548.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/PhysicalConditions/GridContainer/Pressure"]
+margin_right = 30.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 30, 25 )
+texture = ExtResource( 65 )
+expand = true
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/PhysicalConditions/GridContainer/Pressure"]
+margin_left = 34.0
+margin_top = 3.0
+margin_right = 114.0
+margin_bottom = 22.0
+custom_fonts/font = SubResource( 55 )
+text = "Pressure"
+
+[node name="Light" type="HBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/PhysicalConditions/GridContainer"]
+margin_top = 29.0
+margin_right = 272.0
+margin_bottom = 54.0
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/PhysicalConditions/GridContainer/Light"]
+margin_right = 30.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 30, 25 )
+texture = ExtResource( 57 )
+expand = true
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/PhysicalConditions/GridContainer/Light"]
+margin_left = 34.0
+margin_top = 3.0
+margin_right = 79.0
+margin_bottom = 22.0
+custom_fonts/font = SubResource( 55 )
+text = "Light"
+
+[node name="AtmosphericConditions" type="VBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer"]
+margin_top = 250.0
+margin_right = 548.0
+margin_bottom = 346.0
+custom_constants/separation = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/AtmosphericConditions"]
+margin_right = 548.0
+margin_bottom = 27.0
+
+[node name="TextureButton" type="TextureButton" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/AtmosphericConditions/HBoxContainer"]
+margin_right = 27.0
+margin_bottom = 27.0
+texture_normal = ExtResource( 67 )
+texture_hover = ExtResource( 68 )
+
+[node name="Label2" type="Label" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/AtmosphericConditions/HBoxContainer"]
+margin_left = 31.0
+margin_top = 4.0
+margin_right = 214.0
+margin_bottom = 23.0
+custom_fonts/font = SubResource( 55 )
+text = "Atmospheric Gasses"
+
+[node name="GridContainer" type="GridContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/AtmosphericConditions"]
+margin_top = 42.0
+margin_right = 548.0
+margin_bottom = 96.0
+columns = 2
+
+[node name="Oxygen" type="HBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/AtmosphericConditions/GridContainer"]
+margin_right = 272.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/AtmosphericConditions/GridContainer/Oxygen"]
+margin_right = 30.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 30, 25 )
+texture = ExtResource( 60 )
+expand = true
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/AtmosphericConditions/GridContainer/Oxygen"]
+margin_left = 34.0
+margin_top = 3.0
+margin_right = 102.0
+margin_bottom = 22.0
+custom_fonts/font = SubResource( 55 )
+text = "Oxygen"
+
+[node name="Nitrogen" type="HBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/AtmosphericConditions/GridContainer"]
+margin_left = 276.0
+margin_right = 548.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/AtmosphericConditions/GridContainer/Nitrogen"]
+margin_right = 30.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 30, 25 )
+texture = ExtResource( 58 )
+expand = true
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/AtmosphericConditions/GridContainer/Nitrogen"]
+margin_left = 34.0
+margin_top = 3.0
+margin_right = 111.0
+margin_bottom = 22.0
+custom_fonts/font = SubResource( 55 )
+text = "Nitrogen"
+
+[node name="CO2" type="HBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/AtmosphericConditions/GridContainer"]
+margin_top = 29.0
+margin_right = 272.0
+margin_bottom = 54.0
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/AtmosphericConditions/GridContainer/CO2"]
+margin_right = 30.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 30, 25 )
+texture = ExtResource( 61 )
+expand = true
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/AtmosphericConditions/GridContainer/CO2"]
+margin_left = 34.0
+margin_top = 3.0
+margin_right = 66.0
+margin_bottom = 22.0
+custom_fonts/font = SubResource( 55 )
+text = "CO2"
+
+[node name="Compounds" type="VBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer"]
+margin_top = 361.0
+margin_right = 548.0
+margin_bottom = 486.0
+custom_constants/separation = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/Compounds"]
+margin_right = 548.0
+margin_bottom = 27.0
+
+[node name="TextureButton" type="TextureButton" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/Compounds/HBoxContainer"]
+margin_right = 27.0
+margin_bottom = 27.0
+texture_normal = ExtResource( 67 )
+texture_hover = ExtResource( 68 )
+
+[node name="Label2" type="Label" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/Compounds/HBoxContainer"]
+margin_left = 31.0
+margin_top = 4.0
+margin_right = 140.0
+margin_bottom = 23.0
+custom_fonts/font = SubResource( 55 )
+text = "Compounds"
+
+[node name="GridContainer" type="GridContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/Compounds"]
+margin_top = 42.0
+margin_right = 548.0
+margin_bottom = 125.0
+columns = 2
+
+[node name="HydrogenSulfide" type="HBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer"]
+margin_right = 272.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer/HydrogenSulfide"]
+margin_right = 25.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+texture = ExtResource( 59 )
+expand = true
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer/HydrogenSulfide"]
+margin_left = 29.0
+margin_top = 3.0
+margin_right = 186.0
+margin_bottom = 22.0
+custom_fonts/font = SubResource( 55 )
+text = "Hydrogen Sulfide"
+
+[node name="Ammonia" type="HBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer"]
+margin_left = 276.0
+margin_right = 548.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer/Ammonia"]
+margin_right = 25.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+texture = ExtResource( 63 )
+expand = true
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer/Ammonia"]
+margin_left = 29.0
+margin_top = 3.0
+margin_right = 108.0
+margin_bottom = 22.0
+custom_fonts/font = SubResource( 55 )
+text = "Ammonia"
+
+[node name="Glucose" type="HBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer"]
+margin_top = 29.0
+margin_right = 272.0
+margin_bottom = 54.0
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer/Glucose"]
+margin_right = 25.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+texture = ExtResource( 66 )
+expand = true
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer/Glucose"]
+margin_left = 29.0
+margin_top = 3.0
+margin_right = 102.0
+margin_bottom = 22.0
+custom_fonts/font = SubResource( 55 )
+text = "Glucose"
+
+[node name="Phosphate" type="HBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer"]
+margin_left = 276.0
+margin_top = 29.0
+margin_right = 548.0
+margin_bottom = 54.0
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer/Phosphate"]
+margin_right = 25.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+texture = ExtResource( 69 )
+expand = true
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer/Phosphate"]
+margin_left = 29.0
+margin_top = 3.0
+margin_right = 126.0
+margin_bottom = 22.0
+custom_fonts/font = SubResource( 55 )
+text = "Phosphate"
+
+[node name="Iron" type="HBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer"]
+margin_top = 58.0
+margin_right = 272.0
+margin_bottom = 83.0
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer/Iron"]
+margin_right = 25.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+texture = ExtResource( 64 )
+expand = true
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer/Iron"]
+margin_left = 29.0
+margin_top = 3.0
+margin_right = 64.0
+margin_bottom = 22.0
+custom_fonts/font = SubResource( 55 )
+text = "Iron"
+
+[node name="SpeciesPresent" type="VBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer"]
+margin_top = 501.0
+margin_right = 548.0
+margin_bottom = 543.0
+custom_constants/separation = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/SpeciesPresent"]
+margin_right = 548.0
+margin_bottom = 27.0
+
+[node name="TextureButton" type="TextureButton" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/SpeciesPresent/HBoxContainer"]
+margin_right = 27.0
+margin_bottom = 27.0
+texture_normal = ExtResource( 67 )
+texture_hover = ExtResource( 68 )
+
+[node name="Label2" type="Label" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/SpeciesPresent/HBoxContainer"]
+margin_left = 31.0
+margin_top = 4.0
+margin_right = 177.0
+margin_bottom = 23.0
+custom_fonts/font = SubResource( 55 )
+text = "Species Present"
+
+[node name="SpeciesList" type="VBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/ScrollContainer2/VBoxContainer/PatchDetailsContainer/SpeciesPresent"]
+margin_top = 42.0
+margin_right = 548.0
+margin_bottom = 42.0
+theme = SubResource( 57 )
 
 [node name="NextTabButton" type="Button" parent="MicrobeEditorGUI/PatchMap"]
 anchor_left = 1.0
