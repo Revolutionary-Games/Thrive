@@ -142,7 +142,6 @@ public class MicrobeCamera : Camera
 
         for (int i = 0; i < 4; ++i)
         {
-            GD.Print("set layer: ", string.Format("layer{0:n0}", i));
             materialToUpdate.SetShaderParam(string.Format("layer{0:n0}", i), GD.Load<Texture>(background.Textures[i]));
         }
     }
