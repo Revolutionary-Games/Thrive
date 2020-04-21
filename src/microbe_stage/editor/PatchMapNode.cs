@@ -21,6 +21,8 @@ public class PatchMapNode : MarginContainer
     private bool selected = false;
     private bool marked = false;
 
+    private Resource hoverCursor = GD.Load<Resource>("res://assets/textures/gui/cursors/cursor_hover.png");
+    private Resource defaultCursor = GD.Load<Resource>("res://assets/textures/gui/cursors/default.png");
     private Texture icon;
 
     /// <summary>
@@ -119,11 +121,13 @@ public class PatchMapNode : MarginContainer
     public void OnMouseEnter()
     {
         Highlighted = true;
+        Input.SetCustomMouseCursor(hoverCursor);
     }
 
     public void OnMouseExit()
     {
         Highlighted = false;
+        Input.SetCustomMouseCursor(defaultCursor);
     }
 
     private void UpdateSelectHighlightRing()
