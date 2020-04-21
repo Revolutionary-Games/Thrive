@@ -124,11 +124,7 @@ public class CompoundCloudPlane : CSGMesh
         // The diffusion rate seems to have a bigger effect
         delta *= 100.0f;
         var pos = new Vector2(Translation.x, Translation.z);
-
-        slot1.Update(delta, pos);
-        slot2.Update(delta, pos);
-        slot3.Update(delta, pos);
-        slot4.Update(delta, pos);
+        foreach (var slot in slots) slot.Update(delta, pos);
     }
 
     /// <summary>
@@ -237,32 +233,11 @@ public class CompoundCloudPlane : CSGMesh
     /// </summary>
     public void GetCompoundsAt(int x, int y, Dictionary<string, float> result)
     {
-        if (slot1.Compound != null)
+        foreach (var slot in slots)
         {
-            float amount = slot1.Density[x, y];
+            float amount = slot.Density[x, y];
             if (amount > 0)
-                result[slot1.Compound.InternalName] = amount;
-        }
-
-        if (slot2.Compound != null)
-        {
-            float amount = slot2.Density[x, y];
-            if (amount > 0)
-                result[slot2.Compound.InternalName] = amount;
-        }
-
-        if (slot3.Compound != null)
-        {
-            float amount = slot3.Density[x, y];
-            if (amount > 0)
-                result[slot3.Compound.InternalName] = amount;
-        }
-
-        if (slot4.Compound != null)
-        {
-            float amount = slot4.Density[x, y];
-            if (amount > 0)
-                result[slot4.Compound.InternalName] = amount;
+                result[slot.Compound.InternalName] = amount;
         }
     }
 
@@ -359,17 +334,7 @@ public class CompoundCloudPlane : CSGMesh
 
     public void ClearContents()
     {
-        if (slot1.Compound != null)
-            slot1.Clear();
-
-        if (slot2.Compound != null)
-            slot2.Clear();
-
-        if (slot3.Compound != null)
-            slot3.Clear();
-
-        if (slot4.Compound != null)
-            slot4.Clear();
+        foreach (var slot in slots) slot.Clear();
     }
 
     private Slot GetSlot(Compound compound)
@@ -462,8 +427,8 @@ public class CompoundCloudPlane : CSGMesh
             {
                 for (int y = 1; y < size - 1; y++)
                 {
-                    oldDens[x, y] = (density[x, y] * (1 - a)) + ((oldDens[x - 1, y] +
-                        oldDens[x + 1, y] + oldDens[x, y - 1] + oldDens[x, y + 1]) * a / 4);
+                    oldDens[x, y] = (density[x, y] * (1 - a)) + ((density[x - 1, y] +
+                        density[x + 1, y] + density[x, y - 1] + density[x, y + 1]) * a / 4);
                 }
             }
         }
