@@ -7,9 +7,10 @@ using Godot;
 public class FPSCounter : Control
 {
     private Label label;
+
     public override void _Ready()
     {
-        label = (Label)GetNode("Label");
+        label = GetNode<Label>("Label");
     }
 
     public override void _Input(InputEvent @event)
@@ -26,8 +27,6 @@ public class FPSCounter : Control
     public override void _Process(float delta)
     {
         if (Visible)
-        {
             label.Text = "FPS: " + Engine.GetFramesPerSecond().ToString();
-        }
     }
 }
