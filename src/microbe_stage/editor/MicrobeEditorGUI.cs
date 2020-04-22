@@ -639,21 +639,21 @@ public class MicrobeEditorGUI : Node
         patchCO2.Text = (patch.Biome.Compounds["carbondioxide"].Dissolved * 100) + "% ppm";
 
         // Compounds
-        patchHydrogenSulfide.Text = Math.Round((patch.Biome.Compounds["hydrogensulfide"].Density *
+        patchHydrogenSulfide.Text = Math.Round(patch.Biome.Compounds["hydrogensulfide"].Density *
             patch.Biome.Compounds["hydrogensulfide"].Amount + GetPatchChunkTotalCompoundAmount(
-            patch, "hydrogensulfide")), 3) + "%";
+            patch, "hydrogensulfide"), 3) + "%";
 
-        patchAmmonia.Text = Math.Round((patch.Biome.Compounds["ammonia"].Density *
+        patchAmmonia.Text = Math.Round(patch.Biome.Compounds["ammonia"].Density *
             patch.Biome.Compounds["ammonia"].Amount + GetPatchChunkTotalCompoundAmount(
-            patch, "ammonia")), 3) + "%";
+            patch, "ammonia"), 3) + "%";
 
-        patchGlucose.Text = Math.Round((patch.Biome.Compounds["glucose"].Density *
+        patchGlucose.Text = Math.Round(patch.Biome.Compounds["glucose"].Density *
             patch.Biome.Compounds["glucose"].Amount + GetPatchChunkTotalCompoundAmount(
-            patch, "glucose")), 3) + "%";
+            patch, "glucose"), 3) + "%";
 
-        patchPhosphate.Text = Math.Round((patch.Biome.Compounds["phosphates"].Density *
+        patchPhosphate.Text = Math.Round(patch.Biome.Compounds["phosphates"].Density *
             patch.Biome.Compounds["phosphates"].Amount + GetPatchChunkTotalCompoundAmount(
-            patch, "phosphates")), 3) + "%";
+            patch, "phosphates"), 3) + "%";
 
         patchIron.Text = GetPatchChunkTotalCompoundAmount(patch, "iron") + "%";
 
