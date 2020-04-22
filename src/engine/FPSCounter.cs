@@ -18,9 +18,13 @@ public class FPSCounter : Control
         if (@event.IsActionPressed("toggle_FPS"))
         {
             if (Visible)
+            {
                 Hide();
+            }
             else
+            {
                 Show();
+            }
         }
     }
 
