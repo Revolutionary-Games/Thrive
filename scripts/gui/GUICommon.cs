@@ -64,10 +64,10 @@ public class GUICommon : Node
     /// <summary>
     ///   Smoothly interpolates TextureProgress bar value.
     /// </summary>
-    public void TweenBarValue(TextureProgress bar, float targetValue, float maxValue, float speed)
+    public void TweenBarValue(TextureProgress bar, float targetValue, float maxValue)
     {
         var percentage = (targetValue / maxValue) * 100;
-        tween.InterpolateProperty(bar, "value", bar.Value, percentage, speed,
+        tween.InterpolateProperty(bar, "value", bar.Value, percentage, 0.1f,
             Tween.TransitionType.Linear, Tween.EaseType.Out);
         tween.Start();
     }
