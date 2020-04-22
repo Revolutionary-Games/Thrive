@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/microbe_stage/Membrane.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/textures/FresnelGradient.png" type="Texture" id=2]
@@ -19,8 +19,13 @@ shader_param/tint = Plane( 1, 1, 1, 1 )
 shader_param/albedoTexture = ExtResource( 2 )
 shader_param/damagedTexture = ExtResource( 3 )
 
+[sub_resource type="SphereShape" id=2]
+resource_local_to_scene = true
+
 [node name="Microbe" type="RigidBody"]
+process_priority = 1
 collision_layer = 3
+collision_mask = 3
 contact_monitor = true
 can_sleep = false
 axis_lock_linear_y = true
@@ -46,3 +51,12 @@ stream = ExtResource( 6 )
 [node name="MovementAudio" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 7 )
 autoplay = true
+
+[node name="EngulfDetector" type="Area" parent="."]
+input_ray_pickable = false
+monitorable = false
+collision_layer = 0
+collision_mask = 2
+
+[node name="EngulfShape" type="CollisionShape" parent="EngulfDetector"]
+shape = SubResource( 2 )
