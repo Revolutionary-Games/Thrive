@@ -11,13 +11,17 @@ public class GUICommon : Node
 
     private AudioStream buttonPressSound;
 
+    private Tween tween;
+
     private GUICommon()
     {
         instance = this;
 
         AudioSource = new AudioStreamPlayer();
+        tween = new Tween();
 
         AddChild(AudioSource);
+        AddChild(tween);
 
         // Keep this node running while paused
         PauseMode = PauseModeEnum.Process;
@@ -55,5 +59,16 @@ public class GUICommon : Node
     {
         AudioSource.Stream = sound;
         AudioSource.Play();
+    }
+
+    /// <summary>
+    ///   Smoothly interpolates TextureProgress bar value.
+    /// </summary>
+    public void TweenBarValue(TextureProgress bar, float targetValue, float maxValue, float speed)
+    {
+        var percentage = (targetValue / maxValue) * 100;
+        tween.InterpolateProperty(bar, "value", bar.Value, percentage, speed,
+            Tween.TransitionType.Linear, Tween.EaseType.Out);
+        tween.Start();
     }
 }

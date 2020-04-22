@@ -1,4 +1,4 @@
-[gd_scene load_steps=118 format=2]
+[gd_scene load_steps=119 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -248,6 +248,10 @@ region_rect = Rect2( 0, 0, 86, 52 )
 [sub_resource type="DynamicFont" id=44]
 size = 14
 font_data = ExtResource( 69 )
+
+[sub_resource type="StyleBoxFlat" id=52]
+border_width_left = 1
+border_color = Color( 0.0666667, 1, 0.835294, 1 )
 
 [sub_resource type="Animation" id=45]
 resource_name = "EditorButtonFlash"
@@ -719,6 +723,42 @@ tracks/4/keys = {
 "update": 0,
 "values": [ 0.0, -1.0 ]
 }
+tracks/5/type = "value"
+tracks/5/path = NodePath("LeftPanels/EnvironmentPanel:mouse_filter")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 2 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("LeftPanels/CompoundsPanel:mouse_filter")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 2 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("LeftPanels/AgentsPanel:mouse_filter")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 2 ]
+}
 
 [sub_resource type="Animation" id=51]
 tracks/0/type = "value"
@@ -781,6 +821,42 @@ tracks/4/keys = {
 "update": 0,
 "values": [ -2.0, 0.0 ]
 }
+tracks/5/type = "value"
+tracks/5/path = NodePath("LeftPanels/EnvironmentPanel:mouse_filter")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("LeftPanels/CompoundsPanel:mouse_filter")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("LeftPanels/AgentsPanel:mouse_filter")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 0 ]
+}
 
 [node name="MicrobeStage" type="Node"]
 script = ExtResource( 1 )
@@ -812,6 +888,7 @@ margin_left = -280.0
 margin_top = 10.0
 margin_right = -10.0
 margin_bottom = 140.0
+grow_horizontal = 0
 theme = SubResource( 2 )
 custom_styles/panel = SubResource( 3 )
 __meta__ = {
@@ -2070,14 +2147,14 @@ expand = true
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeHUD/LeftPanels/CompoundsPanel/Compress/VBoxContainer/MarginContainer4/HBoxContainer/HBoxContainer"]
 show_behind_parent = true
 margin_left = 12.0
-margin_right = 77.0
+margin_right = 112.0
 margin_bottom = 75.0
 custom_constants/separation = 25
 
 [node name="GlucoseBar" type="ProgressBar" parent="MicrobeHUD/LeftPanels/CompoundsPanel/Compress/VBoxContainer/MarginContainer4/HBoxContainer/HBoxContainer/VBoxContainer" groups=[
 "MicrobeHUDBar",
 ]]
-margin_right = 65.0
+margin_right = 100.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 65, 25 )
 custom_styles/fg = SubResource( 23 )
@@ -2108,7 +2185,7 @@ __meta__ = {
 "MicrobeHUDBar",
 ]]
 margin_top = 50.0
-margin_right = 65.0
+margin_right = 100.0
 margin_bottom = 75.0
 rect_min_size = Vector2( 65, 25 )
 custom_styles/fg = SubResource( 26 )
@@ -2166,14 +2243,14 @@ expand = true
 [node name="VBoxContainer2" type="VBoxContainer" parent="MicrobeHUD/LeftPanels/CompoundsPanel/Compress/VBoxContainer/MarginContainer4/HBoxContainer/HBoxContainer2"]
 show_behind_parent = true
 margin_left = 12.0
-margin_right = 77.0
+margin_right = 112.0
 margin_bottom = 75.0
 custom_constants/separation = 25
 
 [node name="PhosphateBar" type="ProgressBar" parent="MicrobeHUD/LeftPanels/CompoundsPanel/Compress/VBoxContainer/MarginContainer4/HBoxContainer/HBoxContainer2/VBoxContainer2" groups=[
 "MicrobeHUDBar",
 ]]
-margin_right = 65.0
+margin_right = 100.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 65, 25 )
 custom_styles/fg = SubResource( 27 )
@@ -2204,7 +2281,7 @@ __meta__ = {
 "MicrobeHUDBar",
 ]]
 margin_top = 50.0
-margin_right = 65.0
+margin_right = 100.0
 margin_bottom = 75.0
 rect_min_size = Vector2( 65, 25 )
 custom_styles/fg = SubResource( 28 )
@@ -2254,15 +2331,15 @@ expand = true
 [node name="VBoxContainer3" type="VBoxContainer" parent="MicrobeHUD/LeftPanels/CompoundsPanel/Compress/VBoxContainer/MarginContainer4/HBoxContainer/HBoxContainer3"]
 show_behind_parent = true
 margin_left = 12.0
-margin_right = 77.0
-margin_bottom = 25.0
+margin_right = 112.0
+margin_bottom = 75.0
 size_flags_vertical = 0
 custom_constants/separation = 6
 
 [node name="IronBar" type="ProgressBar" parent="MicrobeHUD/LeftPanels/CompoundsPanel/Compress/VBoxContainer/MarginContainer4/HBoxContainer/HBoxContainer3/VBoxContainer3" groups=[
 "MicrobeHUDBar",
 ]]
-margin_right = 65.0
+margin_right = 100.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 65, 25 )
 custom_styles/fg = SubResource( 29 )
@@ -2534,6 +2611,7 @@ margin_left = 139.0
 margin_right = 181.0
 margin_bottom = 43.0
 focus_mode = 0
+disabled = true
 enabled_focus_mode = 0
 texture_normal = ExtResource( 21 )
 texture_pressed = ExtResource( 30 )
@@ -2544,6 +2622,7 @@ margin_left = 185.0
 margin_right = 227.0
 margin_bottom = 43.0
 focus_mode = 0
+disabled = true
 enabled_focus_mode = 0
 texture_normal = ExtResource( 20 )
 texture_pressed = ExtResource( 29 )
@@ -2554,6 +2633,7 @@ margin_left = 231.0
 margin_right = 273.0
 margin_bottom = 43.0
 focus_mode = 0
+disabled = true
 enabled_focus_mode = 0
 texture_normal = ExtResource( 17 )
 texture_pressed = ExtResource( 32 )
@@ -2564,6 +2644,7 @@ margin_left = 277.0
 margin_right = 319.0
 margin_bottom = 43.0
 focus_mode = 0
+disabled = true
 enabled_focus_mode = 0
 texture_normal = ExtResource( 16 )
 texture_pressed = ExtResource( 37 )
@@ -2694,7 +2775,7 @@ margin_left = -101.282
 margin_top = -75.282
 margin_right = 158.718
 margin_bottom = 176.718
-step = 0.1
+step = 1.0
 value = 100.0
 texture_under = ExtResource( 63 )
 texture_progress = ExtResource( 59 )
@@ -2824,14 +2905,8 @@ __meta__ = {
 [node name="AmmoniaReproductionBar" type="TextureProgress" parent="MicrobeHUD/BottomRight/EditorButton/ReproductionBar" groups=[
 "MicrobeTextureHUDBar",
 ]]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -97.5
-margin_top = -97.5
-margin_right = 97.5
-margin_bottom = 97.5
+margin_right = 195.0
+margin_bottom = 195.0
 step = 0.1
 texture_progress = ExtResource( 65 )
 fill_mode = 5
@@ -2844,14 +2919,8 @@ __meta__ = {
 [node name="PhosphateReproductionBar" type="TextureProgress" parent="MicrobeHUD/BottomRight/EditorButton/ReproductionBar" groups=[
 "MicrobeTextureHUDBar",
 ]]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -97.5
-margin_top = -97.5
-margin_right = 97.5
-margin_bottom = 97.5
+margin_right = 195.0
+margin_bottom = 195.0
 step = 0.1
 texture_progress = ExtResource( 65 )
 fill_mode = 4
@@ -2859,6 +2928,30 @@ tint_progress = Color( 0.231373, 0.0862745, 0.482353, 1 )
 radial_fill_degrees = 180.0
 __meta__ = {
 "_edit_use_anchors_": false
+}
+
+[node name="VSeparator" type="VSeparator" parent="MicrobeHUD/BottomRight/EditorButton/ReproductionBar"]
+anchor_left = 0.492308
+anchor_top = 0.0666667
+anchor_right = 0.512821
+anchor_bottom = 0.112821
+margin_top = -9.53674e-07
+margin_right = -7.62939e-06
+custom_styles/separator = SubResource( 52 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="VSeparator2" type="VSeparator" parent="MicrobeHUD/BottomRight/EditorButton/ReproductionBar"]
+anchor_left = 0.492308
+anchor_top = 0.892308
+anchor_right = 0.512821
+anchor_bottom = 0.938462
+margin_top = -9.53674e-07
+margin_right = -7.62939e-06
+custom_styles/separator = SubResource( 52 )
+__meta__ = {
+"_edit_use_anchors_": true
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MicrobeHUD/BottomRight/EditorButton"]
