@@ -211,7 +211,7 @@ public class Constants
     /// <summary>
     ///   Damage a single pilus stab does
     /// </summary>
-    public const float PILUS_BASE_DAMAGE = 30.0f;
+    public const float PILUS_BASE_DAMAGE = 5.0f;
 
     /// <summary>
     ///   Osmoregulation ATP cost per second per hex
