@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -48,6 +49,44 @@ public class MicrobeEditorGUI : Node
     [Export]
     public NodePath PatchBiomePath;
     [Export]
+    public NodePath PatchTemperaturePath;
+    [Export]
+    public NodePath PatchPressurePath;
+    [Export]
+    public NodePath PatchLightPath;
+    [Export]
+    public NodePath PatchOxygenPath;
+    [Export]
+    public NodePath PatchNitrogenPath;
+    [Export]
+    public NodePath PatchCO2Path;
+    [Export]
+    public NodePath PatchHydrogenSulfidePath;
+    [Export]
+    public NodePath PatchAmmoniaPath;
+    [Export]
+    public NodePath PatchGlucosePath;
+    [Export]
+    public NodePath PatchPhosphatePath;
+    [Export]
+    public NodePath PatchIronPath;
+    [Export]
+    public NodePath SpeciesListPath;
+    [Export]
+    public NodePath PhysicalConditionsButtonPath;
+    [Export]
+    public NodePath PhysicalConditionsBoxPath;
+    [Export]
+    public NodePath AtmosphericConditionsButtonPath;
+    [Export]
+    public NodePath AtmosphericConditionsBoxPath;
+    [Export]
+    public NodePath CompoundsBoxButtonPath;
+    [Export]
+    public NodePath CompoundsBoxPath;
+    [Export]
+    public NodePath SpeciesListButtonPath;
+    [Export]
     public NodePath MoveToPatchButtonPath;
 
     private const string ATP_BALANCE_DEFAULT_TEXT = "ATP Balance";
@@ -78,6 +117,25 @@ public class MicrobeEditorGUI : Node
     private Label patchName;
     private Control patchPlayerHere;
     private Label patchBiome;
+    private Label patchTemperature;
+    private Label patchPressure;
+    private Label patchLight;
+    private Label patchOxygen;
+    private Label patchNitrogen;
+    private Label patchCO2;
+    private Label patchHydrogenSulfide;
+    private Label patchAmmonia;
+    private Label patchGlucose;
+    private Label patchPhosphate;
+    private Label patchIron;
+    private VBoxContainer speciesList;
+    private Control physicalConditionsButton;
+    private Control physicalConditionsBox;
+    private Control atmosphericConditionsButton;
+    private Control atmosphericConditionsBox;
+    private Control compoundsButton;
+    private Control compoundsBox;
+    private Control speciesListButton;
     private Button moveToPatchButton;
 
     private bool inEditorTab = false;
@@ -109,7 +167,26 @@ public class MicrobeEditorGUI : Node
         patchName = GetNode<Label>(PatchNamePath);
         patchPlayerHere = GetNode<Control>(PatchPlayerHerePath);
         patchBiome = GetNode<Label>(PatchBiomePath);
+        patchTemperature = GetNode<Label>(PatchTemperaturePath);
+        patchPressure = GetNode<Label>(PatchPressurePath);
+        patchLight = GetNode<Label>(PatchLightPath);
+        patchOxygen = GetNode<Label>(PatchOxygenPath);
+        patchNitrogen = GetNode<Label>(PatchNitrogenPath);
+        patchCO2 = GetNode<Label>(PatchCO2Path);
+        patchHydrogenSulfide = GetNode<Label>(PatchHydrogenSulfidePath);
+        patchAmmonia = GetNode<Label>(PatchAmmoniaPath);
+        patchGlucose = GetNode<Label>(PatchGlucosePath);
+        patchPhosphate = GetNode<Label>(PatchPhosphatePath);
+        patchIron = GetNode<Label>(PatchIronPath);
+        speciesList = GetNode<VBoxContainer>(SpeciesListPath);
+        physicalConditionsBox = GetNode<Control>(PhysicalConditionsBoxPath);
+        atmosphericConditionsBox = GetNode<Control>(AtmosphericConditionsBoxPath);
+        compoundsBox = GetNode<Control>(CompoundsBoxPath);
         moveToPatchButton = GetNode<Button>(MoveToPatchButtonPath);
+        physicalConditionsButton = GetNode<Control>(PhysicalConditionsButtonPath);
+        atmosphericConditionsButton = GetNode<Control>(AtmosphericConditionsButtonPath);
+        compoundsButton = GetNode<Control>(CompoundsBoxButtonPath);
+        speciesListButton = GetNode<Control>(SpeciesListButtonPath);
 
         mapDrawer.OnSelectedPatchChanged = (drawer) =>
         {
@@ -413,6 +490,86 @@ public class MicrobeEditorGUI : Node
         }
     }
 
+    private void OnConditionClicked(string tab)
+    {
+        // I couldn't make these slide
+        if (tab == "physical")
+        {
+            var minusButton = physicalConditionsButton.GetNode<TextureButton>("minusButton");
+            var plusButton = physicalConditionsButton.GetNode<TextureButton>("plusButton");
+
+            if (!physicalConditionsBox.Visible)
+            {
+                physicalConditionsBox.Show();
+                minusButton.Show();
+                plusButton.Hide();
+            }
+            else
+            {
+                physicalConditionsBox.Hide();
+                minusButton.Hide();
+                plusButton.Show();
+            }
+        }
+
+        if (tab == "atmospheric")
+        {
+            var minusButton = atmosphericConditionsButton.GetNode<TextureButton>("minusButton");
+            var plusButton = atmosphericConditionsButton.GetNode<TextureButton>("plusButton");
+
+            if (!atmosphericConditionsBox.Visible)
+            {
+                atmosphericConditionsBox.Show();
+                minusButton.Show();
+                plusButton.Hide();
+            }
+            else
+            {
+                atmosphericConditionsBox.Hide();
+                minusButton.Hide();
+                plusButton.Show();
+            }
+        }
+
+        if (tab == "compounds")
+        {
+            var minusButton = compoundsButton.GetNode<TextureButton>("minusButton");
+            var plusButton = compoundsButton.GetNode<TextureButton>("plusButton");
+
+            if (!compoundsBox.Visible)
+            {
+                compoundsBox.Show();
+                minusButton.Show();
+                plusButton.Hide();
+            }
+            else
+            {
+                compoundsBox.Hide();
+                minusButton.Hide();
+                plusButton.Show();
+            }
+        }
+
+        if (tab == "species")
+        {
+            var minusButton = speciesListButton.GetNode<TextureButton>("minusButton");
+            var plusButton = speciesListButton.GetNode<TextureButton>("plusButton");
+
+            if (!speciesList.Visible)
+            {
+                speciesList.Show();
+                minusButton.Show();
+                plusButton.Hide();
+            }
+            else
+            {
+                speciesList.Hide();
+                minusButton.Hide();
+                plusButton.Show();
+            }
+        }
+    }
+
     private void MenuButtonPressed()
     {
         var menu = GetNode<Control>("PauseMenu");
@@ -437,6 +594,23 @@ public class MicrobeEditorGUI : Node
         GetTree().Quit();
     }
 
+    private float GetPatchChunkTotalCompoundAmount(Patch patch, string compoundName)
+    {
+        var result = 0.0f;
+
+        foreach (var chunkKey in patch.Biome.Chunks.Keys)
+        {
+            var chunk = patch.Biome.Chunks[chunkKey];
+
+            if (chunk.Density != 0 && chunk.Compounds.ContainsKey(compoundName))
+            {
+                result += chunk.Density * chunk.Compounds[compoundName].Amount;
+            }
+        }
+
+        return result;
+    }
+
     private void UpdateShownPatchDetails()
     {
         var patch = mapDrawer.SelectedPatch;
@@ -456,7 +630,48 @@ public class MicrobeEditorGUI : Node
         patchBiome.Text = "Biome: " + patch.Biome.Name;
         patchPlayerHere.Visible = editor.CurrentPatch == patch;
 
-        // TODO: fix (show patch details like before)
+        // Atmospheric gasses
+        patchTemperature.Text = patch.Biome.AverageTemperature + " °C";
+        patchPressure.Text = "20 bar";
+        patchLight.Text = (patch.Biome.Compounds["sunlight"].Dissolved * 100) + "% lux";
+        patchOxygen.Text = (patch.Biome.Compounds["oxygen"].Dissolved * 100) + "%";
+        patchNitrogen.Text = (patch.Biome.Compounds["nitrogen"].Dissolved * 100) + "% ppm";
+        patchCO2.Text = (patch.Biome.Compounds["carbondioxide"].Dissolved * 100) + "% ppm";
+
+        // Compounds
+        patchHydrogenSulfide.Text = Math.Round(patch.Biome.Compounds["hydrogensulfide"].Density *
+            patch.Biome.Compounds["hydrogensulfide"].Amount + GetPatchChunkTotalCompoundAmount(
+            patch, "hydrogensulfide"), 3) + "%";
+
+        patchAmmonia.Text = Math.Round(patch.Biome.Compounds["ammonia"].Density *
+            patch.Biome.Compounds["ammonia"].Amount + GetPatchChunkTotalCompoundAmount(
+            patch, "ammonia"), 3) + "%";
+
+        patchGlucose.Text = Math.Round(patch.Biome.Compounds["glucose"].Density *
+            patch.Biome.Compounds["glucose"].Amount + GetPatchChunkTotalCompoundAmount(
+            patch, "glucose"), 3) + "%";
+
+        patchPhosphate.Text = Math.Round(patch.Biome.Compounds["phosphates"].Density *
+            patch.Biome.Compounds["phosphates"].Amount + GetPatchChunkTotalCompoundAmount(
+            patch, "phosphates"), 3) + "%";
+
+        patchIron.Text = GetPatchChunkTotalCompoundAmount(patch, "iron") + "%";
+
+        // Delete previous species list
+        if (speciesList.GetChildCount() > 0)
+        {
+            foreach (Node child in speciesList.GetChildren())
+            {
+                child.QueueFree();
+            }
+        }
+
+        foreach (var species in patch.SpeciesInPatch.Keys)
+        {
+            var speciesLabel = new Label();
+            speciesLabel.Text = species.FormattedName + " with population: " + species.Population;
+            speciesList.AddChild(speciesLabel);
+        }
 
         // Enable move to patch button if this is a valid move
         moveToPatchButton.Disabled = !editor.IsPatchMoveValid(patch);
