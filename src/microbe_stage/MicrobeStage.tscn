@@ -788,6 +788,7 @@ script = ExtResource( 1 )
 [node name="World" type="Node" parent="."]
 
 [node name="PrimaryCamera" parent="World" instance=ExtResource( 2 )]
+pause_mode = 2
 
 [node name="DynamicallySpawned" type="Node" parent="World"]
 
