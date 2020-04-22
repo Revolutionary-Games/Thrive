@@ -73,6 +73,20 @@ public class MicrobeEditorGUI : Node
     [Export]
     public NodePath SpeciesListPath;
     [Export]
+    public NodePath PhysicalConditionsButtonPath;
+    [Export]
+    public NodePath PhysicalConditionsBoxPath;
+    [Export]
+    public NodePath AtmosphericConditionsButtonPath;
+    [Export]
+    public NodePath AtmosphericConditionsBoxPath;
+    [Export]
+    public NodePath CompoundsBoxButtonPath;
+    [Export]
+    public NodePath CompoundsBoxPath;
+    [Export]
+    public NodePath SpeciesListButtonPath;
+    [Export]
     public NodePath MoveToPatchButtonPath;
 
     private const string ATP_BALANCE_DEFAULT_TEXT = "ATP Balance";
@@ -115,6 +129,13 @@ public class MicrobeEditorGUI : Node
     private Label patchPhosphate;
     private Label patchIron;
     private VBoxContainer speciesList;
+    private Control physicalConditionsButton;
+    private Control physicalConditionsBox;
+    private Control atmosphericConditionsButton;
+    private Control atmosphericConditionsBox;
+    private Control compoundsButton;
+    private Control compoundsBox;
+    private Control speciesListButton;
     private Button moveToPatchButton;
 
     private bool inEditorTab = false;
@@ -158,7 +179,14 @@ public class MicrobeEditorGUI : Node
         patchPhosphate = GetNode<Label>(PatchPhosphatePath);
         patchIron = GetNode<Label>(PatchIronPath);
         speciesList = GetNode<VBoxContainer>(SpeciesListPath);
+        physicalConditionsBox = GetNode<Control>(PhysicalConditionsBoxPath);
+        atmosphericConditionsBox = GetNode<Control>(AtmosphericConditionsBoxPath);
+        compoundsBox = GetNode<Control>(CompoundsBoxPath);
         moveToPatchButton = GetNode<Button>(MoveToPatchButtonPath);
+        physicalConditionsButton = GetNode<Control>(PhysicalConditionsButtonPath);
+        atmosphericConditionsButton = GetNode<Control>(AtmosphericConditionsButtonPath);
+        compoundsButton = GetNode<Control>(CompoundsBoxButtonPath);
+        speciesListButton = GetNode<Control>(SpeciesListButtonPath);
 
         mapDrawer.OnSelectedPatchChanged = (drawer) =>
         {
@@ -459,6 +487,86 @@ public class MicrobeEditorGUI : Node
         else
         {
             GD.PrintErr("Invalid tab");
+        }
+    }
+
+    private void OnConditionClicked(string tab)
+    {
+        // I couldn't make these slide
+        if (tab == "physical")
+        {
+            var minusButton = physicalConditionsButton.GetNode<TextureButton>("minusButton");
+            var plusButton = physicalConditionsButton.GetNode<TextureButton>("plusButton");
+
+            if (!physicalConditionsBox.Visible)
+            {
+                physicalConditionsBox.Show();
+                minusButton.Show();
+                plusButton.Hide();
+            }
+            else
+            {
+                physicalConditionsBox.Hide();
+                minusButton.Hide();
+                plusButton.Show();
+            }
+        }
+
+        if (tab == "atmospheric")
+        {
+            var minusButton = atmosphericConditionsButton.GetNode<TextureButton>("minusButton");
+            var plusButton = atmosphericConditionsButton.GetNode<TextureButton>("plusButton");
+
+            if (!atmosphericConditionsBox.Visible)
+            {
+                atmosphericConditionsBox.Show();
+                minusButton.Show();
+                plusButton.Hide();
+            }
+            else
+            {
+                atmosphericConditionsBox.Hide();
+                minusButton.Hide();
+                plusButton.Show();
+            }
+        }
+
+        if (tab == "compounds")
+        {
+            var minusButton = compoundsButton.GetNode<TextureButton>("minusButton");
+            var plusButton = compoundsButton.GetNode<TextureButton>("plusButton");
+
+            if (!compoundsBox.Visible)
+            {
+                compoundsBox.Show();
+                minusButton.Show();
+                plusButton.Hide();
+            }
+            else
+            {
+                compoundsBox.Hide();
+                minusButton.Hide();
+                plusButton.Show();
+            }
+        }
+
+        if (tab == "species")
+        {
+            var minusButton = speciesListButton.GetNode<TextureButton>("minusButton");
+            var plusButton = speciesListButton.GetNode<TextureButton>("plusButton");
+
+            if (!speciesList.Visible)
+            {
+                speciesList.Show();
+                minusButton.Show();
+                plusButton.Hide();
+            }
+            else
+            {
+                speciesList.Hide();
+                minusButton.Hide();
+                plusButton.Show();
+            }
         }
     }
 
