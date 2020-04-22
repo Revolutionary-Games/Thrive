@@ -199,9 +199,9 @@ public class Constants
     public const float ENGULFED_MOVEMENT_DIVISION = 10.0f;
 
     /// <summary>
-    ///   The minimum HP ratio between a cell and a possible engulfing victim.
+    ///   The minimum size ratio between a cell and a possible engulfing victim.
     /// </summary>
-    public const float ENGULF_HP_RATIO_REQ = 1.5f;
+    public const float ENGULF_SIZE_RATIO_REQ = 1.5f;
 
     /// <summary>
     ///   The amount of hp per second of damage when being engulfed
@@ -209,9 +209,19 @@ public class Constants
     public const float ENGULF_DAMAGE = 45.0f;
 
     /// <summary>
+    ///   Damage a single pilus stab does
+    /// </summary>
+    public const float PILUS_BASE_DAMAGE = 5.0f;
+
+    /// <summary>
     ///   Osmoregulation ATP cost per second per hex
     /// </summary>
     public const float ATP_COST_FOR_OSMOREGULATION = 1.0f;
+
+    /// <summary>
+    ///   The default contact store count for objects using contact reporting
+    /// </summary>
+    public const int DEFAULT_STORE_CONTACTS_COUNT = 4;
 
     // Darwinian Evo Values
     public const int CREATURE_DEATH_POPULATION_LOSS = -60;

@@ -6,6 +6,8 @@
 resource_local_to_scene = true
 
 [node name="FloatingChunk" type="RigidBody"]
+collision_mask = 3
+contact_monitor = true
 axis_lock_linear_y = true
 script = ExtResource( 1 )
 

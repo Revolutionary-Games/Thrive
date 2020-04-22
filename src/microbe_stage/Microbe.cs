@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -28,6 +29,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     private AudioStreamPlayer3D engulfAudio;
     private AudioStreamPlayer3D otherAudio;
     private AudioStreamPlayer3D movementAudio;
+    private SphereShape engulfShape;
 
     /// <summary>
     ///   Init can call _Ready if it hasn't been called yet
@@ -39,6 +41,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// </summary>
     private OrganelleLayout<PlacedOrganelle> organelles;
 
+    /// <summary>
+    ///   Contains the piluses this microbe has for collision checking
+    /// </summary>
+    private HashSet<uint> pilusPhysicsShapes = new HashSet<uint>();
+
     private bool processesDirty = true;
     private List<TweakedProcess> processes;
 
@@ -49,11 +56,27 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
     // variables for engulfing
     private bool engulfMode = false;
+    private bool previousEngulfMode = false;
     private bool isBeingEngulfed = false;
     private Microbe hostileEngulfer = null;
     private bool wasBeingEngulfed = false;
 
     // private bool isCurrentlyEngulfing = false;
+
+    /// <summary>
+    ///   Tracks other Microbes that are within the engulf area and are ignoring collisions with this body.
+    /// </summary>
+    private HashSet<Microbe> otherMicrobesInEngulfRange = new HashSet<Microbe>();
+
+    /// <summary>
+    ///   Tracks microbes this is touching, for beginning engulfing
+    /// </summary>
+    private HashSet<Microbe> touchedMicrobes = new HashSet<Microbe>();
+
+    /// <summary>
+    ///   Microbes that this cell is actively trying to engulf
+    /// </summary>
+    private HashSet<Microbe> attemptingToEngulf = new HashSet<Microbe>();
 
     private float lastCheckedATPDamage = 0.0f;
 
@@ -142,6 +165,24 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
                 CountHexes();
 
             return cachedHexCount;
+        }
+    }
+
+    /// <summary>
+    ///   The size this microbe is for engulfing calculations
+    /// </summary>
+    public float EngulfSize
+    {
+        get
+        {
+            if (Species.IsBacteria)
+            {
+                return HexCount * 0.5f;
+            }
+            else
+            {
+                return HexCount;
+            }
         }
     }
 
@@ -255,6 +296,17 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         engulfAudio = GetNode<AudioStreamPlayer3D>("EngulfAudio");
         otherAudio = GetNode<AudioStreamPlayer3D>("OtherAudio");
         movementAudio = GetNode<AudioStreamPlayer3D>("MovementAudio");
+
+        // Setup physics callback stuff
+        var engulfDetector = GetNode<Area>("EngulfDetector");
+        engulfShape = (SphereShape)engulfDetector.GetNode<CollisionShape>("EngulfShape").Shape;
+
+        engulfDetector.Connect("body_entered", this, "OnBodyEnteredEngulfArea");
+        engulfDetector.Connect("body_exited", this, "OnBodyExitedEngulfArea");
+
+        ContactsReported = Constants.DEFAULT_STORE_CONTACTS_COUNT;
+        Connect("body_shape_entered", this, "OnContactBegin");
+        Connect("body_shape_exited", this, "OnContactEnd");
 
         Mass = Constants.MICROBE_BASE_MASS;
         onReadyCalled = true;
@@ -444,11 +496,42 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     }
 
     /// <summary>
+    ///   Returns true when this microbe can engulf the target
+    /// </summary>
+    public bool CanEngulf(Microbe target)
+    {
+        // Disallow cannibalism
+        if (target.Species == Species)
+            return false;
+
+        // Needs to be big enough to engulf
+        return EngulfSize >= target.EngulfSize * Constants.ENGULF_SIZE_RATIO_REQ;
+    }
+
+    /// <summary>
     ///   Called from movement organelles to add movement force
     /// </summary>
     public void AddMovementForce(Vector3 force)
     {
         queuedMovementForce += force;
+    }
+
+    /// <summary>
+    ///   Report that a pilus shape was added to this microbe. Called by PilusComponent
+    /// </summary>
+    public bool AddPilus(uint shapeOwner)
+    {
+        return pilusPhysicsShapes.Add(shapeOwner);
+    }
+
+    public bool RemovePilus(uint shapeOwner)
+    {
+        return pilusPhysicsShapes.Remove(shapeOwner);
+    }
+
+    public bool IsPilus(uint shape)
+    {
+        return pilusPhysicsShapes.Contains(shape);
     }
 
     /// <summary>
@@ -802,6 +885,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
     public override void _Process(float delta)
     {
+        CheckEngulfShapeSize();
         HandleCompoundAbsorbing(delta);
 
         // Movement factor is reset here. HandleEngulfing will set the right value
@@ -893,6 +977,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
         cloudSystem.AbsorbCompounds(Translation, grabRadius, Compounds,
             TotalAbsorbedCompounds, delta);
+    }
+
+    private void CheckEngulfShapeSize()
+    {
+        var wanted = Radius;
+        if (engulfShape.Radius != wanted)
+            engulfShape.Radius = wanted;
     }
 
     /// <summary>
@@ -1204,6 +1295,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             }
         }
 
+        ProcessPhysicsForEngulfing();
+
         // Play sound
         if (EngulfMode)
         {
@@ -1263,21 +1356,42 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         // Check whether we should not be being engulfed anymore
         if (hostileEngulfer != null)
         {
-            Vector3 predatorPosition = new Vector3(0, 0, 0);
-
-            var ourPosition = Translation;
-
-            float circleRad = 0.0f;
-
-            if (!hostileEngulfer.Dead)
+            try
             {
-                predatorPosition = hostileEngulfer.Translation;
-                circleRad = hostileEngulfer.Radius;
+                // Dead things can't engulf us
+                if (hostileEngulfer.Dead)
+                {
+                    hostileEngulfer = null;
+                    isBeingEngulfed = false;
+                }
+                else
+                {
+                    // This check used to be just to get some distance away and you are no longer being engulfed, now
+                    // the engulfer overlap end callback is used to reset this
+
+                    // Vector3 predatorPosition = new Vector3(0, 0, 0);
+
+                    // var ourPosition = Translation;
+
+                    // float circleRad = 0.0f;
+
+                    // if (!hostileEngulfer.Dead)
+                    // {
+                    //     predatorPosition = hostileEngulfer.Translation;
+                    //     circleRad = hostileEngulfer.Radius;
+                    // }
+
+                    // if (!hostileEngulfer.EngulfMode || hostileEngulfer.Dead ||
+                    //     (ourPosition - predatorPosition).LengthSquared() >= circleRad)
+                    // {
+                    //     hostileEngulfer = null;
+                    //     isBeingEngulfed = false;
+                    // }
+                }
             }
-
-            if (!hostileEngulfer.EngulfMode || hostileEngulfer.Dead ||
-                (ourPosition - predatorPosition).LengthSquared() >= circleRad)
+            catch (ObjectDisposedException)
             {
+                // Something that's disposed can't engulf us
                 hostileEngulfer = null;
                 isBeingEngulfed = false;
             }
@@ -1285,6 +1399,35 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         else
         {
             isBeingEngulfed = false;
+        }
+
+        previousEngulfMode = EngulfMode;
+    }
+
+    private void ProcessPhysicsForEngulfing()
+    {
+        if (!EngulfMode)
+        {
+            // Reset the engulfing ignores and potential targets
+            foreach (var body in attemptingToEngulf)
+            {
+                StopEngulfingOnTarget(body);
+            }
+
+            attemptingToEngulf.Clear();
+
+            return;
+        }
+
+        // Check for starting engulfing on things we already touched
+        if (!previousEngulfMode)
+            CheckStartEngulfingOnCandidates();
+
+        // Apply engulf effect (which will cause damage in their process call) to the cells we are engulfing
+        foreach (var microbe in attemptingToEngulf)
+        {
+            microbe.hostileEngulfer = this;
+            microbe.isBeingEngulfed = true;
         }
     }
 
@@ -1548,5 +1691,123 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             membraneCoords.x * s + membraneCoords.z * c);
 
         return Translation + (ejectionDirection * ejectionDistance);
+    }
+
+    private void OnContactBegin(int bodyID, Node body, int bodyShape, int localShape)
+    {
+        if (body is Microbe microbe)
+        {
+            // TODO: does this need to check for disposed exception?
+            if (microbe.Dead)
+                return;
+
+            bool otherIsPilus = microbe.IsPilus(microbe.ShapeFindOwner(bodyShape));
+            bool oursIsPilus = IsPilus(ShapeFindOwner(localShape));
+
+            // Pilus logic
+            if (otherIsPilus && oursIsPilus)
+            {
+                // Pilus on pilus doesn't deal damage and you can't engulf
+                return;
+            }
+            else if (otherIsPilus || oursIsPilus)
+            {
+                // Us attacking the other microbe, or it is attacking us
+
+                // Disallow cannibalism
+                if (microbe.Species == Species)
+                    return;
+
+                var target = otherIsPilus ? this : microbe;
+
+                target.Damage(Constants.PILUS_BASE_DAMAGE, "pilus");
+                return;
+            }
+
+            // Pili don't stop engulfing
+            if (touchedMicrobes.Add(microbe))
+            {
+                CheckStartEngulfingOnCandidates();
+            }
+        }
+    }
+
+    private void OnContactEnd(int bodyID, Node body, int bodyShape, int localShape)
+    {
+        if (body is Microbe microbe)
+        {
+            // TODO: should this also check for pilus before removing the collision?
+            touchedMicrobes.Remove(microbe);
+        }
+    }
+
+    private void OnBodyEnteredEngulfArea(Node body)
+    {
+        if (body == this)
+            return;
+
+        if (body is Microbe microbe)
+        {
+            // TODO: does this need to check for disposed exception?
+            if (microbe.Dead)
+                return;
+
+            if (otherMicrobesInEngulfRange.Add(microbe))
+            {
+                CheckStartEngulfingOnCandidates();
+            }
+        }
+    }
+
+    private void OnBodyExitedEngulfArea(Node body)
+    {
+        if (body is Microbe microbe)
+        {
+            if (otherMicrobesInEngulfRange.Remove(microbe))
+            {
+                CheckStopEngulfingOnTarget(microbe);
+            }
+        }
+    }
+
+    /// <summary>
+    ///   This checks if we can start engulfing
+    /// </summary>
+    private void CheckStartEngulfingOnCandidates()
+    {
+        if (!EngulfMode)
+            return;
+
+        // In the case that the microbe first comes into engulf range, we don't want to start engulfing yet
+        // foreach (var microbe in touchedMicrobes.Concat(otherMicrobesInEngulfRange))
+        foreach (var microbe in touchedMicrobes)
+        {
+            if (!attemptingToEngulf.Contains(microbe) && CanEngulf(microbe))
+            {
+                StartEngulfingTarget(microbe);
+            }
+        }
+    }
+
+    private void CheckStopEngulfingOnTarget(Microbe microbe)
+    {
+        if (touchedMicrobes.Contains(microbe) || otherMicrobesInEngulfRange.Contains(microbe))
+            return;
+
+        StopEngulfingOnTarget(microbe);
+        attemptingToEngulf.Remove(microbe);
+    }
+
+    private void StartEngulfingTarget(Microbe microbe)
+    {
+        AddCollisionExceptionWith(microbe);
+        microbe.hostileEngulfer = this;
+        microbe.isBeingEngulfed = true;
+    }
+
+    private void StopEngulfingOnTarget(Microbe microbe)
+    {
+        RemoveCollisionExceptionWith(microbe);
+        microbe.hostileEngulfer = null;
     }
 }
