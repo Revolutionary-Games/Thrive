@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
 /// <summary>
 ///   Object that stores compound amounts and capacities
 /// </summary>
-public class CompoundBag
+public class CompoundBag : IEnumerable<KeyValuePair<string, float>>
 {
     /// <summary>
     ///   The max amount of any compound that can be stored
@@ -91,6 +92,16 @@ public class CompoundBag
         {
             return 0.0f;
         }
+    }
+
+    public IEnumerator<KeyValuePair<string, float>> GetEnumerator()
+    {
+        return Compounds.GetEnumerator();
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
     }
 
     /// <summary>

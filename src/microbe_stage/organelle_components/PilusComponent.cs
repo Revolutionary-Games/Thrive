@@ -70,6 +70,7 @@ public class PilusComponent : ExternallyPositionedComponent
         var transform = new Transform(physicsRotation, membraneCoords);
         parentMicrobe.ShapeOwnerSetTransform(ownerId, transform);
 
+        parentMicrobe.AddPilus(ownerId);
         addedChildShapes.Add(ownerId);
     }
 
@@ -79,6 +80,7 @@ public class PilusComponent : ExternallyPositionedComponent
         {
             foreach (var shape in addedChildShapes)
             {
+                organelle.ParentMicrobe.RemovePilus(shape);
                 organelle.ParentMicrobe.RemoveShapeOwner(shape);
             }
 
