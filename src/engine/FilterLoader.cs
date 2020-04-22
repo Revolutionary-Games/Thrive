@@ -3,7 +3,7 @@ using Godot;
 /// <summary>
 ///   Places the ScreenFilter scene after the main scene in the root
 ///   Filter must be after the main scene to take any effect
-///   Places the FPS counter right behind the filter
+///   Places the FPS counter in front of the filter
 /// </summary>
 public class FilterLoader : Node
 {
