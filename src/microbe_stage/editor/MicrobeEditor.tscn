@@ -4260,7 +4260,6 @@ __meta__ = {
 }
 
 [node name="Report" type="Control" parent="MicrobeEditorGUI"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -0.200001
@@ -4354,6 +4353,7 @@ __meta__ = {
 }
 
 [node name="PatchMap" type="Control" parent="MicrobeEditorGUI"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
