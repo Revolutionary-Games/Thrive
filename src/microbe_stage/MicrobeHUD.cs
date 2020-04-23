@@ -450,7 +450,7 @@ public class MicrobeHUD : Node
             if (bar.Name == "ATPBar")
             {
                 GUICommon.Instance.TweenBarValue(bar, atp, capacity);
-                atpLabel.Text = atp + " / " + capacity;
+                atpLabel.Text = Mathf.Round(atp) + " / " + capacity;
 
                 if (bar.Value < 1.5)
                 {
