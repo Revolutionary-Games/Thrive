@@ -13,9 +13,18 @@ ALL_TARGETS = ['Linux/X11', 'Windows Desktop', 'Windows Desktop (32-bit)', 'Mac 
 BASE_BUILDS_FOLDER = File.realpath 'builds'
 THRIVE_VERSION_FILE = 'Properties/AssemblyInfo.cs'.freeze
 
+LICENSE_FILES = [
+  ['LICENSE.txt', 'LICENSE.txt'],
+  ['gpl.txt', 'gpl.txt'],
+  ['assets/LICENSE.txt', 'ThriveAssetsLICENSE.txt'],
+  ['assets/README.md', 'ThriveAssetsREADME.txt'],
+  ['doc/GodotLicense.txt', 'GodotLicense.txt']
+].freeze
+
 @options = {
   targets: ALL_TARGETS,
-  retries: 1
+  retries: 2,
+  zip: true
 }
 
 OptionParser.new do |opts|
@@ -28,6 +37,9 @@ OptionParser.new do |opts|
   opts.on('-r', '--retries count', Integer,
           'How many export retries to do to avoid spurious failures') do |r|
     @options[:retries] = r
+  end
+  opts.on('-z', '--[no-]zip', 'Disables packaging the exported game') do |b|
+    @options[:zip] = b
   end
 end.parse!
 
@@ -59,10 +71,14 @@ end
 
 THRIVE_VERSION = find_thrive_version
 
+def is_target_mac(target)
+  target =~ /mac/i
+end
+
 # Returns the extension needed for the target
 def get_target_extension(target)
   # "thrive_linux.x86_64"
-  if target =~ /mac/i
+  if is_target_mac target
     '.zip'
   elsif target =~ /windows/i
     '.exe'
@@ -71,6 +87,57 @@ def get_target_extension(target)
   else
     ''
   end
+end
+
+# Copies license information to a target folder
+def prepare_licenses(target_folder)
+  LICENSE_FILES.each do |l|
+    FileUtils.cp l[0], File.join(target_folder, l[1])
+  end
+end
+
+def package(target, target_name, target_folder, target_file)
+  if is_target_mac target
+    puts 'Including licenses in mac .zip'
+
+    Dir.chdir(target_folder) do
+      runOpen3Checked(*['zip', '-u', target_file, LICENSE_FILES.map { |i| i[1] }].flatten)
+    end
+    puts 'Zip updated'
+  end
+
+  if @options[:zip] == false
+    info 'Skipping packaging created folder'
+    return
+  end
+
+  if is_target_mac target
+    puts 'Mac target is already zipped, moving it instead'
+
+    final_file = target_folder + '.zip'
+
+    File.unlink(final_file) if File.exist? final_file
+
+    FileUtils.mv target_file, final_file
+  else
+    info 'Packaging for release...'
+    final_file = target_folder + '.7z'
+
+    # TODO: clean build option
+    # File.unlink(final_file) if File.exist? final_file
+
+    Dir.chdir(BASE_BUILDS_FOLDER) do
+      if runSystemSafe(p7zip, 'a', "#{target_name}.7z", target_name) != 0
+        onError 'Failed to package the target: ' + target_folder
+      end
+    end
+  end
+
+  onError "Final file creation failed (#{final_file})" unless File.exist? final_file
+
+  puts ''
+  success 'Done: ' + final_file
+  puts 'SHA3: ' + SHA3::Digest::SHA256.file(final_file).hexdigest
 end
 
 # Performs the actual export for a target
@@ -111,33 +178,9 @@ def perform_export(target)
     onError 'Exporting failed too many times'
   end
 
-  if target =~ /mac/i
-    puts 'Mac target is already zipped, moving it instead'
+  prepare_licenses target_folder
 
-    final_file = target_folder + '.zip'
-
-    File.unlink(final_file) if File.exist? final_file
-
-    FileUtils.mv target_file, final_file
-  else
-    info 'Packaging for release...'
-    final_file = target_folder + '.7z'
-
-    # TODO: clean build option
-    # File.unlink(final_file) if File.exist? final_file
-
-    Dir.chdir(BASE_BUILDS_FOLDER) do
-      if runSystemSafe(p7zip, 'a', "#{target_name}.7z", target_name) != 0
-        onError 'Failed to package the target: ' + target_folder
-      end
-    end
-  end
-
-  onError "Final file creation failed (#{final_file})" unless File.exist? final_file
-
-  puts ''
-  success 'Done: ' + final_file
-  puts 'SHA3: ' + SHA3::Digest::SHA256.file(final_file).hexdigest
+  package target, target_name, target_folder, target_file
 end
 
 puts "Starting exporting thrive #{THRIVE_VERSION} to the specified targets"

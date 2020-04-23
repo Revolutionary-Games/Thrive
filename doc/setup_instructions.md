@@ -87,7 +87,7 @@ On Linux MonoDevelop is recommended. To get an up to date version,
 first enable the mono repository:
 https://www.mono-project.com/download/stable/ and then install the
 following packages with your package manager: `mono-complete
-monodevelop nuget`. Make sure it is a newever verion of mono that
+monodevelop nuget`. Make sure it is a newever version of mono that
 comes with msbuild. Fedora has mono in the official repo but it is
 too old to work.
 
@@ -141,6 +141,7 @@ On the Debug tab, switch the Run setting from Launch to
 Attach. Whenever you want to debug, make sure _Wait for Debugger_ is
 turned on in Godot, run the project, and run the debugger in Visual 
 Studio Code.
+
 
 Building Thrive
 ===============
@@ -284,7 +285,7 @@ Optional downloads
 
 Ruby is needed for the scripts to package the game, and for the
 code style checks. So while it is not necessary to download this
-it is highly reccomended.
+it is highly recommended.
 
 On Linux and mac you probably already have this, but if not, use a
 package manager to install it.
@@ -332,7 +333,7 @@ Linter
 ------
 
 Thrive uses automatic formatting of source code to keep style as
-consistent as possible. It is highly reccomended you install
+consistent as possible. It is highly recommended you install
 this linter to check your code formatting before submitting a 
 pull request.
 

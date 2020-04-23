@@ -119,7 +119,12 @@ end
 # Run functions for the specific checks
 
 def run_compile
-  if runSystemSafe('msbuild', 'Thrive.sln', '/t:Clean,Build', '/warnaserror') != 0
+  status, output = runOpen3CaptureOutput('msbuild', 'Thrive.sln', '/t:Clean,Build',
+                                         '/warnaserror')
+
+  if status != 0
+    info 'Build output from msbuild:'
+    puts output
     error "\nBuild generated warnings or errors."
     exit 1
   end
