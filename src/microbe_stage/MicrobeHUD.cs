@@ -168,6 +168,7 @@ public class MicrobeHUD : Node
         {
             var sound = GD.Load<AudioStream>("res://assets/sounds/soundeffects/microbe-pickup-organelle.ogg");
             GUICommon.Instance.PlayCustomSound(sound);
+
             editorButton.Disabled = false;
             editorButton.GetNode<TextureRect>("Highlight").Show();
             editorButton.GetNode<TextureProgress>("ReproductionBar/PhosphateReproductionBar").TintProgress =
