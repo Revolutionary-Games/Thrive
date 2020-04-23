@@ -2835,7 +2835,7 @@ margin_bottom = 97.5
 step = 0.1
 texture_progress = ExtResource( 65 )
 fill_mode = 5
-tint_progress = Color( 0.85098, 0.772549, 0.364706, 1 )
+tint_progress = Color( 0.631373, 0.396078, 0, 1 )
 radial_fill_degrees = 180.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2854,9 +2854,32 @@ margin_right = 97.5
 margin_bottom = 97.5
 step = 0.1
 texture_progress = ExtResource( 65 )
-fill_mode = 4
-tint_progress = Color( 0.231373, 0.0862745, 0.482353, 1 )
+fill_mode = 5
+tint_progress = Color( 0.380392, 0.141176, 0.8, 1 )
+radial_initial_angle = 180.0
 radial_fill_degrees = 180.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AmmoniaIcon" type="TextureRect" parent="MicrobeHUD/BottomRight/EditorButton/ReproductionBar"]
+margin_left = 85.0
+margin_top = 7.5
+margin_right = 110.0
+margin_bottom = 32.5
+texture = ExtResource( 48 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PhosphateIcon" type="TextureRect" parent="MicrobeHUD/BottomRight/EditorButton/ReproductionBar"]
+margin_left = 85.0
+margin_top = 162.5
+margin_right = 110.0
+margin_bottom = 187.5
+texture = ExtResource( 50 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
