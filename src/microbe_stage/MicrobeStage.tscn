@@ -250,7 +250,6 @@ size = 14
 font_data = ExtResource( 69 )
 
 [sub_resource type="Animation" id=45]
-resource_name = "EditorButtonFlash"
 length = 5.0
 loop = true
 tracks/0/type = "value"
@@ -719,6 +718,42 @@ tracks/4/keys = {
 "update": 0,
 "values": [ 0.0, -1.0 ]
 }
+tracks/5/type = "value"
+tracks/5/path = NodePath("LeftPanels/EnvironmentPanel:mouse_filter")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 2 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("LeftPanels/CompoundsPanel:mouse_filter")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 2 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("LeftPanels/AgentsPanel:mouse_filter")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 2 ]
+}
 
 [sub_resource type="Animation" id=51]
 tracks/0/type = "value"
@@ -781,6 +816,42 @@ tracks/4/keys = {
 "update": 0,
 "values": [ -2.0, 0.0 ]
 }
+tracks/5/type = "value"
+tracks/5/path = NodePath("LeftPanels/EnvironmentPanel:mouse_filter")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("LeftPanels/CompoundsPanel:mouse_filter")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("LeftPanels/AgentsPanel:mouse_filter")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 0 ]
+}
 
 [node name="MicrobeStage" type="Node"]
 script = ExtResource( 1 )
@@ -812,6 +883,7 @@ margin_left = -280.0
 margin_top = 10.0
 margin_right = -10.0
 margin_bottom = 140.0
+grow_horizontal = 0
 theme = SubResource( 2 )
 custom_styles/panel = SubResource( 3 )
 __meta__ = {
@@ -2534,6 +2606,7 @@ margin_left = 139.0
 margin_right = 181.0
 margin_bottom = 43.0
 focus_mode = 0
+disabled = true
 enabled_focus_mode = 0
 texture_normal = ExtResource( 21 )
 texture_pressed = ExtResource( 30 )
@@ -2544,6 +2617,7 @@ margin_left = 185.0
 margin_right = 227.0
 margin_bottom = 43.0
 focus_mode = 0
+disabled = true
 enabled_focus_mode = 0
 texture_normal = ExtResource( 20 )
 texture_pressed = ExtResource( 29 )
@@ -2554,6 +2628,7 @@ margin_left = 231.0
 margin_right = 273.0
 margin_bottom = 43.0
 focus_mode = 0
+disabled = true
 enabled_focus_mode = 0
 texture_normal = ExtResource( 17 )
 texture_pressed = ExtResource( 32 )
@@ -2564,6 +2639,7 @@ margin_left = 277.0
 margin_right = 319.0
 margin_bottom = 43.0
 focus_mode = 0
+disabled = true
 enabled_focus_mode = 0
 texture_normal = ExtResource( 16 )
 texture_pressed = ExtResource( 37 )
@@ -2694,7 +2770,7 @@ margin_left = -101.282
 margin_top = -75.282
 margin_right = 158.718
 margin_bottom = 176.718
-step = 0.1
+step = 0.001
 value = 100.0
 texture_under = ExtResource( 63 )
 texture_progress = ExtResource( 59 )
@@ -2824,14 +2900,8 @@ __meta__ = {
 [node name="AmmoniaReproductionBar" type="TextureProgress" parent="MicrobeHUD/BottomRight/EditorButton/ReproductionBar" groups=[
 "MicrobeTextureHUDBar",
 ]]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -97.5
-margin_top = -97.5
-margin_right = 97.5
-margin_bottom = 97.5
+margin_right = 195.0
+margin_bottom = 195.0
 step = 0.1
 texture_progress = ExtResource( 65 )
 fill_mode = 5
@@ -2844,14 +2914,8 @@ __meta__ = {
 [node name="PhosphateReproductionBar" type="TextureProgress" parent="MicrobeHUD/BottomRight/EditorButton/ReproductionBar" groups=[
 "MicrobeTextureHUDBar",
 ]]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -97.5
-margin_top = -97.5
-margin_right = 97.5
-margin_bottom = 97.5
+margin_right = 195.0
+margin_bottom = 195.0
 step = 0.1
 texture_progress = ExtResource( 65 )
 fill_mode = 5

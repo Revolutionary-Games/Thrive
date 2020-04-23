@@ -29,7 +29,8 @@ public class Background : IRegistryType
 
         foreach (var resource in Textures)
         {
-            if (!directory.FileExists(resource))
+            // When exported only the .import files exist, so this check is done accordingly
+            if (!directory.FileExists(resource + ".import"))
             {
                 throw new InvalidRegistryData(InternalName, this.GetType().Name,
                     "Background contains non-existant image: " + resource);
