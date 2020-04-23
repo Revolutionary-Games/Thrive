@@ -442,7 +442,7 @@ public class MicrobeHUD : Node
 
     private void UpdateATP()
     {
-        var atp = Mathf.Round(stage.Player.Compounds.GetCompoundAmount("atp"));
+        var atp = stage.Player.Compounds.GetCompoundAmount("atp");
         var capacity = stage.Player.Compounds.Capacity;
 
         foreach (TextureProgress bar in textureHudBars)
@@ -450,14 +450,14 @@ public class MicrobeHUD : Node
             if (bar.Name == "ATPBar")
             {
                 GUICommon.Instance.TweenBarValue(bar, atp, capacity);
-                atpLabel.Text = atp + " / " + capacity;
+                atpLabel.Text = Mathf.RoundToInt(atp) + " / " + capacity;
             }
         }
     }
 
     private void UpdateHealth()
     {
-        var hp = Mathf.Round(stage.Player.Hitpoints);
+        var hp = stage.Player.Hitpoints;
         var maxHP = stage.Player.MaxHitpoints;
 
         foreach (TextureProgress bar in textureHudBars)
