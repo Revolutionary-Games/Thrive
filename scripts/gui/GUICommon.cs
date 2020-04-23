@@ -67,7 +67,7 @@ public class GUICommon : Node
     public void TweenBarValue(TextureProgress bar, float targetValue, float maxValue)
     {
         var percentage = (targetValue / maxValue) * 100;
-        tween.InterpolateProperty(bar, "value", bar.Value, percentage, 1f,
+        tween.InterpolateProperty(bar, "value", bar.Value, percentage, 0.3f,
             Tween.TransitionType.Linear, Tween.EaseType.Out);
         tween.Start();
     }
