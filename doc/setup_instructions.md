@@ -87,7 +87,7 @@ On Linux MonoDevelop is recommended. To get an up to date version,
 first enable the mono repository:
 https://www.mono-project.com/download/stable/ and then install the
 following packages with your package manager: `mono-complete
-monodevelop nuget`. Make sure it is a newever version of mono that
+monodevelop nuget`. Make sure it is a newer version of mono that
 comes with msbuild. Fedora has mono in the official repo but it is
 too old to work.
 
