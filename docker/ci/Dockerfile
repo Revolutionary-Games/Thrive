@@ -6,7 +6,7 @@ RUN curl https://download.mono-project.com/repo/centos8-stable.repo | tee /etc/y
 
 RUN dnf install -y --setopt=deltarpm=false ruby ruby-devel redhat-rpm-config git git-lfs p7zip tar xz gcc make mono-complete nuget wget && dnf clean all
 RUN git lfs install
-RUN gem install os colorize rubyzip json sha3
+RUN gem install os colorize rubyzip json sha3 httparty
 
 # Godot install
 ENV GODOT_VERSION "3.2.1"
