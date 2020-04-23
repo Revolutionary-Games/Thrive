@@ -465,7 +465,7 @@ public class MicrobeHUD : Node
             if (bar.Name == "HealthBar")
             {
                 GUICommon.Instance.TweenBarValue(bar, hp, maxHP);
-                hpLabel.Text = hp + " / " + maxHP;
+                hpLabel.Text = Mathf.RoundToInt(hp) + " / " + maxHP;
             }
         }
     }
