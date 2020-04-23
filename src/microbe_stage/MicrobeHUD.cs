@@ -450,9 +450,9 @@ public class MicrobeHUD : Node
             if (bar.Name == "ATPBar")
             {
                 GUICommon.Instance.TweenBarValue(bar, atp, capacity);
-                atpLabel.Text = Mathf.RoundToInt(atp) + " / " + capacity;
+                atpLabel.Text = atp + " / " + capacity;
 
-                if (bar.Value < 1)
+                if (bar.Value < 1.5)
                 {
                     bar.TintProgress = new Color(0, 0, 0);
                 }
