@@ -12,6 +12,7 @@ public class SimulationParameters
     private Dictionary<string, Biome> biomes;
     private Dictionary<string, BioProcess> bioProcesses;
     private Dictionary<string, Compound> compounds;
+
     private Dictionary<string, OrganelleDefinition> organelles;
 
     // These are for mutations to be able to randomly pick items in a weighted manner
@@ -19,6 +20,8 @@ public class SimulationParameters
     private float prokaryoticOrganellesTotalChance;
     private List<OrganelleDefinition> eukaryoticOrganelles;
     private float eukaryoticOrganellesChance;
+
+    private Dictionary<string, MusicCategory> musicCategories;
 
     static SimulationParameters()
     {
@@ -44,6 +47,8 @@ public class SimulationParameters
 
         NameGenerator = LoadDirectObject<NameGenerator>(
             "res://scripts/simulation_parameters/microbe_stage/species_names.json");
+
+        musicCategories = LoadRegistry<MusicCategory>("res://scripts/simulation_parameters/common/music_tracks.json");
 
         GD.Print("SimulationParameters loading ended");
 
@@ -119,6 +124,11 @@ public class SimulationParameters
         return result;
     }
 
+    public Dictionary<string, MusicCategory> GetMusicCategories()
+    {
+        return musicCategories;
+    }
+
     public OrganelleDefinition GetRandomProkaryoticOrganelle(Random random)
     {
         float valueLeft = random.Next(0.0f, prokaryoticOrganellesTotalChance);
@@ -184,6 +194,7 @@ public class SimulationParameters
         CheckRegistryType(bioProcesses);
         CheckRegistryType(compounds);
         CheckRegistryType(organelles);
+        CheckRegistryType(musicCategories);
 
         NameGenerator.Check(string.Empty);
     }
