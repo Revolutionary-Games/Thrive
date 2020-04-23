@@ -172,7 +172,7 @@ public class MicrobeHUD : Node
             editorButton.GetNode<TextureRect>("Highlight").Show();
             editorButton.GetNode<TextureProgress>("ReproductionBar/PhosphateReproductionBar").TintProgress =
                 new Color("#ffffff");
-            editorButton.GetNode<TextureProgress>("ReproductionBar/AmmoniaReproductionBar").TintProgress = 
+            editorButton.GetNode<TextureProgress>("ReproductionBar/AmmoniaReproductionBar").TintProgress =
                 new Color("#ffffff");
             editorButton.GetNode<TextureRect>("ReproductionBar/PhosphateIcon").Texture =
                 (Texture)GD.Load("res://assets/textures/gui/bevel/PhosphatesBW.png");
