@@ -324,7 +324,7 @@ public class MicrobeEditor : Node
             editedSpecies.FormattedName);
 
         // Update name
-        NewName = gui.SpeciesNameEdit.Text;
+        NewName = gui.GetNewSpeciesName().Text;
         var splits = NewName.Split(" ");
         if (splits.Length == 2)
         {

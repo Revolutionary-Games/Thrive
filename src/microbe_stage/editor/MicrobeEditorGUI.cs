@@ -140,7 +140,10 @@ public class MicrobeEditorGUI : Node
 
     private bool inEditorTab = false;
 
-    public LineEdit SpeciesNameEdit { get { return speciesNameEdit; } }
+    public LineEdit GetNewSpeciesName()
+    {
+        return speciesNameEdit;
+    }
 
     public override void _Ready()
     {
@@ -679,9 +682,9 @@ public class MicrobeEditorGUI : Node
         moveToPatchButton.Disabled = !editor.IsPatchMoveValid(patch);
     }
 
-    private void OnLineEditTextChanged(string new_text)
+    private void OnSpeciesNameTextChanged(string newText)
     {
-        if (speciesNameEdit.Text.Split(" ").Length != 2)
+        if (newText.Split(" ").Length != 2)
         {
             speciesNameEdit.Set("custom_colors/font_color", new Color(1, 0, 0));
         }
