@@ -7,6 +7,12 @@ using Godot;
 /// </summary>
 public class Jukebox : Node
 {
+    private const float FADE_TIME = 0.6f;
+    private const float FADE_LOW_VOLUME = -24.0f;
+    private const float NORMAL_VOLUME = 0.0f;
+
+    private const float FADE_PER_TIME_UNIT = (FADE_LOW_VOLUME - NORMAL_VOLUME) / FADE_TIME;
+
     private static Jukebox instance;
 
     /// <summary>
@@ -14,11 +20,18 @@ public class Jukebox : Node
     /// </summary>
     private readonly Dictionary<string, MusicCategory> categories;
 
-    private readonly List<AudioStreamPlayer> audioPlayers = new List<AudioStreamPlayer>();
+    private readonly List<AudioPlayer> audioPlayers = new List<AudioPlayer>();
+
+    private readonly Queue<Operation> operations = new Queue<Operation>();
 
     private bool paused = true;
 
     private string playingCategory;
+
+    /// <summary>
+    ///   Used to lookup the transitions to go away from a category
+    /// </summary>
+    private MusicCategory previouslyPlayedCategory;
 
     /// <summary>
     ///   Loads the music categories and prepares to play them
@@ -54,6 +67,7 @@ public class Jukebox : Node
             if (playingCategory == value)
                 return;
 
+            GD.Print("Jukebox now playing from: ", value);
             playingCategory = value;
             OnCategoryChanged();
         }
@@ -83,22 +97,33 @@ public class Jukebox : Node
         SetStreamsPauseStatus(paused);
     }
 
+    public void Stop()
+    {
+        Pause();
+        StopStreams();
+    }
+
     public override void _Process(float delta)
     {
         if (paused)
             return;
 
         // Process actions
-
-        // Check if a stream has ended
-        foreach (var player in audioPlayers)
+        if (operations.Count > 0)
         {
-            if (!player.Playing)
-            {
-                OnSomeTrackEnded();
-                break;
-            }
+            if (operations.Peek().Action(delta))
+                operations.Dequeue();
         }
+
+        // // Check if a stream has ended
+        // foreach (var player in audioPlayers)
+        // {
+        //     if (!player.Playing)
+        //     {
+        //         OnSomeTrackEnded();
+        //         break;
+        //     }
+        // }
     }
 
     private void SetStreamsPauseStatus(bool paused)
@@ -109,7 +134,31 @@ public class Jukebox : Node
         }
     }
 
-    private AudioStreamPlayer NewPlayer()
+    private void StopStreams()
+    {
+        foreach (var player in audioPlayers)
+        {
+            player.Player.Stop();
+        }
+    }
+
+    private void AdjustVolume(float adjustement)
+    {
+        foreach (var player in audioPlayers)
+        {
+            player.Player.VolumeDb += adjustement;
+        }
+    }
+
+    private void SetVolume(float volume)
+    {
+        foreach (var player in audioPlayers)
+        {
+            player.Player.VolumeDb = volume;
+        }
+    }
+
+    private AudioPlayer NewPlayer()
     {
         var player = new AudioStreamPlayer();
 
@@ -117,10 +166,14 @@ public class Jukebox : Node
 
         player.Bus = "Music";
 
-        return player;
+        // TODO: should MIX_TARGET_SURROUND be used here?
+
+        player.Connect("finished", this, "OnSomeTrackEnded");
+
+        return new AudioPlayer(player);
     }
 
-    private AudioStreamPlayer GetNextPlayer(int index)
+    private AudioPlayer GetNextPlayer(int index)
     {
         if (audioPlayers.Count <= index)
             audioPlayers.Add(NewPlayer());
@@ -128,17 +181,130 @@ public class Jukebox : Node
         return audioPlayers[index];
     }
 
-    private void PlayTrack(AudioStreamPlayer player, TrackList.Track track)
+    private void PlayTrack(AudioPlayer player, TrackList.Track track)
     {
-        var stream = GD.Load<AudioStream>(track.ResourcePath);
+        if (player.CurrentTrack != track.ResourcePath)
+        {
+            var stream = GD.Load<AudioStream>(track.ResourcePath);
 
-        player.Stream = stream;
-        player.Play();
+            player.Player.Stream = stream;
+            player.CurrentTrack = track.ResourcePath;
+        }
+
+        player.Player.Play();
     }
 
     private void OnCategoryChanged()
     {
         var target = categories[PlayingCategory];
+
+        bool faded = false;
+
+        // Add transitions
+        if (previouslyPlayedCategory != null)
+        {
+            if (previouslyPlayedCategory.CategoryTransition == MusicCategory.TRANSITION.Fade)
+            {
+                AddFadeOut();
+                faded = true;
+            }
+        }
+
+        operations.Enqueue(new Operation((delta) =>
+        {
+            SetupStreamsFromCategory();
+            return true;
+        }));
+
+        if (target.CategoryTransition == MusicCategory.TRANSITION.Fade)
+        {
+            if (!faded)
+            {
+                AddVolumeRemove();
+            }
+
+            AddFadeIn();
+        }
+        else if (faded)
+        {
+            AddVolumeRestore();
+        }
+    }
+
+    private void AddFadeOut()
+    {
+        var data = new TimedOperationData(FADE_TIME);
+        operations.Enqueue(new Operation((delta) =>
+        {
+            data.TimeLeft -= delta;
+
+            bool finished = data.TimeLeft <= 0;
+
+            if (finished)
+            {
+                AdjustVolume(FADE_PER_TIME_UNIT * delta);
+            }
+            else
+            {
+                SetVolume(FADE_LOW_VOLUME);
+            }
+
+            return finished;
+        }));
+    }
+
+    private void AddFadeIn()
+    {
+        var data = new TimedOperationData(FADE_TIME);
+        operations.Enqueue(new Operation((delta) =>
+        {
+            data.TimeLeft -= delta;
+
+            bool finished = data.TimeLeft <= 0;
+
+            if (finished)
+            {
+                AdjustVolume(-1 * FADE_PER_TIME_UNIT * delta);
+            }
+            else
+            {
+                SetVolume(NORMAL_VOLUME);
+            }
+
+            return finished;
+        }));
+    }
+
+    private void AddVolumeRestore()
+    {
+        operations.Enqueue(new Operation((delta) =>
+        {
+            SetVolume(NORMAL_VOLUME);
+            return true;
+        }));
+    }
+
+    private void AddVolumeRemove()
+    {
+        operations.Enqueue(new Operation((delta) =>
+        {
+            SetVolume(FADE_LOW_VOLUME);
+            return true;
+        }));
+    }
+
+    private void OnSomeTrackEnded()
+    {
+        GD.Print("Jukebox: some track finished");
+
+        // TODO:
+        // Find track lists that don't have a playing track in them and reallocate players for those
+    }
+
+    private void SetupStreamsFromCategory()
+    {
+        var target = categories[PlayingCategory];
+        previouslyPlayedCategory = target;
 
         int nextPlayerToUse = 0;
 
@@ -158,14 +324,62 @@ public class Jukebox : Node
             }
         }
 
-        // TODO:
-        // Add transition
-
         // Set pause status for any new streams
         SetStreamsPauseStatus(paused);
     }
 
-    private void OnSomeTrackEnded()
+    private class AudioPlayer
     {
+        public AudioStreamPlayer Player;
+        public string CurrentTrack;
+
+        public AudioPlayer(AudioStreamPlayer player)
+        {
+            Player = player;
+        }
+
+        public bool StreamPaused
+        {
+            get
+            {
+                return Player.StreamPaused;
+            }
+            set
+            {
+                Player.StreamPaused = value;
+            }
+        }
+
+        public bool Playing
+        {
+            get
+            {
+                return Player.Playing;
+            }
+            set
+            {
+                Player.Playing = value;
+            }
+        }
+    }
+
+    private class Operation
+    {
+        public Func<float, bool> Action;
+
+        public Operation(Func<float, bool> action)
+        {
+            Action = action;
+        }
+    }
+
+    private class TimedOperationData
+    {
+        public float TimeLeft;
+
+        public TimedOperationData(float time)
+        {
+            TimeLeft = time;
+        }
     }
 }

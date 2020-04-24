@@ -164,8 +164,9 @@ public class MainMenu : Node
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        // Stop music for the video
-        Jukebox.Instance.Pause();
+        // Stop music for the video (stop is used instead of pause to stop the menu music playing a bit after the video
+        // before the stage music starts)
+        Jukebox.Instance.Stop();
 
         TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.5f);
         TransitionManager.Instance.AddCutscene("res://assets/videos/microbe_intro2.webm");

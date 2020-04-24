@@ -288,6 +288,8 @@ public class MicrobeEditor : Node
         }
 
         InitEditor();
+
+        StartMusic();
     }
 
     /// <summary>
@@ -356,6 +358,12 @@ public class MicrobeEditor : Node
         ReturnToStage.OnReturnFromEditor();
 
         QueueFree();
+    }
+
+    public void StartMusic()
+    {
+        Jukebox.Instance.PlayingCategory = "MicrobeEditor";
+        Jukebox.Instance.Resume();
     }
 
     public override void _UnhandledInput(InputEvent @event)
