@@ -140,6 +140,11 @@ public class MicrobeEditorGUI : Node
 
     private bool inEditorTab = false;
 
+    public string GetNewSpeciesName()
+    {
+        return speciesNameEdit.Text;
+    }
+
     public override void _Ready()
     {
         organelleSelectionElements = GetTree().GetNodesInGroup("OrganelleSelectionElement");
@@ -409,6 +414,9 @@ public class MicrobeEditorGUI : Node
         // throw new NotImplementedException();
 
         speciesNameEdit.Text = name;
+
+        // Callback is manually called because the function isn't called automatically here
+        OnSpeciesNameTextChanged(name);
     }
 
     private void MoveToPatchClicked()
@@ -675,5 +683,17 @@ public class MicrobeEditorGUI : Node
 
         // Enable move to patch button if this is a valid move
         moveToPatchButton.Disabled = !editor.IsPatchMoveValid(patch);
+    }
+
+    private void OnSpeciesNameTextChanged(string newText)
+    {
+        if (newText.Split(" ").Length != 2)
+        {
+            speciesNameEdit.Set("custom_colors/font_color", new Color(1, 0, 0));
+        }
+        else
+        {
+            speciesNameEdit.Set("custom_colors/font_color", new Color(1, 1, 1));
+        }
     }
 }
