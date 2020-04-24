@@ -1,9 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Music category to be loaded from json
 /// </summary>
+/// <remarks>
+///   <para>
+///     The Jukebox stores temporary playback data in this class. This is despite this being registry type, but this is
+///     fine as there will only ever be a single Jukebox so it modifying the data doesn't break things.
+///   </para>
+/// </remarks>
 public class MusicCategory : IRegistryType
 {
     public enum RETURN_TYPE
@@ -66,6 +73,9 @@ public class TrackList
     public ORDER TrackOrder { get; set; } = ORDER.Random;
 
     public List<Track> Tracks { get; set; }
+
+    [JsonIgnore]
+    public int LastPlayedIndex { get; set; } = -1;
 
     public void Check()
     {

@@ -24,10 +24,16 @@ public class MainMenu : Node
         RunMenuSetup();
     }
 
+    public void StartMusic()
+    {
+        Jukebox.Instance.PlayingCategory = "Menu";
+        Jukebox.Instance.Resume();
+    }
+
     /// <summary>
     ///   Setup the main menu.
     /// </summary>
-    public void RunMenuSetup()
+    private void RunMenuSetup()
     {
         Background = GetNode<TextureRect>("Background");
 
@@ -52,7 +58,7 @@ public class MainMenu : Node
     /// <summary>
     ///   Randomizes background images.
     /// </summary>
-    public void RandomizeBackground()
+    private void RandomizeBackground()
     {
         Random rand = new Random();
         int num = rand.Next(0, 9);
@@ -71,7 +77,7 @@ public class MainMenu : Node
         }
     }
 
-    public void SetBackground(string filepath)
+    private void SetBackground(string filepath)
     {
         if (Background == null)
         {
@@ -87,7 +93,7 @@ public class MainMenu : Node
     ///   Change the menu displayed on screen to one
     ///   with the menu of the given index.
     /// </summary>
-    public void SetCurrentMenu(uint index, bool slide = true)
+    private void SetCurrentMenu(uint index, bool slide = true)
     {
         // Using tween for value interpolation
         var tween = GetNode<Tween>("MenuTween");
@@ -126,6 +132,9 @@ public class MainMenu : Node
     {
         TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeOut, 0.5f, false);
         TransitionManager.Instance.StartTransitions(null, string.Empty);
+
+        // Start music after the video
+        StartMusic();
     }
 
     private void OnMicrobeIntroEnded()
@@ -154,6 +163,9 @@ public class MainMenu : Node
     private void NewGamePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
+
+        // Stop music for the video
+        Jukebox.Instance.Pause();
 
         TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.5f);
         TransitionManager.Instance.AddCutscene("res://assets/videos/microbe_intro2.webm");
