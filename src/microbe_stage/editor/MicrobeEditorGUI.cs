@@ -96,8 +96,8 @@ public class MicrobeEditorGUI : Node
     private LoadingScreen loadingScreen;
 
     private Godot.Collections.Array organelleSelectionElements;
-    private Godot.Collections.Array organelleProcessList;
     private Godot.Collections.Array membraneSelectionElements;
+    private Godot.Collections.Array itemTooltipElements;
 
     private Label sizeLabel;
     private Label speedLabel;
@@ -145,8 +145,8 @@ public class MicrobeEditorGUI : Node
     public override void _Ready()
     {
         organelleSelectionElements = GetTree().GetNodesInGroup("OrganelleSelectionElement");
-        organelleProcessList = GetTree().GetNodesInGroup("OrganelleProcessList");
         membraneSelectionElements = GetTree().GetNodesInGroup("MembraneSelectionElement");
+        itemTooltipElements = GetTree().GetNodesInGroup("ItemTooltip");
 
         loadingScreen = GetNode<LoadingScreen>("LoadingScreen");
 
@@ -287,10 +287,12 @@ public class MicrobeEditorGUI : Node
     {
         foreach (var organelleName in organelleEfficiency.Keys)
         {
-            foreach (VBoxContainer processList in organelleProcessList)
+            foreach (Node tooltip in itemTooltipElements)
             {
-                if (processList.Name == organelleName)
+                if (tooltip.Name == organelleName)
                 {
+                    var processList = tooltip.GetNode<VBoxContainer>("MarginContainer/VBoxContainer/ProcessList");
+
                     WriteOrganelleProcessList(organelleEfficiency[organelleName].Processes,
                         processList);
                 }
@@ -330,6 +332,27 @@ public class MicrobeEditorGUI : Node
     internal void OnMouseExit()
     {
         editor.ShowHover = true && inEditorTab;
+    }
+
+    internal void OnItemMouseHover(string itemName)
+    {
+        foreach (PanelContainer tooltip in itemTooltipElements)
+        {
+            tooltip.Hide();
+
+            if (tooltip.Name == itemName)
+            {
+                tooltip.Show();
+            }
+        }
+    }
+
+    internal void OnItemMouseExit()
+    {
+        foreach (PanelContainer tooltip in itemTooltipElements)
+        {
+            tooltip.Hide();
+        }
     }
 
     internal void SetUndoButtonStatus(bool enabled)
@@ -621,7 +644,9 @@ public class MicrobeEditorGUI : Node
         element.Expand = true;
         element.RectMinSize = new Vector2(20, 20);
 
-        var icon = GD.Load<Texture>("res://assets/textures/gui/bevel/" + compoundName + ".png");
+        var icon = GD.Load<Texture>("res://assets/textures/gui/bevel/" + compoundName.ReplaceN(
+            " ", string.Empty) + ".png");
+
         element.Texture = icon;
 
         return element;
@@ -649,10 +674,13 @@ public class MicrobeEditorGUI : Node
 
         foreach (var process in processList)
         {
+            var processContainer = new VBoxContainer();
+            targetElement.AddChild(processContainer);
+
             var processTitle = new Label();
-            processTitle.AddColorOverride("font_color", new Color("ffd700"));
+            processTitle.AddColorOverride("font_color", new Color(1.0f, 0.84f, 0.0f));
             processTitle.Text = process.Process.Name;
-            targetElement.AddChild(processTitle);
+            processContainer.AddChild(processTitle);
 
             var processBody = new HBoxContainer();
 
@@ -751,7 +779,7 @@ public class MicrobeEditorGUI : Node
                 }
             }
 
-            targetElement.AddChild(processBody);
+            processContainer.AddChild(processBody);
         }
     }
 

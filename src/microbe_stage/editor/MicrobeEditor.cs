@@ -430,15 +430,20 @@ public class MicrobeEditor : Node
     /// </summary>
     public void CalculateOrganelleEffectivenessInPatch(Patch patch = null)
     {
+        Patch inPatch;
+
         if (patch == null)
         {
-            GD.PrintErr("Can't calculate from an empty patch");
-            return;
+            inPatch = CurrentPatch;
+        }
+        else
+        {
+            inPatch = patch;
         }
 
         var organelles = SimulationParameters.Instance.GetAllOrganelles();
 
-        var result = ProcessSystem.ComputeOrganelleProcessEfficiencies(organelles, patch.Biome);
+        var result = ProcessSystem.ComputeOrganelleProcessEfficiencies(organelles, inPatch.Biome);
 
         gui.UpdateOrganelleEfficiencies(result);
     }
@@ -834,7 +839,7 @@ public class MicrobeEditor : Node
         playerPatchOnEntry = CurrentGame.GameWorld.Map.CurrentPatch;
 
         // Send info to the GUI about the organelle effectiveness in the current patch
-        CalculateOrganelleEffectivenessInPatch(CurrentPatch);
+        CalculateOrganelleEffectivenessInPatch();
 
         // Reset this, GUI will tell us to enable it again
         ShowHover = false;
