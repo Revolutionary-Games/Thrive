@@ -194,13 +194,13 @@ public class MicrobeHUD : Node
             editorButton.GetNode<TextureRect>("Highlight").Hide();
             editorButton.GetNode<Control>("ReproductionBar").Show();
             editorButton.GetNode<TextureProgress>("ReproductionBar/PhosphateReproductionBar").TintProgress =
-                new Color(0.38f, 0.14f, 0.8f, 1);
+                new Color(0.69f, 0.42f, 1, 1);
             editorButton.GetNode<TextureProgress>("ReproductionBar/AmmoniaReproductionBar").TintProgress =
-                new Color(0.63f, 0.39f, 0, 1);
+                new Color(1, 0.62f, 0.12f, 1);
             editorButton.GetNode<TextureRect>("ReproductionBar/PhosphateIcon").Texture =
-                (Texture)GD.Load("res://assets/textures/gui/bevel/Phosphates.png");
+                (Texture)GD.Load("res://assets/textures/gui/bevel/PhosphateInv.png");
             editorButton.GetNode<TextureRect>("ReproductionBar/AmmoniaIcon").Texture =
-                (Texture)GD.Load("res://assets/textures/gui/bevel/Ammonia.png");
+                (Texture)GD.Load("res://assets/textures/gui/bevel/AmmoniaInv.png");
             editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Stop();
         }
     }

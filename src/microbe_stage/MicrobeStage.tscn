@@ -1,7 +1,9 @@
-[gd_scene load_steps=118 format=2]
+[gd_scene load_steps=120 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/textures/gui/bevel/AmmoniaInv.png" type="Texture" id=3]
+[ext_resource path="res://assets/textures/gui/bevel/PhosphateInv.png" type="Texture" id=4]
 [ext_resource path="res://src/microbe_stage/PlayerMicrobeInput.cs" type="Script" id=7]
 [ext_resource path="res://src/microbe_stage/MicrobeHUD.cs" type="Script" id=9]
 [ext_resource path="res://src/microbe_stage/CompoundCloudSystem.cs" type="Script" id=10]
@@ -2905,7 +2907,7 @@ margin_bottom = 195.0
 step = 0.1
 texture_progress = ExtResource( 65 )
 fill_mode = 5
-tint_progress = Color( 0.631373, 0.396078, 0, 1 )
+tint_progress = Color( 1, 0.627451, 0.121569, 1 )
 radial_fill_degrees = 180.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2919,7 +2921,7 @@ margin_bottom = 195.0
 step = 0.1
 texture_progress = ExtResource( 65 )
 fill_mode = 5
-tint_progress = Color( 0.380392, 0.141176, 0.8, 1 )
+tint_progress = Color( 0.690196, 0.423529, 1, 1 )
 radial_initial_angle = 180.0
 radial_fill_degrees = 180.0
 __meta__ = {
@@ -2931,7 +2933,7 @@ margin_left = 85.0
 margin_top = 7.5
 margin_right = 110.0
 margin_bottom = 32.5
-texture = ExtResource( 48 )
+texture = ExtResource( 3 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -2942,7 +2944,7 @@ margin_left = 85.0
 margin_top = 162.5
 margin_right = 110.0
 margin_bottom = 187.5
-texture = ExtResource( 50 )
+texture = ExtResource( 4 )
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
