@@ -102,13 +102,13 @@ public class MicrobeEditorGUI : Node
     private Label generationLabel;
     private Label mutationPointsLabel;
     private TextureProgress mutationPointsBar;
+    private LineEdit speciesNameEdit;
     private TextureButton undoButton;
     private TextureButton redoButton;
     private TextureButton symmetryButton;
     private Label atpBalanceLabel;
     private ProgressBar atpProductionBar;
     private ProgressBar atpConsumptionBar;
-    private LineEdit speciesNameEdit;
     private Label autoEvoLabel;
     private Label externalEffectsLabel;
     private PatchMapDrawer mapDrawer;
