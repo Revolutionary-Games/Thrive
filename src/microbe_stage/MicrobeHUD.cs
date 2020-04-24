@@ -172,9 +172,9 @@ public class MicrobeHUD : Node
             editorButton.Disabled = false;
             editorButton.GetNode<TextureRect>("Highlight").Show();
             editorButton.GetNode<TextureProgress>("ReproductionBar/PhosphateReproductionBar").TintProgress =
-                new Color("#ffffff");
+                new Color(1, 1, 1, 1);
             editorButton.GetNode<TextureProgress>("ReproductionBar/AmmoniaReproductionBar").TintProgress =
-                new Color("#ffffff");
+                new Color(1, 1, 1, 1);
             editorButton.GetNode<TextureRect>("ReproductionBar/PhosphateIcon").Texture =
                 (Texture)GD.Load("res://assets/textures/gui/bevel/PhosphatesBW.png");
             editorButton.GetNode<TextureRect>("ReproductionBar/AmmoniaIcon").Texture =
@@ -194,9 +194,9 @@ public class MicrobeHUD : Node
             editorButton.GetNode<TextureRect>("Highlight").Hide();
             editorButton.GetNode<Control>("ReproductionBar").Show();
             editorButton.GetNode<TextureProgress>("ReproductionBar/PhosphateReproductionBar").TintProgress =
-                new Color("#6124cc");
+                new Color(0.38f, 0.14f, 0.8f, 1);
             editorButton.GetNode<TextureProgress>("ReproductionBar/AmmoniaReproductionBar").TintProgress =
-                new Color("#a16500");
+                new Color(0.63f, 0.39f, 0, 1);
             editorButton.GetNode<TextureRect>("ReproductionBar/PhosphateIcon").Texture =
                 (Texture)GD.Load("res://assets/textures/gui/bevel/Phosphates.png");
             editorButton.GetNode<TextureRect>("ReproductionBar/AmmoniaIcon").Texture =
