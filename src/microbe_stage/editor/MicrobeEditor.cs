@@ -18,8 +18,6 @@ public class MicrobeEditor : Node
     /// </summary>
     public Color Colour;
 
-    private LineEdit nameEditor;
-
     private int symmetry = 0;
 
     private MicrobeCamera camera;
@@ -244,8 +242,6 @@ public class MicrobeEditor : Node
         modelScene = GD.Load<PackedScene>("res://src/general/SceneDisplayer.tscn");
 
         camera.ObjectToFollow = GetNode<Spatial>("CameraLookAt");
-        nameEditor = GetNode<LineEdit>("MicrobeEditorGUI/CellEditor/BottomBar/LowerBarCentre/"
-            + "MarginContainer/HBoxContainer/SpeciesName/SpeciesNameBox/MarginContainer/LineEdit");
 
         gui.Init(this);
 
@@ -328,7 +324,7 @@ public class MicrobeEditor : Node
             editedSpecies.FormattedName);
 
         // Update name
-        NewName = nameEditor.Text;
+        NewName = gui.SpeciesNameEdit.Text;
         var splits = NewName.Split(" ");
         if (splits.Length == 2)
         {

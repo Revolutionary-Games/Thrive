@@ -102,13 +102,13 @@ public class MicrobeEditorGUI : Node
     private Label generationLabel;
     private Label mutationPointsLabel;
     private TextureProgress mutationPointsBar;
-    private LineEdit speciesNameEdit;
     private TextureButton undoButton;
     private TextureButton redoButton;
     private TextureButton symmetryButton;
     private Label atpBalanceLabel;
     private ProgressBar atpProductionBar;
     private ProgressBar atpConsumptionBar;
+    private LineEdit speciesNameEdit;
     private Label autoEvoLabel;
     private Label externalEffectsLabel;
     private PatchMapDrawer mapDrawer;
@@ -139,6 +139,8 @@ public class MicrobeEditorGUI : Node
     private Button moveToPatchButton;
 
     private bool inEditorTab = false;
+
+    public LineEdit SpeciesNameEdit { get { return speciesNameEdit; } }
 
     public override void _Ready()
     {
@@ -675,5 +677,17 @@ public class MicrobeEditorGUI : Node
 
         // Enable move to patch button if this is a valid move
         moveToPatchButton.Disabled = !editor.IsPatchMoveValid(patch);
+    }
+
+    private void OnLineEditTextChanged(string new_text)
+    {
+        if (speciesNameEdit.Text.Split(" ").Length != 2)
+        {
+            speciesNameEdit.Set("custom_colors/font_color", new Color(1, 0, 0));
+        }
+        else
+        {
+            speciesNameEdit.Set("custom_colors/font_color", new Color(1, 1, 1));
+        }
     }
 }

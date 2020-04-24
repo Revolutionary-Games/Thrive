@@ -4095,6 +4095,7 @@ margin_bottom = 25.0
 mouse_filter = 1
 custom_styles/normal = SubResource( 44 )
 custom_fonts/font = SubResource( 45 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Primum Thrivium"
 caret_blink = true
 
@@ -5102,6 +5103,7 @@ visible = false
 [connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/BottomBar" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/BottomBar" to="MicrobeEditorGUI" method="OnMouseExit"]
 [connection signal="pressed" from="MicrobeEditorGUI/CellEditor/BottomBar/MenuButton" to="MicrobeEditorGUI" method="MenuButtonPressed"]
+[connection signal="text_changed" from="MicrobeEditorGUI/CellEditor/BottomBar/LowerBarCentre/MarginContainer/HBoxContainer/SpeciesName/SpeciesNameBox/MarginContainer/LineEdit" to="MicrobeEditorGUI" method="OnLineEditTextChanged"]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/SymmetryButton" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/SymmetryButton" to="MicrobeEditorGUI" method="OnMouseExit"]
 [connection signal="pressed" from="MicrobeEditorGUI/CellEditor/SymmetryButton" to="MicrobeEditorGUI" method="OnSymmetryClicked"]
