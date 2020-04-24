@@ -140,9 +140,9 @@ public class MicrobeEditorGUI : Node
 
     private bool inEditorTab = false;
 
-    public LineEdit GetNewSpeciesName()
+    public string GetNewSpeciesName()
     {
-        return speciesNameEdit;
+        return speciesNameEdit.Text;
     }
 
     public override void _Ready()
@@ -414,6 +414,9 @@ public class MicrobeEditorGUI : Node
         // throw new NotImplementedException();
 
         speciesNameEdit.Text = name;
+
+        // Callback is manually called because the function isn't called automatically here
+        OnSpeciesNameTextChanged(name);
     }
 
     private void MoveToPatchClicked()

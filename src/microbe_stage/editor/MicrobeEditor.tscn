@@ -5103,7 +5103,7 @@ visible = false
 [connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/BottomBar" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/BottomBar" to="MicrobeEditorGUI" method="OnMouseExit"]
 [connection signal="pressed" from="MicrobeEditorGUI/CellEditor/BottomBar/MenuButton" to="MicrobeEditorGUI" method="MenuButtonPressed"]
-[connection signal="text_changed" from="MicrobeEditorGUI/CellEditor/BottomBar/LowerBarCentre/MarginContainer/HBoxContainer/SpeciesName/SpeciesNameBox/MarginContainer/LineEdit" to="MicrobeEditorGUI" method="OnLineEditTextChanged"]
+[connection signal="text_changed" from="MicrobeEditorGUI/CellEditor/BottomBar/LowerBarCentre/MarginContainer/HBoxContainer/SpeciesName/SpeciesNameBox/MarginContainer/LineEdit" to="MicrobeEditorGUI" method="OnSpeciesNameTextChanged"]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/SymmetryButton" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/SymmetryButton" to="MicrobeEditorGUI" method="OnMouseExit"]
 [connection signal="pressed" from="MicrobeEditorGUI/CellEditor/SymmetryButton" to="MicrobeEditorGUI" method="OnSymmetryClicked"]
