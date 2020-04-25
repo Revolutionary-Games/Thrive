@@ -36,7 +36,7 @@ public class Mutations
         mutated.IsBacteria = parent.IsBacteria;
 
         // Mutate the epithet
-        if (random.Next(0, 100) < Constants.MUTATION_WORD_EDIT)
+        if (random.Next(0, 101) < Constants.MUTATION_WORD_EDIT)
         {
             mutated.Epithet = MutateWord(parent.Epithet);
         }
@@ -49,10 +49,10 @@ public class Mutations
 
         MutateBehaviour(parent, mutated);
 
-        if (random.Next(0, 100) <= Constants.MUTATION_CHANGE_GENUS)
+        if (random.Next(0, 101) <= Constants.MUTATION_CHANGE_GENUS)
         {
             // We can do more fun stuff here later
-            if (random.Next(0, 100) < Constants.MUTATION_WORD_EDIT)
+            if (random.Next(0, 101) < Constants.MUTATION_WORD_EDIT)
             {
                 mutated.Genus = MutateWord(parent.Genus);
             }
@@ -75,30 +75,30 @@ public class Mutations
         var colour = mutated.IsBacteria ? RandomProkayroteColour() :
             RandomColour();
 
-        if (random.Next(0, 100) <= 20)
+        if (random.Next(0, 101) <= 20)
         {
             // Could perhaps use a weighted entry model here... the
             // earlier one is listed, the more likely currently (I
             // think). That may be an issue.
-            if (random.Next(0, 100) < 50)
+            if (random.Next(0, 101) < 50)
             {
                 mutated.MembraneType = simulation.GetMembrane("single");
             }
-            else if (random.Next(0, 100) < 50)
+            else if (random.Next(0, 101) < 50)
             {
                 mutated.MembraneType = simulation.GetMembrane("double");
                 colour.a = RandomOpacityChitin();
             }
-            else if (random.Next(0, 100) < 50)
+            else if (random.Next(0, 101) < 50)
             {
                 mutated.MembraneType = simulation.GetMembrane("cellulose");
             }
-            else if (random.Next(0, 100) < 50)
+            else if (random.Next(0, 101) < 50)
             {
                 mutated.MembraneType = simulation.GetMembrane("chitin");
                 colour.a = RandomOpacityChitin();
             }
-            else if (random.Next(0, 100) < 50)
+            else if (random.Next(0, 101) < 50)
             {
                 mutated.MembraneType = simulation.GetMembrane("calcium_carbonate");
                 colour.a = RandomOpacityChitin();
@@ -115,7 +115,7 @@ public class Mutations
         }
 
         mutated.MembraneRigidity = Math.Max(Math.Min(parent.MembraneRigidity +
-                random.Next(-25, 25) / 100.0f, 1), -1);
+                random.Next(-25, 26) / 100.0f, 1), -1);
 
         // If you have iron (f is the symbol for rusticyanin)
         var rusticyanin = simulation.GetOrganelleType("rusticyanin");
@@ -431,7 +431,7 @@ public class Mutations
                 var part = newName.ToString(index, 2);
                 bool isPermute = PronoucablePermutation.Any(item => item == part);
                 string original = newName.ToString(index, 2);
-                if (random.Next(0, 20) <= 10 && isPermute)
+                if (random.Next(0, 21) <= 10 && isPermute)
                 {
                     newName.Erase(index, 2);
                     changes++;
@@ -443,7 +443,7 @@ public class Mutations
         // 2% chance each letter
         for (int i = 1; i < newName.Length; i++)
         {
-            if (random.Next(0, 120) <= 1 && changes <= changeLimit)
+            if (random.Next(0, 121) <= 1 && changes <= changeLimit)
             {
                 // Index we are adding or erasing chromosomes at
                 int index = newName.Length - i - 1;
@@ -472,7 +472,7 @@ public class Mutations
                 {
                     newName.Erase(index, 1);
                     changes++;
-                    switch (random.Next(0, 5))
+                    switch (random.Next(0, 6))
                     {
                         case 0:
                             newName.Insert(index, Vowels.Random(random)
@@ -504,7 +504,7 @@ public class Mutations
                 {
                     newName.Erase(index, 1);
                     changes++;
-                    if (random.Next(0, 20) <= 10)
+                    if (random.Next(0, 21) <= 10)
                     {
                         newName.Insert(index, Consonants.Random(random) +
                             Vowels.Random(random) + original);
@@ -543,7 +543,7 @@ public class Mutations
             bool isVowel = Vowels.Any(item => item == part);
 
             // 50 percent chance replace
-            if (random.Next(0, 20) <= 10 && changes <= changeLimit)
+            if (random.Next(0, 21) <= 10 && changes <= changeLimit)
             {
                 if (!isVowel && newName.ToString(index, 1) != "r" && !isPermute)
                 {

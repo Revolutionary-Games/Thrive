@@ -288,6 +288,8 @@ public class MicrobeEditor : Node
         }
 
         InitEditor();
+
+        StartMusic();
     }
 
     /// <summary>
@@ -357,6 +359,12 @@ public class MicrobeEditor : Node
         ReturnToStage.OnReturnFromEditor();
 
         QueueFree();
+    }
+
+    public void StartMusic()
+    {
+        Jukebox.Instance.PlayingCategory = "MicrobeEditor";
+        Jukebox.Instance.Resume();
     }
 
     public override void _UnhandledInput(InputEvent @event)
@@ -901,7 +909,7 @@ public class MicrobeEditor : Node
         var random = new Random();
 
         var population = random.Next(Constants.INITIAL_SPLIT_POPULATION_MIN,
-            Constants.INITIAL_SPLIT_POPULATION_MAX);
+            Constants.INITIAL_SPLIT_POPULATION_MAX + 1);
 
         if (!CurrentGame.GameWorld.Map.CurrentPatch.AddSpecies(newSpecies, population))
         {
