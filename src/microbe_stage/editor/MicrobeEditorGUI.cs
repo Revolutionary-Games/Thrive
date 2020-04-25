@@ -731,11 +731,11 @@ public class MicrobeEditorGUI : Node
 
                 var amountLabel = new Label();
 
-                var stringBuilder = new StringBuilder("", 150);
+                var stringBuilder = new StringBuilder(string.Empty, 150);
 
                 if (usePlus)
                 {
-                    stringBuilder.Append(outputCompound.Amount >= 0 ? "+" : "");
+                    stringBuilder.Append(outputCompound.Amount >= 0 ? "+" : string.Empty);
                 }
 
                 stringBuilder.Append(Math.Round(outputCompound.Amount, 2) + " ");
@@ -772,6 +772,7 @@ public class MicrobeEditorGUI : Node
                         commaLabel.Text = ", ";
                         processBody.AddChild(commaLabel);
                     }
+
                     first = false;
 
                     var environmentCompound = process.EnvironmentInputs[key];
@@ -780,7 +781,7 @@ public class MicrobeEditorGUI : Node
                     var percentageLabel = new Label();
 
                     // TODO: sunlight needs some special handling (it used to say the lux amount)
-                    percentageLabel.Text = Math.Round((environmentCompound.AvailableAmount * 100), 1) + "%";
+                    percentageLabel.Text = Math.Round(environmentCompound.AvailableAmount * 100, 1) + "%";
 
                     processBody.AddChild(percentageLabel);
                     processBody.AddChild(CreateCompoundIcon(environmentCompound.Compound.Name));
