@@ -98,6 +98,8 @@ public class MicrobeStage : Node
         }
 
         CreatePatchManagerIfNeeded();
+
+        StartMusic();
     }
 
     public void StartNewGame()
@@ -113,6 +115,12 @@ public class MicrobeStage : Node
         Camera.ResetHeight();
 
         HUD.UpdatePatchInfo(GameWorld.Map.CurrentPatch.Name);
+    }
+
+    public void StartMusic()
+    {
+        Jukebox.Instance.PlayingCategory = "MicrobeStage";
+        Jukebox.Instance.Resume();
     }
 
     /// <summary>
@@ -262,6 +270,8 @@ public class MicrobeStage : Node
         HUD.OnEnterStageTransition();
         HUD.HideReproductionDialog();
         HUD.UpdatePatchInfo(GameWorld.Map.CurrentPatch.Name);
+
+        StartMusic();
     }
 
     private void CreatePatchManagerIfNeeded()

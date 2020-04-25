@@ -34,9 +34,9 @@ public class NameGenerator : IRegistryType
 
         string newName;
 
-        if (random.Next(0, 100) >= 10)
+        if (random.Next(0, 101) >= 10)
         {
-            switch (random.Next(0, 3))
+            switch (random.Next(0, 4))
             {
                 case 0:
                     newName = PrefixesC.Random(random) + SuffixesV.Random(random);
@@ -60,7 +60,7 @@ public class NameGenerator : IRegistryType
         {
             // Developer Easter Eggs and really silly long names here
             // Our own version of wigglesoworthia for example
-            switch (random.Next(0, 3))
+            switch (random.Next(0, 4))
             {
                 case 0:
                 case 1:

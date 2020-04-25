@@ -15,6 +15,6 @@ public static class ListUtils
         if (items == null || items.Count < 1)
             return default(T);
 
-        return items[random.Next(0, items.Count - 1)];
+        return items[random.Next(0, items.Count)];
     }
 }

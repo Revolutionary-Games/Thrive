@@ -134,7 +134,7 @@
             {
                 int currentPopulation = populations.GetPopulationInPatch(currentSpecies, patch);
                 int populationChange = random.Next(
-                    -Constants.AUTO_EVO_RANDOM_POPULATION_CHANGE, Constants.AUTO_EVO_RANDOM_POPULATION_CHANGE);
+                    -Constants.AUTO_EVO_RANDOM_POPULATION_CHANGE, Constants.AUTO_EVO_RANDOM_POPULATION_CHANGE + 1);
 
                 if (lowSpecies)
                 {
