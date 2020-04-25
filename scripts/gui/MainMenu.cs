@@ -61,7 +61,7 @@ public class MainMenu : Node
     private void RandomizeBackground()
     {
         Random rand = new Random();
-        int num = rand.Next(0, 9);
+        int num = rand.Next(0, 10);
 
         if (num <= 3)
         {

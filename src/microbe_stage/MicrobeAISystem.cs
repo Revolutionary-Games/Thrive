@@ -70,7 +70,7 @@ public class MicrobeAISystem
 
         // For now just set a random nearby look at location
         microbe.LookAtPoint = microbe.Translation + new Vector3(
-            random.Next(-100, 100), 0, random.Next(-100, 100));
+            random.Next(-100, 101), 0, random.Next(-100, 101));
 
         // And random movement speed
         microbe.MovementDirection = new Vector3(0, 0, (float)(-1 * random.NextDouble()));

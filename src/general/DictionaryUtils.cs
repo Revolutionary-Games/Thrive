@@ -17,7 +17,7 @@ public static class DictionaryUtils
             return default(T);
 
         // TODO: maybe there is a better way to do this
-        return items[items.Keys.ToList()[random.Next(0, items.Keys.Count - 1)]];
+        return items[items.Keys.ToList()[random.Next(0, items.Keys.Count)]];
     }
 
     // Apparently C# doesn't support operator constraints on generics,
