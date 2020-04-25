@@ -167,7 +167,7 @@ public class SpawnSystem
 
             for (int i = 0; i < numAttempts; i++)
             {
-                if (random.Next(0, numAttempts) < spawnType.SpawnFrequency)
+                if (random.Next(0, numAttempts + 1) < spawnType.SpawnFrequency)
                 {
                     /*
                     First condition passed. Choose a location for the entity.
