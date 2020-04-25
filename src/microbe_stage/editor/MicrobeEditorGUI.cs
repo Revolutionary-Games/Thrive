@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 using Godot;
 
 /// <summary>
@@ -96,6 +97,7 @@ public class MicrobeEditorGUI : Node
 
     private Godot.Collections.Array organelleSelectionElements;
     private Godot.Collections.Array membraneSelectionElements;
+    private Godot.Collections.Array itemTooltipElements;
 
     private Label sizeLabel;
     private Label speedLabel;
@@ -140,10 +142,16 @@ public class MicrobeEditorGUI : Node
 
     private bool inEditorTab = false;
 
+    public string GetNewSpeciesName()
+    {
+        return speciesNameEdit.Text;
+    }
+
     public override void _Ready()
     {
         organelleSelectionElements = GetTree().GetNodesInGroup("OrganelleSelectionElement");
         membraneSelectionElements = GetTree().GetNodesInGroup("MembraneSelectionElement");
+        itemTooltipElements = GetTree().GetNodesInGroup("ItemTooltip");
 
         loadingScreen = GetNode<LoadingScreen>("LoadingScreen");
 
@@ -277,6 +285,26 @@ public class MicrobeEditorGUI : Node
         atpConsumptionBar.Value = energyBalance.TotalConsumption;
     }
 
+    /// <summary>
+    ///   Updates the organelle efficiencies in tooltips.
+    /// </summary>
+    public void UpdateOrganelleEfficiencies(Dictionary<string, OrganelleEfficiency> organelleEfficiency)
+    {
+        foreach (var organelleName in organelleEfficiency.Keys)
+        {
+            foreach (Node tooltip in itemTooltipElements)
+            {
+                if (tooltip.Name == organelleName)
+                {
+                    var processList = tooltip.GetNode<VBoxContainer>("MarginContainer/VBoxContainer/ProcessList");
+
+                    WriteOrganelleProcessList(organelleEfficiency[organelleName].Processes,
+                        processList);
+                }
+            }
+        }
+    }
+
     public void SetLoadingStatus(bool loading)
     {
         loadingScreen.Visible = loading;
@@ -309,6 +337,27 @@ public class MicrobeEditorGUI : Node
     internal void OnMouseExit()
     {
         editor.ShowHover = true && inEditorTab;
+    }
+
+    internal void OnItemMouseHover(string itemName)
+    {
+        foreach (PanelContainer tooltip in itemTooltipElements)
+        {
+            tooltip.Hide();
+
+            if (tooltip.Name == itemName)
+            {
+                tooltip.Show();
+            }
+        }
+    }
+
+    internal void OnItemMouseExit()
+    {
+        foreach (PanelContainer tooltip in itemTooltipElements)
+        {
+            tooltip.Hide();
+        }
     }
 
     internal void SetUndoButtonStatus(bool enabled)
@@ -409,6 +458,9 @@ public class MicrobeEditorGUI : Node
         // throw new NotImplementedException();
 
         speciesNameEdit.Text = name;
+
+        // Callback is manually called because the function isn't called automatically here
+        OnSpeciesNameTextChanged(name);
     }
 
     private void MoveToPatchClicked()
@@ -594,6 +646,152 @@ public class MicrobeEditorGUI : Node
         GetTree().Quit();
     }
 
+    private TextureRect CreateCompoundIcon(string compoundName)
+    {
+        var element = new TextureRect();
+        element.Expand = true;
+        element.RectMinSize = new Vector2(20, 20);
+
+        var icon = GD.Load<Texture>("res://assets/textures/gui/bevel/" + compoundName.ReplaceN(
+            " ", string.Empty) + ".png");
+
+        element.Texture = icon;
+
+        return element;
+    }
+
+    private void WriteOrganelleProcessList(List<ProcessSpeedInformation> processList,
+        VBoxContainer targetElement)
+    {
+        // Remove previous process list
+        if (targetElement.GetChildCount() > 0)
+        {
+            foreach (Node children in targetElement.GetChildren())
+            {
+                children.QueueFree();
+            }
+        }
+
+        if (processList == null)
+        {
+            var noProcesslabel = new Label();
+            noProcesslabel.Text = "No processes";
+            targetElement.AddChild(noProcesslabel);
+            return;
+        }
+
+        foreach (var process in processList)
+        {
+            var processContainer = new VBoxContainer();
+            targetElement.AddChild(processContainer);
+
+            var processTitle = new Label();
+            processTitle.AddColorOverride("font_color", new Color(1.0f, 0.84f, 0.0f));
+            processTitle.Text = process.Process.Name;
+            processContainer.AddChild(processTitle);
+
+            var processBody = new HBoxContainer();
+
+            var usePlus = true;
+
+            if (process.OtherInputs.Count == 0)
+            {
+                // Just environmental stuff
+                usePlus = true;
+            }
+            else
+            {
+                // Something turns into something else, uses the arrow notation
+                usePlus = false;
+
+                // Show the inputs
+                // TODO: add commas or maybe pluses for multiple inputs
+                foreach (var key in process.OtherInputs.Keys)
+                {
+                    var inputCompound = process.OtherInputs[key];
+
+                    var amountLabel = new Label();
+                    amountLabel.Text = Math.Round(inputCompound.Amount, 2) + " ";
+                    processBody.AddChild(amountLabel);
+                    processBody.AddChild(CreateCompoundIcon(inputCompound.Compound.Name));
+                }
+
+                // And the arrow
+                var arrow = new TextureRect();
+                arrow.Expand = true;
+                arrow.RectMinSize = new Vector2(20, 20);
+                arrow.Texture = GD.Load<Texture>("res://assets/textures/gui/bevel/WhiteArrow.png");
+                processBody.AddChild(arrow);
+            }
+
+            // Outputs of the process. It's assumed that every process has outputs
+            foreach (var key in process.Outputs.Keys)
+            {
+                var outputCompound = process.Outputs[key];
+
+                var amountLabel = new Label();
+
+                var stringBuilder = new StringBuilder(string.Empty, 150);
+
+                if (usePlus)
+                {
+                    stringBuilder.Append(outputCompound.Amount >= 0 ? "+" : string.Empty);
+                }
+
+                stringBuilder.Append(Math.Round(outputCompound.Amount, 2) + " ");
+
+                amountLabel.Text = stringBuilder.ToString();
+
+                processBody.AddChild(amountLabel);
+                processBody.AddChild(CreateCompoundIcon(outputCompound.Compound.Name));
+            }
+
+            var perSecondLabel = new Label();
+            perSecondLabel.Text = "/second";
+
+            processBody.AddChild(perSecondLabel);
+
+            // Environment conditions
+            if (process.EnvironmentInputs.Count > 0)
+            {
+                var atSymbol = new Label();
+                var separator = new HSeparator();
+
+                atSymbol.Text = "@";
+                atSymbol.RectMinSize = new Vector2(30, 20);
+                atSymbol.Align = Label.AlignEnum.Center;
+                processBody.AddChild(atSymbol);
+
+                var first = true;
+
+                foreach (var key in process.EnvironmentInputs.Keys)
+                {
+                    if (!first)
+                    {
+                        var commaLabel = new Label();
+                        commaLabel.Text = ", ";
+                        processBody.AddChild(commaLabel);
+                    }
+
+                    first = false;
+
+                    var environmentCompound = process.EnvironmentInputs[key];
+
+                    // To percentage
+                    var percentageLabel = new Label();
+
+                    // TODO: sunlight needs some special handling (it used to say the lux amount)
+                    percentageLabel.Text = Math.Round(environmentCompound.AvailableAmount * 100, 1) + "%";
+
+                    processBody.AddChild(percentageLabel);
+                    processBody.AddChild(CreateCompoundIcon(environmentCompound.Compound.Name));
+                }
+            }
+
+            processContainer.AddChild(processBody);
+        }
+    }
+
     private float GetPatchChunkTotalCompoundAmount(Patch patch, string compoundName)
     {
         var result = 0.0f;
@@ -675,5 +873,17 @@ public class MicrobeEditorGUI : Node
 
         // Enable move to patch button if this is a valid move
         moveToPatchButton.Disabled = !editor.IsPatchMoveValid(patch);
+    }
+
+    private void OnSpeciesNameTextChanged(string newText)
+    {
+        if (newText.Split(" ").Length != 2)
+        {
+            speciesNameEdit.Set("custom_colors/font_color", new Color(1, 0, 0));
+        }
+        else
+        {
+            speciesNameEdit.Set("custom_colors/font_color", new Color(1, 1, 1));
+        }
     }
 }
