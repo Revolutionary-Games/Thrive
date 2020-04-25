@@ -431,9 +431,16 @@ public class MicrobeEditor : Node
     /// </summary>
     public void CalculateOrganelleEffectivenessInPatch(Patch patch = null)
     {
-        // TODO: fix (needed for the editor tooltips)
-        // ProcessSystem.ComputeOrganelleProcessEfficiencies
-        SimulationParameters.Instance.GetAllOrganelles();
+        if (patch == null)
+        {
+            patch = CurrentPatch;
+        }
+
+        var organelles = SimulationParameters.Instance.GetAllOrganelles();
+
+        var result = ProcessSystem.ComputeOrganelleProcessEfficiencies(organelles, patch.Biome);
+
+        gui.UpdateOrganelleEfficiencies(result);
     }
 
     /// <summary>
@@ -760,6 +767,7 @@ public class MicrobeEditor : Node
 
         gui.UpdatePlayerPatch(targetPatch);
         UpdatePatchBackgroundImage();
+        CalculateOrganelleEffectivenessInPatch(targetPatch);
     }
 
     /// <summary>
@@ -824,6 +832,8 @@ public class MicrobeEditor : Node
         // Sent freebuild value to GUI
         gui.NotifyFreebuild(FreeBuilding);
 
+        playerPatchOnEntry = CurrentGame.GameWorld.Map.CurrentPatch;
+
         // Send info to the GUI about the organelle effectiveness in the current patch
         CalculateOrganelleEffectivenessInPatch();
 
@@ -832,8 +842,6 @@ public class MicrobeEditor : Node
         targetPatch = null;
 
         canStillMove = true;
-
-        playerPatchOnEntry = CurrentGame.GameWorld.Map.CurrentPatch;
 
         UpdatePatchBackgroundImage();
 
