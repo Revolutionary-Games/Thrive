@@ -1440,7 +1440,6 @@ __meta__ = {
 }
 
 [node name="CellEditor" type="Control" parent="MicrobeEditorGUI"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -3389,7 +3388,7 @@ __meta__ = {
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer"]
 margin_right = 304.0
-margin_bottom = 821.0
+margin_bottom = 843.0
 mouse_filter = 1
 custom_constants/margin_top = 10
 custom_constants/margin_left = 10
@@ -3402,7 +3401,7 @@ __meta__ = {
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 304.0
-margin_bottom = 811.0
+margin_bottom = 833.0
 custom_constants/separation = 10
 
 [node name="MembraneTypesLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -3994,10 +3993,9 @@ valign = 1
 uppercase = true
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 4.0
-margin_bottom = 4.0
+margin_top = 366.0
+margin_right = 294.0
+margin_bottom = 823.0
 theme = SubResource( 39 )
 edit_alpha = false
 
@@ -4523,8 +4521,8 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/metabolosome"]
-margin_right = 350.0
-margin_bottom = 396.0
+margin_right = 371.0
+margin_bottom = 398.0
 size_flags_vertical = 0
 custom_constants/margin_right = 15
 custom_constants/margin_top = 15
@@ -4534,12 +4532,12 @@ custom_constants/margin_bottom = 15
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/metabolosome/MarginContainer"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 335.0
-margin_bottom = 381.0
+margin_right = 356.0
+margin_bottom = 383.0
 custom_constants/separation = 15
 
 [node name="Title" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/metabolosome/MarginContainer/VBoxContainer"]
-margin_right = 320.0
+margin_right = 341.0
 margin_bottom = 27.0
 
 [node name="MutationPoint" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/metabolosome/MarginContainer/VBoxContainer/Title"]
@@ -4574,11 +4572,11 @@ align = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/metabolosome/MarginContainer/VBoxContainer"]
 margin_top = 42.0
-margin_right = 320.0
-margin_bottom = 84.0
+margin_right = 341.0
+margin_bottom = 86.0
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/metabolosome/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_right = 320.0
+margin_right = 341.0
 margin_bottom = 20.0
 
 [node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/metabolosome/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer2"]
@@ -4636,44 +4634,57 @@ __meta__ = {
 [node name="Label5" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/metabolosome/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer2"]
 margin_left = 228.0
 margin_top = 2.0
-margin_right = 265.0
+margin_right = 317.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 55 )
-text = ". Rate"
+text = ". Rate scales"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/metabolosome/MarginContainer/VBoxContainer/VBoxContainer2"]
 margin_top = 24.0
-margin_right = 320.0
-margin_bottom = 42.0
+margin_right = 341.0
+margin_bottom = 44.0
 
 [node name="Label6" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/metabolosome/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
-margin_top = 1.0
-margin_right = 202.0
-margin_bottom = 17.0
+margin_top = 2.0
+margin_right = 150.0
+margin_bottom = 18.0
 custom_fonts/font = SubResource( 55 )
-text = "scales with concentration of"
+text = "with concentration of"
 
 [node name="Label7" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/metabolosome/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
-margin_left = 206.0
-margin_right = 274.0
-margin_bottom = 18.0
+margin_left = 154.0
+margin_top = 1.0
+margin_right = 222.0
+margin_bottom = 19.0
 custom_fonts/font = SubResource( 56 )
 text = "Oxygen."
 
+[node name="OxygenIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/metabolosome/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
+margin_left = 226.0
+margin_right = 246.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_vertical = 0
+texture = ExtResource( 60 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="ProcessList" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/metabolosome/MarginContainer/VBoxContainer"]
-margin_top = 99.0
-margin_right = 320.0
-margin_bottom = 99.0
+margin_top = 101.0
+margin_right = 341.0
+margin_bottom = 101.0
 theme = SubResource( 58 )
 custom_constants/separation = 15
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/metabolosome/MarginContainer/VBoxContainer"]
-margin_top = 114.0
-margin_right = 320.0
-margin_bottom = 156.0
+margin_top = 116.0
+margin_right = 341.0
+margin_bottom = 158.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/metabolosome/MarginContainer/VBoxContainer/VBoxContainer"]
-margin_right = 320.0
+margin_right = 341.0
 margin_bottom = 20.0
 
 [node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/metabolosome/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
@@ -4702,7 +4713,7 @@ expand = true
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/metabolosome/MarginContainer/VBoxContainer/VBoxContainer"]
 margin_top = 24.0
-margin_right = 320.0
+margin_right = 341.0
 margin_bottom = 42.0
 
 [node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/metabolosome/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
@@ -4721,15 +4732,15 @@ custom_fonts/font = SubResource( 56 )
 text = "Osmoregulation Cost"
 
 [node name="HSeparator" type="HSeparator" parent="MicrobeEditorGUI/CellEditor/Tooltips/metabolosome/MarginContainer/VBoxContainer"]
-margin_top = 171.0
-margin_right = 320.0
-margin_bottom = 175.0
+margin_top = 173.0
+margin_right = 341.0
+margin_bottom = 177.0
 custom_styles/separator = SubResource( 59 )
 
 [node name="Description" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/metabolosome/MarginContainer/VBoxContainer"]
-margin_top = 190.0
-margin_right = 320.0
-margin_bottom = 366.0
+margin_top = 192.0
+margin_right = 341.0
+margin_bottom = 368.0
 custom_fonts/font = SubResource( 55 )
 custom_constants/line_spacing = 0
 text = "Metabolosomes are clusters of proteins wrapped in protein shells. They are able to convert glucose into ATP at a much higher rate than can be done in the cytoplasm in a process called Aerobic Respiration. It does, however, require oxygen to function, and lower levels of oxygen in the environment will slow down the rate of its ATP production. Since the metabolosomes are suspended directly in the cytoplasm, the surrounding fluid performs some fermentation."
@@ -8427,7 +8438,1071 @@ margin_bottom = 103.0
 theme = SubResource( 58 )
 custom_constants/separation = 15
 
+[node name="membraneSingle" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips" groups=[
+"ItemTooltip",
+]]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -184.0
+margin_top = -200.0
+margin_right = 166.0
+margin_bottom = 72.0
+grow_horizontal = 0
+rect_min_size = Vector2( 350, 0 )
+size_flags_vertical = 0
+custom_styles/panel = SubResource( 52 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSingle"]
+margin_right = 350.0
+margin_bottom = 272.0
+size_flags_vertical = 0
+custom_constants/margin_right = 15
+custom_constants/margin_top = 15
+custom_constants/margin_left = 15
+custom_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSingle/MarginContainer"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 335.0
+margin_bottom = 257.0
+custom_constants/separation = 15
+
+[node name="Title" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSingle/MarginContainer/VBoxContainer"]
+margin_right = 320.0
+margin_bottom = 27.0
+
+[node name="MutationPoint" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSingle/MarginContainer/VBoxContainer/Title"]
+margin_right = 42.0
+margin_bottom = 20.0
+size_flags_vertical = 0
+alignment = 1
+
+[node name="MPIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSingle/MarginContainer/VBoxContainer/Title/MutationPoint"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_vertical = 0
+texture = ExtResource( 43 )
+expand = true
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSingle/MarginContainer/VBoxContainer/Title/MutationPoint"]
+margin_left = 24.0
+margin_top = 1.0
+margin_right = 42.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 53 )
+text = "50"
+
+[node name="OrganelleName" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSingle/MarginContainer/VBoxContainer/Title"]
+margin_left = 46.0
+margin_right = 261.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 215, 0 )
+custom_fonts/font = SubResource( 54 )
+text = "Normal"
+align = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSingle/MarginContainer/VBoxContainer"]
+margin_top = 42.0
+margin_right = 320.0
+margin_bottom = 128.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSingle/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_right = 320.0
+margin_bottom = 20.0
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSingle/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+margin_top = 2.0
+margin_right = 29.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 55 )
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+text = "+0.1"
+
+[node name="Label2" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSingle/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 33.0
+margin_top = 1.0
+margin_right = 97.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 56 )
+text = "Mobility"
+
+[node name="VacuoleIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSingle/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 101.0
+margin_right = 121.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+texture = ExtResource( 17 )
+expand = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSingle/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 24.0
+margin_right = 320.0
+margin_bottom = 42.0
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSingle/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_top = 1.0
+margin_right = 29.0
+margin_bottom = 17.0
+custom_fonts/font = SubResource( 55 )
+custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
+text = "+0.1"
+
+[node name="Label2" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSingle/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 33.0
+margin_right = 207.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 56 )
+text = "Osmoregulation Cost"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSingle/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 46.0
+margin_right = 320.0
+margin_bottom = 64.0
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSingle/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3"]
+margin_top = 1.0
+margin_right = 29.0
+margin_bottom = 17.0
+custom_fonts/font = SubResource( 55 )
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+text = "+0.1"
+
+[node name="Label2" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSingle/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3"]
+margin_left = 33.0
+margin_right = 269.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 56 )
+text = "Resource Absorption Speed"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSingle/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 68.0
+margin_right = 320.0
+margin_bottom = 86.0
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSingle/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer4"]
+margin_top = 1.0
+margin_right = 25.0
+margin_bottom = 17.0
+custom_fonts/font = SubResource( 55 )
+custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
+text = "-30"
+
+[node name="Label2" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSingle/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer4"]
+margin_left = 29.0
+margin_right = 83.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 56 )
+text = "Health"
+
+[node name="HSeparator" type="HSeparator" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSingle/MarginContainer/VBoxContainer"]
+margin_top = 143.0
+margin_right = 320.0
+margin_bottom = 147.0
+custom_styles/separator = SubResource( 59 )
+
+[node name="Description" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSingle/MarginContainer/VBoxContainer"]
+margin_top = 162.0
+margin_right = 320.0
+margin_bottom = 242.0
+custom_fonts/font = SubResource( 55 )
+custom_constants/line_spacing = 0
+text = "The most basic form of membrane, it has little protection against damage. It also needs more energy to not deform. The advantage is that it allows the cell to move and absorb nutrients swiftly."
+autowrap = true
+
+[node name="membraneDouble" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips" groups=[
+"ItemTooltip",
+]]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -184.0
+margin_top = -200.0
+margin_right = 166.0
+margin_bottom = -29.0
+grow_horizontal = 0
+rect_min_size = Vector2( 350, 0 )
+size_flags_vertical = 0
+custom_styles/panel = SubResource( 52 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneDouble"]
+margin_right = 350.0
+margin_bottom = 171.0
+size_flags_vertical = 0
+custom_constants/margin_right = 15
+custom_constants/margin_top = 15
+custom_constants/margin_left = 15
+custom_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneDouble/MarginContainer"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 335.0
+margin_bottom = 156.0
+custom_constants/separation = 15
+
+[node name="Title" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneDouble/MarginContainer/VBoxContainer"]
+margin_right = 320.0
+margin_bottom = 27.0
+
+[node name="MutationPoint" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneDouble/MarginContainer/VBoxContainer/Title"]
+margin_right = 42.0
+margin_bottom = 20.0
+size_flags_vertical = 0
+alignment = 1
+
+[node name="MPIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneDouble/MarginContainer/VBoxContainer/Title/MutationPoint"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_vertical = 0
+texture = ExtResource( 43 )
+expand = true
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneDouble/MarginContainer/VBoxContainer/Title/MutationPoint"]
+margin_left = 24.0
+margin_top = 1.0
+margin_right = 42.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 53 )
+text = "50"
+
+[node name="OrganelleName" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneDouble/MarginContainer/VBoxContainer/Title"]
+margin_left = 46.0
+margin_right = 261.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 215, 0 )
+custom_fonts/font = SubResource( 54 )
+text = "Double"
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneDouble/MarginContainer/VBoxContainer"]
+margin_top = 42.0
+margin_right = 320.0
+margin_bottom = 46.0
+custom_styles/separator = SubResource( 59 )
+
+[node name="Description" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneDouble/MarginContainer/VBoxContainer"]
+margin_top = 61.0
+margin_right = 320.0
+margin_bottom = 141.0
+custom_fonts/font = SubResource( 55 )
+custom_constants/line_spacing = 0
+text = "A membrane with two layers, it has better protection against damage and takes less energy to not deform. However, it slows the cell down some and lowers the rate at which it can absorb resources."
+autowrap = true
+
+[node name="membraneCellulose" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips" groups=[
+"ItemTooltip",
+]]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -184.0
+margin_top = -200.0
+margin_right = 166.0
+margin_bottom = 88.0
+grow_horizontal = 0
+rect_min_size = Vector2( 350, 0 )
+size_flags_vertical = 0
+custom_styles/panel = SubResource( 52 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCellulose"]
+margin_right = 350.0
+margin_bottom = 288.0
+size_flags_vertical = 0
+custom_constants/margin_right = 15
+custom_constants/margin_top = 15
+custom_constants/margin_left = 15
+custom_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCellulose/MarginContainer"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 335.0
+margin_bottom = 273.0
+custom_constants/separation = 15
+
+[node name="Title" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCellulose/MarginContainer/VBoxContainer"]
+margin_right = 320.0
+margin_bottom = 27.0
+
+[node name="MutationPoint" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCellulose/MarginContainer/VBoxContainer/Title"]
+margin_right = 42.0
+margin_bottom = 20.0
+size_flags_vertical = 0
+alignment = 1
+
+[node name="MPIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCellulose/MarginContainer/VBoxContainer/Title/MutationPoint"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_vertical = 0
+texture = ExtResource( 43 )
+expand = true
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCellulose/MarginContainer/VBoxContainer/Title/MutationPoint"]
+margin_left = 24.0
+margin_top = 1.0
+margin_right = 42.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 53 )
+text = "50"
+
+[node name="OrganelleName" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCellulose/MarginContainer/VBoxContainer/Title"]
+margin_left = 46.0
+margin_right = 261.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 215, 0 )
+custom_fonts/font = SubResource( 54 )
+text = "Cellulose"
+align = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCellulose/MarginContainer/VBoxContainer"]
+margin_top = 42.0
+margin_right = 320.0
+margin_bottom = 128.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCellulose/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_right = 320.0
+margin_bottom = 20.0
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCellulose/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+margin_top = 2.0
+margin_right = 28.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 55 )
+custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
+text = "-0.2"
+
+[node name="Label2" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCellulose/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 32.0
+margin_top = 1.0
+margin_right = 96.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 56 )
+text = "Mobility"
+
+[node name="VacuoleIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCellulose/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 100.0
+margin_right = 120.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+texture = ExtResource( 17 )
+expand = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCellulose/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 24.0
+margin_right = 320.0
+margin_bottom = 42.0
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCellulose/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_top = 1.0
+margin_right = 28.0
+margin_bottom = 17.0
+custom_fonts/font = SubResource( 55 )
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+text = "-0.2"
+
+[node name="Label2" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCellulose/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 32.0
+margin_right = 206.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 56 )
+text = "Osmoregulation Cost"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCellulose/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 46.0
+margin_right = 320.0
+margin_bottom = 64.0
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCellulose/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3"]
+margin_top = 1.0
+margin_right = 28.0
+margin_bottom = 17.0
+custom_fonts/font = SubResource( 55 )
+custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
+text = "-0.1"
+
+[node name="Label2" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCellulose/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3"]
+margin_left = 32.0
+margin_right = 268.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 56 )
+text = "Resource Absorption Speed"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCellulose/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 68.0
+margin_right = 320.0
+margin_bottom = 86.0
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCellulose/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer4"]
+margin_top = 1.0
+margin_right = 29.0
+margin_bottom = 17.0
+custom_fonts/font = SubResource( 55 )
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+text = "+0.2"
+
+[node name="Label2" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCellulose/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer4"]
+margin_left = 33.0
+margin_right = 201.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 56 )
+text = "Physical Resistance"
+
+[node name="HSeparator" type="HSeparator" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCellulose/MarginContainer/VBoxContainer"]
+margin_top = 143.0
+margin_right = 320.0
+margin_bottom = 147.0
+custom_styles/separator = SubResource( 59 )
+
+[node name="Description" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCellulose/MarginContainer/VBoxContainer"]
+margin_top = 162.0
+margin_right = 320.0
+margin_bottom = 258.0
+custom_fonts/font = SubResource( 55 )
+custom_constants/line_spacing = 0
+text = "This membrane has a wall, resulting in better protection against overall damage and especially against physical damage. It also costs less energy to retain its form, but cannot absorb resources quickly and is slower."
+autowrap = true
+
+[node name="membraneChitin" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips" groups=[
+"ItemTooltip",
+]]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -184.0
+margin_top = -200.0
+margin_right = 166.0
+margin_bottom = 88.0
+grow_horizontal = 0
+rect_min_size = Vector2( 350, 0 )
+size_flags_vertical = 0
+custom_styles/panel = SubResource( 52 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneChitin"]
+margin_right = 350.0
+margin_bottom = 288.0
+size_flags_vertical = 0
+custom_constants/margin_right = 15
+custom_constants/margin_top = 15
+custom_constants/margin_left = 15
+custom_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneChitin/MarginContainer"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 335.0
+margin_bottom = 273.0
+custom_constants/separation = 15
+
+[node name="Title" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneChitin/MarginContainer/VBoxContainer"]
+margin_right = 320.0
+margin_bottom = 27.0
+
+[node name="MutationPoint" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneChitin/MarginContainer/VBoxContainer/Title"]
+margin_right = 42.0
+margin_bottom = 20.0
+size_flags_vertical = 0
+alignment = 1
+
+[node name="MPIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneChitin/MarginContainer/VBoxContainer/Title/MutationPoint"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_vertical = 0
+texture = ExtResource( 43 )
+expand = true
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneChitin/MarginContainer/VBoxContainer/Title/MutationPoint"]
+margin_left = 24.0
+margin_top = 1.0
+margin_right = 42.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 53 )
+text = "50"
+
+[node name="OrganelleName" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneChitin/MarginContainer/VBoxContainer/Title"]
+margin_left = 46.0
+margin_right = 261.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 215, 0 )
+custom_fonts/font = SubResource( 54 )
+text = "Chitin"
+align = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneChitin/MarginContainer/VBoxContainer"]
+margin_top = 42.0
+margin_right = 320.0
+margin_bottom = 128.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneChitin/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_right = 320.0
+margin_bottom = 20.0
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneChitin/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+margin_top = 2.0
+margin_right = 28.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 55 )
+custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
+text = "-0.2"
+
+[node name="Label2" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneChitin/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 32.0
+margin_top = 1.0
+margin_right = 96.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 56 )
+text = "Mobility"
+
+[node name="VacuoleIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneChitin/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 100.0
+margin_right = 120.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+texture = ExtResource( 17 )
+expand = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneChitin/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 24.0
+margin_right = 320.0
+margin_bottom = 42.0
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneChitin/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_top = 1.0
+margin_right = 28.0
+margin_bottom = 17.0
+custom_fonts/font = SubResource( 55 )
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+text = "-0.2"
+
+[node name="Label2" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneChitin/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 32.0
+margin_right = 206.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 56 )
+text = "Osmoregulation Cost"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneChitin/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 46.0
+margin_right = 320.0
+margin_bottom = 64.0
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneChitin/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3"]
+margin_top = 1.0
+margin_right = 28.0
+margin_bottom = 17.0
+custom_fonts/font = SubResource( 55 )
+custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
+text = "-0.1"
+
+[node name="Label2" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneChitin/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3"]
+margin_left = 32.0
+margin_right = 268.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 56 )
+text = "Resource Absorption Speed"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneChitin/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 68.0
+margin_right = 320.0
+margin_bottom = 86.0
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneChitin/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer4"]
+margin_top = 1.0
+margin_right = 29.0
+margin_bottom = 17.0
+custom_fonts/font = SubResource( 55 )
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+text = "+0.2"
+
+[node name="Label2" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneChitin/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer4"]
+margin_left = 33.0
+margin_right = 174.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 56 )
+text = "Toxin Resistance"
+
+[node name="HSeparator" type="HSeparator" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneChitin/MarginContainer/VBoxContainer"]
+margin_top = 143.0
+margin_right = 320.0
+margin_bottom = 147.0
+custom_styles/separator = SubResource( 59 )
+
+[node name="Description" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneChitin/MarginContainer/VBoxContainer"]
+margin_top = 162.0
+margin_right = 320.0
+margin_bottom = 258.0
+custom_fonts/font = SubResource( 55 )
+custom_constants/line_spacing = 0
+text = "This membrane has a wall, which means it has better protections against overall damage and especially against toxin damage. It also costs less energy to retain its form, but it is slower and cannot absorb resources quickly."
+autowrap = true
+
+[node name="membraneCalciumCarbonate" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips" groups=[
+"ItemTooltip",
+]]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -184.0
+margin_top = -200.0
+margin_right = 166.0
+margin_bottom = 162.0
+grow_horizontal = 0
+rect_min_size = Vector2( 350, 0 )
+size_flags_vertical = 0
+custom_styles/panel = SubResource( 52 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCalciumCarbonate"]
+margin_right = 350.0
+margin_bottom = 362.0
+size_flags_vertical = 0
+custom_constants/margin_right = 15
+custom_constants/margin_top = 15
+custom_constants/margin_left = 15
+custom_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCalciumCarbonate/MarginContainer"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 335.0
+margin_bottom = 347.0
+custom_constants/separation = 15
+
+[node name="Title" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCalciumCarbonate/MarginContainer/VBoxContainer"]
+margin_right = 320.0
+margin_bottom = 57.0
+
+[node name="MutationPoint" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCalciumCarbonate/MarginContainer/VBoxContainer/Title"]
+margin_right = 42.0
+margin_bottom = 20.0
+size_flags_vertical = 0
+alignment = 1
+
+[node name="MPIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCalciumCarbonate/MarginContainer/VBoxContainer/Title/MutationPoint"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_vertical = 0
+texture = ExtResource( 43 )
+expand = true
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCalciumCarbonate/MarginContainer/VBoxContainer/Title/MutationPoint"]
+margin_left = 24.0
+margin_top = 1.0
+margin_right = 42.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 53 )
+text = "50"
+
+[node name="OrganelleName" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCalciumCarbonate/MarginContainer/VBoxContainer/Title"]
+margin_left = 46.0
+margin_right = 261.0
+margin_bottom = 57.0
+rect_min_size = Vector2( 215, 0 )
+custom_fonts/font = SubResource( 54 )
+text = "Calcium
+Carbonate"
+align = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCalciumCarbonate/MarginContainer/VBoxContainer"]
+margin_top = 72.0
+margin_right = 320.0
+margin_bottom = 202.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCalciumCarbonate/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_right = 320.0
+margin_bottom = 20.0
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCalciumCarbonate/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+margin_top = 2.0
+margin_right = 28.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 55 )
+custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
+text = "-0.3"
+
+[node name="Label2" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCalciumCarbonate/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 32.0
+margin_top = 1.0
+margin_right = 96.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 56 )
+text = "Mobility"
+
+[node name="VacuoleIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCalciumCarbonate/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 100.0
+margin_right = 120.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+texture = ExtResource( 17 )
+expand = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCalciumCarbonate/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 24.0
+margin_right = 320.0
+margin_bottom = 42.0
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCalciumCarbonate/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_top = 1.0
+margin_right = 28.0
+margin_bottom = 17.0
+custom_fonts/font = SubResource( 55 )
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+text = "-0.2"
+
+[node name="Label2" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCalciumCarbonate/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 32.0
+margin_right = 206.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 56 )
+text = "Osmoregulation Cost"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCalciumCarbonate/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 46.0
+margin_right = 320.0
+margin_bottom = 64.0
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCalciumCarbonate/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3"]
+margin_top = 1.0
+margin_right = 28.0
+margin_bottom = 17.0
+custom_fonts/font = SubResource( 55 )
+custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
+text = "-0.1"
+
+[node name="Label2" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCalciumCarbonate/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3"]
+margin_left = 32.0
+margin_right = 268.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 56 )
+text = "Resource Absorption Speed"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCalciumCarbonate/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 68.0
+margin_right = 320.0
+margin_bottom = 86.0
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCalciumCarbonate/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer4"]
+margin_top = 1.0
+margin_right = 26.0
+margin_bottom = 17.0
+custom_fonts/font = SubResource( 55 )
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+text = "+30"
+
+[node name="Label2" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCalciumCarbonate/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer4"]
+margin_left = 30.0
+margin_right = 84.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 56 )
+text = "Health"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCalciumCarbonate/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 90.0
+margin_right = 320.0
+margin_bottom = 108.0
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCalciumCarbonate/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer5"]
+margin_top = 1.0
+margin_right = 29.0
+margin_bottom = 17.0
+custom_fonts/font = SubResource( 55 )
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+text = "+0.2"
+
+[node name="Label2" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCalciumCarbonate/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer5"]
+margin_left = 33.0
+margin_right = 201.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 56 )
+text = "Physical Resistance"
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCalciumCarbonate/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 112.0
+margin_right = 320.0
+margin_bottom = 130.0
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCalciumCarbonate/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer6"]
+margin_top = 1.0
+margin_right = 29.0
+margin_bottom = 17.0
+custom_fonts/font = SubResource( 55 )
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+text = "+0.2"
+
+[node name="Label2" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCalciumCarbonate/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer6"]
+margin_left = 33.0
+margin_right = 174.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 56 )
+text = "Toxin Resistance"
+
+[node name="HSeparator" type="HSeparator" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCalciumCarbonate/MarginContainer/VBoxContainer"]
+margin_top = 217.0
+margin_right = 320.0
+margin_bottom = 221.0
+custom_styles/separator = SubResource( 59 )
+
+[node name="Description" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCalciumCarbonate/MarginContainer/VBoxContainer"]
+margin_top = 236.0
+margin_right = 320.0
+margin_bottom = 332.0
+custom_fonts/font = SubResource( 55 )
+custom_constants/line_spacing = 0
+text = "This membrane has a strong shell made from calcium carbonate. It can easily resist damage and requires less energy to not deform. The disadvantages of having such a heavy shell is that the cell is much slower and takes a while to absorb resources."
+autowrap = true
+
+[node name="membraneSilica" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips" groups=[
+"ItemTooltip",
+]]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -184.0
+margin_top = -200.0
+margin_right = 166.0
+margin_bottom = 148.0
+grow_horizontal = 0
+rect_min_size = Vector2( 350, 0 )
+size_flags_vertical = 0
+custom_styles/panel = SubResource( 52 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSilica"]
+margin_right = 350.0
+margin_bottom = 348.0
+size_flags_vertical = 0
+custom_constants/margin_right = 15
+custom_constants/margin_top = 15
+custom_constants/margin_left = 15
+custom_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSilica/MarginContainer"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 335.0
+margin_bottom = 333.0
+custom_constants/separation = 15
+
+[node name="Title" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSilica/MarginContainer/VBoxContainer"]
+margin_right = 320.0
+margin_bottom = 27.0
+
+[node name="MutationPoint" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSilica/MarginContainer/VBoxContainer/Title"]
+margin_right = 42.0
+margin_bottom = 20.0
+size_flags_vertical = 0
+alignment = 1
+
+[node name="MPIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSilica/MarginContainer/VBoxContainer/Title/MutationPoint"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_vertical = 0
+texture = ExtResource( 43 )
+expand = true
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSilica/MarginContainer/VBoxContainer/Title/MutationPoint"]
+margin_left = 24.0
+margin_top = 1.0
+margin_right = 42.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 53 )
+text = "50"
+
+[node name="OrganelleName" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSilica/MarginContainer/VBoxContainer/Title"]
+margin_left = 46.0
+margin_right = 261.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 215, 0 )
+custom_fonts/font = SubResource( 54 )
+text = "Silica"
+align = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSilica/MarginContainer/VBoxContainer"]
+margin_top = 42.0
+margin_right = 320.0
+margin_bottom = 172.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSilica/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_right = 320.0
+margin_bottom = 20.0
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSilica/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+margin_top = 2.0
+margin_right = 28.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 55 )
+custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
+text = "-0.4"
+
+[node name="Label2" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSilica/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 32.0
+margin_top = 1.0
+margin_right = 96.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 56 )
+text = "Mobility"
+
+[node name="VacuoleIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSilica/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 100.0
+margin_right = 120.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+texture = ExtResource( 17 )
+expand = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSilica/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 24.0
+margin_right = 320.0
+margin_bottom = 42.0
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSilica/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_top = 1.0
+margin_right = 28.0
+margin_bottom = 17.0
+custom_fonts/font = SubResource( 55 )
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+text = "-0.2"
+
+[node name="Label2" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSilica/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 32.0
+margin_right = 206.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 56 )
+text = "Osmoregulation Cost"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSilica/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 46.0
+margin_right = 320.0
+margin_bottom = 64.0
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSilica/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3"]
+margin_top = 1.0
+margin_right = 28.0
+margin_bottom = 17.0
+custom_fonts/font = SubResource( 55 )
+custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
+text = "-0.1"
+
+[node name="Label2" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSilica/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3"]
+margin_left = 32.0
+margin_right = 268.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 56 )
+text = "Resource Absorption Speed"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSilica/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 68.0
+margin_right = 320.0
+margin_bottom = 86.0
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSilica/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer4"]
+margin_top = 1.0
+margin_right = 26.0
+margin_bottom = 17.0
+custom_fonts/font = SubResource( 55 )
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+text = "+30"
+
+[node name="Label2" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSilica/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer4"]
+margin_left = 30.0
+margin_right = 84.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 56 )
+text = "Health"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSilica/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 90.0
+margin_right = 320.0
+margin_bottom = 108.0
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSilica/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer5"]
+margin_top = 1.0
+margin_right = 29.0
+margin_bottom = 17.0
+custom_fonts/font = SubResource( 55 )
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+text = "+0.4"
+
+[node name="Label2" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSilica/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer5"]
+margin_left = 33.0
+margin_right = 201.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 56 )
+text = "Physical Resistance"
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSilica/MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 112.0
+margin_right = 320.0
+margin_bottom = 130.0
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSilica/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer6"]
+margin_top = 1.0
+margin_right = 29.0
+margin_bottom = 17.0
+custom_fonts/font = SubResource( 55 )
+custom_colors/font_color = Color( 0, 1, 0, 1 )
+text = "+0.2"
+
+[node name="Label2" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSilica/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer6"]
+margin_left = 33.0
+margin_right = 174.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 56 )
+text = "Toxin Resistance"
+
+[node name="HSeparator" type="HSeparator" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSilica/MarginContainer/VBoxContainer"]
+margin_top = 187.0
+margin_right = 320.0
+margin_bottom = 191.0
+custom_styles/separator = SubResource( 59 )
+
+[node name="Description" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSilica/MarginContainer/VBoxContainer"]
+margin_top = 206.0
+margin_right = 320.0
+margin_bottom = 318.0
+custom_fonts/font = SubResource( 55 )
+custom_constants/line_spacing = 0
+text = "This membrane has a strong wall of silica. It can resist overall damage well and is very resistant to physical damage. It also requires less energy to maintain its form. However, it
+slows the cell down by a large factor and the cell absorbs resources at a reduced rate."
+autowrap = true
+
 [node name="Report" type="Control" parent="MicrobeEditorGUI"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -0.200001
@@ -9299,11 +10374,23 @@ visible = false
 [connection signal="pressed" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/oxytoxy" to="MicrobeEditorGUI" method="OnOrganelleToPlaceSelected" binds= [ "oxytoxy" ]]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/bioluminescentVacuole" to="MicrobeEditorGUI" method="OnItemMouseHover" binds= [ "bioluminescentVacuole" ]]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles2/bioluminescentVacuole" to="MicrobeEditorGUI" method="OnItemMouseExit"]
+[connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/single" to="MicrobeEditorGUI" method="OnItemMouseHover" binds= [ "membraneSingle" ]]
+[connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/single" to="MicrobeEditorGUI" method="OnItemMouseExit"]
 [connection signal="pressed" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/single" to="MicrobeEditorGUI" method="OnMembraneSelected" binds= [ "single" ]]
+[connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/double" to="MicrobeEditorGUI" method="OnItemMouseHover" binds= [ "membraneDouble" ]]
+[connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/double" to="MicrobeEditorGUI" method="OnItemMouseExit"]
 [connection signal="pressed" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/double" to="MicrobeEditorGUI" method="OnMembraneSelected" binds= [ "double" ]]
+[connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/cellulose" to="MicrobeEditorGUI" method="OnItemMouseHover" binds= [ "membraneCellulose" ]]
+[connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/cellulose" to="MicrobeEditorGUI" method="OnItemMouseExit"]
 [connection signal="pressed" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/cellulose" to="MicrobeEditorGUI" method="OnMembraneSelected" binds= [ "cellulose" ]]
+[connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/chitin" to="MicrobeEditorGUI" method="OnItemMouseHover" binds= [ "membraneChitin" ]]
+[connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/chitin" to="MicrobeEditorGUI" method="OnItemMouseExit"]
 [connection signal="pressed" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/chitin" to="MicrobeEditorGUI" method="OnMembraneSelected" binds= [ "chitin" ]]
+[connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/calcium_carbonate" to="MicrobeEditorGUI" method="OnItemMouseHover" binds= [ "membraneCalciumCarbonate" ]]
+[connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/calcium_carbonate" to="MicrobeEditorGUI" method="OnItemMouseExit"]
 [connection signal="pressed" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/calcium_carbonate" to="MicrobeEditorGUI" method="OnMembraneSelected" binds= [ "calcium_carbonate" ]]
+[connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/silica" to="MicrobeEditorGUI" method="OnItemMouseHover" binds= [ "membraneSilica" ]]
+[connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/silica" to="MicrobeEditorGUI" method="OnItemMouseExit"]
 [connection signal="pressed" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/MembraneTypes/silica" to="MicrobeEditorGUI" method="OnMembraneSelected" binds= [ "silica" ]]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/BottomBar" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/BottomBar" to="MicrobeEditorGUI" method="OnMouseExit"]
