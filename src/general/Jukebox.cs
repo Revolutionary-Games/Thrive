@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -76,7 +77,7 @@ public class Jukebox : Node
     public override void _Ready()
     {
         // Preallocate one audio stream player, due to the dynamic number of simultaneous tracks to play this is a list
-        audioPlayers.Add(NewPlayer());
+        NewPlayer();
     }
 
     public void Resume()
@@ -170,13 +171,16 @@ public class Jukebox : Node
 
         player.Connect("finished", this, "OnSomeTrackEnded");
 
-        return new AudioPlayer(player);
+        var created = new AudioPlayer(player);
+
+        audioPlayers.Add(created);
+        return created;
     }
 
     private AudioPlayer GetNextPlayer(int index)
     {
         if (audioPlayers.Count <= index)
-            audioPlayers.Add(NewPlayer());
+            NewPlayer();
 
         return audioPlayers[index];
     }
@@ -189,9 +193,11 @@ public class Jukebox : Node
 
             player.Player.Stream = stream;
             player.CurrentTrack = track.ResourcePath;
-        }
 
-        player.Player.Play();
+            player.Player.Play();
+
+            GD.Print("Jukebox: starting track: ", track.ResourcePath);
+        }
     }
 
     private void OnCategoryChanged()
@@ -295,10 +301,40 @@ public class Jukebox : Node
 
     private void OnSomeTrackEnded()
     {
-        GD.Print("Jukebox: some track finished");
+        var target = categories[PlayingCategory];
 
-        // TODO:
         // Find track lists that don't have a playing track in them and reallocate players for those
+        var needToStartFrom = new List<TrackList>();
+
+        var activeTracks = audioPlayers.Where((player) => player.Playing).
+            Select((player) => player.CurrentTrack).ToList();
+        var usablePlayers = audioPlayers.Where((player) => !player.Playing).ToList();
+
+        foreach (var list in target.TrackLists)
+        {
+            var trackResources = list.Tracks.Select((track) => track.ResourcePath);
+            if (activeTracks.Any((track) => trackResources.Contains(track)))
+                continue;
+
+            needToStartFrom.Add(list);
+        }
+
+        int nextPlayerToUse = 0;
+
+        foreach (var list in needToStartFrom)
+        {
+            PlayNextTrackFromList(list, (index) =>
+            {
+                if (index < usablePlayers.Count)
+                {
+                    return usablePlayers[index];
+                }
+                else
+                {
+                    return NewPlayer();
+                }
+            }, nextPlayerToUse++);
+        }
     }
 
     private void SetupStreamsFromCategory()
@@ -310,22 +346,39 @@ public class Jukebox : Node
 
         foreach (var list in target.TrackLists)
         {
-            var mode = list.TrackOrder;
-
-            if (mode == TrackList.ORDER.Sequential)
-            {
-                list.LastPlayedIndex = (list.LastPlayedIndex + 1) % list.Tracks.Count;
-
-                PlayTrack(GetNextPlayer(nextPlayerToUse++), list.Tracks[list.LastPlayedIndex]);
-            }
-            else
-            {
-                PlayTrack(GetNextPlayer(nextPlayerToUse++), list.Tracks.Random(new Random()));
-            }
+            PlayNextTrackFromList(list, this.GetNextPlayer, nextPlayerToUse++);
         }
 
         // Set pause status for any new streams
         SetStreamsPauseStatus(paused);
+    }
+
+    private void PlayNextTrackFromList(TrackList list, Func<int, AudioPlayer> getPlayer, int playerToUse)
+    {
+        var mode = list.TrackOrder;
+
+        if (mode == TrackList.ORDER.Sequential)
+        {
+            list.LastPlayedIndex = (list.LastPlayedIndex + 1) % list.Tracks.Count;
+
+            PlayTrack(getPlayer(playerToUse), list.Tracks[list.LastPlayedIndex]);
+        }
+        else
+        {
+            var random = new Random();
+
+            // Make sure same random track is not played twice in a row
+            int nextIndex;
+
+            do
+            {
+                nextIndex = random.Next(0, list.Tracks.Count);
+            }
+            while (nextIndex == list.LastPlayedIndex && list.Tracks.Count > 1);
+
+            PlayTrack(getPlayer(playerToUse), list.Tracks[nextIndex]);
+            list.LastPlayedIndex = nextIndex;
+        }
     }
 
     private class AudioPlayer
