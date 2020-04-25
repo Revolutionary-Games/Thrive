@@ -812,9 +812,8 @@ public class MicrobeEditor : Node
 
         organelleRot = 0;
 
-        // TODO: this might not get properly reset in the GUI part so
-        // GUI should also be notified about this
         Symmetry = 0;
+        gui.ResetSymmetryButton();
 
         UpdateUndoRedoButtons();
 

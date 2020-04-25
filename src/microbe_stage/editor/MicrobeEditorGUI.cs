@@ -90,6 +90,15 @@ public class MicrobeEditorGUI : Node
     [Export]
     public NodePath MoveToPatchButtonPath;
 
+    [Export]
+    public NodePath SymmetryIconPath;
+    [Export]
+    public Texture SymmetryIcon2x;
+    [Export]
+    public Texture SymmetryIcon4x;
+    [Export]
+    public Texture SymmetryIcon6x;
+
     private const string ATP_BALANCE_DEFAULT_TEXT = "ATP Balance";
 
     private MicrobeEditor editor;
@@ -108,6 +117,7 @@ public class MicrobeEditorGUI : Node
     private TextureButton undoButton;
     private TextureButton redoButton;
     private TextureButton symmetryButton;
+    private TextureRect symmetryIcon;
     private Label atpBalanceLabel;
     private ProgressBar atpProductionBar;
     private ProgressBar atpConsumptionBar;
@@ -141,6 +151,7 @@ public class MicrobeEditorGUI : Node
     private Button moveToPatchButton;
 
     private bool inEditorTab = false;
+    private int symmetry = 0;
 
     public string GetNewSpeciesName()
     {
@@ -195,6 +206,7 @@ public class MicrobeEditorGUI : Node
         atmosphericConditionsButton = GetNode<Control>(AtmosphericConditionsButtonPath);
         compoundsButton = GetNode<Control>(CompoundsBoxButtonPath);
         speciesListButton = GetNode<Control>(SpeciesListButtonPath);
+        symmetryIcon = GetNode<TextureRect>(SymmetryIconPath);
 
         mapDrawer.OnSelectedPatchChanged = (drawer) =>
         {
@@ -424,7 +436,35 @@ public class MicrobeEditorGUI : Node
 
     internal void OnSymmetryClicked()
     {
-        // TODO: fix
+        GUICommon.Instance.PlayButtonPressSound();
+
+        if (symmetry == 3)
+        {
+            ResetSymmetryButton();
+        }
+        else if (symmetry == 0)
+        {
+            symmetryIcon.Texture = SymmetryIcon2x;
+            symmetry = 1;
+        }
+        else if (symmetry == 1)
+        {
+            symmetryIcon.Texture = SymmetryIcon4x;
+            symmetry = 2;
+        }
+        else if (symmetry == 2)
+        {
+            symmetryIcon.Texture = SymmetryIcon6x;
+            symmetry = 3;
+        }
+
+        editor.Symmetry = symmetry;
+    }
+
+    internal void ResetSymmetryButton()
+    {
+        symmetryIcon.Texture = null;
+        symmetry = 0;
     }
 
     internal void OnMembraneSelected(string membrane)
