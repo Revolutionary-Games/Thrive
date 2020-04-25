@@ -773,6 +773,7 @@ public class MicrobeEditor : Node
 
         gui.UpdatePlayerPatch(targetPatch);
         UpdatePatchBackgroundImage();
+        CalculateOrganelleEffectivenessInPatch(targetPatch);
     }
 
     /// <summary>

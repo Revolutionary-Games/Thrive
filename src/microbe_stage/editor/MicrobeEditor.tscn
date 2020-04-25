@@ -56,11 +56,11 @@
 [ext_resource path="res://src/microbe_stage/editor/PatchMapDrawer.tscn" type="PackedScene" id=54]
 [ext_resource path="res://assets/textures/gui/bevel/SmallFourDisabled.png" type="Texture" id=55]
 [ext_resource path="res://assets/textures/gui/bevel/SmallThreeDisabled.png" type="Texture" id=56]
-[ext_resource path="res://assets/textures/gui/bevel/Light.png" type="Texture" id=57]
+[ext_resource path="res://assets/textures/gui/bevel/Sunlight.png" type="Texture" id=57]
 [ext_resource path="res://assets/textures/gui/bevel/Nitrogen.png" type="Texture" id=58]
 [ext_resource path="res://assets/textures/gui/bevel/HydrogenSulfide.png" type="Texture" id=59]
 [ext_resource path="res://assets/textures/gui/bevel/Oxygen.png" type="Texture" id=60]
-[ext_resource path="res://assets/textures/gui/bevel/CO2.png" type="Texture" id=61]
+[ext_resource path="res://assets/textures/gui/bevel/CarbonDioxide.png" type="Texture" id=61]
 [ext_resource path="res://assets/textures/gui/bevel/Temperature.png" type="Texture" id=62]
 [ext_resource path="res://assets/textures/gui/bevel/Ammonia.png" type="Texture" id=63]
 [ext_resource path="res://assets/textures/gui/bevel/Iron.png" type="Texture" id=64]
@@ -73,7 +73,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/plusButtonHover.png" type="Texture" id=71]
 [ext_resource path="res://assets/textures/gui/bevel/ATP.png" type="Texture" id=72]
 [ext_resource path="res://assets/fonts/Jura-Regular.ttf" type="DynamicFontData" id=73]
-[ext_resource path="res://assets/textures/gui/bevel/OxyToxy.png" type="Texture" id=74]
+[ext_resource path="res://assets/textures/gui/bevel/OxytoxyNT.png" type="Texture" id=74]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 37 )
@@ -1440,6 +1440,7 @@ __meta__ = {
 }
 
 [node name="CellEditor" type="Control" parent="MicrobeEditorGUI"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -3388,7 +3389,7 @@ __meta__ = {
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer"]
 margin_right = 304.0
-margin_bottom = 843.0
+margin_bottom = 821.0
 mouse_filter = 1
 custom_constants/margin_top = 10
 custom_constants/margin_left = 10
@@ -3401,7 +3402,7 @@ __meta__ = {
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 304.0
-margin_bottom = 833.0
+margin_bottom = 811.0
 custom_constants/separation = 10
 
 [node name="MembraneTypesLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -3993,9 +3994,10 @@ valign = 1
 uppercase = true
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 366.0
-margin_right = 294.0
-margin_bottom = 823.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 4.0
+margin_bottom = 4.0
 theme = SubResource( 39 )
 edit_alpha = false
 
@@ -9502,7 +9504,6 @@ slows the cell down by a large factor and the cell absorbs resources at a reduce
 autowrap = true
 
 [node name="Report" type="Control" parent="MicrobeEditorGUI"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -0.200001
