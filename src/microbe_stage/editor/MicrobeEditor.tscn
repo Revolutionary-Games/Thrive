@@ -1,4 +1,4 @@
-[gd_scene load_steps=140 format=2]
+[gd_scene load_steps=143 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
@@ -74,6 +74,9 @@
 [ext_resource path="res://assets/textures/gui/bevel/ATP.png" type="Texture" id=72]
 [ext_resource path="res://assets/fonts/Jura-Regular.ttf" type="DynamicFontData" id=73]
 [ext_resource path="res://assets/textures/gui/bevel/OxytoxyNT.png" type="Texture" id=74]
+[ext_resource path="res://assets/textures/gui/bevel/6xSymmetry.png" type="Texture" id=75]
+[ext_resource path="res://assets/textures/gui/bevel/4xSymmetry.png" type="Texture" id=76]
+[ext_resource path="res://assets/textures/gui/bevel/2xSymmetry.png" type="Texture" id=77]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 37 )
@@ -1262,6 +1265,10 @@ CompoundsBoxButtonPath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitConta
 CompoundsBoxPath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer")
 SpeciesListButtonPath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesPresent/HBoxContainer/Buttons")
 MoveToPatchButtonPath = NodePath("PatchMap/MoveToPatchButton")
+SymmetryIconPath = NodePath("CellEditor/SymmetryButton/VBoxContainer/SymmetryIcon")
+SymmetryIcon2x = ExtResource( 77 )
+SymmetryIcon4x = ExtResource( 76 )
+SymmetryIcon6x = ExtResource( 75 )
 
 [node name="LeftTopBar" type="Control" parent="MicrobeEditorGUI"]
 margin_right = 810.0
@@ -4301,6 +4308,7 @@ margin_left = -380.0
 margin_top = 90.0
 margin_right = -47.9995
 margin_bottom = 490.0
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
