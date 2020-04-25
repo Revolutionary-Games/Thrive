@@ -431,20 +431,14 @@ public class MicrobeEditor : Node
     /// </summary>
     public void CalculateOrganelleEffectivenessInPatch(Patch patch = null)
     {
-        Patch inPatch;
-
         if (patch == null)
         {
-            inPatch = CurrentPatch;
-        }
-        else
-        {
-            inPatch = patch;
+            patch = CurrentPatch;
         }
 
         var organelles = SimulationParameters.Instance.GetAllOrganelles();
 
-        var result = ProcessSystem.ComputeOrganelleProcessEfficiencies(organelles, inPatch.Biome);
+        var result = ProcessSystem.ComputeOrganelleProcessEfficiencies(organelles, patch.Biome);
 
         gui.UpdateOrganelleEfficiencies(result);
     }
