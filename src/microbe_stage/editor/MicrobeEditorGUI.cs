@@ -22,6 +22,8 @@ public class MicrobeEditorGUI : Node
     [Export]
     public NodePath SpeciesNameEditPath;
     [Export]
+    public NodePath MembraneColorPickerPath;
+    [Export]
     public NodePath UndoButtonPath;
     [Export]
     public NodePath RedoButtonPath;
@@ -114,6 +116,7 @@ public class MicrobeEditorGUI : Node
     private Label mutationPointsLabel;
     private TextureProgress mutationPointsBar;
     private LineEdit speciesNameEdit;
+    private ColorPicker membraneColorPicker;
     private TextureButton undoButton;
     private TextureButton redoButton;
     private TextureButton symmetryButton;
@@ -158,6 +161,11 @@ public class MicrobeEditorGUI : Node
         return speciesNameEdit.Text;
     }
 
+    public Color GetMembraneColor()
+    {
+        return membraneColorPicker.Color;
+    }
+
     public override void _Ready()
     {
         organelleSelectionElements = GetTree().GetNodesInGroup("OrganelleSelectionElement");
@@ -172,6 +180,7 @@ public class MicrobeEditorGUI : Node
         mutationPointsLabel = GetNode<Label>(MutationPointsLabelPath);
         mutationPointsBar = GetNode<TextureProgress>(MutationPointsBarPath);
         speciesNameEdit = GetNode<LineEdit>(SpeciesNameEditPath);
+        membraneColorPicker = GetNode<ColorPicker>(MembraneColorPickerPath);
         undoButton = GetNode<TextureButton>(UndoButtonPath);
         redoButton = GetNode<TextureButton>(RedoButtonPath);
         symmetryButton = GetNode<TextureButton>(SymmetryButtonPath);
@@ -498,6 +507,7 @@ public class MicrobeEditorGUI : Node
         // throw new NotImplementedException();
 
         speciesNameEdit.Text = name;
+        membraneColorPicker.Color = colour;
 
         // Callback is manually called because the function isn't called automatically here
         OnSpeciesNameTextChanged(name);

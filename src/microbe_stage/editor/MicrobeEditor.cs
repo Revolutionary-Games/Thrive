@@ -343,7 +343,7 @@ public class MicrobeEditor : Node
 
         // Update membrane
         editedSpecies.MembraneType = Membrane;
-        editedSpecies.Colour = Colour;
+        editedSpecies.Colour = gui.GetMembraneColor();
         editedSpecies.MembraneRigidity = Rigidity;
 
         // Move patches
