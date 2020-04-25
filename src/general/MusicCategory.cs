@@ -93,6 +93,12 @@ public class TrackList
     {
         public string ResourcePath { get; set; }
 
+        [JsonIgnore]
+        public bool WasPlaying { get; set; } = false;
+
+        [JsonIgnore]
+        public float PreviousPlayedPosition { get; set; } = 0;
+
         public void Check()
         {
             if (string.IsNullOrEmpty(ResourcePath))

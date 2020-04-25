@@ -74,12 +74,24 @@ public class Jukebox : Node
         }
     }
 
+    private List<string> PlayingTracks
+    {
+        get
+        {
+            return audioPlayers.Where((player) => player.Playing).
+                Select((player) => player.CurrentTrack).ToList();
+        }
+    }
+
     public override void _Ready()
     {
         // Preallocate one audio stream player, due to the dynamic number of simultaneous tracks to play this is a list
         NewPlayer();
     }
 
+    /// <summary>
+    ///   Unpauses currently playing songs
+    /// </summary>
     public void Resume()
     {
         if (!paused)
@@ -89,6 +101,9 @@ public class Jukebox : Node
         SetStreamsPauseStatus(paused);
     }
 
+    /// <summary>
+    ///   Pause the currently playing songs
+    /// </summary>
     public void Pause()
     {
         if (paused)
@@ -98,6 +113,9 @@ public class Jukebox : Node
         SetStreamsPauseStatus(paused);
     }
 
+    /// <summary>
+    ///   Stops the currently playing music (doesn't preserve positions for when Resume is called)
+    /// </summary>
     public void Stop()
     {
         Pause();
@@ -139,7 +157,7 @@ public class Jukebox : Node
     {
         foreach (var player in audioPlayers)
         {
-            player.Player.Stop();
+            player.Stop();
         }
     }
 
@@ -185,7 +203,7 @@ public class Jukebox : Node
         return audioPlayers[index];
     }
 
-    private void PlayTrack(AudioPlayer player, TrackList.Track track)
+    private void PlayTrack(AudioPlayer player, TrackList.Track track, float fromPosition = 0)
     {
         if (player.CurrentTrack != track.ResourcePath)
         {
@@ -194,9 +212,9 @@ public class Jukebox : Node
             player.Player.Stream = stream;
             player.CurrentTrack = track.ResourcePath;
 
-            player.Player.Play();
+            player.Player.Play(fromPosition);
 
-            GD.Print("Jukebox: starting track: ", track.ResourcePath);
+            GD.Print("Jukebox: starting track: ", track.ResourcePath, " position: ", fromPosition);
         }
     }
 
@@ -301,13 +319,59 @@ public class Jukebox : Node
 
     private void OnSomeTrackEnded()
     {
-        var target = categories[PlayingCategory];
+        // Check that a stream has actually ended, as we get this callback when also purposefully stopping
+        bool actuallyEnded = false;
 
+        foreach (var player in audioPlayers)
+        {
+            if (!player.Playing && !string.IsNullOrEmpty(player.CurrentTrack))
+                actuallyEnded = true;
+        }
+
+        if (!actuallyEnded)
+            return;
+
+        StartPlayingFromMissingLists(categories[PlayingCategory]);
+    }
+
+    private void SetupStreamsFromCategory()
+    {
+        OnCategoryEnded();
+
+        // Stop all players to not let them play anymore
+        StopStreams();
+
+        var target = categories[PlayingCategory];
+        previouslyPlayedCategory = target;
+
+        int nextPlayerToUse = 0;
+
+        // Resume tracks
+        if (target.Return == MusicCategory.RETURN_TYPE.Continue)
+        {
+            foreach (var list in target.TrackLists)
+            {
+                foreach (var track in list.Tracks)
+                {
+                    // Resume track (but only one per list)
+                    if (track.WasPlaying)
+                    {
+                        PlayTrack(GetNextPlayer(nextPlayerToUse++), track, track.PreviousPlayedPosition);
+                        break;
+                    }
+                }
+            }
+        }
+
+        StartPlayingFromMissingLists(target);
+    }
+
+    private void StartPlayingFromMissingLists(MusicCategory target)
+    {
         // Find track lists that don't have a playing track in them and reallocate players for those
         var needToStartFrom = new List<TrackList>();
 
-        var activeTracks = audioPlayers.Where((player) => player.Playing).
-            Select((player) => player.CurrentTrack).ToList();
+        var activeTracks = PlayingTracks;
         var usablePlayers = audioPlayers.Where((player) => !player.Playing).ToList();
 
         foreach (var list in target.TrackLists)
@@ -334,19 +398,6 @@ public class Jukebox : Node
                     return NewPlayer();
                 }
             }, nextPlayerToUse++);
-        }
-    }
-
-    private void SetupStreamsFromCategory()
-    {
-        var target = categories[PlayingCategory];
-        previouslyPlayedCategory = target;
-
-        int nextPlayerToUse = 0;
-
-        foreach (var list in target.TrackLists)
-        {
-            PlayNextTrackFromList(list, this.GetNextPlayer, nextPlayerToUse++);
         }
 
         // Set pause status for any new streams
@@ -378,6 +429,40 @@ public class Jukebox : Node
 
             PlayTrack(getPlayer(playerToUse), list.Tracks[nextIndex]);
             list.LastPlayedIndex = nextIndex;
+        }
+    }
+
+    private void OnCategoryEnded()
+    {
+        if (previouslyPlayedCategory == null)
+            return;
+
+        var category = previouslyPlayedCategory;
+
+        // Store continue positions
+        if (category.Return == MusicCategory.RETURN_TYPE.Continue)
+        {
+            var activeTracks = PlayingTracks;
+
+            foreach (var list in category.TrackLists)
+            {
+                foreach (var track in list.Tracks)
+                {
+                    if (activeTracks.Contains(track.ResourcePath))
+                    {
+                        track.WasPlaying = true;
+
+                        // Store the position to resume from
+                        track.PreviousPlayedPosition = audioPlayers.Where(
+                            (player) => player.Playing && player.CurrentTrack == track.ResourcePath).Select(
+                                (player) => player.Player.GetPlaybackPosition()).First();
+                    }
+                    else
+                    {
+                        track.WasPlaying = false;
+                    }
+                }
+            }
         }
     }
 
@@ -413,6 +498,12 @@ public class Jukebox : Node
             {
                 Player.Playing = value;
             }
+        }
+
+        public void Stop()
+        {
+            CurrentTrack = null;
+            Player.Stop();
         }
     }
 
