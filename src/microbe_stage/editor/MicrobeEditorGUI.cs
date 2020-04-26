@@ -312,8 +312,8 @@ public class MicrobeEditorGUI : Node
         atpProductionLabel.RectSize = new Vector2(atpProductionBarProgressLength, 18);
         atpConsumptionLabel.RectSize = new Vector2(atpConsumptionBarProgressLength, 18);
 
-        atpProductionLabel.Text = energyBalance.TotalProduction.ToString();
-        atpConsumptionLabel.Text = energyBalance.TotalConsumption.ToString();
+        atpProductionLabel.Text = energyBalance.TotalProduction.ToString("0.0");
+        atpConsumptionLabel.Text = energyBalance.TotalConsumption.ToString("0.0");
     }
 
     /// <summary>
