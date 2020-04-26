@@ -537,7 +537,7 @@ public class MicrobeEditor : Node
 
     public void RotateRight()
     {
-        organelleRot = (organelleRot + 1) % 5;
+        organelleRot = (organelleRot + 1) % 6;
     }
 
     public void RotateLeft()
@@ -1429,6 +1429,8 @@ public class MicrobeEditor : Node
         CurrentGame.GameWorld.GetAutoEvoRun().ApplyExternalEffects();
 
         CurrentGame.GameWorld.Map.RemoveExtinctSpecies(FreeBuilding);
+
+        CurrentGame.GameWorld.Map.UpdateGlobalPopulations();
 
         // Clear the run to make the cell stage start a new run when we go back there
         CurrentGame.GameWorld.ResetAutoEvoRun();
