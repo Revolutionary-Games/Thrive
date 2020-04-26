@@ -34,6 +34,10 @@ public class MicrobeEditorGUI : Node
     [Export]
     public NodePath ATPConsumptionBarPath;
     [Export]
+    public NodePath ATPProductionLabelPath;
+    [Export]
+    public NodePath ATPConsumptionLabelPath;
+    [Export]
     public NodePath AutoEvoLabelPath;
     [Export]
     public NodePath ExternalEffectsLabelPath;
@@ -121,6 +125,8 @@ public class MicrobeEditorGUI : Node
     private Label atpBalanceLabel;
     private ProgressBar atpProductionBar;
     private ProgressBar atpConsumptionBar;
+    private Label atpProductionLabel;
+    private Label atpConsumptionLabel;
     private Label autoEvoLabel;
     private Label externalEffectsLabel;
     private PatchMapDrawer mapDrawer;
@@ -178,6 +184,8 @@ public class MicrobeEditorGUI : Node
         atpBalanceLabel = GetNode<Label>(ATPBalanceLabelPath);
         atpProductionBar = GetNode<ProgressBar>(ATPProductionBarPath);
         atpConsumptionBar = GetNode<ProgressBar>(ATPConsumptionBarPath);
+        atpProductionLabel = GetNode<Label>(ATPProductionLabelPath);
+        atpConsumptionLabel = GetNode<Label>(ATPConsumptionLabelPath);
         autoEvoLabel = GetNode<Label>(AutoEvoLabelPath);
         externalEffectsLabel = GetNode<Label>(ExternalEffectsLabelPath);
         mapDrawer = GetNode<PatchMapDrawer>(MapDrawerPath);
@@ -295,6 +303,17 @@ public class MicrobeEditorGUI : Node
 
         atpConsumptionBar.MaxValue = maxValue;
         atpConsumptionBar.Value = energyBalance.TotalConsumption;
+
+        var atpProductionBarProgressLength = (float)((atpProductionBar.RectSize.x * atpProductionBar.Value) /
+            atpProductionBar.MaxValue);
+        var atpConsumptionBarProgressLength = (float)((atpConsumptionBar.RectSize.x * atpConsumptionBar.Value) /
+            atpConsumptionBar.MaxValue);
+
+        atpProductionLabel.RectSize = new Vector2(atpProductionBarProgressLength, 18);
+        atpConsumptionLabel.RectSize = new Vector2(atpConsumptionBarProgressLength, 18);
+
+        atpProductionLabel.Text = energyBalance.TotalProduction.ToString();
+        atpConsumptionLabel.Text = energyBalance.TotalConsumption.ToString();
     }
 
     /// <summary>
