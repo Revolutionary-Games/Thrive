@@ -16,7 +16,6 @@ public class MicrobeEditor : Node
     /// <summary>
     ///   Selected colour for the species
     /// </summary>
-    public Color Colour;
 
     private int symmetry = 0;
 
@@ -343,7 +342,7 @@ public class MicrobeEditor : Node
 
         // Update membrane
         editedSpecies.MembraneType = Membrane;
-        editedSpecies.Colour = Colour;
+        editedSpecies.Colour = gui.GetMembraneColor();
         editedSpecies.MembraneRigidity = Rigidity;
 
         // Move patches
@@ -894,9 +893,8 @@ public class MicrobeEditor : Node
 
         NewName = species.FormattedName;
         Rigidity = species.MembraneRigidity;
-        Colour = species.Colour;
 
-        gui.SetSpeciesInfo(NewName, Membrane, Colour, Rigidity);
+        gui.SetSpeciesInfo(NewName, Membrane, species.Colour, Rigidity);
 
         species.Generation += 1;
         gui.UpdateGeneration(species.Generation);
