@@ -325,18 +325,16 @@ public class CompoundCloudPlane : CSGMesh
 
             float freeSpace = storage.Capacity - storage.GetCompoundAmount(compound);
 
-            float taken;
+            float multiplier = 1.0f;
 
             if (freeSpace < generousAmount)
             {
-                taken = slot.TakeCompound(localX, localY, fractionToTake * freeSpace / generousAmount) *
-                    Constants.ABSORPTION_RATIO;
+                // Allow partial absorption to allow cells to take from high density clouds
+                multiplier = freeSpace / generousAmount;
             }
-            else
-            {
-                taken = slot.TakeCompound(localX, localY, fractionToTake) *
-                    Constants.ABSORPTION_RATIO;
-            }
+
+            float taken = slot.TakeCompound(localX, localY, fractionToTake * multiplier) *
+                Constants.ABSORPTION_RATIO;
 
             storage.AddCompound(compound, taken);
 
