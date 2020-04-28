@@ -856,6 +856,8 @@ public class MicrobeEditor : Node
         var playerSpecies = CurrentGame.GameWorld.PlayerSpecies;
 
         SetupEditedSpecies(playerSpecies as MicrobeSpecies);
+
+        gui.UpdateGlucoseReduction(Constants.GLUCOSE_REDUCTION_RATE);
     }
 
     private void SetupEditedSpecies(MicrobeSpecies species)
