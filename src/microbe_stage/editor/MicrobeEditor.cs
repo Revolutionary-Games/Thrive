@@ -611,15 +611,17 @@ public class MicrobeEditor : Node
             var prevRigidity = Rigidity;
 
             EditorAction action = new EditorAction(this, cost,
-                Redo =>
+                redo =>
                 {
                     Rigidity = newRigidity;
                     gui.UpdateRigiditySlider(Rigidity, MutationPoints);
+                    gui.UpdateSpeed(CalculateSpeed());
                 },
-                Undo =>
+                undo =>
                 {
                     Rigidity = prevRigidity;
                     gui.UpdateRigiditySlider(Rigidity, MutationPoints);
+                    gui.UpdateSpeed(CalculateSpeed());
                 });
 
             EnqueueAction(action);

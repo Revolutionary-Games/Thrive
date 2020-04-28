@@ -3439,7 +3439,7 @@ __meta__ = {
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer"]
 margin_right = 304.0
-margin_bottom = 843.0
+margin_bottom = 821.0
 mouse_filter = 1
 custom_constants/margin_top = 10
 custom_constants/margin_left = 10
@@ -3452,7 +3452,7 @@ __meta__ = {
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 304.0
-margin_bottom = 833.0
+margin_bottom = 811.0
 custom_constants/separation = 10
 
 [node name="MembraneTypesLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -4048,9 +4048,10 @@ valign = 1
 uppercase = true
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 366.0
-margin_right = 294.0
-margin_bottom = 823.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 4.0
+margin_bottom = 4.0
 theme = SubResource( 40 )
 edit_alpha = false
 
