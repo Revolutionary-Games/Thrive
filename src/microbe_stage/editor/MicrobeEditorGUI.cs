@@ -454,12 +454,77 @@ public class MicrobeEditorGUI : Node
     /// <remarks>
     ///   <para>
     ///     TODO: rename to something more sensible
+    ///     and maybe also improve how this is implemented
+    ///     to be not cluttered
     ///   </para>
     /// </remarks>
     internal void UpdateGuiButtonStatus(bool hasNucleus)
     {
-        // TODO: fix
-        // throw new NotImplementedException();
+        foreach (Button organelleItem in organelleSelectionElements)
+        {
+            if (!hasNucleus)
+            {
+                if (organelleItem.Name == "nucleus")
+                {
+                    organelleItem.Disabled = false;
+                }
+                else if (organelleItem.Name == "mitochondrion")
+                {
+                    organelleItem.Disabled = true;
+                }
+                else if (organelleItem.Name == "chloroplast")
+                {
+                    organelleItem.Disabled = true;
+                }
+                else if (organelleItem.Name == "chemoplast")
+                {
+                    organelleItem.Disabled = true;
+                }
+                else if (organelleItem.Name == "nitrogenfixingplastid")
+                {
+                    organelleItem.Disabled = true;
+                }
+                else if (organelleItem.Name == "vacuole")
+                {
+                    organelleItem.Disabled = true;
+                }
+                else if (organelleItem.Name == "oxytoxy")
+                {
+                    organelleItem.Disabled = true;
+                }
+            }
+            else if (hasNucleus)
+            {
+                if (organelleItem.Name == "nucleus")
+                {
+                    organelleItem.Disabled = true;
+                }
+                else if (organelleItem.Name == "mitochondrion")
+                {
+                    organelleItem.Disabled = false;
+                }
+                else if (organelleItem.Name == "chloroplast")
+                {
+                    organelleItem.Disabled = false;
+                }
+                else if (organelleItem.Name == "chemoplast")
+                {
+                    organelleItem.Disabled = false;
+                }
+                else if (organelleItem.Name == "nitrogenfixingplastid")
+                {
+                    organelleItem.Disabled = false;
+                }
+                else if (organelleItem.Name == "vacuole")
+                {
+                    organelleItem.Disabled = false;
+                }
+                else if (organelleItem.Name == "oxytoxy")
+                {
+                    organelleItem.Disabled = false;
+                }
+            }
+        }
     }
 
     internal void OnOrganelleToPlaceSelected(string organelle)
