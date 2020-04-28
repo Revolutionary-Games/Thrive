@@ -40,6 +40,8 @@ public class MicrobeEditorGUI : Node
     [Export]
     public NodePath ATPConsumptionLabelPath;
     [Export]
+    public NodePath GlucoseReductionLabelPath;
+    [Export]
     public NodePath AutoEvoLabelPath;
     [Export]
     public NodePath ExternalEffectsLabelPath;
@@ -150,6 +152,7 @@ public class MicrobeEditorGUI : Node
     private ProgressBar atpConsumptionBar;
     private Label atpProductionLabel;
     private Label atpConsumptionLabel;
+    private Label glucoseReductionLabel;
     private Label autoEvoLabel;
     private Label externalEffectsLabel;
     private PatchMapDrawer mapDrawer;
@@ -223,6 +226,7 @@ public class MicrobeEditorGUI : Node
         atpConsumptionBar = GetNode<ProgressBar>(ATPConsumptionBarPath);
         atpProductionLabel = GetNode<Label>(ATPProductionLabelPath);
         atpConsumptionLabel = GetNode<Label>(ATPConsumptionLabelPath);
+        glucoseReductionLabel = GetNode<Label>(GlucoseReductionLabelPath);
         autoEvoLabel = GetNode<Label>(AutoEvoLabelPath);
         externalEffectsLabel = GetNode<Label>(ExternalEffectsLabelPath);
         mapDrawer = GetNode<PatchMapDrawer>(MapDrawerPath);
@@ -311,6 +315,14 @@ public class MicrobeEditorGUI : Node
 
         // Just in case this didn't get called already. Note that this may result in duplicate calls here
         UpdateShownPatchDetails();
+    }
+
+    public void UpdateGlucoseReduction(float value)
+    {
+        var percentage = value * 100 + "%";
+
+        glucoseReductionLabel.Text = "The amount of glucose has been reduced to " + percentage +
+            " of the previous amount.";
     }
 
     public void UpdateSize(int size)

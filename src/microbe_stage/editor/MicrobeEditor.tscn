@@ -1,4 +1,4 @@
-[gd_scene load_steps=145 format=2]
+[gd_scene load_steps=146 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
@@ -119,7 +119,7 @@ border_width_bottom = 3
 border_color = Color( 0.439216, 0.623529, 0.623529, 0.392157 )
 
 [sub_resource type="DynamicFont" id=9]
-size = 14
+size = 15
 font_data = ExtResource( 5 )
 
 [sub_resource type="StyleBoxEmpty" id=10]
@@ -1183,22 +1183,19 @@ default_font = SubResource( 58 )
 [sub_resource type="StyleBoxFlat" id=60]
 border_width_top = 1
 
-[sub_resource type="DynamicFont" id=61]
+[sub_resource type="StyleBoxEmpty" id=61]
+
+[sub_resource type="DynamicFont" id=62]
 size = 30
 use_filter = true
 font_data = ExtResource( 5 )
 
-[sub_resource type="DynamicFont" id=62]
-use_filter = true
-font_data = ExtResource( 5 )
-
 [sub_resource type="DynamicFont" id=63]
-size = 20
 use_filter = true
 font_data = ExtResource( 5 )
 
 [sub_resource type="DynamicFont" id=64]
-size = 18
+size = 20
 use_filter = true
 font_data = ExtResource( 5 )
 
@@ -1207,8 +1204,13 @@ size = 18
 use_filter = true
 font_data = ExtResource( 5 )
 
-[sub_resource type="Theme" id=66]
-default_font = SubResource( 65 )
+[sub_resource type="DynamicFont" id=66]
+size = 18
+use_filter = true
+font_data = ExtResource( 5 )
+
+[sub_resource type="Theme" id=67]
+default_font = SubResource( 66 )
 
 [node name="MicrobeEditor" type="Node"]
 script = ExtResource( 2 )
@@ -1248,6 +1250,7 @@ ATPProductionBarPath = NodePath("CellEditor/ATPBalancePanel/MarginContainer/VBox
 ATPConsumptionBarPath = NodePath("CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer/AtpConsumptionBar")
 ATPProductionLabelPath = NodePath("CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer/AtpProductionBar/Value")
 ATPConsumptionLabelPath = NodePath("CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer/AtpConsumptionBar/Value")
+GlucoseReductionLabelPath = NodePath("Report/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/GlucoseReduction")
 AutoEvoLabelPath = NodePath("Report/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/AutoEvoResults")
 ExternalEffectsLabelPath = NodePath("Report/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/ExternalEffectsList")
 MapDrawerPath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/ScrollContainer/PatchMapDrawer")
@@ -9599,37 +9602,52 @@ margin_bottom = 664.0
 follow_focus = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/Report/EvoResultsPanel/MarginContainer/ScrollContainer"]
-margin_right = 122.0
-margin_bottom = 82.0
+margin_right = 537.0
+margin_bottom = 114.0
 custom_constants/separation = 0
 
+[node name="GlucoseReduction" type="Label" parent="MicrobeEditorGUI/Report/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_right = 537.0
+margin_bottom = 17.0
+custom_fonts/font = SubResource( 9 )
+text = "The amount of glucose has been reduced to ... of the previous amount."
+
+[node name="HSeparator2" type="HSeparator" parent="MicrobeEditorGUI/Report/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
+margin_top = 17.0
+margin_right = 537.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 0, 10 )
+custom_styles/separator = SubResource( 61 )
+
 [node name="Label" type="Label" parent="MicrobeEditorGUI/Report/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
-margin_right = 122.0
-margin_bottom = 15.0
+margin_top = 27.0
+margin_right = 537.0
+margin_bottom = 44.0
 custom_fonts/font = SubResource( 9 )
 text = "Auto-evo results:"
 
 [node name="AutoEvoResults" type="Label" parent="MicrobeEditorGUI/Report/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
-margin_top = 15.0
-margin_right = 122.0
-margin_bottom = 29.0
+margin_top = 44.0
+margin_right = 537.0
+margin_bottom = 58.0
 
 [node name="HSeparator" type="HSeparator" parent="MicrobeEditorGUI/Report/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
-margin_top = 29.0
-margin_right = 122.0
-margin_bottom = 54.0
+margin_top = 58.0
+margin_right = 537.0
+margin_bottom = 83.0
 rect_min_size = Vector2( 0, 25 )
 
 [node name="Label2" type="Label" parent="MicrobeEditorGUI/Report/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
-margin_top = 54.0
-margin_right = 122.0
-margin_bottom = 68.0
+margin_top = 83.0
+margin_right = 537.0
+margin_bottom = 100.0
+custom_fonts/font = SubResource( 9 )
 text = "External effects:"
 
 [node name="ExternalEffectsList" type="Label" parent="MicrobeEditorGUI/Report/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
-margin_top = 68.0
-margin_right = 122.0
-margin_bottom = 82.0
+margin_top = 100.0
+margin_right = 537.0
+margin_bottom = 114.0
 
 [node name="NextTabButton" type="Button" parent="MicrobeEditorGUI/Report"]
 anchor_left = 1.0
@@ -9769,7 +9787,7 @@ custom_constants/separation = 0
 [node name="PatchName" type="Label" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/VBoxContainer"]
 margin_right = 528.0
 margin_bottom = 32.0
-custom_fonts/font = SubResource( 61 )
+custom_fonts/font = SubResource( 62 )
 text = "Patch Name Goes Here"
 align = 1
 
@@ -9777,7 +9795,7 @@ align = 1
 margin_top = 32.0
 margin_right = 528.0
 margin_bottom = 50.0
-custom_fonts/font = SubResource( 62 )
+custom_fonts/font = SubResource( 63 )
 text = "YOU ARE CURRENTLY IN THIS PATCH"
 align = 1
 
@@ -9785,7 +9803,7 @@ align = 1
 margin_top = 65.0
 margin_right = 528.0
 margin_bottom = 87.0
-custom_fonts/font = SubResource( 63 )
+custom_fonts/font = SubResource( 64 )
 text = "Biome: BIOME HERE"
 align = 1
 
@@ -9793,7 +9811,7 @@ align = 1
 margin_top = 102.0
 margin_right = 528.0
 margin_bottom = 124.0
-custom_fonts/font = SubResource( 63 )
+custom_fonts/font = SubResource( 64 )
 text = "200-340m below sea level"
 align = 1
 
@@ -9836,7 +9854,7 @@ margin_left = 31.0
 margin_top = 4.0
 margin_right = 208.0
 margin_bottom = 23.0
-custom_fonts/font = SubResource( 64 )
+custom_fonts/font = SubResource( 65 )
 text = "Physical Conditions"
 
 [node name="GridContainer" type="GridContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions"]
@@ -9862,7 +9880,7 @@ margin_left = 34.0
 margin_top = 3.0
 margin_right = 146.0
 margin_bottom = 22.0
-custom_fonts/font = SubResource( 64 )
+custom_fonts/font = SubResource( 65 )
 text = "Temperature"
 
 [node name="Situation" type="TextureRect" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/GridContainer/Temperature"]
@@ -9891,7 +9909,7 @@ margin_left = 34.0
 margin_top = 3.0
 margin_right = 114.0
 margin_bottom = 22.0
-custom_fonts/font = SubResource( 64 )
+custom_fonts/font = SubResource( 65 )
 text = "Pressure"
 
 [node name="Light" type="HBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/GridContainer"]
@@ -9912,7 +9930,7 @@ margin_left = 34.0
 margin_top = 3.0
 margin_right = 79.0
 margin_bottom = 22.0
-custom_fonts/font = SubResource( 64 )
+custom_fonts/font = SubResource( 65 )
 text = "Light"
 
 [node name="Situation" type="TextureRect" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/GridContainer/Light"]
@@ -9962,7 +9980,7 @@ margin_left = 31.0
 margin_top = 4.0
 margin_right = 214.0
 margin_bottom = 23.0
-custom_fonts/font = SubResource( 64 )
+custom_fonts/font = SubResource( 65 )
 text = "Atmospheric Gasses"
 
 [node name="GridContainer" type="GridContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericConditions"]
@@ -9988,7 +10006,7 @@ margin_left = 34.0
 margin_top = 3.0
 margin_right = 102.0
 margin_bottom = 22.0
-custom_fonts/font = SubResource( 64 )
+custom_fonts/font = SubResource( 65 )
 text = "Oxygen"
 
 [node name="Nitrogen" type="HBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericConditions/GridContainer"]
@@ -10009,7 +10027,7 @@ margin_left = 34.0
 margin_top = 3.0
 margin_right = 111.0
 margin_bottom = 22.0
-custom_fonts/font = SubResource( 64 )
+custom_fonts/font = SubResource( 65 )
 text = "Nitrogen"
 
 [node name="CO2" type="HBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericConditions/GridContainer"]
@@ -10030,7 +10048,7 @@ margin_left = 34.0
 margin_top = 3.0
 margin_right = 66.0
 margin_bottom = 22.0
-custom_fonts/font = SubResource( 64 )
+custom_fonts/font = SubResource( 65 )
 text = "CO2"
 
 [node name="Compounds" type="VBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
@@ -10072,7 +10090,7 @@ margin_left = 31.0
 margin_top = 4.0
 margin_right = 140.0
 margin_bottom = 23.0
-custom_fonts/font = SubResource( 64 )
+custom_fonts/font = SubResource( 65 )
 text = "Compounds"
 
 [node name="GridContainer" type="GridContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds"]
@@ -10098,7 +10116,7 @@ margin_left = 29.0
 margin_top = 3.0
 margin_right = 186.0
 margin_bottom = 22.0
-custom_fonts/font = SubResource( 64 )
+custom_fonts/font = SubResource( 65 )
 text = "Hydrogen Sulfide"
 
 [node name="Situation" type="TextureRect" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer/HydrogenSulfide"]
@@ -10127,7 +10145,7 @@ margin_left = 29.0
 margin_top = 3.0
 margin_right = 108.0
 margin_bottom = 22.0
-custom_fonts/font = SubResource( 64 )
+custom_fonts/font = SubResource( 65 )
 text = "Ammonia"
 
 [node name="Situation" type="TextureRect" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer/Ammonia"]
@@ -10156,7 +10174,7 @@ margin_left = 29.0
 margin_top = 3.0
 margin_right = 102.0
 margin_bottom = 22.0
-custom_fonts/font = SubResource( 64 )
+custom_fonts/font = SubResource( 65 )
 text = "Glucose"
 
 [node name="Situation" type="TextureRect" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer/Glucose"]
@@ -10186,7 +10204,7 @@ margin_left = 29.0
 margin_top = 3.0
 margin_right = 126.0
 margin_bottom = 22.0
-custom_fonts/font = SubResource( 64 )
+custom_fonts/font = SubResource( 65 )
 text = "Phosphate"
 
 [node name="Situation" type="TextureRect" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer/Phosphate"]
@@ -10215,7 +10233,7 @@ margin_left = 29.0
 margin_top = 3.0
 margin_right = 64.0
 margin_bottom = 22.0
-custom_fonts/font = SubResource( 64 )
+custom_fonts/font = SubResource( 65 )
 text = "Iron"
 
 [node name="Situation" type="TextureRect" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer/Iron"]
@@ -10265,14 +10283,14 @@ margin_left = 31.0
 margin_top = 4.0
 margin_right = 177.0
 margin_bottom = 23.0
-custom_fonts/font = SubResource( 64 )
+custom_fonts/font = SubResource( 65 )
 text = "Species Present"
 
 [node name="SpeciesList" type="VBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesPresent"]
 margin_top = 42.0
 margin_right = 528.0
 margin_bottom = 42.0
-theme = SubResource( 66 )
+theme = SubResource( 67 )
 
 [node name="NextTabButton" type="Button" parent="MicrobeEditorGUI/PatchMap"]
 anchor_left = 1.0

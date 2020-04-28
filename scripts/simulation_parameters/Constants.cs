@@ -319,6 +319,8 @@ public class Constants
     public const int AUTO_EVO_HIGH_SPECIES_PENALTY = 500;
     public const int AUTO_EVO_RANDOM_POPULATION_CHANGE = 500;
 
+    public const float GLUCOSE_REDUCTION_RATE = 0.8f;
+
     /// <summary>
     ///   All Nodes tagged with this are handled by the spawn system for despawning
     /// </summary>
