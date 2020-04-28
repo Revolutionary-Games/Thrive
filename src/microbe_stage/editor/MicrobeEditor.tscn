@@ -1222,6 +1222,12 @@ __meta__ = {
 
 [node name="World" type="Node" parent="."]
 
+[node name="EditorLight" type="OmniLight" parent="World"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.33046, 0 )
+shadow_enabled = true
+omni_range = 100.0
+omni_attenuation = 0.420448
+
 [node name="MicrobeEditorGUI" type="Node" parent="."]
 pause_mode = 2
 script = ExtResource( 45 )
