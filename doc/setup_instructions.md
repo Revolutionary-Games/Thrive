@@ -45,7 +45,7 @@ To clone the Thrive repository properly you need Git with Git LFS.
 You need at least Git LFS version 2.8.0, old versions do not work.
 
 On Linux and mac use your package manager to install git. Git lfs is
-likely available as a package named (git-lfs). If it is not install it
+likely available as a package named `git-lfs`. If it is not install it
 manually. After installing remember to run `git lfs install` in terminal.
 
 On Windows install Git with the official installer from:
@@ -87,9 +87,11 @@ On Linux MonoDevelop is recommended. To get an up to date version,
 first enable the mono repository:
 https://www.mono-project.com/download/stable/ and then install the
 following packages with your package manager: `mono-complete
-monodevelop nuget`. Make sure it is a newer version of mono that
-comes with msbuild. Fedora has mono in the official repo but it is
-too old to work.
+monodevelop nuget`. Make sure it is a newer version of mono that comes
+with msbuild. Fedora has mono in the official repo but it is too old
+to work.
+
+On Windows don't intall Mono or MonoDevelop, it will break things.
 
 For a better experience with Godot, you can install the following
 addon for MonoDevelop:
@@ -337,8 +339,8 @@ consistent as possible. It is highly recommended you install
 this linter to check your code formatting before submitting a 
 pull request.
 
-[NodeJS](https://nodejs.org/en/download/). If you are on Linux you
-should use your OS's package manager to install nodejs.
+First install [NodeJS](https://nodejs.org/en/download/). If you are on
+Linux you should use your OS's package manager to install nodejs.
 
 After installing nodejs install the linter packages with this command:
 ```sh
@@ -354,3 +356,15 @@ When you are getting ready to commit you should run `ruby
 check_formatting.rb` in order to automatically run all of the
 formatting tools. Make sure that that script doesn't report any errors
 before committing.
+
+Pre-commit hook
+---------------
+
+On Linux you can enable a pre-commit hook to automatically run the
+formatting checks before each commit to avoid accidentally committing
+code with formatting issues. To install the hook run the following
+script:
+
+```sh
+./install_git_hooks.rb
+```

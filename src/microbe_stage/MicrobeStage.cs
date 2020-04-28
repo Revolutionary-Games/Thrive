@@ -248,6 +248,9 @@ public class MicrobeStage : Node
 
         // Now the editor increases the generation so we don't do that here anymore
 
+        // Make sure player is spawned
+        SpawnPlayer();
+
         // Check win conditions
         if (!CurrentGame.FreeBuild && Player.Species.Generation >= 20 &&
             Player.Species.Population >= 300 && !wonOnce)
@@ -255,9 +258,6 @@ public class MicrobeStage : Node
             HUD.ToggleWinBox();
             wonOnce = true;
         }
-
-        // Make sure player is spawned
-        SpawnPlayer();
 
         // Update the player's cell
         Player.ApplySpecies(Player.Species);
