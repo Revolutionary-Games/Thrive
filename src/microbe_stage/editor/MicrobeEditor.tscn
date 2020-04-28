@@ -1,7 +1,8 @@
-[gd_scene load_steps=143 format=2]
+[gd_scene load_steps=145 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
+[ext_resource path="res://assets/textures/gui/bevel/decrease.png" type="Texture" id=3]
 [ext_resource path="res://assets/textures/gui/bevel/EditPanelMid.png" type="Texture" id=4]
 [ext_resource path="res://assets/fonts/Jura-DemiBold.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://assets/textures/gui/bevel/OrganelleDisabled.png" type="Texture" id=6]
@@ -76,6 +77,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/6xSymmetry.png" type="Texture" id=75]
 [ext_resource path="res://assets/textures/gui/bevel/4xSymmetry.png" type="Texture" id=76]
 [ext_resource path="res://assets/textures/gui/bevel/2xSymmetry.png" type="Texture" id=77]
+[ext_resource path="res://assets/textures/gui/bevel/increase.png" type="Texture" id=78]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 37 )
@@ -1274,10 +1276,19 @@ CompoundsBoxButtonPath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitConta
 CompoundsBoxPath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer")
 SpeciesListButtonPath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesPresent/HBoxContainer/Buttons")
 MoveToPatchButtonPath = NodePath("PatchMap/MoveToPatchButton")
+PatchTemperatureSituationPath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/GridContainer/Temperature/Situation")
+PatchLightSituationPath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/GridContainer/Light/Situation")
+PatchHydrogenSulfideSituationPath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer/HydrogenSulfide/Situation")
+PatchGlucoseSituationPath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer/Glucose/Situation")
+PatchIronSituationPath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer/Iron/Situation")
+PatchAmmoniaSituationPath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer/Ammonia/Situation")
+PatchPhosphateSituationPath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer/Phosphate/Situation")
 SymmetryIconPath = NodePath("CellEditor/SymmetryButton/VBoxContainer/SymmetryIcon")
 SymmetryIcon2x = ExtResource( 77 )
 SymmetryIcon4x = ExtResource( 76 )
 SymmetryIcon6x = ExtResource( 75 )
+IncreaseIcon = ExtResource( 78 )
+DecreaseIcon = ExtResource( 3 )
 
 [node name="LeftTopBar" type="Control" parent="MicrobeEditorGUI"]
 margin_right = 810.0
@@ -9850,6 +9861,14 @@ margin_bottom = 22.0
 custom_fonts/font = SubResource( 64 )
 text = "Temperature"
 
+[node name="Situation" type="TextureRect" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/GridContainer/Temperature"]
+margin_left = 150.0
+margin_right = 162.0
+margin_bottom = 12.0
+rect_min_size = Vector2( 12, 12 )
+size_flags_vertical = 0
+expand = true
+
 [node name="Pressure" type="HBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/GridContainer"]
 margin_left = 266.0
 margin_right = 528.0
@@ -9891,6 +9910,14 @@ margin_right = 79.0
 margin_bottom = 22.0
 custom_fonts/font = SubResource( 64 )
 text = "Light"
+
+[node name="Situation" type="TextureRect" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/GridContainer/Light"]
+margin_left = 83.0
+margin_right = 95.0
+margin_bottom = 12.0
+rect_min_size = Vector2( 12, 12 )
+size_flags_vertical = 0
+expand = true
 
 [node name="AtmosphericConditions" type="VBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
 margin_top = 250.0
@@ -10070,6 +10097,14 @@ margin_bottom = 22.0
 custom_fonts/font = SubResource( 64 )
 text = "Hydrogen Sulfide"
 
+[node name="Situation" type="TextureRect" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer/HydrogenSulfide"]
+margin_left = 190.0
+margin_right = 202.0
+margin_bottom = 12.0
+rect_min_size = Vector2( 12, 12 )
+size_flags_vertical = 0
+expand = true
+
 [node name="Ammonia" type="HBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer"]
 margin_left = 266.0
 margin_right = 528.0
@@ -10091,6 +10126,14 @@ margin_bottom = 22.0
 custom_fonts/font = SubResource( 64 )
 text = "Ammonia"
 
+[node name="Situation" type="TextureRect" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer/Ammonia"]
+margin_left = 112.0
+margin_right = 124.0
+margin_bottom = 12.0
+rect_min_size = Vector2( 12, 12 )
+size_flags_vertical = 0
+expand = true
+
 [node name="Glucose" type="HBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer"]
 margin_top = 29.0
 margin_right = 262.0
@@ -10111,6 +10154,14 @@ margin_right = 102.0
 margin_bottom = 22.0
 custom_fonts/font = SubResource( 64 )
 text = "Glucose"
+
+[node name="Situation" type="TextureRect" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer/Glucose"]
+margin_left = 106.0
+margin_right = 118.0
+margin_bottom = 12.0
+rect_min_size = Vector2( 12, 12 )
+size_flags_vertical = 0
+expand = true
 
 [node name="Phosphate" type="HBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer"]
 margin_left = 266.0
@@ -10134,6 +10185,14 @@ margin_bottom = 22.0
 custom_fonts/font = SubResource( 64 )
 text = "Phosphate"
 
+[node name="Situation" type="TextureRect" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer/Phosphate"]
+margin_left = 130.0
+margin_right = 142.0
+margin_bottom = 12.0
+rect_min_size = Vector2( 12, 12 )
+size_flags_vertical = 0
+expand = true
+
 [node name="Iron" type="HBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer"]
 margin_top = 58.0
 margin_right = 262.0
@@ -10154,6 +10213,14 @@ margin_right = 64.0
 margin_bottom = 22.0
 custom_fonts/font = SubResource( 64 )
 text = "Iron"
+
+[node name="Situation" type="TextureRect" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer/Iron"]
+margin_left = 68.0
+margin_right = 80.0
+margin_bottom = 12.0
+rect_min_size = Vector2( 12, 12 )
+size_flags_vertical = 0
+expand = true
 
 [node name="SpeciesPresent" type="VBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
 margin_top = 501.0
