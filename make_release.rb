@@ -48,6 +48,9 @@ onError "Unhandled parameters: #{ARGV}" unless ARGV.empty?
 ASSEMBLY_VERSION = /AssemblyVersion\(\"([\d\.]+)\"\)/.freeze
 INFORMATIONAL_VERSION = /AssemblyInformationalVersion\(\"([^\"]*)\"\)/.freeze
 
+# Messages to print again after the end
+@reprint_messages = []
+
 # Reads thrive version from the code
 def find_thrive_version
   version = nil
@@ -108,6 +111,7 @@ def package(target, target_name, target_folder, target_file)
 
   if @options[:zip] == false
     info 'Skipping packaging created folder'
+    @reprint_messages.append "Created folder: #{target_folder}"
     return
   end
 
@@ -136,8 +140,13 @@ def package(target, target_name, target_folder, target_file)
   onError "Final file creation failed (#{final_file})" unless File.exist? final_file
 
   puts ''
-  success 'Done: ' + final_file
-  puts 'SHA3: ' + SHA3::Digest::SHA256.file(final_file).hexdigest
+  message1 = 'Done: ' + final_file
+  message2 = 'SHA3: ' + SHA3::Digest::SHA256.file(final_file).hexdigest
+
+  @reprint_messages.append '', message1, message2
+
+  success message1
+  puts message2
 end
 
 # Performs the actual export for a target
@@ -197,6 +206,16 @@ puts "Starting exporting thrive #{THRIVE_VERSION} to the specified targets"
 end
 
 puts ''
+
+unless @reprint_messages.empty?
+  info 'Reprint messages:'
+  @reprint_messages.each do |m|
+    puts m
+  end
+
+  puts ''
+end
+
 if @exported_something
   success 'Finished exporting the specified targets'
 else
