@@ -460,7 +460,6 @@ public class MicrobeEditorGUI : Node
                 {
                     organelleItem.Disabled = true;
                 }
-                
             }
             else if (hasNucleus)
             {
