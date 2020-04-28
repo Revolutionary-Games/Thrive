@@ -12,9 +12,12 @@ MAX_LINE_LENGTH = 120
 
 VALID_CHECKS = %w[compile files].freeze
 
+OUTPUT_MUTEX = Mutex.new
+
 @options = {
   checks: VALID_CHECKS,
-  skip_file_types: []
+  skip_file_types: [],
+  parallel: true
 }
 
 OptionParser.new do |opts|
@@ -27,6 +30,9 @@ OptionParser.new do |opts|
   opts.on('-s', '--skip filetype1,filetype2', Array,
           'Skips files checks on the specified types') do |skip|
     @options[:skip_file_types] = skip
+  end
+  opts.on('-p', '--[no-]parallel', 'Run different checks in parallel (default)') do |b|
+    @options[:parallel] = b
   end
 end.parse!
 
@@ -44,7 +50,9 @@ end
 
 def file_type_skipped?(path)
   if @options[:skip_file_types].include? File.extname(path)[1..-1]
-    puts "Skipping file '#{path}'"
+    OUTPUT_MUTEX.synchronize do
+      puts "Skipping file '#{path}'"
+    end
     true
   else
     false
@@ -53,7 +61,9 @@ end
 
 # Different handle functions for file checks
 def handle_gd_file(_path)
-  error 'GD scripts should not exist'
+  OUTPUT_MUTEX.synchronize do
+    error 'GD scripts should not exist'
+  end
   true
 end
 
@@ -62,20 +72,22 @@ def handle_cs_file(path)
   original = File.read(path)
   line_number = 0
 
-  original.each_line do |line|
-    line_number += 1
+  OUTPUT_MUTEX.synchronize do
+    original.each_line do |line|
+      line_number += 1
 
-    if line.include? "\t"
-      error "Line #{line_number} contains a tab"
-      errors = true
-    end
+      if line.include? "\t"
+        error "Line #{line_number} contains a tab"
+        errors = true
+      end
 
-    # For some reason this reports 1 too high
-    length = line.length - 1
+      # For some reason this reports 1 too high
+      length = line.length - 1
 
-    if length > MAX_LINE_LENGTH
-      error "Line #{line_number} is too long. #{length} > #{MAX_LINE_LENGTH}"
-      errors = true
+      if length > MAX_LINE_LENGTH
+        error "Line #{line_number} is too long. #{length} > #{MAX_LINE_LENGTH}"
+        errors = true
+      end
     end
   end
 
@@ -86,14 +98,18 @@ def handle_json_file(path)
   digest_before = Digest::MD5.hexdigest File.read(path)
 
   if runSystemSafe('jsonlint', '-i', path, '--indent', '    ') != 0
-    error 'JSONLint failed on file'
+    OUTPUT_MUTEX.synchronize do
+      error 'JSONLint failed on file'
+    end
     return true
   end
 
   digest_after = Digest::MD5.hexdigest File.read(path)
 
   if digest_before != digest_after
-    error 'JSONLint made formatting changes'
+    OUTPUT_MUTEX.synchronize do
+      error 'JSONLint made formatting changes'
+    end
     true
   else
     false
@@ -123,9 +139,11 @@ def run_compile
                                          '/warnaserror')
 
   if status != 0
-    info 'Build output from msbuild:'
-    puts output
-    error "\nBuild generated warnings or errors."
+    OUTPUT_MUTEX.synchronize  do
+      info 'Build output from msbuild:'
+      puts output
+      error "\nBuild generated warnings or errors."
+    end
     exit 1
   end
 end
@@ -138,30 +156,52 @@ def run_files
 
     begin
       if handle_file path
-        puts 'Problems found in file (see above): ' + path
-        puts ''
+        OUTPUT_MUTEX.synchronize  do
+          puts 'Problems found in file (see above): ' + path
+          puts ''
+        end
         issues_found = true
       end
     rescue StandardError => e
-      puts 'Failed to handle path: ' + path
-      puts 'Error: ' + e.message
+      OUTPUT_MUTEX.synchronize do
+        puts 'Failed to handle path: ' + path
+        puts 'Error: ' + e.message
+      end
       raise e
     end
   end
 
   return unless issues_found
 
-  error 'Code format issues detected'
+  OUTPUT_MUTEX.synchronize do
+    error 'Code format issues detected'
+  end
   exit 2
 end
 
-@options[:checks].each do |check|
+run_check = proc { |check|
   if check == 'compile'
     run_compile
   elsif check == 'files'
     run_files
   else
-    onError "Unknown check type: #{check}"
+    OUTPUT_MUTEX.synchronize do
+      onError "Unknown check type: #{check}"
+    end
+  end
+}
+
+if @options[:parallel]
+  threads = @options[:checks].map do |check|
+    Thread.new do
+      run_check.call check
+    end
+  end
+
+  threads.map(&:join)
+else
+  @options[:checks].each do |check|
+    run_check.call check
   end
 end
 

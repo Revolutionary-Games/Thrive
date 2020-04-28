@@ -1,8 +1,7 @@
-[gd_scene load_steps=144 format=2]
+[gd_scene load_steps=143 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
-[ext_resource path="res://src/microbe_stage/editor/EditorHex.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/textures/gui/bevel/EditPanelMid.png" type="Texture" id=4]
 [ext_resource path="res://assets/fonts/Jura-DemiBold.ttf" type="DynamicFontData" id=5]
 [ext_resource path="res://assets/textures/gui/bevel/OrganelleDisabled.png" type="Texture" id=6]
@@ -1223,7 +1222,11 @@ __meta__ = {
 
 [node name="World" type="Node" parent="."]
 
-[node name="EditorHex" parent="World" instance=ExtResource( 3 )]
+[node name="EditorLight" type="OmniLight" parent="World"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.33046, 0 )
+shadow_enabled = true
+omni_range = 100.0
+omni_attenuation = 0.420448
 
 [node name="MicrobeEditorGUI" type="Node" parent="."]
 pause_mode = 2
@@ -3423,7 +3426,7 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer"]
-margin_right = 304.0
+margin_right = 313.0
 margin_bottom = 821.0
 mouse_filter = 1
 custom_constants/margin_top = 10
@@ -3436,7 +3439,7 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 304.0
+margin_right = 313.0
 margin_bottom = 811.0
 custom_constants/separation = 10
 
