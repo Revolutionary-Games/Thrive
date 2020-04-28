@@ -45,7 +45,7 @@ To clone the Thrive repository properly you need Git with Git LFS.
 You need at least Git LFS version 2.8.0, old versions do not work.
 
 On Linux and mac use your package manager to install git. Git lfs is
-likely available as a package named (git-lfs). If it is not install it
+likely available as a package named `git-lfs`. If it is not install it
 manually. After installing remember to run `git lfs install` in terminal.
 
 On Windows install Git with the official installer from:
