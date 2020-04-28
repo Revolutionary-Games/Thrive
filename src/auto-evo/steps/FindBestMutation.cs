@@ -49,7 +49,7 @@
 
             var population = config.Results.GetGlobalPopulation(mutated);
 
-            return new AttemptResult(null, population);
+            return new AttemptResult(mutated, population);
         }
 
         private class AttemptResult : IAttemptResult
