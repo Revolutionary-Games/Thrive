@@ -176,13 +176,13 @@ public class MicrobeEditorGUI : Node
     private Control compoundsBox;
     private Control speciesListButton;
     private Button moveToPatchButton;
-    public TextureRect patchTemperatureSituation;
-    public TextureRect patchLightSituation;
-    public TextureRect patchHydrogenSulfideSituation;
-    public TextureRect patchGlucoseSituation;
-    public TextureRect patchIronSituation;
-    public TextureRect patchAmmoniaSituation;
-    public TextureRect patchPhosphateSituation;
+    private TextureRect patchTemperatureSituation;
+    private TextureRect patchLightSituation;
+    private TextureRect patchHydrogenSulfideSituation;
+    private TextureRect patchGlucoseSituation;
+    private TextureRect patchIronSituation;
+    private TextureRect patchAmmoniaSituation;
+    private TextureRect patchPhosphateSituation;
 
     private bool inEditorTab = false;
     private int symmetry = 0;
@@ -945,7 +945,6 @@ public class MicrobeEditorGUI : Node
             currentPatch, "hydrogensulfide"))
         {
             patchHydrogenSulfideSituation.Texture = DecreaseIcon;
-
         }
         else
         {
@@ -961,14 +960,12 @@ public class MicrobeEditorGUI : Node
             currentPatch, "glucose"))
         {
             patchGlucoseSituation.Texture = IncreaseIcon;
-
         }
         else if (nextCompound < currentPatch.Biome.Compounds["glucose"].Density *
             currentPatch.Biome.Compounds["glucose"].Amount + GetPatchChunkTotalCompoundAmount(
             currentPatch, "glucose"))
         {
             patchGlucoseSituation.Texture = DecreaseIcon;
-
         }
         else
         {
@@ -980,7 +977,6 @@ public class MicrobeEditorGUI : Node
         if (nextCompound > GetPatchChunkTotalCompoundAmount(currentPatch, "iron"))
         {
             patchIronSituation.Texture = IncreaseIcon;
-
         }
         else if (nextCompound < GetPatchChunkTotalCompoundAmount(currentPatch, "iron"))
         {
