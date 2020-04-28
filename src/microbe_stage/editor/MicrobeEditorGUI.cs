@@ -111,6 +111,8 @@ public class MicrobeEditorGUI : Node
     public NodePath PatchAmmoniaSituationPath;
     [Export]
     public NodePath PatchPhosphateSituationPath;
+    [Export]
+    public NodePath RigiditySliderPath;
 
     [Export]
     public NodePath SymmetryIconPath;
@@ -186,6 +188,7 @@ public class MicrobeEditorGUI : Node
     private TextureRect patchIronSituation;
     private TextureRect patchAmmoniaSituation;
     private TextureRect patchPhosphateSituation;
+    private Slider rigiditySlider;
 
     private bool inEditorTab = false;
     private int symmetry = 0;
@@ -260,6 +263,7 @@ public class MicrobeEditorGUI : Node
         patchIronSituation = GetNode<TextureRect>(PatchIronSituationPath);
         patchAmmoniaSituation = GetNode<TextureRect>(PatchAmmoniaSituationPath);
         patchPhosphateSituation = GetNode<TextureRect>(PatchPhosphateSituationPath);
+        rigiditySlider = GetNode<Slider>(RigiditySliderPath);
 
         mapDrawer.OnSelectedPatchChanged = (drawer) =>
         {
@@ -639,6 +643,27 @@ public class MicrobeEditorGUI : Node
 
         // Callback is manually called because the function isn't called automatically here
         OnSpeciesNameTextChanged(name);
+
+        UpdateRigiditySlider(rigidity, editor.MutationPoints);
+    }
+
+    internal void UpdateRigiditySlider(float value, int mutationPoints)
+    {
+        if (mutationPoints > 0)
+        {
+            rigiditySlider.Editable = true;
+        }
+        else
+        {
+            rigiditySlider.Editable = false;
+        }
+
+        rigiditySlider.Value = value;
+    }
+
+    private void OnRigidityChanged(float value)
+    {
+        editor.SetRigidity(value);
     }
 
     private void MoveToPatchClicked()
