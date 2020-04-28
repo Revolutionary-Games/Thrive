@@ -597,42 +597,35 @@ public class MicrobeEditor : Node
         if (Math.Abs(Rigidity - rigidity) < MathUtils.EPSILON)
             return;
 
-        throw new NotImplementedException();
+        var cost = (int)(Math.Abs(rigidity - Rigidity) / 2 * 100);
 
-        // float newRigidity = float(vars.GetSingleValueByName("rigidity"));
-        // int cost = int(abs(newRigidity - rigidity) / 2 * 100);
+        if (cost > 0)
+        {
+            if (cost > MutationPoints)
+            {
+                rigidity = Rigidity + (rigidity < Rigidity ? -MutationPoints : MutationPoints) * 2 / 100.0f;
+                cost = MutationPoints;
+            }
 
-        // if (cost > 0) {
-        //     if (cost > mutationPoints){
-        //         newRigidity = rigidity + (newRigidity < rigidity ? -mutationPoints :
-        //             mutationPoints) * 2 / 100.f;
-        //         cost = mutationPoints;
-        //     }
-        //
-        //     EditorAction@ action = EditorAction(cost,
-        //         // redo
-        //         function(EditorAction@ action, MicrobeEditor@ editor){
-        //             editor.rigidity = float(action.data["rigidity"]);
-        //             GenericEvent@ event = GenericEvent("MicrobeEditorRigidityUpdated");
-        //             NamedVars@ vars = event.GetNamedVars();
-        //             vars.AddValue(ScriptSafeVariableBlock("rigidity", editor.rigidity));
-        //             GetEngine().GetEventHandler().CallEvent(event);
-        //         },
-        //         // undo
-        //         function(EditorAction@ action, MicrobeEditor@ editor){
-        //             editor.rigidity = float(action.data["prevRigidity"]);
-        //             GenericEvent@ event = GenericEvent("MicrobeEditorRigidityUpdated");
-        //             NamedVars@ vars = event.GetNamedVars();
-        //             vars.AddValue(ScriptSafeVariableBlock("rigidity", editor.rigidity));
-        //             GetEngine().GetEventHandler().CallEvent(event);
-        //         }
-        //     );
-        //
-        //     action.data["rigidity"] = newRigidity;
-        //     action.data["prevRigidity"] = rigidity;
-        //
-        //     enqueueAction(action);
-        // }
+            var newRigidity = rigidity;
+            var prevRigidity = Rigidity;
+
+            EditorAction action = new EditorAction(this, cost,
+                redo =>
+                {
+                    Rigidity = newRigidity;
+                    gui.UpdateRigiditySlider(Rigidity, MutationPoints);
+                    gui.UpdateSpeed(CalculateSpeed());
+                },
+                undo =>
+                {
+                    Rigidity = prevRigidity;
+                    gui.UpdateRigiditySlider(Rigidity, MutationPoints);
+                    gui.UpdateSpeed(CalculateSpeed());
+                });
+
+            EnqueueAction(action);
+        }
     }
 
     /// <summary>
