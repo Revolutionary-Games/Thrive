@@ -59,7 +59,7 @@ public class GameWorld
                         var data = patch.Biome.Compounds[compound];
 
                         // TODO: verify that this change is picked up by the patch manager
-                        data.Density *= 0.8f;
+                        data.Density *= Constants.GLUCOSE_REDUCTION_RATE;
                     }
                 }
             }
