@@ -44,7 +44,7 @@ jobs:
        # Format check before making final packages
        - run: ./check_formatting.rb -c compile
        # Proper packages
-       - run: godot --export "Linux/X11" "builds/thrive_linux.x86_64"
+       - run: ./make_release.rb --no-zip --target Linux/X11
    format_script:
      working_directory: ~/Thrive
      docker:
