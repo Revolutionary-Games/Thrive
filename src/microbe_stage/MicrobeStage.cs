@@ -109,12 +109,11 @@ public class MicrobeStage : Node
         CreatePatchManagerIfNeeded();
 
         patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch);
+        HUD.UpdatePatchInfo(GameWorld.Map.CurrentPatch.Name);
         UpdateBackground();
 
         SpawnPlayer();
         Camera.ResetHeight();
-
-        HUD.UpdatePatchInfo(GameWorld.Map.CurrentPatch.Name);
     }
 
     public void StartMusic()
