@@ -99,6 +99,7 @@ public class MicrobeHUD : Node
 
         mouseHoverPanel = GetNode<PanelContainer>(MouseHoverPanelPath);
         pauseButton = GetNode<TextureButton>(PauseButtonPath);
+        resumeButton = GetNode<TextureButton>(ResumeButtonPath);
         atpLabel = GetNode<Label>(AtpLabelPath);
         hpLabel = GetNode<Label>(HpLabelPath);
         menu = GetNode<Control>(MenuPath);
