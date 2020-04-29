@@ -276,7 +276,7 @@ public class MicrobeHUD : Node
 
         var compounds = stage.Clouds.GetAllAvailableAt(stage.Camera.CursorWorldPos);
 
-        StringBuilder builder = new StringBuilder(string.Empty, 250);
+        var builder = new StringBuilder(string.Empty, 250);
 
         if (showMouseCoordinates)
         {
@@ -285,8 +285,6 @@ public class MicrobeHUD : Node
         }
 
         var mousePosLabel = hoveredItems.GetParent().GetNode<Label>("MousePos");
-
-        var simulation = SimulationParameters.Instance;
 
         if (compounds.Count == 0)
         {
@@ -303,36 +301,29 @@ public class MicrobeHUD : Node
             {
                 if (first)
                 {
-                    var type = new Label();
-                    type.RectMinSize = new Vector2(238, 35);
-                    type.Valign = Label.VAlign.Center;
-                    hoveredItems.AddChild(type);
-                    type.Text = "Compounds: ";
+                    var compoundsLabel = new Label();
+                    compoundsLabel.RectMinSize = new Vector2(238, 35);
+                    compoundsLabel.Valign = Label.VAlign.Center;
+                    hoveredItems.AddChild(compoundsLabel);
+                    compoundsLabel.Text = "Compounds: ";
                 }
 
                 first = false;
 
                 var hBox = new HBoxContainer();
-                var image = new TextureRect();
                 var compoundText = new Label();
 
-                hBox.AddChild(image);
-                hBox.AddChild(compoundText);
-                hoveredItems.AddChild(hBox);
+                var readableName = SimulationParameters.Instance.GetCompound(entry.Key).Name;
+                var compoundIcon = GUICommon.Instance.CreateCompoundIcon(readableName, 25, 25);
 
-                var readableName = simulation.GetCompound(entry.Key).Name;
-
-                var src = "res://assets/textures/gui/bevel/";
-                src += readableName.ReplaceN(" ", string.Empty) + ".png";
-
-                image.Texture = GD.Load<Texture>(src);
-                image.Expand = true;
-                image.RectMinSize = new Vector2(25, 25);
-
-                StringBuilder compoundsText = new StringBuilder(readableName, 150);
+                var compoundsText = new StringBuilder(readableName, 150);
                 compoundsText.AppendFormat(": {0:F1}", entry.Value);
 
                 compoundText.Text = compoundsText.ToString();
+
+                hBox.AddChild(compoundIcon);
+                hBox.AddChild(compoundText);
+                hoveredItems.AddChild(hBox);
             }
         }
 

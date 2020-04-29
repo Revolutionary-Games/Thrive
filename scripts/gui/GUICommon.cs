@@ -71,4 +71,21 @@ public class GUICommon : Node
             Tween.TransitionType.Linear, Tween.EaseType.Out);
         tween.Start();
     }
+
+    /// <summary>
+    ///   Creates an icon for the given compound.
+    /// </summary>
+    public TextureRect CreateCompoundIcon(string compoundName, float sizeX = 20.0f, float sizeY = 20.0f)
+    {
+        var element = new TextureRect();
+        element.Expand = true;
+        element.RectMinSize = new Vector2(sizeX, sizeY);
+
+        var icon = GD.Load<Texture>("res://assets/textures/gui/bevel/" + compoundName.ReplaceN(
+            " ", string.Empty) + ".png");
+
+        element.Texture = icon;
+
+        return element;
+    }
 }
