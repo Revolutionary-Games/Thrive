@@ -467,6 +467,7 @@ public class MicrobeHUD : Node
                 GUICommon.Instance.TweenBarValue(bar, atp, capacity);
                 atpLabel.Text = Mathf.Round(atp) + " / " + capacity;
 
+                // Hide the progress bar when the atp is less than 1.5
                 if (bar.Value < 1.5)
                 {
                     bar.TintProgress = new Color(0, 0, 0);
