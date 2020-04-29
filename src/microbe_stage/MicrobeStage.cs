@@ -269,7 +269,6 @@ public class MicrobeStage : Node
 
         HUD.OnEnterStageTransition();
         HUD.HideReproductionDialog();
-        HUD.UpdatePatchInfo(GameWorld.Map.CurrentPatch.Name);
 
         StartMusic();
     }
