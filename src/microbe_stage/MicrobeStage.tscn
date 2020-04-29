@@ -1,10 +1,13 @@
-[gd_scene load_steps=120 format=2]
+[gd_scene load_steps=125 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/textures/gui/bevel/AmmoniaInv.png" type="Texture" id=3]
 [ext_resource path="res://assets/textures/gui/bevel/PhosphateInv.png" type="Texture" id=4]
+[ext_resource path="res://assets/textures/gui/bevel/PhosphatesBW.png" type="Texture" id=5]
+[ext_resource path="res://assets/sounds/soundeffects/microbe-pickup-organelle.ogg" type="AudioStream" id=6]
 [ext_resource path="res://src/microbe_stage/PlayerMicrobeInput.cs" type="Script" id=7]
+[ext_resource path="res://scripts/gui/WinBox.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/microbe_stage/MicrobeHUD.cs" type="Script" id=9]
 [ext_resource path="res://src/microbe_stage/CompoundCloudSystem.cs" type="Script" id=10]
 [ext_resource path="res://assets/textures/gui/menu_theme.tres" type="Theme" id=11]
@@ -66,6 +69,8 @@
 [ext_resource path="res://assets/textures/gui/bevel/CompoundPanelCompress.png" type="Texture" id=67]
 [ext_resource path="res://assets/textures/gui/bevel/environmentPanelCompress.png" type="Texture" id=68]
 [ext_resource path="res://assets/fonts/thrive.ttf" type="DynamicFontData" id=69]
+[ext_resource path="res://scripts/gui/ExtinctionBox.tscn" type="PackedScene" id=70]
+[ext_resource path="res://assets/textures/gui/bevel/AmmoniaBW.png" type="Texture" id=71]
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPausedHover.png" type="Texture" id=78]
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPaused.png" type="Texture" id=79]
 
@@ -877,6 +882,24 @@ script = ExtResource( 9 )
 __meta__ = {
 "_editor_description_": ""
 }
+AnimationPlayerPath = NodePath("AnimationPlayer")
+MouseHoverPanelPath = NodePath("MouseHoverPanel")
+HoveredItemsContainerPath = NodePath("MouseHoverPanel/MarginContainer/VBoxContainer/HoveredItems")
+MenuPath = NodePath("CanvasLayer/PauseMenu")
+PauseButtonPath = NodePath("BottomBar/PauseButtonMargin/Pause")
+ResumeButtonPath = NodePath("BottomBar/PauseButtonMargin/Resume")
+AtpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/ATPValue")
+HpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/HPValue")
+PopulationLabelPath = NodePath("BottomRight/PopulationData/Value")
+PatchLabelPath = NodePath("BottomBar/PatchLabel")
+EditorButtonPath = NodePath("BottomRight/EditorButton")
+ExtinctionBoxScene = ExtResource( 70 )
+WinBoxScene = ExtResource( 8 )
+MicrobePickupOrganelleSound = ExtResource( 6 )
+AmmoniaBW = ExtResource( 71 )
+PhosphatesBW = ExtResource( 5 )
+AmmoniaInv = ExtResource( 3 )
+PhosphatesInv = ExtResource( 4 )
 
 [node name="MouseHoverPanel" type="PanelContainer" parent="MicrobeHUD"]
 anchor_left = 1.0
