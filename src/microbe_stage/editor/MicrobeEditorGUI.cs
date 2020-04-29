@@ -849,20 +849,6 @@ public class MicrobeEditorGUI : Node
         GetTree().Quit();
     }
 
-    private TextureRect CreateCompoundIcon(string compoundName)
-    {
-        var element = new TextureRect();
-        element.Expand = true;
-        element.RectMinSize = new Vector2(20, 20);
-
-        var icon = GD.Load<Texture>("res://assets/textures/gui/bevel/" + compoundName.ReplaceN(
-            " ", string.Empty) + ".png");
-
-        element.Texture = icon;
-
-        return element;
-    }
-
     private void WriteOrganelleProcessList(List<ProcessSpeedInformation> processList,
         VBoxContainer targetElement)
     {
@@ -916,7 +902,7 @@ public class MicrobeEditorGUI : Node
                     var amountLabel = new Label();
                     amountLabel.Text = Math.Round(inputCompound.Amount, 2) + " ";
                     processBody.AddChild(amountLabel);
-                    processBody.AddChild(CreateCompoundIcon(inputCompound.Compound.Name));
+                    processBody.AddChild(GUICommon.Instance.CreateCompoundIcon(inputCompound.Compound.Name));
                 }
 
                 // And the arrow
@@ -946,7 +932,7 @@ public class MicrobeEditorGUI : Node
                 amountLabel.Text = stringBuilder.ToString();
 
                 processBody.AddChild(amountLabel);
-                processBody.AddChild(CreateCompoundIcon(outputCompound.Compound.Name));
+                processBody.AddChild(GUICommon.Instance.CreateCompoundIcon(outputCompound.Compound.Name));
             }
 
             var perSecondLabel = new Label();
@@ -987,7 +973,7 @@ public class MicrobeEditorGUI : Node
                     percentageLabel.Text = Math.Round(environmentCompound.AvailableAmount * 100, 1) + "%";
 
                     processBody.AddChild(percentageLabel);
-                    processBody.AddChild(CreateCompoundIcon(environmentCompound.Compound.Name));
+                    processBody.AddChild(GUICommon.Instance.CreateCompoundIcon(environmentCompound.Compound.Name));
                 }
             }
 
