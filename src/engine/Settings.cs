@@ -44,8 +44,7 @@ public class Settings
     /// <summary>
     ///   This can be freely adjusted to adjust the performance The
     ///   higher this value is the smaller the size of the simulated
-    ///   cloud is and the performance is better. Don't change this to
-    ///   be higher than 1.
+    ///   cloud is and the performance is better.
     /// </summary>
     public int CloudResolution { get; set; } = 2;
 
