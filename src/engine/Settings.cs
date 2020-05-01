@@ -102,7 +102,21 @@ public class Settings
         }
     }
 
+    /// <summary>
+    ///   Applies all the general settings
+    /// </summary>
+    public void ApplyAll()
+    {
+    }
+
     private static Settings LoadSettings()
+    {
+        var settings = LoadSettingsFileOrDefault();
+        settings.ApplyAll();
+        return settings;
+    }
+
+    private static Settings LoadSettingsFileOrDefault()
     {
         using (var file = new File())
         {
