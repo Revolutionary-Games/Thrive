@@ -14,12 +14,15 @@ public class OptionsMenu : Control
     public NodePath PlayIntroPath;
     [Export]
     public NodePath PlayMicrobeIntroPath;
+    [Export]
+    public NodePath CheatsPath;
 
     private Button backButton;
 
     // Misc tab
     private CheckBox playIntro;
     private CheckBox playMicrobeIntro;
+    private CheckBox cheats;
 
     [Signal]
     public delegate void OnOptionsClosed();
@@ -31,6 +34,7 @@ public class OptionsMenu : Control
         // Misc
         playIntro = GetNode<CheckBox>(PlayIntroPath);
         playMicrobeIntro = GetNode<CheckBox>(PlayMicrobeIntroPath);
+        cheats = GetNode<CheckBox>(CheatsPath);
     }
 
     public override void _Process(float delta)
@@ -44,6 +48,7 @@ public class OptionsMenu : Control
     {
         playIntro.Pressed = settings.PlayIntroVideo;
         playMicrobeIntro.Pressed = settings.PlayMicrobeIntroVideo;
+        cheats.Pressed = settings.CheatsEnabled;
     }
 
     private void OnBackPressed()
@@ -70,5 +75,10 @@ public class OptionsMenu : Control
     private void OnMicrobeIntroToggled(bool pressed)
     {
         Settings.Instance.PlayMicrobeIntroVideo = pressed;
+    }
+
+    private void OnCheatsToggled(bool pressed)
+    {
+        Settings.Instance.CheatsEnabled = pressed;
     }
 }

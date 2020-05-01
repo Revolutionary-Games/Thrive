@@ -14,6 +14,7 @@ __meta__ = {
 BackButtonPath = NodePath("Back")
 PlayIntroPath = NodePath("TabContainer/Misc/Intro")
 PlayMicrobeIntroPath = NodePath("TabContainer/Misc/MicrobeIntro")
+CheatsPath = NodePath("TabContainer/Misc/Cheats")
 
 [node name="TabContainer" type="TabContainer" parent="."]
 anchor_right = 1.0
@@ -241,6 +242,6 @@ __meta__ = {
 }
 [connection signal="toggled" from="TabContainer/Misc/Intro" to="." method="OnIntroToggled"]
 [connection signal="toggled" from="TabContainer/Misc/MicrobeIntro" to="." method="OnMicrobeIntroToggled"]
-[connection signal="toggled" from="TabContainer/Misc/Cheats" to="." method="OnMicrobeIntroToggled"]
+[connection signal="toggled" from="TabContainer/Misc/Cheats" to="." method="OnCheatsToggled"]
 [connection signal="pressed" from="Back" to="." method="OnBackPressed"]
 [connection signal="pressed" from="Reset" to="." method="OnBackPressed"]

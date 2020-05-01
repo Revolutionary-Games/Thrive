@@ -26,6 +26,11 @@ public class Settings
     }
 
     /// <summary>
+    ///   When true cheats are enabled
+    /// </summary>
+    public bool CheatsEnabled { get; set; } = false;
+
+    /// <summary>
     ///   When true the main intro is played
     /// </summary>
     public bool PlayIntroVideo { get; set; } = true;
@@ -106,6 +111,14 @@ public class Settings
     /// </summary>
     public void ApplyAll()
     {
+    }
+
+    public void ResetToDefaults()
+    {
+        var defaults = new Settings();
+
+        // TODO: apply the default values
+        throw new NotImplementedException();
     }
 
     private static Settings LoadSettings()
