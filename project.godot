@@ -38,6 +38,10 @@ FilterLoader="*res://src/engine/FilterLoader.cs"
 CursorLoader="*res://src/engine/CursorLoader.cs"
 FPSCounter="*res://src/engine/FPSCounter.tscn"
 
+[debug]
+
+settings/fps/force_fps=400
+
 [display]
 
 window/size/width=1280

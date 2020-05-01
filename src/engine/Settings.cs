@@ -46,6 +46,16 @@ public class Settings
     public float VolumeMusic { get; set; } = 0.0f;
 
     /// <summary>
+    ///   If true tell godot to be in fullscreen mode
+    /// </summary>
+    public bool FullScreen { get; set; } = true;
+
+    /// <summary>
+    ///   If true tell godot to use vsync
+    /// </summary>
+    public bool VSync { get; set; } = true;
+
+    /// <summary>
     ///   When true cheats are enabled
     /// </summary>
     public bool CheatsEnabled { get; set; } = false;
@@ -132,6 +142,7 @@ public class Settings
     public void ApplyAll()
     {
         ApplySoundLevels();
+        ApplyWindowSettings();
     }
 
     /// <summary>
@@ -150,6 +161,15 @@ public class Settings
         AudioServer.SetBusMute(music, VolumeMusicMuted);
     }
 
+    public void ApplyWindowSettings()
+    {
+        OS.WindowFullscreen = FullScreen;
+        OS.VsyncEnabled = VSync;
+    }
+
+    /// <summary>
+    ///   Reset all options to default values
+    /// </summary>
     public void ResetToDefaults()
     {
         var defaults = new Settings();

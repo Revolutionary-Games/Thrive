@@ -11,11 +11,15 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-BackButtonPath = NodePath("Back")
+ResetToDefaultPath = NodePath("Reset")
+VSyncPath = NodePath("TabContainer/Graphics/Vsync")
+FullScreenPath = NodePath("TabContainer/Graphics/Fullscreen")
 MasterVolumePath = NodePath("TabContainer/Sound/HBoxContainer/MasterVolume")
 MasterMutedPath = NodePath("TabContainer/Sound/HBoxContainer/MasterMuted")
 MusicVolumePath = NodePath("TabContainer/Sound/HBoxContainer2/MusicVolume")
 MusicMutedPath = NodePath("TabContainer/Sound/HBoxContainer2/MusicMuted")
+CloudIntervalPath = NodePath("TabContainer/Performance/HBoxContainer/CloudInterval")
+CloudResolutionPath = NodePath("TabContainer/Performance/HBoxContainer2/CloudResolution")
 PlayIntroPath = NodePath("TabContainer/Misc/Intro")
 PlayMicrobeIntroPath = NodePath("TabContainer/Misc/MicrobeIntro")
 CheatsPath = NodePath("TabContainer/Misc/Cheats")
@@ -30,7 +34,6 @@ __meta__ = {
 }
 
 [node name="Graphics" type="VBoxContainer" parent="TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -38,16 +41,16 @@ margin_top = 40.0
 margin_right = -4.0
 margin_bottom = -4.0
 
-[node name="CheckBox" type="CheckBox" parent="TabContainer/Graphics"]
+[node name="Vsync" type="CheckBox" parent="TabContainer/Graphics"]
 margin_right = 1270.0
 margin_bottom = 24.0
 text = "V-sync"
 
-[node name="CheckBox2" type="CheckBox" parent="TabContainer/Graphics"]
+[node name="Fullscreen" type="CheckBox" parent="TabContainer/Graphics"]
 margin_top = 28.0
 margin_right = 1270.0
 margin_bottom = 52.0
-text = "Fullscreen"
+text = "FullScreen"
 
 [node name="HSeparator" type="HSeparator" parent="TabContainer/Graphics"]
 self_modulate = Color( 1, 1, 1, 0 )
@@ -59,9 +62,16 @@ margin_bottom = 60.0
 margin_top = 64.0
 margin_right = 1270.0
 margin_bottom = 86.0
-text = "Resolution"
+text = "Resolution: auto"
+
+[node name="Label2" type="Label" parent="TabContainer/Graphics"]
+margin_top = 90.0
+margin_right = 1270.0
+margin_bottom = 112.0
+text = "Max FPS: 400"
 
 [node name="Sound" type="VBoxContainer" parent="TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -148,7 +158,7 @@ margin_right = 714.0
 margin_bottom = 23.0
 text = "Cloud Simulation Minimum Interval (higher values improves performance):"
 
-[node name="OptionButton" type="OptionButton" parent="TabContainer/Performance/HBoxContainer"]
+[node name="CloudInterval" type="OptionButton" parent="TabContainer/Performance/HBoxContainer"]
 margin_left = 718.0
 margin_right = 918.0
 margin_bottom = 24.0
@@ -167,13 +177,16 @@ size_flags_horizontal = 3
 margin_top = 1.0
 margin_right = 573.0
 margin_bottom = 23.0
+hint_tooltip = "This value only applies to new games started after changing this option"
+mouse_filter = 0
 text = "Cloud Resolution Divisor (higher gives more performance): "
 
-[node name="OptionButton" type="OptionButton" parent="TabContainer/Performance/HBoxContainer2"]
+[node name="CloudResolution" type="OptionButton" parent="TabContainer/Performance/HBoxContainer2"]
 margin_left = 577.0
 margin_right = 777.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 200, 0 )
+disabled = true
 text = "2"
 items = [ "1", null, false, 0, null, "2", null, false, 1, null, "4", null, false, 2, null ]
 selected = 1
@@ -244,10 +257,14 @@ text = "Reset ALL to Default Settings"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="toggled" from="TabContainer/Graphics/Vsync" to="." method="OnVSyncToggled"]
+[connection signal="toggled" from="TabContainer/Graphics/Fullscreen" to="." method="OnFullScreenToggled"]
 [connection signal="value_changed" from="TabContainer/Sound/HBoxContainer/MasterVolume" to="." method="OnMasterVolumeChanged"]
 [connection signal="toggled" from="TabContainer/Sound/HBoxContainer/MasterMuted" to="." method="OnMasterMutedToggled"]
 [connection signal="value_changed" from="TabContainer/Sound/HBoxContainer2/MusicVolume" to="." method="OnMusicVolumeChanged"]
 [connection signal="toggled" from="TabContainer/Sound/HBoxContainer2/MusicMuted" to="." method="OnMusicMutedToggled"]
+[connection signal="item_selected" from="TabContainer/Performance/HBoxContainer/CloudInterval" to="." method="OnCloudIntervalSelected"]
+[connection signal="item_selected" from="TabContainer/Performance/HBoxContainer2/CloudResolution" to="." method="OnCloudResolutionSelected"]
 [connection signal="toggled" from="TabContainer/Misc/Intro" to="." method="OnIntroToggled"]
 [connection signal="toggled" from="TabContainer/Misc/MicrobeIntro" to="." method="OnMicrobeIntroToggled"]
 [connection signal="toggled" from="TabContainer/Misc/Cheats" to="." method="OnCheatsToggled"]
