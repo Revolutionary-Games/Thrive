@@ -26,6 +26,26 @@ public class Settings
     }
 
     /// <summary>
+    ///   If true all sounds are muted
+    /// </summary>
+    public bool VolumeMasterMuted { get; set; } = false;
+
+    /// <summary>
+    ///   The Db value to be added to the master audio bus
+    /// </summary>
+    public float VolumeMaster { get; set; } = 0.0f;
+
+    /// <summary>
+    ///   If true music is muted
+    /// </summary>
+    public bool VolumeMusicMuted { get; set; } = false;
+
+    /// <summary>
+    ///   The Db value to be added to the music audio bus
+    /// </summary>
+    public float VolumeMusic { get; set; } = 0.0f;
+
+    /// <summary>
     ///   When true cheats are enabled
     /// </summary>
     public bool CheatsEnabled { get; set; } = false;
@@ -111,6 +131,23 @@ public class Settings
     /// </summary>
     public void ApplyAll()
     {
+        ApplySoundLevels();
+    }
+
+    /// <summary>
+    ///   Applies the sound volume and mute settings on the audio bus
+    /// </summary>
+    public void ApplySoundLevels()
+    {
+        var master = AudioServer.GetBusIndex("Master");
+
+        AudioServer.SetBusVolumeDb(master, VolumeMaster);
+        AudioServer.SetBusMute(master, VolumeMasterMuted);
+
+        var music = AudioServer.GetBusIndex("Music");
+
+        AudioServer.SetBusVolumeDb(music, VolumeMusic);
+        AudioServer.SetBusMute(music, VolumeMusicMuted);
     }
 
     public void ResetToDefaults()

@@ -12,6 +12,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 BackButtonPath = NodePath("Back")
+MasterVolumePath = NodePath("TabContainer/Sound/HBoxContainer/MasterVolume")
+MasterMutedPath = NodePath("TabContainer/Sound/HBoxContainer/MasterMuted")
+MusicVolumePath = NodePath("TabContainer/Sound/HBoxContainer2/MusicVolume")
+MusicMutedPath = NodePath("TabContainer/Sound/HBoxContainer2/MusicMuted")
 PlayIntroPath = NodePath("TabContainer/Misc/Intro")
 PlayMicrobeIntroPath = NodePath("TabContainer/Misc/MicrobeIntro")
 CheatsPath = NodePath("TabContainer/Misc/Cheats")
@@ -26,6 +30,7 @@ __meta__ = {
 }
 
 [node name="Graphics" type="VBoxContainer" parent="TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -57,7 +62,6 @@ margin_bottom = 86.0
 text = "Resolution"
 
 [node name="Sound" type="VBoxContainer" parent="TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -76,13 +80,13 @@ margin_top = 26.0
 margin_right = 1270.0
 margin_bottom = 50.0
 
-[node name="HSlider" type="HSlider" parent="TabContainer/Sound/HBoxContainer"]
+[node name="MasterVolume" type="HSlider" parent="TabContainer/Sound/HBoxContainer"]
 margin_right = 1197.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 value = 100.0
 
-[node name="CheckBox" type="CheckBox" parent="TabContainer/Sound/HBoxContainer"]
+[node name="MasterMuted" type="CheckBox" parent="TabContainer/Sound/HBoxContainer"]
 margin_left = 1201.0
 margin_right = 1270.0
 margin_bottom = 24.0
@@ -95,24 +99,24 @@ margin_right = 1270.0
 margin_bottom = 58.0
 
 [node name="Label2" type="Label" parent="TabContainer/Sound"]
-margin_top = 54.0
+margin_top = 62.0
 margin_right = 1270.0
-margin_bottom = 76.0
+margin_bottom = 84.0
 text = "Music volume"
 align = 1
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Sound"]
-margin_top = 80.0
+margin_top = 88.0
 margin_right = 1270.0
-margin_bottom = 104.0
+margin_bottom = 112.0
 
-[node name="HSlider" type="HSlider" parent="TabContainer/Sound/HBoxContainer2"]
+[node name="MusicVolume" type="HSlider" parent="TabContainer/Sound/HBoxContainer2"]
 margin_right = 1197.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 value = 80.0
 
-[node name="CheckBox" type="CheckBox" parent="TabContainer/Sound/HBoxContainer2"]
+[node name="MusicMuted" type="CheckBox" parent="TabContainer/Sound/HBoxContainer2"]
 margin_left = 1201.0
 margin_right = 1270.0
 margin_bottom = 24.0
@@ -240,6 +244,10 @@ text = "Reset ALL to Default Settings"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="value_changed" from="TabContainer/Sound/HBoxContainer/MasterVolume" to="." method="OnMasterVolumeChanged"]
+[connection signal="toggled" from="TabContainer/Sound/HBoxContainer/MasterMuted" to="." method="OnMasterMutedToggled"]
+[connection signal="value_changed" from="TabContainer/Sound/HBoxContainer2/MusicVolume" to="." method="OnMusicVolumeChanged"]
+[connection signal="toggled" from="TabContainer/Sound/HBoxContainer2/MusicMuted" to="." method="OnMusicMutedToggled"]
 [connection signal="toggled" from="TabContainer/Misc/Intro" to="." method="OnIntroToggled"]
 [connection signal="toggled" from="TabContainer/Misc/MicrobeIntro" to="." method="OnMicrobeIntroToggled"]
 [connection signal="toggled" from="TabContainer/Misc/Cheats" to="." method="OnCheatsToggled"]

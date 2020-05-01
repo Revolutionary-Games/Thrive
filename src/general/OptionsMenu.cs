@@ -9,6 +9,16 @@ public class OptionsMenu : Control
     [Export]
     public NodePath BackButtonPath;
 
+    // Sound tab
+    [Export]
+    public NodePath MasterVolumePath;
+    [Export]
+    public NodePath MasterMutedPath;
+    [Export]
+    public NodePath MusicVolumePath;
+    [Export]
+    public NodePath MusicMutedPath;
+
     // Misc tab
     [Export]
     public NodePath PlayIntroPath;
@@ -17,7 +27,15 @@ public class OptionsMenu : Control
     [Export]
     public NodePath CheatsPath;
 
+    private const float AUDIO_BAR_SCALE = 6.0f;
+
     private Button backButton;
+
+    // Sound tab
+    private Slider masterVolume;
+    private CheckBox masterMuted;
+    private Slider musicVolume;
+    private CheckBox musicMuted;
 
     // Misc tab
     private CheckBox playIntro;
@@ -27,9 +45,23 @@ public class OptionsMenu : Control
     [Signal]
     public delegate void OnOptionsClosed();
 
+    /// <summary>
+    ///   Returns the place to save the new settings values
+    /// </summary>
+    public Settings Settings
+    {
+        get => Settings.Instance;
+    }
+
     public override void _Ready()
     {
         backButton = GetNode<Button>(BackButtonPath);
+
+        // Sound
+        masterVolume = GetNode<Slider>(MasterVolumePath);
+        masterMuted = GetNode<CheckBox>(MasterMutedPath);
+        musicVolume = GetNode<Slider>(MusicVolumePath);
+        musicMuted = GetNode<CheckBox>(MusicMutedPath);
 
         // Misc
         playIntro = GetNode<CheckBox>(PlayIntroPath);
@@ -46,19 +78,43 @@ public class OptionsMenu : Control
     /// </summary>
     public void SetSettingsFrom(Settings settings)
     {
+        // Sound
+        masterVolume.Value = ConvertDBToSoundBar(settings.VolumeMaster);
+        masterMuted.Pressed = settings.VolumeMasterMuted;
+        musicVolume.Value = ConvertDBToSoundBar(settings.VolumeMusic);
+        musicMuted.Pressed = settings.VolumeMusicMuted;
+
+        // Misc
         playIntro.Pressed = settings.PlayIntroVideo;
         playMicrobeIntro.Pressed = settings.PlayMicrobeIntroVideo;
         cheats.Pressed = settings.CheatsEnabled;
     }
+
+    /// <summary>
+    ///   Converts the slider value (0-100) to a DB adjustement for a sound channel
+    /// </summary>
+    private float ConvertSoundBarToDb(float value)
+    {
+        return (value - 100) / AUDIO_BAR_SCALE;
+    }
+
+    private float ConvertDBToSoundBar(float value)
+    {
+        return (value * AUDIO_BAR_SCALE) + 100;
+    }
+
+    /*
+      GUI callbacks
+    */
 
     private void OnBackPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
         // TODO: ask for saving the settings
-        Settings.Instance.ApplyAll();
+        Settings.ApplyAll();
 
-        if (!Settings.Instance.Save())
+        if (!Settings.Save())
         {
             // TODO: show an error popup
             GD.PrintErr("Couldn't save the settings");
@@ -69,16 +125,40 @@ public class OptionsMenu : Control
 
     private void OnIntroToggled(bool pressed)
     {
-        Settings.Instance.PlayIntroVideo = pressed;
+        Settings.PlayIntroVideo = pressed;
     }
 
     private void OnMicrobeIntroToggled(bool pressed)
     {
-        Settings.Instance.PlayMicrobeIntroVideo = pressed;
+        Settings.PlayMicrobeIntroVideo = pressed;
     }
 
     private void OnCheatsToggled(bool pressed)
     {
-        Settings.Instance.CheatsEnabled = pressed;
+        Settings.CheatsEnabled = pressed;
+    }
+
+    private void OnMasterMutedToggled(bool pressed)
+    {
+        Settings.VolumeMasterMuted = pressed;
+        Settings.ApplySoundLevels();
+    }
+
+    private void OnMusicMutedToggled(bool pressed)
+    {
+        Settings.VolumeMusicMuted = pressed;
+        Settings.ApplySoundLevels();
+    }
+
+    private void OnMasterVolumeChanged(float value)
+    {
+        Settings.VolumeMaster = ConvertSoundBarToDb(value);
+        Settings.ApplySoundLevels();
+    }
+
+    private void OnMusicVolumeChanged(float value)
+    {
+        Settings.VolumeMusic = ConvertSoundBarToDb(value);
+        Settings.ApplySoundLevels();
     }
 }
