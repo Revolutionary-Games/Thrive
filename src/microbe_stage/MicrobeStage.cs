@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -41,6 +42,7 @@ public class MicrobeStage : Node
     public TimedLifeSystem TimedLifeSystem { get; private set; }
 
     public ProcessSystem ProcessSystem { get; private set; }
+    public List<Compound> CompoundArray { get; private set; }
 
     /// <summary>
     ///   The main current game object holding various details
@@ -78,6 +80,8 @@ public class MicrobeStage : Node
 
         // Do stage setup to spawn things and setup all parts of the stage
         SetupStage();
+        GenerateCompoundsArray();
+        HUD.UpdateNeededBars();
     }
 
     // Prepares the stage for playing
@@ -182,6 +186,7 @@ public class MicrobeStage : Node
         FluidSystem.Process(delta);
         TimedLifeSystem.Process(delta);
         ProcessSystem.Process(delta);
+        HUD.UpdateNeededBars();
         microbeAISystem.Process(delta);
 
         if (gameOver)
@@ -277,6 +282,39 @@ public class MicrobeStage : Node
         HUD.HideReproductionDialog();
 
         StartMusic();
+    }
+
+    public void GenerateCompoundsArray()
+    {
+        CompoundArray = new List<Compound>();
+        foreach (ProgressBar bar in HUD.BarPanels.GetChildren())
+        {
+            string text = bar.GetNode<Label>("Label").Text;
+            Compound compound;
+
+            switch (text)
+            {
+                case "Glucose":
+                    compound = SimulationParameters.Instance.GetCompound("glucose");
+                    break;
+                case "Ammonia":
+                    compound = SimulationParameters.Instance.GetCompound("ammonia");
+                    break;
+                case "Phosphate":
+                    compound = SimulationParameters.Instance.GetCompound("phosphates");
+                    break;
+                case "Hydrogen Sulfide":
+                    compound = SimulationParameters.Instance.GetCompound("hydrogensulfide");
+                    break;
+                case "Iron":
+                    compound = SimulationParameters.Instance.GetCompound("iron");
+                    break;
+                default:
+                    throw new NotImplementedException("Compound not implemented");
+            }
+
+            CompoundArray.Add(compound);
+        }
     }
 
     private void CreatePatchManagerIfNeeded()
