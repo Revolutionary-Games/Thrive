@@ -287,12 +287,11 @@ public class MicrobeStage : Node
     public void GenerateCompoundsArray()
     {
         CompoundArray = new List<Compound>();
-        foreach (ProgressBar bar in HUD.BarPanels.GetChildren())
+        foreach (HBoxContainer bar in HUD.CompoundsPanelBarContainer.GetChildren())
         {
-            string text = bar.GetNode<Label>("Label").Text;
             Compound compound;
 
-            switch (text)
+            switch (bar.Name)
             {
                 case "Glucose":
                     compound = SimulationParameters.Instance.GetCompound("glucose");
@@ -303,7 +302,7 @@ public class MicrobeStage : Node
                 case "Phosphate":
                     compound = SimulationParameters.Instance.GetCompound("phosphates");
                     break;
-                case "Hydrogen Sulfide":
+                case "HydrogenSulfide":
                     compound = SimulationParameters.Instance.GetCompound("hydrogensulfide");
                     break;
                 case "Iron":
