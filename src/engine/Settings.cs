@@ -26,6 +26,41 @@ public class Settings
     }
 
     /// <summary>
+    ///   If true all sounds are muted
+    /// </summary>
+    public bool VolumeMasterMuted { get; set; } = false;
+
+    /// <summary>
+    ///   The Db value to be added to the master audio bus
+    /// </summary>
+    public float VolumeMaster { get; set; } = 0.0f;
+
+    /// <summary>
+    ///   If true music is muted
+    /// </summary>
+    public bool VolumeMusicMuted { get; set; } = false;
+
+    /// <summary>
+    ///   The Db value to be added to the music audio bus
+    /// </summary>
+    public float VolumeMusic { get; set; } = 0.0f;
+
+    /// <summary>
+    ///   If true tell godot to be in fullscreen mode
+    /// </summary>
+    public bool FullScreen { get; set; } = true;
+
+    /// <summary>
+    ///   If true tell godot to use vsync
+    /// </summary>
+    public bool VSync { get; set; } = true;
+
+    /// <summary>
+    ///   When true cheats are enabled
+    /// </summary>
+    public bool CheatsEnabled { get; set; } = false;
+
+    /// <summary>
     ///   When true the main intro is played
     /// </summary>
     public bool PlayIntroVideo { get; set; } = true;
@@ -44,8 +79,7 @@ public class Settings
     /// <summary>
     ///   This can be freely adjusted to adjust the performance The
     ///   higher this value is the smaller the size of the simulated
-    ///   cloud is and the performance is better. Don't change this to
-    ///   be higher than 1.
+    ///   cloud is and the performance is better.
     /// </summary>
     public int CloudResolution { get; set; } = 2;
 
@@ -102,7 +136,56 @@ public class Settings
         }
     }
 
+    /// <summary>
+    ///   Applies all the general settings
+    /// </summary>
+    public void ApplyAll()
+    {
+        ApplySoundLevels();
+        ApplyWindowSettings();
+    }
+
+    /// <summary>
+    ///   Applies the sound volume and mute settings on the audio bus
+    /// </summary>
+    public void ApplySoundLevels()
+    {
+        var master = AudioServer.GetBusIndex("Master");
+
+        AudioServer.SetBusVolumeDb(master, VolumeMaster);
+        AudioServer.SetBusMute(master, VolumeMasterMuted);
+
+        var music = AudioServer.GetBusIndex("Music");
+
+        AudioServer.SetBusVolumeDb(music, VolumeMusic);
+        AudioServer.SetBusMute(music, VolumeMusicMuted);
+    }
+
+    public void ApplyWindowSettings()
+    {
+        OS.WindowFullscreen = FullScreen;
+        OS.VsyncEnabled = VSync;
+    }
+
+    /// <summary>
+    ///   Reset all options to default values
+    /// </summary>
+    public void ResetToDefaults()
+    {
+        var defaults = new Settings();
+
+        // TODO: apply the default values
+        throw new NotImplementedException();
+    }
+
     private static Settings LoadSettings()
+    {
+        var settings = LoadSettingsFileOrDefault();
+        settings.ApplyAll();
+        return settings;
+    }
+
+    private static Settings LoadSettingsFileOrDefault()
     {
         using (var file = new File())
         {
