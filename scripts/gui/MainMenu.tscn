@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/gui/MainMenu.cs" type="Script" id=1]
 [ext_resource path="res://assets/textures/gui/menu_theme.tres" type="Theme" id=2]
 [ext_resource path="res://assets/textures/gui/logo.png" type="Texture" id=3]
+[ext_resource path="res://src/general/OptionsMenu.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scripts/gui/VersionNumber.cs" type="Script" id=5]
 
 [node name="MainMenu" type="Node"]
@@ -112,8 +113,8 @@ margin_top = 100.0
 margin_right = 250.0
 margin_bottom = 140.0
 rect_min_size = Vector2( 250, 40 )
+focus_mode = 0
 mouse_filter = 1
-disabled = true
 enabled_focus_mode = 0
 text = "Options"
 
@@ -219,6 +220,9 @@ mouse_filter = 1
 enabled_focus_mode = 0
 text = "Back"
 
+[node name="OptionsMenu" parent="." instance=ExtResource( 4 )]
+visible = false
+
 [node name="MenuTween" type="Tween" parent="."]
 __meta__ = {
 "_editor_description_": "For the menu animations and interpolations"
@@ -247,7 +251,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 [connection signal="pressed" from="MenuContainers/MenuCenterContainer/MenuItems/MainMenu/NewGame" to="." method="NewGamePressed"]
+[connection signal="pressed" from="MenuContainers/MenuCenterContainer/MenuItems/MainMenu/Options" to="." method="OptionsPressed"]
 [connection signal="pressed" from="MenuContainers/MenuCenterContainer/MenuItems/MainMenu/Tools" to="." method="ToolsPressed"]
 [connection signal="pressed" from="MenuContainers/MenuCenterContainer/MenuItems/MainMenu/Quit" to="." method="QuitPressed"]
 [connection signal="pressed" from="MenuContainers/MenuCenterContainer/MenuItems/Tools/Freebuild Editor" to="." method="FreebuildEditorPressed"]
 [connection signal="pressed" from="MenuContainers/MenuCenterContainer/MenuItems/Tools/Back" to="." method="BackFromToolsPressed"]
+[connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="OnReturnFromOptions"]

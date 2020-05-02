@@ -1,0 +1,272 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/textures/gui/menu_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/general/OptionsMenu.cs" type="Script" id=2]
+
+[node name="OptionsMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+ResetToDefaultPath = NodePath("Reset")
+VSyncPath = NodePath("TabContainer/Graphics/Vsync")
+FullScreenPath = NodePath("TabContainer/Graphics/Fullscreen")
+MasterVolumePath = NodePath("TabContainer/Sound/HBoxContainer/MasterVolume")
+MasterMutedPath = NodePath("TabContainer/Sound/HBoxContainer/MasterMuted")
+MusicVolumePath = NodePath("TabContainer/Sound/HBoxContainer2/MusicVolume")
+MusicMutedPath = NodePath("TabContainer/Sound/HBoxContainer2/MusicMuted")
+CloudIntervalPath = NodePath("TabContainer/Performance/HBoxContainer/CloudInterval")
+CloudResolutionPath = NodePath("TabContainer/Performance/HBoxContainer2/CloudResolution")
+PlayIntroPath = NodePath("TabContainer/Misc/Intro")
+PlayMicrobeIntroPath = NodePath("TabContainer/Misc/MicrobeIntro")
+CheatsPath = NodePath("TabContainer/Misc/Cheats")
+
+[node name="TabContainer" type="TabContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -2.0
+margin_bottom = -60.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Graphics" type="VBoxContainer" parent="TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 40.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Vsync" type="CheckBox" parent="TabContainer/Graphics"]
+margin_right = 1270.0
+margin_bottom = 24.0
+text = "V-sync"
+
+[node name="Fullscreen" type="CheckBox" parent="TabContainer/Graphics"]
+margin_top = 28.0
+margin_right = 1270.0
+margin_bottom = 52.0
+text = "FullScreen"
+
+[node name="HSeparator" type="HSeparator" parent="TabContainer/Graphics"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_top = 56.0
+margin_right = 1270.0
+margin_bottom = 60.0
+
+[node name="Label" type="Label" parent="TabContainer/Graphics"]
+margin_top = 64.0
+margin_right = 1270.0
+margin_bottom = 86.0
+text = "Resolution: auto"
+
+[node name="Label2" type="Label" parent="TabContainer/Graphics"]
+margin_top = 90.0
+margin_right = 1270.0
+margin_bottom = 112.0
+text = "Max FPS: 400"
+
+[node name="Sound" type="VBoxContainer" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 40.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Label" type="Label" parent="TabContainer/Sound"]
+margin_right = 1270.0
+margin_bottom = 22.0
+text = "Master volume"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Sound"]
+margin_top = 26.0
+margin_right = 1270.0
+margin_bottom = 50.0
+
+[node name="MasterVolume" type="HSlider" parent="TabContainer/Sound/HBoxContainer"]
+margin_right = 1197.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+value = 100.0
+
+[node name="MasterMuted" type="CheckBox" parent="TabContainer/Sound/HBoxContainer"]
+margin_left = 1201.0
+margin_right = 1270.0
+margin_bottom = 24.0
+text = "Mute"
+
+[node name="HSeparator" type="HSeparator" parent="TabContainer/Sound"]
+self_modulate = Color( 1, 1, 1, 0 )
+margin_top = 54.0
+margin_right = 1270.0
+margin_bottom = 58.0
+
+[node name="Label2" type="Label" parent="TabContainer/Sound"]
+margin_top = 62.0
+margin_right = 1270.0
+margin_bottom = 84.0
+text = "Music volume"
+align = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Sound"]
+margin_top = 88.0
+margin_right = 1270.0
+margin_bottom = 112.0
+
+[node name="MusicVolume" type="HSlider" parent="TabContainer/Sound/HBoxContainer2"]
+margin_right = 1197.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+value = 80.0
+
+[node name="MusicMuted" type="CheckBox" parent="TabContainer/Sound/HBoxContainer2"]
+margin_left = 1201.0
+margin_right = 1270.0
+margin_bottom = 24.0
+text = "Mute"
+
+[node name="Performance" type="VBoxContainer" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 40.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Label" type="Label" parent="TabContainer/Performance"]
+margin_right = 1270.0
+margin_bottom = 22.0
+text = "Compound clouds"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Performance"]
+margin_top = 26.0
+margin_right = 1270.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="TabContainer/Performance/HBoxContainer"]
+margin_top = 1.0
+margin_right = 714.0
+margin_bottom = 23.0
+text = "Cloud Simulation Minimum Interval (higher values improves performance):"
+
+[node name="CloudInterval" type="OptionButton" parent="TabContainer/Performance/HBoxContainer"]
+margin_left = 718.0
+margin_right = 918.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 200, 0 )
+text = "40ms"
+items = [ "0ms", null, false, 0, null, "20ms", null, false, 1, null, "40ms", null, false, 2, null, "100ms", null, false, 3, null, "250ms", null, false, 4, null ]
+selected = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Performance"]
+margin_top = 54.0
+margin_right = 1270.0
+margin_bottom = 78.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="TabContainer/Performance/HBoxContainer2"]
+margin_top = 1.0
+margin_right = 573.0
+margin_bottom = 23.0
+hint_tooltip = "This value only applies to new games started after changing this option"
+mouse_filter = 0
+text = "Cloud Resolution Divisor (higher gives more performance): "
+
+[node name="CloudResolution" type="OptionButton" parent="TabContainer/Performance/HBoxContainer2"]
+margin_left = 577.0
+margin_right = 777.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 200, 0 )
+disabled = true
+text = "2"
+items = [ "1", null, false, 0, null, "2", null, false, 1, null, "4", null, false, 2, null ]
+selected = 1
+
+[node name="HSeparator" type="HSeparator" parent="TabContainer/Performance"]
+margin_top = 82.0
+margin_right = 1270.0
+margin_bottom = 86.0
+
+[node name="Misc" type="VBoxContainer" parent="TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 40.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Intro" type="CheckBox" parent="TabContainer/Misc"]
+margin_right = 1270.0
+margin_bottom = 24.0
+text = "Play intro video"
+
+[node name="MicrobeIntro" type="CheckBox" parent="TabContainer/Misc"]
+margin_top = 28.0
+margin_right = 1270.0
+margin_bottom = 52.0
+text = "Play Microbe Intro on New Game"
+
+[node name="HSeparator" type="HSeparator" parent="TabContainer/Misc"]
+margin_top = 56.0
+margin_right = 1270.0
+margin_bottom = 60.0
+
+[node name="Cheats" type="CheckBox" parent="TabContainer/Misc"]
+margin_top = 64.0
+margin_right = 1270.0
+margin_bottom = 88.0
+text = "Cheat keys enabled"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back" type="Button" parent="."]
+anchor_top = 0.919
+anchor_right = 0.239
+anchor_bottom = 1.0
+margin_left = 11.0
+margin_top = 21.32
+margin_right = -231.92
+margin_bottom = -7.0
+text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Reset" type="Button" parent="."]
+anchor_left = 0.063
+anchor_top = 0.92
+anchor_right = 0.633
+anchor_bottom = 1.0
+margin_left = 48.36
+margin_top = 20.6
+margin_right = -374.24
+margin_bottom = -7.0
+disabled = true
+text = "Reset ALL to Default Settings"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="toggled" from="TabContainer/Graphics/Vsync" to="." method="OnVSyncToggled"]
+[connection signal="toggled" from="TabContainer/Graphics/Fullscreen" to="." method="OnFullScreenToggled"]
+[connection signal="value_changed" from="TabContainer/Sound/HBoxContainer/MasterVolume" to="." method="OnMasterVolumeChanged"]
+[connection signal="toggled" from="TabContainer/Sound/HBoxContainer/MasterMuted" to="." method="OnMasterMutedToggled"]
+[connection signal="value_changed" from="TabContainer/Sound/HBoxContainer2/MusicVolume" to="." method="OnMusicVolumeChanged"]
+[connection signal="toggled" from="TabContainer/Sound/HBoxContainer2/MusicMuted" to="." method="OnMusicMutedToggled"]
+[connection signal="item_selected" from="TabContainer/Performance/HBoxContainer/CloudInterval" to="." method="OnCloudIntervalSelected"]
+[connection signal="item_selected" from="TabContainer/Performance/HBoxContainer2/CloudResolution" to="." method="OnCloudResolutionSelected"]
+[connection signal="toggled" from="TabContainer/Misc/Intro" to="." method="OnIntroToggled"]
+[connection signal="toggled" from="TabContainer/Misc/MicrobeIntro" to="." method="OnMicrobeIntroToggled"]
+[connection signal="toggled" from="TabContainer/Misc/Cheats" to="." method="OnCheatsToggled"]
+[connection signal="pressed" from="Back" to="." method="OnBackPressed"]
+[connection signal="pressed" from="Reset" to="." method="OnBackPressed"]

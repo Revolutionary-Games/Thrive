@@ -15,13 +15,22 @@ public class MainMenu : Node
     public Godot.Collections.Array MenuArray;
     public TextureRect Background;
 
+    private OptionsMenu options;
+
     public override void _Ready()
     {
-        // Start intro video
-        TransitionManager.Instance.AddCutscene("res://assets/videos/intro.webm");
-        TransitionManager.Instance.StartTransitions(this, nameof(OnIntroEnded));
-
         RunMenuSetup();
+
+        // Start intro video
+        if (Settings.Instance.PlayIntroVideo)
+        {
+            TransitionManager.Instance.AddCutscene("res://assets/videos/intro.webm");
+            TransitionManager.Instance.StartTransitions(this, nameof(OnIntroEnded));
+        }
+        else
+        {
+            OnIntroEnded();
+        }
     }
 
     public void StartMusic()
@@ -50,6 +59,11 @@ public class MainMenu : Node
         }
 
         RandomizeBackground();
+
+        options = GetNode<OptionsMenu>("OptionsMenu");
+
+        // Load settings
+        options.SetSettingsFrom(Settings.Instance);
 
         // Set initial menu to the current menu index
         SetCurrentMenu(CurrentMenuIndex, false);
@@ -98,10 +112,15 @@ public class MainMenu : Node
         // Using tween for value interpolation
         var tween = GetNode<Tween>("MenuTween");
 
-        if (index > MenuArray.Count - 1)
+        // Allow disabling all the menus for going to the options menu
+        if (index > MenuArray.Count - 1 && index != uint.MaxValue)
         {
             GD.PrintErr("Selected menu index is out of range!");
             return;
+        }
+        else
+        {
+            CurrentMenuIndex = index;
         }
 
         // Hide all menu and only show the one
@@ -124,8 +143,6 @@ public class MainMenu : Node
                 }
             }
         }
-
-        CurrentMenuIndex = index;
     }
 
     private void OnIntroEnded()
@@ -168,8 +185,17 @@ public class MainMenu : Node
         // before the stage music starts)
         Jukebox.Instance.Stop();
 
-        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.5f);
-        TransitionManager.Instance.AddCutscene("res://assets/videos/microbe_intro2.webm");
+        if (Settings.Instance.PlayMicrobeIntroVideo)
+        {
+            TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.5f);
+            TransitionManager.Instance.AddCutscene("res://assets/videos/microbe_intro2.webm");
+        }
+        else
+        {
+            // People who disable the cutscene are impatient anyway so use a reduced fade time
+            TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.2f);
+        }
+
         TransitionManager.Instance.StartTransitions(this, nameof(OnMicrobeIntroEnded));
     }
 
@@ -197,5 +223,24 @@ public class MainMenu : Node
     {
         GUICommon.Instance.PlayButtonPressSound();
         GetTree().Quit();
+    }
+
+    private void OptionsPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        // Hide all the other menus
+        SetCurrentMenu(uint.MaxValue);
+
+        // Show the options
+        options.Visible = true;
+    }
+
+    private void OnReturnFromOptions()
+    {
+        options.Visible = false;
+
+        // Hide all the other menus
+        SetCurrentMenu(0);
     }
 }
