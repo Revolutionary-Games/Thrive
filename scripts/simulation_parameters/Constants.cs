@@ -48,7 +48,7 @@ public class Constants
 
     public const float FLAGELLA_ENERGY_COST = 7.1f;
 
-    public const float FLAGELLA_BASE_FORCE = 40.7f;
+    public const float FLAGELLA_BASE_FORCE = 75.7f;
 
     /// <summary>
     ///   Used for energy balance calculations
