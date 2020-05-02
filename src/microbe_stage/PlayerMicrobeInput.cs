@@ -28,6 +28,8 @@ public class PlayerMicrobeInput : Node
 
     public override void _Input(InputEvent @event)
     {
+        var settings = Settings.Instance;
+
         if (@event.IsActionPressed("g_move_forward"))
         {
             forward = true;
@@ -64,12 +66,12 @@ public class PlayerMicrobeInput : Node
             right = false;
         }
 
-        if (@event.IsActionPressed("g_cheat_editor"))
+        if (settings.CheatsEnabled && @event.IsActionPressed("g_cheat_editor"))
         {
             stage.HUD.ShowReproductionDialog();
         }
 
-        if (@event.IsActionPressed("g_cheat_glucose"))
+        if (settings.CheatsEnabled && @event.IsActionPressed("g_cheat_glucose"))
         {
             cheatGlucose = true;
         }
@@ -78,7 +80,7 @@ public class PlayerMicrobeInput : Node
             cheatGlucose = false;
         }
 
-        if (@event.IsActionPressed("g_cheat_ammonia"))
+        if (settings.CheatsEnabled && @event.IsActionPressed("g_cheat_ammonia"))
         {
             cheatAmmonia = true;
         }
@@ -87,7 +89,7 @@ public class PlayerMicrobeInput : Node
             cheatAmmonia = false;
         }
 
-        if (@event.IsActionPressed("g_cheat_phosphates"))
+        if (settings.CheatsEnabled && @event.IsActionPressed("g_cheat_phosphates"))
         {
             cheatPhosphates = true;
         }
