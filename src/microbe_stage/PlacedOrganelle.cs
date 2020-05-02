@@ -44,6 +44,11 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     public Spatial OrganelleGraphics { get; private set; }
 
     /// <summary>
+    ///   Animation player this organelle has or null
+    /// </summary>
+    public AnimationPlayer OrganelleAnimation { get; private set; }
+
+    /// <summary>
     ///   The tint colour of this organelle.
     /// </summary>
     public Color Colour
@@ -196,7 +201,25 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
             OrganelleGraphics.Transform = transform;
 
             // Store the material of the organelle to be updated
-            organelleMaterial = (ShaderMaterial)((GeometryInstance)organelleSceneInstance).MaterialOverride;
+            GeometryInstance geometry;
+
+            // Fetch the actual model from the scene to get at the material we set the tint on
+            if (string.IsNullOrEmpty(Definition.DisplaySceneModelPath))
+            {
+                geometry = (GeometryInstance)organelleSceneInstance;
+            }
+            else
+            {
+                geometry = organelleSceneInstance.GetNode<GeometryInstance>(Definition.DisplaySceneModelPath);
+            }
+
+            // Store animation player for later use
+            if (!string.IsNullOrEmpty(Definition.DisplaySceneAnimation))
+            {
+                OrganelleAnimation = organelleSceneInstance.GetNode<AnimationPlayer>(Definition.DisplaySceneAnimation);
+            }
+
+            organelleMaterial = (ShaderMaterial)geometry.MaterialOverride;
 
             OrganelleGraphics.AddChild(organelleSceneInstance);
         }

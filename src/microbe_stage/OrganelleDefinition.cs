@@ -59,6 +59,16 @@ public class OrganelleDefinition : IRegistryType
     public string DisplayScene;
 
     /// <summary>
+    ///   If the root of the display scene is not the MeshInstance this needs to have the relative node path
+    /// </summary>
+    public string DisplaySceneModelPath;
+
+    /// <summary>
+    ///   If this organelle's display scene has animation this needs to be the path to the animation player node
+    /// </summary>
+    public string DisplaySceneAnimation;
+
+    /// <summary>
     ///   Loaded scene instance to be used when organelle of this type is placed
     /// </summary>
     public PackedScene LoadedScene;
