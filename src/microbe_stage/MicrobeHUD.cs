@@ -293,6 +293,11 @@ public class MicrobeHUD : Node
         if (mouseHoverPanel.RectSize != new Vector2(270, 130))
             mouseHoverPanel.RectSize = new Vector2(270, 130);
 
+        if (mouseHoverPanel.MarginLeft != -280)
+            mouseHoverPanel.MarginLeft = -280;
+        if (mouseHoverPanel.MarginRight != -10)
+            mouseHoverPanel.MarginRight = -10;
+
         var compounds = stage.Clouds.GetAllAvailableAt(stage.Camera.CursorWorldPos);
 
         var builder = new StringBuilder(string.Empty, 250);
