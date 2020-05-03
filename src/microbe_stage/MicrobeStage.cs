@@ -224,13 +224,14 @@ public class MicrobeStage : Node
     /// </summary>
     public void MoveToEditor()
     {
+        // Increase the population by the constant for the player reproducing
+        var playerSpecies = GameWorld.PlayerSpecies;
+        GameWorld.AlterSpeciesPopulation(
+            playerSpecies, Constants.PLAYER_REPRODUCTION_POPULATION_GAIN, "player reproduced");
+
         var scene = GD.Load<PackedScene>("res://src/microbe_stage/editor/MicrobeEditor.tscn");
 
         var editor = (MicrobeEditor)scene.Instance();
-
-        var playerSpecies = GameWorld.PlayerSpecies;
-        GameWorld.AlterSpeciesPopulation(
-            playerSpecies, Constants.PLAYER_REPRODUCE_POPULATION_GAIN, "player reproduced", true);
 
         editor.CurrentGame = CurrentGame;
         editor.ReturnToStage = this;
@@ -290,7 +291,7 @@ public class MicrobeStage : Node
     {
         var playerSpecies = GameWorld.PlayerSpecies;
 
-        // Decrease the population by 20
+        // Decrease the population by the constant for the player dying
         GameWorld.AlterSpeciesPopulation(
             playerSpecies, Constants.PLAYER_DEATH_POPULATION_LOSS, "player died", true);
 
