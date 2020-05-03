@@ -26,6 +26,8 @@ public class MicrobeEditorGUI : Node
     [Export]
     public NodePath MembraneColorPickerPath;
     [Export]
+    public NodePath NewCellButtonPath;
+    [Export]
     public NodePath UndoButtonPath;
     [Export]
     public NodePath RedoButtonPath;
@@ -148,6 +150,7 @@ public class MicrobeEditorGUI : Node
     private TextureProgress mutationPointsBar;
     private LineEdit speciesNameEdit;
     private ColorPicker membraneColorPicker;
+    private TextureButton newCellButton;
     private TextureButton undoButton;
     private TextureButton redoButton;
     private TextureButton symmetryButton;
@@ -225,6 +228,7 @@ public class MicrobeEditorGUI : Node
         mutationPointsBar = GetNode<TextureProgress>(MutationPointsBarPath);
         speciesNameEdit = GetNode<LineEdit>(SpeciesNameEditPath);
         membraneColorPicker = GetNode<ColorPicker>(MembraneColorPickerPath);
+        newCellButton = GetNode<TextureButton>(NewCellButtonPath);
         undoButton = GetNode<TextureButton>(UndoButtonPath);
         redoButton = GetNode<TextureButton>(RedoButtonPath);
         symmetryButton = GetNode<TextureButton>(SymmetryButtonPath);
@@ -466,10 +470,23 @@ public class MicrobeEditorGUI : Node
         redoButton.Disabled = !enabled;
     }
 
-    internal void NotifyFreebuild(object freebuilding)
+    internal void NotifyFreebuild(bool freebuilding)
     {
-        // TODO: fix
-        // throw new NotImplementedException();
+        if (freebuilding)
+        {
+            newCellButton.Disabled = false;
+        }
+        else
+        {
+            newCellButton.Disabled = true;
+        }
+    }
+
+    internal void OnNewCellClicked()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        editor.CreateNewMicrobe();
     }
 
     internal void ToggleHelpScreen()
