@@ -1,4 +1,4 @@
-[gd_scene load_steps=125 format=2]
+[gd_scene load_steps=127 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -71,6 +71,8 @@
 [ext_resource path="res://assets/fonts/thrive.ttf" type="DynamicFontData" id=69]
 [ext_resource path="res://scripts/gui/ExtinctionBox.tscn" type="PackedScene" id=70]
 [ext_resource path="res://assets/textures/gui/bevel/AmmoniaBW.png" type="Texture" id=71]
+[ext_resource path="res://src/general/HelpScreen.tscn" type="PackedScene" id=72]
+[ext_resource path="res://scripts/gui/HelpBox.tscn" type="PackedScene" id=73]
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPausedHover.png" type="Texture" id=78]
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPaused.png" type="Texture" id=79]
 
@@ -893,6 +895,7 @@ HpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/HPValue")
 PopulationLabelPath = NodePath("BottomRight/PopulationData/Value")
 PatchLabelPath = NodePath("BottomBar/PatchLabel")
 EditorButtonPath = NodePath("BottomRight/EditorButton")
+HelpScreenPath = NodePath("CanvasLayer/HelpScreen")
 ExtinctionBoxScene = ExtResource( 70 )
 WinBoxScene = ExtResource( 8 )
 MicrobePickupOrganelleSound = ExtResource( 6 )
@@ -3051,7 +3054,6 @@ margin_top = 200.0
 margin_right = 250.0
 margin_bottom = 240.0
 rect_min_size = Vector2( 250, 40 )
-disabled = true
 text = "Help"
 
 [node name="Options" type="Button" parent="MicrobeHUD/CanvasLayer/PauseMenu/CenterContainer/MicrobeStageMenu"]
@@ -3077,6 +3079,155 @@ margin_bottom = 390.0
 rect_min_size = Vector2( 250, 40 )
 text = "Exit"
 
+[node name="HelpScreen" parent="MicrobeHUD/CanvasLayer" instance=ExtResource( 72 )]
+
+[node name="HBoxContainer" parent="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer" index="0"]
+margin_bottom = 90.0
+
+[node name="LeftColumn" parent="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer" index="0"]
+margin_bottom = 614.0
+
+[node name="HelpBox" parent="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn" index="0" instance=ExtResource( 73 )]
+margin_bottom = 64.0
+
+[node name="MarginContainer" parent="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn/HelpBox" index="0"]
+margin_bottom = 64.0
+
+[node name="Label" parent="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn/HelpBox/MarginContainer" index="0"]
+margin_bottom = 59.0
+text = "W,A,S,D and mouse to move. E to shoot OxyToxy NT if you have a toxin vacuole. G to toggle engulf mode."
+
+[node name="HelpBox2" parent="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn" index="1" instance=ExtResource( 73 )]
+margin_top = 79.0
+margin_bottom = 124.0
+
+[node name="MarginContainer" parent="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn/HelpBox2" index="0"]
+margin_bottom = 45.0
+
+[node name="Label" parent="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn/HelpBox2/MarginContainer" index="0"]
+margin_bottom = 40.0
+text = "Your cell uses ATP as it's energy source, if it runs out you will die."
+
+[node name="HelpBox3" parent="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn" index="2" instance=ExtResource( 73 )]
+margin_top = 139.0
+margin_bottom = 203.0
+
+[node name="MarginContainer" parent="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn/HelpBox3" index="0"]
+margin_bottom = 64.0
+
+[node name="Label" parent="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn/HelpBox3/MarginContainer" index="0"]
+margin_bottom = 59.0
+text = "To unlock the editor and reproduce you need to gather Ammonia (Orange Cloud) and Phosphate (Purple Cloud)."
+
+[node name="HelpBox4" parent="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn" index="3" instance=ExtResource( 73 )]
+margin_top = 218.0
+margin_bottom = 320.0
+
+[node name="MarginContainer" parent="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn/HelpBox4" index="0"]
+margin_bottom = 102.0
+
+[node name="Label" parent="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn/HelpBox4/MarginContainer" index="0"]
+margin_bottom = 97.0
+text = "You can also engulf cells and bacteria and iron chunks and cell chunks that are smaller than you by pressing G. This will cost additional ATP and will slow you down. Don't forget to press G a second time to stop engulfing."
+
+[node name="HelpBox5" parent="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn" index="4" instance=ExtResource( 73 )]
+margin_top = 335.0
+margin_bottom = 475.0
+
+[node name="MarginContainer" parent="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn/HelpBox5" index="0"]
+margin_bottom = 140.0
+
+[node name="Label" parent="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn/HelpBox5/MarginContainer" index="0"]
+margin_bottom = 135.0
+text = "Osmoregulation Now costs ATP, which means the bigger your cell is, the more Mitochondria or Metabolosomes or Rusticyanin (or cytoplasm, which does Glycolysis) you need to avoid losing ATP when you are stationary. It works this way: Osmoregulation costs are ((Hex Amount * 1) per second..."
+
+[node name="HelpBox6" parent="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn" index="5" instance=ExtResource( 73 )]
+margin_top = 490.0
+margin_bottom = 554.0
+
+[node name="MarginContainer" parent="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn/HelpBox6" index="0"]
+margin_bottom = 64.0
+
+[node name="Label" parent="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn/HelpBox6/MarginContainer" index="0"]
+margin_bottom = 59.0
+text = "There are many Organelles in the editor for you to evolve, allowing for a wide range of different playstyles."
+
+[node name="HelpBox7" parent="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn" index="6" instance=ExtResource( 73 )]
+margin_top = 569.0
+margin_bottom = 614.0
+
+[node name="MarginContainer" parent="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn/HelpBox7" index="0"]
+margin_bottom = 45.0
+
+[node name="Label" parent="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn/HelpBox7/MarginContainer" index="0"]
+margin_bottom = 40.0
+text = "For this Release if your population (top tab) drops to zero you go extinct."
+
+[node name="RightColumn" parent="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer" index="1"]
+margin_bottom = 614.0
+
+[node name="HelpBox" parent="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/RightColumn" index="0" instance=ExtResource( 73 )]
+margin_bottom = 178.0
+
+[node name="MarginContainer" parent="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/RightColumn/HelpBox" index="0"]
+margin_bottom = 178.0
+
+[node name="Label" parent="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/RightColumn/HelpBox/MarginContainer" index="0"]
+margin_bottom = 173.0
+text = "The various compound clouds are:
+
+White – Glucose 
+Yellow – Hydrogen Sulfide
+Orange - Ammonia 
+Purple - Phosphate 
+Rust Brown - Iron 
+
+Glucose makes ATP"
+
+[node name="HelpBox2" parent="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/RightColumn" index="1" instance=ExtResource( 73 )]
+margin_top = 193.0
+margin_bottom = 276.0
+
+[node name="MarginContainer" parent="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/RightColumn/HelpBox2" index="0"]
+margin_bottom = 83.0
+
+[node name="Label" parent="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/RightColumn/HelpBox2/MarginContainer" index="0"]
+margin_bottom = 78.0
+text = "Hydrogen Sulfide can be converted into glucose via chemoplasts and chemosynthesizing proteins Iron can be converted via rusticyanin into ATP."
+
+[node name="HelpBox3" parent="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/RightColumn" index="2" instance=ExtResource( 73 )]
+margin_top = 291.0
+margin_bottom = 374.0
+
+[node name="MarginContainer" parent="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/RightColumn/HelpBox3" index="0"]
+margin_bottom = 83.0
+
+[node name="Label" parent="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/RightColumn/HelpBox3/MarginContainer" index="0"]
+margin_bottom = 78.0
+text = "To reproduce you need to divide each of your organelles into two and then duplicate the DNA in your nucleus. Each organelle needs 2 ammonia and 2 phosphate to split in half."
+
+[node name="HelpBox4" parent="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/RightColumn" index="3" instance=ExtResource( 73 )]
+margin_top = 389.0
+margin_bottom = 472.0
+
+[node name="MarginContainer" parent="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/RightColumn/HelpBox4" index="0"]
+margin_bottom = 83.0
+
+[node name="Label" parent="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/RightColumn/HelpBox4/MarginContainer" index="0"]
+margin_bottom = 78.0
+text = "But if you survive for twenty generations with 300 population, you are considered to have won, after winning you get a popup and can continue playing as you wish."
+
+[node name="HelpBox5" parent="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/RightColumn" index="4" instance=ExtResource( 73 )]
+margin_top = 487.0
+margin_bottom = 551.0
+
+[node name="MarginContainer" parent="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/RightColumn/HelpBox5" index="0"]
+margin_bottom = 64.0
+
+[node name="Label" parent="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/RightColumn/HelpBox5/MarginContainer" index="0"]
+margin_bottom = 59.0
+text = "Be wary because your competitors are evolving alongside you. Every time you enter the editor they evolve as well."
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MicrobeHUD"]
 anims/CompoundPanelCompress = SubResource( 46 )
 anims/CompoundPanelExpand = SubResource( 47 )
@@ -3095,4 +3246,32 @@ anims/ShowLeftPanels = SubResource( 51 )
 [connection signal="pressed" from="MicrobeHUD/BottomBar/SuicideButton" to="MicrobeHUD" method="OnSuicide"]
 [connection signal="pressed" from="MicrobeHUD/BottomRight/EditorButton" to="MicrobeHUD" method="EditorButtonPressed"]
 [connection signal="pressed" from="MicrobeHUD/CanvasLayer/PauseMenu/CenterContainer/MicrobeStageMenu/Resume" to="MicrobeHUD" method="OpenMicrobeStageMenuPressed"]
+[connection signal="pressed" from="MicrobeHUD/CanvasLayer/PauseMenu/CenterContainer/MicrobeStageMenu/Help" to="MicrobeHUD" method="ToggleHelpScreen"]
 [connection signal="pressed" from="MicrobeHUD/CanvasLayer/PauseMenu/CenterContainer/MicrobeStageMenu/Exit" to="MicrobeHUD" method="ExitPressed"]
+[connection signal="pressed" from="MicrobeHUD/CanvasLayer/HelpScreen/CloseButton" to="MicrobeHUD" method="ToggleHelpScreen"]
+
+[editable path="MicrobeHUD/CanvasLayer/HelpScreen"]
+
+[editable path="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn/HelpBox"]
+
+[editable path="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn/HelpBox2"]
+
+[editable path="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn/HelpBox3"]
+
+[editable path="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn/HelpBox4"]
+
+[editable path="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn/HelpBox5"]
+
+[editable path="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn/HelpBox6"]
+
+[editable path="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn/HelpBox7"]
+
+[editable path="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/RightColumn/HelpBox"]
+
+[editable path="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/RightColumn/HelpBox2"]
+
+[editable path="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/RightColumn/HelpBox3"]
+
+[editable path="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/RightColumn/HelpBox4"]
+
+[editable path="MicrobeHUD/CanvasLayer/HelpScreen/ScrollContainer/HBoxContainer/RightColumn/HelpBox5"]
