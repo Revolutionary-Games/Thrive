@@ -31,6 +31,9 @@ public class MicrobeHUD : Node
     [Export]
     public NodePath EditorButtonPath;
     [Export]
+    public NodePath HelpScreenPath;
+
+    [Export]
     public PackedScene ExtinctionBoxScene;
     [Export]
     public PackedScene WinBoxScene;
@@ -58,6 +61,7 @@ public class MicrobeHUD : Node
     private TextureButton editorButton;
     private Node extinctionBox;
     private Node winBox;
+    private Control helpScreen;
 
     /// <summary>
     ///   The HUD bars is contained in this array to avoid
@@ -108,6 +112,7 @@ public class MicrobeHUD : Node
         populationLabel = GetNode<Label>(PopulationLabelPath);
         patchLabel = GetNode<Label>(PatchLabelPath);
         editorButton = GetNode<TextureButton>(EditorButtonPath);
+        helpScreen = GetNode<Control>(HelpScreenPath);
 
         OnEnterStageTransition();
     }
@@ -266,6 +271,22 @@ public class MicrobeHUD : Node
         else
         {
             winBox.QueueFree();
+        }
+    }
+
+    public void ToggleHelpScreen()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        if (!helpScreen.Visible)
+        {
+            helpScreen.Show();
+            menu.Hide();
+        }
+        else
+        {
+            helpScreen.Hide();
+            menu.Show();
         }
     }
 

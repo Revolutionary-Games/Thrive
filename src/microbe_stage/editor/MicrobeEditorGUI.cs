@@ -10,6 +10,8 @@ public class MicrobeEditorGUI : Node
 {
     // The labels to update are at really long relative paths, so they are set in the Godot editor
     [Export]
+    public NodePath MenuPath;
+    [Export]
     public NodePath SizeLabelPath;
     [Export]
     public NodePath SpeedLabelPath;
@@ -113,6 +115,8 @@ public class MicrobeEditorGUI : Node
     public NodePath PatchPhosphateSituationPath;
     [Export]
     public NodePath RigiditySliderPath;
+    [Export]
+    public NodePath HelpScreenPath;
 
     [Export]
     public NodePath SymmetryIconPath;
@@ -136,6 +140,7 @@ public class MicrobeEditorGUI : Node
     private Godot.Collections.Array membraneSelectionElements;
     private Godot.Collections.Array itemTooltipElements;
 
+    private Control menu;
     private Label sizeLabel;
     private Label speedLabel;
     private Label generationLabel;
@@ -189,6 +194,7 @@ public class MicrobeEditorGUI : Node
     private TextureRect patchAmmoniaSituation;
     private TextureRect patchPhosphateSituation;
     private Slider rigiditySlider;
+    private Control helpScreen;
 
     private bool inEditorTab = false;
     private int symmetry = 0;
@@ -211,6 +217,7 @@ public class MicrobeEditorGUI : Node
 
         loadingScreen = GetNode<LoadingScreen>("LoadingScreen");
 
+        menu = GetNode<Control>(MenuPath);
         sizeLabel = GetNode<Label>(SizeLabelPath);
         speedLabel = GetNode<Label>(SpeedLabelPath);
         generationLabel = GetNode<Label>(GenerationLabelPath);
@@ -264,6 +271,7 @@ public class MicrobeEditorGUI : Node
         patchAmmoniaSituation = GetNode<TextureRect>(PatchAmmoniaSituationPath);
         patchPhosphateSituation = GetNode<TextureRect>(PatchPhosphateSituationPath);
         rigiditySlider = GetNode<Slider>(RigiditySliderPath);
+        helpScreen = GetNode<Control>(HelpScreenPath);
 
         mapDrawer.OnSelectedPatchChanged = (drawer) =>
         {
@@ -462,6 +470,22 @@ public class MicrobeEditorGUI : Node
     {
         // TODO: fix
         // throw new NotImplementedException();
+    }
+
+    internal void ToggleHelpScreen()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        if (!helpScreen.Visible)
+        {
+            helpScreen.Show();
+            menu.Hide();
+        }
+        else
+        {
+            helpScreen.Hide();
+            menu.Show();
+        }
     }
 
     /// <summary>
