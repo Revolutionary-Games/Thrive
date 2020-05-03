@@ -68,11 +68,6 @@ public class MicrobeAISystem
         // Run the actual AI logic here
         Microbe microbe = (Microbe)ai;
 
-        // For now just set a random nearby look at location
-        microbe.LookAtPoint = microbe.Translation + new Vector3(
-            random.Next(-100, 101), 0, random.Next(-100, 101));
-
-        // And random movement speed
-        microbe.MovementDirection = new Vector3(0, 0, (float)(-1 * random.NextDouble()));
+        microbe.AIThink(delta, random);
     }
 }

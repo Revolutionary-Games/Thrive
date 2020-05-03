@@ -108,6 +108,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
     private bool allOrganellesDivided = false;
 
+    private MicrobeAI ai;
+
     /// <summary>
     ///   The membrane of this Microbe. Used for grabbing radius / points from this.
     /// </summary>
@@ -276,6 +278,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
         if (IsPlayerMicrobe)
             GD.Print("Player Microbe spawned");
+
+        if (!isPlayer)
+            ai = new MicrobeAI(this);
 
         // Needed for immediately applying the species
         _Ready();
@@ -961,6 +966,20 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
                 OnReproductionStatus(this, true);
             }
         }
+    }
+
+    /// <summary>
+    ///   Runs AI thinking on this microbe. Should only be called by the MicrobeAISystem.
+    ///   This is ran in parallel so this shouldn't affect the states of other microbes or rely on their variables that
+    ///   the AI updates. Otherwise the results are not deterministic.
+    /// </summary>
+    /// <param name="delta">Elapsed time in seconds.</param>
+    public void AIThink(float delta, Random random)
+    {
+        if (IsPlayerMicrobe)
+            throw new InvalidOperationException("AI can't run on the player microbe");
+
+        ai.Think(delta, random);
     }
 
     public override void _IntegrateForces(PhysicsDirectBodyState state)
