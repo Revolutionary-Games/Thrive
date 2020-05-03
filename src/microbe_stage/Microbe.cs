@@ -975,7 +975,14 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         if (Dead)
             return;
 
-        ai.Think(delta, random, data);
+        try
+        {
+            ai.Think(delta, random, data);
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("Microbe AI failure! " + e.ToString());
+        }
     }
 
     public override void _IntegrateForces(PhysicsDirectBodyState state)
