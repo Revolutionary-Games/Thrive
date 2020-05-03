@@ -294,6 +294,28 @@ public class Constants
     public const float MAX_SPECIES_FOCUS = 400.0f;
     public const float MAX_SPECIES_OPPORTUNISM = 400.0f;
 
+    // Bacterial Colony configuration
+    public const int MIN_BACTERIAL_COLONY_SIZE = 2;
+    public const int MAX_BACTERIAL_COLONY_SIZE = 6;
+    public const int MIN_BACTERIAL_LINE_SIZE = 3;
+    public const int MAX_BACTERIAL_LINE_SIZE = 7;
+
+    // What is divided during fear and aggression calculations in the AI
+    public const float AGRESSION_DIVISOR = 25.0f;
+    public const float FEAR_DIVISOR = 25.0f;
+    public const float ACTIVITY_DIVISOR = 100.0f;
+    public const float FOCUS_DIVISOR = 100.0f;
+    public const float OPPORTUNISM_DIVISOR = 100.0f;
+
+    // Cooldown for AI for toggling engulfing
+    public const float AI_ENGULF_INTERVAL = 300;
+
+    // if you are gaining less then this amount of compound per turn you are much more likely to turn randomly
+    public const float AI_COMPOUND_BIAS = -10.0f;
+
+    public const float AI_BASE_MOVEMENT = 1.0f;
+    public const float AI_FOCUSED_MOVEMENT = 1.0f;
+
     // Personality Mutation
     public const float MAX_SPECIES_PERSONALITY_MUTATION = 20.0f;
     public const float MIN_SPECIES_PERSONALITY_MUTATION = -20.0f;
@@ -345,6 +367,16 @@ public class Constants
     ///   All Nodes tagged with this are handled by the ai system
     /// </summary>
     public const string AI_GROUP = "ai";
+
+    /// <summary>
+    ///   All Nodes tagged with this are considered Microbes that the AI can react to
+    /// </summary>
+    public const string AI_TAG_MICROBE = "microbe";
+
+    /// <summary>
+    ///   All Nodes tagged with this are considered FloatingChunks that the AI can react to
+    /// </summary>
+    public const string AI_TAG_CHUNK = "chunk";
 
     public const string CONFIGURATION_FILE = "user://thrive_settings.json";
 
