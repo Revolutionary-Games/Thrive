@@ -228,6 +228,10 @@ public class MicrobeStage : Node
 
         var editor = (MicrobeEditor)scene.Instance();
 
+        var playerSpecies = GameWorld.PlayerSpecies;
+        GameWorld.AlterSpeciesPopulation(
+            playerSpecies, Constants.PLAYER_REPRODUCE_POPULATION_GAIN, "player reproduced", true);
+
         editor.CurrentGame = CurrentGame;
         editor.ReturnToStage = this;
         var parent = GetParent();
@@ -287,7 +291,8 @@ public class MicrobeStage : Node
         var playerSpecies = GameWorld.PlayerSpecies;
 
         // Decrease the population by 20
-        GameWorld.AlterSpeciesPopulation(playerSpecies, -20, "player died", true);
+        GameWorld.AlterSpeciesPopulation(
+            playerSpecies, Constants.PLAYER_DEATH_POPULATION_LOSS, "player died", true);
 
         // Respawn if not extinct (or freebuild)
         if (playerSpecies.Population <= 0 && !CurrentGame.FreeBuild)
