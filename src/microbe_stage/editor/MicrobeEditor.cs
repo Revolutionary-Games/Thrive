@@ -470,13 +470,9 @@ public class MicrobeEditor : Node
             redo =>
             {
                 MutationPoints = Constants.BASE_MUTATION_POINTS;
-
-                for (int i = editedMicrobeOrganelles.Count - 1; i > 0; --i)
-                {
-                    var organelle = editedMicrobeOrganelles[i];
-
-                    editedMicrobeOrganelles.RemoveOrganelleAt(organelle.Position);
-                }
+                editedMicrobeOrganelles.RemoveAll();
+                editedMicrobeOrganelles.Add(new OrganelleTemplate(GetOrganelleDefinition("cytoplasm"),
+                    new Hex(0, 0), 0));
             },
             undo =>
             {

@@ -470,9 +470,9 @@ public class MicrobeEditorGUI : Node
         redoButton.Disabled = !enabled;
     }
 
-    internal void NotifyFreebuild(object freebuilding)
+    internal void NotifyFreebuild(bool freebuilding)
     {
-        if ((bool)freebuilding)
+        if (freebuilding)
         {
             newCellButton.Disabled = false;
         }
