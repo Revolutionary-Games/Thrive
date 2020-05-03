@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=8 format=2]
+[gd_resource type="Theme" load_steps=12 format=2]
 
 [ext_resource path="res://assets/fonts/Jura-DemiBold.ttf" type="DynamicFontData" id=4]
 
@@ -52,13 +52,27 @@ corner_radius_top_right = 7
 corner_radius_bottom_right = 7
 corner_radius_bottom_left = 7
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0, 0.313726, 0.313726, 1 )
+
+[sub_resource type="StyleBoxFlat" id=7]
+bg_color = Color( 0.34902, 0.823529, 1, 0.392157 )
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 0.34902, 0.823529, 1, 0.392157 )
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 15
+border_color = Color( 1, 1, 1, 0 )
+
+[sub_resource type="DynamicFont" id=10]
 size = 20
 use_filter = true
 font_data = ExtResource( 4 )
 
 [resource]
-default_font = SubResource( 6 )
+default_font = SubResource( 10 )
 Button/colors/font_color = Color( 1, 1, 1, 1 )
 Button/colors/font_color_disabled = Color( 1, 1, 1, 1 )
 Button/colors/font_color_hover = Color( 1, 1, 1, 1 )
@@ -450,10 +464,10 @@ VScrollBar/icons/decrement = null
 VScrollBar/icons/decrement_highlight = null
 VScrollBar/icons/increment = null
 VScrollBar/icons/increment_highlight = null
-VScrollBar/styles/grabber = null
-VScrollBar/styles/grabber_highlight = null
-VScrollBar/styles/grabber_pressed = null
-VScrollBar/styles/scroll = null
+VScrollBar/styles/grabber = SubResource( 6 )
+VScrollBar/styles/grabber_highlight = SubResource( 7 )
+VScrollBar/styles/grabber_pressed = SubResource( 8 )
+VScrollBar/styles/scroll = SubResource( 9 )
 VScrollBar/styles/scroll_focus = null
 VSeparator/constants/separation = 4
 VSeparator/styles/separator = null
