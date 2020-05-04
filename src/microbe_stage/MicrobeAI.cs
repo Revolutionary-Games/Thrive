@@ -666,9 +666,18 @@ public class MicrobeAI
         else if (predator != null)
         {
             // Run specifically away
-            targetPosition = new Vector3(random.Next(-5000.0f, 5000.0f), 1.0f,
-                    random.Next(-5000.0f, 5000.0f)) *
-                    predator.Translation;
+            try
+            {
+                targetPosition = new Vector3(random.Next(-5000.0f, 5000.0f), 1.0f,
+                        random.Next(-5000.0f, 5000.0f)) *
+                        predator.Translation;
+            }
+            catch (ObjectDisposedException)
+            {
+                // Our predator is dead
+                predator = null;
+                return;
+            }
         }
 
         var vec = microbe.Translation - targetPosition;
