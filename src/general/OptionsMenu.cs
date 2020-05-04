@@ -30,6 +30,8 @@ public class OptionsMenu : Control
     public NodePath CloudIntervalPath;
     [Export]
     public NodePath CloudResolutionPath;
+    [Export]
+    public NodePath MSAAResolutionPath;
 
     // Misc tab
     [Export]
@@ -54,6 +56,7 @@ public class OptionsMenu : Control
     // Performance tab
     private OptionButton cloudInterval;
     private OptionButton cloudResolution;
+    private OptionButton msaaResolution;
 
     // Misc tab
     private CheckBox playIntro;
@@ -86,6 +89,7 @@ public class OptionsMenu : Control
         // Performance
         cloudInterval = GetNode<OptionButton>(CloudIntervalPath);
         cloudResolution = GetNode<OptionButton>(CloudResolutionPath);
+        msaaResolution = GetNode<OptionButton>(MSAAResolutionPath);
 
         // Misc
         playIntro = GetNode<CheckBox>(PlayIntroPath);
@@ -115,6 +119,7 @@ public class OptionsMenu : Control
         // Performance
         cloudInterval.Selected = CloudIntervalToIndex(settings.CloudUpdateInterval);
         cloudResolution.Selected = CloudResolutionToIndex(settings.CloudResolution);
+        msaaResolution.Selected = MSAAResolutionToIndex(settings.MSAAResolution);
 
         // Misc
         playIntro.Pressed = settings.PlayIntroVideo;
@@ -221,6 +226,55 @@ public class OptionsMenu : Control
         }
     }
 
+    private int MSAAResolutionToIndex(Viewport.MSAA resolution)
+    {
+        if (resolution == Viewport.MSAA.Disabled)
+        {
+            return 0;
+        }
+        else if (resolution == Viewport.MSAA.Msaa2x)
+        {
+            return 1;
+        }
+        else if (resolution == Viewport.MSAA.Msaa4x)
+        {
+            return 2;
+        }
+        else if (resolution == Viewport.MSAA.Msaa8x)
+        {
+            return 3;
+        }
+        else if (resolution == Viewport.MSAA.Msaa16x)
+        {
+            return 4;
+        }
+        else
+        {
+            GD.PrintErr("invalid MSAA resolution value");
+            return 0;
+        }
+    }
+
+    private Viewport.MSAA MSAAIndexToResolution(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                return Viewport.MSAA.Disabled;
+            case 1:
+                return Viewport.MSAA.Msaa2x;
+            case 2:
+                return Viewport.MSAA.Msaa4x;
+            case 3:
+                return Viewport.MSAA.Msaa8x;
+            case 4:
+                return Viewport.MSAA.Msaa16x;    
+            default:
+                GD.PrintErr("invalid MSAA resolution index");
+                return Viewport.MSAA.Disabled;
+        }
+    }
+
     /*
       GUI callbacks
     */
@@ -233,6 +287,7 @@ public class OptionsMenu : Control
 
         // TODO: ask for saving the settings
         Settings.ApplyAll();
+        GetTree().Root.Msaa = Settings.Instance.MSAAResolution;
 
         if (!Settings.Save())
         {
@@ -302,5 +357,9 @@ public class OptionsMenu : Control
     private void OnCloudResolutionSelected(int index)
     {
         Settings.CloudResolution = CloudIndexToResolution(index);
+    }
+    private void OnMSAAResolutionSelected(int index)
+    {
+        Settings.MSAAResolution = MSAAIndexToResolution(index);
     }
 }

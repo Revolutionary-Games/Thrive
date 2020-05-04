@@ -20,6 +20,7 @@ MusicVolumePath = NodePath("TabContainer/Sound/HBoxContainer2/MusicVolume")
 MusicMutedPath = NodePath("TabContainer/Sound/HBoxContainer2/MusicMuted")
 CloudIntervalPath = NodePath("TabContainer/Performance/HBoxContainer/CloudInterval")
 CloudResolutionPath = NodePath("TabContainer/Performance/HBoxContainer2/CloudResolution")
+MSAAResolutionPath = NodePath("TabContainer/Performance/HBoxContainer3/MSAAResolution")
 PlayIntroPath = NodePath("TabContainer/Misc/Intro")
 PlayMicrobeIntroPath = NodePath("TabContainer/Misc/MicrobeIntro")
 CheatsPath = NodePath("TabContainer/Misc/Cheats")
@@ -34,6 +35,7 @@ __meta__ = {
 }
 
 [node name="Graphics" type="VBoxContainer" parent="TabContainer"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -133,7 +135,6 @@ margin_bottom = 24.0
 text = "Mute"
 
 [node name="Performance" type="VBoxContainer" parent="TabContainer"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -191,10 +192,33 @@ text = "2"
 items = [ "1", null, false, 0, null, "2", null, false, 1, null, "4", null, false, 2, null ]
 selected = 1
 
-[node name="HSeparator" type="HSeparator" parent="TabContainer/Performance"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="TabContainer/Performance"]
 margin_top = 82.0
 margin_right = 1270.0
-margin_bottom = 86.0
+margin_bottom = 106.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="TabContainer/Performance/HBoxContainer3"]
+margin_top = 1.0
+margin_right = 617.0
+margin_bottom = 23.0
+hint_tooltip = "This value only applies to new games started after changing this option"
+mouse_filter = 0
+text = "Multisample anti-aliasing (higher values worsen performance): "
+
+[node name="MSAAResolution" type="OptionButton" parent="TabContainer/Performance/HBoxContainer3"]
+margin_left = 621.0
+margin_right = 821.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 200, 0 )
+text = "Disabled"
+items = [ "Disabled", null, false, 0, null, "1", null, false, 1, null, "2", null, false, 2, null, "3", null, false, 3, null, "4", null, false, 4, null ]
+selected = 0
+
+[node name="HSeparator" type="HSeparator" parent="TabContainer/Performance"]
+margin_top = 110.0
+margin_right = 1270.0
+margin_bottom = 114.0
 
 [node name="Misc" type="VBoxContainer" parent="TabContainer"]
 visible = false
@@ -265,6 +289,7 @@ __meta__ = {
 [connection signal="toggled" from="TabContainer/Sound/HBoxContainer2/MusicMuted" to="." method="OnMusicMutedToggled"]
 [connection signal="item_selected" from="TabContainer/Performance/HBoxContainer/CloudInterval" to="." method="OnCloudIntervalSelected"]
 [connection signal="item_selected" from="TabContainer/Performance/HBoxContainer2/CloudResolution" to="." method="OnCloudResolutionSelected"]
+[connection signal="item_selected" from="TabContainer/Performance/HBoxContainer3/MSAAResolution" to="." method="OnMSAAResolutionSelected"]
 [connection signal="toggled" from="TabContainer/Misc/Intro" to="." method="OnIntroToggled"]
 [connection signal="toggled" from="TabContainer/Misc/MicrobeIntro" to="." method="OnMicrobeIntroToggled"]
 [connection signal="toggled" from="TabContainer/Misc/Cheats" to="." method="OnCheatsToggled"]

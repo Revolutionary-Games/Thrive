@@ -97,6 +97,10 @@ public class Settings
     /// </remarks>
     public float CloudUpdateInterval { get; set; } = 0.040f;
 
+    /// <summary>
+    ///   Sets amount of MSAA to apply to the viewport
+    /// </summary>
+    public Viewport.MSAA MSAAResolution { get; set; } = Viewport.MSAA.Disabled;
     public int CloudSimulationWidth
     {
         get
