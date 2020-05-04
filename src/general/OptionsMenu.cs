@@ -287,7 +287,6 @@ public class OptionsMenu : Control
 
         // TODO: ask for saving the settings
         Settings.ApplyAll();
-        GetTree().Root.Msaa = Settings.Instance.MSAAResolution;
 
         if (!Settings.Save())
         {
