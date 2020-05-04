@@ -10,6 +10,8 @@ public class MicrobeEditorGUI : Node
 {
     // The labels to update are at really long relative paths, so they are set in the Godot editor
     [Export]
+    public NodePath MenuPath;
+    [Export]
     public NodePath SizeLabelPath;
     [Export]
     public NodePath SpeedLabelPath;
@@ -23,6 +25,8 @@ public class MicrobeEditorGUI : Node
     public NodePath SpeciesNameEditPath;
     [Export]
     public NodePath MembraneColorPickerPath;
+    [Export]
+    public NodePath NewCellButtonPath;
     [Export]
     public NodePath UndoButtonPath;
     [Export]
@@ -113,6 +117,8 @@ public class MicrobeEditorGUI : Node
     public NodePath PatchPhosphateSituationPath;
     [Export]
     public NodePath RigiditySliderPath;
+    [Export]
+    public NodePath HelpScreenPath;
 
     [Export]
     public NodePath SymmetryIconPath;
@@ -136,6 +142,7 @@ public class MicrobeEditorGUI : Node
     private Godot.Collections.Array membraneSelectionElements;
     private Godot.Collections.Array itemTooltipElements;
 
+    private Control menu;
     private Label sizeLabel;
     private Label speedLabel;
     private Label generationLabel;
@@ -143,6 +150,7 @@ public class MicrobeEditorGUI : Node
     private TextureProgress mutationPointsBar;
     private LineEdit speciesNameEdit;
     private ColorPicker membraneColorPicker;
+    private TextureButton newCellButton;
     private TextureButton undoButton;
     private TextureButton redoButton;
     private TextureButton symmetryButton;
@@ -189,6 +197,7 @@ public class MicrobeEditorGUI : Node
     private TextureRect patchAmmoniaSituation;
     private TextureRect patchPhosphateSituation;
     private Slider rigiditySlider;
+    private Control helpScreen;
 
     private bool inEditorTab = false;
     private int symmetry = 0;
@@ -211,6 +220,7 @@ public class MicrobeEditorGUI : Node
 
         loadingScreen = GetNode<LoadingScreen>("LoadingScreen");
 
+        menu = GetNode<Control>(MenuPath);
         sizeLabel = GetNode<Label>(SizeLabelPath);
         speedLabel = GetNode<Label>(SpeedLabelPath);
         generationLabel = GetNode<Label>(GenerationLabelPath);
@@ -218,6 +228,7 @@ public class MicrobeEditorGUI : Node
         mutationPointsBar = GetNode<TextureProgress>(MutationPointsBarPath);
         speciesNameEdit = GetNode<LineEdit>(SpeciesNameEditPath);
         membraneColorPicker = GetNode<ColorPicker>(MembraneColorPickerPath);
+        newCellButton = GetNode<TextureButton>(NewCellButtonPath);
         undoButton = GetNode<TextureButton>(UndoButtonPath);
         redoButton = GetNode<TextureButton>(RedoButtonPath);
         symmetryButton = GetNode<TextureButton>(SymmetryButtonPath);
@@ -264,6 +275,7 @@ public class MicrobeEditorGUI : Node
         patchAmmoniaSituation = GetNode<TextureRect>(PatchAmmoniaSituationPath);
         patchPhosphateSituation = GetNode<TextureRect>(PatchPhosphateSituationPath);
         rigiditySlider = GetNode<Slider>(RigiditySliderPath);
+        helpScreen = GetNode<Control>(HelpScreenPath);
 
         mapDrawer.OnSelectedPatchChanged = (drawer) =>
         {
@@ -458,10 +470,39 @@ public class MicrobeEditorGUI : Node
         redoButton.Disabled = !enabled;
     }
 
-    internal void NotifyFreebuild(object freebuilding)
+    internal void NotifyFreebuild(bool freebuilding)
     {
-        // TODO: fix
-        // throw new NotImplementedException();
+        if (freebuilding)
+        {
+            newCellButton.Disabled = false;
+        }
+        else
+        {
+            newCellButton.Disabled = true;
+        }
+    }
+
+    internal void OnNewCellClicked()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        editor.CreateNewMicrobe();
+    }
+
+    internal void ToggleHelpScreen()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        if (!helpScreen.Visible)
+        {
+            helpScreen.Show();
+            menu.Hide();
+        }
+        else
+        {
+            helpScreen.Hide();
+            menu.Show();
+        }
     }
 
     /// <summary>
