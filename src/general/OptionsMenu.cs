@@ -14,6 +14,8 @@ public class OptionsMenu : Control
     public NodePath VSyncPath;
     [Export]
     public NodePath FullScreenPath;
+    [Export]
+    public NodePath MSAAResolutionPath;
 
     // Sound tab
     [Export]
@@ -44,6 +46,7 @@ public class OptionsMenu : Control
     // Graphics tab
     private CheckBox vsync;
     private CheckBox fullScreen;
+    private OptionButton msaaResolution;
 
     // Sound tab
     private Slider masterVolume;
@@ -76,6 +79,7 @@ public class OptionsMenu : Control
         // Graphics
         vsync = GetNode<CheckBox>(VSyncPath);
         fullScreen = GetNode<CheckBox>(FullScreenPath);
+        msaaResolution = GetNode<OptionButton>(MSAAResolutionPath);
 
         // Sound
         masterVolume = GetNode<Slider>(MasterVolumePath);
@@ -105,6 +109,7 @@ public class OptionsMenu : Control
         // Graphics
         vsync.Pressed = Settings.VSync;
         fullScreen.Pressed = Settings.FullScreen;
+        msaaResolution.Selected = MSAAResolutionToIndex(settings.MSAAResolution);
 
         // Sound
         masterVolume.Value = ConvertDBToSoundBar(settings.VolumeMaster);
@@ -221,6 +226,55 @@ public class OptionsMenu : Control
         }
     }
 
+    private int MSAAResolutionToIndex(Viewport.MSAA resolution)
+    {
+        if (resolution == Viewport.MSAA.Disabled)
+        {
+            return 0;
+        }
+        else if (resolution == Viewport.MSAA.Msaa2x)
+        {
+            return 1;
+        }
+        else if (resolution == Viewport.MSAA.Msaa4x)
+        {
+            return 2;
+        }
+        else if (resolution == Viewport.MSAA.Msaa8x)
+        {
+            return 3;
+        }
+        else if (resolution == Viewport.MSAA.Msaa16x)
+        {
+            return 4;
+        }
+        else
+        {
+            GD.PrintErr("invalid MSAA resolution value");
+            return 0;
+        }
+    }
+
+    private Viewport.MSAA MSAAIndexToResolution(int index)
+    {
+        switch (index)
+        {
+            case 0:
+                return Viewport.MSAA.Disabled;
+            case 1:
+                return Viewport.MSAA.Msaa2x;
+            case 2:
+                return Viewport.MSAA.Msaa4x;
+            case 3:
+                return Viewport.MSAA.Msaa8x;
+            case 4:
+                return Viewport.MSAA.Msaa16x;
+            default:
+                GD.PrintErr("invalid MSAA resolution index");
+                return Viewport.MSAA.Disabled;
+        }
+    }
+
     /*
       GUI callbacks
     */
@@ -302,5 +356,11 @@ public class OptionsMenu : Control
     private void OnCloudResolutionSelected(int index)
     {
         Settings.CloudResolution = CloudIndexToResolution(index);
+    }
+
+    private void OnMSAAResolutionSelected(int index)
+    {
+        Settings.MSAAResolution = MSAAIndexToResolution(index);
+        Settings.ApplyGraphicsSettings();
     }
 }
