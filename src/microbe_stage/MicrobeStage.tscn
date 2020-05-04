@@ -875,6 +875,10 @@ pause_mode = 2
 [node name="CompoundClouds" type="Node" parent="World"]
 script = ExtResource( 10 )
 
+[node name="WorldLight" type="DirectionalLight" parent="World"]
+transform = Transform( -0.687551, 0.322878, -0.650403, 0.0453496, 0.913048, 0.405323, 0.724719, 0.249185, -0.642409, 0, 1.19209e-07, 0 )
+shadow_enabled = true
+
 [node name="PlayerMicrobeInput" type="Node" parent="."]
 script = ExtResource( 7 )
 
