@@ -101,6 +101,7 @@ public class Settings
     ///   Sets amount of MSAA to apply to the viewport
     /// </summary>
     public Viewport.MSAA MSAAResolution { get; set; } = Viewport.MSAA.Disabled;
+
     public int CloudSimulationWidth
     {
         get
@@ -147,6 +148,7 @@ public class Settings
     {
         ApplySoundLevels();
         ApplyWindowSettings();
+        ApplyGraphicsSettings();
     }
 
     /// <summary>
@@ -169,6 +171,11 @@ public class Settings
     {
         OS.WindowFullscreen = FullScreen;
         OS.VsyncEnabled = VSync;
+    }
+
+    public void ApplyGraphicsSettings()
+    {
+        GUICommon.Instance.GetTree().Root.GetViewport().Msaa = MSAAResolution;
     }
 
     /// <summary>

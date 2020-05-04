@@ -14,6 +14,8 @@ public class OptionsMenu : Control
     public NodePath VSyncPath;
     [Export]
     public NodePath FullScreenPath;
+    [Export]
+    public NodePath MSAAResolutionPath;
 
     // Sound tab
     [Export]
@@ -30,8 +32,6 @@ public class OptionsMenu : Control
     public NodePath CloudIntervalPath;
     [Export]
     public NodePath CloudResolutionPath;
-    [Export]
-    public NodePath MSAAResolutionPath;
 
     // Misc tab
     [Export]
@@ -46,6 +46,7 @@ public class OptionsMenu : Control
     // Graphics tab
     private CheckBox vsync;
     private CheckBox fullScreen;
+    private OptionButton msaaResolution;
 
     // Sound tab
     private Slider masterVolume;
@@ -56,7 +57,6 @@ public class OptionsMenu : Control
     // Performance tab
     private OptionButton cloudInterval;
     private OptionButton cloudResolution;
-    private OptionButton msaaResolution;
 
     // Misc tab
     private CheckBox playIntro;
@@ -79,6 +79,7 @@ public class OptionsMenu : Control
         // Graphics
         vsync = GetNode<CheckBox>(VSyncPath);
         fullScreen = GetNode<CheckBox>(FullScreenPath);
+        msaaResolution = GetNode<OptionButton>(MSAAResolutionPath);
 
         // Sound
         masterVolume = GetNode<Slider>(MasterVolumePath);
@@ -89,7 +90,6 @@ public class OptionsMenu : Control
         // Performance
         cloudInterval = GetNode<OptionButton>(CloudIntervalPath);
         cloudResolution = GetNode<OptionButton>(CloudResolutionPath);
-        msaaResolution = GetNode<OptionButton>(MSAAResolutionPath);
 
         // Misc
         playIntro = GetNode<CheckBox>(PlayIntroPath);
@@ -109,6 +109,7 @@ public class OptionsMenu : Control
         // Graphics
         vsync.Pressed = Settings.VSync;
         fullScreen.Pressed = Settings.FullScreen;
+        msaaResolution.Selected = MSAAResolutionToIndex(settings.MSAAResolution);
 
         // Sound
         masterVolume.Value = ConvertDBToSoundBar(settings.VolumeMaster);
@@ -119,7 +120,6 @@ public class OptionsMenu : Control
         // Performance
         cloudInterval.Selected = CloudIntervalToIndex(settings.CloudUpdateInterval);
         cloudResolution.Selected = CloudResolutionToIndex(settings.CloudResolution);
-        msaaResolution.Selected = MSAAResolutionToIndex(settings.MSAAResolution);
 
         // Misc
         playIntro.Pressed = settings.PlayIntroVideo;
@@ -362,5 +362,6 @@ public class OptionsMenu : Control
     private void OnMSAAResolutionSelected(int index)
     {
         Settings.MSAAResolution = MSAAIndexToResolution(index);
+        Settings.ApplyGraphicsSettings();
     }
 }
