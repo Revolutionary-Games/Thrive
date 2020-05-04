@@ -364,8 +364,10 @@ public class Membrane : MeshInstance
 
     private void ApplyTextures()
     {
-        if (normalTexture != null)
-            return;
+        // We must update the texture on already-existing membranes,
+        // due to the membrane texture changing for the player microbe.
+        // if (normalTexture != null)
+        //     return;
 
         // TODO: add the loaded Texture objects to be in the membrane type
         normalTexture = GD.Load<Texture>(Type.NormalTexture);

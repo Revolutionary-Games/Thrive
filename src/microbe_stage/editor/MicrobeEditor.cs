@@ -292,7 +292,7 @@ public class MicrobeEditor : Node
     }
 
     /// <summary>
-    ///   Applies the changes done and exists the editor
+    ///   Applies the changes done and exits the editor
     /// </summary>
     public void OnFinishEditing()
     {
@@ -460,6 +460,7 @@ public class MicrobeEditor : Node
 
         var previousMP = MutationPoints;
         var oldEditedMicrobeOrganelles = new OrganelleLayout<OrganelleTemplate>();
+        var oldMembrane = Membrane;
 
         foreach (var organelle in editedMicrobeOrganelles)
         {
@@ -470,14 +471,20 @@ public class MicrobeEditor : Node
             redo =>
             {
                 MutationPoints = Constants.BASE_MUTATION_POINTS;
+                Membrane = SimulationParameters.Instance.GetMembrane("single");
                 editedMicrobeOrganelles.RemoveAll();
                 editedMicrobeOrganelles.Add(new OrganelleTemplate(GetOrganelleDefinition("cytoplasm"),
                     new Hex(0, 0), 0));
+                gui.UpdateMembraneButtons(Membrane.InternalName);
+                gui.UpdateSpeed(CalculateSpeed());
             },
             undo =>
             {
                 editedMicrobeOrganelles.RemoveAll();
                 MutationPoints = previousMP;
+                Membrane = oldMembrane;
+                gui.UpdateMembraneButtons(Membrane.InternalName);
+                gui.UpdateSpeed(CalculateSpeed());
 
                 foreach (var organelle in oldEditedMicrobeOrganelles)
                 {
@@ -521,49 +528,20 @@ public class MicrobeEditor : Node
             organelleRot = 5;
     }
 
-    public void SetMembrane(Membrane membrane)
+    public void SetMembrane(string membraneName)
     {
+        var membrane = SimulationParameters.Instance.GetMembrane(membraneName);
+
         if (Membrane.Equals(membrane))
             return;
 
-        throw new NotImplementedException();
+        var action = new EditorAction(this, membrane.EditorCost, DoMembraneChangeAction, UndoMembraneChangeAction,
+            new MembraneActionData(Membrane, membrane));
 
-        // int cost = SimulationParameters::membraneRegistry().getTypeData(
-        // string(vars.GetSingleValueByName("membrane"))).editorCost;
+        EnqueueAction(action);
 
-        // EditorAction@ action = EditorAction(cost,
-        //     // redo
-        //     function(EditorAction@ action, MicrobeEditor@ editor){
-        //         editor.membrane = MembraneTypeId(action.data["membrane"]);
-        //         GenericEvent@ event = GenericEvent("MicrobeEditorMembraneUpdated");
-        //         NamedVars@ vars = event.GetNamedVars();
-        //         vars.AddValue(ScriptSafeVariableBlock("membrane",
-        //         SimulationParameters::membraneRegistry().getInternalName(editor.membrane)));
-        //         GetEngine().GetEventHandler().CallEvent(event);
-        //         // Calculate and send energy balance to the GUI
-        //         calculateEnergyBalanceWithOrganellesAndMembraneType(
-        //         editor.editedMicrobeOrganelles, editor.membrane, editor.targetPatch);
-        //         // not using _onEditedCellChange due to visuals not needing update
-        //     },
-        //     // undo
-        //     function(EditorAction@ action, MicrobeEditor@ editor){
-        //         editor.membrane = MembraneTypeId(action.data["prevMembrane"]);
-        //         GenericEvent@ event = GenericEvent("MicrobeEditorMembraneUpdated");
-        //         NamedVars@ vars = event.GetNamedVars();
-        //         vars.AddValue(ScriptSafeVariableBlock("membrane",
-        //         SimulationParameters::membraneRegistry().getInternalName(editor.membrane)));
-        //         GetEngine().GetEventHandler().CallEvent(event);
-        //         // Calculate and send energy balance to the GUI
-        //         calculateEnergyBalanceWithOrganellesAndMembraneType(
-        //         editor.editedMicrobeOrganelles, editor.membrane, editor.targetPatch);
-        //     }
-        // );
-
-        // action.data["membrane"] = SimulationParameters::membraneRegistry().getTypeId(
-        //     string(vars.GetSingleValueByName("membrane")));
-        // action.data["prevMembrane"] = membrane;
-
-        // enqueueAction(action);
+        // In case the action failed, we need to make sure the membrane buttons are updated properly
+        gui.UpdateMembraneButtons(Membrane.InternalName);
     }
 
     public void SetRigidity(float rigidity)
@@ -848,8 +826,12 @@ public class MicrobeEditor : Node
         GD.Print("Starting microbe editor with: ", editedMicrobeOrganelles.Organelles.Count,
             " organelles in the microbe, genes: ", species.StringCode);
 
+        // Should these two gui updating function calls be moved to SetSpeciesInfo?
         // Update GUI buttons now that we have correct organelles
         gui.UpdateGuiButtonStatus(HasNucleus);
+
+        // Also make sure membrane buttons are correct
+        gui.UpdateMembraneButtons(Membrane.InternalName);
 
         // Create a mutated version of the current species code to compete against the player
         CreateMutatedSpeciesCopy(species);
@@ -1347,6 +1329,29 @@ public class MicrobeEditor : Node
         organelleModel.Scene = displayScene;
     }
 
+    private void DoMembraneChangeAction(EditorAction action)
+    {
+        var data = (MembraneActionData)action.Data;
+        var membrane = data.NewMembrane;
+        GD.Print("Changing membrane to '", membrane.InternalName, "'");
+        Membrane = membrane;
+        gui.UpdateMembraneButtons(Membrane.InternalName);
+        gui.UpdateSpeed(CalculateSpeed());
+        CalculateEnergyBalanceWithOrganellesAndMembraneType(
+            editedMicrobeOrganelles.Organelles, Membrane, targetPatch);
+    }
+
+    private void UndoMembraneChangeAction(EditorAction action)
+    {
+        var data = (MembraneActionData)action.Data;
+        Membrane = data.OldMembrane;
+        GD.Print("Changing membrane back to '", Membrane.InternalName, "'");
+        gui.UpdateMembraneButtons(Membrane.InternalName);
+        gui.UpdateSpeed(CalculateSpeed());
+        CalculateEnergyBalanceWithOrganellesAndMembraneType(
+            editedMicrobeOrganelles.Organelles, Membrane, targetPatch);
+    }
+
     /// <summary>
     ///   Perform all actions through this to make undo and redo work
     /// </summary>
@@ -1470,6 +1475,18 @@ public class MicrobeEditor : Node
         public RemoveActionData(OrganelleTemplate organelle)
         {
             Organelle = organelle;
+        }
+    }
+
+    private class MembraneActionData
+    {
+        public MembraneType OldMembrane;
+        public MembraneType NewMembrane;
+
+        public MembraneActionData(MembraneType oldMembrane, MembraneType newMembrane)
+        {
+            OldMembrane = oldMembrane;
+            NewMembrane = newMembrane;
         }
     }
 }

@@ -651,26 +651,7 @@ public class MicrobeEditorGUI : Node
 
     internal void OnMembraneSelected(string membrane)
     {
-        // todo: Send selected membrane to the editor script
-
-        // Updates the GUI buttons based on current membrane
-        foreach (Button element in membraneSelectionElements)
-        {
-            var selectedLabel = element.GetNode<Label>(
-                "MarginContainer/VBoxContainer/SelectedLabelMargin/SelectedLabel");
-
-            if (element.Name == membrane)
-            {
-                if (!element.Pressed)
-                    element.Pressed = true;
-
-                selectedLabel.Show();
-            }
-            else
-            {
-                selectedLabel.Hide();
-            }
-        }
+        editor.SetMembrane(membrane);
     }
 
     internal void SetSpeciesInfo(string name, MembraneType membrane, Color colour,
@@ -686,6 +667,32 @@ public class MicrobeEditorGUI : Node
         OnSpeciesNameTextChanged(name);
 
         UpdateRigiditySlider(rigidity, editor.MutationPoints);
+    }
+
+    internal void UpdateMembraneButtons(string membrane)
+    {
+        // Updates the GUI buttons based on current membrane
+        foreach (Button element in membraneSelectionElements)
+        {
+            // This is required so that the button press state won't be
+            // updated incorrectly when we don't have enough MP to change the membrane
+            element.Pressed = false;
+
+            var selectedLabel = element.GetNode<Label>(
+                "MarginContainer/VBoxContainer/SelectedLabelMargin/SelectedLabel");
+
+            if (element.Name == membrane)
+            {
+                if (!element.Pressed)
+                    element.Pressed = true;
+
+                selectedLabel.Show();
+            }
+            else
+            {
+                selectedLabel.Hide();
+            }
+        }
     }
 
     internal void UpdateRigiditySlider(float value, int mutationPoints)
