@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Godot;
 
@@ -18,6 +19,13 @@ public class MicrobeAISystem
     {
         var nodes = worldRoot.GetTree().GetNodesInGroup(Constants.AI_GROUP);
 
+        // TODO: it would be nice to only rebuild these lists if some AI think interval has elapsed and these are needed
+        var allMicrobes = worldRoot.GetTree().GetNodesInGroup(Constants.AI_TAG_MICROBE);
+        var allChunks = worldRoot.GetTree().GetNodesInGroup(Constants.AI_TAG_CHUNK);
+
+        var data = new MicrobeAICommonData(allMicrobes.Cast<Microbe>().ToList(),
+            allChunks.Cast<FloatingChunk>().ToList());
+
         // The objects are processed here in order to take advantage of threading
         var executor = TaskExecutor.Instance;
 
@@ -31,7 +39,7 @@ public class MicrobeAISystem
                 for (int a = start;
                      a < start + Constants.MICROBE_AI_OBJECTS_PER_TASK && a < nodes.Count; ++a)
                 {
-                    RunAIFor(nodes[a] as IMicrobeAI, delta, random);
+                    RunAIFor(nodes[a] as IMicrobeAI, delta, random, data);
                 }
             });
 
@@ -48,7 +56,7 @@ public class MicrobeAISystem
     /// </summary>
     /// <param name="ai">The thing with AI interface implemented</param>
     /// <param name="delta">Passed time</param>
-    private void RunAIFor(IMicrobeAI ai, float delta, Random random)
+    private void RunAIFor(IMicrobeAI ai, float delta, Random random, MicrobeAICommonData data)
     {
         if (ai == null)
         {
@@ -65,14 +73,6 @@ public class MicrobeAISystem
 
         ai.TimeUntilNextAIUpdate = Constants.MICROBE_AI_THINK_INTERVAL;
 
-        // Run the actual AI logic here
-        Microbe microbe = (Microbe)ai;
-
-        // For now just set a random nearby look at location
-        microbe.LookAtPoint = microbe.Translation + new Vector3(
-            random.Next(-100, 101), 0, random.Next(-100, 101));
-
-        // And random movement speed
-        microbe.MovementDirection = new Vector3(0, 0, (float)(-1 * random.NextDouble()));
+        ai.AIThink(delta, random, data);
     }
 }
