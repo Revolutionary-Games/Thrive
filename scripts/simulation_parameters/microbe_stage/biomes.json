@@ -3,25 +3,21 @@
         "name": "Epipelagic",
         "background": "ocean",
         "icon": "res://assets/textures/gui/bevel/epipelagic.png",
-        "skybox": "Thrive_ocean_skybox",
-        "skyboxLightIntensity": 0.5,
         "sunlight": {
-            "color": {
+            "colour": {
                 "r": 1,
                 "g": 1,
-                "b": 1
+                "b": 1,
+                "a": 1
             },
-            "intensity": 0.0001,
+            "energy": 1,
+            "specular": 0.5,
+            "shadows": true,
             "direction": {
-                "x": 0.55,
+                "x": 0.25,
                 "y": -0.3,
                 "z": 0.75
-            },
-            "sourceRadius": 0.5
-        },
-        "eyeAdaptation": {
-            "min": 0.003,
-            "max": 2
+            }
         },
         "chunks": {
             "floatingToxin": {
@@ -144,26 +140,7 @@
         "name": "Volcanic vent",
         "background": "vent",
         "icon": "res://assets/textures/gui/bevel/vents.png",
-        "skybox": "Thrive_vent_skybox",
-        "skyboxLightIntensity": 0.5,
-        "sunlight": {
-            "color": {
-                "r": 1,
-                "g": 1,
-                "b": 1
-            },
-            "intensity": 0.0001,
-            "direction": {
-                "x": 0.55,
-                "y": -0.3,
-                "z": 0.75
-            },
-            "sourceRadius": 0.5
-        },
-        "eyeAdaptation": {
-            "min": 0.003,
-            "max": 0.8
-        },
+        "sunlight": {},
         "chunks": {
             "floatingToxin": {
                 "name": "Floating Hazard",
@@ -355,22 +332,7 @@
         "name": "Tidepool",
         "background": "tidepool",
         "icon": "res://assets/textures/gui/bevel/tidepool.png",
-        "skybox": "Thrive_tidepool_skybox",
-        "skyboxLightIntensity": 0.5,
-        "sunlight": {
-            "color": {
-                "r": 1,
-                "g": 1,
-                "b": 1
-            },
-            "intensity": 0.0001,
-            "direction": {
-                "x": 0.55,
-                "y": -0.3,
-                "z": 0.75
-            },
-            "sourceRadius": 0.5
-        },
+        "sunlight": {},
         "eyeAdaptation": {
             "min": 0.003,
             "max": 2
@@ -496,22 +458,7 @@
         "name": "Bathypalagic",
         "background": "bathypalagic",
         "icon": "res://assets/textures/gui/bevel/bathy.png",
-        "skybox": "Thrive_bathy_skybox",
-        "skyboxLightIntensity": 0.5,
-        "sunlight": {
-            "color": {
-                "r": 1,
-                "g": 1,
-                "b": 1
-            },
-            "intensity": 0.0001,
-            "direction": {
-                "x": 0.55,
-                "y": -0.3,
-                "z": 0.75
-            },
-            "sourceRadius": 0.5
-        },
+        "sunlight": {},
         "eyeAdaptation": {
             "min": 0.003,
             "max": 1.5
@@ -707,26 +654,7 @@
         "name": "Abyssopelagic",
         "background": "abyssopelagic",
         "icon": "res://assets/textures/gui/bevel/abyss.png",
-        "skybox": "Thrive_abyss_skybox",
-        "skyboxLightIntensity": 0.5,
-        "sunlight": {
-            "color": {
-                "r": 1,
-                "g": 1,
-                "b": 1
-            },
-            "intensity": 0.0001,
-            "direction": {
-                "x": 0.55,
-                "y": -0.3,
-                "z": 0.75
-            },
-            "sourceRadius": 0.5
-        },
-        "eyeAdaptation": {
-            "min": 0.003,
-            "max": 0.8
-        },
+        "sunlight": {},
         "chunks": {
             "floatingToxin": {
                 "name": "Floating Hazard",
@@ -918,22 +846,7 @@
         "name": "Mesopelagic",
         "background": "mesopelagic",
         "icon": "res://assets/textures/gui/bevel/mesopelagic.png",
-        "skybox": "Thrive_meso_skybox",
-        "skyboxLightIntensity": 0.5,
-        "sunlight": {
-            "color": {
-                "r": 1,
-                "g": 1,
-                "b": 1
-            },
-            "intensity": 0.0001,
-            "direction": {
-                "x": 0.55,
-                "y": -0.3,
-                "z": 0.75
-            },
-            "sourceRadius": 0.5
-        },
+        "sunlight": {},
         "eyeAdaptation": {
             "min": 0.003,
             "max": 1.7
@@ -1129,22 +1042,7 @@
         "name": "Coastal",
         "background": "coastal",
         "icon": "res://assets/textures/gui/bevel/shallow.png",
-        "skybox": "Thrive_shallow_skybox",
-        "skyboxLightIntensity": 0.5,
-        "sunlight": {
-            "color": {
-                "r": 1,
-                "g": 1,
-                "b": 1
-            },
-            "intensity": 0.0001,
-            "direction": {
-                "x": 0.55,
-                "y": -0.3,
-                "z": 0.75
-            },
-            "sourceRadius": 0.5
-        },
+        "sunlight": {},
         "eyeAdaptation": {
             "min": 0.003,
             "max": 2
@@ -1270,26 +1168,7 @@
         "name": "UnderwaterCave",
         "background": "cave",
         "icon": "res://assets/textures/gui/bevel/cave.png",
-        "skybox": "Thrive_cave_skybox",
-        "skyboxLightIntensity": 0.5,
-        "sunlight": {
-            "color": {
-                "r": 1,
-                "g": 1,
-                "b": 1
-            },
-            "intensity": 0.0001,
-            "direction": {
-                "x": 0.55,
-                "y": -0.3,
-                "z": 0.75
-            },
-            "sourceRadius": 0.5
-        },
-        "eyeAdaptation": {
-            "min": 0.003,
-            "max": 0.8
-        },
+        "sunlight": {},
         "chunks": {
             "floatingToxin": {
                 "name": "Floating Hazard",
@@ -1411,22 +1290,7 @@
         "name": "IceShelf",
         "background": "iceshelf",
         "icon": "res://assets/textures/gui/bevel/iceshelf.png",
-        "skybox": "Thrive_iceshelf_skybox",
-        "skyboxLightIntensity": 0.5,
-        "sunlight": {
-            "color": {
-                "r": 1,
-                "g": 1,
-                "b": 1
-            },
-            "intensity": 0.0001,
-            "direction": {
-                "x": 0.55,
-                "y": -0.3,
-                "z": 0.75
-            },
-            "sourceRadius": 0.5
-        },
+        "sunlight": {},
         "eyeAdaptation": {
             "min": 0.003,
             "max": 2
@@ -1570,22 +1434,7 @@
         "name": "Estuary",
         "background": "estuary",
         "icon": "res://assets/textures/gui/bevel/estuary.png",
-        "skybox": "Thrive_estuary_skybox",
-        "skyboxLightIntensity": 0.5,
-        "sunlight": {
-            "color": {
-                "r": 1,
-                "g": 1,
-                "b": 1
-            },
-            "intensity": 0.0001,
-            "direction": {
-                "x": 0.55,
-                "y": -0.3,
-                "z": 0.75
-            },
-            "sourceRadius": 0.5
-        },
+        "sunlight": {},
         "eyeAdaptation": {
             "min": 0.003,
             "max": 2
@@ -1711,22 +1560,7 @@
         "name": "Sea Floor",
         "background": "seafloor",
         "icon": "res://assets/textures/gui/bevel/bathyFloor.png",
-        "skybox": "Thrive_seafloor_skybox",
-        "skyboxLightIntensity": 0.5,
-        "sunlight": {
-            "color": {
-                "r": 1,
-                "g": 1,
-                "b": 1
-            },
-            "intensity": 0.0001,
-            "direction": {
-                "x": 0.55,
-                "y": -0.3,
-                "z": 0.75
-            },
-            "sourceRadius": 0.5
-        },
+        "sunlight": {},
         "eyeAdaptation": {
             "min": 0.003,
             "max": 1

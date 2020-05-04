@@ -12,6 +12,7 @@ public class PatchManager
     private ProcessSystem processSystem;
     private CompoundCloudSystem compoundCloudSystem;
     private TimedLifeSystem timedLife;
+    private DirectionalLight worldLight;
     private GameProperties currentGame;
 
     private Patch previousPatch;
@@ -22,12 +23,14 @@ public class PatchManager
     private List<CreatedSpawner> microbeSpawners = new List<CreatedSpawner>();
 
     public PatchManager(SpawnSystem spawnSystem, ProcessSystem processSystem,
-        CompoundCloudSystem compoundCloudSystem, TimedLifeSystem timedLife, GameProperties currentGame)
+        CompoundCloudSystem compoundCloudSystem, TimedLifeSystem timedLife, DirectionalLight worldLight,
+        GameProperties currentGame)
     {
         this.spawnSystem = spawnSystem;
         this.processSystem = processSystem;
         this.compoundCloudSystem = compoundCloudSystem;
         this.timedLife = timedLife;
+        this.worldLight = worldLight;
         this.currentGame = currentGame;
     }
 
@@ -71,11 +74,7 @@ public class PatchManager
         // Change the lighting
         UpdateLight(currentPatch.Biome);
 
-        // // Changing the background.
-        // ThriveGame::get()->setBackgroundMaterial(biome.background);
-
         // updateBiomeStatsForGUI(biome);
-        // updateCurrentPatchInfoForGUI(*patch);
     }
 
     private void HandleChunkSpawns(Biome biome)
@@ -178,18 +177,20 @@ public class PatchManager
 
     private void UpdateLight(Biome biome)
     {
-        // // Sunlight
-        // InWorld.SetLightProperties(biome.sunlightColor, biome.sunlightIntensity,
-        //     biome.sunlightDirection, biome.sunlightSourceRadius);
+        if (biome.Sunlight == null)
+        {
+            GD.PrintErr("biome has no sunlight parameters");
+            return;
+        }
 
-        // // Skybox with indirect light
-        // ThriveGame::get()->setSkybox(biome.skybox, biome.skyboxLightIntensity);
+        worldLight.Translation = new Vector3(0, 0, 0);
+        worldLight.LookAt(biome.Sunlight.Direction, new Vector3(0, 1, 0));
 
-        // // Eye adaptation settings
-        // LOG_INFO("Setting eye adaptation: min: " +
-        //          std::to_string(biome.minEyeAdaptation) +
-        //          " max: " + std::to_string(biome.maxEyeAdaptation));
-        // InWorld.SetAutoExposure(biome.minEyeAdaptation, biome.maxEyeAdaptation);
+        worldLight.ShadowEnabled = biome.Sunlight.Shadows;
+
+        worldLight.LightColor = biome.Sunlight.Colour;
+        worldLight.LightEnergy = biome.Sunlight.Energy;
+        worldLight.LightSpecular = biome.Sunlight.Specular;
     }
 
     private void UpdateBiomeStatsForGUI(Biome biome)
@@ -209,12 +210,6 @@ public class PatchManager
         // vars->Add(std::make_shared<NamedVariableList>("sunlightPercent",
         //     new Leviathan::IntBlock(
         //         cellWorld.GetProcessSystem().getDissolved(lightId) * 100)));
-    }
-
-    private void UpdateCurrentPatchInfoForGUI(Patch patch)
-    {
-        // vars->Add(std::make_shared<NamedVariableList>(
-        //     "patchName", new Leviathan::StringBlock(patch.getName())));
     }
 
     private void UnmarkAllSpawners()
