@@ -57,7 +57,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     // variables for engulfing
     private bool engulfMode = false;
     private bool previousEngulfMode = false;
-    private bool isBeingEngulfed = false;
     private Microbe hostileEngulfer = null;
     private bool wasBeingEngulfed = false;
 
@@ -88,14 +87,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// </summary>
     private float organellesCapacity = 0.0f;
 
-    /// <summary>
-    ///   The number of agent vacuoles. Determines the time between
-    ///   toxin shots.
-    /// </summary>
-    private int agentVacuoleCount = 0;
-
-    // private float compoundCollectionTimer = EXCESS_COMPOUND_COLLECTION_INTERVAL;
-
     private float escapeInterval = 0;
     private bool hasEscaped = false;
 
@@ -107,6 +98,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     private Color flashColour = new Color(0, 0, 0, 0);
 
     private bool allOrganellesDivided = false;
+
+    private MicrobeAI ai;
 
     /// <summary>
     ///   The membrane of this Microbe. Used for grabbing radius / points from this.
@@ -131,6 +124,14 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
     public float Hitpoints { get; private set; } = Constants.DEFAULT_HEALTH;
     public float MaxHitpoints { get; private set; } = Constants.DEFAULT_HEALTH;
+
+    /// <summary>
+    ///   The number of agent vacuoles. Determines the time between
+    ///   toxin shots.
+    /// </summary>
+    public int AgentVacuoleCount { get; private set; } = 0;
+
+    public bool IsBeingEngulfed { get; private set; } = false;
 
     /// <summary>
     ///   Multiplied on the movement speed of the microbe.
@@ -277,6 +278,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         if (IsPlayerMicrobe)
             GD.Print("Player Microbe spawned");
 
+        if (!isPlayer)
+            ai = new MicrobeAI(this);
+
         // Needed for immediately applying the species
         _Ready();
     }
@@ -389,7 +393,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             return;
 
         // Only shoot if you have an agent vacuole.
-        if (agentVacuoleCount < 1)
+        if (AgentVacuoleCount < 1)
         {
             return;
         }
@@ -405,7 +409,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             return;
 
         // The cooldown time is inversely proportional to the amount of agent vacuoles.
-        AgentEmissionCooldown = Constants.AGENT_EMISSION_COOLDOWN / agentVacuoleCount;
+        AgentEmissionCooldown = Constants.AGENT_EMISSION_COOLDOWN / AgentVacuoleCount;
 
         Compounds.TakeCompound(agentType, Constants.MINIMUM_AGENT_EMISSION_AMOUNT);
 
@@ -561,7 +565,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         // To not completely deadlock in this there is a maximum limit
         int createdAgents = 0;
 
-        if (agentVacuoleCount > 0)
+        if (AgentVacuoleCount > 0)
         {
             var oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
 
@@ -963,6 +967,24 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         }
     }
 
+    public void AIThink(float delta, Random random, MicrobeAICommonData data)
+    {
+        if (IsPlayerMicrobe)
+            throw new InvalidOperationException("AI can't run on the player microbe");
+
+        if (Dead)
+            return;
+
+        try
+        {
+            ai.Think(delta, random, data);
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr("Microbe AI failure! " + e.ToString());
+        }
+    }
+
     public override void _IntegrateForces(PhysicsDirectBodyState state)
     {
         // TODO: should movement also be applied here?
@@ -1318,14 +1340,14 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             MovementFactor /= Constants.ENGULFING_MOVEMENT_DIVISION;
         }
 
-        if (isBeingEngulfed)
+        if (IsBeingEngulfed)
         {
             MovementFactor /= Constants.ENGULFED_MOVEMENT_DIVISION;
 
             Damage(Constants.ENGULF_DAMAGE * delta, "isBeingEngulfed");
             wasBeingEngulfed = true;
         }
-        else if (wasBeingEngulfed && !isBeingEngulfed)
+        else if (wasBeingEngulfed && !IsBeingEngulfed)
         {
             // Else If we were but are no longer, being engulfed
             wasBeingEngulfed = false;
@@ -1362,7 +1384,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
                 if (hostileEngulfer.Dead)
                 {
                     hostileEngulfer = null;
-                    isBeingEngulfed = false;
+                    IsBeingEngulfed = false;
                 }
                 else
                 {
@@ -1393,12 +1415,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             {
                 // Something that's disposed can't engulf us
                 hostileEngulfer = null;
-                isBeingEngulfed = false;
+                IsBeingEngulfed = false;
             }
         }
         else
         {
-            isBeingEngulfed = false;
+            IsBeingEngulfed = false;
         }
 
         previousEngulfMode = EngulfMode;
@@ -1427,7 +1449,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         foreach (var microbe in attemptingToEngulf)
         {
             microbe.hostileEngulfer = this;
-            microbe.isBeingEngulfed = true;
+            microbe.IsBeingEngulfed = true;
         }
     }
 
@@ -1436,7 +1458,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         // This kept getting doubled for some reason, so i just set it to default
         MovementFactor = 1.0f;
         wasBeingEngulfed = false;
-        isBeingEngulfed = false;
+        IsBeingEngulfed = false;
 
         if (hostileEngulfer != null)
         {
@@ -1563,7 +1585,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         cachedHexCountDirty = true;
 
         if (organelle.IsAgentVacuole)
-            agentVacuoleCount += 1;
+            AgentVacuoleCount += 1;
 
         // This is calculated here as it would be a bit difficult to
         // hook up computing this when the StorageBag needs this info.
@@ -1575,7 +1597,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     {
         organellesCapacity -= organelle.StorageCapacity;
         if (organelle.IsAgentVacuole)
-            agentVacuoleCount -= 1;
+            AgentVacuoleCount -= 1;
         organelle.OnRemovedFromMicrobe();
 
         // The organelle only detaches but doesn't delete itself, so we delete it here
@@ -1802,7 +1824,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     {
         AddCollisionExceptionWith(microbe);
         microbe.hostileEngulfer = this;
-        microbe.isBeingEngulfed = true;
+        microbe.IsBeingEngulfed = true;
     }
 
     private void StopEngulfingOnTarget(Microbe microbe)

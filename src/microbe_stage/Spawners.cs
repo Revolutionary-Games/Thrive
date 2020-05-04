@@ -47,6 +47,7 @@ public static class SpawnHelpers
         worldRoot.AddChild(microbe);
         microbe.Translation = location;
 
+        microbe.AddToGroup(Constants.AI_TAG_MICROBE);
         microbe.AddToGroup(Constants.PROCESS_GROUP);
 
         if (aiControlled)
@@ -86,6 +87,7 @@ public static class SpawnHelpers
             chunkType.ChunkScale);
 
         chunk.AddToGroup(Constants.FLUID_EFFECT_GROUP);
+        chunk.AddToGroup(Constants.AI_TAG_CHUNK);
         return chunk;
     }
 

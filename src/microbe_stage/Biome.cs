@@ -24,6 +24,11 @@ public class Biome : IRegistryType, ICloneable
     /// </summary>
     public string Icon;
 
+    /// <summary>
+    ///   The light to use for this biome
+    /// </summary>
+    public LightDetails Sunlight;
+
     [JsonIgnore]
     public Texture LoadedIcon;
 
@@ -60,6 +65,12 @@ public class Biome : IRegistryType, ICloneable
             throw new InvalidRegistryData(name, this.GetType().Name,
                 "icon missing");
         }
+
+        if (Sunlight == null)
+        {
+            throw new InvalidRegistryData(name, this.GetType().Name,
+                "sunlight missing");
+        }
     }
 
     /// <summary>
@@ -91,6 +102,9 @@ public class Biome : IRegistryType, ICloneable
             Chunks = new Dictionary<string, ChunkConfiguration>(Chunks.Count),
             Icon = Icon,
             LoadedIcon = LoadedIcon,
+
+            // Clone this as well if needed (if the light properties can change)
+            Sunlight = Sunlight,
         };
 
         foreach (var entry in Compounds)
@@ -159,5 +173,34 @@ public class Biome : IRegistryType, ICloneable
             [JsonIgnore]
             public PackedScene LoadedScene;
         }
+    }
+
+    public class LightDetails
+    {
+        /// <summary>
+        ///   Colour of the light
+        /// </summary>
+        public Color Colour = new Color(1, 1, 1, 1);
+
+        /// <summary>
+        ///   Strength of the light
+        /// </summary>
+        public float Energy = 1.0f;
+
+        /// <summary>
+        ///   How much specular there is
+        /// </summary>
+        public float Specular = 0.5f;
+
+        /// <summary>
+        ///   Shadow casting enabled / disabled
+        /// </summary>
+        public bool Shadows = true;
+
+        /// <summary>
+        ///   The direction the light is pointing at. This is done by placing the light and making it look at a relative
+        ///   position with these coordinates.
+        /// </summary>
+        public Vector3 Direction = new Vector3(0.25f, -0.3f, 0.75f);
     }
 }
