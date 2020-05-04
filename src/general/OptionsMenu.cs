@@ -268,7 +268,7 @@ public class OptionsMenu : Control
             case 3:
                 return Viewport.MSAA.Msaa8x;
             case 4:
-                return Viewport.MSAA.Msaa16x;    
+                return Viewport.MSAA.Msaa16x;
             default:
                 GD.PrintErr("invalid MSAA resolution index");
                 return Viewport.MSAA.Disabled;
@@ -358,6 +358,7 @@ public class OptionsMenu : Control
     {
         Settings.CloudResolution = CloudIndexToResolution(index);
     }
+
     private void OnMSAAResolutionSelected(int index)
     {
         Settings.MSAAResolution = MSAAIndexToResolution(index);
