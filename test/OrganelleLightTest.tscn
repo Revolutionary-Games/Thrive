@@ -1,0 +1,67 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://shaders/Organelle.shader" type="Shader" id=1]
+[ext_resource path="res://assets/models/organelles/Mitochondrion.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/textures/mitochondrion.png" type="Texture" id=3]
+[ext_resource path="res://assets/models/organelles/Chemoplast.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/textures/chemoplast.png" type="Texture" id=5]
+[ext_resource path="res://assets/textures/FresnelGradientDamaged.png" type="Texture" id=6]
+[ext_resource path="res://assets/textures/FresnelGradient.png" type="Texture" id=7]
+[ext_resource path="res://src/microbe_stage/Membrane.tscn" type="PackedScene" id=8]
+[ext_resource path="res://shaders/Membrane.shader" type="Shader" id=9]
+
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/tint = Color( 1, 1, 1, 1 )
+shader_param/texture = ExtResource( 3 )
+
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/tint = Color( 1, 1, 1, 1 )
+shader_param/texture = ExtResource( 5 )
+
+[sub_resource type="ShaderMaterial" id=3]
+resource_local_to_scene = true
+render_priority = 1
+shader = ExtResource( 9 )
+shader_param/wigglyNess = 1.0
+shader_param/movementWigglyNess = 1.0
+shader_param/healthFraction = 0.25
+shader_param/tint = Plane( 1, 1, 1, 1 )
+shader_param/albedoTexture = ExtResource( 7 )
+shader_param/damagedTexture = ExtResource( 6 )
+
+[node name="Spatial" type="Spatial"]
+
+[node name="Mitochondrion" parent="." instance=ExtResource( 2 )]
+material_override = SubResource( 1 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( 0.866025, 0.25, -0.433013, 0, 0.866025, 0.5, 0.5, -0.433013, 0.75, -3, 2, 3 )
+shadow_enabled = true
+
+[node name="Chemoplast" parent="." instance=ExtResource( 4 )]
+transform = Transform( -28.3865, 95.8864, 1.56219e-05, 0, -1.62921e-05, 100, 95.8864, 28.3865, 4.62475e-06, -2.37408, 0, 0 )
+material_override = SubResource( 2 )
+
+[node name="CSGBox" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.19501, -1.17122 )
+width = 33.445
+depth = 38.246
+
+[node name="CSGBox2" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -5.66004, -0.174119, 0 )
+width = 2.45813
+
+[node name="CSGBox3" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0240011, 1.7432, 3.09903 )
+width = 2.45813
+
+[node name="Camera" type="Camera" parent="."]
+transform = Transform( 0.952724, 0.219617, -0.209965, -0.0332861, 0.762328, 0.646334, 0.302008, -0.608789, 0.733599, -3.19108, 3.1727, 3.8879 )
+
+[node name="Membrane" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00755703, 0, -1.75788 )
+MaterialToEdit = SubResource( 3 )

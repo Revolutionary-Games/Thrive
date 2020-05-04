@@ -12,6 +12,8 @@ public class MicrobeStage : Node
     private MicrobeAISystem microbeAISystem;
     private PatchManager patchManager;
 
+    private DirectionalLight worldLight;
+
     /// <summary>
     ///   Used to differentiate between spawning the player and respawning
     /// </summary>
@@ -66,6 +68,7 @@ public class MicrobeStage : Node
         spawner = new SpawnSystem(rootOfDynamicallySpawned);
         Camera = world.GetNode<MicrobeCamera>("PrimaryCamera");
         Clouds = world.GetNode<CompoundCloudSystem>("CompoundClouds");
+        worldLight = world.GetNode<DirectionalLight>("WorldLight");
         TimedLifeSystem = new TimedLifeSystem(rootOfDynamicallySpawned);
         ProcessSystem = new ProcessSystem(rootOfDynamicallySpawned);
         microbeAISystem = new MicrobeAISystem(rootOfDynamicallySpawned);
@@ -281,7 +284,7 @@ public class MicrobeStage : Node
         if (patchManager != null)
             return;
         patchManager = new PatchManager(spawner, ProcessSystem, Clouds, TimedLifeSystem,
-            CurrentGame);
+            worldLight, CurrentGame);
     }
 
     /// <summary>
