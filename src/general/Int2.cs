@@ -32,8 +32,6 @@ public struct Int2
     public static Int2 operator /(Int2 p1, Int2 p2) => new Int2(p1.x / p2.x, p1.y / p2.y);
 
     // Comparators
-    public static bool operator ==(Int2 p1, Int2 p2) => p1.x == p2.x && p1.y == p2.y;
-    public static bool operator !=(Int2 p1, Int2 p2) => p1.x != p2.x || p1.y != p2.y;
     public static bool operator >(Int2 p1, Int2 p2) => p1.x > p2.x || (p1.x == p2.x && p1.y > p2.y);
     public static bool operator <(Int2 p1, Int2 p2) => p1.x < p2.x || (p1.x == p2.x && p1.y < p2.y);
     public static bool operator >=(Int2 p1, Int2 p2) => !(p1 < p2);
