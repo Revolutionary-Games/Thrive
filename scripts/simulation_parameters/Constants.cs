@@ -36,6 +36,8 @@ public class Constants
 
     public const float CLOUD_Y_COORDINATE = 0;
 
+    public const float CLOUD_DIFFUSION_RATE = 0.007f;
+
     public const int MEMBRANE_RESOLUTION = 10;
 
     /// <summary>
