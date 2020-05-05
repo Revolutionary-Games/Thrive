@@ -1,4 +1,6 @@
-﻿/// <summary>
+﻿using Godot;
+
+/// <summary>
 ///   Defines properties of a membrane type
 /// </summary>
 public class MembraneType : IRegistryType
@@ -18,10 +20,24 @@ public class MembraneType : IRegistryType
 
     public void Check(string name)
     {
-        if (NormalTexture == string.Empty || DamagedTexture == string.Empty)
+        if (string.IsNullOrEmpty(NormalTexture) || string.IsNullOrEmpty(DamagedTexture))
         {
             throw new InvalidRegistryData(name, this.GetType().Name,
                 "Empty normal or damaged texture");
+        }
+
+        var directory = new Directory();
+
+        string[] membranes = { NormalTexture, DamagedTexture };
+
+        foreach (var resource in membranes)
+        {
+            // When exported only the .import files exist, so this check is done accordingly
+            if (!directory.FileExists(resource + ".import"))
+            {
+                throw new InvalidRegistryData(name, this.GetType().Name,
+                    "Membrane uses non-existant image: " + resource);
+            }
         }
     }
 }
