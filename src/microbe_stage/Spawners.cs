@@ -60,9 +60,9 @@ public static class SpawnHelpers
 
     // TODO: this is likely a huge cause of lag. Would be nice to be able
     // to spawn these so that only one per tick is spawned.
-    public static Microbe SpawnBacteriaColony(Species species, Vector3 location,
+    public static void SpawnBacteriaColony(Species species, Vector3 location,
         Node worldRoot, PackedScene microbeScene, CompoundCloudSystem cloudSystem,
-        GameProperties currentGame, Random random)
+        GameProperties currentGame, Random random, List<ISpawned> entities)
     {
         var curSpawn = new Vector3(random.Next(1, 8), 0, random.Next(1, 8));
 
@@ -75,7 +75,8 @@ public static class SpawnHelpers
             {
                 // Dont spawn them on top of each other because it
                 // causes them to bounce around and lag
-                SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true, cloudSystem, currentGame);
+                entities.Add(SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
+                    cloudSystem, currentGame));
 
                 curSpawn = curSpawn + new Vector3(random.Next(-7, 8), 0, random.Next(-7, 8));
             }
@@ -92,7 +93,8 @@ public static class SpawnHelpers
             {
                 // Dont spawn them on top of each other because it
                 // Causes them to bounce around and lag
-                SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true, cloudSystem, currentGame);
+                entities.Add(SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
+                    cloudSystem, currentGame));
 
                 curSpawn = curSpawn + new Vector3(line + random.Next(-2, 3), 0, line + random.Next(-2, 3));
             }
@@ -127,8 +129,8 @@ public static class SpawnHelpers
                         // Add a litlle organicness to the look
                         curSpawn.z += random.Next(-2, 3);
 
-                        SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
-                            cloudSystem, currentGame);
+                        entities.Add(SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
+                            cloudSystem, currentGame));
                     }
                 }
                 else if (random.Next(0, 5) < 2 && !vertical)
@@ -146,8 +148,8 @@ public static class SpawnHelpers
                         // Add a litlle organicness to the look
                         curSpawn.x += random.Next(-2, 3);
 
-                        SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
-                            cloudSystem, currentGame);
+                        entities.Add(SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
+                            cloudSystem, currentGame));
                     }
                 }
                 else if (random.Next(0, 5) < 2 && !horizontal)
@@ -165,8 +167,8 @@ public static class SpawnHelpers
                         // Add a litlle organicness to the look
                         curSpawn.z -= random.Next(-2, 3);
 
-                        SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
-                            cloudSystem, currentGame);
+                        entities.Add(SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
+                            cloudSystem, currentGame));
                     }
                 }
                 else if (random.Next(0, 5) < 2 && !vertical)
@@ -184,8 +186,8 @@ public static class SpawnHelpers
                         // Add a litlle organicness to the look
                         curSpawn.x -= random.Next(-2, 3);
 
-                        SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
-                            cloudSystem, currentGame);
+                        entities.Add(SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
+                            cloudSystem, currentGame));
                     }
                 }
                 else
@@ -203,14 +205,14 @@ public static class SpawnHelpers
 
                         curSpawn.x += random.Next(5, 8);
 
-                        SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
-                            cloudSystem, currentGame);
+                        entities.Add(SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
+                            cloudSystem, currentGame));
                     }
                 }
             }
         }
 
-        return SpawnMicrobe(species, location, worldRoot, microbeScene, true, cloudSystem, currentGame);
+        entities.Add(SpawnMicrobe(species, location, worldRoot, microbeScene, true, cloudSystem, currentGame));
     }
 
     public static PackedScene LoadMicrobeScene()
@@ -327,11 +329,10 @@ public class MicrobeSpawner : ISpawner
         var microbe = SpawnHelpers.SpawnMicrobe(species, location, worldNode, microbeScene,
             true, cloudSystem, currentGame);
 
-        var swarm = SpawnHelpers.SpawnBacteriaColony(species, location, worldNode, microbeScene,
-            cloudSystem, currentGame, random);
+        SpawnHelpers.SpawnBacteriaColony(species, location, worldNode, microbeScene,
+            cloudSystem, currentGame, random, entities);
 
         entities.Add(microbe);
-        entities.Add(swarm);
         return entities;
     }
 }
