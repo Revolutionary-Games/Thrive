@@ -826,12 +826,8 @@ public class MicrobeEditor : Node
         GD.Print("Starting microbe editor with: ", editedMicrobeOrganelles.Organelles.Count,
             " organelles in the microbe, genes: ", species.StringCode);
 
-        // Should these two gui updating function calls be moved to SetSpeciesInfo?
         // Update GUI buttons now that we have correct organelles
         gui.UpdateGuiButtonStatus(HasNucleus);
-
-        // Also make sure membrane buttons are correct
-        gui.UpdateMembraneButtons(Membrane.InternalName);
 
         // Create a mutated version of the current species code to compete against the player
         CreateMutatedSpeciesCopy(species);

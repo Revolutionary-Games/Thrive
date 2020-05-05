@@ -666,6 +666,8 @@ public class MicrobeEditorGUI : Node
         // Callback is manually called because the function isn't called automatically here
         OnSpeciesNameTextChanged(name);
 
+        UpdateMembraneButtons(membrane.InternalName);
+
         UpdateRigiditySlider(rigidity, editor.MutationPoints);
     }
 
