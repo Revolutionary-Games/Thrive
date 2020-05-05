@@ -211,8 +211,6 @@ public static class SpawnHelpers
                 }
             }
         }
-
-        entities.Add(SpawnMicrobe(species, location, worldRoot, microbeScene, true, cloudSystem, currentGame));
     }
 
     public static PackedScene LoadMicrobeScene()
@@ -329,8 +327,11 @@ public class MicrobeSpawner : ISpawner
         var microbe = SpawnHelpers.SpawnMicrobe(species, location, worldNode, microbeScene,
             true, cloudSystem, currentGame);
 
-        SpawnHelpers.SpawnBacteriaColony(species, location, worldNode, microbeScene,
-            cloudSystem, currentGame, random, entities);
+        if (microbe.Species.IsBacteria)
+        {
+            SpawnHelpers.SpawnBacteriaColony(species, location, worldNode, microbeScene,
+                cloudSystem, currentGame, random, entities);
+        }
 
         entities.Add(microbe);
         return entities;
