@@ -187,46 +187,8 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
         // Graphical display
         if (Definition.LoadedScene != null)
         {
-            // There is an intermediate node so that the organelle scene root rotation and scale work
-            OrganelleGraphics = new Spatial();
-            var organelleSceneInstance = (Spatial)Definition.LoadedScene.Instance();
-
-            AddChild(OrganelleGraphics);
-
-            OrganelleGraphics.Scale = new Vector3(Constants.DEFAULT_HEX_SIZE, Constants.DEFAULT_HEX_SIZE,
-                Constants.DEFAULT_HEX_SIZE);
-
-            var transform = new Transform(MathUtils.CreateRotationForOrganelle(Orientation),
-                Definition.CalculateModelOffset());
-            OrganelleGraphics.Transform = transform;
-
-            // Store the material of the organelle to be updated
-            GeometryInstance geometry;
-
-            // Fetch the actual model from the scene to get at the material we set the tint on
-            if (string.IsNullOrEmpty(Definition.DisplaySceneModelPath))
-            {
-                geometry = (GeometryInstance)organelleSceneInstance;
-            }
-            else
-            {
-                geometry = organelleSceneInstance.GetNode<GeometryInstance>(Definition.DisplaySceneModelPath);
-            }
-
-            // Store animation player for later use
-            if (!string.IsNullOrEmpty(Definition.DisplaySceneAnimation))
-            {
-                OrganelleAnimation = organelleSceneInstance.GetNode<AnimationPlayer>(Definition.DisplaySceneAnimation);
-            }
-
-            organelleMaterial = (ShaderMaterial)geometry.MaterialOverride;
-
-            OrganelleGraphics.AddChild(organelleSceneInstance);
+            SetupOrganelleGraphics();
         }
-
-        // Position relative to origin of cell
-        RotateY(Orientation * 60);
-        Translation = Hex.AxialToCartesian(Position);
 
         float hexSize = Constants.DEFAULT_HEX_SIZE;
 
@@ -489,6 +451,49 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
         }
 
         needsColourUpdate = false;
+    }
+
+    private void SetupOrganelleGraphics()
+    {
+        var organelleSceneInstance = (Spatial)Definition.LoadedScene.Instance();
+
+        // Store the material of the organelle to be updated
+        GeometryInstance geometry;
+
+        // Fetch the actual model from the scene to get at the material we set the tint on
+        if (string.IsNullOrEmpty(Definition.DisplaySceneModelPath))
+        {
+            geometry = (GeometryInstance)organelleSceneInstance;
+        }
+        else
+        {
+            geometry = organelleSceneInstance.GetNode<GeometryInstance>(Definition.DisplaySceneModelPath);
+        }
+
+        // Store animation player for later use
+        if (!string.IsNullOrEmpty(Definition.DisplaySceneAnimation))
+        {
+            OrganelleAnimation = organelleSceneInstance.GetNode<AnimationPlayer>(Definition.DisplaySceneAnimation);
+        }
+
+        organelleMaterial = (ShaderMaterial)geometry.MaterialOverride;
+
+        // There is an intermediate node so that the organelle scene root rotation and scale work
+        OrganelleGraphics = new Spatial();
+        OrganelleGraphics.AddChild(organelleSceneInstance);
+
+        AddChild(OrganelleGraphics);
+
+        OrganelleGraphics.Scale = new Vector3(Constants.DEFAULT_HEX_SIZE, Constants.DEFAULT_HEX_SIZE,
+            Constants.DEFAULT_HEX_SIZE);
+
+        // Position the intermediate node relative to origin of cell
+        var transform = new Transform(Quat.Identity,
+            Hex.AxialToCartesian(Position) + Definition.CalculateModelOffset());
+        OrganelleGraphics.Transform = transform;
+
+        // For some reason MathUtils.CreateRotationForOrganelle(Orientation) in the above transform doesn't work
+        OrganelleGraphics.RotateY((Orientation * -60) * MathUtils.DEGREES_TO_RADIANS);
     }
 }
 
