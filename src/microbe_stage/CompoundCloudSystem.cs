@@ -646,6 +646,12 @@ public class CompoundCloudSystem : Node
         // The clouds are processed here in order to take advantage of threading
         var executor = TaskExecutor.Instance;
 
+        // Do moving compounds on the edges of the clouds serially
+        foreach (var cloud in clouds)
+        {
+            cloud.UpdateEdgesBeforeCenter(delta);
+        }
+
         foreach (var cloud in clouds)
         {
             var task = new Task(() => cloud.UpdateCloud(delta));
@@ -653,22 +659,16 @@ public class CompoundCloudSystem : Node
             tasks.Add(task);
         }
 
-        // Do moving compounds on the edges of the clouds serially
-        foreach (var cloud in clouds)
-        {
-            cloud.UpdateEdgesBeforeCenter(delta);
-        }
-
         // Start and wait for tasks to finish
         executor.RunTasks(tasks);
+
+        tasks.Clear();
 
         // Do moving compounds on the edges of the clouds serially
         foreach (var cloud in clouds)
         {
             cloud.UpdateEdgesAfterCenter(delta);
         }
-
-        tasks.Clear();
 
         // Update the cloud textures in parallel
         foreach (var cloud in clouds)
