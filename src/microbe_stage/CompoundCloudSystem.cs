@@ -237,7 +237,7 @@ public class CompoundCloudSystem : Node
             // Position the cloud taking into account how many clouds
             // need to be at the same position.
             // Doing this here makes the cloud reposition logic simpler.
-            clouds[i].Translation = positions[positionIndex];
+            clouds[i].Translation = positions[positionIndex].Item2;
 
             ++positionedCounter;
 
@@ -247,6 +247,8 @@ public class CompoundCloudSystem : Node
                 ++positionIndex;
             }
         }
+
+        PositionClouds();
     }
 
     /// <summary>
@@ -460,37 +462,41 @@ public class CompoundCloudSystem : Node
         }
     }
 
-    private static Vector3[]
+    private static Tuple<Int2, Vector3>[]
         CalculateGridPositions(Vector3 center)
     {
-        return new Vector3[]
+        return new Tuple<Int2, Vector3>[9]
         {
             // Center
-            center,
+            Tuple.Create(new Int2(0, 0), center),
 
             // Top left
-            center + new Vector3(-Constants.CLOUD_WIDTH * 2, 0, -Constants.CLOUD_HEIGHT * 2),
+            Tuple.Create(new Int2(-1, -1), center + new Vector3(-Constants.CLOUD_WIDTH * 2, 0,
+                                                                -Constants.CLOUD_HEIGHT * 2)),
 
             // Up
-            center + new Vector3(0, 0, -Constants.CLOUD_HEIGHT * 2),
+            Tuple.Create(new Int2(0, -1), center + new Vector3(0, 0, -Constants.CLOUD_HEIGHT * 2)),
 
             // Top right
-            center + new Vector3(Constants.CLOUD_WIDTH * 2, 0, -Constants.CLOUD_HEIGHT * 2),
+            Tuple.Create(new Int2(1, -1), center + new Vector3(Constants.CLOUD_WIDTH * 2, 0,
+                                                                -Constants.CLOUD_HEIGHT * 2)),
 
             // Left
-            center + new Vector3(-Constants.CLOUD_WIDTH * 2, 0, 0),
+            Tuple.Create(new Int2(-1, 0), center + new Vector3(-Constants.CLOUD_WIDTH * 2, 0, 0)),
 
             // Right
-            center + new Vector3(Constants.CLOUD_WIDTH * 2, 0, 0),
+            Tuple.Create(new Int2(1, 0), center + new Vector3(Constants.CLOUD_WIDTH * 2, 0, 0)),
 
             // Bottom left
-            center + new Vector3(-Constants.CLOUD_WIDTH * 2, 0, Constants.CLOUD_HEIGHT * 2),
+            Tuple.Create(new Int2(-1, 1), center + new Vector3(-Constants.CLOUD_WIDTH * 2, 0,
+                                                                Constants.CLOUD_HEIGHT * 2)),
 
             // Down
-            center + new Vector3(0, 0, Constants.CLOUD_HEIGHT * 2),
+            Tuple.Create(new Int2(0, 1), center + new Vector3(0, 0, Constants.CLOUD_HEIGHT * 2)),
 
             // Bottom right
-            center + new Vector3(Constants.CLOUD_WIDTH * 2, 0, Constants.CLOUD_HEIGHT * 2),
+            Tuple.Create(new Int2(1, 1), center + new Vector3(Constants.CLOUD_WIDTH * 2, 0,
+                                                                Constants.CLOUD_HEIGHT * 2)),
         };
     }
 
@@ -505,13 +511,34 @@ public class CompoundCloudSystem : Node
             (int)Math.Round(pos.z / Constants.CLOUD_Y_EXTENT) * Constants.CLOUD_Y_EXTENT);
     }
 
+    private void SetUpCloudLinks(
+        Dictionary<Tuple<Int2, Compound>, CompoundCloudPlane> clouds)
+    {
+        var indices = clouds.Keys;
+        foreach (var index in indices)
+        {
+            var cloudComponent = clouds[index];
+            var tile = index.Item1;
+            var groupId = index.Item2;
+
+            cloudComponent.UpperCloud =
+                tile.y == -1 ? null : clouds[Tuple.Create(tile + new Int2(0, -1), groupId)];
+            cloudComponent.LowerCloud =
+                tile.y == 1 ? null : clouds[Tuple.Create(tile + new Int2(0, 1), groupId)];
+            cloudComponent.LeftCloud =
+                tile.x == -1 ? null : clouds[Tuple.Create(tile + new Int2(-1, 0), groupId)];
+            cloudComponent.RightCloud =
+                tile.x == 1 ? null : clouds[Tuple.Create(tile + new Int2(1, 0), groupId)];
+        }
+    }
+
     /// <summary>
     ///   Repositions all clouds according to the center of the cloud grid
     /// </summary>
     private void PositionClouds()
     {
         var positions = CalculateGridPositions(cloudGridCenter);
-
+        var cloudsToLink = new Dictionary<Tuple<Int2, Compound>, CompoundCloudPlane>();
         tooFarAwayClouds.Clear();
 
         // All clouds that aren't at one of the requiredCloudPositions needs to
@@ -526,7 +553,7 @@ public class CompoundCloudSystem : Node
             {
                 // An exact check might work but just to be safe slight
                 // inaccuracy is allowed here
-                if ((cloud.Translation - requiredPos).LengthSquared() < 0.01f)
+                if ((cloud.Translation - requiredPos.Item2).LengthSquared() < 0.01f)
                 {
                     matched = true;
                     break;
@@ -558,11 +585,13 @@ public class CompoundCloudSystem : Node
                 {
                     // An exact check might work but just to be safe slight
                     // inaccuracy is allowed here
-                    if ((cloud.Translation - requiredPos).LengthSquared() < 0.01f)
+                    if ((cloud.Translation - requiredPos.Item2).LengthSquared() < 0.01f)
                     {
                         // Check that the group of the cloud is correct
                         if (groupType == cloud.Compound1)
                         {
+                            cloudsToLink.Add(Tuple.Create(requiredPos.Item1, cloud.Compound1),
+                                    cloud);
                             hasCloud = true;
                             break;
                         }
@@ -586,7 +615,11 @@ public class CompoundCloudSystem : Node
 
                         // Move it
                         tooFarAwayClouds[checkReposition].RecycleToPosition(
-                            requiredPos);
+                            requiredPos.Item2);
+
+                        cloudsToLink.Add(Tuple.Create(
+                                requiredPos.Item1, tooFarAwayClouds[checkReposition].Compound1),
+                            tooFarAwayClouds[checkReposition]);
 
                         // Set to null to skip on next scan
                         tooFarAwayClouds[checkReposition] = null;
@@ -604,12 +637,20 @@ public class CompoundCloudSystem : Node
                 }
             }
         }
+
+        SetUpCloudLinks(cloudsToLink);
     }
 
     private void UpdateCloudContents(float delta)
     {
         // The clouds are processed here in order to take advantage of threading
         var executor = TaskExecutor.Instance;
+
+        // Do moving compounds on the edges of the clouds serially
+        foreach (var cloud in clouds)
+        {
+            cloud.UpdateEdgesBeforeCenter(delta);
+        }
 
         foreach (var cloud in clouds)
         {
@@ -621,13 +662,13 @@ public class CompoundCloudSystem : Node
         // Start and wait for tasks to finish
         executor.RunTasks(tasks);
 
+        tasks.Clear();
+
         // Do moving compounds on the edges of the clouds serially
         foreach (var cloud in clouds)
         {
-            cloud.UpdateEdges(delta);
+            cloud.UpdateEdgesAfterCenter(delta);
         }
-
-        tasks.Clear();
 
         // Update the cloud textures in parallel
         foreach (var cloud in clouds)
