@@ -81,10 +81,10 @@ public class CompoundCloudPlane : CSGMesh
         Compound cloud3, Compound cloud4)
     {
         // Setup slots
-        slot1 = new Slot(cloud1, Size, Resolution, fluidSystem);
-        slot2 = new Slot(cloud2, Size, Resolution, fluidSystem);
-        slot3 = new Slot(cloud3, Size, Resolution, fluidSystem);
-        slot4 = new Slot(cloud4, Size, Resolution, fluidSystem);
+        slot1 = new Slot(cloud1, Size, Resolution, fluidSystem, this, 0);
+        slot2 = new Slot(cloud2, Size, Resolution, fluidSystem, this, 1);
+        slot3 = new Slot(cloud3, Size, Resolution, fluidSystem, this, 2);
+        slot4 = new Slot(cloud4, Size, Resolution, fluidSystem, this, 3);
 
         // These slots are used in many places where it probably helps
         // to not have null checks so this is dynamically sized. But
@@ -124,19 +124,37 @@ public class CompoundCloudPlane : CSGMesh
         // The diffusion rate seems to have a bigger effect
         delta *= 100.0f;
         var pos = new Vector2(Translation.x, Translation.z);
-
-        slot1.Update(delta, pos);
-        slot2.Update(delta, pos);
-        slot3.Update(delta, pos);
-        slot4.Update(delta, pos);
+        foreach (var slot in slots)
+            slot.Update(delta, pos);
     }
 
     /// <summary>
-    ///   Updates the edge concentrations of this cloud. This is not ran in parallel.
+    ///   Updates the edge concentrations of this cloud before the rest of the cloud.
+    ///   This is not ran in parallel.
     /// </summary>
-    public void UpdateEdges(float delta)
+    public void UpdateEdgesBeforeCenter(float delta)
     {
-        // TODO: implement
+        delta *= 100.0f;
+
+        foreach (var slot in slots)
+        {
+            slot.DiffuseEdges(delta);
+        }
+    }
+
+    /// <summary>
+    ///   Updates the edge concentrations of this cloud after the rest of the cloud.
+    ///   This is not ran in parallel.
+    /// </summary>
+    public void UpdateEdgesAfterCenter(float delta)
+    {
+        delta *= 100.0f;
+        var pos = new Vector2(Translation.x, Translation.z);
+
+        foreach (var slot in slots)
+        {
+            slot.AdvectEdges(delta, pos);
+        }
     }
 
     /// <summary>
@@ -237,32 +255,11 @@ public class CompoundCloudPlane : CSGMesh
     /// </summary>
     public void GetCompoundsAt(int x, int y, Dictionary<string, float> result)
     {
-        if (slot1.Compound != null)
+        foreach (var slot in slots)
         {
-            float amount = slot1.Density[x, y];
+            float amount = slot.Density[x, y];
             if (amount > 0)
-                result[slot1.Compound.InternalName] = amount;
-        }
-
-        if (slot2.Compound != null)
-        {
-            float amount = slot2.Density[x, y];
-            if (amount > 0)
-                result[slot2.Compound.InternalName] = amount;
-        }
-
-        if (slot3.Compound != null)
-        {
-            float amount = slot3.Density[x, y];
-            if (amount > 0)
-                result[slot3.Compound.InternalName] = amount;
-        }
-
-        if (slot4.Compound != null)
-        {
-            float amount = slot4.Density[x, y];
-            if (amount > 0)
-                result[slot4.Compound.InternalName] = amount;
+                result[slot.Compound.InternalName] = amount;
         }
     }
 
@@ -353,23 +350,13 @@ public class CompoundCloudPlane : CSGMesh
     public void RecycleToPosition(Vector3 position)
     {
         Translation = position;
-
         ClearContents();
     }
 
     public void ClearContents()
     {
-        if (slot1.Compound != null)
-            slot1.Clear();
-
-        if (slot2.Compound != null)
-            slot2.Clear();
-
-        if (slot3.Compound != null)
-            slot3.Clear();
-
-        if (slot4.Compound != null)
-            slot4.Clear();
+        foreach (var slot in slots)
+            slot.Clear();
     }
 
     private Slot GetSlot(Compound compound)
@@ -394,6 +381,40 @@ public class CompoundCloudPlane : CSGMesh
         throw new ArgumentException("compound not handled by this cloud", nameof(compound));
     }
 
+    private void AddCloudDensity(int slotIndex, int x, int y, float value)
+    {
+        var xComponent = this;
+        if (x < 0)
+        {
+            xComponent = LeftCloud;
+        }
+        else if (x >= Size)
+        {
+            xComponent = RightCloud;
+        }
+
+        if (xComponent == null)
+            return;
+
+        var yComponent = xComponent;
+        if (y < 0)
+        {
+            yComponent = xComponent.UpperCloud;
+        }
+        else if (y >= Size)
+        {
+            yComponent = xComponent.LowerCloud;
+        }
+
+        if (yComponent == null)
+            return;
+
+        x = (x + Size) % Size;
+        y = (y + Size) % Size;
+
+        yComponent.slots[slotIndex].Density[x, y] += value;
+    }
+
     private class Slot
     {
         public float[,] Density;
@@ -402,13 +423,18 @@ public class CompoundCloudPlane : CSGMesh
         private readonly int size;
         private readonly int resolution;
         private readonly FluidSystem fluidSystem;
+        private readonly CompoundCloudPlane parentPlane;
+        private readonly int index;
 
-        public Slot(Compound compound, int size, int resolution, FluidSystem fluidSystem)
+        public Slot(Compound compound, int size, int resolution,
+            FluidSystem fluidSystem, CompoundCloudPlane parent, int index)
         {
             this.size = size;
             this.resolution = resolution;
             this.fluidSystem = fluidSystem;
             Compound = compound;
+            parentPlane = parent;
+            this.index = index;
 
             if (size <= 0)
                 return;
@@ -438,10 +464,11 @@ public class CompoundCloudPlane : CSGMesh
                 return;
 
             // Compound clouds move from area of high concentration to area of low.
-            Diffuse(0.007f, OldDensity, Density, delta);
+            Diffuse(delta);
+            ClearDensity();
 
             // Move the compound clouds about the velocity field.
-            Advect(OldDensity, Density, delta, pos);
+            Advect(delta, pos);
         }
 
         public float TakeCompound(int x, int y, float fraction)
@@ -454,35 +481,17 @@ public class CompoundCloudPlane : CSGMesh
             return amountToGive;
         }
 
-        private void Diffuse(float diffRate, float[,] oldDens, float[,] density,
-            float dt)
+        public void AdvectEdges(float delta, Vector2 pos)
         {
-            float a = dt * diffRate;
-            for (int x = 1; x < size - 1; x++)
-            {
-                for (int y = 1; y < size - 1; y++)
-                {
-                    oldDens[x, y] = (density[x, y] * (1 - a)) + ((oldDens[x - 1, y] +
-                        oldDens[x + 1, y] + oldDens[x, y - 1] + oldDens[x, y + 1]) * a / 4);
-                }
-            }
-        }
+            int[] edgeValues = { 0, size - 1 };
 
-        private void Advect(float[,] oldDens, float[,] density, float dt, Vector2 pos)
-        {
             for (int x = 0; x < size; x++)
             {
-                for (int y = 0; y < size; y++)
+                // The top edge and bottom edge
+                foreach (int y in edgeValues)
                 {
-                    density[x, y] = 0;
-                }
-            }
-
-            for (int x = 1; x < size - 1; x++)
-            {
-                for (int y = 1; y < size - 1; y++)
-                {
-                    if (oldDens[x, y] > 1)
+                    // This code is inlined here to improve performance
+                    if (OldDensity[x, y] > 1)
                     {
                         // TODO: give each cloud a viscosity value in the
                         // JSON file and use it instead.
@@ -491,26 +500,224 @@ public class CompoundCloudPlane : CSGMesh
                         var velocity = fluidSystem.VelocityAt(
                             pos + (new Vector2(x, y) * resolution)) * viscosity;
 
-                        float dx = x + (dt * velocity.x);
-                        float dy = y + (dt * velocity.y);
+                        float dx = x + delta * velocity.x;
+                        float dy = y + delta * velocity.y;
 
+                        int x0 = (int)Math.Floor(dx);
+                        int x1 = x0 + 1;
+                        int y0 = (int)Math.Floor(dy);
+                        int y1 = y0 + 1;
+
+                        float s1 = Math.Abs(dx - x0);
+                        float s0 = 1.0f - s1;
+                        float t1 = Math.Abs(dy - y0);
+                        float t0 = 1.0f - t1;
+
+                        parentPlane.AddCloudDensity(index, x0, y0,
+                            OldDensity[x, y] * s0 * t0);
+                        parentPlane.AddCloudDensity(index, x0, y1,
+                            OldDensity[x, y] * s0 * t1);
+                        parentPlane.AddCloudDensity(index, x1, y0,
+                            OldDensity[x, y] * s1 * t0);
+                        parentPlane.AddCloudDensity(index, x1, y1,
+                            OldDensity[x, y] * s1 * t1);
+                    }
+                }
+            }
+
+            // The left edge and right edge
+            foreach (int x in edgeValues)
+            {
+                for (int y = 1; y < size - 1; y++)
+                {
+                    // This code is inlined here to improve performance
+                    if (OldDensity[x, y] > 1)
+                    {
+                        // TODO: give each cloud a viscosity value in the
+                        // JSON file and use it instead.
+                        const float viscosity = 0.0525f;
+                        var velocity = fluidSystem.VelocityAt(
+                            pos + (new Vector2(x, y) * resolution)) * viscosity;
+
+                        float dx = x + delta * velocity.x;
+                        float dy = y + delta * velocity.y;
+
+                        int x0 = (int)Math.Floor(dx);
+                        int x1 = x0 + 1;
+                        int y0 = (int)Math.Floor(dy);
+                        int y1 = y0 + 1;
+
+                        float s1 = Math.Abs(dx - x0);
+                        float s0 = 1.0f - s1;
+                        float t1 = Math.Abs(dy - y0);
+                        float t0 = 1.0f - t1;
+
+                        parentPlane.AddCloudDensity(index, x0, y0,
+                            OldDensity[x, y] * s0 * t0);
+                        parentPlane.AddCloudDensity(index, x0, y1,
+                            OldDensity[x, y] * s0 * t1);
+                        parentPlane.AddCloudDensity(index, x1, y0,
+                            OldDensity[x, y] * s1 * t0);
+                        parentPlane.AddCloudDensity(index, x1, y1,
+                            OldDensity[x, y] * s1 * t1);
+                    }
+                }
+            }
+        }
+
+        public void DiffuseEdges(float delta)
+        {
+            int[] edgeValues = { 0, size - 1 };
+
+            float a = delta * Constants.CLOUD_DIFFUSION_RATE;
+
+            for (int x = 0; x < size; x++)
+            {
+                // The top edge and bottom edge
+                foreach (int y in edgeValues)
+                {
+                    DiffuseTile(x, y, delta);
+                }
+            }
+
+            // The left edge and right edge
+            foreach (int x in edgeValues)
+            {
+                for (int y = 1; y < size - 1; y++)
+                {
+                    DiffuseTile(x, y, delta);
+                }
+            }
+        }
+
+        private void ClearDensity()
+        {
+            for (int x = 0; x < size; x++)
+            {
+                for (int y = 0; y < size; y++)
+                {
+                    Density[x, y] = 0;
+                }
+            }
+        }
+
+        /// <summary>
+        ///   For performance reasons this is manually inlined in Diffuse
+        /// </summary>
+        private void DiffuseTile(int x, int y, float delta)
+        {
+            float a = delta * Constants.CLOUD_DIFFUSION_RATE;
+
+            float upperDensity = 0.0f;
+            if (y > 0)
+            {
+                upperDensity = Density[x, y - 1];
+            }
+            else if (parentPlane.UpperCloud != null)
+            {
+                upperDensity = parentPlane.UpperCloud.slots[index]
+                                .Density[x, size - 1];
+            }
+
+            float lowerDensity = 0.0f;
+            if (y < size - 1)
+            {
+                lowerDensity = Density[x, y + 1];
+            }
+            else if (parentPlane.LowerCloud != null)
+            {
+                lowerDensity =
+                    parentPlane.LowerCloud.slots[index]
+                                .Density[x, 0];
+            }
+
+            float leftDensity = 0.0f;
+            if (x > 0)
+            {
+                leftDensity = Density[x - 1, y];
+            }
+            else if (parentPlane.LeftCloud != null)
+            {
+                leftDensity = parentPlane.LeftCloud.slots[index]
+                                .Density[size - 1, y];
+            }
+
+            float rightDensity = 0.0f;
+            if (x < size - 1)
+            {
+                rightDensity = Density[x + 1, y];
+            }
+            else if (parentPlane.RightCloud != null)
+            {
+                rightDensity =
+                    parentPlane.RightCloud.slots[index]
+                                .Density[0, y];
+            }
+
+            OldDensity[x, y] =
+                Density[x, y] * (1 - a) +
+                (upperDensity + lowerDensity + leftDensity + rightDensity) * a /
+                    4;
+        }
+
+        private void Diffuse(float delta)
+        {
+            float a = delta * Constants.CLOUD_DIFFUSION_RATE;
+
+            for (int x = 1; x < size - 1; x++)
+            {
+                for (int y = 1; y < size - 1; y++)
+                {
+                    // Inlined version of DiffuseTile
+                    float upperDensity = Density[x, y - 1];
+                    float lowerDensity = Density[x, y + 1];
+                    float leftDensity = Density[x - 1, y];
+                    float rightDensity = Density[x + 1, y];
+
+                    OldDensity[x, y] =
+                        Density[x, y] * (1 - a) +
+                        (upperDensity + lowerDensity + leftDensity + rightDensity) * a /
+                            4;
+                }
+            }
+        }
+
+        private void Advect(float delta, Vector2 pos)
+        {
+            for (int x = 1; x < size - 1; x++)
+            {
+                for (int y = 1; y < size - 1; y++)
+                {
+                    if (OldDensity[x, y] > 1)
+                    {
+                        // TODO: give each cloud a viscosity value in the
+                        // JSON file and use it instead.
+                        const float viscosity = 0.0525f;
+                        var velocity = fluidSystem.VelocityAt(
+                            pos + (new Vector2(x, y) * resolution)) * viscosity;
+
+                        // This is ran in parallel, this may not touch the other compound clouds
+                        float dx = x + (delta * velocity.x);
+                        float dy = y + (delta * velocity.y);
+
+                        // So this is clamped to not go to the other clouds
                         dx = dx.Clamp(0.5f, size - 1.5f);
                         dy = dy.Clamp(0.5f, size - 1.5f);
 
-                        int x0 = (int)dx;
+                        int x0 = (int)Math.Floor(dx);
                         int x1 = x0 + 1;
-                        int y0 = (int)dy;
+                        int y0 = (int)Math.Floor(dy);
                         int y1 = y0 + 1;
 
-                        float s1 = dx - x0;
+                        float s1 = Math.Abs(dx - x0);
                         float s0 = 1.0f - s1;
-                        float t1 = dy - y0;
+                        float t1 = Math.Abs(dy - y0);
                         float t0 = 1.0f - t1;
 
-                        density[x0, y0] += oldDens[x, y] * s0 * t0;
-                        density[x0, y1] += oldDens[x, y] * s0 * t1;
-                        density[x1, y0] += oldDens[x, y] * s1 * t0;
-                        density[x1, y1] += oldDens[x, y] * s1 * t1;
+                        Density[x0, y0] += OldDensity[x, y] * s0 * t0;
+                        Density[x0, y1] += OldDensity[x, y] * s0 * t1;
+                        Density[x1, y0] += OldDensity[x, y] * s1 * t0;
+                        Density[x1, y1] += OldDensity[x, y] * s1 * t1;
                     }
                 }
             }
