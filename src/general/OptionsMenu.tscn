@@ -14,6 +14,7 @@ __meta__ = {
 ResetToDefaultPath = NodePath("Reset")
 VSyncPath = NodePath("TabContainer/Graphics/Vsync")
 FullScreenPath = NodePath("TabContainer/Graphics/Fullscreen")
+MSAAResolutionPath = NodePath("TabContainer/Graphics/HBoxContainer/MSAAResolution")
 MasterVolumePath = NodePath("TabContainer/Sound/HBoxContainer/MasterVolume")
 MasterMutedPath = NodePath("TabContainer/Sound/HBoxContainer/MasterMuted")
 MusicVolumePath = NodePath("TabContainer/Sound/HBoxContainer2/MusicVolume")
@@ -58,16 +59,38 @@ margin_top = 56.0
 margin_right = 1270.0
 margin_bottom = 60.0
 
-[node name="Label" type="Label" parent="TabContainer/Graphics"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TabContainer/Graphics"]
 margin_top = 64.0
 margin_right = 1270.0
-margin_bottom = 86.0
+margin_bottom = 88.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="TabContainer/Graphics/HBoxContainer"]
+margin_top = 1.0
+margin_right = 617.0
+margin_bottom = 23.0
+mouse_filter = 0
+text = "Multisample anti-aliasing (higher values worsen performance): "
+
+[node name="MSAAResolution" type="OptionButton" parent="TabContainer/Graphics/HBoxContainer"]
+margin_left = 621.0
+margin_right = 821.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 200, 0 )
+text = "Disabled"
+items = [ "Disabled", null, false, 0, null, "2x", null, false, 1, null, "4x", null, false, 2, null, "8x", null, false, 3, null, "16x", null, false, 4, null ]
+selected = 0
+
+[node name="Label" type="Label" parent="TabContainer/Graphics"]
+margin_top = 92.0
+margin_right = 1270.0
+margin_bottom = 114.0
 text = "Resolution: auto"
 
 [node name="Label2" type="Label" parent="TabContainer/Graphics"]
-margin_top = 90.0
+margin_top = 118.0
 margin_right = 1270.0
-margin_bottom = 112.0
+margin_bottom = 140.0
 text = "Max FPS: 400"
 
 [node name="Sound" type="VBoxContainer" parent="TabContainer"]
@@ -192,9 +215,9 @@ items = [ "1", null, false, 0, null, "2", null, false, 1, null, "4", null, false
 selected = 1
 
 [node name="HSeparator" type="HSeparator" parent="TabContainer/Performance"]
-margin_top = 82.0
+margin_top = 110.0
 margin_right = 1270.0
-margin_bottom = 86.0
+margin_bottom = 114.0
 
 [node name="Misc" type="VBoxContainer" parent="TabContainer"]
 visible = false
@@ -259,6 +282,7 @@ __meta__ = {
 }
 [connection signal="toggled" from="TabContainer/Graphics/Vsync" to="." method="OnVSyncToggled"]
 [connection signal="toggled" from="TabContainer/Graphics/Fullscreen" to="." method="OnFullScreenToggled"]
+[connection signal="item_selected" from="TabContainer/Graphics/HBoxContainer/MSAAResolution" to="." method="OnMSAAResolutionSelected"]
 [connection signal="value_changed" from="TabContainer/Sound/HBoxContainer/MasterVolume" to="." method="OnMasterVolumeChanged"]
 [connection signal="toggled" from="TabContainer/Sound/HBoxContainer/MasterMuted" to="." method="OnMasterMutedToggled"]
 [connection signal="value_changed" from="TabContainer/Sound/HBoxContainer2/MusicVolume" to="." method="OnMusicVolumeChanged"]

@@ -380,6 +380,12 @@ public class Membrane : MeshInstance
     /// </summary>
     private void InitializeMesh()
     {
+        // For preview scenes, add just one organelle
+        if (OrganellePositions == null)
+        {
+            OrganellePositions = new List<Vector2>() { new Vector2(0, 0) };
+        }
+
         foreach (var pos in OrganellePositions)
         {
             if (Mathf.Abs(pos.x) + 1 > cellDimensions)
