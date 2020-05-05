@@ -33,8 +33,14 @@ public static class MathUtils
     }
 
     /// <summary>
-    ///   Rotation is now the number of 60 degree rotations
+    ///   Creates a rotation for an organelle. This is used by the editor, but PlacedOrganelle uses RotateY as this
+    ///   didn't work there for some reason.
     /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     Rotation is now the number of 60 degree rotations
+    ///   </para>
+    /// </remarks>
     public static Quat CreateRotationForOrganelle(float rotation)
     {
         return new Quat(new Vector3(0, -1, 0), rotation * 60 * DEGREES_TO_RADIANS);
