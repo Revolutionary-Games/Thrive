@@ -501,7 +501,7 @@ public class CompoundCloudPlane : CSGMesh
                             pos + (new Vector2(x, y) * resolution)) * viscosity;
 
                         float dx = x + delta * velocity.x;
-                        float dy = y + delta * velocity.x;
+                        float dy = y + delta * velocity.y;
 
                         int x0 = (int)Math.Floor(dx);
                         int x1 = x0 + 1;
@@ -535,13 +535,12 @@ public class CompoundCloudPlane : CSGMesh
                     {
                         // TODO: give each cloud a viscosity value in the
                         // JSON file and use it instead.
-                        const float viscosity =
-                            0.0525f;
+                        const float viscosity = 0.0525f;
                         var velocity = fluidSystem.VelocityAt(
                             pos + (new Vector2(x, y) * resolution)) * viscosity;
 
                         float dx = x + delta * velocity.x;
-                        float dy = y + delta * velocity.x;
+                        float dy = y + delta * velocity.y;
 
                         int x0 = (int)Math.Floor(dx);
                         int x1 = x0 + 1;
@@ -670,51 +669,10 @@ public class CompoundCloudPlane : CSGMesh
                 for (int y = 1; y < size - 1; y++)
                 {
                     // Inlined version of DiffuseTile
-                    float upperDensity = 0.0f;
-                    if (y > 0)
-                    {
-                        upperDensity = Density[x, y - 1];
-                    }
-                    else if (parentPlane.UpperCloud != null)
-                    {
-                        upperDensity = parentPlane.UpperCloud.slots[index]
-                                        .Density[x, size - 1];
-                    }
-
-                    float lowerDensity = 0.0f;
-                    if (y < size - 1)
-                    {
-                        lowerDensity = Density[x, y + 1];
-                    }
-                    else if (parentPlane.LowerCloud != null)
-                    {
-                        lowerDensity =
-                            parentPlane.LowerCloud.slots[index]
-                                        .Density[x, 0];
-                    }
-
-                    float leftDensity = 0.0f;
-                    if (x > 0)
-                    {
-                        leftDensity = Density[x - 1, y];
-                    }
-                    else if (parentPlane.LeftCloud != null)
-                    {
-                        leftDensity = parentPlane.LeftCloud.slots[index]
-                                        .Density[size - 1, y];
-                    }
-
-                    float rightDensity = 0.0f;
-                    if (x < size - 1)
-                    {
-                        rightDensity = Density[x + 1, y];
-                    }
-                    else if (parentPlane.RightCloud != null)
-                    {
-                        rightDensity =
-                            parentPlane.RightCloud.slots[index]
-                                        .Density[0, y];
-                    }
+                    float upperDensity = Density[x, y - 1];
+                    float lowerDensity = Density[x, y + 1];
+                    float leftDensity = Density[x - 1, y];
+                    float rightDensity = Density[x + 1, y];
 
                     OldDensity[x, y] =
                         Density[x, y] * (1 - a) +
@@ -734,8 +692,7 @@ public class CompoundCloudPlane : CSGMesh
                     {
                         // TODO: give each cloud a viscosity value in the
                         // JSON file and use it instead.
-                        const float viscosity =
-                            0.0525f;
+                        const float viscosity = 0.0525f;
                         var velocity = fluidSystem.VelocityAt(
                             pos + (new Vector2(x, y) * resolution)) * viscosity;
 
@@ -747,14 +704,14 @@ public class CompoundCloudPlane : CSGMesh
                         dx = dx.Clamp(0.5f, size - 1.5f);
                         dy = dy.Clamp(0.5f, size - 1.5f);
 
-                        int x0 = (int)dx;
+                        int x0 = (int)Math.Floor(dx);
                         int x1 = x0 + 1;
-                        int y0 = (int)dy;
+                        int y0 = (int)Math.Floor(dy);
                         int y1 = y0 + 1;
 
-                        float s1 = dx - x0;
+                        float s1 = Math.Abs(dx - x0);
                         float s0 = 1.0f - s1;
-                        float t1 = dy - y0;
+                        float t1 = Math.Abs(dy - y0);
                         float t0 = 1.0f - t1;
 
                         Density[x0, y0] += OldDensity[x, y] * s0 * t0;
