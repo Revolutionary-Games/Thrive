@@ -863,6 +863,7 @@ tracks/7/keys = {
 }
 
 [node name="MicrobeStage" type="Node"]
+process_priority = -1
 script = ExtResource( 1 )
 
 [node name="World" type="Node" parent="."]

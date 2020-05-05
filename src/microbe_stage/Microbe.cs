@@ -918,8 +918,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             organelle.Update(delta);
         }
 
-        ApplyCustomDrag(delta);
-
         // Movement
         if (MovementDirection != new Vector3(0, 0, 0) ||
             queuedMovementForce != new Vector3(0, 0, 0))
@@ -1521,38 +1519,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         return Transform.basis.Xform(MovementDirection * force) * MovementFactor *
             (Species.MembraneType.MovementFactor -
                 (Species.MembraneRigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER));
-    }
-
-    /// <summary>
-    ///   Applies some custom drag logic on cells to make their
-    ///   movement better. TODO: determine if this is still needed.
-    /// </summary>
-    private void ApplyCustomDrag(float delta)
-    {
-        // const Float3 velocity = physics.Body.GetVelocity();
-
-        // // There should be no Y velocity so it should be zero
-        // const Float3 drag(velocity.X * (CELL_DRAG_MULTIPLIER + (CELL_SIZE_DRAG_MULTIPLIER *
-        //             microbeComponent.totalHexCountCache)),
-        //     velocity.Y * (CELL_DRAG_MULTIPLIER + (CELL_SIZE_DRAG_MULTIPLIER *
-        //             microbeComponent.totalHexCountCache)),
-        //     velocity.Z * (CELL_DRAG_MULTIPLIER + (CELL_SIZE_DRAG_MULTIPLIER *
-        //             microbeComponent.totalHexCountCache)));
-
-        // // Only add drag if it is over CELL_REQUIRED_DRAG_BEFORE_APPLY
-        // if(abs(drag.X) >= CELL_REQUIRED_DRAG_BEFORE_APPLY){
-        //     microbeComponent.queuedMovementForce.X += drag.X;
-        // }
-        // else if (abs(velocity.X) >  .001){
-        //     microbeComponent.queuedMovementForce.X += -velocity.X;
-        // }
-
-        // if(abs(drag.Z) >= CELL_REQUIRED_DRAG_BEFORE_APPLY){
-        //     microbeComponent.queuedMovementForce.Z += drag.Z;
-        // }
-        // else if (abs(velocity.Z) >  .001){
-        //     microbeComponent.queuedMovementForce.Z += -velocity.Z;
-        // }
     }
 
     private void ApplyMovementImpulse(Vector3 movement, float delta)

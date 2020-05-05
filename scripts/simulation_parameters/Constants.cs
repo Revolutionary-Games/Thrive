@@ -68,7 +68,7 @@ public class Constants
     /// <summary>
     ///   The maximum force that can be applied by currents in the fluid system
     /// </summary>
-    public const float MAX_FORCE_APPLIED_BY_CURRENTS = 0.525f;
+    public const float MAX_FORCE_APPLIED_BY_CURRENTS = 0.0525f;
 
     /// <summary>
     ///   Added 2 seconds here to make the random implementation look a bit better
