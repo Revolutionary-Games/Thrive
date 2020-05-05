@@ -22,6 +22,7 @@ material = SubResource( 3 )
 size = Vector2( 5, 5 )
 
 [node name="AgentProjectile" type="RigidBody"]
+process_priority = 2
 input_ray_pickable = false
 collision_layer = 0
 collision_mask = 2
