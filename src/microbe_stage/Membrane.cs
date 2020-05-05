@@ -27,6 +27,8 @@ public class Membrane : MeshInstance
     private Texture normalTexture;
     private Texture damagedTexture;
 
+    private string currentlyLoadedNormalTexture;
+
     private bool dirty = true;
     private bool radiusIsDirty = true;
     private float cachedRadius;
@@ -364,7 +366,9 @@ public class Membrane : MeshInstance
 
     private void ApplyTextures()
     {
-        if (normalTexture != null)
+        // We must update the texture on already-existing membranes,
+        // due to the membrane texture changing for the player microbe.
+        if (normalTexture != null && currentlyLoadedNormalTexture == Type.NormalTexture)
             return;
 
         // TODO: add the loaded Texture objects to be in the membrane type
@@ -373,6 +377,8 @@ public class Membrane : MeshInstance
 
         MaterialToEdit.SetShaderParam("albedoTexture", normalTexture);
         MaterialToEdit.SetShaderParam("damagedTexture", damagedTexture);
+
+        currentlyLoadedNormalTexture = Type.NormalTexture;
     }
 
     /// <summary>
