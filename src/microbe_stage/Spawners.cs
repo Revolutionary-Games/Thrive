@@ -58,6 +58,161 @@ public static class SpawnHelpers
         return microbe;
     }
 
+    // TODO: this is likely a huge cause of lag. Would be nice to be able
+    // to spawn these so that only one per tick is spawned.
+    public static Microbe SpawnBacteriaColony(Species species, Vector3 location,
+        Node worldRoot, PackedScene microbeScene, CompoundCloudSystem cloudSystem,
+        GameProperties currentGame, Random random)
+    {
+        var curSpawn = new Vector3(random.Next(1, 8), 0, random.Next(1, 8));
+
+        // Three kinds of colonies are supported, line colonies and clump colonies and Networks
+        if (random.Next(0, 5) < 2)
+        {
+            // Clump
+            for (int i = 0; i < random.Next(Constants.MIN_BACTERIAL_COLONY_SIZE,
+                Constants.MAX_BACTERIAL_COLONY_SIZE + 1); i++)
+            {
+                // Dont spawn them on top of each other because it
+                // causes them to bounce around and lag
+                SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true, cloudSystem, currentGame);
+
+                curSpawn = curSpawn + new Vector3(random.Next(-7, 8), 0, random.Next(-7, 8));
+            }
+        }
+        else if (random.Next(0, 31) > 2)
+        {
+            // Line
+            // Allow for many types of line
+            // (I combined the lineX and lineZ here because they have the same values)
+            var line = random.Next(-5, 6) + random.Next(-5, 6);
+
+            for (int i = 0; i < random.Next(Constants.MIN_BACTERIAL_LINE_SIZE,
+                Constants.MAX_BACTERIAL_LINE_SIZE + 1); i++)
+            {
+                // Dont spawn them on top of each other because it
+                // Causes them to bounce around and lag
+                SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true, cloudSystem, currentGame);
+
+                curSpawn = curSpawn + new Vector3(line + random.Next(-2, 3), 0, line + random.Next(-2, 3));
+            }
+        }
+        else
+        {
+            // Network
+            // Allows for "jungles of cyanobacteria"
+            // Network is extremely rare
+            var x = curSpawn.x;
+            var z = curSpawn.z;
+
+            // To prevent bacteria being spawned on top of each other
+            var horizontal = false;
+            var vertical = false;
+
+            for (int i = 0; i < random.Next(Constants.MIN_BACTERIAL_COLONY_SIZE,
+                Constants.MAX_BACTERIAL_COLONY_SIZE + 1); i++)
+            {
+                if (random.Next(0, 5) < 2 && !horizontal)
+                {
+                    horizontal = true;
+                    vertical = false;
+
+                    for (int c = 0; c < random.Next(Constants.MIN_BACTERIAL_LINE_SIZE,
+                        Constants.MAX_BACTERIAL_LINE_SIZE + 1); c++)
+                    {
+                        // Dont spawn them on top of each other because
+                        // It causes them to bounce around and lag
+                        curSpawn.x += random.Next(5, 8);
+
+                        // Add a litlle organicness to the look
+                        curSpawn.z += random.Next(-2, 3);
+
+                        SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
+                            cloudSystem, currentGame);
+                    }
+                }
+                else if (random.Next(0, 5) < 2 && !vertical)
+                {
+                    horizontal = false;
+                    vertical = true;
+
+                    for (int c = 0; c < random.Next(Constants.MIN_BACTERIAL_LINE_SIZE,
+                        Constants.MAX_BACTERIAL_LINE_SIZE + 1); c++)
+                    {
+                        // Dont spawn them on top of each other because it
+                        // Causes them to bounce around and lag
+                        curSpawn.z += random.Next(5, 8);
+
+                        // Add a litlle organicness to the look
+                        curSpawn.x += random.Next(-2, 3);
+
+                        SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
+                            cloudSystem, currentGame);
+                    }
+                }
+                else if (random.Next(0, 5) < 2 && !horizontal)
+                {
+                    horizontal = true;
+                    vertical = false;
+
+                    for (int c = 0; c < random.Next(Constants.MIN_BACTERIAL_LINE_SIZE,
+                        Constants.MAX_BACTERIAL_LINE_SIZE + 1); c++)
+                    {
+                        // Dont spawn them on top of each other because
+                        // It causes them to bounce around and lag
+                        curSpawn.x -= random.Next(5, 8);
+
+                        // Add a litlle organicness to the look
+                        curSpawn.z -= random.Next(-2, 3);
+
+                        SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
+                            cloudSystem, currentGame);
+                    }
+                }
+                else if (random.Next(0, 5) < 2 && !vertical)
+                {
+                    horizontal = false;
+                    vertical = true;
+
+                    for (int c = 0; c < random.Next(Constants.MIN_BACTERIAL_LINE_SIZE,
+                        Constants.MAX_BACTERIAL_LINE_SIZE + 1); c++)
+                    {
+                        // Dont spawn them on top of each other because it
+                        // causes them to bounce around and lag
+                        curSpawn.z -= random.Next(5, 8);
+
+                        // Add a litlle organicness to the look
+                        curSpawn.x -= random.Next(-2, 3);
+
+                        SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
+                            cloudSystem, currentGame);
+                    }
+                }
+                else
+                {
+                    // Diagonal
+                    horizontal = false;
+                    vertical = false;
+
+                    for (int c = 0; c < random.Next(Constants.MIN_BACTERIAL_LINE_SIZE,
+                        Constants.MAX_BACTERIAL_LINE_SIZE + 1); c++)
+                    {
+                        // Dont spawn them on top of each other because it
+                        // Causes them to bounce around and lag
+                        curSpawn.z += random.Next(5, 8);
+
+                        curSpawn.x += random.Next(5, 8);
+
+                        SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
+                            cloudSystem, currentGame);
+                    }
+                }
+            }
+        }
+
+        return SpawnMicrobe(species, location, worldRoot, microbeScene, true, cloudSystem, currentGame);
+    }
+
     public static PackedScene LoadMicrobeScene()
     {
         return GD.Load<PackedScene>("res://src/microbe_stage/Microbe.tscn");
@@ -151,6 +306,7 @@ public class MicrobeSpawner : ISpawner
     private readonly Species species;
     private readonly CompoundCloudSystem cloudSystem;
     private readonly GameProperties currentGame;
+    private readonly Random random;
 
     public MicrobeSpawner(Species species, CompoundCloudSystem cloudSystem, GameProperties currentGame)
     {
@@ -159,6 +315,8 @@ public class MicrobeSpawner : ISpawner
         microbeScene = SpawnHelpers.LoadMicrobeScene();
         this.cloudSystem = cloudSystem;
         this.currentGame = currentGame;
+
+        random = new Random();
     }
 
     public override List<ISpawned> Spawn(Node worldNode, Vector3 location)
@@ -169,7 +327,11 @@ public class MicrobeSpawner : ISpawner
         var microbe = SpawnHelpers.SpawnMicrobe(species, location, worldNode, microbeScene,
             true, cloudSystem, currentGame);
 
+        var swarm = SpawnHelpers.SpawnBacteriaColony(species, location, worldNode, microbeScene,
+            cloudSystem, currentGame, random);
+
         entities.Add(microbe);
+        entities.Add(swarm);
         return entities;
     }
 }
