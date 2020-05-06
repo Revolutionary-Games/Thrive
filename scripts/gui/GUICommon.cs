@@ -72,7 +72,7 @@ public class GUICommon : Node
         tween.Start();
     }
 
-    public void TweenUIProperty(Control ui, string property, object initialValue, object targetValue, 
+    public void TweenUIProperty(Control ui, string property, object initialValue, object targetValue,
         float duration, Tween.TransitionType transitionType = Tween.TransitionType.Linear,
         Tween.EaseType easeType = Tween.EaseType.InOut, float delay = 0)
     {
