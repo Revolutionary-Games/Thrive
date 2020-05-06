@@ -7,7 +7,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/PhosphatesBW.png" type="Texture" id=5]
 [ext_resource path="res://assets/sounds/soundeffects/microbe-pickup-organelle.ogg" type="AudioStream" id=6]
 [ext_resource path="res://src/microbe_stage/PlayerMicrobeInput.cs" type="Script" id=7]
-[ext_resource path="res://src/gui_common/WinBox.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/microbe_stage/gui/WinBox.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/microbe_stage/MicrobeHUD.cs" type="Script" id=9]
 [ext_resource path="res://src/microbe_stage/CompoundCloudSystem.cs" type="Script" id=10]
 [ext_resource path="res://assets/textures/gui/menu_theme.tres" type="Theme" id=11]
@@ -70,7 +70,7 @@
 [ext_resource path="res://src/microbe_stage/gui/ExtinctionBox.tscn" type="PackedScene" id=70]
 [ext_resource path="res://assets/textures/gui/bevel/AmmoniaBW.png" type="Texture" id=71]
 [ext_resource path="res://src/general/HelpScreen.tscn" type="PackedScene" id=72]
-[ext_resource path="res://src/microbe_stage/gui/HelpBox.tscn" type="PackedScene" id=73]
+[ext_resource path="res://src/gui_common/HelpBox.tscn" type="PackedScene" id=73]
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPausedHover.png" type="Texture" id=78]
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPaused.png" type="Texture" id=79]
 
@@ -360,8 +360,6 @@ tracks/2/keys = {
 "values": [ true ]
 }
 
-<<<<<<< HEAD
-=======
 [sub_resource type="Animation" id=50]
 tracks/0/type = "value"
 tracks/0/path = NodePath("LeftPanels:modulate")
@@ -558,7 +556,6 @@ tracks/7/keys = {
 "values": [ 2, 0 ]
 }
 
->>>>>>> Fixed scripts folder
 [node name="MicrobeStage" type="Node"]
 process_priority = -1
 script = ExtResource( 1 )
