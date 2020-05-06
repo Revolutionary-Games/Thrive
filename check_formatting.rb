@@ -125,7 +125,7 @@ def handle_file(path)
     handle_gd_file path
   elsif path =~ /\.cs$/
     handle_cs_file path
-  elsif path =~ %r{scripts/.*\.json$}
+  elsif path =~ %r{simulation_parameters/.*\.json$}
     handle_json_file path
   else
     false
