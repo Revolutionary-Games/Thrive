@@ -59,6 +59,17 @@ public class MicrobeHUD : Node
     [Export]
     public NodePath AgentsPanelBarContainerPath;
     [Export]
+    public NodePath AtpBarPath;
+    [Export]
+    public NodePath HealthBarPath;
+    [Export]
+    public NodePath AmmoniaReproductionBarPath;
+    [Export]
+    public NodePath PhosphateReproductionBarPath;
+    [Export]
+    public NodePath HelpScreenPath;
+
+    [Export]
     public PackedScene ExtinctionBoxScene;
     [Export]
     public PackedScene WinBoxScene;
@@ -85,6 +96,10 @@ public class MicrobeHUD : Node
     private ProgressBar ironBar;
     private Control agentsPanel;
     private ProgressBar oxytoxyBar;
+    private TextureProgress atpBar;
+    private TextureProgress healthBar;
+    private TextureProgress ammoniaReproductionBar;
+    private TextureProgress phosphateReproductionBar;
     private VBoxContainer leftPanels;
     private Control menu;
     private TextureButton pauseButton;
@@ -98,12 +113,7 @@ public class MicrobeHUD : Node
     private Node winBox;
     private Control helpScreen;
 
-    private List<HBoxContainer> compoundBarArray = new List<HBoxContainer>();
-
-    /// <summary>
-    ///   The TextureProgress node version of the bars.
-    /// </summary>
-    private Godot.Collections.Array textureHudBars;
+    private Godot.Collections.Array compoundBars;
 
     /// <summary>
     ///   Access to the stage to retrieve information for display as
@@ -129,7 +139,7 @@ public class MicrobeHUD : Node
 
     public override void _Ready()
     {
-        textureHudBars = GetTree().GetNodesInGroup("MicrobeTextureHUDBar");
+        compoundBars = GetTree().GetNodesInGroup("CompoundBar");
 
         mouseHoverPanel = GetNode<PanelContainer>(MouseHoverPanelPath);
         pauseButton = GetNode<TextureButton>(PauseButtonPath);
@@ -146,6 +156,10 @@ public class MicrobeHUD : Node
         compoundsPanel = GetNode<NinePatchRect>(CompoundsPanelPath);
         CompoundsPanelBarContainer = GetNode<GridContainer>(CompoundsPanelBarContainerPath);
         oxytoxyBar = GetNode<ProgressBar>(OxytoxyBarPath);
+        atpBar = GetNode<TextureProgress>(AtpBarPath);
+        healthBar = GetNode<TextureProgress>(HealthBarPath);
+        ammoniaReproductionBar = GetNode<TextureProgress>(AmmoniaReproductionBarPath);
+        phosphateReproductionBar = GetNode<TextureProgress>(PhosphateReproductionBarPath);
         atpLabel = GetNode<Label>(AtpLabelPath);
         hpLabel = GetNode<Label>(HpLabelPath);
         menu = GetNode<Control>(MenuPath);
@@ -157,8 +171,6 @@ public class MicrobeHUD : Node
         helpScreen = GetNode<Control>(HelpScreenPath);
 
         OnEnterStageTransition();
-
-        StoreCompoundBar();
     }
 
     public void OnEnterStageTransition()
@@ -175,6 +187,7 @@ public class MicrobeHUD : Node
 
         if (stage.Player != null)
         {
+            UpdateNeededBars();
             UpdateCompoundBars();
             UpdateReproductionProgress();
             UpdateATP();
@@ -210,17 +223,17 @@ public class MicrobeHUD : Node
         {
             environmentCompressed = true;
 
-            GUICommon.Instance.TweenUIProperty(environmentPanel, "rect_min_size", environmentPanel.RectMinSize,
-                new Vector2(195, 150), 0.3f);
+            GUICommon.Instance.TweenUIProperty(
+                environmentPanel, "rect_min_size", environmentPanel.RectMinSize, new Vector2(195, 170), 0.3f);
             environmentPanelBarContainer.Columns = 2;
-            environmentPanelBarContainer.AddConstantOverride("vseparation", 10);
+            environmentPanelBarContainer.AddConstantOverride("vseparation", 20);
 
             foreach (Node bar in bars)
             {
                 var progressBar = bar.GetNode<ProgressBar>("Bar");
 
-                GUICommon.Instance.TweenUIProperty(progressBar, "rect_min_size", new Vector2(95, 25),
-                    new Vector2(73, 25), 0.3f);
+                GUICommon.Instance.TweenUIProperty(
+                    progressBar, "rect_min_size", new Vector2(95, 25), new Vector2(73, 25), 0.3f);
                 progressBar.GetNode<Label>("Label").Hide();
                 progressBar.GetNode<Label>("Value").Align = Label.AlignEnum.Center;
             }
@@ -230,8 +243,8 @@ public class MicrobeHUD : Node
         {
             environmentCompressed = false;
 
-            GUICommon.Instance.TweenUIProperty(environmentPanel, "rect_min_size", environmentPanel.RectMinSize,
-                new Vector2(195, 224), 0.3f);
+            GUICommon.Instance.TweenUIProperty(
+                environmentPanel, "rect_min_size", environmentPanel.RectMinSize, new Vector2(195, 224), 0.3f);
             environmentPanelBarContainer.Columns = 1;
             environmentPanelBarContainer.AddConstantOverride("vseparation", 4);
 
@@ -239,8 +252,8 @@ public class MicrobeHUD : Node
             {
                 var progressBar = bar.GetNode<ProgressBar>("Bar");
 
-                GUICommon.Instance.TweenUIProperty(progressBar, "rect_min_size", progressBar.RectMinSize,
-                    new Vector2(162, 25), 0.3f);
+                GUICommon.Instance.TweenUIProperty(
+                    progressBar, "rect_min_size", progressBar.RectMinSize, new Vector2(162, 25), 0.3f);
                 progressBar.GetNode<Label>("Label").Show();
                 progressBar.GetNode<Label>("Value").Align = Label.AlignEnum.Left;
             }
@@ -254,9 +267,7 @@ public class MicrobeHUD : Node
         if (mode == "compress" && !compundCompressed)
         {
             compundCompressed = true;
-
-            GUICommon.Instance.TweenUIProperty(compoundsPanel, "rect_min_size", compoundsPanel.RectMinSize,
-                new Vector2(253, 120), 0.3f);
+            CompoundsPanelBarContainer.AddConstantOverride("vseparation", 20);
 
             if (bars.Count < 4)
             {
@@ -267,31 +278,25 @@ public class MicrobeHUD : Node
                 CompoundsPanelBarContainer.Columns = 3;
             }
 
-            foreach (Node bar in bars)
+            foreach (ProgressBar bar in bars)
             {
-                var progressBar = bar.GetNode<ProgressBar>("Bar");
-
-                GUICommon.Instance.TweenUIProperty(progressBar, "rect_min_size", new Vector2(95, 25),
-                    new Vector2(63, 25), 0.3f);
-                progressBar.GetNode<Label>("Label").Hide();
+                GUICommon.Instance.TweenUIProperty(
+                    bar, "rect_min_size", new Vector2(100, 25), new Vector2(75, 25), 0.3f);
+                bar.GetNode<Label>("Label").Hide();
             }
         }
 
         if (mode == "expand" && compundCompressed)
         {
             compundCompressed = false;
-
-            GUICommon.Instance.TweenUIProperty(compoundsPanel, "rect_min_size", compoundsPanel.RectMinSize,
-                new Vector2(253, 239), 0.3f);
             CompoundsPanelBarContainer.Columns = 1;
+            CompoundsPanelBarContainer.AddConstantOverride("vseparation", 5);
 
-            foreach (Node bar in bars)
+            foreach (ProgressBar bar in bars)
             {
-                var progressBar = bar.GetNode<ProgressBar>("Bar");
-
-                GUICommon.Instance.TweenUIProperty(progressBar, "rect_min_size", progressBar.RectMinSize,
-                    new Vector2(220, 25), 0.3f);
-                progressBar.GetNode<Label>("Label").Show();
+                GUICommon.Instance.TweenUIProperty(
+                    bar, "rect_min_size", bar.RectMinSize, new Vector2(232, 25), 0.3f);
+                bar.GetNode<Label>("Label").Show();
             }
         }
     }
@@ -407,44 +412,42 @@ public class MicrobeHUD : Node
             return;
 
         var compounds = stage.Player.Compounds;
+
         if (!compounds.HasAnyBeenSetUseful())
             return;
+
         if (compounds.IsUseful("oxytoxy"))
         {
-            if (agentsPanel.GetParent() == null)
-                leftPanels.AddChild(agentsPanel);
+            agentsPanel.Show();
         }
         else
         {
-            if (agentsPanel.GetParent() != null)
-                leftPanels.RemoveChild(agentsPanel);
+            agentsPanel.Hide();
         }
 
-        for (int i = 0; i < stage.CompoundArray.Count; i++)
+        foreach (ProgressBar bar in compoundBars)
         {
-            if (compounds.IsUseful(stage.CompoundArray[i]))
+            var compound = SimulationParameters.Instance.GetCompound(bar.Name);
+
+            if (compounds.IsUseful(compound))
             {
-                if (compoundBarArray[i].GetParent() == null)
-                    CompoundsPanelBarContainer.AddChild(compoundBarArray[i]);
+                bar.Show();
             }
             else
             {
-                if (compoundBarArray[i].GetParent() != null)
-                    CompoundsPanelBarContainer.RemoveChild(compoundBarArray[i]);
+                bar.Hide();
             }
         }
-    }
 
-    /// <summary>
-    ///   Stores the compound bar and icon in the class array
-    ///   Prevents bar nad icon from being lost when removes from tree
-    /// </summary>
-    private void StoreCompoundBar()
-    {
-        foreach (HBoxContainer bar in CompoundsPanelBarContainer.GetChildren())
-        {
-            compoundBarArray.Add(bar);
-        }
+        // Resize the compound panel dynamically
+        var compoundsPanelVBoxContainer = compoundsPanel.GetNode<VBoxContainer>("VBoxContainer");
+
+        compoundsPanelVBoxContainer.RectSize = new Vector2(compoundsPanelVBoxContainer.RectSize.x, 0);
+
+        var targetSize = compoundsPanel.RectMinSize.LinearInterpolate(
+            new Vector2(compoundsPanel.RectMinSize.x, compoundsPanelVBoxContainer.RectSize.y), 0.15f);
+
+        compoundsPanel.RectMinSize = targetSize;
     }
 
     /// <summary>
@@ -457,7 +460,6 @@ public class MicrobeHUD : Node
     ///     how the old JS code do it anyway.
     ///   </para>
     /// </remarks>
-
     private void UpdateHoverInfo()
     {
         foreach (Node children in hoveredItems.GetChildren())
@@ -613,18 +615,8 @@ public class MicrobeHUD : Node
             GD.PrintErr("can't get reproduction phosphates progress: ", e);
         }
 
-        foreach (TextureProgress bar in textureHudBars)
-        {
-            if (bar.Name == "AmmoniaReproductionBar")
-            {
-                bar.Value = fractionOfAmmonia * bar.MaxValue;
-            }
-
-            if (bar.Name == "PhosphateReproductionBar")
-            {
-                bar.Value = fractionOfPhosphates * bar.MaxValue;
-            }
-        }
+        ammoniaReproductionBar.Value = fractionOfAmmonia * ammoniaReproductionBar.MaxValue;
+        phosphateReproductionBar.Value = fractionOfPhosphates * phosphateReproductionBar.MaxValue;
     }
 
     private void UpdateATP()
@@ -632,23 +624,17 @@ public class MicrobeHUD : Node
         var atp = stage.Player.Compounds.GetCompoundAmount("atp");
         var capacity = stage.Player.Compounds.Capacity;
 
-        foreach (TextureProgress bar in textureHudBars)
-        {
-            if (bar.Name == "ATPBar")
-            {
-                GUICommon.Instance.TweenBarValue(bar, atp, capacity);
-                atpLabel.Text = Mathf.Round(atp) + " / " + capacity;
+        GUICommon.Instance.TweenBarValue(atpBar, atp, capacity);
+        atpLabel.Text = Mathf.Round(atp) + " / " + capacity;
 
-                // Hide the progress bar when the atp is less than 1.5
-                if (bar.Value < 1.5)
-                {
-                    bar.TintProgress = new Color(0, 0, 0);
-                }
-                else
-                {
-                    bar.TintProgress = new Color(1, 1, 1);
-                }
-            }
+        // Hide the progress bar when the atp is less than 1.5
+        if (atpBar.Value < 1.5)
+        {
+            atpBar.TintProgress = new Color(0, 0, 0);
+        }
+        else
+        {
+            atpBar.TintProgress = new Color(1, 1, 1);
         }
     }
 
@@ -657,14 +643,8 @@ public class MicrobeHUD : Node
         var hp = stage.Player.Hitpoints;
         var maxHP = stage.Player.MaxHitpoints;
 
-        foreach (TextureProgress bar in textureHudBars)
-        {
-            if (bar.Name == "HealthBar")
-            {
-                GUICommon.Instance.TweenBarValue(bar, hp, maxHP);
-                hpLabel.Text = Mathf.RoundToInt(hp) + " / " + maxHP;
-            }
-        }
+        GUICommon.Instance.TweenBarValue(healthBar, hp, maxHP);
+        hpLabel.Text = Mathf.RoundToInt(hp) + " / " + maxHP;
     }
 
     private void UpdatePopulation()
@@ -720,35 +700,17 @@ public class MicrobeHUD : Node
 
     private void CompoundButtonPressed()
     {
-        var guiCommon = GUICommon.Instance;
-
-        guiCommon.PlayButtonPressSound();
+        GUICommon.Instance.PlayButtonPressSound();
 
         if (!leftPanelsActive)
         {
             leftPanelsActive = true;
-
-            guiCommon.TweenUIProperty(environmentPanel, "rect_position", environmentPanel.RectPosition, new Vector2(
-                -300, environmentPanel.RectPosition.y), 0.3f, Tween.TransitionType.Linear, Tween.EaseType.Out, 0.1f);
-            guiCommon.TweenUIProperty(compoundsPanel, "rect_position", compoundsPanel.RectPosition, new Vector2(
-                -300, compoundsPanel.RectPosition.y), 0.3f, Tween.TransitionType.Linear, Tween.EaseType.Out, 0.05f);
-            guiCommon.TweenUIProperty(agentsPanel, "rect_position", agentsPanel.RectPosition, new Vector2(
-                -300, agentsPanel.RectPosition.y), 0.3f, Tween.TransitionType.Linear, Tween.EaseType.Out);
-
-            guiCommon.TweenUIProperty(leftPanels, "modulate", leftPanels.Modulate, new Color(1, 1, 1, 0), 0.3f);
+            animationPlayer.Play("HideLeftPanels");
         }
         else
         {
             leftPanelsActive = false;
-
-            guiCommon.TweenUIProperty(environmentPanel, "rect_position", environmentPanel.RectPosition, new Vector2(
-                0, environmentPanel.RectPosition.y), 0.4f, Tween.TransitionType.Linear, Tween.EaseType.In, 0.1f);
-            guiCommon.TweenUIProperty(compoundsPanel, "rect_position", compoundsPanel.RectPosition, new Vector2(
-                0, compoundsPanel.RectPosition.y), 0.4f, Tween.TransitionType.Linear, Tween.EaseType.In, 0.05f);
-            guiCommon.TweenUIProperty(agentsPanel, "rect_position", agentsPanel.RectPosition, new Vector2(
-                0, agentsPanel.RectPosition.y), 0.4f, Tween.TransitionType.Linear, Tween.EaseType.In);
-
-            guiCommon.TweenUIProperty(leftPanels, "modulate", new Color(1, 1, 1, 0), new Color(1, 1, 1, 1), 0.3f);
+            animationPlayer.Play("ShowLeftPanels");
         }
     }
 
