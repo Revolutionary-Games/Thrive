@@ -23,8 +23,8 @@ public class TransitionManager : Node
     {
         instance = this;
 
-        screenFadeScene = GD.Load<PackedScene>("res://scripts/gui/Fade.tscn");
-        cutsceneScene = GD.Load<PackedScene>("res://scripts/gui/Cutscene.tscn");
+        screenFadeScene = GD.Load<PackedScene>("res://src/gui_common/Fade.tscn");
+        cutsceneScene = GD.Load<PackedScene>("res://src/gui_common/Cutscene.tscn");
     }
 
     [Signal]

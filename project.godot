@@ -20,7 +20,7 @@ config/description="Thrive is an open source evolution simulation game.
 Play as a microbe on an alien world trying to survive and adapt to your surroundings in order to thrive.
 
 https://revolutionarygamesstudio.com/"
-run/main_scene="res://scripts/gui/MainMenu.tscn"
+run/main_scene="res://src/gui_common/MainMenu.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="Thrive"
 boot_splash/image="res://assets/misc/thrive_logo_big.png"
@@ -30,8 +30,8 @@ config/windows_native_icon="res://assets/misc/icon.ico"
 
 [autoload]
 
-GUICommon="*res://scripts/gui/GUICommon.cs"
-TransitionManager="*res://scripts/gui/TransitionManager.cs"
+GUICommon="*res://src/gui_common/GUICommon.cs"
+TransitionManager="*res://src/gui_common/TransitionManager.cs"
 Jukebox="*res://src/general/Jukebox.cs"
 ScreenFilter="*res://src/engine/ScreenFilter.tscn"
 FilterLoader="*res://src/engine/FilterLoader.cs"
