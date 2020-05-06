@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://scripts/gui/Cutscene.cs" type="Script" id=1]
+[ext_resource path="res://src/gui_common/Cutscene.cs" type="Script" id=1]
 
 [node name="Cutscene" type="CanvasLayer"]
 script = ExtResource( 1 )
