@@ -34,7 +34,7 @@ public class MicrobeHUD : Node
     public NodePath EditorButtonPath;
     [Export]
     public NodePath HelpScreenPath;
-
+    [Export]
     public NodePath EnvironmentPanelPath;
     [Export]
     public NodePath EnvironmentPanelBarContainerPath;
@@ -67,9 +67,6 @@ public class MicrobeHUD : Node
     [Export]
     public NodePath PhosphateReproductionBarPath;
     [Export]
-    public NodePath HelpScreenPath;
-
-    [Export]
     public PackedScene ExtinctionBoxScene;
     [Export]
     public PackedScene WinBoxScene;
@@ -81,6 +78,8 @@ public class MicrobeHUD : Node
     public Texture PhosphatesBW;
     [Export]
     public Texture AmmoniaInv;
+    [Export]
+    public Texture PhosphatesInv;
 
     public GridContainer CompoundsPanelBarContainer;
     private AnimationPlayer animationPlayer;
