@@ -178,7 +178,7 @@ expand_margin_bottom = 1.0
 texture = ExtResource( 42 )
 region_rect = Rect2( 0, 0, 20, 20 )
 
-[sub_resource type="StyleBoxFlat" id=27]
+[sub_resource type="StyleBoxFlat" id=24]
 bg_color = Color( 0.568627, 0.611765, 0.615686, 1 )
 corner_radius_top_left = 15
 corner_radius_bottom_left = 15
@@ -192,7 +192,7 @@ corner_radius_bottom_left = 15
 size = 14
 font_data = ExtResource( 12 )
 
-[sub_resource type="StyleBoxFlat" id=44]
+[sub_resource type="StyleBoxFlat" id=27]
 bg_color = Color( 0.631373, 0.396078, 0, 1 )
 corner_radius_top_left = 15
 corner_radius_bottom_left = 15
@@ -416,7 +416,6 @@ AtpBarPath = NodePath("BottomRight/ATPBar")
 HealthBarPath = NodePath("BottomRight/HealthBar")
 AmmoniaReproductionBarPath = NodePath("BottomRight/EditorButton/ReproductionBar/AmmoniaReproductionBar")
 PhosphateReproductionBarPath = NodePath("BottomRight/EditorButton/ReproductionBar/PhosphateReproductionBar")
-HelpScreenPath = NodePath("CanvasLayer/HelpScreen")
 ExtinctionBoxScene = ExtResource( 70 )
 WinBoxScene = ExtResource( 8 )
 MicrobePickupOrganelleSound = ExtResource( 6 )
@@ -1073,7 +1072,7 @@ margin_right = 232.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 232, 25 )
 size_flags_horizontal = 0
-custom_styles/fg = SubResource( 27 )
+custom_styles/fg = SubResource( 24 )
 custom_styles/bg = SubResource( 25 )
 step = 0.1
 percent_visible = false
@@ -1125,7 +1124,7 @@ margin_right = 232.0
 margin_bottom = 55.0
 rect_min_size = Vector2( 232, 25 )
 size_flags_horizontal = 0
-custom_styles/fg = SubResource( 44 )
+custom_styles/fg = SubResource( 27 )
 custom_styles/bg = SubResource( 25 )
 step = 0.1
 percent_visible = false
