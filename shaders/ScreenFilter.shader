@@ -14,15 +14,15 @@ void fragment() {
 	{
 		float ybDiff = px.r + px.g / (px.b * 2.0);
 		float byDiff = (2.0 * px.b) / px.r + px.g;
-		px.r *= ybDiff>1.0?ybDiff:1.0;
-		px.g *= byDiff>1.0?byDiff:1.0;
-		px *= px.r +px.g / (px.r + px.g + px.b) * 1.6;
+		float brightness = (px.r + px.g + px.b) / 1.5;
+		px.r *= (ybDiff > 1.0 ? ybDiff : 1.0) * brightness;
+		px.g *= (byDiff > 1.0 ? byDiff : 1.0) * brightness;
 	}
 	else
 	{
 		// Invalid mode
 		// Random crazy filter
-		// If this filter is shown, there's bug
+		// If this filter is shown, there's a bug
 		px = px.rrbb;
 	}
 	COLOR = vec4(px.rgb,1.0);
