@@ -7,7 +7,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/PhosphatesBW.png" type="Texture" id=5]
 [ext_resource path="res://assets/sounds/soundeffects/microbe-pickup-organelle.ogg" type="AudioStream" id=6]
 [ext_resource path="res://src/microbe_stage/PlayerMicrobeInput.cs" type="Script" id=7]
-[ext_resource path="res://scripts/gui/WinBox.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/microbe_stage/gui/WinBox.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/microbe_stage/MicrobeHUD.cs" type="Script" id=9]
 [ext_resource path="res://src/microbe_stage/CompoundCloudSystem.cs" type="Script" id=10]
 [ext_resource path="res://assets/textures/gui/menu_theme.tres" type="Theme" id=11]
@@ -67,10 +67,10 @@
 [ext_resource path="res://assets/textures/gui/bevel/ReproductionBar.png" type="Texture" id=65]
 [ext_resource path="res://assets/fonts/Jura-Medium.ttf" type="DynamicFontData" id=66]
 [ext_resource path="res://assets/fonts/thrive.ttf" type="DynamicFontData" id=69]
-[ext_resource path="res://scripts/gui/ExtinctionBox.tscn" type="PackedScene" id=70]
+[ext_resource path="res://src/microbe_stage/gui/ExtinctionBox.tscn" type="PackedScene" id=70]
 [ext_resource path="res://assets/textures/gui/bevel/AmmoniaBW.png" type="Texture" id=71]
 [ext_resource path="res://src/general/HelpScreen.tscn" type="PackedScene" id=72]
-[ext_resource path="res://scripts/gui/HelpBox.tscn" type="PackedScene" id=73]
+[ext_resource path="res://src/gui_common/HelpBox.tscn" type="PackedScene" id=73]
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPausedHover.png" type="Texture" id=78]
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPaused.png" type="Texture" id=79]
 
@@ -180,13 +180,9 @@ region_rect = Rect2( 0, 0, 20, 20 )
 
 [sub_resource type="StyleBoxFlat" id=24]
 bg_color = Color( 0.568627, 0.611765, 0.615686, 1 )
-corner_radius_top_left = 15
-corner_radius_bottom_left = 15
 
 [sub_resource type="StyleBoxFlat" id=25]
 bg_color = Color( 0, 0, 0, 0.196078 )
-corner_radius_top_left = 15
-corner_radius_bottom_left = 15
 
 [sub_resource type="DynamicFont" id=26]
 size = 14
@@ -194,23 +190,15 @@ font_data = ExtResource( 12 )
 
 [sub_resource type="StyleBoxFlat" id=27]
 bg_color = Color( 0.631373, 0.396078, 0, 1 )
-corner_radius_top_left = 15
-corner_radius_bottom_left = 15
 
 [sub_resource type="StyleBoxFlat" id=28]
 bg_color = Color( 0.380392, 0.141176, 0.8, 1 )
-corner_radius_top_left = 15
-corner_radius_bottom_left = 15
 
 [sub_resource type="StyleBoxFlat" id=29]
 bg_color = Color( 0.462745, 0.470588, 0.184314, 1 )
-corner_radius_top_left = 15
-corner_radius_bottom_left = 15
 
 [sub_resource type="StyleBoxFlat" id=30]
 bg_color = Color( 0.541176, 0.141176, 0.0745098, 1 )
-corner_radius_top_left = 15
-corner_radius_bottom_left = 15
 
 [sub_resource type="StyleBoxTexture" id=31]
 texture = ExtResource( 15 )
@@ -218,13 +206,9 @@ region_rect = Rect2( 0, 0, 250, 91 )
 
 [sub_resource type="StyleBoxFlat" id=32]
 bg_color = Color( 0.623529, 0.0745098, 0.376471, 1 )
-corner_radius_top_left = 15
-corner_radius_bottom_left = 15
 
 [sub_resource type="StyleBoxFlat" id=33]
 bg_color = Color( 0, 0, 0, 0.196078 )
-corner_radius_top_left = 15
-corner_radius_bottom_left = 15
 
 [sub_resource type="DynamicFont" id=34]
 size = 14
@@ -410,8 +394,8 @@ HydrogenSulfideBarPath = NodePath("LeftPanels/CompoundsPanel/VBoxContainer/Body/
 IronBarPath = NodePath("LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/iron")
 CompoundsPanelBarContainerPath = NodePath("LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer")
 AgentsPanelPath = NodePath("LeftPanels/AgentsPanel")
-OxytoxyBarPath = NodePath("LeftPanels/AgentsPanel/Expand/VBoxContainer/MarginContainer2/BarContainer/oxytoxy")
-AgentsPanelBarContainerPath = NodePath("LeftPanels/AgentsPanel/Expand/VBoxContainer/MarginContainer2/BarContainer")
+OxytoxyBarPath = NodePath("LeftPanels/AgentsPanel/VBoxContainer/MarginContainer2/BarContainer/oxytoxy")
+AgentsPanelBarContainerPath = NodePath("LeftPanels/AgentsPanel/VBoxContainer/MarginContainer2/BarContainer")
 AtpBarPath = NodePath("BottomRight/ATPBar")
 HealthBarPath = NodePath("BottomRight/HealthBar")
 AmmoniaReproductionBarPath = NodePath("BottomRight/EditorButton/ReproductionBar/AmmoniaReproductionBar")
@@ -1047,14 +1031,14 @@ margin_right = 252.0
 margin_bottom = 209.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 5
-custom_constants/margin_left = 10
+custom_constants/margin_left = 22
 custom_constants/margin_bottom = 15
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BarContainer" type="GridContainer" parent="MicrobeHUD/LeftPanels/CompoundsPanel/VBoxContainer/Body"]
-margin_left = 10.0
+margin_left = 22.0
 margin_top = 5.0
 margin_right = 242.0
 margin_bottom = 150.0
@@ -1068,9 +1052,9 @@ __meta__ = {
 "CompoundBar",
 ]]
 show_behind_parent = true
-margin_right = 232.0
+margin_right = 220.0
 margin_bottom = 25.0
-rect_min_size = Vector2( 232, 25 )
+rect_min_size = Vector2( 220, 25 )
 size_flags_horizontal = 0
 custom_styles/fg = SubResource( 24 )
 custom_styles/bg = SubResource( 25 )
@@ -1078,7 +1062,8 @@ step = 0.1
 percent_visible = false
 
 [node name="AmmoniaIcon" type="TextureRect" parent="MicrobeHUD/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/glucose"]
-margin_right = 25.0
+margin_left = -12.0
+margin_right = 13.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 25, 25 )
 texture = ExtResource( 46 )
@@ -1120,9 +1105,9 @@ __meta__ = {
 ]]
 show_behind_parent = true
 margin_top = 30.0
-margin_right = 232.0
+margin_right = 220.0
 margin_bottom = 55.0
-rect_min_size = Vector2( 232, 25 )
+rect_min_size = Vector2( 220, 25 )
 size_flags_horizontal = 0
 custom_styles/fg = SubResource( 27 )
 custom_styles/bg = SubResource( 25 )
@@ -1130,7 +1115,8 @@ step = 0.1
 percent_visible = false
 
 [node name="AmmoniaIcon" type="TextureRect" parent="MicrobeHUD/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/ammonia"]
-margin_right = 25.0
+margin_left = -12.0
+margin_right = 13.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 25, 25 )
 texture = ExtResource( 48 )
@@ -1172,9 +1158,9 @@ __meta__ = {
 ]]
 show_behind_parent = true
 margin_top = 60.0
-margin_right = 232.0
+margin_right = 220.0
 margin_bottom = 85.0
-rect_min_size = Vector2( 232, 25 )
+rect_min_size = Vector2( 220, 25 )
 size_flags_horizontal = 0
 custom_styles/fg = SubResource( 28 )
 custom_styles/bg = SubResource( 25 )
@@ -1182,7 +1168,8 @@ step = 0.1
 percent_visible = false
 
 [node name="PhospateIcon" type="TextureRect" parent="MicrobeHUD/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/phosphates"]
-margin_right = 25.0
+margin_left = -12.0
+margin_right = 13.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 25, 25 )
 texture = ExtResource( 50 )
@@ -1224,9 +1211,9 @@ __meta__ = {
 ]]
 show_behind_parent = true
 margin_top = 90.0
-margin_right = 232.0
+margin_right = 220.0
 margin_bottom = 115.0
-rect_min_size = Vector2( 232, 25 )
+rect_min_size = Vector2( 220, 25 )
 size_flags_horizontal = 0
 custom_styles/fg = SubResource( 29 )
 custom_styles/bg = SubResource( 25 )
@@ -1234,7 +1221,8 @@ step = 0.1
 percent_visible = false
 
 [node name="HydrogenSulfideIcon" type="TextureRect" parent="MicrobeHUD/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/hydrogensulfide"]
-margin_right = 25.0
+margin_left = -12.0
+margin_right = 13.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 25, 25 )
 texture = ExtResource( 47 )
@@ -1276,9 +1264,9 @@ __meta__ = {
 ]]
 show_behind_parent = true
 margin_top = 120.0
-margin_right = 232.0
+margin_right = 220.0
 margin_bottom = 145.0
-rect_min_size = Vector2( 232, 25 )
+rect_min_size = Vector2( 220, 25 )
 size_flags_horizontal = 0
 custom_styles/fg = SubResource( 30 )
 custom_styles/bg = SubResource( 25 )
@@ -1286,7 +1274,8 @@ step = 0.1
 percent_visible = false
 
 [node name="IronIcon" type="TextureRect" parent="MicrobeHUD/LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/iron"]
-margin_right = 25.0
+margin_left = -12.0
+margin_right = 13.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 25, 25 )
 texture = ExtResource( 49 )
@@ -1323,16 +1312,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AgentsPanel" type="Control" parent="MicrobeHUD/LeftPanels"]
+[node name="AgentsPanel" type="PanelContainer" parent="MicrobeHUD/LeftPanels"]
 margin_top = 483.0
-margin_right = 253.0
+margin_right = 252.0
 margin_bottom = 572.0
-rect_min_size = Vector2( 253, 89 )
-mouse_filter = 2
-
-[node name="Expand" type="PanelContainer" parent="MicrobeHUD/LeftPanels/AgentsPanel"]
-margin_right = 253.0
-margin_bottom = 89.0
+rect_min_size = Vector2( 252, 89 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_styles/panel = SubResource( 31 )
@@ -1340,57 +1324,61 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeHUD/LeftPanels/AgentsPanel/Expand"]
-margin_right = 253.0
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeHUD/LeftPanels/AgentsPanel"]
+margin_right = 252.0
 margin_bottom = 89.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="MarginContainer" type="MarginContainer" parent="MicrobeHUD/LeftPanels/AgentsPanel/Expand/VBoxContainer"]
-margin_right = 253.0
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeHUD/LeftPanels/AgentsPanel/VBoxContainer"]
+margin_right = 252.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 230, 35 )
 custom_constants/margin_left = 40
 
-[node name="Label" type="Label" parent="MicrobeHUD/LeftPanels/AgentsPanel/Expand/VBoxContainer/MarginContainer"]
+[node name="Label" type="Label" parent="MicrobeHUD/LeftPanels/AgentsPanel/VBoxContainer/MarginContainer"]
 margin_left = 40.0
 margin_top = 6.0
-margin_right = 253.0
+margin_right = 252.0
 margin_bottom = 28.0
 custom_fonts/font = SubResource( 4 )
 text = "Agents"
 
-[node name="MarginContainer2" type="MarginContainer" parent="MicrobeHUD/LeftPanels/AgentsPanel/Expand/VBoxContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="MicrobeHUD/LeftPanels/AgentsPanel/VBoxContainer"]
 margin_top = 39.0
-margin_right = 253.0
+margin_right = 252.0
 margin_bottom = 89.0
 rect_min_size = Vector2( 240, 50 )
 custom_constants/margin_right = 10
 custom_constants/margin_top = 5
-custom_constants/margin_left = 10
+custom_constants/margin_left = 22
 custom_constants/margin_bottom = 5
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BarContainer" type="GridContainer" parent="MicrobeHUD/LeftPanels/AgentsPanel/Expand/VBoxContainer/MarginContainer2"]
-margin_left = 10.0
+[node name="BarContainer" type="GridContainer" parent="MicrobeHUD/LeftPanels/AgentsPanel/VBoxContainer/MarginContainer2"]
+margin_left = 22.0
 margin_top = 5.0
-margin_right = 243.0
+margin_right = 242.0
 margin_bottom = 45.0
 
-[node name="oxytoxy" type="ProgressBar" parent="MicrobeHUD/LeftPanels/AgentsPanel/Expand/VBoxContainer/MarginContainer2/BarContainer" groups=[
+[node name="oxytoxy" type="ProgressBar" parent="MicrobeHUD/LeftPanels/AgentsPanel/VBoxContainer/MarginContainer2/BarContainer" groups=[
 "CompoundBar",
 ]]
-margin_right = 232.0
+margin_right = 220.0
 margin_bottom = 25.0
-rect_min_size = Vector2( 232, 25 )
+rect_min_size = Vector2( 220, 25 )
 size_flags_horizontal = 0
 custom_styles/fg = SubResource( 32 )
 custom_styles/bg = SubResource( 33 )
 step = 0.1
 percent_visible = false
 
-[node name="OxyToxyIcon" type="TextureRect" parent="MicrobeHUD/LeftPanels/AgentsPanel/Expand/VBoxContainer/MarginContainer2/BarContainer/oxytoxy"]
-margin_right = 25.0
+[node name="OxyToxyIcon" type="TextureRect" parent="MicrobeHUD/LeftPanels/AgentsPanel/VBoxContainer/MarginContainer2/BarContainer/oxytoxy"]
+margin_left = -12.0
+margin_right = 13.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 25, 25 )
 size_flags_horizontal = 0
@@ -1401,9 +1389,9 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="MicrobeHUD/LeftPanels/AgentsPanel/Expand/VBoxContainer/MarginContainer2/BarContainer/oxytoxy"]
-margin_left = 30.0
-margin_right = 109.0
+[node name="Label" type="Label" parent="MicrobeHUD/LeftPanels/AgentsPanel/VBoxContainer/MarginContainer2/BarContainer/oxytoxy"]
+margin_left = 18.0
+margin_right = 97.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = SubResource( 34 )
@@ -1413,7 +1401,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Value" type="Label" parent="MicrobeHUD/LeftPanels/AgentsPanel/Expand/VBoxContainer/MarginContainer2/BarContainer/oxytoxy"]
+[node name="Value" type="Label" parent="MicrobeHUD/LeftPanels/AgentsPanel/VBoxContainer/MarginContainer2/BarContainer/oxytoxy"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -45.0

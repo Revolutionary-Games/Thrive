@@ -33,22 +33,22 @@ public class SimulationParameters
     private SimulationParameters()
     {
         membranes = LoadRegistry<MembraneType>(
-            "res://scripts/simulation_parameters/microbe_stage/membranes.json");
+            "res://simulation_parameters/microbe_stage/membranes.json");
         backgrounds = LoadRegistry<Background>(
-            "res://scripts/simulation_parameters/microbe_stage/backgrounds.json");
+            "res://simulation_parameters/microbe_stage/backgrounds.json");
         biomes = LoadRegistry<Biome>(
-            "res://scripts/simulation_parameters/microbe_stage/biomes.json");
+            "res://simulation_parameters/microbe_stage/biomes.json");
         bioProcesses = LoadRegistry<BioProcess>(
-            "res://scripts/simulation_parameters/microbe_stage/bio_processes.json");
+            "res://simulation_parameters/microbe_stage/bio_processes.json");
         compounds = LoadRegistry<Compound>(
-            "res://scripts/simulation_parameters/microbe_stage/compounds.json");
+            "res://simulation_parameters/microbe_stage/compounds.json");
         organelles = LoadRegistry<OrganelleDefinition>(
-                    "res://scripts/simulation_parameters/microbe_stage/organelles.json");
+                    "res://simulation_parameters/microbe_stage/organelles.json");
 
         NameGenerator = LoadDirectObject<NameGenerator>(
-            "res://scripts/simulation_parameters/microbe_stage/species_names.json");
+            "res://simulation_parameters/microbe_stage/species_names.json");
 
-        musicCategories = LoadRegistry<MusicCategory>("res://scripts/simulation_parameters/common/music_tracks.json");
+        musicCategories = LoadRegistry<MusicCategory>("res://simulation_parameters/common/music_tracks.json");
 
         GD.Print("SimulationParameters loading ended");
 
