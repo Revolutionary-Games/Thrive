@@ -267,6 +267,7 @@ public class MicrobeHUD : Node
         {
             compundCompressed = true;
             CompoundsPanelBarContainer.AddConstantOverride("vseparation", 20);
+            CompoundsPanelBarContainer.AddConstantOverride("hseparation", 14);
 
             if (bars.Count < 4)
             {
@@ -280,7 +281,7 @@ public class MicrobeHUD : Node
             foreach (ProgressBar bar in bars)
             {
                 GUICommon.Instance.TweenUIProperty(
-                    bar, "rect_min_size", new Vector2(100, 25), new Vector2(75, 25), 0.3f);
+                    bar, "rect_min_size", new Vector2(90, 25), new Vector2(64, 25), 0.3f);
                 bar.GetNode<Label>("Label").Hide();
             }
         }
@@ -290,11 +291,12 @@ public class MicrobeHUD : Node
             compundCompressed = false;
             CompoundsPanelBarContainer.Columns = 1;
             CompoundsPanelBarContainer.AddConstantOverride("vseparation", 5);
+            CompoundsPanelBarContainer.AddConstantOverride("hseparation", 0);
 
             foreach (ProgressBar bar in bars)
             {
                 GUICommon.Instance.TweenUIProperty(
-                    bar, "rect_min_size", bar.RectMinSize, new Vector2(232, 25), 0.3f);
+                    bar, "rect_min_size", bar.RectMinSize, new Vector2(220, 25), 0.3f);
                 bar.GetNode<Label>("Label").Show();
             }
         }
@@ -441,7 +443,7 @@ public class MicrobeHUD : Node
         // Resize the compound panel dynamically
         var compoundsPanelVBoxContainer = compoundsPanel.GetNode<VBoxContainer>("VBoxContainer");
 
-        compoundsPanelVBoxContainer.RectSize = new Vector2(compoundsPanelVBoxContainer.RectSize.x, 0);
+        compoundsPanelVBoxContainer.RectSize = new Vector2(compoundsPanelVBoxContainer.RectMinSize.x, 0);
 
         var targetSize = compoundsPanel.RectMinSize.LinearInterpolate(
             new Vector2(compoundsPanel.RectMinSize.x, compoundsPanelVBoxContainer.RectSize.y), 0.15f);
