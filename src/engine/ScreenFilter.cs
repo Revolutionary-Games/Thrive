@@ -1,13 +1,14 @@
 using Godot;
 
 /// <summary>
-///   Handles what colorblind filter is used
+///   Handles what colourblind filter is used
 /// </summary>
 public class ScreenFilter : TextureRect
 {
     private static ScreenFilter instance;
     private ShaderMaterial screenFilterMaterial;
-    public ScreenFilter()
+
+    private ScreenFilter()
     {
         instance = this;
     }
@@ -27,7 +28,7 @@ public class ScreenFilter : TextureRect
         Hide();
     }
 
-    public void SetColorblindSetting(int index)
+    public void SetColourblindSetting(int index)
     {
         switch (index)
         {
@@ -41,7 +42,7 @@ public class ScreenFilter : TextureRect
                 SetBlueYellow();
                 break;
             default:
-                GD.PrintErr("Invalid Colorblind Setting");
+                GD.PrintErr("Invalid Colourblind Setting");
                 break;
         }
     }

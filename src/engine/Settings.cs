@@ -101,7 +101,12 @@ public class Settings
     ///   Sets amount of MSAA to apply to the viewport
     /// </summary>
     public Viewport.MSAA MSAAResolution { get; set; } = Viewport.MSAA.Disabled;
-    public int ColorblindSetting { get; set; } = 0;
+
+    /// <summary>
+    ///   Choose what filter to apply to the screen
+    ///   0 = None, 1 = Red/Green, 2 = Blue/Yellow
+    /// </summary>
+    public int ColourblindSetting { get; set; } = 0;
 
     public int CloudSimulationWidth
     {
@@ -177,7 +182,7 @@ public class Settings
     public void ApplyGraphicsSettings()
     {
         GUICommon.Instance.GetTree().Root.GetViewport().Msaa = MSAAResolution;
-        ScreenFilter.Instance.SetColorblindSetting(ColorblindSetting);
+        ScreenFilter.Instance.SetColourblindSetting(ColourblindSetting);
     }
 
     /// <summary>

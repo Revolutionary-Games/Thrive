@@ -15,7 +15,7 @@ ResetToDefaultPath = NodePath("Reset")
 VSyncPath = NodePath("TabContainer/Graphics/Vsync")
 FullScreenPath = NodePath("TabContainer/Graphics/Fullscreen")
 MSAAResolutionPath = NodePath("TabContainer/Graphics/HBoxContainer/MSAAResolution")
-ColorblindSettingPath = NodePath("TabContainer/Graphics/HBoxContainer2/ColorblindSetting")
+ColourblindSettingPath = NodePath("TabContainer/Graphics/HBoxContainer2/ColourblindSetting")
 MasterVolumePath = NodePath("TabContainer/Sound/HBoxContainer/MasterVolume")
 MasterMutedPath = NodePath("TabContainer/Sound/HBoxContainer/MasterMuted")
 MusicVolumePath = NodePath("TabContainer/Sound/HBoxContainer2/MusicVolume")
@@ -82,39 +82,39 @@ text = "Disabled"
 items = [ "Disabled", null, false, 0, null, "2x", null, false, 1, null, "4x", null, false, 2, null, "8x", null, false, 3, null, "16x", null, false, 4, null ]
 selected = 0
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Graphics"]
+[node name="Label" type="Label" parent="TabContainer/Graphics"]
 margin_top = 92.0
 margin_right = 1270.0
-margin_bottom = 116.0
+margin_bottom = 114.0
+text = "Resolution: auto"
+
+[node name="Label2" type="Label" parent="TabContainer/Graphics"]
+margin_top = 118.0
+margin_right = 1270.0
+margin_bottom = 140.0
+text = "Max FPS: 400"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TabContainer/Graphics"]
+margin_top = 144.0
+margin_right = 1270.0
+margin_bottom = 168.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="TabContainer/Graphics/HBoxContainer2"]
 margin_top = 1.0
-margin_right = 219.0
+margin_right = 232.0
 margin_bottom = 23.0
 mouse_filter = 0
-text = "Colorblind Correction: "
+text = "Colourblind Correction: "
 
-[node name="ColorblindSetting" type="OptionButton" parent="TabContainer/Graphics/HBoxContainer2"]
-margin_left = 223.0
-margin_right = 423.0
+[node name="ColourblindSetting" type="OptionButton" parent="TabContainer/Graphics/HBoxContainer2"]
+margin_left = 236.0
+margin_right = 436.0
 margin_bottom = 24.0
 rect_min_size = Vector2( 200, 0 )
 text = "None"
 items = [ "None", null, false, 0, null, "Protanope (Red-Green)", null, false, 1, null, "Tritanope (Blue-Yellow)", null, false, 2, null ]
 selected = 0
-
-[node name="Label" type="Label" parent="TabContainer/Graphics"]
-margin_top = 120.0
-margin_right = 1270.0
-margin_bottom = 142.0
-text = "Resolution: auto"
-
-[node name="Label2" type="Label" parent="TabContainer/Graphics"]
-margin_top = 146.0
-margin_right = 1270.0
-margin_bottom = 168.0
-text = "Max FPS: 400"
 
 [node name="Sound" type="VBoxContainer" parent="TabContainer"]
 visible = false
@@ -306,7 +306,7 @@ __meta__ = {
 [connection signal="toggled" from="TabContainer/Graphics/Vsync" to="." method="OnVSyncToggled"]
 [connection signal="toggled" from="TabContainer/Graphics/Fullscreen" to="." method="OnFullScreenToggled"]
 [connection signal="item_selected" from="TabContainer/Graphics/HBoxContainer/MSAAResolution" to="." method="OnMSAAResolutionSelected"]
-[connection signal="item_selected" from="TabContainer/Graphics/HBoxContainer2/ColorblindSetting" to="." method="OnColorblindSettingSelected"]
+[connection signal="item_selected" from="TabContainer/Graphics/HBoxContainer2/ColourblindSetting" to="." method="OnColourblindSettingSelected"]
 [connection signal="value_changed" from="TabContainer/Sound/HBoxContainer/MasterVolume" to="." method="OnMasterVolumeChanged"]
 [connection signal="toggled" from="TabContainer/Sound/HBoxContainer/MasterMuted" to="." method="OnMasterMutedToggled"]
 [connection signal="value_changed" from="TabContainer/Sound/HBoxContainer2/MusicVolume" to="." method="OnMusicVolumeChanged"]

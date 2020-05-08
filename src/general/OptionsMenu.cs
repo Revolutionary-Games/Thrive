@@ -17,7 +17,7 @@ public class OptionsMenu : Control
     [Export]
     public NodePath MSAAResolutionPath;
     [Export]
-    public NodePath ColorblindSettingPath;
+    public NodePath ColourblindSettingPath;
 
     // Sound tab
     [Export]
@@ -49,7 +49,7 @@ public class OptionsMenu : Control
     private CheckBox vsync;
     private CheckBox fullScreen;
     private OptionButton msaaResolution;
-    private OptionButton colorblindSetting;
+    private OptionButton colourblindSetting;
 
     // Sound tab
     private Slider masterVolume;
@@ -83,7 +83,7 @@ public class OptionsMenu : Control
         vsync = GetNode<CheckBox>(VSyncPath);
         fullScreen = GetNode<CheckBox>(FullScreenPath);
         msaaResolution = GetNode<OptionButton>(MSAAResolutionPath);
-        colorblindSetting = GetNode<OptionButton>(ColorblindSettingPath);
+        colourblindSetting = GetNode<OptionButton>(ColourblindSettingPath);
 
         // Sound
         masterVolume = GetNode<Slider>(MasterVolumePath);
@@ -114,7 +114,7 @@ public class OptionsMenu : Control
         vsync.Pressed = Settings.VSync;
         fullScreen.Pressed = Settings.FullScreen;
         msaaResolution.Selected = MSAAResolutionToIndex(settings.MSAAResolution);
-        colorblindSetting.Selected = settings.ColorblindSetting;
+        colourblindSetting.Selected = settings.ColourblindSetting;
 
         // Sound
         masterVolume.Value = ConvertDBToSoundBar(settings.VolumeMaster);
@@ -369,9 +369,9 @@ public class OptionsMenu : Control
         Settings.ApplyGraphicsSettings();
     }
 
-    private void OnColorblindSettingSelected(int index)
+    private void OnColourblindSettingSelected(int index)
     {
-        Settings.ColorblindSetting = index;
+        Settings.ColourblindSetting = index;
         Settings.ApplyGraphicsSettings();
     }
 }
