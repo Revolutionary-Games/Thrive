@@ -12,7 +12,7 @@ public class FilterLoader : Node
 
     public override void _Ready()
     {
-        textureFilter = GetTree().Root.GetNode("ScreenFilter");
+        textureFilter = ScreenFilter.Instance;
         fpsCounter = GetTree().Root.GetNode("FPSCounter");
     }
 
