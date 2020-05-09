@@ -74,14 +74,14 @@
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPausedHover.png" type="Texture" id=78]
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPaused.png" type="Texture" id=79]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=8]
 size = 15
 font_data = ExtResource( 12 )
 
-[sub_resource type="Theme" id=2]
-default_font = SubResource( 1 )
+[sub_resource type="Theme" id=9]
+default_font = SubResource( 8 )
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=10]
 bg_color = Color( 0, 0.0745098, 0.0823529, 0.588235 )
 border_width_left = 1
 border_width_top = 1
@@ -93,11 +93,11 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=11]
 size = 20
 font_data = ExtResource( 12 )
 
-[sub_resource type="StyleBoxTexture" id=5]
+[sub_resource type="StyleBoxTexture" id=12]
 texture = ExtResource( 43 )
 region_rect = Rect2( 0, 0, 20, 20 )
 expand_margin_left = 1.0
@@ -105,7 +105,7 @@ expand_margin_right = 1.0
 expand_margin_top = 1.0
 expand_margin_bottom = 1.0
 
-[sub_resource type="StyleBoxTexture" id=6]
+[sub_resource type="StyleBoxTexture" id=13]
 texture = ExtResource( 44 )
 region_rect = Rect2( 0, 0, 20, 20 )
 expand_margin_left = 1.0
@@ -113,17 +113,17 @@ expand_margin_right = 1.0
 expand_margin_top = 1.0
 expand_margin_bottom = 1.0
 
-[sub_resource type="StyleBoxTexture" id=7]
+[sub_resource type="StyleBoxTexture" id=14]
 texture = ExtResource( 43 )
 region_rect = Rect2( 0, 0, 20, 20 )
 
-[sub_resource type="ButtonGroup" id=8]
+[sub_resource type="ButtonGroup" id=15]
 
-[sub_resource type="StyleBoxTexture" id=9]
+[sub_resource type="StyleBoxTexture" id=16]
 texture = ExtResource( 42 )
 region_rect = Rect2( 0, 0, 20, 20 )
 
-[sub_resource type="StyleBoxTexture" id=10]
+[sub_resource type="StyleBoxTexture" id=17]
 texture = ExtResource( 45 )
 region_rect = Rect2( 0, 0, 20, 20 )
 expand_margin_left = 1.0
@@ -131,42 +131,42 @@ expand_margin_right = 1.0
 expand_margin_top = 1.0
 expand_margin_bottom = 1.0
 
-[sub_resource type="StyleBoxTexture" id=11]
+[sub_resource type="StyleBoxTexture" id=18]
 texture = ExtResource( 42 )
 region_rect = Rect2( 0, 0, 20, 20 )
-
-[sub_resource type="StyleBoxFlat" id=12]
-bg_color = Color( 0, 0.596078, 0.764706, 1 )
-
-[sub_resource type="StyleBoxFlat" id=13]
-bg_color = Color( 0, 0, 0, 0.196078 )
-
-[sub_resource type="DynamicFont" id=14]
-size = 14
-font_data = ExtResource( 12 )
-
-[sub_resource type="StyleBoxFlat" id=15]
-bg_color = Color( 0.141176, 0.278431, 0.682353, 1 )
-
-[sub_resource type="StyleBoxFlat" id=16]
-bg_color = Color( 0.407843, 0.698039, 0.431373, 1 )
-
-[sub_resource type="StyleBoxFlat" id=17]
-bg_color = Color( 0.67451, 0.996078, 0.235294, 1 )
-
-[sub_resource type="StyleBoxFlat" id=18]
-bg_color = Color( 0.984314, 0.913725, 0.580392, 1 )
 
 [sub_resource type="StyleBoxFlat" id=19]
+bg_color = Color( 0, 0.596078, 0.764706, 1 )
+
+[sub_resource type="StyleBoxFlat" id=20]
+bg_color = Color( 0, 0, 0, 0.196078 )
+
+[sub_resource type="DynamicFont" id=21]
+size = 14
+font_data = ExtResource( 12 )
+
+[sub_resource type="StyleBoxFlat" id=22]
+bg_color = Color( 0.141176, 0.278431, 0.682353, 1 )
+
+[sub_resource type="StyleBoxFlat" id=23]
+bg_color = Color( 0.407843, 0.698039, 0.431373, 1 )
+
+[sub_resource type="StyleBoxFlat" id=24]
+bg_color = Color( 0.67451, 0.996078, 0.235294, 1 )
+
+[sub_resource type="StyleBoxFlat" id=25]
+bg_color = Color( 0.984314, 0.913725, 0.580392, 1 )
+
+[sub_resource type="StyleBoxFlat" id=26]
 bg_color = Color( 0.905882, 0.909804, 0.929412, 1 )
 
-[sub_resource type="ButtonGroup" id=20]
+[sub_resource type="ButtonGroup" id=27]
 
-[sub_resource type="StyleBoxTexture" id=21]
+[sub_resource type="StyleBoxTexture" id=28]
 texture = ExtResource( 42 )
 region_rect = Rect2( 0, 0, 20, 20 )
 
-[sub_resource type="StyleBoxTexture" id=22]
+[sub_resource type="StyleBoxTexture" id=29]
 texture = ExtResource( 45 )
 region_rect = Rect2( 0, 0, 20, 20 )
 expand_margin_left = 1.0
@@ -174,53 +174,53 @@ expand_margin_right = 1.0
 expand_margin_top = 1.0
 expand_margin_bottom = 1.0
 
-[sub_resource type="StyleBoxTexture" id=23]
+[sub_resource type="StyleBoxTexture" id=30]
 texture = ExtResource( 42 )
 region_rect = Rect2( 0, 0, 20, 20 )
 
-[sub_resource type="StyleBoxFlat" id=24]
+[sub_resource type="StyleBoxFlat" id=31]
 bg_color = Color( 0.568627, 0.611765, 0.615686, 1 )
 
-[sub_resource type="StyleBoxFlat" id=25]
+[sub_resource type="StyleBoxFlat" id=32]
 bg_color = Color( 0, 0, 0, 0.196078 )
 
-[sub_resource type="DynamicFont" id=26]
+[sub_resource type="DynamicFont" id=33]
 size = 14
 font_data = ExtResource( 12 )
 
-[sub_resource type="StyleBoxFlat" id=27]
+[sub_resource type="StyleBoxFlat" id=34]
 bg_color = Color( 0.631373, 0.396078, 0, 1 )
 
-[sub_resource type="StyleBoxFlat" id=28]
+[sub_resource type="StyleBoxFlat" id=35]
 bg_color = Color( 0.380392, 0.141176, 0.8, 1 )
 
-[sub_resource type="StyleBoxFlat" id=29]
+[sub_resource type="StyleBoxFlat" id=36]
 bg_color = Color( 0.462745, 0.470588, 0.184314, 1 )
 
-[sub_resource type="StyleBoxFlat" id=30]
+[sub_resource type="StyleBoxFlat" id=37]
 bg_color = Color( 0.541176, 0.141176, 0.0745098, 1 )
 
-[sub_resource type="StyleBoxTexture" id=31]
+[sub_resource type="StyleBoxTexture" id=38]
 texture = ExtResource( 15 )
 region_rect = Rect2( 0, 0, 250, 91 )
 
-[sub_resource type="StyleBoxFlat" id=32]
+[sub_resource type="StyleBoxFlat" id=39]
 bg_color = Color( 0.623529, 0.0745098, 0.376471, 1 )
 
-[sub_resource type="StyleBoxFlat" id=33]
+[sub_resource type="StyleBoxFlat" id=40]
 bg_color = Color( 0, 0, 0, 0.196078 )
 
-[sub_resource type="DynamicFont" id=34]
+[sub_resource type="DynamicFont" id=41]
 size = 14
 font_data = ExtResource( 12 )
 
-[sub_resource type="StyleBoxEmpty" id=35]
+[sub_resource type="StyleBoxEmpty" id=42]
 
-[sub_resource type="DynamicFont" id=36]
+[sub_resource type="DynamicFont" id=43]
 size = 25
 font_data = ExtResource( 66 )
 
-[sub_resource type="StyleBoxFlat" id=37]
+[sub_resource type="StyleBoxFlat" id=44]
 bg_color = Color( 0.47451, 0.560784, 0.588235, 0.392157 )
 border_width_left = 2
 border_width_top = 2
@@ -228,19 +228,19 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color( 0.533333, 0.745098, 0.815686, 0.392157 )
 
-[sub_resource type="DynamicFont" id=38]
+[sub_resource type="DynamicFont" id=45]
 size = 13
 font_data = ExtResource( 12 )
 
-[sub_resource type="StyleBoxTexture" id=39]
+[sub_resource type="StyleBoxTexture" id=46]
 texture = ExtResource( 62 )
 region_rect = Rect2( 0, 0, 86, 52 )
 
-[sub_resource type="DynamicFont" id=40]
+[sub_resource type="DynamicFont" id=47]
 size = 14
 font_data = ExtResource( 69 )
 
-[sub_resource type="Animation" id=41]
+[sub_resource type="Animation" id=48]
 length = 5.0
 loop = true
 tracks/0/type = "value"
@@ -268,7 +268,7 @@ tracks/1/keys = {
 "values": [ 1.0, 1.0, 0.0, 0.0, 1.0 ]
 }
 
-[sub_resource type="Animation" id=42]
+[sub_resource type="Animation" id=49]
 tracks/0/type = "value"
 tracks/0/path = NodePath("LeftPanels:modulate")
 tracks/0/interp = 1
@@ -306,7 +306,7 @@ tracks/2/keys = {
 "values": [ true, false ]
 }
 
-[sub_resource type="Animation" id=43]
+[sub_resource type="Animation" id=50]
 tracks/0/type = "value"
 tracks/0/path = NodePath("LeftPanels:modulate")
 tracks/0/interp = 1
@@ -416,8 +416,8 @@ margin_top = 10.0
 margin_right = -10.0
 margin_bottom = 140.0
 grow_horizontal = 0
-theme = SubResource( 2 )
-custom_styles/panel = SubResource( 3 )
+theme = SubResource( 9 )
+custom_styles/panel = SubResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -504,7 +504,7 @@ custom_constants/separation = 6
 margin_top = 6.0
 margin_right = 123.0
 margin_bottom = 28.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 11 )
 text = "Environment"
 
 [node name="MarginContainer4" type="MarginContainer" parent="MicrobeHUD/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer"]
@@ -523,14 +523,14 @@ margin_right = 20.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 20, 20 )
 focus_mode = 0
-custom_styles/hover = SubResource( 5 )
-custom_styles/pressed = SubResource( 6 )
-custom_styles/normal = SubResource( 7 )
+custom_styles/hover = SubResource( 12 )
+custom_styles/pressed = SubResource( 13 )
+custom_styles/normal = SubResource( 14 )
 toggle_mode = true
 pressed = true
 action_mode = 0
 enabled_focus_mode = 0
-group = SubResource( 8 )
+group = SubResource( 15 )
 
 [node name="MarginContainer3" type="MarginContainer" parent="MicrobeHUD/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer"]
 margin_left = 155.0
@@ -548,13 +548,13 @@ margin_right = 20.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 20, 20 )
 focus_mode = 0
-custom_styles/hover = SubResource( 9 )
-custom_styles/pressed = SubResource( 10 )
-custom_styles/normal = SubResource( 11 )
+custom_styles/hover = SubResource( 16 )
+custom_styles/pressed = SubResource( 17 )
+custom_styles/normal = SubResource( 18 )
 toggle_mode = true
 action_mode = 0
 enabled_focus_mode = 0
-group = SubResource( 8 )
+group = SubResource( 15 )
 
 [node name="Body" type="MarginContainer" parent="MicrobeHUD/LeftPanels/EnvironmentPanel/VBoxContainer"]
 margin_top = 39.0
@@ -594,8 +594,8 @@ margin_left = 15.0
 margin_right = 177.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 162, 25 )
-custom_styles/fg = SubResource( 12 )
-custom_styles/bg = SubResource( 13 )
+custom_styles/fg = SubResource( 19 )
+custom_styles/bg = SubResource( 20 )
 step = 0.1
 percent_visible = false
 
@@ -607,7 +607,7 @@ margin_top = -12.5
 margin_right = 38.0
 margin_bottom = 12.5
 rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = SubResource( 14 )
+custom_fonts/font = SubResource( 21 )
 text = "02"
 valign = 1
 __meta__ = {
@@ -625,7 +625,7 @@ margin_right = -6.99998
 margin_bottom = 12.5
 grow_horizontal = 0
 rect_min_size = Vector2( 55, 25 )
-custom_fonts/font = SubResource( 14 )
+custom_fonts/font = SubResource( 21 )
 text = "0%"
 valign = 1
 __meta__ = {
@@ -653,8 +653,8 @@ margin_left = 15.0
 margin_right = 177.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 162, 25 )
-custom_styles/fg = SubResource( 15 )
-custom_styles/bg = SubResource( 13 )
+custom_styles/fg = SubResource( 22 )
+custom_styles/bg = SubResource( 20 )
 step = 0.1
 percent_visible = false
 
@@ -666,7 +666,7 @@ margin_top = -12.5
 margin_right = 38.0
 margin_bottom = 12.5
 rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = SubResource( 14 )
+custom_fonts/font = SubResource( 21 )
 text = "CO2"
 valign = 1
 __meta__ = {
@@ -684,7 +684,7 @@ margin_right = -6.99998
 margin_bottom = 12.5
 grow_horizontal = 0
 rect_min_size = Vector2( 55, 25 )
-custom_fonts/font = SubResource( 14 )
+custom_fonts/font = SubResource( 21 )
 text = "0%"
 valign = 1
 __meta__ = {
@@ -712,8 +712,8 @@ margin_left = 15.0
 margin_right = 177.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 162, 25 )
-custom_styles/fg = SubResource( 16 )
-custom_styles/bg = SubResource( 13 )
+custom_styles/fg = SubResource( 23 )
+custom_styles/bg = SubResource( 20 )
 step = 0.1
 percent_visible = false
 
@@ -725,7 +725,7 @@ margin_top = -12.5
 margin_right = 49.0
 margin_bottom = 12.5
 rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = SubResource( 14 )
+custom_fonts/font = SubResource( 21 )
 text = "N2"
 valign = 1
 __meta__ = {
@@ -743,7 +743,7 @@ margin_right = -6.99998
 margin_bottom = 12.5
 grow_horizontal = 0
 rect_min_size = Vector2( 55, 25 )
-custom_fonts/font = SubResource( 14 )
+custom_fonts/font = SubResource( 21 )
 text = "0%"
 valign = 1
 __meta__ = {
@@ -771,8 +771,8 @@ margin_left = 14.0
 margin_right = 176.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 162, 25 )
-custom_styles/fg = SubResource( 17 )
-custom_styles/bg = SubResource( 13 )
+custom_styles/fg = SubResource( 24 )
+custom_styles/bg = SubResource( 20 )
 step = 0.1
 percent_visible = false
 
@@ -784,7 +784,7 @@ margin_top = -12.5
 margin_right = 49.0
 margin_bottom = 12.5
 rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = SubResource( 14 )
+custom_fonts/font = SubResource( 21 )
 text = "Temp."
 valign = 1
 __meta__ = {
@@ -802,7 +802,7 @@ margin_right = -6.99998
 margin_bottom = 12.5
 grow_horizontal = 0
 rect_min_size = Vector2( 55, 25 )
-custom_fonts/font = SubResource( 14 )
+custom_fonts/font = SubResource( 21 )
 text = "55° C"
 valign = 1
 __meta__ = {
@@ -830,8 +830,8 @@ margin_left = 15.0
 margin_right = 177.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 162, 25 )
-custom_styles/fg = SubResource( 18 )
-custom_styles/bg = SubResource( 13 )
+custom_styles/fg = SubResource( 25 )
+custom_styles/bg = SubResource( 20 )
 step = 0.1
 percent_visible = false
 
@@ -843,7 +843,7 @@ margin_top = -12.5
 margin_right = 66.0
 margin_bottom = 12.5
 rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = SubResource( 14 )
+custom_fonts/font = SubResource( 21 )
 text = "Light"
 valign = 1
 __meta__ = {
@@ -861,7 +861,7 @@ margin_right = -6.99998
 margin_bottom = 12.5
 grow_horizontal = 0
 rect_min_size = Vector2( 55, 25 )
-custom_fonts/font = SubResource( 14 )
+custom_fonts/font = SubResource( 21 )
 text = "0%"
 valign = 1
 __meta__ = {
@@ -889,8 +889,8 @@ margin_left = 15.0
 margin_right = 177.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 162, 25 )
-custom_styles/fg = SubResource( 19 )
-custom_styles/bg = SubResource( 13 )
+custom_styles/fg = SubResource( 26 )
+custom_styles/bg = SubResource( 20 )
 step = 0.1
 percent_visible = false
 
@@ -902,7 +902,7 @@ margin_top = -12.5
 margin_right = 69.0
 margin_bottom = 12.5
 rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = SubResource( 14 )
+custom_fonts/font = SubResource( 21 )
 text = "Press."
 valign = 1
 __meta__ = {
@@ -920,7 +920,7 @@ margin_right = -4.0
 margin_bottom = 12.5
 grow_horizontal = 0
 rect_min_size = Vector2( 55, 25 )
-custom_fonts/font = SubResource( 14 )
+custom_fonts/font = SubResource( 21 )
 text = "200 kPa"
 valign = 1
 __meta__ = {
@@ -972,7 +972,7 @@ margin_top = 9.0
 margin_right = 145.0
 margin_bottom = 31.0
 rect_min_size = Vector2( 145, 0 )
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 11 )
 text = "Compounds"
 
 [node name="MarginContainer3" type="MarginContainer" parent="MicrobeHUD/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
@@ -992,14 +992,14 @@ margin_right = 20.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 20, 20 )
 focus_mode = 0
-custom_styles/hover = SubResource( 5 )
-custom_styles/pressed = SubResource( 6 )
-custom_styles/normal = SubResource( 7 )
+custom_styles/hover = SubResource( 12 )
+custom_styles/pressed = SubResource( 13 )
+custom_styles/normal = SubResource( 14 )
 toggle_mode = true
 pressed = true
 action_mode = 0
 enabled_focus_mode = 0
-group = SubResource( 20 )
+group = SubResource( 27 )
 
 [node name="MarginContainer4" type="MarginContainer" parent="MicrobeHUD/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
 margin_left = 177.0
@@ -1017,13 +1017,13 @@ margin_right = 20.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 20, 20 )
 focus_mode = 0
-custom_styles/hover = SubResource( 21 )
-custom_styles/pressed = SubResource( 22 )
-custom_styles/normal = SubResource( 23 )
+custom_styles/hover = SubResource( 28 )
+custom_styles/pressed = SubResource( 29 )
+custom_styles/normal = SubResource( 30 )
 toggle_mode = true
 action_mode = 0
 enabled_focus_mode = 0
-group = SubResource( 20 )
+group = SubResource( 27 )
 
 [node name="Body" type="MarginContainer" parent="MicrobeHUD/LeftPanels/CompoundsPanel/VBoxContainer"]
 margin_top = 44.0
@@ -1056,8 +1056,8 @@ margin_right = 220.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 220, 25 )
 size_flags_horizontal = 0
-custom_styles/fg = SubResource( 24 )
-custom_styles/bg = SubResource( 25 )
+custom_styles/fg = SubResource( 31 )
+custom_styles/bg = SubResource( 32 )
 step = 0.1
 percent_visible = false
 
@@ -1077,7 +1077,7 @@ margin_left = 30.0
 margin_right = 91.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = SubResource( 26 )
+custom_fonts/font = SubResource( 33 )
 text = "Glucose"
 valign = 1
 __meta__ = {
@@ -1092,7 +1092,7 @@ margin_right = -4.0
 margin_bottom = 25.0
 grow_horizontal = 0
 rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = SubResource( 26 )
+custom_fonts/font = SubResource( 33 )
 text = "0.0 / 4"
 align = 2
 valign = 1
@@ -1109,8 +1109,8 @@ margin_right = 220.0
 margin_bottom = 55.0
 rect_min_size = Vector2( 220, 25 )
 size_flags_horizontal = 0
-custom_styles/fg = SubResource( 27 )
-custom_styles/bg = SubResource( 25 )
+custom_styles/fg = SubResource( 34 )
+custom_styles/bg = SubResource( 32 )
 step = 0.1
 percent_visible = false
 
@@ -1130,7 +1130,7 @@ margin_left = 30.0
 margin_right = 91.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = SubResource( 26 )
+custom_fonts/font = SubResource( 33 )
 text = "Ammonia"
 valign = 1
 __meta__ = {
@@ -1145,7 +1145,7 @@ margin_right = -4.0
 margin_bottom = 25.0
 grow_horizontal = 0
 rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = SubResource( 26 )
+custom_fonts/font = SubResource( 33 )
 text = "0.0 / 4"
 align = 2
 valign = 1
@@ -1162,8 +1162,8 @@ margin_right = 220.0
 margin_bottom = 85.0
 rect_min_size = Vector2( 220, 25 )
 size_flags_horizontal = 0
-custom_styles/fg = SubResource( 28 )
-custom_styles/bg = SubResource( 25 )
+custom_styles/fg = SubResource( 35 )
+custom_styles/bg = SubResource( 32 )
 step = 0.1
 percent_visible = false
 
@@ -1183,7 +1183,7 @@ margin_left = 30.0
 margin_right = 105.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = SubResource( 26 )
+custom_fonts/font = SubResource( 33 )
 text = "Phosphate"
 valign = 1
 __meta__ = {
@@ -1198,7 +1198,7 @@ margin_right = -3.99998
 margin_bottom = 25.0
 grow_horizontal = 0
 rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = SubResource( 26 )
+custom_fonts/font = SubResource( 33 )
 text = "0.0 / 4"
 align = 2
 valign = 1
@@ -1215,8 +1215,8 @@ margin_right = 220.0
 margin_bottom = 115.0
 rect_min_size = Vector2( 220, 25 )
 size_flags_horizontal = 0
-custom_styles/fg = SubResource( 29 )
-custom_styles/bg = SubResource( 25 )
+custom_styles/fg = SubResource( 36 )
+custom_styles/bg = SubResource( 32 )
 step = 0.1
 percent_visible = false
 
@@ -1236,7 +1236,7 @@ margin_left = 30.0
 margin_right = 151.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = SubResource( 26 )
+custom_fonts/font = SubResource( 33 )
 text = "Hydrogen Sulfide"
 valign = 1
 __meta__ = {
@@ -1251,7 +1251,7 @@ margin_right = -3.99998
 margin_bottom = 25.0
 grow_horizontal = 0
 rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = SubResource( 26 )
+custom_fonts/font = SubResource( 33 )
 text = "0.0 / 4"
 align = 2
 valign = 1
@@ -1268,8 +1268,8 @@ margin_right = 220.0
 margin_bottom = 145.0
 rect_min_size = Vector2( 220, 25 )
 size_flags_horizontal = 0
-custom_styles/fg = SubResource( 30 )
-custom_styles/bg = SubResource( 25 )
+custom_styles/fg = SubResource( 37 )
+custom_styles/bg = SubResource( 32 )
 step = 0.1
 percent_visible = false
 
@@ -1289,7 +1289,7 @@ margin_left = 30.0
 margin_right = 57.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = SubResource( 26 )
+custom_fonts/font = SubResource( 33 )
 text = "Iron"
 valign = 1
 __meta__ = {
@@ -1304,7 +1304,7 @@ margin_right = -3.99998
 margin_bottom = 25.0
 grow_horizontal = 0
 rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = SubResource( 26 )
+custom_fonts/font = SubResource( 33 )
 text = "0.0 / 4"
 align = 2
 valign = 1
@@ -1319,7 +1319,7 @@ margin_bottom = 572.0
 rect_min_size = Vector2( 252, 89 )
 size_flags_horizontal = 0
 size_flags_vertical = 0
-custom_styles/panel = SubResource( 31 )
+custom_styles/panel = SubResource( 38 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1342,7 +1342,7 @@ margin_left = 40.0
 margin_top = 6.0
 margin_right = 252.0
 margin_bottom = 28.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 11 )
 text = "Agents"
 
 [node name="MarginContainer2" type="MarginContainer" parent="MicrobeHUD/LeftPanels/AgentsPanel/VBoxContainer"]
@@ -1371,8 +1371,8 @@ margin_right = 220.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 220, 25 )
 size_flags_horizontal = 0
-custom_styles/fg = SubResource( 32 )
-custom_styles/bg = SubResource( 33 )
+custom_styles/fg = SubResource( 39 )
+custom_styles/bg = SubResource( 40 )
 step = 0.1
 percent_visible = false
 
@@ -1394,7 +1394,7 @@ margin_left = 18.0
 margin_right = 97.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = SubResource( 34 )
+custom_fonts/font = SubResource( 41 )
 text = "OxyToxy NT"
 valign = 1
 __meta__ = {
@@ -1409,7 +1409,7 @@ margin_right = -4.99998
 margin_bottom = 25.0
 grow_horizontal = 0
 rect_min_size = Vector2( 0, 25 )
-custom_fonts/font = SubResource( 34 )
+custom_fonts/font = SubResource( 41 )
 text = "0.0 / 4"
 align = 2
 valign = 1
@@ -1548,14 +1548,14 @@ margin_left = 369.0
 margin_right = 384.0
 margin_bottom = 43.0
 rect_min_size = Vector2( 15, 0 )
-custom_styles/separator = SubResource( 35 )
+custom_styles/separator = SubResource( 42 )
 
 [node name="PatchLabel" type="Label" parent="MicrobeHUD/BottomBar"]
 margin_left = 388.0
 margin_top = 8.0
 margin_right = 462.0
 margin_bottom = 35.0
-custom_fonts/font = SubResource( 36 )
+custom_fonts/font = SubResource( 43 )
 text = "Patch:"
 
 [node name="BottomRight" type="Control" parent="MicrobeHUD"]
@@ -1585,8 +1585,8 @@ __meta__ = {
 [node name="Label" type="Label" parent="MicrobeHUD/BottomRight/PopulationData"]
 margin_right = 79.0
 margin_bottom = 18.0
-custom_styles/normal = SubResource( 37 )
-custom_fonts/font = SubResource( 38 )
+custom_styles/normal = SubResource( 44 )
+custom_fonts/font = SubResource( 45 )
 text = "POPULATION:"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1596,8 +1596,8 @@ __meta__ = {
 margin_left = 83.0
 margin_right = 111.0
 margin_bottom = 18.0
-custom_styles/normal = SubResource( 37 )
-custom_fonts/font = SubResource( 38 )
+custom_styles/normal = SubResource( 44 )
+custom_fonts/font = SubResource( 45 )
 text = "100"
 align = 1
 __meta__ = {
@@ -1613,7 +1613,7 @@ margin_left = 30.0
 margin_top = -108.0
 margin_right = 117.0
 margin_bottom = -58.0
-custom_styles/panel = SubResource( 39 )
+custom_styles/panel = SubResource( 46 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1636,14 +1636,14 @@ custom_constants/separation = 8
 [node name="HPValue" type="Label" parent="MicrobeHUD/BottomRight/DataValue/Margin/VBox"]
 margin_right = 77.0
 margin_bottom = 15.0
-custom_fonts/font = SubResource( 40 )
+custom_fonts/font = SubResource( 47 )
 text = "Hitpoints"
 
 [node name="ATPValue" type="Label" parent="MicrobeHUD/BottomRight/DataValue/Margin/VBox"]
 margin_top = 23.0
 margin_right = 77.0
 margin_bottom = 38.0
-custom_fonts/font = SubResource( 40 )
+custom_fonts/font = SubResource( 47 )
 text = "ATP"
 
 [node name="ATPBar" type="TextureProgress" parent="MicrobeHUD/BottomRight" groups=[
@@ -1836,7 +1836,7 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MicrobeHUD/BottomRight/EditorButton"]
-anims/EditorButtonFlash = SubResource( 41 )
+anims/EditorButtonFlash = SubResource( 48 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="MicrobeHUD"]
 __meta__ = {
@@ -2088,8 +2088,8 @@ margin_bottom = 59.0
 text = "Be wary because your competitors are evolving alongside you. Every time you enter the editor they evolve as well."
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MicrobeHUD"]
-anims/HideLeftPanels = SubResource( 42 )
-anims/ShowLeftPanels = SubResource( 43 )
+anims/HideLeftPanels = SubResource( 49 )
+anims/ShowLeftPanels = SubResource( 50 )
 [connection signal="pressed" from="MicrobeHUD/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/MarginContainer4/EnvironmentExpandButton" to="MicrobeHUD" method="ResizeEnvironmentPanel" binds= [ "expand" ]]
 [connection signal="pressed" from="MicrobeHUD/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/MarginContainer3/EnvironmentCompressButton" to="MicrobeHUD" method="ResizeEnvironmentPanel" binds= [ "compress" ]]
 [connection signal="pressed" from="MicrobeHUD/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer/MarginContainer3/CompoundExpandButton" to="MicrobeHUD" method="ResizeCompoundPanel" binds= [ "expand" ]]
