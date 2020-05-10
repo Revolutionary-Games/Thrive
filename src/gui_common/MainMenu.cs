@@ -12,9 +12,13 @@ public class MainMenu : Node
     [Export]
     public uint CurrentMenuIndex;
 
+    [Export]
+    public NodePath ThriveLogoPath;
+
     public Godot.Collections.Array MenuArray;
     public TextureRect Background;
 
+    private TextureRect thriveLogo;
     private OptionsMenu options;
 
     public override void _Ready()
@@ -45,6 +49,7 @@ public class MainMenu : Node
     private void RunMenuSetup()
     {
         Background = GetNode<TextureRect>("Background");
+        thriveLogo = GetNode<TextureRect>(ThriveLogoPath);
 
         if (MenuArray != null)
             MenuArray.Clear();
@@ -234,6 +239,8 @@ public class MainMenu : Node
 
         // Show the options
         options.Visible = true;
+
+        thriveLogo.Hide();
     }
 
     private void OnReturnFromOptions()
@@ -242,5 +249,7 @@ public class MainMenu : Node
 
         // Hide all the other menus
         SetCurrentMenu(0);
+
+        thriveLogo.Show();
     }
 }
