@@ -360,6 +360,26 @@ public class MicrobeEditor : Node
         QueueFree();
     }
 
+    /// <summary>
+    ///   Switches to the main menu
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     TODO: This method should be in a singleton or something
+    ///   </para>
+    /// </remarks>
+    public void ReturnToMenu()
+    {
+        var scene = GD.Load<PackedScene>("res://src/gui_common/MainMenu.tscn");
+
+        var mainMenu = (MainMenu)scene.Instance();
+
+        mainMenu.IsReturningToMenu = true;
+        var parent = GetParent();
+        parent.RemoveChild(this);
+        parent.AddChild(mainMenu);
+    }
+
     public void StartMusic()
     {
         Jukebox.Instance.PlayingCategory = "MicrobeEditor";
