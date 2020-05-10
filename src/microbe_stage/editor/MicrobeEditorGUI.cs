@@ -657,8 +657,6 @@ public class MicrobeEditorGUI : Node
     internal void SetSpeciesInfo(string name, MembraneType membrane, Color colour,
         float rigidity)
     {
-        // throw new NotImplementedException();
-
         speciesNameEdit.Text = name;
         membraneColorPicker.Color = colour;
 
