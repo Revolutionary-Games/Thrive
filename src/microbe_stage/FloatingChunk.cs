@@ -138,16 +138,14 @@ public class FloatingChunk : RigidBody, ISpawned
             // Damage
             if (Damages > 0)
             {
-                float totalDamage = Damages * delta;
-
                 // TODO: Not the cleanest way to play the damage sound
                 if (DeleteOnTouch)
                 {
-                    microbe.Damage(totalDamage, "toxin");
+                    microbe.Damage(Damages, "toxin");
                 }
                 else
                 {
-                    microbe.Damage(totalDamage, "chunk");
+                    microbe.Damage(Damages * delta, "chunk");
                 }
             }
 
