@@ -244,6 +244,11 @@ public class MicrobeStage : Node
         parent.AddChild(editor);
     }
 
+    public void ReturnToMenu()
+    {
+        GUICommon.Instance.ReturnToMenu(this);
+    }
+
     /// <summary>
     ///   Called when returning from the editor
     /// </summary>

@@ -1928,7 +1928,6 @@ margin_top = 300.0
 margin_right = 250.0
 margin_bottom = 340.0
 rect_min_size = Vector2( 250, 40 )
-disabled = true
 text = "Return to Menu"
 
 [node name="Exit" type="Button" parent="MicrobeHUD/CanvasLayer/PauseMenu/CenterContainer/MicrobeStageMenu"]
@@ -2102,6 +2101,7 @@ anims/ShowLeftPanels = SubResource( 43 )
 [connection signal="pressed" from="MicrobeHUD/BottomRight/EditorButton" to="MicrobeHUD" method="EditorButtonPressed"]
 [connection signal="pressed" from="MicrobeHUD/CanvasLayer/PauseMenu/CenterContainer/MicrobeStageMenu/Resume" to="MicrobeHUD" method="OpenMicrobeStageMenuPressed"]
 [connection signal="pressed" from="MicrobeHUD/CanvasLayer/PauseMenu/CenterContainer/MicrobeStageMenu/Help" to="MicrobeHUD" method="ToggleHelpScreen"]
+[connection signal="pressed" from="MicrobeHUD/CanvasLayer/PauseMenu/CenterContainer/MicrobeStageMenu/ReturnToMenu" to="MicrobeHUD" method="ReturnToMenuPressed"]
 [connection signal="pressed" from="MicrobeHUD/CanvasLayer/PauseMenu/CenterContainer/MicrobeStageMenu/Exit" to="MicrobeHUD" method="ExitPressed"]
 [connection signal="pressed" from="MicrobeHUD/CanvasLayer/HelpScreen/CloseButton" to="MicrobeHUD" method="ToggleHelpScreen"]
 

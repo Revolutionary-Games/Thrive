@@ -360,6 +360,11 @@ public class MicrobeEditor : Node
         QueueFree();
     }
 
+    public void ReturnToMenu()
+    {
+        GUICommon.Instance.ReturnToMenu(this);
+    }
+
     public void StartMusic()
     {
         Jukebox.Instance.PlayingCategory = "MicrobeEditor";
