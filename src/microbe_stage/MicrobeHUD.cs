@@ -715,6 +715,15 @@ public class MicrobeHUD : Node
         }
     }
 
+    private void ReturnToMenuPressed()
+    {
+        // Unpause the game as well as close the pause menu
+        OpenMicrobeStageMenuPressed();
+
+        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.3f, false);
+        TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.ReturnToMenu));
+    }
+
     /// <summary>
     ///   Receiver for exiting game from microbe stage.
     /// </summary>

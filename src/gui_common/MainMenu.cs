@@ -15,6 +15,8 @@ public class MainMenu : Node
     public Godot.Collections.Array MenuArray;
     public TextureRect Background;
 
+    public bool IsReturningToMenu = false;
+
     private OptionsMenu options;
 
     public override void _Ready()
@@ -22,7 +24,7 @@ public class MainMenu : Node
         RunMenuSetup();
 
         // Start intro video
-        if (Settings.Instance.PlayIntroVideo)
+        if (Settings.Instance.PlayIntroVideo && !IsReturningToMenu)
         {
             TransitionManager.Instance.AddCutscene("res://assets/videos/intro.webm");
             TransitionManager.Instance.StartTransitions(this, nameof(OnIntroEnded));
@@ -156,9 +158,16 @@ public class MainMenu : Node
 
     private void OnMicrobeIntroEnded()
     {
-        // Instantiate a new microbe stage scene
         // TODO: Add loading screen while changing between scenes
-        GetTree().ChangeScene("res://src/microbe_stage/MicrobeStage.tscn");
+
+        var scene = GD.Load<PackedScene>("res://src/microbe_stage/MicrobeStage.tscn");
+
+        // Instantiate a new microbe stage scene
+        var stage = (MicrobeStage)scene.Instance();
+
+        var parent = GetParent();
+        parent.RemoveChild(this);
+        parent.AddChild(stage);
     }
 
     private void OnFreebuildFadeInEnded()
