@@ -6,7 +6,7 @@
 
 [sub_resource type="ButtonGroup" id=1]
 
-[sub_resource type="StyleBoxFlat" id=6]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0, 0.435294, 0.52549, 0.588235 )
 corner_radius_top_left = 5
 corner_radius_top_right = 5
@@ -15,15 +15,15 @@ corner_radius_bottom_left = 5
 expand_margin_left = 3.0
 expand_margin_right = 3.0
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=3]
 size = 14
 font_data = ExtResource( 3 )
-
-[sub_resource type="StyleBoxEmpty" id=3]
 
 [sub_resource type="StyleBoxEmpty" id=4]
 
 [sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=6]
 
 [node name="OptionsMenu" type="Control"]
 anchor_right = 1.0
@@ -163,7 +163,7 @@ __meta__ = {
 margin_right = 101.0
 margin_bottom = 25.0
 size_flags_horizontal = 0
-custom_styles/hover_pressed = SubResource( 6 )
+custom_styles/hover_pressed = SubResource( 2 )
 text = "V-sync"
 
 [node name="Fullscreen" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer"]
@@ -171,7 +171,7 @@ margin_top = 35.0
 margin_right = 139.0
 margin_bottom = 60.0
 size_flags_horizontal = 0
-custom_styles/hover_pressed = SubResource( 6 )
+custom_styles/hover_pressed = SubResource( 2 )
 text = "FullScreen"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer"]
@@ -200,7 +200,7 @@ text = "Multisample anti-aliasing:"
 margin_top = 27.0
 margin_right = 253.0
 margin_bottom = 42.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "(higher values worsen performance)"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer"]
@@ -208,7 +208,7 @@ margin_left = 257.0
 margin_right = 313.0
 margin_bottom = 42.0
 size_flags_horizontal = 3
-custom_styles/separator = SubResource( 3 )
+custom_styles/separator = SubResource( 4 )
 
 [node name="MSAAResolution" type="OptionButton" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer"]
 margin_left = 317.0
@@ -235,7 +235,7 @@ margin_left = 122.0
 margin_right = 468.0
 margin_bottom = 23.0
 size_flags_horizontal = 3
-custom_styles/separator = SubResource( 3 )
+custom_styles/separator = SubResource( 4 )
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer4"]
 margin_left = 472.0
@@ -258,7 +258,7 @@ margin_left = 95.0
 margin_right = 474.0
 margin_bottom = 23.0
 size_flags_horizontal = 3
-custom_styles/separator = SubResource( 3 )
+custom_styles/separator = SubResource( 4 )
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer3"]
 margin_left = 478.0
@@ -284,7 +284,7 @@ margin_left = 241.0
 margin_right = 313.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
-custom_styles/separator = SubResource( 3 )
+custom_styles/separator = SubResource( 4 )
 
 [node name="ColourblindSetting" type="OptionButton" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer2"]
 margin_left = 317.0
@@ -332,7 +332,7 @@ margin_left = 446.0
 margin_right = 517.0
 margin_bottom = 25.0
 size_flags_horizontal = 0
-custom_styles/hover_pressed = SubResource( 6 )
+custom_styles/hover_pressed = SubResource( 2 )
 text = "Mute"
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
@@ -358,7 +358,7 @@ margin_left = 446.0
 margin_right = 517.0
 margin_bottom = 25.0
 size_flags_horizontal = 0
-custom_styles/hover_pressed = SubResource( 6 )
+custom_styles/hover_pressed = SubResource( 2 )
 text = "Mute"
 
 [node name="Performance" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer"]
@@ -401,15 +401,15 @@ Interval:"
 margin_top = 53.0
 margin_right = 263.0
 margin_bottom = 68.0
-custom_fonts/font = SubResource( 2 )
-text = "(higher values worsen performance)"
+custom_fonts/font = SubResource( 3 )
+text = "(higher values increase performance)"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer"]
 margin_left = 267.0
 margin_right = 298.0
 margin_bottom = 68.0
 size_flags_horizontal = 3
-custom_styles/separator = SubResource( 4 )
+custom_styles/separator = SubResource( 5 )
 
 [node name="CloudInterval" type="OptionButton" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer"]
 margin_left = 302.0
@@ -442,7 +442,7 @@ text = "Cloud Resolution Divisor: "
 margin_top = 27.0
 margin_right = 254.0
 margin_bottom = 42.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 text = "(higher values increases performance)"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer2"]
@@ -450,7 +450,7 @@ margin_left = 258.0
 margin_right = 298.0
 margin_bottom = 42.0
 size_flags_horizontal = 3
-custom_styles/separator = SubResource( 4 )
+custom_styles/separator = SubResource( 5 )
 
 [node name="CloudResolution" type="OptionButton" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer2"]
 margin_left = 302.0
@@ -487,7 +487,7 @@ __meta__ = {
 margin_right = 502.0
 margin_bottom = 25.0
 size_flags_horizontal = 0
-custom_styles/hover_pressed = SubResource( 6 )
+custom_styles/hover_pressed = SubResource( 2 )
 text = "Play intro video"
 
 [node name="MicrobeIntro" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer"]
@@ -495,7 +495,7 @@ margin_top = 35.0
 margin_right = 502.0
 margin_bottom = 60.0
 size_flags_horizontal = 0
-custom_styles/hover_pressed = SubResource( 6 )
+custom_styles/hover_pressed = SubResource( 2 )
 text = "Play Microbe Intro on New Game"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer"]
@@ -508,7 +508,7 @@ margin_top = 84.0
 margin_right = 502.0
 margin_bottom = 109.0
 size_flags_horizontal = 0
-custom_styles/hover_pressed = SubResource( 6 )
+custom_styles/hover_pressed = SubResource( 2 )
 text = "Cheat keys enabled"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -533,7 +533,7 @@ margin_left = 104.0
 margin_right = 241.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
-custom_styles/separator = SubResource( 5 )
+custom_styles/separator = SubResource( 6 )
 
 [node name="Reset" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 margin_left = 245.0
