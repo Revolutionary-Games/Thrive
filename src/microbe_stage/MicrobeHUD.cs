@@ -493,6 +493,7 @@ public class MicrobeHUD : Node
         var co2 = biome.Compounds["carbondioxide"].Dissolved * 100;
         var nitrogen = biome.Compounds["nitrogen"].Dissolved * 100;
         var sunlight = biome.Compounds["sunlight"].Dissolved * 100;
+        var temperature = biome.AverageTemperature;
 
         oxygenBar.MaxValue = 100;
         oxygenBar.Value = oxygen;
@@ -510,7 +511,9 @@ public class MicrobeHUD : Node
         sunlightBar.Value = sunlight;
         sunlightBar.GetNode<Label>("Value").Text = sunlight + "%";
 
-        // TODO: temperature / pressure?
+        temperatureBar.GetNode<Label>("Value").Text = temperature + " °C";
+
+        // TODO: pressure?
     }
 
     /// <summary>
