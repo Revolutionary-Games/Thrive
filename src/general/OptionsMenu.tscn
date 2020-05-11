@@ -1,10 +1,19 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/textures/gui/menu_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/general/OptionsMenu.cs" type="Script" id=2]
 [ext_resource path="res://assets/fonts/Jura-Regular.ttf" type="DynamicFontData" id=3]
 
 [sub_resource type="ButtonGroup" id=1]
+
+[sub_resource type="StyleBoxFlat" id=6]
+bg_color = Color( 0, 0.435294, 0.52549, 0.588235 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 3.0
+expand_margin_right = 3.0
 
 [sub_resource type="DynamicFont" id=2]
 size = 14
@@ -151,14 +160,18 @@ __meta__ = {
 }
 
 [node name="Vsync" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer"]
-margin_right = 517.0
+margin_right = 101.0
 margin_bottom = 25.0
+size_flags_horizontal = 0
+custom_styles/hover_pressed = SubResource( 6 )
 text = "V-sync"
 
 [node name="Fullscreen" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer"]
 margin_top = 35.0
-margin_right = 517.0
+margin_right = 139.0
 margin_bottom = 60.0
+size_flags_horizontal = 0
+custom_styles/hover_pressed = SubResource( 6 )
 text = "FullScreen"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer"]
@@ -298,50 +311,54 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
-margin_right = 502.0
+margin_right = 517.0
 margin_bottom = 23.0
 text = "Master volume"
 align = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
 margin_top = 33.0
-margin_right = 502.0
+margin_right = 517.0
 margin_bottom = 58.0
 
 [node name="MasterVolume" type="HSlider" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer"]
-margin_right = 427.0
+margin_right = 442.0
 margin_bottom = 15.0
 size_flags_horizontal = 3
 value = 100.0
 
 [node name="MasterMuted" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer"]
-margin_left = 431.0
-margin_right = 502.0
+margin_left = 446.0
+margin_right = 517.0
 margin_bottom = 25.0
+size_flags_horizontal = 0
+custom_styles/hover_pressed = SubResource( 6 )
 text = "Mute"
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
 margin_top = 68.0
-margin_right = 502.0
+margin_right = 517.0
 margin_bottom = 91.0
 text = "Music volume"
 align = 1
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
 margin_top = 101.0
-margin_right = 502.0
+margin_right = 517.0
 margin_bottom = 126.0
 
 [node name="MusicVolume" type="HSlider" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer2"]
-margin_right = 427.0
+margin_right = 442.0
 margin_bottom = 15.0
 size_flags_horizontal = 3
 value = 80.0
 
 [node name="MusicMuted" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer2"]
-margin_left = 431.0
-margin_right = 502.0
+margin_left = 446.0
+margin_right = 517.0
 margin_bottom = 25.0
+size_flags_horizontal = 0
+custom_styles/hover_pressed = SubResource( 6 )
 text = "Mute"
 
 [node name="Performance" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer"]
@@ -469,12 +486,16 @@ __meta__ = {
 [node name="Intro" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer"]
 margin_right = 502.0
 margin_bottom = 25.0
+size_flags_horizontal = 0
+custom_styles/hover_pressed = SubResource( 6 )
 text = "Play intro video"
 
 [node name="MicrobeIntro" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer"]
 margin_top = 35.0
 margin_right = 502.0
 margin_bottom = 60.0
+size_flags_horizontal = 0
+custom_styles/hover_pressed = SubResource( 6 )
 text = "Play Microbe Intro on New Game"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer"]
@@ -486,6 +507,8 @@ margin_bottom = 74.0
 margin_top = 84.0
 margin_right = 502.0
 margin_bottom = 109.0
+size_flags_horizontal = 0
+custom_styles/hover_pressed = SubResource( 6 )
 text = "Cheat keys enabled"
 __meta__ = {
 "_edit_use_anchors_": false
