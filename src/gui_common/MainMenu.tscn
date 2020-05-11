@@ -11,6 +11,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_editor_description_": "The root and controller for the main menu"
 }
+ThriveLogoPath = NodePath("MenuContainers/LogoCenterContainer/Logo")
 
 [node name="Background" type="TextureRect" parent="."]
 anchor_right = 1.0
