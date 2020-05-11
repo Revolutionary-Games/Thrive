@@ -20,6 +20,7 @@ shader_param/albedoTexture = ExtResource( 3 )
 shader_param/damagedTexture = ExtResource( 4 )
 
 [node name="Membrane" type="MeshInstance"]
+process_priority = 2
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00755703, 0, 0.034008 )
 mesh = SubResource( 1 )
 material/0 = null
