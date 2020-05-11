@@ -350,6 +350,9 @@ public class MicrobeEditor : Node
         {
             GD.Print("MicrobeEditor: applying player move to patch: ", targetPatch.Name);
             CurrentGame.GameWorld.Map.CurrentPatch = targetPatch;
+
+            // Add the edited species to that patch to allow the species to gain population there
+            CurrentGame.GameWorld.Map.CurrentPatch.AddSpecies(editedSpecies, 0);
         }
 
         var parent = GetParent();
