@@ -52,6 +52,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     private bool cachedHexCountDirty = true;
     private int cachedHexCount;
 
+    private bool membraneOrganellePositionsAreDirty = true;
+
     private Vector3 queuedMovementForce;
 
     // variables for engulfing
@@ -377,8 +379,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
             organelles.Add(placed);
         }
-
-        SendOrganellePositionsToMembrane();
 
         // Reproduction progress is lost
         allOrganellesDivided = false;
@@ -889,6 +889,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
     public override void _Process(float delta)
     {
+        if (membraneOrganellePositionsAreDirty)
+        {
+            // Redo the cell membrane.
+            SendOrganellePositionsToMembrane();
+        }
+
         CheckEngulfShapeSize();
         HandleCompoundAbsorbing(delta);
 
@@ -1169,14 +1175,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             organelle2.WasSplit = true;
             organelle2.IsDuplicate = true;
             organelle2.SisterOrganelle = organelle;
-        }
-
-        if (organellesToAdd.Count > 0)
-        {
-            // Redo the cell membrane.
-            SendOrganellePositionsToMembrane();
-
-            // Process list is varmatically marked dirty when the split organelle is added
         }
 
         if (reproductionStageComplete)
@@ -1549,6 +1547,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         organelle.OnAddedToMicrobe(this);
         processesDirty = true;
         cachedHexCountDirty = true;
+        membraneOrganellePositionsAreDirty = true;
 
         if (organelle.IsAgentVacuole)
             AgentVacuoleCount += 1;
@@ -1571,6 +1570,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
         processesDirty = true;
         cachedHexCountDirty = true;
+        membraneOrganellePositionsAreDirty = true;
 
         Compounds.Capacity = organellesCapacity;
     }
@@ -1619,6 +1619,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
         Membrane.OrganellePositions = organellePositions;
         Membrane.Dirty = true;
+        membraneOrganellePositionsAreDirty = false;
     }
 
     /// <summary>
