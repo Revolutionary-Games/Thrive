@@ -190,7 +190,7 @@ public class MicrobeHUD : Node
         phosphateBar = GetNode<ProgressBar>(PhosphateBarPath);
         hydrogenSulfideBar = GetNode<ProgressBar>(HydrogenSulfideBarPath);
         ironBar = GetNode<ProgressBar>(IronBarPath);
-    
+
         oxytoxyBar = GetNode<ProgressBar>(OxytoxyBarPath);
         atpBar = GetNode<TextureProgress>(AtpBarPath);
         healthBar = GetNode<TextureProgress>(HealthBarPath);
