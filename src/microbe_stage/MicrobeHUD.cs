@@ -44,11 +44,11 @@ public class MicrobeHUD : Node
     [Export]
     public NodePath NitrogenBarPath;
     [Export]
-    public NodePath TemperatureBarPath;
+    public NodePath TemperaturePath;
     [Export]
-    public NodePath SunlightBarPath;
+    public NodePath SunlightPath;
     [Export]
-    public NodePath PressureBarPath;
+    public NodePath PressurePath;
     [Export]
     public NodePath EnvironmentPanelBarContainerPath;
 
@@ -108,9 +108,9 @@ public class MicrobeHUD : Node
     private ProgressBar oxygenBar;
     private ProgressBar co2Bar;
     private ProgressBar nitrogenBar;
-    private ProgressBar temperatureBar;
-    private ProgressBar sunlightBar;
-    private ProgressBar pressureBar;
+    private ProgressBar temperature;
+    private ProgressBar sunlight;
+    private ProgressBar pressure;
 
     private GridContainer compoundsPanelBarContainer;
     private ProgressBar glucoseBar;
@@ -179,9 +179,9 @@ public class MicrobeHUD : Node
         oxygenBar = GetNode<ProgressBar>(OxygenBarPath);
         co2Bar = GetNode<ProgressBar>(Co2BarPath);
         nitrogenBar = GetNode<ProgressBar>(NitrogenBarPath);
-        temperatureBar = GetNode<ProgressBar>(TemperatureBarPath);
-        sunlightBar = GetNode<ProgressBar>(SunlightBarPath);
-        pressureBar = GetNode<ProgressBar>(PressureBarPath);
+        temperature = GetNode<ProgressBar>(TemperaturePath);
+        sunlight = GetNode<ProgressBar>(SunlightPath);
+        pressure = GetNode<ProgressBar>(PressurePath);
 
         compoundsPanel = GetNode<NinePatchRect>(CompoundsPanelPath);
         compoundsPanelBarContainer = GetNode<GridContainer>(CompoundsPanelBarContainerPath);
@@ -290,7 +290,7 @@ public class MicrobeHUD : Node
                 GUICommon.Instance.TweenUIProperty(
                     bar, "rect_min_size", bar.RectMinSize, new Vector2(162, 25), 0.3f);
                 bar.GetNode<Label>("Label").Show();
-                bar.GetNode<Label>("Value").Align = Label.AlignEnum.Left;
+                bar.GetNode<Label>("Value").Align = Label.AlignEnum.Right;
             }
         }
     }
@@ -489,29 +489,26 @@ public class MicrobeHUD : Node
 
     public void UpdateEnvironmentalBars(Biome biome)
     {
-        var oxygen = biome.Compounds["oxygen"].Dissolved * 100;
-        var co2 = biome.Compounds["carbondioxide"].Dissolved * 100;
-        var nitrogen = biome.Compounds["nitrogen"].Dissolved * 100;
-        var sunlight = biome.Compounds["sunlight"].Dissolved * 100;
-        var temperature = biome.AverageTemperature;
+        var oxygenPercentage = biome.Compounds["oxygen"].Dissolved * 100;
+        var co2Percentage = biome.Compounds["carbondioxide"].Dissolved * 100;
+        var nitrogenPercentage = biome.Compounds["nitrogen"].Dissolved * 100;
+        var sunlightPercentage = biome.Compounds["sunlight"].Dissolved * 100;
+        var averageTemperature = biome.AverageTemperature;
 
         oxygenBar.MaxValue = 100;
-        oxygenBar.Value = oxygen;
-        oxygenBar.GetNode<Label>("Value").Text = oxygen + "%";
+        oxygenBar.Value = oxygenPercentage;
+        oxygenBar.GetNode<Label>("Value").Text = oxygenPercentage + "%";
 
         co2Bar.MaxValue = 100;
-        co2Bar.Value = co2;
-        co2Bar.GetNode<Label>("Value").Text = co2 + "%";
+        co2Bar.Value = co2Percentage;
+        co2Bar.GetNode<Label>("Value").Text = co2Percentage + "%";
 
         nitrogenBar.MaxValue = 100;
-        nitrogenBar.Value = nitrogen;
-        nitrogenBar.GetNode<Label>("Value").Text = nitrogen + "%";
+        nitrogenBar.Value = nitrogenPercentage;
+        nitrogenBar.GetNode<Label>("Value").Text = nitrogenPercentage + "%";
 
-        sunlightBar.MaxValue = 100;
-        sunlightBar.Value = sunlight;
-        sunlightBar.GetNode<Label>("Value").Text = sunlight + "%";
-
-        temperatureBar.GetNode<Label>("Value").Text = temperature + " °C";
+        sunlight.GetNode<Label>("Value").Text = sunlightPercentage + "%";
+        temperature.GetNode<Label>("Value").Text = averageTemperature + " °C";
 
         // TODO: pressure?
     }
