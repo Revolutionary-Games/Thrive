@@ -112,9 +112,7 @@ public class MicrobeStage : Node
 
         CreatePatchManagerIfNeeded();
 
-        patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch);
-        HUD.UpdatePatchInfo(GameWorld.Map.CurrentPatch.Name);
-        UpdateBackground();
+        UpdatePatchSettings();
 
         SpawnPlayer();
         Camera.ResetHeight();
@@ -254,9 +252,7 @@ public class MicrobeStage : Node
     /// </summary>
     public void OnReturnFromEditor()
     {
-        patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch);
-        HUD.UpdatePatchInfo(GameWorld.Map.CurrentPatch.Name);
-        UpdateBackground();
+        UpdatePatchSettings();
 
         // Now the editor increases the generation so we don't do that here anymore
 
@@ -314,6 +310,16 @@ public class MicrobeStage : Node
             // Player is not extinct, so can respawn
             SpawnPlayer();
         }
+    }
+
+    private void UpdatePatchSettings()
+    {
+        patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch);
+
+        HUD.UpdatePatchInfo(GameWorld.Map.CurrentPatch.Name);
+        HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch.Biome);
+
+        UpdateBackground();
     }
 
     private void UpdateBackground()
