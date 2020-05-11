@@ -996,7 +996,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         var grabRadius = Mathf.Max(Radius, 3.0f);
 
         cloudSystem.AbsorbCompounds(Translation, grabRadius, Compounds,
-            TotalAbsorbedCompounds, delta);
+            TotalAbsorbedCompounds, delta, Membrane.Type.ResourceAbsorptionFactor);
     }
 
     private void CheckEngulfShapeSize()
