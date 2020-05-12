@@ -120,7 +120,7 @@ public class FloatingChunk : RigidBody, ISpawned
             return;
         }
 
-        AddChild(GraphicsScene.Instance());
+        GetNode("NodeToScale").AddChild(GraphicsScene.Instance());
     }
 
     public override void _Process(float delta)
