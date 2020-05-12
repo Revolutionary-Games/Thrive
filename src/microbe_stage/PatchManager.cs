@@ -73,8 +73,6 @@ public class PatchManager
 
         // Change the lighting
         UpdateLight(currentPatch.Biome);
-
-        // updateBiomeStatsForGUI(biome);
     }
 
     private void HandleChunkSpawns(Biome biome)
@@ -191,25 +189,6 @@ public class PatchManager
         worldLight.LightColor = biome.Sunlight.Colour;
         worldLight.LightEnergy = biome.Sunlight.Energy;
         worldLight.LightSpecular = biome.Sunlight.Specular;
-    }
-
-    private void UpdateBiomeStatsForGUI(Biome biome)
-    {
-        // vars->Add(std::make_shared<NamedVariableList>("oxygenPercent",
-        //     new Leviathan::IntBlock(
-        //         cellWorld.GetProcessSystem().getDissolved(oxyId) * 100)));
-
-        // vars->Add(std::make_shared<NamedVariableList>("co2Percent",
-        //     new Leviathan::IntBlock(
-        //         cellWorld.GetProcessSystem().getDissolved(c02Id) * 100)));
-
-        // vars->Add(std::make_shared<NamedVariableList>("n2Percent",
-        //     new Leviathan::IntBlock(
-        //         cellWorld.GetProcessSystem().getDissolved(n2Id) * 100)));
-
-        // vars->Add(std::make_shared<NamedVariableList>("sunlightPercent",
-        //     new Leviathan::IntBlock(
-        //         cellWorld.GetProcessSystem().getDissolved(lightId) * 100)));
     }
 
     private void UnmarkAllSpawners()

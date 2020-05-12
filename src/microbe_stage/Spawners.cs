@@ -238,7 +238,7 @@ public static class SpawnHelpers
                 new Vector3(0, 1, 1).Normalized(), 2 * Mathf.Pi * (float)random.NextDouble()),
                 location);
 
-        chunk.Scale = new Vector3(chunkType.ChunkScale, chunkType.ChunkScale,
+        chunk.GetNode<Spatial>("NodeToScale").Scale = new Vector3(chunkType.ChunkScale, chunkType.ChunkScale,
             chunkType.ChunkScale);
 
         chunk.AddToGroup(Constants.FLUID_EFFECT_GROUP);
