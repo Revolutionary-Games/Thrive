@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Godot;
 
 /// <summary>
@@ -97,6 +96,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     ///   back to species colour.
     /// </summary>
     private float flashDuration = 0;
+
     private Color flashColour = new Color(0, 0, 0, 0);
 
     private bool allOrganellesDivided = false;
@@ -150,14 +150,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// </remarks>
     public bool EngulfMode
     {
-        get
-        {
-            return engulfMode;
-        }
-        set
-        {
-            engulfMode = value;
-        }
+        get { return engulfMode; }
+        set { engulfMode = value; }
     }
 
     public int HexCount
@@ -211,10 +205,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
     public Node SpawnedNode
     {
-        get
-        {
-            return this;
-        }
+        get { return this; }
     }
 
     public List<TweakedProcess> ActiveProcesses
@@ -242,10 +233,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// </summary>
     public GameWorld GameWorld
     {
-        get
-        {
-            return CurrentGame.GameWorld;
-        }
+        get { return CurrentGame.GameWorld; }
     }
 
     public float TimeUntilNextAIUpdate { get; set; } = 0;
@@ -355,7 +343,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     {
         // TODO: It would be much better if only organelles that need
         // to be removed where removed, instead of everything.
-        // When doing that all organelles will need to be readded anyway if this turned from a prokaryote to eukaryote
+        // When doing that all organelles will need to be re-added anyway if this turned from a prokaryote to eukaryote
 
         if (organelles == null)
         {
@@ -649,7 +637,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
                 // Add compounds
                 Compounds = new Dictionary<string,
-                Biome.ChunkConfiguration.ChunkCompound>(),
+                    Biome.ChunkConfiguration.ChunkCompound>(),
             };
 
             // They were added in order already so looping through this other thing is fine
@@ -1473,10 +1461,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
     private void HandleOsmoregulation(float delta)
     {
-        var osmoCost = (HexCount * Species.MembraneType.OsmoregulationFactor *
+        var osmoregulationCost = (HexCount * Species.MembraneType.OsmoregulationFactor *
             Constants.ATP_COST_FOR_OSMOREGULATION) * delta;
 
-        Compounds.TakeCompound("atp", osmoCost);
+        Compounds.TakeCompound("atp", osmoregulationCost);
     }
 
     /// <summary>
@@ -1657,7 +1645,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         var exit = Hex.AxialToCartesian(new Hex(0, 1));
         var membraneCoords = Membrane.GetExternalOrganelle(exit.x, exit.z);
 
-        // Get the distance to eject the compunds
+        // Get the distance to eject the compounds
         var ejectionDistance = Membrane.EncompassingCircleRadius;
 
         // The membrane radius doesn't take being bacteria into account
