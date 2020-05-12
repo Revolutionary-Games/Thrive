@@ -459,8 +459,14 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         if (source == string.Empty)
             throw new ArgumentException("damage type is empty");
 
+        // This seems to be triggered sometimes, even though our logic for damage seems right everywhere.
+        // One possible explanation is that delta is negative sometimes? So we just print an error and do nothing
+        // else here
         if (amount < 0)
-            throw new ArgumentException("can't deal negative damage");
+        {
+            GD.PrintErr("Trying to deal negative damage");
+            return;
+        }
 
         if (source == "toxin")
         {
