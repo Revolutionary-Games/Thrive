@@ -41,14 +41,30 @@ public class CompoundCloudPlane : CSGMesh
 
     public void UpdatePosition(Int2 newPosition)
     {
-        // TODO: delete out of grid clouds
-
         // Whoever made the modulus operator return negatives: i hate u.
         int newx = ((newPosition.x % 3) + 3) % 3;
         int newy = ((newPosition.y % 3) + 3) % 3;
+
+        if (newx == (position.x + 1) % 3)
+        {
+            PartialClearDensity(position.x * Size / 3, 0, Size / 3, Size);
+        }
+        else if (newx == (position.x + 2) % 3)
+        {
+            PartialClearDensity(((position.x + 2) % 3) * Size / 3, 0, Size / 3, Size);
+        }
+
+        if (newy == (position.y + 1) % 3)
+        {
+            PartialClearDensity(0, position.y * Size / 3, Size, Size / 3);
+        }
+        else if (newy == (position.y + 2) % 3)
+        {
+            PartialClearDensity(0, ((position.y + 2) % 3) * Size / 3, Size, Size / 3);
+        }
+
         position = new Int2(newx, newy);
 
-        // TODO: change the UV of the texture
         var material = (ShaderMaterial)this.Material;
         material.SetShaderParam("UVoffset", new Vector2(newx / 3.0f, newy / 3.0f));
     }
