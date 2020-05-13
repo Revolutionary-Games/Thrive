@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -653,14 +654,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
                 chunkType.Compounds[entry.Key] = compoundValue;
             }
 
-            // Try all organelles in random order and use the first one with a scene for model
-            // If no organelles have a scene, use mitochondrion as fallback
-
             chunkType.Meshes = new List<Biome.ChunkConfiguration.ChunkScene>();
 
             var sceneToUse = new Biome.ChunkConfiguration.ChunkScene();
 
-            foreach (var organelle in organelles.Organelles.OrderBy(_ => random.Next()))
+            // Try all organelles in random order and use the first one with a scene for model
+            foreach (var organelle in organelles.OrderBy(_ => random.Next()))
             {
                 if (organelle.Definition.DisplayScene != string.Empty)
                 {
@@ -669,6 +668,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
                 }
             }
 
+            // If no organelles have a scene, use mitochondrion as fallback
             if (sceneToUse.LoadedScene == null)
             {
                 sceneToUse.LoadedScene = SimulationParameters.Instance.GetOrganelleType(
