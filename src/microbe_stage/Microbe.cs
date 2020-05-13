@@ -659,7 +659,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
                 chunkType.Compounds[entry.Key] = compoundValue;
             }
 
-            // Grab random organelle from cell and use that for model
+            // Grab all organelles in random order and use the first one with a scene for model
+            // If no organelles have a scene, use mitochondrion as fallback
+
             chunkType.Meshes = new List<Biome.ChunkConfiguration.ChunkScene>();
 
             var sceneToUse = new Biome.ChunkConfiguration.ChunkScene();
