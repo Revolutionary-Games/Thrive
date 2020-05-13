@@ -633,7 +633,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
                 Mass = 1.0f,
                 Radius = 1.0f,
                 Size = 3.0f,
-                VentAmount = 3,
+                VentAmount = 0.1f,
 
                 // Add compounds
                 Compounds = new Dictionary<string,
