@@ -1,4 +1,4 @@
-﻿using System;
+﻿// ReSharper disable InconsistentNaming
 
 /// <summary>
 ///   Just a basic 3 component integer vector for use before we get Godot.Vector3i

@@ -1,7 +1,5 @@
 ﻿namespace AutoEvo
 {
-    using System;
-
     /// <summary>
     ///   Interface for all auto-evo step types
     /// </summary>

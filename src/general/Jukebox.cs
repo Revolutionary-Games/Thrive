@@ -14,7 +14,7 @@ public class Jukebox : Node
 
     private const float FADE_PER_TIME_UNIT = (FADE_LOW_VOLUME - NORMAL_VOLUME) / FADE_TIME;
 
-    private static Jukebox instance;
+    private static Jukebox _instance;
 
     /// <summary>
     ///   Lists of music
@@ -39,7 +39,7 @@ public class Jukebox : Node
     /// </summary>
     private Jukebox()
     {
-        instance = this;
+        _instance = this;
 
         categories = SimulationParameters.Instance.GetMusicCategories();
 
@@ -50,7 +50,7 @@ public class Jukebox : Node
     {
         get
         {
-            return instance;
+            return _instance;
         }
     }
 
@@ -98,7 +98,7 @@ public class Jukebox : Node
             return;
 
         paused = false;
-        SetStreamsPauseStatus(paused);
+        UpdateStreamsPauseStatus();
     }
 
     /// <summary>
@@ -110,7 +110,7 @@ public class Jukebox : Node
             return;
 
         paused = true;
-        SetStreamsPauseStatus(paused);
+        UpdateStreamsPauseStatus();
     }
 
     /// <summary>
@@ -145,7 +145,7 @@ public class Jukebox : Node
         // }
     }
 
-    private void SetStreamsPauseStatus(bool paused)
+    private void UpdateStreamsPauseStatus()
     {
         foreach (var player in audioPlayers)
         {
@@ -317,6 +317,7 @@ public class Jukebox : Node
         }));
     }
 
+    // ReSharper disable once UnusedMember.Local
     private void OnSomeTrackEnded()
     {
         // Check that a stream has actually ended, as we get this callback when also purposefully stopping
@@ -401,7 +402,7 @@ public class Jukebox : Node
         }
 
         // Set pause status for any new streams
-        SetStreamsPauseStatus(paused);
+        UpdateStreamsPauseStatus();
     }
 
     private void PlayNextTrackFromList(TrackList list, Func<int, AudioPlayer> getPlayer, int playerToUse)
@@ -478,27 +479,10 @@ public class Jukebox : Node
 
         public bool StreamPaused
         {
-            get
-            {
-                return Player.StreamPaused;
-            }
-            set
-            {
-                Player.StreamPaused = value;
-            }
+            set => Player.StreamPaused = value;
         }
 
-        public bool Playing
-        {
-            get
-            {
-                return Player.Playing;
-            }
-            set
-            {
-                Player.Playing = value;
-            }
-        }
+        public bool Playing => Player.Playing;
 
         public void Stop()
         {

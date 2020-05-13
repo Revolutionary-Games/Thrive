@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
 using Godot;
 
@@ -10,7 +9,7 @@ using Godot;
 /// </summary>
 public class TaskExecutor
 {
-    private static readonly TaskExecutor INSTANCE = new TaskExecutor();
+    private static readonly TaskExecutor SingletonInstance = new TaskExecutor();
 
     private readonly BlockingCollection<ThreadCommand> queuedTasks =
         new BlockingCollection<ThreadCommand>();
@@ -58,20 +57,11 @@ public class TaskExecutor
         GD.Print("TaskExecutor started with parallel job count: ", ParallelTasks);
     }
 
-    public static TaskExecutor Instance
-    {
-        get
-        {
-            return INSTANCE;
-        }
-    }
+    public static TaskExecutor Instance => SingletonInstance;
 
     public int ParallelTasks
     {
-        get
-        {
-            return currentThreadCount;
-        }
+        get => currentThreadCount;
         set
         {
             if (currentThreadCount == value)

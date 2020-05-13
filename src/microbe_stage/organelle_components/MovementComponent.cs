@@ -1,5 +1,4 @@
-﻿using System;
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Flagellum for making cells move faster
@@ -75,6 +74,7 @@ public class MovementComponent : ExternallyPositionedComponent
         }
     }
 
+    // ReSharper disable once UnusedParameter.Local
     /// <summary>
     ///   The final calculated force is multiplied by elapsed before
     ///   applying. So we don't have to do that. But we need to take

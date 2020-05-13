@@ -1,4 +1,3 @@
-using System;
 using Godot;
 
 /// <summary>
@@ -110,6 +109,7 @@ public class LoadingScreen : Control
         UpdateMessage();
         UpdateDescription();
         UpdateTip();
+        artDescription.Text = string.Empty;
     }
 
     public override void _Process(float delta)

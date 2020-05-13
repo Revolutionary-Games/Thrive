@@ -31,6 +31,6 @@ public class FPSCounter : Control
     public override void _Process(float delta)
     {
         if (Visible)
-            label.Text = "FPS: " + Engine.GetFramesPerSecond().ToString();
+            label.Text = $"FPS: {Engine.GetFramesPerSecond()}";
     }
 }

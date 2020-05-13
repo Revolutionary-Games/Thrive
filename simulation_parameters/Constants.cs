@@ -4,7 +4,7 @@ using System.Reflection;
 /// <summary>
 ///   Holds some constants that must be kept constant after first setting
 /// </summary>
-public class Constants
+public static class Constants
 {
     /// <summary>
     ///   How long the player stays dead before respawning
@@ -385,24 +385,6 @@ public class Constants
 
     public const string CONFIGURATION_FILE = "user://thrive_settings.json";
 
-    private static readonly Constants INSTANCE = new Constants();
-
-    static Constants()
-    {
-    }
-
-    private Constants()
-    {
-    }
-
-    public static Constants Instance
-    {
-        get
-        {
-            return INSTANCE;
-        }
-    }
-
     public static string Version
     {
         get
@@ -411,7 +393,7 @@ public class Constants
             Version version = assembly.GetName().Version;
             var versionSuffix = (AssemblyInformationalVersionAttribute[])assembly.
                 GetCustomAttributes(typeof(AssemblyInformationalVersionAttribute), false);
-            return version.ToString() + versionSuffix[0].InformationalVersion;
+            return $"{version}" + versionSuffix[0].InformationalVersion;
         }
     }
 }

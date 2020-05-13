@@ -12,14 +12,24 @@ public class AutoEvoRun
 {
     // Configuration parameters for auto evo
     // TODO: allow loading these from JSON
-    private const int MutationsPerSpecies = 3;
-    private const bool AllowNoMutation = true;
-    private const int MoveAttemptsPerSpecies = 5;
-    private const bool AllowNoMigration = true;
+    private const int MUTATIONS_PER_SPECIES = 3;
+    private const bool ALLOW_NO_MUTATION = true;
+    private const int MOVE_ATTEMPTS_PER_SPECIES = 5;
+    private const bool ALLOW_NO_MIGRATION = true;
 
     private readonly AutoEvo.RunParameters parameters;
 
-    private volatile RUN_STAGE state = RUN_STAGE.GATHERING_INFO;
+    /// <summary>
+    ///   Results are stored here until the simulation is complete and then applied
+    /// </summary>
+    private readonly AutoEvo.RunResults results = new AutoEvo.RunResults();
+
+    /// <summary>
+    ///   Generated steps are stored here until they are executed
+    /// </summary>
+    private readonly Queue<AutoEvo.IRunStep> runSteps = new Queue<AutoEvo.IRunStep>();
+
+    private volatile RunStage state = RunStage.GATHERING_INFO;
 
     private bool started = false;
     private volatile bool running = false;
@@ -27,27 +37,17 @@ public class AutoEvoRun
     private volatile bool aborted = false;
 
     /// <summary>
-    ///   Results are stored here until the simulation is complete and then applied
-    /// </summary>
-    private AutoEvo.RunResults results = new AutoEvo.RunResults();
-
-    /// <summary>
     ///   -1 means not yet computed
     /// </summary>
     private volatile int totalSteps = -1;
     private volatile int completeSteps = 0;
-
-    /// <summary>
-    ///   Generated steps are stored here until they are executed
-    /// </summary>
-    private Queue<AutoEvo.IRunStep> runSteps = new Queue<AutoEvo.IRunStep>();
 
     public AutoEvoRun(GameWorld world)
     {
         parameters = new AutoEvo.RunParameters(world);
     }
 
-    private enum RUN_STAGE
+    private enum RunStage
     {
         /// <summary>
         ///   On the first step(s) all the data is loaded (if there is a lot then it is split into multiple steps) and
@@ -69,7 +69,7 @@ public class AutoEvoRun
     /// <summary>
     ///   The Species may not be messed with while running. These are queued changes that will be applied after a run
     /// </summary>
-    public List<ExternalEffect> ExternalEffects { get; private set; } = new List<ExternalEffect>();
+    public List<ExternalEffect> ExternalEffects { get; } = new List<ExternalEffect>();
 
     /// <summary>
     ///   True while running
@@ -99,13 +99,7 @@ public class AutoEvoRun
         }
     }
 
-    public bool WasSuccessful
-    {
-        get
-        {
-            return Finished && !Aborted;
-        }
-    }
+    public bool WasSuccessful => Finished && !Aborted;
 
     /// <summary>
     ///   a string describing the status of the simulation For example "21% done. 21/100 steps."
@@ -126,7 +120,7 @@ public class AutoEvoRun
             {
                 var percentage = CompletionFraction * 100;
 
-                return string.Format("{0:F1}% done. {1:n0}/{2:n0} steps.", percentage, completeSteps, total);
+                return $"{percentage:F1}% done. {completeSteps:n0}/{total:n0} steps.";
             }
             else
             {
@@ -175,11 +169,11 @@ public class AutoEvoRun
     /// <summary>
     ///   Returns true when this run is finished
     /// </summary>
-    /// <param name="autostart">If set to <c>true</c> start the run if not already.</param>
+    /// <param name="autoStart">If set to <c>true</c> start the run if not already.</param>
     /// <returns>True when the run is complete or aborted</returns>
-    public bool IsFinished(bool autostart = true)
+    public bool IsFinished(bool autoStart = true)
     {
-        if (autostart && !started)
+        if (autoStart && !started)
             Start();
 
         return Finished;
@@ -312,20 +306,20 @@ public class AutoEvoRun
     {
         switch (state)
         {
-            case RUN_STAGE.GATHERING_INFO:
+            case RunStage.GATHERING_INFO:
                 GatherInfo();
 
                 // +2 is for this step and the result apply step
                 totalSteps = runSteps.Sum((step) => step.TotalSteps) + 2;
 
                 ++completeSteps;
-                state = RUN_STAGE.STEPPING;
+                state = RunStage.STEPPING;
                 return false;
-            case RUN_STAGE.STEPPING:
+            case RunStage.STEPPING:
                 if (runSteps.Count < 1)
                 {
                     // All steps complete
-                    state = RUN_STAGE.ENDED;
+                    state = RunStage.ENDED;
                 }
                 else
                 {
@@ -336,7 +330,7 @@ public class AutoEvoRun
                 }
 
                 return false;
-            case RUN_STAGE.ENDED:
+            case RunStage.ENDED:
                 // Results are no longer applied here as it's easier to just apply them on the main thread while
                 // moving to the editor
                 ++completeSteps;
@@ -351,8 +345,6 @@ public class AutoEvoRun
     /// </summary>
     private void GatherInfo()
     {
-        int totalSpecies = 0;
-
         var alreadyHandledSpecies = new HashSet<Species>();
 
         var map = parameters.World.Map;
@@ -364,7 +356,6 @@ public class AutoEvoRun
                 if (alreadyHandledSpecies.Contains(speciesEntry.Key))
                     continue;
 
-                ++totalSpecies;
                 alreadyHandledSpecies.Add(speciesEntry.Key);
 
                 // The player species doesn't get random mutations. And also doesn't
@@ -374,10 +365,10 @@ public class AutoEvoRun
                 }
                 else
                 {
-                    runSteps.Enqueue(new AutoEvo.FindBestMutation(map, speciesEntry.Key, MutationsPerSpecies,
-                            AllowNoMutation));
-                    runSteps.Enqueue(new AutoEvo.FindBestMigration(map, speciesEntry.Key, MoveAttemptsPerSpecies,
-                            AllowNoMigration));
+                    runSteps.Enqueue(new AutoEvo.FindBestMutation(map, speciesEntry.Key, MUTATIONS_PER_SPECIES,
+                            ALLOW_NO_MUTATION));
+                    runSteps.Enqueue(new AutoEvo.FindBestMigration(map, speciesEntry.Key, MOVE_ATTEMPTS_PER_SPECIES,
+                            ALLOW_NO_MIGRATION));
                 }
             }
         }
