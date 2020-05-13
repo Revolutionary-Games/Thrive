@@ -18,6 +18,11 @@ public class TaskExecutor
     private int currentThreadCount = 0;
     private bool assumeHyperThreading = true;
 
+    /// <summary>
+    ///   For naming the created threads.
+    /// </summary>
+    private int threadCounter;
+
     static TaskExecutor()
     {
     }
@@ -54,6 +59,8 @@ public class TaskExecutor
             }
         }
 
+        // Mono doesn't have this for some reason
+        // Thread.CurrentThread.Name = "main";
         GD.Print("TaskExecutor started with parallel job count: ", ParallelTasks);
     }
 
@@ -132,6 +139,7 @@ public class TaskExecutor
     {
         var thread = new System.Threading.Thread(RunExecutorThread);
         thread.IsBackground = true;
+        thread.Name = $"TaskThread_{++threadCounter}";
         thread.Start();
         ++currentThreadCount;
     }
