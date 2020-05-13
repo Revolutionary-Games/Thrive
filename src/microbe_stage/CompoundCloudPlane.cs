@@ -125,10 +125,14 @@ public class CompoundCloudPlane : CSGMesh
                     float dx = x + (delta * velocity.x);
                     float dy = y + (delta * velocity.y);
 
-                    int q0 = ((int)Math.Floor(dx) + Size) % Size;   
-                    int q1 = (q0 + 1) % Size;
-                    int r0 = ((int)Math.Floor(dy)) % Size;
-                    int r1 = (r0 + 1) % Size;
+                    // So this is clamped to not go to the other clouds
+                    dx = dx.Clamp(x0 - 0.5f, x0 + width + 0.5f);
+                    dy = dy.Clamp(y0 - 0.5f, y0 + height + 0.5f);
+
+                    int q0 = (int)Math.Floor(dx);   
+                    int q1 = q0 + 1;
+                    int r0 = (int)Math.Floor(dy);
+                    int r1 = r0 + 1;
 
                     float s1 = Math.Abs(dx - q0);
                     float s0 = 1.0f - s1;
@@ -162,24 +166,20 @@ public class CompoundCloudPlane : CSGMesh
                     float dx = x + (delta * velocity.x);
                     float dy = y + (delta * velocity.y);
 
-                    // So this is clamped to not go to the other clouds
-                    dx = dx.Clamp(x0 - 0.5f, x0 + width + 0.5f);
-                    dy = dy.Clamp(y0 - 0.5f, y0 + height + 0.5f);
-
                     int q0 = (int)Math.Floor(dx);   
-                    int q1 = q0 + 1;
+                    int q1 = (q0 + 1);
                     int r0 = (int)Math.Floor(dy);
-                    int r1 = r0 + 1;
+                    int r1 = (r0 + 1);
 
                     float s1 = Math.Abs(dx - q0);
                     float s0 = 1.0f - s1;
                     float t1 = Math.Abs(dy - r0);
                     float t0 = 1.0f - t1;
 
-                    Density[q0, r0] += OldDensity[x, y] * s0 * t0;
-                    Density[q0, r1] += OldDensity[x, y] * s0 * t1;
-                    Density[q1, r0] += OldDensity[x, y] * s1 * t0;
-                    Density[q1, r1] += OldDensity[x, y] * s1 * t1;
+                    Density[(q0 + Size) % Size, (r0 + Size) % Size] += OldDensity[x, y] * s0 * t0;
+                    Density[(q0 + Size) % Size, (r1 + Size) % Size] += OldDensity[x, y] * s0 * t1;
+                    Density[(q1 + Size) % Size, (r0 + Size) % Size] += OldDensity[x, y] * s1 * t0;
+                    Density[(q1 + Size) % Size, (r1 + Size) % Size] += OldDensity[x, y] * s1 * t1;
                 }
             }
         }
@@ -223,6 +223,46 @@ public class CompoundCloudPlane : CSGMesh
     {
         // The diffusion rate seems to have a bigger effect
         delta *= 100.0f;
+
+        if(position.x != 0)
+        {
+            PartialDiffuseEdges(0, 0, 1, Size, delta);
+            PartialDiffuseEdges(Size - 1, 0, 1, Size, delta);
+        }
+
+        if(position.x != 1)
+        {
+            PartialDiffuseEdges(Size / 3 - 1, 0, 2, Size, delta);
+        }
+
+        if(position.x != 2)
+        {
+            PartialDiffuseEdges(2 * Size / 3 - 1, 0, 2, Size, delta);
+        }
+
+        if(position.y != 0)
+        {
+            PartialDiffuseEdges(1, 0, Size / 3 - 2, 1, delta);
+            PartialDiffuseEdges(1, Size - 1, Size / 3 - 2, 1, delta);
+            PartialDiffuseEdges(Size / 3 + 1, 0, Size / 3 - 2, 1, delta);
+            PartialDiffuseEdges(Size / 3 + 1, Size - 1, Size / 3 - 2, 1, delta);
+            PartialDiffuseEdges(2 * Size / 3 + 1, 0, Size / 3 - 2, 1, delta);
+            PartialDiffuseEdges(2 * Size / 3 + 1, Size - 1, Size / 3 - 2, 1, delta);
+        }
+
+        if(position.y != 1)
+        {
+            PartialDiffuseEdges(1, Size / 3 - 1, Size / 3 - 2, 2, delta);
+            PartialDiffuseEdges(Size / 3 + 1, Size / 3 - 1, Size / 3 - 2, 2, delta);
+            PartialDiffuseEdges(2 * Size / 3 + 1, Size / 3 - 1, Size / 3 - 2, 2, delta);
+        }
+
+        if(position.y != 2)
+        {
+            PartialDiffuseEdges(1, 2 * Size / 3 - 1, Size / 3 - 2, 2, delta);
+            PartialDiffuseEdges(Size / 3 + 1, 2 * Size / 3 - 1, Size / 3 - 2, 2, delta);
+            PartialDiffuseEdges(2 * Size / 3 + 1, 2 * Size / 3 - 1, Size / 3 - 2, 2, delta);
+        }
     }
 
     /// <summary>
@@ -234,6 +274,46 @@ public class CompoundCloudPlane : CSGMesh
         // The diffusion rate seems to have a bigger effect
         delta *= 100.0f;
         var pos = new Vector2(Translation.x, Translation.z);
+
+        if(position.x != 0)
+        {
+            PartialAdvectEdges(0, 0, 1, Size, delta, pos);
+            PartialAdvectEdges(Size - 1, 0, 1, Size, delta, pos);
+        }
+
+        if(position.x != 1)
+        {
+            PartialAdvectEdges(Size / 3 - 1, 0, 2, Size, delta, pos);
+        }
+
+        if(position.x != 2)
+        {
+            PartialAdvectEdges(2 * Size / 3 - 1, 0, 2, Size, delta, pos);
+        }
+
+        if(position.y != 0)
+        {
+            PartialAdvectEdges(1, 0, Size / 3 - 2, 1, delta, pos);
+            PartialAdvectEdges(1, Size - 1, Size / 3 - 2, 1, delta, pos);
+            PartialAdvectEdges(Size / 3 + 1, 0, Size / 3 - 2, 1, delta, pos);
+            PartialAdvectEdges(Size / 3 + 1, Size - 1, Size / 3 - 2, 1, delta, pos);
+            PartialAdvectEdges(2 * Size / 3 + 1, 0, Size / 3 - 2, 1, delta, pos);
+            PartialAdvectEdges(2 * Size / 3 + 1, Size - 1, Size / 3 - 2, 1, delta, pos);
+        }
+
+        if(position.y != 1)
+        {
+            PartialAdvectEdges(1, Size / 3 - 1, Size / 3 - 2, 2, delta, pos);
+            PartialAdvectEdges(Size / 3 + 1, Size / 3 - 1, Size / 3 - 2, 2, delta, pos);
+            PartialAdvectEdges(2 * Size / 3 + 1, Size / 3 - 1, Size / 3 - 2, 2, delta, pos);
+        }
+
+        if(position.y != 2)
+        {
+            PartialAdvectEdges(1, 2 * Size / 3 - 1, Size / 3 - 2, 2, delta, pos);
+            PartialAdvectEdges(Size / 3 + 1, 2 * Size / 3 - 1, Size / 3 - 2, 2, delta, pos);
+            PartialAdvectEdges(2 * Size / 3 + 1, 2 * Size / 3 - 1, Size / 3 - 2, 2, delta, pos);
+        }
     }
 
     /// <summary>
