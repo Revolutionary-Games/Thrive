@@ -662,12 +662,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             // Grab random organelle from cell and use that for model
             chunkType.Meshes = new List<Biome.ChunkConfiguration.ChunkScene>();
 
-            var organelleToUse = organelles.Organelles.Random(random).Definition;
-
+            var organelleToUse = new OrganelleDefinition();
             var sceneToUse = new Biome.ChunkConfiguration.ChunkScene();
             
             foreach (var organelle in organelles.Organelles.OrderBy(_ => random.Next()))
             {
+                organelleToUse = organelle.Definition;
+
                 if (organelleToUse.DisplayScene != string.Empty)
                 {
                 sceneToUse.LoadedScene = organelleToUse.LoadedScene;
