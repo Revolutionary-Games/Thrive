@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Godot;
 
@@ -106,7 +107,8 @@ public class TaskExecutor
         // Queue all but the first task
         Task firstTask = null;
 
-        foreach (var task in tasks)
+        var enumerated = tasks.ToList();
+        foreach (var task in enumerated)
         {
             if (firstTask != null)
             {
@@ -119,11 +121,10 @@ public class TaskExecutor
         }
 
         // Run the first task on this thread
-        if (firstTask != null)
-            firstTask.RunSynchronously();
+        firstTask?.RunSynchronously();
 
         // Wait for all tasks to complete
-        foreach (var task in tasks)
+        foreach (var task in enumerated)
         {
             task.Wait();
         }

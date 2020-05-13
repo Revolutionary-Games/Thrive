@@ -90,43 +90,43 @@ public class NameGenerator : IRegistryType
     {
         if (PrefixCofix.Count < 1)
         {
-            throw new InvalidRegistryData("NameGenerator", this.GetType().Name,
+            throw new InvalidRegistryData("NameGenerator", GetType().Name,
                 "PrefixCofix is empty");
         }
 
         if (PrefixesV.Count < 1)
         {
-            throw new InvalidRegistryData("NameGenerator", this.GetType().Name,
+            throw new InvalidRegistryData("NameGenerator", GetType().Name,
                 "PrefixesV is empty");
         }
 
         if (PrefixesC.Count < 1)
         {
-            throw new InvalidRegistryData("NameGenerator", this.GetType().Name,
+            throw new InvalidRegistryData("NameGenerator", GetType().Name,
                 "PrefixesC is empty");
         }
 
         if (CofixesV.Count < 1)
         {
-            throw new InvalidRegistryData("NameGenerator", this.GetType().Name,
+            throw new InvalidRegistryData("NameGenerator", GetType().Name,
                 "CofixesV is empty");
         }
 
         if (CofixesC.Count < 1)
         {
-            throw new InvalidRegistryData("NameGenerator", this.GetType().Name,
+            throw new InvalidRegistryData("NameGenerator", GetType().Name,
                 "CofixesC is empty");
         }
 
         if (SuffixesV.Count < 1)
         {
-            throw new InvalidRegistryData("NameGenerator", this.GetType().Name,
+            throw new InvalidRegistryData("NameGenerator", GetType().Name,
                 "SuffixesV is empty");
         }
 
         if (SuffixesC.Count < 1)
         {
-            throw new InvalidRegistryData("NameGenerator", this.GetType().Name,
+            throw new InvalidRegistryData("NameGenerator", GetType().Name,
                 "SuffixesC is empty");
         }
     }

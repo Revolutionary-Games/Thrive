@@ -148,10 +148,7 @@ public class CompoundCloudSystem : Node
     /// </summary>
     public int Resolution
     {
-        get
-        {
-            return clouds[0].Resolution;
-        }
+        get { return clouds[0].Resolution; }
     }
 
     public override void _Ready()
@@ -300,6 +297,8 @@ public class CompoundCloudSystem : Node
     /// <summary>
     ///   Takes compound at world position
     /// </summary>
+    /// <param name="compound">The compound type to take</param>
+    /// <param name="worldPosition">World position to take from</param>
     /// <param name="fraction">The fraction of compound to take. Should be &lt;= 1</param>
     public float TakeCompound(Compound compound, Vector3 worldPosition, float fraction)
     {
@@ -405,10 +404,12 @@ public class CompoundCloudSystem : Node
             int yEnd = (int)Mathf.Round(cloudRelativeY + localGrabRadius);
 
             for (int x = (int)Mathf.Round(cloudRelativeX - localGrabRadius);
-                x <= xEnd; x += 1)
+                x <= xEnd;
+                x += 1)
             {
                 for (int y = (int)Mathf.Round(cloudRelativeY - localGrabRadius);
-                    y <= yEnd; y += 1)
+                    y <= yEnd;
+                    y += 1)
                 {
                     // Negative coordinates are always outside the cloud area
                     if (x < 0 || y < 0)
@@ -416,7 +417,7 @@ public class CompoundCloudSystem : Node
 
                     // Circle check
                     if (Mathf.Pow(x - cloudRelativeX, 2) +
-                            Mathf.Pow(y - cloudRelativeY, 2) >
+                        Mathf.Pow(y - cloudRelativeY, 2) >
                         localGrabRadiusSquared)
                     {
                         // Not in it
@@ -472,14 +473,14 @@ public class CompoundCloudSystem : Node
 
             // Top left
             Tuple.Create(new Int2(-1, -1), center + new Vector3(-Constants.CLOUD_WIDTH * 2, 0,
-                                                                -Constants.CLOUD_HEIGHT * 2)),
+                -Constants.CLOUD_HEIGHT * 2)),
 
             // Up
             Tuple.Create(new Int2(0, -1), center + new Vector3(0, 0, -Constants.CLOUD_HEIGHT * 2)),
 
             // Top right
             Tuple.Create(new Int2(1, -1), center + new Vector3(Constants.CLOUD_WIDTH * 2, 0,
-                                                                -Constants.CLOUD_HEIGHT * 2)),
+                -Constants.CLOUD_HEIGHT * 2)),
 
             // Left
             Tuple.Create(new Int2(-1, 0), center + new Vector3(-Constants.CLOUD_WIDTH * 2, 0, 0)),
@@ -489,14 +490,14 @@ public class CompoundCloudSystem : Node
 
             // Bottom left
             Tuple.Create(new Int2(-1, 1), center + new Vector3(-Constants.CLOUD_WIDTH * 2, 0,
-                                                                Constants.CLOUD_HEIGHT * 2)),
+                Constants.CLOUD_HEIGHT * 2)),
 
             // Down
             Tuple.Create(new Int2(0, 1), center + new Vector3(0, 0, Constants.CLOUD_HEIGHT * 2)),
 
             // Bottom right
             Tuple.Create(new Int2(1, 1), center + new Vector3(Constants.CLOUD_WIDTH * 2, 0,
-                                                                Constants.CLOUD_HEIGHT * 2)),
+                Constants.CLOUD_HEIGHT * 2)),
         };
     }
 
@@ -511,8 +512,7 @@ public class CompoundCloudSystem : Node
             (int)Math.Round(pos.z / Constants.CLOUD_Y_EXTENT) * Constants.CLOUD_Y_EXTENT);
     }
 
-    private void SetUpCloudLinks(
-        Dictionary<Tuple<Int2, Compound>, CompoundCloudPlane> clouds)
+    private void SetUpCloudLinks(Dictionary<Tuple<Int2, Compound>, CompoundCloudPlane> clouds)
     {
         var indices = clouds.Keys;
         foreach (var index in indices)
@@ -591,7 +591,7 @@ public class CompoundCloudSystem : Node
                         if (groupType == cloud.Compound1)
                         {
                             cloudsToLink.Add(Tuple.Create(requiredPos.Item1, cloud.Compound1),
-                                    cloud);
+                                cloud);
                             hasCloud = true;
                             break;
                         }
@@ -604,12 +604,13 @@ public class CompoundCloudSystem : Node
                 bool filled = false;
 
                 // We need to find a cloud from the right group
-                for (int checkReposition = 0; checkReposition < tooFarAwayClouds.Count;
+                for (int checkReposition = 0;
+                    checkReposition < tooFarAwayClouds.Count;
                     ++checkReposition)
                 {
                     if (tooFarAwayClouds[checkReposition] != null &&
                         tooFarAwayClouds[checkReposition].Compound1 ==
-                            groupType)
+                        groupType)
                     {
                         // Found a candidate
 

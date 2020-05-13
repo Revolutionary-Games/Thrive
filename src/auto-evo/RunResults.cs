@@ -269,8 +269,8 @@
                     }
                     else if (previousPopulations != null)
                     {
-                        if (previousPopulations.GetPatch(patchPopulation.Key.ID).
-                            GetSpeciesPopulation(entry.Species) > 0)
+                        if (previousPopulations.GetPatch(patchPopulation.Key.ID).GetSpeciesPopulation(entry.Species) >
+                            0)
                         {
                             include = true;
                         }
@@ -323,7 +323,7 @@
         }
 
         private int CountSpeciesSpreadPopulation(Species species,
-                Patch targetPatch)
+            Patch targetPatch)
         {
             int totalPopulation = 0;
 
@@ -366,7 +366,7 @@
 
             public SpeciesResult(Species species)
             {
-                this.Species = species ?? throw new ArgumentException("species is null");
+                Species = species ?? throw new ArgumentException("species is null");
             }
         }
     }

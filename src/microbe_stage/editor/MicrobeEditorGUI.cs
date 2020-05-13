@@ -11,125 +11,184 @@ public class MicrobeEditorGUI : Node
     // The labels to update are at really long relative paths, so they are set in the Godot editor
     [Export]
     public NodePath MenuPath;
+
     [Export]
     public NodePath SizeLabelPath;
+
     [Export]
     public NodePath SpeedLabelPath;
+
     [Export]
     public NodePath GenerationLabelPath;
+
     [Export]
     public NodePath MutationPointsLabelPath;
+
     [Export]
     public NodePath MutationPointsBarPath;
+
     [Export]
     public NodePath SpeciesNameEditPath;
+
     [Export]
     public NodePath MembraneColorPickerPath;
+
     [Export]
     public NodePath NewCellButtonPath;
+
     [Export]
     public NodePath UndoButtonPath;
+
     [Export]
     public NodePath RedoButtonPath;
+
     [Export]
     public NodePath SymmetryButtonPath;
+
     [Export]
     public NodePath ATPBalanceLabelPath;
+
     [Export]
     public NodePath ATPProductionBarPath;
+
     [Export]
     public NodePath ATPConsumptionBarPath;
+
     [Export]
     public NodePath ATPProductionLabelPath;
+
     [Export]
     public NodePath ATPConsumptionLabelPath;
+
     [Export]
     public NodePath GlucoseReductionLabelPath;
+
     [Export]
     public NodePath AutoEvoLabelPath;
+
     [Export]
     public NodePath ExternalEffectsLabelPath;
+
     [Export]
     public NodePath MapDrawerPath;
+
     [Export]
     public NodePath PatchNothingSelectedPath;
+
     [Export]
     public NodePath PatchDetailsPath;
+
     [Export]
     public NodePath PatchNamePath;
+
     [Export]
     public NodePath PatchPlayerHerePath;
+
     [Export]
     public NodePath PatchBiomePath;
+
     [Export]
     public NodePath PatchTemperaturePath;
+
     [Export]
     public NodePath PatchPressurePath;
+
     [Export]
     public NodePath PatchLightPath;
+
     [Export]
     public NodePath PatchOxygenPath;
+
     [Export]
     public NodePath PatchNitrogenPath;
+
     [Export]
     public NodePath PatchCO2Path;
+
     [Export]
     public NodePath PatchHydrogenSulfidePath;
+
     [Export]
     public NodePath PatchAmmoniaPath;
+
     [Export]
     public NodePath PatchGlucosePath;
+
     [Export]
     public NodePath PatchPhosphatePath;
+
     [Export]
     public NodePath PatchIronPath;
+
     [Export]
     public NodePath SpeciesListPath;
+
     [Export]
     public NodePath PhysicalConditionsButtonPath;
+
     [Export]
     public NodePath PhysicalConditionsBoxPath;
+
     [Export]
     public NodePath AtmosphericConditionsButtonPath;
+
     [Export]
     public NodePath AtmosphericConditionsBoxPath;
+
     [Export]
     public NodePath CompoundsBoxButtonPath;
+
     [Export]
     public NodePath CompoundsBoxPath;
+
     [Export]
     public NodePath SpeciesListButtonPath;
+
     [Export]
     public NodePath MoveToPatchButtonPath;
+
     [Export]
     public NodePath PatchTemperatureSituationPath;
+
     [Export]
     public NodePath PatchLightSituationPath;
+
     [Export]
     public NodePath PatchHydrogenSulfideSituationPath;
+
     [Export]
     public NodePath PatchGlucoseSituationPath;
+
     [Export]
     public NodePath PatchIronSituationPath;
+
     [Export]
     public NodePath PatchAmmoniaSituationPath;
+
     [Export]
     public NodePath PatchPhosphateSituationPath;
+
     [Export]
     public NodePath RigiditySliderPath;
+
     [Export]
     public NodePath HelpScreenPath;
 
     [Export]
     public NodePath SymmetryIconPath;
+
     [Export]
     public Texture SymmetryIcon2x;
+
     [Export]
     public Texture SymmetryIcon4x;
+
     [Export]
     public Texture SymmetryIcon6x;
+
     [Export]
     public Texture IncreaseIcon;
+
     [Export]
     public Texture DecreaseIcon;
 
@@ -277,10 +336,7 @@ public class MicrobeEditorGUI : Node
         rigiditySlider = GetNode<Slider>(RigiditySliderPath);
         helpScreen = GetNode<Control>(HelpScreenPath);
 
-        mapDrawer.OnSelectedPatchChanged = (drawer) =>
-        {
-            UpdateShownPatchDetails();
-        };
+        mapDrawer.OnSelectedPatchChanged = (drawer) => { UpdateShownPatchDetails(); };
 
         // Fade out for that smooth satisfying transition
         TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeOut, 0.5f);
@@ -432,11 +488,11 @@ public class MicrobeEditorGUI : Node
 
     /// <summary>
     ///   Called when the mouse is no longer hovering
-    //    the editor GUI.
+    ///    the editor GUI.
     /// </summary>
     internal void OnMouseExit()
     {
-        editor.ShowHover = true && inEditorTab;
+        editor.ShowHover = inEditorTab;
     }
 
     internal void OnItemMouseHover(string itemName)
@@ -874,8 +930,6 @@ public class MicrobeEditorGUI : Node
 
     private void MenuButtonPressed()
     {
-        var menu = GetNode<Control>("PauseMenu");
-
         if (menu.Visible)
         {
             menu.Hide();
@@ -1000,7 +1054,6 @@ public class MicrobeEditorGUI : Node
             if (process.EnvironmentInputs.Count > 0)
             {
                 var atSymbol = new Label();
-                var separator = new HSeparator();
 
                 atSymbol.Text = "@";
                 atSymbol.RectMinSize = new Vector2(30, 20);
@@ -1076,17 +1129,17 @@ public class MicrobeEditorGUI : Node
 
         nextCompound = selectedPatch.Biome.Compounds["hydrogensulfide"].Density *
             selectedPatch.Biome.Compounds["hydrogensulfide"].Amount + GetPatchChunkTotalCompoundAmount(
-            selectedPatch, "hydrogensulfide");
+                selectedPatch, "hydrogensulfide");
 
         if (nextCompound > currentPatch.Biome.Compounds["hydrogensulfide"].Density *
             currentPatch.Biome.Compounds["hydrogensulfide"].Amount + GetPatchChunkTotalCompoundAmount(
-            currentPatch, "hydrogensulfide"))
+                currentPatch, "hydrogensulfide"))
         {
             patchHydrogenSulfideSituation.Texture = IncreaseIcon;
         }
         else if (nextCompound < currentPatch.Biome.Compounds["hydrogensulfide"].Density *
             currentPatch.Biome.Compounds["hydrogensulfide"].Amount + GetPatchChunkTotalCompoundAmount(
-            currentPatch, "hydrogensulfide"))
+                currentPatch, "hydrogensulfide"))
         {
             patchHydrogenSulfideSituation.Texture = DecreaseIcon;
         }
@@ -1097,17 +1150,17 @@ public class MicrobeEditorGUI : Node
 
         nextCompound = selectedPatch.Biome.Compounds["glucose"].Density *
             selectedPatch.Biome.Compounds["glucose"].Amount + GetPatchChunkTotalCompoundAmount(
-            selectedPatch, "glucose");
+                selectedPatch, "glucose");
 
         if (nextCompound > currentPatch.Biome.Compounds["glucose"].Density *
             currentPatch.Biome.Compounds["glucose"].Amount + GetPatchChunkTotalCompoundAmount(
-            currentPatch, "glucose"))
+                currentPatch, "glucose"))
         {
             patchGlucoseSituation.Texture = IncreaseIcon;
         }
         else if (nextCompound < currentPatch.Biome.Compounds["glucose"].Density *
             currentPatch.Biome.Compounds["glucose"].Amount + GetPatchChunkTotalCompoundAmount(
-            currentPatch, "glucose"))
+                currentPatch, "glucose"))
         {
             patchGlucoseSituation.Texture = DecreaseIcon;
         }
@@ -1133,17 +1186,17 @@ public class MicrobeEditorGUI : Node
 
         nextCompound = selectedPatch.Biome.Compounds["ammonia"].Density *
             selectedPatch.Biome.Compounds["ammonia"].Amount + GetPatchChunkTotalCompoundAmount(
-            selectedPatch, "ammonia");
+                selectedPatch, "ammonia");
 
         if (nextCompound > currentPatch.Biome.Compounds["ammonia"].Density *
             currentPatch.Biome.Compounds["ammonia"].Amount + GetPatchChunkTotalCompoundAmount(
-            currentPatch, "ammonia"))
+                currentPatch, "ammonia"))
         {
             patchAmmoniaSituation.Texture = IncreaseIcon;
         }
         else if (nextCompound < currentPatch.Biome.Compounds["ammonia"].Density *
             currentPatch.Biome.Compounds["ammonia"].Amount + GetPatchChunkTotalCompoundAmount(
-            currentPatch, "ammonia"))
+                currentPatch, "ammonia"))
         {
             patchAmmoniaSituation.Texture = DecreaseIcon;
         }
@@ -1154,17 +1207,17 @@ public class MicrobeEditorGUI : Node
 
         nextCompound = selectedPatch.Biome.Compounds["phosphates"].Density *
             selectedPatch.Biome.Compounds["phosphates"].Amount + GetPatchChunkTotalCompoundAmount(
-            selectedPatch, "phosphates");
+                selectedPatch, "phosphates");
 
         if (nextCompound > currentPatch.Biome.Compounds["phosphates"].Density *
             currentPatch.Biome.Compounds["phosphates"].Amount + GetPatchChunkTotalCompoundAmount(
-            currentPatch, "phosphates"))
+                currentPatch, "phosphates"))
         {
             patchPhosphateSituation.Texture = IncreaseIcon;
         }
         else if (nextCompound < currentPatch.Biome.Compounds["phosphates"].Density *
             currentPatch.Biome.Compounds["phosphates"].Amount + GetPatchChunkTotalCompoundAmount(
-            currentPatch, "phosphates"))
+                currentPatch, "phosphates"))
         {
             patchPhosphateSituation.Texture = DecreaseIcon;
         }
@@ -1182,7 +1235,7 @@ public class MicrobeEditorGUI : Node
         {
             var chunk = patch.Biome.Chunks[chunkKey];
 
-            if (chunk.Density != 0 && chunk.Compounds.ContainsKey(compoundName))
+            if (chunk.Density > 0 && chunk.Compounds.ContainsKey(compoundName))
             {
                 result += chunk.Density * chunk.Compounds[compoundName].Amount;
             }
@@ -1221,19 +1274,19 @@ public class MicrobeEditorGUI : Node
         // Compounds
         patchHydrogenSulfide.Text = Math.Round(patch.Biome.Compounds["hydrogensulfide"].Density *
             patch.Biome.Compounds["hydrogensulfide"].Amount + GetPatchChunkTotalCompoundAmount(
-            patch, "hydrogensulfide"), 3) + "%";
+                patch, "hydrogensulfide"), 3) + "%";
 
         patchAmmonia.Text = Math.Round(patch.Biome.Compounds["ammonia"].Density *
             patch.Biome.Compounds["ammonia"].Amount + GetPatchChunkTotalCompoundAmount(
-            patch, "ammonia"), 3) + "%";
+                patch, "ammonia"), 3) + "%";
 
         patchGlucose.Text = Math.Round(patch.Biome.Compounds["glucose"].Density *
             patch.Biome.Compounds["glucose"].Amount + GetPatchChunkTotalCompoundAmount(
-            patch, "glucose"), 3) + "%";
+                patch, "glucose"), 3) + "%";
 
         patchPhosphate.Text = Math.Round(patch.Biome.Compounds["phosphates"].Density *
             patch.Biome.Compounds["phosphates"].Amount + GetPatchChunkTotalCompoundAmount(
-            patch, "phosphates"), 3) + "%";
+                patch, "phosphates"), 3) + "%";
 
         patchIron.Text = GetPatchChunkTotalCompoundAmount(patch, "iron") + "%";
 

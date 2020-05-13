@@ -37,13 +37,13 @@ public class AgentVacuoleComponentFactory : IOrganelleComponentFactory
     {
         if (Compound == string.Empty)
         {
-            throw new InvalidRegistryData(name, this.GetType().Name,
+            throw new InvalidRegistryData(name, GetType().Name,
                 "Agent compound needs to be set");
         }
 
         if (Process == string.Empty)
         {
-            throw new InvalidRegistryData(name, this.GetType().Name,
+            throw new InvalidRegistryData(name, GetType().Name,
                 "Agent process needs to be set");
         }
     }

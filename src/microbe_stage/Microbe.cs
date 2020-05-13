@@ -347,8 +347,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
         if (organelles == null)
         {
-            organelles = new OrganelleLayout<PlacedOrganelle>(this.OnOrganelleAdded,
-                this.OnOrganelleRemoved);
+            organelles = new OrganelleLayout<PlacedOrganelle>(OnOrganelleAdded,
+                OnOrganelleRemoved);
         }
         else
         {
@@ -621,7 +621,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         for (int i = 0; i < chunksToSpawn; ++i)
         {
             // Amount of compound in one chunk
-            float amount = (float)HexCount / Constants.CORPSE_CHUNK_AMOUNT_DIVISER;
+            float amount = HexCount / Constants.CORPSE_CHUNK_AMOUNT_DIVISER;
 
             var positionAdded = new Vector3(random.Next(-2.0f, 2.0f), 0,
                 random.Next(-2.0f, 2.0f));
@@ -979,7 +979,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         }
         catch (Exception e)
         {
-            GD.PrintErr("Microbe AI failure! " + e.ToString());
+            GD.PrintErr("Microbe AI failure! " + e);
         }
     }
 
@@ -1221,14 +1221,14 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         while (true)
         {
             // Moves into the ring of radius "radius" and center the old organelle
-            var radiusOffset = Hex.HexNeighbourOffset[Hex.HEX_SIDE.BOTTOM_LEFT];
+            var radiusOffset = Hex.HexNeighbourOffset[Hex.HexSide.BOTTOM_LEFT];
             q = q + radiusOffset.Q;
             r = r + radiusOffset.R;
 
             // Iterates in the ring
             for (int side = 1; side <= 6; ++side)
             {
-                var offset = Hex.HexNeighbourOffset[(Hex.HEX_SIDE)side];
+                var offset = Hex.HexNeighbourOffset[(Hex.HexSide)side];
 
                 // Moves "radius" times into each direction
                 for (int i = 1; i <= radius; ++i)

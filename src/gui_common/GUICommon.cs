@@ -7,7 +7,7 @@ using Godot;
 /// </summary>
 public class GUICommon : Node
 {
-    private static GUICommon instance;
+    private static GUICommon _instance;
 
     private AudioStream buttonPressSound;
 
@@ -15,7 +15,7 @@ public class GUICommon : Node
 
     private GUICommon()
     {
-        instance = this;
+        _instance = this;
 
         AudioSource = new AudioStreamPlayer();
         tween = new Tween();
@@ -32,10 +32,7 @@ public class GUICommon : Node
 
     public static GUICommon Instance
     {
-        get
-        {
-            return instance;
-        }
+        get { return _instance; }
     }
 
     /// <summary>

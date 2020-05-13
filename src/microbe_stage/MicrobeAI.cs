@@ -23,7 +23,6 @@ public class MicrobeAI
     ///   TODO: change to be the elapsed time instead of AI update count
     /// </summary>
     private float ticksSinceLastToggle = 600;
-    private Vector3 direction = new Vector3(0, 0, 0);
 
     private bool hasTargetPosition = false;
     private Vector3 targetPosition = new Vector3(0, 0, 0);
@@ -66,11 +65,30 @@ public class MicrobeAI
         SCAVENGING_STATE,
     }
 
-    private float SpeciesAggression { get => microbe.Species.Aggression; }
-    private float SpeciesFear { get => microbe.Species.Fear; }
-    private float SpeciesActivity { get => microbe.Species.Activity; }
-    private float SpeciesFocus { get => microbe.Species.Focus; }
-    private float SpeciesOpportunism { get => microbe.Species.Opportunism; }
+    private float SpeciesAggression
+    {
+        get => microbe.Species.Aggression;
+    }
+
+    private float SpeciesFear
+    {
+        get => microbe.Species.Fear;
+    }
+
+    private float SpeciesActivity
+    {
+        get => microbe.Species.Activity;
+    }
+
+    private float SpeciesFocus
+    {
+        get => microbe.Species.Focus;
+    }
+
+    private float SpeciesOpportunism
+    {
+        get => microbe.Species.Opportunism;
+    }
 
     public void Think(float delta, Random random, MicrobeAICommonData data)
     {
@@ -109,139 +127,139 @@ public class MicrobeAI
                 // which wanders randomly (has a gather chance) until something interesting pops up
                 break;
             case LIFESTATE.NEUTRAL_STATE:
+            {
+                // Before these would run every time, now they just run for the states that need them.
+                boredom = 0;
+                preyPegged = false;
+                prey = null;
+                if (predator == null)
                 {
-                    // Before these would run every time, now they just run for the states that need them.
-                    boredom = 0;
-                    preyPegged = false;
-                    prey = null;
-                    if (predator == null)
-                    {
-                        GetNearestPredatorItem(data.AllMicrobes);
-                    }
-
-                    // Peg your prey
-                    if (!preyPegged)
-                    {
-                        prey = null;
-                        prey = GetNearestPreyItem(data.AllMicrobes);
-                        if (prey != null)
-                        {
-                            preyPegged = true;
-                        }
-                    }
-
-                    if (targetChunk == null)
-                    {
-                        targetChunk = GetNearestChunkItem(data.AllChunks);
-                    }
-
-                    EvaluateEnvironment(random);
-                    break;
+                    GetNearestPredatorItem(data.AllMicrobes);
                 }
 
-            case LIFESTATE.GATHERING_STATE:
+                // Peg your prey
+                if (!preyPegged)
                 {
-                    // In this state you gather compounds
-                    if (RollCheck(SpeciesOpportunism, 400.0f, random))
+                    prey = null;
+                    prey = GetNearestPreyItem(data.AllMicrobes);
+                    if (prey != null)
                     {
-                        lifeState = LIFESTATE.SCAVENGING_STATE;
+                        preyPegged = true;
+                    }
+                }
+
+                if (targetChunk == null)
+                {
+                    targetChunk = GetNearestChunkItem(data.AllChunks);
+                }
+
+                EvaluateEnvironment(random);
+                break;
+            }
+
+            case LIFESTATE.GATHERING_STATE:
+            {
+                // In this state you gather compounds
+                if (RollCheck(SpeciesOpportunism, 400.0f, random))
+                {
+                    lifeState = LIFESTATE.SCAVENGING_STATE;
+                    boredom = 0;
+                }
+                else
+                {
+                    DoRunAndTumble(random);
+                }
+
+                break;
+            }
+
+            case LIFESTATE.FLEEING_STATE:
+            {
+                if (predator == null)
+                {
+                    GetNearestPredatorItem(data.AllMicrobes);
+                }
+
+                // In this state you run from predatory microbes
+                if (predator != null)
+                {
+                    DealWithPredators(random);
+                }
+                else
+                {
+                    if (RollCheck(SpeciesActivity, 400, random))
+                    {
+                        lifeState = LIFESTATE.PLANTLIKE_STATE;
                         boredom = 0;
                     }
                     else
                     {
-                        DoRunAndTumble(random);
+                        lifeState = LIFESTATE.NEUTRAL_STATE;
                     }
-
-                    break;
                 }
 
-            case LIFESTATE.FLEEING_STATE:
-                {
-                    if (predator == null)
-                    {
-                        GetNearestPredatorItem(data.AllMicrobes);
-                    }
-
-                    // In this state you run from predatory microbes
-                    if (predator != null)
-                    {
-                        DealWithPredators(random);
-                    }
-                    else
-                    {
-                        if (RollCheck(SpeciesActivity, 400, random))
-                        {
-                            lifeState = LIFESTATE.PLANTLIKE_STATE;
-                            boredom = 0;
-                        }
-                        else
-                        {
-                            lifeState = LIFESTATE.NEUTRAL_STATE;
-                        }
-                    }
-
-                    break;
-                }
+                break;
+            }
 
             case LIFESTATE.PREDATING_STATE:
+            {
+                // Peg your prey
+                if (!preyPegged)
                 {
-                    // Peg your prey
-                    if (!preyPegged)
+                    prey = null;
+                    prey = GetNearestPreyItem(data.AllMicrobes);
+                    if (prey != null)
                     {
-                        prey = null;
-                        prey = GetNearestPreyItem(data.AllMicrobes);
-                        if (prey != null)
-                        {
-                            preyPegged = true;
-                        }
+                        preyPegged = true;
                     }
+                }
 
-                    if (preyPegged && prey != null)
+                if (preyPegged && prey != null)
+                {
+                    DealWithPrey(data.AllMicrobes, random);
+                }
+                else
+                {
+                    if (RollCheck(SpeciesActivity, 400, random))
                     {
-                        DealWithPrey(data.AllMicrobes, random);
+                        lifeState = LIFESTATE.PLANTLIKE_STATE;
+                        boredom = 0;
                     }
                     else
                     {
-                        if (RollCheck(SpeciesActivity, 400, random))
-                        {
-                            lifeState = LIFESTATE.PLANTLIKE_STATE;
-                            boredom = 0;
-                        }
-                        else
-                        {
-                            lifeState = LIFESTATE.NEUTRAL_STATE;
-                        }
+                        lifeState = LIFESTATE.NEUTRAL_STATE;
                     }
-
-                    break;
                 }
+
+                break;
+            }
 
             case LIFESTATE.SCAVENGING_STATE:
+            {
+                if (targetChunk == null)
                 {
-                    if (targetChunk == null)
-                    {
-                        targetChunk = GetNearestChunkItem(data.AllChunks);
-                    }
+                    targetChunk = GetNearestChunkItem(data.AllChunks);
+                }
 
-                    if (targetChunk != null)
+                if (targetChunk != null)
+                {
+                    DealWithChunks(targetChunk, data.AllChunks);
+                }
+                else
+                {
+                    if (!RollCheck(SpeciesOpportunism, 400, random))
                     {
-                        DealWithChunks(targetChunk, data.AllChunks);
+                        lifeState = LIFESTATE.NEUTRAL_STATE;
+                        boredom = 0;
                     }
                     else
                     {
-                        if (!RollCheck(SpeciesOpportunism, 400, random))
-                        {
-                            lifeState = LIFESTATE.NEUTRAL_STATE;
-                            boredom = 0;
-                        }
-                        else
-                        {
-                            lifeState = LIFESTATE.SCAVENGING_STATE;
-                        }
+                        lifeState = LIFESTATE.SCAVENGING_STATE;
                     }
-
-                    break;
                 }
+
+                break;
+            }
         }
 
         // Run reflexes
@@ -307,13 +325,13 @@ public class MicrobeAI
         foreach (var chunk in allChunks)
         {
             if ((SpeciesOpportunism == Constants.MAX_SPECIES_OPPORTUNISM) ||
-                  ((microbe.EngulfSize * (SpeciesOpportunism / Constants.OPPORTUNISM_DIVISOR)) >
-                  chunk.Size))
+                ((microbe.EngulfSize * (SpeciesOpportunism / Constants.OPPORTUNISM_DIVISOR)) >
+                    chunk.Size))
             {
                 chunkList.Add(chunk);
                 var thisPosition = chunk.Translation;
 
-                if (setPosition == true)
+                if (setPosition)
                 {
                     testPosition = thisPosition;
                     setPosition = false;
@@ -356,15 +374,15 @@ public class MicrobeAI
             if ((otherMicrobe.Species != microbe.Species) && !otherMicrobe.Dead)
             {
                 if ((SpeciesAggression == Constants.MAX_SPECIES_AGRESSION) ||
-                          ((((microbe.AgentVacuoleCount + microbe.EngulfSize) * 1.0f) *
-                              (SpeciesAggression / Constants.AGRESSION_DIVISOR)) >
-                          (otherMicrobe.EngulfSize * 1.0f)))
+                    ((((microbe.AgentVacuoleCount + microbe.EngulfSize) * 1.0f) *
+                            (SpeciesAggression / Constants.AGRESSION_DIVISOR)) >
+                        (otherMicrobe.EngulfSize * 1.0f)))
                 {
                     preyMicrobes.Add(otherMicrobe);
 
                     var thisPosition = otherMicrobe.Translation;
 
-                    if (setPosition == true)
+                    if (setPosition)
                     {
                         testPosition = otherMicrobe.Translation;
                         setPosition = false;
@@ -407,16 +425,16 @@ public class MicrobeAI
             if ((otherMicrobe.Species != microbe.Species) && !otherMicrobe.Dead)
             {
                 if ((SpeciesFear == Constants.MAX_SPECIES_FEAR) ||
-                  ((((microbe.AgentVacuoleCount + otherMicrobe.EngulfSize) * 1.0f) *
-                    (SpeciesFear / Constants.FEAR_DIVISOR)) >
-                  (microbe.EngulfSize * 1.0f)))
+                    ((((microbe.AgentVacuoleCount + otherMicrobe.EngulfSize) * 1.0f) *
+                            (SpeciesFear / Constants.FEAR_DIVISOR)) >
+                        (microbe.EngulfSize * 1.0f)))
                 {
                     // You are bigger then me and i am afraid of that
                     predatoryMicrobes.Add(otherMicrobe);
                     var thisPosition = otherMicrobe.Translation;
 
                     // At max aggression add them all
-                    if (setPosition == true)
+                    if (setPosition)
                     {
                         testPosition = thisPosition;
                         setPosition = false;
@@ -426,7 +444,7 @@ public class MicrobeAI
                     if (thisPosition != null)
                     {
                         if ((testPosition - microbe.Translation).LengthSquared() >
-                        (thisPosition - microbe.Translation).LengthSquared())
+                            (thisPosition - microbe.Translation).LengthSquared())
                         {
                             testPosition = thisPosition;
                             predator = otherMicrobe;
@@ -440,7 +458,6 @@ public class MicrobeAI
     /// <summary>
     /// For chasing down and killing prey in various ways
     /// </summary>
-    /// <param name="allMicrobes">All microbes.</param>
     private void DealWithPrey(List<Microbe> allMicrobes, Random random)
     {
         // Tick the engulf tick
@@ -468,7 +485,6 @@ public class MicrobeAI
         // Allows for emergence of Predatory Plants (Like a single cleed version of a venus fly trap)
         // Creatures with lethargicness of 400 will not actually chase prey, just lie in wait
         var vec = targetPosition - microbe.Translation;
-        direction = vec.Normalized();
         microbe.LookAtPoint = targetPosition;
         hasTargetPosition = true;
 
@@ -491,7 +507,7 @@ public class MicrobeAI
 
         // Turn off engulf if prey is Dead
         // This is probabbly not working. This is almost certainly not working in the Godot version
-        if (prey.Dead == true)
+        if (prey.Dead)
         {
             hasTargetPosition = false;
             prey = GetNearestPreyItem(allMicrobes);
@@ -592,7 +608,6 @@ public class MicrobeAI
         }
 
         var vec = targetPosition - microbe.Translation;
-        direction = vec.Normalized();
         microbe.LookAtPoint = targetPosition;
         hasTargetPosition = true;
 
@@ -670,7 +685,7 @@ public class MicrobeAI
             {
                 targetPosition = new Vector3(random.Next(-5000.0f, 5000.0f), 1.0f,
                         random.Next(-5000.0f, 5000.0f)) *
-                        predator.Translation;
+                    predator.Translation;
             }
             catch (ObjectDisposedException)
             {
@@ -681,7 +696,7 @@ public class MicrobeAI
         }
 
         var vec = microbe.Translation - targetPosition;
-        direction = vec.Normalized();
+        vec.Normalized();
         microbe.LookAtPoint = -targetPosition;
         microbe.MovementDirection = new Vector3(0.0f, 0.0f, -Constants.AI_BASE_MOVEMENT);
         hasTargetPosition = true;
@@ -700,7 +715,7 @@ public class MicrobeAI
         }
     }
 
-    // For for firguring out which state to enter
+    // For for figuring out which state to enter
     private void EvaluateEnvironment(Random random)
     {
         if (RollCheck(SpeciesOpportunism, 500.0f, random))
@@ -713,8 +728,8 @@ public class MicrobeAI
             if (prey != null && predator != null)
             {
                 if (random.Next(0.0f, SpeciesAggression) >
-                        random.Next(0.0f, SpeciesFear) &&
-                            (preyMicrobes.Count > 0))
+                    random.Next(0.0f, SpeciesFear) &&
+                    (preyMicrobes.Count > 0))
                 {
                     moveThisHunt = !RollCheck(SpeciesActivity, 500.0f, random);
 
@@ -726,8 +741,8 @@ public class MicrobeAI
                     lifeState = LIFESTATE.PREDATING_STATE;
                 }
                 else if (random.Next(0.0f, SpeciesAggression) <
-                        random.Next(0.0f, SpeciesFear) &&
-                            (predatoryMicrobes.Count > 0))
+                    random.Next(0.0f, SpeciesFear) &&
+                    (predatoryMicrobes.Count > 0))
                 {
                     lifeState = LIFESTATE.FLEEING_STATE;
                 }
@@ -840,7 +855,7 @@ public class MicrobeAI
         // in food)
         previousAngle = randAngle;
         var vec = targetPosition - microbe.Translation;
-        direction = vec.Normalized();
+        vec.Normalized();
         microbe.LookAtPoint = targetPosition;
         microbe.MovementDirection = new Vector3(0.0f, 0.0f, -Constants.AI_BASE_MOVEMENT);
         hasTargetPosition = true;

@@ -8,7 +8,7 @@ using Godot;
 /// </summary>
 public class TransitionManager : Node
 {
-    private static TransitionManager instance;
+    private static TransitionManager _instance;
 
     private PackedScene screenFadeScene;
     private PackedScene cutsceneScene;
@@ -21,7 +21,7 @@ public class TransitionManager : Node
 
     private TransitionManager()
     {
-        instance = this;
+        _instance = this;
 
         screenFadeScene = GD.Load<PackedScene>("res://src/gui_common/Fade.tscn");
         cutsceneScene = GD.Load<PackedScene>("res://src/gui_common/Cutscene.tscn");
@@ -32,10 +32,7 @@ public class TransitionManager : Node
 
     public static TransitionManager Instance
     {
-        get
-        {
-            return instance;
-        }
+        get { return _instance; }
     }
 
     /// <summary>
@@ -58,6 +55,12 @@ public class TransitionManager : Node
     /// </summary>
     /// <param name="type">
     ///   The type of fade to transition to.
+    /// </param>
+    /// <param name="fadeDuration">
+    ///   How long the fade lasts
+    /// </param>
+    /// <param name="allowSkipping">
+    ///   Allow the user to skip this
     /// </param>
     public void AddScreenFade(Fade.FadeType type, float fadeDuration, bool allowSkipping = true)
     {
@@ -99,7 +102,7 @@ public class TransitionManager : Node
     ///   Starts the transitions on the queue.
     ///   Calls a method when all the transition finished.
     /// </summary>
-    public void StartTransitions(Godot.Object target, string onFinishedMethod)
+    public void StartTransitions(Object target, string onFinishedMethod)
     {
         if (queuedTransitions.Count == 0 || queuedTransitions == null)
         {
@@ -140,7 +143,7 @@ public class TransitionManager : Node
 
         foreach (var entry in transitions)
         {
-            if (Godot.Object.IsInstanceValid((Node)entry))
+            if (IsInstanceValid((Node)entry))
             {
                 if (entry.Skippable)
                     entry.OnFinished();

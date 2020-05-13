@@ -14,10 +14,6 @@ public class TimedWorldOperations
 
     private List<IWorldEffect> effects = new List<IWorldEffect>();
 
-    public TimedWorldOperations()
-    {
-    }
-
     /// <summary>
     /// Called when time passes
     /// </summary>

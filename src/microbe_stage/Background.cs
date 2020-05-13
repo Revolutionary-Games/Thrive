@@ -14,7 +14,7 @@ public class Background : IRegistryType
     {
         if (Textures.Count != 4)
         {
-            throw new InvalidRegistryData(name, this.GetType().Name,
+            throw new InvalidRegistryData(name, GetType().Name,
                 "Background needs 4 layers");
         }
     }
@@ -32,7 +32,7 @@ public class Background : IRegistryType
             // When exported only the .import files exist, so this check is done accordingly
             if (!directory.FileExists(resource + ".import"))
             {
-                throw new InvalidRegistryData(InternalName, this.GetType().Name,
+                throw new InvalidRegistryData(InternalName, GetType().Name,
                     "Background contains non-existant image: " + resource);
             }
         }

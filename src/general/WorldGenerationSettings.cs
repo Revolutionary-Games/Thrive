@@ -3,7 +3,4 @@
 /// </summary>
 public class WorldGenerationSettings
 {
-    public WorldGenerationSettings()
-    {
-    }
 }

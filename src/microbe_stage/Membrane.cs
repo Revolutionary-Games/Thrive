@@ -87,7 +87,6 @@ public class Membrane : MeshInstance
             value = value.Clamp(0.0f, 1.0f);
             if (value == HealthFraction)
                 return;
-
             healthFraction = value;
             if (MaterialToEdit != null)
                 ApplyHealth();
@@ -133,23 +132,14 @@ public class Membrane : MeshInstance
         }
         set
         {
-            // Desaturate it here so it looks nicer (could implement as method that
-            // could be called i suppose)
             float saturation;
             float brightness;
             float hue;
-
-            // According to stack overflow HSV and HSB are the same thing
             value.ToHsv(out hue, out saturation, out brightness);
-
             value = Color.FromHsv(hue, saturation * 0.75f, brightness);
-
             if (tint == value)
                 return;
-
             tint = value;
-
-            // If we already have created a material we need to re-apply it
             if (MaterialToEdit != null)
                 ApplyTint();
         }
@@ -210,9 +200,9 @@ public class Membrane : MeshInstance
                 (vertices2D[i + 1].y <= y && y < vertices2D[i].y))
             {
                 if (x < (vertices2D[i + 1].x - vertices2D[i].x) *
-                               (y - vertices2D[i].y) /
-                               (vertices2D[i + 1].y - vertices2D[i].y) +
-                           vertices2D[i].x)
+                    (y - vertices2D[i].y) /
+                    (vertices2D[i + 1].y - vertices2D[i].y) +
+                    vertices2D[i].x)
                 {
                     crosses = !crosses;
                 }
@@ -410,27 +400,27 @@ public class Membrane : MeshInstance
         for (int i = membraneResolution; i > 0; i--)
         {
             vertices2D.Add(new Vector2(-cellDimensions,
-                    cellDimensions - 2 * cellDimensions / membraneResolution * i));
+                cellDimensions - 2 * cellDimensions / membraneResolution * i));
         }
 
         for (int i = membraneResolution; i > 0; i--)
         {
             vertices2D.Add(new Vector2(
-                    cellDimensions - 2 * cellDimensions / membraneResolution * i,
-                    cellDimensions));
+                cellDimensions - 2 * cellDimensions / membraneResolution * i,
+                cellDimensions));
         }
 
         for (int i = membraneResolution; i > 0; i--)
         {
             vertices2D.Add(new Vector2(cellDimensions,
-                    -cellDimensions + 2 * cellDimensions / membraneResolution * i));
+                -cellDimensions + 2 * cellDimensions / membraneResolution * i));
         }
 
         for (int i = membraneResolution; i > 0; i--)
         {
             vertices2D.Add(new Vector2(
-                    -cellDimensions + 2 * cellDimensions / membraneResolution * i,
-                    -cellDimensions));
+                -cellDimensions + 2 * cellDimensions / membraneResolution * i,
+                -cellDimensions));
         }
 
         // This needs to actually run a bunch of times as the points
@@ -588,7 +578,7 @@ public class Membrane : MeshInstance
             // Check to see if the gap between two points in the membrane is too
             // big.
             if ((newPositions[i] - newPositions[(i + 1) % newPositions.Count])
-                .Length() > cellDimensions / membraneResolution)
+                .Length() > (float)cellDimensions / membraneResolution)
             {
                 // Add an element after the ith term that is the average of the
                 // i and i+1 term.
@@ -604,8 +594,8 @@ public class Membrane : MeshInstance
             // Check to see if the gap between two points in the membrane is too
             // small.
             if ((newPositions[(i + 1) % newPositions.Count] -
-                   newPositions[(i + newPositions.Count - 1) % newPositions.Count])
-                .Length() < cellDimensions / membraneResolution)
+                    newPositions[(i + newPositions.Count - 1) % newPositions.Count])
+                .Length() < (float)cellDimensions / membraneResolution)
             {
                 // Delete the ith term.
                 newPositions.RemoveAt(i);

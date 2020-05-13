@@ -37,7 +37,8 @@ public class MicrobeAISystem
             {
                 var random = new Random();
                 for (int a = start;
-                     a < start + Constants.MICROBE_AI_OBJECTS_PER_TASK && a < nodes.Count; ++a)
+                    a < start + Constants.MICROBE_AI_OBJECTS_PER_TASK && a < nodes.Count;
+                    ++a)
                 {
                     RunAIFor(nodes[a] as IMicrobeAI, delta, random, data);
                 }
@@ -56,6 +57,8 @@ public class MicrobeAISystem
     /// </summary>
     /// <param name="ai">The thing with AI interface implemented</param>
     /// <param name="delta">Passed time</param>
+    /// <param name="random">Randomness source</param>
+    /// <param name="data">Common data for AI agents, should not be modified</param>
     private void RunAIFor(IMicrobeAI ai, float delta, Random random, MicrobeAICommonData data)
     {
         if (ai == null)

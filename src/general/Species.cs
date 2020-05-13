@@ -71,19 +71,13 @@ public abstract class Species : ICloneable
     [JsonIgnore]
     public string FormattedName
     {
-        get
-        {
-            return Genus + " " + Epithet;
-        }
+        get { return Genus + " " + Epithet; }
     }
 
     [JsonIgnore]
     public string FormattedIdentifier
     {
-        get
-        {
-            return FormattedName + string.Format(" ({0:n})", ID);
-        }
+        get { return FormattedName + string.Format(" ({0:n})", ID); }
     }
 
     public void
@@ -91,11 +85,11 @@ public abstract class Species : ICloneable
     {
         if (population < 0)
         {
-            this.Population = 0;
+            Population = 0;
         }
         else
         {
-            this.Population = population;
+            Population = population;
         }
     }
 

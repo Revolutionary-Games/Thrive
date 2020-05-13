@@ -33,7 +33,7 @@ public class Compound : IRegistryType
     {
         if (Name == string.Empty)
         {
-            throw new InvalidRegistryData(name, this.GetType().Name,
+            throw new InvalidRegistryData(name, GetType().Name,
                 "Compound has no name");
         }
 
@@ -45,20 +45,20 @@ public class Compound : IRegistryType
 
         if (Math.Abs(Colour.a - 1.0f) > MathUtils.EPSILON)
         {
-            throw new InvalidRegistryData(name, this.GetType().Name,
+            throw new InvalidRegistryData(name, GetType().Name,
                 "Compound colour cannot have alpha other than 1");
         }
 
         if (Math.Abs(Colour.r) < MathUtils.EPSILON &&
-        Math.Abs(Colour.g) < MathUtils.EPSILON && Math.Abs(Colour.b) < MathUtils.EPSILON)
+            Math.Abs(Colour.g) < MathUtils.EPSILON && Math.Abs(Colour.b) < MathUtils.EPSILON)
         {
-            throw new InvalidRegistryData(name, this.GetType().Name,
+            throw new InvalidRegistryData(name, GetType().Name,
                 "Compound colour can't be black");
         }
 
         if (Volume <= 0)
         {
-            throw new InvalidRegistryData(name, this.GetType().Name,
+            throw new InvalidRegistryData(name, GetType().Name,
                 "Volume should be > 0");
         }
     }

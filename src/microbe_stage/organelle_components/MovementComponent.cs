@@ -85,9 +85,9 @@ public class MovementComponent : ExternallyPositionedComponent
         // The movementDirection is the player or AI input
         Vector3 direction = microbe.MovementDirection;
 
-        var forceMagnitude = this.force.Dot(direction);
+        var forceMagnitude = force.Dot(direction);
         if (forceMagnitude <= 0 || direction.LengthSquared() < MathUtils.EPSILON ||
-            this.force.LengthSquared() < MathUtils.EPSILON)
+            force.LengthSquared() < MathUtils.EPSILON)
         {
             if (movingTail)
             {
@@ -142,13 +142,13 @@ public class MovementComponentFactory : IOrganelleComponentFactory
     {
         if (Momentum <= 0.0f)
         {
-            throw new InvalidRegistryData(name, this.GetType().Name,
+            throw new InvalidRegistryData(name, GetType().Name,
                 "Momentum needs to be > 0.0f");
         }
 
         if (Torque <= 0.0f)
         {
-            throw new InvalidRegistryData(name, this.GetType().Name,
+            throw new InvalidRegistryData(name, GetType().Name,
                 "Torque needs to be > 0.0f");
         }
     }

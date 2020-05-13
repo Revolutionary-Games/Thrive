@@ -11,15 +11,15 @@ public struct Hex : IEquatable<Hex>
     /// <summary>
     ///   Maps a hex side to its direct opposite
     /// </summary>
-    public static readonly Dictionary<HEX_SIDE, HEX_SIDE> OppositeHexSide =
-        new Dictionary<HEX_SIDE, HEX_SIDE>()
+    public static readonly Dictionary<HexSide, HexSide> OppositeHexSide =
+        new Dictionary<HexSide, HexSide>()
         {
-            { HEX_SIDE.TOP, HEX_SIDE.BOTTOM },
-            { HEX_SIDE.TOP_RIGHT, HEX_SIDE.BOTTOM_LEFT },
-            { HEX_SIDE.BOTTOM_RIGHT, HEX_SIDE.TOP_LEFT },
-            { HEX_SIDE.BOTTOM, HEX_SIDE.TOP },
-            { HEX_SIDE.BOTTOM_LEFT, HEX_SIDE.TOP_RIGHT },
-            { HEX_SIDE.TOP_LEFT, HEX_SIDE.BOTTOM_RIGHT },
+            { HexSide.TOP, HexSide.BOTTOM },
+            { HexSide.TOP_RIGHT, HexSide.BOTTOM_LEFT },
+            { HexSide.BOTTOM_RIGHT, HexSide.TOP_LEFT },
+            { HexSide.BOTTOM, HexSide.TOP },
+            { HexSide.BOTTOM_LEFT, HexSide.TOP_RIGHT },
+            { HexSide.TOP_LEFT, HexSide.BOTTOM_RIGHT },
         };
 
     /// <summary>
@@ -27,15 +27,15 @@ public struct Hex : IEquatable<Hex>
     ///   maps the hex side to the coordinate offset of the neighbour
     ///   adjacent to that side.
     /// </summary>
-    public static readonly Dictionary<HEX_SIDE, Hex> HexNeighbourOffset =
-        new Dictionary<HEX_SIDE, Hex>()
+    public static readonly Dictionary<HexSide, Hex> HexNeighbourOffset =
+        new Dictionary<HexSide, Hex>()
         {
-            { HEX_SIDE.TOP, new Hex(0, 1) },
-            { HEX_SIDE.TOP_RIGHT, new Hex(1, 0) },
-            { HEX_SIDE.BOTTOM_RIGHT, new Hex(1, -1) },
-            { HEX_SIDE.BOTTOM, new Hex(0, -1) },
-            { HEX_SIDE.BOTTOM_LEFT, new Hex(-1, 0) },
-            { HEX_SIDE.TOP_LEFT, new Hex(-1, 1) },
+            { HexSide.TOP, new Hex(0, 1) },
+            { HexSide.TOP_RIGHT, new Hex(1, 0) },
+            { HexSide.BOTTOM_RIGHT, new Hex(1, -1) },
+            { HexSide.BOTTOM, new Hex(0, -1) },
+            { HexSide.BOTTOM_LEFT, new Hex(-1, 0) },
+            { HexSide.TOP_LEFT, new Hex(-1, 1) },
         };
 
     public int Q;
@@ -50,13 +50,36 @@ public struct Hex : IEquatable<Hex>
     /// <summary>
     ///   Enumeration of the hex sides, clock-wise
     /// </summary>
-    public enum HEX_SIDE
+    public enum HexSide
     {
+        /// <summary>
+        ///   Directly up
+        /// </summary>
         TOP = 1,
+
+        /// <summary>
+        ///   Up and to the right
+        /// </summary>
         TOP_RIGHT = 2,
+
+        /// <summary>
+        ///   Down and to the right
+        /// </summary>
         BOTTOM_RIGHT = 3,
+
+        /// <summary>
+        ///   Directly down
+        /// </summary>
         BOTTOM = 4,
+
+        /// <summary>
+        ///   Down and left
+        /// </summary>
         BOTTOM_LEFT = 5,
+
+        /// <summary>
+        ///   Up and left
+        /// </summary>
         TOP_LEFT = 6,
     }
 
@@ -196,7 +219,7 @@ public struct Hex : IEquatable<Hex>
         if (!(obj is Hex))
             return false;
 
-        return this.Equals((Hex)obj);
+        return Equals((Hex)obj);
     }
 
     public bool Equals(Hex other)
@@ -207,8 +230,12 @@ public struct Hex : IEquatable<Hex>
     public override int GetHashCode()
     {
         var hashCode = -1997189103;
+
+        // ReSharper disable NonReadonlyMemberInGetHashCode
         hashCode = (hashCode * -1521134295) + Q.GetHashCode();
         hashCode = (hashCode * -1521134295) + R.GetHashCode();
+
+        // ReSharper restore NonReadonlyMemberInGetHashCode
         return hashCode;
     }
 

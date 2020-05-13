@@ -48,10 +48,7 @@ public class Jukebox : Node
 
     public static Jukebox Instance
     {
-        get
-        {
-            return _instance;
-        }
+        get { return _instance; }
     }
 
     /// <summary>
@@ -63,11 +60,11 @@ public class Jukebox : Node
         {
             return playingCategory;
         }
+
         set
         {
             if (playingCategory == value)
                 return;
-
             GD.Print("Jukebox now playing from: ", value);
             playingCategory = value;
             OnCategoryChanged();
@@ -76,11 +73,7 @@ public class Jukebox : Node
 
     private List<string> PlayingTracks
     {
-        get
-        {
-            return audioPlayers.Where((player) => player.Playing).
-                Select((player) => player.CurrentTrack).ToList();
-        }
+        get { return audioPlayers.Where((player) => player.Playing).Select((player) => player.CurrentTrack).ToList(); }
     }
 
     public override void _Ready()
@@ -227,7 +220,7 @@ public class Jukebox : Node
         // Add transitions
         if (previouslyPlayedCategory != null)
         {
-            if (previouslyPlayedCategory.CategoryTransition == MusicCategory.TRANSITION.Fade)
+            if (previouslyPlayedCategory.CategoryTransition == MusicCategory.Transition.Fade)
             {
                 AddFadeOut();
                 faded = true;
@@ -240,7 +233,7 @@ public class Jukebox : Node
             return true;
         }));
 
-        if (target.CategoryTransition == MusicCategory.TRANSITION.Fade)
+        if (target.CategoryTransition == MusicCategory.Transition.Fade)
         {
             if (!faded)
             {
@@ -348,7 +341,7 @@ public class Jukebox : Node
         int nextPlayerToUse = 0;
 
         // Resume tracks
-        if (target.Return == MusicCategory.RETURN_TYPE.Continue)
+        if (target.Return == MusicCategory.ReturnType.Continue)
         {
             foreach (var list in target.TrackLists)
             {
@@ -409,7 +402,7 @@ public class Jukebox : Node
     {
         var mode = list.TrackOrder;
 
-        if (mode == TrackList.ORDER.Sequential)
+        if (mode == TrackList.Order.Sequential)
         {
             list.LastPlayedIndex = (list.LastPlayedIndex + 1) % list.Tracks.Count;
 
@@ -441,7 +434,7 @@ public class Jukebox : Node
         var category = previouslyPlayedCategory;
 
         // Store continue positions
-        if (category.Return == MusicCategory.RETURN_TYPE.Continue)
+        if (category.Return == MusicCategory.ReturnType.Continue)
         {
             var activeTracks = PlayingTracks;
 
@@ -456,7 +449,7 @@ public class Jukebox : Node
                         // Store the position to resume from
                         track.PreviousPlayedPosition = audioPlayers.Where(
                             (player) => player.Playing && player.CurrentTrack == track.ResourcePath).Select(
-                                (player) => player.Player.GetPlaybackPosition()).First();
+                            (player) => player.Player.GetPlaybackPosition()).First();
                     }
                     else
                     {

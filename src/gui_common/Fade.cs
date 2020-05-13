@@ -16,7 +16,14 @@ public class Fade : CanvasLayer, ITransition
 
     public enum FadeType
     {
+        /// <summary>
+        ///   Screen fades in
+        /// </summary>
         FadeIn,
+
+        /// <summary>
+        ///   Screen fades out
+        /// </summary>
         FadeOut,
     }
 

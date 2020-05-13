@@ -28,7 +28,7 @@ public class Patch
     public Patch(string name, int id, Biome biomeTemplate)
     {
         Name = name;
-        this.ID = id;
+        ID = id;
         this.biomeTemplate = biomeTemplate;
         Biome = (Biome)biomeTemplate.Clone();
     }

@@ -44,31 +44,31 @@ public class Biome : IRegistryType, ICloneable
     {
         if (Name == string.Empty || Background == string.Empty)
         {
-            throw new InvalidRegistryData(name, this.GetType().Name,
+            throw new InvalidRegistryData(name, GetType().Name,
                 "Empty normal or damaged texture");
         }
 
         if (Compounds == null)
         {
-            throw new InvalidRegistryData(name, this.GetType().Name,
+            throw new InvalidRegistryData(name, GetType().Name,
                 "Compounds missing");
         }
 
         if (Chunks == null)
         {
-            throw new InvalidRegistryData(name, this.GetType().Name,
+            throw new InvalidRegistryData(name, GetType().Name,
                 "Chunks missing");
         }
 
         if (Icon == null)
         {
-            throw new InvalidRegistryData(name, this.GetType().Name,
+            throw new InvalidRegistryData(name, GetType().Name,
                 "icon missing");
         }
 
         if (Sunlight == null)
         {
-            throw new InvalidRegistryData(name, this.GetType().Name,
+            throw new InvalidRegistryData(name, GetType().Name,
                 "sunlight missing");
         }
     }
@@ -155,6 +155,7 @@ public class Biome : IRegistryType, ICloneable
         ///   If > 0 the amount of damage to deal on touch
         /// </summary>
         public float Damages;
+
         public bool DeleteOnTouch;
 
         public Dictionary<string, ChunkCompound> Compounds;
@@ -170,6 +171,7 @@ public class Biome : IRegistryType, ICloneable
         public class ChunkScene
         {
             public string ScenePath;
+
             [JsonIgnore]
             public PackedScene LoadedScene;
         }
