@@ -665,6 +665,18 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             var organelleToUse = organelles.Organelles.Random(random).Definition;
 
             var sceneToUse = new Biome.ChunkConfiguration.ChunkScene();
+            
+            var organellesToTryUsing = organelles.Organelles;
+            var organelleToTryUsing = organellesToTryUsing.Random(random);
+            
+            organelleToUse = organellesToTryUsing.Random(random).Definition;
+            
+            while (organelleToUse.DisplayScene == string.Empty & organellesToTryUsing.Count != 0)
+            {
+                organelleToTryUsing = organellesToTryUsing.Random(random);
+                organellesToTryUsing.Remove(organelleToTryUsing);
+                organelleToUse = organelleToTryUsing.Definition;
+            }
 
             if (organelleToUse.DisplayScene != string.Empty)
             {
