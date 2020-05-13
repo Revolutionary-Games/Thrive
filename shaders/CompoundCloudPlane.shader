@@ -9,22 +9,24 @@ uniform vec4 colour2 : hint_color  = vec4(0, 0, 0, 0);
 uniform vec4 colour3 : hint_color  = vec4(0, 0, 0, 0);
 uniform vec4 colour4 : hint_color  = vec4(0, 0, 0, 0);
 
+uniform vec2 UVoffset = vec2(0, 0);
+
 // Setting this too high makes the clouds invisible
 const float CLOUD_DISSIPATION = 2.0;
 
 void fragment(){
     vec4 concentrations = texture(densities, UV);
     
-    float cloud1 = concentrations.r * pow(texture(noise, UV).r, 
+    float cloud1 = concentrations.r * pow(texture(noise, UV + UVoffset).r, 
         CLOUD_DISSIPATION);
         
-    float cloud2 = concentrations.g * pow(texture(noise, UV + 0.2f).r, 
+    float cloud2 = concentrations.g * pow(texture(noise, UV + UVoffset + 0.2f).r, 
         CLOUD_DISSIPATION);
         
-    float cloud3 = concentrations.b * pow(texture(noise, UV + 0.4f).r, 
+    float cloud3 = concentrations.b * pow(texture(noise, UV + UVoffset + 0.4f).r, 
         CLOUD_DISSIPATION);
         
-    float cloud4 = concentrations.a * pow(texture(noise, UV + 0.6f).r, 
+    float cloud4 = concentrations.a * pow(texture(noise, UV + UVoffset + 0.6f).r, 
         CLOUD_DISSIPATION);
     
     vec4 colour =

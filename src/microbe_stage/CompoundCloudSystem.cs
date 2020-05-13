@@ -441,9 +441,9 @@ public class CompoundCloudSystem : Node
         // The gaps between the positions is used for calculations here. Otherwise
         // all clouds get moved when the player moves
         return new Vector3(
-            (int)Math.Round(pos.x / (Constants.CLOUD_X_EXTENT / 3)) * (Constants.CLOUD_X_EXTENT / 3),
+            (int)Math.Round(pos.x / (Constants.CLOUD_X_EXTENT / 3)),
             0,
-            (int)Math.Round(pos.z / (Constants.CLOUD_Y_EXTENT / 3)) * (Constants.CLOUD_Y_EXTENT / 3));
+            (int)Math.Round(pos.z / (Constants.CLOUD_Y_EXTENT / 3)));
     }
 
     /// <summary>
@@ -454,12 +454,19 @@ public class CompoundCloudSystem : Node
         foreach (var cloud in clouds)
         {
             // TODO: make sure the cloud knows where we moved.
-            cloud.Translation = cloudGridCenter;
+            cloud.Translation = cloudGridCenter * Constants.CLOUD_Y_EXTENT / 3;
+            cloud.UpdatePosition(new Int2((int)cloudGridCenter.x, (int)cloudGridCenter.z));
         }
     }
 
     private void UpdateCloudContents(float delta)
     {
+        // Do moving compounds on the edges of the clouds serially
+        foreach (var cloud in clouds)
+        {
+            cloud.UpdateEdgesBeforeCenter(delta);
+        }
+
         var executor = TaskExecutor.Instance;
         var tasks = new List<Task>(9 * neededCloudsAtOnePosition);
 
@@ -471,6 +478,12 @@ public class CompoundCloudSystem : Node
         // Start and wait for tasks to finish
         executor.RunTasks(tasks);
         tasks.Clear();
+
+        // Do moving compounds on the edges of the clouds serially
+        foreach (var cloud in clouds)
+        {
+            cloud.UpdateEdgesAfterCenter(delta);
+        }
 
         // Update the cloud textures in parallel
         foreach (var cloud in clouds)

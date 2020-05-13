@@ -12,6 +12,7 @@ public class CompoundCloudPlane : CSGMesh
     public System.Numerics.Vector4[,] OldDensity;
 
     private FluidSystem fluidSystem;
+    private Int2 position = new Int2(0, 0);
     public Compound[] Compounds;
 
     [JsonProperty]
@@ -36,6 +37,20 @@ public class CompoundCloudPlane : CSGMesh
         Density = new System.Numerics.Vector4[Size, Size];
         OldDensity = new System.Numerics.Vector4[Size, Size];
         ClearContents();
+    }
+
+    public void UpdatePosition(Int2 newPosition)
+    {
+        // TODO: delete out of grid clouds
+
+        // Whoever made the modulus operator return negatives: i hate u.
+        int newx = ((newPosition.x % 3) + 3) % 3;
+        int newy = ((newPosition.y % 3) + 3) % 3;
+        position = new Int2(newx, newy);
+
+        // TODO: change the UV of the texture
+        var material = (ShaderMaterial)this.Material;
+        material.SetShaderParam("UVoffset", new Vector2(newx / 3.0f, newy / 3.0f));
     }
 
     /// <summary>
@@ -74,7 +89,62 @@ public class CompoundCloudPlane : CSGMesh
         }
     }
 
+    private void PartialDiffuseEdges(int x0, int y0, int width, int height, float delta)
+    {
+        float a = delta * Constants.CLOUD_DIFFUSION_RATE;
+
+        for(int x = x0; x < x0 + width; x++)
+        {
+            for(int y = y0; y < y0 + height; y++)
+            {
+                OldDensity[x, y] =
+                    Density[x, y] * (1 - a) +
+                    (Density[x, (y - 1 + Size) % Size] +
+                    Density[x, (y + 1) % Size] +
+                    Density[(x - 1 + Size) % Size, y] +
+                    Density[(x + 1) % Size, y]) * (a / 4);
+            }
+        }
+    }
+
     private void PartialAdvectCenter(int x0, int y0, int width, int height, float delta, Vector2 pos)
+    {
+        for(int x = x0; x < x0 + width; x++)
+        {
+            for(int y = y0; y < y0 + height; y++)
+            {
+                if (OldDensity[x, y].LengthSquared() > 1)
+                {
+                    // TODO: give each cloud a viscosity value in the
+                    // JSON file and use it instead.
+                    const float viscosity = 0.0525f;
+                    var velocity = fluidSystem.VelocityAt(
+                        pos + (new Vector2(x, y) * Resolution)) * viscosity;
+
+                    // This is ran in parallel, this may not touch the other compound clouds
+                    float dx = x + (delta * velocity.x);
+                    float dy = y + (delta * velocity.y);
+
+                    int q0 = ((int)Math.Floor(dx) + Size) % Size;   
+                    int q1 = (q0 + 1) % Size;
+                    int r0 = ((int)Math.Floor(dy)) % Size;
+                    int r1 = (r0 + 1) % Size;
+
+                    float s1 = Math.Abs(dx - q0);
+                    float s0 = 1.0f - s1;
+                    float t1 = Math.Abs(dy - r0);
+                    float t0 = 1.0f - t1;
+
+                    Density[q0, r0] += OldDensity[x, y] * s0 * t0;
+                    Density[q0, r1] += OldDensity[x, y] * s0 * t1;
+                    Density[q1, r0] += OldDensity[x, y] * s1 * t0;
+                    Density[q1, r1] += OldDensity[x, y] * s1 * t1;
+                }
+            }
+        }
+    }
+
+    private void PartialAdvectEdges(int x0, int y0, int width, int height, float delta, Vector2 pos)
     {
         for(int x = x0; x < x0 + width; x++)
         {
@@ -146,6 +216,27 @@ public class CompoundCloudPlane : CSGMesh
     }
 
     /// <summary>
+    ///   Updates the edge concentrations of this cloud before the rest of the cloud.
+    ///   This is not ran in parallel.
+    /// </summary>
+    public void UpdateEdgesBeforeCenter(float delta)
+    {
+        // The diffusion rate seems to have a bigger effect
+        delta *= 100.0f;
+    }
+
+    /// <summary>
+    ///   Updates the edge concentrations of this cloud after the rest of the cloud.
+    ///   This is not ran in parallel.
+    /// </summary>
+    public void UpdateEdgesAfterCenter(float delta)
+    {
+        // The diffusion rate seems to have a bigger effect
+        delta *= 100.0f;
+        var pos = new Vector2(Translation.x, Translation.z);
+    }
+
+    /// <summary>
     ///   Updates the cloud in parallel.
     /// </summary>
     public void QueueUpdateCloud(float delta, List<Task> queue)
@@ -197,8 +288,13 @@ public class CompoundCloudPlane : CSGMesh
                 // performance as with Godot it doesn't seem to have
                 // much effect
 
-                image.SetPixel(x, y,
+                image.SetPixel((x + (3 - position.x) * Size / 3) % Size,
+                    (y + (3 - position.y) * Size / 3) % Size,
                     new Color(intensity1, intensity2, intensity3, intensity4));
+                /*image.SetPixel((x + (3 - position.x) * Size / 3) % Size,
+                    (y + (3 - position.y) * Size / 3) % Size,
+                    new Color(intensity1, intensity2, intensity3, intensity4));
+                    */
             }
         }
 
@@ -348,8 +444,8 @@ public class CompoundCloudPlane : CSGMesh
         var topLeftRelative = worldPosition - Translation;
 
         // Floor is used here because otherwise the last coordinate is wrong
-        x = (int)Math.Floor((topLeftRelative.x + Constants.CLOUD_WIDTH) / Resolution);
-        y = (int)Math.Floor((topLeftRelative.z + Constants.CLOUD_HEIGHT) / Resolution);
+        x = ((int)Math.Floor((topLeftRelative.x + Constants.CLOUD_WIDTH) / Resolution) + position.x * Size / 3) % Size;
+        y = ((int)Math.Floor((topLeftRelative.z + Constants.CLOUD_HEIGHT) / Resolution) + position.y * Size / 3) % Size;
     }
 
     /// <summary>
