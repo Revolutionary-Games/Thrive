@@ -1678,6 +1678,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
     private void OnContactBegin(int bodyID, Node body, int bodyShape, int localShape)
     {
+        _ = bodyID;
+
         if (body is Microbe microbe)
         {
             // TODO: does this need to check for disposed exception?
@@ -1717,6 +1719,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
     private void OnContactEnd(int bodyID, Node body, int bodyShape, int localShape)
     {
+        _ = bodyID;
+        _ = bodyShape;
+        _ = localShape;
+
         if (body is Microbe microbe)
         {
             // TODO: should this also check for pilus before removing the collision?

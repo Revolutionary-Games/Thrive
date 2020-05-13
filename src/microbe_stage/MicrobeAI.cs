@@ -85,10 +85,7 @@ public class MicrobeAI
         get => microbe.Species.Focus;
     }
 
-    private float SpeciesOpportunism
-    {
-        get => microbe.Species.Opportunism;
-    }
+    private float SpeciesOpportunism => microbe.Species.Opportunism;
 
     public void Think(float delta, Random random, MicrobeAICommonData data)
     {
@@ -99,12 +96,12 @@ public class MicrobeAI
         preyMicrobes.Clear();
         chunkList.Clear();
 
-        Microbe prey = null;
+        prey = null;
 
         // 30 seconds about
         if (boredom == (int)random.Next(SpeciesFocus * 2, 1000.0f + SpeciesFocus * 2))
         {
-            // Occassionally you need to reevaluate things
+            // Occasionally you need to reevaluate things
             boredom = 0;
             if (RollCheck(SpeciesActivity, 400, random))
             {
@@ -484,7 +481,6 @@ public class MicrobeAI
         // Chase your prey if you dont like acting like a plant
         // Allows for emergence of Predatory Plants (Like a single cleed version of a venus fly trap)
         // Creatures with lethargicness of 400 will not actually chase prey, just lie in wait
-        var vec = targetPosition - microbe.Translation;
         microbe.LookAtPoint = targetPosition;
         hasTargetPosition = true;
 
@@ -607,7 +603,6 @@ public class MicrobeAI
             return;
         }
 
-        var vec = targetPosition - microbe.Translation;
         microbe.LookAtPoint = targetPosition;
         hasTargetPosition = true;
 
