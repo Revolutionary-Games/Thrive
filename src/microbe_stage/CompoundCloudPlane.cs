@@ -247,10 +247,6 @@ public class CompoundCloudPlane : CSGMesh
                 image.SetPixel((x + (3 - position.x) * Size / 3) % Size,
                     (y + (3 - position.y) * Size / 3) % Size,
                     new Color(intensity1, intensity2, intensity3, intensity4));
-                /*image.SetPixel((x + (3 - position.x) * Size / 3) % Size,
-                    (y + (3 - position.y) * Size / 3) % Size,
-                    new Color(intensity1, intensity2, intensity3, intensity4));
-                    */
             }
         }
 
