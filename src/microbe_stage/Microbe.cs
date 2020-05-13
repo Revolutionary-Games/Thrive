@@ -662,9 +662,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             // Grab random organelle from cell and use that for model
             chunkType.Meshes = new List<Biome.ChunkConfiguration.ChunkScene>();
 
-            var organelleToUse = new OrganelleDefinition();
+            OrganelleDefinition organelleToUse = null;
             var sceneToUse = new Biome.ChunkConfiguration.ChunkScene();
-            
+
             foreach (var organelle in organelles.Organelles.OrderBy(_ => random.Next()))
             {
                 organelleToUse = organelle.Definition;
@@ -674,11 +674,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
                 sceneToUse.LoadedScene = organelleToUse.LoadedScene;
                 break;
                 }
-                else
-                {
-                sceneToUse.LoadedScene = SimulationParameters.Instance.GetOrganelleType(
-                    "mitochondrion").LoadedScene;
-                }
+            }
+
+            if (sceneToUse.LoadedScene is null)
+            {
+            sceneToUse.LoadedScene = SimulationParameters.Instance.GetOrganelleType(
+                "mitochondrion").LoadedScene;
             }
 
             chunkType.Meshes.Add(sceneToUse);
