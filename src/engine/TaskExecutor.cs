@@ -171,7 +171,7 @@ public class TaskExecutor
                     command.Task.RunSynchronously();
 
                     // Make sure task exceptions aren't ignored.
-                    // Could perhaps in the future find some othre way to handle this
+                    // Could perhaps in the future find some other way to handle this
                     if (command.Task.Exception != null)
                         throw command.Task.Exception;
                 }
