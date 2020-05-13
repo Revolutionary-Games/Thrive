@@ -676,7 +676,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
                 }
             }
 
-            if (sceneToUse.LoadedScene is null)
+            if (sceneToUse.LoadedScene == null)
             {
             sceneToUse.LoadedScene = SimulationParameters.Instance.GetOrganelleType(
                 "mitochondrion").LoadedScene;
