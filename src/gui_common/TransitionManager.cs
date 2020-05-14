@@ -8,7 +8,7 @@ using Godot;
 /// </summary>
 public class TransitionManager : Node
 {
-    private static TransitionManager _instance;
+    private static TransitionManager instance;
 
     private PackedScene screenFadeScene;
     private PackedScene cutsceneScene;
@@ -21,7 +21,7 @@ public class TransitionManager : Node
 
     private TransitionManager()
     {
-        _instance = this;
+        instance = this;
 
         screenFadeScene = GD.Load<PackedScene>("res://src/gui_common/Fade.tscn");
         cutsceneScene = GD.Load<PackedScene>("res://src/gui_common/Cutscene.tscn");
@@ -32,7 +32,7 @@ public class TransitionManager : Node
 
     public static TransitionManager Instance
     {
-        get { return _instance; }
+        get { return instance; }
     }
 
     /// <summary>

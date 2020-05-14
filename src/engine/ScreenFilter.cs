@@ -5,15 +5,15 @@ using Godot;
 /// </summary>
 public class ScreenFilter : TextureRect
 {
-    private static ScreenFilter _instance;
+    private static ScreenFilter instance;
     private ShaderMaterial screenFilterMaterial;
 
     private ScreenFilter()
     {
-        _instance = this;
+        instance = this;
     }
 
-    public static ScreenFilter Instance => _instance;
+    public static ScreenFilter Instance => instance;
 
     public override void _Ready()
     {

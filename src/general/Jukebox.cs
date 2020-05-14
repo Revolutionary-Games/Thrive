@@ -14,7 +14,7 @@ public class Jukebox : Node
 
     private const float FADE_PER_TIME_UNIT = (FADE_LOW_VOLUME - NORMAL_VOLUME) / FADE_TIME;
 
-    private static Jukebox _instance;
+    private static Jukebox instance;
 
     /// <summary>
     ///   Lists of music
@@ -39,7 +39,7 @@ public class Jukebox : Node
     /// </summary>
     private Jukebox()
     {
-        _instance = this;
+        instance = this;
 
         categories = SimulationParameters.Instance.GetMusicCategories();
 
@@ -48,7 +48,7 @@ public class Jukebox : Node
 
     public static Jukebox Instance
     {
-        get { return _instance; }
+        get { return instance; }
     }
 
     /// <summary>
