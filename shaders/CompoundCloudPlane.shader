@@ -15,7 +15,7 @@ uniform vec2 UVoffset = vec2(0, 0);
 const float CLOUD_DISSIPATION = 2.0;
 
 void fragment(){
-    vec4 concentrations = texture(densities, UV);
+    vec4 concentrations = texture(densities, UV + UVoffset);
     
     float cloud1 = concentrations.r * pow(texture(noise, UV + UVoffset).r, 
         CLOUD_DISSIPATION);

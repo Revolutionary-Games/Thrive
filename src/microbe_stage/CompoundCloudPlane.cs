@@ -29,7 +29,7 @@ public class CompoundCloudPlane : CSGMesh
         image = new Image();
         image.Create(Size, Size, false, Image.Format.Rgba8);
         texture = new ImageTexture();
-        texture.CreateFromImage(image, (uint)Texture.FlagsEnum.Filter);
+        texture.CreateFromImage(image, (uint)Texture.FlagsEnum.Filter | (uint)Texture.FlagsEnum.Repeat);
 
         var material = (ShaderMaterial)this.Material;
         material.SetShaderParam("densities", texture);
@@ -74,6 +74,7 @@ public class CompoundCloudPlane : CSGMesh
 
         position = new Int2(newx, newy);
 
+        // This accomodates the texture of the cloud to the new position of the plane.
         var material = (ShaderMaterial)this.Material;
         material.SetShaderParam("UVoffset", new Vector2(newx / (float)Constants.CLOUD_SQUARES_PER_SIDE,
                                                         newy / (float)Constants.CLOUD_SQUARES_PER_SIDE));
@@ -327,17 +328,13 @@ public class CompoundCloudPlane : CSGMesh
                 // performance as with Godot it doesn't seem to have
                 // much effect
 
-                image.SetPixel((x + (Constants.CLOUD_SQUARES_PER_SIDE - position.x)
-                                * Size / Constants.CLOUD_SQUARES_PER_SIDE) % Size,
-                                (y + (Constants.CLOUD_SQUARES_PER_SIDE - position.y)
-                                * Size / Constants.CLOUD_SQUARES_PER_SIDE) % Size,
-                                new Color(intensity1, intensity2, intensity3, intensity4));
+                image.SetPixel(x, y, new Color(intensity1, intensity2, intensity3, intensity4));
             }
         }
 
         image.Unlock();
 
-        texture.CreateFromImage(image, (uint)Texture.FlagsEnum.Filter);
+        texture.CreateFromImage(image, (uint)Texture.FlagsEnum.Filter | (uint)Texture.FlagsEnum.Repeat);
     }
 
     public bool HandlesCompound(Compound compound)
