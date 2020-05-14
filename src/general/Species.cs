@@ -75,10 +75,7 @@ public abstract class Species : ICloneable
     }
 
     [JsonIgnore]
-    public string FormattedIdentifier
-    {
-        get { return FormattedName + string.Format(" ({0:n})", ID); }
-    }
+    public string FormattedIdentifier => FormattedName + $" ({ID:n})";
 
     public void
         SetPopulationFromPatches(int population)

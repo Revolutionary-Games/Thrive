@@ -14,7 +14,7 @@
 
         public int TotalSteps => 1;
 
-        public bool Step(RunResults results)
+        public bool RunStep(RunResults results)
         {
             // ReSharper disable RedundantArgumentDefaultValue
             var config = new SimulationConfiguration(map, 1) { Results = results };

@@ -3,7 +3,7 @@
 /// <summary>
 ///   Just a basic 2 component integer vector for use before we get Godot.Vector2i
 /// </summary>
-public struct Int2
+public struct Int2 : System.IEquatable<Int2>
 {
 #pragma warning disable SA1307 // Accessible fields should begin with upper-case letter
     public int x;
@@ -36,4 +36,34 @@ public struct Int2
     public static bool operator <(Int2 p1, Int2 p2) => p1.x < p2.x || (p1.x == p2.x && p1.y < p2.y);
     public static bool operator >=(Int2 p1, Int2 p2) => !(p1 < p2);
     public static bool operator <=(Int2 p1, Int2 p2) => !(p1 > p2);
+
+    public static bool operator ==(Int2 left, Int2 right)
+    {
+        return left.Equals(right);
+    }
+
+    public static bool operator !=(Int2 left, Int2 right)
+    {
+        return !(left == right);
+    }
+
+    public override bool Equals(object obj)
+    {
+        if (obj is Int2 converted)
+        {
+            return Equals(converted);
+        }
+
+        return false;
+    }
+
+    public override int GetHashCode()
+    {
+        return x ^ y;
+    }
+
+    public bool Equals(Int2 other)
+    {
+        return x == other.x && y == other.y;
+    }
 }

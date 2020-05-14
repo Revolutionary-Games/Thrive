@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using Godot;
 
@@ -361,8 +362,7 @@ public class MicrobeEditorGUI : Node
         // Update mutation points
         mutationPointsBar.MaxValue = Constants.BASE_MUTATION_POINTS;
         mutationPointsBar.Value = editor.MutationPoints;
-        mutationPointsLabel.Text = string.Format("{0:F0} / {1:F0}", editor.MutationPoints,
-            Constants.BASE_MUTATION_POINTS);
+        mutationPointsLabel.Text = $"{editor.MutationPoints:F0} / {Constants.BASE_MUTATION_POINTS:F0}";
     }
 
     public void SetMap(PatchMap map)
@@ -395,17 +395,17 @@ public class MicrobeEditorGUI : Node
 
     public void UpdateSize(int size)
     {
-        sizeLabel.Text = "Size " + size.ToString();
+        sizeLabel.Text = "Size " + size.ToString(CultureInfo.CurrentCulture);
     }
 
     public void UpdateGeneration(int generation)
     {
-        generationLabel.Text = "Generation " + generation.ToString();
+        generationLabel.Text = "Generation " + generation.ToString(CultureInfo.CurrentCulture);
     }
 
     public void UpdateSpeed(float speed)
     {
-        speedLabel.Text = "Speed " + string.Format("{0:F1}", speed);
+        speedLabel.Text = "Speed " + string.Format(CultureInfo.CurrentCulture, "{0:F1}", speed);
     }
 
     public void UpdateEnergyBalance(EnergyBalanceInfo energyBalance)
@@ -437,8 +437,8 @@ public class MicrobeEditorGUI : Node
         atpProductionLabel.RectSize = new Vector2(atpProductionBarProgressLength, 18);
         atpConsumptionLabel.RectSize = new Vector2(atpConsumptionBarProgressLength, 18);
 
-        atpProductionLabel.Text = string.Format("{0:F1}", energyBalance.TotalProduction);
-        atpConsumptionLabel.Text = string.Format("{0:F1}", energyBalance.TotalConsumption);
+        atpProductionLabel.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", energyBalance.TotalProduction);
+        atpConsumptionLabel.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", energyBalance.TotalConsumption);
     }
 
     /// <summary>

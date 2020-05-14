@@ -27,6 +27,7 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable
     /// </summary>
     public int Orientation { get; set; } = 0;
 
+#pragma warning disable CA1033
     OrganelleDefinition IPositionedOrganelle.Definition
     {
         get
@@ -34,6 +35,7 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable
             return Definition;
         }
     }
+#pragma warning restore CA1033
 
     [JsonIgnore]
     public IEnumerable<Hex> RotatedHexes

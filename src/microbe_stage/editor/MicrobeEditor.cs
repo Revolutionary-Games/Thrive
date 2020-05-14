@@ -981,7 +981,7 @@ public class MicrobeEditor : Node
         }
 
         // Model
-        if (toBePlacedOrganelle.DisplayScene != string.Empty && showModel)
+        if (!string.IsNullOrEmpty(toBePlacedOrganelle.DisplayScene) && showModel)
         {
             var cartesianPosition = Hex.AxialToCartesian(new Hex(q, r));
 

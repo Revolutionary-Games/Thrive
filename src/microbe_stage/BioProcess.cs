@@ -23,13 +23,13 @@ public class BioProcess : IRegistryType
     {
         if (Inputs == null || Outputs == null)
         {
-            throw new InvalidRegistryData(name, GetType().Name,
+            throw new InvalidRegistryDataException(name, GetType().Name,
                 "Empty inputs or outputs");
         }
 
         if (Inputs.Count == 0 && Outputs.Count == 0)
         {
-            throw new InvalidRegistryData(name, GetType().Name,
+            throw new InvalidRegistryDataException(name, GetType().Name,
                 "Process has no inputs AND no outputs");
         }
     }

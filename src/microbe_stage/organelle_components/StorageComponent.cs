@@ -36,7 +36,7 @@ public class StorageComponentFactory : IOrganelleComponentFactory
     {
         if (Capacity <= 0.0f)
         {
-            throw new InvalidRegistryData(name, GetType().Name,
+            throw new InvalidRegistryDataException(name, GetType().Name,
                 "Storage component capactity must be > 0.0f");
         }
     }

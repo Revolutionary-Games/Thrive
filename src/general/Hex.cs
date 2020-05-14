@@ -93,6 +93,16 @@ public struct Hex : IEquatable<Hex>
         return new Hex(a.Q - b.Q, a.R - b.R);
     }
 
+    public static bool operator ==(Hex left, Hex right)
+    {
+        return left.Equals(right);
+    }
+
+    public static bool operator !=(Hex left, Hex right)
+    {
+        return !(left == right);
+    }
+
     /// <summary>
     ///   Converts axial hex coordinates to cartesian coordinates.
     /// </summary>

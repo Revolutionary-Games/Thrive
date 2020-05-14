@@ -42,6 +42,7 @@ public class TimedWorldOperations
     /// </summary>
     public void RegisterEffect(string name, IWorldEffect effect)
     {
+        _ = name;
         effect.OnRegisterToWorld();
         effects.Add(effect);
     }

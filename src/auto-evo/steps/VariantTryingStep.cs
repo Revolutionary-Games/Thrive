@@ -23,7 +23,7 @@
 
         public int TotalSteps => (tryCurrentVariant ? 1 : 0) + variantsToTry;
 
-        public bool Step(RunResults results)
+        public bool RunStep(RunResults results)
         {
             bool ran = false;
 

@@ -53,7 +53,7 @@ public class MusicCategory : IRegistryType
     public void Check(string name)
     {
         if (TrackLists == null || TrackLists.Count < 1)
-            throw new InvalidRegistryData(name, GetType().Name, "missing track lists");
+            throw new InvalidRegistryDataException(name, GetType().Name, "missing track lists");
 
         foreach (var list in TrackLists)
             list.Check();
@@ -98,7 +98,7 @@ public class TrackList
     public void Check()
     {
         if (Tracks == null || Tracks.Count < 1)
-            throw new InvalidRegistryData("track list", GetType().Name, "missing Tracks");
+            throw new InvalidRegistryDataException("track list", GetType().Name, "missing Tracks");
 
         foreach (var track in Tracks)
             track.Check();
@@ -121,7 +121,7 @@ public class TrackList
         {
             if (string.IsNullOrEmpty(ResourcePath))
             {
-                throw new InvalidRegistryData("track", GetType().Name, "ResourcePath missing for track");
+                throw new InvalidRegistryDataException("track", GetType().Name, "ResourcePath missing for track");
             }
         }
     }

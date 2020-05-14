@@ -323,7 +323,7 @@ public class AutoEvoRun
                 }
                 else
                 {
-                    if (runSteps.Peek().Step(results))
+                    if (runSteps.Peek().RunStep(results))
                         runSteps.Dequeue();
 
                     ++completeSteps;

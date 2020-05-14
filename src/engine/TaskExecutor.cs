@@ -8,7 +8,9 @@ using Godot;
 /// <summary>
 ///   Manages running a reasonable number of parallel tasks at once
 /// </summary>
+#pragma warning disable CA1001 // singleton anyway
 public class TaskExecutor
+#pragma warning restore CA1001
 {
     private static readonly TaskExecutor SingletonInstance = new TaskExecutor();
 

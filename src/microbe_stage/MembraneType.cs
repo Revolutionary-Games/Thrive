@@ -22,7 +22,7 @@ public class MembraneType : IRegistryType
     {
         if (string.IsNullOrEmpty(NormalTexture) || string.IsNullOrEmpty(DamagedTexture))
         {
-            throw new InvalidRegistryData(name, GetType().Name,
+            throw new InvalidRegistryDataException(name, GetType().Name,
                 "Empty normal or damaged texture");
         }
 
@@ -35,7 +35,7 @@ public class MembraneType : IRegistryType
             // When exported only the .import files exist, so this check is done accordingly
             if (!directory.FileExists(resource + ".import"))
             {
-                throw new InvalidRegistryData(name, GetType().Name,
+                throw new InvalidRegistryDataException(name, GetType().Name,
                     "Membrane uses non-existant image: " + resource);
             }
         }

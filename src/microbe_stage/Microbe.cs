@@ -445,7 +445,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         if (amount == 0)
             return;
 
-        if (source == string.Empty)
+        if (string.IsNullOrEmpty(source))
             throw new ArgumentException("damage type is empty");
 
         // This seems to be triggered sometimes, even though our logic for damage seems right everywhere.
@@ -661,7 +661,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             // Try all organelles in random order and use the first one with a scene for model
             foreach (var organelle in organelles.OrderBy(_ => random.Next()))
             {
-                if (organelle.Definition.DisplayScene != string.Empty)
+                if (!string.IsNullOrEmpty(organelle.Definition.DisplayScene))
                 {
                     sceneToUse.LoadedScene = organelle.Definition.LoadedScene;
                     break;
@@ -982,7 +982,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         {
             ai.Think(delta, random, data);
         }
+#pragma warning disable CA1031 // AI needs to be boxed good
         catch (Exception e)
+#pragma warning restore CA1031
         {
             GD.PrintErr("Microbe AI failure! " + e);
         }
@@ -1120,8 +1122,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     ///     possible.
     ///   </para>
     /// </remarks>
+#pragma warning disable CA1801 // TODO: implement handling delta
     private void HandleReproduction(float delta)
     {
+#pragma warning restore CA1801
         if (allOrganellesDivided)
         {
             // Ready to reproduce already. Only the player gets here
@@ -1622,7 +1626,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     }
 
     /// <summary>
-    ///   Ejects compounds from the microbes behind position, into the enviroment
+    ///   Ejects compounds from the microbes behind position, into the environment
     /// </summary>
     /// <remarks>
     ///   <para>

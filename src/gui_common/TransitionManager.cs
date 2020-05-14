@@ -110,7 +110,7 @@ public class TransitionManager : Node
             return;
         }
 
-        if (onFinishedMethod != string.Empty)
+        if (!string.IsNullOrEmpty(onFinishedMethod))
         {
             if (!IsConnected(nameof(QueuedTransitionsFinished), target, onFinishedMethod))
             {

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using Godot;
 
@@ -584,7 +585,7 @@ public class MicrobeHUD : Node
 
         if (showMouseCoordinates)
         {
-            builder.AppendFormat("Stuff at {0:F1}, {1:F1}:\n",
+            builder.AppendFormat(CultureInfo.CurrentCulture, "Stuff at {0:F1}, {1:F1}:\n",
                 stage.Camera.CursorWorldPos.x, stage.Camera.CursorWorldPos.z);
         }
 
@@ -621,7 +622,7 @@ public class MicrobeHUD : Node
                 var compoundIcon = GUICommon.Instance.CreateCompoundIcon(readableName, 25, 25);
 
                 var compoundsText = new StringBuilder(readableName, 150);
-                compoundsText.AppendFormat(": {0:F1}", entry.Value);
+                compoundsText.AppendFormat(CultureInfo.CurrentCulture, ": {0:F1}", entry.Value);
 
                 compoundText.Text = compoundsText.ToString();
 
@@ -748,7 +749,7 @@ public class MicrobeHUD : Node
 
     private void UpdatePopulation()
     {
-        populationLabel.Text = stage.GameWorld.PlayerSpecies.Population.ToString();
+        populationLabel.Text = stage.GameWorld.PlayerSpecies.Population.ToString(CultureInfo.InvariantCulture);
     }
 
     /// <summary>

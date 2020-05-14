@@ -26,9 +26,8 @@ public class MovementComponent : ExternallyPositionedComponent
 
         // Movement force
         var microbe = organelle.ParentMicrobe;
-        var pos = microbe.Translation;
 
-        var movement = CalculateMovementForce(microbe, elapsed, pos);
+        var movement = CalculateMovementForce(microbe, elapsed);
 
         if (movement != new Vector3(0, 0, 0))
             microbe.AddMovementForce(movement);
@@ -80,7 +79,7 @@ public class MovementComponent : ExternallyPositionedComponent
     ///   applying. So we don't have to do that. But we need to take
     ///   the right amount of atp.
     /// </summary>
-    private Vector3 CalculateMovementForce(Microbe microbe, float elapsed, Vector3 position)
+    private Vector3 CalculateMovementForce(Microbe microbe, float elapsed)
     {
         // The movementDirection is the player or AI input
         Vector3 direction = microbe.MovementDirection;
@@ -142,13 +141,13 @@ public class MovementComponentFactory : IOrganelleComponentFactory
     {
         if (Momentum <= 0.0f)
         {
-            throw new InvalidRegistryData(name, GetType().Name,
+            throw new InvalidRegistryDataException(name, GetType().Name,
                 "Momentum needs to be > 0.0f");
         }
 
         if (Torque <= 0.0f)
         {
-            throw new InvalidRegistryData(name, GetType().Name,
+            throw new InvalidRegistryDataException(name, GetType().Name,
                 "Torque needs to be > 0.0f");
         }
     }

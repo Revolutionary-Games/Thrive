@@ -17,6 +17,6 @@
         /// </summary>
         /// <returns>True once final step is complete</returns>
         /// <param name="results">Results are stored here</param>
-        bool Step(RunResults results);
+        bool RunStep(RunResults results);
     }
 }

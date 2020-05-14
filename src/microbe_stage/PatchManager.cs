@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using Godot;
 
 /// <summary>
@@ -130,7 +131,7 @@ public class PatchManager
                                 Math.Min(Constants.MAX_SPAWN_DENSITY,
                                     species.Population * 5));
 
-            var name = species.ID.ToString();
+            var name = species.ID.ToString(CultureInfo.InvariantCulture);
 
             HandleSpawnHelper(chunkSpawners, name, density,
                 () =>

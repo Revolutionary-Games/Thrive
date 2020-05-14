@@ -21,7 +21,7 @@ public class PatchMapNode : MarginContainer
     private bool selected = false;
     private bool marked = false;
 
-    private Texture icon;
+    private Texture patchIcon;
 
     /// <summary>
     ///   This object does nothing with this, this is stored here to make other code simpler
@@ -30,18 +30,18 @@ public class PatchMapNode : MarginContainer
 
     public Action<PatchMapNode> SelectCallback { get; set; }
 
-    public Texture Icon
+    public Texture PatchIcon
     {
         get
         {
-            return icon;
+            return patchIcon;
         }
         set
         {
-            if (icon == value)
+            if (patchIcon == value)
                 return;
 
-            icon = value;
+            patchIcon = value;
             UpdateIcon();
         }
     }
@@ -144,9 +144,9 @@ public class PatchMapNode : MarginContainer
 
     private void UpdateIcon()
     {
-        if (Icon == null || iconRect == null)
+        if (PatchIcon == null || iconRect == null)
             return;
 
-        iconRect.Texture = Icon;
+        iconRect.Texture = PatchIcon;
     }
 }

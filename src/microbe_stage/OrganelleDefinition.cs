@@ -216,7 +216,7 @@ public class OrganelleDefinition : IRegistryType
     {
         if (Components == null)
         {
-            throw new InvalidRegistryData(name, GetType().Name,
+            throw new InvalidRegistryDataException(name, GetType().Name,
                 "No components specified");
         }
 
@@ -224,43 +224,43 @@ public class OrganelleDefinition : IRegistryType
 
         if (Components.Count < 1)
         {
-            throw new InvalidRegistryData(name, GetType().Name,
+            throw new InvalidRegistryDataException(name, GetType().Name,
                 "No components specified");
         }
 
         if (Mass <= 0.0f)
         {
-            throw new InvalidRegistryData(name, GetType().Name,
+            throw new InvalidRegistryDataException(name, GetType().Name,
                 "Mass is unset");
         }
 
         if (Mass <= 0.0f)
         {
-            throw new InvalidRegistryData(name, GetType().Name,
+            throw new InvalidRegistryDataException(name, GetType().Name,
                 "Mass is unset");
         }
 
-        if (Name == string.Empty)
+        if (string.IsNullOrEmpty(Name))
         {
-            throw new InvalidRegistryData(name, GetType().Name,
+            throw new InvalidRegistryDataException(name, GetType().Name,
                 "Name is not set");
         }
 
         if (Gene.Length != 1)
         {
-            throw new InvalidRegistryData(name, GetType().Name,
+            throw new InvalidRegistryDataException(name, GetType().Name,
                 "Gene needs to be 1 character long");
         }
 
         if (InitialComposition == null || InitialComposition.Count < 1)
         {
-            throw new InvalidRegistryData(name, GetType().Name,
+            throw new InvalidRegistryDataException(name, GetType().Name,
                 "InitialComposition is not set");
         }
 
         if (Hexes == null || Hexes.Count < 1)
         {
-            throw new InvalidRegistryData(name, GetType().Name,
+            throw new InvalidRegistryDataException(name, GetType().Name,
                 "Hexes is empty");
         }
 
@@ -280,7 +280,7 @@ public class OrganelleDefinition : IRegistryType
 
             if (duplicate)
             {
-                throw new InvalidRegistryData(name, GetType().Name,
+                throw new InvalidRegistryDataException(name, GetType().Name,
                     "Duplicate hex position");
             }
         }
@@ -295,7 +295,7 @@ public class OrganelleDefinition : IRegistryType
         RunnableProcesses = new List<TweakedProcess>();
 
         // Preload the scene for instantiating in microbes
-        if (DisplayScene != string.Empty)
+        if (!string.IsNullOrEmpty(DisplayScene))
         {
             LoadedScene = GD.Load<PackedScene>(DisplayScene);
         }
