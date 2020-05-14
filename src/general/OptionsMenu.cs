@@ -219,7 +219,7 @@ public class OptionsMenu : Control
     }
 
     /// <summary>
-    ///   Converts the slider value (0-100) to a DB adjustement for a sound channel
+    ///   Converts the slider value (0-100) to a DB adjustment for a sound channel
     /// </summary>
     private float ConvertSoundBarToDb(float value)
     {
