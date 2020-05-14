@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/microbe_stage/particles/Embers.tres" type="Material" id=1]
+[ext_resource path="res://assets/textures/particlefuzzy.png" type="Texture" id=2]
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_transparent = true
+flags_unshaded = true
+flags_ensure_correct_normals = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_color = Color( 1, 0.490196, 0.0901961, 1 )
+albedo_texture = ExtResource( 2 )
+
+[sub_resource type="QuadMesh" id=2]
+
+[node name="Vent" type="Particles"]
+material_override = SubResource( 1 )
+cast_shadow = 0
+amount = 60
+lifetime = 5.0
+preprocess = 5.0
+randomness = 0.5
+visibility_aabb = AABB( -99.0033, -25.7145, -118.539, 198.007, 51.429, 237.077 )
+process_material = ExtResource( 1 )
+draw_pass_1 = SubResource( 2 )
