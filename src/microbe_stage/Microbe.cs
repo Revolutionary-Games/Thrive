@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -633,7 +634,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
                 Mass = 1.0f,
                 Radius = 1.0f,
                 Size = 3.0f,
-                VentAmount = 3,
+                VentAmount = 0.1f,
 
                 // Add compounds
                 Compounds = new Dictionary<string,
@@ -653,18 +654,22 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
                 chunkType.Compounds[entry.Key] = compoundValue;
             }
 
-            // Grab random organelle from cell and use that for model
             chunkType.Meshes = new List<Biome.ChunkConfiguration.ChunkScene>();
-
-            var organelleToUse = organelles.Organelles.Random(random).Definition;
 
             var sceneToUse = new Biome.ChunkConfiguration.ChunkScene();
 
-            if (organelleToUse.DisplayScene != string.Empty)
+            // Try all organelles in random order and use the first one with a scene for model
+            foreach (var organelle in organelles.OrderBy(_ => random.Next()))
             {
-                sceneToUse.LoadedScene = organelleToUse.LoadedScene;
+                if (organelle.Definition.DisplayScene != string.Empty)
+                {
+                    sceneToUse.LoadedScene = organelle.Definition.LoadedScene;
+                    break;
+                }
             }
-            else
+
+            // If no organelles have a scene, use mitochondrion as fallback
+            if (sceneToUse.LoadedScene == null)
             {
                 sceneToUse.LoadedScene = SimulationParameters.Instance.GetOrganelleType(
                     "mitochondrion").LoadedScene;

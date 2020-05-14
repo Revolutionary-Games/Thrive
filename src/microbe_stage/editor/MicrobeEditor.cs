@@ -809,6 +809,7 @@ public class MicrobeEditor : Node
         // bar can take it into account (the bar is updated when
         // organelles are added)
         Membrane = species.MembraneType;
+        Rigidity = species.MembraneRigidity;
 
         // Get the species organelles to be edited. This also updates the placeholder hexes
         foreach (var organelle in species.Organelles.Organelles)
@@ -832,7 +833,6 @@ public class MicrobeEditor : Node
         }
 
         NewName = species.FormattedName;
-        Rigidity = species.MembraneRigidity;
 
         gui.SetSpeciesInfo(NewName, Membrane, species.Colour, Rigidity);
 
