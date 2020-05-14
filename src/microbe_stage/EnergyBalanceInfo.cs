@@ -17,6 +17,7 @@ public class EnergyBalanceInfo
 
     public float TotalProduction { get; set; }
     public float TotalConsumption { get; set; }
+    public float TotalConsumptionStationary { get; set; }
     public float FinalBalance { get; set; }
     public float FinalBalanceStationary { get; set; }
 

@@ -44,12 +44,12 @@ public class ProcessSystem
     /// <summary>
     ///   Computes the energy balance for the given organelles in biome
     /// </summary>
-    public static EnergyBalanceInfo ComputeEnergyBalance(
-        IEnumerable<OrganelleDefinition> organelles, Biome biome, MembraneType membrane)
+    public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleDefinition> organelles, Biome biome,
+        MembraneType membrane)
     {
         var result = new EnergyBalanceInfo();
 
-        float totalATPProduction = 0.0f;
+        float processATPProduction = 0.0f;
         float processATPConsumption = 0.0f;
         float movementATPConsumption = 0.0f;
 
@@ -79,7 +79,7 @@ public class ProcessSystem
                     {
                         var amount = processData.Outputs[atp.InternalName].Amount;
 
-                        totalATPProduction += amount;
+                        processATPProduction += amount;
 
                         result.AddProduction(organelle.Name, amount);
                     }
@@ -92,6 +92,7 @@ public class ProcessSystem
                 var amount = Constants.FLAGELLA_ENERGY_COST;
 
                 movementATPConsumption += amount;
+                result.Flagella += amount;
 
                 result.AddConsumption(organelle.Name, amount);
             }
@@ -102,28 +103,21 @@ public class ProcessSystem
 
         // Add movement consumption together
         result.BaseMovement = Constants.BASE_MOVEMENT_ATP_COST * hexCount;
-        var totalMovementConsumption =
-            movementATPConsumption + result.BaseMovement;
+        var totalMovementConsumption = movementATPConsumption + result.BaseMovement;
 
         // Add osmoregulation
         result.Osmoregulation = Constants.ATP_COST_FOR_OSMOREGULATION * hexCount *
-                                     membrane.OsmoregulationFactor;
+            membrane.OsmoregulationFactor;
 
         result.AddConsumption("osmoregulation", result.Osmoregulation);
 
         // Compute totals
-        var totalATPConsumption =
-            processATPConsumption + totalMovementConsumption + result.Osmoregulation;
+        result.TotalProduction = processATPProduction;
+        result.TotalConsumptionStationary = processATPConsumption + result.Osmoregulation;
+        result.TotalConsumption = result.TotalConsumptionStationary + totalMovementConsumption;
 
-        var totalBalanceStationary =
-            totalATPProduction - totalATPConsumption;
-        var totalBalance = totalBalanceStationary - totalMovementConsumption;
-
-        // Finish building the result object
-        result.TotalProduction = totalATPProduction;
-        result.TotalConsumption = totalATPConsumption;
-        result.FinalBalance = totalBalance;
-        result.FinalBalanceStationary = totalBalanceStationary;
+        result.FinalBalance = result.TotalProduction - result.TotalConsumption;
+        result.FinalBalanceStationary = result.TotalProduction - result.TotalConsumptionStationary;
 
         return result;
     }
@@ -132,7 +126,7 @@ public class ProcessSystem
     {
         if (biome == null)
         {
-            GD.PrintErr("ProcesSystem has no biome set");
+            GD.PrintErr("ProcessSystem has no biome set");
             return;
         }
 
@@ -148,7 +142,7 @@ public class ProcessSystem
             var task = new Task(() =>
             {
                 for (int a = start;
-                     a < start + Constants.PROCESS_OBJECTS_PER_TASK && a < nodes.Count; ++a)
+                    a < start + Constants.PROCESS_OBJECTS_PER_TASK && a < nodes.Count; ++a)
                 {
                     ProcessNode(nodes[a] as IProcessable, delta);
                 }
@@ -182,6 +176,7 @@ public class ProcessSystem
     {
         if (!biome.Compounds.ContainsKey(compoundName))
             return 0;
+
         return biome.Compounds[compoundName].Dissolved;
     }
 
@@ -287,7 +282,7 @@ public class ProcessSystem
 
             // Loop through to make sure you can follow through with your
             // whole process so nothing gets wasted as that would be
-            // frusterating, its two more for loops, yes but it should only
+            // frustrating, its two more for loops, yes but it should only
             // really be looping at max two or three times anyway. also make
             // sure you wont run out of space when you do add the compounds.
             // Input
@@ -338,7 +333,7 @@ public class ProcessSystem
                 var outputAdded = entry.Value * process.Rate * delta * environmentModifier;
 
                 // If no space we can't do the process, and if environmental
-                // right now this isnt released anywhere
+                // right now this isn't released anywhere
                 if (simulation.GetCompound(entry.Key).IsEnvironmental)
                 {
                     continue;
@@ -352,39 +347,41 @@ public class ProcessSystem
 
             // Only carry out this process if you have all the required
             // ingredients and enough space for the outputs
-            if (canDoProcess)
+            if (!canDoProcess)
+                continue;
+
+            // Inputs.
+            foreach (var entry in processData.Inputs)
             {
-                // Inputs.
-                foreach (var entry in processData.Inputs)
-                {
-                    // TODO: It might be faster to just check if there is any
-                    // dissolved amount of this compound or not
-                    if (simulation.GetCompound(entry.Key).IsEnvironmental)
-                        continue;
+                // TODO: It might be faster to just check if there is any
+                // dissolved amount of this compound or not
+                if (simulation.GetCompound(entry.Key).IsEnvironmental)
+                    continue;
 
-                    // Note: the enviroment modifier is applied here, but not
-                    // when checking if we have enough compounds. So sometimes
-                    // we might not run a process when we actually would have
-                    // enough compounds to run it
-                    var inputRemoved = entry.Value * process.Rate * delta *
-                        environmentModifier;
+                // Note: the environment modifier is applied here, but not
+                // when checking if we have enough compounds. So sometimes
+                // we might not run a process when we actually would have
+                // enough compounds to run it.
+                // TODO: the reverse is also probably true, ie. we can run a process we shouldn't be able to due to the
+                // environmental modifier boosting its speed
+                var inputRemoved = entry.Value * process.Rate * delta *
+                    environmentModifier;
 
-                    // This should always succeed (due to the earlier check) so
-                    // it is always assumed here that the process succeeded
-                    bag.TakeCompound(entry.Key, inputRemoved);
-                }
+                // This should always succeed (due to the earlier check) so
+                // it is always assumed here that the process succeeded
+                bag.TakeCompound(entry.Key, inputRemoved);
+            }
 
-                // Outputs.
-                foreach (var entry in processData.Outputs)
-                {
-                    if (simulation.GetCompound(entry.Key).IsEnvironmental)
-                        continue;
+            // Outputs.
+            foreach (var entry in processData.Outputs)
+            {
+                if (simulation.GetCompound(entry.Key).IsEnvironmental)
+                    continue;
 
-                    var outputGenerated = entry.Value * process.Rate * delta *
-                        environmentModifier;
+                var outputGenerated = entry.Value * process.Rate * delta *
+                    environmentModifier;
 
-                    bag.AddCompound(entry.Key, outputGenerated);
-                }
+                bag.AddCompound(entry.Key, outputGenerated);
             }
         }
 
