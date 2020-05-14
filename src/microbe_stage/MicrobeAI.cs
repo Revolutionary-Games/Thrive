@@ -42,7 +42,7 @@ public class MicrobeAI
     private List<Microbe> preyMicrobes = new List<Microbe>();
     private List<FloatingChunk> chunkList = new List<FloatingChunk>();
 
-    private LIFESTATE lifeState = LIFESTATE.NEUTRAL_STATE;
+    private Lifestate lifeState = Lifestate.NEUTRAL_STATE;
 
     public MicrobeAI(Microbe microbe)
     {
@@ -55,7 +55,7 @@ public class MicrobeAI
     /// <summary>
     ///   Enum for state machine
     /// </summary>
-    private enum LIFESTATE
+    private enum Lifestate
     {
         NEUTRAL_STATE,
         GATHERING_STATE,
@@ -105,11 +105,11 @@ public class MicrobeAI
             boredom = 0;
             if (RollCheck(SpeciesActivity, 400, random))
             {
-                lifeState = LIFESTATE.PLANTLIKE_STATE;
+                lifeState = Lifestate.PLANTLIKE_STATE;
             }
             else
             {
-                lifeState = LIFESTATE.NEUTRAL_STATE;
+                lifeState = Lifestate.NEUTRAL_STATE;
             }
         }
         else
@@ -119,11 +119,11 @@ public class MicrobeAI
 
         switch (lifeState)
         {
-            case LIFESTATE.PLANTLIKE_STATE:
+            case Lifestate.PLANTLIKE_STATE:
                 // This ai would ideally just sit there, until it sees a nice opportunity pop-up unlike neutral,
                 // which wanders randomly (has a gather chance) until something interesting pops up
                 break;
-            case LIFESTATE.NEUTRAL_STATE:
+            case Lifestate.NEUTRAL_STATE:
             {
                 // Before these would run every time, now they just run for the states that need them.
                 boredom = 0;
@@ -154,12 +154,12 @@ public class MicrobeAI
                 break;
             }
 
-            case LIFESTATE.GATHERING_STATE:
+            case Lifestate.GATHERING_STATE:
             {
                 // In this state you gather compounds
                 if (RollCheck(SpeciesOpportunism, 400.0f, random))
                 {
-                    lifeState = LIFESTATE.SCAVENGING_STATE;
+                    lifeState = Lifestate.SCAVENGING_STATE;
                     boredom = 0;
                 }
                 else
@@ -170,7 +170,7 @@ public class MicrobeAI
                 break;
             }
 
-            case LIFESTATE.FLEEING_STATE:
+            case Lifestate.FLEEING_STATE:
             {
                 if (predator == null)
                 {
@@ -186,19 +186,19 @@ public class MicrobeAI
                 {
                     if (RollCheck(SpeciesActivity, 400, random))
                     {
-                        lifeState = LIFESTATE.PLANTLIKE_STATE;
+                        lifeState = Lifestate.PLANTLIKE_STATE;
                         boredom = 0;
                     }
                     else
                     {
-                        lifeState = LIFESTATE.NEUTRAL_STATE;
+                        lifeState = Lifestate.NEUTRAL_STATE;
                     }
                 }
 
                 break;
             }
 
-            case LIFESTATE.PREDATING_STATE:
+            case Lifestate.PREDATING_STATE:
             {
                 // Peg your prey
                 if (!preyPegged)
@@ -219,19 +219,19 @@ public class MicrobeAI
                 {
                     if (RollCheck(SpeciesActivity, 400, random))
                     {
-                        lifeState = LIFESTATE.PLANTLIKE_STATE;
+                        lifeState = Lifestate.PLANTLIKE_STATE;
                         boredom = 0;
                     }
                     else
                     {
-                        lifeState = LIFESTATE.NEUTRAL_STATE;
+                        lifeState = Lifestate.NEUTRAL_STATE;
                     }
                 }
 
                 break;
             }
 
-            case LIFESTATE.SCAVENGING_STATE:
+            case Lifestate.SCAVENGING_STATE:
             {
                 if (targetChunk == null)
                 {
@@ -246,12 +246,12 @@ public class MicrobeAI
                 {
                     if (!RollCheck(SpeciesOpportunism, 400, random))
                     {
-                        lifeState = LIFESTATE.NEUTRAL_STATE;
+                        lifeState = Lifestate.NEUTRAL_STATE;
                         boredom = 0;
                     }
                     else
                     {
-                        lifeState = LIFESTATE.SCAVENGING_STATE;
+                        lifeState = Lifestate.SCAVENGING_STATE;
                     }
                 }
 
@@ -274,7 +274,7 @@ public class MicrobeAI
            because we may need more of these very specific things in the future for things like latching onto rocks */
         // If you are predating and not being engulfed, don't run away until you switch state (keeps predators chasing
         // you even when their predators are nearby) Its not a good survival strategy but it makes the game more fun.
-        if (predator != null && (lifeState != LIFESTATE.PREDATING_STATE || microbe.IsBeingEngulfed))
+        if (predator != null && (lifeState != Lifestate.PREDATING_STATE || microbe.IsBeingEngulfed))
         {
             try
             {
@@ -283,14 +283,14 @@ public class MicrobeAI
                     if ((microbe.Translation - predator.Translation).LengthSquared() <=
                         (2000 + ((predator.HexCount * 8.0f) * 2)))
                     {
-                        if (lifeState != LIFESTATE.FLEEING_STATE)
+                        if (lifeState != Lifestate.FLEEING_STATE)
                         {
                             // Reset target position for faster fleeing
                             hasTargetPosition = false;
                         }
 
                         boredom = 0;
-                        lifeState = LIFESTATE.FLEEING_STATE;
+                        lifeState = Lifestate.FLEEING_STATE;
                     }
                 }
                 else
@@ -524,7 +524,7 @@ public class MicrobeAI
 
             if (RollCheck(SpeciesOpportunism, 400.0f, random))
             {
-                lifeState = LIFESTATE.SCAVENGING_STATE;
+                lifeState = Lifestate.SCAVENGING_STATE;
                 boredom = 0;
             }
         }
@@ -715,7 +715,7 @@ public class MicrobeAI
     {
         if (RollCheck(SpeciesOpportunism, 500.0f, random))
         {
-            lifeState = LIFESTATE.SCAVENGING_STATE;
+            lifeState = Lifestate.SCAVENGING_STATE;
             boredom = 0;
         }
         else
@@ -733,13 +733,13 @@ public class MicrobeAI
                         moveFocused = RollCheck(SpeciesFocus, 500.0f, random);
                     }
 
-                    lifeState = LIFESTATE.PREDATING_STATE;
+                    lifeState = Lifestate.PREDATING_STATE;
                 }
                 else if (random.Next(0.0f, SpeciesAggression) <
                     random.Next(0.0f, SpeciesFear) &&
                     (predatoryMicrobes.Count > 0))
                 {
-                    lifeState = LIFESTATE.FLEEING_STATE;
+                    lifeState = Lifestate.FLEEING_STATE;
                 }
                 else if (SpeciesAggression == SpeciesFear &&
                     (preyMicrobes.Count > 0))
@@ -752,11 +752,11 @@ public class MicrobeAI
                         moveFocused = RollCheck(SpeciesFocus, 500.0f, random);
                     }
 
-                    lifeState = LIFESTATE.PREDATING_STATE;
+                    lifeState = Lifestate.PREDATING_STATE;
                 }
                 else if (RollCheck(SpeciesFocus, 500.0f, random) && random.Next(0, 10) <= 2)
                 {
-                    lifeState = LIFESTATE.GATHERING_STATE;
+                    lifeState = Lifestate.GATHERING_STATE;
                 }
             }
             else if (prey != null)
@@ -768,32 +768,32 @@ public class MicrobeAI
                     moveFocused = RollCheck(SpeciesFocus, 500.0f, random);
                 }
 
-                lifeState = LIFESTATE.PREDATING_STATE;
+                lifeState = Lifestate.PREDATING_STATE;
             }
             else if (predator != null)
             {
-                lifeState = LIFESTATE.FLEEING_STATE;
+                lifeState = Lifestate.FLEEING_STATE;
 
                 // I want gathering to trigger more often so i added this here.
                 // Because even with predators around you should still graze
                 if (RollCheck(SpeciesFocus, 500.0f, random) && random.Next(0, 10) <= 5)
                 {
-                    lifeState = LIFESTATE.GATHERING_STATE;
+                    lifeState = Lifestate.GATHERING_STATE;
                 }
             }
             else if (targetChunk != null)
             {
-                lifeState = LIFESTATE.SCAVENGING_STATE;
+                lifeState = Lifestate.SCAVENGING_STATE;
             }
             else if (random.Next(0, 10) < 8)
             {
                 // Every 2 intervals || so
-                lifeState = LIFESTATE.GATHERING_STATE;
+                lifeState = Lifestate.GATHERING_STATE;
             }
             else if (RollCheck(SpeciesActivity, 400.0f, random))
             {
                 // Every 10 intervals || so
-                lifeState = LIFESTATE.PLANTLIKE_STATE;
+                lifeState = Lifestate.PLANTLIKE_STATE;
             }
         }
     }
