@@ -21,8 +21,10 @@ public class PatchMap
         }
         set
         {
+            // New patch must be part of this map
             if (!ContainsPatch(value))
                 throw new ArgumentException("cannot set current patch to one not in map");
+
             currentPatch = value;
         }
     }

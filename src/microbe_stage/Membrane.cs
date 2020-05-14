@@ -87,6 +87,7 @@ public class Membrane : MeshInstance
             value = value.Clamp(0.0f, 1.0f);
             if (value == HealthFraction)
                 return;
+
             healthFraction = value;
             if (MaterialToEdit != null)
                 ApplyHealth();
@@ -132,14 +133,20 @@ public class Membrane : MeshInstance
         }
         set
         {
-            float saturation;
-            float brightness;
-            float hue;
-            value.ToHsv(out hue, out saturation, out brightness);
+            // Desaturate it here so it looks nicer (could implement as method that
+            // could be called i suppose)
+
+            // According to stack overflow HSV and HSB are the same thing
+            value.ToHsv(out var hue, out var saturation, out var brightness);
+
             value = Color.FromHsv(hue, saturation * 0.75f, brightness);
+
             if (tint == value)
                 return;
+
             tint = value;
+
+            // If we already have created a material we need to re-apply it
             if (MaterialToEdit != null)
                 ApplyTint();
         }

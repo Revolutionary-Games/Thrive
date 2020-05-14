@@ -69,10 +69,7 @@ public abstract class Species : ICloneable
     public bool PlayerSpecies { get; private set; } = false;
 
     [JsonIgnore]
-    public string FormattedName
-    {
-        get { return Genus + " " + Epithet; }
-    }
+    public string FormattedName => Genus + " " + Epithet;
 
     [JsonIgnore]
     public string FormattedIdentifier => FormattedName + $" ({ID:n})";

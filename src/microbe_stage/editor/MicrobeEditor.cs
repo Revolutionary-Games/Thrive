@@ -58,6 +58,7 @@ public class MicrobeEditor : Node
     ///   This is used to keep track of used hover organelles
     /// </summary>
     private int usedHoverHex = 0;
+
     private int usedHoverOrganelle = 0;
 
     /// <summary>
@@ -138,6 +139,7 @@ public class MicrobeEditor : Node
         {
             if (value < 0 || value > 3)
                 throw new ArgumentException("invalid value for symmetry");
+
             symmetry = value;
         }
     }
@@ -1172,7 +1174,7 @@ public class MicrobeEditor : Node
         // 2 - you put organelle that need nucleus and you don't have it
         if ((organelle.Definition.Name == "nucleus" && HasNucleus) ||
             (organelle.Definition.ProkaryoteChance == 0 && !HasNucleus
-            && organelle.Definition.ChanceToCreate != 0))
+                && organelle.Definition.ChanceToCreate != 0))
             return;
 
         var action = new EditorAction(this, organelle.Definition.MPCost,
