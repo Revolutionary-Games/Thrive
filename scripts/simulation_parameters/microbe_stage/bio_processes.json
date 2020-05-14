@@ -1,170 +1,132 @@
 {
     "respiration": {
         "name": "Respiration",
-
         "inputs": {
-            "oxygen": 1.0,
-            "glucose": 0.5
+            "oxygen": 1,
+            "glucose": 0.1
         },
-
         "outputs": {
-           "atp": 50.0
+            "atp": 60
         }
     },
-	
-	"glycolysis": {
+    "glycolysis": {
         "name": "Glycolysis",
-
         "inputs": {
-            "glucose": 0.125
+            "glucose": 0.025
         },
-
         "outputs": {
-            "atp": 5.0
+            "atp": 2
         }
     },
-    
-	"glycolysis_cytoplasm": {
+    "glycolysis_cytoplasm": {
         "name": "Cytoplasm Glycolysis",
-
         "inputs": {
-            "glucose": 0.06
+            "glucose": 0.012
         },
-
         "outputs": {
-            "atp": 5.0
+            "atp": 4
         }
     },
-    
     "photosynthesis": {
         "name": "Photosynthesis",
-
         "inputs": {
             "carbondioxide": 0.09,
-            "sunlight": 1.0
+            "sunlight": 1
         },
-
         "outputs": {
-            "glucose": 0.25
+            "glucose": 0.08
         }
     },
-
     "oxytoxySynthesis": {
         "name": "Oxytoxy Synthesis",
-
         "inputs": {
-            "oxygen": 1.0,
-            "atp": 5.0
+            "oxygen": 1,
+            "atp": 5
         },
-
         "outputs": {
-            "oxytoxy": 5.0
+            "oxytoxy": 1.5
         }
     },
-    
     "bacterial_oxytoxySynthesis": {
         "name": "Oxytoxy Synthesis",
-
         "inputs": {
             "oxygen": 0.21,
-            "atp": 5.0
+            "atp": 5
         },
-
         "outputs": {
-            "oxytoxy": 0.5
+            "oxytoxy": 0.15
         }
     },
-	
-	"chemoSynthesis": {
+    "chemoSynthesis": {
         "name": "Chemo Synthesis",
-
         "inputs": {
             "carbondioxide": 0.09,
-            "hydrogensulfide": 0.15
+            "hydrogensulfide": 0.03
         },
-
         "outputs": {
-            "glucose": 0.2
+            "glucose": 0.04
         }
     },
-    
-	"bacterial_ChemoSynthesis": {
+    "bacterial_ChemoSynthesis": {
         "name": "Chemo Synthesis",
-
         "inputs": {
             "carbondioxide": 0.09,
-            "hydrogensulfide": 0.15
+            "hydrogensulfide": 0.03
         },
-
         "outputs": {
-            "glucose": 0.15
+            "glucose": 0.03
         }
     },
-    
     "nitrogenFixing": {
         "name": "Aerobic Nitrogen Fixing",
-
         "inputs": {
             "oxygen": 0.21,
-            "nitrogen": 1.0,
+            "nitrogen": 1,
             "atp": 2.5
         },
-
         "outputs": {
-            "ammonia": 0.125
+            "ammonia": 0.025
         }
     },
-    
     "nitrogenaseReaction": {
         "name": "Anaerobic Nitrogen Fixation",
-
         "inputs": {
-            "nitrogen": 1.0,
+            "nitrogen": 1,
             "atp": 2.5
         },
-
         "outputs": {
-            "ammonia": 0.08
+            "ammonia": 0.016
         }
     },
-    
     "protein_respiration": {
         "name": "Respiration",
-
         "inputs": {
-            "oxygen": 1.0,
-            "glucose": 1.0
+            "oxygen": 1,
+            "glucose": 0.2
         },
-
         "outputs": {
-            "atp": 38.0
+            "atp": 40
         }
     },
-    
     "chromatophore_photosynthesis": {
         "name": "Photosynthesis",
-
         "inputs": {
             "carbondioxide": 0.09,
-            "sunlight": 1.0
+            "sunlight": 1
         },
-
         "outputs": {
-            "glucose": 0.06
+            "glucose": 0.02
         }
     },
-    
     "iron_chemolithoautotrophy": {
         "name": "Iron Chemolithoautotrophy",
-
         "inputs": {
             "carbondioxide": 0.09,
             "oxygen": 0.21,
             "iron": 0.12
         },
-
         "outputs": {
-            "atp": 10.0
+            "atp": 10
         }
     }
 }
