@@ -279,7 +279,7 @@ public class Membrane : MeshInstance
     /// </summary>
     private static Vector2 GetMovement(Vector2 target, Vector2 closestOrganelle)
     {
-        float power = Mathf.Pow(2.7f, (-(target - closestOrganelle).Length()) / 10) / 50;
+        float power = Mathf.Pow(2.7f, -(target - closestOrganelle).Length() / 10) / 50;
 
         return (closestOrganelle - target) * power;
     }
@@ -503,7 +503,7 @@ public class Membrane : MeshInstance
         float multiplier = 2.0f * Mathf.Pi;
         var center = new Vector2(0.5f, 0.5f);
 
-        // cell walls need obvious inner/outer memrbranes (we can worry
+        // cell walls need obvious inner/outer membranes (we can worry
         // about chitin later)
         if (Type.CellWall)
         {
@@ -526,7 +526,7 @@ public class Membrane : MeshInstance
                 vertices2D[i % end].y);
 
             uvs[writeIndex] = center +
-                (new Vector2(Mathf.Cos(currentRadians), Mathf.Sin(currentRadians)) / 2);
+                new Vector2(Mathf.Cos(currentRadians), Mathf.Sin(currentRadians)) / 2;
 
             ++writeIndex;
         }

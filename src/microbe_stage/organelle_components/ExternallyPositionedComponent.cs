@@ -51,7 +51,7 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
                 angle = angle + (2 * Mathf.Pi);
             }
 
-            angle = ((angle * 180) / Mathf.Pi - 90) % 360;
+            angle = (angle * 180 / Mathf.Pi - 90) % 360;
 
             var rotation = MathUtils.CreateRotationForExternal(angle);
 

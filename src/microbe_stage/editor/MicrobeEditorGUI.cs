@@ -429,9 +429,9 @@ public class MicrobeEditorGUI : Node
         atpConsumptionBar.MaxValue = maxValue;
         atpConsumptionBar.Value = energyBalance.TotalConsumption;
 
-        var atpProductionBarProgressLength = (float)((atpProductionBar.RectSize.x * atpProductionBar.Value) /
+        var atpProductionBarProgressLength = (float)(atpProductionBar.RectSize.x * atpProductionBar.Value /
             atpProductionBar.MaxValue);
-        var atpConsumptionBarProgressLength = (float)((atpConsumptionBar.RectSize.x * atpConsumptionBar.Value) /
+        var atpConsumptionBarProgressLength = (float)(atpConsumptionBar.RectSize.x * atpConsumptionBar.Value /
             atpConsumptionBar.MaxValue);
 
         atpProductionLabel.RectSize = new Vector2(atpProductionBarProgressLength, 18);

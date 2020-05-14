@@ -228,7 +228,7 @@ public class OptionsMenu : Control
 
     private float ConvertDBToSoundBar(float value)
     {
-        return (value * AUDIO_BAR_SCALE) + 100;
+        return value * AUDIO_BAR_SCALE + 100;
     }
 
     private int CloudIntervalToIndex(float interval)

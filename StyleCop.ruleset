@@ -70,34 +70,73 @@
   </Rules>
   <Rules AnalyzerId="StyleCop.Analyzers" RuleNamespace="StyleCop.Analyzers">
     <Rule Id="SA0001" Action="None" /> <!-- XML comments -->
+    <Rule Id="SA1028" Action="Warning" /> <!-- No trailing whitespace -->
+    <Rule Id="SA1100" Action="Warning" /> <!-- DoNotPrefixCallsWithBaseUnlessLocalImplementationExists -->
     <Rule Id="SA1101" Action="None" /> <!-- Prefix local calls with this -->
-    <Rule Id="SA1108" Action="None" /> <!-- Block statements should not contain embedded comments -->
+    <Rule Id="SA1106" Action="Warning" /> <!-- CodeMustNotContainEmptyStatements -->
+    <Rule Id="SA1107" Action="Warning" /> <!-- Single statement on line -->
+    <Rule Id="SA1108" Action="Warning" /> <!-- Block statements should not contain embedded comments -->
+    <Rule Id="SA1110" Action="Warning" /> <!-- Opening parenthesis on the declaration line -->
+    <Rule Id="SA1111" Action="Warning" /> <!-- Closing parenthesis on the same line as last argument -->
+    <Rule Id="SA1112" Action="Warning" /> <!-- When empty closing parenthesis on the same line -->
+    <Rule Id="SA1113" Action="Warning" /> <!-- Comma on same line as previous parameter -->
+    <Rule Id="SA1114" Action="Warning" /> <!-- ParameterListMustFollowDeclaration -->
+    <Rule Id="SA1115" Action="Warning" /> <!-- ParameterMustFollowComma -->
     <Rule Id="SA1116" Action="None" /> <!-- Split parameters should start on line after declaration -->
     <Rule Id="SA1117" Action="None" /> <!-- Parameters should be on same line or separate lines -->
     <Rule Id="SA1118" Action="None" /> <!-- Parameter should not span multiple lines -->
+    <Rule Id="SA1120" Action="Warning" /> <!-- Empty comment -->
     <Rule Id="SA1122" Action="Warning" /> <!-- Use string.Empty for empty strings -->
+    <Rule Id="SA1123" Action="Warning" /> <!-- No regions in elements -->
     <Rule Id="SA1127" Action="Warning" /> <!-- Generic type constraints should be on their own line -->
     <Rule Id="SA1128" Action="None" /> <!-- Put constructor initializers on their own line -->
-    <Rule Id="SA1132" Action="None" /> <!-- Do not combine fields -->
-    <Rule Id="SA1133" Action="None" /> <!-- Do not combine attributes -->
+    <Rule Id="SA1129" Action="Warning" /> <!-- Wrong default syntax -->
+    <Rule Id="SA1130" Action="Warning" /> <!-- UseLambdaSyntax -->
+    <Rule Id="SA1131" Action="Warning" /> <!-- UseReadableConditions -->
+    <Rule Id="SA1132" Action="Warning" /> <!-- Do not combine fields -->
+    <Rule Id="SA1133" Action="Warning" /> <!-- Do not combine attributes -->
+    <Rule Id="SA1134" Action="Warning" /> <!-- attributes on separate lines -->
+    <Rule Id="SA1135" Action="Warning" /> <!-- qualify using directives -->
+    <Rule Id="SA1136" Action="Warning" /> <!-- no multiple enum values on the same line -->
     <Rule Id="SA1137" Action="Warning" /> <!-- Elements should have the same indentation -->
+    <Rule Id="SA1141" Action="Warning" /> <!-- Use tuple syntax -->
+    <Rule Id="SA1142" Action="Warning" /> <!-- Refer to tuple elements by name -->
     <Rule Id="SA1200" Action="Warning" /> <!-- Usings should be in a namespace -->
     <Rule Id="SA1201" Action="Warning" /> <!-- Elements should appear in the correct order -->
     <Rule Id="SA1214" Action="Warning" /> <!-- Readonly fields should appear before non-readonly fields -->
-    <Rule Id="SA1309" Action="None" /> <!-- Field names should not begin with underscore -->
-    <Rule Id="SA1310" Action="None" /> <!-- Field names should not contain an underscore -->    
+    <Rule Id="SA1309" Action="Warning" /> <!-- Field names should not begin with underscore -->
+    <Rule Id="SA1310" Action="Warning" /> <!-- Field names should not contain an underscore -->
+    <Rule Id="SA1311" Action="Warning" /> <!-- StaticReadonlyFieldsMustBeginWithUpperCaseLetter -->
+    <Rule Id="SA1312" Action="Warning" /> <!-- variable needs to begin with lowercase -->
+    <Rule Id="SA1313" Action="Warning" /> <!-- parameter needs to begin with lowercase -->
+    <Rule Id="SA1316" Action="Warning" /> <!-- Tuple value name casing -->
     <Rule Id="SA1401" Action="None" /> <!-- Fields should be private -->
     <Rule Id="SA1402" Action="None" /> <!-- File should contain one type -->
+    <Rule Id="SA1403" Action="Warning" /> <!-- Single namespace -->
     <Rule Id="SA1407" Action="None" /> <!-- Arithmetic expressions should declare precedence -->
+    <Rule Id="SA1413" Action="Warning" /> <!-- Trailing comma -->
+    <Rule Id="SA1414" Action="Warning" /> <!-- TupleTypesInSignaturesShouldHaveElementNames -->
     <Rule Id="SA1501" Action="Warning" /> <!-- Statement should not be on a single line -->
     <Rule Id="SA1502" Action="None" /> <!-- Element should not be on a single line -->
-    <Rule Id="SA1503" Action="None" /> <!--  -->
+    <Rule Id="SA1503" Action="None" /> <!-- BracesMustNotBeOmitted -->
+    <Rule Id="SA1504" Action="Warning" /> <!-- All accessors must be single line or multi line -->
     <Rule Id="SA1512" Action="None" /> <!-- Single-line comments should not be followed by blank line -->
     <Rule Id="SA1515" Action="Warning" /> <!-- Single-line comment should be preceded by blank line -->
     <Rule Id="SA1516" Action="None" /> <!-- Elements should be separated by blank line -->
+    <Rule Id="SA1520" Action="None" /> <!-- Consistently use braces -->
     <Rule Id="SA1600" Action="None" /> <!-- Elements should be documented -->
     <Rule Id="SA1601" Action="Warning" /> <!-- Partial elements should be documented -->
-    <Rule Id="SA1604" Action="None" /> <!-- Element documentation should have summary -->
+    <Rule Id="SA1604" Action="Warning" /> <!-- Element documentation should have summary -->
+    <Rule Id="SA1612" Action="Warning" /> <!-- ElementParameterDocumentationMustMatchElementParameters -->
+    <Rule Id="SA1613" Action="Warning" /> <!-- ElementParameterDocumentationMustDeclareParameterName -->
+    <Rule Id="SA1614" Action="Warning" /> <!-- ElementParameterDocumentationMustHaveText -->
+    <Rule Id="SA1617" Action="Warning" /> <!-- VoidReturnValueMustNotBeDocumented -->
+    <Rule Id="SA1622" Action="Warning" /> <!-- GenericTypeParameterDocumentationMustHaveText -->
+    <Rule Id="SA1625" Action="Warning" /> <!-- ElementDocumentationMustNotBeCopiedAndPasted -->
+    <Rule Id="SA1626" Action="Warning" /> <!-- SingleLineCommentsMustNotUseDocumentationStyleSlashes -->
     <Rule Id="SA1633" Action="None" /> <!-- File should have header -->
+    <Rule Id="SA1648" Action="Warning" /> <!-- InheritDocMustBeUsedWithInheritingClass -->
+    <Rule Id="SA1649" Action="Warning" /> <!-- FileNameMustMatchTypeName -->
+    <Rule Id="SX1101" Action="Warning" /> <!-- Don't prefix things with this -->
   </Rules>
 </RuleSet>

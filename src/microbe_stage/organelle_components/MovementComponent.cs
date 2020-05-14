@@ -113,11 +113,11 @@ public class MovementComponent : ExternallyPositionedComponent
 
             forceMagnitude *= fraction;
 
-            animationSpeed = 0.25f + ((animationSpeed - 0.25f) * fraction);
+            animationSpeed = 0.25f + (animationSpeed - 0.25f) * fraction;
         }
 
-        float impulseMagnitude = (Constants.FLAGELLA_BASE_FORCE * microbe.MovementFactor *
-            forceMagnitude) / 100.0f;
+        float impulseMagnitude = Constants.FLAGELLA_BASE_FORCE * microbe.MovementFactor *
+            forceMagnitude / 100.0f;
 
         // Rotate the 'thrust' based on our orientation
         direction = microbe.Transform.basis.Xform(direction);

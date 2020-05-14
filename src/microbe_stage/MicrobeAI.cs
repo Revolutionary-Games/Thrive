@@ -368,7 +368,7 @@ public class MicrobeAI
             if (otherMicrobe == microbe)
                 continue;
 
-            if ((otherMicrobe.Species != microbe.Species) && !otherMicrobe.Dead)
+            if (otherMicrobe.Species != microbe.Species && !otherMicrobe.Dead)
             {
                 if ((SpeciesAggression == Constants.MAX_SPECIES_AGRESSION) ||
                     ((((microbe.AgentVacuoleCount + microbe.EngulfSize) * 1.0f) *
@@ -419,7 +419,7 @@ public class MicrobeAI
                 continue;
 
             // At max fear add them all
-            if ((otherMicrobe.Species != microbe.Species) && !otherMicrobe.Dead)
+            if (otherMicrobe.Species != microbe.Species && !otherMicrobe.Dead)
             {
                 if ((SpeciesFear == Constants.MAX_SPECIES_FEAR) ||
                     ((((microbe.AgentVacuoleCount + otherMicrobe.EngulfSize) * 1.0f) *
@@ -531,17 +531,16 @@ public class MicrobeAI
         else
         {
             // Turn on engulfmode if close
-            if (((microbe.Translation - targetPosition).LengthSquared() <= 300 + (microbe.EngulfSize * 3.0f))
-                && (microbe.Compounds.GetCompoundAmount(atp) >= 1.0f)
+            if ((microbe.Translation - targetPosition).LengthSquared() <= 300 + microbe.EngulfSize * 3.0f
+                && microbe.Compounds.GetCompoundAmount(atp) >= 1.0f
                 && !microbe.EngulfMode &&
-                (microbe.EngulfSize > (
-                    Constants.ENGULF_SIZE_RATIO_REQ * prey.EngulfSize)))
+                microbe.EngulfSize > Constants.ENGULF_SIZE_RATIO_REQ * prey.EngulfSize)
             {
                 microbe.EngulfMode = true;
                 ticksSinceLastToggle = 0;
             }
-            else if (((microbe.Translation - targetPosition).LengthSquared() >= 500 + (microbe.EngulfSize * 3.0f))
-                && (microbe.EngulfMode && ticksSinceLastToggle >= Constants.AI_ENGULF_INTERVAL))
+            else if ((microbe.Translation - targetPosition).LengthSquared() >= 500 + microbe.EngulfSize * 3.0f &&
+                microbe.EngulfMode && ticksSinceLastToggle >= Constants.AI_ENGULF_INTERVAL)
             {
                 microbe.EngulfMode = false;
                 ticksSinceLastToggle = 0;
@@ -550,8 +549,8 @@ public class MicrobeAI
 
         // Shoot toxins if able There should be AI that prefers shooting over engulfing, etc, not sure how to model that
         // without a million and one variables perhaps its a mix? Maybe a creature with a focus less then a certain
-        // amount simply never attacks that way?  Maybe a cvreature with a specific focuis, only ever shoots and never
-        // engulfs? Maybe their letharcgicness impacts that? I just dont want each enemy to feal the same you know.  For
+        // amount simply never attacks that way?  Maybe a creature with a specific focus, only ever shoots and never
+        // engulfs? Maybe their lethargicness impacts that? I just dont want each enemy to feel the same you know.  For
         // now creatures with a focus under 100 will never shoot.
         if (SpeciesFocus >= 100.0f)
         {
@@ -610,20 +609,18 @@ public class MicrobeAI
         microbe.MovementDirection = new Vector3(0.0f, 0.0f, -Constants.AI_BASE_MOVEMENT);
 
         // Turn on engulfmode if close
-        if (((microbe.Translation - targetPosition).LengthSquared() <= 300 +
-                (microbe.EngulfSize * 3.0f))
-            && (microbe.Compounds.GetCompoundAmount(atp) >= 1.0f)
+        if ((microbe.Translation - targetPosition).LengthSquared() <= 300 +
+            microbe.EngulfSize * 3.0f
+            && microbe.Compounds.GetCompoundAmount(atp) >= 1.0f
             && !microbe.EngulfMode &&
-            (microbe.EngulfSize > (
-                Constants.ENGULF_SIZE_RATIO_REQ * chunk.Size)))
+            microbe.EngulfSize > Constants.ENGULF_SIZE_RATIO_REQ * chunk.Size)
         {
             microbe.EngulfMode = true;
             ticksSinceLastToggle = 0;
         }
-        else if (((microbe.Translation - targetPosition).LengthSquared() >=
-                500 + (microbe.EngulfSize * 3.0f))
-            && (microbe.EngulfMode && ticksSinceLastToggle >=
-                Constants.AI_ENGULF_INTERVAL))
+        else if ((microbe.Translation - targetPosition).LengthSquared() >=
+            500 + microbe.EngulfSize * 3.0f && microbe.EngulfMode && ticksSinceLastToggle >=
+            Constants.AI_ENGULF_INTERVAL)
         {
             microbe.EngulfMode = false;
             ticksSinceLastToggle = 0;
@@ -697,7 +694,7 @@ public class MicrobeAI
         hasTargetPosition = true;
 
         // Freak out and fire toxins everywhere
-        if ((SpeciesAggression > SpeciesFear) && RollReverseCheck(SpeciesFocus, 400.0f, random))
+        if (SpeciesAggression > SpeciesFear && RollReverseCheck(SpeciesFocus, 400.0f, random))
         {
             if (microbe.Hitpoints > 0 && microbe.AgentVacuoleCount > 0 &&
                 (microbe.Translation - targetPosition).LengthSquared() <= SpeciesFocus * 10.0f)
@@ -724,7 +721,7 @@ public class MicrobeAI
             {
                 if (random.Next(0.0f, SpeciesAggression) >
                     random.Next(0.0f, SpeciesFear) &&
-                    (preyMicrobes.Count > 0))
+                    preyMicrobes.Count > 0)
                 {
                     moveThisHunt = !RollCheck(SpeciesActivity, 500.0f, random);
 
@@ -737,12 +734,12 @@ public class MicrobeAI
                 }
                 else if (random.Next(0.0f, SpeciesAggression) <
                     random.Next(0.0f, SpeciesFear) &&
-                    (predatoryMicrobes.Count > 0))
+                    predatoryMicrobes.Count > 0)
                 {
                     lifeState = Lifestate.FLEEING_STATE;
                 }
                 else if (SpeciesAggression == SpeciesFear &&
-                    (preyMicrobes.Count > 0))
+                    preyMicrobes.Count > 0)
                 {
                     // Prefer predating (makes game more fun)
                     moveThisHunt = !RollCheck(SpeciesActivity, 500.0f, random);

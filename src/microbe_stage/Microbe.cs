@@ -1056,7 +1056,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
             // How frequent it flashes, would be nice to update
             // the flash void to have this variable{
-            if ((flashDuration % 0.6f) < 0.3f)
+            if (flashDuration % 0.6f < 0.3f)
             {
                 Membrane.Tint = flashColour;
             }

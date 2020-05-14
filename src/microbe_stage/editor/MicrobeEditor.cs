@@ -1171,8 +1171,8 @@ public class MicrobeEditor : Node
         // 1 - you put nucleus but you already have it
         // 2 - you put organelle that need nucleus and you don't have it
         if ((organelle.Definition.Name == "nucleus" && HasNucleus) ||
-            ((organelle.Definition.ProkaryoteChance == 0 && !HasNucleus)
-                && organelle.Definition.ChanceToCreate != 0))
+            (organelle.Definition.ProkaryoteChance == 0 && !HasNucleus
+            && organelle.Definition.ChanceToCreate != 0))
             return;
 
         var action = new EditorAction(this, organelle.Definition.MPCost,
