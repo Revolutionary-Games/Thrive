@@ -657,9 +657,6 @@ public class MicrobeEditorGUI : Node
     internal void SetSpeciesInfo(string name, MembraneType membrane, Color colour,
         float rigidity)
     {
-        // TODO: fix
-        // throw new NotImplementedException();
-
         speciesNameEdit.Text = name;
         membraneColorPicker.Color = colour;
 
@@ -891,6 +888,15 @@ public class MicrobeEditorGUI : Node
         }
 
         GUICommon.Instance.PlayButtonPressSound();
+    }
+
+    private void ReturnToMenuPressed()
+    {
+        // Unpause the game as well as close the pause menu
+        MenuButtonPressed();
+
+        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.3f, false);
+        TransitionManager.Instance.StartTransitions(editor, nameof(MicrobeEditor.ReturnToMenu));
     }
 
     private void ExitPressed()

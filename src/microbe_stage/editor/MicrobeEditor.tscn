@@ -10041,7 +10041,6 @@ margin_top = 300.0
 margin_right = 250.0
 margin_bottom = 340.0
 rect_min_size = Vector2( 250, 40 )
-disabled = true
 text = "Return to Menu"
 
 [node name="Exit" type="Button" parent="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu"]
@@ -10269,6 +10268,7 @@ visible = false
 [connection signal="pressed" from="MicrobeEditorGUI/PatchMap/MoveToPatchButton" to="MicrobeEditorGUI" method="MoveToPatchClicked"]
 [connection signal="pressed" from="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu/Resume" to="MicrobeEditorGUI" method="MenuButtonPressed"]
 [connection signal="pressed" from="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu/Help" to="MicrobeEditorGUI" method="ToggleHelpScreen"]
+[connection signal="pressed" from="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu/ReturnToMenu" to="MicrobeEditorGUI" method="ReturnToMenuPressed"]
 [connection signal="pressed" from="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu/Exit" to="MicrobeEditorGUI" method="ExitPressed"]
 [connection signal="pressed" from="MicrobeEditorGUI/HelpScreen/CloseButton" to="MicrobeEditorGUI" method="ToggleHelpScreen"]
 

@@ -350,6 +350,9 @@ public class MicrobeEditor : Node
         {
             GD.Print("MicrobeEditor: applying player move to patch: ", targetPatch.Name);
             CurrentGame.GameWorld.Map.CurrentPatch = targetPatch;
+
+            // Add the edited species to that patch to allow the species to gain population there
+            CurrentGame.GameWorld.Map.CurrentPatch.AddSpecies(editedSpecies, 0);
         }
 
         var parent = GetParent();
@@ -358,6 +361,11 @@ public class MicrobeEditor : Node
         ReturnToStage.OnReturnFromEditor();
 
         QueueFree();
+    }
+
+    public void ReturnToMenu()
+    {
+        GUICommon.Instance.ReturnToMenu(this);
     }
 
     public void StartMusic()
@@ -816,6 +824,7 @@ public class MicrobeEditor : Node
         // bar can take it into account (the bar is updated when
         // organelles are added)
         Membrane = species.MembraneType;
+        Rigidity = species.MembraneRigidity;
 
         // Get the species organelles to be edited. This also updates the placeholder hexes
         foreach (var organelle in species.Organelles.Organelles)
@@ -839,7 +848,6 @@ public class MicrobeEditor : Node
         }
 
         NewName = species.FormattedName;
-        Rigidity = species.MembraneRigidity;
 
         gui.SetSpeciesInfo(NewName, Membrane, species.Colour, Rigidity);
 

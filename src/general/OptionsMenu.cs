@@ -9,7 +9,19 @@ public class OptionsMenu : Control
     [Export]
     public NodePath ResetToDefaultPath;
 
+    // Tab buttons
+    [Export]
+    public NodePath GraphicsButtonPath;
+    [Export]
+    public NodePath SoundButtonPath;
+    [Export]
+    public NodePath PerformanceButtonPath;
+    [Export]
+    public NodePath MiscButtonPath;
+
     // Graphics tab
+    [Export]
+    public NodePath GraphicsTabPath;
     [Export]
     public NodePath VSyncPath;
     [Export]
@@ -21,6 +33,8 @@ public class OptionsMenu : Control
 
     // Sound tab
     [Export]
+    public NodePath SoundTabPath;
+    [Export]
     public NodePath MasterVolumePath;
     [Export]
     public NodePath MasterMutedPath;
@@ -31,11 +45,15 @@ public class OptionsMenu : Control
 
     // Performance tab
     [Export]
+    public NodePath PerformanceTabPath;
+    [Export]
     public NodePath CloudIntervalPath;
     [Export]
     public NodePath CloudResolutionPath;
 
     // Misc tab
+    [Export]
+    public NodePath MiscTabPath;
     [Export]
     public NodePath PlayIntroPath;
     [Export]
@@ -45,23 +63,33 @@ public class OptionsMenu : Control
 
     private const float AUDIO_BAR_SCALE = 6.0f;
 
+    // Tab buttons
+    private Button graphicsButton;
+    private Button soundButton;
+    private Button performanceButton;
+    private Button miscButton;
+
     // Graphics tab
+    private Control graphicsTab;
     private CheckBox vsync;
     private CheckBox fullScreen;
     private OptionButton msaaResolution;
     private OptionButton colourblindSetting;
 
     // Sound tab
+    private Control soundTab;
     private Slider masterVolume;
     private CheckBox masterMuted;
     private Slider musicVolume;
     private CheckBox musicMuted;
 
     // Performance tab
+    private Control performanceTab;
     private OptionButton cloudInterval;
     private OptionButton cloudResolution;
 
     // Misc tab
+    private Control miscTab;
     private CheckBox playIntro;
     private CheckBox playMicrobeIntro;
     private CheckBox cheats;
@@ -79,23 +107,33 @@ public class OptionsMenu : Control
 
     public override void _Ready()
     {
+        // Tab buttons
+        graphicsButton = GetNode<Button>(GraphicsButtonPath);
+        soundButton = GetNode<Button>(SoundButtonPath);
+        performanceButton = GetNode<Button>(PerformanceButtonPath);
+        miscButton = GetNode<Button>(MiscButtonPath);
+
         // Graphics
+        graphicsTab = GetNode<Control>(GraphicsTabPath);
         vsync = GetNode<CheckBox>(VSyncPath);
         fullScreen = GetNode<CheckBox>(FullScreenPath);
         msaaResolution = GetNode<OptionButton>(MSAAResolutionPath);
         colourblindSetting = GetNode<OptionButton>(ColourblindSettingPath);
 
         // Sound
+        soundTab = GetNode<Control>(SoundTabPath);
         masterVolume = GetNode<Slider>(MasterVolumePath);
         masterMuted = GetNode<CheckBox>(MasterMutedPath);
         musicVolume = GetNode<Slider>(MusicVolumePath);
         musicMuted = GetNode<CheckBox>(MusicMutedPath);
 
         // Performance
+        performanceTab = GetNode<Control>(PerformanceTabPath);
         cloudInterval = GetNode<OptionButton>(CloudIntervalPath);
         cloudResolution = GetNode<OptionButton>(CloudResolutionPath);
 
         // Misc
+        miscTab = GetNode<Control>(MiscTabPath);
         playIntro = GetNode<CheckBox>(PlayIntroPath);
         playMicrobeIntro = GetNode<CheckBox>(PlayMicrobeIntroPath);
         cheats = GetNode<CheckBox>(CheatsPath);
@@ -130,6 +168,39 @@ public class OptionsMenu : Control
         playIntro.Pressed = settings.PlayIntroVideo;
         playMicrobeIntro.Pressed = settings.PlayMicrobeIntroVideo;
         cheats.Pressed = settings.CheatsEnabled;
+    }
+
+    private void SetSettingsTab(string tab)
+    {
+        graphicsTab.Hide();
+        soundTab.Hide();
+        performanceTab.Hide();
+        miscTab.Hide();
+
+        if (tab == "graphics")
+        {
+            graphicsTab.Show();
+            graphicsButton.Pressed = true;
+        }
+        else if (tab == "sound")
+        {
+            soundTab.Show();
+            soundButton.Pressed = true;
+        }
+        else if (tab == "performance")
+        {
+            performanceTab.Show();
+            performanceButton.Pressed = true;
+        }
+        else if (tab == "miscellaneous")
+        {
+            miscTab.Show();
+            miscButton.Pressed = true;
+        }
+        else
+        {
+            GD.PrintErr("Invalid tab");
+        }
     }
 
     /// <summary>

@@ -52,6 +52,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     private bool cachedHexCountDirty = true;
     private int cachedHexCount;
 
+    private bool membraneOrganellePositionsAreDirty = true;
+
     private Vector3 queuedMovementForce;
 
     // variables for engulfing
@@ -95,6 +97,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     ///   back to species colour.
     /// </summary>
     private float flashDuration = 0;
+
     private Color flashColour = new Color(0, 0, 0, 0);
 
     private bool allOrganellesDivided = false;
@@ -148,14 +151,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// </remarks>
     public bool EngulfMode
     {
-        get
-        {
-            return engulfMode;
-        }
-        set
-        {
-            engulfMode = value;
-        }
+        get { return engulfMode; }
+        set { engulfMode = value; }
     }
 
     public int HexCount
@@ -209,10 +206,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
     public Node SpawnedNode
     {
-        get
-        {
-            return this;
-        }
+        get { return this; }
     }
 
     public List<TweakedProcess> ActiveProcesses
@@ -240,10 +234,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// </summary>
     public GameWorld GameWorld
     {
-        get
-        {
-            return CurrentGame.GameWorld;
-        }
+        get { return CurrentGame.GameWorld; }
     }
 
     public float TimeUntilNextAIUpdate { get; set; } = 0;
@@ -353,7 +344,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     {
         // TODO: It would be much better if only organelles that need
         // to be removed where removed, instead of everything.
-        // When doing that all organelles will need to be readded anyway if this turned from a prokaryote to eukaryote
+        // When doing that all organelles will need to be re-added anyway if this turned from a prokaryote to eukaryote
 
         if (organelles == null)
         {
@@ -377,8 +368,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
             organelles.Add(placed);
         }
-
-        SendOrganellePositionsToMembrane();
 
         // Reproduction progress is lost
         allOrganellesDivided = false;
@@ -459,8 +448,14 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         if (source == string.Empty)
             throw new ArgumentException("damage type is empty");
 
+        // This seems to be triggered sometimes, even though our logic for damage seems right everywhere.
+        // One possible explanation is that delta is negative sometimes? So we just print an error and do nothing
+        // else here
         if (amount < 0)
-            throw new ArgumentException("can't deal negative damage");
+        {
+            GD.PrintErr("Trying to deal negative damage");
+            return;
+        }
 
         if (source == "toxin")
         {
@@ -639,11 +634,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
                 Mass = 1.0f,
                 Radius = 1.0f,
                 Size = 3.0f,
-                VentAmount = 3,
+                VentAmount = 0.1f,
 
                 // Add compounds
                 Compounds = new Dictionary<string,
-                Biome.ChunkConfiguration.ChunkCompound>(),
+                    Biome.ChunkConfiguration.ChunkCompound>(),
             };
 
             // They were added in order already so looping through this other thing is fine
@@ -659,18 +654,22 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
                 chunkType.Compounds[entry.Key] = compoundValue;
             }
 
-            // Grab random organelle from cell and use that for model
             chunkType.Meshes = new List<Biome.ChunkConfiguration.ChunkScene>();
-
-            var organelleToUse = organelles.Organelles.Random(random).Definition;
 
             var sceneToUse = new Biome.ChunkConfiguration.ChunkScene();
 
-            if (organelleToUse.DisplayScene != string.Empty)
+            // Try all organelles in random order and use the first one with a scene for model
+            foreach (var organelle in organelles.OrderBy(_ => random.Next()))
             {
-                sceneToUse.LoadedScene = organelleToUse.LoadedScene;
+                if (organelle.Definition.DisplayScene != string.Empty)
+                {
+                    sceneToUse.LoadedScene = organelle.Definition.LoadedScene;
+                    break;
+                }
             }
-            else
+
+            // If no organelles have a scene, use mitochondrion as fallback
+            if (sceneToUse.LoadedScene == null)
             {
                 sceneToUse.LoadedScene = SimulationParameters.Instance.GetOrganelleType(
                     "mitochondrion").LoadedScene;
@@ -889,6 +888,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
     public override void _Process(float delta)
     {
+        if (membraneOrganellePositionsAreDirty)
+        {
+            // Redo the cell membrane.
+            SendOrganellePositionsToMembrane();
+        }
+
         CheckEngulfShapeSize();
         HandleCompoundAbsorbing(delta);
 
@@ -996,7 +1001,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         var grabRadius = Mathf.Max(Radius, 3.0f);
 
         cloudSystem.AbsorbCompounds(Translation, grabRadius, Compounds,
-            TotalAbsorbedCompounds, delta);
+            TotalAbsorbedCompounds, delta, Membrane.Type.ResourceAbsorptionFactor);
     }
 
     private void CheckEngulfShapeSize()
@@ -1169,14 +1174,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             organelle2.WasSplit = true;
             organelle2.IsDuplicate = true;
             organelle2.SisterOrganelle = organelle;
-        }
-
-        if (organellesToAdd.Count > 0)
-        {
-            // Redo the cell membrane.
-            SendOrganellePositionsToMembrane();
-
-            // Process list is varmatically marked dirty when the split organelle is added
         }
 
         if (reproductionStageComplete)
@@ -1469,10 +1466,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
     private void HandleOsmoregulation(float delta)
     {
-        var osmoCost = (HexCount * Species.MembraneType.OsmoregulationFactor *
+        var osmoregulationCost = (HexCount * Species.MembraneType.OsmoregulationFactor *
             Constants.ATP_COST_FOR_OSMOREGULATION) * delta;
 
-        Compounds.TakeCompound("atp", osmoCost);
+        Compounds.TakeCompound("atp", osmoregulationCost);
     }
 
     /// <summary>
@@ -1549,6 +1546,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         organelle.OnAddedToMicrobe(this);
         processesDirty = true;
         cachedHexCountDirty = true;
+        membraneOrganellePositionsAreDirty = true;
 
         if (organelle.IsAgentVacuole)
             AgentVacuoleCount += 1;
@@ -1571,6 +1569,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
         processesDirty = true;
         cachedHexCountDirty = true;
+        membraneOrganellePositionsAreDirty = true;
 
         Compounds.Capacity = organellesCapacity;
     }
@@ -1619,6 +1618,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
         Membrane.OrganellePositions = organellePositions;
         Membrane.Dirty = true;
+        membraneOrganellePositionsAreDirty = false;
     }
 
     /// <summary>
@@ -1650,7 +1650,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         var exit = Hex.AxialToCartesian(new Hex(0, 1));
         var membraneCoords = Membrane.GetExternalOrganelle(exit.x, exit.z);
 
-        // Get the distance to eject the compunds
+        // Get the distance to eject the compounds
         var ejectionDistance = Membrane.EncompassingCircleRadius;
 
         // The membrane radius doesn't take being bacteria into account
