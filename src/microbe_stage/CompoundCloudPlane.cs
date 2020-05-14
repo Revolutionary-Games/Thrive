@@ -42,31 +42,41 @@ public class CompoundCloudPlane : CSGMesh
     public void UpdatePosition(Int2 newPosition)
     {
         // Whoever made the modulus operator return negatives: i hate u.
-        int newx = ((newPosition.x % 3) + 3) % 3;
-        int newy = ((newPosition.y % 3) + 3) % 3;
+        int newx = ((newPosition.x % Constants.CLOUD_SQUARES_PER_SIDE) + Constants.CLOUD_SQUARES_PER_SIDE)
+                    % Constants.CLOUD_SQUARES_PER_SIDE;
+        int newy = ((newPosition.y % Constants.CLOUD_SQUARES_PER_SIDE) + Constants.CLOUD_SQUARES_PER_SIDE)
+                    % Constants.CLOUD_SQUARES_PER_SIDE;
 
-        if (newx == (position.x + 1) % 3)
+        if (newx == (position.x + 1) % Constants.CLOUD_SQUARES_PER_SIDE)
         {
-            PartialClearDensity(position.x * Size / 3, 0, Size / 3, Size);
+            PartialClearDensity(position.x * Size / Constants.CLOUD_SQUARES_PER_SIDE, 0,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE, Size);
         }
-        else if (newx == (position.x + 2) % 3)
+        else if (newx == (position.x + Constants.CLOUD_SQUARES_PER_SIDE - 1)
+                % Constants.CLOUD_SQUARES_PER_SIDE)
         {
-            PartialClearDensity(((position.x + 2) % 3) * Size / 3, 0, Size / 3, Size);
+            PartialClearDensity(((position.x + Constants.CLOUD_SQUARES_PER_SIDE - 1)
+                                % Constants.CLOUD_SQUARES_PER_SIDE) * Size / Constants.CLOUD_SQUARES_PER_SIDE,
+                                0, Size / Constants.CLOUD_SQUARES_PER_SIDE, Size);
         }
 
-        if (newy == (position.y + 1) % 3)
+        if (newy == (position.y + 1) % Constants.CLOUD_SQUARES_PER_SIDE)
         {
-            PartialClearDensity(0, position.y * Size / 3, Size, Size / 3);
+            PartialClearDensity(0, position.y * Size / Constants.CLOUD_SQUARES_PER_SIDE,
+                            Size, Size / Constants.CLOUD_SQUARES_PER_SIDE);
         }
-        else if (newy == (position.y + 2) % 3)
+        else if (newy == (position.y + Constants.CLOUD_SQUARES_PER_SIDE - 1) % Constants.CLOUD_SQUARES_PER_SIDE)
         {
-            PartialClearDensity(0, ((position.y + 2) % 3) * Size / 3, Size, Size / 3);
+            PartialClearDensity(0, ((position.y + Constants.CLOUD_SQUARES_PER_SIDE - 1)
+                                % Constants.CLOUD_SQUARES_PER_SIDE) * Size / Constants.CLOUD_SQUARES_PER_SIDE,
+                                Size, Size / Constants.CLOUD_SQUARES_PER_SIDE);
         }
 
         position = new Int2(newx, newy);
 
         var material = (ShaderMaterial)this.Material;
-        material.SetShaderParam("UVoffset", new Vector2(newx / 3.0f, newy / 3.0f));
+        material.SetShaderParam("UVoffset", new Vector2(newx / (float)Constants.CLOUD_SQUARES_PER_SIDE,
+                                                        newy / (float)Constants.CLOUD_SQUARES_PER_SIDE));
     }
 
     /// <summary>
@@ -101,42 +111,76 @@ public class CompoundCloudPlane : CSGMesh
 
         if (position.x != 0)
         {
-            PartialDiffuseEdges(0, 0, 1, Size, delta);
-            PartialDiffuseEdges(Size - 1, 0, 1, Size, delta);
+            PartialDiffuseEdges(0, 0, Constants.CLOUD_EDGE_WIDTH / 2, Size, delta);
+            PartialDiffuseEdges(Size - Constants.CLOUD_EDGE_WIDTH / 2, 0, Constants.CLOUD_EDGE_WIDTH / 2, Size, delta);
         }
 
         if (position.x != 1)
         {
-            PartialDiffuseEdges(Size / 3 - 1, 0, 2, Size, delta);
+            PartialDiffuseEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2, 0,
+                                Constants.CLOUD_EDGE_WIDTH, Size, delta);
         }
 
         if (position.x != 2)
         {
-            PartialDiffuseEdges(2 * Size / 3 - 1, 0, 2, Size, delta);
+            PartialDiffuseEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2, 0,
+                                Constants.CLOUD_EDGE_WIDTH, Size, delta);
         }
 
         if (position.y != 0)
         {
-            PartialDiffuseEdges(1, 0, Size / 3 - 2, 1, delta);
-            PartialDiffuseEdges(1, Size - 1, Size / 3 - 2, 1, delta);
-            PartialDiffuseEdges(Size / 3 + 1, 0, Size / 3 - 2, 1, delta);
-            PartialDiffuseEdges(Size / 3 + 1, Size - 1, Size / 3 - 2, 1, delta);
-            PartialDiffuseEdges(2 * Size / 3 + 1, 0, Size / 3 - 2, 1, delta);
-            PartialDiffuseEdges(2 * Size / 3 + 1, Size - 1, Size / 3 - 2, 1, delta);
+            PartialDiffuseEdges(Constants.CLOUD_EDGE_WIDTH / 2, 0,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH / 2, delta);
+            PartialDiffuseEdges(Constants.CLOUD_EDGE_WIDTH / 2, Size - Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH / 2, delta);
+            PartialDiffuseEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2, 0,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH / 2, delta);
+            PartialDiffuseEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size - Constants.CLOUD_EDGE_WIDTH / 2, Size / Constants.CLOUD_SQUARES_PER_SIDE
+                                - Constants.CLOUD_EDGE_WIDTH, Constants.CLOUD_EDGE_WIDTH / 2, delta);
+            PartialDiffuseEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
+                                0, Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH / 2, delta);
+            PartialDiffuseEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size - Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH / 2, delta);
         }
 
         if (position.y != 1)
         {
-            PartialDiffuseEdges(1, Size / 3 - 1, Size / 3 - 2, 2, delta);
-            PartialDiffuseEdges(Size / 3 + 1, Size / 3 - 1, Size / 3 - 2, 2, delta);
-            PartialDiffuseEdges(2 * Size / 3 + 1, Size / 3 - 1, Size / 3 - 2, 2, delta);
+            PartialDiffuseEdges(Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH, delta);
+            PartialDiffuseEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH, delta);
+            PartialDiffuseEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH, delta);
         }
 
         if (position.y != 2)
         {
-            PartialDiffuseEdges(1, 2 * Size / 3 - 1, Size / 3 - 2, 2, delta);
-            PartialDiffuseEdges(Size / 3 + 1, 2 * Size / 3 - 1, Size / 3 - 2, 2, delta);
-            PartialDiffuseEdges(2 * Size / 3 + 1, 2 * Size / 3 - 1, Size / 3 - 2, 2, delta);
+            PartialDiffuseEdges(Constants.CLOUD_EDGE_WIDTH / 2,
+                                2 * Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH, delta);
+            PartialDiffuseEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
+                                Constants.CLOUD_EDGE_WIDTH * Size / Constants.CLOUD_SQUARES_PER_SIDE
+                                - Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH, delta);
+            PartialDiffuseEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
+                                2 * Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH, delta);
         }
     }
 
@@ -152,42 +196,78 @@ public class CompoundCloudPlane : CSGMesh
 
         if (position.x != 0)
         {
-            PartialAdvectEdges(0, 0, 1, Size, delta, pos);
-            PartialAdvectEdges(Size - 1, 0, 1, Size, delta, pos);
+            PartialAdvectEdges(0, 0, Constants.CLOUD_EDGE_WIDTH / 2, Size, delta, pos);
+            PartialAdvectEdges(Size - Constants.CLOUD_EDGE_WIDTH / 2, 0, Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size, delta, pos);
         }
 
         if (position.x != 1)
         {
-            PartialAdvectEdges(Size / 3 - 1, 0, 2, Size, delta, pos);
+            PartialAdvectEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
+                                0, Constants.CLOUD_EDGE_WIDTH, Size, delta, pos);
         }
 
         if (position.x != 2)
         {
-            PartialAdvectEdges(2 * Size / 3 - 1, 0, 2, Size, delta, pos);
+            PartialAdvectEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
+                                0, Constants.CLOUD_EDGE_WIDTH, Size, delta, pos);
         }
 
         if (position.y != 0)
         {
-            PartialAdvectEdges(1, 0, Size / 3 - 2, 1, delta, pos);
-            PartialAdvectEdges(1, Size - 1, Size / 3 - 2, 1, delta, pos);
-            PartialAdvectEdges(Size / 3 + 1, 0, Size / 3 - 2, 1, delta, pos);
-            PartialAdvectEdges(Size / 3 + 1, Size - 1, Size / 3 - 2, 1, delta, pos);
-            PartialAdvectEdges(2 * Size / 3 + 1, 0, Size / 3 - 2, 1, delta, pos);
-            PartialAdvectEdges(2 * Size / 3 + 1, Size - 1, Size / 3 - 2, 1, delta, pos);
+            PartialAdvectEdges(Constants.CLOUD_EDGE_WIDTH / 2, 0,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH / 2, delta, pos);
+            PartialAdvectEdges(Constants.CLOUD_EDGE_WIDTH / 2, Size - Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH / 2, delta, pos);
+            PartialAdvectEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
+                                0, Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH / 2, delta, pos);
+            PartialAdvectEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size - Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH / 2, delta, pos);
+            PartialAdvectEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
+                                0, Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH / 2, delta, pos);
+            PartialAdvectEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size - Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH / 2, delta, pos);
         }
 
         if (position.y != 1)
         {
-            PartialAdvectEdges(1, Size / 3 - 1, Size / 3 - 2, 2, delta, pos);
-            PartialAdvectEdges(Size / 3 + 1, Size / 3 - 1, Size / 3 - 2, 2, delta, pos);
-            PartialAdvectEdges(2 * Size / 3 + 1, Size / 3 - 1, Size / 3 - 2, 2, delta, pos);
+            PartialAdvectEdges(Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH, delta, pos);
+            PartialAdvectEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH, delta, pos);
+            PartialAdvectEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH, delta, pos);
         }
 
         if (position.y != 2)
         {
-            PartialAdvectEdges(1, 2 * Size / 3 - 1, Size / 3 - 2, 2, delta, pos);
-            PartialAdvectEdges(Size / 3 + 1, 2 * Size / 3 - 1, Size / 3 - 2, 2, delta, pos);
-            PartialAdvectEdges(2 * Size / 3 + 1, 2 * Size / 3 - 1, Size / 3 - 2, 2, delta, pos);
+            PartialAdvectEdges(Constants.CLOUD_EDGE_WIDTH / 2,
+                                2 * Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH, delta, pos);
+            PartialAdvectEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
+                                Constants.CLOUD_EDGE_WIDTH * Size / Constants.CLOUD_SQUARES_PER_SIDE
+                                - Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH, delta, pos);
+            PartialAdvectEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
+                                2 * Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH, delta, pos);
         }
     }
 
@@ -202,14 +282,17 @@ public class CompoundCloudPlane : CSGMesh
 
         // Diffuse edges
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < Constants.CLOUD_SQUARES_PER_SIDE; i++)
         {
-            for (int j = 0; j < 3; j++)
+            for (int j = 0; j < Constants.CLOUD_SQUARES_PER_SIDE; j++)
             {
                 var x0 = i;
                 var y0 = j;
-                var task = new Task(() => PartialUpdateCenter(x0 * Size / 3,
-                                        y0 * Size / 3, Size / 3, Size / 3, delta, pos));
+                var task = new Task(() => PartialUpdateCenter(x0 * Size / Constants.CLOUD_SQUARES_PER_SIDE,
+                                                            y0 * Size / Constants.CLOUD_SQUARES_PER_SIDE,
+                                                            Size / Constants.CLOUD_SQUARES_PER_SIDE,
+                                                            Size / Constants.CLOUD_SQUARES_PER_SIDE,
+                                                            delta, pos));
                 queue.Add(task);
             }
         }
@@ -244,9 +327,11 @@ public class CompoundCloudPlane : CSGMesh
                 // performance as with Godot it doesn't seem to have
                 // much effect
 
-                image.SetPixel((x + (3 - position.x) * Size / 3) % Size,
-                    (y + (3 - position.y) * Size / 3) % Size,
-                    new Color(intensity1, intensity2, intensity3, intensity4));
+                image.SetPixel((x + (Constants.CLOUD_SQUARES_PER_SIDE - position.x)
+                                * Size / Constants.CLOUD_SQUARES_PER_SIDE) % Size,
+                                (y + (Constants.CLOUD_SQUARES_PER_SIDE - position.y)
+                                * Size / Constants.CLOUD_SQUARES_PER_SIDE) % Size,
+                                new Color(intensity1, intensity2, intensity3, intensity4));
             }
         }
 
@@ -374,8 +459,10 @@ public class CompoundCloudPlane : CSGMesh
         var topLeftRelative = worldPosition - Translation;
 
         // Floor is used here because otherwise the last coordinate is wrong
-        x = ((int)Math.Floor((topLeftRelative.x + Constants.CLOUD_WIDTH) / Resolution) + position.x * Size / 3) % Size;
-        y = ((int)Math.Floor((topLeftRelative.z + Constants.CLOUD_HEIGHT) / Resolution) + position.y * Size / 3) % Size;
+        x = ((int)Math.Floor((topLeftRelative.x + Constants.CLOUD_WIDTH) / Resolution)
+                            + position.x * Size / Constants.CLOUD_SQUARES_PER_SIDE) % Size;
+        y = ((int)Math.Floor((topLeftRelative.z + Constants.CLOUD_HEIGHT) / Resolution)
+                            + position.y * Size / Constants.CLOUD_SQUARES_PER_SIDE) % Size;
     }
 
     /// <summary>
@@ -445,9 +532,11 @@ public class CompoundCloudPlane : CSGMesh
         {
             for (int y = y0; y < y0 + height; y++)
             {
+                int adyacentClouds = 4;
                 OldDensity[x, y] =
                     Density[x, y] * (1 - a) +
-                    (Density[x, y - 1] + Density[x, y + 1] + Density[x - 1, y] + Density[x + 1, y]) * (a / 4);
+                    (Density[x, y - 1] + Density[x, y + 1] + Density[x - 1, y] + Density[x + 1, y])
+                    * (a / adyacentClouds);
             }
         }
     }
@@ -460,12 +549,13 @@ public class CompoundCloudPlane : CSGMesh
         {
             for (int y = y0; y < y0 + height; y++)
             {
+                int adyacentClouds = 4;
                 OldDensity[x, y] =
                     Density[x, y] * (1 - a) +
                     (Density[x, (y - 1 + Size) % Size] +
                     Density[x, (y + 1) % Size] +
                     Density[(x - 1 + Size) % Size, y] +
-                    Density[(x + 1) % Size, y]) * (a / 4);
+                    Density[(x + 1) % Size, y]) * (a / adyacentClouds);
             }
         }
     }
@@ -561,9 +651,11 @@ public class CompoundCloudPlane : CSGMesh
 
     private void PartialUpdateCenter(int x0, int y0, int width, int height, float delta, Vector2 pos)
     {
-        PartialDiffuseCenter(x0 + 1, y0 + 1, width - 2, height - 2, delta);
+        PartialDiffuseCenter(x0 + Constants.CLOUD_EDGE_WIDTH / 2, y0 + Constants.CLOUD_EDGE_WIDTH / 2, width
+                            - Constants.CLOUD_EDGE_WIDTH, height - Constants.CLOUD_EDGE_WIDTH, delta);
         PartialClearDensity(x0, y0, width, height);
-        PartialAdvectCenter(x0 + 1, y0 + 1, width - 2, height - 2, delta, pos);
+        PartialAdvectCenter(x0 + Constants.CLOUD_EDGE_WIDTH / 2, y0 + Constants.CLOUD_EDGE_WIDTH / 2, width
+                            - Constants.CLOUD_EDGE_WIDTH, height - Constants.CLOUD_EDGE_WIDTH, delta, pos);
     }
 
     private float HackyAdress(System.Numerics.Vector4 vector, int index)
@@ -581,7 +673,7 @@ public class CompoundCloudPlane : CSGMesh
 
     private int GetCompoundIndex(Compound compound)
     {
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < Constants.CLOUDS_IN_ONE; i++)
         {
             if (Compounds[i] == compound)
                 return i;
