@@ -62,25 +62,13 @@ public class MicrobeAI
         SCAVENGING_STATE,
     }
 
-    private float SpeciesAggression
-    {
-        get => microbe.Species.Aggression;
-    }
+    private float SpeciesAggression => microbe.Species.Aggression;
 
-    private float SpeciesFear
-    {
-        get => microbe.Species.Fear;
-    }
+    private float SpeciesFear => microbe.Species.Fear;
 
-    private float SpeciesActivity
-    {
-        get => microbe.Species.Activity;
-    }
+    private float SpeciesActivity => microbe.Species.Activity;
 
-    private float SpeciesFocus
-    {
-        get => microbe.Species.Focus;
-    }
+    private float SpeciesFocus => microbe.Species.Focus;
 
     private float SpeciesOpportunism => microbe.Species.Opportunism;
 
@@ -698,7 +686,6 @@ public class MicrobeAI
         }
 
         var vec = microbe.Translation - targetPosition;
-        vec.Normalized();
         microbe.LookAtPoint = -targetPosition;
         microbe.MovementDirection = new Vector3(0.0f, 0.0f, -Constants.AI_BASE_MOVEMENT);
         hasTargetPosition = true;
@@ -857,7 +844,6 @@ public class MicrobeAI
         // in food)
         previousAngle = randAngle;
         var vec = targetPosition - microbe.Translation;
-        vec.Normalized();
         microbe.LookAtPoint = targetPosition;
         microbe.MovementDirection = new Vector3(0.0f, 0.0f, -Constants.AI_BASE_MOVEMENT);
         hasTargetPosition = true;
