@@ -894,6 +894,7 @@ public class MicrobeEditorGUI : Node
     {
         // Unpause the game as well as close the pause menu
         MenuButtonPressed();
+        GetTree().Paused = false;
 
         TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.3f, false);
         TransitionManager.Instance.StartTransitions(editor, nameof(MicrobeEditor.ReturnToMenu));

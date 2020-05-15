@@ -396,6 +396,12 @@ public class MicrobeHUD : Node
     {
         GD.Print("Move to editor pressed");
 
+        // Make sure the game is unpaused
+        if (GetTree().Paused)
+        {
+            PauseButtonPressed();
+        }
+
         TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.3f, false);
         TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.MoveToEditor));
     }
@@ -570,10 +576,10 @@ public class MicrobeHUD : Node
                 if (first)
                 {
                     var compoundsLabel = new Label();
-                    compoundsLabel.RectMinSize = new Vector2(238, 35);
                     compoundsLabel.Valign = Label.VAlign.Center;
                     hoveredItems.AddChild(compoundsLabel);
-                    compoundsLabel.Text = "Compounds: ";
+                    compoundsLabel.AddConstantOverride("line_spacing", -5);
+                    compoundsLabel.Text = "Compounds: \n";
                 }
 
                 first = false;
@@ -608,7 +614,6 @@ public class MicrobeHUD : Node
                 continue;
 
             var microbeText = new Label();
-            microbeText.RectMinSize = new Vector2(238, 40);
             microbeText.Valign = Label.VAlign.Center;
             hoveredItems.AddChild(microbeText);
 
@@ -781,6 +786,11 @@ public class MicrobeHUD : Node
     {
         // Unpause the game as well as close the pause menu
         OpenMicrobeStageMenuPressed();
+
+        if (GetTree().Paused)
+        {
+            PauseButtonPressed();
+        }
 
         TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.3f, false);
         TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.ReturnToMenu));

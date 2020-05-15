@@ -272,6 +272,7 @@ public class AutoEvoRun
             builder.Append(entry.Value);
             builder.Append(" because of: ");
             builder.Append(entry.Key.Item2);
+            builder.Append("\n");
         }
 
         return builder.ToString();
