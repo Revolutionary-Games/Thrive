@@ -32,10 +32,7 @@ public class GUICommon : Node
 
     public static GUICommon Instance
     {
-        get
-        {
-            return instance;
-        }
+        get { return instance; }
     }
 
     /// <summary>

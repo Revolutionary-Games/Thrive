@@ -1,7 +1,5 @@
 ﻿namespace AutoEvo
 {
-    using System;
-
     /// <summary>
     ///   Main helper class for doing auto-evo runs
     /// </summary>

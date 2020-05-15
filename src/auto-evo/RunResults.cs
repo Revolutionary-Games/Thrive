@@ -136,7 +136,7 @@
         {
             GD.Print("Start of auto-evo results summary (entries: ", results.Count, ")");
 
-            GD.Print(MakeSummary(previousPopulations, false));
+            GD.Print(MakeSummary(previousPopulations));
 
             GD.Print("End of results summary");
         }
@@ -154,7 +154,7 @@
 
             var builder = new StringBuilder(500);
 
-            Func<Patch, string> patchString = (Patch patch) =>
+            string PatchString(Patch patch)
             {
                 var builder2 = new StringBuilder(80);
 
@@ -167,13 +167,13 @@
                 builder2.Append(patch.Name);
 
                 return builder2.ToString();
-            };
+            }
 
-            Action<Species, Patch, int> outputPopulationForPatch = (Species species, Patch patch, int population) =>
+            void OutputPopulationForPatch(Species species, Patch patch, int population)
             {
                 builder.Append("  ");
 
-                builder.Append(patchString(patch));
+                builder.Append(PatchString(patch));
 
                 builder.Append(" population: ");
                 builder.Append(Math.Max(population, 0));
@@ -185,7 +185,7 @@
                 }
 
                 builder.Append("\n");
-            };
+            }
 
             foreach (var entry in results.Values)
             {
@@ -269,19 +269,19 @@
                     }
                     else if (previousPopulations != null)
                     {
-                        if (previousPopulations.GetPatch(patchPopulation.Key.ID).
-                            GetSpeciesPopulation(entry.Species) > 0)
+                        if (previousPopulations.GetPatch(patchPopulation.Key.ID).GetSpeciesPopulation(entry.Species) >
+                            0)
                         {
                             include = true;
                         }
                     }
 
                     if (include)
-                        outputPopulationForPatch(entry.Species, patchPopulation.Key, adjustedPopulation);
+                        OutputPopulationForPatch(entry.Species, patchPopulation.Key, adjustedPopulation);
                 }
 
                 // Also print new patches the species moved to (as the moves don't get
-                // included in newPopulationinpatches
+                // included in newPopulationInPatches
                 if (resolveMoves)
                 {
                     foreach (var spreadEntry in entry.SpreadToPatches)
@@ -301,7 +301,7 @@
 
                         if (!found)
                         {
-                            outputPopulationForPatch(entry.Species, to,
+                            OutputPopulationForPatch(entry.Species, to,
                                 CountSpeciesSpreadPopulation(entry.Species, to));
                         }
                     }
@@ -323,7 +323,7 @@
         }
 
         private int CountSpeciesSpreadPopulation(Species species,
-                Patch targetPatch)
+            Patch targetPatch)
         {
             int totalPopulation = 0;
 
@@ -366,7 +366,7 @@
 
             public SpeciesResult(Species species)
             {
-                this.Species = species ?? throw new ArgumentException("species is null");
+                Species = species ?? throw new ArgumentException("species is null");
             }
         }
     }

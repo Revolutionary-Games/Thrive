@@ -69,33 +69,21 @@ public abstract class Species : ICloneable
     public bool PlayerSpecies { get; private set; } = false;
 
     [JsonIgnore]
-    public string FormattedName
-    {
-        get
-        {
-            return Genus + " " + Epithet;
-        }
-    }
+    public string FormattedName => Genus + " " + Epithet;
 
     [JsonIgnore]
-    public string FormattedIdentifier
-    {
-        get
-        {
-            return FormattedName + string.Format(" ({0:n})", ID);
-        }
-    }
+    public string FormattedIdentifier => FormattedName + $" ({ID:n})";
 
     public void
         SetPopulationFromPatches(int population)
     {
         if (population < 0)
         {
-            this.Population = 0;
+            Population = 0;
         }
         else
         {
-            this.Population = population;
+            Population = population;
         }
     }
 
