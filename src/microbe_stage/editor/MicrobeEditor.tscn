@@ -789,35 +789,35 @@ font_data = ExtResource( 5 )
 [sub_resource type="Theme" id=63]
 default_font = SubResource( 62 )
 
-[sub_resource type="StyleBoxFlat" id=67]
+[sub_resource type="StyleBoxFlat" id=64]
 bg_color = Color( 0.286275, 0.662745, 0.803922, 1 )
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxFlat" id=68]
-bg_color = Color( 0, 0.490196, 0.490196, 1 )
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-
 [sub_resource type="StyleBoxFlat" id=65]
-bg_color = Color( 0.439216, 0.623529, 0.623529, 0.627451 )
+bg_color = Color( 0, 0.490196, 0.490196, 1 )
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
 [sub_resource type="StyleBoxFlat" id=66]
+bg_color = Color( 0.439216, 0.623529, 0.623529, 0.627451 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id=67]
 bg_color = Color( 0, 0.490196, 0.490196, 1 )
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxFlat" id=64]
+[sub_resource type="StyleBoxFlat" id=68]
 bg_color = Color( 0, 0.490196, 0.490196, 0.705882 )
 corner_radius_top_left = 10
 corner_radius_top_right = 10
@@ -831,6 +831,7 @@ script = ExtResource( 2 )
 [node name="PrimaryCamera" parent="." instance=ExtResource( 1 )]
 DefaultCameraHeight = 10.0
 MaxCameraHeight = 40.0
+DisableBackgroundParticles = true
 
 [node name="CameraLookAt" type="Spatial" parent="."]
 __meta__ = {
@@ -9973,10 +9974,10 @@ margin_top = -60.0
 margin_right = -237.0
 margin_bottom = -16.0
 focus_mode = 0
-custom_styles/hover = SubResource( 67 )
-custom_styles/pressed = SubResource( 68 )
-custom_styles/disabled = SubResource( 65 )
-custom_styles/normal = SubResource( 66 )
+custom_styles/hover = SubResource( 64 )
+custom_styles/pressed = SubResource( 65 )
+custom_styles/disabled = SubResource( 66 )
+custom_styles/normal = SubResource( 67 )
 custom_fonts/font = SubResource( 48 )
 custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
 disabled = true
@@ -10084,7 +10085,7 @@ text = "Exit"
 
 [node name="HelpBox" parent="MicrobeEditorGUI/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn" index="0" instance=ExtResource( 79 )]
 margin_bottom = 102.0
-custom_styles/panel = SubResource( 64 )
+custom_styles/panel = SubResource( 68 )
 
 [node name="MarginContainer" parent="MicrobeEditorGUI/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn/HelpBox" index="0"]
 margin_bottom = 102.0
@@ -10096,7 +10097,7 @@ text = "Each generation, you have 100 mutation points to spend, and each change 
 [node name="HelpBox2" parent="MicrobeEditorGUI/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn" index="1" instance=ExtResource( 79 )]
 margin_top = 117.0
 margin_bottom = 238.0
-custom_styles/panel = SubResource( 64 )
+custom_styles/panel = SubResource( 68 )
 
 [node name="MarginContainer" parent="MicrobeEditorGUI/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn/HelpBox2" index="0"]
 margin_bottom = 121.0
@@ -10112,7 +10113,7 @@ Pilus: Can be used to stab other cells."
 [node name="HelpBox3" parent="MicrobeEditorGUI/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn" index="2" instance=ExtResource( 79 )]
 margin_top = 253.0
 margin_bottom = 716.0
-custom_styles/panel = SubResource( 64 )
+custom_styles/panel = SubResource( 68 )
 
 [node name="MarginContainer" parent="MicrobeEditorGUI/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn/HelpBox3" index="0"]
 margin_bottom = 463.0
@@ -10137,7 +10138,7 @@ Toxin Vacuoles: Produces toxins (called OxyToxyNT)."
 
 [node name="HelpBox" parent="MicrobeEditorGUI/HelpScreen/ScrollContainer/HBoxContainer/RightColumn" index="0" instance=ExtResource( 79 )]
 margin_bottom = 121.0
-custom_styles/panel = SubResource( 64 )
+custom_styles/panel = SubResource( 68 )
 
 [node name="MarginContainer" parent="MicrobeEditorGUI/HelpScreen/ScrollContainer/HBoxContainer/RightColumn/HelpBox" index="0"]
 margin_bottom = 121.0
@@ -10149,7 +10150,7 @@ text = "Every time you reproduce, you will enter the Microbe Editor, where you c
 [node name="HelpBox2" parent="MicrobeEditorGUI/HelpScreen/ScrollContainer/HBoxContainer/RightColumn" index="1" instance=ExtResource( 79 )]
 margin_top = 136.0
 margin_bottom = 618.0
-custom_styles/panel = SubResource( 64 )
+custom_styles/panel = SubResource( 68 )
 
 [node name="MarginContainer" parent="MicrobeEditorGUI/HelpScreen/ScrollContainer/HBoxContainer/RightColumn/HelpBox2" index="0"]
 margin_bottom = 482.0
