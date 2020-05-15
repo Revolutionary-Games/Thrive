@@ -281,8 +281,6 @@ public class CompoundCloudPlane : CSGMesh
         delta *= 100.0f;
         var pos = new Vector2(Translation.x, Translation.z);
 
-        // Diffuse edges
-
         for (int i = 0; i < Constants.CLOUD_SQUARES_PER_SIDE; i++)
         {
             for (int j = 0; j < Constants.CLOUD_SQUARES_PER_SIDE; j++)
@@ -297,8 +295,6 @@ public class CompoundCloudPlane : CSGMesh
                 queue.Add(task);
             }
         }
-
-        // Advect edges
     }
 
     /// <summary>
