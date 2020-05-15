@@ -493,10 +493,14 @@ public class CompoundCloudSystem : Node
         }
 
         executor.RunTasks(tasks);
+        tasks.Clear();
 
         foreach (var cloud in clouds)
         {
-            cloud.UpdateTexture();
+            var task = new Task(() => cloud.UpdateTexture());
+            tasks.Add(task);
         }
+
+        executor.RunTasks(tasks);
     }
 }
