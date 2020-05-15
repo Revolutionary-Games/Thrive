@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Background in the microbe stage, needs to have 4 layers (textures)
@@ -7,6 +8,11 @@ using Godot;
 public class Background : IRegistryType
 {
     public List<string> Textures;
+
+    public string ParticleEffect;
+
+    [JsonIgnore]
+    public PackedScene ParticleEffectScene;
 
     public string InternalName { get; set; }
 
@@ -16,6 +22,12 @@ public class Background : IRegistryType
         {
             throw new InvalidRegistryDataException(name, GetType().Name,
                 "Background needs 4 layers");
+        }
+
+        if (string.IsNullOrEmpty(ParticleEffect))
+        {
+            throw new InvalidRegistryDataException(name, GetType().Name,
+                "ParticleEffect is missing");
         }
     }
 
@@ -38,5 +50,7 @@ public class Background : IRegistryType
                     "Background contains non-existant image: " + resource);
             }
         }
+
+        ParticleEffectScene = GD.Load<PackedScene>(ParticleEffect);
     }
 }

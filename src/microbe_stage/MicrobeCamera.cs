@@ -15,6 +15,8 @@ public class MicrobeCamera : Camera
     /// </summary>
     public Spatial BackgroundPlane;
 
+    public Particles BackgroundParticles;
+
     public float CameraHeight;
 
     /// <summary>
@@ -40,6 +42,9 @@ public class MicrobeCamera : Camera
     /// </summary>
     [Export]
     public float MaxCameraHeight = 80.0f;
+
+    [Export]
+    public bool DisableBackgroundParticles;
 
     public float InterpolateSpeed = 0.3f;
 
@@ -134,7 +139,7 @@ public class MicrobeCamera : Camera
     }
 
     /// <summary>
-    ///   Set the used background images
+    ///   Set the used background images and particles
     /// </summary>
     public void SetBackground(Background background)
     {
@@ -143,6 +148,19 @@ public class MicrobeCamera : Camera
         for (int i = 0; i < 4; ++i)
         {
             materialToUpdate.SetShaderParam($"layer{i:n0}", GD.Load<Texture>(background.Textures[i]));
+        }
+
+        if (BackgroundParticles != null)
+        {
+            BackgroundParticles.QueueFree();
+        }
+
+        if (!DisableBackgroundParticles)
+        {
+            BackgroundParticles = (Particles)background.ParticleEffectScene.Instance();
+            BackgroundParticles.Rotation = Rotation;
+            BackgroundParticles.LocalCoords = false;
+            AddChild(BackgroundParticles);
         }
     }
 
