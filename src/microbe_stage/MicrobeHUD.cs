@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Text;
 using Godot;
 
@@ -10,91 +11,127 @@ public class MicrobeHUD : Node
 {
     [Export]
     public NodePath AnimationPlayerPath;
+
     [Export]
     public NodePath LeftPanelsPath;
+
     [Export]
     public NodePath MouseHoverPanelPath;
+
     [Export]
     public NodePath HoveredItemsContainerPath;
+
     [Export]
     public NodePath MenuPath;
+
     [Export]
     public NodePath PauseButtonPath;
+
     [Export]
     public NodePath ResumeButtonPath;
+
     [Export]
     public NodePath AtpLabelPath;
+
     [Export]
     public NodePath HpLabelPath;
+
     [Export]
     public NodePath PopulationLabelPath;
+
     [Export]
     public NodePath PatchLabelPath;
+
     [Export]
     public NodePath EditorButtonPath;
+
     [Export]
     public NodePath HelpScreenPath;
 
     [Export]
     public NodePath EnvironmentPanelPath;
+
     [Export]
     public NodePath OxygenBarPath;
+
     [Export]
     public NodePath Co2BarPath;
+
     [Export]
     public NodePath NitrogenBarPath;
+
     [Export]
     public NodePath TemperaturePath;
+
     [Export]
     public NodePath SunlightPath;
+
     [Export]
     public NodePath PressurePath;
+
     [Export]
     public NodePath EnvironmentPanelBarContainerPath;
 
     [Export]
     public NodePath CompoundsPanelPath;
+
     [Export]
     public NodePath GlucoseBarPath;
+
     [Export]
     public NodePath AmmoniaBarPath;
+
     [Export]
     public NodePath PhosphateBarPath;
+
     [Export]
     public NodePath HydrogenSulfideBarPath;
+
     [Export]
     public NodePath IronBarPath;
+
     [Export]
     public NodePath CompoundsPanelBarContainerPath;
 
     [Export]
     public NodePath AgentsPanelPath;
+
     [Export]
     public NodePath OxytoxyBarPath;
+
     [Export]
     public NodePath AgentsPanelBarContainerPath;
 
     [Export]
     public NodePath AtpBarPath;
+
     [Export]
     public NodePath HealthBarPath;
+
     [Export]
     public NodePath AmmoniaReproductionBarPath;
+
     [Export]
     public NodePath PhosphateReproductionBarPath;
 
     [Export]
     public PackedScene ExtinctionBoxScene;
+
     [Export]
     public PackedScene WinBoxScene;
+
     [Export]
     public AudioStream MicrobePickupOrganelleSound;
+
     [Export]
     public Texture AmmoniaBW;
+
     [Export]
     public Texture PhosphatesBW;
+
     [Export]
     public Texture AmmoniaInv;
+
     [Export]
     public Texture PhosphatesInv;
 
@@ -548,7 +585,7 @@ public class MicrobeHUD : Node
 
         if (showMouseCoordinates)
         {
-            builder.AppendFormat("Stuff at {0:F1}, {1:F1}:\n",
+            builder.AppendFormat(CultureInfo.CurrentCulture, "Stuff at {0:F1}, {1:F1}:\n",
                 stage.Camera.CursorWorldPos.x, stage.Camera.CursorWorldPos.z);
         }
 
@@ -585,7 +622,7 @@ public class MicrobeHUD : Node
                 var compoundIcon = GUICommon.Instance.CreateCompoundIcon(readableName, 25, 25);
 
                 var compoundsText = new StringBuilder(readableName, 150);
-                compoundsText.AppendFormat(": {0:F1}", entry.Value);
+                compoundsText.AppendFormat(CultureInfo.CurrentCulture, ": {0:F1}", entry.Value);
 
                 compoundText.Text = compoundsText.ToString();
 
@@ -654,7 +691,7 @@ public class MicrobeHUD : Node
     private void UpdateReproductionProgress()
     {
         // Get player reproduction progress
-        float totalProgress = stage.Player.CalculateReproductionProgress(
+        stage.Player.CalculateReproductionProgress(
             out Dictionary<string, float> gatheredCompounds, out Dictionary<string, float> totalNeededCompounds);
 
         float fractionOfAmmonia = 0;
@@ -712,7 +749,7 @@ public class MicrobeHUD : Node
 
     private void UpdatePopulation()
     {
-        populationLabel.Text = stage.GameWorld.PlayerSpecies.Population.ToString();
+        populationLabel.Text = stage.GameWorld.PlayerSpecies.Population.ToString(CultureInfo.InvariantCulture);
     }
 
     /// <summary>

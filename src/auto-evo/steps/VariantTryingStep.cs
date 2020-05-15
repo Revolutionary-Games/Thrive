@@ -1,7 +1,5 @@
 ﻿namespace AutoEvo
 {
-    using System;
-
     /// <summary>
     ///   Base helper class for steps trying a fixed number of variant solutions and picking the best
     /// </summary>
@@ -23,15 +21,9 @@
             int Score { get; }
         }
 
-        public int TotalSteps
-        {
-            get
-            {
-                return (tryCurrentVariant ? 1 : 0) + variantsToTry;
-            }
-        }
+        public int TotalSteps => (tryCurrentVariant ? 1 : 0) + variantsToTry;
 
-        public bool Step(RunResults results)
+        public bool RunStep(RunResults results)
         {
             bool ran = false;
 

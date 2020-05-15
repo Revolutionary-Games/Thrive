@@ -18,7 +18,7 @@
 
         public int TotalSteps => 1;
 
-        public bool Step(RunResults results)
+        public bool RunStep(RunResults results)
         {
             operation(results);
             return true;

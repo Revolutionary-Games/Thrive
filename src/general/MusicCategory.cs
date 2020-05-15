@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -13,26 +12,35 @@ using Newtonsoft.Json;
 /// </remarks>
 public class MusicCategory : IRegistryType
 {
-    public enum RETURN_TYPE
+    public enum ReturnType
     {
+        /// <summary>
+        ///   Previous tracks are continued
+        /// </summary>
         Continue,
     }
 
-    public enum TRANSITION
+    public enum Transition
     {
+        /// <summary>
+        ///   There is a fade between the categories
+        /// </summary>
         Fade,
     }
 
-    public enum TRACK_TRANSITION
+    public enum TrackTransitionType
     {
+        /// <summary>
+        ///   No transition between tracks
+        /// </summary>
         None,
     }
 
-    public RETURN_TYPE Return { get; set; } = RETURN_TYPE.Continue;
+    public ReturnType Return { get; set; } = ReturnType.Continue;
 
-    public TRANSITION CategoryTransition { get; set; } = TRANSITION.Fade;
+    public Transition CategoryTransition { get; set; } = Transition.Fade;
 
-    public TRACK_TRANSITION TrackTransition { get; set; } = TRACK_TRANSITION.None;
+    public TrackTransitionType TrackTransition { get; set; } = TrackTransitionType.None;
 
     /// <summary>
     ///   List of track lists. When the mode is concurrent one track from each list is played at once
@@ -45,7 +53,7 @@ public class MusicCategory : IRegistryType
     public void Check(string name)
     {
         if (TrackLists == null || TrackLists.Count < 1)
-            throw new InvalidRegistryData(name, this.GetType().Name, "missing track lists");
+            throw new InvalidRegistryDataException(name, GetType().Name, "missing track lists");
 
         foreach (var list in TrackLists)
             list.Check();
@@ -57,20 +65,30 @@ public class MusicCategory : IRegistryType
 /// </summary>
 public class TrackList
 {
-    public enum TYPE
+    public enum Type
     {
+        /// <summary>
+        ///   Tracks from all categories are played
+        /// </summary>
         Concurrent,
     }
 
-    public enum ORDER
+    public enum Order
     {
+        /// <summary>
+        ///   Track order is random
+        /// </summary>
         Random,
+
+        /// <summary>
+        ///   Track order is as specified in the file
+        /// </summary>
         Sequential,
     }
 
-    public TYPE ListType { get; set; } = TYPE.Concurrent;
+    public Type ListType { get; set; } = Type.Concurrent;
 
-    public ORDER TrackOrder { get; set; } = ORDER.Random;
+    public Order TrackOrder { get; set; } = Order.Random;
 
     public List<Track> Tracks { get; set; }
 
@@ -80,7 +98,7 @@ public class TrackList
     public void Check()
     {
         if (Tracks == null || Tracks.Count < 1)
-            throw new InvalidRegistryData("track list", this.GetType().Name, "missing Tracks");
+            throw new InvalidRegistryDataException("track list", GetType().Name, "missing Tracks");
 
         foreach (var track in Tracks)
             track.Check();
@@ -103,7 +121,7 @@ public class TrackList
         {
             if (string.IsNullOrEmpty(ResourcePath))
             {
-                throw new InvalidRegistryData("track", this.GetType().Name, "ResourcePath missing for track");
+                throw new InvalidRegistryDataException("track", GetType().Name, "ResourcePath missing for track");
             }
         }
     }

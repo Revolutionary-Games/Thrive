@@ -23,6 +23,6 @@ public static class RandomUtils
     /// <param name="max">Maximum value</param>
     public static float Next(this Random random, float min, float max)
     {
-        return (random.NextFloat() * (max - min)) + min;
+        return random.NextFloat() * (max - min) + min;
     }
 }

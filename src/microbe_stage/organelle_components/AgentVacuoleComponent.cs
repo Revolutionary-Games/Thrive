@@ -1,6 +1,4 @@
-﻿using System;
-
-/// <summary>
+﻿/// <summary>
 ///   Adds toxin shooting capability
 /// </summary>
 public class AgentVacuoleComponent : IOrganelleComponent
@@ -37,15 +35,15 @@ public class AgentVacuoleComponentFactory : IOrganelleComponentFactory
 
     public void Check(string name)
     {
-        if (Compound == string.Empty)
+        if (string.IsNullOrEmpty(Compound))
         {
-            throw new InvalidRegistryData(name, this.GetType().Name,
+            throw new InvalidRegistryDataException(name, GetType().Name,
                 "Agent compound needs to be set");
         }
 
-        if (Process == string.Empty)
+        if (string.IsNullOrEmpty(Process))
         {
-            throw new InvalidRegistryData(name, this.GetType().Name,
+            throw new InvalidRegistryDataException(name, GetType().Name,
                 "Agent process needs to be set");
         }
     }

@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 /// </summary>
 public class Settings
 {
-    private static readonly Settings INSTANCE = LoadSettings();
+    private static readonly Settings SingletonInstance = LoadSettings();
 
     static Settings()
     {
@@ -17,13 +17,7 @@ public class Settings
     {
     }
 
-    public static Settings Instance
-    {
-        get
-        {
-            return INSTANCE;
-        }
-    }
+    public static Settings Instance => SingletonInstance;
 
     /// <summary>
     ///   If true all sounds are muted
@@ -108,21 +102,9 @@ public class Settings
     /// </summary>
     public int ColourblindSetting { get; set; } = 0;
 
-    public int CloudSimulationWidth
-    {
-        get
-        {
-            return (int)(Constants.CLOUD_X_EXTENT / CloudResolution);
-        }
-    }
+    public int CloudSimulationWidth => Constants.CLOUD_X_EXTENT / CloudResolution;
 
-    public int CloudSimulationHeight
-    {
-        get
-        {
-            return (int)(Constants.CLOUD_Y_EXTENT / CloudResolution);
-        }
-    }
+    public int CloudSimulationHeight => Constants.CLOUD_Y_EXTENT / CloudResolution;
 
     /// <summary>
     ///   Saves the current settings by writing them to the settings file
@@ -190,7 +172,7 @@ public class Settings
     /// </summary>
     public void ResetToDefaults()
     {
-        var defaults = new Settings();
+        // var defaults = new Settings();
 
         // TODO: apply the default values
         throw new NotImplementedException();
