@@ -5,27 +5,23 @@
     /// </summary>
     public class CalculatePopulation : IRunStep
     {
-        private PatchMap map;
+        private readonly PatchMap map;
 
         public CalculatePopulation(PatchMap map)
         {
             this.map = map;
         }
 
-        public int TotalSteps
-        {
-            get
-            {
-                return 1;
-            }
-        }
+        public int TotalSteps => 1;
 
-        public bool Step(RunResults results)
+        public bool RunStep(RunResults results)
         {
-            var config = new SimulationConfiguration(map, 1);
+            // ReSharper disable RedundantArgumentDefaultValue
+            var config = new SimulationConfiguration(map, 1) { Results = results };
+
+            // ReSharper restore RedundantArgumentDefaultValue
 
             // Directly feed the population results to the main results object
-            config.Results = results;
 
             PopulationSimulation.Simulate(config);
 

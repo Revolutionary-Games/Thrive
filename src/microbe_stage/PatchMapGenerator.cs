@@ -1,5 +1,4 @@
-﻿using System;
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Contains logic for generating PatchMap objects
@@ -8,6 +7,9 @@ public static class PatchMapGenerator
 {
     public static PatchMap Generate(WorldGenerationSettings settings, Species defaultSpecies)
     {
+        // TODO: implement actual generation based on settings
+        _ = settings;
+
         var map = new PatchMap();
 
         // Predefined patches
@@ -28,8 +30,8 @@ public static class PatchMapGenerator
         patch3.ScreenCoordinates = new Vector2(300, 100);
         map.AddPatch(patch3);
 
-        Patch patch4 = new Patch("Pangonian Bathypalagic", 4,
-            GetBiomeTemplate("bathypalagic"));
+        Patch patch4 = new Patch("Pangonian Bathypelagic", 4,
+            GetBiomeTemplate("bathypelagic"));
         patch4.ScreenCoordinates = new Vector2(200, 300);
         map.AddPatch(patch4);
 

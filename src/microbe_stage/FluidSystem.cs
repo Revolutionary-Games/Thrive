@@ -3,7 +3,9 @@ using Godot;
 
 public class FluidSystem
 {
+/*
     private const float MaxForceApplied = 0.525f;
+*/
     private const float DisturbanceTimescale = 0.001f;
     private const float CurrentsTimescale = 0.001f / 500.0f;
     private const float CurrentsStretchingMultiplier = 1.0f / 10.0f;
@@ -16,7 +18,9 @@ public class FluidSystem
     private readonly PerlinNoise noiseCurrentsX;
     private readonly PerlinNoise noiseCurrentsY;
 
+/*
     private readonly Vector2 scale = new Vector2(0.05f, 0.05f);
+*/
 
     private readonly Node worldRoot;
 
@@ -38,6 +42,8 @@ public class FluidSystem
 
     public void PhysicsProcess(float delta)
     {
+        _ = delta;
+
         var nodes = worldRoot.GetTree().GetNodesInGroup(Constants.FLUID_EFFECT_GROUP);
 
         foreach (Node entity in nodes)

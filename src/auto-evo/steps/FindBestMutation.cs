@@ -1,7 +1,5 @@
 ﻿namespace AutoEvo
 {
-    using System;
-
     /// <summary>
     ///   Step that finds the best mutation for a single species
     /// </summary>

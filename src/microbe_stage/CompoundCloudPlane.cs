@@ -24,34 +24,22 @@ public class CompoundCloudPlane : CSGMesh
 
     public Compound Compound1
     {
-        get
-        {
-            return slot1.Compound;
-        }
+        get { return slot1.Compound; }
     }
 
     public Compound Compound2
     {
-        get
-        {
-            return slot2.Compound;
-        }
+        get { return slot2.Compound; }
     }
 
     public Compound Compound3
     {
-        get
-        {
-            return slot3.Compound;
-        }
+        get { return slot3.Compound; }
     }
 
     public Compound Compound4
     {
-        get
-        {
-            return slot4.Compound;
-        }
+        get { return slot4.Compound; }
     }
 
     [JsonProperty]
@@ -70,7 +58,7 @@ public class CompoundCloudPlane : CSGMesh
         texture = new ImageTexture();
         texture.CreateFromImage(image, (uint)Texture.FlagsEnum.Filter);
 
-        var material = (ShaderMaterial)this.Material;
+        var material = (ShaderMaterial)Material;
         material.SetShaderParam("densities", texture);
     }
 
@@ -104,7 +92,7 @@ public class CompoundCloudPlane : CSGMesh
             slots.Add(slot4);
 
         // Setup colours
-        var material = (ShaderMaterial)this.Material;
+        var material = (ShaderMaterial)Material;
 
         material.SetShaderParam("colour1", cloud1.Colour);
 
@@ -171,13 +159,13 @@ public class CompoundCloudPlane : CSGMesh
                 // This formula smoothens the cloud density so that we get gradients
                 // of transparency.
                 float intensity1 = 2 * Mathf.Atan(
-                        0.003f * slot1.Density[x, y]);
+                    0.003f * slot1.Density[x, y]);
                 float intensity2 = 2 * Mathf.Atan(
-                        0.003f * slot2.Density[x, y]);
+                    0.003f * slot2.Density[x, y]);
                 float intensity3 = 2 * Mathf.Atan(
-                        0.003f * slot3.Density[x, y]);
+                    0.003f * slot3.Density[x, y]);
                 float intensity4 = 2 * Mathf.Atan(
-                        0.003f * slot4.Density[x, y]);
+                    0.003f * slot4.Density[x, y]);
 
                 // There used to be a clamp(0.0f, 1.0f) for all the
                 // values but that has been taken out to improve
@@ -616,7 +604,7 @@ public class CompoundCloudPlane : CSGMesh
             else if (parentPlane.UpperCloud != null)
             {
                 upperDensity = parentPlane.UpperCloud.slots[index]
-                                .Density[x, size - 1];
+                    .Density[x, size - 1];
             }
 
             float lowerDensity = 0.0f;
@@ -628,7 +616,7 @@ public class CompoundCloudPlane : CSGMesh
             {
                 lowerDensity =
                     parentPlane.LowerCloud.slots[index]
-                                .Density[x, 0];
+                        .Density[x, 0];
             }
 
             float leftDensity = 0.0f;
@@ -639,7 +627,7 @@ public class CompoundCloudPlane : CSGMesh
             else if (parentPlane.LeftCloud != null)
             {
                 leftDensity = parentPlane.LeftCloud.slots[index]
-                                .Density[size - 1, y];
+                    .Density[size - 1, y];
             }
 
             float rightDensity = 0.0f;
@@ -651,13 +639,13 @@ public class CompoundCloudPlane : CSGMesh
             {
                 rightDensity =
                     parentPlane.RightCloud.slots[index]
-                                .Density[0, y];
+                        .Density[0, y];
             }
 
             OldDensity[x, y] =
                 Density[x, y] * (1 - a) +
                 (upperDensity + lowerDensity + leftDensity + rightDensity) * a /
-                    4;
+                4;
         }
 
         private void Diffuse(float delta)
@@ -677,7 +665,7 @@ public class CompoundCloudPlane : CSGMesh
                     OldDensity[x, y] =
                         Density[x, y] * (1 - a) +
                         (upperDensity + lowerDensity + leftDensity + rightDensity) * a /
-                            4;
+                        4;
                 }
             }
         }

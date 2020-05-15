@@ -1,6 +1,4 @@
-﻿using System;
-
-/// <summary>
+﻿/// <summary>
 ///   Properties of an agent. Mainly used currently to block friendly fire
 /// </summary>
 public class AgentProperties

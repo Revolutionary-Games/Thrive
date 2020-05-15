@@ -169,7 +169,7 @@ public class GameWorld
 
     public AutoEvoRun GetAutoEvoRun()
     {
-        IsAutoEvoFinished(true);
+        IsAutoEvoFinished();
 
         return autoEvo;
     }
@@ -189,6 +189,9 @@ public class GameWorld
     /// <summary>
     ///   Adds an external population effect to a species
     /// </summary>
+    /// <param name="species">Target species</param>
+    /// <param name="amount">Change amount</param>
+    /// <param name="description">What caused the change</param>
     /// <param name="immediate">
     ///   If true applied immediately. Should only be used for the player dying
     /// </param>

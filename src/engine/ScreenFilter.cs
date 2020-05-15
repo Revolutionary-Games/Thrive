@@ -13,13 +13,7 @@ public class ScreenFilter : TextureRect
         instance = this;
     }
 
-    public static ScreenFilter Instance
-    {
-        get
-        {
-            return instance;
-        }
-    }
+    public static ScreenFilter Instance => instance;
 
     public override void _Ready()
     {
