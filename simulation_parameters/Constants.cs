@@ -25,11 +25,13 @@ public static class Constants
     ///   Don't change this, so much stuff will break
     /// </summary>
     public const int CLOUDS_IN_ONE = 4;
+    public const int CLOUD_SQUARES_PER_SIDE = 3;
+    public const int CLOUD_EDGE_WIDTH = 2;
 
     // NOTE: these 4 constants need to match what is setup in CompoundCloudPlane.tscn
-    public const int CLOUD_WIDTH = 100;
+    public const int CLOUD_WIDTH = 300;
     public const int CLOUD_X_EXTENT = CLOUD_WIDTH * 2;
-    public const int CLOUD_HEIGHT = 100;
+    public const int CLOUD_HEIGHT = 300;
 
     // This is cloud local Y not world Y
     public const int CLOUD_Y_EXTENT = CLOUD_HEIGHT * 2;
