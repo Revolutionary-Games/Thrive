@@ -15,6 +15,8 @@ public class MicrobeCamera : Camera
     /// </summary>
     public Spatial BackgroundPlane;
 
+    public Particles BackgroundParticles;
+
     public float CameraHeight;
 
     /// <summary>
@@ -134,7 +136,7 @@ public class MicrobeCamera : Camera
     }
 
     /// <summary>
-    ///   Set the used background images
+    ///   Set the used background images and particles
     /// </summary>
     public void SetBackground(Background background)
     {
@@ -144,6 +146,16 @@ public class MicrobeCamera : Camera
         {
             materialToUpdate.SetShaderParam($"layer{i:n0}", GD.Load<Texture>(background.Textures[i]));
         }
+
+        if (BackgroundParticles != null)
+        {
+            BackgroundParticles.QueueFree();
+        }
+
+        BackgroundParticles = (Particles)background.ParticleEffectScene.Instance();
+        BackgroundParticles.Rotation = Rotation;
+        BackgroundParticles.LocalCoords = false;
+        AddChild(BackgroundParticles);
     }
 
     private void UpdateCursorWorldPos()
