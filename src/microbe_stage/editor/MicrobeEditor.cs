@@ -789,8 +789,6 @@ public class MicrobeEditor : Node
 
         canStillMove = true;
 
-        camera.DisableBackgroundParticles = true;
-
         UpdatePatchBackgroundImage();
 
         gui.SetMap(CurrentGame.GameWorld.Map);
