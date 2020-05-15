@@ -64,24 +64,28 @@ public class ProcessSystem
             {
                 foreach (var processData in efficiencyInfo.Value.Processes)
                 {
-                    // Find process inputs and outputs that use/produce ATP and add to
-                    // totals
-                    if (processData.OtherInputs.ContainsKey(atp.InternalName))
+                    // Find process inputs and outputs that use/produce ATP
+                    // and that are performed by that organelle
+                    // and add to totals
+                    if (organelle.Processes.ContainsKey(processData.Process.InternalName))
                     {
-                        var amount = processData.OtherInputs[atp.InternalName].Amount;
+                        if (processData.OtherInputs.ContainsKey(atp.InternalName))
+                        {
+                            var amount = processData.OtherInputs[atp.InternalName].Amount;
 
-                        processATPConsumption += amount;
+                            processATPConsumption += amount;
 
-                        result.AddConsumption(organelle.Name, amount);
-                    }
+                            result.AddConsumption(organelle.Name, amount);
+                        }
 
-                    if (processData.Outputs.ContainsKey(atp.InternalName))
-                    {
-                        var amount = processData.Outputs[atp.InternalName].Amount;
+                        if (processData.Outputs.ContainsKey(atp.InternalName))
+                        {
+                            var amount = processData.Outputs[atp.InternalName].Amount;
 
-                        processATPProduction += amount;
+                            processATPProduction += amount;
 
-                        result.AddProduction(organelle.Name, amount);
+                            result.AddProduction(organelle.Name, amount);
+                        }
                     }
                 }
             }
