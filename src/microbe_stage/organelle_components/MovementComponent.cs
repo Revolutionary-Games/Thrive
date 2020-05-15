@@ -1,5 +1,4 @@
-﻿using System;
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Flagellum for making cells move faster
@@ -27,9 +26,8 @@ public class MovementComponent : ExternallyPositionedComponent
 
         // Movement force
         var microbe = organelle.ParentMicrobe;
-        var pos = microbe.Translation;
 
-        var movement = CalculateMovementForce(microbe, elapsed, pos);
+        var movement = CalculateMovementForce(microbe, elapsed);
 
         if (movement != new Vector3(0, 0, 0))
             microbe.AddMovementForce(movement);
@@ -75,19 +73,20 @@ public class MovementComponent : ExternallyPositionedComponent
         }
     }
 
+    // ReSharper disable once UnusedParameter.Local
     /// <summary>
     ///   The final calculated force is multiplied by elapsed before
     ///   applying. So we don't have to do that. But we need to take
     ///   the right amount of atp.
     /// </summary>
-    private Vector3 CalculateMovementForce(Microbe microbe, float elapsed, Vector3 position)
+    private Vector3 CalculateMovementForce(Microbe microbe, float elapsed)
     {
         // The movementDirection is the player or AI input
         Vector3 direction = microbe.MovementDirection;
 
-        var forceMagnitude = this.force.Dot(direction);
+        var forceMagnitude = force.Dot(direction);
         if (forceMagnitude <= 0 || direction.LengthSquared() < MathUtils.EPSILON ||
-            this.force.LengthSquared() < MathUtils.EPSILON)
+            force.LengthSquared() < MathUtils.EPSILON)
         {
             if (movingTail)
             {
@@ -113,11 +112,11 @@ public class MovementComponent : ExternallyPositionedComponent
 
             forceMagnitude *= fraction;
 
-            animationSpeed = 0.25f + ((animationSpeed - 0.25f) * fraction);
+            animationSpeed = 0.25f + (animationSpeed - 0.25f) * fraction;
         }
 
-        float impulseMagnitude = (Constants.FLAGELLA_BASE_FORCE * microbe.MovementFactor *
-            forceMagnitude) / 100.0f;
+        float impulseMagnitude = Constants.FLAGELLA_BASE_FORCE * microbe.MovementFactor *
+            forceMagnitude / 100.0f;
 
         // Rotate the 'thrust' based on our orientation
         direction = microbe.Transform.basis.Xform(direction);
@@ -142,13 +141,13 @@ public class MovementComponentFactory : IOrganelleComponentFactory
     {
         if (Momentum <= 0.0f)
         {
-            throw new InvalidRegistryData(name, this.GetType().Name,
+            throw new InvalidRegistryDataException(name, GetType().Name,
                 "Momentum needs to be > 0.0f");
         }
 
         if (Torque <= 0.0f)
         {
-            throw new InvalidRegistryData(name, this.GetType().Name,
+            throw new InvalidRegistryDataException(name, GetType().Name,
                 "Torque needs to be > 0.0f");
         }
     }

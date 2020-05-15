@@ -121,7 +121,7 @@
             if (species.Count < 1)
                 return;
 
-            var biome = patch.Biome;
+            // var biome = patch.Biome;
 
             // TODO: this is where the proper auto-evo algorithm goes
 

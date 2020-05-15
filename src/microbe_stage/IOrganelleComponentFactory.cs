@@ -1,6 +1,4 @@
-﻿using System;
-
-/// <summary>
+﻿/// <summary>
 ///   Generic type for organelle factories
 /// </summary>
 public interface IOrganelleComponentFactory

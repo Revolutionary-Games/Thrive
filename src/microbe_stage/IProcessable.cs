@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 /// <summary>
 ///   Thing that has processes for ProcessSystem to run

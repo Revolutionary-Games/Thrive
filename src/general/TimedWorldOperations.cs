@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -14,10 +13,6 @@ public class TimedWorldOperations
     private double totalPassedTime = 0;
 
     private List<IWorldEffect> effects = new List<IWorldEffect>();
-
-    public TimedWorldOperations()
-    {
-    }
 
     /// <summary>
     /// Called when time passes
@@ -47,6 +42,7 @@ public class TimedWorldOperations
     /// </summary>
     public void RegisterEffect(string name, IWorldEffect effect)
     {
+        _ = name;
         effect.OnRegisterToWorld();
         effects.Add(effect);
     }

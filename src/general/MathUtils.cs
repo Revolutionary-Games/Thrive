@@ -6,8 +6,8 @@ using Godot;
 /// </summary>
 public static class MathUtils
 {
-    public static float EPSILON = 0.00000001f;
-    public static float DEGREES_TO_RADIANS = Mathf.Pi / 180;
+    public const float EPSILON = 0.00000001f;
+    public const float DEGREES_TO_RADIANS = Mathf.Pi / 180;
 
     public static T Clamp<T>(this T val, T min, T max)
         where T : IComparable<T>
@@ -27,7 +27,7 @@ public static class MathUtils
     }
 
     public static double
-       Sigmoid(double x)
+        Sigmoid(double x)
     {
         return 1 / (1 + Math.Exp(-x));
     }
@@ -62,6 +62,6 @@ public static class MathUtils
     public static Quat CreateRotationForPhysicsOrganelle(float angle)
     {
         return new Quat(new Vector3(-1, 0, 0), 90 * DEGREES_TO_RADIANS) *
-                new Quat(new Vector3(0, 0, -1), (180 - angle) * DEGREES_TO_RADIANS);
+            new Quat(new Vector3(0, 0, -1), (180 - angle) * DEGREES_TO_RADIANS);
     }
 }

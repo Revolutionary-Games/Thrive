@@ -1,4 +1,3 @@
-using System;
 using Godot;
 
 /// <summary>
@@ -12,52 +11,68 @@ public class OptionsMenu : Control
     // Tab buttons
     [Export]
     public NodePath GraphicsButtonPath;
+
     [Export]
     public NodePath SoundButtonPath;
+
     [Export]
     public NodePath PerformanceButtonPath;
+
     [Export]
     public NodePath MiscButtonPath;
 
     // Graphics tab
     [Export]
     public NodePath GraphicsTabPath;
+
     [Export]
     public NodePath VSyncPath;
+
     [Export]
     public NodePath FullScreenPath;
+
     [Export]
     public NodePath MSAAResolutionPath;
+
     [Export]
     public NodePath ColourblindSettingPath;
 
     // Sound tab
     [Export]
     public NodePath SoundTabPath;
+
     [Export]
     public NodePath MasterVolumePath;
+
     [Export]
     public NodePath MasterMutedPath;
+
     [Export]
     public NodePath MusicVolumePath;
+
     [Export]
     public NodePath MusicMutedPath;
 
     // Performance tab
     [Export]
     public NodePath PerformanceTabPath;
+
     [Export]
     public NodePath CloudIntervalPath;
+
     [Export]
     public NodePath CloudResolutionPath;
 
     // Misc tab
     [Export]
     public NodePath MiscTabPath;
+
     [Export]
     public NodePath PlayIntroPath;
+
     [Export]
     public NodePath PlayMicrobeIntroPath;
+
     [Export]
     public NodePath CheatsPath;
 
@@ -204,7 +219,7 @@ public class OptionsMenu : Control
     }
 
     /// <summary>
-    ///   Converts the slider value (0-100) to a DB adjustement for a sound channel
+    ///   Converts the slider value (0-100) to a DB adjustment for a sound channel
     /// </summary>
     private float ConvertSoundBarToDb(float value)
     {
@@ -213,7 +228,7 @@ public class OptionsMenu : Control
 
     private float ConvertDBToSoundBar(float value)
     {
-        return (value * AUDIO_BAR_SCALE) + 100;
+        return value * AUDIO_BAR_SCALE + 100;
     }
 
     private int CloudIntervalToIndex(float interval)
@@ -275,14 +290,9 @@ public class OptionsMenu : Control
         {
             return 1;
         }
-        else if (resolution > 2)
-        {
-            return 2;
-        }
         else
         {
-            GD.PrintErr("invalid cloud resolution value");
-            return -1;
+            return 2;
         }
     }
 
