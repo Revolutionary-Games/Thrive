@@ -340,7 +340,7 @@ public class CompoundCloudPlane : CSGMesh
     {
         foreach (var c in Compounds)
         {
-            if (c.InternalName == name)
+            if (c != null && c.InternalName.Equals(name))
                 return true;
         }
 
@@ -364,10 +364,10 @@ public class CompoundCloudPlane : CSGMesh
     public void AddCloud(string name, float density, int x, int y)
     {
         var cloudToAdd = new System.Numerics.Vector4(
-            Compounds[0].InternalName == name ? density : 0.0f,
-            Compounds[1].InternalName == name ? density : 0.0f,
-            Compounds[2].InternalName == name ? density : 0.0f,
-            Compounds[3].InternalName == name ? density : 0.0f);
+            Compounds[0].InternalName.Equals(name) ? density : 0.0f,
+            Compounds[1] != null && Compounds[1].InternalName.Equals(name) ? density : 0.0f,
+            Compounds[2] != null && Compounds[2].InternalName.Equals(name) ? density : 0.0f,
+            Compounds[3] != null && Compounds[3].InternalName.Equals(name) ? density : 0.0f);
 
         Density[x, y] += cloudToAdd;
     }
@@ -406,6 +406,9 @@ public class CompoundCloudPlane : CSGMesh
     {
         for (int i = 0; i < Constants.CLOUDS_IN_ONE; i++)
         {
+            if (Compounds[i] == null)
+                break;
+
             float amount = HackyAdress(Density[x, y], i);
             if (amount > 0)
                 result[Compounds[i].InternalName] = amount;
@@ -460,6 +463,9 @@ public class CompoundCloudPlane : CSGMesh
 
         for (int i = 0; i < Constants.CLOUDS_IN_ONE; i++)
         {
+            if (Compounds[i] == null)
+                break;
+
             // Overestimate of how much compounds we get
             float generousAmount = HackyAdress(Density[localX, localY], i) *
                 Constants.SKIP_TRYING_TO_ABSORB_RATIO;
