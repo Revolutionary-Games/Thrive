@@ -489,10 +489,14 @@ public class CompoundCloudSystem : Node
         // Update the cloud textures in parallel
         foreach (var cloud in clouds)
         {
-            var task = new Task(() => cloud.UploadTexture());
-            tasks.Add(task);
+            cloud.QueueUpdateTextureImage(tasks);
         }
 
         executor.RunTasks(tasks);
+
+        foreach (var cloud in clouds)
+        {
+            cloud.UpdateTexture();
+        }
     }
 }

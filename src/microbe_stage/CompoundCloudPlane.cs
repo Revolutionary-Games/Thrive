@@ -298,38 +298,30 @@ public class CompoundCloudPlane : CSGMesh
     }
 
     /// <summary>
-    ///   Updates the texture with the new densities
+    ///   Updates the cloud in parallel.
     /// </summary>
-    public void UploadTexture()
+    public void QueueUpdateTextureImage(List<Task> queue)
     {
         image.Lock();
 
-        for (int x = 0; x < Size; ++x)
+        for (int i = 0; i < Constants.CLOUD_SQUARES_PER_SIDE; i++)
         {
-            for (int y = 0; y < Size; ++y)
+            for (int j = 0; j < Constants.CLOUD_SQUARES_PER_SIDE; j++)
             {
-                // This formula smoothens the cloud density so that we get gradients
-                // of transparency.
-                float intensity1 = 2 * Mathf.Atan(
-                    0.003f * Density[x, y].X);
-                float intensity2 = 2 * Mathf.Atan(
-                    0.003f * Density[x, y].Y);
-                float intensity3 = 2 * Mathf.Atan(
-                    0.003f * Density[x, y].Z);
-                float intensity4 = 2 * Mathf.Atan(
-                    0.003f * Density[x, y].W);
-
-                // There used to be a clamp(0.0f, 1.0f) for all the
-                // values but that has been taken out to improve
-                // performance as with Godot it doesn't seem to have
-                // much effect
-
-                image.SetPixel(x, y, new Color(intensity1, intensity2, intensity3, intensity4));
+                var x0 = i;
+                var y0 = j;
+                var task = new Task(() => PartialUpdateTextureImage(x0 * Size / Constants.CLOUD_SQUARES_PER_SIDE,
+                                                            y0 * Size / Constants.CLOUD_SQUARES_PER_SIDE,
+                                                            Size / Constants.CLOUD_SQUARES_PER_SIDE,
+                                                            Size / Constants.CLOUD_SQUARES_PER_SIDE));
+                queue.Add(task);
             }
         }
+    }
 
+    public void UpdateTexture()
+    {
         image.Unlock();
-
         texture.CreateFromImage(image, (uint)Texture.FlagsEnum.Filter | (uint)Texture.FlagsEnum.Repeat);
     }
 
@@ -627,6 +619,33 @@ public class CompoundCloudPlane : CSGMesh
                     Density[(q1 + Size) % Size, (r0 + Size) % Size] += OldDensity[x, y] * s1 * t0;
                     Density[(q1 + Size) % Size, (r1 + Size) % Size] += OldDensity[x, y] * s1 * t1;
                 }
+            }
+        }
+    }
+
+    private void PartialUpdateTextureImage(int x0, int y0, int width, int height)
+    {
+        for (int x = x0; x < x0 + width; x++)
+        {
+            for (int y = y0; y < y0 + height; y++)
+            {
+                // This formula smoothens the cloud density so that we get gradients
+                // of transparency.
+                float intensity1 = 2 * Mathf.Atan(
+                    0.003f * Density[x, y].X);
+                float intensity2 = 2 * Mathf.Atan(
+                    0.003f * Density[x, y].Y);
+                float intensity3 = 2 * Mathf.Atan(
+                    0.003f * Density[x, y].Z);
+                float intensity4 = 2 * Mathf.Atan(
+                    0.003f * Density[x, y].W);
+
+                // There used to be a clamp(0.0f, 1.0f) for all the
+                // values but that has been taken out to improve
+                // performance as with Godot it doesn't seem to have
+                // much effect
+
+                image.SetPixel(x, y, new Color(intensity1, intensity2, intensity3, intensity4));
             }
         }
     }
