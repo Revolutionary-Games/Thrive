@@ -1384,10 +1384,20 @@ public class MicrobeEditor : Node
 
         // Get summary before applying results in order to get comparisons to the previous populations
         var run = CurrentGame.GameWorld.GetAutoEvoRun();
-        var summary = run.Results.MakeSummary(CurrentGame.GameWorld.Map, true, run.ExternalEffects);
-        var external = run.MakeSummaryOfExternalEffects();
 
-        gui.UpdateAutoEvoResults(summary, external);
+        if (run?.Results == null)
+        {
+            gui.UpdateAutoEvoResults("Auto-evo failed to run", "run status: " +
+                (run != null ? run.Status : string.Empty));
+        }
+        else
+        {
+            var summary = run.Results.MakeSummary(CurrentGame.GameWorld.Map, true,
+                run.ExternalEffects);
+            var external = run.MakeSummaryOfExternalEffects();
+
+            gui.UpdateAutoEvoResults(summary, external);
+        }
 
         ApplyAutoEvoResults();
     }
