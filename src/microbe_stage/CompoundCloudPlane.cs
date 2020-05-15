@@ -75,7 +75,7 @@ public class CompoundCloudPlane : CSGMesh
         position = new Int2(newx, newy);
 
         // This accomodates the texture of the cloud to the new position of the plane.
-        var material = (ShaderMaterial)this.Material;
+        var material = (ShaderMaterial)Material;
         material.SetShaderParam("UVoffset", new Vector2(newx / (float)Constants.CLOUD_SQUARES_PER_SIDE,
                                                         newy / (float)Constants.CLOUD_SQUARES_PER_SIDE));
     }
