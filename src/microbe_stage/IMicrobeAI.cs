@@ -10,5 +10,7 @@ public interface IMicrobeAI
     ///   the AI updates. Otherwise the results are not deterministic.
     /// </summary>
     /// <param name="delta">Elapsed time in seconds.</param>
+    /// <param name="random">Randomness source</param>
+    /// <param name="data">Common data for AI agents, should not be modified</param>
     void AIThink(float delta, Random random, MicrobeAICommonData data);
 }

@@ -4,7 +4,7 @@ using System.Reflection;
 /// <summary>
 ///   Holds some constants that must be kept constant after first setting
 /// </summary>
-public class Constants
+public static class Constants
 {
     /// <summary>
     ///   How long the player stays dead before respawning
@@ -145,7 +145,7 @@ public class Constants
     /// </summary>
     public const float COMPOUNDS_TO_VENT_PER_SECOND = 5.0f;
 
-    public const float CHUNK_VENT_COMPOUND_MULTIPLIER = 1000.0f;
+    public const float CHUNK_VENT_COMPOUND_MULTIPLIER = 3000.0f;
 
     public const float MICROBE_VENT_COMPOUND_MULTIPLIER = 10000.0f;
 
@@ -387,24 +387,6 @@ public class Constants
 
     public const string CONFIGURATION_FILE = "user://thrive_settings.json";
 
-    private static readonly Constants INSTANCE = new Constants();
-
-    static Constants()
-    {
-    }
-
-    private Constants()
-    {
-    }
-
-    public static Constants Instance
-    {
-        get
-        {
-            return INSTANCE;
-        }
-    }
-
     public static string Version
     {
         get
@@ -413,7 +395,7 @@ public class Constants
             Version version = assembly.GetName().Version;
             var versionSuffix = (AssemblyInformationalVersionAttribute[])assembly.
                 GetCustomAttributes(typeof(AssemblyInformationalVersionAttribute), false);
-            return version.ToString() + versionSuffix[0].InformationalVersion;
+            return $"{version}" + versionSuffix[0].InformationalVersion;
         }
     }
 }

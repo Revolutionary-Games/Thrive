@@ -104,8 +104,6 @@ public static class SpawnHelpers
             // Network
             // Allows for "jungles of cyanobacteria"
             // Network is extremely rare
-            var x = curSpawn.x;
-            var z = curSpawn.z;
 
             // To prevent bacteria being spawned on top of each other
             var horizontal = false;
@@ -225,8 +223,7 @@ public static class SpawnHelpers
         var chunk = (FloatingChunk)chunkScene.Instance();
 
         // Settings need to be applied before adding it to the scene
-        chunk.GraphicsScene = chunkType.Meshes[random.Next(chunkType.Meshes.Count)].
-            LoadedScene;
+        chunk.GraphicsScene = chunkType.Meshes[random.Next(chunkType.Meshes.Count)].LoadedScene;
 
         // Pass on the chunk data
         chunk.Init(chunkType, cloudSystem);
@@ -236,9 +233,9 @@ public static class SpawnHelpers
         // Chunk is spawned with random rotation
         chunk.Transform = new Transform(new Quat(
                 new Vector3(0, 1, 1).Normalized(), 2 * Mathf.Pi * (float)random.NextDouble()),
-                location);
+            location);
 
-        chunk.Scale = new Vector3(chunkType.ChunkScale, chunkType.ChunkScale,
+        chunk.GetNode<Spatial>("NodeToScale").Scale = new Vector3(chunkType.ChunkScale, chunkType.ChunkScale,
             chunkType.ChunkScale);
 
         chunk.AddToGroup(Constants.FLUID_EFFECT_GROUP);

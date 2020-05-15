@@ -146,10 +146,7 @@ public class CompoundCloudSystem : Node
     /// </summary>
     public int Resolution
     {
-        get
-        {
-            return clouds[0].Resolution;
-        }
+        get { return clouds[0].Resolution; }
     }
 
     public override void _Ready()
@@ -273,6 +270,8 @@ public class CompoundCloudSystem : Node
     /// <summary>
     ///   Takes compound at world position
     /// </summary>
+    /// <param name="compound">The compound type to take</param>
+    /// <param name="worldPosition">World position to take from</param>
     /// <param name="fraction">The fraction of compound to take. Should be &lt;= 1</param>
     public float TakeCompound(Compound compound, Vector3 worldPosition, float fraction)
     {
@@ -378,10 +377,12 @@ public class CompoundCloudSystem : Node
             int yEnd = (int)Mathf.Round(cloudRelativeY + localGrabRadius);
 
             for (int x = (int)Mathf.Round(cloudRelativeX - localGrabRadius);
-                x <= xEnd; x += 1)
+                x <= xEnd;
+                x += 1)
             {
                 for (int y = (int)Mathf.Round(cloudRelativeY - localGrabRadius);
-                    y <= yEnd; y += 1)
+                    y <= yEnd;
+                    y += 1)
                 {
                     // Negative coordinates are always outside the cloud area
                     if (x < 0 || y < 0)
@@ -389,7 +390,7 @@ public class CompoundCloudSystem : Node
 
                     // Circle check
                     if (Mathf.Pow(x - cloudRelativeX, 2) +
-                            Mathf.Pow(y - cloudRelativeY, 2) >
+                        Mathf.Pow(y - cloudRelativeY, 2) >
                         localGrabRadiusSquared)
                     {
                         // Not in it

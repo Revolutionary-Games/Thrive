@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Godot;
 
@@ -120,7 +119,7 @@ public class FloatingChunk : RigidBody, ISpawned
             return;
         }
 
-        AddChild(GraphicsScene.Instance());
+        GetNode("NodeToScale").AddChild(GraphicsScene.Instance());
     }
 
     public override void _Process(float delta)
@@ -224,6 +223,9 @@ public class FloatingChunk : RigidBody, ISpawned
 
     private void OnContactBegin(int bodyID, Node body, int bodyShape, int localShape)
     {
+        _ = bodyID;
+        _ = localShape;
+
         if (body is Microbe microbe)
         {
             // Can't engulf with a pilus
@@ -236,6 +238,9 @@ public class FloatingChunk : RigidBody, ISpawned
 
     private void OnContactEnd(int bodyID, Node body, int bodyShape, int localShape)
     {
+        _ = bodyID;
+        _ = localShape;
+
         if (body is Microbe microbe)
         {
             // This might help in a case where the cell is touching with both a pilus and non-pilus part

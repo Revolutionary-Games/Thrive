@@ -42,33 +42,33 @@ public class Biome : IRegistryType, ICloneable
 
     public void Check(string name)
     {
-        if (Name == string.Empty || Background == string.Empty)
+        if (string.IsNullOrEmpty(Name) || string.IsNullOrEmpty(Background))
         {
-            throw new InvalidRegistryData(name, this.GetType().Name,
+            throw new InvalidRegistryDataException(name, GetType().Name,
                 "Empty normal or damaged texture");
         }
 
         if (Compounds == null)
         {
-            throw new InvalidRegistryData(name, this.GetType().Name,
+            throw new InvalidRegistryDataException(name, GetType().Name,
                 "Compounds missing");
         }
 
         if (Chunks == null)
         {
-            throw new InvalidRegistryData(name, this.GetType().Name,
+            throw new InvalidRegistryDataException(name, GetType().Name,
                 "Chunks missing");
         }
 
         if (Icon == null)
         {
-            throw new InvalidRegistryData(name, this.GetType().Name,
+            throw new InvalidRegistryDataException(name, GetType().Name,
                 "icon missing");
         }
 
         if (Sunlight == null)
         {
-            throw new InvalidRegistryData(name, this.GetType().Name,
+            throw new InvalidRegistryDataException(name, GetType().Name,
                 "sunlight missing");
         }
     }
@@ -78,6 +78,8 @@ public class Biome : IRegistryType, ICloneable
     /// </summary>
     public void Resolve(SimulationParameters parameters)
     {
+        _ = parameters;
+
         foreach (var entry in Chunks)
         {
             foreach (var meshEntry in entry.Value.Meshes)
@@ -120,17 +122,47 @@ public class Biome : IRegistryType, ICloneable
         return result;
     }
 
-    public struct EnvironmentalCompoundProperties
+    public struct EnvironmentalCompoundProperties : IEquatable<EnvironmentalCompoundProperties>
     {
         public float Amount;
         public float Density;
         public float Dissolved;
+
+        public static bool operator ==(EnvironmentalCompoundProperties left, EnvironmentalCompoundProperties right)
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(EnvironmentalCompoundProperties left, EnvironmentalCompoundProperties right)
+        {
+            return !(left == right);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is EnvironmentalCompoundProperties other)
+            {
+                return Equals(other);
+            }
+
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return (int)(Amount + Density + Dissolved);
+        }
+
+        public bool Equals(EnvironmentalCompoundProperties other)
+        {
+            return Amount == other.Amount && Density == other.Density && Dissolved == other.Dissolved;
+        }
     }
 
     /// <summary>
     ///   See FloatingChunk for what many of the fields here do
     /// </summary>
-    public struct ChunkConfiguration
+    public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
     {
         public string Name;
 
@@ -155,13 +187,85 @@ public class Biome : IRegistryType, ICloneable
         ///   If > 0 the amount of damage to deal on touch
         /// </summary>
         public float Damages;
+
         public bool DeleteOnTouch;
 
         public Dictionary<string, ChunkCompound> Compounds;
 
-        public struct ChunkCompound
+        public static bool operator ==(ChunkConfiguration left, ChunkConfiguration right)
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(ChunkConfiguration left, ChunkConfiguration right)
+        {
+            return !(left == right);
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is ChunkConfiguration other)
+            {
+                return Equals(other);
+            }
+
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return Name.GetHashCode();
+        }
+
+        public bool Equals(ChunkConfiguration other)
+        {
+            return Name == other.Name &&
+                Density == other.Density &&
+                Dissolves == other.Dissolves &&
+                Radius == other.Radius &&
+                ChunkScale == other.ChunkScale &&
+                Mass == other.Mass &&
+                Size == other.Size &&
+                VentAmount == other.VentAmount &&
+                Damages == other.Damages &&
+                DeleteOnTouch == other.DeleteOnTouch &&
+                Meshes.Equals(other.Meshes) &&
+                Compounds.Equals(other.Compounds);
+        }
+
+        public struct ChunkCompound : IEquatable<ChunkCompound>
         {
             public float Amount;
+
+            public static bool operator ==(ChunkCompound left, ChunkCompound right)
+            {
+                return left.Equals(right);
+            }
+
+            public static bool operator !=(ChunkCompound left, ChunkCompound right)
+            {
+                return !(left == right);
+            }
+
+            public override bool Equals(object obj)
+            {
+                if (obj is ChunkCompound other)
+                {
+                    return Equals(other);
+                }
+
+                return false;
+            }
+
+            public override int GetHashCode()
+            {
+                return (int)Amount;
+            }
+
+            public bool Equals(ChunkCompound other)
+            {
+                return Amount == other.Amount;
+            }
         }
 
         /// <summary>
@@ -170,6 +274,7 @@ public class Biome : IRegistryType, ICloneable
         public class ChunkScene
         {
             public string ScenePath;
+
             [JsonIgnore]
             public PackedScene LoadedScene;
         }

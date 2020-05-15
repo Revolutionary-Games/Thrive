@@ -18,7 +18,8 @@ for it can be debated and changed in the future.
 Code style rules
 ----------------
 
-- Indentation is 4 spaces
+- Indentation is 4 spaces. Continued statements are indented one level
+  higher.
 
 - Names (that includes variables, functions and classes) should be
   descriptive.  Avoid abbreviations. Do not shorten variable names
@@ -28,13 +29,14 @@ Code style rules
 - Variables and functions are camelCase or PascalCase depending on
   their visibilty. Classes are PascalCase with leading upper
   case. StyleCop enforces these rules. Constants are all upper case
-  with SNAKE_CASE (underscores).
+  with SNAKE_CASE (underscores). Enums may be PascalCase or
+  ALL_UPPER_CASE.
 
 - Code filenames are the same case as the primary class in them,
   ie. PascalCase. Also Godot scenes and other resources should be
   named in PascalCase and saved in files that match their name. Thrive
   is a cross-platform project and some platforms use case-sensitive
-  file systems (Unix).  Other files and folders that don't need to be
+  file systems (Unix). Other files and folders that don't need to be
   named the same as the class in them are named with all lowercase
   with underscores separating the words.
 
@@ -52,6 +54,12 @@ Code style rules
   should run before committing to make sure there are no issues in
   your code.
 
+- For faster rebuilding have a look at the scripts in
+  scripts/fast_build. With the `toggle_analysis_mode.rb` script it is
+  possible to turn off the analysis so that small tweaks to the game
+  are faster to test. Next time you run the formatting script the
+  checks should get turned back on.
+
 - All classes and their public and protected members should be documented by
   xml comments in the header file. If the function's purpose is clear
   from the name and its parameters documentation can be omitted.
@@ -62,10 +70,19 @@ Code style rules
 
 - Empty lines are encouraged between blocks of code to improve readability.
 
+- Single line variables can be next to each other without a blank
+  line. Other variables and class elements should have a blank line
+  separating them.
+
 - Variables should be private by default and only be made public if
   that is required. Properties should be used when some action is
   needed when a variable is changed, instead of creating setter or
   getter methods.
+
+- Continuous Integration (CI) will check if the formatting scripts and
+  tools find some problems in your code. You should fix these if your
+  PR fails the CI build. Indentation is one area where the automated
+  checks are lacking and require manual review.
 
 Other files
 -----------

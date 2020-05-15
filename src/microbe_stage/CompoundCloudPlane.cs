@@ -31,7 +31,7 @@ public class CompoundCloudPlane : CSGMesh
         texture = new ImageTexture();
         texture.CreateFromImage(image, (uint)Texture.FlagsEnum.Filter | (uint)Texture.FlagsEnum.Repeat);
 
-        var material = (ShaderMaterial)this.Material;
+        var material = (ShaderMaterial)Material;
         material.SetShaderParam("densities", texture);
 
         Density = new System.Numerics.Vector4[Size, Size];
@@ -90,7 +90,7 @@ public class CompoundCloudPlane : CSGMesh
         Compounds = new Compound[Constants.CLOUDS_IN_ONE] { cloud1, cloud2, cloud3, cloud4 };
 
         // Setup colours
-        var material = (ShaderMaterial)this.Material;
+        var material = (ShaderMaterial)Material;
 
         material.SetShaderParam("colour1", cloud1.Colour);
 
@@ -315,13 +315,13 @@ public class CompoundCloudPlane : CSGMesh
                 // This formula smoothens the cloud density so that we get gradients
                 // of transparency.
                 float intensity1 = 2 * Mathf.Atan(
-                        0.003f * Density[x, y].X);
+                    0.003f * Density[x, y].X);
                 float intensity2 = 2 * Mathf.Atan(
-                        0.003f * Density[x, y].Y);
+                    0.003f * Density[x, y].Y);
                 float intensity3 = 2 * Mathf.Atan(
-                        0.003f * Density[x, y].Z);
+                    0.003f * Density[x, y].Z);
                 float intensity4 = 2 * Mathf.Atan(
-                        0.003f * Density[x, y].W);
+                    0.003f * Density[x, y].W);
 
                 // There used to be a clamp(0.0f, 1.0f) for all the
                 // values but that has been taken out to improve

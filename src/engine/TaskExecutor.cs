@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Threading;
+using System.Linq;
 using System.Threading.Tasks;
 using Godot;
 
 /// <summary>
 ///   Manages running a reasonable number of parallel tasks at once
 /// </summary>
+#pragma warning disable CA1001 // singleton anyway
 public class TaskExecutor
+#pragma warning restore CA1001
 {
-    private static readonly TaskExecutor INSTANCE = new TaskExecutor();
+    private static readonly TaskExecutor SingletonInstance = new TaskExecutor();
 
     private readonly BlockingCollection<ThreadCommand> queuedTasks =
         new BlockingCollection<ThreadCommand>();
@@ -18,6 +20,11 @@ public class TaskExecutor
     private bool running = true;
     private int currentThreadCount = 0;
     private bool assumeHyperThreading = true;
+
+    /// <summary>
+    ///   For naming the created threads.
+    /// </summary>
+    private int threadCounter;
 
     static TaskExecutor()
     {
@@ -55,23 +62,16 @@ public class TaskExecutor
             }
         }
 
+        // Mono doesn't have this for some reason
+        // Thread.CurrentThread.Name = "main";
         GD.Print("TaskExecutor started with parallel job count: ", ParallelTasks);
     }
 
-    public static TaskExecutor Instance
-    {
-        get
-        {
-            return INSTANCE;
-        }
-    }
+    public static TaskExecutor Instance => SingletonInstance;
 
     public int ParallelTasks
     {
-        get
-        {
-            return currentThreadCount;
-        }
+        get => currentThreadCount;
         set
         {
             if (currentThreadCount == value)
@@ -109,7 +109,8 @@ public class TaskExecutor
         // Queue all but the first task
         Task firstTask = null;
 
-        foreach (var task in tasks)
+        var enumerated = tasks.ToList();
+        foreach (var task in enumerated)
         {
             if (firstTask != null)
             {
@@ -122,11 +123,10 @@ public class TaskExecutor
         }
 
         // Run the first task on this thread
-        if (firstTask != null)
-            firstTask.RunSynchronously();
+        firstTask?.RunSynchronously();
 
         // Wait for all tasks to complete
-        foreach (var task in tasks)
+        foreach (var task in enumerated)
         {
             task.Wait();
         }
@@ -142,6 +142,7 @@ public class TaskExecutor
     {
         var thread = new System.Threading.Thread(RunExecutorThread);
         thread.IsBackground = true;
+        thread.Name = $"TaskThread_{++threadCounter}";
         thread.Start();
         ++currentThreadCount;
     }
@@ -171,7 +172,7 @@ public class TaskExecutor
                     command.Task.RunSynchronously();
 
                     // Make sure task exceptions aren't ignored.
-                    // Could perhaps in the future find some othre way to handle this
+                    // Could perhaps in the future find some other way to handle this
                     if (command.Task.Exception != null)
                         throw command.Task.Exception;
                 }

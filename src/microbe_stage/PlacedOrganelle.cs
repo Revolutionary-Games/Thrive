@@ -431,7 +431,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     {
         growthValueDirty = false;
 
-        growthValue = 1.0f - (CalculateCompoundsLeft() / Definition.OrganelleCost);
+        growthValue = 1.0f - CalculateCompoundsLeft() / Definition.OrganelleCost;
     }
 
     private void ApplyScale()
@@ -493,7 +493,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
         OrganelleGraphics.Transform = transform;
 
         // For some reason MathUtils.CreateRotationForOrganelle(Orientation) in the above transform doesn't work
-        OrganelleGraphics.RotateY((Orientation * -60) * MathUtils.DEGREES_TO_RADIANS);
+        OrganelleGraphics.RotateY(Orientation * -60 * MathUtils.DEGREES_TO_RADIANS);
     }
 }
 

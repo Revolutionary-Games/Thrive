@@ -5,7 +5,8 @@
             "res://assets/textures/background/Thrive_ocean1.png",
             "res://assets/textures/background/Thrive_ocean2.png",
             "res://assets/textures/background/Thrive_ocean3.png"
-        ]
+        ],
+        "particleEffect": "res://src/microbe_stage/particles/background/Epipelagic_Coast.tscn"
     },
     "abyssopelagic": {
         "textures": [
@@ -13,15 +14,17 @@
             "res://assets/textures/background/Thrive_abyss1.png",
             "res://assets/textures/background/Thrive_abyss2.png",
             "res://assets/textures/background/Thrive_abyss3.png"
-        ]
+        ],
+        "particleEffect": "res://src/microbe_stage/particles/background/Abyss.tscn"
     },
-    "bathypalagic": {
+    "bathypelagic": {
         "textures": [
             "res://assets/textures/background/Thrive_bathy0.png",
             "res://assets/textures/background/Thrive_bathy1.png",
             "res://assets/textures/background/Thrive_bathy2.png",
             "res://assets/textures/background/Thrive_bathy3.png"
-        ]
+        ],
+        "particleEffect": "res://src/microbe_stage/particles/background/Bathypelagic_Seafloor.tscn"
     },
     "cave": {
         "textures": [
@@ -29,7 +32,8 @@
             "res://assets/textures/background/Thrive_cave1.png",
             "res://assets/textures/background/Thrive_cave2.png",
             "res://assets/textures/background/Thrive_cave3.png"
-        ]
+        ],
+        "particleEffect": "res://src/microbe_stage/particles/background/Abyss.tscn"
     },
     "coastal": {
         "textures": [
@@ -37,7 +41,8 @@
             "res://assets/textures/background/Thrive_shallow1.png",
             "res://assets/textures/background/Thrive_shallow2.png",
             "res://assets/textures/background/Thrive_shallow3.png"
-        ]
+        ],
+        "particleEffect": "res://src/microbe_stage/particles/background/Epipelagic_Coast.tscn"
     },
     "estuary": {
         "textures": [
@@ -45,7 +50,8 @@
             "res://assets/textures/background/Thrive_estuary1.png",
             "res://assets/textures/background/Thrive_estuary2.png",
             "res://assets/textures/background/Thrive_estuary3.png"
-        ]
+        ],
+        "particleEffect": "res://src/microbe_stage/particles/background/Estuary.tscn"
     },
     "iceshelf": {
         "textures": [
@@ -53,7 +59,8 @@
             "res://assets/textures/background/Thrive_iceshelf1.png",
             "res://assets/textures/background/Thrive_iceshelf2.png",
             "res://assets/textures/background/Thrive_iceshelf3.png"
-        ]
+        ],
+        "particleEffect": "res://src/microbe_stage/particles/background/Iceshelf.tscn"
     },
     "mesopelagic": {
         "textures": [
@@ -61,7 +68,8 @@
             "res://assets/textures/background/Thrive_meso1.png",
             "res://assets/textures/background/Thrive_meso2.png",
             "res://assets/textures/background/Thrive_meso3.png"
-        ]
+        ],
+        "particleEffect": "res://src/microbe_stage/particles/background/Meso.tscn"
     },
     "seafloor": {
         "textures": [
@@ -69,7 +77,8 @@
             "res://assets/textures/background/Thrive_seafloor1.png",
             "res://assets/textures/background/Thrive_seafloor2.png",
             "res://assets/textures/background/Thrive_seafloor3.png"
-        ]
+        ],
+        "particleEffect": "res://src/microbe_stage/particles/background/Bathypelagic_Seafloor.tscn"
     },
     "tidepool": {
         "textures": [
@@ -77,7 +86,8 @@
             "res://assets/textures/background/Thrive_tidepool1.png",
             "res://assets/textures/background/Thrive_tidepool2.png",
             "res://assets/textures/background/Thrive_tidepool3.png"
-        ]
+        ],
+        "particleEffect": "res://src/microbe_stage/particles/background/Epipelagic_Coast.tscn"
     },
     "vent": {
         "textures": [
@@ -85,6 +95,7 @@
             "res://assets/textures/background/Thrive_vent1.png",
             "res://assets/textures/background/Thrive_vent2.png",
             "res://assets/textures/background/Thrive_vent3.png"
-        ]
+        ],
+        "particleEffect": "res://src/microbe_stage/particles/background/Vent.tscn"
     }
 }

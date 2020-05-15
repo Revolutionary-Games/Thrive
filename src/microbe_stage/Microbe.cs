@@ -97,6 +97,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     ///   back to species colour.
     /// </summary>
     private float flashDuration = 0;
+
     private Color flashColour = new Color(0, 0, 0, 0);
 
     private bool allOrganellesDivided = false;
@@ -150,14 +151,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// </remarks>
     public bool EngulfMode
     {
-        get
-        {
-            return engulfMode;
-        }
-        set
-        {
-            engulfMode = value;
-        }
+        get { return engulfMode; }
+        set { engulfMode = value; }
     }
 
     public int HexCount
@@ -211,10 +206,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
     public Node SpawnedNode
     {
-        get
-        {
-            return this;
-        }
+        get { return this; }
     }
 
     public List<TweakedProcess> ActiveProcesses
@@ -242,10 +234,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// </summary>
     public GameWorld GameWorld
     {
-        get
-        {
-            return CurrentGame.GameWorld;
-        }
+        get { return CurrentGame.GameWorld; }
     }
 
     public float TimeUntilNextAIUpdate { get; set; } = 0;
@@ -355,12 +344,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     {
         // TODO: It would be much better if only organelles that need
         // to be removed where removed, instead of everything.
-        // When doing that all organelles will need to be readded anyway if this turned from a prokaryote to eukaryote
+        // When doing that all organelles will need to be re-added anyway if this turned from a prokaryote to eukaryote
 
         if (organelles == null)
         {
-            organelles = new OrganelleLayout<PlacedOrganelle>(this.OnOrganelleAdded,
-                this.OnOrganelleRemoved);
+            organelles = new OrganelleLayout<PlacedOrganelle>(OnOrganelleAdded,
+                OnOrganelleRemoved);
         }
         else
         {
@@ -456,11 +445,17 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         if (amount == 0)
             return;
 
-        if (source == string.Empty)
+        if (string.IsNullOrEmpty(source))
             throw new ArgumentException("damage type is empty");
 
+        // This seems to be triggered sometimes, even though our logic for damage seems right everywhere.
+        // One possible explanation is that delta is negative sometimes? So we just print an error and do nothing
+        // else here
         if (amount < 0)
-            throw new ArgumentException("can't deal negative damage");
+        {
+            GD.PrintErr("Trying to deal negative damage");
+            return;
+        }
 
         if (source == "toxin")
         {
@@ -627,7 +622,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         for (int i = 0; i < chunksToSpawn; ++i)
         {
             // Amount of compound in one chunk
-            float amount = (float)HexCount / Constants.CORPSE_CHUNK_AMOUNT_DIVISER;
+            float amount = HexCount / Constants.CORPSE_CHUNK_AMOUNT_DIVISER;
 
             var positionAdded = new Vector3(random.Next(-2.0f, 2.0f), 0,
                 random.Next(-2.0f, 2.0f));
@@ -639,11 +634,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
                 Mass = 1.0f,
                 Radius = 1.0f,
                 Size = 3.0f,
-                VentAmount = 3,
+                VentAmount = 0.1f,
 
                 // Add compounds
                 Compounds = new Dictionary<string,
-                Biome.ChunkConfiguration.ChunkCompound>(),
+                    Biome.ChunkConfiguration.ChunkCompound>(),
             };
 
             // They were added in order already so looping through this other thing is fine
@@ -659,18 +654,22 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
                 chunkType.Compounds[entry.Key] = compoundValue;
             }
 
-            // Grab random organelle from cell and use that for model
             chunkType.Meshes = new List<Biome.ChunkConfiguration.ChunkScene>();
-
-            var organelleToUse = organelles.Organelles.Random(random).Definition;
 
             var sceneToUse = new Biome.ChunkConfiguration.ChunkScene();
 
-            if (organelleToUse.DisplayScene != string.Empty)
+            // Try all organelles in random order and use the first one with a scene for model
+            foreach (var organelle in organelles.OrderBy(_ => random.Next()))
             {
-                sceneToUse.LoadedScene = organelleToUse.LoadedScene;
+                if (!string.IsNullOrEmpty(organelle.Definition.DisplayScene))
+                {
+                    sceneToUse.LoadedScene = organelle.Definition.LoadedScene;
+                    break;
+                }
             }
-            else
+
+            // If no organelles have a scene, use mitochondrion as fallback
+            if (sceneToUse.LoadedScene == null)
             {
                 sceneToUse.LoadedScene = SimulationParameters.Instance.GetOrganelleType(
                     "mitochondrion").LoadedScene;
@@ -983,9 +982,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         {
             ai.Think(delta, random, data);
         }
+#pragma warning disable CA1031 // AI needs to be boxed good
         catch (Exception e)
+#pragma warning restore CA1031
         {
-            GD.PrintErr("Microbe AI failure! " + e.ToString());
+            GD.PrintErr("Microbe AI failure! " + e);
         }
     }
 
@@ -1057,7 +1058,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
             // How frequent it flashes, would be nice to update
             // the flash void to have this variable{
-            if ((flashDuration % 0.6f) < 0.3f)
+            if (flashDuration % 0.6f < 0.3f)
             {
                 Membrane.Tint = flashColour;
             }
@@ -1121,8 +1122,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     ///     possible.
     ///   </para>
     /// </remarks>
+#pragma warning disable CA1801 // TODO: implement handling delta
     private void HandleReproduction(float delta)
     {
+#pragma warning restore CA1801
         if (allOrganellesDivided)
         {
             // Ready to reproduce already. Only the player gets here
@@ -1227,14 +1230,14 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         while (true)
         {
             // Moves into the ring of radius "radius" and center the old organelle
-            var radiusOffset = Hex.HexNeighbourOffset[Hex.HEX_SIDE.BOTTOM_LEFT];
+            var radiusOffset = Hex.HexNeighbourOffset[Hex.HexSide.BOTTOM_LEFT];
             q = q + radiusOffset.Q;
             r = r + radiusOffset.R;
 
             // Iterates in the ring
             for (int side = 1; side <= 6; ++side)
             {
-                var offset = Hex.HexNeighbourOffset[(Hex.HEX_SIDE)side];
+                var offset = Hex.HexNeighbourOffset[(Hex.HexSide)side];
 
                 // Moves "radius" times into each direction
                 for (int i = 1; i <= radius; ++i)
@@ -1467,10 +1470,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
     private void HandleOsmoregulation(float delta)
     {
-        var osmoCost = (HexCount * Species.MembraneType.OsmoregulationFactor *
+        var osmoregulationCost = (HexCount * Species.MembraneType.OsmoregulationFactor *
             Constants.ATP_COST_FOR_OSMOREGULATION) * delta;
 
-        Compounds.TakeCompound("atp", osmoCost);
+        Compounds.TakeCompound("atp", osmoregulationCost);
     }
 
     /// <summary>
@@ -1623,7 +1626,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     }
 
     /// <summary>
-    ///   Ejects compounds from the microbes behind position, into the enviroment
+    ///   Ejects compounds from the microbes behind position, into the environment
     /// </summary>
     /// <remarks>
     ///   <para>
@@ -1651,7 +1654,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         var exit = Hex.AxialToCartesian(new Hex(0, 1));
         var membraneCoords = Membrane.GetExternalOrganelle(exit.x, exit.z);
 
-        // Get the distance to eject the compunds
+        // Get the distance to eject the compounds
         var ejectionDistance = Membrane.EncompassingCircleRadius;
 
         // The membrane radius doesn't take being bacteria into account
@@ -1684,6 +1687,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
     private void OnContactBegin(int bodyID, Node body, int bodyShape, int localShape)
     {
+        _ = bodyID;
+
         if (body is Microbe microbe)
         {
             // TODO: does this need to check for disposed exception?
@@ -1723,6 +1728,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
     private void OnContactEnd(int bodyID, Node body, int bodyShape, int localShape)
     {
+        _ = bodyID;
+        _ = bodyShape;
+        _ = localShape;
+
         if (body is Microbe microbe)
         {
             // TODO: should this also check for pilus before removing the collision?
