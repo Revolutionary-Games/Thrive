@@ -108,6 +108,9 @@ public class AutoEvoRun
     {
         get
         {
+            if (Aborted)
+                return "Aborted.";
+
             if (Finished)
                 return "Finished.";
 
