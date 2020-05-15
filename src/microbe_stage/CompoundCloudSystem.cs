@@ -134,11 +134,6 @@ public class CompoundCloudSystem : Node
     /// </summary>
     private Vector3 cloudGridCenter;
 
-    /// <summary>
-    ///   This is here to reuse this list
-    /// </summary>
-    private List<CompoundCloudPlane> tooFarAwayClouds = new List<CompoundCloudPlane>();
-
     private float elapsed = 0.0f;
 
     /// <summary>
