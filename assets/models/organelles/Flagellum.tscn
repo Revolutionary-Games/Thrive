@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/models/organelles/Flagellum.anim" type="Animation" id=4]
 
 [sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
 shader = ExtResource( 3 )
 shader_param/tint = Color( 1, 1, 1, 1 )
 shader_param/texture = ExtResource( 2 )
