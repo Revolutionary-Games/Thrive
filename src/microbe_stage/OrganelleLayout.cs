@@ -24,18 +24,12 @@ public class OrganelleLayout<T> : IEnumerable<T>
     /// <summary>
     ///   Number of contained organelles
     /// </summary>
-    public int Count
-    {
-        get { return Organelles.Count; }
-    }
+    public int Count => Organelles.Count;
 
     /// <summary>
     ///   Access organelle by index
     /// </summary>
-    public T this[int index]
-    {
-        get { return Organelles[index]; }
-    }
+    public T this[int index] => Organelles[index];
 
     /// <summary>
     ///   Adds a new organelle to this layout. Throws if overlaps or can't be placed

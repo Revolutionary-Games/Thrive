@@ -32,6 +32,11 @@ public class Mutations
     /// </summary>
     public MicrobeSpecies CreateMutatedSpecies(MicrobeSpecies parent, MicrobeSpecies mutated)
     {
+        if (parent.Organelles.Count < 1)
+        {
+            throw new ArgumentException("Can't create a mutated version of an empty species");
+        }
+
         var simulation = SimulationParameters.Instance;
         var nameGenerator = simulation.NameGenerator;
 
@@ -285,6 +290,17 @@ public class Mutations
             {
                 AddNewOrganelle(organelles, nucleus);
             }
+        }
+
+        // Disallow creating empty species as that throws an exception when trying to spawn
+        if (organelles.Count < 1)
+        {
+            // Add the first parent species organelle
+            AddNewOrganelle(organelles, parentOrganelles[0].Definition);
+
+            // If still empty, copy the first organelle of the parent
+            if (organelles.Count < 1)
+                organelles.Add((OrganelleTemplate)parentOrganelles[0].Clone());
         }
     }
 
