@@ -43,6 +43,9 @@ public class MicrobeCamera : Camera
     [Export]
     public float MaxCameraHeight = 80.0f;
 
+    [Export]
+    public bool DisableBackgroundParticles;
+
     public float InterpolateSpeed = 0.3f;
 
     private ShaderMaterial materialToUpdate;
@@ -152,10 +155,13 @@ public class MicrobeCamera : Camera
             BackgroundParticles.QueueFree();
         }
 
-        BackgroundParticles = (Particles)background.ParticleEffectScene.Instance();
-        BackgroundParticles.Rotation = Rotation;
-        BackgroundParticles.LocalCoords = false;
-        AddChild(BackgroundParticles);
+        if (!DisableBackgroundParticles)
+        {
+            BackgroundParticles = (Particles)background.ParticleEffectScene.Instance();
+            BackgroundParticles.Rotation = Rotation;
+            BackgroundParticles.LocalCoords = false;
+            AddChild(BackgroundParticles);
+        }
     }
 
     private void UpdateCursorWorldPos()
