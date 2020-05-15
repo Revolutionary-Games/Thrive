@@ -1,5 +1,4 @@
-﻿using System;
-using Godot;
+﻿using Godot;
 
 /// <summary>
 ///   Contains logic for generating PatchMap objects
@@ -8,6 +7,9 @@ public static class PatchMapGenerator
 {
     public static PatchMap Generate(WorldGenerationSettings settings, Species defaultSpecies)
     {
+        // TODO: implement actual generation based on settings
+        _ = settings;
+
         var map = new PatchMap();
 
         // Predefined patches

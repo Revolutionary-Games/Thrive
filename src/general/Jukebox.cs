@@ -48,10 +48,7 @@ public class Jukebox : Node
 
     public static Jukebox Instance
     {
-        get
-        {
-            return instance;
-        }
+        get { return instance; }
     }
 
     /// <summary>
@@ -63,11 +60,11 @@ public class Jukebox : Node
         {
             return playingCategory;
         }
+
         set
         {
             if (playingCategory == value)
                 return;
-
             GD.Print("Jukebox now playing from: ", value);
             playingCategory = value;
             OnCategoryChanged();
@@ -76,11 +73,7 @@ public class Jukebox : Node
 
     private List<string> PlayingTracks
     {
-        get
-        {
-            return audioPlayers.Where((player) => player.Playing).
-                Select((player) => player.CurrentTrack).ToList();
-        }
+        get { return audioPlayers.Where((player) => player.Playing).Select((player) => player.CurrentTrack).ToList(); }
     }
 
     public override void _Ready()
@@ -98,7 +91,7 @@ public class Jukebox : Node
             return;
 
         paused = false;
-        SetStreamsPauseStatus(paused);
+        UpdateStreamsPauseStatus();
     }
 
     /// <summary>
@@ -110,7 +103,7 @@ public class Jukebox : Node
             return;
 
         paused = true;
-        SetStreamsPauseStatus(paused);
+        UpdateStreamsPauseStatus();
     }
 
     /// <summary>
@@ -145,7 +138,7 @@ public class Jukebox : Node
         // }
     }
 
-    private void SetStreamsPauseStatus(bool paused)
+    private void UpdateStreamsPauseStatus()
     {
         foreach (var player in audioPlayers)
         {
@@ -227,7 +220,7 @@ public class Jukebox : Node
         // Add transitions
         if (previouslyPlayedCategory != null)
         {
-            if (previouslyPlayedCategory.CategoryTransition == MusicCategory.TRANSITION.Fade)
+            if (previouslyPlayedCategory.CategoryTransition == MusicCategory.Transition.Fade)
             {
                 AddFadeOut();
                 faded = true;
@@ -240,7 +233,7 @@ public class Jukebox : Node
             return true;
         }));
 
-        if (target.CategoryTransition == MusicCategory.TRANSITION.Fade)
+        if (target.CategoryTransition == MusicCategory.Transition.Fade)
         {
             if (!faded)
             {
@@ -317,6 +310,7 @@ public class Jukebox : Node
         }));
     }
 
+    // ReSharper disable once UnusedMember.Local
     private void OnSomeTrackEnded()
     {
         // Check that a stream has actually ended, as we get this callback when also purposefully stopping
@@ -347,7 +341,7 @@ public class Jukebox : Node
         int nextPlayerToUse = 0;
 
         // Resume tracks
-        if (target.Return == MusicCategory.RETURN_TYPE.Continue)
+        if (target.Return == MusicCategory.ReturnType.Continue)
         {
             foreach (var list in target.TrackLists)
             {
@@ -401,14 +395,14 @@ public class Jukebox : Node
         }
 
         // Set pause status for any new streams
-        SetStreamsPauseStatus(paused);
+        UpdateStreamsPauseStatus();
     }
 
     private void PlayNextTrackFromList(TrackList list, Func<int, AudioPlayer> getPlayer, int playerToUse)
     {
         var mode = list.TrackOrder;
 
-        if (mode == TrackList.ORDER.Sequential)
+        if (mode == TrackList.Order.Sequential)
         {
             list.LastPlayedIndex = (list.LastPlayedIndex + 1) % list.Tracks.Count;
 
@@ -440,7 +434,7 @@ public class Jukebox : Node
         var category = previouslyPlayedCategory;
 
         // Store continue positions
-        if (category.Return == MusicCategory.RETURN_TYPE.Continue)
+        if (category.Return == MusicCategory.ReturnType.Continue)
         {
             var activeTracks = PlayingTracks;
 
@@ -455,7 +449,7 @@ public class Jukebox : Node
                         // Store the position to resume from
                         track.PreviousPlayedPosition = audioPlayers.Where(
                             (player) => player.Playing && player.CurrentTrack == track.ResourcePath).Select(
-                                (player) => player.Player.GetPlaybackPosition()).First();
+                            (player) => player.Player.GetPlaybackPosition()).First();
                     }
                     else
                     {
@@ -478,27 +472,10 @@ public class Jukebox : Node
 
         public bool StreamPaused
         {
-            get
-            {
-                return Player.StreamPaused;
-            }
-            set
-            {
-                Player.StreamPaused = value;
-            }
+            set => Player.StreamPaused = value;
         }
 
-        public bool Playing
-        {
-            get
-            {
-                return Player.Playing;
-            }
-            set
-            {
-                Player.Playing = value;
-            }
-        }
+        public bool Playing => Player.Playing;
 
         public void Stop()
         {

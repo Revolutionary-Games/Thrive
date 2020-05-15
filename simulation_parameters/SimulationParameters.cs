@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 public class SimulationParameters
 {
-    private static readonly SimulationParameters INSTANCE = new SimulationParameters();
+    private static readonly SimulationParameters SingletonInstance = new SimulationParameters();
 
     private Dictionary<string, MembraneType> membranes;
     private Dictionary<string, Background> backgrounds;
@@ -62,7 +62,7 @@ public class SimulationParameters
     {
         get
         {
-            return INSTANCE;
+            return SingletonInstance;
         }
     }
 
@@ -159,6 +159,16 @@ public class SimulationParameters
         return eukaryoticOrganelles[eukaryoticOrganelles.Count - 1];
     }
 
+    private static void CheckRegistryType<T>(Dictionary<string, T> registry)
+        where T : class, IRegistryType
+    {
+        foreach (var entry in registry)
+        {
+            entry.Value.InternalName = entry.Key;
+            entry.Value.Check(entry.Key);
+        }
+    }
+
     private static string ReadJSONFile(string path)
     {
         using (var file = new File())
@@ -199,16 +209,6 @@ public class SimulationParameters
         NameGenerator.Check(string.Empty);
     }
 
-    private void CheckRegistryType<T>(Dictionary<string, T> registry)
-        where T : IRegistryType
-    {
-        foreach (var entry in registry)
-        {
-            entry.Value.InternalName = entry.Key;
-            entry.Value.Check(entry.Key);
-        }
-    }
-
     private void ResolveValueRelationships()
     {
         foreach (var entry in organelles)
@@ -231,7 +231,7 @@ public class SimulationParameters
         BuildOrganelleChances();
 
         // TODO: there could also be a check for making sure
-        // non-existant compounds, processes etc. are not used
+        // non-existent compounds, processes etc. are not used
     }
 
     private void BuildOrganelleChances()

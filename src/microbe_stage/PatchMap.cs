@@ -10,10 +10,6 @@ public class PatchMap
 {
     private Patch currentPatch = null;
 
-    public PatchMap()
-    {
-    }
-
     /// <summary>
     ///   Currently active patch (the one player is in)
     /// </summary>

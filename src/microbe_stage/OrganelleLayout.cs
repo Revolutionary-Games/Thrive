@@ -6,10 +6,6 @@ using Newtonsoft.Json;
 /// <summary>
 ///   A list of positioned organelles. Verifies that they don't overlap
 /// </summary>
-/// <remarks>
-///   <para>
-///   </para>
-/// </remarks>
 public class OrganelleLayout<T> : IEnumerable<T>
     where T : class, IPositionedOrganelle
 {
@@ -30,10 +26,7 @@ public class OrganelleLayout<T> : IEnumerable<T>
     /// </summary>
     public int Count
     {
-        get
-        {
-            return Organelles.Count;
-        }
+        get { return Organelles.Count; }
     }
 
     /// <summary>
@@ -41,10 +34,7 @@ public class OrganelleLayout<T> : IEnumerable<T>
     /// </summary>
     public T this[int index]
     {
-        get
-        {
-            return Organelles[index];
-        }
+        get { return Organelles[index]; }
     }
 
     /// <summary>
@@ -70,7 +60,7 @@ public class OrganelleLayout<T> : IEnumerable<T>
         {
             var overlapping = GetOrganelleAt(hex + organelle.Position);
             if (overlapping != null && (allowCytoplasmOverlap == false ||
-                    overlapping.Definition.InternalName != "cytoplasm"))
+                overlapping.Definition.InternalName != "cytoplasm"))
                 return false;
         }
 

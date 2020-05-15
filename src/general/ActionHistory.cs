@@ -4,10 +4,11 @@ using System.Collections.Generic;
 /// <summary>
 ///   General implementation of an action history and undo / redo for use by editors
 /// </summary>
+/// <typeparam name="T">Type of actions to hold</typeparam>
 public class ActionHistory<T>
     where T : ReversableAction
 {
-    private List<ReversableAction> actions = new List<ReversableAction>();
+    private List<T> actions = new List<T>();
 
     /// <summary>
     ///   marks the last action that has been done (not undone, but
@@ -48,7 +49,7 @@ public class ActionHistory<T>
     /// <summary>
     ///   Adds a new action and performs it
     /// </summary>
-    public void AddAction(ReversableAction action)
+    public void AddAction(T action)
     {
         // Throw away old actions if we are not at the end of the action list
         while (actionIndex < actions.Count)

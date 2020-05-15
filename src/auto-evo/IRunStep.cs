@@ -1,7 +1,5 @@
 ﻿namespace AutoEvo
 {
-    using System;
-
     /// <summary>
     ///   Interface for all auto-evo step types
     /// </summary>
@@ -19,6 +17,6 @@
         /// </summary>
         /// <returns>True once final step is complete</returns>
         /// <param name="results">Results are stored here</param>
-        bool Step(RunResults results);
+        bool RunStep(RunResults results);
     }
 }
