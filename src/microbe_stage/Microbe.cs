@@ -475,6 +475,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             // Divide damage by physical resistance
             amount /= Species.MembraneType.PhysicalResistance;
         }
+        else if (source == "chunk")
+        {
+            // Divide damage by physical resistance
+            amount /= Species.MembraneType.PhysicalResistance;
+        }
 
         Hitpoints -= amount;
 
