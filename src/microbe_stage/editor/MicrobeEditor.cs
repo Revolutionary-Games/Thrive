@@ -636,11 +636,12 @@ public class MicrobeEditor : Node
     public float CalculateSpeed()
     {
         float finalSpeed = 0;
-        int movementOrganelleCount = 0;
         float massMicrobe = Constants.MICROBE_BASE_MASS;
 
         float baseMovementForce = 0;
-        float flagellaMovementForce = 0;
+        float organelleMovementForce = 0;
+
+        Vector3 forwards = new Vector3(0, 0, -1);
 
         foreach (var organelle in editedMicrobeOrganelles.Organelles)
         {
@@ -648,15 +649,15 @@ public class MicrobeEditor : Node
 
             if (organelle.Definition.Components.Movement != null)
             {
-                movementOrganelleCount++;
+                organelleMovementForce += Constants.FLAGELLA_BASE_FORCE
+                    * organelle.Definition.Components.Movement.Momentum / 100.0f;
             }
         }
 
         baseMovementForce = Constants.CELL_BASE_THRUST *
             (Membrane.MovementFactor - Rigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER);
-        flagellaMovementForce = Constants.FLAGELLA_BASE_FORCE * movementOrganelleCount;
 
-        finalSpeed = (baseMovementForce + flagellaMovementForce) / massMicrobe;
+        finalSpeed = (baseMovementForce + organelleMovementForce) / massMicrobe;
 
         return finalSpeed;
     }
