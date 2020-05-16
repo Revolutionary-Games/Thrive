@@ -641,8 +641,6 @@ public class MicrobeEditor : Node
         float baseMovementForce = 0;
         float organelleMovementForce = 0;
 
-        Vector3 forwards = new Vector3(0, 0, -1);
-
         foreach (var organelle in editedMicrobeOrganelles.Organelles)
         {
             massMicrobe += organelle.Definition.Mass;
