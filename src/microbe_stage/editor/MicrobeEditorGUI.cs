@@ -478,6 +478,11 @@ public class MicrobeEditorGUI : Node
         externalEffectsLabel.Text = external;
     }
 
+    public void SetRigiditySliderTooltip(float rigidity)
+    {
+        
+    }
+
     /// <summary>
     ///   Called once when the mouse enters the editor GUI.
     /// </summary>
