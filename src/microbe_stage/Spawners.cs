@@ -75,19 +75,10 @@ public static class SpawnHelpers
             for (int i = 0; i < random.Next(Constants.MIN_BACTERIAL_COLONY_SIZE,
                 Constants.MAX_BACTERIAL_COLONY_SIZE + 1); i++)
             {
-                // Dont spawn them on top of each other because it
-                // causes them to bounce around and lag
-                var spawnOffset = curSpawn;
-                var effect = (DelayedEffect)delayedEffectScene.Instance();
-                effect.Effect = () => 
-                    {
-                        var microbe = SpawnMicrobe(species, location + spawnOffset, worldRoot,
-                                    microbeScene, true, cloudSystem, currentGame);
-                        SpawnSystem.AddEntityToTrack(microbe, spawnRadius);
-                    };
-                effect.TimeToLiveRemaining = Constants.BACTERIAL_COLONY_TIME_BETWEEN_SPAWN * i;
-                worldRoot.AddChild(effect);
-                effect.AddToGroup(Constants.TIMED_GROUP);
+
+                SpawnDelayedBacteria(species, location + curSpawn, worldRoot, microbeScene,
+                                    cloudSystem, currentGame, spawnRadius, delayedEffectScene,
+                                    Constants.BACTERIAL_COLONY_TIME_BETWEEN_SPAWN * i);
                 spawnedBacteria++;
 
                 curSpawn = curSpawn + new Vector3(random.Next(-7, 8), 0, random.Next(-7, 8));
@@ -103,19 +94,10 @@ public static class SpawnHelpers
             for (int i = 0; i < random.Next(Constants.MIN_BACTERIAL_LINE_SIZE,
                 Constants.MAX_BACTERIAL_LINE_SIZE + 1); i++)
             {
-                // Dont spawn them on top of each other because it
-                // causes them to bounce around and lag
-                var spawnOffset = curSpawn;
-                var effect = (DelayedEffect)delayedEffectScene.Instance();
-                effect.Effect = () => 
-                    {
-                        var microbe = SpawnMicrobe(species, location + spawnOffset, worldRoot,
-                                    microbeScene, true, cloudSystem, currentGame);
-                        SpawnSystem.AddEntityToTrack(microbe, spawnRadius);
-                    };
-                effect.TimeToLiveRemaining = Constants.BACTERIAL_COLONY_TIME_BETWEEN_SPAWN * i;
-                worldRoot.AddChild(effect);
-                effect.AddToGroup(Constants.TIMED_GROUP);
+
+                SpawnDelayedBacteria(species, location + curSpawn, worldRoot, microbeScene,
+                                    cloudSystem, currentGame, spawnRadius, delayedEffectScene,
+                                    Constants.BACTERIAL_COLONY_TIME_BETWEEN_SPAWN * i);
                 spawnedBacteria++;
 
                 curSpawn = curSpawn + new Vector3(line + random.Next(-2, 3), 0, line + random.Next(-2, 3));
@@ -149,19 +131,9 @@ public static class SpawnHelpers
                         // Add a litlle organicness to the look
                         curSpawn.z += random.Next(-2, 3);
 
-                        // Dont spawn them on top of each other because it
-                        // causes them to bounce around and lag
-                        var spawnOffset = curSpawn;
-                        var effect = (DelayedEffect)delayedEffectScene.Instance();
-                        effect.Effect = () => 
-                            {
-                                var microbe = SpawnMicrobe(species, location + spawnOffset, worldRoot,
-                                            microbeScene, true, cloudSystem, currentGame);
-                                SpawnSystem.AddEntityToTrack(microbe, spawnRadius);
-                            };
-                        effect.TimeToLiveRemaining = Constants.BACTERIAL_COLONY_TIME_BETWEEN_SPAWN * i;
-                        worldRoot.AddChild(effect);
-                        effect.AddToGroup(Constants.TIMED_GROUP);
+                        SpawnDelayedBacteria(species, location + curSpawn, worldRoot, microbeScene,
+                                            cloudSystem, currentGame, spawnRadius, delayedEffectScene,
+                                            Constants.BACTERIAL_COLONY_TIME_BETWEEN_SPAWN * i);
                         spawnedBacteria++;
                     }
                 }
@@ -180,19 +152,9 @@ public static class SpawnHelpers
                         // Add a litlle organicness to the look
                         curSpawn.x += random.Next(-2, 3);
 
-                        // Dont spawn them on top of each other because it
-                        // causes them to bounce around and lag
-                        var spawnOffset = curSpawn;
-                        var effect = (DelayedEffect)delayedEffectScene.Instance();
-                        effect.Effect = () => 
-                            {
-                                var microbe = SpawnMicrobe(species, location + spawnOffset, worldRoot,
-                                            microbeScene, true, cloudSystem, currentGame);
-                                SpawnSystem.AddEntityToTrack(microbe, spawnRadius);
-                            };
-                        effect.TimeToLiveRemaining = Constants.BACTERIAL_COLONY_TIME_BETWEEN_SPAWN * i;
-                        worldRoot.AddChild(effect);
-                        effect.AddToGroup(Constants.TIMED_GROUP);
+                        SpawnDelayedBacteria(species, location + curSpawn, worldRoot, microbeScene,
+                                            cloudSystem, currentGame, spawnRadius, delayedEffectScene,
+                                            Constants.BACTERIAL_COLONY_TIME_BETWEEN_SPAWN * i);
                         spawnedBacteria++;
                     }
                 }
@@ -211,19 +173,9 @@ public static class SpawnHelpers
                         // Add a litlle organicness to the look
                         curSpawn.z -= random.Next(-2, 3);
 
-                        // Dont spawn them on top of each other because it
-                        // causes them to bounce around and lag
-                        var spawnOffset = curSpawn;
-                        var effect = (DelayedEffect)delayedEffectScene.Instance();
-                        effect.Effect = () => 
-                            {
-                                var microbe = SpawnMicrobe(species, location + spawnOffset, worldRoot,
-                                            microbeScene, true, cloudSystem, currentGame);
-                                SpawnSystem.AddEntityToTrack(microbe, spawnRadius);
-                            };
-                        effect.TimeToLiveRemaining = Constants.BACTERIAL_COLONY_TIME_BETWEEN_SPAWN * i;
-                        worldRoot.AddChild(effect);
-                        effect.AddToGroup(Constants.TIMED_GROUP);
+                        SpawnDelayedBacteria(species, location + curSpawn, worldRoot, microbeScene,
+                                            cloudSystem, currentGame, spawnRadius, delayedEffectScene,
+                                            Constants.BACTERIAL_COLONY_TIME_BETWEEN_SPAWN * i);
                         spawnedBacteria++;
                     }
                 }
@@ -242,19 +194,9 @@ public static class SpawnHelpers
                         // Add a litlle organicness to the look
                         curSpawn.x -= random.Next(-2, 3);
 
-                        // Dont spawn them on top of each other because it
-                        // causes them to bounce around and lag
-                        var spawnOffset = curSpawn;
-                        var effect = (DelayedEffect)delayedEffectScene.Instance();
-                        effect.Effect = () => 
-                            {
-                                var microbe = SpawnMicrobe(species, location + spawnOffset, worldRoot,
-                                            microbeScene, true, cloudSystem, currentGame);
-                                SpawnSystem.AddEntityToTrack(microbe, spawnRadius);
-                            };
-                        effect.TimeToLiveRemaining = Constants.BACTERIAL_COLONY_TIME_BETWEEN_SPAWN * i;
-                        worldRoot.AddChild(effect);
-                        effect.AddToGroup(Constants.TIMED_GROUP);
+                        SpawnDelayedBacteria(species, location + curSpawn, worldRoot, microbeScene,
+                                            cloudSystem, currentGame, spawnRadius, delayedEffectScene,
+                                            Constants.BACTERIAL_COLONY_TIME_BETWEEN_SPAWN * i);
                         spawnedBacteria++;
                     }
                 }
@@ -273,19 +215,9 @@ public static class SpawnHelpers
 
                         curSpawn.x += random.Next(5, 8);
 
-                        // Dont spawn them on top of each other because it
-                        // causes them to bounce around and lag
-                        var spawnOffset = curSpawn;
-                        var effect = (DelayedEffect)delayedEffectScene.Instance();
-                        effect.Effect = () => 
-                            {
-                                var microbe = SpawnMicrobe(species, location + spawnOffset, worldRoot,
-                                            microbeScene, true, cloudSystem, currentGame);
-                                SpawnSystem.AddEntityToTrack(microbe, spawnRadius);
-                            };
-                        effect.TimeToLiveRemaining = Constants.BACTERIAL_COLONY_TIME_BETWEEN_SPAWN * i;
-                        worldRoot.AddChild(effect);
-                        effect.AddToGroup(Constants.TIMED_GROUP);
+                        SpawnDelayedBacteria(species, location + curSpawn, worldRoot, microbeScene,
+                                            cloudSystem, currentGame, spawnRadius, delayedEffectScene,
+                                            Constants.BACTERIAL_COLONY_TIME_BETWEEN_SPAWN * i);
                         spawnedBacteria++;
                     }
                 }
@@ -375,6 +307,24 @@ public static class SpawnHelpers
     public static PackedScene LoadAgentScene()
     {
         return GD.Load<PackedScene>("res://src/microbe_stage/AgentProjectile.tscn");
+    }
+
+    private static void SpawnDelayedBacteria(Species species, Vector3 location,
+        Node worldRoot, PackedScene microbeScene, CompoundCloudSystem cloudSystem,
+        GameProperties currentGame, int spawnRadius, PackedScene delayedEffectScene, float ttl) 
+    {
+        // Dont spawn them on top of each other because it
+        // causes them to bounce around and lag
+        var effect = (DelayedEffect)delayedEffectScene.Instance();
+        effect.Effect = () => 
+            {
+                var microbe = SpawnMicrobe(species, location, worldRoot,
+                            microbeScene, true, cloudSystem, currentGame);
+                SpawnSystem.AddEntityToTrack(microbe, spawnRadius);
+            };
+        effect.TimeToLiveRemaining = ttl;
+        worldRoot.AddChild(effect);
+        effect.AddToGroup(Constants.TIMED_GROUP);
     }
 }
 
