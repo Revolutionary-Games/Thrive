@@ -636,26 +636,28 @@ public class MicrobeEditor : Node
     public float CalculateSpeed()
     {
         float finalSpeed = 0;
-        int flagCount = 0;
-        float lengthMicrobe = 0;
+        int movementOrganelleCount = 0;
+        float massMicrobe = Constants.MICROBE_BASE_MASS;
+
+        float baseMovementForce = 0;
+        float flagellaMovementForce = 0;
 
         foreach (var organelle in editedMicrobeOrganelles.Organelles)
         {
-            lengthMicrobe += organelle.Definition.HexCount;
+            massMicrobe += organelle.Definition.Mass;
 
-            // TODO: this should be changed to instead check for the
-            // movement component presence
-            if (organelle.Definition.InternalName == "flagellum")
-                flagCount++;
+            if (organelle.Definition.Components.Movement != null)
+            {
+                movementOrganelleCount++;
+            }
         }
 
-        // This is complex, I know
-        finalSpeed = (Constants.CELL_BASE_THRUST +
-                ((flagCount / (lengthMicrobe - flagCount)) * Constants.FLAGELLA_BASE_FORCE) +
-                (Constants.CELL_DRAG_MULTIPLIER -
-                    (Constants.CELL_SIZE_DRAG_MULTIPLIER * lengthMicrobe))) *
-            (Membrane.MovementFactor -
-                (Rigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER));
+        baseMovementForce = Constants.CELL_BASE_THRUST *
+        	(Membrane.MovementFactor - Rigidity*Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER);
+        flagellaMovementForce = Constants.FLAGELLA_BASE_FORCE * movementOrganelleCount;
+
+        finalSpeed = (baseMovementForce + flagellaMovementForce)/massMicrobe;
+
         return finalSpeed;
     }
 
