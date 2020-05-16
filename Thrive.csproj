@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Tools</Configuration>
@@ -72,6 +72,7 @@
     <Compile Include="src\general\SceneDisplayer.cs" />
     <Compile Include="src\microbe_stage\AgentProjectile.cs" />
     <Compile Include="src\microbe_stage\CompoundCloudPlane.cs" />
+    <Compile Include="src\microbe_stage\DelayedEffect.cs" />
     <Compile Include="src\microbe_stage\editor\MicrobeEditor.cs" />
     <Compile Include="src\microbe_stage\editor\MicrobeEditorGUI.cs" />
     <Compile Include="src\microbe_stage\editor\PatchMapDrawer.cs" />
