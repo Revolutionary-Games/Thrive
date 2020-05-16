@@ -601,10 +601,13 @@ public class MicrobeEditor : Node
         switch (Symmetry)
         {
             case MicrobeSymmetry.None:
+            {
                 RemoveOrganelleAt(new Hex(q, r));
                 break;
+            }
 
             case MicrobeSymmetry.XAxisSymmetry:
+            {
                 RemoveOrganelleAt(new Hex(q, r));
 
                 if (q != -1 * q || r != r + q)
@@ -613,8 +616,10 @@ public class MicrobeEditor : Node
                 }
 
                 break;
+            }
 
             case MicrobeSymmetry.FourWaySymmetry:
+            {
                 RemoveOrganelleAt(new Hex(q, r));
 
                 if (q != -1 * q || r != r + q)
@@ -625,8 +630,10 @@ public class MicrobeEditor : Node
                 }
 
                 break;
+            }
 
             case MicrobeSymmetry.SixWaySymmetry:
+            {
                 RemoveOrganelleAt(new Hex(q, r));
 
                 if (q != -1 * q || r != r + q)
@@ -640,6 +647,7 @@ public class MicrobeEditor : Node
                 }
 
                 break;
+            }
         }
     }
 
@@ -912,23 +920,30 @@ public class MicrobeEditor : Node
             switch (Symmetry)
             {
                 case MicrobeSymmetry.None:
+                {
                     RenderHighlightedOrganelle(q, r, organelleRot);
                     break;
+                }
 
                 case MicrobeSymmetry.XAxisSymmetry:
+                {
                     RenderHighlightedOrganelle(q, r, organelleRot);
                     RenderHighlightedOrganelle(-1 * q, r + q, 6 + (-1 * organelleRot));
                     break;
+                }
 
                 case MicrobeSymmetry.FourWaySymmetry:
+                {
                     RenderHighlightedOrganelle(q, r, organelleRot);
                     RenderHighlightedOrganelle(-1 * q, r + q, 6 + (-1 * organelleRot));
                     RenderHighlightedOrganelle(-1 * q, -1 * r, (organelleRot + 180) % 6);
                     RenderHighlightedOrganelle(q, -1 * (r + q),
                         8 + (-1 * organelleRot) % 6);
                     break;
+                }
 
                 case MicrobeSymmetry.SixWaySymmetry:
+                {
                     RenderHighlightedOrganelle(q, r, organelleRot);
                     RenderHighlightedOrganelle(-1 * r, r + q, (organelleRot + 1) % 6);
                     RenderHighlightedOrganelle(-1 * (r + q), q, (organelleRot + 2) % 6);
@@ -936,6 +951,7 @@ public class MicrobeEditor : Node
                     RenderHighlightedOrganelle(r, -1 * (r + q), (organelleRot + 4) % 6);
                     RenderHighlightedOrganelle(r + q, -1 * q, (organelleRot + 5) % 6);
                     break;
+                }
             }
         }
     }
@@ -1056,10 +1072,13 @@ public class MicrobeEditor : Node
         switch (Symmetry)
         {
             case MicrobeSymmetry.None:
+            {
                 PlaceIfPossible(organelleType, q, r, organelleRot);
                 break;
+            }
 
             case MicrobeSymmetry.XAxisSymmetry:
+            {
                 PlaceIfPossible(organelleType, q, r, organelleRot);
 
                 if (q != -1 * q || r != r + q)
@@ -1068,42 +1087,45 @@ public class MicrobeEditor : Node
                 }
 
                 break;
+            }
 
             case MicrobeSymmetry.FourWaySymmetry:
+            {
+                PlaceIfPossible(organelleType, q, r, organelleRot);
+
+                if (q != -1 * q || r != r + q)
                 {
-                    PlaceIfPossible(organelleType, q, r, organelleRot);
-
-                    if (q != -1 * q || r != r + q)
-                    {
-                        PlaceIfPossible(organelleType, -1 * q, r + q, 6 + (-1 * organelleRot));
-                        PlaceIfPossible(organelleType, -1 * q, -1 * r, (organelleRot + 3) % 6);
-                        PlaceIfPossible(organelleType, q, -1 * (r + q),
-                            (8 + (-1 * organelleRot)) % 6);
-                    }
-
-                    break;
+                    PlaceIfPossible(organelleType, -1 * q, r + q, 6 + (-1 * organelleRot));
+                    PlaceIfPossible(organelleType, -1 * q, -1 * r, (organelleRot + 3) % 6);
+                    PlaceIfPossible(organelleType, q, -1 * (r + q),
+                        (8 + (-1 * organelleRot)) % 6);
                 }
+
+                break;
+            }
 
             case MicrobeSymmetry.SixWaySymmetry:
+            {
+                PlaceIfPossible(organelleType, q, r, organelleRot);
+
+                if (q != -1 * q || r != r + q)
                 {
-                    PlaceIfPossible(organelleType, q, r, organelleRot);
-
-                    if (q != -1 * q || r != r + q)
-                    {
-                        PlaceIfPossible(organelleType, -1 * r, r + q, (organelleRot + 1) % 6);
-                        PlaceIfPossible(organelleType, -1 * (r + q), q,
-                            (organelleRot + 2) % 6);
-                        PlaceIfPossible(organelleType, -1 * q, -1 * r, (organelleRot + 3) % 6);
-                        PlaceIfPossible(organelleType, r, -1 * (r + q),
-                            (organelleRot + 4) % 6);
-                        PlaceIfPossible(organelleType, r + q, -1 * q, (organelleRot + 5) % 6);
-                    }
-
-                    break;
+                    PlaceIfPossible(organelleType, -1 * r, r + q, (organelleRot + 1) % 6);
+                    PlaceIfPossible(organelleType, -1 * (r + q), q,
+                        (organelleRot + 2) % 6);
+                    PlaceIfPossible(organelleType, -1 * q, -1 * r, (organelleRot + 3) % 6);
+                    PlaceIfPossible(organelleType, r, -1 * (r + q),
+                        (organelleRot + 4) % 6);
+                    PlaceIfPossible(organelleType, r + q, -1 * q, (organelleRot + 5) % 6);
                 }
 
+                break;
+            }
+
             default:
+            {
                 throw new Exception("unimplemented symmetry in AddOrganelle");
+            }
         }
     }
 
