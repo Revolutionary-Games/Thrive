@@ -653,10 +653,10 @@ public class MicrobeEditor : Node
         }
 
         baseMovementForce = Constants.CELL_BASE_THRUST *
-            (Membrane.MovementFactor - Rigidity*Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER);
+            (Membrane.MovementFactor - Rigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER);
         flagellaMovementForce = Constants.FLAGELLA_BASE_FORCE * movementOrganelleCount;
 
-        finalSpeed = (baseMovementForce + flagellaMovementForce)/massMicrobe;
+        finalSpeed = (baseMovementForce + flagellaMovementForce) / massMicrobe;
 
         return finalSpeed;
     }
