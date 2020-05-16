@@ -29,7 +29,7 @@ public abstract class ISpawner
     /// <value><c>true</c> if destroy queued; otherwise, <c>false</c>.</value>
     public bool DestroyQueued { get; set; }
 
-    public abstract List<ISpawned> Spawn(Node worldNode, Vector3 location);
+    public abstract int Spawn(Node worldNode, Vector3 location);
 
     public void SetFrequencyFromDensity(float spawnDensity)
     {

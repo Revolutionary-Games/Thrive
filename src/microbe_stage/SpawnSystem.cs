@@ -197,31 +197,16 @@ public class SpawnSystem
                         previousSquaredDistance > spawnType.SpawnRadiusSqr)
                     {
                         // Second condition passed. Spawn the entity.
-                        var entities = spawnType.Spawn(worldRoot,
+                        var spawnedEntities = spawnType.Spawn(worldRoot,
                             playerPosition + displacement);
 
-                        // Add the entity to the spawned group and add the despawn radius
-                        if (entities != null)
-                        {
-                            foreach (var entity in entities)
-                            {
-                                // TODO: I don't understand why the same
-                                // value is used for spawning and
-                                // despawning, but apparently it works
-                                // just fine
-                                entity.DespawnRadiusSqr = spawnType.SpawnRadiusSqr;
+                        spawned += spawnedEntities;
 
-                                entity.SpawnedNode.AddToGroup(Constants.SPAWNED_GROUP);
-                            }
-
-                            spawned += entities.Count;
-
-                            // TODO: this is a bit awkward if this
-                            // stops compound clouds from spawning as
-                            // well...
-                            if (spawned + existing >= maxAliveEntities)
-                                return;
-                        }
+                        // TODO: this is a bit awkward if this
+                        // stops compound clouds from spawning as
+                        // well...
+                        if (spawned + existing >= maxAliveEntities)
+                            return;
                     }
                 }
             }
