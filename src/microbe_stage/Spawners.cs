@@ -75,7 +75,6 @@ public static class SpawnHelpers
             for (int i = 0; i < random.Next(Constants.MIN_BACTERIAL_COLONY_SIZE,
                 Constants.MAX_BACTERIAL_COLONY_SIZE + 1); i++)
             {
-
                 SpawnDelayedBacteria(species, location + curSpawn, worldRoot, microbeScene,
                                     cloudSystem, currentGame, spawnRadius, delayedEffectScene,
                                     Constants.BACTERIAL_COLONY_TIME_BETWEEN_SPAWN * i);
@@ -94,7 +93,6 @@ public static class SpawnHelpers
             for (int i = 0; i < random.Next(Constants.MIN_BACTERIAL_LINE_SIZE,
                 Constants.MAX_BACTERIAL_LINE_SIZE + 1); i++)
             {
-
                 SpawnDelayedBacteria(species, location + curSpawn, worldRoot, microbeScene,
                                     cloudSystem, currentGame, spawnRadius, delayedEffectScene,
                                     Constants.BACTERIAL_COLONY_TIME_BETWEEN_SPAWN * i);
@@ -311,12 +309,12 @@ public static class SpawnHelpers
 
     private static void SpawnDelayedBacteria(Species species, Vector3 location,
         Node worldRoot, PackedScene microbeScene, CompoundCloudSystem cloudSystem,
-        GameProperties currentGame, int spawnRadius, PackedScene delayedEffectScene, float ttl) 
+        GameProperties currentGame, int spawnRadius, PackedScene delayedEffectScene, float ttl)
     {
         // Dont spawn them on top of each other because it
         // causes them to bounce around and lag
         var effect = (DelayedEffect)delayedEffectScene.Instance();
-        effect.Effect = () => 
+        effect.Effect = () =>
             {
                 var microbe = SpawnMicrobe(species, location, worldRoot,
                             microbeScene, true, cloudSystem, currentGame);

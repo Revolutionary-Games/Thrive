@@ -1,11 +1,11 @@
-using Godot;
 using System;
+using Godot;
 
 public class DelayedEffect : Node, ITimedLife
 {
-    public float TimeToLiveRemaining { get; set; } = 0;
+    public Action Effect = () => { };
 
-    public Action Effect = () => {};
+    public float TimeToLiveRemaining { get; set; } = 0;
 
     public void OnTimeOver() => DoEffect();
 
