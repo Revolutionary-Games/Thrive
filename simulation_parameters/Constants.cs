@@ -306,7 +306,7 @@ public static class Constants
     public const int MAX_BACTERIAL_COLONY_SIZE = 6;
     public const int MIN_BACTERIAL_LINE_SIZE = 3;
     public const int MAX_BACTERIAL_LINE_SIZE = 7;
-    public const float BACTERIAL_COLONY_TIME_BETWEEN_SPAWN = 0.1f;
+    public const float BACTERIAL_COLONY_TIME_BETWEEN_SPAWN = 0.2f;
 
     // What is divided during fear and aggression calculations in the AI
     public const float AGRESSION_DIVISOR = 25.0f;
