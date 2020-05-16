@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Godot;
 
@@ -57,35 +58,41 @@ public class ProcessSystem
 
         var atp = SimulationParameters.Instance.GetCompound("atp");
 
-        foreach (var organelle in organelles)
+        var enumerated = organelles.ToList();
+
+        // Compute all process efficiencies once
+        var efficiencies = ComputeOrganelleProcessEfficiencies(enumerated, biome);
+
+        foreach (var organelle in enumerated)
         {
-            foreach (var efficiencyInfo in
-                ComputeOrganelleProcessEfficiencies(organelles, biome))
+            foreach (var efficiencyInfo in efficiencies)
             {
                 foreach (var processData in efficiencyInfo.Value.Processes)
                 {
                     // Find process inputs and outputs that use/produce ATP
-                    // and that are performed by that organelle
+                    // and that are performed by this organelle
                     // and add to totals
-                    if (organelle.Processes.ContainsKey(processData.Process.InternalName))
+                    if (!organelle.Processes.ContainsKey(processData.Process.InternalName))
                     {
-                        if (processData.OtherInputs.ContainsKey(atp.InternalName))
-                        {
-                            var amount = processData.OtherInputs[atp.InternalName].Amount;
+                        continue;
+                    }
 
-                            processATPConsumption += amount;
+                    if (processData.OtherInputs.ContainsKey(atp.InternalName))
+                    {
+                        var amount = processData.OtherInputs[atp.InternalName].Amount;
 
-                            result.AddConsumption(organelle.Name, amount);
-                        }
+                        processATPConsumption += amount;
 
-                        if (processData.Outputs.ContainsKey(atp.InternalName))
-                        {
-                            var amount = processData.Outputs[atp.InternalName].Amount;
+                        result.AddConsumption(organelle.Name, amount);
+                    }
 
-                            processATPProduction += amount;
+                    if (processData.Outputs.ContainsKey(atp.InternalName))
+                    {
+                        var amount = processData.Outputs[atp.InternalName].Amount;
 
-                            result.AddProduction(organelle.Name, amount);
-                        }
+                        processATPProduction += amount;
+
+                        result.AddProduction(organelle.Name, amount);
                     }
                 }
             }
