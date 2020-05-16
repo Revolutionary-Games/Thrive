@@ -486,7 +486,6 @@ public class MicrobeEditorGUI : Node
 
     public void SetRigiditySliderTooltip(float rigidity)
     {
-<<<<<<< HEAD
         var healthChangeLabel = GetNode<Label>(RigiditySliderTooltipHealthLabelPath);
         var mobilityChangeLabel = GetNode<Label>(RigiditySliderTooltipSpeedLabelPath);
 
@@ -515,9 +514,6 @@ public class MicrobeEditorGUI : Node
         {
             mobilityChangeLabel.AddColorOverride("font_color", new Color(1, 0.3f, 0.3f));
         }
-=======
-        
->>>>>>> Add membrane rigidity tooltip.
     }
 
     /// <summary>
