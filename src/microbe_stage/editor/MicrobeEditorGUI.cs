@@ -1038,7 +1038,7 @@ public class MicrobeEditorGUI : Node
                     stringBuilder.Append(outputCompound.Amount >= 0 ? "+" : string.Empty);
                 }
 
-                stringBuilder.Append(Math.Round(outputCompound.Amount, 2) + " ");
+                stringBuilder.Append(Math.Round(outputCompound.Amount, 3) + " ");
 
                 amountLabel.Text = stringBuilder.ToString();
 
