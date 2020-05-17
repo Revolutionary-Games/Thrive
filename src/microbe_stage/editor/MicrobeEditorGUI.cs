@@ -487,8 +487,8 @@ public class MicrobeEditorGUI : Node
         float healthChange = rigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
         float mobilityChange = -1 * rigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER;
 
-        healthChangeLabel.Text = (healthChange).ToString();
-        mobilityChangeLabel.Text = (mobilityChange).ToString();
+        healthChangeLabel.Text = healthChange.ToString();
+        mobilityChangeLabel.Text = mobilityChange.ToString();
 
         if (healthChange >= 0)
         {
