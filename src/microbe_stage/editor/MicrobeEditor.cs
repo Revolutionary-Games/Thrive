@@ -653,27 +653,38 @@ public class MicrobeEditor : Node
 
     public float CalculateSpeed()
     {
-        float finalSpeed = 0;
-        int flagCount = 0;
-        float lengthMicrobe = 0;
+        float microbeMass = Constants.MICROBE_BASE_MASS;
+
+        float baseMovementForce = 0;
+        float organelleMovementForce = 0;
+
+        Vector3 forwardsDirection = new Vector3(0, 0, -1);
 
         foreach (var organelle in editedMicrobeOrganelles.Organelles)
         {
-            lengthMicrobe += organelle.Definition.HexCount;
+            microbeMass += organelle.Definition.Mass;
 
-            // TODO: this should be changed to instead check for the
-            // movement component presence
-            if (organelle.Definition.InternalName == "flagellum")
-                flagCount++;
+            if (organelle.Definition.HasComponentFactory<MovementComponentFactory>())
+            {
+                Vector3 organelleDirection = (Hex.AxialToCartesian(new Hex(0, 0))
+                 - Hex.AxialToCartesian(organelle.Position)).Normalized();
+
+                float directionFactor = organelleDirection.Dot(forwardsDirection);
+
+                // Flagella pointing backwards don't slow you down
+                directionFactor = Math.Max(directionFactor, 0);
+
+                organelleMovementForce += Constants.FLAGELLA_BASE_FORCE
+                    * organelle.Definition.Components.Movement.Momentum / 100.0f
+                    * directionFactor;
+            }
         }
 
-        // This is complex, I know
-        finalSpeed = (Constants.CELL_BASE_THRUST +
-                ((flagCount / (lengthMicrobe - flagCount)) * Constants.FLAGELLA_BASE_FORCE) +
-                (Constants.CELL_DRAG_MULTIPLIER -
-                    (Constants.CELL_SIZE_DRAG_MULTIPLIER * lengthMicrobe))) *
-            (Membrane.MovementFactor -
-                (Rigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER));
+        baseMovementForce = Constants.CELL_BASE_THRUST *
+            (Membrane.MovementFactor - Rigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER);
+
+        float finalSpeed = (baseMovementForce + organelleMovementForce) / microbeMass;
+
         return finalSpeed;
     }
 
