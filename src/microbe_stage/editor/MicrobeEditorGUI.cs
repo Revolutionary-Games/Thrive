@@ -488,25 +488,27 @@ public class MicrobeEditorGUI : Node
         float healthChange = rigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
         float mobilityChange = -1 * rigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER;
 
-        healthChangeLabel.Text = ((healthChange > 0) ? "+" : "") + healthChange.ToString();
-        mobilityChangeLabel.Text = ((mobilityChange > 0) ? "+" : "") + mobilityChange.ToString();
+        healthChangeLabel.Text = ((healthChange > 0) ? "+" : string.Empty)
+            + healthChange.ToString(CultureInfo.CurrentCulture);
+        mobilityChangeLabel.Text = ((mobilityChange > 0) ? "+" : string.Empty)
+            + mobilityChange.ToString(CultureInfo.CurrentCulture);
 
         if (healthChange >= 0)
         {
-            healthChangeLabel.AddColorOverride("font_color", new Color(0,1,0));
+            healthChangeLabel.AddColorOverride("font_color", new Color(0, 1, 0));
         }
         else
         {
-            healthChangeLabel.AddColorOverride("font_color", new Color(1,0.3f,0.3f));
+            healthChangeLabel.AddColorOverride("font_color", new Color(1, 0.3f, 0.3f));
         }
 
         if (mobilityChange >= 0)
         {
-            mobilityChangeLabel.AddColorOverride("font_color", new Color(0,1,0));
+            mobilityChangeLabel.AddColorOverride("font_color", new Color(0, 1, 0));
         }
         else
         {
-            mobilityChangeLabel.AddColorOverride("font_color", new Color(1,0.3f,0.3f));
+            mobilityChangeLabel.AddColorOverride("font_color", new Color(1, 0.3f, 0.3f));
         }
     }
 
