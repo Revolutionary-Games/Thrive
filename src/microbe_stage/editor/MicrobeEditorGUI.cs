@@ -480,7 +480,33 @@ public class MicrobeEditorGUI : Node
 
     public void SetRigiditySliderTooltip(float rigidity)
     {
-        
+        var rigiditySliderTooltip = GetNode("CellEditor/Tooltips/rigiditySlider/MarginContainer/VBoxContainer/VBoxContainer");
+        var healthChangeLabel = rigiditySliderTooltip.GetNode<Label>("HBoxContainer2/Label");
+        var mobilityChangeLabel = rigiditySliderTooltip.GetNode<Label>("HBoxContainer/Label");
+
+        float healthChange = rigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
+        float mobilityChange = -1 * rigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER;
+
+        healthChangeLabel.Text = (healthChange).ToString();
+        mobilityChangeLabel.Text = (mobilityChange).ToString();
+
+        if (healthChange >= 0)
+        {
+            healthChangeLabel.AddColorOverride("font_color", new Color(0,1,0));
+        }
+        else
+        {
+            healthChangeLabel.AddColorOverride("font_color", new Color(1,0.3f,0.3f));
+        }
+
+        if (mobilityChange >= 0)
+        {
+            mobilityChangeLabel.AddColorOverride("font_color", new Color(0,1,0));
+        }
+        else
+        {
+            mobilityChangeLabel.AddColorOverride("font_color", new Color(1,0.3f,0.3f));
+        }
     }
 
     /// <summary>
@@ -772,6 +798,7 @@ public class MicrobeEditorGUI : Node
     private void OnRigidityChanged(float value)
     {
         editor.SetRigidity(value);
+        SetRigiditySliderTooltip(value);
     }
 
     private void MoveToPatchClicked()
