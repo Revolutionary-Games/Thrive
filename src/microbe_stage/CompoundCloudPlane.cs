@@ -1,46 +1,19 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Godot;
 using Newtonsoft.Json;
 
 public class CompoundCloudPlane : CSGMesh
 {
-    // The 3x3 grid of density tiles around this cloud for moving compounds
-    // between them
-    // TODO: This isn't implemented
-    public CompoundCloudPlane LeftCloud;
-    public CompoundCloudPlane RightCloud;
-    public CompoundCloudPlane LowerCloud;
-    public CompoundCloudPlane UpperCloud;
+    public System.Numerics.Vector4[,] Density;
+    public System.Numerics.Vector4[,] OldDensity;
+    public Compound[] Compounds;
 
     private Image image;
     private ImageTexture texture;
-
-    private Slot slot1;
-    private Slot slot2;
-    private Slot slot3;
-    private Slot slot4;
-    private List<Slot> slots;
-
-    public Compound Compound1
-    {
-        get { return slot1.Compound; }
-    }
-
-    public Compound Compound2
-    {
-        get { return slot2.Compound; }
-    }
-
-    public Compound Compound3
-    {
-        get { return slot3.Compound; }
-    }
-
-    public Compound Compound4
-    {
-        get { return slot4.Compound; }
-    }
+    private FluidSystem fluidSystem;
+    private Int2 position = new Int2(0, 0);
 
     [JsonProperty]
     public int Resolution { get; private set; }
@@ -56,10 +29,55 @@ public class CompoundCloudPlane : CSGMesh
         image = new Image();
         image.Create(Size, Size, false, Image.Format.Rgba8);
         texture = new ImageTexture();
-        texture.CreateFromImage(image, (uint)Texture.FlagsEnum.Filter);
+        texture.CreateFromImage(image, (uint)Texture.FlagsEnum.Filter | (uint)Texture.FlagsEnum.Repeat);
 
         var material = (ShaderMaterial)Material;
         material.SetShaderParam("densities", texture);
+
+        Density = new System.Numerics.Vector4[Size, Size];
+        OldDensity = new System.Numerics.Vector4[Size, Size];
+        ClearContents();
+    }
+
+    public void UpdatePosition(Int2 newPosition)
+    {
+        // Whoever made the modulus operator return negatives: i hate u.
+        int newx = ((newPosition.x % Constants.CLOUD_SQUARES_PER_SIDE) + Constants.CLOUD_SQUARES_PER_SIDE)
+                    % Constants.CLOUD_SQUARES_PER_SIDE;
+        int newy = ((newPosition.y % Constants.CLOUD_SQUARES_PER_SIDE) + Constants.CLOUD_SQUARES_PER_SIDE)
+                    % Constants.CLOUD_SQUARES_PER_SIDE;
+
+        if (newx == (position.x + 1) % Constants.CLOUD_SQUARES_PER_SIDE)
+        {
+            PartialClearDensity(position.x * Size / Constants.CLOUD_SQUARES_PER_SIDE, 0,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE, Size);
+        }
+        else if (newx == (position.x + Constants.CLOUD_SQUARES_PER_SIDE - 1)
+                % Constants.CLOUD_SQUARES_PER_SIDE)
+        {
+            PartialClearDensity(((position.x + Constants.CLOUD_SQUARES_PER_SIDE - 1)
+                                % Constants.CLOUD_SQUARES_PER_SIDE) * Size / Constants.CLOUD_SQUARES_PER_SIDE,
+                                0, Size / Constants.CLOUD_SQUARES_PER_SIDE, Size);
+        }
+
+        if (newy == (position.y + 1) % Constants.CLOUD_SQUARES_PER_SIDE)
+        {
+            PartialClearDensity(0, position.y * Size / Constants.CLOUD_SQUARES_PER_SIDE,
+                            Size, Size / Constants.CLOUD_SQUARES_PER_SIDE);
+        }
+        else if (newy == (position.y + Constants.CLOUD_SQUARES_PER_SIDE - 1) % Constants.CLOUD_SQUARES_PER_SIDE)
+        {
+            PartialClearDensity(0, ((position.y + Constants.CLOUD_SQUARES_PER_SIDE - 1)
+                                % Constants.CLOUD_SQUARES_PER_SIDE) * Size / Constants.CLOUD_SQUARES_PER_SIDE,
+                                Size, Size / Constants.CLOUD_SQUARES_PER_SIDE);
+        }
+
+        position = new Int2(newx, newy);
+
+        // This accomodates the texture of the cloud to the new position of the plane.
+        var material = (ShaderMaterial)Material;
+        material.SetShaderParam("UVoffset", new Vector2(newx / (float)Constants.CLOUD_SQUARES_PER_SIDE,
+                                                        newy / (float)Constants.CLOUD_SQUARES_PER_SIDE));
     }
 
     /// <summary>
@@ -68,28 +86,8 @@ public class CompoundCloudPlane : CSGMesh
     public void Init(FluidSystem fluidSystem, Compound cloud1, Compound cloud2,
         Compound cloud3, Compound cloud4)
     {
-        // Setup slots
-        slot1 = new Slot(cloud1, Size, Resolution, fluidSystem, this, 0);
-        slot2 = new Slot(cloud2, Size, Resolution, fluidSystem, this, 1);
-        slot3 = new Slot(cloud3, Size, Resolution, fluidSystem, this, 2);
-        slot4 = new Slot(cloud4, Size, Resolution, fluidSystem, this, 3);
-
-        // These slots are used in many places where it probably helps
-        // to not have null checks so this is dynamically sized. But
-        // all of the slots always exist to make the texture upload
-        // tight loop not have if conditions
-        slots = new List<Slot>();
-
-        slots.Add(slot1);
-
-        if (cloud2 != null)
-            slots.Add(slot2);
-
-        if (cloud3 != null)
-            slots.Add(slot3);
-
-        if (cloud4 != null)
-            slots.Add(slot4);
+        this.fluidSystem = fluidSystem;
+        Compounds = new Compound[Constants.CLOUDS_IN_ONE] { cloud1, cloud2, cloud3, cloud4 };
 
         // Setup colours
         var material = (ShaderMaterial)Material;
@@ -104,29 +102,86 @@ public class CompoundCloudPlane : CSGMesh
     }
 
     /// <summary>
-    ///   Applies diffuse and advect for this single cloud. This is
-    ///   ran in parallel for all clouds.
-    /// </summary>
-    public void UpdateCloud(float delta)
-    {
-        // The diffusion rate seems to have a bigger effect
-        delta *= 100.0f;
-        var pos = new Vector2(Translation.x, Translation.z);
-        foreach (var slot in slots)
-            slot.Update(delta, pos);
-    }
-
-    /// <summary>
     ///   Updates the edge concentrations of this cloud before the rest of the cloud.
     ///   This is not ran in parallel.
     /// </summary>
     public void UpdateEdgesBeforeCenter(float delta)
     {
+        // The diffusion rate seems to have a bigger effect
         delta *= 100.0f;
 
-        foreach (var slot in slots)
+        if (position.x != 0)
         {
-            slot.DiffuseEdges(delta);
+            PartialDiffuseEdges(0, 0, Constants.CLOUD_EDGE_WIDTH / 2, Size, delta);
+            PartialDiffuseEdges(Size - Constants.CLOUD_EDGE_WIDTH / 2, 0, Constants.CLOUD_EDGE_WIDTH / 2, Size, delta);
+        }
+
+        if (position.x != 1)
+        {
+            PartialDiffuseEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2, 0,
+                                Constants.CLOUD_EDGE_WIDTH, Size, delta);
+        }
+
+        if (position.x != 2)
+        {
+            PartialDiffuseEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2, 0,
+                                Constants.CLOUD_EDGE_WIDTH, Size, delta);
+        }
+
+        if (position.y != 0)
+        {
+            PartialDiffuseEdges(Constants.CLOUD_EDGE_WIDTH / 2, 0,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH / 2, delta);
+            PartialDiffuseEdges(Constants.CLOUD_EDGE_WIDTH / 2, Size - Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH / 2, delta);
+            PartialDiffuseEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2, 0,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH / 2, delta);
+            PartialDiffuseEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size - Constants.CLOUD_EDGE_WIDTH / 2, Size / Constants.CLOUD_SQUARES_PER_SIDE
+                                - Constants.CLOUD_EDGE_WIDTH, Constants.CLOUD_EDGE_WIDTH / 2, delta);
+            PartialDiffuseEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
+                                0, Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH / 2, delta);
+            PartialDiffuseEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size - Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH / 2, delta);
+        }
+
+        if (position.y != 1)
+        {
+            PartialDiffuseEdges(Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH, delta);
+            PartialDiffuseEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH, delta);
+            PartialDiffuseEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH, delta);
+        }
+
+        if (position.y != 2)
+        {
+            PartialDiffuseEdges(Constants.CLOUD_EDGE_WIDTH / 2,
+                                2 * Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH, delta);
+            PartialDiffuseEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
+                                Constants.CLOUD_EDGE_WIDTH * Size / Constants.CLOUD_SQUARES_PER_SIDE
+                                - Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH, delta);
+            PartialDiffuseEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
+                                2 * Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH, delta);
         }
     }
 
@@ -136,68 +191,156 @@ public class CompoundCloudPlane : CSGMesh
     /// </summary>
     public void UpdateEdgesAfterCenter(float delta)
     {
+        // The diffusion rate seems to have a bigger effect
         delta *= 100.0f;
         var pos = new Vector2(Translation.x, Translation.z);
 
-        foreach (var slot in slots)
+        if (position.x != 0)
         {
-            slot.AdvectEdges(delta, pos);
+            PartialAdvectEdges(0, 0, Constants.CLOUD_EDGE_WIDTH / 2, Size, delta, pos);
+            PartialAdvectEdges(Size - Constants.CLOUD_EDGE_WIDTH / 2, 0, Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size, delta, pos);
+        }
+
+        if (position.x != 1)
+        {
+            PartialAdvectEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
+                                0, Constants.CLOUD_EDGE_WIDTH, Size, delta, pos);
+        }
+
+        if (position.x != 2)
+        {
+            PartialAdvectEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
+                                0, Constants.CLOUD_EDGE_WIDTH, Size, delta, pos);
+        }
+
+        if (position.y != 0)
+        {
+            PartialAdvectEdges(Constants.CLOUD_EDGE_WIDTH / 2, 0,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH / 2, delta, pos);
+            PartialAdvectEdges(Constants.CLOUD_EDGE_WIDTH / 2, Size - Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH / 2, delta, pos);
+            PartialAdvectEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
+                                0, Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH / 2, delta, pos);
+            PartialAdvectEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size - Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH / 2, delta, pos);
+            PartialAdvectEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
+                                0, Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH / 2, delta, pos);
+            PartialAdvectEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size - Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH / 2, delta, pos);
+        }
+
+        if (position.y != 1)
+        {
+            PartialAdvectEdges(Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH, delta, pos);
+            PartialAdvectEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH, delta, pos);
+            PartialAdvectEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH, delta, pos);
+        }
+
+        if (position.y != 2)
+        {
+            PartialAdvectEdges(Constants.CLOUD_EDGE_WIDTH / 2,
+                                2 * Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH, delta, pos);
+            PartialAdvectEdges(Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
+                                Constants.CLOUD_EDGE_WIDTH * Size / Constants.CLOUD_SQUARES_PER_SIDE
+                                - Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH, delta, pos);
+            PartialAdvectEdges(2 * Size / Constants.CLOUD_SQUARES_PER_SIDE + Constants.CLOUD_EDGE_WIDTH / 2,
+                                2 * Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH / 2,
+                                Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_EDGE_WIDTH,
+                                Constants.CLOUD_EDGE_WIDTH, delta, pos);
         }
     }
 
     /// <summary>
-    ///   Updates the texture with the new densities
+    ///   Updates the cloud in parallel.
     /// </summary>
-    public void UploadTexture()
+    public void QueueUpdateCloud(float delta, List<Task> queue)
+    {
+        // The diffusion rate seems to have a bigger effect
+        delta *= 100.0f;
+        var pos = new Vector2(Translation.x, Translation.z);
+
+        for (int i = 0; i < Constants.CLOUD_SQUARES_PER_SIDE; i++)
+        {
+            for (int j = 0; j < Constants.CLOUD_SQUARES_PER_SIDE; j++)
+            {
+                var x0 = i;
+                var y0 = j;
+                var task = new Task(() => PartialUpdateCenter(x0 * Size / Constants.CLOUD_SQUARES_PER_SIDE,
+                                                            y0 * Size / Constants.CLOUD_SQUARES_PER_SIDE,
+                                                            Size / Constants.CLOUD_SQUARES_PER_SIDE,
+                                                            Size / Constants.CLOUD_SQUARES_PER_SIDE,
+                                                            delta, pos));
+                queue.Add(task);
+            }
+        }
+    }
+
+    /// <summary>
+    ///   Updates the cloud in parallel.
+    /// </summary>
+    public void QueueUpdateTextureImage(List<Task> queue)
     {
         image.Lock();
 
-        for (int x = 0; x < Size; ++x)
+        for (int i = 0; i < Constants.CLOUD_SQUARES_PER_SIDE; i++)
         {
-            for (int y = 0; y < Size; ++y)
+            for (int j = 0; j < Constants.CLOUD_SQUARES_PER_SIDE; j++)
             {
-                // This formula smoothens the cloud density so that we get gradients
-                // of transparency.
-                float intensity1 = 2 * Mathf.Atan(
-                    0.003f * slot1.Density[x, y]);
-                float intensity2 = 2 * Mathf.Atan(
-                    0.003f * slot2.Density[x, y]);
-                float intensity3 = 2 * Mathf.Atan(
-                    0.003f * slot3.Density[x, y]);
-                float intensity4 = 2 * Mathf.Atan(
-                    0.003f * slot4.Density[x, y]);
-
-                // There used to be a clamp(0.0f, 1.0f) for all the
-                // values but that has been taken out to improve
-                // performance as with Godot it doesn't seem to have
-                // much effect
-
-                image.SetPixel(x, y,
-                    new Color(intensity1, intensity2, intensity3, intensity4));
+                var x0 = i;
+                var y0 = j;
+                var task = new Task(() => PartialUpdateTextureImage(x0 * Size / Constants.CLOUD_SQUARES_PER_SIDE,
+                                                            y0 * Size / Constants.CLOUD_SQUARES_PER_SIDE,
+                                                            Size / Constants.CLOUD_SQUARES_PER_SIDE,
+                                                            Size / Constants.CLOUD_SQUARES_PER_SIDE));
+                queue.Add(task);
             }
         }
+    }
 
+    public void UpdateTexture()
+    {
         image.Unlock();
-
-        texture.CreateFromImage(image, (uint)Texture.FlagsEnum.Filter);
+        texture.CreateFromImage(image, (uint)Texture.FlagsEnum.Filter | (uint)Texture.FlagsEnum.Repeat);
     }
 
     public bool HandlesCompound(Compound compound)
     {
-        foreach (var slot in slots)
+        foreach (var c in Compounds)
         {
-            if (slot.Compound == compound)
+            if (c == compound)
                 return true;
         }
 
         return false;
     }
 
-    public bool HandlesCompound(string compound)
+    public bool HandlesCompound(string name)
     {
-        foreach (var slot in slots)
+        foreach (var c in Compounds)
         {
-            if (slot.Compound.InternalName == compound)
+            if (c != null && c.InternalName == name)
                 return true;
         }
 
@@ -209,12 +352,24 @@ public class CompoundCloudPlane : CSGMesh
     /// </summary>
     public void AddCloud(Compound compound, float density, int x, int y)
     {
-        GetSlot(compound).Density[x, y] += density;
+        var cloudToAdd = new System.Numerics.Vector4(
+            Compounds[0] == compound ? density : 0.0f,
+            Compounds[1] == compound ? density : 0.0f,
+            Compounds[2] == compound ? density : 0.0f,
+            Compounds[3] == compound ? density : 0.0f);
+
+        Density[x, y] += cloudToAdd;
     }
 
-    public void AddCloud(string compound, float density, int x, int y)
+    public void AddCloud(string name, float density, int x, int y)
     {
-        GetSlot(compound).Density[x, y] += density;
+        var cloudToAdd = new System.Numerics.Vector4(
+            Compounds[0].InternalName == name ? density : 0.0f,
+            Compounds[1] != null && Compounds[1].InternalName == name ? density : 0.0f,
+            Compounds[2] != null && Compounds[2].InternalName == name ? density : 0.0f,
+            Compounds[3] != null && Compounds[3].InternalName == name ? density : 0.0f);
+
+        Density[x, y] += cloudToAdd;
     }
 
     /// <summary>
@@ -223,7 +378,14 @@ public class CompoundCloudPlane : CSGMesh
     /// <returns>The amount of compound taken</returns>
     public float TakeCompound(Compound compound, int x, int y, float fraction = 1.0f)
     {
-        return GetSlot(compound).TakeCompound(x, y, fraction);
+        float amountInCloud = HackyAdress(Density[x, y], GetCompoundIndex(compound));
+        float amountToGive = amountInCloud * fraction;
+        if (amountInCloud - amountToGive < 0.1f)
+            AddCloud(compound, -amountInCloud, x, y);
+        else
+            AddCloud(compound, -amountToGive, x, y);
+
+        return amountToGive;
     }
 
     /// <summary>
@@ -232,9 +394,8 @@ public class CompoundCloudPlane : CSGMesh
     /// <returns>The amount available for taking</returns>
     public float AmountAvailable(Compound compound, int x, int y, float fraction = 1.0f)
     {
-        var slot = GetSlot(compound);
-
-        float amountToGive = slot.Density[x, y] * fraction;
+        float amountInCloud = HackyAdress(Density[x, y], GetCompoundIndex(compound));
+        float amountToGive = amountInCloud * fraction;
         return amountToGive;
     }
 
@@ -243,11 +404,14 @@ public class CompoundCloudPlane : CSGMesh
     /// </summary>
     public void GetCompoundsAt(int x, int y, Dictionary<string, float> result)
     {
-        foreach (var slot in slots)
+        for (int i = 0; i < Constants.CLOUDS_IN_ONE; i++)
         {
-            float amount = slot.Density[x, y];
+            if (Compounds[i] == null)
+                break;
+
+            float amount = HackyAdress(Density[x, y], i);
             if (amount > 0)
-                result[slot.Compound.InternalName] = amount;
+                result[Compounds[i].InternalName] = amount;
         }
     }
 
@@ -257,7 +421,6 @@ public class CompoundCloudPlane : CSGMesh
     public bool ContainsPosition(Vector3 worldPosition, out int x, out int y)
     {
         ConvertToCloudLocal(worldPosition, out x, out y);
-
         return x >= 0 && y >= 0 && x < Constants.CLOUD_WIDTH && y < Constants.CLOUD_HEIGHT;
     }
 
@@ -284,8 +447,10 @@ public class CompoundCloudPlane : CSGMesh
         var topLeftRelative = worldPosition - Translation;
 
         // Floor is used here because otherwise the last coordinate is wrong
-        x = (int)Math.Floor((topLeftRelative.x + Constants.CLOUD_WIDTH) / Resolution);
-        y = (int)Math.Floor((topLeftRelative.z + Constants.CLOUD_HEIGHT) / Resolution);
+        x = ((int)Math.Floor((topLeftRelative.x + Constants.CLOUD_WIDTH) / Resolution)
+                            + position.x * Size / Constants.CLOUD_SQUARES_PER_SIDE) % Size;
+        y = ((int)Math.Floor((topLeftRelative.z + Constants.CLOUD_HEIGHT) / Resolution)
+                            + position.y * Size / Constants.CLOUD_SQUARES_PER_SIDE) % Size;
     }
 
     /// <summary>
@@ -296,17 +461,20 @@ public class CompoundCloudPlane : CSGMesh
     {
         var fractionToTake = 1.0f - (float)Math.Pow(0.5f, delta / Constants.CLOUD_ABSORPTION_HALF_LIFE);
 
-        foreach (var slot in slots)
+        for (int i = 0; i < Constants.CLOUDS_IN_ONE; i++)
         {
+            if (Compounds[i] == null)
+                break;
+
             // Overestimate of how much compounds we get
-            float generousAmount = slot.Density[localX, localY] *
+            float generousAmount = HackyAdress(Density[localX, localY], i) *
                 Constants.SKIP_TRYING_TO_ABSORB_RATIO;
 
             // Skip if there isn't enough to absorb
             if (generousAmount < MathUtils.EPSILON)
                 continue;
 
-            var compound = slot.Compound.InternalName;
+            var compound = Compounds[i].InternalName;
 
             float freeSpace = storage.Capacity - storage.GetCompoundAmount(compound);
 
@@ -318,7 +486,7 @@ public class CompoundCloudPlane : CSGMesh
                 multiplier = freeSpace / generousAmount;
             }
 
-            float taken = slot.TakeCompound(localX, localY, fractionToTake * multiplier) *
+            float taken = TakeCompound(Compounds[i], localX, localY, fractionToTake * multiplier) *
                 Constants.ABSORPTION_RATIO;
 
             storage.AddCompound(compound, taken);
@@ -335,380 +503,185 @@ public class CompoundCloudPlane : CSGMesh
         }
     }
 
-    public void RecycleToPosition(Vector3 position)
-    {
-        Translation = position;
-        ClearContents();
-    }
-
     public void ClearContents()
     {
-        foreach (var slot in slots)
-            slot.Clear();
+        for (int x = 0; x < Size; ++x)
+        {
+            for (int y = 0; y < Size; ++y)
+            {
+                Density[x, y] = System.Numerics.Vector4.Zero;
+                OldDensity[x, y] = System.Numerics.Vector4.Zero;
+            }
+        }
     }
 
-    private Slot GetSlot(Compound compound)
+    private void PartialDiffuseCenter(int x0, int y0, int width, int height, float delta)
     {
-        foreach (var slot in slots)
-        {
-            if (slot.Compound == compound)
-                return slot;
-        }
+        float a = delta * Constants.CLOUD_DIFFUSION_RATE;
 
-        throw new ArgumentException("compound not handled by this cloud", nameof(compound));
+        for (int x = x0; x < x0 + width; x++)
+        {
+            for (int y = y0; y < y0 + height; y++)
+            {
+                int adyacentClouds = 4;
+                OldDensity[x, y] =
+                    Density[x, y] * (1 - a) +
+                    (Density[x, y - 1] + Density[x, y + 1] + Density[x - 1, y] + Density[x + 1, y])
+                    * (a / adyacentClouds);
+            }
+        }
     }
 
-    private Slot GetSlot(string compound)
+    private void PartialDiffuseEdges(int x0, int y0, int width, int height, float delta)
     {
-        foreach (var slot in slots)
-        {
-            if (slot.Compound.InternalName == compound)
-                return slot;
-        }
+        float a = delta * Constants.CLOUD_DIFFUSION_RATE;
 
-        throw new ArgumentException("compound not handled by this cloud", nameof(compound));
+        for (int x = x0; x < x0 + width; x++)
+        {
+            for (int y = y0; y < y0 + height; y++)
+            {
+                int adyacentClouds = 4;
+                OldDensity[x, y] =
+                    Density[x, y] * (1 - a) +
+                    (Density[x, (y - 1 + Size) % Size] +
+                    Density[x, (y + 1) % Size] +
+                    Density[(x - 1 + Size) % Size, y] +
+                    Density[(x + 1) % Size, y]) * (a / adyacentClouds);
+            }
+        }
     }
 
-    private void AddCloudDensity(int slotIndex, int x, int y, float value)
+    private void PartialAdvectCenter(int x0, int y0, int width, int height, float delta, Vector2 pos)
     {
-        var xComponent = this;
-        if (x < 0)
+        for (int x = x0; x < x0 + width; x++)
         {
-            xComponent = LeftCloud;
+            for (int y = y0; y < y0 + height; y++)
+            {
+                if (OldDensity[x, y].LengthSquared() > 1)
+                {
+                    // TODO: give each cloud a viscosity value in the
+                    // JSON file and use it instead.
+                    const float viscosity = 0.0525f;
+                    var velocity = fluidSystem.VelocityAt(
+                        pos + (new Vector2(x, y) * Resolution)) * viscosity;
+
+                    // This is ran in parallel, this may not touch the other compound clouds
+                    float dx = x + (delta * velocity.x);
+                    float dy = y + (delta * velocity.y);
+
+                    // So this is clamped to not go to the other clouds
+                    dx = dx.Clamp(x0 - 0.5f, x0 + width + 0.5f);
+                    dy = dy.Clamp(y0 - 0.5f, y0 + height + 0.5f);
+
+                    int q0 = (int)Math.Floor(dx);
+                    int q1 = q0 + 1;
+                    int r0 = (int)Math.Floor(dy);
+                    int r1 = r0 + 1;
+
+                    float s1 = Math.Abs(dx - q0);
+                    float s0 = 1.0f - s1;
+                    float t1 = Math.Abs(dy - r0);
+                    float t0 = 1.0f - t1;
+
+                    Density[q0, r0] += OldDensity[x, y] * s0 * t0;
+                    Density[q0, r1] += OldDensity[x, y] * s0 * t1;
+                    Density[q1, r0] += OldDensity[x, y] * s1 * t0;
+                    Density[q1, r1] += OldDensity[x, y] * s1 * t1;
+                }
+            }
         }
-        else if (x >= Size)
-        {
-            xComponent = RightCloud;
-        }
-
-        if (xComponent == null)
-            return;
-
-        var yComponent = xComponent;
-        if (y < 0)
-        {
-            yComponent = xComponent.UpperCloud;
-        }
-        else if (y >= Size)
-        {
-            yComponent = xComponent.LowerCloud;
-        }
-
-        if (yComponent == null)
-            return;
-
-        x = (x + Size) % Size;
-        y = (y + Size) % Size;
-
-        yComponent.slots[slotIndex].Density[x, y] += value;
     }
 
-    private class Slot
+    private void PartialAdvectEdges(int x0, int y0, int width, int height, float delta, Vector2 pos)
     {
-        public float[,] Density;
-        public float[,] OldDensity;
-        public Compound Compound;
-        private readonly int size;
-        private readonly int resolution;
-        private readonly FluidSystem fluidSystem;
-        private readonly CompoundCloudPlane parentPlane;
-        private readonly int index;
-
-        public Slot(Compound compound, int size, int resolution,
-            FluidSystem fluidSystem, CompoundCloudPlane parent, int index)
+        for (int x = x0; x < x0 + width; x++)
         {
-            this.size = size;
-            this.resolution = resolution;
-            this.fluidSystem = fluidSystem;
-            Compound = compound;
-            parentPlane = parent;
-            this.index = index;
-
-            if (size <= 0)
-                return;
-
-            // For simplicity all the densities always exist, even on the unused clouds
-            Density = new float[size, size];
-
-            // Except the old density can be easily ignored so this saves some memory
-            if (Compound != null)
-                OldDensity = new float[size, size];
-        }
-
-        public void Clear()
-        {
-            for (int x = 0; x < size; ++x)
+            for (int y = y0; y < y0 + height; y++)
             {
-                for (int y = 0; y < size; ++y)
+                if (OldDensity[x, y].LengthSquared() > 1)
                 {
-                    Density[x, y] = 0.0f;
+                    // TODO: give each cloud a viscosity value in the
+                    // JSON file and use it instead.
+                    const float viscosity = 0.0525f;
+                    var velocity = fluidSystem.VelocityAt(
+                        pos + (new Vector2(x, y) * Resolution)) * viscosity;
+
+                    // This is ran in parallel, this may not touch the other compound clouds
+                    float dx = x + (delta * velocity.x);
+                    float dy = y + (delta * velocity.y);
+
+                    int q0 = (int)Math.Floor(dx);
+                    int q1 = q0 + 1;
+                    int r0 = (int)Math.Floor(dy);
+                    int r1 = r0 + 1;
+
+                    float s1 = Math.Abs(dx - q0);
+                    float s0 = 1.0f - s1;
+                    float t1 = Math.Abs(dy - r0);
+                    float t0 = 1.0f - t1;
+
+                    Density[(q0 + Size) % Size, (r0 + Size) % Size] += OldDensity[x, y] * s0 * t0;
+                    Density[(q0 + Size) % Size, (r1 + Size) % Size] += OldDensity[x, y] * s0 * t1;
+                    Density[(q1 + Size) % Size, (r0 + Size) % Size] += OldDensity[x, y] * s1 * t0;
+                    Density[(q1 + Size) % Size, (r1 + Size) % Size] += OldDensity[x, y] * s1 * t1;
                 }
             }
         }
+    }
 
-        public void Update(float delta, Vector2 pos)
+    private void PartialUpdateTextureImage(int x0, int y0, int width, int height)
+    {
+        for (int x = x0; x < x0 + width; x++)
         {
-            if (Compound == null)
-                return;
-
-            // Compound clouds move from area of high concentration to area of low.
-            Diffuse(delta);
-            ClearDensity();
-
-            // Move the compound clouds about the velocity field.
-            Advect(delta, pos);
-        }
-
-        public float TakeCompound(int x, int y, float fraction)
-        {
-            float amountToGive = Density[x, y] * fraction;
-            Density[x, y] -= amountToGive;
-            if (Density[x, y] < 0.1f)
-                Density[x, y] = 0;
-
-            return amountToGive;
-        }
-
-        public void AdvectEdges(float delta, Vector2 pos)
-        {
-            int[] edgeValues = { 0, size - 1 };
-
-            for (int x = 0; x < size; x++)
+            for (int y = y0; y < y0 + height; y++)
             {
-                // The top edge and bottom edge
-                foreach (int y in edgeValues)
-                {
-                    // This code is inlined here to improve performance
-                    if (OldDensity[x, y] > 1)
-                    {
-                        // TODO: give each cloud a viscosity value in the
-                        // JSON file and use it instead.
-                        const float viscosity =
-                            0.0525f;
-                        var velocity = fluidSystem.VelocityAt(
-                            pos + (new Vector2(x, y) * resolution)) * viscosity;
-
-                        float dx = x + delta * velocity.x;
-                        float dy = y + delta * velocity.y;
-
-                        int x0 = (int)Math.Floor(dx);
-                        int x1 = x0 + 1;
-                        int y0 = (int)Math.Floor(dy);
-                        int y1 = y0 + 1;
-
-                        float s1 = Math.Abs(dx - x0);
-                        float s0 = 1.0f - s1;
-                        float t1 = Math.Abs(dy - y0);
-                        float t0 = 1.0f - t1;
-
-                        parentPlane.AddCloudDensity(index, x0, y0,
-                            OldDensity[x, y] * s0 * t0);
-                        parentPlane.AddCloudDensity(index, x0, y1,
-                            OldDensity[x, y] * s0 * t1);
-                        parentPlane.AddCloudDensity(index, x1, y0,
-                            OldDensity[x, y] * s1 * t0);
-                        parentPlane.AddCloudDensity(index, x1, y1,
-                            OldDensity[x, y] * s1 * t1);
-                    }
-                }
-            }
-
-            // The left edge and right edge
-            foreach (int x in edgeValues)
-            {
-                for (int y = 1; y < size - 1; y++)
-                {
-                    // This code is inlined here to improve performance
-                    if (OldDensity[x, y] > 1)
-                    {
-                        // TODO: give each cloud a viscosity value in the
-                        // JSON file and use it instead.
-                        const float viscosity = 0.0525f;
-                        var velocity = fluidSystem.VelocityAt(
-                            pos + (new Vector2(x, y) * resolution)) * viscosity;
-
-                        float dx = x + delta * velocity.x;
-                        float dy = y + delta * velocity.y;
-
-                        int x0 = (int)Math.Floor(dx);
-                        int x1 = x0 + 1;
-                        int y0 = (int)Math.Floor(dy);
-                        int y1 = y0 + 1;
-
-                        float s1 = Math.Abs(dx - x0);
-                        float s0 = 1.0f - s1;
-                        float t1 = Math.Abs(dy - y0);
-                        float t0 = 1.0f - t1;
-
-                        parentPlane.AddCloudDensity(index, x0, y0,
-                            OldDensity[x, y] * s0 * t0);
-                        parentPlane.AddCloudDensity(index, x0, y1,
-                            OldDensity[x, y] * s0 * t1);
-                        parentPlane.AddCloudDensity(index, x1, y0,
-                            OldDensity[x, y] * s1 * t0);
-                        parentPlane.AddCloudDensity(index, x1, y1,
-                            OldDensity[x, y] * s1 * t1);
-                    }
-                }
+                var pixel = Density[x, y] * (1 / Constants.CLOUD_MAX_INTENSITY_SHOWN);
+                image.SetPixel(x, y, new Color(pixel.X, pixel.Y, pixel.Z, pixel.W));
             }
         }
+    }
 
-        public void DiffuseEdges(float delta)
+    private void PartialClearDensity(int x0, int y0, int width, int height)
+    {
+        for (int x = x0; x < x0 + width; x++)
         {
-            int[] edgeValues = { 0, size - 1 };
-
-            float a = delta * Constants.CLOUD_DIFFUSION_RATE;
-
-            for (int x = 0; x < size; x++)
+            for (int y = y0; y < y0 + height; y++)
             {
-                // The top edge and bottom edge
-                foreach (int y in edgeValues)
-                {
-                    DiffuseTile(x, y, delta);
-                }
-            }
-
-            // The left edge and right edge
-            foreach (int x in edgeValues)
-            {
-                for (int y = 1; y < size - 1; y++)
-                {
-                    DiffuseTile(x, y, delta);
-                }
+                Density[x, y] = System.Numerics.Vector4.Zero;
             }
         }
+    }
 
-        private void ClearDensity()
+    private void PartialUpdateCenter(int x0, int y0, int width, int height, float delta, Vector2 pos)
+    {
+        PartialDiffuseCenter(x0 + Constants.CLOUD_EDGE_WIDTH / 2, y0 + Constants.CLOUD_EDGE_WIDTH / 2, width
+                            - Constants.CLOUD_EDGE_WIDTH, height - Constants.CLOUD_EDGE_WIDTH, delta);
+        PartialClearDensity(x0, y0, width, height);
+        PartialAdvectCenter(x0 + Constants.CLOUD_EDGE_WIDTH / 2, y0 + Constants.CLOUD_EDGE_WIDTH / 2, width
+                            - Constants.CLOUD_EDGE_WIDTH, height - Constants.CLOUD_EDGE_WIDTH, delta, pos);
+    }
+
+    private float HackyAdress(System.Numerics.Vector4 vector, int index)
+    {
+        switch (index)
         {
-            for (int x = 0; x < size; x++)
-            {
-                for (int y = 0; y < size; y++)
-                {
-                    Density[x, y] = 0;
-                }
-            }
+            case 0: return vector.X;
+            case 1: return vector.Y;
+            case 2: return vector.Z;
+            case 3: return vector.W;
         }
 
-        /// <summary>
-        ///   For performance reasons this is manually inlined in Diffuse
-        /// </summary>
-        private void DiffuseTile(int x, int y, float delta)
+        return 0;
+    }
+
+    private int GetCompoundIndex(Compound compound)
+    {
+        for (int i = 0; i < Constants.CLOUDS_IN_ONE; i++)
         {
-            float a = delta * Constants.CLOUD_DIFFUSION_RATE;
-
-            float upperDensity = 0.0f;
-            if (y > 0)
-            {
-                upperDensity = Density[x, y - 1];
-            }
-            else if (parentPlane.UpperCloud != null)
-            {
-                upperDensity = parentPlane.UpperCloud.slots[index]
-                    .Density[x, size - 1];
-            }
-
-            float lowerDensity = 0.0f;
-            if (y < size - 1)
-            {
-                lowerDensity = Density[x, y + 1];
-            }
-            else if (parentPlane.LowerCloud != null)
-            {
-                lowerDensity =
-                    parentPlane.LowerCloud.slots[index]
-                        .Density[x, 0];
-            }
-
-            float leftDensity = 0.0f;
-            if (x > 0)
-            {
-                leftDensity = Density[x - 1, y];
-            }
-            else if (parentPlane.LeftCloud != null)
-            {
-                leftDensity = parentPlane.LeftCloud.slots[index]
-                    .Density[size - 1, y];
-            }
-
-            float rightDensity = 0.0f;
-            if (x < size - 1)
-            {
-                rightDensity = Density[x + 1, y];
-            }
-            else if (parentPlane.RightCloud != null)
-            {
-                rightDensity =
-                    parentPlane.RightCloud.slots[index]
-                        .Density[0, y];
-            }
-
-            OldDensity[x, y] =
-                Density[x, y] * (1 - a) +
-                (upperDensity + lowerDensity + leftDensity + rightDensity) * a /
-                4;
+            if (Compounds[i] == compound)
+                return i;
         }
 
-        private void Diffuse(float delta)
-        {
-            float a = delta * Constants.CLOUD_DIFFUSION_RATE;
-
-            for (int x = 1; x < size - 1; x++)
-            {
-                for (int y = 1; y < size - 1; y++)
-                {
-                    // Inlined version of DiffuseTile
-                    float upperDensity = Density[x, y - 1];
-                    float lowerDensity = Density[x, y + 1];
-                    float leftDensity = Density[x - 1, y];
-                    float rightDensity = Density[x + 1, y];
-
-                    OldDensity[x, y] =
-                        Density[x, y] * (1 - a) +
-                        (upperDensity + lowerDensity + leftDensity + rightDensity) * a /
-                        4;
-                }
-            }
-        }
-
-        private void Advect(float delta, Vector2 pos)
-        {
-            for (int x = 1; x < size - 1; x++)
-            {
-                for (int y = 1; y < size - 1; y++)
-                {
-                    if (OldDensity[x, y] > 1)
-                    {
-                        // TODO: give each cloud a viscosity value in the
-                        // JSON file and use it instead.
-                        const float viscosity = 0.0525f;
-                        var velocity = fluidSystem.VelocityAt(
-                            pos + (new Vector2(x, y) * resolution)) * viscosity;
-
-                        // This is ran in parallel, this may not touch the other compound clouds
-                        float dx = x + (delta * velocity.x);
-                        float dy = y + (delta * velocity.y);
-
-                        // So this is clamped to not go to the other clouds
-                        dx = dx.Clamp(0.5f, size - 1.5f);
-                        dy = dy.Clamp(0.5f, size - 1.5f);
-
-                        int x0 = (int)Math.Floor(dx);
-                        int x1 = x0 + 1;
-                        int y0 = (int)Math.Floor(dy);
-                        int y1 = y0 + 1;
-
-                        float s1 = Math.Abs(dx - x0);
-                        float s0 = 1.0f - s1;
-                        float t1 = Math.Abs(dy - y0);
-                        float t0 = 1.0f - t1;
-
-                        Density[x0, y0] += OldDensity[x, y] * s0 * t0;
-                        Density[x0, y1] += OldDensity[x, y] * s0 * t1;
-                        Density[x1, y0] += OldDensity[x, y] * s1 * t0;
-                        Density[x1, y1] += OldDensity[x, y] * s1 * t1;
-                    }
-                }
-            }
-        }
+        return -1;
     }
 }

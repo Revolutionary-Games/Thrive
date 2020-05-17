@@ -20,7 +20,7 @@ shader_param/densities = ExtResource( 4 )
 shader_param/noise = ExtResource( 2 )
 
 [node name="CompoundCloudPlane" type="CSGMesh"]
-transform = Transform( 1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0 )
+transform = Transform( 3, 0, 0, 0, -1.31134e-07, 1, 0, -3, -4.37114e-08, 0, 0, 0 )
 cast_shadow = 0
 mesh = SubResource( 1 )
 material = SubResource( 2 )
