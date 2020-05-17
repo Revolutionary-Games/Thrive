@@ -4,6 +4,8 @@ Thrive
 This is the code repository for Thrive. For more information, visit
 [Revolutionary Games' Website](https://revolutionarygamesstudio.com/).
 
+### Build Status [![CircleCI](https://circleci.com/gh/Revolutionary-Games/Thrive.svg?style=svg)](https://circleci.com/gh/Revolutionary-Games/Thrive)
+
 Overview
 ----------------
 Repository structure:

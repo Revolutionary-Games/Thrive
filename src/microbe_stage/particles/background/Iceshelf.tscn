@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/textures/shard_particle.png" type="Texture" id=1]
+
+
+[sub_resource type="SpatialMaterial" id=1]
+flags_transparent = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 1 )
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.386076, 0.6, 1 )
+colors = PoolColorArray( 0.84157, 0.918246, 0.95752, 0.0196078, 1, 1, 1, 1, 1, 1, 1, 1, 0.84157, 0.918246, 0.95752, 0.0196078 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=4]
+emission_shape = 2
+emission_box_extents = Vector3( 100, 100, 100 )
+direction = Vector3( 10, 0, 3 )
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 0.1
+angular_velocity = 20.0
+angular_velocity_random = 1.0
+angle = 60.0
+angle_random = 1.0
+scale = 3.0
+scale_random = 1.0
+color_ramp = SubResource( 3 )
+
+[sub_resource type="QuadMesh" id=5]
+
+[node name="Iceshelf" type="Particles"]
+material_override = SubResource( 1 )
+amount = 65
+lifetime = 10.0
+preprocess = 5.0
+randomness = 0.5
+visibility_aabb = AABB( -99.0033, -25.7145, -118.539, 198.007, 51.429, 237.077 )
+process_material = SubResource( 4 )
+draw_pass_1 = SubResource( 5 )

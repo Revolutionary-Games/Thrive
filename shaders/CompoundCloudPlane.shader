@@ -9,22 +9,31 @@ uniform vec4 colour2 : hint_color  = vec4(0, 0, 0, 0);
 uniform vec4 colour3 : hint_color  = vec4(0, 0, 0, 0);
 uniform vec4 colour4 : hint_color  = vec4(0, 0, 0, 0);
 
+uniform vec2 UVoffset = vec2(0, 0);
+
 // Setting this too high makes the clouds invisible
 const float CLOUD_DISSIPATION = 2.0;
 
+// Should be the same as its counterpart in CompoundCloudPlane.cs
+const float CLOUD_MAX_INTENSITY_SHOWN = 1000f;
+
+float getIntensity(float value){
+	return min(0.8 * atan(0.003f * CLOUD_MAX_INTENSITY_SHOWN * value), 1.0f);
+}
+
 void fragment(){
-    vec4 concentrations = texture(densities, UV);
+    vec4 concentrations = texture(densities, UV + UVoffset);
     
-    float cloud1 = concentrations.r * pow(texture(noise, UV).r, 
+    float cloud1 = getIntensity(concentrations.r) * pow(texture(noise, UV + UVoffset).r, 
         CLOUD_DISSIPATION);
         
-    float cloud2 = concentrations.g * pow(texture(noise, UV + 0.2f).r, 
+    float cloud2 = getIntensity(concentrations.g) * pow(texture(noise, UV + UVoffset + 0.2f).r, 
         CLOUD_DISSIPATION);
         
-    float cloud3 = concentrations.b * pow(texture(noise, UV + 0.4f).r, 
+    float cloud3 = getIntensity(concentrations.b) * pow(texture(noise, UV + UVoffset + 0.4f).r, 
         CLOUD_DISSIPATION);
         
-    float cloud4 = concentrations.a * pow(texture(noise, UV + 0.6f).r, 
+    float cloud4 = getIntensity(concentrations.a) * pow(texture(noise, UV + UVoffset + 0.6f).r, 
         CLOUD_DISSIPATION);
     
     vec4 colour =
