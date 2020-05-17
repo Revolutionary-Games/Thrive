@@ -1011,7 +1011,7 @@ public class MicrobeEditorGUI : Node
                     var inputCompound = process.OtherInputs[key];
 
                     var amountLabel = new Label();
-                    amountLabel.Text = Math.Round(inputCompound.Amount, 2) + " ";
+                    amountLabel.Text = Math.Round(inputCompound.Amount, 3) + " ";
                     processBody.AddChild(amountLabel);
                     processBody.AddChild(GUICommon.Instance.CreateCompoundIcon(inputCompound.Compound.Name));
                 }
