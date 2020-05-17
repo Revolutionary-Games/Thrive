@@ -11,6 +11,9 @@ public class PlayerMicrobeInput : Node
     /// </summary>
     private MicrobeStage stage;
 
+    // Whether or not the player is using auto-move
+    private bool autoMoveEnabled = false;
+
     // // All the input actions
     private bool forward = false;
     private bool backwards = false;
@@ -30,40 +33,67 @@ public class PlayerMicrobeInput : Node
     {
         var settings = Settings.Instance;
 
-        if (@event.IsActionPressed("g_move_forward"))
+        if (@event.IsActionPressed("g_hold_forward"))
         {
-            forward = true;
-        }
-        else if (@event.IsActionReleased("g_move_forward"))
-        {
-            forward = false;
+            forward = !forward;
+            autoMoveEnabled = forward || backwards || left || right;
         }
 
-        if (@event.IsActionPressed("g_move_backwards"))
+        if (@event.IsActionPressed("g_hold_backwards"))
         {
-            backwards = true;
-        }
-        else if (@event.IsActionReleased("g_move_backwards"))
-        {
-            backwards = false;
+            backwards = !backwards;
+            autoMoveEnabled = forward || backwards || left || right;
         }
 
-        if (@event.IsActionPressed("g_move_left"))
+        if (@event.IsActionPressed("g_hold_left"))
         {
-            left = true;
-        }
-        else if (@event.IsActionReleased("g_move_left"))
-        {
-            left = false;
+            left = !left;
+            autoMoveEnabled = forward || backwards || left || right;
         }
 
-        if (@event.IsActionPressed("g_move_right"))
+        if (@event.IsActionPressed("g_hold_right"))
         {
-            right = true;
+            right = !right;
+            autoMoveEnabled = forward || backwards || left || right;
         }
-        else if (@event.IsActionReleased("g_move_right"))
+
+        if (!autoMoveEnabled)
         {
-            right = false;
+            if (@event.IsActionPressed("g_move_forward"))
+            {
+                forward = true;
+            }
+            else if (@event.IsActionReleased("g_move_forward"))
+            {
+                forward = false;
+            }
+
+            if (@event.IsActionPressed("g_move_backwards"))
+            {
+                backwards = true;
+            }
+            else if (@event.IsActionReleased("g_move_backwards"))
+            {
+                backwards = false;
+            }
+
+            if (@event.IsActionPressed("g_move_left"))
+            {
+                left = true;
+            }
+            else if (@event.IsActionReleased("g_move_left"))
+            {
+                left = false;
+            }
+
+            if (@event.IsActionPressed("g_move_right"))
+            {
+                right = true;
+            }
+            else if (@event.IsActionReleased("g_move_right"))
+            {
+                right = false;
+            }
         }
 
         if (settings.CheatsEnabled && @event.IsActionPressed("g_cheat_editor"))
