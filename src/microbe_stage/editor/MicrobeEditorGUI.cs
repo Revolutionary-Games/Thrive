@@ -480,15 +480,16 @@ public class MicrobeEditorGUI : Node
 
     public void SetRigiditySliderTooltip(float rigidity)
     {
-        var rigiditySliderTooltip = GetNode("CellEditor/Tooltips/rigiditySlider/MarginContainer/VBoxContainer/VBoxContainer");
+        var rigiditySliderTooltip = GetNode("CellEditor/Tooltips/rigiditySlider")
+            .GetNode("MarginContainer/VBoxContainer/VBoxContainer");
         var healthChangeLabel = rigiditySliderTooltip.GetNode<Label>("HBoxContainer2/Label");
         var mobilityChangeLabel = rigiditySliderTooltip.GetNode<Label>("HBoxContainer/Label");
 
         float healthChange = rigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
         float mobilityChange = -1 * rigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER;
 
-        healthChangeLabel.Text = healthChange.ToString();
-        mobilityChangeLabel.Text = mobilityChange.ToString();
+        healthChangeLabel.Text = ((healthChange > 0) ? "+" : "") + healthChange.ToString();
+        mobilityChangeLabel.Text = ((mobilityChange > 0) ? "+" : "") + mobilityChange.ToString();
 
         if (healthChange >= 0)
         {
