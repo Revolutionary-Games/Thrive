@@ -652,7 +652,7 @@ public class MicrobeEditor : Node
                  - Hex.AxialToCartesian(organelle.Position)).Normalized();
 
                 float directionFactor = organelleDirection.Dot(forwardsDirection);
-                
+
                 // Flagellae pointing backwards don't slow you down
                 directionFactor = Math.Max(directionFactor, 0);
 
