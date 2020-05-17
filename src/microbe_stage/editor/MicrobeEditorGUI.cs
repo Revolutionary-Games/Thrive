@@ -1011,7 +1011,7 @@ public class MicrobeEditorGUI : Node
                     var inputCompound = process.OtherInputs[key];
 
                     var amountLabel = new Label();
-                    amountLabel.Text = Math.Round(inputCompound.Amount, 2) + " ";
+                    amountLabel.Text = Math.Round(inputCompound.Amount, 3) + " ";
                     processBody.AddChild(amountLabel);
                     processBody.AddChild(GUICommon.Instance.CreateCompoundIcon(inputCompound.Compound.Name));
                 }
@@ -1038,7 +1038,7 @@ public class MicrobeEditorGUI : Node
                     stringBuilder.Append(outputCompound.Amount >= 0 ? "+" : string.Empty);
                 }
 
-                stringBuilder.Append(Math.Round(outputCompound.Amount, 2) + " ");
+                stringBuilder.Append(Math.Round(outputCompound.Amount, 3) + " ");
 
                 amountLabel.Text = stringBuilder.ToString();
 
