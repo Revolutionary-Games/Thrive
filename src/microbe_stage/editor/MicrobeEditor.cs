@@ -635,27 +635,36 @@ public class MicrobeEditor : Node
 
     public float CalculateSpeed()
     {
-        float finalSpeed = 0;
-        float massMicrobe = Constants.MICROBE_BASE_MASS;
+        float microbeMass = Constants.MICROBE_BASE_MASS;
 
         float baseMovementForce = 0;
         float organelleMovementForce = 0;
 
+        Vector3 forwardsDirection = new Vector3(0, 0, -1);
+
         foreach (var organelle in editedMicrobeOrganelles.Organelles)
         {
-            massMicrobe += organelle.Definition.Mass;
+            microbeMass += organelle.Definition.Mass;
 
-            if (organelle.Definition.Components.Movement != null)
+            if (organelle.Definition.HasComponentFactory<MovementComponentFactory>())
             {
+                Vector3 organelleDirection = ( Hex.AxialToCartesian(new Hex(0, 0))
+                 - Hex.AxialToCartesian(organelle.Position) ).Normalized();
+
+                float directionFactor = organelleDirection.Dot(forwardsDirection);
+                //Flagellae pointing backwards don't slow you down
+                directionFactor = Math.Max(directionFactor,0);
+
                 organelleMovementForce += Constants.FLAGELLA_BASE_FORCE
-                    * organelle.Definition.Components.Movement.Momentum / 100.0f;
+                    * organelle.Definition.Components.Movement.Momentum / 100.0f
+                    * directionFactor;
             }
         }
 
         baseMovementForce = Constants.CELL_BASE_THRUST *
             (Membrane.MovementFactor - Rigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER);
 
-        finalSpeed = (baseMovementForce + organelleMovementForce) / massMicrobe;
+        float finalSpeed = (baseMovementForce + organelleMovementForce) / microbeMass;
 
         return finalSpeed;
     }
