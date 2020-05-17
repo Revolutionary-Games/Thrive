@@ -648,12 +648,12 @@ public class MicrobeEditor : Node
 
             if (organelle.Definition.HasComponentFactory<MovementComponentFactory>())
             {
-                Vector3 organelleDirection = ( Hex.AxialToCartesian(new Hex(0, 0))
-                 - Hex.AxialToCartesian(organelle.Position) ).Normalized();
+                Vector3 organelleDirection = (Hex.AxialToCartesian(new Hex(0, 0))
+                 - Hex.AxialToCartesian(organelle.Position)).Normalized();
 
                 float directionFactor = organelleDirection.Dot(forwardsDirection);
-                //Flagellae pointing backwards don't slow you down
-                directionFactor = Math.Max(directionFactor,0);
+                // Flagellae pointing backwards don't slow you down
+                directionFactor = Math.Max(directionFactor, 0);
 
                 organelleMovementForce += Constants.FLAGELLA_BASE_FORCE
                     * organelle.Definition.Components.Movement.Momentum / 100.0f
