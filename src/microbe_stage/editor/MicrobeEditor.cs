@@ -653,7 +653,7 @@ public class MicrobeEditor : Node
 
                 float directionFactor = organelleDirection.Dot(forwardsDirection);
 
-                // Flagellae pointing backwards don't slow you down
+                // Flagella pointing backwards don't slow you down
                 directionFactor = Math.Max(directionFactor, 0);
 
                 organelleMovementForce += Constants.FLAGELLA_BASE_FORCE
