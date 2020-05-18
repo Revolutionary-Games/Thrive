@@ -12,7 +12,7 @@ public class PlayerMicrobeInput : Node
     private MicrobeStage stage;
 
     /// <summary>
-    /// Whether or not the player is using auto-move
+    ///  Whether or not the player is allowed to use auto-move
     /// </summary>
     private bool autoMoveAllowed = true;
 
