@@ -260,7 +260,7 @@ public class MicrobeEditorGUI : Node
     private Control helpScreen;
 
     private bool inEditorTab = false;
-    private int symmetry = 0;
+    private MicrobeEditor.MicrobeSymmetry symmetry = MicrobeEditor.MicrobeSymmetry.None;
 
     public string GetNewSpeciesName()
     {
@@ -676,24 +676,24 @@ public class MicrobeEditorGUI : Node
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        if (symmetry == 3)
+        if (symmetry == MicrobeEditor.MicrobeSymmetry.SixWaySymmetry)
         {
             ResetSymmetryButton();
         }
-        else if (symmetry == 0)
+        else if (symmetry == MicrobeEditor.MicrobeSymmetry.None)
         {
             symmetryIcon.Texture = SymmetryIcon2x;
-            symmetry = 1;
+            symmetry = MicrobeEditor.MicrobeSymmetry.XAxisSymmetry;
         }
-        else if (symmetry == 1)
+        else if (symmetry == MicrobeEditor.MicrobeSymmetry.XAxisSymmetry)
         {
             symmetryIcon.Texture = SymmetryIcon4x;
-            symmetry = 2;
+            symmetry = MicrobeEditor.MicrobeSymmetry.FourWaySymmetry;
         }
-        else if (symmetry == 2)
+        else if (symmetry == MicrobeEditor.MicrobeSymmetry.FourWaySymmetry)
         {
             symmetryIcon.Texture = SymmetryIcon6x;
-            symmetry = 3;
+            symmetry = MicrobeEditor.MicrobeSymmetry.SixWaySymmetry;
         }
 
         editor.Symmetry = symmetry;
@@ -1011,7 +1011,7 @@ public class MicrobeEditorGUI : Node
                     var inputCompound = process.OtherInputs[key];
 
                     var amountLabel = new Label();
-                    amountLabel.Text = Math.Round(inputCompound.Amount, 2) + " ";
+                    amountLabel.Text = Math.Round(inputCompound.Amount, 3) + " ";
                     processBody.AddChild(amountLabel);
                     processBody.AddChild(GUICommon.Instance.CreateCompoundIcon(inputCompound.Compound.Name));
                 }
@@ -1038,7 +1038,7 @@ public class MicrobeEditorGUI : Node
                     stringBuilder.Append(outputCompound.Amount >= 0 ? "+" : string.Empty);
                 }
 
-                stringBuilder.Append(Math.Round(outputCompound.Amount, 2) + " ");
+                stringBuilder.Append(Math.Round(outputCompound.Amount, 3) + " ");
 
                 amountLabel.Text = stringBuilder.ToString();
 
