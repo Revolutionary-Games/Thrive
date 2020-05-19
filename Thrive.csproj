@@ -59,7 +59,9 @@
     <Compile Include="src\engine\Save.cs" />
     <Compile Include="src\engine\SaveHelper.cs" />
     <Compile Include="src\engine\serializers\GodotColorConverter.cs" />
+    <Compile Include="src\engine\serializers\PatchConverter.cs" />
     <Compile Include="src\engine\serializers\RegistryTypeConverter.cs" />
+    <Compile Include="src\engine\serializers\SingleTypeConverter.cs" />
     <Compile Include="src\engine\serializers\ThriveJsonConverter.cs" />
     <Compile Include="src\general\PathUtils.cs" />
     <Compile Include="src\gui_common\Cutscene.cs" />

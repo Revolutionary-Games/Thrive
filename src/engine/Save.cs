@@ -84,8 +84,8 @@ public class Save
     {
         MakeSureSaveSaveDirectoryExists();
 
-        var serialized = JsonConvert.SerializeObject(this, Constants.SAVE_FORMATTING);
-        var justInfo = JsonConvert.SerializeObject(Info);
+        var serialized = ThriveJsonConverter.Instance.SerializeObject(this);
+        var justInfo = ThriveJsonConverter.Instance.SerializeObject(Info);
 
         // var screenshot;
 
@@ -108,6 +108,8 @@ public class Save
     private static void OutputEntry(TarOutputStream archive, string name, byte[] data)
     {
         var entry = TarEntry.CreateTarEntry(name);
+
+        entry.TarHeader.Mode = Convert.ToInt32("0664", 8);
 
         // TODO: could fill in more of the properties
 

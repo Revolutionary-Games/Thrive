@@ -13,7 +13,7 @@ public static class SaveHelper
     /// <param name="stage">Data to include in save</param>
     public static void QuickSave(MicrobeStage stage)
     {
-        var save = CreateSaveObject("MicrobeStage");
+        var save = CreateSaveObject("MicrobeStage", SaveInformation.SaveType.QuickSave);
 
         // TODO: save other properties as well
         save.SavedProperties = stage.CurrentGame;
@@ -21,9 +21,9 @@ public static class SaveHelper
         PerformSave(save, SaveInformation.SaveType.QuickSave);
     }
 
-    private static Save CreateSaveObject(string gameState)
+    private static Save CreateSaveObject(string gameState, SaveInformation.SaveType type)
     {
-        return new Save { GameStateName = gameState };
+        return new Save { GameStateName = gameState, Info = { Type = type } };
     }
 
     private static void PerformSave(Save save, SaveInformation.SaveType type)

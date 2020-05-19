@@ -32,9 +32,11 @@ public class GodotFileStream : Stream
         }
     }
 
+    /// <summary>
+    ///   AFAIK the Godot file has no buffering so we can't and don't need to support this
+    /// </summary>
     public override void Flush()
     {
-        throw new NotSupportedException();
     }
 
     public override int Read(byte[] buffer, int offset, int count)
