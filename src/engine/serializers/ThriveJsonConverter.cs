@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -258,8 +259,10 @@ public abstract class BaseThriveConverter : JsonConverter
 
     private static IEnumerable<FieldInfo> FieldsOf(object value)
     {
-        var fields = value.GetType().GetFields().Where((p) => p.CustomAttributes.All(
-            a => a.AttributeType != typeof(JsonIgnoreAttribute)));
+        var fields = value.GetType().GetFields(
+            BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).Where((p) => p.CustomAttributes.All(
+            a => a.AttributeType != typeof(JsonIgnoreAttribute) &&
+                a.AttributeType != typeof(CompilerGeneratedAttribute)));
 
         // Ignore fields that aren't public unless it has JsonPropertyAttribute
         return fields.Where((p) =>
@@ -269,7 +272,8 @@ public abstract class BaseThriveConverter : JsonConverter
 
     private static IEnumerable<PropertyInfo> PropertiesOf(object value)
     {
-        var properties = value.GetType().GetProperties().Where(
+        var properties = value.GetType().GetProperties(
+            BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).Where(
             (p) => p.CustomAttributes.All(
                 a => a.AttributeType != typeof(JsonIgnoreAttribute)));
 
