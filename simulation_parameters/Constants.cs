@@ -1,5 +1,7 @@
 using System;
 using System.Reflection;
+using System.Runtime.InteropServices;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Holds some constants that must be kept constant after first setting
@@ -389,6 +391,13 @@ public static class Constants
     public const string AI_TAG_CHUNK = "chunk";
 
     public const string CONFIGURATION_FILE = "user://thrive_settings.json";
+
+    public const string SAVE_FOLDER = "user://saves";
+
+    /// <summary>
+    ///   This is just here to make it easier to debug saves
+    /// </summary>
+    public const Formatting SAVE_FORMATTING = Formatting.Indented;
 
     public static string Version
     {

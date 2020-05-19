@@ -55,7 +55,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\engine\GodotFileStream.cs" />
     <Compile Include="src\engine\Save.cs" />
+    <Compile Include="src\general\PathUtils.cs" />
     <Compile Include="src\gui_common\Cutscene.cs" />
     <Compile Include="src\gui_common\Fade.cs" />
     <Compile Include="src\gui_common\GUICommon.cs" />
@@ -179,6 +181,7 @@
     <Folder Include="src\microbe_stage\organelle_components\" />
     <Folder Include="src\auto-evo\steps\" />
     <Folder Include="src\auto-evo\simulation\" />
+    <Folder Include="src\microbe_stage\saving" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
