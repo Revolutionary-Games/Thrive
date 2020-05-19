@@ -257,7 +257,7 @@ public class MicrobeEditorGUI : Node
     private TextureRect patchAmmoniaSituation;
     private TextureRect patchPhosphateSituation;
     private Slider rigiditySlider;
-    private Control helpScreen;
+    private HelpScreen helpScreen;
 
     private bool inEditorTab = false;
     private MicrobeEditor.MicrobeSymmetry symmetry = MicrobeEditor.MicrobeSymmetry.None;
@@ -335,9 +335,11 @@ public class MicrobeEditorGUI : Node
         patchAmmoniaSituation = GetNode<TextureRect>(PatchAmmoniaSituationPath);
         patchPhosphateSituation = GetNode<TextureRect>(PatchPhosphateSituationPath);
         rigiditySlider = GetNode<Slider>(RigiditySliderPath);
-        helpScreen = GetNode<Control>(HelpScreenPath);
+        helpScreen = GetNode<HelpScreen>(HelpScreenPath);
 
         mapDrawer.OnSelectedPatchChanged = (drawer) => { UpdateShownPatchDetails(); };
+
+        helpScreen.BuildHelpTexts("MicrobeEditor");
 
         // Fade out for that smooth satisfying transition
         TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeOut, 0.5f);
@@ -545,20 +547,12 @@ public class MicrobeEditorGUI : Node
         editor.CreateNewMicrobe();
     }
 
-    internal void ToggleHelpScreen()
+    internal void OpenHelpScreen()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        if (!helpScreen.Visible)
-        {
-            helpScreen.Show();
-            menu.Hide();
-        }
-        else
-        {
-            helpScreen.Hide();
-            menu.Show();
-        }
+        helpScreen.Toggle();
+        menu.Hide();
     }
 
     /// <summary>
@@ -926,6 +920,14 @@ public class MicrobeEditorGUI : Node
                 plusButton.Show();
             }
         }
+    }
+
+    private void HelpScreenClosed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        helpScreen.Toggle();
+        menu.Show();
     }
 
     private void MenuButtonPressed()

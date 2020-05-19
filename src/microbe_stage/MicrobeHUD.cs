@@ -175,7 +175,7 @@ public class MicrobeHUD : Node
     private TextureButton editorButton;
     private Node extinctionBox;
     private Node winBox;
-    private Control helpScreen;
+    private HelpScreen helpScreen;
 
     private Godot.Collections.Array compoundBars;
 
@@ -242,7 +242,9 @@ public class MicrobeHUD : Node
         populationLabel = GetNode<Label>(PopulationLabelPath);
         patchLabel = GetNode<Label>(PatchLabelPath);
         editorButton = GetNode<TextureButton>(EditorButtonPath);
-        helpScreen = GetNode<Control>(HelpScreenPath);
+        helpScreen = GetNode<HelpScreen>(HelpScreenPath);
+
+        helpScreen.BuildHelpTexts("MicrobeStage");
 
         OnEnterStageTransition();
     }
@@ -261,7 +263,7 @@ public class MicrobeHUD : Node
 
         if (stage.Player != null)
         {
-            UpdateNeededBars();
+            UpdateNeededBars(delta);
             UpdateCompoundBars();
             UpdateReproductionProgress();
             UpdateATP();
@@ -467,26 +469,21 @@ public class MicrobeHUD : Node
         }
     }
 
-    public void ToggleHelpScreen()
+    public void OpenHelpScreen()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        if (!helpScreen.Visible)
-        {
-            helpScreen.Show();
-            menu.Hide();
-        }
-        else
-        {
-            helpScreen.Hide();
-            menu.Show();
-        }
+        if (!GetTree().Paused)
+            GetTree().Paused = true;
+
+        helpScreen.Toggle();
+        menu.Hide();
     }
 
     /// <summary>
     ///   Updates the GUI bars to show only needed compounds
     /// </summary>
-    public void UpdateNeededBars()
+    public void UpdateNeededBars(float delta)
     {
         if (stage.Player == null)
             return;
@@ -524,8 +521,9 @@ public class MicrobeHUD : Node
 
         compoundsPanelVBoxContainer.RectSize = new Vector2(compoundsPanelVBoxContainer.RectMinSize.x, 0);
 
+        // Interpolation value is multiplied by delta time to make it not affected by framerate
         var targetSize = compoundsPanel.RectMinSize.LinearInterpolate(
-            new Vector2(compoundsPanel.RectMinSize.x, compoundsPanelVBoxContainer.RectSize.y), 0.15f);
+            new Vector2(compoundsPanel.RectMinSize.x, compoundsPanelVBoxContainer.RectSize.y), 5 * delta);
 
         compoundsPanel.RectMinSize = targetSize;
     }
@@ -817,6 +815,14 @@ public class MicrobeHUD : Node
             leftPanelsActive = false;
             animationPlayer.Play("ShowLeftPanels");
         }
+    }
+
+    private void HelpScreenClosed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        helpScreen.Toggle();
+        menu.Show();
     }
 
     private void ReturnToMenuPressed()

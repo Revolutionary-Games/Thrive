@@ -1,4 +1,4 @@
-[gd_scene load_steps=154 format=2]
+[gd_scene load_steps=152 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
@@ -78,7 +78,6 @@
 [ext_resource path="res://assets/textures/gui/bevel/4xSymmetry.png" type="Texture" id=76]
 [ext_resource path="res://assets/textures/gui/bevel/2xSymmetry.png" type="Texture" id=77]
 [ext_resource path="res://assets/textures/gui/bevel/increase.png" type="Texture" id=78]
-[ext_resource path="res://src/gui_common/HelpBox.tscn" type="PackedScene" id=79]
 [ext_resource path="res://assets/textures/gui/scrollbar_theme.tres" type="Theme" id=80]
 [ext_resource path="res://src/general/HelpScreen.tscn" type="PackedScene" id=81]
 [ext_resource path="res://assets/textures/gui/bevel/MediumTwoNormal.png" type="Texture" id=82]
@@ -816,13 +815,6 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id=68]
-bg_color = Color( 0, 0.490196, 0.490196, 0.705882 )
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
 
 [node name="MicrobeEditor" type="Node"]
 process_priority = -1
@@ -10083,94 +10075,6 @@ text = "Exit"
 
 [node name="HelpScreen" parent="MicrobeEditorGUI" instance=ExtResource( 81 )]
 
-[node name="HelpBox" parent="MicrobeEditorGUI/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn" index="0" instance=ExtResource( 79 )]
-margin_bottom = 102.0
-custom_styles/panel = SubResource( 68 )
-
-[node name="MarginContainer" parent="MicrobeEditorGUI/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn/HelpBox" index="0"]
-margin_bottom = 102.0
-
-[node name="Label" parent="MicrobeEditorGUI/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn/HelpBox/MarginContainer" index="0"]
-margin_bottom = 97.0
-text = "Each generation, you have 100 mutation points to spend, and each change (or mutation) will cost a certain amount of that MP, removing costs mutation points aswell as adding. You can rotate your organelles, with A and D"
-
-[node name="HelpBox2" parent="MicrobeEditorGUI/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn" index="1" instance=ExtResource( 79 )]
-margin_top = 117.0
-margin_bottom = 238.0
-custom_styles/panel = SubResource( 68 )
-
-[node name="MarginContainer" parent="MicrobeEditorGUI/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn/HelpBox2" index="0"]
-margin_bottom = 121.0
-
-[node name="Label" parent="MicrobeEditorGUI/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn/HelpBox2/MarginContainer" index="0"]
-margin_bottom = 116.0
-text = "External Organelles
-
-Flagella: Moves your cell faster by consuming ATP.
-
-Pilus: Can be used to stab other cells."
-
-[node name="HelpBox3" parent="MicrobeEditorGUI/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn" index="2" instance=ExtResource( 79 )]
-margin_top = 253.0
-margin_bottom = 716.0
-custom_styles/panel = SubResource( 68 )
-
-[node name="MarginContainer" parent="MicrobeEditorGUI/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn/HelpBox3" index="0"]
-margin_bottom = 463.0
-
-[node name="Label" parent="MicrobeEditorGUI/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn/HelpBox3/MarginContainer" index="0"]
-margin_bottom = 458.0
-text = "Membrane Bound Organelles
-
-Nucleus: Takes up 11 hexes and allows for evolution of membrane bound organelles. And also doubles your cells size. (Can only be evolved once)
-
-Mitochondrion: Produces ATP out of glucose and atmospheric 02. Much more efficiently then cytoplasm
-
-Chloroplast: Makes glucose out of sunlight and atmospheric CO2.
-
-Chemoplast: Makes glucose out of Hydrogen Sulfide.
-
-Nitrogen Fixing Plastid: Makes ammonia from ATP and atmospheric Nitrogen and Oxygen.
-
-Vacuole: Stores 15 collected compounds.
-
-Toxin Vacuoles: Produces toxins (called OxyToxyNT)."
-
-[node name="HelpBox" parent="MicrobeEditorGUI/HelpScreen/ScrollContainer/HBoxContainer/RightColumn" index="0" instance=ExtResource( 79 )]
-margin_bottom = 121.0
-custom_styles/panel = SubResource( 68 )
-
-[node name="MarginContainer" parent="MicrobeEditorGUI/HelpScreen/ScrollContainer/HBoxContainer/RightColumn/HelpBox" index="0"]
-margin_bottom = 121.0
-
-[node name="Label" parent="MicrobeEditorGUI/HelpScreen/ScrollContainer/HBoxContainer/RightColumn/HelpBox/MarginContainer" index="0"]
-margin_bottom = 116.0
-text = "Every time you reproduce, you will enter the Microbe Editor, where you can make changes to your species (by adding, moving, or removing organelles) to increase your species' success. Each visit to the editor in the Microbe Stage Represents 150 million years of evolution"
-
-[node name="HelpBox2" parent="MicrobeEditorGUI/HelpScreen/ScrollContainer/HBoxContainer/RightColumn" index="1" instance=ExtResource( 79 )]
-margin_top = 136.0
-margin_bottom = 618.0
-custom_styles/panel = SubResource( 68 )
-
-[node name="MarginContainer" parent="MicrobeEditorGUI/HelpScreen/ScrollContainer/HBoxContainer/RightColumn/HelpBox2" index="0"]
-margin_bottom = 482.0
-
-[node name="Label" parent="MicrobeEditorGUI/HelpScreen/ScrollContainer/HBoxContainer/RightColumn/HelpBox2/MarginContainer" index="0"]
-margin_bottom = 477.0
-text = "Prokaryotic Structures
-
-Metabolosomes: Produces the same amount of ATP of a mitocondria, but is way way less efficient, it only takes up 1 Hex
-
-Chemosynthisizing Proteins: Produces half of the glucose out of Hydrogen Sulfide as a chemoplast, but also performs glycolysis, takes up 1 Hex
-
-Chromatophores: Produces 1/3rd the amount of glucose as a normal chloroplast, but also performs glycolysis, and takes up 1 Hex.
-
-Rusticyanin: Converts iron into ATP, and takes up 1 Hex.
-
-Nitrogenase: Converts atmospheric nitrogen and ATP into ammonia anaerobically
-
-Cytoplasm: Increases the rate of compound absorbtion and has 4 storage space and performs glycolysis (Produces small amounts of ATP)."
-
 [node name="LoadingScreen" parent="MicrobeEditorGUI" instance=ExtResource( 53 )]
 visible = false
 [connection signal="mouse_entered" from="MicrobeEditorGUI/LeftTopBar" to="MicrobeEditorGUI" method="OnMouseEnter"]
@@ -10298,19 +10202,9 @@ visible = false
 [connection signal="pressed" from="MicrobeEditorGUI/PatchMap/NextTabButton" to="MicrobeEditorGUI" method="GoToEditorTab"]
 [connection signal="pressed" from="MicrobeEditorGUI/PatchMap/MoveToPatchButton" to="MicrobeEditorGUI" method="MoveToPatchClicked"]
 [connection signal="pressed" from="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu/Resume" to="MicrobeEditorGUI" method="MenuButtonPressed"]
-[connection signal="pressed" from="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu/Help" to="MicrobeEditorGUI" method="ToggleHelpScreen"]
+[connection signal="pressed" from="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu/Help" to="MicrobeEditorGUI" method="OpenHelpScreen"]
 [connection signal="pressed" from="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu/ReturnToMenu" to="MicrobeEditorGUI" method="ReturnToMenuPressed"]
 [connection signal="pressed" from="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu/Exit" to="MicrobeEditorGUI" method="ExitPressed"]
-[connection signal="pressed" from="MicrobeEditorGUI/HelpScreen/CloseButton" to="MicrobeEditorGUI" method="ToggleHelpScreen"]
+[connection signal="HelpScreenClosed" from="MicrobeEditorGUI/HelpScreen" to="MicrobeEditorGUI" method="HelpScreenClosed"]
 
 [editable path="MicrobeEditorGUI/HelpScreen"]
-
-[editable path="MicrobeEditorGUI/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn/HelpBox"]
-
-[editable path="MicrobeEditorGUI/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn/HelpBox2"]
-
-[editable path="MicrobeEditorGUI/HelpScreen/ScrollContainer/HBoxContainer/LeftColumn/HelpBox3"]
-
-[editable path="MicrobeEditorGUI/HelpScreen/ScrollContainer/HBoxContainer/RightColumn/HelpBox"]
-
-[editable path="MicrobeEditorGUI/HelpScreen/ScrollContainer/HBoxContainer/RightColumn/HelpBox2"]
