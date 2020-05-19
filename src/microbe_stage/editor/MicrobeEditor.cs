@@ -854,8 +854,6 @@ public class MicrobeEditor : Node
         GD.Print("Starting microbe editor with: ", editedMicrobeOrganelles.Organelles.Count,
             " organelles in the microbe, genes: ", genes);
 
-        var deserialized = ThriveJsonConverter.Instance.DeserializeObject<MicrobeSpecies>(genes);
-
         // Update GUI buttons now that we have correct organelles
         gui.UpdateGuiButtonStatus(HasNucleus);
 

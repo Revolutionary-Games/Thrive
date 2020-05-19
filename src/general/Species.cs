@@ -73,7 +73,7 @@ public abstract class Species : ICloneable
     public string FormattedName => Genus + " " + Epithet;
 
     [JsonIgnore]
-    public string FormattedIdentifier => FormattedName + $" ({ID:n})";
+    public string FormattedIdentifier => FormattedName + $" ({ID:n0})";
 
     public void
         SetPopulationFromPatches(int population)

@@ -4,7 +4,6 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Represents a microbial species with microbe stage specific species things.
 /// </summary>
-[UseThriveSerializer]
 public class MicrobeSpecies : Species
 {
     public bool IsBacteria = false;

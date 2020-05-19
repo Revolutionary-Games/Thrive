@@ -26,6 +26,7 @@ public class ThriveJsonConverter
         thriveConverters = new JsonConverter[]
         {
             new DefaultThriveJSONConverter(simulation),
+            new RegistryTypeConverter(simulation),
             new GodotColorConverter(),
         };
     }
@@ -211,35 +212,21 @@ public abstract class BaseThriveConverter : JsonConverter
 
         writer.WritePropertyName(name);
 
-        // Special handle types
-        if (memberValue is IRegistryType registry)
-        {
-            serializer.Serialize(writer, registry.InternalName);
-        }
-        else
-        {
-            // Use default serializer on everything else
-            serializer.Serialize(writer, memberValue);
-        }
+        // Special handle types (none currently)
+
+        // Use default serializer on everything else
+        serializer.Serialize(writer, memberValue);
     }
 
     protected virtual object ReadMember(string name, Type memberType, JObject item, JsonReader reader,
         JsonSerializer serializer)
     {
         var value = item[name];
-        if (value == null)
-            return null;
 
-        // Special handle types
-        if (memberType == typeof(OrganelleDefinition))
-        {
-            return Simulation.GetOrganelleType(value.Value<string>());
-        }
-        else
-        {
-            // Use default get on everything else
-            return value.ToObject(memberType, serializer);
-        }
+        // Special handle types (none currently)
+
+        // Use default get on everything else
+        return value?.ToObject(memberType, serializer);
     }
 
     protected virtual bool SkipMember(string name)
@@ -291,14 +278,7 @@ internal class DefaultThriveJSONConverter : BaseThriveConverter
     public override bool CanConvert(Type objectType)
     {
         // Types with out custom attribute are supported
-        if (objectType.CustomAttributes.Any(
-            (attr) => attr.AttributeType == typeof(UseThriveSerializerAttribute)))
-            return true;
-
-        // Registry types are always supported
-        if (objectType.GetInterfaces().Contains(typeof(IRegistryType)))
-            return true;
-
-        return false;
+        return objectType.CustomAttributes.Any(
+            (attr) => attr.AttributeType == typeof(UseThriveSerializerAttribute));
     }
 }

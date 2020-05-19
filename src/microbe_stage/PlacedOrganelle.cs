@@ -7,7 +7,6 @@ using Newtonsoft.Json;
 /// <summary>
 ///   An organelle that has been placed in a microbe.
 /// </summary>
-[UseThriveSerializer]
 public class PlacedOrganelle : Spatial, IPositionedOrganelle
 {
     [JsonIgnore]
