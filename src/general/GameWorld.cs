@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
 
@@ -18,6 +19,9 @@ public class GameWorld
 
     [JsonProperty]
     private Mutations mutator;
+
+    [JsonProperty]
+    private Dictionary<uint, Species> worldSpecies = new Dictionary<uint, Species>();
 
     /// <summary>
     ///   This world's auto-evo run
@@ -66,10 +70,13 @@ public class GameWorld
         }));
     }
 
+    [JsonIgnore]
     public Species PlayerSpecies { get; private set; }
 
+    [JsonProperty]
     public PatchMap Map { get; private set; }
 
+    [JsonProperty]
     public TimedWorldOperations TimedEffects { get; private set; }
 
     public static void SetInitialSpeciesProperties(MicrobeSpecies species)
@@ -90,7 +97,10 @@ public class GameWorld
     /// </summary>
     public MicrobeSpecies NewMicrobeSpecies()
     {
-        return new MicrobeSpecies(++speciesIdCounter);
+        var species = new MicrobeSpecies(++speciesIdCounter);
+
+        worldSpecies[species.ID] = species;
+        return species;
     }
 
     /// <summary>
@@ -218,6 +228,11 @@ public class GameWorld
         CreateRunIfMissing();
 
         autoEvo.AddExternalPopulationEffect(species, amount, description);
+    }
+
+    public Species GetSpecies(uint id)
+    {
+        return worldSpecies[id];
     }
 
     private void CreateRunIfMissing()

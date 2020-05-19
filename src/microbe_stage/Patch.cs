@@ -17,9 +17,11 @@ public class Patch
     [JsonProperty]
     public readonly int ID;
 
-    [JsonProperty]
+    [JsonIgnore]
     public readonly ISet<Patch> Adjacent = new HashSet<Patch>();
 
+    // TODO: fix loading from json
+    [JsonIgnore]
     public Biome Biome;
 
     [JsonProperty]

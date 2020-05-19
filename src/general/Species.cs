@@ -12,6 +12,7 @@ public abstract class Species : ICloneable
     /// <summary>
     ///   This is the amount of compounds cells of this type spawn with
     /// </summary>
+    [JsonProperty]
     public readonly Dictionary<string, float> InitialCompounds =
         new Dictionary<string, float>();
 
@@ -75,8 +76,7 @@ public abstract class Species : ICloneable
     [JsonIgnore]
     public string FormattedIdentifier => FormattedName + $" ({ID:n0})";
 
-    public void
-        SetPopulationFromPatches(int population)
+    public void SetPopulationFromPatches(int population)
     {
         if (population < 0)
         {
@@ -112,7 +112,7 @@ public abstract class Species : ICloneable
     }
 
     /// <summary>
-    ///   Apply properties from the mutation that are mutatable
+    ///   Apply properties from the mutation that are mutable
     /// </summary>
     public virtual void ApplyMutation(Species mutation)
     {

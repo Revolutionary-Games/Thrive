@@ -28,6 +28,9 @@ public class ThriveJsonConverter
             new DefaultThriveJSONConverter(simulation),
             new RegistryTypeConverter(simulation),
             new GodotColorConverter(),
+
+            // Probably less likely used converters defined last
+            new PatchConverter(simulation),
         };
     }
 
@@ -89,6 +92,11 @@ public abstract class BaseThriveConverter : JsonConverter
     public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
         JsonSerializer serializer)
     {
+        var customRead = ReadCustomJson(reader, objectType, existingValue, serializer);
+
+        if (customRead.performed)
+            return customRead.read;
+
         if (reader.TokenType != JsonToken.StartObject)
         {
             return null;
@@ -181,6 +189,9 @@ public abstract class BaseThriveConverter : JsonConverter
             return;
         }
 
+        if (WriteCustomJson(writer, value, serializer))
+            return;
+
         var properties = PropertiesOf(value);
 
         var fields = FieldsOf(value);
@@ -198,6 +209,17 @@ public abstract class BaseThriveConverter : JsonConverter
         }
 
         writer.WriteEndObject();
+    }
+
+    protected virtual (object read, bool performed) ReadCustomJson(JsonReader reader, Type objectType,
+        object existingValue, JsonSerializer serializer)
+    {
+        return (null, false);
+    }
+
+    protected virtual bool WriteCustomJson(JsonWriter writer, object value, JsonSerializer serializer)
+    {
+        return false;
     }
 
     /// <summary>
@@ -241,7 +263,7 @@ public abstract class BaseThriveConverter : JsonConverter
 
         // Ignore fields that aren't public unless it has JsonPropertyAttribute
         return fields.Where((p) =>
-            p.IsPublic ||
+            (p.IsPublic && !p.IsInitOnly) ||
             p.CustomAttributes.Any((a) => a.AttributeType == typeof(JsonPropertyAttribute)));
     }
 
