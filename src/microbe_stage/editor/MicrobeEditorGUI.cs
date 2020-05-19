@@ -800,12 +800,12 @@ public class MicrobeEditorGUI : Node
         }
 
         rigiditySlider.Value = value;
+        SetRigiditySliderTooltip(value);
     }
 
     private void OnRigidityChanged(float value)
     {
         editor.SetRigidity(value);
-        SetRigiditySliderTooltip(value);
     }
 
     private void MoveToPatchClicked()
