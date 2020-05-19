@@ -179,6 +179,12 @@ public class MicrobeEditorGUI : Node
     public NodePath SymmetryIconPath;
 
     [Export]
+    public NodePath RigiditySliderTooltipHealthLabelPath;
+
+    [Export]
+    public NodePath RigiditySliderTooltipSpeedLabelPath;
+
+    [Export]
     public Texture SymmetryIcon2x;
 
     [Export]
@@ -480,10 +486,8 @@ public class MicrobeEditorGUI : Node
 
     public void SetRigiditySliderTooltip(float rigidity)
     {
-        var rigiditySliderTooltip = GetNode("CellEditor/Tooltips/rigiditySlider")
-            .GetNode("MarginContainer/VBoxContainer/VBoxContainer");
-        var healthChangeLabel = rigiditySliderTooltip.GetNode<Label>("HBoxContainer2/Label");
-        var mobilityChangeLabel = rigiditySliderTooltip.GetNode<Label>("HBoxContainer/Label");
+        var healthChangeLabel = GetNode<Label>(RigiditySliderTooltipHealthLabelPath);
+        var mobilityChangeLabel = GetNode<Label>(RigiditySliderTooltipSpeedLabelPath);
 
         float healthChange = rigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
         float mobilityChange = -1 * rigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER;
