@@ -314,7 +314,7 @@ public class MicrobeEditor : Node
         // Apply changes to the species organelles
 
         // It is easiest to just replace all
-        editedSpecies.Organelles.RemoveAll();
+        editedSpecies.Organelles.Clear();
 
         foreach (var organelle in editedMicrobeOrganelles.Organelles)
         {
@@ -483,7 +483,7 @@ public class MicrobeEditor : Node
             {
                 MutationPoints = Constants.BASE_MUTATION_POINTS;
                 Membrane = SimulationParameters.Instance.GetMembrane("single");
-                editedMicrobeOrganelles.RemoveAll();
+                editedMicrobeOrganelles.Clear();
                 editedMicrobeOrganelles.Add(new OrganelleTemplate(GetOrganelleDefinition("cytoplasm"),
                     new Hex(0, 0), 0));
                 gui.UpdateMembraneButtons(Membrane.InternalName);
@@ -491,7 +491,7 @@ public class MicrobeEditor : Node
             },
             undo =>
             {
-                editedMicrobeOrganelles.RemoveAll();
+                editedMicrobeOrganelles.Clear();
                 MutationPoints = previousMP;
                 Membrane = oldMembrane;
                 gui.UpdateMembraneButtons(Membrane.InternalName);
@@ -849,8 +849,12 @@ public class MicrobeEditor : Node
             editedMicrobeOrganelles.Add((OrganelleTemplate)organelle.Clone());
         }
 
+        var genes = species.StringCode;
+
         GD.Print("Starting microbe editor with: ", editedMicrobeOrganelles.Organelles.Count,
-            " organelles in the microbe, genes: ", species.StringCode);
+            " organelles in the microbe, genes: ", genes);
+
+        var deserialized = ThriveJsonConverter.Instance.DeserializeObject<MicrobeSpecies>(genes);
 
         // Update GUI buttons now that we have correct organelles
         gui.UpdateGuiButtonStatus(HasNucleus);

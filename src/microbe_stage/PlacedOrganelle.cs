@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   An organelle that has been placed in a microbe.
 /// </summary>
-[JsonConverter(typeof(PlacedOrganelleConverter))]
+[UseThriveSerializer]
 public class PlacedOrganelle : Spatial, IPositionedOrganelle
 {
     [JsonIgnore]
@@ -494,71 +494,5 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
 
         // For some reason MathUtils.CreateRotationForOrganelle(Orientation) in the above transform doesn't work
         OrganelleGraphics.RotateY(Orientation * -60 * MathUtils.DEGREES_TO_RADIANS);
-    }
-}
-
-/// <summary>
-///   Custom serializer for PlacedOrganelle and OrganelleTemplate
-/// </summary>
-internal class PlacedOrganelleConverter : JsonConverter
-{
-    public override bool CanConvert(Type objectType)
-    {
-        return objectType == typeof(PlacedOrganelle) ||
-            objectType == typeof(OrganelleTemplate);
-    }
-
-    public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
-        JsonSerializer serializer)
-    {
-        // TODO: implement reading
-        throw new NotImplementedException();
-    }
-
-    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-    {
-        if (value == null)
-        {
-            serializer.Serialize(writer, null);
-            return;
-        }
-
-        // Get all properties
-        var properties = value.GetType().GetProperties().Where(
-            (p) => !p.CustomAttributes.Any(
-                (a) => a.AttributeType == typeof(JsonIgnoreAttribute)));
-
-        // And fields
-        var fields = value.GetType().GetFields().Where(
-            (p) => !p.CustomAttributes.Any(
-                (a) => a.AttributeType == typeof(JsonIgnoreAttribute)));
-
-        writer.WriteStartObject();
-
-        foreach (var property in properties)
-        {
-            writer.WritePropertyName(property.Name);
-
-            // Use default serializer on everything except Definition (definition is a field)
-            serializer.Serialize(writer, property.GetValue(value, null));
-        }
-
-        foreach (var field in fields)
-        {
-            writer.WritePropertyName(field.Name);
-
-            // Use default serializer on everything except Definition (definition is a field)
-            if (field.Name == "Definition")
-            {
-                serializer.Serialize(writer,
-                    ((OrganelleDefinition)field.GetValue(value)).InternalName);
-            }
-            else
-            {
-                serializer.Serialize(writer, field.GetValue(value));
-            }
-        }
-
-        writer.WriteEndObject();
     }
 }

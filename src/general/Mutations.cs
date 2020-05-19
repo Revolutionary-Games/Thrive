@@ -205,7 +205,7 @@ public class Mutations
     {
         var nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
 
-        organelles.RemoveAll();
+        organelles.Clear();
 
         // Delete or replace an organelle randomly
         for (int i = 0; i < parentOrganelles.Count; i++)

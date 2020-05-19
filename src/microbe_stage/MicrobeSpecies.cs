@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Represents a microbial species with microbe stage specific species things.
 /// </summary>
+[UseThriveSerializer]
 public class MicrobeSpecies : Species
 {
     public bool IsBacteria = false;
@@ -57,7 +58,7 @@ public class MicrobeSpecies : Species
 
         var casted = (MicrobeSpecies)mutation;
 
-        Organelles.RemoveAll();
+        Organelles.Clear();
 
         foreach (var organelle in casted.Organelles)
         {
@@ -72,7 +73,7 @@ public class MicrobeSpecies : Species
     public override string ToString()
     {
         // TODO: custom serializer to store the membrane type by name
-        return JsonConvert.SerializeObject(this);
+        return ThriveJsonConverter.Instance.SerializeObject(this);
     }
 
     public override object Clone()

@@ -354,7 +354,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         else
         {
             // Just clear the existing ones
-            organelles.RemoveAll();
+            organelles.Clear();
         }
 
         foreach (var entry in Species.Organelles.Organelles)
