@@ -27,7 +27,7 @@ public class HelpScreen : Control
     private VBoxContainer leftColumn;
     private VBoxContainer rightColumn;
     private HSeparator lineSeparator;
-    private Label TipMessageLabel;
+    private Label tipMessageLabel;
     private Timer timer;
 
     private Random random;
@@ -40,7 +40,7 @@ public class HelpScreen : Control
         leftColumn = GetNode<VBoxContainer>(LeftColumPath);
         rightColumn = GetNode<VBoxContainer>(RightColumnPath);
         lineSeparator = GetNode<HSeparator>(LineSeparatorPath);
-        TipMessageLabel = GetNode<Label>(TipMessageLabelPath);
+        tipMessageLabel = GetNode<Label>(TipMessageLabelPath);
         timer = GetNode<Timer>(TimerPath);
 
         random = new Random();
@@ -74,7 +74,7 @@ public class HelpScreen : Control
     }
 
     /// <summary>
-    ///   Toggles the help screen visibility. Also randomizes the 
+    ///   Toggles the help screen visibility. Also randomizes the
     ///   easter egg messages and its chance of showing up.
     /// </summary>
     public void Toggle()
@@ -84,16 +84,16 @@ public class HelpScreen : Control
             Show();
 
             lineSeparator.Hide();
-            TipMessageLabel.Hide();
+            tipMessageLabel.Hide();
 
             if (random.Next(0, 6) > 1)
             {
                 var messages = SimulationParameters.Instance.EasterEggMessages;
 
-                TipMessageLabel.Text = messages.Messages.Random(random);
+                tipMessageLabel.Text = messages.Messages.Random(random);
 
                 lineSeparator.Show();
-                TipMessageLabel.Show();
+                tipMessageLabel.Show();
 
                 timer.Start(20);
             }
@@ -111,7 +111,7 @@ public class HelpScreen : Control
     private void OnTimerTimeout()
     {
         lineSeparator.Hide();
-        TipMessageLabel.Hide();
+        tipMessageLabel.Hide();
     }
 
     private void OnCloseButtonPressed()
