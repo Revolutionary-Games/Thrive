@@ -220,6 +220,15 @@ public class MicrobeStage : Node
             GameWorld.IsAutoEvoFinished(true);
     }
 
+    public override void _Input(InputEvent @event)
+    {
+        if (@event.IsActionPressed("g_quick_save"))
+        {
+            GD.Print("quick saving microbe stage");
+            SaveHelper.QuickSave(this);
+        }
+    }
+
     /// <summary>
     ///   Switches to the editor
     /// </summary>

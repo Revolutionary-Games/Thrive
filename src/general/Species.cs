@@ -55,6 +55,7 @@ public abstract class Species : ICloneable
     ///     sequential number, so now this is an actual number.
     ///   </para>
     /// </remarks>
+    [JsonProperty]
     public uint ID { get; private set; }
 
     /// <summary>
