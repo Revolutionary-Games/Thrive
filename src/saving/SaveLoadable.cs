@@ -15,7 +15,7 @@ public abstract class SaveLoadable<T> : ISaveLoadable
 
     public void FinishLoading(ISaveContext context)
     {
-        if (UnAppliedSaveData != null)
+        if (UnAppliedSaveData == null)
             return;
 
         ApplyUnAppliedSaveData(UnAppliedSaveData, context);
