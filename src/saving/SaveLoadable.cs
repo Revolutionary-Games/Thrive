@@ -5,13 +5,24 @@ using Newtonsoft.Json;
 /// </summary>
 /// <typeparam name="T">The type of temporary data that is used</typeparam>
 public abstract class SaveLoadable<T> : ISaveLoadable
-    where T : class
+    where T : class, new()
 {
     /// <summary>
     ///   The data that a converter has loaded but hasn't been applied yet due to requiring certain ISaveContext items
     /// </summary>
     [JsonIgnore]
     public T UnAppliedSaveData;
+
+    /// <summary>
+    ///   Creates the unapplied data if missing and returns
+    /// </summary>
+    public T GetUnAppliedData()
+    {
+        if (UnAppliedSaveData == null)
+            UnAppliedSaveData = new T();
+
+        return UnAppliedSaveData;
+    }
 
     public void FinishLoading(ISaveContext context)
     {

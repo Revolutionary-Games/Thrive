@@ -849,14 +849,6 @@ public class MicrobeEditor : Node
             editedMicrobeOrganelles.Add((OrganelleTemplate)organelle.Clone());
         }
 
-        var test = ThriveJsonConverter.Instance.SerializeObject(CurrentGame.GameWorld.Map.CurrentPatch);
-
-        var patch = ThriveJsonConverter.Instance.DeserializeObject<Patch>(test);
-
-        var context = new SaveContext(SimulationParameters.Instance) { World = CurrentGame.GameWorld };
-
-        patch.FinishLoading(context);
-
         var genes = species.StringCode;
 
         GD.Print("Starting microbe editor with: ", editedMicrobeOrganelles.Organelles.Count,

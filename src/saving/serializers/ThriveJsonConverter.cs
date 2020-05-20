@@ -33,6 +33,7 @@ public class ThriveJsonConverter
 
             // Probably less likely used converters defined last
             new PatchConverter(context),
+            new PatchMapConverter(context),
         };
     }
 
@@ -190,6 +191,8 @@ public abstract class BaseThriveConverter : JsonConverter
             field.SetValue(instance, ReadMember(name, field.FieldType, item, instance, reader, serializer));
         }
 
+        ReadCustomExtraFields(item, instance, reader, objectType, existingValue, serializer);
+
         return instance;
     }
 
@@ -219,6 +222,8 @@ public abstract class BaseThriveConverter : JsonConverter
         {
             WriteMember(field.Name, field.GetValue(value), field.FieldType, writer, serializer);
         }
+
+        WriteCustomExtraFields(writer, value, serializer);
 
         writer.WriteEndObject();
     }
@@ -252,6 +257,10 @@ public abstract class BaseThriveConverter : JsonConverter
         serializer.Serialize(writer, memberValue);
     }
 
+    protected virtual void WriteCustomExtraFields(JsonWriter writer, object value, JsonSerializer serializer)
+    {
+    }
+
     protected virtual object ReadMember(string name, Type memberType, JObject item, object instance, JsonReader reader,
         JsonSerializer serializer)
     {
@@ -261,6 +270,11 @@ public abstract class BaseThriveConverter : JsonConverter
 
         // Use default get on everything else
         return value?.ToObject(memberType, serializer);
+    }
+
+    protected virtual void ReadCustomExtraFields(JObject item, object instance, JsonReader reader, Type objectType,
+        object existingValue, JsonSerializer serializer)
+    {
     }
 
     protected virtual bool SkipMember(string name)

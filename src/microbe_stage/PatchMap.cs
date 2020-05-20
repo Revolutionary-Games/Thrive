@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   A container for patches that are joined together
 /// </summary>
-public class PatchMap
+public class PatchMap : SaveLoadable<PatchMap.LoadingData>
 {
     private Patch currentPatch = null;
 
@@ -21,6 +22,13 @@ public class PatchMap
         }
         set
         {
+            // Allow setting to null to make loading work
+            if (value == null)
+            {
+                currentPatch = null;
+                return;
+            }
+
             // New patch must be part of this map
             if (!ContainsPatch(value))
                 throw new ArgumentException("cannot set current patch to one not in map");
@@ -32,7 +40,8 @@ public class PatchMap
     /// <summary>
     ///   The  list of patches. DO NOT MODIFY FROM OUTSIDE THIS CLASS
     /// </summary>
-    public Dictionary<int, Patch> Patches { get; } = new Dictionary<int, Patch>();
+    [JsonProperty]
+    public Dictionary<int, Patch> Patches { get; private set; } = new Dictionary<int, Patch>();
 
     /// <summary>
     ///   Adds a new patch to the map. Throws if can't add
@@ -251,5 +260,26 @@ public class PatchMap
         }
 
         return false;
+    }
+
+    protected override void ApplyUnAppliedSaveData(LoadingData data, ISaveContext context)
+    {
+        // Recreate links
+        foreach (var entry in data.AdjacentPatches)
+        {
+            GetPatch(entry.From).Adjacent.Add(GetPatch(entry.To));
+        }
+
+        // Set current patch
+        if (data.CurrentPatch.HasValue)
+        {
+            CurrentPatch = GetPatch(data.CurrentPatch.Value);
+        }
+    }
+
+    public class LoadingData
+    {
+        public HashSet<(int From, int To)> AdjacentPatches;
+        public int? CurrentPatch;
     }
 }
