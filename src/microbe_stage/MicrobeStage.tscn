@@ -1927,6 +1927,7 @@ rect_min_size = Vector2( 250, 40 )
 text = "Exit"
 
 [node name="HelpScreen" parent="MicrobeHUD/CanvasLayer" instance=ExtResource( 72 )]
+Category = "MicrobeStage"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MicrobeHUD"]
 anims/HideLeftPanels = SubResource( 40 )
@@ -1939,13 +1940,11 @@ anims/ShowLeftPanels = SubResource( 41 )
 [connection signal="pressed" from="MicrobeHUD/BottomBar/PauseButtonMargin/Pause" to="MicrobeHUD" method="PauseButtonPressed"]
 [connection signal="pressed" from="MicrobeHUD/BottomBar/PauseButtonMargin/Resume" to="MicrobeHUD" method="PauseButtonPressed"]
 [connection signal="pressed" from="MicrobeHUD/BottomBar/CompoundsButton" to="MicrobeHUD" method="CompoundButtonPressed"]
-[connection signal="pressed" from="MicrobeHUD/BottomBar/QuestionMarkButton" to="MicrobeHUD" method="OpenHelpScreen"]
+[connection signal="pressed" from="MicrobeHUD/BottomBar/QuestionMarkButton" to="MicrobeHUD" method="ToggleHelpScreen"]
 [connection signal="pressed" from="MicrobeHUD/BottomBar/SuicideButton" to="MicrobeHUD" method="OnSuicide"]
 [connection signal="pressed" from="MicrobeHUD/BottomRight/EditorButton" to="MicrobeHUD" method="EditorButtonPressed"]
 [connection signal="pressed" from="MicrobeHUD/CanvasLayer/PauseMenu/CenterContainer/MicrobeStageMenu/Resume" to="MicrobeHUD" method="OpenMicrobeStageMenuPressed"]
-[connection signal="pressed" from="MicrobeHUD/CanvasLayer/PauseMenu/CenterContainer/MicrobeStageMenu/Help" to="MicrobeHUD" method="OpenHelpScreen"]
+[connection signal="pressed" from="MicrobeHUD/CanvasLayer/PauseMenu/CenterContainer/MicrobeStageMenu/Help" to="MicrobeHUD" method="ToggleHelpScreen"]
 [connection signal="pressed" from="MicrobeHUD/CanvasLayer/PauseMenu/CenterContainer/MicrobeStageMenu/ReturnToMenu" to="MicrobeHUD" method="ReturnToMenuPressed"]
 [connection signal="pressed" from="MicrobeHUD/CanvasLayer/PauseMenu/CenterContainer/MicrobeStageMenu/Exit" to="MicrobeHUD" method="ExitPressed"]
-[connection signal="HelpScreenClosed" from="MicrobeHUD/CanvasLayer/HelpScreen" to="MicrobeHUD" method="HelpScreenClosed"]
-
-[editable path="MicrobeHUD/CanvasLayer/HelpScreen"]
+[connection signal="HelpScreenClosed" from="MicrobeHUD/CanvasLayer/HelpScreen" to="MicrobeHUD" method="ToggleHelpScreen"]

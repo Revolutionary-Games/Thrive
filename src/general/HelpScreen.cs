@@ -6,6 +6,13 @@ using Godot;
 /// </summary>
 public class HelpScreen : Control
 {
+    /// <summary>
+    ///   The category which this help screen belongs to
+    ///   (e.g. MicrobeStage, MicrobeEditor)
+    /// </summary>
+    [Export]
+    public string Category;
+
     [Export]
     public NodePath LeftColumPath;
 
@@ -44,12 +51,43 @@ public class HelpScreen : Control
         timer = GetNode<Timer>(TimerPath);
 
         random = new Random();
+
+        if (!string.IsNullOrEmpty(Category))
+        {
+            BuildHelpTexts(Category);
+        }
+        else
+        {
+            GD.PrintErr("Help screen has no category, it wouldn't load texts");
+        }
     }
 
     /// <summary>
-    ///   Fill the help screen with texts from the json file
+    ///   Randomizes the easter egg messages
+    ///   and its chance of showing up.
     /// </summary>
-    public void BuildHelpTexts(string category)
+    public void RandomizeEasterEgg()
+    {
+        lineSeparator.Hide();
+        tipMessageLabel.Hide();
+
+        if (random.Next(0, 6) > 1)
+        {
+            var messages = SimulationParameters.Instance.EasterEggMessages;
+
+            tipMessageLabel.Text = messages.Messages.Random(random);
+
+            lineSeparator.Show();
+            tipMessageLabel.Show();
+
+            timer.Start(20);
+        }
+    }
+
+    /// <summary>
+    ///   Load the help screen with texts from the json file
+    /// </summary>
+    private void BuildHelpTexts(string category)
     {
         var texts = SimulationParameters.Instance.GetHelpTexts(category);
 
@@ -70,37 +108,6 @@ public class HelpScreen : Control
             var helpBox = HelpBoxScene.Instance();
             helpBox.GetNode<Label>("MarginContainer/Label").Text = entry;
             rightColumn.AddChild(helpBox);
-        }
-    }
-
-    /// <summary>
-    ///   Toggles the help screen visibility. Also randomizes the
-    ///   easter egg messages and its chance of showing up.
-    /// </summary>
-    public void Toggle()
-    {
-        if (!Visible)
-        {
-            Show();
-
-            lineSeparator.Hide();
-            tipMessageLabel.Hide();
-
-            if (random.Next(0, 6) > 1)
-            {
-                var messages = SimulationParameters.Instance.EasterEggMessages;
-
-                tipMessageLabel.Text = messages.Messages.Random(random);
-
-                lineSeparator.Show();
-                tipMessageLabel.Show();
-
-                timer.Start(20);
-            }
-        }
-        else
-        {
-            Hide();
         }
     }
 

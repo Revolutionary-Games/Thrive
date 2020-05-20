@@ -244,8 +244,6 @@ public class MicrobeHUD : Node
         editorButton = GetNode<TextureButton>(EditorButtonPath);
         helpScreen = GetNode<HelpScreen>(HelpScreenPath);
 
-        helpScreen.BuildHelpTexts("MicrobeStage");
-
         OnEnterStageTransition();
     }
 
@@ -283,6 +281,9 @@ public class MicrobeHUD : Node
         if (@event.IsActionPressed("ui_cancel"))
         {
             OpenMicrobeStageMenuPressed();
+
+            if (helpScreen.Visible)
+                helpScreen.Hide();
         }
     }
 
@@ -469,15 +470,24 @@ public class MicrobeHUD : Node
         }
     }
 
-    public void OpenHelpScreen()
+    public void ToggleHelpScreen()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        if (!GetTree().Paused)
-            GetTree().Paused = true;
+        if (!helpScreen.Visible)
+        {
+            if (!GetTree().Paused)
+                GetTree().Paused = true;
 
-        helpScreen.Toggle();
-        menu.Hide();
+            menu.Hide();
+            helpScreen.Show();
+            helpScreen.RandomizeEasterEgg();
+        }
+        else
+        {
+            helpScreen.Hide();
+            menu.Show();
+        }
     }
 
     /// <summary>
@@ -815,14 +825,6 @@ public class MicrobeHUD : Node
             leftPanelsActive = false;
             animationPlayer.Play("ShowLeftPanels");
         }
-    }
-
-    private void HelpScreenClosed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        helpScreen.Toggle();
-        menu.Show();
     }
 
     private void ReturnToMenuPressed()

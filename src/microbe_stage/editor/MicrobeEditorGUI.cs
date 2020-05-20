@@ -339,8 +339,6 @@ public class MicrobeEditorGUI : Node
 
         mapDrawer.OnSelectedPatchChanged = (drawer) => { UpdateShownPatchDetails(); };
 
-        helpScreen.BuildHelpTexts("MicrobeEditor");
-
         // Fade out for that smooth satisfying transition
         TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeOut, 0.5f);
         TransitionManager.Instance.StartTransitions(null, string.Empty);
@@ -351,6 +349,9 @@ public class MicrobeEditorGUI : Node
         if (@event.IsActionPressed("ui_cancel"))
         {
             MenuButtonPressed();
+
+            if (helpScreen.Visible)
+                helpScreen.Hide();
         }
     }
 
@@ -547,12 +548,21 @@ public class MicrobeEditorGUI : Node
         editor.CreateNewMicrobe();
     }
 
-    internal void OpenHelpScreen()
+    internal void ToggleHelpScreen()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        helpScreen.Toggle();
-        menu.Hide();
+        if (!helpScreen.Visible)
+        {
+            menu.Hide();
+            helpScreen.Show();
+            helpScreen.RandomizeEasterEgg();
+        }
+        else
+        {
+            helpScreen.Hide();
+            menu.Show();
+        }
     }
 
     /// <summary>
@@ -920,14 +930,6 @@ public class MicrobeEditorGUI : Node
                 plusButton.Show();
             }
         }
-    }
-
-    private void HelpScreenClosed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        helpScreen.Toggle();
-        menu.Show();
     }
 
     private void MenuButtonPressed()
