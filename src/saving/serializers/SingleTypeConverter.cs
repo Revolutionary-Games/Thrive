@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 /// <typeparam name="T">The converted type</typeparam>
 public abstract class SingleTypeConverter<T> : BaseThriveConverter
 {
-    protected SingleTypeConverter(SimulationParameters simulation) : base(simulation)
+    protected SingleTypeConverter(ISaveContext context) : base(context)
     {
     }
 

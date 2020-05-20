@@ -56,13 +56,6 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\engine\GodotFileStream.cs" />
-    <Compile Include="src\engine\Save.cs" />
-    <Compile Include="src\engine\SaveHelper.cs" />
-    <Compile Include="src\engine\serializers\GodotColorConverter.cs" />
-    <Compile Include="src\engine\serializers\PatchConverter.cs" />
-    <Compile Include="src\engine\serializers\RegistryTypeConverter.cs" />
-    <Compile Include="src\engine\serializers\SingleTypeConverter.cs" />
-    <Compile Include="src\engine\serializers\ThriveJsonConverter.cs" />
     <Compile Include="src\general\PathUtils.cs" />
     <Compile Include="src\gui_common\Cutscene.cs" />
     <Compile Include="src\gui_common\Fade.cs" />
@@ -80,11 +73,14 @@
     <Compile Include="src\general\OptionsMenu.cs" />
     <Compile Include="src\general\SceneDisplayer.cs" />
     <Compile Include="src\microbe_stage\AgentProjectile.cs" />
+    <Compile Include="src\microbe_stage\BiomeConditions.cs" />
+    <Compile Include="src\microbe_stage\ChunkConfiguration.cs" />
     <Compile Include="src\microbe_stage\CompoundCloudPlane.cs" />
     <Compile Include="src\microbe_stage\editor\MicrobeEditor.cs" />
     <Compile Include="src\microbe_stage\editor\MicrobeEditorGUI.cs" />
     <Compile Include="src\microbe_stage\editor\PatchMapDrawer.cs" />
     <Compile Include="src\microbe_stage\editor\PatchMapNode.cs" />
+    <Compile Include="src\microbe_stage\EnvironmentalCompoundProperties.cs" />
     <Compile Include="src\microbe_stage\FloatingChunk.cs" />
     <Compile Include="src\microbe_stage\Membrane.cs" />
     <Compile Include="src\microbe_stage\Microbe.cs" />
@@ -177,6 +173,18 @@
     <Compile Include="src\general\MusicCategory.cs" />
     <Compile Include="src\microbe_stage\MicrobeAI.cs" />
     <Compile Include="src\microbe_stage\MicrobeAICommonData.cs" />
+    <Compile Include="src\saving\ISaveApplyable.cs" />
+    <Compile Include="src\saving\ISaveContext.cs" />
+    <Compile Include="src\saving\ISaveLoadable.cs" />
+    <Compile Include="src\saving\Save.cs" />
+    <Compile Include="src\saving\SaveLoadable.cs" />
+    <Compile Include="src\saving\SaveContext.cs" />
+    <Compile Include="src\saving\SaveHelper.cs" />
+    <Compile Include="src\saving\serializers\GodotColorConverter.cs" />
+    <Compile Include="src\saving\serializers\PatchConverter.cs" />
+    <Compile Include="src\saving\serializers\RegistryTypeConverter.cs" />
+    <Compile Include="src\saving\serializers\SingleTypeConverter.cs" />
+    <Compile Include="src\saving\serializers\ThriveJsonConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="StyleCop.ruleset" />

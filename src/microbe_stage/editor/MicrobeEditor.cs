@@ -849,6 +849,8 @@ public class MicrobeEditor : Node
             editedMicrobeOrganelles.Add((OrganelleTemplate)organelle.Clone());
         }
 
+        var test = ThriveJsonConverter.Instance.SerializeObject(CurrentGame.GameWorld.Map.CurrentPatch);
+
         var genes = species.StringCode;
 
         GD.Print("Starting microbe editor with: ", editedMicrobeOrganelles.Organelles.Count,
@@ -1469,7 +1471,7 @@ public class MicrobeEditor : Node
     /// </summary>
     private void UpdatePatchBackgroundImage()
     {
-        camera.SetBackground(SimulationParameters.Instance.GetBackground(CurrentPatch.Biome.Background));
+        camera.SetBackground(SimulationParameters.Instance.GetBackground(CurrentPatch.BiomeTemplate.Background));
     }
 
     /// <summary>

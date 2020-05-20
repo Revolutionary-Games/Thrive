@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   A patch is an instance of a Biome with some species in it
 /// </summary>
-public class Patch
+public class Patch : SaveLoadable<Patch.LoadingData>
 {
     /// <summary>
     ///   List of all species and their populations in this patch
@@ -20,19 +20,19 @@ public class Patch
     [JsonIgnore]
     public readonly ISet<Patch> Adjacent = new HashSet<Patch>();
 
-    // TODO: fix loading from json
-    [JsonIgnore]
-    public Biome Biome;
-
     [JsonProperty]
-    private readonly Biome biomeTemplate;
+    public readonly BiomeConditions Biome;
+
+    // TODO: fix loading from json
+    [JsonProperty]
+    public readonly Biome BiomeTemplate;
 
     public Patch(string name, int id, Biome biomeTemplate)
     {
         Name = name;
         ID = id;
-        this.biomeTemplate = biomeTemplate;
-        Biome = (Biome)biomeTemplate.Clone();
+        BiomeTemplate = biomeTemplate;
+        Biome = (BiomeConditions)biomeTemplate.Conditions.Clone();
     }
 
     [JsonProperty]
@@ -108,5 +108,18 @@ public class Patch
             return 0;
 
         return SpeciesInPatch[species];
+    }
+
+    protected override void ApplyUnAppliedSaveData(LoadingData data, ISaveContext context)
+    {
+        foreach (var entry in data.Populations)
+        {
+            SpeciesInPatch[context.World.GetSpecies(entry.Key)] = entry.Value;
+        }
+    }
+
+    public class LoadingData
+    {
+        public Dictionary<uint, int> Populations;
     }
 }

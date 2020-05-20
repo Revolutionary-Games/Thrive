@@ -16,7 +16,7 @@ public static class Spawners
         return new MicrobeSpawner(species, cloudSystem, currentGame);
     }
 
-    public static ChunkSpawner MakeChunkSpawner(Biome.ChunkConfiguration chunkType,
+    public static ChunkSpawner MakeChunkSpawner(ChunkConfiguration chunkType,
         CompoundCloudSystem cloudSystem)
     {
         return new ChunkSpawner(chunkType, cloudSystem);
@@ -216,7 +216,7 @@ public static class SpawnHelpers
         return GD.Load<PackedScene>("res://src/microbe_stage/Microbe.tscn");
     }
 
-    public static FloatingChunk SpawnChunk(Biome.ChunkConfiguration chunkType,
+    public static FloatingChunk SpawnChunk(ChunkConfiguration chunkType,
         Vector3 location, Node worldNode, PackedScene chunkScene,
         CompoundCloudSystem cloudSystem, Random random)
     {
@@ -366,11 +366,11 @@ public class CompoundCloudSpawner : ISpawner
 public class ChunkSpawner : ISpawner
 {
     private readonly PackedScene chunkScene;
-    private readonly Biome.ChunkConfiguration chunkType;
+    private readonly ChunkConfiguration chunkType;
     private readonly Random random = new Random();
     private readonly CompoundCloudSystem cloudSystem;
 
-    public ChunkSpawner(Biome.ChunkConfiguration chunkType, CompoundCloudSystem cloudSystem)
+    public ChunkSpawner(ChunkConfiguration chunkType, CompoundCloudSystem cloudSystem)
     {
         this.chunkType = chunkType;
         this.cloudSystem = cloudSystem;

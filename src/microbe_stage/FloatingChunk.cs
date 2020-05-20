@@ -64,7 +64,7 @@ public class FloatingChunk : RigidBody, ISpawned
     ///     Doesn't initialize the graphics scene which needs to be set separately
     ///   </para>
     /// </remarks>
-    public void Init(Biome.ChunkConfiguration chunkType, CompoundCloudSystem compoundClouds)
+    public void Init(ChunkConfiguration chunkType, CompoundCloudSystem compoundClouds)
     {
         this.compoundClouds = compoundClouds;
 

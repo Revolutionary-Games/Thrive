@@ -332,6 +332,7 @@ public class MicrobeStage : Node
 
     private void UpdateBackground()
     {
-        Camera.SetBackground(SimulationParameters.Instance.GetBackground(GameWorld.Map.CurrentPatch.Biome.Background));
+        Camera.SetBackground(SimulationParameters.Instance.GetBackground(
+            GameWorld.Map.CurrentPatch.BiomeTemplate.Background));
     }
 }

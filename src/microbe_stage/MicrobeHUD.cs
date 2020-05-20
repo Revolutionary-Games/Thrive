@@ -530,7 +530,7 @@ public class MicrobeHUD : Node
         compoundsPanel.RectMinSize = targetSize;
     }
 
-    public void UpdateEnvironmentalBars(Biome biome)
+    public void UpdateEnvironmentalBars(BiomeConditions biome)
     {
         var oxygenPercentage = biome.Compounds["oxygen"].Dissolved * 100;
         var co2Percentage = biome.Compounds["carbondioxide"].Dissolved * 100;

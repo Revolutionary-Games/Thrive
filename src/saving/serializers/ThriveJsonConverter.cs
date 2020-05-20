@@ -11,27 +11,28 @@ using Newtonsoft.Json.Linq;
 /// </summary>
 public class ThriveJsonConverter
 {
-    private static readonly ThriveJsonConverter InstanceValue = new ThriveJsonConverter(SimulationParameters.Instance);
+    private static readonly ThriveJsonConverter InstanceValue =
+        new ThriveJsonConverter(new SaveContext(SimulationParameters.Instance));
 
-    private readonly SimulationParameters simulation;
+    private readonly SaveContext context;
 
     /// <summary>
     ///   This is populated with all the thrive json converter types
     /// </summary>
     private readonly JsonConverter[] thriveConverters;
 
-    private ThriveJsonConverter(SimulationParameters simulation)
+    private ThriveJsonConverter(SaveContext context)
     {
-        this.simulation = simulation;
+        this.context = context;
 
         thriveConverters = new JsonConverter[]
         {
-            new DefaultThriveJSONConverter(simulation),
-            new RegistryTypeConverter(simulation),
+            new DefaultThriveJSONConverter(context),
+            new RegistryTypeConverter(context),
             new GodotColorConverter(),
 
             // Probably less likely used converters defined last
-            new PatchConverter(simulation),
+            new PatchConverter(context),
         };
     }
 
@@ -46,6 +47,16 @@ public class ThriveJsonConverter
     {
         return JsonConvert.DeserializeObject<T>(genes, thriveConverters);
     }
+
+    // /// <summary>
+    // ///   Recursively resolves
+    // /// </summary>
+    // /// <param name="obj">Object to start looking at properties in</param>
+    // /// <param name="context"></param>
+    // public void ResolveLoadables(object obj, ISaveContext context)
+    // {
+    //
+    // }
 }
 
 /// <summary>
@@ -54,11 +65,11 @@ public class ThriveJsonConverter
 /// </summary>
 public abstract class BaseThriveConverter : JsonConverter
 {
-    public readonly SimulationParameters Simulation;
+    public readonly ISaveContext Context;
 
-    protected BaseThriveConverter(SimulationParameters simulation)
+    protected BaseThriveConverter(ISaveContext context)
     {
-        Simulation = simulation;
+        Context = context;
     }
 
     /// <summary>
@@ -147,7 +158,7 @@ public abstract class BaseThriveConverter : JsonConverter
         // Load constructor params
         object[] constructorArgs = constructor.GetParameters()
             .Select((p) => ReadMember(DetermineKey(item, p.Name),
-                p.ParameterType, item, reader, serializer)).ToArray();
+                p.ParameterType, item, null, reader, serializer)).ToArray();
 
         var instance = constructor.Invoke(constructorArgs);
 
@@ -166,7 +177,7 @@ public abstract class BaseThriveConverter : JsonConverter
             if (Skip(property.Name, name))
                 continue;
 
-            property.SetValue(instance, ReadMember(name, property.PropertyType, item, reader,
+            property.SetValue(instance, ReadMember(name, property.PropertyType, item, instance, reader,
                 serializer));
         }
 
@@ -176,7 +187,7 @@ public abstract class BaseThriveConverter : JsonConverter
             if (Skip(field.Name, name))
                 continue;
 
-            field.SetValue(instance, ReadMember(name, field.FieldType, item, reader, serializer));
+            field.SetValue(instance, ReadMember(name, field.FieldType, item, instance, reader, serializer));
         }
 
         return instance;
@@ -241,7 +252,7 @@ public abstract class BaseThriveConverter : JsonConverter
         serializer.Serialize(writer, memberValue);
     }
 
-    protected virtual object ReadMember(string name, Type memberType, JObject item, JsonReader reader,
+    protected virtual object ReadMember(string name, Type memberType, JObject item, object instance, JsonReader reader,
         JsonSerializer serializer)
     {
         var value = item[name];
@@ -297,7 +308,7 @@ public class UseThriveSerializerAttribute : Attribute
 /// </summary>
 internal class DefaultThriveJSONConverter : BaseThriveConverter
 {
-    public DefaultThriveJSONConverter(SimulationParameters simulation) : base(simulation)
+    public DefaultThriveJSONConverter(ISaveContext context) : base(context)
     {
     }
 
