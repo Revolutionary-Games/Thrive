@@ -1307,7 +1307,7 @@ public class MicrobeEditorGUI : Node
         foreach (var species in patch.SpeciesInPatch.Keys)
         {
             var speciesLabel = new Label();
-            speciesLabel.Text = species.FormattedName + " with population: " + species.Population;
+            speciesLabel.Text = species.FormattedName + " with population: " + patch.GetSpeciesPopulation(species);
             speciesList.AddChild(speciesLabel);
         }
 
