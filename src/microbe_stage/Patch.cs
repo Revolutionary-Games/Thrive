@@ -116,6 +116,9 @@ public class Patch : SaveLoadable<Patch.LoadingData>
         {
             SpeciesInPatch[context.World.GetSpecies(entry.Key)] = entry.Value;
         }
+
+        // Also load the biome chunk meshes
+        Biome?.FinishLoading(context);
     }
 
     public class LoadingData
