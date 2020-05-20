@@ -467,6 +467,38 @@ public class MicrobeEditorGUI : Node
         }
     }
 
+    public void SetRigiditySliderTooltip(float rigidity)
+    {
+        var healthChangeLabel = GetNode<Label>(RigiditySliderTooltipHealthLabelPath);
+        var mobilityChangeLabel = GetNode<Label>(RigiditySliderTooltipSpeedLabelPath);
+
+        float healthChange = rigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
+        float mobilityChange = -1 * rigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER;
+
+        healthChangeLabel.Text = ((healthChange > 0) ? "+" : string.Empty)
+            + healthChange.ToString(CultureInfo.CurrentCulture);
+        mobilityChangeLabel.Text = ((mobilityChange > 0) ? "+" : string.Empty)
+            + mobilityChange.ToString(CultureInfo.CurrentCulture);
+
+        if (healthChange >= 0)
+        {
+            healthChangeLabel.AddColorOverride("font_color", new Color(0, 1, 0));
+        }
+        else
+        {
+            healthChangeLabel.AddColorOverride("font_color", new Color(1, 0.3f, 0.3f));
+        }
+
+        if (mobilityChange >= 0)
+        {
+            mobilityChangeLabel.AddColorOverride("font_color", new Color(0, 1, 0));
+        }
+        else
+        {
+            mobilityChangeLabel.AddColorOverride("font_color", new Color(1, 0.3f, 0.3f));
+        }
+    }
+
     public void SetLoadingStatus(bool loading)
     {
         loadingScreen.Visible = loading;
@@ -769,38 +801,6 @@ public class MicrobeEditorGUI : Node
 
         rigiditySlider.Value = value;
         SetRigiditySliderTooltip(value);
-    }
-
-    public void SetRigiditySliderTooltip(float rigidity)
-    {
-        var healthChangeLabel = GetNode<Label>(RigiditySliderTooltipHealthLabelPath);
-        var mobilityChangeLabel = GetNode<Label>(RigiditySliderTooltipSpeedLabelPath);
-
-        float healthChange = rigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
-        float mobilityChange = -1 * rigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER;
-
-        healthChangeLabel.Text = ((healthChange > 0) ? "+" : string.Empty)
-            + healthChange.ToString(CultureInfo.CurrentCulture);
-        mobilityChangeLabel.Text = ((mobilityChange > 0) ? "+" : string.Empty)
-            + mobilityChange.ToString(CultureInfo.CurrentCulture);
-
-        if (healthChange >= 0)
-        {
-            healthChangeLabel.AddColorOverride("font_color", new Color(0, 1, 0));
-        }
-        else
-        {
-            healthChangeLabel.AddColorOverride("font_color", new Color(1, 0.3f, 0.3f));
-        }
-
-        if (mobilityChange >= 0)
-        {
-            mobilityChangeLabel.AddColorOverride("font_color", new Color(0, 1, 0));
-        }
-        else
-        {
-            mobilityChangeLabel.AddColorOverride("font_color", new Color(1, 0.3f, 0.3f));
-        }
     }
 
     private void OnRigidityChanged(float value)
