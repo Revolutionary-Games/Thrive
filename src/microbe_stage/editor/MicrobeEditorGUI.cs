@@ -263,7 +263,7 @@ public class MicrobeEditorGUI : Node
     private TextureRect patchAmmoniaSituation;
     private TextureRect patchPhosphateSituation;
     private Slider rigiditySlider;
-    private Control helpScreen;
+    private HelpScreen helpScreen;
 
     private bool inEditorTab = false;
     private MicrobeEditor.MicrobeSymmetry symmetry = MicrobeEditor.MicrobeSymmetry.None;
@@ -341,7 +341,7 @@ public class MicrobeEditorGUI : Node
         patchAmmoniaSituation = GetNode<TextureRect>(PatchAmmoniaSituationPath);
         patchPhosphateSituation = GetNode<TextureRect>(PatchPhosphateSituationPath);
         rigiditySlider = GetNode<Slider>(RigiditySliderPath);
-        helpScreen = GetNode<Control>(HelpScreenPath);
+        helpScreen = GetNode<HelpScreen>(HelpScreenPath);
 
         mapDrawer.OnSelectedPatchChanged = (drawer) => { UpdateShownPatchDetails(); };
 
@@ -355,6 +355,9 @@ public class MicrobeEditorGUI : Node
         if (@event.IsActionPressed("ui_cancel"))
         {
             MenuButtonPressed();
+
+            if (helpScreen.Visible)
+                helpScreen.Hide();
         }
     }
 
@@ -589,8 +592,9 @@ public class MicrobeEditorGUI : Node
 
         if (!helpScreen.Visible)
         {
-            helpScreen.Show();
             menu.Hide();
+            helpScreen.Show();
+            helpScreen.RandomizeEasterEgg();
         }
         else
         {
