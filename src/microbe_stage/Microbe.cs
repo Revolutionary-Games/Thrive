@@ -632,7 +632,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             var positionAdded = new Vector3(random.Next(-2.0f, 2.0f), 0,
                 random.Next(-2.0f, 2.0f));
 
-            var chunkType = new Biome.ChunkConfiguration
+            var chunkType = new ChunkConfiguration
             {
                 ChunkScale = 1.0f,
                 Dissolves = true,
@@ -643,13 +643,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
                 // Add compounds
                 Compounds = new Dictionary<string,
-                    Biome.ChunkConfiguration.ChunkCompound>(),
+                    ChunkConfiguration.ChunkCompound>(),
             };
 
             // They were added in order already so looping through this other thing is fine
             foreach (var entry in compoundsToRelease)
             {
-                var compoundValue = new Biome.ChunkConfiguration.ChunkCompound
+                var compoundValue = new ChunkConfiguration.ChunkCompound
                 {
                     // Randomize compound amount a bit so things "rot away"
                     Amount = (entry.Value / random.Next(amount / 3.0f, amount)) *
@@ -659,9 +659,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
                 chunkType.Compounds[entry.Key] = compoundValue;
             }
 
-            chunkType.Meshes = new List<Biome.ChunkConfiguration.ChunkScene>();
+            chunkType.Meshes = new List<ChunkConfiguration.ChunkScene>();
 
-            var sceneToUse = new Biome.ChunkConfiguration.ChunkScene();
+            var sceneToUse = new ChunkConfiguration.ChunkScene();
 
             // Try all organelles in random order and use the first one with a scene for model
             foreach (var organelle in organelles.OrderBy(_ => random.Next()))

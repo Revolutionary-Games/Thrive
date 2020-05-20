@@ -72,10 +72,10 @@ public class PatchManager
         RemoveNonMarkedSpawners();
 
         // Change the lighting
-        UpdateLight(currentPatch.Biome);
+        UpdateLight(currentPatch.BiomeTemplate);
     }
 
-    private void HandleChunkSpawns(Biome biome)
+    private void HandleChunkSpawns(BiomeConditions biome)
     {
         GD.Print("Number of chunks in this patch = ", biome.Chunks.Count);
 
@@ -95,7 +95,7 @@ public class PatchManager
         }
     }
 
-    private void HandleCloudSpawns(Biome biome)
+    private void HandleCloudSpawns(BiomeConditions biome)
     {
         GD.Print("Number of clouds in this patch = ", biome.Compounds.Count);
 

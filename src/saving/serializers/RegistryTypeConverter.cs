@@ -8,7 +8,7 @@ using Newtonsoft.Json.Linq;
 /// </summary>
 public class RegistryTypeConverter : BaseThriveConverter
 {
-    public RegistryTypeConverter(SimulationParameters simulation) : base(simulation)
+    public RegistryTypeConverter(ISaveContext context) : base(context)
     {
     }
 
@@ -17,19 +17,19 @@ public class RegistryTypeConverter : BaseThriveConverter
         var name = serializer.Deserialize<string>(reader);
 
         if (objectType == typeof(OrganelleDefinition))
-            return Simulation.GetOrganelleType(name);
+            return Context.Simulation.GetOrganelleType(name);
 
         if (objectType == typeof(BioProcess))
-            return Simulation.GetBioProcess(name);
+            return Context.Simulation.GetBioProcess(name);
 
         if (objectType == typeof(Biome))
-            return Simulation.GetBiome(name);
+            return Context.Simulation.GetBiome(name);
 
         if (objectType == typeof(Compound))
-            return Simulation.GetCompound(name);
+            return Context.Simulation.GetCompound(name);
 
         if (objectType == typeof(MembraneType))
-            return Simulation.GetMembrane(name);
+            return Context.Simulation.GetMembrane(name);
 
         throw new Exception("a registry type is missing from RegistryTypeConverter");
     }

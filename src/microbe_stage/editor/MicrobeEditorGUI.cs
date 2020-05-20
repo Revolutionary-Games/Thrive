@@ -1261,7 +1261,7 @@ public class MicrobeEditorGUI : Node
         patchNothingSelected.Visible = false;
 
         patchName.Text = patch.Name;
-        patchBiome.Text = "Biome: " + patch.Biome.Name;
+        patchBiome.Text = "Biome: " + patch.BiomeTemplate.Name;
         patchPlayerHere.Visible = editor.CurrentPatch == patch;
 
         // Atmospheric gasses

@@ -11,7 +11,7 @@ public class ProcessSystem
     private readonly List<Task> tasks = new List<Task>();
 
     private readonly Node worldRoot;
-    private Biome biome;
+    private BiomeConditions biome;
 
     public ProcessSystem(Node worldRoot)
     {
@@ -23,7 +23,7 @@ public class ProcessSystem
     ///   given the active biome data.
     /// </summary>
     public static Dictionary<string, OrganelleEfficiency> ComputeOrganelleProcessEfficiencies(
-        IEnumerable<OrganelleDefinition> organelles, Biome biome)
+        IEnumerable<OrganelleDefinition> organelles, BiomeConditions biome)
     {
         var result = new Dictionary<string, OrganelleEfficiency>();
 
@@ -45,8 +45,8 @@ public class ProcessSystem
     /// <summary>
     ///   Computes the energy balance for the given organelles in biome
     /// </summary>
-    public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleDefinition> organelles, Biome biome,
-        MembraneType membrane)
+    public static EnergyBalanceInfo ComputeEnergyBalance(IEnumerable<OrganelleDefinition> organelles,
+        BiomeConditions biome, MembraneType membrane)
     {
         var result = new EnergyBalanceInfo();
 
@@ -170,7 +170,7 @@ public class ProcessSystem
     /// <summary>
     ///   Sets the biome whose environmental values affect processes
     /// </summary>
-    public void SetBiome(Biome biome)
+    public void SetBiome(BiomeConditions biome)
     {
         this.biome = biome;
     }
@@ -183,7 +183,7 @@ public class ProcessSystem
         return GetDissolvedInBiome(compoundName, biome);
     }
 
-    private static float GetDissolvedInBiome(string compoundName, Biome biome)
+    private static float GetDissolvedInBiome(string compoundName, BiomeConditions biome)
     {
         if (!biome.Compounds.ContainsKey(compoundName))
             return 0;
@@ -196,7 +196,7 @@ public class ProcessSystem
     ///   based on the environmental compounds.
     /// </summary>
     private static ProcessSpeedInformation CalculateProcessMaximumSpeed(TweakedProcess process,
-        Biome biome)
+        BiomeConditions biome)
     {
         var simulation = SimulationParameters.Instance;
 
