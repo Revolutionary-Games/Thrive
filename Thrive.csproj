@@ -182,6 +182,7 @@
     <Compile Include="src\saving\SaveHelper.cs" />
     <Compile Include="src\saving\serializers\GodotColorConverter.cs" />
     <Compile Include="src\saving\serializers\PatchConverter.cs" />
+    <Compile Include="src\saving\serializers\PatchMapConverter.cs" />
     <Compile Include="src\saving\serializers\RegistryTypeConverter.cs" />
     <Compile Include="src\saving\serializers\SingleTypeConverter.cs" />
     <Compile Include="src\saving\serializers\ThriveJsonConverter.cs" />
@@ -195,7 +196,6 @@
     <Folder Include="src\microbe_stage\organelle_components\" />
     <Folder Include="src\auto-evo\steps\" />
     <Folder Include="src\auto-evo\simulation\" />
-    <Folder Include="src\microbe_stage\saving" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

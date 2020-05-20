@@ -20,7 +20,7 @@ public class PatchConverter : SingleTypeConverter<Patch>
     protected override void WriteMember(string name, object memberValue, Type memberType, JsonWriter writer,
         JsonSerializer serializer)
     {
-        if (name == "SpeciesInPatch")
+        if (name == nameof(Patch.SpeciesInPatch))
         {
             writer.WritePropertyName(name);
 
@@ -43,7 +43,7 @@ public class PatchConverter : SingleTypeConverter<Patch>
     protected override object ReadMember(string name, Type memberType, JObject item, object instance, JsonReader reader,
         JsonSerializer serializer)
     {
-        if (name == "SpeciesInPatch")
+        if (name == nameof(Patch.SpeciesInPatch))
         {
             var value = item[name];
 
