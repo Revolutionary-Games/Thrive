@@ -10206,4 +10206,4 @@ visible = false
 [connection signal="pressed" from="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu/Help" to="MicrobeEditorGUI" method="ToggleHelpScreen"]
 [connection signal="pressed" from="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu/ReturnToMenu" to="MicrobeEditorGUI" method="ReturnToMenuPressed"]
 [connection signal="pressed" from="MicrobeEditorGUI/PauseMenu/CenterContainer/EditorPauseMenu/Exit" to="MicrobeEditorGUI" method="ExitPressed"]
-[connection signal="HelpScreenClosed" from="MicrobeEditorGUI/HelpScreen" to="MicrobeEditorGUI" method="ToggleScreenClosed"]
+[connection signal="HelpScreenClosed" from="MicrobeEditorGUI/HelpScreen" to="MicrobeEditorGUI" method="ToggleHelpScreen"]
