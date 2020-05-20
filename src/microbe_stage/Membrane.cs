@@ -32,6 +32,7 @@ public class Membrane : MeshInstance
     private bool dirty = true;
     private bool radiusIsDirty = true;
     private float cachedRadius;
+    private float temp = 1;
 
     /// <summary>
     ///   The length in pixels of a side of the square that bounds the
@@ -281,6 +282,17 @@ public class Membrane : MeshInstance
         return closest;
     }
 
+    public float DissolveEffect(float delta)
+    {
+        temp = Mathf.Lerp(temp, 0, 0.5f * delta);
+
+        temp = temp.Clamp(0, 1);
+
+        MaterialToEdit.SetShaderParam("dissolveValue", temp);
+
+        return temp;
+    }
+
     /// <summary>
     ///   Decides where the point needs to move based on the position of the closest organelle.
     /// </summary>
@@ -339,6 +351,7 @@ public class Membrane : MeshInstance
         ApplyHealth();
         ApplyTint();
         ApplyTextures();
+        ApplyDissolvingEffect();
     }
 
     private void ApplyWiggly()
@@ -376,6 +389,12 @@ public class Membrane : MeshInstance
         MaterialToEdit.SetShaderParam("damagedTexture", damagedTexture);
 
         currentlyLoadedNormalTexture = Type.NormalTexture;
+    }
+
+    private void ApplyDissolvingEffect()
+    {
+        MaterialToEdit.SetShaderParam("dissolveValue", 1);
+        MaterialToEdit.SetShaderParam("noiseTexture", GD.Load<Texture>("res://assets/textures/PerlinNoise.jpg"));
     }
 
     /// <summary>

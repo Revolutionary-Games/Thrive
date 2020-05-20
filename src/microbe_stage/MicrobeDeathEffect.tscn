@@ -1,7 +1,55 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/sounds/soundeffects/microbe-death.ogg" type="AudioStream" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeDeathEffect.cs" type="Script" id=2]
+[ext_resource path="res://assets/textures/bubble3.png" type="Texture" id=3]
+
+[sub_resource type="Gradient" id=6]
+offsets = PoolRealArray( 0, 0.585586, 1 )
+colors = PoolColorArray( 0, 0, 0, 0, 1, 1, 1, 0.588235, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=7]
+gradient = SubResource( 6 )
+
+[sub_resource type="Curve" id=1]
+max_value = 100.0
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 4.31818 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=2]
+curve = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+emission_shape = 3
+emission_point_count = 1
+direction = Vector3( 0, 0, 0 )
+spread = 180.0
+flatness = 1.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 2.0
+initial_velocity_random = 1.0
+linear_accel = 2.0
+radial_accel = 0.1
+radial_accel_random = 1.0
+tangential_accel = 0.5
+tangential_accel_random = 0.5
+damping = 0.5
+damping_random = 0.1
+damping_curve = SubResource( 2 )
+scale = 0.1
+color_ramp = SubResource( 7 )
+
+[sub_resource type="SpatialMaterial" id=4]
+flags_transparent = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 3 )
+
+[sub_resource type="QuadMesh" id=5]
+material = SubResource( 4 )
 
 [node name="MicrobeDeathEffect" type="Spatial"]
 script = ExtResource( 2 )
@@ -10,3 +58,11 @@ script = ExtResource( 2 )
 stream = ExtResource( 1 )
 unit_size = 10.0
 autoplay = true
+
+[node name="Particles" type="Particles" parent="."]
+amount = 300
+lifetime = 5.0
+explosiveness = 0.8
+randomness = 1.0
+process_material = SubResource( 3 )
+draw_pass_1 = SubResource( 5 )

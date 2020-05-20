@@ -104,6 +104,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
     private MicrobeAI ai;
 
+    private bool isDissolving = false;
+
     /// <summary>
     ///   The membrane of this Microbe. Used for grabbing radius / points from this.
     /// </summary>
@@ -683,8 +685,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             chunkType.Meshes.Add(sceneToUse);
 
             // Finally spawn a chunk with the settings
-            SpawnHelpers.SpawnChunk(chunkType, Translation + positionAdded, GetParent(),
+            var temp = SpawnHelpers.SpawnChunk(chunkType, Translation + positionAdded, GetParent(),
                 chunkScene, cloudSystem, random);
+
+            AddCollisionExceptionWith(temp);
         }
 
         // TODO: fix. Might need to rethink destroying this
@@ -717,7 +721,14 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
         // It used to be that the physics shape was removed here and
         // graphics hidden, but now this is destroyed
-        QueueFree();
+        //QueueFree();
+
+        isDissolving = true;
+
+        foreach (var entry in organelles)
+        {
+            entry.Hide();
+        }
     }
 
     public void PlaySoundEffect(string effect)
@@ -971,6 +982,15 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             if (OnReproductionStatus != null && CurrentGame.FreeBuild)
             {
                 OnReproductionStatus(this, true);
+            }
+        }
+
+        if (isDissolving)
+        {
+            if(Membrane.DissolveEffect(delta) <= 0)
+            {
+                QueueFree();
+                isDissolving = false;
             }
         }
     }
@@ -1504,7 +1524,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// </summary>
     private void HandleDeath()
     {
-        QueueFree();
+        GD.Print("Handling death");
+        //QueueFree();
     }
 
     private Vector3 DoBaseMovementForce(float delta)
