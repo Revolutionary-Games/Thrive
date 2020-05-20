@@ -476,8 +476,7 @@ public class MicrobeHUD : Node
 
         if (!helpScreen.Visible)
         {
-            if (!GetTree().Paused)
-                GetTree().Paused = true;
+            GetTree().Paused = true;
 
             menu.Hide();
             helpScreen.Show();
