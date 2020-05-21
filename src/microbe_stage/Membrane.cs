@@ -368,9 +368,8 @@ public class Membrane : MeshInstance
         if (normalTexture != null && currentlyLoadedNormalTexture == Type.NormalTexture)
             return;
 
-        // TODO: add the loaded Texture objects to be in the membrane type
-        normalTexture = GD.Load<Texture>(Type.NormalTexture);
-        damagedTexture = GD.Load<Texture>(Type.DamagedTexture);
+        normalTexture = Type.LoadedNormalTexture;
+        damagedTexture = Type.LoadedDamagedTexture;
 
         MaterialToEdit.SetShaderParam("albedoTexture", normalTexture);
         MaterialToEdit.SetShaderParam("damagedTexture", damagedTexture);
