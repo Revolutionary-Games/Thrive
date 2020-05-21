@@ -368,7 +368,6 @@ public class Membrane : MeshInstance
         if (normalTexture != null && currentlyLoadedNormalTexture == Type.NormalTexture)
             return;
 
-        // TODO: add the loaded Texture objects to be in the membrane type
         normalTexture = Type.LoadedNormalTexture;
         damagedTexture = Type.LoadedDamagedTexture;
 
