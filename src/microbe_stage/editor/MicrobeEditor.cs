@@ -628,6 +628,10 @@ public class MicrobeEditor : Node
                     RemoveOrganelleAt(new Hex(-1 * q, -1 * r));
                     RemoveOrganelleAt(new Hex(q, -1 * (r + q)));
                 }
+                else
+                {
+                    RemoveOrganelleAt(new Hex(-1 * q, -1 * r));
+                }
 
                 break;
             }
@@ -636,15 +640,12 @@ public class MicrobeEditor : Node
             {
                 RemoveOrganelleAt(new Hex(q, r));
 
-                if (q != -1 * q || r != r + q)
-                {
-                    RemoveOrganelleAt(new Hex(-1 * r, r + q));
-                    RemoveOrganelleAt(new Hex(-1 * (r + q), q));
-                    RemoveOrganelleAt(new Hex(-1 * q, -1 * r));
-                    RemoveOrganelleAt(new Hex(r, -1 * (r + q)));
-                    RemoveOrganelleAt(new Hex(r, -1 * (r + q)));
-                    RemoveOrganelleAt(new Hex(r + q, -1 * q));
-                }
+                RemoveOrganelleAt(new Hex(-1 * r, r + q));
+                RemoveOrganelleAt(new Hex(-1 * (r + q), q));
+                RemoveOrganelleAt(new Hex(-1 * q, -1 * r));
+                RemoveOrganelleAt(new Hex(r, -1 * (r + q)));
+                RemoveOrganelleAt(new Hex(r, -1 * (r + q)));
+                RemoveOrganelleAt(new Hex(r + q, -1 * q));
 
                 break;
             }
