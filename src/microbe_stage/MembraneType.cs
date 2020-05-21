@@ -48,10 +48,9 @@ public class MembraneType : IRegistryType
     ///   Resolves references to external resources so that during
     ///   runtime they don't need to be looked up
     /// </summary>
-    public void Resolve(SimulationParameters parameters)
+    public void Resolve()
     {
         LoadedNormalTexture = GD.Load<Texture>(NormalTexture);
         LoadedDamagedTexture = GD.Load<Texture>(DamagedTexture);
     }
-
 }
