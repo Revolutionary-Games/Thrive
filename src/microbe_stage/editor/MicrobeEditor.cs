@@ -1108,8 +1108,11 @@ public class MicrobeEditor : Node
                 {
                     PlaceIfPossible(organelleType, -1 * q, r + q, 6 + (-1 * organelleRot));
                     PlaceIfPossible(organelleType, -1 * q, -1 * r, (organelleRot + 3) % 6);
-                    PlaceIfPossible(organelleType, q, -1 * (r + q),
-                        (8 + (-1 * organelleRot)) % 6);
+                    PlaceIfPossible(organelleType, q, -1 * (r + q), (8 + (-1 * organelleRot)) % 6);
+                }
+                else
+                {
+                    PlaceIfPossible(organelleType, -1 * q, -1 * r, (organelleRot + 3) % 6);
                 }
 
                 break;
@@ -1119,16 +1122,13 @@ public class MicrobeEditor : Node
             {
                 PlaceIfPossible(organelleType, q, r, organelleRot);
 
-                if (q != -1 * q || r != r + q)
-                {
-                    PlaceIfPossible(organelleType, -1 * r, r + q, (organelleRot + 1) % 6);
-                    PlaceIfPossible(organelleType, -1 * (r + q), q,
-                        (organelleRot + 2) % 6);
-                    PlaceIfPossible(organelleType, -1 * q, -1 * r, (organelleRot + 3) % 6);
-                    PlaceIfPossible(organelleType, r, -1 * (r + q),
-                        (organelleRot + 4) % 6);
-                    PlaceIfPossible(organelleType, r + q, -1 * q, (organelleRot + 5) % 6);
-                }
+                PlaceIfPossible(organelleType, -1 * r, r + q, (organelleRot + 1) % 6);
+                PlaceIfPossible(organelleType, -1 * (r + q), q,
+                    (organelleRot + 2) % 6);
+                PlaceIfPossible(organelleType, -1 * q, -1 * r, (organelleRot + 3) % 6);
+                PlaceIfPossible(organelleType, r, -1 * (r + q),
+                    (organelleRot + 4) % 6);
+                PlaceIfPossible(organelleType, r + q, -1 * q, (organelleRot + 5) % 6);
 
                 break;
             }
