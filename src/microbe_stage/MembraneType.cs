@@ -16,6 +16,9 @@ public class MembraneType : IRegistryType
     public int EditorCost = 50;
     public bool CellWall = false;
 
+    public Texture LoadedNormalTexture;
+    public Texture LoadedDamagedTexture;
+
     public string InternalName { get; set; }
 
     public void Check(string name)
@@ -39,5 +42,11 @@ public class MembraneType : IRegistryType
                     "Membrane uses non-existant image: " + resource);
             }
         }
+    }
+
+    public void LoadTextures()
+    {
+        LoadedNormalTexture = GD.Load<Texture>(NormalTexture);
+        LoadedDamagedTexture = GD.Load<Texture>(DamagedTexture);
     }
 }
