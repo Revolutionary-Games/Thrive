@@ -1,15 +1,32 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/textures/gui/menu_theme.tres" type="Theme" id=1]
 [ext_resource path="res://assets/textures/gui/scrollbar_theme.tres" type="Theme" id=2]
+[ext_resource path="res://assets/fonts/Jura-DemiBold.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://src/general/HelpScreen.cs" type="Script" id=4]
+[ext_resource path="res://src/gui_common/HelpBox.tscn" type="PackedScene" id=5]
+
+[sub_resource type="StyleBoxFlat" id=1]
+border_width_top = 1
+border_color = Color( 0.0666667, 1, 0.835294, 1 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 3 )
 
 [node name="HelpScreen" type="Control"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+LeftColumPath = NodePath("ScrollContainer/VBoxContainer/HBoxContainer/LeftColumn")
+RightColumnPath = NodePath("ScrollContainer/VBoxContainer/HBoxContainer/RightColumn")
+LineSeparatorPath = NodePath("ScrollContainer/VBoxContainer/HSeparator")
+TipMessageLabelPath = NodePath("ScrollContainer/VBoxContainer/TipMessageLabel")
+HelpBoxScene = ExtResource( 5 )
+TimerPath = NodePath("Timer")
 
 [node name="Overlay" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -30,21 +47,40 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
-margin_right = 735.0
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+margin_right = 757.0
+margin_bottom = 560.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
+margin_right = 757.0
+custom_constants/separation = 15
+
+[node name="LeftColumn" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+custom_constants/separation = 15
+
+[node name="RightColumn" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
+margin_left = 15.0
+margin_right = 15.0
+custom_constants/separation = 15
+
+[node name="HSeparator" type="HSeparator" parent="ScrollContainer/VBoxContainer"]
+margin_top = 4.0
+margin_right = 757.0
+margin_bottom = 8.0
+custom_styles/separator = SubResource( 1 )
+
+[node name="TipMessageLabel" type="Label" parent="ScrollContainer/VBoxContainer"]
+margin_top = 12.0
+margin_right = 757.0
 margin_bottom = 30.0
-custom_constants/separation = 15
-
-[node name="LeftColumn" type="VBoxContainer" parent="ScrollContainer/HBoxContainer"]
-margin_right = 360.0
-margin_bottom = 716.0
-custom_constants/separation = 15
-
-[node name="RightColumn" type="VBoxContainer" parent="ScrollContainer/HBoxContainer"]
-margin_left = 375.0
-margin_right = 735.0
-margin_bottom = 716.0
-custom_constants/separation = 15
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 1, 1, 0, 1 )
+text = "Easter egg message goes here"
+autowrap = true
 
 [node name="CloseButton" type="Button" parent="."]
 anchor_left = 0.5
@@ -60,3 +96,8 @@ text = "Close"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+[connection signal="pressed" from="CloseButton" to="." method="OnCloseButtonPressed"]
+[connection signal="timeout" from="Timer" to="." method="OnTimerTimeout"]
