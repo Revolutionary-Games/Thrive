@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   A patch is an instance of a Biome with some species in it
 /// </summary>
+[JsonObject(IsReference = true)]
 public class Patch : SaveLoadable<Patch.LoadingData>
 {
     /// <summary>
@@ -17,13 +18,12 @@ public class Patch : SaveLoadable<Patch.LoadingData>
     [JsonProperty]
     public readonly int ID;
 
-    [JsonIgnore]
+    // [JsonIgnore]
     public readonly ISet<Patch> Adjacent = new HashSet<Patch>();
 
     [JsonProperty]
     public readonly BiomeConditions Biome;
 
-    // TODO: fix loading from json
     [JsonProperty]
     public readonly Biome BiomeTemplate;
 

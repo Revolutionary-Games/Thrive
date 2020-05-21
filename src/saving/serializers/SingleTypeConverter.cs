@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 ///   Helper for making single type converters
 /// </summary>
 /// <typeparam name="T">The converted type</typeparam>
-public abstract class SingleTypeConverter<T> : BaseThriveConverter
+public class SingleTypeConverter<T> : BaseThriveConverter
 {
     protected SingleTypeConverter(ISaveContext context) : base(context)
     {
@@ -22,5 +22,8 @@ public abstract class SingleTypeConverter<T> : BaseThriveConverter
         return WriteDerivedJson(writer, (T)value, serializer);
     }
 
-    protected abstract bool WriteDerivedJson(JsonWriter writer, T value, JsonSerializer serializer);
+    protected virtual bool WriteDerivedJson(JsonWriter writer, T value, JsonSerializer serializer)
+    {
+        return false;
+    }
 }

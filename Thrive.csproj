@@ -180,12 +180,18 @@
     <Compile Include="src\saving\SaveLoadable.cs" />
     <Compile Include="src\saving\SaveContext.cs" />
     <Compile Include="src\saving\SaveHelper.cs" />
+    <Compile Include="src\saving\serializers\DynamicDeserializeObjectConverter.cs" />
     <Compile Include="src\saving\serializers\GodotColorConverter.cs" />
     <Compile Include="src\saving\serializers\PatchConverter.cs" />
     <Compile Include="src\saving\serializers\PatchMapConverter.cs" />
+    <Compile Include="src\saving\serializers\PropertyInfoUtils.cs" />
+    <Compile Include="src\saving\serializers\ReferenceResolver.cs" />
     <Compile Include="src\saving\serializers\RegistryTypeConverter.cs" />
+    <Compile Include="src\saving\serializers\SerializationBinder.cs" />
     <Compile Include="src\saving\serializers\SingleTypeConverter.cs" />
+    <Compile Include="src\saving\serializers\SpeciesConverter.cs" />
     <Compile Include="src\saving\serializers\ThriveJsonConverter.cs" />
+    <Compile Include="src\saving\serializers\ThriveTypeConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="StyleCop.ruleset" />
