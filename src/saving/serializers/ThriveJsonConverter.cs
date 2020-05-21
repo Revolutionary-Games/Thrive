@@ -3,50 +3,85 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Threading;
+using Godot;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 /// <summary>
 ///   Main JSON conversion class for Thrive handling all our custom stuff
 /// </summary>
-public class ThriveJsonConverter
+public class ThriveJsonConverter : IDisposable
 {
     private static readonly ThriveJsonConverter InstanceValue =
         new ThriveJsonConverter(new SaveContext(SimulationParameters.Instance));
 
     private readonly SaveContext context;
 
-    /// <summary>
-    ///   This is populated with all the thrive json converter types
-    /// </summary>
     private readonly JsonConverter[] thriveConverters;
+    private readonly List<JsonConverter> thriveConvertersDynamicDeserialize;
+
+    private ThreadLocal<JsonSerializerSettings> currentJsonSettings = new ThreadLocal<JsonSerializerSettings>();
+    private bool disposed;
+
+    // private IReferenceResolver referenceResolver = new Default;
 
     private ThriveJsonConverter(SaveContext context)
     {
         this.context = context;
 
+        // All of the thrive serializers need to be registered here
         thriveConverters = new JsonConverter[]
         {
             new DefaultThriveJSONConverter(context),
             new RegistryTypeConverter(context),
             new GodotColorConverter(),
+            new SpeciesConverter(context),
 
-            // Probably less likely used converters defined last
-            new PatchConverter(context),
-            new PatchMapConverter(context),
+            // // Probably less likely used converters defined last
+            // new PatchConverter(context),
+            // new PatchMapConverter(context),
         };
+
+        thriveConvertersDynamicDeserialize = new List<JsonConverter> { new DynamicDeserializeObjectConverter(context) };
+        thriveConvertersDynamicDeserialize.AddRange(thriveConverters);
     }
 
     public static ThriveJsonConverter Instance => InstanceValue;
 
     public string SerializeObject(object o)
     {
-        return JsonConvert.SerializeObject(o, Constants.SAVE_FORMATTING, thriveConverters);
+        return PerformWithSettings((settings) => JsonConvert.SerializeObject(o, Constants.SAVE_FORMATTING, settings));
     }
 
-    public T DeserializeObject<T>(string genes)
+    public T DeserializeObject<T>(string json)
     {
-        return JsonConvert.DeserializeObject<T>(genes, thriveConverters);
+        return PerformWithSettings((settings) => JsonConvert.DeserializeObject<T>(json, settings));
+    }
+
+    /// <summary>
+    ///   Deserializes a fully dynamic object from json (object type is defined only in the json)
+    /// </summary>
+    /// <param name="json">JSON text to parse</param>
+    /// <returns>The created object</returns>
+    /// <exception cref="JsonException">If invalid json or the dynamic type is not allowed</exception>
+    public object DeserializeObjectDynamic(string json)
+    {
+        return PerformWithSettings((settings) =>
+        {
+            // enable hack conversion
+            settings.Converters = thriveConvertersDynamicDeserialize;
+
+            try
+            {
+                return JsonConvert.DeserializeObject<object>(json, settings);
+            }
+            finally
+            {
+                // disable hack conversion
+                settings.Converters = thriveConverters;
+            }
+        });
     }
 
     // /// <summary>
@@ -58,6 +93,74 @@ public class ThriveJsonConverter
     // {
     //
     // }
+
+    public void Dispose()
+    {
+        Dispose(true);
+        GC.SuppressFinalize(this);
+    }
+
+    protected virtual void Dispose(bool disposing)
+    {
+        if (!disposed)
+        {
+            if (disposing)
+            {
+                currentJsonSettings.Dispose();
+            }
+
+            disposed = true;
+        }
+    }
+
+    private JsonSerializerSettings CreateSettings()
+    {
+        var referenceResolver = new ReferenceResolver();
+
+        return new JsonSerializerSettings()
+        {
+            // PreserveReferencesHandling = PreserveReferencesHandling.Objects,
+
+            // We need to be careful to not deserialize untrusted data with this serializer
+            TypeNameHandling = TypeNameHandling.Auto,
+
+            // This blocks most types from using typename handling
+            SerializationBinder = new SerializationBinder(),
+
+            Converters = thriveConverters,
+
+            ReferenceResolverProvider = () => referenceResolver,
+        };
+    }
+
+    private T PerformWithSettings<T>(Func<JsonSerializerSettings, T> func)
+    {
+        JsonSerializerSettings settings;
+
+        bool recursive = false;
+
+        if (currentJsonSettings.Value != null)
+        {
+            // This is a recursive call
+            recursive = true;
+            settings = currentJsonSettings.Value;
+        }
+        else
+        {
+            settings = CreateSettings();
+            currentJsonSettings.Value = settings;
+        }
+
+        try
+        {
+            return func(settings);
+        }
+        finally
+        {
+            if (!recursive)
+                currentJsonSettings.Value = null;
+        }
+    }
 }
 
 /// <summary>
@@ -67,6 +170,14 @@ public class ThriveJsonConverter
 public abstract class BaseThriveConverter : JsonConverter
 {
     public readonly ISaveContext Context;
+
+    // ref handling approach from: https://stackoverflow.com/a/53716866/4371508
+    private const string REF_PROPERTY = "$ref";
+    private const string ID_PROPERTY = "$id";
+
+    // type handling approach from: https://stackoverflow.com/a/29822170/4371508
+    // and https://stackoverflow.com/a/29826959/4371508
+    private const string TYPE_PROPERTY = "$type";
 
     protected BaseThriveConverter(ISaveContext context)
     {
@@ -117,6 +228,45 @@ public abstract class BaseThriveConverter : JsonConverter
 
         var item = JObject.Load(reader);
 
+        // Detect ref to already loaded object
+        var refId = item[REF_PROPERTY];
+
+        if (refId != null)
+        {
+            // refId.Remove();
+
+            var reference = serializer.ReferenceResolver.ResolveReference(serializer, refId.Value<string>());
+            if (reference != null)
+                return reference;
+        }
+
+        var objId = item[ID_PROPERTY];
+
+        // Remove the id key before processing to not see that key when processing
+        // objId?.Remove();
+
+        // Detect dynamic typing
+        var type = item[TYPE_PROPERTY];
+
+        if (type != null)
+        {
+            // type.Remove();
+
+            if (serializer.TypeNameHandling != TypeNameHandling.None)
+            {
+                var parts = type.Value<string>().Split(',').Select(p => p.Trim()).ToList();
+                if (parts.Count != 2 && parts.Count != 1)
+                    throw new JsonException("invalid $type format");
+
+                // Change to loading the other type
+                objectType = serializer.SerializationBinder.BindToType(
+                    parts.Count > 1 ? parts[1] : null, parts[0]);
+            }
+        }
+
+        if (objectType == typeof(DynamicDeserializeObjectConverter))
+            throw new JsonException("Dynamic dummy deserialize used object didn't specify type");
+
         // Find a constructor we can call
         ConstructorInfo constructor = null;
 
@@ -163,6 +313,12 @@ public abstract class BaseThriveConverter : JsonConverter
 
         var instance = constructor.Invoke(constructorArgs);
 
+        // Store the instance before loading properties to not break on recursive references
+        if (objId != null)
+        {
+            serializer.ReferenceResolver.AddReference(serializer, objId.Value<string>(), instance);
+        }
+
         var properties = PropertiesOf(instance);
 
         var fields = FieldsOf(instance);
@@ -178,8 +334,13 @@ public abstract class BaseThriveConverter : JsonConverter
             if (Skip(property.Name, name))
                 continue;
 
-            property.SetValue(instance, ReadMember(name, property.PropertyType, item, instance, reader,
-                serializer));
+            var set = property.GetSetMethodOnDeclaringType();
+
+            set.Invoke(instance, new object[]
+            {
+                ReadMember(name, property.PropertyType, item, instance, reader,
+                    serializer),
+            });
         }
 
         foreach (var field in fields)
@@ -207,23 +368,57 @@ public abstract class BaseThriveConverter : JsonConverter
         if (WriteCustomJson(writer, value, serializer))
             return;
 
-        var properties = PropertiesOf(value);
+        var type = value.GetType();
 
-        var fields = FieldsOf(value);
+        var contract = serializer.ContractResolver.ResolveContract(type);
+
+        bool reference = serializer.PreserveReferencesHandling != PreserveReferencesHandling.None ||
+            (contract.IsReference.HasValue && contract.IsReference.Value);
 
         writer.WriteStartObject();
 
-        foreach (var property in properties)
+        if (reference && serializer.ReferenceResolver.IsReferenced(serializer, value))
         {
-            WriteMember(property.Name, property.GetValue(value, null), property.PropertyType, writer, serializer);
+            // Already written, just write the ref
+            writer.WritePropertyName(REF_PROPERTY);
+            writer.WriteValue(serializer.ReferenceResolver.GetReference(serializer, value));
         }
-
-        foreach (var field in fields)
+        else
         {
-            WriteMember(field.Name, field.GetValue(value), field.FieldType, writer, serializer);
-        }
+            if (reference)
+            {
+                writer.WritePropertyName(ID_PROPERTY);
+                writer.WriteValue(serializer.ReferenceResolver.GetReference(serializer, value));
+            }
 
-        WriteCustomExtraFields(writer, value, serializer);
+            // Dynamic typing
+            if (serializer.TypeNameHandling != TypeNameHandling.None)
+            {
+                // Write the type of the instance always as we can't detect if the value matches the type of the field
+                writer.WritePropertyName(TYPE_PROPERTY);
+
+                var typeStr = $"{type.FullName}, {type.Assembly.GetName().Name}";
+
+                writer.WriteValue(typeStr);
+            }
+
+            // First time writing, write all properties
+            var properties = PropertiesOf(value);
+
+            var fields = FieldsOf(value);
+
+            foreach (var property in properties)
+            {
+                WriteMember(property.Name, property.GetValue(value, null), property.PropertyType, writer, serializer);
+            }
+
+            foreach (var field in fields)
+            {
+                WriteMember(field.Name, field.GetValue(value), field.FieldType, writer, serializer);
+            }
+
+            WriteCustomExtraFields(writer, value, serializer);
+        }
 
         writer.WriteEndObject();
     }
@@ -323,6 +518,10 @@ public class UseThriveSerializerAttribute : Attribute
 internal class DefaultThriveJSONConverter : BaseThriveConverter
 {
     public DefaultThriveJSONConverter(ISaveContext context) : base(context)
+    {
+    }
+
+    public DefaultThriveJSONConverter() : base(new SaveContext())
     {
     }
 

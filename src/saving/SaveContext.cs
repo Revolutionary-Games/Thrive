@@ -8,6 +8,10 @@ public class SaveContext : ISaveContext
         Simulation = simulation;
     }
 
+    public SaveContext() : this(SimulationParameters.Instance)
+    {
+    }
+
     public SimulationParameters Simulation { get; }
 
     public GameWorld World { get; set; }

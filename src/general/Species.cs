@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using Godot;
 using Newtonsoft.Json;
 
@@ -7,6 +8,9 @@ using Newtonsoft.Json;
 ///   Class that represents a species. This is an abstract base for
 ///   use by all stage-specific species classes.
 /// </summary>
+[JsonObject(IsReference = true)]
+[TypeConverter(typeof(ThriveTypeConverter))]
+[UseThriveConverter]
 public abstract class Species : ICloneable
 {
     /// <summary>
@@ -152,6 +156,11 @@ public abstract class Species : ICloneable
     ///   code.
     /// </summary>
     public abstract object Clone();
+
+    public override string ToString()
+    {
+        return FormattedIdentifier;
+    }
 
     /// <summary>
     ///   Helper for child classes to implement Clone
