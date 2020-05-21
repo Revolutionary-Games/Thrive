@@ -240,6 +240,11 @@ public class SimulationParameters
             entry.Value.Resolve(this);
         }
 
+        foreach (var entry in membranes)
+        {
+            entry.Value.Resolve(this);
+        }
+
         NameGenerator.Resolve(this);
 
         BuildOrganelleChances();
