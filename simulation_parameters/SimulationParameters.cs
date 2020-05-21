@@ -242,7 +242,7 @@ public class SimulationParameters
 
         foreach (var entry in membranes)
         {
-            entry.Value.Resolve(this);
+            entry.Value.Resolve();
         }
 
         NameGenerator.Resolve(this);
