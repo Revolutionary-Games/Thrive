@@ -1,4 +1,5 @@
 using Godot;
+using System;
 
 /// <summary>
 ///   This is a shot agent projectile, does damage on hitting a cell of different species
@@ -14,14 +15,12 @@ public class AgentProjectile : RigidBody, ITimedLife
 
     public override void _Ready()
     {
+        AddCollisionExceptionWith(Emitter);
         Connect("body_entered", this, "OnBodyEntered");
     }
 
     public void OnBodyEntered(Node body)
     {
-        if (body == Emitter)
-            return; // Kinda hacky.
-
         if (body is Microbe)
         {
             var microbe = (Microbe)body;
