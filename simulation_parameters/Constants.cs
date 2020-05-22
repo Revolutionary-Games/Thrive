@@ -393,6 +393,8 @@ public static class Constants
 
     public const string SAVE_FOLDER = "user://saves";
 
+    public const string SCREENSHOT_FOLDER = "user://screenshots";
+
     /// <summary>
     ///   This is just here to make it easier to debug saves
     /// </summary>
