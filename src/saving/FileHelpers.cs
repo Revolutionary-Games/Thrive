@@ -22,4 +22,18 @@ public static class FileHelpers
             }
         }
     }
+
+    /// <summary>
+    ///   Attempts to delete a file
+    /// </summary>
+    /// <param name="path">Path to the file</param>
+    /// <returns>True on success</returns>
+    public static bool DeleteFile(string path)
+    {
+        using (var directory = new Directory())
+        {
+            var result = directory.Remove(path);
+            return result == Error.Ok;
+        }
+    }
 }
