@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=2]
+
+[ext_resource path="res://assets/textures/iron_01.png" type="Texture" id=1]
+[ext_resource path="res://assets/textures/PerlinNoise.jpg" type="Texture" id=2]
+[ext_resource path="res://shaders/IronChunk.shader" type="Shader" id=3]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource( 3 )
+shader_param/DissolveValue = 0.0
+shader_param/OutlineWidth = 0.005
+shader_param/GrowColor = Color( 0.819608, 0.462745, 0.145098, 1 )
+shader_param/Texture = ExtResource( 1 )
+shader_param/DissolveTexture = ExtResource( 2 )

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System;
 using Godot;
 
 /// <summary>
@@ -131,6 +132,9 @@ public class FloatingChunk : RigidBody, ISpawned
         if (ContainedCompounds != null)
             VentCompounds(delta);
 
+        if (isDissolving)
+            HandleDissolving(delta);
+
         // Check contacts
         foreach (var microbe in touchingMicrobes)
         {
@@ -182,28 +186,6 @@ public class FloatingChunk : RigidBody, ISpawned
                 break;
             }
         }
-
-        if (isDissolving)
-        {
-            foreach (var microbe in touchingMicrobes)
-            {
-                AddCollisionExceptionWith(microbe);
-            }
-
-            var mesh = GetNode("NodeToScale").GetChild<MeshInstance>(0);
-
-            var dissolveMaterial = (ShaderMaterial)mesh.MaterialOverride;
-
-            dissolvingValue += delta * Constants.FLOATING_CHUNKS_DISSOLVING_SPEED;
-
-            dissolveMaterial.SetShaderParam("DissolveValue", dissolvingValue);
-
-            if (dissolvingValue >= 1)
-            {
-                QueueFree();
-                isDissolving = false;
-            }
-        }
     }
 
     /// <summary>
@@ -245,6 +227,32 @@ public class FloatingChunk : RigidBody, ISpawned
     {
         compoundClouds.AddCloud(
             compound, amount * Constants.CHUNK_VENT_COMPOUND_MULTIPLIER, pos);
+    }
+
+    /// <summary>
+    ///   Handles the dissolving effect for the chunks
+    ///   when they run out of compound
+    /// </summary>
+    private void HandleDissolving(float delta)
+    {
+        foreach (var microbe in touchingMicrobes)
+        {
+            AddCollisionExceptionWith(microbe);
+        }
+
+        var mesh = GetNode("NodeToScale").GetChild<MeshInstance>(0);
+
+        var material = (ShaderMaterial)mesh.MaterialOverride;
+
+        dissolvingValue += delta * Constants.FLOATING_CHUNKS_DISSOLVING_SPEED;
+
+        material.SetShaderParam("DissolveValue", dissolvingValue);
+
+        if (dissolvingValue >= 1)
+        {
+            QueueFree();
+            isDissolving = false;
+        }
     }
 
     private void OnContactBegin(int bodyID, Node body, int bodyShape, int localShape)
