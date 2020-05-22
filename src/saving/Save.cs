@@ -4,6 +4,7 @@ using System.Text;
 using Godot;
 using ICSharpCode.SharpZipLib.GZip;
 using ICSharpCode.SharpZipLib.Tar;
+using Newtonsoft.Json;
 using Directory = Godot.Directory;
 using File = Godot.File;
 
@@ -14,6 +15,7 @@ public class Save
 {
     public const string SAVE_SAVE_JSON = "save.json";
     public const string SAVE_INFO_JSON = "info.json";
+    public const string SAVE_SCREENSHOT = "screenshot.png";
 
     /// <summary>
     ///   Name of this save on disk
@@ -34,6 +36,12 @@ public class Save
     ///   The game properties of the saved game
     /// </summary>
     public GameProperties SavedProperties { get; set; }
+
+    /// <summary>
+    ///   Screenshot for this save
+    /// </summary>
+    [JsonIgnore]
+    public Image Screenshot { get; set; }
 
     /// <summary>
     ///   Loads a save from a file or throws an exception
@@ -68,19 +76,46 @@ public class Save
     }
 
     /// <summary>
-    ///   Writes this save to disk
+    ///   Writes this save to disk.
     /// </summary>
+    /// <remarks>
+    ///   In order to save the screenshot as png this needs to save it to a temporary file on disk.
+    /// </remarks>
     public void SaveToFile()
     {
         FileHelpers.MakeSureDirectoryExists(Constants.SAVE_FOLDER);
+        var target = SaveFileInfo.SaveNameToPath(Name);
 
         var serialized = ThriveJsonConverter.Instance.SerializeObject(this);
         var justInfo = ThriveJsonConverter.Instance.SerializeObject(Info);
 
-        // var screenshot;
+        string tempScreenshot = null;
 
-        var target = SaveFileInfo.SaveNameToPath(Name);
+        if (Screenshot != null)
+        {
+            tempScreenshot = PathUtils.Join(Constants.SAVE_FOLDER, "tmp.png");
+            if (Screenshot.SavePng(tempScreenshot) != Error.Ok)
+            {
+                GD.PrintErr("Failed to save screenshot for inclusion in save");
+                Screenshot = null;
+                tempScreenshot = null;
+            }
+        }
 
+        try
+        {
+            WriteDataToSaveFile(target, justInfo, serialized, tempScreenshot);
+        }
+        finally
+        {
+            // Remove the temp file
+            if (tempScreenshot != null)
+                FileHelpers.DeleteFile(tempScreenshot);
+        }
+    }
+
+    private static void WriteDataToSaveFile(string target, string justInfo, string serialized, string tempScreenshot)
+    {
         using (var file = new File())
         {
             file.Open(target, File.ModeFlags.Write);
@@ -89,6 +124,29 @@ public class Save
                 using (var tar = new TarOutputStream(gzoStream))
                 {
                     OutputEntry(tar, SAVE_INFO_JSON, Encoding.UTF8.GetBytes(justInfo));
+
+                    if (tempScreenshot != null)
+                    {
+                        byte[] data = null;
+
+                        using (var reader = new File())
+                        {
+                            reader.Open(tempScreenshot, File.ModeFlags.Read);
+
+                            if (!reader.IsOpen())
+                            {
+                                GD.PrintErr("Failed to open temp screenshot for writing to save");
+                            }
+                            else
+                            {
+                                data = reader.GetBuffer((int)reader.GetLen());
+                            }
+                        }
+
+                        if (data != null && data.Length > 0)
+                            OutputEntry(tar, SAVE_SCREENSHOT, data);
+                    }
+
                     OutputEntry(tar, SAVE_SAVE_JSON, Encoding.UTF8.GetBytes(serialized));
                 }
             }

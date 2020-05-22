@@ -31,7 +31,11 @@ public static class SaveHelper
 
     private static Save CreateSaveObject(string gameState, SaveInformation.SaveType type)
     {
-        return new Save { GameStateName = gameState, Info = { Type = type } };
+        return new Save
+        {
+            GameStateName = gameState, Info = { Type = type },
+            Screenshot = ScreenShotTaker.Instance.TakeScreenshot(),
+        };
     }
 
     private static void PerformSave(Save save, SaveInformation.SaveType type)
@@ -75,9 +79,6 @@ public static class SaveHelper
     /// </summary>
     private static void QueueRemoveExcessQuickSaves()
     {
-        TaskExecutor.Instance.AddTask(new Task(() =>
-        {
-            SaveManager.RemoveExcessQuickSaves();
-        }));
+        TaskExecutor.Instance.AddTask(new Task(() => { SaveManager.RemoveExcessQuickSaves(); }));
     }
 }
