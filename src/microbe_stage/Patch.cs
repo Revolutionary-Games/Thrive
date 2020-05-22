@@ -6,7 +6,8 @@ using Newtonsoft.Json;
 ///   A patch is an instance of a Biome with some species in it
 /// </summary>
 [JsonObject(IsReference = true)]
-public class Patch : SaveLoadable<Patch.LoadingData>
+[UseThriveSerializer]
+public class Patch
 {
     /// <summary>
     ///   List of all species and their populations in this patch
@@ -18,7 +19,7 @@ public class Patch : SaveLoadable<Patch.LoadingData>
     [JsonProperty]
     public readonly int ID;
 
-    // [JsonIgnore]
+    [JsonProperty]
     public readonly ISet<Patch> Adjacent = new HashSet<Patch>();
 
     [JsonProperty]
@@ -110,19 +111,8 @@ public class Patch : SaveLoadable<Patch.LoadingData>
         return SpeciesInPatch[species];
     }
 
-    protected override void ApplyUnAppliedSaveData(LoadingData data, ISaveContext context)
+    public override string ToString()
     {
-        foreach (var entry in data.Populations)
-        {
-            SpeciesInPatch[context.World.GetSpecies(entry.Key)] = entry.Value;
-        }
-
-        // Also load the biome chunk meshes
-        Biome?.FinishLoading(context);
-    }
-
-    public class LoadingData
-    {
-        public Dictionary<uint, int> Populations;
+        return $"Patch \"{Name}\"";
     }
 }

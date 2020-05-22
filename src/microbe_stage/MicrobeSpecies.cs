@@ -1,10 +1,14 @@
 ﻿using System;
+using System.ComponentModel;
 using Newtonsoft.Json;
 
 /// <summary>
 ///   Represents a microbial species with microbe stage specific species things.
 /// </summary>
 [JsonObject(IsReference = true)]
+[TypeConverter(typeof(ThriveTypeConverter))]
+[JSONDynamicTypeAllowedAttribute]
+[UseThriveConverter]
 public class MicrobeSpecies : Species
 {
     public bool IsBacteria = false;

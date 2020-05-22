@@ -37,10 +37,6 @@ public class ThriveJsonConverter : IDisposable
             new RegistryTypeConverter(context),
             new GodotColorConverter(),
             new SpeciesConverter(context),
-
-            // // Probably less likely used converters defined last
-            // new PatchConverter(context),
-            // new PatchMapConverter(context),
         };
 
         thriveConvertersDynamicDeserialize = new List<JsonConverter> { new DynamicDeserializeObjectConverter(context) };
@@ -233,8 +229,6 @@ public abstract class BaseThriveConverter : JsonConverter
 
         if (refId != null)
         {
-            // refId.Remove();
-
             var reference = serializer.ReferenceResolver.ResolveReference(serializer, refId.Value<string>());
             if (reference != null)
                 return reference;
@@ -242,16 +236,11 @@ public abstract class BaseThriveConverter : JsonConverter
 
         var objId = item[ID_PROPERTY];
 
-        // Remove the id key before processing to not see that key when processing
-        // objId?.Remove();
-
         // Detect dynamic typing
         var type = item[TYPE_PROPERTY];
 
         if (type != null)
         {
-            // type.Remove();
-
             if (serializer.TypeNameHandling != TypeNameHandling.None)
             {
                 var parts = type.Value<string>().Split(',').Select(p => p.Trim()).ToList();
@@ -395,11 +384,16 @@ public abstract class BaseThriveConverter : JsonConverter
             if (serializer.TypeNameHandling != TypeNameHandling.None)
             {
                 // Write the type of the instance always as we can't detect if the value matches the type of the field
-                writer.WritePropertyName(TYPE_PROPERTY);
+                // We can at least check that the actual type is a subclass of something allowing dynamic typing
+                if (type.BaseType != null && type.BaseType.CustomAttributes.Any((attr) =>
+                    attr.AttributeType == typeof(JSONDynamicTypeAllowedAttribute)))
+                {
+                    writer.WritePropertyName(TYPE_PROPERTY);
 
-                var typeStr = $"{type.FullName}, {type.Assembly.GetName().Name}";
+                    var typeStr = $"{type.FullName}, {type.Assembly.GetName().Name}";
 
-                writer.WriteValue(typeStr);
+                    writer.WriteValue(typeStr);
+                }
             }
 
             // First time writing, write all properties
