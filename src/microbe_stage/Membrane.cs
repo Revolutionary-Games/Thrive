@@ -282,6 +282,10 @@ public class Membrane : MeshInstance
         return closest;
     }
 
+    /// <remarks>
+    ///   Just for prototype purposes, there may be
+    ///   a better way to do this
+    /// </remarks>
     public float DissolveEffect(float delta)
     {
         temp = Mathf.Lerp(temp, 0, 0.5f * delta);
