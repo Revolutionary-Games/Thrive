@@ -16,6 +16,10 @@ public class FloatingChunk : RigidBody, ISpawned
     /// </summary>
     private HashSet<Microbe> touchingMicrobes = new HashSet<Microbe>();
 
+    private bool isDissolving = false;
+
+    private float dissolvingValue = 0;
+
     public int DespawnRadiusSqr { get; set; }
 
     public Node SpawnedNode
@@ -44,7 +48,7 @@ public class FloatingChunk : RigidBody, ISpawned
     /// <summary>
     ///   If true this chunk is destroyed when all compounds are vented
     /// </summary>
-    public bool Disolves { get; set; } = false;
+    public bool Dissolves { get; set; } = false;
 
     /// <summary>
     ///   If > 0 applies damage to a cell on touch
@@ -70,7 +74,7 @@ public class FloatingChunk : RigidBody, ISpawned
 
         // Grab data
         VentPerSecond = chunkType.VentAmount;
-        Disolves = chunkType.Dissolves;
+        Dissolves = chunkType.Dissolves;
         Size = chunkType.Size;
         Damages = chunkType.Damages;
         DeleteOnTouch = chunkType.DeleteOnTouch;
@@ -174,8 +178,30 @@ public class FloatingChunk : RigidBody, ISpawned
 
             if (DeleteOnTouch || disappear)
             {
-                QueueFree();
+                isDissolving = true;
                 break;
+            }
+        }
+
+        if (isDissolving)
+        {
+            foreach (var microbe in touchingMicrobes)
+            {
+                AddCollisionExceptionWith(microbe);
+            }
+
+            var mesh = GetNode("NodeToScale").GetChild<MeshInstance>(0);
+
+            var dissolveMaterial = (ShaderMaterial)mesh.MaterialOverride;
+
+            dissolvingValue += delta * Constants.FLOATING_CHUNKS_DISSOLVING_SPEED;
+
+            dissolveMaterial.SetShaderParam("DissolveValue", dissolvingValue);
+
+            if (dissolvingValue >= 1)
+            {
+                QueueFree();
+                isDissolving = false;
             }
         }
     }
@@ -209,9 +235,9 @@ public class FloatingChunk : RigidBody, ISpawned
 
         // If you did not vent anything this step and the venter component
         // is flagged to dissolve you, dissolve you
-        if (!vented && Disolves)
+        if (!vented && Dissolves)
         {
-            QueueFree();
+            isDissolving = true;
         }
     }
 

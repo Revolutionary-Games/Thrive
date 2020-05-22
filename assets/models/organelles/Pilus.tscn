@@ -1,14 +1,17 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://shaders/Organelle.shader" type="Shader" id=1]
 [ext_resource path="res://assets/textures/pilus.png" type="Texture" id=2]
 [ext_resource path="res://assets/models/organelles/Pilus.mesh" type="ArrayMesh" id=3]
+[ext_resource path="res://assets/textures/PerlinNoise.jpg" type="Texture" id=4]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
 shader = ExtResource( 1 )
+shader_param/DissolveValue = 0.0
 shader_param/tint = Color( 1, 1, 1, 1 )
 shader_param/texture = ExtResource( 2 )
+shader_param/DissolveTexture = ExtResource( 4 )
 
 [node name="Pilus" type="MeshInstance"]
 transform = Transform( 100, 0, 0, 0, -1.62921e-05, 100, 0, -100, -1.62921e-05, 0, 0, 0 )

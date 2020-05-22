@@ -1524,7 +1524,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// </summary>
     private void HandleDeath()
     {
-        GD.Print("Handling death");
         //QueueFree();
     }
 
