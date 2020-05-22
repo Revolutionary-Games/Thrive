@@ -21,6 +21,14 @@ public static class SaveHelper
         PerformSave(save, SaveInformation.SaveType.QuickSave);
     }
 
+    /// <summary>
+    ///   Loads the save file with the latest write time
+    /// </summary>
+    public static void QuickLoad()
+    {
+        throw new NotImplementedException();
+    }
+
     private static Save CreateSaveObject(string gameState, SaveInformation.SaveType type)
     {
         return new Save { GameStateName = gameState, Info = { Type = type } };
@@ -69,7 +77,7 @@ public static class SaveHelper
     {
         TaskExecutor.Instance.AddTask(new Task(() =>
         {
-            // TODO: implement
+            SaveManager.RemoveExcessQuickSaves();
         }));
     }
 }

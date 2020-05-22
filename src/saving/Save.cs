@@ -1,11 +1,9 @@
 using System;
-using System.Collections.Specialized;
 using System.IO;
 using System.Text;
 using Godot;
 using ICSharpCode.SharpZipLib.GZip;
 using ICSharpCode.SharpZipLib.Tar;
-using Newtonsoft.Json;
 using Directory = Godot.Directory;
 using File = Godot.File;
 
@@ -44,7 +42,7 @@ public class Save
     /// <returns>The loaded save</returns>
     public static Save LoadFromFile(string saveName)
     {
-        var target = PathUtils.Join(Constants.SAVE_FOLDER, saveName);
+        var target = SaveFileInfo.SaveNameToPath(saveName);
 
         var directory = new Directory();
 
@@ -59,22 +57,14 @@ public class Save
 
             // var result = file.GetAsText();
 
+            // Also implement LoadJustInfoFromFile
             throw new NotImplementedException();
         }
     }
 
-    /// <summary>
-    ///   Makes sure the save directory exists
-    /// </summary>
-    public static void MakeSureSaveSaveDirectoryExists()
+    public static SaveInformation LoadJustInfoFromFile(string path)
     {
-        var directory = new Directory();
-        var result = directory.MakeDirRecursive(Constants.SAVE_FOLDER);
-
-        if (result != Error.AlreadyExists && result != Error.Ok)
-        {
-            throw new IOException("can't create saves folder");
-        }
+        throw new NotImplementedException();
     }
 
     /// <summary>
@@ -82,14 +72,14 @@ public class Save
     /// </summary>
     public void SaveToFile()
     {
-        MakeSureSaveSaveDirectoryExists();
+        FileHelpers.MakeSureDirectoryExists(Constants.SAVE_FOLDER);
 
         var serialized = ThriveJsonConverter.Instance.SerializeObject(this);
         var justInfo = ThriveJsonConverter.Instance.SerializeObject(Info);
 
         // var screenshot;
 
-        var target = PathUtils.Join(Constants.SAVE_FOLDER, Name);
+        var target = SaveFileInfo.SaveNameToPath(Name);
 
         using (var file = new File())
         {
@@ -151,11 +141,9 @@ public class SaveInformation
     /// </summary>
     public string ThriveVersion { get; set; } = Constants.Version;
 
-    // TODO: get current platform
-    public string Platform { get; set; }
+    public string Platform { get; set; } = FeatureInformation.GetOS();
 
-    // TODO: get current username
-    public string Creator { get; set; }
+    public string Creator { get; set; } = System.Environment.UserName;
 
     public SaveType Type { get; set; } = SaveType.Manual;
 }

@@ -32,11 +32,13 @@ config/windows_native_icon="res://assets/misc/icon.ico"
 
 GUICommon="*res://src/gui_common/GUICommon.cs"
 TransitionManager="*res://src/gui_common/TransitionManager.cs"
-Jukebox="*res://src/general/Jukebox.cs"
 ScreenFilter="*res://src/engine/ScreenFilter.tscn"
 FilterLoader="*res://src/engine/FilterLoader.cs"
 CursorLoader="*res://src/engine/CursorLoader.cs"
 FPSCounter="*res://src/engine/FPSCounter.tscn"
+ScreenShotTaker="*res://src/engine/ScreenShotTaker.cs"
+QuickLoadHandler="*res://src/gui_common/QuickLoadHandler.cs"
+Jukebox="*res://src/general/Jukebox.cs"
 
 [debug]
 
@@ -178,6 +180,16 @@ g_hold_forward={
 g_quick_save={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777248,"unicode":0,"echo":false,"script":null)
+ ]
+}
+quick_load={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777252,"unicode":0,"echo":false,"script":null)
+ ]
+}
+screenshot={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777255,"unicode":0,"echo":false,"script":null)
  ]
 }
 
