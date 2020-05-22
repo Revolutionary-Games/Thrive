@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 /// </summary>
 [JsonObject(IsReference = true)]
 [TypeConverter(typeof(ThriveTypeConverter))]
+[JSONDynamicTypeAllowed]
 [UseThriveConverter]
 public abstract class Species : ICloneable
 {

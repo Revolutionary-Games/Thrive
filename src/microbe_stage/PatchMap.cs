@@ -7,9 +7,15 @@ using Newtonsoft.Json;
 /// <summary>
 ///   A container for patches that are joined together
 /// </summary>
-public class PatchMap : SaveLoadable<PatchMap.LoadingData>
+public class PatchMap
 {
     private Patch currentPatch = null;
+
+    /// <summary>
+    ///   The  list of patches. DO NOT MODIFY THE DICTIONARY FROM OUTSIDE THIS CLASS
+    /// </summary>
+    [JsonProperty]
+    public Dictionary<int, Patch> Patches { get; private set; } = new Dictionary<int, Patch>();
 
     /// <summary>
     ///   Currently active patch (the one player is in)
@@ -36,12 +42,6 @@ public class PatchMap : SaveLoadable<PatchMap.LoadingData>
             currentPatch = value;
         }
     }
-
-    /// <summary>
-    ///   The  list of patches. DO NOT MODIFY FROM OUTSIDE THIS CLASS
-    /// </summary>
-    [JsonProperty]
-    public Dictionary<int, Patch> Patches { get; private set; } = new Dictionary<int, Patch>();
 
     /// <summary>
     ///   Adds a new patch to the map. Throws if can't add
@@ -260,26 +260,5 @@ public class PatchMap : SaveLoadable<PatchMap.LoadingData>
         }
 
         return false;
-    }
-
-    protected override void ApplyUnAppliedSaveData(LoadingData data, ISaveContext context)
-    {
-        // Recreate links
-        foreach (var entry in data.AdjacentPatches)
-        {
-            GetPatch(entry.From).Adjacent.Add(GetPatch(entry.To));
-        }
-
-        // Set current patch
-        if (data.CurrentPatch.HasValue)
-        {
-            CurrentPatch = GetPatch(data.CurrentPatch.Value);
-        }
-    }
-
-    public class LoadingData
-    {
-        public HashSet<(int From, int To)> AdjacentPatches;
-        public int? CurrentPatch;
     }
 }
