@@ -62,27 +62,21 @@ public class Save
     {
         var target = SaveFileInfo.SaveNameToPath(saveName);
 
-        var directory = new Directory();
+        var (_, save, screenshot) = LoadFromFile(target, false, true, true);
 
-        if (!directory.FileExists(target))
-            throw new ArgumentException("save with the given name doesn't exist");
+        // Info is already contained in save so it doesn't need to be loaded and assigned here
+        save.Screenshot = screenshot;
 
-        using (var file = new File())
-        {
-            file.Open(target, File.ModeFlags.Read);
-            if (!file.IsOpen())
-                throw new ArgumentException("couldn't open the file for reading");
-
-            // var result = file.GetAsText();
-
-            // Also implement LoadJustInfoFromFile
-            throw new NotImplementedException();
-        }
+        return save;
     }
 
-    public static SaveInformation LoadJustInfoFromFile(string path)
+    public static SaveInformation LoadJustInfoFromSave(string saveName)
     {
-        throw new NotImplementedException();
+        var target = SaveFileInfo.SaveNameToPath(saveName);
+
+        var (info, _, _) = LoadFromFile(target, true, false, false);
+
+        return info;
     }
 
     /// <summary>
@@ -96,8 +90,8 @@ public class Save
         FileHelpers.MakeSureDirectoryExists(Constants.SAVE_FOLDER);
         var target = SaveFileInfo.SaveNameToPath(Name);
 
-        var serialized = ThriveJsonConverter.Instance.SerializeObject(this);
         var justInfo = ThriveJsonConverter.Instance.SerializeObject(Info);
+        var serialized = ThriveJsonConverter.Instance.SerializeObject(this);
 
         string tempScreenshot = null;
 
@@ -163,6 +157,139 @@ public class Save
         }
     }
 
+    private static (SaveInformation info, Save save, Image screenshot) LoadFromFile(string file, bool info,
+        bool save, bool screenshot)
+    {
+        using (var directory = new Directory())
+        {
+            if (!directory.FileExists(file))
+                throw new ArgumentException("save with the given name doesn't exist");
+        }
+
+        var (infoStr, saveStr, screenshotData) = LoadDataFromFile(file, info, save, screenshot);
+
+        SaveInformation infoResult = null;
+        Save saveResult = null;
+        Image imageResult = null;
+
+        if (info)
+        {
+            if (string.IsNullOrEmpty(infoStr))
+            {
+                throw new IOException("couldn't find info content in save");
+            }
+
+            infoResult = ThriveJsonConverter.Instance.DeserializeObject<SaveInformation>(infoStr);
+        }
+
+        if (save)
+        {
+            if (string.IsNullOrEmpty(saveStr))
+            {
+                throw new IOException("couldn't find save content in save file");
+            }
+
+            // This deserializes a huge tree of objects
+            saveResult = ThriveJsonConverter.Instance.DeserializeObject<Save>(saveStr);
+        }
+
+        if (screenshot)
+        {
+            imageResult = new Image();
+
+            if (screenshotData != null && screenshotData.Length > 0)
+            {
+                imageResult.LoadPngFromBuffer(screenshotData);
+            }
+            else
+            {
+                // Not a critical error
+            }
+        }
+
+        return (infoResult, saveResult, imageResult);
+    }
+
+    private static (string infoStr, string saveStr, byte[] screenshot) LoadDataFromFile(string file, bool info,
+        bool save, bool screenshot)
+    {
+        string infoStr = null;
+        string saveStr = null;
+        byte[] screenshotData = null;
+
+        // Used for early stop in reading
+        int itemsToRead = 0;
+
+        if (info)
+            ++itemsToRead;
+
+        if (save)
+            ++itemsToRead;
+
+        if (screenshot)
+            ++itemsToRead;
+
+        if (itemsToRead < 1)
+        {
+            throw new ArgumentException("no things to load specified from save");
+        }
+
+        using (var reader = new File())
+        {
+            reader.Open(file, File.ModeFlags.Read);
+            if (!reader.IsOpen())
+                throw new ArgumentException("couldn't open the file for reading");
+
+            using (Stream gzoStream = new GZipInputStream(new GodotFileStream(reader)))
+            {
+                using (var tar = new TarInputStream(gzoStream))
+                {
+                    TarEntry tarEntry;
+                    while ((tarEntry = tar.GetNextEntry()) != null)
+                    {
+                        if (tarEntry.IsDirectory)
+                            continue;
+
+                        if (tarEntry.Name == SAVE_INFO_JSON)
+                        {
+                            if (!info)
+                                continue;
+
+                            infoStr = ReadStringEntry(tar, (int)tarEntry.Size);
+                            --itemsToRead;
+                        }
+                        else if (tarEntry.Name == SAVE_SAVE_JSON)
+                        {
+                            if (!save)
+                                continue;
+
+                            saveStr = ReadStringEntry(tar, (int)tarEntry.Size);
+                            --itemsToRead;
+                        }
+                        else if (tarEntry.Name == SAVE_SCREENSHOT)
+                        {
+                            if (!screenshot)
+                                continue;
+
+                            screenshotData = ReadBytesEntry(tar, (int)tarEntry.Size);
+                            --itemsToRead;
+                        }
+                        else
+                        {
+                            GD.PrintErr("Unknown file in save: ", tarEntry.Name);
+                        }
+
+                        // Early quit if we already got as many things as we want
+                        if (itemsToRead <= 0)
+                            break;
+                    }
+                }
+            }
+        }
+
+        return (infoStr, saveStr, screenshotData);
+    }
+
     private static void OutputEntry(TarOutputStream archive, string name, byte[] data)
     {
         var entry = TarEntry.CreateTarEntry(name);
@@ -178,6 +305,30 @@ public class Save
         archive.Write(data, 0, data.Length);
 
         archive.CloseEntry();
+    }
+
+    private static string ReadStringEntry(TarInputStream tar, int length)
+    {
+        // Pre-allocate storage
+        var buffer = new byte[length];
+        using (var stream = new MemoryStream(buffer))
+        {
+            tar.CopyEntryContents(stream);
+        }
+
+        return Encoding.UTF8.GetString(buffer);
+    }
+
+    private static byte[] ReadBytesEntry(TarInputStream tar, int length)
+    {
+        // Pre-allocate storage
+        var buffer = new byte[length];
+        using (var stream = new MemoryStream(buffer))
+        {
+            tar.CopyEntryContents(stream);
+        }
+
+        return buffer;
     }
 }
 
@@ -212,6 +363,11 @@ public class SaveInformation
     public string Platform { get; set; } = FeatureInformation.GetOS();
 
     public string Creator { get; set; } = System.Environment.UserName;
+
+    /// <summary>
+    ///   Unique ID of this save
+    /// </summary>
+    public Guid ID { get; set; } = Guid.NewGuid();
 
     public SaveType Type { get; set; } = SaveType.Manual;
 }
