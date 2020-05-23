@@ -696,13 +696,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             AddCollisionExceptionWith(chunk);
         }
 
-        // TODO: fix. Might need to rethink destroying this
-        // immediately, or spawning a Node here that despawns after
-        // playing.
-        // Play the death sound
-        // playSoundWithDistance(world, "Data/Sound/soundeffects/microbe-death.ogg",
-        // microbeEntity);
-
         // Subtract population
         if (!IsPlayerMicrobe && !Species.PlayerSpecies)
         {
