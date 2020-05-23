@@ -687,11 +687,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             chunkType.Meshes.Add(sceneToUse);
 
             // Finally spawn a chunk with the settings
-            var chunk = SpawnHelpers.SpawnChunk(chunkType, Translation + positionAdded, GetParent(),
+            SpawnHelpers.SpawnChunk(chunkType, Translation + positionAdded, GetParent(),
                 chunkScene, cloudSystem, random, modelNodePath);
-
-            // Disable the dissolving membrane's collision with the chunks
-            AddCollisionExceptionWith(chunk);
         }
 
         // Subtract population
@@ -715,6 +712,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         deathEffects.Transform = Transform;
         deathEffects.EmissionRadius = Radius;
         GetParent().AddChild(deathEffects);
+
+        // Disable collisions
+        CollisionLayer = 0;
+        CollisionMask = 0;
 
         // Some pre-death actions are going to be run now
     }
