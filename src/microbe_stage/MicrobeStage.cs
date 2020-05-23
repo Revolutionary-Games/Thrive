@@ -248,6 +248,8 @@ public class MicrobeStage : Node
         var parent = GetParent();
         parent.RemoveChild(this);
         parent.AddChild(editor);
+
+        // We don't free this here as the editor will return to this scene
     }
 
     public void ReturnToMenu()

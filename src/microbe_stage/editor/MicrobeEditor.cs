@@ -389,6 +389,9 @@ public class MicrobeEditor : Node
 
     public void ReturnToMenu()
     {
+        // As we will no longer return to the microbe stage we need to free it, if we have it
+        ReturnToStage?.QueueFree();
+
         GUICommon.Instance.ReturnToMenu(this);
     }
 
