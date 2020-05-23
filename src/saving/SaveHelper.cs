@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using Godot;
 
@@ -13,12 +14,31 @@ public static class SaveHelper
     /// <param name="stage">Data to include in save</param>
     public static void QuickSave(MicrobeStage stage)
     {
-        var save = CreateSaveObject("MicrobeStage", SaveInformation.SaveType.QuickSave);
+        Stopwatch stopwatch = Stopwatch.StartNew();
+        var save = CreateSaveObject(SaveGameState.MicrobeStage, SaveInformation.SaveType.QuickSave);
 
         // TODO: save other properties as well
         save.SavedProperties = stage.CurrentGame;
+        save.MicrobeStage = stage;
 
-        PerformSave(save, SaveInformation.SaveType.QuickSave);
+        PerformSave(save, SaveInformation.SaveType.QuickSave, stopwatch);
+    }
+
+    /// <summary>
+    ///   Quick save from the microbe editor
+    /// </summary>
+    /// <param name="editor">Data to include in save</param>
+    public static void QuickSave(MicrobeEditor editor)
+    {
+        Stopwatch stopwatch = Stopwatch.StartNew();
+        var save = CreateSaveObject(SaveGameState.MicrobeEditor, SaveInformation.SaveType.QuickSave);
+
+        // TODO: save other properties as well
+        save.SavedProperties = editor.CurrentGame;
+        save.MicrobeEditor = editor;
+        save.MicrobeStage = editor.ReturnToStage;
+
+        PerformSave(save, SaveInformation.SaveType.QuickSave, stopwatch);
     }
 
     /// <summary>
@@ -29,16 +49,16 @@ public static class SaveHelper
         throw new NotImplementedException();
     }
 
-    private static Save CreateSaveObject(string gameState, SaveInformation.SaveType type)
+    private static Save CreateSaveObject(SaveGameState gameState, SaveInformation.SaveType type)
     {
         return new Save
         {
-            GameStateName = gameState, Info = { Type = type },
+            GameState = gameState, Info = { Type = type },
             Screenshot = ScreenShotTaker.Instance.TakeScreenshot(),
         };
     }
 
-    private static void PerformSave(Save save, SaveInformation.SaveType type)
+    private static void PerformSave(Save save, SaveInformation.SaveType type, Stopwatch stopwatch)
     {
         // TODO: implement type naming
         var name = "quick_save.tar.gz";
@@ -48,12 +68,12 @@ public static class SaveHelper
         // try
         // {
         save.SaveToFile();
-        DisplaySaveStatusMessage(true, name);
+        DisplaySaveStatusMessage(true, name, stopwatch);
 
         // }
         // catch (Exception e)
         // {
-        //     DisplaySaveStatusMessage(false, "Error, an exception happened: " + e);
+        //     DisplaySaveStatusMessage(false, "Error, an exception happened: " + e, stopwatch);
         //     return;
         // }
 
@@ -66,12 +86,14 @@ public static class SaveHelper
     /// </summary>
     /// <param name="success">True on success</param>
     /// <param name="message">Failure reason, or the created save file</param>
+    /// <param name="stopwatch">Used to measure how long saving took</param>
     /// <remarks>
     ///   TODO: implement this
     /// </remarks>
-    private static void DisplaySaveStatusMessage(bool success, string message)
+    private static void DisplaySaveStatusMessage(bool success, string message, Stopwatch stopwatch)
     {
-        GD.Print("save finished, success: ", success, " message: ", message);
+        stopwatch.Stop();
+        GD.Print("save finished, success: ", success, " message: ", message, " elapsed: ", stopwatch.Elapsed);
     }
 
     /// <summary>

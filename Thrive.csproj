@@ -182,12 +182,15 @@
     <Compile Include="src\saving\ISaveLoadable.cs" />
     <Compile Include="src\saving\Save.cs" />
     <Compile Include="src\saving\SaveFileInfo.cs" />
+    <Compile Include="src\saving\SaveGameState.cs" />
     <Compile Include="src\saving\SaveLoadable.cs" />
     <Compile Include="src\saving\SaveContext.cs" />
     <Compile Include="src\saving\SaveHelper.cs" />
     <Compile Include="src\saving\SaveManager.cs" />
+    <Compile Include="src\saving\serializers\BaseNodeConverter.cs" />
     <Compile Include="src\saving\serializers\DynamicDeserializeObjectConverter.cs" />
     <Compile Include="src\saving\serializers\GodotColorConverter.cs" />
+    <Compile Include="src\saving\serializers\NodeConverter.cs" />
     <Compile Include="src\saving\serializers\PropertyInfoUtils.cs" />
     <Compile Include="src\saving\serializers\ReferenceResolver.cs" />
     <Compile Include="src\saving\serializers\RegistryTypeConverter.cs" />

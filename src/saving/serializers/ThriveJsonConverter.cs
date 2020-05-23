@@ -37,6 +37,11 @@ public class ThriveJsonConverter : IDisposable
             new RegistryTypeConverter(context),
             new GodotColorConverter(),
             new SpeciesConverter(context),
+
+            // Specific Godot Node converter types
+
+            // Fallback Godot Node converter
+            new BaseNodeConverter(context),
         };
 
         thriveConvertersDynamicDeserialize = new List<JsonConverter> { new DynamicDeserializeObjectConverter(context) };

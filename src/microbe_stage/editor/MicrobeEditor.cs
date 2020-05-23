@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Main class of the microbe editor
@@ -22,6 +23,7 @@ public class MicrobeEditor : Node
     /// <summary>
     ///   Where all user actions will  be registered
     /// </summary>
+    [JsonProperty]
     private ActionHistory<EditorAction> history;
 
     private Material invalidMaterial;
@@ -32,14 +34,17 @@ public class MicrobeEditor : Node
     /// <summary>
     ///   Where the player wants to move after editing
     /// </summary>
+    [JsonProperty]
     private Patch targetPatch = null;
 
     /// <summary>
     ///   When false the player is no longer allowed to move patches (other than going back to where they were at the
     ///   start)
     /// </summary>
+    [JsonProperty]
     private bool canStillMove;
 
+    [JsonProperty]
     private Patch playerPatchOnEntry;
 
     /// <summary>
@@ -64,10 +69,11 @@ public class MicrobeEditor : Node
     /// <summary>
     ///   The species that is being edited, changes are applied to it on exit
     /// </summary>
+    [JsonProperty]
     private MicrobeSpecies editedSpecies;
 
     /// <summary>
-    ///   This is a global assesment if the currently being placed
+    ///   This is a global assessment if the currently being placed
     ///   organelle is valid (if not all hover hexes will be shown as
     ///   invalid)
     /// </summary>
@@ -78,6 +84,7 @@ public class MicrobeEditor : Node
     ///   it. This is populated when entering and used to update the
     ///   player's species template on exit.
     /// </summary>
+    [JsonProperty]
     private OrganelleLayout<OrganelleTemplate> editedMicrobeOrganelles;
 
     // This is the already placed hexes
@@ -97,6 +104,7 @@ public class MicrobeEditor : Node
     /// </summary>
     private bool ready = false;
 
+    [JsonProperty]
     private int organelleRot = 0;
 
     /// <summary>
@@ -125,26 +133,31 @@ public class MicrobeEditor : Node
         SixWaySymmetry,
     }
 
+    [JsonIgnore]
     public MicrobeCamera Camera => camera;
 
     /// <summary>
     ///   The selected membrane rigidity
     /// </summary>
+    [JsonProperty]
     public float Rigidity { get; private set; }
 
     /// <summary>
     ///   Selected membrane type for the species
     /// </summary>
+    [JsonProperty]
     public MembraneType Membrane { get; private set; }
 
     /// <summary>
     ///   The name of organelle type that is selected to be placed
     /// </summary>
+    [JsonProperty]
     public string ActiveActionName { get; set; }
 
     /// <summary>
     ///   The number of mutation points left
     /// </summary>
+    [JsonProperty]
     public int MutationPoints { get; private set; }
 
     /// <summary>
@@ -165,24 +178,29 @@ public class MicrobeEditor : Node
     /// <summary>
     ///   When true nothing costs MP
     /// </summary>
+    [JsonProperty]
     public bool FreeBuilding { get; private set; } = false;
 
     /// <summary>
     ///   Hover hexes and models are only shown if this is true
     /// </summary>
+    [JsonIgnore]
     public bool ShowHover { get; set; } = false;
 
     /// <summary>
     ///   The main current game object holding various details
     /// </summary>
+    [JsonProperty]
     public GameProperties CurrentGame { get; set; }
 
     /// <summary>
     ///   If set the editor returns to this stage. The CurrentGame
     ///   should be shared with this stage. If not set returns to a new microbe stage
     /// </summary>
+    [JsonProperty]
     public MicrobeStage ReturnToStage { get; set; }
 
+    [JsonIgnore]
     public bool HasNucleus
     {
         get
@@ -200,6 +218,7 @@ public class MicrobeEditor : Node
     /// <summary>
     ///   Number of organelles in the microbe
     /// </summary>
+    [JsonIgnore]
     public int MicrobeSize
     {
         get { return editedMicrobeOrganelles.Organelles.Count; }
@@ -208,6 +227,7 @@ public class MicrobeEditor : Node
     /// <summary>
     ///   Number of hexes in the microbe
     /// </summary>
+    [JsonIgnore]
     public int MicrobeHexSize
     {
         get
@@ -226,6 +246,7 @@ public class MicrobeEditor : Node
     /// <summary>
     ///   Returns the current patch the player is in
     /// </summary>
+    [JsonIgnore]
     public Patch CurrentPatch
     {
         get { return targetPatch ?? playerPatchOnEntry; }
@@ -406,6 +427,13 @@ public class MicrobeEditor : Node
         if (@event.IsActionPressed("e_secondary"))
         {
             RemoveOrganelle();
+        }
+
+        // Can only save once the editor is ready
+        if (@event.IsActionPressed("g_quick_save") && ready)
+        {
+            GD.Print("quick saving microbe editor");
+            SaveHelper.QuickSave(this);
         }
     }
 
