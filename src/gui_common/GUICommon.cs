@@ -70,6 +70,7 @@ public class GUICommon : Node
         mainMenu.IsReturningToMenu = true;
         GetTree().Root.RemoveChild(currentSceneRoot);
         GetTree().Root.AddChild(mainMenu);
+        currentSceneRoot.QueueFree();
     }
 
     /// <summary>

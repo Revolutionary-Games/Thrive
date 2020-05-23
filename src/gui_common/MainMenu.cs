@@ -173,6 +173,7 @@ public class MainMenu : Node
         var parent = GetParent();
         parent.RemoveChild(this);
         parent.AddChild(stage);
+        QueueFree();
     }
 
     private void OnFreebuildFadeInEnded()
@@ -189,6 +190,7 @@ public class MainMenu : Node
         var parent = GetParent();
         parent.RemoveChild(this);
         parent.AddChild(editor);
+        QueueFree();
     }
 
     private void NewGamePressed()
