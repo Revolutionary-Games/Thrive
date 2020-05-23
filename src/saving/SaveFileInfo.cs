@@ -36,7 +36,7 @@ public class SaveFileInfo
             if (info == null)
             {
                 // Load from file
-                info = Save.LoadJustInfoFromFile(Path);
+                info = Save.LoadJustInfoFromSave(Name);
             }
 
             return info;

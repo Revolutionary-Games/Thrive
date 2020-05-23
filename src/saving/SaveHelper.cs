@@ -14,7 +14,7 @@ public static class SaveHelper
     /// <param name="stage">Data to include in save</param>
     public static void QuickSave(MicrobeStage stage)
     {
-        Stopwatch stopwatch = Stopwatch.StartNew();
+        var stopwatch = Stopwatch.StartNew();
         var save = CreateSaveObject(SaveGameState.MicrobeStage, SaveInformation.SaveType.QuickSave);
 
         // TODO: save other properties as well
@@ -30,7 +30,7 @@ public static class SaveHelper
     /// <param name="editor">Data to include in save</param>
     public static void QuickSave(MicrobeEditor editor)
     {
-        Stopwatch stopwatch = Stopwatch.StartNew();
+        var stopwatch = Stopwatch.StartNew();
         var save = CreateSaveObject(SaveGameState.MicrobeEditor, SaveInformation.SaveType.QuickSave);
 
         // TODO: save other properties as well
@@ -46,7 +46,60 @@ public static class SaveHelper
     /// </summary>
     public static void QuickLoad()
     {
-        throw new NotImplementedException();
+        // TODO: implement name detection
+        var name = "quick_save.tar.gz";
+
+        LoadSave(name);
+    }
+
+    /// <summary>
+    ///   Loads save
+    /// </summary>
+    /// <param name="name">The name of the save to load</param>
+    public static void LoadSave(string name)
+    {
+        // TODO: loading screen while loading save data
+
+        Save save;
+
+        var stopwatch = Stopwatch.StartNew();
+
+        // try
+        // {
+        save = Save.LoadFromFile(name);
+
+        // }
+        // catch (Exception e)
+        // {
+        //     DisplayLoadFailure("An exception happened while loading the save data", e.ToString(), stopwatch);
+        //     return;
+        // }
+
+        // Save data loaded, apply the save
+        ApplySave(save, stopwatch);
+    }
+
+    /// <summary>
+    ///   Replaces the current state of the game with what the save has
+    /// </summary>
+    /// <param name="save">The save to apply data from</param>
+    /// <param name="stopwatch">To track how long it took</param>
+    public static void ApplySave(Save save, Stopwatch stopwatch)
+    {
+        switch (save.GameState)
+        {
+            case SaveGameState.MicrobeEditor:
+                // throw new NotImplementedException();
+                // TODO: implement
+                break;
+
+            case SaveGameState.Invalid:
+            default:
+                DisplayLoadFailure("Save is invalid", "Save has an unknown game state", stopwatch);
+                return;
+        }
+
+        DisplaySaveStatusMessage(true, "Load finished", stopwatch);
     }
 
     private static Save CreateSaveObject(SaveGameState gameState, SaveInformation.SaveType type)
@@ -93,7 +146,22 @@ public static class SaveHelper
     private static void DisplaySaveStatusMessage(bool success, string message, Stopwatch stopwatch)
     {
         stopwatch.Stop();
-        GD.Print("save finished, success: ", success, " message: ", message, " elapsed: ", stopwatch.Elapsed);
+        GD.Print("save/load finished, success: ", success, " message: ", message, " elapsed: ", stopwatch.Elapsed);
+    }
+
+    /// <summary>
+    ///   Displays a dismissable dialog saying that loading a save failed
+    /// </summary>
+    /// <param name="message">Message to show</param>
+    /// <param name="error">Error message to include</param>
+    /// <param name="stopwatch">Duration tracking</param>
+    private static void DisplayLoadFailure(string message, string error, Stopwatch stopwatch)
+    {
+        stopwatch.Stop();
+        GD.Print("loading FAILED, message: ", message, " elapsed: ", stopwatch.Elapsed);
+        GD.Print("error related to load fail: ", error);
+
+        // TODO: show the dialog
     }
 
     /// <summary>
