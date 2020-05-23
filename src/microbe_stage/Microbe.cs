@@ -104,8 +104,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
     private MicrobeAI ai;
 
-    private bool isDissolving = false;
-
     /// <summary>
     ///   The membrane of this Microbe. Used for grabbing radius / points from this.
     /// </summary>
