@@ -30,7 +30,7 @@ public class Save
     /// <summary>
     ///   The state the game was in when it was saved
     /// </summary>
-    public SaveGameState GameState { get; set; } = SaveGameState.Invalid;
+    public MainGameState GameState { get; set; } = MainGameState.Invalid;
 
     /// <summary>
     ///   The game properties of the saved game

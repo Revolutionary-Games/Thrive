@@ -57,6 +57,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\engine\FeatureInformation.cs" />
     <Compile Include="src\engine\GodotFileStream.cs" />
+    <Compile Include="src\engine\SceneManager.cs" />
     <Compile Include="src\engine\ScreenShotTaker.cs" />
     <Compile Include="src\general\PathUtils.cs" />
     <Compile Include="src\gui_common\Cutscene.cs" />
@@ -177,12 +178,13 @@
     <Compile Include="src\microbe_stage\MicrobeAI.cs" />
     <Compile Include="src\microbe_stage\MicrobeAICommonData.cs" />
     <Compile Include="src\saving\FileHelpers.cs" />
+    <Compile Include="src\saving\ILoadableGameState.cs" />
     <Compile Include="src\saving\ISaveApplyable.cs" />
     <Compile Include="src\saving\ISaveContext.cs" />
     <Compile Include="src\saving\ISaveLoadable.cs" />
     <Compile Include="src\saving\Save.cs" />
     <Compile Include="src\saving\SaveFileInfo.cs" />
-    <Compile Include="src\saving\SaveGameState.cs" />
+    <Compile Include="src\saving\MainGameState.cs" />
     <Compile Include="src\saving\SaveLoadable.cs" />
     <Compile Include="src\saving\SaveContext.cs" />
     <Compile Include="src\saving\SaveHelper.cs" />

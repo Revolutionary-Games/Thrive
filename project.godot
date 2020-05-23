@@ -31,6 +31,7 @@ config/windows_native_icon="res://assets/misc/icon.ico"
 [autoload]
 
 GUICommon="*res://src/gui_common/GUICommon.cs"
+SceneManager="*res://src/engine/SceneManager.cs"
 TransitionManager="*res://src/gui_common/TransitionManager.cs"
 ScreenFilter="*res://src/engine/ScreenFilter.tscn"
 FilterLoader="*res://src/engine/FilterLoader.cs"

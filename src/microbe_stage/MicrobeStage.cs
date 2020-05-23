@@ -239,22 +239,23 @@ public class MicrobeStage : Node
         GameWorld.AlterSpeciesPopulation(
             playerSpecies, Constants.PLAYER_REPRODUCTION_POPULATION_GAIN, "player reproduced");
 
-        var scene = GD.Load<PackedScene>("res://src/microbe_stage/editor/MicrobeEditor.tscn");
+        var scene = SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor);
 
         var editor = (MicrobeEditor)scene.Instance();
 
         editor.CurrentGame = CurrentGame;
         editor.ReturnToStage = this;
-        var parent = GetParent();
-        parent.RemoveChild(this);
-        parent.AddChild(editor);
 
         // We don't free this here as the editor will return to this scene
+        if (SceneManager.Instance.SwitchToScene(editor, true) != this)
+        {
+            throw new Exception("failed to keep the current scene root");
+        }
     }
 
     public void ReturnToMenu()
     {
-        GUICommon.Instance.ReturnToMenu(this);
+        SceneManager.Instance.ReturnToMenu();
     }
 
     /// <summary>
@@ -295,6 +296,7 @@ public class MicrobeStage : Node
     {
         if (patchManager != null)
             return;
+
         patchManager = new PatchManager(spawner, ProcessSystem, Clouds, TimedLifeSystem,
             worldLight, CurrentGame);
     }
