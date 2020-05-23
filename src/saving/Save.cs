@@ -30,12 +30,22 @@ public class Save
     /// <summary>
     ///   The state the game was in when it was saved
     /// </summary>
-    public string GameStateName { get; set; }
+    public SaveGameState GameState { get; set; } = SaveGameState.Invalid;
 
     /// <summary>
     ///   The game properties of the saved game
     /// </summary>
     public GameProperties SavedProperties { get; set; }
+
+    /// <summary>
+    ///   Microbe stage data for the save, if currently in the microbe stage
+    /// </summary>
+    public MicrobeStage MicrobeStage { get; set; }
+
+    /// <summary>
+    ///   Microbe editor data for the save, if GameStateName == MicrobeEditor
+    /// </summary>
+    public MicrobeEditor MicrobeEditor { get; set; }
 
     /// <summary>
     ///   Screenshot for this save

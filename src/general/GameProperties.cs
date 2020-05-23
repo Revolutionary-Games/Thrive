@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 ///   This contains the single game settings.
 ///   This is recreated when starting a new game
 /// </summary>
+[JsonObject(IsReference = true)]
 public class GameProperties
 {
     [JsonProperty]

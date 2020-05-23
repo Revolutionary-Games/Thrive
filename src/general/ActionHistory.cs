@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   General implementation of an action history and undo / redo for use by editors
@@ -8,12 +9,14 @@ using System.Collections.Generic;
 public class ActionHistory<T>
     where T : ReversableAction
 {
+    [JsonProperty]
     private List<T> actions = new List<T>();
 
     /// <summary>
     ///   marks the last action that has been done (not undone, but
     ///   possibly redone), is 0 if there is none.
     /// </summary>
+    [JsonProperty]
     private int actionIndex = 0;
 
     public bool CanRedo()
