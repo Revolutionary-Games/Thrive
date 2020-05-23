@@ -8,8 +8,11 @@ uniform float movementWigglyNess = 1.f;
 uniform sampler2D albedoTexture : hint_albedo;
 uniform sampler2D damagedTexture : hint_albedo;
 
-uniform sampler2D noiseTexture : hint_albedo;
+uniform sampler2D dissolveTexture : hint_albedo;
 uniform float dissolveValue : hint_range(0, 1);
+
+uniform float outlineWidth;
+uniform vec4 growColor : hint_color;
 
 uniform float healthFraction = 0.5f;
 uniform vec4 tint : hint_color = vec4(1, 1, 1, 1);
@@ -31,8 +34,14 @@ void fragment(){
         (damaged * (1.f - healthFraction))) * tint;
     ALBEDO = final.rgb;
 
-	vec4 dissolve = texture(noiseTexture, UV);
-	final.a *= floor(dissolveValue + min(0.99, dissolve.x));
+	vec4 dissolveTex = texture(dissolveTexture, UV);
 
-    ALPHA = final.a;
+	float alpha = dot(dissolveTex.rgb, vec3(0.3, 0.3, 0.3)) -
+		float(-0.8 + dissolveValue);
+
+	vec3 emission = vec3(round(1.0 - float(alpha - outlineWidth))) *
+		growColor.rgb;
+
+    ALPHA = round(alpha) * final.a;
+	EMISSION = emission;
 }

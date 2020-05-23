@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System;
 using Godot;
 
 /// <summary>
@@ -10,6 +9,11 @@ public class FloatingChunk : RigidBody, ISpawned
     [Export]
     public PackedScene GraphicsScene;
 
+    /// <summary>
+    ///   The node path to the mesh of this chunk
+    /// </summary>
+    public NodePath ModelNodePath;
+
     private CompoundCloudSystem compoundClouds;
 
     /// <summary>
@@ -17,9 +21,11 @@ public class FloatingChunk : RigidBody, ISpawned
     /// </summary>
     private HashSet<Microbe> touchingMicrobes = new HashSet<Microbe>();
 
+    private MeshInstance chunkMesh;
+
     private bool isDissolving = false;
 
-    private float dissolvingValue = 0;
+    private float dissolveEffectValue = 0.0f;
 
     public int DespawnRadiusSqr { get; set; }
 
@@ -69,7 +75,8 @@ public class FloatingChunk : RigidBody, ISpawned
     ///     Doesn't initialize the graphics scene which needs to be set separately
     ///   </para>
     /// </remarks>
-    public void Init(Biome.ChunkConfiguration chunkType, CompoundCloudSystem compoundClouds)
+    public void Init(Biome.ChunkConfiguration chunkType, CompoundCloudSystem compoundClouds,
+        NodePath modelPath = null)
     {
         this.compoundClouds = compoundClouds;
 
@@ -81,6 +88,8 @@ public class FloatingChunk : RigidBody, ISpawned
         DeleteOnTouch = chunkType.DeleteOnTouch;
 
         Mass = chunkType.Mass;
+
+        ModelNodePath = modelPath;
 
         // Apply physics shape
         var shape = GetNode<CollisionShape>("CollisionShape");
@@ -124,7 +133,17 @@ public class FloatingChunk : RigidBody, ISpawned
             return;
         }
 
-        GetNode("NodeToScale").AddChild(GraphicsScene.Instance());
+        var nodeToScale = GetNode("NodeToScale");
+        nodeToScale.AddChild(GraphicsScene.Instance());
+
+        if (ModelNodePath == null || ModelNodePath.IsEmpty())
+        {
+            chunkMesh = nodeToScale.GetChild<MeshInstance>(0);
+        }
+        else
+        {
+            chunkMesh = nodeToScale.GetChild(0).GetNode<MeshInstance>(ModelNodePath);
+        }
     }
 
     public override void _Process(float delta)
@@ -230,8 +249,7 @@ public class FloatingChunk : RigidBody, ISpawned
     }
 
     /// <summary>
-    ///   Handles the dissolving effect for the chunks
-    ///   when they run out of compound
+    ///   Handles the dissolving effect for the chunks when they run out of compounds.
     /// </summary>
     private void HandleDissolving(float delta)
     {
@@ -240,18 +258,15 @@ public class FloatingChunk : RigidBody, ISpawned
             AddCollisionExceptionWith(microbe);
         }
 
-        var mesh = GetNode("NodeToScale").GetChild<MeshInstance>(0);
+        var material = (ShaderMaterial)chunkMesh.MaterialOverride;
 
-        var material = (ShaderMaterial)mesh.MaterialOverride;
+        dissolveEffectValue += delta * Constants.DISSOLVING_EFFECT_SPEED;
 
-        dissolvingValue += delta * Constants.FLOATING_CHUNKS_DISSOLVING_SPEED;
+        material.SetShaderParam("dissolveValue", dissolveEffectValue);
 
-        material.SetShaderParam("DissolveValue", dissolvingValue);
-
-        if (dissolvingValue >= 1)
+        if (dissolveEffectValue >= 1)
         {
             QueueFree();
-            isDissolving = false;
         }
     }
 

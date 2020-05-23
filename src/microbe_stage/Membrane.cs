@@ -23,16 +23,17 @@ public class Membrane : MeshInstance
     private float wigglyNess = 1.0f;
     private float movementWigglyNess = 1.0f;
     private Color tint = new Color(1, 1, 1, 1);
+    private float dissolveEffectValue = 0.0f;
 
     private Texture normalTexture;
     private Texture damagedTexture;
+    private Texture noiseTexture;
 
     private string currentlyLoadedNormalTexture;
 
     private bool dirty = true;
     private bool radiusIsDirty = true;
     private float cachedRadius;
-    private float temp = 1;
 
     /// <summary>
     ///   The length in pixels of a side of the square that bounds the
@@ -170,6 +171,20 @@ public class Membrane : MeshInstance
         }
     }
 
+    public float DissolveEffectValue
+    {
+        get
+        {
+            return dissolveEffectValue;
+        }
+        set
+        {
+            dissolveEffectValue = value;
+            if (MaterialToEdit != null)
+                ApplyDissolveEffect();
+        }
+    }
+
     public override void _Ready()
     {
         if (Type == null)
@@ -282,21 +297,6 @@ public class Membrane : MeshInstance
         return closest;
     }
 
-    /// <remarks>
-    ///   Just for prototype purposes, there may be
-    ///   a better way to do this
-    /// </remarks>
-    public float DissolveEffect(float delta)
-    {
-        temp = Mathf.Lerp(temp, 0, 0.5f * delta);
-
-        temp = temp.Clamp(0, 1);
-
-        MaterialToEdit.SetShaderParam("dissolveValue", temp);
-
-        return temp;
-    }
-
     /// <summary>
     ///   Decides where the point needs to move based on the position of the closest organelle.
     /// </summary>
@@ -355,7 +355,7 @@ public class Membrane : MeshInstance
         ApplyHealth();
         ApplyTint();
         ApplyTextures();
-        ApplyDissolvingEffect();
+        ApplyDissolveEffect();
     }
 
     private void ApplyWiggly()
@@ -388,16 +388,18 @@ public class Membrane : MeshInstance
         normalTexture = Type.LoadedNormalTexture;
         damagedTexture = Type.LoadedDamagedTexture;
 
+        noiseTexture = GD.Load<Texture>("res://assets/textures/PerlinNoise.jpg");
+
         MaterialToEdit.SetShaderParam("albedoTexture", normalTexture);
         MaterialToEdit.SetShaderParam("damagedTexture", damagedTexture);
+        MaterialToEdit.SetShaderParam("dissolveTexture", noiseTexture);
 
         currentlyLoadedNormalTexture = Type.NormalTexture;
     }
 
-    private void ApplyDissolvingEffect()
+    private void ApplyDissolveEffect()
     {
-        MaterialToEdit.SetShaderParam("dissolveValue", 1);
-        MaterialToEdit.SetShaderParam("noiseTexture", GD.Load<Texture>("res://assets/textures/PerlinNoise.jpg"));
+        MaterialToEdit.SetShaderParam("dissolveValue", DissolveEffectValue);
     }
 
     /// <summary>

@@ -1,24 +1,24 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://assets/sounds/soundeffects/microbe-death.ogg" type="AudioStream" id=1]
+[ext_resource path="res://assets/sounds/soundeffects/microbe-death-2.ogg" type="AudioStream" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeDeathEffect.cs" type="Script" id=2]
 [ext_resource path="res://assets/textures/bubble3.png" type="Texture" id=3]
 
-[sub_resource type="Gradient" id=6]
+[sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.585586, 1 )
 colors = PoolColorArray( 0, 0, 0, 0, 1, 1, 1, 0.588235, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=7]
-gradient = SubResource( 6 )
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
 
-[sub_resource type="Curve" id=1]
+[sub_resource type="Curve" id=3]
 max_value = 100.0
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 4.31818 ), 0.0, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=2]
-curve = SubResource( 1 )
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
 
-[sub_resource type="ParticlesMaterial" id=3]
+[sub_resource type="ParticlesMaterial" id=5]
 emission_shape = 3
 emission_point_count = 1
 direction = Vector3( 0, 0, 0 )
@@ -34,11 +34,11 @@ tangential_accel = 0.5
 tangential_accel_random = 0.5
 damping = 0.5
 damping_random = 0.1
-damping_curve = SubResource( 2 )
+damping_curve = SubResource( 4 )
 scale = 0.1
-color_ramp = SubResource( 7 )
+color_ramp = SubResource( 2 )
 
-[sub_resource type="SpatialMaterial" id=4]
+[sub_resource type="SpatialMaterial" id=6]
 flags_transparent = true
 vertex_color_use_as_albedo = true
 params_blend_mode = 1
@@ -48,8 +48,8 @@ particles_anim_v_frames = 1
 particles_anim_loop = false
 albedo_texture = ExtResource( 3 )
 
-[sub_resource type="QuadMesh" id=5]
-material = SubResource( 4 )
+[sub_resource type="QuadMesh" id=7]
+material = SubResource( 6 )
 
 [node name="MicrobeDeathEffect" type="Spatial"]
 script = ExtResource( 2 )
@@ -64,5 +64,5 @@ amount = 300
 lifetime = 5.0
 explosiveness = 0.8
 randomness = 1.0
-process_material = SubResource( 3 )
-draw_pass_1 = SubResource( 5 )
+process_material = SubResource( 5 )
+draw_pass_1 = SubResource( 7 )

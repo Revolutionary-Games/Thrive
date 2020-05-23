@@ -122,7 +122,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     public bool IsPlayerMicrobe { get; private set; }
 
     /// <summary>
-    ///   True only when this has been deleted to let know things
+    ///   True only when this cell has been killed to let know things
     ///   being engulfed by us that we are dead.
     /// </summary>
     public bool Dead { get; private set; } = false;
@@ -665,12 +665,16 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
             var sceneToUse = new Biome.ChunkConfiguration.ChunkScene();
 
+            // The node path to the organelle's model/mesh if there is any
+            var modelNodePath = string.Empty;
+
             // Try all organelles in random order and use the first one with a scene for model
             foreach (var organelle in organelles.OrderBy(_ => random.Next()))
             {
                 if (!string.IsNullOrEmpty(organelle.Definition.DisplayScene))
                 {
                     sceneToUse.LoadedScene = organelle.Definition.LoadedScene;
+                    modelNodePath = organelle.Definition.DisplaySceneModelPath;
                     break;
                 }
             }
@@ -685,10 +689,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             chunkType.Meshes.Add(sceneToUse);
 
             // Finally spawn a chunk with the settings
-            var temp = SpawnHelpers.SpawnChunk(chunkType, Translation + positionAdded, GetParent(),
-                chunkScene, cloudSystem, random);
+            var chunk = SpawnHelpers.SpawnChunk(chunkType, Translation + positionAdded, GetParent(),
+                chunkScene, cloudSystem, random, modelNodePath);
 
-            AddCollisionExceptionWith(temp);
+            // Disable the dissolving membrane's collision with the chunks
+            AddCollisionExceptionWith(chunk);
         }
 
         // TODO: fix. Might need to rethink destroying this
@@ -719,16 +724,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         deathEffects.Transform = Transform;
         GetParent().AddChild(deathEffects);
 
-        // It used to be that the physics shape was removed here and
-        // graphics hidden, but now this is destroyed
-        //QueueFree();
-
-        isDissolving = true;
-
-        foreach (var entry in organelles)
-        {
-            entry.Hide();
-        }
+        // Some pre-death actions are going to be run now
     }
 
     public void PlaySoundEffect(string effect)
@@ -972,9 +968,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
         Membrane.HealthFraction = Hitpoints / MaxHitpoints;
 
-        if (Hitpoints <= 0)
+        if (Hitpoints <= 0 || Dead)
         {
-            HandleDeath();
+            HandleDeath(delta);
         }
         else
         {
@@ -982,15 +978,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             if (OnReproductionStatus != null && CurrentGame.FreeBuild)
             {
                 OnReproductionStatus(this, true);
-            }
-        }
-
-        if (isDissolving)
-        {
-            if(Membrane.DissolveEffect(delta) <= 0)
-            {
-                QueueFree();
-                isDissolving = false;
             }
         }
     }
@@ -1522,9 +1509,19 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     ///   Handles the death of this microbe. This queues this object
     ///   for deletion and handles some pre-death actions.
     /// </summary>
-    private void HandleDeath()
+    private void HandleDeath(float delta)
     {
-        //QueueFree();
+        foreach (var organelle in organelles)
+        {
+            organelle.Hide();
+        }
+
+        Membrane.DissolveEffectValue += delta * Constants.DISSOLVING_EFFECT_SPEED;
+
+        if (Membrane.DissolveEffectValue >= 1)
+        {
+            QueueFree();
+        }
     }
 
     private Vector3 DoBaseMovementForce(float delta)

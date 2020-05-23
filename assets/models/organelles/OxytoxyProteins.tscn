@@ -8,10 +8,10 @@
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
 shader = ExtResource( 2 )
-shader_param/DissolveValue = 0.0
+shader_param/dissolveValue = null
 shader_param/tint = Color( 1, 1, 1, 1 )
 shader_param/texture = ExtResource( 1 )
-shader_param/DissolveTexture = ExtResource( 4 )
+shader_param/dissolveTexture = ExtResource( 4 )
 
 [node name="OxytoxyProteins" type="MeshInstance"]
 transform = Transform( 0.0147721, 0.00260472, -4.24363e-10, 0, -2.44381e-09, -0.015, -0.00260472, 0.0147721, -2.40668e-09, 0, 0, 0 )

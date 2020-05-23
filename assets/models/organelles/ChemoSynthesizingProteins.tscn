@@ -8,10 +8,10 @@
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
 shader = ExtResource( 2 )
-shader_param/DissolveValue = 0.0
+shader_param/dissolveValue = null
 shader_param/tint = Color( 1, 1, 1, 1 )
 shader_param/texture = ExtResource( 3 )
-shader_param/DissolveTexture = ExtResource( 4 )
+shader_param/dissolveTexture = ExtResource( 4 )
 
 [node name="ChemoSynthesizingProteins" type="MeshInstance"]
 transform = Transform( 100, 0, 0, 0, -1.62921e-05, 100, 0, -100, -1.62921e-05, 0, 0, 0 )

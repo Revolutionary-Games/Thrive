@@ -8,10 +8,10 @@
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
 shader = ExtResource( 3 )
-shader_param/DissolveValue = null
+shader_param/dissolveValue = null
 shader_param/tint = Color( 1, 1, 1, 1 )
 shader_param/texture = ExtResource( 2 )
-shader_param/DissolveTexture = ExtResource( 4 )
+shader_param/dissolveTexture = ExtResource( 4 )
 
 [node name="Metabolosome" type="MeshInstance"]
 transform = Transform( -16.3984, -45.9672, -7.56614, 2.92828, -10.5055, 38.1338, -56.806, 12.7279, 4.1499, 0, 0, 0 )
