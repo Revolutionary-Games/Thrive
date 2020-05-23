@@ -164,33 +164,19 @@ public class MainMenu : Node
     private void OnMicrobeIntroEnded()
     {
         // TODO: Add loading screen while changing between scenes
-
-        var scene = GD.Load<PackedScene>("res://src/microbe_stage/MicrobeStage.tscn");
-
-        // Instantiate a new microbe stage scene
-        var stage = (MicrobeStage)scene.Instance();
-
-        var parent = GetParent();
-        parent.RemoveChild(this);
-        parent.AddChild(stage);
-        QueueFree();
+        SceneManager.Instance.SwitchToScene(MainGameState.MicrobeStage);
     }
 
     private void OnFreebuildFadeInEnded()
     {
         // Instantiate a new editor scene
-        var scene = GD.Load<PackedScene>("res://src/microbe_stage/editor/MicrobeEditor.tscn");
-
-        var editor = (MicrobeEditor)scene.Instance();
+        var editor = (MicrobeEditor)SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instance();
 
         // Start freebuild game
         editor.CurrentGame = GameProperties.StartNewMicrobeGame(true);
 
         // Switch to the editor scene
-        var parent = GetParent();
-        parent.RemoveChild(this);
-        parent.AddChild(editor);
-        QueueFree();
+        SceneManager.Instance.SwitchToScene(editor);
     }
 
     private void NewGamePressed()

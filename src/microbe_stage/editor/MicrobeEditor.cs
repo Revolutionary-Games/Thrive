@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Main class of the microbe editor
 /// </summary>
-public class MicrobeEditor : Node
+public class MicrobeEditor : Node, ILoadableGameState
 {
     /// <summary>
     ///   The new to set on the species after exiting
@@ -252,6 +252,10 @@ public class MicrobeEditor : Node
         get { return targetPatch ?? playerPatchOnEntry; }
     }
 
+    public Node GameStateRoot => this;
+
+    public bool IsLoadedFromSave { get; set; } = false;
+
     public override void _Ready()
     {
         camera = GetNode<MicrobeCamera>("PrimaryCamera");
@@ -300,6 +304,10 @@ public class MicrobeEditor : Node
             hoverOrganelles.Add(CreateEditorOrganelle());
         }
 
+        // Rest of the setup is only ran when not loading a save, the save finish callback does the equivalent thing
+        if (IsLoadedFromSave)
+            return;
+
         // Start a new game if no game has been started
         if (CurrentGame == null)
         {
@@ -315,6 +323,11 @@ public class MicrobeEditor : Node
         StartMusic();
     }
 
+    public void OnFinishLoading(Save save)
+    {
+        throw new NotImplementedException();
+    }
+
     /// <summary>
     ///   Applies the changes done and exits the editor
     /// </summary>
@@ -326,7 +339,7 @@ public class MicrobeEditor : Node
         {
             GD.Print("Creating new microbe stage as there isn't one yet");
 
-            var scene = GD.Load<PackedScene>("res://src/microbe_stage/MicrobeStage.tscn");
+            var scene = SceneManager.Instance.LoadScene(MainGameState.MicrobeStage);
 
             ReturnToStage = (MicrobeStage)scene.Instance();
             ReturnToStage.CurrentGame = CurrentGame;
@@ -379,12 +392,9 @@ public class MicrobeEditor : Node
             CurrentGame.GameWorld.Map.CurrentPatch.AddSpecies(editedSpecies, 0);
         }
 
-        var parent = GetParent();
-        parent.RemoveChild(this);
-        parent.AddChild(ReturnToStage);
-        ReturnToStage.OnReturnFromEditor();
+        SceneManager.Instance.SwitchToScene(ReturnToStage);
 
-        QueueFree();
+        ReturnToStage.OnReturnFromEditor();
     }
 
     public void ReturnToMenu()
@@ -392,7 +402,7 @@ public class MicrobeEditor : Node
         // As we will no longer return to the microbe stage we need to free it, if we have it
         ReturnToStage?.QueueFree();
 
-        GUICommon.Instance.ReturnToMenu(this);
+        SceneManager.Instance.ReturnToMenu();
     }
 
     public void StartMusic()

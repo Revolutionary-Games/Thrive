@@ -59,21 +59,6 @@ public class GUICommon : Node
     }
 
     /// <summary>
-    ///   Switches a scene to the main menu
-    /// </summary>
-    public void ReturnToMenu(Node currentSceneRoot)
-    {
-        var scene = GD.Load<PackedScene>("res://src/gui_common/MainMenu.tscn");
-
-        var mainMenu = (MainMenu)scene.Instance();
-
-        mainMenu.IsReturningToMenu = true;
-        GetTree().Root.RemoveChild(currentSceneRoot);
-        GetTree().Root.AddChild(mainMenu);
-        currentSceneRoot.QueueFree();
-    }
-
-    /// <summary>
     ///   Smoothly interpolates TextureProgress bar value.
     /// </summary>
     public void TweenBarValue(TextureProgress bar, float targetValue, float maxValue)

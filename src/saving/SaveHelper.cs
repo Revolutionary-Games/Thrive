@@ -15,7 +15,7 @@ public static class SaveHelper
     public static void QuickSave(MicrobeStage stage)
     {
         var stopwatch = Stopwatch.StartNew();
-        var save = CreateSaveObject(SaveGameState.MicrobeStage, SaveInformation.SaveType.QuickSave);
+        var save = CreateSaveObject(MainGameState.MicrobeStage, SaveInformation.SaveType.QuickSave);
 
         // TODO: save other properties as well
         save.SavedProperties = stage.CurrentGame;
@@ -31,7 +31,7 @@ public static class SaveHelper
     public static void QuickSave(MicrobeEditor editor)
     {
         var stopwatch = Stopwatch.StartNew();
-        var save = CreateSaveObject(SaveGameState.MicrobeEditor, SaveInformation.SaveType.QuickSave);
+        var save = CreateSaveObject(MainGameState.MicrobeEditor, SaveInformation.SaveType.QuickSave);
 
         // TODO: save other properties as well
         save.SavedProperties = editor.CurrentGame;
@@ -86,23 +86,25 @@ public static class SaveHelper
     /// <param name="stopwatch">To track how long it took</param>
     public static void ApplySave(Save save, Stopwatch stopwatch)
     {
-        switch (save.GameState)
-        {
-            case SaveGameState.MicrobeEditor:
-                // throw new NotImplementedException();
-                // TODO: implement
-                break;
+        PackedScene scene;
 
-            case SaveGameState.Invalid:
-            default:
-                DisplayLoadFailure("Save is invalid", "Save has an unknown game state", stopwatch);
-                return;
+        try
+        {
+            scene = SceneManager.Instance.LoadScene(save.GameState);
+        }
+        catch (ArgumentException)
+        {
+            DisplayLoadFailure("Save is invalid", "Save has an unknown game state", stopwatch);
+            return;
         }
 
+        var targetState = (ILoadableGameState)scene.Instance();
+
+        FinishMovingToLoadedScene(targetState, save);
         DisplaySaveStatusMessage(true, "Load finished", stopwatch);
     }
 
-    private static Save CreateSaveObject(SaveGameState gameState, SaveInformation.SaveType type)
+    private static Save CreateSaveObject(MainGameState gameState, SaveInformation.SaveType type)
     {
         return new Save
         {
@@ -150,7 +152,7 @@ public static class SaveHelper
     }
 
     /// <summary>
-    ///   Displays a dismissable dialog saying that loading a save failed
+    ///   Displays a dismissible dialog saying that loading a save failed
     /// </summary>
     /// <param name="message">Message to show</param>
     /// <param name="error">Error message to include</param>
@@ -164,11 +166,20 @@ public static class SaveHelper
         // TODO: show the dialog
     }
 
+    private static void FinishMovingToLoadedScene(ILoadableGameState newScene, Save save)
+    {
+        newScene.IsLoadedFromSave = true;
+
+        SceneManager.Instance.SwitchToScene(newScene.GameStateRoot);
+
+        newScene.OnFinishLoading(save);
+    }
+
     /// <summary>
     ///   Runs a background task for removing excess quick saves
     /// </summary>
     private static void QueueRemoveExcessQuickSaves()
     {
-        TaskExecutor.Instance.AddTask(new Task(() => { SaveManager.RemoveExcessQuickSaves(); }));
+        TaskExecutor.Instance.AddTask(new Task(SaveManager.RemoveExcessQuickSaves));
     }
 }
