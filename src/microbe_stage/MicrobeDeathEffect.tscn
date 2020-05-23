@@ -2,10 +2,10 @@
 
 [ext_resource path="res://assets/sounds/soundeffects/microbe-death-2.ogg" type="AudioStream" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeDeathEffect.cs" type="Script" id=2]
-[ext_resource path="res://assets/textures/bubble3.png" type="Texture" id=3]
+[ext_resource path="res://assets/textures/blurry_circle.png" type="Texture" id=4]
 
 [sub_resource type="Gradient" id=1]
-offsets = PoolRealArray( 0, 0.585586, 1 )
+offsets = PoolRealArray( 0, 0.576577, 1 )
 colors = PoolColorArray( 0, 0, 0, 0, 1, 1, 1, 0.588235, 1, 1, 1, 0 )
 
 [sub_resource type="GradientTexture" id=2]
@@ -19,19 +19,16 @@ _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 4.31818 ), 0.0, 0.0, 0, 0
 curve = SubResource( 3 )
 
 [sub_resource type="ParticlesMaterial" id=5]
-emission_shape = 3
-emission_point_count = 1
+emission_shape = 1
+emission_sphere_radius = 1.0
 direction = Vector3( 0, 0, 0 )
 spread = 180.0
 flatness = 1.0
 gravity = Vector3( 0, 0, 0 )
 initial_velocity = 2.0
 initial_velocity_random = 1.0
-linear_accel = 2.0
-radial_accel = 0.1
-radial_accel_random = 1.0
-tangential_accel = 0.5
-tangential_accel_random = 0.5
+linear_accel = 1.5
+linear_accel_random = 0.5
 damping = 0.5
 damping_random = 0.1
 damping_curve = SubResource( 4 )
@@ -46,23 +43,25 @@ params_billboard_mode = 3
 particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = false
-albedo_texture = ExtResource( 3 )
+albedo_texture = ExtResource( 4 )
 
 [sub_resource type="QuadMesh" id=7]
 material = SubResource( 6 )
 
 [node name="MicrobeDeathEffect" type="Spatial"]
 script = ExtResource( 2 )
+MembraneBitsParticlesPath = NodePath("MembraneBits")
 
 [node name="DeathSound" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 1 )
 unit_size = 10.0
 autoplay = true
 
-[node name="Particles" type="Particles" parent="."]
-amount = 300
+[node name="MembraneBits" type="Particles" parent="."]
+amount = 200
 lifetime = 5.0
-explosiveness = 0.8
+explosiveness = 1.0
 randomness = 1.0
+local_coords = false
 process_material = SubResource( 5 )
 draw_pass_1 = SubResource( 7 )

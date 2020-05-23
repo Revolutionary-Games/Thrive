@@ -713,6 +713,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         var deathScene = GD.Load<PackedScene>("res://src/microbe_stage/MicrobeDeathEffect.tscn");
         var deathEffects = (MicrobeDeathEffect)deathScene.Instance();
         deathEffects.Transform = Transform;
+        deathEffects.EmissionRadius = Radius;
         GetParent().AddChild(deathEffects);
 
         // Some pre-death actions are going to be run now
