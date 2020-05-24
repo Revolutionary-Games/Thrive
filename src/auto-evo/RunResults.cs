@@ -254,7 +254,11 @@
                         foreach (var effect in effects)
                         {
                             if (effect.Species == entry.Species)
-                                adjustedPopulation += effect.Amount;
+                            {
+                                adjustedPopulation +=
+                                    effect.Constant + (int)(effect.Species.Population * effect.Coefficient)
+                                    - effect.Species.Population;
+                            }
                         }
                     }
 

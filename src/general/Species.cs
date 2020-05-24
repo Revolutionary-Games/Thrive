@@ -102,9 +102,10 @@ public abstract class Species : ICloneable
     ///     auto-evo finishes.
     ///   </para>
     /// </remarks>
-    public void ApplyImmediatePopulationChange(int change)
+    public void ApplyImmediatePopulationChange(int constant, float coefficient)
     {
-        Population += change;
+        Population = (int)(Population * coefficient);
+        Population += constant;
 
         if (Population < 0)
             Population = 0;
