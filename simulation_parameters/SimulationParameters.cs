@@ -22,6 +22,7 @@ public class SimulationParameters
     private float eukaryoticOrganellesChance;
 
     private Dictionary<string, MusicCategory> musicCategories;
+    private Dictionary<string, HelpTexts> helpTexts;
 
     static SimulationParameters()
     {
@@ -48,7 +49,12 @@ public class SimulationParameters
         NameGenerator = LoadDirectObject<NameGenerator>(
             "res://simulation_parameters/microbe_stage/species_names.json");
 
+        EasterEggMessages = LoadDirectObject<EasterEggMessages>(
+            "res://simulation_parameters/common/easter_egg_messages.json");
+
         musicCategories = LoadRegistry<MusicCategory>("res://simulation_parameters/common/music_tracks.json");
+
+        helpTexts = LoadRegistry<HelpTexts>("res://simulation_parameters/common/help_texts.json");
 
         GD.Print("SimulationParameters loading ended");
 
@@ -67,6 +73,8 @@ public class SimulationParameters
     }
 
     public NameGenerator NameGenerator { get; }
+
+    public EasterEggMessages EasterEggMessages { get; }
 
     public OrganelleDefinition GetOrganelleType(string name)
     {
@@ -127,6 +135,11 @@ public class SimulationParameters
     public Dictionary<string, MusicCategory> GetMusicCategories()
     {
         return musicCategories;
+    }
+
+    public HelpTexts GetHelpTexts(string name)
+    {
+        return helpTexts[name];
     }
 
     public OrganelleDefinition GetRandomProkaryoticOrganelle(Random random)
@@ -207,6 +220,7 @@ public class SimulationParameters
         CheckRegistryType(musicCategories);
 
         NameGenerator.Check(string.Empty);
+        EasterEggMessages.Check(string.Empty);
     }
 
     private void ResolveValueRelationships()
@@ -224,6 +238,11 @@ public class SimulationParameters
         foreach (var entry in backgrounds)
         {
             entry.Value.Resolve(this);
+        }
+
+        foreach (var entry in membranes)
+        {
+            entry.Value.Resolve();
         }
 
         NameGenerator.Resolve(this);
