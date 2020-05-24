@@ -253,10 +253,9 @@ public class FloatingChunk : RigidBody, ISpawned
     /// </summary>
     private void HandleDissolving(float delta)
     {
-        foreach (var microbe in touchingMicrobes)
-        {
-            AddCollisionExceptionWith(microbe);
-        }
+        // Disable collisions
+        CollisionLayer = 0;
+        CollisionMask = 0;
 
         var material = (ShaderMaterial)chunkMesh.MaterialOverride;
 
