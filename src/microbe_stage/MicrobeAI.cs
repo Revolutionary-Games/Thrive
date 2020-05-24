@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   AI for a single Microbe. This is a separate class to contain all the AI status variables as well as make the
@@ -10,35 +11,56 @@ public class MicrobeAI
 {
     private readonly Compound atp;
     private readonly Compound iron;
-    private readonly Microbe microbe;
     private readonly Compound oxytoxy;
+
+    [JsonProperty]
+    private readonly Microbe microbe;
+
+    [JsonProperty]
     private int boredom = 0;
+
+    [JsonProperty]
     private List<FloatingChunk> chunkList = new List<FloatingChunk>();
 
+    [JsonProperty]
     private bool hasTargetPosition = false;
 
+    [JsonProperty]
     private LifeState lifeState = LifeState.NEUTRAL_STATE;
+    [JsonProperty]
     private bool moveFocused = false;
 
+    [JsonProperty]
     private float movementRadius = 2000;
 
+    [JsonProperty]
     private bool moveThisHunt = true;
+
+    [JsonProperty]
     private Microbe predator;
 
     // Prey and predator lists
+    [JsonProperty]
     private List<Microbe> predatoryMicrobes = new List<Microbe>();
 
+    [JsonProperty]
     private float previousAngle = 0.0f;
 
+    [JsonProperty]
     private Microbe prey;
+    [JsonProperty]
     private List<Microbe> preyMicrobes = new List<Microbe>();
+    [JsonProperty]
     private bool preyPegged = false;
+    [JsonProperty]
     private FloatingChunk targetChunk;
+    [JsonProperty]
     private Vector3 targetPosition = new Vector3(0, 0, 0);
 
     /// <summary>
     ///   TODO: change to be the elapsed time instead of AI update count
     /// </summary>
+    [JsonProperty]
     private float ticksSinceLastToggle = 600;
 
     public MicrobeAI(Microbe microbe)

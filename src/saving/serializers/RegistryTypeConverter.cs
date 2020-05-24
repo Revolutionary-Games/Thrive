@@ -14,6 +14,9 @@ public class RegistryTypeConverter : BaseThriveConverter
 
     public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
     {
+        if (reader.TokenType == JsonToken.Null)
+            return null;
+
         var name = serializer.Deserialize<string>(reader);
 
         if (objectType == typeof(OrganelleDefinition))

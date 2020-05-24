@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   An organelle that has been placed in a microbe.
 /// </summary>
+[JsonObject(IsReference = true)]
 public class PlacedOrganelle : Spatial, IPositionedOrganelle
 {
     [JsonIgnore]
@@ -26,6 +27,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     /// <summary>
     ///   The compounds still needed to divide. Initialized from Definition.InitialComposition
     /// </summary>
+    [JsonProperty]
     private Dictionary<string, float> compoundsLeft;
 
     public OrganelleDefinition Definition { get; set; }
@@ -34,17 +36,19 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
 
     public int Orientation { get; set; }
 
-    [JsonIgnore]
+    [JsonProperty]
     public Microbe ParentMicrobe { get; private set; }
 
     /// <summary>
     ///   The graphics child node of this organelle
     /// </summary>
+    [JsonIgnore]
     public Spatial OrganelleGraphics { get; private set; }
 
     /// <summary>
     ///   Animation player this organelle has or null
     /// </summary>
+    [JsonIgnore]
     public AnimationPlayer OrganelleAnimation { get; private set; }
 
     /// <summary>
@@ -66,6 +70,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     /// <summary>
     ///   Value between 0 and 1 on how far along to splitting this organelle is
     /// </summary>
+    [JsonIgnore]
     public float GrowthValue
     {
         get
@@ -106,6 +111,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     ///   only after being added to a microbe and before being
     ///   removed.
     /// </summary>
+    [JsonIgnore]
     public float StorageCapacity
     {
         get
@@ -128,6 +134,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     ///   True if this is an agent vacuole. Number of agent vacuoles
     ///   determine how often a cell can shoot toxins.
     /// </summary>
+    [JsonIgnore]
     public bool IsAgentVacuole
     {
         get

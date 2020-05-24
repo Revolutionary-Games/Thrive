@@ -6,13 +6,21 @@ using Newtonsoft.Json;
 
 public class CompoundCloudPlane : CSGMesh
 {
+    // [JsonProperty]
+    [JsonIgnore]
     public System.Numerics.Vector4[,] Density;
+
+    [JsonIgnore]
     public System.Numerics.Vector4[,] OldDensity;
+
+    [JsonProperty]
     public Compound[] Compounds;
 
     private Image image;
     private ImageTexture texture;
     private FluidSystem fluidSystem;
+
+    [JsonProperty]
     private Int2 position = new Int2(0, 0);
 
     [JsonProperty]

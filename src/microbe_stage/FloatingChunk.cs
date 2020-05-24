@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Script for the floating chunks (cell parts, rocks, hazards)
 /// </summary>
+[JsonObject(IsReference = true)]
 public class FloatingChunk : RigidBody, ISpawned
 {
     [Export]
@@ -18,6 +20,7 @@ public class FloatingChunk : RigidBody, ISpawned
 
     public int DespawnRadiusSqr { get; set; }
 
+    [JsonIgnore]
     public Node SpawnedNode
     {
         get

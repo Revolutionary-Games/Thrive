@@ -1,13 +1,16 @@
 using System;
 using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Main class for managing the microbe stage
 /// </summary>
+[JsonObject(IsReference = true)]
 public class MicrobeStage : Node
 {
     private Node world;
     private Node rootOfDynamicallySpawned;
+    [JsonProperty]
     private SpawnSystem spawner;
     private MicrobeAISystem microbeAISystem;
     private PatchManager patchManager;
@@ -17,23 +20,31 @@ public class MicrobeStage : Node
     /// <summary>
     ///   Used to differentiate between spawning the player and respawning
     /// </summary>
+    [JsonProperty]
     private bool spawnedPlayer = false;
 
     /// <summary>
     ///   True when the player is extinct
     /// </summary>
+    [JsonProperty]
     private bool gameOver = false;
 
+    [JsonProperty]
     private bool wonOnce = false;
 
+    [JsonProperty]
     private float playerRespawnTimer;
 
+    [JsonProperty]
     public Microbe Player { get; private set; }
 
+    [JsonProperty]
     public MicrobeCamera Camera { get; private set; }
 
+    [JsonIgnore]
     public MicrobeHUD HUD { get; private set; }
 
+    [JsonProperty]
     public CompoundCloudSystem Clouds { get; private set; }
 
     public FluidSystem FluidSystem { get; private set; }
@@ -45,8 +56,10 @@ public class MicrobeStage : Node
     /// <summary>
     ///   The main current game object holding various details
     /// </summary>
+    [JsonProperty]
     public GameProperties CurrentGame { get; set; }
 
+    [JsonIgnore]
     public GameWorld GameWorld
     {
         get

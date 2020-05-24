@@ -33,10 +33,16 @@ public class ThriveJsonConverter : IDisposable
         // All of the thrive serializers need to be registered here
         thriveConverters = new JsonConverter[]
         {
-            new DefaultThriveJSONConverter(context),
             new RegistryTypeConverter(context),
             new GodotColorConverter(),
+            new GodotBasisConverter(),
+
+            // TODO: is this one needed? It doesn't have any special stuff left
             new SpeciesConverter(context),
+            new CompoundCloudPlaneConverter(context),
+
+            // Converter for all types with the specific attribute for this to be enabled
+            new DefaultThriveJSONConverter(context),
 
             // Specific Godot Node converter types
 
@@ -425,12 +431,17 @@ public abstract class BaseThriveConverter : JsonConverter
             // First time writing, write all fields and properties
             foreach (var field in FieldsOf(value))
             {
-                WriteMember(field.Name, field.GetValue(value), field.FieldType, writer, serializer);
+                WriteMember(field.Name, field.GetValue(value), field.FieldType, type, writer, serializer);
             }
 
             foreach (var property in PropertiesOf(value))
             {
-                WriteMember(property.Name, property.GetValue(value, null), property.PropertyType, writer, serializer);
+                // Reading some godot properties already triggers problems, so we ignore those here
+                if (SkipIfGodotNodeType(property.Name, type))
+                    continue;
+
+                WriteMember(property.Name, property.GetValue(value, null), property.PropertyType, type, writer,
+                    serializer);
             }
 
             WriteCustomExtraFields(writer, value, serializer);
@@ -454,7 +465,8 @@ public abstract class BaseThriveConverter : JsonConverter
     ///   Default member writer for thrive types. Has special handling for some Thrive types,
     ///   others use default serializers
     /// </summary>
-    protected virtual void WriteMember(string name, object memberValue, Type memberType, JsonWriter writer,
+    protected virtual void WriteMember(string name, object memberValue, Type memberType, Type objectType,
+        JsonWriter writer,
         JsonSerializer serializer)
     {
         if (SkipMember(name))
@@ -490,6 +502,14 @@ public abstract class BaseThriveConverter : JsonConverter
 
     protected virtual bool SkipMember(string name)
     {
+        return false;
+    }
+
+    protected virtual bool SkipIfGodotNodeType(string name, Type type)
+    {
+        if (typeof(Node).IsAssignableFrom(type) && BaseNodeConverter.IsIgnoredGodotNodeMember(name))
+            return true;
+
         return false;
     }
 }
