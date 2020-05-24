@@ -214,6 +214,31 @@ public abstract class BaseThriveConverter : JsonConverter
         return candidateKey;
     }
 
+    public static IEnumerable<FieldInfo> FieldsOf(object value)
+    {
+        var fields = value.GetType().GetFields(
+            BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).Where((p) => p.CustomAttributes.All(
+            a => a.AttributeType != typeof(JsonIgnoreAttribute) &&
+                a.AttributeType != typeof(CompilerGeneratedAttribute)));
+
+        // Ignore fields that aren't public unless it has JsonPropertyAttribute
+        return fields.Where((p) =>
+            (p.IsPublic && !p.IsInitOnly) ||
+            p.CustomAttributes.Any((a) => a.AttributeType == typeof(JsonPropertyAttribute)));
+    }
+
+    public static IEnumerable<PropertyInfo> PropertiesOf(object value)
+    {
+        var properties = value.GetType().GetProperties(
+            BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).Where(
+            (p) => p.CustomAttributes.All(
+                a => a.AttributeType != typeof(JsonIgnoreAttribute)));
+
+        // Ignore properties that don't have a public setter unless it has JsonPropertyAttribute
+        return properties.Where((p) => p.GetSetMethod() != null ||
+            p.CustomAttributes.Any((a) => a.AttributeType == typeof(JsonPropertyAttribute)));
+    }
+
     public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
         JsonSerializer serializer)
     {
@@ -313,16 +338,21 @@ public abstract class BaseThriveConverter : JsonConverter
             serializer.ReferenceResolver.AddReference(serializer, objId.Value<string>(), instance);
         }
 
-        var properties = PropertiesOf(instance);
-
-        var fields = FieldsOf(instance);
-
         bool Skip(string name, string key)
         {
             return SkipMember(name) || alreadyConsumedItems.Contains(key);
         }
 
-        foreach (var property in properties)
+        foreach (var field in FieldsOf(instance))
+        {
+            var name = DetermineKey(item, field.Name);
+            if (Skip(field.Name, name))
+                continue;
+
+            field.SetValue(instance, ReadMember(name, field.FieldType, item, instance, reader, serializer));
+        }
+
+        foreach (var property in PropertiesOf(instance))
         {
             var name = DetermineKey(item, property.Name);
             if (Skip(property.Name, name))
@@ -335,15 +365,6 @@ public abstract class BaseThriveConverter : JsonConverter
                 ReadMember(name, property.PropertyType, item, instance, reader,
                     serializer),
             });
-        }
-
-        foreach (var field in fields)
-        {
-            var name = DetermineKey(item, field.Name);
-            if (Skip(field.Name, name))
-                continue;
-
-            field.SetValue(instance, ReadMember(name, field.FieldType, item, instance, reader, serializer));
         }
 
         ReadCustomExtraFields(item, instance, reader, objectType, existingValue, serializer);
@@ -401,19 +422,15 @@ public abstract class BaseThriveConverter : JsonConverter
                 }
             }
 
-            // First time writing, write all properties
-            var properties = PropertiesOf(value);
-
-            var fields = FieldsOf(value);
-
-            foreach (var property in properties)
-            {
-                WriteMember(property.Name, property.GetValue(value, null), property.PropertyType, writer, serializer);
-            }
-
-            foreach (var field in fields)
+            // First time writing, write all fields and properties
+            foreach (var field in FieldsOf(value))
             {
                 WriteMember(field.Name, field.GetValue(value), field.FieldType, writer, serializer);
+            }
+
+            foreach (var property in PropertiesOf(value))
+            {
+                WriteMember(property.Name, property.GetValue(value, null), property.PropertyType, writer, serializer);
             }
 
             WriteCustomExtraFields(writer, value, serializer);
@@ -474,31 +491,6 @@ public abstract class BaseThriveConverter : JsonConverter
     protected virtual bool SkipMember(string name)
     {
         return false;
-    }
-
-    private static IEnumerable<FieldInfo> FieldsOf(object value)
-    {
-        var fields = value.GetType().GetFields(
-            BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).Where((p) => p.CustomAttributes.All(
-            a => a.AttributeType != typeof(JsonIgnoreAttribute) &&
-                a.AttributeType != typeof(CompilerGeneratedAttribute)));
-
-        // Ignore fields that aren't public unless it has JsonPropertyAttribute
-        return fields.Where((p) =>
-            (p.IsPublic && !p.IsInitOnly) ||
-            p.CustomAttributes.Any((a) => a.AttributeType == typeof(JsonPropertyAttribute)));
-    }
-
-    private static IEnumerable<PropertyInfo> PropertiesOf(object value)
-    {
-        var properties = value.GetType().GetProperties(
-            BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).Where(
-            (p) => p.CustomAttributes.All(
-                a => a.AttributeType != typeof(JsonIgnoreAttribute)));
-
-        // Ignore properties that don't have a public setter unless it has JsonPropertyAttribute
-        return properties.Where((p) => p.GetSetMethod() != null ||
-            p.CustomAttributes.Any((a) => a.AttributeType == typeof(JsonPropertyAttribute)));
     }
 }
 
