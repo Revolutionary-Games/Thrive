@@ -18,7 +18,7 @@ public class GameWorld
     private uint speciesIdCounter = 0;
 
     [JsonProperty]
-    private Mutations mutator;
+    private Mutations mutator = new Mutations();
 
     [JsonProperty]
     private Dictionary<uint, Species> worldSpecies = new Dictionary<uint, Species>();
@@ -28,15 +28,18 @@ public class GameWorld
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Once saving is implemented this probably shouldn't be attempted to be saved. But the list of external
+    ///     TODO: Once saving is implemented this probably shouldn't be attempted to be saved. But the list of external
     ///     population effects need to be saved.
     ///   </para>
     /// </remarks>
     private AutoEvoRun autoEvo;
 
-    public GameWorld(WorldGenerationSettings settings)
+    /// <summary>
+    ///   Creates a new world
+    /// </summary>
+    /// <param name="settings">Settings to generate the world with</param>
+    public GameWorld(WorldGenerationSettings settings) : this()
     {
-        mutator = new Mutations();
         PlayerSpecies = CreatePlayerSpecies();
 
         Map = PatchMapGenerator.Generate(settings, PlayerSpecies);
@@ -46,7 +49,14 @@ public class GameWorld
 
         // Apply initial populations
         Map.UpdateGlobalPopulations();
+    }
 
+    /// <summary>
+    ///   Blank world creation, only for loading saves
+    /// </summary>
+    public GameWorld()
+    {
+        // TODO: save timed effects to json as well
         TimedEffects = new TimedWorldOperations();
 
         // Register glucose reduction
@@ -70,13 +80,13 @@ public class GameWorld
         }));
     }
 
-    [JsonIgnore]
+    [JsonProperty]
     public Species PlayerSpecies { get; private set; }
 
     [JsonProperty]
     public PatchMap Map { get; private set; }
 
-    [JsonProperty]
+    [JsonIgnore]
     public TimedWorldOperations TimedEffects { get; private set; }
 
     public static void SetInitialSpeciesProperties(MicrobeSpecies species)
