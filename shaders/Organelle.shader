@@ -45,7 +45,7 @@ void fragment(){
 	vec3 dissolveOutline = vec3(round(1.0 - float(cutoff - outlineWidth))) *
 		growColor.rgb;
 
-    ALBEDO = final.rgb;
-    ALPHA = round(cutoff) * final.a;
+	ALBEDO = final.rgb;
+	ALPHA = round(cutoff) * final.a;
 	EMISSION = dissolveOutline;
 }
