@@ -260,7 +260,7 @@ public class FloatingChunk : RigidBody, ISpawned
 
         var material = (ShaderMaterial)chunkMesh.MaterialOverride;
 
-        dissolveEffectValue += delta * Constants.DISSOLVING_EFFECT_SPEED;
+        dissolveEffectValue += delta * Constants.FLOATING_CHUNKS_DISSOLVE_SPEED;
 
         material.SetShaderParam("dissolveValue", dissolveEffectValue);
 

@@ -5,7 +5,7 @@ public class MicrobeDeathEffect : Spatial, ITimedLife
     [Export]
     public NodePath MembraneBitsParticlesPath;
 
-    public float EmissionRadius;
+    public Microbe ParentMicrobe;
 
     private Particles membraneBitsParticles;
 
@@ -16,8 +16,20 @@ public class MicrobeDeathEffect : Spatial, ITimedLife
     {
         membraneBitsParticles = GetNode<Particles>(MembraneBitsParticlesPath);
 
+        Transform = ParentMicrobe.Transform;
+
+        // Hide the particles since the they are supposed
+        // to be "absorbed" by the engulfing cell
+        if (ParentMicrobe.IsBeingEngulfed)
+        {
+            membraneBitsParticles.Hide();
+        }
+
         var membraneBitsMaterial = (ParticlesMaterial)membraneBitsParticles.ProcessMaterial;
-        membraneBitsMaterial.EmissionSphereRadius = EmissionRadius;
+        membraneBitsMaterial.EmissionSphereRadius = ParentMicrobe.Radius / 2f;
+        membraneBitsMaterial.LinearAccel = ParentMicrobe.Radius / 2;
+
+        TimeToLiveRemaining = membraneBitsParticles.Lifetime;
 
         AddToGroup(Constants.TIMED_GROUP);
     }

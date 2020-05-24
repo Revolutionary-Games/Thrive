@@ -388,7 +388,7 @@ public class Membrane : MeshInstance
         normalTexture = Type.LoadedNormalTexture;
         damagedTexture = Type.LoadedDamagedTexture;
 
-        noiseTexture = GD.Load<Texture>("res://assets/textures/PerlinNoise.jpg");
+        noiseTexture = GD.Load<Texture>("res://assets/textures/dissolve_noise.tres");
 
         MaterialToEdit.SetShaderParam("albedoTexture", normalTexture);
         MaterialToEdit.SetShaderParam("damagedTexture", damagedTexture);

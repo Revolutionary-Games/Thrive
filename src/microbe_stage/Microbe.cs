@@ -709,8 +709,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
         var deathScene = GD.Load<PackedScene>("res://src/microbe_stage/MicrobeDeathEffect.tscn");
         var deathEffects = (MicrobeDeathEffect)deathScene.Instance();
-        deathEffects.Transform = Transform;
-        deathEffects.EmissionRadius = Radius;
+        deathEffects.ParentMicrobe = this;
         GetParent().AddChild(deathEffects);
 
         // Disable collisions
@@ -1509,7 +1508,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             organelle.Hide();
         }
 
-        Membrane.DissolveEffectValue += delta * Constants.DISSOLVING_EFFECT_SPEED;
+        Membrane.DissolveEffectValue += delta * Constants.MEMBRANE_DISSOLVE_SPEED;
 
         if (Membrane.DissolveEffectValue >= 1)
         {

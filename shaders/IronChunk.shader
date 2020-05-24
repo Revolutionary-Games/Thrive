@@ -1,5 +1,5 @@
 shader_type spatial;
-render_mode depth_draw_always;
+render_mode depth_draw_alpha_prepass;
 
 uniform sampler2D texture : hint_albedo;
 
@@ -13,13 +13,15 @@ void fragment() {
 	vec4 mainTex = texture(texture, UV);
 	vec4 dissolveTex = texture(dissolveTexture, UV);
 
-	float alpha = dot(dissolveTex.rgb, vec3(0.3, 0.3, 0.3)) -
+	float cutoff = dot(dissolveTex.rgb, vec3(0.3, 0.3, 0.3)) -
 		float(-0.8 + dissolveValue);
 
-	vec3 emission = vec3(round(1.0 - float(alpha - outlineWidth))) *
+	vec3 dissolveOutline = vec3(round(1.0 - float(cutoff - outlineWidth))) *
 		growColor.rgb;
 
+	// TODO: Radioactive chunk effect
+
 	ALBEDO = mainTex.rgb;
-	ALPHA = round(alpha);
-	EMISSION = emission;
+	ALPHA = round(cutoff) * mainTex.a;
+	EMISSION = dissolveOutline;
 }
