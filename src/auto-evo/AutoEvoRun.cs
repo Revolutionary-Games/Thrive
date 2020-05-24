@@ -215,7 +215,7 @@ public class AutoEvoRun
                     int currentPop = results.GetPopulationInPatch(entry.Species, currentPatch);
 
                     results.AddPopulationResultForSpecies(
-                        entry.Species, currentPatch, currentPop + entry.Amount);
+                        entry.Species, currentPatch, (int)(currentPop * entry.Coefficient) + entry.Constant);
                 }
                 catch (Exception e)
                 {
@@ -233,9 +233,9 @@ public class AutoEvoRun
     /// <param name="species">The affected Species.</param>
     /// <param name="amount">The population change amount.</param>
     /// <param name="eventType">The external event type.</param>
-    public void AddExternalPopulationEffect(Species species, int amount, string eventType)
+    public void AddExternalPopulationEffect(Species species, int constant, float coefficient, string eventType)
     {
-        ExternalEffects.Add(new ExternalEffect(species, amount, eventType));
+        ExternalEffects.Add(new ExternalEffect(species, constant, coefficient, eventType));
     }
 
     /// <summary>
@@ -252,11 +252,13 @@ public class AutoEvoRun
 
             if (combinedExternalEffects.ContainsKey(key))
             {
-                combinedExternalEffects[key] += entry.Amount;
+                combinedExternalEffects[key] +=
+                    entry.Constant + (int)(entry.Species.Population * entry.Coefficient) - entry.Species.Population;
             }
             else
             {
-                combinedExternalEffects[key] = entry.Amount;
+                combinedExternalEffects[key] =
+                    entry.Constant + (int)(entry.Species.Population * entry.Coefficient) - entry.Species.Population;
             }
         }
 

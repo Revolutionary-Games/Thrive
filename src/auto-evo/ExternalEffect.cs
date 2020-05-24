@@ -3,14 +3,16 @@
 /// </summary>
 public class ExternalEffect
 {
-    public ExternalEffect(Species species, int amount, string eventType)
+    public ExternalEffect(Species species, int constant, float coefficient, string eventType)
     {
         Species = species;
-        Amount = amount;
+        Constant = constant;
+        Coefficient = coefficient;
         EventType = eventType;
     }
 
     public Species Species { get; }
-    public int Amount { get; set; }
+    public int Constant { get; set; }
+    public float Coefficient { get; set; }
     public string EventType { get; set; }
 }
