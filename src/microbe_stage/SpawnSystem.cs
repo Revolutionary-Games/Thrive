@@ -147,6 +147,14 @@ public class SpawnSystem
 
         foreach (ISpawner spawnType in spawnTypes)
         {
+            // Spawining queued spawns
+            if (spawnType.QueuedSpawns.Count > 0)
+            {
+                Action spawn = spawnType.QueuedSpawns.Pop();
+                spawn();
+                spawned++;
+            }
+
             /*
             To actually spawn a given entity for a given attempt, two
             conditions should be met. The first condition is a random

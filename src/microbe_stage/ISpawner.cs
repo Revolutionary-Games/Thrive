@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -28,6 +29,8 @@ public abstract class ISpawner
     /// </summary>
     /// <value><c>true</c> if destroy queued; otherwise, <c>false</c>.</value>
     public bool DestroyQueued { get; set; }
+
+    public Stack<Action> QueuedSpawns { get; set; }
 
     public abstract int Spawn(Node worldNode, Vector3 location);
 
