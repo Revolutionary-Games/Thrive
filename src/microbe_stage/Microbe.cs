@@ -2,15 +2,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Main script on each cell in the game
 /// </summary>
+[JsonObject(IsReference = true)]
+[UseThriveSerializer]
 public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 {
     /// <summary>
     ///   The stored compounds in this microbe
     /// </summary>
+    [JsonProperty]
     public readonly CompoundBag Compounds = new CompoundBag(0.0f);
 
     /// <summary>
@@ -39,6 +43,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// <summary>
     ///   The organelles in this microbe
     /// </summary>
+    [JsonProperty]
     private OrganelleLayout<PlacedOrganelle> organelles;
 
     /// <summary>
@@ -57,9 +62,16 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     private Vector3 queuedMovementForce;
 
     // variables for engulfing
+    [JsonProperty]
     private bool engulfMode = false;
+
+    [JsonProperty]
     private bool previousEngulfMode = false;
+
+    [JsonProperty]
     private Microbe hostileEngulfer = null;
+
+    [JsonProperty]
     private bool wasBeingEngulfed = false;
 
     // private bool isCurrentlyEngulfing = false;
@@ -79,6 +91,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// </summary>
     private HashSet<Microbe> attemptingToEngulf = new HashSet<Microbe>();
 
+    [JsonProperty]
     private float lastCheckedATPDamage = 0.0f;
 
     /// <summary>
@@ -89,56 +102,73 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// </summary>
     private float organellesCapacity = 0.0f;
 
+    [JsonProperty]
     private float escapeInterval = 0;
+
+    [JsonProperty]
     private bool hasEscaped = false;
 
     /// <summary>
     ///   Controls for how long the flashColour is held before going
     ///   back to species colour.
     /// </summary>
+    [JsonProperty]
     private float flashDuration = 0;
 
+    [JsonProperty]
     private Color flashColour = new Color(0, 0, 0, 0);
 
+    [JsonProperty]
     private bool allOrganellesDivided = false;
 
+    [JsonProperty]
     private MicrobeAI ai;
 
     /// <summary>
     ///   The membrane of this Microbe. Used for grabbing radius / points from this.
     /// </summary>
+    [JsonIgnore]
     public Membrane Membrane { get; private set; }
 
     /// <summary>
     ///   The species of this microbe
     /// </summary>
+    [JsonProperty]
     public MicrobeSpecies Species { get; private set; }
 
     /// <summary>
     ///    True when this is the player's microbe
     /// </summary>
+    [JsonProperty]
     public bool IsPlayerMicrobe { get; private set; }
 
     /// <summary>
     ///   True only when this has been deleted to let know things
     ///   being engulfed by us that we are dead.
     /// </summary>
+    [JsonProperty]
     public bool Dead { get; private set; } = false;
 
+    [JsonProperty]
     public float Hitpoints { get; private set; } = Constants.DEFAULT_HEALTH;
+
+    [JsonProperty]
     public float MaxHitpoints { get; private set; } = Constants.DEFAULT_HEALTH;
 
     /// <summary>
     ///   The number of agent vacuoles. Determines the time between
     ///   toxin shots.
     /// </summary>
+    [JsonIgnore]
     public int AgentVacuoleCount { get; private set; } = 0;
 
+    [JsonProperty]
     public bool IsBeingEngulfed { get; private set; } = false;
 
     /// <summary>
     ///   Multiplied on the movement speed of the microbe.
     /// </summary>
+    [JsonProperty]
     public float MovementFactor { get; private set; } = 1.0f;
 
     /// <summary>
@@ -149,12 +179,14 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     ///     Prefer setting this instead of directly setting the private variable.
     ///   </para>
     /// </remarks>
+    [JsonIgnore]
     public bool EngulfMode
     {
         get { return engulfMode; }
         set { engulfMode = value; }
     }
 
+    [JsonIgnore]
     public int HexCount
     {
         get
@@ -169,6 +201,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// <summary>
     ///   The size this microbe is for engulfing calculations
     /// </summary>
+    [JsonIgnore]
     public float EngulfSize
     {
         get
@@ -184,6 +217,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         }
     }
 
+    [JsonIgnore]
     public float Radius
     {
         get
@@ -200,15 +234,19 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// <summary>
     ///   All organelle nodes need to be added to this node to make scale work
     /// </summary>
+    [JsonIgnore]
     public Spatial OrganelleParent { get; private set; }
 
+    [JsonProperty]
     public int DespawnRadiusSqr { get; set; }
 
+    [JsonIgnore]
     public Node SpawnedNode
     {
         get { return this; }
     }
 
+    [JsonIgnore]
     public List<TweakedProcess> ActiveProcesses
     {
         get
@@ -219,6 +257,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         }
     }
 
+    [JsonIgnore]
     public CompoundBag ProcessCompoundStorage
     {
         get { return Compounds; }
@@ -227,24 +266,29 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// <summary>
     ///   For checking if the player is in freebuild mode or not
     /// </summary>
+    [JsonProperty]
     public GameProperties CurrentGame { get; private set; }
 
     /// <summary>
     ///   Needs access to the world for population changes
     /// </summary>
+    [JsonIgnore]
     public GameWorld GameWorld
     {
         get { return CurrentGame.GameWorld; }
     }
 
+    [JsonProperty]
     public float TimeUntilNextAIUpdate { get; set; } = 0;
 
     /// <summary>
     ///   For use by the AI to do run and tumble to find compounds
     /// </summary>
+    [JsonProperty]
     public Dictionary<string, float> TotalAbsorbedCompounds { get; set; } =
         new Dictionary<string, float>();
 
+    [JsonProperty]
     public float AgentEmissionCooldown { get; private set; } = 0.0f;
 
     /// <summary>

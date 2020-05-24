@@ -1,4 +1,5 @@
 using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Camera script for the microbe stage and the cell editor
@@ -8,44 +9,54 @@ public class MicrobeCamera : Camera
     /// <summary>
     ///   Object the camera positions itself over
     /// </summary>
+    [JsonProperty]
     public Spatial ObjectToFollow;
 
     /// <summary>
     ///   Background plane that is moved farther away from the camera when zooming out
     /// </summary>
+    [JsonIgnore]
     public Spatial BackgroundPlane;
 
+    [JsonIgnore]
     public Particles BackgroundParticles;
 
+    [JsonProperty]
     public float CameraHeight;
 
     /// <summary>
     ///   How fast the camera zooming is
     /// </summary>
     [Export]
+    [JsonProperty]
     public float ZoomSpeed = 1.4f;
 
     /// <summary>
     ///   The height at which the camera starts at
     /// </summary>
     [Export]
+    [JsonProperty]
     public float DefaultCameraHeight = 40.0f;
 
     /// <summary>
     ///   Min height the camera can be scrolled to
     /// </summary>
     [Export]
+    [JsonProperty]
     public float MinCameraHeight = 3.0f;
 
     /// <summary>
     ///   Maximum height the camera can be scrolled to
     /// </summary>
     [Export]
+    [JsonProperty]
     public float MaxCameraHeight = 80.0f;
 
     [Export]
+    [JsonProperty]
     public bool DisableBackgroundParticles;
 
+    [JsonProperty]
     public float InterpolateSpeed = 0.3f;
 
     private ShaderMaterial materialToUpdate;
@@ -56,6 +67,7 @@ public class MicrobeCamera : Camera
     /// <summary>
     ///   Returns the position the player is pointing to with their cursor
     /// </summary>
+    [JsonIgnore]
     public Vector3 CursorWorldPos
     {
         get
@@ -150,10 +162,7 @@ public class MicrobeCamera : Camera
             materialToUpdate.SetShaderParam($"layer{i:n0}", GD.Load<Texture>(background.Textures[i]));
         }
 
-        if (BackgroundParticles != null)
-        {
-            BackgroundParticles.QueueFree();
-        }
+        BackgroundParticles?.QueueFree();
 
         if (!DisableBackgroundParticles)
         {

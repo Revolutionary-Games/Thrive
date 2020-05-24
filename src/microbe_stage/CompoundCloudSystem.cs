@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Godot;
+using Newtonsoft.Json;
 
 // Copied over old documentation on how the clouds work
 /*
@@ -120,8 +121,10 @@ the bottom right is 1, 1.
 /// </summary>
 public class CompoundCloudSystem : Node
 {
+    [JsonProperty]
     private int neededCloudsAtOnePosition;
 
+    [JsonProperty]
     private List<CompoundCloudPlane> clouds = new List<CompoundCloudPlane>();
     private PackedScene cloudScene;
 
@@ -132,13 +135,16 @@ public class CompoundCloudSystem : Node
     ///   used for calculating which clouds to move when the player
     ///   moves.
     /// </summary>
+    [JsonProperty]
     private Vector3 cloudGridCenter;
 
+    [JsonProperty]
     private float elapsed = 0.0f;
 
     /// <summary>
     ///   The cloud resolution of the first cloud
     /// </summary>
+    [JsonIgnore]
     public int Resolution
     {
         get { return clouds[0].Resolution; }
