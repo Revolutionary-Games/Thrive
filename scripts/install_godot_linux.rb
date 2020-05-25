@@ -8,7 +8,7 @@ require 'fileutils'
 require 'tmpdir'
 require 'httparty'
 
-require_relative 'godot_version'
+require_relative 'scripts/godot_version'
 
 INSTALL_TARGET = '/usr/local/bin/'.freeze
 
