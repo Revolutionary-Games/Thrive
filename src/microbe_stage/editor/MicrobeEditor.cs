@@ -324,6 +324,8 @@ public class MicrobeEditor : Node
         // Update bacteria status
         editedSpecies.IsBacteria = !HasNucleus;
 
+        editedSpecies.UpdateInitialCompounds();
+
         GD.Print("MicrobeEditor: updated organelles for species: ",
             editedSpecies.FormattedName);
 
@@ -362,8 +364,6 @@ public class MicrobeEditor : Node
         parent.RemoveChild(this);
         parent.AddChild(ReturnToStage);
         ReturnToStage.OnReturnFromEditor();
-
-        editedSpecies.UpdateInitialCompounds();
 
         QueueFree();
     }
