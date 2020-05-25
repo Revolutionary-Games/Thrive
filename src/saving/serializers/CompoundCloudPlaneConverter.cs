@@ -9,11 +9,11 @@ using Newtonsoft.Json.Linq;
 public class CompoundCloudPlaneConverter : BaseThriveConverter
 {
     private const string DENSITY_PACKED_KEY = "EncodedDensity";
-    private readonly Base64ArrayConverter densityConverter;
+    private readonly Base64BinaryConverter densityConverter;
 
     public CompoundCloudPlaneConverter(ISaveContext context) : base(context)
     {
-        densityConverter = new Base64ArrayConverter(context);
+        densityConverter = new Base64BinaryConverter(context);
     }
 
     public override bool CanConvert(Type objectType)

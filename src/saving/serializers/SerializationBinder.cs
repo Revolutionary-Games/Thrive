@@ -26,6 +26,9 @@ public class SerializationBinder : DefaultSerializationBinder
         if (typeof(Vector4) == type)
             return type;
 
+        if (typeof(Vector4[,]) == type)
+            return type;
+
         throw new JsonException($"Dynamically typed JSON object is not allowed to be {typeName}");
     }
 }
