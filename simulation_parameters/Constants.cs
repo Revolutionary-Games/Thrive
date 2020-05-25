@@ -152,6 +152,10 @@ public static class Constants
 
     public const float MICROBE_VENT_COMPOUND_MULTIPLIER = 10000.0f;
 
+    public const float FLOATING_CHUNKS_DISSOLVE_SPEED = 0.3f;
+
+    public const float MEMBRANE_DISSOLVE_SPEED = 0.3f;
+
     /// <summary>
     ///   This is used just as the default value for health and max
     ///   health of a microbe. The default membrane actually
