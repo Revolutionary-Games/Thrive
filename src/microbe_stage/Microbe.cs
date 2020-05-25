@@ -1002,6 +1002,18 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         state.Transform = GetNewPhysicsRotation(state.Transform);
     }
 
+    internal void SuccessfulScavenge()
+    {
+        GameWorld.AlterSpeciesPopulation(Species,
+                Constants.CREATURE_SCAVENGE_POPULATION_GAIN, "successful scavenge");
+    }
+
+    internal void SuccessfulKill()
+    {
+        GameWorld.AlterSpeciesPopulation(Species,
+               Constants.CREATURE_KILL_POPULATION_GAIN, "successful kill");
+    }
+
     private void HandleCompoundAbsorbing(float delta)
     {
         // max here buffs compound absorbing for the smallest cells
