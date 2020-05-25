@@ -720,18 +720,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         QueueFree();
     }
 
-    internal void SuccessfulScavenge()
-    {
-        GameWorld.AlterSpeciesPopulation(Species,
-                Constants.CREATURE_SCAVENGE_POPULATION_GAIN, "successful scavenge");
-    }
-
-    internal void SuccessfulKill()
-    {
-        GameWorld.AlterSpeciesPopulation(Species,
-               Constants.CREATURE_KILL_POPULATION_GAIN, "successful kill");
-    }
-
     public void PlaySoundEffect(string effect)
     {
         // TODO: make these sound objects only be loaded once
@@ -1012,6 +1000,18 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         // TODO: should movement also be applied here?
 
         state.Transform = GetNewPhysicsRotation(state.Transform);
+    }
+
+    internal void SuccessfulScavenge()
+    {
+        GameWorld.AlterSpeciesPopulation(Species,
+                Constants.CREATURE_SCAVENGE_POPULATION_GAIN, "successful scavenge");
+    }
+
+    internal void SuccessfulKill()
+    {
+        GameWorld.AlterSpeciesPopulation(Species,
+               Constants.CREATURE_KILL_POPULATION_GAIN, "successful kill");
     }
 
     private void HandleCompoundAbsorbing(float delta)
