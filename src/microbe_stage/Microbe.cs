@@ -1828,6 +1828,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             if (!attemptingToEngulf.Contains(microbe) && CanEngulf(microbe))
             {
                 StartEngulfingTarget(microbe);
+                attemptingToEngulf.Add(microbe);
             }
         }
     }
