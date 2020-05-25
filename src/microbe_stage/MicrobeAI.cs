@@ -515,9 +515,7 @@ public class MicrobeAI
             // You got a kill, good job
             if (!microbe.IsPlayerMicrobe && !microbe.Species.PlayerSpecies)
             {
-                // TODO: fix
-                // MicrobeOperations::alterSpeciesPopulation(species,
-                //        CREATURE_KILL_POPULATION_GAIN, "successful kill");
+                microbe.SuccessfulKill();
             }
 
             if (RollCheck(SpeciesOpportunism, 400.0f, random))
@@ -592,9 +590,7 @@ public class MicrobeAI
             // You got a consumption, good job
             if (!microbe.IsPlayerMicrobe && !microbe.Species.PlayerSpecies)
             {
-                // TODO: fix
-                // MicrobeOperations::alterSpeciesPopulation(species,
-                //    CREATURE_SCAVENGE_POPULATION_GAIN, "successful scavenge");
+                microbe.SuccessfulScavenge();
             }
 
             return;
