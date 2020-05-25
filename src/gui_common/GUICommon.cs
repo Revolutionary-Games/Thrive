@@ -1,9 +1,7 @@
 using Godot;
 
 /// <summary>
-///   Common helpers for the GUI to work with.
-///   This singleton class is placed on AutoLoad for
-///   global access while still inheriting from Node.
+///   Common helpers for the GUI to work with. This is autoloaded.
 /// </summary>
 public class GUICommon : Node
 {

@@ -1,4 +1,4 @@
-[gd_scene load_steps=152 format=2]
+[gd_scene load_steps=153 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
@@ -695,10 +695,10 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color( 0.0666667, 1, 0.835294, 1 )
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id=46]
 bg_color = Color( 0, 0.541176, 0.258824, 1 )
@@ -707,10 +707,22 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color( 0.0666667, 1, 0.835294, 1 )
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id=68]
+bg_color = Color( 0.164706, 0.215686, 0.235294, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.396078, 0.623529, 0.584314, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id=47]
 bg_color = Color( 0, 0.490196, 0.258824, 1 )
@@ -719,10 +731,10 @@ border_width_top = 2
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color( 0.0666667, 1, 0.835294, 1 )
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [sub_resource type="DynamicFont" id=48]
 size = 20
@@ -852,6 +864,7 @@ MembraneColorPickerPath = NodePath("CellEditor/LeftPanel/Panel/Membrane/ScrollCo
 NewCellButtonPath = NodePath("LeftTopBar/HBoxContainer/NewCellButton")
 UndoButtonPath = NodePath("CellEditor/UndoButton")
 RedoButtonPath = NodePath("CellEditor/RedoButton")
+FinishButtonPath = NodePath("CellEditor/FinishButton")
 SymmetryButtonPath = NodePath("CellEditor/SymmetryButton")
 ATPBalanceLabelPath = NodePath("CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer/Label")
 ATPProductionBarPath = NodePath("CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer/AtpProductionBar")
@@ -895,10 +908,10 @@ PatchIronSituationPath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitConta
 PatchAmmoniaSituationPath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer/Ammonia/Situation")
 PatchPhosphateSituationPath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/GridContainer/Phosphate/Situation")
 RigiditySliderPath = NodePath("CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/RigiditySlider")
-HelpScreenPath = NodePath("HelpScreen")
-SymmetryIconPath = NodePath("CellEditor/SymmetryButton/VBoxContainer/SymmetryIcon")
 RigiditySliderTooltipHealthLabelPath = NodePath("CellEditor/Tooltips/rigiditySlider/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2/Label")
 RigiditySliderTooltipSpeedLabelPath = NodePath("CellEditor/Tooltips/rigiditySlider/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/Label")
+HelpScreenPath = NodePath("HelpScreen")
+SymmetryIconPath = NodePath("CellEditor/SymmetryButton/VBoxContainer/SymmetryIcon")
 SymmetryIcon2x = ExtResource( 77 )
 SymmetryIcon4x = ExtResource( 76 )
 SymmetryIcon6x = ExtResource( 75 )
@@ -1155,22 +1168,22 @@ custom_constants/separation = 0
 
 [node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer"]
 margin_right = 318.0
-margin_bottom = 15.0
+margin_bottom = 17.0
 custom_fonts/font = SubResource( 10 )
 text = "ATP Balance"
 
 [node name="VSeparator" type="VSeparator" parent="MicrobeEditorGUI/CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer"]
-margin_top = 15.0
+margin_top = 17.0
 margin_right = 318.0
-margin_bottom = 20.0
+margin_bottom = 22.0
 rect_min_size = Vector2( 0, 5 )
 mouse_filter = 2
 custom_styles/separator = SubResource( 11 )
 
 [node name="AtpProductionBar" type="ProgressBar" parent="MicrobeEditorGUI/CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer"]
-margin_top = 20.0
+margin_top = 22.0
 margin_right = 318.0
-margin_bottom = 35.0
+margin_bottom = 37.0
 rect_min_size = Vector2( 0, 15 )
 mouse_filter = 1
 custom_styles/fg = SubResource( 12 )
@@ -1190,9 +1203,9 @@ __meta__ = {
 }
 
 [node name="AtpConsumptionBar" type="ProgressBar" parent="MicrobeEditorGUI/CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer"]
-margin_top = 35.0
+margin_top = 37.0
 margin_right = 318.0
-margin_bottom = 50.0
+margin_bottom = 52.0
 rect_min_size = Vector2( 0, 15 )
 mouse_filter = 1
 custom_styles/fg = SubResource( 16 )
@@ -3989,8 +4002,10 @@ margin_bottom = -40.0
 focus_mode = 0
 custom_styles/hover = SubResource( 45 )
 custom_styles/pressed = SubResource( 46 )
+custom_styles/disabled = SubResource( 68 )
 custom_styles/normal = SubResource( 47 )
 custom_fonts/font = SubResource( 48 )
+custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
 enabled_focus_mode = 0
 text = "CONFIRM"
 __meta__ = {
@@ -9238,6 +9253,7 @@ custom_constants/margin_bottom = 15
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 335.0
+margin_bottom = 211.0
 custom_constants/separation = 15
 
 [node name="Title" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/rigiditySlider/MarginContainer/VBoxContainer"]

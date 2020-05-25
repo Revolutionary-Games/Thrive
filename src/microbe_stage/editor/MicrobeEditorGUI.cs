@@ -44,6 +44,9 @@ public class MicrobeEditorGUI : Node
     public NodePath RedoButtonPath;
 
     [Export]
+    public NodePath FinishButtonPath;
+
+    [Export]
     public NodePath SymmetryButtonPath;
 
     [Export]
@@ -219,6 +222,7 @@ public class MicrobeEditorGUI : Node
     private TextureButton newCellButton;
     private TextureButton undoButton;
     private TextureButton redoButton;
+    private Button finishButton;
     private TextureButton symmetryButton;
     private TextureRect symmetryIcon;
     private Label atpBalanceLabel;
@@ -298,6 +302,7 @@ public class MicrobeEditorGUI : Node
         undoButton = GetNode<TextureButton>(UndoButtonPath);
         redoButton = GetNode<TextureButton>(RedoButtonPath);
         symmetryButton = GetNode<TextureButton>(SymmetryButtonPath);
+        finishButton = GetNode<Button>(FinishButtonPath);
         atpBalanceLabel = GetNode<Label>(ATPBalanceLabelPath);
         atpProductionBar = GetNode<ProgressBar>(ATPProductionBarPath);
         atpConsumptionBar = GetNode<ProgressBar>(ATPConsumptionBarPath);
@@ -710,6 +715,9 @@ public class MicrobeEditorGUI : Node
 
     internal void OnFinishEditingClicked()
     {
+        // To prevent being clicked twice
+        finishButton.MouseFilter = Control.MouseFilterEnum.Ignore;
+
         TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.3f, false);
         TransitionManager.Instance.StartTransitions(editor, nameof(MicrobeEditor.OnFinishEditing));
     }
