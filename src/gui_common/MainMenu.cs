@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -14,6 +16,9 @@ public class MainMenu : Node
 
     [Export]
     public NodePath ThriveLogoPath;
+
+    [Export]
+    public List<Texture> MenuBackgrounds;
 
     public Godot.Collections.Array MenuArray;
     public TextureRect Background;
@@ -82,31 +87,17 @@ public class MainMenu : Node
     private void RandomizeBackground()
     {
         Random rand = new Random();
-        int num = rand.Next(0, 10);
 
-        if (num <= 3)
-        {
-            SetBackground("res://assets/textures/gui/BG_Menu01.png");
-        }
-        else if (num <= 6)
-        {
-            SetBackground("res://assets/textures/gui/BG_Menu02.png");
-        }
-        else if (num <= 9)
-        {
-            SetBackground("res://assets/textures/gui/BG_Menu03.png");
-        }
+        // Exported lists crashes the game, so as a workaround ToList() is added
+        // https://github.com/godotengine/godot/issues/37934
+        // This is a Godot issue that may get fixed in 4.0
+        var chosenBackground = MenuBackgrounds.ToList().Random(rand);
+
+        SetBackground(chosenBackground);
     }
 
-    private void SetBackground(string filepath)
+    private void SetBackground(Texture backgroundImage)
     {
-        if (Background == null)
-        {
-            GD.PrintErr("Background object doesn't exist");
-            return;
-        }
-
-        var backgroundImage = GD.Load<Texture>(filepath);
         Background.Texture = backgroundImage;
     }
 

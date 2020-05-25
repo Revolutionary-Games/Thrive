@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/gui_common/MainMenu.cs" type="Script" id=1]
 [ext_resource path="res://assets/textures/gui/menu_theme.tres" type="Theme" id=2]
 [ext_resource path="res://assets/textures/gui/logo.png" type="Texture" id=3]
 [ext_resource path="res://src/general/OptionsMenu.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/gui_common/VersionNumber.cs" type="Script" id=5]
+[ext_resource path="res://assets/textures/gui/BG_Menu02.png" type="Texture" id=6]
+[ext_resource path="res://assets/textures/gui/BG_Menu01.png" type="Texture" id=7]
+[ext_resource path="res://assets/textures/gui/BG_Menu03.png" type="Texture" id=8]
 
 [node name="MainMenu" type="Node"]
 script = ExtResource( 1 )
@@ -12,6 +15,7 @@ __meta__ = {
 "_editor_description_": "The root and controller for the main menu"
 }
 ThriveLogoPath = NodePath("MenuContainers/LogoCenterContainer/Logo")
+MenuBackgrounds = [ ExtResource( 7 ), ExtResource( 6 ), ExtResource( 8 ) ]
 
 [node name="Background" type="TextureRect" parent="."]
 anchor_right = 1.0
