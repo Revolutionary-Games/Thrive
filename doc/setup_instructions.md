@@ -283,6 +283,9 @@ wiki page https://wiki.revolutionarygamesstudio.com/wiki/Git_LFS
 Optional downloads
 ------------------
 
+### Cleaning Godot
+Your locally cloned Thrive version may get messed up from time to time. [Here are the steps to fix it.](https://wiki.revolutionarygamesstudio.com/wiki/Cleaning_Local_Thrive_Version)
+
 ### Ruby
 
 Ruby is needed for the scripts to package the game, and for the
