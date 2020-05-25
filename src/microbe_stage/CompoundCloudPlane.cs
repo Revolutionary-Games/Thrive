@@ -9,7 +9,6 @@ public class CompoundCloudPlane : CSGMesh
     /// <summary>
     ///   The current densities of compounds. This uses custom writing so this is ignored
     /// </summary>
-    [JsonIgnore]
     public System.Numerics.Vector4[,] Density;
 
     [JsonIgnore]
