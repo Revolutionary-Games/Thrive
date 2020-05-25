@@ -12,7 +12,7 @@ public class FloatingChunk : RigidBody, ISpawned
     /// <summary>
     ///   The node path to the mesh of this chunk
     /// </summary>
-    public NodePath ModelNodePath;
+    public string ModelNodePath;
 
     private CompoundCloudSystem compoundClouds;
 
@@ -76,7 +76,7 @@ public class FloatingChunk : RigidBody, ISpawned
     ///   </para>
     /// </remarks>
     public void Init(Biome.ChunkConfiguration chunkType, CompoundCloudSystem compoundClouds,
-        NodePath modelPath = null)
+        string modelPath = null)
     {
         this.compoundClouds = compoundClouds;
 
@@ -133,16 +133,16 @@ public class FloatingChunk : RigidBody, ISpawned
             return;
         }
 
-        var nodeToScale = GetNode("NodeToScale");
-        nodeToScale.AddChild(GraphicsScene.Instance());
+        var graphicsNode = GraphicsScene.Instance();
+        GetNode("NodeToScale").AddChild(graphicsNode);
 
-        if (ModelNodePath == null || ModelNodePath.IsEmpty())
+        if (string.IsNullOrEmpty(ModelNodePath))
         {
-            chunkMesh = nodeToScale.GetChild<MeshInstance>(0);
+            chunkMesh = (MeshInstance)graphicsNode;
         }
         else
         {
-            chunkMesh = nodeToScale.GetChild(0).GetNode<MeshInstance>(ModelNodePath);
+            chunkMesh = graphicsNode.GetNode<MeshInstance>(ModelNodePath);
         }
     }
 

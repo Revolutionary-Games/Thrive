@@ -37,15 +37,15 @@ void fragment(){
     vec4 normal = texture(texture, UV);
     vec4 final = normal * tint;
 
-	vec4 dissolveTex = texture(dissolveTexture, UV);
+    vec4 dissolveTex = texture(dissolveTexture, UV);
 
-	float cutoff = dot(dissolveTex.rgb, vec3(0.3, 0.3, 0.3)) -
-		float(-0.8 + dissolveValue);
+    float cutoff = dot(dissolveTex.rgb, vec3(0.3, 0.3, 0.3)) -
+        float(-0.5 + clamp(dissolveValue, 0, 1));
 
-	vec3 dissolveOutline = vec3(round(1.0 - float(cutoff - outlineWidth))) *
-		growColor.rgb;
+    vec3 dissolveOutline = vec3(round(1.0 - float(cutoff - outlineWidth))) *
+        growColor.rgb;
 
-	ALBEDO = final.rgb;
-	ALPHA = round(cutoff) * final.a;
-	EMISSION = dissolveOutline;
+    ALBEDO = final.rgb;
+    ALPHA = round(cutoff) * final.a;
+    EMISSION = dissolveOutline;
 }

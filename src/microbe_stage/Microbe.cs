@@ -104,6 +104,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
     private MicrobeAI ai;
 
+    private PackedScene cellBurstEffectScene;
+    private bool deathParticlesSpawned = false;
+
     /// <summary>
     ///   The membrane of this Microbe. Used for grabbing radius / points from this.
     /// </summary>
@@ -291,6 +294,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         engulfAudio = GetNode<AudioStreamPlayer3D>("EngulfAudio");
         otherAudio = GetNode<AudioStreamPlayer3D>("OtherAudio");
         movementAudio = GetNode<AudioStreamPlayer3D>("MovementAudio");
+
+        cellBurstEffectScene  = GD.Load<PackedScene>("res://src/microbe_stage/particles/CellBurst.tscn");
 
         // Setup physics callback stuff
         var engulfDetector = GetNode<Area>("EngulfDetector");
@@ -664,7 +669,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             var sceneToUse = new Biome.ChunkConfiguration.ChunkScene();
 
             // The node path to the organelle's model/mesh if there is any
-            var modelNodePath = string.Empty;
+            string modelNodePath = null;
 
             // Try all organelles in random order and use the first one with a scene for model
             foreach (var organelle in organelles.OrderBy(_ => random.Next()))
@@ -707,10 +712,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             }
         }
 
-        var deathScene = GD.Load<PackedScene>("res://src/microbe_stage/MicrobeDeathEffect.tscn");
-        var deathEffects = (MicrobeDeathEffect)deathScene.Instance();
-        deathEffects.ParentMicrobe = this;
-        GetParent().AddChild(deathEffects);
+        PlaySoundEffect("res://assets/sounds/soundeffects/microbe-death-2.ogg");
 
         // Disable collisions
         CollisionLayer = 0;
@@ -780,11 +782,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         }
 
         // Play the split sound
-        var sound = GD.Load<AudioStream>(
-            "res://assets/sounds/soundeffects/reproduction.ogg");
-
-        otherAudio.Stream = sound;
-        otherAudio.Play();
+        PlaySoundEffect("res://assets/sounds/soundeffects/reproduction.ogg");
     }
 
     /// <summary>
@@ -1503,6 +1501,29 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// </summary>
     private void HandleDeath(float delta)
     {
+        var cellBurstEffectParticles = new Particles();
+
+        // Spawn cell death particles
+        if (!deathParticlesSpawned)
+        {
+            deathParticlesSpawned = true;
+
+            cellBurstEffectParticles = (Particles)cellBurstEffectScene.Instance();
+            var cellBurstEffectMaterial = (ParticlesMaterial)cellBurstEffectParticles.ProcessMaterial;
+
+            cellBurstEffectMaterial.EmissionSphereRadius = Radius / 2;
+            cellBurstEffectMaterial.LinearAccel = Radius / 2;
+            cellBurstEffectParticles.OneShot = true;
+            AddChild(cellBurstEffectParticles);
+
+            // Hide the particles if being engulfed since they are
+            // supposed to be already "absorbed" by the engulfing cell
+            if (IsBeingEngulfed)
+            {
+                cellBurstEffectParticles.Hide();
+            }
+        }
+
         foreach (var organelle in organelles)
         {
             organelle.Hide();
@@ -1510,7 +1531,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
         Membrane.DissolveEffectValue += delta * Constants.MEMBRANE_DISSOLVE_SPEED;
 
-        if (Membrane.DissolveEffectValue >= 1)
+        if (Membrane.DissolveEffectValue >= 1 + cellBurstEffectParticles.Lifetime)
         {
             QueueFree();
         }

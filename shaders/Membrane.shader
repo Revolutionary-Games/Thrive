@@ -29,12 +29,12 @@ void fragment(){
     vec4 damaged = texture(damagedTexture, UV);
     vec4 final = ((normal * healthFraction) + 
         (damaged * (1.f - healthFraction))) * tint;
+
+    vec4 dissolveTex = texture(dissolveTexture, UV);
+
+    float cutoff = dot(dissolveTex.rgb, vec3(0.3, 0.3, 0.3)) -
+        float(-0.8 + clamp(dissolveValue, 0, 1));
+
     ALBEDO = final.rgb;
-
-	vec4 dissolveTex = texture(dissolveTexture, UV);
-
-	float cutoff = dot(dissolveTex.rgb, vec3(0.3, 0.3, 0.3)) -
-		float(-0.8 + dissolveValue);
-
     ALPHA = round(cutoff) * final.a;
 }

@@ -152,7 +152,7 @@ public static class Constants
 
     public const float MICROBE_VENT_COMPOUND_MULTIPLIER = 10000.0f;
 
-    public const float FLOATING_CHUNKS_DISSOLVE_SPEED = 0.15f;
+    public const float FLOATING_CHUNKS_DISSOLVE_SPEED = 0.3f;
 
     public const float MEMBRANE_DISSOLVE_SPEED = 0.3f;
 

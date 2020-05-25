@@ -218,7 +218,7 @@ public static class SpawnHelpers
 
     public static FloatingChunk SpawnChunk(Biome.ChunkConfiguration chunkType,
         Vector3 location, Node worldNode, PackedScene chunkScene,
-        CompoundCloudSystem cloudSystem, Random random, NodePath modelPath = null)
+        CompoundCloudSystem cloudSystem, Random random, string modelPath = null)
     {
         var chunk = (FloatingChunk)chunkScene.Instance();
 

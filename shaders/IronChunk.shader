@@ -10,18 +10,18 @@ uniform float outlineWidth;
 uniform vec4 growColor : hint_color;
 
 void fragment() {
-	vec4 mainTex = texture(texture, UV);
-	vec4 dissolveTex = texture(dissolveTexture, UV);
+    vec4 mainTex = texture(texture, UV);
+    vec4 dissolveTex = texture(dissolveTexture, UV);
 
-	float cutoff = dot(dissolveTex.rgb, vec3(0.3, 0.3, 0.3)) -
-		float(-0.8 + dissolveValue);
+    float cutoff = dot(dissolveTex.rgb, vec3(0.3, 0.3, 0.3)) -
+        float(-0.8 + clamp(dissolveValue, 0, 1));
 
-	vec3 dissolveOutline = vec3(round(1.0 - float(cutoff - outlineWidth))) *
-		growColor.rgb;
+    vec3 dissolveOutline = vec3(round(1.0 - float(cutoff - outlineWidth))) *
+        growColor.rgb;
 
-	// TODO: Radioactive chunk effect
+    // TODO: Radioactive chunk effect
 
-	ALBEDO = mainTex.rgb;
-	ALPHA = round(cutoff) * mainTex.a;
-	EMISSION = dissolveOutline;
+    ALBEDO = mainTex.rgb;
+    ALPHA = round(cutoff) * mainTex.a;
+    EMISSION = dissolveOutline;
 }
