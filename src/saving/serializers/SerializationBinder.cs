@@ -1,10 +1,11 @@
 using System;
 using System.Linq;
+using System.Numerics;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
 /// <summary>
-///   Controls which dynamic type classes are allowed to be loaded from json
+///   Controls which dynamic type classes are allowed to be loaded from json (or with specific BinaryFormatters)
 /// </summary>
 public class SerializationBinder : DefaultSerializationBinder
 {
@@ -18,6 +19,12 @@ public class SerializationBinder : DefaultSerializationBinder
             // Allowed type
             return type;
         }
+
+        if (typeof(int) == type)
+            return type;
+
+        if (typeof(Vector4) == type)
+            return type;
 
         throw new JsonException($"Dynamically typed JSON object is not allowed to be {typeName}");
     }
