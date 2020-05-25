@@ -10,7 +10,7 @@ Overview
 ----------------
 Repository structure:
 - assets: This folder contains all the assets such as models and other binaries. The big files in this folder use [Git LFS](https://git-lfs.github.com/) in order to keep this repository from bloating. You need to have Git LFS installed to get the files. Some better editable versions of the assets are stored in a separate [repository](https://github.com/Revolutionary-Games/Thrive-Raw-Assets).
-- doc: Documentation files. Contains style guide, engine overview and other useful documentation.
+- [doc: Documentation files.](/doc) Contains style guide, engine overview and other useful documentation.
 - simulation_parameters: Contains JSON files as well as C# constants for tweaking the game.
 - scripts: Utility scripts for Thrive development
 - src: The core of the game written in C# as well as Godot scenes.

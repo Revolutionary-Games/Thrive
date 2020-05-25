@@ -1076,6 +1076,13 @@ public class MicrobeEditorGUI : Node
 
                 var stringBuilder = new StringBuilder(string.Empty, 150);
 
+                // Changes process title and process# to red if process has 0 output
+                if (outputCompound.Amount == 0)
+                {
+                    processTitle.AddColorOverride("font_color", new Color(1.0f, 0.1f, 0.1f));
+                    amountLabel.AddColorOverride("font_color", new Color(1.0f, 0.1f, 0.1f));
+                }
+
                 if (usePlus)
                 {
                     stringBuilder.Append(outputCompound.Amount >= 0 ? "+" : string.Empty);
