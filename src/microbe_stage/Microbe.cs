@@ -1513,14 +1513,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// </summary>
     private void HandleDeath(float delta)
     {
-        var cellBurstEffectParticles = new Particles();
-
         // Spawn cell death particles
         if (!deathParticlesSpawned)
         {
             deathParticlesSpawned = true;
 
-            cellBurstEffectParticles = (Particles)cellBurstEffectScene.Instance();
+            var cellBurstEffectParticles = (Particles)cellBurstEffectScene.Instance();
             var cellBurstEffectMaterial = (ParticlesMaterial)cellBurstEffectParticles.ProcessMaterial;
 
             cellBurstEffectMaterial.EmissionSphereRadius = Radius / 2;
@@ -1543,7 +1541,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
         Membrane.DissolveEffectValue += delta * Constants.MEMBRANE_DISSOLVE_SPEED;
 
-        if (Membrane.DissolveEffectValue >= 1 + cellBurstEffectParticles.Lifetime)
+        if (Membrane.DissolveEffectValue >= 6)
         {
             QueueFree();
         }
