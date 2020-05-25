@@ -27,6 +27,7 @@ public class MainMenu : Node
 
     private TextureRect thriveLogo;
     private OptionsMenu options;
+    private AnimationPlayer GUIAnimations;
 
     public override void _Ready()
     {
@@ -56,6 +57,7 @@ public class MainMenu : Node
     private void RunMenuSetup()
     {
         Background = GetNode<TextureRect>("Background");
+        GUIAnimations = GetNode<AnimationPlayer>("GUIAnimations");
         thriveLogo = GetNode<TextureRect>(ThriveLogoPath);
 
         if (MenuArray != null)
@@ -102,14 +104,23 @@ public class MainMenu : Node
     }
 
     /// <summary>
+    ///   Stops any currently playing animation and plays
+    ///   the given one instead
+    /// </summary>
+    private void PlayGUIAnimation(string animation)
+    {
+        if (GUIAnimations.IsPlaying())
+            GUIAnimations.Stop();
+
+        GUIAnimations.Play(animation);
+    }
+
+    /// <summary>
     ///   Change the menu displayed on screen to one
     ///   with the menu of the given index.
     /// </summary>
     private void SetCurrentMenu(uint index, bool slide = true)
     {
-        // Using tween for value interpolation
-        var tween = GetNode<Tween>("MenuTween");
-
         // Allow disabling all the menus for going to the options menu
         if (index > MenuArray.Count - 1 && index != uint.MaxValue)
         {
@@ -132,12 +143,9 @@ public class MainMenu : Node
                 menu.Show();
 
                 // Play the slide down animation
-                // TODO: Improve how this is done
                 if (slide)
                 {
-                    tween.InterpolateProperty(menu, "custom_constants/separation", -35,
-                        10, 0.3f, Tween.TransitionType.Sine);
-                    tween.Start();
+                    PlayGUIAnimation("MenuSlideDown");
                 }
             }
         }
