@@ -4,10 +4,10 @@ require 'fileutils'
 require 'tmpdir'
 require 'httparty'
 
-require_relative 'bootstrap_rubysetupsystem'
-require_relative 'RubySetupSystem/RubyCommon'
+require_relative '../bootstrap_rubysetupsystem'
+require_relative '../RubySetupSystem/RubyCommon'
 
-require_relative './godot_version'
+require_relative 'godot_version'
 
 INSTALL_TARGET = File.join(File.expand_path('~'), '.local/share/godot/templates/',
                            GODOT_VERSION_FULL).freeze
