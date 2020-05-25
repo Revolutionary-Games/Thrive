@@ -295,7 +295,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         otherAudio = GetNode<AudioStreamPlayer3D>("OtherAudio");
         movementAudio = GetNode<AudioStreamPlayer3D>("MovementAudio");
 
-        cellBurstEffectScene  = GD.Load<PackedScene>("res://src/microbe_stage/particles/CellBurst.tscn");
+        cellBurstEffectScene = GD.Load<PackedScene>("res://src/microbe_stage/particles/CellBurst.tscn");
 
         // Setup physics callback stuff
         var engulfDetector = GetNode<Area>("EngulfDetector");
