@@ -56,6 +56,7 @@ public class MicrobeSpecies : Species
     public void SetUpdatedCompounds()
     {
         var simulation = SimulationParameters.Instance;
+
         // If you have iron (f is the symbol for rusticyanin)
         var rusticyanin = simulation.GetOrganelleType("rusticyanin");
         var chemo = simulation.GetOrganelleType("chemoplast");
