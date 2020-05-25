@@ -53,11 +53,10 @@ public class MicrobeSpecies : Species
         InitialCompounds.Add("hydrogensulfide", 10);
     }
 
-    public void SetUpdatedCompounds()
+    public void UpdateInitialCompounds()
     {
         var simulation = SimulationParameters.Instance;
 
-        // If you have iron (f is the symbol for rusticyanin)
         var rusticyanin = simulation.GetOrganelleType("rusticyanin");
         var chemo = simulation.GetOrganelleType("chemoplast");
         var chemoProtein = simulation.GetOrganelleType("chemoSynthesizingProteins");
