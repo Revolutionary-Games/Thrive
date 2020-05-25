@@ -363,6 +363,8 @@ public class MicrobeEditor : Node
         parent.AddChild(ReturnToStage);
         ReturnToStage.OnReturnFromEditor();
 
+        editedSpecies.SetUpdatedCompounds();
+
         QueueFree();
     }
 

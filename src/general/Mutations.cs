@@ -125,24 +125,7 @@ public class Mutations
         mutated.MembraneRigidity = Math.Max(Math.Min(parent.MembraneRigidity +
             random.Next(-25, 26) / 100.0f, 1), -1);
 
-        // If you have iron (f is the symbol for rusticyanin)
-        var rusticyanin = simulation.GetOrganelleType("rusticyanin");
-        var chemo = simulation.GetOrganelleType("chemoplast");
-        var chemoProtein = simulation.GetOrganelleType("chemoSynthesizingProteins");
-
-        if (mutated.Organelles.Any(o => o.Definition == rusticyanin))
-        {
-            mutated.SetInitialCompoundsForIron();
-        }
-        else if (mutated.Organelles.Any(o => o.Definition == chemo ||
-            o.Definition == chemoProtein))
-        {
-            mutated.SetInitialCompoundsForChemo();
-        }
-        else
-        {
-            mutated.SetInitialCompoundsForDefault();
-        }
+        mutated.SetUpdatedCompounds();
 
         return mutated;
     }
