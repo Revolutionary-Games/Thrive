@@ -230,6 +230,10 @@ restore` in the Thrive folder.
 
 Note: dotnet restore command should be avoided as it can break things.
 
+### Cleaning Godot
+
+Your locally cloned Thrive version may get messed up from time to time. [Here are the steps to fix it.](https://wiki.revolutionarygamesstudio.com/wiki/Cleaning_Local_Thrive_Version)
+
 Compiling
 ---------
 
@@ -279,11 +283,6 @@ team member to commit the assets for you.
 
 For information on committing to the LFS repository you can read this
 wiki page https://wiki.revolutionarygamesstudio.com/wiki/Git_LFS 
-
-Cleaning Godot
-------------------
-
-Your locally cloned Thrive version may get messed up from time to time. [Here are the steps to fix it.](https://wiki.revolutionarygamesstudio.com/wiki/Cleaning_Local_Thrive_Version)
 
 Optional downloads
 ------------------
