@@ -22,6 +22,7 @@ public class Membrane : MeshInstance
     private float healthFraction = 1.0f;
     private float wigglyNess = 1.0f;
     private float movementWigglyNess = 1.0f;
+    private float sizeWigglyNessDampeningFactor = 0.2f;
     private Color tint = new Color(1, 1, 1, 1);
 
     private Texture normalTexture;
@@ -101,7 +102,14 @@ public class Membrane : MeshInstance
     {
         get
         {
-            return wigglyNess;
+            if (cellDimensions > 1)
+            {
+                return wigglyNess / (cellDimensions * sizeWigglyNessDampeningFactor);
+            }
+            else
+            {
+                return wigglyNess;
+            }
         }
         set
         {
