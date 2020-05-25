@@ -20,6 +20,12 @@ public class MainMenu : Node
     [Export]
     public List<Texture> MenuBackgrounds;
 
+    [Export]
+    public NodePath NewGameButtonPath;
+
+    [Export]
+    public NodePath FreebuildButtonPath;
+
     public Godot.Collections.Array MenuArray;
     public TextureRect Background;
 
@@ -28,6 +34,9 @@ public class MainMenu : Node
     private TextureRect thriveLogo;
     private OptionsMenu options;
     private AnimationPlayer GUIAnimations;
+
+    private Button newGameButton;
+    private Button freebuildButton;
 
     public override void _Ready()
     {
@@ -59,6 +68,8 @@ public class MainMenu : Node
         Background = GetNode<TextureRect>("Background");
         GUIAnimations = GetNode<AnimationPlayer>("GUIAnimations");
         thriveLogo = GetNode<TextureRect>(ThriveLogoPath);
+        newGameButton = GetNode<Button>(NewGameButtonPath);
+        freebuildButton = GetNode<Button>(FreebuildButtonPath);
 
         if (MenuArray != null)
             MenuArray.Clear();
@@ -194,6 +205,9 @@ public class MainMenu : Node
     {
         GUICommon.Instance.PlayButtonPressSound();
 
+        // Ignore mouse event on the button to prevent it being clicked twice
+        newGameButton.MouseFilter = Control.MouseFilterEnum.Ignore;
+
         // Stop music for the video (stop is used instead of pause to stop the menu music playing a bit after the video
         // before the stage music starts)
         Jukebox.Instance.Stop();
@@ -221,6 +235,9 @@ public class MainMenu : Node
     private void FreebuildEditorPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
+
+        // Ignore mouse event on the button to prevent it being clicked twice
+        freebuildButton.MouseFilter = Control.MouseFilterEnum.Ignore;
 
         TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.3f, false);
         TransitionManager.Instance.StartTransitions(this, nameof(OnFreebuildFadeInEnded));

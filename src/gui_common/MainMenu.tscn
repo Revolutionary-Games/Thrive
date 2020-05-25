@@ -44,6 +44,8 @@ __meta__ = {
 }
 ThriveLogoPath = NodePath("MenuContainers/LogoCenterContainer/Logo")
 MenuBackgrounds = [ ExtResource( 7 ), ExtResource( 6 ), ExtResource( 8 ) ]
+NewGameButtonPath = NodePath("MenuContainers/MenuCenterContainer/MenuItems/MainMenu/NewGame")
+FreebuildButtonPath = NodePath("MenuContainers/MenuCenterContainer/MenuItems/Tools/Freebuild Editor")
 
 [node name="Background" type="TextureRect" parent="."]
 anchor_right = 1.0

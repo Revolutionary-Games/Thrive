@@ -38,6 +38,9 @@ public class Fade : CanvasLayer, ITransition
         Fader = GetNode<Tween>("Control/Fader");
         Fader.Connect("tween_all_completed", this, "OnFinished");
 
+        // Keep this node running while paused
+        PauseMode = PauseModeEnum.Process;
+
         ControlNode.Hide();
     }
 

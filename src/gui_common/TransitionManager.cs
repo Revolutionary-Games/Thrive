@@ -3,19 +3,17 @@ using Godot;
 
 /// <summary>
 ///   Manages the screen transitions, usually used for when
-///   switching scenes. This singleton class is placed on
-///   AutoLoad for global access while still inheriting from Node.
+///   switching scenes. This is autoloaded
 /// </summary>
 public class TransitionManager : Node
 {
     private static TransitionManager instance;
 
-    private PackedScene screenFadeScene;
-    private PackedScene cutsceneScene;
+    private readonly PackedScene screenFadeScene;
+    private readonly PackedScene cutsceneScene;
 
     /// <summary>
-    ///   Sequence of transitions on queue waiting
-    ///   to be started.
+    ///   Transitions waiting to be executed.
     /// </summary>
     private Queue<ITransition> queuedTransitions = new Queue<ITransition>();
 
@@ -38,8 +36,7 @@ public class TransitionManager : Node
     /// <summary>
     ///   List of all the existing transitions after calling StartTransitions.
     /// </summary>
-    public List<ITransition> TransitionSequence { get; private set; } =
-        new List<ITransition>();
+    public List<ITransition> TransitionSequence { get; private set; } = new List<ITransition>();
 
     public override void _Input(InputEvent @event)
     {
@@ -81,6 +78,9 @@ public class TransitionManager : Node
     ///   Helper function for instantiating
     ///   and queuing a cutscene.
     /// </summary>
+    /// <param name="allowSkipping">
+    ///   Allow the user to skip this
+    /// </param>
     public void AddCutscene(string path, bool allowSkipping = true)
     {
         // Instantiate scene
@@ -132,7 +132,7 @@ public class TransitionManager : Node
     }
 
     /// <summary>
-    ///   Skips the running and all the remaining transitions.
+    ///   Skips all the running and remaining transitions.
     /// </summary>
     public void CancelQueuedTransitions()
     {
@@ -152,12 +152,12 @@ public class TransitionManager : Node
     }
 
     /// <summary>
-    ///   Starts the next transition on the
-    ///   queue when the previous ends.
+    ///   Starts the next transition on queue
+    ///   when the previous ends.
     /// </summary>
     private void StartNextQueuedTransition()
     {
-        // Assume it's finished when the queue list is empty.
+        // Assume it's finished when queue is empty.
         if (queuedTransitions.Count == 0)
         {
             EmitSignal(nameof(QueuedTransitionsFinished));
