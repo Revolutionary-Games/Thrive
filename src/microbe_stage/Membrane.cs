@@ -102,14 +102,7 @@ public class Membrane : MeshInstance
     {
         get
         {
-            if (cellDimensions > 1)
-            {
-                return wigglyNess / (cellDimensions * sizeWigglyNessDampeningFactor);
-            }
-            else
-            {
-                return wigglyNess;
-            }
+            return wigglyNess;
         }
         set
         {
@@ -351,7 +344,10 @@ public class Membrane : MeshInstance
 
     private void ApplyWiggly()
     {
-        MaterialToEdit.SetShaderParam("wigglyNess", WigglyNess);
+        float wigglyNessToApply = cellDimensions > 1 ?
+            wigglyNess / (cellDimensions * sizeWigglyNessDampeningFactor) : wigglyNess;
+
+        MaterialToEdit.SetShaderParam("wigglyNess", wigglyNessToApply);
     }
 
     private void ApplyMovementWiggly()
