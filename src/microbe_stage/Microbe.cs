@@ -294,11 +294,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// <summary>
     ///   Called when this Microbe dies
     /// </summary>
+    [JsonIgnore]
     public Action<Microbe> OnDeath { get; set; }
 
     /// <summary>
     ///   Called when the reproduction status of this microbe changes
     /// </summary>
+    [JsonIgnore]
     public Action<Microbe, bool> OnReproductionStatus { get; set; }
 
     /// <summary>

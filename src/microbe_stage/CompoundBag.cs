@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Object that stores compound amounts and capacities
@@ -13,18 +14,24 @@ public class CompoundBag : IEnumerable<KeyValuePair<string, float>>
     /// </summary>
     public float Capacity;
 
+    [JsonProperty]
     private readonly HashSet<string> usefulCompounds = new HashSet<string>();
 
-    public CompoundBag(float initialCapacity)
+    /// <summary>
+    ///   Creates a new bag
+    /// </summary>
+    /// <param name="capacity">Specifies the initial capacity of the compound bag</param>
+    public CompoundBag(float capacity)
     {
-        Capacity = initialCapacity;
+        Capacity = capacity;
     }
 
     /// <summary>
     ///   Returns all compounds. Don't modify the returned value!
     ///   Except if you want to ignore capacity...
     /// </summary>
-    public Dictionary<string, float> Compounds { get; } = new Dictionary<string, float>();
+    [JsonProperty]
+    public Dictionary<string, float> Compounds { get; private set; } = new Dictionary<string, float>();
 
     /// <summary>
     ///   Returns the stored amount of the compound in this
