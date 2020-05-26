@@ -363,7 +363,7 @@ public abstract class BaseThriveConverter : JsonConverter
         foreach (var property in PropertiesOf(instance))
         {
             var name = DetermineKey(item, property.Name);
-            if (Skip(property.Name, name))
+            if (Skip(property.Name, name) || !item.ContainsKey(name))
                 continue;
 
             var set = property.GetSetMethodOnDeclaringType();
