@@ -41,6 +41,7 @@ public class ThriveJsonConverter : IDisposable
             // TODO: is this one needed? It doesn't have any special stuff left
             new SpeciesConverter(context),
             new CompoundCloudPlaneConverter(context),
+            new CompoundBagConverter(context),
 
             // Converter for all types with the specific attribute for this to be enabled
             new DefaultThriveJSONConverter(context),
@@ -366,6 +367,12 @@ public abstract class BaseThriveConverter : JsonConverter
                 continue;
 
             var set = property.GetSetMethodOnDeclaringType();
+
+            if (set == null)
+            {
+                throw new InvalidOperationException(
+                    $"Json property used on a property ({name})that has no (private) setter");
+            }
 
             set.Invoke(instance, new object[]
             {
