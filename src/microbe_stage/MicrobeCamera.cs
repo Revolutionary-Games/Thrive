@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
 
@@ -171,6 +172,11 @@ public class MicrobeCamera : Camera
             BackgroundParticles.LocalCoords = false;
             AddChild(BackgroundParticles);
         }
+    }
+
+    public void ApplyPropertiesFromSave(MicrobeCamera camera)
+    {
+        SaveApplyHelper.CopyJSONSavedPropertiesAndFields(this, camera, new List<string>() { "ObjectToFollow" });
     }
 
     private void UpdateCursorWorldPos()

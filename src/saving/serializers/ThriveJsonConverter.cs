@@ -247,6 +247,11 @@ public abstract class BaseThriveConverter : JsonConverter
             p.CustomAttributes.Any((a) => a.AttributeType == typeof(JsonPropertyAttribute)));
     }
 
+    public static bool IsIgnoredGodotMember(string name, Type type)
+    {
+        return typeof(Node).IsAssignableFrom(type) && BaseNodeConverter.IsIgnoredGodotNodeMember(name);
+    }
+
     public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
         JsonSerializer serializer)
     {
@@ -515,7 +520,7 @@ public abstract class BaseThriveConverter : JsonConverter
 
     protected virtual bool SkipIfGodotNodeType(string name, Type type)
     {
-        if (typeof(Node).IsAssignableFrom(type) && BaseNodeConverter.IsIgnoredGodotNodeMember(name))
+        if (IsIgnoredGodotMember(name, type))
             return true;
 
         return false;

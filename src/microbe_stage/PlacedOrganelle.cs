@@ -30,6 +30,17 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     [JsonProperty]
     private Dictionary<string, float> compoundsLeft;
 
+    public PlacedOrganelle(OrganelleDefinition definition, Hex position, int orientation)
+    {
+        Definition = definition;
+        Position = position;
+        Orientation = orientation;
+    }
+
+    public PlacedOrganelle()
+    {
+    }
+
     public OrganelleDefinition Definition { get; set; }
 
     public Hex Position { get; set; }

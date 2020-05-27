@@ -126,6 +126,7 @@ public class CompoundCloudSystem : Node
 
     [JsonProperty]
     private List<CompoundCloudPlane> clouds = new List<CompoundCloudPlane>();
+
     private PackedScene cloudScene;
 
     private List<Compound> allCloudCompounds;
@@ -434,6 +435,22 @@ public class CompoundCloudSystem : Node
         {
             cloudGridCenter = targetCenter;
             PositionClouds();
+        }
+    }
+
+    public void ApplyPropertiesFromSave(CompoundCloudSystem compoundCloudSystem)
+    {
+        cloudGridCenter = compoundCloudSystem.cloudGridCenter;
+        elapsed = compoundCloudSystem.elapsed;
+
+        // Copy concentrations (and as well as the other cloud parameters that need to be set)
+        // TODO: allow saves to work if new compounds are added
+        if (clouds.Count != compoundCloudSystem.clouds.Count)
+            throw new Exception("Loading a save that has different compound cloud types doesn't currently work");
+
+        for (int i = 0; i < clouds.Count; ++i)
+        {
+            clouds[i].ApplyPropertiesFromSave(compoundCloudSystem.clouds[i]);
         }
     }
 
