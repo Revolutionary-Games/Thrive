@@ -339,6 +339,14 @@ public class MicrobeEditor : Node, ILoadableGameState
     {
         ApplyPropertiesFromSave(save.MicrobeEditor);
 
+        // Handle the stage to return to specially, as it also needs to run the code
+        // for fixing the stuff in order to return there
+        if (ReturnToStage != null)
+        {
+            ReturnToStage = (MicrobeStage)SceneManager.Instance.LoadScene(MainGameState.MicrobeStage).Instance();
+            ReturnToStage.OnFinishLoading(save.MicrobeEditor.ReturnToStage);
+        }
+
         InitEditor();
 
         StartMusic();

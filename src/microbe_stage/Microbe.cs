@@ -1057,9 +1057,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
         organelles.Clear();
 
-        foreach (var saved in microbe.organelles)
+        while (microbe.organelles.Count > 0)
         {
-            organelles.Add(new PlacedOrganelle(saved.Definition, saved.Position, saved.Orientation));
+            // Steal the organelles from the other microbe which will be destroyed anyway once the save is fully loaded
+            var organelle = microbe.organelles[0];
+            microbe.organelles.Remove(organelle);
+
+            organelles.Add(organelle);
         }
 
         if (ai != null)
