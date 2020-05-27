@@ -47,7 +47,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
 
     public int Orientation { get; set; }
 
-    [JsonProperty]
+    [JsonIgnore]
     public Microbe ParentMicrobe { get; private set; }
 
     /// <summary>

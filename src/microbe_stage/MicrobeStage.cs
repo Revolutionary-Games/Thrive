@@ -133,9 +133,14 @@ public class MicrobeStage : Node, ILoadableGameState
 
     public void OnFinishLoading(Save save)
     {
-        ApplyPropertiesFromSave(save.MicrobeStage);
+        OnFinishLoading(save.MicrobeStage);
+    }
 
-        RespawnEntitiesFromSave(save.MicrobeStage);
+    public void OnFinishLoading(MicrobeStage stage)
+    {
+        ApplyPropertiesFromSave(stage);
+
+        RespawnEntitiesFromSave(stage);
 
         CreatePatchManagerIfNeeded();
 
