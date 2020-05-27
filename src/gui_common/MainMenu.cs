@@ -61,6 +61,32 @@ public class MainMenu : Node
     }
 
     /// <summary>
+    ///   Sets the current menu index and then switches the menu
+    /// </summary>
+    public void SetCurrentMenu(uint index, bool slide = true)
+    {
+        // Allow disabling all the menus for going to the options menu
+        if (index > MenuArray.Count - 1 && index != uint.MaxValue)
+        {
+            GD.PrintErr("Selected menu index is out of range!");
+            return;
+        }
+        else
+        {
+            CurrentMenuIndex = index;
+        }
+
+        if (slide)
+        {
+            GUIAnimations.Play("MenuSlide");
+        }
+        else
+        {
+            SwitchMenu();
+        }
+    }
+
+    /// <summary>
     ///   Setup the main menu.
     /// </summary>
     private void RunMenuSetup()
@@ -90,8 +116,8 @@ public class MainMenu : Node
         // Load settings
         options.SetSettingsFrom(Settings.Instance);
 
-        // Set initial menu to the current menu index
-        SetCurrentMenu(CurrentMenuIndex, false);
+        // Set initial menu
+        SwitchMenu();
     }
 
     /// <summary>
@@ -127,37 +153,18 @@ public class MainMenu : Node
     }
 
     /// <summary>
-    ///   Change the menu displayed on screen to one
-    ///   with the menu of the given index.
+    ///   Switches the displayed menu
     /// </summary>
-    private void SetCurrentMenu(uint index, bool slide = true)
+    private void SwitchMenu()
     {
-        // Allow disabling all the menus for going to the options menu
-        if (index > MenuArray.Count - 1 && index != uint.MaxValue)
-        {
-            GD.PrintErr("Selected menu index is out of range!");
-            return;
-        }
-        else
-        {
-            CurrentMenuIndex = index;
-        }
-
-        // Hide all menu and only show the one
-        // with the correct index
+        // Hide other menus and only show the one of the current index
         foreach (Control menu in MenuArray)
         {
             menu.Hide();
 
-            if (menu.GetIndex() == index)
+            if (menu.GetIndex() == CurrentMenuIndex)
             {
                 menu.Show();
-
-                // Play the slide down animation
-                if (slide)
-                {
-                    PlayGUIAnimation("MenuSlideDown");
-                }
             }
         }
     }
@@ -260,7 +267,7 @@ public class MainMenu : Node
         GUICommon.Instance.PlayButtonPressSound();
 
         // Hide all the other menus
-        SetCurrentMenu(uint.MaxValue);
+        SetCurrentMenu(uint.MaxValue, false);
 
         // Show the options
         options.Visible = true;
@@ -273,7 +280,7 @@ public class MainMenu : Node
         options.Visible = false;
 
         // Hide all the other menus
-        SetCurrentMenu(0);
+        SetCurrentMenu(0, false);
 
         thriveLogo.Show();
     }

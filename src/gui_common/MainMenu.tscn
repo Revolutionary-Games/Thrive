@@ -9,9 +9,9 @@
 [ext_resource path="res://assets/textures/gui/BG_Menu01.png" type="Texture" id=7]
 [ext_resource path="res://assets/textures/gui/BG_Menu03.png" type="Texture" id=8]
 
-[sub_resource type="Animation" id=1]
-resource_name = "MenuSlideDown"
-length = 0.5
+[sub_resource type="Animation" id=2]
+resource_name = "MenuSlide"
+length = 0.7
 tracks/0/type = "value"
 tracks/0/path = NodePath("MenuContainers/MenuCenterContainer:rect_size")
 tracks/0/interp = 1
@@ -19,10 +19,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 0.5, 1 ),
+"times": PoolRealArray( 0, 0.3, 0.7 ),
+"transitions": PoolRealArray( 0.5, 0.5, 0.5 ),
 "update": 0,
-"values": [ Vector2( 1280, 0 ), Vector2( 1280, 505 ) ]
+"values": [ Vector2( 1280, 505 ), Vector2( 1280, 0 ), Vector2( 1280, 505 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("MenuContainers/MenuCenterContainer:anchor_top")
@@ -31,10 +31,24 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5 ),
-"transitions": PoolRealArray( 0.5, 1 ),
+"times": PoolRealArray( 0, 0.3, 0.7 ),
+"transitions": PoolRealArray( 0.5, 0.5, 0.5 ),
 "update": 0,
-"values": [ 0.75, 0.5 ]
+"values": [ 0.5, 0.75, 0.5 ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "SwitchMenu"
+} ]
 }
 
 [node name="MainMenu" type="Node"]
@@ -90,11 +104,11 @@ __meta__ = {
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.8
+anchor_bottom = 0.85
 margin_left = -639.183
 margin_top = -145.0
 margin_right = 640.817
-margin_bottom = 144.0
+margin_bottom = 108.0
 rect_clip_content = true
 __meta__ = {
 "_edit_use_anchors_": false,
@@ -264,12 +278,12 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -391.0
-margin_top = -26.0
+margin_left = -298.0
+margin_top = -23.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-size_flags_horizontal = 2
+size_flags_horizontal = 3
 size_flags_vertical = 6
 theme = ExtResource( 2 )
 text = "x.y.z"
@@ -283,7 +297,7 @@ __meta__ = {
 }
 
 [node name="GUIAnimations" type="AnimationPlayer" parent="."]
-anims/MenuSlideDown = SubResource( 1 )
+anims/MenuSlide = SubResource( 2 )
 [connection signal="pressed" from="MenuContainers/MenuCenterContainer/MenuItems/MainMenu/NewGame" to="." method="NewGamePressed"]
 [connection signal="pressed" from="MenuContainers/MenuCenterContainer/MenuItems/MainMenu/Options" to="." method="OptionsPressed"]
 [connection signal="pressed" from="MenuContainers/MenuCenterContainer/MenuItems/MainMenu/Tools" to="." method="ToolsPressed"]

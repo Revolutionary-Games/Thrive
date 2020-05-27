@@ -899,9 +899,10 @@ public class MicrobeEditorGUI : Node
         }
     }
 
-    private void OnConditionClicked(string tab)
+    private void ToggleConditionsTab(string tab)
     {
-        // I couldn't make these slide
+        var slideAnimations = patchDetails.GetNode<AnimationPlayer>("SlideAnimations");
+
         if (tab == "physical")
         {
             var minusButton = physicalConditionsButton.GetNode<TextureButton>("minusButton");
@@ -909,73 +910,57 @@ public class MicrobeEditorGUI : Node
 
             if (!physicalConditionsBox.Visible)
             {
-                physicalConditionsBox.Show();
+                slideAnimations.Play("physicalSlideDown");
                 minusButton.Show();
                 plusButton.Hide();
             }
             else
             {
-                physicalConditionsBox.Hide();
+                slideAnimations.Play("physicalSlideUp");
                 minusButton.Hide();
                 plusButton.Show();
             }
         }
-
-        if (tab == "atmospheric")
+        else if (tab == "atmospheric")
         {
             var minusButton = atmosphericConditionsButton.GetNode<TextureButton>("minusButton");
             var plusButton = atmosphericConditionsButton.GetNode<TextureButton>("plusButton");
 
             if (!atmosphericConditionsBox.Visible)
             {
-                atmosphericConditionsBox.Show();
+                slideAnimations.Play("atmosphericSlideDown");
                 minusButton.Show();
                 plusButton.Hide();
             }
             else
             {
-                atmosphericConditionsBox.Hide();
+                slideAnimations.Play("atmosphericSlideUp");
                 minusButton.Hide();
                 plusButton.Show();
             }
         }
-
-        if (tab == "compounds")
+        else if (tab == "compounds")
         {
             var minusButton = compoundsButton.GetNode<TextureButton>("minusButton");
             var plusButton = compoundsButton.GetNode<TextureButton>("plusButton");
 
             if (!compoundsBox.Visible)
             {
-                compoundsBox.Show();
+                slideAnimations.Play("compoundsSlideDown");
                 minusButton.Show();
                 plusButton.Hide();
             }
             else
             {
-                compoundsBox.Hide();
+                slideAnimations.Play("compoundsSlideUp");
                 minusButton.Hide();
                 plusButton.Show();
             }
         }
-
-        if (tab == "species")
+        else if (tab == "species")
         {
             var minusButton = speciesListButton.GetNode<TextureButton>("minusButton");
             var plusButton = speciesListButton.GetNode<TextureButton>("plusButton");
-
-            if (!speciesList.Visible)
-            {
-                speciesList.Show();
-                minusButton.Show();
-                plusButton.Hide();
-            }
-            else
-            {
-                speciesList.Hide();
-                minusButton.Hide();
-                plusButton.Show();
-            }
         }
     }
 
