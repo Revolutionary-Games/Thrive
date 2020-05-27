@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 /// <summary>
 ///   Copies properties from a save loaded object copy
 /// </summary>
@@ -14,12 +16,21 @@ public static class SaveApplyHelper
     /// </remarks>
     /// <param name="target">Object to set the properties on</param>
     /// <param name="source">Object to copy things from</param>
+    /// <param name="ignoreMembers">Member names to skip copying</param>
     /// <typeparam name="T">The type of object to handle</typeparam>
-    public static void CopyJSONSavedPropertiesAndFields<T>(T target, T source)
+    public static void CopyJSONSavedPropertiesAndFields<T>(T target, T source, List<string> ignoreMembers = null)
     {
+        if (ignoreMembers == null)
+            ignoreMembers = new List<string>();
+
+        var type = typeof(T);
+
         foreach (var field in BaseThriveConverter.FieldsOf(target))
         {
-            if (IsNameLoadedFromSaveName(field.Name))
+            if (IsNameLoadedFromSaveName(field.Name) || BaseThriveConverter.IsIgnoredGodotMember(field.Name, type))
+                continue;
+
+            if (ignoreMembers.Contains(field.Name))
                 continue;
 
             field.SetValue(target, field.GetValue(source));
@@ -27,7 +38,11 @@ public static class SaveApplyHelper
 
         foreach (var property in BaseThriveConverter.PropertiesOf(target))
         {
-            if (IsNameLoadedFromSaveName(property.Name))
+            if (IsNameLoadedFromSaveName(property.Name) ||
+                BaseThriveConverter.IsIgnoredGodotMember(property.Name, type))
+                continue;
+
+            if (ignoreMembers.Contains(property.Name))
                 continue;
 
             var set = property.GetSetMethodOnDeclaringType();

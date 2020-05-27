@@ -1048,6 +1048,27 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         state.Transform = GetNewPhysicsRotation(state.Transform);
     }
 
+    public void ApplyPropertiesFromSave(Microbe microbe)
+    {
+        SaveApplyHelper.CopyJSONSavedPropertiesAndFields(this, microbe, new List<string>()
+        {
+            "organelles",
+        });
+
+        organelles.Clear();
+
+        foreach (var saved in microbe.organelles)
+        {
+            organelles.Add(new PlacedOrganelle(saved.Definition, saved.Position, saved.Orientation));
+        }
+
+        if (ai != null)
+        {
+            // TODO: fix existing references in the microbe AI
+            throw new NotImplementedException();
+        }
+    }
+
     private void HandleCompoundAbsorbing(float delta)
     {
         // max here buffs compound absorbing for the smallest cells

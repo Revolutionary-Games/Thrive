@@ -20,7 +20,6 @@ public class SpawnSystem
     /// <summary>
     ///   Root node to parent all spawned things to
     /// </summary>
-    [JsonProperty]
     private Node worldRoot;
 
     private List<ISpawner> spawnTypes = new List<ISpawner>();
@@ -144,6 +143,11 @@ public class SpawnSystem
 
             previousPlayerPosition = playerPosition;
         }
+    }
+
+    public void ApplyPropertiesFromSave(SpawnSystem spawner)
+    {
+        SaveApplyHelper.CopyJSONSavedPropertiesAndFields(this, spawner);
     }
 
     private void SpawnEntities(Vector3 playerPosition, int existing)

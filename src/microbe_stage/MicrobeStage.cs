@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
 
@@ -6,12 +7,14 @@ using Newtonsoft.Json;
 ///   Main class for managing the microbe stage
 /// </summary>
 [JsonObject(IsReference = true)]
-public class MicrobeStage : Node
+public class MicrobeStage : Node, ILoadableGameState
 {
     private Node world;
     private Node rootOfDynamicallySpawned;
+
     [JsonProperty]
     private SpawnSystem spawner;
+
     private MicrobeAISystem microbeAISystem;
     private PatchManager patchManager;
 
@@ -47,10 +50,13 @@ public class MicrobeStage : Node
     [JsonProperty]
     public CompoundCloudSystem Clouds { get; private set; }
 
+    [JsonIgnore]
     public FluidSystem FluidSystem { get; private set; }
 
+    [JsonIgnore]
     public TimedLifeSystem TimedLifeSystem { get; private set; }
 
+    [JsonIgnore]
     public ProcessSystem ProcessSystem { get; private set; }
 
     /// <summary>
@@ -67,6 +73,10 @@ public class MicrobeStage : Node
             return CurrentGame.GameWorld;
         }
     }
+
+    public Node GameStateRoot => this;
+
+    public bool IsLoadedFromSave { get; set; }
 
     /// <summary>
     ///   This should get called the first time the stage scene is put
@@ -108,12 +118,28 @@ public class MicrobeStage : Node
         spawner.Init();
         Clouds.Init(FluidSystem);
 
+        if (IsLoadedFromSave)
+            return;
+
         if (CurrentGame == null)
         {
             StartNewGame();
         }
 
         CreatePatchManagerIfNeeded();
+
+        StartMusic();
+    }
+
+    public void OnFinishLoading(Save save)
+    {
+        ApplyPropertiesFromSave(save.MicrobeStage);
+
+        RespawnEntitiesFromSave(save.MicrobeStage);
+
+        CreatePatchManagerIfNeeded();
+
+        UpdatePatchSettings();
 
         StartMusic();
     }
@@ -351,5 +377,31 @@ public class MicrobeStage : Node
     {
         Camera.SetBackground(SimulationParameters.Instance.GetBackground(
             GameWorld.Map.CurrentPatch.BiomeTemplate.Background));
+    }
+
+    private void ApplyPropertiesFromSave(MicrobeStage savedMicrobeStage)
+    {
+        SaveApplyHelper.CopyJSONSavedPropertiesAndFields(this, savedMicrobeStage, new List<string>()
+        {
+            "spawner",
+            "Player",
+            "Camera",
+            "Clouds",
+        });
+
+        spawner.ApplyPropertiesFromSave(savedMicrobeStage.spawner);
+        Clouds.ApplyPropertiesFromSave(savedMicrobeStage.Clouds);
+        Camera.ApplyPropertiesFromSave(savedMicrobeStage.Camera);
+    }
+
+    private void RespawnEntitiesFromSave(MicrobeStage savedMicrobeStage)
+    {
+        if (savedMicrobeStage.Player != null && !savedMicrobeStage.Player.Dead)
+        {
+            SpawnPlayer();
+            Player.ApplyPropertiesFromSave(savedMicrobeStage.Player);
+        }
+
+        // TODO: implement spawning other stuff
     }
 }
