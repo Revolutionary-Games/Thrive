@@ -4,5 +4,7 @@
 /// </summary>
 public interface ISaveApplyable
 {
+    bool IsLoadedFromSave { get; set; }
+
     void ApplySave(object loaded, ISaveContext context);
 }

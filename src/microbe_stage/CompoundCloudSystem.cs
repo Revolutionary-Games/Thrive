@@ -450,7 +450,8 @@ public class CompoundCloudSystem : Node
 
         for (int i = 0; i < clouds.Count; ++i)
         {
-            clouds[i].ApplyPropertiesFromSave(compoundCloudSystem.clouds[i]);
+            // TODO: it's not very nice to pass null as the context here
+            clouds[i].ApplySave(compoundCloudSystem.clouds[i], null);
         }
     }
 
