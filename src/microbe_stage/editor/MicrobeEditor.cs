@@ -344,7 +344,14 @@ public class MicrobeEditor : Node, ILoadableGameState
         if (ReturnToStage != null)
         {
             ReturnToStage = (MicrobeStage)SceneManager.Instance.LoadScene(MainGameState.MicrobeStage).Instance();
+            ReturnToStage.IsLoadedFromSave = true;
+
+            // We need to temporarily attach the scene to make it load things
+            SceneManager.Instance.AttachScene(ReturnToStage);
+
             ReturnToStage.OnFinishLoading(save.MicrobeEditor.ReturnToStage);
+
+            SceneManager.Instance.DetachScene(ReturnToStage);
         }
 
         InitEditor();
