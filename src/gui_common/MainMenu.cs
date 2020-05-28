@@ -33,7 +33,7 @@ public class MainMenu : Node
 
     private TextureRect thriveLogo;
     private OptionsMenu options;
-    private AnimationPlayer GUIAnimations;
+    private AnimationPlayer guiAnimations;
 
     private Button newGameButton;
     private Button freebuildButton;
@@ -80,7 +80,7 @@ public class MainMenu : Node
 
         if (slide)
         {
-            GUIAnimations.Play("MenuSlide");
+            guiAnimations.Play("MenuSlide");
         }
         else
         {
@@ -95,7 +95,7 @@ public class MainMenu : Node
     private void RunMenuSetup()
     {
         Background = GetNode<TextureRect>("Background");
-        GUIAnimations = GetNode<AnimationPlayer>("GUIAnimations");
+        guiAnimations = GetNode<AnimationPlayer>("GUIAnimations");
         thriveLogo = GetNode<TextureRect>(ThriveLogoPath);
         newGameButton = GetNode<Button>(NewGameButtonPath);
         freebuildButton = GetNode<Button>(FreebuildButtonPath);
@@ -149,10 +149,10 @@ public class MainMenu : Node
     /// </summary>
     private void PlayGUIAnimation(string animation)
     {
-        if (GUIAnimations.IsPlaying())
-            GUIAnimations.Stop();
+        if (guiAnimations.IsPlaying())
+            guiAnimations.Stop();
 
-        GUIAnimations.Play(animation);
+        guiAnimations.Play(animation);
     }
 
     /// <summary>

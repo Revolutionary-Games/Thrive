@@ -275,7 +275,7 @@ public class MicrobeEditorGUI : Node
     /// <summary>
     ///   For toggling purposes
     /// </summary>
-    private bool SpeciesListIsHidden = false;
+    private bool speciesListIsHidden = false;
 
     public string GetNewSpeciesName()
     {
@@ -973,7 +973,7 @@ public class MicrobeEditorGUI : Node
             var clip = speciesList.GetParent<MarginContainer>();
             var tween = clip.GetNode<Tween>("Tween");
 
-            if (SpeciesListIsHidden)
+            if (speciesListIsHidden)
             {
                 tween.InterpolateProperty(clip, "custom_constants/margin_top", -speciesList.RectSize.y, 20, 0.3f,
                     Tween.TransitionType.Sine, Tween.EaseType.Out);
@@ -982,7 +982,7 @@ public class MicrobeEditorGUI : Node
                 minusButton.Show();
                 plusButton.Hide();
 
-                SpeciesListIsHidden = false;
+                speciesListIsHidden = false;
             }
             else
             {
@@ -993,7 +993,7 @@ public class MicrobeEditorGUI : Node
                 minusButton.Hide();
                 plusButton.Show();
 
-                SpeciesListIsHidden = true;
+                speciesListIsHidden = true;
             }
         }
     }
@@ -1386,7 +1386,7 @@ public class MicrobeEditorGUI : Node
             // Yes, apparently this has to be done so that the rect size is updated immediately
             speciesList.RectSize = speciesList.RectSize;
 
-            if (SpeciesListIsHidden)
+            if (speciesListIsHidden)
             {
                 // Adjust the species list's clipping area's "height" value
                 var clip = speciesList.GetParent<MarginContainer>();
