@@ -43,6 +43,9 @@ public class PatchManager
     {
         if (previousPatch != currentPatch)
         {
+            GD.Print("Previous patch (", previousPatch.Name, ") different " +
+                "to current patch (", currentPatch.Name, ") despawning all entities.");
+
             // Despawn old entities
             spawnSystem.DespawnAll();
 
@@ -196,6 +199,8 @@ public class PatchManager
 
     private void UnmarkAllSpawners()
     {
+        GD.Print("Umarking all spawners.");
+
         UnmarkSingle(chunkSpawners);
         UnmarkSingle(cloudSpawners);
         UnmarkSingle(microbeSpawners);
