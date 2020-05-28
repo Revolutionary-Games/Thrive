@@ -213,7 +213,7 @@ public class PatchManager
 
     private void ClearUnmarkedSingle(List<CreatedSpawner> spawners)
     {
-        spawners.RemoveAll((item) => item.Marked == false);
+        spawners.RemoveAll((item) => !item.Marked);
     }
 
     private class CreatedSpawner
