@@ -47,7 +47,8 @@ public class PatchManager
             {
                 GD.Print("Previous patch (", previousPatch.Name, ") different " +
                     "to current patch (", currentPatch.Name, ") despawning all entities.");
-            } else
+            }
+            else
             {
                 GD.Print("Previous patch doesn't exist, despawning all entities.");
             }
@@ -179,7 +180,8 @@ public class PatchManager
 
             if (oldFrequency != existing.Spawner.SpawnFrequency)
             {
-                GD.Print("Spawn frequency of ", existing.Name, " changed from ", oldFrequency, " to ", existing.Spawner.SpawnFrequency);
+                GD.Print("Spawn frequency of ", existing.Name, " changed from ", 
+                    oldFrequency, " to ", existing.Spawner.SpawnFrequency);
             }
         }
         else
