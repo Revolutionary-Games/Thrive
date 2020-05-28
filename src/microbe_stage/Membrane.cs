@@ -25,9 +25,11 @@ public class Membrane : MeshInstance
     private float movementWigglyNess = 1.0f;
     private float sizeMovementWigglyNessDampeningFactor = 0.2f;
     private Color tint = new Color(1, 1, 1, 1);
+    private float dissolveEffectValue = 0.0f;
 
     private Texture normalTexture;
     private Texture damagedTexture;
+    private Texture noiseTexture;
 
     private string currentlyLoadedNormalTexture;
 
@@ -168,6 +170,20 @@ public class Membrane : MeshInstance
             }
 
             return cachedRadius;
+        }
+    }
+
+    public float DissolveEffectValue
+    {
+        get
+        {
+            return dissolveEffectValue;
+        }
+        set
+        {
+            dissolveEffectValue = value;
+            if (MaterialToEdit != null)
+                ApplyDissolveEffect();
         }
     }
 
@@ -341,6 +357,7 @@ public class Membrane : MeshInstance
         ApplyHealth();
         ApplyTint();
         ApplyTextures();
+        ApplyDissolveEffect();
     }
 
     private void ApplyWiggly()
@@ -379,10 +396,18 @@ public class Membrane : MeshInstance
         normalTexture = Type.LoadedNormalTexture;
         damagedTexture = Type.LoadedDamagedTexture;
 
+        noiseTexture = GD.Load<Texture>("res://assets/textures/dissolve_noise.tres");
+
         MaterialToEdit.SetShaderParam("albedoTexture", normalTexture);
         MaterialToEdit.SetShaderParam("damagedTexture", damagedTexture);
+        MaterialToEdit.SetShaderParam("dissolveTexture", noiseTexture);
 
         currentlyLoadedNormalTexture = Type.NormalTexture;
+    }
+
+    private void ApplyDissolveEffect()
+    {
+        MaterialToEdit.SetShaderParam("dissolveValue", DissolveEffectValue);
     }
 
     /// <summary>
