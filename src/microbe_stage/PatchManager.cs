@@ -125,7 +125,10 @@ public class PatchManager
             var species = entry.Key;
 
             if (species.Population <= 0)
+            {
+                GD.Print(entry.Key, " population <= 0. Skipping Cell Span in patch.");
                 continue;
+            }
 
             var density = 1.0f / (Constants.STARTING_SPAWN_DENSITY -
                                 Math.Min(Constants.MAX_SPAWN_DENSITY,
