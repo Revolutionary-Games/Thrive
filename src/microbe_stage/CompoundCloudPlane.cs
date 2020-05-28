@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Godot;
 using Newtonsoft.Json;
 
-public class CompoundCloudPlane : CSGMesh
+public class CompoundCloudPlane : CSGMesh, ISaveApplyable
 {
     /// <summary>
     ///   The current densities of compounds. This uses custom writing so this is ignored
@@ -30,9 +30,14 @@ public class CompoundCloudPlane : CSGMesh
     [JsonProperty]
     public int Size { get; private set; }
 
+    public bool IsLoadedFromSave { get; set; } = false;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        if (IsLoadedFromSave)
+            return;
+
         Size = Settings.Instance.CloudSimulationWidth;
         Resolution = Settings.Instance.CloudResolution;
         CreateDensityTexture();
@@ -78,9 +83,7 @@ public class CompoundCloudPlane : CSGMesh
         position = new Int2(newx, newy);
 
         // This accommodates the texture of the cloud to the new position of the plane.
-        var material = (ShaderMaterial)Material;
-        material.SetShaderParam("UVoffset", new Vector2(newx / (float)Constants.CLOUD_SQUARES_PER_SIDE,
-            newy / (float)Constants.CLOUD_SQUARES_PER_SIDE));
+        SetMaterialUVForPosition();
     }
 
     /// <summary>
@@ -540,6 +543,13 @@ public class CompoundCloudPlane : CSGMesh
         }
 
         OldDensity = new System.Numerics.Vector4[Size, Size];
+        SetMaterialUVForPosition();
+    }
+
+    public void ApplySave(object loaded, ISaveContext context)
+    {
+        ApplyPropertiesFromSave((CompoundCloudPlane)loaded);
+        IsLoadedFromSave = true;
     }
 
     private void PartialDiffuseCenter(int x0, int y0, int width, int height, float delta)
@@ -721,5 +731,12 @@ public class CompoundCloudPlane : CSGMesh
 
         var material = (ShaderMaterial)Material;
         material.SetShaderParam("densities", texture);
+    }
+
+    private void SetMaterialUVForPosition()
+    {
+        var material = (ShaderMaterial)Material;
+        material.SetShaderParam("UVoffset", new Vector2(position.x / (float)Constants.CLOUD_SQUARES_PER_SIDE,
+            position.y / (float)Constants.CLOUD_SQUARES_PER_SIDE));
     }
 }
