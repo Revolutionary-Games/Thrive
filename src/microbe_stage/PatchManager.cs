@@ -129,7 +129,7 @@ public class PatchManager
 
             if (species.Population <= 0)
             {
-                GD.Print(entry.Key, " population <= 0. Skipping Cell Span in patch.");
+                GD.Print(entry.Key.FormattedName, " population <= 0. Skipping Cell Span in patch.");
                 continue;
             }
 
@@ -168,7 +168,13 @@ public class PatchManager
         {
             existing.Marked = true;
 
+            float oldFrequency = existing.Spawner.SpawnFrequency;
             existing.Spawner.SetFrequencyFromDensity(density);
+
+            if (oldFrequency != existing.Spawner.SpawnFrequency)
+            {
+                GD.Print("Spawn frequency of ", existing.Name, " changed from ", oldFrequency, " to ", existing.Spawner.SpawnFrequency);
+            }
         }
         else
         {
@@ -221,7 +227,12 @@ public class PatchManager
 
     private void ClearUnmarkedSingle(List<CreatedSpawner> spawners)
     {
-        spawners.RemoveAll((item) => !item.Marked);
+        spawners.RemoveAll((item) =>
+        {
+            GD.Print("Removed ", item.Name, " spawner.");
+
+            return !item.Marked;
+        });
     }
 
     private class CreatedSpawner
