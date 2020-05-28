@@ -43,8 +43,14 @@ public class PatchManager
     {
         if (previousPatch != currentPatch)
         {
-            GD.Print("Previous patch (", previousPatch.Name, ") different " +
-                "to current patch (", currentPatch.Name, ") despawning all entities.");
+            if (previousPatch != null)
+            {
+                GD.Print("Previous patch (", previousPatch.Name, ") different " +
+                    "to current patch (", currentPatch.Name, ") despawning all entities.");
+            } else
+            {
+                GD.Print("Previous patch doesn't exist, despawning all entities.");
+            }
 
             // Despawn old entities
             spawnSystem.DespawnAll();
@@ -129,7 +135,7 @@ public class PatchManager
 
             if (species.Population <= 0)
             {
-                GD.Print(entry.Key.FormattedName, " population <= 0. Skipping Cell Span in patch.");
+                GD.Print(entry.Key.FormattedName, " population <= 0. Skipping Cell Spawn in patch.");
                 continue;
             }
 
