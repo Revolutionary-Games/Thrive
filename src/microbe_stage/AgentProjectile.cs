@@ -3,6 +3,7 @@ using Godot;
 /// <summary>
 ///   This is a shot agent projectile, does damage on hitting a cell of different species
 /// </summary>
+[JSONAlwaysDynamicType]
 public class AgentProjectile : RigidBody, ITimedLife
 {
     public float TimeToLiveRemaining { get; set; }

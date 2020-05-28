@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 ///   Script for the floating chunks (cell parts, rocks, hazards)
 /// </summary>
 [JsonObject(IsReference = true)]
+[JSONAlwaysDynamicType]
 public class FloatingChunk : RigidBody, ISpawned
 {
     [Export]
