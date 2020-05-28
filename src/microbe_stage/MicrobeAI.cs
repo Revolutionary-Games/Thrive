@@ -14,7 +14,7 @@ public class MicrobeAI
     private readonly Compound oxytoxy;
 
     [JsonProperty]
-    private readonly Microbe microbe;
+    private Microbe microbe;
 
     [JsonProperty]
     private int boredom = 0;
@@ -273,6 +273,23 @@ public class MicrobeAI
 
         // Clear the absorbed compounds for run and rumble
         microbe.TotalAbsorbedCompounds.Clear();
+    }
+
+    /// <summary>
+    ///   Clears all the found targets. Currently used for loading from saves
+    /// </summary>
+    public void ClearAfterLoadedFromSave(Microbe newParent)
+    {
+        microbe = newParent;
+        chunkList?.Clear();
+        predator = null;
+        predatoryMicrobes.Clear();
+        prey = null;
+        preyMicrobes.Clear();
+        targetChunk = null;
+
+        // Probably should clear this
+        preyPegged = false;
     }
 
     // There are cases when we want either ||, so here's two state rolls

@@ -430,8 +430,12 @@ public abstract class BaseThriveConverter : JsonConverter
             {
                 // Write the type of the instance always as we can't detect if the value matches the type of the field
                 // We can at least check that the actual type is a subclass of something allowing dynamic typing
-                if (type.BaseType != null && type.BaseType.CustomAttributes.Any((attr) =>
-                    attr.AttributeType == typeof(JSONDynamicTypeAllowedAttribute)))
+                bool baseIsDynamic = type.BaseType != null && type.BaseType.CustomAttributes.Any((attr) =>
+                    attr.AttributeType == typeof(JSONDynamicTypeAllowedAttribute));
+                bool currentIsAlwaysDynamic = type.CustomAttributes.Any((attr) =>
+                    attr.AttributeType == typeof(JSONAlwaysDynamicTypeAttribute));
+
+                if (baseIsDynamic || currentIsAlwaysDynamic)
                 {
                     writer.WritePropertyName(TYPE_PROPERTY);
 

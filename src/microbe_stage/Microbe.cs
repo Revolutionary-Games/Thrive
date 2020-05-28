@@ -9,6 +9,7 @@ using Newtonsoft.Json;
 /// </summary>
 [JsonObject(IsReference = true)]
 [UseThriveSerializer]
+[JSONAlwaysDynamicType]
 public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 {
     /// <summary>
@@ -1066,11 +1067,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             organelles.Add(organelle);
         }
 
-        if (ai != null)
-        {
-            // TODO: fix existing references in the microbe AI
-            throw new NotImplementedException();
-        }
+        // TODO: fix existing references in the microbe AI
+        // For now we just cause amnesia on the cell's AI
+        ai?.ClearAfterLoadedFromSave(this);
     }
 
     private void HandleCompoundAbsorbing(float delta)

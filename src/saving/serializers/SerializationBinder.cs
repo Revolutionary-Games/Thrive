@@ -14,7 +14,8 @@ public class SerializationBinder : DefaultSerializationBinder
         var type = base.BindToType(assemblyName, typeName);
 
         if (type.CustomAttributes.Any((attr) =>
-            attr.AttributeType == typeof(JSONDynamicTypeAllowedAttribute)))
+            attr.AttributeType == typeof(JSONDynamicTypeAllowedAttribute) ||
+            attr.AttributeType == typeof(JSONAlwaysDynamicTypeAttribute)))
         {
             // Allowed type
             return type;
@@ -39,5 +40,20 @@ public class SerializationBinder : DefaultSerializationBinder
 /// </summary>
 [AttributeUsage(AttributeTargets.Class)]
 public class JSONDynamicTypeAllowedAttribute : Attribute
+{
+}
+
+/// <summary>
+///   When a class has this the dynamic type is always written (compared to JSONDynamicTypeAllowedAttribute only
+///   adding if the current variable type differs from its contents), used for Godot derived classes that need to be
+///   easily loadable from a single collection.
+/// </summary>
+/// <remarks>
+///   <para>
+///     For example the MicrobeStage dynamic entities use this so that they can be stored in a single list
+///   </para>
+/// </remarks>
+[AttributeUsage(AttributeTargets.Class)]
+public class JSONAlwaysDynamicTypeAttribute : Attribute
 {
 }

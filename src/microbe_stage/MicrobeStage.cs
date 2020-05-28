@@ -1,5 +1,7 @@
 using System;
+using System.CodeDom;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -37,6 +39,11 @@ public class MicrobeStage : Node, ILoadableGameState
 
     [JsonProperty]
     private float playerRespawnTimer;
+
+    /// <summary>
+    ///   Game entities loaded from JSON that are to be recreated
+    /// </summary>
+    private List<Node> savedGameEntities;
 
     [JsonProperty]
     public Microbe Player { get; private set; }
@@ -77,6 +84,26 @@ public class MicrobeStage : Node, ILoadableGameState
     public Node GameStateRoot => this;
 
     public bool IsLoadedFromSave { get; set; }
+
+    public List<Node> SavedGameEntities
+    {
+        get
+        {
+            if (savedGameEntities != null)
+                return savedGameEntities;
+
+            var results = new List<Node>();
+
+            foreach (var node in rootOfDynamicallySpawned.GetChildren())
+                results.Add((Node)node);
+
+            return results;
+        }
+        set
+        {
+            savedGameEntities = value;
+        }
+    }
 
     /// <summary>
     ///   This should get called the first time the stage scene is put
@@ -407,6 +434,48 @@ public class MicrobeStage : Node, ILoadableGameState
             Player.ApplyPropertiesFromSave(savedMicrobeStage.Player);
         }
 
-        // TODO: implement spawning other stuff
+        if (savedGameEntities == null)
+        {
+            GD.PrintErr("Saved microbe stage contains no entities to load");
+            return;
+        }
+
+        var microbeScene = SpawnHelpers.LoadMicrobeScene();
+        var chunkScene = SpawnHelpers.LoadChunkScene();
+        var agentScene = SpawnHelpers.LoadAgentScene();
+
+        foreach (var thing in savedGameEntities)
+        {
+            // Skip the player as it was already loaded
+            if (thing == savedMicrobeStage.Player)
+                continue;
+
+            switch (thing)
+            {
+                case Microbe casted:
+                {
+                    var spawned = SpawnHelpers.SpawnMicrobe(casted.Species, Vector3.Zero, rootOfDynamicallySpawned,
+                        microbeScene, !casted.IsPlayerMicrobe, Clouds, CurrentGame);
+                    spawned.ApplyPropertiesFromSave(casted);
+                    break;
+                }
+
+                case FloatingChunk casted:
+                {
+                    // TODO: implement
+                    break;
+                }
+
+                case AgentProjectile casted:
+                {
+                    // TODO: implement
+                    break;
+                }
+
+                default:
+                    GD.PrintErr("Unknown entity type to load from save: ", thing.GetType());
+                    break;
+            }
+        }
     }
 }
