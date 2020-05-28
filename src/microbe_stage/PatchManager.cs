@@ -213,8 +213,6 @@ public class PatchManager
 
     private void UnmarkAllSpawners()
     {
-        GD.Print("Umarking all spawners.");
-
         UnmarkSingle(chunkSpawners);
         UnmarkSingle(cloudSpawners);
         UnmarkSingle(microbeSpawners);
@@ -237,9 +235,13 @@ public class PatchManager
     {
         spawners.RemoveAll((item) =>
         {
-            GD.Print("Removed ", item.Name, " spawner.");
+            if (!item.Marked)
+            {
+                GD.Print("Removed ", item.Name, " spawner.");
+                return true;
+            }
 
-            return !item.Marked;
+            return false;
         });
     }
 
