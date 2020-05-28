@@ -272,6 +272,11 @@ public class MicrobeEditorGUI : Node
     private bool inEditorTab = false;
     private MicrobeEditor.MicrobeSymmetry symmetry = MicrobeEditor.MicrobeSymmetry.None;
 
+    /// <summary>
+    ///   For toggling purposes
+    /// </summary>
+    private bool SpeciesListIsHidden = false;
+
     public string GetNewSpeciesName()
     {
         return speciesNameEdit.Text;
@@ -475,6 +480,9 @@ public class MicrobeEditorGUI : Node
         }
     }
 
+    /// <summary>
+    ///   Updates the fluidity / rigidity slider tooltip
+    /// </summary>
     public void SetRigiditySliderTooltip(float rigidity)
     {
         var healthChangeLabel = GetNode<Label>(RigiditySliderTooltipHealthLabelPath);
@@ -534,7 +542,7 @@ public class MicrobeEditorGUI : Node
 
     /// <summary>
     ///   Called when the mouse is no longer hovering
-    ///    the editor GUI.
+    ///   the editor GUI.
     /// </summary>
     internal void OnMouseExit()
     {
@@ -609,7 +617,7 @@ public class MicrobeEditorGUI : Node
     }
 
     /// <summary>
-    ///   lock / unlock the organelles  that need a nuclues
+    ///   Lock / unlock the organelles  that need a nuclues
     /// </summary>
     /// <remarks>
     ///   <para>
@@ -961,6 +969,32 @@ public class MicrobeEditorGUI : Node
         {
             var minusButton = speciesListButton.GetNode<TextureButton>("minusButton");
             var plusButton = speciesListButton.GetNode<TextureButton>("plusButton");
+
+            var clip = speciesList.GetParent<MarginContainer>();
+            var tween = clip.GetNode<Tween>("Tween");
+
+            if (SpeciesListIsHidden)
+            {
+                tween.InterpolateProperty(clip, "custom_constants/margin_top", -speciesList.RectSize.y, 20, 0.3f,
+                    Tween.TransitionType.Sine, Tween.EaseType.Out);
+                tween.Start();
+
+                minusButton.Show();
+                plusButton.Hide();
+
+                SpeciesListIsHidden = false;
+            }
+            else
+            {
+                tween.InterpolateProperty(clip, "custom_constants/margin_top", 20, -speciesList.RectSize.y, 0.3f,
+                    Tween.TransitionType.Sine, Tween.EaseType.Out);
+                tween.Start();
+
+                minusButton.Hide();
+                plusButton.Show();
+
+                SpeciesListIsHidden = true;
+            }
         }
     }
 
@@ -1348,6 +1382,16 @@ public class MicrobeEditorGUI : Node
             var speciesLabel = new Label();
             speciesLabel.Text = species.FormattedName + " with population: " + patch.GetSpeciesPopulation(species);
             speciesList.AddChild(speciesLabel);
+
+            // Yes, apparently this has to be done so that the rect size is updated immediately
+            speciesList.RectSize = speciesList.RectSize;
+
+            if (SpeciesListIsHidden)
+            {
+                // Adjust the species list's clipping area's "height" value
+                var clip = speciesList.GetParent<MarginContainer>();
+                clip.AddConstantOverride("margin_top", -(int)speciesList.RectSize.y);
+            }
         }
 
         // Enable move to patch button if this is a valid move

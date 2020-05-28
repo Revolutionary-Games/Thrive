@@ -800,7 +800,7 @@ font_data = ExtResource( 5 )
 [sub_resource type="Theme" id=64]
 default_font = SubResource( 63 )
 
-[sub_resource type="Animation" id=71]
+[sub_resource type="Animation" id=65]
 resource_name = "atmosphericSlideDown"
 tracks/0/type = "value"
 tracks/0/path = NodePath("AtmosphericConditions/Clip:rect_min_size")
@@ -827,7 +827,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=72]
+[sub_resource type="Animation" id=66]
 resource_name = "atmosphericSlideUp"
 length = 0.3
 tracks/0/type = "value"
@@ -855,7 +855,7 @@ tracks/1/keys = {
 "values": [ true, false ]
 }
 
-[sub_resource type="Animation" id=73]
+[sub_resource type="Animation" id=67]
 resource_name = "compoundsSlideDown"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Compounds/Clip:rect_min_size")
@@ -882,7 +882,7 @@ tracks/1/keys = {
 "values": [ true ]
 }
 
-[sub_resource type="Animation" id=74]
+[sub_resource type="Animation" id=68]
 resource_name = "compoundsSlideUp"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Compounds/Clip:rect_min_size")
@@ -965,28 +965,28 @@ tracks/1/keys = {
 "values": [ true, false ]
 }
 
-[sub_resource type="StyleBoxFlat" id=65]
+[sub_resource type="StyleBoxFlat" id=71]
 bg_color = Color( 0.286275, 0.662745, 0.803922, 1 )
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxFlat" id=66]
+[sub_resource type="StyleBoxFlat" id=72]
 bg_color = Color( 0, 0.490196, 0.490196, 1 )
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxFlat" id=67]
+[sub_resource type="StyleBoxFlat" id=73]
 bg_color = Color( 0.439216, 0.623529, 0.623529, 0.627451 )
 corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="StyleBoxFlat" id=68]
+[sub_resource type="StyleBoxFlat" id=74]
 bg_color = Color( 0, 0.490196, 0.490196, 1 )
 corner_radius_top_left = 5
 corner_radius_top_right = 5
@@ -1056,7 +1056,7 @@ PatchAmmoniaPath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/H
 PatchGlucosePath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Glucose/Label")
 PatchPhosphatePath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Phosphate/Label")
 PatchIronPath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Iron/Label")
-SpeciesListPath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesPresent/SpeciesList")
+SpeciesListPath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesPresent/Clip/SpeciesList")
 PhysicalConditionsButtonPath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/HBoxContainer/Buttons")
 PhysicalConditionsBoxPath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer")
 AtmosphericConditionsButtonPath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericConditions/HBoxContainer/Buttons")
@@ -1504,15 +1504,14 @@ mouse_filter = 1
 size_flags_horizontal = 0
 theme = ExtResource( 80 )
 scroll_horizontal_enabled = false
-scroll_vertical = 347
+scroll_vertical = 100
 __meta__ = {
 "_edit_use_anchors_": true
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer"]
-margin_top = -347.0
 margin_right = 304.0
-margin_bottom = 558.0
+margin_bottom = 905.0
 mouse_filter = 1
 custom_constants/margin_right = 0
 custom_constants/margin_top = 10
@@ -9562,6 +9561,7 @@ margin_left = 3.0
 margin_top = 3.0
 margin_right = 1271.0
 margin_bottom = 664.0
+theme = ExtResource( 80 )
 follow_focus = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/Report/EvoResultsPanel/MarginContainer/ScrollContainer"]
@@ -9675,6 +9675,7 @@ margin_bottom = 663.0
 margin_right = 700.0
 margin_bottom = 660.0
 rect_min_size = Vector2( 700, 0 )
+theme = ExtResource( 80 )
 follow_focus = true
 
 [node name="PatchMapDrawer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/ScrollContainer" instance=ExtResource( 54 )]
@@ -9712,6 +9713,7 @@ margin_bottom = 590.0
 rect_min_size = Vector2( 0, 580 )
 size_flags_horizontal = 3
 size_flags_vertical = 2
+theme = ExtResource( 80 )
 follow_focus = true
 scroll_horizontal_enabled = false
 
@@ -10283,7 +10285,7 @@ margin_top = 500.0
 margin_right = 528.0
 margin_bottom = 542.0
 mouse_filter = 2
-custom_constants/separation = 15
+custom_constants/separation = -5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesPresent"]
 margin_right = 528.0
@@ -10321,20 +10323,31 @@ margin_bottom = 23.0
 custom_fonts/font = SubResource( 62 )
 text = "Species Present"
 
-[node name="SpeciesList" type="VBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesPresent"]
-margin_top = 42.0
+[node name="Clip" type="MarginContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesPresent"]
+margin_top = 22.0
 margin_right = 528.0
 margin_bottom = 42.0
+rect_clip_content = true
+mouse_filter = 2
+custom_constants/margin_top = 20
+
+[node name="SpeciesList" type="VBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesPresent/Clip"]
+margin_top = 20.0
+margin_right = 528.0
+margin_bottom = 20.0
+mouse_filter = 2
 theme = SubResource( 64 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Tween" type="Tween" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesPresent/Clip"]
+
 [node name="SlideAnimations" type="AnimationPlayer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
-anims/atmosphericSlideDown = SubResource( 71 )
-anims/atmosphericSlideUp = SubResource( 72 )
-anims/compoundsSlideDown = SubResource( 73 )
-anims/compoundsSlideUp = SubResource( 74 )
+anims/atmosphericSlideDown = SubResource( 65 )
+anims/atmosphericSlideUp = SubResource( 66 )
+anims/compoundsSlideDown = SubResource( 67 )
+anims/compoundsSlideUp = SubResource( 68 )
 anims/physicalSlideDown = SubResource( 69 )
 anims/physicalSlideUp = SubResource( 70 )
 
@@ -10368,10 +10381,10 @@ margin_top = -60.0
 margin_right = -237.0
 margin_bottom = -16.0
 focus_mode = 0
-custom_styles/hover = SubResource( 65 )
-custom_styles/pressed = SubResource( 66 )
-custom_styles/disabled = SubResource( 67 )
-custom_styles/normal = SubResource( 68 )
+custom_styles/hover = SubResource( 71 )
+custom_styles/pressed = SubResource( 72 )
+custom_styles/disabled = SubResource( 73 )
+custom_styles/normal = SubResource( 74 )
 custom_fonts/font = SubResource( 49 )
 custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
 disabled = true

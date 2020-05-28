@@ -1,7 +1,7 @@
 using Godot;
 
 /// <summary>
-///   Controls the screen fading
+///   Controls the screen fade
 /// </summary>
 public class Fade : CanvasLayer, ITransition
 {
@@ -68,13 +68,16 @@ public class Fade : CanvasLayer, ITransition
     {
         ControlNode.Show();
 
-        if (FadeTransition == FadeType.FadeIn)
+        switch (FadeTransition)
         {
-            FadeToBlack();
-        }
-        else if (FadeTransition == FadeType.FadeOut)
-        {
-            FadeToWhite();
+            case FadeType.FadeIn:
+                FadeToBlack();
+                break;
+            case FadeType.FadeOut:
+                FadeToWhite();
+                break;
+            default:
+                break;
         }
     }
 

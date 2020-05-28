@@ -63,6 +63,8 @@ public class MainMenu : Node
     /// <summary>
     ///   Sets the current menu index and then switches the menu
     /// </summary>
+    /// <param name="index">Index of the menu</param>
+    /// <param name="slide">If false then the menu slide animation will not be played</param>
     public void SetCurrentMenu(uint index, bool slide = true)
     {
         // Allow disabling all the menus for going to the options menu
@@ -82,6 +84,7 @@ public class MainMenu : Node
         }
         else
         {
+            // Just switch the menu
             SwitchMenu();
         }
     }
@@ -127,7 +130,7 @@ public class MainMenu : Node
     {
         Random rand = new Random();
 
-        // Exported lists crashes the game, so as a workaround ToList() is added
+        // Exported lists will crash the game, so as a workaround ToList() is added
         // https://github.com/godotengine/godot/issues/37934
         // This is a Godot issue that may get fixed in 4.0
         var chosenBackground = MenuBackgrounds.ToList().Random(rand);
