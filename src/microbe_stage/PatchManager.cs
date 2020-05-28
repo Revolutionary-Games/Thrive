@@ -43,6 +43,16 @@ public class PatchManager
     {
         if (previousPatch != currentPatch)
         {
+            if (previousPatch != null)
+            {
+                GD.Print("Previous patch (", previousPatch.Name, ") different " +
+                    "to current patch (", currentPatch.Name, ") despawning all entities.");
+            }
+            else
+            {
+                GD.Print("Previous patch doesn't exist, despawning all entities.");
+            }
+
             // Despawn old entities
             spawnSystem.DespawnAll();
 
@@ -125,7 +135,10 @@ public class PatchManager
             var species = entry.Key;
 
             if (species.Population <= 0)
+            {
+                GD.Print(entry.Key.FormattedName, " population <= 0. Skipping Cell Spawn in patch.");
                 continue;
+            }
 
             var density = 1.0f / (Constants.STARTING_SPAWN_DENSITY -
                                 Math.Min(Constants.MAX_SPAWN_DENSITY,
@@ -162,7 +175,14 @@ public class PatchManager
         {
             existing.Marked = true;
 
+            float oldFrequency = existing.Spawner.SpawnFrequency;
             existing.Spawner.SetFrequencyFromDensity(density);
+
+            if (oldFrequency != existing.Spawner.SpawnFrequency)
+            {
+                GD.Print("Spawn frequency of ", existing.Name, " changed from ", 
+                    oldFrequency, " to ", existing.Spawner.SpawnFrequency);
+            }
         }
         else
         {
@@ -213,7 +233,16 @@ public class PatchManager
 
     private void ClearUnmarkedSingle(List<CreatedSpawner> spawners)
     {
-        spawners.RemoveAll((item) => item.Marked == false);
+        spawners.RemoveAll((item) =>
+        {
+            if (!item.Marked)
+            {
+                GD.Print("Removed ", item.Name, " spawner.");
+                return true;
+            }
+
+            return false;
+        });
     }
 
     private class CreatedSpawner
