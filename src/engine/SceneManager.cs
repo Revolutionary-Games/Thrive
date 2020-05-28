@@ -74,6 +74,25 @@ public class SceneManager : Node
         SwitchToScene(mainMenu);
     }
 
+    /// <summary>
+    ///   Adds the specified scene to the scene tree and then removes it
+    /// </summary>
+    public void AttachAndDetachScene(Node scene)
+    {
+        AttachScene(scene);
+        DetachScene(scene);
+    }
+
+    public void AttachScene(Node scene)
+    {
+        internalRootNode.AddChild(scene);
+    }
+
+    public void DetachScene(Node scene)
+    {
+        internalRootNode.RemoveChild(scene);
+    }
+
     public PackedScene LoadScene(MainGameState state)
     {
         switch (state)
