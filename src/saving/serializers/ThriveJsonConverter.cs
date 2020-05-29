@@ -39,8 +39,6 @@ public class ThriveJsonConverter : IDisposable
             new PackedSceneConverter(),
             new SystemVector4ArrayConverter(),
 
-            // TODO: is this one needed? It doesn't have any special stuff left
-            new SpeciesConverter(context),
             new CompoundCloudPlaneConverter(context),
             new CompoundBagConverter(context),
 
