@@ -461,7 +461,20 @@ public abstract class BaseThriveConverter : JsonConverter
                 if (SkipIfGodotNodeType(property.Name, type))
                     continue;
 
-                WriteMember(property.Name, property.GetValue(value, null), property.PropertyType, type, writer,
+                object memberValue;
+                try
+                {
+                    memberValue = property.GetValue(value, null);
+                }
+                catch (ObjectDisposedException)
+                {
+                    // Protection against disposed stuff that happen a lot in godot
+                    writer.WritePropertyName(property.Name);
+                    serializer.Serialize(writer, null);
+                    continue;
+                }
+
+                WriteMember(property.Name, memberValue, property.PropertyType, type, writer,
                     serializer);
             }
 

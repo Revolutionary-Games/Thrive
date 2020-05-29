@@ -1064,6 +1064,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             var organelle = microbe.organelles[0];
             microbe.organelles.Remove(organelle);
 
+            // Though we don't want them to be actually disposed
+            if (TemporaryLoadedNodeDeleter.Instance.Release(organelle) != organelle)
+                throw new Exception("failed to remove a loaded organelle from being released");
+
             organelles.Add(organelle);
         }
 
