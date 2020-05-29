@@ -79,8 +79,6 @@ public class PatchManager
         HandleChunkSpawns(currentPatch.Biome);
         HandleCellSpawns(currentPatch);
 
-        QueueNonMarkedSpawnersForDestruction();
-
         RemoveNonMarkedSpawners();
 
         // Change the lighting
@@ -226,13 +224,6 @@ public class PatchManager
             spawner.Marked = false;
     }
 
-    private void QueueNonMarkedSpawnersForDestruction()
-    {
-        QueueUnmarkedForDestruction(chunkSpawners);
-        QueueUnmarkedForDestruction(cloudSpawners);
-        QueueUnmarkedForDestruction(microbeSpawners);
-    }
-
     private void RemoveNonMarkedSpawners()
     {
         ClearUnmarkedSingle(chunkSpawners);
@@ -251,22 +242,12 @@ public class PatchManager
             if (!item.Marked)
             {
                 GD.Print("Removed ", item.Name, " spawner.");
+                item.Spawner.DestroyQueued = true;
                 return true;
             }
 
             return false;
         });
-    }
-
-    private void QueueUnmarkedForDestruction(List<CreatedSpawner> spawners)
-    {
-        foreach (CreatedSpawner spawner in spawners)
-        {
-            if (!spawner.Marked)
-            {
-                spawner.Spawner.DestroyQueued = true;
-            }
-        }
     }
 
     private class CreatedSpawner
