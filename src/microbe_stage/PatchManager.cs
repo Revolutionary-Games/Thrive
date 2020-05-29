@@ -191,7 +191,7 @@ public class PatchManager
             // New spawner needed
             GD.Print("Registering new spawner: Name: ", itemName, " density: ", density);
 
-            chunkSpawners.Add(createNew());
+            existingSpawners.Add(createNew());
         }
     }
 
