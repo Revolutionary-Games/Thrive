@@ -231,6 +231,10 @@ public class PatchManager
         ClearUnmarkedSingle(microbeSpawners);
     }
 
+    /// <summary>
+    /// Removes unmarked spawners from List and queues their destruction.
+    /// </summary>
+    /// <param name="spawners">Spawner list to act upon</param>
     private void ClearUnmarkedSingle(List<CreatedSpawner> spawners)
     {
         spawners.RemoveAll((item) =>
@@ -238,6 +242,7 @@ public class PatchManager
             if (!item.Marked)
             {
                 GD.Print("Removed ", item.Name, " spawner.");
+                item.Spawner.DestroyQueued = true;
                 return true;
             }
 
