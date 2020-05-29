@@ -11,7 +11,7 @@
 
 [sub_resource type="Animation" id=1]
 resource_name = "MenuSlide"
-length = 0.8
+length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("MenuContainers/MenuCenterContainer:rect_size")
 tracks/0/interp = 1
@@ -19,8 +19,8 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.3, 0.4, 0.8 ),
-"transitions": PoolRealArray( 1, 2, 0.5, 0.5 ),
+"times": PoolRealArray( 0, 0.2, 0.3, 0.6 ),
+"transitions": PoolRealArray( 0.5, 2, 0.5, 0.5 ),
 "update": 0,
 "values": [ Vector2( 1280, 505 ), Vector2( 1280, 0 ), Vector2( 1280, 0 ), Vector2( 1280, 505 ) ]
 }
@@ -31,8 +31,8 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.3, 0.4, 0.8 ),
-"transitions": PoolRealArray( 1, 2, 0.5, 0.5 ),
+"times": PoolRealArray( 0, 0.2, 0.3, 0.6 ),
+"transitions": PoolRealArray( 0.5, 2, 0.5, 0.5 ),
 "update": 0,
 "values": [ 0.5, 0.7, 0.7, 0.5 ]
 }
@@ -43,7 +43,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.4 ),
+"times": PoolRealArray( 0.3 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
