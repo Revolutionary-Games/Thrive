@@ -180,7 +180,7 @@ public class PatchManager
             float oldFrequency = existing.Spawner.SpawnFrequency;
             existing.Spawner.SetFrequencyFromDensity(density);
 
-            if (oldFrequency != existing.Spawner.SpawnFrequency)
+            if (oldFrequency != existing.Spawner.SpawnFrequency) 
             {
                 GD.Print("Spawn frequency of ", existing.Name, " changed from ",
                     oldFrequency, " to ", existing.Spawner.SpawnFrequency);
