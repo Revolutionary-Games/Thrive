@@ -505,5 +505,8 @@ public class MicrobeStage : Node, ILoadableGameState
                     break;
             }
         }
+
+        // Clear this to make saving again work
+        savedGameEntities = null;
     }
 }
