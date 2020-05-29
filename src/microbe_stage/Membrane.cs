@@ -362,14 +362,16 @@ public class Membrane : MeshInstance
 
     private void ApplyWiggly()
     {
-        float wigglyNessToApply = WigglyNess / (EncompassingCircleRadius * sizeWigglyNessDampeningFactor);
+        float wigglyNessToApply = 
+            WigglyNess / (EncompassingCircleRadius * sizeWigglyNessDampeningFactor);
 
         MaterialToEdit.SetShaderParam("wigglyNess", Mathf.Min(WigglyNess, wigglyNessToApply));
     }
 
     private void ApplyMovementWiggly()
     {
-        float wigglyNessToApply = MovementWigglyNess / (EncompassingCircleRadius * sizeMovementWigglyNessDampeningFactor);
+        float wigglyNessToApply = 
+            MovementWigglyNess / (EncompassingCircleRadius * sizeMovementWigglyNessDampeningFactor);
 
         MaterialToEdit.SetShaderParam("movementWigglyNess", Mathf.Min(MovementWigglyNess, wigglyNessToApply));
     }
