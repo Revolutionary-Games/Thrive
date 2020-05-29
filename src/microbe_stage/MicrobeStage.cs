@@ -95,7 +95,26 @@ public class MicrobeStage : Node, ILoadableGameState
             var results = new List<Node>();
 
             foreach (var node in rootOfDynamicallySpawned.GetChildren())
-                results.Add((Node)node);
+            {
+                bool disposed = false;
+
+                var casted = (Spatial)node;
+
+                // Skip disposed exceptions
+                try
+                {
+                    if (casted.Transform.origin == Vector3.Zero)
+                    {
+                    }
+                }
+                catch (ObjectDisposedException)
+                {
+                    disposed = true;
+                }
+
+                if (!disposed)
+                    results.Add(casted);
+            }
 
             return results;
         }
@@ -444,6 +463,9 @@ public class MicrobeStage : Node, ILoadableGameState
         var chunkScene = SpawnHelpers.LoadChunkScene();
         var agentScene = SpawnHelpers.LoadAgentScene();
 
+        // This only should be used for things that get overridden anyway from the saved properties
+        var random = new Random();
+
         foreach (var thing in savedGameEntities)
         {
             // Skip the player as it was already loaded
@@ -462,13 +484,19 @@ public class MicrobeStage : Node, ILoadableGameState
 
                 case FloatingChunk casted:
                 {
-                    // TODO: implement
+                    var spawned = SpawnHelpers.SpawnChunk(casted.CreateChunkConfigurationFromThis(),
+                        casted.Translation, rootOfDynamicallySpawned, chunkScene, Clouds, random);
+                    spawned.ApplyPropertiesFromSave(casted);
                     break;
                 }
 
                 case AgentProjectile casted:
                 {
-                    // TODO: implement
+                    var spawned = SpawnHelpers.SpawnAgent(casted.Properties, casted.Amount, casted.TimeToLiveRemaining,
+                        casted.Translation, Vector3.Forward, rootOfDynamicallySpawned, agentScene, null);
+                    spawned.ApplyPropertiesFromSave(casted);
+
+                    // TODO: mapping from old microbe to recreated microbe to set emitter here
                     break;
                 }
 

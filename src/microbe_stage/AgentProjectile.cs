@@ -23,9 +23,8 @@ public class AgentProjectile : RigidBody, ITimedLife
         if (body == Emitter)
             return; // Kinda hacky.
 
-        if (body is Microbe)
+        if (body is Microbe microbe)
         {
-            var microbe = (Microbe)body;
             if (microbe.Species != Properties.Species)
             {
                 // If more stuff needs to be damaged we
@@ -34,8 +33,17 @@ public class AgentProjectile : RigidBody, ITimedLife
             }
         }
 
-        // GD.Print("Collision with " + body.Name);
         Destroy();
+    }
+
+    public void ApplyPropertiesFromSave(AgentProjectile projectile)
+    {
+        TimeToLiveRemaining = projectile.TimeToLiveRemaining;
+        Amount = projectile.Amount;
+        Properties = projectile.Properties;
+        Transform = projectile.Transform;
+        LinearVelocity = projectile.LinearVelocity;
+        AngularVelocity = projectile.AngularVelocity;
     }
 
     private void Destroy()

@@ -60,6 +60,10 @@ public class FloatingChunk : RigidBody, ISpawned
     /// </summary>
     public bool DeleteOnTouch { get; set; } = false;
 
+    public float Radius { get; set; }
+
+    public float ChunkScale { get; set; }
+
     /// <summary>
     ///   Grabs data from the type to initialize this
     /// </summary>
@@ -80,6 +84,10 @@ public class FloatingChunk : RigidBody, ISpawned
         DeleteOnTouch = chunkType.DeleteOnTouch;
 
         Mass = chunkType.Mass;
+
+        // These are stored for saves to work
+        Radius = chunkType.Radius;
+        ChunkScale = chunkType.ChunkScale;
 
         // Apply physics shape
         var shape = GetNode<CollisionShape>("CollisionShape");
@@ -107,6 +115,44 @@ public class FloatingChunk : RigidBody, ISpawned
             Connect("body_shape_entered", this, "OnContactBegin");
             Connect("body_shape_exited", this, "OnContactEnd");
         }
+    }
+
+    /// <summary>
+    ///   Reverses the action of Init back to a ChunkConfiguration
+    /// </summary>
+    /// <returns>The reversed chunk configuration</returns>
+    public ChunkConfiguration CreateChunkConfigurationFromThis()
+    {
+        var config = default(ChunkConfiguration);
+
+        config.VentAmount = VentPerSecond;
+        config.Dissolves = Disolves;
+        config.Size = Size;
+        config.Damages = Damages;
+        config.DeleteOnTouch = DeleteOnTouch;
+        config.Mass = Mass;
+
+        config.Radius = Radius;
+        config.ChunkScale = ChunkScale;
+
+        // Read graphics data set by the spawn function
+        config.Meshes = new List<ChunkConfiguration.ChunkScene>();
+
+        var item = new ChunkConfiguration.ChunkScene
+        { LoadedScene = GraphicsScene, ScenePath = GraphicsScene.ResourcePath };
+        config.Meshes.Add(item);
+
+        if (ContainedCompounds != null && ContainedCompounds.Compounds.Count > 0)
+        {
+            config.Compounds = new Dictionary<string, ChunkConfiguration.ChunkCompound>();
+
+            foreach (var entry in ContainedCompounds)
+            {
+                config.Compounds.Add(entry.Key, new ChunkConfiguration.ChunkCompound() { Amount = entry.Value });
+            }
+        }
+
+        return config;
     }
 
     public override void _Ready()
@@ -182,6 +228,27 @@ public class FloatingChunk : RigidBody, ISpawned
                 break;
             }
         }
+    }
+
+    /// <summary>
+    ///   A bit on the lighter save properties copying,
+    ///   the spawn function used to create this needs to set some stuff beforehand
+    /// </summary>
+    public void ApplyPropertiesFromSave(FloatingChunk chunk)
+    {
+        VentPerSecond = chunk.VentPerSecond;
+        Disolves = chunk.Disolves;
+        Size = chunk.Size;
+        Damages = chunk.Damages;
+        DeleteOnTouch = chunk.DeleteOnTouch;
+        Mass = chunk.Mass;
+        Radius = chunk.Radius;
+        ChunkScale = chunk.ChunkScale;
+
+        ContainedCompounds = chunk.ContainedCompounds;
+        Transform = chunk.Transform;
+        LinearVelocity = chunk.LinearVelocity;
+        AngularVelocity = chunk.AngularVelocity;
     }
 
     /// <summary>

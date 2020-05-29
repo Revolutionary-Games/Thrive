@@ -36,6 +36,7 @@ public class ThriveJsonConverter : IDisposable
             new RegistryTypeConverter(context),
             new GodotColorConverter(),
             new GodotBasisConverter(),
+            new PackedSceneConverter(),
             new SystemVector4ArrayConverter(),
 
             // TODO: is this one needed? It doesn't have any special stuff left
