@@ -39,7 +39,7 @@ public class PatchManager
     ///   set. Like different spawners, despawning old entities if the
     ///   patch changed etc.
     /// </summary>
-    public void ApplyChangedPatchSettingsIfNeeded(Patch currentPatch)
+    public void ApplyChangedPatchSettingsIfNeeded(Patch currentPatch, bool shouldEmptyClouds)
     {
         if (previousPatch != currentPatch)
         {
@@ -50,7 +50,8 @@ public class PatchManager
             timedLife.DespawnAll();
 
             // Clear compounds
-            compoundCloudSystem.EmptyAllClouds();
+            if(shouldEmptyClouds)
+                compoundCloudSystem.EmptyAllClouds();
         }
 
         previousPatch = currentPatch;
