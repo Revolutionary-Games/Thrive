@@ -19,7 +19,7 @@ public class MicrobeAI
     [JsonProperty]
     private int boredom = 0;
 
-    [JsonProperty]
+    [JsonIgnore]
     private List<FloatingChunk> chunkList = new List<FloatingChunk>();
 
     [JsonProperty]
@@ -36,23 +36,25 @@ public class MicrobeAI
     [JsonProperty]
     private bool moveThisHunt = true;
 
-    [JsonProperty]
+    // All of the game entities stored here are probable places where disposed objects come from
+    // so they are ignored for now
+    [JsonIgnore]
     private Microbe predator;
 
     // Prey and predator lists
-    [JsonProperty]
+    [JsonIgnore]
     private List<Microbe> predatoryMicrobes = new List<Microbe>();
 
     [JsonProperty]
     private float previousAngle = 0.0f;
 
-    [JsonProperty]
+    [JsonIgnore]
     private Microbe prey;
-    [JsonProperty]
+    [JsonIgnore]
     private List<Microbe> preyMicrobes = new List<Microbe>();
     [JsonProperty]
     private bool preyPegged = false;
-    [JsonProperty]
+    [JsonIgnore]
     private FloatingChunk targetChunk;
     [JsonProperty]
     private Vector3 targetPosition = new Vector3(0, 0, 0);
