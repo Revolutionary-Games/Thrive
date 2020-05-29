@@ -264,7 +264,7 @@ public static class SpawnHelpers
     /// <summary>
     ///   Spawns an agent projectile
     /// </summary>
-    public static void SpawnAgent(AgentProperties properties, float amount,
+    public static AgentProjectile SpawnAgent(AgentProperties properties, float amount,
         float lifetime, Vector3 location, Vector3 direction,
         Node worldRoot, PackedScene agentScene, Node emitter)
     {
@@ -286,6 +286,7 @@ public static class SpawnHelpers
             Constants.AGENT_EMISSION_IMPULSE_STRENGTH);
 
         agent.AddToGroup(Constants.TIMED_GROUP);
+        return agent;
     }
 
     public static PackedScene LoadAgentScene()

@@ -364,6 +364,8 @@ public class SaveInformation
 
     public string Creator { get; set; } = System.Environment.UserName;
 
+    public DateTime CreatedAt { get; set; } = DateTime.Now;
+
     /// <summary>
     ///   Unique ID of this save
     /// </summary>

@@ -39,9 +39,9 @@ public class PatchManager
     ///   set. Like different spawners, despawning old entities if the
     ///   patch changed etc.
     /// </summary>
-    public void ApplyChangedPatchSettingsIfNeeded(Patch currentPatch, bool shouldEmptyClouds)
+    public void ApplyChangedPatchSettingsIfNeeded(Patch currentPatch, bool despawnAllowed)
     {
-        if (previousPatch != currentPatch)
+        if (previousPatch != currentPatch && despawnAllowed)
         {
             // Despawn old entities
             spawnSystem.DespawnAll();
@@ -50,8 +50,7 @@ public class PatchManager
             timedLife.DespawnAll();
 
             // Clear compounds
-            if(shouldEmptyClouds)
-                compoundCloudSystem.EmptyAllClouds();
+            compoundCloudSystem.EmptyAllClouds();
         }
 
         previousPatch = currentPatch;
@@ -84,15 +83,15 @@ public class PatchManager
         {
             HandleSpawnHelper(chunkSpawners, entry.Value.Name, entry.Value.Density,
                 () =>
-                    {
-                        var spawner = new CreatedSpawner(entry.Value.Name);
-                        spawner.Spawner = Spawners.MakeChunkSpawner(entry.Value,
-                            compoundCloudSystem);
+                {
+                    var spawner = new CreatedSpawner(entry.Value.Name);
+                    spawner.Spawner = Spawners.MakeChunkSpawner(entry.Value,
+                        compoundCloudSystem);
 
-                        spawnSystem.AddSpawnType(spawner.Spawner, (int)entry.Value.Density,
-                            Constants.MICROBE_SPAWN_RADIUS);
-                        return spawner;
-                    });
+                    spawnSystem.AddSpawnType(spawner.Spawner, (int)entry.Value.Density,
+                        Constants.MICROBE_SPAWN_RADIUS);
+                    return spawner;
+                });
         }
     }
 
@@ -104,16 +103,16 @@ public class PatchManager
         {
             HandleSpawnHelper(chunkSpawners, entry.Key, entry.Value.Density,
                 () =>
-                    {
-                        var spawner = new CreatedSpawner(entry.Key);
-                        spawner.Spawner = Spawners.MakeCompoundSpawner(
-                            SimulationParameters.Instance.GetCompound(entry.Key),
-                            compoundCloudSystem, entry.Value.Amount);
+                {
+                    var spawner = new CreatedSpawner(entry.Key);
+                    spawner.Spawner = Spawners.MakeCompoundSpawner(
+                        SimulationParameters.Instance.GetCompound(entry.Key),
+                        compoundCloudSystem, entry.Value.Amount);
 
-                        spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density,
-                            Constants.CLOUD_SPAWN_RADIUS);
-                        return spawner;
-                    });
+                    spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density,
+                        Constants.CLOUD_SPAWN_RADIUS);
+                    return spawner;
+                });
         }
     }
 
@@ -129,22 +128,22 @@ public class PatchManager
                 continue;
 
             var density = 1.0f / (Constants.STARTING_SPAWN_DENSITY -
-                                Math.Min(Constants.MAX_SPAWN_DENSITY,
-                                    species.Population * 5));
+                Math.Min(Constants.MAX_SPAWN_DENSITY,
+                    species.Population * 5));
 
             var name = species.ID.ToString(CultureInfo.InvariantCulture);
 
             HandleSpawnHelper(chunkSpawners, name, density,
                 () =>
-                    {
-                        var spawner = new CreatedSpawner(name);
-                        spawner.Spawner = Spawners.MakeMicrobeSpawner(species,
-                            compoundCloudSystem, currentGame);
+                {
+                    var spawner = new CreatedSpawner(name);
+                    spawner.Spawner = Spawners.MakeMicrobeSpawner(species,
+                        compoundCloudSystem, currentGame);
 
-                        spawnSystem.AddSpawnType(spawner.Spawner, density,
-                            Constants.MICROBE_SPAWN_RADIUS);
-                        return spawner;
-                    });
+                    spawnSystem.AddSpawnType(spawner.Spawner, density,
+                        Constants.MICROBE_SPAWN_RADIUS);
+                    return spawner;
+                });
         }
     }
 
