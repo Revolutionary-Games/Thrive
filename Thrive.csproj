@@ -208,6 +208,7 @@
     <Compile Include="src\saving\serializers\SystemVector4ArrayConverter.cs" />
     <Compile Include="src\saving\serializers\ThriveJsonConverter.cs" />
     <Compile Include="src\saving\serializers\ThriveTypeConverter.cs" />
+    <Compile Include="src\saving\TemporaryLoadedNodeDeleter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="StyleCop.ruleset" />
