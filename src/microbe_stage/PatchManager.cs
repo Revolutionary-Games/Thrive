@@ -180,7 +180,7 @@ public class PatchManager
 
             if (oldFrequency != existing.Spawner.SpawnFrequency)
             {
-                GD.Print("Spawn frequency of ", existing.Name, " changed from ", 
+                GD.Print("Spawn frequency of ", existing.Name, " changed from ",
                     oldFrequency, " to ", existing.Spawner.SpawnFrequency);
             }
         }
@@ -189,7 +189,7 @@ public class PatchManager
             // New spawner needed
             GD.Print("Registering new spawner: Name: ", itemName, " density: ", density);
 
-            chunkSpawners.Add(createNew());
+            existingSpawners.Add(createNew());
         }
     }
 
@@ -231,6 +231,10 @@ public class PatchManager
         ClearUnmarkedSingle(microbeSpawners);
     }
 
+    /// <summary>
+    /// Removes unmarked spawners from List.
+    /// </summary>
+    /// <param name="spawners">Spawner list to act upon</param>
     private void ClearUnmarkedSingle(List<CreatedSpawner> spawners)
     {
         spawners.RemoveAll((item) =>
@@ -238,6 +242,7 @@ public class PatchManager
             if (!item.Marked)
             {
                 GD.Print("Removed ", item.Name, " spawner.");
+                item.Spawner.DestroyQueued = true;
                 return true;
             }
 
