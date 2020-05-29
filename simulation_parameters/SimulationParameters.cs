@@ -218,6 +218,7 @@ public class SimulationParameters
         CheckRegistryType(compounds);
         CheckRegistryType(organelles);
         CheckRegistryType(musicCategories);
+        CheckRegistryType(helpTexts);
 
         NameGenerator.Check(string.Empty);
         EasterEggMessages.Check(string.Empty);

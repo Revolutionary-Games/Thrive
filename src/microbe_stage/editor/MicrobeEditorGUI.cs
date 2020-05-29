@@ -44,6 +44,9 @@ public class MicrobeEditorGUI : Node
     public NodePath RedoButtonPath;
 
     [Export]
+    public NodePath FinishButtonPath;
+
+    [Export]
     public NodePath SymmetryButtonPath;
 
     [Export]
@@ -219,6 +222,7 @@ public class MicrobeEditorGUI : Node
     private TextureButton newCellButton;
     private TextureButton undoButton;
     private TextureButton redoButton;
+    private Button finishButton;
     private TextureButton symmetryButton;
     private TextureRect symmetryIcon;
     private Label atpBalanceLabel;
@@ -268,6 +272,11 @@ public class MicrobeEditorGUI : Node
     private bool inEditorTab = false;
     private MicrobeEditor.MicrobeSymmetry symmetry = MicrobeEditor.MicrobeSymmetry.None;
 
+    /// <summary>
+    ///   For toggling purposes
+    /// </summary>
+    private bool speciesListIsHidden = false;
+
     public string GetNewSpeciesName()
     {
         return speciesNameEdit.Text;
@@ -298,6 +307,7 @@ public class MicrobeEditorGUI : Node
         undoButton = GetNode<TextureButton>(UndoButtonPath);
         redoButton = GetNode<TextureButton>(RedoButtonPath);
         symmetryButton = GetNode<TextureButton>(SymmetryButtonPath);
+        finishButton = GetNode<Button>(FinishButtonPath);
         atpBalanceLabel = GetNode<Label>(ATPBalanceLabelPath);
         atpProductionBar = GetNode<ProgressBar>(ATPProductionBarPath);
         atpConsumptionBar = GetNode<ProgressBar>(ATPConsumptionBarPath);
@@ -470,6 +480,9 @@ public class MicrobeEditorGUI : Node
         }
     }
 
+    /// <summary>
+    ///   Updates the fluidity / rigidity slider tooltip
+    /// </summary>
     public void SetRigiditySliderTooltip(float rigidity)
     {
         var healthChangeLabel = GetNode<Label>(RigiditySliderTooltipHealthLabelPath);
@@ -529,7 +542,7 @@ public class MicrobeEditorGUI : Node
 
     /// <summary>
     ///   Called when the mouse is no longer hovering
-    ///    the editor GUI.
+    ///   the editor GUI.
     /// </summary>
     internal void OnMouseExit()
     {
@@ -604,7 +617,7 @@ public class MicrobeEditorGUI : Node
     }
 
     /// <summary>
-    ///   lock / unlock the organelles  that need a nuclues
+    ///   Lock / unlock the organelles  that need a nuclues
     /// </summary>
     /// <remarks>
     ///   <para>
@@ -710,6 +723,9 @@ public class MicrobeEditorGUI : Node
 
     internal void OnFinishEditingClicked()
     {
+        // To prevent being clicked twice
+        finishButton.MouseFilter = Control.MouseFilterEnum.Ignore;
+
         TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.3f, false);
         TransitionManager.Instance.StartTransitions(editor, nameof(MicrobeEditor.OnFinishEditing));
     }
@@ -891,9 +907,10 @@ public class MicrobeEditorGUI : Node
         }
     }
 
-    private void OnConditionClicked(string tab)
+    private void ToggleConditionsTab(string tab)
     {
-        // I couldn't make these slide
+        var slideAnimations = patchDetails.GetNode<AnimationPlayer>("SlideAnimations");
+
         if (tab == "physical")
         {
             var minusButton = physicalConditionsButton.GetNode<TextureButton>("minusButton");
@@ -901,72 +918,82 @@ public class MicrobeEditorGUI : Node
 
             if (!physicalConditionsBox.Visible)
             {
-                physicalConditionsBox.Show();
+                slideAnimations.Play("physicalSlideDown");
                 minusButton.Show();
                 plusButton.Hide();
             }
             else
             {
-                physicalConditionsBox.Hide();
+                slideAnimations.Play("physicalSlideUp");
                 minusButton.Hide();
                 plusButton.Show();
             }
         }
-
-        if (tab == "atmospheric")
+        else if (tab == "atmospheric")
         {
             var minusButton = atmosphericConditionsButton.GetNode<TextureButton>("minusButton");
             var plusButton = atmosphericConditionsButton.GetNode<TextureButton>("plusButton");
 
             if (!atmosphericConditionsBox.Visible)
             {
-                atmosphericConditionsBox.Show();
+                slideAnimations.Play("atmosphericSlideDown");
                 minusButton.Show();
                 plusButton.Hide();
             }
             else
             {
-                atmosphericConditionsBox.Hide();
+                slideAnimations.Play("atmosphericSlideUp");
                 minusButton.Hide();
                 plusButton.Show();
             }
         }
-
-        if (tab == "compounds")
+        else if (tab == "compounds")
         {
             var minusButton = compoundsButton.GetNode<TextureButton>("minusButton");
             var plusButton = compoundsButton.GetNode<TextureButton>("plusButton");
 
             if (!compoundsBox.Visible)
             {
-                compoundsBox.Show();
+                slideAnimations.Play("compoundsSlideDown");
                 minusButton.Show();
                 plusButton.Hide();
             }
             else
             {
-                compoundsBox.Hide();
+                slideAnimations.Play("compoundsSlideUp");
                 minusButton.Hide();
                 plusButton.Show();
             }
         }
-
-        if (tab == "species")
+        else if (tab == "species")
         {
             var minusButton = speciesListButton.GetNode<TextureButton>("minusButton");
             var plusButton = speciesListButton.GetNode<TextureButton>("plusButton");
 
-            if (!speciesList.Visible)
+            var clip = speciesList.GetParent<MarginContainer>();
+            var tween = clip.GetNode<Tween>("Tween");
+
+            if (speciesListIsHidden)
             {
-                speciesList.Show();
+                tween.InterpolateProperty(clip, "custom_constants/margin_top", -speciesList.RectSize.y, 20, 0.3f,
+                    Tween.TransitionType.Sine, Tween.EaseType.Out);
+                tween.Start();
+
                 minusButton.Show();
                 plusButton.Hide();
+
+                speciesListIsHidden = false;
             }
             else
             {
-                speciesList.Hide();
+                tween.InterpolateProperty(clip, "custom_constants/margin_top", 20, -speciesList.RectSize.y, 0.3f,
+                    Tween.TransitionType.Sine, Tween.EaseType.Out);
+                tween.Start();
+
                 minusButton.Hide();
                 plusButton.Show();
+
+                speciesListIsHidden = true;
             }
         }
     }
@@ -1355,6 +1382,16 @@ public class MicrobeEditorGUI : Node
             var speciesLabel = new Label();
             speciesLabel.Text = species.FormattedName + " with population: " + patch.GetSpeciesPopulation(species);
             speciesList.AddChild(speciesLabel);
+
+            // Yes, apparently this has to be done so that the rect size is updated immediately
+            speciesList.RectSize = speciesList.RectSize;
+
+            if (speciesListIsHidden)
+            {
+                // Adjust the species list's clipping area's "height" value
+                var clip = speciesList.GetParent<MarginContainer>();
+                clip.AddConstantOverride("margin_top", -(int)speciesList.RectSize.y);
+            }
         }
 
         // Enable move to patch button if this is a valid move
