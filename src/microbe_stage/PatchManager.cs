@@ -182,7 +182,7 @@ public class PatchManager
 
             if (oldFrequency != existing.Spawner.SpawnFrequency)
             {
-                GD.Print("Spawn frequency of ", existing.Name, " changed from ", 
+                GD.Print("Spawn frequency of ", existing.Name, " changed from ",
                     oldFrequency, " to ", existing.Spawner.SpawnFrequency);
             }
         }
