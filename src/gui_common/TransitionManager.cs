@@ -3,19 +3,17 @@ using Godot;
 
 /// <summary>
 ///   Manages the screen transitions, usually used for when
-///   switching scenes. This singleton class is placed on
-///   AutoLoad for global access while still inheriting from Node.
+///   switching scenes. This is autoloaded
 /// </summary>
 public class TransitionManager : Node
 {
     private static TransitionManager instance;
 
-    private PackedScene screenFadeScene;
-    private PackedScene cutsceneScene;
+    private readonly PackedScene screenFadeScene;
+    private readonly PackedScene cutsceneScene;
 
     /// <summary>
-    ///   Sequence of transitions on queue waiting
-    ///   to be started.
+    ///   Transitions waiting to be executed.
     /// </summary>
     private Queue<ITransition> queuedTransitions = new Queue<ITransition>();
 
@@ -38,8 +36,7 @@ public class TransitionManager : Node
     /// <summary>
     ///   List of all the existing transitions after calling StartTransitions.
     /// </summary>
-    public List<ITransition> TransitionSequence { get; private set; } =
-        new List<ITransition>();
+    public List<ITransition> TransitionSequence { get; private set; } = new List<ITransition>();
 
     public override void _Input(InputEvent @event)
     {
@@ -50,8 +47,7 @@ public class TransitionManager : Node
     }
 
     /// <summary>
-    ///   Helper function for instantiating
-    ///   and queuing a screen fade.
+    ///   Creates and queues a screen fade.
     /// </summary>
     /// <param name="type">
     ///   The type of fade to transition to.
@@ -78,9 +74,11 @@ public class TransitionManager : Node
     }
 
     /// <summary>
-    ///   Helper function for instantiating
-    ///   and queuing a cutscene.
+    ///   Creates and queues a cutscene.
     /// </summary>
+    /// <param name="allowSkipping">
+    ///   Allow the user to skip this
+    /// </param>
     public void AddCutscene(string path, bool allowSkipping = true)
     {
         // Instantiate scene
@@ -99,9 +97,11 @@ public class TransitionManager : Node
     }
 
     /// <summary>
-    ///   Starts the transitions on the queue.
-    ///   Calls a method when all the transition finished.
+    ///   Executes queued transitions.
+    ///   Calls a method when all transitions finished.
     /// </summary>
+    /// <param name="target">The target object to connect to</param>
+    /// <param name="onFinishedMethod">The name of the method on the target object</param>
     public void StartTransitions(Object target, string onFinishedMethod)
     {
         if (queuedTransitions.Count == 0 || queuedTransitions == null)
@@ -119,22 +119,20 @@ public class TransitionManager : Node
             }
         }
 
-        // Keep the queued transitions as a reference, so that
-        // we can cancel the remaining transitions anytime
-        // Todo: is this hackish?
+        // Add the transitions to the list for reference
         foreach (var entry in queuedTransitions)
         {
             TransitionSequence.Add(entry);
         }
 
-        // Begin the first transition on the queue
+        // Begin the first queued transition
         StartNextQueuedTransition();
     }
 
     /// <summary>
-    ///   Skips the running and all the remaining transitions.
+    ///   Skips all the running and remaining transitions.
     /// </summary>
-    public void CancelQueuedTransitions()
+    private void CancelQueuedTransitions()
     {
         if (TransitionSequence.Count == 0 || TransitionSequence == null)
             return;
@@ -152,12 +150,11 @@ public class TransitionManager : Node
     }
 
     /// <summary>
-    ///   Starts the next transition on the
-    ///   queue when the previous ends.
+    ///   Starts the next queued transition when the previous ends.
     /// </summary>
     private void StartNextQueuedTransition()
     {
-        // Assume it's finished when the queue list is empty.
+        // Assume it's finished when queue is empty.
         if (queuedTransitions.Count == 0)
         {
             EmitSignal(nameof(QueuedTransitionsFinished));
