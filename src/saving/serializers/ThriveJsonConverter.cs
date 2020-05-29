@@ -389,6 +389,11 @@ public abstract class BaseThriveConverter : JsonConverter
 
         ReadCustomExtraFields(item, instance, reader, objectType, existingValue, serializer);
 
+        // Node types need to be deleted to not leak memory, so any type derived from Node is
+        // registered to be deleted here
+        if (instance is Node converted)
+            TemporaryLoadedNodeDeleter.Instance.Register(converted);
+
         return instance;
     }
 
