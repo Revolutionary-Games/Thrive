@@ -21,9 +21,9 @@ public class Membrane : MeshInstance
 
     private float healthFraction = 1.0f;
     private float wigglyNess = 1.0f;
-    private float sizeWigglyNessDampeningFactor = 0.19f;
+    private float sizeWigglyNessDampeningFactor = 0.1f;
     private float movementWigglyNess = 1.0f;
-    private float sizeMovementWigglyNessDampeningFactor = 0.2f;
+    private float sizeMovementWigglyNessDampeningFactor = 0.1f;
     private Color tint = new Color(1, 1, 1, 1);
     private float dissolveEffectValue = 0.0f;
 
@@ -346,8 +346,8 @@ public class Membrane : MeshInstance
     private void Update()
     {
         Dirty = false;
-        ApplyAllMaterialParameters();
         InitializeMesh();
+        ApplyAllMaterialParameters();
     }
 
     private void ApplyAllMaterialParameters()
@@ -362,18 +362,18 @@ public class Membrane : MeshInstance
 
     private void ApplyWiggly()
     {
-        float wigglyNessToApply = cellDimensions > 1 ?
-            wigglyNess / (cellDimensions * sizeWigglyNessDampeningFactor) : wigglyNess;
+        float wigglyNessToApply = EncompassingCircleRadius > 0 ?
+            WigglyNess / (EncompassingCircleRadius * sizeWigglyNessDampeningFactor) : WigglyNess;
 
-        MaterialToEdit.SetShaderParam("wigglyNess", wigglyNessToApply);
+        MaterialToEdit.SetShaderParam("wigglyNess", Mathf.Min(WigglyNess, wigglyNessToApply));
     }
 
     private void ApplyMovementWiggly()
     {
-        float wigglyNessToApply = cellDimensions > 1 ?
-            wigglyNess / (cellDimensions * sizeMovementWigglyNessDampeningFactor) : wigglyNess;
+        float wigglyNessToApply = EncompassingCircleRadius > 0 ?
+            MovementWigglyNess / (EncompassingCircleRadius * sizeMovementWigglyNessDampeningFactor) : MovementWigglyNess;
 
-        MaterialToEdit.SetShaderParam("movementWigglyNess", wigglyNessToApply);
+        MaterialToEdit.SetShaderParam("movementWigglyNess", Mathf.Min(MovementWigglyNess, wigglyNessToApply));
     }
 
     private void ApplyHealth()
