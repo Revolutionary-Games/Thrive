@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -15,6 +17,15 @@ public class MainMenu : Node
     [Export]
     public NodePath ThriveLogoPath;
 
+    [Export]
+    public List<Texture> MenuBackgrounds;
+
+    [Export]
+    public NodePath NewGameButtonPath;
+
+    [Export]
+    public NodePath FreebuildButtonPath;
+
     public Godot.Collections.Array MenuArray;
     public TextureRect Background;
 
@@ -22,6 +33,10 @@ public class MainMenu : Node
 
     private TextureRect thriveLogo;
     private OptionsMenu options;
+    private AnimationPlayer guiAnimations;
+
+    private Button newGameButton;
+    private Button freebuildButton;
 
     public override void _Ready()
     {
@@ -46,12 +61,44 @@ public class MainMenu : Node
     }
 
     /// <summary>
+    ///   Sets the current menu index and then switches the menu
+    /// </summary>
+    /// <param name="index">Index of the menu</param>
+    /// <param name="slide">If false then the menu slide animation will not be played</param>
+    public void SetCurrentMenu(uint index, bool slide = true)
+    {
+        // Allow disabling all the menus for going to the options menu
+        if (index > MenuArray.Count - 1 && index != uint.MaxValue)
+        {
+            GD.PrintErr("Selected menu index is out of range!");
+            return;
+        }
+        else
+        {
+            CurrentMenuIndex = index;
+        }
+
+        if (slide)
+        {
+            guiAnimations.Play("MenuSlide");
+        }
+        else
+        {
+            // Just switch the menu
+            SwitchMenu();
+        }
+    }
+
+    /// <summary>
     ///   Setup the main menu.
     /// </summary>
     private void RunMenuSetup()
     {
         Background = GetNode<TextureRect>("Background");
+        guiAnimations = GetNode<AnimationPlayer>("GUIAnimations");
         thriveLogo = GetNode<TextureRect>(ThriveLogoPath);
+        newGameButton = GetNode<Button>(NewGameButtonPath);
+        freebuildButton = GetNode<Button>(FreebuildButtonPath);
 
         if (MenuArray != null)
             MenuArray.Clear();
@@ -72,8 +119,8 @@ public class MainMenu : Node
         // Load settings
         options.SetSettingsFrom(Settings.Instance);
 
-        // Set initial menu to the current menu index
-        SetCurrentMenu(CurrentMenuIndex, false);
+        // Set initial menu
+        SwitchMenu();
     }
 
     /// <summary>
@@ -82,72 +129,45 @@ public class MainMenu : Node
     private void RandomizeBackground()
     {
         Random rand = new Random();
-        int num = rand.Next(0, 10);
 
-        if (num <= 3)
-        {
-            SetBackground("res://assets/textures/gui/BG_Menu01.png");
-        }
-        else if (num <= 6)
-        {
-            SetBackground("res://assets/textures/gui/BG_Menu02.png");
-        }
-        else if (num <= 9)
-        {
-            SetBackground("res://assets/textures/gui/BG_Menu03.png");
-        }
+        // Exported lists will crash the game, so as a workaround ToList() is added
+        // https://github.com/godotengine/godot/issues/37934
+        // This is a Godot issue that may get fixed in 4.0
+        var chosenBackground = MenuBackgrounds.ToList().Random(rand);
+
+        SetBackground(chosenBackground);
     }
 
-    private void SetBackground(string filepath)
+    private void SetBackground(Texture backgroundImage)
     {
-        if (Background == null)
-        {
-            GD.PrintErr("Background object doesn't exist");
-            return;
-        }
-
-        var backgroundImage = GD.Load<Texture>(filepath);
         Background.Texture = backgroundImage;
     }
 
     /// <summary>
-    ///   Change the menu displayed on screen to one
-    ///   with the menu of the given index.
+    ///   Stops any currently playing animation and plays
+    ///   the given one instead
     /// </summary>
-    private void SetCurrentMenu(uint index, bool slide = true)
+    private void PlayGUIAnimation(string animation)
     {
-        // Using tween for value interpolation
-        var tween = GetNode<Tween>("MenuTween");
+        if (guiAnimations.IsPlaying())
+            guiAnimations.Stop();
 
-        // Allow disabling all the menus for going to the options menu
-        if (index > MenuArray.Count - 1 && index != uint.MaxValue)
-        {
-            GD.PrintErr("Selected menu index is out of range!");
-            return;
-        }
-        else
-        {
-            CurrentMenuIndex = index;
-        }
+        guiAnimations.Play(animation);
+    }
 
-        // Hide all menu and only show the one
-        // with the correct index
+    /// <summary>
+    ///   Switches the displayed menu
+    /// </summary>
+    private void SwitchMenu()
+    {
+        // Hide other menus and only show the one of the current index
         foreach (Control menu in MenuArray)
         {
             menu.Hide();
 
-            if (menu.GetIndex() == index)
+            if (menu.GetIndex() == CurrentMenuIndex)
             {
                 menu.Show();
-
-                // Play the slide down animation
-                // TODO: Improve how this is done
-                if (slide)
-                {
-                    tween.InterpolateProperty(menu, "custom_constants/separation", -35,
-                        10, 0.3f, Tween.TransitionType.Sine);
-                    tween.Start();
-                }
             }
         }
     }
@@ -183,6 +203,9 @@ public class MainMenu : Node
     {
         GUICommon.Instance.PlayButtonPressSound();
 
+        // Ignore mouse event on the button to prevent it being clicked twice
+        newGameButton.MouseFilter = Control.MouseFilterEnum.Ignore;
+
         // Stop music for the video (stop is used instead of pause to stop the menu music playing a bit after the video
         // before the stage music starts)
         Jukebox.Instance.Stop();
@@ -211,6 +234,9 @@ public class MainMenu : Node
     {
         GUICommon.Instance.PlayButtonPressSound();
 
+        // Ignore mouse event on the button to prevent it being clicked twice
+        freebuildButton.MouseFilter = Control.MouseFilterEnum.Ignore;
+
         TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.3f, false);
         TransitionManager.Instance.StartTransitions(this, nameof(OnFreebuildFadeInEnded));
     }
@@ -232,7 +258,7 @@ public class MainMenu : Node
         GUICommon.Instance.PlayButtonPressSound();
 
         // Hide all the other menus
-        SetCurrentMenu(uint.MaxValue);
+        SetCurrentMenu(uint.MaxValue, false);
 
         // Show the options
         options.Visible = true;
@@ -245,7 +271,7 @@ public class MainMenu : Node
         options.Visible = false;
 
         // Hide all the other menus
-        SetCurrentMenu(0);
+        SetCurrentMenu(0, false);
 
         thriveLogo.Show();
     }

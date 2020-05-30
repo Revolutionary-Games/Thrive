@@ -17,6 +17,7 @@ public class SimulationParameters : Node
     private readonly Dictionary<string, Compound> compounds;
     private readonly Dictionary<string, OrganelleDefinition> organelles;
     private readonly Dictionary<string, MusicCategory> musicCategories;
+    private readonly Dictionary<string, HelpTexts> helpTexts;
 
     // These are for mutations to be able to randomly pick items in a weighted manner
     private List<OrganelleDefinition> prokaryoticOrganelles;
@@ -49,7 +50,12 @@ public class SimulationParameters : Node
         NameGenerator = LoadDirectObject<NameGenerator>(
             "res://simulation_parameters/microbe_stage/species_names.json");
 
+        EasterEggMessages = LoadDirectObject<EasterEggMessages>(
+            "res://simulation_parameters/common/easter_egg_messages.json");
+
         musicCategories = LoadRegistry<MusicCategory>("res://simulation_parameters/common/music_tracks.json");
+
+        helpTexts = LoadRegistry<HelpTexts>("res://simulation_parameters/common/help_texts.json");
 
         GD.Print("SimulationParameters loading ended");
 
@@ -68,6 +74,8 @@ public class SimulationParameters : Node
     }
 
     public NameGenerator NameGenerator { get; }
+
+    public EasterEggMessages EasterEggMessages { get; }
 
     public OrganelleDefinition GetOrganelleType(string name)
     {
@@ -128,6 +136,11 @@ public class SimulationParameters : Node
     public Dictionary<string, MusicCategory> GetMusicCategories()
     {
         return musicCategories;
+    }
+
+    public HelpTexts GetHelpTexts(string name)
+    {
+        return helpTexts[name];
     }
 
     public OrganelleDefinition GetRandomProkaryoticOrganelle(Random random)
@@ -206,8 +219,10 @@ public class SimulationParameters : Node
         CheckRegistryType(compounds);
         CheckRegistryType(organelles);
         CheckRegistryType(musicCategories);
+        CheckRegistryType(helpTexts);
 
         NameGenerator.Check(string.Empty);
+        EasterEggMessages.Check(string.Empty);
     }
 
     private void ResolveValueRelationships()
@@ -225,6 +240,11 @@ public class SimulationParameters : Node
         foreach (var entry in backgrounds)
         {
             entry.Value.Resolve(this);
+        }
+
+        foreach (var entry in membranes)
+        {
+            entry.Value.Resolve();
         }
 
         NameGenerator.Resolve(this);

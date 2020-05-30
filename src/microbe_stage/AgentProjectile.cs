@@ -15,14 +15,12 @@ public class AgentProjectile : RigidBody, ITimedLife
 
     public override void _Ready()
     {
+        AddCollisionExceptionWith(Emitter);
         Connect("body_entered", this, "OnBodyEntered");
     }
 
     public void OnBodyEntered(Node body)
     {
-        if (body == Emitter)
-            return; // Kinda hacky.
-
         if (body is Microbe microbe)
         {
             if (microbe.Species != Properties.Species)

@@ -8,6 +8,9 @@ uniform float movementWigglyNess = 1.f;
 uniform sampler2D albedoTexture : hint_albedo;
 uniform sampler2D damagedTexture : hint_albedo;
 
+uniform sampler2D dissolveTexture : hint_albedo;
+uniform float dissolveValue : hint_range(0, 1);
+
 uniform float healthFraction = 0.5f;
 uniform vec4 tint : hint_color = vec4(1, 1, 1, 1);
 
@@ -26,6 +29,12 @@ void fragment(){
     vec4 damaged = texture(damagedTexture, UV);
     vec4 final = ((normal * healthFraction) + 
         (damaged * (1.f - healthFraction))) * tint;
+
+    vec4 dissolveTex = texture(dissolveTexture, UV);
+
+    float cutoff = dot(dissolveTex.rgb, vec3(0.3, 0.3, 0.3)) -
+        float(-0.8 + clamp(dissolveValue, 0, 1));
+
     ALBEDO = final.rgb;
-    ALPHA = final.a;
+    ALPHA = round(cutoff) * final.a;
 }

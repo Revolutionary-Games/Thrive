@@ -60,6 +60,9 @@
     <Compile Include="src\engine\SceneManager.cs" />
     <Compile Include="src\engine\ScreenShotTaker.cs" />
     <Compile Include="src\general\PathUtils.cs" />
+    <Compile Include="src\general\EasterEggMessages.cs" />
+    <Compile Include="src\general\HelpTexts.cs" />
+    <Compile Include="src\general\HelpScreen.cs" />
     <Compile Include="src\gui_common\Cutscene.cs" />
     <Compile Include="src\gui_common\Fade.cs" />
     <Compile Include="src\gui_common\GUICommon.cs" />
@@ -89,7 +92,6 @@
     <Compile Include="src\microbe_stage\Membrane.cs" />
     <Compile Include="src\microbe_stage\Microbe.cs" />
     <Compile Include="src\microbe_stage\MicrobeCamera.cs" />
-    <Compile Include="src\microbe_stage\MicrobeDeathEffect.cs" />
     <Compile Include="src\microbe_stage\MicrobeHUD.cs" />
     <Compile Include="src\microbe_stage\MicrobeStage.cs" />
     <Compile Include="src\microbe_stage\NucleusMesh.cs" />
