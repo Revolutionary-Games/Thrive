@@ -144,7 +144,7 @@ public class FloatingChunk : RigidBody, ISpawned
 
         if (ContainedCompounds != null && ContainedCompounds.Compounds.Count > 0)
         {
-            config.Compounds = new Dictionary<string, ChunkConfiguration.ChunkCompound>();
+            config.Compounds = new Dictionary<Compound, ChunkConfiguration.ChunkCompound>();
 
             foreach (var entry in ContainedCompounds)
             {
@@ -260,7 +260,7 @@ public class FloatingChunk : RigidBody, ISpawned
     {
         var pos = Translation;
 
-        var keys = new List<string>(ContainedCompounds.Compounds.Keys);
+        var keys = new List<Compound>(ContainedCompounds.Compounds.Keys);
 
         // Loop through all the compounds in the storage bag and eject them
         bool vented = false;
@@ -288,7 +288,7 @@ public class FloatingChunk : RigidBody, ISpawned
         }
     }
 
-    private void VentCompound(Vector3 pos, string compound, float amount)
+    private void VentCompound(Vector3 pos, Compound compound, float amount)
     {
         compoundClouds.AddCloud(
             compound, amount * Constants.CHUNK_VENT_COMPOUND_MULTIPLIER, pos);

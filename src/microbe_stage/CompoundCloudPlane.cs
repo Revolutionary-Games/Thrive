@@ -342,17 +342,6 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
         return false;
     }
 
-    public bool HandlesCompound(string name)
-    {
-        foreach (var c in Compounds)
-        {
-            if (c != null && c.InternalName == name)
-                return true;
-        }
-
-        return false;
-    }
-
     /// <summary>
     ///   Adds some compound in cloud local coordinates
     /// </summary>
@@ -363,17 +352,6 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
             Compounds[1] == compound ? density : 0.0f,
             Compounds[2] == compound ? density : 0.0f,
             Compounds[3] == compound ? density : 0.0f);
-
-        Density[x, y] += cloudToAdd;
-    }
-
-    public void AddCloud(string name, float density, int x, int y)
-    {
-        var cloudToAdd = new System.Numerics.Vector4(
-            Compounds[0].InternalName == name ? density : 0.0f,
-            Compounds[1] != null && Compounds[1].InternalName == name ? density : 0.0f,
-            Compounds[2] != null && Compounds[2].InternalName == name ? density : 0.0f,
-            Compounds[3] != null && Compounds[3].InternalName == name ? density : 0.0f);
 
         Density[x, y] += cloudToAdd;
     }
@@ -408,7 +386,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
     /// <summary>
     ///   Returns all the compounds that are available at point
     /// </summary>
-    public void GetCompoundsAt(int x, int y, Dictionary<string, float> result)
+    public void GetCompoundsAt(int x, int y, Dictionary<Compound, float> result)
     {
         for (int i = 0; i < Constants.CLOUDS_IN_ONE; i++)
         {
@@ -417,7 +395,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
 
             float amount = HackyAdress(Density[x, y], i);
             if (amount > 0)
-                result[Compounds[i].InternalName] = amount;
+                result[Compounds[i]] = amount;
         }
     }
 
@@ -464,7 +442,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
     ///   Absorbs compounds from this cloud
     /// </summary>
     public void AbsorbCompounds(int localX, int localY, CompoundBag storage,
-        Dictionary<string, float> totals, float delta, float rate)
+        Dictionary<Compound, float> totals, float delta, float rate)
     {
         var fractionToTake = 1.0f - (float)Math.Pow(0.5f, delta / Constants.CLOUD_ABSORPTION_HALF_LIFE);
 
@@ -481,9 +459,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
             if (generousAmount < MathUtils.EPSILON)
                 continue;
 
-            var compound = Compounds[i].InternalName;
-
-            float freeSpace = storage.Capacity - storage.GetCompoundAmount(compound);
+            float freeSpace = storage.Capacity - storage.GetCompoundAmount(Compounds[i]);
 
             float multiplier = 1.0f * rate;
 
@@ -496,16 +472,16 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
             float taken = TakeCompound(Compounds[i], localX, localY, fractionToTake * multiplier) *
                 Constants.ABSORPTION_RATIO;
 
-            storage.AddCompound(compound, taken);
+            storage.AddCompound(Compounds[i], taken);
 
             // Keep track of total compounds absorbed for the cell
-            if (!totals.ContainsKey(compound))
+            if (!totals.ContainsKey(Compounds[i]))
             {
-                totals.Add(compound, taken);
+                totals.Add(Compounds[i], taken);
             }
             else
             {
-                totals[compound] += taken;
+                totals[Compounds[i]] += taken;
             }
         }
     }

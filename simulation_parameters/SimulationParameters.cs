@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
 
-public class SimulationParameters
+/// <summary>
+///   Contains definitions for global game configuration like Compounds, Organelles etc.
+/// </summary>
+public class SimulationParameters : Node
 {
-    private static readonly SimulationParameters SingletonInstance = new SimulationParameters();
+    private static SimulationParameters instance;
 
-    private Dictionary<string, MembraneType> membranes;
-    private Dictionary<string, Background> backgrounds;
-    private Dictionary<string, Biome> biomes;
-    private Dictionary<string, BioProcess> bioProcesses;
-    private Dictionary<string, Compound> compounds;
-
-    private Dictionary<string, OrganelleDefinition> organelles;
+    private readonly Dictionary<string, MembraneType> membranes;
+    private readonly Dictionary<string, Background> backgrounds;
+    private readonly Dictionary<string, Biome> biomes;
+    private readonly Dictionary<string, BioProcess> bioProcesses;
+    private readonly Dictionary<string, Compound> compounds;
+    private readonly Dictionary<string, OrganelleDefinition> organelles;
+    private readonly Dictionary<string, MusicCategory> musicCategories;
 
     // These are for mutations to be able to randomly pick items in a weighted manner
     private List<OrganelleDefinition> prokaryoticOrganelles;
@@ -21,17 +24,17 @@ public class SimulationParameters
     private List<OrganelleDefinition> eukaryoticOrganelles;
     private float eukaryoticOrganellesChance;
 
-    private Dictionary<string, MusicCategory> musicCategories;
-
-    static SimulationParameters()
-    {
-    }
-
     /// <summary>
     ///   Loads the simulation configuration parameters from JSON files
     /// </summary>
     private SimulationParameters()
     {
+        // Compounds are referenced by the other json files so it is loaded first and instance is assigned here
+        instance = this;
+
+        compounds = LoadRegistry<Compound>(
+            "res://simulation_parameters/microbe_stage/compounds.json");
+
         membranes = LoadRegistry<MembraneType>(
             "res://simulation_parameters/microbe_stage/membranes.json");
         backgrounds = LoadRegistry<Background>(
@@ -40,10 +43,8 @@ public class SimulationParameters
             "res://simulation_parameters/microbe_stage/biomes.json");
         bioProcesses = LoadRegistry<BioProcess>(
             "res://simulation_parameters/microbe_stage/bio_processes.json");
-        compounds = LoadRegistry<Compound>(
-            "res://simulation_parameters/microbe_stage/compounds.json");
         organelles = LoadRegistry<OrganelleDefinition>(
-                    "res://simulation_parameters/microbe_stage/organelles.json");
+            "res://simulation_parameters/microbe_stage/organelles.json");
 
         NameGenerator = LoadDirectObject<NameGenerator>(
             "res://simulation_parameters/microbe_stage/species_names.json");
@@ -62,7 +63,7 @@ public class SimulationParameters
     {
         get
         {
-            return SingletonInstance;
+            return instance;
         }
     }
 

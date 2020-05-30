@@ -8,6 +8,8 @@ public class MovementComponent : ExternallyPositionedComponent
     public float Momentum;
     public float Torque;
 
+    private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
+
     private bool movingTail = false;
     private Vector3 force;
 
@@ -103,7 +105,7 @@ public class MovementComponent : ExternallyPositionedComponent
 
         var requiredEnergy = Constants.FLAGELLA_ENERGY_COST * elapsed;
 
-        var availableEnergy = microbe.Compounds.TakeCompound("atp", requiredEnergy);
+        var availableEnergy = microbe.Compounds.TakeCompound(atp, requiredEnergy);
 
         if (availableEnergy < requiredEnergy)
         {

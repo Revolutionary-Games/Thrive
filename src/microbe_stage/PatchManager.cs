@@ -101,13 +101,11 @@ public class PatchManager
 
         foreach (var entry in biome.Compounds)
         {
-            HandleSpawnHelper(chunkSpawners, entry.Key, entry.Value.Density,
+            HandleSpawnHelper(chunkSpawners, entry.Key.InternalName, entry.Value.Density,
                 () =>
                 {
-                    var spawner = new CreatedSpawner(entry.Key);
-                    spawner.Spawner = Spawners.MakeCompoundSpawner(
-                        SimulationParameters.Instance.GetCompound(entry.Key),
-                        compoundCloudSystem, entry.Value.Amount);
+                    var spawner = new CreatedSpawner(entry.Key.InternalName);
+                    spawner.Spawner = Spawners.MakeCompoundSpawner(entry.Key, compoundCloudSystem, entry.Value.Amount);
 
                     spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density,
                         Constants.CLOUD_SPAWN_RADIUS);

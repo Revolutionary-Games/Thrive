@@ -40,20 +40,20 @@ public class MicrobeSpecies : Species
     public void SetInitialCompoundsForDefault()
     {
         InitialCompounds.Clear();
-        InitialCompounds.Add("atp", 30);
-        InitialCompounds.Add("glucose", 10);
+        InitialCompounds.Add(SimulationParameters.Instance.GetCompound("atp"), 30);
+        InitialCompounds.Add(SimulationParameters.Instance.GetCompound("glucose"), 10);
     }
 
     public void SetInitialCompoundsForIron()
     {
         SetInitialCompoundsForDefault();
-        InitialCompounds.Add("iron", 10);
+        InitialCompounds.Add(SimulationParameters.Instance.GetCompound("iron"), 10);
     }
 
     public void SetInitialCompoundsForChemo()
     {
         SetInitialCompoundsForDefault();
-        InitialCompounds.Add("hydrogensulfide", 10);
+        InitialCompounds.Add(SimulationParameters.Instance.GetCompound("hydrogensulfide"), 10);
     }
 
     public override void ApplyMutation(Species mutation)

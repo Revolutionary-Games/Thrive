@@ -28,7 +28,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     ///   The compounds still needed to divide. Initialized from Definition.InitialComposition
     /// </summary>
     [JsonProperty]
-    private Dictionary<string, float> compoundsLeft;
+    private Dictionary<Compound, float> compoundsLeft;
 
     public PlacedOrganelle(OrganelleDefinition definition, Hex position, int orientation)
     {
@@ -312,7 +312,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     public void GrowOrganelle(CompoundBag compounds)
     {
         float totalTaken = 0;
-        var keys = new List<string>(compoundsLeft.Keys);
+        var keys = new List<Compound>(compoundsLeft.Keys);
 
         foreach (var key in keys)
         {
@@ -372,7 +372,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     ///   Calculates how much compounds this organelle has absorbed
     ///   already, adds to the dictionary
     /// </summary>
-    public float CalculateAbsorbedCompounds(Dictionary<string, float> result)
+    public float CalculateAbsorbedCompounds(Dictionary<Compound, float> result)
     {
         float totalAbsorbed = 0;
 
@@ -407,7 +407,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
         growthValueDirty = true;
 
         // Deep copy
-        compoundsLeft = new Dictionary<string, float>();
+        compoundsLeft = new Dictionary<Compound, float>();
 
         foreach (var entry in Definition.InitialComposition)
         {
