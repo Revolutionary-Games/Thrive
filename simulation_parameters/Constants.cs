@@ -41,7 +41,7 @@ public static class Constants
     public const float CLOUD_DIFFUSION_RATE = 0.007f;
 
     // Should be the same as its counterpart in shaders/CompoundCloudPlane.shader
-    public const float CLOUD_MAX_INTENSITY_SHOWN = 1000;
+    public const float CLOUD_MAX_INTENSITY_SHOWN = 700;
 
     public const int MEMBRANE_RESOLUTION = 10;
 
