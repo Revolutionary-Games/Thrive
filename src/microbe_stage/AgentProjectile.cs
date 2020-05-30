@@ -38,6 +38,8 @@ public class AgentProjectile : RigidBody, ITimedLife
 
     public void ApplyPropertiesFromSave(AgentProjectile projectile)
     {
+        NodeGroupSaveHelper.CopyGroups(this, projectile);
+
         TimeToLiveRemaining = projectile.TimeToLiveRemaining;
         Amount = projectile.Amount;
         Properties = projectile.Properties;

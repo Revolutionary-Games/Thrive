@@ -1,5 +1,7 @@
 using System;
 using Godot;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 /// <summary>
 ///   Base class for Godot Node derived types converters
@@ -48,6 +50,17 @@ public class BaseNodeConverter : BaseThriveConverter
     public override bool CanConvert(Type objectType)
     {
         return typeof(Node).IsAssignableFrom(objectType);
+    }
+
+    protected override void WriteCustomExtraFields(JsonWriter writer, object value, JsonSerializer serializer)
+    {
+        NodeGroupSaveHelper.WriteGroups(writer, (Node)value, serializer);
+    }
+
+    protected override void ReadCustomExtraFields(JObject item, object instance, JsonReader reader, Type objectType,
+        object existingValue, JsonSerializer serializer)
+    {
+        NodeGroupSaveHelper.ReadGroups(item, (Node)instance, reader, serializer);
     }
 
     protected override bool SkipMember(string name)

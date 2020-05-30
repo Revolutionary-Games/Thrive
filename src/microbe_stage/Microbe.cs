@@ -8,7 +8,6 @@ using Newtonsoft.Json;
 ///   Main script on each cell in the game
 /// </summary>
 [JsonObject(IsReference = true)]
-[UseThriveSerializer]
 [JSONAlwaysDynamicType]
 public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 {
@@ -1055,6 +1054,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         {
             "organelles",
         });
+
+        NodeGroupSaveHelper.CopyGroups(this, microbe);
 
         organelles.Clear();
 

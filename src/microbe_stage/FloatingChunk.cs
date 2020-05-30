@@ -236,6 +236,8 @@ public class FloatingChunk : RigidBody, ISpawned
     /// </summary>
     public void ApplyPropertiesFromSave(FloatingChunk chunk)
     {
+        NodeGroupSaveHelper.CopyGroups(this, chunk);
+
         VentPerSecond = chunk.VentPerSecond;
         Disolves = chunk.Disolves;
         Size = chunk.Size;
