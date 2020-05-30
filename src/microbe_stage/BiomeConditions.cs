@@ -8,7 +8,7 @@ using Godot;
 public class BiomeConditions : ICloneable, ISaveLoadable
 {
     public float AverageTemperature;
-    public Dictionary<string, EnvironmentalCompoundProperties> Compounds;
+    public Dictionary<Compound, EnvironmentalCompoundProperties> Compounds;
     public Dictionary<string, ChunkConfiguration> Chunks;
 
     public void Check(string name)
@@ -38,7 +38,7 @@ public class BiomeConditions : ICloneable, ISaveLoadable
         var result = new BiomeConditions()
         {
             AverageTemperature = AverageTemperature,
-            Compounds = new Dictionary<string, EnvironmentalCompoundProperties>(Compounds.Count),
+            Compounds = new Dictionary<Compound, EnvironmentalCompoundProperties>(Compounds.Count),
             Chunks = new Dictionary<string, ChunkConfiguration>(Chunks.Count),
         };
 

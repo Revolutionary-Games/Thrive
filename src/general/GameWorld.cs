@@ -68,7 +68,7 @@ public class GameWorld
 
                 foreach (var compound in patch.Biome.Compounds.Keys)
                 {
-                    if (compound == "glucose")
+                    if (compound.InternalName == "glucose")
                     {
                         var data = patch.Biome.Compounds[compound];
 

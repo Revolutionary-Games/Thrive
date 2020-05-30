@@ -27,6 +27,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// </summary>
     public Vector3 MovementDirection = new Vector3(0, 0, 0);
 
+    private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
+
     private CompoundCloudSystem cloudSystem;
 
     // Child components
@@ -285,8 +287,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     ///   For use by the AI to do run and tumble to find compounds
     /// </summary>
     [JsonProperty]
-    public Dictionary<string, float> TotalAbsorbedCompounds { get; set; } =
-        new Dictionary<string, float>();
+    public Dictionary<Compound, float> TotalAbsorbedCompounds { get; set; } = new Dictionary<Compound, float>();
 
     [JsonProperty]
     public float AgentEmissionCooldown { get; private set; } = 0.0f;
@@ -641,14 +642,14 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         }
 
         // Eject the compounds that was in the microbe
-        var compoundsToRelease = new Dictionary<string, float>();
+        var compoundsToRelease = new Dictionary<Compound, float>();
 
         foreach (var type in SimulationParameters.Instance.GetCloudCompounds())
         {
             var amount = Compounds.GetCompoundAmount(type) *
                 Constants.COMPOUND_RELEASE_PERCENTAGE;
 
-            compoundsToRelease[type.InternalName] = amount;
+            compoundsToRelease[type] = amount;
         }
 
         // Eject some part of the build cost of all the organelles
@@ -688,8 +689,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
                 VentAmount = 0.1f,
 
                 // Add compounds
-                Compounds = new Dictionary<string,
-                    ChunkConfiguration.ChunkCompound>(),
+                Compounds = new Dictionary<Compound, ChunkConfiguration.ChunkCompound>(),
             };
 
             // They were added in order already so looping through this other thing is fine
@@ -732,13 +732,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             SpawnHelpers.SpawnChunk(chunkType, Translation + positionAdded, GetParent(),
                 chunkScene, cloudSystem, random);
         }
-
-        // TODO: fix. Might need to rethink destroying this
-        // immediately, or spawning a Node here that despawns after
-        // playing.
-        // Play the death sound
-        // playSoundWithDistance(world, "Data/Sound/soundeffects/microbe-death.ogg",
-        // microbeEntity);
 
         // Subtract population
         if (!IsPlayerMicrobe && !Species.PlayerSpecies)
@@ -806,7 +799,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         // Remove the compounds from the created cell
         copyEntity.Compounds.ClearCompounds();
 
-        var keys = new List<string>(Compounds.Compounds.Keys);
+        var keys = new List<Compound>(Compounds.Compounds.Keys);
 
         // Split the compounds evenly between the two cells.
         foreach (var compound in keys)
@@ -849,8 +842,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     ///   Calculates the reproduction progress for a cell, used to
     ///   show how close the player is getting to the editor.
     /// </summary>
-    public float CalculateReproductionProgress(out Dictionary<string, float> gatheredCompounds,
-        out Dictionary<string, float> totalCompounds)
+    public float CalculateReproductionProgress(out Dictionary<Compound, float> gatheredCompounds,
+        out Dictionary<Compound, float> totalCompounds)
     {
         // Calculate total compounds needed to split all organelles
         totalCompounds = CalculateTotalCompounds();
@@ -859,7 +852,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         gatheredCompounds = CalculateAlreadyAbsorbedCompounds();
 
         // Add the currently held compounds
-        var keys = new List<string>(gatheredCompounds.Keys);
+        var keys = new List<Compound>(gatheredCompounds.Keys);
 
         foreach (var key in keys)
         {
@@ -896,9 +889,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     ///   Calculates total compounds needed for a cell to reproduce,
     /// used by calculateReproductionProgress to calculate the
     /// fraction done.  </summary>
-    public Dictionary<string, float> CalculateTotalCompounds()
+    public Dictionary<Compound, float> CalculateTotalCompounds()
     {
-        var result = new Dictionary<string, float>();
+        var result = new Dictionary<Compound, float>();
 
         foreach (var organelle in organelles)
         {
@@ -914,9 +907,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// <summary>
     ///   Calculates how much compounds organelles have already absorbed
     /// </summary>
-    public Dictionary<string, float> CalculateAlreadyAbsorbedCompounds()
+    public Dictionary<Compound, float> CalculateAlreadyAbsorbedCompounds()
     {
-        var result = new Dictionary<string, float>();
+        var result = new Dictionary<Compound, float>();
 
         foreach (var organelle in organelles)
         {
@@ -1166,7 +1159,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     {
         if (Hitpoints < MaxHitpoints)
         {
-            if (Compounds.GetCompoundAmount("atp") >= 1.0f)
+            if (Compounds.GetCompoundAmount(atp) >= 1.0f)
             {
                 Hitpoints += Constants.REGENERATION_RATE * delta;
                 if (Hitpoints > MaxHitpoints)
@@ -1390,7 +1383,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             // Drain atp
             var cost = Constants.ENGULFING_ATP_COST_SECOND * delta;
 
-            if (Compounds.TakeCompound("atp", cost) < cost - 0.001f)
+            if (Compounds.TakeCompound(atp, cost) < cost - 0.001f)
             {
                 EngulfMode = false;
             }
@@ -1553,7 +1546,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         var osmoregulationCost = (HexCount * Species.MembraneType.OsmoregulationFactor *
             Constants.ATP_COST_FOR_OSMOREGULATION) * delta;
 
-        Compounds.TakeCompound("atp", osmoregulationCost);
+        Compounds.TakeCompound(atp, osmoregulationCost);
     }
 
     /// <summary>
@@ -1561,7 +1554,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// </summary>
     private void ApplyATPDamage()
     {
-        if (Compounds.GetCompoundAmount("atp") <= 0.0f)
+        if (Compounds.GetCompoundAmount(atp) <= 0.0f)
         {
             // TODO: put this on a GUI notification.
             // if(microbeComponent.isPlayerMicrobe and not this.playerAlreadyShownAtpDamage){
@@ -1586,7 +1579,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     {
         var cost = (Constants.BASE_MOVEMENT_ATP_COST * HexCount) * delta;
 
-        var got = Compounds.TakeCompound("atp", cost);
+        var got = Compounds.TakeCompound(atp, cost);
 
         float force = Constants.CELL_BASE_THRUST;
 

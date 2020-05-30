@@ -34,7 +34,7 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
 
     public bool DeleteOnTouch;
 
-    public Dictionary<string, ChunkCompound> Compounds;
+    public Dictionary<Compound, ChunkCompound> Compounds;
 
     public static bool operator ==(ChunkConfiguration left, ChunkConfiguration right)
     {

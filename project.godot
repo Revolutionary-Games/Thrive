@@ -30,6 +30,7 @@ config/windows_native_icon="res://assets/misc/icon.ico"
 
 [autoload]
 
+SimulationParameters="*res://simulation_parameters/SimulationParameters.cs"
 GUICommon="*res://src/gui_common/GUICommon.cs"
 SceneManager="*res://src/engine/SceneManager.cs"
 TransitionManager="*res://src/gui_common/TransitionManager.cs"

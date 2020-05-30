@@ -18,8 +18,7 @@ public abstract class Species : ICloneable
     ///   This is the amount of compounds cells of this type spawn with
     /// </summary>
     [JsonProperty]
-    public readonly Dictionary<string, float> InitialCompounds =
-        new Dictionary<string, float>();
+    public readonly Dictionary<Compound, float> InitialCompounds = new Dictionary<Compound, float>();
 
     public string Genus;
     public string Epithet;

@@ -8,6 +8,7 @@ using Godot;
 /// </summary>
 public class ProcessSystem
 {
+    private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
     private readonly List<Task> tasks = new List<Task>();
 
     private readonly Node worldRoot;
@@ -56,8 +57,6 @@ public class ProcessSystem
 
         int hexCount = 0;
 
-        var atp = SimulationParameters.Instance.GetCompound("atp");
-
         var enumerated = organelles.ToList();
 
         // Compute all process efficiencies once
@@ -77,18 +76,18 @@ public class ProcessSystem
                         continue;
                     }
 
-                    if (processData.OtherInputs.ContainsKey(atp.InternalName))
+                    if (processData.OtherInputs.ContainsKey(ATP))
                     {
-                        var amount = processData.OtherInputs[atp.InternalName].Amount;
+                        var amount = processData.OtherInputs[ATP].Amount;
 
                         processATPConsumption += amount;
 
                         result.AddConsumption(organelle.Name, amount);
                     }
 
-                    if (processData.Outputs.ContainsKey(atp.InternalName))
+                    if (processData.Outputs.ContainsKey(ATP))
                     {
-                        var amount = processData.Outputs[atp.InternalName].Amount;
+                        var amount = processData.Outputs[ATP].Amount;
 
                         processATPProduction += amount;
 
@@ -178,17 +177,17 @@ public class ProcessSystem
     /// <summary>
     ///   Get the amount of environmental compound
     /// </summary>
-    public float GetDissolved(string compoundName)
+    public float GetDissolved(Compound compound)
     {
-        return GetDissolvedInBiome(compoundName, biome);
+        return GetDissolvedInBiome(compound, biome);
     }
 
-    private static float GetDissolvedInBiome(string compoundName, BiomeConditions biome)
+    private static float GetDissolvedInBiome(Compound compound, BiomeConditions biome)
     {
-        if (!biome.Compounds.ContainsKey(compoundName))
+        if (!biome.Compounds.ContainsKey(compound))
             return 0;
 
-        return biome.Compounds[compoundName].Dissolved;
+        return biome.Compounds[compound].Dissolved;
     }
 
     /// <summary>
@@ -198,8 +197,6 @@ public class ProcessSystem
     private static ProcessSpeedInformation CalculateProcessMaximumSpeed(TweakedProcess process,
         BiomeConditions biome)
     {
-        var simulation = SimulationParameters.Instance;
-
         var result = new ProcessSpeedInformation(process.Process);
 
         float speedFactor = 1.0f;
@@ -207,14 +204,12 @@ public class ProcessSystem
         // Environmental inputs need to be processed first
         foreach (var entry in process.Process.Inputs)
         {
-            var data = simulation.GetCompound(entry.Key);
-
-            if (!data.IsEnvironmental)
+            if (!entry.Key.IsEnvironmental)
                 continue;
 
             // Environmental compound that can limit the rate
 
-            var input = new ProcessSpeedInformation.EnvironmentalInput(data, entry.Value);
+            var input = new ProcessSpeedInformation.EnvironmentalInput(entry.Key, entry.Value);
 
             var availableInEnvironment = GetDissolvedInBiome(entry.Key, biome);
 
@@ -233,24 +228,19 @@ public class ProcessSystem
         // So that the speedfactor is available here
         foreach (var entry in process.Process.Inputs)
         {
-            var data = simulation.GetCompound(entry.Key);
-
-            if (data.IsEnvironmental)
+            if (entry.Key.IsEnvironmental)
                 continue;
 
             // Normal, cloud input
 
-            var input = new ProcessSpeedInformation.CompoundAmount(data,
-                entry.Value * speedFactor);
+            var input = new ProcessSpeedInformation.CompoundAmount(entry.Key, entry.Value * speedFactor);
 
             result.OtherInputs.Add(entry.Key, input);
         }
 
         foreach (var entry in process.Process.Outputs)
         {
-            var data = simulation.GetCompound(entry.Key);
-
-            var output = new ProcessSpeedInformation.CompoundAmount(data,
+            var output = new ProcessSpeedInformation.CompoundAmount(entry.Key,
                 entry.Value * speedFactor);
 
             result.Outputs[entry.Key] = output;
@@ -269,8 +259,6 @@ public class ProcessSystem
                 "but it isn't derived from IProcessable");
             return;
         }
-
-        var simulation = SimulationParameters.Instance;
 
         var bag = processor.ProcessCompoundStorage;
 
@@ -310,7 +298,7 @@ public class ProcessSystem
 
                 // TODO: It might be faster to just check if there is any
                 // dissolved amount of this compound or not
-                if (simulation.GetCompound(entry.Key).IsEnvironmental)
+                if (entry.Key.IsEnvironmental)
                 {
                     // do environmental modifier here, and save it for later
                     environmentModifier *= GetDissolved(entry.Key) / entry.Value;
@@ -345,7 +333,7 @@ public class ProcessSystem
 
                 // If no space we can't do the process, and if environmental
                 // right now this isn't released anywhere
-                if (simulation.GetCompound(entry.Key).IsEnvironmental)
+                if (entry.Key.IsEnvironmental)
                 {
                     continue;
                 }
@@ -366,7 +354,7 @@ public class ProcessSystem
             {
                 // TODO: It might be faster to just check if there is any
                 // dissolved amount of this compound or not
-                if (simulation.GetCompound(entry.Key).IsEnvironmental)
+                if (entry.Key.IsEnvironmental)
                     continue;
 
                 // Note: the environment modifier is applied here, but not
@@ -386,7 +374,7 @@ public class ProcessSystem
             // Outputs.
             foreach (var entry in processData.Outputs)
             {
-                if (simulation.GetCompound(entry.Key).IsEnvironmental)
+                if (entry.Key.IsEnvironmental)
                     continue;
 
                 var outputGenerated = entry.Value * process.Rate * delta *

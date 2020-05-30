@@ -1,11 +1,16 @@
 ﻿using System;
+using System.ComponentModel;
 using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Definition of a compound in the game. For all other simulation
 ///   parameters that refer to a compound, there must be an existing
 ///   entry of this type
 /// </summary>
+[UseThriveSerializer]
+[JsonConverter(typeof(DefaultThriveJSONConverter))]
+[TypeConverter(typeof(CompoundStringConverter))]
 public class Compound : IRegistryType
 {
     /// <summary>
@@ -61,5 +66,10 @@ public class Compound : IRegistryType
             throw new InvalidRegistryDataException(name, GetType().Name,
                 "Volume should be > 0");
         }
+    }
+
+    public override string ToString()
+    {
+        return Name;
     }
 }
