@@ -1,0 +1,31 @@
+{
+    "MicrobeStage": {
+        "LeftTexts": [
+            "W,A,S,D and mouse to move. E to shoot OxyToxy NT if you have a toxin vacuole. G to toggle engulf mode.",
+            "Your cell uses ATP as it's energy source, if it runs out you will die.",
+            "To unlock the editor and reproduce you need to gatherAmmonia (Orange Cloud) and Phosphate (Purple Cloud).",
+            "You can also engulf cells and bacteria and iron chunks and cell chunks that are smaller than you by pressing G. This will cost additional ATP and will slow you down. Don't forget to press G a second time to stop engulfing.",
+            "Osmoregulation Now costs ATP, which means the bigger your cell is, the more Mitochondria or Metabolosomes or Rusticyanin (or cytoplasm, which does Glycolysis) you need to avoid losing ATP when you are stationary. It works this way: Osmoregulation costs are ((Hex Amount * 1) per second...",
+            "There are many Organelles in the editor for you to evolve, allowing for a wide range of different playstyles.",
+            "For this Release if your population (top tab) drops to zero you go extinct."
+        ],
+        "RightTexts": [
+            "The various compound clouds are:\n\nWhite – Glucose\nYellow – Hydrogen Sulfide\nOrange - Ammonia\nPurple - Phosphate\nRust Brown - Iron\n\nGlucose makes ATP",
+            "Hydrogen Sulfide can be converted into glucose via chemoplasts and chemosynthesizing proteins. Iron can be converted via rusticyanin into ATP.",
+            "To reproduce you need to divide each of your organelles into two and then duplicate the DNA in your nucleus. Each organelle needs 2 ammonia and 2 phosphate to split in half.",
+            "But if you survive for twenty generations with 300 population, you are considered to have won, after winning you get a popup and can continue playing as you wish.",
+            "Be wary because your competitors are evolving alongside you. Every time you enter the editor they evolve as well."
+        ]
+    },
+    "MicrobeEditor": {
+        "LeftTexts": [
+            "Each generation, you have 100 mutation points to spend, and each change (or mutation) will cost a certain amount of that MP, removing costs mutation points aswell as adding. You can remove an organelle by right-clicking on it. You can rotate your organelles, with A and D",
+            "External Organelles\n\nFlagella: Moves your cell faster by consuming ATP.\n\nPilus: Can be used to stab other cells.",
+            "Membrane Bound Organelles\n\nNucleus: Takes up 11 hexes and allows for evolution of membrane bound organelles. And also doubles your cells size. (Can only be evolved once)\n\nMitochondrion: Produces ATP out of glucose and atmospheric 02. Much more efficiently then cytoplasm\n\nChloroplast: Makes glucose out of sunlight and atmospheric CO2.\n\nChemoplast: Makes glucose out of Hydrogen Sulfide.\n\nNitrogen Fixing Plastid: Makes ammonia from ATP and atmospheric Nitrogen and Oxygen.\n\nVacuole: Stores 15 collected compounds.\n\nToxin Vacuoles: Produces toxins (called OxyToxyNT)."
+        ],
+        "RightTexts": [
+            "Every time you reproduce, you will enter the Microbe Editor, where you can make changes to your species (by adding, moving, or removing organelles) to increase your species' success. Each visit to the editor in the Microbe Stage Represents 150 million years of evolution",
+            "Prokaryotic Structures\n\nMetabolosomes: Produces the same amount of ATP of a mitocondria, but is way way less efficient, it only takes up 1 Hex\n\nChemosynthisizing Proteins: Produces half of the glucose out of Hydrogen Sulfide as a chemoplast, but also performs glycolysis, takes up 1 Hex\n\nChromatophores: Produces 1/3rd the amount of glucose as a normal chloroplast, but also performs glycolysis, and takes up 1 Hex.\n\nRusticyanin: Converts iron into ATP, and takes up 1 Hex.\n\nNitrogenase: Converts atmospheric nitrogen and ATP into ammonia anaerobically\n\nCytoplasm: Increases the rate of compound absorbtion and has 4 storage space and performs glycolysis (Produces small amounts of ATP)."
+        ]
+    }
+}

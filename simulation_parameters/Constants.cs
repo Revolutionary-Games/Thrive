@@ -153,6 +153,10 @@ public static class Constants
 
     public const float MICROBE_VENT_COMPOUND_MULTIPLIER = 10000.0f;
 
+    public const float FLOATING_CHUNKS_DISSOLVE_SPEED = 0.3f;
+
+    public const float MEMBRANE_DISSOLVE_SPEED = 0.3f;
+
     /// <summary>
     ///   This is used just as the default value for health and max
     ///   health of a microbe. The default membrane actually
@@ -238,8 +242,10 @@ public static class Constants
     public const int CREATURE_REPRODUCE_POPULATION_GAIN = 50;
     public const int CREATURE_ESCAPE_POPULATION_GAIN = 50;
 
-    public const int PLAYER_DEATH_POPULATION_LOSS = -20;
-    public const int PLAYER_REPRODUCTION_POPULATION_GAIN = 50;
+    public const int PLAYER_DEATH_POPULATION_LOSS_CONSTANT = -20;
+    public const float PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT = 1 / 1.5f;
+    public const int PLAYER_REPRODUCTION_POPULATION_GAIN_CONSTANT = 50;
+    public const float PLAYER_REPRODUCTION_POPULATION_GAIN_COEFFICIENT = 1.2f;
 
     /// <summary>
     ///   How often a microbe can get the engulf escape population bonus

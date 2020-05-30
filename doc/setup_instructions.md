@@ -128,21 +128,8 @@ Scroll down on the left window until  you find Mono. Click on Editor and set
 External Editor to Visual Studio Code. Click on Builds and set Build Tool to
 MSBuild (VS Build Tools).
 
-If you want to setup live debugging with Godot, go to the top toolbar,
-go to Project -> Project Settings. Scroll down on the left window until
-you find Mono. Click on Debugger Agent. When you want to use the debugger,
-turn the _Wait for Debugger_ setting on. Set the _Wait Timeout_ to how
-many milliseconds you want Godot to wait for your debugger to connect.
-Setting it to 15000 is recommended. Copy the port number and open up
-Visual Studio Code. Make sure Visual Studio Code has the Godot project 
-folder open. Go to the debug tab and click on
-_create a launch.json file_. Select C# Mono from the dropdown menu.
-When the _launch.json_ file is automatically opened, change the port
-number to the number you copied previously. Save the file.
-On the Debug tab, switch the Run setting from Launch to
-Attach. Whenever you want to debug, make sure _Wait for Debugger_ is
-turned on in Godot, run the project, and run the debugger in Visual 
-Studio Code.
+If you want to setup live debugging with Godot follow the instructions here
+https://docs.godotengine.org/en/stable/getting_started/scripting/c_sharp/c_sharp_basics.html#configuring-visual-studio-code-for-debugging
 
 
 Building Thrive
@@ -368,3 +355,9 @@ script:
 ```sh
 ./install_git_hooks.rb
 ```
+
+## Additional Tips
+
+### Cleaning Godot
+
+Your locally cloned Thrive version may get messed up from time to time. [Here are the steps to fix it.](https://wiki.revolutionarygamesstudio.com/wiki/Cleaning_Local_Thrive_Version)

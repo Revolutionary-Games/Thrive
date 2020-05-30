@@ -389,6 +389,8 @@ public class MicrobeEditor : Node, ILoadableGameState
         // Update bacteria status
         editedSpecies.IsBacteria = !HasNucleus;
 
+        editedSpecies.UpdateInitialCompounds();
+
         GD.Print("MicrobeEditor: updated organelles for species: ",
             editedSpecies.FormattedName);
 
@@ -700,6 +702,10 @@ public class MicrobeEditor : Node, ILoadableGameState
                     RemoveOrganelleAt(new Hex(-1 * q, -1 * r));
                     RemoveOrganelleAt(new Hex(q, -1 * (r + q)));
                 }
+                else
+                {
+                    RemoveOrganelleAt(new Hex(-1 * q, -1 * r));
+                }
 
                 break;
             }
@@ -708,15 +714,12 @@ public class MicrobeEditor : Node, ILoadableGameState
             {
                 RemoveOrganelleAt(new Hex(q, r));
 
-                if (q != -1 * q || r != r + q)
-                {
-                    RemoveOrganelleAt(new Hex(-1 * r, r + q));
-                    RemoveOrganelleAt(new Hex(-1 * (r + q), q));
-                    RemoveOrganelleAt(new Hex(-1 * q, -1 * r));
-                    RemoveOrganelleAt(new Hex(r, -1 * (r + q)));
-                    RemoveOrganelleAt(new Hex(r, -1 * (r + q)));
-                    RemoveOrganelleAt(new Hex(r + q, -1 * q));
-                }
+                RemoveOrganelleAt(new Hex(-1 * r, r + q));
+                RemoveOrganelleAt(new Hex(-1 * (r + q), q));
+                RemoveOrganelleAt(new Hex(-1 * q, -1 * r));
+                RemoveOrganelleAt(new Hex(r, -1 * (r + q)));
+                RemoveOrganelleAt(new Hex(r, -1 * (r + q)));
+                RemoveOrganelleAt(new Hex(r + q, -1 * q));
 
                 break;
             }
@@ -1214,8 +1217,11 @@ public class MicrobeEditor : Node, ILoadableGameState
                 {
                     PlaceIfPossible(organelleType, -1 * q, r + q, 6 + (-1 * organelleRot));
                     PlaceIfPossible(organelleType, -1 * q, -1 * r, (organelleRot + 3) % 6);
-                    PlaceIfPossible(organelleType, q, -1 * (r + q),
-                        (8 + (-1 * organelleRot)) % 6);
+                    PlaceIfPossible(organelleType, q, -1 * (r + q), (8 + (-1 * organelleRot)) % 6);
+                }
+                else
+                {
+                    PlaceIfPossible(organelleType, -1 * q, -1 * r, (organelleRot + 3) % 6);
                 }
 
                 break;
@@ -1225,16 +1231,13 @@ public class MicrobeEditor : Node, ILoadableGameState
             {
                 PlaceIfPossible(organelleType, q, r, organelleRot);
 
-                if (q != -1 * q || r != r + q)
-                {
-                    PlaceIfPossible(organelleType, -1 * r, r + q, (organelleRot + 1) % 6);
-                    PlaceIfPossible(organelleType, -1 * (r + q), q,
-                        (organelleRot + 2) % 6);
-                    PlaceIfPossible(organelleType, -1 * q, -1 * r, (organelleRot + 3) % 6);
-                    PlaceIfPossible(organelleType, r, -1 * (r + q),
-                        (organelleRot + 4) % 6);
-                    PlaceIfPossible(organelleType, r + q, -1 * q, (organelleRot + 5) % 6);
-                }
+                PlaceIfPossible(organelleType, -1 * r, r + q, (organelleRot + 1) % 6);
+                PlaceIfPossible(organelleType, -1 * (r + q), q,
+                    (organelleRot + 2) % 6);
+                PlaceIfPossible(organelleType, -1 * q, -1 * r, (organelleRot + 3) % 6);
+                PlaceIfPossible(organelleType, r, -1 * (r + q),
+                    (organelleRot + 4) % 6);
+                PlaceIfPossible(organelleType, r + q, -1 * q, (organelleRot + 5) % 6);
 
                 break;
             }

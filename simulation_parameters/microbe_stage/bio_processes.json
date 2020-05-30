@@ -3,7 +3,7 @@
         "name": "Respiration",
         "inputs": {
             "oxygen": 1,
-            "glucose": 0.1
+            "glucose": 0.08
         },
         "outputs": {
             "atp": 60
@@ -64,17 +64,17 @@
             "hydrogensulfide": 0.03
         },
         "outputs": {
-            "glucose": 0.04
+            "glucose": 0.08
         }
     },
     "bacterial_ChemoSynthesis": {
         "name": "Chemo Synthesis",
         "inputs": {
             "carbondioxide": 0.09,
-            "hydrogensulfide": 0.03
+            "hydrogensulfide": 0.025
         },
         "outputs": {
-            "glucose": 0.03
+            "glucose": 0.04
         }
     },
     "nitrogenFixing": {
@@ -85,7 +85,7 @@
             "atp": 2.5
         },
         "outputs": {
-            "ammonia": 0.025
+            "ammonia": 0.04
         }
     },
     "nitrogenaseReaction": {
@@ -95,14 +95,14 @@
             "atp": 2.5
         },
         "outputs": {
-            "ammonia": 0.016
+            "ammonia": 0.02
         }
     },
     "protein_respiration": {
         "name": "Respiration",
         "inputs": {
             "oxygen": 1,
-            "glucose": 0.2
+            "glucose": 0.15
         },
         "outputs": {
             "atp": 40

@@ -139,6 +139,8 @@ public class SpawnSystem
 
             int existing = DespawnEntities(playerPosition);
 
+            spawnTypes.RemoveAll(entity => entity.DestroyQueued);
+
             SpawnEntities(playerPosition, existing);
 
             previousPlayerPosition = playerPosition;

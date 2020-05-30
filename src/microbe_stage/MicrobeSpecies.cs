@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Linq;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -54,6 +56,29 @@ public class MicrobeSpecies : Species
     {
         SetInitialCompoundsForDefault();
         InitialCompounds.Add(SimulationParameters.Instance.GetCompound("hydrogensulfide"), 10);
+    }
+
+    public void UpdateInitialCompounds()
+    {
+        var simulation = SimulationParameters.Instance;
+
+        var rusticyanin = simulation.GetOrganelleType("rusticyanin");
+        var chemo = simulation.GetOrganelleType("chemoplast");
+        var chemoProtein = simulation.GetOrganelleType("chemoSynthesizingProteins");
+
+        if (Organelles.Any(o => o.Definition == rusticyanin))
+        {
+            SetInitialCompoundsForIron();
+        }
+        else if (Organelles.Any(o => o.Definition == chemo ||
+            o.Definition == chemoProtein))
+        {
+            SetInitialCompoundsForChemo();
+        }
+        else
+        {
+            SetInitialCompoundsForDefault();
+        }
     }
 
     public override void ApplyMutation(Species mutation)
