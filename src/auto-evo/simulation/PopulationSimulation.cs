@@ -136,7 +136,11 @@
 
             float predationEnergyPool = 0;
 
-            var totalOrganellesInBiome = new Dictionary<string, int>(8);
+            var totalOrganellesInBiome = new Dictionary<string, int>(SimulationParameters.Instance.GetAllOrganelles().Count());
+            foreach (var organelle in SimulationParameters.Instance.GetAllOrganelles())
+            {
+                totalOrganellesInBiome.Add(organelle.InternalName,0);
+            }
 
             foreach (var currentSpecies in species)
             {
@@ -146,7 +150,7 @@
 
                 foreach (OrganelleTemplate organelleTemplate in speciesOrganelles)
                 {
-                    //totalOrganellesInBiome[organelleTemplate.Definition.Name] += 1;
+                    totalOrganellesInBiome[organelleTemplate.Definition.InternalName] += populations.GetPopulationInPatch(currentSpecies, patch);
                 }
 
                 predationEnergyPool += 0.5f * speciesEnergy;
