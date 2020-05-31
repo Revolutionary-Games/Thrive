@@ -135,71 +135,57 @@
             bool lowSpecies = species.Count <= Constants.AUTO_EVO_LOW_SPECIES_THRESHOLD;
             bool highSpecies = species.Count >= Constants.AUTO_EVO_HIGH_SPECIES_THRESHOLD;
 
-            var totalOrganellesInBiome = new Dictionary<string, int>(SimulationParameters.Instance.GetAllOrganelles().Count());
-            foreach (var organelle in SimulationParameters.Instance.GetAllOrganelles())
-            {
-                totalOrganellesInBiome.Add(organelle.InternalName,0);
-            }
-
-            var energyAvailableForPredation = 0f;
-
             var speciesEnergies = new Dictionary<MicrobeSpecies,float>(species.Count());
-            var speciesOrganelleDicts = new Dictionary<MicrobeSpecies, Dictionary<string, int>>(species.Count());
 
-            //first pass: create dictionary of the number of organelles each species has
-            foreach (var currentSpecies in species)
-            {
-                var currentMicrobeSpecies = currentSpecies as MicrobeSpecies;
-                var currentSpeciesOrganelles = currentMicrobeSpecies.Organelles;
-
-                var totalOrganellesInCurrentSpecies = new Dictionary<string, int>(SimulationParameters.Instance.GetAllOrganelles().Count());
-                foreach (var organelle in SimulationParameters.Instance.GetAllOrganelles())
-                {
-                    totalOrganellesInCurrentSpecies.Add(organelle.InternalName,0);
-                }
-
-                speciesOrganelleDicts.Add(currentMicrobeSpecies,totalOrganellesInCurrentSpecies);
-            }
+            var totalPhotosynthesisScore = 0f;
+            var totalChemosynthesisScore = 0f;
+            var totalPredationScore = 0f;
 
             //second pass: calculate the total organelles of each type in the current patch
-            foreach (var currentMicrobeSpecies in speciesOrganelleDicts.Keys)
+            foreach (MicrobeSpecies currentMicrobeSpecies in species)
             {
-                foreach (var organelleName in speciesOrganelleDicts[currentMicrobeSpecies].Keys)
-                {
-                    totalOrganellesInBiome[organelleName] += 1;
-                }
+                totalPhotosynthesisScore += getPhotosynthesisScore(currentMicrobeSpecies);
+                totalChemosynthesisScore += getChemosynthesisScore(currentMicrobeSpecies);
+                totalPredationScore += getPredationScore(currentMicrobeSpecies);
             }
 
-            //ensure no division by 0
-            foreach (var organelleName in totalOrganellesInBiome.Keys.ToList())
-            {
-                totalOrganellesInBiome[organelleName] = Math.Max(1,totalOrganellesInBiome[organelleName]);
-            }
-        
+            //avoid division by 0
+            totalPhotosynthesisScore = Math.Max(1,totalPhotosynthesisScore);
+            totalChemosynthesisScore = Math.Max(1,totalChemosynthesisScore);
+            totalPredationScore = Math.Max(1,totalPredationScore);
+
             //third pass: calculate the primary energy production of each species
-            foreach (var currentMicrobeSpecies in speciesOrganelleDicts.Keys)
+            var energyAvailableForPredation = 0f;
+
+            foreach (MicrobeSpecies currentMicrobeSpecies in species)
             {
                 var currentSpeciesEnergy = 0f;
 
-                currentSpeciesEnergy += sunlight * (speciesOrganelleDicts[currentMicrobeSpecies]["chloroplast"]/totalOrganellesInBiome["chloroplast"]);
-                currentSpeciesEnergy += hydrogenSulfide * (speciesOrganelleDicts[currentMicrobeSpecies]["chemoplast"]/totalOrganellesInBiome["chemoplast"]);
+                currentSpeciesEnergy += sunlight * getPhotosynthesisScore(currentMicrobeSpecies)/totalPhotosynthesisScore;
+                currentSpeciesEnergy += hydrogenSulfide * getChemosynthesisScore(currentMicrobeSpecies)/totalChemosynthesisScore;
                 
                 energyAvailableForPredation += 0.5f * currentSpeciesEnergy;
                 speciesEnergies.Add(currentMicrobeSpecies, currentSpeciesEnergy);
             }
 
             //fourth pass: calculate predation and update populations
-            foreach (var currentMicrobeSpecies in speciesOrganelleDicts.Keys)
+            foreach (MicrobeSpecies currentMicrobeSpecies in species)
             {
-                speciesEnergies[currentMicrobeSpecies] += energyAvailableForPredation * (speciesOrganelleDicts[currentMicrobeSpecies]["pilus"]/totalOrganellesInBiome["pilus"]);
-                speciesEnergies[currentMicrobeSpecies] = 10000;
+                speciesEnergies[currentMicrobeSpecies] += energyAvailableForPredation * getPredationScore(currentMicrobeSpecies)/totalPredationScore;
+                var newPopulation = speciesEnergies[currentMicrobeSpecies]/Math.Pow(currentMicrobeSpecies.Organelles.Count(),1.3f))
+                
+                if (biome.InternalName == "cave")
+                {
+                    GD.Print("don't go into the caves");
+                }
+                
                 populations.AddPopulationResultForSpecies(currentMicrobeSpecies, patch, (int) (speciesEnergies[currentMicrobeSpecies]/Math.Pow(currentMicrobeSpecies.Organelles.Count(),1.3f)));
             }
         }
 
         private static float getPhotosynthesisScore(MicrobeSpecies species)
         {
-            var photosynthesisScore = 0;
+            var photosynthesisScore = 0f;
             foreach (var organelle in species.Organelles)
             {
                 if (organelle.Definition.InternalName == "chloroplast")
@@ -217,7 +203,7 @@
 
         private static float getPredationScore(MicrobeSpecies species)
         {
-            var predationScore = 0;
+            var predationScore = 0f;
             foreach (var organelle in species.Organelles)
             {
                 if (organelle.Definition.InternalName == "pilus")
@@ -230,7 +216,7 @@
 
         private static float getChemosynthesisScore(MicrobeSpecies species)
         {
-            var chemosynthesisScore = 0;
+            var chemosynthesisScore = 0f;
             foreach (var organelle in species.Organelles)
             {
                 if (organelle.Definition.InternalName == "chemoplast")
