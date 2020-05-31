@@ -144,12 +144,19 @@
 
             foreach (var currentSpecies in species)
             {
-                MicrobeSpecies currentMicrobeSpecies = currentSpecies as MicrobeSpecies;
+                var currentMicrobeSpecies = currentSpecies as MicrobeSpecies;
                 var speciesOrganelles = currentMicrobeSpecies.Organelles;
                 var speciesEnergy = 0;
 
-                foreach (OrganelleTemplate organelleTemplate in speciesOrganelles)
+                var totalOrganellesInSpecies = new Dictionary<string, int>(SimulationParameters.Instance.GetAllOrganelles().Count());
+                foreach (var organelle in SimulationParameters.Instance.GetAllOrganelles())
                 {
+                    totalOrganellesInSpecies.Add(organelle.InternalName,0);
+                }
+
+                foreach (var organelleTemplate in speciesOrganelles)
+                {
+                    totalOrganellesInSpecies[organelleTemplate.Definition.InternalName] += 1;
                     totalOrganellesInBiome[organelleTemplate.Definition.InternalName] += populations.GetPopulationInPatch(currentSpecies, patch);
                 }
 
