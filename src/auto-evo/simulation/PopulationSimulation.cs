@@ -124,8 +124,11 @@
 
             var biome = patch.Biome;
 
-            var sunlight = biome.Compounds["sunlight"];
-            var hydrogenSulfide = biome.Compounds["hydrogensulfide"];
+            var sunlight = biome.Compounds["sunlight"].Dissolved * 100000;
+            var hydrogenSulfide = biome.Compounds["hydrogensulfide"].Density
+                * biome.Compounds["hydrogensulfide"].Amount * 1000;
+
+            GD.Print(sunlight);
 
             // TODO: this is where the proper auto-evo algorithm goes
 
@@ -159,6 +162,8 @@
                     totalOrganellesInSpecies[organelleTemplate.Definition.InternalName] += 1;
                     totalOrganellesInBiome[organelleTemplate.Definition.InternalName] += populations.GetPopulationInPatch(currentSpecies, patch);
                 }
+
+
 
                 predationEnergyPool += 0.5f * speciesEnergy;
             }
