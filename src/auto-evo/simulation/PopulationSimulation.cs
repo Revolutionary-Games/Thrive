@@ -148,8 +148,6 @@
             var speciesEnergies = new Dictionary<MicrobeSpecies,float>(species.Count());
             var speciesOrganelleDicts = new Dictionary<MicrobeSpecies, Dictionary<string, int>>(species.Count());
 
-            GD.Print("Beginning the loops over the species!");
-
             //first pass: create dictionary of the number of organelles each species has
             foreach (var currentSpecies in species)
             {
@@ -165,8 +163,6 @@
                 speciesOrganelleDicts.Add(currentMicrobeSpecies,totalOrganellesInCurrentSpecies);
             }
 
-            GD.Print("First pass complete!");
-
             //second pass: calculate the total organelles of each type in the current patch
             foreach (var currentMicrobeSpecies in speciesOrganelleDicts.Keys)
             {
@@ -176,15 +172,11 @@
                 }
             }
 
-            GD.Print("Second pass halfway through!")
-
             //ensure no division by 0
-            foreach (var organelleName in totalOrganellesInBiome.Keys)
+            foreach (var organelleName in totalOrganellesInBiome.Keys.ToList())
             {
                 totalOrganellesInBiome[organelleName] = Math.Max(1,totalOrganellesInBiome[organelleName]);
             }
-
-            GD.Print("Second pass complete!");
         
             //third pass: calculate the primary energy production of each species
             foreach (var currentMicrobeSpecies in speciesOrganelleDicts.Keys)
@@ -198,12 +190,11 @@
                 speciesEnergies.Add(currentMicrobeSpecies, currentSpeciesEnergy);
             }
 
-            GD.Print("Third pass complete!");
-
             //fourth pass: calculate predation and update populations
             foreach (var currentMicrobeSpecies in speciesOrganelleDicts.Keys)
             {
                 speciesEnergies[currentMicrobeSpecies] += energyAvailableForPredation * (speciesOrganelleDicts[currentMicrobeSpecies]["pilus"]/totalOrganellesInBiome["pilus"]);
+                speciesEnergies[currentMicrobeSpecies] = 10000;
                 populations.AddPopulationResultForSpecies(currentMicrobeSpecies, patch, (int) (speciesEnergies[currentMicrobeSpecies]/Math.Pow(currentMicrobeSpecies.Organelles.Count(),1.3f)));
             }
         }
