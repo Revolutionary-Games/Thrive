@@ -178,6 +178,17 @@
 
                 var newPopulation = (int)(speciesEnergies[currentMicrobeSpecies]
                     / Math.Pow(currentMicrobeSpecies.Organelles.Count(), 1.3f));
+
+                if (lowSpecies)
+                {
+                    newPopulation += Constants.AUTO_EVO_LOW_SPECIES_BOOST;
+                }
+
+                if (highSpecies)
+                {
+                    newPopulation -= Constants.AUTO_EVO_HIGH_SPECIES_PENALTY;
+                }
+
                 populations.AddPopulationResultForSpecies(currentMicrobeSpecies, patch, newPopulation);
             }
         }
