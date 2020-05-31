@@ -128,8 +128,6 @@
             var hydrogenSulfide = biome.Compounds["hydrogensulfide"].Density
                 * biome.Compounds["hydrogensulfide"].Amount * 1000;
 
-            GD.Print(sunlight);
-
             // TODO: this is where the proper auto-evo algorithm goes
 
             // Here's a temporary boost when there are few species and penalty
@@ -197,6 +195,54 @@
                 speciesEnergies[currentMicrobeSpecies] = 10000;
                 populations.AddPopulationResultForSpecies(currentMicrobeSpecies, patch, (int) (speciesEnergies[currentMicrobeSpecies]/Math.Pow(currentMicrobeSpecies.Organelles.Count(),1.3f)));
             }
+        }
+
+        private static float getPhotosynthesisScore(MicrobeSpecies species)
+        {
+            var photosynthesisScore = 0;
+            foreach (var organelle in species.Organelles)
+            {
+                if (organelle.Definition.InternalName == "chloroplast")
+                {
+                    photosynthesisScore += 3;
+                }
+                if (organelle.Definition.InternalName == "chromatophore")
+                {
+                    photosynthesisScore += 1;
+                }
+            }
+
+            return photosynthesisScore;
+        }
+
+        private static float getPredationScore(MicrobeSpecies species)
+        {
+            var predationScore = 0;
+            foreach (var organelle in species.Organelles)
+            {
+                if (organelle.Definition.InternalName == "pilus")
+                {
+                    predationScore += 1;
+                }
+            }
+            return predationScore;
+        }
+
+        private static float getChemosynthesisScore(MicrobeSpecies species)
+        {
+            var chemosynthesisScore = 0;
+            foreach (var organelle in species.Organelles)
+            {
+                if (organelle.Definition.InternalName == "chemoplast")
+                {
+                    chemosynthesisScore += 2;
+                }
+                if (organelle.Definition.InternalName == "chemoSynthesizingProteins")
+                {
+                    chemosynthesisScore += 1;
+                }
+            }
+            return chemosynthesisScore;
         }
     }
 }
