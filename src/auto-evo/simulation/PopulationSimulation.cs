@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Godot;
 
     /// <summary>
     ///   Main class for the population simulation part.
