@@ -23,7 +23,7 @@
 
             while (parameters.StepsLeft > 0)
             {
-                RunSimulationStep(parameters, speciesToSimulate, random);
+                RunSimulationStep(parameters, speciesToSimulate);
                 --parameters.StepsLeft;
             }
         }
@@ -106,7 +106,7 @@
             return species;
         }
 
-        private static void RunSimulationStep(SimulationConfiguration parameters, List<Species> species, Random random)
+        private static void RunSimulationStep(SimulationConfiguration parameters, List<Species> species)
         {
             foreach (var entry in parameters.OriginalMap.Patches)
             {
