@@ -137,55 +137,95 @@
             bool lowSpecies = species.Count <= Constants.AUTO_EVO_LOW_SPECIES_THRESHOLD;
             bool highSpecies = species.Count >= Constants.AUTO_EVO_HIGH_SPECIES_THRESHOLD;
 
-            float predationEnergyPool = 0;
-
             var totalOrganellesInBiome = new Dictionary<string, int>(SimulationParameters.Instance.GetAllOrganelles().Count());
             foreach (var organelle in SimulationParameters.Instance.GetAllOrganelles())
             {
                 totalOrganellesInBiome.Add(organelle.InternalName,0);
             }
 
+            var energyAvailableForPredation = 0f;
+
+            var speciesEnergies = new Dictionary<MicrobeSpecies,float>(species.Count());
+            var speciesOrganelleDicts = new Dictionary<MicrobeSpecies, Dictionary<string, int>>(species.Count());
+
+            GD.Print("Beginning the loops over the species!");
+
+            //first pass: create dictionary of the number of organelles each species has
             foreach (var currentSpecies in species)
             {
                 var currentMicrobeSpecies = currentSpecies as MicrobeSpecies;
-                var speciesOrganelles = currentMicrobeSpecies.Organelles;
-                var speciesEnergy = 0;
+                var currentSpeciesOrganelles = currentMicrobeSpecies.Organelles;
 
-                var totalOrganellesInSpecies = new Dictionary<string, int>(SimulationParameters.Instance.GetAllOrganelles().Count());
+                var totalOrganellesInCurrentSpecies = new Dictionary<string, int>(SimulationParameters.Instance.GetAllOrganelles().Count());
                 foreach (var organelle in SimulationParameters.Instance.GetAllOrganelles())
                 {
-                    totalOrganellesInSpecies.Add(organelle.InternalName,0);
+                    totalOrganellesInCurrentSpecies.Add(organelle.InternalName,0);
                 }
 
-                foreach (var organelleTemplate in speciesOrganelles)
-                {
-                    totalOrganellesInSpecies[organelleTemplate.Definition.InternalName] += 1;
-                    totalOrganellesInBiome[organelleTemplate.Definition.InternalName] += populations.GetPopulationInPatch(currentSpecies, patch);
-                }
-
-
-
-                predationEnergyPool += 0.5f * speciesEnergy;
+                speciesOrganelleDicts.Add(currentMicrobeSpecies,totalOrganellesInCurrentSpecies);
             }
 
-            foreach (var currentSpecies in species)
+            GD.Print("First pass complete!");
+
+            //second pass: calculate the total organelles of each type in the current patch
+            foreach (var currentMicrobeSpecies in speciesOrganelleDicts.Keys)
             {
-                int currentPopulation = populations.GetPopulationInPatch(currentSpecies, patch);
-
-                int populationChange = random.Next(
-                    -Constants.AUTO_EVO_RANDOM_POPULATION_CHANGE, Constants.AUTO_EVO_RANDOM_POPULATION_CHANGE + 1);
-
-                if (lowSpecies)
+                foreach (var organelleName in speciesOrganelleDicts[currentMicrobeSpecies].Keys)
                 {
-                    populationChange += Constants.AUTO_EVO_LOW_SPECIES_BOOST;
+                    totalOrganellesInBiome[organelleName] += 1;
                 }
-                else if (highSpecies)
-                {
-                    populationChange -= Constants.AUTO_EVO_HIGH_SPECIES_PENALTY;
-                }
-
-                populations.AddPopulationResultForSpecies(currentSpecies, patch, currentPopulation + populationChange);
             }
+
+            GD.Print("Second pass halfway through!")
+
+            //ensure no division by 0
+            foreach (var organelleName in totalOrganellesInBiome.Keys)
+            {
+                totalOrganellesInBiome[organelleName] = Math.Max(1,totalOrganellesInBiome[organelleName]);
+            }
+
+            GD.Print("Second pass complete!");
+        
+            //third pass: calculate the primary energy production of each species
+            foreach (var currentMicrobeSpecies in speciesOrganelleDicts.Keys)
+            {
+                var currentSpeciesEnergy = 0f;
+
+                currentSpeciesEnergy += sunlight * (speciesOrganelleDicts[currentMicrobeSpecies]["chloroplast"]/totalOrganellesInBiome["chloroplast"]);
+                currentSpeciesEnergy += hydrogenSulfide * (speciesOrganelleDicts[currentMicrobeSpecies]["chemoplast"]/totalOrganellesInBiome["chemoplast"]);
+                
+                energyAvailableForPredation += 0.5f * currentSpeciesEnergy;
+                speciesEnergies.Add(currentMicrobeSpecies, currentSpeciesEnergy);
+            }
+
+            GD.Print("Third pass complete!");
+
+            //fourth pass: calculate predation and update populations
+            foreach (var currentMicrobeSpecies in speciesOrganelleDicts.Keys)
+            {
+                speciesEnergies[currentMicrobeSpecies] += energyAvailableForPredation * (speciesOrganelleDicts[currentMicrobeSpecies]["pilus"]/totalOrganellesInBiome["pilus"]);
+                populations.AddPopulationResultForSpecies(currentMicrobeSpecies, patch, (int) (speciesEnergies[currentMicrobeSpecies]/Math.Pow(currentMicrobeSpecies.Organelles.Count(),1.3f)));
+            }
+
+            
+            //foreach (var currentSpecies in species)
+            //{
+            //    int currentPopulation = populations.GetPopulationInPatch(currentSpecies, patch);
+
+            //    int populationChange = random.Next(
+            //        -Constants.AUTO_EVO_RANDOM_POPULATION_CHANGE, Constants.AUTO_EVO_RANDOM_POPULATION_CHANGE + 1);
+
+            //    if (lowSpecies)
+            //    {
+            //        populationChange += Constants.AUTO_EVO_LOW_SPECIES_BOOST;
+            //    }
+            //    else if (highSpecies)
+            //    {
+            //        populationChange -= Constants.AUTO_EVO_HIGH_SPECIES_PENALTY;
+            //    }
+
+            //    populations.AddPopulationResultForSpecies(currentSpecies, patch, currentPopulation + populationChange);
+            //}
         }
     }
 }
