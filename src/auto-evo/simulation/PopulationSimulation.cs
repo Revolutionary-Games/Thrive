@@ -206,26 +206,6 @@
                 speciesEnergies[currentMicrobeSpecies] += energyAvailableForPredation * (speciesOrganelleDicts[currentMicrobeSpecies]["pilus"]/totalOrganellesInBiome["pilus"]);
                 populations.AddPopulationResultForSpecies(currentMicrobeSpecies, patch, (int) (speciesEnergies[currentMicrobeSpecies]/Math.Pow(currentMicrobeSpecies.Organelles.Count(),1.3f)));
             }
-
-            
-            //foreach (var currentSpecies in species)
-            //{
-            //    int currentPopulation = populations.GetPopulationInPatch(currentSpecies, patch);
-
-            //    int populationChange = random.Next(
-            //        -Constants.AUTO_EVO_RANDOM_POPULATION_CHANGE, Constants.AUTO_EVO_RANDOM_POPULATION_CHANGE + 1);
-
-            //    if (lowSpecies)
-            //    {
-            //        populationChange += Constants.AUTO_EVO_LOW_SPECIES_BOOST;
-            //    }
-            //    else if (highSpecies)
-            //    {
-            //        populationChange -= Constants.AUTO_EVO_HIGH_SPECIES_PENALTY;
-            //    }
-
-            //    populations.AddPopulationResultForSpecies(currentSpecies, patch, currentPopulation + populationChange);
-            //}
         }
     }
 }
