@@ -123,8 +123,8 @@
 
             var biome = patch.Biome;
 
-            var sunlight = biome.Compounds["sunlight"].Dissolved * 100000;
-            var hydrogenSulfide = biome.Compounds["hydrogensulfide"].Density
+            var sunlightInPatch = biome.Compounds["sunlight"].Dissolved * 100000;
+            var hydrogenSulfideInPatch = biome.Compounds["hydrogensulfide"].Density
                 * biome.Compounds["hydrogensulfide"].Amount * 1000;
 
             // TODO: this is where the proper auto-evo algorithm goes
@@ -134,7 +134,7 @@
             bool lowSpecies = species.Count <= Constants.AUTO_EVO_LOW_SPECIES_THRESHOLD;
             bool highSpecies = species.Count >= Constants.AUTO_EVO_HIGH_SPECIES_THRESHOLD;
 
-            var speciesEnergies = new Dictionary<MicrobeSpecies,float>(species.Count());
+            var speciesEnergies = new Dictionary<MicrobeSpecies, float>(species.Count());
 
             var totalPhotosynthesisScore = 0f;
             var totalChemosynthesisScore = 0f;
@@ -143,15 +143,15 @@
             // Calculate the total scores of each type in the current patch
             foreach (MicrobeSpecies currentMicrobeSpecies in species)
             {
-                totalPhotosynthesisScore += getPhotosynthesisScore(currentMicrobeSpecies);
-                totalChemosynthesisScore += getChemosynthesisScore(currentMicrobeSpecies);
-                totalPredationScore += getPredationScore(currentMicrobeSpecies);
+                totalPhotosynthesisScore += GetPhotosynthesisScore(currentMicrobeSpecies);
+                totalChemosynthesisScore += GetChemosynthesisScore(currentMicrobeSpecies);
+                totalPredationScore += GetPredationScore(currentMicrobeSpecies);
             }
 
             // Avoid division by 0
-            totalPhotosynthesisScore = Math.Max(1,totalPhotosynthesisScore);
-            totalChemosynthesisScore = Math.Max(1,totalChemosynthesisScore);
-            totalPredationScore = Math.Max(1,totalPredationScore);
+            totalPhotosynthesisScore = Math.Max(1, totalPhotosynthesisScore);
+            totalChemosynthesisScore = Math.Max(1, totalChemosynthesisScore);
+            totalPredationScore = Math.Max(1, totalPredationScore);
 
             // Calculate the share of environmental energy captured by each species
             var energyAvailableForPredation = 0f;
@@ -160,9 +160,11 @@
             {
                 var currentSpeciesEnergy = 0f;
 
-                currentSpeciesEnergy += sunlight * getPhotosynthesisScore(currentMicrobeSpecies)/totalPhotosynthesisScore;
-                currentSpeciesEnergy += hydrogenSulfide * getChemosynthesisScore(currentMicrobeSpecies)/totalChemosynthesisScore;
-                
+                currentSpeciesEnergy += sunlightInPatch
+                    * GetPhotosynthesisScore(currentMicrobeSpecies) / totalPhotosynthesisScore;
+                currentSpeciesEnergy += hydrogenSulfideInPatch
+                    * GetChemosynthesisScore(currentMicrobeSpecies) / totalChemosynthesisScore;
+
                 energyAvailableForPredation += 0.5f * currentSpeciesEnergy;
                 speciesEnergies.Add(currentMicrobeSpecies, currentSpeciesEnergy);
             }
@@ -171,13 +173,16 @@
             // Then update populations
             foreach (MicrobeSpecies currentMicrobeSpecies in species)
             {
-                speciesEnergies[currentMicrobeSpecies] += energyAvailableForPredation * getPredationScore(currentMicrobeSpecies)/totalPredationScore;
-                var newPopulation = (int)(speciesEnergies[currentMicrobeSpecies]/Math.Pow(currentMicrobeSpecies.Organelles.Count(),1.3f));
+                speciesEnergies[currentMicrobeSpecies] += energyAvailableForPredation
+                    * GetPredationScore(currentMicrobeSpecies) / totalPredationScore;
+
+                var newPopulation = (int)(speciesEnergies[currentMicrobeSpecies]
+                    / Math.Pow(currentMicrobeSpecies.Organelles.Count(), 1.3f));
                 populations.AddPopulationResultForSpecies(currentMicrobeSpecies, patch, newPopulation);
             }
         }
 
-        private static float getPhotosynthesisScore(MicrobeSpecies species)
+        private static float GetPhotosynthesisScore(MicrobeSpecies species)
         {
             var photosynthesisScore = 0f;
             foreach (var organelle in species.Organelles)
@@ -186,6 +191,7 @@
                 {
                     photosynthesisScore += 3;
                 }
+
                 if (organelle.Definition.InternalName == "chromatophore")
                 {
                     photosynthesisScore += 1;
@@ -195,7 +201,7 @@
             return photosynthesisScore;
         }
 
-        private static float getPredationScore(MicrobeSpecies species)
+        private static float GetPredationScore(MicrobeSpecies species)
         {
             var predationScore = 0f;
             foreach (var organelle in species.Organelles)
@@ -205,10 +211,11 @@
                     predationScore += 1;
                 }
             }
+
             return predationScore;
         }
 
-        private static float getChemosynthesisScore(MicrobeSpecies species)
+        private static float GetChemosynthesisScore(MicrobeSpecies species)
         {
             var chemosynthesisScore = 0f;
             foreach (var organelle in species.Organelles)
@@ -217,11 +224,13 @@
                 {
                     chemosynthesisScore += 2;
                 }
+
                 if (organelle.Definition.InternalName == "chemoSynthesizingProteins")
                 {
                     chemosynthesisScore += 1;
                 }
             }
+
             return chemosynthesisScore;
         }
     }
