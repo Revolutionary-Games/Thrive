@@ -30,23 +30,18 @@ config/windows_native_icon="res://assets/misc/icon.ico"
 
 [autoload]
 
-StartupActions="*res://src/engine/StartupActions.cs"
 SimulationParameters="*res://simulation_parameters/SimulationParameters.cs"
-Invoke="*res://src/engine/Invoke.cs"
 GUICommon="*res://src/gui_common/GUICommon.cs"
 SceneManager="*res://src/engine/SceneManager.cs"
-SaveStatusOverlay="*res://src/saving/SaveStatusOverlay.tscn"
-ColourblindScreenFilter="*res://src/engine/ColourblindScreenFilter.tscn"
-LoadingScreen="*res://src/engine/LoadingScreen.tscn"
-FPSCounter="*res://src/engine/FPSCounter.tscn"
-OverlayManager="*res://src/engine/OverlayManager.cs"
 TransitionManager="*res://src/gui_common/TransitionManager.cs"
+ScreenFilter="*res://src/engine/ScreenFilter.tscn"
+FilterLoader="*res://src/engine/FilterLoader.cs"
 CursorLoader="*res://src/engine/CursorLoader.cs"
+FPSCounter="*res://src/engine/FPSCounter.tscn"
 ScreenShotTaker="*res://src/engine/ScreenShotTaker.cs"
 QuickLoadHandler="*res://src/gui_common/QuickLoadHandler.cs"
 Jukebox="*res://src/general/Jukebox.cs"
 TemporaryLoadedNodeDeleter="*res://src/saving/TemporaryLoadedNodeDeleter.cs"
-PostStartupActions="*res://src/engine/PostStartupActions.cs"
 
 [debug]
 

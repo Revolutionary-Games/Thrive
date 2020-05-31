@@ -115,7 +115,7 @@
         /// <summary>
         ///   The heart of the simulation that handles the processed parameters and calculates future populations.
         /// </summary>
-        private static void SimulatePatchStep(RunResults populations, Patch patch, List<Species> species, Random random)
+        private static void SimulatePatchStep(RunResults populations, Patch patch, List<Species> species)
         {
             // Skip if there aren't any species in this patch
             if (species.Count < 1)
@@ -134,7 +134,7 @@
             bool lowSpecies = species.Count <= Constants.AUTO_EVO_LOW_SPECIES_THRESHOLD;
             bool highSpecies = species.Count >= Constants.AUTO_EVO_HIGH_SPECIES_THRESHOLD;
 
-            var speciesEnergies = new Dictionary<MicrobeSpecies, float>(species.Count());
+            var speciesEnergies = new Dictionary<MicrobeSpecies, float>(species.Count);
 
             var totalPhotosynthesisScore = 0f;
             var totalChemosynthesisScore = 0f;
