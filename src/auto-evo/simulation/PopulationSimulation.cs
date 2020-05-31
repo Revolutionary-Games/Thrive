@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Godot;
 
     /// <summary>
     ///   Main class for the population simulation part.
@@ -141,7 +140,7 @@
             var totalChemosynthesisScore = 0f;
             var totalPredationScore = 0f;
 
-            //second pass: calculate the total organelles of each type in the current patch
+            // Calculate the total scores of each type in the current patch
             foreach (MicrobeSpecies currentMicrobeSpecies in species)
             {
                 totalPhotosynthesisScore += getPhotosynthesisScore(currentMicrobeSpecies);
@@ -149,12 +148,12 @@
                 totalPredationScore += getPredationScore(currentMicrobeSpecies);
             }
 
-            //avoid division by 0
+            // Avoid division by 0
             totalPhotosynthesisScore = Math.Max(1,totalPhotosynthesisScore);
             totalChemosynthesisScore = Math.Max(1,totalChemosynthesisScore);
             totalPredationScore = Math.Max(1,totalPredationScore);
 
-            //third pass: calculate the primary energy production of each species
+            // Calculate the share of environmental energy captured by each species
             var energyAvailableForPredation = 0f;
 
             foreach (MicrobeSpecies currentMicrobeSpecies in species)
@@ -168,7 +167,8 @@
                 speciesEnergies.Add(currentMicrobeSpecies, currentSpeciesEnergy);
             }
 
-            //fourth pass: calculate predation and update populations
+            // Calculate the share of predation done by each species
+            // Then update populations
             foreach (MicrobeSpecies currentMicrobeSpecies in species)
             {
                 speciesEnergies[currentMicrobeSpecies] += energyAvailableForPredation * getPredationScore(currentMicrobeSpecies)/totalPredationScore;
