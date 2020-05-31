@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using Godot;
 
     /// <summary>
     ///   Main class for the population simulation part.
@@ -121,7 +122,10 @@
             if (species.Count < 1)
                 return;
 
-            // var biome = patch.Biome;
+            var biome = patch.Biome;
+
+            var sunlight = biome.Compounds["sunlight"];
+            var hydrogenSulfide = biome.Compounds["hydrogensulfide"];
 
             // TODO: this is where the proper auto-evo algorithm goes
 
@@ -130,9 +134,28 @@
             bool lowSpecies = species.Count <= Constants.AUTO_EVO_LOW_SPECIES_THRESHOLD;
             bool highSpecies = species.Count >= Constants.AUTO_EVO_HIGH_SPECIES_THRESHOLD;
 
+            float predationEnergyPool = 0;
+
+            var totalOrganellesInBiome = new Dictionary<string, int>(8);
+
+            foreach (var currentSpecies in species)
+            {
+                MicrobeSpecies currentMicrobeSpecies = currentSpecies as MicrobeSpecies;
+                var speciesOrganelles = currentMicrobeSpecies.Organelles;
+                var speciesEnergy = 0;
+
+                foreach (OrganelleTemplate organelleTemplate in speciesOrganelles)
+                {
+                    //totalOrganellesInBiome[organelleTemplate.Definition.Name] += 1;
+                }
+
+                predationEnergyPool += 0.5f * speciesEnergy;
+            }
+
             foreach (var currentSpecies in species)
             {
                 int currentPopulation = populations.GetPopulationInPatch(currentSpecies, patch);
+
                 int populationChange = random.Next(
                     -Constants.AUTO_EVO_RANDOM_POPULATION_CHANGE, Constants.AUTO_EVO_RANDOM_POPULATION_CHANGE + 1);
 
