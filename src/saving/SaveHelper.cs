@@ -17,7 +17,6 @@ public static class SaveHelper
         var stopwatch = Stopwatch.StartNew();
         var save = CreateSaveObject(MainGameState.MicrobeStage, SaveInformation.SaveType.QuickSave);
 
-        // TODO: save other properties as well
         save.SavedProperties = stage.CurrentGame;
         save.MicrobeStage = stage;
 
@@ -33,12 +32,31 @@ public static class SaveHelper
         var stopwatch = Stopwatch.StartNew();
         var save = CreateSaveObject(MainGameState.MicrobeEditor, SaveInformation.SaveType.QuickSave);
 
-        // TODO: save other properties as well
         save.SavedProperties = editor.CurrentGame;
         save.MicrobeEditor = editor;
-        save.MicrobeStage = editor.ReturnToStage;
 
         PerformSave(save, SaveInformation.SaveType.QuickSave, stopwatch);
+    }
+
+    /// <summary>
+    ///   Auto save the game (if enabled in settings)
+    /// </summary>
+    public static void AutoSave(MicrobeStage microbeStage)
+    {
+        if (!Settings.Instance.AutoSaveEnabled)
+            return;
+
+        // TODO: implement
+        _ = microbeStage;
+    }
+
+    public static void AutoSave(MicrobeEditor editor)
+    {
+        if (!Settings.Instance.AutoSaveEnabled)
+            return;
+
+        // TODO: implement
+        _ = editor;
     }
 
     /// <summary>
@@ -47,7 +65,7 @@ public static class SaveHelper
     public static void QuickLoad()
     {
         // TODO: implement name detection
-        var name = "quick_save.tar.gz";
+        var name = "quick_save." + Constants.SAVE_EXTENSION;
 
         LoadSave(name);
     }
@@ -116,21 +134,20 @@ public static class SaveHelper
     private static void PerformSave(Save save, SaveInformation.SaveType type, Stopwatch stopwatch)
     {
         // TODO: implement type naming
-        var name = "quick_save.tar.gz";
+        var name = "quick_save." + Constants.SAVE_EXTENSION;
 
         save.Name = name;
 
-        // try
-        // {
-        save.SaveToFile();
-        DisplaySaveStatusMessage(true, name, stopwatch);
-
-        // }
-        // catch (Exception e)
-        // {
-        //     DisplaySaveStatusMessage(false, "Error, an exception happened: " + e, stopwatch);
-        //     return;
-        // }
+        try
+        {
+            save.SaveToFile();
+            DisplaySaveStatusMessage(true, name, stopwatch);
+        }
+        catch (Exception e)
+        {
+            DisplaySaveStatusMessage(false, "Error, an exception happened: " + e, stopwatch);
+            return;
+        }
 
         if (type == SaveInformation.SaveType.QuickSave)
             QueueRemoveExcessQuickSaves();

@@ -1556,6 +1556,10 @@ public class MicrobeEditor : Node, ILoadableGameState
         }
 
         ApplyAutoEvoResults();
+
+        // Auto save after editor entry is complete
+        if (!CurrentGame.FreeBuild)
+            SaveHelper.AutoSave(this);
     }
 
     private void OnLoadedEditorReady()
