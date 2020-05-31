@@ -404,7 +404,9 @@ public static class Constants
     /// <summary>
     ///   This is just here to make it easier to debug saves
     /// </summary>
-    public const Formatting SAVE_FORMATTING = Formatting.Indented;
+    public const Formatting SAVE_FORMATTING = Formatting.None;
+
+    public const string SAVE_EXTENSION = "thrivesave";
 
     public static string Version
     {
