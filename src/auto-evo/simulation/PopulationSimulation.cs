@@ -172,14 +172,8 @@
             foreach (MicrobeSpecies currentMicrobeSpecies in species)
             {
                 speciesEnergies[currentMicrobeSpecies] += energyAvailableForPredation * getPredationScore(currentMicrobeSpecies)/totalPredationScore;
-                var newPopulation = speciesEnergies[currentMicrobeSpecies]/Math.Pow(currentMicrobeSpecies.Organelles.Count(),1.3f))
-                
-                if (biome.InternalName == "cave")
-                {
-                    GD.Print("don't go into the caves");
-                }
-                
-                populations.AddPopulationResultForSpecies(currentMicrobeSpecies, patch, (int) (speciesEnergies[currentMicrobeSpecies]/Math.Pow(currentMicrobeSpecies.Organelles.Count(),1.3f)));
+                var newPopulation = (int)(speciesEnergies[currentMicrobeSpecies]/Math.Pow(currentMicrobeSpecies.Organelles.Count(),1.3f));
+                populations.AddPopulationResultForSpecies(currentMicrobeSpecies, patch, newPopulation);
             }
         }
 
