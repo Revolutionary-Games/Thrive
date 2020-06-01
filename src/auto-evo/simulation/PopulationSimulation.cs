@@ -163,7 +163,7 @@
 
                 currentSpeciesEnergy += sunlightInPatch
                     * GetPhotosynthesisScore(currentMicrobeSpecies) / totalPhotosynthesisScore;
-                
+
                 currentSpeciesEnergy += hydrogenSulfideInPatch
                     * GetChemosynthesisScore(currentMicrobeSpecies) / totalChemosynthesisScore;
 
@@ -194,17 +194,16 @@
 
             foreach (var organelle in species.Organelles)
             {
-                //get photosynthesis process here
-
                 var processesDoneByOrganelle = organelle.Definition.RunnableProcesses;
 
                 foreach (var process in processesDoneByOrganelle)
                 {
-                    if (process.Process.Inputs.ContainsKey(sunlight.InternalName) && process.Process.Outputs.ContainsKey(glucose.InternalName))
+                    if (process.Process.Inputs.ContainsKey(sunlight.InternalName)
+                        && process.Process.Outputs.ContainsKey(glucose.InternalName))
                     {
                         photosynthesisScore += process.Process.Outputs[glucose.InternalName];
                     }
-                } 
+                }
             }
 
             return photosynthesisScore;
@@ -233,12 +232,12 @@
 
             foreach (var organelle in species.Organelles)
             {
-                //get chemosynthesis process here
                 var processesDoneByOrganelle = organelle.Definition.RunnableProcesses;
 
                 foreach (var process in processesDoneByOrganelle)
                 {
-                    if (process.Process.Inputs.ContainsKey(hydrogenSulfide.InternalName) && process.Process.Outputs.ContainsKey(glucose.InternalName))
+                    if (process.Process.Inputs.ContainsKey(hydrogenSulfide.InternalName)
+                        && process.Process.Outputs.ContainsKey(glucose.InternalName))
                     {
                         chemosynthesisScore += process.Process.Outputs[glucose.InternalName];
                     }
