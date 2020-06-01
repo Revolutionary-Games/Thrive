@@ -150,9 +150,9 @@
             }
 
             // Avoid division by 0
-            totalPhotosynthesisScore = Math.Max(1, totalPhotosynthesisScore);
-            totalChemosynthesisScore = Math.Max(1, totalChemosynthesisScore);
-            totalPredationScore = Math.Max(1, totalPredationScore);
+            totalPhotosynthesisScore = Math.Max(MathUtils.EPSILON, totalPhotosynthesisScore);
+            totalChemosynthesisScore = Math.Max(MathUtils.EPSILON, totalChemosynthesisScore);
+            totalPredationScore = Math.Max(MathUtils.EPSILON, totalPredationScore);
 
             // Calculate the share of environmental energy captured by each species
             var energyAvailableForPredation = 0.0f;
@@ -163,6 +163,7 @@
 
                 currentSpeciesEnergy += sunlightInPatch
                     * GetPhotosynthesisScore(currentMicrobeSpecies) / totalPhotosynthesisScore;
+                
                 currentSpeciesEnergy += hydrogenSulfideInPatch
                     * GetChemosynthesisScore(currentMicrobeSpecies) / totalChemosynthesisScore;
 
@@ -187,19 +188,23 @@
         private static float GetPhotosynthesisScore(MicrobeSpecies species)
         {
             var photosynthesisScore = 0.0f;
+
+            var sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+            var glucose = SimulationParameters.Instance.GetCompound("glucose");
+
             foreach (var organelle in species.Organelles)
             {
                 //get photosynthesis process here
 
-                if (organelle.Definition.InternalName == "chloroplast")
-                {
-                    photosynthesisScore += 3;
-                }
+                var processesDoneByOrganelle = organelle.Definition.RunnableProcesses;
 
-                if (organelle.Definition.InternalName == "chromatophore")
+                foreach (var process in processesDoneByOrganelle)
                 {
-                    photosynthesisScore += 1;
-                }
+                    if (process.Process.Inputs.ContainsKey(sunlight.InternalName) && process.Process.Outputs.ContainsKey(glucose.InternalName))
+                    {
+                        photosynthesisScore += process.Process.Outputs[glucose.InternalName];
+                    }
+                } 
             }
 
             return photosynthesisScore;
@@ -222,18 +227,21 @@
         private static float GetChemosynthesisScore(MicrobeSpecies species)
         {
             var chemosynthesisScore = 0.0f;
+
+            var hydrogenSulfide = SimulationParameters.Instance.GetCompound("hydrogensulfide");
+            var glucose = SimulationParameters.Instance.GetCompound("glucose");
+
             foreach (var organelle in species.Organelles)
             {
                 //get chemosynthesis process here
+                var processesDoneByOrganelle = organelle.Definition.RunnableProcesses;
 
-                if (organelle.Definition.InternalName == "chemoplast")
+                foreach (var process in processesDoneByOrganelle)
                 {
-                    chemosynthesisScore += 2;
-                }
-
-                if (organelle.Definition.InternalName == "chemoSynthesizingProteins")
-                {
-                    chemosynthesisScore += 1;
+                    if (process.Process.Inputs.ContainsKey(hydrogenSulfide.InternalName) && process.Process.Outputs.ContainsKey(glucose.InternalName))
+                    {
+                        chemosynthesisScore += process.Process.Outputs[glucose.InternalName];
+                    }
                 }
             }
 
