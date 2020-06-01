@@ -201,7 +201,8 @@
                     if (process.Process.Inputs.ContainsKey(sunlight.InternalName)
                         && process.Process.Outputs.ContainsKey(glucose.InternalName))
                     {
-                        photosynthesisScore += process.Process.Outputs[glucose.InternalName];
+                        photosynthesisScore += process.Process.Outputs[glucose.InternalName]
+                            / process.Process.Inputs[sunlight.InternalName];
                     }
                 }
             }
@@ -239,7 +240,8 @@
                     if (process.Process.Inputs.ContainsKey(hydrogenSulfide.InternalName)
                         && process.Process.Outputs.ContainsKey(glucose.InternalName))
                     {
-                        chemosynthesisScore += process.Process.Outputs[glucose.InternalName];
+                        chemosynthesisScore += process.Process.Outputs[glucose.InternalName]
+                            / process.Process.Inputs[hydrogenSulfide.InternalName];
                     }
                 }
             }
