@@ -18,7 +18,7 @@
 
             while (parameters.StepsLeft > 0)
             {
-                RunSimulationStep(parameters, speciesToSimulate);
+                RunSimulationStep(parameters, speciesToSimulate, random);
                 --parameters.StepsLeft;
             }
         }
@@ -101,13 +101,17 @@
             return species;
         }
 
-        private static void RunSimulationStep(SimulationConfiguration parameters, List<Species> species)
+        private static void RunSimulationStep(SimulationConfiguration parameters, List<Species> species, Random random)
         {
             foreach (var entry in parameters.OriginalMap.Patches)
             {
                 // Simulate the species in each patch taking into account the already computed populations
                 SimulatePatchStep(parameters.Results, entry.Value,
+<<<<<<< HEAD
                     species.Where(item => parameters.Results.GetPopulationInPatch(item, entry.Value) > 0).ToList(),
+=======
+                    species.Where((item) => parameters.Results.GetPopulationInPatch(item, entry.Value) > 0).ToList(),
+>>>>>>> Readd random parameter, write floats as 0.0f, remove high and low species boosts.
                     random);
             }
         }
@@ -115,8 +119,10 @@
         /// <summary>
         ///   The heart of the simulation that handles the processed parameters and calculates future populations.
         /// </summary>
-        private static void SimulatePatchStep(RunResults populations, Patch patch, List<Species> species)
+        private static void SimulatePatchStep(RunResults populations, Patch patch, List<Species> species, Random random)
         {
+            _ = random;
+
             // Skip if there aren't any species in this patch
             if (species.Count < 1)
                 return;
@@ -129,16 +135,11 @@
 
             // TODO: this is where the proper auto-evo algorithm goes
 
-            // Here's a temporary boost when there are few species and penalty
-            // when there are many species
-            bool lowSpecies = species.Count <= Constants.AUTO_EVO_LOW_SPECIES_THRESHOLD;
-            bool highSpecies = species.Count >= Constants.AUTO_EVO_HIGH_SPECIES_THRESHOLD;
-
             var speciesEnergies = new Dictionary<MicrobeSpecies, float>(species.Count);
 
-            var totalPhotosynthesisScore = 0f;
-            var totalChemosynthesisScore = 0f;
-            var totalPredationScore = 0f;
+            var totalPhotosynthesisScore = 0.0f;
+            var totalChemosynthesisScore = 0.0f;
+            var totalPredationScore = 0.0f;
 
             // Calculate the total scores of each type in the current patch
             foreach (MicrobeSpecies currentMicrobeSpecies in species)
@@ -154,11 +155,11 @@
             totalPredationScore = Math.Max(1, totalPredationScore);
 
             // Calculate the share of environmental energy captured by each species
-            var energyAvailableForPredation = 0f;
+            var energyAvailableForPredation = 0.0f;
 
             foreach (MicrobeSpecies currentMicrobeSpecies in species)
             {
-                var currentSpeciesEnergy = 0f;
+                var currentSpeciesEnergy = 0.0f;
 
                 currentSpeciesEnergy += sunlightInPatch
                     * GetPhotosynthesisScore(currentMicrobeSpecies) / totalPhotosynthesisScore;
@@ -179,23 +180,13 @@
                 var newPopulation = (int)(speciesEnergies[currentMicrobeSpecies]
                     / Math.Pow(currentMicrobeSpecies.Organelles.Count(), 1.3f));
 
-                if (lowSpecies)
-                {
-                    newPopulation += Constants.AUTO_EVO_LOW_SPECIES_BOOST;
-                }
-
-                if (highSpecies)
-                {
-                    newPopulation -= Constants.AUTO_EVO_HIGH_SPECIES_PENALTY;
-                }
-
                 populations.AddPopulationResultForSpecies(currentMicrobeSpecies, patch, newPopulation);
             }
         }
 
         private static float GetPhotosynthesisScore(MicrobeSpecies species)
         {
-            var photosynthesisScore = 0f;
+            var photosynthesisScore = 0.0f;
             foreach (var organelle in species.Organelles)
             {
                 if (organelle.Definition.InternalName == "chloroplast")
@@ -214,7 +205,7 @@
 
         private static float GetPredationScore(MicrobeSpecies species)
         {
-            var predationScore = 0f;
+            var predationScore = 0.0f;
             foreach (var organelle in species.Organelles)
             {
                 if (organelle.Definition.InternalName == "pilus")
@@ -228,7 +219,7 @@
 
         private static float GetChemosynthesisScore(MicrobeSpecies species)
         {
-            var chemosynthesisScore = 0f;
+            var chemosynthesisScore = 0.0f;
             foreach (var organelle in species.Organelles)
             {
                 if (organelle.Definition.InternalName == "chemoplast")
