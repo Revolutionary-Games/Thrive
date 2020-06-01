@@ -33,8 +33,14 @@ public class SimulationParameters : Node
         // Compounds are referenced by the other json files so it is loaded first and instance is assigned here
         instance = this;
 
-        compounds = LoadRegistry<Compound>(
-            "res://simulation_parameters/microbe_stage/compounds.json");
+        // Loading the compounds needs a custom JSON deserializer that can load the Compound objects, but the loader
+        // can't always be active because that breaks saving
+        {
+            var compoundDeserializer = new JsonConverter[] { new CompoundLoader(null) };
+
+            compounds = LoadRegistry<Compound>(
+                "res://simulation_parameters/microbe_stage/compounds.json", compoundDeserializer);
+        }
 
         membranes = LoadRegistry<MembraneType>(
             "res://simulation_parameters/microbe_stage/membranes.json");
@@ -197,9 +203,9 @@ public class SimulationParameters : Node
         }
     }
 
-    private Dictionary<string, T> LoadRegistry<T>(string path)
+    private Dictionary<string, T> LoadRegistry<T>(string path, JsonConverter[] extraConverters = null)
     {
-        var result = JsonConvert.DeserializeObject<Dictionary<string, T>>(ReadJSONFile(path));
+        var result = JsonConvert.DeserializeObject<Dictionary<string, T>>(ReadJSONFile(path), extraConverters);
 
         GD.Print($"Loaded registry for {typeof(T)} with {result.Count} items");
         return result;

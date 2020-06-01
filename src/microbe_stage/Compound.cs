@@ -8,8 +8,6 @@ using Newtonsoft.Json;
 ///   parameters that refer to a compound, there must be an existing
 ///   entry of this type
 /// </summary>
-[UseThriveSerializer]
-[JsonConverter(typeof(DefaultThriveJSONConverter))]
 [TypeConverter(typeof(CompoundStringConverter))]
 public class Compound : IRegistryType
 {
