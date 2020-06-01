@@ -212,6 +212,11 @@ public class MicrobeEditor : Node, ILoadableGameState
     [JsonProperty]
     public MicrobeStage ReturnToStage { get; set; }
 
+    /// <summary>
+    ///   If true ReturnToStage has been loaded from a save and needs to be recreated on return
+    /// </summary>
+    public bool NeedToRestoreStageFromSave { get; set; } = false;
+
     [JsonIgnore]
     public bool HasNucleus
     {
@@ -343,15 +348,10 @@ public class MicrobeEditor : Node, ILoadableGameState
         // for fixing the stuff in order to return there
         if (ReturnToStage != null)
         {
-            ReturnToStage = (MicrobeStage)SceneManager.Instance.LoadScene(MainGameState.MicrobeStage).Instance();
-            ReturnToStage.IsLoadedFromSave = true;
+            NeedToRestoreStageFromSave = true;
 
-            // We need to temporarily attach the scene to make it load things
-            SceneManager.Instance.AttachScene(ReturnToStage);
-
-            ReturnToStage.OnFinishLoading(save.MicrobeEditor.ReturnToStage);
-
-            SceneManager.Instance.DetachScene(ReturnToStage);
+            // We need to not let the objects be deleted before we apply them
+            TemporaryLoadedNodeDeleter.Instance.HoldDeletion = true;
         }
 
         InitEditor();
@@ -366,11 +366,20 @@ public class MicrobeEditor : Node, ILoadableGameState
     {
         GD.Print("MicrobeEditor: applying changes to edited Species");
 
-        if (ReturnToStage == null)
-        {
-            GD.Print("Creating new microbe stage as there isn't one yet");
+        MicrobeStage savedStageToApply = null;
 
+        if (ReturnToStage == null || NeedToRestoreStageFromSave)
+        {
             var scene = SceneManager.Instance.LoadScene(MainGameState.MicrobeStage);
+
+            if (ReturnToStage == null)
+            {
+                GD.Print("Creating new microbe stage as there isn't one yet");
+            }
+            else
+            {
+                savedStageToApply = ReturnToStage;
+            }
 
             ReturnToStage = (MicrobeStage)scene.Instance();
             ReturnToStage.CurrentGame = CurrentGame;
@@ -426,6 +435,17 @@ public class MicrobeEditor : Node, ILoadableGameState
         }
 
         SceneManager.Instance.SwitchToScene(ReturnToStage);
+
+        // We need to finish loading the save after attaching the stage scene
+        if (savedStageToApply != null)
+        {
+            ReturnToStage.OnFinishLoading(savedStageToApply);
+            savedStageToApply = null;
+            NeedToRestoreStageFromSave = false;
+
+            // Resume deletion of save loaded objects now that we have used them finally
+            TemporaryLoadedNodeDeleter.Instance.HoldDeletion = false;
+        }
 
         ReturnToStage.OnReturnFromEditor();
     }
