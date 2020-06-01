@@ -189,6 +189,8 @@
             var photosynthesisScore = 0.0f;
             foreach (var organelle in species.Organelles)
             {
+                //get photosynthesis process here
+
                 if (organelle.Definition.InternalName == "chloroplast")
                 {
                     photosynthesisScore += 3;
@@ -208,7 +210,7 @@
             var predationScore = 0.0f;
             foreach (var organelle in species.Organelles)
             {
-                if (organelle.Definition.InternalName == "pilus")
+                if (organelle.Definition.HasComponentFactory<PilusComponentFactory>())
                 {
                     predationScore += 1;
                 }
@@ -222,6 +224,8 @@
             var chemosynthesisScore = 0.0f;
             foreach (var organelle in species.Organelles)
             {
+                //get chemosynthesis process here
+
                 if (organelle.Definition.InternalName == "chemoplast")
                 {
                     chemosynthesisScore += 2;
