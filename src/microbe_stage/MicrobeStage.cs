@@ -132,7 +132,6 @@ public class MicrobeStage : Node, ILoadableGameState
     public override void _Ready()
     {
         world = GetNode<Node>("World");
-        HUD = GetNode<MicrobeHUD>("MicrobeHUD");
         rootOfDynamicallySpawned = GetNode<Node>("World/DynamicallySpawned");
         spawner = new SpawnSystem(rootOfDynamicallySpawned);
         Camera = world.GetNode<MicrobeCamera>("PrimaryCamera");
@@ -143,7 +142,7 @@ public class MicrobeStage : Node, ILoadableGameState
         microbeAISystem = new MicrobeAISystem(rootOfDynamicallySpawned);
         FluidSystem = new FluidSystem(rootOfDynamicallySpawned);
 
-        HUD.Init(this);
+        CreateHUD();
 
         // Do stage setup to spawn things and setup all parts of the stage
         SetupStage();
@@ -354,6 +353,11 @@ public class MicrobeStage : Node, ILoadableGameState
     /// </summary>
     public void OnReturnFromEditor()
     {
+        if (HUD == null)
+        {
+            CreateHUD();
+        }
+
         UpdatePatchSettings(false);
 
         // Now the editor increases the generation so we don't do that here anymore
@@ -384,6 +388,19 @@ public class MicrobeStage : Node, ILoadableGameState
 
         if (!CurrentGame.FreeBuild)
             SaveHelper.AutoSave(this);
+    }
+
+    public void CreateHUD()
+    {
+        HUD = (MicrobeHUD)GD.Load<PackedScene>("res://src/microbe_stage/MicrobeHUD.tscn").Instance();
+        AddChild(HUD);
+        HUD.Init(this);
+    }
+
+    public void DestroyHUD()
+    {
+        HUD.QueueFree();
+        HUD = null;
     }
 
     private void CreatePatchManagerIfNeeded()

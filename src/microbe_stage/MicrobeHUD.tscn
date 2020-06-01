@@ -1,0 +1,1927 @@
+[gd_scene load_steps=110 format=2]
+
+[ext_resource path="res://assets/fonts/Jura-DemiBold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://src/microbe_stage/MicrobeHUD.cs" type="Script" id=2]
+[ext_resource path="res://src/microbe_stage/gui/WinBox.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/microbe_stage/gui/ExtinctionBox.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/general/HelpScreen.tscn" type="PackedScene" id=6]
+[ext_resource path="res://assets/textures/gui/menu_theme.tres" type="Theme" id=7]
+[ext_resource path="res://assets/textures/gui/bevel/chemicalButtonActive.png" type="Texture" id=9]
+[ext_resource path="res://assets/textures/gui/bevel/chemicalButtonHover.png" type="Texture" id=10]
+[ext_resource path="res://assets/textures/gui/bevel/expandPanelActive.png" type="Texture" id=11]
+[ext_resource path="res://assets/textures/gui/bevel/LargeTwoHover.png" type="Texture" id=12]
+[ext_resource path="res://assets/textures/gui/bevel/LargeTwoDisabled.png" type="Texture" id=13]
+[ext_resource path="res://assets/textures/gui/bevel/MainMenuHover.png" type="Texture" id=14]
+[ext_resource path="res://assets/textures/gui/bevel/suicideButtonHover.png" type="Texture" id=15]
+[ext_resource path="res://assets/textures/gui/bevel/searchButtonActive.png" type="Texture" id=16]
+[ext_resource path="res://assets/textures/gui/bevel/pauseButtonHover.png" type="Texture" id=17]
+[ext_resource path="res://assets/textures/gui/bevel/statisticsButtonHover.png" type="Texture" id=18]
+[ext_resource path="res://assets/textures/gui/bevel/statisticsButton.png" type="Texture" id=19]
+[ext_resource path="res://assets/textures/gui/bevel/helpButtonActive.png" type="Texture" id=20]
+[ext_resource path="res://assets/textures/gui/bevel/statisticsButtonActive.png" type="Texture" id=21]
+[ext_resource path="res://assets/textures/gui/bevel/searchButtonHover.png" type="Texture" id=22]
+[ext_resource path="res://assets/textures/gui/bevel/expandPanel.png" type="Texture" id=23]
+[ext_resource path="res://assets/textures/gui/bevel/Iron.png" type="Texture" id=24]
+[ext_resource path="res://assets/textures/gui/bevel/Phosphates.png" type="Texture" id=25]
+[ext_resource path="res://assets/textures/gui/bevel/chemicalButton.png" type="Texture" id=26]
+[ext_resource path="res://assets/textures/gui/bevel/compoundsButton.png" type="Texture" id=27]
+[ext_resource path="res://assets/textures/gui/bevel/pauseButton.png" type="Texture" id=28]
+[ext_resource path="res://assets/textures/gui/bevel/compressPanel.png" type="Texture" id=29]
+[ext_resource path="res://assets/textures/gui/bevel/HydrogenSulfide.png" type="Texture" id=30]
+[ext_resource path="res://assets/textures/gui/bevel/compoundsButtonHover.png" type="Texture" id=31]
+[ext_resource path="res://assets/textures/gui/bevel/suicideButton.png" type="Texture" id=32]
+[ext_resource path="res://assets/textures/gui/bevel/pauseButtonActive.png" type="Texture" id=33]
+[ext_resource path="res://assets/textures/gui/bevel/compoundsButtonActive.png" type="Texture" id=34]
+[ext_resource path="res://assets/textures/gui/bevel/compressPanelActive.png" type="Texture" id=35]
+[ext_resource path="res://assets/textures/gui/bevel/LargeTwoNormal.png" type="Texture" id=36]
+[ext_resource path="res://assets/textures/gui/bevel/MainMenuActive.png" type="Texture" id=37]
+[ext_resource path="res://assets/textures/gui/bevel/Glucose.png" type="Texture" id=38]
+[ext_resource path="res://assets/textures/gui/bevel/helpButtonHover.png" type="Texture" id=39]
+[ext_resource path="res://assets/textures/gui/bevel/Ammonia.png" type="Texture" id=40]
+[ext_resource path="res://assets/textures/gui/bevel/AtpBarBg.png" type="Texture" id=41]
+[ext_resource path="res://assets/textures/gui/bevel/Nitrogen.png" type="Texture" id=42]
+[ext_resource path="res://assets/textures/gui/bevel/HealthBarFg.png" type="Texture" id=43]
+[ext_resource path="res://assets/textures/gui/bevel/Pressure.png" type="Texture" id=44]
+[ext_resource path="res://assets/textures/gui/bevel/ATP.png" type="Texture" id=45]
+[ext_resource path="res://assets/textures/gui/bevel/AmmoniaBW.png" type="Texture" id=46]
+[ext_resource path="res://assets/fonts/Jura-Medium.ttf" type="DynamicFontData" id=47]
+[ext_resource path="res://assets/textures/gui/bevel/pauseButtonPaused.png" type="Texture" id=48]
+[ext_resource path="res://assets/textures/gui/bevel/pauseButtonPausedHover.png" type="Texture" id=49]
+[ext_resource path="res://assets/textures/gui/bevel/HealthBarBg.png" type="Texture" id=50]
+[ext_resource path="res://assets/textures/gui/bevel/OxytoxyNT.png" type="Texture" id=51]
+[ext_resource path="res://assets/textures/gui/bevel/AtpBarFg.png" type="Texture" id=52]
+[ext_resource path="res://assets/textures/gui/bevel/ReproductionBar.png" type="Texture" id=53]
+[ext_resource path="res://assets/textures/gui/bevel/Hitpoints.png" type="Texture" id=54]
+[ext_resource path="res://assets/textures/gui/bevel/Sunlight.png" type="Texture" id=55]
+[ext_resource path="res://assets/textures/gui/bevel/CarbonDioxide.png" type="Texture" id=56]
+[ext_resource path="res://assets/textures/gui/bevel/Oxygen.png" type="Texture" id=57]
+[ext_resource path="res://assets/textures/gui/bevel/Temperature.png" type="Texture" id=58]
+[ext_resource path="res://assets/textures/gui/bevel/dataValueBackground.png" type="Texture" id=59]
+[ext_resource path="res://assets/textures/gui/bevel/helpButton.png" type="Texture" id=60]
+[ext_resource path="res://assets/textures/gui/bevel/MainMenu.png" type="Texture" id=61]
+[ext_resource path="res://assets/textures/gui/bevel/AmmoniaInv.png" type="Texture" id=62]
+[ext_resource path="res://assets/textures/gui/bevel/PhosphatesBW.png" type="Texture" id=63]
+[ext_resource path="res://assets/textures/gui/bevel/CompoundPanelShortened.png" type="Texture" id=64]
+[ext_resource path="res://assets/textures/gui/bevel/agentsPanel.png" type="Texture" id=65]
+[ext_resource path="res://assets/textures/gui/bevel/PhosphateInv.png" type="Texture" id=66]
+[ext_resource path="res://assets/fonts/thrive.ttf" type="DynamicFontData" id=67]
+[ext_resource path="res://assets/sounds/soundeffects/microbe-pickup-organelle.ogg" type="AudioStream" id=68]
+[ext_resource path="res://assets/textures/gui/bevel/environmentPanelShortened.png" type="Texture" id=69]
+[ext_resource path="res://assets/textures/gui/bevel/searchButton.png" type="Texture" id=70]
+
+[sub_resource type="DynamicFont" id=1]
+size = 15
+font_data = ExtResource( 1 )
+
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0, 0.0745098, 0.0823529, 0.588235 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.0666667, 1, 0.835294, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="DynamicFont" id=5]
+size = 20
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxTexture" id=6]
+texture = ExtResource( 23 )
+region_rect = Rect2( 0, 0, 20, 20 )
+expand_margin_left = 1.0
+expand_margin_right = 1.0
+expand_margin_top = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxTexture" id=7]
+texture = ExtResource( 11 )
+region_rect = Rect2( 0, 0, 20, 20 )
+expand_margin_left = 1.0
+expand_margin_right = 1.0
+expand_margin_top = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxTexture" id=8]
+texture = ExtResource( 23 )
+region_rect = Rect2( 0, 0, 20, 20 )
+
+[sub_resource type="ButtonGroup" id=9]
+
+[sub_resource type="StyleBoxTexture" id=10]
+texture = ExtResource( 29 )
+region_rect = Rect2( 0, 0, 20, 20 )
+
+[sub_resource type="StyleBoxTexture" id=11]
+texture = ExtResource( 35 )
+region_rect = Rect2( 0, 0, 20, 20 )
+expand_margin_left = 1.0
+expand_margin_right = 1.0
+expand_margin_top = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxTexture" id=12]
+texture = ExtResource( 29 )
+region_rect = Rect2( 0, 0, 20, 20 )
+
+[sub_resource type="StyleBoxFlat" id=13]
+bg_color = Color( 0, 0.596078, 0.764706, 1 )
+
+[sub_resource type="StyleBoxFlat" id=14]
+bg_color = Color( 0, 0, 0, 0.196078 )
+
+[sub_resource type="DynamicFont" id=15]
+size = 14
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=16]
+bg_color = Color( 0.141176, 0.278431, 0.682353, 1 )
+
+[sub_resource type="StyleBoxFlat" id=17]
+bg_color = Color( 0.407843, 0.698039, 0.431373, 1 )
+
+[sub_resource type="ButtonGroup" id=18]
+
+[sub_resource type="StyleBoxTexture" id=19]
+texture = ExtResource( 29 )
+region_rect = Rect2( 0, 0, 20, 20 )
+
+[sub_resource type="StyleBoxTexture" id=20]
+texture = ExtResource( 35 )
+region_rect = Rect2( 0, 0, 20, 20 )
+expand_margin_left = 1.0
+expand_margin_right = 1.0
+expand_margin_top = 1.0
+expand_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxTexture" id=21]
+texture = ExtResource( 29 )
+region_rect = Rect2( 0, 0, 20, 20 )
+
+[sub_resource type="StyleBoxFlat" id=22]
+bg_color = Color( 0.568627, 0.611765, 0.615686, 1 )
+
+[sub_resource type="StyleBoxFlat" id=23]
+bg_color = Color( 0, 0, 0, 0.196078 )
+
+[sub_resource type="DynamicFont" id=24]
+size = 14
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=25]
+bg_color = Color( 0.631373, 0.396078, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=26]
+bg_color = Color( 0.380392, 0.141176, 0.8, 1 )
+
+[sub_resource type="StyleBoxFlat" id=27]
+bg_color = Color( 0.462745, 0.470588, 0.184314, 1 )
+
+[sub_resource type="StyleBoxFlat" id=28]
+bg_color = Color( 0.541176, 0.141176, 0.0745098, 1 )
+
+[sub_resource type="StyleBoxTexture" id=29]
+texture = ExtResource( 65 )
+region_rect = Rect2( 0, 0, 250, 91 )
+
+[sub_resource type="StyleBoxFlat" id=30]
+bg_color = Color( 0.623529, 0.0745098, 0.376471, 1 )
+
+[sub_resource type="StyleBoxFlat" id=31]
+bg_color = Color( 0, 0, 0, 0.196078 )
+
+[sub_resource type="DynamicFont" id=32]
+size = 14
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxEmpty" id=33]
+
+[sub_resource type="DynamicFont" id=34]
+size = 25
+font_data = ExtResource( 47 )
+
+[sub_resource type="StyleBoxFlat" id=35]
+bg_color = Color( 0.47451, 0.560784, 0.588235, 0.392157 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.533333, 0.745098, 0.815686, 0.392157 )
+
+[sub_resource type="DynamicFont" id=36]
+size = 13
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxTexture" id=37]
+texture = ExtResource( 59 )
+region_rect = Rect2( 0, 0, 86, 52 )
+
+[sub_resource type="DynamicFont" id=38]
+size = 14
+font_data = ExtResource( 67 )
+
+[sub_resource type="Animation" id=39]
+length = 5.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Highlight:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.1, 2.5, 3.5, 4.5 ),
+"transitions": PoolRealArray( 0.5, 1, 0.5, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Highlight/Light2D:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.1, 2.5, 3.5, 4.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 1.0, 1.0, 0.0, 0.0, 1.0 ]
+}
+
+[sub_resource type="Animation" id=40]
+tracks/0/type = "value"
+tracks/0/path = NodePath("LeftPanels:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("LeftPanels:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 2, 1 ),
+"update": 0,
+"values": [ Vector2( 10, 89 ), Vector2( -300, 89 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("LeftPanels:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=41]
+tracks/0/type = "value"
+tracks/0/path = NodePath("LeftPanels:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("LeftPanels:rect_position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 0.5, 1 ),
+"update": 0,
+"values": [ Vector2( -300, 89 ), Vector2( 10, 89 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("LeftPanels:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[node name="MicrobeHUD" type="Node"]
+pause_mode = 2
+script = ExtResource( 2 )
+__meta__ = {
+"_editor_description_": ""
+}
+AnimationPlayerPath = NodePath("AnimationPlayer")
+LeftPanelsPath = NodePath("LeftPanels")
+MouseHoverPanelPath = NodePath("MouseHoverPanel")
+HoveredItemsContainerPath = NodePath("MouseHoverPanel/MarginContainer/VBoxContainer/HoveredItems")
+MenuPath = NodePath("CanvasLayer/PauseMenu")
+PauseButtonPath = NodePath("BottomBar/PauseButtonMargin/Pause")
+ResumeButtonPath = NodePath("BottomBar/PauseButtonMargin/Resume")
+AtpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/ATPValue")
+HpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/HPValue")
+PopulationLabelPath = NodePath("BottomRight/PopulationData/Value")
+PatchLabelPath = NodePath("BottomBar/PatchLabel")
+EditorButtonPath = NodePath("BottomRight/EditorButton")
+HelpScreenPath = NodePath("CanvasLayer/HelpScreen")
+EnvironmentPanelPath = NodePath("LeftPanels/EnvironmentPanel")
+OxygenBarPath = NodePath("LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Oxygen")
+Co2BarPath = NodePath("LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/CarbonDioxide")
+NitrogenBarPath = NodePath("LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Nitrogen")
+TemperaturePath = NodePath("LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Temperature")
+SunlightPath = NodePath("LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Sunlight")
+PressurePath = NodePath("LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Pressure")
+EnvironmentPanelBarContainerPath = NodePath("LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer")
+CompoundsPanelPath = NodePath("LeftPanels/CompoundsPanel")
+GlucoseBarPath = NodePath("LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/glucose")
+AmmoniaBarPath = NodePath("LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/ammonia")
+PhosphateBarPath = NodePath("LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/phosphates")
+HydrogenSulfideBarPath = NodePath("LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/hydrogensulfide")
+IronBarPath = NodePath("LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/iron")
+CompoundsPanelBarContainerPath = NodePath("LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer")
+AgentsPanelPath = NodePath("LeftPanels/AgentsPanel")
+OxytoxyBarPath = NodePath("LeftPanels/AgentsPanel/VBoxContainer/MarginContainer2/BarContainer/oxytoxy")
+AgentsPanelBarContainerPath = NodePath("LeftPanels/AgentsPanel/VBoxContainer/MarginContainer2/BarContainer")
+AtpBarPath = NodePath("BottomRight/ATPBar")
+HealthBarPath = NodePath("BottomRight/HealthBar")
+AmmoniaReproductionBarPath = NodePath("BottomRight/EditorButton/ReproductionBar/AmmoniaReproductionBar")
+PhosphateReproductionBarPath = NodePath("BottomRight/EditorButton/ReproductionBar/PhosphateReproductionBar")
+ExtinctionBoxScene = ExtResource( 5 )
+WinBoxScene = ExtResource( 3 )
+MicrobePickupOrganelleSound = ExtResource( 68 )
+AmmoniaBW = ExtResource( 46 )
+PhosphatesBW = ExtResource( 63 )
+AmmoniaInv = ExtResource( 62 )
+PhosphatesInv = ExtResource( 66 )
+
+[node name="MouseHoverPanel" type="PanelContainer" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -280.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = 140.0
+grow_horizontal = 0
+theme = SubResource( 2 )
+custom_styles/panel = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="MouseHoverPanel"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 269.0
+margin_bottom = 129.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MouseHoverPanel/MarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 258.0
+margin_bottom = 118.0
+
+[node name="MousePos" type="Label" parent="MouseHoverPanel/MarginContainer/VBoxContainer"]
+margin_right = 248.0
+margin_bottom = 17.0
+text = "Stuff at"
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="MouseHoverPanel/MarginContainer/VBoxContainer"]
+margin_top = 21.0
+margin_right = 248.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 0, 5 )
+custom_styles/separator = SubResource( 4 )
+
+[node name="HoveredItems" type="VBoxContainer" parent="MouseHoverPanel/MarginContainer/VBoxContainer"]
+margin_top = 30.0
+margin_right = 248.0
+margin_bottom = 30.0
+
+[node name="LeftPanels" type="VBoxContainer" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = -631.0
+margin_right = 263.0
+margin_bottom = -59.0
+mouse_filter = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_constants/separation = 10
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EnvironmentPanel" type="NinePatchRect" parent="LeftPanels"]
+margin_right = 195.0
+margin_bottom = 224.0
+rect_min_size = Vector2( 195, 224 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 69 )
+patch_margin_left = 5
+patch_margin_top = 45
+patch_margin_right = 5
+patch_margin_bottom = 15
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LeftPanels/EnvironmentPanel"]
+margin_right = 195.0
+margin_bottom = 224.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Header" type="MarginContainer" parent="LeftPanels/EnvironmentPanel/VBoxContainer"]
+margin_right = 195.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 195, 35 )
+mouse_filter = 1
+custom_constants/margin_left = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LeftPanels/EnvironmentPanel/VBoxContainer/Header"]
+margin_left = 10.0
+margin_right = 195.0
+margin_bottom = 35.0
+custom_constants/separation = 6
+
+[node name="Label" type="Label" parent="LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer"]
+margin_top = 6.0
+margin_right = 123.0
+margin_bottom = 28.0
+custom_fonts/font = SubResource( 5 )
+text = "Environment"
+
+[node name="MarginContainer4" type="MarginContainer" parent="LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer"]
+margin_left = 129.0
+margin_right = 149.0
+margin_bottom = 35.0
+custom_constants/margin_top = 8
+custom_constants/margin_bottom = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EnvironmentExpandButton" type="Button" parent="LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/MarginContainer4"]
+margin_top = 8.0
+margin_right = 20.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 20, 20 )
+focus_mode = 0
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/normal = SubResource( 8 )
+toggle_mode = true
+pressed = true
+action_mode = 0
+enabled_focus_mode = 0
+group = SubResource( 9 )
+
+[node name="MarginContainer3" type="MarginContainer" parent="LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer"]
+margin_left = 155.0
+margin_right = 175.0
+margin_bottom = 35.0
+custom_constants/margin_top = 8
+custom_constants/margin_bottom = 7
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EnvironmentCompressButton" type="Button" parent="LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/MarginContainer3"]
+margin_top = 8.0
+margin_right = 20.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 20, 20 )
+focus_mode = 0
+custom_styles/hover = SubResource( 10 )
+custom_styles/pressed = SubResource( 11 )
+custom_styles/normal = SubResource( 12 )
+toggle_mode = true
+action_mode = 0
+enabled_focus_mode = 0
+group = SubResource( 9 )
+
+[node name="Body" type="MarginContainer" parent="LeftPanels/EnvironmentPanel/VBoxContainer"]
+margin_top = 39.0
+margin_right = 195.0
+margin_bottom = 224.0
+rect_min_size = Vector2( 195, 185 )
+custom_constants/margin_top = 5
+custom_constants/margin_left = 22
+custom_constants/margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BarContainer" type="GridContainer" parent="LeftPanels/EnvironmentPanel/VBoxContainer/Body"]
+margin_left = 22.0
+margin_top = 5.0
+margin_right = 195.0
+margin_bottom = 175.0
+
+[node name="Oxygen" type="ProgressBar" parent="LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
+show_behind_parent = true
+margin_right = 162.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 162, 25 )
+custom_styles/fg = SubResource( 13 )
+custom_styles/bg = SubResource( 14 )
+step = 0.1
+percent_visible = false
+
+[node name="OxygenIcon" type="TextureRect" parent="LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Oxygen"]
+margin_left = -15.0
+margin_right = 15.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 30, 25 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 57 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Oxygen"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 20.0
+margin_top = -12.5
+margin_right = 38.0
+margin_bottom = 12.5
+rect_min_size = Vector2( 0, 25 )
+custom_fonts/font = SubResource( 15 )
+text = "02"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Value" type="Label" parent="LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Oxygen"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -62.0
+margin_top = -12.5
+margin_right = -6.99998
+margin_bottom = 12.5
+grow_horizontal = 0
+rect_min_size = Vector2( 55, 25 )
+custom_fonts/font = SubResource( 15 )
+text = "0%"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CarbonDioxide" type="ProgressBar" parent="LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
+show_behind_parent = true
+margin_top = 29.0
+margin_right = 162.0
+margin_bottom = 54.0
+rect_min_size = Vector2( 162, 25 )
+custom_styles/fg = SubResource( 16 )
+custom_styles/bg = SubResource( 14 )
+step = 0.1
+percent_visible = false
+
+[node name="CO2Icon" type="TextureRect" parent="LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/CarbonDioxide"]
+margin_left = -15.0
+margin_right = 15.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 30, 25 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 56 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/CarbonDioxide"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 20.0
+margin_top = -12.5
+margin_right = 46.0
+margin_bottom = 12.5
+rect_min_size = Vector2( 0, 25 )
+custom_fonts/font = SubResource( 15 )
+text = "CO2"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Value" type="Label" parent="LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/CarbonDioxide"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -62.0
+margin_top = -12.5
+margin_right = -6.99998
+margin_bottom = 12.5
+grow_horizontal = 0
+rect_min_size = Vector2( 55, 25 )
+custom_fonts/font = SubResource( 15 )
+text = "0%"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Nitrogen" type="ProgressBar" parent="LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
+show_behind_parent = true
+margin_top = 58.0
+margin_right = 162.0
+margin_bottom = 83.0
+rect_min_size = Vector2( 162, 25 )
+custom_styles/fg = SubResource( 17 )
+custom_styles/bg = SubResource( 14 )
+step = 0.1
+percent_visible = false
+
+[node name="NitrogenIcon" type="TextureRect" parent="LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Nitrogen"]
+margin_left = -15.0
+margin_right = 15.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 30, 25 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 42 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Nitrogen"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 20.0
+margin_top = -12.5
+margin_right = 49.0
+margin_bottom = 12.5
+rect_min_size = Vector2( 0, 25 )
+custom_fonts/font = SubResource( 15 )
+text = "N2"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Value" type="Label" parent="LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Nitrogen"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -62.0
+margin_top = -12.5
+margin_right = -6.99998
+margin_bottom = 12.5
+grow_horizontal = 0
+rect_min_size = Vector2( 55, 25 )
+custom_fonts/font = SubResource( 15 )
+text = "0%"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Temperature" type="ProgressBar" parent="LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
+show_behind_parent = true
+margin_top = 87.0
+margin_right = 162.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 162, 25 )
+
+[node name="TemperatureIcon" type="TextureRect" parent="LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Temperature"]
+margin_left = -15.0
+margin_right = 15.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 30, 25 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 58 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Temperature"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 20.0
+margin_top = -12.5
+margin_right = 60.0
+margin_bottom = 12.5
+rect_min_size = Vector2( 0, 25 )
+custom_fonts/font = SubResource( 15 )
+text = "Temp."
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Value" type="Label" parent="LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Temperature"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -62.0
+margin_top = -12.5
+margin_right = -6.99998
+margin_bottom = 12.5
+grow_horizontal = 0
+rect_min_size = Vector2( 55, 25 )
+custom_fonts/font = SubResource( 15 )
+text = "55° C"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sunlight" type="ProgressBar" parent="LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
+show_behind_parent = true
+margin_top = 116.0
+margin_right = 162.0
+margin_bottom = 141.0
+rect_min_size = Vector2( 162, 25 )
+
+[node name="LightIcon" type="TextureRect" parent="LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Sunlight"]
+margin_left = -15.0
+margin_right = 15.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 30, 25 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 55 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Sunlight"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 20.0
+margin_top = -12.5
+margin_right = 66.0
+margin_bottom = 12.5
+rect_min_size = Vector2( 0, 25 )
+custom_fonts/font = SubResource( 15 )
+text = "Light"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Value" type="Label" parent="LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Sunlight"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -62.0
+margin_top = -12.5
+margin_right = -6.99998
+margin_bottom = 12.5
+grow_horizontal = 0
+rect_min_size = Vector2( 55, 25 )
+custom_fonts/font = SubResource( 15 )
+text = "0%"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Pressure" type="ProgressBar" parent="LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
+self_modulate = Color( 1, 1, 1, 0 )
+show_behind_parent = true
+margin_top = 145.0
+margin_right = 162.0
+margin_bottom = 170.0
+rect_min_size = Vector2( 162, 25 )
+
+[node name="PressureIcon" type="TextureRect" parent="LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Pressure"]
+margin_left = -15.0
+margin_right = 15.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 30, 25 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 44 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Pressure"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 20.0
+margin_top = -12.5
+margin_right = 69.0
+margin_bottom = 12.5
+rect_min_size = Vector2( 0, 25 )
+custom_fonts/font = SubResource( 15 )
+text = "Press."
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Value" type="Label" parent="LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Pressure"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -62.0
+margin_top = -12.5
+margin_right = -4.0
+margin_bottom = 12.5
+grow_horizontal = 0
+rect_min_size = Vector2( 55, 25 )
+custom_fonts/font = SubResource( 15 )
+text = "200 kPa"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CompoundsPanel" type="NinePatchRect" parent="LeftPanels"]
+margin_top = 234.0
+margin_right = 253.0
+margin_bottom = 473.0
+rect_min_size = Vector2( 253, 239 )
+size_flags_horizontal = 0
+texture = ExtResource( 64 )
+patch_margin_left = 5
+patch_margin_top = 45
+patch_margin_right = 5
+patch_margin_bottom = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LeftPanels/CompoundsPanel"]
+margin_right = 252.0
+margin_bottom = 204.0
+rect_min_size = Vector2( 252, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Header" type="MarginContainer" parent="LeftPanels/CompoundsPanel/VBoxContainer"]
+margin_right = 252.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 230, 40 )
+custom_constants/margin_left = 45
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LeftPanels/CompoundsPanel/VBoxContainer/Header"]
+margin_left = 45.0
+margin_right = 252.0
+margin_bottom = 40.0
+custom_constants/separation = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
+margin_top = 9.0
+margin_right = 145.0
+margin_bottom = 31.0
+rect_min_size = Vector2( 145, 0 )
+custom_fonts/font = SubResource( 5 )
+text = "Compounds"
+
+[node name="MarginContainer3" type="MarginContainer" parent="LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
+margin_left = 151.0
+margin_right = 171.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 20, 20 )
+custom_constants/margin_top = 10
+custom_constants/margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CompoundExpandButton" type="Button" parent="LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer/MarginContainer3"]
+margin_top = 10.0
+margin_right = 20.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 20, 20 )
+focus_mode = 0
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/normal = SubResource( 8 )
+toggle_mode = true
+pressed = true
+action_mode = 0
+enabled_focus_mode = 0
+group = SubResource( 18 )
+
+[node name="MarginContainer4" type="MarginContainer" parent="LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
+margin_left = 177.0
+margin_right = 197.0
+margin_bottom = 40.0
+custom_constants/margin_top = 10
+custom_constants/margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CompoundCompressButton" type="Button" parent="LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer/MarginContainer4"]
+margin_top = 10.0
+margin_right = 20.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 20, 20 )
+focus_mode = 0
+custom_styles/hover = SubResource( 19 )
+custom_styles/pressed = SubResource( 20 )
+custom_styles/normal = SubResource( 21 )
+toggle_mode = true
+action_mode = 0
+enabled_focus_mode = 0
+group = SubResource( 18 )
+
+[node name="Body" type="MarginContainer" parent="LeftPanels/CompoundsPanel/VBoxContainer"]
+margin_top = 44.0
+margin_right = 252.0
+margin_bottom = 209.0
+custom_constants/margin_right = 10
+custom_constants/margin_top = 5
+custom_constants/margin_left = 22
+custom_constants/margin_bottom = 15
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BarContainer" type="GridContainer" parent="LeftPanels/CompoundsPanel/VBoxContainer/Body"]
+margin_left = 22.0
+margin_top = 5.0
+margin_right = 242.0
+margin_bottom = 150.0
+size_flags_horizontal = 0
+custom_constants/vseparation = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="glucose" type="ProgressBar" parent="LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer" groups=[
+"CompoundBar",
+]]
+show_behind_parent = true
+margin_right = 220.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 220, 25 )
+size_flags_horizontal = 0
+custom_styles/fg = SubResource( 22 )
+custom_styles/bg = SubResource( 23 )
+step = 0.1
+percent_visible = false
+
+[node name="AmmoniaIcon" type="TextureRect" parent="LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/glucose"]
+margin_left = -12.0
+margin_right = 13.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+texture = ExtResource( 38 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/glucose"]
+margin_left = 20.0
+margin_right = 81.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 0, 25 )
+custom_fonts/font = SubResource( 24 )
+text = "Glucose"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Value" type="Label" parent="LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/glucose"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -44.0
+margin_right = -4.0
+margin_bottom = 25.0
+grow_horizontal = 0
+rect_min_size = Vector2( 0, 25 )
+custom_fonts/font = SubResource( 24 )
+text = "0.0 / 4"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ammonia" type="ProgressBar" parent="LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer" groups=[
+"CompoundBar",
+]]
+show_behind_parent = true
+margin_top = 30.0
+margin_right = 220.0
+margin_bottom = 55.0
+rect_min_size = Vector2( 220, 25 )
+size_flags_horizontal = 0
+custom_styles/fg = SubResource( 25 )
+custom_styles/bg = SubResource( 23 )
+step = 0.1
+percent_visible = false
+
+[node name="AmmoniaIcon" type="TextureRect" parent="LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/ammonia"]
+margin_left = -12.0
+margin_right = 13.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+texture = ExtResource( 40 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/ammonia"]
+margin_left = 20.0
+margin_right = 81.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 0, 25 )
+custom_fonts/font = SubResource( 24 )
+text = "Ammonia"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Value" type="Label" parent="LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/ammonia"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -44.0
+margin_right = -4.0
+margin_bottom = 25.0
+grow_horizontal = 0
+rect_min_size = Vector2( 0, 25 )
+custom_fonts/font = SubResource( 24 )
+text = "0.0 / 4"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="phosphates" type="ProgressBar" parent="LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer" groups=[
+"CompoundBar",
+]]
+show_behind_parent = true
+margin_top = 60.0
+margin_right = 220.0
+margin_bottom = 85.0
+rect_min_size = Vector2( 220, 25 )
+size_flags_horizontal = 0
+custom_styles/fg = SubResource( 26 )
+custom_styles/bg = SubResource( 23 )
+step = 0.1
+percent_visible = false
+
+[node name="PhospateIcon" type="TextureRect" parent="LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/phosphates"]
+margin_left = -12.0
+margin_right = 13.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+texture = ExtResource( 25 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/phosphates"]
+margin_left = 20.0
+margin_right = 95.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 0, 25 )
+custom_fonts/font = SubResource( 24 )
+text = "Phosphate"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Value" type="Label" parent="LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/phosphates"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -44.0
+margin_right = -3.99998
+margin_bottom = 25.0
+grow_horizontal = 0
+rect_min_size = Vector2( 0, 25 )
+custom_fonts/font = SubResource( 24 )
+text = "0.0 / 4"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hydrogensulfide" type="ProgressBar" parent="LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer" groups=[
+"CompoundBar",
+]]
+show_behind_parent = true
+margin_top = 90.0
+margin_right = 220.0
+margin_bottom = 115.0
+rect_min_size = Vector2( 220, 25 )
+size_flags_horizontal = 0
+custom_styles/fg = SubResource( 27 )
+custom_styles/bg = SubResource( 23 )
+step = 0.1
+percent_visible = false
+
+[node name="HydrogenSulfideIcon" type="TextureRect" parent="LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/hydrogensulfide"]
+margin_left = -12.0
+margin_right = 13.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+texture = ExtResource( 30 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/hydrogensulfide"]
+margin_left = 20.0
+margin_right = 141.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 0, 25 )
+custom_fonts/font = SubResource( 24 )
+text = "Hydrogen Sulfide"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Value" type="Label" parent="LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/hydrogensulfide"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -44.0
+margin_right = -3.99998
+margin_bottom = 25.0
+grow_horizontal = 0
+rect_min_size = Vector2( 0, 25 )
+custom_fonts/font = SubResource( 24 )
+text = "0.0 / 4"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="iron" type="ProgressBar" parent="LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer" groups=[
+"CompoundBar",
+]]
+show_behind_parent = true
+margin_top = 120.0
+margin_right = 220.0
+margin_bottom = 145.0
+rect_min_size = Vector2( 220, 25 )
+size_flags_horizontal = 0
+custom_styles/fg = SubResource( 28 )
+custom_styles/bg = SubResource( 23 )
+step = 0.1
+percent_visible = false
+
+[node name="IronIcon" type="TextureRect" parent="LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/iron"]
+margin_left = -12.0
+margin_right = 13.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+texture = ExtResource( 24 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/iron"]
+margin_left = 20.0
+margin_right = 47.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 0, 25 )
+custom_fonts/font = SubResource( 24 )
+text = "Iron"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Value" type="Label" parent="LeftPanels/CompoundsPanel/VBoxContainer/Body/BarContainer/iron"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -44.0
+margin_right = -3.99998
+margin_bottom = 25.0
+grow_horizontal = 0
+rect_min_size = Vector2( 0, 25 )
+custom_fonts/font = SubResource( 24 )
+text = "0.0 / 4"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AgentsPanel" type="PanelContainer" parent="LeftPanels"]
+margin_top = 483.0
+margin_right = 252.0
+margin_bottom = 572.0
+rect_min_size = Vector2( 252, 89 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_styles/panel = SubResource( 29 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LeftPanels/AgentsPanel"]
+margin_right = 252.0
+margin_bottom = 89.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="LeftPanels/AgentsPanel/VBoxContainer"]
+margin_right = 252.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 230, 35 )
+custom_constants/margin_left = 40
+
+[node name="Label" type="Label" parent="LeftPanels/AgentsPanel/VBoxContainer/MarginContainer"]
+margin_left = 40.0
+margin_top = 6.0
+margin_right = 252.0
+margin_bottom = 28.0
+custom_fonts/font = SubResource( 5 )
+text = "Agents"
+
+[node name="MarginContainer2" type="MarginContainer" parent="LeftPanels/AgentsPanel/VBoxContainer"]
+margin_top = 39.0
+margin_right = 252.0
+margin_bottom = 89.0
+rect_min_size = Vector2( 240, 50 )
+custom_constants/margin_right = 10
+custom_constants/margin_top = 5
+custom_constants/margin_left = 22
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BarContainer" type="GridContainer" parent="LeftPanels/AgentsPanel/VBoxContainer/MarginContainer2"]
+margin_left = 22.0
+margin_top = 5.0
+margin_right = 242.0
+margin_bottom = 45.0
+
+[node name="oxytoxy" type="ProgressBar" parent="LeftPanels/AgentsPanel/VBoxContainer/MarginContainer2/BarContainer" groups=[
+"CompoundBar",
+]]
+margin_right = 220.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 220, 25 )
+size_flags_horizontal = 0
+custom_styles/fg = SubResource( 30 )
+custom_styles/bg = SubResource( 31 )
+step = 0.1
+percent_visible = false
+
+[node name="OxyToxyIcon" type="TextureRect" parent="LeftPanels/AgentsPanel/VBoxContainer/MarginContainer2/BarContainer/oxytoxy"]
+margin_left = -12.0
+margin_right = 13.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 51 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="LeftPanels/AgentsPanel/VBoxContainer/MarginContainer2/BarContainer/oxytoxy"]
+margin_left = 18.0
+margin_right = 97.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 0, 25 )
+custom_fonts/font = SubResource( 32 )
+text = "OxyToxy NT"
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Value" type="Label" parent="LeftPanels/AgentsPanel/VBoxContainer/MarginContainer2/BarContainer/oxytoxy"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -45.0
+margin_right = -4.99998
+margin_bottom = 25.0
+grow_horizontal = 0
+rect_min_size = Vector2( 0, 25 )
+custom_fonts/font = SubResource( 32 )
+text = "0.0 / 4"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelsTween" type="Tween" parent="LeftPanels"]
+
+[node name="BottomBar" type="HBoxContainer" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = -50.9999
+margin_right = 375.0
+margin_bottom = -7.99994
+rect_min_size = Vector2( 0, 35 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OpenMicrobeMenu" type="TextureButton" parent="BottomBar"]
+margin_right = 55.0
+margin_bottom = 43.0
+focus_mode = 0
+action_mode = 0
+enabled_focus_mode = 0
+texture_normal = ExtResource( 61 )
+texture_pressed = ExtResource( 37 )
+texture_hover = ExtResource( 14 )
+
+[node name="PauseButtonMargin" type="MarginContainer" parent="BottomBar"]
+margin_left = 59.0
+margin_right = 89.0
+margin_bottom = 43.0
+custom_constants/margin_top = 7
+custom_constants/margin_bottom = 0
+
+[node name="Pause" type="TextureButton" parent="BottomBar/PauseButtonMargin"]
+margin_top = 7.0
+margin_right = 30.0
+margin_bottom = 37.0
+focus_mode = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+toggle_mode = true
+action_mode = 0
+enabled_focus_mode = 0
+texture_normal = ExtResource( 28 )
+texture_pressed = ExtResource( 33 )
+texture_hover = ExtResource( 17 )
+
+[node name="Resume" type="TextureButton" parent="BottomBar/PauseButtonMargin"]
+visible = false
+margin_top = 7.0
+margin_right = 30.0
+margin_bottom = 37.0
+focus_mode = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+toggle_mode = true
+action_mode = 0
+enabled_focus_mode = 0
+texture_normal = ExtResource( 48 )
+texture_pressed = ExtResource( 48 )
+texture_hover = ExtResource( 49 )
+
+[node name="CompoundsButton" type="TextureButton" parent="BottomBar"]
+margin_left = 93.0
+margin_right = 135.0
+margin_bottom = 43.0
+focus_mode = 0
+toggle_mode = true
+pressed = true
+action_mode = 0
+enabled_focus_mode = 0
+texture_normal = ExtResource( 27 )
+texture_pressed = ExtResource( 34 )
+texture_hover = ExtResource( 31 )
+
+[node name="ChemicalButton" type="TextureButton" parent="BottomBar"]
+margin_left = 139.0
+margin_right = 181.0
+margin_bottom = 43.0
+focus_mode = 0
+disabled = true
+enabled_focus_mode = 0
+texture_normal = ExtResource( 26 )
+texture_pressed = ExtResource( 9 )
+texture_hover = ExtResource( 10 )
+
+[node name="StatisticsButton" type="TextureButton" parent="BottomBar"]
+margin_left = 185.0
+margin_right = 227.0
+margin_bottom = 43.0
+focus_mode = 0
+disabled = true
+enabled_focus_mode = 0
+texture_normal = ExtResource( 19 )
+texture_pressed = ExtResource( 21 )
+texture_hover = ExtResource( 18 )
+
+[node name="SearchButton" type="TextureButton" parent="BottomBar"]
+margin_left = 231.0
+margin_right = 273.0
+margin_bottom = 43.0
+focus_mode = 0
+disabled = true
+enabled_focus_mode = 0
+texture_normal = ExtResource( 70 )
+texture_pressed = ExtResource( 16 )
+texture_hover = ExtResource( 22 )
+
+[node name="QuestionMarkButton" type="TextureButton" parent="BottomBar"]
+margin_left = 277.0
+margin_right = 319.0
+margin_bottom = 43.0
+focus_mode = 0
+enabled_focus_mode = 0
+texture_normal = ExtResource( 60 )
+texture_pressed = ExtResource( 20 )
+texture_hover = ExtResource( 39 )
+
+[node name="SuicideButton" type="TextureButton" parent="BottomBar"]
+margin_left = 323.0
+margin_right = 365.0
+margin_bottom = 43.0
+focus_mode = 0
+action_mode = 0
+enabled_focus_mode = 0
+texture_normal = ExtResource( 32 )
+texture_pressed = ExtResource( 15 )
+texture_hover = ExtResource( 15 )
+
+[node name="HSeparator" type="HSeparator" parent="BottomBar"]
+margin_left = 369.0
+margin_right = 384.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 15, 0 )
+custom_styles/separator = SubResource( 33 )
+
+[node name="PatchLabel" type="Label" parent="BottomBar"]
+margin_left = 388.0
+margin_top = 8.0
+margin_right = 462.0
+margin_bottom = 35.0
+custom_fonts/font = SubResource( 34 )
+text = "Patch:"
+
+[node name="BottomRight" type="Control" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -340.0
+margin_top = -340.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PopulationData" type="HBoxContainer" parent="BottomRight"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 31.0
+margin_top = -133.135
+margin_right = 142.0
+margin_bottom = -115.135
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="BottomRight/PopulationData"]
+margin_right = 79.0
+margin_bottom = 18.0
+custom_styles/normal = SubResource( 35 )
+custom_fonts/font = SubResource( 36 )
+text = "POPULATION:"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Value" type="Label" parent="BottomRight/PopulationData"]
+margin_left = 83.0
+margin_right = 111.0
+margin_bottom = 18.0
+custom_styles/normal = SubResource( 35 )
+custom_fonts/font = SubResource( 36 )
+text = "100"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DataValue" type="PanelContainer" parent="BottomRight"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 30.0
+margin_top = -108.0
+margin_right = 117.0
+margin_bottom = -58.0
+custom_styles/panel = SubResource( 37 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Margin" type="MarginContainer" parent="BottomRight/DataValue"]
+margin_right = 87.0
+margin_bottom = 50.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 6
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 6
+
+[node name="VBox" type="VBoxContainer" parent="BottomRight/DataValue/Margin"]
+margin_left = 5.0
+margin_top = 6.0
+margin_right = 82.0
+margin_bottom = 44.0
+custom_constants/separation = 8
+
+[node name="HPValue" type="Label" parent="BottomRight/DataValue/Margin/VBox"]
+margin_right = 77.0
+margin_bottom = 15.0
+custom_fonts/font = SubResource( 38 )
+text = "Hitpoints"
+
+[node name="ATPValue" type="Label" parent="BottomRight/DataValue/Margin/VBox"]
+margin_top = 23.0
+margin_right = 77.0
+margin_bottom = 38.0
+custom_fonts/font = SubResource( 38 )
+text = "ATP"
+
+[node name="ATPBar" type="TextureProgress" parent="BottomRight" groups=[
+"MicrobeTextureHUDBar",
+]]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -101.282
+margin_top = -75.282
+margin_right = 158.718
+margin_bottom = 176.718
+step = 0.001
+value = 100.0
+texture_under = ExtResource( 41 )
+texture_progress = ExtResource( 52 )
+fill_mode = 4
+tint_under = Color( 0, 0, 0, 1 )
+radial_initial_angle = 248.0
+radial_fill_degrees = 111.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ATPIcon" type="TextureRect" parent="BottomRight/ATPBar"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -110.0
+margin_top = 54.0005
+margin_right = -90.0
+margin_bottom = 74.0005
+texture = ExtResource( 45 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthBar" type="TextureProgress" parent="BottomRight" groups=[
+"MicrobeTextureHUDBar",
+]]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -126.948
+margin_top = -101.615
+margin_right = 173.052
+margin_bottom = 198.385
+step = 0.1
+value = 100.0
+texture_under = ExtResource( 50 )
+texture_progress = ExtResource( 43 )
+fill_mode = 4
+tint_under = Color( 0, 0, 0, 1 )
+radial_initial_angle = 240.0
+radial_fill_degrees = 120.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HitpointIcon" type="TextureRect" parent="BottomRight/HealthBar"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -125.0
+margin_top = 80.0
+margin_right = -105.0
+margin_bottom = 100.0
+texture = ExtResource( 54 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EditorButton" type="TextureButton" parent="BottomRight"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -75.0
+margin_top = -50.0
+margin_right = 120.0
+margin_bottom = 145.0
+focus_mode = 0
+disabled = true
+enabled_focus_mode = 0
+texture_normal = ExtResource( 36 )
+texture_pressed = ExtResource( 12 )
+texture_hover = ExtResource( 12 )
+texture_disabled = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Highlight" type="TextureRect" parent="BottomRight/EditorButton"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Light2D" type="Light2D" parent="BottomRight/EditorButton/Highlight"]
+position = Vector2( 97.4353, 97.5359 )
+texture = ExtResource( 12 )
+
+[node name="ReproductionBar" type="Control" parent="BottomRight/EditorButton"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -97.5
+margin_top = -97.5
+margin_right = 97.5
+margin_bottom = 97.5
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BarBackground" type="TextureRect" parent="BottomRight/EditorButton/ReproductionBar"]
+modulate = Color( 0, 0, 0, 1 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -97.5
+margin_top = -97.5
+margin_right = 97.5
+margin_bottom = 97.5
+texture = ExtResource( 53 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AmmoniaReproductionBar" type="TextureProgress" parent="BottomRight/EditorButton/ReproductionBar" groups=[
+"MicrobeTextureHUDBar",
+]]
+margin_right = 195.0
+margin_bottom = 195.0
+step = 0.1
+texture_progress = ExtResource( 53 )
+fill_mode = 5
+tint_progress = Color( 1, 0.627451, 0.121569, 1 )
+radial_fill_degrees = 180.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PhosphateReproductionBar" type="TextureProgress" parent="BottomRight/EditorButton/ReproductionBar" groups=[
+"MicrobeTextureHUDBar",
+]]
+margin_right = 195.0
+margin_bottom = 195.0
+step = 0.1
+texture_progress = ExtResource( 53 )
+fill_mode = 5
+tint_progress = Color( 0.690196, 0.423529, 1, 1 )
+radial_initial_angle = 180.0
+radial_fill_degrees = 180.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AmmoniaIcon" type="TextureRect" parent="BottomRight/EditorButton/ReproductionBar"]
+margin_left = 85.0
+margin_top = 7.5
+margin_right = 110.0
+margin_bottom = 32.5
+texture = ExtResource( 62 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PhosphateIcon" type="TextureRect" parent="BottomRight/EditorButton/ReproductionBar"]
+margin_left = 85.0
+margin_top = 162.5
+margin_right = 110.0
+margin_bottom = 187.5
+texture = ExtResource( 66 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BottomRight/EditorButton"]
+anims/EditorButtonFlash = SubResource( 39 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+__meta__ = {
+"_editor_description_": "The pause menu is inside this CanvasLayer, to make sure the menu will always be on top of every other UIs"
+}
+
+[node name="PauseMenu" type="Control" parent="CanvasLayer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Overlay" type="ColorRect" parent="CanvasLayer/PauseMenu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.588235 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/PauseMenu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MicrobeStageMenu" type="VBoxContainer" parent="CanvasLayer/PauseMenu/CenterContainer"]
+margin_left = 515.0
+margin_top = 165.0
+margin_right = 765.0
+margin_bottom = 555.0
+theme = ExtResource( 7 )
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Resume" type="Button" parent="CanvasLayer/PauseMenu/CenterContainer/MicrobeStageMenu"]
+margin_right = 250.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 250, 40 )
+text = "Resume"
+
+[node name="SaveGame" type="Button" parent="CanvasLayer/PauseMenu/CenterContainer/MicrobeStageMenu"]
+margin_top = 50.0
+margin_right = 250.0
+margin_bottom = 90.0
+rect_min_size = Vector2( 250, 40 )
+disabled = true
+text = "Save Game"
+
+[node name="LoadGame" type="Button" parent="CanvasLayer/PauseMenu/CenterContainer/MicrobeStageMenu"]
+margin_top = 100.0
+margin_right = 250.0
+margin_bottom = 140.0
+rect_min_size = Vector2( 250, 40 )
+disabled = true
+text = "Load Game"
+
+[node name="Statistics" type="Button" parent="CanvasLayer/PauseMenu/CenterContainer/MicrobeStageMenu"]
+margin_top = 150.0
+margin_right = 250.0
+margin_bottom = 190.0
+rect_min_size = Vector2( 250, 40 )
+disabled = true
+text = "Statistics"
+
+[node name="Help" type="Button" parent="CanvasLayer/PauseMenu/CenterContainer/MicrobeStageMenu"]
+margin_top = 200.0
+margin_right = 250.0
+margin_bottom = 240.0
+rect_min_size = Vector2( 250, 40 )
+text = "Help"
+
+[node name="Options" type="Button" parent="CanvasLayer/PauseMenu/CenterContainer/MicrobeStageMenu"]
+margin_top = 250.0
+margin_right = 250.0
+margin_bottom = 290.0
+rect_min_size = Vector2( 250, 40 )
+disabled = true
+text = "Options"
+
+[node name="ReturnToMenu" type="Button" parent="CanvasLayer/PauseMenu/CenterContainer/MicrobeStageMenu"]
+margin_top = 300.0
+margin_right = 250.0
+margin_bottom = 340.0
+rect_min_size = Vector2( 250, 40 )
+text = "Return to Menu"
+
+[node name="Exit" type="Button" parent="CanvasLayer/PauseMenu/CenterContainer/MicrobeStageMenu"]
+margin_top = 350.0
+margin_right = 250.0
+margin_bottom = 390.0
+rect_min_size = Vector2( 250, 40 )
+text = "Exit"
+
+[node name="HelpScreen" parent="CanvasLayer" instance=ExtResource( 6 )]
+Category = "MicrobeStage"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/HideLeftPanels = SubResource( 40 )
+anims/ShowLeftPanels = SubResource( 41 )
+[connection signal="pressed" from="LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/MarginContainer4/EnvironmentExpandButton" to="." method="ResizeEnvironmentPanel" binds= [ "expand" ]]
+[connection signal="pressed" from="LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/MarginContainer3/EnvironmentCompressButton" to="." method="ResizeEnvironmentPanel" binds= [ "compress" ]]
+[connection signal="pressed" from="LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer/MarginContainer3/CompoundExpandButton" to="." method="ResizeCompoundPanel" binds= [ "expand" ]]
+[connection signal="pressed" from="LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer/MarginContainer4/CompoundCompressButton" to="." method="ResizeCompoundPanel" binds= [ "compress" ]]
+[connection signal="pressed" from="BottomBar/OpenMicrobeMenu" to="." method="OpenMicrobeStageMenuPressed"]
+[connection signal="pressed" from="BottomBar/PauseButtonMargin/Pause" to="." method="PauseButtonPressed"]
+[connection signal="pressed" from="BottomBar/PauseButtonMargin/Resume" to="." method="PauseButtonPressed"]
+[connection signal="pressed" from="BottomBar/CompoundsButton" to="." method="CompoundButtonPressed"]
+[connection signal="pressed" from="BottomBar/QuestionMarkButton" to="." method="ToggleHelpScreen"]
+[connection signal="pressed" from="BottomBar/SuicideButton" to="." method="OnSuicide"]
+[connection signal="pressed" from="BottomRight/EditorButton" to="." method="EditorButtonPressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/CenterContainer/MicrobeStageMenu/Resume" to="." method="OpenMicrobeStageMenuPressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/CenterContainer/MicrobeStageMenu/Help" to="." method="ToggleHelpScreen"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/CenterContainer/MicrobeStageMenu/ReturnToMenu" to="." method="ReturnToMenuPressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/CenterContainer/MicrobeStageMenu/Exit" to="." method="ExitPressed"]
+[connection signal="HelpScreenClosed" from="CanvasLayer/HelpScreen" to="." method="ToggleHelpScreen"]

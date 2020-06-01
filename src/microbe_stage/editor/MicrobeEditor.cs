@@ -350,6 +350,7 @@ public class MicrobeEditor : Node, ILoadableGameState
             SceneManager.Instance.AttachScene(ReturnToStage);
 
             ReturnToStage.OnFinishLoading(save.MicrobeEditor.ReturnToStage);
+            ReturnToStage.DestroyHUD();
 
             SceneManager.Instance.DetachScene(ReturnToStage);
         }
