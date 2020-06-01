@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
@@ -154,6 +155,7 @@ public class FloatingChunk : RigidBody, ISpawned
 
         var item = new ChunkConfiguration.ChunkScene
         { LoadedScene = GraphicsScene, ScenePath = GraphicsScene.ResourcePath };
+
         config.Meshes.Add(item);
 
         if (ContainedCompounds != null && ContainedCompounds.Compounds.Count > 0)
@@ -171,17 +173,8 @@ public class FloatingChunk : RigidBody, ISpawned
 
     public override void _Ready()
     {
-        if (GraphicsScene == null)
-        {
-            GD.PrintErr("FloatingChunk doesn't have GraphicsScene set");
-            return;
-        }
-
         if (compoundClouds == null)
-        {
-            GD.PrintErr("FloatingChunk hasn't have init called");
-            return;
-        }
+            throw new InvalidOperationException("init hasn't been called on a FloatingChunk");
 
         var graphicsNode = GraphicsScene.Instance();
         GetNode("NodeToScale").AddChild(graphicsNode);
@@ -194,6 +187,9 @@ public class FloatingChunk : RigidBody, ISpawned
         {
             chunkMesh = graphicsNode.GetNode<MeshInstance>(ModelNodePath);
         }
+
+        if (chunkMesh == null)
+            throw new InvalidOperationException("Can't make a chunk without graphics scene");
     }
 
     public override void _Process(float delta)
