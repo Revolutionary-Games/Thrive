@@ -14,6 +14,11 @@ public class TemporaryLoadedNodeDeleter : Node
 
     public static TemporaryLoadedNodeDeleter Instance => instance;
 
+    /// <summary>
+    ///   If true skips deleting things, used to apply saves in steps
+    /// </summary>
+    public bool HoldDeletion { get; set; } = false;
+
     public override void _Ready()
     {
         PauseMode = PauseModeEnum.Process;
@@ -34,6 +39,9 @@ public class TemporaryLoadedNodeDeleter : Node
 
     public override void _Process(float delta)
     {
+        if (HoldDeletion)
+            return;
+
         foreach (var node in nodesToDelete)
         {
             node.QueueFree();
