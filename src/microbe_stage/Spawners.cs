@@ -19,6 +19,12 @@ public static class Spawners
     public static ChunkSpawner MakeChunkSpawner(ChunkConfiguration chunkType,
         CompoundCloudSystem cloudSystem)
     {
+        foreach (var mesh in chunkType.Meshes)
+        {
+            if (mesh.LoadedScene == null)
+                throw new ArgumentException("configured chunk spawner has a mesh that has no scene loaded");
+        }
+
         return new ChunkSpawner(chunkType, cloudSystem);
     }
 
@@ -223,7 +229,10 @@ public static class SpawnHelpers
         var chunk = (FloatingChunk)chunkScene.Instance();
 
         // Settings need to be applied before adding it to the scene
-        chunk.GraphicsScene = chunkType.Meshes[random.Next(chunkType.Meshes.Count)].LoadedScene;
+        chunk.GraphicsScene = chunkType.Meshes.Random(random).LoadedScene;
+
+        if (chunk.GraphicsScene == null)
+            throw new ArgumentException("couldn't find a graphics scene for a chunk");
 
         // Pass on the chunk data
         chunk.Init(chunkType, cloudSystem, modelPath);

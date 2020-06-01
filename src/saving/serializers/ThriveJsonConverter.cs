@@ -392,6 +392,10 @@ public abstract class BaseThriveConverter : JsonConverter
         if (instance is Node converted)
             TemporaryLoadedNodeDeleter.Instance.Register(converted);
 
+        // TODO: these should be called after loading the whole object tree
+        if (instance is ISaveLoadable loadable)
+            loadable.FinishLoading(Context);
+
         return instance;
     }
 
