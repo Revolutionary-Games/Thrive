@@ -3,6 +3,7 @@ using Godot;
 /// <summary>
 ///   This is a shot agent projectile, does damage on hitting a cell of different species
 /// </summary>
+[JSONAlwaysDynamicType]
 public class AgentProjectile : RigidBody, ITimedLife
 {
     public float TimeToLiveRemaining { get; set; }
@@ -20,9 +21,8 @@ public class AgentProjectile : RigidBody, ITimedLife
 
     public void OnBodyEntered(Node body)
     {
-        if (body is Microbe)
+        if (body is Microbe microbe)
         {
-            var microbe = (Microbe)body;
             if (microbe.Species != Properties.Species)
             {
                 // If more stuff needs to be damaged we
@@ -31,8 +31,19 @@ public class AgentProjectile : RigidBody, ITimedLife
             }
         }
 
-        // GD.Print("Collision with " + body.Name);
         Destroy();
+    }
+
+    public void ApplyPropertiesFromSave(AgentProjectile projectile)
+    {
+        NodeGroupSaveHelper.CopyGroups(this, projectile);
+
+        TimeToLiveRemaining = projectile.TimeToLiveRemaining;
+        Amount = projectile.Amount;
+        Properties = projectile.Properties;
+        Transform = projectile.Transform;
+        LinearVelocity = projectile.LinearVelocity;
+        AngularVelocity = projectile.AngularVelocity;
     }
 
     private void Destroy()

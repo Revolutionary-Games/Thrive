@@ -1407,6 +1407,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="PanelsTween" type="Tween" parent="MicrobeHUD/LeftPanels"]
+
 [node name="BottomBar" type="HBoxContainer" parent="MicrobeHUD"]
 anchor_top = 1.0
 anchor_bottom = 1.0

@@ -6,8 +6,10 @@ using Newtonsoft.Json;
 /// <summary>
 ///   A list of positioned organelles. Verifies that they don't overlap
 /// </summary>
-public class OrganelleLayout<T> : IEnumerable<T>
+#pragma warning disable CA1710 // intentional naming
+public class OrganelleLayout<T> : ICollection<T>
     where T : class, IPositionedOrganelle
+#pragma warning restore CA1710
 {
     [JsonProperty]
     public readonly List<T> Organelles = new List<T>();
@@ -15,16 +17,22 @@ public class OrganelleLayout<T> : IEnumerable<T>
     private Action<T> onAdded;
     private Action<T> onRemoved;
 
-    public OrganelleLayout(Action<T> onAdded = null, Action<T> onRemoved = null)
+    public OrganelleLayout(Action<T> onAdded, Action<T> onRemoved = null)
     {
         this.onAdded = onAdded;
         this.onRemoved = onRemoved;
+    }
+
+    public OrganelleLayout()
+    {
     }
 
     /// <summary>
     ///   Number of contained organelles
     /// </summary>
     public int Count => Organelles.Count;
+
+    public bool IsReadOnly => false;
 
     /// <summary>
     ///   Access organelle by index
@@ -40,8 +48,7 @@ public class OrganelleLayout<T> : IEnumerable<T>
             throw new ArgumentException("organelle can't be placed at this location");
 
         Organelles.Add(organelle);
-        if (onAdded != null)
-            onAdded(organelle);
+        onAdded?.Invoke(organelle);
     }
 
     /// <summary>
@@ -138,6 +145,14 @@ public class OrganelleLayout<T> : IEnumerable<T>
         return Remove(organelle);
     }
 
+    public void CopyTo(T[] array, int arrayIndex)
+    {
+        foreach (var organelle in this)
+        {
+            array[arrayIndex++] = organelle;
+        }
+    }
+
     /// <summary>
     ///   Removes a previously placed organelle
     /// </summary>
@@ -155,12 +170,17 @@ public class OrganelleLayout<T> : IEnumerable<T>
     /// <summary>
     ///   Removes all organelles in this layout one by one
     /// </summary>
-    public void RemoveAll()
+    public void Clear()
     {
         while (Organelles.Count > 0)
         {
             Remove(Organelles[Organelles.Count - 1]);
         }
+    }
+
+    public bool Contains(T item)
+    {
+        return Organelles.Contains(item);
     }
 
     public override string ToString()

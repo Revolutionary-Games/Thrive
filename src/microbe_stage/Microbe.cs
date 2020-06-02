@@ -2,15 +2,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Main script on each cell in the game
 /// </summary>
+[JsonObject(IsReference = true)]
+[JSONAlwaysDynamicType]
 public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 {
     /// <summary>
     ///   The stored compounds in this microbe
     /// </summary>
+    [JsonProperty]
     public readonly CompoundBag Compounds = new CompoundBag(0.0f);
 
     /// <summary>
@@ -22,6 +26,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     ///   The direction the microbe wants to move. Doesn't need to be normalized
     /// </summary>
     public Vector3 MovementDirection = new Vector3(0, 0, 0);
+
+    private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
 
     private CompoundCloudSystem cloudSystem;
 
@@ -39,6 +45,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// <summary>
     ///   The organelles in this microbe
     /// </summary>
+    [JsonProperty]
     private OrganelleLayout<PlacedOrganelle> organelles;
 
     /// <summary>
@@ -57,9 +64,16 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     private Vector3 queuedMovementForce;
 
     // variables for engulfing
+    [JsonProperty]
     private bool engulfMode = false;
+
+    [JsonProperty]
     private bool previousEngulfMode = false;
+
+    [JsonProperty]
     private Microbe hostileEngulfer = null;
+
+    [JsonProperty]
     private bool wasBeingEngulfed = false;
 
     // private bool isCurrentlyEngulfing = false;
@@ -79,6 +93,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// </summary>
     private HashSet<Microbe> attemptingToEngulf = new HashSet<Microbe>();
 
+    [JsonProperty]
     private float lastCheckedATPDamage = 0.0f;
 
     /// <summary>
@@ -89,19 +104,26 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// </summary>
     private float organellesCapacity = 0.0f;
 
+    [JsonProperty]
     private float escapeInterval = 0;
+
+    [JsonProperty]
     private bool hasEscaped = false;
 
     /// <summary>
     ///   Controls for how long the flashColour is held before going
     ///   back to species colour.
     /// </summary>
+    [JsonProperty]
     private float flashDuration = 0;
 
+    [JsonProperty]
     private Color flashColour = new Color(0, 0, 0, 0);
 
+    [JsonProperty]
     private bool allOrganellesDivided = false;
 
+    [JsonProperty]
     private MicrobeAI ai;
 
     private PackedScene cellBurstEffectScene;
@@ -110,38 +132,48 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// <summary>
     ///   The membrane of this Microbe. Used for grabbing radius / points from this.
     /// </summary>
+    [JsonIgnore]
     public Membrane Membrane { get; private set; }
 
     /// <summary>
     ///   The species of this microbe
     /// </summary>
+    [JsonProperty]
     public MicrobeSpecies Species { get; private set; }
 
     /// <summary>
     ///    True when this is the player's microbe
     /// </summary>
+    [JsonProperty]
     public bool IsPlayerMicrobe { get; private set; }
 
     /// <summary>
     ///   True only when this cell has been killed to let know things
     ///   being engulfed by us that we are dead.
     /// </summary>
+    [JsonProperty]
     public bool Dead { get; private set; } = false;
 
+    [JsonProperty]
     public float Hitpoints { get; private set; } = Constants.DEFAULT_HEALTH;
+
+    [JsonProperty]
     public float MaxHitpoints { get; private set; } = Constants.DEFAULT_HEALTH;
 
     /// <summary>
     ///   The number of agent vacuoles. Determines the time between
     ///   toxin shots.
     /// </summary>
+    [JsonIgnore]
     public int AgentVacuoleCount { get; private set; } = 0;
 
+    [JsonProperty]
     public bool IsBeingEngulfed { get; private set; } = false;
 
     /// <summary>
     ///   Multiplied on the movement speed of the microbe.
     /// </summary>
+    [JsonProperty]
     public float MovementFactor { get; private set; } = 1.0f;
 
     /// <summary>
@@ -152,12 +184,14 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     ///     Prefer setting this instead of directly setting the private variable.
     ///   </para>
     /// </remarks>
+    [JsonIgnore]
     public bool EngulfMode
     {
         get { return engulfMode; }
         set { engulfMode = value; }
     }
 
+    [JsonIgnore]
     public int HexCount
     {
         get
@@ -172,6 +206,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// <summary>
     ///   The size this microbe is for engulfing calculations
     /// </summary>
+    [JsonIgnore]
     public float EngulfSize
     {
         get
@@ -187,6 +222,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         }
     }
 
+    [JsonIgnore]
     public float Radius
     {
         get
@@ -203,15 +239,19 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// <summary>
     ///   All organelle nodes need to be added to this node to make scale work
     /// </summary>
+    [JsonIgnore]
     public Spatial OrganelleParent { get; private set; }
 
+    [JsonProperty]
     public int DespawnRadiusSqr { get; set; }
 
+    [JsonIgnore]
     public Node SpawnedNode
     {
         get { return this; }
     }
 
+    [JsonIgnore]
     public List<TweakedProcess> ActiveProcesses
     {
         get
@@ -222,6 +262,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         }
     }
 
+    [JsonIgnore]
     public CompoundBag ProcessCompoundStorage
     {
         get { return Compounds; }
@@ -230,34 +271,40 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// <summary>
     ///   For checking if the player is in freebuild mode or not
     /// </summary>
+    [JsonProperty]
     public GameProperties CurrentGame { get; private set; }
 
     /// <summary>
     ///   Needs access to the world for population changes
     /// </summary>
+    [JsonIgnore]
     public GameWorld GameWorld
     {
         get { return CurrentGame.GameWorld; }
     }
 
+    [JsonProperty]
     public float TimeUntilNextAIUpdate { get; set; } = 0;
 
     /// <summary>
     ///   For use by the AI to do run and tumble to find compounds
     /// </summary>
-    public Dictionary<string, float> TotalAbsorbedCompounds { get; set; } =
-        new Dictionary<string, float>();
+    [JsonProperty]
+    public Dictionary<Compound, float> TotalAbsorbedCompounds { get; set; } = new Dictionary<Compound, float>();
 
+    [JsonProperty]
     public float AgentEmissionCooldown { get; private set; } = 0.0f;
 
     /// <summary>
     ///   Called when this Microbe dies
     /// </summary>
+    [JsonIgnore]
     public Action<Microbe> OnDeath { get; set; }
 
     /// <summary>
     ///   Called when the reproduction status of this microbe changes
     /// </summary>
+    [JsonIgnore]
     public Action<Microbe, bool> OnReproductionStatus { get; set; }
 
     /// <summary>
@@ -359,7 +406,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         else
         {
             // Just clear the existing ones
-            organelles.RemoveAll();
+            organelles.Clear();
         }
 
         foreach (var entry in Species.Organelles.Organelles)
@@ -600,14 +647,14 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         }
 
         // Eject the compounds that was in the microbe
-        var compoundsToRelease = new Dictionary<string, float>();
+        var compoundsToRelease = new Dictionary<Compound, float>();
 
         foreach (var type in SimulationParameters.Instance.GetCloudCompounds())
         {
             var amount = Compounds.GetCompoundAmount(type) *
                 Constants.COMPOUND_RELEASE_PERCENTAGE;
 
-            compoundsToRelease[type.InternalName] = amount;
+            compoundsToRelease[type] = amount;
         }
 
         // Eject some part of the build cost of all the organelles
@@ -637,7 +684,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             var positionAdded = new Vector3(random.Next(-2.0f, 2.0f), 0,
                 random.Next(-2.0f, 2.0f));
 
-            var chunkType = new Biome.ChunkConfiguration
+            var chunkType = new ChunkConfiguration
             {
                 ChunkScale = 1.0f,
                 Dissolves = true,
@@ -647,14 +694,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
                 VentAmount = 0.1f,
 
                 // Add compounds
-                Compounds = new Dictionary<string,
-                    Biome.ChunkConfiguration.ChunkCompound>(),
+                Compounds = new Dictionary<Compound, ChunkConfiguration.ChunkCompound>(),
             };
 
             // They were added in order already so looping through this other thing is fine
             foreach (var entry in compoundsToRelease)
             {
-                var compoundValue = new Biome.ChunkConfiguration.ChunkCompound
+                var compoundValue = new ChunkConfiguration.ChunkCompound
                 {
                     // Randomize compound amount a bit so things "rot away"
                     Amount = (entry.Value / random.Next(amount / 3.0f, amount)) *
@@ -664,9 +710,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
                 chunkType.Compounds[entry.Key] = compoundValue;
             }
 
-            chunkType.Meshes = new List<Biome.ChunkConfiguration.ChunkScene>();
+            chunkType.Meshes = new List<ChunkConfiguration.ChunkScene>();
 
-            var sceneToUse = new Biome.ChunkConfiguration.ChunkScene();
+            var sceneToUse = new ChunkConfiguration.ChunkScene();
 
             // The node path to the organelle's model/mesh if there is any
             string modelNodePath = null;
@@ -761,7 +807,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         // Remove the compounds from the created cell
         copyEntity.Compounds.ClearCompounds();
 
-        var keys = new List<string>(Compounds.Compounds.Keys);
+        var keys = new List<Compound>(Compounds.Compounds.Keys);
 
         // Split the compounds evenly between the two cells.
         foreach (var compound in keys)
@@ -800,8 +846,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     ///   Calculates the reproduction progress for a cell, used to
     ///   show how close the player is getting to the editor.
     /// </summary>
-    public float CalculateReproductionProgress(out Dictionary<string, float> gatheredCompounds,
-        out Dictionary<string, float> totalCompounds)
+    public float CalculateReproductionProgress(out Dictionary<Compound, float> gatheredCompounds,
+        out Dictionary<Compound, float> totalCompounds)
     {
         // Calculate total compounds needed to split all organelles
         totalCompounds = CalculateTotalCompounds();
@@ -810,7 +856,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         gatheredCompounds = CalculateAlreadyAbsorbedCompounds();
 
         // Add the currently held compounds
-        var keys = new List<string>(gatheredCompounds.Keys);
+        var keys = new List<Compound>(gatheredCompounds.Keys);
 
         foreach (var key in keys)
         {
@@ -847,9 +893,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     ///   Calculates total compounds needed for a cell to reproduce,
     /// used by calculateReproductionProgress to calculate the
     /// fraction done.  </summary>
-    public Dictionary<string, float> CalculateTotalCompounds()
+    public Dictionary<Compound, float> CalculateTotalCompounds()
     {
-        var result = new Dictionary<string, float>();
+        var result = new Dictionary<Compound, float>();
 
         foreach (var organelle in organelles)
         {
@@ -865,9 +911,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// <summary>
     ///   Calculates how much compounds organelles have already absorbed
     /// </summary>
-    public Dictionary<string, float> CalculateAlreadyAbsorbedCompounds()
+    public Dictionary<Compound, float> CalculateAlreadyAbsorbedCompounds()
     {
-        var result = new Dictionary<string, float>();
+        var result = new Dictionary<Compound, float>();
 
         foreach (var organelle in organelles)
         {
@@ -999,6 +1045,35 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         state.Transform = GetNewPhysicsRotation(state.Transform);
     }
 
+    public void ApplyPropertiesFromSave(Microbe microbe)
+    {
+        SaveApplyHelper.CopyJSONSavedPropertiesAndFields(this, microbe, new List<string>()
+        {
+            "organelles",
+        });
+
+        NodeGroupSaveHelper.CopyGroups(this, microbe);
+
+        organelles.Clear();
+
+        while (microbe.organelles.Count > 0)
+        {
+            // Steal the organelles from the other microbe which will be destroyed anyway once the save is fully loaded
+            var organelle = microbe.organelles[0];
+            microbe.organelles.Remove(organelle);
+
+            // Though we don't want them to be actually disposed
+            if (TemporaryLoadedNodeDeleter.Instance.Release(organelle) != organelle)
+                throw new Exception("failed to remove a loaded organelle from being released");
+
+            organelles.Add(organelle);
+        }
+
+        // TODO: fix existing references in the microbe AI
+        // For now we just cause amnesia on the cell's AI
+        ai?.ClearAfterLoadedFromSave(this);
+    }
+
     internal void SuccessfulScavenge()
     {
         GameWorld.AlterSpeciesPopulation(Species,
@@ -1100,7 +1175,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     {
         if (Hitpoints < MaxHitpoints)
         {
-            if (Compounds.GetCompoundAmount("atp") >= 1.0f)
+            if (Compounds.GetCompoundAmount(atp) >= 1.0f)
             {
                 Hitpoints += Constants.REGENERATION_RATE * delta;
                 if (Hitpoints > MaxHitpoints)
@@ -1324,7 +1399,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             // Drain atp
             var cost = Constants.ENGULFING_ATP_COST_SECOND * delta;
 
-            if (Compounds.TakeCompound("atp", cost) < cost - 0.001f)
+            if (Compounds.TakeCompound(atp, cost) < cost - 0.001f)
             {
                 EngulfMode = false;
             }
@@ -1487,7 +1562,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         var osmoregulationCost = (HexCount * Species.MembraneType.OsmoregulationFactor *
             Constants.ATP_COST_FOR_OSMOREGULATION) * delta;
 
-        Compounds.TakeCompound("atp", osmoregulationCost);
+        Compounds.TakeCompound(atp, osmoregulationCost);
     }
 
     /// <summary>
@@ -1495,7 +1570,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// </summary>
     private void ApplyATPDamage()
     {
-        if (Compounds.GetCompoundAmount("atp") <= 0.0f)
+        if (Compounds.GetCompoundAmount(atp) <= 0.0f)
         {
             // TODO: put this on a GUI notification.
             // if(microbeComponent.isPlayerMicrobe and not this.playerAlreadyShownAtpDamage){
@@ -1551,7 +1626,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     {
         var cost = (Constants.BASE_MOVEMENT_ATP_COST * HexCount) * delta;
 
-        var got = Compounds.TakeCompound("atp", cost);
+        var got = Compounds.TakeCompound(atp, cost);
 
         float force = Constants.CELL_BASE_THRUST;
 

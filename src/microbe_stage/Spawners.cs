@@ -16,9 +16,15 @@ public static class Spawners
         return new MicrobeSpawner(species, cloudSystem, currentGame);
     }
 
-    public static ChunkSpawner MakeChunkSpawner(Biome.ChunkConfiguration chunkType,
+    public static ChunkSpawner MakeChunkSpawner(ChunkConfiguration chunkType,
         CompoundCloudSystem cloudSystem)
     {
+        foreach (var mesh in chunkType.Meshes)
+        {
+            if (mesh.LoadedScene == null)
+                throw new ArgumentException("configured chunk spawner has a mesh that has no scene loaded");
+        }
+
         return new ChunkSpawner(chunkType, cloudSystem);
     }
 
@@ -216,14 +222,17 @@ public static class SpawnHelpers
         return GD.Load<PackedScene>("res://src/microbe_stage/Microbe.tscn");
     }
 
-    public static FloatingChunk SpawnChunk(Biome.ChunkConfiguration chunkType,
+    public static FloatingChunk SpawnChunk(ChunkConfiguration chunkType,
         Vector3 location, Node worldNode, PackedScene chunkScene,
         CompoundCloudSystem cloudSystem, Random random, string modelPath = null)
     {
         var chunk = (FloatingChunk)chunkScene.Instance();
 
         // Settings need to be applied before adding it to the scene
-        chunk.GraphicsScene = chunkType.Meshes[random.Next(chunkType.Meshes.Count)].LoadedScene;
+        chunk.GraphicsScene = chunkType.Meshes.Random(random).LoadedScene;
+
+        if (chunk.GraphicsScene == null)
+            throw new ArgumentException("couldn't find a graphics scene for a chunk");
 
         // Pass on the chunk data
         chunk.Init(chunkType, cloudSystem, modelPath);
@@ -264,7 +273,7 @@ public static class SpawnHelpers
     /// <summary>
     ///   Spawns an agent projectile
     /// </summary>
-    public static void SpawnAgent(AgentProperties properties, float amount,
+    public static AgentProjectile SpawnAgent(AgentProperties properties, float amount,
         float lifetime, Vector3 location, Vector3 direction,
         Node worldRoot, PackedScene agentScene, Node emitter)
     {
@@ -286,6 +295,7 @@ public static class SpawnHelpers
             Constants.AGENT_EMISSION_IMPULSE_STRENGTH);
 
         agent.AddToGroup(Constants.TIMED_GROUP);
+        return agent;
     }
 
     public static PackedScene LoadAgentScene()
@@ -366,11 +376,11 @@ public class CompoundCloudSpawner : ISpawner
 public class ChunkSpawner : ISpawner
 {
     private readonly PackedScene chunkScene;
-    private readonly Biome.ChunkConfiguration chunkType;
+    private readonly ChunkConfiguration chunkType;
     private readonly Random random = new Random();
     private readonly CompoundCloudSystem cloudSystem;
 
-    public ChunkSpawner(Biome.ChunkConfiguration chunkType, CompoundCloudSystem cloudSystem)
+    public ChunkSpawner(ChunkConfiguration chunkType, CompoundCloudSystem cloudSystem)
     {
         this.chunkType = chunkType;
         this.cloudSystem = cloudSystem;

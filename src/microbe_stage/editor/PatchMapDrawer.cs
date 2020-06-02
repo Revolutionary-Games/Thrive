@@ -160,7 +160,7 @@ public class PatchMapDrawer : Control
             node.RectSize = new Vector2(PatchNodeWidth, PatchNodeHeight);
 
             node.Patch = entry.Value;
-            node.PatchIcon = entry.Value.Biome.LoadedIcon;
+            node.PatchIcon = entry.Value.BiomeTemplate.LoadedIcon;
 
             node.SelectCallback = (clicked) =>
             {

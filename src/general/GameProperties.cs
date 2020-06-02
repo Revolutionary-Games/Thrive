@@ -1,14 +1,18 @@
 ﻿using System.Collections.Generic;
 using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   This contains the single game settings.
 ///   This is recreated when starting a new game
 /// </summary>
+[JsonObject(IsReference = true)]
 public class GameProperties
 {
-    private readonly Dictionary<string, bool> lockedOrganelles =
-        new Dictionary<string, bool>();
+    [JsonProperty]
+    private readonly Dictionary<string, bool> setBoolStatuses = new Dictionary<string, bool>();
+
+    [JsonProperty]
     private bool freeBuild = false;
 
     private GameProperties()
@@ -19,12 +23,14 @@ public class GameProperties
     /// <summary>
     ///   The world this game is played in. Has all the species and map data
     /// </summary>
+    [JsonProperty]
     public GameWorld GameWorld { get; private set; }
 
     /// <summary>
     ///   When true the player is in freebuild mode and various things
     ///   should be disabled / different.
     /// </summary>
+    [JsonIgnore]
     public bool FreeBuild
     {
         get
@@ -54,7 +60,7 @@ public class GameProperties
     /// </summary>
     public bool IsBoolSet(string key)
     {
-        return lockedOrganelles.ContainsKey(key) && lockedOrganelles[key];
+        return setBoolStatuses.ContainsKey(key) && setBoolStatuses[key];
     }
 
     /// <summary>
@@ -62,7 +68,7 @@ public class GameProperties
     /// </summary>
     public void SetBool(string key, bool value)
     {
-        lockedOrganelles[key] = value;
+        setBoolStatuses[key] = value;
     }
 
     /// <summary>

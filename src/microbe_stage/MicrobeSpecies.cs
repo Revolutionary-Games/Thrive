@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
@@ -6,6 +7,10 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Represents a microbial species with microbe stage specific species things.
 /// </summary>
+[JsonObject(IsReference = true)]
+[TypeConverter(typeof(ThriveTypeConverter))]
+[JSONDynamicTypeAllowedAttribute]
+[UseThriveConverter]
 public class MicrobeSpecies : Species
 {
     public bool IsBacteria = false;
@@ -25,7 +30,7 @@ public class MicrobeSpecies : Species
     {
         get
         {
-            return ToString();
+            return ThriveJsonConverter.Instance.SerializeObject(this);
         }
         set
         {
@@ -37,20 +42,20 @@ public class MicrobeSpecies : Species
     public void SetInitialCompoundsForDefault()
     {
         InitialCompounds.Clear();
-        InitialCompounds.Add("atp", 30);
-        InitialCompounds.Add("glucose", 10);
+        InitialCompounds.Add(SimulationParameters.Instance.GetCompound("atp"), 30);
+        InitialCompounds.Add(SimulationParameters.Instance.GetCompound("glucose"), 10);
     }
 
     public void SetInitialCompoundsForIron()
     {
         SetInitialCompoundsForDefault();
-        InitialCompounds.Add("iron", 10);
+        InitialCompounds.Add(SimulationParameters.Instance.GetCompound("iron"), 10);
     }
 
     public void SetInitialCompoundsForChemo()
     {
         SetInitialCompoundsForDefault();
-        InitialCompounds.Add("hydrogensulfide", 10);
+        InitialCompounds.Add(SimulationParameters.Instance.GetCompound("hydrogensulfide"), 10);
     }
 
     public void UpdateInitialCompounds()
@@ -82,7 +87,7 @@ public class MicrobeSpecies : Species
 
         var casted = (MicrobeSpecies)mutation;
 
-        Organelles.RemoveAll();
+        Organelles.Clear();
 
         foreach (var organelle in casted.Organelles)
         {
@@ -92,12 +97,6 @@ public class MicrobeSpecies : Species
         IsBacteria = casted.IsBacteria;
         MembraneType = casted.MembraneType;
         MembraneRigidity = casted.MembraneRigidity;
-    }
-
-    public override string ToString()
-    {
-        // TODO: custom serializer to store the membrane type by name
-        return JsonConvert.SerializeObject(this);
     }
 
     public override object Clone()

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   A container for patches that are joined together
@@ -9,6 +10,12 @@ using Godot;
 public class PatchMap
 {
     private Patch currentPatch = null;
+
+    /// <summary>
+    ///   The  list of patches. DO NOT MODIFY THE DICTIONARY FROM OUTSIDE THIS CLASS
+    /// </summary>
+    [JsonProperty]
+    public Dictionary<int, Patch> Patches { get; private set; } = new Dictionary<int, Patch>();
 
     /// <summary>
     ///   Currently active patch (the one player is in)
@@ -21,6 +28,13 @@ public class PatchMap
         }
         set
         {
+            // Allow setting to null to make loading work
+            if (value == null)
+            {
+                currentPatch = null;
+                return;
+            }
+
             // New patch must be part of this map
             if (!ContainsPatch(value))
                 throw new ArgumentException("cannot set current patch to one not in map");
@@ -28,11 +42,6 @@ public class PatchMap
             currentPatch = value;
         }
     }
-
-    /// <summary>
-    ///   The  list of patches. DO NOT MODIFY FROM OUTSIDE THIS CLASS
-    /// </summary>
-    public Dictionary<int, Patch> Patches { get; } = new Dictionary<int, Patch>();
 
     /// <summary>
     ///   Adds a new patch to the map. Throws if can't add

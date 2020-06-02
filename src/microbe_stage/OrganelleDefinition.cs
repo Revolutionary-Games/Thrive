@@ -101,7 +101,7 @@ public class OrganelleDefinition : IRegistryType
     ///   The compounds this organelle consists of (how many resources
     ///   are needed to duplicate this)
     /// </summary>
-    public Dictionary<string, float> InitialComposition;
+    public Dictionary<Compound, float> InitialComposition;
 
     /// <summary>
     ///   Cost of placing this organelle in the editor

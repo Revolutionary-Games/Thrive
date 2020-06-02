@@ -2,34 +2,41 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Object that stores compound amounts and capacities
 /// </summary>
-public class CompoundBag : IEnumerable<KeyValuePair<string, float>>
+public class CompoundBag : IEnumerable<KeyValuePair<Compound, float>>
 {
     /// <summary>
     ///   The max amount of any compound that can be stored
     /// </summary>
     public float Capacity;
 
-    private readonly HashSet<string> usefulCompounds = new HashSet<string>();
+    [JsonProperty]
+    private readonly HashSet<Compound> usefulCompounds = new HashSet<Compound>();
 
-    public CompoundBag(float initialCapacity)
+    /// <summary>
+    ///   Creates a new bag
+    /// </summary>
+    /// <param name="capacity">Specifies the initial capacity of the compound bag</param>
+    public CompoundBag(float capacity)
     {
-        Capacity = initialCapacity;
+        Capacity = capacity;
     }
 
     /// <summary>
     ///   Returns all compounds. Don't modify the returned value!
     ///   Except if you want to ignore capacity...
     /// </summary>
-    public Dictionary<string, float> Compounds { get; } = new Dictionary<string, float>();
+    [JsonProperty]
+    public Dictionary<Compound, float> Compounds { get; private set; } = new Dictionary<Compound, float>();
 
     /// <summary>
     ///   Returns the stored amount of the compound in this
     /// </summary>
-    public float GetCompoundAmount(string compound)
+    public float GetCompoundAmount(Compound compound)
     {
         if (Compounds.ContainsKey(compound))
             return Compounds[compound];
@@ -37,18 +44,10 @@ public class CompoundBag : IEnumerable<KeyValuePair<string, float>>
     }
 
     /// <summary>
-    ///   Variant taking Compound
-    /// </summary>
-    public float GetCompoundAmount(Compound compound)
-    {
-        return GetCompoundAmount(compound.InternalName);
-    }
-
-    /// <summary>
     ///   Takes some compound out of this bag. Returns the amount
     ///   taken, which can be less than the requested amount.
     /// </summary>
-    public float TakeCompound(string compound, float amount)
+    public float TakeCompound(Compound compound, float amount)
     {
         if (!Compounds.ContainsKey(compound) || amount <= 0.0f)
             return 0.0f;
@@ -60,18 +59,10 @@ public class CompoundBag : IEnumerable<KeyValuePair<string, float>>
     }
 
     /// <summary>
-    ///   Variant taking Compound
-    /// </summary>
-    public float TakeCompound(Compound compound, float amount)
-    {
-        return TakeCompound(compound.InternalName, amount);
-    }
-
-    /// <summary>
     ///   Adds some compound amount to this. Returns the amount that
     ///   didn't fit due to reached capacity.
     /// </summary>
-    public float AddCompound(string compound, float amount)
+    public float AddCompound(Compound compound, float amount)
     {
         if (amount <= 0.0f)
             return amount;
@@ -94,7 +85,7 @@ public class CompoundBag : IEnumerable<KeyValuePair<string, float>>
         }
     }
 
-    public IEnumerator<KeyValuePair<string, float>> GetEnumerator()
+    public IEnumerator<KeyValuePair<Compound, float>> GetEnumerator()
     {
         return Compounds.GetEnumerator();
     }
@@ -117,7 +108,7 @@ public class CompoundBag : IEnumerable<KeyValuePair<string, float>>
         usefulCompounds.Clear();
     }
 
-    public void SetUseful(string compound)
+    public void SetUseful(Compound compound)
     {
         usefulCompounds.Add(compound);
     }
@@ -139,10 +130,10 @@ public class CompoundBag : IEnumerable<KeyValuePair<string, float>>
             return true;
         }
 
-        return IsUseful(compound.InternalName);
+        return IsSpecificallySetUseful(compound);
     }
 
-    public bool IsUseful(string compound)
+    public bool IsSpecificallySetUseful(Compound compound)
     {
         return usefulCompounds.Contains(compound);
     }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Help texts from json.
@@ -14,6 +15,23 @@ public class HelpTexts : IRegistryType
     ///   Right side of the help texts
     /// </summary>
     public List<string> RightTexts;
+
+    /// <summary>
+    ///   Total help texts
+    /// </summary>
+    [JsonIgnore]
+    public List<string> Texts
+    {
+        get
+        {
+            var combined = new List<string>();
+
+            combined.AddRange(LeftTexts);
+            combined.AddRange(RightTexts);
+
+            return combined;
+        }
+    }
 
     public string InternalName { get; set; }
 
