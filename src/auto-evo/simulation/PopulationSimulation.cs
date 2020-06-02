@@ -10,6 +10,10 @@
     /// </summary>
     public static class PopulationSimulation
     {
+        private static readonly Compound Sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+        private static readonly Compound Glucose = SimulationParameters.Instance.GetCompound("glucose");
+        private static readonly Compound HydrogenSulfide = SimulationParameters.Instance.GetCompound("hydrogensulfide");
+
         public static void Simulate(SimulationConfiguration parameters)
         {
             var random = new Random();
@@ -129,9 +133,9 @@
 
             var biome = patch.Biome;
 
-            var sunlightInPatch = biome.Compounds["sunlight"].Dissolved * 100000;
-            var hydrogenSulfideInPatch = biome.Compounds["hydrogensulfide"].Density
-                * biome.Compounds["hydrogensulfide"].Amount * 1000;
+            var sunlightInPatch = biome.Compounds[Sunlight].Dissolved * 100000;
+            var hydrogenSulfideInPatch = biome.Compounds[HydrogenSulfide].Density
+                * biome.Compounds[HydrogenSulfide].Amount * 1000;
 
             // TODO: this is where the proper auto-evo algorithm goes
 
@@ -189,20 +193,15 @@
         {
             var photosynthesisScore = 0.0f;
 
-            var sunlight = SimulationParameters.Instance.GetCompound("sunlight");
-            var glucose = SimulationParameters.Instance.GetCompound("glucose");
-
             foreach (var organelle in species.Organelles)
             {
-                var processesDoneByOrganelle = organelle.Definition.RunnableProcesses;
-
-                foreach (var process in processesDoneByOrganelle)
+                foreach (var process in organelle.Definition.RunnableProcesses)
                 {
-                    if (process.Process.Inputs.ContainsKey(sunlight.InternalName)
-                        && process.Process.Outputs.ContainsKey(glucose.InternalName))
+                    if (process.Process.Inputs.ContainsKey(Sunlight)
+                        && process.Process.Outputs.ContainsKey(Glucose))
                     {
-                        photosynthesisScore += process.Process.Outputs[glucose.InternalName]
-                            / process.Process.Inputs[sunlight.InternalName];
+                        photosynthesisScore += process.Process.Outputs[Glucose]
+                            / process.Process.Inputs[Sunlight];
                     }
                 }
             }
@@ -228,20 +227,15 @@
         {
             var chemosynthesisScore = 0.0f;
 
-            var hydrogenSulfide = SimulationParameters.Instance.GetCompound("hydrogensulfide");
-            var glucose = SimulationParameters.Instance.GetCompound("glucose");
-
             foreach (var organelle in species.Organelles)
             {
-                var processesDoneByOrganelle = organelle.Definition.RunnableProcesses;
-
-                foreach (var process in processesDoneByOrganelle)
+                foreach (var process in organelle.Definition.RunnableProcesses)
                 {
-                    if (process.Process.Inputs.ContainsKey(hydrogenSulfide.InternalName)
-                        && process.Process.Outputs.ContainsKey(glucose.InternalName))
+                    if (process.Process.Inputs.ContainsKey(HydrogenSulfide)
+                        && process.Process.Outputs.ContainsKey(Glucose))
                     {
-                        chemosynthesisScore += process.Process.Outputs[glucose.InternalName]
-                            / process.Process.Inputs[hydrogenSulfide.InternalName];
+                        chemosynthesisScore += process.Process.Outputs[Glucose]
+                            / process.Process.Inputs[HydrogenSulfide];
                     }
                 }
             }
