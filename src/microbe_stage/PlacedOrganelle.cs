@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   An organelle that has been placed in a microbe.
 /// </summary>
-[JsonConverter(typeof(PlacedOrganelleConverter))]
+[JsonObject(IsReference = true)]
 public class PlacedOrganelle : Spatial, IPositionedOrganelle
 {
     [JsonIgnore]
@@ -27,7 +27,19 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     /// <summary>
     ///   The compounds still needed to divide. Initialized from Definition.InitialComposition
     /// </summary>
-    private Dictionary<string, float> compoundsLeft;
+    [JsonProperty]
+    private Dictionary<Compound, float> compoundsLeft;
+
+    public PlacedOrganelle(OrganelleDefinition definition, Hex position, int orientation)
+    {
+        Definition = definition;
+        Position = position;
+        Orientation = orientation;
+    }
+
+    public PlacedOrganelle()
+    {
+    }
 
     public OrganelleDefinition Definition { get; set; }
 
@@ -41,11 +53,13 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     /// <summary>
     ///   The graphics child node of this organelle
     /// </summary>
+    [JsonIgnore]
     public Spatial OrganelleGraphics { get; private set; }
 
     /// <summary>
     ///   Animation player this organelle has or null
     /// </summary>
+    [JsonIgnore]
     public AnimationPlayer OrganelleAnimation { get; private set; }
 
     /// <summary>
@@ -67,6 +81,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     /// <summary>
     ///   Value between 0 and 1 on how far along to splitting this organelle is
     /// </summary>
+    [JsonIgnore]
     public float GrowthValue
     {
         get
@@ -107,6 +122,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     ///   only after being added to a microbe and before being
     ///   removed.
     /// </summary>
+    [JsonIgnore]
     public float StorageCapacity
     {
         get
@@ -129,6 +145,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     ///   True if this is an agent vacuole. Number of agent vacuoles
     ///   determine how often a cell can shoot toxins.
     /// </summary>
+    [JsonIgnore]
     public bool IsAgentVacuole
     {
         get
@@ -295,7 +312,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     public void GrowOrganelle(CompoundBag compounds)
     {
         float totalTaken = 0;
-        var keys = new List<string>(compoundsLeft.Keys);
+        var keys = new List<Compound>(compoundsLeft.Keys);
 
         foreach (var key in keys)
         {
@@ -355,7 +372,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     ///   Calculates how much compounds this organelle has absorbed
     ///   already, adds to the dictionary
     /// </summary>
-    public float CalculateAbsorbedCompounds(Dictionary<string, float> result)
+    public float CalculateAbsorbedCompounds(Dictionary<Compound, float> result)
     {
         float totalAbsorbed = 0;
 
@@ -390,7 +407,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
         growthValueDirty = true;
 
         // Deep copy
-        compoundsLeft = new Dictionary<string, float>();
+        compoundsLeft = new Dictionary<Compound, float>();
 
         foreach (var entry in Definition.InitialComposition)
         {
@@ -494,71 +511,5 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
 
         // For some reason MathUtils.CreateRotationForOrganelle(Orientation) in the above transform doesn't work
         OrganelleGraphics.RotateY(Orientation * -60 * MathUtils.DEGREES_TO_RADIANS);
-    }
-}
-
-/// <summary>
-///   Custom serializer for PlacedOrganelle and OrganelleTemplate
-/// </summary>
-internal class PlacedOrganelleConverter : JsonConverter
-{
-    public override bool CanConvert(Type objectType)
-    {
-        return objectType == typeof(PlacedOrganelle) ||
-            objectType == typeof(OrganelleTemplate);
-    }
-
-    public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
-        JsonSerializer serializer)
-    {
-        // TODO: implement reading
-        throw new NotImplementedException();
-    }
-
-    public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
-    {
-        if (value == null)
-        {
-            serializer.Serialize(writer, null);
-            return;
-        }
-
-        // Get all properties
-        var properties = value.GetType().GetProperties().Where(
-            (p) => !p.CustomAttributes.Any(
-                (a) => a.AttributeType == typeof(JsonIgnoreAttribute)));
-
-        // And fields
-        var fields = value.GetType().GetFields().Where(
-            (p) => !p.CustomAttributes.Any(
-                (a) => a.AttributeType == typeof(JsonIgnoreAttribute)));
-
-        writer.WriteStartObject();
-
-        foreach (var property in properties)
-        {
-            writer.WritePropertyName(property.Name);
-
-            // Use default serializer on everything except Definition (definition is a field)
-            serializer.Serialize(writer, property.GetValue(value, null));
-        }
-
-        foreach (var field in fields)
-        {
-            writer.WritePropertyName(field.Name);
-
-            // Use default serializer on everything except Definition (definition is a field)
-            if (field.Name == "Definition")
-            {
-                serializer.Serialize(writer,
-                    ((OrganelleDefinition)field.GetValue(value)).InternalName);
-            }
-            else
-            {
-                serializer.Serialize(writer, field.GetValue(value));
-            }
-        }
-
-        writer.WriteEndObject();
     }
 }

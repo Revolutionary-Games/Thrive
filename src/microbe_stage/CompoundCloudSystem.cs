@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Manages spawning and processing compound clouds
 /// </summary>
 public class CompoundCloudSystem : Node
 {
+    [JsonProperty]
     private int neededCloudsAtOnePosition;
 
+    [JsonProperty]
     private List<CompoundCloudPlane> clouds = new List<CompoundCloudPlane>();
+
     private PackedScene cloudScene;
 
     private List<Compound> allCloudCompounds;
@@ -20,13 +24,16 @@ public class CompoundCloudSystem : Node
     ///   used for calculating which clouds to move when the player
     ///   moves.
     /// </summary>
+    [JsonProperty]
     private Vector3 cloudGridCenter;
 
+    [JsonProperty]
     private float elapsed = 0.0f;
 
     /// <summary>
     ///   The cloud resolution of the first cloud
     /// </summary>
+    [JsonIgnore]
     public int Resolution
     {
         get { return clouds[0].Resolution; }
@@ -130,27 +137,6 @@ public class CompoundCloudSystem : Node
     }
 
     /// <summary>
-    ///   AddCloud but taking compound name as I couldn't figure out a
-    ///   way to do this with generics.
-    /// </summary>
-    public bool AddCloud(string compound, float density, Vector3 worldPosition)
-    {
-        foreach (var cloud in clouds)
-        {
-            if (cloud.ContainsPosition(worldPosition, out int x, out int y))
-            {
-                if (!cloud.HandlesCompound(compound))
-                    continue;
-
-                cloud.AddCloud(compound, density, x, y);
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    /// <summary>
     ///   Takes compound at world position
     /// </summary>
     /// <param name="compound">The compound type to take</param>
@@ -199,9 +185,9 @@ public class CompoundCloudSystem : Node
     /// <summary>
     ///   Returns the total amount of all compounds at position
     /// </summary>
-    public Dictionary<string, float> GetAllAvailableAt(Vector3 worldPosition)
+    public Dictionary<Compound, float> GetAllAvailableAt(Vector3 worldPosition)
     {
-        var result = new Dictionary<string, float>();
+        var result = new Dictionary<Compound, float>();
 
         foreach (var cloud in clouds)
         {
@@ -224,7 +210,7 @@ public class CompoundCloudSystem : Node
     ///   </para>
     /// </remarks>
     public void AbsorbCompounds(Vector3 position, float radius, CompoundBag storage,
-        Dictionary<string, float> totals, float delta, float rate)
+        Dictionary<Compound, float> totals, float delta, float rate)
     {
         // It might be fine to remove this check but this was in the old code
         if (radius < 1.0f)
@@ -316,6 +302,23 @@ public class CompoundCloudSystem : Node
         {
             cloudGridCenter = targetCenter;
             PositionClouds();
+        }
+    }
+
+    public void ApplyPropertiesFromSave(CompoundCloudSystem compoundCloudSystem)
+    {
+        cloudGridCenter = compoundCloudSystem.cloudGridCenter;
+        elapsed = compoundCloudSystem.elapsed;
+
+        // Copy concentrations (and as well as the other cloud parameters that need to be set)
+        // TODO: allow saves to work if new compounds are added
+        if (clouds.Count != compoundCloudSystem.clouds.Count)
+            throw new Exception("Loading a save that has different compound cloud types doesn't currently work");
+
+        for (int i = 0; i < clouds.Count; ++i)
+        {
+            // TODO: it's not very nice to pass null as the context here
+            clouds[i].ApplySave(compoundCloudSystem.clouds[i], null);
         }
     }
 

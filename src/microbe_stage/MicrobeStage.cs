@@ -1,14 +1,22 @@
 using System;
+using System.CodeDom;
+using System.Collections.Generic;
+using System.Linq;
 using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Main class for managing the microbe stage
 /// </summary>
-public class MicrobeStage : Node
+[JsonObject(IsReference = true)]
+public class MicrobeStage : Node, ILoadableGameState
 {
     private Node world;
     private Node rootOfDynamicallySpawned;
+
+    [JsonProperty]
     private SpawnSystem spawner;
+
     private MicrobeAISystem microbeAISystem;
     private PatchManager patchManager;
 
@@ -17,41 +25,102 @@ public class MicrobeStage : Node
     /// <summary>
     ///   Used to differentiate between spawning the player and respawning
     /// </summary>
+    [JsonProperty]
     private bool spawnedPlayer = false;
 
     /// <summary>
     ///   True when the player is extinct
     /// </summary>
+    [JsonProperty]
     private bool gameOver = false;
 
+    [JsonProperty]
     private bool wonOnce = false;
 
+    [JsonProperty]
     private float playerRespawnTimer;
 
+    /// <summary>
+    ///   Game entities loaded from JSON that are to be recreated
+    /// </summary>
+    private List<Node> savedGameEntities;
+
+    [JsonProperty]
     public Microbe Player { get; private set; }
 
+    [JsonProperty]
     public MicrobeCamera Camera { get; private set; }
 
+    [JsonIgnore]
     public MicrobeHUD HUD { get; private set; }
 
+    [JsonProperty]
     public CompoundCloudSystem Clouds { get; private set; }
 
+    [JsonIgnore]
     public FluidSystem FluidSystem { get; private set; }
 
+    [JsonIgnore]
     public TimedLifeSystem TimedLifeSystem { get; private set; }
 
+    [JsonIgnore]
     public ProcessSystem ProcessSystem { get; private set; }
 
     /// <summary>
     ///   The main current game object holding various details
     /// </summary>
+    [JsonProperty]
     public GameProperties CurrentGame { get; set; }
 
+    [JsonIgnore]
     public GameWorld GameWorld
     {
         get
         {
             return CurrentGame.GameWorld;
+        }
+    }
+
+    public Node GameStateRoot => this;
+
+    public bool IsLoadedFromSave { get; set; }
+
+    public List<Node> SavedGameEntities
+    {
+        get
+        {
+            if (savedGameEntities != null)
+                return savedGameEntities;
+
+            var results = new List<Node>();
+
+            foreach (var node in rootOfDynamicallySpawned.GetChildren())
+            {
+                bool disposed = false;
+
+                var casted = (Spatial)node;
+
+                // Skip disposed exceptions
+                try
+                {
+                    if (casted.Transform.origin == Vector3.Zero)
+                    {
+                    }
+                }
+                catch (ObjectDisposedException)
+                {
+                    disposed = true;
+                }
+
+                if (!disposed)
+                    results.Add(casted);
+            }
+
+            return results;
+        }
+        set
+        {
+            savedGameEntities = value;
         }
     }
 
@@ -95,6 +164,9 @@ public class MicrobeStage : Node
         spawner.Init();
         Clouds.Init(FluidSystem);
 
+        if (IsLoadedFromSave)
+            return;
+
         if (CurrentGame == null)
         {
             StartNewGame();
@@ -105,13 +177,31 @@ public class MicrobeStage : Node
         StartMusic();
     }
 
+    public void OnFinishLoading(Save save)
+    {
+        OnFinishLoading(save.MicrobeStage);
+    }
+
+    public void OnFinishLoading(MicrobeStage stage)
+    {
+        ApplyPropertiesFromSave(stage);
+
+        RespawnEntitiesFromSave(stage);
+
+        CreatePatchManagerIfNeeded();
+
+        UpdatePatchSettings(true);
+
+        StartMusic();
+    }
+
     public void StartNewGame()
     {
         CurrentGame = GameProperties.StartNewMicrobeGame();
 
         CreatePatchManagerIfNeeded();
 
-        UpdatePatchSettings();
+        UpdatePatchSettings(false);
 
         SpawnPlayer();
         Camera.ResetHeight();
@@ -220,6 +310,15 @@ public class MicrobeStage : Node
             GameWorld.IsAutoEvoFinished(true);
     }
 
+    public override void _Input(InputEvent @event)
+    {
+        if (@event.IsActionPressed("g_quick_save"))
+        {
+            GD.Print("quick saving microbe stage");
+            SaveHelper.QuickSave(this);
+        }
+    }
+
     /// <summary>
     ///   Switches to the editor
     /// </summary>
@@ -231,20 +330,23 @@ public class MicrobeStage : Node
             playerSpecies, Constants.PLAYER_REPRODUCTION_POPULATION_GAIN_CONSTANT,
             "player reproduced", false, Constants.PLAYER_REPRODUCTION_POPULATION_GAIN_COEFFICIENT);
 
-        var scene = GD.Load<PackedScene>("res://src/microbe_stage/editor/MicrobeEditor.tscn");
+        var scene = SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor);
 
         var editor = (MicrobeEditor)scene.Instance();
 
         editor.CurrentGame = CurrentGame;
         editor.ReturnToStage = this;
-        var parent = GetParent();
-        parent.RemoveChild(this);
-        parent.AddChild(editor);
+
+        // We don't free this here as the editor will return to this scene
+        if (SceneManager.Instance.SwitchToScene(editor, true) != this)
+        {
+            throw new Exception("failed to keep the current scene root");
+        }
     }
 
     public void ReturnToMenu()
     {
-        GUICommon.Instance.ReturnToMenu(this);
+        SceneManager.Instance.ReturnToMenu();
     }
 
     /// <summary>
@@ -252,7 +354,7 @@ public class MicrobeStage : Node
     /// </summary>
     public void OnReturnFromEditor()
     {
-        UpdatePatchSettings();
+        UpdatePatchSettings(false);
 
         // Now the editor increases the generation so we don't do that here anymore
 
@@ -279,12 +381,16 @@ public class MicrobeStage : Node
         HUD.HideReproductionDialog();
 
         StartMusic();
+
+        if (!CurrentGame.FreeBuild)
+            SaveHelper.AutoSave(this);
     }
 
     private void CreatePatchManagerIfNeeded()
     {
         if (patchManager != null)
             return;
+
         patchManager = new PatchManager(spawner, ProcessSystem, Clouds, TimedLifeSystem,
             worldLight, CurrentGame);
     }
@@ -313,9 +419,9 @@ public class MicrobeStage : Node
         }
     }
 
-    private void UpdatePatchSettings()
+    private void UpdatePatchSettings(bool isLoading)
     {
-        patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch);
+        patchManager.ApplyChangedPatchSettingsIfNeeded(GameWorld.Map.CurrentPatch, !isLoading);
 
         HUD.UpdatePatchInfo(GameWorld.Map.CurrentPatch.Name);
         HUD.UpdateEnvironmentalBars(GameWorld.Map.CurrentPatch.Biome);
@@ -325,6 +431,87 @@ public class MicrobeStage : Node
 
     private void UpdateBackground()
     {
-        Camera.SetBackground(SimulationParameters.Instance.GetBackground(GameWorld.Map.CurrentPatch.Biome.Background));
+        Camera.SetBackground(SimulationParameters.Instance.GetBackground(
+            GameWorld.Map.CurrentPatch.BiomeTemplate.Background));
+    }
+
+    private void ApplyPropertiesFromSave(MicrobeStage savedMicrobeStage)
+    {
+        SaveApplyHelper.CopyJSONSavedPropertiesAndFields(this, savedMicrobeStage, new List<string>()
+        {
+            "spawner",
+            "Player",
+            "Camera",
+            "Clouds",
+        });
+
+        spawner.ApplyPropertiesFromSave(savedMicrobeStage.spawner);
+        Clouds.ApplyPropertiesFromSave(savedMicrobeStage.Clouds);
+        Camera.ApplyPropertiesFromSave(savedMicrobeStage.Camera);
+    }
+
+    private void RespawnEntitiesFromSave(MicrobeStage savedMicrobeStage)
+    {
+        if (savedMicrobeStage.Player != null && !savedMicrobeStage.Player.Dead)
+        {
+            SpawnPlayer();
+            Player.ApplyPropertiesFromSave(savedMicrobeStage.Player);
+        }
+
+        if (savedGameEntities == null)
+        {
+            GD.PrintErr("Saved microbe stage contains no entities to load");
+            return;
+        }
+
+        var microbeScene = SpawnHelpers.LoadMicrobeScene();
+        var chunkScene = SpawnHelpers.LoadChunkScene();
+        var agentScene = SpawnHelpers.LoadAgentScene();
+
+        // This only should be used for things that get overridden anyway from the saved properties
+        var random = new Random();
+
+        foreach (var thing in savedGameEntities)
+        {
+            // Skip the player as it was already loaded
+            if (thing == savedMicrobeStage.Player)
+                continue;
+
+            switch (thing)
+            {
+                case Microbe casted:
+                {
+                    var spawned = SpawnHelpers.SpawnMicrobe(casted.Species, Vector3.Zero, rootOfDynamicallySpawned,
+                        microbeScene, !casted.IsPlayerMicrobe, Clouds, CurrentGame);
+                    spawned.ApplyPropertiesFromSave(casted);
+                    break;
+                }
+
+                case FloatingChunk casted:
+                {
+                    var spawned = SpawnHelpers.SpawnChunk(casted.CreateChunkConfigurationFromThis(),
+                        casted.Translation, rootOfDynamicallySpawned, chunkScene, Clouds, random);
+                    spawned.ApplyPropertiesFromSave(casted);
+                    break;
+                }
+
+                case AgentProjectile casted:
+                {
+                    var spawned = SpawnHelpers.SpawnAgent(casted.Properties, casted.Amount, casted.TimeToLiveRemaining,
+                        casted.Translation, Vector3.Forward, rootOfDynamicallySpawned, agentScene, null);
+                    spawned.ApplyPropertiesFromSave(casted);
+
+                    // TODO: mapping from old microbe to recreated microbe to set emitter here
+                    break;
+                }
+
+                default:
+                    GD.PrintErr("Unknown entity type to load from save: ", thing.GetType());
+                    break;
+            }
+        }
+
+        // Clear this to make saving again work
+        savedGameEntities = null;
     }
 }

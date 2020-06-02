@@ -169,8 +169,7 @@ def perform_export(target)
   success = false
 
   (1..attempts).each do |attempt|
-    system('godot', '--export', target, target_file)
-    if !$CHILD_STATUS.exitstatus.nil? && $CHILD_STATUS.exitstatus.zero?
+    if runOpen3('godot', '--export', target, target_file).success?
       success = true
       break
     end

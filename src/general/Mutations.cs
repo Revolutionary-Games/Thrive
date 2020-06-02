@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Generates mutations for species
@@ -25,6 +26,7 @@ public class Mutations
         "n", "p", "q", "s", "t", "v", "w", "x", "y", "z",
     };
 
+    [JsonProperty]
     private Random random = new Random();
 
     /// <summary>
@@ -188,7 +190,7 @@ public class Mutations
     {
         var nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
 
-        organelles.RemoveAll();
+        organelles.Clear();
 
         // Delete or replace an organelle randomly
         for (int i = 0; i < parentOrganelles.Count; i++)
