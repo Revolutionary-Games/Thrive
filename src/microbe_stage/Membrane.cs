@@ -21,9 +21,9 @@ public class Membrane : MeshInstance
 
     private float healthFraction = 1.0f;
     private float wigglyNess = 1.0f;
-    private float sizeWigglyNessDampeningFactor = 0.1f;
+    private float sizeWigglyNessDampeningFactor = 0.22f;
     private float movementWigglyNess = 1.0f;
-    private float sizeMovementWigglyNessDampeningFactor = 0.1f;
+    private float sizeMovementWigglyNessDampeningFactor = 0.22f;
     private Color tint = new Color(1, 1, 1, 1);
     private float dissolveEffectValue = 0.0f;
 
