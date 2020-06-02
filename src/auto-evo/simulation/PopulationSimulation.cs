@@ -3,7 +3,6 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using Godot;
 
     /// <summary>
     ///   Main class for the population simulation part.
@@ -23,7 +22,7 @@
 
             while (parameters.StepsLeft > 0)
             {
-                RunSimulationStep(parameters, speciesToSimulate);
+                RunSimulationStep(parameters, speciesToSimulate, random);
                 --parameters.StepsLeft;
             }
         }
@@ -106,7 +105,7 @@
             return species;
         }
 
-        private static void RunSimulationStep(SimulationConfiguration parameters, List<Species> species)
+        private static void RunSimulationStep(SimulationConfiguration parameters, List<Species> species, Random random)
         {
             foreach (var entry in parameters.OriginalMap.Patches)
             {
