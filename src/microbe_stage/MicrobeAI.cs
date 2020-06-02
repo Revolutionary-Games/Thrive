@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   AI for a single Microbe. This is a separate class to contain all the AI status variables as well as make the
@@ -10,35 +11,58 @@ public class MicrobeAI
 {
     private readonly Compound atp;
     private readonly Compound iron;
-    private readonly Microbe microbe;
     private readonly Compound oxytoxy;
+
+    [JsonProperty]
+    private Microbe microbe;
+
+    [JsonProperty]
     private int boredom = 0;
+
+    [JsonIgnore]
     private List<FloatingChunk> chunkList = new List<FloatingChunk>();
 
+    [JsonProperty]
     private bool hasTargetPosition = false;
 
+    [JsonProperty]
     private LifeState lifeState = LifeState.NEUTRAL_STATE;
+    [JsonProperty]
     private bool moveFocused = false;
 
+    [JsonProperty]
     private float movementRadius = 2000;
 
+    [JsonProperty]
     private bool moveThisHunt = true;
+
+    // All of the game entities stored here are probable places where disposed objects come from
+    // so they are ignored for now
+    [JsonIgnore]
     private Microbe predator;
 
     // Prey and predator lists
+    [JsonIgnore]
     private List<Microbe> predatoryMicrobes = new List<Microbe>();
 
+    [JsonProperty]
     private float previousAngle = 0.0f;
 
+    [JsonIgnore]
     private Microbe prey;
+    [JsonIgnore]
     private List<Microbe> preyMicrobes = new List<Microbe>();
+    [JsonProperty]
     private bool preyPegged = false;
+    [JsonIgnore]
     private FloatingChunk targetChunk;
+    [JsonProperty]
     private Vector3 targetPosition = new Vector3(0, 0, 0);
 
     /// <summary>
     ///   TODO: change to be the elapsed time instead of AI update count
     /// </summary>
+    [JsonProperty]
     private float ticksSinceLastToggle = 600;
 
     public MicrobeAI(Microbe microbe)
@@ -251,6 +275,23 @@ public class MicrobeAI
 
         // Clear the absorbed compounds for run and rumble
         microbe.TotalAbsorbedCompounds.Clear();
+    }
+
+    /// <summary>
+    ///   Clears all the found targets. Currently used for loading from saves
+    /// </summary>
+    public void ClearAfterLoadedFromSave(Microbe newParent)
+    {
+        microbe = newParent;
+        chunkList?.Clear();
+        predator = null;
+        predatoryMicrobes.Clear();
+        prey = null;
+        preyMicrobes.Clear();
+        targetChunk = null;
+
+        // Probably should clear this
+        preyPegged = false;
     }
 
     // There are cases when we want either ||, so here's two state rolls

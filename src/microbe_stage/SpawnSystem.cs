@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Spawns AI cells and other environmental things as the player moves around
@@ -10,8 +11,10 @@ public class SpawnSystem
     /// <summary>
     ///   Sets how often the spawn system runs and checks things
     /// </summary>
+    [JsonProperty]
     private float interval = 1.0f;
 
+    [JsonProperty]
     private float elapsed = 0.0f;
 
     /// <summary>
@@ -21,24 +24,29 @@ public class SpawnSystem
 
     private List<ISpawner> spawnTypes = new List<ISpawner>();
 
+    [JsonProperty]
     private Vector3 previousPlayerPosition = new Vector3(0, 0, 0);
 
+    [JsonProperty]
     private Random random = new Random();
 
     /// <summary>
     ///   Delete a max of this many entities per step to reduce lag
     ///   from deleting tons of entities at once.
     /// </summary>
+    [JsonProperty]
     private int maxEntitiesToDeletePerStep = 2;
 
     /// <summary>
     ///   This limits the total number of things that can be spawned.
     /// </summary>
+    [JsonProperty]
     private int maxAliveEntities = 1000;
 
     /// <summary>
     ///   Max tries per spawner to avoid very high spawn densities lagging
     /// </summary>
+    [JsonProperty]
     private int maxTriesPerSpawner = 500;
 
     public SpawnSystem(Node root)
@@ -137,6 +145,11 @@ public class SpawnSystem
 
             previousPlayerPosition = playerPosition;
         }
+    }
+
+    public void ApplyPropertiesFromSave(SpawnSystem spawner)
+    {
+        SaveApplyHelper.CopyJSONSavedPropertiesAndFields(this, spawner);
     }
 
     private void SpawnEntities(Vector3 playerPosition, int existing)

@@ -1,9 +1,13 @@
+using System;
 using System.Collections.Generic;
 using Godot;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Script for the floating chunks (cell parts, rocks, hazards)
 /// </summary>
+[JsonObject(IsReference = true)]
+[JSONAlwaysDynamicType]
 public class FloatingChunk : RigidBody, ISpawned
 {
     [Export]
@@ -29,6 +33,7 @@ public class FloatingChunk : RigidBody, ISpawned
 
     public int DespawnRadiusSqr { get; set; }
 
+    [JsonIgnore]
     public Node SpawnedNode
     {
         get
@@ -67,6 +72,10 @@ public class FloatingChunk : RigidBody, ISpawned
     /// </summary>
     public bool DeleteOnTouch { get; set; } = false;
 
+    public float Radius { get; set; }
+
+    public float ChunkScale { get; set; }
+
     /// <summary>
     ///   Grabs data from the type to initialize this
     /// </summary>
@@ -75,7 +84,7 @@ public class FloatingChunk : RigidBody, ISpawned
     ///     Doesn't initialize the graphics scene which needs to be set separately
     ///   </para>
     /// </remarks>
-    public void Init(Biome.ChunkConfiguration chunkType, CompoundCloudSystem compoundClouds,
+    public void Init(ChunkConfiguration chunkType, CompoundCloudSystem compoundClouds,
         string modelPath = null)
     {
         this.compoundClouds = compoundClouds;
@@ -88,6 +97,10 @@ public class FloatingChunk : RigidBody, ISpawned
         DeleteOnTouch = chunkType.DeleteOnTouch;
 
         Mass = chunkType.Mass;
+
+        // These are stored for saves to work
+        Radius = chunkType.Radius;
+        ChunkScale = chunkType.ChunkScale;
 
         ModelNodePath = modelPath;
 
@@ -119,19 +132,49 @@ public class FloatingChunk : RigidBody, ISpawned
         }
     }
 
-    public override void _Ready()
+    /// <summary>
+    ///   Reverses the action of Init back to a ChunkConfiguration
+    /// </summary>
+    /// <returns>The reversed chunk configuration</returns>
+    public ChunkConfiguration CreateChunkConfigurationFromThis()
     {
-        if (GraphicsScene == null)
+        var config = default(ChunkConfiguration);
+
+        config.VentAmount = VentPerSecond;
+        config.Dissolves = Dissolves;
+        config.Size = Size;
+        config.Damages = Damages;
+        config.DeleteOnTouch = DeleteOnTouch;
+        config.Mass = Mass;
+
+        config.Radius = Radius;
+        config.ChunkScale = ChunkScale;
+
+        // Read graphics data set by the spawn function
+        config.Meshes = new List<ChunkConfiguration.ChunkScene>();
+
+        var item = new ChunkConfiguration.ChunkScene
+        { LoadedScene = GraphicsScene, ScenePath = GraphicsScene.ResourcePath };
+
+        config.Meshes.Add(item);
+
+        if (ContainedCompounds != null && ContainedCompounds.Compounds.Count > 0)
         {
-            GD.PrintErr("FloatingChunk doesn't have GraphicsScene set");
-            return;
+            config.Compounds = new Dictionary<Compound, ChunkConfiguration.ChunkCompound>();
+
+            foreach (var entry in ContainedCompounds)
+            {
+                config.Compounds.Add(entry.Key, new ChunkConfiguration.ChunkCompound() { Amount = entry.Value });
+            }
         }
 
+        return config;
+    }
+
+    public override void _Ready()
+    {
         if (compoundClouds == null)
-        {
-            GD.PrintErr("FloatingChunk hasn't have init called");
-            return;
-        }
+            throw new InvalidOperationException("init hasn't been called on a FloatingChunk");
 
         var graphicsNode = GraphicsScene.Instance();
         GetNode("NodeToScale").AddChild(graphicsNode);
@@ -144,6 +187,9 @@ public class FloatingChunk : RigidBody, ISpawned
         {
             chunkMesh = graphicsNode.GetNode<MeshInstance>(ModelNodePath);
         }
+
+        if (chunkMesh == null)
+            throw new InvalidOperationException("Can't make a chunk without graphics scene");
     }
 
     public override void _Process(float delta)
@@ -208,13 +254,36 @@ public class FloatingChunk : RigidBody, ISpawned
     }
 
     /// <summary>
+    ///   A bit on the lighter save properties copying,
+    ///   the spawn function used to create this needs to set some stuff beforehand
+    /// </summary>
+    public void ApplyPropertiesFromSave(FloatingChunk chunk)
+    {
+        NodeGroupSaveHelper.CopyGroups(this, chunk);
+
+        VentPerSecond = chunk.VentPerSecond;
+        Dissolves = chunk.Dissolves;
+        Size = chunk.Size;
+        Damages = chunk.Damages;
+        DeleteOnTouch = chunk.DeleteOnTouch;
+        Mass = chunk.Mass;
+        Radius = chunk.Radius;
+        ChunkScale = chunk.ChunkScale;
+
+        ContainedCompounds = chunk.ContainedCompounds;
+        Transform = chunk.Transform;
+        LinearVelocity = chunk.LinearVelocity;
+        AngularVelocity = chunk.AngularVelocity;
+    }
+
+    /// <summary>
     ///   Vents compounds if this is a chunk that contains compounds
     /// </summary>
     private void VentCompounds(float delta)
     {
         var pos = Translation;
 
-        var keys = new List<string>(ContainedCompounds.Compounds.Keys);
+        var keys = new List<Compound>(ContainedCompounds.Compounds.Keys);
 
         // Loop through all the compounds in the storage bag and eject them
         bool vented = false;
@@ -242,7 +311,7 @@ public class FloatingChunk : RigidBody, ISpawned
         }
     }
 
-    private void VentCompound(Vector3 pos, string compound, float amount)
+    private void VentCompound(Vector3 pos, Compound compound, float amount)
     {
         compoundClouds.AddCloud(
             compound, amount * Constants.CHUNK_VENT_COMPOUND_MULTIPLIER, pos);

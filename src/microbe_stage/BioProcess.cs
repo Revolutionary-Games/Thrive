@@ -13,9 +13,9 @@ public class BioProcess : IRegistryType
     /// <summary>
     ///   Inputs the process needs. The keys are compound names and values are amounts
     /// </summary>
-    public Dictionary<string, float> Inputs;
+    public Dictionary<Compound, float> Inputs;
 
-    public Dictionary<string, float> Outputs;
+    public Dictionary<Compound, float> Outputs;
 
     public string InternalName { get; set; }
 
