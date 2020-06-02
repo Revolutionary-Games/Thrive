@@ -183,7 +183,7 @@
                     * GetPredationScore(currentMicrobeSpecies) / totalPredationScore;
 
                 var newPopulation = (int)(speciesEnergies[currentMicrobeSpecies]
-                    / Math.Pow(currentMicrobeSpecies.Organelles.Count(), 1.3f));
+                    / Math.Pow(currentMicrobeSpecies.Organelles.Count, 1.3f));
 
                 populations.AddPopulationResultForSpecies(currentMicrobeSpecies, patch, newPopulation);
             }
