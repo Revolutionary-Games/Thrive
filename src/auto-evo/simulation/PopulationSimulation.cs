@@ -133,9 +133,11 @@
 
             var biome = patch.Biome;
 
-            var sunlightInPatch = biome.Compounds[Sunlight].Dissolved * 100000;
+            var sunlightInPatch = biome.Compounds[Sunlight].Dissolved * 10000;
             var hydrogenSulfideInPatch = biome.Compounds[HydrogenSulfide].Density
                 * biome.Compounds[HydrogenSulfide].Amount * 1000;
+            var glucoseInPatch = biome.Compounds[Glucose].Density
+                * biome.Compounds[Glucose].Amount * 1000;
 
             // TODO: this is where the proper auto-evo algorithm goes
 
@@ -170,6 +172,9 @@
 
                 currentSpeciesEnergy += hydrogenSulfideInPatch
                     * GetChemosynthesisScore(currentMicrobeSpecies) / totalChemosynthesisScore;
+
+                currentSpeciesEnergy += glucoseInPatch
+                    * 1 / species.Count;
 
                 energyAvailableForPredation += 0.5f * currentSpeciesEnergy;
                 speciesEnergies.Add(currentMicrobeSpecies, currentSpeciesEnergy);
