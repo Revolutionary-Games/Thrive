@@ -195,6 +195,6 @@ public class PlayerMicrobeInput : Node
     private void SpawnCheatCloud(string name, float delta)
     {
         stage.Clouds.AddCloud(SimulationParameters.Instance.GetCompound(name),
-            8000.0f * delta, stage.Camera.CursorWorldPos);
+            32000.0f * delta, stage.Camera.CursorWorldPos);
     }
 }
