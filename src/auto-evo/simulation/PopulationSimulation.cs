@@ -177,37 +177,37 @@
             // Calculate the share of environmental energy captured by each species
             var energyAvailableForPredation = 0.0f;
 
-            foreach (MicrobeSpecies currentMicrobeSpecies in species)
+            foreach (MicrobeSpecies currentSpecies in species)
             {
                 var currentSpeciesEnergy = 0.0f;
 
                 currentSpeciesEnergy += sunlightInPatch
-                    * GetCompoundUseScore(currentMicrobeSpecies, Sunlight) / totalPhotosynthesisScore;
+                    * GetCompoundUseScore(currentSpecies, Sunlight) / totalPhotosynthesisScore;
 
                 currentSpeciesEnergy += hydrogenSulfideInPatch
-                    * GetCompoundUseScore(currentMicrobeSpecies, HydrogenSulfide) / totalChemosynthesisScore;
+                    * GetCompoundUseScore(currentSpecies, HydrogenSulfide) / totalChemosynthesisScore;
 
                 currentSpeciesEnergy += ironInPatch
-                    * GetCompoundUseScore(currentMicrobeSpecies, Iron) / totalChemolithautotrophyScore;
+                    * GetCompoundUseScore(currentSpecies, Iron) / totalChemolithautotrophyScore;
 
                 currentSpeciesEnergy += glucoseInPatch
-                    * GetCompoundUseScore(currentMicrobeSpecies, Glucose) / totalGlucoseScore;
+                    * GetCompoundUseScore(currentSpecies, Glucose) / totalGlucoseScore;
 
                 energyAvailableForPredation += 0.5f * currentSpeciesEnergy;
-                speciesEnergies.Add(currentMicrobeSpecies, currentSpeciesEnergy);
+                speciesEnergies.Add(currentSpecies, currentSpeciesEnergy);
             }
 
             // Calculate the share of predation done by each species
             // Then update populations
-            foreach (MicrobeSpecies currentMicrobeSpecies in species)
+            foreach (MicrobeSpecies currentSpecies in species)
             {
-                speciesEnergies[currentMicrobeSpecies] += energyAvailableForPredation
-                    * GetPredationScore(currentMicrobeSpecies) / totalPredationScore;
+                speciesEnergies[currentSpecies] += energyAvailableForPredation
+                    * GetPredationScore(currentSpecies) / totalPredationScore;
 
-                var newPopulation = (int)(speciesEnergies[currentMicrobeSpecies]
-                    / Math.Pow(currentMicrobeSpecies.Organelles.Count, 1.3f));
+                var newPopulation = (int)(speciesEnergies[currentSpecies]
+                    / Math.Pow(currentSpecies.Organelles.Count, 1.3f));
 
-                populations.AddPopulationResultForSpecies(currentMicrobeSpecies, patch, newPopulation);
+                populations.AddPopulationResultForSpecies(currentSpecies, patch, newPopulation);
             }
         }
 
