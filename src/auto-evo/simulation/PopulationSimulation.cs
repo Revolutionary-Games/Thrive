@@ -16,7 +16,6 @@
         private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
         private static readonly Compound Iron = SimulationParameters.Instance.GetCompound("iron");
 
-
         public static void Simulate(SimulationConfiguration parameters)
         {
             var random = new Random();
@@ -146,7 +145,6 @@
                 + patch.GetPatchChunkTotalCompoundAmount(Glucose)) * 1000;
 
             var ironInPatch = patch.GetPatchChunkTotalCompoundAmount(Iron) * 1000;
-
 
             // TODO: this is where the proper auto-evo algorithm goes
 
