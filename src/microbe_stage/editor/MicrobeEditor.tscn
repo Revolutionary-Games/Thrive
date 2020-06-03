@@ -4251,7 +4251,7 @@ margin_right = 271.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 225, 0 )
 custom_fonts/font = SubResource( 52 )
-text = "Cytoplasm"
+text = "CYTOPLASM"
 align = 1
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/cytoplasm/MarginContainer/VBoxContainer"]
@@ -4272,7 +4272,7 @@ margin_top = 1.0
 margin_right = 113.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Glucose"
+text = "GLUCOSE"
 
 [node name="GlucoseIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/cytoplasm/MarginContainer/VBoxContainer/HBoxContainer2"]
 margin_left = 117.0
@@ -4341,7 +4341,7 @@ margin_top = 1.0
 margin_right = 88.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Storage"
+text = "STORAGE"
 
 [node name="VacuoleIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/cytoplasm/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 92.0
@@ -4478,7 +4478,7 @@ margin_top = 1.0
 margin_right = 113.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Glucose"
+text = "GLUCOSE"
 
 [node name="GlucoseIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/metabolosome/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer2"]
 margin_left = 117.0
@@ -4587,7 +4587,7 @@ margin_top = 1.0
 margin_right = 88.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Storage"
+text = "STORAGE"
 
 [node name="VacuoleIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/metabolosome/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 92.0
@@ -4724,7 +4724,7 @@ margin_top = 1.0
 margin_right = 141.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Glucose"
+text = "GLUCOSE"
 
 [node name="GlucoseIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/chromatophore/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer2"]
 margin_left = 145.0
@@ -4761,7 +4761,7 @@ margin_top = 1.0
 margin_right = 246.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Carbon Dioxide"
+text = "CARBON_DIOXIDE"
 
 [node name="CO2Icon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/chromatophore/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
 margin_left = 250.0
@@ -4798,7 +4798,7 @@ margin_top = 1.0
 margin_right = 124.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Light"
+text = "LIGHT"
 
 [node name="LightIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/chromatophore/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer3"]
 margin_left = 128.0
@@ -4839,7 +4839,7 @@ margin_top = 1.0
 margin_right = 88.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Storage"
+text = "STORAGE"
 
 [node name="VacuoleIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/chromatophore/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 92.0
@@ -5003,7 +5003,7 @@ margin_top = 1.0
 margin_right = 318.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Glucose"
+text = "GLUCOSE"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/chemoSynthesizingProteins/MarginContainer/VBoxContainer/VBoxContainer2"]
 margin_top = 24.0
@@ -5061,7 +5061,7 @@ margin_top = 2.0
 margin_right = 225.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 53 )
-text = ""
+text = "ALSO_TURNS"
 
 [node name="Label9" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/chemoSynthesizingProteins/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer3"]
 margin_left = 229.0
@@ -5069,7 +5069,7 @@ margin_top = 1.0
 margin_right = 298.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Glucose"
+text = "GLUCOSE"
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/chemoSynthesizingProteins/MarginContainer/VBoxContainer/VBoxContainer2"]
 margin_top = 72.0
@@ -5138,7 +5138,7 @@ margin_top = 1.0
 margin_right = 88.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Storage"
+text = "STORAGE"
 
 [node name="VacuoleIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/chemoSynthesizingProteins/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 92.0
@@ -5276,7 +5276,7 @@ margin_top = 1.0
 margin_right = 77.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Iron"
+text = "IRON"
 
 [node name="IronIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/rusticyanin/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer2"]
 margin_left = 81.0
@@ -5338,7 +5338,7 @@ margin_top = 1.0
 margin_right = 279.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Carbon Dioxide"
+text = "CARBON_DIOXIDE"
 
 [node name="CO2Icon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/rusticyanin/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
 margin_left = 283.0
@@ -5408,7 +5408,7 @@ margin_top = 1.0
 margin_right = 88.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Storage"
+text = "STORAGE"
 
 [node name="VacuoleIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/rusticyanin/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 92.0
@@ -5649,7 +5649,7 @@ margin_top = 1.0
 margin_right = 88.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Storage"
+text = "STORAGE"
 
 [node name="VacuoleIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/nitrogenase/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 92.0
@@ -5901,7 +5901,7 @@ margin_top = 1.0
 margin_right = 88.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Storage"
+text = "STORAGE"
 
 [node name="VacuoleIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/oxytoxyProteins/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 92.0
@@ -6128,7 +6128,7 @@ margin_top = 1.0
 margin_right = 88.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Storage"
+text = "STORAGE"
 
 [node name="VacuoleIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/flagellum/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 92.0
@@ -6508,7 +6508,7 @@ margin_top = 1.0
 margin_right = 97.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Storage"
+text = "STORAGE"
 
 [node name="VacuoleIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/nucleus/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 101.0
@@ -6646,7 +6646,7 @@ margin_top = 1.0
 margin_right = 113.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Glucose"
+text = "GLUCOSE"
 
 [node name="GlucoseIcoon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/mitochondrion/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer2"]
 margin_left = 117.0
@@ -6749,7 +6749,7 @@ margin_top = 1.0
 margin_right = 88.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Storage"
+text = "STORAGE"
 
 [node name="VacuoleIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/mitochondrion/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 92.0
@@ -6862,7 +6862,7 @@ margin_right = 261.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 215, 0 )
 custom_fonts/font = SubResource( 52 )
-text = "Chloroplast"
+text = "CHLOROPLAST"
 align = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/chloroplast/MarginContainer/VBoxContainer"]
@@ -6887,7 +6887,7 @@ margin_top = 1.0
 margin_right = 141.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Glucose"
+text = "GLUCOSE"
 
 [node name="GlucoseIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/chloroplast/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer2"]
 margin_left = 145.0
@@ -6924,7 +6924,7 @@ margin_top = 1.0
 margin_right = 246.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Carbon Dioxide"
+text = "CARBON_DIOXIDE"
 
 [node name="CO2Icon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/chloroplast/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
 margin_left = 250.0
@@ -6961,7 +6961,7 @@ margin_top = 1.0
 margin_right = 124.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Light"
+text = "LIGHT"
 
 [node name="LightIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/chloroplast/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer3"]
 margin_left = 128.0
@@ -7002,7 +7002,7 @@ margin_top = 1.0
 margin_right = 88.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Storage"
+text = "STORAGE"
 
 [node name="VacuoleIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/chloroplast/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 92.0
@@ -7140,7 +7140,7 @@ margin_top = 1.0
 margin_right = 141.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Glucose"
+text = "GLUCOSE"
 
 [node name="GlucoseIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/thermoplast/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer2"]
 margin_left = 145.0
@@ -7177,7 +7177,7 @@ margin_top = 1.0
 margin_right = 246.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Carbon Dioxide"
+text = "CARBON_DIOXIDE"
 
 [node name="CO2Icon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/thermoplast/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
 margin_left = 250.0
@@ -7247,7 +7247,7 @@ margin_top = 1.0
 margin_right = 88.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Storage"
+text = "STORAGE"
 
 [node name="VacuoleIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/thermoplast/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 92.0
@@ -7410,7 +7410,7 @@ margin_top = 1.0
 margin_right = 318.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Glucose"
+text = "GLUCOSE"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/chemoplast/MarginContainer/VBoxContainer/VBoxContainer2"]
 margin_top = 24.0
@@ -7443,7 +7443,7 @@ margin_top = 1.0
 margin_right = 125.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Carbon Dioxide"
+text = "CARBON_DIOXIDE"
 
 [node name="CO2Icon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/chemoplast/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer3"]
 margin_left = 129.0
@@ -7484,7 +7484,7 @@ margin_top = 1.0
 margin_right = 88.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Storage"
+text = "STORAGE"
 
 [node name="VacuoleIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/chemoplast/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 92.0
@@ -7649,7 +7649,7 @@ margin_top = 1.0
 margin_right = 205.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Ammonia"
+text = "AMMONIA"
 
 [node name="AmmoniaIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/nitrogenfixingplastid/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer2"]
 margin_left = 209.0
@@ -7756,7 +7756,7 @@ margin_top = 1.0
 margin_right = 88.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Storage"
+text = "STORAGE"
 
 [node name="VacuoleIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/nitrogenfixingplastid/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 92.0
@@ -7917,7 +7917,7 @@ margin_top = 1.0
 margin_right = 97.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Storage"
+text = "STORAGE"
 
 [node name="VacuoleIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/vacuole/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 101.0
@@ -8185,7 +8185,7 @@ margin_top = 1.0
 margin_right = 88.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Storage"
+text = "STORAGE"
 
 [node name="VacuoleIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/oxytoxy/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 92.0
@@ -8657,7 +8657,7 @@ margin_right = 261.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 215, 0 )
 custom_fonts/font = SubResource( 52 )
-text = "Cellulose"
+text = "CELLULOSE"
 align = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCellulose/MarginContainer/VBoxContainer"]
@@ -8836,7 +8836,7 @@ margin_right = 261.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 215, 0 )
 custom_fonts/font = SubResource( 52 )
-text = "Chitin"
+text = "CHITIN"
 align = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneChitin/MarginContainer/VBoxContainer"]
@@ -9919,7 +9919,7 @@ margin_top = 3.0
 margin_right = 79.0
 margin_bottom = 22.0
 custom_fonts/font = SubResource( 62 )
-text = "Light"
+text = "LIGHT"
 
 [node name="Situation" type="TextureRect" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light"]
 margin_left = 83.0
@@ -10174,7 +10174,7 @@ margin_top = 3.0
 margin_right = 108.0
 margin_bottom = 22.0
 custom_fonts/font = SubResource( 62 )
-text = "Ammonia"
+text = "AMMONIA"
 
 [node name="Situation" type="TextureRect" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Ammonia"]
 margin_left = 112.0
@@ -10205,7 +10205,7 @@ margin_top = 3.0
 margin_right = 102.0
 margin_bottom = 22.0
 custom_fonts/font = SubResource( 62 )
-text = "Glucose"
+text = "GLUCOSE"
 
 [node name="Situation" type="TextureRect" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Glucose"]
 margin_left = 106.0
@@ -10268,7 +10268,7 @@ margin_top = 3.0
 margin_right = 64.0
 margin_bottom = 22.0
 custom_fonts/font = SubResource( 62 )
-text = "Iron"
+text = "IRON"
 
 [node name="Situation" type="TextureRect" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Iron"]
 margin_left = 68.0
