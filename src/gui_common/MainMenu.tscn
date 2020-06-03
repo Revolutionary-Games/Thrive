@@ -147,7 +147,7 @@ rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
 enabled_focus_mode = 0
-text = "New Game"
+text = "NEW_GAME"
 
 [node name="LoadGame" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/MainMenu"]
 margin_top = 50.0
@@ -157,7 +157,7 @@ rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
 enabled_focus_mode = 0
-text = "Load Game"
+text = "LOAD_GAME"
 
 [node name="Options" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/MainMenu"]
 margin_top = 100.0
@@ -167,7 +167,7 @@ rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
 enabled_focus_mode = 0
-text = "Options"
+text = "OPTIONS"
 
 [node name="Tools" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/MainMenu"]
 margin_top = 150.0
@@ -177,7 +177,7 @@ rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
 enabled_focus_mode = 0
-text = "Tools"
+text = "TOOLS"
 
 [node name="Extras" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/MainMenu"]
 margin_top = 200.0
@@ -187,7 +187,7 @@ rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
 disabled = true
 enabled_focus_mode = 0
-text = "Extras"
+text = "EXTRAS"
 
 [node name="Credits" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/MainMenu"]
 margin_top = 250.0
@@ -197,7 +197,7 @@ rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
 disabled = true
 enabled_focus_mode = 0
-text = "Credits"
+text = "CREDITS"
 
 [node name="Quit" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/MainMenu"]
 margin_top = 300.0
@@ -207,7 +207,7 @@ rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
 enabled_focus_mode = 0
-text = "Quit"
+text = "QUIT"
 
 [node name="Tools" type="VBoxContainer" parent="MenuContainers/MenuCenterContainer/MenuItems" groups=[
 "MenuItem",
@@ -269,7 +269,7 @@ rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
 enabled_focus_mode = 0
-text = "Back"
+text = "BACK"
 
 [node name="OptionsMenu" parent="." instance=ExtResource( 4 )]
 visible = false
