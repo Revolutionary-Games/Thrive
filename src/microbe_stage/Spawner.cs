@@ -4,7 +4,7 @@ using Godot;
 /// <summary>
 ///   Spawner that can be added to a SpawnSystem to be used for spawning things
 /// </summary>
-public abstract class ISpawner
+public abstract class Spawner
 {
     /// <summary>
     ///   The distance at which spawning happens
@@ -29,7 +29,13 @@ public abstract class ISpawner
     /// <value><c>true</c> if destroy queued; otherwise, <c>false</c>.</value>
     public bool DestroyQueued { get; set; }
 
-    public abstract List<ISpawned> Spawn(Node worldNode, Vector3 location);
+    /// <summary>
+    ///   Spawns the next thing. This is an enumerator to be able to control how many things to spawn per frame easily
+    /// </summary>
+    /// <param name="worldNode">The parent node of spawned entities</param>
+    /// <param name="location">Location the spawn system wants to spawn a thing at</param>
+    /// <returns>An enumerator that on each next call spawns one thing</returns>
+    public abstract IEnumerable<ISpawned> Spawn(Node worldNode, Vector3 location);
 
     public void SetFrequencyFromDensity(float spawnDensity)
     {

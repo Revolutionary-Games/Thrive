@@ -22,7 +22,7 @@ public class SpawnSystem
     /// </summary>
     private Node worldRoot;
 
-    private List<ISpawner> spawnTypes = new List<ISpawner>();
+    private List<Spawner> spawnTypes = new List<Spawner>();
 
     [JsonProperty]
     private Vector3 previousPlayerPosition = new Vector3(0, 0, 0);
@@ -35,7 +35,7 @@ public class SpawnSystem
     ///   from deleting tons of entities at once.
     /// </summary>
     [JsonProperty]
-    private int maxEntitiesToDeletePerStep = 2;
+    private int maxEntitiesToDeletePerStep = Constants.MAX_DESPAWNS_PER_FRAME;
 
     /// <summary>
     ///   This limits the total number of things that can be spawned.
@@ -48,6 +48,28 @@ public class SpawnSystem
     /// </summary>
     [JsonProperty]
     private int maxTriesPerSpawner = 500;
+
+    /// <summary>
+    ///   This is used to spawn only a few entities per frame with minimal changes needed to code that wants to
+    ///   spawn a bunch of stuff at once
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     This isn't saved but the likelihood that losing out on spawning some things is not super critical.
+    ///     Also it is probably the case that this isn't even used on most frames so it is perhaps uncommon
+    ///     that there are queued things when saving.
+    ///   </para>
+    ///   <para>
+    ///     TODO: it might be nice to use a struct instead and a field indicating if this is valid to not recreate
+    ///     this object so much
+    ///   </para>
+    /// </remarks>
+    private QueuedSpawn queuedSpawns;
+
+    /// <summary>
+    ///   Estimate count of existing spawned entities, cached to make delayed spawns cheaper
+    /// </summary>
+    private int estimateEntityCount;
 
     public SpawnSystem(Node root)
     {
@@ -69,7 +91,7 @@ public class SpawnSystem
     ///   and frequency fields based on the parameters of this
     ///   function.
     /// </summary>
-    public void AddSpawnType(ISpawner spawner, float spawnDensity, int spawnRadius)
+    public void AddSpawnType(Spawner spawner, float spawnDensity, int spawnRadius)
     {
         spawner.SpawnRadius = spawnRadius;
         spawner.SpawnFrequency = 122;
@@ -82,7 +104,7 @@ public class SpawnSystem
     ///   Removes a spawn type immediately. Note that it's easier to
     ///   just set DestroyQueued to true on an spawner.
     /// </summary>
-    public void RemoveSpawnType(ISpawner spawner)
+    public void RemoveSpawnType(Spawner spawner)
     {
         spawnTypes.Remove(spawner);
     }
@@ -101,6 +123,7 @@ public class SpawnSystem
     public void Clear()
     {
         spawnTypes.Clear();
+        queuedSpawns = null;
         previousPlayerPosition = new Vector3(0, 0, 0);
         elapsed = 0;
     }
@@ -110,6 +133,7 @@ public class SpawnSystem
     /// </summary>
     public void DespawnAll()
     {
+        queuedSpawns = null;
         var spawnedEntities = worldRoot.GetTree().GetNodesInGroup(Constants.SPAWNED_GROUP);
 
         foreach (Node entity in spawnedEntities)
@@ -129,6 +153,17 @@ public class SpawnSystem
         // Remove the y-position from player position
         playerPosition.y = 0;
 
+        int spawnsLeftThisFrame = Constants.MAX_SPAWNS_PER_FRAME;
+
+        // If we have queued spawns to do spawn those
+        if (queuedSpawns != null)
+        {
+            spawnsLeftThisFrame = HandleQueuedSpawns(spawnsLeftThisFrame);
+
+            if (spawnsLeftThisFrame <= 0)
+                return;
+        }
+
         // This is now an if to make sure that the spawn system is
         // only ran once per frame to avoid spawning a bunch of stuff
         // all at once after a lag spike
@@ -137,11 +172,11 @@ public class SpawnSystem
         {
             elapsed -= interval;
 
-            int existing = DespawnEntities(playerPosition);
+            estimateEntityCount = DespawnEntities(playerPosition);
 
             spawnTypes.RemoveAll(entity => entity.DestroyQueued);
 
-            SpawnEntities(playerPosition, existing);
+            SpawnEntities(playerPosition, estimateEntityCount, spawnsLeftThisFrame);
 
             previousPlayerPosition = playerPosition;
         }
@@ -152,7 +187,40 @@ public class SpawnSystem
         SaveApplyHelper.CopyJSONSavedPropertiesAndFields(this, spawner);
     }
 
-    private void SpawnEntities(Vector3 playerPosition, int existing)
+    private int HandleQueuedSpawns(int spawnsLeftThisFrame)
+    {
+        // If we don't have room, just abandon spawning
+        if (estimateEntityCount >= maxAliveEntities)
+        {
+            queuedSpawns.Spawns.Dispose();
+            queuedSpawns = null;
+            return spawnsLeftThisFrame;
+        }
+
+        // Spawn from the queue
+        while (estimateEntityCount < maxAliveEntities && spawnsLeftThisFrame > 0)
+        {
+            if (!queuedSpawns.Spawns.MoveNext())
+            {
+                // Ended
+                queuedSpawns.Spawns.Dispose();
+                queuedSpawns = null;
+                break;
+            }
+            else
+            {
+                // Next was spawned
+                ProcessSpawnedEntity(queuedSpawns.Spawns.Current, queuedSpawns.SpawnType);
+
+                ++estimateEntityCount;
+                --spawnsLeftThisFrame;
+            }
+        }
+
+        return spawnsLeftThisFrame;
+    }
+
+    private void SpawnEntities(Vector3 playerPosition, int existing, int spawnsLeftThisFrame)
     {
         // If  there are already too many entities, don't spawn more
         if (existing >= maxAliveEntities)
@@ -160,12 +228,12 @@ public class SpawnSystem
 
         int spawned = 0;
 
-        foreach (ISpawner spawnType in spawnTypes)
+        foreach (var spawnType in spawnTypes)
         {
             /*
             To actually spawn a given entity for a given attempt, two
             conditions should be met. The first condition is a random
-            chance that adjusts the spawn frequency to the approprate
+            chance that adjusts the spawn frequency to the appropriate
             amount. The second condition is whether the entity will
             spawn in a valid position. It is checked when the first
             condition is met and a position for the entity has been
@@ -187,7 +255,7 @@ public class SpawnSystem
                     /*
                     First condition passed. Choose a location for the entity.
 
-                    A random location in the square of sidelength 2*spawnRadius
+                    A random location in the square of side length 2*spawnRadius
                     centered on the player is chosen. The corners
                     of the square are outside the spawning region, but they
                     will fail the second condition, so entities still only
@@ -212,35 +280,63 @@ public class SpawnSystem
                         previousSquaredDistance > spawnType.SpawnRadiusSqr)
                     {
                         // Second condition passed. Spawn the entity.
-                        var entities = spawnType.Spawn(worldRoot,
-                            playerPosition + displacement);
-
-                        // Add the entity to the spawned group and add the despawn radius
-                        if (entities != null)
+                        if (SpawnWithSpawner(spawnType, playerPosition + displacement, existing,
+                            ref spawnsLeftThisFrame, ref spawned))
                         {
-                            foreach (var entity in entities)
-                            {
-                                // TODO: I don't understand why the same
-                                // value is used for spawning and
-                                // despawning, but apparently it works
-                                // just fine
-                                entity.DespawnRadiusSqr = spawnType.SpawnRadiusSqr;
-
-                                entity.SpawnedNode.AddToGroup(Constants.SPAWNED_GROUP);
-                            }
-
-                            spawned += entities.Count;
-
-                            // TODO: this is a bit awkward if this
-                            // stops compound clouds from spawning as
-                            // well...
-                            if (spawned + existing >= maxAliveEntities)
-                                return;
+                            return;
                         }
                     }
                 }
             }
         }
+    }
+
+    /// <summary>
+    ///   Does a single spawn with a spawner
+    /// </summary>
+    /// <returns>True if we have exceeded the spawn limit and no further spawns should be done this frame</returns>
+    private bool SpawnWithSpawner(Spawner spawnType, Vector3 location, int existing, ref int spawnsLeftThisFrame,
+        ref int spawned)
+    {
+        var enumerable = spawnType.Spawn(worldRoot, location);
+
+        if (enumerable == null)
+            return false;
+
+        var spawner = enumerable.GetEnumerator();
+
+        while (spawner.MoveNext())
+        {
+            if (spawner.Current == null)
+                throw new NullReferenceException("spawn enumerator is not allowed to return null");
+
+            // Spawned something
+            ProcessSpawnedEntity(spawner.Current, spawnType);
+            spawned += 1;
+            --spawnsLeftThisFrame;
+
+            // Check if we are out of quota for this frame
+
+            // TODO: this is a bit awkward if this
+            // stops compound clouds from spawning as
+            // well...
+            if (spawned + existing >= maxAliveEntities)
+            {
+                // We likely couldn't spawn things next frame anyway if we are at the entity limit,
+                // so the spawner is not stored here
+                return true;
+            }
+
+            if (spawnsLeftThisFrame <= 0)
+            {
+                // This spawner might still have something left to spawn next frame, so store it
+                queuedSpawns = new QueuedSpawn(spawner, spawnType);
+                return true;
+            }
+        }
+
+        // Can still spawn more stuff
+        return false;
     }
 
     /// <summary>
@@ -280,5 +376,31 @@ public class SpawnSystem
         }
 
         return spawnedEntities.Count - entitiesDeleted;
+    }
+
+    /// <summary>
+    ///   Add the entity to the spawned group and add the despawn radius
+    /// </summary>
+    private void ProcessSpawnedEntity(ISpawned entity, Spawner spawnType)
+    {
+        // I don't understand why the same
+        // value is used for spawning and
+        // despawning, but apparently it works
+        // just fine
+        entity.DespawnRadiusSqr = spawnType.SpawnRadiusSqr;
+
+        entity.SpawnedNode.AddToGroup(Constants.SPAWNED_GROUP);
+    }
+
+    private class QueuedSpawn
+    {
+        public Spawner SpawnType;
+        public IEnumerator<ISpawned> Spawns;
+
+        public QueuedSpawn(IEnumerator<ISpawned> spawner, Spawner spawnType)
+        {
+            Spawns = spawner;
+            SpawnType = spawnType;
+        }
     }
 }
