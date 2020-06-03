@@ -1262,19 +1262,7 @@ public class MicrobeEditorGUI : Node
 
     private float GetPatchChunkTotalCompoundAmount(Patch patch, Compound compound)
     {
-        var result = 0.0f;
-
-        foreach (var chunkKey in patch.Biome.Chunks.Keys)
-        {
-            var chunk = patch.Biome.Chunks[chunkKey];
-
-            if (chunk.Density > 0 && chunk.Compounds.ContainsKey(compound))
-            {
-                result += chunk.Density * chunk.Compounds[compound].Amount;
-            }
-        }
-
-        return result;
+        return patch.GetPatchChunkTotalCompoundAmount(compound);
     }
 
     private void UpdateShownPatchDetails()

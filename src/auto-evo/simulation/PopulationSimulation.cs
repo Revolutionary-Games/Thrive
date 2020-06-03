@@ -141,10 +141,11 @@
             var hydrogenSulfideInPatch = biome.Compounds[HydrogenSulfide].Density
                 * biome.Compounds[HydrogenSulfide].Amount * 1000;
 
-            var glucoseInPatch = biome.Compounds[Glucose].Density
-                * biome.Compounds[Glucose].Amount * 1000;
+            var glucoseInPatch = (biome.Compounds[Glucose].Density
+                * biome.Compounds[Glucose].Amount
+                + patch.GetPatchChunkTotalCompoundAmount(Glucose)) * 1000;
 
-            var ironInPatch = MicrobeEditorGUI.GetPatchChunkTotalCompoundAmount(patch, Iron) * 1000;
+            var ironInPatch = patch.GetPatchChunkTotalCompoundAmount(Iron) * 1000;
 
 
             // TODO: this is where the proper auto-evo algorithm goes

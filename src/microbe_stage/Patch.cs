@@ -114,6 +114,23 @@ public class Patch
         return SpeciesInPatch[species];
     }
 
+    public float GetPatchChunkTotalCompoundAmount(Compound compound)
+    {
+        var result = 0.0f;
+
+        foreach (var chunkKey in Biome.Chunks.Keys)
+        {
+            var chunk = Biome.Chunks[chunkKey];
+
+            if (chunk.Density > 0 && chunk.Compounds.ContainsKey(compound))
+            {
+                result += chunk.Density * chunk.Compounds[compound].Amount;
+            }
+        }
+
+        return result;
+    }
+
     public override string ToString()
     {
         return $"Patch \"{Name}\"";
