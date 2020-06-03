@@ -13,6 +13,9 @@
         private static readonly Compound Sunlight = SimulationParameters.Instance.GetCompound("sunlight");
         private static readonly Compound Glucose = SimulationParameters.Instance.GetCompound("glucose");
         private static readonly Compound HydrogenSulfide = SimulationParameters.Instance.GetCompound("hydrogensulfide");
+        private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
+        private static readonly Compound Iron = SimulationParameters.Instance.GetCompound("iron");
+
 
         public static void Simulate(SimulationConfiguration parameters)
         {
@@ -134,10 +137,15 @@
             var biome = patch.Biome;
 
             var sunlightInPatch = biome.Compounds[Sunlight].Dissolved * 10000;
+
             var hydrogenSulfideInPatch = biome.Compounds[HydrogenSulfide].Density
                 * biome.Compounds[HydrogenSulfide].Amount * 1000;
+
             var glucoseInPatch = biome.Compounds[Glucose].Density
                 * biome.Compounds[Glucose].Amount * 1000;
+
+            var ironInPatch = MicrobeEditorGUI.GetPatchChunkTotalCompoundAmount(patch, Iron) * 1000;
+
 
             // TODO: this is where the proper auto-evo algorithm goes
 
@@ -145,19 +153,26 @@
 
             var totalPhotosynthesisScore = 0.0f;
             var totalChemosynthesisScore = 0.0f;
+            var totalChemolithautotrophyScore = 0.0f;
+            var totalGlucoseScore = 0.0f;
+
             var totalPredationScore = 0.0f;
 
             // Calculate the total scores of each type in the current patch
-            foreach (MicrobeSpecies currentMicrobeSpecies in species)
+            foreach (MicrobeSpecies currentSpecies in species)
             {
-                totalPhotosynthesisScore += GetPhotosynthesisScore(currentMicrobeSpecies);
-                totalChemosynthesisScore += GetChemosynthesisScore(currentMicrobeSpecies);
-                totalPredationScore += GetPredationScore(currentMicrobeSpecies);
+                totalPhotosynthesisScore += GetCompoundUseScore(currentSpecies, Sunlight);
+                totalChemosynthesisScore += GetCompoundUseScore(currentSpecies, HydrogenSulfide);
+                totalChemolithautotrophyScore += GetCompoundUseScore(currentSpecies, Iron);
+                totalGlucoseScore += GetCompoundUseScore(currentSpecies, Glucose);
+                totalPredationScore += GetPredationScore(currentSpecies);
             }
 
             // Avoid division by 0
             totalPhotosynthesisScore = Math.Max(MathUtils.EPSILON, totalPhotosynthesisScore);
             totalChemosynthesisScore = Math.Max(MathUtils.EPSILON, totalChemosynthesisScore);
+            totalChemolithautotrophyScore = Math.Max(MathUtils.EPSILON, totalChemolithautotrophyScore);
+            totalGlucoseScore = Math.Max(MathUtils.EPSILON, totalGlucoseScore);
             totalPredationScore = Math.Max(MathUtils.EPSILON, totalPredationScore);
 
             // Calculate the share of environmental energy captured by each species
@@ -168,13 +183,16 @@
                 var currentSpeciesEnergy = 0.0f;
 
                 currentSpeciesEnergy += sunlightInPatch
-                    * GetPhotosynthesisScore(currentMicrobeSpecies) / totalPhotosynthesisScore;
+                    * GetCompoundUseScore(currentMicrobeSpecies, Sunlight) / totalPhotosynthesisScore;
 
                 currentSpeciesEnergy += hydrogenSulfideInPatch
-                    * GetChemosynthesisScore(currentMicrobeSpecies) / totalChemosynthesisScore;
+                    * GetCompoundUseScore(currentMicrobeSpecies, HydrogenSulfide) / totalChemosynthesisScore;
+
+                currentSpeciesEnergy += ironInPatch
+                    * GetCompoundUseScore(currentMicrobeSpecies, Iron) / totalChemolithautotrophyScore;
 
                 currentSpeciesEnergy += glucoseInPatch
-                    * 1 / species.Count;
+                    * GetCompoundUseScore(currentMicrobeSpecies, Glucose) / totalGlucoseScore;
 
                 energyAvailableForPredation += 0.5f * currentSpeciesEnergy;
                 speciesEnergies.Add(currentMicrobeSpecies, currentSpeciesEnergy);
@@ -194,26 +212,6 @@
             }
         }
 
-        private static float GetPhotosynthesisScore(MicrobeSpecies species)
-        {
-            var photosynthesisScore = 0.0f;
-
-            foreach (var organelle in species.Organelles)
-            {
-                foreach (var process in organelle.Definition.RunnableProcesses)
-                {
-                    if (process.Process.Inputs.ContainsKey(Sunlight)
-                        && process.Process.Outputs.ContainsKey(Glucose))
-                    {
-                        photosynthesisScore += process.Process.Outputs[Glucose]
-                            / process.Process.Inputs[Sunlight];
-                    }
-                }
-            }
-
-            return photosynthesisScore;
-        }
-
         private static float GetPredationScore(MicrobeSpecies species)
         {
             var predationScore = 0.0f;
@@ -228,24 +226,32 @@
             return predationScore;
         }
 
-        private static float GetChemosynthesisScore(MicrobeSpecies species)
+        private static float GetCompoundUseScore(MicrobeSpecies species, Compound compound)
         {
-            var chemosynthesisScore = 0.0f;
+            var compoundUseScore = 0.0f;
 
             foreach (var organelle in species.Organelles)
             {
                 foreach (var process in organelle.Definition.RunnableProcesses)
                 {
-                    if (process.Process.Inputs.ContainsKey(HydrogenSulfide)
-                        && process.Process.Outputs.ContainsKey(Glucose))
+                    if (process.Process.Inputs.ContainsKey(compound))
                     {
-                        chemosynthesisScore += process.Process.Outputs[Glucose]
-                            / process.Process.Inputs[HydrogenSulfide];
+                        if (process.Process.Outputs.ContainsKey(Glucose))
+                        {
+                            compoundUseScore += process.Process.Outputs[Glucose]
+                                / process.Process.Inputs[compound];
+                        }
+
+                        if (process.Process.Outputs.ContainsKey(ATP))
+                        {
+                            compoundUseScore += process.Process.Outputs[ATP]
+                                / process.Process.Inputs[compound] / 300;
+                        }
                     }
                 }
             }
 
-            return chemosynthesisScore;
+            return compoundUseScore;
         }
     }
 }
