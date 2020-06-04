@@ -19,6 +19,8 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable
         Orientation = rotation;
     }
 
+    public bool PlacedThisSession {get; set; }
+
     public Hex Position { get; set; }
 
     /// <summary>
