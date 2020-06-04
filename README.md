@@ -14,7 +14,6 @@ Repository structure:
 - simulation_parameters: Contains JSON files as well as C# constants for tweaking the game.
 - scripts: Utility scripts for Thrive development
 - src: The core of the game written in C# as well as Godot scenes.
-- script: Contains the game configuration files for existing Compounds, Organelles, Biomes etc. as well as the main menu GUI files.
 - test: Contains tests that will ensure that core parts work correctly. These don't currently exist for the Godot version.
 
 Getting Involved
