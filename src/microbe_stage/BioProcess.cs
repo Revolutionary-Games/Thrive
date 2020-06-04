@@ -32,5 +32,11 @@ public class BioProcess : IRegistryType
             throw new InvalidRegistryDataException(name, GetType().Name,
                 "Process has no inputs AND no outputs");
         }
+
+        if (Inputs.Count < 0 || Outputs.Count < 0)
+        {
+            throw new InvalidRegistryDataException(name, GetType().Name,
+                "Process has a negative number of inputs or outputs");
+        }
     }
 }
