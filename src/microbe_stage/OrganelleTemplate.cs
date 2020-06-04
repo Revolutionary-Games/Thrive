@@ -19,6 +19,9 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable
         Orientation = rotation;
     }
 
+    /// <summary>
+    /// Used to flag whether this Organelle was placed during the current editor session.
+    /// </summary>
     public bool PlacedThisSession { get; set; }
 
     public Hex Position { get; set; }
