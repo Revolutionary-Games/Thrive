@@ -360,6 +360,9 @@ public static class Constants
 
     public const float GLUCOSE_REDUCTION_RATE = 0.8f;
 
+    public const int MAX_SPAWNS_PER_FRAME = 2;
+    public const int MAX_DESPAWNS_PER_FRAME = 2;
+
     /// <summary>
     ///   All Nodes tagged with this are handled by the spawn system for despawning
     /// </summary>
