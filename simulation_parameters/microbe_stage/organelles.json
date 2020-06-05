@@ -339,6 +339,37 @@
         "gene": "F",
         "name": "flagellum"
     },
+    "cilia": {
+        "mpCost": 55,
+        "initialComposition": {
+            "ammonia": 2,
+            "phosphates": 2
+        },
+        "hexes": [
+            {
+                "r": 0,
+                "q": 0
+            }
+        ],
+        "processes": {},
+        "components": {
+            "storage": {
+                "capacity": 1
+            },
+            "movement": {
+                "torque": 300,
+                "momentum": 20
+            }
+        },
+        "prokaryoteChance": 2,
+        "chanceToCreate": 6,
+        "mass": 0.3,
+        "displayScene": "res://assets/models/organelles/Flagellum.tscn",
+        "displaySceneModelPath": "Armature001/Skeleton/flagella",
+        "displaySceneAnimation": "AnimationPlayer",
+        "gene": "F",
+        "name": "cilia"
+    },
     "vacuole": {
         "mpCost": 50,
         "initialComposition": {
