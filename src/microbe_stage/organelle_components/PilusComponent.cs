@@ -8,9 +8,6 @@ public class PilusComponent : ExternallyPositionedComponent
 {
     private List<uint> addedChildShapes = new List<uint>();
 
-    MeshInstance mesh = new MeshInstance();
-    CylinderMesh cylinder = new CylinderMesh();
-
     protected override void CustomDetach()
     {
         DestroyShape();
@@ -60,20 +57,7 @@ public class PilusComponent : ExternallyPositionedComponent
         shape.Radius = pilusSize / 8.0f;
         shape.Height = pilusSize * organelle.Scale.Length();
 
-        //Debug Shape
-        cylinder.BottomRadius = shape.Radius;
-        cylinder.TopRadius = shape.Radius;
-        cylinder.Height = shape.Height;
-
-        mesh.Mesh = cylinder;
-        var debugMaterial = new SpatialMaterial();
-        debugMaterial.FlagsTransparent = true;
-        debugMaterial.AlbedoColor = new Color(1, 0, 0, 0.3f);
-        mesh.MaterialOverride = debugMaterial;
-
         var parentMicrobe = organelle.ParentMicrobe;
-
-        parentMicrobe.AddChild(mesh);
 
         var ownerId = parentMicrobe.CreateShapeOwner(shape);
         parentMicrobe.ShapeOwnerAddShape(ownerId, shape);
@@ -84,8 +68,6 @@ public class PilusComponent : ExternallyPositionedComponent
 
         var transform = new Transform(physicsRotation, membraneCoords * organelle.Scale);
         parentMicrobe.ShapeOwnerSetTransform(ownerId, transform);
-
-        mesh.Transform = transform;
 
         parentMicrobe.AddPilus(ownerId);
         addedChildShapes.Add(ownerId);
