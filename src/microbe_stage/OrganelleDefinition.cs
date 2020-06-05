@@ -330,6 +330,7 @@ public class OrganelleDefinition : IRegistryType
         public AgentVacuoleComponentFactory AgentVacuole;
         public MovementComponentFactory Movement;
         public PilusComponentFactory Pilus;
+        public CiliaComponentFactory Cilia;
 
         private readonly List<IOrganelleComponentFactory> allFactories =
             new List<IOrganelleComponentFactory>();
@@ -382,6 +383,13 @@ public class OrganelleDefinition : IRegistryType
             {
                 Movement.Check(name);
                 allFactories.Add(Movement);
+                count++;
+            }
+
+            if (Cilia != null)
+            {
+                Cilia.Check(name);
+                allFactories.Add(Cilia);
                 count++;
             }
 
