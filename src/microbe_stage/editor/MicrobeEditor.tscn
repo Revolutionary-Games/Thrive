@@ -1295,7 +1295,6 @@ custom_fonts/font = SubResource( 8 )
 text = "NEW"
 
 [node name="CellEditor" type="Control" parent="MicrobeEditorGUI"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -2380,7 +2379,6 @@ custom_styles/hover = SubResource( 25 )
 custom_styles/pressed = SubResource( 26 )
 custom_styles/disabled = SubResource( 27 )
 custom_styles/normal = SubResource( 28 )
-disabled = true
 toggle_mode = true
 action_mode = 0
 enabled_focus_mode = 0
@@ -9523,6 +9521,7 @@ text = "A more rigid membrane is more resistant to damage, but will make it hard
 autowrap = true
 
 [node name="Report" type="Control" parent="MicrobeEditorGUI"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -0.200001
@@ -10541,6 +10540,7 @@ visible = false
 [connection signal="pressed" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ExternalOrganelles/pilus" to="MicrobeEditorGUI" method="OnOrganelleToPlaceSelected" binds= [ "pilus" ]]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ExternalOrganelles/cilia" to="MicrobeEditorGUI" method="OnItemMouseHover" binds= [ "cilia" ]]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ExternalOrganelles/cilia" to="MicrobeEditorGUI" method="OnItemMouseExit"]
+[connection signal="pressed" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/ExternalOrganelles/cilia" to="." method="OnOrganelleToPlaceSelected"]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles/nucleus" to="MicrobeEditorGUI" method="OnItemMouseHover" binds= [ "nucleus" ]]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles/nucleus" to="MicrobeEditorGUI" method="OnItemMouseExit"]
 [connection signal="pressed" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Structure/ScrollContainer/MarginContainer/VBoxContainer/InternalOrganelles/nucleus" to="MicrobeEditorGUI" method="OnOrganelleToPlaceSelected" binds= [ "nucleus" ]]
