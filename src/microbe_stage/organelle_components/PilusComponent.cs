@@ -12,6 +12,11 @@ public class PilusComponent : ExternallyPositionedComponent
     uint ownerId;
     float pilusSize = 4.6f;
 
+    public new void OnAttachToCell(PlacedOrganelle organelle)
+    {
+        organelle.ShouldScale = false;
+    }
+
     protected override void CustomAttach()
     {
         base.CustomAttach();

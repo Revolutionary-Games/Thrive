@@ -6,6 +6,7 @@ public class NucleusComponent : IOrganelleComponent
 {
     public void OnAttachToCell(PlacedOrganelle organelle)
     {
+        organelle.ShouldScale = false;
     }
 
     public void OnDetachFromCell(PlacedOrganelle organelle)

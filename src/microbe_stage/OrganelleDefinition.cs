@@ -118,6 +118,11 @@ public class OrganelleDefinition : IRegistryType
     /// </summary>
     public float OrganelleCost { get; private set; }
 
+    /// <summary>
+    ///   Should this organelle scale?
+    /// </summary>
+    public bool ShouldScale { get; private set; }
+
     [JsonIgnore]
     public List<IOrganelleComponentFactory> ComponentFactories
     {
