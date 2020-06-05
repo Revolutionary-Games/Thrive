@@ -15,9 +15,11 @@ public class PilusComponent : ExternallyPositionedComponent
     protected override void CustomAttach()
     {
         base.CustomAttach();
+        CreatePilusCollisionShape();
+    }
 
-        GD.Print("Atteched the Pilus");
-
+    private void CreatePilusCollisionShape()
+    {
         // Scale the size down for bacteria
         if (organelle.ParentMicrobe.Species.IsBacteria)
         {
