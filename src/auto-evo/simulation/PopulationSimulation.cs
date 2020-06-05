@@ -133,6 +133,8 @@
             if (species.Count < 1)
                 return;
 
+            bool highSpecies = species.Count >= Constants.AUTO_EVO_HIGH_SPECIES_THRESHOLD;
+
             var biome = patch.Biome;
 
             var sunlightInPatch = biome.Compounds[Sunlight].Dissolved * 10000;
@@ -206,6 +208,11 @@
 
                 var newPopulation = (int)(speciesEnergies[currentSpecies]
                     / Math.Pow(currentSpecies.Organelles.Count, 1.3f));
+
+                if (highSpecies)
+                {
+                    newPopulation -= Constants.AUTO_EVO_HIGH_SPECIES_PENALTY;
+                }
 
                 populations.AddPopulationResultForSpecies(currentSpecies, patch, newPopulation);
             }
