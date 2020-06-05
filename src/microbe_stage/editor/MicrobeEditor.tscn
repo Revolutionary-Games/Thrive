@@ -4495,7 +4495,7 @@ margin_top = 2.0
 margin_right = 317.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 53 )
-text = ". Rate scales"
+text = "RATE_SCALES"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/metabolosome/MarginContainer/VBoxContainer/VBoxContainer2"]
 margin_top = 24.0
@@ -4507,7 +4507,7 @@ margin_top = 2.0
 margin_right = 150.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 53 )
-text = "with concentration of"
+text = "WITH_CONCENTRATION_OF"
 
 [node name="Label7" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/metabolosome/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
 margin_left = 154.0
@@ -4515,7 +4515,7 @@ margin_top = 1.0
 margin_right = 222.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Oxygen."
+text = "OXYGEN_DOT"
 
 [node name="OxygenIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/metabolosome/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
 margin_left = 226.0
@@ -4601,7 +4601,7 @@ margin_right = 341.0
 margin_bottom = 368.0
 custom_fonts/font = SubResource( 53 )
 custom_constants/line_spacing = 0
-text = "Metabolosomes are clusters of proteins wrapped in protein shells. They are able to convert glucose into ATP at a much higher rate than can be done in the cytoplasm in a process called Aerobic Respiration. It does, however, require oxygen to function, and lower levels of oxygen in the environment will slow down the rate of its ATP production. Since the metabolosomes are suspended directly in the cytoplasm, the surrounding fluid performs some fermentation."
+text = "METABOLOSOMES_LONG"
 autowrap = true
 
 [node name="chromatophore" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips" groups=[
@@ -4671,7 +4671,7 @@ margin_right = 271.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 225, 0 )
 custom_fonts/font = SubResource( 52 )
-text = "Thylakoids"
+text = "THYLAKOIDS"
 align = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/chromatophore/MarginContainer/VBoxContainer"]
@@ -4688,7 +4688,7 @@ margin_top = 2.0
 margin_right = 68.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 53 )
-text = "Produces"
+text = "PRODUCES"
 
 [node name="Label2" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/chromatophore/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer2"]
 margin_left = 72.0
@@ -4713,7 +4713,7 @@ margin_top = 2.0
 margin_right = 291.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 53 )
-text = ". Rate scales with"
+text = "RATE_SCALES_WITH"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/chromatophore/MarginContainer/VBoxContainer/VBoxContainer2"]
 margin_top = 24.0
@@ -4725,7 +4725,7 @@ margin_top = 2.0
 margin_right = 117.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 53 )
-text = "concentration of"
+text = "CONCENTRATION_OF"
 
 [node name="Label7" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/chromatophore/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
 margin_left = 121.0
@@ -4762,7 +4762,7 @@ margin_top = 2.0
 margin_right = 79.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 53 )
-text = "intensity of"
+text = "INTENSITY_OF"
 
 [node name="Label9" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/chromatophore/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer3"]
 margin_left = 83.0
@@ -4853,7 +4853,7 @@ margin_right = 320.0
 margin_bottom = 408.0
 custom_fonts/font = SubResource( 53 )
 custom_constants/line_spacing = 0
-text = "Thylakoids are clusters of proteins and photosensitive pigments. The pigments are able to use the energy of light to produce glucose from water and gaseous carbon dioxide in a process called Photosynthesis. These pigments are also what give them a distinctive colour. The rate of their glucose production scales with the concentration of carbon dioxide, and intensity of light. Since the thylakoids are suspended directly in the cytoplasm, the surrounding fluid performs some fermentation."
+text = "THYLAKOIDS_LONG"
 autowrap = true
 
 [node name="chemoSynthesizingProteins" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips" groups=[
@@ -4924,8 +4924,7 @@ margin_right = 271.0
 margin_bottom = 57.0
 rect_min_size = Vector2( 225, 0 )
 custom_fonts/font = SubResource( 52 )
-text = "Chemosynth-
-esizing Proteins"
+text = "CHEMOSYNTHESIZING_PROTEINS"
 align = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/chemoSynthesizingProteins/MarginContainer/VBoxContainer"]
@@ -4950,7 +4949,7 @@ margin_top = 1.0
 margin_right = 191.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Hydrogen Sulfide"
+text = "HYDROGEN_SULFIDE"
 
 [node name="HSIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/chemoSynthesizingProteins/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer2"]
 margin_left = 195.0
@@ -4996,7 +4995,7 @@ margin_top = 2.0
 margin_right = 267.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 53 )
-text = ". Rate scales with concentration of"
+text = "RATE_SCALES_WITH_CONCENTRATION_OF"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/chemoSynthesizingProteins/MarginContainer/VBoxContainer/VBoxContainer2"]
 margin_top = 48.0
@@ -5008,7 +5007,7 @@ margin_top = 1.0
 margin_right = 60.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Carbon"
+text = "CARBON"
 
 [node name="Label7" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/chemoSynthesizingProteins/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer3"]
 margin_left = 64.0
@@ -5016,7 +5015,7 @@ margin_top = 1.0
 margin_right = 125.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Dioxide"
+text = "DIOXIDE"
 
 [node name="CO2Icon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/chemoSynthesizingProteins/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer3"]
 margin_left = 129.0
@@ -5152,7 +5151,7 @@ margin_right = 320.0
 margin_bottom = 446.0
 custom_fonts/font = SubResource( 53 )
 custom_constants/line_spacing = 0
-text = "Chemosynthesizing proteins are small clusters of protein in the cytoplasm that are able to convert hydrogen sulfide, water, and gaseous carbon dioxide into glucose in a process called Hydrogen Sulfide Chemosynthesis. The rate of its glucose production scales with the concentration of carbon dioxide. Since the chemosynthesizing proteins are suspended directly in the cytoplasm, the surrounding fluid performs some fermentation."
+text = "CHEMOSYNTHESIZING_LONG"
 autowrap = true
 
 [node name="rusticyanin" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips" groups=[
@@ -5223,7 +5222,7 @@ margin_right = 271.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 225, 0 )
 custom_fonts/font = SubResource( 52 )
-text = "Rusticyanin"
+text = "RUSTICYANIN"
 align = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/rusticyanin/MarginContainer/VBoxContainer"]
@@ -5290,7 +5289,7 @@ margin_top = 2.0
 margin_right = 281.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 53 )
-text = ". Rate scales"
+text = "RATE_SCALES"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/rusticyanin/MarginContainer/VBoxContainer/VBoxContainer2"]
 margin_top = 24.0
@@ -5302,7 +5301,7 @@ margin_top = 2.0
 margin_right = 150.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 53 )
-text = "with concentration of"
+text = "WITH_CONCENTRATION_OF"
 
 [node name="Label12" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/rusticyanin/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
 margin_left = 154.0
@@ -5339,7 +5338,7 @@ margin_top = 1.0
 margin_right = 94.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Oxygen"
+text = "OXYGEN"
 
 [node name="O2Icon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/rusticyanin/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer3"]
 margin_left = 98.0
@@ -5422,7 +5421,7 @@ margin_right = 320.0
 margin_bottom = 296.0
 custom_fonts/font = SubResource( 53 )
 custom_constants/line_spacing = 0
-text = "Rusticyanin is a protein able to use gaseous carbon dioxide and oxygen to oxidize iron from one chemical state to another. This process, called Iron Respiration, releases energy which the cell can then harvest."
+text = "RUSTICYANIN_LONG"
 autowrap = true
 
 [node name="nitrogenase" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips" groups=[
@@ -5493,7 +5492,7 @@ margin_right = 271.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 225, 0 )
 custom_fonts/font = SubResource( 52 )
-text = "Nitrogenase"
+text = "NITROGENASE"
 align = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/nitrogenase/MarginContainer/VBoxContainer"]
@@ -5560,7 +5559,7 @@ margin_top = 2.0
 margin_right = 270.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 53 )
-text = ". Rate"
+text = "DOT_RATE"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/nitrogenase/MarginContainer/VBoxContainer/VBoxContainer2"]
 margin_top = 24.0
@@ -5572,7 +5571,7 @@ margin_top = 2.0
 margin_right = 202.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 53 )
-text = "scales with concentration of"
+text = "SCALES_WITH_CONCENTRATION_OF"
 
 [node name="Label12" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/nitrogenase/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
 margin_left = 206.0
@@ -5580,7 +5579,7 @@ margin_top = 1.0
 margin_right = 278.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Nitrogen"
+text = "NITROGEN"
 
 [node name="NitrogenIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/nitrogenase/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
 margin_left = 282.0
@@ -5663,7 +5662,7 @@ margin_right = 320.0
 margin_bottom = 320.0
 custom_fonts/font = SubResource( 53 )
 custom_constants/line_spacing = 0
-text = "Nitrogenase is a protein able to use gaseous nitrogen and cellular energy in the form of ATP to produce ammonia, a key growth nutrient for cells. This is a process referred to as Anaerobic Nitrogen Fixation. Since the nitrogenase is suspended directly in the cytoplasm, the surrounding fluid performs some fermentation."
+text = "NITROGENASE_LONG"
 autowrap = true
 
 [node name="oxytoxyProteins" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips" groups=[
@@ -5734,7 +5733,7 @@ margin_right = 271.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 225, 0 )
 custom_fonts/font = SubResource( 52 )
-text = "Oxytoxisome"
+text = "OXYTOXISOME"
 align = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/oxytoxyProteins/MarginContainer/VBoxContainer"]
@@ -5784,7 +5783,7 @@ margin_top = 1.0
 margin_right = 199.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Oxytoxy"
+text = "OXYTOXY"
 
 [node name="OxytoxyIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/oxytoxyProteins/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer2"]
 margin_left = 203.0
@@ -5801,7 +5800,7 @@ margin_top = 2.0
 margin_right = 318.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 53 )
-text = ". Can release"
+text = "DOT_CAN_RELEASE"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/oxytoxyProteins/MarginContainer/VBoxContainer/VBoxContainer2"]
 margin_top = 24.0
@@ -5812,7 +5811,7 @@ margin_bottom = 40.0
 margin_right = 267.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 53 )
-text = "toxins by pressing E. Rate scales with"
+text = "TOXINS_PRESSING_E"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/oxytoxyProteins/MarginContainer/VBoxContainer/VBoxContainer2"]
 margin_top = 44.0
@@ -5824,7 +5823,7 @@ margin_top = 2.0
 margin_right = 117.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 53 )
-text = "concentration of"
+text = "CONCENTRATION_OF"
 
 [node name="Label12" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/oxytoxyProteins/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer3"]
 margin_left = 121.0
@@ -5832,7 +5831,7 @@ margin_top = 1.0
 margin_right = 185.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Oxygen"
+text = "OXYGEN"
 
 [node name="OxygenIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/oxytoxyProteins/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer3"]
 margin_left = 189.0
@@ -5915,7 +5914,7 @@ margin_right = 320.0
 margin_bottom = 260.0
 custom_fonts/font = SubResource( 53 )
 custom_constants/line_spacing = 0
-text = "A modified metabolosome responsible for the production of a primitive form of the toxic agent Oxytoxy NT."
+text = "OXYTOXY_LONG"
 autowrap = true
 
 [node name="flagellum" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips" groups=[
@@ -5986,7 +5985,7 @@ margin_right = 271.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 225, 0 )
 custom_fonts/font = SubResource( 52 )
-text = "Flagellum"
+text = "FLAGELLUM"
 align = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/flagellum/MarginContainer/VBoxContainer"]
@@ -6003,7 +6002,7 @@ margin_top = 2.0
 margin_right = 36.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 53 )
-text = "Uses"
+text = "USES"
 
 [node name="Label2" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/flagellum/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer2"]
 margin_left = 40.0
@@ -6028,7 +6027,7 @@ margin_top = 2.0
 margin_right = 280.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 53 )
-text = "to increase the movement"
+text = "TO_INCREASE_THE_MOVEMENT"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/flagellum/MarginContainer/VBoxContainer/VBoxContainer2"]
 margin_top = 24.0
@@ -6039,7 +6038,7 @@ margin_bottom = 40.0
 margin_right = 123.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 53 )
-text = "speed of the cell."
+text = "SPEED_OF_THE_CELL"
 
 [node name="ProcessList" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/flagellum/MarginContainer/VBoxContainer"]
 margin_top = 97.0
@@ -6071,7 +6070,7 @@ margin_top = 1.0
 margin_right = 88.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Speed"
+text = "SPEED"
 
 [node name="VacuoleIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/flagellum/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer3"]
 margin_left = 92.0
@@ -6142,7 +6141,7 @@ margin_right = 320.0
 margin_bottom = 276.0
 custom_fonts/font = SubResource( 53 )
 custom_constants/line_spacing = 0
-text = "The flagellum (plural: flagella) is a whip-like bundle of protein fibers extending from the cell's membrane which can use ATP to undulate and propel the cell in a direction."
+text = "FRAGELLUM_LONG"
 autowrap = true
 
 [node name="pilus" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips" groups=[
@@ -6213,7 +6212,7 @@ margin_right = 286.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 240, 0 )
 custom_fonts/font = SubResource( 52 )
-text = "Predatory Pilus"
+text = "PREDATORY_PILUS"
 align = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/pilus/MarginContainer/VBoxContainer"]
@@ -6229,7 +6228,7 @@ margin_bottom = 16.0
 margin_right = 178.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 53 )
-text = "Stab other cells with this."
+text = "STAB_OTHER_CELLS_WITH_THIS"
 
 [node name="ProcessList" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/pilus/MarginContainer/VBoxContainer"]
 margin_top = 73.0
@@ -6306,7 +6305,7 @@ margin_right = 277.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 240, 0 )
 custom_fonts/font = SubResource( 52 )
-text = "Cilia"
+text = "CILIA"
 align = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/cilia/MarginContainer/VBoxContainer"]
@@ -6322,7 +6321,7 @@ margin_bottom = 16.0
 margin_right = 135.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 53 )
-text = "To be Implemented."
+text = "TO_BE_IMPLEMENTED"
 
 [node name="ProcessList" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/cilia/MarginContainer/VBoxContainer"]
 margin_top = 73.0
@@ -6399,7 +6398,7 @@ margin_right = 265.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 210, 0 )
 custom_fonts/font = SubResource( 52 )
-text = "Nucleus"
+text = "NUCLEUS"
 align = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/nucleus/MarginContainer/VBoxContainer"]
@@ -6415,7 +6414,7 @@ margin_bottom = 16.0
 margin_right = 290.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 53 )
-text = "Allows for the evolution of more complex,"
+text = "ALLOWS_FOR_THE_EVOLATION"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/nucleus/MarginContainer/VBoxContainer/VBoxContainer2"]
 margin_top = 20.0
@@ -6426,7 +6425,7 @@ margin_bottom = 36.0
 margin_right = 288.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 53 )
-text = "membrane-bound organelles. Costs a lot"
+text = "MEMBRANE_BOUND_ORGANELLES"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/nucleus/MarginContainer/VBoxContainer/VBoxContainer2"]
 margin_top = 40.0
@@ -6437,7 +6436,7 @@ margin_bottom = 56.0
 margin_right = 276.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 53 )
-text = "of ATP to maintain. This is an irreversible"
+text = "OF_ATP_TO_MAINTAIN"
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/nucleus/MarginContainer/VBoxContainer/VBoxContainer2"]
 margin_top = 60.0
@@ -6448,7 +6447,7 @@ margin_bottom = 76.0
 margin_right = 67.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 53 )
-text = "evolution."
+text = "EVOLUTION_DOT"
 
 [node name="ProcessList" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/nucleus/MarginContainer/VBoxContainer"]
 margin_top = 133.0
@@ -6522,7 +6521,7 @@ margin_right = 320.0
 margin_bottom = 496.0
 custom_fonts/font = SubResource( 53 )
 custom_constants/line_spacing = 0
-text = "The defining feature of eukaryotic cells. The nucleus also includes the endoplasmic reticulum and the golgi body. It is an evolution of prokaryotic cells to develop a system of internal membranes, done by assimilating another prokaryote inside of themselves. This allows them to compartmentalize, or ward off, the different processes happening inside the cell and prevent them from overlapping. This allows their new membrane bound organelles to be much more complex, efficient, and specialized than if they were free-floating in the cytoplasm. However, this comes at the cost of making the cell much larger and requiring a lot of the cell's energy to maintain."
+text = "NUCLEUS_LONG"
 autowrap = true
 
 [node name="mitochondrion" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips" groups=[
@@ -6593,7 +6592,7 @@ margin_right = 266.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 220, 0 )
 custom_fonts/font = SubResource( 52 )
-text = "Mitochondrion"
+text = "MITOCHONDRION"
 align = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/mitochondrion/MarginContainer/VBoxContainer"]
@@ -6660,7 +6659,7 @@ margin_top = 2.0
 margin_right = 265.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 53 )
-text = ". Rate"
+text = "DOT_RATE"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/mitochondrion/MarginContainer/VBoxContainer/VBoxContainer2"]
 margin_top = 24.0
@@ -6672,7 +6671,7 @@ margin_top = 2.0
 margin_right = 202.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 53 )
-text = "scales with concentration of"
+text = "SCALES_WITH_CONCENTRATION_OF"
 
 [node name="Label4" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/mitochondrion/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
 margin_left = 206.0
@@ -6680,7 +6679,7 @@ margin_top = 1.0
 margin_right = 270.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Oxygen"
+text = "OXYGEN"
 
 [node name="OxygenIcon2" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/mitochondrion/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
 margin_left = 274.0
@@ -6763,7 +6762,7 @@ margin_right = 320.0
 margin_bottom = 384.0
 custom_fonts/font = SubResource( 53 )
 custom_constants/line_spacing = 0
-text = "The powerhouse of the cell. The mitochondrion (plural: mitochondria) is a double membrane structure filled with proteins and enzymes. It is a prokaryote that has been assimilated for use by its eukaryotic host. It is able to convert glucose into ATP at a much higher efficiency than can be done in the cytoplasm in a process called Aerobic Respiration. It does, however, require oxygen to function, and lower levels of oxygen in the environment will slow down the rate of its ATP production."
+text = "MITOCHONDRION_LONG"
 autowrap = true
 
 [node name="chloroplast" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips" groups=[
@@ -6851,7 +6850,7 @@ margin_top = 2.0
 margin_right = 68.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 53 )
-text = "Produces"
+text = "PRODUCES"
 
 [node name="Label2" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/chloroplast/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer2"]
 margin_left = 72.0
@@ -6876,7 +6875,7 @@ margin_top = 2.0
 margin_right = 291.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 53 )
-text = ". Rate scales with"
+text = "RATE_SCALES_WITH"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/chloroplast/MarginContainer/VBoxContainer/VBoxContainer2"]
 margin_top = 24.0
@@ -6888,7 +6887,7 @@ margin_top = 2.0
 margin_right = 117.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 53 )
-text = "concentration of"
+text = "CONCENTRATION_OF"
 
 [node name="Label4" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/chloroplast/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
 margin_left = 121.0
@@ -6925,7 +6924,7 @@ margin_top = 2.0
 margin_right = 79.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 53 )
-text = "intensity of"
+text = "INTENSITY_OF"
 
 [node name="Label4" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/chloroplast/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer3"]
 margin_left = 83.0
@@ -7016,7 +7015,7 @@ margin_right = 320.0
 margin_bottom = 424.0
 custom_fonts/font = SubResource( 53 )
 custom_constants/line_spacing = 0
-text = "The chloroplast is a double membrane structure containing photosensitive pigments stacked together in membranous sacs. It is a prokaryote that has been assimilated for use by its eukaryotic host. The pigments in the chloroplast are able to use the energy of light to produce glucose from water and gaseous carbon dioxide in a process called Photosynthesis. These pigments are also what give it a distinctive colour. The rate of its glucose production scales with the concentration of carbon dioxide, and intensity of light."
+text = "CHLOROPLAST_LONG"
 autowrap = true
 
 [node name="thermoplast" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips" groups=[
@@ -7087,7 +7086,7 @@ margin_right = 271.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 225, 0 )
 custom_fonts/font = SubResource( 52 )
-text = "Thermoplast"
+text = "THERMOPLAST"
 align = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/thermoplast/MarginContainer/VBoxContainer"]
@@ -7104,7 +7103,7 @@ margin_top = 2.0
 margin_right = 68.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 53 )
-text = "Produces"
+text = "PRODUCES"
 
 [node name="Label2" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/thermoplast/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer2"]
 margin_left = 72.0
@@ -7129,7 +7128,7 @@ margin_top = 2.0
 margin_right = 291.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 53 )
-text = ". Rate scales with"
+text = "RATE_SCALES_WITH"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/thermoplast/MarginContainer/VBoxContainer/VBoxContainer2"]
 margin_top = 24.0
@@ -7141,7 +7140,7 @@ margin_top = 2.0
 margin_right = 117.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 53 )
-text = "concentration of"
+text = "CONCENTRATION_OF"
 
 [node name="Label4" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/thermoplast/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
 margin_left = 121.0
@@ -7178,7 +7177,7 @@ margin_top = 1.0
 margin_right = 108.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Temperature"
+text = "TEMPERATURE"
 
 [node name="TemperatureIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/thermoplast/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer3"]
 margin_left = 112.0
@@ -7261,7 +7260,7 @@ margin_right = 320.0
 margin_bottom = 424.0
 custom_fonts/font = SubResource( 53 )
 custom_constants/line_spacing = 0
-text = "The thermoplast is a double membrane structure containing thermosensitive pigments stacked together in membranous sacs. It is a prokaryote that has been assimilated for use by its eukaryotic host. The pigments in the thermoplast are able to use the energy of heat differences in the surroundings to produce glucose from water and gaseous carbon dioxide in a process called Thermosynthesis. The rate of its glucose production scales with the concentration of carbon dioxide, and temperature."
+text = "THERMOPLAST_LONG"
 autowrap = true
 
 [node name="chemoplast" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips" groups=[
@@ -7332,7 +7331,7 @@ margin_right = 271.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 225, 0 )
 custom_fonts/font = SubResource( 52 )
-text = "Chemoplast"
+text = "CHEMOPLAST"
 align = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/chemoplast/MarginContainer/VBoxContainer"]
@@ -7357,7 +7356,7 @@ margin_top = 1.0
 margin_right = 191.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Hydrogen Sulfide"
+text = "HYDROGEN_SULFIDE"
 
 [node name="HSIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/chemoplast/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer2"]
 margin_left = 195.0
@@ -7403,7 +7402,7 @@ margin_top = 2.0
 margin_right = 267.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 53 )
-text = ". Rate scales with concentration of"
+text = "RATE_SCALES_WITH_CONCENTRATION_OF"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/chemoplast/MarginContainer/VBoxContainer/VBoxContainer2"]
 margin_top = 48.0
@@ -7498,8 +7497,7 @@ margin_right = 320.0
 margin_bottom = 344.0
 custom_fonts/font = SubResource( 53 )
 custom_constants/line_spacing = 0
-text = "The chemoplast is a double membrane structure containing proteins able to convert hydrogen sulfide, water, and gaseous carbon dioxide into glucose in a process called Hydrogen Sulfide Chemosynthesis.
-The rate of its glucose production scales with the concentration of water and carbon dioxide."
+text = "CHEMOPLAST_LONG"
 autowrap = true
 
 [node name="nitrogenfixingplastid" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips" groups=[
@@ -7570,8 +7568,7 @@ margin_right = 266.0
 margin_bottom = 57.0
 rect_min_size = Vector2( 220, 0 )
 custom_fonts/font = SubResource( 52 )
-text = "Nitrogen Fixing
-Plastid"
+text = "NITROGEN_FIXING_PLASTID"
 align = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/nitrogenfixingplastid/MarginContainer/VBoxContainer"]
@@ -7638,7 +7635,7 @@ margin_top = 2.0
 margin_right = 270.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 53 )
-text = ". Rate"
+text = "DOT_RATE"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/nitrogenfixingplastid/MarginContainer/VBoxContainer/VBoxContainer2"]
 margin_top = 24.0
@@ -7650,7 +7647,7 @@ margin_top = 2.0
 margin_right = 202.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 53 )
-text = "scales with concentration of"
+text = "SCALES_WITH_CONCENTRATION_OF"
 
 [node name="Label4" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/nitrogenfixingplastid/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
 margin_left = 206.0
@@ -7658,7 +7655,7 @@ margin_top = 1.0
 margin_right = 278.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Nitrogen"
+text = "NITROGEN"
 
 [node name="NitrogenIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/nitrogenfixingplastid/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
 margin_left = 282.0
@@ -7687,7 +7684,7 @@ margin_top = 1.0
 margin_right = 94.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Oxygen"
+text = "OXYGEN"
 
 [node name="OxygenIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/nitrogenfixingplastid/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer3"]
 margin_left = 98.0
@@ -7770,7 +7767,7 @@ margin_right = 320.0
 margin_bottom = 342.0
 custom_fonts/font = SubResource( 53 )
 custom_constants/line_spacing = 0
-text = "The Nitrogen Fixing Plastid is a protein able to use gaseous nitrogen and oxygen and cellular energy in the form of ATP to produce ammonia, a key growth nutrient for cells. This is a process referred to as Aerobic Nitrogen Fixation."
+text = "NITROGEN_LONG"
 autowrap = true
 
 [node name="vacuole" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips" groups=[
@@ -7841,7 +7838,7 @@ margin_right = 261.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 215, 0 )
 custom_fonts/font = SubResource( 52 )
-text = "Vacuole"
+text = "VACUOLE"
 align = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/vacuole/MarginContainer/VBoxContainer"]
@@ -7857,7 +7854,7 @@ margin_bottom = 16.0
 margin_right = 283.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 53 )
-text = "Increases the storage space of the cell."
+text = "INCREASES_THE_STORAGE"
 
 [node name="ProcessList" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/vacuole/MarginContainer/VBoxContainer"]
 margin_top = 73.0
@@ -7931,7 +7928,7 @@ margin_right = 320.0
 margin_bottom = 308.0
 custom_fonts/font = SubResource( 53 )
 custom_constants/line_spacing = 0
-text = "The vacuole is an internal membranous organelle used for storage in the cell. They are composed of several vesicles, smaller membranous structures widely used in cells for storage, that have fused together. It is filled with water which is used to contain molecules, enzymes, solids, and other substances. Their shape is fluid and can vary between cells."
+text = "VACUOLE_LONG"
 autowrap = true
 
 [node name="oxytoxy" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips" groups=[
@@ -8002,7 +7999,7 @@ margin_right = 261.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 215, 0 )
 custom_fonts/font = SubResource( 52 )
-text = "Toxin Vacuole"
+text = "TOXIN_VACUOLE"
 align = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/oxytoxy/MarginContainer/VBoxContainer"]
@@ -8052,7 +8049,7 @@ margin_top = 1.0
 margin_right = 199.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Oxytoxy"
+text = "OXYTOXY"
 
 [node name="ToxinIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/oxytoxy/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer2"]
 margin_left = 203.0
@@ -8069,7 +8066,7 @@ margin_top = 2.0
 margin_right = 260.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 53 )
-text = ". Can"
+text = "DOT_CAN"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/oxytoxy/MarginContainer/VBoxContainer/VBoxContainer2"]
 margin_top = 24.0
@@ -8088,7 +8085,7 @@ margin_left = 194.0
 margin_right = 209.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 54 )
-text = "E."
+text = "E_DOT"
 
 [node name="Label9" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/oxytoxy/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
 margin_left = 213.0
@@ -8096,7 +8093,7 @@ margin_top = 1.0
 margin_right = 243.0
 margin_bottom = 17.0
 custom_fonts/font = SubResource( 53 )
-text = "Rate"
+text = "RATE"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/oxytoxy/MarginContainer/VBoxContainer/VBoxContainer2"]
 margin_top = 46.0
@@ -8108,7 +8105,7 @@ margin_top = 2.0
 margin_right = 202.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 53 )
-text = "scales with concentration of"
+text = "SCALES_WITH_CONCENTRATION_OF"
 
 [node name="Label5" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/oxytoxy/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer3"]
 margin_left = 206.0
@@ -8116,7 +8113,7 @@ margin_top = 1.0
 margin_right = 270.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Oxygen"
+text = "OXYGEN"
 
 [node name="OxygenIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/oxytoxy/MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer3"]
 margin_left = 274.0
@@ -8199,7 +8196,7 @@ margin_right = 320.0
 margin_bottom = 294.0
 custom_fonts/font = SubResource( 53 )
 custom_constants/line_spacing = 0
-text = "The toxin vacuole is a vacuole that has been modified for the specific production, storage, and secretion of oxytoxy toxins. More toxin vacuoles will increase the rate at which toxins can be released."
+text = "OXYTOXY_LONGG"
 autowrap = true
 
 [node name="bioluminescentVacuole" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips" groups=[
@@ -8270,8 +8267,7 @@ margin_right = 277.0
 margin_bottom = 57.0
 rect_min_size = Vector2( 240, 0 )
 custom_fonts/font = SubResource( 52 )
-text = "Bioluminescent
-Vacuole"
+text = "BIOLUMINESCENT_VACUOLE"
 align = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/bioluminescentVacuole/MarginContainer/VBoxContainer"]
@@ -8287,7 +8283,7 @@ margin_bottom = 16.0
 margin_right = 135.0
 margin_bottom = 16.0
 custom_fonts/font = SubResource( 53 )
-text = "To be implemented."
+text = "TO_BE_IMPLEMENTED"
 
 [node name="ProcessList" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/bioluminescentVacuole/MarginContainer/VBoxContainer"]
 margin_top = 103.0
@@ -8364,7 +8360,7 @@ margin_right = 261.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 215, 0 )
 custom_fonts/font = SubResource( 52 )
-text = "Normal"
+text = "NORMAL"
 align = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSingle/MarginContainer/VBoxContainer"]
@@ -8390,7 +8386,7 @@ margin_top = 1.0
 margin_right = 97.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Mobility"
+text = "MOBILITY"
 
 [node name="VacuoleIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSingle/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 101.0
@@ -8438,7 +8434,7 @@ margin_left = 33.0
 margin_right = 269.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 54 )
-text = "Resource Absorption Speed"
+text = "RESOURCE_ABSORPTION_SPEED"
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSingle/MarginContainer/VBoxContainer/VBoxContainer"]
 margin_top = 68.0
@@ -8458,7 +8454,7 @@ margin_left = 29.0
 margin_right = 83.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 54 )
-text = "Health"
+text = "HEALTH"
 
 [node name="HSeparator" type="HSeparator" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSingle/MarginContainer/VBoxContainer"]
 margin_top = 143.0
@@ -9985,7 +9981,7 @@ margin_top = 3.0
 margin_right = 102.0
 margin_bottom = 22.0
 custom_fonts/font = SubResource( 62 )
-text = "Oxygen"
+text = "OXYGEN"
 
 [node name="Nitrogen" type="HBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericConditions/Clip/GridContainer"]
 margin_left = 266.0
@@ -10115,7 +10111,7 @@ margin_top = 3.0
 margin_right = 186.0
 margin_bottom = 22.0
 custom_fonts/font = SubResource( 62 )
-text = "Hydrogen Sulfide"
+text = "HYDROGEN_SULFIDE"
 
 [node name="Situation" type="TextureRect" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/HydrogenSulfide"]
 margin_left = 190.0

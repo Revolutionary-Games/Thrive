@@ -36,8 +36,14 @@ CALCIUM_CARBONATE_50_MP,"Calcium  Carbonate
 50 MP",
 COLOUR,Colour,
 CYTOPLASM_LONG,"The gooey innards of a cell. The cytoplasm is the basic mixture of ions, proteins, and other substances dissolved in water that fill the interior of the cell. One of the functions it performs is Fermentation, the conversion of glucose into ATP energy. For cells that lack organelles to have more advanced metabolisms, this is what they rely on for energy. It is also used to store molecules in the cell and to grow the cell's size.",
+CONCENTRATION_OF,concentration of,
+CHEMOSYNTHESIZING_PROTEINS,"Chemosynth-
+esizing Proteins",
+CARBON,Carbon,
+CHEMOSYNTHESIZING_LONG,"Chemosynthesizing proteins are small clusters of protein in the cytoplasm that are able to convert hydrogen sulfide, water, and gaseous carbon dioxide into glucose in a process called Hydrogen Sulfide Chemosynthesis. The rate of its glucose production scales with the concentration of carbon dioxide. Since the chemosynthesizing proteins are suspended directly in the cytoplasm, the surrounding fluid performs some fermentation.",
 DOUBLE_50_MP,"Double
 50 MP",
+DIOXIDE,Dioxide,
 EXTRAS,Extras,Дополнительные
 EXIT,Exit,Выход
 EXTINCTION,EXTINCTION,
@@ -49,12 +55,14 @@ EXTERNAL_ORGANELLES,External Organelles,
 FRAGELLUM_55_MP,"Flagellum
 55 MP",
 FLUIDITY_RIGIDITY,Fluidity/Rigidity,
+FLAGELLUM,Flagellum,
 GLUCOSE,Glucose,Глюкоза
 GENERATION_2,Generation 2,
 HELP,Help,Помощь
 IRON,Iron,Железо
 INTERNAL_ORGANELLES,Internal Organelles,
 INTO,into,
+INTENSITY_OF,intensity of,
 LOAD_GAME,Load Game,Загрузить игру
 LIGHT,Light,Свет
 MUTATION_POINTS,Mutation Points,Мутационные очки
@@ -65,6 +73,7 @@ METABOLOSOMES_45_MP,"Metabolosomes
 MITOCHONDRION_45_MP,"Mitochondrion
 45 MP",
 METABOLOSOMES,Metabolosomes,
+METABOLOSOMES_LONG,"Metabolosomes are clusters of proteins wrapped in protein shells. They are able to convert glucose into ATP at a much higher rate than can be done in the cytoplasm in a process called Aerobic Respiration. It does, however, require oxygen to function, and lower levels of oxygen in the environment will slow down the rate of its ATP production. Since the metabolosomes are suspended directly in the cytoplasm, the surrounding fluid performs some fermentation.",
 NEW_GAME,New Game,Новая игра
 NEW,NEW,НОВЫЙ
 NITROGENASE_55_MP,"Nitrogenase
@@ -76,20 +85,34 @@ NUCLEUS_100_MP,"Nucleus
 100 MP",
 NORMAL_50_MP,"Normal
 50 MP",
+NITROGENASE,Nitrogenase,
+NITROGEN,Nitrogen,
+NITROGENASE_LONG,"Nitrogenase is a protein able to use gaseous nitrogen and cellular energy in the form of ATP to produce ammonia, a key growth nutrient for cells. This is a process referred to as Anaerobic Nitrogen Fixation. Since the nitrogenase is suspended directly in the cytoplasm, the surrounding fluid performs some fermentation.",
 PATCH_MAP,PATCH MAP,
 PRIMUM_THRIVIUM,Primum Thrivium,
 PROKARYOTIC_STRUCTURES,Prokaryotic Structures,Прокариотические структуры
 PREDATORY_PILUS_30_MP,"Predatory Pilus
 30 MP",
+PRODUCES,Produces,
 OPTIONS,Options,Настройки
 OXYTOXISOME_55_MP,"Oxytoxisome
 55 MP",
 OSMOREGULATION_COST,Osmoregulation Cost,
+OXYGEN_DOT,"Oxygen.",
+OXYGEN,Oxygen,
+OXYTOXISOME,Oxytoxisome,
+OXYTOXY,Oxytoxy,
+OXYTOXY_LONG,"A modified metabolosome responsible for the production of a primitive form of the toxic agent Oxytoxy NT.",
 QUIT,Quit,Выход
 RESUME,Resume,Продолжить
 REPORT,REPORT,
 RUSTICYANIN_45_MP,"Rusticyanin	
 45 MP",
+RATE_SCALES,". Rate scales",
+RATE_SCALES_WITH,". Rate scales with",
+RUSTICYANIN,Rusticyanin,
+RUSTICYANIN_LONG,"Rusticyanin is a protein able to use gaseous carbon dioxide and oxygen to oxidize iron from one chemical state to another. This process, called Iron Respiration, releases energy which the cell can then harvest.",
+DOT_RATE,". Rate",
 TOOLS,Tools,Инструменты
 THYLAKOID_50_MP,"Thylakoid
 50 MP",
@@ -98,6 +121,8 @@ THERMOPLAST_40_MP,"Thermoplast
 TOXIN_VACUOLE_70_MP,"Toxin Vacuole
 70 MP",
 TURNS,Turns,
+THYLAKOIDS,Thylakoids,
+THYLAKOIDS_LONG,"Thylakoids are clusters of proteins and photosensitive pigments. The pigments are able to use the energy of light to produce glucose from water and gaseous carbon dioxide in a process called Photosynthesis. These pigments are also what give them a distinctive colour. The rate of their glucose production scales with the concentration of carbon dioxide, and intensity of light. Since the thylakoids are suspended directly in the cytoplasm, the surrounding fluid performs some fermentation.",
 STATISTICS,Statistics,Статистика
 SAVE_GAME,Save Game,Сохранить игру
 STORAGE,Storage,Хранилище
@@ -116,3 +141,52 @@ YOU_HAVE_THRIVED,YOU HAVE THRIVED!,
 YOU_HAVE_THRIVED_LONG,"Congratulations you have won this version of Thrive!
 You may continue playing after this screen closes if you wish,
 or start a new game in a new world.",
+WITH_CONCENTRATION_OF,with concentration of,
+HYDROGEN_SULFIDE,Hydrogen Sulfide,
+RATE_SCALES_WITH_CONCENTRATION_OF,". Rate scales with concentration of",
+SCALES_WITH_CONCENTRATION_OF,scales with concentration of,
+DOT_CAN_RELEASE,". Can release",
+TOXINS_PRESSING_E,"toxins by pressing E. Rate scales with",
+USES,Uses,
+TO_INCREASE_THE_MOVEMENT,to increase the movement,
+SPEED_OF_THE_CELL,"speed of the cell.",
+SPEED,Speed,
+FRAGELLUM_LONG,"The flagellum (plural: flagella) is a whip-like bundle of protein fibers extending from the cell's membrane which can use ATP to undulate and propel the cell in a direction.",
+PREDATORY_PILUS,Predatory Pilus,
+STAB_OTHER_CELLS_WITH_THIS,"Stab other cells with this.",
+CILIA,Cilia,
+TO_BE_IMPLEMENTED,"To be Implemented.",
+NUCLEUS,Nucleus,
+ALLOWS_FOR_THE_EVOLATION,"Allows for the evolution of more complex,",
+MEMBRANE_BOUND_ORGANELLES,"membrane-bound organelles. Costs a lot",
+OF_ATP_TO_MAINTAIN,"of ATP to maintain. This is an irreversible",
+EVOLUTION_DOT,"evolution.",
+NUCLEUS_LONG,"The defining feature of eukaryotic cells. The nucleus also includes the endoplasmic reticulum and the golgi body. It is an evolution of prokaryotic cells to develop a system of internal membranes, done by assimilating another prokaryote inside of themselves. This allows them to compartmentalize, or ward off, the different processes happening inside the cell and prevent them from overlapping. This allows their new membrane bound organelles to be much more complex, efficient, and specialized than if they were free-floating in the cytoplasm. However, this comes at the cost of making the cell much larger and requiring a lot of the cell's energy to maintain.",
+MITOCHONDRION,Mitochondrion,
+MITOCHONDRION_LONG,"The powerhouse of the cell. The mitochondrion (plural: mitochondria) is a double membrane structure filled with proteins and enzymes. It is a prokaryote that has been assimilated for use by its eukaryotic host. It is able to convert glucose into ATP at a much higher efficiency than can be done in the cytoplasm in a process called Aerobic Respiration. It does, however, require oxygen to function, and lower levels of oxygen in the environment will slow down the rate of its ATP production.",
+PRODUCES,Produces,
+CHLOROPLAST_LONG,"The chloroplast is a double membrane structure containing photosensitive pigments stacked together in membranous sacs. It is a prokaryote that has been assimilated for use by its eukaryotic host. The pigments in the chloroplast are able to use the energy of light to produce glucose from water and gaseous carbon dioxide in a process called Photosynthesis. These pigments are also what give it a distinctive colour. The rate of its glucose production scales with the concentration of carbon dioxide, and intensity of light.",
+THERMOPLAST,Thermoplast,
+TEMPERATURE,Temperature,
+THERMOPLAST_LONG,"The thermoplast is a double membrane structure containing thermosensitive pigments stacked together in membranous sacs. It is a prokaryote that has been assimilated for use by its eukaryotic host. The pigments in the thermoplast are able to use the energy of heat differences in the surroundings to produce glucose from water and gaseous carbon dioxide in a process called Thermosynthesis. The rate of its glucose production scales with the concentration of carbon dioxide, and temperature.",
+CHEMOPLAST,Chemoplast,
+CHEMOPLAST_LONG,"The chemoplast is a double membrane structure containing proteins able to convert hydrogen sulfide, water, and gaseous carbon dioxide into glucose in a process called Hydrogen Sulfide Chemosynthesis.
+The rate of its glucose production scales with the concentration of water and carbon dioxide.",
+NITROGEN_FIXING_PLASTID,"Nitrogen Fixing
+Plastid",
+NITROGEN,Nitrogen,
+NITROGEN_LONG,"The Nitrogen Fixing Plastid is a protein able to use gaseous nitrogen and oxygen and cellular energy in the form of ATP to produce ammonia, a key growth nutrient for cells. This is a process referred to as Aerobic Nitrogen Fixation.",
+VACUOLE,Vacuole,
+INCREASES_THE_STORAGE,"Increases the storage space of the cell.",
+VACUOLE_LONG,"The vacuole is an internal membranous organelle used for storage in the cell. They are composed of several vesicles, smaller membranous structures widely used in cells for storage, that have fused together. It is filled with water which is used to contain molecules, enzymes, solids, and other substances. Their shape is fluid and can vary between cells.",
+TOXIN_VACUOLE,Toxin Vacuole,
+DOT_CAN,". Can",
+E_DOT,"E.",
+RATE,Rate,
+OXYTOXY_LONGG,"The toxin vacuole is a vacuole that has been modified for the specific production, storage, and secretion of oxytoxy toxins. More toxin vacuoles will increase the rate at which toxins can be released.",
+BIOLUMINESCENT_VACUOLE,"Bioluminescent
+Vacuole",
+NORMAL,Normal,
+MOBILITY,Mobility,
+RESOURCE_ABSORPTION_SPEED,Resource Absorption Speed,
+HEALTH,Health,
