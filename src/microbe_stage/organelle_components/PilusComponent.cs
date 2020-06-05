@@ -13,7 +13,6 @@ public class PilusComponent : ExternallyPositionedComponent
 
     public new void OnAttachToCell(PlacedOrganelle organelle)
     {
-        organelle.ShouldScale = false;
     }
 
     protected override void CustomAttach()
