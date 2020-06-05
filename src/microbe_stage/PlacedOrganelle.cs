@@ -30,11 +30,6 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     [JsonProperty]
     private Dictionary<Compound, float> compoundsLeft;
 
-    /// <summary>
-    /// Should this organelle scale?
-    /// </summary>
-    public bool ShouldScale { get; set; } = true;
-
     public PlacedOrganelle(OrganelleDefinition definition, Hex position, int orientation)
     {
         Definition = definition;
@@ -45,6 +40,11 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     public PlacedOrganelle()
     {
     }
+
+    /// <summary>
+    /// Should this organelle scale?
+    /// </summary>
+    public bool ShouldScale { get; set; } = true;
 
     public OrganelleDefinition Definition { get; set; }
 
