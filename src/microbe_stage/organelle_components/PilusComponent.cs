@@ -8,9 +8,8 @@ public class PilusComponent : ExternallyPositionedComponent
 {
     private List<uint> addedChildShapes = new List<uint>();
 
-    CylinderShape collisionShape;
-    uint ownerId;
-    float pilusSize = 4.6f;
+    private uint ownerId;
+    private float pilusSize = 4.6f;
 
     public new void OnAttachToCell(PlacedOrganelle organelle)
     {
@@ -21,27 +20,6 @@ public class PilusComponent : ExternallyPositionedComponent
     {
         base.CustomAttach();
         CreatePilusCollisionShape();
-    }
-
-    private void CreatePilusCollisionShape()
-    {
-        // Scale the size down for bacteria
-        if (organelle.ParentMicrobe.Species.IsBacteria)
-        {
-            pilusSize *= 0.5f;
-        }
-
-        collisionShape = new CylinderShape();
-        collisionShape.Radius = pilusSize / 8.0f;
-        collisionShape.Height = pilusSize * organelle.Scale.Length();
-
-        var parentMicrobe = organelle.ParentMicrobe;
-
-        ownerId = parentMicrobe.CreateShapeOwner(collisionShape);
-        parentMicrobe.ShapeOwnerAddShape(ownerId, collisionShape);
-
-        parentMicrobe.AddPilus(ownerId);
-        addedChildShapes.Add(ownerId);
     }
 
     protected override void CustomDetach()
@@ -85,6 +63,27 @@ public class PilusComponent : ExternallyPositionedComponent
         var parentMicrobe = organelle.ParentMicrobe;
         var transform = new Transform(physicsRotation, membraneCoords);
         parentMicrobe.ShapeOwnerSetTransform(ownerId, transform);
+    }
+
+    private void CreatePilusCollisionShape()
+    {
+        // Scale the size down for bacteria
+        if (organelle.ParentMicrobe.Species.IsBacteria)
+        {
+            pilusSize *= 0.5f;
+        }
+
+        var collisionShape = new CylinderShape();
+        collisionShape.Radius = pilusSize / 8.0f;
+        collisionShape.Height = pilusSize * organelle.Scale.Length();
+
+        var parentMicrobe = organelle.ParentMicrobe;
+
+        ownerId = parentMicrobe.CreateShapeOwner(collisionShape);
+        parentMicrobe.ShapeOwnerAddShape(ownerId, collisionShape);
+
+        parentMicrobe.AddPilus(ownerId);
+        addedChildShapes.Add(ownerId);
     }
 
     private void DestroyShape()
