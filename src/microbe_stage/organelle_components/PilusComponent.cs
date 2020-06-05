@@ -8,6 +8,50 @@ public class PilusComponent : ExternallyPositionedComponent
 {
     private List<uint> addedChildShapes = new List<uint>();
 
+    CylinderShape collisionShape;
+    uint ownerId;
+    float pilusSize = 4.6f;
+
+    MeshInstance debugMesh;
+
+    protected override void CustomAttach()
+    {
+        base.CustomAttach();
+
+        GD.Print("Atteched the Pilus");
+
+        // Scale the size down for bacteria
+        if (organelle.ParentMicrobe.Species.IsBacteria)
+        {
+            pilusSize *= 0.5f;
+        }
+
+        collisionShape = new CylinderShape();
+        collisionShape.Radius = pilusSize / 8.0f;
+        collisionShape.Height = pilusSize * organelle.Scale.Length();
+
+        var parentMicrobe = organelle.ParentMicrobe;
+
+        ownerId = parentMicrobe.CreateShapeOwner(collisionShape);
+        parentMicrobe.ShapeOwnerAddShape(ownerId, collisionShape);
+
+        parentMicrobe.AddPilus(ownerId);
+        addedChildShapes.Add(ownerId);
+
+        debugMesh = new MeshInstance();
+        CylinderMesh mesh = new CylinderMesh();
+        mesh.BottomRadius = collisionShape.Radius;
+        mesh.TopRadius = collisionShape.Radius;
+        mesh.Height = collisionShape.Height;
+        debugMesh.Mesh = mesh;
+        SpatialMaterial mat = new SpatialMaterial();
+        mat.FlagsTransparent = true;
+        mat.AlbedoColor = new Color(1, 0, 1, 0.3f);
+        mesh.Material = mat;
+
+        parentMicrobe.AddChild(debugMesh);
+    }
+
     protected override void CustomDetach()
     {
         DestroyShape();
@@ -33,14 +77,6 @@ public class PilusComponent : ExternallyPositionedComponent
             membraneCoords *= 0.5f;
         }
 
-        float pilusSize = 3.2f;
-
-        // Scale the size down for bacteria
-        if (organelle.ParentMicrobe.Species.IsBacteria)
-        {
-            pilusSize *= 0.5f;
-        }
-
         var physicsRotation = MathUtils.CreateRotationForPhysicsOrganelle(angle);
 
         // Need to remove the old copy first
@@ -53,24 +89,16 @@ public class PilusComponent : ExternallyPositionedComponent
         // @pilusShape = organelle.world.GetPhysicalWorld().CreateCone(pilusSize / 10.f,
         //     pilusSize);
 
-        var shape = new CylinderShape();
-        shape.Radius = pilusSize / 8.0f;
-        shape.Height = pilusSize * organelle.Scale.Length();
-
-        var parentMicrobe = organelle.ParentMicrobe;
-
-        var ownerId = parentMicrobe.CreateShapeOwner(shape);
-        parentMicrobe.ShapeOwnerAddShape(ownerId, shape);
-
         // TODO: find a way to pass the information to the shape /
         // parentMicrobe what is a pilus part of the collision
         // pilusShape.SetCustomTag(PHYSICS_PILUS_TAG);
 
+        var parentMicrobe = organelle.ParentMicrobe;
         var transform = new Transform(physicsRotation, membraneCoords * organelle.Scale);
         parentMicrobe.ShapeOwnerSetTransform(ownerId, transform);
+        
 
-        parentMicrobe.AddPilus(ownerId);
-        addedChildShapes.Add(ownerId);
+        debugMesh.Transform = transform;
     }
 
     private void DestroyShape()
