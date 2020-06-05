@@ -20,6 +20,11 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     private float growthValue = 0.0f;
 
     /// <summary>
+    /// Should this organelle scale?
+    /// </summary>
+    public bool ShouldScale { get; set; } = true;
+
+    /// <summary>
     ///   Used to update the tint
     /// </summary>
     private ShaderMaterial organelleMaterial;
@@ -453,6 +458,9 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
 
     private void ApplyScale()
     {
+        if(!ShouldScale)
+            return;
+            
         // Nucleus isn't scaled
         if (HasComponent<NucleusComponent>())
             return;
