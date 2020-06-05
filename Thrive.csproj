@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Tools</Configuration>
@@ -96,6 +96,7 @@
     <Compile Include="src\microbe_stage\MicrobeHUD.cs" />
     <Compile Include="src\microbe_stage\MicrobeStage.cs" />
     <Compile Include="src\microbe_stage\NucleusMesh.cs" />
+    <Compile Include="src\microbe_stage\organelle_components\CiliaComponent.cs" />
     <Compile Include="src\microbe_stage\PlacedOrganelle.cs" />
     <Compile Include="src\microbe_stage\PlayerMicrobeInput.cs" />
     <Compile Include="src\microbe_stage\SpawnSystem.cs" />
