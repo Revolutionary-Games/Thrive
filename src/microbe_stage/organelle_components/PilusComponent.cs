@@ -79,9 +79,6 @@ public class PilusComponent : ExternallyPositionedComponent
 
         var physicsRotation = MathUtils.CreateRotationForPhysicsOrganelle(angle);
 
-        // Need to remove the old copy first
-        DestroyShape();
-
         // TODO: Godot doesn't have Cone shape.
         // https://github.com/godotengine/godot-proposals/issues/610
         // So this uses a cylinder for now
@@ -94,9 +91,8 @@ public class PilusComponent : ExternallyPositionedComponent
         // pilusShape.SetCustomTag(PHYSICS_PILUS_TAG);
 
         var parentMicrobe = organelle.ParentMicrobe;
-        var transform = new Transform(physicsRotation, membraneCoords * organelle.Scale);
+        var transform = new Transform(physicsRotation, membraneCoords);
         parentMicrobe.ShapeOwnerSetTransform(ownerId, transform);
-        
 
         debugMesh.Transform = transform;
     }
