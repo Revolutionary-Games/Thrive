@@ -39,10 +39,20 @@ public class PatchManager
     ///   set. Like different spawners, despawning old entities if the
     ///   patch changed etc.
     /// </summary>
-    public void ApplyChangedPatchSettingsIfNeeded(Patch currentPatch)
+    public void ApplyChangedPatchSettingsIfNeeded(Patch currentPatch, bool despawnAllowed)
     {
-        if (previousPatch != currentPatch)
+        if (previousPatch != currentPatch && despawnAllowed)
         {
+            if (previousPatch != null)
+            {
+                GD.Print("Previous patch (", previousPatch.Name, ") different " +
+                    "to current patch (", currentPatch.Name, ") despawning all entities.");
+            }
+            else
+            {
+                GD.Print("Previous patch doesn't exist, despawning all entities.");
+            }
+
             // Despawn old entities
             spawnSystem.DespawnAll();
 
@@ -72,10 +82,10 @@ public class PatchManager
         RemoveNonMarkedSpawners();
 
         // Change the lighting
-        UpdateLight(currentPatch.Biome);
+        UpdateLight(currentPatch.BiomeTemplate);
     }
 
-    private void HandleChunkSpawns(Biome biome)
+    private void HandleChunkSpawns(BiomeConditions biome)
     {
         GD.Print("Number of chunks in this patch = ", biome.Chunks.Count);
 
@@ -83,36 +93,34 @@ public class PatchManager
         {
             HandleSpawnHelper(chunkSpawners, entry.Value.Name, entry.Value.Density,
                 () =>
-                    {
-                        var spawner = new CreatedSpawner(entry.Value.Name);
-                        spawner.Spawner = Spawners.MakeChunkSpawner(entry.Value,
-                            compoundCloudSystem);
+                {
+                    var spawner = new CreatedSpawner(entry.Value.Name);
+                    spawner.Spawner = Spawners.MakeChunkSpawner(entry.Value,
+                        compoundCloudSystem);
 
-                        spawnSystem.AddSpawnType(spawner.Spawner, (int)entry.Value.Density,
-                            Constants.MICROBE_SPAWN_RADIUS);
-                        return spawner;
-                    });
+                    spawnSystem.AddSpawnType(spawner.Spawner, (int)entry.Value.Density,
+                        Constants.MICROBE_SPAWN_RADIUS);
+                    return spawner;
+                });
         }
     }
 
-    private void HandleCloudSpawns(Biome biome)
+    private void HandleCloudSpawns(BiomeConditions biome)
     {
         GD.Print("Number of clouds in this patch = ", biome.Compounds.Count);
 
         foreach (var entry in biome.Compounds)
         {
-            HandleSpawnHelper(chunkSpawners, entry.Key, entry.Value.Density,
+            HandleSpawnHelper(chunkSpawners, entry.Key.InternalName, entry.Value.Density,
                 () =>
-                    {
-                        var spawner = new CreatedSpawner(entry.Key);
-                        spawner.Spawner = Spawners.MakeCompoundSpawner(
-                            SimulationParameters.Instance.GetCompound(entry.Key),
-                            compoundCloudSystem, entry.Value.Amount);
+                {
+                    var spawner = new CreatedSpawner(entry.Key.InternalName);
+                    spawner.Spawner = Spawners.MakeCompoundSpawner(entry.Key, compoundCloudSystem, entry.Value.Amount);
 
-                        spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density,
-                            Constants.CLOUD_SPAWN_RADIUS);
-                        return spawner;
-                    });
+                    spawnSystem.AddSpawnType(spawner.Spawner, entry.Value.Density,
+                        Constants.CLOUD_SPAWN_RADIUS);
+                    return spawner;
+                });
         }
     }
 
@@ -125,25 +133,28 @@ public class PatchManager
             var species = entry.Key;
 
             if (species.Population <= 0)
+            {
+                GD.Print(entry.Key.FormattedName, " population <= 0. Skipping Cell Spawn in patch.");
                 continue;
+            }
 
             var density = 1.0f / (Constants.STARTING_SPAWN_DENSITY -
-                                Math.Min(Constants.MAX_SPAWN_DENSITY,
-                                    species.Population * 5));
+                Math.Min(Constants.MAX_SPAWN_DENSITY,
+                    species.Population * 5));
 
             var name = species.ID.ToString(CultureInfo.InvariantCulture);
 
             HandleSpawnHelper(chunkSpawners, name, density,
                 () =>
-                    {
-                        var spawner = new CreatedSpawner(name);
-                        spawner.Spawner = Spawners.MakeMicrobeSpawner(species,
-                            compoundCloudSystem, currentGame);
+                {
+                    var spawner = new CreatedSpawner(name);
+                    spawner.Spawner = Spawners.MakeMicrobeSpawner(species,
+                        compoundCloudSystem, currentGame);
 
-                        spawnSystem.AddSpawnType(spawner.Spawner, density,
-                            Constants.MICROBE_SPAWN_RADIUS);
-                        return spawner;
-                    });
+                    spawnSystem.AddSpawnType(spawner.Spawner, density,
+                        Constants.MICROBE_SPAWN_RADIUS);
+                    return spawner;
+                });
         }
     }
 
@@ -162,14 +173,21 @@ public class PatchManager
         {
             existing.Marked = true;
 
+            float oldFrequency = existing.Spawner.SpawnFrequency;
             existing.Spawner.SetFrequencyFromDensity(density);
+
+            if (oldFrequency != existing.Spawner.SpawnFrequency)
+            {
+                GD.Print("Spawn frequency of ", existing.Name, " changed from ",
+                    oldFrequency, " to ", existing.Spawner.SpawnFrequency);
+            }
         }
         else
         {
             // New spawner needed
             GD.Print("Registering new spawner: Name: ", itemName, " density: ", density);
 
-            chunkSpawners.Add(createNew());
+            existingSpawners.Add(createNew());
         }
     }
 
@@ -211,14 +229,28 @@ public class PatchManager
         ClearUnmarkedSingle(microbeSpawners);
     }
 
+    /// <summary>
+    /// Removes unmarked spawners from List.
+    /// </summary>
+    /// <param name="spawners">Spawner list to act upon</param>
     private void ClearUnmarkedSingle(List<CreatedSpawner> spawners)
     {
-        spawners.RemoveAll((item) => item.Marked == false);
+        spawners.RemoveAll((item) =>
+        {
+            if (!item.Marked)
+            {
+                GD.Print("Removed ", item.Name, " spawner.");
+                item.Spawner.DestroyQueued = true;
+                return true;
+            }
+
+            return false;
+        });
     }
 
     private class CreatedSpawner
     {
-        public ISpawner Spawner;
+        public Spawner Spawner;
         public string Name;
         public bool Marked = true;
 

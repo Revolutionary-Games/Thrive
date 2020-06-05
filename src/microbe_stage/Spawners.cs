@@ -16,9 +16,15 @@ public static class Spawners
         return new MicrobeSpawner(species, cloudSystem, currentGame);
     }
 
-    public static ChunkSpawner MakeChunkSpawner(Biome.ChunkConfiguration chunkType,
+    public static ChunkSpawner MakeChunkSpawner(ChunkConfiguration chunkType,
         CompoundCloudSystem cloudSystem)
     {
+        foreach (var mesh in chunkType.Meshes)
+        {
+            if (mesh.LoadedScene == null)
+                throw new ArgumentException("configured chunk spawner has a mesh that has no scene loaded");
+        }
+
         return new ChunkSpawner(chunkType, cloudSystem);
     }
 
@@ -60,9 +66,9 @@ public static class SpawnHelpers
 
     // TODO: this is likely a huge cause of lag. Would be nice to be able
     // to spawn these so that only one per tick is spawned.
-    public static void SpawnBacteriaColony(Species species, Vector3 location,
+    public static IEnumerable<Microbe> SpawnBacteriaColony(Species species, Vector3 location,
         Node worldRoot, PackedScene microbeScene, CompoundCloudSystem cloudSystem,
-        GameProperties currentGame, Random random, List<ISpawned> entities)
+        GameProperties currentGame, Random random)
     {
         var curSpawn = new Vector3(random.Next(1, 8), 0, random.Next(1, 8));
 
@@ -75,8 +81,8 @@ public static class SpawnHelpers
             {
                 // Dont spawn them on top of each other because it
                 // causes them to bounce around and lag
-                entities.Add(SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
-                    cloudSystem, currentGame));
+                yield return SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
+                    cloudSystem, currentGame);
 
                 curSpawn = curSpawn + new Vector3(random.Next(-7, 8), 0, random.Next(-7, 8));
             }
@@ -93,8 +99,8 @@ public static class SpawnHelpers
             {
                 // Dont spawn them on top of each other because it
                 // Causes them to bounce around and lag
-                entities.Add(SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
-                    cloudSystem, currentGame));
+                yield return SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
+                    cloudSystem, currentGame);
 
                 curSpawn = curSpawn + new Vector3(line + random.Next(-2, 3), 0, line + random.Next(-2, 3));
             }
@@ -127,8 +133,8 @@ public static class SpawnHelpers
                         // Add a litlle organicness to the look
                         curSpawn.z += random.Next(-2, 3);
 
-                        entities.Add(SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
-                            cloudSystem, currentGame));
+                        yield return SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
+                            cloudSystem, currentGame);
                     }
                 }
                 else if (random.Next(0, 5) < 2 && !vertical)
@@ -146,8 +152,8 @@ public static class SpawnHelpers
                         // Add a litlle organicness to the look
                         curSpawn.x += random.Next(-2, 3);
 
-                        entities.Add(SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
-                            cloudSystem, currentGame));
+                        yield return SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
+                            cloudSystem, currentGame);
                     }
                 }
                 else if (random.Next(0, 5) < 2 && !horizontal)
@@ -162,11 +168,11 @@ public static class SpawnHelpers
                         // It causes them to bounce around and lag
                         curSpawn.x -= random.Next(5, 8);
 
-                        // Add a litlle organicness to the look
+                        // Add a little organicness to the look
                         curSpawn.z -= random.Next(-2, 3);
 
-                        entities.Add(SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
-                            cloudSystem, currentGame));
+                        yield return SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
+                            cloudSystem, currentGame);
                     }
                 }
                 else if (random.Next(0, 5) < 2 && !vertical)
@@ -181,11 +187,11 @@ public static class SpawnHelpers
                         // causes them to bounce around and lag
                         curSpawn.z -= random.Next(5, 8);
 
-                        // Add a litlle organicness to the look
+                        // Add a little organicness to the look
                         curSpawn.x -= random.Next(-2, 3);
 
-                        entities.Add(SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
-                            cloudSystem, currentGame));
+                        yield return SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
+                            cloudSystem, currentGame);
                     }
                 }
                 else
@@ -203,8 +209,8 @@ public static class SpawnHelpers
 
                         curSpawn.x += random.Next(5, 8);
 
-                        entities.Add(SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
-                            cloudSystem, currentGame));
+                        yield return SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
+                            cloudSystem, currentGame);
                     }
                 }
             }
@@ -216,14 +222,17 @@ public static class SpawnHelpers
         return GD.Load<PackedScene>("res://src/microbe_stage/Microbe.tscn");
     }
 
-    public static FloatingChunk SpawnChunk(Biome.ChunkConfiguration chunkType,
+    public static FloatingChunk SpawnChunk(ChunkConfiguration chunkType,
         Vector3 location, Node worldNode, PackedScene chunkScene,
         CompoundCloudSystem cloudSystem, Random random, string modelPath = null)
     {
         var chunk = (FloatingChunk)chunkScene.Instance();
 
         // Settings need to be applied before adding it to the scene
-        chunk.GraphicsScene = chunkType.Meshes[random.Next(chunkType.Meshes.Count)].LoadedScene;
+        chunk.GraphicsScene = chunkType.Meshes.Random(random).LoadedScene;
+
+        if (chunk.GraphicsScene == null)
+            throw new ArgumentException("couldn't find a graphics scene for a chunk");
 
         // Pass on the chunk data
         chunk.Init(chunkType, cloudSystem, modelPath);
@@ -264,7 +273,7 @@ public static class SpawnHelpers
     /// <summary>
     ///   Spawns an agent projectile
     /// </summary>
-    public static void SpawnAgent(AgentProperties properties, float amount,
+    public static AgentProjectile SpawnAgent(AgentProperties properties, float amount,
         float lifetime, Vector3 location, Vector3 direction,
         Node worldRoot, PackedScene agentScene, Node emitter)
     {
@@ -286,6 +295,7 @@ public static class SpawnHelpers
             Constants.AGENT_EMISSION_IMPULSE_STRENGTH);
 
         agent.AddToGroup(Constants.TIMED_GROUP);
+        return agent;
     }
 
     public static PackedScene LoadAgentScene()
@@ -297,7 +307,7 @@ public static class SpawnHelpers
 /// <summary>
 ///   Spawns microbes of a specific species
 /// </summary>
-public class MicrobeSpawner : ISpawner
+public class MicrobeSpawner : Spawner
 {
     private readonly PackedScene microbeScene;
     private readonly Species species;
@@ -316,29 +326,29 @@ public class MicrobeSpawner : ISpawner
         random = new Random();
     }
 
-    public override List<ISpawned> Spawn(Node worldNode, Vector3 location)
+    public override IEnumerable<ISpawned> Spawn(Node worldNode, Vector3 location)
     {
-        var entities = new List<ISpawned>();
-
         // The true here is that this is AI controlled
-        var microbe = SpawnHelpers.SpawnMicrobe(species, location, worldNode, microbeScene,
-            true, cloudSystem, currentGame);
+        var first = SpawnHelpers.SpawnMicrobe(species, location, worldNode, microbeScene, true, cloudSystem,
+            currentGame);
 
-        if (microbe.Species.IsBacteria)
+        yield return first;
+
+        if (first.Species.IsBacteria)
         {
-            SpawnHelpers.SpawnBacteriaColony(species, location, worldNode, microbeScene,
-                cloudSystem, currentGame, random, entities);
+            foreach (var colonyMember in SpawnHelpers.SpawnBacteriaColony(species, location, worldNode, microbeScene,
+                cloudSystem, currentGame, random))
+            {
+                yield return colonyMember;
+            }
         }
-
-        entities.Add(microbe);
-        return entities;
     }
 }
 
 /// <summary>
 ///   Spawns compound clouds of a certain type
 /// </summary>
-public class CompoundCloudSpawner : ISpawner
+public class CompoundCloudSpawner : Spawner
 {
     private readonly Compound compound;
     private readonly CompoundCloudSystem clouds;
@@ -351,7 +361,7 @@ public class CompoundCloudSpawner : ISpawner
         this.amount = amount;
     }
 
-    public override List<ISpawned> Spawn(Node worldNode, Vector3 location)
+    public override IEnumerable<ISpawned> Spawn(Node worldNode, Vector3 location)
     {
         SpawnHelpers.SpawnCloud(clouds, location, compound, amount);
 
@@ -363,28 +373,25 @@ public class CompoundCloudSpawner : ISpawner
 /// <summary>
 ///   Spawns chunks of a specific type
 /// </summary>
-public class ChunkSpawner : ISpawner
+public class ChunkSpawner : Spawner
 {
     private readonly PackedScene chunkScene;
-    private readonly Biome.ChunkConfiguration chunkType;
+    private readonly ChunkConfiguration chunkType;
     private readonly Random random = new Random();
     private readonly CompoundCloudSystem cloudSystem;
 
-    public ChunkSpawner(Biome.ChunkConfiguration chunkType, CompoundCloudSystem cloudSystem)
+    public ChunkSpawner(ChunkConfiguration chunkType, CompoundCloudSystem cloudSystem)
     {
         this.chunkType = chunkType;
         this.cloudSystem = cloudSystem;
         chunkScene = SpawnHelpers.LoadChunkScene();
     }
 
-    public override List<ISpawned> Spawn(Node worldNode, Vector3 location)
+    public override IEnumerable<ISpawned> Spawn(Node worldNode, Vector3 location)
     {
-        var entities = new List<ISpawned>();
-
         var chunk = SpawnHelpers.SpawnChunk(chunkType, location, worldNode, chunkScene,
             cloudSystem, random);
 
-        entities.Add(chunk);
-        return entities;
+        yield return chunk;
     }
 }

@@ -3,17 +3,21 @@ using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
 
-public class SimulationParameters
+/// <summary>
+///   Contains definitions for global game configuration like Compounds, Organelles etc.
+/// </summary>
+public class SimulationParameters : Node
 {
-    private static readonly SimulationParameters SingletonInstance = new SimulationParameters();
+    private static SimulationParameters instance;
 
-    private Dictionary<string, MembraneType> membranes;
-    private Dictionary<string, Background> backgrounds;
-    private Dictionary<string, Biome> biomes;
-    private Dictionary<string, BioProcess> bioProcesses;
-    private Dictionary<string, Compound> compounds;
-
-    private Dictionary<string, OrganelleDefinition> organelles;
+    private readonly Dictionary<string, MembraneType> membranes;
+    private readonly Dictionary<string, Background> backgrounds;
+    private readonly Dictionary<string, Biome> biomes;
+    private readonly Dictionary<string, BioProcess> bioProcesses;
+    private readonly Dictionary<string, Compound> compounds;
+    private readonly Dictionary<string, OrganelleDefinition> organelles;
+    private readonly Dictionary<string, MusicCategory> musicCategories;
+    private readonly Dictionary<string, HelpTexts> helpTexts;
 
     // These are for mutations to be able to randomly pick items in a weighted manner
     private List<OrganelleDefinition> prokaryoticOrganelles;
@@ -21,18 +25,23 @@ public class SimulationParameters
     private List<OrganelleDefinition> eukaryoticOrganelles;
     private float eukaryoticOrganellesChance;
 
-    private Dictionary<string, MusicCategory> musicCategories;
-    private Dictionary<string, HelpTexts> helpTexts;
-
-    static SimulationParameters()
-    {
-    }
-
     /// <summary>
     ///   Loads the simulation configuration parameters from JSON files
     /// </summary>
     private SimulationParameters()
     {
+        // Compounds are referenced by the other json files so it is loaded first and instance is assigned here
+        instance = this;
+
+        // Loading the compounds needs a custom JSON deserializer that can load the Compound objects, but the loader
+        // can't always be active because that breaks saving
+        {
+            var compoundDeserializer = new JsonConverter[] { new CompoundLoader(null) };
+
+            compounds = LoadRegistry<Compound>(
+                "res://simulation_parameters/microbe_stage/compounds.json", compoundDeserializer);
+        }
+
         membranes = LoadRegistry<MembraneType>(
             "res://simulation_parameters/microbe_stage/membranes.json");
         backgrounds = LoadRegistry<Background>(
@@ -41,10 +50,8 @@ public class SimulationParameters
             "res://simulation_parameters/microbe_stage/biomes.json");
         bioProcesses = LoadRegistry<BioProcess>(
             "res://simulation_parameters/microbe_stage/bio_processes.json");
-        compounds = LoadRegistry<Compound>(
-            "res://simulation_parameters/microbe_stage/compounds.json");
         organelles = LoadRegistry<OrganelleDefinition>(
-                    "res://simulation_parameters/microbe_stage/organelles.json");
+            "res://simulation_parameters/microbe_stage/organelles.json");
 
         NameGenerator = LoadDirectObject<NameGenerator>(
             "res://simulation_parameters/microbe_stage/species_names.json");
@@ -68,7 +75,7 @@ public class SimulationParameters
     {
         get
         {
-            return SingletonInstance;
+            return instance;
         }
     }
 
@@ -196,9 +203,9 @@ public class SimulationParameters
         }
     }
 
-    private Dictionary<string, T> LoadRegistry<T>(string path)
+    private Dictionary<string, T> LoadRegistry<T>(string path, JsonConverter[] extraConverters = null)
     {
-        var result = JsonConvert.DeserializeObject<Dictionary<string, T>>(ReadJSONFile(path));
+        var result = JsonConvert.DeserializeObject<Dictionary<string, T>>(ReadJSONFile(path), extraConverters);
 
         GD.Print($"Loaded registry for {typeof(T)} with {result.Count} items");
         return result;
@@ -218,6 +225,7 @@ public class SimulationParameters
         CheckRegistryType(compounds);
         CheckRegistryType(organelles);
         CheckRegistryType(musicCategories);
+        CheckRegistryType(helpTexts);
 
         NameGenerator.Check(string.Empty);
         EasterEggMessages.Check(string.Empty);

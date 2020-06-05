@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 ///   Base microbe biome with some parameters that are used for a Patch.
 ///   Modifiable versions of a Biome are stored in patches.
 /// </summary>
-public class Biome : IRegistryType, ICloneable
+public class Biome : IRegistryType
 {
     /// <summary>
     ///   Name of the biome, for showing to the player in the GUI
@@ -27,16 +27,12 @@ public class Biome : IRegistryType, ICloneable
     /// <summary>
     ///   The light to use for this biome
     /// </summary>
-    public LightDetails Sunlight;
+    public Biome.LightDetails Sunlight;
 
     [JsonIgnore]
     public Texture LoadedIcon;
 
-    public float AverageTemperature;
-
-    public Dictionary<string, EnvironmentalCompoundProperties> Compounds;
-
-    public Dictionary<string, ChunkConfiguration> Chunks;
+    public BiomeConditions Conditions;
 
     public string InternalName { get; set; }
 
@@ -48,17 +44,13 @@ public class Biome : IRegistryType, ICloneable
                 "Empty normal or damaged texture");
         }
 
-        if (Compounds == null)
+        if (Conditions == null)
         {
             throw new InvalidRegistryDataException(name, GetType().Name,
-                "Compounds missing");
+                "Conditions missing");
         }
 
-        if (Chunks == null)
-        {
-            throw new InvalidRegistryDataException(name, GetType().Name,
-                "Chunks missing");
-        }
+        Conditions.Check(name);
 
         if (Icon == null)
         {
@@ -78,206 +70,9 @@ public class Biome : IRegistryType, ICloneable
     /// </summary>
     public void Resolve(SimulationParameters parameters)
     {
-        _ = parameters;
-
-        foreach (var entry in Chunks)
-        {
-            foreach (var meshEntry in entry.Value.Meshes)
-            {
-                meshEntry.LoadedScene = GD.Load<PackedScene>(meshEntry.ScenePath);
-            }
-        }
+        Conditions.Resolve(parameters);
 
         LoadedIcon = GD.Load<Texture>(Icon);
-    }
-
-    public object Clone()
-    {
-        Biome result = new Biome
-        {
-            Name = Name,
-            Background = Background,
-            AverageTemperature = AverageTemperature,
-            InternalName = InternalName,
-            Compounds = new Dictionary<string, EnvironmentalCompoundProperties>(
-                Compounds.Count),
-            Chunks = new Dictionary<string, ChunkConfiguration>(Chunks.Count),
-            Icon = Icon,
-            LoadedIcon = LoadedIcon,
-
-            // Clone this as well if needed (if the light properties can change)
-            Sunlight = Sunlight,
-        };
-
-        foreach (var entry in Compounds)
-        {
-            result.Compounds.Add(entry.Key, entry.Value);
-        }
-
-        foreach (var entry in Chunks)
-        {
-            result.Chunks.Add(entry.Key, entry.Value);
-        }
-
-        return result;
-    }
-
-    public struct EnvironmentalCompoundProperties : IEquatable<EnvironmentalCompoundProperties>
-    {
-        public float Amount;
-        public float Density;
-        public float Dissolved;
-
-        public static bool operator ==(EnvironmentalCompoundProperties left, EnvironmentalCompoundProperties right)
-        {
-            return left.Equals(right);
-        }
-
-        public static bool operator !=(EnvironmentalCompoundProperties left, EnvironmentalCompoundProperties right)
-        {
-            return !(left == right);
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (obj is EnvironmentalCompoundProperties other)
-            {
-                return Equals(other);
-            }
-
-            return false;
-        }
-
-        public override int GetHashCode()
-        {
-            return (int)(Amount + Density + Dissolved);
-        }
-
-        public bool Equals(EnvironmentalCompoundProperties other)
-        {
-            return Amount == other.Amount && Density == other.Density && Dissolved == other.Dissolved;
-        }
-    }
-
-    /// <summary>
-    ///   See FloatingChunk for what many of the fields here do
-    /// </summary>
-    public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
-    {
-        public string Name;
-
-        /// <summary>
-        ///   Possible models / scenes to use for this chunk
-        /// </summary>
-        public List<ChunkScene> Meshes;
-
-        public float Density;
-        public bool Dissolves;
-        public float Radius;
-        public float ChunkScale;
-        public float Mass;
-        public float Size;
-
-        /// <summary>
-        ///   How much compound is vented per second
-        /// </summary>
-        public float VentAmount;
-
-        /// <summary>
-        ///   If > 0 the amount of damage to deal on touch
-        /// </summary>
-        public float Damages;
-
-        public bool DeleteOnTouch;
-
-        public Dictionary<string, ChunkCompound> Compounds;
-
-        public static bool operator ==(ChunkConfiguration left, ChunkConfiguration right)
-        {
-            return left.Equals(right);
-        }
-
-        public static bool operator !=(ChunkConfiguration left, ChunkConfiguration right)
-        {
-            return !(left == right);
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (obj is ChunkConfiguration other)
-            {
-                return Equals(other);
-            }
-
-            return false;
-        }
-
-        public override int GetHashCode()
-        {
-            return Name.GetHashCode();
-        }
-
-        public bool Equals(ChunkConfiguration other)
-        {
-            return Name == other.Name &&
-                Density == other.Density &&
-                Dissolves == other.Dissolves &&
-                Radius == other.Radius &&
-                ChunkScale == other.ChunkScale &&
-                Mass == other.Mass &&
-                Size == other.Size &&
-                VentAmount == other.VentAmount &&
-                Damages == other.Damages &&
-                DeleteOnTouch == other.DeleteOnTouch &&
-                Meshes.Equals(other.Meshes) &&
-                Compounds.Equals(other.Compounds);
-        }
-
-        public struct ChunkCompound : IEquatable<ChunkCompound>
-        {
-            public float Amount;
-
-            public static bool operator ==(ChunkCompound left, ChunkCompound right)
-            {
-                return left.Equals(right);
-            }
-
-            public static bool operator !=(ChunkCompound left, ChunkCompound right)
-            {
-                return !(left == right);
-            }
-
-            public override bool Equals(object obj)
-            {
-                if (obj is ChunkCompound other)
-                {
-                    return Equals(other);
-                }
-
-                return false;
-            }
-
-            public override int GetHashCode()
-            {
-                return (int)Amount;
-            }
-
-            public bool Equals(ChunkCompound other)
-            {
-                return Amount == other.Amount;
-            }
-        }
-
-        /// <summary>
-        ///   Don't modify instances of this class
-        /// </summary>
-        public class ChunkScene
-        {
-            public string ScenePath;
-
-            [JsonIgnore]
-            public PackedScene LoadedScene;
-        }
     }
 
     public class LightDetails

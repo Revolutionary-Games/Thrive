@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using Godot;
 using Newtonsoft.Json;
 
@@ -7,13 +8,17 @@ using Newtonsoft.Json;
 ///   Class that represents a species. This is an abstract base for
 ///   use by all stage-specific species classes.
 /// </summary>
+[JsonObject(IsReference = true)]
+[TypeConverter(typeof(ThriveTypeConverter))]
+[JSONDynamicTypeAllowed]
+[UseThriveConverter]
 public abstract class Species : ICloneable
 {
     /// <summary>
     ///   This is the amount of compounds cells of this type spawn with
     /// </summary>
-    public readonly Dictionary<string, float> InitialCompounds =
-        new Dictionary<string, float>();
+    [JsonProperty]
+    public readonly Dictionary<Compound, float> InitialCompounds = new Dictionary<Compound, float>();
 
     public string Genus;
     public string Epithet;
@@ -55,6 +60,7 @@ public abstract class Species : ICloneable
     ///     sequential number, so now this is an actual number.
     ///   </para>
     /// </remarks>
+    [JsonProperty]
     public uint ID { get; private set; }
 
     /// <summary>
@@ -72,10 +78,9 @@ public abstract class Species : ICloneable
     public string FormattedName => Genus + " " + Epithet;
 
     [JsonIgnore]
-    public string FormattedIdentifier => FormattedName + $" ({ID:n})";
+    public string FormattedIdentifier => FormattedName + $" ({ID:n0})";
 
-    public void
-        SetPopulationFromPatches(int population)
+    public void SetPopulationFromPatches(int population)
     {
         if (population < 0)
         {
@@ -112,7 +117,7 @@ public abstract class Species : ICloneable
     }
 
     /// <summary>
-    ///   Apply properties from the mutation that are mutatable
+    ///   Apply properties from the mutation that are mutable
     /// </summary>
     public virtual void ApplyMutation(Species mutation)
     {
@@ -152,6 +157,11 @@ public abstract class Species : ICloneable
     ///   code.
     /// </summary>
     public abstract object Clone();
+
+    public override string ToString()
+    {
+        return FormattedIdentifier;
+    }
 
     /// <summary>
     ///   Helper for child classes to implement Clone

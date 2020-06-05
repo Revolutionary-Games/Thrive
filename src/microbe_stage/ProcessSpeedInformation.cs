@@ -14,14 +14,14 @@ public class ProcessSpeedInformation
     public BioProcess Process { get; }
     public float SpeedFactor { get; set; }
 
-    public Dictionary<string, EnvironmentalInput> EnvironmentInputs { get; } =
-        new Dictionary<string, EnvironmentalInput>();
+    public Dictionary<Compound, EnvironmentalInput> EnvironmentInputs { get; } =
+        new Dictionary<Compound, EnvironmentalInput>();
 
-    public Dictionary<string, CompoundAmount> OtherInputs { get; } =
-        new Dictionary<string, CompoundAmount>();
+    public Dictionary<Compound, CompoundAmount> OtherInputs { get; } =
+        new Dictionary<Compound, CompoundAmount>();
 
-    public Dictionary<string, CompoundAmount> Outputs { get; } =
-        new Dictionary<string, CompoundAmount>();
+    public Dictionary<Compound, CompoundAmount> Outputs { get; } =
+        new Dictionary<Compound, CompoundAmount>();
 
     public class EnvironmentalInput : CompoundAmount
     {

@@ -1,9 +1,7 @@
 using Godot;
 
 /// <summary>
-///   Common helpers for the GUI to work with.
-///   This singleton class is placed on AutoLoad for
-///   global access while still inheriting from Node.
+///   Common helpers for the GUI to work with. This is autoloaded.
 /// </summary>
 public class GUICommon : Node
 {
@@ -23,7 +21,7 @@ public class GUICommon : Node
         AddChild(AudioSource);
         AddChild(tween);
 
-        // Keep this node running while paused
+        // Keep this node running even while paused
         PauseMode = PauseModeEnum.Process;
 
         buttonPressSound = GD.Load<AudioStream>(
@@ -59,36 +57,13 @@ public class GUICommon : Node
     }
 
     /// <summary>
-    ///   Switches a scene to the main menu
-    /// </summary>
-    public void ReturnToMenu(Node currentSceneRoot)
-    {
-        var scene = GD.Load<PackedScene>("res://src/gui_common/MainMenu.tscn");
-
-        var mainMenu = (MainMenu)scene.Instance();
-
-        mainMenu.IsReturningToMenu = true;
-        GetTree().Root.RemoveChild(currentSceneRoot);
-        GetTree().Root.AddChild(mainMenu);
-    }
-
-    /// <summary>
-    ///   Smoothly interpolates TextureProgress bar value.
+    ///   Smoothly interpolates the value of a TextureProgress bar.
     /// </summary>
     public void TweenBarValue(TextureProgress bar, float targetValue, float maxValue)
     {
         var percentage = (targetValue / maxValue) * 100;
         tween.InterpolateProperty(bar, "value", bar.Value, percentage, 0.3f,
             Tween.TransitionType.Linear, Tween.EaseType.Out);
-        tween.Start();
-    }
-
-    public void TweenUIProperty(Control ui, string property, object initialValue, object targetValue,
-        float duration, Tween.TransitionType transitionType = Tween.TransitionType.Linear,
-        Tween.EaseType easeType = Tween.EaseType.InOut, float delay = 0)
-    {
-        tween.InterpolateProperty(ui, property, initialValue, targetValue, duration,
-            transitionType, easeType, delay);
         tween.Start();
     }
 

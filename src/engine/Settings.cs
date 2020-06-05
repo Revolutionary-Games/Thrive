@@ -71,6 +71,11 @@ public class Settings
     public bool RunAutoEvoDuringGamePlay { get; set; } = true;
 
     /// <summary>
+    ///   If false auto saving will be disabled
+    /// </summary>
+    public bool AutoSaveEnabled { get; set; } = true;
+
+    /// <summary>
     ///   This can be freely adjusted to adjust the performance The
     ///   higher this value is the smaller the size of the simulated
     ///   cloud is and the performance is better.

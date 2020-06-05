@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
 
@@ -17,22 +18,28 @@ public class GameWorld
     private uint speciesIdCounter = 0;
 
     [JsonProperty]
-    private Mutations mutator;
+    private Mutations mutator = new Mutations();
+
+    [JsonProperty]
+    private Dictionary<uint, Species> worldSpecies = new Dictionary<uint, Species>();
 
     /// <summary>
     ///   This world's auto-evo run
     /// </summary>
     /// <remarks>
     ///   <para>
-    ///     Once saving is implemented this probably shouldn't be attempted to be saved. But the list of external
+    ///     TODO: Once saving is implemented this probably shouldn't be attempted to be saved. But the list of external
     ///     population effects need to be saved.
     ///   </para>
     /// </remarks>
     private AutoEvoRun autoEvo;
 
-    public GameWorld(WorldGenerationSettings settings)
+    /// <summary>
+    ///   Creates a new world
+    /// </summary>
+    /// <param name="settings">Settings to generate the world with</param>
+    public GameWorld(WorldGenerationSettings settings) : this()
     {
-        mutator = new Mutations();
         PlayerSpecies = CreatePlayerSpecies();
 
         Map = PatchMapGenerator.Generate(settings, PlayerSpecies);
@@ -42,7 +49,14 @@ public class GameWorld
 
         // Apply initial populations
         Map.UpdateGlobalPopulations();
+    }
 
+    /// <summary>
+    ///   Blank world creation, only for loading saves
+    /// </summary>
+    public GameWorld()
+    {
+        // TODO: save timed effects to json as well
         TimedEffects = new TimedWorldOperations();
 
         // Register glucose reduction
@@ -54,7 +68,7 @@ public class GameWorld
 
                 foreach (var compound in patch.Biome.Compounds.Keys)
                 {
-                    if (compound == "glucose")
+                    if (compound.InternalName == "glucose")
                     {
                         var data = patch.Biome.Compounds[compound];
 
@@ -66,10 +80,13 @@ public class GameWorld
         }));
     }
 
+    [JsonProperty]
     public Species PlayerSpecies { get; private set; }
 
+    [JsonProperty]
     public PatchMap Map { get; private set; }
 
+    [JsonIgnore]
     public TimedWorldOperations TimedEffects { get; private set; }
 
     public static void SetInitialSpeciesProperties(MicrobeSpecies species)
@@ -90,7 +107,10 @@ public class GameWorld
     /// </summary>
     public MicrobeSpecies NewMicrobeSpecies()
     {
-        return new MicrobeSpecies(++speciesIdCounter);
+        var species = new MicrobeSpecies(++speciesIdCounter);
+
+        worldSpecies[species.ID] = species;
+        return species;
     }
 
     /// <summary>
@@ -218,6 +238,11 @@ public class GameWorld
         CreateRunIfMissing();
 
         autoEvo.AddExternalPopulationEffect(species, constant, coefficient, description);
+    }
+
+    public Species GetSpecies(uint id)
+    {
+        return worldSpecies[id];
     }
 
     private void CreateRunIfMissing()

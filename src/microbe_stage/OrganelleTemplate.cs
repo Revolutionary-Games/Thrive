@@ -7,7 +7,6 @@ using Newtonsoft.Json;
 ///   positioning info on top of OrganelleDefinition when the layout
 ///   is instantiated in a cell, PlacedOrganelle class is used.
 /// </summary>
-[JsonConverter(typeof(PlacedOrganelleConverter))]
 public class OrganelleTemplate : IPositionedOrganelle, ICloneable
 {
     [JsonProperty]
@@ -19,6 +18,11 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable
         Position = location;
         Orientation = rotation;
     }
+
+    /// <summary>
+    /// Used to flag whether this Organelle was placed during the current editor session.
+    /// </summary>
+    public bool PlacedThisSession { get; set; }
 
     public Hex Position { get; set; }
 

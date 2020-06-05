@@ -1,5 +1,6 @@
 using System;
 using System.Reflection;
+using Newtonsoft.Json;
 
 /// <summary>
 ///   Holds some constants that must be kept constant after first setting
@@ -359,6 +360,9 @@ public static class Constants
 
     public const float GLUCOSE_REDUCTION_RATE = 0.8f;
 
+    public const int MAX_SPAWNS_PER_FRAME = 2;
+    public const int MAX_DESPAWNS_PER_FRAME = 2;
+
     /// <summary>
     ///   All Nodes tagged with this are handled by the spawn system for despawning
     /// </summary>
@@ -395,6 +399,17 @@ public static class Constants
     public const string AI_TAG_CHUNK = "chunk";
 
     public const string CONFIGURATION_FILE = "user://thrive_settings.json";
+
+    public const string SAVE_FOLDER = "user://saves";
+
+    public const string SCREENSHOT_FOLDER = "user://screenshots";
+
+    /// <summary>
+    ///   This is just here to make it easier to debug saves
+    /// </summary>
+    public const Formatting SAVE_FORMATTING = Formatting.None;
+
+    public const string SAVE_EXTENSION = "thrivesave";
 
     public static string Version
     {

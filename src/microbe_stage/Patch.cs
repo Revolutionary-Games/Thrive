@@ -5,6 +5,8 @@ using Newtonsoft.Json;
 /// <summary>
 ///   A patch is an instance of a Biome with some species in it
 /// </summary>
+[JsonObject(IsReference = true)]
+[UseThriveSerializer]
 public class Patch
 {
     /// <summary>
@@ -20,17 +22,18 @@ public class Patch
     [JsonProperty]
     public readonly ISet<Patch> Adjacent = new HashSet<Patch>();
 
-    public Biome Biome;
+    [JsonProperty]
+    public readonly BiomeConditions Biome;
 
     [JsonProperty]
-    private readonly Biome biomeTemplate;
+    public readonly Biome BiomeTemplate;
 
     public Patch(string name, int id, Biome biomeTemplate)
     {
         Name = name;
         ID = id;
-        this.biomeTemplate = biomeTemplate;
-        Biome = (Biome)biomeTemplate.Clone();
+        BiomeTemplate = biomeTemplate;
+        Biome = (BiomeConditions)biomeTemplate.Conditions.Clone();
     }
 
     [JsonProperty]
@@ -106,5 +109,10 @@ public class Patch
             return 0;
 
         return SpeciesInPatch[species];
+    }
+
+    public override string ToString()
+    {
+        return $"Patch \"{Name}\"";
     }
 }
