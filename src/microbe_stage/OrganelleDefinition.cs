@@ -109,6 +109,11 @@ public class OrganelleDefinition : IRegistryType
     public int MPCost;
 
     /// <summary>
+    ///   Should this organelle scale?
+    /// </summary>
+    public bool ShouldScale = true;
+
+    /// <summary>
     ///   Caches the rotated hexes
     /// </summary>
     private Dictionary<int, List<Hex>> rotatedHexesCache = new Dictionary<int, List<Hex>>();
@@ -117,11 +122,6 @@ public class OrganelleDefinition : IRegistryType
     ///   The total amount of compounds in InitialComposition
     /// </summary>
     public float OrganelleCost { get; private set; }
-
-    /// <summary>
-    ///   Should this organelle scale?
-    /// </summary>
-    public bool ShouldScale { get; private set; }
 
     [JsonIgnore]
     public List<IOrganelleComponentFactory> ComponentFactories

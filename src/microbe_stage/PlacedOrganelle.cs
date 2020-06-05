@@ -41,11 +41,6 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     {
     }
 
-    /// <summary>
-    /// Should this organelle scale?
-    /// </summary>
-    public bool ShouldScale { get; set; } = true;
-
     public OrganelleDefinition Definition { get; set; }
 
     public Hex Position { get; set; }
@@ -458,11 +453,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
 
     private void ApplyScale()
     {
-        if (!ShouldScale)
-            return;
-
-        // Nucleus isn't scaled
-        if (HasComponent<NucleusComponent>())
+        if (!Definition.ShouldScale)
             return;
 
         Scale = new Vector3(1 + GrowthValue, 1 + GrowthValue, 1 + GrowthValue);
