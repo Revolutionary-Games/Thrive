@@ -8468,7 +8468,7 @@ margin_right = 320.0
 margin_bottom = 242.0
 custom_fonts/font = SubResource( 53 )
 custom_constants/line_spacing = 0
-text = "The most basic form of membrane, it has little protection against damage. It also needs more energy to not deform. The advantage is that it allows the cell to move and absorb nutrients swiftly."
+text = "DESCRIPTION"
 autowrap = true
 
 [node name="membraneDouble" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips" groups=[
@@ -8539,7 +8539,7 @@ margin_right = 261.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 215, 0 )
 custom_fonts/font = SubResource( 52 )
-text = "Double"
+text = "DOUBLE"
 align = 1
 
 [node name="HSeparator" type="HSeparator" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneDouble/MarginContainer/VBoxContainer"]
@@ -8554,7 +8554,7 @@ margin_right = 320.0
 margin_bottom = 141.0
 custom_fonts/font = SubResource( 53 )
 custom_constants/line_spacing = 0
-text = "A membrane with two layers, it has better protection against damage and takes less energy to not deform. However, it slows the cell down some and lowers the rate at which it can absorb resources."
+text = "DESCRIPTION2"
 autowrap = true
 
 [node name="membraneCellulose" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips" groups=[
@@ -8651,7 +8651,7 @@ margin_top = 1.0
 margin_right = 96.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Mobility"
+text = "MOBILITY"
 
 [node name="VacuoleIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCellulose/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 100.0
@@ -8699,7 +8699,7 @@ margin_left = 32.0
 margin_right = 268.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 54 )
-text = "Resource Absorption Speed"
+text = "RESOURCE_ABSORPTION_SPEED"
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCellulose/MarginContainer/VBoxContainer/VBoxContainer"]
 margin_top = 68.0
@@ -8719,7 +8719,7 @@ margin_left = 33.0
 margin_right = 201.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 54 )
-text = "Physical Resistance"
+text = "PHYSICAL_RESISTANCE"
 
 [node name="HSeparator" type="HSeparator" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCellulose/MarginContainer/VBoxContainer"]
 margin_top = 143.0
@@ -8733,7 +8733,7 @@ margin_right = 320.0
 margin_bottom = 258.0
 custom_fonts/font = SubResource( 53 )
 custom_constants/line_spacing = 0
-text = "This membrane has a wall, resulting in better protection against overall damage and especially against physical damage. It also costs less energy to retain its form, but cannot absorb resources quickly and is slower."
+text = "MEMBRANE_CELLULOSE_DESCRIPTION"
 autowrap = true
 
 [node name="membraneChitin" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips" groups=[
@@ -8830,7 +8830,7 @@ margin_top = 1.0
 margin_right = 96.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Mobility"
+text = "MOBILITY"
 
 [node name="VacuoleIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneChitin/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 100.0
@@ -8878,7 +8878,7 @@ margin_left = 32.0
 margin_right = 268.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 54 )
-text = "Resource Absorption Speed"
+text = "RESOURCE_ABSORPTION_SPEED"
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneChitin/MarginContainer/VBoxContainer/VBoxContainer"]
 margin_top = 68.0
@@ -8898,7 +8898,7 @@ margin_left = 33.0
 margin_right = 174.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 54 )
-text = "Toxin Resistance"
+text = "TOXIN_RESISTANCE"
 
 [node name="HSeparator" type="HSeparator" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneChitin/MarginContainer/VBoxContainer"]
 margin_top = 143.0
@@ -8912,7 +8912,7 @@ margin_right = 320.0
 margin_bottom = 258.0
 custom_fonts/font = SubResource( 53 )
 custom_constants/line_spacing = 0
-text = "This membrane has a wall, which means it has better protections against overall damage and especially against toxin damage. It also costs less energy to retain its form, but it is slower and cannot absorb resources quickly."
+text = "MEMBRANE_CHITIN_DESCRIPTION"
 autowrap = true
 
 [node name="membraneCalciumCarbonate" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips" groups=[
@@ -8983,8 +8983,7 @@ margin_right = 261.0
 margin_bottom = 57.0
 rect_min_size = Vector2( 215, 0 )
 custom_fonts/font = SubResource( 52 )
-text = "Calcium
-Carbonate"
+text = "CALCIUM_CARBONATE"
 align = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCalciumCarbonate/MarginContainer/VBoxContainer"]
@@ -9010,7 +9009,7 @@ margin_top = 1.0
 margin_right = 96.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Mobility"
+text = "MOBILITY"
 
 [node name="VacuoleIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCalciumCarbonate/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 100.0
@@ -9058,7 +9057,7 @@ margin_left = 32.0
 margin_right = 268.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 54 )
-text = "Resource Absorption Speed"
+text = "RESOURCE_ABSORPTION_SPEED"
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCalciumCarbonate/MarginContainer/VBoxContainer/VBoxContainer"]
 margin_top = 68.0
@@ -9078,7 +9077,7 @@ margin_left = 30.0
 margin_right = 84.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 54 )
-text = "Health"
+text = "HEALTH"
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCalciumCarbonate/MarginContainer/VBoxContainer/VBoxContainer"]
 margin_top = 90.0
@@ -9098,7 +9097,7 @@ margin_left = 33.0
 margin_right = 201.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 54 )
-text = "Physical Resistance"
+text = "PHYSICAL_RESISTANCE"
 
 [node name="HBoxContainer6" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCalciumCarbonate/MarginContainer/VBoxContainer/VBoxContainer"]
 margin_top = 112.0
@@ -9118,7 +9117,7 @@ margin_left = 33.0
 margin_right = 174.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 54 )
-text = "Toxin Resistance"
+text = "TOXIN_RESISTANCE"
 
 [node name="HSeparator" type="HSeparator" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneCalciumCarbonate/MarginContainer/VBoxContainer"]
 margin_top = 217.0
@@ -9132,7 +9131,7 @@ margin_right = 320.0
 margin_bottom = 332.0
 custom_fonts/font = SubResource( 53 )
 custom_constants/line_spacing = 0
-text = "This membrane has a strong shell made from calcium carbonate. It can easily resist damage and requires less energy to not deform. The disadvantages of having such a heavy shell is that the cell is much slower and takes a while to absorb resources."
+text = "MEMBRANE_CALCIUM_CARBONATE_DESCRIPTION"
 autowrap = true
 
 [node name="membraneSilica" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips" groups=[
@@ -9203,7 +9202,7 @@ margin_right = 261.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 215, 0 )
 custom_fonts/font = SubResource( 52 )
-text = "Silica"
+text = "SILICA"
 align = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSilica/MarginContainer/VBoxContainer"]
@@ -9229,7 +9228,7 @@ margin_top = 1.0
 margin_right = 96.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Mobility"
+text = "MOBILITY"
 
 [node name="VacuoleIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSilica/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 100.0
@@ -9277,7 +9276,7 @@ margin_left = 32.0
 margin_right = 268.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 54 )
-text = "Resource Absorption Speed"
+text = "RESOURCE_ABSORPTION_SPEED"
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSilica/MarginContainer/VBoxContainer/VBoxContainer"]
 margin_top = 68.0
@@ -9297,7 +9296,7 @@ margin_left = 30.0
 margin_right = 84.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 54 )
-text = "Health"
+text = "HEALTH"
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSilica/MarginContainer/VBoxContainer/VBoxContainer"]
 margin_top = 90.0
@@ -9317,7 +9316,7 @@ margin_left = 33.0
 margin_right = 201.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 54 )
-text = "Physical Resistance"
+text = "PHYSICAL_RESISTANCE"
 
 [node name="HBoxContainer6" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSilica/MarginContainer/VBoxContainer/VBoxContainer"]
 margin_top = 112.0
@@ -9337,7 +9336,7 @@ margin_left = 33.0
 margin_right = 174.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 54 )
-text = "Toxin Resistance"
+text = "TOXIN_RESISTANCE"
 
 [node name="HSeparator" type="HSeparator" parent="MicrobeEditorGUI/CellEditor/Tooltips/membraneSilica/MarginContainer/VBoxContainer"]
 margin_top = 187.0
@@ -9351,8 +9350,7 @@ margin_right = 320.0
 margin_bottom = 318.0
 custom_fonts/font = SubResource( 53 )
 custom_constants/line_spacing = 0
-text = "This membrane has a strong wall of silica. It can resist overall damage well and is very resistant to physical damage. It also requires less energy to maintain its form. However, it
-slows the cell down by a large factor and the cell absorbs resources at a reduced rate."
+text = "MEMBRANE_SILICA_DESCRIPTION"
 autowrap = true
 
 [node name="rigiditySlider" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips" groups=[
@@ -9420,8 +9418,7 @@ margin_right = 261.0
 margin_bottom = 27.0
 rect_min_size = Vector2( 215, 0 )
 custom_fonts/font = SubResource( 52 )
-text = "Membrane
-Rigidity"
+text = "MEMBRANE_RIGIDITY"
 align = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/Tooltips/rigiditySlider/MarginContainer/VBoxContainer"]
@@ -9446,7 +9443,7 @@ margin_top = 1.0
 margin_right = 96.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 54 )
-text = "Mobility"
+text = "MOBILITY"
 
 [node name="VacuoleIcon" type="TextureRect" parent="MicrobeEditorGUI/CellEditor/Tooltips/rigiditySlider/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 100.0
@@ -9474,7 +9471,7 @@ margin_left = 30.0
 margin_right = 84.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 54 )
-text = "Health"
+text = "HEALTH"
 
 [node name="HSeparator" type="HSeparator" parent="MicrobeEditorGUI/CellEditor/Tooltips/rigiditySlider/MarginContainer/VBoxContainer"]
 margin_top = 187.0
@@ -9487,7 +9484,7 @@ margin_top = 206.0
 margin_right = 320.0
 custom_fonts/font = SubResource( 53 )
 custom_constants/line_spacing = 0
-text = "A more rigid membrane is more resistant to damage, but will make it harder for the cell to move around."
+text = "RIGIDITY_SLIDER"
 autowrap = true
 
 [node name="Report" type="Control" parent="MicrobeEditorGUI"]
@@ -9540,7 +9537,7 @@ custom_constants/separation = 0
 margin_right = 537.0
 margin_bottom = 17.0
 custom_fonts/font = SubResource( 10 )
-text = "The amount of glucose has been reduced to ... of the previous amount."
+text = "EVO_RESULTS_PANEL"
 
 [node name="HSeparator2" type="HSeparator" parent="MicrobeEditorGUI/Report/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
 margin_top = 17.0
@@ -9554,7 +9551,7 @@ margin_top = 27.0
 margin_right = 537.0
 margin_bottom = 44.0
 custom_fonts/font = SubResource( 10 )
-text = "Auto-evo results:"
+text = "AUTO_EVO_RESULTS"
 
 [node name="AutoEvoResults" type="Label" parent="MicrobeEditorGUI/Report/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
 margin_top = 44.0
@@ -9572,7 +9569,7 @@ margin_top = 83.0
 margin_right = 537.0
 margin_bottom = 100.0
 custom_fonts/font = SubResource( 10 )
-text = "External effects:"
+text = "EXTERNAL_EFFECTS"
 
 [node name="ExternalEffectsList" type="Label" parent="MicrobeEditorGUI/Report/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
 margin_top = 100.0
@@ -9700,7 +9697,7 @@ size_flags_horizontal = 3
 margin_right = 548.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
-text = "Select a patch to show details here"
+text = "SELECT_A_PATCH"
 align = 1
 
 [node name="PatchDetailsContainer" type="VBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer"]
@@ -9720,7 +9717,7 @@ custom_constants/separation = 0
 margin_right = 528.0
 margin_bottom = 32.0
 custom_fonts/font = SubResource( 59 )
-text = "Patch Name Goes Here"
+text = "PATCH_NAME_GOES_HERE"
 align = 1
 
 [node name="PlayerHereLabel" type="Label" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/VBoxContainer"]
@@ -9728,7 +9725,7 @@ margin_top = 32.0
 margin_right = 528.0
 margin_bottom = 50.0
 custom_fonts/font = SubResource( 60 )
-text = "YOU ARE CURRENTLY IN THIS PATCH"
+text = "YOU_ARE_CURRENTLY_THIS_PATCH"
 align = 1
 
 [node name="Biome" type="Label" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
@@ -9736,7 +9733,7 @@ margin_top = 65.0
 margin_right = 528.0
 margin_bottom = 87.0
 custom_fonts/font = SubResource( 61 )
-text = "Biome: BIOME HERE"
+text = "BIOME_HERE"
 align = 1
 
 [node name="Depth" type="Label" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
@@ -9744,7 +9741,7 @@ margin_top = 102.0
 margin_right = 528.0
 margin_bottom = 124.0
 custom_fonts/font = SubResource( 61 )
-text = "200-340m below sea level"
+text = "BELOW_SEA_LEVEL"
 align = 1
 
 [node name="PhysicalConditions" type="VBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
@@ -9791,7 +9788,7 @@ margin_right = 208.0
 margin_bottom = 23.0
 mouse_filter = 1
 custom_fonts/font = SubResource( 62 )
-text = "Physical Conditions"
+text = "PHYSICAL_CONDITIONS"
 
 [node name="Clip" type="Control" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions"]
 margin_top = 22.0
@@ -9832,7 +9829,7 @@ margin_top = 3.0
 margin_right = 146.0
 margin_bottom = 22.0
 custom_fonts/font = SubResource( 62 )
-text = "Temperature"
+text = "TEMPERATURE"
 
 [node name="Situation" type="TextureRect" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Temperature"]
 margin_left = 150.0
@@ -9864,7 +9861,7 @@ margin_top = 3.0
 margin_right = 114.0
 margin_bottom = 22.0
 custom_fonts/font = SubResource( 62 )
-text = "Pressure"
+text = "PRESSURE"
 
 [node name="Light" type="HBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer"]
 margin_top = 29.0
@@ -9940,7 +9937,7 @@ margin_top = 4.0
 margin_right = 214.0
 margin_bottom = 23.0
 custom_fonts/font = SubResource( 62 )
-text = "Atmospheric Gasses"
+text = "ATMOSPHERIC_GASSES"
 
 [node name="Clip" type="Control" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericConditions"]
 margin_top = 22.0
@@ -10004,7 +10001,7 @@ margin_top = 3.0
 margin_right = 111.0
 margin_bottom = 22.0
 custom_fonts/font = SubResource( 62 )
-text = "Nitrogen"
+text = "NITROGEN"
 
 [node name="CO2" type="HBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericConditions/Clip/GridContainer"]
 margin_top = 29.0
@@ -10071,7 +10068,7 @@ margin_top = 4.0
 margin_right = 140.0
 margin_bottom = 23.0
 custom_fonts/font = SubResource( 62 )
-text = "Compounds"
+text = "COMPOUNDS"
 
 [node name="Clip" type="Control" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds"]
 margin_top = 22.0
@@ -10205,7 +10202,7 @@ margin_top = 3.0
 margin_right = 126.0
 margin_bottom = 22.0
 custom_fonts/font = SubResource( 62 )
-text = "Phosphate"
+text = "PHOSPHATE"
 
 [node name="Situation" type="TextureRect" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Phosphate"]
 margin_left = 130.0
@@ -10288,7 +10285,7 @@ margin_top = 4.0
 margin_right = 177.0
 margin_bottom = 23.0
 custom_fonts/font = SubResource( 62 )
-text = "Species Present"
+text = "SPECIES_PRESENT"
 
 [node name="Clip" type="MarginContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesPresent"]
 margin_top = 22.0
@@ -10356,7 +10353,7 @@ custom_fonts/font = SubResource( 49 )
 custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
 disabled = true
 enabled_focus_mode = 0
-text = "Move to This Patch"
+text = "MOVE_TO_THIS_PATCH"
 __meta__ = {
 "_edit_use_anchors_": false
 }
