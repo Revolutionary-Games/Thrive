@@ -166,7 +166,7 @@ public static class SaveHelper
             var filePath =
                 PathUtils.Join(Constants.SAVE_FOLDER, Constants.SAVE_LAST_QUICKSAVE_FILE);
 
-            uint quicksaveId = GetQuicksaveId(filePath);
+            uint quicksaveId = GetQuicksaveId(filePath) + 1;
 
             // quick_save.0.thrivesave
             name += quicksaveId + "." + Constants.SAVE_EXTENSION;
