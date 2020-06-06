@@ -204,8 +204,12 @@ public class PatchMap
     /// <summary>
     ///   Removes species from patches where their population is &lt;= 0
     /// </summary>
-    public void RemoveExtinctSpecies(bool playerCantGoExtinct = false)
+    /// <returns>
+    ///   The extinct creatures
+    /// </returns>
+    public List<Species> RemoveExtinctSpecies(bool playerCantGoExtinct = false)
     {
+        var result = new List<Species>();
         foreach (var entry in Patches)
         {
             var toRemove = entry.Value.SpeciesInPatch.Where(v => v.Value <= 0 &&
@@ -216,13 +220,19 @@ public class PatchMap
                 entry.Value.RemoveSpecies(item.Key);
                 GD.Print("Species ", item.Key.FormattedName, " has gone extinct in ",
                     entry.Value.Name);
+                result.Add(item.Key);
             }
         }
+
+        return result;
     }
 
     /// <summary>
     ///   Returns all species on the map with > 0 population
     /// </summary>
+    /// <returns>
+    ///     Non-Extinct creatures
+    /// </returns>
     public List<Species> FindAllSpeciesWithPopulation()
     {
         var found = new HashSet<Species>();
