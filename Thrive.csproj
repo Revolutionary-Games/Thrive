@@ -75,8 +75,8 @@
     <Compile Include="src\gui_common\VersionNumber.cs" />
     <Compile Include="simulation_parameters\Constants.cs" />
     <Compile Include="src\engine\FPSCounter.cs" />
-    <Compile Include="src\engine\ScreenFilter.cs" />
-    <Compile Include="src\engine\FilterLoader.cs" />
+    <Compile Include="src\engine\ColourblindScreenFilter.cs" />
+    <Compile Include="src\engine\OverlayManager.cs" />
     <Compile Include="src\engine\CursorLoader.cs" />
     <Compile Include="src\general\LoadingScreen.cs" />
     <Compile Include="src\general\OptionsMenu.cs" />
