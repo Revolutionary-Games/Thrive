@@ -109,6 +109,11 @@ public class OrganelleDefinition : IRegistryType
     public int MPCost;
 
     /// <summary>
+    ///   Controls whether this organelle scales with growth progress (progress towards division and reproduction).
+    /// </summary>
+    public bool ShouldScale = true;
+
+    /// <summary>
     ///   Caches the rotated hexes
     /// </summary>
     private Dictionary<int, List<Hex>> rotatedHexesCache = new Dictionary<int, List<Hex>>();
