@@ -109,7 +109,7 @@ public class OrganelleDefinition : IRegistryType
     public int MPCost;
 
     /// <summary>
-    ///   Should this organelle scale?
+    ///   Controls whether this organelle scales with growth progress (progress towards division and reproduction).
     /// </summary>
     public bool ShouldScale = true;
 
