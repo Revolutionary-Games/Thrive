@@ -402,6 +402,8 @@ public static class Constants
 
     public const string SAVE_FOLDER = "user://saves";
 
+    public const string SAVE_LAST_QUICKSAVE_FILE = "last_quicksave.txt";
+
     public const string SCREENSHOT_FOLDER = "user://screenshots";
 
     /// <summary>

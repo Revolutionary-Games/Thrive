@@ -133,8 +133,38 @@ public static class SaveHelper
 
     private static void PerformSave(Save save, SaveInformation.SaveType type, Stopwatch stopwatch)
     {
+        string name = "quick_save.";
+        using (var file = new File())
+        {
+            // user://saves/last_quicksave.txt
+            // This file is not ascii, it is binary! Read using hexdump
+            var filePath =
+                PathUtils.Join(Constants.SAVE_FOLDER, Constants.SAVE_LAST_QUICKSAVE_FILE);
+
+            uint quicksaveId;
+
+            // if the file exists: read int and add one to it.
+            // if it doesn't: create the file with savegameId 0.
+            if (file.FileExists(filePath))
+            {
+                file.Open(filePath, File.ModeFlags.Read);
+                quicksaveId = file.Get32() + 1;
+                file.Close();
+            }
+            else
+            {
+                quicksaveId = 0;
+            }
+
+            // quick_save.0.thrivesave
+            name += quicksaveId + "." + Constants.SAVE_EXTENSION;
+
+            // write the incremented number back to the file.
+            file.Open(filePath, File.ModeFlags.Write);
+            file.Store32(quicksaveId);
+        }
+
         // TODO: implement type naming
-        var name = "quick_save." + Constants.SAVE_EXTENSION;
 
         save.Name = name;
 
