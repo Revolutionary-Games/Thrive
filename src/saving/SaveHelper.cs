@@ -131,6 +131,7 @@ public static class SaveHelper
 
     private static string BuildQuicksaveFilename(uint quicksaveId)
         => $"quick_save.{quicksaveId}.{Constants.SAVE_EXTENSION}";
+
     /// <summary>
     ///   Goes through the save-folder to detect the last quicksave-id
     /// </summary>
