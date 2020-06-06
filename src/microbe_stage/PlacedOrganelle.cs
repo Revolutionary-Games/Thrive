@@ -453,8 +453,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
 
     private void ApplyScale()
     {
-        // Nucleus isn't scaled
-        if (HasComponent<NucleusComponent>())
+        if (!Definition.ShouldScale)
             return;
 
         Scale = new Vector3(1 + GrowthValue, 1 + GrowthValue, 1 + GrowthValue);
