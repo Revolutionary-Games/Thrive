@@ -81,17 +81,14 @@ public class PilusComponent : ExternallyPositionedComponent
     private void DestroyShape()
     {
         var parentMicrobe = organelle.ParentMicrobe;
-        GD.Print("Before: ", parentMicrobe.ShapeOwnerGetShapeCount(ownerId));
 
         parentMicrobe.RemovePilus(ownerId);
 
         var shapeCount = parentMicrobe.ShapeOwnerGetShapeCount(ownerId);
-         for (int i = 0; i < shapeCount; ++i)
-         {
-             parentMicrobe.ShapeOwnerRemoveShape(ownerId, i);
-         }
-
-        GD.Print("After: ", parentMicrobe.ShapeOwnerGetShapeCount(ownerId));
+        for (int i = 0; i < shapeCount; ++i)
+        {
+            parentMicrobe.ShapeOwnerRemoveShape(ownerId, i);
+        }
 
         parentMicrobe.RemoveShapeOwner(ownerId);
         ownerSet = false;
