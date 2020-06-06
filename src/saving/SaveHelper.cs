@@ -68,7 +68,7 @@ public static class SaveHelper
                    PathUtils.Join(Constants.SAVE_FOLDER, Constants.SAVE_LAST_QUICKSAVE_FILE);
 
         // TODO: implement name detection
-        var name = "quick_save." + GetQuicksaveId(filePath) + Constants.SAVE_EXTENSION;
+        var name = "quick_save." + GetQuicksaveId(filePath) + "." + Constants.SAVE_EXTENSION;
 
         LoadSave(name);
     }
