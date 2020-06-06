@@ -157,7 +157,7 @@ public static class SaveHelper
                         filename.Substr("quick_save_".Length,
                         filename.Length - Constants.SAVE_EXTENSION.Length - "quick_save_".Length - 1),
                         System.Globalization.CultureInfo.InvariantCulture)
-                    + 1) % (Constants.SAVE_MAX_QUICKSAVES_BEFORE_OVERRIDING_OLD_ONES+1);
+                    + 1) % (Constants.SAVE_MAX_QUICKSAVES_BEFORE_OVERRIDING_OLD_ONES + 1);
     }
 
     private static string GetLastModifiedFile(List<string> filesToCheck)
