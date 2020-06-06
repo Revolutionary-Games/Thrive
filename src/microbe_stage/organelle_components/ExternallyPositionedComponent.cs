@@ -59,7 +59,6 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
 
             lastCalculatedPos = membraneCoords;
         }
-        
     }
 
     protected virtual void CustomAttach()
