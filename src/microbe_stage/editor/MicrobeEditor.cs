@@ -392,7 +392,9 @@ public class MicrobeEditor : Node, ILoadableGameState
 
         foreach (var organelle in editedMicrobeOrganelles.Organelles)
         {
-            editedSpecies.Organelles.Add((OrganelleTemplate)organelle.Clone());
+            var organelleToAdd = (OrganelleTemplate)organelle.Clone();
+            organelleToAdd.PlacedThisSession = false;
+            editedSpecies.Organelles.Add(organelleToAdd);
         }
 
         // Update bacteria status
@@ -1355,6 +1357,8 @@ public class MicrobeEditor : Node, ILoadableGameState
                 && organelle.Definition.ChanceToCreate != 0))
             return;
 
+        organelle.PlacedThisSession = true;
+
         var action = new EditorAction(this, organelle.Definition.MPCost,
             DoOrganellePlaceAction, UndoOrganellePlaceAction,
             new PlacementActionData(organelle));
@@ -1385,7 +1389,9 @@ public class MicrobeEditor : Node, ILoadableGameState
         if (organelleHere.Definition.InternalName == "nucleus" || MicrobeSize < 2)
             return;
 
-        int cost = Constants.ORGANELLE_REMOVE_COST;
+        // If it was placed this session, just refund the cost of adding it.
+        int cost = organelleHere.PlacedThisSession ?
+            -organelleHere.Definition.MPCost : Constants.ORGANELLE_REMOVE_COST;
 
         var action = new EditorAction(this, cost,
             DoOrganelleRemoveAction, UndoOrganelleRemoveAction,

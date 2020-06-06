@@ -250,7 +250,7 @@ public class PatchManager
 
     private class CreatedSpawner
     {
-        public ISpawner Spawner;
+        public Spawner Spawner;
         public string Name;
         public bool Marked = true;
 
