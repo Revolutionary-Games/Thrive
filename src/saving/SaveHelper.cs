@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using Godot;
 
@@ -65,7 +67,7 @@ public static class SaveHelper
     public static void QuickLoad()
     {
         // TODO: implement name detection
-        LoadSave(BuildQuicksaveFilename(GetLastQuicksaveId()));
+        LoadSave(GetLastSavegame(false));
     }
 
     /// <summary>
@@ -130,47 +132,88 @@ public static class SaveHelper
     }
 
     private static string BuildQuicksaveFilename(uint quicksaveId)
-        => $"quick_save.{quicksaveId}.{Constants.SAVE_EXTENSION}";
+    {
+        return $"quick_save_{quicksaveId}.{Constants.SAVE_EXTENSION}";
+    }
 
     /// <summary>
-    ///   Goes through the save-folder to detect the last quicksave-id
+    ///   Returns the next quicksave-id to be used
     /// </summary>
-    private static uint GetLastQuicksaveId()
+    private static uint GetNextQuicksaveId()
+    {
+        var files = GetSaves();
+        for (uint i = 0; i < Constants.SAVE_MAX_QUICKSAVES_BEFORE_OVERRIDING_OLD_ONES; i++)
+        {
+            if (!files.Contains(BuildQuicksaveFilename(i)))
+            {
+                // Not all 5 quicksaves have been used
+                return i;
+            }
+        }
+
+        // All 5 quicksaves have been used
+        var filename = GetLastSavegame(true);
+        return (uint.Parse(
+                        filename.Substr("quick_save_".Length,
+                        filename.Length - Constants.SAVE_EXTENSION.Length - "quick_save_".Length - 1),
+                        System.Globalization.CultureInfo.InvariantCulture)
+                    + 1) % (Constants.SAVE_MAX_QUICKSAVES_BEFORE_OVERRIDING_OLD_ONES+1);
+    }
+
+    private static string GetLastModifiedFile(List<string> filesToCheck)
+    {
+        return filesToCheck.ToDictionary(p => p, p =>
+        {
+            using (var file = new File())
+            {
+                return file.GetModifiedTime(PathUtils.Join(Constants.SAVE_FOLDER, p));
+            }
+        }).Aggregate((a, b) => a.Value > b.Value ? a : b).Key;
+    }
+
+    /// <summary>
+    ///   Get the latest modified save in the saves folder
+    /// </summary>
+    private static string GetLastSavegame(bool onlyQuicksaves)
+    {
+        var saves = GetSaves().ToList();
+        if (onlyQuicksaves)
+        {
+            saves = saves.FindAll(p => p.StartsWith("quick_save_", StringComparison.Ordinal));
+        }
+
+        return GetLastModifiedFile(saves);
+    }
+
+    /// <summary>
+    ///   Gets all savegames in the saves folder
+    /// </summary>
+    private static IEnumerable<string> GetSaves()
     {
         using (var directory = new Directory())
         {
             directory.Open(Constants.SAVE_FOLDER);
-            for (uint i = 0; ; i++)
+            directory.ListDirBegin();
+            string filename = string.Empty;
+
+            while (true)
             {
-                if (!directory.FileExists(BuildQuicksaveFilename(i)))
-                    return i - 1;
+                filename = directory.GetNext();
+                if (string.IsNullOrEmpty(filename))
+                {
+                    directory.ListDirEnd();
+                    break;
+                }
+
+                yield return filename;
             }
         }
-
-        /*var file = new File();
-
-        uint quicksaveId;
-
-        // if the file exists: read int and add one to it.
-        // if it doesn't: create the file with savegameId 0.
-        if (file.FileExists(filePath))
-        {
-            file.Open(filePath, File.ModeFlags.Read);
-            quicksaveId = file.Get32();
-            file.Close();
-        }
-        else
-        {
-            quicksaveId = 0;
-        }
-
-        return quicksaveId;*/
     }
 
     private static void PerformSave(Save save, SaveInformation.SaveType type, Stopwatch stopwatch)
     {
         // TODO: implement type naming
-        var name = BuildQuicksaveFilename(GetLastQuicksaveId() + 1);
+        var name = BuildQuicksaveFilename(GetNextQuicksaveId());
         save.Name = name;
 
         try
