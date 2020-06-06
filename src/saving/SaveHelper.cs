@@ -64,8 +64,11 @@ public static class SaveHelper
     /// </summary>
     public static void QuickLoad()
     {
+        var filePath =
+                   PathUtils.Join(Constants.SAVE_FOLDER, Constants.SAVE_LAST_QUICKSAVE_FILE);
+
         // TODO: implement name detection
-        var name = "quick_save." + Constants.SAVE_EXTENSION;
+        var name = "quick_save." + GetQuicksaveId(filePath) + Constants.SAVE_EXTENSION;
 
         LoadSave(name);
     }
@@ -131,6 +134,28 @@ public static class SaveHelper
         };
     }
 
+    private static uint GetQuicksaveId(string filePath)
+    {
+        var file = new File();
+
+        uint quicksaveId;
+
+        // if the file exists: read int and add one to it.
+        // if it doesn't: create the file with savegameId 0.
+        if (file.FileExists(filePath))
+        {
+            file.Open(filePath, File.ModeFlags.Read);
+            quicksaveId = file.Get32();
+            file.Close();
+        }
+        else
+        {
+            quicksaveId = 0;
+        }
+
+        return quicksaveId;
+    }
+
     private static void PerformSave(Save save, SaveInformation.SaveType type, Stopwatch stopwatch)
     {
         string name = "quick_save.";
@@ -141,20 +166,7 @@ public static class SaveHelper
             var filePath =
                 PathUtils.Join(Constants.SAVE_FOLDER, Constants.SAVE_LAST_QUICKSAVE_FILE);
 
-            uint quicksaveId;
-
-            // if the file exists: read int and add one to it.
-            // if it doesn't: create the file with savegameId 0.
-            if (file.FileExists(filePath))
-            {
-                file.Open(filePath, File.ModeFlags.Read);
-                quicksaveId = file.Get32() + 1;
-                file.Close();
-            }
-            else
-            {
-                quicksaveId = 0;
-            }
+            uint quicksaveId = GetQuicksaveId(filePath);
 
             // quick_save.0.thrivesave
             name += quicksaveId + "." + Constants.SAVE_EXTENSION;
