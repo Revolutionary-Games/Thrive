@@ -8,14 +8,6 @@ public class PilusComponent : ExternallyPositionedComponent
 {
     private List<uint> addedChildShapes = new List<uint>();
 
-    private float pilusSize = 4.6f;
-
-    protected override void CustomAttach()
-    {
-        base.CustomAttach();
-        CreatePilusCollisionShape();
-    }
-
     protected override void CustomDetach()
     {
         DestroyShape();
@@ -41,7 +33,18 @@ public class PilusComponent : ExternallyPositionedComponent
             membraneCoords *= 0.5f;
         }
 
+        float pilusSize = 4.6f;
+
+        // Scale the size down for bacteria
+        if (organelle.ParentMicrobe.Species.IsBacteria)
+        {
+            pilusSize *= 0.5f;
+        }
+
         var physicsRotation = MathUtils.CreateRotationForPhysicsOrganelle(angle);
+
+        // Need to remove the old copy first
+        DestroyShape();
 
         // TODO: Godot doesn't have Cone shape.
         // https://github.com/godotengine/godot-proposals/issues/610
@@ -50,35 +53,21 @@ public class PilusComponent : ExternallyPositionedComponent
         // @pilusShape = organelle.world.GetPhysicalWorld().CreateCone(pilusSize / 10.f,
         //     pilusSize);
 
+        var shape = new CylinderShape();
+        shape.Radius = pilusSize / 10.0f;
+        shape.Height = pilusSize;
+
+        var parentMicrobe = organelle.ParentMicrobe;
+
+        var ownerId = parentMicrobe.CreateShapeOwner(shape);
+        parentMicrobe.ShapeOwnerAddShape(ownerId, shape);
+
         // TODO: find a way to pass the information to the shape /
         // parentMicrobe what is a pilus part of the collision
         // pilusShape.SetCustomTag(PHYSICS_PILUS_TAG);
 
-        var parentMicrobe = organelle.ParentMicrobe;
         var transform = new Transform(physicsRotation, membraneCoords);
-
-        foreach (uint owner in addedChildShapes)
-        {
-            parentMicrobe.ShapeOwnerSetTransform(owner, transform);
-        }
-    }
-
-    private void CreatePilusCollisionShape()
-    {
-        // Scale the size down for bacteria
-        if (organelle.ParentMicrobe.Species.IsBacteria)
-        {
-            pilusSize *= 0.5f;
-        }
-
-        var collisionShape = new CylinderShape();
-        collisionShape.Radius = pilusSize / 8.0f;
-        collisionShape.Height = pilusSize * organelle.Scale.Length();
-
-        var parentMicrobe = organelle.ParentMicrobe;
-
-        var ownerId = parentMicrobe.CreateShapeOwner(collisionShape);
-        parentMicrobe.ShapeOwnerAddShape(ownerId, collisionShape);
+        parentMicrobe.ShapeOwnerSetTransform(ownerId, transform);
 
         parentMicrobe.AddPilus(ownerId);
         addedChildShapes.Add(ownerId);
