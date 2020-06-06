@@ -64,13 +64,8 @@ public static class SaveHelper
     /// </summary>
     public static void QuickLoad()
     {
-        var filePath =
-                   PathUtils.Join(Constants.SAVE_FOLDER, Constants.SAVE_LAST_QUICKSAVE_FILE);
-
         // TODO: implement name detection
-        var name = "quick_save." + GetQuicksaveId(filePath) + "." + Constants.SAVE_EXTENSION;
-
-        LoadSave(name);
+        LoadSave(BuildQuicksaveFilename(GetLastQuicksaveId()));
     }
 
     /// <summary>
@@ -134,9 +129,23 @@ public static class SaveHelper
         };
     }
 
-    private static uint GetQuicksaveId(string filePath)
+    private static string BuildQuicksaveFilename(uint quicksaveId)
+        => $"quick_save.{quicksaveId}.{Constants.SAVE_EXTENSION}";
+
+    private static uint GetLastQuicksaveId()
     {
-        var file = new File();
+        using (var directory = new Directory())
+        {
+            directory.Open(Constants.SAVE_FOLDER);
+            for (uint i = 0; ; i++)
+            {
+                if (!directory.FileExists(BuildQuicksaveFilename(i)))
+                    return i - 1;
+            }
+        }
+
+
+        /*var file = new File();
 
         uint quicksaveId;
 
@@ -153,31 +162,13 @@ public static class SaveHelper
             quicksaveId = 0;
         }
 
-        return quicksaveId;
+        return quicksaveId;*/
     }
 
     private static void PerformSave(Save save, SaveInformation.SaveType type, Stopwatch stopwatch)
     {
-        string name = "quick_save.";
-        using (var file = new File())
-        {
-            // user://saves/last_quicksave.txt
-            // This file is not ascii, it is binary! Read using hexdump
-            var filePath =
-                PathUtils.Join(Constants.SAVE_FOLDER, Constants.SAVE_LAST_QUICKSAVE_FILE);
-
-            uint quicksaveId = GetQuicksaveId(filePath) + 1;
-
-            // quick_save.0.thrivesave
-            name += quicksaveId + "." + Constants.SAVE_EXTENSION;
-
-            // write the incremented number back to the file.
-            file.Open(filePath, File.ModeFlags.Write);
-            file.Store32(quicksaveId);
-        }
-
         // TODO: implement type naming
-
+        var name = BuildQuicksaveFilename(GetLastQuicksaveId() + 1);
         save.Name = name;
 
         try
