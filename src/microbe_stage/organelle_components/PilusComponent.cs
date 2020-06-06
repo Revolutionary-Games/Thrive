@@ -8,7 +8,6 @@ public class PilusComponent : ExternallyPositionedComponent
 {
     private List<uint> addedChildShapes = new List<uint>();
 
-    private uint ownerId;
     private float pilusSize = 4.6f;
 
     protected override void CustomAttach()
@@ -57,7 +56,11 @@ public class PilusComponent : ExternallyPositionedComponent
 
         var parentMicrobe = organelle.ParentMicrobe;
         var transform = new Transform(physicsRotation, membraneCoords);
-        parentMicrobe.ShapeOwnerSetTransform(ownerId, transform);
+
+        foreach (uint owner in addedChildShapes)
+        {
+            parentMicrobe.ShapeOwnerSetTransform(owner, transform);
+        }
     }
 
     private void CreatePilusCollisionShape()
@@ -74,7 +77,7 @@ public class PilusComponent : ExternallyPositionedComponent
 
         var parentMicrobe = organelle.ParentMicrobe;
 
-        ownerId = parentMicrobe.CreateShapeOwner(collisionShape);
+        var ownerId = parentMicrobe.CreateShapeOwner(collisionShape);
         parentMicrobe.ShapeOwnerAddShape(ownerId, collisionShape);
 
         parentMicrobe.AddPilus(ownerId);
