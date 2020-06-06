@@ -179,7 +179,7 @@ public class Settings
     public void ApplyGraphicsSettings()
     {
         GUICommon.Instance.GetTree().Root.GetViewport().Msaa = MSAAResolution;
-        ScreenFilter.Instance.SetColourblindSetting(ColourblindSetting);
+        ColourblindScreenFilter.Instance.SetColourblindSetting(ColourblindSetting);
     }
 
     /// <summary>

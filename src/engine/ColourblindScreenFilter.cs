@@ -3,17 +3,17 @@ using Godot;
 /// <summary>
 ///   Handles what colourblind filter is used
 /// </summary>
-public class ScreenFilter : TextureRect
+public class ColourblindScreenFilter : TextureRect
 {
-    private static ScreenFilter instance;
+    private static ColourblindScreenFilter instance;
     private ShaderMaterial screenFilterMaterial;
 
-    private ScreenFilter()
+    private ColourblindScreenFilter()
     {
         instance = this;
     }
 
-    public static ScreenFilter Instance => instance;
+    public static ColourblindScreenFilter Instance => instance;
 
     public override void _Ready()
     {
