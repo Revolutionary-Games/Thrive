@@ -6,7 +6,8 @@ using Godot;
 /// </summary>
 public class PilusComponent : ExternallyPositionedComponent
 {
-    private List<uint> addedChildShapes = new List<uint>();
+    private uint ownerId;
+    private bool ownerSet = false;
 
     protected override void CustomDetach()
     {
@@ -15,7 +16,7 @@ public class PilusComponent : ExternallyPositionedComponent
 
     protected override bool NeedsUpdateAnyway()
     {
-        return addedChildShapes.Count < 1;
+        return ownerSet && organelle.ParentMicrobe.ShapeOwnerGetShapeCount(ownerId) < 1;
     }
 
     protected override void OnPositionChanged(Quat rotation, float angle,
@@ -59,7 +60,12 @@ public class PilusComponent : ExternallyPositionedComponent
 
         var parentMicrobe = organelle.ParentMicrobe;
 
-        var ownerId = parentMicrobe.CreateShapeOwner(shape);
+        if(!ownerSet)
+        {
+            ownerId = parentMicrobe.CreateShapeOwner(parentMicrobe);
+            ownerSet = true;
+        }
+
         parentMicrobe.ShapeOwnerAddShape(ownerId, shape);
 
         // TODO: find a way to pass the information to the shape /
@@ -70,21 +76,25 @@ public class PilusComponent : ExternallyPositionedComponent
         parentMicrobe.ShapeOwnerSetTransform(ownerId, transform);
 
         parentMicrobe.AddPilus(ownerId);
-        addedChildShapes.Add(ownerId);
     }
 
     private void DestroyShape()
     {
-        if (addedChildShapes.Count > 0)
-        {
-            foreach (var shape in addedChildShapes)
-            {
-                organelle.ParentMicrobe.RemovePilus(shape);
-                organelle.ParentMicrobe.RemoveShapeOwner(shape);
-            }
+        var parentMicrobe = organelle.ParentMicrobe;
+        GD.Print("Before: ", parentMicrobe.ShapeOwnerGetShapeCount(ownerId));
 
-            addedChildShapes.Clear();
-        }
+        parentMicrobe.RemovePilus(ownerId);
+
+        var shapeCount = parentMicrobe.ShapeOwnerGetShapeCount(ownerId);
+         for (int i = 0; i < shapeCount; ++i)
+         {
+             parentMicrobe.ShapeOwnerRemoveShape(ownerId, i);
+         }
+
+        GD.Print("After: ", parentMicrobe.ShapeOwnerGetShapeCount(ownerId));
+
+        parentMicrobe.RemoveShapeOwner(ownerId);
+        ownerSet = false;
     }
 }
 

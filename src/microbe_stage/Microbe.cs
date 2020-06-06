@@ -1815,8 +1815,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             if (microbe.Dead)
                 return;
 
-            bool otherIsPilus = microbe.IsPilus(microbe.ShapeFindOwner(bodyShape));
-            bool oursIsPilus = IsPilus(ShapeFindOwner(localShape));
+            uint microbeOwner = microbe.ShapeFindOwner(bodyShape);
+            uint localShapeOwner = microbe.ShapeFindOwner(localShape);
+
+            bool otherIsPilus = microbe.IsPilus(microbeOwner);
+            bool oursIsPilus = IsPilus(localShapeOwner);
+
+            GD.Print("Other: ", microbeOwner, " LocalOwner: ", localShapeOwner);
 
             // Pilus logic
             if (otherIsPilus && oursIsPilus)
