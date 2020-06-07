@@ -345,6 +345,7 @@ public class FloatingChunk : RigidBody, ISpawned
 
         if (body is Microbe microbe)
         {
+            GD.Print("BodyShape: ", bodyShape);
             // Can't engulf with a pilus
             if (microbe.IsPilus(microbe.ShapeFindOwner(bodyShape)))
                 return;

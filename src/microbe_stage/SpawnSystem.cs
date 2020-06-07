@@ -276,8 +276,7 @@ public class SpawnSystem
                         previousPlayerPosition;
                     float previousSquaredDistance = previousDisplacement.LengthSquared();
 
-                    if (squaredDistance <= spawnType.SpawnRadiusSqr &&
-                        previousSquaredDistance > spawnType.SpawnRadiusSqr)
+                    if (squaredDistance <= spawnType.SpawnRadiusSqr)
                     {
                         // Second condition passed. Spawn the entity.
                         if (SpawnWithSpawner(spawnType, playerPosition + displacement, existing,

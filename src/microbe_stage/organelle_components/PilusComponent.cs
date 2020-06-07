@@ -82,8 +82,6 @@ public class PilusComponent : ExternallyPositionedComponent
     {
         var parentMicrobe = organelle.ParentMicrobe;
 
-        parentMicrobe.RemovePilus(ownerId);
-
         if(parentMicrobe.GetShapeOwners().Count > 0)
         {
             var shapeCount = parentMicrobe.ShapeOwnerGetShapeCount(ownerId);
@@ -94,6 +92,7 @@ public class PilusComponent : ExternallyPositionedComponent
         }
 
         parentMicrobe.RemoveShapeOwner(ownerId);
+        parentMicrobe.RemovePilus(ownerId);
         ownerSet = false;
     }
 }

@@ -1816,7 +1816,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
                 return;
 
             uint microbeOwner = microbe.ShapeFindOwner(bodyShape);
-            uint localShapeOwner = microbe.ShapeFindOwner(localShape);
+            uint localShapeOwner = ShapeFindOwner(localShape);
 
             bool otherIsPilus = microbe.IsPilus(microbeOwner);
             bool oursIsPilus = IsPilus(localShapeOwner);

@@ -222,7 +222,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
             var shape = new SphereShape();
             shape.Radius = hexSize * 2.0f;
 
-            var ownerId = ParentMicrobe.CreateShapeOwner(shape);
+            var ownerId = ParentMicrobe.CreateShapeOwner(ParentMicrobe);
 
             // This is needed to actually add the shape
             ParentMicrobe.ShapeOwnerAddShape(ownerId, shape);
