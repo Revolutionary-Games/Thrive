@@ -14,13 +14,11 @@ public static class SaveHelper
     /// <param name="stage">Data to include in save</param>
     public static void QuickSave(MicrobeStage stage)
     {
-        var stopwatch = Stopwatch.StartNew();
-        var save = CreateSaveObject(MainGameState.MicrobeStage, SaveInformation.SaveType.QuickSave);
-
-        save.SavedProperties = stage.CurrentGame;
-        save.MicrobeStage = stage;
-
-        PerformSave(save, SaveInformation.SaveType.QuickSave, stopwatch);
+        InternalSaveHelper(SaveInformation.SaveType.QuickSave, MainGameState.MicrobeStage, save =>
+        {
+            save.SavedProperties = stage.CurrentGame;
+            save.MicrobeStage = stage;
+        }, () => stage);
     }
 
     /// <summary>
@@ -29,13 +27,11 @@ public static class SaveHelper
     /// <param name="editor">Data to include in save</param>
     public static void QuickSave(MicrobeEditor editor)
     {
-        var stopwatch = Stopwatch.StartNew();
-        var save = CreateSaveObject(MainGameState.MicrobeEditor, SaveInformation.SaveType.QuickSave);
-
-        save.SavedProperties = editor.CurrentGame;
-        save.MicrobeEditor = editor;
-
-        PerformSave(save, SaveInformation.SaveType.QuickSave, stopwatch);
+        InternalSaveHelper(SaveInformation.SaveType.QuickSave, MainGameState.MicrobeEditor, save =>
+        {
+            save.SavedProperties = editor.CurrentGame;
+            save.MicrobeEditor = editor;
+        }, () => editor);
     }
 
     /// <summary>
@@ -119,37 +115,46 @@ public static class SaveHelper
         var targetState = (ILoadableGameState)scene.Instance();
 
         FinishMovingToLoadedScene(targetState, save);
-        DisplaySaveStatusMessage(true, "Load finished", stopwatch);
+        DisplayLoadStatusMessage(true, "Load finished", stopwatch);
+    }
+
+    private static void InternalSaveHelper(SaveInformation.SaveType type, MainGameState gameState,
+        Action<Save> copyInfoToSave, Func<Node> stateRoot)
+    {
+        new InProgressSave(type, stateRoot, (data) =>
+                CreateSaveObject(gameState, data.Type),
+            (inProgress, save) =>
+            {
+                copyInfoToSave.Invoke(save);
+
+                PerformSave(inProgress, save);
+            }).Start();
     }
 
     private static Save CreateSaveObject(MainGameState gameState, SaveInformation.SaveType type)
     {
         return new Save
         {
-            GameState = gameState, Info = { Type = type },
+            GameState = gameState,
+            Info = { Type = type },
             Screenshot = ScreenShotTaker.Instance.TakeScreenshot(),
         };
     }
 
-    private static void PerformSave(Save save, SaveInformation.SaveType type, Stopwatch stopwatch)
+    private static void PerformSave(InProgressSave inProgress, Save save)
     {
-        // TODO: implement type naming
-        var name = "quick_save." + Constants.SAVE_EXTENSION;
-
-        save.Name = name;
-
         try
         {
             save.SaveToFile();
-            DisplaySaveStatusMessage(true, name, stopwatch);
+            inProgress.ReportStatus(true, "Saving succeeded");
         }
         catch (Exception e)
         {
-            DisplaySaveStatusMessage(false, "Error, an exception happened: " + e, stopwatch);
+            inProgress.ReportStatus(false, "Saving failed! An exception happened", e.ToString());
             return;
         }
 
-        if (type == SaveInformation.SaveType.QuickSave)
+        if (inProgress.Type == SaveInformation.SaveType.QuickSave)
             QueueRemoveExcessQuickSaves();
     }
 
@@ -162,10 +167,11 @@ public static class SaveHelper
     /// <remarks>
     ///   TODO: implement this
     /// </remarks>
-    private static void DisplaySaveStatusMessage(bool success, string message, Stopwatch stopwatch)
+    private static void DisplayLoadStatusMessage(bool success, string message, Stopwatch stopwatch)
     {
         stopwatch.Stop();
-        GD.Print("save/load finished, success: ", success, " message: ", message, " elapsed: ", stopwatch.Elapsed);
+        GD.Print("load finished, success: ", success, " message: ", message, " elapsed: ", stopwatch.Elapsed);
+        SaveStatusOverlay.Instance.ShowMessage(message);
     }
 
     /// <summary>
@@ -181,6 +187,8 @@ public static class SaveHelper
         GD.Print("error related to load fail: ", error);
 
         // TODO: show the dialog
+        // For now at least show something
+        SaveStatusOverlay.Instance.ShowMessage("Loading a save failed: " + message);
     }
 
     private static void FinishMovingToLoadedScene(ILoadableGameState newScene, Save save)
