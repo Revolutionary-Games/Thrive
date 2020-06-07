@@ -10,23 +10,28 @@ public class OverlayManager : Node
     /// <summary>
     ///   Controls the order the filters are positioned after the main scene
     /// </summary>
-    private List<Node> orderedFilters;
+    private List<Node> orderedFilters = new List<Node>();
 
     public override void _Ready()
     {
         var root = GetTree().Root;
 
         // Get references to the overlays, which must be autoloads that are specified before this one in the load order
-        orderedFilters = new List<Node>()
+        var overlays = new string[]
         {
-            root.GetNode("ColourblindScreenFilter"),
-            root.GetNode("FPSCounter"),
+            "SaveStatusOverlay",
+            "ColourblindScreenFilter",
+            "FPSCounter",
         };
 
-        foreach (var overlay in orderedFilters)
+        foreach (var name in overlays)
         {
+            var overlay = root.GetNode(name);
+
             if (overlay == null)
                 throw new NullReferenceException("specified overlay was not autoloaded before this");
+
+            orderedFilters.Add(overlay);
         }
 
         PauseMode = PauseModeEnum.Process;
