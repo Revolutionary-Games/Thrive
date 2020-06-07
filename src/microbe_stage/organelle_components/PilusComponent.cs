@@ -84,10 +84,13 @@ public class PilusComponent : ExternallyPositionedComponent
 
         parentMicrobe.RemovePilus(ownerId);
 
-        var shapeCount = parentMicrobe.ShapeOwnerGetShapeCount(ownerId);
-        for (int i = 0; i < shapeCount; ++i)
+        if(parentMicrobe.GetShapeOwners().Count > 0)
         {
-            parentMicrobe.ShapeOwnerRemoveShape(ownerId, i);
+            var shapeCount = parentMicrobe.ShapeOwnerGetShapeCount(ownerId);
+            for (int i = 0; i < shapeCount; ++i)
+            {
+                parentMicrobe.ShapeOwnerRemoveShape(ownerId, i);
+            }
         }
 
         parentMicrobe.RemoveShapeOwner(ownerId);
