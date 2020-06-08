@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -456,7 +455,8 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
         if (!Definition.ShouldScale)
             return;
 
-        Scale = new Vector3(1 + GrowthValue, 1 + GrowthValue, 1 + GrowthValue);
+        if (OrganelleGraphics != null)
+            OrganelleGraphics.Scale = new Vector3(1 + GrowthValue, 1 + GrowthValue, 1 + GrowthValue);
     }
 
     private void UpdateColour()
