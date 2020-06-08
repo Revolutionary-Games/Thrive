@@ -209,11 +209,6 @@
                 var newPopulation = (int)(speciesEnergies[currentSpecies]
                     / Math.Pow(currentSpecies.Organelles.Count, 1.3f));
 
-                if (highSpecies)
-                {
-                    newPopulation -= Constants.AUTO_EVO_HIGH_SPECIES_PENALTY;
-                }
-
                 populations.AddPopulationResultForSpecies(currentSpecies, patch, newPopulation);
             }
         }
