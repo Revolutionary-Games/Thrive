@@ -6,13 +6,13 @@
             "glucose": 0.08
         },
         "outputs": {
-            "atp": 60
+            "atp": 70
         }
     },
     "glycolysis": {
         "name": "Glycolysis",
         "inputs": {
-            "glucose": 0.025
+            "glucose": 0.024
         },
         "outputs": {
             "atp": 2
@@ -34,7 +34,7 @@
             "sunlight": 1
         },
         "outputs": {
-            "glucose": 0.08
+            "glucose": 0.03
         }
     },
     "oxytoxySynthesis": {
@@ -85,7 +85,7 @@
             "atp": 2.5
         },
         "outputs": {
-            "ammonia": 0.04
+            "ammonia": 0.12
         }
     },
     "nitrogenaseReaction": {
@@ -95,7 +95,7 @@
             "atp": 2.5
         },
         "outputs": {
-            "ammonia": 0.02
+            "ammonia": 0.06
         }
     },
     "protein_respiration": {
@@ -105,7 +105,7 @@
             "glucose": 0.15
         },
         "outputs": {
-            "atp": 40
+            "atp": 35
         }
     },
     "chromatophore_photosynthesis": {
@@ -115,7 +115,7 @@
             "sunlight": 1
         },
         "outputs": {
-            "glucose": 0.02
+            "glucose": 0.025
         }
     },
     "iron_chemolithoautotrophy": {
@@ -123,10 +123,10 @@
         "inputs": {
             "carbondioxide": 0.09,
             "oxygen": 0.21,
-            "iron": 0.12
+            "iron": 0.03
         },
         "outputs": {
-            "atp": 10
+            "atp": 3.5
         }
     }
 }
