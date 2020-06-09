@@ -1,4 +1,4 @@
-[gd_scene load_steps=114 format=2]
+[gd_scene load_steps=115 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -66,6 +66,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/HealthBarBg.png" type="Texture" id=64]
 [ext_resource path="res://assets/textures/gui/bevel/ReproductionBar.png" type="Texture" id=65]
 [ext_resource path="res://assets/fonts/Jura-Medium.ttf" type="DynamicFontData" id=66]
+[ext_resource path="res://src/engine/ChromaticFilter.tscn" type="PackedScene" id=67]
 [ext_resource path="res://assets/fonts/thrive.ttf" type="DynamicFontData" id=69]
 [ext_resource path="res://src/microbe_stage/gui/ExtinctionBox.tscn" type="PackedScene" id=70]
 [ext_resource path="res://assets/textures/gui/bevel/AmmoniaBW.png" type="Texture" id=71]
@@ -356,6 +357,8 @@ shadow_enabled = true
 
 [node name="PlayerMicrobeInput" type="Node" parent="."]
 script = ExtResource( 7 )
+
+[node name="TextureRect" parent="." instance=ExtResource( 67 )]
 
 [node name="MicrobeHUD" type="Node" parent="."]
 pause_mode = 2
