@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-//Shader adapted from: https://www.shadertoy.com/view/XssGz8
+// Shader adapted from: https://www.shadertoy.com/view/XssGz8
 
 float remap(float t, float a, float b) 
 {
@@ -12,10 +12,10 @@ vec2 remapVec(vec2 t, vec2 a, vec2 b)
     return clamp( (t - a) / (b - a), 0.0, 1.0 );
 }
 
-//note: input [0;1]
+// note: input [0;1]
 vec3 spectrum_offset_rgb(float t)
 {
-    //note: optimisation from https://twitter.com/Stubbesaurus/status/818847844790575104
+    // note: optimisation from https://twitter.com/Stubbesaurus/status/818847844790575104
     float t0 = 3.0 * t - 1.5;
     vec3 ret = clamp(vec3(-t0, 1.0-abs(t0), t0), 0.0, 1.0);
     
@@ -42,10 +42,10 @@ vec3 yCgCo2rgb(vec3 ycc)
 
 vec3 spectrum_offset_ycgco(float t)
 {
-    //vec3 ygo = vec3( 1.0, 1.5*t, 0.0 ); //green-pink
-    //vec3 ygo = vec3( 1.0, -1.5*t, 0.0 ); //green-purple
+    // vec3 ygo = vec3( 1.0, 1.5*t, 0.0 ); //green-pink
+    // vec3 ygo = vec3( 1.0, -1.5*t, 0.0 ); //green-purple
     vec3 ygo = vec3(1.0, 0.0, -1.25*t); //cyan-orange
-    //vec3 ygo = vec3( 1.0, 0.0, 1.5*t ); //brownyello-blue
+    // vec3 ygo = vec3( 1.0, 0.0, 1.5*t ); //brownyello-blue
     return yCgCo2rgb(ygo);
 }
 
@@ -60,7 +60,7 @@ vec3 yuv2rgb(vec3 yuv)
 
 // ====
 
-//note: from https://www.shadertoy.com/view/XslGz8
+// note: from https://www.shadertoy.com/view/XslGz8
 vec2 radialdistort(vec2 coord, vec2 amt)
 {
     vec2 cc = coord - 0.5;
@@ -75,7 +75,7 @@ vec2 barrelDistortion(vec2 p, vec2 amt)
     return p * 0.5 + 0.5;
 }
 
-//note: from https://www.shadertoy.com/view/MlSXR3
+// note: from https://www.shadertoy.com/view/MlSXR3
 vec2 brownConradyDistortion(vec2 uv, float dist)
 {
     uv = uv * 2.0 - 1.0;
@@ -101,10 +101,10 @@ vec2 distort(vec2 uv, float t, vec2 min_distort, vec2 max_distort)
 
 vec3 spectrum_offset_yuv(float t)
 {
-    //vec3 yuv = vec3( 1.0, 3.0*t, 0.0 ); //purple-green
-    //vec3 yuv = vec3( 1.0, 0.0, 2.0*t ); //purple-green
+    // vec3 yuv = vec3( 1.0, 3.0*t, 0.0 ); //purple-green
+    // vec3 yuv = vec3( 1.0, 0.0, 2.0*t ); //purple-green
     vec3 yuv = vec3(1.0, 0.0, -1.0*t); //cyan-orange
-    //vec3 yuv = vec3( 1.0, -0.75*t, 0.0 ); //brownyello-blue
+    // vec3 yuv = vec3( 1.0, -0.75*t, 0.0 ); //brownyello-blue
     return yuv2rgb(yuv);
 }
 
@@ -135,7 +135,7 @@ void fragment()
     
     const int num_iter = 7;
     const float stepsiz = 1.0 / (float(num_iter)-1.0);
-    float rnd = fract(1.61803398875+texture(SCREEN_TEXTURE, FRAGCOORD.xy/vec2(textureSize(SCREEN_TEXTURE,0)), -10.0 ).x); //nrand( uv + fract(iTime) );
+    float rnd = fract(1.61803398875+texture(SCREEN_TEXTURE, FRAGCOORD.xy/vec2(textureSize(SCREEN_TEXTURE,0)), -10.0 ).x); // nrand( uv + fract(iTime) );
     float t = rnd * stepsiz;
 
     vec3 sumcol = vec3(0.0);
@@ -144,7 +144,7 @@ void fragment()
     {
         vec3 w = spectrum_offset(t);
         sumw += w;
-        vec2 uvd = distort(uv, t, min_distort, max_distort); //TODO: move out of loop
+        vec2 uvd = distort(uv, t, min_distort, max_distort); // TODO: move out of loop
         sumcol += w * render(uvd, SCREEN_TEXTURE);
         t += stepsiz;
     }
