@@ -15,11 +15,11 @@
         "components": {
             "pilus": {}
         },
+        "shouldScale": false,
         "prokaryoteChance": 0.5,
         "chanceToCreate": 0.5,
         "mass": 0.5,
         "displayScene": "res://assets/models/organelles/Pilus.tscn",
-        "gene": "P",
         "name": "pilus"
     },
     "rusticyanin": {
@@ -49,7 +49,6 @@
         "chanceToCreate": 0.5,
         "mass": 0.1,
         "displayScene": "res://assets/models/organelles/Rusticyanin.tscn",
-        "gene": "f",
         "name": "rusticyanin"
     },
     "nitrogenase": {
@@ -80,7 +79,6 @@
         "chanceToCreate": 1,
         "mass": 0.1,
         "displayScene": "res://assets/models/organelles/Nitrogenase.tscn",
-        "gene": "i",
         "name": "nitrogenase"
     },
     "protoplasm": {
@@ -110,7 +108,6 @@
         "chanceToCreate": 0,
         "mass": 0.1,
         "displayScene": "",
-        "gene": "y",
         "name": "protoplasm"
     },
     "chemoSynthesizingProteins": {
@@ -141,7 +138,6 @@
         "chanceToCreate": 0.5,
         "mass": 0.1,
         "displayScene": "res://assets/models/organelles/ChemoSynthesizingProteins.tscn",
-        "gene": "c",
         "name": "chemoSynthesizingProteins"
     },
     "oxytoxyProteins": {
@@ -176,7 +172,6 @@
         "chanceToCreate": 1,
         "mass": 0.1,
         "displayScene": "res://assets/models/organelles/OxytoxyProteins.tscn",
-        "gene": "t",
         "name": "oxytoxyProteins"
     },
     "chromatophore": {
@@ -207,7 +202,6 @@
         "chanceToCreate": 0.5,
         "mass": 0.1,
         "displayScene": "res://assets/models/organelles/Chromatophore.tscn",
-        "gene": "h",
         "name": "chromatophore"
     },
     "metabolosome": {
@@ -237,7 +231,6 @@
         "chanceToCreate": 0.5,
         "mass": 0.1,
         "displayScene": "res://assets/models/organelles/Metabolosome.tscn",
-        "gene": "m",
         "name": "metabolosome"
     },
     "nitrogenfixingplastid": {
@@ -271,7 +264,6 @@
         "chanceToCreate": 1,
         "mass": 0.1,
         "displayScene": "res://assets/models/organelles/NitrogenFixingPlastid.tscn",
-        "gene": "I",
         "name": "nitrogenfixingplastid"
     },
     "chemoplast": {
@@ -305,7 +297,6 @@
         "chanceToCreate": 1,
         "mass": 0.1,
         "displayScene": "res://assets/models/organelles/Chemoplast.tscn",
-        "gene": "C",
         "name": "chemoplast"
     },
     "flagellum": {
@@ -336,7 +327,6 @@
         "displayScene": "res://assets/models/organelles/Flagellum.tscn",
         "displaySceneModelPath": "Armature001/Skeleton/flagella",
         "displaySceneAnimation": "AnimationPlayer",
-        "gene": "F",
         "name": "flagellum"
     },
     "vacuole": {
@@ -361,7 +351,6 @@
         "chanceToCreate": 3,
         "mass": 0.4,
         "displayScene": "res://assets/models/organelles/Vacuole.tscn",
-        "gene": "V",
         "name": "vacuole"
     },
     "mitochondrion": {
@@ -395,7 +384,6 @@
         "chanceToCreate": 3,
         "mass": 0.3,
         "displayScene": "res://assets/models/organelles/Mitochondrion.tscn",
-        "gene": "M",
         "name": "mitochondrion"
     },
     "oxytoxy": {
@@ -426,7 +414,6 @@
         "chanceToCreate": 1,
         "mass": 0.3,
         "displayScene": "res://assets/models/organelles/Oxytoxy.tscn",
-        "gene": "T",
         "name": "oxytoxy"
     },
     "chloroplast": {
@@ -464,7 +451,6 @@
         "chanceToCreate": 1,
         "mass": 0.4,
         "displayScene": "res://assets/models/organelles/Chloroplast.tscn",
-        "gene": "H",
         "name": "chloroplast"
     },
     "cytoplasm": {
@@ -494,7 +480,6 @@
         "chanceToCreate": 1,
         "mass": 0.1,
         "displayScene": "",
-        "gene": "Y",
         "name": "cytoplasm"
     },
     "nucleus": {
@@ -552,11 +537,11 @@
             },
             "nucleus": {}
         },
+        "shouldScale": false,
         "prokaryoteChance": 0,
         "chanceToCreate": 0,
         "mass": 0.7,
         "displayScene": "res://assets/models/organelles/Nucleus.tscn",
-        "gene": "N",
         "name": "nucleus"
     }
 }

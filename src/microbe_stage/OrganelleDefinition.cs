@@ -48,11 +48,6 @@ public class OrganelleDefinition : IRegistryType
     public string Name;
 
     /// <summary>
-    ///   One letter code for this organelle. These must be unique!
-    /// </summary>
-    public string Gene;
-
-    /// <summary>
     ///   A path to a scene to display this organelle with.
     ///   If empty won't have a display model.
     /// </summary>
@@ -107,6 +102,11 @@ public class OrganelleDefinition : IRegistryType
     ///   Cost of placing this organelle in the editor
     /// </summary>
     public int MPCost;
+
+    /// <summary>
+    ///   Controls whether this organelle scales with growth progress (progress towards division and reproduction).
+    /// </summary>
+    public bool ShouldScale = true;
 
     /// <summary>
     ///   Caches the rotated hexes
@@ -244,12 +244,6 @@ public class OrganelleDefinition : IRegistryType
         {
             throw new InvalidRegistryDataException(name, GetType().Name,
                 "Name is not set");
-        }
-
-        if (Gene.Length != 1)
-        {
-            throw new InvalidRegistryDataException(name, GetType().Name,
-                "Gene needs to be 1 character long");
         }
 
         if (InitialComposition == null || InitialComposition.Count < 1)

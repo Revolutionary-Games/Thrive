@@ -139,10 +139,13 @@ public class PlayerMicrobeInput : Node
         // We reset our held down keys if the player tabs out while pressing a key
         if (focus == MainLoop.NotificationWmFocusOut)
         {
-            forward = false;
-            backwards = false;
-            left = false;
-            right = false;
+            if (!autoMoveAllowed)
+            {
+                forward = false;
+                backwards = false;
+                left = false;
+                right = false;
+            }
         }
     }
 
