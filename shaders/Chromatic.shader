@@ -123,7 +123,7 @@ void fragment() {
 	vec3 col = px.xyz;
     
     vec2 iResolution = 1.0f / SCREEN_PIXEL_SIZE;
-    const float MAX_DIST_PX = 50.0;
+    const float MAX_DIST_PX = 20.0;
     float max_distort_px = MAX_DIST_PX;
 	vec2 max_distort = vec2(max_distort_px) / iResolution.xy;
     vec2 min_distort = 0.5 * max_distort;
