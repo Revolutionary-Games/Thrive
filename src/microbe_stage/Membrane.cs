@@ -542,7 +542,7 @@ public class Membrane : MeshInstance
         float multiplier = 2.0f * Mathf.Pi;
         var center = new Vector2(0.5f, 0.5f);
 
-        movementWigglyNess = Type.MovementFactor;
+        movementWigglyNess = Type.WigglyNess;
 
         // cell walls need obvious inner/outer membranes (we can worry
         // about chitin later)
