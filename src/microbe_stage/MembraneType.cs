@@ -15,7 +15,7 @@ public class MembraneType : IRegistryType
     public float ToxinResistance = 1.0f;
     public int EditorCost = 50;
     public bool CellWall = false;
-    public float WigglyNess = 1.0f;
+    public float MovementWigglyness = 1.0f;
 
     public Texture LoadedNormalTexture;
     public Texture LoadedDamagedTexture;
