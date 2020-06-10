@@ -1262,7 +1262,7 @@ public class MicrobeEditorGUI : Node
 
     private float GetPatchChunkTotalCompoundAmount(Patch patch, Compound compound)
     {
-        return patch.GetPatchChunkTotalCompoundAmount(compound);
+        return patch.GetTotalChunkCompoundAmount(compound);
     }
 
     private void UpdateShownPatchDetails()

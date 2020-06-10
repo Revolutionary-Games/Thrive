@@ -144,9 +144,9 @@
 
             var glucoseInPatch = (biome.Compounds[Glucose].Density
                 * biome.Compounds[Glucose].Amount
-                + patch.GetPatchChunkTotalCompoundAmount(Glucose)) * 100;
+                + patch.GetTotalChunkCompoundAmount(Glucose)) * 100;
 
-            var ironInPatch = patch.GetPatchChunkTotalCompoundAmount(Iron) * 100;
+            var ironInPatch = patch.GetTotalChunkCompoundAmount(Iron) * 100;
 
             // TODO: this is where the proper auto-evo algorithm goes
 

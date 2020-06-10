@@ -114,7 +114,7 @@ public class Patch
         return SpeciesInPatch[species];
     }
 
-    public float GetPatchChunkTotalCompoundAmount(Compound compound)
+    public float GetTotalChunkCompoundAmount(Compound compound)
     {
         var result = 0.0f;
 
