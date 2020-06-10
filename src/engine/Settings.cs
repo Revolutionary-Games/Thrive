@@ -179,11 +179,6 @@ public class Settings
     {
         GUICommon.Instance.GetTree().Root.GetViewport().Msaa = MSAAResolution;
         ScreenFilter.Instance.SetColourblindSetting(ColourblindSetting);
-        if(ChromaticFilter.Instance != null)
-        {
-            ChromaticFilter.Instance.SetAmount(ChromaticAmount);
-            ChromaticFilter.Instance.ToggleEffect(ChromaticEnabled);
-        }
     }
 
     /// <summary>

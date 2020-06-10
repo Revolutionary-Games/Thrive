@@ -467,4 +467,16 @@ public class OptionsMenu : Control
         Settings.ColourblindSetting = index;
         Settings.ApplyGraphicsSettings();
     }
+
+    private void OnChromaticAberrationToggled(bool toggle)
+    {
+        Settings.ChromaticEnabled = toggle;
+        Settings.ApplyGraphicsSettings();
+    }
+
+    private void OnChromaticAberrationValueChanged(float amount)
+    {
+        Settings.ChromaticAmount = amount;
+        Settings.ApplyGraphicsSettings();
+    }
 }

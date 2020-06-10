@@ -589,6 +589,8 @@ __meta__ = {
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/Fullscreen" to="." method="OnFullScreenToggled"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer/MSAAResolution" to="." method="OnMSAAResolutionSelected"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer2/ColourblindSetting" to="." method="OnColourblindSettingSelected"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer5/ChromaticToggle" to="." method="OnChromaticAberrationToggled"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer5/ChromaticAmount" to="." method="OnChromaticAberrationValueChanged"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer/MasterVolume" to="." method="OnMasterVolumeChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer/MasterMuted" to="." method="OnMasterMutedToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer2/MusicVolume" to="." method="OnMusicVolumeChanged"]

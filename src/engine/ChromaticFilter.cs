@@ -13,7 +13,7 @@ public class ChromaticFilter : TextureRect
     {
         material = (ShaderMaterial) Material;
         SetAmount(Settings.Instance.ChromaticAmount);
-        Show();
+        ToggleEffect(Settings.Instance.ChromaticEnabled);
     }
 
     public void ToggleEffect(bool enabled)
