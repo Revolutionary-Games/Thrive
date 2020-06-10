@@ -5,23 +5,25 @@ using Godot;
 /// </summery>
 public class ChromaticFilter : TextureRect
 {
+    private static ChromaticFilter instance;
     ShaderMaterial material;
-    const float defaultAmount = 20f;
+
+    public static ChromaticFilter Instance => instance;
     public override void _Ready()
     {
         material = (ShaderMaterial) Material;
-        SetAmount(defaultAmount);
+        SetAmount(Settings.Instance.ChromaticAmount);
         Show();
     }
 
-    public void ToggleEffect()
+    public void ToggleEffect(bool enabled)
     {
-        if(Visible)
-        {
-            Hide();
-        } else
+        if(enabled)
         {
             Show();
+        } else
+        {
+            Hide();
         }
     }
 

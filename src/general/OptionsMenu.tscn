@@ -44,6 +44,8 @@ VSyncPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContain
 FullScreenPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/Fullscreen")
 MSAAResolutionPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer/MSAAResolution")
 ColourblindSettingPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer2/ColourblindSetting")
+ChromaticAberrationSliderPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer5/ChromaticAmount")
+ChromaticAberrationTogglePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer5/ChromaticToggle")
 SoundTabPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound")
 MasterVolumePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer/MasterVolume")
 MasterMutedPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer/MasterMuted")
@@ -294,6 +296,41 @@ rect_min_size = Vector2( 200, 25 )
 text = "None"
 items = [ "None", null, false, 0, null, "Protanope (Red-Green)", null, false, 1, null, "Tritanope (Blue-Yellow)", null, false, 2, null ]
 selected = 0
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer"]
+margin_top = 237.0
+margin_right = 517.0
+margin_bottom = 262.0
+size_flags_horizontal = 3
+
+[node name="ChromaticToggle" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer5"]
+margin_right = 16.0
+margin_bottom = 25.0
+pressed = true
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer5"]
+margin_left = 20.0
+margin_top = 1.0
+margin_right = 235.0
+margin_bottom = 24.0
+text = "Chromatic Aberration:"
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer5"]
+margin_left = 239.0
+margin_right = 313.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+custom_styles/separator = SubResource( 4 )
+
+[node name="ChromaticAmount" type="HSlider" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer5"]
+margin_left = 317.0
+margin_right = 517.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_horizontal = 3
+min_value = 10.0
+max_value = 50.0
+value = 20.0
 
 [node name="Sound" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer"]
 visible = false
