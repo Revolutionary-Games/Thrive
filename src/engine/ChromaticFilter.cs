@@ -19,7 +19,7 @@ public class ChromaticFilter : TextureRect
         if (enabled)
         {
             Show();
-        } 
+        }
         else
         {
             Hide();
