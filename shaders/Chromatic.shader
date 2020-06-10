@@ -156,4 +156,4 @@ void fragment()
     outcol += rnd/255.0;
 
     COLOR = vec4(outcol,1.0);
-} 
+}
