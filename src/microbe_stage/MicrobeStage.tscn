@@ -358,7 +358,7 @@ shadow_enabled = true
 [node name="PlayerMicrobeInput" type="Node" parent="."]
 script = ExtResource( 7 )
 
-[node name="TextureRect" parent="." instance=ExtResource( 67 )]
+[node name="ChromaticFilter" parent="." instance=ExtResource( 67 )]
 
 [node name="MicrobeHUD" type="Node" parent="."]
 pause_mode = 2
