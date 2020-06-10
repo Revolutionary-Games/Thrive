@@ -1815,13 +1815,14 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             if (microbe.Dead)
                 return;
 
+            if(!(ShapeIdInRange(microbe.GetShapeOwners(), bodyShape) && ShapeIdInRange(GetShapeOwners(), localShape)))
+                return;
+
             uint microbeOwner = microbe.ShapeFindOwner(bodyShape);
             uint localShapeOwner = ShapeFindOwner(localShape);
 
             bool otherIsPilus = microbe.IsPilus(microbeOwner);
             bool oursIsPilus = IsPilus(localShapeOwner);
-
-            GD.Print("Other: ", microbeOwner, " LocalOwner: ", localShapeOwner);
 
             // Pilus logic
             if (otherIsPilus && oursIsPilus)
@@ -1862,6 +1863,22 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             // TODO: should this also check for pilus before removing the collision?
             touchedMicrobes.Remove(microbe);
         }
+    }
+
+    /// <summary>
+    ///   Hacky work around to make sure the shape id passed is valid
+    /// </summary>
+    private bool ShapeIdInRange(Godot.Collections.Array ownerArray, int shapeId)
+    {
+        for(int i = 0; i < ownerArray.Count; ++i)
+        {
+            uint id = (uint)ownerArray.IndexOf(i);
+            if(ShapeOwnerGetShapeCount(id) < shapeId)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void OnBodyEnteredEngulfArea(Node body)
