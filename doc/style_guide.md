@@ -70,7 +70,9 @@ Code style rules
 
 - Empty lines are encouraged between blocks of code to improve readability.
 
-- Switch statements should have both of their braces on a new line.
+- Switch statements should use braces when there is more than one line of code
+  followed by a break/return or a variable is defined. Switch statements should
+  have both of their braces on a new line.
 
 - Single line variables can be next to each other without a blank
   line. Other variables and class elements should have a blank line
