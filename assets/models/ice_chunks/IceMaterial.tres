@@ -1,0 +1,23 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type spatial;
+render_mode specular_toon;
+
+void vertex()
+{
+}
+
+void fragment()
+{
+    float fresnel = sqrt(1.0 - dot(NORMAL, VIEW));
+    
+    ALBEDO = vec3(0.1, 0.3, 0.5) + (0.1 * fresnel);
+    METALLIC = 0.5;
+    ROUGHNESS = 0.3 * (1.0 - fresnel);
+    ALPHA = 0.9;
+    RIM = 0.2;
+}"
+
+[resource]
+shader = SubResource( 1 )

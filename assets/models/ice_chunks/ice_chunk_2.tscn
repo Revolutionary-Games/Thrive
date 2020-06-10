@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/models/IronRock2.mesh" type="ArrayMesh" id=1]
+[ext_resource path="res://assets/models/ice_chunks/IceMaterial.tres" type="Material" id=2]
+
+[node name="MeshInstance" type="MeshInstance"]
+transform = Transform( 55.73, -154.355, 30.6238, 70.0774, 127.003, 32.5067, -44.5345, 6.68886, 89.4734, 0, 0, 0 )
+mesh = ExtResource( 1 )
+material/0 = ExtResource( 2 )
