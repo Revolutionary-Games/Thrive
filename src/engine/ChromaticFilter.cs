@@ -1,14 +1,12 @@
 using Godot;
 
 /// <summary>
-/// A chromatic aberration and barrel distrortion filter effect
+///   A chromatic aberration and barrel distrortion filter effect
 /// </summery>
 public class ChromaticFilter : TextureRect
 {
-    private static ChromaticFilter instance;
     ShaderMaterial material;
 
-    public static ChromaticFilter Instance => instance;
     public override void _Ready()
     {
         material = (ShaderMaterial) Material;
