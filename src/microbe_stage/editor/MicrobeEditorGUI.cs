@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Text;
 using Godot;
 using Array = Godot.Collections.Array;
@@ -54,16 +55,13 @@ public class MicrobeEditorGUI : Node
     public NodePath ATPBalanceLabelPath;
 
     [Export]
+    public NodePath ATPBarContainerPath;
+
+    [Export]
     public NodePath ATPProductionBarPath;
 
     [Export]
     public NodePath ATPConsumptionBarPath;
-
-    [Export]
-    public NodePath ATPProductionLabelPath;
-
-    [Export]
-    public NodePath ATPConsumptionLabelPath;
 
     [Export]
     public NodePath GlucoseReductionLabelPath;
@@ -235,10 +233,9 @@ public class MicrobeEditorGUI : Node
     private TextureButton symmetryButton;
     private TextureRect symmetryIcon;
     private Label atpBalanceLabel;
-    private ProgressBar atpProductionBar;
-    private ProgressBar atpConsumptionBar;
-    private Label atpProductionLabel;
-    private Label atpConsumptionLabel;
+    private VBoxContainer atpBarContainer;
+    private SegmentedBar atpProductionBar;
+    private SegmentedBar atpConsumptionBar;
     private Label glucoseReductionLabel;
     private Label autoEvoLabel;
     private Label externalEffectsLabel;
@@ -315,10 +312,9 @@ public class MicrobeEditorGUI : Node
         symmetryButton = GetNode<TextureButton>(SymmetryButtonPath);
         finishButton = GetNode<Button>(FinishButtonPath);
         atpBalanceLabel = GetNode<Label>(ATPBalanceLabelPath);
-        atpProductionBar = GetNode<ProgressBar>(ATPProductionBarPath);
-        atpConsumptionBar = GetNode<ProgressBar>(ATPConsumptionBarPath);
-        atpProductionLabel = GetNode<Label>(ATPProductionLabelPath);
-        atpConsumptionLabel = GetNode<Label>(ATPConsumptionLabelPath);
+        atpBarContainer = GetNode<VBoxContainer>(ATPBarContainerPath);
+        atpProductionBar = GetNode<SegmentedBar>(ATPProductionBarPath);
+        atpConsumptionBar = GetNode<SegmentedBar>(ATPConsumptionBarPath);
         glucoseReductionLabel = GetNode<Label>(GlucoseReductionLabelPath);
         autoEvoLabel = GetNode<Label>(AutoEvoLabelPath);
         externalEffectsLabel = GetNode<Label>(ExternalEffectsLabelPath);
@@ -359,6 +355,9 @@ public class MicrobeEditorGUI : Node
         rigiditySlider = GetNode<Slider>(RigiditySliderPath);
 
         mapDrawer.OnSelectedPatchChanged = drawer => { UpdateShownPatchDetails(); };
+
+        atpProductionBar.SelectedType = SegmentedBar.Type.ATP;
+        atpConsumptionBar.SelectedType = SegmentedBar.Type.ATP;
 
         // Fade out for that smooth satisfying transition
         TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeOut, 0.5f);
@@ -435,23 +434,11 @@ public class MicrobeEditorGUI : Node
         }
 
         float maxValue = Math.Max(energyBalance.TotalConsumption, energyBalance.TotalProduction);
-
         atpProductionBar.MaxValue = maxValue;
-        atpProductionBar.Value = energyBalance.TotalProduction;
-
         atpConsumptionBar.MaxValue = maxValue;
-        atpConsumptionBar.Value = energyBalance.TotalConsumption;
 
-        var atpProductionBarProgressLength = (float)(atpProductionBar.RectSize.x * atpProductionBar.Value /
-            atpProductionBar.MaxValue);
-        var atpConsumptionBarProgressLength = (float)(atpConsumptionBar.RectSize.x * atpConsumptionBar.Value /
-            atpConsumptionBar.MaxValue);
-
-        atpProductionLabel.RectSize = new Vector2(atpProductionBarProgressLength, 18);
-        atpConsumptionLabel.RectSize = new Vector2(atpConsumptionBarProgressLength, 18);
-
-        atpProductionLabel.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", energyBalance.TotalProduction);
-        atpConsumptionLabel.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", energyBalance.TotalConsumption);
+        atpProductionBar.UpdateAndMoveBars(SortBarData(energyBalance.Production));
+        atpConsumptionBar.UpdateAndMoveBars(SortBarData(energyBalance.Consumption));
     }
 
     // Disable this because the cleanup and inspections disagree
@@ -1371,6 +1358,45 @@ public class MicrobeEditorGUI : Node
         else
         {
             speciesNameEdit.Set("custom_colors/font_color", new Color(1, 1, 1));
+        }
+    }
+
+    private List<KeyValuePair<string, float>> SortBarData(Dictionary<string, float> bar)
+    {
+        List<KeyValuePair<string, float>> result;
+        ATPComparer atpComparer = new ATPComparer();
+
+        result = bar.OrderBy(
+            i => i.Key, atpComparer)
+            .ToList();
+
+        return result;
+    }
+
+    private class ATPComparer : IComparer<string>
+    {
+        public int Compare(string stringA, string stringB)
+        {
+            if (stringA == "osmoregulation")
+            {
+            return -1;
+            }
+            else if (stringB == "osmoregulation")
+            {
+            return 1;
+            }
+            else if (stringA == "baseMovement")
+            {
+            return -1;
+            }
+            else if (stringB == "baseMovement")
+            {
+            return 1;
+            }
+            else
+            {
+            return string.Compare(stringA, stringB, (System.StringComparison)0);
+            }
         }
     }
 }
