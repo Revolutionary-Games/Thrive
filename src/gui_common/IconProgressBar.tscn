@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/gui_common/IconProgressBar.cs" type="Script" id=1]
+
+[node name="ProgressBar" type="ColorRect"]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Icon" type="TextureRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

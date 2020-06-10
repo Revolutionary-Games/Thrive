@@ -49,7 +49,10 @@
         "chanceToCreate": 0.5,
         "mass": 0.1,
         "displayScene": "res://assets/models/organelles/Rusticyanin.tscn",
-        "name": "rusticyanin"
+        "name": "rusticyanin",
+        "productionColour": "#3293f7",
+        "consumptionColour": "#f04681",
+        "iconPath": "res://assets/textures/gui/bevel/RusticyaninIcon.png"
     },
     "nitrogenase": {
         "mpCost": 55,
@@ -79,7 +82,10 @@
         "chanceToCreate": 1,
         "mass": 0.1,
         "displayScene": "res://assets/models/organelles/Nitrogenase.tscn",
-        "name": "nitrogenase"
+        "name": "nitrogenase",
+        "productionColour": "#3feb67",
+        "consumptionColour": "#ff8425",
+        "iconPath": "res://assets/textures/gui/bevel/NitrogenaseIcon.png"
     },
     "protoplasm": {
         "mpCost": 55,
@@ -138,7 +144,10 @@
         "chanceToCreate": 0.5,
         "mass": 0.1,
         "displayScene": "res://assets/models/organelles/ChemoSynthesizingProteins.tscn",
-        "name": "chemoSynthesizingProteins"
+        "name": "chemoSynthesizingProteins",
+        "productionColour": "#64f995",
+        "consumptionColour": "#ff7248",
+        "iconPath": "res://assets/textures/gui/bevel/ChemoproteinsIcon.png"
     },
     "oxytoxyProteins": {
         "mpCost": 55,
@@ -172,7 +181,10 @@
         "chanceToCreate": 1,
         "mass": 0.1,
         "displayScene": "res://assets/models/organelles/OxytoxyProteins.tscn",
-        "name": "oxytoxyProteins"
+        "name": "oxytoxyProteins",
+        "productionColour": "#834acb",
+        "consumptionColour": "#c4303d",
+        "iconPath": "res://assets/textures/gui/bevel/ToxinVacuoleIcon.png"
     },
     "chromatophore": {
         "mpCost": 50,
@@ -202,7 +214,10 @@
         "chanceToCreate": 0.5,
         "mass": 0.1,
         "displayScene": "res://assets/models/organelles/Chromatophore.tscn",
-        "name": "chromatophore"
+        "name": "chromatophore",
+        "productionColour": "#40f0ac",
+        "consumptionColour": "#fbae3a",
+        "iconPath": "res://assets/textures/gui/bevel/ChromatophoreIcon.png"
     },
     "metabolosome": {
         "mpCost": 45,
@@ -231,7 +246,10 @@
         "chanceToCreate": 0.5,
         "mass": 0.1,
         "displayScene": "res://assets/models/organelles/Metabolosome.tscn",
-        "name": "metabolosome"
+        "name": "metabolosome",
+        "productionColour": "#26e0ff",
+        "consumptionColour": "#ff5649",
+        "iconPath": "res://assets/textures/gui/bevel/MetabolosomeIcon.png"
     },
     "nitrogenfixingplastid": {
         "mpCost": 50,
@@ -264,7 +282,10 @@
         "chanceToCreate": 1,
         "mass": 0.1,
         "displayScene": "res://assets/models/organelles/NitrogenFixingPlastid.tscn",
-        "name": "nitrogenfixingplastid"
+        "name": "nitrogenfixingplastid",
+        "productionColour": "#4fc9ff",
+        "consumptionColour": "#ffb74f",
+        "iconPath": "res://assets/textures/gui/bevel/NitroplastidIcon.png"
     },
     "chemoplast": {
         "mpCost": 45,
@@ -327,7 +348,10 @@
         "displayScene": "res://assets/models/organelles/Flagellum.tscn",
         "displaySceneModelPath": "Armature001/Skeleton/flagella",
         "displaySceneAnimation": "AnimationPlayer",
-        "name": "flagellum"
+        "name": "flagellum",
+        "productionColour": "#ff9721",
+        "consumptionColour": "#ff9721",
+        "iconPath": "res://assets/textures/gui/bevel/FlagellumIcon.png"
     },
     "vacuole": {
         "mpCost": 50,
@@ -384,7 +408,10 @@
         "chanceToCreate": 3,
         "mass": 0.3,
         "displayScene": "res://assets/models/organelles/Mitochondrion.tscn",
-        "name": "mitochondrion"
+        "name": "mitochondrion",
+        "productionColour": "#26ffce",
+        "consumptionColour": "#ff2653",
+        "iconPath": "res://assets/textures/gui/bevel/MitochondrionIcon.png"
     },
     "oxytoxy": {
         "mpCost": 70,
@@ -414,7 +441,10 @@
         "chanceToCreate": 1,
         "mass": 0.3,
         "displayScene": "res://assets/models/organelles/Oxytoxy.tscn",
-        "name": "oxytoxy"
+        "name": "oxytoxy",
+        "productionColour": "#624acb",
+        "consumptionColour": "#c4307b",
+        "iconPath": "res://assets/textures/gui/bevel/ToxinVacuoleIcon.png"
     },
     "chloroplast": {
         "mpCost": 50,
@@ -480,7 +510,10 @@
         "chanceToCreate": 1,
         "mass": 0.1,
         "displayScene": "",
-        "name": "cytoplasm"
+        "name": "cytoplasm",
+        "productionColour": "#1db7c5",
+        "consumptionColour": "#c51d38",
+        "iconPath": "res://assets/textures/gui/bevel/CytoplasmIcon.png"
     },
     "nucleus": {
         "mpCost": 100,

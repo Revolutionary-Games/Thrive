@@ -29,9 +29,6 @@ public class OrganelleDefinition : IRegistryType
 
     hexes:  A table of the hexes that the organelle occupies.
 
-    gene:   The letter that will be used by the auto-evo system to
-    identify this organelle.
-
     chanceToCreate: The (relative) chance this organelle will appear in a
     randomly generated or mutated microbe (to do roulette selection).
 
@@ -99,6 +96,20 @@ public class OrganelleDefinition : IRegistryType
     public Dictionary<Compound, float> InitialComposition;
 
     /// <summary>
+    ///   Colour used for ATP production bar
+    /// </summary>
+    public string ProductionColour;
+
+    /// <summary>
+    ///   Colour used for ATP consumption bar
+    /// </summary>
+    public string ConsumptionColour;
+
+    /// <summary>
+    ///   Icon used for the ATP bars
+    /// </summary>
+    public string IconPath;
+
     ///   Cost of placing this organelle in the editor
     /// </summary>
     public int MPCost;
