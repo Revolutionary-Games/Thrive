@@ -141,11 +141,12 @@ void fragment()
 
     vec3 sumcol = vec3(0.0);
     vec3 sumw = vec3(0.0);
+    
     for (int i=0; i<num_iter; ++i)
     {
         vec3 w = spectrum_offset(t);
         sumw += w;
-        vec2 uvd = distort(uv, t, min_distort, max_distort); // TODO: move out of loop
+        vec2 uvd = distort(uv, t, min_distort, max_distort);
         sumcol += w * render(uvd, SCREEN_TEXTURE);
         t += stepsiz;
     }
