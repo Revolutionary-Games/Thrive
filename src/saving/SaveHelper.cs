@@ -177,9 +177,11 @@ public static class SaveHelper
 
         if (onlyQuickSaves)
         {
-            saves = saves.Where(p => p.StartsWith("quick_save_", StringComparison.Ordinal))
-                .Select(p => PathUtils.Join(Constants.SAVE_FOLDER,p));
+            saves = saves.Where(p => p.StartsWith("quick_save_", StringComparison.Ordinal));
         }
+
+        // Relative path to absolute path
+        saves = saves.Select(p => PathUtils.Join(Constants.SAVE_FOLDER, p));
 
         var fullPath = FileHelpers.GetLastModifiedFile(saves);
 
@@ -198,7 +200,7 @@ public static class SaveHelper
                 yield break;
 
             directory.Open(Constants.SAVE_FOLDER);
-            directory.ListDirBegin();
+            directory.ListDirBegin(true);
             while (true)
             {
                 var filename = directory.GetNext();

@@ -50,7 +50,9 @@ public static class FileHelpers
     /// </summary>
     public static string GetLastModifiedFile(IEnumerable<string> filesToCheck)
     {
-        return filesToCheck.AsParallel().ToDictionary(p => p, GetModifiedDate)
+        var debug = string.Join(";", filesToCheck);
+
+        return filesToCheck.ToDictionary(p => p, GetModifiedDate)
             .Aggregate((a, b) => a.Value > b.Value ? a : b).Key;
     }
 
