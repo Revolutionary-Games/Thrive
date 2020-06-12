@@ -205,9 +205,15 @@ screenshot={
 
 file_logging/enable_file_logging=true
 
+[mono]
+
+debugger_agent/wait_for_debugger=true
+debugger_agent/wait_timeout=10000
+
 [physics]
 
 3d/default_gravity=9.81
+3d/port=23629
 
 [rendering]
 

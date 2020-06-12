@@ -181,7 +181,10 @@ public static class SaveHelper
                 .Select(p => PathUtils.Join(Constants.SAVE_FOLDER,p));
         }
 
-        return FileHelpers.GetLastModifiedFile(saves);
+        var fullPath = FileHelpers.GetLastModifiedFile(saves);
+
+        // Get filename of fullPath
+        return fullPath.Substring(fullPath.LastIndexOf(PathUtils.PATH_SEPARATOR) + 1);
     }
 
     /// <summary>
