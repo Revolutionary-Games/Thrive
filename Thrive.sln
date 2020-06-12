@@ -1,7 +1,5 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30128.74
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrive", "Thrive.csproj", "{D38E3F51-1E8C-4F32-99B2-641320B0AC3C}"
 EndProject
 Global
@@ -18,16 +16,10 @@ Global
 		{D38E3F51-1E8C-4F32-99B2-641320B0AC3C}.Tools|Any CPU.ActiveCfg = Tools|Any CPU
 		{D38E3F51-1E8C-4F32-99B2-641320B0AC3C}.Tools|Any CPU.Build.0 = Tools|Any CPU
 	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {C64EBF06-8229-4C10-8037-4821DEB0646F}
-	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		Policies = $0
 		$0.DotNetNamingPolicy = $1
-		$0.TextStylePolicy = $5
+		$0.TextStylePolicy = $2
 		$2.inheritsSet = null
 		$2.scope = text/x-csharp
 		$0.CSharpFormattingPolicy = $3
@@ -35,9 +27,11 @@ Global
 		$3.NewLineForMembersInAnonymousTypes = False
 		$3.NewLineForClausesInQuery = False
 		$3.scope = text/x-csharp
+		$0.TextStylePolicy = $4
 		$4.TabsToSpaces = True
 		$4.NoTabsAfterNonTabs = True
 		$4.scope = text/plain
+		$0.TextStylePolicy = $5
 		$5.inheritsSet = null
 		$5.scope = application/json
 		$0.StandardHeader = $6
