@@ -50,10 +50,7 @@ public static class FileHelpers
     /// </summary>
     public static string GetLastModifiedFile(IEnumerable<string> filesToCheck)
     {
-        var debug = string.Join(";", filesToCheck);
-
-        return filesToCheck.ToDictionary(p => p, GetModifiedDate)
-            .Aggregate((a, b) => a.Value > b.Value ? a : b).Key;
+        return filesToCheck.OrderBy(GetModifiedDate).FirstOrDefault();
     }
 
     private static ulong GetModifiedDate(string filename)
