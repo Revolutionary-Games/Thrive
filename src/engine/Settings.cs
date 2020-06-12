@@ -97,6 +97,11 @@ public class Settings
     public float CloudUpdateInterval { get; set; } = 0.040f;
 
     /// <summary>
+    ///   The maximum amount of quick saves before overriding the old ones
+    /// </summary>
+    public int MaxQuickSavesBeforeOverriding { get; set; } = 5;
+
+    /// <summary>
     ///   Sets amount of MSAA to apply to the viewport
     /// </summary>
     public Viewport.MSAA MSAAResolution { get; set; } = Viewport.MSAA.Disabled;

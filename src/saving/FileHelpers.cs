@@ -1,4 +1,6 @@
-using System.IO;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using Godot;
 using Directory = Godot.Directory;
 
@@ -18,7 +20,7 @@ public static class FileHelpers
 
             if (result != Error.AlreadyExists && result != Error.Ok)
             {
-                throw new IOException($"can't create folder: {path}");
+                throw new System.IO.IOException($"can't create folder: {path}");
             }
         }
     }
@@ -35,5 +37,26 @@ public static class FileHelpers
             var result = directory.Remove(path);
             return result == Error.Ok;
         }
+    }
+
+    /// <param name="filesToCheck">
+    ///   The files to check. Full path needed.
+    /// </param>
+    /// <returns>
+    ///   Returns the last modified file in the list.
+    /// </returns>
+    /// <summary>
+    ///   Gets the last modified file.
+    /// </summary>
+    public static string GetLastModifiedFile(IEnumerable<string> filesToCheck)
+    {
+        return filesToCheck.AsParallel().ToDictionary(p => p, GetModifiedDate)
+            .Aggregate((a, b) => a.Value > b.Value ? a : b).Key;
+    }
+
+    private static ulong GetModifiedDate(string filename)
+    {
+        using (var file = new File())
+            return file.GetModifiedTime(filename);
     }
 }

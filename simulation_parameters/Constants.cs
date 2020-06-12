@@ -411,8 +411,6 @@ public static class Constants
 
     public const string SAVE_EXTENSION = "thrivesave";
 
-    public const uint SAVE_MAX_QUICKSAVES_BEFORE_OVERRIDING_OLD_ONES = 5;
-
     public static string Version
     {
         get
