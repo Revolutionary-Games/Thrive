@@ -34,6 +34,7 @@ public class MainMenu : Node
     private TextureRect thriveLogo;
     private OptionsMenu options;
     private AnimationPlayer guiAnimations;
+    private SaveManagerGUI saves;
 
     private Button newGameButton;
     private Button freebuildButton;
@@ -115,6 +116,7 @@ public class MainMenu : Node
         RandomizeBackground();
 
         options = GetNode<OptionsMenu>("OptionsMenu");
+        saves = GetNode<SaveManagerGUI>("SaveManagerGUI");
 
         // Load settings
         options.SetSettingsFrom(Settings.Instance);
@@ -270,7 +272,28 @@ public class MainMenu : Node
     {
         options.Visible = false;
 
+        SetCurrentMenu(0, false);
+
+        thriveLogo.Show();
+    }
+
+    private void LoadGamePressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
         // Hide all the other menus
+        SetCurrentMenu(uint.MaxValue, false);
+
+        // Show the options
+        saves.Visible = true;
+
+        thriveLogo.Hide();
+    }
+
+    private void OnReturnFromLoadGame()
+    {
+        saves.Visible = false;
+
         SetCurrentMenu(0, false);
 
         thriveLogo.Show();

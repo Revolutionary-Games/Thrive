@@ -193,10 +193,13 @@
     <Compile Include="src\saving\SaveApplyHelper.cs" />
     <Compile Include="src\saving\SaveFileInfo.cs" />
     <Compile Include="src\saving\MainGameState.cs" />
+    <Compile Include="src\saving\SaveList.cs" />
+    <Compile Include="src\saving\SaveListItem.cs" />
     <Compile Include="src\saving\SaveLoadable.cs" />
     <Compile Include="src\saving\SaveContext.cs" />
     <Compile Include="src\saving\SaveHelper.cs" />
     <Compile Include="src\saving\SaveManager.cs" />
+    <Compile Include="src\saving\SaveManagerGUI.cs" />
     <Compile Include="src\saving\SaveStatusOverlay.cs" />
     <Compile Include="src\saving\serializers\Base64BinaryConverter.cs" />
     <Compile Include="src\saving\serializers\BaseNodeConverter.cs" />

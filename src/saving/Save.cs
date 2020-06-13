@@ -82,6 +82,20 @@ public class Save
         return info;
     }
 
+    public static Save LoadInfoAndScreenshotFromSave(string saveName)
+    {
+        var target = SaveFileInfo.SaveNameToPath(saveName);
+
+        var (info, _, screenshot) = LoadFromFile(target, true, false, true, null);
+
+        var save = new Save();
+        save.Name = saveName;
+        save.Info = info;
+        save.Screenshot = screenshot;
+
+        return save;
+    }
+
     /// <summary>
     ///   Writes this save to disk.
     /// </summary>
@@ -370,6 +384,11 @@ public class SaveInformation
     public string Creator { get; set; } = System.Environment.UserName;
 
     public DateTime CreatedAt { get; set; } = DateTime.Now;
+
+    /// <summary>
+    ///   An extended description for this save
+    /// </summary>
+    public string Description { get; set; } = string.Empty;
 
     /// <summary>
     ///   Unique ID of this save
