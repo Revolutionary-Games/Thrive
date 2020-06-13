@@ -57,12 +57,15 @@ public class Save
     ///   Loads a save from a file or throws an exception
     /// </summary>
     /// <param name="saveName">The name of the save. This is not the full path.</param>
+    /// <param name="readFinished">
+    ///   A callback that is called when reading data has finished and creating objects start.
+    /// </param>
     /// <returns>The loaded save</returns>
-    public static Save LoadFromFile(string saveName)
+    public static Save LoadFromFile(string saveName, Action readFinished = null)
     {
         var target = SaveFileInfo.SaveNameToPath(saveName);
 
-        var (_, save, screenshot) = LoadFromFile(target, false, true, true);
+        var (_, save, screenshot) = LoadFromFile(target, false, true, true, readFinished);
 
         // Info is already contained in save so it doesn't need to be loaded and assigned here
         save.Screenshot = screenshot;
@@ -74,7 +77,7 @@ public class Save
     {
         var target = SaveFileInfo.SaveNameToPath(saveName);
 
-        var (info, _, _) = LoadFromFile(target, true, false, false);
+        var (info, _, _) = LoadFromFile(target, true, false, false, null);
 
         return info;
     }
@@ -158,7 +161,7 @@ public class Save
     }
 
     private static (SaveInformation info, Save save, Image screenshot) LoadFromFile(string file, bool info,
-        bool save, bool screenshot)
+        bool save, bool screenshot, Action readFinished)
     {
         using (var directory = new Directory())
         {
@@ -167,6 +170,8 @@ public class Save
         }
 
         var (infoStr, saveStr, screenshotData) = LoadDataFromFile(file, info, save, screenshot);
+
+        readFinished?.Invoke();
 
         SaveInformation infoResult = null;
         Save saveResult = null;
