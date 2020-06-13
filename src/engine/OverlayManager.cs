@@ -10,7 +10,7 @@ public class OverlayManager : Node
     /// <summary>
     ///   Controls the order the filters are positioned after the main scene
     /// </summary>
-    private List<Node> orderedFilters = new List<Node>();
+    private readonly List<Node> orderedFilters = new List<Node>();
 
     public override void _Ready()
     {
@@ -21,6 +21,7 @@ public class OverlayManager : Node
         {
             "SaveStatusOverlay",
             "ColourblindScreenFilter",
+            "LoadingScreen",
             "FPSCounter",
         };
 
