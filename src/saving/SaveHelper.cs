@@ -75,6 +75,17 @@ public static class SaveHelper
         new InProgressLoad(name).Start();
     }
 
+    /// <summary>
+    ///   Deletes a save with the given name
+    /// </summary>
+    public static void DeleteSave(string saveName)
+    {
+        using (var directory = new Directory())
+        {
+            directory.Remove(PathUtils.Join(Constants.SAVE_FOLDER, saveName));
+        }
+    }
+
     private static void InternalSaveHelper(SaveInformation.SaveType type, MainGameState gameState,
         Action<Save> copyInfoToSave, Func<Node> stateRoot)
     {
