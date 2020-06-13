@@ -113,13 +113,20 @@ public class InProgressSave : IDisposable
 
             case State.Finished:
             {
-                // TODO: show error dialog if failed
-
                 stopwatch.Stop();
                 GD.Print("save finished, success: ", success, " message: ", message, " elapsed: ", stopwatch.Elapsed);
-                SaveStatusOverlay.Instance.ShowMessage(message);
 
-                currentGameRoot.Invoke().GetTree().Paused = returnToPauseState;
+                if (success)
+                {
+                    SaveStatusOverlay.Instance.ShowMessage(message);
+
+                    currentGameRoot.Invoke().GetTree().Paused = returnToPauseState;
+                }
+                else
+                {
+                    SaveStatusOverlay.Instance.ShowMessage("Save failed");
+                    SaveStatusOverlay.Instance.ShowError("Error Saving", message, exception);
+                }
 
                 return;
             }

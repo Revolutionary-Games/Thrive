@@ -72,50 +72,7 @@ public static class SaveHelper
     /// <param name="name">The name of the save to load</param>
     public static void LoadSave(string name)
     {
-        // TODO: loading screen while loading save data
-
-        Save save;
-
-        var stopwatch = Stopwatch.StartNew();
-
-        // try
-        // {
-        save = Save.LoadFromFile(name);
-
-        // }
-        // catch (Exception e)
-        // {
-        //     DisplayLoadFailure("An exception happened while loading the save data", e.ToString(), stopwatch);
-        //     return;
-        // }
-
-        // Save data loaded, apply the save
-        ApplySave(save, stopwatch);
-    }
-
-    /// <summary>
-    ///   Replaces the current state of the game with what the save has
-    /// </summary>
-    /// <param name="save">The save to apply data from</param>
-    /// <param name="stopwatch">To track how long it took</param>
-    public static void ApplySave(Save save, Stopwatch stopwatch)
-    {
-        PackedScene scene;
-
-        try
-        {
-            scene = SceneManager.Instance.LoadScene(save.GameState);
-        }
-        catch (ArgumentException)
-        {
-            DisplayLoadFailure("Save is invalid", "Save has an unknown game state", stopwatch);
-            return;
-        }
-
-        var targetState = (ILoadableGameState)scene.Instance();
-
-        FinishMovingToLoadedScene(targetState, save);
-        DisplayLoadStatusMessage(true, "Load finished", stopwatch);
+        new InProgressLoad(name).Start();
     }
 
     private static void InternalSaveHelper(SaveInformation.SaveType type, MainGameState gameState,
@@ -156,48 +113,6 @@ public static class SaveHelper
 
         if (inProgress.Type == SaveInformation.SaveType.QuickSave)
             QueueRemoveExcessQuickSaves();
-    }
-
-    /// <summary>
-    ///   Shows a message to the player about a save
-    /// </summary>
-    /// <param name="success">True on success</param>
-    /// <param name="message">Failure reason, or the created save file</param>
-    /// <param name="stopwatch">Used to measure how long saving took</param>
-    /// <remarks>
-    ///   TODO: implement this
-    /// </remarks>
-    private static void DisplayLoadStatusMessage(bool success, string message, Stopwatch stopwatch)
-    {
-        stopwatch.Stop();
-        GD.Print("load finished, success: ", success, " message: ", message, " elapsed: ", stopwatch.Elapsed);
-        SaveStatusOverlay.Instance.ShowMessage(message);
-    }
-
-    /// <summary>
-    ///   Displays a dismissible dialog saying that loading a save failed
-    /// </summary>
-    /// <param name="message">Message to show</param>
-    /// <param name="error">Error message to include</param>
-    /// <param name="stopwatch">Duration tracking</param>
-    private static void DisplayLoadFailure(string message, string error, Stopwatch stopwatch)
-    {
-        stopwatch.Stop();
-        GD.Print("loading FAILED, message: ", message, " elapsed: ", stopwatch.Elapsed);
-        GD.Print("error related to load fail: ", error);
-
-        // TODO: show the dialog
-        // For now at least show something
-        SaveStatusOverlay.Instance.ShowMessage("Loading a save failed: " + message);
-    }
-
-    private static void FinishMovingToLoadedScene(ILoadableGameState newScene, Save save)
-    {
-        newScene.IsLoadedFromSave = true;
-
-        SceneManager.Instance.SwitchToScene(newScene.GameStateRoot);
-
-        newScene.OnFinishLoading(save);
     }
 
     /// <summary>

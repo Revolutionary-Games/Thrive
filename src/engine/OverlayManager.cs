@@ -19,9 +19,9 @@ public class OverlayManager : Node
         // Get references to the overlays, which must be autoloads that are specified before this one in the load order
         var overlays = new string[]
         {
+            "LoadingScreen",
             "SaveStatusOverlay",
             "ColourblindScreenFilter",
-            "LoadingScreen",
             "FPSCounter",
         };
 
