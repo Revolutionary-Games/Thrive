@@ -112,6 +112,16 @@ public class Settings
     public int CloudSimulationHeight => Constants.CLOUD_Y_EXTENT / CloudResolution;
 
     /// <summary>
+    ///   The amount of Chromatic Aberration to apply to the screen
+    /// </summary>
+    public float ChromaticAmount { get; set; } = 20f;
+
+    /// <summary>
+    ///   Enable or Disable Chromatic Aberration for screen
+    /// </summary>
+    public bool ChromaticEnabled { get; set; } = true;
+
+    /// <summary>
     ///   Saves the current settings by writing them to the settings file
     /// </summary>
     /// <returns>True on success, false if the file can't be written.</returns>

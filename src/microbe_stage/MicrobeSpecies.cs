@@ -15,7 +15,7 @@ public class MicrobeSpecies : Species
 {
     public bool IsBacteria = false;
     public MembraneType MembraneType;
-    public float MembraneRigidity = 1.0f;
+    public float MembraneRigidity = 0.0f;
 
     public MicrobeSpecies(uint id)
         : base(id)
