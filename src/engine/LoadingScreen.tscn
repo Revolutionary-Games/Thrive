@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://src/general/LoadingScreen.cs" type="Script" id=1]
+[ext_resource path="res://src/engine/LoadingScreen.cs" type="Script" id=1]
 [ext_resource path="res://assets/textures/gui/planet.png" type="Texture" id=2]
 [ext_resource path="res://assets/misc/icon.png" type="Texture" id=3]
 [ext_resource path="res://assets/textures/gui/menu_theme.tres" type="Theme" id=4]
@@ -47,7 +47,7 @@ __meta__ = {
 
 [node name="VSplitContainer" type="VBoxContainer" parent="CenterContainer"]
 margin_left = 390.0
-margin_top = 36.0
+margin_top = 35.0
 margin_right = 890.0
 margin_bottom = 482.0
 size_flags_horizontal = 3
@@ -69,7 +69,7 @@ __meta__ = {
 [node name="ArtDescription" type="Label" parent="CenterContainer/VSplitContainer"]
 margin_top = 424.0
 margin_right = 500.0
-margin_bottom = 446.0
+margin_bottom = 447.0
 text = "Shown image description goes here"
 align = 1
 valign = 2
@@ -116,19 +116,21 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer2"]
 margin_left = 598.0
-margin_top = 56.0
+margin_top = 54.0
 margin_right = 677.0
 margin_bottom = 104.0
 
 [node name="LoadingMessage" type="Label" parent="CenterContainer2/VBoxContainer"]
 margin_right = 79.0
-margin_bottom = 22.0
+margin_bottom = 23.0
 text = "Loading"
+align = 1
 
 [node name="LoadingDescription" type="Label" parent="CenterContainer2/VBoxContainer"]
-margin_top = 26.0
+margin_top = 27.0
 margin_right = 79.0
-margin_bottom = 48.0
+margin_bottom = 50.0
+align = 1
 
 [node name="TipLabel" type="Label" parent="."]
 anchor_top = 0.945

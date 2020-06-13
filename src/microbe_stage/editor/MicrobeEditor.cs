@@ -511,7 +511,7 @@ public class MicrobeEditor : Node, ILoadableGameState
         {
             if (!CurrentGame.GameWorld.IsAutoEvoFinished())
             {
-                gui.SetLoadingText("Loading Microbe Editor", "Waiting for auto-evo: " +
+                LoadingScreen.Instance.Show("Loading Microbe Editor", "Waiting for auto-evo: " +
                     CurrentGame.GameWorld.GetAutoEvoRun().Status);
                 return;
             }
@@ -901,8 +901,7 @@ public class MicrobeEditor : Node, ILoadableGameState
         if (!CurrentGame.GameWorld.IsAutoEvoFinished())
         {
             ready = false;
-            gui.SetLoadingStatus(true);
-            gui.SetLoadingText("Loading Microbe Editor", CurrentGame.GameWorld.GetAutoEvoRun().Status);
+            LoadingScreen.Instance.Show("Loading Microbe Editor", CurrentGame.GameWorld.GetAutoEvoRun().Status);
         }
         else
         {
@@ -1557,7 +1556,7 @@ public class MicrobeEditor : Node, ILoadableGameState
     private void OnEditorReady()
     {
         ready = true;
-        gui.SetLoadingStatus(false);
+        LoadingScreen.Instance.Hide();
 
         GD.Print("Elapsing time on editor entry");
 

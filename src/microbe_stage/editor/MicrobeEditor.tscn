@@ -1,4 +1,4 @@
-[gd_scene load_steps=160 format=2]
+[gd_scene load_steps=158 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
@@ -52,7 +52,6 @@
 [ext_resource path="res://assets/textures/gui/bevel/membraneChitin.png" type="Texture" id=50]
 [ext_resource path="res://assets/textures/gui/bevel/membraneCellulose.png" type="Texture" id=51]
 [ext_resource path="res://assets/textures/gui/menu_theme.tres" type="Theme" id=52]
-[ext_resource path="res://src/general/LoadingScreen.tscn" type="PackedScene" id=53]
 [ext_resource path="res://src/microbe_stage/editor/PatchMapDrawer.tscn" type="PackedScene" id=54]
 [ext_resource path="res://assets/textures/gui/bevel/SmallFourDisabled.png" type="Texture" id=55]
 [ext_resource path="res://assets/textures/gui/bevel/SmallThreeDisabled.png" type="Texture" id=56]
@@ -3268,7 +3267,7 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer"]
-margin_right = 304.0
+margin_right = 313.0
 margin_bottom = 821.0
 mouse_filter = 1
 custom_constants/margin_top = 10
@@ -3281,7 +3280,7 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 304.0
+margin_right = 313.0
 margin_bottom = 811.0
 custom_constants/separation = 10
 
@@ -10492,9 +10491,6 @@ text = "Exit"
 
 [node name="HelpScreen" parent="MicrobeEditorGUI" instance=ExtResource( 81 )]
 Category = "MicrobeEditor"
-
-[node name="LoadingScreen" parent="MicrobeEditorGUI" instance=ExtResource( 53 )]
-visible = false
 [connection signal="mouse_entered" from="MicrobeEditorGUI/LeftTopBar" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/LeftTopBar" to="MicrobeEditorGUI" method="OnMouseExit"]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/LeftTopBar/HBoxContainer/ReportButton" to="MicrobeEditorGUI" method="OnMouseEnter"]

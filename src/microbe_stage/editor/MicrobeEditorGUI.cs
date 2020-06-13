@@ -215,7 +215,6 @@ public class MicrobeEditorGUI : Node
     private readonly Compound sunlight = SimulationParameters.Instance.GetCompound("sunlight");
 
     private MicrobeEditor editor;
-    private LoadingScreen loadingScreen;
 
     private Godot.Collections.Array organelleSelectionElements;
     private Godot.Collections.Array membraneSelectionElements;
@@ -302,8 +301,6 @@ public class MicrobeEditorGUI : Node
         organelleSelectionElements = GetTree().GetNodesInGroup("OrganelleSelectionElement");
         membraneSelectionElements = GetTree().GetNodesInGroup("MembraneSelectionElement");
         itemTooltipElements = GetTree().GetNodesInGroup("ItemTooltip");
-
-        loadingScreen = GetNode<LoadingScreen>("LoadingScreen");
 
         menu = GetNode<Control>(MenuPath);
         sizeLabel = GetNode<Label>(SizeLabelPath);
@@ -523,17 +520,6 @@ public class MicrobeEditorGUI : Node
         {
             mobilityChangeLabel.AddColorOverride("font_color", new Color(1, 0.3f, 0.3f));
         }
-    }
-
-    public void SetLoadingStatus(bool loading)
-    {
-        loadingScreen.Visible = loading;
-    }
-
-    public void SetLoadingText(string status, string description = "")
-    {
-        loadingScreen.LoadingMessage = status;
-        loadingScreen.LoadingDescription = description;
     }
 
     public void UpdateAutoEvoResults(string results, string external)
