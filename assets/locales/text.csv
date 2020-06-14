@@ -1,5 +1,5 @@
 ,en,ru
-200_KPA,200 kPa,
+200_KPA,200 kPa,200 кПа
 AND,and,и
 ALSO_TURNS,Also turns,Также включая
 ATP,ATP,АТФ
@@ -7,7 +7,7 @@ ATP_BALANCE,ATP Balance,Баланс АТФ
 AMMONIA,Ammonia,Аммиак
 AGENTS,Agents,
 BACK,Back,Назад
-BEHAVIOR,BEHAVIOR,
+BEHAVIOR,BEHAVIOR,ПОВЕДЕНИЕ
 BIOLUMESCENT_VACUOLE_NA_MP,"Biolumescent
 Vacuole
 N/A MP",
@@ -36,20 +36,20 @@ CHITIN_50_MP,"Chitin
 50 MP",
 CALCIUM_CARBONATE_50_MP,"Calcium  Carbonate
 50 MP",
-COLOUR,Colour,
+COLOUR,Colour,Цвет
 CYTOPLASM_LONG,"The gooey innards of a cell. The cytoplasm is the basic mixture of ions, proteins, and other substances dissolved in water that fill the interior of the cell. One of the functions it performs is Fermentation, the conversion of glucose into ATP energy. For cells that lack organelles to have more advanced metabolisms, this is what they rely on for energy. It is also used to store molecules in the cell and to grow the cell's size.",
 CONCENTRATION_OF,concentration of,
 CHEMOSYNTHESIZING_PROTEINS,"Chemosynth-
 esizing Proteins",
-CARBON,Carbon,
+CARBON,Carbon,Углерод
 CHEMOSYNTHESIZING_LONG,"Chemosynthesizing proteins are small clusters of protein in the cytoplasm that are able to convert hydrogen sulfide, water, and gaseous carbon dioxide into glucose in a process called Hydrogen Sulfide Chemosynthesis. The rate of its glucose production scales with the concentration of carbon dioxide. Since the chemosynthesizing proteins are suspended directly in the cytoplasm, the surrounding fluid performs some fermentation.",
 COMPOUNDS,Compounds,
 DOUBLE_50_MP,"Double
 50 MP",
-DIOXIDE,Dioxide,
+DIOXIDE,Dioxide,Диоксид
 EXTRAS,Extras,Дополнительные
 EXIT,Exit,Выход
-EXTINCTION,EXTINCTION,
+EXTINCTION,EXTINCTION,ВЫМИРАНИЕ
 EXTINCTION_LONG,"Just like 99% of all species that have ever existed,
 your species has gone extinct.  Others will go on to fill in your
 niche  and thrive, but that won’t be you. You will be forgotten,
@@ -58,9 +58,9 @@ EXTERNAL_ORGANELLES,External Organelles,
 FRAGELLUM_55_MP,"Flagellum
 55 MP",
 FLUIDITY_RIGIDITY,Fluidity/Rigidity,
-FLAGELLUM,Flagellum,
+FLAGELLUM,Flagellum,Жгутик
 GLUCOSE,Glucose,Глюкоза
-GENERATION_2,Generation 2,
+GENERATION_2,Generation 2,Поколение 2
 HELP,Help,Помощь
 IRON,Iron,Железо
 INTERNAL_ORGANELLES,Internal Organelles,
@@ -88,8 +88,8 @@ NUCLEUS_100_MP,"Nucleus
 100 MP",
 NORMAL_50_MP,"Normal
 50 MP",
-NITROGENASE,Nitrogenase,
-NITROGEN,Nitrogen,
+NITROGENASE,Nitrogenase,Нитрогеназа
+NITROGEN,Nitrogen,Азот
 NITROGENASE_LONG,"Nitrogenase is a protein able to use gaseous nitrogen and cellular energy in the form of ATP to produce ammonia, a key growth nutrient for cells. This is a process referred to as Anaerobic Nitrogen Fixation. Since the nitrogenase is suspended directly in the cytoplasm, the surrounding fluid performs some fermentation.",
 PATCH_MAP,PATCH MAP,
 PATCH,"Patch:",
@@ -97,20 +97,20 @@ PRIMUM_THRIVIUM,Primum Thrivium,
 PROKARYOTIC_STRUCTURES,Prokaryotic Structures,Прокариотические структуры
 PREDATORY_PILUS_30_MP,"Predatory Pilus
 30 MP",
-PRODUCES,Produces,
+PRODUCES,Produces,Производит
 OPTIONS,Options,Настройки
 OXYTOXISOME_55_MP,"Oxytoxisome
 55 MP",
 OSMOREGULATION_COST,Osmoregulation Cost,
 OXYGEN_DOT,"Oxygen.",
-OXYGEN,Oxygen,
+OXYGEN,Oxygen,Кислород
 OXYTOXISOME,Oxytoxisome,
 OXYTOXY,Oxytoxy,
 OXYTOXY_LONG,"A modified metabolosome responsible for the production of a primitive form of the toxic agent Oxytoxy NT.",
 OXYTOXY_NT,OxyToxy NT,
 QUIT,Quit,Выход
 RESUME,Resume,Продолжить
-REPORT,REPORT,
+REPORT,REPORT,СООБЩИТЬ
 RUSTICYANIN_45_MP,"Rusticyanin	
 45 MP",
 RATE_SCALES,". Rate scales",
@@ -125,8 +125,8 @@ THERMOPLAST_40_MP,"Thermoplast
 40 MP",
 TOXIN_VACUOLE_70_MP,"Toxin Vacuole
 70 MP",
-TURNS,Turns,
-THYLAKOIDS,Thylakoids,
+TURNS,Turns,Включая
+THYLAKOIDS,Thylakoids,Тилакоиды
 THYLAKOIDS_LONG,"Thylakoids are clusters of proteins and photosensitive pigments. The pigments are able to use the energy of light to produce glucose from water and gaseous carbon dioxide in a process called Photosynthesis. These pigments are also what give them a distinctive colour. The rate of their glucose production scales with the concentration of carbon dioxide, and intensity of light. Since the thylakoids are suspended directly in the cytoplasm, the surrounding fluid performs some fermentation.",
 STATISTICS,Statistics,Статистика
 SAVE_GAME,Save Game,Сохранить игру
@@ -156,25 +156,25 @@ TOXINS_PRESSING_E,"toxins by pressing E. Rate scales with",
 USES,Uses,
 TO_INCREASE_THE_MOVEMENT,to increase the movement,
 SPEED_OF_THE_CELL,"speed of the cell.",
-SPEED,Speed,
+SPEED,Speed,Скорость
 FRAGELLUM_LONG,"The flagellum (plural: flagella) is a whip-like bundle of protein fibers extending from the cell's membrane which can use ATP to undulate and propel the cell in a direction.",
 PREDATORY_PILUS,Predatory Pilus,
-POPULATION,"POPULATION:",
+POPULATION,"POPULATION:","ПОПУЛЯЦИЯ:"
 STAB_OTHER_CELLS_WITH_THIS,"Stab other cells with this.",
 CILIA,Cilia,
-TO_BE_IMPLEMENTED,"To be Implemented.",
-NUCLEUS,Nucleus,
+TO_BE_IMPLEMENTED,"To be Implemented.","Будет реализовано."
+NUCLEUS,Nucleus,Ядро
 ALLOWS_FOR_THE_EVOLATION,"Allows for the evolution of more complex,",
 MEMBRANE_BOUND_ORGANELLES,"membrane-bound organelles. Costs a lot",
 OF_ATP_TO_MAINTAIN,"of ATP to maintain. This is an irreversible",
 EVOLUTION_DOT,"evolution.",
 NUCLEUS_LONG,"The defining feature of eukaryotic cells. The nucleus also includes the endoplasmic reticulum and the golgi body. It is an evolution of prokaryotic cells to develop a system of internal membranes, done by assimilating another prokaryote inside of themselves. This allows them to compartmentalize, or ward off, the different processes happening inside the cell and prevent them from overlapping. This allows their new membrane bound organelles to be much more complex, efficient, and specialized than if they were free-floating in the cytoplasm. However, this comes at the cost of making the cell much larger and requiring a lot of the cell's energy to maintain.",
-MITOCHONDRION,Mitochondrion,
+MITOCHONDRION,Mitochondrion,Митохондрия
 MITOCHONDRION_LONG,"The powerhouse of the cell. The mitochondrion (plural: mitochondria) is a double membrane structure filled with proteins and enzymes. It is a prokaryote that has been assimilated for use by its eukaryotic host. It is able to convert glucose into ATP at a much higher efficiency than can be done in the cytoplasm in a process called Aerobic Respiration. It does, however, require oxygen to function, and lower levels of oxygen in the environment will slow down the rate of its ATP production.",
 PRODUCES,Produces,
 CHLOROPLAST_LONG,"The chloroplast is a double membrane structure containing photosensitive pigments stacked together in membranous sacs. It is a prokaryote that has been assimilated for use by its eukaryotic host. The pigments in the chloroplast are able to use the energy of light to produce glucose from water and gaseous carbon dioxide in a process called Photosynthesis. These pigments are also what give it a distinctive colour. The rate of its glucose production scales with the concentration of carbon dioxide, and intensity of light.",
-THERMOPLAST,Thermoplast,
-TEMPERATURE,Temperature,
+THERMOPLAST,Thermoplast,Термопласт
+TEMPERATURE,Temperature,Температура
 THERMOPLAST_LONG,"The thermoplast is a double membrane structure containing thermosensitive pigments stacked together in membranous sacs. It is a prokaryote that has been assimilated for use by its eukaryotic host. The pigments in the thermoplast are able to use the energy of heat differences in the surroundings to produce glucose from water and gaseous carbon dioxide in a process called Thermosynthesis. The rate of its glucose production scales with the concentration of carbon dioxide, and temperature.",
 TEMP_DOT,"Temp.",
 CHEMOPLAST,Chemoplast,
@@ -182,7 +182,6 @@ CHEMOPLAST_LONG,"The chemoplast is a double membrane structure containing protei
 The rate of its glucose production scales with the concentration of water and carbon dioxide.",
 NITROGEN_FIXING_PLASTID,"Nitrogen Fixing
 Plastid",
-NITROGEN,Nitrogen,
 NITROGEN_LONG,"The Nitrogen Fixing Plastid is a protein able to use gaseous nitrogen and oxygen and cellular energy in the form of ATP to produce ammonia, a key growth nutrient for cells. This is a process referred to as Aerobic Nitrogen Fixation.",
 VACUOLE,Vacuole,
 INCREASES_THE_STORAGE,"Increases the storage space of the cell.",
