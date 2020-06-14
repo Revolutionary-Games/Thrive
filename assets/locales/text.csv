@@ -1,9 +1,11 @@
 ,en,ru
+200_KPA,200 kPa,
 AND,and,и
 ALSO_TURNS,Also turns,Также включая
 ATP,ATP,АТФ
 ATP_BALANCE,ATP Balance,Баланс АТФ
 AMMONIA,Ammonia,Аммиак
+AGENTS,Agents,
 BACK,Back,Назад
 BEHAVIOR,BEHAVIOR,
 BIOLUMESCENT_VACUOLE_NA_MP,"Biolumescent
@@ -41,6 +43,7 @@ CHEMOSYNTHESIZING_PROTEINS,"Chemosynth-
 esizing Proteins",
 CARBON,Carbon,
 CHEMOSYNTHESIZING_LONG,"Chemosynthesizing proteins are small clusters of protein in the cytoplasm that are able to convert hydrogen sulfide, water, and gaseous carbon dioxide into glucose in a process called Hydrogen Sulfide Chemosynthesis. The rate of its glucose production scales with the concentration of carbon dioxide. Since the chemosynthesizing proteins are suspended directly in the cytoplasm, the surrounding fluid performs some fermentation.",
+COMPOUNDS,Compounds,
 DOUBLE_50_MP,"Double
 50 MP",
 DIOXIDE,Dioxide,
@@ -89,6 +92,7 @@ NITROGENASE,Nitrogenase,
 NITROGEN,Nitrogen,
 NITROGENASE_LONG,"Nitrogenase is a protein able to use gaseous nitrogen and cellular energy in the form of ATP to produce ammonia, a key growth nutrient for cells. This is a process referred to as Anaerobic Nitrogen Fixation. Since the nitrogenase is suspended directly in the cytoplasm, the surrounding fluid performs some fermentation.",
 PATCH_MAP,PATCH MAP,
+PATCH,"Patch:",
 PRIMUM_THRIVIUM,Primum Thrivium,
 PROKARYOTIC_STRUCTURES,Prokaryotic Structures,Прокариотические структуры
 PREDATORY_PILUS_30_MP,"Predatory Pilus
@@ -103,6 +107,7 @@ OXYGEN,Oxygen,
 OXYTOXISOME,Oxytoxisome,
 OXYTOXY,Oxytoxy,
 OXYTOXY_LONG,"A modified metabolosome responsible for the production of a primitive form of the toxic agent Oxytoxy NT.",
+OXYTOXY_NT,OxyToxy NT,
 QUIT,Quit,Выход
 RESUME,Resume,Продолжить
 REPORT,REPORT,
@@ -135,6 +140,7 @@ SPECIES,Species,
 SPEED_2_0,Speed 2.0,
 SIZE_1,Size 1,Размер 1
 SYMMETRY,Symmetry,Симметрия
+STUFF_AT,Stuff at,
 VACUOLE_50_MP,"Vacuole
 50 MP",
 YOU_HAVE_THRIVED,YOU HAVE THRIVED!,
@@ -153,6 +159,7 @@ SPEED_OF_THE_CELL,"speed of the cell.",
 SPEED,Speed,
 FRAGELLUM_LONG,"The flagellum (plural: flagella) is a whip-like bundle of protein fibers extending from the cell's membrane which can use ATP to undulate and propel the cell in a direction.",
 PREDATORY_PILUS,Predatory Pilus,
+POPULATION,"POPULATION:",
 STAB_OTHER_CELLS_WITH_THIS,"Stab other cells with this.",
 CILIA,Cilia,
 TO_BE_IMPLEMENTED,"To be Implemented.",
@@ -169,6 +176,7 @@ CHLOROPLAST_LONG,"The chloroplast is a double membrane structure containing phot
 THERMOPLAST,Thermoplast,
 TEMPERATURE,Temperature,
 THERMOPLAST_LONG,"The thermoplast is a double membrane structure containing thermosensitive pigments stacked together in membranous sacs. It is a prokaryote that has been assimilated for use by its eukaryotic host. The pigments in the thermoplast are able to use the energy of heat differences in the surroundings to produce glucose from water and gaseous carbon dioxide in a process called Thermosynthesis. The rate of its glucose production scales with the concentration of carbon dioxide, and temperature.",
+TEMP_DOT,"Temp.",
 CHEMOPLAST,Chemoplast,
 CHEMOPLAST_LONG,"The chemoplast is a double membrane structure containing proteins able to convert hydrogen sulfide, water, and gaseous carbon dioxide into glucose in a process called Hydrogen Sulfide Chemosynthesis.
 The rate of its glucose production scales with the concentration of water and carbon dioxide.",
@@ -190,6 +198,7 @@ NORMAL,Normal,
 MOBILITY,Mobility,
 RESOURCE_ABSORPTION_SPEED,Resource Absorption Speed,
 HEALTH,Health,
+HITPOINTS,Hitpoints,
 DESCRIPTION,"The most basic form of membrane, it has little protection against damage. It also needs more energy to not deform. The advantage is that it allows the cell to move and absorb nutrients swiftly.",
 DOUBLE,Double,
 DESCRIPTION2,"A membrane with two layers, it has better protection against damage and takes less energy to not deform. However, it slows the cell down some and lowers the rate at which it can absorb resources.",
@@ -207,6 +216,7 @@ MEMBRANE_RIGIDITY,"Membrane
 Rigidity",
 RIGIDITY_SLIDER,"A more rigid membrane is more resistant to damage, but will make it harder for the cell to move around.",
 EVO_RESULTS_PANEL,"The amount of glucose has been reduced to ... of the previous amount.",
+ENVIRONMENT,Environment,
 AUTO_EVO_RESULTS,"Auto-evo results:",
 EXTERNAL_EFFECTS,"External effects:",
 NEXT,NEXT,
@@ -217,6 +227,7 @@ BIOME_HERE,"Biome: BIOME HERE",
 BELOW_SEA_LEVEL,"200-340m below sea level",
 PHYSICAL_CONDITIONS,Physical Conditions,
 PRESSURE,Pressure,
+PRESS_DOT,"Press.",
 ATMOSPHERIC_GASSES,Atmospheric Gasses,
 COMPOUNDS,Compounds,
 PHOSPHATE,Phosphate,

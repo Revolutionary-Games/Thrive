@@ -440,7 +440,7 @@ margin_bottom = 118.0
 [node name="MousePos" type="Label" parent="MicrobeHUD/MouseHoverPanel/MarginContainer/VBoxContainer"]
 margin_right = 248.0
 margin_bottom = 17.0
-text = "Stuff at"
+text = "STUFF_AT"
 align = 1
 
 [node name="HSeparator" type="HSeparator" parent="MicrobeHUD/MouseHoverPanel/MarginContainer/VBoxContainer"]
@@ -511,7 +511,7 @@ margin_top = 6.0
 margin_right = 123.0
 margin_bottom = 28.0
 custom_fonts/font = SubResource( 5 )
-text = "Environment"
+text = "ENVIRONMENT"
 
 [node name="MarginContainer4" type="MarginContainer" parent="MicrobeHUD/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer"]
 margin_left = 129.0
@@ -783,7 +783,7 @@ margin_right = 60.0
 margin_bottom = 12.5
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = SubResource( 15 )
-text = "Temp."
+text = "TEMP_DOT"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -838,7 +838,7 @@ margin_right = 66.0
 margin_bottom = 12.5
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = SubResource( 15 )
-text = "Light"
+text = "LIGHT"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -893,7 +893,7 @@ margin_right = 69.0
 margin_bottom = 12.5
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = SubResource( 15 )
-text = "Press."
+text = "PRESS_DOT"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -911,7 +911,7 @@ margin_bottom = 12.5
 grow_horizontal = 0
 rect_min_size = Vector2( 55, 25 )
 custom_fonts/font = SubResource( 15 )
-text = "200 kPa"
+text = "200_KPA"
 align = 2
 valign = 1
 __meta__ = {
@@ -964,7 +964,7 @@ margin_right = 145.0
 margin_bottom = 31.0
 rect_min_size = Vector2( 145, 0 )
 custom_fonts/font = SubResource( 5 )
-text = "Compounds"
+text = "COMPOUNDS"
 
 [node name="MarginContainer3" type="MarginContainer" parent="MicrobeHUD/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
 margin_left = 151.0
@@ -1069,7 +1069,7 @@ margin_right = 81.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = SubResource( 24 )
-text = "Glucose"
+text = "GLUCOSE"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1122,7 +1122,7 @@ margin_right = 81.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = SubResource( 24 )
-text = "Ammonia"
+text = "AMMONIA"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1175,7 +1175,7 @@ margin_right = 95.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = SubResource( 24 )
-text = "Phosphate"
+text = "PHOSPHATE"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1228,7 +1228,7 @@ margin_right = 141.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = SubResource( 24 )
-text = "Hydrogen Sulfide"
+text = "HYDROGEN_SULFIDE"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1281,7 +1281,7 @@ margin_right = 47.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = SubResource( 24 )
-text = "Iron"
+text = "IRON"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1334,7 +1334,7 @@ margin_top = 6.0
 margin_right = 252.0
 margin_bottom = 28.0
 custom_fonts/font = SubResource( 5 )
-text = "Agents"
+text = "AGENTS"
 
 [node name="MarginContainer2" type="MarginContainer" parent="MicrobeHUD/LeftPanels/AgentsPanel/VBoxContainer"]
 margin_top = 39.0
@@ -1386,7 +1386,7 @@ margin_right = 97.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = SubResource( 32 )
-text = "OxyToxy NT"
+text = "OXYTOXY_NT"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1548,7 +1548,7 @@ margin_top = 8.0
 margin_right = 462.0
 margin_bottom = 35.0
 custom_fonts/font = SubResource( 34 )
-text = "Patch:"
+text = "PATCH"
 
 [node name="BottomRight" type="Control" parent="MicrobeHUD"]
 anchor_left = 1.0
@@ -1579,7 +1579,7 @@ margin_right = 79.0
 margin_bottom = 18.0
 custom_styles/normal = SubResource( 35 )
 custom_fonts/font = SubResource( 36 )
-text = "POPULATION:"
+text = "POPULATION"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1629,7 +1629,7 @@ custom_constants/separation = 8
 margin_right = 77.0
 margin_bottom = 15.0
 custom_fonts/font = SubResource( 38 )
-text = "Hitpoints"
+text = "HITPOINTS"
 
 [node name="ATPValue" type="Label" parent="MicrobeHUD/BottomRight/DataValue/Margin/VBox"]
 margin_top = 23.0
