@@ -344,11 +344,6 @@ public class MicrobeStage : Node, ILoadableGameState
         }
     }
 
-    public void ReturnToMenu()
-    {
-        SceneManager.Instance.ReturnToMenu();
-    }
-
     /// <summary>
     ///   Called when returning from the editor
     /// </summary>
