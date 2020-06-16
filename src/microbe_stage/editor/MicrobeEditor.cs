@@ -292,6 +292,12 @@ public class MicrobeEditor : Node, ILoadableGameState
         OnEnterEditor();
     }
 
+    public override void _ExitTree()
+    {
+        // As we will no longer return to the microbe stage we need to free it, if we have it
+        ReturnToStage?.QueueFree();
+    }
+
     /// <summary>
     ///   Sets up the editor when entering
     /// </summary>
@@ -436,12 +442,17 @@ public class MicrobeEditor : Node, ILoadableGameState
             CurrentGame.GameWorld.Map.CurrentPatch.AddSpecies(editedSpecies, 0);
         }
 
-        SceneManager.Instance.SwitchToScene(ReturnToStage);
+        var stage = ReturnToStage;
+
+        // This needs to be reset here to not free this when we exit the tree
+        ReturnToStage = null;
+
+        SceneManager.Instance.SwitchToScene(stage);
 
         // We need to finish loading the save after attaching the stage scene
         if (savedStageToApply != null)
         {
-            ReturnToStage.OnFinishLoading(savedStageToApply);
+            stage.OnFinishLoading(savedStageToApply);
             savedStageToApply = null;
             NeedToRestoreStageFromSave = false;
 
@@ -449,15 +460,7 @@ public class MicrobeEditor : Node, ILoadableGameState
             TemporaryLoadedNodeDeleter.Instance.HoldDeletion = false;
         }
 
-        ReturnToStage.OnReturnFromEditor();
-    }
-
-    public void ReturnToMenu()
-    {
-        // As we will no longer return to the microbe stage we need to free it, if we have it
-        ReturnToStage?.QueueFree();
-
-        SceneManager.Instance.ReturnToMenu();
+        stage.OnReturnFromEditor();
     }
 
     public void StartMusic()
