@@ -1,6 +1,8 @@
 using System;
 using System.CodeDom;
 using System.Diagnostics;
+using System.Globalization;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Godot;
 
@@ -12,6 +14,12 @@ public class InProgressSave : IDisposable
     private readonly Func<Node> currentGameRoot;
     private readonly Func<InProgressSave, Save> createSaveData;
     private readonly Action<InProgressSave, Save> performSave;
+
+    /// <summary>
+    ///   Raw save name, that is processed by saveNameTask
+    /// </summary>
+    private readonly string saveName;
+
     private readonly bool returnToPauseState;
 
     private State state = State.Initial;
@@ -28,11 +36,12 @@ public class InProgressSave : IDisposable
     private bool disposed;
 
     public InProgressSave(SaveInformation.SaveType type, Func<Node> currentGameRoot,
-        Func<InProgressSave, Save> createSaveData, Action<InProgressSave, Save> performSave)
+        Func<InProgressSave, Save> createSaveData, Action<InProgressSave, Save> performSave, string saveName)
     {
         this.currentGameRoot = currentGameRoot;
         this.createSaveData = createSaveData;
         this.performSave = performSave;
+        this.saveName = saveName;
         Type = type;
         returnToPauseState = currentGameRoot.Invoke().GetTree().Paused;
 
@@ -91,7 +100,8 @@ public class InProgressSave : IDisposable
         switch (state)
         {
             case State.Initial:
-                // TODO: if there is a pause menu open, close that here before moving onto the screenshot
+                // On this frame a pause menu might still be open, wait until next frame for it to close before
+                // taking a screenshot
                 state = State.Screenshot;
                 break;
             case State.Screenshot:
@@ -140,9 +150,54 @@ public class InProgressSave : IDisposable
 
     private string CalculateNameForSave()
     {
-        // TODO: implement type naming
-        var name = "quick_save." + Constants.SAVE_EXTENSION;
+        switch (Type)
+        {
+            case SaveInformation.SaveType.Manual:
+            {
+                if (!string.IsNullOrWhiteSpace(saveName))
+                {
+                    if (!saveName.EndsWith(Constants.SAVE_EXTENSION_WITH_DOT, StringComparison.Ordinal))
+                        return saveName + Constants.SAVE_EXTENSION_WITH_DOT;
 
-        return name;
+                    return saveName;
+                }
+
+                // Find the next unused save number
+                int number = 0;
+
+                foreach (var name in SaveManager.CreateListOfSaves(SaveManager.SaveOrder.FileSystem))
+                {
+                    var match = Regex.Match(name, "save_(\\d)+\\." + Constants.SAVE_EXTENSION);
+
+                    if (match.Success)
+                    {
+                        int found = Convert.ToInt32(match.Groups[1].Value, CultureInfo.InvariantCulture);
+
+                        if (found > number)
+                            number = found;
+                    }
+                }
+
+                ++number;
+                return $"save_{number:n0}." + Constants.SAVE_EXTENSION;
+            }
+
+            case SaveInformation.SaveType.AutoSave:
+            {
+                // TODO: rotating slots
+                int number = 1;
+                return $"auto_save_{number:n0}." + Constants.SAVE_EXTENSION;
+            }
+
+            case SaveInformation.SaveType.QuickSave:
+            {
+                // TODO: rotating slots
+                int number = 1;
+                return $"quick_save_{number:n0}." + Constants.SAVE_EXTENSION;
+            }
+
+            default:
+                throw new InvalidOperationException();
+        }
     }
 }

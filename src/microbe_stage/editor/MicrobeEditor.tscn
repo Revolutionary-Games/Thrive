@@ -10522,5 +10522,6 @@ HelpCategory = "MicrobeEditor"
 [connection signal="pressed" from="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesPresent/HBoxContainer/Buttons/plusButton" to="MicrobeEditorGUI" method="ToggleConditionsTab" binds= [ "species" ]]
 [connection signal="pressed" from="MicrobeEditorGUI/PatchMap/NextTabButton" to="MicrobeEditorGUI" method="GoToEditorTab"]
 [connection signal="pressed" from="MicrobeEditorGUI/PatchMap/MoveToPatchButton" to="MicrobeEditorGUI" method="MoveToPatchClicked"]
+[connection signal="MakeSave" from="MicrobeEditorGUI/PauseMenu" to="." method="SaveGame"]
 [connection signal="OnClosed" from="MicrobeEditorGUI/PauseMenu" to="MicrobeEditorGUI" method="CloseMenu"]
 [connection signal="OnOpenWithKeyPress" from="MicrobeEditorGUI/PauseMenu" to="MicrobeEditorGUI" method="OpenMenu"]
