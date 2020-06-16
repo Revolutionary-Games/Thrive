@@ -17,6 +17,9 @@ public class SaveList : ScrollContainer
     public bool SelectableItems;
 
     [Export]
+    public bool LoadableItems = true;
+
+    [Export]
     public NodePath LoadingItemPath;
 
     [Export]
@@ -72,6 +75,7 @@ public class SaveList : ScrollContainer
         {
             var item = (SaveListItem)listItemScene.Instance();
             item.Selectable = SelectableItems;
+            item.Loadable = LoadableItems;
 
             if (SelectableItems)
                 item.Connect(nameof(SaveListItem.OnSelectedChanged), this, nameof(OnSubItemSelectedChanged));

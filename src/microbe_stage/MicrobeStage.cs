@@ -430,6 +430,11 @@ public class MicrobeStage : Node, ILoadableGameState
             GameWorld.Map.CurrentPatch.BiomeTemplate.Background));
     }
 
+    private void SaveGame(string name)
+    {
+        SaveHelper.Save(name, this);
+    }
+
     private void ApplyPropertiesFromSave(MicrobeStage savedMicrobeStage)
     {
         SaveApplyHelper.CopyJSONSavedPropertiesAndFields(this, savedMicrobeStage, new List<string>()

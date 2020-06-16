@@ -1837,7 +1837,6 @@ __meta__ = {
 
 [node name="PauseMenu" parent="MicrobeHUD/CanvasLayer" instance=ExtResource( 11 )]
 visible = false
-HelpCategory = "MicrobeStage"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MicrobeHUD"]
 anims/HideLeftPanels = SubResource( 40 )
@@ -1853,5 +1852,6 @@ anims/ShowLeftPanels = SubResource( 41 )
 [connection signal="pressed" from="MicrobeHUD/BottomBar/QuestionMarkButton" to="MicrobeHUD" method="ToggleHelpScreen"]
 [connection signal="pressed" from="MicrobeHUD/BottomBar/SuicideButton" to="MicrobeHUD" method="OnSuicide"]
 [connection signal="pressed" from="MicrobeHUD/BottomRight/EditorButton" to="MicrobeHUD" method="EditorButtonPressed"]
+[connection signal="MakeSave" from="MicrobeHUD/CanvasLayer/PauseMenu" to="." method="SaveGame"]
 [connection signal="OnClosed" from="MicrobeHUD/CanvasLayer/PauseMenu" to="MicrobeHUD" method="CloseMenu"]
 [connection signal="OnOpenWithKeyPress" from="MicrobeHUD/CanvasLayer/PauseMenu" to="MicrobeHUD" method="OpenMenu"]

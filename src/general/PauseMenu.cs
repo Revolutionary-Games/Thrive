@@ -15,8 +15,20 @@ public class PauseMenu : Control
     [Export]
     public NodePath HelpScreenPath;
 
+    [Export]
+    public NodePath LoadMenuPath;
+
+    [Export]
+    public NodePath SaveMenuPath;
+
+    [Export]
+    public NodePath LoadSaveListPath;
+
     private Control primaryMenu;
     private HelpScreen helpScreen;
+    private Control loadMenu;
+    private NewSaveMenu saveMenu;
+    private SaveList loadSaveList;
 
     [Signal]
     public delegate void OnClosed();
@@ -26,6 +38,13 @@ public class PauseMenu : Control
     /// </summary>
     [Signal]
     public delegate void OnOpenWithKeyPress();
+
+    /// <summary>
+    ///   Called when a save needs to be made
+    /// </summary>
+    /// <param name="name">Name of the save to make or empty string</param>
+    [Signal]
+    public delegate void MakeSave(string name);
 
     public override void _EnterTree()
     {
@@ -37,6 +56,9 @@ public class PauseMenu : Control
     public override void _Ready()
     {
         primaryMenu = GetNode<Control>(PrimaryMenuPath);
+        loadMenu = GetNode<Control>(LoadMenuPath);
+        saveMenu = GetNode<NewSaveMenu>(SaveMenuPath);
+        loadSaveList = GetNode<SaveList>(LoadSaveListPath);
     }
 
     public override void _UnhandledInput(InputEvent @event)
@@ -96,10 +118,51 @@ public class PauseMenu : Control
         SetActiveMenu("primary");
     }
 
+    private void OpenLoadPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        SetActiveMenu("load");
+        loadSaveList.Refresh();
+    }
+
+    private void CloseLoadPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        SetActiveMenu("primary");
+    }
+
+    private void OpenSavePressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        SetActiveMenu("save");
+        saveMenu.RefreshExisting();
+    }
+
+    private void CloseSavePressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        SetActiveMenu("primary");
+    }
+
+    private void ForwardSaveAction(string name)
+    {
+        SetActiveMenu("primary");
+
+        // Close this first to get the menus out of the way to capture the save screenshot
+        EmitSignal(nameof(OnClosed));
+        EmitSignal(nameof(MakeSave), name);
+    }
+
     private void SetActiveMenu(string menu)
     {
         helpScreen.Hide();
         primaryMenu.Hide();
+        loadMenu.Hide();
+        saveMenu.Hide();
 
         switch (menu)
         {
@@ -108,6 +171,12 @@ public class PauseMenu : Control
                 break;
             case "help":
                 helpScreen.Show();
+                break;
+            case "load":
+                loadMenu.Show();
+                break;
+            case "save":
+                saveMenu.Show();
                 break;
             default:
                 throw new ArgumentException("unknown menu", nameof(menu));

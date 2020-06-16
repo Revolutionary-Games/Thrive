@@ -36,4 +36,17 @@ public static class FileHelpers
             return result == Error.Ok;
         }
     }
+
+    /// <summary>
+    ///   Returns true if file exists
+    /// </summary>
+    /// <param name="path">Path to check</param>
+    /// <returns>True if exists, false otherwise</returns>
+    public static bool Exists(string path)
+    {
+        using (var directory = new Directory())
+        {
+            return directory.FileExists(path);
+        }
+    }
 }

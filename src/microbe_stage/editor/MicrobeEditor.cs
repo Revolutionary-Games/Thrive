@@ -1622,6 +1622,11 @@ public class MicrobeEditor : Node, ILoadableGameState
         camera.SetBackground(SimulationParameters.Instance.GetBackground(CurrentPatch.BiomeTemplate.Background));
     }
 
+    private void SaveGame(string name)
+    {
+        SaveHelper.Save(name, this);
+    }
+
     private void ApplyPropertiesFromSave(MicrobeEditor savedMicrobeEditor)
     {
         SaveApplyHelper.CopyJSONSavedPropertiesAndFields(this, savedMicrobeEditor);
