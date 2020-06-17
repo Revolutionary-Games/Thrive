@@ -295,7 +295,14 @@ public class MicrobeEditor : Node, ILoadableGameState
     public override void _ExitTree()
     {
         // As we will no longer return to the microbe stage we need to free it, if we have it
-        ReturnToStage?.QueueFree();
+        // This might be disposed if this was loaded from a save and we loaded another save
+        try
+        {
+            ReturnToStage?.QueueFree();
+        }
+        catch (ObjectDisposedException)
+        {
+        }
     }
 
     /// <summary>
