@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 /// <summary>
@@ -83,7 +84,16 @@ public class Fade : CanvasLayer, ITransition
 
     public void OnFinished()
     {
-        EmitSignal(nameof(OnFinishedSignal));
+        // TODO: find a better solution
+        try
+        {
+            EmitSignal(nameof(OnFinishedSignal));
+        }
+        catch (ObjectDisposedException)
+        {
+            GD.PrintErr("Fade target is already disposed!");
+        }
+
         QueueFree();
     }
 }

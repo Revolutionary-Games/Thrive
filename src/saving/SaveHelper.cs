@@ -61,22 +61,28 @@ public static class SaveHelper
     /// <summary>
     ///   Auto save the game (if enabled in settings)
     /// </summary>
-    public static void AutoSave(MicrobeStage microbeStage)
+    public static void AutoSave(MicrobeStage state)
     {
         if (!Settings.Instance.AutoSaveEnabled)
             return;
 
-        // TODO: implement
-        _ = microbeStage;
+        InternalSaveHelper(SaveInformation.SaveType.AutoSave, MainGameState.MicrobeStage, save =>
+        {
+            save.SavedProperties = state.CurrentGame;
+            save.MicrobeStage = state;
+        }, () => state);
     }
 
-    public static void AutoSave(MicrobeEditor editor)
+    public static void AutoSave(MicrobeEditor state)
     {
         if (!Settings.Instance.AutoSaveEnabled)
             return;
 
-        // TODO: implement
-        _ = editor;
+        InternalSaveHelper(SaveInformation.SaveType.AutoSave, MainGameState.MicrobeEditor, save =>
+        {
+            save.SavedProperties = state.CurrentGame;
+            save.MicrobeEditor = state;
+        }, () => state);
     }
 
     /// <summary>
