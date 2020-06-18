@@ -66,7 +66,7 @@ public class InProgressLoad
                 LoadingScreen.Instance.Show("Loading Game", "Reading save data");
 
                 // Start suppressing loaded node deletion
-                TemporaryLoadedNodeDeleter.Instance.HoldDeletion = true;
+                TemporaryLoadedNodeDeleter.Instance.AddDeletionHold(Constants.DELETION_HOLD_LOAD);
 
                 break;
             case State.ReadingData:
@@ -146,7 +146,7 @@ public class InProgressLoad
                 GD.Print("load finished, success: ", success, " message: ", message, " elapsed: ", stopwatch.Elapsed);
 
                 // Stop suppressing loaded node deletion
-                TemporaryLoadedNodeDeleter.Instance.HoldDeletion = false;
+                TemporaryLoadedNodeDeleter.Instance.RemoveDeletionHold(Constants.DELETION_HOLD_LOAD);
 
                 if (success)
                 {

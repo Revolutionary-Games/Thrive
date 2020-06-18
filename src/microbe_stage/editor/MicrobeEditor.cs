@@ -302,6 +302,7 @@ public class MicrobeEditor : Node, ILoadableGameState
         }
         catch (ObjectDisposedException)
         {
+            GD.Print("Editor's return to stage is already disposed");
         }
     }
 
@@ -364,7 +365,7 @@ public class MicrobeEditor : Node, ILoadableGameState
             NeedToRestoreStageFromSave = true;
 
             // We need to not let the objects be deleted before we apply them
-            TemporaryLoadedNodeDeleter.Instance.HoldDeletion = true;
+            TemporaryLoadedNodeDeleter.Instance.AddDeletionHold(Constants.DELETION_HOLD_MICROBE_EDITOR);
         }
 
         InitEditor();
@@ -464,7 +465,7 @@ public class MicrobeEditor : Node, ILoadableGameState
             NeedToRestoreStageFromSave = false;
 
             // Resume deletion of save loaded objects now that we have used them finally
-            TemporaryLoadedNodeDeleter.Instance.HoldDeletion = false;
+            TemporaryLoadedNodeDeleter.Instance.RemoveDeletionHold(Constants.DELETION_HOLD_MICROBE_EDITOR);
         }
 
         stage.OnReturnFromEditor();
