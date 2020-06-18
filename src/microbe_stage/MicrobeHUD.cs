@@ -174,7 +174,7 @@ public class MicrobeHUD : Node
     private TextureProgress phosphateReproductionBar;
 
     private VBoxContainer leftPanels;
-    private Control menu;
+    private PauseMenu menu;
     private TextureButton pauseButton;
     private TextureButton resumeButton;
     private Label atpLabel;
@@ -246,7 +246,7 @@ public class MicrobeHUD : Node
 
         atpLabel = GetNode<Label>(AtpLabelPath);
         hpLabel = GetNode<Label>(HpLabelPath);
-        menu = GetNode<Control>(MenuPath);
+        menu = GetNode<PauseMenu>(MenuPath);
         animationPlayer = GetNode<AnimationPlayer>(AnimationPlayerPath);
         hoveredItems = GetNode<VBoxContainer>(HoveredItemsContainerPath);
         populationLabel = GetNode<Label>(PopulationLabelPath);
@@ -815,5 +815,11 @@ public class MicrobeHUD : Node
             leftPanelsActive = false;
             animationPlayer.Play("ShowLeftPanels");
         }
+    }
+
+    private void GoToHelpScreen()
+    {
+        OpenMenu();
+        menu.ShowHelpScreen();
     }
 }
