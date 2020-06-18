@@ -78,6 +78,12 @@ public class PauseMenu : Control
         }
     }
 
+    public void ShowHelpScreen()
+    {
+        SetActiveMenu("help");
+        helpScreen.RandomizeEasterEgg();
+    }
+
     private void ClosePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
