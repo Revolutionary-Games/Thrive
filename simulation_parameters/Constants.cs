@@ -398,6 +398,9 @@ public static class Constants
     /// </summary>
     public const string AI_TAG_CHUNK = "chunk";
 
+    public const string DELETION_HOLD_LOAD = "load";
+    public const string DELETION_HOLD_MICROBE_EDITOR = "microbe_editor";
+
     public const string CONFIGURATION_FILE = "user://thrive_settings.json";
 
     public const string SAVE_FOLDER = "user://saves";

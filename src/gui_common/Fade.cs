@@ -85,14 +85,7 @@ public class Fade : CanvasLayer, ITransition
     public void OnFinished()
     {
         // TODO: find a better solution
-        try
-        {
-            EmitSignal(nameof(OnFinishedSignal));
-        }
-        catch (ObjectDisposedException)
-        {
-            GD.PrintErr("Fade target is already disposed!");
-        }
+        EmitSignal(nameof(OnFinishedSignal));
 
         QueueFree();
     }
