@@ -95,6 +95,58 @@ public class InProgressSave : IDisposable
         }
     }
 
+    private static string GetNextNameForSaveType(string regex, string newNameStart)
+    {
+        var highestNumber = FindExistingSavesOfType(out var totalCount, out var oldestSave,
+            regex);
+
+        // If all slots aren't used yet
+        if (totalCount < Settings.Instance.MaxQuickSaves || oldestSave == null)
+        {
+            ++highestNumber;
+            return $"{newNameStart}_{highestNumber:n0}." + Constants.SAVE_EXTENSION;
+        }
+
+        // Replace oldest
+        return oldestSave;
+    }
+
+    private static int FindExistingSavesOfType(out int totalCount, out string oldestSave, string matchRegex)
+    {
+        int highestNumber = 0;
+        totalCount = 0;
+        oldestSave = null;
+        ulong oldestModifiedTime = ulong.MaxValue;
+
+        using (var file = new File())
+        {
+            foreach (var name in SaveManager.CreateListOfSaves(SaveManager.SaveOrder.FileSystem))
+            {
+                var match = Regex.Match(name, matchRegex);
+
+                if (match.Success)
+                {
+                    ++totalCount;
+
+                    int found = Convert.ToInt32(match.Groups[1].Value, CultureInfo.InvariantCulture);
+
+                    if (found > highestNumber)
+                        highestNumber = found;
+
+                    var modified = file.GetModifiedTime(PathUtils.Join(Constants.SAVE_FOLDER, name));
+
+                    if (modified < oldestModifiedTime)
+                    {
+                        oldestModifiedTime = modified;
+                        oldestSave = name;
+                    }
+                }
+            }
+        }
+
+        return highestNumber;
+    }
+
     private void Step()
     {
         switch (state)
@@ -116,6 +168,8 @@ public class InProgressSave : IDisposable
             case State.SaveData:
             {
                 save.Name = saveNameTask.Result;
+
+                GD.Print("Creating a save with name:", save.Name);
                 performSave.Invoke(this, save);
                 state = State.Finished;
                 break;
@@ -167,7 +221,7 @@ public class InProgressSave : IDisposable
 
                 foreach (var name in SaveManager.CreateListOfSaves(SaveManager.SaveOrder.FileSystem))
                 {
-                    var match = Regex.Match(name, "save_(\\d)+\\." + Constants.SAVE_EXTENSION);
+                    var match = Regex.Match(name, "^save_(\\d)+\\." + Constants.SAVE_EXTENSION);
 
                     if (match.Success)
                     {
@@ -184,16 +238,12 @@ public class InProgressSave : IDisposable
 
             case SaveInformation.SaveType.AutoSave:
             {
-                // TODO: rotating slots
-                int number = 1;
-                return $"auto_save_{number:n0}." + Constants.SAVE_EXTENSION;
+                return GetNextNameForSaveType("^auto_save_(\\d)+\\." + Constants.SAVE_EXTENSION, "auto_save");
             }
 
             case SaveInformation.SaveType.QuickSave:
             {
-                // TODO: rotating slots
-                int number = 1;
-                return $"quick_save_{number:n0}." + Constants.SAVE_EXTENSION;
+                return GetNextNameForSaveType("^quick_save_(\\d)+\\." + Constants.SAVE_EXTENSION, "quick_save");
             }
 
             default:
