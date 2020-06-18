@@ -10,35 +10,35 @@ jobs:
        - checkout
        - restore_cache:
            keys:
-             - v5-lfs-{{ .Branch }}
-             - v5-lfs-master
+             - v6-lfs-{{ .Branch }}
+             - v6-lfs-master
        - shell:
            name: Pull Git LFS files, retry up to 5 times
            command: |
              for i in {1..5}; do git reset --hard HEAD && git clean -fd && git lfs pull && exit 0; done; exit 1
        - save_cache:
-          key: v5-lfs-{{ .Branch }}
+          key: v6-lfs-{{ .Branch }}
           paths:
             - .git/lfs
        - restore_cache:
            keys:
-             - v3-import-{{ .Branch }}
-             - v3-import-master
+             - v4-import-{{ .Branch }}
+             - v4-import-master
        - run: mkdir -p builds
        # This is here to reimport assets, but this build would fail due to missing nuget packages
        # if C# was compiled here
        - run: godot --export "Linux/X11" "builds/a.x86_64"
        # - run: ./headless_project_refresh.rb
        - save_cache:
-           key: v3-import-{{ .Branch }}
+           key: v4-import-{{ .Branch }}
            paths:
              - .import
        - restore_cache:
            keys:
-             - v1-nuget-{{ .Branch }}
+             - v2-nuget-{{ .Branch }}
        - run: nuget restore Thrive.sln
        - save_cache:
-          key: v1-nuget-{{ .Branch }}
+          key: v2-nuget-{{ .Branch }}
           paths:
             - ~/.nuget/packages
        # Format check before making final packages

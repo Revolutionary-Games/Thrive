@@ -14,7 +14,7 @@ public class HelpScreen : Control
     public string Category;
 
     [Export]
-    public NodePath LeftColumPath;
+    public NodePath LeftColumnPath;
 
     [Export]
     public NodePath RightColumnPath;
@@ -44,7 +44,7 @@ public class HelpScreen : Control
 
     public override void _Ready()
     {
-        leftColumn = GetNode<VBoxContainer>(LeftColumPath);
+        leftColumn = GetNode<VBoxContainer>(LeftColumnPath);
         rightColumn = GetNode<VBoxContainer>(RightColumnPath);
         lineSeparator = GetNode<HSeparator>(LineSeparatorPath);
         tipMessageLabel = GetNode<Label>(TipMessageLabelPath);
@@ -58,7 +58,7 @@ public class HelpScreen : Control
         }
         else
         {
-            GD.PrintErr("Help screen has no category, it wouldn't load texts");
+            GD.PrintErr("Help screen has no category, can't load texts");
         }
     }
 

@@ -1,0 +1,108 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/textures/gui/menu_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/saving/SaveStatusOverlay.cs" type="Script" id=2]
+
+[node name="SaveStatusOverlay" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+StatusLabelPath = NodePath("../SaveStatusOverlay/CenterContainer/StatusLabel")
+ErrorDialogPath = NodePath("../SaveStatusOverlay/CenterContainer2/ErrorPopup")
+ExtraErrorDescriptionPath = NodePath("CenterContainer2/ErrorPopup/VBoxContainer/ScrollContainer/VBoxContainer/ExtraErrorDescription")
+ExceptionPath = NodePath("CenterContainer2/ErrorPopup/VBoxContainer/ScrollContainer/VBoxContainer/Exception")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 0.332
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="StatusLabel" type="Label" parent="CenterContainer"]
+margin_left = 508.0
+margin_top = 108.0
+margin_right = 771.0
+margin_bottom = 131.0
+text = "Saving status goes here..."
+
+[node name="CenterContainer2" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ErrorPopup" type="AcceptDialog" parent="CenterContainer2"]
+visible = true
+margin_left = 315.0
+margin_top = 185.0
+margin_right = 965.0
+margin_bottom = 535.0
+rect_min_size = Vector2( 650, 350 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+popup_exclusive = true
+window_title = "Saving Error"
+resizable = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer2/ErrorPopup"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 642.0
+margin_bottom = 310.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer2/ErrorPopup/VBoxContainer"]
+margin_right = 634.0
+margin_bottom = 274.0
+rect_min_size = Vector2( 300, 200 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer2/ErrorPopup/VBoxContainer/ScrollContainer"]
+margin_right = 634.0
+margin_bottom = 274.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ExtraErrorDescription" type="Label" parent="CenterContainer2/ErrorPopup/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_right = 634.0
+margin_bottom = 23.0
+text = "Extra description goes here"
+
+[node name="Exception" type="Label" parent="CenterContainer2/ErrorPopup/VBoxContainer/ScrollContainer/VBoxContainer"]
+margin_top = 27.0
+margin_right = 634.0
+margin_bottom = 50.0
+text = "Exception info goes here"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer2/ErrorPopup/VBoxContainer"]
+margin_top = 278.0
+margin_right = 634.0
+margin_bottom = 302.0
+size_flags_horizontal = 5
+size_flags_vertical = 9
+alignment = 2
+
+[node name="CopyErrorButton" type="Button" parent="CenterContainer2/ErrorPopup/VBoxContainer/VBoxContainer2"]
+margin_right = 634.0
+margin_bottom = 24.0
+size_flags_horizontal = 5
+size_flags_vertical = 9
+text = "Copy Error To Clipboard"
+[connection signal="popup_hide" from="CenterContainer2/ErrorPopup" to="." method="OnErrorDialogDismissed"]
+[connection signal="pressed" from="CenterContainer2/ErrorPopup/VBoxContainer/VBoxContainer2/CopyErrorButton" to="." method="OnCopyToClipboardPressed"]

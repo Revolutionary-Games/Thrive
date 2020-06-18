@@ -1,4 +1,4 @@
-[gd_scene load_steps=115 format=2]
+[gd_scene load_steps=114 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -10,7 +10,7 @@
 [ext_resource path="res://src/microbe_stage/gui/WinBox.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/microbe_stage/MicrobeHUD.cs" type="Script" id=9]
 [ext_resource path="res://src/microbe_stage/CompoundCloudSystem.cs" type="Script" id=10]
-[ext_resource path="res://assets/textures/gui/menu_theme.tres" type="Theme" id=11]
+[ext_resource path="res://src/general/PauseMenu.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/fonts/Jura-DemiBold.ttf" type="DynamicFontData" id=12]
 [ext_resource path="res://assets/textures/gui/bevel/CompoundPanelShortened.png" type="Texture" id=13]
 [ext_resource path="res://assets/textures/gui/bevel/environmentPanelShortened.png" type="Texture" id=14]
@@ -70,7 +70,6 @@
 [ext_resource path="res://assets/fonts/thrive.ttf" type="DynamicFontData" id=69]
 [ext_resource path="res://src/microbe_stage/gui/ExtinctionBox.tscn" type="PackedScene" id=70]
 [ext_resource path="res://assets/textures/gui/bevel/AmmoniaBW.png" type="Texture" id=71]
-[ext_resource path="res://src/general/HelpScreen.tscn" type="PackedScene" id=72]
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPausedHover.png" type="Texture" id=78]
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPaused.png" type="Texture" id=79]
 
@@ -378,7 +377,6 @@ HpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/HPValue")
 PopulationLabelPath = NodePath("BottomRight/PopulationData/Value")
 PatchLabelPath = NodePath("BottomBar/PatchLabel")
 EditorButtonPath = NodePath("BottomRight/EditorButton")
-HelpScreenPath = NodePath("CanvasLayer/HelpScreen")
 EnvironmentPanelPath = NodePath("LeftPanels/EnvironmentPanel")
 OxygenBarPath = NodePath("LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/Oxygen")
 Co2BarPath = NodePath("LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer/CarbonDioxide")
@@ -1837,102 +1835,8 @@ __meta__ = {
 "_editor_description_": "The pause menu is inside this CanvasLayer, to make sure the menu will always be on top of every other UIs"
 }
 
-[node name="PauseMenu" type="Control" parent="MicrobeHUD/CanvasLayer"]
+[node name="PauseMenu" parent="MicrobeHUD/CanvasLayer" instance=ExtResource( 11 )]
 visible = false
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Overlay" type="ColorRect" parent="MicrobeHUD/CanvasLayer/PauseMenu"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.588235 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CenterContainer" type="CenterContainer" parent="MicrobeHUD/CanvasLayer/PauseMenu"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MicrobeStageMenu" type="VBoxContainer" parent="MicrobeHUD/CanvasLayer/PauseMenu/CenterContainer"]
-margin_left = 515.0
-margin_top = 165.0
-margin_right = 765.0
-margin_bottom = 555.0
-theme = ExtResource( 11 )
-custom_constants/separation = 10
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Resume" type="Button" parent="MicrobeHUD/CanvasLayer/PauseMenu/CenterContainer/MicrobeStageMenu"]
-margin_right = 250.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 250, 40 )
-text = "Resume"
-
-[node name="SaveGame" type="Button" parent="MicrobeHUD/CanvasLayer/PauseMenu/CenterContainer/MicrobeStageMenu"]
-margin_top = 50.0
-margin_right = 250.0
-margin_bottom = 90.0
-rect_min_size = Vector2( 250, 40 )
-disabled = true
-text = "Save Game"
-
-[node name="LoadGame" type="Button" parent="MicrobeHUD/CanvasLayer/PauseMenu/CenterContainer/MicrobeStageMenu"]
-margin_top = 100.0
-margin_right = 250.0
-margin_bottom = 140.0
-rect_min_size = Vector2( 250, 40 )
-disabled = true
-text = "Load Game"
-
-[node name="Statistics" type="Button" parent="MicrobeHUD/CanvasLayer/PauseMenu/CenterContainer/MicrobeStageMenu"]
-margin_top = 150.0
-margin_right = 250.0
-margin_bottom = 190.0
-rect_min_size = Vector2( 250, 40 )
-disabled = true
-text = "Statistics"
-
-[node name="Help" type="Button" parent="MicrobeHUD/CanvasLayer/PauseMenu/CenterContainer/MicrobeStageMenu"]
-margin_top = 200.0
-margin_right = 250.0
-margin_bottom = 240.0
-rect_min_size = Vector2( 250, 40 )
-text = "Help"
-
-[node name="Options" type="Button" parent="MicrobeHUD/CanvasLayer/PauseMenu/CenterContainer/MicrobeStageMenu"]
-margin_top = 250.0
-margin_right = 250.0
-margin_bottom = 290.0
-rect_min_size = Vector2( 250, 40 )
-disabled = true
-text = "Options"
-
-[node name="ReturnToMenu" type="Button" parent="MicrobeHUD/CanvasLayer/PauseMenu/CenterContainer/MicrobeStageMenu"]
-margin_top = 300.0
-margin_right = 250.0
-margin_bottom = 340.0
-rect_min_size = Vector2( 250, 40 )
-text = "Return to Menu"
-
-[node name="Exit" type="Button" parent="MicrobeHUD/CanvasLayer/PauseMenu/CenterContainer/MicrobeStageMenu"]
-margin_top = 350.0
-margin_right = 250.0
-margin_bottom = 390.0
-rect_min_size = Vector2( 250, 40 )
-text = "Exit"
-
-[node name="HelpScreen" parent="MicrobeHUD/CanvasLayer" instance=ExtResource( 72 )]
-Category = "MicrobeStage"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MicrobeHUD"]
 anims/HideLeftPanels = SubResource( 40 )
@@ -1945,11 +1849,9 @@ anims/ShowLeftPanels = SubResource( 41 )
 [connection signal="pressed" from="MicrobeHUD/BottomBar/PauseButtonMargin/Pause" to="MicrobeHUD" method="PauseButtonPressed"]
 [connection signal="pressed" from="MicrobeHUD/BottomBar/PauseButtonMargin/Resume" to="MicrobeHUD" method="PauseButtonPressed"]
 [connection signal="pressed" from="MicrobeHUD/BottomBar/CompoundsButton" to="MicrobeHUD" method="CompoundButtonPressed"]
-[connection signal="pressed" from="MicrobeHUD/BottomBar/QuestionMarkButton" to="MicrobeHUD" method="ToggleHelpScreen"]
+[connection signal="pressed" from="MicrobeHUD/BottomBar/QuestionMarkButton" to="MicrobeHUD" method="GoToHelpScreen"]
 [connection signal="pressed" from="MicrobeHUD/BottomBar/SuicideButton" to="MicrobeHUD" method="OnSuicide"]
 [connection signal="pressed" from="MicrobeHUD/BottomRight/EditorButton" to="MicrobeHUD" method="EditorButtonPressed"]
-[connection signal="pressed" from="MicrobeHUD/CanvasLayer/PauseMenu/CenterContainer/MicrobeStageMenu/Resume" to="MicrobeHUD" method="OpenMicrobeStageMenuPressed"]
-[connection signal="pressed" from="MicrobeHUD/CanvasLayer/PauseMenu/CenterContainer/MicrobeStageMenu/Help" to="MicrobeHUD" method="ToggleHelpScreen"]
-[connection signal="pressed" from="MicrobeHUD/CanvasLayer/PauseMenu/CenterContainer/MicrobeStageMenu/ReturnToMenu" to="MicrobeHUD" method="ReturnToMenuPressed"]
-[connection signal="pressed" from="MicrobeHUD/CanvasLayer/PauseMenu/CenterContainer/MicrobeStageMenu/Exit" to="MicrobeHUD" method="ExitPressed"]
-[connection signal="HelpScreenClosed" from="MicrobeHUD/CanvasLayer/HelpScreen" to="MicrobeHUD" method="ToggleHelpScreen"]
+[connection signal="MakeSave" from="MicrobeHUD/CanvasLayer/PauseMenu" to="." method="SaveGame"]
+[connection signal="OnClosed" from="MicrobeHUD/CanvasLayer/PauseMenu" to="MicrobeHUD" method="CloseMenu"]
+[connection signal="OnOpenWithKeyPress" from="MicrobeHUD/CanvasLayer/PauseMenu" to="MicrobeHUD" method="OpenMenu"]
