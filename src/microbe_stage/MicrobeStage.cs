@@ -344,11 +344,6 @@ public class MicrobeStage : Node, ILoadableGameState
         }
     }
 
-    public void ReturnToMenu()
-    {
-        SceneManager.Instance.ReturnToMenu();
-    }
-
     /// <summary>
     ///   Called when returning from the editor
     /// </summary>
@@ -433,6 +428,11 @@ public class MicrobeStage : Node, ILoadableGameState
     {
         Camera.SetBackground(SimulationParameters.Instance.GetBackground(
             GameWorld.Map.CurrentPatch.BiomeTemplate.Background));
+    }
+
+    private void SaveGame(string name)
+    {
+        SaveHelper.Save(name, this);
     }
 
     private void ApplyPropertiesFromSave(MicrobeStage savedMicrobeStage)

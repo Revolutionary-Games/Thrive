@@ -1,5 +1,6 @@
 using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using Godot;
 
@@ -11,52 +12,77 @@ public static class SaveHelper
     /// <summary>
     ///   Quick save from the microbe stage
     /// </summary>
-    /// <param name="stage">Data to include in save</param>
-    public static void QuickSave(MicrobeStage stage)
+    /// <param name="state">Data to include in save</param>
+    public static void QuickSave(MicrobeStage state)
     {
-        var stopwatch = Stopwatch.StartNew();
-        var save = CreateSaveObject(MainGameState.MicrobeStage, SaveInformation.SaveType.QuickSave);
-
-        save.SavedProperties = stage.CurrentGame;
-        save.MicrobeStage = stage;
-
-        PerformSave(save, SaveInformation.SaveType.QuickSave, stopwatch);
+        InternalSaveHelper(SaveInformation.SaveType.QuickSave, MainGameState.MicrobeStage, save =>
+        {
+            save.SavedProperties = state.CurrentGame;
+            save.MicrobeStage = state;
+        }, () => state);
     }
 
     /// <summary>
     ///   Quick save from the microbe editor
     /// </summary>
-    /// <param name="editor">Data to include in save</param>
-    public static void QuickSave(MicrobeEditor editor)
+    /// <param name="state">Data to include in save</param>
+    public static void QuickSave(MicrobeEditor state)
     {
-        var stopwatch = Stopwatch.StartNew();
-        var save = CreateSaveObject(MainGameState.MicrobeEditor, SaveInformation.SaveType.QuickSave);
+        InternalSaveHelper(SaveInformation.SaveType.QuickSave, MainGameState.MicrobeEditor, save =>
+        {
+            save.SavedProperties = state.CurrentGame;
+            save.MicrobeEditor = state;
+        }, () => state);
+    }
 
-        save.SavedProperties = editor.CurrentGame;
-        save.MicrobeEditor = editor;
+    /// <summary>
+    ///   A save (and not a quick save) that the user triggered
+    /// </summary>
+    /// <param name="name">Save name to use, or blank</param>
+    /// <param name="state">The current game state to make the save with</param>
+    public static void Save(string name, MicrobeStage state)
+    {
+        InternalSaveHelper(SaveInformation.SaveType.Manual, MainGameState.MicrobeStage, save =>
+        {
+            save.SavedProperties = state.CurrentGame;
+            save.MicrobeStage = state;
+        }, () => state, name);
+    }
 
-        PerformSave(save, SaveInformation.SaveType.QuickSave, stopwatch);
+    public static void Save(string name, MicrobeEditor state)
+    {
+        InternalSaveHelper(SaveInformation.SaveType.Manual, MainGameState.MicrobeEditor, save =>
+        {
+            save.SavedProperties = state.CurrentGame;
+            save.MicrobeEditor = state;
+        }, () => state, name);
     }
 
     /// <summary>
     ///   Auto save the game (if enabled in settings)
     /// </summary>
-    public static void AutoSave(MicrobeStage microbeStage)
+    public static void AutoSave(MicrobeStage state)
     {
         if (!Settings.Instance.AutoSaveEnabled)
             return;
 
-        // TODO: implement
-        _ = microbeStage;
+        InternalSaveHelper(SaveInformation.SaveType.AutoSave, MainGameState.MicrobeStage, save =>
+        {
+            save.SavedProperties = state.CurrentGame;
+            save.MicrobeStage = state;
+        }, () => state);
     }
 
-    public static void AutoSave(MicrobeEditor editor)
+    public static void AutoSave(MicrobeEditor state)
     {
         if (!Settings.Instance.AutoSaveEnabled)
             return;
 
-        // TODO: implement
-        _ = editor;
+        InternalSaveHelper(SaveInformation.SaveType.AutoSave, MainGameState.MicrobeEditor, save =>
+        {
+            save.SavedProperties = state.CurrentGame;
+            save.MicrobeEditor = state;
+        }, () => state);
     }
 
     /// <summary>
@@ -64,10 +90,16 @@ public static class SaveHelper
     /// </summary>
     public static void QuickLoad()
     {
-        // TODO: implement name detection
-        var name = "quick_save." + Constants.SAVE_EXTENSION;
+        // TODO: is there a way to to find the latest modified file without checking them all?
+        var save = SaveManager.CreateListOfSaves(SaveManager.SaveOrder.LastModifiedFirst).FirstOrDefault();
 
-        LoadSave(name);
+        if (save == null)
+        {
+            GD.Print("No saves exist, can't quick load");
+            return;
+        }
+
+        LoadSave(save);
     }
 
     /// <summary>
@@ -76,120 +108,59 @@ public static class SaveHelper
     /// <param name="name">The name of the save to load</param>
     public static void LoadSave(string name)
     {
-        // TODO: loading screen while loading save data
-
-        Save save;
-
-        var stopwatch = Stopwatch.StartNew();
-
-        // try
-        // {
-        save = Save.LoadFromFile(name);
-
-        // }
-        // catch (Exception e)
-        // {
-        //     DisplayLoadFailure("An exception happened while loading the save data", e.ToString(), stopwatch);
-        //     return;
-        // }
-
-        // Save data loaded, apply the save
-        ApplySave(save, stopwatch);
+        GD.Print("Starting load of save: ", name);
+        new InProgressLoad(name).Start();
     }
 
     /// <summary>
-    ///   Replaces the current state of the game with what the save has
+    ///   Deletes a save with the given name
     /// </summary>
-    /// <param name="save">The save to apply data from</param>
-    /// <param name="stopwatch">To track how long it took</param>
-    public static void ApplySave(Save save, Stopwatch stopwatch)
+    public static void DeleteSave(string saveName)
     {
-        PackedScene scene;
-
-        try
+        using (var directory = new Directory())
         {
-            scene = SceneManager.Instance.LoadScene(save.GameState);
+            directory.Remove(PathUtils.Join(Constants.SAVE_FOLDER, saveName));
         }
-        catch (ArgumentException)
-        {
-            DisplayLoadFailure("Save is invalid", "Save has an unknown game state", stopwatch);
-            return;
-        }
+    }
 
-        var targetState = (ILoadableGameState)scene.Instance();
+    private static void InternalSaveHelper(SaveInformation.SaveType type, MainGameState gameState,
+        Action<Save> copyInfoToSave, Func<Node> stateRoot, string saveName = null)
+    {
+        new InProgressSave(type, stateRoot, (data) =>
+                CreateSaveObject(gameState, data.Type),
+            (inProgress, save) =>
+            {
+                copyInfoToSave.Invoke(save);
 
-        FinishMovingToLoadedScene(targetState, save);
-        DisplaySaveStatusMessage(true, "Load finished", stopwatch);
+                PerformSave(inProgress, save);
+            }, saveName).Start();
     }
 
     private static Save CreateSaveObject(MainGameState gameState, SaveInformation.SaveType type)
     {
         return new Save
         {
-            GameState = gameState, Info = { Type = type },
+            GameState = gameState,
+            Info = { Type = type },
             Screenshot = ScreenShotTaker.Instance.TakeScreenshot(),
         };
     }
 
-    private static void PerformSave(Save save, SaveInformation.SaveType type, Stopwatch stopwatch)
+    private static void PerformSave(InProgressSave inProgress, Save save)
     {
-        // TODO: implement type naming
-        var name = "quick_save." + Constants.SAVE_EXTENSION;
-
-        save.Name = name;
-
         try
         {
             save.SaveToFile();
-            DisplaySaveStatusMessage(true, name, stopwatch);
+            inProgress.ReportStatus(true, "Saving succeeded");
         }
         catch (Exception e)
         {
-            DisplaySaveStatusMessage(false, "Error, an exception happened: " + e, stopwatch);
+            inProgress.ReportStatus(false, "Saving failed! An exception happened", e.ToString());
             return;
         }
 
-        if (type == SaveInformation.SaveType.QuickSave)
+        if (inProgress.Type == SaveInformation.SaveType.QuickSave)
             QueueRemoveExcessQuickSaves();
-    }
-
-    /// <summary>
-    ///   Shows a message to the player about a save
-    /// </summary>
-    /// <param name="success">True on success</param>
-    /// <param name="message">Failure reason, or the created save file</param>
-    /// <param name="stopwatch">Used to measure how long saving took</param>
-    /// <remarks>
-    ///   TODO: implement this
-    /// </remarks>
-    private static void DisplaySaveStatusMessage(bool success, string message, Stopwatch stopwatch)
-    {
-        stopwatch.Stop();
-        GD.Print("save/load finished, success: ", success, " message: ", message, " elapsed: ", stopwatch.Elapsed);
-    }
-
-    /// <summary>
-    ///   Displays a dismissible dialog saying that loading a save failed
-    /// </summary>
-    /// <param name="message">Message to show</param>
-    /// <param name="error">Error message to include</param>
-    /// <param name="stopwatch">Duration tracking</param>
-    private static void DisplayLoadFailure(string message, string error, Stopwatch stopwatch)
-    {
-        stopwatch.Stop();
-        GD.Print("loading FAILED, message: ", message, " elapsed: ", stopwatch.Elapsed);
-        GD.Print("error related to load fail: ", error);
-
-        // TODO: show the dialog
-    }
-
-    private static void FinishMovingToLoadedScene(ILoadableGameState newScene, Save save)
-    {
-        newScene.IsLoadedFromSave = true;
-
-        SceneManager.Instance.SwitchToScene(newScene.GameStateRoot);
-
-        newScene.OnFinishLoading(save);
     }
 
     /// <summary>

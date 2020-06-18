@@ -93,6 +93,22 @@ public class SceneManager : Node
         internalRootNode.RemoveChild(scene);
     }
 
+    /// <summary>
+    ///   Detaches the current scene without attaching a new one
+    /// </summary>
+    public void DetachCurrentScene()
+    {
+        var oldRoot = GetTree().CurrentScene;
+        GetTree().CurrentScene = null;
+
+        if (oldRoot != null)
+        {
+            internalRootNode.RemoveChild(oldRoot);
+        }
+
+        oldRoot?.QueueFree();
+    }
+
     public PackedScene LoadScene(MainGameState state)
     {
         switch (state)

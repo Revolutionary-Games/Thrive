@@ -292,6 +292,20 @@ public class MicrobeEditor : Node, ILoadableGameState
         OnEnterEditor();
     }
 
+    public override void _ExitTree()
+    {
+        // As we will no longer return to the microbe stage we need to free it, if we have it
+        // This might be disposed if this was loaded from a save and we loaded another save
+        try
+        {
+            ReturnToStage?.QueueFree();
+        }
+        catch (ObjectDisposedException)
+        {
+            GD.Print("Editor's return to stage is already disposed");
+        }
+    }
+
     /// <summary>
     ///   Sets up the editor when entering
     /// </summary>
@@ -351,7 +365,7 @@ public class MicrobeEditor : Node, ILoadableGameState
             NeedToRestoreStageFromSave = true;
 
             // We need to not let the objects be deleted before we apply them
-            TemporaryLoadedNodeDeleter.Instance.HoldDeletion = true;
+            TemporaryLoadedNodeDeleter.Instance.AddDeletionHold(Constants.DELETION_HOLD_MICROBE_EDITOR);
         }
 
         InitEditor();
@@ -436,28 +450,25 @@ public class MicrobeEditor : Node, ILoadableGameState
             CurrentGame.GameWorld.Map.CurrentPatch.AddSpecies(editedSpecies, 0);
         }
 
-        SceneManager.Instance.SwitchToScene(ReturnToStage);
+        var stage = ReturnToStage;
+
+        // This needs to be reset here to not free this when we exit the tree
+        ReturnToStage = null;
+
+        SceneManager.Instance.SwitchToScene(stage);
 
         // We need to finish loading the save after attaching the stage scene
         if (savedStageToApply != null)
         {
-            ReturnToStage.OnFinishLoading(savedStageToApply);
+            stage.OnFinishLoading(savedStageToApply);
             savedStageToApply = null;
             NeedToRestoreStageFromSave = false;
 
             // Resume deletion of save loaded objects now that we have used them finally
-            TemporaryLoadedNodeDeleter.Instance.HoldDeletion = false;
+            TemporaryLoadedNodeDeleter.Instance.RemoveDeletionHold(Constants.DELETION_HOLD_MICROBE_EDITOR);
         }
 
-        ReturnToStage.OnReturnFromEditor();
-    }
-
-    public void ReturnToMenu()
-    {
-        // As we will no longer return to the microbe stage we need to free it, if we have it
-        ReturnToStage?.QueueFree();
-
-        SceneManager.Instance.ReturnToMenu();
+        stage.OnReturnFromEditor();
     }
 
     public void StartMusic()
@@ -511,7 +522,7 @@ public class MicrobeEditor : Node, ILoadableGameState
         {
             if (!CurrentGame.GameWorld.IsAutoEvoFinished())
             {
-                gui.SetLoadingText("Loading Microbe Editor", "Waiting for auto-evo: " +
+                LoadingScreen.Instance.Show("Loading Microbe Editor", "Waiting for auto-evo: " +
                     CurrentGame.GameWorld.GetAutoEvoRun().Status);
                 return;
             }
@@ -901,8 +912,7 @@ public class MicrobeEditor : Node, ILoadableGameState
         if (!CurrentGame.GameWorld.IsAutoEvoFinished())
         {
             ready = false;
-            gui.SetLoadingStatus(true);
-            gui.SetLoadingText("Loading Microbe Editor", CurrentGame.GameWorld.GetAutoEvoRun().Status);
+            LoadingScreen.Instance.Show("Loading Microbe Editor", CurrentGame.GameWorld.GetAutoEvoRun().Status);
         }
         else
         {
@@ -1557,7 +1567,7 @@ public class MicrobeEditor : Node, ILoadableGameState
     private void OnEditorReady()
     {
         ready = true;
-        gui.SetLoadingStatus(false);
+        LoadingScreen.Instance.Hide();
 
         GD.Print("Elapsing time on editor entry");
 
@@ -1618,6 +1628,11 @@ public class MicrobeEditor : Node, ILoadableGameState
     private void UpdatePatchBackgroundImage()
     {
         camera.SetBackground(SimulationParameters.Instance.GetBackground(CurrentPatch.BiomeTemplate.Background));
+    }
+
+    private void SaveGame(string name)
+    {
+        SaveHelper.Save(name, this);
     }
 
     private void ApplyPropertiesFromSave(MicrobeEditor savedMicrobeEditor)

@@ -18,9 +18,9 @@ using System.Reflection;
 
 // NOTE: the version info is read by a regex in a script so don't add complicated thins to this file
 
-[assembly: AssemblyVersion("0.5.0.0")]
+[assembly: AssemblyVersion("0.5.1.0")]
 
-[assembly: AssemblyInformationalVersion("")]
+[assembly: AssemblyInformationalVersion("-alpha")]
 
 // The following attributes are used to specify the signing key for the assembly,
 // if desired. See the Mono documentation for more information about signing.

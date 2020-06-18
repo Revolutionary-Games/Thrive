@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 /// <summary>
@@ -83,7 +84,9 @@ public class Fade : CanvasLayer, ITransition
 
     public void OnFinished()
     {
+        // TODO: find a better solution
         EmitSignal(nameof(OnFinishedSignal));
+
         QueueFree();
     }
 }

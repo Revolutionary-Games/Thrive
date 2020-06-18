@@ -46,9 +46,6 @@ public class MicrobeHUD : Node
     public NodePath EditorButtonPath;
 
     [Export]
-    public NodePath HelpScreenPath;
-
-    [Export]
     public NodePath EnvironmentPanelPath;
 
     [Export]
@@ -177,7 +174,7 @@ public class MicrobeHUD : Node
     private TextureProgress phosphateReproductionBar;
 
     private VBoxContainer leftPanels;
-    private Control menu;
+    private PauseMenu menu;
     private TextureButton pauseButton;
     private TextureButton resumeButton;
     private Label atpLabel;
@@ -187,7 +184,6 @@ public class MicrobeHUD : Node
     private TextureButton editorButton;
     private Node extinctionBox;
     private Node winBox;
-    private HelpScreen helpScreen;
     private Tween panelsTween;
 
     private Godot.Collections.Array compoundBars;
@@ -250,13 +246,12 @@ public class MicrobeHUD : Node
 
         atpLabel = GetNode<Label>(AtpLabelPath);
         hpLabel = GetNode<Label>(HpLabelPath);
-        menu = GetNode<Control>(MenuPath);
+        menu = GetNode<PauseMenu>(MenuPath);
         animationPlayer = GetNode<AnimationPlayer>(AnimationPlayerPath);
         hoveredItems = GetNode<VBoxContainer>(HoveredItemsContainerPath);
         populationLabel = GetNode<Label>(PopulationLabelPath);
         patchLabel = GetNode<Label>(PatchLabelPath);
         editorButton = GetNode<TextureButton>(EditorButtonPath);
-        helpScreen = GetNode<HelpScreen>(HelpScreenPath);
 
         OnEnterStageTransition();
     }
@@ -288,17 +283,6 @@ public class MicrobeHUD : Node
         }
 
         UpdatePopulation();
-    }
-
-    public override void _Input(InputEvent @event)
-    {
-        if (@event.IsActionPressed("ui_cancel"))
-        {
-            OpenMicrobeStageMenuPressed();
-
-            if (helpScreen.Visible)
-                helpScreen.Hide();
-        }
     }
 
     public void Init(MicrobeStage stage)
@@ -490,25 +474,6 @@ public class MicrobeHUD : Node
         else
         {
             winBox.QueueFree();
-        }
-    }
-
-    public void ToggleHelpScreen()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        if (!helpScreen.Visible)
-        {
-            GetTree().Paused = true;
-
-            menu.Hide();
-            helpScreen.Show();
-            helpScreen.RandomizeEasterEgg();
-        }
-        else
-        {
-            helpScreen.Hide();
-            menu.Show();
         }
     }
 
@@ -792,20 +757,23 @@ public class MicrobeHUD : Node
     /// </summary>
     private void OpenMicrobeStageMenuPressed()
     {
-        if (menu.Visible)
-        {
-            menu.Hide();
-
-            if (!paused)
-                GetTree().Paused = false;
-        }
-        else
-        {
-            menu.Show();
-            GetTree().Paused = true;
-        }
-
         GUICommon.Instance.PlayButtonPressSound();
+
+        OpenMenu();
+    }
+
+    private void OpenMenu()
+    {
+        menu.Show();
+        GetTree().Paused = true;
+    }
+
+    private void CloseMenu()
+    {
+        menu.Hide();
+
+        if (!paused)
+            GetTree().Paused = false;
     }
 
     private void PauseButtonPressed()
@@ -849,26 +817,9 @@ public class MicrobeHUD : Node
         }
     }
 
-    private void ReturnToMenuPressed()
+    private void GoToHelpScreen()
     {
-        // Unpause the game as well as close the pause menu
-        OpenMicrobeStageMenuPressed();
-
-        if (GetTree().Paused)
-        {
-            PauseButtonPressed();
-        }
-
-        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.3f, false);
-        TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.ReturnToMenu));
-    }
-
-    /// <summary>
-    ///   Receiver for exiting game from microbe stage.
-    /// </summary>
-    private void ExitPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-        GetTree().Quit();
+        OpenMenu();
+        menu.ShowHelpScreen();
     }
 }
