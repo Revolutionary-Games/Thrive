@@ -42,6 +42,7 @@ public class TransitionManager : Node
     {
         if (@event.IsActionPressed("ui_cancel"))
         {
+            GetTree().SetInputAsHandled();
             CancelQueuedTransitions();
         }
     }
