@@ -61,8 +61,10 @@
     <Compile Include="src\engine\GodotFileStream.cs" />
     <Compile Include="src\engine\Invoke.cs" />
     <Compile Include="src\engine\LoadingScreen.cs" />
+    <Compile Include="src\engine\PostStartupActions.cs" />
     <Compile Include="src\engine\SceneManager.cs" />
     <Compile Include="src\engine\ScreenShotTaker.cs" />
+    <Compile Include="src\engine\StartupActions.cs" />
     <Compile Include="src\general\PathUtils.cs" />
     <Compile Include="src\general\EasterEggMessages.cs" />
     <Compile Include="src\general\HelpTexts.cs" />

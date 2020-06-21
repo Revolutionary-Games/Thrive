@@ -407,6 +407,8 @@ public static class Constants
 
     public const string SCREENSHOT_FOLDER = "user://screenshots";
 
+    public const string LOGS_FOLDER_NAME = "logs";
+
     /// <summary>
     ///   This is just here to make it easier to debug saves
     /// </summary>
