@@ -38,9 +38,11 @@ public class TransitionManager : Node
     /// </summary>
     public List<ITransition> TransitionSequence { get; private set; } = new List<ITransition>();
 
+    public bool HasQueuedTransitions => TransitionSequence.Count > 0;
+
     public override void _Input(InputEvent @event)
     {
-        if (@event.IsActionPressed("ui_cancel"))
+        if (@event.IsActionPressed("ui_cancel") && HasQueuedTransitions)
         {
             GetTree().SetInputAsHandled();
             CancelQueuedTransitions();
@@ -135,7 +137,7 @@ public class TransitionManager : Node
     /// </summary>
     private void CancelQueuedTransitions()
     {
-        if (TransitionSequence.Count == 0 || TransitionSequence == null)
+        if (!HasQueuedTransitions)
             return;
 
         var transitions = new List<ITransition>(TransitionSequence);
