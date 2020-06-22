@@ -82,6 +82,15 @@ public class OptionsMenu : Control
     [Export]
     public NodePath CheatsPath;
 
+    [Export]
+    public NodePath AutoSavePath;
+
+    [Export]
+    public NodePath MaxAutoSavesPath;
+
+    [Export]
+    public NodePath MaxQuickSavesPath;
+
     private const float AUDIO_BAR_SCALE = 6.0f;
 
     // Tab buttons
@@ -116,6 +125,9 @@ public class OptionsMenu : Control
     private CheckBox playIntro;
     private CheckBox playMicrobeIntro;
     private CheckBox cheats;
+    private CheckBox autosave;
+    private OptionButton maxAutosaves;
+    private OptionButton maxQuicksaves;
 
     [Signal]
     public delegate void OnOptionsClosed();
@@ -162,6 +174,9 @@ public class OptionsMenu : Control
         playIntro = GetNode<CheckBox>(PlayIntroPath);
         playMicrobeIntro = GetNode<CheckBox>(PlayMicrobeIntroPath);
         cheats = GetNode<CheckBox>(CheatsPath);
+        autosave = GetNode<CheckBox>(AutoSavePath);
+        maxAutosaves = GetNode<OptionButton>(MaxAutoSavesPath);
+        maxQuicksaves = GetNode<OptionButton>(MaxQuickSavesPath);
     }
 
     public override void _Process(float delta)
@@ -195,6 +210,9 @@ public class OptionsMenu : Control
         playIntro.Pressed = settings.PlayIntroVideo;
         playMicrobeIntro.Pressed = settings.PlayMicrobeIntroVideo;
         cheats.Pressed = settings.CheatsEnabled;
+        autosave.Pressed = settings.AutoSaveEnabled;
+        maxAutosaves.Selected = MaxSavesAmountToIndex(settings.MaxAutoSaves);
+        maxQuicksaves.Selected = MaxSavesAmountToIndex(settings.MaxQuickSaves);
     }
 
     private void SetSettingsTab(string tab)
@@ -373,6 +391,25 @@ public class OptionsMenu : Control
         }
     }
 
+    private int MaxSavesAmountToIndex(int amount)
+    {
+        if (amount < 0)
+        {
+            return 0;
+        }
+        else if (amount > 5)
+        {
+            return 4;
+        }
+
+        return amount - 1;
+    }
+
+    private int MaxSavesIndexToAmount(int index)
+    {
+        return index + 1;
+    }
+
     /*
       GUI callbacks
     */
@@ -476,5 +513,20 @@ public class OptionsMenu : Control
     private void OnChromaticAberrationValueChanged(float amount)
     {
         Settings.ChromaticAmount = amount;
+    }
+
+    private void OnAutoSaveToggled(bool pressed)
+    {
+        Settings.AutoSaveEnabled = pressed;
+    }
+
+    private void OnMaxAutoSavesSelected(int index)
+    {
+        Settings.MaxAutoSaves = MaxSavesIndexToAmount(index);
+    }
+
+    private void OnMaxQuickSavesSelected(int index)
+    {
+        Settings.MaxQuickSaves = MaxSavesIndexToAmount(index);
     }
 }
