@@ -126,8 +126,8 @@ public class OptionsMenu : Control
     private CheckBox playMicrobeIntro;
     private CheckBox cheats;
     private CheckBox autosave;
-    private OptionButton maxAutosaves;
-    private OptionButton maxQuicksaves;
+    private SpinBox maxAutosaves;
+    private SpinBox maxQuicksaves;
 
     [Signal]
     public delegate void OnOptionsClosed();
@@ -175,8 +175,8 @@ public class OptionsMenu : Control
         playMicrobeIntro = GetNode<CheckBox>(PlayMicrobeIntroPath);
         cheats = GetNode<CheckBox>(CheatsPath);
         autosave = GetNode<CheckBox>(AutoSavePath);
-        maxAutosaves = GetNode<OptionButton>(MaxAutoSavesPath);
-        maxQuicksaves = GetNode<OptionButton>(MaxQuickSavesPath);
+        maxAutosaves = GetNode<SpinBox>(MaxAutoSavesPath);
+        maxQuicksaves = GetNode<SpinBox>(MaxQuickSavesPath);
     }
 
     public override void _Process(float delta)
@@ -211,8 +211,9 @@ public class OptionsMenu : Control
         playMicrobeIntro.Pressed = settings.PlayMicrobeIntroVideo;
         cheats.Pressed = settings.CheatsEnabled;
         autosave.Pressed = settings.AutoSaveEnabled;
-        maxAutosaves.Selected = MaxSavesAmountToIndex(settings.MaxAutoSaves);
-        maxQuicksaves.Selected = MaxSavesAmountToIndex(settings.MaxQuickSaves);
+        maxAutosaves.Value = settings.MaxAutoSaves;
+        maxAutosaves.Editable = settings.AutoSaveEnabled;
+        maxQuicksaves.Value = settings.MaxQuickSaves;
     }
 
     private void SetSettingsTab(string tab)
@@ -391,25 +392,6 @@ public class OptionsMenu : Control
         }
     }
 
-    private int MaxSavesAmountToIndex(int amount)
-    {
-        if (amount < 0)
-        {
-            return 0;
-        }
-        else if (amount > 5)
-        {
-            return 4;
-        }
-
-        return amount - 1;
-    }
-
-    private int MaxSavesIndexToAmount(int index)
-    {
-        return index + 1;
-    }
-
     /*
       GUI callbacks
     */
@@ -518,15 +500,16 @@ public class OptionsMenu : Control
     private void OnAutoSaveToggled(bool pressed)
     {
         Settings.AutoSaveEnabled = pressed;
+        maxAutosaves.Editable = pressed;
     }
 
-    private void OnMaxAutoSavesSelected(int index)
+    private void OnMaxAutoSavesValueChanged(float value)
     {
-        Settings.MaxAutoSaves = MaxSavesIndexToAmount(index);
+        Settings.MaxAutoSaves = (int)value;
     }
 
-    private void OnMaxQuickSavesSelected(int index)
+    private void OnMaxQuickValueChanged(float value)
     {
-        Settings.MaxQuickSaves = MaxSavesIndexToAmount(index);
+        Settings.MaxQuickSaves = (int)value;
     }
 }
