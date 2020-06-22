@@ -508,7 +508,7 @@ public class OptionsMenu : Control
         Settings.MaxAutoSaves = (int)value;
     }
 
-    private void OnMaxQuickValueChanged(float value)
+    private void OnMaxQuickSavesValueChanged(float value)
     {
         Settings.MaxQuickSaves = (int)value;
     }
