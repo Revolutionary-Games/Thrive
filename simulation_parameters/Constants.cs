@@ -398,11 +398,16 @@ public static class Constants
     /// </summary>
     public const string AI_TAG_CHUNK = "chunk";
 
+    public const string DELETION_HOLD_LOAD = "load";
+    public const string DELETION_HOLD_MICROBE_EDITOR = "microbe_editor";
+
     public const string CONFIGURATION_FILE = "user://thrive_settings.json";
 
     public const string SAVE_FOLDER = "user://saves";
 
     public const string SCREENSHOT_FOLDER = "user://screenshots";
+
+    public const string LOGS_FOLDER_NAME = "logs";
 
     /// <summary>
     ///   This is just here to make it easier to debug saves
@@ -410,6 +415,12 @@ public static class Constants
     public const Formatting SAVE_FORMATTING = Formatting.None;
 
     public const string SAVE_EXTENSION = "thrivesave";
+    public const string SAVE_EXTENSION_WITH_DOT = "." + SAVE_EXTENSION;
+
+    public const int SAVE_LIST_SCREENSHOT_HEIGHT = 720;
+
+    public const int KIBIBYTE = 1024;
+    public const int MEBIBYTE = 1024 * KIBIBYTE;
 
     public static string Version
     {

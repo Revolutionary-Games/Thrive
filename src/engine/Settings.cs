@@ -76,6 +76,16 @@ public class Settings
     public bool AutoSaveEnabled { get; set; } = true;
 
     /// <summary>
+    ///   Number of quick saves to keep
+    /// </summary>
+    public int MaxQuickSaves { get; set; } = 5;
+
+    /// <summary>
+    ///   Number of auto saves to keep
+    /// </summary>
+    public int MaxAutoSaves { get; set; } = 5;
+
+    /// <summary>
     ///   This can be freely adjusted to adjust the performance The
     ///   higher this value is the smaller the size of the simulated
     ///   cloud is and the performance is better.
@@ -179,7 +189,7 @@ public class Settings
     public void ApplyGraphicsSettings()
     {
         GUICommon.Instance.GetTree().Root.GetViewport().Msaa = MSAAResolution;
-        ScreenFilter.Instance.SetColourblindSetting(ColourblindSetting);
+        ColourblindScreenFilter.Instance.SetColourblindSetting(ColourblindSetting);
     }
 
     /// <summary>

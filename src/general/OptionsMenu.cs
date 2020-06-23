@@ -82,6 +82,15 @@ public class OptionsMenu : Control
     [Export]
     public NodePath CheatsPath;
 
+    [Export]
+    public NodePath AutoSavePath;
+
+    [Export]
+    public NodePath MaxAutoSavesPath;
+
+    [Export]
+    public NodePath MaxQuickSavesPath;
+
     private const float AUDIO_BAR_SCALE = 6.0f;
 
     // Tab buttons
@@ -116,6 +125,9 @@ public class OptionsMenu : Control
     private CheckBox playIntro;
     private CheckBox playMicrobeIntro;
     private CheckBox cheats;
+    private CheckBox autosave;
+    private SpinBox maxAutosaves;
+    private SpinBox maxQuicksaves;
 
     [Signal]
     public delegate void OnOptionsClosed();
@@ -162,6 +174,9 @@ public class OptionsMenu : Control
         playIntro = GetNode<CheckBox>(PlayIntroPath);
         playMicrobeIntro = GetNode<CheckBox>(PlayMicrobeIntroPath);
         cheats = GetNode<CheckBox>(CheatsPath);
+        autosave = GetNode<CheckBox>(AutoSavePath);
+        maxAutosaves = GetNode<SpinBox>(MaxAutoSavesPath);
+        maxQuicksaves = GetNode<SpinBox>(MaxQuickSavesPath);
     }
 
     public override void _Process(float delta)
@@ -195,6 +210,10 @@ public class OptionsMenu : Control
         playIntro.Pressed = settings.PlayIntroVideo;
         playMicrobeIntro.Pressed = settings.PlayMicrobeIntroVideo;
         cheats.Pressed = settings.CheatsEnabled;
+        autosave.Pressed = settings.AutoSaveEnabled;
+        maxAutosaves.Value = settings.MaxAutoSaves;
+        maxAutosaves.Editable = settings.AutoSaveEnabled;
+        maxQuicksaves.Value = settings.MaxQuickSaves;
     }
 
     private void SetSettingsTab(string tab)
@@ -476,5 +495,21 @@ public class OptionsMenu : Control
     private void OnChromaticAberrationValueChanged(float amount)
     {
         Settings.ChromaticAmount = amount;
+    }
+
+    private void OnAutoSaveToggled(bool pressed)
+    {
+        Settings.AutoSaveEnabled = pressed;
+        maxAutosaves.Editable = pressed;
+    }
+
+    private void OnMaxAutoSavesValueChanged(float value)
+    {
+        Settings.MaxAutoSaves = (int)value;
+    }
+
+    private void OnMaxQuickSavesValueChanged(float value)
+    {
+        Settings.MaxQuickSaves = (int)value;
     }
 }

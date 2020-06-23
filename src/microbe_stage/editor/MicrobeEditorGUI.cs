@@ -182,9 +182,6 @@ public class MicrobeEditorGUI : Node
     public NodePath RigiditySliderTooltipSpeedLabelPath;
 
     [Export]
-    public NodePath HelpScreenPath;
-
-    [Export]
     public NodePath SymmetryIconPath;
 
     [Export]
@@ -215,7 +212,6 @@ public class MicrobeEditorGUI : Node
     private readonly Compound sunlight = SimulationParameters.Instance.GetCompound("sunlight");
 
     private MicrobeEditor editor;
-    private LoadingScreen loadingScreen;
 
     private Godot.Collections.Array organelleSelectionElements;
     private Godot.Collections.Array membraneSelectionElements;
@@ -277,7 +273,6 @@ public class MicrobeEditorGUI : Node
     private TextureRect patchAmmoniaSituation;
     private TextureRect patchPhosphateSituation;
     private Slider rigiditySlider;
-    private HelpScreen helpScreen;
 
     private bool inEditorTab = false;
     private MicrobeEditor.MicrobeSymmetry symmetry = MicrobeEditor.MicrobeSymmetry.None;
@@ -302,8 +297,6 @@ public class MicrobeEditorGUI : Node
         organelleSelectionElements = GetTree().GetNodesInGroup("OrganelleSelectionElement");
         membraneSelectionElements = GetTree().GetNodesInGroup("MembraneSelectionElement");
         itemTooltipElements = GetTree().GetNodesInGroup("ItemTooltip");
-
-        loadingScreen = GetNode<LoadingScreen>("LoadingScreen");
 
         menu = GetNode<Control>(MenuPath);
         sizeLabel = GetNode<Label>(SizeLabelPath);
@@ -361,24 +354,12 @@ public class MicrobeEditorGUI : Node
         patchAmmoniaSituation = GetNode<TextureRect>(PatchAmmoniaSituationPath);
         patchPhosphateSituation = GetNode<TextureRect>(PatchPhosphateSituationPath);
         rigiditySlider = GetNode<Slider>(RigiditySliderPath);
-        helpScreen = GetNode<HelpScreen>(HelpScreenPath);
 
         mapDrawer.OnSelectedPatchChanged = (drawer) => { UpdateShownPatchDetails(); };
 
         // Fade out for that smooth satisfying transition
         TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeOut, 0.5f);
         TransitionManager.Instance.StartTransitions(null, string.Empty);
-    }
-
-    public override void _Input(InputEvent @event)
-    {
-        if (@event.IsActionPressed("ui_cancel"))
-        {
-            MenuButtonPressed();
-
-            if (helpScreen.Visible)
-                helpScreen.Hide();
-        }
     }
 
     public void Init(MicrobeEditor editor)
@@ -525,17 +506,6 @@ public class MicrobeEditorGUI : Node
         }
     }
 
-    public void SetLoadingStatus(bool loading)
-    {
-        loadingScreen.Visible = loading;
-    }
-
-    public void SetLoadingText(string status, string description = "")
-    {
-        loadingScreen.LoadingMessage = status;
-        loadingScreen.LoadingDescription = description;
-    }
-
     public void UpdateAutoEvoResults(string results, string external)
     {
         autoEvoLabel.Text = results;
@@ -607,23 +577,6 @@ public class MicrobeEditorGUI : Node
         GUICommon.Instance.PlayButtonPressSound();
 
         editor.CreateNewMicrobe();
-    }
-
-    internal void ToggleHelpScreen()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        if (!helpScreen.Visible)
-        {
-            menu.Hide();
-            helpScreen.Show();
-            helpScreen.RandomizeEasterEgg();
-        }
-        else
-        {
-            helpScreen.Hide();
-            menu.Show();
-        }
     }
 
     /// <summary>
@@ -1010,28 +963,21 @@ public class MicrobeEditorGUI : Node
 
     private void MenuButtonPressed()
     {
-        if (menu.Visible)
-        {
-            menu.Hide();
-            GetTree().Paused = false;
-        }
-        else
-        {
-            menu.Show();
-            GetTree().Paused = true;
-        }
-
         GUICommon.Instance.PlayButtonPressSound();
+
+        OpenMenu();
     }
 
-    private void ReturnToMenuPressed()
+    private void OpenMenu()
     {
-        // Unpause the game as well as close the pause menu
-        MenuButtonPressed();
-        GetTree().Paused = false;
+        menu.Show();
+        GetTree().Paused = true;
+    }
 
-        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.3f, false);
-        TransitionManager.Instance.StartTransitions(editor, nameof(MicrobeEditor.ReturnToMenu));
+    private void CloseMenu()
+    {
+        menu.Hide();
+        GetTree().Paused = false;
     }
 
     private void ExitPressed()
