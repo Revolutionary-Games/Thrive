@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://assets/textures/gui/menu_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/saving/SaveStatusOverlay.cs" type="Script" id=2]
 
 [node name="SaveStatusOverlay" type="Control"]
