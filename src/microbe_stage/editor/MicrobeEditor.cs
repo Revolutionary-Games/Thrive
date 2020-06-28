@@ -1302,7 +1302,7 @@ public class MicrobeEditor : Node, ILoadableGameState
     private bool IsValidPlacement(OrganelleTemplate organelle)
     {
         bool notPlacingCytoplasm = organelle.Definition.InternalName != "cytoplasm";
-        return editedMicrobeOrganelles.CanPlaceAndIsTouching(organelle, notPlacingCytoplasm);
+        return editedMicrobeOrganelles.CanPlaceAndIsTouchingOrReplacingLast(organelle, notPlacingCytoplasm);
     }
 
     private OrganelleDefinition GetOrganelleDefinition(string name)
@@ -1395,7 +1395,6 @@ public class MicrobeEditor : Node, ILoadableGameState
             return;
 
         // Dont allow deletion of nucleus or the last organelle
-        // TODO: allow deleting the last cytoplasm if an organelle is about to be placed
         if (organelleHere.Definition.InternalName == "nucleus" || MicrobeSize < 2)
             return;
 
