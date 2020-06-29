@@ -74,33 +74,41 @@ public class OrganelleLayout<T> : ICollection<T>
     ///   Returns true if CanPlace would return true and an existing
     ///   hex touches one of the new hexes, or is the last hex and replaced.
     /// </summary>
-    public bool CanPlaceAndIsTouchingOrReplacingLast(T organelle, bool allowCytoplasmOverlap = false)
+    public bool CanPlaceAndIsTouching(
+        T organelle,
+        bool allowCytoplasmOverlap = false,
+        bool allowReplacingLastCytoplasm = false
+    )
     {
         if (!CanPlace(organelle, allowCytoplasmOverlap))
             return false;
 
-        return IsTouchingExistingHexOrReplacingLast(organelle);
+        return IsTouchingExistingHex(organelle) || (allowReplacingLastCytoplasm && IsReplacingLast(organelle));
     }
 
     /// <summary>
     ///   Returns true if the specified organelle is touching an already added hex
     ///   or replacing the last one.
     /// </summary>
-    public bool IsTouchingExistingHexOrReplacingLast(T organelle)
+    public bool IsTouchingExistingHex(T organelle)
     {
         foreach (var hex in organelle.Definition.GetRotatedHexes(organelle.Orientation))
         {
             if (CheckIfAHexIsNextTo(hex + organelle.Position))
-                return true;
-
-            // Allow deleting the last cytoplasm if an organelle is about to be placed
-            if (Count == 1 && (GetOrganelleAt(hex + organelle.Position) != null))
                 return true;
         }
 
         return false;
     }
 
+    public bool IsReplacingLast(T organelle)
+    {
+        // Allow deleting the last cytoplasm if an organelle is about to be placed
+        if (Count == 1 && (GetOrganelleAt(organelle.Position) != null))
+            return true;
+
+        return false;
+    }
     /// <summary>
     ///   Returns true if there is some placed organelle that has a
     ///   hex next to the specified location.

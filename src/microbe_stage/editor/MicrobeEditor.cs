@@ -1302,7 +1302,12 @@ public class MicrobeEditor : Node, ILoadableGameState
     private bool IsValidPlacement(OrganelleTemplate organelle)
     {
         bool notPlacingCytoplasm = organelle.Definition.InternalName != "cytoplasm";
-        return editedMicrobeOrganelles.CanPlaceAndIsTouchingOrReplacingLast(organelle, notPlacingCytoplasm);
+        bool allowReplacingLastCytoplasm = true;
+        return editedMicrobeOrganelles.CanPlaceAndIsTouching(
+            organelle,
+            notPlacingCytoplasm,
+            allowReplacingLastCytoplasm
+        );
     }
 
     private OrganelleDefinition GetOrganelleDefinition(string name)
