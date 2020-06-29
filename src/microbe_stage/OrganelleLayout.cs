@@ -77,8 +77,7 @@ public class OrganelleLayout<T> : ICollection<T>
     public bool CanPlaceAndIsTouching(
         T organelle,
         bool allowCytoplasmOverlap = false,
-        bool allowReplacingLastCytoplasm = false
-    )
+        bool allowReplacingLastCytoplasm = false)
     {
         if (!CanPlace(organelle, allowCytoplasmOverlap))
             return false;

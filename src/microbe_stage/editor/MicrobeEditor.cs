@@ -1304,13 +1304,12 @@ public class MicrobeEditor : Node, ILoadableGameState
         bool notPlacingCytoplasm = organelle.Definition.InternalName != "cytoplasm";
 
         // Allow deleting the last cytoplasm if an organelle is about to be placed
-        bool allowReplacingLastCytoplasm = true;
+        bool allowReplacingLast = true;
 
         return editedMicrobeOrganelles.CanPlaceAndIsTouching(
             organelle,
             notPlacingCytoplasm,
-            allowReplacingLastCytoplasm
-        );
+            allowReplacingLast);
     }
 
     private OrganelleDefinition GetOrganelleDefinition(string name)
