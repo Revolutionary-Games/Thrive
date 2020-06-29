@@ -72,7 +72,7 @@ public class OrganelleLayout<T> : ICollection<T>
 
     /// <summary>
     ///   Returns true if CanPlace would return true and an existing
-    ///   hex touches one of the new hexes, or is the last hex and replaced.
+    ///   hex touches one of the new hexes, or is the last hex and can be replaced.
     /// </summary>
     public bool CanPlaceAndIsTouching(
         T organelle,
@@ -88,7 +88,6 @@ public class OrganelleLayout<T> : ICollection<T>
 
     /// <summary>
     ///   Returns true if the specified organelle is touching an already added hex
-    ///   or replacing the last one.
     /// </summary>
     public bool IsTouchingExistingHex(T organelle)
     {
@@ -101,14 +100,17 @@ public class OrganelleLayout<T> : ICollection<T>
         return false;
     }
 
+    /// <summary>
+    ///     Returns true if the specified organelle is replacing the last hex.
+    /// </summary>
     public bool IsReplacingLast(T organelle)
     {
-        // Allow deleting the last cytoplasm if an organelle is about to be placed
         if (Count == 1 && (GetOrganelleAt(organelle.Position) != null))
             return true;
 
         return false;
     }
+
     /// <summary>
     ///   Returns true if there is some placed organelle that has a
     ///   hex next to the specified location.
