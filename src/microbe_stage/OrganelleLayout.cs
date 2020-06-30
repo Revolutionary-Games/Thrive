@@ -100,11 +100,14 @@ public class OrganelleLayout<T> : ICollection<T>
     }
 
     /// <summary>
-    ///     Returns true if the specified organelle is replacing the last hex.
+    ///   Returns true if the specified organelle is replacing the last hex of cytoplasm.
     /// </summary>
     public bool IsReplacingLast(T organelle)
     {
-        if (Count == 1 && (GetOrganelleAt(organelle.Position) != null))
+        var replacedOrganelle = GetOrganelleAt(organelle.Position);
+        if (Count == 1 &&
+            (replacedOrganelle != null) &&
+            (replacedOrganelle.Definition.InternalName == "cytoplasm"))
             return true;
 
         return false;
