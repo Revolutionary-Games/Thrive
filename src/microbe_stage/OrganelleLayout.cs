@@ -105,9 +105,10 @@ public class OrganelleLayout<T> : ICollection<T>
     public bool IsReplacingLast(T organelle)
     {
         var replacedOrganelle = GetOrganelleAt(organelle.Position);
-        if (Count == 1 &&
-            (replacedOrganelle != null) &&
-            (replacedOrganelle.Definition.InternalName == "cytoplasm"))
+        if (Count != 1)
+            return false;
+
+        if ((replacedOrganelle != null) && (replacedOrganelle.Definition.InternalName == "cytoplasm"))
             return true;
 
         return false;
