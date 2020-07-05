@@ -7,6 +7,7 @@ require 'optparse'
 require 'sha3'
 require 'os'
 require 'zlib'
+require 'json'
 
 require_relative 'bootstrap_rubysetupsystem'
 require_relative 'RubySetupSystem/RubyCommon'
@@ -189,6 +190,11 @@ def devbuild_package(target, target_name, target_folder, target_file)
 
   # And move it to the devbuilds folder for the upload script
   FileUtils.mv final_file, DEVBUILDS_FOLDER
+
+  # Write meta file needed for upload
+  File.write(File.join(DEVBUILDS_FOLDER, File.basename(final_file) + '.meta.json'),
+             { dehydrated: { objects: normal_cache.hashes } }.to_json)
+
   message = "Created devbuild: #{File.join(DEVBUILDS_FOLDER, final_file)}"
   puts message
   @reprint_messages.append '', message

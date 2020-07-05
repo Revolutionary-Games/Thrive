@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'json'
+require 'set'
 
 # Commmon dehydrate helpers
 DEHYDRATE_CACHE = 'builds/dehydrate_cache'
@@ -66,6 +67,18 @@ class DehydrateCache
       type: 'pck',
       data: pck_cache
     }
+  end
+
+  # Returns all object hashes in this cache
+  def hashes
+    result = Set.new
+
+    @data.each do |_, obj|
+      result.add obj[:sha3] if obj[:sha3]
+      result.merge obj[:data].hashes if obj[:data]
+    end
+
+    result.to_a
   end
 
   def process_path(path)
