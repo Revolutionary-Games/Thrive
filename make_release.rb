@@ -11,16 +11,14 @@ require 'zlib'
 require_relative 'bootstrap_rubysetupsystem'
 require_relative 'RubySetupSystem/RubyCommon'
 
+require_relative 'scripts/dehydrate'
+
 FileUtils.mkdir_p 'builds'
 
 ALL_TARGETS = ['Linux/X11', 'Windows Desktop', 'Windows Desktop (32-bit)', 'Mac OSX'].freeze
 DEVBUILD_TARGETS = ['Linux/X11', 'Windows Desktop'].freeze
 BASE_BUILDS_FOLDER = File.realpath 'builds'
 THRIVE_VERSION_FILE = 'Properties/AssemblyInfo.cs'
-DEHYDRATE_CACHE = 'builds/dehydrate_cache'
-DEVBUILDS_FOLDER = 'builds/devbuilds'
-
-DEHYDRATE_FILE_SIZE_THRESSHOLD = 100_000
 
 LICENSE_FILES = [
   ['LICENSE.txt', 'LICENSE.txt'],
@@ -95,18 +93,6 @@ def find_thrive_version
   "#{version}#{additional_version}"
 end
 
-def git_commit
-  `git rev-parse --verify HEAD`.strip
-end
-
-def pck_tool
-  if OS.windows?
-    'godotpcktool.exe'
-  else
-    'godotpcktool'
-  end
-end
-
 THRIVE_VERSION = !@options[:dehydrate] ? find_thrive_version : git_commit
 
 def target_mac?(target)
@@ -144,35 +130,6 @@ def gzip_to_target(source, target)
   end
 end
 
-# Dehydrates a file by moving it to the dehydrate cache if needed
-def dehydrate_file(file)
-  # TODO: remove
-  puts "Dehydrating: #{file}"
-
-  hash = SHA3::Digest::SHA256.file(file).hexdigest
-
-  target = File.join DEHYDRATE_CACHE, "#{hash}.gz"
-
-  # Only copy to the dehydrate cache if hash doesn't exist
-  unless File.exist? target
-    puts "Copying #{file} (#{hash}) to dehydrate cache"
-    gzip_to_target file, target
-  end
-
-  # TODO: make a json dehydrated cache
-
-  FileUtils.rm file
-end
-
-# Checks if a file needs to be dehydrated
-def check_dehydrate_file(file)
-  return if file =~ /.+\.pck$/
-
-  return if File.size(file) < DEHYDRATE_FILE_SIZE_THRESSHOLD
-
-  dehydrate_file file
-end
-
 def devbuild_package(target, target_name, target_folder, target_file)
   puts "Performing devbuild package on: #{target_folder}"
 
@@ -184,8 +141,10 @@ def devbuild_package(target, target_name, target_folder, target_file)
 
   FileUtils.mkdir_p extract_folder
 
+  pck = File.join(target_folder, 'Thrive.pck')
+
   # Start by extracting the big files to be dehydrated
-  if runSystemSafe(pck_tool, '--action', 'extract', File.join(target_folder, 'Thrive.pck'),
+  if runSystemSafe(pck_tool, '--action', 'extract', pck,
                    '-o', extract_folder, '--min-size-filter',
                    DEHYDRATE_FILE_SIZE_THRESSHOLD.to_s) != 0
     onError 'Failed to run extract. Do you have the right godotpcktool version?'
@@ -197,24 +156,33 @@ def devbuild_package(target, target_name, target_folder, target_file)
     onError 'Failed to run repack'
   end
 
+  pck_cache = DehydrateCache.new extract_folder
+
   # Dehydrate always all the unextracted files
   Dir.glob(File.join(extract_folder, '**/*'), File::FNM_DOTMATCH) do |file|
     raise "found file doesn't exist" unless File.exist? file
     next if File.directory? file
 
-    dehydrate_file file
+    dehydrate_file file, pck_cache
   end
 
   # No longer need the temp files
   FileUtils.rm_rf extract_folder, secure: true
+
+  normal_cache = DehydrateCache.new target_folder
 
   # Dehydrate other files
   Dir.glob(File.join(target_folder, '**/*'), File::FNM_DOTMATCH) do |file|
     raise "found file doesn't exist" unless File.exist? file
     next if File.directory? file
 
-    check_dehydrate_file file
+    check_dehydrate_file file, normal_cache
   end
+
+  normal_cache.add_pck pck, pck_cache
+
+  # Write the cache
+  File.write(File.join(target_folder, 'dehydrated.json'), normal_cache.to_json)
 
   # Then do a normal zip after the contents have been adjusted
   final_file = zip_package target, target_name, target_folder, target_file
