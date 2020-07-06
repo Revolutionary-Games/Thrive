@@ -59,22 +59,11 @@ public class ProcessSystem
 
         var enumerated = organelles.ToList();
 
-        // Compute all process efficiencies once
-        var efficiencies = ComputeOrganelleProcessEfficiencies(enumerated, biome);
-
         foreach (var organelle in enumerated)
         {
             foreach (var process in organelle.RunnableProcesses)
             {
                 var processData = CalculateProcessMaximumSpeed(process, biome);
-
-                // Find process inputs and outputs that use/produce ATP
-                // and that are performed by this organelle
-                // and add to totals
-                if (!organelle.Processes.ContainsKey(processData.Process.InternalName))
-                {
-                    continue;
-                }
 
                 if (processData.OtherInputs.ContainsKey(ATP))
                 {
