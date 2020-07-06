@@ -7,40 +7,30 @@ require 'sha3'
 
 require_relative 'bootstrap_rubysetupsystem'
 require_relative 'RubySetupSystem/RubyCommon'
+require_relative 'scripts/uploader'
+require_relative 'scripts/dehydrate'
 
 @options = {
-  custom_targets: false,
-  targets: ALL_TARGETS,
-  retries: 2,
-  zip: true
+  parallel_upload: DEFAULT_PARALLEL_UPLOADS,
+  url: DEVCENTER_URL,
+  retries: 3
 }
 
 OptionParser.new do |opts|
   opts.banner = "Usage: #{$PROGRAM_NAME} [options]"
 
-  opts.on('-t', '--targets target1,target2', Array,
-          'Export targets to use. Default is all') do |targets|
-    @options[:custom_targets] = true
-    @options[:targets] = targets
-  end
   opts.on('-r', '--retries count', Integer,
-          'How many export retries to do to avoid spurious failures') do |r|
+          'How many upload export retries to do to avoid spurious failures') do |r|
     @options[:retries] = r
   end
-  opts.on('-z', '--[no-]zip', 'Disables packaging the exported game') do |b|
-    @options[:zip] = b
+  opts.on('--url devcenterurl', 'Custom URL to upload to') do |url|
+    @options[:url] = url
   end
-  opts.on('-d', '--[no-]dehydrated', 'Makes dehydrated devbuilds') do |b|
-    @options[:dehydrate] = b
-    @options[:zip] = !b
+  opts.on('-j', '--parallel count', 'How many parallel uploads to do') do |p|
+    @options[:parallel_upload] = p
   end
 end.parse!
 
 onError "Unhandled parameters: #{ARGV}" unless ARGV.empty?
 
-def git_branch
-  `git rev-parse --symbolic-full-name --abbrev-ref HEAD`.strip
-end
-
-puts 'TODO: implement'
-exit 1
+DevBuildUploader.new(DEVBUILDS_FOLDER, DEHYDRATE_CACHE, @options).run

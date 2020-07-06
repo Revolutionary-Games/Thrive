@@ -193,7 +193,10 @@ def devbuild_package(target, target_name, target_folder, target_file)
 
   # Write meta file needed for upload
   File.write(File.join(DEVBUILDS_FOLDER, File.basename(final_file) + '.meta.json'),
-             { dehydrated: { objects: normal_cache.hashes } }.to_json)
+             { dehydrated: { objects: normal_cache.hashes },
+               branch: git_branch,
+               platform: target,
+               version: THRIVE_VERSION }.to_json)
 
   message = "Created devbuild: #{File.join(DEVBUILDS_FOLDER, final_file)}"
   puts message

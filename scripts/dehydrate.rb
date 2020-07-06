@@ -13,6 +13,10 @@ def git_commit
   `git rev-parse --verify HEAD`.strip
 end
 
+def git_branch
+  `git rev-parse --symbolic-full-name --abbrev-ref HEAD`.strip
+end
+
 def pck_tool
   if OS.windows?
     'godotpcktool.exe'
