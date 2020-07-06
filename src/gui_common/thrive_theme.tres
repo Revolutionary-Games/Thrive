@@ -115,6 +115,8 @@ size = 22
 font_data = ExtResource( 1 )
 
 [sub_resource type="StyleBoxFlat" id=32]
+content_margin_left = 13.0
+content_margin_top = 2.0
 bg_color = Color( 0.054902, 0.145098, 0.168627, 0.784314 )
 border_width_left = 1
 border_width_top = 1
@@ -127,6 +129,8 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id=33]
+content_margin_left = 13.0
+content_margin_top = 2.0
 bg_color = Color( 0.054902, 0.145098, 0.168627, 0.784314 )
 border_width_left = 1
 border_width_top = 1
@@ -139,12 +143,14 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id=34]
-bg_color = Color( 0.054902, 0.145098, 0.168627, 0.784314 )
+content_margin_left = 13.0
+content_margin_top = 2.0
+bg_color = Color( 0.109804, 0.156863, 0.168627, 0.784314 )
 border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color( 0.0666667, 0.6, 0.537255, 1 )
+border_color = Color( 0.0431373, 0.34902, 0.313726, 1 )
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
