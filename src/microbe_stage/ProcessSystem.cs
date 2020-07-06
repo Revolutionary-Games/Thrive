@@ -59,40 +59,28 @@ public class ProcessSystem
 
         var enumerated = organelles.ToList();
 
-        // Compute all process efficiencies once
-        var efficiencies = ComputeOrganelleProcessEfficiencies(enumerated, biome);
-
         foreach (var organelle in enumerated)
         {
-            foreach (var efficiencyInfo in efficiencies)
+            foreach (var process in organelle.RunnableProcesses)
             {
-                foreach (var processData in efficiencyInfo.Value.Processes)
+                var processData = CalculateProcessMaximumSpeed(process, biome);
+
+                if (processData.OtherInputs.ContainsKey(ATP))
                 {
-                    // Find process inputs and outputs that use/produce ATP
-                    // and that are performed by this organelle
-                    // and add to totals
-                    if (!organelle.Processes.ContainsKey(processData.Process.InternalName))
-                    {
-                        continue;
-                    }
+                    var amount = processData.OtherInputs[ATP].Amount;
 
-                    if (processData.OtherInputs.ContainsKey(ATP))
-                    {
-                        var amount = processData.OtherInputs[ATP].Amount;
+                    processATPConsumption += amount;
 
-                        processATPConsumption += amount;
+                    result.AddConsumption(organelle.Name, amount);
+                }
 
-                        result.AddConsumption(organelle.Name, amount);
-                    }
+                if (processData.Outputs.ContainsKey(ATP))
+                {
+                    var amount = processData.Outputs[ATP].Amount;
 
-                    if (processData.Outputs.ContainsKey(ATP))
-                    {
-                        var amount = processData.Outputs[ATP].Amount;
+                    processATPProduction += amount;
 
-                        processATPProduction += amount;
-
-                        result.AddProduction(organelle.Name, amount);
-                    }
+                    result.AddProduction(organelle.Name, amount);
                 }
             }
 
