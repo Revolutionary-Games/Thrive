@@ -286,7 +286,7 @@ order to be able to install gems.
 After installing ruby open a terminal / command prompt and run:
 
 ```sh
-gem install os colorize rubyzip json sha3 httparty
+gem install os colorize rubyzip json sha3 httparty parallel
 ```
 
 On Linux you might need to run the command with `sudo`.
