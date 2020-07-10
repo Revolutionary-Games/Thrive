@@ -92,7 +92,7 @@ NITROGENASE,Nitrogenase,Нитрогеназа
 NITROGEN,Nitrogen,Азот
 NITROGENASE_LONG,"Nitrogenase is a protein able to use gaseous nitrogen and cellular energy in the form of ATP to produce ammonia, a key growth nutrient for cells. This is a process referred to as Anaerobic Nitrogen Fixation. Since the nitrogenase is suspended directly in the cytoplasm, the surrounding fluid performs some fermentation.",
 PATCH_MAP,PATCH MAP,
-PATCH,"Patch:",
+PATCH,Patch:,
 PRIMUM_THRIVIUM,Primum Thrivium,
 PROKARYOTIC_STRUCTURES,Prokaryotic Structures,Прокариотические структуры
 PREDATORY_PILUS_30_MP,"Predatory Pilus
@@ -102,22 +102,22 @@ OPTIONS,Options,Настройки
 OXYTOXISOME_55_MP,"Oxytoxisome
 55 MP",
 OSMOREGULATION_COST,Osmoregulation Cost,
-OXYGEN_DOT,"Oxygen.",
+OXYGEN_DOT,Oxygen.,Кислород.
 OXYGEN,Oxygen,Кислород
 OXYTOXISOME,Oxytoxisome,
 OXYTOXY,Oxytoxy,
-OXYTOXY_LONG,"A modified metabolosome responsible for the production of a primitive form of the toxic agent Oxytoxy NT.",
+OXYTOXY_LONG,A modified metabolosome responsible for the production of a primitive form of the toxic agent Oxytoxy NT.,
 OXYTOXY_NT,OxyToxy NT,
 QUIT,Quit,Выход
 RESUME,Resume,Продолжить
 REPORT,REPORT,СООБЩИТЬ
 RUSTICYANIN_45_MP,"Rusticyanin	
 45 MP",
-RATE_SCALES,". Rate scales",
-RATE_SCALES_WITH,". Rate scales with",
+RATE_SCALES,. Rate scales,
+RATE_SCALES_WITH,. Rate scales with,
 RUSTICYANIN,Rusticyanin,
 RUSTICYANIN_LONG,"Rusticyanin is a protein able to use gaseous carbon dioxide and oxygen to oxidize iron from one chemical state to another. This process, called Iron Respiration, releases energy which the cell can then harvest.",
-DOT_RATE,". Rate",
+DOT_RATE,. Rate,
 TOOLS,Tools,Инструменты
 THYLAKOID_50_MP,"Thylakoid
 50 MP",
@@ -136,8 +136,8 @@ STRUCTURAL_ORGANELLES,Structural Organelles,Структурные органе�
 SELECTED,Selected,Выбранно
 SILICA_50_MP,"Silica
 50 MP",
-SPECIES,Species,
-SPEED_2_0,Speed 2.0,
+SPECIES,Species,Виды
+SPEED_2_0,Speed 2.0,Скорость 2.0
 SIZE_1,Size 1,Размер 1
 SYMMETRY,Symmetry,Симметрия
 STUFF_AT,Stuff at,
@@ -149,25 +149,25 @@ You may continue playing after this screen closes if you wish,
 or start a new game in a new world.",
 WITH_CONCENTRATION_OF,with concentration of,
 HYDROGEN_SULFIDE,Hydrogen Sulfide,
-RATE_SCALES_WITH_CONCENTRATION_OF,". Rate scales with concentration of",
+RATE_SCALES_WITH_CONCENTRATION_OF,. Rate scales with concentration of,
 SCALES_WITH_CONCENTRATION_OF,scales with concentration of,
-DOT_CAN_RELEASE,". Can release",
-TOXINS_PRESSING_E,"toxins by pressing E. Rate scales with",
+DOT_CAN_RELEASE,. Can release,
+TOXINS_PRESSING_E,toxins by pressing E. Rate scales with,
 USES,Uses,
 TO_INCREASE_THE_MOVEMENT,to increase the movement,
-SPEED_OF_THE_CELL,"speed of the cell.",
+SPEED_OF_THE_CELL,speed of the cell.,
 SPEED,Speed,Скорость
-FRAGELLUM_LONG,"The flagellum (plural: flagella) is a whip-like bundle of protein fibers extending from the cell's membrane which can use ATP to undulate and propel the cell in a direction.",
+FRAGELLUM_LONG,The flagellum (plural: flagella) is a whip-like bundle of protein fibers extending from the cell's membrane which can use ATP to undulate and propel the cell in a direction.,
 PREDATORY_PILUS,Predatory Pilus,
-POPULATION,"POPULATION:","ПОПУЛЯЦИЯ:"
-STAB_OTHER_CELLS_WITH_THIS,"Stab other cells with this.",
+POPULATION,POPULATION:,ПОПУЛЯЦИЯ:
+STAB_OTHER_CELLS_WITH_THIS,Stab other cells with this.,
 CILIA,Cilia,
-TO_BE_IMPLEMENTED,"To be Implemented.","Будет реализовано."
+TO_BE_IMPLEMENTED,To be Implemented.,Будет реализовано.
 NUCLEUS,Nucleus,Ядро
 ALLOWS_FOR_THE_EVOLATION,"Allows for the evolution of more complex,",
-MEMBRANE_BOUND_ORGANELLES,"membrane-bound organelles. Costs a lot",
-OF_ATP_TO_MAINTAIN,"of ATP to maintain. This is an irreversible",
-EVOLUTION_DOT,"evolution.",
+MEMBRANE_BOUND_ORGANELLES,membrane-bound organelles. Costs a lot,
+OF_ATP_TO_MAINTAIN,of ATP to maintain. This is an irreversible,
+EVOLUTION_DOT,evolution.,
 NUCLEUS_LONG,"The defining feature of eukaryotic cells. The nucleus also includes the endoplasmic reticulum and the golgi body. It is an evolution of prokaryotic cells to develop a system of internal membranes, done by assimilating another prokaryote inside of themselves. This allows them to compartmentalize, or ward off, the different processes happening inside the cell and prevent them from overlapping. This allows their new membrane bound organelles to be much more complex, efficient, and specialized than if they were free-floating in the cytoplasm. However, this comes at the cost of making the cell much larger and requiring a lot of the cell's energy to maintain.",
 MITOCHONDRION,Mitochondrion,Митохондрия
 MITOCHONDRION_LONG,"The powerhouse of the cell. The mitochondrion (plural: mitochondria) is a double membrane structure filled with proteins and enzymes. It is a prokaryote that has been assimilated for use by its eukaryotic host. It is able to convert glucose into ATP at a much higher efficiency than can be done in the cytoplasm in a process called Aerobic Respiration. It does, however, require oxygen to function, and lower levels of oxygen in the environment will slow down the rate of its ATP production.",
@@ -176,19 +176,19 @@ CHLOROPLAST_LONG,"The chloroplast is a double membrane structure containing phot
 THERMOPLAST,Thermoplast,Термопласт
 TEMPERATURE,Temperature,Температура
 THERMOPLAST_LONG,"The thermoplast is a double membrane structure containing thermosensitive pigments stacked together in membranous sacs. It is a prokaryote that has been assimilated for use by its eukaryotic host. The pigments in the thermoplast are able to use the energy of heat differences in the surroundings to produce glucose from water and gaseous carbon dioxide in a process called Thermosynthesis. The rate of its glucose production scales with the concentration of carbon dioxide, and temperature.",
-TEMP_DOT,"Temp.",
+TEMP_DOT,Temp.,
 CHEMOPLAST,Chemoplast,
 CHEMOPLAST_LONG,"The chemoplast is a double membrane structure containing proteins able to convert hydrogen sulfide, water, and gaseous carbon dioxide into glucose in a process called Hydrogen Sulfide Chemosynthesis.
 The rate of its glucose production scales with the concentration of water and carbon dioxide.",
 NITROGEN_FIXING_PLASTID,"Nitrogen Fixing
 Plastid",
 NITROGEN_LONG,"The Nitrogen Fixing Plastid is a protein able to use gaseous nitrogen and oxygen and cellular energy in the form of ATP to produce ammonia, a key growth nutrient for cells. This is a process referred to as Aerobic Nitrogen Fixation.",
-VACUOLE,Vacuole,
-INCREASES_THE_STORAGE,"Increases the storage space of the cell.",
+VACUOLE,Vacuole,Вакуоль
+INCREASES_THE_STORAGE,Increases the storage space of the cell.,
 VACUOLE_LONG,"The vacuole is an internal membranous organelle used for storage in the cell. They are composed of several vesicles, smaller membranous structures widely used in cells for storage, that have fused together. It is filled with water which is used to contain molecules, enzymes, solids, and other substances. Their shape is fluid and can vary between cells.",
 TOXIN_VACUOLE,Toxin Vacuole,
-DOT_CAN,". Can",
-E_DOT,"E.",
+DOT_CAN,. Can,
+E_DOT,E.,
 RATE,Rate,
 OXYTOXY_LONGG,"The toxin vacuole is a vacuole that has been modified for the specific production, storage, and secretion of oxytoxy toxins. More toxin vacuoles will increase the rate at which toxins can be released.",
 BIOLUMINESCENT_VACUOLE,"Bioluminescent
@@ -196,10 +196,10 @@ Vacuole",
 NORMAL,Normal,
 MOBILITY,Mobility,
 RESOURCE_ABSORPTION_SPEED,Resource Absorption Speed,
-HEALTH,Health,
+HEALTH,Health,Здоровье
 HITPOINTS,Hitpoints,
 DESCRIPTION,"The most basic form of membrane, it has little protection against damage. It also needs more energy to not deform. The advantage is that it allows the cell to move and absorb nutrients swiftly.",
-DOUBLE,Double,
+DOUBLE,Double,Двойной
 DESCRIPTION2,"A membrane with two layers, it has better protection against damage and takes less energy to not deform. However, it slows the cell down some and lowers the rate at which it can absorb resources.",
 PHYSICAL_RESISTANCE,Physical Resistance,
 MEMBRANE_CELLULOSE_DESCRIPTION,"This membrane has a wall, resulting in better protection against overall damage and especially against physical damage. It also costs less energy to retain its form, but cannot absorb resources quickly and is slower.",
@@ -207,29 +207,29 @@ TOXIN_RESISTANCE,Toxin Resistance,
 MEMBRANE_CHITIN_DESCRIPTION,"This membrane has a wall, which means it has better protections against overall damage and especially against toxin damage. It also costs less energy to retain its form, but it is slower and cannot absorb resources quickly.",
 CALCIUM_CARBONATE,"Calcium
 Carbonate",
-MEMBRANE_CALCIUM_CARBONATE_DESCRIPTION,"This membrane has a strong shell made from calcium carbonate. It can easily resist damage and requires less energy to not deform. The disadvantages of having such a heavy shell is that the cell is much slower and takes a while to absorb resources.",
-SILICA,Silica,
+MEMBRANE_CALCIUM_CARBONATE_DESCRIPTION,This membrane has a strong shell made from calcium carbonate. It can easily resist damage and requires less energy to not deform. The disadvantages of having such a heavy shell is that the cell is much slower and takes a while to absorb resources.,
+SILICA,Silica,Кремнезём
 MEMBRANE_SILICA_DESCRIPTION,"This membrane has a strong wall of silica. It can resist overall damage well and is very resistant to physical damage. It also requires less energy to maintain its form. However, it
 slows the cell down by a large factor and the cell absorbs resources at a reduced rate.",
 MEMBRANE_RIGIDITY,"Membrane
 Rigidity",
 RIGIDITY_SLIDER,"A more rigid membrane is more resistant to damage, but will make it harder for the cell to move around.",
-EVO_RESULTS_PANEL,"The amount of glucose has been reduced to ... of the previous amount.",
-ENVIRONMENT,Environment,
-AUTO_EVO_RESULTS,"Auto-evo results:",
-EXTERNAL_EFFECTS,"External effects:",
-NEXT,NEXT,
-SELECT_A_PATCH,Select a patch to show details here,
+EVO_RESULTS_PANEL,The amount of glucose has been reduced to ... of the previous amount.,
+ENVIRONMENT,Environment,Окружающая среда
+AUTO_EVO_RESULTS,Auto-evo results:,
+EXTERNAL_EFFECTS,External effects:,Сторонние эффекты:
+NEXT,NEXT,ДАЛЕЕ
+SELECT_A_PATCH,Select a patch to show details here,"Выберите путь, чтобы показать детали"
 PATCH_NAME_GOES_HERE,Patch Name Goes Here,
-YOU_ARE_CURRENTLY_THIS_PATCH,YOU ARE CURRENTLY IN THIS PATCH,
-BIOME_HERE,"Biome: BIOME HERE",
-BELOW_SEA_LEVEL,"200-340m below sea level",
-PHYSICAL_CONDITIONS,Physical Conditions,
+YOU_ARE_CURRENTLY_THIS_PATCH,YOU ARE CURRENTLY IN THIS PATCH,ВЫ СЕЙЧАС НА ЭТОМ ПУТИ
+BIOME_HERE,Biome: BIOME HERE,
+BELOW_SEA_LEVEL,200-340m below sea level,
+PHYSICAL_CONDITIONS,Physical Conditions,Физические условия
 PRESSURE,Pressure,
-PRESS_DOT,"Press.",
+PRESS_DOT,Press.,
 ATMOSPHERIC_GASSES,Atmospheric Gasses,
 COMPOUNDS,Compounds,
-PHOSPHATE,Phosphate,
+PHOSPHATE,Phosphate,Фосфат
 SPECIES_PRESENT,Species Present,
-MOVE_TO_THIS_PATCH,Move to This Patch,
-RETURN_TO_MENU,Return to Menu,
+MOVE_TO_THIS_PATCH,Move to This Patch,Двигаться по этому пути
+RETURN_TO_MENU,Return to Menu,Вернуться в меню
