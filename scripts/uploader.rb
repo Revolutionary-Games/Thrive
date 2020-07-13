@@ -3,6 +3,7 @@
 require 'json'
 require 'httparty'
 require 'parallel'
+require 'sha3'
 
 require_relative 'dehydrate'
 
@@ -117,7 +118,8 @@ class DevBuildUploader
                         build_branch: build[:branch],
                         build_platform: build[:platform],
                         build_size: File.size(build[:file]),
-                        required_objects: build[:dehydrated_objects]
+                        required_objects: build[:dehydrated_objects],
+                        build_zip_hash: build[:build_zip_hash]
                       })
       end
 
@@ -158,7 +160,9 @@ class DevBuildUploader
 
     puts "Server doesn't have it."
     @devbuilds_to_upload.append({ file: archive_file, version: version, platform: platform,
-                                  branch: branch, dehydrated_objects: dehydrated_objects })
+                                  branch: branch, dehydrated_objects: dehydrated_objects,
+                                  build_zip_hash:
+                                    SHA3::Digest::SHA256.file(archive_file).hexdigest })
 
     # Determine related objects to upload
     # MAX_SERVER_BATCH_SIZE
