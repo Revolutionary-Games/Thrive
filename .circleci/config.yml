@@ -1,9 +1,9 @@
-version: 2
+version: 2.1
 jobs:
    build:
      working_directory: ~/Thrive
      docker:
-       - image: hhyyrylainen/godot-ci:v2
+       - image: hhyyrylainen/godot-ci:v3
      environment:
        GIT_LFS_SKIP_SMUDGE: 1
      steps:
@@ -12,7 +12,7 @@ jobs:
            keys:
              - v6-lfs-{{ .Branch }}
              - v6-lfs-master
-       - shell:
+       - run:
            name: Pull Git LFS files, retry up to 5 times
            command: |
              for i in {1..5}; do git reset --hard HEAD && git clean -fd && git lfs pull && exit 0; done; exit 1
