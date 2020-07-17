@@ -44,7 +44,9 @@ jobs:
        # Format check before making final packages
        - run: ./check_formatting.rb -c compile
        # Proper packages
-       - run: ./make_release.rb --no-zip --target Linux/X11
+       - run: ./make_release.rb --dehydrated
+       # Upload devbuilds
+       - run: ./upload_devbuilds.rb
    format_script:
      working_directory: ~/Thrive
      docker:
