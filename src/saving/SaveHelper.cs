@@ -1,6 +1,6 @@
 using System;
-using System.Diagnostics;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Godot;
@@ -14,6 +14,84 @@ public static class SaveHelper
     {
         LastModifiedFirst,
         FileSystem,
+    }
+
+    public static void RemoveExcessQuickSaves()
+    {
+        // throw new System.NotImplementedException();
+    }
+
+    /// <summary>
+    ///   Returns a list of all saves
+    /// </summary>
+    /// <returns>The list of save names</returns>
+    public static List<string> CreateListOfSaves(SaveOrder order = SaveOrder.LastModifiedFirst)
+    {
+        var result = new List<string>();
+
+        using (var directory = new Directory())
+        {
+            if (!directory.DirExists(Constants.SAVE_FOLDER))
+                return result;
+
+            directory.Open(Constants.SAVE_FOLDER);
+            directory.ListDirBegin(true, true);
+
+            while (true)
+            {
+                var filename = directory.GetNext();
+
+                if (string.IsNullOrEmpty(filename))
+                    break;
+
+                if (!filename.EndsWith(Constants.SAVE_EXTENSION, StringComparison.Ordinal))
+                    continue;
+
+                result.Add(filename);
+            }
+
+            directory.ListDirEnd();
+        }
+
+        switch (order)
+        {
+            case SaveOrder.LastModifiedFirst:
+                {
+                    using (var file = new File())
+                    {
+                        result = result.OrderByDescending(item =>
+                            file.GetModifiedTime(PathUtils.Join(Constants.SAVE_FOLDER, item))).ToList();
+                    }
+
+                    break;
+                }
+
+            default:
+                break;
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    ///   Counts the total number of saves and how many bytes they take up
+    /// </summary>
+    public static (int count, long diskSpace) CountSaves()
+    {
+        int count = 0;
+        long totalSize = 0;
+
+        using (var file = new File())
+        {
+            foreach (var save in CreateListOfSaves())
+            {
+                file.Open(PathUtils.Join(Constants.SAVE_FOLDER, save), File.ModeFlags.Read);
+                ++count;
+                totalSize += file.GetLen();
+            }
+        }
+
+        return (count, totalSize);
     }
 
     /// <summary>
@@ -176,83 +254,5 @@ public static class SaveHelper
     private static void QueueRemoveExcessQuickSaves()
     {
         TaskExecutor.Instance.AddTask(new Task(RemoveExcessQuickSaves));
-    }
-
-    public static void RemoveExcessQuickSaves()
-    {
-        // throw new System.NotImplementedException();
-    }
-
-    /// <summary>
-    ///   Returns a list of all saves
-    /// </summary>
-    /// <returns>The list of save names</returns>
-    public static List<string> CreateListOfSaves(SaveOrder order = SaveOrder.LastModifiedFirst)
-    {
-        var result = new List<string>();
-
-        using (var directory = new Directory())
-        {
-            if (!directory.DirExists(Constants.SAVE_FOLDER))
-                return result;
-
-            directory.Open(Constants.SAVE_FOLDER);
-            directory.ListDirBegin(true, true);
-
-            while (true)
-            {
-                var filename = directory.GetNext();
-
-                if (string.IsNullOrEmpty(filename))
-                    break;
-
-                if (!filename.EndsWith(Constants.SAVE_EXTENSION, StringComparison.Ordinal))
-                    continue;
-
-                result.Add(filename);
-            }
-
-            directory.ListDirEnd();
-        }
-
-        switch (order)
-        {
-            case SaveOrder.LastModifiedFirst:
-                {
-                    using (var file = new File())
-                    {
-                        result = result.OrderByDescending(item =>
-                            file.GetModifiedTime(PathUtils.Join(Constants.SAVE_FOLDER, item))).ToList();
-                    }
-
-                    break;
-                }
-
-            default:
-                break;
-        }
-
-        return result;
-    }
-
-    /// <summary>
-    ///   Counts the total number of saves and how many bytes they take up
-    /// </summary>
-    public static (int count, long diskSpace) CountSaves()
-    {
-        int count = 0;
-        long totalSize = 0;
-
-        using (var file = new File())
-        {
-            foreach (var save in CreateListOfSaves())
-            {
-                file.Open(PathUtils.Join(Constants.SAVE_FOLDER, save), File.ModeFlags.Read);
-                ++count;
-                totalSize += file.GetLen();
-            }
-        }
-
-        return (count, totalSize);
     }
 }
