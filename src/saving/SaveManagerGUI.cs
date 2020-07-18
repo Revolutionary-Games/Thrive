@@ -129,7 +129,7 @@ public class SaveManagerGUI : Control
         saveCountRefreshed = true;
         refreshing = true;
 
-        getSaveCountTask = new Task<(int count, long diskSpace)>(() => SaveManager.CountSaves());
+        getSaveCountTask = new Task<(int count, long diskSpace)>(() => SaveHelper.CountSaves());
         TaskExecutor.Instance.AddTask(getSaveCountTask);
     }
 
