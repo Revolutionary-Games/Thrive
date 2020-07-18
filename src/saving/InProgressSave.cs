@@ -120,7 +120,7 @@ public class InProgressSave : IDisposable
 
         using (var file = new File())
         {
-            foreach (var name in SaveManager.CreateListOfSaves(SaveManager.SaveOrder.FileSystem))
+            foreach (var name in SaveHelper.CreateListOfSaves(SaveHelper.SaveOrder.FileSystem))
             {
                 var match = Regex.Match(name, matchRegex);
 
@@ -219,7 +219,7 @@ public class InProgressSave : IDisposable
                 // Find the next unused save number
                 int number = 0;
 
-                foreach (var name in SaveManager.CreateListOfSaves(SaveManager.SaveOrder.FileSystem))
+                foreach (var name in SaveHelper.CreateListOfSaves(SaveHelper.SaveOrder.FileSystem))
                 {
                     var match = Regex.Match(name, "^save_(\\d)+\\." + Constants.SAVE_EXTENSION);
 
