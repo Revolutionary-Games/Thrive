@@ -28,7 +28,7 @@ issues please don't hesitate to bring them up.
 Godot mono version
 ------------------
 
-The currently used Godot version is __3.2.1 mono__. The regular version
+The currently used Godot version is __3.2.2 mono__. The regular version
 will not work. You can download Godot here: https://godotengine.org/download/
 if it is still the latest stable version. If a new version of Godot has
 been released but Thrive has not been updated yet, you need to look
@@ -286,7 +286,7 @@ order to be able to install gems.
 After installing ruby open a terminal / command prompt and run:
 
 ```sh
-gem install os colorize rubyzip json sha3 httparty
+gem install os colorize rubyzip json sha3 httparty parallel
 ```
 
 On Linux you might need to run the command with `sudo`.

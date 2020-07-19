@@ -1,17 +1,25 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
+
 # This script exports the game with godot and packages that up for distribution
 # Requires "godot" to be in PATH and the right version
 require 'optparse'
 require 'sha3'
+require 'os'
+require 'zlib'
+require 'json'
 
 require_relative 'bootstrap_rubysetupsystem'
 require_relative 'RubySetupSystem/RubyCommon'
 
+require_relative 'scripts/dehydrate'
+
 FileUtils.mkdir_p 'builds'
 
 ALL_TARGETS = ['Linux/X11', 'Windows Desktop', 'Windows Desktop (32-bit)', 'Mac OSX'].freeze
+DEVBUILD_TARGETS = ['Linux/X11', 'Windows Desktop'].freeze
 BASE_BUILDS_FOLDER = File.realpath 'builds'
-THRIVE_VERSION_FILE = 'Properties/AssemblyInfo.cs'.freeze
+THRIVE_VERSION_FILE = 'Properties/AssemblyInfo.cs'
 
 LICENSE_FILES = [
   ['LICENSE.txt', 'LICENSE.txt'],
@@ -22,6 +30,7 @@ LICENSE_FILES = [
 ].freeze
 
 @options = {
+  custom_targets: false,
   targets: ALL_TARGETS,
   retries: 2,
   zip: true
@@ -32,6 +41,7 @@ OptionParser.new do |opts|
 
   opts.on('-t', '--targets target1,target2', Array,
           'Export targets to use. Default is all') do |targets|
+    @options[:custom_targets] = true
     @options[:targets] = targets
   end
   opts.on('-r', '--retries count', Integer,
@@ -41,9 +51,21 @@ OptionParser.new do |opts|
   opts.on('-z', '--[no-]zip', 'Disables packaging the exported game') do |b|
     @options[:zip] = b
   end
+  opts.on('-d', '--[no-]dehydrated', 'Makes dehydrated devbuilds') do |b|
+    @options[:dehydrate] = b
+    @options[:zip] = !b
+  end
 end.parse!
 
 onError "Unhandled parameters: #{ARGV}" unless ARGV.empty?
+
+if @options[:dehydrate]
+  puts 'Making dehydrated devbuilds'
+
+  @options[:targets] = DEVBUILD_TARGETS unless @options[:custom_targets]
+end
+
+VALID_TARGETS = @options[:dehydrate] ? DEVBUILD_TARGETS : ALL_TARGETS
 
 ASSEMBLY_VERSION = /AssemblyVersion\(\"([\d\.]+)\"\)/.freeze
 INFORMATIONAL_VERSION = /AssemblyInformationalVersion\(\"([^\"]*)\"\)/.freeze
@@ -72,16 +94,16 @@ def find_thrive_version
   "#{version}#{additional_version}"
 end
 
-THRIVE_VERSION = find_thrive_version
+THRIVE_VERSION = !@options[:dehydrate] ? find_thrive_version : git_commit
 
-def is_target_mac(target)
+def target_mac?(target)
   target =~ /mac/i
 end
 
 # Returns the extension needed for the target
 def get_target_extension(target)
   # "thrive_linux.x86_64"
-  if is_target_mac target
+  if target_mac? target
     '.zip'
   elsif target =~ /windows/i
     '.exe'
@@ -99,23 +121,90 @@ def prepare_licenses(target_folder)
   end
 end
 
-def package(target, target_name, target_folder, target_file)
-  if is_target_mac target
-    puts 'Including licenses in mac .zip'
-
-    Dir.chdir(target_folder) do
-      runOpen3Checked(*['zip', '-u', target_file, LICENSE_FILES.map { |i| i[1] }].flatten)
+def gzip_to_target(source, target)
+  Zlib::GzipWriter.open(target) do |writer|
+    File.open(source)  do |reader|
+      while (chunk = reader.read(16 * 1024))
+        writer.write chunk
+      end
     end
-    puts 'Zip updated'
+  end
+end
+
+def devbuild_package(target, target_name, target_folder, target_file)
+  puts "Performing devbuild package on: #{target_folder}"
+
+  FileUtils.mkdir_p DEVBUILDS_FOLDER
+  FileUtils.mkdir_p DEHYDRATE_CACHE
+  FileUtils.mkdir_p 'builds/temp_extracted'
+
+  extract_folder = "builds/temp_extracted/#{target_name}"
+
+  FileUtils.mkdir_p extract_folder
+
+  pck = File.join(target_folder, 'Thrive.pck')
+
+  # Start by extracting the big files to be dehydrated
+  if runSystemSafe(pck_tool, '--action', 'extract', pck,
+                   '-o', extract_folder, '--min-size-filter',
+                   DEHYDRATE_FILE_SIZE_THRESSHOLD.to_s) != 0
+    onError 'Failed to run extract. Do you have the right godotpcktool version?'
   end
 
-  if @options[:zip] == false
-    info 'Skipping packaging created folder'
-    @reprint_messages.append "Created folder: #{target_folder}"
-    return
+  # And remove them from the .pck
+  if runSystemSafe(pck_tool, '--action', 'repack', File.join(target_folder, 'Thrive.pck'),
+                   '--max-size-filter', (DEHYDRATE_FILE_SIZE_THRESSHOLD - 1).to_s) != 0
+    onError 'Failed to run repack'
   end
 
-  if is_target_mac target
+  pck_cache = DehydrateCache.new extract_folder
+
+  # Dehydrate always all the unextracted files
+  Dir.glob(File.join(extract_folder, '**/*'), File::FNM_DOTMATCH) do |file|
+    raise "found file doesn't exist" unless File.exist? file
+    next if File.directory? file
+
+    dehydrate_file file, pck_cache
+  end
+
+  # No longer need the temp files
+  FileUtils.rm_rf extract_folder, secure: true
+
+  normal_cache = DehydrateCache.new target_folder
+
+  # Dehydrate other files
+  Dir.glob(File.join(target_folder, '**/*'), File::FNM_DOTMATCH) do |file|
+    raise "found file doesn't exist" unless File.exist? file
+    next if File.directory? file
+
+    check_dehydrate_file file, normal_cache
+  end
+
+  normal_cache.add_pck pck, pck_cache
+
+  # Write the cache
+  File.write(File.join(target_folder, 'dehydrated.json'), normal_cache.to_json)
+
+  # Then do a normal zip after the contents have been adjusted
+  final_file = zip_package target, target_name, target_folder, target_file
+
+  # And move it to the devbuilds folder for the upload script
+  FileUtils.mv final_file, DEVBUILDS_FOLDER
+
+  # Write meta file needed for upload
+  File.write(File.join(DEVBUILDS_FOLDER, File.basename(final_file) + '.meta.json'),
+             { dehydrated: { objects: normal_cache.hashes },
+               branch: git_branch,
+               platform: target,
+               version: THRIVE_VERSION }.to_json)
+
+  message = "Created devbuild: #{File.join(DEVBUILDS_FOLDER, final_file)}"
+  puts message
+  @reprint_messages.append '', message
+end
+
+def zip_package(target, target_name, target_folder, target_file)
+  if target_mac? target
     puts 'Mac target is already zipped, moving it instead'
 
     final_file = target_folder + '.zip'
@@ -147,6 +236,30 @@ def package(target, target_name, target_folder, target_file)
 
   success message1
   puts message2
+  final_file
+end
+
+def package(target, target_name, target_folder, target_file)
+  if target_mac? target
+    puts 'Including licenses in mac .zip'
+
+    Dir.chdir(target_folder) do
+      runOpen3Checked(*['zip', '-u', target_file, LICENSE_FILES.map { |i| i[1] }].flatten)
+    end
+    puts 'Zip updated'
+  end
+
+  if @options[:dehydrate]
+    devbuild_package target, target_name, target_folder, target_file
+  else
+    if @options[:zip] == false
+      info 'Skipping packaging created folder'
+      @reprint_messages.append "Created folder: #{target_folder}"
+      return
+    end
+
+    zip_package target, target_name, target_folder, target_file
+  end
 end
 
 # Performs the actual export for a target
@@ -196,8 +309,8 @@ puts "Starting exporting thrive #{THRIVE_VERSION} to the specified targets"
 @exported_something = false
 
 @options[:targets].each do |target|
-  unless ALL_TARGETS.include? target
-    onError "specified target (#{target}) is not valid. Valid targets: #{ALL_TARGETS}"
+  unless VALID_TARGETS.include? target
+    onError "specified target (#{target}) is not valid. Valid targets: #{VALID_TARGETS}"
   end
 
   perform_export target
