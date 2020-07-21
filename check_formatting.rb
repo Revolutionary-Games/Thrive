@@ -224,11 +224,19 @@ def inspect_code_executable
   end
 end
 
-def run_inspect_code
+def skip_jetbrains?
   if @includes && !includes_changes_to('.cs')
-    info 'No changes to be checked for .cs files'
-    return
+    OUTPUT_MUTEX.synchronize do
+      info 'No changes to be checked for .cs files'
+    end
+    return true
   end
+
+  false
+end
+
+def run_inspect_code
+  return if skip_jetbrains?
 
   params = [inspect_code_executable, 'Thrive.sln', '-o=inspect_results.xml']
 
@@ -276,10 +284,7 @@ def cleanup_code_executable
 end
 
 def run_cleanup_code
-  if @includes && !includes_changes_to('.cs')
-    info 'No changes to be checked for .cs files'
-    return
-  end
+  return if skip_jetbrains?
 
   old_diff = runOpen3CaptureOutput 'git', 'diff', '--stat'
 
