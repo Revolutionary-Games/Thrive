@@ -268,6 +268,9 @@ public abstract class BaseThriveConverter : JsonConverter
             return null;
         }
 
+        if (serializer.ReferenceResolver == null)
+            throw new InvalidOperationException("JsonSerializer must have reference resolver");
+
         var item = JObject.Load(reader);
 
         // Detect ref to already loaded object
@@ -275,9 +278,7 @@ public abstract class BaseThriveConverter : JsonConverter
 
         if (refId != null)
         {
-            var reference = serializer.ReferenceResolver.ResolveReference(serializer, refId.Value<string>());
-            if (reference != null)
-                return reference;
+            return serializer.ReferenceResolver.ResolveReference(serializer, refId.Value<string>());
         }
 
         var objId = item[ID_PROPERTY];
@@ -422,6 +423,9 @@ public abstract class BaseThriveConverter : JsonConverter
             (contract.IsReference.HasValue && contract.IsReference.Value);
 
         writer.WriteStartObject();
+
+        if (serializer.ReferenceResolver == null)
+            throw new InvalidOperationException("JsonSerializer must have reference resolver");
 
         if (reference && serializer.ReferenceResolver.IsReferenced(serializer, value))
         {
