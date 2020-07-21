@@ -42,12 +42,12 @@ jobs:
           paths:
             - ~/.nuget/packages
        # Format check before making final packages
-       - run: ./check_formatting.rb -c compile
+       - run: ./check_formatting.rb -c compile,inspectcode --no-parallel
        # Proper packages
        - run: ./make_release.rb --dehydrated
        # Upload devbuilds
        - run: ./upload_devbuilds.rb
-   jetbrains:
+   cleanup:
      working_directory: ~/Thrive
      docker:
        - image: hhyyrylainen/godot-ci:v4
@@ -76,8 +76,12 @@ jobs:
            keys:
              - v2-nuget-{{ .Branch }}
        - run: nuget restore Thrive.sln
-       # Jetbrains command line tools to check the code
-       - run: ./check_formatting.rb -c inspectcode,cleanupcode --no-parallel
+       - run:
+           name: Changed files
+           command: |
+             git diff-tree --no-commit-id --name-only -r `echo ${CIRCLE_COMPARE_URL} | cut -d/ -f 7`
+       # Cleanup, this takes a *long* time
+       - run: ./check_formatting.rb -c cleanupcode
        - run:
            when: always
            command: |
@@ -126,4 +130,7 @@ workflows:
     jobs:
       - build
       - format_script
-      - jetbrains
+  # This is a separate job because this is *very* slow
+  cleanup:
+    jobs:
+      - cleanup
