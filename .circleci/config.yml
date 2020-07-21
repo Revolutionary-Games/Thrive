@@ -77,7 +77,7 @@ jobs:
              - v2-nuget-{{ .Branch }}
        - run: nuget restore Thrive.sln
        # Jetbrains command line tools to check the code
-       - run: ./check_formatting.rb -c inspectcode,cleanupcode
+       - run: ./check_formatting.rb -c inspectcode,cleanupcode --no-parallel
        - run:
            when: always
            command: |
