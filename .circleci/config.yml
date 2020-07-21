@@ -58,7 +58,7 @@ jobs:
        - restore_cache:
            keys:
              - v4-import-master
-       - run: godot --export "Linux/X11" "builds/a.x86_64"
+       - run: godot --export "Linux/X11" "builds/a.x86_64" && exit 0
        - restore_cache:
            keys:
              - v2-nuget-{{ .Branch }}
