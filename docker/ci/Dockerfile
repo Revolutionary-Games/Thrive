@@ -8,6 +8,10 @@ RUN dnf install -y --setopt=deltarpm=false ruby ruby-devel redhat-rpm-config git
 RUN git lfs install
 RUN gem install os colorize rubyzip json sha3 httparty parallel
 
+# Jetbrains CLI tools
+RUN wget https://download.jetbrains.com/resharper/ReSharperUltimate.2020.1.4/JetBrains.ReSharper.CommandLineTools.Unix.2020.1.4.tar.gz \
+    -O jetbrains.tar.gz && tar -xzf jetbrains.tar.gz -C /usr/bin && rm -rf jetbrains.tar.gz
+
 # Godot install
 ENV GODOT_VERSION "3.2.2"
 
