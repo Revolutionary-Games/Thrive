@@ -326,6 +326,7 @@ consistent as possible. It is highly recommended you install
 this linter to check your code formatting before submitting a 
 pull request.
 
+## NodeJS
 First install [NodeJS](https://nodejs.org/en/download/). If you are on
 Linux you should use your OS's package manager to install nodejs.
 
@@ -338,7 +339,16 @@ if that doesn't work run:
 ```sh
 sudo npm install -g jsonlint
 ```
- 
+
+## Jetbrains tools
+
+Download from: https://www.jetbrains.com/resharper/download/#section=commandline
+unzip and add to PATH.
+
+NOTE: there is more documentation on the install process here:
+https://www.jetbrains.com/help/resharper/InspectCode.html
+
+## Running the Format Checks
 When you are getting ready to commit you should run `ruby
 check_formatting.rb` in order to automatically run all of the
 formatting tools. Make sure that that script doesn't report any errors
@@ -360,4 +370,5 @@ script:
 
 ### Cleaning Godot
 
-Your locally cloned Thrive version may get messed up from time to time. [Here are the steps to fix it.](https://wiki.revolutionarygamesstudio.com/wiki/Cleaning_Local_Thrive_Version)
+Your locally cloned Thrive version may get messed up from time to time.
+[Here are the steps to fix it.](https://wiki.revolutionarygamesstudio.com/wiki/Cleaning_Local_Thrive_Version)
