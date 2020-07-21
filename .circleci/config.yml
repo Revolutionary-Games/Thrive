@@ -86,6 +86,7 @@ jobs:
        - image: hhyyrylainen/godot-ci:v4
      environment:
        GIT_LFS_SKIP_SMUDGE: 1
+       CIRCLE_COMPARE_URL: << pipeline.project.git_url >>/compare/<< pipeline.git.base_revision >>..<<pipeline.git.revision>>
      steps:
        - checkout
        - restore_cache:

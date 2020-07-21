@@ -15,8 +15,7 @@ require_relative 'scripts/fast_build/toggle_analysis_lib'
 MAX_LINE_LENGTH = 120
 
 VALID_CHECKS = %w[compile files inspectcode cleanupcode].freeze
-# Cleanup is not ran by default because it is super slow
-DEFAULT_CHECKS = %w[compile files inspectcode].freeze
+DEFAULT_CHECKS = %w[compile files inspectcode cleanupcode].freeze
 
 ONLY_FILE_LIST = 'files_to_check.txt'
 
