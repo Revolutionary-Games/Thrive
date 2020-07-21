@@ -66,6 +66,32 @@ def file_type_skipped?(path)
   end
 end
 
+# Detects if there is a file telling which files to check. Returns nil otherwise
+def files_to_include
+  return nil unless File.exist? ONLY_FILE_LIST
+
+  includes = []
+  File.foreach(ONLY_FILE_LIST).with_index do |line, _num|
+    next if line.strip.empty?
+
+    includes.append line
+  end
+
+  includes
+end
+
+@includes = files_to_include
+
+def includes_changes_to(type)
+  return false if @includes.nil?
+
+  @includes.each  do |file|
+    return true if file.end_with? type
+  end
+
+  false
+end
+
 # Different handle functions for file checks
 def handle_gd_file(_path)
   OUTPUT_MUTEX.synchronize do
@@ -199,7 +225,16 @@ def inspect_code_executable
 end
 
 def run_inspect_code
-  runOpen3Checked inspect_code_executable, 'Thrive.sln', '-o=inspect_results.xml'
+  if @includes && !includes_changes_to('.cs')
+    info 'No changes to be checked for .cs files'
+    return
+  end
+
+  params = [inspect_code_executable, 'Thrive.sln', '-o=inspect_results.xml']
+
+  params.append "--include=#{@includes.join(';')}" if @includes
+
+  runOpen3Checked(*params)
 
   issues_found = false
 
@@ -241,22 +276,16 @@ def cleanup_code_executable
 end
 
 def run_cleanup_code
-  old_diff = runOpen3CaptureOutput 'git', 'diff', '--stat'
-
-  includes = nil
-
-  if File.exist? ONLY_FILE_LIST
-    includes = []
-    File.foreach(ONLY_FILE_LIST).with_index do |line, _num|
-      next if line.strip.empty?
-
-      includes.append line
-    end
+  if @includes && !includes_changes_to('.cs')
+    info 'No changes to be checked for .cs files'
+    return
   end
+
+  old_diff = runOpen3CaptureOutput 'git', 'diff', '--stat'
 
   params = [cleanup_code_executable, 'Thrive.sln', '--profile=full_no_xml']
 
-  params.append "--include=#{includes.join(';')}" if includes
+  params.append "--include=#{@includes.join(';')}" if @includes
 
   runOpen3Checked(*params)
 
