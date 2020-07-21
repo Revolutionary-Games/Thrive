@@ -126,10 +126,7 @@ public class PlayerMicrobeInput : Node
 
         if (@event.IsActionPressed("g_fire_toxin", true))
         {
-            if (stage.Player != null)
-            {
-                stage.Player.EmitToxin();
-            }
+            stage.Player?.EmitToxin();
         }
     }
 

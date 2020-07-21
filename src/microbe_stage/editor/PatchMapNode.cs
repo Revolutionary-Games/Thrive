@@ -102,8 +102,7 @@ public class PatchMapNode : MarginContainer
     {
         Selected = true;
 
-        if (SelectCallback != null)
-            SelectCallback(this);
+        SelectCallback?.Invoke(this);
     }
 
     public void OnMouseEnter()

@@ -102,8 +102,7 @@ public class MainMenu : Node
         newGameButton = GetNode<Button>(NewGameButtonPath);
         freebuildButton = GetNode<Button>(FreebuildButtonPath);
 
-        if (MenuArray != null)
-            MenuArray.Clear();
+        MenuArray?.Clear();
 
         // Get all of menu items
         MenuArray = GetTree().GetNodesInGroup("MenuItem");

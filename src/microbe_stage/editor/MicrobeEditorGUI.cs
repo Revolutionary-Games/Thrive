@@ -454,6 +454,8 @@ public class MicrobeEditorGUI : Node
         atpConsumptionLabel.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", energyBalance.TotalConsumption);
     }
 
+    // Disable this because the cleanup and inspections disagree
+    // ReSharper disable once RedundantNameQualifier
     /// <summary>
     ///   Updates the organelle efficiencies in tooltips.
     /// </summary>

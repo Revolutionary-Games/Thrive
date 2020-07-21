@@ -433,10 +433,7 @@ public class MicrobeHUD : Node
 
     public void OnSuicide()
     {
-        if (stage.Player != null)
-        {
-            stage.Player.Damage(9999.0f, "suicide");
-        }
+        stage.Player?.Damage(9999.0f, "suicide");
     }
 
     public void UpdatePatchInfo(string patchName)

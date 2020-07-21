@@ -174,7 +174,6 @@ public class PatchMapDrawer : Control
 
     private void NotifySelectionChanged()
     {
-        if (OnSelectedPatchChanged != null)
-            OnSelectedPatchChanged(this);
+        OnSelectedPatchChanged?.Invoke(this);
     }
 }

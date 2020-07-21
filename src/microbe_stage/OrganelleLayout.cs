@@ -180,8 +180,7 @@ public class OrganelleLayout<T> : ICollection<T>
             return false;
 
         Organelles.Remove(organelle);
-        if (onRemoved != null)
-            onRemoved(organelle);
+        onRemoved?.Invoke(organelle);
         return true;
     }
 

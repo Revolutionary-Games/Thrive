@@ -449,10 +449,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
 
     private void UpdateColour()
     {
-        if (organelleMaterial != null)
-        {
-            organelleMaterial.SetShaderParam("tint", CalculateHSLForOrganelle(Colour));
-        }
+        organelleMaterial?.SetShaderParam("tint", CalculateHSLForOrganelle(Colour));
 
         needsColourUpdate = false;
     }

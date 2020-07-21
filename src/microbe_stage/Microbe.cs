@@ -589,10 +589,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
         Dead = true;
 
-        if (OnDeath != null)
-        {
-            OnDeath(this);
-        }
+        OnDeath?.Invoke(this);
 
         // Reset some stuff
         EngulfMode = false;
@@ -741,10 +738,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         if (IsPlayerMicrobe)
         {
             // If you died before entering the editor disable that
-            if (OnReproductionStatus != null)
-            {
-                OnReproductionStatus(this, false);
-            }
+            OnReproductionStatus?.Invoke(this, false);
         }
 
         PlaySoundEffect("res://assets/sounds/soundeffects/microbe-death-2.ogg");
