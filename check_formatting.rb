@@ -15,11 +15,13 @@ require_relative 'scripts/fast_build/toggle_analysis_lib'
 MAX_LINE_LENGTH = 120
 
 VALID_CHECKS = %w[compile files inspectcode cleanupcode].freeze
+# Cleanup is not ran by default because it is super slow
+DEFAULT_CHECKS = %w[compile files inspectcode].freeze
 
 OUTPUT_MUTEX = Mutex.new
 
 @options = {
-  checks: VALID_CHECKS,
+  checks: DEFAULT_CHECKS,
   skip_file_types: [],
   parallel: true
 }
@@ -228,8 +230,19 @@ def run_inspect_code
   exit 2
 end
 
+def cleanup_code_executable
+  # TODO: 32 bit support if needed
+  if OS.windows?
+    'cleanupcode.exe'
+  else
+    'cleanupcode.sh'
+  end
+end
+
 def run_cleanup_code
   old_diff = runOpen3CaptureOutput 'git', 'diff', '--stat'
+
+  runOpen3Checked cleanup_code_executable, 'Thrive.sln', '--profile=full_no_xml'
 
   new_diff = runOpen3CaptureOutput 'git', 'diff', '--stat'
 
