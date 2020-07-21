@@ -30,6 +30,7 @@ public class MicrobeAI
 
     [JsonProperty]
     private LifeState lifeState = LifeState.NEUTRAL_STATE;
+
     [JsonProperty]
     private bool moveFocused = false;
 
@@ -53,12 +54,16 @@ public class MicrobeAI
 
     [JsonIgnore]
     private Microbe prey;
+
     [JsonIgnore]
     private List<Microbe> preyMicrobes = new List<Microbe>();
+
     [JsonProperty]
     private bool preyPegged = false;
+
     [JsonIgnore]
     private FloatingChunk targetChunk;
+
     [JsonProperty]
     private Vector3 targetPosition = new Vector3(0, 0, 0);
 
@@ -480,14 +485,11 @@ public class MicrobeAI
                         predator = otherMicrobe;
                     }
 
-                    if (thisPosition != null)
+                    if ((testPosition - microbe.Translation).LengthSquared() >
+                        (thisPosition - microbe.Translation).LengthSquared())
                     {
-                        if ((testPosition - microbe.Translation).LengthSquared() >
-                            (thisPosition - microbe.Translation).LengthSquared())
-                        {
-                            testPosition = thisPosition;
-                            predator = otherMicrobe;
-                        }
+                        testPosition = thisPosition;
+                        predator = otherMicrobe;
                     }
                 }
             }
@@ -621,6 +623,7 @@ public class MicrobeAI
 
         try
         {
+            // ReSharper disable once RedundantAssignment
             compounds = chunk.ContainedCompounds;
             targetPosition = chunk.Translation;
         }
@@ -843,7 +846,7 @@ public class MicrobeAI
         // https://www.mit.edu/~kardar/teaching/projects/chemotaxis(AndreaSchmidt)/home.htm
 
         var randAngle = previousAngle;
-        var randDist = movementRadius;
+        float randDist;
 
         float compoundDifference = microbe.TotalAbsorbedCompounds.SumValues();
 

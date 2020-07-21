@@ -50,7 +50,6 @@
                 }
 
                 --variantsToTry;
-                ran = true;
             }
 
             if (!tryCurrentVariant && variantsToTry <= 0)

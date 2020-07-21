@@ -207,6 +207,9 @@ public class SimulationParameters : Node
 
     private Dictionary<string, T> LoadRegistry<T>(string path, JsonConverter[] extraConverters = null)
     {
+        if (extraConverters == null)
+            extraConverters = Array.Empty<JsonConverter>();
+
         var result = JsonConvert.DeserializeObject<Dictionary<string, T>>(ReadJSONFile(path), extraConverters);
 
         if (result == null)

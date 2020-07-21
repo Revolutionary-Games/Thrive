@@ -461,7 +461,6 @@ public class MicrobeEditor : Node, ILoadableGameState
         if (savedStageToApply != null)
         {
             stage.OnFinishLoading(savedStageToApply);
-            savedStageToApply = null;
             NeedToRestoreStageFromSave = false;
 
             // Resume deletion of save loaded objects now that we have used them finally
@@ -763,7 +762,6 @@ public class MicrobeEditor : Node, ILoadableGameState
     {
         float microbeMass = Constants.MICROBE_BASE_MASS;
 
-        float baseMovementForce = 0;
         float organelleMovementForce = 0;
 
         Vector3 forwardsDirection = new Vector3(0, 0, -1);
@@ -788,7 +786,7 @@ public class MicrobeEditor : Node, ILoadableGameState
             }
         }
 
-        baseMovementForce = Constants.CELL_BASE_THRUST *
+        float baseMovementForce = Constants.CELL_BASE_THRUST *
             (Membrane.MovementFactor - Rigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER);
 
         float finalSpeed = (baseMovementForce + organelleMovementForce) / microbeMass;

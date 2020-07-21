@@ -1020,7 +1020,7 @@ public class MicrobeEditorGUI : Node
 
             var processBody = new HBoxContainer();
 
-            var usePlus = true;
+            bool usePlus;
 
             if (process.OtherInputs.Count == 0)
             {

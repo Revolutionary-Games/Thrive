@@ -162,7 +162,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
         foreach (var component in Components)
         {
             // TODO: determine if is T or as T is better
-            if (component as T != null)
+            if (component is T)
                 return true;
         }
 
@@ -433,12 +433,9 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     private static Color CalculateHSLForOrganelle(Color rawColour)
     {
         // Get hue saturation and brightness for the colour
-        float saturation = 0;
-        float brightness = 0;
-        float hue = 0;
 
         // According to stack overflow HSV and HSB are the same thing
-        rawColour.ToHsv(out hue, out saturation, out brightness);
+        rawColour.ToHsv(out var hue, out var saturation, out var brightness);
 
         return Color.FromHsv(hue, saturation * 2, brightness);
     }

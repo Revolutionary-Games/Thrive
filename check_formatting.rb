@@ -216,7 +216,7 @@ def run_inspect_code
     issues_found = true
 
     OUTPUT_MUTEX.synchronize do
-      error "#{issue['File']}:#{issue['Line']} #{issue['Message']}"
+      error "#{issue['File']}:#{issue['Line']} #{issue['Message']} type: #{issue['TypeId']}"
     end
   end
 

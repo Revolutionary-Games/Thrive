@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Godot;
 
@@ -17,6 +18,7 @@ public class MainMenu : Node
     [Export]
     public NodePath ThriveLogoPath;
 
+    [SuppressMessage("ReSharper", "CollectionNeverUpdated.Global", Justification = "Set from editor")]
     [Export]
     public List<Texture> MenuBackgrounds;
 
