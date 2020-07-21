@@ -18,6 +18,8 @@ VALID_CHECKS = %w[compile files inspectcode cleanupcode].freeze
 # Cleanup is not ran by default because it is super slow
 DEFAULT_CHECKS = %w[compile files inspectcode].freeze
 
+ONLY_FILE_LIST = 'files_to_check.txt'
+
 OUTPUT_MUTEX = Mutex.new
 
 @options = {
@@ -242,7 +244,22 @@ end
 def run_cleanup_code
   old_diff = runOpen3CaptureOutput 'git', 'diff', '--stat'
 
-  runOpen3Checked cleanup_code_executable, 'Thrive.sln', '--profile=full_no_xml'
+  includes = nil
+
+  if File.exist? ONLY_FILE_LIST
+    includes = []
+    File.foreach(ONLY_FILE_LIST).with_index do |line, _num|
+      next if line.strip.empty?
+
+      includes.append line
+    end
+  end
+
+  params = [cleanup_code_executable, 'Thrive.sln', '--profile=full_no_xml']
+
+  params.append "--include=#{includes.join(';')}" if includes
+
+  runOpen3Checked(*params)
 
   new_diff = runOpen3CaptureOutput 'git', 'diff', '--stat'
 
