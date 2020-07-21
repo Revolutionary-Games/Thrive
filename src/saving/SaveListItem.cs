@@ -144,7 +144,7 @@ public class SaveListItem : HBoxContainer
         type.Text = save.Info.Type.ToString();
         createdAt.Text = save.Info.CreatedAt.ToString("G", CultureInfo.CurrentCulture);
         createdBy.Text = save.Info.Creator;
-        createdOnPlatform.Text = save.Info.Platform.ToString();
+        createdOnPlatform.Text = save.Info.Platform;
         description.Text = save.Info.Description;
 
         loadingData = false;

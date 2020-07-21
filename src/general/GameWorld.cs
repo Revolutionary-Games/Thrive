@@ -210,11 +210,12 @@ public class GameWorld
     ///   Adds an external population effect to a species
     /// </summary>
     /// <param name="species">Target species</param>
-    /// <param name="amount">Change amount</param>
+    /// <param name="constant">Change amount (constant part)</param>
     /// <param name="description">What caused the change</param>
     /// <param name="immediate">
     ///   If true applied immediately. Should only be used for the player dying
     /// </param>
+    /// <param name="coefficient">Change amount (coefficient part)</param>
     public void AlterSpeciesPopulation(Species species, int constant, string description,
         bool immediate = false, float coefficient = 1)
     {

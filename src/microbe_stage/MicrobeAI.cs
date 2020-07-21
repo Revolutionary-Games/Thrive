@@ -10,6 +10,8 @@ using Newtonsoft.Json;
 public class MicrobeAI
 {
     private readonly Compound atp;
+
+    // ReSharper disable once NotAccessedField.Local
     private readonly Compound iron;
     private readonly Compound oxytoxy;
 
@@ -19,6 +21,7 @@ public class MicrobeAI
     [JsonProperty]
     private int boredom = 0;
 
+    // ReSharper disable once CollectionNeverQueried.Local
     [JsonIgnore]
     private List<FloatingChunk> chunkList = new List<FloatingChunk>();
 
@@ -612,6 +615,8 @@ public class MicrobeAI
         // Tick the engulf tick
         ticksSinceLastToggle += 1;
 
+        // TODO: do something with the chunk compounds
+        // ReSharper disable once NotAccessedVariable
         CompoundBag compounds;
 
         try
@@ -722,7 +727,8 @@ public class MicrobeAI
             }
         }
 
-        var vec = microbe.Translation - targetPosition;
+        // TODO: do something with this
+        // var vec = microbe.Translation - targetPosition;
         microbe.LookAtPoint = -targetPosition;
         microbe.MovementDirection = new Vector3(0.0f, 0.0f, -Constants.AI_BASE_MOVEMENT);
         hasTargetPosition = true;
@@ -877,10 +883,12 @@ public class MicrobeAI
             targetPosition = new Vector3(Mathf.Cos(randAngle) * randDist, 0, Mathf.Sin(randAngle) * randDist);
         }
 
-        // Turn more if not in concentration gradient basiclaly (step is .4 if really no mfood, .3 if less food, .1 if
+        // Turn more if not in concentration gradient basically (step is .4 if really no food, .3 if less food, .1 if
         // in food)
         previousAngle = randAngle;
-        var vec = targetPosition - microbe.Translation;
+
+        // TODO: do something with this
+        // var vec = targetPosition - microbe.Translation;
         microbe.LookAtPoint = targetPosition;
         microbe.MovementDirection = new Vector3(0.0f, 0.0f, -Constants.AI_BASE_MOVEMENT);
         hasTargetPosition = true;

@@ -17,7 +17,7 @@ public class OverlayManager : Node
         var root = GetTree().Root;
 
         // Get references to the overlays, which must be autoloads that are specified before this one in the load order
-        var overlays = new string[]
+        var overlays = new[]
         {
             "LoadingScreen",
             "SaveStatusOverlay",

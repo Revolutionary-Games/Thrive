@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Godot;
 using Newtonsoft.Json;
@@ -322,6 +323,8 @@ public class CompoundCloudSystem : Node
         }
     }
 
+    [SuppressMessage("ReSharper", "PossibleLossOfFraction",
+        Justification = "I'm not sure how I should fix this code I didn't write (hhyyrylainen)")]
     private static Vector3
         CalculateGridCenterForPlayerPos(Vector3 pos)
     {

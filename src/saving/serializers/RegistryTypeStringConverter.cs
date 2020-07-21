@@ -2,8 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
-using System.Linq;
-using Newtonsoft.Json.Linq;
 
 /// <summary>
 ///   Converts between registry types and their internal names

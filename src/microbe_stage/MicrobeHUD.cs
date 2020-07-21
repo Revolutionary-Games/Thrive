@@ -156,6 +156,9 @@ public class MicrobeHUD : Node
     private ProgressBar nitrogenBar;
     private ProgressBar temperature;
     private ProgressBar sunlightLabel;
+
+    // TODO: implement changing pressure conditions
+    // ReSharper disable once NotAccessedField.Local
     private ProgressBar pressure;
 
     private GridContainer compoundsPanelBarContainer;
@@ -173,6 +176,8 @@ public class MicrobeHUD : Node
     private TextureProgress ammoniaReproductionBar;
     private TextureProgress phosphateReproductionBar;
 
+    // TODO: Not needed anymore, remove?
+    // ReSharper disable once NotAccessedField.Local
     private VBoxContainer leftPanels;
     private PauseMenu menu;
     private TextureButton pauseButton;

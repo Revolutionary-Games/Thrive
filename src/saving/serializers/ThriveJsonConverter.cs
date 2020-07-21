@@ -16,6 +16,10 @@ public class ThriveJsonConverter : IDisposable
     private static readonly ThriveJsonConverter InstanceValue =
         new ThriveJsonConverter(new SaveContext(SimulationParameters.Instance));
 
+    // ReSharper disable once NotAccessedField.Local
+    /// <summary>
+    ///   This variable is kept just in case accessing the context after the constructor is useful
+    /// </summary>
     private readonly SaveContext context;
 
     private readonly JsonConverter[] thriveConverters;
@@ -378,7 +382,7 @@ public abstract class BaseThriveConverter : JsonConverter
                     $"Json property used on a property ({name})that has no (private) setter");
             }
 
-            set.Invoke(instance, new object[]
+            set.Invoke(instance, new[]
             {
                 ReadMember(name, property.PropertyType, item, instance, reader,
                     serializer),

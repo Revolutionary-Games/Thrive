@@ -79,6 +79,7 @@ public class TransitionManager : Node
     /// <summary>
     ///   Creates and queues a cutscene.
     /// </summary>
+    /// <param name="path">The video file to play</param>
     /// <param name="allowSkipping">
     ///   Allow the user to skip this
     /// </param>

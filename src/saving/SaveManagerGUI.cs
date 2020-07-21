@@ -36,7 +36,11 @@ public class SaveManagerGUI : Control
     private Label totalSaveCount;
     private Label totalSaveSize;
     private Button loadButton;
+
+    // ReSharper disable once NotAccessedField.Local
     private Button deleteSelectedButton;
+
+    // ReSharper disable once NotAccessedField.Local
     private Button deleteOldButton;
 
     private List<SaveListItem> selected;

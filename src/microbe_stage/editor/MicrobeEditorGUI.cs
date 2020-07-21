@@ -229,6 +229,8 @@ public class MicrobeEditorGUI : Node
     private TextureButton undoButton;
     private TextureButton redoButton;
     private Button finishButton;
+
+    // ReSharper disable once NotAccessedField.Local
     private TextureButton symmetryButton;
     private TextureRect symmetryIcon;
     private Label atpBalanceLabel;

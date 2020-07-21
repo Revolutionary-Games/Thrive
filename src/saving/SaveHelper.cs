@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Godot;
@@ -12,7 +11,14 @@ public static class SaveHelper
 {
     public enum SaveOrder
     {
+        /// <summary>
+        ///   The last modified (on disk) save is first
+        /// </summary>
         LastModifiedFirst,
+
+        /// <summary>
+        ///   Whatever file the filesystem API gives us is first
+        /// </summary>
         FileSystem,
     }
 
@@ -65,9 +71,6 @@ public static class SaveHelper
 
                     break;
                 }
-
-            default:
-                break;
         }
 
         return result;

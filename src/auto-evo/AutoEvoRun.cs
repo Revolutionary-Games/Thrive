@@ -231,7 +231,8 @@ public class AutoEvoRun
     ///   Adds an external population affecting event (player dying, reproduction, darwinian evo actions)
     /// </summary>
     /// <param name="species">The affected Species.</param>
-    /// <param name="amount">The population change amount.</param>
+    /// <param name="constant">The population change amount (constant part).</param>
+    /// <param name="coefficient">The population change amount (coefficient part).</param>
     /// <param name="eventType">The external event type.</param>
     public void AddExternalPopulationEffect(Species species, int constant, float coefficient, string eventType)
     {
