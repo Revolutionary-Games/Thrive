@@ -62,7 +62,7 @@ jobs:
        - run:
            name: Just make C# project valid; don't care if assert import fails
            command: |
-             godot --export "Linux/X11" "builds/a.x86_64"; exit 0
+             godot --export "Linux/X11" "builds/a.x86_64" || true
        - restore_cache:
            keys:
              - v2-nuget-{{ .Branch }}
