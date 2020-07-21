@@ -1,9 +1,12 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
+
 # This script first builds using msbuild treating warnings as errors
 # and then runs some custom line length checks
 require 'optparse'
 require 'find'
 require 'digest'
+require 'nokogiri'
 
 require_relative 'bootstrap_rubysetupsystem'
 require_relative 'RubySetupSystem/RubyCommon'
@@ -11,7 +14,7 @@ require_relative 'scripts/fast_build/toggle_analysis_lib'
 
 MAX_LINE_LENGTH = 120
 
-VALID_CHECKS = %w[compile files].freeze
+VALID_CHECKS = %w[compile files inspectcode cleanupcode].freeze
 
 OUTPUT_MUTEX = Mutex.new
 
@@ -183,11 +186,66 @@ def run_files
   exit 2
 end
 
+def run_inspect_code
+  # TODO: 32 bit support if needed
+  if OS.windows?
+    runOpen3Checked 'inspectcode.exe', 'Thrive.sln', '-o=inspect_results.xml'
+  else
+    runOpen3Checked 'inspectcode.sh', 'Thrive.sln', '-o=inspect_results.xml'
+  end
+
+  issues_found = false
+
+  doc = Nokogiri::XML(File.open('inspect_results.xml'), &:norecover)
+
+  issue_types = {}
+
+  doc.xpath('//IssueType').each do |node|
+    issue_types[node['Id']] = node
+  end
+
+  doc.xpath('//Issue').each do |issue|
+    type = issue_types[issue['TypeId']]
+
+    next if type['Severity'] == 'SUGGESTION'
+
+    issues_found = true
+
+    OUTPUT_MUTEX.synchronize do
+      error "#{issue['File']}:#{issue['Line']} #{issue['Message']}"
+    end
+  end
+
+  return unless issues_found
+
+  OUTPUT_MUTEX.synchronize do
+    error 'Code inspection detected issues, see inspect_results.xml'
+  end
+  exit 2
+end
+
+def run_cleanup_code
+  old_diff = runOpen3CaptureOutput 'git', 'diff', '--stat'
+
+  new_diff = runOpen3CaptureOutput 'git', 'diff', '--stat'
+
+  return if new_diff == old_diff
+
+  OUTPUT_MUTEX.synchronize do
+    error 'Code cleanup performed changes, please stage / check them before committing'
+  end
+  exit 2
+end
+
 run_check = proc { |check|
   if check == 'compile'
     run_compile
   elsif check == 'files'
     run_files
+  elsif check == 'inspectcode'
+    run_inspect_code
+  elsif check == 'cleanupcode'
+    run_cleanup_code
   else
     OUTPUT_MUTEX.synchronize do
       onError "Unknown check type: #{check}"

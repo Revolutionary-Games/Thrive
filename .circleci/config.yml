@@ -3,7 +3,7 @@ jobs:
    build:
      working_directory: ~/Thrive
      docker:
-       - image: hhyyrylainen/godot-ci:v3
+       - image: hhyyrylainen/godot-ci:v4
      environment:
        GIT_LFS_SKIP_SMUDGE: 1
      steps:
@@ -42,7 +42,23 @@ jobs:
           paths:
             - ~/.nuget/packages
        # Format check before making final packages
-       - run: ./check_formatting.rb -c compile
+       - run: ./check_formatting.rb -c compile,inspectcode,cleanupcode
+       - run:
+           when: always
+           command: |
+             git diff > cleanup_diff.patch
+             if grep -q '[^[:space:]]' < cleanup_diff.patch; then
+                 echo "Code cleanup found things to be fixed:"
+                 cat cleanup_diff.patch
+                 exit 1
+             else
+                 echo "No changes made"
+                 rm -f cleanup_diff.patch
+             fi
+       - store_artifacts:
+          path: inspect_results.xml
+       - store_artifacts:
+          path: cleanup_diff.patch
        # Proper packages
        - run: ./make_release.rb --dehydrated
        # Upload devbuilds
