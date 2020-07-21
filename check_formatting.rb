@@ -72,9 +72,12 @@ def files_to_include
 
   includes = []
   File.foreach(ONLY_FILE_LIST).with_index do |line, _num|
-    next if line.strip.empty?
+    next unless line
 
-    includes.append line
+    file = line.strip
+    next if file.empty?
+
+    includes.append file
   end
 
   includes
