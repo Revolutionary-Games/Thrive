@@ -1358,10 +1358,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             // The player doesn't split automatically
             allOrganellesDivided = true;
 
-            if (OnReproductionStatus != null)
-            {
-                OnReproductionStatus(this, true);
-            }
+            OnReproductionStatus?.Invoke(this, true);
         }
         else
         {

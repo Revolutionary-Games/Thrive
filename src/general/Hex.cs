@@ -211,7 +211,9 @@ public struct Hex : IEquatable<Hex>
         Hex result = original;
 
         for (int i = 0; i < n % 6; i++)
+        {
             result = RotateAxial(result);
+        }
 
         return result;
     }

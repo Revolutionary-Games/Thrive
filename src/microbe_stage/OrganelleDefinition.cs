@@ -308,7 +308,9 @@ public class OrganelleDefinition : IRegistryType
 
         // Precompute rotations
         for (int i = 0; i < 6; ++i)
+        {
             GetRotatedHexes(i);
+        }
     }
 
     public class OrganelleComponentFactoryInfo
