@@ -186,13 +186,17 @@ def run_files
   exit 2
 end
 
-def run_inspect_code
+def inspect_code_executable
   # TODO: 32 bit support if needed
   if OS.windows?
-    runOpen3Checked 'inspectcode.exe', 'Thrive.sln', '-o=inspect_results.xml'
+    'inspectcode.exe'
   else
-    runOpen3Checked 'inspectcode.sh', 'Thrive.sln', '-o=inspect_results.xml'
+    'inspectcode.sh'
   end
+end
+
+def run_inspect_code
+  runOpen3Checked inspect_code_executable, 'Thrive.sln', '-o=inspect_results.xml'
 
   issues_found = false
 
