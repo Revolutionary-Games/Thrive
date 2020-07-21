@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Godot;
+using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   Class managing the main menu and everything in it
@@ -28,7 +29,7 @@ public class MainMenu : Node
     [Export]
     public NodePath FreebuildButtonPath;
 
-    public Godot.Collections.Array MenuArray;
+    public Array MenuArray;
     public TextureRect Background;
 
     public bool IsReturningToMenu = false;
@@ -76,10 +77,8 @@ public class MainMenu : Node
             GD.PrintErr("Selected menu index is out of range!");
             return;
         }
-        else
-        {
-            CurrentMenuIndex = index;
-        }
+
+        CurrentMenuIndex = index;
 
         if (slide)
         {

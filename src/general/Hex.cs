@@ -12,7 +12,7 @@ public struct Hex : IEquatable<Hex>
     ///   Maps a hex side to its direct opposite
     /// </summary>
     public static readonly Dictionary<HexSide, HexSide> OppositeHexSide =
-        new Dictionary<HexSide, HexSide>()
+        new Dictionary<HexSide, HexSide>
         {
             { HexSide.TOP, HexSide.BOTTOM },
             { HexSide.TOP_RIGHT, HexSide.BOTTOM_LEFT },
@@ -28,7 +28,7 @@ public struct Hex : IEquatable<Hex>
     ///   adjacent to that side.
     /// </summary>
     public static readonly Dictionary<HexSide, Hex> HexNeighbourOffset =
-        new Dictionary<HexSide, Hex>()
+        new Dictionary<HexSide, Hex>
         {
             { HexSide.TOP, new Hex(0, 1) },
             { HexSide.TOP_RIGHT, new Hex(1, 0) },

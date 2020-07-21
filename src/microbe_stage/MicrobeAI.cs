@@ -19,20 +19,20 @@ public class MicrobeAI
     private Microbe microbe;
 
     [JsonProperty]
-    private int boredom = 0;
+    private int boredom;
 
     // ReSharper disable once CollectionNeverQueried.Local
     [JsonIgnore]
     private List<FloatingChunk> chunkList = new List<FloatingChunk>();
 
     [JsonProperty]
-    private bool hasTargetPosition = false;
+    private bool hasTargetPosition;
 
     [JsonProperty]
     private LifeState lifeState = LifeState.NEUTRAL_STATE;
 
     [JsonProperty]
-    private bool moveFocused = false;
+    private bool moveFocused;
 
     [JsonProperty]
     private float movementRadius = 2000;
@@ -50,7 +50,7 @@ public class MicrobeAI
     private List<Microbe> predatoryMicrobes = new List<Microbe>();
 
     [JsonProperty]
-    private float previousAngle = 0.0f;
+    private float previousAngle;
 
     [JsonIgnore]
     private Microbe prey;
@@ -59,7 +59,7 @@ public class MicrobeAI
     private List<Microbe> preyMicrobes = new List<Microbe>();
 
     [JsonProperty]
-    private bool preyPegged = false;
+    private bool preyPegged;
 
     [JsonIgnore]
     private FloatingChunk targetChunk;

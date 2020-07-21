@@ -74,8 +74,7 @@ public class OrganelleLayout<T> : ICollection<T>
     ///   Returns true if CanPlace would return true and an existing
     ///   hex touches one of the new hexes, or is the last hex and can be replaced.
     /// </summary>
-    public bool CanPlaceAndIsTouching(
-        T organelle,
+    public bool CanPlaceAndIsTouching(T organelle,
         bool allowCytoplasmOverlap = false,
         bool allowReplacingLastCytoplasm = false)
     {
@@ -147,7 +146,7 @@ public class OrganelleLayout<T> : ICollection<T>
             }
         }
 
-        return default(T);
+        return default;
     }
 
     /// <summary>

@@ -1,18 +1,21 @@
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Threading.Tasks;
 using Godot;
 using Newtonsoft.Json;
+using Vector2 = Godot.Vector2;
+using Vector3 = Godot.Vector3;
 
 public class CompoundCloudPlane : CSGMesh, ISaveApplyable
 {
     /// <summary>
     ///   The current densities of compounds. This uses custom writing so this is ignored
     /// </summary>
-    public System.Numerics.Vector4[,] Density;
+    public Vector4[,] Density;
 
     [JsonIgnore]
-    public System.Numerics.Vector4[,] OldDensity;
+    public Vector4[,] OldDensity;
 
     [JsonProperty]
     public Compound[] Compounds;
@@ -30,7 +33,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
     [JsonProperty]
     public int Size { get; private set; }
 
-    public bool IsLoadedFromSave { get; set; } = false;
+    public bool IsLoadedFromSave { get; set; }
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -42,8 +45,8 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
         Resolution = Settings.Instance.CloudResolution;
         CreateDensityTexture();
 
-        Density = new System.Numerics.Vector4[Size, Size];
-        OldDensity = new System.Numerics.Vector4[Size, Size];
+        Density = new Vector4[Size, Size];
+        OldDensity = new Vector4[Size, Size];
         ClearContents();
     }
 
@@ -347,7 +350,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
     /// </summary>
     public void AddCloud(Compound compound, float density, int x, int y)
     {
-        var cloudToAdd = new System.Numerics.Vector4(
+        var cloudToAdd = new Vector4(
             Compounds[0] == compound ? density : 0.0f,
             Compounds[1] == compound ? density : 0.0f,
             Compounds[2] == compound ? density : 0.0f,
@@ -492,8 +495,8 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
         {
             for (int y = 0; y < Size; ++y)
             {
-                Density[x, y] = System.Numerics.Vector4.Zero;
-                OldDensity[x, y] = System.Numerics.Vector4.Zero;
+                Density[x, y] = Vector4.Zero;
+                OldDensity[x, y] = Vector4.Zero;
             }
         }
     }
@@ -518,7 +521,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
             CreateDensityTexture();
         }
 
-        OldDensity = new System.Numerics.Vector4[Size, Size];
+        OldDensity = new Vector4[Size, Size];
         SetMaterialUVForPosition();
     }
 
@@ -660,7 +663,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
         {
             for (int y = y0; y < y0 + height; y++)
             {
-                Density[x, y] = System.Numerics.Vector4.Zero;
+                Density[x, y] = Vector4.Zero;
             }
         }
     }
@@ -674,7 +677,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
             - Constants.CLOUD_EDGE_WIDTH, height - Constants.CLOUD_EDGE_WIDTH, delta, pos);
     }
 
-    private float HackyAdress(System.Numerics.Vector4 vector, int index)
+    private float HackyAdress(Vector4 vector, int index)
     {
         switch (index)
         {

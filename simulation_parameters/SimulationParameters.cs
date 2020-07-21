@@ -73,13 +73,7 @@ public class SimulationParameters : Node
         GD.Print("SimulationParameters are good");
     }
 
-    public static SimulationParameters Instance
-    {
-        get
-        {
-            return instance;
-        }
-    }
+    public static SimulationParameters Instance => instance;
 
     public NameGenerator NameGenerator { get; }
 

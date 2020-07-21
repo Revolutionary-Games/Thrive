@@ -29,16 +29,13 @@ public class CompoundCloudSystem : Node
     private Vector3 cloudGridCenter;
 
     [JsonProperty]
-    private float elapsed = 0.0f;
+    private float elapsed;
 
     /// <summary>
     ///   The cloud resolution of the first cloud
     /// </summary>
     [JsonIgnore]
-    public int Resolution
-    {
-        get { return clouds[0].Resolution; }
-    }
+    public int Resolution => clouds[0].Resolution;
 
     public override void _Ready()
     {

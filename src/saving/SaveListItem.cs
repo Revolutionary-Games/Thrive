@@ -68,10 +68,7 @@ public class SaveListItem : HBoxContainer
 
     public string SaveName
     {
-        get
-        {
-            return saveName;
-        }
+        get => saveName;
         set
         {
             if (value == saveName)

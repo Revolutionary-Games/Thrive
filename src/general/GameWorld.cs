@@ -15,7 +15,7 @@ using Newtonsoft.Json;
 public class GameWorld
 {
     [JsonProperty]
-    private uint speciesIdCounter = 0;
+    private uint speciesIdCounter;
 
     [JsonProperty]
     private Mutations mutator = new Mutations();
@@ -87,7 +87,7 @@ public class GameWorld
     public PatchMap Map { get; private set; }
 
     [JsonIgnore]
-    public TimedWorldOperations TimedEffects { get; private set; }
+    public TimedWorldOperations TimedEffects { get; }
 
     public static void SetInitialSpeciesProperties(MicrobeSpecies species)
     {

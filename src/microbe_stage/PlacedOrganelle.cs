@@ -16,7 +16,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     private Color colour = new Color(1, 1, 1, 1);
 
     private bool growthValueDirty = true;
-    private float growthValue = 0.0f;
+    private float growthValue;
 
     /// <summary>
     ///   Used to update the tint
@@ -66,10 +66,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     /// </summary>
     public Color Colour
     {
-        get
-        {
-            return colour;
-        }
+        get => colour;
         set
         {
             colour = value;
@@ -94,7 +91,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     /// <summary>
     ///   True when organelle was split in preparation for reproducing
     /// </summary>
-    public bool WasSplit { get; set; } = false;
+    public bool WasSplit { get; set; }
 
     /// <summary>
     ///   True in the organelle that was created as a result of a split
@@ -106,7 +103,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     ///     set in the original organelle.
     ///   </para>
     /// </remarks>
-    public bool IsDuplicate { get; set; } = false;
+    public bool IsDuplicate { get; set; }
 
     public PlacedOrganelle SisterOrganelle { get; set; }
 
@@ -145,13 +142,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
     ///   determine how often a cell can shoot toxins.
     /// </summary>
     [JsonIgnore]
-    public bool IsAgentVacuole
-    {
-        get
-        {
-            return HasComponent<AgentVacuoleComponent>();
-        }
-    }
+    public bool IsAgentVacuole => HasComponent<AgentVacuoleComponent>();
 
     /// <summary>
     ///   Checks if this organelle has the specified component type

@@ -63,12 +63,12 @@ public class ThriveJsonConverter : IDisposable
 
     public string SerializeObject(object o)
     {
-        return PerformWithSettings((settings) => JsonConvert.SerializeObject(o, Constants.SAVE_FORMATTING, settings));
+        return PerformWithSettings(settings => JsonConvert.SerializeObject(o, Constants.SAVE_FORMATTING, settings));
     }
 
     public T DeserializeObject<T>(string json)
     {
-        return PerformWithSettings((settings) => JsonConvert.DeserializeObject<T>(json, settings));
+        return PerformWithSettings(settings => JsonConvert.DeserializeObject<T>(json, settings));
     }
 
     /// <summary>
@@ -79,7 +79,7 @@ public class ThriveJsonConverter : IDisposable
     /// <exception cref="JsonException">If invalid json or the dynamic type is not allowed</exception>
     public object DeserializeObjectDynamic(string json)
     {
-        return PerformWithSettings((settings) =>
+        return PerformWithSettings(settings =>
         {
             // enable hack conversion
             settings.Converters = thriveConvertersDynamicDeserialize;
@@ -129,7 +129,7 @@ public class ThriveJsonConverter : IDisposable
     {
         var referenceResolver = new ReferenceResolver();
 
-        return new JsonSerializerSettings()
+        return new JsonSerializerSettings
         {
             // PreserveReferencesHandling = PreserveReferencesHandling.Objects,
 
@@ -228,26 +228,26 @@ public abstract class BaseThriveConverter : JsonConverter
     public static IEnumerable<FieldInfo> FieldsOf(object value)
     {
         var fields = value.GetType().GetFields(
-            BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).Where((p) => p.CustomAttributes.All(
+            BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).Where(p => p.CustomAttributes.All(
             a => a.AttributeType != typeof(JsonIgnoreAttribute) &&
                 a.AttributeType != typeof(CompilerGeneratedAttribute)));
 
         // Ignore fields that aren't public unless it has JsonPropertyAttribute
-        return fields.Where((p) =>
+        return fields.Where(p =>
             (p.IsPublic && !p.IsInitOnly) ||
-            p.CustomAttributes.Any((a) => a.AttributeType == typeof(JsonPropertyAttribute)));
+            p.CustomAttributes.Any(a => a.AttributeType == typeof(JsonPropertyAttribute)));
     }
 
     public static IEnumerable<PropertyInfo> PropertiesOf(object value)
     {
         var properties = value.GetType().GetProperties(
             BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).Where(
-            (p) => p.CustomAttributes.All(
+            p => p.CustomAttributes.All(
                 a => a.AttributeType != typeof(JsonIgnoreAttribute)));
 
         // Ignore properties that don't have a public setter unless it has JsonPropertyAttribute
-        return properties.Where((p) => p.GetSetMethod() != null ||
-            p.CustomAttributes.Any((a) => a.AttributeType == typeof(JsonPropertyAttribute)));
+        return properties.Where(p => p.GetSetMethod() != null ||
+            p.CustomAttributes.Any(a => a.AttributeType == typeof(JsonPropertyAttribute)));
     }
 
     public static bool IsIgnoredGodotMember(string name, Type type)
@@ -344,7 +344,7 @@ public abstract class BaseThriveConverter : JsonConverter
 
         // Load constructor params
         object[] constructorArgs = constructor.GetParameters()
-            .Select((p) => ReadMember(DetermineKey(item, p.Name),
+            .Select(p => ReadMember(DetermineKey(item, p.Name),
                 p.ParameterType, item, null, reader, serializer)).ToArray();
 
         var instance = constructor.Invoke(constructorArgs);
@@ -446,9 +446,9 @@ public abstract class BaseThriveConverter : JsonConverter
             {
                 // Write the type of the instance always as we can't detect if the value matches the type of the field
                 // We can at least check that the actual type is a subclass of something allowing dynamic typing
-                bool baseIsDynamic = type.BaseType != null && type.BaseType.CustomAttributes.Any((attr) =>
+                bool baseIsDynamic = type.BaseType != null && type.BaseType.CustomAttributes.Any(attr =>
                     attr.AttributeType == typeof(JSONDynamicTypeAllowedAttribute));
-                bool currentIsAlwaysDynamic = type.CustomAttributes.Any((attr) =>
+                bool currentIsAlwaysDynamic = type.CustomAttributes.Any(attr =>
                     attr.AttributeType == typeof(JSONAlwaysDynamicTypeAttribute));
 
                 if (baseIsDynamic || currentIsAlwaysDynamic)
@@ -586,6 +586,6 @@ internal class DefaultThriveJSONConverter : BaseThriveConverter
     {
         // Types with out custom attribute are supported
         return objectType.CustomAttributes.Any(
-            (attr) => attr.AttributeType == typeof(UseThriveSerializerAttribute));
+            attr => attr.AttributeType == typeof(UseThriveSerializerAttribute));
     }
 }

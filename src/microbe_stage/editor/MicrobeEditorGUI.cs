@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 using Godot;
+using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   Main class managing the microbe editor GUI
@@ -213,9 +214,9 @@ public class MicrobeEditorGUI : Node
 
     private MicrobeEditor editor;
 
-    private Godot.Collections.Array organelleSelectionElements;
-    private Godot.Collections.Array membraneSelectionElements;
-    private Godot.Collections.Array itemTooltipElements;
+    private Array organelleSelectionElements;
+    private Array membraneSelectionElements;
+    private Array itemTooltipElements;
 
     private Control menu;
     private Label sizeLabel;
@@ -276,13 +277,13 @@ public class MicrobeEditorGUI : Node
     private TextureRect patchPhosphateSituation;
     private Slider rigiditySlider;
 
-    private bool inEditorTab = false;
+    private bool inEditorTab;
     private MicrobeEditor.MicrobeSymmetry symmetry = MicrobeEditor.MicrobeSymmetry.None;
 
     /// <summary>
     ///   For toggling purposes
     /// </summary>
-    private bool speciesListIsHidden = false;
+    private bool speciesListIsHidden;
 
     public string GetNewSpeciesName()
     {
@@ -357,7 +358,7 @@ public class MicrobeEditorGUI : Node
         patchPhosphateSituation = GetNode<TextureRect>(PatchPhosphateSituationPath);
         rigiditySlider = GetNode<Slider>(RigiditySliderPath);
 
-        mapDrawer.OnSelectedPatchChanged = (drawer) => { UpdateShownPatchDetails(); };
+        mapDrawer.OnSelectedPatchChanged = drawer => { UpdateShownPatchDetails(); };
 
         // Fade out for that smooth satisfying transition
         TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeOut, 0.5f);
@@ -425,12 +426,12 @@ public class MicrobeEditorGUI : Node
         if (energyBalance.FinalBalance > 0)
         {
             atpBalanceLabel.Text = ATP_BALANCE_DEFAULT_TEXT;
-            atpBalanceLabel.AddColorOverride("font_color", new Color(1.0f, 1.0f, 1.0f, 1.0f));
+            atpBalanceLabel.AddColorOverride("font_color", new Color(1.0f, 1.0f, 1.0f));
         }
         else
         {
             atpBalanceLabel.Text = ATP_BALANCE_DEFAULT_TEXT + " - ATP PRODUCTION TOO LOW!";
-            atpBalanceLabel.AddColorOverride("font_color", new Color(1.0f, 0.2f, 0.2f, 1.0f));
+            atpBalanceLabel.AddColorOverride("font_color", new Color(1.0f, 0.2f, 0.2f));
         }
 
         float maxValue = Math.Max(energyBalance.TotalConsumption, energyBalance.TotalProduction);
@@ -456,7 +457,8 @@ public class MicrobeEditorGUI : Node
     /// <summary>
     ///   Updates the organelle efficiencies in tooltips.
     /// </summary>
-    public void UpdateOrganelleEfficiencies(Dictionary<string, OrganelleEfficiency> organelleEfficiency)
+    public void UpdateOrganelleEfficiencies(
+        System.Collections.Generic.Dictionary<string, OrganelleEfficiency> organelleEfficiency)
     {
         foreach (var organelleName in organelleEfficiency.Keys)
         {

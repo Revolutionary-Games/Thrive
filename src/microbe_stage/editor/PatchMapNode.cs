@@ -8,8 +8,10 @@ public class PatchMapNode : MarginContainer
 {
     [Export]
     public NodePath IconPath;
+
     [Export]
     public NodePath HighlightPanelPath;
+
     [Export]
     public NodePath MarkPanelPath;
 
@@ -17,9 +19,9 @@ public class PatchMapNode : MarginContainer
     private Panel highlightPanel;
     private Panel markPanel;
 
-    private bool highlighted = false;
-    private bool selected = false;
-    private bool marked = false;
+    private bool highlighted;
+    private bool selected;
+    private bool marked;
 
     private Texture patchIcon;
 
@@ -32,10 +34,7 @@ public class PatchMapNode : MarginContainer
 
     public Texture PatchIcon
     {
-        get
-        {
-            return patchIcon;
-        }
+        get => patchIcon;
         set
         {
             if (patchIcon == value)
@@ -48,10 +47,7 @@ public class PatchMapNode : MarginContainer
 
     public bool Highlighted
     {
-        get
-        {
-            return highlighted;
-        }
+        get => highlighted;
         set
         {
             highlighted = value;
@@ -61,10 +57,7 @@ public class PatchMapNode : MarginContainer
 
     public bool Selected
     {
-        get
-        {
-            return selected;
-        }
+        get => selected;
         set
         {
             selected = value;
@@ -74,10 +67,7 @@ public class PatchMapNode : MarginContainer
 
     public bool Marked
     {
-        get
-        {
-            return marked;
-        }
+        get => marked;
         set
         {
             marked = value;

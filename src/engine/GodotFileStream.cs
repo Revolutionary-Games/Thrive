@@ -21,14 +21,8 @@ public class GodotFileStream : Stream
 
     public override long Position
     {
-        get
-        {
-            return file.GetPosition();
-        }
-        set
-        {
-            file.Seek(value);
-        }
+        get => file.GetPosition();
+        set => file.Seek(value);
     }
 
     /// <summary>

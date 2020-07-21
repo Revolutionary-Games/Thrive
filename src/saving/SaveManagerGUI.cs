@@ -46,8 +46,8 @@ public class SaveManagerGUI : Control
     private List<SaveListItem> selected;
     private bool selectedDirty = true;
 
-    private bool saveCountRefreshed = false;
-    private bool refreshing = false;
+    private bool saveCountRefreshed;
+    private bool refreshing;
 
     private Task<(int count, long diskSpace)> getSaveCountTask;
 
@@ -98,8 +98,8 @@ public class SaveManagerGUI : Control
         getSaveCountTask = null;
 
         totalSaveCount.Text = info.count.ToString(CultureInfo.CurrentCulture);
-        totalSaveSize.Text = Math.Round((float)info.diskSpace / Constants.MEBIBYTE, 2).
-            ToString(CultureInfo.CurrentCulture) + " MiB";
+        totalSaveSize.Text =
+            Math.Round((float)info.diskSpace / Constants.MEBIBYTE, 2).ToString(CultureInfo.CurrentCulture) + " MiB";
 
         refreshing = false;
     }

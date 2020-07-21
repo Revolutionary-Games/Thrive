@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoEvo;
 using Godot;
 
 /// <summary>
@@ -17,34 +18,35 @@ public class AutoEvoRun
     private const int MOVE_ATTEMPTS_PER_SPECIES = 5;
     private const bool ALLOW_NO_MIGRATION = true;
 
-    private readonly AutoEvo.RunParameters parameters;
+    private readonly RunParameters parameters;
 
     /// <summary>
     ///   Results are stored here until the simulation is complete and then applied
     /// </summary>
-    private readonly AutoEvo.RunResults results = new AutoEvo.RunResults();
+    private readonly RunResults results = new RunResults();
 
     /// <summary>
     ///   Generated steps are stored here until they are executed
     /// </summary>
-    private readonly Queue<AutoEvo.IRunStep> runSteps = new Queue<AutoEvo.IRunStep>();
+    private readonly Queue<IRunStep> runSteps = new Queue<IRunStep>();
 
     private volatile RunStage state = RunStage.GATHERING_INFO;
 
-    private bool started = false;
-    private volatile bool running = false;
-    private volatile bool finished = false;
-    private volatile bool aborted = false;
+    private bool started;
+    private volatile bool running;
+    private volatile bool finished;
+    private volatile bool aborted;
 
     /// <summary>
     ///   -1 means not yet computed
     /// </summary>
     private volatile int totalSteps = -1;
-    private volatile int completeSteps = 0;
+
+    private volatile int completeSteps;
 
     public AutoEvoRun(GameWorld world)
     {
-        parameters = new AutoEvo.RunParameters(world);
+        parameters = new RunParameters(world);
     }
 
     private enum RunStage
@@ -125,17 +127,15 @@ public class AutoEvoRun
 
                 return $"{percentage:F1}% done. {completeSteps:n0}/{total:n0} steps.";
             }
-            else
-            {
-                return "Starting";
-            }
+
+            return "Starting";
         }
     }
 
     /// <summary>
     ///   Run results after this is finished
     /// </summary>
-    public AutoEvo.RunResults Results
+    public RunResults Results
     {
         get
         {
@@ -317,7 +317,7 @@ public class AutoEvoRun
                 GatherInfo();
 
                 // +2 is for this step and the result apply step
-                totalSteps = runSteps.Sum((step) => step.TotalSteps) + 2;
+                totalSteps = runSteps.Sum(step => step.TotalSteps) + 2;
 
                 ++completeSteps;
                 state = RunStage.STEPPING;
@@ -372,10 +372,10 @@ public class AutoEvoRun
                 }
                 else
                 {
-                    runSteps.Enqueue(new AutoEvo.FindBestMutation(map, speciesEntry.Key, MUTATIONS_PER_SPECIES,
-                            ALLOW_NO_MUTATION));
-                    runSteps.Enqueue(new AutoEvo.FindBestMigration(map, speciesEntry.Key, MOVE_ATTEMPTS_PER_SPECIES,
-                            ALLOW_NO_MIGRATION));
+                    runSteps.Enqueue(new FindBestMutation(map, speciesEntry.Key, MUTATIONS_PER_SPECIES,
+                        ALLOW_NO_MUTATION));
+                    runSteps.Enqueue(new FindBestMigration(map, speciesEntry.Key, MOVE_ATTEMPTS_PER_SPECIES,
+                        ALLOW_NO_MIGRATION));
                 }
             }
         }
@@ -384,24 +384,24 @@ public class AutoEvoRun
         // the player edits their species the other species they are competing
         // against are the same (so we can show some performance predictions in the
         // editor and suggested changes)
-        runSteps.Enqueue(new AutoEvo.CalculatePopulation(map));
+        runSteps.Enqueue(new CalculatePopulation(map));
 
         // Adjust auto-evo results for player species
         // NOTE: currently the population change is random so it is canceled out for
         // the player
-        runSteps.Enqueue(new AutoEvo.LambdaStep(
-                (result) =>
+        runSteps.Enqueue(new LambdaStep(
+            result =>
+            {
+                var species = parameters.World.PlayerSpecies;
+
+                foreach (var entry in map.Patches)
                 {
-                    var species = parameters.World.PlayerSpecies;
+                    if (!entry.Value.SpeciesInPatch.ContainsKey(species))
+                        continue;
 
-                    foreach (var entry in map.Patches)
-                    {
-                        if (!entry.Value.SpeciesInPatch.ContainsKey(species))
-                            continue;
-
-                        result.AddPopulationResultForSpecies(species, entry.Value,
-                            entry.Value.GetSpeciesPopulation(species));
-                    }
-                }));
+                    result.AddPopulationResultForSpecies(species, entry.Value,
+                        entry.Value.GetSpeciesPopulation(species));
+                }
+            }));
     }
 }

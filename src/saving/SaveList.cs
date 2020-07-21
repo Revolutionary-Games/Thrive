@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Godot;
-using Array = Godot.Collections.Array;
+using Godot.Collections;
 
 /// <summary>
 ///   A widget containing a list of saves
@@ -78,7 +78,7 @@ public class SaveList : ScrollContainer
             if (SelectableItems)
                 item.Connect(nameof(SaveListItem.OnSelectedChanged), this, nameof(OnSubItemSelectedChanged));
 
-            item.Connect(nameof(SaveListItem.OnDeleted), this, nameof(OnDeletePressed), new Array() { save });
+            item.Connect(nameof(SaveListItem.OnDeleted), this, nameof(OnDeletePressed), new Array { save });
 
             item.SaveName = save;
             savesList.AddChild(item);

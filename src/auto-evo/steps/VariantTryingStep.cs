@@ -58,10 +58,8 @@
                 OnBestResultFound(results, currentBest);
                 return true;
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
 
         /// <summary>

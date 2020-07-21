@@ -19,13 +19,12 @@ public static class PathUtils
         {
             return first.Substring(0, first.Length - 1) + second;
         }
-        else if (firstSeparator || secondSeparator)
+
+        if (firstSeparator || secondSeparator)
         {
             return first + second;
         }
-        else
-        {
-            return first + PATH_SEPARATOR + second;
-        }
+
+        return first + PATH_SEPARATOR + second;
     }
 }

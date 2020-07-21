@@ -11,7 +11,7 @@ public static class NodeGroupSaveHelper
 {
     public const string GROUP_JSON_PROPERTY_NAME = "NodeGroups";
 
-    private static readonly List<string> IgnoredGroups = new List<string>()
+    private static readonly List<string> IgnoredGroups = new List<string>
     {
         "physics_process",
         "process",
@@ -50,7 +50,7 @@ public static class NodeGroupSaveHelper
         {
             foreach (var group in groups)
             {
-                instance.AddToGroup(@group);
+                instance.AddToGroup(group);
             }
         }
     }

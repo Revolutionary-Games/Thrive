@@ -7,6 +7,7 @@ using Godot;
 public class CursorLoader : Node
 {
     private Resource hoverCursor;
+
     public override void _Ready()
     {
         hoverCursor = GD.Load<Resource>("res://assets/textures/gui/cursors/cursor_hover.png");

@@ -29,8 +29,8 @@ public abstract class Species : ICloneable
     public float Aggression = 100.0f;
     public float Opportunism = 100.0f;
     public float Fear = 100.0f;
-    public float Activity = 0.0f;
-    public float Focus = 0.0f;
+    public float Activity;
+    public float Focus;
 
     /// <summary>
     ///   This is the global population (the sum of population in all patches)
@@ -72,7 +72,7 @@ public abstract class Species : ICloneable
     ///   When true this is the player species
     /// </summary>
     [JsonProperty]
-    public bool PlayerSpecies { get; private set; } = false;
+    public bool PlayerSpecies { get; private set; }
 
     [JsonIgnore]
     public string FormattedName => Genus + " " + Epithet;

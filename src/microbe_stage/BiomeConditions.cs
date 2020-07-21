@@ -35,7 +35,7 @@ public class BiomeConditions : ICloneable, ISaveLoadable
 
     public object Clone()
     {
-        var result = new BiomeConditions()
+        var result = new BiomeConditions
         {
             AverageTemperature = AverageTemperature,
             Compounds = new Dictionary<Compound, EnvironmentalCompoundProperties>(Compounds.Count),

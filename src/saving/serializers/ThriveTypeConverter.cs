@@ -16,7 +16,7 @@ public class ThriveTypeConverter : TypeConverter
     public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
     {
         return typeof(string) == destinationType || destinationType.CustomAttributes.Any(
-            (attr) => attr.AttributeType == typeof(UseThriveConverterAttribute));
+            attr => attr.AttributeType == typeof(UseThriveConverterAttribute));
     }
 
     public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
@@ -32,10 +32,8 @@ public class ThriveTypeConverter : TypeConverter
         {
             return ThriveJsonConverter.Instance.SerializeObject(value);
         }
-        else
-        {
-            throw new NotSupportedException();
-        }
+
+        throw new NotSupportedException();
     }
 }
 

@@ -27,20 +27,14 @@ public class FloatingChunk : RigidBody, ISpawned
 
     private MeshInstance chunkMesh;
 
-    private bool isDissolving = false;
+    private bool isDissolving;
 
-    private float dissolveEffectValue = 0.0f;
+    private float dissolveEffectValue;
 
     public int DespawnRadiusSqr { get; set; }
 
     [JsonIgnore]
-    public Node SpawnedNode
-    {
-        get
-        {
-            return this;
-        }
-    }
+    public Node SpawnedNode => this;
 
     /// <summary>
     ///   Determines how big this chunk is for engulfing calculations. Set to &lt;= 0 to disable
@@ -60,17 +54,17 @@ public class FloatingChunk : RigidBody, ISpawned
     /// <summary>
     ///   If true this chunk is destroyed when all compounds are vented
     /// </summary>
-    public bool Dissolves { get; set; } = false;
+    public bool Dissolves { get; set; }
 
     /// <summary>
     ///   If > 0 applies damage to a cell on touch
     /// </summary>
-    public float Damages { get; set; } = 0.0f;
+    public float Damages { get; set; }
 
     /// <summary>
     ///   If true this gets deleted when a cell touches this
     /// </summary>
-    public bool DeleteOnTouch { get; set; } = false;
+    public bool DeleteOnTouch { get; set; }
 
     public float Radius { get; set; }
 
@@ -154,7 +148,7 @@ public class FloatingChunk : RigidBody, ISpawned
         config.Meshes = new List<ChunkConfiguration.ChunkScene>();
 
         var item = new ChunkConfiguration.ChunkScene
-        { LoadedScene = GraphicsScene, ScenePath = GraphicsScene.ResourcePath };
+            { LoadedScene = GraphicsScene, ScenePath = GraphicsScene.ResourcePath };
 
         config.Meshes.Add(item);
 
@@ -164,7 +158,7 @@ public class FloatingChunk : RigidBody, ISpawned
 
             foreach (var entry in ContainedCompounds)
             {
-                config.Compounds.Add(entry.Key, new ChunkConfiguration.ChunkCompound() { Amount = entry.Value });
+                config.Compounds.Add(entry.Key, new ChunkConfiguration.ChunkCompound { Amount = entry.Value });
             }
         }
 

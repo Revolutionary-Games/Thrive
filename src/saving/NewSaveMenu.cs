@@ -20,7 +20,7 @@ public class NewSaveMenu : Control
     private TextEdit saveNameBox;
     private ConfirmationDialog overwriteConfirm;
 
-    private bool usingSelectedSaveName = false;
+    private bool usingSelectedSaveName;
 
     [Signal]
     public delegate void OnClosed();

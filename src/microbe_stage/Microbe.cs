@@ -40,7 +40,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// <summary>
     ///   Init can call _Ready if it hasn't been called yet
     /// </summary>
-    private bool onReadyCalled = false;
+    private bool onReadyCalled;
 
     /// <summary>
     ///   The organelles in this microbe
@@ -65,16 +65,16 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
     // variables for engulfing
     [JsonProperty]
-    private bool engulfMode = false;
+    private bool engulfMode;
 
     [JsonProperty]
-    private bool previousEngulfMode = false;
+    private bool previousEngulfMode;
 
     [JsonProperty]
-    private Microbe hostileEngulfer = null;
+    private Microbe hostileEngulfer;
 
     [JsonProperty]
-    private bool wasBeingEngulfed = false;
+    private bool wasBeingEngulfed;
 
     // private bool isCurrentlyEngulfing = false;
 
@@ -94,7 +94,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     private HashSet<Microbe> attemptingToEngulf = new HashSet<Microbe>();
 
     [JsonProperty]
-    private float lastCheckedATPDamage = 0.0f;
+    private float lastCheckedATPDamage;
 
     /// <summary>
     ///   The microbe stores here the sum of capacity of all the
@@ -102,32 +102,32 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     ///   messing with this value if we used the Capacity from the
     ///   CompoundBag for the calculations that use this.
     /// </summary>
-    private float organellesCapacity = 0.0f;
+    private float organellesCapacity;
 
     [JsonProperty]
-    private float escapeInterval = 0;
+    private float escapeInterval;
 
     [JsonProperty]
-    private bool hasEscaped = false;
+    private bool hasEscaped;
 
     /// <summary>
     ///   Controls for how long the flashColour is held before going
     ///   back to species colour.
     /// </summary>
     [JsonProperty]
-    private float flashDuration = 0;
+    private float flashDuration;
 
     [JsonProperty]
     private Color flashColour = new Color(0, 0, 0, 0);
 
     [JsonProperty]
-    private bool allOrganellesDivided = false;
+    private bool allOrganellesDivided;
 
     [JsonProperty]
     private MicrobeAI ai;
 
     private PackedScene cellBurstEffectScene;
-    private bool deathParticlesSpawned = false;
+    private bool deathParticlesSpawned;
 
     /// <summary>
     ///   The membrane of this Microbe. Used for grabbing radius / points from this.
@@ -152,7 +152,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     ///   being engulfed by us that we are dead.
     /// </summary>
     [JsonProperty]
-    public bool Dead { get; private set; } = false;
+    public bool Dead { get; private set; }
 
     [JsonProperty]
     public float Hitpoints { get; private set; } = Constants.DEFAULT_HEALTH;
@@ -165,10 +165,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     ///   toxin shots.
     /// </summary>
     [JsonIgnore]
-    public int AgentVacuoleCount { get; private set; } = 0;
+    public int AgentVacuoleCount { get; private set; }
 
     [JsonProperty]
-    public bool IsBeingEngulfed { get; private set; } = false;
+    public bool IsBeingEngulfed { get; private set; }
 
     /// <summary>
     ///   Multiplied on the movement speed of the microbe.
@@ -187,8 +187,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     [JsonIgnore]
     public bool EngulfMode
     {
-        get { return engulfMode; }
-        set { engulfMode = value; }
+        get => engulfMode;
+        set => engulfMode = value;
     }
 
     [JsonIgnore]
@@ -215,10 +215,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             {
                 return HexCount * 0.5f;
             }
-            else
-            {
-                return HexCount;
-            }
+
+            return HexCount;
         }
     }
 
@@ -246,10 +244,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     public int DespawnRadiusSqr { get; set; }
 
     [JsonIgnore]
-    public Node SpawnedNode
-    {
-        get { return this; }
-    }
+    public Node SpawnedNode => this;
 
     [JsonIgnore]
     public List<TweakedProcess> ActiveProcesses
@@ -263,10 +258,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     }
 
     [JsonIgnore]
-    public CompoundBag ProcessCompoundStorage
-    {
-        get { return Compounds; }
-    }
+    public CompoundBag ProcessCompoundStorage => Compounds;
 
     /// <summary>
     ///   For checking if the player is in freebuild mode or not
@@ -278,13 +270,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     ///   Needs access to the world for population changes
     /// </summary>
     [JsonIgnore]
-    public GameWorld GameWorld
-    {
-        get { return CurrentGame.GameWorld; }
-    }
+    public GameWorld GameWorld => CurrentGame.GameWorld;
 
     [JsonProperty]
-    public float TimeUntilNextAIUpdate { get; set; } = 0;
+    public float TimeUntilNextAIUpdate { get; set; }
 
     /// <summary>
     ///   For use by the AI to do run and tumble to find compounds
@@ -293,7 +282,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     public Dictionary<Compound, float> TotalAbsorbedCompounds { get; set; } = new Dictionary<Compound, float>();
 
     [JsonProperty]
-    public float AgentEmissionCooldown { get; private set; } = 0.0f;
+    public float AgentEmissionCooldown { get; private set; }
 
     /// <summary>
     ///   Called when this Microbe dies
@@ -1047,7 +1036,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
     public void ApplyPropertiesFromSave(Microbe microbe)
     {
-        SaveApplyHelper.CopyJSONSavedPropertiesAndFields(this, microbe, new List<string>()
+        SaveApplyHelper.CopyJSONSavedPropertiesAndFields(this, microbe, new List<string>
         {
             "organelles",
         });
@@ -1077,13 +1066,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     internal void SuccessfulScavenge()
     {
         GameWorld.AlterSpeciesPopulation(Species,
-                Constants.CREATURE_SCAVENGE_POPULATION_GAIN, "successful scavenge");
+            Constants.CREATURE_SCAVENGE_POPULATION_GAIN, "successful scavenge");
     }
 
     internal void SuccessfulKill()
     {
         GameWorld.AlterSpeciesPopulation(Species,
-               Constants.CREATURE_KILL_POPULATION_GAIN, "successful kill");
+            Constants.CREATURE_KILL_POPULATION_GAIN, "successful kill");
     }
 
     private void HandleCompoundAbsorbing(float delta)
@@ -1474,30 +1463,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
                     hostileEngulfer = null;
                     IsBeingEngulfed = false;
                 }
-                else
-                {
-                    // This check used to be just to get some distance away and you are no longer being engulfed, now
-                    // the engulfer overlap end callback is used to reset this
-
-                    // Vector3 predatorPosition = new Vector3(0, 0, 0);
-
-                    // var ourPosition = Translation;
-
-                    // float circleRad = 0.0f;
-
-                    // if (!hostileEngulfer.Dead)
-                    // {
-                    //     predatorPosition = hostileEngulfer.Translation;
-                    //     circleRad = hostileEngulfer.Radius;
-                    // }
-
-                    // if (!hostileEngulfer.EngulfMode || hostileEngulfer.Dead ||
-                    //     (ourPosition - predatorPosition).LengthSquared() >= circleRad)
-                    // {
-                    //     hostileEngulfer = null;
-                    //     isBeingEngulfed = false;
-                    // }
-                }
             }
             catch (ObjectDisposedException)
             {
@@ -1824,7 +1789,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
                 // Pilus on pilus doesn't deal damage and you can't engulf
                 return;
             }
-            else if (otherIsPilus || oursIsPilus)
+
+            if (otherIsPilus || oursIsPilus)
             {
                 // Us attacking the other microbe, or it is attacking us
 

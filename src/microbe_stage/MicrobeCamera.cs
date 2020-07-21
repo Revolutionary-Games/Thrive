@@ -77,10 +77,7 @@ public class MicrobeCamera : Camera
                 UpdateCursorWorldPos();
             return cursorWorldPos;
         }
-        private set
-        {
-            cursorWorldPos = value;
-        }
+        private set => cursorWorldPos = value;
     }
 
     public void ResetHeight()
@@ -176,7 +173,7 @@ public class MicrobeCamera : Camera
 
     public void ApplyPropertiesFromSave(MicrobeCamera camera)
     {
-        SaveApplyHelper.CopyJSONSavedPropertiesAndFields(this, camera, new List<string>() { "ObjectToFollow" });
+        SaveApplyHelper.CopyJSONSavedPropertiesAndFields(this, camera, new List<string> { "ObjectToFollow" });
     }
 
     private void UpdateCursorWorldPos()

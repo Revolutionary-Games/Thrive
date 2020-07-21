@@ -8,7 +8,7 @@ public abstract class ReversableAction
     /// <summary>
     ///   True when the action has been performed and can be undone
     /// </summary>
-    public bool Performed { get; private set; } = false;
+    public bool Performed { get; private set; }
 
     /// <summary>
     ///   Does this action
