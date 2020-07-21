@@ -59,7 +59,10 @@ jobs:
            keys:
              - v4-import-master
        # Don't care if this fails, it's enough that the C# build works
-       - run: godot --export "Linux/X11" "builds/a.x86_64"; exit 0
+       - run:
+           name: Just make C# project valid; don't care if assert import fails
+           command: |
+             godot --export "Linux/X11" "builds/a.x86_64"; exit 0
        - restore_cache:
            keys:
              - v2-nuget-{{ .Branch }}
