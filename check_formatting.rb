@@ -203,7 +203,7 @@ end
 
 def handle_csproj_file(path)
   errors = false
-  data = File.read(path)
+  data = File.read(path, encoding: 'utf-8')
 
   unless data.start_with? '<?xml'
     OUTPUT_MUTEX.synchronize do
