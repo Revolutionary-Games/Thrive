@@ -141,6 +141,11 @@ def handle_cs_file(path)
         errors = true
       end
 
+      if !OS.windows? && line.include?("\r\n")
+        error "Line #{line_number} contains a windows style line ending (CR LF)"
+        errors = true
+      end
+
       # For some reason this reports 1 too high
       length = line.length - 1
 
