@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Godot;
@@ -12,7 +11,14 @@ public static class SaveHelper
 {
     public enum SaveOrder
     {
+        /// <summary>
+        ///   The last modified (on disk) save is first
+        /// </summary>
         LastModifiedFirst,
+
+        /// <summary>
+        ///   Whatever file the filesystem API gives us is first
+        /// </summary>
         FileSystem,
     }
 
@@ -56,18 +62,15 @@ public static class SaveHelper
         switch (order)
         {
             case SaveOrder.LastModifiedFirst:
+            {
+                using (var file = new File())
                 {
-                    using (var file = new File())
-                    {
-                        result = result.OrderByDescending(item =>
-                            file.GetModifiedTime(PathUtils.Join(Constants.SAVE_FOLDER, item))).ToList();
-                    }
-
-                    break;
+                    result = result.OrderByDescending(item =>
+                        file.GetModifiedTime(PathUtils.Join(Constants.SAVE_FOLDER, item))).ToList();
                 }
 
-            default:
                 break;
+            }
         }
 
         return result;
@@ -211,7 +214,7 @@ public static class SaveHelper
     private static void InternalSaveHelper(SaveInformation.SaveType type, MainGameState gameState,
         Action<Save> copyInfoToSave, Func<Node> stateRoot, string saveName = null)
     {
-        new InProgressSave(type, stateRoot, (data) =>
+        new InProgressSave(type, stateRoot, data =>
                 CreateSaveObject(gameState, data.Type),
             (inProgress, save) =>
             {

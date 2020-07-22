@@ -58,8 +58,8 @@
                 Score = score;
             }
 
-            public Species Mutation { get; private set; }
-            public int Score { get; private set; }
+            public Species Mutation { get; }
+            public int Score { get; }
         }
     }
 }

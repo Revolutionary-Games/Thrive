@@ -1,9 +1,12 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
+
 # This script first builds using msbuild treating warnings as errors
 # and then runs some custom line length checks
 require 'optparse'
 require 'find'
 require 'digest'
+require 'nokogiri'
 
 require_relative 'bootstrap_rubysetupsystem'
 require_relative 'RubySetupSystem/RubyCommon'
@@ -11,12 +14,15 @@ require_relative 'scripts/fast_build/toggle_analysis_lib'
 
 MAX_LINE_LENGTH = 120
 
-VALID_CHECKS = %w[compile files].freeze
+VALID_CHECKS = %w[compile files inspectcode cleanupcode].freeze
+DEFAULT_CHECKS = %w[compile files inspectcode cleanupcode].freeze
+
+ONLY_FILE_LIST = 'files_to_check.txt'
 
 OUTPUT_MUTEX = Mutex.new
 
 @options = {
-  checks: VALID_CHECKS,
+  checks: DEFAULT_CHECKS,
   skip_file_types: [],
   parallel: true
 }
@@ -58,6 +64,35 @@ def file_type_skipped?(path)
   else
     false
   end
+end
+
+# Detects if there is a file telling which files to check. Returns nil otherwise
+def files_to_include
+  return nil unless File.exist? ONLY_FILE_LIST
+
+  includes = []
+  File.foreach(ONLY_FILE_LIST).with_index do |line, _num|
+    next unless line
+
+    file = line.strip
+    next if file.empty?
+
+    includes.append file
+  end
+
+  includes
+end
+
+@includes = files_to_include
+
+def includes_changes_to(type)
+  return false if @includes.nil?
+
+  @includes.each  do |file|
+    return true if file.end_with? type
+  end
+
+  false
 end
 
 # Different handle functions for file checks
@@ -183,11 +218,104 @@ def run_files
   exit 2
 end
 
+def inspect_code_executable
+  # TODO: 32 bit support if needed
+  if OS.windows?
+    'inspectcode.exe'
+  else
+    'inspectcode.sh'
+  end
+end
+
+def skip_jetbrains?
+  if @includes && !includes_changes_to('.cs')
+    OUTPUT_MUTEX.synchronize do
+      info 'No changes to be checked for .cs files'
+    end
+    return true
+  end
+
+  false
+end
+
+def run_inspect_code
+  return if skip_jetbrains?
+
+  params = [inspect_code_executable, 'Thrive.sln', '-o=inspect_results.xml']
+
+  params.append "--include=#{@includes.join(';')}" if @includes
+
+  runOpen3Checked(*params)
+
+  issues_found = false
+
+  doc = Nokogiri::XML(File.open('inspect_results.xml'), &:norecover)
+
+  issue_types = {}
+
+  doc.xpath('//IssueType').each do |node|
+    issue_types[node['Id']] = node
+  end
+
+  doc.xpath('//Issue').each do |issue|
+    type = issue_types[issue['TypeId']]
+
+    next if type['Severity'] == 'SUGGESTION'
+
+    issues_found = true
+
+    OUTPUT_MUTEX.synchronize do
+      error "#{issue['File']}:#{issue['Line']} #{issue['Message']} type: #{issue['TypeId']}"
+    end
+  end
+
+  return unless issues_found
+
+  OUTPUT_MUTEX.synchronize do
+    error 'Code inspection detected issues, see inspect_results.xml'
+  end
+  exit 2
+end
+
+def cleanup_code_executable
+  # TODO: 32 bit support if needed
+  if OS.windows?
+    'cleanupcode.exe'
+  else
+    'cleanupcode.sh'
+  end
+end
+
+def run_cleanup_code
+  return if skip_jetbrains?
+
+  old_diff = runOpen3CaptureOutput 'git', 'diff', '--stat'
+
+  params = [cleanup_code_executable, 'Thrive.sln', '--profile=full_no_xml']
+
+  params.append "--include=#{@includes.join(';')}" if @includes
+
+  runOpen3Checked(*params)
+
+  new_diff = runOpen3CaptureOutput 'git', 'diff', '--stat'
+
+  return if new_diff == old_diff
+
+  OUTPUT_MUTEX.synchronize do
+    error 'Code cleanup performed changes, please stage / check them before committing'
+  end
+  exit 2
+end
+
 run_check = proc { |check|
   if check == 'compile'
     run_compile
   elsif check == 'files'
     run_files
+  elsif check == 'inspectcode'
+    run_inspect_code
+  elsif check == 'cleanupcode'
+    run_cleanup_code
   else
     OUTPUT_MUTEX.synchronize do
       onError "Unknown check type: #{check}"

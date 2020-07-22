@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using Godot;
-using Newtonsoft.Json;
 
 /// <summary>
 ///   Definition of a compound in the game. For all other simulation

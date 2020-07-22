@@ -40,7 +40,7 @@ public class MicrobeEditor : Node, ILoadableGameState
     ///   Where the player wants to move after editing
     /// </summary>
     [JsonProperty]
-    private Patch targetPatch = null;
+    private Patch targetPatch;
 
     /// <summary>
     ///   When false the player is no longer allowed to move patches (other than going back to where they were at the
@@ -67,9 +67,9 @@ public class MicrobeEditor : Node, ILoadableGameState
     /// <summary>
     ///   This is used to keep track of used hover organelles
     /// </summary>
-    private int usedHoverHex = 0;
+    private int usedHoverHex;
 
-    private int usedHoverOrganelle = 0;
+    private int usedHoverOrganelle;
 
     /// <summary>
     ///   The species that is being edited, changes are applied to it on exit
@@ -82,7 +82,7 @@ public class MicrobeEditor : Node, ILoadableGameState
     ///   organelle is valid (if not all hover hexes will be shown as
     ///   invalid)
     /// </summary>
-    private bool isPlacementProbablyValid = false;
+    private bool isPlacementProbablyValid;
 
     /// <summary>
     ///   This is the container that has the edited organelles in
@@ -108,10 +108,10 @@ public class MicrobeEditor : Node, ILoadableGameState
     ///   True once auto-evo (and possibly other stuff) we need to wait for is ready
     /// </summary>
     [JsonProperty]
-    private bool ready = false;
+    private bool ready;
 
     [JsonProperty]
-    private int organelleRot = 0;
+    private int organelleRot;
 
     [JsonProperty]
     private string autoEvoSummary;
@@ -177,27 +177,21 @@ public class MicrobeEditor : Node, ILoadableGameState
     /// </summary>
     public MicrobeSymmetry Symmetry
     {
-        get
-        {
-            return symmetry;
-        }
-        set
-        {
-            symmetry = value;
-        }
+        get => symmetry;
+        set => symmetry = value;
     }
 
     /// <summary>
     ///   When true nothing costs MP
     /// </summary>
     [JsonProperty]
-    public bool FreeBuilding { get; private set; } = false;
+    public bool FreeBuilding { get; private set; }
 
     /// <summary>
     ///   Hover hexes and models are only shown if this is true
     /// </summary>
     [JsonIgnore]
-    public bool ShowHover { get; set; } = false;
+    public bool ShowHover { get; set; }
 
     /// <summary>
     ///   The main current game object holding various details
@@ -215,7 +209,7 @@ public class MicrobeEditor : Node, ILoadableGameState
     /// <summary>
     ///   If true ReturnToStage has been loaded from a save and needs to be recreated on return
     /// </summary>
-    public bool NeedToRestoreStageFromSave { get; set; } = false;
+    public bool NeedToRestoreStageFromSave { get; set; }
 
     [JsonIgnore]
     public bool HasNucleus
@@ -236,10 +230,7 @@ public class MicrobeEditor : Node, ILoadableGameState
     ///   Number of organelles in the microbe
     /// </summary>
     [JsonIgnore]
-    public int MicrobeSize
-    {
-        get { return editedMicrobeOrganelles.Organelles.Count; }
-    }
+    public int MicrobeSize => editedMicrobeOrganelles.Organelles.Count;
 
     /// <summary>
     ///   Number of hexes in the microbe
@@ -264,10 +255,7 @@ public class MicrobeEditor : Node, ILoadableGameState
     ///   Returns the current patch the player is in
     /// </summary>
     [JsonIgnore]
-    public Patch CurrentPatch
-    {
-        get { return targetPatch ?? playerPatchOnEntry; }
-    }
+    public Patch CurrentPatch => targetPatch ?? playerPatchOnEntry;
 
     public Node GameStateRoot => this;
 
@@ -461,7 +449,6 @@ public class MicrobeEditor : Node, ILoadableGameState
         if (savedStageToApply != null)
         {
             stage.OnFinishLoading(savedStageToApply);
-            savedStageToApply = null;
             NeedToRestoreStageFromSave = false;
 
             // Resume deletion of save loaded objects now that we have used them finally
@@ -526,10 +513,8 @@ public class MicrobeEditor : Node, ILoadableGameState
                     CurrentGame.GameWorld.GetAutoEvoRun().Status);
                 return;
             }
-            else
-            {
-                OnEditorReady();
-            }
+
+            OnEditorReady();
         }
 
         UpdateEditor(delta);
@@ -546,7 +531,7 @@ public class MicrobeEditor : Node, ILoadableGameState
             patch = CurrentPatch;
         }
 
-        gui.UpdateEnergyBalance(ProcessSystem.ComputeEnergyBalance(organelles.Select((i) => i.Definition), patch.Biome,
+        gui.UpdateEnergyBalance(ProcessSystem.ComputeEnergyBalance(organelles.Select(i => i.Definition), patch.Biome,
             membrane));
     }
 
@@ -763,7 +748,6 @@ public class MicrobeEditor : Node, ILoadableGameState
     {
         float microbeMass = Constants.MICROBE_BASE_MASS;
 
-        float baseMovementForce = 0;
         float organelleMovementForce = 0;
 
         Vector3 forwardsDirection = new Vector3(0, 0, -1);
@@ -788,7 +772,7 @@ public class MicrobeEditor : Node, ILoadableGameState
             }
         }
 
-        baseMovementForce = Constants.CELL_BASE_THRUST *
+        float baseMovementForce = Constants.CELL_BASE_THRUST *
             (Membrane.MovementFactor - Rigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER);
 
         float finalSpeed = (baseMovementForce + organelleMovementForce) / microbeMass;
@@ -1404,7 +1388,8 @@ public class MicrobeEditor : Node, ILoadableGameState
 
         // If it was placed this session, just refund the cost of adding it.
         int cost = organelleHere.PlacedThisSession ?
-            -organelleHere.Definition.MPCost : Constants.ORGANELLE_REMOVE_COST;
+            -organelleHere.Definition.MPCost :
+            Constants.ORGANELLE_REMOVE_COST;
 
         var action = new EditorAction(this, cost,
             DoOrganelleRemoveAction, UndoOrganelleRemoveAction,

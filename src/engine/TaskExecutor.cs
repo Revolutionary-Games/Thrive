@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Godot;
+using Environment = System.Environment;
+using Thread = System.Threading.Thread;
 
 /// <summary>
 ///   Manages running a reasonable number of parallel tasks at once
@@ -18,7 +20,7 @@ public class TaskExecutor
         new BlockingCollection<ThreadCommand>();
 
     private bool running = true;
-    private int currentThreadCount = 0;
+    private int currentThreadCount;
     private bool assumeHyperThreading = true;
 
     /// <summary>
@@ -38,7 +40,7 @@ public class TaskExecutor
         }
         else
         {
-            var logicalCPUs = System.Environment.ProcessorCount;
+            var logicalCPUs = Environment.ProcessorCount;
 
             int targetTaskCount = logicalCPUs;
 
@@ -140,7 +142,7 @@ public class TaskExecutor
 
     private void SpawnThread()
     {
-        var thread = new System.Threading.Thread(RunExecutorThread);
+        var thread = new Thread(RunExecutorThread);
         thread.IsBackground = true;
         thread.Name = $"TaskThread_{++threadCounter}";
         thread.Start();
@@ -167,7 +169,8 @@ public class TaskExecutor
                 {
                     return;
                 }
-                else if (command.CommandType == ThreadCommand.Type.Task)
+
+                if (command.CommandType == ThreadCommand.Type.Task)
                 {
                     command.Task.RunSynchronously();
 

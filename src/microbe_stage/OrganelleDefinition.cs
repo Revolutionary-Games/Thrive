@@ -119,19 +119,13 @@ public class OrganelleDefinition : IRegistryType
     public float OrganelleCost { get; private set; }
 
     [JsonIgnore]
-    public List<IOrganelleComponentFactory> ComponentFactories
-    {
-        get { return Components.Factories; }
-    }
+    public List<IOrganelleComponentFactory> ComponentFactories => Components.Factories;
 
     [JsonIgnore]
     public List<TweakedProcess> RunnableProcesses { get; private set; }
 
     [JsonIgnore]
-    public int HexCount
-    {
-        get { return Hexes.Count; }
-    }
+    public int HexCount => Hexes.Count;
 
     public string InternalName { get; set; }
 
@@ -314,7 +308,9 @@ public class OrganelleDefinition : IRegistryType
 
         // Precompute rotations
         for (int i = 0; i < 6; ++i)
+        {
             GetRotatedHexes(i);
+        }
     }
 
     public class OrganelleComponentFactoryInfo
@@ -334,15 +330,9 @@ public class OrganelleDefinition : IRegistryType
         /// <summary>
         ///   The number of components
         /// </summary>
-        public int Count
-        {
-            get { return count; }
-        }
+        public int Count => count;
 
-        public List<IOrganelleComponentFactory> Factories
-        {
-            get { return allFactories; }
-        }
+        public List<IOrganelleComponentFactory> Factories => allFactories;
 
         /// <summary>
         ///   Checks and initializes the factory data

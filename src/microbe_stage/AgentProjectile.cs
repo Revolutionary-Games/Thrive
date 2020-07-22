@@ -11,7 +11,10 @@ public class AgentProjectile : RigidBody, ITimedLife
     public AgentProperties Properties { get; set; }
     public Node Emitter { get; set; }
 
-    public void OnTimeOver() => Destroy();
+    public void OnTimeOver()
+    {
+        Destroy();
+    }
 
     public override void _Ready()
     {

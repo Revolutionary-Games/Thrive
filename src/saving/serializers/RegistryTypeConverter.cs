@@ -1,7 +1,6 @@
 using System;
 using System.Linq;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 /// <summary>
 ///   Serializes registry types as strings instead of full objects

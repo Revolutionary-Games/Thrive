@@ -6,7 +6,7 @@ using Godot;
 /// </summary>
 public static class FeatureInformation
 {
-    private static readonly string[] SimpleFeaturePlatforms = new string[]
+    private static readonly string[] SimpleFeaturePlatforms =
     {
         "Android",
         "HTML5",

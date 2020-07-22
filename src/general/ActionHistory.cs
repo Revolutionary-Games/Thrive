@@ -17,7 +17,7 @@ public class ActionHistory<T>
     ///   possibly redone), is 0 if there is none.
     /// </summary>
     [JsonProperty]
-    private int actionIndex = 0;
+    private int actionIndex;
 
     public bool CanRedo()
     {
