@@ -54,10 +54,8 @@ public class SceneManager : Node
             oldRoot?.QueueFree();
             return null;
         }
-        else
-        {
-            return oldRoot;
-        }
+
+        return oldRoot;
     }
 
     /// <summary>

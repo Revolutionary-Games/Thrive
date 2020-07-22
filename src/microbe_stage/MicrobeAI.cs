@@ -10,6 +10,8 @@ using Newtonsoft.Json;
 public class MicrobeAI
 {
     private readonly Compound atp;
+
+    // ReSharper disable once NotAccessedField.Local
     private readonly Compound iron;
     private readonly Compound oxytoxy;
 
@@ -17,18 +19,20 @@ public class MicrobeAI
     private Microbe microbe;
 
     [JsonProperty]
-    private int boredom = 0;
+    private int boredom;
 
+    // ReSharper disable once CollectionNeverQueried.Local
     [JsonIgnore]
     private List<FloatingChunk> chunkList = new List<FloatingChunk>();
 
     [JsonProperty]
-    private bool hasTargetPosition = false;
+    private bool hasTargetPosition;
 
     [JsonProperty]
     private LifeState lifeState = LifeState.NEUTRAL_STATE;
+
     [JsonProperty]
-    private bool moveFocused = false;
+    private bool moveFocused;
 
     [JsonProperty]
     private float movementRadius = 2000;
@@ -46,16 +50,20 @@ public class MicrobeAI
     private List<Microbe> predatoryMicrobes = new List<Microbe>();
 
     [JsonProperty]
-    private float previousAngle = 0.0f;
+    private float previousAngle;
 
     [JsonIgnore]
     private Microbe prey;
+
     [JsonIgnore]
     private List<Microbe> preyMicrobes = new List<Microbe>();
+
     [JsonProperty]
-    private bool preyPegged = false;
+    private bool preyPegged;
+
     [JsonIgnore]
     private FloatingChunk targetChunk;
+
     [JsonProperty]
     private Vector3 targetPosition = new Vector3(0, 0, 0);
 
@@ -477,14 +485,11 @@ public class MicrobeAI
                         predator = otherMicrobe;
                     }
 
-                    if (thisPosition != null)
+                    if ((testPosition - microbe.Translation).LengthSquared() >
+                        (thisPosition - microbe.Translation).LengthSquared())
                     {
-                        if ((testPosition - microbe.Translation).LengthSquared() >
-                            (thisPosition - microbe.Translation).LengthSquared())
-                        {
-                            testPosition = thisPosition;
-                            predator = otherMicrobe;
-                        }
+                        testPosition = thisPosition;
+                        predator = otherMicrobe;
                     }
                 }
             }
@@ -612,10 +617,13 @@ public class MicrobeAI
         // Tick the engulf tick
         ticksSinceLastToggle += 1;
 
+        // TODO: do something with the chunk compounds
+        // ReSharper disable once NotAccessedVariable
         CompoundBag compounds;
 
         try
         {
+            // ReSharper disable once RedundantAssignment
             compounds = chunk.ContainedCompounds;
             targetPosition = chunk.Translation;
         }
@@ -722,7 +730,8 @@ public class MicrobeAI
             }
         }
 
-        var vec = microbe.Translation - targetPosition;
+        // TODO: do something with this
+        // var vec = microbe.Translation - targetPosition;
         microbe.LookAtPoint = -targetPosition;
         microbe.MovementDirection = new Vector3(0.0f, 0.0f, -Constants.AI_BASE_MOVEMENT);
         hasTargetPosition = true;
@@ -837,7 +846,7 @@ public class MicrobeAI
         // https://www.mit.edu/~kardar/teaching/projects/chemotaxis(AndreaSchmidt)/home.htm
 
         var randAngle = previousAngle;
-        var randDist = movementRadius;
+        float randDist;
 
         float compoundDifference = microbe.TotalAbsorbedCompounds.SumValues();
 
@@ -877,10 +886,12 @@ public class MicrobeAI
             targetPosition = new Vector3(Mathf.Cos(randAngle) * randDist, 0, Mathf.Sin(randAngle) * randDist);
         }
 
-        // Turn more if not in concentration gradient basiclaly (step is .4 if really no mfood, .3 if less food, .1 if
+        // Turn more if not in concentration gradient basically (step is .4 if really no food, .3 if less food, .1 if
         // in food)
         previousAngle = randAngle;
-        var vec = targetPosition - microbe.Translation;
+
+        // TODO: do something with this
+        // var vec = targetPosition - microbe.Translation;
         microbe.LookAtPoint = targetPosition;
         microbe.MovementDirection = new Vector3(0.0f, 0.0f, -Constants.AI_BASE_MOVEMENT);
         hasTargetPosition = true;

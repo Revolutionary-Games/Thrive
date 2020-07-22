@@ -36,7 +36,7 @@ public class Invoke : Node
     /// <summary>
     ///   Performs an action as soon as possible, doesn't wait until next frame
     /// </summary>
-    /// <param name="action"></param>
+    /// <param name="action">The action to perform</param>
     public void Perform(Action action)
     {
         queuedInvokes.Add(action);

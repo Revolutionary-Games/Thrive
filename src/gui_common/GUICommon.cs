@@ -28,15 +28,12 @@ public class GUICommon : Node
             "res://assets/sounds/soundeffects/gui/button-hover-click.ogg");
     }
 
-    public static GUICommon Instance
-    {
-        get { return instance; }
-    }
+    public static GUICommon Instance => instance;
 
     /// <summary>
     ///   The audio player for UI sound effects.
     /// </summary>
-    public AudioStreamPlayer AudioSource { get; private set; }
+    public AudioStreamPlayer AudioSource { get; }
 
     /// <summary>
     ///   Play the button click sound effect.

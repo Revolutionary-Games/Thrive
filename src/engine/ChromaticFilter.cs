@@ -1,8 +1,8 @@
 using Godot;
 
 /// <summary>
-///   A chromatic aberration and barrel distrortion filter effect
-/// </summery>
+///   A chromatic aberration and barrel distortion filter effect
+/// </summary>
 public class ChromaticFilter : TextureRect
 {
     private ShaderMaterial material;

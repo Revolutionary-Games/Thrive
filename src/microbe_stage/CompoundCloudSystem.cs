@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
 using Godot;
 using Newtonsoft.Json;
@@ -28,16 +29,13 @@ public class CompoundCloudSystem : Node
     private Vector3 cloudGridCenter;
 
     [JsonProperty]
-    private float elapsed = 0.0f;
+    private float elapsed;
 
     /// <summary>
     ///   The cloud resolution of the first cloud
     /// </summary>
     [JsonIgnore]
-    public int Resolution
-    {
-        get { return clouds[0].Resolution; }
-    }
+    public int Resolution => clouds[0].Resolution;
 
     public override void _Ready()
     {
@@ -322,6 +320,8 @@ public class CompoundCloudSystem : Node
         }
     }
 
+    [SuppressMessage("ReSharper", "PossibleLossOfFraction",
+        Justification = "I'm not sure how I should fix this code I didn't write (hhyyrylainen)")]
     private static Vector3
         CalculateGridCenterForPlayerPos(Vector3 pos)
     {

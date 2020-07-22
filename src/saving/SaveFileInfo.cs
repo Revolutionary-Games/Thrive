@@ -41,10 +41,7 @@ public class SaveFileInfo
 
             return info;
         }
-        set
-        {
-            info = value;
-        }
+        set => info = value;
     }
 
     public static string SaveNameToPath(string name)

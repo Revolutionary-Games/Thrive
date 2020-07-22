@@ -50,7 +50,6 @@
                 }
 
                 --variantsToTry;
-                ran = true;
             }
 
             if (!tryCurrentVariant && variantsToTry <= 0)
@@ -59,10 +58,8 @@
                 OnBestResultFound(results, currentBest);
                 return true;
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
 
         /// <summary>
