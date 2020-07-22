@@ -136,7 +136,8 @@ void fragment()
     
     const int num_iter = 7;
     const float stepsiz = 1.0 / (float(num_iter)-1.0);
-    float rnd = fract(1.61803398875+texture(SCREEN_TEXTURE, FRAGCOORD.xy/vec2(textureSize(SCREEN_TEXTURE,0)), -10.0 ).x); // nrand( uv + fract(iTime) );
+    float rnd = fract(1.61803398875 + texture(SCREEN_TEXTURE,
+        FRAGCOORD.xy/vec2(textureSize(SCREEN_TEXTURE,0)), -10.0 ).x); // nrand( uv + fract(iTime) );
     float t = rnd * stepsiz;
 
     vec3 sumcol = vec3(0.0);
