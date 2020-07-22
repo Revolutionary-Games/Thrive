@@ -49,10 +49,21 @@ info "Starting formatting checks with the following checks: #{@options[:checks]}
 
 # Helper functions
 
+def ide_file?(path)
+  path =~ %r{/\.vs/} || path =~ %r{/\.idea/}
+end
+
+def explicitly_ignored?(path)
+  path =~ %r{/ThirdParty/}i || path =~ /GlobalSuppressions.cs/ || path =~ %r{/RubySetupSystem/}
+end
+
+def cache?(path)
+  path =~ %r{/\.mono/} || path =~ %r{/\.import/} || path =~ %r{/builds/} || path =~ %r{/\.git/}
+end
+
 # Skip some files that would otherwise be processed
 def skip_file?(path)
-  path =~ %r{/ThirdParty/}i || path =~ %r{^\.\/\.\/} || path =~ /GlobalSuppressions.cs/ ||
-    path =~ %r{/RubySetupSystem/} || path =~ %r{/\.mono/}
+  explicitly_ignored?(path) || path =~ %r{^\.\/\.\/} || cache?(path) || ide_file?(path)
 end
 
 def file_type_skipped?(path)
@@ -95,6 +106,19 @@ def includes_changes_to(type)
   false
 end
 
+def process_file?(filepath)
+  if !@includes
+    true
+  else
+    filepath = filepath.sub './', ''
+    @includes.each do |file|
+      return true if filepath.end_with? file
+    end
+
+    false
+  end
+end
+
 # Different handle functions for file checks
 def handle_gd_file(_path)
   OUTPUT_MUTEX.synchronize do
@@ -114,6 +138,11 @@ def handle_cs_file(path)
 
       if line.include? "\t"
         error "Line #{line_number} contains a tab"
+        errors = true
+      end
+
+      if !OS.windows? && line.include?("\r\n")
+        error "Line #{line_number} contains a windows style line ending (CR LF)"
         errors = true
       end
 
@@ -152,10 +181,59 @@ def handle_json_file(path)
   end
 end
 
+def handle_shader_file(path)
+  errors = false
+
+  File.foreach(path).with_index do |line, line_number|
+    if line.include? "\t"
+      OUTPUT_MUTEX.synchronize do
+        error "Line #{line_number + 1} contains a tab"
+        errors = true
+      end
+    end
+
+    # For some reason this reports 1 too high
+    length = line.length - 1
+
+    if length > MAX_LINE_LENGTH
+      OUTPUT_MUTEX.synchronize do
+        error "Line #{line_number + 1} is too long. #{length} > #{MAX_LINE_LENGTH}"
+        errors = true
+      end
+    end
+  end
+
+  errors
+end
+
+def handle_csproj_file(path)
+  errors = false
+  data = File.read(path, encoding: 'utf-8')
+
+  unless data.start_with? '<?xml'
+    OUTPUT_MUTEX.synchronize do
+      error "File doesn't start with '<?xml' likely due to added BOM"
+      errors = true
+    end
+  end
+
+  # This next check is a bit problematic on Windows so it is skipped
+  return errors if OS.windows?
+
+  unless data.end_with? "\n"
+    OUTPUT_MUTEX.synchronize do
+      error "File doesn't end with a new line"
+      errors = true
+    end
+  end
+
+  errors
+end
+
 # Forwards the file handling to a specific handler function if
 # something should be done with the file type
 def handle_file(path)
-  return false if file_type_skipped? path
+  return false if file_type_skipped?(path) || !process_file?(path)
 
   if path =~ /\.gd$/
     handle_gd_file path
@@ -163,6 +241,10 @@ def handle_file(path)
     handle_cs_file path
   elsif path =~ %r{simulation_parameters/.*\.json$}
     handle_json_file path
+  elsif path =~ /\.shader$/
+    handle_shader_file path
+  elsif path =~ /\.csproj$/
+    handle_csproj_file path
   else
     false
   end

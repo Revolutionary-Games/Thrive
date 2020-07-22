@@ -21,6 +21,9 @@ DEVBUILD_TARGETS = ['Linux/X11', 'Windows Desktop'].freeze
 BASE_BUILDS_FOLDER = File.realpath 'builds'
 THRIVE_VERSION_FILE = 'Properties/AssemblyInfo.cs'
 
+README_FILE = 'builds/README.txt'
+REVISION_FILE = 'builds/revision.txt'
+
 LICENSE_FILES = [
   ['LICENSE.txt', 'LICENSE.txt'],
   ['gpl.txt', 'gpl.txt'],
@@ -114,11 +117,42 @@ def get_target_extension(target)
   end
 end
 
+def create_readme
+  File.open(README_FILE, 'w') do |file|
+    file.puts 'Thrive'
+    file.puts ''
+    file.puts "This is a compiled version of the game. Run the executable 'Thrive' to play."
+    file.puts ''
+    file.puts 'Source code is available online: https://github.com/Revolutionary-Games/Thrive'
+    file.puts ''
+    file.puts 'Exact commit this build is made from is in revision.txt'
+  end
+
+  File.open(REVISION_FILE, 'w') do |file|
+    file.puts `git log -n 1`.strip
+    file.puts ''
+
+    diff = `git diff`.strip
+
+    unless diff.strip.empty?
+
+      file.puts 'dirty, diff:'
+      file.puts diff
+    end
+  end
+end
+
 # Copies license information to a target folder
 def prepare_licenses(target_folder)
   LICENSE_FILES.each do |l|
     FileUtils.cp l[0], File.join(target_folder, l[1])
   end
+end
+
+# Copies commit info to the target folder
+def prepare_readme(target_folder)
+  FileUtils.cp README_FILE, target_folder
+  FileUtils.cp REVISION_FILE, target_folder
 end
 
 def gzip_to_target(source, target)
@@ -244,7 +278,8 @@ def package(target, target_name, target_folder, target_file)
     puts 'Including licenses in mac .zip'
 
     Dir.chdir(target_folder) do
-      runOpen3Checked(*['zip', '-u', target_file, LICENSE_FILES.map { |i| i[1] }].flatten)
+      runOpen3Checked(*['zip', '-u', target_file, LICENSE_FILES.map { |i| i[1] }].flatten,
+                      'README.txt', 'revision.txt')
     end
     puts 'Zip updated'
   end
@@ -300,11 +335,14 @@ def perform_export(target)
   end
 
   prepare_licenses target_folder
+  prepare_readme target_folder
 
   package target, target_name, target_folder, target_file
 end
 
 puts "Starting exporting thrive #{THRIVE_VERSION} to the specified targets"
+
+create_readme
 
 @exported_something = false
 

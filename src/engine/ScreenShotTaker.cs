@@ -40,7 +40,7 @@ public class ScreenShotTaker : Node
         FileHelpers.MakeSureDirectoryExists(Constants.SCREENSHOT_FOLDER);
 
         var img = TakeScreenshot();
-        var filename = DateTime.Now.ToString("O", CultureInfo.CurrentCulture) + ".png";
+        var filename = DateTime.Now.ToString("yyyy-mm-dd_HH.mm.ss.fff", CultureInfo.CurrentCulture) + ".png";
 
         var path = PathUtils.Join(Constants.SCREENSHOT_FOLDER, filename);
 
