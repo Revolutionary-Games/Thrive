@@ -27,10 +27,8 @@ public static class BarHelper
                         {
                             return new Color(organelle.ProductionColour);
                         }
-                        else
-                        {
-                            return new Color(organelle.ConsumptionColour);
-                        }
+
+                        return new Color(organelle.ConsumptionColour);
                     }
                 }
 

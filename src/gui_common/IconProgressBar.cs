@@ -1,35 +1,47 @@
 using Godot;
 
+/// <summary>
+///   A progress bar that supports showing an icon.
+/// </summary>
 public class IconProgressBar : ColorRect
 {
+    /// <summary>
+    ///   Special property used by SegmentedBar
+    /// </summary>
     public bool Disabled;
-    public int Location;
-    public int ActualLocation;
 
-    public void SetBarName(string name)
+    private TextureRect icon;
+
+    public Vector2 BarSize
     {
-        Name = name;
+        get => RectSize;
+        set
+        {
+            RectSize = value;
+            RectMinSize = value;
+
+            // Sets icon size
+            icon.RectSize = new Vector2(value.y, value.y);
+
+            // Changes icon visibility if bar is not wide enough
+            icon.Visible = RectSize.x >= icon.RectSize.x;
+        }
     }
 
-    public void SetBarSize(Vector2 size)
+    public Texture IconTexture
     {
-        RectSize = size;
-        RectMinSize = size;
-
-        // Sets icon size
-        GetChild<TextureRect>(0).RectSize = new Vector2(size.y, size.y);
-
-        // Changes icon visibility if bar is not wide enough
-        GetChild<TextureRect>(0).Visible = RectSize.x >= GetChild<TextureRect>(0).RectSize.x;
+        get => icon.Texture;
+        set => icon.Texture = value;
     }
 
-    public void SetBarIconTexture(Texture texture)
+    public Color IconModulation
     {
-        GetChild<TextureRect>(0).Texture = texture;
+        get => icon.Modulate;
+        set => icon.Modulate = value;
     }
 
-    public void SetBarIconModulation(Color colour)
+    public override void _Ready()
     {
-        GetChild<TextureRect>(0).Modulate = colour;
+        icon = GetChild<TextureRect>(0);
     }
 }
