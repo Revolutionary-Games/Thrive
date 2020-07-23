@@ -110,6 +110,7 @@ public class OrganelleDefinition : IRegistryType
     /// </summary>
     public string IconPath;
 
+    /// <summary>
     ///   Cost of placing this organelle in the editor
     /// </summary>
     public int MPCost;

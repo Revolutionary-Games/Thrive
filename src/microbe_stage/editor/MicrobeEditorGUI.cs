@@ -233,7 +233,6 @@ public class MicrobeEditorGUI : Node
     private TextureButton symmetryButton;
     private TextureRect symmetryIcon;
     private Label atpBalanceLabel;
-    private VBoxContainer atpBarContainer;
     private SegmentedBar atpProductionBar;
     private SegmentedBar atpConsumptionBar;
     private Label glucoseReductionLabel;
@@ -312,7 +311,6 @@ public class MicrobeEditorGUI : Node
         symmetryButton = GetNode<TextureButton>(SymmetryButtonPath);
         finishButton = GetNode<Button>(FinishButtonPath);
         atpBalanceLabel = GetNode<Label>(ATPBalanceLabelPath);
-        atpBarContainer = GetNode<VBoxContainer>(ATPBarContainerPath);
         atpProductionBar = GetNode<SegmentedBar>(ATPProductionBarPath);
         atpConsumptionBar = GetNode<SegmentedBar>(ATPConsumptionBarPath);
         glucoseReductionLabel = GetNode<Label>(GlucoseReductionLabelPath);
@@ -357,6 +355,7 @@ public class MicrobeEditorGUI : Node
         mapDrawer.OnSelectedPatchChanged = drawer => { UpdateShownPatchDetails(); };
 
         atpProductionBar.SelectedType = SegmentedBar.Type.ATP;
+        atpProductionBar.IsProduction = true;
         atpConsumptionBar.SelectedType = SegmentedBar.Type.ATP;
 
         // Fade out for that smooth satisfying transition
@@ -1361,13 +1360,13 @@ public class MicrobeEditorGUI : Node
         }
     }
 
-    private List<KeyValuePair<string, float>> SortBarData(Dictionary<string, float> bar)
+    // ReSharper disable once RedundantNameQualifier
+    private List<KeyValuePair<string, float>> SortBarData(System.Collections.Generic.Dictionary<string, float> bar)
     {
-        List<KeyValuePair<string, float>> result;
-        ATPComparer atpComparer = new ATPComparer();
+        var comparer = new ATPComparer();
 
-        result = bar.OrderBy(
-            i => i.Key, atpComparer)
+        var result = bar.OrderBy(
+                i => i.Key, comparer)
             .ToList();
 
         return result;
@@ -1375,28 +1374,37 @@ public class MicrobeEditorGUI : Node
 
     private class ATPComparer : IComparer<string>
     {
+        /// <summary>
+        ///   Compares ATP production / consumption items
+        /// </summary>
+        /// <remarks>
+        ///   <para>
+        ///     Only works if there aren't duplicate entries of osmoregulation or baseMovement.
+        ///   </para>
+        /// </remarks>
         public int Compare(string stringA, string stringB)
         {
             if (stringA == "osmoregulation")
             {
-            return -1;
+                return -1;
             }
-            else if (stringB == "osmoregulation")
+
+            if (stringB == "osmoregulation")
             {
-            return 1;
+                return 1;
             }
-            else if (stringA == "baseMovement")
+
+            if (stringA == "baseMovement")
             {
-            return -1;
+                return -1;
             }
-            else if (stringB == "baseMovement")
+
+            if (stringB == "baseMovement")
             {
-            return 1;
+                return 1;
             }
-            else
-            {
-            return string.Compare(stringA, stringB, (System.StringComparison)0);
-            }
+
+            return string.Compare(stringA, stringB, StringComparison.InvariantCulture);
         }
     }
 }
