@@ -148,27 +148,28 @@ public class SegmentedBar : HBoxContainer
 
     private void MoveBars()
     {
-        int location = 0;
-
         // Sort the bars list based on what is in subBars as well as what is disabled
         subBars.Sort((a, b) =>
         {
             if (a.Disabled && !b.Disabled)
-                return -1;
-
-            if (b.Disabled && !a.Disabled)
                 return 1;
 
-            return barValues.FindIndex(pair => pair.Key == b.Name) -
-                barValues.FindIndex(pair => pair.Key == a.Name);
+            if (b.Disabled && !a.Disabled)
+                return -1;
+
+            return barValues.FindIndex(pair => pair.Key == a.Name) -
+                barValues.FindIndex(pair => pair.Key == b.Name);
         });
 
+        int location = 0;
         foreach (var bar in subBars)
         {
             if (GetChild(location) != bar)
             {
                 MoveChild(bar, location);
             }
+
+            ++location;
         }
     }
 }
