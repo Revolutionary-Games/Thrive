@@ -69,7 +69,7 @@ jobs:
            command: |
              git fetch origin master
              git diff-tree --no-commit-id --name-only -r HEAD..origin/master > files_to_check.txt
-             git diff-tree --no-commit-id --name-only -r `echo ${CIRCLE_COMPARE_URL} | cut -d/ -f 7` >> files_to_check.txt
+             git diff-tree --no-commit-id --name-only -r `echo ${CIRCLE_COMPARE_URL} | cut -d/ -f 7` >> files_to_check.txt || true
        - restore_cache:
            keys:
              - v4-import-master
@@ -111,7 +111,7 @@ jobs:
            command: |
              git fetch origin master
              git diff-tree --no-commit-id --name-only -r HEAD..origin/master > files_to_check.txt
-             git diff-tree --no-commit-id --name-only -r `echo ${CIRCLE_COMPARE_URL} | cut -d/ -f 7` >> files_to_check.txt
+             git diff-tree --no-commit-id --name-only -r `echo ${CIRCLE_COMPARE_URL} | cut -d/ -f 7` >> files_to_check.txt || true
        - restore_cache:
            keys:
              - v4-import-master
