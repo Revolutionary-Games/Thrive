@@ -30,6 +30,7 @@ color_ramp = ExtResource( 1 )
 [sub_resource type="QuadMesh" id=3]
 
 [node name="Bathypelagic&seafloor" type="Particles"]
+pause_mode = 1
 material_override = SubResource( 1 )
 amount = 65
 lifetime = 15.0
