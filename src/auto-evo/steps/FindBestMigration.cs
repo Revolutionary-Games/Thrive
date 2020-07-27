@@ -82,8 +82,8 @@
                 --attemptsLeft;
 
                 // Randomly select starting patch
-                var entry = map.Patches.Where((pair) => pair.Value.SpeciesInPatch.ContainsKey(species)).
-                    OrderBy(_ => random.Next()).Take(1).ToList();
+                var entry = map.Patches.Where(pair => pair.Value.SpeciesInPatch.ContainsKey(species))
+                    .OrderBy(_ => random.Next()).Take(1).ToList();
 
                 if (entry.Count > 0)
                 {
@@ -104,8 +104,8 @@
 
                     // Calculate random amount of population to send
                     int moveAmount = (int)random.Next(
-                            population * Constants.AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION,
-                            population * Constants.AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION);
+                        population * Constants.AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION,
+                        population * Constants.AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION);
 
                     if (moveAmount > 0)
                     {
@@ -127,8 +127,8 @@
                 Score = score;
             }
 
-            public SpeciesMigration Migration { get; private set; }
-            public int Score { get; private set; }
+            public SpeciesMigration Migration { get; }
+            public int Score { get; }
         }
     }
 }

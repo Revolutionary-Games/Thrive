@@ -46,25 +46,20 @@ public class Jukebox : Node
         PauseMode = PauseModeEnum.Process;
     }
 
-    public static Jukebox Instance
-    {
-        get { return instance; }
-    }
+    public static Jukebox Instance => instance;
 
     /// <summary>
     ///   The category to play music tracks from
     /// </summary>
     public string PlayingCategory
     {
-        get
-        {
-            return playingCategory;
-        }
+        get => playingCategory;
 
         set
         {
             if (playingCategory == value)
                 return;
+
             GD.Print("Jukebox now playing from: ", value);
             playingCategory = value;
             OnCategoryChanged();
@@ -73,7 +68,7 @@ public class Jukebox : Node
 
     private List<string> PlayingTracks
     {
-        get { return audioPlayers.Where((player) => player.Playing).Select((player) => player.CurrentTrack).ToList(); }
+        get { return audioPlayers.Where(player => player.Playing).Select(player => player.CurrentTrack).ToList(); }
     }
 
     public override void _Ready()
@@ -227,7 +222,7 @@ public class Jukebox : Node
             }
         }
 
-        operations.Enqueue(new Operation((delta) =>
+        operations.Enqueue(new Operation(delta =>
         {
             SetupStreamsFromCategory();
             return true;
@@ -251,7 +246,7 @@ public class Jukebox : Node
     private void AddFadeOut()
     {
         var data = new TimedOperationData(FADE_TIME);
-        operations.Enqueue(new Operation((delta) =>
+        operations.Enqueue(new Operation(delta =>
         {
             data.TimeLeft -= delta;
 
@@ -273,7 +268,7 @@ public class Jukebox : Node
     private void AddFadeIn()
     {
         var data = new TimedOperationData(FADE_TIME);
-        operations.Enqueue(new Operation((delta) =>
+        operations.Enqueue(new Operation(delta =>
         {
             data.TimeLeft -= delta;
 
@@ -294,7 +289,7 @@ public class Jukebox : Node
 
     private void AddVolumeRestore()
     {
-        operations.Enqueue(new Operation((delta) =>
+        operations.Enqueue(new Operation(delta =>
         {
             SetVolume(NORMAL_VOLUME);
             return true;
@@ -303,7 +298,7 @@ public class Jukebox : Node
 
     private void AddVolumeRemove()
     {
-        operations.Enqueue(new Operation((delta) =>
+        operations.Enqueue(new Operation(delta =>
         {
             SetVolume(FADE_LOW_VOLUME);
             return true;
@@ -366,12 +361,12 @@ public class Jukebox : Node
         var needToStartFrom = new List<TrackList>();
 
         var activeTracks = PlayingTracks;
-        var usablePlayers = audioPlayers.Where((player) => !player.Playing).ToList();
+        var usablePlayers = audioPlayers.Where(player => !player.Playing).ToList();
 
         foreach (var list in target.TrackLists)
         {
-            var trackResources = list.Tracks.Select((track) => track.ResourcePath);
-            if (activeTracks.Any((track) => trackResources.Contains(track)))
+            var trackResources = list.Tracks.Select(track => track.ResourcePath);
+            if (activeTracks.Any(track => trackResources.Contains(track)))
                 continue;
 
             needToStartFrom.Add(list);
@@ -381,16 +376,14 @@ public class Jukebox : Node
 
         foreach (var list in needToStartFrom)
         {
-            PlayNextTrackFromList(list, (index) =>
+            PlayNextTrackFromList(list, index =>
             {
                 if (index < usablePlayers.Count)
                 {
                     return usablePlayers[index];
                 }
-                else
-                {
-                    return NewPlayer();
-                }
+
+                return NewPlayer();
             }, nextPlayerToUse++);
         }
 
@@ -448,8 +441,8 @@ public class Jukebox : Node
 
                         // Store the position to resume from
                         track.PreviousPlayedPosition = audioPlayers.Where(
-                            (player) => player.Playing && player.CurrentTrack == track.ResourcePath).Select(
-                            (player) => player.Player.GetPlaybackPosition()).First();
+                            player => player.Playing && player.CurrentTrack == track.ResourcePath).Select(
+                            player => player.Player.GetPlaybackPosition()).First();
                     }
                     else
                     {

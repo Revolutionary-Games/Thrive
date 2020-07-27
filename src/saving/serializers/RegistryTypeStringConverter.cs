@@ -2,8 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
-using System.Linq;
-using Newtonsoft.Json.Linq;
 
 /// <summary>
 ///   Converts between registry types and their internal names
@@ -15,7 +13,7 @@ public class RegistryTypeStringConverter : TypeConverter
     ///   New entries need to be added when this converter is added as a class attribute
     /// </summary>
     protected static readonly Dictionary<string, SupportedRegistryType> SupportedRegistryTypes =
-        new Dictionary<string, SupportedRegistryType>()
+        new Dictionary<string, SupportedRegistryType>
         {
             {
                 "compound",
@@ -66,10 +64,8 @@ public class RegistryTypeStringConverter : TypeConverter
 
             return $"{type.Name}:{((IRegistryType)value).InternalName}";
         }
-        else
-        {
-            throw new NotSupportedException();
-        }
+
+        throw new NotSupportedException();
     }
 
     protected SupportedRegistryType GetRegistryByType(Type type)
@@ -127,10 +123,8 @@ public abstract class RegistryTypeStringSingleTypeConverter<TType> : RegistryTyp
 
             return ((IRegistryType)value).InternalName;
         }
-        else
-        {
-            throw new NotSupportedException();
-        }
+
+        throw new NotSupportedException();
     }
 }
 

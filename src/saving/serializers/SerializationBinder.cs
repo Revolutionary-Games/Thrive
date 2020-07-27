@@ -13,7 +13,7 @@ public class SerializationBinder : DefaultSerializationBinder
     {
         var type = base.BindToType(assemblyName, typeName);
 
-        if (type.CustomAttributes.Any((attr) =>
+        if (type.CustomAttributes.Any(attr =>
             attr.AttributeType == typeof(JSONDynamicTypeAllowedAttribute) ||
             attr.AttributeType == typeof(JSONAlwaysDynamicTypeAttribute)))
         {

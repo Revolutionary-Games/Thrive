@@ -7,10 +7,13 @@ public class LoadingScreen : Control
 {
     [Export]
     public NodePath ArtDescriptionPath;
+
     [Export]
     public NodePath LoadingMessagePath;
+
     [Export]
     public NodePath LoadingDescriptionPath;
+
     [Export]
     public NodePath TipLabelPath;
 
@@ -32,7 +35,7 @@ public class LoadingScreen : Control
     private string loadingDescription = string.Empty;
     private string tip = "TIP: press the undo button in the editor to correct a mistake";
 
-    private float totalElapsed = 0;
+    private float totalElapsed;
 
     private LoadingScreen()
     {
@@ -43,10 +46,7 @@ public class LoadingScreen : Control
 
     public string LoadingMessage
     {
-        get
-        {
-            return loadingMessage;
-        }
+        get => loadingMessage;
         set
         {
             if (loadingMessage == value)
@@ -63,10 +63,7 @@ public class LoadingScreen : Control
 
     public string LoadingDescription
     {
-        get
-        {
-            return loadingDescription;
-        }
+        get => loadingDescription;
         set
         {
             if (loadingDescription == value)
@@ -83,10 +80,7 @@ public class LoadingScreen : Control
 
     public string Tip
     {
-        get
-        {
-            return tip;
-        }
+        get => tip;
         set
         {
             if (tip == value)

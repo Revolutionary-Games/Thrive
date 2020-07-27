@@ -29,7 +29,7 @@ public class SaveStatusOverlay : Control
     private float hideTimer;
     private bool hidden;
 
-    private bool onDialogDismissReturnToMenu = false;
+    private bool onDialogDismissReturnToMenu;
     private Action onDialogCloseCallback;
 
     /// <summary>

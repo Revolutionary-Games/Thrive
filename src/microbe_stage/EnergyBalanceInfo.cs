@@ -29,7 +29,7 @@ public class EnergyBalanceInfo
         }
         else
         {
-            Consumption[groupName] = Consumption[groupName] + amount;
+            Consumption[groupName] += amount;
         }
     }
 
@@ -41,7 +41,7 @@ public class EnergyBalanceInfo
         }
         else
         {
-            Production[groupName] = Production[groupName] + amount;
+            Production[groupName] += amount;
         }
     }
 }
