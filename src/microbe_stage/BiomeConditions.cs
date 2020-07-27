@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Godot;
 
 /// <summary>
 ///   The conditions of a biome that can change. This is a separate class to make serialization work regarding the biome
@@ -36,7 +35,7 @@ public class BiomeConditions : ICloneable, ISaveLoadable
 
     public object Clone()
     {
-        var result = new BiomeConditions()
+        var result = new BiomeConditions
         {
             AverageTemperature = AverageTemperature,
             Compounds = new Dictionary<Compound, EnvironmentalCompoundProperties>(Compounds.Count),

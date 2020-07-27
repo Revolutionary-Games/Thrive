@@ -10,7 +10,7 @@ public class TimedWorldOperations
     ///   This probably needs to be changed to a huge precision number
     ///   depending on what timespans we'll end up using.
     /// </summary>
-    private double totalPassedTime = 0;
+    private double totalPassedTime;
 
     private List<IWorldEffect> effects = new List<IWorldEffect>();
 

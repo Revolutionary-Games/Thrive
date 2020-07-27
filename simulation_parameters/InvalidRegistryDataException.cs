@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 
 /// <summary>
 ///   Thrown when a SimulationParameters registry contained type has invalid data
@@ -23,8 +24,8 @@ public class InvalidRegistryDataException : Exception
     {
     }
 
-    protected InvalidRegistryDataException(System.Runtime.Serialization.SerializationInfo serializationInfo,
-        System.Runtime.Serialization.StreamingContext streamingContext) : base(serializationInfo, streamingContext)
+    protected InvalidRegistryDataException(SerializationInfo serializationInfo,
+        StreamingContext streamingContext) : base(serializationInfo, streamingContext)
     {
     }
 }

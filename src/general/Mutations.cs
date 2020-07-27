@@ -10,17 +10,17 @@ using Newtonsoft.Json;
 /// </summary>
 public class Mutations
 {
-    private static readonly List<string> Vowels = new List<string>()
+    private static readonly List<string> Vowels = new List<string>
     {
         "a", "e", "i", "o", "u",
     };
 
-    private static readonly List<string> PronoucablePermutation = new List<string>()
+    private static readonly List<string> PronoucablePermutation = new List<string>
     {
         "th", "sh", "ch", "wh", "Th", "Sh", "Ch", "Wh",
     };
 
-    private static readonly List<string> Consonants = new List<string>()
+    private static readonly List<string> Consonants = new List<string>
     {
         "b", "c", "d", "f", "g", "h", "j", "k", "l", "m",
         "n", "p", "q", "s", "t", "v", "w", "x", "y", "z",
@@ -311,10 +311,8 @@ public class Mutations
         {
             return SimulationParameters.Instance.GetRandomProkaryoticOrganelle(random);
         }
-        else
-        {
-            return SimulationParameters.Instance.GetRandomEukaryoticOrganelle(random);
-        }
+
+        return SimulationParameters.Instance.GetRandomEukaryoticOrganelle(random);
     }
 
     private OrganelleTemplate GetRealisticPosition(OrganelleDefinition organelle,

@@ -1,9 +1,9 @@
-version: 2
+version: 2.1
 jobs:
    build:
      working_directory: ~/Thrive
      docker:
-       - image: hhyyrylainen/godot-ci:v2
+       - image: hhyyrylainen/godot-ci:v4
      environment:
        GIT_LFS_SKIP_SMUDGE: 1
      steps:
@@ -12,7 +12,7 @@ jobs:
            keys:
              - v6-lfs-{{ .Branch }}
              - v6-lfs-master
-       - shell:
+       - run:
            name: Pull Git LFS files, retry up to 5 times
            command: |
              for i in {1..5}; do git reset --hard HEAD && git clean -fd && git lfs pull && exit 0; done; exit 1
@@ -44,11 +44,109 @@ jobs:
        # Format check before making final packages
        - run: ./check_formatting.rb -c compile
        # Proper packages
-       - run: ./make_release.rb --no-zip --target Linux/X11
+       - run: ./make_release.rb --dehydrated
+       # Upload devbuilds
+       - run: ./upload_devbuilds.rb
+   inspect:
+     working_directory: ~/Thrive
+     docker:
+       - image: hhyyrylainen/godot-ci:v4
+     environment:
+       GIT_LFS_SKIP_SMUDGE: 1
+       CIRCLE_COMPARE_URL: << pipeline.project.git_url >>/compare/<< pipeline.git.base_revision >>..<<pipeline.git.revision>>
+     steps:
+       - checkout
+       - restore_cache:
+           keys:
+             - v6-lfs-{{ .Branch }}
+             - v6-lfs-master
+       - run:
+           name: Pull Git LFS files, retry up to 5 times
+           command: |
+             for i in {1..5}; do git reset --hard HEAD && git clean -fd && git lfs pull && exit 0; done; exit 1
+       - run:
+           name: Detect changed files (since last commit and against master)
+           command: |
+             git fetch origin master
+             git diff-tree --no-commit-id --name-only -r HEAD..origin/master > files_to_check.txt
+             git diff-tree --no-commit-id --name-only -r `echo ${CIRCLE_COMPARE_URL} | cut -d/ -f 7` >> files_to_check.txt || true
+       - restore_cache:
+           keys:
+             - v4-import-master
+       - run: mkdir -p builds
+       # Don't care if this fails, it's enough that the C# build works
+       - run:
+           name: Just make C# project valid; don't care if asset import fails
+           command: |
+             godot --export "Linux/X11" "builds/a.x86_64" || true
+       - restore_cache:
+           keys:
+             - v2-nuget-{{ .Branch }}
+       - run: nuget restore Thrive.sln
+       # Inspect code (this only takes like 40 seconds)
+       - run: ./check_formatting.rb -c inspectcode
+       - store_artifacts:
+          path: files_to_check.txt
+       - store_artifacts:
+          path: inspect_results.xml
+   cleanup:
+     working_directory: ~/Thrive
+     docker:
+       - image: hhyyrylainen/godot-ci:v4
+     environment:
+       GIT_LFS_SKIP_SMUDGE: 1
+       CIRCLE_COMPARE_URL: << pipeline.project.git_url >>/compare/<< pipeline.git.base_revision >>..<<pipeline.git.revision>>
+     steps:
+       - checkout
+       - restore_cache:
+           keys:
+             - v6-lfs-{{ .Branch }}
+             - v6-lfs-master
+       - run:
+           name: Pull Git LFS files, retry up to 5 times
+           command: |
+             for i in {1..5}; do git reset --hard HEAD && git clean -fd && git lfs pull && exit 0; done; exit 1
+       - run:
+           name: Detect changed files (since last commit and against master)
+           command: |
+             git fetch origin master
+             git diff-tree --no-commit-id --name-only -r HEAD..origin/master > files_to_check.txt
+             git diff-tree --no-commit-id --name-only -r `echo ${CIRCLE_COMPARE_URL} | cut -d/ -f 7` >> files_to_check.txt || true
+       - restore_cache:
+           keys:
+             - v4-import-master
+       - run: mkdir -p builds
+       # Don't care if this fails, it's enough that the C# build works
+       - run:
+           name: Just make C# project valid; don't care if asset import fails
+           command: |
+             godot --export "Linux/X11" "builds/a.x86_64" || true
+       - restore_cache:
+           keys:
+             - v2-nuget-{{ .Branch }}
+       - run: nuget restore Thrive.sln
+       # Cleanup, this takes a *long* time
+       - run: ./check_formatting.rb -c cleanupcode
+       - run:
+           when: always
+           command: |
+             git diff > cleanup_diff.patch
+             if grep -q '[^[:space:]]' < cleanup_diff.patch; then
+                 echo "Code cleanup found things to be fixed:"
+                 cat cleanup_diff.patch
+                 exit 1
+             else
+                 echo "No changes made"
+                 rm -f cleanup_diff.patch
+             fi
+       - store_artifacts:
+          path: files_to_check.txt
+       - store_artifacts:
+          path: cleanup_diff.patch
    format_script:
      working_directory: ~/Thrive
      docker:
-       - image: hhyyrylainen/thrive-lint:v1
+       - image: hhyyrylainen/thrive-lint:v2
      environment:
        GIT_LFS_SKIP_SMUDGE: 1
      steps:
@@ -77,3 +175,5 @@ workflows:
     jobs:
       - build
       - format_script
+      - inspect
+      - cleanup

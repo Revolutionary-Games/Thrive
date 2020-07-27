@@ -29,9 +29,6 @@ public class OrganelleDefinition : IRegistryType
 
     hexes:  A table of the hexes that the organelle occupies.
 
-    gene:   The letter that will be used by the auto-evo system to
-    identify this organelle.
-
     chanceToCreate: The (relative) chance this organelle will appear in a
     randomly generated or mutated microbe (to do roulette selection).
 
@@ -99,6 +96,21 @@ public class OrganelleDefinition : IRegistryType
     public Dictionary<Compound, float> InitialComposition;
 
     /// <summary>
+    ///   Colour used for ATP production bar
+    /// </summary>
+    public string ProductionColour;
+
+    /// <summary>
+    ///   Colour used for ATP consumption bar
+    /// </summary>
+    public string ConsumptionColour;
+
+    /// <summary>
+    ///   Icon used for the ATP bars
+    /// </summary>
+    public string IconPath;
+
+    /// <summary>
     ///   Cost of placing this organelle in the editor
     /// </summary>
     public int MPCost;
@@ -119,19 +131,13 @@ public class OrganelleDefinition : IRegistryType
     public float OrganelleCost { get; private set; }
 
     [JsonIgnore]
-    public List<IOrganelleComponentFactory> ComponentFactories
-    {
-        get { return Components.Factories; }
-    }
+    public List<IOrganelleComponentFactory> ComponentFactories => Components.Factories;
 
     [JsonIgnore]
     public List<TweakedProcess> RunnableProcesses { get; private set; }
 
     [JsonIgnore]
-    public int HexCount
-    {
-        get { return Hexes.Count; }
-    }
+    public int HexCount => Hexes.Count;
 
     public string InternalName { get; set; }
 
@@ -314,7 +320,9 @@ public class OrganelleDefinition : IRegistryType
 
         // Precompute rotations
         for (int i = 0; i < 6; ++i)
+        {
             GetRotatedHexes(i);
+        }
     }
 
     public class OrganelleComponentFactoryInfo
@@ -334,15 +342,9 @@ public class OrganelleDefinition : IRegistryType
         /// <summary>
         ///   The number of components
         /// </summary>
-        public int Count
-        {
-            get { return count; }
-        }
+        public int Count => count;
 
-        public List<IOrganelleComponentFactory> Factories
-        {
-            get { return allFactories; }
-        }
+        public List<IOrganelleComponentFactory> Factories => allFactories;
 
         /// <summary>
         ///   Checks and initializes the factory data
