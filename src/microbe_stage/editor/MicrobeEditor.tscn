@@ -1,4 +1,4 @@
-[gd_scene load_steps=154 format=2]
+[gd_scene load_steps=155 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
@@ -52,6 +52,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/membraneChitin.png" type="Texture" id=50]
 [ext_resource path="res://assets/textures/gui/bevel/membraneCellulose.png" type="Texture" id=51]
 [ext_resource path="res://src/general/PauseMenu.tscn" type="PackedScene" id=52]
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=53]
 [ext_resource path="res://src/microbe_stage/editor/PatchMapDrawer.tscn" type="PackedScene" id=54]
 [ext_resource path="res://assets/textures/gui/bevel/SmallFourDisabled.png" type="Texture" id=55]
 [ext_resource path="res://assets/textures/gui/bevel/SmallThreeDisabled.png" type="Texture" id=56]
@@ -3219,7 +3220,7 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer"]
-margin_right = 313.0
+margin_right = 304.0
 margin_bottom = 821.0
 mouse_filter = 1
 custom_constants/margin_top = 10
@@ -3232,7 +3233,7 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 313.0
+margin_right = 304.0
 margin_bottom = 811.0
 custom_constants/separation = 10
 
@@ -3812,6 +3813,7 @@ margin_top = 295.0
 margin_right = 294.0
 margin_bottom = 311.0
 mouse_filter = 1
+theme = ExtResource( 53 )
 custom_styles/slider = SubResource( 28 )
 custom_styles/grabber_area = SubResource( 29 )
 min_value = -1.0
@@ -3829,10 +3831,10 @@ valign = 1
 uppercase = true
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_left = 12.0
-margin_top = 12.0
-margin_right = 12.0
-margin_bottom = 12.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 16.0
+margin_bottom = 16.0
 theme = SubResource( 31 )
 edit_alpha = false
 
