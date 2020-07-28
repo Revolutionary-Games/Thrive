@@ -765,7 +765,7 @@ public class MicrobeEditorGUI : Node
 
     internal void UpdateRigiditySlider(float value, int mutationPoints)
     {
-        if (mutationPoints > 0)
+        if (mutationPoints >= 5)
         {
             rigiditySlider.Editable = true;
         }
@@ -774,11 +774,11 @@ public class MicrobeEditorGUI : Node
             rigiditySlider.Editable = false;
         }
 
-        rigiditySlider.Value = Math.Round(value * 10) / 10;
+        rigiditySlider.Value = value;
         SetRigiditySliderTooltip(value);
     }
 
-    private void OnRigidityChanged(float value)
+    private void OnRigidityChanged(int value)
     {
         editor.SetRigidity(value);
     }
