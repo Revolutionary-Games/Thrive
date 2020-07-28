@@ -774,7 +774,7 @@ public class MicrobeEditorGUI : Node
             rigiditySlider.Editable = false;
         }
 
-        rigiditySlider.Value = value;
+        rigiditySlider.Value = value * 10;
         SetRigiditySliderTooltip(value);
     }
 

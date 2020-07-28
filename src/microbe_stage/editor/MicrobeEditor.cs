@@ -649,17 +649,17 @@ public class MicrobeEditor : Node, ILoadableGameState
 
     public void SetRigidity(int rigidity)
     {
-        if (Math.Abs(Rigidity - rigidity) < MathUtils.EPSILON * 10)
+        if (Math.Abs(Rigidity * 10 - rigidity) < MathUtils.EPSILON * 10)
             return;
 
-        int cost = (int)(Math.Abs(rigidity - Rigidity) / 2 * 10);
+        int cost = (int)(Math.Abs(rigidity - Rigidity * 10) / 2 * 10);
 
         if (cost > 0)
         {
             if (cost > MutationPoints)
                 return;
 
-            var newRigidity = rigidity;
+            var newRigidity = rigidity / 10f;
             var prevRigidity = Rigidity;
 
             var action = new EditorAction(this, cost,
