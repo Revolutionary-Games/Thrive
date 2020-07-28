@@ -471,8 +471,8 @@ public class MicrobeEditorGUI : Node
         var healthChangeLabel = GetNode<Label>(RigiditySliderTooltipHealthLabelPath);
         var mobilityChangeLabel = GetNode<Label>(RigiditySliderTooltipSpeedLabelPath);
 
-        float healthChange = rigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
-        float mobilityChange = -1 * rigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER;
+        float healthChange = (float)((decimal)rigidity * (decimal)Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER);
+        float mobilityChange = (float)(-1 * (decimal)rigidity * (decimal)Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER);
 
         healthChangeLabel.Text = ((healthChange > 0) ? "+" : string.Empty)
             + healthChange.ToString(CultureInfo.CurrentCulture);
@@ -774,7 +774,7 @@ public class MicrobeEditorGUI : Node
             rigiditySlider.Editable = false;
         }
 
-        rigiditySlider.Value = value;
+        rigiditySlider.Value = Math.Round(value * 10) / 10;
         SetRigiditySliderTooltip(value);
     }
 

@@ -652,7 +652,7 @@ public class MicrobeEditor : Node, ILoadableGameState
         if (Math.Abs(Rigidity - rigidity) < MathUtils.EPSILON)
             return;
 
-        var cost = (int)(Math.Abs(rigidity - Rigidity) / 2 * 100);
+        var cost = (int)((Math.Round(Math.Abs(rigidity - Rigidity) * 10) / 10) / 2 * 100);
 
         if (cost > 0)
         {
