@@ -1072,6 +1072,7 @@ DecreaseIcon = ExtResource( 3 )
 [node name="LeftTopBar" type="Control" parent="MicrobeEditorGUI"]
 margin_right = 810.0
 margin_bottom = 45.0
+theme = ExtResource( 53 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1285,6 +1286,7 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
+theme = ExtResource( 53 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -3221,7 +3223,7 @@ __meta__ = {
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer"]
 margin_right = 304.0
-margin_bottom = 821.0
+margin_bottom = 820.0
 mouse_filter = 1
 custom_constants/margin_top = 10
 custom_constants/margin_left = 10
@@ -3234,7 +3236,7 @@ __meta__ = {
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 304.0
-margin_bottom = 811.0
+margin_bottom = 810.0
 custom_constants/separation = 10
 
 [node name="MembraneTypesLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer"]
@@ -3813,7 +3815,6 @@ margin_top = 295.0
 margin_right = 294.0
 margin_bottom = 311.0
 mouse_filter = 1
-theme = ExtResource( 53 )
 custom_styles/slider = SubResource( 28 )
 custom_styles/grabber_area = SubResource( 29 )
 min_value = -1.0
@@ -3831,10 +3832,10 @@ valign = 1
 uppercase = true
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 16.0
-margin_bottom = 16.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 20.0
+margin_bottom = 20.0
 theme = SubResource( 31 )
 edit_alpha = false
 
@@ -9483,6 +9484,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -0.200001
 mouse_filter = 2
+theme = ExtResource( 53 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -9592,6 +9594,7 @@ visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
+theme = ExtResource( 53 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -10351,6 +10354,7 @@ __meta__ = {
 
 [node name="PauseMenu" parent="MicrobeEditorGUI" instance=ExtResource( 52 )]
 visible = false
+theme = ExtResource( 53 )
 HelpCategory = "MicrobeEditor"
 [connection signal="mouse_entered" from="MicrobeEditorGUI/LeftTopBar" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/LeftTopBar" to="MicrobeEditorGUI" method="OnMouseExit"]
