@@ -1,4 +1,4 @@
-[gd_scene load_steps=153 format=2]
+[gd_scene load_steps=154 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
@@ -80,6 +80,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/increase.png" type="Texture" id=78]
 [ext_resource path="res://src/engine/ChromaticFilter.tscn" type="PackedScene" id=79]
 [ext_resource path="res://src/gui_common/scrollbar_theme.tres" type="Theme" id=80]
+[ext_resource path="res://assets/textures/gui/bevel/MpBarSubtract.png" type="Texture" id=81]
 [ext_resource path="res://assets/textures/gui/bevel/MediumTwoNormal.png" type="Texture" id=82]
 [ext_resource path="res://assets/textures/gui/bevel/MediumTwoDisabled.png" type="Texture" id=83]
 [ext_resource path="res://assets/textures/gui/bevel/MediumTwoHover.png" type="Texture" id=84]
@@ -1004,8 +1005,8 @@ MenuPath = NodePath("PauseMenu")
 SizeLabelPath = NodePath("CellEditor/BottomBar/LowerBarCentre/MarginContainer/HBoxContainer/SpeciesName/SizeLabel")
 SpeedLabelPath = NodePath("CellEditor/BottomBar/LowerBarCentre/MarginContainer/HBoxContainer/SpeciesName/SpeedLabel")
 GenerationLabelPath = NodePath("CellEditor/BottomBar/LowerBarCentre/MarginContainer/HBoxContainer/SpeciesName/GenerationLabel")
-MutationPointsLabelPath = NodePath("LeftTopBar/HBoxContainer/MPBox/MarginContainer/HBoxContainer/MPBar/HBoxContainer/Value")
-MutationPointsBarPath = NodePath("LeftTopBar/HBoxContainer/MPBox/MarginContainer/HBoxContainer/MPBar")
+MutationPointsLabelPath = NodePath("LeftTopBar/HBoxContainer/MPBox/MarginContainer/HBoxContainer/BarContainer/MPBarMain/HBoxContainer/Value")
+MutationPointsBarPath = NodePath("LeftTopBar/HBoxContainer/MPBox/MarginContainer/HBoxContainer/BarContainer/MPBarMain")
 SpeciesNameEditPath = NodePath("CellEditor/BottomBar/LowerBarCentre/MarginContainer/HBoxContainer/SpeciesName/SpeciesNameBox/MarginContainer/LineEdit")
 MembraneColorPickerPath = NodePath("CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/ColorPicker")
 NewCellButtonPath = NodePath("LeftTopBar/HBoxContainer/NewCellButton")
@@ -1143,13 +1144,13 @@ __meta__ = {
 [node name="MPBox" type="PanelContainer" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer"]
 self_modulate = Color( 1, 1, 1, 0.392157 )
 margin_left = 340.0
-margin_right = 810.0
+margin_right = 800.0
 margin_bottom = 45.0
 mouse_filter = 1
 custom_styles/panel = SubResource( 6 )
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer/MPBox"]
-margin_right = 470.0
+margin_right = 460.0
 margin_bottom = 45.0
 mouse_filter = 1
 size_flags_vertical = 0
@@ -1164,24 +1165,35 @@ __meta__ = {
 [node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer/MPBox/MarginContainer"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 460.0
+margin_right = 450.0
 margin_bottom = 35.0
-custom_constants/separation = -15
+rect_min_size = Vector2( 440, 25 )
+custom_constants/separation = 0
 
-[node name="MPIcon" type="TextureRect" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer/MPBox/MarginContainer/HBoxContainer"]
-margin_right = 25.0
+[node name="BarContainer" type="Control" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer/MPBox/MarginContainer/HBoxContainer"]
+margin_left = 5.0
 margin_bottom = 25.0
-rect_min_size = Vector2( 25, 25 )
-size_flags_horizontal = 0
-size_flags_vertical = 0
-texture = ExtResource( 43 )
-expand = true
 
-[node name="MPBar" type="TextureProgress" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer/MPBox/MarginContainer/HBoxContainer"]
+[node name="MPBarSubtract" type="TextureProgress" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer/MPBox/MarginContainer/HBoxContainer/BarContainer"]
 self_modulate = Color( 0.705882, 0.705882, 0.705882, 1 )
 show_behind_parent = true
-margin_left = 10.0
-margin_right = 450.0
+margin_left = 5.0
+margin_right = 445.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 440, 25 )
+size_flags_vertical = 0
+step = 0.1
+texture_progress = ExtResource( 81 )
+nine_patch_stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MPBarMain" type="TextureProgress" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer/MPBox/MarginContainer/HBoxContainer/BarContainer"]
+self_modulate = Color( 0.705882, 0.705882, 0.705882, 1 )
+show_behind_parent = true
+margin_left = 5.0
+margin_right = 445.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 440, 25 )
 size_flags_vertical = 0
@@ -1189,8 +1201,11 @@ step = 0.1
 value = 100.0
 texture_progress = ExtResource( 42 )
 nine_patch_stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Background" type="ColorRect" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer/MPBox/MarginContainer/HBoxContainer/MPBar"]
+[node name="Background" type="ColorRect" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer/MPBox/MarginContainer/HBoxContainer/BarContainer/MPBarMain"]
 show_behind_parent = true
 margin_right = 440.0
 margin_bottom = 25.0
@@ -1200,7 +1215,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer/MPBox/MarginContainer/HBoxContainer/MPBar"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer/MPBox/MarginContainer/HBoxContainer/BarContainer/MPBarMain"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_constants/separation = 45
@@ -1208,13 +1223,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer/MPBox/MarginContainer/HBoxContainer/MPBar/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer/MPBox/MarginContainer/HBoxContainer/BarContainer/MPBarMain/HBoxContainer"]
 margin_right = 145.0
 margin_bottom = 25.0
 mouse_filter = 2
 custom_constants/margin_left = 25
 
-[node name="MPLabel" type="Label" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer/MPBox/MarginContainer/HBoxContainer/MPBar/HBoxContainer/MarginContainer"]
+[node name="MPLabel" type="Label" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer/MPBox/MarginContainer/HBoxContainer/BarContainer/MPBarMain/HBoxContainer/MarginContainer"]
 margin_left = 25.0
 margin_top = 3.0
 margin_right = 145.0
@@ -1227,7 +1242,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Value" type="Label" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer/MPBox/MarginContainer/HBoxContainer/MPBar/HBoxContainer"]
+[node name="Value" type="Label" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer/MPBox/MarginContainer/HBoxContainer/BarContainer/MPBarMain/HBoxContainer"]
 margin_left = 190.0
 margin_top = 3.0
 margin_right = 258.0
@@ -1240,10 +1255,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="MPIcon" type="TextureRect" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer/MPBox/MarginContainer/HBoxContainer"]
+margin_right = 25.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 25, 25 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource( 43 )
+expand = true
+
 [node name="NewCellButton" type="TextureButton" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer"]
 self_modulate = Color( 1, 1, 1, 0.392157 )
-margin_left = 810.0
-margin_right = 935.0
+margin_left = 800.0
+margin_right = 925.0
 margin_bottom = 45.0
 rect_min_size = Vector2( 125, 45 )
 focus_mode = 0
@@ -3824,10 +3848,10 @@ valign = 1
 uppercase = true
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_left = 28.0
-margin_top = 28.0
-margin_right = 28.0
-margin_bottom = 28.0
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 32.0
+margin_bottom = 32.0
 theme = SubResource( 29 )
 edit_alpha = false
 
