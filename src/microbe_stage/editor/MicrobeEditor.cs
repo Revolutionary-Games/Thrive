@@ -654,7 +654,7 @@ public class MicrobeEditor : Node, ILoadableGameState
         if (intRigidity == rigidity)
             return;
 
-        int cost = (Math.Abs(rigidity - intRigidity) * Constants.MEMBRANE_RIGIDITY_COST_PER_STEP);
+        int cost = Math.Abs(rigidity - intRigidity) * Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;
 
         if (cost > MutationPoints)
         {
