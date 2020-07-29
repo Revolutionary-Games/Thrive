@@ -1299,7 +1299,7 @@ __meta__ = {
 margin_left = 3.0
 margin_top = 3.0
 margin_right = 327.0
-margin_bottom = 63.0
+margin_bottom = 95.0
 mouse_filter = 1
 custom_constants/margin_right = 3
 custom_constants/margin_top = 3
@@ -1328,6 +1328,9 @@ mouse_filter = 2
 custom_styles/separator = SubResource( 11 )
 
 [node name="ATPBarContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer"]
+margin_top = 22.0
+margin_right = 318.0
+margin_bottom = 86.0
 alignment = 1
 
 [node name="ATPProductionBar" parent="MicrobeEditorGUI/CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer/ATPBarContainer" instance=ExtResource( 86 )]
@@ -1336,8 +1339,9 @@ margin_bottom = 30.0
 rect_min_size = Vector2( 318, 30 )
 
 [node name="ATPConsumptionBar" parent="MicrobeEditorGUI/CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer/ATPBarContainer" instance=ExtResource( 86 )]
+margin_top = 34.0
 margin_right = 318.0
-margin_bottom = 30.0
+margin_bottom = 64.0
 rect_min_size = Vector2( 318, 30 )
 
 [node name="LeftPanel" type="Control" parent="MicrobeEditorGUI/CellEditor"]
@@ -3824,10 +3828,10 @@ valign = 1
 uppercase = true
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_left = 28.0
-margin_top = 28.0
-margin_right = 28.0
-margin_bottom = 28.0
+margin_left = 32.0
+margin_top = 32.0
+margin_right = 32.0
+margin_bottom = 32.0
 theme = SubResource( 29 )
 edit_alpha = false
 
@@ -4129,10 +4133,10 @@ __meta__ = {
 [node name="Tooltips" type="Control" parent="MicrobeEditorGUI/CellEditor"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -380.0
-margin_top = 90.0
-margin_right = -47.9995
-margin_bottom = 490.0
+margin_left = -378.665
+margin_top = 102.014
+margin_right = -46.6647
+margin_bottom = 502.014
 mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
