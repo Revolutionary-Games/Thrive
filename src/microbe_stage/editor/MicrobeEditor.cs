@@ -649,40 +649,37 @@ public class MicrobeEditor : Node, ILoadableGameState
 
     public void SetRigidity(int rigidity)
     {
-        int intRigidity = (int)(Rigidity * 10);
+        int intRigidity = (int)Math.Round(Rigidity * 10);
 
-        if (Math.Abs(intRigidity - rigidity) < MathUtils.EPSILON)
+        if (intRigidity == rigidity)
             return;
 
-        int cost = (int)(Math.Abs(rigidity - intRigidity) * Constants.MEMBRANE_RIGIDITY_COST_PER_STEP);
+        int cost = (Math.Abs(rigidity - intRigidity) * Constants.MEMBRANE_RIGIDITY_COST_PER_STEP);
 
-        if (cost > 0)
+        if (cost > MutationPoints)
         {
-            if (cost > MutationPoints)
-            {
-                gui.UpdateRigiditySlider(intRigidity, MutationPoints);
-                return;
-            }
-
-            var newRigidity = rigidity / 10f;
-            var prevRigidity = Rigidity;
-
-            var action = new EditorAction(this, cost,
-                redo =>
-                {
-                    Rigidity = newRigidity;
-                    gui.UpdateRigiditySlider((int)(Rigidity * 10), MutationPoints);
-                    gui.UpdateSpeed(CalculateSpeed());
-                },
-                undo =>
-                {
-                    Rigidity = prevRigidity;
-                    gui.UpdateRigiditySlider((int)(Rigidity * 10), MutationPoints);
-                    gui.UpdateSpeed(CalculateSpeed());
-                });
-
-            EnqueueAction(action);
+            gui.UpdateRigiditySlider(intRigidity, MutationPoints);
+            return;
         }
+
+        var newRigidity = rigidity / 10.0f;
+        var prevRigidity = Rigidity;
+
+        var action = new EditorAction(this, cost,
+            redo =>
+            {
+                Rigidity = newRigidity;
+                gui.UpdateRigiditySlider((int)Math.Round(Rigidity * 10), MutationPoints);
+                gui.UpdateSpeed(CalculateSpeed());
+            },
+            undo =>
+            {
+                Rigidity = prevRigidity;
+                gui.UpdateRigiditySlider((int)Math.Round(Rigidity * 10), MutationPoints);
+                gui.UpdateSpeed(CalculateSpeed());
+            });
+
+        EnqueueAction(action);
     }
 
     /// <summary>

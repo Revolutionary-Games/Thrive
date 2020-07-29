@@ -471,15 +471,15 @@ public class MicrobeEditorGUI : Node
         var healthChangeLabel = GetNode<Label>(RigiditySliderTooltipHealthLabelPath);
         var mobilityChangeLabel = GetNode<Label>(RigiditySliderTooltipSpeedLabelPath);
 
-        string healthChange = (rigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER).ToString("0.##", CultureInfo.CurrentCulture);
-        string mobilityChange = (-1 * rigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER).ToString("0.##", CultureInfo.CurrentCulture);
+        float healthChange = rigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER / 10.0f;
+        float mobilityChange = -1 * rigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER / 10.0f;
 
-        healthChangeLabel.Text = ((Convert.ToDouble(healthChange, CultureInfo.CurrentCulture) > 0) ? "+" : string.Empty)
-            + healthChange.ToString(CultureInfo.CurrentCulture);
-        mobilityChangeLabel.Text = ((Convert.ToDouble(mobilityChange, CultureInfo.CurrentCulture) > 0) ? "+" : string.Empty)
-            + mobilityChange.ToString(CultureInfo.CurrentCulture);
+        healthChangeLabel.Text = ((healthChange > 0) ? "+" : string.Empty)
+            + healthChange.ToString("F2", CultureInfo.CurrentCulture);
+        mobilityChangeLabel.Text = ((mobilityChange > 0) ? "+" : string.Empty)
+            + mobilityChange.ToString("F2", CultureInfo.CurrentCulture);
 
-        if (Convert.ToDouble(healthChange, CultureInfo.CurrentCulture) >= 0)
+        if (healthChange >= 0)
         {
             healthChangeLabel.AddColorOverride("font_color", new Color(0, 1, 0));
         }
@@ -488,7 +488,7 @@ public class MicrobeEditorGUI : Node
             healthChangeLabel.AddColorOverride("font_color", new Color(1, 0.3f, 0.3f));
         }
 
-        if (Convert.ToDouble(mobilityChange, CultureInfo.CurrentCulture) >= 0)
+        if (mobilityChange >= 0)
         {
             mobilityChangeLabel.AddColorOverride("font_color", new Color(0, 1, 0));
         }
@@ -775,7 +775,7 @@ public class MicrobeEditorGUI : Node
         }
 
         rigiditySlider.Value = value;
-        SetRigiditySliderTooltip(value / 10f);
+        SetRigiditySliderTooltip(value);
     }
 
     private void OnRigidityChanged(int value)
