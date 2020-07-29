@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=43 format=2]
+[gd_resource type="Theme" load_steps=46 format=2]
 
 [ext_resource path="res://assets/fonts/Jura-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/grab.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/checkB.png" type="Texture" id=5]
 [ext_resource path="res://assets/textures/gui/bevel/checkA.png" type="Texture" id=6]
 [ext_resource path="res://assets/textures/gui/bevel/grabdisabled.png" type="Texture" id=7]
+[ext_resource path="res://assets/fonts/Jura-Medium.ttf" type="DynamicFontData" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
@@ -262,6 +263,19 @@ bg_color = Color( 0.34902, 0.823529, 1, 0.392157 )
 bg_color = Color( 0, 0, 0, 1 )
 border_width_left = 15
 border_color = Color( 1, 1, 1, 0 )
+
+[sub_resource type="DynamicFont" id=36]
+font_data = ExtResource( 8 )
+
+[sub_resource type="StyleBoxFlat" id=37]
+bg_color = Color( 0, 0.129412, 0.141176, 1 )
+border_width_top = 20
+border_color = Color( 0.164706, 0.215686, 0.235294, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_top = 20.0
 
 [resource]
 Button/colors/font_color = Color( 1, 1, 1, 1 )
@@ -673,12 +687,12 @@ VSplitContainer/constants/autohide = 1
 VSplitContainer/constants/separation = 12
 VSplitContainer/icons/grabber = null
 VSplitContainer/styles/bg = null
-WindowDialog/colors/title_color = Color( 0, 0, 0, 1 )
+WindowDialog/colors/title_color = Color( 1, 1, 1, 1 )
 WindowDialog/constants/close_h_ofs = 18
 WindowDialog/constants/close_v_ofs = 18
 WindowDialog/constants/scaleborder_size = 4
 WindowDialog/constants/title_height = 20
-WindowDialog/fonts/title_font = null
+WindowDialog/fonts/title_font = SubResource( 36 )
 WindowDialog/icons/close = null
 WindowDialog/icons/close_highlight = null
-WindowDialog/styles/panel = null
+WindowDialog/styles/panel = SubResource( 37 )
