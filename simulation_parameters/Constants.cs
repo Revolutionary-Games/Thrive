@@ -187,6 +187,11 @@ public static class Constants
     public const float ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST = 0.0f;
 
     /// <summary>
+    ///   Cost of moving the rigidity slider by one step in the microbe editor
+    /// </summary>
+    public const int MEMBRANE_RIGIDITY_COST_PER_STEP = 2;
+
+    /// <summary>
     ///   How much fully rigid membrane adds hitpoints
     /// </summary>
     public const float MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER = 30;

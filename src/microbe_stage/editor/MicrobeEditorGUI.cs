@@ -471,15 +471,15 @@ public class MicrobeEditorGUI : Node
         var healthChangeLabel = GetNode<Label>(RigiditySliderTooltipHealthLabelPath);
         var mobilityChangeLabel = GetNode<Label>(RigiditySliderTooltipSpeedLabelPath);
 
-        float healthChange = (float)Math.Round(rigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER, 2);
-        float mobilityChange = (float)Math.Round(-1 * rigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER, 2);
+        string healthChange = (rigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER).ToString("0.##", CultureInfo.CurrentCulture);
+        string mobilityChange = (-1 * rigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER).ToString("0.##", CultureInfo.CurrentCulture);
 
-        healthChangeLabel.Text = ((healthChange > 0) ? "+" : string.Empty)
+        healthChangeLabel.Text = ((Convert.ToDouble(healthChange, CultureInfo.CurrentCulture) > 0) ? "+" : string.Empty)
             + healthChange.ToString(CultureInfo.CurrentCulture);
-        mobilityChangeLabel.Text = ((mobilityChange > 0) ? "+" : string.Empty)
+        mobilityChangeLabel.Text = ((Convert.ToDouble(mobilityChange, CultureInfo.CurrentCulture) > 0) ? "+" : string.Empty)
             + mobilityChange.ToString(CultureInfo.CurrentCulture);
 
-        if (healthChange >= 0)
+        if (Convert.ToDouble(healthChange, CultureInfo.CurrentCulture) >= 0)
         {
             healthChangeLabel.AddColorOverride("font_color", new Color(0, 1, 0));
         }
@@ -488,7 +488,7 @@ public class MicrobeEditorGUI : Node
             healthChangeLabel.AddColorOverride("font_color", new Color(1, 0.3f, 0.3f));
         }
 
-        if (mobilityChange >= 0)
+        if (Convert.ToDouble(mobilityChange, CultureInfo.CurrentCulture) >= 0)
         {
             mobilityChangeLabel.AddColorOverride("font_color", new Color(0, 1, 0));
         }
@@ -734,7 +734,7 @@ public class MicrobeEditorGUI : Node
 
         UpdateMembraneButtons(membrane.InternalName);
 
-        UpdateRigiditySlider(rigidity, editor.MutationPoints);
+        UpdateRigiditySlider((int)(rigidity * 10), editor.MutationPoints);
     }
 
     internal void UpdateMembraneButtons(string membrane)
@@ -763,9 +763,9 @@ public class MicrobeEditorGUI : Node
         }
     }
 
-    internal void UpdateRigiditySlider(float value, int mutationPoints)
+    internal void UpdateRigiditySlider(int value, int mutationPoints)
     {
-        if (mutationPoints >= 5)
+        if (mutationPoints >= Constants.MEMBRANE_RIGIDITY_COST_PER_STEP)
         {
             rigiditySlider.Editable = true;
         }
@@ -774,8 +774,8 @@ public class MicrobeEditorGUI : Node
             rigiditySlider.Editable = false;
         }
 
-        rigiditySlider.Value = value * 10;
-        SetRigiditySliderTooltip(value);
+        rigiditySlider.Value = value;
+        SetRigiditySliderTooltip(value / 10f);
     }
 
     private void OnRigidityChanged(int value)

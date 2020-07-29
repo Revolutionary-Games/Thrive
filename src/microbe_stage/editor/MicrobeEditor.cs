@@ -649,15 +649,20 @@ public class MicrobeEditor : Node, ILoadableGameState
 
     public void SetRigidity(int rigidity)
     {
-        if (Math.Abs(Rigidity * 10 - rigidity) < MathUtils.EPSILON * 10)
+        int intRigidity = (int)(Rigidity * 10);
+
+        if (Math.Abs(intRigidity - rigidity) < MathUtils.EPSILON)
             return;
 
-        int cost = (int)(Math.Abs(rigidity - Rigidity * 10) / 2 * 10);
+        int cost = (int)(Math.Abs(rigidity - intRigidity) * Constants.MEMBRANE_RIGIDITY_COST_PER_STEP);
 
         if (cost > 0)
         {
             if (cost > MutationPoints)
+            {
+                gui.UpdateRigiditySlider(intRigidity, MutationPoints);
                 return;
+            }
 
             var newRigidity = rigidity / 10f;
             var prevRigidity = Rigidity;
@@ -666,13 +671,13 @@ public class MicrobeEditor : Node, ILoadableGameState
                 redo =>
                 {
                     Rigidity = newRigidity;
-                    gui.UpdateRigiditySlider(Rigidity, MutationPoints);
+                    gui.UpdateRigiditySlider((int)(Rigidity * 10), MutationPoints);
                     gui.UpdateSpeed(CalculateSpeed());
                 },
                 undo =>
                 {
                     Rigidity = prevRigidity;
-                    gui.UpdateRigiditySlider(Rigidity, MutationPoints);
+                    gui.UpdateRigiditySlider((int)(Rigidity * 10), MutationPoints);
                     gui.UpdateSpeed(CalculateSpeed());
                 });
 
