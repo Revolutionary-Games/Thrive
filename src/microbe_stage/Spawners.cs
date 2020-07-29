@@ -224,18 +224,19 @@ public static class SpawnHelpers
 
     public static FloatingChunk SpawnChunk(ChunkConfiguration chunkType,
         Vector3 location, Node worldNode, PackedScene chunkScene,
-        CompoundCloudSystem cloudSystem, Random random, string modelPath = null)
+        CompoundCloudSystem cloudSystem, Random random)
     {
         var chunk = (FloatingChunk)chunkScene.Instance();
 
         // Settings need to be applied before adding it to the scene
-        chunk.GraphicsScene = chunkType.Meshes.Random(random).LoadedScene;
+        var selectedMesh = chunkType.Meshes.Random(random);
+        chunk.GraphicsScene = selectedMesh.LoadedScene;
 
         if (chunk.GraphicsScene == null)
             throw new ArgumentException("couldn't find a graphics scene for a chunk");
 
         // Pass on the chunk data
-        chunk.Init(chunkType, cloudSystem, modelPath);
+        chunk.Init(chunkType, cloudSystem, selectedMesh.SceneModelPath);
 
         worldNode.AddChild(chunk);
 
