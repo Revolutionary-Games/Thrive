@@ -79,7 +79,7 @@ public class FloatingChunk : RigidBody, ISpawned
     ///   </para>
     /// </remarks>
     public void Init(ChunkConfiguration chunkType, CompoundCloudSystem compoundClouds,
-        string modelPath = null)
+        string modelPath)
     {
         this.compoundClouds = compoundClouds;
 
@@ -148,7 +148,7 @@ public class FloatingChunk : RigidBody, ISpawned
         config.Meshes = new List<ChunkConfiguration.ChunkScene>();
 
         var item = new ChunkConfiguration.ChunkScene
-            { LoadedScene = GraphicsScene, ScenePath = GraphicsScene.ResourcePath };
+            { LoadedScene = GraphicsScene, ScenePath = GraphicsScene.ResourcePath, SceneModelPath = ModelNodePath };
 
         config.Meshes.Add(item);
 

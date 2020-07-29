@@ -700,16 +700,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
             var sceneToUse = new ChunkConfiguration.ChunkScene();
 
-            // The node path to the organelle's model/mesh if there is any
-            string modelNodePath = null;
-
             // Try all organelles in random order and use the first one with a scene for model
             foreach (var organelle in organelles.OrderBy(_ => random.Next()))
             {
                 if (!string.IsNullOrEmpty(organelle.Definition.DisplayScene))
                 {
                     sceneToUse.LoadedScene = organelle.Definition.LoadedScene;
-                    modelNodePath = organelle.Definition.DisplaySceneModelPath;
+                    sceneToUse.SceneModelPath = organelle.Definition.DisplaySceneModelPath;
                     break;
                 }
             }
@@ -719,13 +716,14 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             {
                 sceneToUse.LoadedScene = SimulationParameters.Instance.GetOrganelleType(
                     "mitochondrion").LoadedScene;
+                sceneToUse.SceneModelPath = null;
             }
 
             chunkType.Meshes.Add(sceneToUse);
 
             // Finally spawn a chunk with the settings
             SpawnHelpers.SpawnChunk(chunkType, Translation + positionAdded, GetParent(),
-                chunkScene, cloudSystem, random, modelNodePath);
+                chunkScene, cloudSystem, random);
         }
 
         // Subtract population

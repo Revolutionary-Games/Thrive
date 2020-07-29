@@ -254,4 +254,16 @@
       <Version>1.2.0</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="simulation_parameters\common\easter_egg_messages.json" />
+    <Content Include="simulation_parameters\common\help_texts.json" />
+    <Content Include="simulation_parameters\common\music_tracks.json" />
+    <Content Include="simulation_parameters\microbe_stage\backgrounds.json" />
+    <Content Include="simulation_parameters\microbe_stage\biomes.json" />
+    <Content Include="simulation_parameters\microbe_stage\bio_processes.json" />
+    <Content Include="simulation_parameters\microbe_stage\compounds.json" />
+    <Content Include="simulation_parameters\microbe_stage\membranes.json" />
+    <Content Include="simulation_parameters\microbe_stage\organelles.json" />
+    <Content Include="simulation_parameters\microbe_stage\species_names.json" />
+  </ItemGroup>
 </Project>
