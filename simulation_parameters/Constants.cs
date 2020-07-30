@@ -192,9 +192,9 @@ public static class Constants
     public const int MEMBRANE_RIGIDITY_COST_PER_STEP = 2;
 
     /// <summary>
-    ///   Number used to convert between the valeu from the rigidity slider and the actual value
+    ///   Number used to convert between the value from the rigidity slider and the actual value
     /// </summary>
-    public const int MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO = 10;
+    public const float MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO = 10;
 
     /// <summary>
     ///   How much fully rigid membrane adds hitpoints

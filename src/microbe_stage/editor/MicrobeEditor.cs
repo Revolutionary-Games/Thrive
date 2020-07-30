@@ -662,7 +662,7 @@ public class MicrobeEditor : Node, ILoadableGameState
             return;
         }
 
-        var newRigidity = rigidity / (float)Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
+        var newRigidity = rigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
         var prevRigidity = Rigidity;
 
         var action = new EditorAction(this, cost,

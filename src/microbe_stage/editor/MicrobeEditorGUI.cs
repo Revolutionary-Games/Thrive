@@ -468,13 +468,13 @@ public class MicrobeEditorGUI : Node
     /// </summary>
     public void SetRigiditySliderTooltip(int rigidity)
     {
+        float convertedRigidity = rigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
+
         var healthChangeLabel = GetNode<Label>(RigiditySliderTooltipHealthLabelPath);
         var mobilityChangeLabel = GetNode<Label>(RigiditySliderTooltipSpeedLabelPath);
 
-        float healthChange = rigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER
-            / (float)Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
-        float mobilityChange = -1 * rigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER
-            / (float)Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
+        float healthChange = convertedRigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
+        float mobilityChange = -1 * convertedRigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER;
 
         healthChangeLabel.Text = ((healthChange > 0) ? "+" : string.Empty)
             + healthChange.ToString("F2", CultureInfo.CurrentCulture);
