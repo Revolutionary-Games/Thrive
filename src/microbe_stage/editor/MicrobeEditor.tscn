@@ -3813,9 +3813,9 @@ margin_top = 295.0
 margin_right = 294.0
 margin_bottom = 311.0
 mouse_filter = 1
-min_value = -1.0
-max_value = 1.0
-step = 0.1
+min_value = -10.0
+max_value = 10.0
+step = 1.0
 
 [node name="ColourLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 321.0
