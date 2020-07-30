@@ -669,13 +669,15 @@ public class MicrobeEditor : Node, ILoadableGameState
             redo =>
             {
                 Rigidity = newRigidity;
-                gui.UpdateRigiditySlider((int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO), MutationPoints);
+                gui.UpdateRigiditySlider((int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO),
+                    MutationPoints);
                 gui.UpdateSpeed(CalculateSpeed());
             },
             undo =>
             {
                 Rigidity = prevRigidity;
-                gui.UpdateRigiditySlider((int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO), MutationPoints);
+                gui.UpdateRigiditySlider((int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO),
+                    MutationPoints);
                 gui.UpdateSpeed(CalculateSpeed());
             });
 

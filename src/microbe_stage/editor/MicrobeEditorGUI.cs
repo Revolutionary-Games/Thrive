@@ -736,7 +736,8 @@ public class MicrobeEditorGUI : Node
 
         UpdateMembraneButtons(membrane.InternalName);
 
-        UpdateRigiditySlider((int)Math.Round(rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO), editor.MutationPoints);
+        UpdateRigiditySlider((int)Math.Round(rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO),
+            editor.MutationPoints);
     }
 
     internal void UpdateMembraneButtons(string membrane)
