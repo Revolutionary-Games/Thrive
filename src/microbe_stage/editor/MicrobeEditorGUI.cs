@@ -466,13 +466,15 @@ public class MicrobeEditorGUI : Node
     /// <summary>
     ///   Updates the fluidity / rigidity slider tooltip
     /// </summary>
-    public void SetRigiditySliderTooltip(float rigidity)
+    public void SetRigiditySliderTooltip(int rigidity)
     {
         var healthChangeLabel = GetNode<Label>(RigiditySliderTooltipHealthLabelPath);
         var mobilityChangeLabel = GetNode<Label>(RigiditySliderTooltipSpeedLabelPath);
 
-        float healthChange = rigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER / 10.0f;
-        float mobilityChange = -1 * rigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER / 10.0f;
+        float healthChange = rigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER
+            / (float)Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
+        float mobilityChange = -1 * rigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER
+            / (float)Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
 
         healthChangeLabel.Text = ((healthChange > 0) ? "+" : string.Empty)
             + healthChange.ToString("F2", CultureInfo.CurrentCulture);
@@ -734,7 +736,7 @@ public class MicrobeEditorGUI : Node
 
         UpdateMembraneButtons(membrane.InternalName);
 
-        UpdateRigiditySlider((int)(rigidity * 10), editor.MutationPoints);
+        UpdateRigiditySlider((int)Math.Round(rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO), editor.MutationPoints);
     }
 
     internal void UpdateMembraneButtons(string membrane)
