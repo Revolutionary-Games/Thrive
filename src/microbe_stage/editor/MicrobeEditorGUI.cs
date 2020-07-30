@@ -466,18 +466,20 @@ public class MicrobeEditorGUI : Node
     /// <summary>
     ///   Updates the fluidity / rigidity slider tooltip
     /// </summary>
-    public void SetRigiditySliderTooltip(float rigidity)
+    public void SetRigiditySliderTooltip(int rigidity)
     {
+        float convertedRigidity = rigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
+
         var healthChangeLabel = GetNode<Label>(RigiditySliderTooltipHealthLabelPath);
         var mobilityChangeLabel = GetNode<Label>(RigiditySliderTooltipSpeedLabelPath);
 
-        float healthChange = rigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
-        float mobilityChange = -1 * rigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER;
+        float healthChange = convertedRigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
+        float mobilityChange = -1 * convertedRigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER;
 
         healthChangeLabel.Text = ((healthChange > 0) ? "+" : string.Empty)
-            + healthChange.ToString(CultureInfo.CurrentCulture);
+            + healthChange.ToString("F2", CultureInfo.CurrentCulture);
         mobilityChangeLabel.Text = ((mobilityChange > 0) ? "+" : string.Empty)
-            + mobilityChange.ToString(CultureInfo.CurrentCulture);
+            + mobilityChange.ToString("F2", CultureInfo.CurrentCulture);
 
         if (healthChange >= 0)
         {
@@ -734,7 +736,8 @@ public class MicrobeEditorGUI : Node
 
         UpdateMembraneButtons(membrane.InternalName);
 
-        UpdateRigiditySlider(rigidity, editor.MutationPoints);
+        UpdateRigiditySlider((int)Math.Round(rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO),
+            editor.MutationPoints);
     }
 
     internal void UpdateMembraneButtons(string membrane)
@@ -763,9 +766,9 @@ public class MicrobeEditorGUI : Node
         }
     }
 
-    internal void UpdateRigiditySlider(float value, int mutationPoints)
+    internal void UpdateRigiditySlider(int value, int mutationPoints)
     {
-        if (mutationPoints > 0)
+        if (mutationPoints >= Constants.MEMBRANE_RIGIDITY_COST_PER_STEP)
         {
             rigiditySlider.Editable = true;
         }
@@ -778,7 +781,7 @@ public class MicrobeEditorGUI : Node
         SetRigiditySliderTooltip(value);
     }
 
-    private void OnRigidityChanged(float value)
+    private void OnRigidityChanged(int value)
     {
         editor.SetRigidity(value);
     }
