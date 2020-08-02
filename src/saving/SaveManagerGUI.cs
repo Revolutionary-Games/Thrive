@@ -36,14 +36,18 @@ public class SaveManagerGUI : Control
     private Label totalSaveCount;
     private Label totalSaveSize;
     private Button loadButton;
+
+    // ReSharper disable once NotAccessedField.Local
     private Button deleteSelectedButton;
+
+    // ReSharper disable once NotAccessedField.Local
     private Button deleteOldButton;
 
     private List<SaveListItem> selected;
     private bool selectedDirty = true;
 
-    private bool saveCountRefreshed = false;
-    private bool refreshing = false;
+    private bool saveCountRefreshed;
+    private bool refreshing;
 
     private Task<(int count, long diskSpace)> getSaveCountTask;
 
@@ -94,8 +98,8 @@ public class SaveManagerGUI : Control
         getSaveCountTask = null;
 
         totalSaveCount.Text = info.count.ToString(CultureInfo.CurrentCulture);
-        totalSaveSize.Text = Math.Round((float)info.diskSpace / Constants.MEBIBYTE, 2).
-            ToString(CultureInfo.CurrentCulture) + " MiB";
+        totalSaveSize.Text =
+            Math.Round((float)info.diskSpace / Constants.MEBIBYTE, 2).ToString(CultureInfo.CurrentCulture) + " MiB";
 
         refreshing = false;
     }
@@ -129,7 +133,7 @@ public class SaveManagerGUI : Control
         saveCountRefreshed = true;
         refreshing = true;
 
-        getSaveCountTask = new Task<(int count, long diskSpace)>(() => SaveManager.CountSaves());
+        getSaveCountTask = new Task<(int count, long diskSpace)>(() => SaveHelper.CountSaves());
         TaskExecutor.Instance.AddTask(getSaveCountTask);
     }
 

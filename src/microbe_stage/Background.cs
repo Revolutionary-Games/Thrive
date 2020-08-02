@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
 ///   Background in the microbe stage, needs to have 4 layers (textures)
 /// </summary>
+[SuppressMessage("ReSharper", "CollectionNeverUpdated.Global", Justification = "This is a read-only type")]
 public class Background : IRegistryType
 {
     public List<string> Textures;

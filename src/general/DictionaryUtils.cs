@@ -15,7 +15,7 @@ public static class DictionaryUtils
     public static T Random<TKey, T>(this Dictionary<TKey, T> items, Random random)
     {
         if (items == null || items.Count < 1)
-            return default(T);
+            return default;
 
         // TODO: maybe there is a better way to do this
         return items[items.Keys.ToList()[random.Next(0, items.Keys.Count)]];

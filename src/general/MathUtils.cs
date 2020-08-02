@@ -16,14 +16,13 @@ public static class MathUtils
         {
             return min;
         }
-        else if (val.CompareTo(max) > 0)
+
+        if (val.CompareTo(max) > 0)
         {
             return max;
         }
-        else
-        {
-            return val;
-        }
+
+        return val;
     }
 
     public static double

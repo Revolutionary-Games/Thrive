@@ -135,10 +135,7 @@ public class OptionsMenu : Control
     /// <summary>
     ///   Returns the place to save the new settings values
     /// </summary>
-    public Settings Settings
-    {
-        get => Settings.Instance;
-    }
+    public Settings Settings => Settings.Instance;
 
     public override void _Ready()
     {
@@ -265,30 +262,22 @@ public class OptionsMenu : Control
     private int CloudIntervalToIndex(float interval)
     {
         if (interval < 0.020f)
-        {
             return 0;
-        }
-        else if (interval == 0.020f)
-        {
+
+        if (interval == 0.020f)
             return 1;
-        }
-        else if (interval <= 0.040f)
-        {
+
+        if (interval <= 0.040f)
             return 2;
-        }
-        else if (interval <= 0.1f)
-        {
+
+        if (interval <= 0.1f)
             return 3;
-        }
-        else if (interval > 0.1f)
-        {
+
+        if (interval > 0.1f)
             return 4;
-        }
-        else
-        {
-            GD.PrintErr("invalid cloud interval value");
-            return -1;
-        }
+
+        GD.PrintErr("invalid cloud interval value");
+        return -1;
     }
 
     private float CloudIndexToInterval(int index)
@@ -317,14 +306,13 @@ public class OptionsMenu : Control
         {
             return 0;
         }
-        else if (resolution <= 2)
+
+        if (resolution <= 2)
         {
             return 1;
         }
-        else
-        {
-            return 2;
-        }
+
+        return 2;
     }
 
     private int CloudIndexToResolution(int index)
@@ -346,30 +334,22 @@ public class OptionsMenu : Control
     private int MSAAResolutionToIndex(Viewport.MSAA resolution)
     {
         if (resolution == Viewport.MSAA.Disabled)
-        {
             return 0;
-        }
-        else if (resolution == Viewport.MSAA.Msaa2x)
-        {
+
+        if (resolution == Viewport.MSAA.Msaa2x)
             return 1;
-        }
-        else if (resolution == Viewport.MSAA.Msaa4x)
-        {
+
+        if (resolution == Viewport.MSAA.Msaa4x)
             return 2;
-        }
-        else if (resolution == Viewport.MSAA.Msaa8x)
-        {
+
+        if (resolution == Viewport.MSAA.Msaa8x)
             return 3;
-        }
-        else if (resolution == Viewport.MSAA.Msaa16x)
-        {
+
+        if (resolution == Viewport.MSAA.Msaa16x)
             return 4;
-        }
-        else
-        {
-            GD.PrintErr("invalid MSAA resolution value");
-            return 0;
-        }
+
+        GD.PrintErr("invalid MSAA resolution value");
+        return 0;
     }
 
     private Viewport.MSAA MSAAIndexToResolution(int index)

@@ -119,6 +119,11 @@ public struct ChunkConfiguration : IEquatable<ChunkConfiguration>
     {
         public string ScenePath;
 
+        /// <summary>
+        ///   Path to the MeshInstance inside the ScenePath scene, null if it is the root
+        /// </summary>
+        public string SceneModelPath;
+
         [JsonIgnore]
         public PackedScene LoadedScene;
 

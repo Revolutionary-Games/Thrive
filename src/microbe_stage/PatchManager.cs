@@ -167,7 +167,7 @@ public class PatchManager
             return;
         }
 
-        var existing = existingSpawners.Find((s) => s.Name == itemName);
+        var existing = existingSpawners.Find(s => s.Name == itemName);
 
         if (existing != null)
         {
@@ -235,7 +235,7 @@ public class PatchManager
     /// <param name="spawners">Spawner list to act upon</param>
     private void ClearUnmarkedSingle(List<CreatedSpawner> spawners)
     {
-        spawners.RemoveAll((item) =>
+        spawners.RemoveAll(item =>
         {
             if (!item.Marked)
             {

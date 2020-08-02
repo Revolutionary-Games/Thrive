@@ -40,6 +40,7 @@ public class CompoundBag : IEnumerable<KeyValuePair<Compound, float>>
     {
         if (Compounds.ContainsKey(compound))
             return Compounds[compound];
+
         return 0.0f;
     }
 
@@ -79,10 +80,8 @@ public class CompoundBag : IEnumerable<KeyValuePair<Compound, float>>
         {
             return didntFit;
         }
-        else
-        {
-            return 0.0f;
-        }
+
+        return 0.0f;
     }
 
     public IEnumerator<KeyValuePair<Compound, float>> GetEnumerator()

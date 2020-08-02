@@ -18,7 +18,7 @@ const float CLOUD_DISSIPATION = 2.0;
 const float CLOUD_MAX_INTENSITY_SHOWN = 1000f;
 
 float getIntensity(float value){
-	return min(0.8 * atan(0.003f * CLOUD_MAX_INTENSITY_SHOWN * value), 1.0f);
+    return min(0.8 * atan(0.003f * CLOUD_MAX_INTENSITY_SHOWN * value), 1.0f);
 }
 
 void fragment(){
