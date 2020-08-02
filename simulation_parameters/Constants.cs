@@ -1,4 +1,6 @@
+using System;
 using System.Reflection;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -439,12 +441,20 @@ public static class Constants
     {
         get
         {
-            var assembly = Assembly.GetExecutingAssembly();
-            var version = assembly.GetName().Version;
-            var versionSuffix =
-                (AssemblyInformationalVersionAttribute[])assembly.GetCustomAttributes(
-                    typeof(AssemblyInformationalVersionAttribute), false);
-            return $"{version}" + versionSuffix[0].InformationalVersion;
+            try
+            {
+                var assembly = Assembly.GetExecutingAssembly();
+                var version = assembly.GetName().Version;
+                var versionSuffix =
+                    (AssemblyInformationalVersionAttribute[])assembly.GetCustomAttributes(
+                        typeof(AssemblyInformationalVersionAttribute), false);
+                return $"{version}" + versionSuffix[0].InformationalVersion;
+            }
+            catch (Exception error)
+            {
+                GD.Print("Error getting version: ", error);
+                return "error (" + error.GetType().Name + ")";
+            }
         }
     }
 }
