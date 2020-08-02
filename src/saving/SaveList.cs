@@ -41,7 +41,7 @@ public class SaveList : ScrollContainer
 
     private string saveToBeDeleted;
 
-    private bool wasVisible = false;
+    private bool wasVisible;
 
     [Signal]
     public delegate void OnSelectedChanged();
