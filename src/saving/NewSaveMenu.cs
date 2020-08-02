@@ -35,11 +35,6 @@ public class NewSaveMenu : Control
         overwriteConfirm = GetNode<ConfirmationDialog>(OverwriteConfirmPath);
     }
 
-    public void RefreshExisting()
-    {
-        saveList.Refresh();
-    }
-
     private void ClosePressed()
     {
         EmitSignal(nameof(OnClosed));
