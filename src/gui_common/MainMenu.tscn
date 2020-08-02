@@ -106,9 +106,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.85
-margin_left = -639.183
+margin_left = -638.482
 margin_top = -145.0
-margin_right = 640.817
+margin_right = 641.518
 margin_bottom = 108.0
 rect_clip_content = true
 __meta__ = {
@@ -311,4 +311,3 @@ anims/MenuSlide = SubResource( 1 )
 [connection signal="pressed" from="MenuContainers/MenuCenterContainer/MenuItems/Tools/Back" to="." method="BackFromToolsPressed"]
 [connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="OnReturnFromOptions"]
 [connection signal="OnBackPressed" from="SaveManagerGUI" to="." method="OnReturnFromLoadGame"]
-[connection signal="visibility_changed" from="SaveManagerGUI" to="." method="OnVisibilityChanged"]

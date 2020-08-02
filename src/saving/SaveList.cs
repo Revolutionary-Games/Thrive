@@ -41,6 +41,8 @@ public class SaveList : ScrollContainer
 
     private string saveToBeDeleted;
 
+    private bool wasVisible = false;
+
     [Signal]
     public delegate void OnSelectedChanged();
 
@@ -58,6 +60,17 @@ public class SaveList : ScrollContainer
         if (AutoRefreshOnFirstVisible && !refreshedAtLeastOnce && IsVisibleInTree())
         {
             Refresh();
+            wasVisible = true;
+            return;
+        }
+
+        if (!IsVisibleInTree())
+            wasVisible = false;
+
+        if (!wasVisible && IsVisibleInTree())
+        {
+            Refresh();
+            wasVisible = true;
             return;
         }
 
@@ -138,6 +151,4 @@ public class SaveList : ScrollContainer
 
         Refresh();
     }
-
-    
 }

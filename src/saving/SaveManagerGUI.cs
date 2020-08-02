@@ -150,9 +150,4 @@ public class SaveManagerGUI : Control
     {
         EmitSignal(nameof(OnBackPressed));
     }
-
-    private void OnVisibilityChanged()
-    {
-        RefreshList();
-    }
 }
