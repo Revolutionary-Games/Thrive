@@ -144,7 +144,6 @@ public class PauseMenu : Control
         GUICommon.Instance.PlayButtonPressSound();
 
         SetActiveMenu("save");
-        saveMenu.RefreshExisting();
     }
 
     private void CloseSavePressed()
