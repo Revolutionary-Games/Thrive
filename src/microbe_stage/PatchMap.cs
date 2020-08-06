@@ -209,22 +209,30 @@ public class PatchMap
     /// </returns>
     public List<Species> RemoveExtinctSpecies(bool playerCantGoExtinct = false)
     {
-        var result = new List<Species>();
-        foreach (var entry in Patches)
+        var result = new HashSet<Species>();
+
+        List<Species> nonExtinctSpecies = FindAllSpeciesWithPopulation();
+
+        foreach (var patch in Patches)
         {
-            var toRemove = entry.Value.SpeciesInPatch.Where(v => v.Value <= 0 &&
+            var toRemove = patch.Value.SpeciesInPatch.Where(v => v.Value <= 0 &&
                 (playerCantGoExtinct || !v.Key.PlayerSpecies)).ToList();
 
-            foreach (var item in toRemove)
+            foreach (var speciesEntry in toRemove)
             {
-                entry.Value.RemoveSpecies(item.Key);
-                GD.Print("Species ", item.Key.FormattedName, " has gone extinct in ",
-                    entry.Value.Name);
-                result.Add(item.Key);
+                patch.Value.RemoveSpecies(speciesEntry.Key);
+
+                GD.Print("Species ", speciesEntry.Key.FormattedName, " has gone extinct in ",
+                    patch.Value.Name);
+
+                if (!nonExtinctSpecies.Contains(speciesEntry.Key))
+                {
+                    result.Add(speciesEntry.Key);
+                }
             }
         }
 
-        return result;
+        return result.ToList();
     }
 
     /// <summary>

@@ -1608,6 +1608,8 @@ public class MicrobeEditor : Node, ILoadableGameState
         foreach (var species in extinct)
         {
             CurrentGame.GameWorld.RemoveSpecies(species);
+
+            GD.Print("Species ", species.FormattedName, " has gone extinct from the world.");
         }
 
         CurrentGame.GameWorld.Map.UpdateGlobalPopulations();
