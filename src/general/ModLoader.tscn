@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/general/ModLoader.cs" type="Script" id=1]
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -15,16 +16,17 @@ margin_left = 5.14569
 margin_top = 0.735107
 margin_right = 5.14575
 margin_bottom = 0.735107
+theme = ExtResource( 2 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 UnloadedItemListPath = NodePath("MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/ItemList")
-ModInfoNamePath = NodePath("MarginContainer/VBoxContainer/PanelContainer2/VBoxContainer/Label")
-ModInfoAuthorPath = NodePath("MarginContainer/VBoxContainer/PanelContainer2/VBoxContainer/Label2")
-ModInfoVersionPath = NodePath("MarginContainer/VBoxContainer/PanelContainer2/VBoxContainer/Label3")
-ModInfoDescriptionPath = NodePath("MarginContainer/VBoxContainer/PanelContainer2/VBoxContainer/Label4")
+ModInfoNamePath = NodePath("MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/Label")
+ModInfoAuthorPath = NodePath("MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/Label2")
+ModInfoVersionPath = NodePath("MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/Label3")
+ModInfoDescriptionPath = NodePath("MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/Label4")
 LoadedItemListPath = NodePath("MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer3/ItemList")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -64,30 +66,30 @@ size_flags_vertical = 3
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
 margin_right = 1180.0
-margin_bottom = 14.0
+margin_bottom = 23.0
 alignment = 1
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 222.0
-margin_right = 283.0
-margin_bottom = 14.0
+margin_left = 190.0
+margin_right = 286.0
+margin_bottom = 23.0
 text = "Unloaded"
 
 [node name="VSeparator" type="VSeparator" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 287.0
-margin_right = 907.0
-margin_bottom = 14.0
+margin_left = 290.0
+margin_right = 910.0
+margin_bottom = 23.0
 custom_styles/separator = SubResource( 1 )
 custom_constants/separation = 620
 
 [node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 911.0
-margin_right = 957.0
-margin_bottom = 14.0
+margin_left = 914.0
+margin_right = 989.0
+margin_bottom = 23.0
 text = "Loaded"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
-margin_top = 18.0
+margin_top = 27.0
 margin_right = 1180.0
 margin_bottom = 288.0
 size_flags_vertical = 3
@@ -98,48 +100,48 @@ __meta__ = {
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_right = 536.0
-margin_bottom = 270.0
+margin_bottom = 261.0
 size_flags_horizontal = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ItemList" type="ItemList" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 529.0
-margin_bottom = 263.0
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 535.0
+margin_bottom = 260.0
 
 [node name="CenterBar" type="PanelContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 540.0
 margin_right = 640.0
-margin_bottom = 270.0
+margin_bottom = 261.0
 rect_min_size = Vector2( 100, 0 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/CenterBar"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 93.0
-margin_bottom = 263.0
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 99.0
+margin_bottom = 260.0
 alignment = 1
 
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/CenterBar/VBoxContainer"]
-margin_top = 64.0
-margin_right = 86.0
-margin_bottom = 99.0
+margin_top = 65.0
+margin_right = 98.0
+margin_bottom = 100.0
 rect_min_size = Vector2( 0, 35 )
 text = "<--"
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/CenterBar/VBoxContainer"]
-margin_top = 103.0
-margin_right = 86.0
-margin_bottom = 153.0
+margin_top = 104.0
+margin_right = 98.0
+margin_bottom = 154.0
 custom_constants/separation = 50
 
 [node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/CenterBar/VBoxContainer"]
-margin_top = 157.0
-margin_right = 86.0
-margin_bottom = 192.0
+margin_top = 158.0
+margin_right = 98.0
+margin_bottom = 193.0
 rect_min_size = Vector2( 0, 35 )
 text = "-->"
 __meta__ = {
@@ -149,17 +151,17 @@ __meta__ = {
 [node name="PanelContainer3" type="PanelContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 644.0
 margin_right = 1180.0
-margin_bottom = 270.0
+margin_bottom = 261.0
 size_flags_horizontal = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ItemList" type="ItemList" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer3"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 529.0
-margin_bottom = 263.0
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 535.0
+margin_bottom = 260.0
 
 [node name="PanelContainer2" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 292.0
@@ -170,54 +172,67 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer2"]
-margin_left = 7.0
-margin_top = 7.0
-margin_right = 1173.0
-margin_bottom = 281.0
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer2"]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 1179.0
+margin_bottom = 287.0
+custom_constants/margin_right = 6
+custom_constants/margin_top = 6
+custom_constants/margin_left = 6
+custom_constants/margin_bottom = 6
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer"]
+margin_left = 6.0
+margin_top = 6.0
+margin_right = 1172.0
+margin_bottom = 280.0
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
 margin_right = 1166.0
-margin_bottom = 14.0
+margin_bottom = 23.0
 text = "The Mod Name"
+align = 1
 
-[node name="HSeparator3" type="HSeparator" parent="MarginContainer/VBoxContainer/PanelContainer2/VBoxContainer"]
-margin_top = 18.0
+[node name="HSeparator3" type="HSeparator" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+margin_top = 27.0
 margin_right = 1166.0
-margin_bottom = 22.0
+margin_bottom = 31.0
 custom_styles/separator = SubResource( 2 )
 
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/VBoxContainer"]
-margin_top = 26.0
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+margin_top = 35.0
 margin_right = 1166.0
-margin_bottom = 40.0
+margin_bottom = 58.0
 text = "Author: Maker Name"
+align = 1
 
-[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer/PanelContainer2/VBoxContainer"]
-margin_top = 44.0
-margin_right = 1166.0
-margin_bottom = 48.0
-custom_styles/separator = SubResource( 2 )
-
-[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/VBoxContainer"]
-margin_top = 52.0
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+margin_top = 62.0
 margin_right = 1166.0
 margin_bottom = 66.0
+custom_styles/separator = SubResource( 2 )
+
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+margin_top = 70.0
+margin_right = 1166.0
+margin_bottom = 93.0
 text = "Version: x.y.z"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/PanelContainer2/VBoxContainer"]
-margin_top = 70.0
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+margin_top = 97.0
 margin_right = 1166.0
-margin_bottom = 105.0
+margin_bottom = 132.0
 custom_constants/separation = 35
 
-[node name="Label4" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/VBoxContainer"]
-margin_top = 109.0
+[node name="Label4" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+margin_top = 136.0
 margin_right = 1166.0
-margin_bottom = 123.0
+margin_bottom = 159.0
 text = "The description of a mod for Thrive!"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
@@ -267,5 +282,6 @@ text = "Load"
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/CenterBar/VBoxContainer/Button" to="." method="OnMoveToUnloadPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/CenterBar/VBoxContainer/Button2" to="." method="OnMoveToLoadPressed"]
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer3/ItemList" to="." method="OnLoadedModSelected"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/Button" to="." method="OnBackPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/Button3" to="." method="OnRefreshPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/Button2" to="." method="OnLoadPressed"]
