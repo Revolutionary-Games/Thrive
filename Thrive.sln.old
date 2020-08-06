@@ -1,0 +1,49 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.572
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Thrive", "Thrive.csproj", "{D38E3F51-1E8C-4F32-99B2-641320B0AC3C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		ExportDebug|Any CPU = ExportDebug|Any CPU
+		ExportRelease|Any CPU = ExportRelease|Any CPU
+		Tools|Any CPU = Tools|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D38E3F51-1E8C-4F32-99B2-641320B0AC3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D38E3F51-1E8C-4F32-99B2-641320B0AC3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D38E3F51-1E8C-4F32-99B2-641320B0AC3C}.ExportDebug|Any CPU.ActiveCfg = ExportDebug|Any CPU
+		{D38E3F51-1E8C-4F32-99B2-641320B0AC3C}.ExportDebug|Any CPU.Build.0 = ExportDebug|Any CPU
+		{D38E3F51-1E8C-4F32-99B2-641320B0AC3C}.ExportRelease|Any CPU.ActiveCfg = ExportRelease|Any CPU
+		{D38E3F51-1E8C-4F32-99B2-641320B0AC3C}.ExportRelease|Any CPU.Build.0 = ExportRelease|Any CPU
+		{D38E3F51-1E8C-4F32-99B2-641320B0AC3C}.Tools|Any CPU.ActiveCfg = Tools|Any CPU
+		{D38E3F51-1E8C-4F32-99B2-641320B0AC3C}.Tools|Any CPU.Build.0 = Tools|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {54A54901-5E0A-4FEE-B7D4-F9CC7FF456A6}
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		Policies = $0
+		$0.DotNetNamingPolicy = $1
+		$0.TextStylePolicy = $5
+		$2.inheritsSet = null
+		$2.scope = text/x-csharp
+		$0.CSharpFormattingPolicy = $3
+		$3.NewLineForMembersInObjectInit = False
+		$3.NewLineForMembersInAnonymousTypes = False
+		$3.NewLineForClausesInQuery = False
+		$3.scope = text/x-csharp
+		$4.TabsToSpaces = True
+		$4.NoTabsAfterNonTabs = True
+		$4.scope = text/plain
+		$5.inheritsSet = null
+		$5.scope = application/json
+		$0.StandardHeader = $6
+		$6.IncludeInNewFiles = False
+	EndGlobalSection
+EndGlobal
