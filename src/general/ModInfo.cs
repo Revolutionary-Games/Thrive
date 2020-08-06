@@ -1,12 +1,14 @@
 using Godot;
-using System;
+using Newtonsoft.Json;
 
 public class ModInfo : Node
 {
-	public string Name;
-	public string Author;
-	public string Version;
-	public string Description;
-	public string Location;
-	public string Dll;
+    [JsonProperty("Name")]
+    public string ModName;
+
+    public string Author;
+    public string Version;
+    public string Description;
+    public string Location;
+    public string Dll;
 }

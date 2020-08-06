@@ -10,314 +10,315 @@ using Array = Godot.Collections.Array;
 /// </summary>
 public class MainMenu : Node
 {
-	/// <summary>
-	///   Index of the current menu.
-	/// </summary>
-	[Export]
-	public uint CurrentMenuIndex;
+    /// <summary>
+    ///   Index of the current menu.
+    /// </summary>
+    [Export]
+    public uint CurrentMenuIndex;
 
-	[Export]
-	public NodePath ThriveLogoPath;
+    [Export]
+    public NodePath ThriveLogoPath;
 
-	[SuppressMessage("ReSharper", "CollectionNeverUpdated.Global", Justification = "Set from editor")]
-	[Export]
-	public List<Texture> MenuBackgrounds;
+    [SuppressMessage("ReSharper", "CollectionNeverUpdated.Global", Justification = "Set from editor")]
+    [Export]
+    public List<Texture> MenuBackgrounds;
 
-	[Export]
-	public NodePath NewGameButtonPath;
+    [Export]
+    public NodePath NewGameButtonPath;
 
-	[Export]
-	public NodePath FreebuildButtonPath;
+    [Export]
+    public NodePath FreebuildButtonPath;
 
-	public Array MenuArray;
-	public TextureRect Background;
+    public Array MenuArray;
+    public TextureRect Background;
 
-	public bool IsReturningToMenu = false;
+    public bool IsReturningToMenu = false;
 
-	private TextureRect thriveLogo;
-	private OptionsMenu options;
-	private AnimationPlayer guiAnimations;
-	private SaveManagerGUI saves;
-	private ModLoader modLoader;
+    private TextureRect thriveLogo;
+    private OptionsMenu options;
+    private AnimationPlayer guiAnimations;
+    private SaveManagerGUI saves;
+    private ModLoader modLoader;
 
-	private Button newGameButton;
-	private Button freebuildButton;
+    private Button newGameButton;
+    private Button freebuildButton;
 
-	public override void _Ready()
-	{
-		RunMenuSetup();
+    public override void _Ready()
+    {
+        RunMenuSetup();
+        GD.Print("Testing Mod");
 
-		// Start intro video
-		if (Settings.Instance.PlayIntroVideo && !IsReturningToMenu)
-		{
-			TransitionManager.Instance.AddCutscene("res://assets/videos/intro.webm");
-			TransitionManager.Instance.StartTransitions(this, nameof(OnIntroEnded));
-		}
-		else
-		{
-			OnIntroEnded();
-		}
-	}
+        // Start intro video
+        if (Settings.Instance.PlayIntroVideo && !IsReturningToMenu)
+        {
+            TransitionManager.Instance.AddCutscene("res://assets/videos/intro.webm");
+            TransitionManager.Instance.StartTransitions(this, nameof(OnIntroEnded));
+        }
+        else
+        {
+            OnIntroEnded();
+        }
+    }
 
-	public void StartMusic()
-	{
-		Jukebox.Instance.PlayingCategory = "Menu";
-		Jukebox.Instance.Resume();
-	}
+    public void StartMusic()
+    {
+        Jukebox.Instance.PlayingCategory = "Menu";
+        Jukebox.Instance.Resume();
+    }
 
-	/// <summary>
-	///   Sets the current menu index and then switches the menu
-	/// </summary>
-	/// <param name="index">Index of the menu</param>
-	/// <param name="slide">If false then the menu slide animation will not be played</param>
-	public void SetCurrentMenu(uint index, bool slide = true)
-	{
-		// Allow disabling all the menus for going to the options menu
-		if (index > MenuArray.Count - 1 && index != uint.MaxValue)
-		{
-			GD.PrintErr("Selected menu index is out of range!");
-			return;
-		}
+    /// <summary>
+    ///   Sets the current menu index and then switches the menu
+    /// </summary>
+    /// <param name="index">Index of the menu</param>
+    /// <param name="slide">If false then the menu slide animation will not be played</param>
+    public void SetCurrentMenu(uint index, bool slide = true)
+    {
+        // Allow disabling all the menus for going to the options menu
+        if (index > MenuArray.Count - 1 && index != uint.MaxValue)
+        {
+            GD.PrintErr("Selected menu index is out of range!");
+            return;
+        }
 
-		CurrentMenuIndex = index;
+        CurrentMenuIndex = index;
 
-		if (slide)
-		{
-			guiAnimations.Play("MenuSlide");
-		}
-		else
-		{
-			// Just switch the menu
-			SwitchMenu();
-		}
-	}
+        if (slide)
+        {
+            guiAnimations.Play("MenuSlide");
+        }
+        else
+        {
+            // Just switch the menu
+            SwitchMenu();
+        }
+    }
 
-	/// <summary>
-	///   Setup the main menu.
-	/// </summary>
-	private void RunMenuSetup()
-	{
-		Background = GetNode<TextureRect>("Background");
-		guiAnimations = GetNode<AnimationPlayer>("GUIAnimations");
-		thriveLogo = GetNode<TextureRect>(ThriveLogoPath);
-		newGameButton = GetNode<Button>(NewGameButtonPath);
-		freebuildButton = GetNode<Button>(FreebuildButtonPath);
+    /// <summary>
+    ///   Setup the main menu.
+    /// </summary>
+    private void RunMenuSetup()
+    {
+        Background = GetNode<TextureRect>("Background");
+        guiAnimations = GetNode<AnimationPlayer>("GUIAnimations");
+        thriveLogo = GetNode<TextureRect>(ThriveLogoPath);
+        newGameButton = GetNode<Button>(NewGameButtonPath);
+        freebuildButton = GetNode<Button>(FreebuildButtonPath);
 
-		MenuArray?.Clear();
+        MenuArray?.Clear();
 
-		// Get all of menu items
-		MenuArray = GetTree().GetNodesInGroup("MenuItem");
+        // Get all of menu items
+        MenuArray = GetTree().GetNodesInGroup("MenuItem");
 
-		if (MenuArray == null)
-		{
-			GD.PrintErr("Failed to find all the menu items!");
-			return;
-		}
+        if (MenuArray == null)
+        {
+            GD.PrintErr("Failed to find all the menu items!");
+            return;
+        }
 
-		RandomizeBackground();
+        RandomizeBackground();
 
-		options = GetNode<OptionsMenu>("OptionsMenu");
-		saves = GetNode<SaveManagerGUI>("SaveManagerGUI");
-		modLoader = GetNode<ModLoader>("ModLoader");
-		// Load settings
-		options.SetSettingsFrom(Settings.Instance);
+        options = GetNode<OptionsMenu>("OptionsMenu");
+        saves = GetNode<SaveManagerGUI>("SaveManagerGUI");
+        modLoader = GetNode<ModLoader>("ModLoader");
 
-		// Set initial menu
-		SwitchMenu();
-	}
+        // Load settings
+        options.SetSettingsFrom(Settings.Instance);
 
-	/// <summary>
-	///   Randomizes background images.
-	/// </summary>
-	private void RandomizeBackground()
-	{
-		Random rand = new Random();
+        // Set initial menu
+        SwitchMenu();
+    }
 
-		// Exported lists will crash the game, so as a workaround ToList() is added
-		// https://github.com/godotengine/godot/issues/37934
-		// This is a Godot issue that may get fixed in 4.0
-		var chosenBackground = MenuBackgrounds.ToList().Random(rand);
+    /// <summary>
+    ///   Randomizes background images.
+    /// </summary>
+    private void RandomizeBackground()
+    {
+        Random rand = new Random();
 
-		SetBackground(chosenBackground);
-	}
+        // Exported lists will crash the game, so as a workaround ToList() is added
+        // https://github.com/godotengine/godot/issues/37934
+        // This is a Godot issue that may get fixed in 4.0
+        var chosenBackground = MenuBackgrounds.ToList().Random(rand);
 
-	private void SetBackground(Texture backgroundImage)
-	{
-		Background.Texture = backgroundImage;
-	}
+        SetBackground(chosenBackground);
+    }
 
-	/// <summary>
-	///   Stops any currently playing animation and plays
-	///   the given one instead
-	/// </summary>
-	private void PlayGUIAnimation(string animation)
-	{
-		if (guiAnimations.IsPlaying())
-			guiAnimations.Stop();
+    private void SetBackground(Texture backgroundImage)
+    {
+        Background.Texture = backgroundImage;
+    }
 
-		guiAnimations.Play(animation);
-	}
+    /// <summary>
+    ///   Stops any currently playing animation and plays
+    ///   the given one instead
+    /// </summary>
+    private void PlayGUIAnimation(string animation)
+    {
+        if (guiAnimations.IsPlaying())
+            guiAnimations.Stop();
 
-	/// <summary>
-	///   Switches the displayed menu
-	/// </summary>
-	private void SwitchMenu()
-	{
-		// Hide other menus and only show the one of the current index
-		foreach (Control menu in MenuArray)
-		{
-			menu.Hide();
+        guiAnimations.Play(animation);
+    }
 
-			if (menu.GetIndex() == CurrentMenuIndex)
-			{
-				menu.Show();
-			}
-		}
-	}
+    /// <summary>
+    ///   Switches the displayed menu
+    /// </summary>
+    private void SwitchMenu()
+    {
+        // Hide other menus and only show the one of the current index
+        foreach (Control menu in MenuArray)
+        {
+            menu.Hide();
 
-	private void OnIntroEnded()
-	{
-		TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeOut, 0.5f, false);
-		TransitionManager.Instance.StartTransitions(null, string.Empty);
+            if (menu.GetIndex() == CurrentMenuIndex)
+            {
+                menu.Show();
+            }
+        }
+    }
 
-		// Start music after the video
-		StartMusic();
-	}
+    private void OnIntroEnded()
+    {
+        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeOut, 0.5f, false);
+        TransitionManager.Instance.StartTransitions(null, string.Empty);
 
-	private void OnMicrobeIntroEnded()
-	{
-		// TODO: Add loading screen while changing between scenes
-		SceneManager.Instance.SwitchToScene(MainGameState.MicrobeStage);
-	}
+        // Start music after the video
+        StartMusic();
+    }
 
-	private void OnFreebuildFadeInEnded()
-	{
-		// Instantiate a new editor scene
-		var editor = (MicrobeEditor)SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instance();
+    private void OnMicrobeIntroEnded()
+    {
+        // TODO: Add loading screen while changing between scenes
+        SceneManager.Instance.SwitchToScene(MainGameState.MicrobeStage);
+    }
 
-		// Start freebuild game
-		editor.CurrentGame = GameProperties.StartNewMicrobeGame(true);
+    private void OnFreebuildFadeInEnded()
+    {
+        // Instantiate a new editor scene
+        var editor = (MicrobeEditor)SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor).Instance();
 
-		// Switch to the editor scene
-		SceneManager.Instance.SwitchToScene(editor);
-	}
+        // Start freebuild game
+        editor.CurrentGame = GameProperties.StartNewMicrobeGame(true);
 
-	private void NewGamePressed()
-	{
-		GUICommon.Instance.PlayButtonPressSound();
+        // Switch to the editor scene
+        SceneManager.Instance.SwitchToScene(editor);
+    }
 
-		// Ignore mouse event on the button to prevent it being clicked twice
-		newGameButton.MouseFilter = Control.MouseFilterEnum.Ignore;
+    private void NewGamePressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
 
-		// Stop music for the video (stop is used instead of pause to stop the menu music playing a bit after the video
-		// before the stage music starts)
-		Jukebox.Instance.Stop();
+        // Ignore mouse event on the button to prevent it being clicked twice
+        newGameButton.MouseFilter = Control.MouseFilterEnum.Ignore;
 
-		if (Settings.Instance.PlayMicrobeIntroVideo)
-		{
-			TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.5f);
-			TransitionManager.Instance.AddCutscene("res://assets/videos/microbe_intro2.webm");
-		}
-		else
-		{
-			// People who disable the cutscene are impatient anyway so use a reduced fade time
-			TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.2f);
-		}
+        // Stop music for the video (stop is used instead of pause to stop the menu music playing a bit after the video
+        // before the stage music starts)
+        Jukebox.Instance.Stop();
 
-		TransitionManager.Instance.StartTransitions(this, nameof(OnMicrobeIntroEnded));
-	}
+        if (Settings.Instance.PlayMicrobeIntroVideo)
+        {
+            TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.5f);
+            TransitionManager.Instance.AddCutscene("res://assets/videos/microbe_intro2.webm");
+        }
+        else
+        {
+            // People who disable the cutscene are impatient anyway so use a reduced fade time
+            TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.2f);
+        }
 
-	private void ToolsPressed()
-	{
-		GUICommon.Instance.PlayButtonPressSound();
-		SetCurrentMenu(1);
-	}
+        TransitionManager.Instance.StartTransitions(this, nameof(OnMicrobeIntroEnded));
+    }
 
-	private void FreebuildEditorPressed()
-	{
-		GUICommon.Instance.PlayButtonPressSound();
+    private void ToolsPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        SetCurrentMenu(1);
+    }
 
-		// Ignore mouse event on the button to prevent it being clicked twice
-		freebuildButton.MouseFilter = Control.MouseFilterEnum.Ignore;
+    private void FreebuildEditorPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
 
-		TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.3f, false);
-		TransitionManager.Instance.StartTransitions(this, nameof(OnFreebuildFadeInEnded));
-	}
+        // Ignore mouse event on the button to prevent it being clicked twice
+        freebuildButton.MouseFilter = Control.MouseFilterEnum.Ignore;
 
-	private void BackFromToolsPressed()
-	{
-		GUICommon.Instance.PlayButtonPressSound();
-		SetCurrentMenu(0);
-	}
+        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.3f, false);
+        TransitionManager.Instance.StartTransitions(this, nameof(OnFreebuildFadeInEnded));
+    }
 
-	private void QuitPressed()
-	{
-		GUICommon.Instance.PlayButtonPressSound();
-		GetTree().Quit();
-	}
+    private void BackFromToolsPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        SetCurrentMenu(0);
+    }
 
-	private void OptionsPressed()
-	{
-		GUICommon.Instance.PlayButtonPressSound();
+    private void QuitPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        GetTree().Quit();
+    }
 
-		// Hide all the other menus
-		SetCurrentMenu(uint.MaxValue, false);
+    private void OptionsPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
 
-		// Show the options
-		options.Visible = true;
+        // Hide all the other menus
+        SetCurrentMenu(uint.MaxValue, false);
 
-		thriveLogo.Hide();
-	}
+        // Show the options
+        options.Visible = true;
 
-	private void OnReturnFromOptions()
-	{
-		options.Visible = false;
+        thriveLogo.Hide();
+    }
 
-		SetCurrentMenu(0, false);
+    private void OnReturnFromOptions()
+    {
+        options.Visible = false;
 
-		thriveLogo.Show();
-	}
+        SetCurrentMenu(0, false);
 
-	private void LoadGamePressed()
-	{
-		GUICommon.Instance.PlayButtonPressSound();
+        thriveLogo.Show();
+    }
 
-		// Hide all the other menus
-		SetCurrentMenu(uint.MaxValue, false);
+    private void LoadGamePressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
 
-		// Show the options
-		saves.Visible = true;
+        // Hide all the other menus
+        SetCurrentMenu(uint.MaxValue, false);
 
-		thriveLogo.Hide();
-	}
+        // Show the options
+        saves.Visible = true;
 
-	private void OnReturnFromLoadGame()
-	{
-		saves.Visible = false;
+        thriveLogo.Hide();
+    }
 
-		SetCurrentMenu(0, false);
+    private void OnReturnFromLoadGame()
+    {
+        saves.Visible = false;
 
-		thriveLogo.Show();
-	}
-	
-	private void ModLoaderPressed()
-	{
-		GUICommon.Instance.PlayButtonPressSound();
-		
-		SetCurrentMenu(uint.MaxValue, false);
-		
-		modLoader.Visible = true; 
-		
-		thriveLogo.Hide();
-	}
-	
-	private void OnReturnFromModLoader()
-	{
-		modLoader.Visible = false; 
-		
-		SetCurrentMenu(0, false);
-		
-		thriveLogo.Show();
-	}
-	
+        SetCurrentMenu(0, false);
+
+        thriveLogo.Show();
+    }
+
+    private void ModLoaderPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        SetCurrentMenu(uint.MaxValue, false);
+
+        modLoader.Visible = true;
+
+        thriveLogo.Hide();
+    }
+
+    private void OnReturnFromModLoader()
+    {
+        modLoader.Visible = false;
+
+        SetCurrentMenu(0, false);
+
+        thriveLogo.Show();
+    }
 }
