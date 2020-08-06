@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/gui_common/MainMenu.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://assets/textures/gui/BG_Menu01.png" type="Texture" id=7]
 [ext_resource path="res://assets/textures/gui/BG_Menu03.png" type="Texture" id=8]
 [ext_resource path="res://src/saving/SaveManagerGUI.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/general/ModLoader.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Animation" id=1]
 resource_name = "MenuSlide"
@@ -236,6 +237,7 @@ margin_top = 50.0
 margin_right = 259.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 250, 40 )
+focus_mode = 0
 mouse_filter = 1
 enabled_focus_mode = 0
 text = "Mod Loader"
@@ -276,6 +278,9 @@ visible = false
 [node name="SaveManagerGUI" parent="." instance=ExtResource( 9 )]
 visible = false
 
+[node name="ModLoader" parent="." instance=ExtResource( 10 )]
+visible = false
+
 [node name="VersionNumber" type="Label" parent="."]
 anchor_left = 1.0
 anchor_top = 1.0
@@ -307,6 +312,8 @@ anims/MenuSlide = SubResource( 1 )
 [connection signal="pressed" from="MenuContainers/MenuCenterContainer/MenuItems/MainMenu/Tools" to="." method="ToolsPressed"]
 [connection signal="pressed" from="MenuContainers/MenuCenterContainer/MenuItems/MainMenu/Quit" to="." method="QuitPressed"]
 [connection signal="pressed" from="MenuContainers/MenuCenterContainer/MenuItems/Tools/Freebuild Editor" to="." method="FreebuildEditorPressed"]
+[connection signal="pressed" from="MenuContainers/MenuCenterContainer/MenuItems/Tools/Mod Loader" to="." method="ModLoaderPressed"]
 [connection signal="pressed" from="MenuContainers/MenuCenterContainer/MenuItems/Tools/Back" to="." method="BackFromToolsPressed"]
 [connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="OnReturnFromOptions"]
 [connection signal="OnBackPressed" from="SaveManagerGUI" to="." method="OnReturnFromLoadGame"]
+[connection signal="OnModLoaderClosed" from="ModLoader" to="." method="OnReturnFromModLoader"]
