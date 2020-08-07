@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Godot;
+using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   Membrane for microbes
@@ -25,7 +26,7 @@ public class Membrane : MeshInstance
     private float movementWigglyNess = 1.0f;
     private float sizeMovementWigglyNessDampeningFactor = 0.22f;
     private Color tint = new Color(1, 1, 1, 1);
-    private float dissolveEffectValue = 0.0f;
+    private float dissolveEffectValue;
 
     private Texture normalTexture;
     private Texture damagedTexture;
@@ -60,10 +61,7 @@ public class Membrane : MeshInstance
     /// </summary>
     public bool Dirty
     {
-        get
-        {
-            return dirty;
-        }
+        get => dirty;
         set
         {
             if (value)
@@ -82,10 +80,7 @@ public class Membrane : MeshInstance
     /// </summary>
     public float HealthFraction
     {
-        get
-        {
-            return healthFraction;
-        }
+        get => healthFraction;
         set
         {
             value = value.Clamp(0.0f, 1.0f);
@@ -103,10 +98,7 @@ public class Membrane : MeshInstance
     /// </summary>
     public float WigglyNess
     {
-        get
-        {
-            return wigglyNess;
-        }
+        get => wigglyNess;
         set
         {
             wigglyNess = value;
@@ -117,10 +109,7 @@ public class Membrane : MeshInstance
 
     public float MovementWigglyNess
     {
-        get
-        {
-            return movementWigglyNess;
-        }
+        get => movementWigglyNess;
         set
         {
             movementWigglyNess = value;
@@ -131,10 +120,7 @@ public class Membrane : MeshInstance
 
     public Color Tint
     {
-        get
-        {
-            return tint;
-        }
+        get => tint;
         set
         {
             // Desaturate it here so it looks nicer (could implement as method that
@@ -175,10 +161,7 @@ public class Membrane : MeshInstance
 
     public float DissolveEffectValue
     {
-        get
-        {
-            return dissolveEffectValue;
-        }
+        get => dissolveEffectValue;
         set
         {
             dissolveEffectValue = value;
@@ -418,7 +401,7 @@ public class Membrane : MeshInstance
         // For preview scenes, add just one organelle
         if (OrganellePositions == null)
         {
-            OrganellePositions = new List<Vector2>() { new Vector2(0, 0) };
+            OrganellePositions = new List<Vector2> { new Vector2(0, 0) };
         }
 
         foreach (var pos in OrganellePositions)
@@ -484,7 +467,7 @@ public class Membrane : MeshInstance
         var bufferSize = vertices2D.Count + 2;
         var indexSize = vertices2D.Count * 3;
 
-        var arrays = new Godot.Collections.Array();
+        var arrays = new Array();
         arrays.Resize((int)Mesh.ArrayType.Max);
 
         // Build vertex, index, and uv lists
@@ -541,6 +524,8 @@ public class Membrane : MeshInstance
         float height = 0.1f;
         float multiplier = 2.0f * Mathf.Pi;
         var center = new Vector2(0.5f, 0.5f);
+
+        movementWigglyNess = Type.MovementWigglyness;
 
         // cell walls need obvious inner/outer membranes (we can worry
         // about chitin later)

@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Godot;
+using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   Class managing the main menu and everything in it
@@ -17,6 +19,7 @@ public class MainMenu : Node
     [Export]
     public NodePath ThriveLogoPath;
 
+    [SuppressMessage("ReSharper", "CollectionNeverUpdated.Global", Justification = "Set from editor")]
     [Export]
     public List<Texture> MenuBackgrounds;
 
@@ -26,7 +29,7 @@ public class MainMenu : Node
     [Export]
     public NodePath FreebuildButtonPath;
 
-    public Godot.Collections.Array MenuArray;
+    public Array MenuArray;
     public TextureRect Background;
 
     public bool IsReturningToMenu = false;
@@ -34,6 +37,7 @@ public class MainMenu : Node
     private TextureRect thriveLogo;
     private OptionsMenu options;
     private AnimationPlayer guiAnimations;
+    private SaveManagerGUI saves;
 
     private Button newGameButton;
     private Button freebuildButton;
@@ -73,10 +77,8 @@ public class MainMenu : Node
             GD.PrintErr("Selected menu index is out of range!");
             return;
         }
-        else
-        {
-            CurrentMenuIndex = index;
-        }
+
+        CurrentMenuIndex = index;
 
         if (slide)
         {
@@ -100,8 +102,7 @@ public class MainMenu : Node
         newGameButton = GetNode<Button>(NewGameButtonPath);
         freebuildButton = GetNode<Button>(FreebuildButtonPath);
 
-        if (MenuArray != null)
-            MenuArray.Clear();
+        MenuArray?.Clear();
 
         // Get all of menu items
         MenuArray = GetTree().GetNodesInGroup("MenuItem");
@@ -115,6 +116,7 @@ public class MainMenu : Node
         RandomizeBackground();
 
         options = GetNode<OptionsMenu>("OptionsMenu");
+        saves = GetNode<SaveManagerGUI>("SaveManagerGUI");
 
         // Load settings
         options.SetSettingsFrom(Settings.Instance);
@@ -270,7 +272,28 @@ public class MainMenu : Node
     {
         options.Visible = false;
 
+        SetCurrentMenu(0, false);
+
+        thriveLogo.Show();
+    }
+
+    private void LoadGamePressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
         // Hide all the other menus
+        SetCurrentMenu(uint.MaxValue, false);
+
+        // Show the options
+        saves.Visible = true;
+
+        thriveLogo.Hide();
+    }
+
+    private void OnReturnFromLoadGame()
+    {
+        saves.Visible = false;
+
         SetCurrentMenu(0, false);
 
         thriveLogo.Show();

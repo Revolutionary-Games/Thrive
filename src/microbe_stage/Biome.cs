@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Godot;
+﻿using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -27,7 +25,7 @@ public class Biome : IRegistryType
     /// <summary>
     ///   The light to use for this biome
     /// </summary>
-    public Biome.LightDetails Sunlight;
+    public LightDetails Sunlight;
 
     [JsonIgnore]
     public Texture LoadedIcon;

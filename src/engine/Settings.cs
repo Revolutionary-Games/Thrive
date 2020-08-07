@@ -76,6 +76,16 @@ public class Settings
     public bool AutoSaveEnabled { get; set; } = true;
 
     /// <summary>
+    ///   Number of quick saves to keep
+    /// </summary>
+    public int MaxQuickSaves { get; set; } = 5;
+
+    /// <summary>
+    ///   Number of auto saves to keep
+    /// </summary>
+    public int MaxAutoSaves { get; set; } = 5;
+
+    /// <summary>
     ///   This can be freely adjusted to adjust the performance The
     ///   higher this value is the smaller the size of the simulated
     ///   cloud is and the performance is better.
@@ -110,6 +120,16 @@ public class Settings
     public int CloudSimulationWidth => Constants.CLOUD_X_EXTENT / CloudResolution;
 
     public int CloudSimulationHeight => Constants.CLOUD_Y_EXTENT / CloudResolution;
+
+    /// <summary>
+    ///   The amount of Chromatic Aberration to apply to the screen
+    /// </summary>
+    public float ChromaticAmount { get; set; } = 20f;
+
+    /// <summary>
+    ///   Enable or Disable Chromatic Aberration for screen
+    /// </summary>
+    public bool ChromaticEnabled { get; set; } = true;
 
     /// <summary>
     ///   Saves the current settings by writing them to the settings file
@@ -169,7 +189,7 @@ public class Settings
     public void ApplyGraphicsSettings()
     {
         GUICommon.Instance.GetTree().Root.GetViewport().Msaa = MSAAResolution;
-        ScreenFilter.Instance.SetColourblindSetting(ColourblindSetting);
+        ColourblindScreenFilter.Instance.SetColourblindSetting(ColourblindSetting);
     }
 
     /// <summary>

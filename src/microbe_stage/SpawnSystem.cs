@@ -15,7 +15,7 @@ public class SpawnSystem
     private float interval = 1.0f;
 
     [JsonProperty]
-    private float elapsed = 0.0f;
+    private float elapsed;
 
     /// <summary>
     ///   Root node to parent all spawned things to
@@ -207,14 +207,12 @@ public class SpawnSystem
                 queuedSpawns = null;
                 break;
             }
-            else
-            {
-                // Next was spawned
-                ProcessSpawnedEntity(queuedSpawns.Spawns.Current, queuedSpawns.SpawnType);
 
-                ++estimateEntityCount;
-                --spawnsLeftThisFrame;
-            }
+            // Next was spawned
+            ProcessSpawnedEntity(queuedSpawns.Spawns.Current, queuedSpawns.SpawnType);
+
+            ++estimateEntityCount;
+            --spawnsLeftThisFrame;
         }
 
         return spawnsLeftThisFrame;

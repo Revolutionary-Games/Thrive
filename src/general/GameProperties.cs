@@ -13,7 +13,7 @@ public class GameProperties
     private readonly Dictionary<string, bool> setBoolStatuses = new Dictionary<string, bool>();
 
     [JsonProperty]
-    private bool freeBuild = false;
+    private bool freeBuild;
 
     private GameProperties()
     {
@@ -31,13 +31,7 @@ public class GameProperties
     ///   should be disabled / different.
     /// </summary>
     [JsonIgnore]
-    public bool FreeBuild
-    {
-        get
-        {
-            return freeBuild;
-        }
-    }
+    public bool FreeBuild => freeBuild;
 
     /// <summary>
     ///   Starts a new game in the microbe stage

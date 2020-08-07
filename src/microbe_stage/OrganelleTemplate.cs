@@ -19,31 +19,24 @@ public class OrganelleTemplate : IPositionedOrganelle, ICloneable
         Orientation = rotation;
     }
 
+    /// <summary>
+    /// Used to flag whether this Organelle was placed during the current editor session.
+    /// </summary>
+    public bool PlacedThisSession { get; set; }
+
     public Hex Position { get; set; }
 
     /// <summary>
     ///   This is now the number of times to rotate. This used to be the angle in degrees
     /// </summary>
-    public int Orientation { get; set; } = 0;
+    public int Orientation { get; set; }
 
 #pragma warning disable CA1033
-    OrganelleDefinition IPositionedOrganelle.Definition
-    {
-        get
-        {
-            return Definition;
-        }
-    }
+    OrganelleDefinition IPositionedOrganelle.Definition => Definition;
 #pragma warning restore CA1033
 
     [JsonIgnore]
-    public IEnumerable<Hex> RotatedHexes
-    {
-        get
-        {
-            return Definition.GetRotatedHexes(Orientation);
-        }
-    }
+    public IEnumerable<Hex> RotatedHexes => Definition.GetRotatedHexes(Orientation);
 
     public object Clone()
     {

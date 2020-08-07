@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://assets/textures/gui/menu_theme.tres" type="Theme" id=1]
-[ext_resource path="res://assets/textures/gui/scrollbar_theme.tres" type="Theme" id=2]
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/gui_common/scrollbar_theme.tres" type="Theme" id=2]
 [ext_resource path="res://assets/fonts/Jura-DemiBold.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://src/general/HelpScreen.cs" type="Script" id=4]
 [ext_resource path="res://src/gui_common/HelpBox.tscn" type="PackedScene" id=5]
@@ -14,14 +14,13 @@ border_color = Color( 0.0666667, 1, 0.835294, 1 )
 font_data = ExtResource( 3 )
 
 [node name="HelpScreen" type="Control"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-LeftColumPath = NodePath("ScrollContainer/VBoxContainer/HBoxContainer/LeftColumn")
+LeftColumnPath = NodePath("ScrollContainer/VBoxContainer/HBoxContainer/LeftColumn")
 RightColumnPath = NodePath("ScrollContainer/VBoxContainer/HBoxContainer/RightColumn")
 LineSeparatorPath = NodePath("ScrollContainer/VBoxContainer/HSeparator")
 TipMessageLabelPath = NodePath("ScrollContainer/VBoxContainer/TipMessageLabel")
@@ -67,15 +66,15 @@ margin_right = 15.0
 custom_constants/separation = 15
 
 [node name="HSeparator" type="HSeparator" parent="ScrollContainer/VBoxContainer"]
-margin_top = 4.0
+margin_top = 10.0
 margin_right = 757.0
-margin_bottom = 8.0
+margin_bottom = 14.0
 custom_styles/separator = SubResource( 1 )
 
 [node name="TipMessageLabel" type="Label" parent="ScrollContainer/VBoxContainer"]
-margin_top = 12.0
+margin_top = 24.0
 margin_right = 757.0
-margin_bottom = 30.0
+margin_bottom = 42.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 1, 1, 0, 1 )

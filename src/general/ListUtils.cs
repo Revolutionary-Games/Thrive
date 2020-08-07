@@ -13,7 +13,7 @@ public static class ListUtils
     public static T Random<T>(this List<T> items, Random random)
     {
         if (items == null || items.Count < 1)
-            return default(T);
+            return default;
 
         return items[random.Next(0, items.Count)];
     }

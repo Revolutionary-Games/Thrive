@@ -1,7 +1,5 @@
 using System;
-using System.CodeDom;
 using System.Collections.Generic;
-using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
@@ -26,16 +24,16 @@ public class MicrobeStage : Node, ILoadableGameState
     ///   Used to differentiate between spawning the player and respawning
     /// </summary>
     [JsonProperty]
-    private bool spawnedPlayer = false;
+    private bool spawnedPlayer;
 
     /// <summary>
     ///   True when the player is extinct
     /// </summary>
     [JsonProperty]
-    private bool gameOver = false;
+    private bool gameOver;
 
     [JsonProperty]
-    private bool wonOnce = false;
+    private bool wonOnce;
 
     [JsonProperty]
     private float playerRespawnTimer;
@@ -73,13 +71,7 @@ public class MicrobeStage : Node, ILoadableGameState
     public GameProperties CurrentGame { get; set; }
 
     [JsonIgnore]
-    public GameWorld GameWorld
-    {
-        get
-        {
-            return CurrentGame.GameWorld;
-        }
-    }
+    public GameWorld GameWorld => CurrentGame.GameWorld;
 
     public Node GameStateRoot => this;
 
@@ -118,10 +110,7 @@ public class MicrobeStage : Node, ILoadableGameState
 
             return results;
         }
-        set
-        {
-            savedGameEntities = value;
-        }
+        set => savedGameEntities = value;
     }
 
     /// <summary>
@@ -226,7 +215,7 @@ public class MicrobeStage : Node, ILoadableGameState
             CurrentGame);
         Player.AddToGroup("player");
 
-        Player.OnDeath = (microbe) =>
+        Player.OnDeath = microbe =>
         {
             GD.Print("The player has died");
             Player = null;
@@ -344,11 +333,6 @@ public class MicrobeStage : Node, ILoadableGameState
         }
     }
 
-    public void ReturnToMenu()
-    {
-        SceneManager.Instance.ReturnToMenu();
-    }
-
     /// <summary>
     ///   Called when returning from the editor
     /// </summary>
@@ -435,9 +419,14 @@ public class MicrobeStage : Node, ILoadableGameState
             GameWorld.Map.CurrentPatch.BiomeTemplate.Background));
     }
 
+    private void SaveGame(string name)
+    {
+        SaveHelper.Save(name, this);
+    }
+
     private void ApplyPropertiesFromSave(MicrobeStage savedMicrobeStage)
     {
-        SaveApplyHelper.CopyJSONSavedPropertiesAndFields(this, savedMicrobeStage, new List<string>()
+        SaveApplyHelper.CopyJSONSavedPropertiesAndFields(this, savedMicrobeStage, new List<string>
         {
             "spawner",
             "Player",

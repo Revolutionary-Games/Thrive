@@ -3,6 +3,9 @@
 export.cfg
 /builds
 
+/inspect_results.xml
+/files_to_check.txt
+
 # Seems really like this is needed for CI
 # export_presets.cfg
 
@@ -23,6 +26,7 @@ export.cfg
 
 .svn
 .vs
+.vscode
 
 # Merge tool left over files
 *.orig

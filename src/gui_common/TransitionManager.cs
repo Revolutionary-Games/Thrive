@@ -28,20 +28,20 @@ public class TransitionManager : Node
     [Signal]
     public delegate void QueuedTransitionsFinished();
 
-    public static TransitionManager Instance
-    {
-        get { return instance; }
-    }
+    public static TransitionManager Instance => instance;
 
     /// <summary>
     ///   List of all the existing transitions after calling StartTransitions.
     /// </summary>
-    public List<ITransition> TransitionSequence { get; private set; } = new List<ITransition>();
+    public List<ITransition> TransitionSequence { get; } = new List<ITransition>();
+
+    public bool HasQueuedTransitions => TransitionSequence.Count > 0;
 
     public override void _Input(InputEvent @event)
     {
-        if (@event.IsActionPressed("ui_cancel"))
+        if (@event.IsActionPressed("ui_cancel") && HasQueuedTransitions)
         {
+            GetTree().SetInputAsHandled();
             CancelQueuedTransitions();
         }
     }
@@ -76,6 +76,7 @@ public class TransitionManager : Node
     /// <summary>
     ///   Creates and queues a cutscene.
     /// </summary>
+    /// <param name="path">The video file to play</param>
     /// <param name="allowSkipping">
     ///   Allow the user to skip this
     /// </param>
@@ -134,7 +135,7 @@ public class TransitionManager : Node
     /// </summary>
     private void CancelQueuedTransitions()
     {
-        if (TransitionSequence.Count == 0 || TransitionSequence == null)
+        if (!HasQueuedTransitions)
             return;
 
         var transitions = new List<ITransition>(TransitionSequence);

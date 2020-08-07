@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://assets/textures/gui/menu_theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/general/OptionsMenu.cs" type="Script" id=2]
 [ext_resource path="res://assets/fonts/Jura-Regular.ttf" type="DynamicFontData" id=3]
 
@@ -44,6 +44,8 @@ VSyncPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContain
 FullScreenPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/Fullscreen")
 MSAAResolutionPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer/MSAAResolution")
 ColourblindSettingPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer2/ColourblindSetting")
+ChromaticAberrationSliderPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer5/ChromaticAmount")
+ChromaticAberrationTogglePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer5/ChromaticToggle")
 SoundTabPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound")
 MasterVolumePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer/MasterVolume")
 MasterMutedPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer/MasterMuted")
@@ -56,6 +58,9 @@ MiscTabPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginConta
 PlayIntroPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/Intro")
 PlayMicrobeIntroPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/MicrobeIntro")
 CheatsPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/Cheats")
+AutoSavePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/AutoSave")
+MaxAutoSavesPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer/MaxAutoSaves")
+MaxQuickSavesPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer2/MaxQuickSaves")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -295,6 +300,41 @@ text = "None"
 items = [ "None", null, false, 0, null, "Protanope (Red-Green)", null, false, 1, null, "Tritanope (Blue-Yellow)", null, false, 2, null ]
 selected = 0
 
+[node name="HBoxContainer5" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer"]
+margin_top = 237.0
+margin_right = 517.0
+margin_bottom = 262.0
+size_flags_horizontal = 3
+
+[node name="ChromaticToggle" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer5"]
+margin_right = 16.0
+margin_bottom = 25.0
+pressed = true
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer5"]
+margin_left = 20.0
+margin_top = 1.0
+margin_right = 235.0
+margin_bottom = 24.0
+text = "Chromatic Aberration:"
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer5"]
+margin_left = 239.0
+margin_right = 313.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+custom_styles/separator = SubResource( 4 )
+
+[node name="ChromaticAmount" type="HSlider" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer5"]
+margin_left = 317.0
+margin_right = 517.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_horizontal = 3
+min_value = 10.0
+max_value = 50.0
+value = 20.0
+
 [node name="Sound" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer"]
 visible = false
 margin_left = 15.0
@@ -377,13 +417,13 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer"]
-margin_right = 502.0
+margin_right = 517.0
 margin_bottom = 23.0
 text = "Compound clouds"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer"]
 margin_top = 33.0
-margin_right = 502.0
+margin_right = 517.0
 margin_bottom = 101.0
 size_flags_horizontal = 3
 
@@ -406,14 +446,14 @@ text = "(higher values increase performance)"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer"]
 margin_left = 267.0
-margin_right = 298.0
+margin_right = 313.0
 margin_bottom = 68.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 5 )
 
 [node name="CloudInterval" type="OptionButton" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer"]
-margin_left = 302.0
-margin_right = 502.0
+margin_left = 317.0
+margin_right = 517.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 25 )
 size_flags_vertical = 0
@@ -423,7 +463,7 @@ selected = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer"]
 margin_top = 111.0
-margin_right = 502.0
+margin_right = 517.0
 margin_bottom = 153.0
 size_flags_horizontal = 3
 
@@ -447,14 +487,14 @@ text = "(higher values increase performance)"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer2"]
 margin_left = 258.0
-margin_right = 298.0
+margin_right = 313.0
 margin_bottom = 42.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 5 )
 
 [node name="CloudResolution" type="OptionButton" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer2"]
-margin_left = 302.0
-margin_right = 502.0
+margin_left = 317.0
+margin_right = 517.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 25 )
 size_flags_vertical = 0
@@ -465,7 +505,7 @@ selected = 1
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer"]
 margin_top = 163.0
-margin_right = 502.0
+margin_right = 517.0
 margin_bottom = 167.0
 
 [node name="Misc" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer"]
@@ -484,7 +524,7 @@ __meta__ = {
 }
 
 [node name="Intro" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer"]
-margin_right = 502.0
+margin_right = 188.0
 margin_bottom = 25.0
 size_flags_horizontal = 0
 custom_styles/hover_pressed = SubResource( 2 )
@@ -492,21 +532,87 @@ text = "Play intro video"
 
 [node name="MicrobeIntro" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer"]
 margin_top = 35.0
-margin_right = 502.0
+margin_right = 368.0
 margin_bottom = 60.0
+rect_pivot_offset = Vector2( 114, 23 )
 size_flags_horizontal = 0
 custom_styles/hover_pressed = SubResource( 2 )
 text = "Play Microbe Intro on New Game"
 
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer"]
+[node name="AutoSave" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer"]
 margin_top = 70.0
-margin_right = 502.0
-margin_bottom = 74.0
+margin_right = 307.0
+margin_bottom = 95.0
+rect_pivot_offset = Vector2( 114, 23 )
+size_flags_horizontal = 0
+custom_styles/hover_pressed = SubResource( 2 )
+text = "Autosave during the game"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer"]
+margin_top = 105.0
+margin_right = 520.0
+margin_bottom = 130.0
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer"]
+margin_top = 1.0
+margin_right = 301.0
+margin_bottom = 24.0
+text = "Amount of autosaves to keep:"
+
+[node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer"]
+margin_left = 305.0
+margin_right = 316.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+custom_styles/separator = SubResource( 5 )
+
+[node name="MaxAutoSaves" type="SpinBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer"]
+margin_left = 320.0
+margin_right = 520.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 200, 25 )
+size_flags_vertical = 0
+min_value = 1.0
+max_value = 50.0
+value = 1.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer"]
+margin_top = 140.0
+margin_right = 520.0
+margin_bottom = 165.0
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer2"]
+margin_top = 1.0
+margin_right = 309.0
+margin_bottom = 24.0
+text = "Amount of quicksaves to keep:"
+
+[node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer2"]
+margin_left = 313.0
+margin_right = 316.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+custom_styles/separator = SubResource( 5 )
+
+[node name="MaxQuickSaves" type="SpinBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer2"]
+margin_left = 320.0
+margin_right = 520.0
+margin_bottom = 25.0
+rect_min_size = Vector2( 200, 25 )
+size_flags_vertical = 0
+min_value = 1.0
+max_value = 50.0
+value = 1.0
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer"]
+margin_top = 175.0
+margin_right = 520.0
+margin_bottom = 179.0
 
 [node name="Cheats" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer"]
-margin_top = 84.0
-margin_right = 502.0
-margin_bottom = 109.0
+margin_top = 189.0
+margin_right = 239.0
+margin_bottom = 214.0
 size_flags_horizontal = 0
 custom_styles/hover_pressed = SubResource( 2 )
 text = "Cheat keys enabled"
@@ -552,6 +658,8 @@ __meta__ = {
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/Fullscreen" to="." method="OnFullScreenToggled"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer/MSAAResolution" to="." method="OnMSAAResolutionSelected"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer2/ColourblindSetting" to="." method="OnColourblindSettingSelected"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer5/ChromaticToggle" to="." method="OnChromaticAberrationToggled"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer5/ChromaticAmount" to="." method="OnChromaticAberrationValueChanged"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer/MasterVolume" to="." method="OnMasterVolumeChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer/MasterMuted" to="." method="OnMasterMutedToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer2/MusicVolume" to="." method="OnMusicVolumeChanged"]
@@ -560,6 +668,9 @@ __meta__ = {
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer2/CloudResolution" to="." method="OnCloudResolutionSelected"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/Intro" to="." method="OnIntroToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/MicrobeIntro" to="." method="OnMicrobeIntroToggled"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/AutoSave" to="." method="OnAutoSaveToggled"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer/MaxAutoSaves" to="." method="OnMaxAutoSavesValueChanged"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer2/MaxQuickSaves" to="." method="OnMaxQuickSavesValueChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/Cheats" to="." method="OnCheatsToggled"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Back" to="." method="OnBackPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Reset" to="." method="OnBackPressed"]

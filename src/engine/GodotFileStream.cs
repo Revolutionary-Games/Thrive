@@ -1,6 +1,5 @@
 using System;
 using System.IO;
-using Godot;
 using File = Godot.File;
 
 /// <summary>
@@ -10,7 +9,7 @@ public class GodotFileStream : Stream
 {
     private readonly File file;
 
-    public GodotFileStream(Godot.File file)
+    public GodotFileStream(File file)
     {
         this.file = file;
     }
@@ -22,14 +21,8 @@ public class GodotFileStream : Stream
 
     public override long Position
     {
-        get
-        {
-            return file.GetPosition();
-        }
-        set
-        {
-            file.Seek(value);
-        }
+        get => file.GetPosition();
+        set => file.Seek(value);
     }
 
     /// <summary>

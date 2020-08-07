@@ -37,6 +37,12 @@ public class OptionsMenu : Control
     [Export]
     public NodePath ColourblindSettingPath;
 
+    [Export]
+    public NodePath ChromaticAberrationSliderPath;
+
+    [Export]
+    public NodePath ChromaticAberrationTogglePath;
+
     // Sound tab
     [Export]
     public NodePath SoundTabPath;
@@ -76,6 +82,15 @@ public class OptionsMenu : Control
     [Export]
     public NodePath CheatsPath;
 
+    [Export]
+    public NodePath AutoSavePath;
+
+    [Export]
+    public NodePath MaxAutoSavesPath;
+
+    [Export]
+    public NodePath MaxQuickSavesPath;
+
     private const float AUDIO_BAR_SCALE = 6.0f;
 
     // Tab buttons
@@ -90,6 +105,8 @@ public class OptionsMenu : Control
     private CheckBox fullScreen;
     private OptionButton msaaResolution;
     private OptionButton colourblindSetting;
+    private CheckBox chromaticAberrationToggle;
+    private Slider chromaticAberrationSlider;
 
     // Sound tab
     private Control soundTab;
@@ -108,6 +125,9 @@ public class OptionsMenu : Control
     private CheckBox playIntro;
     private CheckBox playMicrobeIntro;
     private CheckBox cheats;
+    private CheckBox autosave;
+    private SpinBox maxAutosaves;
+    private SpinBox maxQuicksaves;
 
     [Signal]
     public delegate void OnOptionsClosed();
@@ -115,10 +135,7 @@ public class OptionsMenu : Control
     /// <summary>
     ///   Returns the place to save the new settings values
     /// </summary>
-    public Settings Settings
-    {
-        get => Settings.Instance;
-    }
+    public Settings Settings => Settings.Instance;
 
     public override void _Ready()
     {
@@ -134,6 +151,8 @@ public class OptionsMenu : Control
         fullScreen = GetNode<CheckBox>(FullScreenPath);
         msaaResolution = GetNode<OptionButton>(MSAAResolutionPath);
         colourblindSetting = GetNode<OptionButton>(ColourblindSettingPath);
+        chromaticAberrationToggle = GetNode<CheckBox>(ChromaticAberrationTogglePath);
+        chromaticAberrationSlider = GetNode<Slider>(ChromaticAberrationSliderPath);
 
         // Sound
         soundTab = GetNode<Control>(SoundTabPath);
@@ -152,6 +171,9 @@ public class OptionsMenu : Control
         playIntro = GetNode<CheckBox>(PlayIntroPath);
         playMicrobeIntro = GetNode<CheckBox>(PlayMicrobeIntroPath);
         cheats = GetNode<CheckBox>(CheatsPath);
+        autosave = GetNode<CheckBox>(AutoSavePath);
+        maxAutosaves = GetNode<SpinBox>(MaxAutoSavesPath);
+        maxQuicksaves = GetNode<SpinBox>(MaxQuickSavesPath);
     }
 
     public override void _Process(float delta)
@@ -168,6 +190,8 @@ public class OptionsMenu : Control
         fullScreen.Pressed = Settings.FullScreen;
         msaaResolution.Selected = MSAAResolutionToIndex(settings.MSAAResolution);
         colourblindSetting.Selected = settings.ColourblindSetting;
+        chromaticAberrationToggle.Pressed = settings.ChromaticEnabled;
+        chromaticAberrationSlider.Value = settings.ChromaticAmount;
 
         // Sound
         masterVolume.Value = ConvertDBToSoundBar(settings.VolumeMaster);
@@ -183,6 +207,10 @@ public class OptionsMenu : Control
         playIntro.Pressed = settings.PlayIntroVideo;
         playMicrobeIntro.Pressed = settings.PlayMicrobeIntroVideo;
         cheats.Pressed = settings.CheatsEnabled;
+        autosave.Pressed = settings.AutoSaveEnabled;
+        maxAutosaves.Value = settings.MaxAutoSaves;
+        maxAutosaves.Editable = settings.AutoSaveEnabled;
+        maxQuicksaves.Value = settings.MaxQuickSaves;
     }
 
     private void SetSettingsTab(string tab)
@@ -234,30 +262,22 @@ public class OptionsMenu : Control
     private int CloudIntervalToIndex(float interval)
     {
         if (interval < 0.020f)
-        {
             return 0;
-        }
-        else if (interval == 0.020f)
-        {
+
+        if (interval == 0.020f)
             return 1;
-        }
-        else if (interval <= 0.040f)
-        {
+
+        if (interval <= 0.040f)
             return 2;
-        }
-        else if (interval <= 0.1f)
-        {
+
+        if (interval <= 0.1f)
             return 3;
-        }
-        else if (interval > 0.1f)
-        {
+
+        if (interval > 0.1f)
             return 4;
-        }
-        else
-        {
-            GD.PrintErr("invalid cloud interval value");
-            return -1;
-        }
+
+        GD.PrintErr("invalid cloud interval value");
+        return -1;
     }
 
     private float CloudIndexToInterval(int index)
@@ -286,14 +306,13 @@ public class OptionsMenu : Control
         {
             return 0;
         }
-        else if (resolution <= 2)
+
+        if (resolution <= 2)
         {
             return 1;
         }
-        else
-        {
-            return 2;
-        }
+
+        return 2;
     }
 
     private int CloudIndexToResolution(int index)
@@ -315,30 +334,22 @@ public class OptionsMenu : Control
     private int MSAAResolutionToIndex(Viewport.MSAA resolution)
     {
         if (resolution == Viewport.MSAA.Disabled)
-        {
             return 0;
-        }
-        else if (resolution == Viewport.MSAA.Msaa2x)
-        {
+
+        if (resolution == Viewport.MSAA.Msaa2x)
             return 1;
-        }
-        else if (resolution == Viewport.MSAA.Msaa4x)
-        {
+
+        if (resolution == Viewport.MSAA.Msaa4x)
             return 2;
-        }
-        else if (resolution == Viewport.MSAA.Msaa8x)
-        {
+
+        if (resolution == Viewport.MSAA.Msaa8x)
             return 3;
-        }
-        else if (resolution == Viewport.MSAA.Msaa16x)
-        {
+
+        if (resolution == Viewport.MSAA.Msaa16x)
             return 4;
-        }
-        else
-        {
-            GD.PrintErr("invalid MSAA resolution value");
-            return 0;
-        }
+
+        GD.PrintErr("invalid MSAA resolution value");
+        return 0;
     }
 
     private Viewport.MSAA MSAAIndexToResolution(int index)
@@ -454,5 +465,31 @@ public class OptionsMenu : Control
     {
         Settings.ColourblindSetting = index;
         Settings.ApplyGraphicsSettings();
+    }
+
+    private void OnChromaticAberrationToggled(bool toggle)
+    {
+        Settings.ChromaticEnabled = toggle;
+    }
+
+    private void OnChromaticAberrationValueChanged(float amount)
+    {
+        Settings.ChromaticAmount = amount;
+    }
+
+    private void OnAutoSaveToggled(bool pressed)
+    {
+        Settings.AutoSaveEnabled = pressed;
+        maxAutosaves.Editable = pressed;
+    }
+
+    private void OnMaxAutoSavesValueChanged(float value)
+    {
+        Settings.MaxAutoSaves = (int)value;
+    }
+
+    private void OnMaxQuickSavesValueChanged(float value)
+    {
+        Settings.MaxQuickSaves = (int)value;
     }
 }

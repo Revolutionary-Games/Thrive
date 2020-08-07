@@ -56,14 +56,18 @@ public abstract class ExternallyPositionedComponent : IOrganelleComponent
             var rotation = MathUtils.CreateRotationForExternal(angle);
 
             OnPositionChanged(rotation, angle, membraneCoords);
+
+            lastCalculatedPos = membraneCoords;
         }
     }
 
     protected virtual void CustomAttach()
-    { }
+    {
+    }
 
     protected virtual void CustomDetach()
-    { }
+    {
+    }
 
     protected virtual bool NeedsUpdateAnyway()
     {

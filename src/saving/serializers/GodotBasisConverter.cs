@@ -36,12 +36,12 @@ public class GodotBasisConverter : JsonConverter
 
         try
         {
-            // ReSharper disable AssignNullToNotNullAttribute
+            // ReSharper disable AssignNullToNotNullAttribute PossibleNullReferenceException
             return new Basis(item["Column0"].ToObject<Vector3>(),
                 item["Column1"].ToObject<Vector3>(),
                 item["Column2"].ToObject<Vector3>());
 
-            // ReSharper restore AssignNullToNotNullAttribute
+            // ReSharper restore AssignNullToNotNullAttribute PossibleNullReferenceException
         }
         catch (NullReferenceException e)
         {

@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 /// </summary>
 public class PatchMap
 {
-    private Patch currentPatch = null;
+    private Patch currentPatch;
 
     /// <summary>
     ///   The  list of patches. DO NOT MODIFY THE DICTIONARY FROM OUTSIDE THIS CLASS
@@ -22,10 +22,7 @@ public class PatchMap
     /// </summary>
     public Patch CurrentPatch
     {
-        get
-        {
-            return currentPatch;
-        }
+        get => currentPatch;
         set
         {
             // Allow setting to null to make loading work
@@ -211,7 +208,7 @@ public class PatchMap
     {
         foreach (var entry in Patches)
         {
-            var toRemove = entry.Value.SpeciesInPatch.Where((v) => v.Value <= 0 &&
+            var toRemove = entry.Value.SpeciesInPatch.Where(v => v.Value <= 0 &&
                 (playerCantGoExtinct || !v.Key.PlayerSpecies)).ToList();
 
             foreach (var item in toRemove)

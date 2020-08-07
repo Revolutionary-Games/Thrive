@@ -6,6 +6,7 @@ using ICSharpCode.SharpZipLib.GZip;
 using ICSharpCode.SharpZipLib.Tar;
 using Newtonsoft.Json;
 using Directory = Godot.Directory;
+using Environment = System.Environment;
 using File = Godot.File;
 
 /// <summary>
@@ -57,12 +58,15 @@ public class Save
     ///   Loads a save from a file or throws an exception
     /// </summary>
     /// <param name="saveName">The name of the save. This is not the full path.</param>
+    /// <param name="readFinished">
+    ///   A callback that is called when reading data has finished and creating objects start.
+    /// </param>
     /// <returns>The loaded save</returns>
-    public static Save LoadFromFile(string saveName)
+    public static Save LoadFromFile(string saveName, Action readFinished = null)
     {
         var target = SaveFileInfo.SaveNameToPath(saveName);
 
-        var (_, save, screenshot) = LoadFromFile(target, false, true, true);
+        var (_, save, screenshot) = LoadFromFile(target, false, true, true, readFinished);
 
         // Info is already contained in save so it doesn't need to be loaded and assigned here
         save.Screenshot = screenshot;
@@ -74,9 +78,23 @@ public class Save
     {
         var target = SaveFileInfo.SaveNameToPath(saveName);
 
-        var (info, _, _) = LoadFromFile(target, true, false, false);
+        var (info, _, _) = LoadFromFile(target, true, false, false, null);
 
         return info;
+    }
+
+    public static Save LoadInfoAndScreenshotFromSave(string saveName)
+    {
+        var target = SaveFileInfo.SaveNameToPath(saveName);
+
+        var (info, _, screenshot) = LoadFromFile(target, true, false, true, null);
+
+        var save = new Save();
+        save.Name = saveName;
+        save.Info = info;
+        save.Screenshot = screenshot;
+
+        return save;
     }
 
     /// <summary>
@@ -158,7 +176,7 @@ public class Save
     }
 
     private static (SaveInformation info, Save save, Image screenshot) LoadFromFile(string file, bool info,
-        bool save, bool screenshot)
+        bool save, bool screenshot, Action readFinished)
     {
         using (var directory = new Directory())
         {
@@ -167,6 +185,8 @@ public class Save
         }
 
         var (infoStr, saveStr, screenshotData) = LoadDataFromFile(file, info, save, screenshot);
+
+        readFinished?.Invoke();
 
         SaveInformation infoResult = null;
         Save saveResult = null;
@@ -201,10 +221,8 @@ public class Save
             {
                 imageResult.LoadPngFromBuffer(screenshotData);
             }
-            else
-            {
-                // Not a critical error
-            }
+
+            // Not a critical error
         }
 
         return (infoResult, saveResult, imageResult);
@@ -362,9 +380,14 @@ public class SaveInformation
 
     public string Platform { get; set; } = FeatureInformation.GetOS();
 
-    public string Creator { get; set; } = System.Environment.UserName;
+    public string Creator { get; set; } = Environment.UserName;
 
     public DateTime CreatedAt { get; set; } = DateTime.Now;
+
+    /// <summary>
+    ///   An extended description for this save
+    /// </summary>
+    public string Description { get; set; } = string.Empty;
 
     /// <summary>
     ///   Unique ID of this save

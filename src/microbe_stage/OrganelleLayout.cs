@@ -72,14 +72,16 @@ public class OrganelleLayout<T> : ICollection<T>
 
     /// <summary>
     ///   Returns true if CanPlace would return true and an existing
-    ///   hex touches one of the new hexes.
+    ///   hex touches one of the new hexes, or is the last hex and can be replaced.
     /// </summary>
-    public bool CanPlaceAndIsTouching(T organelle, bool allowCytoplasmOverlap = false)
+    public bool CanPlaceAndIsTouching(T organelle,
+        bool allowCytoplasmOverlap = false,
+        bool allowReplacingLastCytoplasm = false)
     {
         if (!CanPlace(organelle, allowCytoplasmOverlap))
             return false;
 
-        return IsTouchingExistingHex(organelle);
+        return IsTouchingExistingHex(organelle) || (allowReplacingLastCytoplasm && IsReplacingLast(organelle));
     }
 
     /// <summary>
@@ -92,6 +94,22 @@ public class OrganelleLayout<T> : ICollection<T>
             if (CheckIfAHexIsNextTo(hex + organelle.Position))
                 return true;
         }
+
+        return false;
+    }
+
+    /// <summary>
+    ///   Returns true if the specified organelle is replacing the last hex of cytoplasm.
+    /// </summary>
+    public bool IsReplacingLast(T organelle)
+    {
+        if (Count != 1)
+            return false;
+
+        var replacedOrganelle = GetOrganelleAt(organelle.Position);
+
+        if ((replacedOrganelle != null) && (replacedOrganelle.Definition.InternalName == "cytoplasm"))
+            return true;
 
         return false;
     }
@@ -128,7 +146,7 @@ public class OrganelleLayout<T> : ICollection<T>
             }
         }
 
-        return default(T);
+        return default;
     }
 
     /// <summary>
@@ -162,8 +180,7 @@ public class OrganelleLayout<T> : ICollection<T>
             return false;
 
         Organelles.Remove(organelle);
-        if (onRemoved != null)
-            onRemoved(organelle);
+        onRemoved?.Invoke(organelle);
         return true;
     }
 

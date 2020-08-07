@@ -76,14 +76,13 @@ public class Fade : CanvasLayer, ITransition
             case FadeType.FadeOut:
                 FadeToWhite();
                 break;
-            default:
-                break;
         }
     }
 
     public void OnFinished()
     {
         EmitSignal(nameof(OnFinishedSignal));
+
         QueueFree();
     }
 }

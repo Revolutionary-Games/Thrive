@@ -15,7 +15,7 @@ public class ReferenceResolver : IReferenceResolver
     private readonly Dictionary<string, object> referenceToObject = new Dictionary<string, object>();
     private readonly Dictionary<object, string> objectToReference = new Dictionary<object, string>();
 
-    private long referenceCounter = 0;
+    private long referenceCounter;
 
     public object ResolveReference(object context, string reference)
     {

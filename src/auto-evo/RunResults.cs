@@ -79,10 +79,8 @@
                         continue;
                     }
 
-                    var remainingPopulation =
-                        from.GetSpeciesPopulation(entry.Key) - spreadEntry.Population;
-                    var newPopulation =
-                        to.GetSpeciesPopulation(entry.Key) + spreadEntry.Population;
+                    int remainingPopulation = from.GetSpeciesPopulation(entry.Key) - spreadEntry.Population;
+                    int newPopulation = to.GetSpeciesPopulation(entry.Key) + spreadEntry.Population;
 
                     if (!from.UpdateSpeciesPopulation(entry.Key, remainingPopulation))
                     {
@@ -111,7 +109,7 @@
         /// </remarks>
         public int GetGlobalPopulation(Species species)
         {
-            int result = 0;
+            var result = 0;
 
             foreach (var entry in results[species].NewPopulationInPatches)
             {
@@ -239,7 +237,7 @@
 
                 foreach (var patchPopulation in entry.NewPopulationInPatches)
                 {
-                    var adjustedPopulation = patchPopulation.Value;
+                    int adjustedPopulation = patchPopulation.Value;
 
                     if (resolveMoves)
                     {
@@ -265,7 +263,7 @@
                     // As the populations are added to all patches, even when the species is not there, we remove those
                     // from output if there is currently no population in a patch and there isn't one in
                     // previousPopulations
-                    bool include = false;
+                    var include = false;
 
                     if (adjustedPopulation > 0)
                     {
@@ -290,7 +288,7 @@
                 {
                     foreach (var spreadEntry in entry.SpreadToPatches)
                     {
-                        bool found = false;
+                        var found = false;
 
                         var to = spreadEntry.To;
 
@@ -329,7 +327,7 @@
         private int CountSpeciesSpreadPopulation(Species species,
             Patch targetPatch)
         {
-            int totalPopulation = 0;
+            var totalPopulation = 0;
 
             if (!results.ContainsKey(species))
             {
@@ -361,7 +359,7 @@
             /// <summary>
             ///   null means no changes
             /// </summary>
-            public Species MutatedProperties = null;
+            public Species MutatedProperties;
 
             /// <summary>
             ///   List of patches this species has spread to

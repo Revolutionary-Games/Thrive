@@ -1,5 +1,6 @@
 using System;
 using System.Reflection;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -26,6 +27,7 @@ public static class Constants
     ///   Don't change this, so much stuff will break
     /// </summary>
     public const int CLOUDS_IN_ONE = 4;
+
     public const int CLOUD_SQUARES_PER_SIDE = 3;
     public const int CLOUD_EDGE_WIDTH = 2;
 
@@ -112,6 +114,7 @@ public static class Constants
     ///   released upon death (between 0.0 and 1.0).
     /// </summary>
     public const float COMPOUND_MAKEUP_RELEASE_PERCENTAGE = 0.9f;
+
     public const float COMPOUND_RELEASE_PERCENTAGE = 0.9f;
 
     /// <summary>
@@ -184,6 +187,16 @@ public static class Constants
     ///   Organelles won't take compounds if there is less available than this amount
     /// </summary>
     public const float ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST = 0.0f;
+
+    /// <summary>
+    ///   Cost of moving the rigidity slider by one step in the microbe editor
+    /// </summary>
+    public const int MEMBRANE_RIGIDITY_COST_PER_STEP = 2;
+
+    /// <summary>
+    ///   Number used to convert between the value from the rigidity slider and the actual value
+    /// </summary>
+    public const float MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO = 10;
 
     /// <summary>
     ///   How much fully rigid membrane adds hitpoints
@@ -267,6 +280,7 @@ public static class Constants
     ///   and multiplying it by this. This must be negative!
     /// </summary>
     public const float CELL_DRAG_MULTIPLIER = -0.12f;
+
     public const float CELL_SIZE_DRAG_MULTIPLIER = -0.003f;
 
     /// <summary>
@@ -278,6 +292,7 @@ public static class Constants
     ///   This should be the max needed hexes (nucleus {10} * 6-way symmetry)
     /// </summary>
     public const int MAX_HOVER_HEXES = 60;
+
     public const int MAX_SYMMETRY = 6;
 
     // Cell Colors
@@ -398,11 +413,16 @@ public static class Constants
     /// </summary>
     public const string AI_TAG_CHUNK = "chunk";
 
+    public const string DELETION_HOLD_LOAD = "load";
+    public const string DELETION_HOLD_MICROBE_EDITOR = "microbe_editor";
+
     public const string CONFIGURATION_FILE = "user://thrive_settings.json";
 
     public const string SAVE_FOLDER = "user://saves";
 
     public const string SCREENSHOT_FOLDER = "user://screenshots";
+
+    public const string LOGS_FOLDER_NAME = "logs";
 
     /// <summary>
     ///   This is just here to make it easier to debug saves
@@ -410,16 +430,31 @@ public static class Constants
     public const Formatting SAVE_FORMATTING = Formatting.None;
 
     public const string SAVE_EXTENSION = "thrivesave";
+    public const string SAVE_EXTENSION_WITH_DOT = "." + SAVE_EXTENSION;
+
+    public const int SAVE_LIST_SCREENSHOT_HEIGHT = 720;
+
+    public const int KIBIBYTE = 1024;
+    public const int MEBIBYTE = 1024 * KIBIBYTE;
 
     public static string Version
     {
         get
         {
-            var assembly = Assembly.GetExecutingAssembly();
-            Version version = assembly.GetName().Version;
-            var versionSuffix = (AssemblyInformationalVersionAttribute[])assembly.
-                GetCustomAttributes(typeof(AssemblyInformationalVersionAttribute), false);
-            return $"{version}" + versionSuffix[0].InformationalVersion;
+            try
+            {
+                var assembly = Assembly.GetExecutingAssembly();
+                var version = assembly.GetName().Version;
+                var versionSuffix =
+                    (AssemblyInformationalVersionAttribute[])assembly.GetCustomAttributes(
+                        typeof(AssemblyInformationalVersionAttribute), false);
+                return $"{version}" + versionSuffix[0].InformationalVersion;
+            }
+            catch (Exception error)
+            {
+                GD.Print("Error getting version: ", error);
+                return "error (" + error.GetType().Name + ")";
+            }
         }
     }
 }

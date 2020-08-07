@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using Godot;
 using Newtonsoft.Json;
+using File = Godot.File;
 
 /// <summary>
 ///   Contains definitions for global game configuration like Compounds, Organelles etc.
@@ -71,13 +73,7 @@ public class SimulationParameters : Node
         GD.Print("SimulationParameters are good");
     }
 
-    public static SimulationParameters Instance
-    {
-        get
-        {
-            return instance;
-        }
-    }
+    public static SimulationParameters Instance => instance;
 
     public NameGenerator NameGenerator { get; }
 
@@ -205,7 +201,13 @@ public class SimulationParameters : Node
 
     private Dictionary<string, T> LoadRegistry<T>(string path, JsonConverter[] extraConverters = null)
     {
+        if (extraConverters == null)
+            extraConverters = Array.Empty<JsonConverter>();
+
         var result = JsonConvert.DeserializeObject<Dictionary<string, T>>(ReadJSONFile(path), extraConverters);
+
+        if (result == null)
+            throw new InvalidDataException("Could not load a registry from file: " + path);
 
         GD.Print($"Loaded registry for {typeof(T)} with {result.Count} items");
         return result;

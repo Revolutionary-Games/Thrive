@@ -1,13 +1,12 @@
 using Godot;
 
 /// <summary>
-///   Shows a version label and updates the window title
+///   Shows a version label
 /// </summary>
 public class VersionNumber : Label
 {
     public override void _Ready()
     {
         Text = Constants.Version;
-        OS.SetWindowTitle("Thrive - " + Text);
     }
 }

@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Text;
 using Godot;
+using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   Main class managing the microbe editor GUI
@@ -53,16 +55,13 @@ public class MicrobeEditorGUI : Node
     public NodePath ATPBalanceLabelPath;
 
     [Export]
+    public NodePath ATPBarContainerPath;
+
+    [Export]
     public NodePath ATPProductionBarPath;
 
     [Export]
     public NodePath ATPConsumptionBarPath;
-
-    [Export]
-    public NodePath ATPProductionLabelPath;
-
-    [Export]
-    public NodePath ATPConsumptionLabelPath;
 
     [Export]
     public NodePath GlucoseReductionLabelPath;
@@ -182,9 +181,6 @@ public class MicrobeEditorGUI : Node
     public NodePath RigiditySliderTooltipSpeedLabelPath;
 
     [Export]
-    public NodePath HelpScreenPath;
-
-    [Export]
     public NodePath SymmetryIconPath;
 
     [Export]
@@ -215,11 +211,10 @@ public class MicrobeEditorGUI : Node
     private readonly Compound sunlight = SimulationParameters.Instance.GetCompound("sunlight");
 
     private MicrobeEditor editor;
-    private LoadingScreen loadingScreen;
 
-    private Godot.Collections.Array organelleSelectionElements;
-    private Godot.Collections.Array membraneSelectionElements;
-    private Godot.Collections.Array itemTooltipElements;
+    private Array organelleSelectionElements;
+    private Array membraneSelectionElements;
+    private Array itemTooltipElements;
 
     private Control menu;
     private Label sizeLabel;
@@ -233,13 +228,13 @@ public class MicrobeEditorGUI : Node
     private TextureButton undoButton;
     private TextureButton redoButton;
     private Button finishButton;
+
+    // ReSharper disable once NotAccessedField.Local
     private TextureButton symmetryButton;
     private TextureRect symmetryIcon;
     private Label atpBalanceLabel;
-    private ProgressBar atpProductionBar;
-    private ProgressBar atpConsumptionBar;
-    private Label atpProductionLabel;
-    private Label atpConsumptionLabel;
+    private SegmentedBar atpProductionBar;
+    private SegmentedBar atpConsumptionBar;
     private Label glucoseReductionLabel;
     private Label autoEvoLabel;
     private Label externalEffectsLabel;
@@ -277,15 +272,14 @@ public class MicrobeEditorGUI : Node
     private TextureRect patchAmmoniaSituation;
     private TextureRect patchPhosphateSituation;
     private Slider rigiditySlider;
-    private HelpScreen helpScreen;
 
-    private bool inEditorTab = false;
+    private bool inEditorTab;
     private MicrobeEditor.MicrobeSymmetry symmetry = MicrobeEditor.MicrobeSymmetry.None;
 
     /// <summary>
     ///   For toggling purposes
     /// </summary>
-    private bool speciesListIsHidden = false;
+    private bool speciesListIsHidden;
 
     public string GetNewSpeciesName()
     {
@@ -303,8 +297,6 @@ public class MicrobeEditorGUI : Node
         membraneSelectionElements = GetTree().GetNodesInGroup("MembraneSelectionElement");
         itemTooltipElements = GetTree().GetNodesInGroup("ItemTooltip");
 
-        loadingScreen = GetNode<LoadingScreen>("LoadingScreen");
-
         menu = GetNode<Control>(MenuPath);
         sizeLabel = GetNode<Label>(SizeLabelPath);
         speedLabel = GetNode<Label>(SpeedLabelPath);
@@ -319,10 +311,8 @@ public class MicrobeEditorGUI : Node
         symmetryButton = GetNode<TextureButton>(SymmetryButtonPath);
         finishButton = GetNode<Button>(FinishButtonPath);
         atpBalanceLabel = GetNode<Label>(ATPBalanceLabelPath);
-        atpProductionBar = GetNode<ProgressBar>(ATPProductionBarPath);
-        atpConsumptionBar = GetNode<ProgressBar>(ATPConsumptionBarPath);
-        atpProductionLabel = GetNode<Label>(ATPProductionLabelPath);
-        atpConsumptionLabel = GetNode<Label>(ATPConsumptionLabelPath);
+        atpProductionBar = GetNode<SegmentedBar>(ATPProductionBarPath);
+        atpConsumptionBar = GetNode<SegmentedBar>(ATPConsumptionBarPath);
         glucoseReductionLabel = GetNode<Label>(GlucoseReductionLabelPath);
         autoEvoLabel = GetNode<Label>(AutoEvoLabelPath);
         externalEffectsLabel = GetNode<Label>(ExternalEffectsLabelPath);
@@ -361,24 +351,16 @@ public class MicrobeEditorGUI : Node
         patchAmmoniaSituation = GetNode<TextureRect>(PatchAmmoniaSituationPath);
         patchPhosphateSituation = GetNode<TextureRect>(PatchPhosphateSituationPath);
         rigiditySlider = GetNode<Slider>(RigiditySliderPath);
-        helpScreen = GetNode<HelpScreen>(HelpScreenPath);
 
-        mapDrawer.OnSelectedPatchChanged = (drawer) => { UpdateShownPatchDetails(); };
+        mapDrawer.OnSelectedPatchChanged = drawer => { UpdateShownPatchDetails(); };
+
+        atpProductionBar.SelectedType = SegmentedBar.Type.ATP;
+        atpProductionBar.IsProduction = true;
+        atpConsumptionBar.SelectedType = SegmentedBar.Type.ATP;
 
         // Fade out for that smooth satisfying transition
         TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeOut, 0.5f);
         TransitionManager.Instance.StartTransitions(null, string.Empty);
-    }
-
-    public override void _Input(InputEvent @event)
-    {
-        if (@event.IsActionPressed("ui_cancel"))
-        {
-            MenuButtonPressed();
-
-            if (helpScreen.Visible)
-                helpScreen.Hide();
-        }
     }
 
     public void Init(MicrobeEditor editor)
@@ -442,38 +424,29 @@ public class MicrobeEditorGUI : Node
         if (energyBalance.FinalBalance > 0)
         {
             atpBalanceLabel.Text = ATP_BALANCE_DEFAULT_TEXT;
-            atpBalanceLabel.AddColorOverride("font_color", new Color(1.0f, 1.0f, 1.0f, 1.0f));
+            atpBalanceLabel.AddColorOverride("font_color", new Color(1.0f, 1.0f, 1.0f));
         }
         else
         {
             atpBalanceLabel.Text = ATP_BALANCE_DEFAULT_TEXT + " - ATP PRODUCTION TOO LOW!";
-            atpBalanceLabel.AddColorOverride("font_color", new Color(1.0f, 0.2f, 0.2f, 1.0f));
+            atpBalanceLabel.AddColorOverride("font_color", new Color(1.0f, 0.2f, 0.2f));
         }
 
         float maxValue = Math.Max(energyBalance.TotalConsumption, energyBalance.TotalProduction);
-
         atpProductionBar.MaxValue = maxValue;
-        atpProductionBar.Value = energyBalance.TotalProduction;
-
         atpConsumptionBar.MaxValue = maxValue;
-        atpConsumptionBar.Value = energyBalance.TotalConsumption;
 
-        var atpProductionBarProgressLength = (float)(atpProductionBar.RectSize.x * atpProductionBar.Value /
-            atpProductionBar.MaxValue);
-        var atpConsumptionBarProgressLength = (float)(atpConsumptionBar.RectSize.x * atpConsumptionBar.Value /
-            atpConsumptionBar.MaxValue);
-
-        atpProductionLabel.RectSize = new Vector2(atpProductionBarProgressLength, 18);
-        atpConsumptionLabel.RectSize = new Vector2(atpConsumptionBarProgressLength, 18);
-
-        atpProductionLabel.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", energyBalance.TotalProduction);
-        atpConsumptionLabel.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", energyBalance.TotalConsumption);
+        atpProductionBar.UpdateAndMoveBars(SortBarData(energyBalance.Production));
+        atpConsumptionBar.UpdateAndMoveBars(SortBarData(energyBalance.Consumption));
     }
 
+    // Disable this because the cleanup and inspections disagree
+    // ReSharper disable once RedundantNameQualifier
     /// <summary>
     ///   Updates the organelle efficiencies in tooltips.
     /// </summary>
-    public void UpdateOrganelleEfficiencies(Dictionary<string, OrganelleEfficiency> organelleEfficiency)
+    public void UpdateOrganelleEfficiencies(
+        System.Collections.Generic.Dictionary<string, OrganelleEfficiency> organelleEfficiency)
     {
         foreach (var organelleName in organelleEfficiency.Keys)
         {
@@ -493,18 +466,20 @@ public class MicrobeEditorGUI : Node
     /// <summary>
     ///   Updates the fluidity / rigidity slider tooltip
     /// </summary>
-    public void SetRigiditySliderTooltip(float rigidity)
+    public void SetRigiditySliderTooltip(int rigidity)
     {
+        float convertedRigidity = rigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
+
         var healthChangeLabel = GetNode<Label>(RigiditySliderTooltipHealthLabelPath);
         var mobilityChangeLabel = GetNode<Label>(RigiditySliderTooltipSpeedLabelPath);
 
-        float healthChange = rigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
-        float mobilityChange = -1 * rigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER;
+        float healthChange = convertedRigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
+        float mobilityChange = -1 * convertedRigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER;
 
         healthChangeLabel.Text = ((healthChange > 0) ? "+" : string.Empty)
-            + healthChange.ToString(CultureInfo.CurrentCulture);
+            + healthChange.ToString("F2", CultureInfo.CurrentCulture);
         mobilityChangeLabel.Text = ((mobilityChange > 0) ? "+" : string.Empty)
-            + mobilityChange.ToString(CultureInfo.CurrentCulture);
+            + mobilityChange.ToString("F2", CultureInfo.CurrentCulture);
 
         if (healthChange >= 0)
         {
@@ -523,17 +498,6 @@ public class MicrobeEditorGUI : Node
         {
             mobilityChangeLabel.AddColorOverride("font_color", new Color(1, 0.3f, 0.3f));
         }
-    }
-
-    public void SetLoadingStatus(bool loading)
-    {
-        loadingScreen.Visible = loading;
-    }
-
-    public void SetLoadingText(string status, string description = "")
-    {
-        loadingScreen.LoadingMessage = status;
-        loadingScreen.LoadingDescription = description;
     }
 
     public void UpdateAutoEvoResults(string results, string external)
@@ -607,23 +571,6 @@ public class MicrobeEditorGUI : Node
         GUICommon.Instance.PlayButtonPressSound();
 
         editor.CreateNewMicrobe();
-    }
-
-    internal void ToggleHelpScreen()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-
-        if (!helpScreen.Visible)
-        {
-            menu.Hide();
-            helpScreen.Show();
-            helpScreen.RandomizeEasterEgg();
-        }
-        else
-        {
-            helpScreen.Hide();
-            menu.Show();
-        }
     }
 
     /// <summary>
@@ -789,7 +736,8 @@ public class MicrobeEditorGUI : Node
 
         UpdateMembraneButtons(membrane.InternalName);
 
-        UpdateRigiditySlider(rigidity, editor.MutationPoints);
+        UpdateRigiditySlider((int)Math.Round(rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO),
+            editor.MutationPoints);
     }
 
     internal void UpdateMembraneButtons(string membrane)
@@ -818,9 +766,9 @@ public class MicrobeEditorGUI : Node
         }
     }
 
-    internal void UpdateRigiditySlider(float value, int mutationPoints)
+    internal void UpdateRigiditySlider(int value, int mutationPoints)
     {
-        if (mutationPoints > 0)
+        if (mutationPoints >= Constants.MEMBRANE_RIGIDITY_COST_PER_STEP)
         {
             rigiditySlider.Editable = true;
         }
@@ -833,7 +781,7 @@ public class MicrobeEditorGUI : Node
         SetRigiditySliderTooltip(value);
     }
 
-    private void OnRigidityChanged(float value)
+    private void OnRigidityChanged(int value)
     {
         editor.SetRigidity(value);
     }
@@ -1010,28 +958,21 @@ public class MicrobeEditorGUI : Node
 
     private void MenuButtonPressed()
     {
-        if (menu.Visible)
-        {
-            menu.Hide();
-            GetTree().Paused = false;
-        }
-        else
-        {
-            menu.Show();
-            GetTree().Paused = true;
-        }
-
         GUICommon.Instance.PlayButtonPressSound();
+
+        OpenMenu();
     }
 
-    private void ReturnToMenuPressed()
+    private void OpenMenu()
     {
-        // Unpause the game as well as close the pause menu
-        MenuButtonPressed();
-        GetTree().Paused = false;
+        menu.Show();
+        GetTree().Paused = true;
+    }
 
-        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.3f, false);
-        TransitionManager.Instance.StartTransitions(editor, nameof(MicrobeEditor.ReturnToMenu));
+    private void CloseMenu()
+    {
+        menu.Hide();
+        GetTree().Paused = false;
     }
 
     private void ExitPressed()
@@ -1072,7 +1013,7 @@ public class MicrobeEditorGUI : Node
 
             var processBody = new HBoxContainer();
 
-            var usePlus = true;
+            bool usePlus;
 
             if (process.OtherInputs.Count == 0)
             {
@@ -1419,6 +1360,54 @@ public class MicrobeEditorGUI : Node
         else
         {
             speciesNameEdit.Set("custom_colors/font_color", new Color(1, 1, 1));
+        }
+    }
+
+    // ReSharper disable once RedundantNameQualifier
+    private List<KeyValuePair<string, float>> SortBarData(System.Collections.Generic.Dictionary<string, float> bar)
+    {
+        var comparer = new ATPComparer();
+
+        var result = bar.OrderBy(
+                i => i.Key, comparer)
+            .ToList();
+
+        return result;
+    }
+
+    private class ATPComparer : IComparer<string>
+    {
+        /// <summary>
+        ///   Compares ATP production / consumption items
+        /// </summary>
+        /// <remarks>
+        ///   <para>
+        ///     Only works if there aren't duplicate entries of osmoregulation or baseMovement.
+        ///   </para>
+        /// </remarks>
+        public int Compare(string stringA, string stringB)
+        {
+            if (stringA == "osmoregulation")
+            {
+                return -1;
+            }
+
+            if (stringB == "osmoregulation")
+            {
+                return 1;
+            }
+
+            if (stringA == "baseMovement")
+            {
+                return -1;
+            }
+
+            if (stringB == "baseMovement")
+            {
+                return 1;
+            }
+
+            return string.Compare(stringA, stringB, StringComparison.InvariantCulture);
         }
     }
 }

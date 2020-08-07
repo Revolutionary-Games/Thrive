@@ -1,17 +1,19 @@
 using Godot;
 
 /// <summary>
-///   A loading screen that shows cool stuff. For now this is meant to be used as a sub-scene to block out something the
-///   player shouldn't see yet.
+///   A loading screen that shows cool stuff. This is autoloaded overlay on top of other scenes.
 /// </summary>
 public class LoadingScreen : Control
 {
     [Export]
     public NodePath ArtDescriptionPath;
+
     [Export]
     public NodePath LoadingMessagePath;
+
     [Export]
     public NodePath LoadingDescriptionPath;
+
     [Export]
     public NodePath TipLabelPath;
 
@@ -20,6 +22,8 @@ public class LoadingScreen : Control
     /// </summary>
     [Export]
     public float SpinnerSpeed = 180.0f;
+
+    private static LoadingScreen instance;
 
     private Label artDescription;
     private Label loadingMessageLabel;
@@ -31,14 +35,18 @@ public class LoadingScreen : Control
     private string loadingDescription = string.Empty;
     private string tip = "TIP: press the undo button in the editor to correct a mistake";
 
-    private float totalElapsed = 0;
+    private float totalElapsed;
+
+    private LoadingScreen()
+    {
+        instance = this;
+    }
+
+    public static LoadingScreen Instance => instance;
 
     public string LoadingMessage
     {
-        get
-        {
-            return loadingMessage;
-        }
+        get => loadingMessage;
         set
         {
             if (loadingMessage == value)
@@ -55,10 +63,7 @@ public class LoadingScreen : Control
 
     public string LoadingDescription
     {
-        get
-        {
-            return loadingDescription;
-        }
+        get => loadingDescription;
         set
         {
             if (loadingDescription == value)
@@ -75,10 +80,7 @@ public class LoadingScreen : Control
 
     public string Tip
     {
-        get
-        {
-            return tip;
-        }
+        get => tip;
         set
         {
             if (tip == value)
@@ -102,22 +104,59 @@ public class LoadingScreen : Control
 
         spinner = GetNode<Control>("Spinner");
 
-        // TODO: implement randomized art showing
-
-        // TODO: implement randomized tip showing
-
         UpdateMessage();
         UpdateDescription();
         UpdateTip();
         artDescription.Text = string.Empty;
+
+        Hide();
+    }
+
+    /// <summary>
+    ///   Shows this and updates the shown messages. If this just became visible also loads new art and tip
+    /// </summary>
+    public void Show(string message, string description = "")
+    {
+        if (!Visible)
+        {
+            OnBecomeVisible();
+            Show();
+        }
+
+        LoadingMessage = message;
+        LoadingDescription = description;
+    }
+
+    public void RandomizeTip()
+    {
+        // TODO: implement randomized tip showing
+    }
+
+    public void RandomizeArt()
+    {
+        // TODO: implement randomized art showing
     }
 
     public override void _Process(float delta)
     {
+        // Only elapse passed time if this is visible
+        if (!Visible)
+            return;
+
         // Spin the spinner
         totalElapsed += delta;
 
         spinner.RectRotation = (int)(totalElapsed * SpinnerSpeed) % 360;
+    }
+
+    private void OnBecomeVisible()
+    {
+        totalElapsed = 0;
+
+        RandomizeArt();
+        RandomizeTip();
+
+        // TODO: setup timers to show next art and tip
     }
 
     private void UpdateMessage()

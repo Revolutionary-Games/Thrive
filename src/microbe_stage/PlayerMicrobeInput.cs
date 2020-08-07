@@ -17,14 +17,14 @@ public class PlayerMicrobeInput : Node
     private bool autoMoveAllowed = true;
 
     // // All the input actions
-    private bool forward = false;
-    private bool backwards = false;
-    private bool left = false;
-    private bool right = false;
+    private bool forward;
+    private bool backwards;
+    private bool left;
+    private bool right;
 
-    private bool cheatGlucose = false;
-    private bool cheatAmmonia = false;
-    private bool cheatPhosphates = false;
+    private bool cheatGlucose;
+    private bool cheatAmmonia;
+    private bool cheatPhosphates;
 
     public override void _Ready()
     {
@@ -126,10 +126,7 @@ public class PlayerMicrobeInput : Node
 
         if (@event.IsActionPressed("g_fire_toxin", true))
         {
-            if (stage.Player != null)
-            {
-                stage.Player.EmitToxin();
-            }
+            stage.Player?.EmitToxin();
         }
     }
 
@@ -139,10 +136,13 @@ public class PlayerMicrobeInput : Node
         // We reset our held down keys if the player tabs out while pressing a key
         if (focus == MainLoop.NotificationWmFocusOut)
         {
-            forward = false;
-            backwards = false;
-            left = false;
-            right = false;
+            if (!autoMoveAllowed)
+            {
+                forward = false;
+                backwards = false;
+                left = false;
+                right = false;
+            }
         }
     }
 

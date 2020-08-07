@@ -1,11 +1,13 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
+
 # This script downloads and installs godot export templates for current version on Linux
 require 'fileutils'
 require 'tmpdir'
 require 'httparty'
 
-require_relative 'bootstrap_rubysetupsystem'
-require_relative 'RubySetupSystem/RubyCommon'
+require_relative '../bootstrap_rubysetupsystem'
+require_relative '../RubySetupSystem/RubyCommon'
 
 require_relative 'godot_version'
 
