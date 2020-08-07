@@ -1,4 +1,4 @@
-[gd_scene load_steps=159 format=2]
+[gd_scene load_steps=155 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
@@ -80,6 +80,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/increase.png" type="Texture" id=78]
 [ext_resource path="res://src/engine/ChromaticFilter.tscn" type="PackedScene" id=79]
 [ext_resource path="res://src/gui_common/scrollbar_theme.tres" type="Theme" id=80]
+[ext_resource path="res://src/microbe_stage/editor/Highlight.tres" type="Material" id=81]
 [ext_resource path="res://assets/textures/gui/bevel/MediumTwoNormal.png" type="Texture" id=82]
 [ext_resource path="res://assets/textures/gui/bevel/MediumTwoDisabled.png" type="Texture" id=83]
 [ext_resource path="res://assets/textures/gui/bevel/MediumTwoHover.png" type="Texture" id=84]
@@ -114,85 +115,37 @@ font_data = ExtResource( 5 )
 texture = ExtResource( 44 )
 region_rect = Rect2( 0, 0, 480, 40 )
 
-[sub_resource type="VisualShaderNodeTexture" id=7]
-output_port_for_preview = 0
-texture = ExtResource( 42 )
-
-[sub_resource type="VisualShaderNodeVectorOp" id=8]
-
-[sub_resource type="VisualShaderNodeVec3Uniform" id=9]
-uniform_name = "GlowAmount"
-
-[sub_resource type="VisualShader" id=10]
-code = "shader_type canvas_item;
-uniform sampler2D tex_frg_2;
-uniform vec3 GlowAmount;
-
-
-
-void vertex() {
-// Output:0
-
-}
-
-void fragment() {
-// Texture:2
-	vec4 tex_frg_2_read = texture(tex_frg_2, UV.xy);
-	vec3 n_out2p0 = tex_frg_2_read.rgb;
-	float n_out2p1 = tex_frg_2_read.a;
-
-// VectorUniform:4
-	vec3 n_out4p0 = GlowAmount;
-
-// VectorOp:3
-	vec3 n_out3p0 = n_out2p0 + n_out4p0;
-
-// Output:0
-	COLOR.rgb = n_out3p0;
-
-}
-
-void light() {
-// Output:0
-
-}
-"
-custom_defines = ""
-graph_offset = Vector2( -276, -90 )
-mode = 1
-flags/light_only = false
-nodes/fragment/0/position = Vector2( 300, 60 )
-nodes/fragment/2/node = SubResource( 7 )
-nodes/fragment/2/position = Vector2( -160, 60 )
-nodes/fragment/3/node = SubResource( 8 )
-nodes/fragment/3/position = Vector2( 120, 60 )
-nodes/fragment/4/node = SubResource( 9 )
-nodes/fragment/4/position = Vector2( 120, 200 )
-nodes/fragment/connections = PoolIntArray( 3, 0, 0, 0, 2, 0, 3, 0, 4, 0, 3, 1 )
-
-[sub_resource type="ShaderMaterial" id=11]
-shader = SubResource( 10 )
-shader_param/GlowAmount = Vector3( 0, 0, 0 )
-
-[sub_resource type="DynamicFont" id=12]
+[sub_resource type="DynamicFont" id=76]
 font_data = ExtResource( 5 )
 
 [sub_resource type="Animation" id=73]
 resource_name = "FlashBar"
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:material:shader_param/GlowAmount")
+tracks/0/path = NodePath(".:material:shader_param/ColorUniform")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.5, 0.7, 1 ),
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector3( 0, 0, 0 ), Vector3( 0.467, 0.213, 0.324 ), Vector3( 0, 0, 0 ), Vector3( 0.467, 0.213, 0.324 ), Vector3( 0, 0, 0 ) ]
+"values": [ Color( 0, 0, 0, 1 ), Color( 0.505882, 0.25098, 0.25098, 1 ), Color( 0, 0, 0, 1 ), Color( 0.505882, 0.25098, 0.25098, 1 ), Color( 0, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Background:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0.392157 ), Color( 0.619608, 0.168627, 0.168627, 0.878431 ), Color( 0, 0, 0, 0.392157 ), Color( 0.619608, 0.168627, 0.168627, 0.878431 ), Color( 0, 0, 0, 0.392157 ) ]
 }
 
-[sub_resource type="DynamicFont" id=13]
+[sub_resource type="DynamicFont" id=77]
 font_data = ExtResource( 73 )
 
 [sub_resource type="StyleBoxFlat" id=14]
@@ -1238,6 +1191,7 @@ margin_bottom = 35.0
 custom_constants/separation = -15
 
 [node name="MPIcon" type="TextureRect" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer/MPBox/MarginContainer/HBoxContainer"]
+material = ExtResource( 81 )
 margin_right = 25.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 25, 25 )
@@ -1249,11 +1203,12 @@ expand = true
 [node name="MPBar" type="TextureProgress" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer/MPBox/MarginContainer/HBoxContainer"]
 self_modulate = Color( 0.705882, 0.705882, 0.705882, 1 )
 show_behind_parent = true
-material = SubResource( 11 )
+material = ExtResource( 81 )
 margin_left = 10.0
 margin_right = 450.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 440, 25 )
+size_flags_horizontal = 0
 size_flags_vertical = 0
 step = 0.1
 value = 100.0
@@ -1262,10 +1217,11 @@ nine_patch_stretch = true
 
 [node name="Background" type="ColorRect" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer/MPBox/MarginContainer/HBoxContainer/MPBar"]
 show_behind_parent = true
+light_mask = -2147483647
 margin_right = 440.0
 margin_bottom = 25.0
 mouse_filter = 1
-color = Color( 0.117647, 0.117647, 0.117647, 0.392157 )
+color = Color( 0, 0, 0, 0.392157 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1289,7 +1245,7 @@ margin_left = 25.0
 margin_top = 3.0
 margin_right = 145.0
 margin_bottom = 21.0
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 76 )
 text = "Mutation Points"
 align = 1
 valign = 1
@@ -1302,7 +1258,7 @@ margin_left = 190.0
 margin_top = 3.0
 margin_right = 258.0
 margin_bottom = 21.0
-custom_fonts/font = SubResource( 12 )
+custom_fonts/font = SubResource( 76 )
 text = "100 / 100"
 align = 1
 valign = 1
@@ -1310,7 +1266,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer/MPBox/MarginContainer/HBoxContainer/MPBar"]
+[node name="FlashAnimation" type="AnimationPlayer" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer/MPBox/MarginContainer/HBoxContainer/MPBar"]
 anims/FlashBar = SubResource( 73 )
 
 [node name="NewCellButton" type="TextureButton" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer"]
@@ -1345,7 +1301,7 @@ margin_left = 44.0
 margin_top = 11.0
 margin_right = 77.0
 margin_bottom = 29.0
-custom_fonts/font = SubResource( 13 )
+custom_fonts/font = SubResource( 77 )
 text = "NEW"
 
 [node name="CellEditor" type="Control" parent="MicrobeEditorGUI"]
@@ -10005,7 +9961,6 @@ text = "Atmospheric Gasses"
 margin_top = 22.0
 margin_right = 528.0
 margin_bottom = 97.0
-rect_min_size = Vector2( 0, 75 )
 rect_clip_content = true
 mouse_filter = 2
 

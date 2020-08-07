@@ -575,12 +575,13 @@ public class MicrobeEditorGUI : Node
 
     internal void OnInvalidHexLocationSelected()
     {
-        GD.Print("Invalid Hex location");
+
     }
 
     internal void OnInsufficientMPToPlaceHex()
     {
-        GD.Print("Insufficient MP to place Hex");
+        AnimationPlayer animationPlayer = mutationPointsBar.GetNode<AnimationPlayer>("FlashAnimation");
+        animationPlayer.Play("FlashBar");
     }
 
     /// <summary>
