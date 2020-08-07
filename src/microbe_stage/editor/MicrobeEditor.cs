@@ -1603,7 +1603,14 @@ public class MicrobeEditor : Node, ILoadableGameState
         GD.Print("Applying auto-evo results");
         CurrentGame.GameWorld.GetAutoEvoRun().ApplyExternalEffects();
 
-        CurrentGame.GameWorld.Map.RemoveExtinctSpecies(FreeBuilding);
+        var extinct = CurrentGame.GameWorld.Map.RemoveExtinctSpecies(FreeBuilding);
+
+        foreach (var species in extinct)
+        {
+            CurrentGame.GameWorld.RemoveSpecies(species);
+
+            GD.Print("Species ", species.FormattedName, " has gone extinct from the world.");
+        }
 
         CurrentGame.GameWorld.Map.UpdateGlobalPopulations();
 

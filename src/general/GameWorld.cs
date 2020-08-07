@@ -241,6 +241,11 @@ public class GameWorld
         autoEvo.AddExternalPopulationEffect(species, constant, coefficient, description);
     }
 
+    public void RemoveSpecies(Species species)
+    {
+        worldSpecies.Remove(species.ID);
+    }
+
     public Species GetSpecies(uint id)
     {
         return worldSpecies[id];
