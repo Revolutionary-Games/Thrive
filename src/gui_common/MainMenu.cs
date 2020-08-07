@@ -46,7 +46,6 @@ public class MainMenu : Node
     public override void _Ready()
     {
         RunMenuSetup();
-        GD.Print("Testing Mod");
 
         // Start intro video
         if (Settings.Instance.PlayIntroVideo && !IsReturningToMenu)

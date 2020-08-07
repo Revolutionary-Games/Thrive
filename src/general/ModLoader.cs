@@ -167,12 +167,10 @@ public class ModLoader : Control
         {
             if (string.IsNullOrEmpty(currentMod.Dll))
             {
-                if (!File.Exists(currentMod.Location + "/" + currentMod.Dll))
+                if (File.Exists(currentMod.Location + "/" + currentMod.Dll))
                 {
-                    continue;
+                    Assembly.LoadFile(currentMod.Location + "/" + currentMod.Dll);
                 }
-
-                Assembly.LoadFile(currentMod.Location + "/" + currentMod.Dll);
             }
 
             if (!File.Exists(currentMod.Location + "/mod.pck"))
