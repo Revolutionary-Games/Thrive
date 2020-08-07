@@ -33,7 +33,7 @@ public class BioProcess : IRegistryType
                 "Process has no inputs AND no outputs");
         }
 
-        foreach(KeyValuePair<Compound, float> input in Inputs)
+        foreach (var input in Inputs)
         {
             if (input.Value <= 0)
             {
@@ -42,7 +42,7 @@ public class BioProcess : IRegistryType
             }
         }
 
-        foreach(KeyValuePair<Compound, float> output in Outputs)
+        foreach (var output in Outputs)
         {
             if (output.Value <= 0)
             {
