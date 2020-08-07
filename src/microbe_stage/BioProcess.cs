@@ -38,7 +38,7 @@ public class BioProcess : IRegistryType
             if (input.Value <= 0)
             {
                 throw new InvalidRegistryDataException(name, GetType().Name,
-                  "Non-positive amount of input compound " + input.Key.ToString() + " found");
+                    "Non-positive amount of input compound " + input.Key.ToString() + " found");
             }
         }
 
@@ -47,7 +47,7 @@ public class BioProcess : IRegistryType
             if (output.Value <= 0)
             {
                 throw new InvalidRegistryDataException(name, GetType().Name,
-                  "Non-positive amount of output compound " + output.Key.ToString() + " found");
+                    "Non-positive amount of output compound " + output.Key.ToString() + " found");
             }
         }
     }
