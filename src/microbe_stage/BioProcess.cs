@@ -32,5 +32,23 @@ public class BioProcess : IRegistryType
             throw new InvalidRegistryDataException(name, GetType().Name,
                 "Process has no inputs AND no outputs");
         }
+
+        foreach (var input in Inputs)
+        {
+            if (input.Value <= 0)
+            {
+                throw new InvalidRegistryDataException(name, GetType().Name,
+                    "Non-positive amount of input compound " + input.Key + " found");
+            }
+        }
+
+        foreach (var output in Outputs)
+        {
+            if (output.Value <= 0)
+            {
+                throw new InvalidRegistryDataException(name, GetType().Name,
+                    "Non-positive amount of output compound " + output.Key + " found");
+            }
+        }
     }
 }
