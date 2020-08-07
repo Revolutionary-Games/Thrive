@@ -10424,6 +10424,8 @@ __meta__ = {
 visible = false
 theme = ExtResource( 53 )
 HelpCategory = "MicrobeEditor"
+[connection signal="InsufficientMPToPlaceHex" from="." to="MicrobeEditorGUI" method="OnInsufficientMPToPlaceHex"]
+[connection signal="InvalidPlacementOfHex" from="." to="MicrobeEditorGUI" method="OnInvalidHexLocationSelected"]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/LeftTopBar" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/LeftTopBar" to="MicrobeEditorGUI" method="OnMouseExit"]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/LeftTopBar/HBoxContainer/ReportButton" to="MicrobeEditorGUI" method="OnMouseEnter"]

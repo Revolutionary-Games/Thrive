@@ -573,6 +573,16 @@ public class MicrobeEditorGUI : Node
         editor.CreateNewMicrobe();
     }
 
+    internal void OnInvalidHexLocationSelected()
+    {
+        GD.Print("Invalid Hex location");
+    }
+
+    internal void OnInsufficientMPToPlaceHex()
+    {
+        GD.Print("Insufficient MP to place Hex");
+    }
+
     /// <summary>
     ///   Lock / unlock the organelles  that need a nuclues
     /// </summary>
