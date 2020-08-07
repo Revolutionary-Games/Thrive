@@ -28,7 +28,6 @@ public class PauseMenu : Control
     private HelpScreen helpScreen;
     private Control loadMenu;
     private NewSaveMenu saveMenu;
-    private SaveList loadSaveList;
 
     [Signal]
     public delegate void OnClosed();
@@ -58,7 +57,6 @@ public class PauseMenu : Control
         primaryMenu = GetNode<Control>(PrimaryMenuPath);
         loadMenu = GetNode<Control>(LoadMenuPath);
         saveMenu = GetNode<NewSaveMenu>(SaveMenuPath);
-        loadSaveList = GetNode<SaveList>(LoadSaveListPath);
     }
 
     public override void _UnhandledInput(InputEvent @event)
@@ -129,7 +127,6 @@ public class PauseMenu : Control
         GUICommon.Instance.PlayButtonPressSound();
 
         SetActiveMenu("load");
-        loadSaveList.Refresh();
     }
 
     private void CloseLoadPressed()
@@ -144,7 +141,6 @@ public class PauseMenu : Control
         GUICommon.Instance.PlayButtonPressSound();
 
         SetActiveMenu("save");
-        saveMenu.RefreshExisting();
     }
 
     private void CloseSavePressed()
