@@ -414,7 +414,6 @@ public class MicrobeEditor : Node, ILoadableGameState
             editedSpecies.FormattedName);
 
         // Update name
-        NewName = gui.GetNewSpeciesName();
         var splits = NewName.Split(" ");
         if (splits.Length == 2)
         {

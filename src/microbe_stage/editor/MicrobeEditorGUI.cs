@@ -281,11 +281,6 @@ public class MicrobeEditorGUI : Node
     /// </summary>
     private bool speciesListIsHidden;
 
-    public string GetNewSpeciesName()
-    {
-        return speciesNameEdit.Text;
-    }
-
     public override void _Ready()
     {
         organelleSelectionElements = GetTree().GetNodesInGroup("OrganelleSelectionElement");
@@ -1361,6 +1356,8 @@ public class MicrobeEditorGUI : Node
         {
             speciesNameEdit.Set("custom_colors/font_color", new Color(1, 1, 1));
         }
+
+        editor.NewName = newText;
     }
 
     // ReSharper disable once RedundantNameQualifier
