@@ -286,11 +286,6 @@ public class MicrobeEditorGUI : Node
         return speciesNameEdit.Text;
     }
 
-    public Color GetMembraneColor()
-    {
-        return membraneColorPicker.Color;
-    }
-
     public override void _Ready()
     {
         organelleSelectionElements = GetTree().GetNodesInGroup("OrganelleSelectionElement");
@@ -784,6 +779,11 @@ public class MicrobeEditorGUI : Node
     private void OnRigidityChanged(int value)
     {
         editor.SetRigidity(value);
+    }
+
+    private void OnColorChanged(Color color)
+    {
+        editor.Colour = color;
     }
 
     private void MoveToPatchClicked()

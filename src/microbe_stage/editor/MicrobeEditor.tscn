@@ -10447,6 +10447,7 @@ HelpCategory = "MicrobeEditor"
 [connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/RigiditySlider" to="MicrobeEditorGUI" method="OnItemMouseHover" binds= [ "rigiditySlider" ]]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/RigiditySlider" to="MicrobeEditorGUI" method="OnItemMouseExit"]
 [connection signal="value_changed" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/RigiditySlider" to="MicrobeEditorGUI" method="OnRigidityChanged"]
+[connection signal="color_changed" from="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/ColorPicker" to="MicrobeEditorGUI" method="OnColorChanged"]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/BottomBar" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/BottomBar" to="MicrobeEditorGUI" method="OnMouseExit"]
 [connection signal="pressed" from="MicrobeEditorGUI/CellEditor/BottomBar/MenuButton" to="MicrobeEditorGUI" method="MenuButtonPressed"]

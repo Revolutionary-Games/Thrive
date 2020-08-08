@@ -161,6 +161,12 @@ public class MicrobeEditor : Node, ILoadableGameState
     public MembraneType Membrane { get; private set; }
 
     /// <summary>
+    ///   Current selected colour for the species.
+    /// </summary>
+    [JsonProperty]
+    public Color Colour { get; set; }
+
+    /// <summary>
     ///   The name of organelle type that is selected to be placed
     /// </summary>
     [JsonProperty]
@@ -425,7 +431,7 @@ public class MicrobeEditor : Node, ILoadableGameState
 
         // Update membrane
         editedSpecies.MembraneType = Membrane;
-        editedSpecies.Colour = gui.GetMembraneColor();
+        editedSpecies.Colour = Colour;
         editedSpecies.MembraneRigidity = Rigidity;
 
         // Move patches
@@ -961,6 +967,7 @@ public class MicrobeEditor : Node, ILoadableGameState
         // organelles are added)
         Membrane = species.MembraneType;
         Rigidity = species.MembraneRigidity;
+        Colour = species.Colour;
 
         // Get the species organelles to be edited. This also updates the placeholder hexes
         foreach (var organelle in species.Organelles.Organelles)
@@ -994,7 +1001,7 @@ public class MicrobeEditor : Node, ILoadableGameState
             gui.OnOrganelleToPlaceSelected("cytoplasm");
         }
 
-        gui.SetSpeciesInfo(NewName, Membrane, species.Colour, Rigidity);
+        gui.SetSpeciesInfo(NewName, Membrane, Colour, Rigidity);
         gui.UpdateGeneration(species.Generation);
     }
 
