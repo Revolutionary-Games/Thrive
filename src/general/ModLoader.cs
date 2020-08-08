@@ -175,11 +175,18 @@ public class ModLoader : Control
 
             if (!File.Exists(currentMod.Location + "/mod.pck"))
             {
+                GD.Print("Fail to find mod file: " + currentMod.ModName);
                 continue;
             }
 
-            ProjectSettings.LoadResourcePack(currentMod.Location + "/mod.pck");
-            GD.Print("Loaded mod: " + currentMod.ModName);
+            if (ProjectSettings.LoadResourcePack(currentMod.Location + "/mod.pck", true))
+            {
+                GD.Print("Loaded mod: " + currentMod.ModName);
+            }
+            else
+            {
+                GD.Print("Failed to load mod: " + currentMod.ModName);
+            }
         }
 
         GD.Print("All mods loaded");
