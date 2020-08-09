@@ -193,6 +193,7 @@ public class ModLoader : Control
         }
 
         GD.Print("All mods loaded");
+        GetTree().ReloadCurrentScene();
     }
 
     private void OnBackPressed()
