@@ -28,6 +28,8 @@ public class ModLoader : Control
 
     private ItemList unloadedItemList;
     private ItemList loadedItemList;
+
+    //Labels For The Mod Info Box
     private Label modInfoName;
     private Label modInfoAuthor;
     private Label modInfoVersion;
@@ -39,17 +41,18 @@ public class ModLoader : Control
     [Signal]
     public delegate void OnModLoaderClosed();
 
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         unloadedItemList = GetNode<ItemList>(UnloadedItemListPath);
         loadedItemList = GetNode<ItemList>(LoadedItemListPath);
+
         modInfoName = GetNode<Label>(ModInfoNamePath);
         modInfoAuthor = GetNode<Label>(ModInfoAuthorPath);
         modInfoVersion = GetNode<Label>(ModInfoVersionPath);
         modInfoDescription = GetNode<Label>(ModInfoDescriptionPath);
 
         DirectoryInfo modFolder = Directory.CreateDirectory($"{Directory.GetCurrentDirectory()}\\mods");
+
         foreach (DirectoryInfo currentMod in modFolder.EnumerateDirectories())
         {
             if (!File.Exists(currentMod.FullName + "/mod_info.json"))
