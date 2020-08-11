@@ -402,8 +402,7 @@ public class SpawnSystem
         float rotation1 = (float)(random.NextDouble() * 2 * Math.PI);
         float rotation2 = (float)(random.NextDouble() * 2 * Math.PI);
 
-        if (Math.Abs(NormalToWithNegativesRadians(Math.Abs(rotation1 - targetRotation)))
-            < Math.Abs(NormalToWithNegativesRadians(Math.Abs(rotation2 - targetRotation))))
+        if (DistanceBetweenRadians(rotation1, targetRotation) < DistanceBetweenRadians(rotation2, targetRotation))
             return NormalToWithNegativesRadians(rotation1);
         return NormalToWithNegativesRadians(rotation2);
     }
@@ -416,6 +415,12 @@ public class SpawnSystem
     private float WithNegativesToNormalRadians(float radian)
     {
         return radian >= 0 ? radian : (float)(2 * Math.PI) - radian;
+    }
+
+    private float DistanceBetweenRadians(float p1, float p2)
+    {
+        float distance = Math.Abs(p1 - p2);
+        return distance <= Math.PI ? distance : (float)(2 * Math.PI) - distance;
     }
 
     private class QueuedSpawn
