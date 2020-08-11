@@ -24,7 +24,7 @@ public class Fade : CanvasLayer, ITransition
         /// <summary>
         ///   Screen fades out
         /// </summary>
-        FadeOut
+        FadeOut,
     }
 
     public Control ControlNode { get; private set; }

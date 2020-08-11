@@ -370,7 +370,7 @@ public class SaveInformation
         /// <summary>
         ///   Quick save, separate from manual to make it easier to keep a fixed number of quick saves
         /// </summary>
-        QuickSave
+        QuickSave,
     }
 
     /// <summary>

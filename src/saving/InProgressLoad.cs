@@ -38,7 +38,7 @@ public class InProgressLoad
         ReadingData,
         ProcessingLoadedObjects,
         CreatingScene,
-        Finished
+        Finished,
     }
 
     public void ReportStatus(bool success, string message, string exception = "")

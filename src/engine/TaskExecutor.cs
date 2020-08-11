@@ -201,7 +201,7 @@ public class TaskExecutor
         public enum Type
         {
             Task,
-            Quit
+            Quit,
         }
     }
 }

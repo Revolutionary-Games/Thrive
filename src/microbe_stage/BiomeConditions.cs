@@ -39,7 +39,7 @@ public class BiomeConditions : ICloneable, ISaveLoadable
         {
             AverageTemperature = AverageTemperature,
             Compounds = new Dictionary<Compound, EnvironmentalCompoundProperties>(Compounds.Count),
-            Chunks = new Dictionary<string, ChunkConfiguration>(Chunks.Count)
+            Chunks = new Dictionary<string, ChunkConfiguration>(Chunks.Count),
         };
 
         foreach (var entry in Compounds)

@@ -65,7 +65,7 @@ public class AutoEvoRun
         /// <summary>
         ///   All the steps are done and the result is written
         /// </summary>
-        ENDED
+        ENDED,
     }
 
     /// <summary>

@@ -19,7 +19,7 @@ public class RegistryTypeStringConverter : TypeConverter
                 "compound",
                 new SupportedRegistryType(typeof(Compound), "compound",
                     name => SimulationParameters.Instance.GetCompound(name))
-            }
+            },
         };
 
     public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)

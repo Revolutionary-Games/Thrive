@@ -91,7 +91,7 @@ public class MicrobeAI
         FLEEING_STATE,
         PREDATING_STATE,
         PLANTLIKE_STATE,
-        SCAVENGING_STATE
+        SCAVENGING_STATE,
     }
 
     private float SpeciesAggression => microbe.Species.Aggression;

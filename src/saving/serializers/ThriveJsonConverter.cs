@@ -52,7 +52,7 @@ public class ThriveJsonConverter : IDisposable
             // Specific Godot Node converter types
 
             // Fallback Godot Node converter
-            new BaseNodeConverter(context)
+            new BaseNodeConverter(context),
         };
 
         thriveConvertersDynamicDeserialize = new List<JsonConverter> { new DynamicDeserializeObjectConverter(context) };
@@ -141,7 +141,7 @@ public class ThriveJsonConverter : IDisposable
 
             Converters = thriveConverters,
 
-            ReferenceResolverProvider = () => referenceResolver
+            ReferenceResolverProvider = () => referenceResolver,
         };
     }
 
@@ -386,7 +386,7 @@ public abstract class BaseThriveConverter : JsonConverter
             set.Invoke(instance, new[]
             {
                 ReadMember(name, property.PropertyType, item, instance, reader,
-                    serializer)
+                    serializer),
             });
         }
 
