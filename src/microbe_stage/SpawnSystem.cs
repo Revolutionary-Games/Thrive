@@ -404,6 +404,7 @@ public class SpawnSystem
 
         if (DistanceBetweenRadians(rotation1, targetRotation) < DistanceBetweenRadians(rotation2, targetRotation))
             return NormalToWithNegativesRadians(rotation1);
+
         return NormalToWithNegativesRadians(rotation2);
     }
 

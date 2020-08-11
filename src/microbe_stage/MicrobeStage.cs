@@ -431,7 +431,7 @@ public class MicrobeStage : Node, ILoadableGameState
             "spawner",
             "Player",
             "Camera",
-            "Clouds",
+            "Clouds"
         });
 
         spawner.ApplyPropertiesFromSave(savedMicrobeStage.spawner);

@@ -12,7 +12,7 @@ public static class FeatureInformation
         "HTML5",
         "Windows",
         "OSX",
-        "iOS",
+        "iOS"
     };
 
     public static string GetOS()

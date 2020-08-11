@@ -404,7 +404,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             {
                 Definition = entry.Definition,
                 Position = entry.Position,
-                Orientation = entry.Orientation,
+                Orientation = entry.Orientation
             };
 
             organelles.Add(placed);
@@ -680,7 +680,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
                 VentAmount = 0.1f,
 
                 // Add compounds
-                Compounds = new Dictionary<Compound, ChunkConfiguration.ChunkCompound>(),
+                Compounds = new Dictionary<Compound, ChunkConfiguration.ChunkCompound>()
             };
 
             // They were added in order already so looping through this other thing is fine
@@ -690,7 +690,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
                 {
                     // Randomize compound amount a bit so things "rot away"
                     Amount = (entry.Value / random.Next(amount / 3.0f, amount)) *
-                        Constants.CORPSE_COMPOUND_COMPENSATION,
+                        Constants.CORPSE_COMPOUND_COMPENSATION
                 };
 
                 chunkType.Compounds[entry.Key] = compoundValue;
@@ -1030,7 +1030,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     {
         SaveApplyHelper.CopyJSONSavedPropertiesAndFields(this, microbe, new List<string>
         {
-            "organelles",
+            "organelles"
         });
 
         NodeGroupSaveHelper.CopyGroups(this, microbe);

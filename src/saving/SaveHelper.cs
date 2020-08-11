@@ -19,7 +19,7 @@ public static class SaveHelper
         /// <summary>
         ///   Whatever file the filesystem API gives us is first
         /// </summary>
-        FileSystem,
+        FileSystem
     }
 
     public static void RemoveExcessQuickSaves()
@@ -230,7 +230,7 @@ public static class SaveHelper
         {
             GameState = gameState,
             Info = { Type = type },
-            Screenshot = ScreenShotTaker.Instance.TakeScreenshot(),
+            Screenshot = ScreenShotTaker.Instance.TakeScreenshot()
         };
     }
 

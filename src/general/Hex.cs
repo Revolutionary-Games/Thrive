@@ -19,7 +19,7 @@ public struct Hex : IEquatable<Hex>
             { HexSide.BOTTOM_RIGHT, HexSide.TOP_LEFT },
             { HexSide.BOTTOM, HexSide.TOP },
             { HexSide.BOTTOM_LEFT, HexSide.TOP_RIGHT },
-            { HexSide.TOP_LEFT, HexSide.BOTTOM_RIGHT },
+            { HexSide.TOP_LEFT, HexSide.BOTTOM_RIGHT }
         };
 
     /// <summary>
@@ -35,7 +35,7 @@ public struct Hex : IEquatable<Hex>
             { HexSide.BOTTOM_RIGHT, new Hex(1, -1) },
             { HexSide.BOTTOM, new Hex(0, -1) },
             { HexSide.BOTTOM_LEFT, new Hex(-1, 0) },
-            { HexSide.TOP_LEFT, new Hex(-1, 1) },
+            { HexSide.TOP_LEFT, new Hex(-1, 1) }
         };
 
     public int Q;
@@ -80,7 +80,7 @@ public struct Hex : IEquatable<Hex>
         /// <summary>
         ///   Up and left
         /// </summary>
-        TOP_LEFT = 6,
+        TOP_LEFT = 6
     }
 
     public static Hex operator +(Hex a, Hex b)

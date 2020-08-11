@@ -56,7 +56,7 @@ public class InProgressSave : IDisposable
         Initial,
         Screenshot,
         SaveData,
-        Finished,
+        Finished
     }
 
     public SaveInformation.SaveType Type { get; }

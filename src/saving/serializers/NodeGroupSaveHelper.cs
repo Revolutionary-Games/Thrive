@@ -15,7 +15,7 @@ public static class NodeGroupSaveHelper
     {
         "physics_process",
         "process",
-        "idle_process",
+        "idle_process"
     };
 
     public static void WriteGroups(JsonWriter writer, Node value, JsonSerializer serializer)

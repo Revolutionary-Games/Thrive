@@ -22,7 +22,7 @@ public class OverlayManager : Node
             "LoadingScreen",
             "SaveStatusOverlay",
             "ColourblindScreenFilter",
-            "FPSCounter",
+            "FPSCounter"
         };
 
         foreach (var name in overlays)

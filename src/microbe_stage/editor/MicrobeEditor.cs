@@ -142,7 +142,7 @@ public class MicrobeEditor : Node, ILoadableGameState
         /// <summary>
         /// Symmetry across the X and Y axis, as well as across center, in the editor.
         /// </summary>
-        SixWaySymmetry,
+        SixWaySymmetry
     }
 
     [JsonIgnore]

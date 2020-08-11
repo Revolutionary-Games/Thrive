@@ -17,7 +17,7 @@ public class MusicCategory : IRegistryType
         /// <summary>
         ///   Previous tracks are continued
         /// </summary>
-        Continue,
+        Continue
     }
 
     public enum Transition
@@ -25,7 +25,7 @@ public class MusicCategory : IRegistryType
         /// <summary>
         ///   There is a fade between the categories
         /// </summary>
-        Fade,
+        Fade
     }
 
     public enum TrackTransitionType
@@ -33,7 +33,7 @@ public class MusicCategory : IRegistryType
         /// <summary>
         ///   No transition between tracks
         /// </summary>
-        None,
+        None
     }
 
     public ReturnType Return { get; set; } = ReturnType.Continue;
@@ -70,7 +70,7 @@ public class TrackList
         /// <summary>
         ///   Tracks from all categories are played
         /// </summary>
-        Concurrent,
+        Concurrent
     }
 
     public enum Order
@@ -83,7 +83,7 @@ public class TrackList
         /// <summary>
         ///   Track order is as specified in the file
         /// </summary>
-        Sequential,
+        Sequential
     }
 
     public Type ListType { get; set; } = Type.Concurrent;

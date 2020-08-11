@@ -34,7 +34,7 @@ public class SegmentedBar : HBoxContainer
         /// <summary>
         ///   ATP showing bar
         /// </summary>
-        ATP,
+        ATP
     }
 
     /// <summary>
