@@ -29,7 +29,7 @@ public class ModLoader : Control
     private ItemList unloadedItemList;
     private ItemList loadedItemList;
 
-    //Labels For The Mod Info Box
+    // Labels For The Mod Info Box
     private Label modInfoName;
     private Label modInfoAuthor;
     private Label modInfoVersion;
@@ -193,7 +193,7 @@ public class ModLoader : Control
         }
 
         GD.Print("All mods loaded");
-        GetTree().ReloadCurrentScene();
+        SceneManager.Instance.ReturnToMenu();
     }
 
     private void OnBackPressed()
