@@ -25,26 +25,23 @@ public static class SaveHelper
     public static void RemoveExcessAutoSaves()
     {
         int maxAutoSaves = Settings.Instance.MaxAutoSaves;
-        int autoSaveCount = 0;
 
-        List<string> autoSaveNames = new List<string>();
-        List<string> allSaveNames = CreateListOfSaves();
+        var autoSaveNames = new List<string>();
+        var allSaveNames = CreateListOfSaves();
 
-        allSaveNames.Reverse();
-
-        foreach (var save in allSaveNames)
+        foreach (var save in allSaveNames.AsEnumerable().Reverse())
         {
             if (save.StartsWith("auto_save", StringComparison.CurrentCulture))
             {
                 autoSaveNames.Add(save);
-                ++autoSaveCount;
             }
 
-            if (autoSaveCount >= maxAutoSaves && autoSaveNames.Count > 0)
+            if (autoSaveNames.Count >= maxAutoSaves && autoSaveNames.Count > 0)
             {
+                GD.Print("Found more auto-saved files than specified in Settings; ",
+                    "deleting current oldest auto-saved file: ", autoSaveNames[0]);
                 DeleteSave(autoSaveNames[0]);
                 autoSaveNames.RemoveAt(0);
-                --autoSaveCount;
             }
         }
     }
@@ -52,26 +49,23 @@ public static class SaveHelper
     public static void RemoveExcessQuickSaves()
     {
         int maxQuickSaves = Settings.Instance.MaxQuickSaves;
-        int quickSaveCount = 0;
 
         List<string> quickSaveNames = new List<string>();
         List<string> allSaveNames = CreateListOfSaves();
 
-        allSaveNames.Reverse();
-
-        foreach (var save in allSaveNames)
+        foreach (var save in allSaveNames.AsEnumerable().Reverse())
         {
             if (save.StartsWith("quick_save", StringComparison.CurrentCulture))
             {
                 quickSaveNames.Add(save);
-                ++quickSaveCount;
             }
 
-            if (quickSaveCount >= maxQuickSaves && quickSaveNames.Count > 0)
+            if (quickSaveNames.Count >= maxQuickSaves && quickSaveNames.Count > 0)
             {
+                GD.Print("Found more quick-saved files than specified in Settings; ",
+                    "deleting current oldest quick-saved file: ", quickSaveNames[0]);
                 DeleteSave(quickSaveNames[0]);
                 quickSaveNames.RemoveAt(0);
-                --quickSaveCount;
             }
         }
     }
