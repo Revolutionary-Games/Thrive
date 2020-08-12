@@ -28,6 +28,7 @@ ModInfoAuthorPath = NodePath("MarginContainer/VBoxContainer/PanelContainer2/Marg
 ModInfoVersionPath = NodePath("MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/Label3")
 ModInfoDescriptionPath = NodePath("MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/Label4")
 LoadedItemListPath = NodePath("MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer3/ItemList")
+ConfirmationPopupPath = NodePath("ConfirmationDialog")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_left = -0.00331078
@@ -247,22 +248,35 @@ margin_bottom = 619.0
 alignment = 1
 
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 332.0
-margin_right = 432.0
+margin_left = 239.0
+margin_right = 339.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 35 )
 text = "Back"
 
 [node name="VSeparator" type="VSeparator" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 436.0
-margin_right = 536.0
+margin_left = 343.0
+margin_right = 443.0
+margin_bottom = 35.0
+custom_styles/separator = SubResource( 3 )
+custom_constants/separation = 100
+
+[node name="Button4" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 447.0
+margin_right = 524.0
+margin_bottom = 35.0
+text = "Reset"
+
+[node name="VSeparator3" type="VSeparator" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 528.0
+margin_right = 628.0
 margin_bottom = 35.0
 custom_styles/separator = SubResource( 3 )
 custom_constants/separation = 100
 
 [node name="Button3" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 540.0
-margin_right = 640.0
+margin_left = 632.0
+margin_right = 732.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 35 )
 text = "Refresh"
@@ -271,22 +285,36 @@ __meta__ = {
 }
 
 [node name="VSeparator2" type="VSeparator" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 644.0
-margin_right = 744.0
+margin_left = 736.0
+margin_right = 836.0
 margin_bottom = 35.0
 custom_styles/separator = SubResource( 3 )
 custom_constants/separation = 100
 
 [node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 748.0
-margin_right = 848.0
+margin_left = 840.0
+margin_right = 940.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 35 )
 text = "Load"
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -136.699
+margin_top = -71.5148
+margin_right = 208.301
+margin_bottom = 44.4852
+window_title = ""
+dialog_text = "Are you sure you want to reset?"
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/ItemList" to="." method="OnUnloadedModSelected"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/CenterBar/VBoxContainer/Button" to="." method="OnMoveToUnloadPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/CenterBar/VBoxContainer/Button2" to="." method="OnMoveToLoadPressed"]
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer3/ItemList" to="." method="OnLoadedModSelected"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/Button" to="." method="OnBackPressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/Button4" to="." method="OnResetPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/Button3" to="." method="OnRefreshPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/Button2" to="." method="OnLoadPressed"]
+[connection signal="confirmed" from="ConfirmationDialog" to="." method="ResetGame"]

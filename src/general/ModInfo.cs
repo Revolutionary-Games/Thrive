@@ -11,4 +11,6 @@ public class ModInfo : Node
     public string Description;
     public string Location;
     public string Dll;
+
+    public bool Autoload;
 }

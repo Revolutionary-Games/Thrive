@@ -26,6 +26,9 @@ public class ModLoader : Control
     [Export]
     public NodePath LoadedItemListPath;
 
+    [Export]
+    public NodePath ConfirmationPopupPath;
+
     private ItemList unloadedItemList;
     private ItemList loadedItemList;
 
@@ -34,6 +37,8 @@ public class ModLoader : Control
     private Label modInfoAuthor;
     private Label modInfoVersion;
     private Label modInfoDescription;
+
+    private ConfirmationDialog confirmationPopup;
 
     private List<ModInfo> modList = new List<ModInfo>();
     private List<ModInfo> loadedModList = new List<ModInfo>();
@@ -50,6 +55,8 @@ public class ModLoader : Control
         modInfoAuthor = GetNode<Label>(ModInfoAuthorPath);
         modInfoVersion = GetNode<Label>(ModInfoVersionPath);
         modInfoDescription = GetNode<Label>(ModInfoDescriptionPath);
+
+        confirmationPopup = GetNode<ConfirmationDialog>(ConfirmationPopupPath);
 
         DirectoryInfo modFolder = Directory.CreateDirectory($"{Directory.GetCurrentDirectory()}\\mods");
 
@@ -200,5 +207,32 @@ public class ModLoader : Control
     {
         GUICommon.Instance.PlayButtonPressSound();
         EmitSignal(nameof(OnModLoaderClosed));
+    }
+
+    private void OnResetPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        confirmationPopup.PopupCentered();
+    }
+
+    private void ResetGame()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        if (!File.Exists(Directory.GetCurrentDirectory() + "/Thrive.pck"))
+        {
+            GD.Print("Fail to find Thrive");
+            return;
+        }
+
+        if (ProjectSettings.LoadResourcePack(Directory.GetCurrentDirectory() + "/Thrive.pck", true))
+        {
+            GD.Print("Reset successful");
+        }
+        else
+        {
+            GD.Print("Reset failed");
+        }
+
+        SceneManager.Instance.ReturnToMenu();
     }
 }
