@@ -31,13 +31,13 @@ public class Patch
     [JsonProperty]
     public readonly int[] Depth;
 
-    public Patch(string name, int id, Biome biomeTemplate, int minDepth, int maxDepth)
+    public Patch(string name, int id, Biome biomeTemplate)
     {
         Name = name;
         ID = id;
         BiomeTemplate = biomeTemplate;
         Biome = (BiomeConditions)biomeTemplate.Conditions.Clone();
-        Depth = new int[2] { minDepth, maxDepth };
+        Depth = new int[2] { -1, -1 };
     }
 
     [JsonProperty]
