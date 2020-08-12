@@ -59,7 +59,6 @@ public class ModLoader : Control
         confirmationPopup = GetNode<ConfirmationDialog>(ConfirmationPopupPath);
 
         DirectoryInfo modFolder = Directory.CreateDirectory($"{Directory.GetCurrentDirectory()}\\mods");
-
         foreach (DirectoryInfo currentMod in modFolder.EnumerateDirectories())
         {
             if (!File.Exists(currentMod.FullName + "/mod_info.json"))
@@ -69,6 +68,12 @@ public class ModLoader : Control
 
             var currentModInfo =
                 JsonConvert.DeserializeObject<ModInfo>(ReadJSONFile(currentMod.FullName + "/mod_info.json"));
+
+            if (currentModInfo.AutoLoad == true)
+            {
+                continue;
+            }
+
             currentModInfo.Location = currentMod.FullName;
             modList.Add(currentModInfo);
             unloadedItemList.AddItem(currentModInfo.ModName);
@@ -159,6 +164,12 @@ public class ModLoader : Control
 
             var currentModInfo =
                 JsonConvert.DeserializeObject<ModInfo>(ReadJSONFile(currentMod.FullName + "/mod_info.json"));
+
+            if (currentModInfo.AutoLoad == true)
+            {
+                continue;
+            }
+
             currentModInfo.Location = currentMod.FullName;
             modList.Add(currentModInfo);
             unloadedItemList.AddItem(currentModInfo.ModName);

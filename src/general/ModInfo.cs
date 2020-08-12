@@ -12,5 +12,5 @@ public class ModInfo : Node
     public string Location;
     public string Dll;
 
-    public bool Autoload;
+    public bool AutoLoad = false;
 }
