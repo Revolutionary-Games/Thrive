@@ -1,5 +1,5 @@
 using System;
-using System.Diagnostics;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Godot;
@@ -9,6 +9,143 @@ using Godot;
 /// </summary>
 public static class SaveHelper
 {
+    public enum SaveOrder
+    {
+        /// <summary>
+        ///   The last modified (on disk) save is first
+        /// </summary>
+        LastModifiedFirst,
+
+        /// <summary>
+        ///   Whatever file the filesystem API gives us is first
+        /// </summary>
+        FileSystem,
+    }
+
+    public static void RemoveExcessAutoSaves()
+    {
+        int maxAutoSaves = Settings.Instance.MaxAutoSaves;
+        int autoSaveCount = 0;
+
+        List<string> autoSaveNames = new List<string>();
+        List<string> allSaveNames = CreateListOfSaves();
+
+        allSaveNames.Reverse();
+
+        foreach (var save in allSaveNames)
+        {
+            if (save.StartsWith("auto_save", StringComparison.CurrentCulture))
+            {
+                autoSaveNames.Add(save);
+                ++autoSaveCount;
+            }
+
+            if (autoSaveCount >= maxAutoSaves && autoSaveNames.Count > 0)
+            {
+                DeleteSave(autoSaveNames[0]);
+                autoSaveNames.RemoveAt(0);
+                --autoSaveCount;
+            }
+        }
+    }
+
+    public static void RemoveExcessQuickSaves()
+    {
+        int maxQuickSaves = Settings.Instance.MaxQuickSaves;
+        int quickSaveCount = 0;
+
+        List<string> quickSaveNames = new List<string>();
+        List<string> allSaveNames = CreateListOfSaves();
+
+        allSaveNames.Reverse();
+
+        foreach (var save in allSaveNames)
+        {
+            if (save.StartsWith("quick_save", StringComparison.CurrentCulture))
+            {
+                quickSaveNames.Add(save);
+                ++quickSaveCount;
+            }
+
+            if (quickSaveCount >= maxQuickSaves && quickSaveNames.Count > 0)
+            {
+                DeleteSave(quickSaveNames[0]);
+                quickSaveNames.RemoveAt(0);
+                --quickSaveCount;
+            }
+        }
+    }
+
+    /// <summary>
+    ///   Returns a list of all saves
+    /// </summary>
+    /// <returns>The list of save names</returns>
+    public static List<string> CreateListOfSaves(SaveOrder order = SaveOrder.LastModifiedFirst)
+    {
+        var result = new List<string>();
+
+        using (var directory = new Directory())
+        {
+            if (!directory.DirExists(Constants.SAVE_FOLDER))
+                return result;
+
+            directory.Open(Constants.SAVE_FOLDER);
+            directory.ListDirBegin(true, true);
+
+            while (true)
+            {
+                var filename = directory.GetNext();
+
+                if (string.IsNullOrEmpty(filename))
+                    break;
+
+                if (!filename.EndsWith(Constants.SAVE_EXTENSION, StringComparison.Ordinal))
+                    continue;
+
+                result.Add(filename);
+            }
+
+            directory.ListDirEnd();
+        }
+
+        switch (order)
+        {
+            case SaveOrder.LastModifiedFirst:
+            {
+                using (var file = new File())
+                {
+                    result = result.OrderByDescending(item =>
+                        file.GetModifiedTime(PathUtils.Join(Constants.SAVE_FOLDER, item))).ToList();
+                }
+
+                break;
+            }
+        }
+
+        return result;
+    }
+
+    /// <summary>
+    ///   Counts the total number of saves and how many bytes they take up
+    /// </summary>
+    public static (int count, long diskSpace) CountSaves()
+    {
+        int count = 0;
+        long totalSize = 0;
+
+        using (var file = new File())
+        {
+            foreach (var save in CreateListOfSaves())
+            {
+                file.Open(PathUtils.Join(Constants.SAVE_FOLDER, save), File.ModeFlags.Read);
+                ++count;
+                totalSize += file.GetLen();
+            }
+        }
+
+        return (count, totalSize);
+    }
+
     /// <summary>
     ///   Quick save from the microbe stage
     /// </summary>
@@ -91,7 +228,7 @@ public static class SaveHelper
     public static void QuickLoad()
     {
         // TODO: is there a way to to find the latest modified file without checking them all?
-        var save = SaveManager.CreateListOfSaves(SaveManager.SaveOrder.LastModifiedFirst).FirstOrDefault();
+        var save = CreateListOfSaves(SaveOrder.LastModifiedFirst).FirstOrDefault();
 
         if (save == null)
         {
@@ -126,7 +263,7 @@ public static class SaveHelper
     private static void InternalSaveHelper(SaveInformation.SaveType type, MainGameState gameState,
         Action<Save> copyInfoToSave, Func<Node> stateRoot, string saveName = null)
     {
-        new InProgressSave(type, stateRoot, (data) =>
+        new InProgressSave(type, stateRoot, data =>
                 CreateSaveObject(gameState, data.Type),
             (inProgress, save) =>
             {
@@ -168,6 +305,6 @@ public static class SaveHelper
     /// </summary>
     private static void QueueRemoveExcessQuickSaves()
     {
-        TaskExecutor.Instance.AddTask(new Task(SaveManager.RemoveExcessQuickSaves));
+        TaskExecutor.Instance.AddTask(new Task(RemoveExcessQuickSaves));
     }
 }

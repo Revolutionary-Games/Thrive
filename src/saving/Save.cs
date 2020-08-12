@@ -6,6 +6,7 @@ using ICSharpCode.SharpZipLib.GZip;
 using ICSharpCode.SharpZipLib.Tar;
 using Newtonsoft.Json;
 using Directory = Godot.Directory;
+using Environment = System.Environment;
 using File = Godot.File;
 
 /// <summary>
@@ -220,10 +221,8 @@ public class Save
             {
                 imageResult.LoadPngFromBuffer(screenshotData);
             }
-            else
-            {
-                // Not a critical error
-            }
+
+            // Not a critical error
         }
 
         return (infoResult, saveResult, imageResult);
@@ -381,7 +380,7 @@ public class SaveInformation
 
     public string Platform { get; set; } = FeatureInformation.GetOS();
 
-    public string Creator { get; set; } = System.Environment.UserName;
+    public string Creator { get; set; } = Environment.UserName;
 
     public DateTime CreatedAt { get; set; } = DateTime.Now;
 

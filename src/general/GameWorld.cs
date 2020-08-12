@@ -15,7 +15,7 @@ using Newtonsoft.Json;
 public class GameWorld
 {
     [JsonProperty]
-    private uint speciesIdCounter = 0;
+    private uint speciesIdCounter;
 
     [JsonProperty]
     private Mutations mutator = new Mutations();
@@ -87,7 +87,7 @@ public class GameWorld
     public PatchMap Map { get; private set; }
 
     [JsonIgnore]
-    public TimedWorldOperations TimedEffects { get; private set; }
+    public TimedWorldOperations TimedEffects { get; }
 
     public static void SetInitialSpeciesProperties(MicrobeSpecies species)
     {
@@ -210,11 +210,12 @@ public class GameWorld
     ///   Adds an external population effect to a species
     /// </summary>
     /// <param name="species">Target species</param>
-    /// <param name="amount">Change amount</param>
+    /// <param name="constant">Change amount (constant part)</param>
     /// <param name="description">What caused the change</param>
     /// <param name="immediate">
     ///   If true applied immediately. Should only be used for the player dying
     /// </param>
+    /// <param name="coefficient">Change amount (coefficient part)</param>
     public void AlterSpeciesPopulation(Species species, int constant, string description,
         bool immediate = false, float coefficient = 1)
     {
@@ -238,6 +239,11 @@ public class GameWorld
         CreateRunIfMissing();
 
         autoEvo.AddExternalPopulationEffect(species, constant, coefficient, description);
+    }
+
+    public void RemoveSpecies(Species species)
+    {
+        worldSpecies.Remove(species.ID);
     }
 
     public Species GetSpecies(uint id)

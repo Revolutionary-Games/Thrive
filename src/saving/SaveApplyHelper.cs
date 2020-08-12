@@ -47,7 +47,7 @@ public static class SaveApplyHelper
 
             var set = property.GetSetMethodOnDeclaringType();
 
-            set.Invoke(target, new object[] { property.GetValue(source) });
+            set.Invoke(target, new[] { property.GetValue(source) });
         }
     }
 

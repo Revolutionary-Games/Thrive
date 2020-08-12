@@ -1,7 +1,4 @@
 using System;
-using System.Numerics;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 /// <summary>
 ///   Converter for CompoundCloudPlane

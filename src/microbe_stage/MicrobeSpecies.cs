@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
-using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -13,9 +12,9 @@ using Newtonsoft.Json;
 [UseThriveConverter]
 public class MicrobeSpecies : Species
 {
-    public bool IsBacteria = false;
+    public bool IsBacteria;
     public MembraneType MembraneType;
-    public float MembraneRigidity = 0.0f;
+    public float MembraneRigidity;
 
     public MicrobeSpecies(uint id)
         : base(id)
@@ -28,15 +27,10 @@ public class MicrobeSpecies : Species
     [JsonIgnore]
     public override string StringCode
     {
-        get
-        {
-            return ThriveJsonConverter.Instance.SerializeObject(this);
-        }
-        set
-        {
-            // TODO: allow replacing Organelles from value
-            throw new NotImplementedException();
-        }
+        get => ThriveJsonConverter.Instance.SerializeObject(this);
+
+        // TODO: allow replacing Organelles from value
+        set => throw new NotImplementedException();
     }
 
     public void SetInitialCompoundsForDefault()

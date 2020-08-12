@@ -14,7 +14,7 @@
             StepsLeft = Math.Max(1, steps);
         }
 
-        public PatchMap OriginalMap { get; private set; }
+        public PatchMap OriginalMap { get; }
         public int StepsLeft { get; set; }
 
         /// <summary>

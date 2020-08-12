@@ -1,8 +1,8 @@
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 using Godot;
+using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   Manages the microbe HUD display
@@ -156,6 +156,9 @@ public class MicrobeHUD : Node
     private ProgressBar nitrogenBar;
     private ProgressBar temperature;
     private ProgressBar sunlightLabel;
+
+    // TODO: implement changing pressure conditions
+    // ReSharper disable once NotAccessedField.Local
     private ProgressBar pressure;
 
     private GridContainer compoundsPanelBarContainer;
@@ -173,6 +176,8 @@ public class MicrobeHUD : Node
     private TextureProgress ammoniaReproductionBar;
     private TextureProgress phosphateReproductionBar;
 
+    // TODO: Not needed anymore, remove?
+    // ReSharper disable once NotAccessedField.Local
     private VBoxContainer leftPanels;
     private PauseMenu menu;
     private TextureButton pauseButton;
@@ -186,7 +191,7 @@ public class MicrobeHUD : Node
     private Node winBox;
     private Tween panelsTween;
 
-    private Godot.Collections.Array compoundBars;
+    private Array compoundBars;
 
     /// <summary>
     ///   Access to the stage to retrieve information for display as
@@ -203,12 +208,12 @@ public class MicrobeHUD : Node
     /// <summary>
     ///   For toggling paused with the pause button.
     /// </summary>
-    private bool paused = false;
+    private bool paused;
 
     // Checks
-    private bool environmentCompressed = false;
-    private bool compundCompressed = false;
-    private bool leftPanelsActive = false;
+    private bool environmentCompressed;
+    private bool compundCompressed;
+    private bool leftPanelsActive;
 
     public override void _Ready()
     {
@@ -428,10 +433,7 @@ public class MicrobeHUD : Node
 
     public void OnSuicide()
     {
-        if (stage.Player != null)
-        {
-            stage.Player.Damage(9999.0f, "suicide");
-        }
+        stage.Player?.Damage(9999.0f, "suicide");
     }
 
     public void UpdatePatchInfo(string patchName)
@@ -692,7 +694,8 @@ public class MicrobeHUD : Node
     {
         // Get player reproduction progress
         stage.Player.CalculateReproductionProgress(
-            out Dictionary<Compound, float> gatheredCompounds, out Dictionary<Compound, float> totalNeededCompounds);
+            out System.Collections.Generic.Dictionary<Compound, float> gatheredCompounds,
+            out System.Collections.Generic.Dictionary<Compound, float> totalNeededCompounds);
 
         float fractionOfAmmonia = 0;
         float fractionOfPhosphates = 0;

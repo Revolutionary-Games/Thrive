@@ -35,10 +35,7 @@ public class PatchMapDrawer : Control
 
     public PatchMap Map
     {
-        get
-        {
-            return map;
-        }
+        get => map;
         set
         {
             map = value;
@@ -51,10 +48,7 @@ public class PatchMapDrawer : Control
 
     public Patch PlayerPatch
     {
-        get
-        {
-            return playerPatch;
-        }
+        get => playerPatch;
         set
         {
             if (playerPatch == value)
@@ -68,10 +62,7 @@ public class PatchMapDrawer : Control
 
     public Patch SelectedPatch
     {
-        get
-        {
-            return selectedPatch;
-        }
+        get => selectedPatch;
         set
         {
             if (selectedPatch == value)
@@ -162,10 +153,7 @@ public class PatchMapDrawer : Control
             node.Patch = entry.Value;
             node.PatchIcon = entry.Value.BiomeTemplate.LoadedIcon;
 
-            node.SelectCallback = (clicked) =>
-            {
-                SelectedPatch = clicked.Patch;
-            };
+            node.SelectCallback = clicked => { SelectedPatch = clicked.Patch; };
 
             AddChild(node);
             nodes.Add(node);
@@ -186,7 +174,6 @@ public class PatchMapDrawer : Control
 
     private void NotifySelectionChanged()
     {
-        if (OnSelectedPatchChanged != null)
-            OnSelectedPatchChanged(this);
+        OnSelectedPatchChanged?.Invoke(this);
     }
 }

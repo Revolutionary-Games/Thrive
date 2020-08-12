@@ -101,6 +101,7 @@ public class ProcessSystem
 
         // Add movement consumption together
         result.BaseMovement = Constants.BASE_MOVEMENT_ATP_COST * hexCount;
+        result.AddConsumption("baseMovement", result.BaseMovement);
         var totalMovementConsumption = movementATPConsumption + result.BaseMovement;
 
         // Add osmoregulation

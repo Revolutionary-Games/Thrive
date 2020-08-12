@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Godot;
 using Godot.Collections;
-using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   A widget containing a list of saves
@@ -12,6 +10,9 @@ public class SaveList : ScrollContainer
 {
     [Export]
     public bool AutoRefreshOnFirstVisible = true;
+
+    [Export]
+    public bool AutoRefreshOnBecomingVisible = true;
 
     [Export]
     public bool SelectableItems;
@@ -41,6 +42,8 @@ public class SaveList : ScrollContainer
 
     private string saveToBeDeleted;
 
+    private bool wasVisible;
+
     [Signal]
     public delegate void OnSelectedChanged();
 
@@ -55,11 +58,18 @@ public class SaveList : ScrollContainer
 
     public override void _Process(float delta)
     {
-        if (AutoRefreshOnFirstVisible && !refreshedAtLeastOnce && IsVisibleInTree())
+        bool isCurrentlyVisible = IsVisibleInTree();
+
+        if (isCurrentlyVisible && ((AutoRefreshOnFirstVisible && !refreshedAtLeastOnce) ||
+            (AutoRefreshOnBecomingVisible && !wasVisible)))
         {
             Refresh();
+            wasVisible = true;
             return;
         }
+
+        if (!isCurrentlyVisible)
+            wasVisible = false;
 
         if (!refreshing)
             return;
@@ -80,7 +90,7 @@ public class SaveList : ScrollContainer
             if (SelectableItems)
                 item.Connect(nameof(SaveListItem.OnSelectedChanged), this, nameof(OnSubItemSelectedChanged));
 
-            item.Connect(nameof(SaveListItem.OnDeleted), this, nameof(OnDeletePressed), new Array() { save });
+            item.Connect(nameof(SaveListItem.OnDeleted), this, nameof(OnDeletePressed), new Array { save });
 
             item.SaveName = save;
             savesList.AddChild(item);
@@ -113,7 +123,7 @@ public class SaveList : ScrollContainer
         }
 
         loadingItem.Visible = true;
-        readSavesList = new Task<List<string>>(() => SaveManager.CreateListOfSaves());
+        readSavesList = new Task<List<string>>(() => SaveHelper.CreateListOfSaves());
         TaskExecutor.Instance.AddTask(readSavesList);
     }
 

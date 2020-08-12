@@ -1,4 +1,3 @@
-using System;
 using Godot;
 
 /// <summary>
@@ -76,8 +75,6 @@ public class Fade : CanvasLayer, ITransition
                 break;
             case FadeType.FadeOut:
                 FadeToWhite();
-                break;
-            default:
                 break;
         }
     }

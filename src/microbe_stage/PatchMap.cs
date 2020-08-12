@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 /// </summary>
 public class PatchMap
 {
-    private Patch currentPatch = null;
+    private Patch currentPatch;
 
     /// <summary>
     ///   The  list of patches. DO NOT MODIFY THE DICTIONARY FROM OUTSIDE THIS CLASS
@@ -22,10 +22,7 @@ public class PatchMap
     /// </summary>
     public Patch CurrentPatch
     {
-        get
-        {
-            return currentPatch;
-        }
+        get => currentPatch;
         set
         {
             // Allow setting to null to make loading work
@@ -207,25 +204,43 @@ public class PatchMap
     /// <summary>
     ///   Removes species from patches where their population is &lt;= 0
     /// </summary>
-    public void RemoveExtinctSpecies(bool playerCantGoExtinct = false)
+    /// <returns>
+    ///   The extinct creatures
+    /// </returns>
+    public List<Species> RemoveExtinctSpecies(bool playerCantGoExtinct = false)
     {
-        foreach (var entry in Patches)
+        var result = new HashSet<Species>();
+
+        List<Species> nonExtinctSpecies = FindAllSpeciesWithPopulation();
+
+        foreach (var patch in Patches)
         {
-            var toRemove = entry.Value.SpeciesInPatch.Where((v) => v.Value <= 0 &&
+            var toRemove = patch.Value.SpeciesInPatch.Where(v => v.Value <= 0 &&
                 (playerCantGoExtinct || !v.Key.PlayerSpecies)).ToList();
 
-            foreach (var item in toRemove)
+            foreach (var speciesEntry in toRemove)
             {
-                entry.Value.RemoveSpecies(item.Key);
-                GD.Print("Species ", item.Key.FormattedName, " has gone extinct in ",
-                    entry.Value.Name);
+                patch.Value.RemoveSpecies(speciesEntry.Key);
+
+                GD.Print("Species ", speciesEntry.Key.FormattedName, " has gone extinct in ",
+                    patch.Value.Name);
+
+                if (!nonExtinctSpecies.Contains(speciesEntry.Key))
+                {
+                    result.Add(speciesEntry.Key);
+                }
             }
         }
+
+        return result.ToList();
     }
 
     /// <summary>
     ///   Returns all species on the map with > 0 population
     /// </summary>
+    /// <returns>
+    ///     Non-Extinct creatures
+    /// </returns>
     public List<Species> FindAllSpeciesWithPopulation()
     {
         var found = new HashSet<Species>();
