@@ -25,7 +25,7 @@ public class Biome : IRegistryType
     /// <summary>
     ///   Depth of the patch below sea level in meters
     /// </summary>
-    public int Depth;
+    public int[] Depth;
 
     /// <summary>
     ///   The light to use for this biome
