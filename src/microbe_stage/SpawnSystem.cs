@@ -25,9 +25,6 @@ public class SpawnSystem
     private List<Spawner> spawnTypes = new List<Spawner>();
 
     [JsonProperty]
-    private Vector3 previousPlayerPosition = new Vector3(0, 0, 0);
-
-    [JsonProperty]
     private Random random = new Random();
 
     /// <summary>
@@ -128,7 +125,6 @@ public class SpawnSystem
     {
         spawnTypes.Clear();
         queuedSpawns = null;
-        previousPlayerPosition = new Vector3(0, 0, 0);
         elapsed = 0;
     }
 
@@ -181,8 +177,6 @@ public class SpawnSystem
             spawnTypes.RemoveAll(entity => entity.DestroyQueued);
 
             SpawnEntities(playerPosition, playerRotation, estimateEntityCount, spawnsLeftThisFrame);
-
-            previousPlayerPosition = playerPosition;
         }
     }
 
