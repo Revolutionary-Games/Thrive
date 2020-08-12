@@ -1,7 +1,7 @@
 ﻿using System;
+using System.Reflection;
 using Godot;
 using Newtonsoft.Json;
-using System.Reflection;
 
 /// <summary>
 ///   Main object for containing player changeable game settings
