@@ -50,8 +50,8 @@ public static class SaveHelper
     {
         int maxQuickSaves = Settings.Instance.MaxQuickSaves;
 
-        List<string> quickSaveNames = new List<string>();
-        List<string> allSaveNames = CreateListOfSaves();
+        var quickSaveNames = new List<string>();
+        var allSaveNames = CreateListOfSaves();
 
         foreach (var save in allSaveNames.AsEnumerable().Reverse())
         {
