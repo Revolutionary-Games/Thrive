@@ -1290,7 +1290,7 @@ public class MicrobeEditorGUI : Node
 
         patchName.Text = patch.Name;
         patchBiome.Text = "Biome: " + patch.BiomeTemplate.Name;
-        patchDepth.Text = patch.BiomeTemplate.Depth[0] + "-" + patch.BiomeTemplate.Depth[1] + "m below sea level";
+        patchDepth.Text = patch.Depth[0] + "-" + patch.Depth[1] + "m below sea level";
         patchPlayerHere.Visible = editor.CurrentPatch == patch;
 
         // Atmospheric gasses

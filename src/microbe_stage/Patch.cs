@@ -28,12 +28,16 @@ public class Patch
     [JsonProperty]
     public readonly Biome BiomeTemplate;
 
-    public Patch(string name, int id, Biome biomeTemplate)
+    [JsonProperty]
+    public readonly int[] Depth;
+
+    public Patch(string name, int id, Biome biomeTemplate, int minDepth, int maxDepth)
     {
         Name = name;
         ID = id;
         BiomeTemplate = biomeTemplate;
         Biome = (BiomeConditions)biomeTemplate.Conditions.Clone();
+        Depth = new int[2] { minDepth, maxDepth };
     }
 
     [JsonProperty]

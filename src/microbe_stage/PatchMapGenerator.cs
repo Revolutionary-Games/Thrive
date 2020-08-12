@@ -13,50 +13,50 @@ public static class PatchMapGenerator
         var map = new PatchMap();
 
         // Predefined patches
-        Patch patch0 = new Patch("Pangonian vents", 0, GetBiomeTemplate("aavolcanic_vent"));
+        Patch patch0 = new Patch("Pangonian vents", 0, GetBiomeTemplate("aavolcanic_vent"), 2500, 3000);
         patch0.AddSpecies(defaultSpecies);
         patch0.ScreenCoordinates = new Vector2(100, 400);
         map.AddPatch(patch0);
 
-        Patch patch1 = new Patch("Pangonian Mesopelagic", 1, GetBiomeTemplate("mesopelagic"));
+        Patch patch1 = new Patch("Pangonian Mesopelagic", 1, GetBiomeTemplate("mesopelagic"), 200, 1000);
         patch1.ScreenCoordinates = new Vector2(200, 200);
         map.AddPatch(patch1);
 
-        Patch patch2 = new Patch("Pangonian Epipelagic", 2, GetBiomeTemplate("default"));
+        Patch patch2 = new Patch("Pangonian Epipelagic", 2, GetBiomeTemplate("default"), 0, 200);
         patch2.ScreenCoordinates = new Vector2(200, 100);
         map.AddPatch(patch2);
 
-        Patch patch3 = new Patch("Pangonian Tidepool", 3, GetBiomeTemplate("tidepool"));
+        Patch patch3 = new Patch("Pangonian Tidepool", 3, GetBiomeTemplate("tidepool"), 0, 10);
         patch3.ScreenCoordinates = new Vector2(300, 100);
         map.AddPatch(patch3);
 
         Patch patch4 = new Patch("Pangonian Bathypelagic", 4,
-            GetBiomeTemplate("bathypelagic"));
+            GetBiomeTemplate("bathypelagic"), 1000, 4000);
         patch4.ScreenCoordinates = new Vector2(200, 300);
         map.AddPatch(patch4);
 
         Patch patch5 = new Patch("Pangonian Abyssopelagic", 5,
-            GetBiomeTemplate("abyssopelagic"));
+            GetBiomeTemplate("abyssopelagic"), 4000, 6000);
         patch5.ScreenCoordinates = new Vector2(300, 400);
         map.AddPatch(patch5);
 
-        Patch patch6 = new Patch("Pangonian Coast", 6, GetBiomeTemplate("coastal"));
+        Patch patch6 = new Patch("Pangonian Coast", 6, GetBiomeTemplate("coastal"), 0, 200);
         patch6.ScreenCoordinates = new Vector2(100, 100);
         map.AddPatch(patch6);
 
-        Patch patch7 = new Patch("Pangonian Estuary", 7, GetBiomeTemplate("estuary"));
+        Patch patch7 = new Patch("Pangonian Estuary", 7, GetBiomeTemplate("estuary"), 0, 200);
         patch7.ScreenCoordinates = new Vector2(70, 160);
         map.AddPatch(patch7);
 
-        Patch patch8 = new Patch("Cave", 8, GetBiomeTemplate("underwater_cave"));
+        Patch patch8 = new Patch("Cave", 8, GetBiomeTemplate("underwater_cave"), 200, 1000);
         patch8.ScreenCoordinates = new Vector2(300, 200);
         map.AddPatch(patch8);
 
-        Patch patch9 = new Patch("Ice Shelf", 9, GetBiomeTemplate("ice_shelf"));
+        Patch patch9 = new Patch("Ice Shelf", 9, GetBiomeTemplate("ice_shelf"), 0, 200);
         patch9.ScreenCoordinates = new Vector2(200, 30);
         map.AddPatch(patch9);
 
-        Patch patch10 = new Patch("Pangonian Sea Floor", 10, GetBiomeTemplate("seafloor"));
+        Patch patch10 = new Patch("Pangonian Sea Floor", 10, GetBiomeTemplate("seafloor"), 4000, 6000);
         patch10.ScreenCoordinates = new Vector2(200, 400);
         map.AddPatch(patch10);
 
