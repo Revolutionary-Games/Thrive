@@ -3,6 +3,7 @@
         "name": "Epipelagic",
         "background": "ocean",
         "icon": "res://assets/textures/gui/bevel/epipelagic.png",
+        "depth": 200,
         "sunlight": {
             "colour": {
                 "r": 1,
@@ -141,6 +142,7 @@
         "name": "Volcanic vent",
         "background": "vent",
         "icon": "res://assets/textures/gui/bevel/vents.png",
+        "depth": 200,
         "sunlight": {},
         "conditions": {
             "chunks": {
@@ -334,6 +336,7 @@
         "name": "Tidepool",
         "background": "tidepool",
         "icon": "res://assets/textures/gui/bevel/tidepool.png",
+        "depth": 200,
         "sunlight": {},
         "eyeAdaptation": {
             "min": 0.003,
@@ -461,6 +464,7 @@
         "name": "Bathypelagic",
         "background": "bathypelagic",
         "icon": "res://assets/textures/gui/bevel/bathy.png",
+        "depth": 200,
         "sunlight": {},
         "eyeAdaptation": {
             "min": 0.003,
@@ -658,6 +662,7 @@
         "name": "Abyssopelagic",
         "background": "abyssopelagic",
         "icon": "res://assets/textures/gui/bevel/abyss.png",
+        "depth": 200,
         "sunlight": {},
         "conditions": {
             "chunks": {
@@ -851,6 +856,7 @@
         "name": "Mesopelagic",
         "background": "mesopelagic",
         "icon": "res://assets/textures/gui/bevel/mesopelagic.png",
+        "depth": 200,
         "sunlight": {},
         "eyeAdaptation": {
             "min": 0.003,
@@ -1048,6 +1054,7 @@
         "name": "Coastal",
         "background": "coastal",
         "icon": "res://assets/textures/gui/bevel/shallow.png",
+        "depth": 200,
         "sunlight": {},
         "eyeAdaptation": {
             "min": 0.003,
@@ -1175,6 +1182,7 @@
         "name": "UnderwaterCave",
         "background": "cave",
         "icon": "res://assets/textures/gui/bevel/cave.png",
+        "depth": 200,
         "sunlight": {},
         "conditions": {
             "chunks": {
@@ -1298,6 +1306,7 @@
         "name": "IceShelf",
         "background": "iceshelf",
         "icon": "res://assets/textures/gui/bevel/iceshelf.png",
+        "depth": 200,
         "sunlight": {},
         "eyeAdaptation": {
             "min": 0.003,
@@ -1442,6 +1451,7 @@
         "name": "Estuary",
         "background": "estuary",
         "icon": "res://assets/textures/gui/bevel/estuary.png",
+        "depth": 200,
         "sunlight": {},
         "eyeAdaptation": {
             "min": 0.003,
@@ -1569,6 +1579,7 @@
         "name": "Sea Floor",
         "background": "seafloor",
         "icon": "res://assets/textures/gui/bevel/bathyFloor.png",
+        "depth": 200,
         "sunlight": {},
         "eyeAdaptation": {
             "min": 0.003,

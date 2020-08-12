@@ -23,6 +23,11 @@ public class Biome : IRegistryType
     public string Icon;
 
     /// <summary>
+    ///   Depth of the patch below sea level in meters
+    /// </summary>
+    public int Depth;
+
+    /// <summary>
     ///   The light to use for this biome
     /// </summary>
     public LightDetails Sunlight;
