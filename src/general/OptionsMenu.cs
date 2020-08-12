@@ -394,6 +394,13 @@ public class OptionsMenu : Control
         EmitSignal(nameof(OnOptionsClosed));
     }
 
+    private void OnResetPressed()
+    {
+        Settings.ResetToDefaults();
+        Settings.ApplyAll();
+        SetSettingsFrom(Settings);
+    }
+
     private void OnIntroToggled(bool pressed)
     {
         Settings.PlayIntroVideo = pressed;

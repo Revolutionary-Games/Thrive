@@ -1,6 +1,7 @@
 ﻿using System;
 using Godot;
 using Newtonsoft.Json;
+using System.Reflection;
 
 /// <summary>
 ///   Main object for containing player changeable game settings
@@ -197,10 +198,21 @@ public class Settings
     /// </summary>
     public void ResetToDefaults()
     {
-        // var defaults = new Settings();
+        var defaults = new Settings();
 
-        // TODO: apply the default values
-        throw new NotImplementedException();
+        Type type = GetType();
+        Type defaultsType = defaults.GetType();
+
+        PropertyInfo[] properties = type.GetProperties();
+        PropertyInfo[] defaultProperties = defaultsType.GetProperties();
+
+        for (int i = 0; i < properties.Length; ++i)
+        {
+            if (properties[i].PropertyType.IsPrimitive && properties[i].CanWrite)
+            {
+                properties[i].SetValue(this, defaultProperties[i].GetValue(defaults));
+            }
+        }
     }
 
     private static Settings LoadSettings()

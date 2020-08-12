@@ -645,7 +645,6 @@ custom_styles/separator = SubResource( 6 )
 margin_left = 245.0
 margin_right = 549.0
 margin_bottom = 35.0
-disabled = true
 text = "Reset ALL to Default Settings"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -673,4 +672,4 @@ __meta__ = {
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer2/MaxQuickSaves" to="." method="OnMaxQuickSavesValueChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/Cheats" to="." method="OnCheatsToggled"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Back" to="." method="OnBackPressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Reset" to="." method="OnBackPressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Reset" to="." method="OnResetPressed"]
