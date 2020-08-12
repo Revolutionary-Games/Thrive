@@ -22,12 +22,56 @@ public class SaveManager
 
     public static void RemoveExcessAutoSaves()
     {
-        throw new System.NotImplementedException();
+        int maxAutoSaves = Settings.Instance.MaxAutoSaves;
+        int autoSaveCount = 0;
+
+        List<string> autoSaveNames = new List<string>();
+        List<string> allSaveNames = CreateListOfSaves();
+
+        allSaveNames.Reverse();
+
+        foreach (var save in allSaveNames)
+        {
+            if (save.StartsWith("auto_save", StringComparison.CurrentCulture))
+            {
+                autoSaveNames.Add(save);
+                ++autoSaveCount;
+            }
+
+            if (autoSaveCount >= maxAutoSaves && autoSaveNames.Count > 0)
+            {
+                SaveHelper.DeleteSave(autoSaveNames[0]);
+                autoSaveNames.RemoveAt(0);
+                --autoSaveCount;
+            }
+        }
     }
 
     public static void RemoveExcessQuickSaves()
     {
-        // throw new System.NotImplementedException();
+        int maxQuickSaves = Settings.Instance.MaxQuickSaves;
+        int quickSaveCount = 0;
+
+        List<string> quickSaveNames = new List<string>();
+        List<string> allSaveNames = CreateListOfSaves();
+
+        allSaveNames.Reverse();
+
+        foreach (var save in allSaveNames)
+        {
+            if (save.StartsWith("quick_save", StringComparison.CurrentCulture))
+            {
+                quickSaveNames.Add(save);
+                ++quickSaveCount;
+            }
+
+            if (quickSaveCount >= maxQuickSaves && quickSaveNames.Count > 0)
+            {
+                SaveHelper.DeleteSave(quickSaveNames[0]);
+                quickSaveNames.RemoveAt(0);
+                --quickSaveCount;
+            }
+        }
     }
 
     /// <summary>
