@@ -12,7 +12,7 @@ public class SpawnSystem
     ///   Sets how often the spawn system runs and checks things
     /// </summary>
     [JsonProperty]
-    private float interval = 1.0f;
+    private float interval = 5.0f;
 
     [JsonProperty]
     private float elapsed;
@@ -96,6 +96,10 @@ public class SpawnSystem
         spawner.SpawnRadius = spawnRadius;
         spawner.SpawnFrequency = 122;
         spawner.SpawnRadiusSqr = spawnRadius * spawnRadius;
+
+        float minSpawnRadius = spawnRadius * Constants.MIN_SPAWN_RADIUS_RATIO;
+        spawner.MinSpawnRadiusSqr = minSpawnRadius * minSpawnRadius;
+
         spawner.SetFrequencyFromDensity(spawnDensity);
         spawnTypes.Add(spawner);
     }
@@ -269,14 +273,8 @@ public class SpawnSystem
                     Vector3 displacement = new Vector3(distanceX, 0, distanceZ);
                     float squaredDistance = displacement.LengthSquared();
 
-                    // Distance from the location of the player in the previous
-                    // spawn cycle.
-                    Vector3 previousDisplacement = displacement + playerPosition -
-                        previousPlayerPosition;
-                    float previousSquaredDistance = previousDisplacement.LengthSquared();
-
                     if (squaredDistance <= spawnType.SpawnRadiusSqr &&
-                        previousSquaredDistance > spawnType.SpawnRadiusSqr)
+                        squaredDistance >= spawnType.MinSpawnRadiusSqr)
                     {
                         // Second condition passed. Spawn the entity.
                         if (SpawnWithSpawner(spawnType, playerPosition + displacement, existing,
