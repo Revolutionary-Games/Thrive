@@ -315,7 +315,7 @@ public class ModLoader : Control
         {
             newIndex--;
         }
-		GD.Print(newIndex);
+
         list.Insert(newIndex, item);
     }
 }
