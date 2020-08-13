@@ -79,7 +79,6 @@ public class ModLoader : Control
             modList.Add(currentModInfo);
             unloadedItemList.AddItem(currentModInfo.ModName);
         }
-		GD.Print(String.Join(" ",modList));
     }
 
     // Copied From The PauseMenu.cs
@@ -285,7 +284,6 @@ public class ModLoader : Control
             }
             loadedItemList.MoveItem(loadedItemList.GetSelectedItems()[0], loadedItemList.GetSelectedItems()[0] + 1);
             MoveItem(loadedModList, loadedItemList.GetSelectedItems()[0], loadedItemList.GetSelectedItems()[0] - 1);
-			GD.Print(String.Join(" ",modList));
         }
         else if (unloadedItemList.GetSelectedItems().Length > 0)
         {
