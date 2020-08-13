@@ -29,7 +29,7 @@ public class Patch
     public readonly Biome BiomeTemplate;
 
     [JsonProperty]
-    public readonly int[] Depth;
+    public readonly int[] Depth = new int[2] { -1, -1 };
 
     public Patch(string name, int id, Biome biomeTemplate)
     {
@@ -37,7 +37,6 @@ public class Patch
         ID = id;
         BiomeTemplate = biomeTemplate;
         Biome = (BiomeConditions)biomeTemplate.Conditions.Clone();
-        Depth = new int[2] { -1, -1 };
     }
 
     [JsonProperty]
