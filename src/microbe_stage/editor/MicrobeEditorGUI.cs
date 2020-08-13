@@ -91,6 +91,9 @@ public class MicrobeEditorGUI : Node
     public NodePath PatchBiomePath;
 
     [Export]
+    public NodePath PatchDepthPath;
+
+    [Export]
     public NodePath PatchTemperaturePath;
 
     [Export]
@@ -244,6 +247,7 @@ public class MicrobeEditorGUI : Node
     private Label patchName;
     private Control patchPlayerHere;
     private Label patchBiome;
+    private Label patchDepth;
     private Label patchTemperature;
     private Label patchPressure;
     private Label patchLight;
@@ -312,6 +316,7 @@ public class MicrobeEditorGUI : Node
         patchName = GetNode<Label>(PatchNamePath);
         patchPlayerHere = GetNode<Control>(PatchPlayerHerePath);
         patchBiome = GetNode<Label>(PatchBiomePath);
+        patchDepth = GetNode<Label>(PatchDepthPath);
         patchTemperature = GetNode<Label>(PatchTemperaturePath);
         patchPressure = GetNode<Label>(PatchPressurePath);
         patchLight = GetNode<Label>(PatchLightPath);
@@ -1285,6 +1290,7 @@ public class MicrobeEditorGUI : Node
 
         patchName.Text = patch.Name;
         patchBiome.Text = "Biome: " + patch.BiomeTemplate.Name;
+        patchDepth.Text = patch.Depth[0] + "-" + patch.Depth[1] + "m below sea level";
         patchPlayerHere.Visible = editor.CurrentPatch == patch;
 
         // Atmospheric gasses
