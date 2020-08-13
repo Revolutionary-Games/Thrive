@@ -12,7 +12,7 @@ public class SpawnSystem
     ///   Sets how often the spawn system runs and checks things
     /// </summary>
     [JsonProperty]
-    private float interval = 3.0f;
+    private float interval = 4.0f;
 
     [JsonProperty]
     private float elapsed;
