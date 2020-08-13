@@ -1,3 +1,4 @@
+using System; // Delete This later
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
@@ -78,6 +79,7 @@ public class ModLoader : Control
             modList.Add(currentModInfo);
             unloadedItemList.AddItem(currentModInfo.ModName);
         }
+		GD.Print(String.Join(" ",modList));
     }
 
     // Copied From The PauseMenu.cs
@@ -245,5 +247,67 @@ public class ModLoader : Control
         }
 
         SceneManager.Instance.ReturnToMenu();
+    }
+
+    private void OnMoveUpPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        if (loadedItemList.GetSelectedItems().Length > 0)
+        {
+            if (loadedItemList.GetSelectedItems()[0] == 0)
+            {
+                return;
+            }
+
+            loadedItemList.MoveItem(loadedItemList.GetSelectedItems()[0], loadedItemList.GetSelectedItems()[0] - 1);
+            MoveItem(loadedModList, loadedItemList.GetSelectedItems()[0] + 1, loadedItemList.GetSelectedItems()[0]);
+        }
+        else if (unloadedItemList.GetSelectedItems().Length > 0)
+        {
+            if (unloadedItemList.GetSelectedItems()[0] == 0)
+            {
+                return;
+            }
+
+            unloadedItemList.MoveItem(unloadedItemList.GetSelectedItems()[0], unloadedItemList.GetSelectedItems()[0] - 1);
+            MoveItem(modList, unloadedItemList.GetSelectedItems()[0] + 1, unloadedItemList.GetSelectedItems()[0]);
+        }
+    }
+
+    private void OnMoveDownPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+        if (loadedItemList.GetSelectedItems().Length > 0)
+        {
+            if (loadedItemList.GetSelectedItems()[0] == loadedItemList.GetItemCount() - 1)
+            {
+                return;
+            }
+            loadedItemList.MoveItem(loadedItemList.GetSelectedItems()[0], loadedItemList.GetSelectedItems()[0] + 1);
+            MoveItem(loadedModList, loadedItemList.GetSelectedItems()[0], loadedItemList.GetSelectedItems()[0] - 1);
+			GD.Print(String.Join(" ",modList));
+        }
+        else if (unloadedItemList.GetSelectedItems().Length > 0)
+        {
+            if (unloadedItemList.GetSelectedItems()[0] == unloadedItemList.GetItemCount() - 1)
+            {
+                return;
+            }
+
+            unloadedItemList.MoveItem(unloadedItemList.GetSelectedItems()[0], unloadedItemList.GetSelectedItems()[0] + 1);
+            MoveItem(modList, unloadedItemList.GetSelectedItems()[0], unloadedItemList.GetSelectedItems()[0] - 1);
+        }
+    }
+
+    private void MoveItem(List<ModInfo> list, int oldIndex, int newIndex)
+    {
+        var item = list[oldIndex];
+        list.RemoveAt(oldIndex);
+        if (newIndex > oldIndex)
+        {
+            newIndex--;
+        }
+
+        list.Insert(newIndex, item);
     }
 }

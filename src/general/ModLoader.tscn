@@ -1,9 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/general/ModLoader.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
+[ext_resource path="res://assets/fonts/DejaVuSans.ttf" type="DynamicFontData" id=3]
 
 [sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 3 )
 
 [sub_resource type="StyleBoxEmpty" id=2]
 
@@ -127,22 +131,47 @@ margin_bottom = 260.0
 alignment = 1
 
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/CenterBar/VBoxContainer"]
-margin_top = 65.0
+margin_top = 59.0
 margin_right = 98.0
-margin_bottom = 100.0
+margin_bottom = 94.0
 rect_min_size = Vector2( 0, 35 )
 text = "<--"
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/CenterBar/VBoxContainer"]
-margin_top = 104.0
+margin_top = 98.0
 margin_right = 98.0
-margin_bottom = 154.0
-custom_constants/separation = 50
+margin_bottom = 113.0
+custom_constants/separation = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/CenterBar/VBoxContainer"]
+margin_top = 117.0
+margin_right = 98.0
+margin_bottom = 141.0
+
+[node name="Button3" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/CenterBar/VBoxContainer/HBoxContainer"]
+margin_right = 47.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 4 )
+text = "Λ"
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/CenterBar/VBoxContainer/HBoxContainer"]
+margin_left = 51.0
+margin_right = 98.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+text = "V"
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/CenterBar/VBoxContainer"]
+margin_top = 145.0
+margin_right = 98.0
+margin_bottom = 160.0
+custom_constants/separation = 15
 
 [node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/CenterBar/VBoxContainer"]
-margin_top = 158.0
+margin_top = 164.0
 margin_right = 98.0
-margin_bottom = 193.0
+margin_bottom = 199.0
 rect_min_size = Vector2( 0, 35 )
 text = "-->"
 __meta__ = {
@@ -311,6 +340,8 @@ window_title = ""
 dialog_text = "Are you sure you want to reset?"
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/ItemList" to="." method="OnUnloadedModSelected"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/CenterBar/VBoxContainer/Button" to="." method="OnMoveToUnloadPressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/CenterBar/VBoxContainer/HBoxContainer/Button3" to="." method="OnMoveUpPressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/CenterBar/VBoxContainer/HBoxContainer/Button" to="." method="OnMoveDownPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/CenterBar/VBoxContainer/Button2" to="." method="OnMoveToLoadPressed"]
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer3/ItemList" to="." method="OnLoadedModSelected"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/Button" to="." method="OnBackPressed"]
