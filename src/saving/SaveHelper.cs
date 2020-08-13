@@ -290,8 +290,19 @@ public static class SaveHelper
             return;
         }
 
+        if (inProgress.Type == SaveInformation.SaveType.AutoSave)
+            QueueRemoveExcessAutoSaves();
+
         if (inProgress.Type == SaveInformation.SaveType.QuickSave)
             QueueRemoveExcessQuickSaves();
+    }
+
+    /// <summary>
+    ///   Runs a background task for removing excess auto saves
+    /// </summary>
+    private static void QueueRemoveExcessAutoSaves()
+    {
+        TaskExecutor.Instance.AddTask(new Task(RemoveExcessAutoSaves));
     }
 
     /// <summary>
