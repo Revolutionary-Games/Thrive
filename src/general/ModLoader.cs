@@ -253,23 +253,25 @@ public class ModLoader : Control
         GUICommon.Instance.PlayButtonPressSound();
         if (loadedItemList.GetSelectedItems().Length > 0)
         {
-            if (loadedItemList.GetSelectedItems()[0] == 0)
+            var selectedItemIndex = loadedItemList.GetSelectedItems()[0];
+            if (selectedItemIndex == 0)
             {
                 return;
             }
 
-            loadedItemList.MoveItem(loadedItemList.GetSelectedItems()[0], loadedItemList.GetSelectedItems()[0] - 1);
-            MoveItem(loadedModList, loadedItemList.GetSelectedItems()[0] + 1, loadedItemList.GetSelectedItems()[0]);
+            loadedItemList.MoveItem(selectedItemIndex, selectedItemIndex - 1);
+            MoveItem(loadedModList, selectedItemIndex + 1, selectedItemIndex);
         }
         else if (unloadedItemList.GetSelectedItems().Length > 0)
         {
-            if (unloadedItemList.GetSelectedItems()[0] == 0)
+            var selectedItemIndex = unloadedItemList.GetSelectedItems()[0];
+            if (selectedItemIndex == 0)
             {
                 return;
             }
 
-            unloadedItemList.MoveItem(unloadedItemList.GetSelectedItems()[0], unloadedItemList.GetSelectedItems()[0] - 1);
-            MoveItem(modList, unloadedItemList.GetSelectedItems()[0] + 1, unloadedItemList.GetSelectedItems()[0]);
+            unloadedItemList.MoveItem(selectedItemIndex, selectedItemIndex - 1);
+            MoveItem(modList, selectedItemIndex + 1, selectedItemIndex);
         }
     }
 
@@ -278,22 +280,25 @@ public class ModLoader : Control
         GUICommon.Instance.PlayButtonPressSound();
         if (loadedItemList.GetSelectedItems().Length > 0)
         {
-            if (loadedItemList.GetSelectedItems()[0] == loadedItemList.GetItemCount() - 1)
-            {
-                return;
-            }
-            loadedItemList.MoveItem(loadedItemList.GetSelectedItems()[0], loadedItemList.GetSelectedItems()[0] + 1);
-            MoveItem(loadedModList, loadedItemList.GetSelectedItems()[0], loadedItemList.GetSelectedItems()[0] - 1);
-        }
-        else if (unloadedItemList.GetSelectedItems().Length > 0)
-        {
-            if (unloadedItemList.GetSelectedItems()[0] == unloadedItemList.GetItemCount() - 1)
+            var selectedItemIndex = loadedItemList.GetSelectedItems()[0];
+            if (selectedItemIndex == loadedItemList.GetItemCount() - 1)
             {
                 return;
             }
 
-            unloadedItemList.MoveItem(unloadedItemList.GetSelectedItems()[0], unloadedItemList.GetSelectedItems()[0] + 1);
-            MoveItem(modList, unloadedItemList.GetSelectedItems()[0], unloadedItemList.GetSelectedItems()[0] - 1);
+            loadedItemList.MoveItem(selectedItemIndex, selectedItemIndex + 1);
+            MoveItem(loadedModList, selectedItemIndex, selectedItemIndex - 1);
+        }
+        else if (unloadedItemList.GetSelectedItems().Length > 0)
+        {
+            var selectedItemIndex = unloadedItemList.GetSelectedItems()[0];
+            if (selectedItemIndex == unloadedItemList.GetItemCount() - 1)
+            {
+                return;
+            }
+
+            unloadedItemList.MoveItem(selectedItemIndex, selectedItemIndex + 1);
+            MoveItem(modList, selectedItemIndex, selectedItemIndex - 1);
         }
     }
 
