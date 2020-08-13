@@ -74,7 +74,7 @@ public static class Constants
 
     public const float STARTING_SPAWN_DENSITY = 70000.0f;
     public const float MAX_SPAWN_DENSITY = 20000.0f;
-    public const float MIN_SPAWN_RADIUS_RATIO = 0.8f;
+    public const float MIN_SPAWN_RADIUS_RATIO = 0.85f;
 
     /// <summary>
     ///   The maximum force that can be applied by currents in the fluid system
