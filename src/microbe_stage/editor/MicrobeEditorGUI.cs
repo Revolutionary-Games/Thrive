@@ -198,6 +198,9 @@ public class MicrobeEditorGUI : Node
     [Export]
     public Texture DecreaseIcon;
 
+    [Export]
+    public AudioStream UnableToPlaceHexSound;
+
     private const string ATP_BALANCE_DEFAULT_TEXT = "ATP Balance";
 
     private readonly Compound ammonia = SimulationParameters.Instance.GetCompound("ammonia");
@@ -565,13 +568,14 @@ public class MicrobeEditorGUI : Node
 
     internal void OnInvalidHexLocationSelected()
     {
-
+        GUICommon.Instance.PlayCustomSound(UnableToPlaceHexSound);
     }
 
     internal void OnInsufficientMPToPlaceHex()
     {
         AnimationPlayer animationPlayer = mutationPointsBar.GetNode<AnimationPlayer>("FlashAnimation");
         animationPlayer.Play("FlashBar");
+        GUICommon.Instance.PlayCustomSound(UnableToPlaceHexSound);
     }
 
     /// <summary>
