@@ -260,17 +260,20 @@ public class ModLoader : Control
             }
 
             loadedItemList.MoveItem(selectedItemIndex, selectedItemIndex - 1);
+            selectedItemIndex = loadedItemList.GetSelectedItems()[0];
             MoveItem(loadedModList, selectedItemIndex + 1, selectedItemIndex);
         }
         else if (unloadedItemList.GetSelectedItems().Length > 0)
         {
             var selectedItemIndex = unloadedItemList.GetSelectedItems()[0];
-            if (selectedItemIndex == 0)
+
+            if (unloadedItemList.GetSelectedItems()[0] == 0)
             {
                 return;
             }
 
             unloadedItemList.MoveItem(selectedItemIndex, selectedItemIndex - 1);
+            selectedItemIndex = unloadedItemList.GetSelectedItems()[0];
             MoveItem(modList, selectedItemIndex + 1, selectedItemIndex);
         }
     }
@@ -287,6 +290,7 @@ public class ModLoader : Control
             }
 
             loadedItemList.MoveItem(selectedItemIndex, selectedItemIndex + 1);
+            selectedItemIndex = loadedItemList.GetSelectedItems()[0];
             MoveItem(loadedModList, selectedItemIndex, selectedItemIndex - 1);
         }
         else if (unloadedItemList.GetSelectedItems().Length > 0)
@@ -298,6 +302,7 @@ public class ModLoader : Control
             }
 
             unloadedItemList.MoveItem(selectedItemIndex, selectedItemIndex + 1);
+            selectedItemIndex = unloadedItemList.GetSelectedItems()[0];
             MoveItem(modList, selectedItemIndex, selectedItemIndex - 1);
         }
     }
@@ -310,7 +315,7 @@ public class ModLoader : Control
         {
             newIndex--;
         }
-
+		GD.Print(newIndex);
         list.Insert(newIndex, item);
     }
 }
