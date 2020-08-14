@@ -1,4 +1,3 @@
-using System;
 using System.IO;
 using System.Reflection;
 using Godot;
@@ -20,7 +19,7 @@ public class AutoModLoader : Node
 
             var currentModInfo =
                 JsonConvert.DeserializeObject<ModInfo>(ReadJSONFile(currentMod.FullName + "/mod_info.json"));
-            if (currentModInfo.AutoLoad == true)
+            if (currentModInfo.AutoLoad)
             {
                     if (string.IsNullOrEmpty(currentModInfo.Dll))
                     {

@@ -70,7 +70,7 @@ public class ModLoader : Control
             var currentModInfo =
                 JsonConvert.DeserializeObject<ModInfo>(ReadJSONFile(currentMod.FullName + "/mod_info.json"));
 
-            if (currentModInfo.AutoLoad == true)
+            if (currentModInfo.AutoLoad)
             {
                 continue;
             }
@@ -166,7 +166,7 @@ public class ModLoader : Control
             var currentModInfo =
                 JsonConvert.DeserializeObject<ModInfo>(ReadJSONFile(currentMod.FullName + "/mod_info.json"));
 
-            if (currentModInfo.AutoLoad == true)
+            if (currentModInfo.AutoLoad)
             {
                 continue;
             }
