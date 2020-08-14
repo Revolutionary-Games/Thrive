@@ -669,6 +669,7 @@ public class MicrobeEditor : Node, ILoadableGameState
                 gui.UpdateRigiditySlider(intRigidity, MutationPoints);
                 return;
             }
+
             rigidity = intRigidity > rigidity ? intRigidity - stepsLeft : intRigidity + stepsLeft;
             cost = stepsLeft * Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;
         }
