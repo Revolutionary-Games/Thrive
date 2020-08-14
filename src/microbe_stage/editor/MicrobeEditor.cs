@@ -1287,7 +1287,7 @@ public class MicrobeEditor : Node, ILoadableGameState
 
         if (!IsValidPlacement(organelle))
         {
-            //Play Sound
+            // Play Sound
             EmitSignal(nameof(InvalidPlacementOfHex));
             return;
         }
@@ -1295,7 +1295,7 @@ public class MicrobeEditor : Node, ILoadableGameState
         // Skip placing if the player can't afford the organelle
         if (organelle.Definition.MPCost > MutationPoints && !FreeBuilding)
         {
-            //Flash the MP bar and play sound
+            // Flash the MP bar and play sound
             EmitSignal(nameof(InsufficientMPToPlaceHex));
             return;
         }
