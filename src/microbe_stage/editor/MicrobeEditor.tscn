@@ -1062,6 +1062,7 @@ PatchDetailsPath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/H
 PatchNamePath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/VBoxContainer/PatchName")
 PatchPlayerHerePath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/VBoxContainer/PlayerHereLabel")
 PatchBiomePath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Biome")
+PatchDepthPath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Depth")
 PatchTemperaturePath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Temperature/Label")
 PatchPressurePath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Pressure/Label")
 PatchLightPath = NodePath("PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light/Label")
@@ -3869,11 +3870,11 @@ valign = 1
 uppercase = true
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_left = 44.0
-margin_top = 44.0
-margin_right = 44.0
-margin_bottom = 44.0
-theme = SubResource( 30 )
+margin_left = 36.0
+margin_top = 36.0
+margin_right = 36.0
+margin_bottom = 36.0
+theme = SubResource( 29 )
 edit_alpha = false
 
 [node name="Behavior" type="Control" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel"]
@@ -9437,8 +9438,8 @@ margin_left = 24.0
 margin_top = 1.0
 margin_right = 42.0
 margin_bottom = 19.0
-custom_fonts/font = SubResource( 45 )
-text = "5"
+custom_fonts/font = SubResource( 44 )
+text = "2"
 
 [node name="OrganelleName" type="Label" parent="MicrobeEditorGUI/CellEditor/Tooltips/rigiditySlider/MarginContainer/VBoxContainer/Title"]
 margin_left = 46.0

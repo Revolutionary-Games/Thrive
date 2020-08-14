@@ -668,8 +668,15 @@ public class MicrobeEditor : Node, ILoadableGameState
 
         if (cost > MutationPoints)
         {
-            gui.UpdateRigiditySlider(intRigidity, MutationPoints);
-            return;
+            int stepsLeft = MutationPoints / Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;
+            if (stepsLeft < 1)
+            {
+                gui.UpdateRigiditySlider(intRigidity, MutationPoints);
+                return;
+            }
+
+            rigidity = intRigidity > rigidity ? intRigidity - stepsLeft : intRigidity + stepsLeft;
+            cost = stepsLeft * Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;
         }
 
         var newRigidity = rigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
