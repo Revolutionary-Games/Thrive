@@ -69,12 +69,12 @@ public static class Constants
 
     public const int PROCESS_OBJECTS_PER_TASK = 50;
 
-    public const int MICROBE_SPAWN_RADIUS = 150;
-    public const int CLOUD_SPAWN_RADIUS = 150;
+    public const int MICROBE_SPAWN_RADIUS = 170;
+    public const int CLOUD_SPAWN_RADIUS = 170;
 
     public const float STARTING_SPAWN_DENSITY = 70000.0f;
     public const float MAX_SPAWN_DENSITY = 20000.0f;
-    public const float MIN_SPAWN_RADIUS_RATIO = 0.9f;
+    public const float MIN_SPAWN_RADIUS_RATIO = 0.95f;
 
     /// <summary>
     ///   The maximum force that can be applied by currents in the fluid system
