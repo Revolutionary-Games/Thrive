@@ -1,4 +1,6 @@
+using System;
 using System.Reflection;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -185,6 +187,16 @@ public static class Constants
     ///   Organelles won't take compounds if there is less available than this amount
     /// </summary>
     public const float ORGANELLE_GROW_STORAGE_MUST_HAVE_AT_LEAST = 0.0f;
+
+    /// <summary>
+    ///   Cost of moving the rigidity slider by one step in the microbe editor
+    /// </summary>
+    public const int MEMBRANE_RIGIDITY_COST_PER_STEP = 2;
+
+    /// <summary>
+    ///   Number used to convert between the value from the rigidity slider and the actual value
+    /// </summary>
+    public const float MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO = 10;
 
     /// <summary>
     ///   How much fully rigid membrane adds hitpoints
@@ -429,12 +441,20 @@ public static class Constants
     {
         get
         {
-            var assembly = Assembly.GetExecutingAssembly();
-            var version = assembly.GetName().Version;
-            var versionSuffix =
-                (AssemblyInformationalVersionAttribute[])assembly.GetCustomAttributes(
-                    typeof(AssemblyInformationalVersionAttribute), false);
-            return $"{version}" + versionSuffix[0].InformationalVersion;
+            try
+            {
+                var assembly = Assembly.GetExecutingAssembly();
+                var version = assembly.GetName().Version;
+                var versionSuffix =
+                    (AssemblyInformationalVersionAttribute[])assembly.GetCustomAttributes(
+                        typeof(AssemblyInformationalVersionAttribute), false);
+                return $"{version}" + versionSuffix[0].InformationalVersion;
+            }
+            catch (Exception error)
+            {
+                GD.Print("Error getting version: ", error);
+                return "error (" + error.GetType().Name + ")";
+            }
         }
     }
 }

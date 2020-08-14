@@ -91,6 +91,9 @@ public class MicrobeEditorGUI : Node
     public NodePath PatchBiomePath;
 
     [Export]
+    public NodePath PatchDepthPath;
+
+    [Export]
     public NodePath PatchTemperaturePath;
 
     [Export]
@@ -244,6 +247,7 @@ public class MicrobeEditorGUI : Node
     private Label patchName;
     private Control patchPlayerHere;
     private Label patchBiome;
+    private Label patchDepth;
     private Label patchTemperature;
     private Label patchPressure;
     private Label patchLight;
@@ -281,16 +285,6 @@ public class MicrobeEditorGUI : Node
     /// </summary>
     private bool speciesListIsHidden;
 
-    public string GetNewSpeciesName()
-    {
-        return speciesNameEdit.Text;
-    }
-
-    public Color GetMembraneColor()
-    {
-        return membraneColorPicker.Color;
-    }
-
     public override void _Ready()
     {
         organelleSelectionElements = GetTree().GetNodesInGroup("OrganelleSelectionElement");
@@ -322,6 +316,7 @@ public class MicrobeEditorGUI : Node
         patchName = GetNode<Label>(PatchNamePath);
         patchPlayerHere = GetNode<Control>(PatchPlayerHerePath);
         patchBiome = GetNode<Label>(PatchBiomePath);
+        patchDepth = GetNode<Label>(PatchDepthPath);
         patchTemperature = GetNode<Label>(PatchTemperaturePath);
         patchPressure = GetNode<Label>(PatchPressurePath);
         patchLight = GetNode<Label>(PatchLightPath);
@@ -466,18 +461,20 @@ public class MicrobeEditorGUI : Node
     /// <summary>
     ///   Updates the fluidity / rigidity slider tooltip
     /// </summary>
-    public void SetRigiditySliderTooltip(float rigidity)
+    public void SetRigiditySliderTooltip(int rigidity)
     {
+        float convertedRigidity = rigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
+
         var healthChangeLabel = GetNode<Label>(RigiditySliderTooltipHealthLabelPath);
         var mobilityChangeLabel = GetNode<Label>(RigiditySliderTooltipSpeedLabelPath);
 
-        float healthChange = rigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
-        float mobilityChange = -1 * rigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER;
+        float healthChange = convertedRigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
+        float mobilityChange = -1 * convertedRigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER;
 
         healthChangeLabel.Text = ((healthChange > 0) ? "+" : string.Empty)
-            + healthChange.ToString(CultureInfo.CurrentCulture);
+            + healthChange.ToString("F2", CultureInfo.CurrentCulture);
         mobilityChangeLabel.Text = ((mobilityChange > 0) ? "+" : string.Empty)
-            + mobilityChange.ToString(CultureInfo.CurrentCulture);
+            + mobilityChange.ToString("F2", CultureInfo.CurrentCulture);
 
         if (healthChange >= 0)
         {
@@ -734,7 +731,8 @@ public class MicrobeEditorGUI : Node
 
         UpdateMembraneButtons(membrane.InternalName);
 
-        UpdateRigiditySlider(rigidity, editor.MutationPoints);
+        UpdateRigiditySlider((int)Math.Round(rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO),
+            editor.MutationPoints);
     }
 
     internal void UpdateMembraneButtons(string membrane)
@@ -763,9 +761,9 @@ public class MicrobeEditorGUI : Node
         }
     }
 
-    internal void UpdateRigiditySlider(float value, int mutationPoints)
+    internal void UpdateRigiditySlider(int value, int mutationPoints)
     {
-        if (mutationPoints > 0)
+        if (mutationPoints >= Constants.MEMBRANE_RIGIDITY_COST_PER_STEP)
         {
             rigiditySlider.Editable = true;
         }
@@ -778,9 +776,14 @@ public class MicrobeEditorGUI : Node
         SetRigiditySliderTooltip(value);
     }
 
-    private void OnRigidityChanged(float value)
+    private void OnRigidityChanged(int value)
     {
         editor.SetRigidity(value);
+    }
+
+    private void OnColorChanged(Color color)
+    {
+        editor.Colour = color;
     }
 
     private void MoveToPatchClicked()
@@ -1287,6 +1290,7 @@ public class MicrobeEditorGUI : Node
 
         patchName.Text = patch.Name;
         patchBiome.Text = "Biome: " + patch.BiomeTemplate.Name;
+        patchDepth.Text = patch.Depth[0] + "-" + patch.Depth[1] + "m below sea level";
         patchPlayerHere.Visible = editor.CurrentPatch == patch;
 
         // Atmospheric gasses
@@ -1358,6 +1362,8 @@ public class MicrobeEditorGUI : Node
         {
             speciesNameEdit.Set("custom_colors/font_color", new Color(1, 1, 1));
         }
+
+        editor.NewName = newText;
     }
 
     // ReSharper disable once RedundantNameQualifier

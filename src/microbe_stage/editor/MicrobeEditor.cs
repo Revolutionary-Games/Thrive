@@ -161,6 +161,12 @@ public class MicrobeEditor : Node, ILoadableGameState
     public MembraneType Membrane { get; private set; }
 
     /// <summary>
+    ///   Current selected colour for the species.
+    /// </summary>
+    [JsonProperty]
+    public Color Colour { get; set; }
+
+    /// <summary>
     ///   The name of organelle type that is selected to be placed
     /// </summary>
     [JsonProperty]
@@ -408,7 +414,6 @@ public class MicrobeEditor : Node, ILoadableGameState
             editedSpecies.FormattedName);
 
         // Update name
-        NewName = gui.GetNewSpeciesName();
         var splits = NewName.Split(" ");
         if (splits.Length == 2)
         {
@@ -425,7 +430,7 @@ public class MicrobeEditor : Node, ILoadableGameState
 
         // Update membrane
         editedSpecies.MembraneType = Membrane;
-        editedSpecies.Colour = gui.GetMembraneColor();
+        editedSpecies.Colour = Colour;
         editedSpecies.MembraneRigidity = Rigidity;
 
         // Move patches
@@ -647,40 +652,48 @@ public class MicrobeEditor : Node, ILoadableGameState
         gui.UpdateMembraneButtons(Membrane.InternalName);
     }
 
-    public void SetRigidity(float rigidity)
+    public void SetRigidity(int rigidity)
     {
-        if (Math.Abs(Rigidity - rigidity) < MathUtils.EPSILON)
+        int intRigidity = (int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO);
+
+        if (intRigidity == rigidity)
             return;
 
-        var cost = (int)(Math.Abs(rigidity - Rigidity) / 2 * 100);
+        int cost = Math.Abs(rigidity - intRigidity) * Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;
 
-        if (cost > 0)
+        if (cost > MutationPoints)
         {
-            if (cost > MutationPoints)
+            int stepsLeft = MutationPoints / Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;
+            if (stepsLeft < 1)
             {
-                rigidity = Rigidity + (rigidity < Rigidity ? -MutationPoints : MutationPoints) * 2 / 100.0f;
-                cost = MutationPoints;
+                gui.UpdateRigiditySlider(intRigidity, MutationPoints);
+                return;
             }
 
-            var newRigidity = rigidity;
-            var prevRigidity = Rigidity;
-
-            var action = new EditorAction(this, cost,
-                redo =>
-                {
-                    Rigidity = newRigidity;
-                    gui.UpdateRigiditySlider(Rigidity, MutationPoints);
-                    gui.UpdateSpeed(CalculateSpeed());
-                },
-                undo =>
-                {
-                    Rigidity = prevRigidity;
-                    gui.UpdateRigiditySlider(Rigidity, MutationPoints);
-                    gui.UpdateSpeed(CalculateSpeed());
-                });
-
-            EnqueueAction(action);
+            rigidity = intRigidity > rigidity ? intRigidity - stepsLeft : intRigidity + stepsLeft;
+            cost = stepsLeft * Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;
         }
+
+        var newRigidity = rigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
+        var prevRigidity = Rigidity;
+
+        var action = new EditorAction(this, cost,
+            redo =>
+            {
+                Rigidity = newRigidity;
+                gui.UpdateRigiditySlider((int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO),
+                    MutationPoints);
+                gui.UpdateSpeed(CalculateSpeed());
+            },
+            undo =>
+            {
+                Rigidity = prevRigidity;
+                gui.UpdateRigiditySlider((int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO),
+                    MutationPoints);
+                gui.UpdateSpeed(CalculateSpeed());
+            });
+
+        EnqueueAction(action);
     }
 
     /// <summary>
@@ -960,6 +973,7 @@ public class MicrobeEditor : Node, ILoadableGameState
         // organelles are added)
         Membrane = species.MembraneType;
         Rigidity = species.MembraneRigidity;
+        Colour = species.Colour;
 
         // Get the species organelles to be edited. This also updates the placeholder hexes
         foreach (var organelle in species.Organelles.Organelles)
@@ -993,7 +1007,7 @@ public class MicrobeEditor : Node, ILoadableGameState
             gui.OnOrganelleToPlaceSelected("cytoplasm");
         }
 
-        gui.SetSpeciesInfo(NewName, Membrane, species.Colour, Rigidity);
+        gui.SetSpeciesInfo(NewName, Membrane, Colour, Rigidity);
         gui.UpdateGeneration(species.Generation);
     }
 
@@ -1602,7 +1616,14 @@ public class MicrobeEditor : Node, ILoadableGameState
         GD.Print("Applying auto-evo results");
         CurrentGame.GameWorld.GetAutoEvoRun().ApplyExternalEffects();
 
-        CurrentGame.GameWorld.Map.RemoveExtinctSpecies(FreeBuilding);
+        var extinct = CurrentGame.GameWorld.Map.RemoveExtinctSpecies(FreeBuilding);
+
+        foreach (var species in extinct)
+        {
+            CurrentGame.GameWorld.RemoveSpecies(species);
+
+            GD.Print("Species ", species.FormattedName, " has gone extinct from the world.");
+        }
 
         CurrentGame.GameWorld.Map.UpdateGlobalPopulations();
 
