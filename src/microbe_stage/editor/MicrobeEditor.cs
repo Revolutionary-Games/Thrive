@@ -9,11 +9,6 @@ using Newtonsoft.Json;
 /// </summary>
 public class MicrobeEditor : Node, ILoadableGameState
 {
-    [Signal]
-    public delegate void InvalidPlacementOfHex();
-    [Signal]
-    public delegate void InsufficientMPToPlaceHex();
-
     /// <summary>
     ///   The new to set on the species after exiting
     /// </summary>
@@ -123,6 +118,11 @@ public class MicrobeEditor : Node, ILoadableGameState
 
     [JsonProperty]
     private string autoEvoExternal;
+
+    [Signal]
+    public delegate void InvalidPlacementOfHex();
+    [Signal]
+    public delegate void InsufficientMPToPlaceHex();
 
     /// <summary>
     /// The Symmetry setting of the Microbe Editor.
