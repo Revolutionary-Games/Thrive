@@ -17,6 +17,11 @@ public static class SaveHelper
         LastModifiedFirst,
 
         /// <summary>
+        ///   The first modified (on disk) save is first
+        /// </summary>
+        FirstModifiedFirst,
+
+        /// <summary>
         ///   Whatever file the filesystem API gives us is first
         /// </summary>
         FileSystem,
@@ -61,6 +66,17 @@ public static class SaveHelper
                 using (var file = new File())
                 {
                     result = result.OrderByDescending(item =>
+                        file.GetModifiedTime(PathUtils.Join(Constants.SAVE_FOLDER, item))).ToList();
+                }
+
+                break;
+            }
+
+            case SaveOrder.FirstModifiedFirst:
+            {
+                using (var file = new File())
+                {
+                    result = result.OrderBy(item =>
                         file.GetModifiedTime(PathUtils.Join(Constants.SAVE_FOLDER, item))).ToList();
                 }
 
@@ -209,16 +225,16 @@ public static class SaveHelper
     public static void DeleteExcessSaves(string nameStartsWith, int maximumCount)
     {
         var currentSaveNames = new List<string>();
-        var allSaveNames = CreateListOfSaves();
+        var allSaveNames = CreateListOfSaves(SaveOrder.FirstModifiedFirst);
 
-        foreach (var save in allSaveNames.AsEnumerable().Reverse())
+        foreach (var save in allSaveNames)
         {
             if (save.StartsWith(nameStartsWith, StringComparison.CurrentCulture))
                 currentSaveNames.Add(save);
 
             if (currentSaveNames.Count > maximumCount && currentSaveNames.Count > 0)
             {
-                GD.Print("Found more ", nameStartsWith, " files than specified in Settings; ",
+                GD.Print("Found more ", nameStartsWith, " files than specified in settings; ",
                     "deleting current oldest ", nameStartsWith, " file: ", currentSaveNames[0]);
                 DeleteSave(currentSaveNames[0]);
                 currentSaveNames.RemoveAt(0);
