@@ -3,7 +3,7 @@ jobs:
    build:
      working_directory: ~/Thrive
      docker:
-       - image: hhyyrylainen/godot-ci:v4
+       - image: hhyyrylainen/godot-ci:v5
      environment:
        GIT_LFS_SKIP_SMUDGE: 1
      steps:
@@ -50,7 +50,7 @@ jobs:
    inspect:
      working_directory: ~/Thrive
      docker:
-       - image: hhyyrylainen/godot-ci:v4
+       - image: hhyyrylainen/godot-ci:v5
      environment:
        GIT_LFS_SKIP_SMUDGE: 1
        CIRCLE_COMPARE_URL: << pipeline.project.git_url >>/compare/<< pipeline.git.base_revision >>..<<pipeline.git.revision>>
@@ -92,7 +92,7 @@ jobs:
    cleanup:
      working_directory: ~/Thrive
      docker:
-       - image: hhyyrylainen/godot-ci:v4
+       - image: hhyyrylainen/godot-ci:v5
      environment:
        GIT_LFS_SKIP_SMUDGE: 1
        CIRCLE_COMPARE_URL: << pipeline.project.git_url >>/compare/<< pipeline.git.base_revision >>..<<pipeline.git.revision>>

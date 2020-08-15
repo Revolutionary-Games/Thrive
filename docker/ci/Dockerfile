@@ -4,13 +4,13 @@ FROM fedora:32
 RUN rpm --import "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF"
 RUN curl https://download.mono-project.com/repo/centos8-stable.repo | tee /etc/yum.repos.d/mono-centos8-stable.repo
 
-RUN dnf install -y --setopt=deltarpm=false ruby ruby-devel redhat-rpm-config git git-lfs p7zip tar xz gcc make mono-complete nuget wget && dnf clean all
+RUN dnf install -y --setopt=deltarpm=false ruby ruby-devel redhat-rpm-config git git-lfs p7zip tar unzip xz gcc make mono-complete nuget wget && dnf clean all
 RUN git lfs install
 RUN gem install os colorize rubyzip json sha3 httparty parallel nokogiri
 
 # Jetbrains CLI tools
-RUN wget https://download.jetbrains.com/resharper/ReSharperUltimate.2020.1.4/JetBrains.ReSharper.CommandLineTools.Unix.2020.1.4.tar.gz \
-    -O jetbrains.tar.gz && tar -xzf jetbrains.tar.gz -C /usr/bin && rm -rf jetbrains.tar.gz
+RUN wget https://download.jetbrains.com/resharper/dotUltimate.2020.2/JetBrains.ReSharper.CommandLineTools.2020.2.zip \
+    -O jetbrains.zip && unzip jetbrains.zip -d /usr/bin && rm -rf jetbrains.zip
 
 # Godot install
 ENV GODOT_VERSION "3.2.2"
