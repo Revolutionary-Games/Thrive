@@ -121,6 +121,7 @@ public class MicrobeEditor : Node, ILoadableGameState
 
     [Signal]
     public delegate void InvalidPlacementOfHex();
+    
     [Signal]
     public delegate void InsufficientMPToPlaceHex();
 
