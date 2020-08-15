@@ -219,7 +219,7 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle
 
             // The shape is in our parent so the final position is our
             // offset plus the hex offset
-            Vector3 shapePosition = Hex.AxialToCartesian(hex) + Translation;
+            Vector3 shapePosition = Hex.AxialToCartesian(hex) + Hex.AxialToCartesian(Position);
 
             // Scale for bacteria physics.
             if (microbe.Species.IsBacteria)
