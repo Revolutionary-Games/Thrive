@@ -378,7 +378,8 @@ public class MicrobeEditorGUI : Node
         mutationPointsSubtractBar.Value = editor.MutationPoints;
         if (possibleMutationPoints != editor.MutationPoints)
         {
-            mutationPointsLabel.Text = $"({editor.MutationPoints:F0} -> {possibleMutationPoints:F0}) / {Constants.BASE_MUTATION_POINTS:F0}";
+            mutationPointsLabel.Text =
+                $"({editor.MutationPoints:F0} -> {possibleMutationPoints:F0}) / {Constants.BASE_MUTATION_POINTS:F0}";
         }
         else
         {
@@ -387,11 +388,13 @@ public class MicrobeEditorGUI : Node
 
         if (possibleMutationPoints < 0)
         {
-            mutationPointsSubtractBar.TextureProgress_ = GD.Load<Texture>("res://assets/textures/gui/bevel/MpBarInvalid.png");
+            mutationPointsSubtractBar.TextureProgress_ =
+                GD.Load<Texture>("res://assets/textures/gui/bevel/MpBarInvalid.png");
         }
         else
         {
-            mutationPointsSubtractBar.TextureProgress_ = GD.Load<Texture>("res://assets/textures/gui/bevel/MpBarSubtract.png");
+            mutationPointsSubtractBar.TextureProgress_ =
+                GD.Load<Texture>("res://assets/textures/gui/bevel/MpBarSubtract.png");
         }
     }
 
