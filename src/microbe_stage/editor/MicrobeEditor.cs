@@ -17,7 +17,7 @@ public class MicrobeEditor : Node, ILoadableGameState
     /// <summary>
     ///   Cost of the organelle that is about to be placed
     /// </summary>
-    public float OrganelleCost;
+    public float CurrentOrganelleCost;
 
     private MicrobeSymmetry symmetry = MicrobeSymmetry.None;
 
@@ -1066,6 +1066,9 @@ public class MicrobeEditor : Node, ILoadableGameState
         // Show the organelle that is about to be placed
         if (ActiveActionName != null && ShowHover)
         {
+            CurrentOrganelleCost = SimulationParameters.Instance.GetOrganelleType(
+                ActiveActionName).MPCost;
+
             GetMouseHex(out int q, out int r);
 
             // Can place stuff at all?
@@ -1111,7 +1114,7 @@ public class MicrobeEditor : Node, ILoadableGameState
         }
         else
         {
-            OrganelleCost = 0;
+            CurrentOrganelleCost = 0;
         }
     }
 
@@ -1126,8 +1129,6 @@ public class MicrobeEditor : Node, ILoadableGameState
         // TODO: this should be changed into a function parameter
         var toBePlacedOrganelle = SimulationParameters.Instance.GetOrganelleType(
             ActiveActionName);
-
-        OrganelleCost = toBePlacedOrganelle.MPCost;
 
         bool showModel = true;
 

@@ -289,6 +289,9 @@ public class MicrobeEditorGUI : Node
     /// </summary>
     private bool speciesListIsHidden;
 
+    private Texture invalidBarTexture;
+    private Texture subractBarTexture;
+
     public override void _Ready()
     {
         organelleSelectionElements = GetTree().GetNodesInGroup("OrganelleSelectionElement");
@@ -352,6 +355,9 @@ public class MicrobeEditorGUI : Node
         patchPhosphateSituation = GetNode<TextureRect>(PatchPhosphateSituationPath);
         rigiditySlider = GetNode<Slider>(RigiditySliderPath);
 
+        invalidBarTexture = GD.Load<Texture>("res://assets/textures/gui/bevel/MpBarInvalid.png");
+        subractBarTexture = GD.Load<Texture>("res://assets/textures/gui/bevel/MpBarSubtract.png");
+
         mapDrawer.OnSelectedPatchChanged = drawer => { UpdateShownPatchDetails(); };
 
         atpProductionBar.SelectedType = SegmentedBar.Type.ATP;
@@ -371,7 +377,9 @@ public class MicrobeEditorGUI : Node
     public override void _Process(float delta)
     {
         // Update mutation points
-        float possibleMutationPoints = editor.MutationPoints - editor.OrganelleCost;
+        float possibleMutationPoints = editor.FreeBuilding ?
+            Constants.BASE_MUTATION_POINTS :
+            editor.MutationPoints - editor.CurrentOrganelleCost;
         mutationPointsBar.MaxValue = Constants.BASE_MUTATION_POINTS;
         mutationPointsBar.Value = possibleMutationPoints;
         mutationPointsSubtractBar.MaxValue = Constants.BASE_MUTATION_POINTS;
@@ -388,13 +396,11 @@ public class MicrobeEditorGUI : Node
 
         if (possibleMutationPoints < 0)
         {
-            mutationPointsSubtractBar.TextureProgress_ =
-                GD.Load<Texture>("res://assets/textures/gui/bevel/MpBarInvalid.png");
+            mutationPointsSubtractBar.TextureProgress_ = invalidBarTexture;
         }
         else
         {
-            mutationPointsSubtractBar.TextureProgress_ =
-                GD.Load<Texture>("res://assets/textures/gui/bevel/MpBarSubtract.png");
+            mutationPointsSubtractBar.TextureProgress_ = subractBarTexture;
         }
     }
 
