@@ -371,7 +371,7 @@ public class MicrobeEditorGUI : Node
     public override void _Process(float delta)
     {
         // Update mutation points
-        float possibleMutationPoints = editor.MutationPoints - editor.organelleCost;
+        float possibleMutationPoints = editor.MutationPoints - editor.OrganelleCost;
         mutationPointsBar.MaxValue = Constants.BASE_MUTATION_POINTS;
         mutationPointsBar.Value = possibleMutationPoints;
         mutationPointsSubtractBar.MaxValue = Constants.BASE_MUTATION_POINTS;
