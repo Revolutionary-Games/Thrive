@@ -206,38 +206,22 @@ public static class SaveHelper
         }
     }
 
-    public static void RemoveExcessAutoAndQuickSaves()
+    public static void DeleteExcessSaves(string nameStartsWith, int maximumCount)
     {
-        int maxAutoSaves = Settings.Instance.MaxAutoSaves;
-        int maxQuickSaves = Settings.Instance.MaxQuickSaves;
-
-        var autoSaveNames = new List<string>();
-        var quickSaveNames = new List<string>();
-
+        var currentSaveNames = new List<string>();
         var allSaveNames = CreateListOfSaves();
 
         foreach (var save in allSaveNames.AsEnumerable().Reverse())
         {
-            if (save.StartsWith("auto_save", StringComparison.CurrentCulture))
-                autoSaveNames.Add(save);
+            if (save.StartsWith(nameStartsWith, StringComparison.CurrentCulture))
+                currentSaveNames.Add(save);
 
-            if (save.StartsWith("quick_save", StringComparison.CurrentCulture))
-                quickSaveNames.Add(save);
-
-            if (autoSaveNames.Count > maxAutoSaves && autoSaveNames.Count > 0)
+            if (currentSaveNames.Count > maximumCount && currentSaveNames.Count > 0)
             {
-                GD.Print("Found more auto-saved files than specified in Settings; ",
-                    "deleting current oldest auto-saved file: ", autoSaveNames[0]);
-                DeleteSave(autoSaveNames[0]);
-                autoSaveNames.RemoveAt(0);
-            }
-
-            if (quickSaveNames.Count > maxQuickSaves && quickSaveNames.Count > 0)
-            {
-                GD.Print("Found more quick-saved files than specified in Settings; ",
-                    "deleting current oldest quick-saved file: ", quickSaveNames[0]);
-                DeleteSave(quickSaveNames[0]);
-                quickSaveNames.RemoveAt(0);
+                GD.Print("Found more ", nameStartsWith, " files than specified in Settings; ",
+                    "deleting current oldest ", nameStartsWith, " file: ", currentSaveNames[0]);
+                DeleteSave(currentSaveNames[0]);
+                currentSaveNames.RemoveAt(0);
             }
         }
     }
@@ -278,16 +262,26 @@ public static class SaveHelper
             return;
         }
 
-        if (inProgress.Type == SaveInformation.SaveType.AutoSave ||
-            inProgress.Type == SaveInformation.SaveType.AutoSave)
-            QueueRemoveExcessAutoAndQuickSaves();
+        if (inProgress.Type == SaveInformation.SaveType.AutoSave)
+            QueueRemoveExcessAutoSaves();
+
+        if (inProgress.Type == SaveInformation.SaveType.QuickSave)
+            QueueRemoveExcessQuickSaves();
     }
 
     /// <summary>
-    ///   Runs a background task for removing excess auto and quick saves
+    ///   Runs a background task for removing excess auto saves
     /// </summary>
-    private static void QueueRemoveExcessAutoAndQuickSaves()
+    private static void QueueRemoveExcessAutoSaves()
     {
-        TaskExecutor.Instance.AddTask(new Task(RemoveExcessAutoAndQuickSaves));
+        TaskExecutor.Instance.AddTask(new Task(() => DeleteExcessSaves("auto_save", Settings.Instance.MaxAutoSaves)));
+    }
+
+    /// <summary>
+    ///   Runs a background task for removing excess quick saves
+    /// </summary>
+    private static void QueueRemoveExcessQuickSaves()
+    {
+        TaskExecutor.Instance.AddTask(new Task(() => DeleteExcessSaves("quick_save", Settings.Instance.MaxQuickSaves)));
     }
 }
