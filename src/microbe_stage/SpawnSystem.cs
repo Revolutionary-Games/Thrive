@@ -257,11 +257,11 @@ public class SpawnSystem
                     will fail the second condition, so entities still only
                     spawn within the spawning region.
                     */
-                    float displacementDistance = (float)random.NextDouble() * spawnType.SpawnRadius;
+                    float displacementDistance = random.NextFloat() * spawnType.SpawnRadius;
                     float displacementRotation = WeightedRandomRotation(playerRotation.y);
 
-                    float distanceX = (float)Math.Sin(displacementRotation) * displacementDistance;
-                    float distanceZ = (float)Math.Cos(displacementRotation) * displacementDistance;
+                    float distanceX = Mathf.Sin(displacementRotation) * displacementDistance;
+                    float distanceZ = Mathf.Cos(displacementRotation) * displacementDistance;
 
                     // Distance from the player.
                     Vector3 displacement = new Vector3(distanceX, 0, distanceZ);
@@ -391,8 +391,8 @@ public class SpawnSystem
     {
         targetRotation = WithNegativesToNormalRadians(targetRotation);
 
-        float rotation1 = (float)(random.NextDouble() * 2 * Math.PI);
-        float rotation2 = (float)(random.NextDouble() * 2 * Math.PI);
+        float rotation1 = random.NextFloat() * 2 * Mathf.Pi;
+        float rotation2 = random.NextFloat() * 2 * Mathf.Pi;
 
         if (DistanceBetweenRadians(rotation1, targetRotation) < DistanceBetweenRadians(rotation2, targetRotation))
             return NormalToWithNegativesRadians(rotation1);
