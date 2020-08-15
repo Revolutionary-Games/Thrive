@@ -272,7 +272,7 @@ public class MicrobeStage : Node, ILoadableGameState
 
         if (Player != null)
         {
-            spawner.Process(delta, Player.Translation);
+            spawner.Process(delta, Player.Translation, Player.Rotation);
             Clouds.ReportPlayerPosition(Player.Translation);
         }
         else
