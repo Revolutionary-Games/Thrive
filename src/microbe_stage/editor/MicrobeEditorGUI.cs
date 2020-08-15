@@ -31,6 +31,9 @@ public class MicrobeEditorGUI : Node
     public NodePath MutationPointsBarPath;
 
     [Export]
+    public NodePath MutationPointsSubtractBarPath;
+
+    [Export]
     public NodePath SpeciesNameEditPath;
 
     [Export]
@@ -225,6 +228,7 @@ public class MicrobeEditorGUI : Node
     private Label generationLabel;
     private Label mutationPointsLabel;
     private TextureProgress mutationPointsBar;
+    private TextureProgress mutationPointsSubtractBar;
     private LineEdit speciesNameEdit;
     private ColorPicker membraneColorPicker;
     private TextureButton newCellButton;
@@ -297,6 +301,7 @@ public class MicrobeEditorGUI : Node
         generationLabel = GetNode<Label>(GenerationLabelPath);
         mutationPointsLabel = GetNode<Label>(MutationPointsLabelPath);
         mutationPointsBar = GetNode<TextureProgress>(MutationPointsBarPath);
+        mutationPointsSubtractBar = GetNode<TextureProgress>(MutationPointsSubtractBarPath);
         speciesNameEdit = GetNode<LineEdit>(SpeciesNameEditPath);
         membraneColorPicker = GetNode<ColorPicker>(MembraneColorPickerPath);
         newCellButton = GetNode<TextureButton>(NewCellButtonPath);
@@ -366,9 +371,28 @@ public class MicrobeEditorGUI : Node
     public override void _Process(float delta)
     {
         // Update mutation points
+        float possibleMutationPoints = editor.MutationPoints - editor.organelleCost;
         mutationPointsBar.MaxValue = Constants.BASE_MUTATION_POINTS;
-        mutationPointsBar.Value = editor.MutationPoints;
-        mutationPointsLabel.Text = $"{editor.MutationPoints:F0} / {Constants.BASE_MUTATION_POINTS:F0}";
+        mutationPointsBar.Value = possibleMutationPoints;
+        mutationPointsSubtractBar.MaxValue = Constants.BASE_MUTATION_POINTS;
+        mutationPointsSubtractBar.Value = editor.MutationPoints;
+        if (possibleMutationPoints != editor.MutationPoints)
+        {
+            mutationPointsLabel.Text = $"({editor.MutationPoints:F0} -> {possibleMutationPoints:F0}) / {Constants.BASE_MUTATION_POINTS:F0}";
+        }
+        else
+        {
+            mutationPointsLabel.Text = $"{editor.MutationPoints:F0} / {Constants.BASE_MUTATION_POINTS:F0}";
+        }
+
+        if (possibleMutationPoints < 0)
+        {
+            mutationPointsSubtractBar.TextureProgress_ = GD.Load<Texture>("res://assets/textures/gui/bevel/MpBarInvalid.png");
+        }
+        else
+        {
+            mutationPointsSubtractBar.TextureProgress_ = GD.Load<Texture>("res://assets/textures/gui/bevel/MpBarSubtract.png");
+        }
     }
 
     public void SetMap(PatchMap map)

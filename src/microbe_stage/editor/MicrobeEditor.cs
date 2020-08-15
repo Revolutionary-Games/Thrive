@@ -14,6 +14,11 @@ public class MicrobeEditor : Node, ILoadableGameState
     /// </summary>
     public string NewName;
 
+    /// <summary>
+    ///   Cost of the organelle that is about to be placed
+    /// </summary>
+    public float organelleCost;
+
     private MicrobeSymmetry symmetry = MicrobeSymmetry.None;
 
     private MicrobeCamera camera;
@@ -1104,6 +1109,10 @@ public class MicrobeEditor : Node, ILoadableGameState
                 }
             }
         }
+        else
+        {
+            organelleCost = 0;
+        }
     }
 
     /// <summary>
@@ -1117,6 +1126,8 @@ public class MicrobeEditor : Node, ILoadableGameState
         // TODO: this should be changed into a function parameter
         var toBePlacedOrganelle = SimulationParameters.Instance.GetOrganelleType(
             ActiveActionName);
+
+        organelleCost = toBePlacedOrganelle.MPCost;
 
         bool showModel = true;
 

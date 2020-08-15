@@ -1007,6 +1007,7 @@ SpeedLabelPath = NodePath("CellEditor/BottomBar/LowerBarCentre/MarginContainer/H
 GenerationLabelPath = NodePath("CellEditor/BottomBar/LowerBarCentre/MarginContainer/HBoxContainer/SpeciesName/GenerationLabel")
 MutationPointsLabelPath = NodePath("LeftTopBar/HBoxContainer/MPBox/MarginContainer/HBoxContainer/BarContainer/MPBarMain/HBoxContainer/Value")
 MutationPointsBarPath = NodePath("LeftTopBar/HBoxContainer/MPBox/MarginContainer/HBoxContainer/BarContainer/MPBarMain")
+MutationPointsSubtractBarPath = NodePath("LeftTopBar/HBoxContainer/MPBox/MarginContainer/HBoxContainer/BarContainer/MPBarSubtract")
 SpeciesNameEditPath = NodePath("CellEditor/BottomBar/LowerBarCentre/MarginContainer/HBoxContainer/SpeciesName/SpeciesNameBox/MarginContainer/LineEdit")
 MembraneColorPickerPath = NodePath("CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer/ColorPicker")
 NewCellButtonPath = NodePath("LeftTopBar/HBoxContainer/NewCellButton")
@@ -1172,18 +1173,18 @@ rect_min_size = Vector2( 440, 25 )
 custom_constants/separation = 0
 
 [node name="BarContainer" type="Control" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer/MPBox/MarginContainer/HBoxContainer"]
-margin_left = 5.0
 margin_bottom = 25.0
 
 [node name="MPBarSubtract" type="TextureProgress" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer/MPBox/MarginContainer/HBoxContainer/BarContainer"]
 self_modulate = Color( 0.705882, 0.705882, 0.705882, 1 )
 show_behind_parent = true
-margin_left = 5.0
+margin_left = 10.0
 margin_right = 445.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 440, 25 )
 size_flags_vertical = 0
 step = 0.1
+value = 100.0
 texture_progress = ExtResource( 81 )
 nine_patch_stretch = true
 __meta__ = {
@@ -1193,7 +1194,7 @@ __meta__ = {
 [node name="MPBarMain" type="TextureProgress" parent="MicrobeEditorGUI/LeftTopBar/HBoxContainer/MPBox/MarginContainer/HBoxContainer/BarContainer"]
 self_modulate = Color( 0.705882, 0.705882, 0.705882, 1 )
 show_behind_parent = true
-margin_left = 5.0
+margin_left = 10.0
 margin_right = 445.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 440, 25 )
@@ -3852,10 +3853,10 @@ valign = 1
 uppercase = true
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_left = 36.0
-margin_top = 36.0
-margin_right = 36.0
-margin_bottom = 36.0
+margin_left = 40.0
+margin_top = 40.0
+margin_right = 40.0
+margin_bottom = 40.0
 theme = SubResource( 29 )
 edit_alpha = false
 
