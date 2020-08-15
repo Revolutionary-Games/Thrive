@@ -14,6 +14,11 @@ public class MicrobeEditor : Node, ILoadableGameState
     /// </summary>
     public string NewName;
 
+    /// <summary>
+    ///   Cost of the organelle that is about to be placed
+    /// </summary>
+    public float CurrentOrganelleCost;
+
     private MicrobeSymmetry symmetry = MicrobeSymmetry.None;
 
     private MicrobeCamera camera;
@@ -1061,6 +1066,9 @@ public class MicrobeEditor : Node, ILoadableGameState
         // Show the organelle that is about to be placed
         if (ActiveActionName != null && ShowHover)
         {
+            CurrentOrganelleCost = SimulationParameters.Instance.GetOrganelleType(
+                ActiveActionName).MPCost;
+
             GetMouseHex(out int q, out int r);
 
             // Can place stuff at all?
@@ -1103,6 +1111,10 @@ public class MicrobeEditor : Node, ILoadableGameState
                     break;
                 }
             }
+        }
+        else
+        {
+            CurrentOrganelleCost = 0;
         }
     }
 
