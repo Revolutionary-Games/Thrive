@@ -199,15 +199,15 @@ public class Settings
     {
         var defaults = new Settings();
 
-        Type type = GetType();
-        Type defaultsType = defaults.GetType();
+        var type = GetType();
+        var defaultsType = defaults.GetType();
 
         PropertyInfo[] properties = type.GetProperties();
         PropertyInfo[] defaultProperties = defaultsType.GetProperties();
 
         for (int i = 0; i < properties.Length; ++i)
         {
-            if (properties[i].PropertyType.IsPrimitive && properties[i].CanWrite)
+            if (properties[i].CanWrite)
             {
                 properties[i].SetValue(this, defaultProperties[i].GetValue(defaults));
             }
