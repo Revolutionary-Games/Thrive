@@ -17,14 +17,14 @@ public static class SaveHelper
         LastModifiedFirst,
 
         /// <summary>
+        ///   The first modified (on disk) save is first
+        /// </summary>
+        FirstModifiedFirst,
+
+        /// <summary>
         ///   Whatever file the filesystem API gives us is first
         /// </summary>
         FileSystem,
-    }
-
-    public static void RemoveExcessQuickSaves()
-    {
-        // throw new System.NotImplementedException();
     }
 
     /// <summary>
@@ -66,6 +66,17 @@ public static class SaveHelper
                 using (var file = new File())
                 {
                     result = result.OrderByDescending(item =>
+                        file.GetModifiedTime(PathUtils.Join(Constants.SAVE_FOLDER, item))).ToList();
+                }
+
+                break;
+            }
+
+            case SaveOrder.FirstModifiedFirst:
+            {
+                using (var file = new File())
+                {
+                    result = result.OrderBy(item =>
                         file.GetModifiedTime(PathUtils.Join(Constants.SAVE_FOLDER, item))).ToList();
                 }
 
@@ -211,6 +222,26 @@ public static class SaveHelper
         }
     }
 
+    public static void DeleteExcessSaves(string nameStartsWith, int maximumCount)
+    {
+        var currentSaveNames = new List<string>();
+        var allSaveNames = CreateListOfSaves(SaveOrder.FirstModifiedFirst);
+
+        foreach (var save in allSaveNames)
+        {
+            if (save.StartsWith(nameStartsWith, StringComparison.CurrentCulture))
+                currentSaveNames.Add(save);
+
+            if (currentSaveNames.Count > maximumCount && currentSaveNames.Count > 0)
+            {
+                GD.Print("Found more ", nameStartsWith, " files than specified in settings; ",
+                    "deleting current oldest ", nameStartsWith, " file: ", currentSaveNames[0]);
+                DeleteSave(currentSaveNames[0]);
+                currentSaveNames.RemoveAt(0);
+            }
+        }
+    }
+
     private static void InternalSaveHelper(SaveInformation.SaveType type, MainGameState gameState,
         Action<Save> copyInfoToSave, Func<Node> stateRoot, string saveName = null)
     {
@@ -247,8 +278,19 @@ public static class SaveHelper
             return;
         }
 
+        if (inProgress.Type == SaveInformation.SaveType.AutoSave)
+            QueueRemoveExcessAutoSaves();
+
         if (inProgress.Type == SaveInformation.SaveType.QuickSave)
             QueueRemoveExcessQuickSaves();
+    }
+
+    /// <summary>
+    ///   Runs a background task for removing excess auto saves
+    /// </summary>
+    private static void QueueRemoveExcessAutoSaves()
+    {
+        TaskExecutor.Instance.AddTask(new Task(() => DeleteExcessSaves("auto_save", Settings.Instance.MaxAutoSaves)));
     }
 
     /// <summary>
@@ -256,6 +298,6 @@ public static class SaveHelper
     /// </summary>
     private static void QueueRemoveExcessQuickSaves()
     {
-        TaskExecutor.Instance.AddTask(new Task(RemoveExcessQuickSaves));
+        TaskExecutor.Instance.AddTask(new Task(() => DeleteExcessSaves("quick_save", Settings.Instance.MaxQuickSaves)));
     }
 }

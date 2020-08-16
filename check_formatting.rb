@@ -14,6 +14,10 @@ require_relative 'scripts/fast_build/toggle_analysis_lib'
 
 MAX_LINE_LENGTH = 120
 
+# Pretty generous, so can't detect like small models with only a few
+# vertices, as text etc. is on a single line
+SCENE_EMBEDDED_LENGTH_HEURISTIC = 920
+
 VALID_CHECKS = %w[compile files inspectcode cleanupcode].freeze
 DEFAULT_CHECKS = %w[compile files inspectcode cleanupcode].freeze
 
@@ -206,6 +210,25 @@ def handle_shader_file(path)
   errors
 end
 
+def handle_tscn_file(path)
+  errors = false
+
+  File.foreach(path).with_index do |line, line_number|
+    # For some reason this reports 1 too high
+    length = line.length - 1
+
+    if length > SCENE_EMBEDDED_LENGTH_HEURISTIC
+      OUTPUT_MUTEX.synchronize do
+        error "Line #{line_number + 1} probably has an embedded resource. "\
+              "Length #{length} is over heuristic value of #{SCENE_EMBEDDED_LENGTH_HEURISTIC}"
+        errors = true
+      end
+    end
+  end
+
+  errors
+end
+
 def handle_csproj_file(path)
   errors = false
   data = File.read(path, encoding: 'utf-8')
@@ -245,6 +268,8 @@ def handle_file(path)
     handle_shader_file path
   elsif path =~ /\.csproj$/
     handle_csproj_file path
+  elsif path =~ /\.tscn$/
+    handle_tscn_file path
   else
     false
   end

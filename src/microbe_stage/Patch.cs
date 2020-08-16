@@ -28,6 +28,9 @@ public class Patch
     [JsonProperty]
     public readonly Biome BiomeTemplate;
 
+    [JsonProperty]
+    public readonly int[] Depth = new int[2] { -1, -1 };
+
     public Patch(string name, int id, Biome biomeTemplate)
     {
         Name = name;
