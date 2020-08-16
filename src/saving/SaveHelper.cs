@@ -28,6 +28,109 @@ public static class SaveHelper
     }
 
     /// <summary>
+    ///   A save (and not a quick save) that the user triggered
+    /// </summary>
+    /// <param name="name">Save name to use, or blank</param>
+    /// <param name="state">The current game state to make the save with</param>
+    public static void Save(string name, MicrobeStage state)
+    {
+        InternalSaveHelper(SaveInformation.SaveType.Manual, MainGameState.MicrobeStage, save =>
+        {
+            save.SavedProperties = state.CurrentGame;
+            save.MicrobeStage = state;
+        }, () => state, name);
+    }
+
+    public static void Save(string name, MicrobeEditor state)
+    {
+        InternalSaveHelper(SaveInformation.SaveType.Manual, MainGameState.MicrobeEditor, save =>
+        {
+            save.SavedProperties = state.CurrentGame;
+            save.MicrobeEditor = state;
+        }, () => state, name);
+    }
+
+    /// <summary>
+    ///   Quick save from the microbe stage
+    /// </summary>
+    /// <param name="state">Data to include in save</param>
+    public static void QuickSave(MicrobeStage state)
+    {
+        InternalSaveHelper(SaveInformation.SaveType.QuickSave, MainGameState.MicrobeStage, save =>
+        {
+            save.SavedProperties = state.CurrentGame;
+            save.MicrobeStage = state;
+        }, () => state);
+    }
+
+    /// <summary>
+    ///   Quick save from the microbe editor
+    /// </summary>
+    /// <param name="state">Data to include in save</param>
+    public static void QuickSave(MicrobeEditor state)
+    {
+        InternalSaveHelper(SaveInformation.SaveType.QuickSave, MainGameState.MicrobeEditor, save =>
+        {
+            save.SavedProperties = state.CurrentGame;
+            save.MicrobeEditor = state;
+        }, () => state);
+    }
+
+    /// <summary>
+    ///   Auto save the game (if enabled in settings)
+    /// </summary>
+    public static void AutoSave(MicrobeStage state)
+    {
+        if (!Settings.Instance.AutoSaveEnabled)
+            return;
+
+        InternalSaveHelper(SaveInformation.SaveType.AutoSave, MainGameState.MicrobeStage, save =>
+        {
+            save.SavedProperties = state.CurrentGame;
+            save.MicrobeStage = state;
+        }, () => state);
+    }
+
+    public static void AutoSave(MicrobeEditor state)
+    {
+        if (!Settings.Instance.AutoSaveEnabled)
+            return;
+
+        InternalSaveHelper(SaveInformation.SaveType.AutoSave, MainGameState.MicrobeEditor, save =>
+        {
+            save.SavedProperties = state.CurrentGame;
+            save.MicrobeEditor = state;
+        }, () => state);
+    }
+
+    /// <summary>
+    ///   Loads save
+    /// </summary>
+    /// <param name="name">The name of the save to load</param>
+    public static void LoadSave(string name)
+    {
+        GD.Print("Starting load of save: ", name);
+        new InProgressLoad(name).Start();
+    }
+
+    /// <summary>
+    ///   Loads the save file with the latest write time
+    /// </summary>
+    public static void QuickLoad()
+    {
+        // TODO: is there a way to to find the latest modified file without checking them all?
+        var save = CreateListOfSaves(SaveOrder.LastModifiedFirst).FirstOrDefault();
+
+        if (save == null)
+        {
+            GD.Print("No saves exist, can't quick load");
+            return;
+        }
+
+        LoadSave(save);
+    }
+
+    /// <summary>
     ///   Returns a list of all saves
     /// </summary>
     /// <returns>The list of save names</returns>
@@ -106,109 +209,6 @@ public static class SaveHelper
         }
 
         return (count, totalSize);
-    }
-
-    /// <summary>
-    ///   Quick save from the microbe stage
-    /// </summary>
-    /// <param name="state">Data to include in save</param>
-    public static void QuickSave(MicrobeStage state)
-    {
-        InternalSaveHelper(SaveInformation.SaveType.QuickSave, MainGameState.MicrobeStage, save =>
-        {
-            save.SavedProperties = state.CurrentGame;
-            save.MicrobeStage = state;
-        }, () => state);
-    }
-
-    /// <summary>
-    ///   Quick save from the microbe editor
-    /// </summary>
-    /// <param name="state">Data to include in save</param>
-    public static void QuickSave(MicrobeEditor state)
-    {
-        InternalSaveHelper(SaveInformation.SaveType.QuickSave, MainGameState.MicrobeEditor, save =>
-        {
-            save.SavedProperties = state.CurrentGame;
-            save.MicrobeEditor = state;
-        }, () => state);
-    }
-
-    /// <summary>
-    ///   A save (and not a quick save) that the user triggered
-    /// </summary>
-    /// <param name="name">Save name to use, or blank</param>
-    /// <param name="state">The current game state to make the save with</param>
-    public static void Save(string name, MicrobeStage state)
-    {
-        InternalSaveHelper(SaveInformation.SaveType.Manual, MainGameState.MicrobeStage, save =>
-        {
-            save.SavedProperties = state.CurrentGame;
-            save.MicrobeStage = state;
-        }, () => state, name);
-    }
-
-    public static void Save(string name, MicrobeEditor state)
-    {
-        InternalSaveHelper(SaveInformation.SaveType.Manual, MainGameState.MicrobeEditor, save =>
-        {
-            save.SavedProperties = state.CurrentGame;
-            save.MicrobeEditor = state;
-        }, () => state, name);
-    }
-
-    /// <summary>
-    ///   Auto save the game (if enabled in settings)
-    /// </summary>
-    public static void AutoSave(MicrobeStage state)
-    {
-        if (!Settings.Instance.AutoSaveEnabled)
-            return;
-
-        InternalSaveHelper(SaveInformation.SaveType.AutoSave, MainGameState.MicrobeStage, save =>
-        {
-            save.SavedProperties = state.CurrentGame;
-            save.MicrobeStage = state;
-        }, () => state);
-    }
-
-    public static void AutoSave(MicrobeEditor state)
-    {
-        if (!Settings.Instance.AutoSaveEnabled)
-            return;
-
-        InternalSaveHelper(SaveInformation.SaveType.AutoSave, MainGameState.MicrobeEditor, save =>
-        {
-            save.SavedProperties = state.CurrentGame;
-            save.MicrobeEditor = state;
-        }, () => state);
-    }
-
-    /// <summary>
-    ///   Loads the save file with the latest write time
-    /// </summary>
-    public static void QuickLoad()
-    {
-        // TODO: is there a way to to find the latest modified file without checking them all?
-        var save = CreateListOfSaves(SaveOrder.LastModifiedFirst).FirstOrDefault();
-
-        if (save == null)
-        {
-            GD.Print("No saves exist, can't quick load");
-            return;
-        }
-
-        LoadSave(save);
-    }
-
-    /// <summary>
-    ///   Loads save
-    /// </summary>
-    /// <param name="name">The name of the save to load</param>
-    public static void LoadSave(string name)
-    {
-        GD.Print("Starting load of save: ", name);
-        new InProgressLoad(name).Start();
     }
 
     /// <summary>
