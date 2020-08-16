@@ -14,6 +14,11 @@ public class MicrobeEditor : Node, ILoadableGameState
     /// </summary>
     public string NewName;
 
+    /// <summary>
+    ///   Cost of the organelle that is about to be placed
+    /// </summary>
+    public float CurrentOrganelleCost;
+
     private MicrobeSymmetry symmetry = MicrobeSymmetry.None;
 
     private MicrobeCamera camera;
@@ -663,8 +668,15 @@ public class MicrobeEditor : Node, ILoadableGameState
 
         if (cost > MutationPoints)
         {
-            gui.UpdateRigiditySlider(intRigidity, MutationPoints);
-            return;
+            int stepsLeft = MutationPoints / Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;
+            if (stepsLeft < 1)
+            {
+                gui.UpdateRigiditySlider(intRigidity, MutationPoints);
+                return;
+            }
+
+            rigidity = intRigidity > rigidity ? intRigidity - stepsLeft : intRigidity + stepsLeft;
+            cost = stepsLeft * Constants.MEMBRANE_RIGIDITY_COST_PER_STEP;
         }
 
         var newRigidity = rigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
@@ -1054,6 +1066,9 @@ public class MicrobeEditor : Node, ILoadableGameState
         // Show the organelle that is about to be placed
         if (ActiveActionName != null && ShowHover)
         {
+            CurrentOrganelleCost = SimulationParameters.Instance.GetOrganelleType(
+                ActiveActionName).MPCost;
+
             GetMouseHex(out int q, out int r);
 
             // Can place stuff at all?
@@ -1070,6 +1085,7 @@ public class MicrobeEditor : Node, ILoadableGameState
 
                 case MicrobeSymmetry.XAxisSymmetry:
                 {
+                    CurrentOrganelleCost *= 2;
                     RenderHighlightedOrganelle(q, r, organelleRot);
                     RenderHighlightedOrganelle(-1 * q, r + q, 6 + (-1 * organelleRot));
                     break;
@@ -1077,6 +1093,7 @@ public class MicrobeEditor : Node, ILoadableGameState
 
                 case MicrobeSymmetry.FourWaySymmetry:
                 {
+                    CurrentOrganelleCost *= 4;
                     RenderHighlightedOrganelle(q, r, organelleRot);
                     RenderHighlightedOrganelle(-1 * q, r + q, 6 + (-1 * organelleRot));
                     RenderHighlightedOrganelle(-1 * q, -1 * r, (organelleRot + 180) % 6);
@@ -1087,6 +1104,7 @@ public class MicrobeEditor : Node, ILoadableGameState
 
                 case MicrobeSymmetry.SixWaySymmetry:
                 {
+                    CurrentOrganelleCost *= 6;
                     RenderHighlightedOrganelle(q, r, organelleRot);
                     RenderHighlightedOrganelle(-1 * r, r + q, (organelleRot + 1) % 6);
                     RenderHighlightedOrganelle(-1 * (r + q), q, (organelleRot + 2) % 6);
@@ -1096,6 +1114,10 @@ public class MicrobeEditor : Node, ILoadableGameState
                     break;
                 }
             }
+        }
+        else
+        {
+            CurrentOrganelleCost = 0;
         }
     }
 

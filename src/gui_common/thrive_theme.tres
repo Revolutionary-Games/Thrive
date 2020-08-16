@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=44 format=2]
+[gd_resource type="Theme" load_steps=47 format=2]
 
 [ext_resource path="res://assets/fonts/Jura-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/grab.png" type="Texture" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/checkB.png" type="Texture" id=5]
 [ext_resource path="res://assets/textures/gui/bevel/checkA.png" type="Texture" id=6]
 [ext_resource path="res://assets/textures/gui/bevel/grabdisabled.png" type="Texture" id=7]
+[ext_resource path="res://assets/fonts/Jura-Medium.ttf" type="DynamicFontData" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 size = 20
@@ -269,6 +270,26 @@ expand_margin_right = 5.0
 bg_color = Color( 0, 0, 0, 1 )
 border_width_left = 15
 border_color = Color( 1, 1, 1, 0 )
+
+[sub_resource type="DynamicFont" id=37]
+font_data = ExtResource( 8 )
+
+[sub_resource type="StyleBoxFlat" id=38]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 10.0
+content_margin_bottom = 15.0
+bg_color = Color( 0.054902, 0.145098, 0.168627, 0.784314 )
+border_width_left = 1
+border_width_top = 20
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.0666667, 1, 0.835294, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+expand_margin_top = 20.0
 
 [resource]
 Button/colors/font_color = Color( 1, 1, 1, 1 )
@@ -680,12 +701,12 @@ VSplitContainer/constants/autohide = 1
 VSplitContainer/constants/separation = 12
 VSplitContainer/icons/grabber = null
 VSplitContainer/styles/bg = null
-WindowDialog/colors/title_color = Color( 1, 1, 1, 1 )
+WindowDialog/colors/title_color = Color( 0, 0, 0, 1 )
 WindowDialog/constants/close_h_ofs = 18
 WindowDialog/constants/close_v_ofs = 18
 WindowDialog/constants/scaleborder_size = 4
 WindowDialog/constants/title_height = 20
-WindowDialog/fonts/title_font = SubResource( 21 )
+WindowDialog/fonts/title_font = SubResource( 37 )
 WindowDialog/icons/close = null
 WindowDialog/icons/close_highlight = null
-WindowDialog/styles/panel = SubResource( 24 )
+WindowDialog/styles/panel = SubResource( 38 )
