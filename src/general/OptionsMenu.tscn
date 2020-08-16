@@ -659,8 +659,8 @@ margin_right = 940.0
 margin_bottom = 395.0
 rect_min_size = Vector2( 600, 70 )
 popup_exclusive = true
-window_title = "Are you sure you want to reset ALL settings to default values?"
-dialog_text = "Are you sure?"
+window_title = "Reset settings to defaults?"
+dialog_text = "Are you sure you want to reset ALL settings to default values?"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/GraphicsButton" to="." method="SetSettingsTab" binds= [ "graphics" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/SoundButton" to="." method="SetSettingsTab" binds= [ "sound" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/PerformanceButton" to="." method="SetSettingsTab" binds= [ "performance" ]]
