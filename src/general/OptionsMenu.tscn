@@ -652,13 +652,14 @@ __meta__ = {
 }
 
 [node name="ResetConfirm" type="ConfirmationDialog" parent="CenterContainer"]
+visible = true
 margin_left = 340.0
-margin_top = 325.0
+margin_top = 324.0
 margin_right = 940.0
-margin_bottom = 396.0
+margin_bottom = 395.0
 rect_min_size = Vector2( 600, 70 )
 popup_exclusive = true
-window_title = ""
+window_title = "Are you sure you want to reset ALL settings to default values?"
 dialog_text = "Are you sure?"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/GraphicsButton" to="." method="SetSettingsTab" binds= [ "graphics" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/SoundButton" to="." method="SetSettingsTab" binds= [ "sound" ]]
