@@ -98,7 +98,7 @@ public class OptionsMenu : Control
 
     // Alert Box
 
-    private ConfirmationDialog ResetConfirmationBox;
+    private ConfirmationDialog resetConfirmationBox;
 
     // Tab buttons
     private Button graphicsButton;
@@ -181,7 +181,7 @@ public class OptionsMenu : Control
         autosave = GetNode<CheckBox>(AutoSavePath);
         maxAutosaves = GetNode<SpinBox>(MaxAutoSavesPath);
         maxQuicksaves = GetNode<SpinBox>(MaxQuickSavesPath);
-        ResetConfirmationBox = GetNode<ConfirmationDialog>(ResetConfirmationBoxPath);
+        resetConfirmationBox = GetNode<ConfirmationDialog>(ResetConfirmationBoxPath);
     }
 
     public override void _Process(float delta)
@@ -402,17 +402,17 @@ public class OptionsMenu : Control
         EmitSignal(nameof(OnOptionsClosed));
     }
     
-    private void _on_ResetConfirm_confirmed()
+    private void ResetConfirmSelected()
     {
         Settings.ResetToDefaults();
         Settings.ApplyAll();
         SetSettingsFrom(Settings);
-        ResetConfirmationBox.SetVisible(false);
+        resetConfirmationBox.SetVisible(false);
     }
 
     private void OnResetPressed()
     {
-        ResetConfirmationBox.SetVisible(true);
+        resetConfirmationBox.SetVisible(true);
     }
 
     private void OnIntroToggled(bool pressed)
