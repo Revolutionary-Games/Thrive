@@ -198,19 +198,14 @@ public class Settings
     public void ResetToDefaults()
     {
         var defaults = new Settings();
-
         var type = GetType();
-        var defaultsType = defaults.GetType();
 
-        PropertyInfo[] properties = type.GetProperties();
-        PropertyInfo[] defaultProperties = defaultsType.GetProperties();
-
-        for (int i = 0; i < properties.Length; ++i)
+        foreach (var property in type.GetProperties())
         {
-            if (properties[i].CanWrite)
-            {
-                properties[i].SetValue(this, defaultProperties[i].GetValue(defaults));
-            }
+            if (!property.CanWrite)
+                continue;
+
+            property.SetValue(this, property.GetValue(defaults));
         }
     }
 
