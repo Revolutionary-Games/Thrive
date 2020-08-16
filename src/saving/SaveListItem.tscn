@@ -42,8 +42,8 @@ LoadButtonPath = NodePath("SaveListItem/VBoxContainer/HBoxContainer/HBoxContaine
 [node name="SaveListItem" type="HBoxContainer" parent="."]
 margin_left = 3.0
 margin_top = 3.0
-margin_right = 622.0
-margin_bottom = 135.0
+margin_right = 618.0
+margin_bottom = 131.0
 size_flags_horizontal = 3
 __meta__ = {
 "_edit_use_anchors_": false
@@ -51,7 +51,7 @@ __meta__ = {
 
 [node name="Screenshot" type="TextureRect" parent="SaveListItem"]
 margin_right = 128.0
-margin_bottom = 132.0
+margin_bottom = 128.0
 rect_min_size = Vector2( 128, 128 )
 size_flags_horizontal = 3
 texture = ExtResource( 3 )
@@ -60,8 +60,8 @@ stretch_mode = 6
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SaveListItem"]
 margin_left = 132.0
-margin_right = 619.0
-margin_bottom = 132.0
+margin_right = 615.0
+margin_bottom = 128.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 4.0
 __meta__ = {
@@ -69,7 +69,7 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="SaveListItem/VBoxContainer"]
-margin_right = 487.0
+margin_right = 483.0
 margin_bottom = 43.0
 
 [node name="Label1" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer"]
@@ -101,34 +101,33 @@ text = "..."
 
 [node name="HBoxContainer" type="HBoxContainer" parent="SaveListItem/VBoxContainer/HBoxContainer"]
 margin_left = 274.0
-margin_right = 487.0
+margin_right = 483.0
 margin_bottom = 43.0
 size_flags_horizontal = 3
 alignment = 2
 
 [node name="SelectBox" type="CheckBox" parent="SaveListItem/VBoxContainer/HBoxContainer/HBoxContainer"]
-margin_left = 4.0
-margin_right = 94.0
+margin_right = 90.0
 margin_bottom = 43.0
 text = "select"
 
 [node name="Delete" type="TextureButton" parent="SaveListItem/VBoxContainer/HBoxContainer/HBoxContainer"]
-margin_left = 98.0
-margin_right = 140.0
+margin_left = 94.0
+margin_right = 136.0
 margin_bottom = 43.0
 texture_normal = ExtResource( 6 )
 texture_hover = ExtResource( 4 )
 texture_disabled = ExtResource( 1 )
 
 [node name="Load" type="Button" parent="SaveListItem/VBoxContainer/HBoxContainer/HBoxContainer"]
-margin_left = 144.0
-margin_right = 213.0
+margin_left = 140.0
+margin_right = 209.0
 margin_bottom = 43.0
 text = "Load"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="SaveListItem/VBoxContainer"]
 margin_top = 47.0
-margin_right = 487.0
+margin_right = 483.0
 margin_bottom = 70.0
 
 [node name="Label" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer2"]
@@ -156,7 +155,7 @@ text = "..."
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="SaveListItem/VBoxContainer"]
 margin_top = 74.0
-margin_right = 487.0
+margin_right = 483.0
 margin_bottom = 97.0
 
 [node name="Label" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer4"]
@@ -184,7 +183,7 @@ text = "..."
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="SaveListItem/VBoxContainer"]
 margin_top = 101.0
-margin_right = 487.0
+margin_right = 483.0
 margin_bottom = 124.0
 
 [node name="Label" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer3"]
@@ -207,6 +206,6 @@ size_flags_vertical = 5
 popup_exclusive = true
 window_title = "Delete this Save?"
 dialog_text = "Deleting this save cannot be undone, are you sure you want to permanently delete this?"
-[connection signal="toggled" from="SaveListItem/VBoxContainer/HBoxContainer/HBoxContainer/SelectBox" to="SaveListItem" method="OnSelectedCheckboxChanged"]
-[connection signal="pressed" from="SaveListItem/VBoxContainer/HBoxContainer/HBoxContainer/Delete" to="SaveListItem" method="DeletePressed"]
-[connection signal="pressed" from="SaveListItem/VBoxContainer/HBoxContainer/HBoxContainer/Load" to="SaveListItem" method="LoadThisSave"]
+[connection signal="toggled" from="SaveListItem/VBoxContainer/HBoxContainer/HBoxContainer/SelectBox" to="." method="OnSelectedCheckboxChanged"]
+[connection signal="pressed" from="SaveListItem/VBoxContainer/HBoxContainer/HBoxContainer/Delete" to="." method="DeletePressed"]
+[connection signal="pressed" from="SaveListItem/VBoxContainer/HBoxContainer/HBoxContainer/Load" to="." method="LoadThisSave"]
