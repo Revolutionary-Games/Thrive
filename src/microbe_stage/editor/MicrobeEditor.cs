@@ -1085,6 +1085,7 @@ public class MicrobeEditor : Node, ILoadableGameState
 
                 case MicrobeSymmetry.XAxisSymmetry:
                 {
+                    CurrentOrganelleCost *= 2;
                     RenderHighlightedOrganelle(q, r, organelleRot);
                     RenderHighlightedOrganelle(-1 * q, r + q, 6 + (-1 * organelleRot));
                     break;
@@ -1092,6 +1093,7 @@ public class MicrobeEditor : Node, ILoadableGameState
 
                 case MicrobeSymmetry.FourWaySymmetry:
                 {
+                    CurrentOrganelleCost *= 4;
                     RenderHighlightedOrganelle(q, r, organelleRot);
                     RenderHighlightedOrganelle(-1 * q, r + q, 6 + (-1 * organelleRot));
                     RenderHighlightedOrganelle(-1 * q, -1 * r, (organelleRot + 180) % 6);
@@ -1102,6 +1104,7 @@ public class MicrobeEditor : Node, ILoadableGameState
 
                 case MicrobeSymmetry.SixWaySymmetry:
                 {
+                    CurrentOrganelleCost *= 6;
                     RenderHighlightedOrganelle(q, r, organelleRot);
                     RenderHighlightedOrganelle(-1 * r, r + q, (organelleRot + 1) % 6);
                     RenderHighlightedOrganelle(-1 * (r + q), q, (organelleRot + 2) % 6);
