@@ -97,7 +97,6 @@ public class OptionsMenu : Control
     private const float AUDIO_BAR_SCALE = 6.0f;
 
     // Alert Box
-
     private ConfirmationDialog resetConfirmationBox;
 
     // Tab buttons
@@ -401,18 +400,18 @@ public class OptionsMenu : Control
 
         EmitSignal(nameof(OnOptionsClosed));
     }
-    
+
     private void ResetConfirmSelected()
     {
         Settings.ResetToDefaults();
         Settings.ApplyAll();
         SetSettingsFrom(Settings);
-        resetConfirmationBox.SetVisible(false);
+        resetConfirmationBox.Visible = false;
     }
 
     private void OnResetPressed()
     {
-        resetConfirmationBox.SetVisible(true);
+        resetConfirmationBox.Visible = true;
     }
 
     private void OnIntroToggled(bool pressed)
