@@ -61,6 +61,7 @@ CheatsPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContai
 AutoSavePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/AutoSave")
 MaxAutoSavesPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer/MaxAutoSaves")
 MaxQuickSavesPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer2/MaxQuickSaves")
+ResetConfirmationBoxPath = NodePath("CenterContainer/ResetConfirm")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -649,6 +650,16 @@ text = "Reset ALL to Default Settings"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ResetConfirm" type="ConfirmationDialog" parent="CenterContainer"]
+margin_left = 340.0
+margin_top = 325.0
+margin_right = 940.0
+margin_bottom = 396.0
+rect_min_size = Vector2( 600, 70 )
+popup_exclusive = true
+window_title = ""
+dialog_text = "Are you sure?"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/GraphicsButton" to="." method="SetSettingsTab" binds= [ "graphics" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/SoundButton" to="." method="SetSettingsTab" binds= [ "sound" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/PerformanceButton" to="." method="SetSettingsTab" binds= [ "performance" ]]
@@ -673,3 +684,4 @@ __meta__ = {
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/Cheats" to="." method="OnCheatsToggled"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Back" to="." method="OnBackPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Reset" to="." method="OnResetPressed"]
+[connection signal="confirmed" from="CenterContainer/ResetConfirm" to="." method="_on_ResetConfirm_confirmed"]
