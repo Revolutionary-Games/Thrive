@@ -413,7 +413,7 @@ public class OptionsMenu : Control
     {
         resetConfirmationBox.Visible = true;
     }
-    
+
     private void ResetConfirmHide()
     {
         resetConfirmationBox.Visible = false;
