@@ -91,7 +91,13 @@ public class OptionsMenu : Control
     [Export]
     public NodePath MaxQuickSavesPath;
 
+    [Export]
+    public NodePath ResetConfirmationBoxPath;
+
     private const float AUDIO_BAR_SCALE = 6.0f;
+
+    // Alert Box
+    private ConfirmationDialog resetConfirmationBox;
 
     // Tab buttons
     private Button graphicsButton;
@@ -174,6 +180,7 @@ public class OptionsMenu : Control
         autosave = GetNode<CheckBox>(AutoSavePath);
         maxAutosaves = GetNode<SpinBox>(MaxAutoSavesPath);
         maxQuicksaves = GetNode<SpinBox>(MaxQuickSavesPath);
+        resetConfirmationBox = GetNode<ConfirmationDialog>(ResetConfirmationBoxPath);
     }
 
     public override void _Process(float delta)
@@ -392,6 +399,24 @@ public class OptionsMenu : Control
         }
 
         EmitSignal(nameof(OnOptionsClosed));
+    }
+
+    private void ResetConfirmSelected()
+    {
+        Settings.ResetToDefaults();
+        Settings.ApplyAll();
+        SetSettingsFrom(Settings);
+        resetConfirmationBox.Visible = false;
+    }
+
+    private void OnResetPressed()
+    {
+        resetConfirmationBox.Visible = true;
+    }
+
+    private void ResetConfirmHide()
+    {
+        resetConfirmationBox.Visible = false;
     }
 
     private void OnIntroToggled(bool pressed)
