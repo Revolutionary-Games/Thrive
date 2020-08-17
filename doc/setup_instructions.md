@@ -121,7 +121,7 @@ Go back to the main download page and find
 _All .NET Framework Downloads_ Choose version 4.7 and select the Developer Pack.
 
 Open Visual Studio Code and go to the Extensions tab. Get the extensions
-_C#_, _Mono Debug_, and _godot-tools_.
+_C#_, _Mono Debug_, and _C# Tools for Godot_.
 
 Open up a Project in Godot. On the top toolbar, go to Editor -> Editor Settings.
 Scroll down on the left window until  you find Mono. Click on Editor and set
