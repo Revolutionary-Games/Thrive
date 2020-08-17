@@ -31,6 +31,9 @@ There are also other useful documents in the [doc](doc) folder not mentioned her
 If you have game development skills, you can apply to the team
 [here](https://revolutionarygamesstudio.com/application/).
 
+The planning board contains all issues and pull requests grouped
+by their priority and status. It can be found [here](https://github.com/orgs/Revolutionary-Games/projects/2).
+
 ### Programmers 
 Thrive is written in C# with a few helper scripts written in ruby. In
 order to work on the C# you need to compile Thrive yourself. You can
