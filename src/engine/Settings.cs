@@ -1,5 +1,4 @@
-﻿using System;
-using Godot;
+﻿using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -197,10 +196,16 @@ public class Settings
     /// </summary>
     public void ResetToDefaults()
     {
-        // var defaults = new Settings();
+        var defaults = new Settings();
+        var type = GetType();
 
-        // TODO: apply the default values
-        throw new NotImplementedException();
+        foreach (var property in type.GetProperties())
+        {
+            if (!property.CanWrite)
+                continue;
+
+            property.SetValue(this, property.GetValue(defaults));
+        }
     }
 
     private static Settings LoadSettings()
