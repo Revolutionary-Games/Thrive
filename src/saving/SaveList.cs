@@ -12,6 +12,9 @@ public class SaveList : ScrollContainer
     public bool AutoRefreshOnFirstVisible = true;
 
     [Export]
+    public bool AutoRefreshOnBecomingVisible = true;
+
+    [Export]
     public bool SelectableItems;
 
     [Export]
@@ -39,6 +42,8 @@ public class SaveList : ScrollContainer
 
     private string saveToBeDeleted;
 
+    private bool wasVisible;
+
     [Signal]
     public delegate void OnSelectedChanged();
 
@@ -53,11 +58,18 @@ public class SaveList : ScrollContainer
 
     public override void _Process(float delta)
     {
-        if (AutoRefreshOnFirstVisible && !refreshedAtLeastOnce && IsVisibleInTree())
+        bool isCurrentlyVisible = IsVisibleInTree();
+
+        if (isCurrentlyVisible && ((AutoRefreshOnFirstVisible && !refreshedAtLeastOnce) ||
+            (AutoRefreshOnBecomingVisible && !wasVisible)))
         {
             Refresh();
+            wasVisible = true;
             return;
         }
+
+        if (!isCurrentlyVisible)
+            wasVisible = false;
 
         if (!refreshing)
             return;

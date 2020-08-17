@@ -61,6 +61,7 @@ CheatsPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContai
 AutoSavePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/AutoSave")
 MaxAutoSavesPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer/MaxAutoSaves")
 MaxQuickSavesPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer2/MaxQuickSaves")
+ResetConfirmationBoxPath = NodePath("CenterContainer/ResetConfirm")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -645,11 +646,20 @@ custom_styles/separator = SubResource( 6 )
 margin_left = 245.0
 margin_right = 549.0
 margin_bottom = 35.0
-disabled = true
 text = "Reset ALL to Default Settings"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ResetConfirm" type="ConfirmationDialog" parent="CenterContainer"]
+margin_left = 314.0
+margin_top = 324.0
+margin_right = 965.0
+margin_bottom = 395.0
+rect_min_size = Vector2( 600, 70 )
+popup_exclusive = true
+window_title = "Reset settings to defaults?"
+dialog_text = "Are you sure you want to reset ALL settings to default values?"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/GraphicsButton" to="." method="SetSettingsTab" binds= [ "graphics" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/SoundButton" to="." method="SetSettingsTab" binds= [ "sound" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/PerformanceButton" to="." method="SetSettingsTab" binds= [ "performance" ]]
@@ -673,4 +683,5 @@ __meta__ = {
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer2/MaxQuickSaves" to="." method="OnMaxQuickSavesValueChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/Cheats" to="." method="OnCheatsToggled"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Back" to="." method="OnBackPressed"]
-[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Reset" to="." method="OnBackPressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Reset" to="." method="OnResetPressed"]
+[connection signal="confirmed" from="CenterContainer/ResetConfirm" to="." method="ResetConfirmSelected"]
