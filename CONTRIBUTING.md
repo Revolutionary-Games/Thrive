@@ -45,6 +45,10 @@ code to disable your changes. Note: currently we don't have an options
 menu that could be used to enable inbuilt mods, so this is a bit
 difficult at the time of writing.
 
+## Planning Board
+
+The planning board contains all issues and pull requests grouped
+by their priority and status. It can be found [here](https://github.com/orgs/Revolutionary-Games/projects/2).
 
 ## Getting help
 

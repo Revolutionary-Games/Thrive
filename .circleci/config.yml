@@ -22,15 +22,15 @@ jobs:
             - .git/lfs
        - restore_cache:
            keys:
-             - v4-import-{{ .Branch }}
-             - v4-import-master
+             - v5-import-{{ .Branch }}
+             - v5-import-master
        - run: mkdir -p builds
        # This is here to reimport assets, but this build would fail due to missing nuget packages
        # if C# was compiled here
        - run: godot --export "Linux/X11" "builds/a.x86_64"
        # - run: ./headless_project_refresh.rb
        - save_cache:
-           key: v4-import-{{ .Branch }}
+           key: v5-import-{{ .Branch }}
            paths:
              - .import
        - restore_cache:
@@ -72,7 +72,7 @@ jobs:
              git diff-tree --no-commit-id --name-only -r `echo ${CIRCLE_COMPARE_URL} | cut -d/ -f 7` >> files_to_check.txt || true
        - restore_cache:
            keys:
-             - v4-import-master
+             - v5-import-master
        - run: mkdir -p builds
        # Don't care if this fails, it's enough that the C# build works
        - run:
@@ -114,7 +114,7 @@ jobs:
              git diff-tree --no-commit-id --name-only -r `echo ${CIRCLE_COMPARE_URL} | cut -d/ -f 7` >> files_to_check.txt || true
        - restore_cache:
            keys:
-             - v4-import-master
+             - v5-import-master
        - run: mkdir -p builds
        # Don't care if this fails, it's enough that the C# build works
        - run:
