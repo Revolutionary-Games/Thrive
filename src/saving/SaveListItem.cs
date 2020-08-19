@@ -6,7 +6,7 @@ using Godot;
 /// <summary>
 ///   An item in the saves list. This is a class to handle loading its data from the file
 /// </summary>
-public class SaveListItem : HBoxContainer
+public class SaveListItem : PanelContainer
 {
     [Export]
     public bool Selectable;
