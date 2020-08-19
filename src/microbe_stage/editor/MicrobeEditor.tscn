@@ -3853,10 +3853,10 @@ valign = 1
 uppercase = true
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_left = 40.0
-margin_top = 40.0
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = 44.0
+margin_top = 44.0
+margin_right = 44.0
+margin_bottom = 44.0
 theme = SubResource( 29 )
 edit_alpha = false
 
@@ -9776,8 +9776,9 @@ rect_min_size = Vector2( 27, 27 )
 mouse_filter = 1
 
 [node name="minusButton" type="TextureButton" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/HBoxContainer/Buttons"]
-margin_right = 27.0
-margin_bottom = 27.0
+margin_right = 200.0
+margin_bottom = 200.0
+rect_scale = Vector2( 0.13, 0.13 )
 mouse_filter = 1
 texture_normal = ExtResource( 67 )
 texture_hover = ExtResource( 68 )
@@ -9789,6 +9790,7 @@ __meta__ = {
 visible = false
 margin_right = 27.0
 margin_bottom = 27.0
+rect_scale = Vector2( 0.13, 0.13 )
 mouse_filter = 1
 texture_normal = ExtResource( 70 )
 texture_hover = ExtResource( 71 )
@@ -9930,6 +9932,7 @@ mouse_filter = 2
 [node name="minusButton" type="TextureButton" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericConditions/HBoxContainer/Buttons"]
 margin_right = 27.0
 margin_bottom = 27.0
+rect_scale = Vector2( 0.13, 0.13 )
 texture_normal = ExtResource( 67 )
 texture_hover = ExtResource( 68 )
 __meta__ = {
@@ -9940,6 +9943,7 @@ __meta__ = {
 visible = false
 margin_right = 27.0
 margin_bottom = 27.0
+rect_scale = Vector2( 0.13, 0.13 )
 texture_normal = ExtResource( 70 )
 texture_hover = ExtResource( 71 )
 __meta__ = {
@@ -10061,6 +10065,7 @@ mouse_filter = 2
 [node name="minusButton" type="TextureButton" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/HBoxContainer/Buttons"]
 margin_right = 27.0
 margin_bottom = 27.0
+rect_scale = Vector2( 0.13, 0.13 )
 texture_normal = ExtResource( 67 )
 texture_hover = ExtResource( 68 )
 __meta__ = {
@@ -10071,6 +10076,7 @@ __meta__ = {
 visible = false
 margin_right = 27.0
 margin_bottom = 27.0
+rect_scale = Vector2( 0.13, 0.13 )
 texture_normal = ExtResource( 70 )
 texture_hover = ExtResource( 71 )
 __meta__ = {
@@ -10278,6 +10284,7 @@ rect_min_size = Vector2( 27, 27 )
 [node name="minusButton" type="TextureButton" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesPresent/HBoxContainer/Buttons"]
 margin_right = 27.0
 margin_bottom = 27.0
+rect_scale = Vector2( 0.13, 0.13 )
 texture_normal = ExtResource( 67 )
 texture_hover = ExtResource( 68 )
 __meta__ = {
@@ -10288,6 +10295,7 @@ __meta__ = {
 visible = false
 margin_right = 27.0
 margin_bottom = 27.0
+rect_scale = Vector2( 0.13, 0.13 )
 texture_normal = ExtResource( 70 )
 texture_hover = ExtResource( 71 )
 __meta__ = {
