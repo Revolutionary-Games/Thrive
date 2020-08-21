@@ -124,7 +124,7 @@ Open Visual Studio Code and go to the Extensions tab. Get the extensions
 _C#_, _Mono Debug_, and _godot-tools_.
 
 Open up a Project in Godot. On the top toolbar, go to Editor -> Editor Settings.
-Scroll down on the left window until  you find Mono. Click on Editor and set
+Scroll down on the left window until you find Mono. Click on Editor and set
 External Editor to Visual Studio Code. Click on Builds and set Build Tool to
 MSBuild (VS Build Tools).
 
@@ -186,9 +186,12 @@ probably because you didn't have Git LFS installed properly. If that
 happens delete the Thrive folder you cloned and go back to the Git LFS
 install step, after doing it again try cloning again.
 
-At this point you might want to go through the Godot editor settings
-and select the development environment you installed as your external
-code editor.
+### Settting up the build tools
+
+On the top toolbar, go to Editor -> Editor Settings.
+Scroll down on the left window until you find the Mono section.
+Click on Editor. Set External Editor to your development environment. Click
+on Builds under Mono and set Build Tool to your compiler.
 
 ### C# packages
 
