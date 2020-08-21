@@ -185,13 +185,11 @@ checking and importing all the assets. If the asset import fails it is
 probably because you didn't have Git LFS installed properly. If that
 happens delete the Thrive folder you cloned and go back to the Git LFS
 install step, after doing it again try cloning again.
-
-### Settting up the build tools
-
 On the top toolbar, go to Editor -> Editor Settings.
 Scroll down on the left window until you find the Mono section.
 Click on Editor. Set External Editor to your development environment. Click
-on Builds under Mono and set Build Tool to your compiler.
+on Builds under Mono and set Build Tool to your compiler. If you have build errors,
+check if this is setup properly.
 
 ### C# packages
 
