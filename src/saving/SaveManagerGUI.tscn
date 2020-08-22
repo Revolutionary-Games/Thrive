@@ -7,8 +7,6 @@
 [node name="SaveManagerGUI" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-size_flags_horizontal = 5
-size_flags_vertical = 5
 theme = ExtResource( 2 )
 script = ExtResource( 1 )
 __meta__ = {
@@ -33,9 +31,9 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 140.0
+margin_left = 139.0
 margin_top = 85.0
-margin_right = 1140.0
+margin_right = 1139.0
 margin_bottom = 635.0
 rect_min_size = Vector2( 1000, 550 )
 size_flags_vertical = 3

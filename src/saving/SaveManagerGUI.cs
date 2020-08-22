@@ -159,7 +159,7 @@ public class SaveManagerGUI : Control
     private void DeleteSelectedButtonPressed()
     {
         deleteSelectedConfirmDialog.DialogText =
-            $"Deleting the selected save(s) cannot be undone, are you sure you want to permanently delete " +
+            "Deleting the selected save(s) cannot be undone, are you sure you want to permanently delete " +
             $"{Selected.Count} save(s)?";
         deleteSelectedConfirmDialog.PopupCenteredMinsize();
     }
