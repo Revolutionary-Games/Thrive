@@ -31,14 +31,16 @@ public class SaveManagerGUI : Control
     [Export]
     public NodePath DeleteOldButtonPath;
 
+    [Export]
+    public NodePath DeleteSelectedConfirmDialogPath;
+
     private SaveList saveList;
     private Label selectedItemCount;
     private Label totalSaveCount;
     private Label totalSaveSize;
     private Button loadButton;
-
-    // ReSharper disable once NotAccessedField.Local
     private Button deleteSelectedButton;
+    private ConfirmationDialog deleteSelectedConfirmDialog;
 
     // ReSharper disable once NotAccessedField.Local
     private Button deleteOldButton;
@@ -77,6 +79,7 @@ public class SaveManagerGUI : Control
         loadButton = GetNode<Button>(LoadButtonPath);
         deleteSelectedButton = GetNode<Button>(DeleteSelectedButtonPath);
         deleteOldButton = GetNode<Button>(DeleteOldButtonPath);
+        deleteSelectedConfirmDialog = GetNode<ConfirmationDialog>(DeleteSelectedConfirmDialogPath);
     }
 
     public override void _Process(float delta)
@@ -102,6 +105,8 @@ public class SaveManagerGUI : Control
             Math.Round((float)info.diskSpace / Constants.MEBIBYTE, 2).ToString(CultureInfo.CurrentCulture) + " MiB";
 
         refreshing = false;
+
+        UpdateSelectedCount();
     }
 
     private void OnSelectedChanged()
@@ -109,7 +114,7 @@ public class SaveManagerGUI : Control
         selectedDirty = true;
 
         UpdateSelectedCount();
-        UpdateLoadButtonStatus();
+        UpdateButtonsStatus();
     }
 
     private void UpdateSelectedCount()
@@ -137,9 +142,10 @@ public class SaveManagerGUI : Control
         TaskExecutor.Instance.AddTask(getSaveCountTask);
     }
 
-    private void UpdateLoadButtonStatus()
+    private void UpdateButtonsStatus()
     {
         loadButton.Disabled = Selected.Count != 1;
+        deleteSelectedButton.Disabled = Selected.Count == 0;
     }
 
     private void LoadFirstSelectedSave()
@@ -148,6 +154,22 @@ public class SaveManagerGUI : Control
             return;
 
         SaveHelper.LoadSave(Selected[0].SaveName);
+    }
+
+    private void DeleteSelectedButtonPressed()
+    {
+        deleteSelectedConfirmDialog.DialogText =
+            $"Deleting the selected save(s) cannot be undone, are you sure you want to permanently delete " +
+            $"{Selected.Count} save(s)?";
+        deleteSelectedConfirmDialog.PopupCenteredMinsize();
+    }
+
+    private void OnConfirmDeleteSelected()
+    {
+        GD.Print("Deleting save(s): ", string.Join(", ", Selected.Select(item => item.SaveName).ToList()));
+        Selected.ForEach(item => SaveHelper.DeleteSave(item.SaveName));
+        selected = null;
+        RefreshList();
     }
 
     private void OnBackButton()
