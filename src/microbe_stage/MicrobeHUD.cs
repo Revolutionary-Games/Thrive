@@ -433,9 +433,6 @@ public class MicrobeHUD : Node
 
     public void OnAmmoniaBarValueChanged()
     {
-        TextureProgress ammoniaReproductionBar =
-            editorButton.GetNode<TextureProgress>("ReproductionBar/AmmoniaReproductionBar");
-
         if (ammoniaReproductionBar.Value == ammoniaReproductionBar.MaxValue)
         {
             ammoniaReproductionBar.TintProgress = new Color(1, 1, 1, 1);
@@ -450,9 +447,6 @@ public class MicrobeHUD : Node
 
     public void OnPhosphateBarValueChanged()
     {
-        TextureProgress phosphateReproductionBar =
-            editorButton.GetNode<TextureProgress>("ReproductionBar/PhosphateReproductionBar");
-
         if (phosphateReproductionBar.Value == phosphateReproductionBar.MaxValue)
         {
             phosphateReproductionBar.TintProgress = new Color(1, 1, 1, 1);
