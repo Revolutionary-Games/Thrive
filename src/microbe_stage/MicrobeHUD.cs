@@ -417,18 +417,17 @@ public class MicrobeHUD : Node
     public void HideReproductionDialog()
     {
         if (!editorButton.Disabled)
-        {
             editorButton.Disabled = true;
-            editorButton.GetNode<TextureRect>("Highlight").Hide();
-            editorButton.GetNode<Control>("ReproductionBar").Show();
-            editorButton.GetNode<TextureProgress>("ReproductionBar/PhosphateReproductionBar").TintProgress =
-                new Color(0.69f, 0.42f, 1, 1);
-            editorButton.GetNode<TextureProgress>("ReproductionBar/AmmoniaReproductionBar").TintProgress =
-                new Color(1, 0.62f, 0.12f, 1);
-            editorButton.GetNode<TextureRect>("ReproductionBar/PhosphateIcon").Texture = PhosphatesInv;
-            editorButton.GetNode<TextureRect>("ReproductionBar/AmmoniaIcon").Texture = AmmoniaInv;
-            editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Stop();
-        }
+
+        editorButton.GetNode<TextureRect>("Highlight").Hide();
+        editorButton.GetNode<Control>("ReproductionBar").Show();
+        editorButton.GetNode<TextureProgress>("ReproductionBar/PhosphateReproductionBar").TintProgress =
+            new Color(0.69f, 0.42f, 1, 1);
+        editorButton.GetNode<TextureProgress>("ReproductionBar/AmmoniaReproductionBar").TintProgress =
+            new Color(1, 0.62f, 0.12f, 1);
+        editorButton.GetNode<TextureRect>("ReproductionBar/PhosphateIcon").Texture = PhosphatesInv;
+        editorButton.GetNode<TextureRect>("ReproductionBar/AmmoniaIcon").Texture = AmmoniaInv;
+        editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Stop();
     }
 
     public void OnAmmoniaBarValueChanged()
@@ -438,11 +437,6 @@ public class MicrobeHUD : Node
             ammoniaReproductionBar.TintProgress = new Color(1, 1, 1, 1);
             editorButton.GetNode<TextureRect>("ReproductionBar/AmmoniaIcon").Texture = AmmoniaBW;
         }
-        else
-        {
-            ammoniaReproductionBar.TintProgress = new Color(1, 0.62f, 0.12f, 1);
-            editorButton.GetNode<TextureRect>("ReproductionBar/AmmoniaIcon").Texture = AmmoniaInv;
-        }
     }
 
     public void OnPhosphateBarValueChanged()
@@ -451,11 +445,6 @@ public class MicrobeHUD : Node
         {
             phosphateReproductionBar.TintProgress = new Color(1, 1, 1, 1);
             editorButton.GetNode<TextureRect>("ReproductionBar/PhosphateIcon").Texture = PhosphatesBW;
-        }
-        else
-        {
-            phosphateReproductionBar.TintProgress = new Color(0.69f, 0.42f, 1, 1);
-            editorButton.GetNode<TextureRect>("ReproductionBar/PhosphateIcon").Texture = PhosphatesInv;
         }
     }
 
