@@ -431,11 +431,10 @@ public class MicrobeHUD : Node
         }
     }
 
-    public void OnAmmoniaBarValueChanged(float value)
+    public void OnAmmoniaBarValueChanged()
     {
-        _ = value;
-
-        TextureProgress ammoniaBar = editorButton.GetNode<TextureProgress>("ReproductionBar/AmmoniaReproductionBar");
+        TextureProgress ammoniaBar =
+            editorButton.GetNode<TextureProgress>("ReproductionBar/AmmoniaReproductionBar");
 
         if (ammoniaBar.Value == ammoniaBar.MaxValue)
         {
@@ -449,11 +448,10 @@ public class MicrobeHUD : Node
         }
     }
 
-    public void OnPhosphateBarValueChanged(float value)
+    public void OnPhosphateBarValueChanged()
     {
-        _ = value;
-
-        TextureProgress phosphateBar = editorButton.GetNode<TextureProgress>("ReproductionBar/PhosphateReproductionBar");
+        TextureProgress phosphateBar =
+            editorButton.GetNode<TextureProgress>("ReproductionBar/PhosphateReproductionBar");
 
         if (phosphateBar.Value == phosphateBar.MaxValue)
         {
@@ -756,6 +754,8 @@ public class MicrobeHUD : Node
 
         ammoniaReproductionBar.Value = fractionOfAmmonia * ammoniaReproductionBar.MaxValue;
         phosphateReproductionBar.Value = fractionOfPhosphates * phosphateReproductionBar.MaxValue;
+        OnAmmoniaBarValueChanged();
+        OnPhosphateBarValueChanged();
     }
 
     private void UpdateATP()
