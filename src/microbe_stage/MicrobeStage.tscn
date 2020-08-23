@@ -1852,6 +1852,8 @@ anims/ShowLeftPanels = SubResource( 41 )
 [connection signal="pressed" from="MicrobeHUD/BottomBar/QuestionMarkButton" to="MicrobeHUD" method="GoToHelpScreen"]
 [connection signal="pressed" from="MicrobeHUD/BottomBar/SuicideButton" to="MicrobeHUD" method="OnSuicide"]
 [connection signal="pressed" from="MicrobeHUD/BottomRight/EditorButton" to="MicrobeHUD" method="EditorButtonPressed"]
+[connection signal="value_changed" from="MicrobeHUD/BottomRight/EditorButton/ReproductionBar/AmmoniaReproductionBar" to="MicrobeHUD" method="OnAmmoniaBarValueChanged"]
+[connection signal="value_changed" from="MicrobeHUD/BottomRight/EditorButton/ReproductionBar/PhosphateReproductionBar" to="MicrobeHUD" method="OnPhosphateBarValueChanged"]
 [connection signal="MakeSave" from="MicrobeHUD/CanvasLayer/PauseMenu" to="." method="SaveGame"]
 [connection signal="OnClosed" from="MicrobeHUD/CanvasLayer/PauseMenu" to="MicrobeHUD" method="CloseMenu"]
 [connection signal="OnOpenWithKeyPress" from="MicrobeHUD/CanvasLayer/PauseMenu" to="MicrobeHUD" method="OpenMenu"]

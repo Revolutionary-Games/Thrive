@@ -431,6 +431,42 @@ public class MicrobeHUD : Node
         }
     }
 
+    public void OnAmmoniaBarValueChanged(float value)
+    {
+        _ = value;
+
+        TextureProgress ammoniaBar = editorButton.GetNode<TextureProgress>("ReproductionBar/AmmoniaReproductionBar");
+
+        if (ammoniaBar.Value == ammoniaBar.MaxValue)
+        {
+            ammoniaBar.TintProgress = new Color(1, 1, 1, 1);
+            editorButton.GetNode<TextureRect>("ReproductionBar/AmmoniaIcon").Texture = AmmoniaBW;
+        }
+        else
+        {
+            ammoniaBar.TintProgress = new Color(1, 0.62f, 0.12f, 1);
+            editorButton.GetNode<TextureRect>("ReproductionBar/AmmoniaIcon").Texture = AmmoniaInv;
+        }
+    }
+
+    public void OnPhosphateBarValueChanged(float value)
+    {
+        _ = value;
+
+        TextureProgress phosphateBar = editorButton.GetNode<TextureProgress>("ReproductionBar/PhosphateReproductionBar");
+
+        if (phosphateBar.Value == phosphateBar.MaxValue)
+        {
+            phosphateBar.TintProgress = new Color(1, 1, 1, 1);
+            editorButton.GetNode<TextureRect>("ReproductionBar/PhosphateIcon").Texture = PhosphatesBW;
+        }
+        else
+        {
+            phosphateBar.TintProgress = new Color(0.69f, 0.42f, 1, 1);
+            editorButton.GetNode<TextureRect>("ReproductionBar/PhosphateIcon").Texture = PhosphatesInv;
+        }
+    }
+
     public void OnSuicide()
     {
         stage.Player?.Damage(9999.0f, "suicide");
