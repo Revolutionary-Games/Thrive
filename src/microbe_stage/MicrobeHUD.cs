@@ -433,34 +433,34 @@ public class MicrobeHUD : Node
 
     public void OnAmmoniaBarValueChanged()
     {
-        TextureProgress ammoniaBar =
+        TextureProgress ammoniaReproductionBar =
             editorButton.GetNode<TextureProgress>("ReproductionBar/AmmoniaReproductionBar");
 
-        if (ammoniaBar.Value == ammoniaBar.MaxValue)
+        if (ammoniaReproductionBar.Value == ammoniaReproductionBar.MaxValue)
         {
-            ammoniaBar.TintProgress = new Color(1, 1, 1, 1);
+            ammoniaReproductionBar.TintProgress = new Color(1, 1, 1, 1);
             editorButton.GetNode<TextureRect>("ReproductionBar/AmmoniaIcon").Texture = AmmoniaBW;
         }
         else
         {
-            ammoniaBar.TintProgress = new Color(1, 0.62f, 0.12f, 1);
+            ammoniaReproductionBar.TintProgress = new Color(1, 0.62f, 0.12f, 1);
             editorButton.GetNode<TextureRect>("ReproductionBar/AmmoniaIcon").Texture = AmmoniaInv;
         }
     }
 
     public void OnPhosphateBarValueChanged()
     {
-        TextureProgress phosphateBar =
+        TextureProgress phosphateReproductionBar =
             editorButton.GetNode<TextureProgress>("ReproductionBar/PhosphateReproductionBar");
 
-        if (phosphateBar.Value == phosphateBar.MaxValue)
+        if (phosphateReproductionBar.Value == phosphateReproductionBar.MaxValue)
         {
-            phosphateBar.TintProgress = new Color(1, 1, 1, 1);
+            phosphateReproductionBar.TintProgress = new Color(1, 1, 1, 1);
             editorButton.GetNode<TextureRect>("ReproductionBar/PhosphateIcon").Texture = PhosphatesBW;
         }
         else
         {
-            phosphateBar.TintProgress = new Color(0.69f, 0.42f, 1, 1);
+            phosphateReproductionBar.TintProgress = new Color(0.69f, 0.42f, 1, 1);
             editorButton.GetNode<TextureRect>("ReproductionBar/PhosphateIcon").Texture = PhosphatesInv;
         }
     }
