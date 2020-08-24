@@ -432,20 +432,14 @@ public class MicrobeHUD : Node
 
     public void CheckAmmoniaProgressHighlight()
     {
-        if (ammoniaReproductionBar.Value == ammoniaReproductionBar.MaxValue)
-        {
-            ammoniaReproductionBar.TintProgress = new Color(1, 1, 1, 1);
-            editorButton.GetNode<TextureRect>("ReproductionBar/AmmoniaIcon").Texture = AmmoniaBW;
-        }
+        ammoniaReproductionBar.TintProgress = new Color(1, 1, 1, 1);
+        editorButton.GetNode<TextureRect>("ReproductionBar/AmmoniaIcon").Texture = AmmoniaBW;
     }
 
     public void CheckPhosphateProgressHighlight()
     {
-        if (phosphateReproductionBar.Value == phosphateReproductionBar.MaxValue)
-        {
-            phosphateReproductionBar.TintProgress = new Color(1, 1, 1, 1);
-            editorButton.GetNode<TextureRect>("ReproductionBar/PhosphateIcon").Texture = PhosphatesBW;
-        }
+        phosphateReproductionBar.TintProgress = new Color(1, 1, 1, 1);
+        editorButton.GetNode<TextureRect>("ReproductionBar/PhosphateIcon").Texture = PhosphatesBW;
     }
 
     public void OnSuicide()
