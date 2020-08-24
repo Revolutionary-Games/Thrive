@@ -430,7 +430,7 @@ public class MicrobeHUD : Node
         editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Stop();
     }
 
-    public void OnAmmoniaBarValueChanged()
+    public void CheckAmmoniaProgressHighlight()
     {
         if (ammoniaReproductionBar.Value == ammoniaReproductionBar.MaxValue)
         {
@@ -439,7 +439,7 @@ public class MicrobeHUD : Node
         }
     }
 
-    public void OnPhosphateBarValueChanged()
+    public void CheckPhosphateProgressHighlight()
     {
         if (phosphateReproductionBar.Value == phosphateReproductionBar.MaxValue)
         {
@@ -737,8 +737,11 @@ public class MicrobeHUD : Node
 
         ammoniaReproductionBar.Value = fractionOfAmmonia * ammoniaReproductionBar.MaxValue;
         phosphateReproductionBar.Value = fractionOfPhosphates * phosphateReproductionBar.MaxValue;
-        OnAmmoniaBarValueChanged();
-        OnPhosphateBarValueChanged();
+
+        if(fractionOfAmmonia == 1.0f)
+            CheckAmmoniaProgressHighlight();
+        if(fractionOfPhosphates == 1.0f)
+            CheckPhosphateProgressHighlight();
     }
 
     private void UpdateATP()
