@@ -430,18 +430,6 @@ public class MicrobeHUD : Node
         editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Stop();
     }
 
-    public void CheckAmmoniaProgressHighlight()
-    {
-        ammoniaReproductionBar.TintProgress = new Color(1, 1, 1, 1);
-        editorButton.GetNode<TextureRect>("ReproductionBar/AmmoniaIcon").Texture = AmmoniaBW;
-    }
-
-    public void CheckPhosphateProgressHighlight()
-    {
-        phosphateReproductionBar.TintProgress = new Color(1, 1, 1, 1);
-        editorButton.GetNode<TextureRect>("ReproductionBar/PhosphateIcon").Texture = PhosphatesBW;
-    }
-
     public void OnSuicide()
     {
         stage.Player?.Damage(9999.0f, "suicide");
@@ -732,10 +720,26 @@ public class MicrobeHUD : Node
         ammoniaReproductionBar.Value = fractionOfAmmonia * ammoniaReproductionBar.MaxValue;
         phosphateReproductionBar.Value = fractionOfPhosphates * phosphateReproductionBar.MaxValue;
 
-        if(fractionOfAmmonia == 1.0f)
-            CheckAmmoniaProgressHighlight();
-        if(fractionOfPhosphates == 1.0f)
-            CheckPhosphateProgressHighlight();
+        CheckAmmoniaProgressHighlight(fractionOfAmmonia);
+        CheckPhosphateProgressHighlight(fractionOfPhosphates);
+    }
+
+    private void CheckAmmoniaProgressHighlight(float fractionOfAmmonia)
+    {
+        if (fractionOfAmmonia < 1.0f)
+            return;
+
+        ammoniaReproductionBar.TintProgress = new Color(1, 1, 1, 1);
+        editorButton.GetNode<TextureRect>("ReproductionBar/AmmoniaIcon").Texture = AmmoniaBW;
+    }
+
+    private void CheckPhosphateProgressHighlight(float fractionOfPhosphates)
+    {
+        if (fractionOfPhosphates < 1.0f)
+            return;
+
+        phosphateReproductionBar.TintProgress = new Color(1, 1, 1, 1);
+        editorButton.GetNode<TextureRect>("ReproductionBar/PhosphateIcon").Texture = PhosphatesBW;
     }
 
     private void UpdateATP()
