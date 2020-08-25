@@ -80,6 +80,8 @@ public class SaveManagerGUI : Control
         deleteSelectedButton = GetNode<Button>(DeleteSelectedButtonPath);
         deleteOldButton = GetNode<Button>(DeleteOldButtonPath);
         deleteSelectedConfirmDialog = GetNode<ConfirmationDialog>(DeleteSelectedConfirmDialogPath);
+
+        saveList.Connect(nameof(SaveList.OnItemsChanged), this, nameof(RefreshList));
     }
 
     public override void _Process(float delta)
@@ -168,7 +170,9 @@ public class SaveManagerGUI : Control
     {
         GD.Print("Deleting save(s): ", string.Join(", ", Selected.Select(item => item.SaveName).ToList()));
         Selected.ForEach(item => SaveHelper.DeleteSave(item.SaveName));
+        deleteSelectedButton.Disabled = true;
         selected = null;
+
         RefreshList();
     }
 
