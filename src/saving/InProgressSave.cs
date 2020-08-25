@@ -94,13 +94,13 @@ public class InProgressSave : IDisposable
         }
     }
 
-    private static string GetNextNameForSaveType(string regex, string newNameStart)
+    private static string GetNextNameForSaveType(string regex, string newNameStart, int maxSaveCount)
     {
         var highestNumber = FindExistingSavesOfType(out var totalCount, out var oldestSave,
             regex);
 
         // If all slots aren't used yet
-        if (totalCount < Settings.Instance.MaxQuickSaves || oldestSave == null)
+        if (totalCount < maxSaveCount || oldestSave == null)
         {
             ++highestNumber;
             return $"{newNameStart}_{highestNumber:n0}." + Constants.SAVE_EXTENSION;
@@ -237,12 +237,14 @@ public class InProgressSave : IDisposable
 
             case SaveInformation.SaveType.AutoSave:
             {
-                return GetNextNameForSaveType("^auto_save_(\\d)+\\." + Constants.SAVE_EXTENSION, "auto_save");
+                return GetNextNameForSaveType("^auto_save_(\\d)+\\." + Constants.SAVE_EXTENSION, "auto_save",
+                    Settings.Instance.MaxAutoSaves);
             }
 
             case SaveInformation.SaveType.QuickSave:
             {
-                return GetNextNameForSaveType("^quick_save_(\\d)+\\." + Constants.SAVE_EXTENSION, "quick_save");
+                return GetNextNameForSaveType("^quick_save_(\\d)+\\." + Constants.SAVE_EXTENSION, "quick_save",
+                    Settings.Instance.MaxQuickSaves);
             }
 
             default:
