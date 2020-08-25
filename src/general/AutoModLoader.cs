@@ -21,33 +21,33 @@ public class AutoModLoader : Node
                 JsonConvert.DeserializeObject<ModInfo>(ReadJSONFile(currentMod.FullName + "/mod_info.json"));
             if (currentModInfo.AutoLoad)
             {
-                    if (string.IsNullOrEmpty(currentModInfo.Dll))
+                if (string.IsNullOrEmpty(currentModInfo.Dll))
+                {
+                    if (File.Exists(currentMod.FullName + "/" + currentModInfo.Dll))
                     {
-                        if (File.Exists(currentMod.FullName + "/" + currentModInfo.Dll))
-                        {
-                            Assembly.LoadFile(currentMod.FullName + "/" + currentModInfo.Dll);
-                        }
+                        Assembly.LoadFile(currentMod.FullName + "/" + currentModInfo.Dll);
                     }
+                }
 
-                    if (!File.Exists(currentMod.FullName + "/mod.pck"))
-                    {
-                        GD.Print("Fail to find mod file: " + currentModInfo.ModName);
-                        continue;
-                    }
+                if (!File.Exists(currentMod.FullName + "/mod.pck"))
+                {
+                    GD.Print("Fail to find mod file: " + currentModInfo.ModName);
+                    continue;
+                }
 
-                    if (ProjectSettings.LoadResourcePack(currentMod.FullName + "/mod.pck", true))
-                    {
-                        GD.Print("Loaded mod: " + currentModInfo.ModName);
-                    }
-                    else
-                    {
-                        GD.Print("Failed to load mod: " + currentModInfo.ModName);
-                    }
+                if (ProjectSettings.LoadResourcePack(currentMod.FullName + "/mod.pck", true))
+                {
+                    GD.Print("Loaded mod: " + currentModInfo.ModName);
+                }
+                else
+                {
+                    GD.Print("Failed to load mod: " + currentModInfo.ModName);
+                }
             }
         }
 
         QueueFree();
-   }
+    }
 
     private static string ReadJSONFile(string path)
     {
