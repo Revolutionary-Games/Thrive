@@ -149,6 +149,7 @@ public class SaveList : ScrollContainer
         SaveHelper.DeleteSave(saveToBeDeleted);
         saveToBeDeleted = null;
 
+        Refresh();
         EmitSignal(nameof(OnItemsChanged));
     }
 }

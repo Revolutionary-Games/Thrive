@@ -106,9 +106,9 @@ public class SaveManagerGUI : Control
         totalSaveSize.Text =
             Math.Round((float)info.diskSpace / Constants.MEBIBYTE, 2).ToString(CultureInfo.CurrentCulture) + " MiB";
 
-        refreshing = false;
-
         UpdateSelectedCount();
+
+        refreshing = false;
     }
 
     private void OnSelectedChanged()
@@ -169,6 +169,7 @@ public class SaveManagerGUI : Control
     private void OnConfirmDeleteSelected()
     {
         GD.Print("Deleting save(s): ", string.Join(", ", Selected.Select(item => item.SaveName).ToList()));
+
         Selected.ForEach(item => SaveHelper.DeleteSave(item.SaveName));
         deleteSelectedButton.Disabled = true;
         selected = null;
