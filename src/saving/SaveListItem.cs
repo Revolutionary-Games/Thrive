@@ -70,6 +70,9 @@ public class SaveListItem : PanelContainer
     [Signal]
     public delegate void OnDeleted();
 
+    [Signal]
+    public delegate void OnOldSaveLoaded();
+
     public string SaveName
     {
         get => saveName;
@@ -153,6 +156,17 @@ public class SaveListItem : PanelContainer
         loadingData = false;
     }
 
+    public void LoadThisSave()
+    {
+        if (versionWarning.Visible)
+        {
+            EmitSignal(nameof(OnOldSaveLoaded));
+            return;
+        }
+
+        SaveHelper.LoadSave(SaveName);
+    }
+
     private void LoadSaveData()
     {
         loadingData = true;
@@ -188,13 +202,9 @@ public class SaveListItem : PanelContainer
         EmitSignal(nameof(OnSelectedChanged));
     }
 
-    private void LoadThisSave()
-    {
-        SaveHelper.LoadSave(SaveName);
-    }
-
     private void DeletePressed()
     {
         EmitSignal(nameof(OnDeleted));
     }
+
 }

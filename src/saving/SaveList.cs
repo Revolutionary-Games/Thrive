@@ -29,9 +29,13 @@ public class SaveList : ScrollContainer
     [Export]
     public NodePath DeleteConfirmDialogPath;
 
+    [Export]
+    public NodePath LoadConfirmDialogPath;
+
     private Control loadingItem;
     private BoxContainer savesList;
     private ConfirmationDialog deleteConfirmDialog;
+    private ConfirmationDialog loadConfirmDialog;
 
     private PackedScene listItemScene;
 
@@ -41,6 +45,7 @@ public class SaveList : ScrollContainer
     private Task<List<string>> readSavesList;
 
     private string saveToBeDeleted;
+    private string saveToBeLoaded;
 
     private bool wasVisible;
 
@@ -55,6 +60,7 @@ public class SaveList : ScrollContainer
         loadingItem = GetNode<Control>(LoadingItemPath);
         savesList = GetNode<BoxContainer>(SavesListPath);
         deleteConfirmDialog = GetNode<ConfirmationDialog>(DeleteConfirmDialogPath);
+        loadConfirmDialog = GetNode<ConfirmationDialog>(LoadConfirmDialogPath);
 
         listItemScene = GD.Load<PackedScene>("res://src/saving/SaveListItem.tscn");
     }
@@ -94,6 +100,7 @@ public class SaveList : ScrollContainer
                 item.Connect(nameof(SaveListItem.OnSelectedChanged), this, nameof(OnSubItemSelectedChanged));
 
             item.Connect(nameof(SaveListItem.OnDeleted), this, nameof(OnDeletePressed), new Array { save });
+            item.Connect(nameof(SaveListItem.OnOldSaveLoaded), this, nameof(OnOldSaveLoaded), new Array { save });
 
             item.SaveName = save;
             savesList.AddChild(item);
@@ -151,5 +158,16 @@ public class SaveList : ScrollContainer
 
         Refresh();
         EmitSignal(nameof(OnItemsChanged));
+    }
+
+    private void OnOldSaveLoaded(string saveName)
+    {
+        saveToBeLoaded = saveName;
+        loadConfirmDialog.PopupCenteredMinsize();
+    }
+
+    private void OnConfirmSaveLoad()
+    {
+        SaveHelper.LoadSave(saveToBeLoaded);
     }
 }

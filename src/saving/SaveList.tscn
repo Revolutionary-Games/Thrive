@@ -16,6 +16,7 @@ __meta__ = {
 LoadingItemPath = NodePath("VBoxContainer/LoadingLabel")
 SavesListPath = NodePath("VBoxContainer/ItemList")
 DeleteConfirmDialogPath = NodePath("VBoxContainer/DeleteConfirmDialog")
+LoadConfirmDialogPath = NodePath("VBoxContainer/LoadConfirmDialog")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_right = 1280.0
@@ -39,4 +40,12 @@ size_flags_vertical = 5
 popup_exclusive = true
 window_title = "Delete this Save?"
 dialog_text = "Text not set..."
+
+[node name="LoadConfirmDialog" type="ConfirmationDialog" parent="VBoxContainer"]
+size_flags_horizontal = 5
+size_flags_vertical = 5
+popup_exclusive = true
+window_title = "Load this save?"
+dialog_text = "This save is from an different version of Thrive and may be incompatible. Do you want to load it anyway?"
 [connection signal="confirmed" from="VBoxContainer/DeleteConfirmDialog" to="." method="OnConfirmDelete"]
+[connection signal="confirmed" from="VBoxContainer/LoadConfirmDialog" to="." method="OnConfirmSaveLoad"]
