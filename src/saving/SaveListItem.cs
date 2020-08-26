@@ -24,6 +24,9 @@ public class SaveListItem : PanelContainer
     public NodePath VersionPath;
 
     [Export]
+    public NodePath VersionWarningPath;
+
+    [Export]
     public NodePath TypePath;
 
     [Export]
@@ -47,6 +50,7 @@ public class SaveListItem : PanelContainer
     private Label saveNameLabel;
     private TextureRect screenshot;
     private Label version;
+    private Label versionWarning;
     private Label type;
     private Label createdAt;
     private Label createdBy;
@@ -103,6 +107,7 @@ public class SaveListItem : PanelContainer
         saveNameLabel = GetNode<Label>(SaveNamePath);
         screenshot = GetNode<TextureRect>(ScreenshotPath);
         version = GetNode<Label>(VersionPath);
+        versionWarning = GetNode<Label>(VersionWarningPath);
         type = GetNode<Label>(TypePath);
         createdAt = GetNode<Label>(CreatedAtPath);
         createdBy = GetNode<Label>(CreatedByPath);
@@ -138,6 +143,7 @@ public class SaveListItem : PanelContainer
 
         // General info
         version.Text = save.Info.ThriveVersion;
+        versionWarning.Visible = save.Info.ThriveVersion != Constants.Version;
         type.Text = save.Info.Type.ToString();
         createdAt.Text = save.Info.CreatedAt.ToString("G", CultureInfo.CurrentCulture);
         createdBy.Text = save.Info.Creator;
