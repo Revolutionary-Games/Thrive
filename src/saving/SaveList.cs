@@ -47,6 +47,9 @@ public class SaveList : ScrollContainer
     [Signal]
     public delegate void OnSelectedChanged();
 
+    [Signal]
+    public delegate void OnItemsChanged();
+
     public override void _Ready()
     {
         loadingItem = GetNode<Control>(LoadingItemPath);
@@ -147,5 +150,6 @@ public class SaveList : ScrollContainer
         saveToBeDeleted = null;
 
         Refresh();
+        EmitSignal(nameof(OnItemsChanged));
     }
 }
