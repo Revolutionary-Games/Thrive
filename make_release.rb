@@ -32,7 +32,7 @@ LICENSE_FILES = [
   ['doc/GodotLicense.txt', 'GodotLicense.txt']
 ].freeze
 
-SET_EXECUTE_FOR_MAC = true
+SET_EXECUTE_FOR_MAC = false
 
 @options = {
   custom_targets: false,
