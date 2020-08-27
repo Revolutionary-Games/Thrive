@@ -72,11 +72,12 @@ public static class VersionUtils
             return aSuffixIndex - bSuffixIndex;
         }
 
-        // Fallback in case one of the suffixes is unknow
-        return string.Compare(aSplit[1], bSplit[1], true, CultureInfo.InvariantCulture);
+        // Fallback in case one of the suffixes is unknown
+        return string.Compare(aSplit[1], bSplit[1], CultureInfo.InvariantCulture, CompareOptions.OrdinalIgnoreCase);
     }
 
     // TODO: Use actual unit tests instead
+    // https://github.com/Revolutionary-Games/Thrive/issues/1571
     public static bool TestCompare()
     {
         return Compare("1.2.3-pre-alpha", "1.2.3") < 0
