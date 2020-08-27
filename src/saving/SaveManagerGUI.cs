@@ -155,7 +155,7 @@ public class SaveManagerGUI : Control
         if (Selected.Count < 1)
             return;
 
-        SaveHelper.LoadSave(Selected[0].SaveName);
+        Selected[0].LoadThisSave();
     }
 
     private void DeleteSelectedButtonPressed()
