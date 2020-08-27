@@ -60,6 +60,7 @@ public class SaveListItem : PanelContainer
     private Button loadButton;
 
     private string saveName;
+    private bool compatibleVersion;
 
     private bool loadingData;
     private Task<Save> saveInfoLoadTask;
@@ -145,8 +146,10 @@ public class SaveListItem : PanelContainer
         screenshot.Texture = texture;
 
         // General info
+        compatibleVersion = save.Info.ThriveVersion == Constants.Version;
+
         version.Text = save.Info.ThriveVersion;
-        versionWarning.Visible = save.Info.ThriveVersion != Constants.Version;
+        versionWarning.Visible = !compatibleVersion;
         type.Text = save.Info.Type.ToString();
         createdAt.Text = save.Info.CreatedAt.ToString("G", CultureInfo.CurrentCulture);
         createdBy.Text = save.Info.Creator;
@@ -158,13 +161,13 @@ public class SaveListItem : PanelContainer
 
     public void LoadThisSave()
     {
-        if (versionWarning.Visible)
+        if (compatibleVersion)
         {
-            EmitSignal(nameof(OnOldSaveLoaded));
+            SaveHelper.LoadSave(SaveName);
             return;
         }
 
-        SaveHelper.LoadSave(SaveName);
+        EmitSignal(nameof(OnOldSaveLoaded));
     }
 
     private void LoadSaveData()
@@ -206,5 +209,4 @@ public class SaveListItem : PanelContainer
     {
         EmitSignal(nameof(OnDeleted));
     }
-
 }
