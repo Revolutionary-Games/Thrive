@@ -9,18 +9,18 @@ public static class VersionUtils
 {
     public static readonly string[] Suffixes =
     {
-        "pre-alpha",
-        "alpha",
-        "beta",
-        "rc1",
-        "rc2",
-        "rc3",
-        "rc4",
-        "rc5",
-        "rc6",
-        "rc7",
-        "rc8",
-        "rc9",
+        "PRE-ALPHA",
+        "ALPHA",
+        "BETA",
+        "RC1",
+        "RC2",
+        "RC3",
+        "RC4",
+        "RC5",
+        "RC6",
+        "RC7",
+        "RC8",
+        "RC9",
     };
 
     /// <summary>
@@ -45,10 +45,17 @@ public static class VersionUtils
         var bSplit = b.Split(separator, 2);
 
         // Compare the numeric versions
-        int versionDiff = Version.Parse(aSplit[0]).CompareTo(Version.Parse(bSplit[0]));
-        if (versionDiff != 0)
+        try
         {
-            return versionDiff;
+            int versionDiff = Version.Parse(aSplit[0]).CompareTo(Version.Parse(bSplit[0]));
+            if (versionDiff != 0)
+            {
+                return versionDiff;
+            }
+        }
+        catch (Exception e)
+        {
+            GD.PrintErr(e);
         }
 
         // If only one of the version has a suffix, that one is older
@@ -57,23 +64,22 @@ public static class VersionUtils
             return bSplit.Length - aSplit.Length;
         }
 
-        // Compare predefine suffixes
-        int aSuffixIndex = Array.IndexOf(Suffixes, aSplit[1].ToLower(CultureInfo.CurrentCulture));
-        int bSuffixIndex = Array.IndexOf(Suffixes, bSplit[1].ToLower(CultureInfo.CurrentCulture));
+        // Compare predefined suffixes
+        int aSuffixIndex = Array.IndexOf(Suffixes, aSplit[1].ToUpperInvariant());
+        int bSuffixIndex = Array.IndexOf(Suffixes, bSplit[1].ToUpperInvariant());
         if (aSuffixIndex >= 0 && bSuffixIndex >= 0)
         {
             return aSuffixIndex - bSuffixIndex;
         }
 
         // Fallback in case one of the suffixes is unknow
-        return string.Compare(aSplit[1], bSplit[1], true, CultureInfo.CurrentCulture);
+        return string.Compare(aSplit[1], bSplit[1], true, CultureInfo.InvariantCulture);
     }
 
     // TODO: Use actual unit tests instead
     public static bool TestCompare()
     {
-        return true
-            && Compare("1.2.3-pre-alpha", "1.2.3") < 0
+        return Compare("1.2.3-pre-alpha", "1.2.3") < 0
             && Compare("1.2.3-rc1", "1.2.3-pre-alpha") > 0
             && Compare("1.2.3-rc1", "1.2.4-pre-alpha") < 0
             && Compare("3.2.1-pre-alpha", "1.2.3") > 0
