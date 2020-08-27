@@ -9,18 +9,18 @@ public static class VersionUtils
 {
     public static readonly string[] Suffixes =
     {
-        "PRE-ALPHA",
-        "ALPHA",
-        "BETA",
-        "RC1",
-        "RC2",
-        "RC3",
-        "RC4",
-        "RC5",
-        "RC6",
-        "RC7",
-        "RC8",
-        "RC9",
+        "pre-alpha",
+        "alpha",
+        "beta",
+        "rc1",
+        "rc2",
+        "rc3",
+        "rc4",
+        "rc5",
+        "rc6",
+        "rc7",
+        "rc8",
+        "rc9",
     };
 
     /// <summary>
@@ -68,8 +68,8 @@ public static class VersionUtils
         }
 
         // Compare predefined suffixes
-        int aSuffixIndex = Array.IndexOf(Suffixes, aSplit[1].ToUpperInvariant());
-        int bSuffixIndex = Array.IndexOf(Suffixes, bSplit[1].ToUpperInvariant());
+        int aSuffixIndex = Array.IndexOf(Suffixes, aSplit[1].ToLowerInvariant());
+        int bSuffixIndex = Array.IndexOf(Suffixes, bSplit[1].ToLowerInvariant());
         if (aSuffixIndex >= 0 && bSuffixIndex >= 0)
         {
             return aSuffixIndex - bSuffixIndex;
