@@ -32,6 +32,7 @@ public class SaveList : ScrollContainer
     [Export]
     public NodePath LoadConfirmDialogPath;
 
+
     private Control loadingItem;
     private BoxContainer savesList;
     private ConfirmationDialog deleteConfirmDialog;
@@ -100,7 +101,9 @@ public class SaveList : ScrollContainer
                 item.Connect(nameof(SaveListItem.OnSelectedChanged), this, nameof(OnSubItemSelectedChanged));
 
             item.Connect(nameof(SaveListItem.OnDeleted), this, nameof(OnDeletePressed), new Array { save });
+
             item.Connect(nameof(SaveListItem.OnOldSaveLoaded), this, nameof(OnOldSaveLoaded), new Array { save });
+            item.Connect(nameof(SaveListItem.OnNewSaveLoaded), this, nameof(OnNewSaveLoaded), new Array { save });
 
             item.SaveName = save;
             savesList.AddChild(item);
@@ -163,6 +166,20 @@ public class SaveList : ScrollContainer
     private void OnOldSaveLoaded(string saveName)
     {
         saveToBeLoaded = saveName;
+
+        loadConfirmDialog.DialogText = "This save is from an old version of Thrive and may be incompatible.\n";
+        loadConfirmDialog.DialogText += "As Thrive is currently early in development save compatibility is not a priority.\n";
+        loadConfirmDialog.DialogText += "You may report any issues you encounter, but they aren't the highest priority right now.\n";
+        loadConfirmDialog.DialogText += "Do you want to try loading the save anyway?";
+        loadConfirmDialog.PopupCenteredMinsize();
+    }
+
+    private void OnNewSaveLoaded(string saveName)
+    {
+        saveToBeLoaded = saveName;
+
+        loadConfirmDialog.DialogText = "This save is from a newer version of Thrive and very likely incompatible.\n";
+        loadConfirmDialog.DialogText += "Do you want to try loading the save anyway?";
         loadConfirmDialog.PopupCenteredMinsize();
     }
 

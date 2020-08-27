@@ -1,4 +1,5 @@
-﻿/// <summary>
+﻿using System;
+/// <summary>
 ///   Helpers for dealing with Thrive's version number
 /// </summary>
 public static class VersionUtils
@@ -20,22 +21,27 @@ public static class VersionUtils
             return 0;
         }
 
-        var aSplit = a.Split('.');
-        var bSplit = b.Split('.');
+        char[] separators = { '.', '-' };
+        var aSplit = a.Split(separators);
+        var bSplit = b.Split(separators);
 
         for (int i = 0; i < aSplit.Length; i++)
         {
-            int aNumber = int.Parse(aSplit[i]);
-            int bNumber = int.Parse(bSplit[i]);
+            try
+            {
+                int aNumber = int.Parse(aSplit[i]);
+                int bNumber = int.Parse(bSplit[i]);
 
-            int diff = aNumber - bNumber;
-
-            if (diff == 0)
+                int diff = aNumber - bNumber;
+                if (diff != 0)
+                {
+                    return diff;
+                }
+            }
+            catch (Exception e)
             {
                 continue;
             }
-
-            return diff;
         }
 
         return 0;

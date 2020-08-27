@@ -60,7 +60,7 @@ public class SaveListItem : PanelContainer
     private Button loadButton;
 
     private string saveName;
-    private bool compatibleVersion;
+    private int versionDifference;
 
     private bool loadingData;
     private Task<Save> saveInfoLoadTask;
@@ -73,6 +73,9 @@ public class SaveListItem : PanelContainer
 
     [Signal]
     public delegate void OnOldSaveLoaded();
+
+    [Signal]
+    public delegate void OnNewSaveLoaded();
 
     public string SaveName
     {
@@ -146,10 +149,10 @@ public class SaveListItem : PanelContainer
         screenshot.Texture = texture;
 
         // General info
-        compatibleVersion = save.Info.ThriveVersion == Constants.Version;
+        versionDifference = VersionUtils.Compare(save.Info.ThriveVersion, Constants.Version);
 
         version.Text = save.Info.ThriveVersion;
-        versionWarning.Visible = !compatibleVersion;
+        versionWarning.Visible = versionDifference != 0;
         type.Text = save.Info.Type.ToString();
         createdAt.Text = save.Info.CreatedAt.ToString("G", CultureInfo.CurrentCulture);
         createdBy.Text = save.Info.Creator;
@@ -161,13 +164,19 @@ public class SaveListItem : PanelContainer
 
     public void LoadThisSave()
     {
-        if (compatibleVersion)
+        if (versionDifference < 0)
         {
-            SaveHelper.LoadSave(SaveName);
+            EmitSignal(nameof(OnOldSaveLoaded));
             return;
         }
 
-        EmitSignal(nameof(OnOldSaveLoaded));
+        if (versionDifference > 0)
+        {
+            EmitSignal(nameof(OnNewSaveLoaded));
+            return;
+        }
+
+        SaveHelper.LoadSave(SaveName);
     }
 
     private void LoadSaveData()

@@ -45,7 +45,7 @@ dialog_text = "Text not set..."
 size_flags_horizontal = 5
 size_flags_vertical = 5
 popup_exclusive = true
-window_title = "Load this save?"
-dialog_text = "This save is from an different version of Thrive and may be incompatible. Do you want to load it anyway?"
+window_title = "Load incompatible save?"
+dialog_text = "Text not set..."
 [connection signal="confirmed" from="VBoxContainer/DeleteConfirmDialog" to="." method="OnConfirmDelete"]
 [connection signal="confirmed" from="VBoxContainer/LoadConfirmDialog" to="." method="OnConfirmSaveLoad"]
