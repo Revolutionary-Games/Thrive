@@ -1,4 +1,5 @@
 ﻿using System;
+using Godot;
 /// <summary>
 ///   Helpers for dealing with Thrive's version number
 /// </summary>
@@ -40,7 +41,8 @@ public static class VersionUtils
             }
             catch (Exception e)
             {
-                continue;
+                GD.Print(e.Message);
+                GD.Print($"Probably non-numeric version difference: {a} vs. {b}");
             }
         }
 

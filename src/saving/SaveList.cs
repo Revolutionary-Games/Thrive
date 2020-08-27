@@ -168,8 +168,10 @@ public class SaveList : ScrollContainer
         saveToBeLoaded = saveName;
 
         loadConfirmDialog.DialogText = "This save is from an old version of Thrive and may be incompatible.\n";
-        loadConfirmDialog.DialogText += "As Thrive is currently early in development save compatibility is not a priority.\n";
-        loadConfirmDialog.DialogText += "You may report any issues you encounter, but they aren't the highest priority right now.\n";
+        loadConfirmDialog.DialogText += "As Thrive is currently early in development ";
+        loadConfirmDialog.DialogText += "save compatibility is not a priority.\n";
+        loadConfirmDialog.DialogText += "You may report any issues you encounter, ";
+        loadConfirmDialog.DialogText += "but they aren't the highest priority right now.\n";
         loadConfirmDialog.DialogText += "Do you want to try loading the save anyway?";
         loadConfirmDialog.PopupCenteredMinsize();
     }
