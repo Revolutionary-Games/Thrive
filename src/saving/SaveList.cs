@@ -32,7 +32,6 @@ public class SaveList : ScrollContainer
     [Export]
     public NodePath LoadConfirmDialogPath;
 
-
     private Control loadingItem;
     private BoxContainer savesList;
     private ConfirmationDialog deleteConfirmDialog;
