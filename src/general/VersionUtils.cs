@@ -30,6 +30,7 @@ public static class VersionUtils
     ///   0 if the versions are the same,
     ///   a negative integer if a is a smaller (older) version than b and
     ///   a positive integer if a is a bigger (newer) version than b
+    ///   int.MaxValue if comparison fails
     /// </returns>
     /// <param name="a">The first version to compare.</param>
     /// <param name="b">The second version to compare.</param>
@@ -55,7 +56,9 @@ public static class VersionUtils
         }
         catch (Exception e)
         {
+            GD.PrintErr($"Failed to compare versions {a} and {b}.");
             GD.PrintErr(e);
+            return int.MaxValue;
         }
 
         // If only one of the version has a suffix, that one is older
