@@ -34,16 +34,18 @@ public class SaveManagerGUI : Control
     [Export]
     public NodePath DeleteSelectedConfirmDialogPath;
 
+    [Export]
+    public NodePath DeleteOldConfirmDialogPath;
+
     private SaveList saveList;
     private Label selectedItemCount;
     private Label totalSaveCount;
     private Label totalSaveSize;
     private Button loadButton;
     private Button deleteSelectedButton;
-    private ConfirmationDialog deleteSelectedConfirmDialog;
-
-    // ReSharper disable once NotAccessedField.Local
     private Button deleteOldButton;
+    private ConfirmationDialog deleteSelectedConfirmDialog;
+    private ConfirmationDialog deleteOldConfirmDialog;
 
     private List<SaveListItem> selected;
     private bool selectedDirty = true;
@@ -80,6 +82,7 @@ public class SaveManagerGUI : Control
         deleteSelectedButton = GetNode<Button>(DeleteSelectedButtonPath);
         deleteOldButton = GetNode<Button>(DeleteOldButtonPath);
         deleteSelectedConfirmDialog = GetNode<ConfirmationDialog>(DeleteSelectedConfirmDialogPath);
+        deleteOldConfirmDialog = GetNode<ConfirmationDialog>(DeleteOldConfirmDialogPath);
 
         saveList.Connect(nameof(SaveList.OnItemsChanged), this, nameof(RefreshList));
     }
@@ -107,6 +110,7 @@ public class SaveManagerGUI : Control
             Math.Round((float)info.diskSpace / Constants.MEBIBYTE, 2).ToString(CultureInfo.CurrentCulture) + " MiB";
 
         UpdateSelectedCount();
+        UpdateButtonsStatus();
 
         refreshing = false;
     }
@@ -148,6 +152,8 @@ public class SaveManagerGUI : Control
     {
         loadButton.Disabled = Selected.Count != 1;
         deleteSelectedButton.Disabled = Selected.Count == 0;
+        deleteOldButton.Disabled =
+            (SaveHelper.CountSaves("auto_save").count <= 1) && (SaveHelper.CountSaves("quick_save").count <= 1);
     }
 
     private void LoadFirstSelectedSave()
@@ -166,13 +172,35 @@ public class SaveManagerGUI : Control
         deleteSelectedConfirmDialog.PopupCenteredMinsize();
     }
 
+    private void DeleteOldButtonPressed()
+    {
+        deleteOldConfirmDialog.DialogText =
+            "Deleting all old Auto and Quick saves cannot be undone, " +
+            "are you sure you want to permanently delete the following?\n" +
+            $" >>> {Mathf.Clamp(SaveHelper.CountSaves("auto_save").count - 1, 0, Settings.Instance.MaxAutoSaves)} " +
+            $"Auto save(s)\n" +
+            $" >>> {Mathf.Clamp(SaveHelper.CountSaves("quick_save").count - 1, 0, Settings.Instance.MaxQuickSaves)} " +
+            $"Quick save(s)";
+        deleteOldConfirmDialog.PopupCenteredMinsize();
+    }
+
     private void OnConfirmDeleteSelected()
     {
         GD.Print("Deleting save(s): ", string.Join(", ", Selected.Select(item => item.SaveName).ToList()));
 
         Selected.ForEach(item => SaveHelper.DeleteSave(item.SaveName));
-        deleteSelectedButton.Disabled = true;
         selected = null;
+
+        RefreshList();
+    }
+
+    private void OnConfirmDeleteOld()
+    {
+        string autoSaveNames = string.Join(", ", SaveHelper.CleanUpOldSaves("auto_save"));
+        string delimiter = string.Concat(Enumerable.Repeat(", ", Mathf.Clamp(autoSaveNames.Length, 0, 1)));
+        string quickSaveNames = string.Join(", ", SaveHelper.CleanUpOldSaves("quick_save"));
+
+        GD.Print("Deleting save(s): ", autoSaveNames, delimiter, quickSaveNames);
 
         RefreshList();
     }
