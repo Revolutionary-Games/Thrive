@@ -13,7 +13,7 @@ require_relative 'RubySetupSystem/RubyCommon'
 require_relative 'scripts/fast_build/toggle_analysis_lib'
 
 MAX_LINE_LENGTH = 120
-DUPLICATE_THRESSHOLD = 100
+DUPLICATE_THRESSHOLD = 110
 
 VALID_CHECKS = %w[compile files inspectcode cleanupcode duplicatecode].freeze
 DEFAULT_CHECKS = %w[compile files inspectcode cleanupcode duplicatecode].freeze
