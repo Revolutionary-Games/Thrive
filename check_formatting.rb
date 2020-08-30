@@ -20,6 +20,7 @@ DEFAULT_CHECKS = %w[compile files inspectcode cleanupcode].freeze
 ONLY_FILE_LIST = 'files_to_check.txt'
 
 OUTPUT_MUTEX = Mutex.new
+MSBUILD_MUTEX = Mutex.new
 
 @options = {
   checks: DEFAULT_CHECKS,
@@ -41,6 +42,9 @@ OptionParser.new do |opts|
   opts.on('-p', '--[no-]parallel', 'Run different checks in parallel (default)') do |b|
     @options[:parallel] = b
   end
+  opts.on('--msbuild MSBUILD', 'Specify msbuild dll to use with jetbrains tools') do |f|
+    @options[:msBuild] = f
+  end
 end.parse!
 
 onError "Unhandled parameters: #{ARGV}" unless ARGV.empty?
@@ -48,6 +52,43 @@ onError "Unhandled parameters: #{ARGV}" unless ARGV.empty?
 info "Starting formatting checks with the following checks: #{@options[:checks]}"
 
 # Helper functions
+
+def detect_ms_build_dll
+  msbuild = which 'msbuild'
+
+  unless msbuild
+    OUTPUT_MUTEX.synchronize do
+      puts 'Searched paths:'
+      pathAsArray.each do |p|
+        puts p
+      end
+
+      onError 'msbuild not found in PATH'
+    end
+  end
+
+  File.foreach(msbuild) do |line|
+    match = line.match(%r{/mono\s+.+\s(/.*/MSBuild.dll)\s+})
+
+    next unless match
+
+    dll = match.captures[0]
+
+    info "msbuild dll path detected: #{dll}"
+    return dll
+  end
+
+  onError 'Could not determine MSBuild.dll location, please specify --msbuild ' \
+          'parameter with the correct path'
+end
+
+def ms_build
+  MSBUILD_MUTEX.synchronize do
+    return @options[:msBuild] if @options[:msBuild]
+
+    @options[:msBuild] = detect_ms_build_dll
+  end
+end
 
 def ide_file?(path)
   path =~ %r{/\.vs/} || path =~ %r{/\.idea/}
@@ -325,6 +366,8 @@ def run_inspect_code
 
   params = [inspect_code_executable, 'Thrive.sln', '-o=inspect_results.xml']
 
+  params.append "--toolset-path=#{ms_build}" if OS.linux?
+
   params.append "--include=#{@includes.join(';')}" if @includes
 
   runOpen3Checked(*params)
@@ -374,6 +417,8 @@ def run_cleanup_code
   old_diff = runOpen3CaptureOutput 'git', 'diff', '--stat'
 
   params = [cleanup_code_executable, 'Thrive.sln', '--profile=full_no_xml']
+
+  params.append "--toolset-path=#{ms_build}" if OS.linux?
 
   params.append "--include=#{@includes.join(';')}" if @includes
 
