@@ -13,9 +13,10 @@ require_relative 'RubySetupSystem/RubyCommon'
 require_relative 'scripts/fast_build/toggle_analysis_lib'
 
 MAX_LINE_LENGTH = 120
+DUPLICATE_THRESSHOLD = 100
 
-VALID_CHECKS = %w[compile files inspectcode cleanupcode].freeze
-DEFAULT_CHECKS = %w[compile files inspectcode cleanupcode].freeze
+VALID_CHECKS = %w[compile files inspectcode cleanupcode duplicatecode].freeze
+DEFAULT_CHECKS = %w[compile files inspectcode cleanupcode duplicatecode].freeze
 
 ONLY_FILE_LIST = 'files_to_check.txt'
 
@@ -434,6 +435,67 @@ def run_cleanup_code
   exit 2
 end
 
+def duplicate_code_executable
+  if OS.windows?
+    'dupfinder.exe'
+  else
+    'dupfinder.sh'
+  end
+end
+
+def run_duplicate_finder
+  return if skip_jetbrains?
+
+  params = [duplicate_code_executable, '-o=duplicate_results.xml', '--show-text',
+            "--discard-cost=#{DUPLICATE_THRESSHOLD}"]
+
+  params.append "--toolset-path=#{ms_build}" if OS.linux?
+
+  if @includes
+    params += @includes
+  else
+    params.append 'Thrive.sln'
+  end
+
+  runOpen3Checked(*params)
+
+  issues_found = false
+
+  doc = Nokogiri::XML(File.open('duplicate_results.xml'), &:norecover)
+
+  doc.xpath('//Duplicate').each do |duplicate|
+    issues_found = true
+
+    OUTPUT_MUTEX.synchronize do
+      error "Found duplicate with cost #{duplicate['Cost']}"
+
+      duplicate.xpath('//Fragment').each do |fragment|
+        file = fragment.xpath('FileName')[0].content
+        start_end = fragment.xpath('LineRange')[0]
+
+        puts "Fragment in file #{file}"
+        puts "Lines #{start_end['Start']}--#{start_end['End']}"
+
+        if fragment.xpath('Text')
+          puts 'Fragment code:'
+          puts fragment.xpath('Text')[0].content
+        end
+
+        puts 'End of fragment'
+      end
+
+      puts 'End of duplicate'
+    end
+  end
+
+  return unless issues_found
+
+  OUTPUT_MUTEX.synchronize do
+    error 'Duplicate finder found duplicates, see duplicate_results.xml'
+  end
+  exit 2
+end
+
 run_check = proc { |check|
   if check == 'compile'
     run_compile
@@ -443,6 +505,8 @@ run_check = proc { |check|
     run_inspect_code
   elsif check == 'cleanupcode'
     run_cleanup_code
+  elsif check == 'duplicatecode'
+    run_duplicate_finder
   else
     OUTPUT_MUTEX.synchronize do
       onError "Unknown check type: #{check}"
