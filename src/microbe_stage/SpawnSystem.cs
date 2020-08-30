@@ -25,9 +25,6 @@ public class SpawnSystem
     private List<Spawner> spawnTypes = new List<Spawner>();
 
     [JsonProperty]
-    private Vector3 previousPlayerPosition = new Vector3(0, 0, 0);
-
-    [JsonProperty]
     private Random random = new Random();
 
     /// <summary>
@@ -96,6 +93,10 @@ public class SpawnSystem
         spawner.SpawnRadius = spawnRadius;
         spawner.SpawnFrequency = 122;
         spawner.SpawnRadiusSqr = spawnRadius * spawnRadius;
+
+        float minSpawnRadius = spawnRadius * Constants.MIN_SPAWN_RADIUS_RATIO;
+        spawner.MinSpawnRadiusSqr = minSpawnRadius * minSpawnRadius;
+
         spawner.SetFrequencyFromDensity(spawnDensity);
         spawnTypes.Add(spawner);
     }
@@ -124,7 +125,6 @@ public class SpawnSystem
     {
         spawnTypes.Clear();
         queuedSpawns = null;
-        previousPlayerPosition = new Vector3(0, 0, 0);
         elapsed = 0;
     }
 
@@ -146,7 +146,7 @@ public class SpawnSystem
     /// <summary>
     ///   Processes spawning and despawning things
     /// </summary>
-    public void Process(float delta, Vector3 playerPosition)
+    public void Process(float delta, Vector3 playerPosition, Vector3 playerRotation)
     {
         elapsed += delta;
 
@@ -176,9 +176,7 @@ public class SpawnSystem
 
             spawnTypes.RemoveAll(entity => entity.DestroyQueued);
 
-            SpawnEntities(playerPosition, estimateEntityCount, spawnsLeftThisFrame);
-
-            previousPlayerPosition = playerPosition;
+            SpawnEntities(playerPosition, playerRotation, estimateEntityCount, spawnsLeftThisFrame);
         }
     }
 
@@ -218,7 +216,7 @@ public class SpawnSystem
         return spawnsLeftThisFrame;
     }
 
-    private void SpawnEntities(Vector3 playerPosition, int existing, int spawnsLeftThisFrame)
+    private void SpawnEntities(Vector3 playerPosition, Vector3 playerRotation, int existing, int spawnsLeftThisFrame)
     {
         // If  there are already too many entities, don't spawn more
         if (existing >= maxAliveEntities)
@@ -259,23 +257,18 @@ public class SpawnSystem
                     will fail the second condition, so entities still only
                     spawn within the spawning region.
                     */
-                    float distanceX = (float)random.NextDouble() * spawnType.SpawnRadius -
-                        (float)random.NextDouble() * spawnType.SpawnRadius;
-                    float distanceZ = (float)random.NextDouble() * spawnType.SpawnRadius -
-                        (float)random.NextDouble() * spawnType.SpawnRadius;
+                    float displacementDistance = random.NextFloat() * spawnType.SpawnRadius;
+                    float displacementRotation = WeightedRandomRotation(playerRotation.y);
+
+                    float distanceX = Mathf.Sin(displacementRotation) * displacementDistance;
+                    float distanceZ = Mathf.Cos(displacementRotation) * displacementDistance;
 
                     // Distance from the player.
                     Vector3 displacement = new Vector3(distanceX, 0, distanceZ);
                     float squaredDistance = displacement.LengthSquared();
 
-                    // Distance from the location of the player in the previous
-                    // spawn cycle.
-                    Vector3 previousDisplacement = displacement + playerPosition -
-                        previousPlayerPosition;
-                    float previousSquaredDistance = previousDisplacement.LengthSquared();
-
                     if (squaredDistance <= spawnType.SpawnRadiusSqr &&
-                        previousSquaredDistance > spawnType.SpawnRadiusSqr)
+                        squaredDistance >= spawnType.MinSpawnRadiusSqr)
                     {
                         // Second condition passed. Spawn the entity.
                         if (SpawnWithSpawner(spawnType, playerPosition + displacement, existing,
@@ -388,6 +381,39 @@ public class SpawnSystem
         entity.DespawnRadiusSqr = spawnType.SpawnRadiusSqr;
 
         entity.SpawnedNode.AddToGroup(Constants.SPAWNED_GROUP);
+    }
+
+    /// <summary>
+    ///   Returns a random rotation (in radians)
+    ///   It is more likely to return a rotation closer to the target rotation than not
+    /// </summary>
+    private float WeightedRandomRotation(float targetRotation)
+    {
+        targetRotation = WithNegativesToNormalRadians(targetRotation);
+
+        float rotation1 = random.NextFloat() * 2 * Mathf.Pi;
+        float rotation2 = random.NextFloat() * 2 * Mathf.Pi;
+
+        if (DistanceBetweenRadians(rotation1, targetRotation) < DistanceBetweenRadians(rotation2, targetRotation))
+            return NormalToWithNegativesRadians(rotation1);
+
+        return NormalToWithNegativesRadians(rotation2);
+    }
+
+    private float NormalToWithNegativesRadians(float radian)
+    {
+        return radian <= Math.PI ? radian : radian - (float)(2 * Math.PI);
+    }
+
+    private float WithNegativesToNormalRadians(float radian)
+    {
+        return radian >= 0 ? radian : (float)(2 * Math.PI) - radian;
+    }
+
+    private float DistanceBetweenRadians(float p1, float p2)
+    {
+        float distance = Math.Abs(p1 - p2);
+        return distance <= Math.PI ? distance : (float)(2 * Math.PI) - distance;
     }
 
     private class QueuedSpawn

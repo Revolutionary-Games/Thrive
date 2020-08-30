@@ -31,6 +31,9 @@ public class MicrobeEditorGUI : Node
     public NodePath MutationPointsBarPath;
 
     [Export]
+    public NodePath MutationPointsSubtractBarPath;
+
+    [Export]
     public NodePath SpeciesNameEditPath;
 
     [Export]
@@ -225,6 +228,7 @@ public class MicrobeEditorGUI : Node
     private Label generationLabel;
     private Label mutationPointsLabel;
     private TextureProgress mutationPointsBar;
+    private TextureProgress mutationPointsSubtractBar;
     private LineEdit speciesNameEdit;
     private ColorPicker membraneColorPicker;
     private TextureButton newCellButton;
@@ -285,6 +289,9 @@ public class MicrobeEditorGUI : Node
     /// </summary>
     private bool speciesListIsHidden;
 
+    private Texture invalidBarTexture;
+    private Texture subractBarTexture;
+
     public override void _Ready()
     {
         organelleSelectionElements = GetTree().GetNodesInGroup("OrganelleSelectionElement");
@@ -297,6 +304,7 @@ public class MicrobeEditorGUI : Node
         generationLabel = GetNode<Label>(GenerationLabelPath);
         mutationPointsLabel = GetNode<Label>(MutationPointsLabelPath);
         mutationPointsBar = GetNode<TextureProgress>(MutationPointsBarPath);
+        mutationPointsSubtractBar = GetNode<TextureProgress>(MutationPointsSubtractBarPath);
         speciesNameEdit = GetNode<LineEdit>(SpeciesNameEditPath);
         membraneColorPicker = GetNode<ColorPicker>(MembraneColorPickerPath);
         newCellButton = GetNode<TextureButton>(NewCellButtonPath);
@@ -347,6 +355,9 @@ public class MicrobeEditorGUI : Node
         patchPhosphateSituation = GetNode<TextureRect>(PatchPhosphateSituationPath);
         rigiditySlider = GetNode<Slider>(RigiditySliderPath);
 
+        invalidBarTexture = GD.Load<Texture>("res://assets/textures/gui/bevel/MpBarInvalid.png");
+        subractBarTexture = GD.Load<Texture>("res://assets/textures/gui/bevel/MpBarSubtract.png");
+
         mapDrawer.OnSelectedPatchChanged = drawer => { UpdateShownPatchDetails(); };
 
         atpProductionBar.SelectedType = SegmentedBar.Type.ATP;
@@ -366,9 +377,31 @@ public class MicrobeEditorGUI : Node
     public override void _Process(float delta)
     {
         // Update mutation points
+        float possibleMutationPoints = editor.FreeBuilding ?
+            Constants.BASE_MUTATION_POINTS :
+            editor.MutationPoints - editor.CurrentOrganelleCost;
         mutationPointsBar.MaxValue = Constants.BASE_MUTATION_POINTS;
-        mutationPointsBar.Value = editor.MutationPoints;
-        mutationPointsLabel.Text = $"{editor.MutationPoints:F0} / {Constants.BASE_MUTATION_POINTS:F0}";
+        mutationPointsBar.Value = possibleMutationPoints;
+        mutationPointsSubtractBar.MaxValue = Constants.BASE_MUTATION_POINTS;
+        mutationPointsSubtractBar.Value = editor.MutationPoints;
+        if (possibleMutationPoints != editor.MutationPoints)
+        {
+            mutationPointsLabel.Text =
+                $"({editor.MutationPoints:F0} -> {possibleMutationPoints:F0}) / {Constants.BASE_MUTATION_POINTS:F0}";
+        }
+        else
+        {
+            mutationPointsLabel.Text = $"{editor.MutationPoints:F0} / {Constants.BASE_MUTATION_POINTS:F0}";
+        }
+
+        if (possibleMutationPoints < 0)
+        {
+            mutationPointsSubtractBar.TextureProgress_ = invalidBarTexture;
+        }
+        else
+        {
+            mutationPointsSubtractBar.TextureProgress_ = subractBarTexture;
+        }
     }
 
     public void SetMap(PatchMap map)

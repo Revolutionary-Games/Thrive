@@ -32,6 +32,8 @@ LICENSE_FILES = [
   ['doc/GodotLicense.txt', 'GodotLicense.txt']
 ].freeze
 
+SET_EXECUTE_FOR_MAC = false
+
 @options = {
   custom_targets: false,
   targets: ALL_TARGETS,
@@ -165,6 +167,39 @@ def gzip_to_target(source, target)
   end
 end
 
+def set_mac_execute_bit(target_file)
+  puts "Extracting app from #{target_file}"
+
+  work_dir = File.dirname target_file
+  base_extract = File.join work_dir, 'Thrive.app'
+  path_in_zip = 'Thrive.app/Contents/MacOS/Thrive'
+  extracted = File.join base_extract, 'Contents', 'MacOS', 'Thrive'
+
+  runOpen3Checked('unzip', '-o', target_file, path_in_zip, '-d', work_dir)
+
+  onError "Expected file (#{extracted}) didn't get extracted" unless File.exist? extracted
+
+  if File.executable? extracted
+    info "File is already executable, but we don't care because mac seems to think "\
+         "it isn't executable"
+  end
+
+  FileUtils.chmod '+x', extracted
+
+  unless File.executable? extracted
+    onError 'Failed to add the execute bit (you are probably trying to run this on '\
+            "a filesystem that doesn't support setting the execute bit)"
+  end
+
+  Dir.chdir(work_dir) do
+    # Zip command doesn't seem to want to update things. 7zip seems to
+    # make the executable bit change go into the archive
+    runOpen3Checked(p7zip, 'a', target_file, path_in_zip)
+  end
+
+  FileUtils.rm_rf base_extract, secure: true
+end
+
 def devbuild_package(target, target_name, target_folder, target_file)
   puts "Performing devbuild package on: #{target_folder}"
 
@@ -281,6 +316,17 @@ def package(target, target_name, target_folder, target_file)
       runOpen3Checked(*['zip', '-u', target_file, LICENSE_FILES.map { |i| i[1] }].flatten,
                       'README.txt', 'revision.txt')
     end
+
+    puts 'Licenses added'
+
+    if SET_EXECUTE_FOR_MAC
+      puts 'Trying to set execute bit for .app for mac'
+
+      set_mac_execute_bit target_file
+
+      puts 'Execute bit set'
+    end
+
     puts 'Zip updated'
   end
 

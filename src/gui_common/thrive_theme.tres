@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=47 format=2]
+[gd_resource type="Theme" load_steps=51 format=2]
 
 [ext_resource path="res://assets/fonts/Jura-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/grab.png" type="Texture" id=2]
@@ -266,15 +266,51 @@ border_color = Color( 0.0666667, 1, 0.835294, 1 )
 expand_margin_left = 5.0
 expand_margin_right = 5.0
 
-[sub_resource type="StyleBoxFlat" id=36]
+[sub_resource type="DynamicFont" id=36]
+size = 22
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxEmpty" id=37]
+content_margin_left = 5.0
+content_margin_right = 5.0
+
+[sub_resource type="StyleBoxFlat" id=38]
+content_margin_left = 5.0
+content_margin_right = 5.0
+bg_color = Color( 0.054902, 0.145098, 0.168627, 0.784314 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.0666667, 0.6, 0.537255, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id=39]
+content_margin_left = 5.0
+content_margin_right = 5.0
+bg_color = Color( 0.109804, 0.156863, 0.168627, 0.784314 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.0431373, 0.34902, 0.313726, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id=40]
 bg_color = Color( 0, 0, 0, 1 )
 border_width_left = 15
 border_color = Color( 1, 1, 1, 0 )
 
-[sub_resource type="DynamicFont" id=37]
+[sub_resource type="DynamicFont" id=41]
 font_data = ExtResource( 8 )
 
-[sub_resource type="StyleBoxFlat" id=38]
+[sub_resource type="StyleBoxFlat" id=42]
 content_margin_left = 5.0
 content_margin_right = 5.0
 content_margin_top = 10.0
@@ -585,45 +621,45 @@ Tabs/styles/panel = null
 Tabs/styles/tab_bg = null
 Tabs/styles/tab_disabled = null
 Tabs/styles/tab_fg = null
-TextEdit/colors/background_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/bookmark_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/brace_mismatch_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/breakpoint_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/caret_background_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/caret_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/code_folding_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/completion_background_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/completion_existing_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/completion_font_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/completion_scroll_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/completion_selected_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/current_line_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/executing_line_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/font_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/font_color_readonly = Color( 0, 0, 0, 1 )
-TextEdit/colors/font_color_selected = Color( 0, 0, 0, 1 )
-TextEdit/colors/function_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/line_number_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/mark_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/member_variable_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/number_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/safe_line_number_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/selection_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/symbol_color = Color( 0, 0, 0, 1 )
-TextEdit/colors/word_highlighted_color = Color( 0, 0, 0, 1 )
+TextEdit/colors/background_color = Color( 1, 1, 1, 1 )
+TextEdit/colors/bookmark_color = Color( 1, 1, 1, 1 )
+TextEdit/colors/brace_mismatch_color = Color( 1, 1, 1, 1 )
+TextEdit/colors/breakpoint_color = Color( 1, 1, 1, 1 )
+TextEdit/colors/caret_background_color = Color( 1, 1, 1, 1 )
+TextEdit/colors/caret_color = Color( 1, 1, 1, 1 )
+TextEdit/colors/code_folding_color = Color( 1, 1, 1, 1 )
+TextEdit/colors/completion_background_color = Color( 1, 1, 1, 1 )
+TextEdit/colors/completion_existing_color = Color( 1, 1, 1, 1 )
+TextEdit/colors/completion_font_color = Color( 1, 1, 1, 1 )
+TextEdit/colors/completion_scroll_color = Color( 1, 1, 1, 1 )
+TextEdit/colors/completion_selected_color = Color( 1, 1, 1, 1 )
+TextEdit/colors/current_line_color = Color( 1, 1, 1, 1 )
+TextEdit/colors/executing_line_color = Color( 1, 1, 1, 1 )
+TextEdit/colors/font_color = Color( 1, 1, 1, 1 )
+TextEdit/colors/font_color_readonly = Color( 1, 1, 1, 1 )
+TextEdit/colors/font_color_selected = Color( 1, 1, 1, 1 )
+TextEdit/colors/function_color = Color( 1, 1, 1, 1 )
+TextEdit/colors/line_number_color = Color( 1, 1, 1, 1 )
+TextEdit/colors/mark_color = Color( 1, 1, 1, 1 )
+TextEdit/colors/member_variable_color = Color( 1, 1, 1, 1 )
+TextEdit/colors/number_color = Color( 1, 1, 1, 1 )
+TextEdit/colors/safe_line_number_color = Color( 1, 1, 1, 1 )
+TextEdit/colors/selection_color = Color( 1, 1, 1, 0.133333 )
+TextEdit/colors/symbol_color = Color( 1, 1, 1, 1 )
+TextEdit/colors/word_highlighted_color = Color( 1, 1, 1, 1 )
 TextEdit/constants/completion_lines = 7
 TextEdit/constants/completion_max_width = 50
 TextEdit/constants/completion_scroll_width = 3
-TextEdit/constants/line_spacing = 4
-TextEdit/fonts/font = null
+TextEdit/constants/line_spacing = 7
+TextEdit/fonts/font = SubResource( 36 )
 TextEdit/icons/fold = null
 TextEdit/icons/folded = null
 TextEdit/icons/space = null
 TextEdit/icons/tab = null
 TextEdit/styles/completion = null
-TextEdit/styles/focus = null
-TextEdit/styles/normal = null
-TextEdit/styles/read_only = null
+TextEdit/styles/focus = SubResource( 37 )
+TextEdit/styles/normal = SubResource( 38 )
+TextEdit/styles/read_only = SubResource( 39 )
 ToolButton/colors/font_color = Color( 0, 0, 0, 1 )
 ToolButton/colors/font_color_disabled = Color( 0, 0, 0, 1 )
 ToolButton/colors/font_color_hover = Color( 0, 0, 0, 1 )
@@ -687,7 +723,7 @@ VScrollBar/icons/increment_highlight = null
 VScrollBar/styles/grabber = SubResource( 14 )
 VScrollBar/styles/grabber_highlight = SubResource( 15 )
 VScrollBar/styles/grabber_pressed = SubResource( 16 )
-VScrollBar/styles/scroll = SubResource( 36 )
+VScrollBar/styles/scroll = SubResource( 40 )
 VScrollBar/styles/scroll_focus = null
 VSeparator/constants/separation = 4
 VSeparator/styles/separator = null
@@ -706,7 +742,7 @@ WindowDialog/constants/close_h_ofs = 18
 WindowDialog/constants/close_v_ofs = 18
 WindowDialog/constants/scaleborder_size = 4
 WindowDialog/constants/title_height = 20
-WindowDialog/fonts/title_font = SubResource( 37 )
+WindowDialog/fonts/title_font = SubResource( 41 )
 WindowDialog/icons/close = null
 WindowDialog/icons/close_highlight = null
-WindowDialog/styles/panel = SubResource( 38 )
+WindowDialog/styles/panel = SubResource( 42 )

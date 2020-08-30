@@ -6,7 +6,7 @@ using Godot;
 /// <summary>
 ///   An item in the saves list. This is a class to handle loading its data from the file
 /// </summary>
-public class SaveListItem : HBoxContainer
+public class SaveListItem : PanelContainer
 {
     [Export]
     public bool Selectable;
@@ -22,6 +22,9 @@ public class SaveListItem : HBoxContainer
 
     [Export]
     public NodePath VersionPath;
+
+    [Export]
+    public NodePath VersionWarningPath;
 
     [Export]
     public NodePath TypePath;
@@ -47,6 +50,7 @@ public class SaveListItem : HBoxContainer
     private Label saveNameLabel;
     private TextureRect screenshot;
     private Label version;
+    private Label versionWarning;
     private Label type;
     private Label createdAt;
     private Label createdBy;
@@ -56,6 +60,7 @@ public class SaveListItem : HBoxContainer
     private Button loadButton;
 
     private string saveName;
+    private int versionDifference;
 
     private bool loadingData;
     private Task<Save> saveInfoLoadTask;
@@ -65,6 +70,12 @@ public class SaveListItem : HBoxContainer
 
     [Signal]
     public delegate void OnDeleted();
+
+    [Signal]
+    public delegate void OnOldSaveLoaded();
+
+    [Signal]
+    public delegate void OnNewSaveLoaded();
 
     public string SaveName
     {
@@ -103,6 +114,7 @@ public class SaveListItem : HBoxContainer
         saveNameLabel = GetNode<Label>(SaveNamePath);
         screenshot = GetNode<TextureRect>(ScreenshotPath);
         version = GetNode<Label>(VersionPath);
+        versionWarning = GetNode<Label>(VersionWarningPath);
         type = GetNode<Label>(TypePath);
         createdAt = GetNode<Label>(CreatedAtPath);
         createdBy = GetNode<Label>(CreatedByPath);
@@ -137,7 +149,10 @@ public class SaveListItem : HBoxContainer
         screenshot.Texture = texture;
 
         // General info
+        versionDifference = VersionUtils.Compare(save.Info.ThriveVersion, Constants.Version);
+
         version.Text = save.Info.ThriveVersion;
+        versionWarning.Visible = versionDifference != 0;
         type.Text = save.Info.Type.ToString();
         createdAt.Text = save.Info.CreatedAt.ToString("G", CultureInfo.CurrentCulture);
         createdBy.Text = save.Info.Creator;
@@ -145,6 +160,23 @@ public class SaveListItem : HBoxContainer
         description.Text = save.Info.Description;
 
         loadingData = false;
+    }
+
+    public void LoadThisSave()
+    {
+        if (versionDifference < 0)
+        {
+            EmitSignal(nameof(OnOldSaveLoaded));
+            return;
+        }
+
+        if (versionDifference > 0)
+        {
+            EmitSignal(nameof(OnNewSaveLoaded));
+            return;
+        }
+
+        SaveHelper.LoadSave(SaveName);
     }
 
     private void LoadSaveData()
@@ -180,11 +212,6 @@ public class SaveListItem : HBoxContainer
     {
         _ = newValue;
         EmitSignal(nameof(OnSelectedChanged));
-    }
-
-    private void LoadThisSave()
-    {
-        SaveHelper.LoadSave(SaveName);
     }
 
     private void DeletePressed()
