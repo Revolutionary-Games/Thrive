@@ -178,9 +178,9 @@ public class SaveManagerGUI : Control
             "Deleting all old Auto and Quick saves cannot be undone, " +
             "are you sure you want to permanently delete the following?\n" +
             $" >>> {Mathf.Clamp(SaveHelper.CountSaves("auto_save").count - 1, 0, Settings.Instance.MaxAutoSaves)} " +
-            $"Auto save(s)\n" +
+            "Auto save(s)\n" +
             $" >>> {Mathf.Clamp(SaveHelper.CountSaves("quick_save").count - 1, 0, Settings.Instance.MaxQuickSaves)} " +
-            $"Quick save(s)";
+            "Quick save(s)";
         deleteOldConfirmDialog.PopupCenteredMinsize();
     }
 
