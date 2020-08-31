@@ -3,7 +3,7 @@ jobs:
    build:
      working_directory: ~/Thrive
      docker:
-       - image: hhyyrylainen/godot-ci:v4
+       - image: hhyyrylainen/godot-ci:v5
      environment:
        GIT_LFS_SKIP_SMUDGE: 1
      steps:
@@ -47,10 +47,10 @@ jobs:
        - run: ./make_release.rb --dehydrated
        # Upload devbuilds
        - run: ./upload_devbuilds.rb
-   inspect:
+   jetbrains:
      working_directory: ~/Thrive
      docker:
-       - image: hhyyrylainen/godot-ci:v4
+       - image: hhyyrylainen/godot-ci:v5
      environment:
        GIT_LFS_SKIP_SMUDGE: 1
        CIRCLE_COMPARE_URL: << pipeline.project.git_url >>/compare/<< pipeline.git.base_revision >>..<<pipeline.git.revision>>
@@ -83,49 +83,10 @@ jobs:
            keys:
              - v2-nuget-{{ .Branch }}
        - run: nuget restore Thrive.sln
-       # Inspect code (this only takes like 40 seconds)
+       # Inspect code (this only takes like 40 seconds for all files)
        - run: ./check_formatting.rb -c inspectcode
-       - store_artifacts:
-          path: files_to_check.txt
-       - store_artifacts:
-          path: inspect_results.xml
-   cleanup:
-     working_directory: ~/Thrive
-     docker:
-       - image: hhyyrylainen/godot-ci:v4
-     environment:
-       GIT_LFS_SKIP_SMUDGE: 1
-       CIRCLE_COMPARE_URL: << pipeline.project.git_url >>/compare/<< pipeline.git.base_revision >>..<<pipeline.git.revision>>
-     steps:
-       - checkout
-       - restore_cache:
-           keys:
-             - v6-lfs-{{ .Branch }}
-             - v6-lfs-master
-       - run:
-           name: Pull Git LFS files, retry up to 5 times
-           command: |
-             for i in {1..5}; do git reset --hard HEAD && git clean -fd && git lfs pull && exit 0; done; exit 1
-       - run:
-           name: Detect changed files (since last commit and against master)
-           command: |
-             git fetch origin master
-             git diff-tree --no-commit-id --name-only -r HEAD..origin/master > files_to_check.txt
-             git diff-tree --no-commit-id --name-only -r `echo ${CIRCLE_COMPARE_URL} | cut -d/ -f 7` >> files_to_check.txt || true
-       - restore_cache:
-           keys:
-             - v5-import-master
-       - run: mkdir -p builds
-       # Don't care if this fails, it's enough that the C# build works
-       - run:
-           name: Just make C# project valid; don't care if asset import fails
-           command: |
-             godot --export "Linux/X11" "builds/a.x86_64" || true
-       - restore_cache:
-           keys:
-             - v2-nuget-{{ .Branch }}
-       - run: nuget restore Thrive.sln
-       # Cleanup, this takes a *long* time
+       - run: ./check_formatting.rb -c duplicatecode
+       # Cleanup, this takes a *long* time when checking a lot of files
        - run: ./check_formatting.rb -c cleanupcode
        - run:
            when: always
@@ -141,6 +102,10 @@ jobs:
              fi
        - store_artifacts:
           path: files_to_check.txt
+       - store_artifacts:
+          path: inspect_results.xml
+       - store_artifacts:
+          path: duplicate_results.xml
        - store_artifacts:
           path: cleanup_diff.patch
    format_script:
@@ -175,5 +140,4 @@ workflows:
     jobs:
       - build
       - format_script
-      - inspect
-      - cleanup
+      - jetbrains

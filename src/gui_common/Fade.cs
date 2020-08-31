@@ -46,20 +46,19 @@ public class Fade : CanvasLayer, ITransition
 
     public void FadeToBlack()
     {
-        Rect.Color = new Color(0, 0, 0, 0);
-
-        Fader.InterpolateProperty(Rect, "color", new Color(0, 0, 0, 0),
-            new Color(0, 0, 0, 1), FadeDuration);
-
-        Fader.Start();
+        FadeTo(new Color(0, 0, 0, 0), new Color(0, 0, 0, 1));
     }
 
     public void FadeToWhite()
     {
-        Rect.Color = new Color(0, 0, 0, 1);
+        FadeTo(new Color(0, 0, 0, 1), new Color(0, 0, 0, 0));
+    }
 
-        Fader.InterpolateProperty(Rect, "color", new Color(0, 0, 0, 1),
-            new Color(0, 0, 0, 0), FadeDuration);
+    public void FadeTo(Color initial, Color final)
+    {
+        Rect.Color = initial;
+
+        Fader.InterpolateProperty(Rect, "color", initial, final, FadeDuration);
 
         Fader.Start();
     }

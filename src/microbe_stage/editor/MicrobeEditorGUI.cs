@@ -615,68 +615,7 @@ public class MicrobeEditorGUI : Node
     {
         foreach (Button organelleItem in organelleSelectionElements)
         {
-            if (!hasNucleus)
-            {
-                if (organelleItem.Name == "nucleus")
-                {
-                    organelleItem.Disabled = false;
-                }
-                else if (organelleItem.Name == "mitochondrion")
-                {
-                    organelleItem.Disabled = true;
-                }
-                else if (organelleItem.Name == "chloroplast")
-                {
-                    organelleItem.Disabled = true;
-                }
-                else if (organelleItem.Name == "chemoplast")
-                {
-                    organelleItem.Disabled = true;
-                }
-                else if (organelleItem.Name == "nitrogenfixingplastid")
-                {
-                    organelleItem.Disabled = true;
-                }
-                else if (organelleItem.Name == "vacuole")
-                {
-                    organelleItem.Disabled = true;
-                }
-                else if (organelleItem.Name == "oxytoxy")
-                {
-                    organelleItem.Disabled = true;
-                }
-            }
-            else
-            {
-                if (organelleItem.Name == "nucleus")
-                {
-                    organelleItem.Disabled = true;
-                }
-                else if (organelleItem.Name == "mitochondrion")
-                {
-                    organelleItem.Disabled = false;
-                }
-                else if (organelleItem.Name == "chloroplast")
-                {
-                    organelleItem.Disabled = false;
-                }
-                else if (organelleItem.Name == "chemoplast")
-                {
-                    organelleItem.Disabled = false;
-                }
-                else if (organelleItem.Name == "nitrogenfixingplastid")
-                {
-                    organelleItem.Disabled = false;
-                }
-                else if (organelleItem.Name == "vacuole")
-                {
-                    organelleItem.Disabled = false;
-                }
-                else if (organelleItem.Name == "oxytoxy")
-                {
-                    organelleItem.Disabled = false;
-                }
-            }
+            SetOrganelleButtonStatus(organelleItem, hasNucleus);
         }
     }
 
@@ -807,6 +746,38 @@ public class MicrobeEditorGUI : Node
 
         rigiditySlider.Value = value;
         SetRigiditySliderTooltip(value);
+    }
+
+    private static void SetOrganelleButtonStatus(Button organelleItem, bool nucleus)
+    {
+        if (organelleItem.Name == "nucleus")
+        {
+            organelleItem.Disabled = nucleus;
+        }
+        else if (organelleItem.Name == "mitochondrion")
+        {
+            organelleItem.Disabled = !nucleus;
+        }
+        else if (organelleItem.Name == "chloroplast")
+        {
+            organelleItem.Disabled = !nucleus;
+        }
+        else if (organelleItem.Name == "chemoplast")
+        {
+            organelleItem.Disabled = !nucleus;
+        }
+        else if (organelleItem.Name == "nitrogenfixingplastid")
+        {
+            organelleItem.Disabled = !nucleus;
+        }
+        else if (organelleItem.Name == "vacuole")
+        {
+            organelleItem.Disabled = !nucleus;
+        }
+        else if (organelleItem.Name == "oxytoxy")
+        {
+            organelleItem.Disabled = !nucleus;
+        }
     }
 
     private void OnRigidityChanged(int value)
