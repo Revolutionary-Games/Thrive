@@ -230,6 +230,12 @@
     <Compile Include="src\saving\serializers\ThriveTypeConverter.cs" />
     <Compile Include="src\saving\TemporaryLoadedNodeDeleter.cs" />
     <Compile Include="src\general\VersionUtils.cs" />
+    <Compile Include="src\tutorial\ITutorialInput.cs" />
+    <Compile Include="src\tutorial\Tutorial.cs" />
+    <Compile Include="src\tutorial\TutorialEventArgs.cs" />
+    <Compile Include="src\tutorial\TutorialEventType.cs" />
+    <Compile Include="src\tutorial\TutorialGUI.cs" />
+    <Compile Include="src\tutorial\TutorialState.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="StyleCop.ruleset" />

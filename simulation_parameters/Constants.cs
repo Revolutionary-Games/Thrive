@@ -384,6 +384,11 @@ public static class Constants
     public const int MAX_SPAWNS_PER_FRAME = 2;
     public const int MAX_DESPAWNS_PER_FRAME = 2;
 
+    public const float TIME_BEFORE_TUTORIAL_CAN_PAUSE = 0.1f;
+
+    public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY = 15.0f;
+    public const float MICROBE_MOVEMENT_TUTORIAL_REQUIRE_DIRECTION_PRESS_TIME = 3.0f;
+
     /// <summary>
     ///   All Nodes tagged with this are handled by the spawn system for despawning
     /// </summary>
