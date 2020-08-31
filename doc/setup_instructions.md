@@ -203,8 +203,9 @@ Click on Editor. Set External Editor to your development environment. Click
 on Builds under Mono and set Build Tool to your compiler. If you have build errors,
 check if this is setup properly.
 
-On Linux it is recommended to use mono as the build tool as selected
-in Godot editor settings. The option to build with dotnet is untested.
+On Linux it is required to use mono as the build tool as selected in
+Godot editor settings. The option to build with dotnet is creates
+broken releases.
 
 ### C# packages
 

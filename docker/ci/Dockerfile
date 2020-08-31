@@ -31,6 +31,9 @@ RUN wget https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/mono/Godot
     && rm -f Godot_v${GODOT_VERSION}-stable_mono_export_templates.tpz Godot_v${GODOT_VERSION}-stable_mono_linux_headless_64.zip \
     && rm -rf templates godot_dir
 
+# Editor settings to use msbuild
+COPY editor_settings-3.tres /root/.config/godot/editor_settings-3.tres
+
 # Godot pck tool
 ENV PCK_TOOL_VERSION "v1.4"
 
