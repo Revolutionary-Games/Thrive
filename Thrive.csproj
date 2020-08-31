@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -41,7 +41,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
-    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="GodotSharp">
@@ -66,9 +65,10 @@
     <Compile Include="src\engine\SceneManager.cs" />
     <Compile Include="src\engine\ScreenShotTaker.cs" />
     <Compile Include="src\engine\StartupActions.cs" />
-    <Compile Include="src\general\AutoModLoader.cs" />
-    <Compile Include="src\general\ModInfo.cs" />
-    <Compile Include="src\general\ModLoader.cs" />
+    <Compile Include="src\engine\AutoModLoader.cs" />
+    <Compile Include="src\engine\ModInfo.cs" />
+    <Compile Include="src\engine\ModLoader.cs" />
+    <Compile Include="src\general\ModManagerUI.cs" />
     <Compile Include="src\general\PathUtils.cs" />
     <Compile Include="src\general\EasterEggMessages.cs" />
     <Compile Include="src\general\HelpTexts.cs" />
@@ -238,6 +238,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="shaders\" />
+    <Folder Include="src\microbe_stage\organelle_components\" />
+    <Folder Include="src\auto-evo\steps\" />
+    <Folder Include="src\auto-evo\simulation\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
@@ -76,7 +77,7 @@ public class ModLoader : Control
 
             currentModInfo.Location = currentMod.FullName;
             modList.Add(currentModInfo);
-            unloadedItemList.AddItem(currentModInfo.ModName);
+            unloadedItemList.AddItem(currentModInfo.Name);
         }
     }
 
@@ -95,26 +96,25 @@ public class ModLoader : Control
         }
     }
 
-    private void OnUnloadedModSelected(int index)
+    private void OnModSelected(int index, bool unloadedSelected)
     {
-        var tempModInfo = modList[index];
-        modInfoName.Text = tempModInfo.ModName;
-        modInfoAuthor.Text = "Author: " + tempModInfo.Author;
-        modInfoVersion.Text = "Version: " + tempModInfo.Version;
-        modInfoDescription.Text = tempModInfo.Description;
-        modInfoDescription.Text = tempModInfo.Description;
-        loadedItemList.UnselectAll();
-    }
+        ModInfo tempModInfo;
+        if (unloadedSelected)
+        {
+            tempModInfo = modList[index];
+            loadedItemList.UnselectAll();
+        }
+        else
+        {
+            tempModInfo = loadedModList[index];
+            unloadedItemList.UnselectAll();
+        }
 
-    private void OnLoadedModSelected(int index)
-    {
-        var tempModInfo = loadedModList[index];
-        modInfoName.Text = tempModInfo.ModName;
-        modInfoAuthor.Text = "Author: " + tempModInfo.Author;
-        modInfoVersion.Text = "Version: " + tempModInfo.Version;
+        modInfoName.Text = tempModInfo.Name;
+        modInfoAuthor.Text = tempModInfo.Author;
+        modInfoVersion.Text = tempModInfo.Version;
         modInfoDescription.Text = tempModInfo.Description;
         modInfoDescription.Text = tempModInfo.Description;
-        unloadedItemList.UnselectAll();
     }
 
     private void OnMoveToLoadPressed()
@@ -127,7 +127,7 @@ public class ModLoader : Control
 
         var selectedItem = unloadedItemList.GetSelectedItems()[0];
         loadedModList.Add(modList[selectedItem]);
-        loadedItemList.AddItem(modList[selectedItem].ModName);
+        loadedItemList.AddItem(modList[selectedItem].Name);
         modList.RemoveAt(selectedItem);
         unloadedItemList.RemoveItem(selectedItem);
     }
@@ -142,7 +142,7 @@ public class ModLoader : Control
 
         var selectedItem = loadedItemList.GetSelectedItems()[0];
         modList.Add(loadedModList[selectedItem]);
-        unloadedItemList.AddItem(loadedModList[selectedItem].ModName);
+        unloadedItemList.AddItem(loadedModList[selectedItem].Name);
         loadedModList.RemoveAt(selectedItem);
         loadedItemList.RemoveItem(selectedItem);
     }
@@ -172,7 +172,7 @@ public class ModLoader : Control
 
             currentModInfo.Location = currentMod.FullName;
             modList.Add(currentModInfo);
-            unloadedItemList.AddItem(currentModInfo.ModName);
+            unloadedItemList.AddItem(currentModInfo.Name);
         }
     }
 
@@ -196,17 +196,17 @@ public class ModLoader : Control
 
             if (!File.Exists(currentMod.Location + "/mod.pck"))
             {
-                GD.Print("Fail to find mod file: " + currentMod.ModName);
+                GD.Print("Fail to find mod file: " + currentMod.Name);
                 continue;
             }
 
             if (ProjectSettings.LoadResourcePack(currentMod.Location + "/mod.pck", true))
             {
-                GD.Print("Loaded mod: " + currentMod.ModName);
+                GD.Print("Loaded mod: " + currentMod.Name);
             }
             else
             {
-                GD.Print("Failed to load mod: " + currentMod.ModName);
+                GD.Print("Failed to load mod: " + currentMod.Name);
             }
         }
 
@@ -306,10 +306,13 @@ public class ModLoader : Control
         }
     }
 
-    private void MoveItem(List<ModInfo> list, int oldIndex, int newIndex)
+    private void MoveItem(List<ModInfo> list, bool moveUp, int currentIndex)
     {
+        var oldIndex = currentIndex + (moveUp ? 1 : 0);
+        var newIndex = currentIndex + (moveUp ? 0 : -1);
         var item = list[oldIndex];
         list.RemoveAt(oldIndex);
+
         if (newIndex > oldIndex)
         {
             newIndex--;

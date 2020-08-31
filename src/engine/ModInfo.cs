@@ -1,10 +1,9 @@
 using Godot;
 using Newtonsoft.Json;
 
-public class ModInfo : Node
+public class ModInfo
 {
-    [JsonProperty("Name")]
-    public string ModName;
+    public string Name;
 
     public string Author;
     public string Version;

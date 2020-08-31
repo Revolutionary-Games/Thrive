@@ -31,17 +31,17 @@ public class AutoModLoader : Node
 
                 if (!File.Exists(currentMod.FullName + "/mod.pck"))
                 {
-                    GD.Print("Fail to find mod file: " + currentModInfo.ModName);
+                    GD.Print("Fail to find mod file: " + currentModInfo.Name);
                     continue;
                 }
 
                 if (ProjectSettings.LoadResourcePack(currentMod.FullName + "/mod.pck", true))
                 {
-                    GD.Print("Loaded mod: " + currentModInfo.ModName);
+                    GD.Print("Loaded mod: " + currentModInfo.Name);
                 }
                 else
                 {
-                    GD.Print("Failed to load mod: " + currentModInfo.ModName);
+                    GD.Print("Failed to load mod: " + currentModInfo.Name);
                 }
             }
         }

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://src/general/ModLoader.cs" type="Script" id=1]
+[ext_resource path="res://src/general/ModManagerUI.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
 [ext_resource path="res://assets/fonts/DejaVuSans.ttf" type="DynamicFontData" id=3]
 
@@ -26,13 +26,6 @@ __meta__ = {
 "_edit_lock_": true,
 "_edit_use_anchors_": false
 }
-UnloadedItemListPath = NodePath("MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/ItemList")
-ModInfoNamePath = NodePath("MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/Label")
-ModInfoAuthorPath = NodePath("MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/Label2")
-ModInfoVersionPath = NodePath("MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/Label3")
-ModInfoDescriptionPath = NodePath("MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/Label4")
-LoadedItemListPath = NodePath("MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer3/ItemList")
-ConfirmationPopupPath = NodePath("ConfirmationDialog")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_left = -0.00331078
@@ -230,12 +223,27 @@ margin_right = 1166.0
 margin_bottom = 31.0
 custom_styles/separator = SubResource( 3 )
 
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
 margin_top = 35.0
 margin_right = 1166.0
 margin_bottom = 58.0
-text = "Author: Maker Name"
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 514.0
+margin_right = 591.0
+margin_bottom = 23.0
+text = "Author: "
 align = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer"]
+margin_left = 595.0
+margin_right = 652.0
+margin_bottom = 23.0
+text = "Maker"
 
 [node name="HSeparator2" type="HSeparator" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
 margin_top = 62.0
@@ -243,15 +251,30 @@ margin_right = 1166.0
 margin_bottom = 66.0
 custom_styles/separator = SubResource( 3 )
 
-[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
 margin_top = 70.0
 margin_right = 1166.0
 margin_bottom = 93.0
-text = "Version: x.y.z"
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 518.0
+margin_right = 599.0
+margin_bottom = 23.0
+text = "Version:"
 align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 603.0
+margin_right = 648.0
+margin_bottom = 23.0
+text = "X.Y.Z"
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer"]
 margin_top = 97.0
@@ -338,12 +361,15 @@ margin_right = 208.301
 margin_bottom = 44.4852
 window_title = ""
 dialog_text = "Are you sure you want to reset?"
-[connection signal="item_selected" from="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/ItemList" to="." method="OnUnloadedModSelected"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/ItemList" to="." method="OnModSelected" binds= [ true ]]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/CenterBar/VBoxContainer/Button" to="." method="OnMoveToUnloadPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/CenterBar/VBoxContainer/HBoxContainer/Button3" to="." method="OnMoveUpPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/CenterBar/VBoxContainer/HBoxContainer/Button" to="." method="OnMoveDownPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/CenterBar/VBoxContainer/Button2" to="." method="OnMoveToLoadPressed"]
-[connection signal="item_selected" from="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer3/ItemList" to="." method="OnLoadedModSelected"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer3/ItemList" to="." method="OnModSelected" binds= [ false ]]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/Button" to="." method="OnBackPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/Button4" to="." method="OnResetPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/Button3" to="." method="OnRefreshPressed"]
