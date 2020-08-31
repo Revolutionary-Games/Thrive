@@ -20,6 +20,9 @@ public class MicrobeStage : Node, ILoadableGameState
 
     private DirectionalLight worldLight;
 
+    private TutorialGUI tutorialGUI;
+    private Tutorial tutorial;
+
     /// <summary>
     ///   Used to differentiate between spawning the player and respawning
     /// </summary>
@@ -73,6 +76,9 @@ public class MicrobeStage : Node, ILoadableGameState
     [JsonIgnore]
     public GameWorld GameWorld => CurrentGame.GameWorld;
 
+    [JsonIgnore]
+    public TutorialState TutorialState => CurrentGame.TutorialState;
+
     public Node GameStateRoot => this;
 
     public bool IsLoadedFromSave { get; set; }
@@ -122,6 +128,7 @@ public class MicrobeStage : Node, ILoadableGameState
     {
         world = GetNode<Node>("World");
         HUD = GetNode<MicrobeHUD>("MicrobeHUD");
+        tutorialGUI = GetNode<TutorialGUI>("TutorialGUI");
         rootOfDynamicallySpawned = GetNode<Node>("World/DynamicallySpawned");
         spawner = new SpawnSystem(rootOfDynamicallySpawned);
         Camera = world.GetNode<MicrobeCamera>("PrimaryCamera");
@@ -161,9 +168,13 @@ public class MicrobeStage : Node, ILoadableGameState
             StartNewGame();
         }
 
+        tutorial = new Tutorial(TutorialState, tutorialGUI);
+
         CreatePatchManagerIfNeeded();
 
         StartMusic();
+
+        TutorialState.SendEvent(TutorialEventType.EnteredMicrobeStage, EventArgs.Empty, this);
     }
 
     public void OnFinishLoading(Save save)
@@ -182,6 +193,8 @@ public class MicrobeStage : Node, ILoadableGameState
         UpdatePatchSettings(true);
 
         StartMusic();
+
+        tutorial = new Tutorial(TutorialState, tutorialGUI);
     }
 
     public void StartNewGame()
@@ -245,6 +258,8 @@ public class MicrobeStage : Node, ILoadableGameState
                 random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE));
         }
 
+        TutorialState.SendEvent(TutorialEventType.MicrobePlayerSpawned, new MicrobeEventArgs(Player), this);
+
         spawnedPlayer = true;
         playerRespawnTimer = Constants.PLAYER_RESPAWN_TIME;
     }
@@ -274,6 +289,9 @@ public class MicrobeStage : Node, ILoadableGameState
         {
             spawner.Process(delta, Player.Translation, Player.Rotation);
             Clouds.ReportPlayerPosition(Player.Translation);
+
+            tutorial.State.SendEvent(TutorialEventType.MicrobePlayerOrientation,
+                new RotationEventArgs(Player.Transform.basis, Player.RotationDegrees), this);
         }
         else
         {
@@ -371,6 +389,8 @@ public class MicrobeStage : Node, ILoadableGameState
     {
         if (!CurrentGame.FreeBuild)
             SaveHelper.AutoSave(this);
+
+        TutorialState.SendEvent(TutorialEventType.EnteredMicrobeStage, EventArgs.Empty, this);
     }
 
     private void CreatePatchManagerIfNeeded()

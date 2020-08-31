@@ -72,6 +72,7 @@ jobs:
              git diff-tree --no-commit-id --name-only -r `echo ${CIRCLE_COMPARE_URL} | cut -d/ -f 7` >> files_to_check.txt || true
        - restore_cache:
            keys:
+             - v5-import-{{ .Branch }}
              - v5-import-master
        - run: mkdir -p builds
        # Don't care if this fails, it's enough that the C# build works

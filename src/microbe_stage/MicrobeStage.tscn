@@ -1,4 +1,4 @@
-[gd_scene load_steps=114 format=2]
+[gd_scene load_steps=115 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -67,6 +67,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/ReproductionBar.png" type="Texture" id=65]
 [ext_resource path="res://assets/fonts/Jura-Medium.ttf" type="DynamicFontData" id=66]
 [ext_resource path="res://src/engine/ChromaticFilter.tscn" type="PackedScene" id=67]
+[ext_resource path="res://src/tutorial/TutorialGUI.tscn" type="PackedScene" id=68]
 [ext_resource path="res://assets/fonts/thrive.ttf" type="DynamicFontData" id=69]
 [ext_resource path="res://src/microbe_stage/gui/ExtinctionBox.tscn" type="PackedScene" id=70]
 [ext_resource path="res://assets/textures/gui/bevel/AmmoniaBW.png" type="Texture" id=71]
@@ -1841,6 +1842,8 @@ visible = false
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MicrobeHUD"]
 anims/HideLeftPanels = SubResource( 40 )
 anims/ShowLeftPanels = SubResource( 41 )
+
+[node name="TutorialGUI" parent="." instance=ExtResource( 68 )]
 [connection signal="pressed" from="MicrobeHUD/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/MarginContainer4/EnvironmentExpandButton" to="MicrobeHUD" method="ResizeEnvironmentPanel" binds= [ "expand" ]]
 [connection signal="pressed" from="MicrobeHUD/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/MarginContainer3/EnvironmentCompressButton" to="MicrobeHUD" method="ResizeEnvironmentPanel" binds= [ "compress" ]]
 [connection signal="pressed" from="MicrobeHUD/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer/MarginContainer3/CompoundExpandButton" to="MicrobeHUD" method="ResizeCompoundPanel" binds= [ "expand" ]]
