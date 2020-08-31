@@ -154,6 +154,21 @@ public class Mutations
         return mutated;
     }
 
+    private static bool IsPermute(StringBuilder newName, int index)
+    {
+        var part1 = newName.ToString(index - 1, 2);
+        var part2 = newName.ToString(index - 2, 2);
+        var part3 = newName.ToString(index, 2);
+        if (PronoucablePermutation.Any(item => item == part1) ||
+            PronoucablePermutation.Any(item => item == part2) ||
+            PronoucablePermutation.Any(item => item == part3))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     private void MutateBehaviour(MicrobeSpecies parent, MicrobeSpecies mutated)
     {
         // Variables used in AI to determine general behavior mutate these
@@ -456,15 +471,8 @@ public class Mutations
                 bool isPermute = false;
                 if (i > 1 && index - 2 >= 0)
                 {
-                    var part1 = newName.ToString(index - 1, 2);
-                    var part2 = newName.ToString(index - 2, 2);
-                    var part3 = newName.ToString(index, 2);
-                    if (PronoucablePermutation.Any(item => item == part1) ||
-                        PronoucablePermutation.Any(item => item == part2) ||
-                        PronoucablePermutation.Any(item => item == part3))
-                    {
+                    if (IsPermute(newName, index))
                         isPermute = true;
-                    }
                 }
 
                 string original = newName.ToString(index, 1);
@@ -528,15 +536,8 @@ public class Mutations
             bool isPermute = false;
             if (index - 2 > 0 && i > 1)
             {
-                var part1 = newName.ToString(index - 1, 2);
-                var part2 = newName.ToString(index - 2, 2);
-                var part3 = newName.ToString(index, 2);
-                if (PronoucablePermutation.Any(item => item == part1) ||
-                    PronoucablePermutation.Any(item => item == part2) ||
-                    PronoucablePermutation.Any(item => item == part3))
-                {
+                if (IsPermute(newName, index))
                     isPermute = true;
-                }
             }
 
             // Are we a vowel or are we a consonant?
