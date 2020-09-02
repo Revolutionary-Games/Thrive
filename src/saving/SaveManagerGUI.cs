@@ -56,7 +56,9 @@ public class SaveManagerGUI : Control
     private int currentAutoSaveCount;
     private int currentQuickSaveCount;
 
-    private Task<(int count, long diskSpace)> getSaveCountTask;
+    private Task<(int count, long diskSpace)> getTotalSaveCountTask;
+    private Task<(int count, long diskSpace)> getAutoSaveCountTask;
+    private Task<(int count, long diskSpace)> getQuickSaveCountTask;
 
     [Signal]
     public delegate void OnBackPressed();
@@ -94,26 +96,30 @@ public class SaveManagerGUI : Control
     {
         if (!saveCountRefreshed && IsVisibleInTree())
         {
-            RefreshSaveCount();
+            RefreshSaveCounts();
             return;
         }
 
         if (!refreshing)
             return;
 
-        if (!getSaveCountTask.IsCompleted)
+        if (!getTotalSaveCountTask.IsCompleted)
             return;
 
-        var info = getSaveCountTask.Result;
-        getSaveCountTask.Dispose();
-        getSaveCountTask = null;
+        var info = getTotalSaveCountTask.Result;
+        currentAutoSaveCount = getAutoSaveCountTask.Result.count;
+        currentQuickSaveCount = getQuickSaveCountTask.Result.count;
+
+        getTotalSaveCountTask.Dispose();
+        getAutoSaveCountTask.Dispose();
+        getQuickSaveCountTask.Dispose();
+        getTotalSaveCountTask = null;
+        getAutoSaveCountTask = null;
+        getQuickSaveCountTask = null;
 
         totalSaveCount.Text = info.count.ToString(CultureInfo.CurrentCulture);
         totalSaveSize.Text =
             Math.Round((float)info.diskSpace / Constants.MEBIBYTE, 2).ToString(CultureInfo.CurrentCulture) + " MiB";
-
-        currentAutoSaveCount = SaveHelper.CountSaves("auto_save").count;
-        currentQuickSaveCount = SaveHelper.CountSaves("quick_save").count;
 
         UpdateSelectedCount();
         UpdateButtonsStatus();
@@ -139,10 +145,10 @@ public class SaveManagerGUI : Control
         selectedDirty = true;
 
         saveList.Refresh();
-        RefreshSaveCount();
+        RefreshSaveCounts();
     }
 
-    private void RefreshSaveCount()
+    private void RefreshSaveCounts()
     {
         if (refreshing)
             return;
@@ -150,8 +156,13 @@ public class SaveManagerGUI : Control
         saveCountRefreshed = true;
         refreshing = true;
 
-        getSaveCountTask = new Task<(int count, long diskSpace)>(() => SaveHelper.CountSaves());
-        TaskExecutor.Instance.AddTask(getSaveCountTask);
+        getTotalSaveCountTask = new Task<(int count, long diskSpace)>(() => SaveHelper.CountSaves());
+        getAutoSaveCountTask = new Task<(int count, long diskSpace)>(() => SaveHelper.CountSaves("auto_save"));
+        getQuickSaveCountTask = new Task<(int count, long diskSpace)>(() => SaveHelper.CountSaves("quick_save"));
+
+        TaskExecutor.Instance.AddTask(getTotalSaveCountTask);
+        TaskExecutor.Instance.AddTask(getAutoSaveCountTask);
+        TaskExecutor.Instance.AddTask(getQuickSaveCountTask);
     }
 
     private void UpdateButtonsStatus()
@@ -185,8 +196,8 @@ public class SaveManagerGUI : Control
         deleteOldConfirmDialog.DialogText =
             "Deleting all old Auto and Quick saves cannot be undone, " +
             "are you sure you want to permanently delete the following?\n" +
-            $" >>> {autoSavesToDeleteCount} Auto save(s)\n" +
-            $" >>> {quickSavesToDeleteCount} Quick save(s)";
+            $" - {autoSavesToDeleteCount} Auto save(s)\n" +
+            $" - {quickSavesToDeleteCount} Quick save(s)";
         deleteOldConfirmDialog.PopupCenteredMinsize();
     }
 
@@ -203,16 +214,14 @@ public class SaveManagerGUI : Control
 
     private void OnConfirmDeleteOld()
     {
-        string autoSaveNames = string.Join(", ", SaveHelper.CleanUpOldSavesOfType("auto_save"));
-        string quickSaveNames = string.Join(", ", SaveHelper.CleanUpOldSavesOfType("quick_save"));
-        string delimiter = string.Empty;
+        string message = string.Join(", ", SaveHelper.CleanUpOldSavesOfType("auto_save"));
 
-        if (autoSaveNames.Length > 0)
-        {
-            delimiter += ", ";
-        }
+        if (message.Length > 0)
+            message += ", ";
 
-        GD.Print("Deleted save(s): ", autoSaveNames, delimiter, quickSaveNames);
+        message += string.Join(", ", SaveHelper.CleanUpOldSavesOfType("quick_save"));
+
+        GD.Print("Deleted save(s): ", message);
 
         RefreshList();
     }
