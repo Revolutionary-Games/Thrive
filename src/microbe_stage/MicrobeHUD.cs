@@ -303,13 +303,7 @@ public class MicrobeHUD : Node
         {
             environmentCompressed = true;
 
-            panelsTween.InterpolateProperty(
-                environmentPanel, "rect_min_size", environmentPanel.RectMinSize, new Vector2(195, 170), 0.3f);
-            panelsTween.Start();
-
-            environmentPanelBarContainer.Columns = 2;
-            environmentPanelBarContainer.AddConstantOverride("vseparation", 20);
-            environmentPanelBarContainer.AddConstantOverride("hseparation", 17);
+            HandleEnvironmentResize(170, 2, 20, 17);
 
             foreach (ProgressBar bar in bars)
             {
@@ -326,13 +320,7 @@ public class MicrobeHUD : Node
         {
             environmentCompressed = false;
 
-            panelsTween.InterpolateProperty(
-                environmentPanel, "rect_min_size", environmentPanel.RectMinSize, new Vector2(195, 224), 0.3f);
-            panelsTween.Start();
-
-            environmentPanelBarContainer.Columns = 1;
-            environmentPanelBarContainer.AddConstantOverride("vseparation", 4);
-            environmentPanelBarContainer.AddConstantOverride("hseparation", 0);
+            HandleEnvironmentResize(224, 1, 4, 0);
 
             foreach (ProgressBar bar in bars)
             {
@@ -550,6 +538,17 @@ public class MicrobeHUD : Node
         temperature.GetNode<Label>("Value").Text = averageTemperature + " °C";
 
         // TODO: pressure?
+    }
+
+    private void HandleEnvironmentResize(int height, int columns, int vseparation, int hseparation)
+    {
+        panelsTween.InterpolateProperty(
+            environmentPanel, "rect_min_size", environmentPanel.RectMinSize, new Vector2(195, height), 0.3f);
+        panelsTween.Start();
+
+        environmentPanelBarContainer.Columns = columns;
+        environmentPanelBarContainer.AddConstantOverride("vseparation", vseparation);
+        environmentPanelBarContainer.AddConstantOverride("hseparation", hseparation);
     }
 
     /// <summary>
