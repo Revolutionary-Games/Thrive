@@ -53,6 +53,9 @@ public class SaveManagerGUI : Control
     private bool saveCountRefreshed;
     private bool refreshing;
 
+    private int currentAutoSaveCount;
+    private int currentQuickSaveCount;
+
     private Task<(int count, long diskSpace)> getSaveCountTask;
 
     [Signal]
@@ -109,6 +112,9 @@ public class SaveManagerGUI : Control
         totalSaveSize.Text =
             Math.Round((float)info.diskSpace / Constants.MEBIBYTE, 2).ToString(CultureInfo.CurrentCulture) + " MiB";
 
+        currentAutoSaveCount = SaveHelper.CountSaves("auto_save").count;
+        currentQuickSaveCount = SaveHelper.CountSaves("quick_save").count;
+
         UpdateSelectedCount();
         UpdateButtonsStatus();
 
@@ -152,8 +158,7 @@ public class SaveManagerGUI : Control
     {
         loadButton.Disabled = Selected.Count != 1;
         deleteSelectedButton.Disabled = Selected.Count == 0;
-        deleteOldButton.Disabled =
-            (SaveHelper.CountSaves("auto_save").count <= 1) && (SaveHelper.CountSaves("quick_save").count <= 1);
+        deleteOldButton.Disabled = (currentAutoSaveCount <= 1) && (currentQuickSaveCount <= 1);
     }
 
     private void LoadFirstSelectedSave()
@@ -174,13 +179,14 @@ public class SaveManagerGUI : Control
 
     private void DeleteOldButtonPressed()
     {
+        int autoSavesToDeleteCount = (currentAutoSaveCount - 1).Clamp(0, Settings.Instance.MaxAutoSaves);
+        int quickSavesToDeleteCount = (currentQuickSaveCount - 1).Clamp(0, Settings.Instance.MaxQuickSaves);
+
         deleteOldConfirmDialog.DialogText =
             "Deleting all old Auto and Quick saves cannot be undone, " +
             "are you sure you want to permanently delete the following?\n" +
-            $" >>> {Mathf.Clamp(SaveHelper.CountSaves("auto_save").count - 1, 0, Settings.Instance.MaxAutoSaves)} " +
-            "Auto save(s)\n" +
-            $" >>> {Mathf.Clamp(SaveHelper.CountSaves("quick_save").count - 1, 0, Settings.Instance.MaxQuickSaves)} " +
-            "Quick save(s)";
+            $" >>> {autoSavesToDeleteCount} Auto save(s)\n" +
+            $" >>> {quickSavesToDeleteCount} Quick save(s)";
         deleteOldConfirmDialog.PopupCenteredMinsize();
     }
 
@@ -189,6 +195,7 @@ public class SaveManagerGUI : Control
         GD.Print("Deleting save(s): ", string.Join(", ", Selected.Select(item => item.SaveName).ToList()));
 
         Selected.ForEach(item => SaveHelper.DeleteSave(item.SaveName));
+        deleteSelectedButton.Disabled = true;
         selected = null;
 
         RefreshList();
@@ -196,11 +203,16 @@ public class SaveManagerGUI : Control
 
     private void OnConfirmDeleteOld()
     {
-        string autoSaveNames = string.Join(", ", SaveHelper.CleanUpOldSaves("auto_save"));
-        string delimiter = string.Concat(Enumerable.Repeat(", ", Mathf.Clamp(autoSaveNames.Length, 0, 1)));
-        string quickSaveNames = string.Join(", ", SaveHelper.CleanUpOldSaves("quick_save"));
+        string autoSaveNames = string.Join(", ", SaveHelper.CleanUpOldSavesOfType("auto_save"));
+        string quickSaveNames = string.Join(", ", SaveHelper.CleanUpOldSavesOfType("quick_save"));
+        string delimiter = string.Empty;
 
-        GD.Print("Deleting save(s): ", autoSaveNames, delimiter, quickSaveNames);
+        if (autoSaveNames.Length > 0)
+        {
+            delimiter += ", ";
+        }
+
+        GD.Print("Deleted save(s): ", autoSaveNames, delimiter, quickSaveNames);
 
         RefreshList();
     }

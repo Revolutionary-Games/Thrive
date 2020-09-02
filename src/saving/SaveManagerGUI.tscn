@@ -32,9 +32,9 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 139.0
+margin_left = 140.0
 margin_top = 85.0
-margin_right = 1139.0
+margin_right = 1140.0
 margin_bottom = 635.0
 rect_min_size = Vector2( 1000, 550 )
 size_flags_vertical = 3
@@ -151,7 +151,7 @@ rect_min_size = Vector2( 0, 0 )
 size_flags_horizontal = 5
 size_flags_vertical = 5
 popup_exclusive = true
-window_title = "Delete old Saves"
+window_title = "Delete old Saves?"
 dialog_text = "Text not set...
 "
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox/LoadButton" to="." method="LoadFirstSelectedSave"]

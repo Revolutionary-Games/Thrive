@@ -193,7 +193,7 @@ public static class SaveHelper
     /// <summary>
     ///   Counts the total number of saves and how many bytes they take up
     /// </summary>
-    public static (int count, long diskSpace) CountSaves(string nameStartsWith = "")
+    public static (int count, long diskSpace) CountSaves(string nameStartsWith = null)
     {
         int count = 0;
         long totalSize = 0;
@@ -202,7 +202,7 @@ public static class SaveHelper
         {
             foreach (var save in CreateListOfSaves())
             {
-                if (save.StartsWith(nameStartsWith, StringComparison.CurrentCulture))
+                if (nameStartsWith == null || save.StartsWith(nameStartsWith, StringComparison.CurrentCulture))
                 {
                     file.Open(PathUtils.Join(Constants.SAVE_FOLDER, save), File.ModeFlags.Read);
                     ++count;
@@ -245,7 +245,10 @@ public static class SaveHelper
         }
     }
 
-    public static List<string> CleanUpOldSaves(string nameStartsWith)
+    /// <summary>
+    ///   Deletes all saves with the given prefix except the latest one and returns the list of saves deleted
+    /// </summary>
+    public static List<string> CleanUpOldSavesOfType(string nameStartsWith)
     {
         bool isLatestSave = true;
         var savesDeleted = new List<string>();
