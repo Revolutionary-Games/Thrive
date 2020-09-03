@@ -20,6 +20,7 @@ LoadButtonPath = NodePath("CenterContainer/VBoxContainer/TopBox/LoadButton")
 DeleteSelectedButtonPath = NodePath("CenterContainer/VBoxContainer/TopBox/DeleteSelected")
 DeleteOldButtonPath = NodePath("CenterContainer/VBoxContainer/TopBox/DeleteOld")
 DeleteSelectedConfirmDialogPath = NodePath("CenterContainer/VBoxContainer/DeleteSelectedConfirmDialog")
+DeleteOldConfirmDialogPath = NodePath("CenterContainer/VBoxContainer/DeleteOldConfirmDialog")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -142,9 +143,22 @@ size_flags_vertical = 5
 popup_exclusive = true
 window_title = "Delete selected Save(s)?"
 dialog_text = "Text not set..."
+
+[node name="DeleteOldConfirmDialog" type="ConfirmationDialog" parent="CenterContainer/VBoxContainer"]
+margin_right = 184.0
+margin_bottom = 97.0
+rect_min_size = Vector2( 0, 0 )
+size_flags_horizontal = 5
+size_flags_vertical = 5
+popup_exclusive = true
+window_title = "Delete old Saves?"
+dialog_text = "Text not set...
+"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox/LoadButton" to="." method="LoadFirstSelectedSave"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox/Refresh" to="." method="RefreshList"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox/DeleteSelected" to="." method="DeleteSelectedButtonPressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox/DeleteOld" to="." method="DeleteOldButtonPressed"]
 [connection signal="OnSelectedChanged" from="CenterContainer/VBoxContainer/SaveList" to="." method="OnSelectedChanged"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/BottomBox/Back" to="." method="OnBackButton"]
 [connection signal="confirmed" from="CenterContainer/VBoxContainer/DeleteSelectedConfirmDialog" to="." method="OnConfirmDeleteSelected"]
+[connection signal="confirmed" from="CenterContainer/VBoxContainer/DeleteOldConfirmDialog" to="." method="OnConfirmDeleteOld"]

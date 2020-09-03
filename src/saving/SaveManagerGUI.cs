@@ -34,16 +34,18 @@ public class SaveManagerGUI : Control
     [Export]
     public NodePath DeleteSelectedConfirmDialogPath;
 
+    [Export]
+    public NodePath DeleteOldConfirmDialogPath;
+
     private SaveList saveList;
     private Label selectedItemCount;
     private Label totalSaveCount;
     private Label totalSaveSize;
     private Button loadButton;
     private Button deleteSelectedButton;
-    private ConfirmationDialog deleteSelectedConfirmDialog;
-
-    // ReSharper disable once NotAccessedField.Local
     private Button deleteOldButton;
+    private ConfirmationDialog deleteSelectedConfirmDialog;
+    private ConfirmationDialog deleteOldConfirmDialog;
 
     private List<SaveListItem> selected;
     private bool selectedDirty = true;
@@ -51,7 +53,12 @@ public class SaveManagerGUI : Control
     private bool saveCountRefreshed;
     private bool refreshing;
 
-    private Task<(int count, long diskSpace)> getSaveCountTask;
+    private int currentAutoSaveCount;
+    private int currentQuickSaveCount;
+
+    private Task<(int count, long diskSpace)> getTotalSaveCountTask;
+    private Task<(int count, long diskSpace)> getAutoSaveCountTask;
+    private Task<(int count, long diskSpace)> getQuickSaveCountTask;
 
     [Signal]
     public delegate void OnBackPressed();
@@ -80,6 +87,7 @@ public class SaveManagerGUI : Control
         deleteSelectedButton = GetNode<Button>(DeleteSelectedButtonPath);
         deleteOldButton = GetNode<Button>(DeleteOldButtonPath);
         deleteSelectedConfirmDialog = GetNode<ConfirmationDialog>(DeleteSelectedConfirmDialogPath);
+        deleteOldConfirmDialog = GetNode<ConfirmationDialog>(DeleteOldConfirmDialogPath);
 
         saveList.Connect(nameof(SaveList.OnItemsChanged), this, nameof(RefreshList));
     }
@@ -88,25 +96,33 @@ public class SaveManagerGUI : Control
     {
         if (!saveCountRefreshed && IsVisibleInTree())
         {
-            RefreshSaveCount();
+            RefreshSaveCounts();
             return;
         }
 
         if (!refreshing)
             return;
 
-        if (!getSaveCountTask.IsCompleted)
+        if (!getTotalSaveCountTask.IsCompleted)
             return;
 
-        var info = getSaveCountTask.Result;
-        getSaveCountTask.Dispose();
-        getSaveCountTask = null;
+        var info = getTotalSaveCountTask.Result;
+        currentAutoSaveCount = getAutoSaveCountTask.Result.count;
+        currentQuickSaveCount = getQuickSaveCountTask.Result.count;
+
+        getTotalSaveCountTask.Dispose();
+        getAutoSaveCountTask.Dispose();
+        getQuickSaveCountTask.Dispose();
+        getTotalSaveCountTask = null;
+        getAutoSaveCountTask = null;
+        getQuickSaveCountTask = null;
 
         totalSaveCount.Text = info.count.ToString(CultureInfo.CurrentCulture);
         totalSaveSize.Text =
             Math.Round((float)info.diskSpace / Constants.MEBIBYTE, 2).ToString(CultureInfo.CurrentCulture) + " MiB";
 
         UpdateSelectedCount();
+        UpdateButtonsStatus();
 
         refreshing = false;
     }
@@ -129,10 +145,10 @@ public class SaveManagerGUI : Control
         selectedDirty = true;
 
         saveList.Refresh();
-        RefreshSaveCount();
+        RefreshSaveCounts();
     }
 
-    private void RefreshSaveCount()
+    private void RefreshSaveCounts()
     {
         if (refreshing)
             return;
@@ -140,14 +156,20 @@ public class SaveManagerGUI : Control
         saveCountRefreshed = true;
         refreshing = true;
 
-        getSaveCountTask = new Task<(int count, long diskSpace)>(() => SaveHelper.CountSaves());
-        TaskExecutor.Instance.AddTask(getSaveCountTask);
+        getTotalSaveCountTask = new Task<(int count, long diskSpace)>(() => SaveHelper.CountSaves());
+        getAutoSaveCountTask = new Task<(int count, long diskSpace)>(() => SaveHelper.CountSaves("auto_save"));
+        getQuickSaveCountTask = new Task<(int count, long diskSpace)>(() => SaveHelper.CountSaves("quick_save"));
+
+        TaskExecutor.Instance.AddTask(getTotalSaveCountTask);
+        TaskExecutor.Instance.AddTask(getAutoSaveCountTask);
+        TaskExecutor.Instance.AddTask(getQuickSaveCountTask);
     }
 
     private void UpdateButtonsStatus()
     {
         loadButton.Disabled = Selected.Count != 1;
         deleteSelectedButton.Disabled = Selected.Count == 0;
+        deleteOldButton.Disabled = (currentAutoSaveCount <= 1) && (currentQuickSaveCount <= 1);
     }
 
     private void LoadFirstSelectedSave()
@@ -166,6 +188,19 @@ public class SaveManagerGUI : Control
         deleteSelectedConfirmDialog.PopupCenteredMinsize();
     }
 
+    private void DeleteOldButtonPressed()
+    {
+        int autoSavesToDeleteCount = (currentAutoSaveCount - 1).Clamp(0, Settings.Instance.MaxAutoSaves);
+        int quickSavesToDeleteCount = (currentQuickSaveCount - 1).Clamp(0, Settings.Instance.MaxQuickSaves);
+
+        deleteOldConfirmDialog.DialogText =
+            "Deleting all old Auto and Quick saves cannot be undone, " +
+            "are you sure you want to permanently delete the following?\n" +
+            $" - {autoSavesToDeleteCount} Auto save(s)\n" +
+            $" - {quickSavesToDeleteCount} Quick save(s)";
+        deleteOldConfirmDialog.PopupCenteredMinsize();
+    }
+
     private void OnConfirmDeleteSelected()
     {
         GD.Print("Deleting save(s): ", string.Join(", ", Selected.Select(item => item.SaveName).ToList()));
@@ -173,6 +208,20 @@ public class SaveManagerGUI : Control
         Selected.ForEach(item => SaveHelper.DeleteSave(item.SaveName));
         deleteSelectedButton.Disabled = true;
         selected = null;
+
+        RefreshList();
+    }
+
+    private void OnConfirmDeleteOld()
+    {
+        string message = string.Join(", ", SaveHelper.CleanUpOldSavesOfType("auto_save"));
+
+        if (message.Length > 0)
+            message += ", ";
+
+        message += string.Join(", ", SaveHelper.CleanUpOldSavesOfType("quick_save"));
+
+        GD.Print("Deleted save(s): ", message);
 
         RefreshList();
     }
