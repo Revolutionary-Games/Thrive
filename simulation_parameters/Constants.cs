@@ -388,6 +388,7 @@ public static class Constants
 
     public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY = 15.0f;
     public const float MICROBE_MOVEMENT_TUTORIAL_REQUIRE_DIRECTION_PRESS_TIME = 3.0f;
+    public const float TUTORIAL_COMPOUND_POSITION_UPDATE_INTERVAL = 0.2f;
 
     /// <summary>
     ///   All Nodes tagged with this are handled by the spawn system for despawning

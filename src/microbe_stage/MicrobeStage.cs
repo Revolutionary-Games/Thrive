@@ -9,6 +9,11 @@ using Newtonsoft.Json;
 [JsonObject(IsReference = true)]
 public class MicrobeStage : Node, ILoadableGameState
 {
+    [Export]
+    public NodePath GuidanceLinePath;
+
+    private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
+
     private Node world;
     private Node rootOfDynamicallySpawned;
 
@@ -21,7 +26,13 @@ public class MicrobeStage : Node, ILoadableGameState
     private DirectionalLight worldLight;
 
     private TutorialGUI tutorialGUI;
-    private Tutorial tutorial;
+    private GuidanceLine guidanceLine;
+    private Vector3? guidancePosition;
+
+    /// <summary>
+    ///   Used to control how often compound position info is sent to the tutorial
+    /// </summary>
+    private float elapsedSinceCompoundPositionCheck;
 
     /// <summary>
     ///   Used to differentiate between spawning the player and respawning
@@ -134,11 +145,13 @@ public class MicrobeStage : Node, ILoadableGameState
         Camera = world.GetNode<MicrobeCamera>("PrimaryCamera");
         Clouds = world.GetNode<CompoundCloudSystem>("CompoundClouds");
         worldLight = world.GetNode<DirectionalLight>("WorldLight");
+        guidanceLine = GetNode<GuidanceLine>(GuidanceLinePath);
         TimedLifeSystem = new TimedLifeSystem(rootOfDynamicallySpawned);
         ProcessSystem = new ProcessSystem(rootOfDynamicallySpawned);
         microbeAISystem = new MicrobeAISystem(rootOfDynamicallySpawned);
         FluidSystem = new FluidSystem(rootOfDynamicallySpawned);
 
+        tutorialGUI.Visible = true;
         HUD.Init(this);
 
         // Do stage setup to spawn things and setup all parts of the stage
@@ -168,7 +181,7 @@ public class MicrobeStage : Node, ILoadableGameState
             StartNewGame();
         }
 
-        tutorial = new Tutorial(TutorialState, tutorialGUI);
+        tutorialGUI.EventReceiver = TutorialState;
 
         CreatePatchManagerIfNeeded();
 
@@ -194,7 +207,7 @@ public class MicrobeStage : Node, ILoadableGameState
 
         StartMusic();
 
-        tutorial = new Tutorial(TutorialState, tutorialGUI);
+        tutorialGUI.EventReceiver = TutorialState;
     }
 
     public void StartNewGame()
@@ -278,6 +291,8 @@ public class MicrobeStage : Node, ILoadableGameState
 
         if (gameOver)
         {
+            guidanceLine.Visible = false;
+
             // Player is extinct and has lost the game
             // Show the game lost popup if not already visible
             HUD.ShowExtinctionBox();
@@ -290,11 +305,40 @@ public class MicrobeStage : Node, ILoadableGameState
             spawner.Process(delta, Player.Translation, Player.Rotation);
             Clouds.ReportPlayerPosition(Player.Translation);
 
-            tutorial.State.SendEvent(TutorialEventType.MicrobePlayerOrientation,
+            TutorialState.SendEvent(TutorialEventType.MicrobePlayerOrientation,
                 new RotationEventArgs(Player.Transform.basis, Player.RotationDegrees), this);
+
+            elapsedSinceCompoundPositionCheck += delta;
+
+            if (elapsedSinceCompoundPositionCheck > Constants.TUTORIAL_COMPOUND_POSITION_UPDATE_INTERVAL)
+            {
+                elapsedSinceCompoundPositionCheck = 0;
+
+                if (TutorialState.WantsNearbyCompoundInfo())
+                {
+                    TutorialState.SendEvent(TutorialEventType.MicrobeCompoundsNearPlayer,
+                        new CompoundPositionEventArgs(Clouds.FindCompoundNearPoint(Player.Translation, glucose)),
+                        this);
+                }
+
+                guidancePosition = TutorialState.GetPLayerGuidancePosition();
+            }
+
+            if (guidancePosition != null)
+            {
+                guidanceLine.Visible = true;
+                guidanceLine.LineStart = Player.Translation;
+                guidanceLine.LineEnd = guidancePosition.Value;
+            }
+            else
+            {
+                guidanceLine.Visible = false;
+            }
         }
         else
         {
+            guidanceLine.Visible = false;
+
             if (!spawnedPlayer)
             {
                 GD.PrintErr("MicrobeStage was entered without spawning the player");

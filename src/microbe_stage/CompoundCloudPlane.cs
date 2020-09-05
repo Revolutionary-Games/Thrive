@@ -446,6 +446,19 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
     }
 
     /// <summary>
+    ///   Converts cloud local coordinates to world coordinates
+    /// </summary>
+    public void ConvertToWorld(int cloudX, int cloudY, out int x, out int z)
+    {
+        var worldRelative = new Vector3(cloudX, 0, cloudY) + Translation;
+
+        x = ((int)Math.Ceiling((worldRelative.x - Constants.CLOUD_WIDTH) * Resolution)
+            - position.x / Constants.CLOUD_SQUARES_PER_SIDE * Size) % Size;
+        z = ((int)Math.Ceiling((worldRelative.z - Constants.CLOUD_HEIGHT) * Resolution)
+            - position.y / Constants.CLOUD_SQUARES_PER_SIDE * Size) % Size;
+    }
+
+    /// <summary>
     ///   Absorbs compounds from this cloud
     /// </summary>
     public void AbsorbCompounds(int localX, int localY, CompoundBag storage,

@@ -1,4 +1,4 @@
-[gd_scene load_steps=115 format=2]
+[gd_scene load_steps=116 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -71,6 +71,7 @@
 [ext_resource path="res://assets/fonts/thrive.ttf" type="DynamicFontData" id=69]
 [ext_resource path="res://src/microbe_stage/gui/ExtinctionBox.tscn" type="PackedScene" id=70]
 [ext_resource path="res://assets/textures/gui/bevel/AmmoniaBW.png" type="Texture" id=71]
+[ext_resource path="res://src/engine/GuidanceLine.tscn" type="PackedScene" id=72]
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPausedHover.png" type="Texture" id=78]
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPaused.png" type="Texture" id=79]
 
@@ -340,6 +341,7 @@ tracks/2/keys = {
 [node name="MicrobeStage" type="Node"]
 process_priority = -1
 script = ExtResource( 1 )
+GuidanceLinePath = NodePath("World/GuidanceLine")
 
 [node name="World" type="Node" parent="."]
 
@@ -354,6 +356,9 @@ script = ExtResource( 10 )
 [node name="WorldLight" type="DirectionalLight" parent="World"]
 transform = Transform( -0.687551, 0.322878, -0.650403, 0.0453496, 0.913048, 0.405323, 0.724719, 0.249185, -0.642409, 0, 1.19209e-07, 0 )
 shadow_enabled = true
+
+[node name="GuidanceLine" parent="World" instance=ExtResource( 72 )]
+visible = false
 
 [node name="PlayerMicrobeInput" type="Node" parent="."]
 script = ExtResource( 7 )
@@ -1844,6 +1849,7 @@ anims/HideLeftPanels = SubResource( 40 )
 anims/ShowLeftPanels = SubResource( 41 )
 
 [node name="TutorialGUI" parent="." instance=ExtResource( 68 )]
+visible = false
 [connection signal="pressed" from="MicrobeHUD/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/MarginContainer4/EnvironmentExpandButton" to="MicrobeHUD" method="ResizeEnvironmentPanel" binds= [ "expand" ]]
 [connection signal="pressed" from="MicrobeHUD/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/MarginContainer3/EnvironmentCompressButton" to="MicrobeHUD" method="ResizeEnvironmentPanel" binds= [ "compress" ]]
 [connection signal="pressed" from="MicrobeHUD/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer/MarginContainer3/CompoundExpandButton" to="MicrobeHUD" method="ResizeCompoundPanel" binds= [ "expand" ]]
