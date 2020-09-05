@@ -7,59 +7,13 @@ using Newtonsoft.Json;
 using Directory = System.IO.Directory;
 using File = System.IO.File;
 
-public class ModLoader : Control
+public class ModLoader
 {
-    [Export]
-    public NodePath UnloadedItemListPath;
-
-    [Export]
-    public NodePath ModInfoNamePath;
-
-    [Export]
-    public NodePath ModInfoAuthorPath;
-
-    [Export]
-    public NodePath ModInfoVersionPath;
-
-    [Export]
-    public NodePath ModInfoDescriptionPath;
-
-    [Export]
-    public NodePath LoadedItemListPath;
-
-    [Export]
-    public NodePath ConfirmationPopupPath;
-
-    private ItemList unloadedItemList;
-    private ItemList loadedItemList;
-
-    // Labels For The Mod Info Box
-    private Label modInfoName;
-    private Label modInfoAuthor;
-    private Label modInfoVersion;
-    private Label modInfoDescription;
-
-    private ConfirmationDialog confirmationPopup;
-
-    private List<ModInfo> modList = new List<ModInfo>();
-    private List<ModInfo> loadedModList = new List<ModInfo>();
-
-    [Signal]
-    public delegate void OnModLoaderClosed();
-
-    public override void _Ready()
+    public List<ModInfo> LoadModList()
     {
-        unloadedItemList = GetNode<ItemList>(UnloadedItemListPath);
-        loadedItemList = GetNode<ItemList>(LoadedItemListPath);
-
-        modInfoName = GetNode<Label>(ModInfoNamePath);
-        modInfoAuthor = GetNode<Label>(ModInfoAuthorPath);
-        modInfoVersion = GetNode<Label>(ModInfoVersionPath);
-        modInfoDescription = GetNode<Label>(ModInfoDescriptionPath);
-
-        confirmationPopup = GetNode<ConfirmationDialog>(ConfirmationPopupPath);
-
         DirectoryInfo modFolder = Directory.CreateDirectory($"{Directory.GetCurrentDirectory()}\\mods");
+
+        List<ModInfo> modList = new List<ModInfo>();
         foreach (DirectoryInfo currentMod in modFolder.EnumerateDirectories())
         {
             if (!File.Exists(currentMod.FullName + "/mod_info.json"))
@@ -77,115 +31,13 @@ public class ModLoader : Control
 
             currentModInfo.Location = currentMod.FullName;
             modList.Add(currentModInfo);
-            unloadedItemList.AddItem(currentModInfo.Name);
         }
+
+        return modList;
     }
 
-    // Copied From The PauseMenu.cs
-    private static string ReadJSONFile(string path)
+    public void LoadMod(ModInfo currentMod)
     {
-        using (var file = new Godot.File())
-        {
-            file.Open(path, Godot.File.ModeFlags.Read);
-            var result = file.GetAsText();
-
-            // This might be completely unnecessary
-            file.Close();
-
-            return result;
-        }
-    }
-
-    private void OnModSelected(int index, bool unloadedSelected)
-    {
-        ModInfo tempModInfo;
-        if (unloadedSelected)
-        {
-            tempModInfo = modList[index];
-            loadedItemList.UnselectAll();
-        }
-        else
-        {
-            tempModInfo = loadedModList[index];
-            unloadedItemList.UnselectAll();
-        }
-
-        modInfoName.Text = tempModInfo.Name;
-        modInfoAuthor.Text = tempModInfo.Author;
-        modInfoVersion.Text = tempModInfo.Version;
-        modInfoDescription.Text = tempModInfo.Description;
-        modInfoDescription.Text = tempModInfo.Description;
-    }
-
-    private void OnMoveToLoadPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-        if (unloadedItemList.GetSelectedItems().Length <= 0)
-        {
-            return;
-        }
-
-        var selectedItem = unloadedItemList.GetSelectedItems()[0];
-        loadedModList.Add(modList[selectedItem]);
-        loadedItemList.AddItem(modList[selectedItem].Name);
-        modList.RemoveAt(selectedItem);
-        unloadedItemList.RemoveItem(selectedItem);
-    }
-
-    private void OnMoveToUnloadPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-        if (loadedItemList.GetSelectedItems().Length <= 0)
-        {
-            return;
-        }
-
-        var selectedItem = loadedItemList.GetSelectedItems()[0];
-        modList.Add(loadedModList[selectedItem]);
-        unloadedItemList.AddItem(loadedModList[selectedItem].Name);
-        loadedModList.RemoveAt(selectedItem);
-        loadedItemList.RemoveItem(selectedItem);
-    }
-
-    private void OnRefreshPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-        modList.Clear();
-        loadedModList.Clear();
-        unloadedItemList.Clear();
-        loadedItemList.Clear();
-        DirectoryInfo modFolder = Directory.CreateDirectory($"{Directory.GetCurrentDirectory()}\\mods");
-        foreach (DirectoryInfo currentMod in modFolder.EnumerateDirectories())
-        {
-            if (!File.Exists(currentMod.FullName + "/mod_info.json"))
-            {
-                continue;
-            }
-
-            var currentModInfo =
-                JsonConvert.DeserializeObject<ModInfo>(ReadJSONFile(currentMod.FullName + "/mod_info.json"));
-
-            if (currentModInfo.AutoLoad)
-            {
-                continue;
-            }
-
-            currentModInfo.Location = currentMod.FullName;
-            modList.Add(currentModInfo);
-            unloadedItemList.AddItem(currentModInfo.Name);
-        }
-    }
-
-    private void OnLoadPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-        if (loadedModList.Count <= 0)
-        {
-            return;
-        }
-
-        foreach (ModInfo currentMod in loadedModList)
-        {
             if (string.IsNullOrEmpty(currentMod.Dll))
             {
                 if (File.Exists(currentMod.Location + "/" + currentMod.Dll))
@@ -197,7 +49,7 @@ public class ModLoader : Control
             if (!File.Exists(currentMod.Location + "/mod.pck"))
             {
                 GD.Print("Fail to find mod file: " + currentMod.Name);
-                continue;
+                return;
             }
 
             if (ProjectSettings.LoadResourcePack(currentMod.Location + "/mod.pck", true))
@@ -208,25 +60,26 @@ public class ModLoader : Control
             {
                 GD.Print("Failed to load mod: " + currentMod.Name);
             }
+    }
+
+    public void LoadModFromList(ModInfo[] modsToLoad)
+    {
+        foreach (ModInfo currentMod in modsToLoad)
+        {
+            LoadMod(currentMod);
         }
-
-        GD.Print("All mods loaded");
-        SceneManager.Instance.ReturnToMenu();
     }
 
-    private void OnBackPressed()
+    public void LoadModFromList(ItemList modsToLoad)
     {
-        GUICommon.Instance.PlayButtonPressSound();
-        EmitSignal(nameof(OnModLoaderClosed));
+        int modListCount = modsToLoad.GetItemCount();
+        for (int index = 0; index < modListCount; index++)
+        {
+            LoadMod((ModInfo)modsToLoad.GetItemMetadata(index));
+        }
     }
 
-    private void OnResetPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-        confirmationPopup.PopupCentered();
-    }
-
-    private void ResetGame()
+    public void ResetGame()
     {
         GUICommon.Instance.PlayButtonPressSound();
         if (!File.Exists(Directory.GetCurrentDirectory() + "/Thrive.pck"))
@@ -247,77 +100,18 @@ public class ModLoader : Control
         SceneManager.Instance.ReturnToMenu();
     }
 
-    private void OnMoveUpPressed()
+    // Copied From The PauseMenu.cs
+    private static string ReadJSONFile(string path)
     {
-        GUICommon.Instance.PlayButtonPressSound();
-        if (loadedItemList.GetSelectedItems().Length > 0)
+        using (var file = new Godot.File())
         {
-            var selectedItemIndex = loadedItemList.GetSelectedItems()[0];
-            if (selectedItemIndex == 0)
-            {
-                return;
-            }
+            file.Open(path, Godot.File.ModeFlags.Read);
+            var result = file.GetAsText();
 
-            loadedItemList.MoveItem(selectedItemIndex, selectedItemIndex - 1);
-            selectedItemIndex = loadedItemList.GetSelectedItems()[0];
-            MoveItem(loadedModList, selectedItemIndex + 1, selectedItemIndex);
+            // This might be completely unnecessary
+            file.Close();
+
+            return result;
         }
-        else if (unloadedItemList.GetSelectedItems().Length > 0)
-        {
-            var selectedItemIndex = unloadedItemList.GetSelectedItems()[0];
-
-            if (unloadedItemList.GetSelectedItems()[0] == 0)
-            {
-                return;
-            }
-
-            unloadedItemList.MoveItem(selectedItemIndex, selectedItemIndex - 1);
-            selectedItemIndex = unloadedItemList.GetSelectedItems()[0];
-            MoveItem(modList, selectedItemIndex + 1, selectedItemIndex);
-        }
-    }
-
-    private void OnMoveDownPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
-        if (loadedItemList.GetSelectedItems().Length > 0)
-        {
-            var selectedItemIndex = loadedItemList.GetSelectedItems()[0];
-            if (selectedItemIndex == loadedItemList.GetItemCount() - 1)
-            {
-                return;
-            }
-
-            loadedItemList.MoveItem(selectedItemIndex, selectedItemIndex + 1);
-            selectedItemIndex = loadedItemList.GetSelectedItems()[0];
-            MoveItem(loadedModList, selectedItemIndex, selectedItemIndex - 1);
-        }
-        else if (unloadedItemList.GetSelectedItems().Length > 0)
-        {
-            var selectedItemIndex = unloadedItemList.GetSelectedItems()[0];
-            if (selectedItemIndex == unloadedItemList.GetItemCount() - 1)
-            {
-                return;
-            }
-
-            unloadedItemList.MoveItem(selectedItemIndex, selectedItemIndex + 1);
-            selectedItemIndex = unloadedItemList.GetSelectedItems()[0];
-            MoveItem(modList, selectedItemIndex, selectedItemIndex - 1);
-        }
-    }
-
-    private void MoveItem(List<ModInfo> list, bool moveUp, int currentIndex)
-    {
-        var oldIndex = currentIndex + (moveUp ? 1 : 0);
-        var newIndex = currentIndex + (moveUp ? 0 : -1);
-        var item = list[oldIndex];
-        list.RemoveAt(oldIndex);
-
-        if (newIndex > oldIndex)
-        {
-            newIndex--;
-        }
-
-        list.Insert(newIndex, item);
     }
 }

@@ -316,3 +316,4 @@ anims/MenuSlide = SubResource( 1 )
 [connection signal="pressed" from="MenuContainers/MenuCenterContainer/MenuItems/Tools/Back" to="." method="BackFromToolsPressed"]
 [connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="OnReturnFromOptions"]
 [connection signal="OnBackPressed" from="SaveManagerGUI" to="." method="OnReturnFromLoadGame"]
+[connection signal="OnModLoaderClosed" from="ModLoader" to="." method="OnReturnFromModLoader"]

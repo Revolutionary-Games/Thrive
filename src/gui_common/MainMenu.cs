@@ -38,7 +38,7 @@ public class MainMenu : Node
     private OptionsMenu options;
     private AnimationPlayer guiAnimations;
     private SaveManagerGUI saves;
-    private ModLoader modLoader;
+    private ModManagerUI modLoader;
 
     private Button newGameButton;
     private Button freebuildButton;
@@ -118,7 +118,7 @@ public class MainMenu : Node
 
         options = GetNode<OptionsMenu>("OptionsMenu");
         saves = GetNode<SaveManagerGUI>("SaveManagerGUI");
-        modLoader = GetNode<ModLoader>("ModLoader");
+        modLoader = GetNode<ModManagerUI>("ModLoader");
 
         // Load settings
         options.SetSettingsFrom(Settings.Instance);

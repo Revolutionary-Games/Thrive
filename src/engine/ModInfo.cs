@@ -1,7 +1,7 @@
 using Godot;
 using Newtonsoft.Json;
 
-public class ModInfo
+public class ModInfo : Godot.Object
 {
     public string Name;
 
