@@ -59,6 +59,7 @@
     <Compile Include="src\engine\ChromaticFilter.cs" />
     <Compile Include="src\engine\FeatureInformation.cs" />
     <Compile Include="src\engine\GodotFileStream.cs" />
+    <Compile Include="src\engine\GuidanceLine.cs" />
     <Compile Include="src\engine\Invoke.cs" />
     <Compile Include="src\engine\LoadingScreen.cs" />
     <Compile Include="src\engine\PostStartupActions.cs" />
@@ -231,10 +232,14 @@
     <Compile Include="src\saving\TemporaryLoadedNodeDeleter.cs" />
     <Compile Include="src\general\VersionUtils.cs" />
     <Compile Include="src\tutorial\ITutorialInput.cs" />
-    <Compile Include="src\tutorial\Tutorial.cs" />
+    <Compile Include="src\tutorial\microbe_stage\GlucoseCollecting.cs" />
+    <Compile Include="src\tutorial\microbe_stage\MicrobeMovement.cs" />
+    <Compile Include="src\tutorial\microbe_stage\MicrobeMovementExplanation.cs" />
+    <Compile Include="src\tutorial\microbe_stage\MicrobeStageWelcome.cs" />
     <Compile Include="src\tutorial\TutorialEventArgs.cs" />
     <Compile Include="src\tutorial\TutorialEventType.cs" />
     <Compile Include="src\tutorial\TutorialGUI.cs" />
+    <Compile Include="src\tutorial\TutorialPhase.cs" />
     <Compile Include="src\tutorial\TutorialState.cs" />
   </ItemGroup>
   <ItemGroup>

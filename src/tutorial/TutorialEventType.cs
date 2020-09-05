@@ -14,6 +14,16 @@ public enum TutorialEventType
     MicrobePlayerOrientation,
 
     /// <summary>
+    ///   There are tutorial relevant compounds near the player, args is CompoundPositionEventArgs
+    /// </summary>
+    MicrobeCompoundsNearPlayer,
+
+    /// <summary>
+    ///   Reports the player compound amounts while they are alive
+    /// </summary>
+    MicrobePlayerCompounds,
+
+    /// <summary>
     ///   Player entered the microbe stage
     /// </summary>
     EnteredMicrobeStage,

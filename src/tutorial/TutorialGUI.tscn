@@ -21,15 +21,21 @@ MicrobeMovementKeyForwardPath = NodePath("MicrobeMovementTutorial/KeyPrompts/For
 MicrobeMovementKeyLeftPath = NodePath("MicrobeMovementTutorial/KeyPrompts/Left")
 MicrobeMovementKeyRightPath = NodePath("MicrobeMovementTutorial/KeyPrompts/Right")
 MicrobeMovementKeyBackwardsPath = NodePath("MicrobeMovementTutorial/KeyPrompts/Backwards")
+GlucoseTutorialPath = NodePath("GlucoseTutorial")
 
 [node name="MicrobeWelcome" type="WindowDialog" parent="."]
-margin_right = 600.0
-margin_bottom = 350.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -680.0
+margin_bottom = -370.0
 rect_min_size = Vector2( 600, 450 )
 size_flags_horizontal = 3
 popup_exclusive = true
 window_title = "Tutorial"
 resizable = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeWelcome"]
 margin_left = 5.0
@@ -87,11 +93,14 @@ text = "Begin Thriving"
 [node name="MicrobeMovementTutorial" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 
 [node name="ExplainingPopup" type="WindowDialog" parent="MicrobeMovementTutorial"]
-margin_left = 1000.0
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -280.0
 margin_top = 170.0
-margin_right = 1270.0
+margin_right = -10.0
 margin_bottom = 440.0
 rect_min_size = Vector2( 270, 270 )
 size_flags_horizontal = 3
@@ -130,6 +139,7 @@ margin_top = -360.0
 margin_right = 640.0
 margin_bottom = 360.0
 rect_pivot_offset = Vector2( 640, 360 )
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -165,8 +175,43 @@ margin_right = -568.0
 margin_bottom = -348.0
 rect_min_size = Vector2( 32, 32 )
 ActionName = "g_move_right"
+
+[node name="GlucoseTutorial" type="WindowDialog" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -280.0
+margin_top = 170.0
+margin_right = -10.0
+margin_bottom = 440.0
+rect_min_size = Vector2( 270, 270 )
+size_flags_horizontal = 3
+window_title = "Tutorial"
+resizable = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GlucoseTutorial"]
+margin_left = 6.0
+margin_top = 5.0
+margin_right = 266.0
+margin_bottom = 265.0
+rect_min_size = Vector2( 260, 260 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GlucoseTutorial/VBoxContainer"]
+margin_right = 260.0
+margin_bottom = 205.0
+text = "Collect glucose (white clouds) by moving over them.
+Your cell needs glucose in order to produce energy to stay alive.
+Follow the line from your cell to nearby glucose."
+autowrap = true
 [connection signal="popup_hide" from="MicrobeWelcome" to="." method="OnClickedCloseAll"]
 [connection signal="toggled" from="MicrobeWelcome/VBoxContainer/HBoxContainer/CheckBox" to="." method="OnTutorialEnabledValueChanged"]
 [connection signal="pressed" from="MicrobeWelcome/VBoxContainer/Button" to="." method="OnClickedCloseAll"]
 [connection signal="hide" from="MicrobeMovementTutorial/ExplainingPopup" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeMovementExplain" ]]
 [connection signal="popup_hide" from="MicrobeMovementTutorial/ExplainingPopup" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeMovementExplain" ]]
+[connection signal="hide" from="GlucoseTutorial" to="." method="OnSpecificCloseClicked" binds= [ "GlucoseCollecting" ]]
+[connection signal="popup_hide" from="GlucoseTutorial" to="." method="OnSpecificCloseClicked" binds= [ "GlucoseCollecting" ]]

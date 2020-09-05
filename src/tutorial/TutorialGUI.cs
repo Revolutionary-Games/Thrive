@@ -28,6 +28,9 @@ public class TutorialGUI : Control
     [Export]
     public NodePath MicrobeMovementKeyBackwardsPath;
 
+    [Export]
+    public NodePath GlucoseTutorialPath;
+
     /// <summary>
     ///   True when the tutorial selected boxes have been left untouched (on)
     /// </summary>
@@ -47,6 +50,7 @@ public class TutorialGUI : Control
     private Control microbeMovementKeyRight;
     private Control microbeMovementKeyBackwards;
     private WindowDialog microbeMovementPopup;
+    private WindowDialog glucoseTutorial;
 
     public ITutorialInput EventReceiver { get; set; }
 
@@ -99,6 +103,25 @@ public class TutorialGUI : Control
         }
     }
 
+    public bool GlucoseTutorialVisible
+    {
+        get => glucoseTutorial.Visible;
+        set
+        {
+            if (value == glucoseTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                glucoseTutorial.Show();
+            }
+            else
+            {
+                glucoseTutorial.Visible = false;
+            }
+        }
+    }
+
     public float MicrobeMovementRotation
     {
         get => microbeMovementKeyPrompts.RectRotation;
@@ -144,6 +167,7 @@ public class TutorialGUI : Control
         microbeMovementKeyLeft = GetNode<Control>(MicrobeMovementKeyLeftPath);
         microbeMovementKeyRight = GetNode<Control>(MicrobeMovementKeyRightPath);
         microbeMovementKeyBackwards = GetNode<Control>(MicrobeMovementKeyBackwardsPath);
+        glucoseTutorial = GetNode<WindowDialog>(GlucoseTutorialPath);
     }
 
     /// <summary>

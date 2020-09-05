@@ -36,3 +36,23 @@ public class RotationEventArgs : TutorialEventArgs
     /// </summary>
     public Vector3 RotationInDegrees { get; }
 }
+
+public class CompoundPositionEventArgs : TutorialEventArgs
+{
+    public CompoundPositionEventArgs(Vector3? glucosePosition)
+    {
+        GlucosePosition = glucosePosition;
+    }
+
+    public Vector3? GlucosePosition { get; }
+}
+
+public class CompoundEventArgs : TutorialEventArgs
+{
+    public CompoundEventArgs(CompoundBag compounds)
+    {
+        Compounds = compounds;
+    }
+
+    public CompoundBag Compounds { get; }
+}
