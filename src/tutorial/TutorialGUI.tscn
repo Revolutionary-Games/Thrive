@@ -85,8 +85,8 @@ size_flags_horizontal = 4
 text = "Begin Thriving"
 
 [node name="MicrobeMovementTutorial" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 
 [node name="ExplainingPopup" type="WindowDialog" parent="MicrobeMovementTutorial"]
 margin_left = 1000.0
@@ -121,8 +121,14 @@ autowrap = true
 
 [node name="KeyPrompts" type="Control" parent="MicrobeMovementTutorial"]
 visible = false
-anchor_right = 32.0
-anchor_bottom = 18.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -640.0
+margin_top = -360.0
+margin_right = 640.0
+margin_bottom = 360.0
 rect_pivot_offset = Vector2( 640, 360 )
 __meta__ = {
 "_edit_use_anchors_": false
