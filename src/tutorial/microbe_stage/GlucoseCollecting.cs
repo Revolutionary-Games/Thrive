@@ -33,9 +33,13 @@ namespace Tutorial
                 {
                     var data = (CompoundPositionEventArgs)args;
 
-                    if (!HasBeenShown && data.GlucosePosition.HasValue)
+                    if (data.GlucosePosition.HasValue)
                     {
                         glucosePosition = data.GlucosePosition.Value;
+                    }
+
+                    if (!HasBeenShown && data.GlucosePosition.HasValue)
+                    {
                         Show();
                         return true;
                     }
