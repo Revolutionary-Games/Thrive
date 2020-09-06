@@ -351,8 +351,7 @@ public class CompoundCloudSystem : Node
                             var distance = Mathf.Pow(x - cloudRelativeX, 2) + Mathf.Pow(y - cloudRelativeY, 2);
                             if (distance < nearestDistanceSquared)
                             {
-                                cloud.ConvertToWorld(x, y, out int worldX, out int worldZ);
-                                closestPoint = new Vector3(worldX, 0, worldZ);
+                                closestPoint = cloud.ConvertToWorld(x, y);
                                 nearestDistanceSquared = distance;
                             }
                         }
