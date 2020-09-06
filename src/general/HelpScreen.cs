@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -73,9 +74,9 @@ public class HelpScreen : Control
 
         if (random.Next(0, 6) > 1)
         {
-            var messages = SimulationParameters.Instance.EasterEggMessages;
+            var helpTexts = SimulationParameters.Instance.GetHelpTexts("EasterEgg");
 
-            tipMessageLabel.Text = messages.Messages.Random(random);
+            tipMessageLabel.Text = helpTexts.Messages.Random(random);
 
             lineSeparator.Show();
             tipMessageLabel.Show();
@@ -85,29 +86,30 @@ public class HelpScreen : Control
     }
 
     /// <summary>
-    ///   Load the help screen with texts from the json file
+    ///   Loads the help screen with texts from the json file
+    ///   and turn it into help boxes
     /// </summary>
     private void BuildHelpTexts(string category)
     {
-        var texts = SimulationParameters.Instance.GetHelpTexts(category);
+        var helpTexts = SimulationParameters.Instance.GetHelpTexts(category);
 
-        var leftTexts = texts.LeftTexts;
-        var rightTexts = texts.RightTexts;
+        var middleIndex = helpTexts.Messages.Count / 2;
 
-        // Fill the left column with text boxes
-        foreach (var entry in leftTexts)
+        for (var i = 0; i < helpTexts.Messages.Count; i++)
         {
-            var helpBox = HelpBoxScene.Instance();
-            helpBox.GetNode<Label>("MarginContainer/Label").Text = entry;
-            leftColumn.AddChild(helpBox);
-        }
+            var message = helpTexts.Messages[i];
 
-        // Fill the right column with text boxes
-        foreach (var entry in rightTexts)
-        {
             var helpBox = HelpBoxScene.Instance();
-            helpBox.GetNode<Label>("MarginContainer/Label").Text = entry;
-            rightColumn.AddChild(helpBox);
+            helpBox.GetNode<Label>("MarginContainer/Label").Text = message;
+
+            if (i < middleIndex)
+            {
+                leftColumn.AddChild(helpBox);
+            }
+            else
+            {
+                rightColumn.AddChild(helpBox);
+            }
         }
     }
 

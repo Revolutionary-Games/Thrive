@@ -1,14 +1,15 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/gui_common/scrollbar_theme.tres" type="Theme" id=2]
 [ext_resource path="res://assets/fonts/Jura-DemiBold.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://src/general/HelpScreen.cs" type="Script" id=4]
 [ext_resource path="res://src/gui_common/HelpBox.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=6]
 
-[sub_resource type="StyleBoxFlat" id=1]
-border_width_top = 1
-border_color = Color( 0.0666667, 1, 0.835294, 1 )
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 6 )
+region_rect = Rect2( 0, 0, 429, 1 )
 
 [sub_resource type="DynamicFont" id=2]
 font_data = ExtResource( 3 )
@@ -55,15 +56,12 @@ custom_constants/separation = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/VBoxContainer"]
 margin_right = 757.0
-custom_constants/separation = 15
 
 [node name="LeftColumn" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
-custom_constants/separation = 15
 
 [node name="RightColumn" type="VBoxContainer" parent="ScrollContainer/VBoxContainer/HBoxContainer"]
-margin_left = 15.0
-margin_right = 15.0
-custom_constants/separation = 15
+margin_left = 4.0
+margin_right = 4.0
 
 [node name="HSeparator" type="HSeparator" parent="ScrollContainer/VBoxContainer"]
 margin_top = 10.0
@@ -86,9 +84,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = 110.0
+margin_left = 92.0001
 margin_top = 265.0
-margin_right = 360.0
+margin_right = 342.0
 margin_bottom = 305.0
 theme = ExtResource( 1 )
 text = "Close"
