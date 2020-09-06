@@ -260,7 +260,6 @@ public class MicrobeEditorGUI : Node
     private Control patchNothingSelected;
     private Control patchDetails;
     private Label patchName;
-    private Label reportTabPatchName;
     private Control patchPlayerHere;
     private Label patchBiome;
     private Label patchDepth;
@@ -302,9 +301,6 @@ public class MicrobeEditorGUI : Node
     private bool compoundsBoxIsHidden;
     private bool speciesListIsHidden;
 
-    private Texture invalidBarTexture;
-    private Texture subractBarTexture;
-
     public override void _Ready()
     {
         organelleSelectionElements = GetTree().GetNodesInGroup("OrganelleSelectionElement");
@@ -337,7 +333,6 @@ public class MicrobeEditorGUI : Node
         patchNothingSelected = GetNode<Control>(PatchNothingSelectedPath);
         patchDetails = GetNode<Control>(PatchDetailsPath);
         patchName = GetNode<Label>(PatchNamePath);
-        reportTabPatchName = GetNode<Label>(ReportTabPatchNamePath);
         patchPlayerHere = GetNode<Control>(PatchPlayerHerePath);
         patchBiome = GetNode<Label>(PatchBiomePath);
         patchDepth = GetNode<Label>(PatchDepthPath);
@@ -371,9 +366,6 @@ public class MicrobeEditorGUI : Node
         patchPhosphateSituation = GetNode<TextureRect>(PatchPhosphateSituationPath);
         rigiditySlider = GetNode<Slider>(RigiditySliderPath);
 
-        invalidBarTexture = GD.Load<Texture>("res://assets/textures/gui/bevel/MpBarInvalid.png");
-        subractBarTexture = GD.Load<Texture>("res://assets/textures/gui/bevel/MpBarSubtract.png");
-
         mapDrawer.OnSelectedPatchChanged = drawer => { UpdateShownPatchDetails(); };
 
         atpProductionBar.SelectedType = SegmentedBar.Type.ATP;
@@ -400,7 +392,8 @@ public class MicrobeEditorGUI : Node
         mutationPointsBar.MaxValue = Constants.BASE_MUTATION_POINTS;
         mutationPointsBar.Value = Mathf.Lerp((float)mutationPointsBar.Value, possibleMutationPoints, 0.5f);
         mutationPointsSubtractBar.MaxValue = Constants.BASE_MUTATION_POINTS;
-        mutationPointsSubtractBar.Value = Mathf.Lerp((float)mutationPointsSubtractBar.Value, editor.MutationPoints, 0.5f);
+        mutationPointsSubtractBar.Value = Mathf.Lerp(
+            (float)mutationPointsSubtractBar.Value, editor.MutationPoints, 0.5f);
 
         if (possibleMutationPoints != editor.MutationPoints && editor.MutationPoints > 0)
         {
