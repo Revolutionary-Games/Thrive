@@ -158,8 +158,24 @@ public class SaveManagerGUI : Control
         Selected[0].LoadThisSave();
     }
 
+    private void LoadFirstSelectedSaveButtonPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        LoadFirstSelectedSave();
+    }
+
+    private void RefreshButtonPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        RefreshList();
+    }
+
     private void DeleteSelectedButtonPressed()
     {
+        GUICommon.Instance.PlayButtonPressSound();
+
         deleteSelectedConfirmDialog.DialogText =
             "Deleting the selected save(s) cannot be undone, are you sure you want to permanently delete " +
             $"{Selected.Count} save(s)?";
@@ -168,6 +184,8 @@ public class SaveManagerGUI : Control
 
     private void OnConfirmDeleteSelected()
     {
+        GUICommon.Instance.PlayButtonPressSound();
+
         GD.Print("Deleting save(s): ", string.Join(", ", Selected.Select(item => item.SaveName).ToList()));
 
         Selected.ForEach(item => SaveHelper.DeleteSave(item.SaveName));
@@ -179,6 +197,8 @@ public class SaveManagerGUI : Control
 
     private void OnBackButton()
     {
+        GUICommon.Instance.PlayButtonPressSound();
+
         EmitSignal(nameof(OnBackPressed));
     }
 }

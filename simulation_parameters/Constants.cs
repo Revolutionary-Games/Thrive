@@ -380,6 +380,12 @@ public static class Constants
     public const int MAX_DESPAWNS_PER_FRAME = 2;
 
     /// <summary>
+    ///   Used to limit how often the hover indicator panel are
+    ///   updated. Default value is every 0.1 seconds.
+    /// </summary>
+    public const float HOVER_PANEL_UPDATE_INTERVAL = 0.1f;
+
+    /// <summary>
     ///   All Nodes tagged with this are handled by the spawn system for despawning
     /// </summary>
     public const string SPAWNED_GROUP = "spawned";

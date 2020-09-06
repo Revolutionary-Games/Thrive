@@ -16,6 +16,12 @@ public class MicrobeEditorGUI : Node
     public NodePath MenuPath;
 
     [Export]
+    public NodePath StructureTabPath;
+
+    [Export]
+    public NodePath MembraneTabPath;
+
+    [Export]
     public NodePath SizeLabelPath;
 
     [Export]
@@ -86,6 +92,9 @@ public class MicrobeEditorGUI : Node
 
     [Export]
     public NodePath PatchNamePath;
+
+    [Export]
+    public NodePath ReportTabPatchNamePath;
 
     [Export]
     public NodePath PatchPlayerHerePath;
@@ -223,12 +232,14 @@ public class MicrobeEditorGUI : Node
     private Array itemTooltipElements;
 
     private Control menu;
+    private PanelContainer structureTab;
+    private PanelContainer membraneTab;
     private Label sizeLabel;
     private Label speedLabel;
     private Label generationLabel;
     private Label mutationPointsLabel;
-    private TextureProgress mutationPointsBar;
-    private TextureProgress mutationPointsSubtractBar;
+    private ProgressBar mutationPointsBar;
+    private ProgressBar mutationPointsSubtractBar;
     private LineEdit speciesNameEdit;
     private ColorPicker membraneColorPicker;
     private TextureButton newCellButton;
@@ -249,6 +260,7 @@ public class MicrobeEditorGUI : Node
     private Control patchNothingSelected;
     private Control patchDetails;
     private Label patchName;
+    private Label reportTabPatchName;
     private Control patchPlayerHere;
     private Label patchBiome;
     private Label patchDepth;
@@ -284,9 +296,10 @@ public class MicrobeEditorGUI : Node
     private bool inEditorTab;
     private MicrobeEditor.MicrobeSymmetry symmetry = MicrobeEditor.MicrobeSymmetry.None;
 
-    /// <summary>
-    ///   For toggling purposes
-    /// </summary>
+    // For toggling purposes
+    private bool physicalConditionsBoxIsHidden;
+    private bool atmosphericConditionsBoxIsHidden;
+    private bool compoundsBoxIsHidden;
     private bool speciesListIsHidden;
 
     private Texture invalidBarTexture;
@@ -299,12 +312,14 @@ public class MicrobeEditorGUI : Node
         itemTooltipElements = GetTree().GetNodesInGroup("ItemTooltip");
 
         menu = GetNode<Control>(MenuPath);
+        structureTab = GetNode<PanelContainer>(StructureTabPath);
+        membraneTab = GetNode<PanelContainer>(MembraneTabPath);
         sizeLabel = GetNode<Label>(SizeLabelPath);
         speedLabel = GetNode<Label>(SpeedLabelPath);
         generationLabel = GetNode<Label>(GenerationLabelPath);
         mutationPointsLabel = GetNode<Label>(MutationPointsLabelPath);
-        mutationPointsBar = GetNode<TextureProgress>(MutationPointsBarPath);
-        mutationPointsSubtractBar = GetNode<TextureProgress>(MutationPointsSubtractBarPath);
+        mutationPointsBar = GetNode<ProgressBar>(MutationPointsBarPath);
+        mutationPointsSubtractBar = GetNode<ProgressBar>(MutationPointsSubtractBarPath);
         speciesNameEdit = GetNode<LineEdit>(SpeciesNameEditPath);
         membraneColorPicker = GetNode<ColorPicker>(MembraneColorPickerPath);
         newCellButton = GetNode<TextureButton>(NewCellButtonPath);
@@ -322,6 +337,7 @@ public class MicrobeEditorGUI : Node
         patchNothingSelected = GetNode<Control>(PatchNothingSelectedPath);
         patchDetails = GetNode<Control>(PatchDetailsPath);
         patchName = GetNode<Label>(PatchNamePath);
+        reportTabPatchName = GetNode<Label>(ReportTabPatchNamePath);
         patchPlayerHere = GetNode<Control>(PatchPlayerHerePath);
         patchBiome = GetNode<Label>(PatchBiomePath);
         patchDepth = GetNode<Label>(PatchDepthPath);
@@ -380,11 +396,13 @@ public class MicrobeEditorGUI : Node
         float possibleMutationPoints = editor.FreeBuilding ?
             Constants.BASE_MUTATION_POINTS :
             editor.MutationPoints - editor.CurrentOrganelleCost;
+
         mutationPointsBar.MaxValue = Constants.BASE_MUTATION_POINTS;
-        mutationPointsBar.Value = possibleMutationPoints;
+        mutationPointsBar.Value = Mathf.Lerp((float)mutationPointsBar.Value, possibleMutationPoints, 0.5f);
         mutationPointsSubtractBar.MaxValue = Constants.BASE_MUTATION_POINTS;
-        mutationPointsSubtractBar.Value = editor.MutationPoints;
-        if (possibleMutationPoints != editor.MutationPoints)
+        mutationPointsSubtractBar.Value = Mathf.Lerp((float)mutationPointsSubtractBar.Value, editor.MutationPoints, 0.5f);
+
+        if (possibleMutationPoints != editor.MutationPoints && editor.MutationPoints > 0)
         {
             mutationPointsLabel.Text =
                 $"({editor.MutationPoints:F0} -> {possibleMutationPoints:F0}) / {Constants.BASE_MUTATION_POINTS:F0}";
@@ -396,11 +414,11 @@ public class MicrobeEditorGUI : Node
 
         if (possibleMutationPoints < 0)
         {
-            mutationPointsSubtractBar.TextureProgress_ = invalidBarTexture;
+            mutationPointsSubtractBar.SelfModulate = new Color(0.72f, 0.19f, 0.19f);
         }
         else
         {
-            mutationPointsSubtractBar.TextureProgress_ = subractBarTexture;
+            mutationPointsSubtractBar.SelfModulate = new Color(0.72f, 0.72f, 0.72f);
         }
     }
 
@@ -434,17 +452,17 @@ public class MicrobeEditorGUI : Node
 
     public void UpdateSize(int size)
     {
-        sizeLabel.Text = "Size " + size.ToString(CultureInfo.CurrentCulture);
+        sizeLabel.Text = size.ToString(CultureInfo.CurrentCulture);
     }
 
     public void UpdateGeneration(int generation)
     {
-        generationLabel.Text = "Generation " + generation.ToString(CultureInfo.CurrentCulture);
+        generationLabel.Text = generation.ToString(CultureInfo.CurrentCulture);
     }
 
     public void UpdateSpeed(float speed)
     {
-        speedLabel.Text = "Speed " + string.Format(CultureInfo.CurrentCulture, "{0:F1}", speed);
+        speedLabel.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", speed);
     }
 
     public void UpdateEnergyBalance(EnergyBalanceInfo energyBalance)
@@ -687,19 +705,18 @@ public class MicrobeEditorGUI : Node
         // Make all buttons unselected except the one that is now selected
         foreach (Button element in organelleSelectionElements)
         {
-            var selectedLabel = element.GetNode<Label>(
-                "MarginContainer/VBoxContainer/SelectedLabelMargin/SelectedLabel");
+            var icon = element.GetNode<TextureRect>("Icon");
 
             if (element.Name == organelle)
             {
                 if (!element.Pressed)
                     element.Pressed = true;
-
-                selectedLabel.Show();
+                
+                icon.Modulate = new Color(0, 0, 0);
             }
             else
             {
-                selectedLabel.Hide();
+                icon.Modulate = new Color(1, 1, 1);
             }
         }
 
@@ -777,19 +794,18 @@ public class MicrobeEditorGUI : Node
             // updated incorrectly when we don't have enough MP to change the membrane
             element.Pressed = false;
 
-            var selectedLabel = element.GetNode<Label>(
-                "MarginContainer/VBoxContainer/SelectedLabelMargin/SelectedLabel");
+            var icon = element.GetNode<TextureRect>("Icon");
 
             if (element.Name == membrane)
             {
                 if (!element.Pressed)
                     element.Pressed = true;
-
-                selectedLabel.Show();
+                
+                icon.Modulate = new Color(0, 0, 0);
             }
             else
             {
-                selectedLabel.Hide();
+                icon.Modulate = new Color(1, 1, 1);
             }
         }
     }
@@ -876,9 +892,6 @@ public class MicrobeEditorGUI : Node
 
     private void SetCellTab(string tab)
     {
-        var structureTab = GetNode<Control>("CellEditor/LeftPanel/Panel/Structure");
-        var membraneTab = GetNode<Control>("CellEditor/LeftPanel/Panel/Membrane");
-
         // Hide all
         structureTab.Hide();
         membraneTab.Hide();
@@ -900,24 +913,36 @@ public class MicrobeEditorGUI : Node
 
     private void ToggleConditionsTab(string tab)
     {
-        var slideAnimations = patchDetails.GetNode<AnimationPlayer>("SlideAnimations");
+        var tween = patchDetails.GetNode<Tween>("Tween");
 
         if (tab == "physical")
         {
             var minusButton = physicalConditionsButton.GetNode<TextureButton>("minusButton");
             var plusButton = physicalConditionsButton.GetNode<TextureButton>("plusButton");
 
-            if (!physicalConditionsBox.Visible)
+            var clip = physicalConditionsBox.GetParent<MarginContainer>();
+
+            if (physicalConditionsBoxIsHidden)
             {
-                slideAnimations.Play("physicalSlideDown");
+                tween.InterpolateProperty(clip, "custom_constants/margin_top", null, 20, 0.2f,
+                    Tween.TransitionType.Sine, Tween.EaseType.Out);
+                tween.Start();
+
                 minusButton.Show();
                 plusButton.Hide();
+
+                physicalConditionsBoxIsHidden = false;
             }
             else
             {
-                slideAnimations.Play("physicalSlideUp");
+                tween.InterpolateProperty(clip, "custom_constants/margin_top", 20, -clip.RectSize.y, 0.2f,
+                    Tween.TransitionType.Sine, Tween.EaseType.Out);
+                tween.Start();
+
                 minusButton.Hide();
                 plusButton.Show();
+
+                physicalConditionsBoxIsHidden = true;
             }
         }
         else if (tab == "atmospheric")
@@ -925,17 +950,29 @@ public class MicrobeEditorGUI : Node
             var minusButton = atmosphericConditionsButton.GetNode<TextureButton>("minusButton");
             var plusButton = atmosphericConditionsButton.GetNode<TextureButton>("plusButton");
 
-            if (!atmosphericConditionsBox.Visible)
+            var clip = atmosphericConditionsBox.GetParent<MarginContainer>();
+
+            if (atmosphericConditionsBoxIsHidden)
             {
-                slideAnimations.Play("atmosphericSlideDown");
+                tween.InterpolateProperty(clip, "custom_constants/margin_top", null, 20, 0.2f,
+                    Tween.TransitionType.Sine, Tween.EaseType.Out);
+                tween.Start();
+
                 minusButton.Show();
                 plusButton.Hide();
+
+                atmosphericConditionsBoxIsHidden = false;
             }
             else
             {
-                slideAnimations.Play("atmosphericSlideUp");
+                tween.InterpolateProperty(clip, "custom_constants/margin_top", 20, -clip.RectSize.y, 0.2f,
+                    Tween.TransitionType.Sine, Tween.EaseType.Out);
+                tween.Start();
+
                 minusButton.Hide();
                 plusButton.Show();
+
+                atmosphericConditionsBoxIsHidden = true;
             }
         }
         else if (tab == "compounds")
@@ -943,17 +980,29 @@ public class MicrobeEditorGUI : Node
             var minusButton = compoundsButton.GetNode<TextureButton>("minusButton");
             var plusButton = compoundsButton.GetNode<TextureButton>("plusButton");
 
-            if (!compoundsBox.Visible)
+            var clip = compoundsBox.GetParent<MarginContainer>();
+
+            if (compoundsBoxIsHidden)
             {
-                slideAnimations.Play("compoundsSlideDown");
+                tween.InterpolateProperty(clip, "custom_constants/margin_top", null, 15, 0.2f,
+                    Tween.TransitionType.Sine, Tween.EaseType.Out);
+                tween.Start();
+
                 minusButton.Show();
                 plusButton.Hide();
+
+                compoundsBoxIsHidden = false;
             }
             else
             {
-                slideAnimations.Play("compoundsSlideUp");
+                tween.InterpolateProperty(clip, "custom_constants/margin_top", 15, -clip.RectSize.y, 0.2f,
+                    Tween.TransitionType.Sine, Tween.EaseType.Out);
+                tween.Start();
+
                 minusButton.Hide();
                 plusButton.Show();
+
+                compoundsBoxIsHidden = true;
             }
         }
         else if (tab == "species")
@@ -962,11 +1011,10 @@ public class MicrobeEditorGUI : Node
             var plusButton = speciesListButton.GetNode<TextureButton>("plusButton");
 
             var clip = speciesList.GetParent<MarginContainer>();
-            var tween = clip.GetNode<Tween>("Tween");
 
             if (speciesListIsHidden)
             {
-                tween.InterpolateProperty(clip, "custom_constants/margin_top", -speciesList.RectSize.y, 20, 0.3f,
+                tween.InterpolateProperty(clip, "custom_constants/margin_top", -speciesList.RectSize.y, 20, 0.2f,
                     Tween.TransitionType.Sine, Tween.EaseType.Out);
                 tween.Start();
 
@@ -977,7 +1025,7 @@ public class MicrobeEditorGUI : Node
             }
             else
             {
-                tween.InterpolateProperty(clip, "custom_constants/margin_top", 20, -speciesList.RectSize.y, 0.3f,
+                tween.InterpolateProperty(clip, "custom_constants/margin_top", 20, -speciesList.RectSize.y, 0.2f,
                     Tween.TransitionType.Sine, Tween.EaseType.Out);
                 tween.Start();
 
@@ -1353,7 +1401,7 @@ public class MicrobeEditorGUI : Node
 
         patchIron.Text = GetPatchChunkTotalCompoundAmount(patch, iron) + "%";
 
-        // Delete previous species list
+        // Refresh species list
         if (speciesList.GetChildCount() > 0)
         {
             foreach (Node child in speciesList.GetChildren())
@@ -1365,6 +1413,8 @@ public class MicrobeEditorGUI : Node
         foreach (var species in patch.SpeciesInPatch.Keys)
         {
             var speciesLabel = new Label();
+            speciesLabel.SizeFlagsHorizontal = (int)Control.SizeFlags.ExpandFill;
+            speciesLabel.Autowrap = true;
             speciesLabel.Text = species.FormattedName + " with population: " + patch.GetSpeciesPopulation(species);
             speciesList.AddChild(speciesLabel);
 
@@ -1373,7 +1423,7 @@ public class MicrobeEditorGUI : Node
 
             if (speciesListIsHidden)
             {
-                // Adjust the species list's clipping area's "height" value
+                // Adjust the clip box's height of species list
                 var clip = speciesList.GetParent<MarginContainer>();
                 clip.AddConstantOverride("margin_top", -(int)speciesList.RectSize.y);
             }

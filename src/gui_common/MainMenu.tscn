@@ -13,43 +13,43 @@
 [sub_resource type="Animation" id=1]
 resource_name = "MenuSlide"
 length = 0.6
-tracks/0/type = "value"
-tracks/0/path = NodePath("MenuContainers/MenuCenterContainer:rect_size")
+tracks/0/type = "method"
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.3, 0.6 ),
-"transitions": PoolRealArray( 0.5, 2, 0.5, 0.5 ),
-"update": 0,
-"values": [ Vector2( 1280, 505 ), Vector2( 1280, 0 ), Vector2( 1280, 0 ), Vector2( 1280, 505 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("MenuContainers/MenuCenterContainer:anchor_top")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2, 0.3, 0.6 ),
-"transitions": PoolRealArray( 0.5, 2, 0.5, 0.5 ),
-"update": 0,
-"values": [ 0.5, 0.7, 0.7, 0.5 ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
 "times": PoolRealArray( 0.3 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
 "method": "SwitchMenu"
 } ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("MenuContainers/Menus:anchor_top")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.6 ),
+"transitions": PoolRealArray( 0.5, 0.5, 0.3, 1 ),
+"update": 0,
+"values": [ 0.4, 0.5, 0.45, 0.4 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("MenuContainers/Menus:anchor_bottom")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.6 ),
+"transitions": PoolRealArray( 0.5, 0.5, 0.3, 1 ),
+"update": 0,
+"values": [ 1.0, 0.5, 0.45, 1.0 ]
 }
 
 [node name="MainMenu" type="Node"]
@@ -59,8 +59,8 @@ __meta__ = {
 }
 ThriveLogoPath = NodePath("MenuContainers/LogoCenterContainer/Logo")
 MenuBackgrounds = [ ExtResource( 7 ), ExtResource( 6 ), ExtResource( 8 ) ]
-NewGameButtonPath = NodePath("MenuContainers/MenuCenterContainer/MenuItems/MainMenu/NewGame")
-FreebuildButtonPath = NodePath("MenuContainers/MenuCenterContainer/MenuItems/Tools/Freebuild Editor")
+NewGameButtonPath = NodePath("MenuContainers/Menus/MarginContainer/MainMenu/NewGame")
+FreebuildButtonPath = NodePath("MenuContainers/Menus/MarginContainer/Tools/Freebuild Editor")
 
 [node name="Background" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -82,192 +82,214 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -637.35
-margin_top = -360.0
-margin_right = 642.65
-margin_bottom = -72.0
+margin_left = -683.0
+margin_top = -384.0
+margin_right = 683.0
+margin_bottom = -34.0
 __meta__ = {
-"_edit_use_anchors_": true,
+"_edit_use_anchors_": false,
 "_editor_description_": "Centering fo the Thrive logo"
 }
 
 [node name="Logo" type="TextureRect" parent="MenuContainers/LogoCenterContainer"]
-margin_left = 556.0
-margin_top = 60.0
-margin_right = 723.0
-margin_bottom = 228.0
+margin_left = 599.0
+margin_top = 91.0
+margin_right = 766.0
+margin_bottom = 259.0
 texture = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MenuCenterContainer" type="CenterContainer" parent="MenuContainers"]
+[node name="Menus" type="Control" parent="MenuContainers"]
+anchor_top = 0.4
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 12.8
+rect_clip_content = true
+theme = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="MenuContainers/Menus"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.85
-margin_left = -639.183
-margin_top = -145.0
-margin_right = 640.817
-margin_bottom = 108.0
-rect_clip_content = true
+anchor_bottom = 0.5
+margin_left = -683.0
+margin_top = -224.0
+margin_right = 683.0
+margin_bottom = 224.0
 __meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": "Centering for the menu items"
+"_edit_use_anchors_": false
 }
 
-[node name="MenuItems" type="Control" parent="MenuContainers/MenuCenterContainer"]
-margin_left = 640.0
-margin_top = 252.0
-margin_right = 640.0
-margin_bottom = 252.0
-theme = ExtResource( 2 )
-__meta__ = {
-"_editor_description_": "All of the menu stuff goes here"
-}
-
-[node name="MainMenu" type="VBoxContainer" parent="MenuContainers/MenuCenterContainer/MenuItems" groups=[
+[node name="MainMenu" type="VBoxContainer" parent="MenuContainers/Menus/MarginContainer" groups=[
 "MenuItem",
 ]]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -125.0
-margin_top = -150.0
-margin_right = 125.0
-margin_bottom = 190.0
+margin_right = 1366.0
+margin_bottom = 448.0
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="NewGame" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/MainMenu"]
-margin_right = 250.0
+[node name="NewGame" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
+margin_left = 558.0
+margin_right = 808.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
+size_flags_horizontal = 4
 enabled_focus_mode = 0
 text = "New Game"
 
-[node name="LoadGame" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/MainMenu"]
+[node name="LoadGame" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
+margin_left = 558.0
 margin_top = 50.0
-margin_right = 250.0
+margin_right = 808.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
+size_flags_horizontal = 4
 enabled_focus_mode = 0
 text = "Load Game"
 
-[node name="Options" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/MainMenu"]
+[node name="Options" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
+margin_left = 558.0
 margin_top = 100.0
-margin_right = 250.0
+margin_right = 808.0
 margin_bottom = 140.0
 rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
+size_flags_horizontal = 4
 enabled_focus_mode = 0
 text = "Options"
 
-[node name="Tools" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/MainMenu"]
+[node name="Tools" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
+margin_left = 558.0
 margin_top = 150.0
-margin_right = 250.0
+margin_right = 808.0
 margin_bottom = 190.0
 rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
+size_flags_horizontal = 4
 enabled_focus_mode = 0
 text = "Tools"
 
-[node name="Extras" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/MainMenu"]
+[node name="Extras" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
+margin_left = 558.0
 margin_top = 200.0
-margin_right = 250.0
+margin_right = 808.0
 margin_bottom = 240.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
+size_flags_horizontal = 4
 disabled = true
 enabled_focus_mode = 0
 text = "Extras"
 
-[node name="Credits" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/MainMenu"]
+[node name="Credits" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
+margin_left = 558.0
 margin_top = 250.0
-margin_right = 250.0
+margin_right = 808.0
 margin_bottom = 290.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
+size_flags_horizontal = 4
 disabled = true
 enabled_focus_mode = 0
 text = "Credits"
 
-[node name="Quit" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/MainMenu"]
+[node name="Quit" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
+margin_left = 558.0
 margin_top = 300.0
-margin_right = 250.0
+margin_right = 808.0
 margin_bottom = 340.0
 rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
+size_flags_horizontal = 4
 enabled_focus_mode = 0
 text = "Quit"
 
-[node name="Tools" type="VBoxContainer" parent="MenuContainers/MenuCenterContainer/MenuItems" groups=[
+[node name="Tools" type="VBoxContainer" parent="MenuContainers/Menus/MarginContainer" groups=[
 "MenuItem",
 ]]
 visible = false
-margin_left = -125.0
-margin_top = -150.0
-margin_right = 125.0
-margin_bottom = 90.0
+margin_right = 1366.0
+margin_bottom = 448.0
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Freebuild Editor" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/Tools"]
-margin_right = 250.0
+[node name="Freebuild Editor" type="Button" parent="MenuContainers/Menus/MarginContainer/Tools"]
+margin_left = 558.0
+margin_right = 808.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
+size_flags_horizontal = 4
+size_flags_vertical = 0
 enabled_focus_mode = 0
 text = "Microbe Freebuild Editor"
 
-[node name="\?\?" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/Tools"]
+[node name="\?\?" type="Button" parent="MenuContainers/Menus/MarginContainer/Tools"]
+margin_left = 558.0
 margin_top = 50.0
-margin_right = 250.0
+margin_right = 808.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
+size_flags_horizontal = 4
+size_flags_vertical = 0
 disabled = true
 enabled_focus_mode = 0
 text = "???"
 
-[node name="\?\?_2" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/Tools"]
+[node name="\?\?_2" type="Button" parent="MenuContainers/Menus/MarginContainer/Tools"]
+margin_left = 558.0
 margin_top = 100.0
-margin_right = 250.0
+margin_right = 808.0
 margin_bottom = 140.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
+size_flags_horizontal = 4
+size_flags_vertical = 0
 disabled = true
 enabled_focus_mode = 0
 text = "???"
 
-[node name="\?\?_3" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/Tools"]
+[node name="\?\?_3" type="Button" parent="MenuContainers/Menus/MarginContainer/Tools"]
+margin_left = 558.0
 margin_top = 150.0
-margin_right = 250.0
+margin_right = 808.0
 margin_bottom = 190.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
+size_flags_horizontal = 4
+size_flags_vertical = 0
 disabled = true
 enabled_focus_mode = 0
 text = "???"
 
-[node name="Back" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/Tools"]
+[node name="Back" type="Button" parent="MenuContainers/Menus/MarginContainer/Tools"]
+margin_left = 558.0
 margin_top = 200.0
-margin_right = 250.0
+margin_right = 808.0
 margin_bottom = 240.0
 rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
+size_flags_horizontal = 4
+size_flags_vertical = 0
 enabled_focus_mode = 0
 text = "Back"
 
@@ -302,12 +324,12 @@ __meta__ = {
 
 [node name="GUIAnimations" type="AnimationPlayer" parent="."]
 anims/MenuSlide = SubResource( 1 )
-[connection signal="pressed" from="MenuContainers/MenuCenterContainer/MenuItems/MainMenu/NewGame" to="." method="NewGamePressed"]
-[connection signal="pressed" from="MenuContainers/MenuCenterContainer/MenuItems/MainMenu/LoadGame" to="." method="LoadGamePressed"]
-[connection signal="pressed" from="MenuContainers/MenuCenterContainer/MenuItems/MainMenu/Options" to="." method="OptionsPressed"]
-[connection signal="pressed" from="MenuContainers/MenuCenterContainer/MenuItems/MainMenu/Tools" to="." method="ToolsPressed"]
-[connection signal="pressed" from="MenuContainers/MenuCenterContainer/MenuItems/MainMenu/Quit" to="." method="QuitPressed"]
-[connection signal="pressed" from="MenuContainers/MenuCenterContainer/MenuItems/Tools/Freebuild Editor" to="." method="FreebuildEditorPressed"]
-[connection signal="pressed" from="MenuContainers/MenuCenterContainer/MenuItems/Tools/Back" to="." method="BackFromToolsPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/NewGame" to="." method="NewGamePressed"]
+[connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/LoadGame" to="." method="LoadGamePressed"]
+[connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/Options" to="." method="OptionsPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/Tools" to="." method="ToolsPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/Quit" to="." method="QuitPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Tools/Freebuild Editor" to="." method="FreebuildEditorPressed"]
+[connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Tools/Back" to="." method="BackFromToolsPressed"]
 [connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="OnReturnFromOptions"]
 [connection signal="OnBackPressed" from="SaveManagerGUI" to="." method="OnReturnFromLoadGame"]

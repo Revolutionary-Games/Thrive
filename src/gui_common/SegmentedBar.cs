@@ -114,6 +114,8 @@ public class SegmentedBar : HBoxContainer
             progressBar.BarSize = progressBarBarSize;
             progressBar.IconTexture = BarHelper.GetBarIcon(SelectedType, dataPair.Key);
 
+            progressBar.MouseFilter = MouseFilterEnum.Pass;
+
             progressBar.Connect("gui_input", this, nameof(BarToggled), new Array { progressBar });
         }
     }

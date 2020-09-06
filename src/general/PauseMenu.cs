@@ -92,10 +92,8 @@ public class PauseMenu : Control
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        // Unpause the game as well as close the pause menu
+        // Unpause the game
         GetTree().Paused = false;
-
-        EmitSignal(nameof(OnClosed));
 
         TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.3f, false);
         TransitionManager.Instance.StartTransitions(this, nameof(OnSwitchToMenu));
