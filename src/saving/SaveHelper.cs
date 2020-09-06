@@ -300,11 +300,11 @@ public static class SaveHelper
         try
         {
             save.SaveToFile();
-            inProgress.ReportStatus(true, "Saving succeeded");
+            inProgress.ReportStatus(true, TranslationServer.Translate("Saving succeeded"));
         }
         catch (Exception e)
         {
-            inProgress.ReportStatus(false, "Saving failed! An exception happened", e.ToString());
+            inProgress.ReportStatus(false, TranslationServer.Translate("Saving failed! An exception happened"), e.ToString());
             return;
         }
 

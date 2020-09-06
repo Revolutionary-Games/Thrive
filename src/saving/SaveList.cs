@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Globalization;
 using System.Threading.Tasks;
 using Godot;
 using Godot.Collections;
@@ -147,8 +148,9 @@ public class SaveList : ScrollContainer
     private void OnDeletePressed(string saveName)
     {
         saveToBeDeleted = saveName;
-        deleteConfirmDialog.DialogText =
-            $"Deleting this save cannot be undone, are you sure you want to permanently delete {saveName}?";
+        deleteConfirmDialog.DialogText = string.Format(CultureInfo.CurrentCulture,
+            TranslationServer.Translate("Deleting this save cannot be undone, are you sure you want to permanently delete {0}?"),
+            saveName);
         deleteConfirmDialog.PopupCenteredMinsize();
     }
 
@@ -166,12 +168,12 @@ public class SaveList : ScrollContainer
     {
         saveToBeLoaded = saveName;
 
-        loadConfirmDialog.DialogText = "This save is from an old version of Thrive and may be incompatible.\n";
-        loadConfirmDialog.DialogText += "As Thrive is currently early in development ";
-        loadConfirmDialog.DialogText += "save compatibility is not a priority.\n";
-        loadConfirmDialog.DialogText += "You may report any issues you encounter, ";
-        loadConfirmDialog.DialogText += "but they aren't the highest priority right now.\n";
-        loadConfirmDialog.DialogText += "Do you want to try loading the save anyway?";
+        loadConfirmDialog.DialogText = TranslationServer.Translate("This save is from an old version of Thrive and may be incompatible.\n");
+        loadConfirmDialog.DialogText += TranslationServer.Translate("As Thrive is currently early in development ");
+        loadConfirmDialog.DialogText += TranslationServer.Translate("save compatibility is not a priority.\n");
+        loadConfirmDialog.DialogText += TranslationServer.Translate("You may report any issues you encounter, ");
+        loadConfirmDialog.DialogText += TranslationServer.Translate("but they aren't the highest priority right now.\n");
+        loadConfirmDialog.DialogText += TranslationServer.Translate("Do you want to try loading the save anyway?");
         loadConfirmDialog.PopupCenteredMinsize();
     }
 
@@ -179,8 +181,8 @@ public class SaveList : ScrollContainer
     {
         saveToBeLoaded = saveName;
 
-        loadConfirmDialog.DialogText = "This save is from a newer version of Thrive and very likely incompatible.\n";
-        loadConfirmDialog.DialogText += "Do you want to try loading the save anyway?";
+        loadConfirmDialog.DialogText = TranslationServer.Translate("This save is from a newer version of Thrive and very likely incompatible.\n");
+        loadConfirmDialog.DialogText += TranslationServer.Translate("Do you want to try loading the save anyway?");
         loadConfirmDialog.PopupCenteredMinsize();
     }
 
