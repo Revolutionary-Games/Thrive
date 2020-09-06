@@ -448,14 +448,12 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
     /// <summary>
     ///   Converts cloud local coordinates to world coordinates
     /// </summary>
-    public void ConvertToWorld(int cloudX, int cloudY, out int x, out int z)
+    public Vector3 ConvertToWorld(int cloudX, int cloudY)
     {
-        var worldRelative = new Vector3(cloudX, 0, cloudY) + Translation;
-
-        x = ((int)Math.Ceiling((worldRelative.x - Constants.CLOUD_WIDTH) * Resolution)
-            - position.x / Constants.CLOUD_SQUARES_PER_SIDE * Size) % Size;
-        z = ((int)Math.Ceiling((worldRelative.z - Constants.CLOUD_HEIGHT) * Resolution)
-            - position.y / Constants.CLOUD_SQUARES_PER_SIDE * Size) % Size;
+        return new Vector3(
+            cloudX * Resolution - position.x * Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_WIDTH,
+            0,
+            cloudY * Resolution - position.y * Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_HEIGHT) + Translation;
     }
 
     /// <summary>
