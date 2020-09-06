@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-09-06 15:47+0200\n"
+"POT-Creation-Date: 2020-09-06 16:47+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -283,7 +283,6 @@ msgid "Exit"
 msgstr ""
 
 #: ../src/general/PauseMenu.tscn:130 ../src/saving/NewSaveMenu.tscn:113
-#: ../src/saving/SaveManagerGUI.tscn:108
 msgid "Back"
 msgstr ""
 
@@ -1109,8 +1108,6 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:6307
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:8271
-#: ../src/saving/SaveManagerGUI.tscn:125 ../src/saving/SaveManagerGUI.tscn:143
-#: ../src/saving/SaveManagerGUI.tscn:161
 msgid "0"
 msgstr ""
 
@@ -1639,7 +1636,7 @@ msgstr ""
 msgid "Create New Save"
 msgstr ""
 
-#: ../src/saving/NewSaveMenu.tscn:51 ../src/saving/SaveListItem.tscn:80
+#: ../src/saving/NewSaveMenu.tscn:51
 msgid "Name:"
 msgstr ""
 
@@ -1703,69 +1700,71 @@ msgid ""
 "incompatible.\\n"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:31 ../src/saving/SaveListItem.tscn:87
-msgid "Loading..."
+#: ../src/saving/SaveList.tscn:31
+msgid "SAVE_LIST_LOADING"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:41 ../src/saving/SaveListItem.tscn:233
+#: ../src/saving/SaveList.tscn:44
 msgid "Delete this Save?"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:42 ../src/saving/SaveList.tscn:49
-#: ../src/saving/SaveManagerGUI.tscn:169
-msgid "Text not set..."
-msgstr ""
-
-#: ../src/saving/SaveList.tscn:48
+#: ../src/saving/SaveList.tscn:53
 msgid "Load incompatible save?"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:100
-msgid "Version:"
+#: ../src/saving/SaveListItem.tscn:80
+msgid "SAVE_ITEM_NAME"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:107 ../src/saving/SaveListItem.tscn:156
-#: ../src/saving/SaveListItem.tscn:174 ../src/saving/SaveListItem.tscn:190
-#: ../src/saving/SaveListItem.tscn:208 ../src/saving/SaveListItem.tscn:224
-msgid "..."
+#: ../src/saving/SaveListItem.tscn:87 ../src/saving/SaveListItem.tscn:107
+#: ../src/saving/SaveListItem.tscn:157 ../src/saving/SaveListItem.tscn:175
+#: ../src/saving/SaveListItem.tscn:191 ../src/saving/SaveListItem.tscn:209
+#: ../src/saving/SaveListItem.tscn:225
+msgid "SAVE_ITEM_TMP"
+msgstr ""
+
+#: ../src/saving/SaveListItem.tscn:100
+msgid "SAVE_ITEM_VERSION"
 msgstr ""
 
 #: ../src/saving/SaveListItem.tscn:114
 msgid "( ! )"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:126
-msgid "select"
+#: ../src/saving/SaveListItem.tscn:127
+msgid "SAVE_ITEM_SELECT"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:140 ../src/saving/SaveManagerGUI.tscn:52
-msgid "Load"
+#: ../src/saving/SaveListItem.tscn:141
+msgid "SAVE_ITEM_LOAD"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:150
-msgid "Created at:"
+#: ../src/saving/SaveListItem.tscn:151
+msgid "SAVE_ITEM_CREATED"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:168
-msgid "By:"
+#: ../src/saving/SaveListItem.tscn:169
+msgid "SAVE_ITEM_BY"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:184
-msgid "Type:"
+#: ../src/saving/SaveListItem.tscn:185
+msgid "SAVE_ITEM_TYPE"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:202
-msgid "Created on Platform:"
+#: ../src/saving/SaveListItem.tscn:203
+msgid "SAVE_ITEM_PLATFORM"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:218
-msgid "Description:"
+#: ../src/saving/SaveListItem.tscn:219
+msgid "SAVE_ITEM_DESCRIPTION"
 msgstr ""
 
 #: ../src/saving/SaveListItem.tscn:234
-msgid ""
-"Deleting this save cannot be undone, are you sure you want to permanently"
-" delete this?"
+msgid "SAVE_ITEM_CONFIRM_TITLE"
+msgstr ""
+
+#: ../src/saving/SaveListItem.tscn:235
+msgid "SAVE_ITEM_CONFIRM"
 msgstr ""
 
 #: ../src/saving/SaveManagerGUI.cs:192
@@ -1781,40 +1780,48 @@ msgid ""
 "Quick save(s)"
 msgstr ""
 
+#: ../src/saving/SaveManagerGUI.tscn:52
+msgid "SAVE_LOAD"
+msgstr ""
+
 #: ../src/saving/SaveManagerGUI.tscn:63
-msgid "Refresh"
+msgid "SAVE_REFRESH"
 msgstr ""
 
 #: ../src/saving/SaveManagerGUI.tscn:70
-msgid "Delete Selected"
+msgid "SAVE_DELETE"
 msgstr ""
 
 #: ../src/saving/SaveManagerGUI.tscn:77
-msgid "Clean Up Old Saves"
+msgid "SAVE_CLEAN_OLD"
 msgstr ""
 
 #: ../src/saving/SaveManagerGUI.tscn:88
-msgid "Open Save Directory"
+msgid "SAVE_OPEN_DIR"
+msgstr ""
+
+#: ../src/saving/SaveManagerGUI.tscn:108
+msgid "SAVE_BACK"
 msgstr ""
 
 #: ../src/saving/SaveManagerGUI.tscn:119
-msgid "Total saves:"
+msgid "SAVE_TOTAL"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.tscn:137
-msgid "Space used:"
+#: ../src/saving/SaveManagerGUI.tscn:136
+msgid "SAVE_SPACE_USED"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.tscn:155
-msgid "Selected:"
+#: ../src/saving/SaveManagerGUI.tscn:153
+msgid "SAVE_SELECTED"
 msgstr ""
 
 #: ../src/saving/SaveManagerGUI.tscn:168
-msgid "Delete selected Save(s)?"
+msgid "SAVE_DELETE_SELECTED"
 msgstr ""
 
 #: ../src/saving/SaveManagerGUI.tscn:178
-msgid "Delete old Saves?"
+msgid "SAVE_DELETE_OLD"
 msgstr ""
 
 #: ../src/saving/SaveStatusOverlay.tscn:31
