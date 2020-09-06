@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-09-06 17:02+0200\n"
+"POT-Creation-Date: 2020-09-06 17:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -270,7 +270,7 @@ msgstr ""
 msgid "PAUSE_MENU_EXIT"
 msgstr ""
 
-#: ../src/general/PauseMenu.tscn:130 ../src/saving/NewSaveMenu.tscn:113
+#: ../src/general/PauseMenu.tscn:130
 msgid "Back"
 msgstr ""
 
@@ -1621,23 +1621,27 @@ msgid "The chosen filename ({0}) already exists. Overwrite?"
 msgstr ""
 
 #: ../src/saving/NewSaveMenu.tscn:34
-msgid "Create New Save"
+msgid "SAVE_MENU_NEW"
 msgstr ""
 
 #: ../src/saving/NewSaveMenu.tscn:51
-msgid "Name:"
+msgid "SAVE_MENU_NAME"
 msgstr ""
 
 #: ../src/saving/NewSaveMenu.tscn:71
-msgid "Extra Options"
+msgid "SAVE_MENU_EXTRA"
 msgstr ""
 
 #: ../src/saving/NewSaveMenu.tscn:78
-msgid "Save"
+msgid "SAVE_MENU_SAVE"
 msgstr ""
 
 #: ../src/saving/NewSaveMenu.tscn:89
-msgid "Overwrite existing save:"
+msgid "SAVE_MENU_OVERWRITE"
+msgstr ""
+
+#: ../src/saving/NewSaveMenu.tscn:113
+msgid "SAVE_MENU_BACK"
 msgstr ""
 
 #: ../src/saving/NewSaveMenu.tscn:122
@@ -1812,23 +1816,11 @@ msgstr ""
 msgid "SAVE_DELETE_OLD"
 msgstr ""
 
-#: ../src/saving/SaveStatusOverlay.tscn:31
-msgid "Saving status goes here..."
+#: ../src/saving/SaveStatusOverlay.tscn:51
+msgid "SAVE_STATUS_ERROR_TITLE"
 msgstr ""
 
-#: ../src/saving/SaveStatusOverlay.tscn:52
-msgid "Saving Error"
-msgstr ""
-
-#: ../src/saving/SaveStatusOverlay.tscn:85
-msgid "Extra description goes here"
-msgstr ""
-
-#: ../src/saving/SaveStatusOverlay.tscn:91
-msgid "Exception info goes here"
-msgstr ""
-
-#: ../src/saving/SaveStatusOverlay.tscn:106
-msgid "Copy Error To Clipboard"
+#: ../src/saving/SaveStatusOverlay.tscn:103
+msgid "SAVE_STATUS_COPY"
 msgstr ""
 

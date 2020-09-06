@@ -2,12 +2,12 @@
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # Automatically generated, 2020.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-09-06 17:02+0200\n"
+"POT-Creation-Date: 2020-09-06 17:12+0200\n"
 "PO-Revision-Date: 2020-09-06 15:57+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -274,7 +274,7 @@ msgstr "Return to Menu"
 msgid "PAUSE_MENU_EXIT"
 msgstr "Exit"
 
-#: ../src/general/PauseMenu.tscn:130 ../src/saving/NewSaveMenu.tscn:113
+#: ../src/general/PauseMenu.tscn:130
 msgid "Back"
 msgstr "Back"
 
@@ -1725,28 +1725,28 @@ msgid "The chosen filename ({0}) already exists. Overwrite?"
 msgstr "The chosen filename ({0}) already exists. Overwrite?"
 
 #: ../src/saving/NewSaveMenu.tscn:34
-msgid "Create New Save"
-msgstr "Create New Save"
+msgid "SAVE_MENU_NEW"
+msgstr "Name:"
 
 #: ../src/saving/NewSaveMenu.tscn:51
-msgid "Name:"
+msgid "SAVE_MENU_NAME"
 msgstr "Name:"
 
 #: ../src/saving/NewSaveMenu.tscn:71
-msgid "Extra Options"
-msgstr "Extra Options"
+msgid "SAVE_MENU_EXTRA"
+msgstr "Extra"
 
 #: ../src/saving/NewSaveMenu.tscn:78
-msgid "Save"
-msgstr "Save"
+msgid "SAVE_MENU_SAVE"
+msgstr "Save Game"
 
 #: ../src/saving/NewSaveMenu.tscn:89
-msgid "Overwrite existing save:"
+msgid "SAVE_MENU_OVERWRITE"
 msgstr "Overwrite existing save:"
 
-#: ../src/saving/NewSaveMenu.tscn:122
-msgid "Overwrite existing save?"
-msgstr "Overwrite existing save?"
+#: ../src/saving/NewSaveMenu.tscn:113
+msgid "SAVE_MENU_BACK"
+msgstr "Back"
 
 #: ../src/saving/SaveHelper.cs:303
 msgid "Saving succeeded"
@@ -1926,239 +1926,10 @@ msgstr "Delete selected Save(s)?"
 msgid "SAVE_DELETE_OLD"
 msgstr "Delete old Saves?"
 
-#: ../src/saving/SaveStatusOverlay.tscn:31
-msgid "Saving status goes here..."
-msgstr "Saving status goes here..."
-
-#: ../src/saving/SaveStatusOverlay.tscn:52
-msgid "Saving Error"
+#: ../src/saving/SaveStatusOverlay.tscn:51
+msgid "SAVE_STATUS_ERROR_TITLE"
 msgstr "Saving Error"
 
-#: ../src/saving/SaveStatusOverlay.tscn:85
-msgid "Extra description goes here"
-msgstr "Extra description goes here"
-
-#: ../src/saving/SaveStatusOverlay.tscn:91
-msgid "Exception info goes here"
-msgstr "Exception info goes here"
-
-#: ../src/saving/SaveStatusOverlay.tscn:106
-msgid "Copy Error To Clipboard"
+#: ../src/saving/SaveStatusOverlay.tscn:103
+msgid "SAVE_STATUS_COPY"
 msgstr "Copy Error To Clipboard"
-
-#~ msgid "Shown image description goes here"
-#~ msgstr "Shown image description goes here"
-
-#~ msgid "TIP: not set"
-#~ msgstr "TIP: not set"
-
-#~ msgid "Easter egg message goes here"
-#~ msgstr "Easter egg message goes here"
-
-#~ msgid "Resume"
-#~ msgstr "Resume"
-
-#~ msgid "Save Game"
-#~ msgstr "Save Game"
-
-#~ msgid "Load Game"
-#~ msgstr "Load Game"
-
-#~ msgid "Statistics"
-#~ msgstr "Statistics"
-
-#~ msgid "Help"
-#~ msgstr "Help"
-
-#~ msgid "Options"
-#~ msgstr "Options"
-
-#~ msgid "Return to Menu"
-#~ msgstr "Return to Menu"
-
-#~ msgid "Exit"
-#~ msgstr "Exit"
-
-#~ msgid "select"
-#~ msgstr "select"
-
-#~ msgid "Load"
-#~ msgstr "Load"
-
-#~ msgid "Loading..."
-#~ msgstr "Loading..."
-
-#~ msgid "Text not set..."
-#~ msgstr "Text not set..."
-
-#~ msgid "Version:"
-#~ msgstr "Version:"
-
-#~ msgid "..."
-#~ msgstr "..."
-
-#~ msgid "Created at:"
-#~ msgstr "Created at:"
-
-#~ msgid "By:"
-#~ msgstr "By:"
-
-#~ msgid "Type:"
-#~ msgstr "Type:"
-
-#~ msgid "Created on Platform:"
-#~ msgstr "Created on Platform:"
-
-#~ msgid "Description:"
-#~ msgstr "Description:"
-
-#~ msgid ""
-#~ "Deleting this save cannot be undone, are you sure you want to permanently "
-#~ "delete this?"
-#~ msgstr ""
-#~ "Deleting this save cannot be undone, are you sure you want to permanently "
-#~ "delete this?"
-
-#~ msgid "Refresh"
-#~ msgstr "Refresh"
-
-#~ msgid "Delete Selected"
-#~ msgstr "Delete Selected"
-
-#~ msgid "Clean Up Old Saves"
-#~ msgstr "Clean Up Old Saves"
-
-#~ msgid "Open Save Directory"
-#~ msgstr "Open Save Directory"
-
-#~ msgid "Total saves:"
-#~ msgstr "Total saves:"
-
-#~ msgid "Space used:"
-#~ msgstr "Space used:"
-
-#~ msgid "Selected:"
-#~ msgstr "Selected:"
-
-#~ msgid "Delete selected Save(s)?"
-#~ msgstr "Delete selected Save(s)?"
-
-#~ msgid "Delete old Saves?"
-#~ msgstr "Delete old Saves?"
-
-#~ msgid "Graphics"
-#~ msgstr "Graphics"
-
-#~ msgid "Sound"
-#~ msgstr "Sound"
-
-#~ msgid "Performance"
-#~ msgstr "Performance"
-
-#~ msgid "Misc"
-#~ msgstr "Misc"
-
-#~ msgid "V-sync"
-#~ msgstr "V-sync"
-
-#~ msgid "FullScreen"
-#~ msgstr "FullScreen"
-
-#~ msgid "Multisample anti-aliasing:"
-#~ msgstr "Multisample anti-aliasing:"
-
-#~ msgid "(higher values worsen performance)"
-#~ msgstr "(higher values worsen performance)"
-
-#~ msgid "Disabled"
-#~ msgstr "Disabled"
-
-#~ msgid "Resolution:"
-#~ msgstr "Resolution:"
-
-#~ msgid "auto"
-#~ msgstr "auto"
-
-#~ msgid "Max FPS:"
-#~ msgstr "Max FPS:"
-
-#~ msgid "400"
-#~ msgstr "400"
-
-#~ msgid "Colourblind Correction:"
-#~ msgstr "Colourblind Correction:"
-
-#~ msgid "None"
-#~ msgstr "None"
-
-#~ msgid "Chromatic Aberration:"
-#~ msgstr "Chromatic Aberration:"
-
-#~ msgid "Master volume"
-#~ msgstr "Master volume"
-
-#~ msgid "Mute"
-#~ msgstr "Mute"
-
-#~ msgid "Music volume"
-#~ msgstr "Music volume"
-
-#~ msgid "Language:"
-#~ msgstr "Language:"
-
-#~ msgid "English"
-#~ msgstr "English"
-
-#~ msgid "Compound clouds"
-#~ msgstr "Compound clouds"
-
-#~ msgid "(higher values increase performance)"
-#~ msgstr "(higher values increase performance)"
-
-#~ msgid "40ms"
-#~ msgstr "40ms"
-
-#~ msgid "Cloud Resolution Divisor:"
-#~ msgstr "Cloud Resolution Divisor:"
-
-#~ msgid "Play intro video"
-#~ msgstr "Play intro video"
-
-#~ msgid "Play Microbe Intro on New Game"
-#~ msgstr "Play Microbe Intro on New Game"
-
-#~ msgid "Autosave during the game"
-#~ msgstr "Autosave during the game"
-
-#~ msgid "Amount of autosaves to keep:"
-#~ msgstr "Amount of autosaves to keep:"
-
-#~ msgid "Amount of quicksaves to keep:"
-#~ msgstr "Amount of quicksaves to keep:"
-
-#~ msgid "Cheat keys enabled"
-#~ msgstr "Cheat keys enabled"
-
-#~ msgid "Reset ALL to Default Settings"
-#~ msgstr "Reset ALL to Default Settings"
-
-#~ msgid "New Game"
-#~ msgstr "New Game"
-
-#~ msgid "Tools"
-#~ msgstr "Tools"
-
-#~ msgid "Extras"
-#~ msgstr "Extras"
-
-#~ msgid "Credits"
-#~ msgstr "Credits"
-
-#~ msgid "Quit"
-#~ msgstr "Quit"
-
-#~ msgid "Microbe Freebuild Editor"
-#~ msgstr "Microbe Freebuild Editor"
-
-#~ msgid "x.y.z"
-#~ msgstr "x.y.z"
