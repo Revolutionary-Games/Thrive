@@ -650,7 +650,7 @@ public class MicrobeEditorGUI : Node
             {
                 if (!element.Pressed)
                     element.Pressed = true;
-                
+
                 icon.Modulate = new Color(0, 0, 0);
             }
             else
@@ -739,7 +739,7 @@ public class MicrobeEditorGUI : Node
             {
                 if (!element.Pressed)
                     element.Pressed = true;
-                
+
                 icon.Modulate = new Color(0, 0, 0);
             }
             else

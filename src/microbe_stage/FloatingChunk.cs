@@ -31,9 +31,9 @@ public class FloatingChunk : RigidBody, ISpawned
 
     private float dissolveEffectValue;
 
-    public int DespawnRadiusSqr { get; set; }
-
     private bool isParticles;
+
+    public int DespawnRadiusSqr { get; set; }
 
     [JsonIgnore]
     public Node SpawnedNode => this;

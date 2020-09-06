@@ -234,7 +234,7 @@ public class MicrobeHUD : Node
     public override void _Ready()
     {
         compoundBars = GetTree().GetNodesInGroup("CompoundBar");
-        
+
         panelsTween = GetNode<Tween>(PanelsTweenPath);
         mouseHoverPanel = GetNode<MarginContainer>(MouseHoverPanelPath);
         pauseButton = GetNode<TextureButton>(PauseButtonPath);
@@ -577,7 +577,7 @@ public class MicrobeHUD : Node
     {
         timeElapsed += delta;
 
-        if(timeElapsed < Constants.HOVER_PANEL_UPDATE_INTERVAL)
+        if (timeElapsed < Constants.HOVER_PANEL_UPDATE_INTERVAL)
             return;
 
         timeElapsed -= Constants.HOVER_PANEL_UPDATE_INTERVAL;
