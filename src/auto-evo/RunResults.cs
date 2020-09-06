@@ -173,12 +173,16 @@
 
                 builder.Append(PatchString(patch));
 
-                builder.Append(" population: ");
+                builder.Append(" ");
+                builder.Append(TranslationServer.Translate("RUNRESULT_POP"));
+                builder.Append(" ");
                 builder.Append(Math.Max(population, 0));
 
                 if (previousPopulations != null)
                 {
-                    builder.Append(" previous: ");
+                    builder.Append(" ");
+                    builder.Append(TranslationServer.Translate("RUNRESULT_PREVIOUS"));
+                    builder.Append(" ");
                     builder.Append(previousPopulations.GetPatch(patch.ID).GetSpeciesPopulation(species));
                 }
 
@@ -192,11 +196,13 @@
 
                 if (entry.MutatedProperties != null)
                 {
-                    builder.Append(" has a mutation");
+                    builder.Append(" ");
+                    builder.Append(TranslationServer.Translate("RUNRESULT_HAS_MUTATION"));
 
                     if (!playerReadable)
                     {
-                        builder.Append(", gene code: ");
+                        builder.Append(TranslationServer.Translate("RUNRESULT_GENE_CODE"));
+                        builder.Append(" ");
                         builder.Append(entry.MutatedProperties.StringCode);
                     }
 
@@ -205,35 +211,31 @@
 
                 if (entry.SpreadToPatches.Count > 0)
                 {
-                    builder.Append(" spread to patches:\n");
+                    builder.Append(" ");
+                    builder.Append(TranslationServer.Translate("RUNRESULT_SPREAD_PATCHES"));
 
                     foreach (var spreadEntry in entry.SpreadToPatches)
                     {
-                        if (playerReadable)
-                        {
-                            builder.Append("  ");
-                            builder.Append(spreadEntry.To.Name);
-                            builder.Append(" by sending: ");
-                            builder.Append(spreadEntry.Population);
-                            builder.Append(" population");
-                            builder.Append(" from patch: ");
-                            builder.Append(spreadEntry.From.Name);
-                        }
-                        else
-                        {
-                            builder.Append("  ");
-                            builder.Append(spreadEntry.To.Name);
-                            builder.Append(" pop: ");
-                            builder.Append(spreadEntry.Population);
-                            builder.Append(" from: ");
-                            builder.Append(spreadEntry.From.Name);
-                        }
-
+                        builder.Append("  ");
+                        builder.Append(spreadEntry.To.Name);
+                        builder.Append(" ");
+                        builder.Append(playerReadable ?
+                            TranslationServer.Translate("RUNRESULT_BY_SENDING") :
+                            TranslationServer.Translate("RUNRESULT_POP_SHORT"));
+                        builder.Append(" ");
+                        builder.Append(spreadEntry.Population);
+                        builder.Append(" ");
+                        builder.Append(playerReadable ?
+                            TranslationServer.Translate("RUNRESULT_POP_FROM_PATCH") :
+                            TranslationServer.Translate("RUNRESULT_FROM"));
+                        builder.Append(" ");
+                        builder.Append(spreadEntry.From.Name);
                         builder.Append("\n");
                     }
                 }
 
-                builder.Append(" population in patches:\n");
+                builder.Append(" ");
+                builder.Append(TranslationServer.Translate("RUNRESULT_POP_IN_PATCHES"));
 
                 foreach (var patchPopulation in entry.NewPopulationInPatches)
                 {

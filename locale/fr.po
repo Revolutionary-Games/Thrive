@@ -1,0 +1,1663 @@
+# Translations template for PROJECT.
+# Copyright (C) 2020 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# Automatically generated, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2020-09-11 19:54+0200\n"
+"PO-Revision-Date: 2020-09-08 18:49+0200\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.8.0\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: ../src/auto-evo/AutoEvoRun.cs:158
+msgid "AUTOEVO_ABORTED"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoRun.cs:161
+msgid "AUTOEVO_FINISHED"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoRun.cs:164
+msgid "AUTOEVO_NOT_RUNNING"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoRun.cs:175
+msgid "AUTOEVO_STEPS"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoRun.cs:179
+msgid "AUTOEVO_STARTING"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoRun.cs:353
+msgid "AUTOEVO_POPULATION_CHANGE"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoRun.cs:357
+msgid "AUTOEVO_BECAUSE"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:207
+msgid "RUNRESULT_POP"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:214
+msgid "RUNRESULT_PREVIOUS"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:230
+msgid "RUNRESULT_HAS_MUTATION"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:234
+msgid "RUNRESULT_GENE_CODE"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:245
+msgid "RUNRESULT_SPREAD_PATCHES"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:253
+msgid "RUNRESULT_BY_SENDING"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:254
+msgid "RUNRESULT_POP_SHORT"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:259
+msgid "RUNRESULT_POP_FROM_PATCH"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:260
+msgid "RUNRESULT_FROM"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:268
+msgid "RUNRESULT_POP_IN_PATCHES"
+msgstr ""
+
+#: ../src/engine/FPSCounter.tscn:33
+msgid "FPS: 0"
+msgstr ""
+
+#: ../src/engine/LoadingScreen.cs:40
+msgid "LOADING_LOADING"
+msgstr ""
+
+#: ../src/engine/LoadingScreen.cs:42
+msgid "LOADING_TIP"
+msgstr ""
+
+#: ../src/general/HelpScreen.tscn:93
+msgid "HELPSCREEN_CLOSE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:110
+msgid "OPTIONS_GRAPHICS"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:122
+msgid "OPTIONS_SOUND"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:134
+msgid "OPTIONS_PERFORMANCE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:146
+msgid "OPTIONS_MISC"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:185
+msgid "OPTIONS_GRAPHICS_VSYNC"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:193
+msgid "OPTIONS_GRAPHICS_FULLSCREEN"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:215
+msgid "OPTIONS_GRAPHICS_ALIASING"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:222
+msgid "OPTIONS_GRAPHICS_ALIASING_TIP"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:248
+msgid "OPTIONS_GRAPHICS_RESOLUTION"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:261
+msgid "OPTIONS_GRAPHICS_RESOLUTION_CHOICE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:271
+msgid "OPTIONS_GRAPHICS_FPS"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:284
+msgid "OPTIONS_GRAPHICS_FPS_CHOICE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:297
+msgid "OPTIONS_GRAPHICS_COLOURBLIND"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:325
+msgid "OPTIONS_GRAPHICS_CHROMATIC"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:365
+msgid "OPTIONS_SOUND_MASTER"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:392 ../src/general/OptionsMenu.tscn:425
+msgid "OPTIONS_SOUND_MUTE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:398
+msgid "OPTIONS_SOUND_MUSIC"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:435
+msgid "OPTIONS_SOUND_LANGUAGE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:462
+msgid "OPTIONS_PERFORMANCE_COMPOUND"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:477
+msgid "OPTIONS_PERFORMANCE_SIMULATION"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:484
+msgid "OPTIONS_PERFORMANCE_SIMULATION_TIP"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:517
+msgid "OPTIONS_PERFORMANCE_CLOUD_RES"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:524
+msgid "OPTIONS_PERFORMANCE_CLOUD_RES_TIP"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:568
+msgid "OPTIONS_MISC_VIDEO"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:577
+msgid "OPTIONS_MISC_NEW_GAME_INTRO"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:586
+msgid "OPTIONS_MISC_AUTOSAVE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:597
+msgid "OPTIONS_MISC_AUTOSAVE_AMOUNT"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:625
+msgid "OPTIONS_MISC_QUICKSAVE_AMOUNT"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:655
+msgid "OPTIONS_MISC_CHEAT"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:669
+msgid "OPTIONS_BACK"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:679
+msgid "OPTIONS_RESET"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:690
+msgid "OPTIONS_SAVE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:706
+msgid "OPTIONS_DEFAULT"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:718
+msgid "OPTIONS_RESET_WARNING_TITLE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:719
+msgid "OPTIONS_RESET_WARNING"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:728
+msgid "OPTIONS_BACK_WARNING_TITLE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:752
+msgid "OPTIONS_DISCARD_WARN"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:783
+msgid "OPTIONS_SAVE_AND_CONTINUE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:792
+msgid "OPTIONS_DISCARD_AND_CONTINUE"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:808
+msgid "OPTIONS_CANCEL"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:819
+msgid "OPTIONS_ERROR"
+msgstr ""
+
+#: ../src/general/OptionsMenu.tscn:820
+msgid "OPTIONS_ERROR_TEXTS"
+msgstr ""
+
+#: ../src/general/PauseMenu.tscn:54
+msgid "PAUSE_MENU_RESUME"
+msgstr ""
+
+#: ../src/general/PauseMenu.tscn:61
+msgid "PAUSE_MENU_SAVE"
+msgstr ""
+
+#: ../src/general/PauseMenu.tscn:68
+msgid "PAUSE_MENU_LOAD"
+msgstr ""
+
+#: ../src/general/PauseMenu.tscn:76
+msgid "PAUSE_MENU_STATISTICS"
+msgstr ""
+
+#: ../src/general/PauseMenu.tscn:83
+msgid "PAUSE_MENU_HELP"
+msgstr ""
+
+#: ../src/general/PauseMenu.tscn:91
+msgid "PAUSE_MENU_OPTIONS"
+msgstr ""
+
+#: ../src/general/PauseMenu.tscn:98
+msgid "PAUSE_MENU_RETURN_MENU"
+msgstr ""
+
+#: ../src/general/PauseMenu.tscn:105
+msgid "PAUSE_MENU_EXIT"
+msgstr ""
+
+#: ../src/general/PauseMenu.tscn:130
+msgid "PAUSE_MENU_BACK"
+msgstr ""
+
+#: ../src/gui_common/MainMenu.tscn:150
+msgid "MAINMENU_NEWGAME"
+msgstr ""
+
+#: ../src/gui_common/MainMenu.tscn:160
+msgid "MAINMENU_LOADGAME"
+msgstr ""
+
+#: ../src/gui_common/MainMenu.tscn:170
+msgid "MAINMENU_OPTIONS"
+msgstr ""
+
+#: ../src/gui_common/MainMenu.tscn:180
+msgid "MAINMENU_TOOLS"
+msgstr ""
+
+#: ../src/gui_common/MainMenu.tscn:190
+msgid "MAINMENU_EXTRA"
+msgstr ""
+
+#: ../src/gui_common/MainMenu.tscn:200
+msgid "MAINMENU_CREDIT"
+msgstr ""
+
+#: ../src/gui_common/MainMenu.tscn:210
+msgid "MAINMENU_QUIT"
+msgstr ""
+
+#: ../src/gui_common/MainMenu.tscn:232
+msgid "MAINMENU_TOOLS_FREEBUILD"
+msgstr ""
+
+#: ../src/gui_common/MainMenu.tscn:242 ../src/gui_common/MainMenu.tscn:252
+#: ../src/gui_common/MainMenu.tscn:262
+msgid "???"
+msgstr ""
+
+#: ../src/gui_common/MainMenu.tscn:272
+msgid "MAINMENU_TOOLS_BACK"
+msgstr ""
+
+#: ../src/microbe_stage/Microbe.cs:1323
+msgid "MICROBE_SUCC_SCAV"
+msgstr ""
+
+#: ../src/microbe_stage/Microbe.cs:1330
+msgid "MICROBE_SUCC_KILL"
+msgstr ""
+
+#: ../src/microbe_stage/Microbe.cs:1788
+msgid "MICROBE_ESCAPE_ENGULFING"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeHUD.cs:457
+msgid "MICROBE_HUD_PATCH"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeHUD.cs:566
+#: ../src/microbe_stage/MicrobeHUD.cs:571
+#: ../src/microbe_stage/MicrobeHUD.cs:576
+#: ../src/microbe_stage/MicrobeHUD.cs:579
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1390
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1405
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1411
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1417
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1423
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1426
+msgid "MICROBE_HUD_VAL_PERC"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeHUD.cs:584
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1383
+msgid "MICROBE_HUD_VAL_CELCIUS"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeHUD.cs:649
+msgid "MICROBE_HUD_STUFF"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeHUD.cs:657
+msgid "MICROBE_HUD_NOTHING_EAT"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeHUD.cs:661
+msgid "MICROBE_HUD_AT_CURSOR"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeHUD.cs:675
+msgid "MICROBE_HUD_COUMPOUNDS"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeHUD.cs:691
+msgid "MICROBE_HUD_COUMPOUNDS_VAL"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeHUD.cs:723
+msgid "MICROBE_HUD_CELLS"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.cs:358
+msgid "MICROBE_STAGE_PLAYER_REP"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.cs:447
+msgid "MICROBE_STAGE_PLAYER_DIED"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:513
+msgid "MICROBE_STAGE_ENV"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:614
+msgid "MICROBE_STAGE_ENV_OXY"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:671
+msgid "MICROBE_STAGE_ENV_CO2"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:728
+msgid "MICROBE_STAGE_ENV_N2"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:782
+msgid "MICROBE_STAGE_ENV_TEMP"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:836
+msgid "MICROBE_STAGE_ENV_LIGHT"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:890
+msgid "MICROBE_STAGE_ENV_PRESS"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:960
+msgid "MICROBE_STAGE_COMPOUNDS"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1065
+msgid "MICROBE_STAGE_COMPOUNDS_GLUCOSE"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1117
+msgid "MICROBE_STAGE_COMPOUNDS_AMMONIA"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1169
+msgid "MICROBE_STAGE_COMPOUNDS_PHOSPHATE"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1221
+msgid "MICROBE_STAGE_COMPOUNDS_HS"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1273
+msgid "MICROBE_STAGE_COMPOUNDS_IRON"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1325
+msgid "MICROBE_STAGE_AGENTS"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1377
+msgid "MICROBE_STAGE_AGENTS_OXYTOXY"
+msgstr ""
+
+#: ../src/microbe_stage/MicrobeStage.tscn:1568
+msgid "MICROBE_STAGE_POP"
+msgstr ""
+
+#: ../src/microbe_stage/Patch.cs:149
+msgid "PATCH_PATCH"
+msgstr ""
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:21
+msgid "PATCH_PANGONIAN_VENTS"
+msgstr ""
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:29
+msgid "PATCH_MESOPELAGIC"
+msgstr ""
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:36
+msgid "PATCH_EPIPELAGIC"
+msgstr ""
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:43
+msgid "PATCH_PANGONIAN_TIDEPOOL"
+msgstr ""
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:50
+msgid "PATCH_BATHYPELAGIC"
+msgstr ""
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:57
+msgid "PATHCH_ABYSSOPELAGIC"
+msgstr ""
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:64
+msgid "PATCH_COAST"
+msgstr ""
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:71
+msgid "PATCH_PANGONIAN_ESTUARY"
+msgstr ""
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:78
+msgid "PATCH_CAVE"
+msgstr ""
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:85
+msgid "PATCH_ICE_SHELF"
+msgstr ""
+
+#: ../src/microbe_stage/PatchMapGenerator.cs:92
+msgid "PATCH_PANGONIAN_SEAFLOOR"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:681
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1117
+msgid "MICROBE_EDITOR_LOADING"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:682
+msgid "MICROBE_EDITOR_WAITING_AUTO_EVO"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1878
+msgid "MICROBE_EDITOR_AUTO_EVO_FAILED"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1879
+msgid "MICROBE_EDITOR_AUTO_EVO_STATUS"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1101
+msgid "MICROBE_EDITOR_REPORT"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1121
+msgid "MICROBE_EDITOR_PATCH"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1141
+msgid "MICROBE_EDITOR_CELL"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1240
+msgid "MICROBE_EDITOR_MP"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1301
+msgid "MICROBE_EDITOR_NEW"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1407
+msgid "MICROBE_EDITOR_CELL_STRUCTURE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1430
+msgid "MICROBE_EDITOR_CELL_MEMBRANE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1453
+msgid "MICROBE_EDITOR_CELL_BEHAVIOR"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1518
+msgid "MICROBE_EDITOR_CELL_STRUCT_ORGAN"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1582
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1688
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1772
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1858
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1949
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2034
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2119
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2222
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2306
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2391
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2494
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2578
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2662
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2747
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2832
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2917
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3001
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3086
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3172
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3312
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3400
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3488
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3576
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3665
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3762
+msgid "MICROBE_EDITOR_CELL_SELECTED"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1615
+msgid "MICROBE_EDITOR_CELL_STRUCT_CYTOPLASM"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1624
+msgid "MICROBE_EDITOR_CELL_PROKA_STRUCT"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1718
+msgid "MICROBE_EDITOR_CELL_STRUCT_METABOLO"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1802
+msgid "MICROBE_EDITOR_CELL_STRUCT_THYLAKOID"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1895
+msgid "MICROBE_EDITOR_CELL_STRUCT_CHEMOSYNTH"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1979
+msgid "MICROBE_EDITOR_CELL_STRUCT_RUSTICYANIN"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2064
+msgid "MICROBE_EDITOR_CELL_STRUCT_NITROGENASE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2149
+msgid "MICROBE_EDITOR_CELL_STRUCT_OXYTOXISOME"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2158
+msgid "MICROBE_EDITOR_CELL_EXTERN_ORGAN"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2252
+msgid "MICROBE_EDITOR_CELL_STRUCT_FLAGELLUM"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2336
+msgid "MICROBE_EDITOR_CELL_STRUCT_PILUS"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2421
+msgid "MICROBE_EDITOR_CELL_CILIA"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2430
+msgid "Internal Organelles"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2524
+msgid "MICROBE_EDITOR_CELL_NUCLEUS"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2608
+msgid "MICROBE_EDITOR_CELL_MITHOC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2692
+msgid "MICROBE_EDITOR_CELL_CHLOROPLAST"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2777
+msgid "MICROBE_EDITOR_CELL_THERMOPLAST"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2862
+msgid "MICROBE_EDITOR_CELL_CHEMOPLAST"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2947
+msgid "MICROBE_EDITOR_CELL_NFP"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3031
+msgid "MICROBE_EDITOR_CELL_VACUOLE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3116
+msgid "MICROBE_EDITOR_CELL_TOXIN_VACUOLE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3202
+msgid "MICROBE_EDITOR_CELL_BIOLUMESCENT_VACUOLE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3247
+msgid "MICROBE_EDITOR_CELL_MEMBRANE_TYPES"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3345
+msgid "MICROBE_EDITOR_CELL_MEMBRANE_NORMAL"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3433
+msgid "MICROBE_EDITOR_CELL_MEMBRANE_DOUBLE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3521
+msgid "MICROBE_EDITOR_CELL_MEMBRANE_CELLULOSE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3609
+msgid "MICROBE_EDITOR_CELL_MEMBRANE_CHITIN"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3706
+msgid "MICROBE_EDITOR_CELL_MEMBRANE_CC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3795
+msgid "MICROBE_EDITOR_CELL_MEMBRANE_SILICA"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3804
+msgid "MICROBE_EDITOR_CELL_MEMBRANE_FLUIDITY"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3822
+msgid "MICROBE_EDITOR_CELL_MEMBRANE_COLOUR"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3934
+msgid "MICROBE_EDITOR_SPECIES"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3963
+msgid "MICROBE_EDITOR_SPECIES_DEFAULT"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4039
+msgid "MICROBE_EDITOR_CELL_SYMMETRY"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4121
+msgid "MICROBE_EDITOR_CELL_CONFIRM"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4192
+msgid "22"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4200
+msgid "MICROBE_EDITOR_TOOLTIP_CYTO"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4213
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4403
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6297
+msgid "MICROBE_EDITOR_TOOLTIP_TURN_GLUCOSE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4230
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4420
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4910
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5097
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6314
+msgid "MICROBE_EDITOR_TOOLTIP_INTO_ATP"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4266
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5601
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5812
+msgid "+4"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4274
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4488
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4700
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4950
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5180
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5389
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5609
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5820
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6167
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6376
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6589
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6802
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7022
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7252
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7413
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7633
+msgid "MICROBE_EDITOR_TOOLTIP_STORAGE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4295
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4480
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4509
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4692
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4721
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4942
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4971
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5172
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5201
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5410
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5630
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5841
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7434
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7654
+msgid "+1"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4302
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4516
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4728
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4978
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5208
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5417
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5637
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5848
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6195
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6404
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6617
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6830
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7050
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7280
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7441
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7661
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7893
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8158
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8337
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8516
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8735
+msgid "MICROBE_EDITOR_TOOLTIP_OSMO_COST"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4316
+msgid "MICROBE_EDITOR_TOOLTIP_CYTO_DESC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4378
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4805
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5055
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6272
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6907
+msgid "45"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4386
+msgid "MICROBE_EDITOR_TOOLTIP_METABO"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4444
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5568
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6335
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7592
+msgid "MICROBE_EDITOR_TOOLTIP_SCALE_OXY"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4530
+msgid "MICROBE_EDITOR_TOOLTIP_METABO_DESC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4592
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6481
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7127
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7357
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7831
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8010
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8096
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8275
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8454
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8673
+msgid "50"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4600
+msgid "MICROBE_EDITOR_TOOLTIP_THYLAK"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4617
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6506
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6719
+msgid "MICROBE_EDITOR_TOOLTIP_PRODUCE_GLUCOSE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4638
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4872
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5118
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6527
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6740
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6981
+msgid "MICROBE_EDITOR_TOOLTIP_SCALE_CO2"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4659
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6548
+msgid "MICROBE_EDITOR_TOOLTIP_SCALE_AND_LIGHT"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4742
+msgid "MICROBE_EDITOR_TOOLTIP_THYLAK_DESC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4813
+msgid "MICROBE_EDITOR_TOOLTIP_CHEMO_P"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4830
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6932
+msgid "MICROBE_EDITOR_TOOLTIP_TURN_HS"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4847
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6960
+msgid "MICROBE_EDITOR_TOOLTIP_INTO_GLUCOSE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4893
+msgid "MICROBE_EDITOR_TOOLTIP_ALSO_GLUCOSE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4992
+msgid "MICROBE_EDITOR_TOOLTIP_CHEMO_P_DESC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5063
+msgid "MICROBE_EDITOR_TOOLTIP_RUSTICYANIN"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5080
+msgid "MICROBE_EDITOR_TOOLTIP_TURN_IRON"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5139
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7211
+msgid "MICROBE_EDITOR_TOOLTIP_SCALE_AND_OXYGEN"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5222
+msgid "MICROBE_EDITOR_TOOLTIP_RUSTICYANIN_DESC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5285
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5494
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5714
+msgid "55"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5293
+msgid "MICROBE_EDITOR_TOOLTIP_NITROGENASE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5310
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5519
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7152
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7543
+msgid "MICROBE_EDITOR_TOOLTIP_TURN_ATP"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5327
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7169
+msgid "MICROBE_EDITOR_TOOLTIP_INTO_AMMONIA"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5348
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7190
+msgid "MICROBE_EDITOR_TOOLTIP_SCALE_NITROGEN"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5381
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6368
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6397
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6581
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6794
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6823
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7014
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7043
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7244
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7273
+msgid "+2"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5431
+msgid "MICROBE_EDITOR_TOOLTIP_NITROGENASE_DESC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5502
+msgid "MICROBE_EDITOR_TOOLTIP_OXYTOXISOME"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5536
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7560
+msgid "MICROBE_EDITOR_TOOLTIP_INTO_OXYTOXY"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5556
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7580
+msgid "MICROBE_EDITOR_TOOLTIP_RELEASE_TOXIN"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5651
+msgid "MICROBE_EDITOR_TOOLTIP_OXYTOXISOME_DESC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5722
+msgid "MICROBE_EDITOR_TOOLTIP_FLAGELLUM"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5739
+msgid "MICROBE_EDITOR_TOOLTIP_USES_ATP"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5759
+msgid "MICROBE_EDITOR_TOOLTIP_INCREASE_SPEED"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5783
+msgid "+0.7"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5791
+msgid "MICROBE_EDITOR_TOOLTIP_SPEED"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5862
+msgid "MICROBE_EDITOR_TOOLTIP_FLAGELLUM_DESC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5925
+msgid "30"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5933
+msgid "MICROBE_EDITOR_TOOLTIP_PILUS"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5949
+msgid "MICROBE_EDITOR_TOOLTIP_PILUS_DESC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6018
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7738
+msgid "0"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6026
+msgid "MICROBE_EDITOR_TOOLTIP_CILIA"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6042
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7762
+msgid "MICROBE_EDITOR_TOOLTIP_TBI"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6111
+msgid "100"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6119
+msgid "MICROBE_EDITOR_TOOLTIP_NUCLEUS"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6135
+msgid "MICROBE_EDITOR_TOOLTIP_NUCLEUS_SMALL_DESC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6159
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7405
+msgid "+15"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6188
+msgid "+10"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6209
+msgid "MICROBE_EDITOR_TOOLTIP_NUCLEUS_DESC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6280
+msgid "MICROBE_EDITOR_TOOLTIP_MITOCHONDRION"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6418
+msgid "MICROBE_EDITOR_TOOLTIP_MITOCHONDRION_DESC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6489
+msgid "MICROBE_EDITOR_TOOLTIP_CHLOROPLAST"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6610
+msgid "+3"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6631
+msgid "MICROBE_EDITOR_TOOLTIP_CHLOROPLAST_DESC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6694
+msgid "40"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6702
+msgid "MICROBE_EDITOR_TOOLTIP_THERMOPLAST"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6761
+msgid "MICROBE_EDITOR_TOOLTIP_SCALE_AND_TEMP"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6844
+msgid "MICROBE_EDITOR_TOOLTIP_THERMOPLAST_DESC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6915
+msgid "MICROBE_EDITOR_TOOLTIP_CHEMOPLAST"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7064
+msgid "MICROBE_EDITOR_TOOLTIP_CHEMOPLAST_DESC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7135
+msgid "MICROBE_EDITOR_TOOLTIP_NFP"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7294
+msgid "MICROBE_EDITOR_TOOLTIP_NFP_DESC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7365
+msgid "MICROBE_EDITOR_TOOLTIP_VACUOLE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7381
+msgid "MICROBE_EDITOR_TOOLTIP_INCREASE_STORAGE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7455
+msgid "MICROBE_EDITOR_TOOLTIP_VACUOLE_DESC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7518
+msgid "70"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7526
+msgid "MICROBE_EDITOR_TOOLTIP_TOXIN_VACUOLE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7625
+msgid "+5"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7675
+msgid "MICROBE_EDITOR_TOOLTIP_TOXIN_VACUOLE_DESC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7746
+msgid "MICROBE_EDITOR_TOOLTIP_BIOLUM_VACUOLE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7839
+msgid "MICROBE_EDITOR_TOOLTIP_NORMAL_MEMBRANE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7857
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7906
+msgid "+0.1"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7865
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8130
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8309
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8488
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8707
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8925
+msgid "MICROBE_EDITOR_TOOLTIP_MOBILITY"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7886
+msgid "+10%"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7913
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8178
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8357
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8536
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8755
+msgid "MICROBE_EDITOR_TOOLTIP_ABSORB"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7926
+msgid "-30"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7933
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8556
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8775
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8953
+msgid "MICROBE_EDITOR_TOOLTIP_HEALTH"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7947
+msgid "MICROBE_EDITOR_TOOLTIP_NORMAL_MEMBRANE_DESC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8018
+msgid "MICROBE_EDITOR_TOOLTIP_DOUBLE_MEMBRANE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8033
+msgid "MICROBE_EDITOR_TOOLTIP_DOUBLE_MEMBRANE_DESC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8104
+msgid "MICROBE_EDITOR_TOOLTIP_CELLULOSE_MEMBRANE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8122
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8301
+msgid "-0.2"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8151
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8330
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8509
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8728
+msgid "-20%"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8171
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8350
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8529
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8748
+msgid "-0.1"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8191
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8370
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8569
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8589
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8808
+msgid "+0.2"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8198
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8576
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8795
+msgid "MICROBE_EDITOR_TOOLTIP_PHY_RES"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8212
+msgid "MICROBE_EDITOR_TOOLTIP_CELLULOSE_MEMBRANE_DESC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8283
+msgid "MICROBE_EDITOR_TOOLTIP_CHITIN_MEMBRANE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8377
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8596
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8815
+msgid "MICROBE_EDITOR_TOOLTIP_TOX_RES"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8391
+msgid "MICROBE_EDITOR_TOOLTIP_CHITIN_MEMBRANE_DESC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8462
+msgid "MICROBE_EDITOR_TOOLTIP_CC_MEMBRANE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8480
+msgid "-0.3"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8549
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8768
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8946
+msgid "+30"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8610
+msgid "MICROBE_EDITOR_TOOLTIP_CC_MEMBRANE_DESC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8681
+msgid "MICROBE_EDITOR_TOOLTIP_SILICA_MEMBRANE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8699
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8917
+msgid "-0.4"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8788
+msgid "+0.4"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8829
+msgid "MICROBE_EDITOR_TOOLTIP_SILICA_MEMBRANE_DESC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8891
+msgid "2"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8899
+msgid "MICROBE_EDITOR_TOOLTIP_MEMBRANE_RIGIDITY"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8967
+msgid "MICROBE_EDITOR_TOOLTIP_MEMBRANE_RIGIDITY_DESC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9034
+msgid "MICROBE_EDITOR_REPORT_EVO"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9052
+msgid "MICROBE_EDITOR_REPORT_EFFECTS"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9074
+msgid "MICROBE_EDITOR_REPORT_NEXT"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9181
+msgid "MICROBE_EDITOR_PATCH_EMPTY"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9270
+msgid "MICROBE_EDITOR_PATCH_PHYSICAL"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9418
+msgid "MICROBE_EDITOR_PATCH_ATMOSPHERIC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9548
+msgid "MICROBE_EDITOR_PATCH_COUMPOUNDS"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9762
+msgid "MICROBE_EDITOR_PATCH_SPECIES"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9807
+msgid "MICROBE_EDITOR_PATCH_NEXT"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9830
+msgid "MICROBE_EDITOR_PATCH_MOVE_HERE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:446
+msgid "MICROBE_EDITOR_GLUCOSE_RED"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:452
+msgid "MICROBE_EDITOR_SIZE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:458
+msgid "MICROBE_EDITOR_GEN"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:464
+msgid "MICROBE_EDITOR_SPEED"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:478
+msgid "MICROBE_EDITOR_ATP_PROD_LOW"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1058
+msgid "MICROBE_EDITOR_NO_PROCESS"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1144
+msgid "MICROBE_EDITOR_PER_SECOND"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1370
+msgid "MICROBE_EDITOR_BIOME"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1376
+msgid "MICROBE_EDITOR_BIOME_LEVEL"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1385
+msgid "MICROBE_EDITOR_BAR"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1387
+msgid "MICROBE_HUD_VAL_LUX"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1393
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1396
+msgid "MICROBE_HUD_VAL_PPM"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1446
+msgid "MICROBE_EDITOR_WITH_POP"
+msgstr ""
+
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:58
+msgid "EXTINCTION"
+msgstr ""
+
+#: ../src/microbe_stage/gui/ExtinctionBox.tscn:67
+msgid "EXTINCTION_BOX_TEXT"
+msgstr ""
+
+#: ../src/microbe_stage/gui/WinBox.tscn:57
+msgid "WIN_TITLE"
+msgstr ""
+
+#: ../src/microbe_stage/gui/WinBox.tscn:66
+msgid "WIN_TEXT"
+msgstr ""
+
+#: ../src/saving/InProgressLoad.cs:74 ../src/saving/InProgressLoad.cs:93
+#: ../src/saving/InProgressLoad.cs:142
+msgid "LOAD_LOAD_GAME"
+msgstr ""
+
+#: ../src/saving/InProgressLoad.cs:75
+msgid "LOAD_READING_SAVE"
+msgstr ""
+
+#: ../src/saving/InProgressLoad.cs:94
+msgid "LOAD_SAVE_OBJECTS"
+msgstr ""
+
+#: ../src/saving/InProgressLoad.cs:99
+msgid "LOAD_SAVE_EXC"
+msgstr ""
+
+#: ../src/saving/InProgressLoad.cs:117
+msgid "LOAD_SAVE_INVALID"
+msgstr ""
+
+#: ../src/saving/InProgressLoad.cs:118
+msgid "LOAD_SAVE_UNKNOWN_STATE"
+msgstr ""
+
+#: ../src/saving/InProgressLoad.cs:130
+msgid "LOAD_SCENE_EXC"
+msgstr ""
+
+#: ../src/saving/InProgressLoad.cs:143
+msgid "LOAD_SAVE_PROC_OBJ"
+msgstr ""
+
+#: ../src/saving/InProgressLoad.cs:156
+msgid "LOAD_SAVE_PROC_OBJ_EXC"
+msgstr ""
+
+#: ../src/saving/InProgressLoad.cs:162
+msgid "LOAD_FINISHED"
+msgstr ""
+
+#: ../src/saving/InProgressLoad.cs:185
+msgid "LOAD_ERROR"
+msgstr ""
+
+#: ../src/saving/InProgressSave.cs:172
+msgid "SAVE_SAVING"
+msgstr ""
+
+#: ../src/saving/InProgressSave.cs:202
+msgid "SAVE_FAILED"
+msgstr ""
+
+#: ../src/saving/InProgressSave.cs:203
+msgid "SAVE_ERROR"
+msgstr ""
+
+#: ../src/saving/NewSaveMenu.cs:63
+msgid "SAVE_FILE_EXISTS"
+msgstr ""
+
+#: ../src/saving/NewSaveMenu.tscn:34
+msgid "SAVE_MENU_NEW"
+msgstr ""
+
+#: ../src/saving/NewSaveMenu.tscn:51
+msgid "SAVE_MENU_NAME"
+msgstr ""
+
+#: ../src/saving/NewSaveMenu.tscn:71
+msgid "SAVE_MENU_EXTRA"
+msgstr ""
+
+#: ../src/saving/NewSaveMenu.tscn:78
+msgid "SAVE_MENU_SAVE"
+msgstr ""
+
+#: ../src/saving/NewSaveMenu.tscn:89
+msgid "SAVE_MENU_OVERWRITE"
+msgstr ""
+
+#: ../src/saving/NewSaveMenu.tscn:113
+msgid "SAVE_MENU_BACK"
+msgstr ""
+
+#: ../src/saving/NewSaveMenu.tscn:122
+msgid "SAVE_MENU_OVERWRITE_TITLE"
+msgstr ""
+
+#: ../src/saving/SaveHelper.cs:352
+msgid "SAVE_SUCCEED"
+msgstr ""
+
+#: ../src/saving/SaveHelper.cs:356
+msgid "SAVE_FAIL_EXC"
+msgstr ""
+
+#: ../src/saving/SaveList.cs:158
+msgid "SAVE_DELETE_WARN"
+msgstr ""
+
+#: ../src/saving/SaveList.cs:177
+msgid "SAVE_OLD_VERS_WARNING"
+msgstr ""
+
+#: ../src/saving/SaveList.cs:185
+msgid "SAVE_NEW_VERS_WARNING"
+msgstr ""
+
+#: ../src/saving/SaveList.tscn:31
+msgid "SAVE_LIST_LOADING"
+msgstr ""
+
+#: ../src/saving/SaveList.tscn:44
+msgid "SAVE_LIST_DEL_TITLE"
+msgstr ""
+
+#: ../src/saving/SaveList.tscn:53
+msgid "SAVE_LIST_INC_TITLE"
+msgstr ""
+
+#: ../src/saving/SaveListItem.tscn:80
+msgid "SAVE_ITEM_NAME"
+msgstr ""
+
+#: ../src/saving/SaveListItem.tscn:87 ../src/saving/SaveListItem.tscn:107
+#: ../src/saving/SaveListItem.tscn:156 ../src/saving/SaveListItem.tscn:174
+#: ../src/saving/SaveListItem.tscn:190 ../src/saving/SaveListItem.tscn:208
+#: ../src/saving/SaveListItem.tscn:224
+msgid "SAVE_ITEM_TMP"
+msgstr ""
+
+#: ../src/saving/SaveListItem.tscn:100
+msgid "SAVE_ITEM_VERSION"
+msgstr ""
+
+#: ../src/saving/SaveListItem.tscn:114
+msgid "( ! )"
+msgstr ""
+
+#: ../src/saving/SaveListItem.tscn:126
+msgid "SAVE_ITEM_SELECT"
+msgstr ""
+
+#: ../src/saving/SaveListItem.tscn:140
+msgid "SAVE_ITEM_LOAD"
+msgstr ""
+
+#: ../src/saving/SaveListItem.tscn:150
+msgid "SAVE_ITEM_CREATED"
+msgstr ""
+
+#: ../src/saving/SaveListItem.tscn:168
+msgid "SAVE_ITEM_BY"
+msgstr ""
+
+#: ../src/saving/SaveListItem.tscn:184
+msgid "SAVE_ITEM_TYPE"
+msgstr ""
+
+#: ../src/saving/SaveListItem.tscn:202
+msgid "SAVE_ITEM_PLATFORM"
+msgstr ""
+
+#: ../src/saving/SaveListItem.tscn:218
+msgid "SAVE_ITEM_DESCRIPTION"
+msgstr ""
+
+#: ../src/saving/SaveListItem.tscn:233
+msgid "SAVE_ITEM_CONFIRM_TITLE"
+msgstr ""
+
+#: ../src/saving/SaveListItem.tscn:234
+msgid "SAVE_ITEM_CONFIRM"
+msgstr ""
+
+#: ../src/saving/SaveManagerGUI.cs:195
+msgid "SAVE_DELETE_SEL_WARN"
+msgstr ""
+
+#: ../src/saving/SaveManagerGUI.cs:207
+msgid "SAVE_DELETE_OLD_WARN"
+msgstr ""
+
+#: ../src/saving/SaveManagerGUI.tscn:52
+msgid "SAVE_LOAD"
+msgstr ""
+
+#: ../src/saving/SaveManagerGUI.tscn:63
+msgid "SAVE_REFRESH"
+msgstr ""
+
+#: ../src/saving/SaveManagerGUI.tscn:70
+msgid "SAVE_DELETE"
+msgstr ""
+
+#: ../src/saving/SaveManagerGUI.tscn:77
+msgid "SAVE_CLEAN_OLD"
+msgstr ""
+
+#: ../src/saving/SaveManagerGUI.tscn:88
+msgid "SAVE_OPEN_DIR"
+msgstr ""
+
+#: ../src/saving/SaveManagerGUI.tscn:108
+msgid "SAVE_BACK"
+msgstr ""
+
+#: ../src/saving/SaveManagerGUI.tscn:119
+msgid "SAVE_TOTAL"
+msgstr ""
+
+#: ../src/saving/SaveManagerGUI.tscn:136
+msgid "SAVE_SPACE_USED"
+msgstr ""
+
+#: ../src/saving/SaveManagerGUI.tscn:153
+msgid "SAVE_SELECTED"
+msgstr ""
+
+#: ../src/saving/SaveManagerGUI.tscn:168
+msgid "SAVE_DELETE_SELECTED"
+msgstr ""
+
+#: ../src/saving/SaveManagerGUI.tscn:178
+msgid "SAVE_DELETE_OLD"
+msgstr ""
+
+#: ../src/saving/SaveStatusOverlay.tscn:51
+msgid "SAVE_STATUS_ERROR_TITLE"
+msgstr ""
+
+#: ../src/saving/SaveStatusOverlay.tscn:103
+msgid "SAVE_STATUS_COPY"
+msgstr ""

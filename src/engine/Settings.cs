@@ -141,6 +141,8 @@ public class Settings
 
     public int CloudSimulationHeight => Constants.CLOUD_Y_EXTENT / CloudResolution;
 
+    public string SelectedLanguage { get; set; } = "en";
+
     public static bool operator ==(Settings lhs, Settings rhs)
     {
         return Equals(lhs, rhs);

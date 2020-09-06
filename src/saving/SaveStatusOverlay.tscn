@@ -24,11 +24,10 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="StatusLabel" type="Label" parent="CenterContainer"]
-margin_left = 508.0
+margin_left = 640.0
 margin_top = 108.0
-margin_right = 771.0
+margin_right = 640.0
 margin_bottom = 131.0
-text = "Saving status goes here..."
 
 [node name="CenterContainer2" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -49,7 +48,7 @@ rect_min_size = Vector2( 650, 350 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 popup_exclusive = true
-window_title = "Saving Error"
+window_title = "SAVE_STATUS_ERROR_TITLE"
 resizable = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer2/ErrorPopup"]
@@ -82,13 +81,11 @@ size_flags_vertical = 3
 [node name="ExtraErrorDescription" type="Label" parent="CenterContainer2/ErrorPopup/VBoxContainer/ScrollContainer/VBoxContainer"]
 margin_right = 634.0
 margin_bottom = 23.0
-text = "Extra description goes here"
 
 [node name="Exception" type="Label" parent="CenterContainer2/ErrorPopup/VBoxContainer/ScrollContainer/VBoxContainer"]
 margin_top = 27.0
 margin_right = 634.0
 margin_bottom = 50.0
-text = "Exception info goes here"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer2/ErrorPopup/VBoxContainer"]
 margin_top = 278.0
@@ -103,6 +100,6 @@ margin_right = 634.0
 margin_bottom = 24.0
 size_flags_horizontal = 5
 size_flags_vertical = 9
-text = "Copy Error To Clipboard"
+text = "SAVE_STATUS_COPY"
 [connection signal="popup_hide" from="CenterContainer2/ErrorPopup" to="." method="OnErrorDialogDismissed"]
 [connection signal="pressed" from="CenterContainer2/ErrorPopup/VBoxContainer/VBoxContainer2/CopyErrorButton" to="." method="OnCopyToClipboardPressed"]

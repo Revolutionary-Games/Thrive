@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Globalization;
 using System.Threading.Tasks;
 using Godot;
 using Godot.Collections;
@@ -147,8 +148,11 @@ public class SaveList : ScrollContainer
     private void OnDeletePressed(string saveName)
     {
         saveToBeDeleted = saveName;
-        deleteConfirmDialog.DialogText =
-            $"Deleting this save cannot be undone, are you sure you want to permanently delete {saveName}?";
+
+        // Deleting this save cannot be undone, are you sure you want to permanently delete {0}?
+        deleteConfirmDialog.DialogText = string.Format(CultureInfo.CurrentCulture,
+            TranslationServer.Translate("SAVE_DELETE_WARN"),
+            saveName);
         deleteConfirmDialog.PopupCenteredMinsize();
     }
 
@@ -166,12 +170,7 @@ public class SaveList : ScrollContainer
     {
         saveToBeLoaded = saveName;
 
-        loadConfirmDialog.DialogText = "This save is from an old version of Thrive and may be incompatible.\n";
-        loadConfirmDialog.DialogText += "As Thrive is currently early in development ";
-        loadConfirmDialog.DialogText += "save compatibility is not a priority.\n";
-        loadConfirmDialog.DialogText += "You may report any issues you encounter, ";
-        loadConfirmDialog.DialogText += "but they aren't the highest priority right now.\n";
-        loadConfirmDialog.DialogText += "Do you want to try loading the save anyway?";
+        loadConfirmDialog.DialogText = TranslationServer.Translate("SAVE_OLD_VERS_WARNING");
         loadConfirmDialog.PopupCenteredMinsize();
     }
 
@@ -179,8 +178,7 @@ public class SaveList : ScrollContainer
     {
         saveToBeLoaded = saveName;
 
-        loadConfirmDialog.DialogText = "This save is from a newer version of Thrive and very likely incompatible.\n";
-        loadConfirmDialog.DialogText += "Do you want to try loading the save anyway?";
+        loadConfirmDialog.DialogText = TranslationServer.Translate("SAVE_NEW_VERS_WARNING");
         loadConfirmDialog.PopupCenteredMinsize();
     }
 

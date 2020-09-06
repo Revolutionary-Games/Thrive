@@ -31,7 +31,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="VBoxContainer"]
 margin_right = 1280.0
 margin_bottom = 23.0
-text = "Create New Save"
+text = "SAVE_MENU_NEW"
 align = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
@@ -46,13 +46,13 @@ margin_bottom = 36.0
 
 [node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_top = 6.0
-margin_right = 62.0
+margin_right = 177.0
 margin_bottom = 29.0
-text = "Name:"
+text = "SAVE_MENU_NAME"
 
 [node name="SaveName" type="TextEdit" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
-margin_left = 66.0
-margin_right = 1032.0
+margin_left = 181.0
+margin_right = 799.0
 margin_bottom = 36.0
 size_flags_horizontal = 3
 draw_tabs = true
@@ -60,22 +60,22 @@ draw_spaces = true
 caret_blink = true
 
 [node name="ExtraOptions" type="MenuButton" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
-margin_left = 1036.0
-margin_right = 1185.0
+margin_left = 803.0
+margin_right = 1000.0
 margin_bottom = 36.0
 custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 disabled = true
-text = "Extra Options"
+text = "SAVE_MENU_EXTRA"
 
 [node name="Save" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
-margin_left = 1189.0
+margin_left = 1004.0
 margin_right = 1280.0
 margin_bottom = 36.0
 custom_fonts/font = SubResource( 1 )
-text = "Save"
+text = "SAVE_MENU_SAVE"
 
 [node name="VSeparator" type="HSeparator" parent="VBoxContainer/VBoxContainer"]
 margin_top = 40.0
@@ -86,7 +86,7 @@ margin_bottom = 44.0
 margin_top = 48.0
 margin_right = 1280.0
 margin_bottom = 71.0
-text = "Overwrite existing save:"
+text = "SAVE_MENU_OVERWRITE"
 
 [node name="SaveList" parent="VBoxContainer/VBoxContainer" instance=ExtResource( 4 )]
 anchor_right = 0.0
@@ -105,12 +105,12 @@ margin_right = 1280.0
 margin_bottom = 720.0
 
 [node name="Back" type="Button" parent="VBoxContainer/CenterContainer"]
-margin_left = 606.0
-margin_right = 673.0
+margin_left = 546.0
+margin_right = 733.0
 margin_bottom = 24.0
 size_flags_horizontal = 0
 theme = ExtResource( 1 )
-text = "Back"
+text = "SAVE_MENU_BACK"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -119,7 +119,7 @@ __meta__ = {
 margin_right = 200.0
 margin_bottom = 71.0
 popup_exclusive = true
-window_title = "Overwrite existing save?"
+window_title = "SAVE_MENU_OVERWRITE_TITLE"
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer/Save" to="." method="SaveButtonPressed"]
 [connection signal="OnSelectedChanged" from="VBoxContainer/VBoxContainer/SaveList" to="." method="OnSelectedChanged"]
 [connection signal="pressed" from="VBoxContainer/CenterContainer/Back" to="." method="ClosePressed"]

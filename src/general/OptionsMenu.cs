@@ -1,5 +1,6 @@
 using System;
 using Godot;
+using Array = Godot.Collections.Array;
 
 /// <summary>
 ///   Handles the logic for the options menu GUI.
@@ -110,6 +111,9 @@ public class OptionsMenu : Control
     [Export]
     public NodePath ErrorAcceptBoxPath;
 
+    [Export]
+    public NodePath LanguageSelectionPath;
+
     private const float AUDIO_BAR_SCALE = 6f;
     private Button resetButton;
     private Button saveButton;
@@ -135,6 +139,7 @@ public class OptionsMenu : Control
     private CheckBox masterMuted;
     private Slider musicVolume;
     private CheckBox musicMuted;
+    private OptionButton languageSelection;
 
     // Performance tab
     private Control performanceTab;
@@ -214,6 +219,8 @@ public class OptionsMenu : Control
         masterMuted = GetNode<CheckBox>(MasterMutedPath);
         musicVolume = GetNode<Slider>(MusicVolumePath);
         musicMuted = GetNode<CheckBox>(MusicMutedPath);
+        languageSelection = GetNode<OptionButton>(LanguageSelectionPath);
+        LoadLanguages(languageSelection);
 
         // Performance
         performanceTab = GetNode<Control>(PerformanceTabPath);
@@ -466,6 +473,25 @@ public class OptionsMenu : Control
         }
     }
 
+    private void LoadLanguages(OptionButton optionButton)
+    {
+        Array locals = TranslationServer.GetLoadedLocales();
+
+        foreach (string local in locals)
+        {
+            optionButton.AddItem(local);
+        }
+
+        if (optionButton.Items.Count == 0)
+            return;
+
+        // The option button seems to have 5 items / options.
+        // This means that the second option has the index 5 in the items list, but Selected need the id 1 to works.
+        // This is strange.
+        optionButton.Selected = optionButton.Items.IndexOf(Settings.Instance.SelectedLanguage) / 5;
+        TranslationServer.SetLocale(Settings.Instance.SelectedLanguage);
+    }
+
     /*
       GUI Control Callbacks
     */
@@ -704,6 +730,15 @@ public class OptionsMenu : Control
     private void OnMaxQuickSavesValueChanged(float value)
     {
         Settings.Instance.MaxQuickSaves = (int)value;
+
+        CompareSettings();
+    }
+
+    private void OnLanguageSettingSelected(int item)
+    {
+        string local = languageSelection.GetItemText(item);
+        Settings.Instance.SelectedLanguage = local;
+        TranslationServer.SetLocale(local);
 
         CompareSettings();
     }
