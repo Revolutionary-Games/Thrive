@@ -62,6 +62,7 @@ AutoSavePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginCont
 MaxAutoSavesPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer/MaxAutoSaves")
 MaxQuickSavesPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer2/MaxQuickSaves")
 ResetConfirmationBoxPath = NodePath("CenterContainer/ResetConfirm")
+LanguageSelectionPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer3/LanguagesButton")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -344,8 +345,10 @@ margin_right = 532.0
 margin_bottom = 583.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = -0.00344642
+anchor_top = 0.00156849
+anchor_right = 0.996554
+anchor_bottom = 1.00157
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
@@ -401,6 +404,24 @@ margin_bottom = 25.0
 size_flags_horizontal = 0
 custom_styles/hover_pressed = SubResource( 2 )
 text = "Mute"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
+margin_top = 136.0
+margin_right = 517.0
+margin_bottom = 159.0
+
+[node name="Label3" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer3"]
+margin_right = 105.0
+margin_bottom = 23.0
+text = "Language:"
+align = 1
+
+[node name="LanguagesButton" type="OptionButton" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer3"]
+margin_left = 109.0
+margin_right = 517.0
+margin_bottom = 23.0
+size_flags_horizontal = 3
+text = "English"
 
 [node name="Performance" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer"]
 visible = false
@@ -674,6 +695,7 @@ dialog_text = "Are you sure you want to reset ALL settings to default values?"
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer/MasterMuted" to="." method="OnMasterMutedToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer2/MusicVolume" to="." method="OnMusicVolumeChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer2/MusicMuted" to="." method="OnMusicMutedToggled"]
+[connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer3/LanguagesButton" to="." method="LanguagesButton_itemSelected"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer/CloudInterval" to="." method="OnCloudIntervalSelected"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer2/CloudResolution" to="." method="OnCloudResolutionSelected"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/Intro" to="." method="OnIntroToggled"]
