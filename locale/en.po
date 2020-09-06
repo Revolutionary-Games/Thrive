@@ -2,12 +2,12 @@
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # Automatically generated, 2020.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-09-06 16:47+0200\n"
+"POT-Creation-Date: 2020-09-06 17:02+0200\n"
 "PO-Revision-Date: 2020-09-06 15:57+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -96,7 +96,7 @@ msgstr " population in patches:\\n"
 msgid "FPS: 0"
 msgstr "FPS: 0"
 
-#: ../src/engine/LoadingScreen.cs:34 ../src/engine/LoadingScreen.tscn:126
+#: ../src/engine/LoadingScreen.cs:34
 msgid "Loading"
 msgstr "Loading"
 
@@ -104,19 +104,7 @@ msgstr "Loading"
 msgid "TIP: press the undo button in the editor to correct a mistake"
 msgstr "TIP: press the undo button in the editor to correct a mistake"
 
-#: ../src/engine/LoadingScreen.tscn:73
-msgid "Shown image description goes here"
-msgstr "Shown image description goes here"
-
-#: ../src/engine/LoadingScreen.tscn:146
-msgid "TIP: not set"
-msgstr "TIP: not set"
-
-#: ../src/general/HelpScreen.tscn:81
-msgid "Easter egg message goes here"
-msgstr "Easter egg message goes here"
-
-#: ../src/general/HelpScreen.tscn:94
+#: ../src/general/HelpScreen.tscn:93
 msgid "Close"
 msgstr "Close"
 
@@ -255,35 +243,35 @@ msgid "Are you sure you want to reset ALL settings to default values?"
 msgstr "Are you sure you want to reset ALL settings to default values?"
 
 #: ../src/general/PauseMenu.tscn:54
-msgid "Resume"
+msgid "PAUSE_MENU_RESUME"
 msgstr "Resume"
 
 #: ../src/general/PauseMenu.tscn:61
-msgid "Save Game"
+msgid "PAUSE_MENU_SAVE"
 msgstr "Save Game"
 
 #: ../src/general/PauseMenu.tscn:68
-msgid "Load Game"
+msgid "PAUSE_MENU_LOAD"
 msgstr "Load Game"
 
 #: ../src/general/PauseMenu.tscn:76
-msgid "Statistics"
+msgid "PAUSE_MENU_STATISTICS"
 msgstr "Statistics"
 
 #: ../src/general/PauseMenu.tscn:83
-msgid "Help"
+msgid "PAUSE_MENU_HELP"
 msgstr "Help"
 
 #: ../src/general/PauseMenu.tscn:91
-msgid "Options"
+msgid "PAUSE_MENU_OPTIONS"
 msgstr "Options"
 
 #: ../src/general/PauseMenu.tscn:98
-msgid "Return to Menu"
+msgid "PAUSE_MENU_RETURN_MENU"
 msgstr "Return to Menu"
 
 #: ../src/general/PauseMenu.tscn:105
-msgid "Exit"
+msgid "PAUSE_MENU_EXIT"
 msgstr "Exit"
 
 #: ../src/general/PauseMenu.tscn:130 ../src/saving/NewSaveMenu.tscn:113
@@ -1957,6 +1945,39 @@ msgstr "Exception info goes here"
 #: ../src/saving/SaveStatusOverlay.tscn:106
 msgid "Copy Error To Clipboard"
 msgstr "Copy Error To Clipboard"
+
+#~ msgid "Shown image description goes here"
+#~ msgstr "Shown image description goes here"
+
+#~ msgid "TIP: not set"
+#~ msgstr "TIP: not set"
+
+#~ msgid "Easter egg message goes here"
+#~ msgstr "Easter egg message goes here"
+
+#~ msgid "Resume"
+#~ msgstr "Resume"
+
+#~ msgid "Save Game"
+#~ msgstr "Save Game"
+
+#~ msgid "Load Game"
+#~ msgstr "Load Game"
+
+#~ msgid "Statistics"
+#~ msgstr "Statistics"
+
+#~ msgid "Help"
+#~ msgstr "Help"
+
+#~ msgid "Options"
+#~ msgstr "Options"
+
+#~ msgid "Return to Menu"
+#~ msgstr "Return to Menu"
+
+#~ msgid "Exit"
+#~ msgstr "Exit"
 
 #~ msgid "select"
 #~ msgstr "select"

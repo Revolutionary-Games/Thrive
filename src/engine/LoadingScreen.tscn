@@ -70,7 +70,6 @@ __meta__ = {
 margin_top = 424.0
 margin_right = 500.0
 margin_bottom = 447.0
-text = "Shown image description goes here"
 align = 1
 valign = 2
 autowrap = true
@@ -115,20 +114,17 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer2"]
-margin_left = 598.0
+margin_left = 637.0
 margin_top = 54.0
-margin_right = 677.0
+margin_right = 637.0
 margin_bottom = 104.0
 
 [node name="LoadingMessage" type="Label" parent="CenterContainer2/VBoxContainer"]
-margin_right = 79.0
 margin_bottom = 23.0
-text = "Loading"
 align = 1
 
 [node name="LoadingDescription" type="Label" parent="CenterContainer2/VBoxContainer"]
 margin_top = 27.0
-margin_right = 79.0
 margin_bottom = 50.0
 align = 1
 
@@ -143,7 +139,6 @@ margin_bottom = -1.99994
 size_flags_horizontal = 3
 size_flags_vertical = 6
 custom_fonts/font = SubResource( 1 )
-text = "TIP: not set"
 valign = 2
 clip_text = true
 max_lines_visible = 1

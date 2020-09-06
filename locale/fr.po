@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-09-06 16:47+0200\n"
+"POT-Creation-Date: 2020-09-06 17:02+0200\n"
 "PO-Revision-Date: 2020-09-06 12:39+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -97,7 +97,7 @@ msgstr " population dans les patchs:\\n"
 msgid "FPS: 0"
 msgstr "FPS: 0"
 
-#: ../src/engine/LoadingScreen.cs:34 ../src/engine/LoadingScreen.tscn:126
+#: ../src/engine/LoadingScreen.cs:34
 msgid "Loading"
 msgstr "Chargement"
 
@@ -107,19 +107,7 @@ msgstr ""
 "ASTUCE : appuyez sur le bouton d'annulation dans l'éditeur pour corriger une "
 "erreur"
 
-#: ../src/engine/LoadingScreen.tscn:73
-msgid "Shown image description goes here"
-msgstr "La description de l'image montrée va ici"
-
-#: ../src/engine/LoadingScreen.tscn:146
-msgid "TIP: not set"
-msgstr "CONSEIL : pas fixé"
-
-#: ../src/general/HelpScreen.tscn:81
-msgid "Easter egg message goes here"
-msgstr "Le message de l'Easter egg va ici"
-
-#: ../src/general/HelpScreen.tscn:94
+#: ../src/general/HelpScreen.tscn:93
 msgid "Close"
 msgstr "Fermer"
 
@@ -258,36 +246,36 @@ msgstr ""
 "défaut ?"
 
 #: ../src/general/PauseMenu.tscn:54
-msgid "Resume"
-msgstr "Reprendre"
+msgid "PAUSE_MENU_RESUME"
+msgstr ""
 
 #: ../src/general/PauseMenu.tscn:61
-msgid "Save Game"
-msgstr "Sauvegarder le jeu"
+msgid "PAUSE_MENU_SAVE"
+msgstr ""
 
 #: ../src/general/PauseMenu.tscn:68
-msgid "Load Game"
-msgstr "Charger le jeu"
+msgid "PAUSE_MENU_LOAD"
+msgstr ""
 
 #: ../src/general/PauseMenu.tscn:76
-msgid "Statistics"
-msgstr "Statistiques"
+msgid "PAUSE_MENU_STATISTICS"
+msgstr ""
 
 #: ../src/general/PauseMenu.tscn:83
-msgid "Help"
-msgstr "Aide"
+msgid "PAUSE_MENU_HELP"
+msgstr ""
 
 #: ../src/general/PauseMenu.tscn:91
-msgid "Options"
-msgstr "Options"
+msgid "PAUSE_MENU_OPTIONS"
+msgstr ""
 
 #: ../src/general/PauseMenu.tscn:98
-msgid "Return to Menu"
-msgstr "Retour au menu"
+msgid "PAUSE_MENU_RETURN_MENU"
+msgstr ""
 
 #: ../src/general/PauseMenu.tscn:105
-msgid "Exit"
-msgstr "Quitter"
+msgid "PAUSE_MENU_EXIT"
+msgstr ""
 
 #: ../src/general/PauseMenu.tscn:130 ../src/saving/NewSaveMenu.tscn:113
 msgid "Back"
@@ -1979,6 +1967,39 @@ msgstr "Les informations sur les exceptions vont ici"
 #: ../src/saving/SaveStatusOverlay.tscn:106
 msgid "Copy Error To Clipboard"
 msgstr "Erreur de copie dans le presse-papiers"
+
+#~ msgid "Shown image description goes here"
+#~ msgstr "La description de l'image montrée va ici"
+
+#~ msgid "TIP: not set"
+#~ msgstr "CONSEIL : pas fixé"
+
+#~ msgid "Easter egg message goes here"
+#~ msgstr "Le message de l'Easter egg va ici"
+
+#~ msgid "Resume"
+#~ msgstr "Reprendre"
+
+#~ msgid "Save Game"
+#~ msgstr "Sauvegarder le jeu"
+
+#~ msgid "Load Game"
+#~ msgstr "Charger le jeu"
+
+#~ msgid "Statistics"
+#~ msgstr "Statistiques"
+
+#~ msgid "Help"
+#~ msgstr "Aide"
+
+#~ msgid "Options"
+#~ msgstr "Options"
+
+#~ msgid "Return to Menu"
+#~ msgstr "Retour au menu"
+
+#~ msgid "Exit"
+#~ msgstr "Quitter"
 
 #~ msgid "select"
 #~ msgstr "sélectionner"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-09-06 16:47+0200\n"
+"POT-Creation-Date: 2020-09-06 17:02+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -94,7 +94,7 @@ msgstr ""
 msgid "FPS: 0"
 msgstr ""
 
-#: ../src/engine/LoadingScreen.cs:34 ../src/engine/LoadingScreen.tscn:126
+#: ../src/engine/LoadingScreen.cs:34
 msgid "Loading"
 msgstr ""
 
@@ -102,19 +102,7 @@ msgstr ""
 msgid "TIP: press the undo button in the editor to correct a mistake"
 msgstr ""
 
-#: ../src/engine/LoadingScreen.tscn:73
-msgid "Shown image description goes here"
-msgstr ""
-
-#: ../src/engine/LoadingScreen.tscn:146
-msgid "TIP: not set"
-msgstr ""
-
-#: ../src/general/HelpScreen.tscn:81
-msgid "Easter egg message goes here"
-msgstr ""
-
-#: ../src/general/HelpScreen.tscn:94
+#: ../src/general/HelpScreen.tscn:93
 msgid "Close"
 msgstr ""
 
@@ -251,35 +239,35 @@ msgid "Are you sure you want to reset ALL settings to default values?"
 msgstr ""
 
 #: ../src/general/PauseMenu.tscn:54
-msgid "Resume"
+msgid "PAUSE_MENU_RESUME"
 msgstr ""
 
 #: ../src/general/PauseMenu.tscn:61
-msgid "Save Game"
+msgid "PAUSE_MENU_SAVE"
 msgstr ""
 
 #: ../src/general/PauseMenu.tscn:68
-msgid "Load Game"
+msgid "PAUSE_MENU_LOAD"
 msgstr ""
 
 #: ../src/general/PauseMenu.tscn:76
-msgid "Statistics"
+msgid "PAUSE_MENU_STATISTICS"
 msgstr ""
 
 #: ../src/general/PauseMenu.tscn:83
-msgid "Help"
+msgid "PAUSE_MENU_HELP"
 msgstr ""
 
 #: ../src/general/PauseMenu.tscn:91
-msgid "Options"
+msgid "PAUSE_MENU_OPTIONS"
 msgstr ""
 
 #: ../src/general/PauseMenu.tscn:98
-msgid "Return to Menu"
+msgid "PAUSE_MENU_RETURN_MENU"
 msgstr ""
 
 #: ../src/general/PauseMenu.tscn:105
-msgid "Exit"
+msgid "PAUSE_MENU_EXIT"
 msgstr ""
 
 #: ../src/general/PauseMenu.tscn:130 ../src/saving/NewSaveMenu.tscn:113
