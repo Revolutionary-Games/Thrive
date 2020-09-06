@@ -279,7 +279,7 @@ public class CompoundCloudSystem : Node
     /// </summary>
     /// <param name="position">Position to search around</param>
     /// <param name="compound">What compound to search for</param>
-    /// <param name="searchRadius">How wide to search around the point (not an actual circle, only approximate)</param>
+    /// <param name="searchRadius">How wide to search around the point</param>
     /// <param name="minConcentration">Limits search to only find concentrations higher than this</param>
     /// <returns>The nearest found point for the compound or null</returns>
     public Vector3? FindCompoundNearPoint(Vector3 position, Compound compound, float searchRadius = 120,
