@@ -77,19 +77,20 @@ Godot currently supports the following development environments:
 
 - Visual Studio 2019
 - Visual Studio Code
+- JetBrains Rider
 - MonoDevelop
 - Visual Studio for Mac
-- JetBrains Rider
 
 ### MonoDevelop
 
-On Linux MonoDevelop is recommended. To get an up to date version,
-first enable the mono repository:
+On Linux MonoDevelop and Jetbrains Rider are recommended. To get an up
+to date version, first enable the mono repository:
 https://www.mono-project.com/download/stable/ and then install the
 following packages with your package manager: `mono-complete
 monodevelop nuget`. Make sure it is a newer version of mono that comes
 with msbuild. Fedora has mono in the official repo but it is too old
-to work.
+to work. If you are going to use Rider you don't need the monodevelop
+package.
 
 On Windows don't intall Mono or MonoDevelop, it will break things.
 
@@ -98,6 +99,17 @@ addon for MonoDevelop:
 https://github.com/godotengine/godot-monodevelop-addin This is not
 needed for basic usage, so you can skip if you can't figure out how to
 install it.
+
+### Jetbrains Rider
+
+Jetbrains Rider is recommended for Thrive development on Linux. It is
+available from: https://www.jetbrains.com/rider/
+
+It has a Godot plugin which is easy to install. With Rider the
+debugging experience is better than with MonoDevelop.
+
+Rider requires mono to be installed similarly to MonoDevelop, so
+follow those instructions on how to get mono setup.
 
 ### Visual Studio 2019
 
@@ -191,6 +203,10 @@ Click on Editor. Set External Editor to your development environment. Click
 on Builds under Mono and set Build Tool to your compiler. If you have build errors,
 check if this is setup properly.
 
+On Linux it is required to use mono as the build tool as selected in
+Godot editor settings. The option to build with dotnet is creates
+broken releases.
+
 ### C# packages
 
 Thrive uses some external C# packages which need to be restored before
@@ -236,6 +252,13 @@ with MonoDevelop and in the new toolbar select the options `Thrive -
 Launch` and `Tools` then you can hit the play button to the left of
 the dropdown options. This should compile and start Thrive so that
 breakpoints set in MonoDevelop work.
+
+From Rider you can compile the game from the top right menu bar by
+selecting the `Player` target (with the Godot icon). That target
+should automatically appear once you install the Godot plugin
+(https://plugins.jetbrains.com/plugin/13882-godot-support). If it
+doesn't you should be able to manually add it with the configuration
+editor.
 
 Done
 ----
@@ -343,13 +366,19 @@ sudo npm install -g jsonlint
 
 ## Jetbrains tools
 
-Download from: https://www.jetbrains.com/resharper/download/#section=commandline
-unzip and add to PATH.
+Download from:
+https://www.jetbrains.com/resharper/download/#section=commandline
+unzip and add to PATH. Currently used version is:
+JetBrains.ReSharper.CommandLineTools.2020.2
 
 NOTE: there is more documentation on the install process here:
 https://www.jetbrains.com/help/resharper/InspectCode.html
 
+On Linux you need to install the dotnet runtime for them to work. On
+Fedora this can be done with: `sudo dnf install dotnet-runtime-3.1`
+
 ## Running the Format Checks
+
 When you are getting ready to commit you should run `ruby
 check_formatting.rb` in order to automatically run all of the
 formatting tools. Make sure that that script doesn't report any errors
@@ -366,6 +395,12 @@ script:
 ```sh
 ./install_git_hooks.rb
 ```
+
+The hook has the advantage that it will only run the checks on the
+files staged for commit saving many minutes of time. You can manually
+emulate this by creating a file in the Thrive folder called
+`files_to_check.txt` with one relative path per line specifying which
+files to check.
 
 ## Additional Tips
 

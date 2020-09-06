@@ -121,6 +121,12 @@ margin_bottom = 32.0
 custom_fonts/font = SubResource( 5 )
 text = "Loading..."
 
+[node name="Spacer" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 164.0
+margin_right = 167.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 3, 0 )
+
 [node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 98.0
 margin_top = 12.0
@@ -179,6 +185,12 @@ margin_right = 100.0
 margin_bottom = 18.0
 text = "..."
 
+[node name="Spacer" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 132.0
+margin_right = 135.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 3, 0 )
+
 [node name="Label3" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
 margin_left = 104.0
 margin_right = 132.0
@@ -206,6 +218,12 @@ margin_left = 46.0
 margin_right = 58.0
 margin_bottom = 18.0
 text = "..."
+
+[node name="Spacer" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer4"]
+margin_left = 77.0
+margin_right = 80.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 3, 0 )
 
 [node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer4"]
 margin_left = 62.0

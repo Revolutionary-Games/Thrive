@@ -20,6 +20,7 @@ LoadButtonPath = NodePath("CenterContainer/VBoxContainer/TopBox/LoadButton")
 DeleteSelectedButtonPath = NodePath("CenterContainer/VBoxContainer/TopBox/DeleteSelected")
 DeleteOldButtonPath = NodePath("CenterContainer/VBoxContainer/TopBox/DeleteOld")
 DeleteSelectedConfirmDialogPath = NodePath("CenterContainer/VBoxContainer/DeleteSelectedConfirmDialog")
+DeleteOldConfirmDialogPath = NodePath("CenterContainer/VBoxContainer/DeleteOldConfirmDialog")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -79,6 +80,17 @@ rect_min_size = Vector2( 0, 37 )
 disabled = true
 text = "Clean Up Old Saves"
 
+[node name="VSeparator2" type="VSeparator" parent="CenterContainer/VBoxContainer/TopBox"]
+margin_left = 675.0
+margin_right = 679.0
+margin_bottom = 24.0
+
+[node name="OpenSaveDir" type="Button" parent="CenterContainer/VBoxContainer/TopBox"]
+margin_left = 683.0
+margin_right = 903.0
+margin_bottom = 24.0
+text = "Open Save Directory"
+
 [node name="SaveList" parent="CenterContainer/VBoxContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
@@ -118,6 +130,12 @@ margin_right = 250.0
 margin_bottom = 29.0
 text = "0"
 
+[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer/BottomBox"]
+margin_left = 217.0
+margin_right = 220.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 3, 0 )
+
 [node name="Label3" type="Label" parent="CenterContainer/VBoxContainer/BottomBox"]
 margin_left = 254.0
 margin_top = 6.0
@@ -131,6 +149,12 @@ margin_top = 6.0
 margin_right = 404.0
 margin_bottom = 29.0
 text = "0"
+
+[node name="Spacer2" type="Control" parent="CenterContainer/VBoxContainer/BottomBox"]
+margin_left = 369.0
+margin_right = 372.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 3, 0 )
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/BottomBox"]
 margin_left = 408.0
@@ -153,9 +177,23 @@ size_flags_vertical = 5
 popup_exclusive = true
 window_title = "Delete selected Save(s)?"
 dialog_text = "Text not set..."
+
+[node name="DeleteOldConfirmDialog" type="ConfirmationDialog" parent="CenterContainer/VBoxContainer"]
+margin_right = 184.0
+margin_bottom = 97.0
+rect_min_size = Vector2( 0, 0 )
+size_flags_horizontal = 5
+size_flags_vertical = 5
+popup_exclusive = true
+window_title = "Delete old Saves?"
+dialog_text = "Text not set...
+"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox/LoadButton" to="." method="LoadFirstSelectedSaveButtonPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox/Refresh" to="." method="RefreshButtonPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox/DeleteSelected" to="." method="DeleteSelectedButtonPressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox/DeleteOld" to="." method="DeleteOldButtonPressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox/OpenSaveDir" to="." method="OpenSaveDirectoryPressed"]
 [connection signal="OnSelectedChanged" from="CenterContainer/VBoxContainer/SaveList" to="." method="OnSelectedChanged"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/BottomBox/Back" to="." method="OnBackButton"]
 [connection signal="confirmed" from="CenterContainer/VBoxContainer/DeleteSelectedConfirmDialog" to="." method="OnConfirmDeleteSelected"]
+[connection signal="confirmed" from="CenterContainer/VBoxContainer/DeleteOldConfirmDialog" to="." method="OnConfirmDeleteOld"]

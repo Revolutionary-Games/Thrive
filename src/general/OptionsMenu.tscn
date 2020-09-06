@@ -252,9 +252,9 @@ margin_right = 507.0
 margin_bottom = 159.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer4"]
-margin_right = 118.0
+margin_right = 112.0
 margin_bottom = 23.0
-text = "Resolution: "
+text = "Resolution:"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer4"]
 margin_left = 122.0
@@ -275,9 +275,9 @@ margin_right = 507.0
 margin_bottom = 192.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer3"]
-margin_right = 91.0
+margin_right = 85.0
 margin_bottom = 23.0
-text = "Max FPS: "
+text = "Max FPS:"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer3"]
 margin_left = 95.0
@@ -300,10 +300,10 @@ size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer2"]
 margin_top = 1.0
-margin_right = 237.0
+margin_right = 231.0
 margin_bottom = 24.0
 mouse_filter = 0
-text = "Colourblind Correction: "
+text = "Colourblind Correction:"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer2"]
 margin_left = 241.0
@@ -475,7 +475,7 @@ margin_bottom = 68.0
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer/VBoxContainer"]
 margin_right = 263.0
 margin_bottom = 49.0
-text = "Cloud Simulation Minimum 
+text = "Cloud Simulation Minimum
 Interval:"
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer/VBoxContainer"]
@@ -517,7 +517,7 @@ margin_right = 254.0
 margin_bottom = 23.0
 hint_tooltip = "This value only applies to new games started after changing this option"
 mouse_filter = 0
-text = "Cloud Resolution Divisor: "
+text = "Cloud Resolution Divisor:"
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer2/VBoxContainer"]
 margin_top = 27.0
