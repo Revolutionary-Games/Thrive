@@ -519,7 +519,7 @@ public class MicrobeEditor : Node, ILoadableGameState
         {
             if (!CurrentGame.GameWorld.IsAutoEvoFinished())
             {
-                LoadingScreen.Instance.Show("Loading Microbe Editor", "Waiting for auto-evo: " +
+                LoadingScreen.Instance.Show(TranslationServer.Translate("Loading Microbe Editor"), TranslationServer.Translate("Waiting for auto-evo: ") +
                     CurrentGame.GameWorld.GetAutoEvoRun().Status);
                 return;
             }
@@ -914,7 +914,7 @@ public class MicrobeEditor : Node, ILoadableGameState
         if (!CurrentGame.GameWorld.IsAutoEvoFinished())
         {
             ready = false;
-            LoadingScreen.Instance.Show("Loading Microbe Editor", CurrentGame.GameWorld.GetAutoEvoRun().Status);
+            LoadingScreen.Instance.Show(TranslationServer.Translate("Loading Microbe Editor"), CurrentGame.GameWorld.GetAutoEvoRun().Status);
         }
         else
         {
@@ -1596,7 +1596,8 @@ public class MicrobeEditor : Node, ILoadableGameState
 
         if (run?.Results == null)
         {
-            gui.UpdateAutoEvoResults("Auto-evo failed to run", "run status: " +
+            gui.UpdateAutoEvoResults(TranslationServer.Translate("Auto-evo failed to run"),
+                TranslationServer.Translate("run status: ") +
                 (run != null ? run.Status : string.Empty));
         }
         else

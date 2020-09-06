@@ -1058,13 +1058,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     internal void SuccessfulScavenge()
     {
         GameWorld.AlterSpeciesPopulation(Species,
-            Constants.CREATURE_SCAVENGE_POPULATION_GAIN, "successful scavenge");
+            Constants.CREATURE_SCAVENGE_POPULATION_GAIN, TranslationServer.Translate("successful scavenge"));
     }
 
     internal void SuccessfulKill()
     {
         GameWorld.AlterSpeciesPopulation(Species,
-            Constants.CREATURE_KILL_POPULATION_GAIN, "successful kill");
+            Constants.CREATURE_KILL_POPULATION_GAIN, TranslationServer.Translate("successful kill"));
     }
 
     private void HandleCompoundAbsorbing(float delta)
@@ -1437,7 +1437,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
                 escapeInterval = 0;
 
                 GameWorld.AlterSpeciesPopulation(Species,
-                    Constants.CREATURE_ESCAPE_POPULATION_GAIN, "escape engulfing");
+                    Constants.CREATURE_ESCAPE_POPULATION_GAIN, TranslationServer.Translate("escape engulfing"));
             }
         }
 

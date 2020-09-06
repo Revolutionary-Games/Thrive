@@ -62,7 +62,7 @@ public class InProgressLoad
         {
             case State.Initial:
                 state = State.ReadingData;
-                LoadingScreen.Instance.Show("Loading Game", "Reading save data");
+                LoadingScreen.Instance.Show(TranslationServer.Translate("Loading Game"), TranslationServer.Translate("Reading save data"));
 
                 // Start suppressing loaded node deletion
                 TemporaryLoadedNodeDeleter.Instance.AddDeletionHold(Constants.DELETION_HOLD_LOAD);
@@ -74,11 +74,11 @@ public class InProgressLoad
                 try
                 {
                     save = Save.LoadFromFile(saveName, () => Invoke.Instance.Perform(() =>
-                        LoadingScreen.Instance.Show("Loading Game", "Creating objects from save")));
+                        LoadingScreen.Instance.Show(TranslationServer.Translate("Loading Game"), TranslationServer.Translate("Creating objects from save"))));
                 }
                 catch (Exception e)
                 {
-                    ReportStatus(false, "An exception happened while loading the save data", e.ToString());
+                    ReportStatus(false, TranslationServer.Translate("An exception happened while loading the save data"), e.ToString());
                     state = State.Finished;
                     break;
                 }
@@ -95,7 +95,7 @@ public class InProgressLoad
                 }
                 catch (ArgumentException)
                 {
-                    ReportStatus(false, "Save is invalid", "Save has an unknown game state");
+                    ReportStatus(false, TranslationServer.Translate("Save is invalid"), TranslationServer.Translate("Save has an unknown game state"));
                     state = State.Finished;
                     break;
                 }
@@ -106,7 +106,7 @@ public class InProgressLoad
                 }
                 catch (Exception e)
                 {
-                    ReportStatus(false, "An exception happened while instantiating target scene", e.ToString());
+                    ReportStatus(false, TranslationServer.Translate("An exception happened while instantiating target scene"), e.ToString());
                     state = State.Finished;
                     break;
                 }
@@ -117,7 +117,7 @@ public class InProgressLoad
 
             case State.ProcessingLoadedObjects:
             {
-                LoadingScreen.Instance.Show("Loading Game", "Processing loaded objects");
+                LoadingScreen.Instance.Show(TranslationServer.Translate("Loading Game"), TranslationServer.Translate("Processing loaded objects"));
 
                 loadedState.IsLoadedFromSave = true;
 
@@ -129,12 +129,12 @@ public class InProgressLoad
                 }
                 catch (Exception e)
                 {
-                    ReportStatus(false, "An exception happened while processing loaded objects", e.ToString());
+                    ReportStatus(false, TranslationServer.Translate("An exception happened while processing loaded objects"), e.ToString());
                     state = State.Finished;
                     break;
                 }
 
-                ReportStatus(true, "Load finished", string.Empty);
+                ReportStatus(true, TranslationServer.Translate("Load finished"), string.Empty);
                 state = State.Finished;
                 break;
             }
@@ -156,7 +156,7 @@ public class InProgressLoad
                 }
                 else
                 {
-                    SaveStatusOverlay.Instance.ShowError("Error Loading", message, exception, true,
+                    SaveStatusOverlay.Instance.ShowError(TranslationServer.Translate("Error Loading"), message, exception, true,
                         () => LoadingScreen.Instance.Hide());
                 }
 

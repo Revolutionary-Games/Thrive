@@ -188,8 +188,9 @@ public class SaveManagerGUI : Control
     private void DeleteSelectedButtonPressed()
     {
         deleteSelectedConfirmDialog.DialogText =
-            "Deleting the selected save(s) cannot be undone, are you sure you want to permanently delete " +
-            $"{Selected.Count} save(s)?";
+            string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("Deleting the selected save(s) cannot be undone, are you sure you want to permanently delete {0} save(s)?"),
+                Selected.Count);
         deleteSelectedConfirmDialog.PopupCenteredMinsize();
     }
 
@@ -199,10 +200,9 @@ public class SaveManagerGUI : Control
         int quickSavesToDeleteCount = (currentQuickSaveCount - 1).Clamp(0, Settings.Instance.MaxQuickSaves);
 
         deleteOldConfirmDialog.DialogText =
-            "Deleting all old Auto and Quick saves cannot be undone, " +
-            "are you sure you want to permanently delete the following?\n" +
-            $" - {autoSavesToDeleteCount} Auto save(s)\n" +
-            $" - {quickSavesToDeleteCount} Quick save(s)";
+            string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("Deleting all old Auto and Quick saves cannot be undone, are you sure you want to permanently delete the following?\n - {0} Auto save(s)\n - {1} Quick save(s)"),
+                autoSavesToDeleteCount, quickSavesToDeleteCount);
         deleteOldConfirmDialog.PopupCenteredMinsize();
     }
 
