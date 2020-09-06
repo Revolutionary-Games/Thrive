@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 
 /// <summary>
 ///   Handles the logic for the options menu GUI
@@ -94,6 +95,9 @@ public class OptionsMenu : Control
     [Export]
     public NodePath ResetConfirmationBoxPath;
 
+    [Export]
+    public NodePath LanguageSelectionPath;
+
     private const float AUDIO_BAR_SCALE = 6.0f;
 
     // Alert Box
@@ -120,6 +124,7 @@ public class OptionsMenu : Control
     private CheckBox masterMuted;
     private Slider musicVolume;
     private CheckBox musicMuted;
+    private OptionButton languageSelection;
 
     // Performance tab
     private Control performanceTab;
@@ -166,6 +171,8 @@ public class OptionsMenu : Control
         masterMuted = GetNode<CheckBox>(MasterMutedPath);
         musicVolume = GetNode<Slider>(MusicVolumePath);
         musicMuted = GetNode<CheckBox>(MusicMutedPath);
+        languageSelection = GetNode<OptionButton>(LanguageSelectionPath);
+        LoadLanguages(languageSelection);
 
         // Performance
         performanceTab = GetNode<Control>(PerformanceTabPath);
@@ -181,6 +188,37 @@ public class OptionsMenu : Control
         maxAutosaves = GetNode<SpinBox>(MaxAutoSavesPath);
         maxQuicksaves = GetNode<SpinBox>(MaxQuickSavesPath);
         resetConfirmationBox = GetNode<ConfirmationDialog>(ResetConfirmationBoxPath);
+    }
+
+    public void LoadLanguages(OptionButton optionButton)
+    {
+        Array locals = TranslationServer.GetLoadedLocales();
+
+        foreach (string local in locals)
+        {
+            optionButton.AddItem(local);
+        }
+
+        if (optionButton.Items.Count == 0)
+            return;
+
+        if (!optionButton.Items.Contains(TranslationServer.GetLocale()))
+        {
+            TranslationServer.SetLocale(optionButton.GetItemText(0));
+        }
+        else
+        {
+            // The option button seems to have 5 items / options.
+            // This means that the second option has the index 5 in the items list, but Selected need the id 1 to works.
+            // This is strange.
+            optionButton.Selected = optionButton.Items.IndexOf(TranslationServer.GetLocale()) / 5;
+        }
+    }
+
+    public void LanguagesButton_itemSelected(int item)
+    {
+        string local = (string)languageSelection.GetItemText(item);
+        TranslationServer.SetLocale(local);
     }
 
     public override void _Process(float delta)
