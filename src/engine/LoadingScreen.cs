@@ -31,9 +31,9 @@ public class LoadingScreen : Control
     private Label tipLabel;
     private Control spinner;
 
-    private string loadingMessage = "Loading";
+    private string loadingMessage = TranslationServer.Translate("LOADING_LOADING");
     private string loadingDescription = string.Empty;
-    private string tip = "TIP: press the undo button in the editor to correct a mistake";
+    private string tip = TranslationServer.Translate("LOADING_TIP");
 
     private float totalElapsed;
 

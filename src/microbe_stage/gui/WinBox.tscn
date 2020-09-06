@@ -50,22 +50,20 @@ margin_bottom = 300.0
 alignment = 1
 
 [node name="Title" type="Label" parent="VBoxContainer"]
-margin_top = 75.0
+margin_top = 102.0
 margin_right = 1280.0
-margin_bottom = 141.0
+margin_bottom = 168.0
 custom_fonts/font = SubResource( 2 )
-text = "YOU HAVE THRIVED!"
+text = "WIN_TITLE"
 align = 1
 valign = 1
 
 [node name="Message" type="Label" parent="VBoxContainer"]
-margin_top = 145.0
+margin_top = 172.0
 margin_right = 1280.0
-margin_bottom = 223.0
+margin_bottom = 196.0
 custom_fonts/font = SubResource( 3 )
-text = "Congratulations you have won this version of Thrive!
-You may continue playing after this screen closes if you wish,
-or start a new game in a new world."
+text = "WIN_TEXT"
 align = 1
 valign = 1
 

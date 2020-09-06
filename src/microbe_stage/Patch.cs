@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using Godot;
 using Newtonsoft.Json;
 
@@ -116,6 +117,7 @@ public class Patch
 
     public override string ToString()
     {
-        return $"Patch \"{Name}\"";
+        return string.Format(CultureInfo.CurrentCulture,
+            TranslationServer.Translate("PATCH_PATCH"), Name);
     }
 }

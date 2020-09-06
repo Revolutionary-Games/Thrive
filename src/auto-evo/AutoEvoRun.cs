@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -115,13 +116,13 @@ public class AutoEvoRun
         get
         {
             if (Aborted)
-                return "Aborted.";
+                return TranslationServer.Translate("AUTOEVO_ABORTED");
 
             if (Finished)
-                return "Finished.";
+                return TranslationServer.Translate("AUTOEVO_FINISHED");
 
             if (!Running)
-                return "Not running.";
+                return TranslationServer.Translate("AUTOEVO_NOT_RUNNING");
 
             int total = totalSteps;
 
@@ -129,10 +130,13 @@ public class AutoEvoRun
             {
                 var percentage = CompletionFraction * 100;
 
-                return $"{percentage:F1}% done. {CompleteSteps:n0}/{total:n0} steps.";
+                // {0:F1}% done. {1:n0}/{2:n0} steps.
+                return string.Format(CultureInfo.CurrentCulture,
+                    TranslationServer.Translate("AUTOEVO_STEPS"),
+                    percentage, CompleteSteps, total);
             }
 
-            return "Starting";
+            return TranslationServer.Translate("AUTOEVO_STARTING");
         }
     }
 
@@ -272,9 +276,13 @@ public class AutoEvoRun
         foreach (var entry in combinedExternalEffects)
         {
             builder.Append(entry.Key.Item1.FormattedName);
-            builder.Append(" population changed by ");
+            builder.Append(" ");
+            builder.Append(TranslationServer.Translate("AUTOEVO_POPULATION_CHANGE"));
+            builder.Append(" ");
             builder.Append(entry.Value);
-            builder.Append(" because of: ");
+            builder.Append(" ");
+            builder.Append(TranslationServer.Translate("AUTOEVO_BECAUSE"));
+            builder.Append(" ");
             builder.Append(entry.Key.Item2);
             builder.Append("\n");
         }

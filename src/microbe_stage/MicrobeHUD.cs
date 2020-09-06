@@ -425,7 +425,9 @@ public class MicrobeHUD : Node
 
     public void UpdatePatchInfo(string patchName)
     {
-        patchLabel.Text = "Patch: " + patchName;
+        // Patch: {0}
+        patchLabel.Text = string.Format(CultureInfo.CurrentCulture,
+            TranslationServer.Translate("MICROBE_HUD_PATCH"), patchName);
     }
 
     public void EditorButtonPressed()
@@ -524,18 +526,27 @@ public class MicrobeHUD : Node
 
         oxygenBar.MaxValue = 100;
         oxygenBar.Value = oxygenPercentage;
-        oxygenBar.GetNode<Label>("Value").Text = oxygenPercentage + "%";
+
+        // {0}%
+        oxygenBar.GetNode<Label>("Value").Text = string.Format(CultureInfo.CurrentCulture,
+            TranslationServer.Translate("MICROBE_HUD_VAL_PERC"), oxygenPercentage);
 
         co2Bar.MaxValue = 100;
         co2Bar.Value = co2Percentage;
-        co2Bar.GetNode<Label>("Value").Text = co2Percentage + "%";
+        co2Bar.GetNode<Label>("Value").Text = string.Format(CultureInfo.CurrentCulture,
+            TranslationServer.Translate("MICROBE_HUD_VAL_PERC"), co2Percentage);
 
         nitrogenBar.MaxValue = 100;
         nitrogenBar.Value = nitrogenPercentage;
-        nitrogenBar.GetNode<Label>("Value").Text = nitrogenPercentage + "%";
+        nitrogenBar.GetNode<Label>("Value").Text = string.Format(CultureInfo.CurrentCulture,
+            TranslationServer.Translate("MICROBE_HUD_VAL_PERC"), nitrogenPercentage);
 
-        sunlightLabel.GetNode<Label>("Value").Text = sunlightPercentage + "%";
-        temperature.GetNode<Label>("Value").Text = averageTemperature + " °C";
+        sunlightLabel.GetNode<Label>("Value").Text = string.Format(CultureInfo.CurrentCulture,
+            TranslationServer.Translate("MICROBE_HUD_VAL_PERC"), sunlightPercentage);
+
+        // {0} °C
+        temperature.GetNode<Label>("Value").Text = string.Format(CultureInfo.CurrentCulture,
+            TranslationServer.Translate("MICROBE_HUD_VAL_CELCIUS"), averageTemperature);
 
         // TODO: pressure?
     }
@@ -586,7 +597,8 @@ public class MicrobeHUD : Node
 
         if (showMouseCoordinates)
         {
-            builder.AppendFormat(CultureInfo.CurrentCulture, "Stuff at {0:F1}, {1:F1}:\n",
+            builder.AppendFormat(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("MICROBE_HUD_STUFF"),
                 stage.Camera.CursorWorldPos.x, stage.Camera.CursorWorldPos.z);
         }
 
@@ -594,11 +606,11 @@ public class MicrobeHUD : Node
 
         if (compounds.Count == 0)
         {
-            builder.Append("Nothing to eat here");
+            builder.Append(TranslationServer.Translate("MICROBE_HUD_NOTHING_EAT"));
         }
         else
         {
-            builder.Append("At cursor:");
+            builder.Append(TranslationServer.Translate("MICROBE_HUD_AT_CURSOR"));
 
             bool first = true;
 
@@ -611,7 +623,7 @@ public class MicrobeHUD : Node
                     compoundsLabel.Valign = Label.VAlign.Center;
                     hoveredItems.AddChild(compoundsLabel);
                     compoundsLabel.AddConstantOverride("line_spacing", -5);
-                    compoundsLabel.Text = "Compounds: \n";
+                    compoundsLabel.Text = TranslationServer.Translate("MICROBE_HUD_COUMPOUNDS");
                 }
 
                 first = false;
@@ -623,7 +635,10 @@ public class MicrobeHUD : Node
                 var compoundIcon = GUICommon.Instance.CreateCompoundIcon(readableName, 25, 25);
 
                 var compoundsText = new StringBuilder(readableName, 150);
-                compoundsText.AppendFormat(CultureInfo.CurrentCulture, ": {0:F1}", entry.Value);
+
+                // : {0:F1}
+                compoundsText.AppendFormat(CultureInfo.CurrentCulture,
+                    TranslationServer.Translate("MICROBE_HUD_COUMPOUNDS_VAL"), entry.Value);
 
                 compoundText.Text = compoundsText.ToString();
 
@@ -649,7 +664,9 @@ public class MicrobeHUD : Node
             microbeText.Valign = Label.VAlign.Center;
             hoveredItems.AddChild(microbeText);
 
-            microbeText.Text = "Cell of species " + entry.Species.FormattedName;
+            // Cell of species {0}
+            microbeText.Text = string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("MICROBE_HUD_CELLS"), entry.Species.FormattedName);
         }
 
         mousePosLabel.Text = builder.ToString();
