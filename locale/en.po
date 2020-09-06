@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-09-06 15:02+0200\n"
+"POT-Creation-Date: 2020-09-06 15:11+0200\n"
 "PO-Revision-Date: 2020-09-06 11:41+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -249,8 +249,7 @@ msgid "Cheat keys enabled"
 msgstr "Cheat keys enabled"
 
 #: ../src/general/OptionsMenu.tscn:654 ../src/general/PauseMenu.tscn:130
-#: ../src/gui_common/MainMenu.tscn:272 ../src/saving/NewSaveMenu.tscn:113
-#: ../src/saving/SaveManagerGUI.tscn:108
+#: ../src/saving/NewSaveMenu.tscn:113 ../src/saving/SaveManagerGUI.tscn:108
 msgid "Back"
 msgstr "Back"
 
@@ -274,7 +273,7 @@ msgstr "Resume"
 msgid "Save Game"
 msgstr "Save Game"
 
-#: ../src/general/PauseMenu.tscn:68 ../src/gui_common/MainMenu.tscn:160
+#: ../src/general/PauseMenu.tscn:68
 msgid "Load Game"
 msgstr "Load Game"
 
@@ -286,7 +285,7 @@ msgstr "Statistics"
 msgid "Help"
 msgstr "Help"
 
-#: ../src/general/PauseMenu.tscn:91 ../src/gui_common/MainMenu.tscn:170
+#: ../src/general/PauseMenu.tscn:91
 msgid "Options"
 msgstr "Options"
 
@@ -299,27 +298,35 @@ msgid "Exit"
 msgstr "Exit"
 
 #: ../src/gui_common/MainMenu.tscn:150
-msgid "New Game"
+msgid "MAINMENU_NEWGAME"
 msgstr "New Game"
 
+#: ../src/gui_common/MainMenu.tscn:160
+msgid "MAINMENU_LOADGAME"
+msgstr "Load Game"
+
+#: ../src/gui_common/MainMenu.tscn:170
+msgid "MAINMENU_OPTIONS"
+msgstr "Options"
+
 #: ../src/gui_common/MainMenu.tscn:180
-msgid "Tools"
+msgid "MAINMENU_TOOLS"
 msgstr "Tools"
 
 #: ../src/gui_common/MainMenu.tscn:190
-msgid "Extras"
-msgstr "Extras"
+msgid "MAINMENU_EXTRA"
+msgstr "Extra"
 
 #: ../src/gui_common/MainMenu.tscn:200
-msgid "Credits"
+msgid "MAINMENU_CREDIT"
 msgstr "Credits"
 
 #: ../src/gui_common/MainMenu.tscn:210
-msgid "Quit"
+msgid "MAINMENU_QUIT"
 msgstr "Quit"
 
 #: ../src/gui_common/MainMenu.tscn:232
-msgid "Microbe Freebuild Editor"
+msgid "MAINMENU_TOOLS_FREEBUILD"
 msgstr "Microbe Freebuild Editor"
 
 #: ../src/gui_common/MainMenu.tscn:242 ../src/gui_common/MainMenu.tscn:252
@@ -327,9 +334,9 @@ msgstr "Microbe Freebuild Editor"
 msgid "???"
 msgstr "???"
 
-#: ../src/gui_common/MainMenu.tscn:293
-msgid "x.y.z"
-msgstr "x.y.z"
+#: ../src/gui_common/MainMenu.tscn:272
+msgid "MAINMENU_TOOLS_BACK"
+msgstr "Back"
 
 #: ../src/microbe_stage/Microbe.cs:1061
 msgid "successful scavenge"
@@ -1944,3 +1951,24 @@ msgstr "Exception info goes here"
 #: ../src/saving/SaveStatusOverlay.tscn:106
 msgid "Copy Error To Clipboard"
 msgstr "Copy Error To Clipboard"
+
+#~ msgid "New Game"
+#~ msgstr "New Game"
+
+#~ msgid "Tools"
+#~ msgstr "Tools"
+
+#~ msgid "Extras"
+#~ msgstr "Extras"
+
+#~ msgid "Credits"
+#~ msgstr "Credits"
+
+#~ msgid "Quit"
+#~ msgstr "Quit"
+
+#~ msgid "Microbe Freebuild Editor"
+#~ msgstr "Microbe Freebuild Editor"
+
+#~ msgid "x.y.z"
+#~ msgstr "x.y.z"

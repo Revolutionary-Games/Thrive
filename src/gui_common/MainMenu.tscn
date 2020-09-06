@@ -147,7 +147,7 @@ rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
 enabled_focus_mode = 0
-text = "New Game"
+text = "MAINMENU_NEWGAME"
 
 [node name="LoadGame" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/MainMenu"]
 margin_top = 50.0
@@ -157,7 +157,7 @@ rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
 enabled_focus_mode = 0
-text = "Load Game"
+text = "MAINMENU_LOADGAME"
 
 [node name="Options" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/MainMenu"]
 margin_top = 100.0
@@ -167,7 +167,7 @@ rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
 enabled_focus_mode = 0
-text = "Options"
+text = "MAINMENU_OPTIONS"
 
 [node name="Tools" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/MainMenu"]
 margin_top = 150.0
@@ -177,7 +177,7 @@ rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
 enabled_focus_mode = 0
-text = "Tools"
+text = "MAINMENU_TOOLS"
 
 [node name="Extras" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/MainMenu"]
 margin_top = 200.0
@@ -187,7 +187,7 @@ rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
 disabled = true
 enabled_focus_mode = 0
-text = "Extras"
+text = "MAINMENU_EXTRA"
 
 [node name="Credits" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/MainMenu"]
 margin_top = 250.0
@@ -197,7 +197,7 @@ rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
 disabled = true
 enabled_focus_mode = 0
-text = "Credits"
+text = "MAINMENU_CREDIT"
 
 [node name="Quit" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/MainMenu"]
 margin_top = 300.0
@@ -207,7 +207,7 @@ rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
 enabled_focus_mode = 0
-text = "Quit"
+text = "MAINMENU_QUIT"
 
 [node name="Tools" type="VBoxContainer" parent="MenuContainers/MenuCenterContainer/MenuItems" groups=[
 "MenuItem",
@@ -223,17 +223,17 @@ __meta__ = {
 }
 
 [node name="Freebuild Editor" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/Tools"]
-margin_right = 250.0
+margin_right = 295.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
 enabled_focus_mode = 0
-text = "Microbe Freebuild Editor"
+text = "MAINMENU_TOOLS_FREEBUILD"
 
 [node name="\?\?" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/Tools"]
 margin_top = 50.0
-margin_right = 250.0
+margin_right = 295.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
@@ -243,7 +243,7 @@ text = "???"
 
 [node name="\?\?_2" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/Tools"]
 margin_top = 100.0
-margin_right = 250.0
+margin_right = 295.0
 margin_bottom = 140.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
@@ -253,7 +253,7 @@ text = "???"
 
 [node name="\?\?_3" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/Tools"]
 margin_top = 150.0
-margin_right = 250.0
+margin_right = 295.0
 margin_bottom = 190.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
@@ -263,13 +263,13 @@ text = "???"
 
 [node name="Back" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/Tools"]
 margin_top = 200.0
-margin_right = 250.0
+margin_right = 295.0
 margin_bottom = 240.0
 rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
 mouse_filter = 1
 enabled_focus_mode = 0
-text = "Back"
+text = "MAINMENU_TOOLS_BACK"
 
 [node name="OptionsMenu" parent="." instance=ExtResource( 4 )]
 visible = false
@@ -290,7 +290,6 @@ mouse_filter = 1
 size_flags_horizontal = 3
 size_flags_vertical = 6
 theme = ExtResource( 2 )
-text = "x.y.z"
 align = 2
 valign = 2
 clip_text = true
