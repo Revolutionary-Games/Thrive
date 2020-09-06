@@ -72,9 +72,9 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 365.0
+margin_left = 257.0
 margin_top = 20.0
-margin_right = 914.0
+margin_right = 1022.0
 margin_bottom = 700.0
 custom_constants/separation = 5
 __meta__ = {
@@ -82,14 +82,14 @@ __meta__ = {
 }
 
 [node name="TabButtons" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
-margin_right = 549.0
+margin_right = 765.0
 margin_bottom = 35.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="GraphicsButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
-margin_right = 130.0
+margin_right = 196.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 130, 35 )
 focus_mode = 0
@@ -98,11 +98,11 @@ pressed = true
 action_mode = 0
 enabled_focus_mode = 0
 group = SubResource( 1 )
-text = "Graphics"
+text = "OPTIONS_GRAPHICS"
 
 [node name="SoundButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
-margin_left = 134.0
-margin_right = 264.0
+margin_left = 200.0
+margin_right = 369.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 130, 35 )
 focus_mode = 0
@@ -110,11 +110,11 @@ toggle_mode = true
 action_mode = 0
 enabled_focus_mode = 0
 group = SubResource( 1 )
-text = "Sound"
+text = "OPTIONS_SOUND"
 
 [node name="PerformanceButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
-margin_left = 268.0
-margin_right = 415.0
+margin_left = 373.0
+margin_right = 612.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 130, 35 )
 focus_mode = 0
@@ -122,11 +122,11 @@ toggle_mode = true
 action_mode = 0
 enabled_focus_mode = 0
 group = SubResource( 1 )
-text = "Performance"
+text = "OPTIONS_PERFORMANCE"
 
 [node name="MiscButton" type="Button" parent="CenterContainer/VBoxContainer/TabButtons"]
-margin_left = 419.0
-margin_right = 549.0
+margin_left = 616.0
+margin_right = 765.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 130, 35 )
 focus_mode = 0
@@ -134,18 +134,18 @@ toggle_mode = true
 action_mode = 0
 enabled_focus_mode = 0
 group = SubResource( 1 )
-text = "Misc"
+text = "OPTIONS_MISC"
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer/VBoxContainer"]
 margin_top = 40.0
-margin_right = 549.0
+margin_right = 765.0
 margin_bottom = 640.0
 rect_min_size = Vector2( 0, 600 )
 
 [node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/PanelContainer"]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 548.0
+margin_right = 764.0
 margin_bottom = 599.0
 custom_constants/margin_right = 15
 custom_constants/margin_top = 15
@@ -155,7 +155,7 @@ custom_constants/margin_bottom = 15
 [node name="Graphics" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer"]
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 532.0
+margin_right = 748.0
 margin_bottom = 583.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics"]
@@ -167,144 +167,142 @@ __meta__ = {
 }
 
 [node name="Vsync" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer"]
-margin_right = 101.0
+margin_right = 297.0
 margin_bottom = 25.0
 size_flags_horizontal = 0
 custom_styles/hover_pressed = SubResource( 2 )
-text = "V-sync"
+text = "OPTIONS_GRAPHICS_VSYNC"
 
 [node name="Fullscreen" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer"]
 margin_top = 35.0
-margin_right = 139.0
+margin_right = 366.0
 margin_bottom = 60.0
 size_flags_horizontal = 0
 custom_styles/hover_pressed = SubResource( 2 )
-text = "FullScreen"
+text = "OPTIONS_GRAPHICS_FULLSCREEN"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer"]
 self_modulate = Color( 1, 1, 1, 0 )
 margin_top = 70.0
-margin_right = 517.0
+margin_right = 733.0
 margin_bottom = 74.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer"]
 margin_top = 84.0
-margin_right = 517.0
+margin_right = 733.0
 margin_bottom = 126.0
 size_flags_horizontal = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer"]
-margin_right = 253.0
+margin_right = 279.0
 margin_bottom = 42.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer/VBoxContainer"]
-margin_right = 253.0
+margin_right = 279.0
 margin_bottom = 23.0
 mouse_filter = 0
-text = "Multisample anti-aliasing:"
+text = "OPTIONS_GRAPHICS_ALIASING"
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer/VBoxContainer"]
 margin_top = 27.0
-margin_right = 253.0
+margin_right = 279.0
 margin_bottom = 42.0
 custom_fonts/font = SubResource( 3 )
-text = "(higher values worsen performance)"
+text = "OPTIONS_GRAPHICS_ALIASING_TIP"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer"]
-margin_left = 257.0
-margin_right = 313.0
+margin_left = 283.0
+margin_right = 529.0
 margin_bottom = 42.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 4 )
 
 [node name="MSAAResolution" type="OptionButton" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer"]
-margin_left = 317.0
-margin_right = 517.0
+margin_left = 533.0
+margin_right = 733.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 25 )
 size_flags_vertical = 0
-text = "Disabled"
 items = [ "Disabled", null, false, 0, null, "2x", null, false, 1, null, "4x", null, false, 2, null, "8x", null, false, 3, null, "16x", null, false, 4, null ]
 selected = 0
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer"]
 margin_top = 136.0
-margin_right = 517.0
+margin_right = 733.0
 margin_bottom = 159.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer4"]
-margin_right = 112.0
+margin_right = 311.0
 margin_bottom = 23.0
-text = "Resolution:"
+text = "OPTIONS_GRAPHICS_RESOLUTION"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer4"]
-margin_left = 116.0
-margin_right = 468.0
+margin_left = 315.0
+margin_right = 337.0
 margin_bottom = 23.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 4 )
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer4"]
-margin_left = 472.0
-margin_right = 517.0
+margin_left = 341.0
+margin_right = 733.0
 margin_bottom = 23.0
-text = "auto"
+text = "OPTIONS_GRAPHICS_RESOLUTION_CHOICE"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer"]
 margin_top = 169.0
-margin_right = 517.0
+margin_right = 733.0
 margin_bottom = 192.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer3"]
-margin_right = 85.0
+margin_right = 231.0
 margin_bottom = 23.0
-text = "Max FPS:"
+text = "OPTIONS_GRAPHICS_FPS"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer3"]
-margin_left = 89.0
-margin_right = 474.0
+margin_left = 235.0
+margin_right = 417.0
 margin_bottom = 23.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 4 )
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer3"]
-margin_left = 478.0
-margin_right = 517.0
+margin_left = 421.0
+margin_right = 733.0
 margin_bottom = 23.0
-text = "400"
+text = "OPTIONS_GRAPHICS_FPS_CHOICE"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer"]
 margin_top = 202.0
-margin_right = 517.0
+margin_right = 733.0
 margin_bottom = 227.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer2"]
 margin_top = 1.0
-margin_right = 231.0
+margin_right = 325.0
 margin_bottom = 24.0
 mouse_filter = 0
-text = "Colourblind Correction:"
+text = "OPTIONS_GRAPHICS_COLOURBLIND"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer2"]
-margin_left = 235.0
-margin_right = 313.0
+margin_left = 329.0
+margin_right = 529.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 4 )
 
 [node name="ColourblindSetting" type="OptionButton" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer2"]
-margin_left = 317.0
-margin_right = 517.0
+margin_left = 533.0
+margin_right = 733.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 25 )
-text = "None"
 items = [ "None", null, false, 0, null, "Protanope (Red-Green)", null, false, 1, null, "Tritanope (Blue-Yellow)", null, false, 2, null ]
 selected = 0
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer"]
 margin_top = 237.0
-margin_right = 517.0
+margin_right = 733.0
 margin_bottom = 262.0
 size_flags_horizontal = 3
 
@@ -316,20 +314,20 @@ pressed = true
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer5"]
 margin_left = 20.0
 margin_top = 1.0
-margin_right = 235.0
+margin_right = 320.0
 margin_bottom = 24.0
-text = "Chromatic Aberration:"
+text = "OPTIONS_GRAPHICS_CHROMATIC"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer5"]
-margin_left = 239.0
-margin_right = 313.0
+margin_left = 324.0
+margin_right = 526.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 4 )
 
 [node name="ChromaticAmount" type="HSlider" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer5"]
-margin_left = 317.0
-margin_right = 517.0
+margin_left = 530.0
+margin_right = 733.0
 margin_bottom = 15.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
@@ -341,7 +339,7 @@ value = 20.0
 visible = false
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 532.0
+margin_right = 748.0
 margin_bottom = 583.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound"]
@@ -355,79 +353,78 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
-margin_right = 517.0
+margin_right = 733.0
 margin_bottom = 23.0
-text = "Master volume"
+text = "OPTIONS_SOUND_MASTER"
 align = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
 margin_top = 33.0
-margin_right = 517.0
+margin_right = 733.0
 margin_bottom = 58.0
 
 [node name="MasterVolume" type="HSlider" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer"]
-margin_right = 442.0
+margin_right = 473.0
 margin_bottom = 15.0
 size_flags_horizontal = 3
 value = 100.0
 
 [node name="MasterMuted" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer"]
-margin_left = 446.0
-margin_right = 517.0
+margin_left = 477.0
+margin_right = 733.0
 margin_bottom = 25.0
 size_flags_horizontal = 0
 custom_styles/hover_pressed = SubResource( 2 )
-text = "Mute"
+text = "OPTIONS_SOUND_MUTE"
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
 margin_top = 68.0
-margin_right = 517.0
+margin_right = 733.0
 margin_bottom = 91.0
-text = "Music volume"
+text = "OPTIONS_SOUND_MUSIC"
 align = 1
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
 margin_top = 101.0
-margin_right = 517.0
+margin_right = 733.0
 margin_bottom = 126.0
 
 [node name="MusicVolume" type="HSlider" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer2"]
-margin_right = 442.0
+margin_right = 473.0
 margin_bottom = 15.0
 size_flags_horizontal = 3
 value = 80.0
 
 [node name="MusicMuted" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer2"]
-margin_left = 446.0
-margin_right = 517.0
+margin_left = 477.0
+margin_right = 733.0
 margin_bottom = 25.0
 size_flags_horizontal = 0
 custom_styles/hover_pressed = SubResource( 2 )
-text = "Mute"
+text = "OPTIONS_SOUND_MUTE"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
 margin_top = 136.0
-margin_right = 517.0
+margin_right = 733.0
 margin_bottom = 159.0
 
 [node name="Label3" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer3"]
-margin_right = 105.0
+margin_right = 267.0
 margin_bottom = 23.0
-text = "Language:"
+text = "OPTIONS_SOUND_LANGUAGE"
 align = 1
 
 [node name="LanguagesButton" type="OptionButton" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer3"]
-margin_left = 109.0
-margin_right = 517.0
+margin_left = 271.0
+margin_right = 733.0
 margin_bottom = 23.0
 size_flags_horizontal = 3
-text = "English"
 
 [node name="Performance" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer"]
 visible = false
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 532.0
+margin_right = 748.0
 margin_bottom = 583.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance"]
@@ -439,102 +436,99 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer"]
-margin_right = 517.0
+margin_right = 733.0
 margin_bottom = 23.0
-text = "Compound clouds"
+text = "OPTIONS_PERFORMANCE_COMPOUND"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer"]
 margin_top = 33.0
-margin_right = 517.0
-margin_bottom = 101.0
+margin_right = 733.0
+margin_bottom = 75.0
 size_flags_horizontal = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer"]
-margin_right = 263.0
-margin_bottom = 68.0
+margin_right = 350.0
+margin_bottom = 42.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer/VBoxContainer"]
-margin_right = 263.0
-margin_bottom = 49.0
-text = "Cloud Simulation Minimum
-Interval:"
+margin_right = 350.0
+margin_bottom = 23.0
+text = "OPTIONS_PERFORMANCE_SIMULATION"
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer/VBoxContainer"]
-margin_top = 53.0
-margin_right = 263.0
-margin_bottom = 68.0
+margin_top = 27.0
+margin_right = 350.0
+margin_bottom = 42.0
 custom_fonts/font = SubResource( 3 )
-text = "(higher values increase performance)"
+text = "OPTIONS_PERFORMANCE_SIMULATION_TIP"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer"]
-margin_left = 267.0
-margin_right = 313.0
-margin_bottom = 68.0
+margin_left = 354.0
+margin_right = 529.0
+margin_bottom = 42.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 5 )
 
 [node name="CloudInterval" type="OptionButton" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer"]
-margin_left = 317.0
-margin_right = 517.0
+margin_left = 533.0
+margin_right = 733.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 25 )
 size_flags_vertical = 0
-text = "40ms"
 items = [ "0ms", null, false, 0, null, "20ms", null, false, 1, null, "40ms", null, false, 2, null, "100ms", null, false, 3, null, "250ms", null, false, 4, null ]
 selected = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer"]
-margin_top = 111.0
-margin_right = 517.0
-margin_bottom = 153.0
+margin_top = 85.0
+margin_right = 733.0
+margin_bottom = 127.0
 size_flags_horizontal = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer2"]
-margin_right = 254.0
+margin_right = 351.0
 margin_bottom = 42.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_right = 254.0
+margin_right = 351.0
 margin_bottom = 23.0
 hint_tooltip = "This value only applies to new games started after changing this option"
 mouse_filter = 0
-text = "Cloud Resolution Divisor:"
+text = "OPTIONS_PERFORMANCE_CLOUD_RES"
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer2/VBoxContainer"]
 margin_top = 27.0
-margin_right = 254.0
+margin_right = 351.0
 margin_bottom = 42.0
 custom_fonts/font = SubResource( 3 )
-text = "(higher values increase performance)"
+text = "OPTIONS_PERFORMANCE_CLOUD_RES_TIP"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer2"]
-margin_left = 258.0
-margin_right = 313.0
+margin_left = 355.0
+margin_right = 529.0
 margin_bottom = 42.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 5 )
 
 [node name="CloudResolution" type="OptionButton" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer2"]
-margin_left = 317.0
-margin_right = 517.0
+margin_left = 533.0
+margin_right = 733.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 25 )
 size_flags_vertical = 0
 disabled = true
-text = "2"
 items = [ "1", null, false, 0, null, "2", null, false, 1, null, "4", null, false, 2, null ]
 selected = 1
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer"]
-margin_top = 163.0
-margin_right = 517.0
-margin_bottom = 167.0
+margin_top = 137.0
+margin_right = 733.0
+margin_bottom = 141.0
 
 [node name="Misc" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer"]
 visible = false
 margin_left = 15.0
 margin_top = 15.0
-margin_right = 532.0
+margin_right = 748.0
 margin_bottom = 583.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc"]
@@ -546,51 +540,51 @@ __meta__ = {
 }
 
 [node name="Intro" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer"]
-margin_right = 188.0
+margin_right = 237.0
 margin_bottom = 25.0
 size_flags_horizontal = 0
 custom_styles/hover_pressed = SubResource( 2 )
-text = "Play intro video"
+text = "OPTIONS_MISC_VIDEO"
 
 [node name="MicrobeIntro" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer"]
 margin_top = 35.0
-margin_right = 368.0
+margin_right = 362.0
 margin_bottom = 60.0
 rect_pivot_offset = Vector2( 114, 23 )
 size_flags_horizontal = 0
 custom_styles/hover_pressed = SubResource( 2 )
-text = "Play Microbe Intro on New Game"
+text = "OPTIONS_MISC_NEW_GAME_INTRO"
 
 [node name="AutoSave" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer"]
 margin_top = 70.0
-margin_right = 307.0
+margin_right = 283.0
 margin_bottom = 95.0
 rect_pivot_offset = Vector2( 114, 23 )
 size_flags_horizontal = 0
 custom_styles/hover_pressed = SubResource( 2 )
-text = "Autosave during the game"
+text = "OPTIONS_MISC_AUTOSAVE"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer"]
 margin_top = 105.0
-margin_right = 520.0
+margin_right = 733.0
 margin_bottom = 130.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer"]
 margin_top = 1.0
-margin_right = 301.0
+margin_right = 329.0
 margin_bottom = 24.0
-text = "Amount of autosaves to keep:"
+text = "OPTIONS_MISC_AUTOSAVE_AMOUNT"
 
 [node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer"]
-margin_left = 305.0
-margin_right = 316.0
+margin_left = 333.0
+margin_right = 529.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 5 )
 
 [node name="MaxAutoSaves" type="SpinBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer"]
-margin_left = 320.0
-margin_right = 520.0
+margin_left = 533.0
+margin_right = 733.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 25 )
 size_flags_vertical = 0
@@ -600,25 +594,25 @@ value = 1.0
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer"]
 margin_top = 140.0
-margin_right = 520.0
+margin_right = 733.0
 margin_bottom = 165.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer2"]
 margin_top = 1.0
-margin_right = 309.0
+margin_right = 336.0
 margin_bottom = 24.0
-text = "Amount of quicksaves to keep:"
+text = "OPTIONS_MISC_QUICKSAVE_AMOUNT"
 
 [node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer2"]
-margin_left = 313.0
-margin_right = 316.0
+margin_left = 340.0
+margin_right = 529.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 5 )
 
 [node name="MaxQuickSaves" type="SpinBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer2"]
-margin_left = 320.0
-margin_right = 520.0
+margin_left = 533.0
+margin_right = 733.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 25 )
 size_flags_vertical = 0
@@ -628,46 +622,46 @@ value = 1.0
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer"]
 margin_top = 175.0
-margin_right = 520.0
+margin_right = 733.0
 margin_bottom = 179.0
 
 [node name="Cheats" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer"]
 margin_top = 189.0
-margin_right = 239.0
+margin_right = 243.0
 margin_bottom = 214.0
 size_flags_horizontal = 0
 custom_styles/hover_pressed = SubResource( 2 )
-text = "Cheat keys enabled"
+text = "OPTIONS_MISC_CHEAT"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
 margin_top = 645.0
-margin_right = 549.0
+margin_right = 765.0
 margin_bottom = 680.0
 
 [node name="Back" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-margin_right = 100.0
+margin_right = 153.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 100, 35 )
-text = "Back"
+text = "OPTIONS_BACK"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-margin_left = 104.0
-margin_right = 241.0
+margin_left = 157.0
+margin_right = 597.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 6 )
 
 [node name="Reset" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-margin_left = 245.0
-margin_right = 549.0
+margin_left = 601.0
+margin_right = 765.0
 margin_bottom = 35.0
-text = "Reset ALL to Default Settings"
+text = "OPTIONS_RESET"
 __meta__ = {
 "_edit_use_anchors_": false
 }

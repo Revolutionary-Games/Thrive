@@ -2,13 +2,13 @@
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # Automatically generated, 2020.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-09-06 15:11+0200\n"
-"PO-Revision-Date: 2020-09-06 11:41+0200\n"
+"POT-Creation-Date: 2020-09-06 15:47+0200\n"
+"PO-Revision-Date: 2020-09-06 15:57+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: en\n"
@@ -17,6 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.8.0\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.4.1\n"
 
 #: ../src/auto-evo/AutoEvoRun.cs:119
 msgid "Aborted."
@@ -120,148 +121,136 @@ msgid "Close"
 msgstr "Close"
 
 #: ../src/general/OptionsMenu.tscn:101
-msgid "Graphics"
+msgid "OPTIONS_GRAPHICS"
 msgstr "Graphics"
 
 #: ../src/general/OptionsMenu.tscn:113
-msgid "Sound"
+msgid "OPTIONS_SOUND"
 msgstr "Sound"
 
 #: ../src/general/OptionsMenu.tscn:125
-msgid "Performance"
+msgid "OPTIONS_PERFORMANCE"
 msgstr "Performance"
 
 #: ../src/general/OptionsMenu.tscn:137
-msgid "Misc"
+msgid "OPTIONS_MISC"
 msgstr "Misc"
 
 #: ../src/general/OptionsMenu.tscn:174
-msgid "V-sync"
+msgid "OPTIONS_GRAPHICS_VSYNC"
 msgstr "V-sync"
 
 #: ../src/general/OptionsMenu.tscn:182
-msgid "FullScreen"
+msgid "OPTIONS_GRAPHICS_FULLSCREEN"
 msgstr "FullScreen"
 
 #: ../src/general/OptionsMenu.tscn:204
-msgid "Multisample anti-aliasing:"
+msgid "OPTIONS_GRAPHICS_ALIASING"
 msgstr "Multisample anti-aliasing:"
 
 #: ../src/general/OptionsMenu.tscn:211
-msgid "(higher values worsen performance)"
+msgid "OPTIONS_GRAPHICS_ALIASING_TIP"
 msgstr "(higher values worsen performance)"
 
-#: ../src/general/OptionsMenu.tscn:226
-msgid "Disabled"
-msgstr "Disabled"
-
-#: ../src/general/OptionsMenu.tscn:238
-msgid "Resolution:"
+#: ../src/general/OptionsMenu.tscn:237
+msgid "OPTIONS_GRAPHICS_RESOLUTION"
 msgstr "Resolution:"
 
-#: ../src/general/OptionsMenu.tscn:251
-msgid "auto"
+#: ../src/general/OptionsMenu.tscn:250
+msgid "OPTIONS_GRAPHICS_RESOLUTION_CHOICE"
 msgstr "auto"
 
-#: ../src/general/OptionsMenu.tscn:261
-msgid "Max FPS:"
+#: ../src/general/OptionsMenu.tscn:260
+msgid "OPTIONS_GRAPHICS_FPS"
 msgstr "Max FPS:"
 
-#: ../src/general/OptionsMenu.tscn:274
-msgid "400"
+#: ../src/general/OptionsMenu.tscn:273
+msgid "OPTIONS_GRAPHICS_FPS_CHOICE"
 msgstr "400"
 
-#: ../src/general/OptionsMenu.tscn:287
-msgid "Colourblind Correction:"
+#: ../src/general/OptionsMenu.tscn:286
+msgid "OPTIONS_GRAPHICS_COLOURBLIND"
 msgstr "Colourblind Correction:"
 
-#: ../src/general/OptionsMenu.tscn:301
-msgid "None"
-msgstr "None"
-
-#: ../src/general/OptionsMenu.tscn:321
-msgid "Chromatic Aberration:"
+#: ../src/general/OptionsMenu.tscn:319
+msgid "OPTIONS_GRAPHICS_CHROMATIC"
 msgstr "Chromatic Aberration:"
 
-#: ../src/general/OptionsMenu.tscn:360
-msgid "Master volume"
+#: ../src/general/OptionsMenu.tscn:358
+msgid "OPTIONS_SOUND_MASTER"
 msgstr "Master volume"
 
-#: ../src/general/OptionsMenu.tscn:380 ../src/general/OptionsMenu.tscn:406
-msgid "Mute"
+#: ../src/general/OptionsMenu.tscn:378 ../src/general/OptionsMenu.tscn:404
+msgid "OPTIONS_SOUND_MUTE"
 msgstr "Mute"
 
-#: ../src/general/OptionsMenu.tscn:386
-msgid "Music volume"
+#: ../src/general/OptionsMenu.tscn:384
+msgid "OPTIONS_SOUND_MUSIC"
 msgstr "Music volume"
 
-#: ../src/general/OptionsMenu.tscn:416
-msgid "Language:"
+#: ../src/general/OptionsMenu.tscn:414
+msgid "OPTIONS_SOUND_LANGUAGE"
 msgstr "Language:"
 
-#: ../src/general/OptionsMenu.tscn:424
-msgid "English"
-msgstr "English"
-
-#: ../src/general/OptionsMenu.tscn:444
-msgid "Compound clouds"
+#: ../src/general/OptionsMenu.tscn:441
+msgid "OPTIONS_PERFORMANCE_COMPOUND"
 msgstr "Compound clouds"
 
-#: ../src/general/OptionsMenu.tscn:467 ../src/general/OptionsMenu.tscn:508
-msgid "(higher values increase performance)"
+#: ../src/general/OptionsMenu.tscn:456
+msgid "OPTIONS_PERFORMANCE_SIMULATION"
+msgstr ""
+"Cloud Simulation Minimum\n"
+"Interval:"
+
+#: ../src/general/OptionsMenu.tscn:463
+msgid "OPTIONS_PERFORMANCE_SIMULATION_TIP"
 msgstr "(higher values increase performance)"
 
-#: ../src/general/OptionsMenu.tscn:482
-msgid "40ms"
-msgstr "40ms"
-
-#: ../src/general/OptionsMenu.tscn:501
-msgid "Cloud Resolution Divisor:"
+#: ../src/general/OptionsMenu.tscn:496
+msgid "OPTIONS_PERFORMANCE_CLOUD_RES"
 msgstr "Cloud Resolution Divisor:"
 
-#: ../src/general/OptionsMenu.tscn:524
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9425
-msgid "2"
-msgstr "2"
+#: ../src/general/OptionsMenu.tscn:503
+msgid "OPTIONS_PERFORMANCE_CLOUD_RES_TIP"
+msgstr "(higher values increase performance)"
 
-#: ../src/general/OptionsMenu.tscn:553
-msgid "Play intro video"
+#: ../src/general/OptionsMenu.tscn:547
+msgid "OPTIONS_MISC_VIDEO"
 msgstr "Play intro video"
 
-#: ../src/general/OptionsMenu.tscn:562
-msgid "Play Microbe Intro on New Game"
+#: ../src/general/OptionsMenu.tscn:556
+msgid "OPTIONS_MISC_NEW_GAME_INTRO"
 msgstr "Play Microbe Intro on New Game"
 
-#: ../src/general/OptionsMenu.tscn:571
-msgid "Autosave during the game"
+#: ../src/general/OptionsMenu.tscn:565
+msgid "OPTIONS_MISC_AUTOSAVE"
 msgstr "Autosave during the game"
 
-#: ../src/general/OptionsMenu.tscn:582
-msgid "Amount of autosaves to keep:"
+#: ../src/general/OptionsMenu.tscn:576
+msgid "OPTIONS_MISC_AUTOSAVE_AMOUNT"
 msgstr "Amount of autosaves to keep:"
 
-#: ../src/general/OptionsMenu.tscn:610
-msgid "Amount of quicksaves to keep:"
+#: ../src/general/OptionsMenu.tscn:604
+msgid "OPTIONS_MISC_QUICKSAVE_AMOUNT"
 msgstr "Amount of quicksaves to keep:"
 
-#: ../src/general/OptionsMenu.tscn:640
-msgid "Cheat keys enabled"
+#: ../src/general/OptionsMenu.tscn:634
+msgid "OPTIONS_MISC_CHEAT"
 msgstr "Cheat keys enabled"
 
-#: ../src/general/OptionsMenu.tscn:654 ../src/general/PauseMenu.tscn:130
-#: ../src/saving/NewSaveMenu.tscn:113 ../src/saving/SaveManagerGUI.tscn:108
-msgid "Back"
+#: ../src/general/OptionsMenu.tscn:648
+msgid "OPTIONS_BACK"
 msgstr "Back"
 
-#: ../src/general/OptionsMenu.tscn:670
-msgid "Reset ALL to Default Settings"
+#: ../src/general/OptionsMenu.tscn:664
+msgid "OPTIONS_RESET"
 msgstr "Reset ALL to Default Settings"
 
-#: ../src/general/OptionsMenu.tscn:682
+#: ../src/general/OptionsMenu.tscn:676
 msgid "Reset settings to defaults?"
 msgstr "Reset settings to defaults?"
 
-#: ../src/general/OptionsMenu.tscn:683
+#: ../src/general/OptionsMenu.tscn:677
 msgid "Are you sure you want to reset ALL settings to default values?"
 msgstr "Are you sure you want to reset ALL settings to default values?"
 
@@ -296,6 +285,11 @@ msgstr "Return to Menu"
 #: ../src/general/PauseMenu.tscn:105
 msgid "Exit"
 msgstr "Exit"
+
+#: ../src/general/PauseMenu.tscn:130 ../src/saving/NewSaveMenu.tscn:113
+#: ../src/saving/SaveManagerGUI.tscn:108
+msgid "Back"
+msgstr "Back"
 
 #: ../src/gui_common/MainMenu.tscn:150
 msgid "MAINMENU_NEWGAME"
@@ -1553,6 +1547,10 @@ msgstr "-0.4"
 msgid "+0.4"
 msgstr "+0.4"
 
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9425
+msgid "2"
+msgstr "2"
+
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:9500
 msgid ""
 "A more rigid membrane is more resistant to damage, but will make it harder "
@@ -1951,6 +1949,102 @@ msgstr "Exception info goes here"
 #: ../src/saving/SaveStatusOverlay.tscn:106
 msgid "Copy Error To Clipboard"
 msgstr "Copy Error To Clipboard"
+
+#~ msgid "Graphics"
+#~ msgstr "Graphics"
+
+#~ msgid "Sound"
+#~ msgstr "Sound"
+
+#~ msgid "Performance"
+#~ msgstr "Performance"
+
+#~ msgid "Misc"
+#~ msgstr "Misc"
+
+#~ msgid "V-sync"
+#~ msgstr "V-sync"
+
+#~ msgid "FullScreen"
+#~ msgstr "FullScreen"
+
+#~ msgid "Multisample anti-aliasing:"
+#~ msgstr "Multisample anti-aliasing:"
+
+#~ msgid "(higher values worsen performance)"
+#~ msgstr "(higher values worsen performance)"
+
+#~ msgid "Disabled"
+#~ msgstr "Disabled"
+
+#~ msgid "Resolution:"
+#~ msgstr "Resolution:"
+
+#~ msgid "auto"
+#~ msgstr "auto"
+
+#~ msgid "Max FPS:"
+#~ msgstr "Max FPS:"
+
+#~ msgid "400"
+#~ msgstr "400"
+
+#~ msgid "Colourblind Correction:"
+#~ msgstr "Colourblind Correction:"
+
+#~ msgid "None"
+#~ msgstr "None"
+
+#~ msgid "Chromatic Aberration:"
+#~ msgstr "Chromatic Aberration:"
+
+#~ msgid "Master volume"
+#~ msgstr "Master volume"
+
+#~ msgid "Mute"
+#~ msgstr "Mute"
+
+#~ msgid "Music volume"
+#~ msgstr "Music volume"
+
+#~ msgid "Language:"
+#~ msgstr "Language:"
+
+#~ msgid "English"
+#~ msgstr "English"
+
+#~ msgid "Compound clouds"
+#~ msgstr "Compound clouds"
+
+#~ msgid "(higher values increase performance)"
+#~ msgstr "(higher values increase performance)"
+
+#~ msgid "40ms"
+#~ msgstr "40ms"
+
+#~ msgid "Cloud Resolution Divisor:"
+#~ msgstr "Cloud Resolution Divisor:"
+
+#~ msgid "Play intro video"
+#~ msgstr "Play intro video"
+
+#~ msgid "Play Microbe Intro on New Game"
+#~ msgstr "Play Microbe Intro on New Game"
+
+#~ msgid "Autosave during the game"
+#~ msgstr "Autosave during the game"
+
+#~ msgid "Amount of autosaves to keep:"
+#~ msgstr "Amount of autosaves to keep:"
+
+#~ msgid "Amount of quicksaves to keep:"
+#~ msgstr "Amount of quicksaves to keep:"
+
+#~ msgid "Cheat keys enabled"
+#~ msgstr "Cheat keys enabled"
+
+#~ msgid "Reset ALL to Default Settings"
+#~ msgstr "Reset ALL to Default Settings"
 
 #~ msgid "New Game"
 #~ msgstr "New Game"

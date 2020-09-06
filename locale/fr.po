@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-09-06 15:11+0200\n"
+"POT-Creation-Date: 2020-09-06 15:47+0200\n"
 "PO-Revision-Date: 2020-09-06 12:39+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -124,148 +124,134 @@ msgid "Close"
 msgstr "Fermer"
 
 #: ../src/general/OptionsMenu.tscn:101
-msgid "Graphics"
-msgstr "Graphiques"
+msgid "OPTIONS_GRAPHICS"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:113
-msgid "Sound"
-msgstr "Son"
+msgid "OPTIONS_SOUND"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:125
-msgid "Performance"
-msgstr "Performance"
+msgid "OPTIONS_PERFORMANCE"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:137
-msgid "Misc"
-msgstr "Divers"
+msgid "OPTIONS_MISC"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:174
-msgid "V-sync"
-msgstr "V-sync"
+msgid "OPTIONS_GRAPHICS_VSYNC"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:182
-msgid "FullScreen"
-msgstr "Plein écran"
+msgid "OPTIONS_GRAPHICS_FULLSCREEN"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:204
-msgid "Multisample anti-aliasing:"
-msgstr "Anticrénelage multi-échantillons :"
+msgid "OPTIONS_GRAPHICS_ALIASING"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:211
-msgid "(higher values worsen performance)"
-msgstr "(des valeurs plus élevées détériorent les performances)"
+msgid "OPTIONS_GRAPHICS_ALIASING_TIP"
+msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:226
-msgid "Disabled"
-msgstr "Désactivé"
+#: ../src/general/OptionsMenu.tscn:237
+msgid "OPTIONS_GRAPHICS_RESOLUTION"
+msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:238
-msgid "Resolution:"
-msgstr "Résolution :"
+#: ../src/general/OptionsMenu.tscn:250
+msgid "OPTIONS_GRAPHICS_RESOLUTION_CHOICE"
+msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:251
-msgid "auto"
-msgstr "auto"
+#: ../src/general/OptionsMenu.tscn:260
+msgid "OPTIONS_GRAPHICS_FPS"
+msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:261
-msgid "Max FPS:"
-msgstr "Max FPS:"
+#: ../src/general/OptionsMenu.tscn:273
+msgid "OPTIONS_GRAPHICS_FPS_CHOICE"
+msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:274
-msgid "400"
-msgstr "400"
+#: ../src/general/OptionsMenu.tscn:286
+msgid "OPTIONS_GRAPHICS_COLOURBLIND"
+msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:287
-msgid "Colourblind Correction:"
-msgstr "Correction daltonienne :"
+#: ../src/general/OptionsMenu.tscn:319
+msgid "OPTIONS_GRAPHICS_CHROMATIC"
+msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:301
-msgid "None"
-msgstr "Aucune"
+#: ../src/general/OptionsMenu.tscn:358
+msgid "OPTIONS_SOUND_MASTER"
+msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:321
-msgid "Chromatic Aberration:"
-msgstr "Aberration chromatique :"
+#: ../src/general/OptionsMenu.tscn:378 ../src/general/OptionsMenu.tscn:404
+msgid "OPTIONS_SOUND_MUTE"
+msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:360
-msgid "Master volume"
-msgstr "Volume principal"
+#: ../src/general/OptionsMenu.tscn:384
+msgid "OPTIONS_SOUND_MUSIC"
+msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:380 ../src/general/OptionsMenu.tscn:406
-msgid "Mute"
-msgstr "Mute"
+#: ../src/general/OptionsMenu.tscn:414
+msgid "OPTIONS_SOUND_LANGUAGE"
+msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:386
-msgid "Music volume"
-msgstr "Volume de la musique"
+#: ../src/general/OptionsMenu.tscn:441
+msgid "OPTIONS_PERFORMANCE_COMPOUND"
+msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:416
-msgid "Language:"
-msgstr "Langage:"
+#: ../src/general/OptionsMenu.tscn:456
+msgid "OPTIONS_PERFORMANCE_SIMULATION"
+msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:424
-msgid "English"
-msgstr "Anglais"
+#: ../src/general/OptionsMenu.tscn:463
+msgid "OPTIONS_PERFORMANCE_SIMULATION_TIP"
+msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:444
-msgid "Compound clouds"
-msgstr "Nuages composés"
+#: ../src/general/OptionsMenu.tscn:496
+msgid "OPTIONS_PERFORMANCE_CLOUD_RES"
+msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:467 ../src/general/OptionsMenu.tscn:508
-msgid "(higher values increase performance)"
-msgstr "(des valeurs plus élevées augmentent les performances)"
+#: ../src/general/OptionsMenu.tscn:503
+msgid "OPTIONS_PERFORMANCE_CLOUD_RES_TIP"
+msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:482
-msgid "40ms"
-msgstr "40ms"
+#: ../src/general/OptionsMenu.tscn:547
+msgid "OPTIONS_MISC_VIDEO"
+msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:501
-msgid "Cloud Resolution Divisor:"
-msgstr "Diviseur de résolution des nuages :"
+#: ../src/general/OptionsMenu.tscn:556
+msgid "OPTIONS_MISC_NEW_GAME_INTRO"
+msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:524
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9425
-msgid "2"
-msgstr "2"
+#: ../src/general/OptionsMenu.tscn:565
+msgid "OPTIONS_MISC_AUTOSAVE"
+msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:553
-msgid "Play intro video"
-msgstr "Jouer la vidéo d'introduction"
+#: ../src/general/OptionsMenu.tscn:576
+msgid "OPTIONS_MISC_AUTOSAVE_AMOUNT"
+msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:562
-msgid "Play Microbe Intro on New Game"
-msgstr "Jouer à l'introduction des microbes sur un nouveau jeu"
+#: ../src/general/OptionsMenu.tscn:604
+msgid "OPTIONS_MISC_QUICKSAVE_AMOUNT"
+msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:571
-msgid "Autosave during the game"
-msgstr "Sauvegarde automatique pendant le jeu"
+#: ../src/general/OptionsMenu.tscn:634
+msgid "OPTIONS_MISC_CHEAT"
+msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:582
-msgid "Amount of autosaves to keep:"
-msgstr "Quantité de sauvegardes automatiques à conserver :"
+#: ../src/general/OptionsMenu.tscn:648
+msgid "OPTIONS_BACK"
+msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:610
-msgid "Amount of quicksaves to keep:"
-msgstr "Quantité de sauvegardes rapides à conserver :"
+#: ../src/general/OptionsMenu.tscn:664
+msgid "OPTIONS_RESET"
+msgstr ""
 
-#: ../src/general/OptionsMenu.tscn:640
-msgid "Cheat keys enabled"
-msgstr "Raccourcis de triche activée"
-
-#: ../src/general/OptionsMenu.tscn:654 ../src/general/PauseMenu.tscn:130
-#: ../src/saving/NewSaveMenu.tscn:113 ../src/saving/SaveManagerGUI.tscn:108
-msgid "Back"
-msgstr "Retour"
-
-#: ../src/general/OptionsMenu.tscn:670
-msgid "Reset ALL to Default Settings"
-msgstr "Réinitialiser TOUS les paramètres par défaut"
-
-#: ../src/general/OptionsMenu.tscn:682
+#: ../src/general/OptionsMenu.tscn:676
 msgid "Reset settings to defaults?"
 msgstr "Rétablir les paramètres par défaut ?"
 
-#: ../src/general/OptionsMenu.tscn:683
+#: ../src/general/OptionsMenu.tscn:677
 msgid "Are you sure you want to reset ALL settings to default values?"
 msgstr ""
 "Êtes-vous sûr de vouloir réinitialiser TOUS les paramètres aux valeurs par "
@@ -302,6 +288,11 @@ msgstr "Retour au menu"
 #: ../src/general/PauseMenu.tscn:105
 msgid "Exit"
 msgstr "Quitter"
+
+#: ../src/general/PauseMenu.tscn:130 ../src/saving/NewSaveMenu.tscn:113
+#: ../src/saving/SaveManagerGUI.tscn:108
+msgid "Back"
+msgstr "Retour"
 
 #: ../src/gui_common/MainMenu.tscn:150
 msgid "MAINMENU_NEWGAME"
@@ -1576,6 +1567,10 @@ msgstr "-0.4"
 msgid "+0.4"
 msgstr "+0.4"
 
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9425
+msgid "2"
+msgstr "2"
+
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:9500
 msgid ""
 "A more rigid membrane is more resistant to damage, but will make it harder "
@@ -1979,6 +1974,102 @@ msgstr "Les informations sur les exceptions vont ici"
 #: ../src/saving/SaveStatusOverlay.tscn:106
 msgid "Copy Error To Clipboard"
 msgstr "Erreur de copie dans le presse-papiers"
+
+#~ msgid "Graphics"
+#~ msgstr "Graphiques"
+
+#~ msgid "Sound"
+#~ msgstr "Son"
+
+#~ msgid "Performance"
+#~ msgstr "Performance"
+
+#~ msgid "Misc"
+#~ msgstr "Divers"
+
+#~ msgid "V-sync"
+#~ msgstr "V-sync"
+
+#~ msgid "FullScreen"
+#~ msgstr "Plein écran"
+
+#~ msgid "Multisample anti-aliasing:"
+#~ msgstr "Anticrénelage multi-échantillons :"
+
+#~ msgid "(higher values worsen performance)"
+#~ msgstr "(des valeurs plus élevées détériorent les performances)"
+
+#~ msgid "Disabled"
+#~ msgstr "Désactivé"
+
+#~ msgid "Resolution:"
+#~ msgstr "Résolution :"
+
+#~ msgid "auto"
+#~ msgstr "auto"
+
+#~ msgid "Max FPS:"
+#~ msgstr "Max FPS:"
+
+#~ msgid "400"
+#~ msgstr "400"
+
+#~ msgid "Colourblind Correction:"
+#~ msgstr "Correction daltonienne :"
+
+#~ msgid "None"
+#~ msgstr "Aucune"
+
+#~ msgid "Chromatic Aberration:"
+#~ msgstr "Aberration chromatique :"
+
+#~ msgid "Master volume"
+#~ msgstr "Volume principal"
+
+#~ msgid "Mute"
+#~ msgstr "Mute"
+
+#~ msgid "Music volume"
+#~ msgstr "Volume de la musique"
+
+#~ msgid "Language:"
+#~ msgstr "Langage:"
+
+#~ msgid "English"
+#~ msgstr "Anglais"
+
+#~ msgid "Compound clouds"
+#~ msgstr "Nuages composés"
+
+#~ msgid "(higher values increase performance)"
+#~ msgstr "(des valeurs plus élevées augmentent les performances)"
+
+#~ msgid "40ms"
+#~ msgstr "40ms"
+
+#~ msgid "Cloud Resolution Divisor:"
+#~ msgstr "Diviseur de résolution des nuages :"
+
+#~ msgid "Play intro video"
+#~ msgstr "Jouer la vidéo d'introduction"
+
+#~ msgid "Play Microbe Intro on New Game"
+#~ msgstr "Jouer à l'introduction des microbes sur un nouveau jeu"
+
+#~ msgid "Autosave during the game"
+#~ msgstr "Sauvegarde automatique pendant le jeu"
+
+#~ msgid "Amount of autosaves to keep:"
+#~ msgstr "Quantité de sauvegardes automatiques à conserver :"
+
+#~ msgid "Amount of quicksaves to keep:"
+#~ msgstr "Quantité de sauvegardes rapides à conserver :"
+
+#~ msgid "Cheat keys enabled"
+#~ msgstr "Raccourcis de triche activée"
+
+#~ msgid "Reset ALL to Default Settings"
+#~ msgstr "Réinitialiser TOUS les paramètres par défaut"
 
 #~ msgid "New Game"
 #~ msgstr "Nouvelle partie"
