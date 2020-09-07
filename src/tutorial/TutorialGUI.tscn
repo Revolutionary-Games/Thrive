@@ -22,6 +22,8 @@ MicrobeMovementKeyLeftPath = NodePath("MicrobeMovementTutorial/KeyPrompts/Left")
 MicrobeMovementKeyRightPath = NodePath("MicrobeMovementTutorial/KeyPrompts/Right")
 MicrobeMovementKeyBackwardsPath = NodePath("MicrobeMovementTutorial/KeyPrompts/Backwards")
 GlucoseTutorialPath = NodePath("GlucoseTutorial")
+StayingAlivePath = NodePath("StayingAliveTutorial")
+ReproductionTutorialPath = NodePath("ReproductionTutorial")
 
 [node name="MicrobeWelcome" type="WindowDialog" parent="."]
 anchor_right = 1.0
@@ -208,6 +210,72 @@ text = "Collect glucose (white clouds) by moving over them.
 Your cell needs glucose in order to produce energy to stay alive.
 Follow the line from your cell to nearby glucose."
 autowrap = true
+
+[node name="StayingAliveTutorial" type="WindowDialog" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -280.0
+margin_top = 170.0
+margin_right = -10.0
+margin_bottom = 440.0
+rect_min_size = Vector2( 270, 270 )
+size_flags_horizontal = 3
+window_title = "Tutorial"
+resizable = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StayingAliveTutorial"]
+margin_left = 6.0
+margin_top = 5.0
+margin_right = 266.0
+margin_bottom = 265.0
+rect_min_size = Vector2( 260, 260 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="StayingAliveTutorial/VBoxContainer"]
+margin_right = 260.0
+margin_bottom = 231.0
+text = "Keep an eye on your health bar next to the ATP bar (bottom right).
+Your cell dies if it runs out of health.
+You regenerate health while you have ATP.
+Make sure to collect enough glucose to produce ATP."
+autowrap = true
+
+[node name="ReproductionTutorial" type="WindowDialog" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -280.0
+margin_top = 170.0
+margin_right = -10.0
+margin_bottom = 440.0
+rect_min_size = Vector2( 270, 270 )
+size_flags_horizontal = 3
+window_title = "Tutorial"
+resizable = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ReproductionTutorial"]
+margin_left = 6.0
+margin_top = 5.0
+margin_right = 266.0
+margin_bottom = 265.0
+rect_min_size = Vector2( 260, 260 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ReproductionTutorial/VBoxContainer"]
+margin_right = 260.0
+margin_bottom = 257.0
+text = "In order to reproduce you need to duplicate all of your organelles by collecting enough ammonia and phosphates.
+Look at the indicator in the bottom right to see how much more you need."
+autowrap = true
 [connection signal="popup_hide" from="MicrobeWelcome" to="." method="OnClickedCloseAll"]
 [connection signal="toggled" from="MicrobeWelcome/VBoxContainer/HBoxContainer/CheckBox" to="." method="OnTutorialEnabledValueChanged"]
 [connection signal="pressed" from="MicrobeWelcome/VBoxContainer/Button" to="." method="OnClickedCloseAll"]
@@ -215,3 +283,7 @@ autowrap = true
 [connection signal="popup_hide" from="MicrobeMovementTutorial/ExplainingPopup" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeMovementExplain" ]]
 [connection signal="hide" from="GlucoseTutorial" to="." method="OnSpecificCloseClicked" binds= [ "GlucoseCollecting" ]]
 [connection signal="popup_hide" from="GlucoseTutorial" to="." method="OnSpecificCloseClicked" binds= [ "GlucoseCollecting" ]]
+[connection signal="hide" from="StayingAliveTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeStayingAlive" ]]
+[connection signal="popup_hide" from="StayingAliveTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeStayingAlive" ]]
+[connection signal="hide" from="ReproductionTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeReproduction" ]]
+[connection signal="popup_hide" from="ReproductionTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeReproduction" ]]

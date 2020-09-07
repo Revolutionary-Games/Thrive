@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -47,12 +48,22 @@ public class CompoundPositionEventArgs : TutorialEventArgs
     public Vector3? GlucosePosition { get; }
 }
 
-public class CompoundEventArgs : TutorialEventArgs
+public class CompoundBagEventArgs : TutorialEventArgs
 {
-    public CompoundEventArgs(CompoundBag compounds)
+    public CompoundBagEventArgs(CompoundBag compounds)
     {
         Compounds = compounds;
     }
 
     public CompoundBag Compounds { get; }
+}
+
+public class CompoundEventArgs : TutorialEventArgs
+{
+    public CompoundEventArgs(Dictionary<Compound, float> compounds)
+    {
+        Compounds = compounds;
+    }
+
+    public Dictionary<Compound, float> Compounds { get; }
 }

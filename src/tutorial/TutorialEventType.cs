@@ -19,9 +19,24 @@ public enum TutorialEventType
     MicrobeCompoundsNearPlayer,
 
     /// <summary>
-    ///   Reports the player compound amounts while they are alive
+    ///   Reports the player compound amounts while they are alive, args is CompoundBagEventArgs
     /// </summary>
     MicrobePlayerCompounds,
+
+    /// <summary>
+    ///   Reports total compounds the player has absorbed, args is CompoundEventArgs
+    /// </summary>
+    MicrobePlayerTotalCollected,
+
+    /// <summary>
+    ///   Player has died
+    /// </summary>
+    MicrobePlayerDied,
+
+    /// <summary>
+    ///   Player is ready to reproduce
+    /// </summary>
+    MicrobePlayerReadyToEdit,
 
     /// <summary>
     ///   Player entered the microbe stage

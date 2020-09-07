@@ -6,6 +6,7 @@
 
 [node name="GuidanceLine" type="ImmediateGeometry"]
 pause_mode = 2
+process_priority = 800
 material_override = SubResource( 1 )
 cast_shadow = 0
 script = ExtResource( 1 )
