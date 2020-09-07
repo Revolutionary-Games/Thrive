@@ -231,7 +231,7 @@ public class MicrobeEditorGUI : Node
     private Array membraneSelectionElements;
     private Array itemTooltipElements;
 
-    private Control menu;
+    private PauseMenu menu;
     private PanelContainer structureTab;
     private PanelContainer membraneTab;
     private Label sizeLabel;
@@ -307,7 +307,7 @@ public class MicrobeEditorGUI : Node
         membraneSelectionElements = GetTree().GetNodesInGroup("MembraneSelectionElement");
         itemTooltipElements = GetTree().GetNodesInGroup("ItemTooltip");
 
-        menu = GetNode<Control>(MenuPath);
+        menu = GetNode<PauseMenu>(MenuPath);
         structureTab = GetNode<PanelContainer>(StructureTabPath);
         membraneTab = GetNode<PanelContainer>(MembraneTabPath);
         sizeLabel = GetNode<Label>(SizeLabelPath);
@@ -624,7 +624,7 @@ public class MicrobeEditorGUI : Node
     /// </remarks>
     internal void UpdateGuiButtonStatus(bool hasNucleus)
     {
-        foreach (Button organelleItem in organelleSelectionElements)
+        foreach (VBoxContainer organelleItem in organelleSelectionElements)
         {
             SetOrganelleButtonStatus(organelleItem, hasNucleus);
         }
@@ -635,14 +635,15 @@ public class MicrobeEditorGUI : Node
         editor.ActiveActionName = organelle;
 
         // Make all buttons unselected except the one that is now selected
-        foreach (Button element in organelleSelectionElements)
+        foreach (VBoxContainer element in organelleSelectionElements)
         {
-            var icon = element.GetNode<TextureRect>("Icon");
+            var button = element.GetNode<Button>("Button");
+            var icon = button.GetNode<TextureRect>("Icon");
 
-            if (element.Name == organelle)
+            if (element.Name == SimulationParameters.Instance.GetOrganelleType(organelle).Name)
             {
-                if (!element.Pressed)
-                    element.Pressed = true;
+                if (!button.Pressed)
+                    button.Pressed = true;
 
                 icon.Modulate = new Color(0, 0, 0);
             }
@@ -657,6 +658,8 @@ public class MicrobeEditorGUI : Node
 
     internal void OnFinishEditingClicked()
     {
+        GUICommon.Instance.PlayButtonPressSound();
+
         // To prevent being clicked twice
         finishButton.MouseFilter = Control.MouseFilterEnum.Ignore;
 
@@ -695,6 +698,14 @@ public class MicrobeEditorGUI : Node
     {
         symmetryIcon.Texture = null;
         symmetry = 0;
+    }
+
+    internal void HelpButtonPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        OpenMenu();
+        menu.ShowHelpScreen();
     }
 
     internal void OnMembraneSelected(string membrane)
@@ -757,35 +768,37 @@ public class MicrobeEditorGUI : Node
         SetRigiditySliderTooltip(value);
     }
 
-    private static void SetOrganelleButtonStatus(Button organelleItem, bool nucleus)
+    private static void SetOrganelleButtonStatus(VBoxContainer organelleItem, bool nucleus)
     {
-        if (organelleItem.Name == "nucleus")
+        var button = organelleItem.GetNode<Button>("Button");
+
+        if (organelleItem.Name == "Nucleus")
         {
-            organelleItem.Disabled = nucleus;
+            button.Disabled = nucleus;
         }
-        else if (organelleItem.Name == "mitochondrion")
+        else if (organelleItem.Name == "Mitochondrion")
         {
-            organelleItem.Disabled = !nucleus;
+            button.Disabled = !nucleus;
         }
-        else if (organelleItem.Name == "chloroplast")
+        else if (organelleItem.Name == "Chloroplast")
         {
-            organelleItem.Disabled = !nucleus;
+            button.Disabled = !nucleus;
         }
-        else if (organelleItem.Name == "chemoplast")
+        else if (organelleItem.Name == "Chemoplast")
         {
-            organelleItem.Disabled = !nucleus;
+            button.Disabled = !nucleus;
         }
-        else if (organelleItem.Name == "nitrogenfixingplastid")
+        else if (organelleItem.Name == "Nitrogen Fixing Plastid")
         {
-            organelleItem.Disabled = !nucleus;
+            button.Disabled = !nucleus;
         }
-        else if (organelleItem.Name == "vacuole")
+        else if (organelleItem.Name == "Vacuole")
         {
-            organelleItem.Disabled = !nucleus;
+            button.Disabled = !nucleus;
         }
-        else if (organelleItem.Name == "oxytoxy")
+        else if (organelleItem.Name == "Toxin Vacuole")
         {
-            organelleItem.Disabled = !nucleus;
+            button.Disabled = !nucleus;
         }
     }
 
@@ -809,6 +822,8 @@ public class MicrobeEditorGUI : Node
 
     private void SetEditorTab(string tab)
     {
+        GUICommon.Instance.PlayButtonPressSound();
+
         // Hide all
         var cellEditor = GetNode<Control>("CellEditor");
         var report = GetNode<Control>("Report");
@@ -856,6 +871,8 @@ public class MicrobeEditorGUI : Node
 
     private void SetCellTab(string tab)
     {
+        GUICommon.Instance.PlayButtonPressSound();
+
         // Hide all
         structureTab.Hide();
         membraneTab.Hide();
@@ -1411,6 +1428,27 @@ public class MicrobeEditorGUI : Node
         }
 
         editor.NewName = newText;
+    }
+
+    /// <summary>
+    ///   "Searches" an organelle button by hiding the ones that
+    ///   doesn't include the input substring in the organelle's name
+    /// </summary>
+    private void OnSearchBoxTextChanged(string newText)
+    {
+        var input = newText.ToLower();
+
+        foreach (VBoxContainer node in organelleSelectionElements)
+        {
+            if (!node.Name.ToLower().Contains(input))
+            {
+                node.Hide();
+            }
+            else
+            {
+                node.Show();
+            }
+        }
     }
 
     // ReSharper disable once RedundantNameQualifier

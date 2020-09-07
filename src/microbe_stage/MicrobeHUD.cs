@@ -571,7 +571,7 @@ public class MicrobeHUD : Node
     }
 
     /// <summary>
-    ///   Updates the mouse hover box with stuff.
+    ///   Updates the mouse hover indicator box with stuff.
     /// </summary>
     private void UpdateHoverInfo(float delta)
     {
@@ -623,14 +623,10 @@ public class MicrobeHUD : Node
 
         if (compounds.Count == 0)
         {
-            builder.Append("Nothing to eat here");
-
             hoveredCompoundsContainer.GetParent<VBoxContainer>().Visible = false;
         }
         else
         {
-            builder.Append("At cursor:");
-
             hoveredCompoundsContainer.GetParent<VBoxContainer>().Visible = true;
 
             // Create for each compound the information in GUI
@@ -684,6 +680,15 @@ public class MicrobeHUD : Node
             hoveredCompoundsContainer.GetChildCount() > 0;
 
         hoveredCellsContainer.GetParent<VBoxContainer>().Visible = hoveredCellsContainer.GetChildCount() > 0;
+
+        if (compounds.Count > 0 || hoveredCellsContainer.GetChildCount() > 0)
+        {
+            builder.Append("At Cursor:");
+        }
+        else
+        {
+            builder.Append("Nothing to eat here");
+        }
 
         mousePosLabel.Text = builder.ToString();
     }
