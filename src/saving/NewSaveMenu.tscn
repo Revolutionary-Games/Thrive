@@ -119,7 +119,7 @@ __meta__ = {
 margin_right = 200.0
 margin_bottom = 71.0
 popup_exclusive = true
-window_title = "Overwrite existing save?"
+window_title = "SAVE_MENU_OVERWRITE_TITLE"
 [connection signal="pressed" from="VBoxContainer/VBoxContainer/HBoxContainer/Save" to="." method="SaveButtonPressed"]
 [connection signal="OnSelectedChanged" from="VBoxContainer/VBoxContainer/SaveList" to="." method="OnSelectedChanged"]
 [connection signal="pressed" from="VBoxContainer/CenterContainer/Back" to="." method="ClosePressed"]

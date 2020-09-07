@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-09-06 17:12+0200\n"
+"POT-Creation-Date: 2020-09-07 18:16+0200\n"
 "PO-Revision-Date: 2020-09-06 12:39+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -388,148 +388,69 @@ msgstr "joueur reproduit"
 msgid "player died"
 msgstr "joueur mort"
 
-#: ../src/microbe_stage/MicrobeStage.tscn:443
-msgid "Stuff at"
-msgstr "Choses à"
+#: ../src/microbe_stage/MicrobeStage.tscn:513
+msgid "MICROBE_STAGE_ENV"
+msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:514
-msgid "Environment"
-msgstr "Environnement"
+#: ../src/microbe_stage/MicrobeStage.tscn:614
+msgid "MICROBE_STAGE_ENV_OXY"
+msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:615
-msgid "02"
-msgstr "02"
+#: ../src/microbe_stage/MicrobeStage.tscn:671
+msgid "MICROBE_STAGE_ENV_CO2"
+msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:633
-#: ../src/microbe_stage/MicrobeStage.tscn:691
-#: ../src/microbe_stage/MicrobeStage.tscn:749
-#: ../src/microbe_stage/MicrobeStage.tscn:859
-msgid "0%"
-msgstr "0%"
+#: ../src/microbe_stage/MicrobeStage.tscn:728
+msgid "MICROBE_STAGE_ENV_N2"
+msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:673
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:10046
-msgid "CO2"
-msgstr "CO2"
+#: ../src/microbe_stage/MicrobeStage.tscn:782
+msgid "MICROBE_STAGE_ENV_TEMP"
+msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:731
-msgid "N2"
-msgstr "N2"
+#: ../src/microbe_stage/MicrobeStage.tscn:836
+msgid "MICROBE_STAGE_ENV_LIGHT"
+msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:786
-msgid "Temp."
-msgstr "Temp."
+#: ../src/microbe_stage/MicrobeStage.tscn:890
+msgid "MICROBE_STAGE_ENV_PRESS"
+msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:804
-msgid "55° C"
-msgstr "55° C"
+#: ../src/microbe_stage/MicrobeStage.tscn:960
+msgid "MICROBE_STAGE_COMPOUNDS"
+msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:841
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4779
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6942
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9904
-msgid "Light"
-msgstr "Lumière"
+#: ../src/microbe_stage/MicrobeStage.tscn:1065
+msgid "MICROBE_STAGE_COMPOUNDS_GLUCOSE"
+msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:896
-msgid "Press."
-msgstr "Presse."
+#: ../src/microbe_stage/MicrobeStage.tscn:1117
+msgid "MICROBE_STAGE_COMPOUNDS_AMMONIA"
+msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:914
-msgid "200 kPa"
-msgstr "200 kPa"
+#: ../src/microbe_stage/MicrobeStage.tscn:1169
+msgid "MICROBE_STAGE_COMPOUNDS_PHOSPHATE"
+msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:967
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:10092
-msgid "Compounds"
-msgstr "Composés"
+#: ../src/microbe_stage/MicrobeStage.tscn:1221
+msgid "MICROBE_STAGE_COMPOUNDS_HS"
+msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1072
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4253
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4459
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4705
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4984
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5050
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6627
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6868
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7121
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7391
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:10194
-msgid "Glucose"
-msgstr "Glucose"
+#: ../src/microbe_stage/MicrobeStage.tscn:1273
+msgid "MICROBE_STAGE_COMPOUNDS_IRON"
+msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1087
-#: ../src/microbe_stage/MicrobeStage.tscn:1140
-#: ../src/microbe_stage/MicrobeStage.tscn:1193
-#: ../src/microbe_stage/MicrobeStage.tscn:1246
-#: ../src/microbe_stage/MicrobeStage.tscn:1299
-#: ../src/microbe_stage/MicrobeStage.tscn:1404
-msgid "0.0 / 4"
-msgstr "0.0 / 4"
+#: ../src/microbe_stage/MicrobeStage.tscn:1325
+msgid "MICROBE_STAGE_AGENTS"
+msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1125
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5552
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7630
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:10163
-msgid "Ammonia"
-msgstr "Ammoniac"
+#: ../src/microbe_stage/MicrobeStage.tscn:1377
+msgid "MICROBE_STAGE_AGENTS_OXYTOXY"
+msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.tscn:1178
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:10226
-msgid "Phosphate"
-msgstr "Phosphate"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1231
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4959
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7366
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:10132
-msgid "Hydrogen Sulfide"
-msgstr "Sulfure d'hydrogène"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1284
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5257
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:10257
-msgid "Iron"
-msgstr "Fer"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1337
-msgid "Agents"
-msgstr "Agents"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1389
-msgid "OxyToxy NT"
-msgstr "OxyToxy NT"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1551
-msgid "Patch:"
-msgstr "Patch:"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1582
-msgid "POPULATION:"
-msgstr "POPULATION:"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1593
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6400
-msgid "100"
-msgstr "100"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1632
-msgid "Hitpoints"
-msgstr "Points de vie"
-
-#: ../src/microbe_stage/MicrobeStage.tscn:1639
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4278
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4484
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5079
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5282
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5527
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5768
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6020
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6652
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7605
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8036
-msgid "ATP"
-msgstr "ATP"
+#: ../src/microbe_stage/MicrobeStage.tscn:1568
+msgid "MICROBE_STAGE_POP"
+msgstr ""
 
 #: ../src/microbe_stage/Patch.cs:121
 msgid "Patch \\\"{0}\\\""
@@ -597,1029 +518,819 @@ msgid "run status: "
 msgstr "statut d'exécution : "
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1101
-msgid "REPORT"
-msgstr "RAPPORT"
+msgid "MICROBE_EDITOR_REPORT"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1121
-msgid "PATCH MAP"
-msgstr "CARTE DES PATCHS"
+msgid "MICROBE_EDITOR_PATCH"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1141
-msgid "CELL EDITOR"
-msgstr "ÉDITEUR CELLULAIRE"
+msgid "MICROBE_EDITOR_CELL"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1240
-msgid "Mutation Points"
-msgstr "Points de mutation"
+msgid "MICROBE_EDITOR_MP"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1253
-msgid "100 / 100"
-msgstr "100 / 100"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1301
+msgid "MICROBE_EDITOR_NEW"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1302
-msgid "NEW"
-msgstr "NOUVEAU"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1407
+msgid "MICROBE_EDITOR_CELL_STRUCTURE"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1346
-msgid "ATP Balance"
-msgstr "Solde ATP"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1430
+msgid "MICROBE_EDITOR_CELL_MEMBRANE"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1409
-msgid "STRUCTURE"
-msgstr "STRUCTURE"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1453
+msgid "MICROBE_EDITOR_CELL_BEHAVIOR"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1432
-msgid "MEMBRANE"
-msgstr "MEMBRANE"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1518
+msgid "MICROBE_EDITOR_CELL_STRUCT_ORGAN"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1455
-msgid "BEHAVIOR"
-msgstr "COMPORTEMENT"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1520
-msgid "Structural Organelles"
-msgstr "Organelles structurelles"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1584
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1691
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1776
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1863
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1956
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2042
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2128
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2232
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2317
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2403
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2507
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2592
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2677
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2763
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2849
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2935
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3021
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3107
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3194
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3336
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3425
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3514
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3603
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3693
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3790
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1582
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1688
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1772
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1858
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1949
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2034
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2119
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2222
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2306
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2391
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2494
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2578
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2662
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2747
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2832
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2917
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3001
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3086
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3172
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3312
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3400
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3488
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3576
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3665
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3761
 msgid "Selected"
 msgstr "Sélectionné"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1627
-msgid "Prokaryotic Structures"
-msgstr "Structures procaryotes"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1615
+msgid "MICROBE_EDITOR_CELL_STRUCT_CYTOPLASM"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2168
-msgid "External Organelles"
-msgstr "Organelles externes"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1624
+msgid "MICROBE_EDITOR_CELL_PROKA_STRUCT"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2443
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1718
+msgid "MICROBE_EDITOR_CELL_STRUCT_METABOLO"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1802
+msgid "MICROBE_EDITOR_CELL_STRUCT_THYLAKOID"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1895
+msgid "MICROBE_EDITOR_CELL_STRUCT_CHEMOSYNTH"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:1979
+msgid "MICROBE_EDITOR_CELL_STRUCT_RUSTICYANIN"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2064
+msgid "MICROBE_EDITOR_CELL_STRUCT_NITROGENASE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2149
+msgid "MICROBE_EDITOR_CELL_STRUCT_OXYTOXISOME"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2158
+msgid "MICROBE_EDITOR_CELL_EXTERN_ORGAN"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2252
+msgid "MICROBE_EDITOR_CELL_STRUCT_FLAGELLUM"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2336
+msgid "MICROBE_EDITOR_CELL_STRUCT_PILUS"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2421
+msgid "MICROBE_EDITOR_CELL_CILIA"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2430
 msgid "Internal Organelles"
 msgstr "Organelles internes"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3271
-msgid "Membrane Types"
-msgstr "Types de membranes"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2524
+msgid "MICROBE_EDITOR_CELL_NUCLEUS"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3833
-msgid "Fluidity/Rigidity"
-msgstr "Fluidité/Rigidité"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2608
+msgid "MICROBE_EDITOR_CELL_MITHOC"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3851
-msgid "Colour"
-msgstr "Couleur"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2692
+msgid "MICROBE_EDITOR_CELL_CHLOROPLAST"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3963
-msgid "Species"
-msgstr "Espèces"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2777
+msgid "MICROBE_EDITOR_CELL_THERMOPLAST"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3992
-msgid "Primum Thrivium"
-msgstr "Primum Thrivium"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2862
+msgid "MICROBE_EDITOR_CELL_CHEMOPLAST"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4002
-msgid "Generation 2"
-msgstr "Génération 2"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:2947
+msgid "MICROBE_EDITOR_CELL_NFP"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4014
-msgid "Speed 2.0"
-msgstr "Vitesse 2.0"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3031
+msgid "MICROBE_EDITOR_CELL_VACUOLE"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4026
-msgid "Size 1"
-msgstr "Taille 1"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3116
+msgid "MICROBE_EDITOR_CELL_TOXIN_VACUOLE"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4071
-msgid "Symmetry"
-msgstr "Symétrie"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3202
+msgid "MICROBE_EDITOR_CELL_BIOLUMESCENT_VACUOLE"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4153
-msgid "CONFIRM"
-msgstr "CONFIRMER"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3247
+msgid "MICROBE_EDITOR_CELL_MEMBRANE_TYPES"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4224
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3345
+msgid "MICROBE_EDITOR_CELL_MEMBRANE_NORMAL"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3433
+msgid "MICROBE_EDITOR_CELL_MEMBRANE_DOUBLE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3521
+msgid "MICROBE_EDITOR_CELL_MEMBRANE_CELLULOSE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3609
+msgid "MICROBE_EDITOR_CELL_MEMBRANE_CHITIN"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3705
+msgid "MICROBE_EDITOR_CELL_MEMBRANE_CC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3794
+msgid "MICROBE_EDITOR_CELL_MEMBRANE_SILICA"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3803
+msgid "MICROBE_EDITOR_CELL_MEMBRANE_FLUIDITY"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3821
+msgid "MICROBE_EDITOR_CELL_MEMBRANE_COLOUR"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3933
+msgid "MICROBE_EDITOR_SPECIES"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3962
+msgid "MICROBE_EDITOR_SPECIES_DEFAULT"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4038
+msgid "MICROBE_EDITOR_CELL_SYMMETRY"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4120
+msgid "MICROBE_EDITOR_CELL_CONFIRM"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4191
 msgid "22"
 msgstr "22"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4232
-msgid "Cytoplasm"
-msgstr "Cytoplasme"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4199
+msgid "MICROBE_EDITOR_TOOLTIP_CYTO"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4245
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4451
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4951
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5249
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5519
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5760
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6619
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7358
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7597
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8028
-msgid "Turns"
-msgstr "Tourne"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4212
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4402
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6296
+msgid "MICROBE_EDITOR_TOOLTIP_TURN_GLUCOSE"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4270
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4476
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4976
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5071
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5274
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5544
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5785
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6644
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7383
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7622
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8053
-msgid "into"
-msgstr "dans"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4229
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4419
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4909
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5096
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6313
+msgid "MICROBE_EDITOR_TOOLTIP_INTO_ATP"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4314
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5874
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6101
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4265
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5600
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5811
 msgid "+4"
 msgstr "+4"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4322
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4568
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4820
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5119
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5389
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5630
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5882
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6109
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6489
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6730
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6983
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7228
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7465
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7737
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7898
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8166
-msgid "Storage"
-msgstr "Stockage"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4273
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4487
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4699
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4949
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5179
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5388
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5608
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5819
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6166
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6375
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6588
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6801
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7021
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7251
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7412
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7632
+msgid "MICROBE_EDITOR_TOOLTIP_STORAGE"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4343
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4560
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4589
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4812
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4841
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5111
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5140
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5381
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5410
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5651
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5903
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6130
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7919
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8187
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4294
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4479
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4508
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4691
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4720
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4941
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4970
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5171
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5200
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5409
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5629
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5840
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7433
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7653
 msgid "+1"
 msgstr "+1"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4350
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4596
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4848
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5147
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5417
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5658
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5910
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6137
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6517
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6758
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7011
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7256
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7493
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7765
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7926
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8194
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8427
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8692
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8871
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9051
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9270
-msgid "Osmoregulation Cost"
-msgstr "Coût de l'osmorégulation"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4364
-msgid ""
-"The gooey innards of a cell. The cytoplasm is the basic mixture of ions, "
-"proteins, and other substances dissolved in water that fill the interior of "
-"the cell. One of the functions it performs is Fermentation, the conversion "
-"of glucose into ATP energy. For cells that lack organelles to have more "
-"advanced metabolisms, this is what they rely on for energy. It is also used "
-"to store molecules in the cell and to grow the cell's size."
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4301
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4515
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4727
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4977
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5207
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5416
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5636
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5847
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6194
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6403
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6616
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6829
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7049
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7279
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7440
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7660
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7892
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8157
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8336
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8515
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8734
+msgid "MICROBE_EDITOR_TOOLTIP_OSMO_COST"
 msgstr ""
-"Les entrailles gluantes d'une cellule. Le cytoplasme est le mélange de base "
-"d'ions, de protéines et d'autres substances dissoutes dans l'eau qui "
-"remplissent l'intérieur de la cellule. L'une des fonctions qu'il remplit est "
-"la fermentation, la conversion du glucose en énergie ATP. Pour que les "
-"cellules qui manquent d'organelles aient des métabolismes plus avancés, "
-"c'est sur cela qu'elles comptent pour leur énergie. Elle est également "
-"utilisée pour stocker des molécules dans la cellule et pour augmenter la "
-"taille de la cellule."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4426
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4925
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5224
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6594
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7333
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4315
+msgid "MICROBE_EDITOR_TOOLTIP_CYTO_DESC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4377
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4804
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5054
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6271
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6906
 msgid "45"
 msgstr "45"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4434
-msgid "Metabolosomes"
-msgstr "Métabolosomes"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4504
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5299
-msgid ". Rate scales"
-msgstr ". Échelles de taux"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4516
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5311
-msgid "with concentration of"
-msgstr "avec une concentration de"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4524
-msgid "Oxygen."
-msgstr "Oxygène."
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4610
-msgid ""
-"Metabolosomes are clusters of proteins wrapped in protein shells. They are "
-"able to convert glucose into ATP at a much higher rate than can be done in "
-"the cytoplasm in a process called Aerobic Respiration. It does, however, "
-"require oxygen to function, and lower levels of oxygen in the environment "
-"will slow down the rate of its ATP production. Since the metabolosomes are "
-"suspended directly in the cytoplasm, the surrounding fluid performs some "
-"fermentation."
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4385
+msgid "MICROBE_EDITOR_TOOLTIP_METABO"
 msgstr ""
-"Les métabolosomes sont des groupes de protéines enveloppés dans des "
-"enveloppes protéiques. Ils sont capables de convertir le glucose en ATP à un "
-"taux beaucoup plus élevé que celui qui peut être obtenu dans le cytoplasme "
-"par un processus appelé \"respiration aérobie\". Cependant, il a besoin "
-"d'oxygène pour fonctionner, et des niveaux d'oxygène plus faibles dans "
-"l'environnement ralentiront la vitesse de sa production d'ATP. Comme les "
-"métabolosomes sont en suspension directement dans le cytoplasme, le liquide "
-"environnant effectue une certaine fermentation."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4672
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6835
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7571
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7842
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8365
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8544
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8630
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8809
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8988
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9208
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4443
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5567
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6334
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7591
+msgid "MICROBE_EDITOR_TOOLTIP_SCALE_OXY"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4529
+msgid "MICROBE_EDITOR_TOOLTIP_METABO_DESC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4591
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6480
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7126
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7356
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7830
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8009
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8095
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8274
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8453
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8672
 msgid "50"
 msgstr "50"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4680
-msgid "Thylakoids"
-msgstr "Thylakoids"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4697
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6860
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7113
-msgid "Produces"
-msgstr "Produit"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4722
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6885
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7138
-msgid ". Rate scales with"
-msgstr ". Les échelles de taux"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4734
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5833
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6897
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7150
-msgid "concentration of"
-msgstr "concentration de"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4742
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5319
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6905
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7158
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7424
-msgid "Carbon Dioxide"
-msgstr "Dioxyde de carbone"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4759
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5340
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6922
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7175
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7688
-msgid "and"
-msgstr "et"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4771
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6934
-msgid "intensity of"
-msgstr "intensité de"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4862
-msgid ""
-"Thylakoids are clusters of proteins and photosensitive pigments. The "
-"pigments are able to use the energy of light to produce glucose from water "
-"and gaseous carbon dioxide in a process called Photosynthesis. These "
-"pigments are also what give them a distinctive colour. The rate of their "
-"glucose production scales with the concentration of carbon dioxide, and "
-"intensity of light. Since the thylakoids are suspended directly in the "
-"cytoplasm, the surrounding fluid performs some fermentation."
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4599
+msgid "MICROBE_EDITOR_TOOLTIP_THYLAK"
 msgstr ""
-"Les thylakoïdes sont des groupes de protéines et de pigments photosensibles. "
-"Les pigments sont capables d'utiliser l'énergie de la lumière pour produire "
-"du glucose à partir de l'eau et du dioxyde de carbone gazeux dans un "
-"processus appelé photosynthèse. Ces pigments sont aussi ce qui leur donne "
-"une couleur distinctive. Le taux de production de glucose varie en fonction "
-"de la concentration de dioxyde de carbone et de l'intensité de la lumière. "
-"Comme les thylakoïdes sont directement en suspension dans le cytoplasme, le "
-"liquide environnant effectue une certaine fermentation."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5005
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7412
-msgid ". Rate scales with concentration of"
-msgstr ". Le taux carie avec la concentration de"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5017
-msgid "Carbon"
-msgstr "Carbone"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5025
-msgid "Dioxide"
-msgstr "Dioxide"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5042
-msgid "Also turns"
-msgstr "Tourne également"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5161
-msgid ""
-"Chemosynthesizing proteins are small clusters of protein in the cytoplasm "
-"that are able to convert hydrogen sulfide, water, and gaseous carbon dioxide "
-"into glucose in a process called Hydrogen Sulfide Chemosynthesis. The rate "
-"of its glucose production scales with the concentration of carbon dioxide. "
-"Since the chemosynthesizing proteins are suspended directly in the "
-"cytoplasm, the surrounding fluid performs some fermentation."
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4616
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6505
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6718
+msgid "MICROBE_EDITOR_TOOLTIP_PRODUCE_GLUCOSE"
 msgstr ""
-"Les protéines de chimiosynthèse sont de petits groupes de protéines dans le "
-"cytoplasme qui sont capables de convertir le sulfure d'hydrogène, l'eau et "
-"le dioxyde de carbone gazeux en glucose dans un processus appelé "
-"chimiosynthèse du sulfure d'hydrogène. Le taux de production de glucose "
-"varie en fonction de la concentration de dioxyde de carbone. Comme les "
-"protéines de chimiosynthèse sont en suspension directement dans le "
-"cytoplasme, le fluide environnant effectue une certaine fermentation."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5232
-msgid "Rusticyanin"
-msgstr "Rusticyanin"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5348
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5841
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6689
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7696
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8125
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:10000
-msgid "Oxygen"
-msgstr "Oxygène"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5431
-msgid ""
-"Rusticyanin is a protein able to use gaseous carbon dioxide and oxygen to "
-"oxidize iron from one chemical state to another. This process, called Iron "
-"Respiration, releases energy which the cell can then harvest."
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4637
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4871
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5117
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6526
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6739
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6980
+msgid "MICROBE_EDITOR_TOOLTIP_SCALE_CO2"
 msgstr ""
-"La rusticyanine est une protéine capable d'utiliser le dioxyde de carbone "
-"gazeux et l'oxygène pour oxyder le fer d'un état chimique à un autre. Ce "
-"processus, appelé \"respiration du fer\", libère de l'énergie que la cellule "
-"peut ensuite récolter."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5494
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5735
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5987
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4658
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6547
+msgid "MICROBE_EDITOR_TOOLTIP_SCALE_AND_LIGHT"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4741
+msgid "MICROBE_EDITOR_TOOLTIP_THYLAK_DESC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4812
+msgid "MICROBE_EDITOR_TOOLTIP_CHEMO_P"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4829
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6931
+msgid "MICROBE_EDITOR_TOOLTIP_TURN_HS"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4846
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6959
+msgid "MICROBE_EDITOR_TOOLTIP_INTO_GLUCOSE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4892
+msgid "MICROBE_EDITOR_TOOLTIP_ALSO_GLUCOSE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4991
+msgid "MICROBE_EDITOR_TOOLTIP_CHEMO_P_DESC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5062
+msgid "MICROBE_EDITOR_TOOLTIP_RUSTICYANIN"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5079
+msgid "MICROBE_EDITOR_TOOLTIP_TURN_IRON"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5138
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7210
+msgid "MICROBE_EDITOR_TOOLTIP_SCALE_AND_OXYGEN"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5221
+msgid "MICROBE_EDITOR_TOOLTIP_RUSTICYANIN_DESC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5284
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5493
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5713
 msgid "55"
 msgstr "55"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5502
-msgid "Nitrogenase"
-msgstr "Nitrogenase"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5292
+msgid "MICROBE_EDITOR_TOOLTIP_NITROGENASE"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5569
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6669
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7647
-msgid ". Rate"
-msgstr ". Taux"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5309
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5518
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7151
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7542
+msgid "MICROBE_EDITOR_TOOLTIP_TURN_ATP"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5581
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6681
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7659
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8117
-msgid "scales with concentration of"
-msgstr "varie avec une concentration de"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5326
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7168
+msgid "MICROBE_EDITOR_TOOLTIP_INTO_AMMONIA"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5589
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7667
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:10023
-msgid "Nitrogen"
-msgstr "Azote"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5347
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7189
+msgid "MICROBE_EDITOR_TOOLTIP_SCALE_NITROGEN"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5622
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6722
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6751
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6975
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7220
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7249
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7457
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7486
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7729
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7758
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5380
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6367
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6396
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6580
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6793
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6822
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7013
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7042
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7243
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7272
 msgid "+2"
 msgstr "+2"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5672
-msgid ""
-"Nitrogenase is a protein able to use gaseous nitrogen and cellular energy in "
-"the form of ATP to produce ammonia, a key growth nutrient for cells. This is "
-"a process referred to as Anaerobic Nitrogen Fixation. Since the nitrogenase "
-"is suspended directly in the cytoplasm, the surrounding fluid performs some "
-"fermentation."
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5430
+msgid "MICROBE_EDITOR_TOOLTIP_NITROGENASE_DESC"
 msgstr ""
-"La nitrogénase est une protéine capable d'utiliser l'azote gazeux et "
-"l'énergie cellulaire sous forme d'ATP pour produire de l'ammoniac, un "
-"nutriment essentiel à la croissance des cellules. C'est un processus appelé "
-"fixation anaérobie de l'azote. Comme l'azotease est en suspension "
-"directement dans le cytoplasme, le liquide environnant effectue une certaine "
-"fermentation."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5743
-msgid "Oxytoxisome"
-msgstr "Oxytoxisome"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5793
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8061
-msgid "Oxytoxy"
-msgstr "Oxytoxy"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5810
-msgid ". Can release"
-msgstr ". Peut libérer"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5821
-msgid "toxins by pressing E. Rate scales with"
-msgstr "toxines en appuyant sur E. Varie avec"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5924
-msgid ""
-"A modified metabolosome responsible for the production of a primitive form "
-"of the toxic agent Oxytoxy NT."
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5501
+msgid "MICROBE_EDITOR_TOOLTIP_OXYTOXISOME"
 msgstr ""
-"Un métabolosome modifié responsable de la production d'une forme primitive "
-"de l'agent toxique Oxytoxy NT."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5995
-msgid "Flagellum"
-msgstr "Flagelle"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5535
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7559
+msgid "MICROBE_EDITOR_TOOLTIP_INTO_OXYTOXY"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6012
-msgid "Uses"
-msgstr "Utilise"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5555
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7579
+msgid "MICROBE_EDITOR_TOOLTIP_RELEASE_TOXIN"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6037
-msgid "to increase the movement"
-msgstr "pour augmenter le mouvement"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5650
+msgid "MICROBE_EDITOR_TOOLTIP_OXYTOXISOME_DESC"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6048
-msgid "speed of the cell."
-msgstr "vitesse de la cellule."
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5721
+msgid "MICROBE_EDITOR_TOOLTIP_FLAGELLUM"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6072
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5738
+msgid "MICROBE_EDITOR_TOOLTIP_USES_ATP"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5758
+msgid "MICROBE_EDITOR_TOOLTIP_INCREASE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5782
 msgid "+0.7"
 msgstr "+0.7"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6080
-msgid "Speed"
-msgstr "Vitesse"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6151
-msgid ""
-"The flagellum (plural: flagella) is a whip-like bundle of protein fibers "
-"extending from the cell's membrane which can use ATP to undulate and propel "
-"the cell in a direction."
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5790
+msgid "MICROBE_EDITOR_TOOLTIP_SPEED"
 msgstr ""
-"Le flagelle (pluriel : flagelles) est un faisceau de fibres protéiques en "
-"forme de fouet qui s'étend depuis la membrane de la cellule et qui peut "
-"utiliser l'ATP pour onduler et propulser la cellule dans une direction."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6214
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5861
+msgid "MICROBE_EDITOR_TOOLTIP_FLAGELLUM_DESC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5924
 msgid "30"
 msgstr "30"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6222
-msgid "Predatory Pilus"
-msgstr "Pilus prédateur"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5932
+msgid "MICROBE_EDITOR_TOOLTIP_PILUS"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6238
-msgid "Stab other cells with this."
-msgstr "Plantez ceci dans d'autres cellules."
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5948
+msgid "MICROBE_EDITOR_TOOLTIP_PILUS_DESC"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6307
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8271
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6017
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7737
 msgid "0"
 msgstr "0"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6315
-msgid "Cilia"
-msgstr "Cilia"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6025
+msgid "MICROBE_EDITOR_TOOLTIP_CILIA"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6331
-msgid "To be Implemented."
-msgstr "A implémenter."
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6041
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7761
+msgid "MICROBE_EDITOR_TOOLTIP_TBI"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6408
-msgid "Nucleus"
-msgstr "Nucleus"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6110
+msgid "100"
+msgstr "100"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6424
-msgid "Allows for the evolution of more complex,"
-msgstr "Permet l'évolution de plus complexes,"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6118
+msgid "MICROBE_EDITOR_TOOLTIP_NUCLEUS"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6435
-msgid "membrane-bound organelles. Costs a lot"
-msgstr "les organites liés aux membranes. Coûts élevés"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6134
+msgid "MICROBE_EDITOR_TOOLTIP_NUCLEUS_SMALL_DESC"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6446
-msgid "of ATP to maintain. This is an irreversible"
-msgstr "de l'ATP à maintenir. Il s'agit d'une"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6457
-msgid "evolution."
-msgstr "l'évolution."
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6481
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7890
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6158
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7404
 msgid "+15"
 msgstr "+15"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6510
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6187
 msgid "+10"
 msgstr "+10"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6531
-msgid ""
-"The defining feature of eukaryotic cells. The nucleus also includes the "
-"endoplasmic reticulum and the golgi body. It is an evolution of prokaryotic "
-"cells to develop a system of internal membranes, done by assimilating "
-"another prokaryote inside of themselves. This allows them to "
-"compartmentalize, or ward off, the different processes happening inside the "
-"cell and prevent them from overlapping. This allows their new membrane bound "
-"organelles to be much more complex, efficient, and specialized than if they "
-"were free-floating in the cytoplasm. However, this comes at the cost of "
-"making the cell much larger and requiring a lot of the cell's energy to "
-"maintain."
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6208
+msgid "MICROBE_EDITOR_TOOLTIP_NUCLEUS_DESC"
 msgstr ""
-"La caractéristique principale des cellules eucaryotes. Le noyau comprend "
-"également le réticulum endoplasmique et le corps de Golgi. Il s'agit d'une "
-"évolution des cellules procaryotes pour développer un système de membranes "
-"internes, réalisée par l'assimilation d'un autre procaryote à l'intérieur "
-"d'elles-mêmes. Cela leur permet de compartimenter, ou d'écarter, les "
-"différents processus qui se déroulent à l'intérieur de la cellule et "
-"d'empêcher leur chevauchement. Cela permet à leurs nouveaux organites liés à "
-"la membrane d'être beaucoup plus complexes, efficaces et spécialisés que "
-"s'ils flottaient librement dans le cytoplasme. Cependant, cela se fait au "
-"prix d'une cellule beaucoup plus grande et d'une grande quantité d'énergie "
-"nécessaire à son maintien."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6602
-msgid "Mitochondrion"
-msgstr "Mitochondrion"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6772
-msgid ""
-"The powerhouse of the cell. The mitochondrion (plural: mitochondria) is a "
-"double membrane structure filled with proteins and enzymes. It is a "
-"prokaryote that has been assimilated for use by its eukaryotic host. It is "
-"able to convert glucose into ATP at a much higher efficiency than can be "
-"done in the cytoplasm in a process called Aerobic Respiration. It does, "
-"however, require oxygen to function, and lower levels of oxygen in the "
-"environment will slow down the rate of its ATP production."
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6279
+msgid "MICROBE_EDITOR_TOOLTIP_MITOCHONDRION"
 msgstr ""
-"La centrale de la cellule. La mitochondrie (au pluriel : mitochondrie) est "
-"une structure à double membrane remplie de protéines et d'enzymes. C'est un "
-"procaryote qui a été assimilé pour être utilisé par son hôte eucaryote. Il "
-"est capable de convertir le glucose en ATP avec une efficacité bien "
-"supérieure à celle qui peut être obtenue dans le cytoplasme par un processus "
-"appelé \"respiration aérobie\". Il a toutefois besoin d'oxygène pour "
-"fonctionner, et des niveaux d'oxygène plus faibles dans l'environnement "
-"ralentiront le rythme de sa production d'ATP."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6843
-msgid "Chloroplast"
-msgstr "Chloroplaste"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6417
+msgid "MICROBE_EDITOR_TOOLTIP_MITOCHONDRION_DESC"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7004
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6488
+msgid "MICROBE_EDITOR_TOOLTIP_CHLOROPLAST"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6609
 msgid "+3"
 msgstr "+3"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7025
-msgid ""
-"The chloroplast is a double membrane structure containing photosensitive "
-"pigments stacked together in membranous sacs. It is a prokaryote that has "
-"been assimilated for use by its eukaryotic host. The pigments in the "
-"chloroplast are able to use the energy of light to produce glucose from "
-"water and gaseous carbon dioxide in a process called Photosynthesis. These "
-"pigments are also what give it a distinctive colour. The rate of its glucose "
-"production scales with the concentration of carbon dioxide, and intensity of "
-"light."
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6630
+msgid "MICROBE_EDITOR_TOOLTIP_CHLOROPLAST_DESC"
 msgstr ""
-"Le chloroplaste est une structure à double membrane contenant des pigments "
-"photosensibles empilés dans des sacs membranaires. C'est un procaryote qui a "
-"été assimilé pour être utilisé par son hôte eucaryote. Les pigments du "
-"chloroplaste sont capables d'utiliser l'énergie de la lumière pour produire "
-"du glucose à partir de l'eau et du dioxyde de carbone gazeux dans un "
-"processus appelé photosynthèse. Ces pigments lui confèrent également une "
-"couleur distinctive. Le taux de production de glucose varie en fonction de "
-"la concentration de dioxyde de carbone et de l'intensité de la lumière."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7088
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6693
 msgid "40"
 msgstr "40"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7096
-msgid "Thermoplast"
-msgstr "Thermoplaste"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7187
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9849
-msgid "Temperature"
-msgstr "Température"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7270
-msgid ""
-"The thermoplast is a double membrane structure containing thermosensitive "
-"pigments stacked together in membranous sacs. It is a prokaryote that has "
-"been assimilated for use by its eukaryotic host. The pigments in the "
-"thermoplast are able to use the energy of heat differences in the "
-"surroundings to produce glucose from water and gaseous carbon dioxide in a "
-"process called Thermosynthesis. The rate of its glucose production scales "
-"with the concentration of carbon dioxide, and temperature."
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6701
+msgid "MICROBE_EDITOR_TOOLTIP_THERMOPLAST"
 msgstr ""
-"Le thermoplaste est une structure à double membrane contenant des pigments "
-"thermosensibles empilés dans des sacs membranaires. C'est un procaryote qui "
-"a été assimilé pour être utilisé par son hôte eucaryote. Les pigments du "
-"thermoplastique sont capables d'utiliser l'énergie des différences de "
-"chaleur dans l'environnement pour produire du glucose à partir d'eau et de "
-"dioxyde de carbone gazeux dans un processus appelé Thermosynthèse. Le taux "
-"de production de glucose varie en fonction de la concentration de dioxyde de "
-"carbone et de la température."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7341
-msgid "Chemoplast"
-msgstr "Chemoplast"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7779
-msgid ""
-"The Nitrogen Fixing Plastid is a protein able to use gaseous nitrogen and "
-"oxygen and cellular energy in the form of ATP to produce ammonia, a key "
-"growth nutrient for cells. This is a process referred to as Aerobic Nitrogen "
-"Fixation."
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6760
+msgid "MICROBE_EDITOR_TOOLTIP_SCALE_AND_TEMP"
 msgstr ""
-"Le plaste de fixation de l'azote est une protéine capable d'utiliser l'azote "
-"et l'oxygène gazeux et l'énergie cellulaire sous forme d'ATP pour produire "
-"de l'ammoniac, un nutriment de croissance essentiel pour les cellules. C'est "
-"un processus appelé fixation aérobie de l'azote."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7850
-msgid "Vacuole"
-msgstr "Vacuole"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7866
-msgid "Increases the storage space of the cell."
-msgstr "Augmente l'espace de stockage de la cellule."
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7940
-msgid ""
-"The vacuole is an internal membranous organelle used for storage in the "
-"cell. They are composed of several vesicles, smaller membranous structures "
-"widely used in cells for storage, that have fused together. It is filled "
-"with water which is used to contain molecules, enzymes, solids, and other "
-"substances. Their shape is fluid and can vary between cells."
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6843
+msgid "MICROBE_EDITOR_TOOLTIP_THERMOPLAST_DESC"
 msgstr ""
-"La vacuole est un organite membranaire interne utilisé pour le stockage dans "
-"la cellule. Elles sont composées de plusieurs vésicules, des structures "
-"membranaires plus petites, largement utilisées dans les cellules pour le "
-"stockage, qui ont fusionné entre elles. Elle est remplie d'eau qui est "
-"utilisée pour contenir des molécules, des enzymes, des solides et d'autres "
-"substances. Leur forme est fluide et peut varier d'une cellule à l'autre."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8003
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6914
+msgid "MICROBE_EDITOR_TOOLTIP_CHEMOPLAST"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7063
+msgid "MICROBE_EDITOR_TOOLTIP_CHEMOPLAST_DESC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7134
+msgid "MICROBE_EDITOR_TOOLTIP_NFP"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7293
+msgid "MICROBE_EDITOR_TOOLTIP_NFP_DESC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7364
+msgid "MICROBE_EDITOR_TOOLTIP_VACUOLE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7380
+msgid "MICROBE_EDITOR_TOOLTIP_INCREASE_STORAGE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7454
+msgid "MICROBE_EDITOR_TOOLTIP_VACUOLE_DESC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7517
 msgid "70"
 msgstr "70"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8011
-msgid "Toxin Vacuole"
-msgstr "Vacuole toxique"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7525
+msgid "MICROBE_EDITOR_TOOLTIP_TOXIN_VACUOLE"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8078
-msgid ". Can"
-msgstr ". Peut"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8090
-msgid "release toxins by pressing"
-msgstr "libérer des toxines en pressant"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8097
-msgid "E."
-msgstr "E."
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8105
-msgid "Rate"
-msgstr "Taux"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8158
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7624
 msgid "+5"
 msgstr "+5"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8208
-msgid ""
-"The toxin vacuole is a vacuole that has been modified for the specific "
-"production, storage, and secretion of oxytoxy toxins. More toxin vacuoles "
-"will increase the rate at which toxins can be released."
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7674
+msgid "MICROBE_EDITOR_TOOLTIP_TOXIN_VACUOLE_DESC"
 msgstr ""
-"La vacuole de la toxine est une vacuole qui a été modifiée pour la "
-"production, le stockage et la sécrétion spécifiques de toxines oxydées. Un "
-"plus grand nombre de vacuoles de toxines augmentera la vitesse à laquelle "
-"les toxines peuvent être libérées."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8296
-msgid "To be implemented."
-msgstr "A implémenter."
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7745
+msgid "MICROBE_EDITOR_TOOLTIP_BIOLUM_VACUOLE"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8373
-msgid "Normal"
-msgstr "Normal"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7838
+msgid "MICROBE_EDITOR_TOOLTIP_NORMAL_MEMBRANE"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8391
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8440
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7856
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7905
 msgid "+0.1"
 msgstr "+0.1"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8399
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8664
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8843
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9023
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9242
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9459
-msgid "Mobility"
-msgstr "Mobilité"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7864
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8129
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8308
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8487
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8706
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8924
+msgid "MICROBE_EDITOR_TOOLTIP_MOBILITY"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8420
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7885
 msgid "+10%"
 msgstr "+10%"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8447
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8712
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8891
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9071
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9290
-msgid "Resource Absorption Speed"
-msgstr "Vitesse d'absorption des ressources"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7912
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8177
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8356
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8535
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8754
+msgid "MICROBE_EDITOR_TOOLTIP_ABSORB"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8460
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7925
 msgid "-30"
 msgstr "-30"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8467
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9091
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9310
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9487
-msgid "Health"
-msgstr "Santé"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8481
-msgid ""
-"The most basic form of membrane, it has little protection against damage. It "
-"also needs more energy to not deform. The advantage is that it allows the "
-"cell to move and absorb nutrients swiftly."
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7932
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8555
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8774
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8952
+msgid "MICROBE_EDITOR_TOOLTIP_HEALTH"
 msgstr ""
-"C'est la forme de membrane la plus élémentaire, qui offre peu de protection "
-"contre les dommages. Elle a également besoin de plus d'énergie pour ne pas "
-"se déformer. L'avantage est qu'elle permet à la cellule de se déplacer et "
-"d'absorber rapidement les nutriments."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8552
-msgid "Double"
-msgstr "Double"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8567
-msgid ""
-"A membrane with two layers, it has better protection against damage and "
-"takes less energy to not deform. However, it slows the cell down some and "
-"lowers the rate at which it can absorb resources."
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7946
+msgid "MICROBE_EDITOR_TOOLTIP_NORMAL_MEMBRANE_DESC"
 msgstr ""
-"Une membrane à deux couches, elle a une meilleure protection contre les "
-"dommages et nécessite moins d'énergie pour ne pas se déformer. Cependant, "
-"elle ralentit un peu la cellule et diminue la vitesse à laquelle elle peut "
-"absorber les ressources."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8638
-msgid "Cellulose"
-msgstr "Cellulose"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8017
+msgid "MICROBE_EDITOR_TOOLTIP_DOUBLE_MEMBRANE"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8656
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8835
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8032
+msgid "MICROBE_EDITOR_TOOLTIP_DOUBLE_MEMBRANE_DESC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8103
+msgid "MICROBE_EDITOR_TOOLTIP_CELLULOSE_MEMBRANE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8121
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8300
 msgid "-0.2"
 msgstr "-0.2"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8685
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8864
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9044
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9263
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8150
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8329
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8508
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8727
 msgid "-20%"
 msgstr "-20%"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8705
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8884
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9064
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9283
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8170
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8349
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8528
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8747
 msgid "-0.1"
 msgstr "-0.1"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8725
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8904
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9104
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9124
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9343
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8190
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8369
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8568
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8588
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8807
 msgid "+0.2"
 msgstr "+0.2"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8732
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9111
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9330
-msgid "Physical Resistance"
-msgstr "Résistance physique"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8746
-msgid ""
-"This membrane has a wall, resulting in better protection against overall "
-"damage and especially against physical damage. It also costs less energy to "
-"retain its form, but cannot absorb resources quickly and is slower."
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8197
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8575
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8794
+msgid "MICROBE_EDITOR_TOOLTIP_PHY_RES"
 msgstr ""
-"Cette membrane a une paroi, ce qui permet une meilleure protection contre "
-"les dommages globaux et surtout contre les dommages physiques. Elle coûte "
-"également moins d'énergie pour conserver sa forme, mais ne peut pas absorber "
-"les ressources rapidement et est plus lente."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8817
-msgid "Chitin"
-msgstr "Chitin"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8911
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9131
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9350
-msgid "Toxin Resistance"
-msgstr "Résistance aux toxines"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8925
-msgid ""
-"This membrane has a wall, which means it has better protections against "
-"overall damage and especially against toxin damage. It also costs less "
-"energy to retain its form, but it is slower and cannot absorb resources "
-"quickly."
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8211
+msgid "MICROBE_EDITOR_TOOLTIP_CELLULOSE_MEMBRANE_DESC"
 msgstr ""
-"Cette membrane a une paroi, ce qui signifie qu'elle offre une meilleure "
-"protection contre les dommages globaux et surtout contre les dommages causés "
-"par les toxines. Elle coûte également moins d'énergie pour conserver sa "
-"forme, mais elle est plus lente et ne peut pas absorber les ressources "
-"rapidement."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9015
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8282
+msgid "MICROBE_EDITOR_TOOLTIP_CHITIN_MEMBRANE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8376
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8595
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8814
+msgid "MICROBE_EDITOR_TOOLTIP_TOX_RES"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8390
+msgid "MICROBE_EDITOR_TOOLTIP_CHITIN_MEMBRANE_DESC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8461
+msgid "MICROBE_EDITOR_TOOLTIP_CC_MEMBRANE"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8479
 msgid "-0.3"
 msgstr "-0.3"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9084
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9303
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9480
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8548
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8767
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8945
 msgid "+30"
 msgstr "+30"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9145
-msgid ""
-"This membrane has a strong shell made from calcium carbonate. It can easily "
-"resist damage and requires less energy to not deform. The disadvantages of "
-"having such a heavy shell is that the cell is much slower and takes a while "
-"to absorb resources."
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8609
+msgid "MICROBE_EDITOR_TOOLTIP_CC_MEMBRANE_DESC"
 msgstr ""
-"Cette membrane a une enveloppe solide faite de carbonate de calcium. Elle "
-"peut facilement résister aux dommages et nécessite moins d'énergie pour ne "
-"pas se déformer. L'inconvénient d'avoir une coquille aussi lourde est que la "
-"cellule est beaucoup plus lente et prend un certain temps à absorber les "
-"ressources."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9216
-msgid "Silica"
-msgstr "Silica"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8680
+msgid "MICROBE_EDITOR_TOOLTIP_SILICA_MEMBRANE"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9234
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9451
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8698
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8916
 msgid "-0.4"
 msgstr "-0.4"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9323
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8787
 msgid "+0.4"
 msgstr "+0.4"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9425
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8828
+msgid "MICROBE_EDITOR_TOOLTIP_SILICA_MEMBRANE_DESC"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8890
 msgid "2"
 msgstr "2"
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9500
-msgid ""
-"A more rigid membrane is more resistant to damage, but will make it harder "
-"for the cell to move around."
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8898
+msgid "MICROBE_EDITOR_TOOLTIP_MEMBRANE_RIGIDITY"
 msgstr ""
-"Une membrane plus rigide est plus résistante aux dommages, mais rend la "
-"cellule plus difficile à déplacer."
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9554
-msgid "The amount of glucose has been reduced to ... of the previous amount."
-msgstr "La quantité de glucose a été réduite à ... de la quantité précédente."
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8966
+msgid "MICROBE_EDITOR_TOOLTIP_MEMBRANE_RIGIDITY_DESC"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9568
-msgid "Auto-evo results:"
-msgstr "Résultats de l'auto-évolution :"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9033
+msgid "MICROBE_EDITOR_REPORT_EVO"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9586
-msgid "External effects:"
-msgstr "Effets externes :"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9051
+msgid "MICROBE_EDITOR_REPORT_EFFECTS"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9608
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:10356
-msgid "NEXT"
-msgstr "SUIVANT"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9073
+msgid "MICROBE_EDITOR_REPORT_NEXT"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9715
-msgid "Select a patch to show details here"
-msgstr "Sélectionnez un patch pour afficher les détails ici"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9180
+msgid "MICROBE_EDITOR_PATCH_EMPTY"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9735
-msgid "Patch Name Goes Here"
-msgstr "Le nom du patch va ici"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9269
+msgid "MICROBE_EDITOR_PATCH_PHYSICAL"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9743
-msgid "YOU ARE CURRENTLY IN THIS PATCH"
-msgstr "VOUS ÊTES ACTUELLEMENT DANS CE PATCH"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9417
+msgid "MICROBE_EDITOR_PATCH_ATMOSPHERIC"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9751
-msgid "Biome: BIOME HERE"
-msgstr "Biome : BIOME ICI"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9547
+msgid "MICROBE_EDITOR_PATCH_COUMPOUNDS"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9759
-msgid "200-340m below sea level"
-msgstr "200-340m en dessous du niveau de la mer"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9761
+msgid "MICROBE_EDITOR_PATCH_SPECIES"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9808
-msgid "Physical Conditions"
-msgstr "Conditions physiques"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9806
+msgid "MICROBE_EDITOR_PATCH_NEXT"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9881
-msgid "Pressure"
-msgstr "Pression"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9959
-msgid "Atmospheric Gasses"
-msgstr "Gaz atmosphériques"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:10311
-msgid "Species Present"
-msgstr "Espèces présentes"
-
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:10379
-msgid "Move to This Patch"
-msgstr "Passer à ce patch"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9829
+msgid "MICROBE_EDITOR_PATCH_MOVE_HERE"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:433
 msgid "The amount of glucose has been reduced to {0} of the previous amount."
@@ -1959,6 +1670,681 @@ msgstr ""
 #: ../src/saving/SaveStatusOverlay.tscn:103
 msgid "SAVE_STATUS_COPY"
 msgstr ""
+
+#~ msgid "Stuff at"
+#~ msgstr "Choses à"
+
+#~ msgid "Environment"
+#~ msgstr "Environnement"
+
+#~ msgid "02"
+#~ msgstr "02"
+
+#~ msgid "0%"
+#~ msgstr "0%"
+
+#~ msgid "CO2"
+#~ msgstr "CO2"
+
+#~ msgid "N2"
+#~ msgstr "N2"
+
+#~ msgid "Temp."
+#~ msgstr "Temp."
+
+#~ msgid "55° C"
+#~ msgstr "55° C"
+
+#~ msgid "Light"
+#~ msgstr "Lumière"
+
+#~ msgid "Press."
+#~ msgstr "Presse."
+
+#~ msgid "200 kPa"
+#~ msgstr "200 kPa"
+
+#~ msgid "Compounds"
+#~ msgstr "Composés"
+
+#~ msgid "Glucose"
+#~ msgstr "Glucose"
+
+#~ msgid "0.0 / 4"
+#~ msgstr "0.0 / 4"
+
+#~ msgid "Ammonia"
+#~ msgstr "Ammoniac"
+
+#~ msgid "Phosphate"
+#~ msgstr "Phosphate"
+
+#~ msgid "Hydrogen Sulfide"
+#~ msgstr "Sulfure d'hydrogène"
+
+#~ msgid "Iron"
+#~ msgstr "Fer"
+
+#~ msgid "Agents"
+#~ msgstr "Agents"
+
+#~ msgid "OxyToxy NT"
+#~ msgstr "OxyToxy NT"
+
+#~ msgid "Patch:"
+#~ msgstr "Patch:"
+
+#~ msgid "POPULATION:"
+#~ msgstr "POPULATION:"
+
+#~ msgid "Hitpoints"
+#~ msgstr "Points de vie"
+
+#~ msgid "ATP"
+#~ msgstr "ATP"
+
+#~ msgid "REPORT"
+#~ msgstr "RAPPORT"
+
+#~ msgid "PATCH MAP"
+#~ msgstr "CARTE DES PATCHS"
+
+#~ msgid "CELL EDITOR"
+#~ msgstr "ÉDITEUR CELLULAIRE"
+
+#~ msgid "Mutation Points"
+#~ msgstr "Points de mutation"
+
+#~ msgid "100 / 100"
+#~ msgstr "100 / 100"
+
+#~ msgid "NEW"
+#~ msgstr "NOUVEAU"
+
+#~ msgid "ATP Balance"
+#~ msgstr "Solde ATP"
+
+#~ msgid "STRUCTURE"
+#~ msgstr "STRUCTURE"
+
+#~ msgid "MEMBRANE"
+#~ msgstr "MEMBRANE"
+
+#~ msgid "BEHAVIOR"
+#~ msgstr "COMPORTEMENT"
+
+#~ msgid "Structural Organelles"
+#~ msgstr "Organelles structurelles"
+
+#~ msgid "Prokaryotic Structures"
+#~ msgstr "Structures procaryotes"
+
+#~ msgid "External Organelles"
+#~ msgstr "Organelles externes"
+
+#~ msgid "Membrane Types"
+#~ msgstr "Types de membranes"
+
+#~ msgid "Fluidity/Rigidity"
+#~ msgstr "Fluidité/Rigidité"
+
+#~ msgid "Colour"
+#~ msgstr "Couleur"
+
+#~ msgid "Species"
+#~ msgstr "Espèces"
+
+#~ msgid "Primum Thrivium"
+#~ msgstr "Primum Thrivium"
+
+#~ msgid "Generation 2"
+#~ msgstr "Génération 2"
+
+#~ msgid "Speed 2.0"
+#~ msgstr "Vitesse 2.0"
+
+#~ msgid "Size 1"
+#~ msgstr "Taille 1"
+
+#~ msgid "Symmetry"
+#~ msgstr "Symétrie"
+
+#~ msgid "CONFIRM"
+#~ msgstr "CONFIRMER"
+
+#~ msgid "Cytoplasm"
+#~ msgstr "Cytoplasme"
+
+#~ msgid "Turns"
+#~ msgstr "Tourne"
+
+#~ msgid "into"
+#~ msgstr "dans"
+
+#~ msgid "Storage"
+#~ msgstr "Stockage"
+
+#~ msgid "Osmoregulation Cost"
+#~ msgstr "Coût de l'osmorégulation"
+
+#~ msgid ""
+#~ "The gooey innards of a cell. The cytoplasm is the basic mixture of ions, "
+#~ "proteins, and other substances dissolved in water that fill the interior "
+#~ "of the cell. One of the functions it performs is Fermentation, the "
+#~ "conversion of glucose into ATP energy. For cells that lack organelles to "
+#~ "have more advanced metabolisms, this is what they rely on for energy. It "
+#~ "is also used to store molecules in the cell and to grow the cell's size."
+#~ msgstr ""
+#~ "Les entrailles gluantes d'une cellule. Le cytoplasme est le mélange de "
+#~ "base d'ions, de protéines et d'autres substances dissoutes dans l'eau qui "
+#~ "remplissent l'intérieur de la cellule. L'une des fonctions qu'il remplit "
+#~ "est la fermentation, la conversion du glucose en énergie ATP. Pour que "
+#~ "les cellules qui manquent d'organelles aient des métabolismes plus "
+#~ "avancés, c'est sur cela qu'elles comptent pour leur énergie. Elle est "
+#~ "également utilisée pour stocker des molécules dans la cellule et pour "
+#~ "augmenter la taille de la cellule."
+
+#~ msgid "Metabolosomes"
+#~ msgstr "Métabolosomes"
+
+#~ msgid ". Rate scales"
+#~ msgstr ". Échelles de taux"
+
+#~ msgid "with concentration of"
+#~ msgstr "avec une concentration de"
+
+#~ msgid "Oxygen."
+#~ msgstr "Oxygène."
+
+#~ msgid ""
+#~ "Metabolosomes are clusters of proteins wrapped in protein shells. They "
+#~ "are able to convert glucose into ATP at a much higher rate than can be "
+#~ "done in the cytoplasm in a process called Aerobic Respiration. It does, "
+#~ "however, require oxygen to function, and lower levels of oxygen in the "
+#~ "environment will slow down the rate of its ATP production. Since the "
+#~ "metabolosomes are suspended directly in the cytoplasm, the surrounding "
+#~ "fluid performs some fermentation."
+#~ msgstr ""
+#~ "Les métabolosomes sont des groupes de protéines enveloppés dans des "
+#~ "enveloppes protéiques. Ils sont capables de convertir le glucose en ATP à "
+#~ "un taux beaucoup plus élevé que celui qui peut être obtenu dans le "
+#~ "cytoplasme par un processus appelé \"respiration aérobie\". Cependant, il "
+#~ "a besoin d'oxygène pour fonctionner, et des niveaux d'oxygène plus "
+#~ "faibles dans l'environnement ralentiront la vitesse de sa production "
+#~ "d'ATP. Comme les métabolosomes sont en suspension directement dans le "
+#~ "cytoplasme, le liquide environnant effectue une certaine fermentation."
+
+#~ msgid "Thylakoids"
+#~ msgstr "Thylakoids"
+
+#~ msgid "Produces"
+#~ msgstr "Produit"
+
+#~ msgid ". Rate scales with"
+#~ msgstr ". Les échelles de taux"
+
+#~ msgid "concentration of"
+#~ msgstr "concentration de"
+
+#~ msgid "Carbon Dioxide"
+#~ msgstr "Dioxyde de carbone"
+
+#~ msgid "and"
+#~ msgstr "et"
+
+#~ msgid "intensity of"
+#~ msgstr "intensité de"
+
+#~ msgid ""
+#~ "Thylakoids are clusters of proteins and photosensitive pigments. The "
+#~ "pigments are able to use the energy of light to produce glucose from "
+#~ "water and gaseous carbon dioxide in a process called Photosynthesis. "
+#~ "These pigments are also what give them a distinctive colour. The rate of "
+#~ "their glucose production scales with the concentration of carbon dioxide, "
+#~ "and intensity of light. Since the thylakoids are suspended directly in "
+#~ "the cytoplasm, the surrounding fluid performs some fermentation."
+#~ msgstr ""
+#~ "Les thylakoïdes sont des groupes de protéines et de pigments "
+#~ "photosensibles. Les pigments sont capables d'utiliser l'énergie de la "
+#~ "lumière pour produire du glucose à partir de l'eau et du dioxyde de "
+#~ "carbone gazeux dans un processus appelé photosynthèse. Ces pigments sont "
+#~ "aussi ce qui leur donne une couleur distinctive. Le taux de production de "
+#~ "glucose varie en fonction de la concentration de dioxyde de carbone et de "
+#~ "l'intensité de la lumière. Comme les thylakoïdes sont directement en "
+#~ "suspension dans le cytoplasme, le liquide environnant effectue une "
+#~ "certaine fermentation."
+
+#~ msgid ". Rate scales with concentration of"
+#~ msgstr ". Le taux carie avec la concentration de"
+
+#~ msgid "Carbon"
+#~ msgstr "Carbone"
+
+#~ msgid "Dioxide"
+#~ msgstr "Dioxide"
+
+#~ msgid "Also turns"
+#~ msgstr "Tourne également"
+
+#~ msgid ""
+#~ "Chemosynthesizing proteins are small clusters of protein in the cytoplasm "
+#~ "that are able to convert hydrogen sulfide, water, and gaseous carbon "
+#~ "dioxide into glucose in a process called Hydrogen Sulfide Chemosynthesis. "
+#~ "The rate of its glucose production scales with the concentration of "
+#~ "carbon dioxide. Since the chemosynthesizing proteins are suspended "
+#~ "directly in the cytoplasm, the surrounding fluid performs some "
+#~ "fermentation."
+#~ msgstr ""
+#~ "Les protéines de chimiosynthèse sont de petits groupes de protéines dans "
+#~ "le cytoplasme qui sont capables de convertir le sulfure d'hydrogène, "
+#~ "l'eau et le dioxyde de carbone gazeux en glucose dans un processus appelé "
+#~ "chimiosynthèse du sulfure d'hydrogène. Le taux de production de glucose "
+#~ "varie en fonction de la concentration de dioxyde de carbone. Comme les "
+#~ "protéines de chimiosynthèse sont en suspension directement dans le "
+#~ "cytoplasme, le fluide environnant effectue une certaine fermentation."
+
+#~ msgid "Rusticyanin"
+#~ msgstr "Rusticyanin"
+
+#~ msgid "Oxygen"
+#~ msgstr "Oxygène"
+
+#~ msgid ""
+#~ "Rusticyanin is a protein able to use gaseous carbon dioxide and oxygen to "
+#~ "oxidize iron from one chemical state to another. This process, called "
+#~ "Iron Respiration, releases energy which the cell can then harvest."
+#~ msgstr ""
+#~ "La rusticyanine est une protéine capable d'utiliser le dioxyde de carbone "
+#~ "gazeux et l'oxygène pour oxyder le fer d'un état chimique à un autre. Ce "
+#~ "processus, appelé \"respiration du fer\", libère de l'énergie que la "
+#~ "cellule peut ensuite récolter."
+
+#~ msgid "Nitrogenase"
+#~ msgstr "Nitrogenase"
+
+#~ msgid ". Rate"
+#~ msgstr ". Taux"
+
+#~ msgid "scales with concentration of"
+#~ msgstr "varie avec une concentration de"
+
+#~ msgid "Nitrogen"
+#~ msgstr "Azote"
+
+#~ msgid ""
+#~ "Nitrogenase is a protein able to use gaseous nitrogen and cellular energy "
+#~ "in the form of ATP to produce ammonia, a key growth nutrient for cells. "
+#~ "This is a process referred to as Anaerobic Nitrogen Fixation. Since the "
+#~ "nitrogenase is suspended directly in the cytoplasm, the surrounding fluid "
+#~ "performs some fermentation."
+#~ msgstr ""
+#~ "La nitrogénase est une protéine capable d'utiliser l'azote gazeux et "
+#~ "l'énergie cellulaire sous forme d'ATP pour produire de l'ammoniac, un "
+#~ "nutriment essentiel à la croissance des cellules. C'est un processus "
+#~ "appelé fixation anaérobie de l'azote. Comme l'azotease est en suspension "
+#~ "directement dans le cytoplasme, le liquide environnant effectue une "
+#~ "certaine fermentation."
+
+#~ msgid "Oxytoxisome"
+#~ msgstr "Oxytoxisome"
+
+#~ msgid "Oxytoxy"
+#~ msgstr "Oxytoxy"
+
+#~ msgid ". Can release"
+#~ msgstr ". Peut libérer"
+
+#~ msgid "toxins by pressing E. Rate scales with"
+#~ msgstr "toxines en appuyant sur E. Varie avec"
+
+#~ msgid ""
+#~ "A modified metabolosome responsible for the production of a primitive "
+#~ "form of the toxic agent Oxytoxy NT."
+#~ msgstr ""
+#~ "Un métabolosome modifié responsable de la production d'une forme "
+#~ "primitive de l'agent toxique Oxytoxy NT."
+
+#~ msgid "Flagellum"
+#~ msgstr "Flagelle"
+
+#~ msgid "Uses"
+#~ msgstr "Utilise"
+
+#~ msgid "to increase the movement"
+#~ msgstr "pour augmenter le mouvement"
+
+#~ msgid "speed of the cell."
+#~ msgstr "vitesse de la cellule."
+
+#~ msgid "Speed"
+#~ msgstr "Vitesse"
+
+#~ msgid ""
+#~ "The flagellum (plural: flagella) is a whip-like bundle of protein fibers "
+#~ "extending from the cell's membrane which can use ATP to undulate and "
+#~ "propel the cell in a direction."
+#~ msgstr ""
+#~ "Le flagelle (pluriel : flagelles) est un faisceau de fibres protéiques en "
+#~ "forme de fouet qui s'étend depuis la membrane de la cellule et qui peut "
+#~ "utiliser l'ATP pour onduler et propulser la cellule dans une direction."
+
+#~ msgid "Predatory Pilus"
+#~ msgstr "Pilus prédateur"
+
+#~ msgid "Stab other cells with this."
+#~ msgstr "Plantez ceci dans d'autres cellules."
+
+#~ msgid "Cilia"
+#~ msgstr "Cilia"
+
+#~ msgid "To be Implemented."
+#~ msgstr "A implémenter."
+
+#~ msgid "Nucleus"
+#~ msgstr "Nucleus"
+
+#~ msgid "Allows for the evolution of more complex,"
+#~ msgstr "Permet l'évolution de plus complexes,"
+
+#~ msgid "membrane-bound organelles. Costs a lot"
+#~ msgstr "les organites liés aux membranes. Coûts élevés"
+
+#~ msgid "of ATP to maintain. This is an irreversible"
+#~ msgstr "de l'ATP à maintenir. Il s'agit d'une"
+
+#~ msgid "evolution."
+#~ msgstr "l'évolution."
+
+#~ msgid ""
+#~ "The defining feature of eukaryotic cells. The nucleus also includes the "
+#~ "endoplasmic reticulum and the golgi body. It is an evolution of "
+#~ "prokaryotic cells to develop a system of internal membranes, done by "
+#~ "assimilating another prokaryote inside of themselves. This allows them to "
+#~ "compartmentalize, or ward off, the different processes happening inside "
+#~ "the cell and prevent them from overlapping. This allows their new "
+#~ "membrane bound organelles to be much more complex, efficient, and "
+#~ "specialized than if they were free-floating in the cytoplasm. However, "
+#~ "this comes at the cost of making the cell much larger and requiring a lot "
+#~ "of the cell's energy to maintain."
+#~ msgstr ""
+#~ "La caractéristique principale des cellules eucaryotes. Le noyau comprend "
+#~ "également le réticulum endoplasmique et le corps de Golgi. Il s'agit "
+#~ "d'une évolution des cellules procaryotes pour développer un système de "
+#~ "membranes internes, réalisée par l'assimilation d'un autre procaryote à "
+#~ "l'intérieur d'elles-mêmes. Cela leur permet de compartimenter, ou "
+#~ "d'écarter, les différents processus qui se déroulent à l'intérieur de la "
+#~ "cellule et d'empêcher leur chevauchement. Cela permet à leurs nouveaux "
+#~ "organites liés à la membrane d'être beaucoup plus complexes, efficaces et "
+#~ "spécialisés que s'ils flottaient librement dans le cytoplasme. Cependant, "
+#~ "cela se fait au prix d'une cellule beaucoup plus grande et d'une grande "
+#~ "quantité d'énergie nécessaire à son maintien."
+
+#~ msgid "Mitochondrion"
+#~ msgstr "Mitochondrion"
+
+#~ msgid ""
+#~ "The powerhouse of the cell. The mitochondrion (plural: mitochondria) is a "
+#~ "double membrane structure filled with proteins and enzymes. It is a "
+#~ "prokaryote that has been assimilated for use by its eukaryotic host. It "
+#~ "is able to convert glucose into ATP at a much higher efficiency than can "
+#~ "be done in the cytoplasm in a process called Aerobic Respiration. It "
+#~ "does, however, require oxygen to function, and lower levels of oxygen in "
+#~ "the environment will slow down the rate of its ATP production."
+#~ msgstr ""
+#~ "La centrale de la cellule. La mitochondrie (au pluriel : mitochondrie) "
+#~ "est une structure à double membrane remplie de protéines et d'enzymes. "
+#~ "C'est un procaryote qui a été assimilé pour être utilisé par son hôte "
+#~ "eucaryote. Il est capable de convertir le glucose en ATP avec une "
+#~ "efficacité bien supérieure à celle qui peut être obtenue dans le "
+#~ "cytoplasme par un processus appelé \"respiration aérobie\". Il a "
+#~ "toutefois besoin d'oxygène pour fonctionner, et des niveaux d'oxygène "
+#~ "plus faibles dans l'environnement ralentiront le rythme de sa production "
+#~ "d'ATP."
+
+#~ msgid "Chloroplast"
+#~ msgstr "Chloroplaste"
+
+#~ msgid ""
+#~ "The chloroplast is a double membrane structure containing photosensitive "
+#~ "pigments stacked together in membranous sacs. It is a prokaryote that has "
+#~ "been assimilated for use by its eukaryotic host. The pigments in the "
+#~ "chloroplast are able to use the energy of light to produce glucose from "
+#~ "water and gaseous carbon dioxide in a process called Photosynthesis. "
+#~ "These pigments are also what give it a distinctive colour. The rate of "
+#~ "its glucose production scales with the concentration of carbon dioxide, "
+#~ "and intensity of light."
+#~ msgstr ""
+#~ "Le chloroplaste est une structure à double membrane contenant des "
+#~ "pigments photosensibles empilés dans des sacs membranaires. C'est un "
+#~ "procaryote qui a été assimilé pour être utilisé par son hôte eucaryote. "
+#~ "Les pigments du chloroplaste sont capables d'utiliser l'énergie de la "
+#~ "lumière pour produire du glucose à partir de l'eau et du dioxyde de "
+#~ "carbone gazeux dans un processus appelé photosynthèse. Ces pigments lui "
+#~ "confèrent également une couleur distinctive. Le taux de production de "
+#~ "glucose varie en fonction de la concentration de dioxyde de carbone et de "
+#~ "l'intensité de la lumière."
+
+#~ msgid "Thermoplast"
+#~ msgstr "Thermoplaste"
+
+#~ msgid "Temperature"
+#~ msgstr "Température"
+
+#~ msgid ""
+#~ "The thermoplast is a double membrane structure containing thermosensitive "
+#~ "pigments stacked together in membranous sacs. It is a prokaryote that has "
+#~ "been assimilated for use by its eukaryotic host. The pigments in the "
+#~ "thermoplast are able to use the energy of heat differences in the "
+#~ "surroundings to produce glucose from water and gaseous carbon dioxide in "
+#~ "a process called Thermosynthesis. The rate of its glucose production "
+#~ "scales with the concentration of carbon dioxide, and temperature."
+#~ msgstr ""
+#~ "Le thermoplaste est une structure à double membrane contenant des "
+#~ "pigments thermosensibles empilés dans des sacs membranaires. C'est un "
+#~ "procaryote qui a été assimilé pour être utilisé par son hôte eucaryote. "
+#~ "Les pigments du thermoplastique sont capables d'utiliser l'énergie des "
+#~ "différences de chaleur dans l'environnement pour produire du glucose à "
+#~ "partir d'eau et de dioxyde de carbone gazeux dans un processus appelé "
+#~ "Thermosynthèse. Le taux de production de glucose varie en fonction de la "
+#~ "concentration de dioxyde de carbone et de la température."
+
+#~ msgid "Chemoplast"
+#~ msgstr "Chemoplast"
+
+#~ msgid ""
+#~ "The Nitrogen Fixing Plastid is a protein able to use gaseous nitrogen and "
+#~ "oxygen and cellular energy in the form of ATP to produce ammonia, a key "
+#~ "growth nutrient for cells. This is a process referred to as Aerobic "
+#~ "Nitrogen Fixation."
+#~ msgstr ""
+#~ "Le plaste de fixation de l'azote est une protéine capable d'utiliser "
+#~ "l'azote et l'oxygène gazeux et l'énergie cellulaire sous forme d'ATP pour "
+#~ "produire de l'ammoniac, un nutriment de croissance essentiel pour les "
+#~ "cellules. C'est un processus appelé fixation aérobie de l'azote."
+
+#~ msgid "Vacuole"
+#~ msgstr "Vacuole"
+
+#~ msgid "Increases the storage space of the cell."
+#~ msgstr "Augmente l'espace de stockage de la cellule."
+
+#~ msgid ""
+#~ "The vacuole is an internal membranous organelle used for storage in the "
+#~ "cell. They are composed of several vesicles, smaller membranous "
+#~ "structures widely used in cells for storage, that have fused together. It "
+#~ "is filled with water which is used to contain molecules, enzymes, solids, "
+#~ "and other substances. Their shape is fluid and can vary between cells."
+#~ msgstr ""
+#~ "La vacuole est un organite membranaire interne utilisé pour le stockage "
+#~ "dans la cellule. Elles sont composées de plusieurs vésicules, des "
+#~ "structures membranaires plus petites, largement utilisées dans les "
+#~ "cellules pour le stockage, qui ont fusionné entre elles. Elle est remplie "
+#~ "d'eau qui est utilisée pour contenir des molécules, des enzymes, des "
+#~ "solides et d'autres substances. Leur forme est fluide et peut varier "
+#~ "d'une cellule à l'autre."
+
+#~ msgid "Toxin Vacuole"
+#~ msgstr "Vacuole toxique"
+
+#~ msgid ". Can"
+#~ msgstr ". Peut"
+
+#~ msgid "release toxins by pressing"
+#~ msgstr "libérer des toxines en pressant"
+
+#~ msgid "E."
+#~ msgstr "E."
+
+#~ msgid "Rate"
+#~ msgstr "Taux"
+
+#~ msgid ""
+#~ "The toxin vacuole is a vacuole that has been modified for the specific "
+#~ "production, storage, and secretion of oxytoxy toxins. More toxin vacuoles "
+#~ "will increase the rate at which toxins can be released."
+#~ msgstr ""
+#~ "La vacuole de la toxine est une vacuole qui a été modifiée pour la "
+#~ "production, le stockage et la sécrétion spécifiques de toxines oxydées. "
+#~ "Un plus grand nombre de vacuoles de toxines augmentera la vitesse à "
+#~ "laquelle les toxines peuvent être libérées."
+
+#~ msgid "To be implemented."
+#~ msgstr "A implémenter."
+
+#~ msgid "Normal"
+#~ msgstr "Normal"
+
+#~ msgid "Mobility"
+#~ msgstr "Mobilité"
+
+#~ msgid "Resource Absorption Speed"
+#~ msgstr "Vitesse d'absorption des ressources"
+
+#~ msgid "Health"
+#~ msgstr "Santé"
+
+#~ msgid ""
+#~ "The most basic form of membrane, it has little protection against damage. "
+#~ "It also needs more energy to not deform. The advantage is that it allows "
+#~ "the cell to move and absorb nutrients swiftly."
+#~ msgstr ""
+#~ "C'est la forme de membrane la plus élémentaire, qui offre peu de "
+#~ "protection contre les dommages. Elle a également besoin de plus d'énergie "
+#~ "pour ne pas se déformer. L'avantage est qu'elle permet à la cellule de se "
+#~ "déplacer et d'absorber rapidement les nutriments."
+
+#~ msgid "Double"
+#~ msgstr "Double"
+
+#~ msgid ""
+#~ "A membrane with two layers, it has better protection against damage and "
+#~ "takes less energy to not deform. However, it slows the cell down some and "
+#~ "lowers the rate at which it can absorb resources."
+#~ msgstr ""
+#~ "Une membrane à deux couches, elle a une meilleure protection contre les "
+#~ "dommages et nécessite moins d'énergie pour ne pas se déformer. Cependant, "
+#~ "elle ralentit un peu la cellule et diminue la vitesse à laquelle elle "
+#~ "peut absorber les ressources."
+
+#~ msgid "Cellulose"
+#~ msgstr "Cellulose"
+
+#~ msgid "Physical Resistance"
+#~ msgstr "Résistance physique"
+
+#~ msgid ""
+#~ "This membrane has a wall, resulting in better protection against overall "
+#~ "damage and especially against physical damage. It also costs less energy "
+#~ "to retain its form, but cannot absorb resources quickly and is slower."
+#~ msgstr ""
+#~ "Cette membrane a une paroi, ce qui permet une meilleure protection contre "
+#~ "les dommages globaux et surtout contre les dommages physiques. Elle coûte "
+#~ "également moins d'énergie pour conserver sa forme, mais ne peut pas "
+#~ "absorber les ressources rapidement et est plus lente."
+
+#~ msgid "Chitin"
+#~ msgstr "Chitin"
+
+#~ msgid "Toxin Resistance"
+#~ msgstr "Résistance aux toxines"
+
+#~ msgid ""
+#~ "This membrane has a wall, which means it has better protections against "
+#~ "overall damage and especially against toxin damage. It also costs less "
+#~ "energy to retain its form, but it is slower and cannot absorb resources "
+#~ "quickly."
+#~ msgstr ""
+#~ "Cette membrane a une paroi, ce qui signifie qu'elle offre une meilleure "
+#~ "protection contre les dommages globaux et surtout contre les dommages "
+#~ "causés par les toxines. Elle coûte également moins d'énergie pour "
+#~ "conserver sa forme, mais elle est plus lente et ne peut pas absorber les "
+#~ "ressources rapidement."
+
+#~ msgid ""
+#~ "This membrane has a strong shell made from calcium carbonate. It can "
+#~ "easily resist damage and requires less energy to not deform. The "
+#~ "disadvantages of having such a heavy shell is that the cell is much "
+#~ "slower and takes a while to absorb resources."
+#~ msgstr ""
+#~ "Cette membrane a une enveloppe solide faite de carbonate de calcium. Elle "
+#~ "peut facilement résister aux dommages et nécessite moins d'énergie pour "
+#~ "ne pas se déformer. L'inconvénient d'avoir une coquille aussi lourde est "
+#~ "que la cellule est beaucoup plus lente et prend un certain temps à "
+#~ "absorber les ressources."
+
+#~ msgid "Silica"
+#~ msgstr "Silica"
+
+#~ msgid ""
+#~ "A more rigid membrane is more resistant to damage, but will make it "
+#~ "harder for the cell to move around."
+#~ msgstr ""
+#~ "Une membrane plus rigide est plus résistante aux dommages, mais rend la "
+#~ "cellule plus difficile à déplacer."
+
+#~ msgid ""
+#~ "The amount of glucose has been reduced to ... of the previous amount."
+#~ msgstr ""
+#~ "La quantité de glucose a été réduite à ... de la quantité précédente."
+
+#~ msgid "Auto-evo results:"
+#~ msgstr "Résultats de l'auto-évolution :"
+
+#~ msgid "External effects:"
+#~ msgstr "Effets externes :"
+
+#~ msgid "NEXT"
+#~ msgstr "SUIVANT"
+
+#~ msgid "Select a patch to show details here"
+#~ msgstr "Sélectionnez un patch pour afficher les détails ici"
+
+#~ msgid "Patch Name Goes Here"
+#~ msgstr "Le nom du patch va ici"
+
+#~ msgid "YOU ARE CURRENTLY IN THIS PATCH"
+#~ msgstr "VOUS ÊTES ACTUELLEMENT DANS CE PATCH"
+
+#~ msgid "Biome: BIOME HERE"
+#~ msgstr "Biome : BIOME ICI"
+
+#~ msgid "200-340m below sea level"
+#~ msgstr "200-340m en dessous du niveau de la mer"
+
+#~ msgid "Physical Conditions"
+#~ msgstr "Conditions physiques"
+
+#~ msgid "Pressure"
+#~ msgstr "Pression"
+
+#~ msgid "Atmospheric Gasses"
+#~ msgstr "Gaz atmosphériques"
+
+#~ msgid "Species Present"
+#~ msgstr "Espèces présentes"
+
+#~ msgid "Move to This Patch"
+#~ msgstr "Passer à ce patch"
 
 #~ msgid "Create New Save"
 #~ msgstr "Créer une nouvelle sauvegarde"
