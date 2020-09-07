@@ -1436,11 +1436,11 @@ public class MicrobeEditorGUI : Node
     /// </summary>
     private void OnSearchBoxTextChanged(string newText)
     {
-        var input = newText.ToLower();
+        var input = newText.ToLower(CultureInfo.InvariantCulture);
 
         foreach (VBoxContainer node in organelleSelectionElements)
         {
-            if (!node.Name.ToLower().Contains(input))
+            if (!node.Name.ToLower(CultureInfo.InvariantCulture).Contains(input))
             {
                 node.Hide();
             }
