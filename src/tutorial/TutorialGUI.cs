@@ -31,6 +31,12 @@ public class TutorialGUI : Control
     [Export]
     public NodePath GlucoseTutorialPath;
 
+    [Export]
+    public NodePath StayingAlivePath;
+
+    [Export]
+    public NodePath ReproductionTutorialPath;
+
     /// <summary>
     ///   True when the tutorial selected boxes have been left untouched (on)
     /// </summary>
@@ -51,6 +57,8 @@ public class TutorialGUI : Control
     private Control microbeMovementKeyBackwards;
     private WindowDialog microbeMovementPopup;
     private WindowDialog glucoseTutorial;
+    private WindowDialog stayingAlive;
+    private WindowDialog reproductionTutorial;
 
     public ITutorialInput EventReceiver { get; set; }
 
@@ -122,6 +130,44 @@ public class TutorialGUI : Control
         }
     }
 
+    public bool StayingAliveVisible
+    {
+        get => stayingAlive.Visible;
+        set
+        {
+            if (value == stayingAlive.Visible)
+                return;
+
+            if (value)
+            {
+                stayingAlive.Show();
+            }
+            else
+            {
+                stayingAlive.Visible = false;
+            }
+        }
+    }
+
+    public bool ReproductionTutorialVisible
+    {
+        get => reproductionTutorial.Visible;
+        set
+        {
+            if (value == reproductionTutorial.Visible)
+                return;
+
+            if (value)
+            {
+                reproductionTutorial.Show();
+            }
+            else
+            {
+                reproductionTutorial.Visible = false;
+            }
+        }
+    }
+
     public float MicrobeMovementRotation
     {
         get => microbeMovementKeyPrompts.RectRotation;
@@ -168,6 +214,8 @@ public class TutorialGUI : Control
         microbeMovementKeyRight = GetNode<Control>(MicrobeMovementKeyRightPath);
         microbeMovementKeyBackwards = GetNode<Control>(MicrobeMovementKeyBackwardsPath);
         glucoseTutorial = GetNode<WindowDialog>(GlucoseTutorialPath);
+        stayingAlive = GetNode<WindowDialog>(StayingAlivePath);
+        reproductionTutorial = GetNode<WindowDialog>(ReproductionTutorialPath);
     }
 
     /// <summary>

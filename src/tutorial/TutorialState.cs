@@ -43,6 +43,12 @@ public class TutorialState : ITutorialInput
     [JsonProperty]
     public GlucoseCollecting GlucoseCollecting { get; private set; } = new GlucoseCollecting();
 
+    [JsonProperty]
+    public MicrobeStayingAlive MicrobeStayingAlive { get; private set; } = new MicrobeStayingAlive();
+
+    [JsonProperty]
+    public MicrobeReproduction MicrobeReproduction { get; private set; } = new MicrobeReproduction();
+
     // End of tutorial state variables
 
     [JsonProperty]
@@ -95,7 +101,10 @@ public class TutorialState : ITutorialInput
     public void HideAll()
     {
         foreach (var tutorial in Tutorials)
-            tutorial.Hide();
+        {
+            if (tutorial.ShownCurrently)
+                tutorial.Hide();
+        }
     }
 
     /// <summary>
@@ -122,7 +131,7 @@ public class TutorialState : ITutorialInput
     /// <returns>True when the tutorial system wants compound information</returns>
     public bool WantsNearbyCompoundInfo()
     {
-        return MicrobeMovement.Complete && !GlucoseCollecting.Complete;
+        return MicrobeMovement.Complete && !GlucoseCollecting.Complete && GlucoseCollecting.CanTrigger;
     }
 
     /// <summary>
@@ -171,7 +180,7 @@ public class TutorialState : ITutorialInput
 
         foreach (var tutorial in Tutorials)
         {
-            if (!tutorial.ShownCurrently)
+            if (!tutorial.ShownCurrently && !tutorial.ProcessWhileHidden)
                 continue;
 
             tutorial.Process(this, delta);
@@ -225,17 +234,6 @@ public class TutorialState : ITutorialInput
         throw new NotImplementedException();
     }
 
-    private List<TutorialPhase> BuildListOfAllTutorials()
-    {
-        return new List<TutorialPhase>
-        {
-            MicrobeStageWelcome,
-            MicrobeMovement,
-            MicrobeMovementExplanation,
-            GlucoseCollecting,
-        };
-    }
-
     /// <summary>
     ///   Applies all the GUI states related to the tutorial, this makes saving and loading the tutorial state easier
     /// </summary>
@@ -278,5 +276,18 @@ public class TutorialState : ITutorialInput
     {
         gameNode.GetTree().Paused = returnToPauseState;
         hasPaused = false;
+    }
+
+    private List<TutorialPhase> BuildListOfAllTutorials()
+    {
+        return new List<TutorialPhase>
+        {
+            MicrobeStageWelcome,
+            MicrobeMovement,
+            MicrobeMovementExplanation,
+            GlucoseCollecting,
+            MicrobeStayingAlive,
+            MicrobeReproduction,
+        };
     }
 }

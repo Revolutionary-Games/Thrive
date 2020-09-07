@@ -451,9 +451,11 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
     public Vector3 ConvertToWorld(int cloudX, int cloudY)
     {
         return new Vector3(
-            cloudX * Resolution + ((4 - position.x) % 3 - 1) * Resolution * Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_WIDTH,
+            cloudX * Resolution + ((4 - position.x) % 3 - 1) * Resolution * Size / Constants.CLOUD_SQUARES_PER_SIDE -
+            Constants.CLOUD_WIDTH,
             0,
-            cloudY * Resolution + ((4 - position.y) % 3 - 1) * Resolution * Size / Constants.CLOUD_SQUARES_PER_SIDE - Constants.CLOUD_HEIGHT) + Translation;
+            cloudY * Resolution + ((4 - position.y) % 3 - 1) * Resolution * Size / Constants.CLOUD_SQUARES_PER_SIDE -
+            Constants.CLOUD_HEIGHT) + Translation;
     }
 
     /// <summary>

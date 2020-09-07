@@ -281,7 +281,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     public float TimeUntilNextAIUpdate { get; set; }
 
     /// <summary>
-    ///   For use by the AI to do run and tumble to find compounds
+    ///   For use by the AI to do run and tumble to find compounds. Also used by player cell for tutorials
     /// </summary>
     [JsonProperty]
     public Dictionary<Compound, float> TotalAbsorbedCompounds { get; set; } = new Dictionary<Compound, float>();

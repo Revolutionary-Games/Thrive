@@ -9,12 +9,15 @@ namespace Tutorial
     /// </summary>
     public class GlucoseCollecting : TutorialPhase
     {
+        private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
+
         [JsonProperty]
         private Vector3? glucosePosition;
 
         public GlucoseCollecting()
         {
             UsesPlayerPositionGuidance = true;
+            CanTrigger = false;
         }
 
         public override string ClosedByName { get; } = "GlucoseCollecting";
@@ -29,18 +32,51 @@ namespace Tutorial
         {
             switch (eventType)
             {
+                case TutorialEventType.MicrobePlayerCompounds:
+                {
+                    var compounds = ((CompoundBagEventArgs)args).Compounds;
+
+                    if (!HasBeenShown && !CanTrigger &&
+                        compounds.GetCompoundAmount(glucose) < compounds.Capacity -
+                        Constants.GLUCOSE_TUTORIAL_TRIGGER_ENABLE_FREE_STORAGE_SPACE)
+                    {
+                        CanTrigger = true;
+                        return true;
+                    }
+
+                    break;
+                }
+
                 case TutorialEventType.MicrobeCompoundsNearPlayer:
                 {
                     var data = (CompoundPositionEventArgs)args;
 
-                    if (data.GlucosePosition.HasValue)
-                    {
-                        glucosePosition = data.GlucosePosition.Value;
-                    }
-
-                    if (!HasBeenShown && data.GlucosePosition.HasValue)
+                    if (!HasBeenShown && data.GlucosePosition.HasValue && CanTrigger && !overallState.TutorialActive())
                     {
                         Show();
+                    }
+
+                    if (data.GlucosePosition.HasValue && ShownCurrently)
+                    {
+                        glucosePosition = data.GlucosePosition.Value;
+                        return true;
+                    }
+
+                    break;
+                }
+
+                case TutorialEventType.MicrobePlayerTotalCollected:
+                {
+                    if (!ShownCurrently)
+                        break;
+
+                    var compounds = ((CompoundEventArgs)args).Compounds;
+
+                    if (compounds.ContainsKey(glucose) &&
+                        compounds[glucose] >= Constants.GLUCOSE_TUTORIAL_COLLECT_BEFORE_COMPLETE)
+                    {
+                        // Tutorial is now complete
+                        Hide();
                         return true;
                     }
 

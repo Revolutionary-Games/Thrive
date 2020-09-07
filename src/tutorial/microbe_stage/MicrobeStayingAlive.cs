@@ -3,21 +3,15 @@ namespace Tutorial
     using System;
 
     /// <summary>
-    ///   A welcome popup to the stage
+    ///   Tells the player how to stay alive
     /// </summary>
-    public class MicrobeStageWelcome : TutorialPhase
+    public class MicrobeStayingAlive : TutorialPhase
     {
-        public MicrobeStageWelcome()
-        {
-            Exclusive = true;
-            Pauses = true;
-        }
-
-        public override string ClosedByName { get; } = "MicrobeStageWelcome";
+        public override string ClosedByName { get; } = "MicrobeStayingAlive";
 
         public override void ApplyGUIState(TutorialGUI gui)
         {
-            gui.MicrobeWelcomeVisible = ShownCurrently;
+            gui.StayingAliveVisible = ShownCurrently;
         }
 
         public override bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
@@ -25,7 +19,7 @@ namespace Tutorial
         {
             switch (eventType)
             {
-                case TutorialEventType.EnteredMicrobeStage:
+                case TutorialEventType.MicrobePlayerDied:
                 {
                     if (!HasBeenShown && CanTrigger)
                     {
@@ -38,6 +32,15 @@ namespace Tutorial
             }
 
             return false;
+        }
+
+        protected override void OnProcess(TutorialState overallState, float delta)
+        {
+            // Hide if elapsed too long
+            if (Time > Constants.HIDE_MICROBE_STAYING_ALIVE_TUTORIAL_AFTER)
+            {
+                Hide();
+            }
         }
     }
 }

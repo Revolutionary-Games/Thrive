@@ -7,6 +7,12 @@ using Newtonsoft.Json;
 /// </summary>
 public abstract class TutorialPhase
 {
+    /// <summary>
+    ///   If set to false the trigger condition won't be checked for this tutorial
+    /// </summary>
+    [JsonProperty]
+    public bool CanTrigger { get; set; } = true;
+
     [JsonProperty]
     public bool ShownCurrently { get; protected set; }
 
@@ -27,6 +33,12 @@ public abstract class TutorialPhase
     /// </summary>
     [JsonProperty]
     public bool Pauses { get; protected set; }
+
+    /// <summary>
+    ///   When true Process is called even when this is hidden
+    /// </summary>
+    [JsonProperty]
+    public bool ProcessWhileHidden { get; protected set; }
 
     [JsonProperty]
     public float Time { get; protected set; }
@@ -66,14 +78,14 @@ public abstract class TutorialPhase
     public abstract bool CheckEvent(TutorialState overallState, TutorialEventType eventType, EventArgs args,
         object sender);
 
-    public void Show()
+    public virtual void Show()
     {
         ShownCurrently = true;
         HasBeenShown = true;
         Time = 0;
     }
 
-    public void Hide()
+    public virtual void Hide()
     {
         if (!ShownCurrently)
             return;
@@ -82,6 +94,8 @@ public abstract class TutorialPhase
 
         // Disable the triggering again by making sure this is marked as shown
         HasBeenShown = true;
+        CanTrigger = false;
+        HandlesEvents = false;
     }
 
     public virtual Vector3 GetPositionGuidance()

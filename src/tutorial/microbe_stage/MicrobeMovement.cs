@@ -56,7 +56,7 @@ namespace Tutorial
                 {
                     bool consumed = false;
 
-                    if (!HasBeenShown && overallState.MicrobeStageWelcome.Complete)
+                    if (!HasBeenShown && overallState.MicrobeStageWelcome.Complete && CanTrigger)
                     {
                         Show();
 
@@ -119,7 +119,8 @@ namespace Tutorial
 
             // Open explanation window if the player hasn't used all the movement keys within a certain time
             if (Time > Constants.MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY &&
-                !overallState.MicrobeMovementExplanation.HasBeenShown)
+                !overallState.MicrobeMovementExplanation.HasBeenShown &&
+                overallState.MicrobeMovementExplanation.CanTrigger)
             {
                 overallState.MicrobeMovementExplanation.Show();
             }

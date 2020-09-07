@@ -244,6 +244,9 @@ public class MicrobeStage : Node, ILoadableGameState
         Player.OnDeath = microbe =>
         {
             GD.Print("The player has died");
+
+            TutorialState.SendEvent(TutorialEventType.MicrobePlayerDied, EventArgs.Empty, this);
+
             Player = null;
             Camera.ObjectToFollow = null;
         };
@@ -252,6 +255,7 @@ public class MicrobeStage : Node, ILoadableGameState
         {
             if (ready)
             {
+                TutorialState.SendEvent(TutorialEventType.MicrobePlayerReadyToEdit, EventArgs.Empty, this);
                 HUD.ShowReproductionDialog();
             }
             else
@@ -307,6 +311,12 @@ public class MicrobeStage : Node, ILoadableGameState
 
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerOrientation,
                 new RotationEventArgs(Player.Transform.basis, Player.RotationDegrees), this);
+
+            TutorialState.SendEvent(TutorialEventType.MicrobePlayerCompounds,
+                new CompoundBagEventArgs(Player.Compounds), this);
+
+            TutorialState.SendEvent(TutorialEventType.MicrobePlayerTotalCollected,
+                new CompoundEventArgs(Player.TotalAbsorbedCompounds), this);
 
             elapsedSinceCompoundPositionCheck += delta;
 

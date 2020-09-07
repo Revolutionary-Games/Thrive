@@ -282,7 +282,7 @@ public class CompoundCloudSystem : Node
     /// <param name="searchRadius">How wide to search around the point</param>
     /// <param name="minConcentration">Limits search to only find concentrations higher than this</param>
     /// <returns>The nearest found point for the compound or null</returns>
-    public Vector3? FindCompoundNearPoint(Vector3 position, Compound compound, float searchRadius = 120,
+    public Vector3? FindCompoundNearPoint(Vector3 position, Compound compound, float searchRadius = 200,
         float minConcentration = 120)
     {
         if (searchRadius < 1)
@@ -348,10 +348,12 @@ public class CompoundCloudSystem : Node
                         if (cloud.AmountAvailable(compound, x, y) >= minConcentration)
                         {
                             // Potential target point
-                            var distance = Mathf.Pow(x - cloudRelativeX, 2) + Mathf.Pow(y - cloudRelativeY, 2);
+                            var currentWorldPos = cloud.ConvertToWorld(x, y);
+                            var distance = (position - currentWorldPos).LengthSquared();
+
                             if (distance < nearestDistanceSquared)
                             {
-                                closestPoint = cloud.ConvertToWorld(x, y);
+                                closestPoint = currentWorldPos;
                                 nearestDistanceSquared = distance;
                             }
                         }
