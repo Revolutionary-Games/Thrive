@@ -1,23 +1,19 @@
-﻿using System;
-using Godot;
+﻿using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
-///   Singleton class that handles storing and applying player changeable game settings.
+///   Class that handles storing and applying player changeable game settings.
 /// </summary>
 public class Settings
 {
+    // Singleton used for holding the live copy of game settings.
     private static readonly Settings SingletonInstance = new Settings();
-
-    private SettingsData settingsData;
-
-    // Current active settings that should be applied when possible if they are changed.
 
     static Settings()
     {
-        if (!SingletonInstance.Load())
+        if (!SingletonInstance.LoadFromFile())
         {
-            // Loading failed so we'll load the new defaults and save to fix the configuration file.
+            // Loading failed so we'll load the new defaults and save to create the configuration file.
             SingletonInstance.LoadDefaults();
             SingletonInstance.Save();
         }
@@ -29,113 +25,60 @@ public class Settings
 
     public static Settings Instance => SingletonInstance;
 
-    /// <summary>
-    ///   Accesses the internal SettingsData struct, automatically applies when set.
-    /// </summary>
-    public SettingsData Data
-    {
-        get => SingletonInstance.settingsData;
-        set
-        {
-            SingletonInstance.settingsData = value;
-            ApplyAll();
-        }
-    }
-
     // Graphics Properties
 
     /// <summary>
     ///   Sets whether the game window is in fullscreen mode
     /// </summary>
-    public bool FullScreen
-    {
-        get => settingsData.FullScreen;
-        set => settingsData.FullScreen = value;
-    }
+    public bool FullScreen { get; set; } = true;
 
     /// <summary>
     ///   Sets whether the game window will use vsync
     /// </summary>
-    public bool VSync
-    {
-        get => settingsData.Vsync;
-        set => settingsData.Vsync = value;
-    }
+    public bool VSync { get; set; } = true;
 
     /// <summary>
     ///   Sets amount of MSAA to apply to the viewport
     /// </summary>
-    public Viewport.MSAA MSAAResolution
-    {
-        get => settingsData.MsaaResolution;
-        set => settingsData.MsaaResolution = value;
-    }
+    public Viewport.MSAA MSAAResolution { get; set; } = Viewport.MSAA.Disabled;
 
     /// <summary>
     ///   Optionally applies a colour filter to the screen to aid colourblind individuals
     ///   0 = None, 1 = Red/Green, 2 = Blue/Yellow
     /// </summary>
-    public int ColourblindSetting
-    {
-        get => settingsData.ColourBlindSetting;
-        set => settingsData.ColourBlindSetting = value;
-    }
+    public int ColourblindSetting { get; set; } = 0;
 
     /// <summary>
     ///   The amount of Chromatic Aberration to apply to the screen
     /// </summary>
-    public float ChromaticAmount
-    {
-        get => settingsData.ChromaticAmount;
-        set => settingsData.ChromaticAmount = value;
-    }
+    public float ChromaticAmount { get; set; } = 20.0f;
 
     /// <summary>
     ///   Enable or Disable Chromatic Aberration for screen
     /// </summary>
-    public bool ChromaticEnabled
-    {
-        get => settingsData.ChromaticEnabled;
-        set => settingsData.ChromaticEnabled = value;
-    }
+    public bool ChromaticEnabled { get; set; } = true;
 
     // Sound Properties
 
     /// <summary>
     ///   The Db value to be added to the master audio bus
     /// </summary>
-    public float VolumeMaster
-    {
-        get => settingsData.VolumeMaster;
-        set => settingsData.VolumeMaster = value;
-    }
+    public float VolumeMaster { get; set; } = 0.0f;
 
     /// <summary>
     ///   If true all sounds are muted
     /// </summary>
-    public bool VolumeMasterMuted
-    {
-        get => settingsData.VolumeMasterMuted;
-        set => settingsData.VolumeMasterMuted = value;
-    }
+    public bool VolumeMasterMuted { get; set; } = false;
 
     /// <summary>
     ///   The Db value to be added to the music audio bus
     /// </summary>
-    public float VolumeMusic
-    {
-        get => settingsData.VolumeMusic;
-        set => settingsData.VolumeMusic = value;
-    }
+    public float VolumeMusic { get; set; } = 0.0f;
 
     /// <summary>
     ///   If true music is muted
     /// </summary>
-    public bool VolumeMusicMuted
-    {
-        get => settingsData.VolumeMusicMuted;
-        set => settingsData.VolumeMusicMuted = value;
-    }
+    public bool VolumeMusicMuted { get; set; } = false;
 
     // Performance Properties
 
@@ -151,131 +94,176 @@ public class Settings
     ///     0.0f, 0.020f, 0.040f, 0.1f, 0.25f
     ///   </para>
     /// </remarks>
-    public float CloudUpdateInterval
-    {
-        get => settingsData.CloudUpdateInterval;
-        set => settingsData.CloudUpdateInterval = value;
-    }
+    public float CloudUpdateInterval { get; set; } = 0.040f;
 
     /// <summary>
     ///   This can be freely adjusted to adjust the performance The
     ///   higher this value is the smaller the size of the simulated
     ///   cloud is and the performance is better.
     /// </summary>
-    public int CloudResolution
-    {
-        get => settingsData.CloudResolution;
-        set => settingsData.CloudResolution = value;
-    }
+    public int CloudResolution { get; set; } = 2;
 
     // Misc Properties
 
     /// <summary>
     ///   When true the main intro is played
     /// </summary>
-    public bool PlayIntroVideo
-    {
-        get => settingsData.PlayIntroVideo;
-        set => settingsData.PlayIntroVideo = value;
-    }
+    public bool PlayIntroVideo { get; set; } = true;
 
     /// <summary>
     ///   When true the microbe intro is played on new game
     /// </summary>
-    public bool PlayMicrobeIntroVideo
-    {
-        get => settingsData.PlayMicrobeIntroVideo;
-        set => settingsData.PlayMicrobeIntroVideo = value;
-    }
+    public bool PlayMicrobeIntroVideo { get; set; } = true;
 
     /// <summary>
     ///   If false auto saving will be disabled
     /// </summary>
-    public bool AutoSaveEnabled
-    {
-        get => settingsData.AutoSaveEnabled;
-        set => settingsData.AutoSaveEnabled = value;
-    }
+    public bool AutoSaveEnabled { get; set; } = true;
 
     /// <summary>
     ///   Number of auto saves to keep
     /// </summary>
-    public int MaxAutoSaves
-    {
-        get => settingsData.MaxAutoSaves;
-        set => settingsData.MaxAutoSaves = value;
-    }
+    public int MaxAutoSaves { get; set; } = 5;
 
     /// <summary>
     ///   Number of quick saves to keep
     /// </summary>
-    public int MaxQuickSaves
-    {
-        get => settingsData.MaxQuickSaves;
-        set => settingsData.MaxQuickSaves = value;
-    }
+    public int MaxQuickSaves { get; set; } = 5;
 
     /// <summary>
     ///   When true cheats are enabled
     /// </summary>
-    public bool CheatsEnabled
-    {
-        get => settingsData.CheatsEnabled;
-        set => settingsData.CheatsEnabled = value;
-    }
+    public bool CheatsEnabled { get; set; } = false;
 
     /// <summary>
     ///   If true an auto-evo run is started during gameplay,
     ///   taking up one of the background threads.
     /// </summary>
-    public bool RunAutoEvoDuringGamePlay
-    {
-        get => settingsData.RunAutoEvoDuringGamePlay;
-        set => settingsData.RunAutoEvoDuringGamePlay = value;
-    }
+    public bool RunAutoEvoDuringGamePlay { get; set; } = true;
 
     public int CloudSimulationWidth => Constants.CLOUD_X_EXTENT / CloudResolution;
 
     public int CloudSimulationHeight => Constants.CLOUD_Y_EXTENT / CloudResolution;
 
-    /// <summary>
-    ///   Loads and applies settings from the saved setting configuration file.
-    /// </summary>
-    /// <returns>True on success, false if the file is invalid or couldn't be opened for reading.</returns>
-    public bool Load()
+    public static bool operator ==(Settings lhs, Settings rhs)
     {
-        SettingsData loadedData;
+        return Equals(lhs, rhs);
+    }
 
-        var file = new File();
+    public static bool operator !=(Settings lhs, Settings rhs)
+    {
+        return !(lhs == rhs);
+    }
 
-        var error = file.Open(Constants.CONFIGURATION_FILE, File.ModeFlags.Read);
-
-        if (error != Error.Ok)
+    public override bool Equals(object obj)
+    {
+        if (obj == null)
         {
-            GD.Print("Settings configuration file is missing or unreadable.");
             return false;
         }
 
-        var text = file.GetAsText();
+        if (GetType() != obj.GetType())
+        {
+            return false;
+        }
 
-        file.Close();
+        return Equals((Settings)obj);
+    }
 
-        loadedData = JsonConvert.DeserializeObject<SettingsData>(text);
+    public bool Equals(Settings obj)
+    {
+        // Compare all properties in the two objects for equality.
+        var type = GetType();
 
-        // Sets local data to the loaded data and automatically applies it.
-        Data = loadedData;
-        GD.Print("Loaded and applied settings from configuration file.");
+        var properties = type.GetProperties();
+
+        foreach (var prop in properties)
+        {
+            // Returns if any of the properties don't match.
+            object thisValue = type.GetProperty(prop.Name)?.GetValue(this, null);
+            object objValue = type.GetProperty(prop.Name)?.GetValue(obj, null);
+
+            if (thisValue != objValue && (thisValue == null || !thisValue.Equals(objValue)))
+            {
+                return false;
+            }
+        }
+
         return true;
     }
 
+    public override int GetHashCode()
+    {
+        int hashCode = 17;
+
+        var type = GetType();
+
+        var properties = type.GetProperties();
+
+        foreach (var prop in properties)
+        {
+            int? nextHash = type.GetProperty(prop.Name)?.GetHashCode();
+
+            if (nextHash != null)
+                hashCode ^= (int)nextHash;
+        }
+
+        return hashCode;
+    }
+
     /// <summary>
-    ///   Loads and applies default configuration settings.
+    ///   Returns a cloned deep copy of the settings object.
+    /// </summary>
+    public Settings Clone()
+    {
+        Settings settings = new Settings();
+        settings.CopySettings(this);
+
+        return settings;
+    }
+
+    /// <summary>
+    ///   Loads values from the saved setting configuration file.
+    /// </summary>
+    /// <returns>True on success, false if the file is invalid or couldn't be opened for reading.</returns>
+    public bool LoadFromFile()
+    {
+        using (var file = new File())
+        {
+            var error = file.Open(Constants.CONFIGURATION_FILE, File.ModeFlags.Read);
+
+            if (error != Error.Ok)
+            {
+                GD.Print("Settings configuration file is missing or unreadable.");
+                return false;
+            }
+
+            var text = file.GetAsText();
+
+            file.Close();
+
+            Settings settings = JsonConvert.DeserializeObject<Settings>(text);
+            CopySettings(settings);
+
+            return true;
+        }
+    }
+
+    /// <summary>
+    ///   Loads values from an existing settings object.
+    /// </summary>
+    public void LoadFromObject(Settings settings)
+    {
+        CopySettings(settings);
+    }
+
+    /// <summary>
+    ///   Loads default values.
     /// </summary>
     public void LoadDefaults()
     {
-        settingsData.ResetToDefaults();
-        ApplyAll();
-        GD.Print("Loaded and applied default settings.");
+        Settings settings = new Settings();
+        CopySettings(settings);
     }
 
     /// <summary>
@@ -284,18 +272,21 @@ public class Settings
     /// <returns>True on success, false if the file can't be written.</returns>
     public bool Save()
     {
-        var file = new File();
-        var error = file.Open(Constants.CONFIGURATION_FILE, File.ModeFlags.Write);
-
-        if (error != Error.Ok)
+        using (var file = new File())
         {
-            GD.PrintErr("Couldn't open settings file for writing.");
-            return false;
+            var error = file.Open(Constants.CONFIGURATION_FILE, File.ModeFlags.Write);
+
+            if (error != Error.Ok)
+            {
+                GD.PrintErr("Couldn't open settings file for writing.");
+                return false;
+            }
+
+            file.StoreString(JsonConvert.SerializeObject(this));
+
+            file.Close();
         }
 
-        file.StoreString(JsonConvert.SerializeObject(Data));
-
-        file.Close();
         return true;
     }
 
@@ -343,125 +334,17 @@ public class Settings
         OS.VsyncEnabled = VSync;
     }
 
-    /// <summary>
-    ///   Struct containing all raw settings fields for comparison and serialization.
-    /// </summary>
-    public struct SettingsData : IEquatable<SettingsData>
+    // Copies all properties from another settings object to the current one.
+    private void CopySettings(Settings settings)
     {
-        // Graphics Fields
-        public bool FullScreen;
-        public bool Vsync;
-        public Viewport.MSAA MsaaResolution;
-        public int ColourBlindSetting;
-        public float ChromaticAmount;
-        public bool ChromaticEnabled;
+        var type = GetType();
 
-        // Sound Fields
-        public float VolumeMaster;
-        public bool VolumeMasterMuted;
-        public float VolumeMusic;
-        public bool VolumeMusicMuted;
-
-        // Performance Properties
-        public float CloudUpdateInterval;
-        public int CloudResolution;
-
-        // Misc Properties
-        public bool PlayIntroVideo;
-        public bool PlayMicrobeIntroVideo;
-        public bool AutoSaveEnabled;
-        public int MaxAutoSaves;
-        public int MaxQuickSaves;
-        public bool CheatsEnabled;
-        public bool RunAutoEvoDuringGamePlay;
-
-        public static bool operator ==(SettingsData lhs, SettingsData rhs)
+        foreach (var property in type.GetProperties())
         {
-            return Equals(lhs, rhs);
-        }
+            if (!property.CanWrite)
+                continue;
 
-        public static bool operator !=(SettingsData lhs, SettingsData rhs)
-        {
-            return !(lhs == rhs);
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (obj == null)
-            {
-                return false;
-            }
-
-            if (GetType() != obj.GetType())
-            {
-                return false;
-            }
-
-            return Equals((SettingsData)obj);
-        }
-
-        public bool Equals(SettingsData obj)
-        {
-            return (FullScreen == obj.FullScreen) &&
-                (Vsync == obj.Vsync) &&
-                (MsaaResolution == obj.MsaaResolution) &&
-                (ColourBlindSetting == obj.ColourBlindSetting) &&
-                (ChromaticAmount == obj.ChromaticAmount) &&
-                (ChromaticEnabled == obj.ChromaticEnabled) &&
-                (VolumeMaster == obj.VolumeMaster) &&
-                (VolumeMasterMuted == obj.VolumeMasterMuted) &&
-                (VolumeMusic == obj.VolumeMusic) &&
-                (VolumeMusicMuted == obj.VolumeMusicMuted) &&
-                (CloudUpdateInterval == obj.CloudUpdateInterval) &&
-                (CloudResolution == obj.CloudResolution) &&
-                (PlayIntroVideo == obj.PlayIntroVideo) &&
-                (PlayMicrobeIntroVideo == obj.PlayMicrobeIntroVideo) &&
-                (AutoSaveEnabled == obj.AutoSaveEnabled) &&
-                (MaxAutoSaves == obj.MaxAutoSaves) &&
-                (MaxQuickSaves == obj.MaxQuickSaves) &&
-                (CheatsEnabled == obj.CheatsEnabled) &&
-                (RunAutoEvoDuringGamePlay == obj.RunAutoEvoDuringGamePlay);
-        }
-
-        public override int GetHashCode()
-        {
-            return FullScreen.GetHashCode() ^ Vsync.GetHashCode() ^ MsaaResolution.GetHashCode() ^
-                ColourBlindSetting.GetHashCode() ^ ChromaticAmount.GetHashCode() ^ ChromaticEnabled.GetHashCode() ^
-                VolumeMaster.GetHashCode() ^ VolumeMasterMuted.GetHashCode() ^ VolumeMusic.GetHashCode() ^
-                VolumeMusicMuted.GetHashCode() ^ CloudUpdateInterval.GetHashCode() ^ CloudResolution.GetHashCode() ^
-                PlayIntroVideo.GetHashCode() ^ PlayMicrobeIntroVideo.GetHashCode() ^ AutoSaveEnabled.GetHashCode() ^
-                MaxAutoSaves.GetHashCode() ^ CheatsEnabled.GetHashCode() ^ RunAutoEvoDuringGamePlay.GetHashCode();
-        }
-
-        // Resets all settings fields to their default values.
-        public void ResetToDefaults()
-        {
-            // Graphics Defaults
-            FullScreen = true;
-            Vsync = true;
-            MsaaResolution = Viewport.MSAA.Disabled;
-            ColourBlindSetting = 0;
-            ChromaticAmount = 20.0f;
-            ChromaticEnabled = true;
-
-            // Sound Defaults
-            VolumeMaster = 0.0f;
-            VolumeMasterMuted = false;
-            VolumeMusic = 0.0f;
-            VolumeMusicMuted = false;
-
-            // Performance Defaults
-            CloudUpdateInterval = 0.040f;
-            CloudResolution = 2;
-
-            // Misc Properties
-            PlayIntroVideo = true;
-            PlayMicrobeIntroVideo = true;
-            AutoSaveEnabled = true;
-            MaxAutoSaves = 5;
-            MaxQuickSaves = 5;
-            CheatsEnabled = false;
-            RunAutoEvoDuringGamePlay = true;
+            property.SetValue(this, property.GetValue(settings));
         }
     }
 }

@@ -154,9 +154,9 @@ public class OptionsMenu : Control
       Misc
     */
 
-    // Copy of the settings data that should match what is saved to the configuration file,
+    // Copy of the settings object that should match what is saved to the configuration file,
     // used for comparing and restoring to previous state.
-    private Settings.SettingsData savedSettingsData;
+    private Settings savedSettings;
 
     private SelectedOptionsTab selectedOptionsTab;
 
@@ -225,13 +225,13 @@ public class OptionsMenu : Control
         backConfirmationBox = GetNode<ConfirmationDialog>(BackConfirmationBoxPath);
         defaultsConfirmationBox = GetNode<ConfirmationDialog>(DefaultsConfirmationBoxPath);
 
-        // Copy settings data from the settings object to serve as a copy of the currently saved settings.
-        savedSettingsData = Settings.Data;
-
         selectedOptionsTab = SelectedOptionsTab.Graphics;
 
+        // Copy settings from the singleton to serve as a copy of the last saved settings.
+        savedSettings = Settings.Instance.Clone();
+
         // Set the initial state of the options controls to match the settings data.
-        ApplySettingsToControls(savedSettingsData);
+        ApplySettingsToControls(savedSettings);
         CompareSettings();
     }
 
@@ -240,15 +240,15 @@ public class OptionsMenu : Control
     }
 
     /// <summary>
-    ///   Applies the values of the specified SettingsData struct to all corresponding options menu controls.
+    ///   Applies the values of the specified settings object to all corresponding menu controls.
     /// </summary>
-    public void ApplySettingsToControls(Settings.SettingsData settings)
+    public void ApplySettingsToControls(Settings settings)
     {
         // Graphics
-        vsync.Pressed = settings.Vsync;
+        vsync.Pressed = settings.VSync;
         fullScreen.Pressed = settings.FullScreen;
-        msaaResolution.Selected = MSAAResolutionToIndex(settings.MsaaResolution);
-        colourblindSetting.Selected = settings.ColourBlindSetting;
+        msaaResolution.Selected = MSAAResolutionToIndex(settings.MSAAResolution);
+        colourblindSetting.Selected = settings.ColourblindSetting;
         chromaticAberrationSlider.Value = settings.ChromaticAmount;
         chromaticAberrationToggle.Pressed = settings.ChromaticEnabled;
 
@@ -463,21 +463,18 @@ public class OptionsMenu : Control
 
     private void CompareSettings()
     {
-        // If any of the settings differ then we want to enable the save and reset buttons,
-        // otherwise disable them.
-        bool result = Settings.Data == savedSettingsData;
-
-        if (result == false)
+        // Enable the save and reset buttons if the current setting values differ from the saved ones.
+        if (Settings.Instance == savedSettings)
         {
-            // Enable the buttons
-            resetButton.Disabled = false;
-            saveButton.Disabled = false;
+            // Settings match
+            resetButton.Disabled = true;
+            saveButton.Disabled = true;
         }
         else
         {
-            // Disable the buttons
-            resetButton.Disabled = true;
-            saveButton.Disabled = true;
+            // Settings differ
+            resetButton.Disabled = false;
+            saveButton.Disabled = false;
         }
     }
 
@@ -491,7 +488,7 @@ public class OptionsMenu : Control
 
         // If any settings have been changed, show a dialogue asking if the changes should be kept or
         // discarded.
-        if (Settings.Data != savedSettingsData)
+        if (Settings.Instance != savedSettings)
         {
             backConfirmationBox.Visible = true;
             return;
@@ -504,12 +501,12 @@ public class OptionsMenu : Control
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        // Restore and apply the saved settings.
-        Settings.Data = savedSettingsData;
+        // Restore and apply the old saved settings.
+        Settings.Instance.LoadFromObject(savedSettings);
         Settings.ApplyAll();
-        ApplySettingsToControls(savedSettingsData);
+        ApplySettingsToControls(Settings.Instance);
 
-        // Disable the buttons
+        // Buttons should be disabled now.
         resetButton.Disabled = true;
         saveButton.Disabled = true;
     }
@@ -521,13 +518,14 @@ public class OptionsMenu : Control
         // Save the new settings to the config file.
         if (!Settings.Save())
         {
-            // error
+            GD.PrintErr("Failed to save new options menu settings.");
+            return;
         }
 
         // Copy over the new saved settings.
-        savedSettingsData = Settings.Data;
+        savedSettings = Settings.Instance.Clone();
 
-        // Disable the buttons
+        // Buttons should be disabled now.
         resetButton.Disabled = true;
         saveButton.Disabled = true;
     }
@@ -543,11 +541,11 @@ public class OptionsMenu : Control
     {
         backConfirmationBox.Visible = false;
 
-        // Reload settings from the saved ones.
-        Settings.Data = savedSettingsData;
-        ApplySettingsToControls(Settings.Data);
+        Settings.Instance.LoadFromObject(savedSettings);
+        Settings.ApplyAll();
+        ApplySettingsToControls(Settings.Instance);
 
-        // Disable the buttons
+        // Buttons should be disabled now.
         resetButton.Disabled = true;
         saveButton.Disabled = true;
 
@@ -559,10 +557,11 @@ public class OptionsMenu : Control
         defaultsConfirmationBox.Visible = false;
 
         // Sets active settings to default values and applies them to the options controls.
-        Settings.LoadDefaults();
-        ApplySettingsToControls(Settings.Data);
+        Settings.Instance.LoadDefaults();
+        Settings.ApplyAll();
+        ApplySettingsToControls(Settings.Instance);
 
-        // Enable the buttons
+        // Buttons should be enabled now.
         resetButton.Disabled = false;
         saveButton.Disabled = false;
     }
@@ -570,7 +569,7 @@ public class OptionsMenu : Control
     // Graphics Button Callbacks
     private void OnFullScreenToggled(bool pressed)
     {
-        Settings.FullScreen = pressed;
+        Settings.Instance.FullScreen = pressed;
         Settings.ApplyWindowSettings();
 
         CompareSettings();
@@ -578,7 +577,7 @@ public class OptionsMenu : Control
 
     private void OnVSyncToggled(bool pressed)
     {
-        Settings.VSync = pressed;
+        Settings.Instance.VSync = pressed;
         Settings.ApplyWindowSettings();
 
         CompareSettings();
@@ -586,7 +585,7 @@ public class OptionsMenu : Control
 
     private void OnMSAAResolutionSelected(int index)
     {
-        Settings.MSAAResolution = MSAAIndexToResolution(index);
+        Settings.Instance.MSAAResolution = MSAAIndexToResolution(index);
         Settings.ApplyGraphicsSettings();
 
         CompareSettings();
@@ -594,7 +593,7 @@ public class OptionsMenu : Control
 
     private void OnColourblindSettingSelected(int index)
     {
-        Settings.ColourblindSetting = index;
+        Settings.Instance.ColourblindSetting = index;
         Settings.ApplyGraphicsSettings();
 
         CompareSettings();
@@ -602,14 +601,14 @@ public class OptionsMenu : Control
 
     private void OnChromaticAberrationToggled(bool toggle)
     {
-        Settings.ChromaticEnabled = toggle;
+        Settings.Instance.ChromaticEnabled = toggle;
 
         CompareSettings();
     }
 
     private void OnChromaticAberrationValueChanged(float amount)
     {
-        Settings.ChromaticAmount = amount;
+        Settings.Instance.ChromaticAmount = amount;
 
         CompareSettings();
     }
@@ -617,7 +616,7 @@ public class OptionsMenu : Control
     // Sound Button Callbacks
     private void OnMasterMutedToggled(bool pressed)
     {
-        Settings.VolumeMasterMuted = pressed;
+        Settings.Instance.VolumeMasterMuted = pressed;
         Settings.ApplySoundSettings();
 
         CompareSettings();
@@ -625,7 +624,7 @@ public class OptionsMenu : Control
 
     private void OnMusicMutedToggled(bool pressed)
     {
-        Settings.VolumeMusicMuted = pressed;
+        Settings.Instance.VolumeMusicMuted = pressed;
         Settings.ApplySoundSettings();
 
         CompareSettings();
@@ -633,7 +632,7 @@ public class OptionsMenu : Control
 
     private void OnMasterVolumeChanged(float value)
     {
-        Settings.VolumeMaster = ConvertSoundBarToDb(value);
+        Settings.Instance.VolumeMaster = ConvertSoundBarToDb(value);
         Settings.ApplySoundSettings();
 
         CompareSettings();
@@ -641,7 +640,7 @@ public class OptionsMenu : Control
 
     private void OnMusicVolumeChanged(float value)
     {
-        Settings.VolumeMusic = ConvertSoundBarToDb(value);
+        Settings.Instance.VolumeMusic = ConvertSoundBarToDb(value);
         Settings.ApplySoundSettings();
 
         CompareSettings();
@@ -650,14 +649,14 @@ public class OptionsMenu : Control
     // Performance Button Callbacks
     private void OnCloudIntervalSelected(int index)
     {
-        Settings.CloudUpdateInterval = CloudIndexToInterval(index);
+        Settings.Instance.CloudUpdateInterval = CloudIndexToInterval(index);
 
         CompareSettings();
     }
 
     private void OnCloudResolutionSelected(int index)
     {
-        Settings.CloudResolution = CloudIndexToResolution(index);
+        Settings.Instance.CloudResolution = CloudIndexToResolution(index);
 
         CompareSettings();
     }
@@ -665,28 +664,28 @@ public class OptionsMenu : Control
     // Misc Button Callbacks
     private void OnIntroToggled(bool pressed)
     {
-        Settings.PlayIntroVideo = pressed;
+        Settings.Instance.PlayIntroVideo = pressed;
 
         CompareSettings();
     }
 
     private void OnMicrobeIntroToggled(bool pressed)
     {
-        Settings.PlayMicrobeIntroVideo = pressed;
+        Settings.Instance.PlayMicrobeIntroVideo = pressed;
 
         CompareSettings();
     }
 
     private void OnCheatsToggled(bool pressed)
     {
-        Settings.CheatsEnabled = pressed;
+        Settings.Instance.CheatsEnabled = pressed;
 
         CompareSettings();
     }
 
     private void OnAutoSaveToggled(bool pressed)
     {
-        Settings.AutoSaveEnabled = pressed;
+        Settings.Instance.AutoSaveEnabled = pressed;
         maxAutosaves.Editable = pressed;
 
         CompareSettings();
@@ -694,14 +693,14 @@ public class OptionsMenu : Control
 
     private void OnMaxAutoSavesValueChanged(float value)
     {
-        Settings.MaxAutoSaves = (int)value;
+        Settings.Instance.MaxAutoSaves = (int)value;
 
         CompareSettings();
     }
 
     private void OnMaxQuickSavesValueChanged(float value)
     {
-        Settings.MaxQuickSaves = (int)value;
+        Settings.Instance.MaxQuickSaves = (int)value;
 
         CompareSettings();
     }
