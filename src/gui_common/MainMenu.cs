@@ -118,9 +118,6 @@ public class MainMenu : Node
         options = GetNode<OptionsMenu>("OptionsMenu");
         saves = GetNode<SaveManagerGUI>("SaveManagerGUI");
 
-        // Load settings
-        options.SetSettingsFrom(Settings.Instance);
-
         // Set initial menu
         SwitchMenu();
     }

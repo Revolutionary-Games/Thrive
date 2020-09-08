@@ -34,7 +34,8 @@ __meta__ = {
 "_edit_use_anchors_": false,
 "_edit_vertical_guides_": [ -85.3295 ]
 }
-ResetToDefaultPath = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Reset")
+ResetButtonPath = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Reset")
+SaveButtonPath = NodePath("CenterContainer/VBoxContainer/HBoxContainer/Save")
 GraphicsButtonPath = NodePath("CenterContainer/VBoxContainer/TabButtons/GraphicsButton")
 SoundButtonPath = NodePath("CenterContainer/VBoxContainer/TabButtons/SoundButton")
 PerformanceButtonPath = NodePath("CenterContainer/VBoxContainer/TabButtons/PerformanceButton")
@@ -61,7 +62,8 @@ CheatsPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContai
 AutoSavePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/AutoSave")
 MaxAutoSavesPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer/MaxAutoSaves")
 MaxQuickSavesPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer2/MaxQuickSaves")
-ResetConfirmationBoxPath = NodePath("CenterContainer/ResetConfirm")
+BackConfirmationBoxPath = NodePath("CenterContainer/BackConfirm")
+DefaultsConfirmationBoxPath = NodePath("CenterContainer/DefaultsConfirm")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -429,24 +431,24 @@ margin_bottom = 101.0
 size_flags_horizontal = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer"]
-margin_right = 263.0
+margin_right = 257.0
 margin_bottom = 68.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer/VBoxContainer"]
-margin_right = 263.0
+margin_right = 257.0
 margin_bottom = 49.0
 text = "Cloud Simulation Minimum
 Interval:"
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer/VBoxContainer"]
 margin_top = 53.0
-margin_right = 263.0
+margin_right = 257.0
 margin_bottom = 68.0
 custom_fonts/font = SubResource( 3 )
 text = "(higher values increase performance)"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer"]
-margin_left = 267.0
+margin_left = 261.0
 margin_right = 313.0
 margin_bottom = 68.0
 size_flags_horizontal = 3
@@ -469,11 +471,11 @@ margin_bottom = 153.0
 size_flags_horizontal = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer2"]
-margin_right = 254.0
+margin_right = 248.0
 margin_bottom = 42.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_right = 254.0
+margin_right = 248.0
 margin_bottom = 23.0
 hint_tooltip = "This value only applies to new games started after changing this option"
 mouse_filter = 0
@@ -481,13 +483,13 @@ text = "Cloud Resolution Divisor:"
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer2/VBoxContainer"]
 margin_top = 27.0
-margin_right = 254.0
+margin_right = 248.0
 margin_bottom = 42.0
 custom_fonts/font = SubResource( 3 )
 text = "(higher values increase performance)"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer2"]
-margin_left = 258.0
+margin_left = 252.0
 margin_right = 313.0
 margin_bottom = 42.0
 size_flags_horizontal = 3
@@ -635,30 +637,61 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-margin_left = 104.0
-margin_right = 241.0
-margin_bottom = 35.0
-size_flags_horizontal = 3
-custom_styles/separator = SubResource( 6 )
-
 [node name="Reset" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
-margin_left = 245.0
-margin_right = 549.0
+margin_left = 104.0
+margin_right = 181.0
 margin_bottom = 35.0
-text = "Reset ALL to Default Settings"
+disabled = true
+text = "Reset"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ResetConfirm" type="ConfirmationDialog" parent="CenterContainer"]
+[node name="Save" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 185.0
+margin_right = 285.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 100, 35 )
+disabled = true
+text = "Save"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 289.0
+margin_right = 442.0
+margin_bottom = 35.0
+size_flags_horizontal = 3
+custom_styles/separator = SubResource( 6 )
+
+[node name="Defaults" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
+margin_left = 446.0
+margin_right = 549.0
+margin_bottom = 35.0
+text = "Defaults"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackConfirm" type="ConfirmationDialog" parent="CenterContainer"]
+margin_left = 323.0
+margin_top = 324.0
+margin_right = 957.0
+margin_bottom = 395.0
+rect_min_size = Vector2( 600, 70 )
+popup_exclusive = true
+window_title = ""
+dialog_text = "You have unsaved changes that will be discarded. Continue?"
+
+[node name="DefaultsConfirm" type="ConfirmationDialog" parent="CenterContainer"]
 margin_left = 314.0
 margin_top = 324.0
 margin_right = 965.0
 margin_bottom = 395.0
 rect_min_size = Vector2( 600, 70 )
 popup_exclusive = true
-window_title = "Reset settings to defaults?"
+window_title = ""
 dialog_text = "Are you sure you want to reset ALL settings to default values?"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/GraphicsButton" to="." method="SetSettingsTab" binds= [ "graphics" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/SoundButton" to="." method="SetSettingsTab" binds= [ "sound" ]]
@@ -684,4 +717,7 @@ dialog_text = "Are you sure you want to reset ALL settings to default values?"
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/Cheats" to="." method="OnCheatsToggled"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Back" to="." method="OnBackPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Reset" to="." method="OnResetPressed"]
-[connection signal="confirmed" from="CenterContainer/ResetConfirm" to="." method="ResetConfirmSelected"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Save" to="." method="OnSavePressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Defaults" to="." method="OnDefaultsPressed"]
+[connection signal="confirmed" from="CenterContainer/BackConfirm" to="." method="BackConfirmSelected"]
+[connection signal="confirmed" from="CenterContainer/DefaultsConfirm" to="." method="DefaultsConfirmSelected"]
