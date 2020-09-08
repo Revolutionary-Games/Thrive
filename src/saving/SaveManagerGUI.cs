@@ -189,7 +189,7 @@ public class SaveManagerGUI : Control
     {
         deleteSelectedConfirmDialog.DialogText =
             string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("Deleting the selected save(s) cannot be undone, are you sure you want to permanently delete {0} save(s)?"),
+                TranslationServer.Translate("SAVE_DELETE_SEL_WARN"),
                 Selected.Count);
         deleteSelectedConfirmDialog.PopupCenteredMinsize();
     }
@@ -201,7 +201,7 @@ public class SaveManagerGUI : Control
 
         deleteOldConfirmDialog.DialogText =
             string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("Deleting all old Auto and Quick saves cannot be undone, are you sure you want to permanently delete the following?\n - {0} Auto save(s)\n - {1} Quick save(s)"),
+                TranslationServer.Translate("SAVE_DELETE_OLD_WARN"),
                 autoSavesToDeleteCount, quickSavesToDeleteCount);
         deleteOldConfirmDialog.PopupCenteredMinsize();
     }

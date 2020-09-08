@@ -2,13 +2,13 @@
 # Copyright (C) 2020 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # Automatically generated, 2020.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2020-09-07 18:16+0200\n"
-"PO-Revision-Date: 2020-09-06 12:39+0200\n"
+"POT-Creation-Date: 2020-09-08 18:49+0200\n"
+"PO-Revision-Date: 2020-09-08 18:49+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: fr\n"
@@ -17,99 +17,86 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.8.0\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 2.4.1\n"
 
-#: ../src/auto-evo/AutoEvoRun.cs:119
-msgid "Aborted."
-msgstr "Annulé."
-
-#: ../src/auto-evo/AutoEvoRun.cs:122
-msgid "Finished."
-msgstr "Terminé."
-
-#: ../src/auto-evo/AutoEvoRun.cs:125
-msgid "Not running."
-msgstr "Pas en cours."
-
-# Not python format
-#: ../src/auto-evo/AutoEvoRun.cs:134
-#, python-format
-msgid "{0:F1}% done. {1:n0}/{2:n0} steps."
-msgstr "{0:F1}% finis. {1:n0}/{2:n0} étapes."
-
-#: ../src/auto-evo/AutoEvoRun.cs:138
-msgid "Starting"
-msgstr "Démarrage"
-
-#: ../src/auto-evo/AutoEvoRun.cs:278
-msgid " population changed by "
-msgstr " population changée par "
-
-#: ../src/auto-evo/AutoEvoRun.cs:280
-msgid " because of: "
-msgstr " à cause de : "
-
-#: ../src/auto-evo/RunResults.cs:176
-msgid " population: "
-msgstr " population : "
-
-#: ../src/auto-evo/RunResults.cs:181
-msgid " previous: "
-msgstr " précédent : "
-
-#: ../src/auto-evo/RunResults.cs:195
-msgid " has a mutation"
-msgstr " a une mutation"
-
-#: ../src/auto-evo/RunResults.cs:199
-msgid ", gene code: "
-msgstr ", code génétique : "
-
-#: ../src/auto-evo/RunResults.cs:208
-msgid " spread to patches:\\n"
-msgstr " s'étendre aux patchs:\\n"
-
-#: ../src/auto-evo/RunResults.cs:216
-msgid " by sending: "
-msgstr " en envoyant : "
-
-#: ../src/auto-evo/RunResults.cs:218
-msgid " population"
-msgstr " population"
-
-#: ../src/auto-evo/RunResults.cs:219
-msgid " from patch: "
-msgstr " de patch : "
-
-#: ../src/auto-evo/RunResults.cs:226
-msgid " pop: "
-msgstr " pop: "
-
-#: ../src/auto-evo/RunResults.cs:228
-msgid " from: "
-msgstr " de : "
-
-#: ../src/auto-evo/RunResults.cs:236
-msgid " population in patches:\\n"
-msgstr " population dans les patchs:\\n"
-
-#: ../src/engine/FPSCounter.tscn:33
-msgid "FPS: 0"
-msgstr "FPS: 0"
-
-#: ../src/engine/LoadingScreen.cs:34
-msgid "Loading"
-msgstr "Chargement"
-
-#: ../src/engine/LoadingScreen.cs:36
-msgid "TIP: press the undo button in the editor to correct a mistake"
+#: ../src/auto-evo/AutoEvoRun.cs:158
+msgid "AUTOEVO_ABORTED"
 msgstr ""
-"ASTUCE : appuyez sur le bouton d'annulation dans l'éditeur pour corriger une "
-"erreur"
+
+#: ../src/auto-evo/AutoEvoRun.cs:161
+msgid "AUTOEVO_FINISHED"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoRun.cs:164
+msgid "AUTOEVO_NOT_RUNNING"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoRun.cs:175
+msgid "AUTOEVO_STEPS"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoRun.cs:179
+msgid "AUTOEVO_STARTING"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoRun.cs:353
+msgid "AUTOEVO_POPULATION_CHANGE"
+msgstr ""
+
+#: ../src/auto-evo/AutoEvoRun.cs:357
+msgid "AUTOEVO_BECAUSE"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:207
+msgid "RUNRESULT_POP"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:214
+msgid "RUNRESULT_PREVIOUS"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:230
+msgid "RUNRESULT_HAS_MUTATION"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:234
+msgid "RUNRESULT_GENE_CODE"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:245
+msgid "RUNRESULT_SPREAD_PATCHES"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:254
+msgid "RUNRESULT_BY_SENDING"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:258
+msgid "RUNRESULT_POP_FROM_PATCH"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:267
+msgid "RUNRESULT_POP_SHORT"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:271
+msgid "RUNRESULT_FROM"
+msgstr ""
+
+#: ../src/auto-evo/RunResults.cs:281
+msgid "RUNRESULT_POP_IN_PATCHES"
+msgstr ""
+
+#: ../src/engine/LoadingScreen.cs:40
+msgid "LOADING_LOADING"
+msgstr ""
+
+#: ../src/engine/LoadingScreen.cs:42
+msgid "LOADING_TIP"
+msgstr ""
 
 #: ../src/general/HelpScreen.tscn:93
-msgid "Close"
-msgstr "Fermer"
+msgid "HELPSCREEN_CLOSE"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:101
 msgid "OPTIONS_GRAPHICS"
@@ -237,13 +224,11 @@ msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:676
 msgid "Reset settings to defaults?"
-msgstr "Rétablir les paramètres par défaut ?"
+msgstr ""
 
 #: ../src/general/OptionsMenu.tscn:677
 msgid "Are you sure you want to reset ALL settings to default values?"
 msgstr ""
-"Êtes-vous sûr de vouloir réinitialiser TOUS les paramètres aux valeurs par "
-"défaut ?"
 
 #: ../src/general/PauseMenu.tscn:54
 msgid "PAUSE_MENU_RESUME"
@@ -278,8 +263,8 @@ msgid "PAUSE_MENU_EXIT"
 msgstr ""
 
 #: ../src/general/PauseMenu.tscn:130
-msgid "Back"
-msgstr "Retour"
+msgid "PAUSE_MENU_BACK"
+msgstr ""
 
 #: ../src/gui_common/MainMenu.tscn:150
 msgid "MAINMENU_NEWGAME"
@@ -316,77 +301,77 @@ msgstr ""
 #: ../src/gui_common/MainMenu.tscn:242 ../src/gui_common/MainMenu.tscn:252
 #: ../src/gui_common/MainMenu.tscn:262
 msgid "???"
-msgstr "???"
+msgstr ""
 
 #: ../src/gui_common/MainMenu.tscn:272
 msgid "MAINMENU_TOOLS_BACK"
 msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1061
-msgid "successful scavenge"
-msgstr "récupération réussie"
+#: ../src/microbe_stage/Microbe.cs:1283
+msgid "MICROBE_SUCC_SCAV"
+msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1067
-msgid "successful kill"
-msgstr "mise à mort réussie"
+#: ../src/microbe_stage/Microbe.cs:1290
+msgid "MICROBE_SUCC_KILL"
+msgstr ""
 
-#: ../src/microbe_stage/Microbe.cs:1440
-msgid "escape engulfing"
-msgstr "échapper à l'engloutissement"
+#: ../src/microbe_stage/Microbe.cs:1748
+msgid "MICROBE_ESCAPE_ENGULFING"
+msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:429
-msgid "Patch: {0}"
-msgstr "Patch: {0}"
+#: ../src/microbe_stage/MicrobeHUD.cs:457
+msgid "MICROBE_HUD_PATCH"
+msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:529
-#: ../src/microbe_stage/MicrobeHUD.cs:534
-#: ../src/microbe_stage/MicrobeHUD.cs:539
-#: ../src/microbe_stage/MicrobeHUD.cs:542
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1311
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1322
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1328
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1334
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1340
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1343
-msgid "{0}%"
-msgstr "{0}%"
+#: ../src/microbe_stage/MicrobeHUD.cs:566
+#: ../src/microbe_stage/MicrobeHUD.cs:571
+#: ../src/microbe_stage/MicrobeHUD.cs:576
+#: ../src/microbe_stage/MicrobeHUD.cs:579
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1390
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1405
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1411
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1417
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1423
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1426
+msgid "MICROBE_HUD_VAL_PERC"
+msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:544
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1306
-msgid "{0} °C"
-msgstr "{0} °C"
+#: ../src/microbe_stage/MicrobeHUD.cs:584
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1383
+msgid "MICROBE_HUD_VAL_CELCIUS"
+msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:596
-msgid "Stuff at {0:F1}, {1:F1}:\\n"
-msgstr "Des trucs à {0:F1}, {1:F1}:\\n"
+#: ../src/microbe_stage/MicrobeHUD.cs:649
+msgid "MICROBE_HUD_STUFF"
+msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:604
-msgid "Nothing to eat here"
-msgstr "Rien à manger ici"
+#: ../src/microbe_stage/MicrobeHUD.cs:657
+msgid "MICROBE_HUD_NOTHING_EAT"
+msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:608
-msgid "At cursor:"
-msgstr "Au curseur :"
+#: ../src/microbe_stage/MicrobeHUD.cs:661
+msgid "MICROBE_HUD_AT_CURSOR"
+msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:621
-msgid "Compounds: \\n"
-msgstr "Composés : \\n"
+#: ../src/microbe_stage/MicrobeHUD.cs:675
+msgid "MICROBE_HUD_COUMPOUNDS"
+msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:633
-msgid ": {0:F1}"
-msgstr ": {0:F1}"
+#: ../src/microbe_stage/MicrobeHUD.cs:691
+msgid "MICROBE_HUD_COUMPOUNDS_VAL"
+msgstr ""
 
-#: ../src/microbe_stage/MicrobeHUD.cs:660
-msgid "Cell of species {0}"
-msgstr "Cellule de l'espèce {0}"
+#: ../src/microbe_stage/MicrobeHUD.cs:723
+msgid "MICROBE_HUD_CELLS"
+msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:320
-msgid "player reproduced"
-msgstr "joueur reproduit"
+#: ../src/microbe_stage/MicrobeStage.cs:358
+msgid "MICROBE_STAGE_PLAYER_REP"
+msgstr ""
 
-#: ../src/microbe_stage/MicrobeStage.cs:392
-msgid "player died"
-msgstr "joueur mort"
+#: ../src/microbe_stage/MicrobeStage.cs:444
+msgid "MICROBE_STAGE_PLAYER_DIED"
+msgstr ""
 
 #: ../src/microbe_stage/MicrobeStage.tscn:513
 msgid "MICROBE_STAGE_ENV"
@@ -452,70 +437,70 @@ msgstr ""
 msgid "MICROBE_STAGE_POP"
 msgstr ""
 
-#: ../src/microbe_stage/Patch.cs:121
-msgid "Patch \\\"{0}\\\""
-msgstr "Patch \\\"{0}\\\""
+#: ../src/microbe_stage/Patch.cs:149
+msgid "PATCH_PATCH"
+msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:16
-msgid "Pangonian vents"
-msgstr "Cheminées pangoniennes"
+#: ../src/microbe_stage/PatchMapGenerator.cs:21
+msgid "PATCH_PANGONIAN_VENTS"
+msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:24
-msgid "Pangonian Mesopelagic"
-msgstr "Mésopélagique pangonien"
+#: ../src/microbe_stage/PatchMapGenerator.cs:29
+msgid "PATCH_MESOPELAGIC"
+msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:31
-msgid "Pangonian Epipelagic"
-msgstr "Epipelagic pangonienne"
+#: ../src/microbe_stage/PatchMapGenerator.cs:36
+msgid "PATCH_EPIPELAGIC"
+msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:38
-msgid "Pangonian Tidepool"
-msgstr "Bassin Pangonien"
+#: ../src/microbe_stage/PatchMapGenerator.cs:43
+msgid "PATCH_PANGONIAN_TIDEPOOL"
+msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:45
-msgid "Pangonian Bathypelagic"
-msgstr "Bathypelagique pangonienne"
+#: ../src/microbe_stage/PatchMapGenerator.cs:50
+msgid "PATCH_BATHYPELAGIC"
+msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:52
-msgid "Pangonian Abyssopelagic"
-msgstr "Abyssopélagique Pangonienne"
+#: ../src/microbe_stage/PatchMapGenerator.cs:57
+msgid "PATHCH_ABYSSOPELAGIC"
+msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:59
-msgid "Pangonian Coast"
-msgstr "Côte Pangonienne"
+#: ../src/microbe_stage/PatchMapGenerator.cs:64
+msgid "PATCH_COAST"
+msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:66
-msgid "Pangonian Estuary"
-msgstr "Estuaire Pangonien"
+#: ../src/microbe_stage/PatchMapGenerator.cs:71
+msgid "PATCH_PANGONIAN_ESTUARY"
+msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:73
-msgid "Cave"
-msgstr "Grotte"
+#: ../src/microbe_stage/PatchMapGenerator.cs:78
+msgid "PATCH_CAVE"
+msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:80
-msgid "Ice Shelf"
-msgstr "Plaque glaciaire"
+#: ../src/microbe_stage/PatchMapGenerator.cs:85
+msgid "PATCH_ICE_SHELF"
+msgstr ""
 
-#: ../src/microbe_stage/PatchMapGenerator.cs:87
-msgid "Pangonian Sea Floor"
-msgstr "Fonds marins Pangoniens"
+#: ../src/microbe_stage/PatchMapGenerator.cs:92
+msgid "PATCH_PANGONIAN_SEAFLOOR"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:522
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:917
-msgid "Loading Microbe Editor"
-msgstr "Chargement de l'éditeur de microbes"
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:666
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1099
+msgid "MICROBE_EDITOR_LOADING"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:522
-msgid "Waiting for auto-evo: "
-msgstr "En attente de l'auto-évolution : "
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:667
+msgid "MICROBE_EDITOR_WAITING_AUTO_EVO"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1599
-msgid "Auto-evo failed to run"
-msgstr "L'Auto-evo n'a pas fonctionné"
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1855
+msgid "MICROBE_EDITOR_AUTO_EVO_FAILED"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.cs:1600
-msgid "run status: "
-msgstr "statut d'exécution : "
+#: ../src/microbe_stage/editor/MicrobeEditor.cs:1856
+msgid "MICROBE_EDITOR_AUTO_EVO_STATUS"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1101
 msgid "MICROBE_EDITOR_REPORT"
@@ -577,9 +562,9 @@ msgstr ""
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3488
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3576
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:3665
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3761
-msgid "Selected"
-msgstr "Sélectionné"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3762
+msgid "MICROBE_EDITOR_CELL_SELECTED"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:1615
 msgid "MICROBE_EDITOR_CELL_STRUCT_CYTOPLASM"
@@ -631,7 +616,7 @@ msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2430
 msgid "Internal Organelles"
-msgstr "Organelles internes"
+msgstr ""
 
 #: ../src/microbe_stage/editor/MicrobeEditor.tscn:2524
 msgid "MICROBE_EDITOR_CELL_NUCLEUS"
@@ -689,772 +674,762 @@ msgstr ""
 msgid "MICROBE_EDITOR_CELL_MEMBRANE_CHITIN"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3705
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3706
 msgid "MICROBE_EDITOR_CELL_MEMBRANE_CC"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3794
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3795
 msgid "MICROBE_EDITOR_CELL_MEMBRANE_SILICA"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3803
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3804
 msgid "MICROBE_EDITOR_CELL_MEMBRANE_FLUIDITY"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3821
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3822
 msgid "MICROBE_EDITOR_CELL_MEMBRANE_COLOUR"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3933
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3934
 msgid "MICROBE_EDITOR_SPECIES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3962
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:3963
 msgid "MICROBE_EDITOR_SPECIES_DEFAULT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4038
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4039
 msgid "MICROBE_EDITOR_CELL_SYMMETRY"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4120
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4121
 msgid "MICROBE_EDITOR_CELL_CONFIRM"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4191
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4192
 msgid "22"
-msgstr "22"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4199
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4200
 msgid "MICROBE_EDITOR_TOOLTIP_CYTO"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4212
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4402
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6296
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4213
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4403
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6297
 msgid "MICROBE_EDITOR_TOOLTIP_TURN_GLUCOSE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4229
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4419
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4909
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5096
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6313
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4230
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4420
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4910
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5097
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6314
 msgid "MICROBE_EDITOR_TOOLTIP_INTO_ATP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4265
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5600
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5811
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4266
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5601
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5812
 msgid "+4"
-msgstr "+4"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4273
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4487
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4699
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4949
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5179
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5388
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5608
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5819
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6166
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6375
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6588
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6801
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7021
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7251
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7412
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7632
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4274
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4488
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4700
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4950
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5180
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5389
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5609
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5820
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6167
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6376
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6589
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6802
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7022
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7252
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7413
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7633
 msgid "MICROBE_EDITOR_TOOLTIP_STORAGE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4294
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4479
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4508
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4691
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4720
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4941
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4970
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5171
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5200
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5409
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5629
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5840
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7433
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7653
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4295
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4480
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4509
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4692
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4721
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4942
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4971
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5172
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5201
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5410
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5630
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5841
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7434
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7654
 msgid "+1"
-msgstr "+1"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4301
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4515
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4727
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4977
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5207
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5416
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5636
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5847
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6194
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6403
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6616
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6829
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7049
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7279
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7440
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7660
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7892
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8157
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8336
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8515
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8734
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4302
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4516
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4728
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4978
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5208
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5417
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5637
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5848
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6195
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6404
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6617
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6830
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7050
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7280
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7441
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7661
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7893
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8158
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8337
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8516
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8735
 msgid "MICROBE_EDITOR_TOOLTIP_OSMO_COST"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4315
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4316
 msgid "MICROBE_EDITOR_TOOLTIP_CYTO_DESC"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4377
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4804
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5054
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6271
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6906
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4378
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4805
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5055
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6272
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6907
 msgid "45"
-msgstr "45"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4385
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4386
 msgid "MICROBE_EDITOR_TOOLTIP_METABO"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4443
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5567
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6334
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7591
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4444
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5568
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6335
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7592
 msgid "MICROBE_EDITOR_TOOLTIP_SCALE_OXY"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4529
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4530
 msgid "MICROBE_EDITOR_TOOLTIP_METABO_DESC"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4591
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6480
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7126
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7356
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7830
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8009
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8095
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8274
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8453
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8672
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4592
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6481
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7127
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7357
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7831
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8010
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8096
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8275
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8454
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8673
 msgid "50"
-msgstr "50"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4599
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4600
 msgid "MICROBE_EDITOR_TOOLTIP_THYLAK"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4616
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6505
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6718
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4617
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6506
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6719
 msgid "MICROBE_EDITOR_TOOLTIP_PRODUCE_GLUCOSE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4637
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4871
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5117
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6526
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6739
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6980
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4638
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4872
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5118
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6527
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6740
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6981
 msgid "MICROBE_EDITOR_TOOLTIP_SCALE_CO2"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4658
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6547
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4659
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6548
 msgid "MICROBE_EDITOR_TOOLTIP_SCALE_AND_LIGHT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4741
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4742
 msgid "MICROBE_EDITOR_TOOLTIP_THYLAK_DESC"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4812
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4813
 msgid "MICROBE_EDITOR_TOOLTIP_CHEMO_P"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4829
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6931
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4830
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6932
 msgid "MICROBE_EDITOR_TOOLTIP_TURN_HS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4846
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6959
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4847
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6960
 msgid "MICROBE_EDITOR_TOOLTIP_INTO_GLUCOSE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4892
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4893
 msgid "MICROBE_EDITOR_TOOLTIP_ALSO_GLUCOSE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4991
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:4992
 msgid "MICROBE_EDITOR_TOOLTIP_CHEMO_P_DESC"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5062
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5063
 msgid "MICROBE_EDITOR_TOOLTIP_RUSTICYANIN"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5079
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5080
 msgid "MICROBE_EDITOR_TOOLTIP_TURN_IRON"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5138
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7210
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5139
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7211
 msgid "MICROBE_EDITOR_TOOLTIP_SCALE_AND_OXYGEN"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5221
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5222
 msgid "MICROBE_EDITOR_TOOLTIP_RUSTICYANIN_DESC"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5284
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5493
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5713
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5285
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5494
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5714
 msgid "55"
-msgstr "55"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5292
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5293
 msgid "MICROBE_EDITOR_TOOLTIP_NITROGENASE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5309
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5518
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7151
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7542
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5310
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5519
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7152
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7543
 msgid "MICROBE_EDITOR_TOOLTIP_TURN_ATP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5326
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7168
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5327
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7169
 msgid "MICROBE_EDITOR_TOOLTIP_INTO_AMMONIA"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5347
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7189
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5348
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7190
 msgid "MICROBE_EDITOR_TOOLTIP_SCALE_NITROGEN"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5380
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6367
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6396
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6580
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6793
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6822
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7013
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7042
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7243
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7272
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5381
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6368
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6397
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6581
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6794
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6823
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7014
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7043
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7244
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7273
 msgid "+2"
-msgstr "+2"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5430
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5431
 msgid "MICROBE_EDITOR_TOOLTIP_NITROGENASE_DESC"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5501
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5502
 msgid "MICROBE_EDITOR_TOOLTIP_OXYTOXISOME"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5535
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7559
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5536
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7560
 msgid "MICROBE_EDITOR_TOOLTIP_INTO_OXYTOXY"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5555
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7579
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5556
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7580
 msgid "MICROBE_EDITOR_TOOLTIP_RELEASE_TOXIN"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5650
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5651
 msgid "MICROBE_EDITOR_TOOLTIP_OXYTOXISOME_DESC"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5721
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5722
 msgid "MICROBE_EDITOR_TOOLTIP_FLAGELLUM"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5738
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5739
 msgid "MICROBE_EDITOR_TOOLTIP_USES_ATP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5758
-msgid "MICROBE_EDITOR_TOOLTIP_INCREASE"
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5759
+msgid "MICROBE_EDITOR_TOOLTIP_INCREASE_SPEED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5782
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5783
 msgid "+0.7"
-msgstr "+0.7"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5790
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5791
 msgid "MICROBE_EDITOR_TOOLTIP_SPEED"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5861
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5862
 msgid "MICROBE_EDITOR_TOOLTIP_FLAGELLUM_DESC"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5924
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5925
 msgid "30"
-msgstr "30"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5932
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5933
 msgid "MICROBE_EDITOR_TOOLTIP_PILUS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5948
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:5949
 msgid "MICROBE_EDITOR_TOOLTIP_PILUS_DESC"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6017
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7737
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6018
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7738
 msgid "0"
-msgstr "0"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6025
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6026
 msgid "MICROBE_EDITOR_TOOLTIP_CILIA"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6041
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7761
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6042
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7762
 msgid "MICROBE_EDITOR_TOOLTIP_TBI"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6110
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6111
 msgid "100"
-msgstr "100"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6118
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6119
 msgid "MICROBE_EDITOR_TOOLTIP_NUCLEUS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6134
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6135
 msgid "MICROBE_EDITOR_TOOLTIP_NUCLEUS_SMALL_DESC"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6158
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7404
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6159
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7405
 msgid "+15"
-msgstr "+15"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6187
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6188
 msgid "+10"
-msgstr "+10"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6208
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6209
 msgid "MICROBE_EDITOR_TOOLTIP_NUCLEUS_DESC"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6279
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6280
 msgid "MICROBE_EDITOR_TOOLTIP_MITOCHONDRION"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6417
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6418
 msgid "MICROBE_EDITOR_TOOLTIP_MITOCHONDRION_DESC"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6488
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6489
 msgid "MICROBE_EDITOR_TOOLTIP_CHLOROPLAST"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6609
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6610
 msgid "+3"
-msgstr "+3"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6630
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6631
 msgid "MICROBE_EDITOR_TOOLTIP_CHLOROPLAST_DESC"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6693
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6694
 msgid "40"
-msgstr "40"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6701
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6702
 msgid "MICROBE_EDITOR_TOOLTIP_THERMOPLAST"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6760
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6761
 msgid "MICROBE_EDITOR_TOOLTIP_SCALE_AND_TEMP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6843
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6844
 msgid "MICROBE_EDITOR_TOOLTIP_THERMOPLAST_DESC"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6914
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:6915
 msgid "MICROBE_EDITOR_TOOLTIP_CHEMOPLAST"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7063
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7064
 msgid "MICROBE_EDITOR_TOOLTIP_CHEMOPLAST_DESC"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7134
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7135
 msgid "MICROBE_EDITOR_TOOLTIP_NFP"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7293
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7294
 msgid "MICROBE_EDITOR_TOOLTIP_NFP_DESC"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7364
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7365
 msgid "MICROBE_EDITOR_TOOLTIP_VACUOLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7380
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7381
 msgid "MICROBE_EDITOR_TOOLTIP_INCREASE_STORAGE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7454
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7455
 msgid "MICROBE_EDITOR_TOOLTIP_VACUOLE_DESC"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7517
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7518
 msgid "70"
-msgstr "70"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7525
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7526
 msgid "MICROBE_EDITOR_TOOLTIP_TOXIN_VACUOLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7624
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7625
 msgid "+5"
-msgstr "+5"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7674
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7675
 msgid "MICROBE_EDITOR_TOOLTIP_TOXIN_VACUOLE_DESC"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7745
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7746
 msgid "MICROBE_EDITOR_TOOLTIP_BIOLUM_VACUOLE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7838
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7839
 msgid "MICROBE_EDITOR_TOOLTIP_NORMAL_MEMBRANE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7856
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7905
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7857
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7906
 msgid "+0.1"
-msgstr "+0.1"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7864
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8129
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8308
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8487
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8706
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8924
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7865
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8130
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8309
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8488
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8707
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8925
 msgid "MICROBE_EDITOR_TOOLTIP_MOBILITY"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7885
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7886
 msgid "+10%"
-msgstr "+10%"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7912
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8177
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8356
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8535
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8754
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7913
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8178
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8357
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8536
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8755
 msgid "MICROBE_EDITOR_TOOLTIP_ABSORB"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7925
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7926
 msgid "-30"
-msgstr "-30"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7932
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8555
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8774
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8952
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7933
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8556
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8775
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8953
 msgid "MICROBE_EDITOR_TOOLTIP_HEALTH"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7946
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:7947
 msgid "MICROBE_EDITOR_TOOLTIP_NORMAL_MEMBRANE_DESC"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8017
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8018
 msgid "MICROBE_EDITOR_TOOLTIP_DOUBLE_MEMBRANE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8032
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8033
 msgid "MICROBE_EDITOR_TOOLTIP_DOUBLE_MEMBRANE_DESC"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8103
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8104
 msgid "MICROBE_EDITOR_TOOLTIP_CELLULOSE_MEMBRANE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8121
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8300
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8122
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8301
 msgid "-0.2"
-msgstr "-0.2"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8150
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8329
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8508
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8727
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8151
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8330
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8509
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8728
 msgid "-20%"
-msgstr "-20%"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8170
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8349
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8528
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8747
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8171
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8350
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8529
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8748
 msgid "-0.1"
-msgstr "-0.1"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8190
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8369
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8568
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8588
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8807
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8191
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8370
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8569
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8589
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8808
 msgid "+0.2"
-msgstr "+0.2"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8197
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8575
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8794
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8198
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8576
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8795
 msgid "MICROBE_EDITOR_TOOLTIP_PHY_RES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8211
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8212
 msgid "MICROBE_EDITOR_TOOLTIP_CELLULOSE_MEMBRANE_DESC"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8282
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8283
 msgid "MICROBE_EDITOR_TOOLTIP_CHITIN_MEMBRANE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8376
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8595
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8814
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8377
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8596
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8815
 msgid "MICROBE_EDITOR_TOOLTIP_TOX_RES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8390
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8391
 msgid "MICROBE_EDITOR_TOOLTIP_CHITIN_MEMBRANE_DESC"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8461
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8462
 msgid "MICROBE_EDITOR_TOOLTIP_CC_MEMBRANE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8479
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8480
 msgid "-0.3"
-msgstr "-0.3"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8548
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8767
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8945
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8549
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8768
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8946
 msgid "+30"
-msgstr "+30"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8609
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8610
 msgid "MICROBE_EDITOR_TOOLTIP_CC_MEMBRANE_DESC"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8680
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8681
 msgid "MICROBE_EDITOR_TOOLTIP_SILICA_MEMBRANE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8698
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8916
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8699
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8917
 msgid "-0.4"
-msgstr "-0.4"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8787
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8788
 msgid "+0.4"
-msgstr "+0.4"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8828
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8829
 msgid "MICROBE_EDITOR_TOOLTIP_SILICA_MEMBRANE_DESC"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8890
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8891
 msgid "2"
-msgstr "2"
+msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8898
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8899
 msgid "MICROBE_EDITOR_TOOLTIP_MEMBRANE_RIGIDITY"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8966
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:8967
 msgid "MICROBE_EDITOR_TOOLTIP_MEMBRANE_RIGIDITY_DESC"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9033
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9034
 msgid "MICROBE_EDITOR_REPORT_EVO"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9051
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9052
 msgid "MICROBE_EDITOR_REPORT_EFFECTS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9073
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9074
 msgid "MICROBE_EDITOR_REPORT_NEXT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9180
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9181
 msgid "MICROBE_EDITOR_PATCH_EMPTY"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9269
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9270
 msgid "MICROBE_EDITOR_PATCH_PHYSICAL"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9417
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9418
 msgid "MICROBE_EDITOR_PATCH_ATMOSPHERIC"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9547
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9548
 msgid "MICROBE_EDITOR_PATCH_COUMPOUNDS"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9761
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9762
 msgid "MICROBE_EDITOR_PATCH_SPECIES"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9806
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9807
 msgid "MICROBE_EDITOR_PATCH_NEXT"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9829
+#: ../src/microbe_stage/editor/MicrobeEditor.tscn:9830
 msgid "MICROBE_EDITOR_PATCH_MOVE_HERE"
 msgstr ""
 
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:433
-msgid "The amount of glucose has been reduced to {0} of the previous amount."
-msgstr "La quantité de glucose a été réduite à {0} de la quantité précédente."
-
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:439
-msgid "Size "
-msgstr "Taille "
-
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:444
-msgid "Generation "
-msgstr "Génération "
-
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:449
-msgid "Speed "
-msgstr "Vitesse "
-
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:461
-msgid " - ATP PRODUCTION TOO LOW!"
-msgstr " - PRODUCTION ATP TROP FAIBLE !"
-
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1005
-msgid "No processes"
-msgstr "Pas de processus"
-
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1084
-msgid "/second"
-msgstr "/seconde"
-
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1299
-msgid "Biome: {0}"
-msgstr "Biome: {0}"
-
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1301
-msgid "{0}-{1}m below sea level"
-msgstr "{0}-{1}m sous le niveau de la mer"
-
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1307
-msgid "20 bar"
-msgstr "20 bar"
-
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1309
-#, python-format
-msgid "{0}% lux"
-msgstr "{0}% lux"
-
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1313
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1315
-msgid "{0}% ppm"
-msgstr "{0}% ppm"
-
-#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1359
-msgid "{0} with population: {1}"
-msgstr "{0} avec la population : {1}"
-
-#: ../src/microbe_stage/gui/ExtinctionBox.tscn:58
-msgid "EXTINCTION"
-msgstr "EXTINCTION"
-
-#: ../src/microbe_stage/gui/WinBox.tscn:57
-msgid "YOU HAVE THRIVED!"
-msgstr "VOUS AVEZ PROSPÉRÉ !"
-
-#: ../src/saving/InProgressLoad.cs:65 ../src/saving/InProgressLoad.cs:77
-#: ../src/saving/InProgressLoad.cs:120
-msgid "Loading Game"
-msgstr "Chargement du jeu"
-
-#: ../src/saving/InProgressLoad.cs:65
-msgid "Reading save data"
-msgstr "Lecture des données sauvegardées"
-
-#: ../src/saving/InProgressLoad.cs:77
-msgid "Creating objects from save"
-msgstr "Créer des objets à partir de la sauvegarde"
-
-#: ../src/saving/InProgressLoad.cs:81
-msgid "An exception happened while loading the save data"
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:446
+msgid "MICROBE_EDITOR_GLUCOSE_RED"
 msgstr ""
-"Une exception s'est produite lors du chargement des données de sauvegarde"
 
-#: ../src/saving/InProgressLoad.cs:98
-msgid "Save is invalid"
-msgstr "La sauvegarde n'est pas valide"
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:452
+msgid "MICROBE_EDITOR_SIZE"
+msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:98
-msgid "Save has an unknown game state"
-msgstr "La sauvegarde a un état de jeu inconnu"
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:458
+msgid "MICROBE_EDITOR_GEN"
+msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:109
-msgid "An exception happened while instantiating target scene"
-msgstr "Une exception s'est produite lors de l'instanciation de la scène cible"
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:464
+msgid "MICROBE_EDITOR_SPEED"
+msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:120
-msgid "Processing loaded objects"
-msgstr "Traitement des objets chargés"
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:478
+msgid "MICROBE_EDITOR_ATP_PROD_LOW"
+msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:132
-msgid "An exception happened while processing loaded objects"
-msgstr "Une exception s'est produite lors du traitement des objets chargés"
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1058
+msgid "MICROBE_EDITOR_NO_PROCESS"
+msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:137
-msgid "Load finished"
-msgstr "Chargement terminé"
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1144
+msgid "MICROBE_EDITOR_PER_SECOND"
+msgstr ""
 
-#: ../src/saving/InProgressLoad.cs:159
-msgid "Error Loading"
-msgstr "Erreur lors du chargement"
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1370
+msgid "MICROBE_EDITOR_BIOME"
+msgstr ""
 
-#: ../src/saving/InProgressSave.cs:161
-msgid "Saving..."
-msgstr "Sauvegarde..."
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1376
+msgid "MICROBE_EDITOR_BIOME_LEVEL"
+msgstr ""
 
-#: ../src/saving/InProgressSave.cs:190
-msgid "Save failed"
-msgstr "La sauvegarde a échoué"
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1385
+msgid "MICROBE_EDITOR_BAR"
+msgstr ""
 
-#: ../src/saving/InProgressSave.cs:191
-msgid "Error Saving"
-msgstr "Erreur lors de la sauvegarde"
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1387
+msgid "MICROBE_HUD_VAL_LUX"
+msgstr ""
 
-#: ../src/saving/NewSaveMenu.cs:58
-msgid "The chosen filename ({0}) already exists. Overwrite?"
-msgstr "Le nom de fichier choisi ({0}) existe déjà. Écraser ?"
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1393
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1396
+msgid "MICROBE_HUD_VAL_PPM"
+msgstr ""
+
+#: ../src/microbe_stage/editor/MicrobeEditorGUI.cs:1446
+msgid "MICROBE_EDITOR_WITH_POP"
+msgstr ""
+
+#: ../src/saving/InProgressLoad.cs:74 ../src/saving/InProgressLoad.cs:89
+#: ../src/saving/InProgressLoad.cs:138
+msgid "LOAD_LOAD_GAME"
+msgstr ""
+
+#: ../src/saving/InProgressLoad.cs:75
+msgid "LOAD_READING_SAVE"
+msgstr ""
+
+#: ../src/saving/InProgressLoad.cs:90
+msgid "LOAD_SAVE_OBJECTS"
+msgstr ""
+
+#: ../src/saving/InProgressLoad.cs:95
+msgid "LOAD_SAVE_EXC"
+msgstr ""
+
+#: ../src/saving/InProgressLoad.cs:113
+msgid "LOAD_SAVE_INVALID"
+msgstr ""
+
+#: ../src/saving/InProgressLoad.cs:114
+msgid "LOAD_SAVE_UNKNOWN_STATE"
+msgstr ""
+
+#: ../src/saving/InProgressLoad.cs:126
+msgid "LOAD_SCENE_EXC"
+msgstr ""
+
+#: ../src/saving/InProgressLoad.cs:139
+msgid "LOAD_SAVE_PROC_OBJ"
+msgstr ""
+
+#: ../src/saving/InProgressLoad.cs:152
+msgid "LOAD_SAVE_PROC_OBJ_EXC"
+msgstr ""
+
+#: ../src/saving/InProgressLoad.cs:158
+msgid "LOAD_FINISHED"
+msgstr ""
+
+#: ../src/saving/InProgressLoad.cs:181
+msgid "LOAD_ERROR"
+msgstr ""
+
+#: ../src/saving/InProgressSave.cs:172
+msgid "SAVE_SAVING"
+msgstr ""
+
+#: ../src/saving/InProgressSave.cs:202
+msgid "SAVE_FAILED"
+msgstr ""
+
+#: ../src/saving/InProgressSave.cs:203
+msgid "SAVE_ERROR"
+msgstr ""
+
+#: ../src/saving/NewSaveMenu.cs:63
+msgid "SAVE_FILE_EXISTS"
+msgstr ""
 
 #: ../src/saving/NewSaveMenu.tscn:34
 msgid "SAVE_MENU_NEW"
@@ -1481,78 +1456,37 @@ msgid "SAVE_MENU_BACK"
 msgstr ""
 
 #: ../src/saving/NewSaveMenu.tscn:122
-msgid "Overwrite existing save?"
-msgstr "Écraser la sauvegarde existante ?"
-
-#: ../src/saving/SaveHelper.cs:303
-msgid "Saving succeeded"
-msgstr "Sauvegarde réussie"
-
-#: ../src/saving/SaveHelper.cs:307
-msgid "Saving failed! An exception happened"
-msgstr "La sauvegarde a échoué ! Une exception s'est produite"
-
-#: ../src/saving/SaveList.cs:152
-msgid ""
-"Deleting this save cannot be undone, are you sure you want to permanently "
-"delete {0}?"
-msgstr ""
-"La suppression de cette sauvegarde ne peut être annulée, êtes-vous sûr de "
-"vouloir supprimer définitivement {0} ?"
-
-#: ../src/saving/SaveList.cs:171
-msgid "This save is from an old version of Thrive and may be incompatible.\\n"
-msgstr ""
-"Cette sauvegarde provient d'une ancienne version de Thrive et peut être "
-"incompatible.\\n"
-
-#: ../src/saving/SaveList.cs:172
-msgid "As Thrive is currently early in development "
-msgstr "Comme Thrive est actuellement au début de son développement "
-
-#: ../src/saving/SaveList.cs:173
-msgid "save compatibility is not a priority.\\n"
-msgstr "la compatibilité des sauvegardes n'est pas une priorité.\\n"
-
-#: ../src/saving/SaveList.cs:174
-msgid "You may report any issues you encounter, "
-msgstr "Vous pouvez signaler tout problème que vous rencontrez, "
-
-#: ../src/saving/SaveList.cs:175
-msgid "but they aren't the highest priority right now.\\n"
-msgstr "mais ils ne sont pas la plus grande priorité en ce moment.\\n"
-
-#: ../src/saving/SaveList.cs:176 ../src/saving/SaveList.cs:185
-msgid "Do you want to try loading the save anyway?"
-msgstr "Vous voulez quand même essayer de charger la sauvegarde ?"
-
-#: ../src/saving/SaveList.cs:184
-msgid ""
-"This save is from a newer version of Thrive and very likely incompatible.\\n"
-msgstr ""
-"Cette sauvegarde provient d'une version plus récente de Thrive et est très "
-"probablement incompatible.\\n"
-
-#: ../src/saving/SaveList.tscn:31
-msgid "SAVE_LIST_LOADING"
+msgid "SAVE_MENU_OVERWRITE_TITLE"
 msgstr ""
 
-#: ../src/saving/SaveList.tscn:44
-msgid "Delete this Save?"
-msgstr "Supprimer cette sauvegarde ?"
+#: ../src/saving/SaveHelper.cs:352
+msgid "SAVE_SUCCEED"
+msgstr ""
 
-#: ../src/saving/SaveList.tscn:53
-msgid "Load incompatible save?"
-msgstr "Charger une sauvegarde incompatible ?"
+#: ../src/saving/SaveHelper.cs:356
+msgid "SAVE_FAIL_EXC"
+msgstr ""
+
+#: ../src/saving/SaveList.cs:158
+msgid "SAVE_DELETE_WARN"
+msgstr ""
+
+#: ../src/saving/SaveList.cs:177
+msgid "SAVE_OLD_VERS_WARNING"
+msgstr ""
+
+#: ../src/saving/SaveList.cs:185
+msgid "SAVE_NEW_VERS_WARNING"
+msgstr ""
 
 #: ../src/saving/SaveListItem.tscn:80
 msgid "SAVE_ITEM_NAME"
 msgstr ""
 
 #: ../src/saving/SaveListItem.tscn:87 ../src/saving/SaveListItem.tscn:107
-#: ../src/saving/SaveListItem.tscn:157 ../src/saving/SaveListItem.tscn:175
-#: ../src/saving/SaveListItem.tscn:191 ../src/saving/SaveListItem.tscn:209
-#: ../src/saving/SaveListItem.tscn:225
+#: ../src/saving/SaveListItem.tscn:156 ../src/saving/SaveListItem.tscn:174
+#: ../src/saving/SaveListItem.tscn:190 ../src/saving/SaveListItem.tscn:208
+#: ../src/saving/SaveListItem.tscn:224
 msgid "SAVE_ITEM_TMP"
 msgstr ""
 
@@ -1562,62 +1496,51 @@ msgstr ""
 
 #: ../src/saving/SaveListItem.tscn:114
 msgid "( ! )"
-msgstr "( ! )"
+msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:127
+#: ../src/saving/SaveListItem.tscn:126
 msgid "SAVE_ITEM_SELECT"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:141
+#: ../src/saving/SaveListItem.tscn:140
 msgid "SAVE_ITEM_LOAD"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:151
+#: ../src/saving/SaveListItem.tscn:150
 msgid "SAVE_ITEM_CREATED"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:169
+#: ../src/saving/SaveListItem.tscn:168
 msgid "SAVE_ITEM_BY"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:185
+#: ../src/saving/SaveListItem.tscn:184
 msgid "SAVE_ITEM_TYPE"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:203
+#: ../src/saving/SaveListItem.tscn:202
 msgid "SAVE_ITEM_PLATFORM"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:219
+#: ../src/saving/SaveListItem.tscn:218
 msgid "SAVE_ITEM_DESCRIPTION"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:234
+#: ../src/saving/SaveListItem.tscn:233
 msgid "SAVE_ITEM_CONFIRM_TITLE"
 msgstr ""
 
-#: ../src/saving/SaveListItem.tscn:235
+#: ../src/saving/SaveListItem.tscn:234
 msgid "SAVE_ITEM_CONFIRM"
 msgstr ""
 
-#: ../src/saving/SaveManagerGUI.cs:192
-msgid ""
-"Deleting the selected save(s) cannot be undone, are you sure you want to "
-"permanently delete {0} save(s)?"
+#: ../src/saving/SaveManagerGUI.cs:195
+msgid "SAVE_DELETE_SEL_WARN"
 msgstr ""
-"La suppression de la/des sauvegarde(s) sélectionnée(s) ne peut être annulée, "
-"êtes-vous sûr de vouloir supprimer définitivement la/les sauvegarde(s) {0} ?"
 
-#: ../src/saving/SaveManagerGUI.cs:204
-msgid ""
-"Deleting all old Auto and Quick saves cannot be undone, are you sure you "
-"want to permanently delete the following?\\n - {0} Auto save(s)\\n - {1} "
-"Quick save(s)"
+#: ../src/saving/SaveManagerGUI.cs:207
+msgid "SAVE_DELETE_OLD_WARN"
 msgstr ""
-"La suppression de toutes les anciennes sauvegardes automatiques et rapides "
-"ne peut être annulée, êtes-vous sûr de vouloir supprimer définitivement les "
-"éléments suivants ?\\n - {0} Sauvegarde(s) automatique(s)\\n - {1} "
-"Sauvegarde(s) rapide(s)"
 
 #: ../src/saving/SaveManagerGUI.tscn:52
 msgid "SAVE_LOAD"
@@ -1670,928 +1593,3 @@ msgstr ""
 #: ../src/saving/SaveStatusOverlay.tscn:103
 msgid "SAVE_STATUS_COPY"
 msgstr ""
-
-#~ msgid "Stuff at"
-#~ msgstr "Choses à"
-
-#~ msgid "Environment"
-#~ msgstr "Environnement"
-
-#~ msgid "02"
-#~ msgstr "02"
-
-#~ msgid "0%"
-#~ msgstr "0%"
-
-#~ msgid "CO2"
-#~ msgstr "CO2"
-
-#~ msgid "N2"
-#~ msgstr "N2"
-
-#~ msgid "Temp."
-#~ msgstr "Temp."
-
-#~ msgid "55° C"
-#~ msgstr "55° C"
-
-#~ msgid "Light"
-#~ msgstr "Lumière"
-
-#~ msgid "Press."
-#~ msgstr "Presse."
-
-#~ msgid "200 kPa"
-#~ msgstr "200 kPa"
-
-#~ msgid "Compounds"
-#~ msgstr "Composés"
-
-#~ msgid "Glucose"
-#~ msgstr "Glucose"
-
-#~ msgid "0.0 / 4"
-#~ msgstr "0.0 / 4"
-
-#~ msgid "Ammonia"
-#~ msgstr "Ammoniac"
-
-#~ msgid "Phosphate"
-#~ msgstr "Phosphate"
-
-#~ msgid "Hydrogen Sulfide"
-#~ msgstr "Sulfure d'hydrogène"
-
-#~ msgid "Iron"
-#~ msgstr "Fer"
-
-#~ msgid "Agents"
-#~ msgstr "Agents"
-
-#~ msgid "OxyToxy NT"
-#~ msgstr "OxyToxy NT"
-
-#~ msgid "Patch:"
-#~ msgstr "Patch:"
-
-#~ msgid "POPULATION:"
-#~ msgstr "POPULATION:"
-
-#~ msgid "Hitpoints"
-#~ msgstr "Points de vie"
-
-#~ msgid "ATP"
-#~ msgstr "ATP"
-
-#~ msgid "REPORT"
-#~ msgstr "RAPPORT"
-
-#~ msgid "PATCH MAP"
-#~ msgstr "CARTE DES PATCHS"
-
-#~ msgid "CELL EDITOR"
-#~ msgstr "ÉDITEUR CELLULAIRE"
-
-#~ msgid "Mutation Points"
-#~ msgstr "Points de mutation"
-
-#~ msgid "100 / 100"
-#~ msgstr "100 / 100"
-
-#~ msgid "NEW"
-#~ msgstr "NOUVEAU"
-
-#~ msgid "ATP Balance"
-#~ msgstr "Solde ATP"
-
-#~ msgid "STRUCTURE"
-#~ msgstr "STRUCTURE"
-
-#~ msgid "MEMBRANE"
-#~ msgstr "MEMBRANE"
-
-#~ msgid "BEHAVIOR"
-#~ msgstr "COMPORTEMENT"
-
-#~ msgid "Structural Organelles"
-#~ msgstr "Organelles structurelles"
-
-#~ msgid "Prokaryotic Structures"
-#~ msgstr "Structures procaryotes"
-
-#~ msgid "External Organelles"
-#~ msgstr "Organelles externes"
-
-#~ msgid "Membrane Types"
-#~ msgstr "Types de membranes"
-
-#~ msgid "Fluidity/Rigidity"
-#~ msgstr "Fluidité/Rigidité"
-
-#~ msgid "Colour"
-#~ msgstr "Couleur"
-
-#~ msgid "Species"
-#~ msgstr "Espèces"
-
-#~ msgid "Primum Thrivium"
-#~ msgstr "Primum Thrivium"
-
-#~ msgid "Generation 2"
-#~ msgstr "Génération 2"
-
-#~ msgid "Speed 2.0"
-#~ msgstr "Vitesse 2.0"
-
-#~ msgid "Size 1"
-#~ msgstr "Taille 1"
-
-#~ msgid "Symmetry"
-#~ msgstr "Symétrie"
-
-#~ msgid "CONFIRM"
-#~ msgstr "CONFIRMER"
-
-#~ msgid "Cytoplasm"
-#~ msgstr "Cytoplasme"
-
-#~ msgid "Turns"
-#~ msgstr "Tourne"
-
-#~ msgid "into"
-#~ msgstr "dans"
-
-#~ msgid "Storage"
-#~ msgstr "Stockage"
-
-#~ msgid "Osmoregulation Cost"
-#~ msgstr "Coût de l'osmorégulation"
-
-#~ msgid ""
-#~ "The gooey innards of a cell. The cytoplasm is the basic mixture of ions, "
-#~ "proteins, and other substances dissolved in water that fill the interior "
-#~ "of the cell. One of the functions it performs is Fermentation, the "
-#~ "conversion of glucose into ATP energy. For cells that lack organelles to "
-#~ "have more advanced metabolisms, this is what they rely on for energy. It "
-#~ "is also used to store molecules in the cell and to grow the cell's size."
-#~ msgstr ""
-#~ "Les entrailles gluantes d'une cellule. Le cytoplasme est le mélange de "
-#~ "base d'ions, de protéines et d'autres substances dissoutes dans l'eau qui "
-#~ "remplissent l'intérieur de la cellule. L'une des fonctions qu'il remplit "
-#~ "est la fermentation, la conversion du glucose en énergie ATP. Pour que "
-#~ "les cellules qui manquent d'organelles aient des métabolismes plus "
-#~ "avancés, c'est sur cela qu'elles comptent pour leur énergie. Elle est "
-#~ "également utilisée pour stocker des molécules dans la cellule et pour "
-#~ "augmenter la taille de la cellule."
-
-#~ msgid "Metabolosomes"
-#~ msgstr "Métabolosomes"
-
-#~ msgid ". Rate scales"
-#~ msgstr ". Échelles de taux"
-
-#~ msgid "with concentration of"
-#~ msgstr "avec une concentration de"
-
-#~ msgid "Oxygen."
-#~ msgstr "Oxygène."
-
-#~ msgid ""
-#~ "Metabolosomes are clusters of proteins wrapped in protein shells. They "
-#~ "are able to convert glucose into ATP at a much higher rate than can be "
-#~ "done in the cytoplasm in a process called Aerobic Respiration. It does, "
-#~ "however, require oxygen to function, and lower levels of oxygen in the "
-#~ "environment will slow down the rate of its ATP production. Since the "
-#~ "metabolosomes are suspended directly in the cytoplasm, the surrounding "
-#~ "fluid performs some fermentation."
-#~ msgstr ""
-#~ "Les métabolosomes sont des groupes de protéines enveloppés dans des "
-#~ "enveloppes protéiques. Ils sont capables de convertir le glucose en ATP à "
-#~ "un taux beaucoup plus élevé que celui qui peut être obtenu dans le "
-#~ "cytoplasme par un processus appelé \"respiration aérobie\". Cependant, il "
-#~ "a besoin d'oxygène pour fonctionner, et des niveaux d'oxygène plus "
-#~ "faibles dans l'environnement ralentiront la vitesse de sa production "
-#~ "d'ATP. Comme les métabolosomes sont en suspension directement dans le "
-#~ "cytoplasme, le liquide environnant effectue une certaine fermentation."
-
-#~ msgid "Thylakoids"
-#~ msgstr "Thylakoids"
-
-#~ msgid "Produces"
-#~ msgstr "Produit"
-
-#~ msgid ". Rate scales with"
-#~ msgstr ". Les échelles de taux"
-
-#~ msgid "concentration of"
-#~ msgstr "concentration de"
-
-#~ msgid "Carbon Dioxide"
-#~ msgstr "Dioxyde de carbone"
-
-#~ msgid "and"
-#~ msgstr "et"
-
-#~ msgid "intensity of"
-#~ msgstr "intensité de"
-
-#~ msgid ""
-#~ "Thylakoids are clusters of proteins and photosensitive pigments. The "
-#~ "pigments are able to use the energy of light to produce glucose from "
-#~ "water and gaseous carbon dioxide in a process called Photosynthesis. "
-#~ "These pigments are also what give them a distinctive colour. The rate of "
-#~ "their glucose production scales with the concentration of carbon dioxide, "
-#~ "and intensity of light. Since the thylakoids are suspended directly in "
-#~ "the cytoplasm, the surrounding fluid performs some fermentation."
-#~ msgstr ""
-#~ "Les thylakoïdes sont des groupes de protéines et de pigments "
-#~ "photosensibles. Les pigments sont capables d'utiliser l'énergie de la "
-#~ "lumière pour produire du glucose à partir de l'eau et du dioxyde de "
-#~ "carbone gazeux dans un processus appelé photosynthèse. Ces pigments sont "
-#~ "aussi ce qui leur donne une couleur distinctive. Le taux de production de "
-#~ "glucose varie en fonction de la concentration de dioxyde de carbone et de "
-#~ "l'intensité de la lumière. Comme les thylakoïdes sont directement en "
-#~ "suspension dans le cytoplasme, le liquide environnant effectue une "
-#~ "certaine fermentation."
-
-#~ msgid ". Rate scales with concentration of"
-#~ msgstr ". Le taux carie avec la concentration de"
-
-#~ msgid "Carbon"
-#~ msgstr "Carbone"
-
-#~ msgid "Dioxide"
-#~ msgstr "Dioxide"
-
-#~ msgid "Also turns"
-#~ msgstr "Tourne également"
-
-#~ msgid ""
-#~ "Chemosynthesizing proteins are small clusters of protein in the cytoplasm "
-#~ "that are able to convert hydrogen sulfide, water, and gaseous carbon "
-#~ "dioxide into glucose in a process called Hydrogen Sulfide Chemosynthesis. "
-#~ "The rate of its glucose production scales with the concentration of "
-#~ "carbon dioxide. Since the chemosynthesizing proteins are suspended "
-#~ "directly in the cytoplasm, the surrounding fluid performs some "
-#~ "fermentation."
-#~ msgstr ""
-#~ "Les protéines de chimiosynthèse sont de petits groupes de protéines dans "
-#~ "le cytoplasme qui sont capables de convertir le sulfure d'hydrogène, "
-#~ "l'eau et le dioxyde de carbone gazeux en glucose dans un processus appelé "
-#~ "chimiosynthèse du sulfure d'hydrogène. Le taux de production de glucose "
-#~ "varie en fonction de la concentration de dioxyde de carbone. Comme les "
-#~ "protéines de chimiosynthèse sont en suspension directement dans le "
-#~ "cytoplasme, le fluide environnant effectue une certaine fermentation."
-
-#~ msgid "Rusticyanin"
-#~ msgstr "Rusticyanin"
-
-#~ msgid "Oxygen"
-#~ msgstr "Oxygène"
-
-#~ msgid ""
-#~ "Rusticyanin is a protein able to use gaseous carbon dioxide and oxygen to "
-#~ "oxidize iron from one chemical state to another. This process, called "
-#~ "Iron Respiration, releases energy which the cell can then harvest."
-#~ msgstr ""
-#~ "La rusticyanine est une protéine capable d'utiliser le dioxyde de carbone "
-#~ "gazeux et l'oxygène pour oxyder le fer d'un état chimique à un autre. Ce "
-#~ "processus, appelé \"respiration du fer\", libère de l'énergie que la "
-#~ "cellule peut ensuite récolter."
-
-#~ msgid "Nitrogenase"
-#~ msgstr "Nitrogenase"
-
-#~ msgid ". Rate"
-#~ msgstr ". Taux"
-
-#~ msgid "scales with concentration of"
-#~ msgstr "varie avec une concentration de"
-
-#~ msgid "Nitrogen"
-#~ msgstr "Azote"
-
-#~ msgid ""
-#~ "Nitrogenase is a protein able to use gaseous nitrogen and cellular energy "
-#~ "in the form of ATP to produce ammonia, a key growth nutrient for cells. "
-#~ "This is a process referred to as Anaerobic Nitrogen Fixation. Since the "
-#~ "nitrogenase is suspended directly in the cytoplasm, the surrounding fluid "
-#~ "performs some fermentation."
-#~ msgstr ""
-#~ "La nitrogénase est une protéine capable d'utiliser l'azote gazeux et "
-#~ "l'énergie cellulaire sous forme d'ATP pour produire de l'ammoniac, un "
-#~ "nutriment essentiel à la croissance des cellules. C'est un processus "
-#~ "appelé fixation anaérobie de l'azote. Comme l'azotease est en suspension "
-#~ "directement dans le cytoplasme, le liquide environnant effectue une "
-#~ "certaine fermentation."
-
-#~ msgid "Oxytoxisome"
-#~ msgstr "Oxytoxisome"
-
-#~ msgid "Oxytoxy"
-#~ msgstr "Oxytoxy"
-
-#~ msgid ". Can release"
-#~ msgstr ". Peut libérer"
-
-#~ msgid "toxins by pressing E. Rate scales with"
-#~ msgstr "toxines en appuyant sur E. Varie avec"
-
-#~ msgid ""
-#~ "A modified metabolosome responsible for the production of a primitive "
-#~ "form of the toxic agent Oxytoxy NT."
-#~ msgstr ""
-#~ "Un métabolosome modifié responsable de la production d'une forme "
-#~ "primitive de l'agent toxique Oxytoxy NT."
-
-#~ msgid "Flagellum"
-#~ msgstr "Flagelle"
-
-#~ msgid "Uses"
-#~ msgstr "Utilise"
-
-#~ msgid "to increase the movement"
-#~ msgstr "pour augmenter le mouvement"
-
-#~ msgid "speed of the cell."
-#~ msgstr "vitesse de la cellule."
-
-#~ msgid "Speed"
-#~ msgstr "Vitesse"
-
-#~ msgid ""
-#~ "The flagellum (plural: flagella) is a whip-like bundle of protein fibers "
-#~ "extending from the cell's membrane which can use ATP to undulate and "
-#~ "propel the cell in a direction."
-#~ msgstr ""
-#~ "Le flagelle (pluriel : flagelles) est un faisceau de fibres protéiques en "
-#~ "forme de fouet qui s'étend depuis la membrane de la cellule et qui peut "
-#~ "utiliser l'ATP pour onduler et propulser la cellule dans une direction."
-
-#~ msgid "Predatory Pilus"
-#~ msgstr "Pilus prédateur"
-
-#~ msgid "Stab other cells with this."
-#~ msgstr "Plantez ceci dans d'autres cellules."
-
-#~ msgid "Cilia"
-#~ msgstr "Cilia"
-
-#~ msgid "To be Implemented."
-#~ msgstr "A implémenter."
-
-#~ msgid "Nucleus"
-#~ msgstr "Nucleus"
-
-#~ msgid "Allows for the evolution of more complex,"
-#~ msgstr "Permet l'évolution de plus complexes,"
-
-#~ msgid "membrane-bound organelles. Costs a lot"
-#~ msgstr "les organites liés aux membranes. Coûts élevés"
-
-#~ msgid "of ATP to maintain. This is an irreversible"
-#~ msgstr "de l'ATP à maintenir. Il s'agit d'une"
-
-#~ msgid "evolution."
-#~ msgstr "l'évolution."
-
-#~ msgid ""
-#~ "The defining feature of eukaryotic cells. The nucleus also includes the "
-#~ "endoplasmic reticulum and the golgi body. It is an evolution of "
-#~ "prokaryotic cells to develop a system of internal membranes, done by "
-#~ "assimilating another prokaryote inside of themselves. This allows them to "
-#~ "compartmentalize, or ward off, the different processes happening inside "
-#~ "the cell and prevent them from overlapping. This allows their new "
-#~ "membrane bound organelles to be much more complex, efficient, and "
-#~ "specialized than if they were free-floating in the cytoplasm. However, "
-#~ "this comes at the cost of making the cell much larger and requiring a lot "
-#~ "of the cell's energy to maintain."
-#~ msgstr ""
-#~ "La caractéristique principale des cellules eucaryotes. Le noyau comprend "
-#~ "également le réticulum endoplasmique et le corps de Golgi. Il s'agit "
-#~ "d'une évolution des cellules procaryotes pour développer un système de "
-#~ "membranes internes, réalisée par l'assimilation d'un autre procaryote à "
-#~ "l'intérieur d'elles-mêmes. Cela leur permet de compartimenter, ou "
-#~ "d'écarter, les différents processus qui se déroulent à l'intérieur de la "
-#~ "cellule et d'empêcher leur chevauchement. Cela permet à leurs nouveaux "
-#~ "organites liés à la membrane d'être beaucoup plus complexes, efficaces et "
-#~ "spécialisés que s'ils flottaient librement dans le cytoplasme. Cependant, "
-#~ "cela se fait au prix d'une cellule beaucoup plus grande et d'une grande "
-#~ "quantité d'énergie nécessaire à son maintien."
-
-#~ msgid "Mitochondrion"
-#~ msgstr "Mitochondrion"
-
-#~ msgid ""
-#~ "The powerhouse of the cell. The mitochondrion (plural: mitochondria) is a "
-#~ "double membrane structure filled with proteins and enzymes. It is a "
-#~ "prokaryote that has been assimilated for use by its eukaryotic host. It "
-#~ "is able to convert glucose into ATP at a much higher efficiency than can "
-#~ "be done in the cytoplasm in a process called Aerobic Respiration. It "
-#~ "does, however, require oxygen to function, and lower levels of oxygen in "
-#~ "the environment will slow down the rate of its ATP production."
-#~ msgstr ""
-#~ "La centrale de la cellule. La mitochondrie (au pluriel : mitochondrie) "
-#~ "est une structure à double membrane remplie de protéines et d'enzymes. "
-#~ "C'est un procaryote qui a été assimilé pour être utilisé par son hôte "
-#~ "eucaryote. Il est capable de convertir le glucose en ATP avec une "
-#~ "efficacité bien supérieure à celle qui peut être obtenue dans le "
-#~ "cytoplasme par un processus appelé \"respiration aérobie\". Il a "
-#~ "toutefois besoin d'oxygène pour fonctionner, et des niveaux d'oxygène "
-#~ "plus faibles dans l'environnement ralentiront le rythme de sa production "
-#~ "d'ATP."
-
-#~ msgid "Chloroplast"
-#~ msgstr "Chloroplaste"
-
-#~ msgid ""
-#~ "The chloroplast is a double membrane structure containing photosensitive "
-#~ "pigments stacked together in membranous sacs. It is a prokaryote that has "
-#~ "been assimilated for use by its eukaryotic host. The pigments in the "
-#~ "chloroplast are able to use the energy of light to produce glucose from "
-#~ "water and gaseous carbon dioxide in a process called Photosynthesis. "
-#~ "These pigments are also what give it a distinctive colour. The rate of "
-#~ "its glucose production scales with the concentration of carbon dioxide, "
-#~ "and intensity of light."
-#~ msgstr ""
-#~ "Le chloroplaste est une structure à double membrane contenant des "
-#~ "pigments photosensibles empilés dans des sacs membranaires. C'est un "
-#~ "procaryote qui a été assimilé pour être utilisé par son hôte eucaryote. "
-#~ "Les pigments du chloroplaste sont capables d'utiliser l'énergie de la "
-#~ "lumière pour produire du glucose à partir de l'eau et du dioxyde de "
-#~ "carbone gazeux dans un processus appelé photosynthèse. Ces pigments lui "
-#~ "confèrent également une couleur distinctive. Le taux de production de "
-#~ "glucose varie en fonction de la concentration de dioxyde de carbone et de "
-#~ "l'intensité de la lumière."
-
-#~ msgid "Thermoplast"
-#~ msgstr "Thermoplaste"
-
-#~ msgid "Temperature"
-#~ msgstr "Température"
-
-#~ msgid ""
-#~ "The thermoplast is a double membrane structure containing thermosensitive "
-#~ "pigments stacked together in membranous sacs. It is a prokaryote that has "
-#~ "been assimilated for use by its eukaryotic host. The pigments in the "
-#~ "thermoplast are able to use the energy of heat differences in the "
-#~ "surroundings to produce glucose from water and gaseous carbon dioxide in "
-#~ "a process called Thermosynthesis. The rate of its glucose production "
-#~ "scales with the concentration of carbon dioxide, and temperature."
-#~ msgstr ""
-#~ "Le thermoplaste est une structure à double membrane contenant des "
-#~ "pigments thermosensibles empilés dans des sacs membranaires. C'est un "
-#~ "procaryote qui a été assimilé pour être utilisé par son hôte eucaryote. "
-#~ "Les pigments du thermoplastique sont capables d'utiliser l'énergie des "
-#~ "différences de chaleur dans l'environnement pour produire du glucose à "
-#~ "partir d'eau et de dioxyde de carbone gazeux dans un processus appelé "
-#~ "Thermosynthèse. Le taux de production de glucose varie en fonction de la "
-#~ "concentration de dioxyde de carbone et de la température."
-
-#~ msgid "Chemoplast"
-#~ msgstr "Chemoplast"
-
-#~ msgid ""
-#~ "The Nitrogen Fixing Plastid is a protein able to use gaseous nitrogen and "
-#~ "oxygen and cellular energy in the form of ATP to produce ammonia, a key "
-#~ "growth nutrient for cells. This is a process referred to as Aerobic "
-#~ "Nitrogen Fixation."
-#~ msgstr ""
-#~ "Le plaste de fixation de l'azote est une protéine capable d'utiliser "
-#~ "l'azote et l'oxygène gazeux et l'énergie cellulaire sous forme d'ATP pour "
-#~ "produire de l'ammoniac, un nutriment de croissance essentiel pour les "
-#~ "cellules. C'est un processus appelé fixation aérobie de l'azote."
-
-#~ msgid "Vacuole"
-#~ msgstr "Vacuole"
-
-#~ msgid "Increases the storage space of the cell."
-#~ msgstr "Augmente l'espace de stockage de la cellule."
-
-#~ msgid ""
-#~ "The vacuole is an internal membranous organelle used for storage in the "
-#~ "cell. They are composed of several vesicles, smaller membranous "
-#~ "structures widely used in cells for storage, that have fused together. It "
-#~ "is filled with water which is used to contain molecules, enzymes, solids, "
-#~ "and other substances. Their shape is fluid and can vary between cells."
-#~ msgstr ""
-#~ "La vacuole est un organite membranaire interne utilisé pour le stockage "
-#~ "dans la cellule. Elles sont composées de plusieurs vésicules, des "
-#~ "structures membranaires plus petites, largement utilisées dans les "
-#~ "cellules pour le stockage, qui ont fusionné entre elles. Elle est remplie "
-#~ "d'eau qui est utilisée pour contenir des molécules, des enzymes, des "
-#~ "solides et d'autres substances. Leur forme est fluide et peut varier "
-#~ "d'une cellule à l'autre."
-
-#~ msgid "Toxin Vacuole"
-#~ msgstr "Vacuole toxique"
-
-#~ msgid ". Can"
-#~ msgstr ". Peut"
-
-#~ msgid "release toxins by pressing"
-#~ msgstr "libérer des toxines en pressant"
-
-#~ msgid "E."
-#~ msgstr "E."
-
-#~ msgid "Rate"
-#~ msgstr "Taux"
-
-#~ msgid ""
-#~ "The toxin vacuole is a vacuole that has been modified for the specific "
-#~ "production, storage, and secretion of oxytoxy toxins. More toxin vacuoles "
-#~ "will increase the rate at which toxins can be released."
-#~ msgstr ""
-#~ "La vacuole de la toxine est une vacuole qui a été modifiée pour la "
-#~ "production, le stockage et la sécrétion spécifiques de toxines oxydées. "
-#~ "Un plus grand nombre de vacuoles de toxines augmentera la vitesse à "
-#~ "laquelle les toxines peuvent être libérées."
-
-#~ msgid "To be implemented."
-#~ msgstr "A implémenter."
-
-#~ msgid "Normal"
-#~ msgstr "Normal"
-
-#~ msgid "Mobility"
-#~ msgstr "Mobilité"
-
-#~ msgid "Resource Absorption Speed"
-#~ msgstr "Vitesse d'absorption des ressources"
-
-#~ msgid "Health"
-#~ msgstr "Santé"
-
-#~ msgid ""
-#~ "The most basic form of membrane, it has little protection against damage. "
-#~ "It also needs more energy to not deform. The advantage is that it allows "
-#~ "the cell to move and absorb nutrients swiftly."
-#~ msgstr ""
-#~ "C'est la forme de membrane la plus élémentaire, qui offre peu de "
-#~ "protection contre les dommages. Elle a également besoin de plus d'énergie "
-#~ "pour ne pas se déformer. L'avantage est qu'elle permet à la cellule de se "
-#~ "déplacer et d'absorber rapidement les nutriments."
-
-#~ msgid "Double"
-#~ msgstr "Double"
-
-#~ msgid ""
-#~ "A membrane with two layers, it has better protection against damage and "
-#~ "takes less energy to not deform. However, it slows the cell down some and "
-#~ "lowers the rate at which it can absorb resources."
-#~ msgstr ""
-#~ "Une membrane à deux couches, elle a une meilleure protection contre les "
-#~ "dommages et nécessite moins d'énergie pour ne pas se déformer. Cependant, "
-#~ "elle ralentit un peu la cellule et diminue la vitesse à laquelle elle "
-#~ "peut absorber les ressources."
-
-#~ msgid "Cellulose"
-#~ msgstr "Cellulose"
-
-#~ msgid "Physical Resistance"
-#~ msgstr "Résistance physique"
-
-#~ msgid ""
-#~ "This membrane has a wall, resulting in better protection against overall "
-#~ "damage and especially against physical damage. It also costs less energy "
-#~ "to retain its form, but cannot absorb resources quickly and is slower."
-#~ msgstr ""
-#~ "Cette membrane a une paroi, ce qui permet une meilleure protection contre "
-#~ "les dommages globaux et surtout contre les dommages physiques. Elle coûte "
-#~ "également moins d'énergie pour conserver sa forme, mais ne peut pas "
-#~ "absorber les ressources rapidement et est plus lente."
-
-#~ msgid "Chitin"
-#~ msgstr "Chitin"
-
-#~ msgid "Toxin Resistance"
-#~ msgstr "Résistance aux toxines"
-
-#~ msgid ""
-#~ "This membrane has a wall, which means it has better protections against "
-#~ "overall damage and especially against toxin damage. It also costs less "
-#~ "energy to retain its form, but it is slower and cannot absorb resources "
-#~ "quickly."
-#~ msgstr ""
-#~ "Cette membrane a une paroi, ce qui signifie qu'elle offre une meilleure "
-#~ "protection contre les dommages globaux et surtout contre les dommages "
-#~ "causés par les toxines. Elle coûte également moins d'énergie pour "
-#~ "conserver sa forme, mais elle est plus lente et ne peut pas absorber les "
-#~ "ressources rapidement."
-
-#~ msgid ""
-#~ "This membrane has a strong shell made from calcium carbonate. It can "
-#~ "easily resist damage and requires less energy to not deform. The "
-#~ "disadvantages of having such a heavy shell is that the cell is much "
-#~ "slower and takes a while to absorb resources."
-#~ msgstr ""
-#~ "Cette membrane a une enveloppe solide faite de carbonate de calcium. Elle "
-#~ "peut facilement résister aux dommages et nécessite moins d'énergie pour "
-#~ "ne pas se déformer. L'inconvénient d'avoir une coquille aussi lourde est "
-#~ "que la cellule est beaucoup plus lente et prend un certain temps à "
-#~ "absorber les ressources."
-
-#~ msgid "Silica"
-#~ msgstr "Silica"
-
-#~ msgid ""
-#~ "A more rigid membrane is more resistant to damage, but will make it "
-#~ "harder for the cell to move around."
-#~ msgstr ""
-#~ "Une membrane plus rigide est plus résistante aux dommages, mais rend la "
-#~ "cellule plus difficile à déplacer."
-
-#~ msgid ""
-#~ "The amount of glucose has been reduced to ... of the previous amount."
-#~ msgstr ""
-#~ "La quantité de glucose a été réduite à ... de la quantité précédente."
-
-#~ msgid "Auto-evo results:"
-#~ msgstr "Résultats de l'auto-évolution :"
-
-#~ msgid "External effects:"
-#~ msgstr "Effets externes :"
-
-#~ msgid "NEXT"
-#~ msgstr "SUIVANT"
-
-#~ msgid "Select a patch to show details here"
-#~ msgstr "Sélectionnez un patch pour afficher les détails ici"
-
-#~ msgid "Patch Name Goes Here"
-#~ msgstr "Le nom du patch va ici"
-
-#~ msgid "YOU ARE CURRENTLY IN THIS PATCH"
-#~ msgstr "VOUS ÊTES ACTUELLEMENT DANS CE PATCH"
-
-#~ msgid "Biome: BIOME HERE"
-#~ msgstr "Biome : BIOME ICI"
-
-#~ msgid "200-340m below sea level"
-#~ msgstr "200-340m en dessous du niveau de la mer"
-
-#~ msgid "Physical Conditions"
-#~ msgstr "Conditions physiques"
-
-#~ msgid "Pressure"
-#~ msgstr "Pression"
-
-#~ msgid "Atmospheric Gasses"
-#~ msgstr "Gaz atmosphériques"
-
-#~ msgid "Species Present"
-#~ msgstr "Espèces présentes"
-
-#~ msgid "Move to This Patch"
-#~ msgstr "Passer à ce patch"
-
-#~ msgid "Create New Save"
-#~ msgstr "Créer une nouvelle sauvegarde"
-
-#~ msgid "Name:"
-#~ msgstr "Nom :"
-
-#~ msgid "Extra Options"
-#~ msgstr "Options supplémentaires"
-
-#~ msgid "Save"
-#~ msgstr "Sauvegarde"
-
-#~ msgid "Overwrite existing save:"
-#~ msgstr "Écrasez les sauvegardes existantes :"
-
-#~ msgid "Saving status goes here..."
-#~ msgstr "Le statut de sauvegarde va ici..."
-
-#~ msgid "Saving Error"
-#~ msgstr "Erreur de sauvegarde"
-
-#~ msgid "Extra description goes here"
-#~ msgstr "La description supplémentaire se trouve ici"
-
-#~ msgid "Exception info goes here"
-#~ msgstr "Les informations sur les exceptions vont ici"
-
-#~ msgid "Copy Error To Clipboard"
-#~ msgstr "Erreur de copie dans le presse-papiers"
-
-#~ msgid "Shown image description goes here"
-#~ msgstr "La description de l'image montrée va ici"
-
-#~ msgid "TIP: not set"
-#~ msgstr "CONSEIL : pas fixé"
-
-#~ msgid "Easter egg message goes here"
-#~ msgstr "Le message de l'Easter egg va ici"
-
-#~ msgid "Resume"
-#~ msgstr "Reprendre"
-
-#~ msgid "Save Game"
-#~ msgstr "Sauvegarder le jeu"
-
-#~ msgid "Load Game"
-#~ msgstr "Charger le jeu"
-
-#~ msgid "Statistics"
-#~ msgstr "Statistiques"
-
-#~ msgid "Help"
-#~ msgstr "Aide"
-
-#~ msgid "Options"
-#~ msgstr "Options"
-
-#~ msgid "Return to Menu"
-#~ msgstr "Retour au menu"
-
-#~ msgid "Exit"
-#~ msgstr "Quitter"
-
-#~ msgid "select"
-#~ msgstr "sélectionner"
-
-#~ msgid "Load"
-#~ msgstr "Charger"
-
-#~ msgid "Loading..."
-#~ msgstr "Chargement..."
-
-#~ msgid "Text not set..."
-#~ msgstr "Texte non défini..."
-
-#~ msgid "Version:"
-#~ msgstr "Version:"
-
-#~ msgid "..."
-#~ msgstr "..."
-
-#~ msgid "Created at:"
-#~ msgstr "Créé à :"
-
-#~ msgid "By:"
-#~ msgstr "Par :"
-
-#~ msgid "Type:"
-#~ msgstr "Type :"
-
-#~ msgid "Created on Platform:"
-#~ msgstr "Créé sur la plate-forme :"
-
-#~ msgid "Description:"
-#~ msgstr "Description :"
-
-#~ msgid ""
-#~ "Deleting this save cannot be undone, are you sure you want to permanently "
-#~ "delete this?"
-#~ msgstr ""
-#~ "La suppression de cette sauvegarde ne peut être annulée, êtes-vous sûr de "
-#~ "vouloir la supprimer définitivement ?"
-
-#~ msgid "Refresh"
-#~ msgstr "Rafraîchir"
-
-#~ msgid "Delete Selected"
-#~ msgstr "Supprimer la sélection"
-
-#~ msgid "Clean Up Old Saves"
-#~ msgstr "Nettoyer les vieilles sauvegardes"
-
-#~ msgid "Open Save Directory"
-#~ msgstr "Ouvrir Dossier De Sauvegarde"
-
-#~ msgid "Total saves:"
-#~ msgstr "Sauvegarde totale :"
-
-#~ msgid "Space used:"
-#~ msgstr "Espace utilisé :"
-
-#~ msgid "Selected:"
-#~ msgstr "Sélectionné :"
-
-#~ msgid "Delete selected Save(s)?"
-#~ msgstr "Supprimer la/les sauvegarde(s) sélectionnée(s) ?"
-
-#~ msgid "Delete old Saves?"
-#~ msgstr "Supprimer les anciennes sauvegardes ?"
-
-#~ msgid "Graphics"
-#~ msgstr "Graphiques"
-
-#~ msgid "Sound"
-#~ msgstr "Son"
-
-#~ msgid "Performance"
-#~ msgstr "Performance"
-
-#~ msgid "Misc"
-#~ msgstr "Divers"
-
-#~ msgid "V-sync"
-#~ msgstr "V-sync"
-
-#~ msgid "FullScreen"
-#~ msgstr "Plein écran"
-
-#~ msgid "Multisample anti-aliasing:"
-#~ msgstr "Anticrénelage multi-échantillons :"
-
-#~ msgid "(higher values worsen performance)"
-#~ msgstr "(des valeurs plus élevées détériorent les performances)"
-
-#~ msgid "Disabled"
-#~ msgstr "Désactivé"
-
-#~ msgid "Resolution:"
-#~ msgstr "Résolution :"
-
-#~ msgid "auto"
-#~ msgstr "auto"
-
-#~ msgid "Max FPS:"
-#~ msgstr "Max FPS:"
-
-#~ msgid "400"
-#~ msgstr "400"
-
-#~ msgid "Colourblind Correction:"
-#~ msgstr "Correction daltonienne :"
-
-#~ msgid "None"
-#~ msgstr "Aucune"
-
-#~ msgid "Chromatic Aberration:"
-#~ msgstr "Aberration chromatique :"
-
-#~ msgid "Master volume"
-#~ msgstr "Volume principal"
-
-#~ msgid "Mute"
-#~ msgstr "Mute"
-
-#~ msgid "Music volume"
-#~ msgstr "Volume de la musique"
-
-#~ msgid "Language:"
-#~ msgstr "Langage:"
-
-#~ msgid "English"
-#~ msgstr "Anglais"
-
-#~ msgid "Compound clouds"
-#~ msgstr "Nuages composés"
-
-#~ msgid "(higher values increase performance)"
-#~ msgstr "(des valeurs plus élevées augmentent les performances)"
-
-#~ msgid "40ms"
-#~ msgstr "40ms"
-
-#~ msgid "Cloud Resolution Divisor:"
-#~ msgstr "Diviseur de résolution des nuages :"
-
-#~ msgid "Play intro video"
-#~ msgstr "Jouer la vidéo d'introduction"
-
-#~ msgid "Play Microbe Intro on New Game"
-#~ msgstr "Jouer à l'introduction des microbes sur un nouveau jeu"
-
-#~ msgid "Autosave during the game"
-#~ msgstr "Sauvegarde automatique pendant le jeu"
-
-#~ msgid "Amount of autosaves to keep:"
-#~ msgstr "Quantité de sauvegardes automatiques à conserver :"
-
-#~ msgid "Amount of quicksaves to keep:"
-#~ msgstr "Quantité de sauvegardes rapides à conserver :"
-
-#~ msgid "Cheat keys enabled"
-#~ msgstr "Raccourcis de triche activée"
-
-#~ msgid "Reset ALL to Default Settings"
-#~ msgstr "Réinitialiser TOUS les paramètres par défaut"
-
-#~ msgid "New Game"
-#~ msgstr "Nouvelle partie"
-
-#~ msgid "Tools"
-#~ msgstr "Outils"
-
-#~ msgid "Extras"
-#~ msgstr "Extras"
-
-#~ msgid "Credits"
-#~ msgstr "Crédits"
-
-#~ msgid "Quit"
-#~ msgstr "Quitter"
-
-#~ msgid "Microbe Freebuild Editor"
-#~ msgstr "Éditeur de Microbe Freebuild"
-
-#~ msgid "x.y.z"
-#~ msgstr "x.y.z"
-
-#~ msgid "Patch \\"
-#~ msgstr "Patch: {0}"

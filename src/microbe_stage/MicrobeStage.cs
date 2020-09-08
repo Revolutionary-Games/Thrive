@@ -317,7 +317,8 @@ public class MicrobeStage : Node, ILoadableGameState
         var playerSpecies = GameWorld.PlayerSpecies;
         GameWorld.AlterSpeciesPopulation(
             playerSpecies, Constants.PLAYER_REPRODUCTION_POPULATION_GAIN_CONSTANT,
-            TranslationServer.Translate("player reproduced"), false, Constants.PLAYER_REPRODUCTION_POPULATION_GAIN_COEFFICIENT);
+            TranslationServer.Translate("MICROBE_STAGE_PLAYER_REP"),
+            false, Constants.PLAYER_REPRODUCTION_POPULATION_GAIN_COEFFICIENT);
 
         var scene = SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor);
 
@@ -389,7 +390,8 @@ public class MicrobeStage : Node, ILoadableGameState
         // Decrease the population by the constant for the player dying
         GameWorld.AlterSpeciesPopulation(
             playerSpecies, Constants.PLAYER_DEATH_POPULATION_LOSS_CONSTANT,
-            TranslationServer.Translate("player died"), true, Constants.PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT);
+            TranslationServer.Translate("MICROBE_STAGE_PLAYER_DIED"),
+            true, Constants.PLAYER_DEATH_POPULATION_LOSS_COEFFICIENT);
 
         // Respawn if not extinct (or freebuild)
         if (playerSpecies.Population <= 0 && !CurrentGame.FreeBuild)

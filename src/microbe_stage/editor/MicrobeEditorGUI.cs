@@ -428,25 +428,29 @@ public class MicrobeEditorGUI : Node
     {
         var percentage = value * 100 + "%";
 
+        // The amount of glucose has been reduced to {0} of the previous amount.
         glucoseReductionLabel.Text =
             string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("The amount of glucose has been reduced to {0} of the previous amount."),
+                TranslationServer.Translate("MICROBE_EDITOR_GLUCOSE_RED"),
                 percentage);
     }
 
     public void UpdateSize(int size)
     {
-        sizeLabel.Text = TranslationServer.Translate("Size ") + size.ToString(CultureInfo.CurrentCulture);
+        sizeLabel.Text = TranslationServer.Translate("MICROBE_EDITOR_SIZE") + " " +
+            size.ToString(CultureInfo.CurrentCulture);
     }
 
     public void UpdateGeneration(int generation)
     {
-        generationLabel.Text = TranslationServer.Translate("Generation ") + generation.ToString(CultureInfo.CurrentCulture);
+        generationLabel.Text = TranslationServer.Translate("MICROBE_EDITOR_GEN") + " " +
+            generation.ToString(CultureInfo.CurrentCulture);
     }
 
     public void UpdateSpeed(float speed)
     {
-        speedLabel.Text = TranslationServer.Translate("Speed ") + string.Format(CultureInfo.CurrentCulture, "{0:F1}", speed);
+        speedLabel.Text = TranslationServer.Translate("MICROBE_EDITOR_SPEED") + " " +
+            string.Format(CultureInfo.CurrentCulture, "{0:F1}", speed);
     }
 
     public void UpdateEnergyBalance(EnergyBalanceInfo energyBalance)
@@ -458,7 +462,8 @@ public class MicrobeEditorGUI : Node
         }
         else
         {
-            atpBalanceLabel.Text = ATP_BALANCE_DEFAULT_TEXT + TranslationServer.Translate(" - ATP PRODUCTION TOO LOW!");
+            atpBalanceLabel.Text = ATP_BALANCE_DEFAULT_TEXT + " " +
+                TranslationServer.Translate("MICROBE_EDITOR_ATP_PROD_LOW");
             atpBalanceLabel.AddColorOverride("font_color", new Color(1.0f, 0.2f, 0.2f));
         }
 
@@ -1002,7 +1007,7 @@ public class MicrobeEditorGUI : Node
         if (processList == null)
         {
             var noProcesslabel = new Label();
-            noProcesslabel.Text = TranslationServer.Translate("No processes");
+            noProcesslabel.Text = TranslationServer.Translate("MICROBE_EDITOR_NO_PROCESS");
             targetElement.AddChild(noProcesslabel);
             return;
         }
@@ -1081,7 +1086,7 @@ public class MicrobeEditorGUI : Node
             }
 
             var perSecondLabel = new Label();
-            perSecondLabel.Text = TranslationServer.Translate("/second");
+            perSecondLabel.Text = TranslationServer.Translate("MICROBE_EDITOR_PER_SECOND");
 
             processBody.AddChild(perSecondLabel);
 
@@ -1295,52 +1300,64 @@ public class MicrobeEditorGUI : Node
         patchNothingSelected.Visible = false;
 
         patchName.Text = patch.Name;
+
+        // Biome: {0}
         patchBiome.Text = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("Biome: {0}"), patch.BiomeTemplate.Name);
+            TranslationServer.Translate("MICROBE_EDITOR_BIOME"),
+            patch.BiomeTemplate.Name);
+
+        // {0}-{1}m below sea level
         patchDepth.Text = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("{0}-{1}m below sea level"), patch.Depth[0], patch.Depth[1]);
+            TranslationServer.Translate("MICROBE_EDITOR_BIOME_LEVEL"),
+            patch.Depth[0], patch.Depth[1]);
         patchPlayerHere.Visible = editor.CurrentPatch == patch;
 
         // Atmospheric gasses
         patchTemperature.Text = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("{0} °C"), patch.Biome.AverageTemperature);
-        patchPressure.Text = TranslationServer.Translate("20 bar");
+            TranslationServer.Translate("MICROBE_HUD_VAL_CELCIUS"),
+            patch.Biome.AverageTemperature);
+        patchPressure.Text = TranslationServer.Translate("MICROBE_EDITOR_BAR");
         patchLight.Text = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("{0}% lux"), patch.Biome.Compounds[sunlight].Dissolved * 100);
+            TranslationServer.Translate("MICROBE_HUD_VAL_LUX"),
+            patch.Biome.Compounds[sunlight].Dissolved * 100);
         patchOxygen.Text = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("{0}%"), patch.Biome.Compounds[oxygen].Dissolved * 100);
+            TranslationServer.Translate("MICROBE_HUD_VAL_PERC"),
+            patch.Biome.Compounds[oxygen].Dissolved * 100);
         patchNitrogen.Text = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("{0}% ppm"), patch.Biome.Compounds[nitrogen].Dissolved * 100);
-        patchNitrogen.Text = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("{0}% ppm"), patch.Biome.Compounds[carbondioxide].Dissolved * 100);
+            TranslationServer.Translate("MICROBE_HUD_VAL_PPM"),
+            patch.Biome.Compounds[nitrogen].Dissolved * 100);
+        patchCO2.Text = string.Format(CultureInfo.CurrentCulture,
+            TranslationServer.Translate("MICROBE_HUD_VAL_PPM"),
+            patch.Biome.Compounds[carbondioxide].Dissolved * 100);
 
         // Compounds
         var hydrogenSulfideVal = Math.Round(patch.Biome.Compounds[hydrogensulfide].Density *
             patch.Biome.Compounds[hydrogensulfide].Amount + GetPatchChunkTotalCompoundAmount(
                 patch, hydrogensulfide), 3);
         patchHydrogenSulfide.Text = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("{0}%"), hydrogenSulfideVal);
+            TranslationServer.Translate("MICROBE_HUD_VAL_PERC"), hydrogenSulfideVal);
 
         var ammoniaValue = Math.Round(patch.Biome.Compounds[ammonia].Density *
             patch.Biome.Compounds[ammonia].Amount + GetPatchChunkTotalCompoundAmount(
                 patch, ammonia), 3);
         patchAmmonia.Text = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("{0}%"), ammoniaValue);
+            TranslationServer.Translate("MICROBE_HUD_VAL_PERC"), ammoniaValue);
 
         var glucoseValue = Math.Round(patch.Biome.Compounds[glucose].Density *
             patch.Biome.Compounds[glucose].Amount + GetPatchChunkTotalCompoundAmount(
                 patch, glucose), 3);
         patchGlucose.Text = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("{0}%"), glucoseValue);
+            TranslationServer.Translate("MICROBE_HUD_VAL_PERC"), glucoseValue);
 
         var phosphateValue = Math.Round(patch.Biome.Compounds[phosphates].Density *
             patch.Biome.Compounds[phosphates].Amount + GetPatchChunkTotalCompoundAmount(
                 patch, phosphates), 3);
         patchPhosphate.Text = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("{0}%"), phosphateValue);
+            TranslationServer.Translate("MICROBE_HUD_VAL_PERC"), phosphateValue);
 
         patchIron.Text = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("{0}%"), GetPatchChunkTotalCompoundAmount(patch, iron));
+            TranslationServer.Translate("MICROBE_HUD_VAL_PERC"),
+            GetPatchChunkTotalCompoundAmount(patch, iron));
 
         // Delete previous species list
         if (speciesList.GetChildCount() > 0)
@@ -1355,8 +1372,9 @@ public class MicrobeEditorGUI : Node
         {
             var speciesLabel = new Label
             {
+                // {0} with population: {1}
                 Text = string.Format(CultureInfo.CurrentCulture,
-                    TranslationServer.Translate("{0} with population: {1}"), species.FormattedName,
+                    TranslationServer.Translate("MICROBE_EDITOR_WITH_POP"), species.FormattedName,
                     patch.GetSpeciesPopulation(species)),
             };
             speciesList.AddChild(speciesLabel);

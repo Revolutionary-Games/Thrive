@@ -217,7 +217,7 @@ public class OptionsMenu : Control
 
     public void LanguagesButton_itemSelected(int item)
     {
-        string local = (string)languageSelection.GetItemText(item);
+        string local = languageSelection.GetItemText(item);
         TranslationServer.SetLocale(local);
     }
 

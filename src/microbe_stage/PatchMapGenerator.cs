@@ -13,7 +13,7 @@ public static class PatchMapGenerator
         var map = new PatchMap();
 
         // Predefined patches
-        Patch patch0 = new Patch(TranslationServer.Translate("Pangonian vents"), 0,
+        Patch patch0 = new Patch(TranslationServer.Translate("PATCH_PANGONIAN_VENTS"), 0,
             GetBiomeTemplate("aavolcanic_vent"));
         patch0.Depth[0] = 2500;
         patch0.Depth[1] = 3000;
@@ -21,70 +21,70 @@ public static class PatchMapGenerator
         patch0.ScreenCoordinates = new Vector2(100, 400);
         map.AddPatch(patch0);
 
-        Patch patch1 = new Patch(TranslationServer.Translate("Pangonian Mesopelagic"), 1,
+        Patch patch1 = new Patch(TranslationServer.Translate("PATCH_MESOPELAGIC"), 1,
             GetBiomeTemplate("mesopelagic"));
         patch1.Depth[0] = 200;
         patch1.Depth[1] = 1000;
         patch1.ScreenCoordinates = new Vector2(200, 200);
         map.AddPatch(patch1);
 
-        Patch patch2 = new Patch(TranslationServer.Translate("Pangonian Epipelagic"), 2,
+        Patch patch2 = new Patch(TranslationServer.Translate("PATCH_EPIPELAGIC"), 2,
             GetBiomeTemplate("default"));
         patch2.Depth[0] = 0;
         patch2.Depth[1] = 200;
         patch2.ScreenCoordinates = new Vector2(200, 100);
         map.AddPatch(patch2);
 
-        Patch patch3 = new Patch(TranslationServer.Translate("Pangonian Tidepool"), 3,
+        Patch patch3 = new Patch(TranslationServer.Translate("PATCH_PANGONIAN_TIDEPOOL"), 3,
             GetBiomeTemplate("tidepool"));
         patch3.Depth[0] = 0;
         patch3.Depth[1] = 10;
         patch3.ScreenCoordinates = new Vector2(300, 100);
         map.AddPatch(patch3);
 
-        Patch patch4 = new Patch(TranslationServer.Translate("Pangonian Bathypelagic"), 4,
+        Patch patch4 = new Patch(TranslationServer.Translate("PATCH_BATHYPELAGIC"), 4,
             GetBiomeTemplate("bathypelagic"));
         patch4.Depth[0] = 1000;
         patch4.Depth[1] = 4000;
         patch4.ScreenCoordinates = new Vector2(200, 300);
         map.AddPatch(patch4);
 
-        Patch patch5 = new Patch(TranslationServer.Translate("Pangonian Abyssopelagic"), 5,
+        Patch patch5 = new Patch(TranslationServer.Translate("PATHCH_ABYSSOPELAGIC"), 5,
             GetBiomeTemplate("abyssopelagic"));
         patch5.Depth[0] = 4000;
         patch5.Depth[1] = 6000;
         patch5.ScreenCoordinates = new Vector2(300, 400);
         map.AddPatch(patch5);
 
-        Patch patch6 = new Patch(TranslationServer.Translate("Pangonian Coast"), 6,
+        Patch patch6 = new Patch(TranslationServer.Translate("PATCH_COAST"), 6,
             GetBiomeTemplate("coastal"));
         patch6.Depth[0] = 0;
         patch6.Depth[1] = 200;
         patch6.ScreenCoordinates = new Vector2(100, 100);
         map.AddPatch(patch6);
 
-        Patch patch7 = new Patch(TranslationServer.Translate("Pangonian Estuary"), 7,
+        Patch patch7 = new Patch(TranslationServer.Translate("PATCH_PANGONIAN_ESTUARY"), 7,
             GetBiomeTemplate("estuary"));
         patch7.Depth[0] = 0;
         patch7.Depth[1] = 200;
         patch7.ScreenCoordinates = new Vector2(70, 160);
         map.AddPatch(patch7);
 
-        Patch patch8 = new Patch(TranslationServer.Translate("Cave"), 8,
+        Patch patch8 = new Patch(TranslationServer.Translate("PATCH_CAVE"), 8,
             GetBiomeTemplate("underwater_cave"));
         patch8.Depth[0] = 200;
         patch8.Depth[1] = 1000;
         patch8.ScreenCoordinates = new Vector2(300, 200);
         map.AddPatch(patch8);
 
-        Patch patch9 = new Patch(TranslationServer.Translate("Ice Shelf"), 9,
+        Patch patch9 = new Patch(TranslationServer.Translate("PATCH_ICE_SHELF"), 9,
             GetBiomeTemplate("ice_shelf"));
         patch9.Depth[0] = 0;
         patch9.Depth[1] = 200;
         patch9.ScreenCoordinates = new Vector2(200, 30);
         map.AddPatch(patch9);
 
-        Patch patch10 = new Patch(TranslationServer.Translate("Pangonian Sea Floor"), 10,
+        Patch patch10 = new Patch(TranslationServer.Translate("PATCH_PANGONIAN_SEAFLOOR"), 10,
             GetBiomeTemplate("seafloor"));
         patch10.Depth[0] = 4000;
         patch10.Depth[1] = 6000;

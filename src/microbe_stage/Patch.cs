@@ -118,6 +118,6 @@ public class Patch
     public override string ToString()
     {
         return string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("Patch \"{0}\""), Name);
+            TranslationServer.Translate("PATCH_PATCH"), Name);
     }
 }
