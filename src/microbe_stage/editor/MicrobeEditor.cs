@@ -110,6 +110,11 @@ public class MicrobeEditor : Node, ILoadableGameState
     private List<SceneDisplayer> placedModels;
 
     /// <summary>
+    ///   True once fade transition is finished when entering editor
+    /// </summary>
+    private bool transitionFinished;
+
+    /// <summary>
     ///   True once auto-evo (and possibly other stuff) we need to wait for is ready
     /// </summary>
     [JsonProperty]
@@ -288,6 +293,8 @@ public class MicrobeEditor : Node, ILoadableGameState
 
         gui.Init(this);
 
+        transitionFinished = false;
+
         OnEnterEditor();
     }
 
@@ -370,6 +377,16 @@ public class MicrobeEditor : Node, ILoadableGameState
         InitEditor();
 
         StartMusic();
+    }
+
+    public void OnFinishTransitioning()
+    {
+        transitionFinished = true;
+
+        if (!IsLoadedFromSave)
+        {
+            InitEditorFresh();
+        }
     }
 
     /// <summary>
@@ -468,12 +485,6 @@ public class MicrobeEditor : Node, ILoadableGameState
         stage.OnReturnFromEditor();
     }
 
-    public void OnFinishTransitioning()
-    {
-        if (!CurrentGame.FreeBuild)
-            SaveHelper.AutoSave(this);
-    }
-
     public void StartMusic()
     {
         Jukebox.Instance.PlayingCategory = "MicrobeEditor";
@@ -529,6 +540,9 @@ public class MicrobeEditor : Node, ILoadableGameState
                     CurrentGame.GameWorld.GetAutoEvoRun().Status);
                 return;
             }
+
+            if (!transitionFinished)
+                return;
 
             OnEditorReady();
         }
@@ -916,6 +930,9 @@ public class MicrobeEditor : Node, ILoadableGameState
 
     private void InitEditorFresh()
     {
+        if (!transitionFinished)
+            return;
+
         // For now we only show a loading screen if auto-evo is not ready yet
         if (!CurrentGame.GameWorld.IsAutoEvoFinished())
         {
@@ -1615,6 +1632,10 @@ public class MicrobeEditor : Node, ILoadableGameState
         }
 
         ApplyAutoEvoResults();
+
+        // Auto save after editor entry is complete
+        if (!CurrentGame.FreeBuild)
+            SaveHelper.AutoSave(this);
     }
 
     private void OnLoadedEditorReady()
