@@ -9,7 +9,7 @@ public class Settings
     /// <summary>
     ///   Singleton used for holding the live copy of game settings.
     /// </summary>
-    private static readonly Settings SingletonInstance = LoadInstance();
+    private static readonly Settings SingletonInstance = LoadSettings();
 
     static Settings()
     {
@@ -193,11 +193,7 @@ public class Settings
         var type = GetType();
 
         foreach (var property in type.GetProperties())
-        {
-            int nextHash = property.GetHashCode();
-
-            hashCode ^= nextHash;
-        }
+            hashCode ^= property.GetHashCode();
 
         return hashCode;
     }
@@ -211,33 +207,6 @@ public class Settings
         settings.CopySettings(this);
 
         return settings;
-    }
-
-    /// <summary>
-    ///   Loads values from the saved setting configuration file.
-    /// </summary>
-    /// <returns>True on success, false if the file is invalid or couldn't be opened for reading.</returns>
-    public bool LoadFromFile()
-    {
-        using (var file = new File())
-        {
-            var error = file.Open(Constants.CONFIGURATION_FILE, File.ModeFlags.Read);
-
-            if (error != Error.Ok)
-            {
-                GD.Print("Settings configuration file is missing or unreadable.");
-                return false;
-            }
-
-            var text = file.GetAsText();
-
-            file.Close();
-
-            Settings settings = JsonConvert.DeserializeObject<Settings>(text);
-            CopySettings(settings);
-
-            return true;
-        }
     }
 
     /// <summary>
@@ -326,18 +295,32 @@ public class Settings
     }
 
     // Creates and returns a settings object loaded from the configuration settings file, or defaults if that fails.
-    private static Settings LoadInstance()
+    private static Settings LoadSettings()
     {
-        Settings settings = new Settings();
-
-        if (!settings.LoadFromFile())
+        using (var file = new File())
         {
-            // Loading failed so we'll load the new defaults and save to create the configuration file.
-            settings.LoadDefaults();
-            settings.Save();
-        }
+            Settings settings;
 
-        return settings;
+            var error = file.Open(Constants.CONFIGURATION_FILE, File.ModeFlags.Read);
+
+            if (error != Error.Ok)
+            {
+                GD.Print("Settings configuration file is missing or unreadable, using default settings.");
+
+                settings = new Settings();
+                settings.Save();
+
+                return settings;
+            }
+
+            var text = file.GetAsText();
+
+            file.Close();
+
+            settings = JsonConvert.DeserializeObject<Settings>(text);
+
+            return settings;
+        }
     }
 
     // Copies all properties from another settings object to the current one.
