@@ -9,7 +9,7 @@ public class Settings
     /// <summary>
     ///   Singleton used for holding the live copy of game settings.
     /// </summary>
-    private static readonly Settings SingletonInstance = LoadSettings();
+    private static readonly Settings SingletonInstance = InitializeGlobalSettings();
 
     static Settings()
     {
@@ -99,6 +99,12 @@ public class Settings
     /// </summary>
     public int CloudResolution { get; set; } = 2;
 
+    /// <summary>
+    ///   If true an auto-evo run is started during gameplay,
+    ///   taking up one of the background threads.
+    /// </summary>
+    public bool RunAutoEvoDuringGamePlay { get; set; } = true;
+
     // Misc Properties
 
     /// <summary>
@@ -130,12 +136,6 @@ public class Settings
     ///   When true cheats are enabled
     /// </summary>
     public bool CheatsEnabled { get; set; } = false;
-
-    /// <summary>
-    ///   If true an auto-evo run is started during gameplay,
-    ///   taking up one of the background threads.
-    /// </summary>
-    public bool RunAutoEvoDuringGamePlay { get; set; } = true;
 
     public int CloudSimulationWidth => Constants.CLOUD_X_EXTENT / CloudResolution;
 
@@ -294,20 +294,31 @@ public class Settings
         OS.VsyncEnabled = VSync;
     }
 
-    // Creates and returns a settings object loaded from the configuration settings file, or defaults if that fails.
+    /// <summary>
+    ///   Loads, initializes and returns the global settings object.
+    /// </summary>
+    private static Settings InitializeGlobalSettings()
+    {
+        Settings settings = LoadSettings();
+        settings.ApplyAll();
+
+        return settings;
+    }
+
+    /// <summary>
+    ///   Creates and returns a settings object loaded from the configuration settings file, or defaults if that fails.
+    /// </summary>
     private static Settings LoadSettings()
     {
         using (var file = new File())
         {
-            Settings settings;
-
             var error = file.Open(Constants.CONFIGURATION_FILE, File.ModeFlags.Read);
 
             if (error != Error.Ok)
             {
                 GD.Print("Settings configuration file is missing or unreadable, using default settings.");
 
-                settings = new Settings();
+                var settings = new Settings();
                 settings.Save();
 
                 return settings;
@@ -317,13 +328,13 @@ public class Settings
 
             file.Close();
 
-            settings = JsonConvert.DeserializeObject<Settings>(text);
-
-            return settings;
+            return JsonConvert.DeserializeObject<Settings>(text);
         }
     }
 
-    // Copies all properties from another settings object to the current one.
+    /// <summary>
+    ///   Copies all properties from another settings object to the current one.
+    /// </summary>
     private void CopySettings(Settings settings)
     {
         var type = GetType();

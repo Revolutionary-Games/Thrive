@@ -489,9 +489,7 @@ public class OptionsMenu : Control
         Settings.ApplyAll();
         ApplySettingsToControls(Settings.Instance);
 
-        // Buttons should be disabled now.
-        resetButton.Disabled = true;
-        saveButton.Disabled = true;
+        CompareSettings();
     }
 
     private void OnSavePressed()
@@ -508,9 +506,7 @@ public class OptionsMenu : Control
         // Copy over the new saved settings.
         savedSettings = Settings.Instance.Clone();
 
-        // Buttons should be disabled now.
-        resetButton.Disabled = true;
-        saveButton.Disabled = true;
+        CompareSettings();
     }
 
     private void OnDefaultsPressed()
@@ -526,9 +522,7 @@ public class OptionsMenu : Control
         Settings.ApplyAll();
         ApplySettingsToControls(Settings.Instance);
 
-        // Buttons should be disabled now.
-        resetButton.Disabled = true;
-        saveButton.Disabled = true;
+        CompareSettings();
 
         EmitSignal(nameof(OnOptionsClosed));
     }
