@@ -32,9 +32,9 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 139.0
+margin_left = 140.0
 margin_top = 85.0
-margin_right = 1139.0
+margin_right = 1140.0
 margin_bottom = 635.0
 rect_min_size = Vector2( 1000, 550 )
 size_flags_vertical = 3
@@ -45,36 +45,47 @@ margin_bottom = 24.0
 alignment = 1
 
 [node name="LoadButton" type="Button" parent="CenterContainer/VBoxContainer/TopBox"]
-margin_left = 212.0
-margin_right = 281.0
+margin_left = 96.0
+margin_right = 165.0
 margin_bottom = 24.0
 disabled = true
 text = "Load"
 
 [node name="VSeparator" type="VSeparator" parent="CenterContainer/VBoxContainer/TopBox"]
-margin_left = 285.0
-margin_right = 289.0
+margin_left = 169.0
+margin_right = 173.0
 margin_bottom = 24.0
 
 [node name="Refresh" type="Button" parent="CenterContainer/VBoxContainer/TopBox"]
-margin_left = 293.0
-margin_right = 391.0
+margin_left = 177.0
+margin_right = 275.0
 margin_bottom = 24.0
 text = "Refresh"
 
 [node name="DeleteSelected" type="Button" parent="CenterContainer/VBoxContainer/TopBox"]
-margin_left = 395.0
-margin_right = 575.0
+margin_left = 279.0
+margin_right = 459.0
 margin_bottom = 24.0
 disabled = true
 text = "Delete Selected"
 
 [node name="DeleteOld" type="Button" parent="CenterContainer/VBoxContainer/TopBox"]
-margin_left = 579.0
-margin_right = 787.0
+margin_left = 463.0
+margin_right = 671.0
 margin_bottom = 24.0
 disabled = true
 text = "Clean Up Old Saves"
+
+[node name="VSeparator2" type="VSeparator" parent="CenterContainer/VBoxContainer/TopBox"]
+margin_left = 675.0
+margin_right = 679.0
+margin_bottom = 24.0
+
+[node name="OpenSaveDir" type="Button" parent="CenterContainer/VBoxContainer/TopBox"]
+margin_left = 683.0
+margin_right = 903.0
+margin_bottom = 24.0
+text = "Open Save Directory"
 
 [node name="SaveList" parent="CenterContainer/VBoxContainer" instance=ExtResource( 3 )]
 anchor_right = 0.0
@@ -89,6 +100,7 @@ SelectableItems = true
 margin_top = 526.0
 margin_right = 1000.0
 margin_bottom = 550.0
+custom_constants/separation = 3
 
 [node name="Back" type="Button" parent="CenterContainer/VBoxContainer/BottomBox"]
 margin_right = 67.0
@@ -96,43 +108,55 @@ margin_bottom = 24.0
 text = "Back"
 
 [node name="VSeparator2" type="VSeparator" parent="CenterContainer/VBoxContainer/BottomBox"]
-margin_left = 71.0
-margin_right = 75.0
+margin_left = 70.0
+margin_right = 74.0
 margin_bottom = 24.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/BottomBox"]
-margin_left = 79.0
-margin_right = 200.0
+margin_left = 77.0
+margin_right = 198.0
 margin_bottom = 23.0
 text = "Total saves:"
 
 [node name="SaveCount" type="Label" parent="CenterContainer/VBoxContainer/BottomBox"]
-margin_left = 204.0
-margin_right = 217.0
+margin_left = 201.0
+margin_right = 214.0
 margin_bottom = 23.0
 text = "0"
+
+[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer/BottomBox"]
+margin_left = 217.0
+margin_right = 220.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 3, 0 )
 
 [node name="Label3" type="Label" parent="CenterContainer/VBoxContainer/BottomBox"]
-margin_left = 221.0
-margin_right = 354.0
+margin_left = 223.0
+margin_right = 350.0
 margin_bottom = 23.0
-text = " Space used:"
+text = "Space used:"
 
 [node name="SavesSpaceUsed" type="Label" parent="CenterContainer/VBoxContainer/BottomBox"]
-margin_left = 358.0
-margin_right = 371.0
+margin_left = 353.0
+margin_right = 366.0
 margin_bottom = 23.0
 text = "0"
+
+[node name="Spacer2" type="Control" parent="CenterContainer/VBoxContainer/BottomBox"]
+margin_left = 369.0
+margin_right = 372.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 3, 0 )
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/BottomBox"]
 margin_left = 375.0
-margin_right = 477.0
+margin_right = 471.0
 margin_bottom = 23.0
-text = " Selected:"
+text = "Selected:"
 
 [node name="SelectedCount" type="Label" parent="CenterContainer/VBoxContainer/BottomBox"]
-margin_left = 481.0
-margin_right = 494.0
+margin_left = 474.0
+margin_right = 487.0
 margin_bottom = 23.0
 text = "0"
 
@@ -158,6 +182,10 @@ dialog_text = "Text not set...
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox/Refresh" to="." method="RefreshList"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox/DeleteSelected" to="." method="DeleteSelectedButtonPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox/DeleteOld" to="." method="DeleteOldButtonPressed"]
+<<<<<<< HEAD
+=======
+[connection signal="pressed" from="CenterContainer/VBoxContainer/TopBox/OpenSaveDir" to="." method="OpenSaveDirectoryPressed"]
+>>>>>>> ab461774170303fbe5fdc60c84f2ed0b66ab9310
 [connection signal="OnSelectedChanged" from="CenterContainer/VBoxContainer/SaveList" to="." method="OnSelectedChanged"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/BottomBox/Back" to="." method="OnBackButton"]
 [connection signal="confirmed" from="CenterContainer/VBoxContainer/DeleteSelectedConfirmDialog" to="." method="OnConfirmDeleteSelected"]

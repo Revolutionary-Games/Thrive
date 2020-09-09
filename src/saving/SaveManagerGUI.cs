@@ -180,6 +180,11 @@ public class SaveManagerGUI : Control
         Selected[0].LoadThisSave();
     }
 
+    private void OpenSaveDirectoryPressed()
+    {
+        OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.SAVE_FOLDER));
+    }
+
     private void DeleteSelectedButtonPressed()
     {
         deleteSelectedConfirmDialog.DialogText =
