@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 /// <summary>
@@ -154,8 +155,10 @@ public class OptionsMenu : Control
       Misc
     */
 
-    // Copy of the settings object that should match what is saved to the configuration file,
-    // used for comparing and restoring to previous state.
+    /// <summary>
+    ///   Copy of the settings object that should match what is saved to the configuration file,
+    ///   used for comparing and restoring to previous state.
+    /// </summary>
     private Settings savedSettings;
 
     private SelectedOptionsTab selectedOptionsTab;
@@ -172,7 +175,7 @@ public class OptionsMenu : Control
         Graphics,
         Sound,
         Performance,
-        Misc,
+        Miscellaneous,
     }
 
     /// <summary>
@@ -275,28 +278,10 @@ public class OptionsMenu : Control
     private void SetSettingsTab(string tab)
     {
         // Convert from the string binding to an enum.
-        SelectedOptionsTab newSelection;
-        switch (tab)
-        {
-            case "graphics":
-                newSelection = SelectedOptionsTab.Graphics;
-                break;
-            case "sound":
-                newSelection = SelectedOptionsTab.Sound;
-                break;
-            case "performance":
-                newSelection = SelectedOptionsTab.Performance;
-                break;
-            case "miscellaneous":
-                newSelection = SelectedOptionsTab.Misc;
-                break;
-            default:
-                newSelection = SelectedOptionsTab.Graphics;
-                break;
-        }
+        SelectedOptionsTab selection = (SelectedOptionsTab)Enum.Parse(typeof(SelectedOptionsTab), tab);
 
         // Pressing the same button that's already active, so just return.
-        if (selectedOptionsTab == newSelection)
+        if (selection == selectedOptionsTab)
         {
             return;
         }
@@ -306,33 +291,31 @@ public class OptionsMenu : Control
         performanceTab.Hide();
         miscTab.Hide();
 
-        if (newSelection == SelectedOptionsTab.Graphics)
+        switch (selection)
         {
-            graphicsTab.Show();
-            graphicsButton.Pressed = true;
-        }
-        else if (newSelection == SelectedOptionsTab.Sound)
-        {
-            soundTab.Show();
-            soundButton.Pressed = true;
-        }
-        else if (tab == "performance")
-        {
-            performanceTab.Show();
-            performanceButton.Pressed = true;
-        }
-        else if (tab == "miscellaneous")
-        {
-            miscTab.Show();
-            miscButton.Pressed = true;
-        }
-        else
-        {
-            GD.PrintErr("Invalid tab");
+            case SelectedOptionsTab.Graphics:
+                graphicsTab.Show();
+                graphicsButton.Pressed = true;
+                break;
+            case SelectedOptionsTab.Sound:
+                soundTab.Show();
+                soundButton.Pressed = true;
+                break;
+            case SelectedOptionsTab.Performance:
+                performanceTab.Show();
+                performanceButton.Pressed = true;
+                break;
+            case SelectedOptionsTab.Miscellaneous:
+                miscTab.Show();
+                miscButton.Pressed = true;
+                break;
+            default:
+                GD.PrintErr("Invalid tab");
+                break;
         }
 
         GUICommon.Instance.PlayButtonPressSound();
-        selectedOptionsTab = newSelection;
+        selectedOptionsTab = selection;
     }
 
     /// <summary>
@@ -490,7 +473,7 @@ public class OptionsMenu : Control
         // discarded.
         if (Settings.Instance != savedSettings)
         {
-            backConfirmationBox.Visible = true;
+            backConfirmationBox.PopupCenteredMinsize();
             return;
         }
 
@@ -534,13 +517,11 @@ public class OptionsMenu : Control
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        defaultsConfirmationBox.Visible = true;
+        defaultsConfirmationBox.PopupCenteredMinsize();
     }
 
     private void BackConfirmSelected()
     {
-        backConfirmationBox.Visible = false;
-
         Settings.Instance.LoadFromObject(savedSettings);
         Settings.ApplyAll();
         ApplySettingsToControls(Settings.Instance);
@@ -554,16 +535,12 @@ public class OptionsMenu : Control
 
     private void DefaultsConfirmSelected()
     {
-        defaultsConfirmationBox.Visible = false;
-
         // Sets active settings to default values and applies them to the options controls.
         Settings.Instance.LoadDefaults();
         Settings.ApplyAll();
         ApplySettingsToControls(Settings.Instance);
 
-        // Buttons should be enabled now.
-        resetButton.Disabled = false;
-        saveButton.Disabled = false;
+        CompareSettings();
     }
 
     // Graphics Button Callbacks

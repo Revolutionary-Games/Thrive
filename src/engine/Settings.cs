@@ -6,17 +6,13 @@ using Newtonsoft.Json;
 /// </summary>
 public class Settings
 {
-    // Singleton used for holding the live copy of game settings.
-    private static readonly Settings SingletonInstance = new Settings();
+    /// <summary>
+    ///   Singleton used for holding the live copy of game settings.
+    /// </summary>
+    private static readonly Settings SingletonInstance = LoadInstance();
 
     static Settings()
     {
-        if (!SingletonInstance.LoadFromFile())
-        {
-            // Loading failed so we'll load the new defaults and save to create the configuration file.
-            SingletonInstance.LoadDefaults();
-            SingletonInstance.Save();
-        }
     }
 
     private Settings()
@@ -175,13 +171,11 @@ public class Settings
         // Compare all properties in the two objects for equality.
         var type = GetType();
 
-        var properties = type.GetProperties();
-
-        foreach (var prop in properties)
+        foreach (var property in type.GetProperties())
         {
             // Returns if any of the properties don't match.
-            object thisValue = type.GetProperty(prop.Name)?.GetValue(this, null);
-            object objValue = type.GetProperty(prop.Name)?.GetValue(obj, null);
+            object thisValue = property.GetValue(this);
+            object objValue = property.GetValue(obj);
 
             if (thisValue != objValue && (thisValue == null || !thisValue.Equals(objValue)))
             {
@@ -198,14 +192,11 @@ public class Settings
 
         var type = GetType();
 
-        var properties = type.GetProperties();
-
-        foreach (var prop in properties)
+        foreach (var property in type.GetProperties())
         {
-            int? nextHash = type.GetProperty(prop.Name)?.GetHashCode();
+            int nextHash = property.GetHashCode();
 
-            if (nextHash != null)
-                hashCode ^= (int)nextHash;
+            hashCode ^= nextHash;
         }
 
         return hashCode;
@@ -332,6 +323,21 @@ public class Settings
     {
         OS.WindowFullscreen = FullScreen;
         OS.VsyncEnabled = VSync;
+    }
+
+    // Creates and returns a settings object loaded from the configuration settings file, or defaults if that fails.
+    private static Settings LoadInstance()
+    {
+        Settings settings = new Settings();
+
+        if (!settings.LoadFromFile())
+        {
+            // Loading failed so we'll load the new defaults and save to create the configuration file.
+            settings.LoadDefaults();
+            settings.Save();
+        }
+
+        return settings;
     }
 
     // Copies all properties from another settings object to the current one.
