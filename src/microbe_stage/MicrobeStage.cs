@@ -365,7 +365,10 @@ public class MicrobeStage : Node, ILoadableGameState
         HUD.HideReproductionDialog();
 
         StartMusic();
+    }
 
+    public void OnFinishTransitioning()
+    {
         if (!CurrentGame.FreeBuild)
             SaveHelper.AutoSave(this);
     }

@@ -366,7 +366,7 @@ public class MicrobeEditorGUI : Node
 
         // Fade out for that smooth satisfying transition
         TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeOut, 0.5f);
-        TransitionManager.Instance.StartTransitions(null, string.Empty);
+        TransitionManager.Instance.StartTransitions(editor, nameof(MicrobeEditor.OnFinishTransitioning));
     }
 
     public void Init(MicrobeEditor editor)
