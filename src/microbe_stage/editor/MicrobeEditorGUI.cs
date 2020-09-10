@@ -234,7 +234,6 @@ public class MicrobeEditorGUI : Node
     private PauseMenu menu;
     private PanelContainer structureTab;
     private PanelContainer membraneTab;
-    private PanelContainer statisticsPanel;
     private Label sizeLabel;
     private Label speedLabel;
     private Label generationLabel;
