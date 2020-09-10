@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/general/OptionsMenu.cs" type="Script" id=2]
@@ -21,9 +21,15 @@ font_data = ExtResource( 3 )
 
 [sub_resource type="StyleBoxEmpty" id=4]
 
+[sub_resource type="StyleBoxEmpty" id=9]
+
 [sub_resource type="StyleBoxEmpty" id=5]
 
 [sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="StyleBoxEmpty" id=8]
 
 [node name="OptionsMenu" type="Control"]
 anchor_right = 1.0
@@ -162,6 +168,8 @@ margin_bottom = 583.0
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_top = -1.0
+margin_bottom = -1.0
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
@@ -310,19 +318,13 @@ margin_bottom = 262.0
 size_flags_horizontal = 3
 
 [node name="ChromaticToggle" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer5"]
-margin_right = 16.0
+margin_right = 256.0
 margin_bottom = 25.0
 pressed = true
-
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer5"]
-margin_left = 20.0
-margin_top = 1.0
-margin_right = 235.0
-margin_bottom = 24.0
 text = "Chromatic Aberration:"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer5"]
-margin_left = 239.0
+margin_left = 260.0
 margin_right = 313.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
@@ -331,9 +333,10 @@ custom_styles/separator = SubResource( 4 )
 [node name="ChromaticAmount" type="HSlider" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer5"]
 margin_left = 317.0
 margin_right = 517.0
-margin_bottom = 15.0
+margin_bottom = 25.0
 rect_min_size = Vector2( 200, 0 )
 size_flags_horizontal = 3
+size_flags_vertical = 1
 min_value = 10.0
 max_value = 50.0
 value = 20.0
@@ -365,10 +368,17 @@ margin_right = 517.0
 margin_bottom = 58.0
 
 [node name="MasterVolume" type="HSlider" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer"]
-margin_right = 442.0
-margin_bottom = 15.0
+margin_right = 435.0
+margin_bottom = 25.0
 size_flags_horizontal = 3
+size_flags_vertical = 1
 value = 100.0
+
+[node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer"]
+margin_left = 439.0
+margin_right = 442.0
+margin_bottom = 25.0
+custom_styles/separator = SubResource( 9 )
 
 [node name="MasterMuted" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer"]
 margin_left = 446.0
@@ -391,10 +401,17 @@ margin_right = 517.0
 margin_bottom = 126.0
 
 [node name="MusicVolume" type="HSlider" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer2"]
-margin_right = 442.0
-margin_bottom = 15.0
+margin_right = 435.0
+margin_bottom = 25.0
 size_flags_horizontal = 3
+size_flags_vertical = 1
 value = 80.0
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer2"]
+margin_left = 439.0
+margin_right = 442.0
+margin_bottom = 25.0
+custom_styles/separator = SubResource( 9 )
 
 [node name="MusicMuted" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer2"]
 margin_left = 446.0
@@ -674,16 +691,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BackConfirm" type="ConfirmationDialog" parent="CenterContainer"]
-margin_left = 323.0
-margin_top = 324.0
-margin_right = 957.0
-margin_bottom = 395.0
-rect_min_size = Vector2( 600, 70 )
-popup_exclusive = true
-window_title = "Close options?"
-dialog_text = "You have unsaved changes that will be discarded. Continue?"
-
 [node name="DefaultsConfirm" type="ConfirmationDialog" parent="CenterContainer"]
 margin_left = 314.0
 margin_top = 324.0
@@ -693,6 +700,99 @@ rect_min_size = Vector2( 600, 70 )
 popup_exclusive = true
 window_title = "Reset to defaults?"
 dialog_text = "Are you sure you want to reset ALL settings to default values?"
+
+[node name="BackConfirm" type="WindowDialog" parent="CenterContainer"]
+margin_left = 340.0
+margin_top = 300.0
+margin_right = 940.0
+margin_bottom = 420.0
+rect_min_size = Vector2( 600, 120 )
+popup_exclusive = true
+window_title = "Close Options?"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/BackConfirm"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/BackConfirm/VBoxContainer"]
+margin_right = 600.0
+margin_bottom = 59.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="Label" type="Label" parent="CenterContainer/BackConfirm/VBoxContainer/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 595.0
+margin_bottom = 54.0
+text = "You have unsaved changes that will be discarded.
+Do you wish to continue?"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VSeparator" type="VSeparator" parent="CenterContainer/BackConfirm/VBoxContainer"]
+margin_top = 63.0
+margin_right = 600.0
+margin_bottom = 80.0
+size_flags_vertical = 3
+custom_styles/separator = SubResource( 7 )
+
+[node name="MarginContainer2" type="MarginContainer" parent="CenterContainer/BackConfirm/VBoxContainer"]
+margin_top = 84.0
+margin_right = 600.0
+margin_bottom = 120.0
+custom_constants/margin_right = 12
+custom_constants/margin_left = 12
+custom_constants/margin_bottom = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/BackConfirm/VBoxContainer/MarginContainer2"]
+margin_left = 12.0
+margin_right = 588.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="SaveButton" type="Button" parent="CenterContainer/BackConfirm/VBoxContainer/MarginContainer2/HBoxContainer"]
+margin_right = 204.0
+margin_bottom = 24.0
+text = "Save and continue"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DiscardButton" type="Button" parent="CenterContainer/BackConfirm/VBoxContainer/MarginContainer2/HBoxContainer"]
+margin_left = 208.0
+margin_right = 438.0
+margin_bottom = 24.0
+text = "Discard and continue"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/BackConfirm/VBoxContainer/MarginContainer2/HBoxContainer"]
+margin_left = 442.0
+margin_right = 484.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+custom_styles/separator = SubResource( 8 )
+
+[node name="CancelButton" type="Button" parent="CenterContainer/BackConfirm/VBoxContainer/MarginContainer2/HBoxContainer"]
+margin_left = 488.0
+margin_right = 576.0
+margin_bottom = 24.0
+text = "Cancel"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/GraphicsButton" to="." method="SetSettingsTab" binds= [ "Graphics" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/SoundButton" to="." method="SetSettingsTab" binds= [ "Sound" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/PerformanceButton" to="." method="SetSettingsTab" binds= [ "Performance" ]]
@@ -719,5 +819,7 @@ dialog_text = "Are you sure you want to reset ALL settings to default values?"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Reset" to="." method="OnResetPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Save" to="." method="OnSavePressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Defaults" to="." method="OnDefaultsPressed"]
-[connection signal="confirmed" from="CenterContainer/BackConfirm" to="." method="BackConfirmSelected"]
 [connection signal="confirmed" from="CenterContainer/DefaultsConfirm" to="." method="DefaultsConfirmSelected"]
+[connection signal="pressed" from="CenterContainer/BackConfirm/VBoxContainer/MarginContainer2/HBoxContainer/SaveButton" to="." method="BackSaveSelected"]
+[connection signal="pressed" from="CenterContainer/BackConfirm/VBoxContainer/MarginContainer2/HBoxContainer/DiscardButton" to="." method="BackDiscardSelected"]
+[connection signal="pressed" from="CenterContainer/BackConfirm/VBoxContainer/MarginContainer2/HBoxContainer/CancelButton" to="." method="BackCancelSelected"]
