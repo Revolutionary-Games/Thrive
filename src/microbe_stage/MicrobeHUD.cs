@@ -229,7 +229,7 @@ public class MicrobeHUD : Node
     /// <summary>
     ///   Used by UpdateHoverInfo to run HOVER_PANEL_UPDATE_INTERVAL
     /// </summary>
-    private float timeElapsed = 0;
+    private float timeElapsed;
 
     public override void _Ready()
     {
@@ -561,8 +561,8 @@ public class MicrobeHUD : Node
     private void HandleEnvironmentResize(int height, int columns, int vseparation, int hseparation)
     {
         panelsTween.InterpolateProperty(
-                environmentPanel, "rect_min_size", environmentPanel.RectMinSize, new Vector2(195, height), 0.4f,
-                Tween.TransitionType.Sine, Tween.EaseType.Out);
+            environmentPanel, "rect_min_size", environmentPanel.RectMinSize, new Vector2(195, height), 0.4f,
+            Tween.TransitionType.Sine, Tween.EaseType.Out);
         panelsTween.Start();
 
         environmentPanelBarContainer.Columns = columns;
