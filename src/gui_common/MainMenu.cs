@@ -119,7 +119,8 @@ public class MainMenu : Node
         saves = GetNode<SaveManagerGUI>("SaveManagerGUI");
 
         // Load settings
-        options.SetSettingsFrom(Settings.Instance);
+        if (Settings.Instance == null)
+            GD.PrintErr("Failed to initialize settings.");
 
         // Set initial menu
         SwitchMenu();
