@@ -382,11 +382,6 @@ public class MicrobeEditor : Node, ILoadableGameState
     public void OnFinishTransitioning()
     {
         transitionFinished = true;
-
-        if (!IsLoadedFromSave)
-        {
-            InitEditorFresh();
-        }
     }
 
     /// <summary>
@@ -930,14 +925,15 @@ public class MicrobeEditor : Node, ILoadableGameState
 
     private void InitEditorFresh()
     {
-        if (!transitionFinished)
-            return;
-
         // For now we only show a loading screen if auto-evo is not ready yet
         if (!CurrentGame.GameWorld.IsAutoEvoFinished())
         {
             ready = false;
             LoadingScreen.Instance.Show("Loading Microbe Editor", CurrentGame.GameWorld.GetAutoEvoRun().Status);
+        }
+        else if (!transitionFinished)
+        {
+            ready = false;
         }
         else
         {
