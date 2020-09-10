@@ -110,6 +110,11 @@ public class MicrobeEditor : Node, ILoadableGameState
     private List<SceneDisplayer> placedModels;
 
     /// <summary>
+    ///   True once fade transition is finished when entering editor
+    /// </summary>
+    private bool transitionFinished;
+
+    /// <summary>
     ///   True once auto-evo (and possibly other stuff) we need to wait for is ready
     /// </summary>
     [JsonProperty]
@@ -288,6 +293,8 @@ public class MicrobeEditor : Node, ILoadableGameState
 
         gui.Init(this);
 
+        transitionFinished = false;
+
         OnEnterEditor();
     }
 
@@ -370,6 +377,11 @@ public class MicrobeEditor : Node, ILoadableGameState
         InitEditor();
 
         StartMusic();
+    }
+
+    public void OnFinishTransitioning()
+    {
+        transitionFinished = true;
     }
 
     /// <summary>
@@ -523,6 +535,9 @@ public class MicrobeEditor : Node, ILoadableGameState
                     CurrentGame.GameWorld.GetAutoEvoRun().Status);
                 return;
             }
+
+            if (!transitionFinished)
+                return;
 
             OnEditorReady();
         }
@@ -915,6 +930,10 @@ public class MicrobeEditor : Node, ILoadableGameState
         {
             ready = false;
             LoadingScreen.Instance.Show("Loading Microbe Editor", CurrentGame.GameWorld.GetAutoEvoRun().Status);
+        }
+        else if (!transitionFinished)
+        {
+            ready = false;
         }
         else
         {
