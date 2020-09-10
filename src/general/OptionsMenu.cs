@@ -107,6 +107,9 @@ public class OptionsMenu : Control
     [Export]
     public NodePath DefaultsConfirmationBoxPath;
 
+    [Export]
+    public NodePath ErrorAcceptBoxPath;
+
     private const float AUDIO_BAR_SCALE = 6f;
     private Button resetButton;
     private Button saveButton;
@@ -150,6 +153,7 @@ public class OptionsMenu : Control
     // Confirmation Boxes
     private WindowDialog backConfirmationBox;
     private ConfirmationDialog defaultsConfirmationBox;
+    private AcceptDialog errorAcceptBox;
 
     /*
       Misc
@@ -227,6 +231,7 @@ public class OptionsMenu : Control
 
         backConfirmationBox = GetNode<WindowDialog>(BackConfirmationBoxPath);
         defaultsConfirmationBox = GetNode<ConfirmationDialog>(DefaultsConfirmationBoxPath);
+        errorAcceptBox = GetNode<AcceptDialog>(ErrorAcceptBoxPath);
 
         selectedOptionsTab = SelectedOptionsTab.Graphics;
 
@@ -499,7 +504,8 @@ public class OptionsMenu : Control
         // Save the new settings to the config file.
         if (!Settings.Save())
         {
-            GD.PrintErr("Failed to save new options menu settings.");
+            GD.PrintErr("Failed to save new options menu settings to configuration file.");
+            errorAcceptBox.PopupCenteredMinsize();
             return;
         }
 
@@ -521,8 +527,9 @@ public class OptionsMenu : Control
         // Save the new settings to the config file.
         if (!Settings.Save())
         {
-            GD.PrintErr("Failed to save new options menu settings.");
+            GD.PrintErr("Failed to save new options menu settings to configuration file.");
             backConfirmationBox.Hide();
+            errorAcceptBox.PopupCenteredMinsize();
 
             return;
         }

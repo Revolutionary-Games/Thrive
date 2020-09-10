@@ -21,8 +21,6 @@ font_data = ExtResource( 3 )
 
 [sub_resource type="StyleBoxEmpty" id=4]
 
-[sub_resource type="StyleBoxEmpty" id=9]
-
 [sub_resource type="StyleBoxEmpty" id=5]
 
 [sub_resource type="StyleBoxEmpty" id=6]
@@ -30,6 +28,8 @@ font_data = ExtResource( 3 )
 [sub_resource type="StyleBoxEmpty" id=7]
 
 [sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="StyleBoxEmpty" id=9]
 
 [node name="OptionsMenu" type="Control"]
 anchor_right = 1.0
@@ -70,6 +70,7 @@ MaxAutoSavesPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Margin
 MaxQuickSavesPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer2/MaxQuickSaves")
 BackConfirmationBoxPath = NodePath("CenterContainer/BackConfirm")
 DefaultsConfirmationBoxPath = NodePath("CenterContainer/DefaultsConfirm")
+ErrorAcceptBoxPath = NodePath("CenterContainer/ErrorAccept")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -320,6 +321,7 @@ size_flags_horizontal = 3
 [node name="ChromaticToggle" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer5"]
 margin_right = 256.0
 margin_bottom = 25.0
+custom_styles/hover_pressed = SubResource( 2 )
 pressed = true
 text = "Chromatic Aberration:"
 
@@ -378,7 +380,7 @@ value = 100.0
 margin_left = 439.0
 margin_right = 442.0
 margin_bottom = 25.0
-custom_styles/separator = SubResource( 9 )
+custom_styles/separator = SubResource( 5 )
 
 [node name="MasterMuted" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer"]
 margin_left = 446.0
@@ -411,7 +413,7 @@ value = 80.0
 margin_left = 439.0
 margin_right = 442.0
 margin_bottom = 25.0
-custom_styles/separator = SubResource( 9 )
+custom_styles/separator = SubResource( 5 )
 
 [node name="MusicMuted" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer2"]
 margin_left = 446.0
@@ -469,7 +471,7 @@ margin_left = 261.0
 margin_right = 313.0
 margin_bottom = 68.0
 size_flags_horizontal = 3
-custom_styles/separator = SubResource( 5 )
+custom_styles/separator = SubResource( 6 )
 
 [node name="CloudInterval" type="OptionButton" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer"]
 margin_left = 317.0
@@ -510,7 +512,7 @@ margin_left = 252.0
 margin_right = 313.0
 margin_bottom = 42.0
 size_flags_horizontal = 3
-custom_styles/separator = SubResource( 5 )
+custom_styles/separator = SubResource( 6 )
 
 [node name="CloudResolution" type="OptionButton" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer2"]
 margin_left = 317.0
@@ -584,7 +586,7 @@ margin_left = 305.0
 margin_right = 316.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
-custom_styles/separator = SubResource( 5 )
+custom_styles/separator = SubResource( 6 )
 
 [node name="MaxAutoSaves" type="SpinBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer"]
 margin_left = 320.0
@@ -612,7 +614,7 @@ margin_left = 313.0
 margin_right = 316.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
-custom_styles/separator = SubResource( 5 )
+custom_styles/separator = SubResource( 6 )
 
 [node name="MaxQuickSaves" type="SpinBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/HBoxContainer2"]
 margin_left = 320.0
@@ -680,7 +682,7 @@ margin_left = 289.0
 margin_right = 442.0
 margin_bottom = 35.0
 size_flags_horizontal = 3
-custom_styles/separator = SubResource( 6 )
+custom_styles/separator = SubResource( 7 )
 
 [node name="Defaults" type="Button" parent="CenterContainer/VBoxContainer/HBoxContainer"]
 margin_left = 446.0
@@ -744,7 +746,7 @@ margin_top = 63.0
 margin_right = 600.0
 margin_bottom = 80.0
 size_flags_vertical = 3
-custom_styles/separator = SubResource( 7 )
+custom_styles/separator = SubResource( 8 )
 
 [node name="MarginContainer2" type="MarginContainer" parent="CenterContainer/BackConfirm/VBoxContainer"]
 margin_top = 84.0
@@ -783,7 +785,7 @@ margin_left = 442.0
 margin_right = 484.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
-custom_styles/separator = SubResource( 8 )
+custom_styles/separator = SubResource( 9 )
 
 [node name="CancelButton" type="Button" parent="CenterContainer/BackConfirm/VBoxContainer/MarginContainer2/HBoxContainer"]
 margin_left = 488.0
@@ -793,6 +795,15 @@ text = "Cancel"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ErrorAccept" type="AcceptDialog" parent="CenterContainer"]
+margin_left = 359.0
+margin_top = 324.0
+margin_right = 921.0
+margin_bottom = 395.0
+popup_exclusive = true
+window_title = "Error"
+dialog_text = "Error: Failed to save new settings to configuration file."
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/GraphicsButton" to="." method="SetSettingsTab" binds= [ "Graphics" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/SoundButton" to="." method="SetSettingsTab" binds= [ "Sound" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/PerformanceButton" to="." method="SetSettingsTab" binds= [ "Performance" ]]
