@@ -113,11 +113,7 @@
             {
                 // Simulate the species in each patch taking into account the already computed populations
                 SimulatePatchStep(parameters.Results, entry.Value,
-<<<<<<< HEAD
                     species.Where(item => parameters.Results.GetPopulationInPatch(item, entry.Value) > 0).ToList(),
-=======
-                    species.Where((item) => parameters.Results.GetPopulationInPatch(item, entry.Value) > 0).ToList(),
->>>>>>> Readd random parameter, write floats as 0.0f, remove high and low species boosts.
                     random);
             }
         }
