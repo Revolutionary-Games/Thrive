@@ -2,11 +2,14 @@
 using Newtonsoft.Json;
 
 /// <summary>
-///   Main object for containing player changeable game settings
+///   Class that handles storing and applying player changeable game settings.
 /// </summary>
 public class Settings
 {
-    private static readonly Settings SingletonInstance = LoadSettings();
+    /// <summary>
+    ///   Singleton used for holding the live copy of game settings.
+    /// </summary>
+    private static readonly Settings SingletonInstance = InitializeGlobalSettings();
 
     static Settings()
     {
@@ -18,10 +21,40 @@ public class Settings
 
     public static Settings Instance => SingletonInstance;
 
+    // Graphics Properties
+
     /// <summary>
-    ///   If true all sounds are muted
+    ///   Sets whether the game window is in fullscreen mode
     /// </summary>
-    public bool VolumeMasterMuted { get; set; } = false;
+    public bool FullScreen { get; set; } = true;
+
+    /// <summary>
+    ///   Sets whether the game window will use vsync
+    /// </summary>
+    public bool VSync { get; set; } = true;
+
+    /// <summary>
+    ///   Sets amount of MSAA to apply to the viewport
+    /// </summary>
+    public Viewport.MSAA MSAAResolution { get; set; } = Viewport.MSAA.Disabled;
+
+    /// <summary>
+    ///   Optionally applies a colour filter to the screen to aid colourblind individuals
+    ///   0 = None, 1 = Red/Green, 2 = Blue/Yellow
+    /// </summary>
+    public int ColourblindSetting { get; set; } = 0;
+
+    /// <summary>
+    ///   The amount of Chromatic Aberration to apply to the screen
+    /// </summary>
+    public float ChromaticAmount { get; set; } = 20.0f;
+
+    /// <summary>
+    ///   Enable or Disable Chromatic Aberration for screen
+    /// </summary>
+    public bool ChromaticEnabled { get; set; } = true;
+
+    // Sound Properties
 
     /// <summary>
     ///   The Db value to be added to the master audio bus
@@ -29,9 +62,9 @@ public class Settings
     public float VolumeMaster { get; set; } = 0.0f;
 
     /// <summary>
-    ///   If true music is muted
+    ///   If true all sounds are muted
     /// </summary>
-    public bool VolumeMusicMuted { get; set; } = false;
+    public bool VolumeMasterMuted { get; set; } = false;
 
     /// <summary>
     ///   The Db value to be added to the music audio bus
@@ -39,57 +72,11 @@ public class Settings
     public float VolumeMusic { get; set; } = 0.0f;
 
     /// <summary>
-    ///   If true tell godot to be in fullscreen mode
+    ///   If true music is muted
     /// </summary>
-    public bool FullScreen { get; set; } = true;
+    public bool VolumeMusicMuted { get; set; } = false;
 
-    /// <summary>
-    ///   If true tell godot to use vsync
-    /// </summary>
-    public bool VSync { get; set; } = true;
-
-    /// <summary>
-    ///   When true cheats are enabled
-    /// </summary>
-    public bool CheatsEnabled { get; set; } = false;
-
-    /// <summary>
-    ///   When true the main intro is played
-    /// </summary>
-    public bool PlayIntroVideo { get; set; } = true;
-
-    /// <summary>
-    ///   When true the microbe intro is played on new game
-    /// </summary>
-    public bool PlayMicrobeIntroVideo { get; set; } = true;
-
-    /// <summary>
-    ///   If true an auto-evo run is started during gameplay,
-    ///   taking up one of the background threads.
-    /// </summary>
-    public bool RunAutoEvoDuringGamePlay { get; set; } = true;
-
-    /// <summary>
-    ///   If false auto saving will be disabled
-    /// </summary>
-    public bool AutoSaveEnabled { get; set; } = true;
-
-    /// <summary>
-    ///   Number of quick saves to keep
-    /// </summary>
-    public int MaxQuickSaves { get; set; } = 5;
-
-    /// <summary>
-    ///   Number of auto saves to keep
-    /// </summary>
-    public int MaxAutoSaves { get; set; } = 5;
-
-    /// <summary>
-    ///   This can be freely adjusted to adjust the performance The
-    ///   higher this value is the smaller the size of the simulated
-    ///   cloud is and the performance is better.
-    /// </summary>
-    public int CloudResolution { get; set; } = 2;
+    // Performance Properties
 
     /// <summary>
     ///   If this is over 0 then this limits how often compound clouds
@@ -106,32 +93,141 @@ public class Settings
     public float CloudUpdateInterval { get; set; } = 0.040f;
 
     /// <summary>
-    ///   Sets amount of MSAA to apply to the viewport
+    ///   This can be freely adjusted to adjust the performance The
+    ///   higher this value is the smaller the size of the simulated
+    ///   cloud is and the performance is better.
     /// </summary>
-    public Viewport.MSAA MSAAResolution { get; set; } = Viewport.MSAA.Disabled;
+    public int CloudResolution { get; set; } = 2;
 
     /// <summary>
-    ///   Choose what filter to apply to the screen
-    ///   0 = None, 1 = Red/Green, 2 = Blue/Yellow
+    ///   If true an auto-evo run is started during gameplay,
+    ///   taking up one of the background threads.
     /// </summary>
-    public int ColourblindSetting { get; set; } = 0;
+    public bool RunAutoEvoDuringGamePlay { get; set; } = true;
+
+    // Misc Properties
+
+    /// <summary>
+    ///   When true the main intro is played
+    /// </summary>
+    public bool PlayIntroVideo { get; set; } = true;
+
+    /// <summary>
+    ///   When true the microbe intro is played on new game
+    /// </summary>
+    public bool PlayMicrobeIntroVideo { get; set; } = true;
+
+    /// <summary>
+    ///   If false auto saving will be disabled
+    /// </summary>
+    public bool AutoSaveEnabled { get; set; } = true;
+
+    /// <summary>
+    ///   Number of auto saves to keep
+    /// </summary>
+    public int MaxAutoSaves { get; set; } = 5;
+
+    /// <summary>
+    ///   Number of quick saves to keep
+    /// </summary>
+    public int MaxQuickSaves { get; set; } = 5;
+
+    /// <summary>
+    ///   When true cheats are enabled
+    /// </summary>
+    public bool CheatsEnabled { get; set; } = false;
 
     public int CloudSimulationWidth => Constants.CLOUD_X_EXTENT / CloudResolution;
 
     public int CloudSimulationHeight => Constants.CLOUD_Y_EXTENT / CloudResolution;
 
-    /// <summary>
-    ///   The amount of Chromatic Aberration to apply to the screen
-    /// </summary>
-    public float ChromaticAmount { get; set; } = 20f;
+    public static bool operator ==(Settings lhs, Settings rhs)
+    {
+        return Equals(lhs, rhs);
+    }
+
+    public static bool operator !=(Settings lhs, Settings rhs)
+    {
+        return !(lhs == rhs);
+    }
+
+    public override bool Equals(object obj)
+    {
+        if (obj == null)
+        {
+            return false;
+        }
+
+        if (GetType() != obj.GetType())
+        {
+            return false;
+        }
+
+        return Equals((Settings)obj);
+    }
+
+    public bool Equals(Settings obj)
+    {
+        // Compare all properties in the two objects for equality.
+        var type = GetType();
+
+        foreach (var property in type.GetProperties())
+        {
+            // Returns if any of the properties don't match.
+            object thisValue = property.GetValue(this);
+            object objValue = property.GetValue(obj);
+
+            if (thisValue != objValue && (thisValue == null || !thisValue.Equals(objValue)))
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public override int GetHashCode()
+    {
+        int hashCode = 17;
+
+        var type = GetType();
+
+        foreach (var property in type.GetProperties())
+            hashCode ^= property.GetHashCode();
+
+        return hashCode;
+    }
 
     /// <summary>
-    ///   Enable or Disable Chromatic Aberration for screen
+    ///   Returns a cloned deep copy of the settings object.
     /// </summary>
-    public bool ChromaticEnabled { get; set; } = true;
+    public Settings Clone()
+    {
+        Settings settings = new Settings();
+        settings.CopySettings(this);
+
+        return settings;
+    }
 
     /// <summary>
-    ///   Saves the current settings by writing them to the settings file
+    ///   Loads values from an existing settings object.
+    /// </summary>
+    public void LoadFromObject(Settings settings)
+    {
+        CopySettings(settings);
+    }
+
+    /// <summary>
+    ///   Loads default values.
+    /// </summary>
+    public void LoadDefaults()
+    {
+        Settings settings = new Settings();
+        CopySettings(settings);
+    }
+
+    /// <summary>
+    ///   Saves the current settings by writing them to the settings configuration file.
     /// </summary>
     /// <returns>True on success, false if the file can't be written.</returns>
     public bool Save()
@@ -142,31 +238,41 @@ public class Settings
 
             if (error != Error.Ok)
             {
-                GD.PrintErr("Couldn't open settings file for writing");
+                GD.PrintErr("Couldn't open settings file for writing.");
                 return false;
             }
 
             file.StoreString(JsonConvert.SerializeObject(this));
 
             file.Close();
-            return true;
         }
+
+        return true;
     }
 
     /// <summary>
-    ///   Applies all the general settings
+    ///   Applies all current settings to any applicable engine systems.
     /// </summary>
     public void ApplyAll()
     {
-        ApplySoundLevels();
-        ApplyWindowSettings();
         ApplyGraphicsSettings();
+        ApplySoundSettings();
+        ApplyWindowSettings();
     }
 
     /// <summary>
-    ///   Applies the sound volume and mute settings on the audio bus
+    ///   Applies current graphics related settings.
     /// </summary>
-    public void ApplySoundLevels()
+    public void ApplyGraphicsSettings()
+    {
+        GUICommon.Instance.GetTree().Root.GetViewport().Msaa = MSAAResolution;
+        ColourblindScreenFilter.Instance.SetColourblindSetting(ColourblindSetting);
+    }
+
+    /// <summary>
+    ///   Applies current sound settings to any applicable engine systems.
+    /// </summary>
+    public void ApplySoundSettings()
     {
         var master = AudioServer.GetBusIndex("Master");
 
@@ -179,43 +285,30 @@ public class Settings
         AudioServer.SetBusMute(music, VolumeMusicMuted);
     }
 
+    /// <summary>
+    ///   Applies current window settings to any applicable engine systems.
+    /// </summary>
     public void ApplyWindowSettings()
     {
         OS.WindowFullscreen = FullScreen;
         OS.VsyncEnabled = VSync;
     }
 
-    public void ApplyGraphicsSettings()
-    {
-        GUICommon.Instance.GetTree().Root.GetViewport().Msaa = MSAAResolution;
-        ColourblindScreenFilter.Instance.SetColourblindSetting(ColourblindSetting);
-    }
-
     /// <summary>
-    ///   Reset all options to default values
+    ///   Loads, initializes and returns the global settings object.
     /// </summary>
-    public void ResetToDefaults()
+    private static Settings InitializeGlobalSettings()
     {
-        var defaults = new Settings();
-        var type = GetType();
-
-        foreach (var property in type.GetProperties())
-        {
-            if (!property.CanWrite)
-                continue;
-
-            property.SetValue(this, property.GetValue(defaults));
-        }
-    }
-
-    private static Settings LoadSettings()
-    {
-        var settings = LoadSettingsFileOrDefault();
+        Settings settings = LoadSettings();
         settings.ApplyAll();
+
         return settings;
     }
 
-    private static Settings LoadSettingsFileOrDefault()
+    /// <summary>
+    ///   Creates and returns a settings object loaded from the configuration settings file, or defaults if that fails.
+    /// </summary>
+    private static Settings LoadSettings()
     {
         using (var file = new File())
         {
@@ -223,8 +316,12 @@ public class Settings
 
             if (error != Error.Ok)
             {
-                GD.Print("Settings file is missing or unreadable, using default settings");
-                return new Settings();
+                GD.Print("Settings configuration file is missing or unreadable, using default settings.");
+
+                var settings = new Settings();
+                settings.Save();
+
+                return settings;
             }
 
             var text = file.GetAsText();
@@ -232,6 +329,22 @@ public class Settings
             file.Close();
 
             return JsonConvert.DeserializeObject<Settings>(text);
+        }
+    }
+
+    /// <summary>
+    ///   Copies all properties from another settings object to the current one.
+    /// </summary>
+    private void CopySettings(Settings settings)
+    {
+        var type = GetType();
+
+        foreach (var property in type.GetProperties())
+        {
+            if (!property.CanWrite)
+                continue;
+
+            property.SetValue(this, property.GetValue(settings));
         }
     }
 }
