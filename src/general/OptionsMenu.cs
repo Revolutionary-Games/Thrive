@@ -1,14 +1,24 @@
+using System;
 using Godot;
 
 /// <summary>
-///   Handles the logic for the options menu GUI
+///   Handles the logic for the options menu GUI.
 /// </summary>
 public class OptionsMenu : Control
 {
-    [Export]
-    public NodePath ResetToDefaultPath;
+    /*
+      GUI Control Paths
+    */
 
-    // Tab buttons
+    // Options control buttons.
+
+    [Export]
+    public NodePath ResetButtonPath;
+
+    [Export]
+    public NodePath SaveButtonPath;
+
+    // Tab selector buttons.
     [Export]
     public NodePath GraphicsButtonPath;
 
@@ -21,7 +31,7 @@ public class OptionsMenu : Control
     [Export]
     public NodePath MiscButtonPath;
 
-    // Graphics tab
+    // Graphics tab.
     [Export]
     public NodePath GraphicsTabPath;
 
@@ -43,7 +53,7 @@ public class OptionsMenu : Control
     [Export]
     public NodePath ChromaticAberrationTogglePath;
 
-    // Sound tab
+    // Sound tab.
     [Export]
     public NodePath SoundTabPath;
 
@@ -59,7 +69,7 @@ public class OptionsMenu : Control
     [Export]
     public NodePath MusicMutedPath;
 
-    // Performance tab
+    // Performance tab.
     [Export]
     public NodePath PerformanceTabPath;
 
@@ -69,7 +79,7 @@ public class OptionsMenu : Control
     [Export]
     public NodePath CloudResolutionPath;
 
-    // Misc tab
+    // Misc tab.
     [Export]
     public NodePath MiscTabPath;
 
@@ -92,14 +102,16 @@ public class OptionsMenu : Control
     public NodePath MaxQuickSavesPath;
 
     [Export]
-    public NodePath ResetConfirmationBoxPath;
+    public NodePath BackConfirmationBoxPath;
 
-    private const float AUDIO_BAR_SCALE = 6.0f;
+    [Export]
+    public NodePath DefaultsConfirmationBoxPath;
 
-    // Alert Box
-    private ConfirmationDialog resetConfirmationBox;
+    private const float AUDIO_BAR_SCALE = 6f;
+    private Button resetButton;
+    private Button saveButton;
 
-    // Tab buttons
+    // Tab selector buttons
     private Button graphicsButton;
     private Button soundButton;
     private Button performanceButton;
@@ -135,8 +147,36 @@ public class OptionsMenu : Control
     private SpinBox maxAutosaves;
     private SpinBox maxQuicksaves;
 
+    // Confirmation Boxes
+    private ConfirmationDialog backConfirmationBox;
+    private ConfirmationDialog defaultsConfirmationBox;
+
+    /*
+      Misc
+    */
+
+    /// <summary>
+    ///   Copy of the settings object that should match what is saved to the configuration file,
+    ///   used for comparing and restoring to previous state.
+    /// </summary>
+    private Settings savedSettings;
+
+    private SelectedOptionsTab selectedOptionsTab;
+
+    /*
+      Signals
+    */
+
     [Signal]
     public delegate void OnOptionsClosed();
+
+    private enum SelectedOptionsTab
+    {
+        Graphics,
+        Sound,
+        Performance,
+        Miscellaneous,
+    }
 
     /// <summary>
     ///   Returns the place to save the new settings values
@@ -145,7 +185,11 @@ public class OptionsMenu : Control
 
     public override void _Ready()
     {
-        // Tab buttons
+        // Options control buttons
+        resetButton = GetNode<Button>(ResetButtonPath);
+        saveButton = GetNode<Button>(SaveButtonPath);
+
+        // Tab selector buttons
         graphicsButton = GetNode<Button>(GraphicsButtonPath);
         soundButton = GetNode<Button>(SoundButtonPath);
         performanceButton = GetNode<Button>(PerformanceButtonPath);
@@ -180,7 +224,18 @@ public class OptionsMenu : Control
         autosave = GetNode<CheckBox>(AutoSavePath);
         maxAutosaves = GetNode<SpinBox>(MaxAutoSavesPath);
         maxQuicksaves = GetNode<SpinBox>(MaxQuickSavesPath);
-        resetConfirmationBox = GetNode<ConfirmationDialog>(ResetConfirmationBoxPath);
+
+        backConfirmationBox = GetNode<ConfirmationDialog>(BackConfirmationBoxPath);
+        defaultsConfirmationBox = GetNode<ConfirmationDialog>(DefaultsConfirmationBoxPath);
+
+        selectedOptionsTab = SelectedOptionsTab.Graphics;
+
+        // Copy settings from the singleton to serve as a copy of the last saved settings.
+        savedSettings = Settings.Instance.Clone();
+
+        // Set the initial state of the options controls to match the settings data.
+        ApplySettingsToControls(savedSettings);
+        CompareSettings();
     }
 
     public override void _Process(float delta)
@@ -188,17 +243,17 @@ public class OptionsMenu : Control
     }
 
     /// <summary>
-    ///   Overrides all the control values with the values from the given settings object
+    ///   Applies the values of the specified settings object to all corresponding menu controls.
     /// </summary>
-    public void SetSettingsFrom(Settings settings)
+    public void ApplySettingsToControls(Settings settings)
     {
         // Graphics
-        vsync.Pressed = Settings.VSync;
-        fullScreen.Pressed = Settings.FullScreen;
+        vsync.Pressed = settings.VSync;
+        fullScreen.Pressed = settings.FullScreen;
         msaaResolution.Selected = MSAAResolutionToIndex(settings.MSAAResolution);
         colourblindSetting.Selected = settings.ColourblindSetting;
-        chromaticAberrationToggle.Pressed = settings.ChromaticEnabled;
         chromaticAberrationSlider.Value = settings.ChromaticAmount;
+        chromaticAberrationToggle.Pressed = settings.ChromaticEnabled;
 
         // Sound
         masterVolume.Value = ConvertDBToSoundBar(settings.VolumeMaster);
@@ -222,35 +277,45 @@ public class OptionsMenu : Control
 
     private void SetSettingsTab(string tab)
     {
+        // Convert from the string binding to an enum.
+        SelectedOptionsTab selection = (SelectedOptionsTab)Enum.Parse(typeof(SelectedOptionsTab), tab);
+
+        // Pressing the same button that's already active, so just return.
+        if (selection == selectedOptionsTab)
+        {
+            return;
+        }
+
         graphicsTab.Hide();
         soundTab.Hide();
         performanceTab.Hide();
         miscTab.Hide();
 
-        if (tab == "graphics")
+        switch (selection)
         {
-            graphicsTab.Show();
-            graphicsButton.Pressed = true;
+            case SelectedOptionsTab.Graphics:
+                graphicsTab.Show();
+                graphicsButton.Pressed = true;
+                break;
+            case SelectedOptionsTab.Sound:
+                soundTab.Show();
+                soundButton.Pressed = true;
+                break;
+            case SelectedOptionsTab.Performance:
+                performanceTab.Show();
+                performanceButton.Pressed = true;
+                break;
+            case SelectedOptionsTab.Miscellaneous:
+                miscTab.Show();
+                miscButton.Pressed = true;
+                break;
+            default:
+                GD.PrintErr("Invalid tab");
+                break;
         }
-        else if (tab == "sound")
-        {
-            soundTab.Show();
-            soundButton.Pressed = true;
-        }
-        else if (tab == "performance")
-        {
-            performanceTab.Show();
-            performanceButton.Pressed = true;
-        }
-        else if (tab == "miscellaneous")
-        {
-            miscTab.Show();
-            miscButton.Pressed = true;
-        }
-        else
-        {
-            GD.PrintErr("Invalid tab");
-        }
+
+        GUICommon.Instance.PlayButtonPressSound();
+        selectedOptionsTab = selection;
     }
 
     /// <summary>
@@ -379,142 +444,235 @@ public class OptionsMenu : Control
         }
     }
 
+    private void CompareSettings()
+    {
+        // Enable the save and reset buttons if the current setting values differ from the saved ones.
+        if (Settings.Instance == savedSettings)
+        {
+            // Settings match
+            resetButton.Disabled = true;
+            saveButton.Disabled = true;
+        }
+        else
+        {
+            // Settings differ
+            resetButton.Disabled = false;
+            saveButton.Disabled = false;
+        }
+    }
+
     /*
-      GUI callbacks
+      GUI Control Callbacks
     */
 
     private void OnBackPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        // TODO: only save if something was changed
-
-        // TODO: ask for saving the settings
-        Settings.ApplyAll();
-
-        if (!Settings.Save())
+        // If any settings have been changed, show a dialogue asking if the changes should be kept or
+        // discarded.
+        if (Settings.Instance != savedSettings)
         {
-            // TODO: show an error popup
-            GD.PrintErr("Couldn't save the settings");
+            backConfirmationBox.PopupCenteredMinsize();
+            return;
         }
 
         EmitSignal(nameof(OnOptionsClosed));
     }
 
-    private void ResetConfirmSelected()
-    {
-        Settings.ResetToDefaults();
-        Settings.ApplyAll();
-        SetSettingsFrom(Settings);
-        resetConfirmationBox.Visible = false;
-    }
-
     private void OnResetPressed()
     {
-        resetConfirmationBox.Visible = true;
+        GUICommon.Instance.PlayButtonPressSound();
+
+        // Restore and apply the old saved settings.
+        Settings.Instance.LoadFromObject(savedSettings);
+        Settings.ApplyAll();
+        ApplySettingsToControls(Settings.Instance);
+
+        CompareSettings();
     }
 
-    private void ResetConfirmHide()
+    private void OnSavePressed()
     {
-        resetConfirmationBox.Visible = false;
+        GUICommon.Instance.PlayButtonPressSound();
+
+        // Save the new settings to the config file.
+        if (!Settings.Save())
+        {
+            GD.PrintErr("Failed to save new options menu settings.");
+            return;
+        }
+
+        // Copy over the new saved settings.
+        savedSettings = Settings.Instance.Clone();
+
+        CompareSettings();
     }
 
-    private void OnIntroToggled(bool pressed)
+    private void OnDefaultsPressed()
     {
-        Settings.PlayIntroVideo = pressed;
+        GUICommon.Instance.PlayButtonPressSound();
+
+        defaultsConfirmationBox.PopupCenteredMinsize();
     }
 
-    private void OnMicrobeIntroToggled(bool pressed)
+    private void BackConfirmSelected()
     {
-        Settings.PlayMicrobeIntroVideo = pressed;
+        Settings.Instance.LoadFromObject(savedSettings);
+        Settings.ApplyAll();
+        ApplySettingsToControls(Settings.Instance);
+
+        CompareSettings();
+
+        EmitSignal(nameof(OnOptionsClosed));
     }
 
-    private void OnCheatsToggled(bool pressed)
+    private void DefaultsConfirmSelected()
     {
-        Settings.CheatsEnabled = pressed;
+        // Sets active settings to default values and applies them to the options controls.
+        Settings.Instance.LoadDefaults();
+        Settings.ApplyAll();
+        ApplySettingsToControls(Settings.Instance);
+
+        CompareSettings();
     }
 
-    private void OnMasterMutedToggled(bool pressed)
+    // Graphics Button Callbacks
+    private void OnFullScreenToggled(bool pressed)
     {
-        Settings.VolumeMasterMuted = pressed;
-        Settings.ApplySoundLevels();
-    }
+        Settings.Instance.FullScreen = pressed;
+        Settings.ApplyWindowSettings();
 
-    private void OnMusicMutedToggled(bool pressed)
-    {
-        Settings.VolumeMusicMuted = pressed;
-        Settings.ApplySoundLevels();
-    }
-
-    private void OnMasterVolumeChanged(float value)
-    {
-        Settings.VolumeMaster = ConvertSoundBarToDb(value);
-        Settings.ApplySoundLevels();
-    }
-
-    private void OnMusicVolumeChanged(float value)
-    {
-        Settings.VolumeMusic = ConvertSoundBarToDb(value);
-        Settings.ApplySoundLevels();
+        CompareSettings();
     }
 
     private void OnVSyncToggled(bool pressed)
     {
-        Settings.VSync = pressed;
+        Settings.Instance.VSync = pressed;
         Settings.ApplyWindowSettings();
-    }
 
-    private void OnFullScreenToggled(bool pressed)
-    {
-        Settings.FullScreen = pressed;
-        Settings.ApplyWindowSettings();
-    }
-
-    private void OnCloudIntervalSelected(int index)
-    {
-        Settings.CloudUpdateInterval = CloudIndexToInterval(index);
-    }
-
-    private void OnCloudResolutionSelected(int index)
-    {
-        Settings.CloudResolution = CloudIndexToResolution(index);
+        CompareSettings();
     }
 
     private void OnMSAAResolutionSelected(int index)
     {
-        Settings.MSAAResolution = MSAAIndexToResolution(index);
+        Settings.Instance.MSAAResolution = MSAAIndexToResolution(index);
         Settings.ApplyGraphicsSettings();
+
+        CompareSettings();
     }
 
     private void OnColourblindSettingSelected(int index)
     {
-        Settings.ColourblindSetting = index;
+        Settings.Instance.ColourblindSetting = index;
         Settings.ApplyGraphicsSettings();
+
+        CompareSettings();
     }
 
     private void OnChromaticAberrationToggled(bool toggle)
     {
-        Settings.ChromaticEnabled = toggle;
+        Settings.Instance.ChromaticEnabled = toggle;
+
+        CompareSettings();
     }
 
     private void OnChromaticAberrationValueChanged(float amount)
     {
-        Settings.ChromaticAmount = amount;
+        Settings.Instance.ChromaticAmount = amount;
+
+        CompareSettings();
+    }
+
+    // Sound Button Callbacks
+    private void OnMasterMutedToggled(bool pressed)
+    {
+        Settings.Instance.VolumeMasterMuted = pressed;
+        Settings.ApplySoundSettings();
+
+        CompareSettings();
+    }
+
+    private void OnMusicMutedToggled(bool pressed)
+    {
+        Settings.Instance.VolumeMusicMuted = pressed;
+        Settings.ApplySoundSettings();
+
+        CompareSettings();
+    }
+
+    private void OnMasterVolumeChanged(float value)
+    {
+        Settings.Instance.VolumeMaster = ConvertSoundBarToDb(value);
+        Settings.ApplySoundSettings();
+
+        CompareSettings();
+    }
+
+    private void OnMusicVolumeChanged(float value)
+    {
+        Settings.Instance.VolumeMusic = ConvertSoundBarToDb(value);
+        Settings.ApplySoundSettings();
+
+        CompareSettings();
+    }
+
+    // Performance Button Callbacks
+    private void OnCloudIntervalSelected(int index)
+    {
+        Settings.Instance.CloudUpdateInterval = CloudIndexToInterval(index);
+
+        CompareSettings();
+    }
+
+    private void OnCloudResolutionSelected(int index)
+    {
+        Settings.Instance.CloudResolution = CloudIndexToResolution(index);
+
+        CompareSettings();
+    }
+
+    // Misc Button Callbacks
+    private void OnIntroToggled(bool pressed)
+    {
+        Settings.Instance.PlayIntroVideo = pressed;
+
+        CompareSettings();
+    }
+
+    private void OnMicrobeIntroToggled(bool pressed)
+    {
+        Settings.Instance.PlayMicrobeIntroVideo = pressed;
+
+        CompareSettings();
+    }
+
+    private void OnCheatsToggled(bool pressed)
+    {
+        Settings.Instance.CheatsEnabled = pressed;
+
+        CompareSettings();
     }
 
     private void OnAutoSaveToggled(bool pressed)
     {
-        Settings.AutoSaveEnabled = pressed;
+        Settings.Instance.AutoSaveEnabled = pressed;
         maxAutosaves.Editable = pressed;
+
+        CompareSettings();
     }
 
     private void OnMaxAutoSavesValueChanged(float value)
     {
-        Settings.MaxAutoSaves = (int)value;
+        Settings.Instance.MaxAutoSaves = (int)value;
+
+        CompareSettings();
     }
 
     private void OnMaxQuickSavesValueChanged(float value)
     {
-        Settings.MaxQuickSaves = (int)value;
+        Settings.Instance.MaxQuickSaves = (int)value;
+
+        CompareSettings();
     }
 }
