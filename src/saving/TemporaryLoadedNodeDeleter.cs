@@ -27,9 +27,10 @@ public class TemporaryLoadedNodeDeleter : Node
     }
 
     /// <summary>
-    ///   Adds a deletion hold. While at least one deletion hold hasn't been
+    ///   Adds a deletion hold.
     /// </summary>
     /// <param name="name">Key of the deletion hold, use the same key to remove it later</param>
+    /// <exception cref="ArgumentException">If the hold already exists</exception>
     public void AddDeletionHold(string name)
     {
         if (!deletionHolds.Add(name))
@@ -66,5 +67,13 @@ public class TemporaryLoadedNodeDeleter : Node
         }
 
         nodesToDelete.Clear();
+    }
+
+    /// <summary>
+    ///   Release all holds, should only be called by the main menu, and loading a save
+    /// </summary>
+    internal void ReleaseAllHolds()
+    {
+        deletionHolds.Clear();
     }
 }
