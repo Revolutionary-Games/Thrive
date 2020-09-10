@@ -234,6 +234,7 @@ public class MicrobeEditorGUI : Node
     private PauseMenu menu;
     private PanelContainer structureTab;
     private PanelContainer membraneTab;
+    private PanelContainer statisticsPanel;
     private Label sizeLabel;
     private Label speedLabel;
     private Label generationLabel;
@@ -301,12 +302,17 @@ public class MicrobeEditorGUI : Node
     private bool compoundsBoxIsHidden;
     private bool speciesListIsHidden;
 
+    private Control currentTooltip;
+
     public override void _Ready()
     {
         organelleSelectionElements = GetTree().GetNodesInGroup("OrganelleSelectionElement");
         membraneSelectionElements = GetTree().GetNodesInGroup("MembraneSelectionElement");
         itemTooltipElements = GetTree().GetNodesInGroup("ItemTooltip");
 
+        menu = GetNode<PauseMenu>(MenuPath);
+        structureTab = GetNode<PanelContainer>(StructureTabPath);
+        membraneTab = GetNode<PanelContainer>(MembraneTabPath);
         menu = GetNode<PauseMenu>(MenuPath);
         structureTab = GetNode<PanelContainer>(StructureTabPath);
         membraneTab = GetNode<PanelContainer>(MembraneTabPath);
@@ -412,6 +418,18 @@ public class MicrobeEditorGUI : Node
         else
         {
             mutationPointsSubtractBar.SelfModulate = new Color(0.72f, 0.72f, 0.72f);
+        }
+
+        if (currentTooltip != null)
+        {
+            var cursorPos = GetViewport().GetMousePosition();
+            var screenSize = OS.WindowSize;
+
+            var tooltipPos = new Vector2(
+                Mathf.Clamp(cursorPos.x, 0, screenSize.x - currentTooltip.RectSize.x - 20) + 20,
+                Mathf.Clamp(cursorPos.y, 0, screenSize.y - currentTooltip.RectSize.y - 20) + 20);
+
+            currentTooltip.RectPosition = tooltipPos;
         }
     }
 
@@ -562,6 +580,9 @@ public class MicrobeEditorGUI : Node
         editor.ShowHover = inEditorTab;
     }
 
+    /// <summary>
+    ///   Used by the things on selection menu to display tooltips
+    /// </summary>
     internal void OnItemMouseHover(string itemName)
     {
         foreach (PanelContainer tooltip in itemTooltipElements)
@@ -571,6 +592,7 @@ public class MicrobeEditorGUI : Node
             if (tooltip.Name == itemName)
             {
                 tooltip.Show();
+                currentTooltip = tooltip;
             }
         }
     }
@@ -580,6 +602,7 @@ public class MicrobeEditorGUI : Node
         foreach (PanelContainer tooltip in itemTooltipElements)
         {
             tooltip.Hide();
+            currentTooltip = null;
         }
     }
 
@@ -624,7 +647,7 @@ public class MicrobeEditorGUI : Node
     /// </remarks>
     internal void UpdateGuiButtonStatus(bool hasNucleus)
     {
-        foreach (VBoxContainer organelleItem in organelleSelectionElements)
+        foreach (Control organelleItem in organelleSelectionElements)
         {
             SetOrganelleButtonStatus(organelleItem, hasNucleus);
         }
@@ -635,9 +658,9 @@ public class MicrobeEditorGUI : Node
         editor.ActiveActionName = organelle;
 
         // Make all buttons unselected except the one that is now selected
-        foreach (VBoxContainer element in organelleSelectionElements)
+        foreach (Control element in organelleSelectionElements)
         {
-            var button = element.GetNode<Button>("Button");
+            var button = element.GetNode<Button>("VBoxContainer/Button");
             var icon = button.GetNode<TextureRect>("Icon");
 
             if (element.Name == SimulationParameters.Instance.GetOrganelleType(organelle).Name)
@@ -731,18 +754,19 @@ public class MicrobeEditorGUI : Node
     internal void UpdateMembraneButtons(string membrane)
     {
         // Updates the GUI buttons based on current membrane
-        foreach (Button element in membraneSelectionElements)
+        foreach (Control element in membraneSelectionElements)
         {
+            var button = element.GetNode<Button>("VBoxContainer/Button");
+            var icon = button.GetNode<TextureRect>("Icon");
+
             // This is required so that the button press state won't be
             // updated incorrectly when we don't have enough MP to change the membrane
-            element.Pressed = false;
-
-            var icon = element.GetNode<TextureRect>("Icon");
+            button.Pressed = false;
 
             if (element.Name == membrane)
             {
-                if (!element.Pressed)
-                    element.Pressed = true;
+                if (!button.Pressed)
+                    button.Pressed = true;
 
                 icon.Modulate = new Color(0, 0, 0);
             }
@@ -768,9 +792,9 @@ public class MicrobeEditorGUI : Node
         SetRigiditySliderTooltip(value);
     }
 
-    private static void SetOrganelleButtonStatus(VBoxContainer organelleItem, bool nucleus)
+    private static void SetOrganelleButtonStatus(Control organelleItem, bool nucleus)
     {
-        var button = organelleItem.GetNode<Button>("Button");
+        var button = organelleItem.GetNode<Button>("VBoxContainer/Button");
 
         if (organelleItem.Name == "Nucleus")
         {
@@ -1066,6 +1090,7 @@ public class MicrobeEditorGUI : Node
         foreach (var process in processList)
         {
             var processContainer = new VBoxContainer();
+            processContainer.MouseFilter = Control.MouseFilterEnum.Ignore;
             targetElement.AddChild(processContainer);
 
             var processTitle = new Label();
