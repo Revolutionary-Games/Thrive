@@ -66,12 +66,15 @@ Code style rules
   on a single construct (class, method etc.) it must be an XML
   comment.
 
-- Inline comments inside functions can and should be used to describe why
-  you wrote the function like this (and, sometimes more importantly, why you
-  didn't go another way). They should **not** use XML style.
+- Inline comments inside functions can and should be used to describe
+  why you wrote the function like this (and, sometimes more
+  importantly, why you didn't go another way). They should **not** use
+  XML style. You can use these types of comments to section of files
+  or put labels in methods to mark what different parts are for.
 
 - Empty lines are encouraged between blocks of code to improve
-  readability. Blank space is your friend, not your enemy.
+  readability. Blank space is your friend, not your enemy. Separate
+  out logically different parts of a method with blank lines.
 
 - Switch statements should use braces when there is more than one line
   of code followed by a break/return or a variable is defined. Switch
@@ -82,7 +85,7 @@ Code style rules
 - Single line variables can be next to each other without a blank
   line. Other variables and class elements should have a blank line
   separating them.
-  
+
 - Variables should by default use `var`. Exception are primitive types
   where specific control on the data types is preferred, for example
   conversions between floats and ints to ensure the calculation
@@ -93,12 +96,17 @@ Code style rules
   needed when a variable is changed, instead of creating setter or
   getter methods. Overall public properties should be preferred in
   classes over fields.
-  
+
 - Variables should be defined in the smallest possible scope. We
   aren't writing ancient C here.
-  
+
+- `uint` type should not be used without a very good reason.
+
 - Unrelated uses should not share the same variable. Instead they
   should locally define their own variable instance.
+
+- Methods should not use `=> style` bodies, properties when they are
+  short should use that style bodies.
 
 - Continuous Integration (CI) will check if the formatting scripts and
   tools find some problems in your code. You should fix these if your
@@ -108,25 +116,45 @@ Code style rules
   runnable scripts they need to begin with a shebang and be marked
   executable.
 
+- Finally you should attempt to reach the abstract goal of clean
+  code. Here are some concepts that are indicative of good code (and
+  breaking these can be bad code): Liskov substitution principle,
+  single purpose princible, logically putting same kind of code in the
+  same place, avoid repetition, avoid expensive operations in a loop,
+  prefer simpler code to understand. Avoid anti-patterns, for example
+  God class.
+
 Godot usage
 -----------
 
 - Do not use margins to try to position elements, that's not good
-  Godot usage. Instead use an empty Control with rect minsize set to
-  the amount of blank you want.
-  
+  Godot usage. Use proper parent container and min size instead.
+
+- For spacing elements use either a spacer (that has a visual
+  appearance) or for invisible space use an empty Control with rect
+  minsize set to the amount of blank you want.
+
+- If you need to keep track of child elements that are added through a
+  single place, keep them in a List or Dictionary instead of asking
+  Godot for the children and doing a bunch of extra casts.
+
 - Don't use text in the GUI with leading or trailing spaces to add
   padding, see previous bullet instead.
 
 - You should follow general GUI standards in designing UI. Use widgets
   that are meant for whatever kind of interaction you are designing.
-  
+
 - Question popups should have a short title ending in a question mark
   (`?`). The content of the popup should give more details and also
   end with a question.
-  
+
 - Popups should be shown with `PopupCenteredMinsize()` unless there's
   a good reason why something else is required.
+
+- Don't use `Godot.Color(string)` constructor, unless explicitly
+  needed. An explicit need is for example loading from JSON or from
+  user input. String literal colours should not be used in C# source
+  code.
 
 Other files
 -----------
@@ -158,7 +186,9 @@ Git
 
 - If you haven't made many pull requests in the past, it is highly
   recommended to keep anything not directly needed in your PR away
-  from it to make reviewing easier.
+  from it to make reviewing easier. Adding refactoring (other than
+  refactoring that is asked for by an open issue) or style changes in
+  your first PR will make it more of a hassle to get it accepted.
 
 - If you are working on a GitHub issue, your feature branch's name
   should begin with the issue number, followed by an underscore,
@@ -190,7 +220,7 @@ Git
   will still be issues to be resolved before the branch can be merged
   into master. You can make a draft pull request if you want feedback
   but want to clearly state that your changes are not ready yet.
-  
+
 - Pull requests should try to be focused on a single thing so that
   reviewing them is easier. General refactoring should not be combined
   in the same PR as a new feature as overall refactoring causes a ton
@@ -224,3 +254,7 @@ Git
   make GitHub properly reflect the merge, follow the procedure
   outlined in the previous bullet point, then click the "Merge Pull
   Request" button on GitHub (or do a normal "git merge").
+
+- All team members are encouraged to review pull requests. However,
+  you shouldn't go and merge PRs if you haven't discussed it with the
+  programming team lead yet / it isn't approved by them yet.
