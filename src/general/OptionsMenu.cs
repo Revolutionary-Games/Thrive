@@ -107,6 +107,9 @@ public class OptionsMenu : Control
     [Export]
     public NodePath DefaultsConfirmationBoxPath;
 
+    [Export]
+    public NodePath ErrorAcceptBoxPath;
+
     private const float AUDIO_BAR_SCALE = 6f;
     private Button resetButton;
     private Button saveButton;
@@ -148,8 +151,9 @@ public class OptionsMenu : Control
     private SpinBox maxQuicksaves;
 
     // Confirmation Boxes
-    private ConfirmationDialog backConfirmationBox;
+    private WindowDialog backConfirmationBox;
     private ConfirmationDialog defaultsConfirmationBox;
+    private AcceptDialog errorAcceptBox;
 
     /*
       Misc
@@ -225,8 +229,9 @@ public class OptionsMenu : Control
         maxAutosaves = GetNode<SpinBox>(MaxAutoSavesPath);
         maxQuicksaves = GetNode<SpinBox>(MaxQuickSavesPath);
 
-        backConfirmationBox = GetNode<ConfirmationDialog>(BackConfirmationBoxPath);
+        backConfirmationBox = GetNode<WindowDialog>(BackConfirmationBoxPath);
         defaultsConfirmationBox = GetNode<ConfirmationDialog>(DefaultsConfirmationBoxPath);
+        errorAcceptBox = GetNode<AcceptDialog>(ErrorAcceptBoxPath);
 
         selectedOptionsTab = SelectedOptionsTab.Graphics;
 
@@ -499,7 +504,8 @@ public class OptionsMenu : Control
         // Save the new settings to the config file.
         if (!Settings.Save())
         {
-            GD.PrintErr("Failed to save new options menu settings.");
+            GD.PrintErr("Failed to save new options menu settings to configuration file.");
+            errorAcceptBox.PopupCenteredMinsize();
             return;
         }
 
@@ -516,15 +522,41 @@ public class OptionsMenu : Control
         defaultsConfirmationBox.PopupCenteredMinsize();
     }
 
-    private void BackConfirmSelected()
+    private void BackSaveSelected()
+    {
+        // Save the new settings to the config file.
+        if (!Settings.Save())
+        {
+            GD.PrintErr("Failed to save new options menu settings to configuration file.");
+            backConfirmationBox.Hide();
+            errorAcceptBox.PopupCenteredMinsize();
+
+            return;
+        }
+
+        // Copy over the new saved settings.
+        savedSettings = Settings.Instance.Clone();
+        backConfirmationBox.Hide();
+
+        CompareSettings();
+        EmitSignal(nameof(OnOptionsClosed));
+    }
+
+    private void BackDiscardSelected()
     {
         Settings.Instance.LoadFromObject(savedSettings);
         Settings.ApplyAll();
         ApplySettingsToControls(Settings.Instance);
 
-        CompareSettings();
+        backConfirmationBox.Hide();
 
+        CompareSettings();
         EmitSignal(nameof(OnOptionsClosed));
+    }
+
+    private void BackCancelSelected()
+    {
+        backConfirmationBox.Hide();
     }
 
     private void DefaultsConfirmSelected()
