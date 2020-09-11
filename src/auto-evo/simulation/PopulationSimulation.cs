@@ -197,6 +197,8 @@
             // Then update populations
             foreach (MicrobeSpecies currentSpecies in species)
             {
+                speciesEnergies[currentSpecies] += energyAvailableForPredation
+                    * GetPredationScore(currentSpecies) / totalPredationScore;
                 speciesEnergies[currentSpecies] -= energyAvailableForPredation / species.Count;
 
                 var newPopulation = (int)(speciesEnergies[currentSpecies]
