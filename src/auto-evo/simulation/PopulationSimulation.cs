@@ -129,20 +129,18 @@
             if (species.Count < 1)
                 return;
 
-            bool highSpecies = species.Count >= Constants.AUTO_EVO_HIGH_SPECIES_THRESHOLD;
-
             var biome = patch.Biome;
 
-            var sunlightInPatch = biome.Compounds[Sunlight].Dissolved * 1000;
+            var sunlightInPatch = biome.Compounds[Sunlight].Dissolved * 3000;
 
             var hydrogenSulfideInPatch = biome.Compounds[HydrogenSulfide].Density
-                * biome.Compounds[HydrogenSulfide].Amount * 100;
+                * biome.Compounds[HydrogenSulfide].Amount * 300;
 
             var glucoseInPatch = (biome.Compounds[Glucose].Density
                 * biome.Compounds[Glucose].Amount
-                + patch.GetTotalChunkCompoundAmount(Glucose)) * 100;
+                + patch.GetTotalChunkCompoundAmount(Glucose)) * 300;
 
-            var ironInPatch = patch.GetTotalChunkCompoundAmount(Iron) * 100;
+            var ironInPatch = patch.GetTotalChunkCompoundAmount(Iron) * 300;
 
             // TODO: this is where the proper auto-evo algorithm goes
 
@@ -199,8 +197,7 @@
             // Then update populations
             foreach (MicrobeSpecies currentSpecies in species)
             {
-                speciesEnergies[currentSpecies] += energyAvailableForPredation
-                    * GetPredationScore(currentSpecies) / totalPredationScore;
+                // speciesEnergies[currentSpecies] -= energyAvailableForPredation / species.Count;
 
                 var newPopulation = (int)(speciesEnergies[currentSpecies]
                     / Math.Pow(currentSpecies.Organelles.Count, 1.3f));
