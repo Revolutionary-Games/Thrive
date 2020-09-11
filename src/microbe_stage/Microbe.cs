@@ -789,21 +789,55 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         copyEntity.Compounds.ClearCompounds();
 
         var keys = new List<Compound>(Compounds.Compounds.Keys);
+        var reproductionCompounds = CalculateTotalCompounds();
 
-        // Split the compounds evenly between the two cells.
+        // Split the compounds between the two cells.
         foreach (var compound in keys)
         {
             var amount = Compounds.GetCompoundAmount(compound);
 
             if (amount > 0)
             {
-                Compounds.TakeCompound(compound, amount * 0.5f);
+                float divideAmount;
 
-                var didntFit = copyEntity.Compounds.AddCompound(compound, amount * 0.5f);
-
-                if (didntFit > 0)
+                // If the compound is needed for reproduction we give player and NPC microbes different
+                // amounts.
+                if (reproductionCompounds.TryGetValue(compound, out divideAmount))
                 {
-                    // TODO: handle the excess compound that didn't fit in the other cell
+                    // First handle the original cell.
+                    if (IsPlayerMicrobe)
+                    {
+                        // Player microbes only lose half of reproductive compounds.
+                        Compounds.TakeCompound(compound, amount * 0.5f);
+                    }
+                    else
+                    {
+                        // NPC cells may not keep more than 90% of the amount of compound required to divide,
+                        // so they may lose more than half.
+                        float amountToTake = Math.Max(amount * 0.5f, amount - (divideAmount * 0.9f));
+                        Compounds.TakeCompound(compound, amountToTake);
+                    }
+
+                    // Now handle the new cell.
+                    float amountToGive = Math.Min(amount * 0.5f, divideAmount * 0.9f);
+                    var didntFit = copyEntity.Compounds.AddCompound(compound, amountToGive);
+
+                    if (didntFit > 0)
+                    {
+                        // TODO: handle the excess compound that didn't fit in the other cell
+                    }
+                }
+                else
+                {
+                    // Other compounds just get split evenly.
+                    Compounds.TakeCompound(compound, amount * 0.5f);
+
+                    var didntFit = copyEntity.Compounds.AddCompound(compound, amount * 0.5f);
+
+                    if (didntFit > 0)
+                    {
+                        // TODO: handle the excess compound that didn't fit in the other cell
+                    }
                 }
             }
         }
