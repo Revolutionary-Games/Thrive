@@ -64,12 +64,15 @@ public class InProgressLoad
                 state = State.ReadingData;
                 LoadingScreen.Instance.Show("Loading Game", "Reading save data");
 
-                // Start suppressing loaded node deletion
-                TemporaryLoadedNodeDeleter.Instance.AddDeletionHold(Constants.DELETION_HOLD_LOAD);
+                // Let all suppressed deletions happen
+                TemporaryLoadedNodeDeleter.Instance.ReleaseAllHolds();
 
                 break;
             case State.ReadingData:
             {
+                // Start suppressing loaded node deletion
+                TemporaryLoadedNodeDeleter.Instance.AddDeletionHold(Constants.DELETION_HOLD_LOAD);
+
                 // TODO: do this in a background thread if possible
                 try
                 {
