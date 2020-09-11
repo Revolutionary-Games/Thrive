@@ -789,14 +789,45 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         copyEntity.Compounds.ClearCompounds();
 
         var keys = new List<Compound>(Compounds.Compounds.Keys);
+        var reproductionCompounds = copyEntity.CalculateTotalCompounds();
 
-        // Split the compounds evenly between the two cells.
+        // Split the compounds between the two cells.
         foreach (var compound in keys)
         {
             var amount = Compounds.GetCompoundAmount(compound);
 
-            if (amount > 0)
+            if (amount <= 0)
+                continue;
+
+            // If the compound is for reproduction we give player and NPC microbes different amounts.
+            if (reproductionCompounds.TryGetValue(compound, out float divideAmount))
             {
+                // The amount taken away from the parent cell depends on if it is a player or NPC. Player
+                // cells always have 50% of the compounds they divided with taken away.
+                float amountToTake = amount * 0.5f;
+
+                if (!IsPlayerMicrobe)
+                {
+                    // NPC parent cells have at least 50% taken away, or more if it would leave them
+                    // with more than 90% of the compound it would take to immediately divide again.
+                    amountToTake = Math.Max(amountToTake, amount - (divideAmount * 0.9f));
+                }
+
+                Compounds.TakeCompound(compound, amountToTake);
+
+                // Since the child cell is always an NPC they are given either 50% of the compound from the
+                // parent, or 90% of the amount required to immediately divide again, whichever is smaller.
+                float amountToGive = Math.Min(amount * 0.5f, divideAmount * 0.9f);
+                var didntFit = copyEntity.Compounds.AddCompound(compound, amountToGive);
+
+                if (didntFit > 0)
+                {
+                    // TODO: handle the excess compound that didn't fit in the other cell
+                }
+            }
+            else
+            {
+                // Non-reproductive compounds just always get split evenly to both cells.
                 Compounds.TakeCompound(compound, amount * 0.5f);
 
                 var didntFit = copyEntity.Compounds.AddCompound(compound, amount * 0.5f);
