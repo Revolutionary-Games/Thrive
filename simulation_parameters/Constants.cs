@@ -371,7 +371,7 @@ public static class Constants
     public const int AUTO_EVO_LOW_SPECIES_THRESHOLD = 3;
     public const int AUTO_EVO_LOW_SPECIES_BOOST = 500;
     public const int AUTO_EVO_HIGH_SPECIES_THRESHOLD = 11;
-    public const int AUTO_EVO_HIGH_SPECIES_PENALTY = 200;
+    public const int AUTO_EVO_HIGH_SPECIES_PENALTY = 500;
     public const int AUTO_EVO_RANDOM_POPULATION_CHANGE = 500;
 
     public const float GLUCOSE_REDUCTION_RATE = 0.8f;
