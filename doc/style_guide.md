@@ -62,8 +62,8 @@ Code style rules
 
 - All classes and their public and protected members should be
   documented by XML comments. If the function's purpose is clear from
-  the name and its documentation can be omitted. If there is a comment
-  on a single construct (class, method etc.) it must be an XML
+  the name, then its documentation can be omitted. If there is a
+  comment on a single construct (class, method etc.) it must be an XML
   comment.
 
 - Inline comments inside functions can and should be used to describe
