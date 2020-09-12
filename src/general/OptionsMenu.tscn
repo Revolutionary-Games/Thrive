@@ -58,6 +58,12 @@ MasterVolumePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Margin
 MasterMutedPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer/MasterMuted")
 MusicVolumePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer2/MusicVolume")
 MusicMutedPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer2/MusicMuted")
+AmbianceVolumePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer3/AmbianceVolume")
+AmbianceMutedPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer3/AmbianceMuted")
+SFXVolumePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer4/SFXVolume")
+SFXMutedPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer4/SFXMuted")
+GUIVolumePath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer5/GUIVolume")
+GUIMutedPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer5/GUIMuted")
 PerformanceTabPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance")
 CloudIntervalPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer/CloudInterval")
 CloudResolutionPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer2/CloudResolution")
@@ -390,17 +396,25 @@ size_flags_horizontal = 0
 custom_styles/hover_pressed = SubResource( 2 )
 text = "Mute"
 
-[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
 margin_top = 68.0
 margin_right = 517.0
-margin_bottom = 91.0
+margin_bottom = 72.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
+margin_top = 82.0
+margin_right = 517.0
+margin_bottom = 105.0
 text = "Music volume"
 align = 1
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
-margin_top = 101.0
+margin_top = 115.0
 margin_right = 517.0
-margin_bottom = 126.0
+margin_bottom = 140.0
 
 [node name="MusicVolume" type="HSlider" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer2"]
 margin_right = 435.0
@@ -416,6 +430,105 @@ margin_bottom = 25.0
 custom_styles/separator = SubResource( 5 )
 
 [node name="MusicMuted" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer2"]
+margin_left = 446.0
+margin_right = 517.0
+margin_bottom = 25.0
+size_flags_horizontal = 0
+custom_styles/hover_pressed = SubResource( 2 )
+text = "Mute"
+
+[node name="Label3" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
+margin_top = 150.0
+margin_right = 517.0
+margin_bottom = 173.0
+text = "Ambiance Volume"
+align = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
+margin_top = 183.0
+margin_right = 517.0
+margin_bottom = 208.0
+
+[node name="AmbianceVolume" type="HSlider" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer3"]
+margin_right = 435.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+value = 80.0
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer3"]
+margin_left = 439.0
+margin_right = 442.0
+margin_bottom = 25.0
+custom_styles/separator = SubResource( 5 )
+
+[node name="AmbianceMuted" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer3"]
+margin_left = 446.0
+margin_right = 517.0
+margin_bottom = 25.0
+size_flags_horizontal = 0
+custom_styles/hover_pressed = SubResource( 2 )
+text = "Mute"
+
+[node name="Label4" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
+margin_top = 218.0
+margin_right = 517.0
+margin_bottom = 241.0
+text = "SFX Volume"
+align = 1
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
+margin_top = 251.0
+margin_right = 517.0
+margin_bottom = 276.0
+
+[node name="SFXVolume" type="HSlider" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer4"]
+margin_right = 435.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+value = 80.0
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer4"]
+margin_left = 439.0
+margin_right = 442.0
+margin_bottom = 25.0
+custom_styles/separator = SubResource( 5 )
+
+[node name="SFXMuted" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer4"]
+margin_left = 446.0
+margin_right = 517.0
+margin_bottom = 25.0
+size_flags_horizontal = 0
+custom_styles/hover_pressed = SubResource( 2 )
+text = "Mute"
+
+[node name="Label5" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
+margin_top = 286.0
+margin_right = 517.0
+margin_bottom = 309.0
+text = "GUI Volume"
+align = 1
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
+margin_top = 319.0
+margin_right = 517.0
+margin_bottom = 344.0
+
+[node name="GUIVolume" type="HSlider" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer5"]
+margin_right = 435.0
+margin_bottom = 25.0
+size_flags_horizontal = 3
+size_flags_vertical = 1
+value = 80.0
+
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer5"]
+margin_left = 439.0
+margin_right = 442.0
+margin_bottom = 25.0
+custom_styles/separator = SubResource( 5 )
+
+[node name="GUIMuted" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer5"]
 margin_left = 446.0
 margin_right = 517.0
 margin_bottom = 25.0
@@ -818,6 +931,12 @@ dialog_text = "Error: Failed to save new settings to configuration file."
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer/MasterMuted" to="." method="OnMasterMutedToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer2/MusicVolume" to="." method="OnMusicVolumeChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer2/MusicMuted" to="." method="OnMusicMutedToggled"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer3/AmbianceVolume" to="." method="OnAmbianceVolumeChanged"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer3/AmbianceMuted" to="." method="OnAmbianceMutedToggled"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer4/SFXVolume" to="." method="OnSFXVolumeChanged"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer4/SFXMuted" to="." method="OnSFXMutedToggled"]
+[connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer5/GUIVolume" to="." method="OnGUIVolumeChanged"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer5/GUIMuted" to="." method="OnGUIMutedToggled"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer/CloudInterval" to="." method="OnCloudIntervalSelected"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer2/CloudResolution" to="." method="OnCloudResolutionSelected"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/Intro" to="." method="OnIntroToggled"]
