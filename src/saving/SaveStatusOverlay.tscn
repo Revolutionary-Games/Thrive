@@ -48,7 +48,7 @@ rect_min_size = Vector2( 650, 350 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 popup_exclusive = true
-window_title = "SAVE_STATUS_ERROR_TITLE"
+window_title = "SAVING_ERROR"
 resizable = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer2/ErrorPopup"]
@@ -100,6 +100,6 @@ margin_right = 634.0
 margin_bottom = 24.0
 size_flags_horizontal = 5
 size_flags_vertical = 9
-text = "SAVE_STATUS_COPY"
+text = "COPY_ERROR_TO_CLIPBOARD"
 [connection signal="popup_hide" from="CenterContainer2/ErrorPopup" to="." method="OnErrorDialogDismissed"]
 [connection signal="pressed" from="CenterContainer2/ErrorPopup/VBoxContainer/VBoxContainer2/CopyErrorButton" to="." method="OnCopyToClipboardPressed"]

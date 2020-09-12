@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
     using System.Text;
     using Godot;
 
@@ -174,14 +175,14 @@
                 builder.Append(PatchString(patch));
 
                 builder.Append(" ");
-                builder.Append(TranslationServer.Translate("RUNRESULT_POP"));
+                builder.Append(TranslationServer.Translate("POPULATION"));
                 builder.Append(" ");
                 builder.Append(Math.Max(population, 0));
 
                 if (previousPopulations != null)
                 {
                     builder.Append(" ");
-                    builder.Append(TranslationServer.Translate("RUNRESULT_PREVIOUS"));
+                    builder.Append(TranslationServer.Translate("PREVIOUS"));
                     builder.Append(" ");
                     builder.Append(previousPopulations.GetPatch(patch.ID).GetSpeciesPopulation(species));
                 }
@@ -197,7 +198,7 @@
                 if (entry.MutatedProperties != null)
                 {
                     builder.Append(" ");
-                    builder.Append(TranslationServer.Translate("RUNRESULT_HAS_MUTATION"));
+                    builder.Append(TranslationServer.Translate("RUNRESULT_HAS_A_MUTATION"));
 
                     if (!playerReadable)
                     {
@@ -212,24 +213,27 @@
                 if (entry.SpreadToPatches.Count > 0)
                 {
                     builder.Append(" ");
-                    builder.Append(TranslationServer.Translate("RUNRESULT_SPREAD_PATCHES"));
+                    builder.Append(TranslationServer.Translate("RUNRESULT_SPREAD_TO_PATCHES"));
 
                     foreach (var spreadEntry in entry.SpreadToPatches)
                     {
-                        builder.Append("  ");
-                        builder.Append(spreadEntry.To.Name);
-                        builder.Append(" ");
-                        builder.Append(playerReadable ?
-                            TranslationServer.Translate("RUNRESULT_BY_SENDING") :
-                            TranslationServer.Translate("RUNRESULT_POP_SHORT"));
-                        builder.Append(" ");
-                        builder.Append(spreadEntry.Population);
-                        builder.Append(" ");
-                        builder.Append(playerReadable ?
-                            TranslationServer.Translate("RUNRESULT_POP_FROM_PATCH") :
-                            TranslationServer.Translate("RUNRESULT_FROM"));
-                        builder.Append(" ");
-                        builder.Append(spreadEntry.From.Name);
+                        if (playerReadable)
+                        {
+                            builder.Append("  ");
+                            builder.Append(string.Format(CultureInfo.CurrentCulture,
+                                TranslationServer.Translate("RUNRESULT_BY_SENDING_POPULATION"),
+                                spreadEntry.To.Name, spreadEntry.Population, spreadEntry.From.Name));
+                        }
+                        else
+                        {
+                            builder.Append("  ");
+                            builder.Append(spreadEntry.To.Name);
+                            builder.Append(" pop: ");
+                            builder.Append(spreadEntry.Population);
+                            builder.Append(" from: ");
+                            builder.Append(spreadEntry.From.Name);
+                        }
+
                         builder.Append("\n");
                     }
                 }

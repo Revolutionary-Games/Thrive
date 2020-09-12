@@ -189,7 +189,7 @@ public class SaveManagerGUI : Control
     {
         deleteSelectedConfirmDialog.DialogText =
             string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("SAVE_DELETE_SEL_WARN"),
+                TranslationServer.Translate("DELETE_SELECTED_SAVE_WARNING"),
                 Selected.Count);
         deleteSelectedConfirmDialog.PopupCenteredMinsize();
     }
@@ -201,7 +201,7 @@ public class SaveManagerGUI : Control
 
         deleteOldConfirmDialog.DialogText =
             string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("SAVE_DELETE_OLD_WARN"),
+                TranslationServer.Translate("DELETE_ALL_OLD_SAVE_WARNING"),
                 autoSavesToDeleteCount, quickSavesToDeleteCount);
         deleteOldConfirmDialog.PopupCenteredMinsize();
     }

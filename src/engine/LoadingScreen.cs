@@ -31,7 +31,7 @@ public class LoadingScreen : Control
     private Label tipLabel;
     private Control spinner;
 
-    private string loadingMessage = TranslationServer.Translate("LOADING_LOADING");
+    private string loadingMessage = TranslationServer.Translate("LOADING");
     private string loadingDescription = string.Empty;
     private string tip = TranslationServer.Translate("LOADING_TIP");
 

@@ -493,7 +493,7 @@ __meta__ = {
 }
 
 [node name="Header" type="MarginContainer" parent="MicrobeHUD/LeftPanels/EnvironmentPanel/VBoxContainer"]
-margin_right = 257.0
+margin_right = 195.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 195, 35 )
 mouse_filter = 1
@@ -501,20 +501,20 @@ custom_constants/margin_left = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MicrobeHUD/LeftPanels/EnvironmentPanel/VBoxContainer/Header"]
 margin_left = 10.0
-margin_right = 257.0
+margin_right = 195.0
 margin_bottom = 35.0
 custom_constants/separation = 6
 
 [node name="Label" type="Label" parent="MicrobeHUD/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer"]
 margin_top = 6.0
-margin_right = 195.0
+margin_right = 128.0
 margin_bottom = 28.0
 custom_fonts/font = SubResource( 5 )
-text = "MICROBE_STAGE_ENV"
+text = "ENVIRONMENT"
 
 [node name="MarginContainer4" type="MarginContainer" parent="MicrobeHUD/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer"]
-margin_left = 201.0
-margin_right = 221.0
+margin_left = 134.0
+margin_right = 154.0
 margin_bottom = 35.0
 custom_constants/margin_top = 8
 custom_constants/margin_bottom = 7
@@ -538,8 +538,8 @@ enabled_focus_mode = 0
 group = SubResource( 9 )
 
 [node name="MarginContainer3" type="MarginContainer" parent="MicrobeHUD/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer"]
-margin_left = 227.0
-margin_right = 247.0
+margin_left = 160.0
+margin_right = 180.0
 margin_bottom = 35.0
 custom_constants/margin_top = 8
 custom_constants/margin_bottom = 7
@@ -563,7 +563,7 @@ group = SubResource( 9 )
 
 [node name="Body" type="MarginContainer" parent="MicrobeHUD/LeftPanels/EnvironmentPanel/VBoxContainer"]
 margin_top = 39.0
-margin_right = 257.0
+margin_right = 195.0
 margin_bottom = 224.0
 rect_min_size = Vector2( 195, 185 )
 custom_constants/margin_top = 5
@@ -576,7 +576,7 @@ __meta__ = {
 [node name="BarContainer" type="GridContainer" parent="MicrobeHUD/LeftPanels/EnvironmentPanel/VBoxContainer/Body"]
 margin_left = 22.0
 margin_top = 5.0
-margin_right = 257.0
+margin_right = 195.0
 margin_bottom = 175.0
 
 [node name="Oxygen" type="ProgressBar" parent="MicrobeHUD/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
@@ -611,7 +611,7 @@ margin_right = 38.0
 margin_bottom = 12.5
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = SubResource( 15 )
-text = "MICROBE_STAGE_ENV_OXY"
+text = "OXYGEN_FORMULA"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -668,7 +668,7 @@ margin_right = 46.0
 margin_bottom = 12.5
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = SubResource( 15 )
-text = "MICROBE_STAGE_ENV_CO2"
+text = "CARBON_DIOXIDE_FORMULA"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -725,7 +725,7 @@ margin_right = 49.0
 margin_bottom = 12.5
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = SubResource( 15 )
-text = "MICROBE_STAGE_ENV_N2"
+text = "DINITROGEN_FORMULA"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -779,7 +779,7 @@ margin_right = 60.0
 margin_bottom = 12.5
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = SubResource( 15 )
-text = "MICROBE_STAGE_ENV_TEMP"
+text = "TEMPERATURE_SHORT"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -833,7 +833,7 @@ margin_right = 66.0
 margin_bottom = 12.5
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = SubResource( 15 )
-text = "MICROBE_STAGE_ENV_LIGHT"
+text = "LIGHT"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -887,7 +887,7 @@ margin_right = 69.0
 margin_bottom = 12.5
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = SubResource( 15 )
-text = "MICROBE_STAGE_ENV_PRESS"
+text = "PRESSURE_SHORT"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -937,14 +937,14 @@ __meta__ = {
 }
 
 [node name="Header" type="MarginContainer" parent="MicrobeHUD/LeftPanels/CompoundsPanel/VBoxContainer"]
-margin_right = 368.0
+margin_right = 252.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 230, 40 )
 custom_constants/margin_left = 45
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MicrobeHUD/LeftPanels/CompoundsPanel/VBoxContainer/Header"]
 margin_left = 45.0
-margin_right = 368.0
+margin_right = 252.0
 margin_bottom = 40.0
 custom_constants/separation = 6
 __meta__ = {
@@ -953,15 +953,15 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="MicrobeHUD/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
 margin_top = 9.0
-margin_right = 271.0
+margin_right = 145.0
 margin_bottom = 31.0
 rect_min_size = Vector2( 145, 0 )
 custom_fonts/font = SubResource( 5 )
-text = "MICROBE_STAGE_COMPOUNDS"
+text = "COMPOUNDS"
 
 [node name="MarginContainer3" type="MarginContainer" parent="MicrobeHUD/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
-margin_left = 277.0
-margin_right = 297.0
+margin_left = 151.0
+margin_right = 171.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 20, 20 )
 custom_constants/margin_top = 10
@@ -986,8 +986,8 @@ enabled_focus_mode = 0
 group = SubResource( 18 )
 
 [node name="MarginContainer4" type="MarginContainer" parent="MicrobeHUD/LeftPanels/CompoundsPanel/VBoxContainer/Header/HBoxContainer"]
-margin_left = 303.0
-margin_right = 323.0
+margin_left = 177.0
+margin_right = 197.0
 margin_bottom = 40.0
 custom_constants/margin_top = 10
 custom_constants/margin_bottom = 10
@@ -1011,7 +1011,7 @@ group = SubResource( 18 )
 
 [node name="Body" type="MarginContainer" parent="MicrobeHUD/LeftPanels/CompoundsPanel/VBoxContainer"]
 margin_top = 44.0
-margin_right = 368.0
+margin_right = 252.0
 margin_bottom = 209.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 5
@@ -1062,7 +1062,7 @@ margin_right = 81.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = SubResource( 24 )
-text = "MICROBE_STAGE_COMPOUNDS_GLUCOSE"
+text = "GLUCOSE"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1114,7 +1114,7 @@ margin_right = 81.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = SubResource( 24 )
-text = "MICROBE_STAGE_COMPOUNDS_AMMONIA"
+text = "AMMONIA"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1166,7 +1166,7 @@ margin_right = 95.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = SubResource( 24 )
-text = "MICROBE_STAGE_COMPOUNDS_PHOSPHATE"
+text = "PHOSPHATE"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1218,7 +1218,7 @@ margin_right = 141.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = SubResource( 24 )
-text = "MICROBE_STAGE_COMPOUNDS_HS"
+text = "HYDROGEN_SULFIDE"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1270,7 +1270,7 @@ margin_right = 47.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = SubResource( 24 )
-text = "MICROBE_STAGE_COMPOUNDS_IRON"
+text = "IRON"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1293,7 +1293,7 @@ __meta__ = {
 
 [node name="AgentsPanel" type="PanelContainer" parent="MicrobeHUD/LeftPanels"]
 margin_top = 483.0
-margin_right = 271.0
+margin_right = 252.0
 margin_bottom = 572.0
 rect_min_size = Vector2( 252, 89 )
 size_flags_horizontal = 0
@@ -1304,14 +1304,14 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeHUD/LeftPanels/AgentsPanel"]
-margin_right = 271.0
+margin_right = 252.0
 margin_bottom = 89.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeHUD/LeftPanels/AgentsPanel/VBoxContainer"]
-margin_right = 271.0
+margin_right = 252.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 230, 35 )
 custom_constants/margin_left = 40
@@ -1319,14 +1319,14 @@ custom_constants/margin_left = 40
 [node name="Label" type="Label" parent="MicrobeHUD/LeftPanels/AgentsPanel/VBoxContainer/MarginContainer"]
 margin_left = 40.0
 margin_top = 6.0
-margin_right = 271.0
+margin_right = 252.0
 margin_bottom = 28.0
 custom_fonts/font = SubResource( 5 )
-text = "MICROBE_STAGE_AGENTS"
+text = "AGENTS"
 
 [node name="MarginContainer2" type="MarginContainer" parent="MicrobeHUD/LeftPanels/AgentsPanel/VBoxContainer"]
 margin_top = 39.0
-margin_right = 271.0
+margin_right = 252.0
 margin_bottom = 89.0
 rect_min_size = Vector2( 240, 50 )
 custom_constants/margin_right = 10
@@ -1340,7 +1340,7 @@ __meta__ = {
 [node name="BarContainer" type="GridContainer" parent="MicrobeHUD/LeftPanels/AgentsPanel/VBoxContainer/MarginContainer2"]
 margin_left = 22.0
 margin_top = 5.0
-margin_right = 261.0
+margin_right = 242.0
 margin_bottom = 45.0
 
 [node name="oxytoxy" type="ProgressBar" parent="MicrobeHUD/LeftPanels/AgentsPanel/VBoxContainer/MarginContainer2/BarContainer" groups=[
@@ -1374,7 +1374,7 @@ margin_right = 97.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 0, 25 )
 custom_fonts/font = SubResource( 32 )
-text = "MICROBE_STAGE_AGENTS_OXYTOXY"
+text = "OXYTOXY_NT"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1561,18 +1561,18 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="MicrobeHUD/BottomRight/PopulationData"]
-margin_right = 129.0
+margin_right = 130.0
 margin_bottom = 18.0
 custom_styles/normal = SubResource( 35 )
 custom_fonts/font = SubResource( 36 )
-text = "MICROBE_STAGE_POP"
+text = "POPULATION_CAPITAL"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Value" type="Label" parent="MicrobeHUD/BottomRight/PopulationData"]
-margin_left = 133.0
-margin_right = 137.0
+margin_left = 134.0
+margin_right = 138.0
 margin_bottom = 18.0
 custom_styles/normal = SubResource( 35 )
 custom_fonts/font = SubResource( 36 )
