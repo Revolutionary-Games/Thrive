@@ -36,6 +36,9 @@ through the [previous Godot
 versions](https://downloads.tuxfamily.org/godotengine/) to get the
 right version.
 
+Godot is self-contained, meaning that you just extract the downloaded
+archive and run the Godot executable in it.
+
 
 Git with LFS
 ------------
@@ -341,6 +344,13 @@ wiki page https://wiki.revolutionarygamesstudio.com/wiki/Git_LFS
 
 Optional downloads
 ------------------
+
+In addition to the following optional downloads you need to have Godot
+in your PATH for the scripts to find it. To do this create a link /
+rename the Godot editor executable to just `godot` or `godot.exe` if
+you are on Windows. Then you need to either add the folder where that
+executable is to your system PATH or move the executable (along the
+other Godot resources it needs) to a path that is already in PATH.
 
 ### Ruby
 
