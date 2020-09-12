@@ -56,7 +56,7 @@ public class NewSaveMenu : Control
         {
             // The chosen filename ({0}) already exists. Overwrite?
             overwriteConfirm.DialogText = string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("SAVE_FILE_EXISTS"),
+                TranslationServer.Translate("THE_CHOSEN_FILENAME_ALREADY_EXISTS"),
                 name);
             overwriteConfirm.PopupCentered();
         }

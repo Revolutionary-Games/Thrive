@@ -158,7 +158,7 @@ public class InProgressSave : IDisposable
             case State.Screenshot:
             {
                 save = createSaveData.Invoke(this);
-                SaveStatusOverlay.Instance.ShowMessage(TranslationServer.Translate("SAVE_SAVING"),
+                SaveStatusOverlay.Instance.ShowMessage(TranslationServer.Translate("SAVING"),
                     Mathf.Inf);
 
                 state = State.SaveData;
@@ -189,7 +189,7 @@ public class InProgressSave : IDisposable
                 else
                 {
                     SaveStatusOverlay.Instance.ShowMessage(TranslationServer.Translate("SAVE_FAILED"));
-                    SaveStatusOverlay.Instance.ShowError(TranslationServer.Translate("SAVE_ERROR"),
+                    SaveStatusOverlay.Instance.ShowError(TranslationServer.Translate("ERROR_SAVING"),
                         message, exception);
                 }
 

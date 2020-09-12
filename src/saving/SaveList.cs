@@ -151,7 +151,7 @@ public class SaveList : ScrollContainer
 
         // Deleting this save cannot be undone, are you sure you want to permanently delete {0}?
         deleteConfirmDialog.DialogText = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("SAVE_DELETE_WARN"),
+            TranslationServer.Translate("SAVE_DELETE_WARNING"),
             saveName);
         deleteConfirmDialog.PopupCenteredMinsize();
     }
@@ -170,7 +170,7 @@ public class SaveList : ScrollContainer
     {
         saveToBeLoaded = saveName;
 
-        loadConfirmDialog.DialogText = TranslationServer.Translate("SAVE_OLD_VERS_WARNING");
+        loadConfirmDialog.DialogText = TranslationServer.Translate("OLDER_VERSION_LOADING_WARNING");
         loadConfirmDialog.PopupCenteredMinsize();
     }
 
@@ -178,7 +178,7 @@ public class SaveList : ScrollContainer
     {
         saveToBeLoaded = saveName;
 
-        loadConfirmDialog.DialogText = TranslationServer.Translate("SAVE_NEW_VERS_WARNING");
+        loadConfirmDialog.DialogText = TranslationServer.Translate("NEWER_VERSION_LOADING_WARNING");
         loadConfirmDialog.PopupCenteredMinsize();
     }
 

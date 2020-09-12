@@ -116,13 +116,13 @@ public class AutoEvoRun
         get
         {
             if (Aborted)
-                return TranslationServer.Translate("AUTOEVO_ABORTED");
+                return TranslationServer.Translate("ABORTED");
 
             if (Finished)
-                return TranslationServer.Translate("AUTOEVO_FINISHED");
+                return TranslationServer.Translate("FINISHED");
 
             if (!Running)
-                return TranslationServer.Translate("AUTOEVO_NOT_RUNNING");
+                return TranslationServer.Translate("NOT_RUNNING");
 
             int total = totalSteps;
 
@@ -132,11 +132,11 @@ public class AutoEvoRun
 
                 // {0:F1}% done. {1:n0}/{2:n0} steps.
                 return string.Format(CultureInfo.CurrentCulture,
-                    TranslationServer.Translate("AUTOEVO_STEPS"),
+                    TranslationServer.Translate("AUTOEVO_STEPS_DONE"),
                     percentage, CompleteSteps, total);
             }
 
-            return TranslationServer.Translate("AUTOEVO_STARTING");
+            return TranslationServer.Translate("STARTING");
         }
     }
 
@@ -275,16 +275,9 @@ public class AutoEvoRun
 
         foreach (var entry in combinedExternalEffects)
         {
-            builder.Append(entry.Key.Item1.FormattedName);
-            builder.Append(" ");
-            builder.Append(TranslationServer.Translate("AUTOEVO_POPULATION_CHANGE"));
-            builder.Append(" ");
-            builder.Append(entry.Value);
-            builder.Append(" ");
-            builder.Append(TranslationServer.Translate("AUTOEVO_BECAUSE"));
-            builder.Append(" ");
-            builder.Append(entry.Key.Item2);
-            builder.Append("\n");
+            builder.Append(string.Format(CultureInfo.CurrentCulture,
+                TranslationServer.Translate("AUTOEVO_POPULATION_CHANGED"),
+                entry.Key.Item1.FormattedName, entry.Value, entry.Key.Item2));
         }
 
         return builder.ToString();

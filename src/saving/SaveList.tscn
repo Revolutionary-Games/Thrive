@@ -28,7 +28,7 @@ size_flags_vertical = 3
 visible = false
 margin_right = 1280.0
 margin_bottom = 23.0
-text = "SAVE_LIST_LOADING"
+text = "LOADING_DOT"
 align = 1
 
 [node name="ItemList" type="VBoxContainer" parent="VBoxContainer"]
@@ -41,7 +41,7 @@ margin_bottom = 75.0
 size_flags_horizontal = 5
 size_flags_vertical = 5
 popup_exclusive = true
-window_title = "SAVE_LIST_DEL_TITLE"
+window_title = "DELETE_THIS_SAVE"
 
 [node name="LoadConfirmDialog" type="ConfirmationDialog" parent="VBoxContainer"]
 margin_top = 4.0
@@ -50,6 +50,6 @@ margin_bottom = 75.0
 size_flags_horizontal = 5
 size_flags_vertical = 5
 popup_exclusive = true
-window_title = "SAVE_LIST_INC_TITLE"
+window_title = "LOAD_INCOMPATIBLE_SAVE"
 [connection signal="confirmed" from="VBoxContainer/DeleteConfirmDialog" to="." method="OnConfirmDelete"]
 [connection signal="confirmed" from="VBoxContainer/LoadConfirmDialog" to="." method="OnConfirmSaveLoad"]
