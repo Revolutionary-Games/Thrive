@@ -118,12 +118,6 @@ follow those instructions on how to get mono setup.
 
 For better experience make sure to install the Godot plugin for Rider.
 
-With that plugin you can run the game from Godot (once you have ran once
-from Godot editor so that it sets up things), using these toolbar buttons
-and options:
-
-<img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/rider_debugging_buttons.png" alt="rider debug toolbar">
-
 ### Visual Studio 2019
 
 On Windows you can use Visual Studio 2019 to work on Thrive. You can
@@ -170,17 +164,20 @@ have your own repository to work with. There is an in-depth guide
 for working with forks
 [here](https://gist.github.com/Chaser324/ce0505fbed06b947d962).
 
-Next, use git clone to copy your fork to your computer. If you're setting
-up Thrive just for testing or because you want to try in development
-features you don't need to fork the project, and can clone the main
-Thrive repository.
+Next, use `git clone` to copy your fork to your computer. If you're
+setting up Thrive just for testing or because you want to try in
+development features you don't need to fork the project, and can clone
+the main Thrive repository.
 
 <img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/terminal_git_clone.png" alt="termina running git clone">
 
 Terminal showing git clone command. If you don't see the line with
 "filtering content", then you don't have Git LFS working correctly.
+If you don't have Github ssh key setup, you'll want to use a HTTPS URL
+for cloning.
 
-If you use the "download as zip" option on Github, it won't work.
+If you use the "download as zip" option on Github, it won't work. This
+is because that option won't properly include the Git LFS files in it.
 
 Note: a path with spaces in it MAY NOT WORK, so to avoid issues you
 should clone to a folder like `~/projects` or `C:/projects`. Also, long
@@ -297,6 +294,11 @@ environment (and not the Godot editor) to see warnings and get
 highlighting of errors in the source code. However running the game
 from Visual Studio is a bit complicated.
 
+If the compile fails with a bunch of `Godot.something` or `Node` not
+found, undefined references, you need to compile the game from the
+Godot editor to make it setup the correct Godot assembly
+references. After that compiling from an external tool should work.
+
 From MonoDevelop you can use the plugin mentioned before, that adds a
 toolbar with a button to launch the game. To do that open `Thrive.sln`
 with MonoDevelop and in the new toolbar select the options `Thrive -
@@ -307,9 +309,16 @@ breakpoints set in MonoDevelop work.
 From Rider you can compile the game from the top right menu bar by
 selecting the `Player` target (with the Godot icon). That target
 should automatically appear once you install the Godot plugin
-(https://plugins.jetbrains.com/plugin/13882-godot-support). If it
-doesn't you should be able to manually add it with the configuration
-editor.
+(https://plugins.jetbrains.com/plugin/13882-godot-support).
+
+With that plugin you can run the game from Godot (once you have ran once
+from Godot editor so that it sets up things), using these toolbar buttons
+and options:
+
+<img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/rider_debugging_buttons.png" alt="rider debug toolbar">
+
+If it doesn't automatically appear you should be able to manually add it with the
+configuration editor.
 
 Done
 ----
@@ -442,6 +451,9 @@ check_formatting.rb` in order to automatically run all of the
 formatting tools. Make sure that that script doesn't report any errors
 before committing.
 
+When running the script like that it can take a long time to run. See
+the pre-commit hook section for how to speed things up.
+
 Pre-commit hook
 ---------------
 
@@ -461,6 +473,14 @@ emulate this by creating a file in the Thrive folder called
 files to check.
 
 ## Additional Tips
+
+### Troubleshooting (Windows)
+
+If Godot still can't build the full game after following the
+instructions, you should verify that it's using the proper toolset. Go
+to Editor > Editor Settings > Builds under Mono in the panel on the
+left. For VS2019, you should select MSBuild (VS Build Tools) for the
+build tool option, if it isn't already.
 
 ### Cleaning Godot
 
