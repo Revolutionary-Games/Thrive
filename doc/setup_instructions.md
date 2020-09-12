@@ -111,6 +111,16 @@ debugging experience is better than with MonoDevelop.
 Rider requires mono to be installed similarly to MonoDevelop, so
 follow those instructions on how to get mono setup.
 
+<img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/rider_godot_plugin.png" alt="rider godot plugin" width="600px">
+
+For better experience make sure to install the Godot plugin for Rider.
+
+With that plugin you can run the game from Godot (once you have ran once
+from Godot editor so that it sets up things), using these toolbar buttons
+and options:
+
+<img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/rider_debugging_buttons.png" alt="rider debug toolbar">
+
 ### Visual Studio 2019
 
 On Windows you can use Visual Studio 2019 to work on Thrive. You can
@@ -162,6 +172,13 @@ up Thrive just for testing or because you want to try in development
 features you don't need to fork the project, and can clone the main
 Thrive repository.
 
+<img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/terminal_git_clone.png" alt="termina running git clone">
+
+Terminal showing git clone command. If you don't see the line with
+"filtering content", then you don't have Git LFS working correctly.
+
+If you use the "download as zip" option on Github, it won't work.
+
 Note: a path with spaces in it MAY NOT WORK, so to avoid issues you
 should clone to a folder like `~/projects` or `C:/projects`. Also, long
 paths may cause issues on Windows. One additional potential problem is
@@ -186,26 +203,57 @@ Setup
 
 Now open your installed Godot with mono. It should open with a project
 manager window. From this window select the option to import a
-project. Use that option and input the path to the folder you cloned
-Thrive in and import the project.godot file.
+project.
 
-Now you should see Thrive on the list of projects, double click it to
-open it.
+<img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/godot_import_button.png" alt="godot import button" width="550px">
+
+Godot project manager with the import button highlighted. If you haven't
+used Godot before the list of projects is most likely blank, so please ignore
+the demo project in this screenshot.
+
+Use that option and input the path to the folder you cloned
+Thrive in and import the project.godot file. Like this:
+
+<img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/godot_project_import.png" alt="godot project import" width="550px">
+
+Clicking on "import & edit" will immediately open the project in Godot.
+So next time you open Godot you will see Thrive on the list of projects,
+double click it to open it.
+
+<img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/project_in_godot_pm.png" alt="godot project manager" width="550px">
+
+Thrive on the project list
 
 Now you should let the Godot editor sit for some time until it is done
 checking and importing all the assets. If the asset import fails it is
 probably because you didn't have Git LFS installed properly. If that
 happens delete the Thrive folder you cloned and go back to the Git LFS
 install step, after doing it again try cloning again.
+
+<img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/thrive_open_in_godot.png" alt="thrive in godot" width="720px">
+
+If everything went fine you should now see Godot editor looking like in this image.
+
 On the top toolbar, go to Editor -> Editor Settings.
+
+<img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/godot_editor_settings_location.png" alt="godot editor settings">
+
 Scroll down on the left window until you find the Mono section.
-Click on Editor. Set External Editor to your development environment. Click
-on Builds under Mono and set Build Tool to your compiler. If you have build errors,
+Click on Editor. Set External Editor to your development environment.
+
+<img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/godot_external_editor_settings.png" alt="godot external editor" width="550px">
+
+Here selected IDE is Rider.
+
+Click on Builds under Mono and set Build Tool to your compiler. If you have build errors,
 check if this is setup properly.
 
 On Linux it is required to use mono as the build tool as selected in
 Godot editor settings. The option to build with dotnet is creates
-broken releases.
+broken releases. Like this:
+
+<img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/godot_build_tool_option_linux.png" alt="godot linux build tool" width="550px">
+
 
 ### C# packages
 
