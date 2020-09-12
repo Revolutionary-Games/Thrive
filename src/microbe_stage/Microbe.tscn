@@ -14,6 +14,7 @@ render_priority = 1
 shader = ExtResource( 4 )
 shader_param/wigglyNess = 1.0
 shader_param/movementWigglyNess = 1.0
+shader_param/dissolveValue = null
 shader_param/healthFraction = 0.25
 shader_param/tint = Plane( 1, 1, 1, 1 )
 shader_param/albedoTexture = ExtResource( 2 )
@@ -45,12 +46,15 @@ MaterialToEdit = SubResource( 1 )
 
 [node name="EngulfAudio" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 6 )
+bus = "SFX"
 
 [node name="OtherAudio" type="AudioStreamPlayer3D" parent="."]
+bus = "SFX"
 
 [node name="MovementAudio" type="AudioStreamPlayer3D" parent="."]
 stream = ExtResource( 7 )
 autoplay = true
+bus = "SFX"
 
 [node name="EngulfDetector" type="Area" parent="."]
 input_ray_pickable = false
