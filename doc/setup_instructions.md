@@ -63,7 +63,7 @@ place.
 If you haven't used git before you can read a free online book to learn
 it here https://git-scm.com/book/en/v2 or if you prefer video learning
 these two are recommended https://www.youtube.com/watch?v=SWYqp7iY_Tc
-https://www.youtube.com/watch?v=HVsySz-h9r4 
+https://www.youtube.com/watch?v=HVsySz-h9r4
 
 
 A development environment
@@ -132,7 +132,7 @@ Note: Setting up Visual Studio Code with Linux is possible,
 however it is recommended to use MonoDevelop instead
 
 Visual Studio Code, not to be confused with Visual Studio,
-doesn't come with build tools, so you'll need to install 
+doesn't come with build tools, so you'll need to install
 the build tools for Visual Studio from here: https://visualstudio.microsoft.com/downloads/?q=build+tools
 During the installation process, make sure MSBuild tools is listed under
 the installation details.
@@ -266,7 +266,7 @@ command: `nuget restore` it should download the missing nuget
 packages. You may need to rerun this command when new package
 dependencies are added to Thrive. Note: if you use MonoDevelop it
 *might* automatically restore missing packages using nuget when
-compiling the game within MonoDevelop. 
+compiling the game within MonoDevelop.
 
 
 On Windows you should use Visual Studio to restore the packages. To do
@@ -337,7 +337,7 @@ you are not a team member. If that is needed for a PR please ask some
 team member to commit the assets for you.
 
 For information on committing to the LFS repository you can read this
-wiki page https://wiki.revolutionarygamesstudio.com/wiki/Git_LFS 
+wiki page https://wiki.revolutionarygamesstudio.com/wiki/Git_LFS
 
 Optional downloads
 ------------------
@@ -395,7 +395,7 @@ Linter
 
 Thrive uses automatic formatting of source code to keep style as
 consistent as possible. It is highly recommended you install
-this linter to check your code formatting before submitting a 
+this linter to check your code formatting before submitting a
 pull request.
 
 ## NodeJS
