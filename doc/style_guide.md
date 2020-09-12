@@ -127,7 +127,7 @@ Code style rules
 Godot usage
 -----------
 
-- Do not use margins to try to position elements, that's not good
+- Do not use Control margins to try to position elements, that's not good
   Godot usage. Use proper parent container and min size instead.
 
 - For spacing elements use either a spacer (that has a visual
