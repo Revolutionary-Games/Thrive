@@ -31,9 +31,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
     private CompoundCloudSystem cloudSystem;
 
+    private List<AudioStreamPlayer3D> otherAudioPlayers = new List<AudioStreamPlayer3D>();
+
     // Child components
     private AudioStreamPlayer3D engulfAudio;
-    private AudioStreamPlayer3D otherAudio;
     private AudioStreamPlayer3D movementAudio;
     private SphereShape engulfShape;
 
@@ -341,7 +342,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         Membrane = GetNode<Membrane>("Membrane");
         OrganelleParent = GetNode<Spatial>("OrganelleParent");
         engulfAudio = GetNode<AudioStreamPlayer3D>("EngulfAudio");
-        otherAudio = GetNode<AudioStreamPlayer3D>("OtherAudio");
         movementAudio = GetNode<AudioStreamPlayer3D>("MovementAudio");
 
         cellBurstEffectScene = GD.Load<PackedScene>("res://src/microbe_stage/particles/CellBurst.tscn");
@@ -533,6 +533,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         }
         else if (source == "chunk")
         {
+            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-toxin-damage.ogg");
+
             // Divide damage by physical resistance
             amount /= Species.MembraneType.PhysicalResistance;
         }
@@ -772,8 +774,22 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         // TODO: make these sound objects only be loaded once
         var sound = GD.Load<AudioStream>(effect);
 
-        otherAudio.Stream = sound;
-        otherAudio.Play();
+        // Find a player not in use or create a new one if none are available.
+        var player = otherAudioPlayers.Find(nextPlayer => !nextPlayer.Playing);
+
+        if (player == null)
+        {
+            player = new AudioStreamPlayer3D();
+            player.UnitDb = 50.0f;
+            player.MaxDistance = 100.0f;
+            player.Bus = "SFX";
+
+            AddChild(player);
+            otherAudioPlayers.Add(player);
+        }
+
+        player.Stream = sound;
+        player.Play();
     }
 
     /// <summary>
