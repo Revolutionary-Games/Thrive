@@ -1090,14 +1090,14 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     {
         GameWorld.AlterSpeciesPopulation(Species,
             Constants.CREATURE_SCAVENGE_POPULATION_GAIN,
-            TranslationServer.Translate("SUCCESSFUL_SCAVENGE"));
+            "SUCCESSFUL_SCAVENGE");
     }
 
     internal void SuccessfulKill()
     {
         GameWorld.AlterSpeciesPopulation(Species,
             Constants.CREATURE_KILL_POPULATION_GAIN,
-            TranslationServer.Translate("SUCCESSFUL_KILL"));
+            "SUCCESSFUL_KILL");
     }
 
     private void HandleCompoundAbsorbing(float delta)

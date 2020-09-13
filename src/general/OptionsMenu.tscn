@@ -77,7 +77,9 @@ MaxQuickSavesPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Margi
 BackConfirmationBoxPath = NodePath("CenterContainer/BackConfirm")
 DefaultsConfirmationBoxPath = NodePath("CenterContainer/DefaultsConfirm")
 ErrorAcceptBoxPath = NodePath("CenterContainer/ErrorAccept")
-LanguageSelectionPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer3/LanguagesButton")
+NeedRestartBoxPath = NodePath("CenterContainer/NeedRestart")
+LanguageSelectionPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer6/LanguagesButton")
+ResetLanguageButtonPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer6/ResetLanguageButton")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -240,7 +242,6 @@ margin_right = 579.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 25 )
 size_flags_vertical = 0
-text = "Disabled"
 items = [ "Disabled", null, false, 0, null, "2x", null, false, 1, null, "4x", null, false, 2, null, "8x", null, false, 3, null, "16x", null, false, 4, null ]
 selected = 0
 
@@ -315,7 +316,6 @@ margin_left = 379.0
 margin_right = 579.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 25 )
-text = "None"
 items = [ "None", null, false, 0, null, "Protanope (Red-Green)", null, false, 1, null, "Tritanope (Blue-Yellow)", null, false, 2, null ]
 selected = 0
 
@@ -362,38 +362,39 @@ anchor_left = -0.00344642
 anchor_top = 0.00156849
 anchor_right = 0.996554
 anchor_bottom = 1.00157
+margin_top = -5.96046e-08
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
-margin_right = 733.0
+margin_right = 579.0
 margin_bottom = 23.0
 text = "MASTER_VOLUME"
 align = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
 margin_top = 33.0
-margin_right = 733.0
+margin_right = 579.0
 margin_bottom = 58.0
 
 [node name="MasterVolume" type="HSlider" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer"]
-margin_right = 435.0
+margin_right = 493.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 value = 100.0
 
 [node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer"]
-margin_left = 439.0
-margin_right = 442.0
+margin_left = 497.0
+margin_right = 500.0
 margin_bottom = 25.0
 custom_styles/separator = SubResource( 5 )
 
 [node name="MasterMuted" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer"]
-margin_left = 477.0
-margin_right = 733.0
+margin_left = 504.0
+margin_right = 579.0
 margin_bottom = 25.0
 size_flags_horizontal = 0
 custom_styles/hover_pressed = SubResource( 2 )
@@ -401,7 +402,7 @@ text = "MUTE"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
 margin_top = 68.0
-margin_right = 517.0
+margin_right = 579.0
 margin_bottom = 72.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -409,152 +410,171 @@ __meta__ = {
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
 margin_top = 82.0
-margin_right = 517.0
+margin_right = 579.0
 margin_bottom = 105.0
 text = "MUSIC_VOLUME"
 align = 1
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
 margin_top = 115.0
-margin_right = 517.0
+margin_right = 579.0
 margin_bottom = 140.0
 
 [node name="MusicVolume" type="HSlider" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer2"]
-margin_right = 435.0
+margin_right = 493.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 value = 80.0
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer2"]
-margin_left = 439.0
-margin_right = 442.0
+margin_left = 497.0
+margin_right = 500.0
 margin_bottom = 25.0
 custom_styles/separator = SubResource( 5 )
 
 [node name="MusicMuted" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer2"]
-margin_left = 477.0
-margin_right = 733.0
+margin_left = 504.0
+margin_right = 579.0
 margin_bottom = 25.0
 size_flags_horizontal = 0
 custom_styles/hover_pressed = SubResource( 2 )
 text = "MUTE"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
-margin_top = 136.0
-margin_right = 733.0
-margin_bottom = 159.0
-
-[node name="Label3" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer3"]
-margin_right = 267.0
-margin_bottom = 23.0
-text = "LANGUAGE"
-align = 1
-
-[node name="LanguagesButton" type="OptionButton" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer3"]
-margin_left = 271.0
-margin_right = 733.0
-margin_bottom = 23.0
-size_flags_horizontal = 3
-
 [node name="Label3" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
 margin_top = 150.0
-margin_right = 517.0
+margin_right = 579.0
 margin_bottom = 173.0
-text = "Ambiance Volume"
+text = "AMBIANCE_VOLUME"
 align = 1
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
 margin_top = 183.0
-margin_right = 517.0
+margin_right = 579.0
 margin_bottom = 208.0
 
 [node name="AmbianceVolume" type="HSlider" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer3"]
-margin_right = 435.0
+margin_right = 493.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 value = 80.0
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer3"]
-margin_left = 439.0
-margin_right = 442.0
+margin_left = 497.0
+margin_right = 500.0
 margin_bottom = 25.0
 custom_styles/separator = SubResource( 5 )
 
 [node name="AmbianceMuted" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer3"]
-margin_left = 446.0
-margin_right = 517.0
+margin_left = 504.0
+margin_right = 579.0
 margin_bottom = 25.0
 size_flags_horizontal = 0
 custom_styles/hover_pressed = SubResource( 2 )
-text = "Mute"
+text = "MUTE"
 
 [node name="Label4" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
 margin_top = 218.0
-margin_right = 517.0
+margin_right = 579.0
 margin_bottom = 241.0
-text = "SFX Volume"
+text = "SFX_VOLUME"
 align = 1
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
 margin_top = 251.0
-margin_right = 517.0
+margin_right = 579.0
 margin_bottom = 276.0
 
 [node name="SFXVolume" type="HSlider" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer4"]
-margin_right = 435.0
+margin_right = 493.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 value = 80.0
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer4"]
-margin_left = 439.0
-margin_right = 442.0
+margin_left = 497.0
+margin_right = 500.0
 margin_bottom = 25.0
 custom_styles/separator = SubResource( 5 )
 
 [node name="SFXMuted" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer4"]
-margin_left = 446.0
-margin_right = 517.0
+margin_left = 504.0
+margin_right = 579.0
 margin_bottom = 25.0
 size_flags_horizontal = 0
 custom_styles/hover_pressed = SubResource( 2 )
-text = "Mute"
+text = "MUTE"
 
 [node name="Label5" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
 margin_top = 286.0
-margin_right = 517.0
+margin_right = 579.0
 margin_bottom = 309.0
-text = "GUI Volume"
+text = "GUI_VOLUME"
 align = 1
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
 margin_top = 319.0
-margin_right = 517.0
+margin_right = 579.0
 margin_bottom = 344.0
 
 [node name="GUIVolume" type="HSlider" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer5"]
-margin_right = 435.0
+margin_right = 493.0
 margin_bottom = 25.0
 size_flags_horizontal = 3
 size_flags_vertical = 1
 value = 80.0
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer5"]
-margin_left = 439.0
-margin_right = 442.0
+margin_left = 497.0
+margin_right = 500.0
 margin_bottom = 25.0
 custom_styles/separator = SubResource( 5 )
 
 [node name="GUIMuted" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer5"]
-margin_left = 446.0
-margin_right = 517.0
+margin_left = 504.0
+margin_right = 579.0
 margin_bottom = 25.0
 size_flags_horizontal = 0
 custom_styles/hover_pressed = SubResource( 2 )
-text = "Mute"
+text = "MUTE"
+
+[node name="HSeparator2" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
+margin_top = 354.0
+margin_right = 579.0
+margin_bottom = 358.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer"]
+margin_top = 368.0
+margin_right = 579.0
+margin_bottom = 391.0
+
+[node name="Label3" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer6"]
+margin_right = 101.0
+margin_bottom = 23.0
+text = "LANGUAGE"
+align = 1
+
+[node name="LanguagesButton" type="OptionButton" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer6"]
+margin_left = 105.0
+margin_right = 579.0
+margin_bottom = 23.0
+size_flags_horizontal = 3
+
+[node name="ResetLanguageButton" type="Button" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer6"]
+visible = false
+margin_left = 479.0
+margin_right = 579.0
+margin_bottom = 35.0
+rect_min_size = Vector2( 100, 35 )
+text = "RESET"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Performance" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer"]
 visible = false
@@ -611,7 +631,6 @@ margin_right = 733.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 25 )
 size_flags_vertical = 0
-text = "40ms"
 items = [ "0ms", null, false, 0, null, "20ms", null, false, 1, null, "40ms", null, false, 2, null, "100ms", null, false, 3, null, "250ms", null, false, 4, null ]
 selected = 2
 
@@ -653,7 +672,6 @@ margin_bottom = 25.0
 rect_min_size = Vector2( 200, 25 )
 size_flags_vertical = 0
 disabled = true
-text = "2"
 items = [ "1", null, false, 0, null, "2", null, false, 1, null, "4", null, false, 2, null ]
 selected = 1
 
@@ -935,6 +953,15 @@ margin_bottom = 395.0
 popup_exclusive = true
 window_title = "ERROR"
 dialog_text = "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
+
+[node name="NeedRestart" type="AcceptDialog" parent="CenterContainer"]
+margin_left = 437.0
+margin_top = 324.0
+margin_right = 842.0
+margin_bottom = 395.0
+popup_exclusive = true
+window_title = "RESTART_REQUIRED"
+dialog_text = "RESTART_REQUIRED_TEXT"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/GraphicsButton" to="." method="SetSettingsTab" binds= [ "Graphics" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/SoundButton" to="." method="SetSettingsTab" binds= [ "Sound" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/PerformanceButton" to="." method="SetSettingsTab" binds= [ "Performance" ]]
@@ -949,13 +976,14 @@ dialog_text = "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer/MasterMuted" to="." method="OnMasterMutedToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer2/MusicVolume" to="." method="OnMusicVolumeChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer2/MusicMuted" to="." method="OnMusicMutedToggled"]
-[connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer3/LanguagesButton" to="." method="OnLanguageSettingSelected"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer3/AmbianceVolume" to="." method="OnAmbianceVolumeChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer3/AmbianceMuted" to="." method="OnAmbianceMutedToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer4/SFXVolume" to="." method="OnSFXVolumeChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer4/SFXMuted" to="." method="OnSFXMutedToggled"]
 [connection signal="value_changed" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer5/GUIVolume" to="." method="OnGUIVolumeChanged"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer5/GUIMuted" to="." method="OnGUIMutedToggled"]
+[connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer6/LanguagesButton" to="." method="OnLanguageSettingSelected"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer6/ResetLanguageButton" to="." method="OnResetLanguagePressed"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer/CloudInterval" to="." method="OnCloudIntervalSelected"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer2/CloudResolution" to="." method="OnCloudResolutionSelected"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/Intro" to="." method="OnIntroToggled"]

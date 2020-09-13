@@ -28,6 +28,7 @@ margin_left = 640.0
 margin_top = 108.0
 margin_right = 640.0
 margin_bottom = 131.0
+text = "Saving status goes here..."
 
 [node name="CenterContainer2" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -81,11 +82,13 @@ size_flags_vertical = 3
 [node name="ExtraErrorDescription" type="Label" parent="CenterContainer2/ErrorPopup/VBoxContainer/ScrollContainer/VBoxContainer"]
 margin_right = 634.0
 margin_bottom = 23.0
+text = "Extra description goes here"
 
 [node name="Exception" type="Label" parent="CenterContainer2/ErrorPopup/VBoxContainer/ScrollContainer/VBoxContainer"]
 margin_top = 27.0
 margin_right = 634.0
 margin_bottom = 50.0
+text = "Exception info goes here"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer2/ErrorPopup/VBoxContainer"]
 margin_top = 278.0

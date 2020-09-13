@@ -12,6 +12,9 @@ public class Settings
     /// </summary>
     private static readonly Settings SingletonInstance = InitializeGlobalSettings();
 
+    [JsonProperty]
+    private string selectedLanguage = null;
+
     static Settings()
     {
     }
@@ -172,7 +175,15 @@ public class Settings
 
     public int CloudSimulationHeight => Constants.CLOUD_Y_EXTENT / CloudResolution;
 
-    public string SelectedLanguage { get; set; } = null;
+    /// <summary>
+    /// Property with backing field used to return the default locale for this computer if nothing has been set
+    /// </summary>
+    [JsonIgnore]
+    public string SelectedLanguage
+    {
+        get => selectedLanguage ?? OS.GetLocale();
+        set => selectedLanguage = value;
+    }
 
     public static bool operator ==(Settings lhs, Settings rhs)
     {
@@ -216,7 +227,7 @@ public class Settings
             }
         }
 
-        return true;
+        return selectedLanguage == obj.selectedLanguage;
     }
 
     public override int GetHashCode()
@@ -356,6 +367,11 @@ public class Settings
         CultureInfo.CurrentUICulture = cultureInfo;
     }
 
+    public bool IsSelectedLanguageNull()
+    {
+        return selectedLanguage == null;
+    }
+
     /// <summary>
     ///   Loads, initializes and returns the global settings object.
     /// </summary>
@@ -408,5 +424,7 @@ public class Settings
 
             property.SetValue(this, property.GetValue(settings));
         }
+
+        selectedLanguage = settings.selectedLanguage;
     }
 }
