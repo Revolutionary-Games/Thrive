@@ -16,6 +16,7 @@ public class GUICommon : Node
         instance = this;
 
         AudioSource = new AudioStreamPlayer();
+        AudioSource.Bus = "GUI";
         tween = new Tween();
 
         AddChild(AudioSource);

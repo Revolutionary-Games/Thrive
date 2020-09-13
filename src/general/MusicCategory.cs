@@ -90,6 +90,8 @@ public class TrackList
 
     public Order TrackOrder { get; set; } = Order.Random;
 
+    public string TrackBus { get; set; } = "Music";
+
     public List<Track> Tracks { get; set; }
 
     [JsonIgnore]
