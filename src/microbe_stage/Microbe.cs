@@ -31,11 +31,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
     private CompoundCloudSystem cloudSystem;
 
-    private List<AudioStreamPlayer3D> otherAudioPlayers = new List<AudioStreamPlayer3D>();
-
     // Child components
     private AudioStreamPlayer3D engulfAudio;
     private AudioStreamPlayer3D movementAudio;
+    private List<AudioStreamPlayer3D> otherAudioPlayers = new List<AudioStreamPlayer3D>();
     private SphereShape engulfShape;
 
     /// <summary>
@@ -779,6 +778,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
         if (player == null)
         {
+            // If we hit the player limit just return and ignore the sound.
+            if (otherAudioPlayers.Count >= 10)
+                return;
+
             player = new AudioStreamPlayer3D();
             player.UnitDb = 50.0f;
             player.MaxDistance = 100.0f;
