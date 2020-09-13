@@ -56,6 +56,9 @@ public class MainMenu : Node
         {
             OnIntroEnded();
         }
+
+        // Let all suppressed deletions happen (if we came back directly from the editor that was loaded from a save)
+        TemporaryLoadedNodeDeleter.Instance.ReleaseAllHolds();
     }
 
     public void StartMusic()

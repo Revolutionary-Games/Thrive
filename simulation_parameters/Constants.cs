@@ -98,6 +98,11 @@ public static class Constants
     public const int INITIAL_SPLIT_POPULATION_MAX = 2000;
 
     /// <summary>
+    ///   Max number of concurrent audio players that may be spawned per entity.
+    /// </summary>
+    public const int MAX_CONCURRENT_SOUNDS_PER_ENTITY = 10;
+
+    /// <summary>
     ///   Controls with how much force agents are fired
     /// </summary>
     public const float AGENT_EMISSION_IMPULSE_STRENGTH = 20.0f;

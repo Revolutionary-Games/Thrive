@@ -191,7 +191,7 @@ public class Jukebox : Node
         return audioPlayers[index];
     }
 
-    private void PlayTrack(AudioPlayer player, TrackList.Track track, float fromPosition = 0)
+    private void PlayTrack(AudioPlayer player, TrackList.Track track, string trackBus, float fromPosition = 0)
     {
         if (player.CurrentTrack != track.ResourcePath)
         {
@@ -199,6 +199,7 @@ public class Jukebox : Node
 
             player.Player.Stream = stream;
             player.CurrentTrack = track.ResourcePath;
+            player.Bus = trackBus;
 
             player.Player.Play(fromPosition);
 
@@ -345,7 +346,7 @@ public class Jukebox : Node
                     // Resume track (but only one per list)
                     if (track.WasPlaying)
                     {
-                        PlayTrack(GetNextPlayer(nextPlayerToUse++), track, track.PreviousPlayedPosition);
+                        PlayTrack(GetNextPlayer(nextPlayerToUse++), track, list.TrackBus, track.PreviousPlayedPosition);
                         break;
                     }
                 }
@@ -399,7 +400,7 @@ public class Jukebox : Node
         {
             list.LastPlayedIndex = (list.LastPlayedIndex + 1) % list.Tracks.Count;
 
-            PlayTrack(getPlayer(playerToUse), list.Tracks[list.LastPlayedIndex]);
+            PlayTrack(getPlayer(playerToUse), list.Tracks[list.LastPlayedIndex], list.TrackBus);
         }
         else
         {
@@ -414,7 +415,7 @@ public class Jukebox : Node
             }
             while (nextIndex == list.LastPlayedIndex && list.Tracks.Count > 1);
 
-            PlayTrack(getPlayer(playerToUse), list.Tracks[nextIndex]);
+            PlayTrack(getPlayer(playerToUse), list.Tracks[nextIndex], list.TrackBus);
             list.LastPlayedIndex = nextIndex;
         }
     }
@@ -469,6 +470,12 @@ public class Jukebox : Node
         }
 
         public bool Playing => Player.Playing;
+
+        public string Bus
+        {
+            get => Player.Bus;
+            set => Player.Bus = value;
+        }
 
         public void Stop()
         {

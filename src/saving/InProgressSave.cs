@@ -168,7 +168,7 @@ public class InProgressSave : IDisposable
             {
                 save.Name = saveNameTask.Result;
 
-                GD.Print("Creating a save with name:", save.Name);
+                GD.Print("Creating a save with name: ", save.Name);
                 performSave.Invoke(this, save);
                 state = State.Finished;
                 break;
