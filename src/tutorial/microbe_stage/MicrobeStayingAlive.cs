@@ -9,7 +9,7 @@ namespace Tutorial
     {
         public override string ClosedByName { get; } = "MicrobeStayingAlive";
 
-        public override void ApplyGUIState(TutorialGUI gui)
+        public override void ApplyGUIState(MicrobeTutorialGUI gui)
         {
             gui.StayingAliveVisible = ShownCurrently;
         }

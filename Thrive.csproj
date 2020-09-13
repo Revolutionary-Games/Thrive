@@ -231,6 +231,7 @@
     <Compile Include="src\saving\serializers\ThriveTypeConverter.cs" />
     <Compile Include="src\saving\TemporaryLoadedNodeDeleter.cs" />
     <Compile Include="src\general\VersionUtils.cs" />
+    <Compile Include="src\tutorial\ITutorialGUI.cs" />
     <Compile Include="src\tutorial\ITutorialInput.cs" />
     <Compile Include="src\tutorial\microbe_stage\GlucoseCollecting.cs" />
     <Compile Include="src\tutorial\microbe_stage\MicrobeMovement.cs" />
@@ -240,7 +241,8 @@
     <Compile Include="src\tutorial\microbe_stage\MicrobeStayingAlive.cs" />
     <Compile Include="src\tutorial\TutorialEventArgs.cs" />
     <Compile Include="src\tutorial\TutorialEventType.cs" />
-    <Compile Include="src\tutorial\TutorialGUI.cs" />
+    <Compile Include="src\tutorial\microbe_stage\MicrobeTutorialGUI.cs" />
+    <Compile Include="src\tutorial\TutorialHelper.cs" />
     <Compile Include="src\tutorial\TutorialPhase.cs" />
     <Compile Include="src\tutorial\TutorialState.cs" />
   </ItemGroup>

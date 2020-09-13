@@ -25,7 +25,7 @@ public class MicrobeStage : Node, ILoadableGameState
 
     private DirectionalLight worldLight;
 
-    private TutorialGUI tutorialGUI;
+    private MicrobeTutorialGUI tutorialGUI;
     private GuidanceLine guidanceLine;
     private Vector3? guidancePosition;
 
@@ -139,7 +139,7 @@ public class MicrobeStage : Node, ILoadableGameState
     {
         world = GetNode<Node>("World");
         HUD = GetNode<MicrobeHUD>("MicrobeHUD");
-        tutorialGUI = GetNode<TutorialGUI>("TutorialGUI");
+        tutorialGUI = GetNode<MicrobeTutorialGUI>("TutorialGUI");
         rootOfDynamicallySpawned = GetNode<Node>("World/DynamicallySpawned");
         spawner = new SpawnSystem(rootOfDynamicallySpawned);
         Camera = world.GetNode<MicrobeCamera>("PrimaryCamera");

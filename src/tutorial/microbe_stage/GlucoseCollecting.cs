@@ -22,7 +22,7 @@ namespace Tutorial
 
         public override string ClosedByName { get; } = "GlucoseCollecting";
 
-        public override void ApplyGUIState(TutorialGUI gui)
+        public override void ApplyGUIState(MicrobeTutorialGUI gui)
         {
             gui.GlucoseTutorialVisible = ShownCurrently;
         }

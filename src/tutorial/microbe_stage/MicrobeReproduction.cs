@@ -9,7 +9,7 @@ namespace Tutorial
     {
         public override string ClosedByName { get; } = "MicrobeReproduction";
 
-        public override void ApplyGUIState(TutorialGUI gui)
+        public override void ApplyGUIState(MicrobeTutorialGUI gui)
         {
             gui.ReproductionTutorialVisible = ShownCurrently;
         }

@@ -61,11 +61,14 @@ public abstract class TutorialPhase
     [JsonIgnore]
     public bool WantsPaused => Pauses && ShownCurrently;
 
-    /// <summary>
-    ///   Sends this state to the GUI
-    /// </summary>
-    /// <param name="gui">Target GUI instance</param>
-    public abstract void ApplyGUIState(TutorialGUI gui);
+    // GUI state applying functions, there is one per the type of tutorial GUI
+    // By default when a tutorial receives the call to apply states for a GUI it doesn't handle, it will be hidden
+    // if visible
+
+    public virtual void ApplyGUIState(MicrobeTutorialGUI gui)
+    {
+        DefaultGUIStateHandle();
+    }
 
     /// <summary>
     ///   Checks (and handles) tutorial events that this tutorial reacts to
@@ -119,4 +122,10 @@ public abstract class TutorialPhase
     ///   This is for subclasses to add custom process behaviour
     /// </summary>
     protected virtual void OnProcess(TutorialState overallState, float delta) { }
+
+    private void DefaultGUIStateHandle()
+    {
+        if (ShownCurrently)
+            Hide();
+    }
 }
