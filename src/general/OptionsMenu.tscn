@@ -17,6 +17,7 @@ expand_margin_right = 3.0
 
 [sub_resource type="DynamicFont" id=3]
 size = 14
+use_filter = true
 font_data = ExtResource( 3 )
 
 [sub_resource type="StyleBoxEmpty" id=4]
@@ -168,30 +169,30 @@ __meta__ = {
 }
 
 [node name="Vsync" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer"]
-margin_right = 90.0
-margin_bottom = 25.0
+margin_right = 82.0
+margin_bottom = 22.0
 size_flags_horizontal = 0
 custom_styles/hover_pressed = SubResource( 2 )
 text = "Vsync"
 
 [node name="Fullscreen" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer"]
-margin_top = 35.0
-margin_right = 139.0
-margin_bottom = 60.0
+margin_top = 32.0
+margin_right = 129.0
+margin_bottom = 54.0
 size_flags_horizontal = 0
 custom_styles/hover_pressed = SubResource( 2 )
 text = "FullScreen"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer"]
 self_modulate = Color( 1, 1, 1, 0 )
-margin_top = 70.0
+margin_top = 64.0
 margin_right = 507.0
-margin_bottom = 74.0
+margin_bottom = 68.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer"]
-margin_top = 84.0
+margin_top = 78.0
 margin_right = 507.0
-margin_bottom = 126.0
+margin_bottom = 120.0
 size_flags_horizontal = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer"]
@@ -229,9 +230,9 @@ items = [ "Disabled", null, false, 0, null, "2x", null, false, 1, null, "4x", nu
 selected = 0
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer"]
-margin_top = 136.0
+margin_top = 130.0
 margin_right = 507.0
-margin_bottom = 159.0
+margin_bottom = 153.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer4"]
 margin_right = 112.0
@@ -252,9 +253,9 @@ margin_bottom = 23.0
 text = "auto"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer"]
-margin_top = 169.0
+margin_top = 163.0
 margin_right = 507.0
-margin_bottom = 192.0
+margin_bottom = 186.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer3"]
 margin_right = 85.0
@@ -275,9 +276,9 @@ margin_bottom = 23.0
 text = "400"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer"]
-margin_top = 202.0
+margin_top = 196.0
 margin_right = 507.0
-margin_bottom = 227.0
+margin_bottom = 221.0
 size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer2"]
@@ -304,27 +305,26 @@ items = [ "None", null, false, 0, null, "Protanope (Red-Green)", null, false, 1,
 selected = 0
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer"]
-margin_top = 237.0
+margin_top = 231.0
 margin_right = 507.0
-margin_bottom = 262.0
+margin_bottom = 254.0
 size_flags_horizontal = 3
 
 [node name="ChromaticToggle" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer5"]
 margin_right = 16.0
-margin_bottom = 25.0
+margin_bottom = 23.0
 pressed = true
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer5"]
 margin_left = 20.0
-margin_top = 1.0
 margin_right = 235.0
-margin_bottom = 24.0
+margin_bottom = 23.0
 text = "Chromatic Aberration:"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer5"]
 margin_left = 239.0
 margin_right = 303.0
-margin_bottom = 25.0
+margin_bottom = 23.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 4 )
 
@@ -697,6 +697,8 @@ dialog_text = "Are you sure you want to reset ALL settings to default values?"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/SoundButton" to="." method="SetSettingsTab" binds= [ "Sound" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/PerformanceButton" to="." method="SetSettingsTab" binds= [ "Performance" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/MiscButton" to="." method="SetSettingsTab" binds= [ "Miscellaneous" ]]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/Vsync" to="." method="OnVSyncToggled"]
+[connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/Fullscreen" to="." method="OnFullScreenToggled"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer/MSAAResolution" to="." method="OnMSAAResolutionSelected"]
 [connection signal="item_selected" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer2/ColourblindSetting" to="." method="OnColourblindSettingSelected"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer/HBoxContainer5/ChromaticToggle" to="." method="OnChromaticAberrationToggled"]
