@@ -605,6 +605,7 @@ public class MicrobeEditor : Node, ILoadableGameState
                     new Hex(0, 0), 0));
                 gui.UpdateMembraneButtons(Membrane.InternalName);
                 gui.UpdateSpeed(CalculateSpeed());
+                gui.UpdateHitpoints(CalculateHitpoints());
             },
             undo =>
             {
@@ -613,6 +614,7 @@ public class MicrobeEditor : Node, ILoadableGameState
                 Membrane = oldMembrane;
                 gui.UpdateMembraneButtons(Membrane.InternalName);
                 gui.UpdateSpeed(CalculateSpeed());
+                gui.UpdateHitpoints(CalculateHitpoints());
 
                 foreach (var organelle in oldEditedMicrobeOrganelles)
                 {
@@ -811,6 +813,14 @@ public class MicrobeEditor : Node, ILoadableGameState
         float finalSpeed = (baseMovementForce + organelleMovementForce) / microbeMass;
 
         return finalSpeed;
+    }
+
+    public float CalculateHitpoints()
+    {
+        var maxHitpoints = Membrane.Hitpoints +
+            (Rigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER);
+
+        return maxHitpoints;
     }
 
     /// <summary>
@@ -1033,6 +1043,7 @@ public class MicrobeEditor : Node, ILoadableGameState
 
         gui.SetSpeciesInfo(NewName, Membrane, Colour, Rigidity);
         gui.UpdateGeneration(species.Generation);
+        gui.UpdateHitpoints(CalculateHitpoints());
     }
 
     private void CreateMutatedSpeciesCopy(Species species)
@@ -1562,6 +1573,7 @@ public class MicrobeEditor : Node, ILoadableGameState
         Membrane = membrane;
         gui.UpdateMembraneButtons(Membrane.InternalName);
         gui.UpdateSpeed(CalculateSpeed());
+        gui.UpdateHitpoints(CalculateHitpoints());
         CalculateEnergyBalanceWithOrganellesAndMembraneType(
             editedMicrobeOrganelles.Organelles, Membrane, targetPatch);
     }
@@ -1573,6 +1585,7 @@ public class MicrobeEditor : Node, ILoadableGameState
         GD.Print("Changing membrane back to '", Membrane.InternalName, "'");
         gui.UpdateMembraneButtons(Membrane.InternalName);
         gui.UpdateSpeed(CalculateSpeed());
+        gui.UpdateHitpoints(CalculateHitpoints());
         CalculateEnergyBalanceWithOrganellesAndMembraneType(
             editedMicrobeOrganelles.Organelles, Membrane, targetPatch);
     }

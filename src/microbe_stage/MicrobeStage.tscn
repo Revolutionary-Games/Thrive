@@ -1,4 +1,4 @@
-[gd_scene load_steps=115 format=2]
+[gd_scene load_steps=116 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -57,6 +57,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/CarbonDioxide.png" type="Texture" id=55]
 [ext_resource path="res://assets/textures/gui/bevel/Nitrogen.png" type="Texture" id=56]
 [ext_resource path="res://assets/textures/gui/bevel/OxytoxyNT.png" type="Texture" id=57]
+[ext_resource path="res://assets/fonts/Lato-Regular.ttf" type="DynamicFontData" id=58]
 [ext_resource path="res://assets/textures/gui/bevel/ATP.png" type="Texture" id=60]
 [ext_resource path="res://assets/textures/gui/bevel/Hitpoints.png" type="Texture" id=61]
 [ext_resource path="res://assets/textures/gui/bevel/dataValueBackground.png" type="Texture" id=62]
@@ -83,7 +84,7 @@ expand_margin_right = 10.0
 [sub_resource type="DynamicFont" id=2]
 size = 14
 use_filter = true
-font_data = ExtResource( 12 )
+font_data = ExtResource( 58 )
 
 [sub_resource type="Theme" id=3]
 default_font = SubResource( 2 )

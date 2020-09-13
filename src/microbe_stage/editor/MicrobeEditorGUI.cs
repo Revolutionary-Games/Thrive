@@ -16,16 +16,34 @@ public class MicrobeEditorGUI : Node
     public NodePath MenuPath;
 
     [Export]
+    public NodePath ReportTabButtonPath;
+
+    [Export]
+    public NodePath PatchMapButtonPath;
+
+    [Export]
+    public NodePath CellEditorButtonPath;
+
+    [Export]
+    public NodePath StructureTabButtonPath;
+
+    [Export]
+    public NodePath AppearanceTabButtonPath;
+
+    [Export]
     public NodePath StructureTabPath;
 
     [Export]
-    public NodePath MembraneTabPath;
+    public NodePath ApperanceTabPath;
 
     [Export]
     public NodePath SizeLabelPath;
 
     [Export]
     public NodePath SpeedLabelPath;
+
+    [Export]
+    public NodePath HpLabelPath;
 
     [Export]
     public NodePath GenerationLabelPath;
@@ -139,28 +157,7 @@ public class MicrobeEditorGUI : Node
     public NodePath PatchIronPath;
 
     [Export]
-    public NodePath SpeciesListPath;
-
-    [Export]
-    public NodePath PhysicalConditionsButtonPath;
-
-    [Export]
-    public NodePath PhysicalConditionsBoxPath;
-
-    [Export]
-    public NodePath AtmosphericConditionsButtonPath;
-
-    [Export]
-    public NodePath AtmosphericConditionsBoxPath;
-
-    [Export]
-    public NodePath CompoundsBoxButtonPath;
-
-    [Export]
-    public NodePath CompoundsBoxPath;
-
-    [Export]
-    public NodePath SpeciesListButtonPath;
+    public NodePath SpeciesCollapsibleBoxPath;
 
     [Export]
     public NodePath MoveToPatchButtonPath;
@@ -232,35 +229,55 @@ public class MicrobeEditorGUI : Node
     private Array itemTooltipElements;
 
     private PauseMenu menu;
+
+    // Editor tab selector buttons
+    private Button reportTabButton;
+    private Button patchMapButton;
+    private Button cellEditorButton;
+
+    // Selection menu tab selector buttons
+    private Button structureTabButton;
+    private Button appearanceTabButton;
+
     private PanelContainer structureTab;
-    private PanelContainer membraneTab;
+    private PanelContainer appearanceTab;
+
     private Label sizeLabel;
     private Label speedLabel;
+    private Label hpLabel;
     private Label generationLabel;
+
     private Label mutationPointsLabel;
     private ProgressBar mutationPointsBar;
     private ProgressBar mutationPointsSubtractBar;
-    private LineEdit speciesNameEdit;
+
+    private Slider rigiditySlider;
     private ColorPicker membraneColorPicker;
-    private TextureButton newCellButton;
+
     private TextureButton undoButton;
     private TextureButton redoButton;
+    private TextureButton newCellButton;
+    private LineEdit speciesNameEdit;
+
     private Button finishButton;
 
     // ReSharper disable once NotAccessedField.Local
     private TextureButton symmetryButton;
     private TextureRect symmetryIcon;
+
     private Label atpBalanceLabel;
     private SegmentedBar atpProductionBar;
     private SegmentedBar atpConsumptionBar;
+
     private Label glucoseReductionLabel;
     private Label autoEvoLabel;
     private Label externalEffectsLabel;
+
     private PatchMapDrawer mapDrawer;
     private Control patchNothingSelected;
     private Control patchDetails;
-    private Label patchName;
     private Control patchPlayerHere;
+    private Label patchName;
     private Label patchBiome;
     private Label patchDepth;
     private Label patchTemperature;
@@ -274,15 +291,9 @@ public class MicrobeEditorGUI : Node
     private Label patchGlucose;
     private Label patchPhosphate;
     private Label patchIron;
-    private VBoxContainer speciesList;
-    private Control physicalConditionsButton;
-    private Control physicalConditionsBox;
-    private Control atmosphericConditionsButton;
-    private Control atmosphericConditionsBox;
-    private Control compoundsButton;
-    private Control compoundsBox;
-    private Control speciesListButton;
+    private CollapsibleList speciesListBox;
     private Button moveToPatchButton;
+
     private TextureRect patchTemperatureSituation;
     private TextureRect patchLightSituation;
     private TextureRect patchHydrogenSulfideSituation;
@@ -290,18 +301,26 @@ public class MicrobeEditorGUI : Node
     private TextureRect patchIronSituation;
     private TextureRect patchAmmoniaSituation;
     private TextureRect patchPhosphateSituation;
-    private Slider rigiditySlider;
 
-    private bool inEditorTab;
+    private EditorTab selectedEditorTab = EditorTab.Report;
+    private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
     private MicrobeEditor.MicrobeSymmetry symmetry = MicrobeEditor.MicrobeSymmetry.None;
 
-    // For toggling purposes
-    private bool physicalConditionsBoxIsHidden;
-    private bool atmosphericConditionsBoxIsHidden;
-    private bool compoundsBoxIsHidden;
-    private bool speciesListIsHidden;
+    private Control currentShownTooltip;
 
-    private Control currentTooltip;
+    private enum EditorTab
+    {
+        Report,
+        PatchMap,
+        CellEditor
+    }
+
+    private enum SelectionMenuTab
+    {
+        Structure,
+        Appearance,
+        Behaviour
+    }
 
     public override void _Ready()
     {
@@ -309,28 +328,39 @@ public class MicrobeEditorGUI : Node
         membraneSelectionElements = GetTree().GetNodesInGroup("MembraneSelectionElement");
         itemTooltipElements = GetTree().GetNodesInGroup("ItemTooltip");
 
-        menu = GetNode<PauseMenu>(MenuPath);
+        reportTabButton = GetNode<Button>(ReportTabButtonPath);
+        patchMapButton = GetNode<Button>(PatchMapButtonPath);
+        cellEditorButton = GetNode<Button>(CellEditorButtonPath);
+
         structureTab = GetNode<PanelContainer>(StructureTabPath);
-        membraneTab = GetNode<PanelContainer>(MembraneTabPath);
-        menu = GetNode<PauseMenu>(MenuPath);
-        structureTab = GetNode<PanelContainer>(StructureTabPath);
-        membraneTab = GetNode<PanelContainer>(MembraneTabPath);
+        structureTabButton = GetNode<Button>(StructureTabButtonPath);
+
+        appearanceTab = GetNode<PanelContainer>(ApperanceTabPath);
+        appearanceTabButton = GetNode<Button>(AppearanceTabButtonPath);
+
         sizeLabel = GetNode<Label>(SizeLabelPath);
         speedLabel = GetNode<Label>(SpeedLabelPath);
+        hpLabel = GetNode<Label>(HpLabelPath);
         generationLabel = GetNode<Label>(GenerationLabelPath);
+
         mutationPointsLabel = GetNode<Label>(MutationPointsLabelPath);
         mutationPointsBar = GetNode<ProgressBar>(MutationPointsBarPath);
         mutationPointsSubtractBar = GetNode<ProgressBar>(MutationPointsSubtractBarPath);
-        speciesNameEdit = GetNode<LineEdit>(SpeciesNameEditPath);
+
+        rigiditySlider = GetNode<Slider>(RigiditySliderPath);
         membraneColorPicker = GetNode<ColorPicker>(MembraneColorPickerPath);
-        newCellButton = GetNode<TextureButton>(NewCellButtonPath);
+
         undoButton = GetNode<TextureButton>(UndoButtonPath);
         redoButton = GetNode<TextureButton>(RedoButtonPath);
         symmetryButton = GetNode<TextureButton>(SymmetryButtonPath);
+        newCellButton = GetNode<TextureButton>(NewCellButtonPath);
+        speciesNameEdit = GetNode<LineEdit>(SpeciesNameEditPath);
         finishButton = GetNode<Button>(FinishButtonPath);
+
         atpBalanceLabel = GetNode<Label>(ATPBalanceLabelPath);
         atpProductionBar = GetNode<SegmentedBar>(ATPProductionBarPath);
         atpConsumptionBar = GetNode<SegmentedBar>(ATPConsumptionBarPath);
+
         glucoseReductionLabel = GetNode<Label>(GlucoseReductionLabelPath);
         autoEvoLabel = GetNode<Label>(AutoEvoLabelPath);
         externalEffectsLabel = GetNode<Label>(ExternalEffectsLabelPath);
@@ -352,16 +382,10 @@ public class MicrobeEditorGUI : Node
         patchGlucose = GetNode<Label>(PatchGlucosePath);
         patchPhosphate = GetNode<Label>(PatchPhosphatePath);
         patchIron = GetNode<Label>(PatchIronPath);
-        speciesList = GetNode<VBoxContainer>(SpeciesListPath);
-        physicalConditionsBox = GetNode<Control>(PhysicalConditionsBoxPath);
-        atmosphericConditionsBox = GetNode<Control>(AtmosphericConditionsBoxPath);
-        compoundsBox = GetNode<Control>(CompoundsBoxPath);
+        speciesListBox = GetNode<CollapsibleList>(SpeciesCollapsibleBoxPath);
         moveToPatchButton = GetNode<Button>(MoveToPatchButtonPath);
-        physicalConditionsButton = GetNode<Control>(PhysicalConditionsButtonPath);
-        atmosphericConditionsButton = GetNode<Control>(AtmosphericConditionsButtonPath);
-        compoundsButton = GetNode<Control>(CompoundsBoxButtonPath);
-        speciesListButton = GetNode<Control>(SpeciesListButtonPath);
         symmetryIcon = GetNode<TextureRect>(SymmetryIconPath);
+
         patchTemperatureSituation = GetNode<TextureRect>(PatchTemperatureSituationPath);
         patchLightSituation = GetNode<TextureRect>(PatchLightSituationPath);
         patchHydrogenSulfideSituation = GetNode<TextureRect>(PatchHydrogenSulfideSituationPath);
@@ -369,7 +393,8 @@ public class MicrobeEditorGUI : Node
         patchIronSituation = GetNode<TextureRect>(PatchIronSituationPath);
         patchAmmoniaSituation = GetNode<TextureRect>(PatchAmmoniaSituationPath);
         patchPhosphateSituation = GetNode<TextureRect>(PatchPhosphateSituationPath);
-        rigiditySlider = GetNode<Slider>(RigiditySliderPath);
+
+        menu = GetNode<PauseMenu>(MenuPath);
 
         mapDrawer.OnSelectedPatchChanged = drawer => { UpdateShownPatchDetails(); };
 
@@ -419,16 +444,19 @@ public class MicrobeEditorGUI : Node
             mutationPointsSubtractBar.SelfModulate = new Color(0.72f, 0.72f, 0.72f);
         }
 
-        if (currentTooltip != null)
+        // Updates the tooltip position to follow the cursor
+        if (currentShownTooltip != null)
         {
             var cursorPos = GetViewport().GetMousePosition();
-            var screenSize = OS.WindowSize;
+            var screenSize = GetViewport().GetVisibleRect().Size;
 
-            var tooltipPos = new Vector2(
-                Mathf.Clamp(cursorPos.x, 0, screenSize.x - currentTooltip.RectSize.x - 20) + 20,
-                Mathf.Clamp(cursorPos.y, 0, screenSize.y - currentTooltip.RectSize.y - 20) + 20);
+            // Clamp position so tooltips won't go offscreen
+            // TODO: Properly offset the position from the cursor a bit
+            var adjustedPosition = new Vector2(
+                Mathf.Clamp(cursorPos.x, 0, screenSize.x - currentShownTooltip.RectSize.x),
+                Mathf.Clamp(cursorPos.y, 0, screenSize.y - currentShownTooltip.RectSize.y));
 
-            currentTooltip.RectPosition = tooltipPos;
+            currentShownTooltip.RectPosition = adjustedPosition;
         }
     }
 
@@ -473,6 +501,11 @@ public class MicrobeEditorGUI : Node
     public void UpdateSpeed(float speed)
     {
         speedLabel.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", speed);
+    }
+
+    public void UpdateHitpoints(float hp)
+    {
+        hpLabel.Text = hp.ToString(CultureInfo.CurrentCulture);
     }
 
     public void UpdateEnergyBalance(EnergyBalanceInfo energyBalance)
@@ -576,7 +609,7 @@ public class MicrobeEditorGUI : Node
     /// </summary>
     internal void OnMouseExit()
     {
-        editor.ShowHover = inEditorTab;
+        editor.ShowHover = selectedEditorTab == EditorTab.CellEditor;
     }
 
     /// <summary>
@@ -591,7 +624,7 @@ public class MicrobeEditorGUI : Node
             if (tooltip.Name == itemName)
             {
                 tooltip.Show();
-                currentTooltip = tooltip;
+                currentShownTooltip = tooltip;
             }
         }
     }
@@ -601,7 +634,7 @@ public class MicrobeEditorGUI : Node
         foreach (PanelContainer tooltip in itemTooltipElements)
         {
             tooltip.Hide();
-            currentTooltip = null;
+            currentShownTooltip = null;
         }
     }
 
@@ -620,6 +653,8 @@ public class MicrobeEditorGUI : Node
         if (freebuilding)
         {
             newCellButton.Disabled = false;
+
+            mutationPointsLabel.Text = "Freebuilding";
         }
         else
         {
@@ -845,6 +880,11 @@ public class MicrobeEditorGUI : Node
 
     private void SetEditorTab(string tab)
     {
+        var selection = (EditorTab)Enum.Parse(typeof(EditorTab), tab);
+
+        if (selection == selectedEditorTab)
+            return;
+
         GUICommon.Instance.PlayButtonPressSound();
 
         // Hide all
@@ -856,189 +896,67 @@ public class MicrobeEditorGUI : Node
         patchMap.Hide();
         cellEditor.Hide();
 
-        inEditorTab = false;
-
         // Show selected
-        if (tab == "report")
+        switch (selection)
         {
-            report.Show();
+            case EditorTab.Report:
+            {
+                report.Show();
+                reportTabButton.Pressed = true;
+                break;
+            }
+            case EditorTab.PatchMap:
+            {
+                patchMap.Show();
+                patchMapButton.Pressed = true;
+                break;
+            }
+            case EditorTab.CellEditor:
+            {
+                cellEditor.Show();
+                cellEditorButton.Pressed = true;
+                break;
+            }
+            default:
+                throw new Exception("Invalid editor tab");
         }
-        else if (tab == "patch")
-        {
-            patchMap.Show();
-        }
-        else if (tab == "editor")
-        {
-            cellEditor.Show();
-            inEditorTab = true;
-        }
-        else
-        {
-            GD.PrintErr("Invalid tab");
-        }
+
+        selectedEditorTab = selection;
     }
 
-    private void GoToPatchTab()
+    private void SetSelectionMenuTab(string tab)
     {
-        var button = GetNode<Button>("LeftTopBar/HBoxContainer/PatchMapButton");
-        button.Pressed = true;
-        SetEditorTab("patch");
-    }
+        var selection = (SelectionMenuTab)Enum.Parse(typeof(SelectionMenuTab), tab);
 
-    private void GoToEditorTab()
-    {
-        var button = GetNode<Button>("LeftTopBar/HBoxContainer/CellEditorButton");
-        button.Pressed = true;
-        SetEditorTab("editor");
-    }
+        if (selection == selectedSelectionMenuTab)
+            return;
 
-    private void SetCellTab(string tab)
-    {
         GUICommon.Instance.PlayButtonPressSound();
 
         // Hide all
         structureTab.Hide();
-        membraneTab.Hide();
+        appearanceTab.Hide();
 
         // Show selected
-        if (tab == "structure")
+        switch (selection)
         {
-            structureTab.Show();
+            case SelectionMenuTab.Structure:
+            {
+                structureTab.Show();
+                structureTabButton.Pressed = true;
+                break;
+            }
+            case SelectionMenuTab.Appearance:
+            {
+                appearanceTab.Show();
+                appearanceTabButton.Pressed = true;
+                break;
+            }
+            default:
+                throw new Exception("Invalid selection menu tab");
         }
-        else if (tab == "membrane")
-        {
-            membraneTab.Show();
-        }
-        else
-        {
-            GD.PrintErr("Invalid tab");
-        }
-    }
 
-    private void ToggleConditionsTab(string tab)
-    {
-        var tween = patchDetails.GetNode<Tween>("Tween");
-
-        if (tab == "physical")
-        {
-            var minusButton = physicalConditionsButton.GetNode<TextureButton>("minusButton");
-            var plusButton = physicalConditionsButton.GetNode<TextureButton>("plusButton");
-
-            var clip = physicalConditionsBox.GetParent<MarginContainer>();
-
-            if (physicalConditionsBoxIsHidden)
-            {
-                tween.InterpolateProperty(clip, "custom_constants/margin_top", null, 20, 0.2f,
-                    Tween.TransitionType.Sine, Tween.EaseType.Out);
-                tween.Start();
-
-                minusButton.Show();
-                plusButton.Hide();
-
-                physicalConditionsBoxIsHidden = false;
-            }
-            else
-            {
-                tween.InterpolateProperty(clip, "custom_constants/margin_top", 20, -clip.RectSize.y, 0.2f,
-                    Tween.TransitionType.Sine, Tween.EaseType.Out);
-                tween.Start();
-
-                minusButton.Hide();
-                plusButton.Show();
-
-                physicalConditionsBoxIsHidden = true;
-            }
-        }
-        else if (tab == "atmospheric")
-        {
-            var minusButton = atmosphericConditionsButton.GetNode<TextureButton>("minusButton");
-            var plusButton = atmosphericConditionsButton.GetNode<TextureButton>("plusButton");
-
-            var clip = atmosphericConditionsBox.GetParent<MarginContainer>();
-
-            if (atmosphericConditionsBoxIsHidden)
-            {
-                tween.InterpolateProperty(clip, "custom_constants/margin_top", null, 20, 0.2f,
-                    Tween.TransitionType.Sine, Tween.EaseType.Out);
-                tween.Start();
-
-                minusButton.Show();
-                plusButton.Hide();
-
-                atmosphericConditionsBoxIsHidden = false;
-            }
-            else
-            {
-                tween.InterpolateProperty(clip, "custom_constants/margin_top", 20, -clip.RectSize.y, 0.2f,
-                    Tween.TransitionType.Sine, Tween.EaseType.Out);
-                tween.Start();
-
-                minusButton.Hide();
-                plusButton.Show();
-
-                atmosphericConditionsBoxIsHidden = true;
-            }
-        }
-        else if (tab == "compounds")
-        {
-            var minusButton = compoundsButton.GetNode<TextureButton>("minusButton");
-            var plusButton = compoundsButton.GetNode<TextureButton>("plusButton");
-
-            var clip = compoundsBox.GetParent<MarginContainer>();
-
-            if (compoundsBoxIsHidden)
-            {
-                tween.InterpolateProperty(clip, "custom_constants/margin_top", null, 15, 0.2f,
-                    Tween.TransitionType.Sine, Tween.EaseType.Out);
-                tween.Start();
-
-                minusButton.Show();
-                plusButton.Hide();
-
-                compoundsBoxIsHidden = false;
-            }
-            else
-            {
-                tween.InterpolateProperty(clip, "custom_constants/margin_top", 15, -clip.RectSize.y, 0.2f,
-                    Tween.TransitionType.Sine, Tween.EaseType.Out);
-                tween.Start();
-
-                minusButton.Hide();
-                plusButton.Show();
-
-                compoundsBoxIsHidden = true;
-            }
-        }
-        else if (tab == "species")
-        {
-            var minusButton = speciesListButton.GetNode<TextureButton>("minusButton");
-            var plusButton = speciesListButton.GetNode<TextureButton>("plusButton");
-
-            var clip = speciesList.GetParent<MarginContainer>();
-
-            if (speciesListIsHidden)
-            {
-                tween.InterpolateProperty(clip, "custom_constants/margin_top", -speciesList.RectSize.y, 20, 0.2f,
-                    Tween.TransitionType.Sine, Tween.EaseType.Out);
-                tween.Start();
-
-                minusButton.Show();
-                plusButton.Hide();
-
-                speciesListIsHidden = false;
-            }
-            else
-            {
-                tween.InterpolateProperty(clip, "custom_constants/margin_top", 20, -speciesList.RectSize.y, 0.2f,
-                    Tween.TransitionType.Sine, Tween.EaseType.Out);
-                tween.Start();
-
-                minusButton.Hide();
-                plusButton.Show();
-
-                speciesListIsHidden = true;
-            }
-        }
+        selectedSelectionMenuTab = selection;
     }
 
     private void MenuButtonPressed()
@@ -1382,10 +1300,10 @@ public class MicrobeEditorGUI : Node
         // Atmospheric gasses
         patchTemperature.Text = patch.Biome.AverageTemperature + " °C";
         patchPressure.Text = "20 bar";
-        patchLight.Text = (patch.Biome.Compounds[sunlight].Dissolved * 100) + "% lux";
+        patchLight.Text = (patch.Biome.Compounds[sunlight].Dissolved * 100) + " lux";
         patchOxygen.Text = (patch.Biome.Compounds[oxygen].Dissolved * 100) + "%";
-        patchNitrogen.Text = (patch.Biome.Compounds[nitrogen].Dissolved * 100) + "% ppm";
-        patchCO2.Text = (patch.Biome.Compounds[carbondioxide].Dissolved * 100) + "% ppm";
+        patchNitrogen.Text = (patch.Biome.Compounds[nitrogen].Dissolved * 100) + " ppm";
+        patchCO2.Text = (patch.Biome.Compounds[carbondioxide].Dissolved * 100) + " ppm";
 
         // Compounds
         patchHydrogenSulfide.Text = Math.Round(patch.Biome.Compounds[hydrogensulfide].Density *
@@ -1407,13 +1325,7 @@ public class MicrobeEditorGUI : Node
         patchIron.Text = GetPatchChunkTotalCompoundAmount(patch, iron) + "%";
 
         // Refresh species list
-        if (speciesList.GetChildCount() > 0)
-        {
-            foreach (Node child in speciesList.GetChildren())
-            {
-                child.QueueFree();
-            }
-        }
+        speciesListBox.ClearItems();
 
         foreach (var species in patch.SpeciesInPatch.Keys)
         {
@@ -1421,17 +1333,7 @@ public class MicrobeEditorGUI : Node
             speciesLabel.SizeFlagsHorizontal = (int)Control.SizeFlags.ExpandFill;
             speciesLabel.Autowrap = true;
             speciesLabel.Text = species.FormattedName + " with population: " + patch.GetSpeciesPopulation(species);
-            speciesList.AddChild(speciesLabel);
-
-            // Yes, apparently this has to be done so that the rect size is updated immediately
-            speciesList.RectSize = speciesList.RectSize;
-
-            if (speciesListIsHidden)
-            {
-                // Adjust the clip box's height of species list
-                var clip = speciesList.GetParent<MarginContainer>();
-                clip.AddConstantOverride("margin_top", -(int)speciesList.RectSize.y);
-            }
+            speciesListBox.AddItem(speciesLabel);
         }
 
         // Enable move to patch button if this is a valid move
@@ -1455,8 +1357,8 @@ public class MicrobeEditorGUI : Node
     }
 
     /// <summary>
-    ///   "Searches" an organelle button by hiding the ones that
-    ///   doesn't include the input substring in the organelle's name
+    ///   "Searches" an organelle selection button by hiding the ones
+    ///   whose name doesn't include the input substring
     /// </summary>
     private void OnSearchBoxTextChanged(string newText)
     {

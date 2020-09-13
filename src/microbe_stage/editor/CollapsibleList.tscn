@@ -1,0 +1,101 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/textures/gui/bevel/minusButton.png" type="Texture" id=1]
+[ext_resource path="res://assets/textures/gui/bevel/minusButtonHover.png" type="Texture" id=2]
+[ext_resource path="res://assets/textures/gui/bevel/plusButton.png" type="Texture" id=3]
+[ext_resource path="res://assets/textures/gui/bevel/plusButtonHover.png" type="Texture" id=4]
+[ext_resource path="res://assets/textures/gui/bevel/hSeparatorLeftSide.png" type="Texture" id=5]
+[ext_resource path="res://assets/fonts/Jura-Regular.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://src/microbe_stage/editor/CollapsibleList.cs" type="Script" id=7]
+
+[sub_resource type="DynamicFont" id=1]
+size = 15
+use_filter = true
+font_data = ExtResource( 6 )
+
+[sub_resource type="StyleBoxTexture" id=2]
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 258, 1 )
+
+[node name="CollapsibleList" type="VBoxContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -1225.0
+margin_bottom = -744.0
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+TitleLabelPath = NodePath("HBoxContainer/Title")
+CollapseButtonPath = NodePath("HBoxContainer/Buttons/minusButton")
+ExpandButtonPath = NodePath("HBoxContainer/Buttons/plusButton")
+ClipBoxPath = NodePath("Clip")
+ItemContainerPath = NodePath("Clip/GridContainer")
+TweenPath = NodePath("Tween")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 141.0
+margin_bottom = 20.0
+
+[node name="Buttons" type="MarginContainer" parent="HBoxContainer"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 1
+size_flags_vertical = 4
+
+[node name="minusButton" type="TextureButton" parent="HBoxContainer/Buttons"]
+margin_right = 20.0
+margin_bottom = 20.0
+mouse_filter = 1
+texture_normal = ExtResource( 1 )
+texture_hover = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="plusButton" type="TextureButton" parent="HBoxContainer/Buttons"]
+visible = false
+margin_right = 20.0
+margin_bottom = 20.0
+mouse_filter = 1
+texture_normal = ExtResource( 3 )
+texture_hover = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="HBoxContainer"]
+margin_left = 24.0
+margin_top = 2.0
+margin_right = 134.0
+margin_bottom = 18.0
+custom_fonts/font = SubResource( 1 )
+text = "Insert Title Here"
+valign = 1
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer"]
+margin_left = 138.0
+margin_right = 141.0
+margin_bottom = 20.0
+mouse_filter = 1
+size_flags_horizontal = 3
+custom_styles/separator = SubResource( 2 )
+
+[node name="Clip" type="MarginContainer" parent="."]
+margin_top = 24.0
+margin_right = 141.0
+margin_bottom = 24.0
+rect_clip_content = true
+mouse_filter = 2
+size_flags_horizontal = 3
+
+[node name="GridContainer" type="GridContainer" parent="Clip"]
+margin_right = 141.0
+mouse_filter = 2
+
+[node name="Tween" type="Tween" parent="."]
+[connection signal="pressed" from="HBoxContainer/Buttons/minusButton" to="." method="CollapseButtonPressed"]
+[connection signal="pressed" from="HBoxContainer/Buttons/plusButton" to="." method="ExpandButtonPressed"]
