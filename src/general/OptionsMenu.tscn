@@ -242,8 +242,12 @@ margin_right = 579.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 25 )
 size_flags_vertical = 0
+text = "Disabled"
 items = [ "Disabled", null, false, 0, null, "2x", null, false, 1, null, "4x", null, false, 2, null, "8x", null, false, 3, null, "16x", null, false, 4, null ]
 selected = 0
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer"]
 margin_top = 136.0
@@ -316,8 +320,12 @@ margin_left = 379.0
 margin_right = 579.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 25 )
+text = "None"
 items = [ "None", null, false, 0, null, "Protanope (Red-Green)", null, false, 1, null, "Tritanope (Blue-Yellow)", null, false, 2, null ]
 selected = 0
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="HBoxContainer5" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Graphics/VBoxContainer"]
 margin_top = 237.0
@@ -631,8 +639,12 @@ margin_right = 733.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 25 )
 size_flags_vertical = 0
+text = "40ms"
 items = [ "0ms", null, false, 0, null, "20ms", null, false, 1, null, "40ms", null, false, 2, null, "100ms", null, false, 3, null, "250ms", null, false, 4, null ]
 selected = 2
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer"]
 margin_top = 85.0
@@ -672,8 +684,12 @@ margin_bottom = 25.0
 rect_min_size = Vector2( 200, 25 )
 size_flags_vertical = 0
 disabled = true
+text = "2"
 items = [ "1", null, false, 0, null, "2", null, false, 1, null, "4", null, false, 2, null ]
 selected = 1
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer"]
 margin_top = 137.0
@@ -955,9 +971,9 @@ window_title = "ERROR"
 dialog_text = "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 
 [node name="NeedRestart" type="AcceptDialog" parent="CenterContainer"]
-margin_left = 437.0
+margin_left = 511.0
 margin_top = 324.0
-margin_right = 842.0
+margin_right = 768.0
 margin_bottom = 395.0
 popup_exclusive = true
 window_title = "RESTART_REQUIRED"

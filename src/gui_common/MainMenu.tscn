@@ -148,6 +148,9 @@ focus_mode = 0
 mouse_filter = 1
 enabled_focus_mode = 0
 text = "NEW_GAME"
+__meta__ = {
+"_editor_description_": ""
+}
 
 [node name="LoadGame" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/MainMenu"]
 margin_top = 50.0
@@ -187,7 +190,7 @@ rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
 disabled = true
 enabled_focus_mode = 0
-text = "EXTRA"
+text = "EXTRAS"
 
 [node name="Credits" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/MainMenu"]
 margin_top = 250.0
@@ -240,6 +243,9 @@ mouse_filter = 1
 disabled = true
 enabled_focus_mode = 0
 text = "???"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="\?\?_2" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/Tools"]
 margin_top = 100.0
@@ -250,6 +256,9 @@ mouse_filter = 1
 disabled = true
 enabled_focus_mode = 0
 text = "???"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="\?\?_3" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/Tools"]
 margin_top = 150.0
@@ -260,6 +269,9 @@ mouse_filter = 1
 disabled = true
 enabled_focus_mode = 0
 text = "???"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="Back" type="Button" parent="MenuContainers/MenuCenterContainer/MenuItems/Tools"]
 margin_top = 200.0
@@ -297,7 +309,8 @@ clip_text = true
 max_lines_visible = 1
 script = ExtResource( 5 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": false,
+"_editor_description_": "PLACEHOLDER"
 }
 
 [node name="GUIAnimations" type="AnimationPlayer" parent="."]
