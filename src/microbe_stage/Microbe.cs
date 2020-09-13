@@ -130,6 +130,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     private bool deathParticlesSpawned;
 
     /// <summary>
+    ///   3d audio listener attached to this microbe if it is the player owned one.
+    /// </summary>
+    private Listener listener;
+
+    /// <summary>
     ///   The membrane of this Microbe. Used for grabbing radius / points from this.
     /// </summary>
     [JsonIgnore]
@@ -306,7 +311,15 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         IsPlayerMicrobe = isPlayer;
 
         if (IsPlayerMicrobe)
+        {
+            // Creates and activates the audio listener for the player microbe. Positional sound will be
+            // received by it instead of the main camera.
+            listener = new Listener();
+            AddChild(listener);
+            listener.MakeCurrent();
+
             GD.Print("Player Microbe spawned");
+        }
 
         if (!isPlayer)
             ai = new MicrobeAI(this);
@@ -461,6 +474,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         SpawnHelpers.SpawnAgent(props, 10.0f, Constants.EMITTED_AGENT_LIFETIME,
             position, direction, GetParent(),
             SpawnHelpers.LoadAgentScene(), this);
+
+        PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
     }
 
     /// <summary>
@@ -498,10 +513,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             return;
         }
 
-        if (source == "toxin")
+        if (source == "toxin" || source == "oxytoxy")
         {
             // Play the toxin sound
-            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-toxin-damage.ogg");
+            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
 
             // Divide damage by toxin resistance
             amount /= Species.MembraneType.ToxinResistance;
@@ -520,6 +535,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         {
             // Divide damage by physical resistance
             amount /= Species.MembraneType.PhysicalResistance;
+        }
+        else if (source == "atpDamage")
+        {
+            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
         }
 
         Hitpoints -= amount;
@@ -948,6 +967,17 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
     public override void _Process(float delta)
     {
+        // Updates the listener if this is the player owned microbe.
+        if (listener != null)
+        {
+            // Listener is directional and since it is a child of the microbe it will have the same forward
+            // vector as the parent. Since we want sound to come from the side of the screen relative to the
+            // camera rather than the microbe we need to force the listener to face up every frame.
+            Transform transform = GlobalTransform;
+            transform.basis = new Basis(new Vector3(0.0f, 0.0f, -1.0f));
+            listener.GlobalTransform = transform;
+        }
+
         if (membraneOrganellePositionsAreDirty)
         {
             // Redo the cell membrane.
@@ -998,6 +1028,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             totalMovement += queuedMovementForce;
 
             ApplyMovementImpulse(totalMovement, delta);
+
+            // Play movement sound if one isn't already playing.
+            if (!movementAudio.Playing)
+                movementAudio.Play();
         }
 
         // Rotation is applied in the physics force callback as that's
