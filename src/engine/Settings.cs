@@ -1,4 +1,5 @@
-﻿using Godot;
+﻿using System.Globalization;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -141,7 +142,7 @@ public class Settings
 
     public int CloudSimulationHeight => Constants.CLOUD_Y_EXTENT / CloudResolution;
 
-    public string SelectedLanguage { get; set; } = "en";
+    public string SelectedLanguage { get; set; } = null;
 
     public static bool operator ==(Settings lhs, Settings rhs)
     {
@@ -260,6 +261,7 @@ public class Settings
         ApplyGraphicsSettings();
         ApplySoundSettings();
         ApplyWindowSettings();
+        ApplyLanguageSettings();
     }
 
     /// <summary>
@@ -294,6 +296,19 @@ public class Settings
     {
         OS.WindowFullscreen = FullScreen;
         OS.VsyncEnabled = VSync;
+    }
+
+    /// <summary>
+    ///   Applies current language settings to any applicable engine systems.
+    /// </summary>
+    public void ApplyLanguageSettings()
+    {
+        TranslationServer.SetLocale(SelectedLanguage);
+
+        // Set locale for the game.
+        CultureInfo cultureInfo = new CultureInfo(SelectedLanguage);
+        CultureInfo.CurrentCulture = cultureInfo;
+        CultureInfo.CurrentUICulture = cultureInfo;
     }
 
     /// <summary>
