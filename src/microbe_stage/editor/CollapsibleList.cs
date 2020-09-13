@@ -1,14 +1,11 @@
-using Godot;
 using System.Collections.Generic;
+using Godot;
 
 /// <summary>
 ///   Custom widget for microbe editor's collapsible/expandable item list box
 /// </summary>
 public class CollapsibleList : VBoxContainer
 {
-    [Export]
-    public NodePath TitleLabelPath;
-
     [Export]
     public NodePath CollapseButtonPath;
 
@@ -27,14 +24,13 @@ public class CollapsibleList : VBoxContainer
     private bool collapsed;
     private bool isCollapsing;
 
-    private Label titleLabel;
     private GridContainer itemContainer;
     private MarginContainer clipBox;
     private TextureButton collapseButton;
     private TextureButton expandButton;
     private Tween tween;
 
-    private List<Control> Items = new List<Control>();
+    private List<Control> items = new List<Control>();
 
     private int cachedTopMarginValue;
 
@@ -50,7 +46,6 @@ public class CollapsibleList : VBoxContainer
 
     public override void _Ready()
     {
-        titleLabel = GetNode<Label>(TitleLabelPath);
         itemContainer = GetNode<GridContainer>(ItemContainerPath);
         clipBox = GetNode<MarginContainer>(ClipBoxPath);
         collapseButton = GetNode<TextureButton>(CollapseButtonPath);
@@ -63,7 +58,7 @@ public class CollapsibleList : VBoxContainer
     public void AddItem(Control item)
     {
         itemContainer.AddChild(item);
-        Items.Add(item);
+        items.Add(item);
 
         // Readjusts the clip box height
         if (Collapsed)
@@ -72,21 +67,21 @@ public class CollapsibleList : VBoxContainer
 
     public void RemoveItem(Control item)
     {
-        Items.Find(x => x == item).QueueFree();
-        Items.Remove(item);
+        items.Find(x => x == item).QueueFree();
+        items.Remove(item);
     }
 
     public void ClearItems()
     {
-        if (Items == null || Items.Count == 0)
+        if (items == null || items.Count == 0)
             return;
 
-        var intermediateList = new List<Control>(Items);
+        var intermediateList = new List<Control>(items);
 
         foreach (var item in intermediateList)
         {
             item.QueueFree();
-            Items.Remove(item);
+            items.Remove(item);
         }
     }
 

@@ -312,14 +312,14 @@ public class MicrobeEditorGUI : Node
     {
         Report,
         PatchMap,
-        CellEditor
+        CellEditor,
     }
 
     private enum SelectionMenuTab
     {
         Structure,
         Appearance,
-        Behaviour
+        Behaviour,
     }
 
     public override void _Ready()
@@ -905,18 +905,21 @@ public class MicrobeEditorGUI : Node
                 reportTabButton.Pressed = true;
                 break;
             }
+
             case EditorTab.PatchMap:
             {
                 patchMap.Show();
                 patchMapButton.Pressed = true;
                 break;
             }
+
             case EditorTab.CellEditor:
             {
                 cellEditor.Show();
                 cellEditorButton.Pressed = true;
                 break;
             }
+
             default:
                 throw new Exception("Invalid editor tab");
         }
@@ -946,12 +949,14 @@ public class MicrobeEditorGUI : Node
                 structureTabButton.Pressed = true;
                 break;
             }
+
             case SelectionMenuTab.Appearance:
             {
                 appearanceTab.Show();
                 appearanceTabButton.Pressed = true;
                 break;
             }
+
             default:
                 throw new Exception("Invalid selection menu tab");
         }
