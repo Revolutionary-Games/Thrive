@@ -1,4 +1,4 @@
-[gd_scene load_steps=109 format=2]
+[gd_scene load_steps=114 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -804,7 +804,8 @@ text = "55° C"
 align = 2
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": false,
+"_editor_description_": "PLACEHOLDER"
 }
 
 [node name="Sunlight" type="ProgressBar" parent="MicrobeHUD/LeftPanels/EnvironmentPanel/VBoxContainer/Body/BarContainer"]
@@ -914,7 +915,8 @@ text = "200 kPa"
 align = 2
 valign = 1
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_use_anchors_": false,
+"_editor_description_": "PLACEHOLDER"
 }
 
 [node name="CompoundsPanel" type="NinePatchRect" parent="MicrobeHUD/LeftPanels"]
@@ -1544,10 +1546,13 @@ custom_styles/separator = SubResource( 33 )
 [node name="PatchLabel" type="Label" parent="MicrobeHUD/BottomBar"]
 margin_left = 388.0
 margin_top = 8.0
-margin_right = 388.0
+margin_right = 462.0
 margin_bottom = 35.0
 custom_fonts/font = SubResource( 34 )
 text = "Patch:"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="BottomRight" type="Control" parent="MicrobeHUD"]
 anchor_left = 1.0
@@ -1585,7 +1590,7 @@ __meta__ = {
 
 [node name="Value" type="Label" parent="MicrobeHUD/BottomRight/PopulationData"]
 margin_left = 134.0
-margin_right = 138.0
+margin_right = 162.0
 margin_bottom = 18.0
 custom_styles/normal = SubResource( 35 )
 custom_fonts/font = SubResource( 36 )
@@ -1629,6 +1634,9 @@ margin_right = 77.0
 margin_bottom = 15.0
 custom_fonts/font = SubResource( 38 )
 text = "Hitpoints"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="ATPValue" type="Label" parent="MicrobeHUD/BottomRight/DataValue/Margin/VBox"]
 margin_top = 23.0
@@ -1636,6 +1644,9 @@ margin_right = 77.0
 margin_bottom = 38.0
 custom_fonts/font = SubResource( 38 )
 text = "ATP"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="ATPBar" type="TextureProgress" parent="MicrobeHUD/BottomRight" groups=[
 "MicrobeTextureHUDBar",

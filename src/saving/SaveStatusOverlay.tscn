@@ -24,11 +24,14 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="StatusLabel" type="Label" parent="CenterContainer"]
-margin_left = 640.0
+margin_left = 508.0
 margin_top = 108.0
-margin_right = 640.0
+margin_right = 771.0
 margin_bottom = 131.0
 text = "Saving status goes here..."
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="CenterContainer2" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -83,12 +86,18 @@ size_flags_vertical = 3
 margin_right = 634.0
 margin_bottom = 23.0
 text = "Extra description goes here"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="Exception" type="Label" parent="CenterContainer2/ErrorPopup/VBoxContainer/ScrollContainer/VBoxContainer"]
 margin_top = 27.0
 margin_right = 634.0
 margin_bottom = 50.0
 text = "Exception info goes here"
+__meta__ = {
+"_editor_description_": "PLACEHOLDER"
+}
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="CenterContainer2/ErrorPopup/VBoxContainer"]
 margin_top = 278.0

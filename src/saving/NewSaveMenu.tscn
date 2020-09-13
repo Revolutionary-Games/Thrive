@@ -31,7 +31,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="VBoxContainer"]
 margin_right = 1280.0
 margin_bottom = 23.0
-text = "NEW"
+text = "CREATE_NEW_SAVE"
 align = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
@@ -52,7 +52,7 @@ text = "NAME"
 
 [node name="SaveName" type="TextEdit" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 57.0
-margin_right = 1009.0
+margin_right = 924.0
 margin_bottom = 36.0
 size_flags_horizontal = 3
 draw_tabs = true
@@ -60,7 +60,7 @@ draw_spaces = true
 caret_blink = true
 
 [node name="ExtraOptions" type="MenuButton" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
-margin_left = 1013.0
+margin_left = 928.0
 margin_right = 1091.0
 margin_bottom = 36.0
 custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
@@ -68,7 +68,7 @@ custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
 custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 disabled = true
-text = "EXTRA"
+text = "EXTRA_OPTIONS"
 
 [node name="Save" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 1095.0

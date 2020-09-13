@@ -13,7 +13,7 @@ public class Settings
     private static readonly Settings SingletonInstance = InitializeGlobalSettings();
 
     [JsonProperty]
-    private string selectedLanguage = null;
+    private string selectedLanguage;
 
     static Settings()
     {
