@@ -451,12 +451,13 @@ public class MicrobeEditorGUI : Node
     {
         if (energyBalance.FinalBalance > 0)
         {
-            atpBalanceLabel.Text = ATP_BALANCE_DEFAULT_TEXT;
+            atpBalanceLabel.Text = ATP_BALANCE_DEFAULT_TEXT + $": {energyBalance.FinalBalance}";
             atpBalanceLabel.AddColorOverride("font_color", new Color(1.0f, 1.0f, 1.0f));
         }
         else
         {
-            atpBalanceLabel.Text = ATP_BALANCE_DEFAULT_TEXT + " - ATP PRODUCTION TOO LOW!";
+            atpBalanceLabel.Text =
+                ATP_BALANCE_DEFAULT_TEXT + $": {energyBalance.FinalBalance}" + " - ATP PRODUCTION TOO LOW!";
             atpBalanceLabel.AddColorOverride("font_color", new Color(1.0f, 0.2f, 0.2f));
         }
 
