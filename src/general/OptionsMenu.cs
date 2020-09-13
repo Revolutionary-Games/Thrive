@@ -71,6 +71,24 @@ public class OptionsMenu : Control
     [Export]
     public NodePath MusicMutedPath;
 
+    [Export]
+    public NodePath AmbianceVolumePath;
+
+    [Export]
+    public NodePath AmbianceMutedPath;
+
+    [Export]
+    public NodePath SFXVolumePath;
+
+    [Export]
+    public NodePath SFXMutedPath;
+
+    [Export]
+    public NodePath GUIVolumePath;
+
+    [Export]
+    public NodePath GUIMutedPath;
+
     // Performance tab.
     [Export]
     public NodePath PerformanceTabPath;
@@ -140,6 +158,12 @@ public class OptionsMenu : Control
     private CheckBox masterMuted;
     private Slider musicVolume;
     private CheckBox musicMuted;
+    private Slider ambianceVolume;
+    private CheckBox ambianceMuted;
+    private Slider sfxVolume;
+    private CheckBox sfxMuted;
+    private Slider guiVolume;
+    private CheckBox guiMuted;
     private OptionButton languageSelection;
     private List<string> languages;
 
@@ -221,9 +245,15 @@ public class OptionsMenu : Control
         masterMuted = GetNode<CheckBox>(MasterMutedPath);
         musicVolume = GetNode<Slider>(MusicVolumePath);
         musicMuted = GetNode<CheckBox>(MusicMutedPath);
+        ambianceVolume = GetNode<Slider>(AmbianceVolumePath);
+        ambianceMuted = GetNode<CheckBox>(AmbianceMutedPath);
+        sfxVolume = GetNode<Slider>(SFXVolumePath);
+        sfxMuted = GetNode<CheckBox>(SFXMutedPath);
+        guiVolume = GetNode<Slider>(GUIVolumePath);
+        guiMuted = GetNode<CheckBox>(GUIMutedPath);
         languageSelection = GetNode<OptionButton>(LanguageSelectionPath);
         LoadLanguages(languageSelection);
-
+        
         // Performance
         performanceTab = GetNode<Control>(PerformanceTabPath);
         cloudInterval = GetNode<OptionButton>(CloudIntervalPath);
@@ -274,6 +304,12 @@ public class OptionsMenu : Control
         masterMuted.Pressed = settings.VolumeMasterMuted;
         musicVolume.Value = ConvertDBToSoundBar(settings.VolumeMusic);
         musicMuted.Pressed = settings.VolumeMusicMuted;
+        ambianceVolume.Value = ConvertDBToSoundBar(settings.VolumeAmbiance);
+        ambianceMuted.Pressed = settings.VolumeAmbianceMuted;
+        sfxVolume.Value = ConvertDBToSoundBar(settings.VolumeSFX);
+        sfxMuted.Pressed = settings.VolumeSFXMuted;
+        guiVolume.Value = ConvertDBToSoundBar(settings.VolumeGUI);
+        guiMuted.Pressed = settings.VolumeGUIMuted;
         languageSelection.Selected = languages.IndexOf(Settings.Instance.SelectedLanguage);
 
         // Performance
@@ -639,9 +675,25 @@ public class OptionsMenu : Control
     }
 
     // Sound Button Callbacks
+    private void OnMasterVolumeChanged(float value)
+    {
+        Settings.Instance.VolumeMaster = ConvertSoundBarToDb(value);
+        Settings.ApplySoundSettings();
+
+        CompareSettings();
+    }
+
     private void OnMasterMutedToggled(bool pressed)
     {
         Settings.Instance.VolumeMasterMuted = pressed;
+        Settings.ApplySoundSettings();
+
+        CompareSettings();
+    }
+
+    private void OnMusicVolumeChanged(float value)
+    {
+        Settings.Instance.VolumeMusic = ConvertSoundBarToDb(value);
         Settings.ApplySoundSettings();
 
         CompareSettings();
@@ -655,17 +707,49 @@ public class OptionsMenu : Control
         CompareSettings();
     }
 
-    private void OnMasterVolumeChanged(float value)
+    private void OnAmbianceVolumeChanged(float value)
     {
-        Settings.Instance.VolumeMaster = ConvertSoundBarToDb(value);
+        Settings.Instance.VolumeAmbiance = ConvertSoundBarToDb(value);
         Settings.ApplySoundSettings();
 
         CompareSettings();
     }
 
-    private void OnMusicVolumeChanged(float value)
+    private void OnAmbianceMutedToggled(bool pressed)
     {
-        Settings.Instance.VolumeMusic = ConvertSoundBarToDb(value);
+        Settings.Instance.VolumeAmbianceMuted = pressed;
+        Settings.ApplySoundSettings();
+
+        CompareSettings();
+    }
+
+    private void OnSFXVolumeChanged(float value)
+    {
+        Settings.Instance.VolumeSFX = ConvertSoundBarToDb(value);
+        Settings.ApplySoundSettings();
+
+        CompareSettings();
+    }
+
+    private void OnSFXMutedToggled(bool pressed)
+    {
+        Settings.Instance.VolumeSFXMuted = pressed;
+        Settings.ApplySoundSettings();
+
+        CompareSettings();
+    }
+
+    private void OnGUIVolumeChanged(float value)
+    {
+        Settings.Instance.VolumeGUI = ConvertSoundBarToDb(value);
+        Settings.ApplySoundSettings();
+
+        CompareSettings();
+    }
+
+    private void OnGUIMutedToggled(bool pressed)
+    {
+        Settings.Instance.VolumeGUIMuted = pressed;
         Settings.ApplySoundSettings();
 
         CompareSettings();

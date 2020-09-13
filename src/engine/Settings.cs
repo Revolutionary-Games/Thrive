@@ -77,6 +77,36 @@ public class Settings
     /// </summary>
     public bool VolumeMusicMuted { get; set; } = false;
 
+    /// <summary>
+    ///   The Db value to be added to the ambiance audio bus
+    /// </summary>
+    public float VolumeAmbiance { get; set; } = 0.0f;
+
+    /// <summary>
+    ///   If true ambiance is muted
+    /// </summary>
+    public bool VolumeAmbianceMuted { get; set; } = false;
+
+    /// <summary>
+    ///   The Db value to be added to the sfx audio bus
+    /// </summary>
+    public float VolumeSFX { get; set; } = 0.0f;
+
+    /// <summary>
+    ///   If true sfx is muted
+    /// </summary>
+    public bool VolumeSFXMuted { get; set; } = false;
+
+    /// <summary>
+    ///   The Db value to be added to the gui audio bus
+    /// </summary>
+    public float VolumeGUI { get; set; } = 0.0f;
+
+    /// <summary>
+    ///   If true gui audio bus is muted
+    /// </summary>
+    public bool VolumeGUIMuted { get; set; } = false;
+
     // Performance Properties
 
     /// <summary>
@@ -287,6 +317,21 @@ public class Settings
 
         AudioServer.SetBusVolumeDb(music, VolumeMusic);
         AudioServer.SetBusMute(music, VolumeMusicMuted);
+
+        var ambiance = AudioServer.GetBusIndex("Ambiance");
+
+        AudioServer.SetBusVolumeDb(ambiance, VolumeAmbiance);
+        AudioServer.SetBusMute(ambiance, VolumeAmbianceMuted);
+
+        var sfx = AudioServer.GetBusIndex("SFX");
+
+        AudioServer.SetBusVolumeDb(sfx, VolumeSFX);
+        AudioServer.SetBusMute(sfx, VolumeSFXMuted);
+
+        var gui = AudioServer.GetBusIndex("GUI");
+
+        AudioServer.SetBusVolumeDb(gui, VolumeGUI);
+        AudioServer.SetBusMute(gui, VolumeGUIMuted);
     }
 
     /// <summary>
