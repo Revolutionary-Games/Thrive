@@ -20,9 +20,6 @@ public class HelpScreen : Control
     public NodePath RightColumnPath;
 
     [Export]
-    public NodePath LineSeparatorPath;
-
-    [Export]
     public NodePath TipMessageLabelPath;
 
     [Export]
@@ -33,7 +30,6 @@ public class HelpScreen : Control
 
     private VBoxContainer leftColumn;
     private VBoxContainer rightColumn;
-    private HSeparator lineSeparator;
     private Label tipMessageLabel;
     private Timer timer;
 
@@ -46,7 +42,6 @@ public class HelpScreen : Control
     {
         leftColumn = GetNode<VBoxContainer>(LeftColumnPath);
         rightColumn = GetNode<VBoxContainer>(RightColumnPath);
-        lineSeparator = GetNode<HSeparator>(LineSeparatorPath);
         tipMessageLabel = GetNode<Label>(TipMessageLabelPath);
         timer = GetNode<Timer>(TimerPath);
 
@@ -68,7 +63,6 @@ public class HelpScreen : Control
     /// </summary>
     public void RandomizeEasterEgg()
     {
-        lineSeparator.Hide();
         tipMessageLabel.Hide();
 
         if (random.Next(0, 6) > 1)
@@ -76,8 +70,6 @@ public class HelpScreen : Control
             var helpTexts = SimulationParameters.Instance.GetHelpTexts("EasterEgg");
 
             tipMessageLabel.Text = helpTexts.Messages.Random(random);
-
-            lineSeparator.Show();
             tipMessageLabel.Show();
 
             timer.Start(20);
@@ -118,7 +110,6 @@ public class HelpScreen : Control
 
     private void OnTimerTimeout()
     {
-        lineSeparator.Hide();
         tipMessageLabel.Hide();
     }
 
