@@ -34,10 +34,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2, 0.3, 0.6 ),
-"transitions": PoolRealArray( 0.5, 0.5, 0.3, 1 ),
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 0.3, 0.4, 1 ),
 "update": 0,
-"values": [ 0.4, 0.5, 0.45, 0.4 ]
+"values": [ 0.4, 0.45, 0.4 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("MenuContainers/Menus:anchor_bottom")
@@ -46,10 +46,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.2, 0.3, 0.6 ),
-"transitions": PoolRealArray( 0.5, 0.5, 0.3, 1 ),
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 0.3, 0.4, 1 ),
 "update": 0,
-"values": [ 1.0, 0.5, 0.45, 1.0 ]
+"values": [ 1.0, 0.45, 1.0 ]
 }
 
 [node name="MainMenu" type="Node"]
