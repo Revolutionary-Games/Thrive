@@ -514,6 +514,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
         if (source == "toxin" || source == "oxytoxy")
         {
+            // TODO: Replace this take damage sound with a more appropriate one.
+
             // Play the toxin sound
             PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
 
@@ -532,6 +534,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         }
         else if (source == "chunk")
         {
+            // TODO: Replace this take damage sound with a more appropriate one.
+
             PlaySoundEffect("res://assets/sounds/soundeffects/microbe-toxin-damage.ogg");
 
             // Divide damage by physical resistance
@@ -539,6 +543,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         }
         else if (source == "atpDamage")
         {
+            // TODO: Replace this take damage sound with a more appropriate one.
+
             PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
         }
 
@@ -779,7 +785,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         if (player == null)
         {
             // If we hit the player limit just return and ignore the sound.
-            if (otherAudioPlayers.Count >= 10)
+            if (otherAudioPlayers.Count >= Constants.MAX_CONCURRENT_SOUNDS_PER_ENTITY)
                 return;
 
             player = new AudioStreamPlayer3D();
