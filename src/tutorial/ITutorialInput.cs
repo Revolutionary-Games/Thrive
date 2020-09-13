@@ -21,5 +21,5 @@ public interface ITutorialInput
     void OnTutorialClosed();
 
     void OnNextPressed();
-    void Process(TutorialGUI tutorialGUI, float delta);
+    void Process(ITutorialGUI tutorialGUI, float delta);
 }

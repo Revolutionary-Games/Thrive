@@ -67,13 +67,15 @@
 [ext_resource path="res://assets/textures/gui/bevel/ReproductionBar.png" type="Texture" id=65]
 [ext_resource path="res://assets/fonts/Jura-Medium.ttf" type="DynamicFontData" id=66]
 [ext_resource path="res://src/engine/ChromaticFilter.tscn" type="PackedScene" id=67]
-[ext_resource path="res://src/tutorial/TutorialGUI.tscn" type="PackedScene" id=68]
+[ext_resource path="res://src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn" type="PackedScene" id=68]
 [ext_resource path="res://assets/fonts/thrive.ttf" type="DynamicFontData" id=69]
 [ext_resource path="res://src/microbe_stage/gui/ExtinctionBox.tscn" type="PackedScene" id=70]
 [ext_resource path="res://assets/textures/gui/bevel/AmmoniaBW.png" type="Texture" id=71]
 [ext_resource path="res://src/engine/GuidanceLine.tscn" type="PackedScene" id=72]
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPausedHover.png" type="Texture" id=78]
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPaused.png" type="Texture" id=79]
+
+
 
 [sub_resource type="DynamicFont" id=1]
 size = 15

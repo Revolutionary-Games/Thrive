@@ -151,7 +151,7 @@ public class TutorialState : ITutorialInput
         return null;
     }
 
-    public void Process(TutorialGUI gui, float delta)
+    public void Process(ITutorialGUI gui, float delta)
     {
         if (!Enabled)
         {
@@ -173,7 +173,7 @@ public class TutorialState : ITutorialInput
         HandlePausing(gui);
 
         // Pause if the game is paused, but we didn't want to pause things
-        if (gui.GetTree().Paused && !WantsGamePaused)
+        if (gui.GUINode.GetTree().Paused && !WantsGamePaused)
             return;
 
         TotalElapsed += delta;
@@ -238,25 +238,37 @@ public class TutorialState : ITutorialInput
     ///   Applies all the GUI states related to the tutorial, this makes saving and loading the tutorial state easier
     /// </summary>
     /// <param name="gui">The target GUI instance</param>
-    private void ApplyGUIState(TutorialGUI gui)
+    private void ApplyGUIState(ITutorialGUI gui)
     {
         gui.IsClosingAutomatically = true;
 
-        foreach (var tutorial in Tutorials)
-            tutorial.ApplyGUIState(gui);
+        switch (gui)
+        {
+            case MicrobeTutorialGUI casted:
+                ApplySpecificGUI(casted);
+                break;
+            default:
+                throw new ArgumentException("Unhandled GUI class in ApplyGUIState");
+        }
 
         gui.IsClosingAutomatically = false;
         needsToApplyEvenIfDisabled = true;
     }
 
-    private void HandlePausing(Node gameNode)
+    private void ApplySpecificGUI(MicrobeTutorialGUI gui)
+    {
+        foreach (var tutorial in Tutorials)
+            tutorial.ApplyGUIState(gui);
+    }
+
+    private void HandlePausing(ITutorialGUI gui)
     {
         if (WantsGamePaused != hasPaused)
         {
             if (hasPaused)
             {
                 // Unpause
-                UnPause(gameNode);
+                UnPause(gui);
             }
             else
             {
@@ -265,16 +277,16 @@ public class TutorialState : ITutorialInput
                     return;
 
                 // Pause
-                returnToPauseState = gameNode.GetTree().Paused;
-                gameNode.GetTree().Paused = true;
+                returnToPauseState = gui.GUINode.GetTree().Paused;
+                gui.GUINode.GetTree().Paused = true;
                 hasPaused = true;
             }
         }
     }
 
-    private void UnPause(Node gameNode)
+    private void UnPause(ITutorialGUI gui)
     {
-        gameNode.GetTree().Paused = returnToPauseState;
+        gui.GUINode.GetTree().Paused = returnToPauseState;
         hasPaused = false;
     }
 

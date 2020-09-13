@@ -5,7 +5,7 @@ using Godot;
 ///   GUI control that contains the tutorial. Should be placed over any game state GUI so that things drawn
 ///   by this are on top. Controlled by Tutorial object
 /// </summary>
-public class TutorialGUI : Control
+public class MicrobeTutorialGUI : Control, ITutorialGUI
 {
     [Export]
     public NodePath MicrobeWelcomeMessagePath;
@@ -37,18 +37,6 @@ public class TutorialGUI : Control
     [Export]
     public NodePath ReproductionTutorialPath;
 
-    /// <summary>
-    ///   True when the tutorial selected boxes have been left untouched (on)
-    /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     There's a small bug where if the tutorials are turned back on and then displayed, that leaves the checkboxes
-    ///     unchecked, when things become visible all the enable tutorials check boxes would need to read this value
-    ///     to fix this
-    ///   </para>
-    /// </remarks>
-    private bool tutorialEnabledSelected = true;
-
     private WindowDialog microbeWelcomeMessage;
     private Control microbeMovementKeyPrompts;
     private Control microbeMovementKeyForward;
@@ -61,6 +49,12 @@ public class TutorialGUI : Control
     private WindowDialog reproductionTutorial;
 
     public ITutorialInput EventReceiver { get; set; }
+
+    public MainGameState AssociatedGameState { get; } = MainGameState.MicrobeStage;
+
+    public bool TutorialEnabledSelected { get; private set; } = true;
+
+    public Node GUINode => this;
 
     /// <summary>
     ///   Used to ignore reporting closing back to whoever is setting the visible properties
@@ -230,34 +224,18 @@ public class TutorialGUI : Control
         EventReceiver?.Process(this, delta);
     }
 
-    /// <summary>
-    ///   A button that closes all tutorials was pressed by the user
-    /// </summary>
-    private void OnClickedCloseAll()
+    public void OnClickedCloseAll()
     {
-        if (IsClosingAutomatically)
-            return;
-
-        GUICommon.Instance.PlayButtonPressSound();
-        EventReceiver?.OnTutorialClosed();
-
-        if (!tutorialEnabledSelected)
-        {
-            EventReceiver?.OnTutorialDisabled();
-        }
+        TutorialHelper.HandleCloseAllForGUI(this);
     }
 
-    private void OnSpecificCloseClicked(string closedThing)
+    public void OnSpecificCloseClicked(string closedThing)
     {
-        if (IsClosingAutomatically)
-            return;
-
-        GUICommon.Instance.PlayButtonPressSound();
-        EventReceiver?.OnCurrentTutorialClosed(closedThing);
+        TutorialHelper.HandleCloseSpecificForGUI(this, closedThing);
     }
 
-    private void OnTutorialEnabledValueChanged(bool value)
+    public void OnTutorialEnabledValueChanged(bool value)
     {
-        tutorialEnabledSelected = value;
+        TutorialEnabledSelected = value;
     }
 }
