@@ -482,14 +482,13 @@ public class OptionsMenu : Control
             optionButton.AddItem(local);
         }
 
-        if (optionButton.Items.Count == 0)
+        if (optionButton.GetItemCount() == 0)
             return;
 
         // The option button seems to have 5 items / options.
         // This means that the second option has the index 5 in the items list, but Selected need the id 1 to works.
         // This is strange.
         optionButton.Selected = optionButton.Items.IndexOf(Settings.Instance.SelectedLanguage) / 5;
-        TranslationServer.SetLocale(Settings.Instance.SelectedLanguage);
     }
 
     /*
@@ -736,10 +735,9 @@ public class OptionsMenu : Control
 
     private void OnLanguageSettingSelected(int item)
     {
-        string local = languageSelection.GetItemText(item);
-        Settings.Instance.SelectedLanguage = local;
-        TranslationServer.SetLocale(local);
+        Settings.Instance.SelectedLanguage = languageSelection.GetItemText(item);
 
+        Settings.Instance.ApplyLanguageSettings();
         CompareSettings();
     }
 }
