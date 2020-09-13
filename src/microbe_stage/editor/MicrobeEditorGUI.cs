@@ -431,7 +431,7 @@ public class MicrobeEditorGUI : Node
         // The amount of glucose has been reduced to {0} of the previous amount.
         glucoseReductionLabel.Text =
             string.Format(CultureInfo.CurrentCulture,
-                TranslationServer.Translate("MICROBE_EDITOR_GLUCOSE_RED"),
+                TranslationServer.Translate("THE_AMOUNT_OF_GLUCOSE_HAS_BEEN_REDUCED"),
                 percentage);
     }
 
@@ -1325,7 +1325,7 @@ public class MicrobeEditorGUI : Node
             TranslationServer.Translate("VALUE_PPM"),
             patch.Biome.Compounds[nitrogen].Dissolved * 100);
         patchCO2.Text = string.Format(CultureInfo.CurrentCulture,
-            TranslationServer.Translate("MICROBE_HUD_VAL_PPM"),
+            TranslationServer.Translate("VALUE_PPM"),
             patch.Biome.Compounds[carbondioxide].Dissolved * 100);
 
         // Compounds

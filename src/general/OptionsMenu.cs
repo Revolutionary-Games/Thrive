@@ -131,7 +131,13 @@ public class OptionsMenu : Control
     public NodePath ErrorAcceptBoxPath;
 
     [Export]
+    public NodePath NeedRestartBoxPath;
+
+    [Export]
     public NodePath LanguageSelectionPath;
+
+    [Export]
+    public NodePath ResetLanguageButtonPath;
 
     private const float AUDIO_BAR_SCALE = 6f;
     private Button resetButton;
@@ -165,6 +171,7 @@ public class OptionsMenu : Control
     private Slider guiVolume;
     private CheckBox guiMuted;
     private OptionButton languageSelection;
+    private Button resetLanguageButton;
     private List<string> languages;
 
     // Performance tab
@@ -185,6 +192,7 @@ public class OptionsMenu : Control
     private WindowDialog backConfirmationBox;
     private ConfirmationDialog defaultsConfirmationBox;
     private AcceptDialog errorAcceptBox;
+    private AcceptDialog needRestartBox;
 
     /*
       Misc
@@ -252,8 +260,9 @@ public class OptionsMenu : Control
         guiVolume = GetNode<Slider>(GUIVolumePath);
         guiMuted = GetNode<CheckBox>(GUIMutedPath);
         languageSelection = GetNode<OptionButton>(LanguageSelectionPath);
+        resetLanguageButton = GetNode<Button>(ResetLanguageButtonPath);
         LoadLanguages(languageSelection);
-        
+
         // Performance
         performanceTab = GetNode<Control>(PerformanceTabPath);
         cloudInterval = GetNode<OptionButton>(CloudIntervalPath);
@@ -271,6 +280,7 @@ public class OptionsMenu : Control
         backConfirmationBox = GetNode<WindowDialog>(BackConfirmationBoxPath);
         defaultsConfirmationBox = GetNode<ConfirmationDialog>(DefaultsConfirmationBoxPath);
         errorAcceptBox = GetNode<AcceptDialog>(ErrorAcceptBoxPath);
+        needRestartBox = GetNode<AcceptDialog>(NeedRestartBoxPath);
 
         selectedOptionsTab = SelectedOptionsTab.Graphics;
 
@@ -311,6 +321,9 @@ public class OptionsMenu : Control
         guiVolume.Value = ConvertDBToSoundBar(settings.VolumeGUI);
         guiMuted.Pressed = settings.VolumeGUIMuted;
         languageSelection.Selected = languages.IndexOf(Settings.Instance.SelectedLanguage);
+
+        // Hide or show the reset language button based on the selected language
+        resetLanguageButton.Visible = !Settings.Instance.IsSelectedLanguageNull();
 
         // Performance
         cloudInterval.Selected = CloudIntervalToIndex(settings.CloudUpdateInterval);
@@ -817,8 +830,21 @@ public class OptionsMenu : Control
     private void OnLanguageSettingSelected(int item)
     {
         Settings.Instance.SelectedLanguage = languageSelection.GetItemText(item);
+        resetLanguageButton.Visible = true;
 
         Settings.Instance.ApplyLanguageSettings();
+        CompareSettings();
+    }
+
+    private void OnResetLanguagePressed()
+    {
+        Settings.Instance.SelectedLanguage = null;
+        resetLanguageButton.Visible = false;
+
+        needRestartBox.PopupCenteredMinsize();
+
+        Settings.Instance.ApplyLanguageSettings();
+        languageSelection.Selected = languages.IndexOf(Settings.Instance.SelectedLanguage);
         CompareSettings();
     }
 }

@@ -79,7 +79,7 @@ public class InProgressLoad
                 {
                     save = Save.LoadFromFile(saveName, () => Invoke.Instance.Perform(() =>
                         LoadingScreen.Instance.Show(TranslationServer.Translate("LOADING_GAME"),
-                            TranslationServer.Translate("CREATING_OBJECT_FROM_SAVE"))));
+                            TranslationServer.Translate("CREATING_OBJECTS_FROM_SAVE"))));
                 }
                 catch (Exception e)
                 {
@@ -128,7 +128,7 @@ public class InProgressLoad
             case State.ProcessingLoadedObjects:
             {
                 LoadingScreen.Instance.Show(TranslationServer.Translate("LOADING_GAME"),
-                    TranslationServer.Translate("PROCESSING_LOADED_OBJECT"));
+                    TranslationServer.Translate("PROCESSING_LOADED_OBJECTS"));
 
                 loadedState.IsLoadedFromSave = true;
 

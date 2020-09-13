@@ -740,14 +740,14 @@ size = 15
 font_data = ExtResource( 73 )
 
 [sub_resource type="DynamicFont" id=47]
-font_data = ExtResource( 5 )
-
-[sub_resource type="Theme" id=48]
-default_font = SubResource( 47 )
-
-[sub_resource type="DynamicFont" id=49]
 size = 17
 font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=48]
+font_data = ExtResource( 5 )
+
+[sub_resource type="Theme" id=49]
+default_font = SubResource( 48 )
 
 [sub_resource type="StyleBoxFlat" id=50]
 border_width_top = 1
@@ -1250,6 +1250,7 @@ margin_top = 3.0
 margin_right = 201.0
 margin_bottom = 21.0
 custom_fonts/font = SubResource( 7 )
+text = "100 / 100"
 align = 1
 valign = 1
 __meta__ = {
@@ -1342,6 +1343,7 @@ custom_constants/separation = 0
 margin_right = 318.0
 margin_bottom = 17.0
 custom_fonts/font = SubResource( 10 )
+text = "ATP Balance"
 
 [node name="VSeparator" type="VSeparator" parent="MicrobeEditorGUI/CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer"]
 margin_top = 17.0
@@ -3824,10 +3826,10 @@ valign = 1
 uppercase = true
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_left = 88.0
-margin_top = 88.0
-margin_right = 88.0
-margin_bottom = 88.0
+margin_left = 96.0
+margin_top = 96.0
+margin_right = 96.0
+margin_bottom = 96.0
 theme = SubResource( 29 )
 edit_alpha = false
 
@@ -3970,6 +3972,7 @@ margin_bottom = 30.0
 rect_min_size = Vector2( 70, 30 )
 custom_styles/normal = SubResource( 36 )
 custom_fonts/font = SubResource( 32 )
+text = "Generation 2"
 align = 1
 valign = 1
 uppercase = true
@@ -3981,6 +3984,7 @@ margin_bottom = 30.0
 rect_min_size = Vector2( 70, 30 )
 custom_styles/normal = SubResource( 36 )
 custom_fonts/font = SubResource( 32 )
+text = "Speed 2.0"
 align = 1
 valign = 1
 uppercase = true
@@ -3992,6 +3996,7 @@ margin_bottom = 30.0
 rect_min_size = Vector2( 70, 30 )
 custom_styles/normal = SubResource( 36 )
 custom_fonts/font = SubResource( 32 )
+text = "Size 1"
 align = 1
 valign = 1
 uppercase = true
@@ -9018,6 +9023,7 @@ custom_constants/separation = 0
 margin_right = 141.0
 margin_bottom = 17.0
 custom_fonts/font = SubResource( 10 )
+text = "The amount of glucose has been reduced to ... of the previous amount."
 
 [node name="HSeparator2" type="HSeparator" parent="MicrobeEditorGUI/Report/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer"]
 margin_top = 17.0
@@ -9198,6 +9204,7 @@ custom_constants/separation = 0
 margin_right = 528.0
 margin_bottom = 32.0
 custom_fonts/font = SubResource( 52 )
+text = "Patch Name Goes Here"
 align = 1
 
 [node name="PlayerHereLabel" type="Label" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/VBoxContainer"]
@@ -9205,6 +9212,7 @@ margin_top = 32.0
 margin_right = 528.0
 margin_bottom = 50.0
 custom_fonts/font = SubResource( 53 )
+text = "YOU ARE CURRENTLY IN THIS PATCH"
 align = 1
 
 [node name="Biome" type="Label" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
@@ -9212,6 +9220,7 @@ margin_top = 65.0
 margin_right = 528.0
 margin_bottom = 87.0
 custom_fonts/font = SubResource( 54 )
+text = "Biome: BIOME HERE"
 align = 1
 
 [node name="Depth" type="Label" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
@@ -9219,6 +9228,7 @@ margin_top = 102.0
 margin_right = 528.0
 margin_bottom = 124.0
 custom_fonts/font = SubResource( 54 )
+text = "200-340m below sea level"
 align = 1
 
 [node name="PhysicalConditions" type="VBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
@@ -9308,6 +9318,7 @@ margin_top = 3.0
 margin_right = 34.0
 margin_bottom = 22.0
 custom_fonts/font = SubResource( 55 )
+text = "Temperature"
 
 [node name="Situation" type="TextureRect" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Temperature"]
 margin_left = 38.0
@@ -9339,6 +9350,7 @@ margin_top = 3.0
 margin_right = 34.0
 margin_bottom = 22.0
 custom_fonts/font = SubResource( 55 )
+text = "Pressure"
 
 [node name="Light" type="HBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer"]
 margin_top = 29.0
@@ -9361,6 +9373,7 @@ margin_top = 3.0
 margin_right = 34.0
 margin_bottom = 22.0
 custom_fonts/font = SubResource( 55 )
+text = "Light"
 
 [node name="Situation" type="TextureRect" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/Clip/GridContainer/Light"]
 margin_left = 38.0
@@ -9456,6 +9469,7 @@ margin_top = 3.0
 margin_right = 34.0
 margin_bottom = 22.0
 custom_fonts/font = SubResource( 55 )
+text = "Oxygen"
 
 [node name="Nitrogen" type="HBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericConditions/Clip/GridContainer"]
 margin_left = 266.0
@@ -9478,6 +9492,7 @@ margin_top = 3.0
 margin_right = 34.0
 margin_bottom = 22.0
 custom_fonts/font = SubResource( 55 )
+text = "Nitrogen"
 
 [node name="CO2" type="HBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericConditions/Clip/GridContainer"]
 margin_top = 29.0
@@ -9500,6 +9515,7 @@ margin_top = 3.0
 margin_right = 34.0
 margin_bottom = 22.0
 custom_fonts/font = SubResource( 55 )
+text = "CO2"
 
 [node name="Compounds" type="VBoxContainer" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer"]
 margin_top = 363.0
@@ -9585,6 +9601,7 @@ margin_top = 3.0
 margin_right = 29.0
 margin_bottom = 22.0
 custom_fonts/font = SubResource( 55 )
+text = "Hydrogen Sulfide"
 
 [node name="Situation" type="TextureRect" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/HydrogenSulfide"]
 margin_left = 33.0
@@ -9615,6 +9632,7 @@ margin_top = 3.0
 margin_right = 29.0
 margin_bottom = 22.0
 custom_fonts/font = SubResource( 55 )
+text = "Ammonia"
 
 [node name="Situation" type="TextureRect" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Ammonia"]
 margin_left = 33.0
@@ -9645,6 +9663,7 @@ margin_top = 3.0
 margin_right = 29.0
 margin_bottom = 22.0
 custom_fonts/font = SubResource( 55 )
+text = "Glucose"
 
 [node name="Situation" type="TextureRect" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Glucose"]
 margin_left = 33.0
@@ -9676,6 +9695,7 @@ margin_top = 3.0
 margin_right = 29.0
 margin_bottom = 22.0
 custom_fonts/font = SubResource( 55 )
+text = "Phosphate"
 
 [node name="Situation" type="TextureRect" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Phosphate"]
 margin_left = 33.0
@@ -9706,6 +9726,7 @@ margin_top = 3.0
 margin_right = 29.0
 margin_bottom = 22.0
 custom_fonts/font = SubResource( 55 )
+text = "Iron"
 
 [node name="Situation" type="TextureRect" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/Clip/GridContainer/Iron"]
 margin_left = 33.0
