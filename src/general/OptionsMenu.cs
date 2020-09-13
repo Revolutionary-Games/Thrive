@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Godot;
 using Array = Godot.Collections.Array;
 
@@ -140,6 +141,7 @@ public class OptionsMenu : Control
     private Slider musicVolume;
     private CheckBox musicMuted;
     private OptionButton languageSelection;
+    private List<string> languages;
 
     // Performance tab
     private Control performanceTab;
@@ -272,6 +274,7 @@ public class OptionsMenu : Control
         masterMuted.Pressed = settings.VolumeMasterMuted;
         musicVolume.Value = ConvertDBToSoundBar(settings.VolumeMusic);
         musicMuted.Pressed = settings.VolumeMusicMuted;
+        languageSelection.Selected = languages.IndexOf(Settings.Instance.SelectedLanguage);
 
         // Performance
         cloudInterval.Selected = CloudIntervalToIndex(settings.CloudUpdateInterval);
@@ -476,19 +479,13 @@ public class OptionsMenu : Control
     private void LoadLanguages(OptionButton optionButton)
     {
         Array locals = TranslationServer.GetLoadedLocales();
+        languages = new List<string>();
 
         foreach (string local in locals)
         {
             optionButton.AddItem(local);
+            languages.Add(local);
         }
-
-        if (optionButton.GetItemCount() == 0)
-            return;
-
-        // The option button seems to have 5 items / options.
-        // This means that the second option has the index 5 in the items list, but Selected need the id 1 to works.
-        // This is strange.
-        optionButton.Selected = optionButton.Items.IndexOf(Settings.Instance.SelectedLanguage) / 5;
     }
 
     /*
