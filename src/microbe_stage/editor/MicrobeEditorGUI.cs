@@ -466,8 +466,7 @@ public class MicrobeEditorGUI : Node
         }
         else
         {
-            atpBalanceLabel.Text =
-                ATP_BALANCE_DEFAULT_TEXT + " - ATP PRODUCTION TOO LOW!";
+            atpBalanceLabel.Text = ATP_BALANCE_DEFAULT_TEXT + " - ATP PRODUCTION TOO LOW!";
             atpBalanceLabel.AddColorOverride("font_color", new Color(1.0f, 0.2f, 0.2f));
         }
 
