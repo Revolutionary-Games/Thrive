@@ -196,6 +196,9 @@ public class MicrobeEditorGUI : Node
     public NodePath SymmetryIconPath;
 
     [Export]
+    public Texture SymmetryIconDefault;
+
+    [Export]
     public Texture SymmetryIcon2x;
 
     [Export]
@@ -420,19 +423,28 @@ public class MicrobeEditorGUI : Node
             editor.MutationPoints - editor.CurrentOrganelleCost;
 
         mutationPointsBar.MaxValue = Constants.BASE_MUTATION_POINTS;
-        mutationPointsBar.Value = Mathf.Lerp((float)mutationPointsBar.Value, possibleMutationPoints, 0.5f);
+        mutationPointsBar.Value = Mathf.Lerp((float)mutationPointsBar.Value, possibleMutationPoints, 0.2f);
         mutationPointsSubtractBar.MaxValue = Constants.BASE_MUTATION_POINTS;
         mutationPointsSubtractBar.Value = Mathf.Lerp(
-            (float)mutationPointsSubtractBar.Value, editor.MutationPoints, 0.5f);
+            (float)mutationPointsSubtractBar.Value, editor.MutationPoints, 0.4f);
 
-        if (possibleMutationPoints != editor.MutationPoints && editor.MutationPoints > 0)
+        if (editor.FreeBuilding)
         {
-            mutationPointsLabel.Text =
-                $"({editor.MutationPoints:F0} -> {possibleMutationPoints:F0}) / {Constants.BASE_MUTATION_POINTS:F0}";
+            mutationPointsLabel.Text = "Freebuilding";
         }
         else
         {
-            mutationPointsLabel.Text = $"{editor.MutationPoints:F0} / {Constants.BASE_MUTATION_POINTS:F0}";
+            if (possibleMutationPoints != editor.MutationPoints && editor.MutationPoints > 0)
+            {
+                mutationPointsLabel.Text =
+                    $"({editor.MutationPoints:F0} -> {possibleMutationPoints:F0})" +
+                    $" / {Constants.BASE_MUTATION_POINTS:F0}";
+            }
+            else
+            {
+                mutationPointsLabel.Text =
+                    $"{editor.MutationPoints:F0} / {Constants.BASE_MUTATION_POINTS:F0}";
+            }
         }
 
         if (possibleMutationPoints < 0)
@@ -444,7 +456,7 @@ public class MicrobeEditorGUI : Node
             mutationPointsSubtractBar.SelfModulate = new Color(0.72f, 0.72f, 0.72f);
         }
 
-        // Updates the tooltip position to follow the cursor
+        // Updates tooltips position to follow the cursor
         if (currentShownTooltip != null)
         {
             var cursorPos = GetViewport().GetMousePosition();
@@ -653,8 +665,6 @@ public class MicrobeEditorGUI : Node
         if (freebuilding)
         {
             newCellButton.Disabled = false;
-
-            mutationPointsLabel.Text = "Freebuilding";
         }
         else
         {
@@ -751,9 +761,19 @@ public class MicrobeEditorGUI : Node
         editor.Symmetry = symmetry;
     }
 
+    internal void OnSymmetryHold()
+    {
+        symmetryIcon.Modulate = new Color(0, 0, 0);
+    }
+
+    internal void OnSymmetryReleased()
+    {
+        symmetryIcon.Modulate = new Color(1, 1, 1);
+    }
+
     internal void ResetSymmetryButton()
     {
-        symmetryIcon.Texture = null;
+        symmetryIcon.Texture = SymmetryIconDefault;
         symmetry = 0;
     }
 
@@ -1066,8 +1086,8 @@ public class MicrobeEditorGUI : Node
                 // Changes process title and process# to red if process has 0 output
                 if (outputCompound.Amount == 0)
                 {
-                    processTitle.AddColorOverride("font_color", new Color(1.0f, 0.1f, 0.1f));
-                    amountLabel.AddColorOverride("font_color", new Color(1.0f, 0.1f, 0.1f));
+                    processTitle.AddColorOverride("font_color", new Color(1.0f, 0.3f, 0.3f));
+                    amountLabel.AddColorOverride("font_color", new Color(1.0f, 0.3f, 0.3f));
                 }
 
                 if (usePlus)
@@ -1351,7 +1371,7 @@ public class MicrobeEditorGUI : Node
     {
         if (newText.Split(" ").Length != 2)
         {
-            speciesNameEdit.Set("custom_colors/font_color", new Color(1, 0, 0));
+            speciesNameEdit.Set("custom_colors/font_color", new Color(1.0f, 0.3f, 0.3f));
         }
         else
         {

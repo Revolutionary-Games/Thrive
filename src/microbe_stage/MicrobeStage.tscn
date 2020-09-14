@@ -621,7 +621,7 @@ font_data = ExtResource( 12 )
 [sub_resource type="StyleBoxEmpty" id=33]
 
 [sub_resource type="DynamicFont" id=34]
-size = 24
+size = 22
 use_filter = true
 font_data = ExtResource( 66 )
 
@@ -1906,7 +1906,6 @@ margin_right = 50.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 50, 35 )
 focus_mode = 0
-action_mode = 0
 enabled_focus_mode = 0
 texture_normal = ExtResource( 18 )
 texture_pressed = ExtResource( 24 )
@@ -2018,7 +2017,6 @@ margin_right = 313.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 35, 35 )
 focus_mode = 0
-action_mode = 0
 enabled_focus_mode = 0
 texture_normal = ExtResource( 19 )
 texture_pressed = ExtResource( 28 )
@@ -2034,9 +2032,9 @@ custom_styles/separator = SubResource( 33 )
 
 [node name="PatchLabel" type="Label" parent="MicrobeHUD/BottomLeft/BottomBar"]
 margin_left = 336.0
-margin_top = 5.0
-margin_right = 405.0
-margin_bottom = 30.0
+margin_top = 6.0
+margin_right = 401.0
+margin_bottom = 29.0
 custom_fonts/font = SubResource( 34 )
 text = "Patch:"
 

@@ -7,6 +7,9 @@ using Godot;
 public class CollapsibleList : VBoxContainer
 {
     [Export]
+    public NodePath TitleLabelPath;
+
+    [Export]
     public NodePath CollapseButtonPath;
 
     [Export]
@@ -21,9 +24,11 @@ public class CollapsibleList : VBoxContainer
     [Export]
     public NodePath TweenPath;
 
+    private string title;
     private bool collapsed;
     private bool isCollapsing;
 
+    private Label titleLabel;
     private GridContainer itemContainer;
     private MarginContainer clipBox;
     private TextureButton collapseButton;
@@ -33,6 +38,16 @@ public class CollapsibleList : VBoxContainer
     private List<Control> items = new List<Control>();
 
     private int cachedTopMarginValue;
+
+    public string Title
+    {
+        get => title;
+        set
+        {
+            title = value;
+            UpdateTitle();
+        }
+    }
 
     public bool Collapsed
     {
@@ -46,6 +61,7 @@ public class CollapsibleList : VBoxContainer
 
     public override void _Ready()
     {
+        titleLabel = GetNode<Label>(TitleLabelPath);
         itemContainer = GetNode<GridContainer>(ItemContainerPath);
         clipBox = GetNode<MarginContainer>(ClipBoxPath);
         collapseButton = GetNode<TextureButton>(CollapseButtonPath);
@@ -53,6 +69,9 @@ public class CollapsibleList : VBoxContainer
         tween = GetNode<Tween>(TweenPath);
 
         cachedTopMarginValue = clipBox.GetConstant("margin_top");
+
+        UpdateTitle();
+        UpdateItems();
     }
 
     public void AddItem(Control item)
@@ -85,6 +104,22 @@ public class CollapsibleList : VBoxContainer
         }
     }
 
+    private void UpdateTitle()
+    {
+        if (titleLabel == null)
+            return;
+
+        if (string.IsNullOrEmpty(title))
+        {
+            // Use the label text
+            title = titleLabel.Text;
+        }
+        else
+        {
+            titleLabel.Text = title;
+        }
+    }
+
     private void UpdateResizing()
     {
         if (Collapsed)
@@ -93,7 +128,19 @@ public class CollapsibleList : VBoxContainer
         }
         else
         {
-            Expand();
+            if (!isCollapsing)
+                Expand();
+        }
+    }
+
+    /// <summary>
+    ///   Add all the already existing childrens into the item list
+    /// </summary>
+    private void UpdateItems()
+    {
+        foreach (Control item in itemContainer.GetChildren())
+        {
+            items.Add(item);
         }
     }
 
@@ -114,9 +161,6 @@ public class CollapsibleList : VBoxContainer
 
     private void Expand()
     {
-        if (isCollapsing)
-            return;
-
         collapseButton.Show();
         expandButton.Hide();
 
