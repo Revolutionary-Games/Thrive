@@ -1016,6 +1016,8 @@ RedoButtonPath = NodePath("CellEditor/RedoButton")
 FinishButtonPath = NodePath("CellEditor/FinishButton")
 SymmetryButtonPath = NodePath("CellEditor/SymmetryButton")
 ATPBalanceLabelPath = NodePath("CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer/Label")
+ATPProductionLabelPath = NodePath("CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer/ATPBarContainer/Label")
+ATPConsumptionLabelPath = NodePath("CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer/ATPBarContainer/Label2")
 ATPBarContainerPath = NodePath("CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer/ATPBarContainer")
 ATPProductionBarPath = NodePath("CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer/ATPBarContainer/ATPProductionBar")
 ATPConsumptionBarPath = NodePath("CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer/ATPBarContainer/ATPConsumptionBar")
@@ -1315,7 +1317,7 @@ __meta__ = {
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -330.0
-margin_bottom = 66.0
+margin_bottom = 98.0
 custom_styles/panel = SubResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1325,7 +1327,7 @@ __meta__ = {
 margin_left = 3.0
 margin_top = 3.0
 margin_right = 327.0
-margin_bottom = 95.0
+margin_bottom = 137.0
 mouse_filter = 1
 custom_constants/margin_right = 3
 custom_constants/margin_top = 3
@@ -1336,7 +1338,7 @@ custom_constants/margin_bottom = 3
 margin_left = 3.0
 margin_top = 3.0
 margin_right = 321.0
-margin_bottom = 89.0
+margin_bottom = 131.0
 custom_constants/separation = 0
 
 [node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer"]
@@ -1356,7 +1358,7 @@ custom_styles/separator = SubResource( 11 )
 [node name="ATPBarContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer"]
 margin_top = 22.0
 margin_right = 318.0
-margin_bottom = 86.0
+margin_bottom = 128.0
 alignment = 1
 
 [node name="ATPProductionBar" parent="MicrobeEditorGUI/CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer/ATPBarContainer" instance=ExtResource( 86 )]
@@ -1369,6 +1371,26 @@ margin_top = 34.0
 margin_right = 318.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 318, 30 )
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer/ATPBarContainer"]
+margin_left = 220.0
+margin_top = 7.0
+margin_right = 302.0
+margin_bottom = 24.0
+grow_horizontal = 0
+rect_min_size = Vector2( 82, 17 )
+custom_fonts/font = SubResource( 10 )
+text = "Production"
+
+[node name="Label2" type="Label" parent="MicrobeEditorGUI/CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer/ATPBarContainer"]
+margin_left = 220.0
+margin_top = 40.0
+margin_right = 319.0
+margin_bottom = 57.0
+grow_horizontal = 0
+rect_min_size = Vector2( 99, 17 )
+custom_fonts/font = SubResource( 10 )
+text = "Consumption"
 
 [node name="LeftPanel" type="Control" parent="MicrobeEditorGUI/CellEditor"]
 anchor_bottom = 1.0
@@ -3246,7 +3268,7 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer"]
-margin_right = 323.0
+margin_right = 351.0
 margin_bottom = 783.0
 mouse_filter = 1
 custom_constants/margin_top = 10
@@ -3259,7 +3281,7 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 323.0
+margin_right = 351.0
 margin_bottom = 773.0
 custom_constants/separation = 10
 
@@ -3853,10 +3875,10 @@ valign = 1
 uppercase = true
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_left = 44.0
-margin_top = 44.0
-margin_right = 44.0
-margin_bottom = 44.0
+margin_left = 56.0
+margin_top = 56.0
+margin_right = 56.0
+margin_bottom = 56.0
 theme = SubResource( 29 )
 edit_alpha = false
 

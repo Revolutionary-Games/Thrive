@@ -58,6 +58,12 @@ public class MicrobeEditorGUI : Node
     public NodePath ATPBalanceLabelPath;
 
     [Export]
+    public NodePath ATPProductionLabelPath;
+
+    [Export]
+    public NodePath ATPConsumptionLabelPath;
+
+    [Export]
     public NodePath ATPBarContainerPath;
 
     [Export]
@@ -240,6 +246,8 @@ public class MicrobeEditorGUI : Node
     private TextureButton symmetryButton;
     private TextureRect symmetryIcon;
     private Label atpBalanceLabel;
+    private Label atpProductionLabel;
+    private Label atpConsumptionLabel;
     private SegmentedBar atpProductionBar;
     private SegmentedBar atpConsumptionBar;
     private Label glucoseReductionLabel;
@@ -313,6 +321,8 @@ public class MicrobeEditorGUI : Node
         symmetryButton = GetNode<TextureButton>(SymmetryButtonPath);
         finishButton = GetNode<Button>(FinishButtonPath);
         atpBalanceLabel = GetNode<Label>(ATPBalanceLabelPath);
+        atpProductionLabel = GetNode<Label>(ATPProductionLabelPath);
+        atpConsumptionLabel = GetNode<Label>(ATPConsumptionLabelPath);
         atpProductionBar = GetNode<SegmentedBar>(ATPProductionBarPath);
         atpConsumptionBar = GetNode<SegmentedBar>(ATPConsumptionBarPath);
         glucoseReductionLabel = GetNode<Label>(GlucoseReductionLabelPath);
@@ -451,15 +461,21 @@ public class MicrobeEditorGUI : Node
     {
         if (energyBalance.FinalBalance > 0)
         {
-            atpBalanceLabel.Text = ATP_BALANCE_DEFAULT_TEXT + $": {energyBalance.FinalBalance}";
+            atpBalanceLabel.Text = ATP_BALANCE_DEFAULT_TEXT;
             atpBalanceLabel.AddColorOverride("font_color", new Color(1.0f, 1.0f, 1.0f));
         }
         else
         {
             atpBalanceLabel.Text =
-                ATP_BALANCE_DEFAULT_TEXT + $": {energyBalance.FinalBalance}" + " - ATP PRODUCTION TOO LOW!";
+                ATP_BALANCE_DEFAULT_TEXT + " - ATP PRODUCTION TOO LOW!";
             atpBalanceLabel.AddColorOverride("font_color", new Color(1.0f, 0.2f, 0.2f));
         }
+
+        atpProductionLabel.Text = $"Production: {energyBalance.TotalProduction}";
+        atpProductionLabel.AddColorOverride("font_color", new Color(1.0f, 1.0f, 1.0f));
+
+        atpConsumptionLabel.Text = $"Consumption: {energyBalance.TotalConsumption}";
+        atpConsumptionLabel.AddColorOverride("font_color", new Color(1.0f, 1.0f, 1.0f));
 
         float maxValue = Math.Max(energyBalance.TotalConsumption, energyBalance.TotalProduction);
         atpProductionBar.MaxValue = maxValue;
