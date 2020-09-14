@@ -706,6 +706,7 @@ public class MicrobeEditor : Node, ILoadableGameState
                 gui.UpdateRigiditySlider((int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO),
                     MutationPoints);
                 gui.UpdateSpeed(CalculateSpeed());
+                gui.UpdateHitpoints(CalculateHitpoints());
             },
             undo =>
             {
@@ -713,6 +714,7 @@ public class MicrobeEditor : Node, ILoadableGameState
                 gui.UpdateRigiditySlider((int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO),
                     MutationPoints);
                 gui.UpdateSpeed(CalculateSpeed());
+                gui.UpdateHitpoints(CalculateHitpoints());
             });
 
         EnqueueAction(action);
