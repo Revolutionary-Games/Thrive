@@ -32,9 +32,9 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 182.0
+margin_left = 183.0
 margin_top = 84.0
-margin_right = 1182.0
+margin_right = 1183.0
 margin_bottom = 684.0
 rect_min_size = Vector2( 1000, 600 )
 size_flags_vertical = 3
@@ -45,50 +45,50 @@ margin_bottom = 37.0
 alignment = 1
 
 [node name="LoadButton" type="Button" parent="CenterContainer/VBoxContainer/TopBox"]
-margin_left = 232.0
-margin_right = 291.0
+margin_left = 140.0
+margin_right = 195.0
 margin_bottom = 37.0
 rect_min_size = Vector2( 0, 37 )
 disabled = true
 text = "Load"
 
 [node name="VSeparator" type="VSeparator" parent="CenterContainer/VBoxContainer/TopBox"]
-margin_left = 295.0
-margin_right = 299.0
+margin_left = 199.0
+margin_right = 203.0
 margin_bottom = 37.0
 
 [node name="Refresh" type="Button" parent="CenterContainer/VBoxContainer/TopBox"]
-margin_left = 303.0
-margin_right = 391.0
+margin_left = 207.0
+margin_right = 291.0
 margin_bottom = 37.0
 rect_min_size = Vector2( 0, 37 )
 text = "Refresh"
 
 [node name="DeleteSelected" type="Button" parent="CenterContainer/VBoxContainer/TopBox"]
-margin_left = 395.0
-margin_right = 565.0
+margin_left = 295.0
+margin_right = 454.0
 margin_bottom = 37.0
 rect_min_size = Vector2( 0, 37 )
 disabled = true
 text = "Delete Selected"
 
 [node name="DeleteOld" type="Button" parent="CenterContainer/VBoxContainer/TopBox"]
-margin_left = 569.0
-margin_right = 767.0
+margin_left = 458.0
+margin_right = 646.0
 margin_bottom = 37.0
 rect_min_size = Vector2( 0, 37 )
 disabled = true
 text = "Clean Up Old Saves"
 
 [node name="VSeparator2" type="VSeparator" parent="CenterContainer/VBoxContainer/TopBox"]
-margin_left = 675.0
-margin_right = 679.0
-margin_bottom = 24.0
+margin_left = 650.0
+margin_right = 654.0
+margin_bottom = 37.0
 
 [node name="OpenSaveDir" type="Button" parent="CenterContainer/VBoxContainer/TopBox"]
-margin_left = 683.0
-margin_right = 903.0
-margin_bottom = 24.0
+margin_left = 658.0
+margin_right = 860.0
+margin_bottom = 37.0
 text = "Open Save Directory"
 
 [node name="SaveList" parent="CenterContainer/VBoxContainer" instance=ExtResource( 3 )]
@@ -131,42 +131,42 @@ margin_bottom = 29.0
 text = "0"
 
 [node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer/BottomBox"]
-margin_left = 217.0
-margin_right = 220.0
-margin_bottom = 24.0
+margin_left = 254.0
+margin_right = 257.0
+margin_bottom = 35.0
 rect_min_size = Vector2( 3, 0 )
 
 [node name="Label3" type="Label" parent="CenterContainer/VBoxContainer/BottomBox"]
-margin_left = 254.0
+margin_left = 261.0
 margin_top = 6.0
-margin_right = 387.0
+margin_right = 394.0
 margin_bottom = 29.0
 text = " Space used:"
 
 [node name="SavesSpaceUsed" type="Label" parent="CenterContainer/VBoxContainer/BottomBox"]
-margin_left = 391.0
+margin_left = 398.0
 margin_top = 6.0
-margin_right = 404.0
+margin_right = 411.0
 margin_bottom = 29.0
 text = "0"
 
 [node name="Spacer2" type="Control" parent="CenterContainer/VBoxContainer/BottomBox"]
-margin_left = 369.0
-margin_right = 372.0
-margin_bottom = 24.0
+margin_left = 415.0
+margin_right = 418.0
+margin_bottom = 35.0
 rect_min_size = Vector2( 3, 0 )
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/BottomBox"]
-margin_left = 408.0
+margin_left = 422.0
 margin_top = 6.0
-margin_right = 510.0
+margin_right = 524.0
 margin_bottom = 29.0
 text = " Selected:"
 
 [node name="SelectedCount" type="Label" parent="CenterContainer/VBoxContainer/BottomBox"]
-margin_left = 514.0
+margin_left = 528.0
 margin_top = 6.0
-margin_right = 527.0
+margin_right = 541.0
 margin_bottom = 29.0
 text = "0"
 
