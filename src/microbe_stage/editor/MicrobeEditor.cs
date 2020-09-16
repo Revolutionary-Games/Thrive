@@ -24,6 +24,7 @@ public class MicrobeEditor : Node, ILoadableGameState
     private MicrobeCamera camera;
     private Node world;
     private MicrobeEditorGUI gui;
+    private MicrobeEditorTutorialGUI tutorialGUI;
 
     /// <summary>
     ///   Where all user actions will  be registered
@@ -129,6 +130,9 @@ public class MicrobeEditor : Node, ILoadableGameState
     [JsonProperty]
     private string autoEvoExternal;
 
+    [JsonProperty]
+    private string activeActionName;
+
     /// <summary>
     /// The Symmetry setting of the Microbe Editor.
     /// </summary>
@@ -179,8 +183,21 @@ public class MicrobeEditor : Node, ILoadableGameState
     /// <summary>
     ///   The name of organelle type that is selected to be placed
     /// </summary>
-    [JsonProperty]
-    public string ActiveActionName { get; set; }
+    [JsonIgnore]
+    public string ActiveActionName
+    {
+        get => activeActionName;
+        set
+        {
+            if (value != activeActionName)
+            {
+                TutorialState?.SendEvent(TutorialEventType.MicrobeEditorOrganelleToPlaceChanged,
+                    new StringEventArgs(value), this);
+            }
+
+            activeActionName = value;
+        }
+    }
 
     /// <summary>
     ///   The number of mutation points left
@@ -214,6 +231,9 @@ public class MicrobeEditor : Node, ILoadableGameState
     /// </summary>
     [JsonProperty]
     public GameProperties CurrentGame { get; set; }
+
+    [JsonIgnore]
+    public TutorialState TutorialState => CurrentGame.TutorialState;
 
     /// <summary>
     ///   If set the editor returns to this stage. The CurrentGame
@@ -282,6 +302,7 @@ public class MicrobeEditor : Node, ILoadableGameState
         camera = GetNode<MicrobeCamera>("PrimaryCamera");
         world = GetNode("World");
         gui = GetNode<MicrobeEditorGUI>("MicrobeEditorGUI");
+        tutorialGUI = GetNode<MicrobeEditorTutorialGUI>("TutorialGUI");
 
         invalidMaterial = GD.Load<Material>(
             "res://src/microbe_stage/editor/InvalidHex.material");
@@ -291,6 +312,7 @@ public class MicrobeEditor : Node, ILoadableGameState
 
         camera.ObjectToFollow = GetNode<Spatial>("CameraLookAt");
 
+        tutorialGUI.Visible = true;
         gui.Init(this);
 
         transitionFinished = false;
@@ -358,6 +380,8 @@ public class MicrobeEditor : Node, ILoadableGameState
         InitEditor();
 
         StartMusic();
+
+        TutorialState.SendEvent(TutorialEventType.EnteredMicrobeEditor, EventArgs.Empty, this);
     }
 
     public void OnFinishLoading(Save save)
@@ -625,22 +649,31 @@ public class MicrobeEditor : Node, ILoadableGameState
 
     public void Redo()
     {
-        history.Redo();
+        if (history.Redo())
+        {
+            TutorialState.SendEvent(TutorialEventType.MicrobeEditorRedo, EventArgs.Empty, this);
+        }
 
         UpdateUndoRedoButtons();
     }
 
     public void Undo()
     {
-        history.Undo();
+        if (history.Undo())
+        {
+            TutorialState.SendEvent(TutorialEventType.MicrobeEditorUndo, EventArgs.Empty, this);
+        }
 
         UpdateUndoRedoButtons();
     }
 
     public void PlaceOrganelle()
     {
-        if (ActiveActionName != null)
-            AddOrganelle(ActiveActionName);
+        if (ActiveActionName == null)
+            return;
+
+        AddOrganelle(ActiveActionName);
+        TutorialState.SendEvent(TutorialEventType.MicrobeEditorOrganellePlaced, EventArgs.Empty, this);
     }
 
     public void RotateRight()
@@ -921,6 +954,12 @@ public class MicrobeEditor : Node, ILoadableGameState
         gui.SetMap(CurrentGame.GameWorld.Map);
 
         gui.UpdateGlucoseReduction(Constants.GLUCOSE_REDUCTION_RATE);
+
+        // Make tutorials run
+        tutorialGUI.EventReceiver = TutorialState;
+
+        // Send undo button to the tutorial system
+        gui.SendUndoToTutorial(TutorialState);
     }
 
     private void InitEditorFresh()

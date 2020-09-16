@@ -394,6 +394,7 @@ public class MicrobeEditorGUI : Node
         mutationPointsBar.Value = possibleMutationPoints;
         mutationPointsSubtractBar.MaxValue = Constants.BASE_MUTATION_POINTS;
         mutationPointsSubtractBar.Value = editor.MutationPoints;
+
         if (possibleMutationPoints != editor.MutationPoints)
         {
             mutationPointsLabel.Text =
@@ -761,6 +762,14 @@ public class MicrobeEditorGUI : Node
         SetRigiditySliderTooltip(value);
     }
 
+    internal void SendUndoToTutorial(TutorialState tutorial)
+    {
+        if (tutorial.EditorUndoTutorial == null)
+            return;
+
+        tutorial.EditorUndoTutorial.EditorUndoButtonControl = undoButton;
+    }
+
     private static void SetOrganelleButtonStatus(Button organelleItem, bool nucleus)
     {
         if (organelleItem.Name == "nucleus")
@@ -842,6 +851,8 @@ public class MicrobeEditorGUI : Node
         {
             GD.PrintErr("Invalid tab");
         }
+
+        editor.TutorialState.SendEvent(TutorialEventType.MicrobeEditorTabChanged, new StringEventArgs(tab), this);
     }
 
     private void GoToPatchTab()
@@ -1293,6 +1304,8 @@ public class MicrobeEditorGUI : Node
     private void UpdateShownPatchDetails()
     {
         var patch = mapDrawer.SelectedPatch;
+
+        editor.TutorialState.SendEvent(TutorialEventType.MicrobeEditorPatchSelected, new PatchEventArgs(patch), this);
 
         if (patch == null)
         {

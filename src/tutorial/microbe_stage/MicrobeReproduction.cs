@@ -31,17 +31,11 @@ namespace Tutorial
                 }
 
                 case TutorialEventType.MicrobePlayerReadyToEdit:
-                {
-                    HasBeenShown = true;
-                    ProcessWhileHidden = false;
-
-                    if (ShownCurrently)
-                    {
-                        Hide();
-                    }
-
+                    Inhibit();
                     break;
-                }
+                case TutorialEventType.EnteredMicrobeEditor:
+                    Inhibit();
+                    break;
             }
 
             return false;
@@ -58,6 +52,17 @@ namespace Tutorial
             if (Time > Constants.MICROBE_REPRODUCTION_TUTORIAL_DELAY && !HasBeenShown && !overallState.TutorialActive())
             {
                 Show();
+            }
+        }
+
+        private void Inhibit()
+        {
+            HasBeenShown = true;
+            ProcessWhileHidden = false;
+
+            if (ShownCurrently)
+            {
+                Hide();
             }
         }
     }

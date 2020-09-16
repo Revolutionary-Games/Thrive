@@ -2,8 +2,9 @@ using System;
 using Godot;
 
 /// <summary>
-///   GUI control that contains the tutorial. Should be placed over any game state GUI so that things drawn
-///   by this are on top. Controlled by Tutorial object
+///   GUI control that contains the microbe stage tutorial.
+///   Should be placed over any game state GUI so that things drawn by this are on top. Visibility of things is
+///   Controlled by TutorialState object
 /// </summary>
 public class MicrobeTutorialGUI : Control, ITutorialGUI
 {
@@ -56,9 +57,6 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
 
     public Node GUINode => this;
 
-    /// <summary>
-    ///   Used to ignore reporting closing back to whoever is setting the visible properties
-    /// </summary>
     public bool IsClosingAutomatically { get; set; }
 
     public bool MicrobeWelcomeVisible
@@ -212,16 +210,9 @@ public class MicrobeTutorialGUI : Control, ITutorialGUI
         reproductionTutorial = GetNode<WindowDialog>(ReproductionTutorialPath);
     }
 
-    /// <summary>
-    ///   This passes time to the TutorialState as this Node doesn't stop processing on pause
-    /// </summary>
     public override void _Process(float delta)
     {
-        // Just to make sure this is reset properly
-        IsClosingAutomatically = false;
-
-        // Let our attached tutorial controller do stuff
-        EventReceiver?.Process(this, delta);
+        TutorialHelper.ProcessTutorialGUI(this, delta);
     }
 
     public void OnClickedCloseAll()
