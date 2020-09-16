@@ -1,4 +1,4 @@
-[gd_scene load_steps=154 format=2]
+[gd_scene load_steps=155 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
@@ -86,6 +86,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/MediumTwoHover.png" type="Texture" id=84]
 [ext_resource path="res://assets/textures/gui/bevel/NewIcon.png" type="Texture" id=85]
 [ext_resource path="res://src/gui_common/SegmentedBar.tscn" type="PackedScene" id=86]
+[ext_resource path="res://src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn" type="PackedScene" id=87]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 37 )
@@ -10427,6 +10428,10 @@ __meta__ = {
 visible = false
 theme = ExtResource( 53 )
 HelpCategory = "MicrobeEditor"
+
+[node name="TutorialGUI" parent="." instance=ExtResource( 87 )]
+visible = false
+EditorEntryReportPath = NodePath("../TutorialGUI/EditorEntryReport")
 [connection signal="mouse_entered" from="MicrobeEditorGUI/LeftTopBar" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/LeftTopBar" to="MicrobeEditorGUI" method="OnMouseExit"]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/LeftTopBar/HBoxContainer/ReportButton" to="MicrobeEditorGUI" method="OnMouseEnter"]

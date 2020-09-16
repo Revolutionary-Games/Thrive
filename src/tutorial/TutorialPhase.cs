@@ -70,6 +70,11 @@ public abstract class TutorialPhase
         DefaultGUIStateHandle();
     }
 
+    public virtual void ApplyGUIState(MicrobeEditorTutorialGUI gui)
+    {
+        DefaultGUIStateHandle();
+    }
+
     /// <summary>
     ///   Checks (and handles) tutorial events that this tutorial reacts to
     /// </summary>
@@ -99,6 +104,19 @@ public abstract class TutorialPhase
         HasBeenShown = true;
         CanTrigger = false;
         HandlesEvents = false;
+    }
+
+    /// <summary>
+    ///   Enables trigger condition and sets run in background to true. Should only be used on tutorials that properly
+    ///   handle processing while hidden.
+    /// </summary>
+    public void EnableTriggerAndBackgroundProcess()
+    {
+        if (HasBeenShown || ShownCurrently)
+            return;
+
+        CanTrigger = true;
+        ProcessWhileHidden = true;
     }
 
     public virtual Vector3 GetPositionGuidance()

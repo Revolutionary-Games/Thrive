@@ -67,3 +67,23 @@ public class CompoundEventArgs : TutorialEventArgs
 
     public Dictionary<Compound, float> Compounds { get; }
 }
+
+public class StringEventArgs : TutorialEventArgs
+{
+    public StringEventArgs(string data)
+    {
+        Data = data;
+    }
+
+    public string Data { get; }
+}
+
+public class PatchEventArgs : TutorialEventArgs
+{
+    public PatchEventArgs(Patch patch)
+    {
+        Patch = patch;
+    }
+
+    public Patch Patch { get; }
+}

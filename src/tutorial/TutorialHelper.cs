@@ -25,4 +25,17 @@ public static class TutorialHelper
         GUICommon.Instance.PlayButtonPressSound();
         gui.EventReceiver?.OnCurrentTutorialClosed(closedThing);
     }
+
+    /// <summary>
+    ///   Handles process for all tutorial GUI derived classes.
+    ///   This passes time to the TutorialState as the tutorial GUI Node shouldn't stop processing on pause
+    /// </summary>
+    public static void ProcessTutorialGUI(ITutorialGUI gui, float delta)
+    {
+        // Just to make sure this is reset properly
+        gui.IsClosingAutomatically = false;
+
+        // Let the attached tutorial controller do stuff
+        gui.EventReceiver?.Process(gui, delta);
+    }
 }

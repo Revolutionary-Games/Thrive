@@ -8,6 +8,7 @@ using Tutorial;
 /// <summary>
 ///   State of the tutorials for a game of Thrive
 /// </summary>
+[JsonObject(IsReference = true)]
 public class TutorialState : ITutorialInput
 {
     /// <summary>
@@ -48,6 +49,24 @@ public class TutorialState : ITutorialInput
 
     [JsonProperty]
     public MicrobeReproduction MicrobeReproduction { get; private set; } = new MicrobeReproduction();
+
+    [JsonProperty]
+    public EditorWelcome EditorWelcome { get; private set; } = new EditorWelcome();
+
+    [JsonProperty]
+    public Tutorial.PatchMap PatchMap { get; private set; } = new Tutorial.PatchMap();
+
+    [JsonProperty]
+    public CellEditorIntroduction CellEditorIntroduction { get; private set; } = new CellEditorIntroduction();
+
+    [JsonProperty]
+    public EditorUndoTutorial EditorUndoTutorial { get; private set; } = new EditorUndoTutorial();
+
+    [JsonProperty]
+    public EditorRedoTutorial EditorRedoTutorial { get; private set; } = new EditorRedoTutorial();
+
+    [JsonProperty]
+    public EditorTutorialEnd EditorTutorialEnd { get; private set; } = new EditorTutorialEnd();
 
     // End of tutorial state variables
 
@@ -247,6 +266,9 @@ public class TutorialState : ITutorialInput
             case MicrobeTutorialGUI casted:
                 ApplySpecificGUI(casted);
                 break;
+            case MicrobeEditorTutorialGUI casted:
+                ApplySpecificGUI(casted);
+                break;
             default:
                 throw new ArgumentException("Unhandled GUI class in ApplyGUIState");
         }
@@ -256,6 +278,12 @@ public class TutorialState : ITutorialInput
     }
 
     private void ApplySpecificGUI(MicrobeTutorialGUI gui)
+    {
+        foreach (var tutorial in Tutorials)
+            tutorial.ApplyGUIState(gui);
+    }
+
+    private void ApplySpecificGUI(MicrobeEditorTutorialGUI gui)
     {
         foreach (var tutorial in Tutorials)
             tutorial.ApplyGUIState(gui);
@@ -300,6 +328,12 @@ public class TutorialState : ITutorialInput
             GlucoseCollecting,
             MicrobeStayingAlive,
             MicrobeReproduction,
+            EditorWelcome,
+            PatchMap,
+            CellEditorIntroduction,
+            EditorUndoTutorial,
+            EditorRedoTutorial,
+            EditorTutorialEnd,
         };
     }
 }

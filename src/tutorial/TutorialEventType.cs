@@ -47,4 +47,34 @@ public enum TutorialEventType
     ///   Player entered the microbe editor
     /// </summary>
     EnteredMicrobeEditor,
+
+    /// <summary>
+    ///   Player changed the microbe editor tab, args is StringEventArgs
+    /// </summary>
+    MicrobeEditorTabChanged,
+
+    /// <summary>
+    ///   Player selected a patch in the microbe editor, args is PatchEventArgs
+    /// </summary>
+    MicrobeEditorPatchSelected,
+
+    /// <summary>
+    ///   Player selected an organelle to place in the editor, args is StringEventArgs
+    /// </summary>
+    MicrobeEditorOrganelleToPlaceChanged,
+
+    /// <summary>
+    ///   Player placed an organelle
+    /// </summary>
+    MicrobeEditorOrganellePlaced,
+
+    /// <summary>
+    ///   Player undid an action in the editor
+    /// </summary>
+    MicrobeEditorUndo,
+
+    /// <summary>
+    ///   Player redid an action in the editor
+    /// </summary>
+    MicrobeEditorRedo,
 }
