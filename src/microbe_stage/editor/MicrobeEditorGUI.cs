@@ -470,11 +470,8 @@ public class MicrobeEditorGUI : Node
             atpBalanceLabel.AddColorOverride("font_color", new Color(1.0f, 0.2f, 0.2f));
         }
 
-        atpProductionLabel.Text = $"{energyBalance.TotalProduction}";
-        atpProductionLabel.AddColorOverride("font_color", new Color(1.0f, 1.0f, 1.0f));
-
-        atpConsumptionLabel.Text = $"{energyBalance.TotalConsumption}";
-        atpConsumptionLabel.AddColorOverride("font_color", new Color(1.0f, 1.0f, 1.0f));
+        atpProductionLabel.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", energyBalance.TotalProduction);
+        atpConsumptionLabel.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", energyBalance.TotalConsumption);
 
         float maxValue = Math.Max(energyBalance.TotalConsumption, energyBalance.TotalProduction);
         atpProductionBar.MaxValue = maxValue;

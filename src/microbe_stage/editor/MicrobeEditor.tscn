@@ -1380,7 +1380,7 @@ margin_right = 335.0
 margin_bottom = 30.0
 grow_horizontal = 0
 rect_min_size = Vector2( 10, 30 )
-size_flags_horizontal = 2
+size_flags_horizontal = 3
 size_flags_vertical = 5
 custom_fonts/font = SubResource( 10 )
 text = "00000"
@@ -1405,7 +1405,7 @@ margin_right = 335.0
 margin_bottom = 30.0
 grow_horizontal = 0
 rect_min_size = Vector2( 10, 30 )
-size_flags_horizontal = 2
+size_flags_horizontal = 3
 size_flags_vertical = 5
 custom_fonts/font = SubResource( 10 )
 text = "00000"
@@ -3288,7 +3288,7 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer"]
-margin_right = 323.0
+margin_right = 351.0
 margin_bottom = 783.0
 mouse_filter = 1
 custom_constants/margin_top = 10
@@ -3301,7 +3301,7 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 323.0
+margin_right = 351.0
 margin_bottom = 773.0
 custom_constants/separation = 10
 
@@ -3895,10 +3895,10 @@ valign = 1
 uppercase = true
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_left = 44.0
-margin_top = 44.0
-margin_right = 44.0
-margin_bottom = 44.0
+margin_left = 48.0
+margin_top = 48.0
+margin_right = 48.0
+margin_bottom = 48.0
 theme = SubResource( 29 )
 edit_alpha = false
 
