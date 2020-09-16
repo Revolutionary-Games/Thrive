@@ -79,7 +79,6 @@ public class ModManagerUI : Control
         modInfoAuthor.Text = tempModInfo.Author;
         modInfoVersion.Text = tempModInfo.Version;
         modInfoDescription.Text = tempModInfo.Description;
-        modInfoDescription.Text = tempModInfo.Description;
     }
 
     private void OnMoveToLoadPressed()
@@ -92,6 +91,7 @@ public class ModManagerUI : Control
 
         var selectedItem = unloadedItemList.GetSelectedItems()[0];
         ModInfo currentModInfo = (ModInfo)unloadedItemList.GetItemMetadata(selectedItem);
+
         loadedItemList.AddItem(currentModInfo.Name);
         loadedItemList.SetItemMetadata(loadedItemList.GetItemCount() - 1, currentModInfo);
         unloadedItemList.RemoveItem(selectedItem);
@@ -107,6 +107,7 @@ public class ModManagerUI : Control
 
         var selectedItem = loadedItemList.GetSelectedItems()[0];
         ModInfo currentModInfo = (ModInfo)loadedItemList.GetItemMetadata(selectedItem);
+
         unloadedItemList.AddItem(currentModInfo.Name);
         unloadedItemList.SetItemMetadata(unloadedItemList.GetItemCount() - 1, currentModInfo);
         loadedItemList.RemoveItem(selectedItem);

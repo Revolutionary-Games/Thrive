@@ -9,7 +9,7 @@ using File = System.IO.File;
 
 public class ModLoader
 {
-    public List<ModInfo> LoadModList()
+    public List<ModInfo> LoadModList(bool ignoreAutoloaded = true)
     {
         DirectoryInfo modFolder = Directory.CreateDirectory($"{Directory.GetCurrentDirectory()}\\mods");
 
@@ -24,7 +24,7 @@ public class ModLoader
             var currentModInfo =
                 JsonConvert.DeserializeObject<ModInfo>(ReadJSONFile(currentMod.FullName + "/mod_info.json"));
 
-            if (currentModInfo.AutoLoad)
+            if (currentModInfo.AutoLoad && ignoreAutoloaded)
             {
                 continue;
             }
@@ -36,29 +36,31 @@ public class ModLoader
         return modList;
     }
 
-    public void LoadMod(ModInfo currentMod)
+    public int LoadMod(ModInfo currentMod)
     {
             if (string.IsNullOrEmpty(currentMod.Dll))
             {
-                if (File.Exists(currentMod.Location + "/" + currentMod.Dll))
+                if (File.Exists(ProjectSettings.GlobalizePath(currentMod.Dll)))
                 {
-                    Assembly.LoadFile(currentMod.Location + "/" + currentMod.Dll);
+                    Assembly.LoadFile(ProjectSettings.GlobalizePath(currentMod.Dll));
                 }
             }
 
             if (!File.Exists(currentMod.Location + "/mod.pck"))
             {
                 GD.Print("Fail to find mod file: " + currentMod.Name);
-                return;
+                return -2;
             }
 
             if (ProjectSettings.LoadResourcePack(currentMod.Location + "/mod.pck", true))
             {
                 GD.Print("Loaded mod: " + currentMod.Name);
+                return 1;
             }
             else
             {
                 GD.Print("Failed to load mod: " + currentMod.Name);
+                return -1;
             }
     }
 

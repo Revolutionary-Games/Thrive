@@ -306,6 +306,16 @@ __meta__ = {
 
 [node name="GUIAnimations" type="AnimationPlayer" parent="."]
 anims/MenuSlide = SubResource( 1 )
+
+[node name="ModErrorPopup" type="AcceptDialog" parent="."]
+margin_left = 383.0
+margin_top = 154.0
+margin_right = 947.0
+margin_bottom = 481.0
+theme = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="MenuContainers/MenuCenterContainer/MenuItems/MainMenu/NewGame" to="." method="NewGamePressed"]
 [connection signal="pressed" from="MenuContainers/MenuCenterContainer/MenuItems/MainMenu/LoadGame" to="." method="LoadGamePressed"]
 [connection signal="pressed" from="MenuContainers/MenuCenterContainer/MenuItems/MainMenu/Options" to="." method="OptionsPressed"]

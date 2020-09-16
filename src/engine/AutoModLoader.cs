@@ -1,65 +1,49 @@
-using System.IO;
-using System.Reflection;
+using System.Collections.Generic;
 using Godot;
-using Newtonsoft.Json;
-using Directory = System.IO.Directory;
-using File = System.IO.File;
 
 public class AutoModLoader : Node
 {
+    private List<ModInfo> failedToLoadMods = new List<ModInfo>();
+
     private AutoModLoader()
     {
-        DirectoryInfo modFolder = Directory.CreateDirectory($"{Directory.GetCurrentDirectory()}\\mods");
-        foreach (DirectoryInfo currentMod in modFolder.EnumerateDirectories())
-        {
-            if (!File.Exists(currentMod.FullName + "/mod_info.json"))
-            {
-                continue;
-            }
+        ModLoader loader = new ModLoader();
 
-            var currentModInfo =
-                JsonConvert.DeserializeObject<ModInfo>(ReadJSONFile(currentMod.FullName + "/mod_info.json"));
+        var modList = loader.LoadModList(false);
+        foreach (ModInfo currentModInfo in modList)
+        {
             if (currentModInfo.AutoLoad)
             {
-                if (string.IsNullOrEmpty(currentModInfo.Dll))
+                if (loader.LoadMod(currentModInfo) < 0)
                 {
-                    if (File.Exists(currentMod.FullName + "/" + currentModInfo.Dll))
-                    {
-                        Assembly.LoadFile(currentMod.FullName + "/" + currentModInfo.Dll);
-                    }
-                }
-
-                if (!File.Exists(currentMod.FullName + "/mod.pck"))
-                {
-                    GD.Print("Fail to find mod file: " + currentModInfo.Name);
-                    continue;
-                }
-
-                if (ProjectSettings.LoadResourcePack(currentMod.FullName + "/mod.pck", true))
-                {
-                    GD.Print("Loaded mod: " + currentModInfo.Name);
-                }
-                else
-                {
-                    GD.Print("Failed to load mod: " + currentModInfo.Name);
+                   failedToLoadMods.Add(currentModInfo);
                 }
             }
         }
-
-        QueueFree();
     }
 
-    private static string ReadJSONFile(string path)
+    public void OpenModErrorPopup(AcceptDialog errorBox)
     {
-        using (var file = new Godot.File())
+        if (failedToLoadMods.Count != 0)
         {
-            file.Open(path, Godot.File.ModeFlags.Read);
-            var result = file.GetAsText();
-
-            // This might be completely unnecessary
-            file.Close();
-
-            return result;
+            errorBox.DialogText = GetFailedMods();
+            errorBox.PopupCentered();
         }
+    }
+
+    public string GetFailedMods()
+    {
+        if (failedToLoadMods.Count != 0)
+        {
+            string text = "The Following Mods Failed To Load: \n \n";
+            foreach (ModInfo currentModInfo in failedToLoadMods)
+            {
+                text += currentModInfo.Name + "\n";
+            }
+
+            return text;
+        }
+
+        return string.Empty;
     }
 }

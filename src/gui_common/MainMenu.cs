@@ -183,6 +183,7 @@ public class MainMenu : Node
 
         // Start music after the video
         StartMusic();
+        GetNode<AutoModLoader>("/root/AutoModLoader").OpenModErrorPopup(GetNode<AcceptDialog>("ModErrorPopup"));
     }
 
     private void OnMicrobeIntroEnded()
