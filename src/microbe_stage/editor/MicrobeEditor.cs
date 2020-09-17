@@ -9,6 +9,9 @@ using Newtonsoft.Json;
 /// </summary>
 public class MicrobeEditor : Node, ILoadableGameState
 {
+    [Export]
+    public NodePath PauseMenuPath;
+
     /// <summary>
     ///   The new to set on the species after exiting
     /// </summary>
@@ -25,6 +28,7 @@ public class MicrobeEditor : Node, ILoadableGameState
     private Node world;
     private MicrobeEditorGUI gui;
     private MicrobeEditorTutorialGUI tutorialGUI;
+    private PauseMenu pauseMenu;
 
     /// <summary>
     ///   Where all user actions will  be registered
@@ -303,6 +307,7 @@ public class MicrobeEditor : Node, ILoadableGameState
         world = GetNode("World");
         gui = GetNode<MicrobeEditorGUI>("MicrobeEditorGUI");
         tutorialGUI = GetNode<MicrobeEditorTutorialGUI>("TutorialGUI");
+        pauseMenu = GetNode<PauseMenu>(PauseMenuPath);
 
         invalidMaterial = GD.Load<Material>(
             "res://src/microbe_stage/editor/InvalidHex.material");
@@ -957,6 +962,8 @@ public class MicrobeEditor : Node, ILoadableGameState
 
         // Make tutorials run
         tutorialGUI.EventReceiver = TutorialState;
+
+        pauseMenu.GameTutorialState = TutorialState;
 
         // Send undo button to the tutorial system
         gui.SendUndoToTutorial(TutorialState);

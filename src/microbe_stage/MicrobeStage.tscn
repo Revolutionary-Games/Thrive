@@ -75,8 +75,6 @@
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPausedHover.png" type="Texture" id=78]
 [ext_resource path="res://assets/textures/gui/bevel/pauseButtonPaused.png" type="Texture" id=79]
 
-
-
 [sub_resource type="DynamicFont" id=1]
 size = 15
 font_data = ExtResource( 12 )
@@ -344,6 +342,7 @@ tracks/2/keys = {
 process_priority = -1
 script = ExtResource( 1 )
 GuidanceLinePath = NodePath("World/GuidanceLine")
+PauseMenuPath = NodePath("MicrobeHUD/CanvasLayer/PauseMenu")
 
 [node name="World" type="Node" parent="."]
 
