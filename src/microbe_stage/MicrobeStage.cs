@@ -12,6 +12,9 @@ public class MicrobeStage : Node, ILoadableGameState
     [Export]
     public NodePath GuidanceLinePath;
 
+    [Export]
+    public NodePath PauseMenuPath;
+
     private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
 
     private Node world;
@@ -28,6 +31,7 @@ public class MicrobeStage : Node, ILoadableGameState
     private MicrobeTutorialGUI tutorialGUI;
     private GuidanceLine guidanceLine;
     private Vector3? guidancePosition;
+    private PauseMenu pauseMenu;
 
     /// <summary>
     ///   Used to control how often compound position info is sent to the tutorial
@@ -146,6 +150,7 @@ public class MicrobeStage : Node, ILoadableGameState
         Clouds = world.GetNode<CompoundCloudSystem>("CompoundClouds");
         worldLight = world.GetNode<DirectionalLight>("WorldLight");
         guidanceLine = GetNode<GuidanceLine>(GuidanceLinePath);
+        pauseMenu = GetNode<PauseMenu>(PauseMenuPath);
         TimedLifeSystem = new TimedLifeSystem(rootOfDynamicallySpawned);
         ProcessSystem = new ProcessSystem(rootOfDynamicallySpawned);
         microbeAISystem = new MicrobeAISystem(rootOfDynamicallySpawned);
@@ -182,6 +187,7 @@ public class MicrobeStage : Node, ILoadableGameState
         }
 
         tutorialGUI.EventReceiver = TutorialState;
+        pauseMenu.GameTutorialState = TutorialState;
 
         CreatePatchManagerIfNeeded();
 
@@ -208,6 +214,7 @@ public class MicrobeStage : Node, ILoadableGameState
         StartMusic();
 
         tutorialGUI.EventReceiver = TutorialState;
+        pauseMenu.GameTutorialState = TutorialState;
     }
 
     public void StartNewGame()
