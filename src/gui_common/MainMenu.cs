@@ -47,7 +47,7 @@ public class MainMenu : Node
         RunMenuSetup();
 
         // Start intro video
-        if (Settings.Instance.PlayIntroVideo && !IsReturningToMenu)
+        if (Settings.Instance.PlayIntroVideo.Value && !IsReturningToMenu)
         {
             TransitionManager.Instance.AddCutscene("res://assets/videos/intro.webm");
             TransitionManager.Instance.StartTransitions(this, nameof(OnIntroEnded));
@@ -216,7 +216,7 @@ public class MainMenu : Node
         // before the stage music starts)
         Jukebox.Instance.Stop();
 
-        if (Settings.Instance.PlayMicrobeIntroVideo)
+        if (Settings.Instance.PlayMicrobeIntroVideo.Value)
         {
             TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.5f);
             TransitionManager.Instance.AddCutscene("res://assets/videos/microbe_intro2.webm");

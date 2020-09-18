@@ -10,11 +10,18 @@ public class ChromaticFilter : TextureRect
     public override void _Ready()
     {
         material = (ShaderMaterial)Material;
-        SetAmount(Settings.Instance.ChromaticAmount);
-        ToggleEffect(Settings.Instance.ChromaticEnabled);
+        SetAmount(Settings.Instance.ChromaticAmount.Value);
+        OnChanged(Settings.Instance.ChromaticEnabled.Value);
+
+        Settings.Instance.ChromaticEnabled.OnChanged += OnChanged;
     }
 
-    public void ToggleEffect(bool enabled)
+    public override void _ExitTree()
+    {
+        Settings.Instance.ChromaticEnabled.OnChanged -= OnChanged;
+    }
+
+    public void OnChanged(bool enabled)
     {
         if (enabled)
         {

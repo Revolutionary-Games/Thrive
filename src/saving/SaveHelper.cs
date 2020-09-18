@@ -81,7 +81,7 @@ public static class SaveHelper
     /// </summary>
     public static void AutoSave(MicrobeStage state)
     {
-        if (!Settings.Instance.AutoSaveEnabled)
+        if (!Settings.Instance.AutoSaveEnabled.Value)
             return;
 
         InternalSaveHelper(SaveInformation.SaveType.AutoSave, MainGameState.MicrobeStage, save =>
@@ -93,7 +93,7 @@ public static class SaveHelper
 
     public static void AutoSave(MicrobeEditor state)
     {
-        if (!Settings.Instance.AutoSaveEnabled)
+        if (!Settings.Instance.AutoSaveEnabled.Value)
             return;
 
         InternalSaveHelper(SaveInformation.SaveType.AutoSave, MainGameState.MicrobeEditor, save =>
@@ -320,7 +320,8 @@ public static class SaveHelper
     /// </summary>
     private static void QueueRemoveExcessAutoSaves()
     {
-        TaskExecutor.Instance.AddTask(new Task(() => DeleteExcessSaves("auto_save", Settings.Instance.MaxAutoSaves)));
+        TaskExecutor.Instance.AddTask(new Task(() =>
+            DeleteExcessSaves("auto_save", Settings.Instance.MaxAutoSaves.Value)));
     }
 
     /// <summary>
@@ -328,6 +329,7 @@ public static class SaveHelper
     /// </summary>
     private static void QueueRemoveExcessQuickSaves()
     {
-        TaskExecutor.Instance.AddTask(new Task(() => DeleteExcessSaves("quick_save", Settings.Instance.MaxQuickSaves)));
+        TaskExecutor.Instance.AddTask(new Task(() =>
+            DeleteExcessSaves("quick_save", Settings.Instance.MaxQuickSaves.Value)));
     }
 }

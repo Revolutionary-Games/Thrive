@@ -84,12 +84,12 @@ public class PlayerMicrobeInput : Node
             autoMoveAllowed = true;
         }
 
-        if (settings.CheatsEnabled && @event.IsActionPressed("g_cheat_editor"))
+        if (settings.CheatsEnabled.Value && @event.IsActionPressed("g_cheat_editor"))
         {
             stage.HUD.ShowReproductionDialog();
         }
 
-        if (settings.CheatsEnabled && @event.IsActionPressed("g_cheat_glucose"))
+        if (settings.CheatsEnabled.Value && @event.IsActionPressed("g_cheat_glucose"))
         {
             cheatGlucose = true;
         }
@@ -98,7 +98,7 @@ public class PlayerMicrobeInput : Node
             cheatGlucose = false;
         }
 
-        if (settings.CheatsEnabled && @event.IsActionPressed("g_cheat_ammonia"))
+        if (settings.CheatsEnabled.Value && @event.IsActionPressed("g_cheat_ammonia"))
         {
             cheatAmmonia = true;
         }
@@ -107,7 +107,7 @@ public class PlayerMicrobeInput : Node
             cheatAmmonia = false;
         }
 
-        if (settings.CheatsEnabled && @event.IsActionPressed("g_cheat_phosphates"))
+        if (settings.CheatsEnabled.Value && @event.IsActionPressed("g_cheat_phosphates"))
         {
             cheatPhosphates = true;
         }
