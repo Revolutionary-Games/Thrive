@@ -10,14 +10,14 @@ jobs:
        - checkout
        - restore_cache:
            keys:
-             - v6-lfs-{{ .Branch }}
-             - v6-lfs-master
+             - v7-lfs-{{ .Branch }}
+             - v7-lfs-master
        - run:
            name: Pull Git LFS files, retry up to 5 times
            command: |
              for i in {1..5}; do git reset --hard HEAD && git clean -fd && git lfs pull && exit 0; done; exit 1
        - save_cache:
-          key: v6-lfs-{{ .Branch }}
+          key: v7-lfs-{{ .Branch }}
           paths:
             - .git/lfs
        - restore_cache:
@@ -58,8 +58,8 @@ jobs:
        - checkout
        - restore_cache:
            keys:
-             - v6-lfs-{{ .Branch }}
-             - v6-lfs-master
+             - v7-lfs-{{ .Branch }}
+             - v7-lfs-master
        - run:
            name: Pull Git LFS files, retry up to 5 times
            command: |
