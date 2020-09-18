@@ -108,6 +108,9 @@ public class OptionsMenu : Control
     public NodePath PlayMicrobeIntroPath;
 
     [Export]
+    public NodePath TutorialsEnabledPath;
+
+    [Export]
     public NodePath CheatsPath;
 
     [Export]
@@ -170,6 +173,7 @@ public class OptionsMenu : Control
     private CheckBox playIntro;
     private CheckBox playMicrobeIntro;
     private CheckBox cheats;
+    private CheckBox tutorialsEnabled;
     private CheckBox autosave;
     private SpinBox maxAutosaves;
     private SpinBox maxQuicksaves;
@@ -254,6 +258,7 @@ public class OptionsMenu : Control
         miscTab = GetNode<Control>(MiscTabPath);
         playIntro = GetNode<CheckBox>(PlayIntroPath);
         playMicrobeIntro = GetNode<CheckBox>(PlayMicrobeIntroPath);
+        tutorialsEnabled = GetNode<CheckBox>(TutorialsEnabledPath);
         cheats = GetNode<CheckBox>(CheatsPath);
         autosave = GetNode<CheckBox>(AutoSavePath);
         maxAutosaves = GetNode<SpinBox>(MaxAutoSavesPath);
@@ -309,6 +314,7 @@ public class OptionsMenu : Control
         // Misc
         playIntro.Pressed = settings.PlayIntroVideo;
         playMicrobeIntro.Pressed = settings.PlayMicrobeIntroVideo;
+        tutorialsEnabled.Pressed = settings.TutorialsEnabled;
         cheats.Pressed = settings.CheatsEnabled;
         autosave.Pressed = settings.AutoSaveEnabled;
         maxAutosaves.Value = settings.MaxAutoSaves;
@@ -759,6 +765,13 @@ public class OptionsMenu : Control
     private void OnMicrobeIntroToggled(bool pressed)
     {
         Settings.Instance.PlayMicrobeIntroVideo = pressed;
+
+        CompareSettings();
+    }
+
+    private void OnTutorialsToggled(bool pressed)
+    {
+        Settings.Instance.TutorialsEnabled = pressed;
 
         CompareSettings();
     }

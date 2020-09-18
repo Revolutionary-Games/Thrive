@@ -18,6 +18,7 @@ public class GameProperties
     private GameProperties()
     {
         GameWorld = new GameWorld(new WorldGenerationSettings());
+        TutorialState = new TutorialState();
     }
 
     /// <summary>
@@ -34,6 +35,12 @@ public class GameProperties
     public bool FreeBuild => freeBuild;
 
     /// <summary>
+    ///   The tutorial state for this game
+    /// </summary>
+    [JsonProperty]
+    public TutorialState TutorialState { get; private set; }
+
+    /// <summary>
     ///   Starts a new game in the microbe stage
     /// </summary>
     public static GameProperties StartNewMicrobeGame(bool freebuild = false)
@@ -44,6 +51,7 @@ public class GameProperties
         {
             game.EnterFreeBuild();
             game.GameWorld.GenerateRandomSpeciesForFreeBuild();
+            game.TutorialState.Enabled = false;
         }
 
         return game;

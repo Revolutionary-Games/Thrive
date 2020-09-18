@@ -9,6 +9,14 @@ using Newtonsoft.Json;
 [JsonObject(IsReference = true)]
 public class MicrobeStage : Node, ILoadableGameState
 {
+    [Export]
+    public NodePath GuidanceLinePath;
+
+    [Export]
+    public NodePath PauseMenuPath;
+
+    private readonly Compound glucose = SimulationParameters.Instance.GetCompound("glucose");
+
     private Node world;
     private Node rootOfDynamicallySpawned;
 
@@ -19,6 +27,16 @@ public class MicrobeStage : Node, ILoadableGameState
     private PatchManager patchManager;
 
     private DirectionalLight worldLight;
+
+    private MicrobeTutorialGUI tutorialGUI;
+    private GuidanceLine guidanceLine;
+    private Vector3? guidancePosition;
+    private PauseMenu pauseMenu;
+
+    /// <summary>
+    ///   Used to control how often compound position info is sent to the tutorial
+    /// </summary>
+    private float elapsedSinceCompoundPositionCheck;
 
     /// <summary>
     ///   Used to differentiate between spawning the player and respawning
@@ -73,6 +91,9 @@ public class MicrobeStage : Node, ILoadableGameState
     [JsonIgnore]
     public GameWorld GameWorld => CurrentGame.GameWorld;
 
+    [JsonIgnore]
+    public TutorialState TutorialState => CurrentGame.TutorialState;
+
     public Node GameStateRoot => this;
 
     public bool IsLoadedFromSave { get; set; }
@@ -122,16 +143,20 @@ public class MicrobeStage : Node, ILoadableGameState
     {
         world = GetNode<Node>("World");
         HUD = GetNode<MicrobeHUD>("MicrobeHUD");
+        tutorialGUI = GetNode<MicrobeTutorialGUI>("TutorialGUI");
         rootOfDynamicallySpawned = GetNode<Node>("World/DynamicallySpawned");
         spawner = new SpawnSystem(rootOfDynamicallySpawned);
         Camera = world.GetNode<MicrobeCamera>("PrimaryCamera");
         Clouds = world.GetNode<CompoundCloudSystem>("CompoundClouds");
         worldLight = world.GetNode<DirectionalLight>("WorldLight");
+        guidanceLine = GetNode<GuidanceLine>(GuidanceLinePath);
+        pauseMenu = GetNode<PauseMenu>(PauseMenuPath);
         TimedLifeSystem = new TimedLifeSystem(rootOfDynamicallySpawned);
         ProcessSystem = new ProcessSystem(rootOfDynamicallySpawned);
         microbeAISystem = new MicrobeAISystem(rootOfDynamicallySpawned);
         FluidSystem = new FluidSystem(rootOfDynamicallySpawned);
 
+        tutorialGUI.Visible = true;
         HUD.Init(this);
 
         // Do stage setup to spawn things and setup all parts of the stage
@@ -161,9 +186,14 @@ public class MicrobeStage : Node, ILoadableGameState
             StartNewGame();
         }
 
+        tutorialGUI.EventReceiver = TutorialState;
+        pauseMenu.GameTutorialState = TutorialState;
+
         CreatePatchManagerIfNeeded();
 
         StartMusic();
+
+        TutorialState.SendEvent(TutorialEventType.EnteredMicrobeStage, EventArgs.Empty, this);
     }
 
     public void OnFinishLoading(Save save)
@@ -182,6 +212,9 @@ public class MicrobeStage : Node, ILoadableGameState
         UpdatePatchSettings(true);
 
         StartMusic();
+
+        tutorialGUI.EventReceiver = TutorialState;
+        pauseMenu.GameTutorialState = TutorialState;
     }
 
     public void StartNewGame()
@@ -218,6 +251,9 @@ public class MicrobeStage : Node, ILoadableGameState
         Player.OnDeath = microbe =>
         {
             GD.Print("The player has died");
+
+            TutorialState.SendEvent(TutorialEventType.MicrobePlayerDied, EventArgs.Empty, this);
+
             Player = null;
             Camera.ObjectToFollow = null;
         };
@@ -226,6 +262,7 @@ public class MicrobeStage : Node, ILoadableGameState
         {
             if (ready)
             {
+                TutorialState.SendEvent(TutorialEventType.MicrobePlayerReadyToEdit, EventArgs.Empty, this);
                 HUD.ShowReproductionDialog();
             }
             else
@@ -245,6 +282,8 @@ public class MicrobeStage : Node, ILoadableGameState
                 random.Next(Constants.MIN_SPAWN_DISTANCE, Constants.MAX_SPAWN_DISTANCE));
         }
 
+        TutorialState.SendEvent(TutorialEventType.MicrobePlayerSpawned, new MicrobeEventArgs(Player), this);
+
         spawnedPlayer = true;
         playerRespawnTimer = Constants.PLAYER_RESPAWN_TIME;
     }
@@ -263,6 +302,8 @@ public class MicrobeStage : Node, ILoadableGameState
 
         if (gameOver)
         {
+            guidanceLine.Visible = false;
+
             // Player is extinct and has lost the game
             // Show the game lost popup if not already visible
             HUD.ShowExtinctionBox();
@@ -274,9 +315,47 @@ public class MicrobeStage : Node, ILoadableGameState
         {
             spawner.Process(delta, Player.Translation, Player.Rotation);
             Clouds.ReportPlayerPosition(Player.Translation);
+
+            TutorialState.SendEvent(TutorialEventType.MicrobePlayerOrientation,
+                new RotationEventArgs(Player.Transform.basis, Player.RotationDegrees), this);
+
+            TutorialState.SendEvent(TutorialEventType.MicrobePlayerCompounds,
+                new CompoundBagEventArgs(Player.Compounds), this);
+
+            TutorialState.SendEvent(TutorialEventType.MicrobePlayerTotalCollected,
+                new CompoundEventArgs(Player.TotalAbsorbedCompounds), this);
+
+            elapsedSinceCompoundPositionCheck += delta;
+
+            if (elapsedSinceCompoundPositionCheck > Constants.TUTORIAL_COMPOUND_POSITION_UPDATE_INTERVAL)
+            {
+                elapsedSinceCompoundPositionCheck = 0;
+
+                if (TutorialState.WantsNearbyCompoundInfo())
+                {
+                    TutorialState.SendEvent(TutorialEventType.MicrobeCompoundsNearPlayer,
+                        new CompoundPositionEventArgs(Clouds.FindCompoundNearPoint(Player.Translation, glucose)),
+                        this);
+                }
+
+                guidancePosition = TutorialState.GetPLayerGuidancePosition();
+            }
+
+            if (guidancePosition != null)
+            {
+                guidanceLine.Visible = true;
+                guidanceLine.LineStart = Player.Translation;
+                guidanceLine.LineEnd = guidancePosition.Value;
+            }
+            else
+            {
+                guidanceLine.Visible = false;
+            }
         }
         else
         {
+            guidanceLine.Visible = false;
+
             if (!spawnedPlayer)
             {
                 GD.PrintErr("MicrobeStage was entered without spawning the player");
@@ -371,6 +450,8 @@ public class MicrobeStage : Node, ILoadableGameState
     {
         if (!CurrentGame.FreeBuild)
             SaveHelper.AutoSave(this);
+
+        TutorialState.SendEvent(TutorialEventType.EnteredMicrobeStage, EventArgs.Empty, this);
     }
 
     private void CreatePatchManagerIfNeeded()
