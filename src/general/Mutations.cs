@@ -82,7 +82,7 @@ public class Mutations
             mutated.IsBacteria = false;
         }
 
-        var colour = mutated.IsBacteria ? RandomProkayroteColour() : RandomCellColour();
+        var colour = mutated.IsBacteria ? RandomProkaryoteColour() : RandomEukaryoteColour();
 
         if (random.Next(0, 101) <= 20)
         {
@@ -143,6 +143,7 @@ public class Mutations
 
         GameWorld.SetInitialSpeciesProperties(temp);
 
+        // Override the default species starting name to have more variability in the names
         var nameGenerator = SimulationParameters.Instance.NameGenerator;
         temp.Epithet = nameGenerator.GenerateNameSection();
         temp.Genus = nameGenerator.GenerateNameSection();
@@ -352,12 +353,11 @@ public class Mutations
 
                 for (int side = 1; side <= 6; ++side)
                 {
-                    for (int multiplier = 1; multiplier <= 3; ++multiplier)
+                    for (int radius = 1; radius <= 3; ++radius)
                     {
                         // Offset by hex offset multiplied by a factor to check for greater range
                         var hexOffset = Hex.HexNeighbourOffset[(Hex.HexSide)side];
-                        hexOffset.Q *= multiplier;
-                        hexOffset.R *= multiplier;
+                        hexOffset *= radius;
                         result.Position = pos + hexOffset;
 
                         // Check every possible rotation value.
@@ -410,7 +410,7 @@ public class Mutations
         return random.Next(Constants.MIN_OPACITY_MUTATION, Constants.MAX_OPACITY_MUTATION);
     }
 
-    private Color RandomCellColour(float? opaqueness = null)
+    private Color RandomEukaryoteColour(float? opaqueness = null)
     {
         if (!opaqueness.HasValue)
             opaqueness = RandomOpacity();
@@ -418,7 +418,7 @@ public class Mutations
         return RandomColour(opaqueness.Value);
     }
 
-    private Color RandomProkayroteColour(float? opaqueness = null)
+    private Color RandomProkaryoteColour(float? opaqueness = null)
     {
         if (!opaqueness.HasValue)
             opaqueness = RandomOpacityBacteria();
@@ -573,10 +573,10 @@ public class Mutations
         }
 
         // Convert to lower case
-        string lowercase = newName.ToString().ToLower(CultureInfo.CurrentCulture);
+        string lowercase = newName.ToString().ToLower(CultureInfo.InvariantCulture);
 
         // Convert first letter to upper case
-        string result = char.ToUpper(lowercase[0], CultureInfo.CurrentCulture) + lowercase.Substring(1);
+        string result = char.ToUpper(lowercase[0], CultureInfo.InvariantCulture) + lowercase.Substring(1);
 
         return result;
     }
