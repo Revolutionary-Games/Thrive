@@ -59,6 +59,7 @@
     <Compile Include="src\engine\ChromaticFilter.cs" />
     <Compile Include="src\engine\FeatureInformation.cs" />
     <Compile Include="src\engine\GodotFileStream.cs" />
+    <Compile Include="src\engine\GuidanceLine.cs" />
     <Compile Include="src\engine\Invoke.cs" />
     <Compile Include="src\engine\LoadingScreen.cs" />
     <Compile Include="src\engine\PostStartupActions.cs" />
@@ -70,11 +71,14 @@
     <Compile Include="src\general\HelpTexts.cs" />
     <Compile Include="src\general\HelpScreen.cs" />
     <Compile Include="src\general\PauseMenu.cs" />
+    <Compile Include="src\gui_common\ControlHighlight.cs" />
     <Compile Include="src\gui_common\Cutscene.cs" />
     <Compile Include="src\gui_common\Fade.cs" />
     <Compile Include="src\gui_common\GUICommon.cs" />
     <Compile Include="src\gui_common\IconProgressBar.cs" />
     <Compile Include="src\gui_common\ITransition.cs" />
+    <Compile Include="src\gui_common\KeyPrompt.cs" />
+    <Compile Include="src\gui_common\KeyPromptHelper.cs" />
     <Compile Include="src\gui_common\MainMenu.cs" />
     <Compile Include="src\gui_common\QuickLoadHandler.cs" />
     <Compile Include="src\gui_common\SegmentedBar.cs" />
@@ -228,6 +232,27 @@
     <Compile Include="src\saving\serializers\ThriveTypeConverter.cs" />
     <Compile Include="src\saving\TemporaryLoadedNodeDeleter.cs" />
     <Compile Include="src\general\VersionUtils.cs" />
+    <Compile Include="src\tutorial\ITutorialGUI.cs" />
+    <Compile Include="src\tutorial\ITutorialInput.cs" />
+    <Compile Include="src\tutorial\microbe_editor\CellEditorIntroduction.cs" />
+    <Compile Include="src\tutorial\microbe_editor\EditorRedoTutorial.cs" />
+    <Compile Include="src\tutorial\microbe_editor\EditorTutorialEnd.cs" />
+    <Compile Include="src\tutorial\microbe_editor\EditorUndoTutorial.cs" />
+    <Compile Include="src\tutorial\microbe_editor\EditorWelcome.cs" />
+    <Compile Include="src\tutorial\microbe_editor\MicrobeEditorTutorialGUI.cs" />
+    <Compile Include="src\tutorial\microbe_editor\PatchMap.cs" />
+    <Compile Include="src\tutorial\microbe_stage\GlucoseCollecting.cs" />
+    <Compile Include="src\tutorial\microbe_stage\MicrobeMovement.cs" />
+    <Compile Include="src\tutorial\microbe_stage\MicrobeMovementExplanation.cs" />
+    <Compile Include="src\tutorial\microbe_stage\MicrobeReproduction.cs" />
+    <Compile Include="src\tutorial\microbe_stage\MicrobeStageWelcome.cs" />
+    <Compile Include="src\tutorial\microbe_stage\MicrobeStayingAlive.cs" />
+    <Compile Include="src\tutorial\TutorialEventArgs.cs" />
+    <Compile Include="src\tutorial\TutorialEventType.cs" />
+    <Compile Include="src\tutorial\microbe_stage\MicrobeTutorialGUI.cs" />
+    <Compile Include="src\tutorial\TutorialHelper.cs" />
+    <Compile Include="src\tutorial\TutorialPhase.cs" />
+    <Compile Include="src\tutorial\TutorialState.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="StyleCop.ruleset" />
