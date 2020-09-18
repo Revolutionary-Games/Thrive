@@ -677,8 +677,11 @@ public class MicrobeEditor : Node, ILoadableGameState
         if (ActiveActionName == null)
             return;
 
-        AddOrganelle(ActiveActionName);
-        TutorialState.SendEvent(TutorialEventType.MicrobeEditorOrganellePlaced, EventArgs.Empty, this);
+        if (AddOrganelle(ActiveActionName))
+        {
+            // Only trigger tutorial if something was really placed
+            TutorialState.SendEvent(TutorialEventType.MicrobeEditorOrganellePlaced, EventArgs.Empty, this);
+        }
     }
 
     public void RotateRight()
@@ -1295,25 +1298,28 @@ public class MicrobeEditor : Node, ILoadableGameState
     ///   Places an organelle of the specified type under the cursor
     ///   and also applies symmetry to place multiple at once.
     /// </summary>
-    private void AddOrganelle(string organelleType)
+    /// <returns>True when at least one organelle got placed</returns>
+    private bool AddOrganelle(string organelleType)
     {
         GetMouseHex(out int q, out int r);
+
+        bool placedSomething = false;
 
         switch (Symmetry)
         {
             case MicrobeSymmetry.None:
             {
-                PlaceIfPossible(organelleType, q, r, organelleRot);
+                PlaceIfPossible(organelleType, q, r, organelleRot, ref placedSomething);
                 break;
             }
 
             case MicrobeSymmetry.XAxisSymmetry:
             {
-                PlaceIfPossible(organelleType, q, r, organelleRot);
+                PlaceIfPossible(organelleType, q, r, organelleRot, ref placedSomething);
 
                 if (q != -1 * q || r != r + q)
                 {
-                    PlaceIfPossible(organelleType, -1 * q, r + q, 6 + (-1 * organelleRot));
+                    PlaceIfPossible(organelleType, -1 * q, r + q, 6 + (-1 * organelleRot), ref placedSomething);
                 }
 
                 break;
@@ -1321,17 +1327,17 @@ public class MicrobeEditor : Node, ILoadableGameState
 
             case MicrobeSymmetry.FourWaySymmetry:
             {
-                PlaceIfPossible(organelleType, q, r, organelleRot);
+                PlaceIfPossible(organelleType, q, r, organelleRot, ref placedSomething);
 
                 if (q != -1 * q || r != r + q)
                 {
-                    PlaceIfPossible(organelleType, -1 * q, r + q, 6 + (-1 * organelleRot));
-                    PlaceIfPossible(organelleType, -1 * q, -1 * r, (organelleRot + 3) % 6);
-                    PlaceIfPossible(organelleType, q, -1 * (r + q), (8 + (-1 * organelleRot)) % 6);
+                    PlaceIfPossible(organelleType, -1 * q, r + q, 6 + (-1 * organelleRot), ref placedSomething);
+                    PlaceIfPossible(organelleType, -1 * q, -1 * r, (organelleRot + 3) % 6, ref placedSomething);
+                    PlaceIfPossible(organelleType, q, -1 * (r + q), (8 + (-1 * organelleRot)) % 6, ref placedSomething);
                 }
                 else
                 {
-                    PlaceIfPossible(organelleType, -1 * q, -1 * r, (organelleRot + 3) % 6);
+                    PlaceIfPossible(organelleType, -1 * q, -1 * r, (organelleRot + 3) % 6, ref placedSomething);
                 }
 
                 break;
@@ -1339,15 +1345,15 @@ public class MicrobeEditor : Node, ILoadableGameState
 
             case MicrobeSymmetry.SixWaySymmetry:
             {
-                PlaceIfPossible(organelleType, q, r, organelleRot);
+                PlaceIfPossible(organelleType, q, r, organelleRot, ref placedSomething);
 
-                PlaceIfPossible(organelleType, -1 * r, r + q, (organelleRot + 1) % 6);
+                PlaceIfPossible(organelleType, -1 * r, r + q, (organelleRot + 1) % 6, ref placedSomething);
                 PlaceIfPossible(organelleType, -1 * (r + q), q,
-                    (organelleRot + 2) % 6);
-                PlaceIfPossible(organelleType, -1 * q, -1 * r, (organelleRot + 3) % 6);
+                    (organelleRot + 2) % 6, ref placedSomething);
+                PlaceIfPossible(organelleType, -1 * q, -1 * r, (organelleRot + 3) % 6, ref placedSomething);
                 PlaceIfPossible(organelleType, r, -1 * (r + q),
-                    (organelleRot + 4) % 6);
-                PlaceIfPossible(organelleType, r + q, -1 * q, (organelleRot + 5) % 6);
+                    (organelleRot + 4) % 6, ref placedSomething);
+                PlaceIfPossible(organelleType, r + q, -1 * q, (organelleRot + 5) % 6, ref placedSomething);
 
                 break;
             }
@@ -1357,12 +1363,14 @@ public class MicrobeEditor : Node, ILoadableGameState
                 throw new Exception("unimplemented symmetry in AddOrganelle");
             }
         }
+
+        return placedSomething;
     }
 
     /// <summary>
     ///   Helper for AddOrganelle
     /// </summary>
-    private void PlaceIfPossible(string organelleType, int q, int r, int rotation)
+    private void PlaceIfPossible(string organelleType, int q, int r, int rotation, ref bool placed)
     {
         var organelle = new OrganelleTemplate(GetOrganelleDefinition(organelleType),
             new Hex(q, r), rotation);
@@ -1374,7 +1382,10 @@ public class MicrobeEditor : Node, ILoadableGameState
         if (organelle.Definition.MPCost > MutationPoints && !FreeBuilding)
             return;
 
-        AddOrganelle(organelle);
+        if (AddOrganelle(organelle))
+        {
+            placed = true;
+        }
     }
 
     private bool IsValidPlacement(OrganelleTemplate organelle)
@@ -1440,14 +1451,14 @@ public class MicrobeEditor : Node, ILoadableGameState
         }
     }
 
-    private void AddOrganelle(OrganelleTemplate organelle)
+    private bool AddOrganelle(OrganelleTemplate organelle)
     {
         // 1 - you put nucleus but you already have it
         // 2 - you put organelle that need nucleus and you don't have it
         if ((organelle.Definition.Name == "nucleus" && HasNucleus) ||
             (organelle.Definition.ProkaryoteChance == 0 && !HasNucleus
                 && organelle.Definition.ChanceToCreate != 0))
-            return;
+            return false;
 
         organelle.PlacedThisSession = true;
 
@@ -1456,6 +1467,7 @@ public class MicrobeEditor : Node, ILoadableGameState
             new PlacementActionData(organelle));
 
         EnqueueAction(action);
+        return true;
     }
 
     private void DoOrganelleRemoveAction(EditorAction action)
