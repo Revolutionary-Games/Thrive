@@ -771,7 +771,7 @@ public class OptionsMenu : Control
 
     private void OnTutorialsToggled(bool pressed)
     {
-        Settings.Instance.TutorialsEnabled = pressed;
+        Settings.Instance.TutorialsEnabled.Value = pressed;
 
         CompareSettings();
     }

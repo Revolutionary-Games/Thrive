@@ -50,6 +50,7 @@ public class Settings
         AutoSaveEnabled = new SettingValue<bool>(true);
         MaxAutoSaves = new SettingValue<int>(5);
         MaxQuickSaves = new SettingValue<int>(5);
+        TutorialsEnabled = new SettingValue<bool>(true);
         CheatsEnabled = new SettingValue<bool>(false);
     }
 
@@ -213,7 +214,7 @@ public class Settings
     ///   Saves the current settings by writing them to the settings configuration file.
     ///   Show tutorial messages
     /// </summary>
-    public bool TutorialsEnabled { get; set; } = true;
+    public SettingValue<bool> TutorialsEnabled { get; set; }
 
     /// <summary>
     ///   When true cheats are enabled

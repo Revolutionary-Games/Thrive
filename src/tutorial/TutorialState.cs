@@ -27,7 +27,7 @@ public class TutorialState : ITutorialInput
 
     private List<TutorialPhase> cachedTutorials;
 
-    public bool Enabled { get; set; } = Settings.Instance.TutorialsEnabled;
+    public bool Enabled { get; set; } = Settings.Instance.TutorialsEnabled.Value;
 
     // Tutorial states
 

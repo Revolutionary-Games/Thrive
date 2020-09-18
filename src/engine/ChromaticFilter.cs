@@ -17,12 +17,6 @@ public class ChromaticFilter : TextureRect
         Settings.Instance.ChromaticEnabled.OnChanged += OnChanged;
     }
 
-    public override void _ExitTree()
-    {
-        Settings.Instance.ChromaticAmount.OnChanged -= SetAmount;
-        Settings.Instance.ChromaticEnabled.OnChanged -= OnChanged;
-    }
-
     public void OnChanged(bool enabled)
     {
         if (enabled)
