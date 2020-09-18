@@ -22,7 +22,7 @@ public class Settings
         // Graphics Properties
         FullScreen = new SettingValue<bool>(true);
         VSync = new SettingValue<bool>(true);
-        MSAAResolution = new SettingValue<Viewport.MSAA>(Viewport.MSAA.Disabled);
+        MSAAResolution = new SettingValue<Viewport.MSAA>(Viewport.MSAA.Msaa2x);
         ColourblindSetting = new SettingValue<int>(0);
         ChromaticAmount = new SettingValue<float>(20.0f);
         ChromaticEnabled = new SettingValue<bool>(true);
