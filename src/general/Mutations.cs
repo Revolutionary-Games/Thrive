@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using Godot;
@@ -81,7 +82,7 @@ public class Mutations
             mutated.IsBacteria = false;
         }
 
-        var colour = mutated.IsBacteria ? RandomProkayroteColour() : RandomColour();
+        var colour = mutated.IsBacteria ? RandomProkaryoteColour() : RandomEukaryoteColour();
 
         if (random.Next(0, 101) <= 20)
         {
@@ -142,8 +143,10 @@ public class Mutations
 
         GameWorld.SetInitialSpeciesProperties(temp);
 
-        // TODO: in the old code GenerateNameSection was used to
-        // override the default species name here
+        // Override the default species starting name to have more variability in the names
+        var nameGenerator = SimulationParameters.Instance.NameGenerator;
+        temp.Epithet = nameGenerator.GenerateNameSection();
+        temp.Genus = nameGenerator.GenerateNameSection();
 
         for (int step = 0; step < steps; ++step)
         {
@@ -350,19 +353,22 @@ public class Mutations
 
                 for (int side = 1; side <= 6; ++side)
                 {
-                    // Offset by hex offset
-                    result.Position = pos + Hex.HexNeighbourOffset[(Hex.HexSide)side];
-
-                    // TODO: checking one or two extra hexes in the direction would make this succeed more often
-
-                    // Check every possible rotation value.
-                    for (int rotation = 0; rotation <= 5; ++rotation)
+                    for (int radius = 1; radius <= 3; ++radius)
                     {
-                        result.Orientation = rotation;
+                        // Offset by hex offset multiplied by a factor to check for greater range
+                        var hexOffset = Hex.HexNeighbourOffset[(Hex.HexSide)side];
+                        hexOffset *= radius;
+                        result.Position = pos + hexOffset;
 
-                        if (existingOrganelles.CanPlace(result))
+                        // Check every possible rotation value.
+                        for (int rotation = 0; rotation <= 5; ++rotation)
                         {
-                            return result;
+                            result.Orientation = rotation;
+
+                            if (existingOrganelles.CanPlace(result))
+                            {
+                                return result;
+                            }
                         }
                     }
                 }
@@ -404,26 +410,23 @@ public class Mutations
         return random.Next(Constants.MIN_OPACITY_MUTATION, Constants.MAX_OPACITY_MUTATION);
     }
 
-    /// <summary>
-    ///   TODO: rename to something more sensible and rename RandomColourChannels to this
-    /// </summary>
-    private Color RandomColour(float? opaqueness = null)
+    private Color RandomEukaryoteColour(float? opaqueness = null)
     {
         if (!opaqueness.HasValue)
             opaqueness = RandomOpacity();
 
-        return RandomColourChannels(opaqueness.Value);
+        return RandomColour(opaqueness.Value);
     }
 
-    private Color RandomProkayroteColour(float? opaqueness = null)
+    private Color RandomProkaryoteColour(float? opaqueness = null)
     {
         if (!opaqueness.HasValue)
             opaqueness = RandomOpacityBacteria();
 
-        return RandomColourChannels(opaqueness.Value);
+        return RandomColour(opaqueness.Value);
     }
 
-    private Color RandomColourChannels(float opaqueness)
+    private Color RandomColour(float opaqueness)
     {
         return new Color(RandomColourChannel(), RandomColourChannel(), RandomColourChannel(),
             opaqueness);
@@ -569,23 +572,12 @@ public class Mutations
             return MutateWord(name);
         }
 
-        // TODO: C# probably has better ways to handle case conversions
-
         // Convert to lower case
-        for (int i = 1; i < newName.Length - 1; i++)
-        {
-            if (newName[i] >= 65 && newName[i] <= 92)
-            {
-                newName[i] = (char)(newName[i] + 32);
-            }
-        }
+        string lowercase = newName.ToString().ToLower(CultureInfo.InvariantCulture);
 
         // Convert first letter to upper case
-        if (newName[0] >= 97 && newName[0] <= 122)
-        {
-            newName[0] = (char)(newName[0] - 32);
-        }
+        string result = char.ToUpper(lowercase[0], CultureInfo.InvariantCulture) + lowercase.Substring(1);
 
-        return newName.ToString();
+        return result;
     }
 }
