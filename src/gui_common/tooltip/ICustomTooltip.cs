@@ -19,7 +19,7 @@ public interface ICustomTooltip
     float DisplayDelay { get; }
 
     /// <summary>
-    ///   If true the tooltip is currently displayed
+    ///   If true the tooltip is shown
     /// </summary>
     bool TooltipVisible { get; set; }
 

@@ -74,7 +74,7 @@ public class SelectionMenuTooltip : Control, ICustomTooltip
         }
     }
 
-    public float DisplayDelay { get; private set; } = 0.3f;
+    public float DisplayDelay { get; private set; } = 0.5f;
 
     public bool TooltipVisible
     {
@@ -139,7 +139,7 @@ public class SelectionMenuTooltip : Control, ICustomTooltip
         foreach (var process in processes)
         {
             var processContainer = new VBoxContainer();
-            processContainer.MouseFilter = Control.MouseFilterEnum.Ignore;
+            processContainer.MouseFilter = MouseFilterEnum.Ignore;
             processList.AddChild(processContainer);
 
             var processTitle = new Label();
@@ -148,7 +148,7 @@ public class SelectionMenuTooltip : Control, ICustomTooltip
             processContainer.AddChild(processTitle);
 
             var processBody = new HBoxContainer();
-            processBody.MouseFilter = Control.MouseFilterEnum.Ignore;
+            processBody.MouseFilter = MouseFilterEnum.Ignore;
 
             bool usePlus;
 

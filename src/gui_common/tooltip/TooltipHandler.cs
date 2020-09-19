@@ -78,6 +78,17 @@ public class TooltipHandler : CanvasLayer
         }
     }
 
+    /// <summary>
+    ///   Helper for displaying the default styled tooltip
+    /// </summary>
+    public void ShowDefaultTooltip(string description)
+    {
+        MainTooltip = GetTooltip("Default");
+        Display = true;
+
+        MainTooltip.TooltipDescription = description;
+    }
+
     public void AddTooltip(ICustomTooltip tooltip)
     {
         tooltips.Add(tooltip);
@@ -119,6 +130,9 @@ public class TooltipHandler : CanvasLayer
     {
         if (MainTooltip == null)
             return;
+
+        // TODO: Fix the current tooltip changing while still fading out
+        // when quickly mousing over multiple closely positioned elements
 
         if (Display)
         {

@@ -43,7 +43,7 @@ public class DefaultTooltip : Control, ICustomTooltip
         }
     }
 
-    public float DisplayDelay { get; private set; } = 0.3f;
+    public float DisplayDelay { get; private set; } = 0.5f;
 
     public bool TooltipVisible
     {

@@ -535,8 +535,7 @@ public class MicrobeEditorGUI : Node
             var tooltip = (SelectionMenuTooltip)tooltipHandler.GetTooltip(
                 SimulationParameters.Instance.GetOrganelleType(organelle).Name);
 
-            if (tooltip != null)
-                tooltip.WriteOrganelleProcessList(organelleEfficiency[organelle].Processes);
+            tooltip?.WriteOrganelleProcessList(organelleEfficiency[organelle].Processes);
         }
     }
 
@@ -611,11 +610,6 @@ public class MicrobeEditorGUI : Node
         tooltipHandler.Display = true;
     }
 
-    internal void OnItemMouseExit()
-    {
-        tooltipHandler.Display = false;
-    }
-
     /// <summary>
     ///   Shows tooltips for the production balance bar
     /// </summary>
@@ -624,13 +618,10 @@ public class MicrobeEditorGUI : Node
         if (energyBalanceInfo == null)
             return;
 
-        tooltipHandler.MainTooltip = tooltipHandler.GetTooltip("Default");
-        tooltipHandler.Display = true;
-
         var displayName = SimulationParameters.Instance.GetOrganelleType(name).Name;
         var value = energyBalanceInfo.Production[name];
 
-        tooltipHandler.MainTooltip.TooltipDescription = $"{displayName}: Produces {value} ATP";
+        tooltipHandler.ShowDefaultTooltip($"{displayName}: +{value} ATP");
     }
 
     /// <summary>
@@ -641,10 +632,7 @@ public class MicrobeEditorGUI : Node
         if (energyBalanceInfo == null)
             return;
 
-        tooltipHandler.MainTooltip = tooltipHandler.GetTooltip("Default");
-        tooltipHandler.Display = true;
-
-        string displayName = null;
+        string displayName;
         var value = energyBalanceInfo.Consumption[name];
 
         switch (name)
@@ -668,10 +656,35 @@ public class MicrobeEditorGUI : Node
             }
         }
 
-        tooltipHandler.MainTooltip.TooltipDescription = $"{displayName}: Consumes {value} ATP";
+        tooltipHandler.ShowDefaultTooltip($"{displayName}: -{value} ATP");
     }
 
-    internal void OnAtpBarMouseExit()
+    internal void OnSymmetryButtonMouseEnter()
+    {
+        tooltipHandler.ShowDefaultTooltip("Symmetry");
+    }
+
+    internal void OnUndoButtonMouseEnter()
+    {
+        tooltipHandler.ShowDefaultTooltip("Undo");
+    }
+
+    internal void OnRedoButtonMouseEnter()
+    {
+        tooltipHandler.ShowDefaultTooltip("Redo");
+    }
+
+    internal void OnNewButtonMouseEnter()
+    {
+        tooltipHandler.ShowDefaultTooltip("New Cell");
+    }
+
+    internal void OnHelpButtonMouseEnter()
+    {
+        tooltipHandler.ShowDefaultTooltip("Open Help Screen");
+    }
+
+    internal void OnTooltipMouseExit()
     {
         tooltipHandler.Display = false;
     }
