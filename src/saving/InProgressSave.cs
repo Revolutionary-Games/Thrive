@@ -238,13 +238,13 @@ public class InProgressSave : IDisposable
             case SaveInformation.SaveType.AutoSave:
             {
                 return GetNextNameForSaveType("^auto_save_(\\d)+\\." + Constants.SAVE_EXTENSION, "auto_save",
-                    Settings.Instance.MaxAutoSaves.Value);
+                    Settings.Instance.MaxAutoSaves);
             }
 
             case SaveInformation.SaveType.QuickSave:
             {
                 return GetNextNameForSaveType("^quick_save_(\\d)+\\." + Constants.SAVE_EXTENSION, "quick_save",
-                    Settings.Instance.MaxQuickSaves.Value);
+                    Settings.Instance.MaxQuickSaves);
             }
 
             default:

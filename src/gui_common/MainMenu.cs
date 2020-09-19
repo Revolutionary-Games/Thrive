@@ -47,7 +47,7 @@ public class MainMenu : Node
         RunMenuSetup();
 
         // Start intro video
-        if (Settings.Instance.PlayIntroVideo.Value && !IsReturningToMenu)
+        if (Settings.Instance.PlayIntroVideo && !IsReturningToMenu)
         {
             TransitionManager.Instance.AddCutscene("res://assets/videos/intro.webm");
             TransitionManager.Instance.StartTransitions(this, nameof(OnIntroEnded));

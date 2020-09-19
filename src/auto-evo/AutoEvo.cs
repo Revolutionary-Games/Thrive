@@ -9,7 +9,7 @@
         {
             var result = new AutoEvoRun(world);
 
-            if (Settings.Instance.RunAutoEvoDuringGamePlay.Value)
+            if (Settings.Instance.RunAutoEvoDuringGamePlay)
             {
                 result.Start();
             }

@@ -46,7 +46,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
             return;
 
         Size = Settings.Instance.CloudSimulationWidth;
-        Resolution = Settings.Instance.CloudResolution.Value;
+        Resolution = Settings.Instance.CloudResolution;
         CreateDensityTexture();
 
         Density = new Vector4[Size, Size];

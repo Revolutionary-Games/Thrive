@@ -10,8 +10,8 @@ public class ChromaticFilter : TextureRect
     public override void _Ready()
     {
         material = (ShaderMaterial)Material;
-        SetAmount(Settings.Instance.ChromaticAmount.Value);
-        OnChanged(Settings.Instance.ChromaticEnabled.Value);
+        SetAmount(Settings.Instance.ChromaticAmount);
+        OnChanged(Settings.Instance.ChromaticEnabled);
 
         Settings.Instance.ChromaticAmount.OnChanged += SetAmount;
         Settings.Instance.ChromaticEnabled.OnChanged += OnChanged;

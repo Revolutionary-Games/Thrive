@@ -288,38 +288,38 @@ public class OptionsMenu : Control
     public void ApplySettingsToControls(Settings settings)
     {
         // Graphics
-        vsync.Pressed = settings.VSync.Value;
-        fullScreen.Pressed = settings.FullScreen.Value;
-        msaaResolution.Selected = MSAAResolutionToIndex(settings.MSAAResolution.Value);
-        colourblindSetting.Selected = settings.ColourblindSetting.Value;
-        chromaticAberrationSlider.Value = settings.ChromaticAmount.Value;
-        chromaticAberrationToggle.Pressed = settings.ChromaticEnabled.Value;
+        vsync.Pressed = settings.VSync;
+        fullScreen.Pressed = settings.FullScreen;
+        msaaResolution.Selected = MSAAResolutionToIndex(settings.MSAAResolution);
+        colourblindSetting.Selected = settings.ColourblindSetting;
+        chromaticAberrationSlider.Value = settings.ChromaticAmount;
+        chromaticAberrationToggle.Pressed = settings.ChromaticEnabled;
 
         // Sound
-        masterVolume.Value = ConvertDBToSoundBar(settings.VolumeMaster.Value);
-        masterMuted.Pressed = settings.VolumeMasterMuted.Value;
-        musicVolume.Value = ConvertDBToSoundBar(settings.VolumeMusic.Value);
-        musicMuted.Pressed = settings.VolumeMusicMuted.Value;
-        ambianceVolume.Value = ConvertDBToSoundBar(settings.VolumeAmbiance.Value);
-        ambianceMuted.Pressed = settings.VolumeAmbianceMuted.Value;
-        sfxVolume.Value = ConvertDBToSoundBar(settings.VolumeSFX.Value);
-        sfxMuted.Pressed = settings.VolumeSFXMuted.Value;
-        guiVolume.Value = ConvertDBToSoundBar(settings.VolumeGUI.Value);
-        guiMuted.Pressed = settings.VolumeGUIMuted.Value;
+        masterVolume.Value = ConvertDBToSoundBar(settings.VolumeMaster);
+        masterMuted.Pressed = settings.VolumeMasterMuted;
+        musicVolume.Value = ConvertDBToSoundBar(settings.VolumeMusic);
+        musicMuted.Pressed = settings.VolumeMusicMuted;
+        ambianceVolume.Value = ConvertDBToSoundBar(settings.VolumeAmbiance);
+        ambianceMuted.Pressed = settings.VolumeAmbianceMuted;
+        sfxVolume.Value = ConvertDBToSoundBar(settings.VolumeSFX);
+        sfxMuted.Pressed = settings.VolumeSFXMuted;
+        guiVolume.Value = ConvertDBToSoundBar(settings.VolumeGUI);
+        guiMuted.Pressed = settings.VolumeGUIMuted;
 
         // Performance
-        cloudInterval.Selected = CloudIntervalToIndex(settings.CloudUpdateInterval.Value);
-        cloudResolution.Selected = CloudResolutionToIndex(settings.CloudResolution.Value);
+        cloudInterval.Selected = CloudIntervalToIndex(settings.CloudUpdateInterval);
+        cloudResolution.Selected = CloudResolutionToIndex(settings.CloudResolution);
 
         // Misc
-        playIntro.Pressed = settings.PlayIntroVideo.Value;
-        playMicrobeIntro.Pressed = settings.PlayMicrobeIntroVideo.Value;
-        tutorialsEnabled.Pressed = settings.TutorialsEnabled.Value;
-        cheats.Pressed = settings.CheatsEnabled.Value;
-        autosave.Pressed = settings.AutoSaveEnabled.Value;
-        maxAutosaves.Value = settings.MaxAutoSaves.Value;
-        maxAutosaves.Editable = settings.AutoSaveEnabled.Value;
-        maxQuicksaves.Value = settings.MaxQuickSaves.Value;
+        playIntro.Pressed = settings.PlayIntroVideo;
+        playMicrobeIntro.Pressed = settings.PlayMicrobeIntroVideo;
+        tutorialsEnabled.Pressed = settings.TutorialsEnabled;
+        cheats.Pressed = settings.CheatsEnabled;
+        autosave.Pressed = settings.AutoSaveEnabled;
+        maxAutosaves.Value = settings.MaxAutoSaves;
+        maxAutosaves.Editable = settings.AutoSaveEnabled;
+        maxQuicksaves.Value = settings.MaxQuickSaves;
     }
 
     private void SetSettingsTab(string tab)

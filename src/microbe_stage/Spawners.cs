@@ -218,7 +218,7 @@ public static class SpawnHelpers
     public static void SpawnCloud(CompoundCloudSystem clouds, Vector3 location,
         Compound compound, float amount)
     {
-        int resolution = Settings.Instance.CloudResolution.Value;
+        int resolution = Settings.Instance.CloudResolution;
 
         // This spreads out the cloud spawn a bit
         clouds.AddCloud(compound, amount, location + new Vector3(0 + resolution, 0, 0));

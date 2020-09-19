@@ -24,7 +24,7 @@ public class Settings
         VSync = new SettingValue<bool>(true);
         MSAAResolution = new SettingValue<Viewport.MSAA>(Viewport.MSAA.Msaa2x);
         ColourblindSetting = new SettingValue<int>(0);
-        ChromaticAmount = new SettingValue<float>(20.0f);
+        ChromaticAmount = new SettingValue<float>(15.0f);
         ChromaticEnabled = new SettingValue<bool>(true);
 
         // Sound Properties
@@ -221,9 +221,9 @@ public class Settings
     /// </summary>
     public SettingValue<bool> CheatsEnabled { get; set; }
 
-    public int CloudSimulationWidth => Constants.CLOUD_X_EXTENT / CloudResolution.Value;
+    public int CloudSimulationWidth => Constants.CLOUD_X_EXTENT / CloudResolution;
 
-    public int CloudSimulationHeight => Constants.CLOUD_Y_EXTENT / CloudResolution.Value;
+    public int CloudSimulationHeight => Constants.CLOUD_Y_EXTENT / CloudResolution;
 
     public static bool operator ==(Settings lhs, Settings rhs)
     {
@@ -349,8 +349,8 @@ public class Settings
     /// </summary>
     public void ApplyGraphicsSettings()
     {
-        GUICommon.Instance.GetTree().Root.GetViewport().Msaa = MSAAResolution.Value;
-        ColourblindScreenFilter.Instance.SetColourblindSetting(ColourblindSetting.Value);
+        GUICommon.Instance.GetTree().Root.GetViewport().Msaa = MSAAResolution;
+        ColourblindScreenFilter.Instance.SetColourblindSetting(ColourblindSetting);
     }
 
     /// <summary>
@@ -360,28 +360,28 @@ public class Settings
     {
         var master = AudioServer.GetBusIndex("Master");
 
-        AudioServer.SetBusVolumeDb(master, VolumeMaster.Value);
-        AudioServer.SetBusMute(master, VolumeMasterMuted.Value);
+        AudioServer.SetBusVolumeDb(master, VolumeMaster);
+        AudioServer.SetBusMute(master, VolumeMasterMuted);
 
         var music = AudioServer.GetBusIndex("Music");
 
-        AudioServer.SetBusVolumeDb(music, VolumeMusic.Value);
-        AudioServer.SetBusMute(music, VolumeMusicMuted.Value);
+        AudioServer.SetBusVolumeDb(music, VolumeMusic);
+        AudioServer.SetBusMute(music, VolumeMusicMuted);
 
         var ambiance = AudioServer.GetBusIndex("Ambiance");
 
-        AudioServer.SetBusVolumeDb(ambiance, VolumeAmbiance.Value);
-        AudioServer.SetBusMute(ambiance, VolumeAmbianceMuted.Value);
+        AudioServer.SetBusVolumeDb(ambiance, VolumeAmbiance);
+        AudioServer.SetBusMute(ambiance, VolumeAmbianceMuted);
 
         var sfx = AudioServer.GetBusIndex("SFX");
 
-        AudioServer.SetBusVolumeDb(sfx, VolumeSFX.Value);
-        AudioServer.SetBusMute(sfx, VolumeSFXMuted.Value);
+        AudioServer.SetBusVolumeDb(sfx, VolumeSFX);
+        AudioServer.SetBusMute(sfx, VolumeSFXMuted);
 
         var gui = AudioServer.GetBusIndex("GUI");
 
-        AudioServer.SetBusVolumeDb(gui, VolumeGUI.Value);
-        AudioServer.SetBusMute(gui, VolumeGUIMuted.Value);
+        AudioServer.SetBusVolumeDb(gui, VolumeGUI);
+        AudioServer.SetBusMute(gui, VolumeGUIMuted);
     }
 
     /// <summary>
@@ -389,8 +389,8 @@ public class Settings
     /// </summary>
     public void ApplyWindowSettings()
     {
-        OS.WindowFullscreen = FullScreen.Value;
-        OS.VsyncEnabled = VSync.Value;
+        OS.WindowFullscreen = FullScreen;
+        OS.VsyncEnabled = VSync;
     }
 
     /// <summary>
@@ -490,6 +490,11 @@ public class Settings
                     OnChanged?.Invoke(value);
                 }
             }
+        }
+
+        public static implicit operator TValueType(SettingValue<TValueType> value)
+        {
+            return value.value;
         }
 
         public static bool operator ==(SettingValue<TValueType> lhs, SettingValue<TValueType> rhs)
