@@ -69,6 +69,11 @@
     <Compile Include="src\general\HelpTexts.cs" />
     <Compile Include="src\general\HelpScreen.cs" />
     <Compile Include="src\general\PauseMenu.cs" />
+    <Compile Include="src\gui_common\tooltip\DefaultTooltip.cs" />
+    <Compile Include="src\gui_common\tooltip\ICustomTooltip.cs" />
+    <Compile Include="src\gui_common\tooltip\microbe_editor\ModifierInfoLabel.cs" />
+    <Compile Include="src\gui_common\tooltip\microbe_editor\SelectionMenuTooltip.cs" />
+    <Compile Include="src\gui_common\tooltip\TooltipHandler.cs" />
     <Compile Include="src\microbe_stage\editor\CollapsibleList.cs" />
     <Compile Include="src\gui_common\Cutscene.cs" />
     <Compile Include="src\gui_common\Fade.cs" />

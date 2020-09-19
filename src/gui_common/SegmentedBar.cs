@@ -29,6 +29,12 @@ public class SegmentedBar : HBoxContainer
 
     private List<KeyValuePair<string, float>> barValues;
 
+    [Signal]
+    public delegate void SubBarMouseEnter(string name);
+
+    [Signal]
+    public delegate void SubBarMouseExit();
+
     public enum Type
     {
         /// <summary>
@@ -111,12 +117,17 @@ public class SegmentedBar : HBoxContainer
             subBars.Add(progressBar);
 
             progressBar.Color = BarHelper.GetBarColour(SelectedType, dataPair.Key, IsProduction);
+            progressBar.HighlightColor = new Color(progressBar.Color.r + 0.5f, progressBar.Color.g + 0.5f,
+                progressBar.Color.b + 0.5f, 0.3f);
             progressBar.BarSize = progressBarBarSize;
             progressBar.IconTexture = BarHelper.GetBarIcon(SelectedType, dataPair.Key);
+            progressBar.IconModulation = BarHelper.GetBarIconColor(SelectedType);
 
             progressBar.MouseFilter = MouseFilterEnum.Pass;
 
             progressBar.Connect("gui_input", this, nameof(BarToggled), new Array { progressBar });
+            progressBar.Connect("mouse_entered", this, nameof(OnBarMouseOver), new Array { progressBar });
+            progressBar.Connect("mouse_exited", this, nameof(OnBarMouseExit), new Array { progressBar });
         }
     }
 
@@ -132,16 +143,26 @@ public class SegmentedBar : HBoxContainer
         }
     }
 
+    private void OnBarMouseOver(IconProgressBar bar)
+    {
+        bar.Highlight = true;
+        EmitSignal(nameof(SubBarMouseEnter), bar.Name);
+    }
+
+    private void OnBarMouseExit(IconProgressBar bar)
+    {
+        bar.Highlight = false;
+        EmitSignal(nameof(SubBarMouseExit));
+    }
+
     private void HandleBarDisabling(IconProgressBar bar)
     {
         if (bar.Disabled)
         {
-            bar.IconModulation = new Color(0, 0, 0);
             bar.Color = new Color(0.73f, 0.73f, 0.73f);
         }
         else
         {
-            bar.IconModulation = new Color(1, 1, 1);
             bar.Color = BarHelper.GetBarColour(SelectedType, bar.Name, IsProduction);
         }
 

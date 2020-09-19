@@ -23,17 +23,11 @@ script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-LeftColumnPath = NodePath("CenterContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/LeftColumn")
-RightColumnPath = NodePath("CenterContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/RightColumn")
-LineSeparatorPath = NodePath("CenterContainer/VBoxContainer/HSeparator")
+LeftColumnPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/LeftColumn")
+RightColumnPath = NodePath("CenterContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/RightColumn")
 TipMessageLabelPath = NodePath("CenterContainer/VBoxContainer/TipMessageLabel")
 HelpBoxScene = ExtResource( 5 )
 TimerPath = NodePath("Timer")
-
-[node name="Overlay" type="ColorRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0, 0, 0, 0.588235 )
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 anchor_right = 1.0
@@ -44,16 +38,21 @@ __meta__ = {
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
 margin_left = 283.0
-margin_top = 57.0
+margin_top = 64.0
 margin_right = 1083.0
-margin_bottom = 711.0
+margin_bottom = 703.0
 size_flags_horizontal = 2
 custom_constants/separation = 15
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer"]
+margin_right = 800.0
+margin_bottom = 554.0
+custom_constants/separation = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/VBoxContainer/VBoxContainer"]
 margin_right = 800.0
 margin_bottom = 550.0
 rect_min_size = Vector2( 800, 550 )
@@ -64,7 +63,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/ScrollContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/ScrollContainer"]
 margin_right = 800.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
@@ -73,7 +72,7 @@ custom_constants/margin_top = 10
 custom_constants/margin_left = 10
 custom_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/ScrollContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer"]
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 790.0
@@ -81,29 +80,29 @@ margin_bottom = 10.0
 size_flags_vertical = 3
 custom_constants/separation = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_right = 780.0
 
-[node name="LeftColumn" type="VBoxContainer" parent="CenterContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="LeftColumn" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_right = 388.0
 size_flags_horizontal = 3
 
-[node name="RightColumn" type="VBoxContainer" parent="CenterContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+[node name="RightColumn" type="VBoxContainer" parent="CenterContainer/VBoxContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 margin_left = 392.0
 margin_right = 780.0
 size_flags_horizontal = 3
 
-[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer"]
-margin_top = 565.0
+[node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/VBoxContainer"]
+margin_top = 550.0
 margin_right = 800.0
-margin_bottom = 569.0
+margin_bottom = 554.0
 custom_styles/separator = SubResource( 1 )
 
 [node name="CloseButton" type="Button" parent="CenterContainer/VBoxContainer"]
 margin_left = 325.0
-margin_top = 584.0
+margin_top = 569.0
 margin_right = 475.0
-margin_bottom = 619.0
+margin_bottom = 604.0
 rect_min_size = Vector2( 150, 35 )
 size_flags_horizontal = 4
 text = "Close"
@@ -112,9 +111,9 @@ __meta__ = {
 }
 
 [node name="TipMessageLabel" type="Label" parent="CenterContainer/VBoxContainer"]
-margin_top = 634.0
+margin_top = 619.0
 margin_right = 800.0
-margin_bottom = 654.0
+margin_bottom = 639.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 1, 1, 0, 1 )

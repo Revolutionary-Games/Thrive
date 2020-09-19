@@ -5,7 +5,7 @@ using Godot;
 using Array = Godot.Collections.Array;
 
 /// <summary>
-///   Manages the microbe HUD display
+///   Manages the microbe HUD
 /// </summary>
 public class MicrobeHUD : Node
 {
@@ -187,9 +187,6 @@ public class MicrobeHUD : Node
     private TextureProgress ammoniaReproductionBar;
     private TextureProgress phosphateReproductionBar;
 
-    // TODO: Not needed anymore, remove?
-    // ReSharper disable once NotAccessedField.Local
-    private VBoxContainer leftPanels;
     private PauseMenu menu;
     private TextureButton pauseButton;
     private TextureButton resumeButton;
@@ -239,7 +236,6 @@ public class MicrobeHUD : Node
         mouseHoverPanel = GetNode<MarginContainer>(MouseHoverPanelPath);
         pauseButton = GetNode<TextureButton>(PauseButtonPath);
         resumeButton = GetNode<TextureButton>(ResumeButtonPath);
-        leftPanels = GetNode<VBoxContainer>(LeftPanelsPath);
         agentsPanel = GetNode<Control>(AgentsPanelPath);
 
         environmentPanel = GetNode<NinePatchRect>(EnvironmentPanelPath);

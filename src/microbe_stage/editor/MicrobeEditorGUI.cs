@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using Godot;
 using Array = Godot.Collections.Array;
 
@@ -80,9 +79,6 @@ public class MicrobeEditorGUI : Node
 
     [Export]
     public NodePath ATPBalanceLabelPath;
-
-    [Export]
-    public NodePath ATPBarContainerPath;
 
     [Export]
     public NodePath ATPProductionBarPath;
@@ -187,10 +183,7 @@ public class MicrobeEditorGUI : Node
     public NodePath RigiditySliderPath;
 
     [Export]
-    public NodePath RigiditySliderTooltipHealthLabelPath;
-
-    [Export]
-    public NodePath RigiditySliderTooltipSpeedLabelPath;
+    public NodePath TooltipHandlerPath;
 
     [Export]
     public NodePath SymmetryIconPath;
@@ -225,11 +218,12 @@ public class MicrobeEditorGUI : Node
     private readonly Compound phosphates = SimulationParameters.Instance.GetCompound("phosphates");
     private readonly Compound sunlight = SimulationParameters.Instance.GetCompound("sunlight");
 
+    private EnergyBalanceInfo energyBalanceInfo;
+
     private MicrobeEditor editor;
 
     private Array organelleSelectionElements;
     private Array membraneSelectionElements;
-    private Array itemTooltipElements;
 
     private PauseMenu menu;
 
@@ -309,7 +303,7 @@ public class MicrobeEditorGUI : Node
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
     private MicrobeEditor.MicrobeSymmetry symmetry = MicrobeEditor.MicrobeSymmetry.None;
 
-    private Control currentShownTooltip;
+    private TooltipHandler tooltipHandler;
 
     private enum EditorTab
     {
@@ -329,7 +323,6 @@ public class MicrobeEditorGUI : Node
     {
         organelleSelectionElements = GetTree().GetNodesInGroup("OrganelleSelectionElement");
         membraneSelectionElements = GetTree().GetNodesInGroup("MembraneSelectionElement");
-        itemTooltipElements = GetTree().GetNodesInGroup("ItemTooltip");
 
         reportTabButton = GetNode<Button>(ReportTabButtonPath);
         patchMapButton = GetNode<Button>(PatchMapButtonPath);
@@ -397,6 +390,8 @@ public class MicrobeEditorGUI : Node
         patchAmmoniaSituation = GetNode<TextureRect>(PatchAmmoniaSituationPath);
         patchPhosphateSituation = GetNode<TextureRect>(PatchPhosphateSituationPath);
 
+        tooltipHandler = GetNode<TooltipHandler>(TooltipHandlerPath);
+
         menu = GetNode<PauseMenu>(MenuPath);
 
         mapDrawer.OnSelectedPatchChanged = drawer => { UpdateShownPatchDetails(); };
@@ -455,21 +450,6 @@ public class MicrobeEditorGUI : Node
         {
             mutationPointsSubtractBar.SelfModulate = new Color(0.72f, 0.72f, 0.72f);
         }
-
-        // Updates tooltips position to follow the cursor
-        if (currentShownTooltip != null)
-        {
-            var cursorPos = GetViewport().GetMousePosition();
-            var screenSize = GetViewport().GetVisibleRect().Size;
-
-            // Clamp position so tooltips won't go offscreen
-            // TODO: Properly offset the position from the cursor a bit
-            var adjustedPosition = new Vector2(
-                Mathf.Clamp(cursorPos.x, 0, screenSize.x - currentShownTooltip.RectSize.x),
-                Mathf.Clamp(cursorPos.y, 0, screenSize.y - currentShownTooltip.RectSize.y));
-
-            currentShownTooltip.RectPosition = adjustedPosition;
-        }
     }
 
     public void SetMap(PatchMap map)
@@ -522,6 +502,8 @@ public class MicrobeEditorGUI : Node
 
     public void UpdateEnergyBalance(EnergyBalanceInfo energyBalance)
     {
+        energyBalanceInfo = energyBalance;
+
         if (energyBalance.FinalBalance > 0)
         {
             atpBalanceLabel.Text = ATP_BALANCE_DEFAULT_TEXT;
@@ -546,21 +528,15 @@ public class MicrobeEditorGUI : Node
     /// <summary>
     ///   Updates the organelle efficiencies in tooltips.
     /// </summary>
-    public void UpdateOrganelleEfficiencies(
-        System.Collections.Generic.Dictionary<string, OrganelleEfficiency> organelleEfficiency)
+    public void UpdateOrganelleEfficiencies(Dictionary<string, OrganelleEfficiency> organelleEfficiency)
     {
-        foreach (var organelleName in organelleEfficiency.Keys)
+        foreach (var organelle in organelleEfficiency.Keys)
         {
-            foreach (Node tooltip in itemTooltipElements)
-            {
-                if (tooltip.Name == organelleName)
-                {
-                    var processList = tooltip.GetNode<VBoxContainer>("MarginContainer/VBoxContainer/ProcessList");
+            var tooltip = (SelectionMenuTooltip)tooltipHandler.GetTooltip(
+                SimulationParameters.Instance.GetOrganelleType(organelle).Name);
 
-                    WriteOrganelleProcessList(organelleEfficiency[organelleName].Processes,
-                        processList);
-                }
-            }
+            if (tooltip != null)
+                tooltip.WriteOrganelleProcessList(organelleEfficiency[organelle].Processes);
         }
     }
 
@@ -571,33 +547,36 @@ public class MicrobeEditorGUI : Node
     {
         float convertedRigidity = rigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
 
-        var healthChangeLabel = GetNode<Label>(RigiditySliderTooltipHealthLabelPath);
-        var mobilityChangeLabel = GetNode<Label>(RigiditySliderTooltipSpeedLabelPath);
+        var rigidityTooltip = (SelectionMenuTooltip)tooltipHandler.GetTooltip("Membrane Rigidity");
+
+        var healthModifier = rigidityTooltip.GetModifierInfo("Health");
+        var mobilityModifier = rigidityTooltip.GetModifierInfo("Mobility");
 
         float healthChange = convertedRigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER;
         float mobilityChange = -1 * convertedRigidity * Constants.MEMBRANE_RIGIDITY_MOBILITY_MODIFIER;
 
-        healthChangeLabel.Text = ((healthChange > 0) ? "+" : string.Empty)
+        healthModifier.ModifierValue = ((healthChange > 0) ? "+" : string.Empty)
             + healthChange.ToString("F2", CultureInfo.CurrentCulture);
-        mobilityChangeLabel.Text = ((mobilityChange > 0) ? "+" : string.Empty)
+
+        mobilityModifier.ModifierValue = ((mobilityChange > 0) ? "+" : string.Empty)
             + mobilityChange.ToString("F2", CultureInfo.CurrentCulture);
 
         if (healthChange >= 0)
         {
-            healthChangeLabel.AddColorOverride("font_color", new Color(0, 1, 0));
+            healthModifier.ModifierValueColor = new Color(0, 1, 0);
         }
         else
         {
-            healthChangeLabel.AddColorOverride("font_color", new Color(1, 0.3f, 0.3f));
+            healthModifier.ModifierValueColor = new Color(1, 0.3f, 0.3f);
         }
 
         if (mobilityChange >= 0)
         {
-            mobilityChangeLabel.AddColorOverride("font_color", new Color(0, 1, 0));
+           mobilityModifier.ModifierValueColor = new Color(0, 1, 0);
         }
         else
         {
-            mobilityChangeLabel.AddColorOverride("font_color", new Color(1, 0.3f, 0.3f));
+            mobilityModifier.ModifierValueColor = new Color(1, 0.3f, 0.3f);
         }
     }
 
@@ -616,8 +595,7 @@ public class MicrobeEditorGUI : Node
     }
 
     /// <summary>
-    ///   Called when the mouse is no longer hovering
-    ///   the editor GUI.
+    ///   Called when the mouse is no longer hovering the editor GUI.
     /// </summary>
     internal void OnMouseExit()
     {
@@ -625,29 +603,77 @@ public class MicrobeEditorGUI : Node
     }
 
     /// <summary>
-    ///   Used by the things on selection menu to display tooltips
+    ///   Used by the selection options on the selection menu to show tooltips
     /// </summary>
     internal void OnItemMouseHover(string itemName)
     {
-        foreach (PanelContainer tooltip in itemTooltipElements)
-        {
-            tooltip.Hide();
-
-            if (tooltip.Name == itemName)
-            {
-                tooltip.Show();
-                currentShownTooltip = tooltip;
-            }
-        }
+        tooltipHandler.MainTooltip = tooltipHandler.GetTooltip(itemName);
+        tooltipHandler.Display = true;
     }
 
     internal void OnItemMouseExit()
     {
-        foreach (PanelContainer tooltip in itemTooltipElements)
+        tooltipHandler.Display = false;
+    }
+
+    /// <summary>
+    ///   Shows tooltips for the production balance bar
+    /// </summary>
+    internal void OnAtpProductionBarMouseEnter(string name)
+    {
+        if (energyBalanceInfo == null)
+            return;
+
+        tooltipHandler.MainTooltip = tooltipHandler.GetTooltip("Default");
+        tooltipHandler.Display = true;
+
+        var displayName = SimulationParameters.Instance.GetOrganelleType(name).Name;
+        var value = energyBalanceInfo.Production[name];
+
+        tooltipHandler.MainTooltip.TooltipDescription = $"{displayName}: Produces {value} ATP";
+    }
+
+    /// <summary>
+    ///   Shows tooltips for the consumption balance bar
+    /// </summary>
+    internal void OnAtpConsumptionBarMouseEnter(string name)
+    {
+        if (energyBalanceInfo == null)
+            return;
+
+        tooltipHandler.MainTooltip = tooltipHandler.GetTooltip("Default");
+        tooltipHandler.Display = true;
+
+        string displayName = null;
+        var value = energyBalanceInfo.Consumption[name];
+
+        switch (name)
         {
-            tooltip.Hide();
-            currentShownTooltip = null;
+            case "osmoregulation":
+            {
+                displayName = "Osmoregulation";
+                break;
+            }
+
+            case "baseMovement":
+            {
+                displayName = "Base Movement";
+                break;
+            }
+
+            default:
+            {
+                displayName = SimulationParameters.Instance.GetOrganelleType(name).Name;
+                break;
+            }
         }
+
+        tooltipHandler.MainTooltip.TooltipDescription = $"{displayName}: Consumes {value} ATP";
+    }
+
+    internal void OnAtpBarMouseExit()
+    {
+        tooltipHandler.Display = false;
     }
 
     internal void SetUndoButtonStatus(bool enabled)
@@ -1007,145 +1033,6 @@ public class MicrobeEditorGUI : Node
     {
         GUICommon.Instance.PlayButtonPressSound();
         GetTree().Quit();
-    }
-
-    private void WriteOrganelleProcessList(List<ProcessSpeedInformation> processList,
-        VBoxContainer targetElement)
-    {
-        // Remove previous process list
-        if (targetElement.GetChildCount() > 0)
-        {
-            foreach (Node children in targetElement.GetChildren())
-            {
-                children.QueueFree();
-            }
-        }
-
-        if (processList == null)
-        {
-            var noProcesslabel = new Label();
-            noProcesslabel.Text = "No processes";
-            targetElement.AddChild(noProcesslabel);
-            return;
-        }
-
-        foreach (var process in processList)
-        {
-            var processContainer = new VBoxContainer();
-            processContainer.MouseFilter = Control.MouseFilterEnum.Ignore;
-            targetElement.AddChild(processContainer);
-
-            var processTitle = new Label();
-            processTitle.AddColorOverride("font_color", new Color(1.0f, 0.84f, 0.0f));
-            processTitle.Text = process.Process.Name;
-            processContainer.AddChild(processTitle);
-
-            var processBody = new HBoxContainer();
-
-            bool usePlus;
-
-            if (process.OtherInputs.Count == 0)
-            {
-                // Just environmental stuff
-                usePlus = true;
-            }
-            else
-            {
-                // Something turns into something else, uses the arrow notation
-                usePlus = false;
-
-                // Show the inputs
-                // TODO: add commas or maybe pluses for multiple inputs
-                foreach (var key in process.OtherInputs.Keys)
-                {
-                    var inputCompound = process.OtherInputs[key];
-
-                    var amountLabel = new Label();
-                    amountLabel.Text = Math.Round(inputCompound.Amount, 3) + " ";
-                    processBody.AddChild(amountLabel);
-                    processBody.AddChild(GUICommon.Instance.CreateCompoundIcon(inputCompound.Compound.Name));
-                }
-
-                // And the arrow
-                var arrow = new TextureRect();
-                arrow.Expand = true;
-                arrow.RectMinSize = new Vector2(20, 20);
-                arrow.Texture = GD.Load<Texture>("res://assets/textures/gui/bevel/WhiteArrow.png");
-                processBody.AddChild(arrow);
-            }
-
-            // Outputs of the process. It's assumed that every process has outputs
-            foreach (var key in process.Outputs.Keys)
-            {
-                var outputCompound = process.Outputs[key];
-
-                var amountLabel = new Label();
-
-                var stringBuilder = new StringBuilder(string.Empty, 150);
-
-                // Changes process title and process# to red if process has 0 output
-                if (outputCompound.Amount == 0)
-                {
-                    processTitle.AddColorOverride("font_color", new Color(1.0f, 0.3f, 0.3f));
-                    amountLabel.AddColorOverride("font_color", new Color(1.0f, 0.3f, 0.3f));
-                }
-
-                if (usePlus)
-                {
-                    stringBuilder.Append(outputCompound.Amount >= 0 ? "+" : string.Empty);
-                }
-
-                stringBuilder.Append(Math.Round(outputCompound.Amount, 3) + " ");
-
-                amountLabel.Text = stringBuilder.ToString();
-
-                processBody.AddChild(amountLabel);
-                processBody.AddChild(GUICommon.Instance.CreateCompoundIcon(outputCompound.Compound.Name));
-            }
-
-            var perSecondLabel = new Label();
-            perSecondLabel.Text = "/second";
-
-            processBody.AddChild(perSecondLabel);
-
-            // Environment conditions
-            if (process.EnvironmentInputs.Count > 0)
-            {
-                var atSymbol = new Label();
-
-                atSymbol.Text = "@";
-                atSymbol.RectMinSize = new Vector2(30, 20);
-                atSymbol.Align = Label.AlignEnum.Center;
-                processBody.AddChild(atSymbol);
-
-                var first = true;
-
-                foreach (var key in process.EnvironmentInputs.Keys)
-                {
-                    if (!first)
-                    {
-                        var commaLabel = new Label();
-                        commaLabel.Text = ", ";
-                        processBody.AddChild(commaLabel);
-                    }
-
-                    first = false;
-
-                    var environmentCompound = process.EnvironmentInputs[key];
-
-                    // To percentage
-                    var percentageLabel = new Label();
-
-                    // TODO: sunlight needs some special handling (it used to say the lux amount)
-                    percentageLabel.Text = Math.Round(environmentCompound.AvailableAmount * 100, 1) + "%";
-
-                    processBody.AddChild(percentageLabel);
-                    processBody.AddChild(GUICommon.Instance.CreateCompoundIcon(environmentCompound.Compound.Name));
-                }
-            }
-
-            processContainer.AddChild(processBody);
-        }
     }
 
     /// <remarks>

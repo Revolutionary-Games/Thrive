@@ -1,0 +1,163 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://assets/fonts/Jura-DemiBold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/fonts/Lato-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://src/gui_common/tooltip/microbe_editor/ModifierInfoLabel.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/textures/gui/bevel/MP.png" type="Texture" id=4]
+[ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=5]
+[ext_resource path="res://assets/fonts/Lato-Bold.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://src/gui_common/tooltip/microbe_editor/SelectionMenuTooltip.cs" type="Script" id=7]
+
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0, 0.129412, 0.141176, 1 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.0666667, 1, 0.835294, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="DynamicFont" id=2]
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 25
+use_filter = true
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+use_filter = true
+font_data = ExtResource( 6 )
+
+[sub_resource type="Theme" id=5]
+default_font = SubResource( 4 )
+
+[sub_resource type="StyleBoxTexture" id=6]
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 429, 1 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 14
+use_filter = true
+font_data = ExtResource( 2 )
+
+[node name="SelectionMenuTooltip" type="PanelContainer"]
+margin_right = 350.0
+margin_bottom = 155.0
+rect_min_size = Vector2( 350, 0 )
+mouse_filter = 2
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+NameLabelPath = NodePath("MarginContainer/VBoxContainer/Header/Title")
+MpLabelPath = NodePath("MarginContainer/VBoxContainer/Header/MP/Value")
+DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
+ModifierListPath = NodePath("MarginContainer/VBoxContainer/ModifierList")
+ProcessListPath = NodePath("MarginContainer/VBoxContainer/ProcessList")
+ModifierInfoScene = ExtResource( 3 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_left = 1.0
+margin_top = 1.0
+margin_right = 349.0
+margin_bottom = 154.0
+mouse_filter = 2
+custom_constants/margin_right = 15
+custom_constants/margin_top = 15
+custom_constants/margin_left = 15
+custom_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 333.0
+margin_bottom = 138.0
+mouse_filter = 2
+custom_constants/separation = 15
+
+[node name="Header" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_right = 318.0
+margin_bottom = 27.0
+mouse_filter = 2
+custom_constants/separation = 10
+
+[node name="MP" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Header"]
+margin_right = 49.0
+margin_bottom = 20.0
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="Icon" type="TextureRect" parent="MarginContainer/VBoxContainer/Header/MP"]
+margin_right = 20.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+mouse_filter = 2
+size_flags_vertical = 4
+texture = ExtResource( 4 )
+expand = true
+
+[node name="Value" type="Label" parent="MarginContainer/VBoxContainer/Header/MP"]
+margin_left = 24.0
+margin_top = 1.0
+margin_right = 24.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 2 )
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/Header"]
+margin_left = 59.0
+margin_right = 259.0
+margin_bottom = 27.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 3 )
+align = 1
+autowrap = true
+
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer/Header"]
+margin_left = 269.0
+margin_right = 318.0
+margin_bottom = 27.0
+mouse_filter = 2
+size_flags_horizontal = 3
+
+[node name="ProcessDescription" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 42.0
+margin_right = 318.0
+margin_bottom = 42.0
+mouse_filter = 2
+
+[node name="ProcessList" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 57.0
+margin_right = 318.0
+margin_bottom = 57.0
+mouse_filter = 2
+theme = SubResource( 5 )
+
+[node name="ModifierList" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 72.0
+margin_right = 318.0
+margin_bottom = 72.0
+mouse_filter = 2
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+margin_top = 87.0
+margin_right = 318.0
+margin_bottom = 91.0
+mouse_filter = 2
+custom_styles/separator = SubResource( 6 )
+
+[node name="Description" type="Label" parent="MarginContainer/VBoxContainer"]
+margin_top = 106.0
+margin_right = 318.0
+margin_bottom = 123.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 7 )
+autowrap = true

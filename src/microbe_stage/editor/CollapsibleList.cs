@@ -25,6 +25,7 @@ public class CollapsibleList : VBoxContainer
     public NodePath TweenPath;
 
     private string title;
+    private int columns;
     private bool collapsed;
     private bool isCollapsing;
 
@@ -46,6 +47,16 @@ public class CollapsibleList : VBoxContainer
         {
             title = value;
             UpdateTitle();
+        }
+    }
+
+    public int Columns
+    {
+        get => columns;
+        set
+        {
+            columns = value;
+            UpdateItemContainer();
         }
     }
 
@@ -71,7 +82,7 @@ public class CollapsibleList : VBoxContainer
         cachedTopMarginValue = clipBox.GetConstant("margin_top");
 
         UpdateTitle();
-        UpdateItems();
+        UpdateLists();
     }
 
     public void AddItem(Control item)
@@ -84,10 +95,11 @@ public class CollapsibleList : VBoxContainer
             clipBox.AddConstantOverride("margin_top", -(int)itemContainer.RectSize.y);
     }
 
-    public void RemoveItem(Control item)
+    public void RemoveItem(string name)
     {
-        items.Find(x => x == item).QueueFree();
-        items.Remove(item);
+        var found = items.Find(item => item.Name == name);
+        found.QueueFree();
+        items.Remove(found);
     }
 
     public void ClearItems()
@@ -99,8 +111,7 @@ public class CollapsibleList : VBoxContainer
 
         foreach (var item in intermediateList)
         {
-            item.QueueFree();
-            items.Remove(item);
+            RemoveItem(item.Name);
         }
     }
 
@@ -136,12 +147,20 @@ public class CollapsibleList : VBoxContainer
     /// <summary>
     ///   Add all the already existing childrens into the item list
     /// </summary>
-    private void UpdateItems()
+    private void UpdateLists()
     {
         foreach (Control item in itemContainer.GetChildren())
         {
             items.Add(item);
         }
+    }
+
+    private void UpdateItemContainer()
+    {
+        if (itemContainer == null)
+            return;
+
+        itemContainer.Columns = columns;
     }
 
     private void Collapse()
