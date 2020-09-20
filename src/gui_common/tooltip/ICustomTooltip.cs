@@ -16,7 +16,7 @@ public interface ICustomTooltip
     /// <summary>
     ///   Used to delay how long it takes for this tooltip to appear
     /// </summary>
-    float DisplayDelay { get; }
+    float DisplayDelay { get; set; }
 
     /// <summary>
     ///   If true the tooltip is shown

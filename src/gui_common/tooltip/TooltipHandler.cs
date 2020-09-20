@@ -81,12 +81,13 @@ public class TooltipHandler : CanvasLayer
     /// <summary>
     ///   Helper for displaying the default styled tooltip
     /// </summary>
-    public void ShowDefaultTooltip(string description)
+    public void ShowDefaultTooltip(string description, float delay = Constants.TOOLTIP_DEFAULT_DELAY)
     {
         MainTooltip = GetTooltip("Default");
-        Display = true;
-
         MainTooltip.TooltipDescription = description;
+        MainTooltip.DisplayDelay = delay;
+
+        Display = true;
     }
 
     public void AddTooltip(ICustomTooltip tooltip)

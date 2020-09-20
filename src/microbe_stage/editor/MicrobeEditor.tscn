@@ -1130,6 +1130,7 @@ margin_left = 238.0
 margin_top = 10.0
 margin_right = 240.0
 margin_bottom = 252.0
+mouse_filter = 1
 size_flags_horizontal = 8
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1144,6 +1145,7 @@ margin_bottom = 245.0
 [node name="Header" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/TopRight/Statistics/VBoxContainer"]
 margin_right = 260.0
 margin_bottom = 28.0
+mouse_filter = 1
 custom_constants/margin_right = 10
 custom_constants/margin_top = 5
 custom_constants/margin_left = 10
@@ -1160,12 +1162,14 @@ text = "Organism Statistics"
 margin_top = 32.0
 margin_right = 260.0
 margin_bottom = 36.0
+mouse_filter = 1
 custom_styles/separator = SubResource( 7 )
 
 [node name="Body" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/TopRight/Statistics/VBoxContainer"]
 margin_top = 40.0
 margin_right = 260.0
 margin_bottom = 244.0
+mouse_filter = 1
 size_flags_vertical = 3
 custom_constants/margin_right = 7
 custom_constants/margin_top = 7
@@ -1256,12 +1260,14 @@ margin_top = 84.0
 margin_right = 246.0
 margin_bottom = 94.0
 rect_min_size = Vector2( 0, 10 )
+mouse_filter = 1
 custom_styles/separator = SubResource( 10 )
 
 [node name="ATPBalancePanel" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/TopRight/Statistics/VBoxContainer/Body/VBoxContainer"]
 margin_top = 98.0
 margin_right = 246.0
 margin_bottom = 190.0
+mouse_filter = 1
 custom_constants/margin_right = 3
 custom_constants/margin_top = 3
 custom_constants/margin_left = 3
@@ -3745,10 +3751,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 39 )
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_left = 152.0
-margin_top = 174.0
-margin_right = 454.0
-margin_bottom = 590.0
+margin_left = 180.0
+margin_top = 202.0
+margin_right = 482.0
+margin_bottom = 618.0
 theme = SubResource( 41 )
 edit_alpha = false
 
@@ -3866,6 +3872,7 @@ margin_left = 160.0
 margin_right = 165.0
 margin_bottom = 45.0
 rect_min_size = Vector2( 5, 0 )
+mouse_filter = 1
 
 [node name="SpeciesName" type="LineEdit" parent="MicrobeEditorGUI/CellEditor/BottomLeft/HBoxContainer"]
 margin_left = 170.0
@@ -11617,6 +11624,8 @@ CellEditorClosingWordsPath = NodePath("../TutorialGUI/CellEditorClosingWords")
 [connection signal="mouse_entered" from="MicrobeEditorGUI/TopLeft/HBoxContainer/CellEditorButton" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/TopLeft/HBoxContainer/CellEditorButton" to="MicrobeEditorGUI" method="OnMouseExit"]
 [connection signal="pressed" from="MicrobeEditorGUI/TopLeft/HBoxContainer/CellEditorButton" to="MicrobeEditorGUI" method="SetEditorTab" binds= [ "CellEditor" ]]
+[connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/TopRight" to="MicrobeEditorGUI" method="OnMouseEnter"]
+[connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/TopRight" to="MicrobeEditorGUI" method="OnMouseExit"]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/TopRight/Statistics/VBoxContainer/Body/VBoxContainer/ATPBalancePanel" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/TopRight/Statistics/VBoxContainer/Body/VBoxContainer/ATPBalancePanel" to="MicrobeEditorGUI" method="OnMouseExit"]
 [connection signal="SubBarMouseEnter" from="MicrobeEditorGUI/CellEditor/TopRight/Statistics/VBoxContainer/Body/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer/ATPProductionBar" to="MicrobeEditorGUI" method="OnAtpProductionBarMouseEnter"]

@@ -634,7 +634,7 @@ public class MicrobeEditorGUI : Node
         var displayName = SimulationParameters.Instance.GetOrganelleType(name).Name;
         var value = energyBalanceInfo.Production[name];
 
-        tooltipHandler.ShowDefaultTooltip($"{displayName}: +{value} ATP");
+        tooltipHandler.ShowDefaultTooltip($"{displayName}: +{value} ATP", 0.1f);
     }
 
     /// <summary>
@@ -669,7 +669,7 @@ public class MicrobeEditorGUI : Node
             }
         }
 
-        tooltipHandler.ShowDefaultTooltip($"{displayName}: -{value} ATP");
+        tooltipHandler.ShowDefaultTooltip($"{displayName}: -{value} ATP", 0.1f);
     }
 
     internal void OnSymmetryButtonMouseEnter()

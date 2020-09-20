@@ -400,6 +400,8 @@ public static class Constants
     /// </summary>
     public const float HOVER_PANEL_UPDATE_INTERVAL = 0.1f;
 
+    public const float TOOLTIP_DEFAULT_DELAY = 1.0f;
+
     public const float TOOLTIP_FADE_SPEED = 0.1f;
 
     /// <summary>

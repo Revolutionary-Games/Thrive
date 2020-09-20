@@ -77,7 +77,7 @@ public class SelectionMenuTooltip : Control, ICustomTooltip
         }
     }
 
-    public float DisplayDelay { get; private set; } = 0.5f;
+    public float DisplayDelay { get; set; } = 0.1f;
 
     public bool TooltipVisible
     {
