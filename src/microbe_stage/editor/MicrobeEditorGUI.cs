@@ -198,6 +198,9 @@ public class MicrobeEditorGUI : Node
     public NodePath RigiditySliderPath;
 
     [Export]
+    public NodePath NegativeAtpPopupPath;
+
+    [Export]
     public NodePath SymmetryIconPath;
 
     [Export]
@@ -320,6 +323,8 @@ public class MicrobeEditorGUI : Node
     private TextureRect hpIndicator;
     private TextureRect sizeIndicator;
 
+    private ConfirmationDialog negativeAtpPopup;
+
     private EditorTab selectedEditorTab = EditorTab.Report;
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
     private MicrobeEditor.MicrobeSymmetry symmetry = MicrobeEditor.MicrobeSymmetry.None;
@@ -418,6 +423,8 @@ public class MicrobeEditorGUI : Node
         sizeIndicator = GetNode<TextureRect>(SizeIndicatorPath);
 
         tooltipHandler = GetNode<TooltipHandler>("TooltipHandler");
+
+        negativeAtpPopup = GetNode<ConfirmationDialog>(NegativeAtpPopupPath);
 
         menu = GetNode<PauseMenu>(MenuPath);
 
@@ -809,8 +816,23 @@ public class MicrobeEditorGUI : Node
     {
         GUICommon.Instance.PlayButtonPressSound();
 
+        // Show warning popup if trying to exit with negative atp production
+        if (energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumption)
+        {
+            negativeAtpPopup.PopupCenteredMinsize();
+            return;
+        }
+
         // To prevent being clicked twice
         finishButton.MouseFilter = Control.MouseFilterEnum.Ignore;
+
+        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.3f, false);
+        TransitionManager.Instance.StartTransitions(editor, nameof(MicrobeEditor.OnFinishEditing));
+    }
+
+    internal void ConfirmFinishEditingPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
 
         TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.3f, false);
         TransitionManager.Instance.StartTransitions(editor, nameof(MicrobeEditor.OnFinishEditing));

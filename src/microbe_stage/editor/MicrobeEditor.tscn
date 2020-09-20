@@ -925,6 +925,9 @@ region_rect = Rect2( 0, 0, 429, 1 )
 [node name="MicrobeEditor" type="Node"]
 process_priority = -1
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_vertical_guides_": [  ]
+}
 PauseMenuPath = NodePath("MicrobeEditorGUI/PauseMenu")
 
 [node name="PrimaryCamera" parent="." instance=ExtResource( 1 )]
@@ -1012,6 +1015,7 @@ SpeedIndicatorPath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer/Body
 HpIndicatorPath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer/Body/VBoxContainer/HP/Indicator")
 SizeIndicatorPath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer/Body/VBoxContainer/Size/Indicator")
 RigiditySliderPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/RigiditySlider")
+NegativeAtpPopupPath = NodePath("CellEditor/NegativeAtpWarning")
 SymmetryIconPath = NodePath("CellEditor/BottomLeft/HBoxContainer/SymmetryButton/SymmetryIcon")
 SymmetryIconDefault = ExtResource( 34 )
 SymmetryIcon2x = ExtResource( 42 )
@@ -3942,6 +3946,17 @@ custom_fonts/font = SubResource( 46 )
 custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
 enabled_focus_mode = 0
 text = "CONFIRM"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NegativeAtpWarning" type="ConfirmationDialog" parent="MicrobeEditorGUI/CellEditor"]
+margin_right = 587.0
+margin_bottom = 101.0
+popup_exclusive = true
+window_title = "Negative ATP Balance"
+dialog_text = "Your microbe is not producing enough ATP for it to survive!
+Do you still wish to continue?"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -11799,6 +11814,7 @@ CellEditorClosingWordsPath = NodePath("../TutorialGUI/CellEditorClosingWords")
 [connection signal="mouse_entered" from="MicrobeEditorGUI/CellEditor/ConfirmButton" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/CellEditor/ConfirmButton" to="MicrobeEditorGUI" method="OnMouseExit"]
 [connection signal="pressed" from="MicrobeEditorGUI/CellEditor/ConfirmButton/Button" to="MicrobeEditorGUI" method="OnFinishEditingClicked"]
+[connection signal="confirmed" from="MicrobeEditorGUI/CellEditor/NegativeAtpWarning" to="MicrobeEditorGUI" method="ConfirmFinishEditingPressed"]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer" to="MicrobeEditorGUI" method="OnMouseExit"]
 [connection signal="pressed" from="MicrobeEditorGUI/Report/NextTabButton/Button" to="MicrobeEditorGUI" method="SetEditorTab" binds= [ "PatchMap" ]]
