@@ -614,7 +614,7 @@ public class OptionsMenu : Control
     // Graphics Button Callbacks
     private void OnFullScreenToggled(bool pressed)
     {
-        Settings.Instance.FullScreen = pressed;
+        Settings.Instance.FullScreen.Value = pressed;
         Settings.ApplyWindowSettings();
 
         CompareSettings();
@@ -622,7 +622,7 @@ public class OptionsMenu : Control
 
     private void OnVSyncToggled(bool pressed)
     {
-        Settings.Instance.VSync = pressed;
+        Settings.Instance.VSync.Value = pressed;
         Settings.ApplyWindowSettings();
 
         CompareSettings();
@@ -630,7 +630,7 @@ public class OptionsMenu : Control
 
     private void OnMSAAResolutionSelected(int index)
     {
-        Settings.Instance.MSAAResolution = MSAAIndexToResolution(index);
+        Settings.Instance.MSAAResolution.Value = MSAAIndexToResolution(index);
         Settings.ApplyGraphicsSettings();
 
         CompareSettings();
@@ -638,7 +638,7 @@ public class OptionsMenu : Control
 
     private void OnColourblindSettingSelected(int index)
     {
-        Settings.Instance.ColourblindSetting = index;
+        Settings.Instance.ColourblindSetting.Value = index;
         Settings.ApplyGraphicsSettings();
 
         CompareSettings();
@@ -646,14 +646,14 @@ public class OptionsMenu : Control
 
     private void OnChromaticAberrationToggled(bool toggle)
     {
-        Settings.Instance.ChromaticEnabled = toggle;
+        Settings.Instance.ChromaticEnabled.Value = toggle;
 
         CompareSettings();
     }
 
     private void OnChromaticAberrationValueChanged(float amount)
     {
-        Settings.Instance.ChromaticAmount = amount;
+        Settings.Instance.ChromaticAmount.Value = amount;
 
         CompareSettings();
     }
@@ -661,7 +661,7 @@ public class OptionsMenu : Control
     // Sound Button Callbacks
     private void OnMasterVolumeChanged(float value)
     {
-        Settings.Instance.VolumeMaster = ConvertSoundBarToDb(value);
+        Settings.Instance.VolumeMaster.Value = ConvertSoundBarToDb(value);
         Settings.ApplySoundSettings();
 
         CompareSettings();
@@ -669,7 +669,7 @@ public class OptionsMenu : Control
 
     private void OnMasterMutedToggled(bool pressed)
     {
-        Settings.Instance.VolumeMasterMuted = pressed;
+        Settings.Instance.VolumeMasterMuted.Value = pressed;
         Settings.ApplySoundSettings();
 
         CompareSettings();
@@ -677,7 +677,7 @@ public class OptionsMenu : Control
 
     private void OnMusicVolumeChanged(float value)
     {
-        Settings.Instance.VolumeMusic = ConvertSoundBarToDb(value);
+        Settings.Instance.VolumeMusic.Value = ConvertSoundBarToDb(value);
         Settings.ApplySoundSettings();
 
         CompareSettings();
@@ -685,7 +685,7 @@ public class OptionsMenu : Control
 
     private void OnMusicMutedToggled(bool pressed)
     {
-        Settings.Instance.VolumeMusicMuted = pressed;
+        Settings.Instance.VolumeMusicMuted.Value = pressed;
         Settings.ApplySoundSettings();
 
         CompareSettings();
@@ -693,7 +693,7 @@ public class OptionsMenu : Control
 
     private void OnAmbianceVolumeChanged(float value)
     {
-        Settings.Instance.VolumeAmbiance = ConvertSoundBarToDb(value);
+        Settings.Instance.VolumeAmbiance.Value = ConvertSoundBarToDb(value);
         Settings.ApplySoundSettings();
 
         CompareSettings();
@@ -701,7 +701,7 @@ public class OptionsMenu : Control
 
     private void OnAmbianceMutedToggled(bool pressed)
     {
-        Settings.Instance.VolumeAmbianceMuted = pressed;
+        Settings.Instance.VolumeAmbianceMuted.Value = pressed;
         Settings.ApplySoundSettings();
 
         CompareSettings();
@@ -709,7 +709,7 @@ public class OptionsMenu : Control
 
     private void OnSFXVolumeChanged(float value)
     {
-        Settings.Instance.VolumeSFX = ConvertSoundBarToDb(value);
+        Settings.Instance.VolumeSFX.Value = ConvertSoundBarToDb(value);
         Settings.ApplySoundSettings();
 
         CompareSettings();
@@ -717,7 +717,7 @@ public class OptionsMenu : Control
 
     private void OnSFXMutedToggled(bool pressed)
     {
-        Settings.Instance.VolumeSFXMuted = pressed;
+        Settings.Instance.VolumeSFXMuted.Value = pressed;
         Settings.ApplySoundSettings();
 
         CompareSettings();
@@ -725,7 +725,7 @@ public class OptionsMenu : Control
 
     private void OnGUIVolumeChanged(float value)
     {
-        Settings.Instance.VolumeGUI = ConvertSoundBarToDb(value);
+        Settings.Instance.VolumeGUI.Value = ConvertSoundBarToDb(value);
         Settings.ApplySoundSettings();
 
         CompareSettings();
@@ -733,7 +733,7 @@ public class OptionsMenu : Control
 
     private void OnGUIMutedToggled(bool pressed)
     {
-        Settings.Instance.VolumeGUIMuted = pressed;
+        Settings.Instance.VolumeGUIMuted.Value = pressed;
         Settings.ApplySoundSettings();
 
         CompareSettings();
@@ -742,14 +742,14 @@ public class OptionsMenu : Control
     // Performance Button Callbacks
     private void OnCloudIntervalSelected(int index)
     {
-        Settings.Instance.CloudUpdateInterval = CloudIndexToInterval(index);
+        Settings.Instance.CloudUpdateInterval.Value = CloudIndexToInterval(index);
 
         CompareSettings();
     }
 
     private void OnCloudResolutionSelected(int index)
     {
-        Settings.Instance.CloudResolution = CloudIndexToResolution(index);
+        Settings.Instance.CloudResolution.Value = CloudIndexToResolution(index);
 
         CompareSettings();
     }
@@ -757,35 +757,35 @@ public class OptionsMenu : Control
     // Misc Button Callbacks
     private void OnIntroToggled(bool pressed)
     {
-        Settings.Instance.PlayIntroVideo = pressed;
+        Settings.Instance.PlayIntroVideo.Value = pressed;
 
         CompareSettings();
     }
 
     private void OnMicrobeIntroToggled(bool pressed)
     {
-        Settings.Instance.PlayMicrobeIntroVideo = pressed;
+        Settings.Instance.PlayMicrobeIntroVideo.Value = pressed;
 
         CompareSettings();
     }
 
     private void OnTutorialsToggled(bool pressed)
     {
-        Settings.Instance.TutorialsEnabled = pressed;
+        Settings.Instance.TutorialsEnabled.Value = pressed;
 
         CompareSettings();
     }
 
     private void OnCheatsToggled(bool pressed)
     {
-        Settings.Instance.CheatsEnabled = pressed;
+        Settings.Instance.CheatsEnabled.Value = pressed;
 
         CompareSettings();
     }
 
     private void OnAutoSaveToggled(bool pressed)
     {
-        Settings.Instance.AutoSaveEnabled = pressed;
+        Settings.Instance.AutoSaveEnabled.Value = pressed;
         maxAutosaves.Editable = pressed;
 
         CompareSettings();
@@ -793,14 +793,14 @@ public class OptionsMenu : Control
 
     private void OnMaxAutoSavesValueChanged(float value)
     {
-        Settings.Instance.MaxAutoSaves = (int)value;
+        Settings.Instance.MaxAutoSaves.Value = (int)value;
 
         CompareSettings();
     }
 
     private void OnMaxQuickSavesValueChanged(float value)
     {
-        Settings.Instance.MaxQuickSaves = (int)value;
+        Settings.Instance.MaxQuickSaves.Value = (int)value;
 
         CompareSettings();
     }
