@@ -216,7 +216,7 @@ public class MainMenu : Node
         // before the stage music starts)
         Jukebox.Instance.Stop();
 
-        if (Settings.Instance.PlayMicrobeIntroVideo.Value)
+        if (Settings.Instance.PlayMicrobeIntroVideo)
         {
             TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.5f);
             TransitionManager.Instance.AddCutscene("res://assets/videos/microbe_intro2.webm");

@@ -1,3 +1,5 @@
+using System;
+
 /// <summary>
 ///   Wrapper class for settings options containing the value and a delegate that provides a callback for
 ///   when the value is changed.
@@ -85,15 +87,8 @@ public class SettingValue<TValueType> : IAssignableSetting
         var settingObject = obj as SettingValue<TValueType>;
 
         if (settingObject == null)
-            return;
+            throw new InvalidOperationException("Attempted to assign a SettingValue with an incorrect object type.");
 
-        // Matching types, so we copy the value from the other SettingValue.
-        if (!value.Equals(settingObject.value))
-        {
-            value = settingObject.value;
-
-            // Call any registered listeners through the delegate to inform them of the value change.
-            OnChanged?.Invoke(value);
-        }
+        Value = settingObject.Value;
     }
 }

@@ -412,9 +412,9 @@ public class Settings
 
             // Since the properties we want to copy are SettingValue generics we use the IAssignableSetting
             // interface and AssignFrom method to convert the property to the correct concrete class.
-            var setting = property.GetValue(this) as IAssignableSetting;
+            var setting = (IAssignableSetting)property.GetValue(this);
 
-            setting?.AssignFrom(property.GetValue(settings));
+            setting.AssignFrom(property.GetValue(settings));
         }
     }
 }

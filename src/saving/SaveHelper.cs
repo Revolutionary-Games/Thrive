@@ -320,8 +320,7 @@ public static class SaveHelper
     /// </summary>
     private static void QueueRemoveExcessAutoSaves()
     {
-        TaskExecutor.Instance.AddTask(new Task(() =>
-            DeleteExcessSaves("auto_save", Settings.Instance.MaxAutoSaves)));
+        TaskExecutor.Instance.AddTask(new Task(() => DeleteExcessSaves("auto_save", Settings.Instance.MaxAutoSaves)));
     }
 
     /// <summary>
