@@ -163,6 +163,12 @@ public class Settings
     public int MaxQuickSaves { get; set; } = 5;
 
     /// <summary>
+    ///   Saves the current settings by writing them to the settings configuration file.
+    ///   Show tutorial messages
+    /// </summary>
+    public bool TutorialsEnabled { get; set; } = true;
+
+    /// <summary>
     ///   When true cheats are enabled
     /// </summary>
     public bool CheatsEnabled { get; set; } = false;
@@ -257,7 +263,7 @@ public class Settings
     }
 
     /// <summary>
-    ///   Saves the current settings by writing them to the settings configuration file.
+    ///   Saves the current settings by writing them to the settings file
     /// </summary>
     /// <returns>True on success, false if the file can't be written.</returns>
     public bool Save()

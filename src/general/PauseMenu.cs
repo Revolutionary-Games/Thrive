@@ -45,6 +45,12 @@ public class PauseMenu : Control
     [Signal]
     public delegate void MakeSave(string name);
 
+    /// <summary>
+    ///   The tutorial state reported by the game state, this is needed to not allow pausing while exclusive tutorial
+    ///   is open. As well as to disable tutorials from the in-game options menu
+    /// </summary>
+    public TutorialState GameTutorialState { get; set; }
+
     public override void _EnterTree()
     {
         // This needs to be done early here to make sure the help screen loads the right text
@@ -69,7 +75,7 @@ public class PauseMenu : Control
 
                 EmitSignal(nameof(OnClosed));
             }
-            else
+            else if (GameTutorialState == null || !GameTutorialState.ExclusiveTutorialActive())
             {
                 EmitSignal(nameof(OnOpenWithKeyPress));
             }

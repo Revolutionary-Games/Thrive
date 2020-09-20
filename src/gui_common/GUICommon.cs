@@ -36,6 +36,21 @@ public class GUICommon : Node
     /// </summary>
     public AudioStreamPlayer AudioSource { get; }
 
+    public static Vector2 GetFirstChildMinSize(Control control)
+    {
+        var child = control.GetChild<Control>(0);
+
+        return child.RectMinSize;
+    }
+
+    public static void PopupMinSizeMarginPosition(Popup popup)
+    {
+        var left = popup.MarginLeft;
+        var top = popup.MarginTop;
+        popup.PopupCenteredMinsize();
+        popup.RectPosition = new Vector2(left, top);
+    }
+
     /// <summary>
     ///   Play the button click sound effect.
     /// </summary>

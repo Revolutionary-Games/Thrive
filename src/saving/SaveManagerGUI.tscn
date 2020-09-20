@@ -119,55 +119,55 @@ margin_bottom = 35.0
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/BottomBox"]
 margin_left = 112.0
 margin_top = 6.0
-margin_right = 233.0
-margin_bottom = 29.0
+margin_right = 229.0
+margin_bottom = 28.0
 text = "Total saves:"
 
 [node name="SaveCount" type="Label" parent="CenterContainer/VBoxContainer/BottomBox"]
-margin_left = 237.0
+margin_left = 233.0
 margin_top = 6.0
-margin_right = 250.0
-margin_bottom = 29.0
+margin_right = 245.0
+margin_bottom = 28.0
 text = "0"
 
 [node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer/BottomBox"]
-margin_left = 254.0
-margin_right = 257.0
+margin_left = 249.0
+margin_right = 252.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 3, 0 )
 
 [node name="Label3" type="Label" parent="CenterContainer/VBoxContainer/BottomBox"]
-margin_left = 261.0
+margin_left = 256.0
 margin_top = 6.0
-margin_right = 394.0
-margin_bottom = 29.0
+margin_right = 385.0
+margin_bottom = 28.0
 text = " Space used:"
 
 [node name="SavesSpaceUsed" type="Label" parent="CenterContainer/VBoxContainer/BottomBox"]
-margin_left = 398.0
+margin_left = 389.0
 margin_top = 6.0
-margin_right = 411.0
-margin_bottom = 29.0
+margin_right = 401.0
+margin_bottom = 28.0
 text = "0"
 
 [node name="Spacer2" type="Control" parent="CenterContainer/VBoxContainer/BottomBox"]
-margin_left = 415.0
-margin_right = 418.0
+margin_left = 405.0
+margin_right = 408.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 3, 0 )
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/BottomBox"]
-margin_left = 422.0
+margin_left = 412.0
 margin_top = 6.0
-margin_right = 524.0
-margin_bottom = 29.0
+margin_right = 512.0
+margin_bottom = 28.0
 text = " Selected:"
 
 [node name="SelectedCount" type="Label" parent="CenterContainer/VBoxContainer/BottomBox"]
-margin_left = 528.0
+margin_left = 516.0
 margin_top = 6.0
-margin_right = 541.0
-margin_bottom = 29.0
+margin_right = 528.0
+margin_bottom = 28.0
 text = "0"
 
 [node name="DeleteSelectedConfirmDialog" type="ConfirmationDialog" parent="CenterContainer/VBoxContainer"]

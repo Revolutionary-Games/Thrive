@@ -1,0 +1,315 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/tutorial/microbe_stage/MicrobeTutorialGUI.cs" type="Script" id=1]
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
+[ext_resource path="res://src/gui_common/KeyPrompt.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/fonts/Lato-Regular.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+use_filter = true
+font_data = ExtResource( 4 )
+
+[node name="MicrobeTutorialGUI" type="Control"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme = ExtResource( 2 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+MicrobeWelcomeMessagePath = NodePath("MicrobeWelcome")
+MicrobeMovementKeyPromptsPath = NodePath("MicrobeMovementTutorial/KeyPrompts")
+MicrobeMovementPopupPath = NodePath("MicrobeMovementTutorial/ExplainingPopup")
+MicrobeMovementKeyForwardPath = NodePath("MicrobeMovementTutorial/KeyPrompts/Forward")
+MicrobeMovementKeyLeftPath = NodePath("MicrobeMovementTutorial/KeyPrompts/Left")
+MicrobeMovementKeyRightPath = NodePath("MicrobeMovementTutorial/KeyPrompts/Right")
+MicrobeMovementKeyBackwardsPath = NodePath("MicrobeMovementTutorial/KeyPrompts/Backwards")
+GlucoseTutorialPath = NodePath("GlucoseTutorial")
+StayingAlivePath = NodePath("StayingAliveTutorial")
+ReproductionTutorialPath = NodePath("ReproductionTutorial")
+
+[node name="MicrobeWelcome" type="WindowDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -683.0
+margin_top = -384.0
+margin_right = -233.0
+margin_bottom = 66.0
+rect_min_size = Vector2( 450, 450 )
+size_flags_horizontal = 3
+popup_exclusive = true
+window_title = "Tutorial"
+resizable = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeWelcome"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 435.0
+margin_bottom = 435.0
+rect_min_size = Vector2( 420, 420 )
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MicrobeWelcome/VBoxContainer"]
+margin_right = 420.0
+margin_bottom = 296.0
+custom_fonts/font = SubResource( 1 )
+text = "On a distant alien planet, eons of volcanic activity and meteor impacts have lead to the development of a new phenomenon in the universe.
+
+Life.
+
+Simple microbes reside in the deep regions of the ocean. You are the last universal common ancestor (LUCA) on this planet.
+
+To survive in this hostile world, you will need to collect any compounds that you can find and evolve each generation to compete against the other species of microbes."
+autowrap = true
+
+[node name="Control" type="Control" parent="MicrobeWelcome/VBoxContainer"]
+margin_top = 306.0
+margin_right = 420.0
+margin_bottom = 348.0
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeWelcome/VBoxContainer"]
+margin_top = 358.0
+margin_right = 420.0
+margin_bottom = 380.0
+
+[node name="Control" type="Control" parent="MicrobeWelcome/VBoxContainer/HBoxContainer"]
+margin_right = 10.0
+margin_bottom = 22.0
+rect_min_size = Vector2( 10, 0 )
+
+[node name="CheckBox" type="CheckBox" parent="MicrobeWelcome/VBoxContainer/HBoxContainer"]
+margin_left = 14.0
+margin_right = 176.0
+margin_bottom = 22.0
+pressed = true
+text = "Show tutorials"
+
+[node name="Button" type="Button" parent="MicrobeWelcome/VBoxContainer"]
+margin_left = 139.0
+margin_top = 390.0
+margin_right = 281.0
+margin_bottom = 420.0
+size_flags_horizontal = 4
+text = "Begin Thriving"
+
+[node name="MicrobeMovementTutorial" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExplainingPopup" type="WindowDialog" parent="MicrobeMovementTutorial"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 367.0
+margin_top = -174.0
+margin_right = 627.0
+margin_bottom = 86.0
+rect_min_size = Vector2( 260, 260 )
+size_flags_horizontal = 3
+window_title = "Tutorial"
+resizable = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MicrobeMovementTutorial/ExplainingPopup"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 245.0
+margin_bottom = 245.0
+rect_min_size = Vector2( 230, 230 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MicrobeMovementTutorial/ExplainingPopup/VBoxContainer"]
+margin_right = 230.0
+margin_bottom = 158.0
+custom_fonts/font = SubResource( 1 )
+text = "To control your cell use the keys shown near your cell (center of screen) and the mouse to control the cell orientation.
+
+Try all of the keys for a few seconds to continue."
+autowrap = true
+
+[node name="KeyPrompts" type="Control" parent="MicrobeMovementTutorial"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -640.0
+margin_top = -360.0
+margin_right = 640.0
+margin_bottom = 360.0
+rect_pivot_offset = Vector2( 640, 360 )
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Forward" parent="MicrobeMovementTutorial/KeyPrompts" instance=ExtResource( 3 )]
+margin_left = 620.0
+margin_top = 280.0
+margin_right = -628.0
+margin_bottom = -408.0
+rect_min_size = Vector2( 32, 32 )
+ActionName = "g_move_forward"
+
+[node name="Backwards" parent="MicrobeMovementTutorial/KeyPrompts" instance=ExtResource( 3 )]
+margin_left = 620.0
+margin_top = 400.0
+margin_right = -628.0
+margin_bottom = -288.0
+rect_min_size = Vector2( 32, 32 )
+ActionName = "g_move_backwards"
+
+[node name="Left" parent="MicrobeMovementTutorial/KeyPrompts" instance=ExtResource( 3 )]
+margin_left = 560.0
+margin_top = 340.0
+margin_right = -688.0
+margin_bottom = -348.0
+rect_min_size = Vector2( 32, 32 )
+ActionName = "g_move_left"
+
+[node name="Right" parent="MicrobeMovementTutorial/KeyPrompts" instance=ExtResource( 3 )]
+margin_left = 680.0
+margin_top = 340.0
+margin_right = -568.0
+margin_bottom = -348.0
+rect_min_size = Vector2( 32, 32 )
+ActionName = "g_move_right"
+
+[node name="GlucoseTutorial" type="WindowDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 367.0
+margin_top = -174.0
+margin_right = 627.0
+margin_bottom = 86.0
+rect_min_size = Vector2( 260, 260 )
+size_flags_horizontal = 3
+window_title = "Tutorial"
+resizable = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GlucoseTutorial"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 245.0
+margin_bottom = 245.0
+rect_min_size = Vector2( 230, 230 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="GlucoseTutorial/VBoxContainer"]
+margin_right = 230.0
+margin_bottom = 135.0
+custom_fonts/font = SubResource( 1 )
+text = "Collect glucose (white clouds) by moving over them.
+Your cell needs glucose in order to produce energy to stay alive.
+Follow the line from your cell to nearby glucose."
+autowrap = true
+
+[node name="StayingAliveTutorial" type="WindowDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 367.0
+margin_top = -174.0
+margin_right = 627.0
+margin_bottom = 86.0
+rect_min_size = Vector2( 260, 260 )
+size_flags_horizontal = 3
+window_title = "Tutorial"
+resizable = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="StayingAliveTutorial"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 245.0
+margin_bottom = 245.0
+rect_min_size = Vector2( 230, 230 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="StayingAliveTutorial/VBoxContainer"]
+margin_right = 230.0
+margin_bottom = 204.0
+custom_fonts/font = SubResource( 1 )
+text = "Keep an eye on your health bar next to the ATP bar (bottom right).
+Your cell dies if it runs out of health.
+You regenerate health while you have ATP.
+Make sure to collect enough glucose to produce ATP."
+autowrap = true
+
+[node name="ReproductionTutorial" type="WindowDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 367.0
+margin_top = -174.0
+margin_right = 627.0
+margin_bottom = 86.0
+rect_min_size = Vector2( 260, 260 )
+size_flags_horizontal = 3
+window_title = "Tutorial"
+resizable = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ReproductionTutorial"]
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 245.0
+margin_bottom = 245.0
+rect_min_size = Vector2( 230, 230 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="ReproductionTutorial/VBoxContainer"]
+margin_right = 230.0
+margin_bottom = 158.0
+custom_fonts/font = SubResource( 1 )
+text = "In order to reproduce you need to duplicate all of your organelles by collecting enough ammonia and phosphates.
+Look at the indicator in the bottom right to see how much more you need."
+autowrap = true
+[connection signal="popup_hide" from="MicrobeWelcome" to="." method="OnClickedCloseAll"]
+[connection signal="toggled" from="MicrobeWelcome/VBoxContainer/HBoxContainer/CheckBox" to="." method="OnTutorialEnabledValueChanged"]
+[connection signal="pressed" from="MicrobeWelcome/VBoxContainer/Button" to="." method="OnClickedCloseAll"]
+[connection signal="hide" from="MicrobeMovementTutorial/ExplainingPopup" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeMovementExplain" ]]
+[connection signal="popup_hide" from="MicrobeMovementTutorial/ExplainingPopup" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeMovementExplain" ]]
+[connection signal="hide" from="GlucoseTutorial" to="." method="OnSpecificCloseClicked" binds= [ "GlucoseCollecting" ]]
+[connection signal="popup_hide" from="GlucoseTutorial" to="." method="OnSpecificCloseClicked" binds= [ "GlucoseCollecting" ]]
+[connection signal="hide" from="StayingAliveTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeStayingAlive" ]]
+[connection signal="popup_hide" from="StayingAliveTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeStayingAlive" ]]
+[connection signal="hide" from="ReproductionTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeReproduction" ]]
+[connection signal="popup_hide" from="ReproductionTutorial" to="." method="OnSpecificCloseClicked" binds= [ "MicrobeReproduction" ]]

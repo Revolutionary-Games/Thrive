@@ -29,7 +29,10 @@ public class SelectionMenuTooltip : Control, ICustomTooltip
     public PackedScene ModifierInfoScene;
 
     private Label nameLabel;
+
+    // ReSharper disable once NotAccessedField.Local
     private Label mpLabel;
+
     private Label descriptionLabel;
     private VBoxContainer modifierInfoList;
     private VBoxContainer processList;

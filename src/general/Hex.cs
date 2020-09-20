@@ -93,6 +93,11 @@ public struct Hex : IEquatable<Hex>
         return new Hex(a.Q - b.Q, a.R - b.R);
     }
 
+    public static Hex operator *(Hex a, int b)
+    {
+        return new Hex(a.Q * b, a.R * b);
+    }
+
     public static bool operator ==(Hex left, Hex right)
     {
         return left.Equals(right);
