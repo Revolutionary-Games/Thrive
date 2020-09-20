@@ -68,9 +68,9 @@ public class TooltipHandler : CanvasLayer
 
             // Clamp tooltip position so it doesn't go offscreen
             var adjustedPosition = new Vector2(
-                Mathf.Clamp(lastMousePosition.x + 20, 0, screenSize.x -
+                Mathf.Clamp(lastMousePosition.x + Constants.TOOLTIP_OFFSET, 0, screenSize.x -
                 MainTooltip.Size.x),
-                Mathf.Clamp(lastMousePosition.y + 20, 0, screenSize.y -
+                Mathf.Clamp(lastMousePosition.y + Constants.TOOLTIP_OFFSET, 0, screenSize.y -
                 MainTooltip.Size.y));
 
             MainTooltip.Position = adjustedPosition;
@@ -153,7 +153,7 @@ public class TooltipHandler : CanvasLayer
         holder.Show();
 
         tween.InterpolateProperty(holder, "modulate", new Color(1, 1, 1, 0), new Color(1, 1, 1, 1),
-            Constants.TOOLTIP_FADE_SPEED);
+            Constants.TOOLTIP_FADE_SPEED, Tween.TransitionType.Sine, Tween.EaseType.Out);
         tween.Start();
 
         tween.Connect("tween_started", this, nameof(OnFadeInStarted), null, (int)ConnectFlags.Oneshot);

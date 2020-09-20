@@ -186,10 +186,16 @@ public class MicrobeEditorGUI : Node
     public NodePath PatchPhosphateSituationPath;
 
     [Export]
-    public NodePath RigiditySliderPath;
+    public NodePath SpeedIndicatorPath;
 
     [Export]
-    public NodePath TooltipHandlerPath;
+    public NodePath HpIndicatorPath;
+
+    [Export]
+    public NodePath SizeIndicatorPath;
+
+    [Export]
+    public NodePath RigiditySliderPath;
 
     [Export]
     public NodePath SymmetryIconPath;
@@ -225,6 +231,9 @@ public class MicrobeEditorGUI : Node
     private readonly Compound sunlight = SimulationParameters.Instance.GetCompound("sunlight");
 
     private EnergyBalanceInfo energyBalanceInfo;
+    private float initialCellSpeed;
+    private int initialCellSize;
+    private float initialCellHp;
 
     private MicrobeEditor editor;
 
@@ -306,6 +315,10 @@ public class MicrobeEditorGUI : Node
     private TextureRect patchIronSituation;
     private TextureRect patchAmmoniaSituation;
     private TextureRect patchPhosphateSituation;
+
+    private TextureRect speedIndicator;
+    private TextureRect hpIndicator;
+    private TextureRect sizeIndicator;
 
     private EditorTab selectedEditorTab = EditorTab.Report;
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
@@ -400,7 +413,11 @@ public class MicrobeEditorGUI : Node
         patchAmmoniaSituation = GetNode<TextureRect>(PatchAmmoniaSituationPath);
         patchPhosphateSituation = GetNode<TextureRect>(PatchPhosphateSituationPath);
 
-        tooltipHandler = GetNode<TooltipHandler>(TooltipHandlerPath);
+        speedIndicator = GetNode<TextureRect>(SpeedIndicatorPath);
+        hpIndicator = GetNode<TextureRect>(HpIndicatorPath);
+        sizeIndicator = GetNode<TextureRect>(SizeIndicatorPath);
+
+        tooltipHandler = GetNode<TooltipHandler>("TooltipHandler");
 
         menu = GetNode<PauseMenu>(MenuPath);
 
@@ -490,9 +507,18 @@ public class MicrobeEditorGUI : Node
             " of the previous amount.";
     }
 
+    public void UpdateInitialCellStats()
+    {
+        initialCellSpeed = editor.CalculateSpeed();
+        initialCellHp = editor.CalculateHitpoints();
+        initialCellSize = editor.MicrobeHexSize;
+    }
+
     public void UpdateSize(int size)
     {
         sizeLabel.Text = size.ToString(CultureInfo.CurrentCulture);
+
+        UpdateCellStatsIndicators();
     }
 
     public void UpdateGeneration(int generation)
@@ -503,11 +529,15 @@ public class MicrobeEditorGUI : Node
     public void UpdateSpeed(float speed)
     {
         speedLabel.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", speed);
+
+        UpdateCellStatsIndicators();
     }
 
     public void UpdateHitpoints(float hp)
     {
         hpLabel.Text = hp.ToString(CultureInfo.CurrentCulture);
+
+        UpdateCellStatsIndicators();
     }
 
     public void UpdateEnergyBalance(EnergyBalanceInfo energyBalance)
@@ -1069,6 +1099,54 @@ public class MicrobeEditorGUI : Node
     {
         GUICommon.Instance.PlayButtonPressSound();
         GetTree().Quit();
+    }
+
+    private void UpdateCellStatsIndicators()
+    {
+        sizeIndicator.Show();
+
+        if (editor.MicrobeHexSize > initialCellSize)
+        {
+            sizeIndicator.Texture = IncreaseIcon;
+        }
+        else if (editor.MicrobeHexSize < initialCellSize)
+        {
+            sizeIndicator.Texture = DecreaseIcon;
+        }
+        else
+        {
+            sizeIndicator.Hide();
+        }
+
+        speedIndicator.Show();
+
+        if (editor.CalculateSpeed() > initialCellSpeed)
+        {
+            speedIndicator.Texture = IncreaseIcon;
+        }
+        else if (editor.CalculateSpeed() < initialCellSpeed)
+        {
+            speedIndicator.Texture = DecreaseIcon;
+        }
+        else
+        {
+            speedIndicator.Hide();
+        }
+
+        hpIndicator.Show();
+
+        if (editor.CalculateHitpoints() > initialCellHp)
+        {
+            hpIndicator.Texture = IncreaseIcon;
+        }
+        else if (editor.CalculateHitpoints() < initialCellHp)
+        {
+            hpIndicator.Texture = DecreaseIcon;
+        }
+        else
+        {
+            hpIndicator.Hide();
+        }
     }
 
     /// <remarks>

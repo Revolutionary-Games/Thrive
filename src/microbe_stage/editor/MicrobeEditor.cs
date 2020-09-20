@@ -1092,6 +1092,8 @@ public class MicrobeEditor : Node, ILoadableGameState
             gui.OnOrganelleToPlaceSelected("cytoplasm");
         }
 
+        gui.UpdateInitialCellStats();
+
         gui.SetSpeciesInfo(NewName, Membrane, Colour, Rigidity);
         gui.UpdateGeneration(species.Generation);
         gui.UpdateHitpoints(CalculateHitpoints());
