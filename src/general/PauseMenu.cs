@@ -19,6 +19,9 @@ public class PauseMenu : Control
     public NodePath LoadMenuPath;
 
     [Export]
+    public NodePath OptionsMenuPath;
+
+    [Export]
     public NodePath SaveMenuPath;
 
     [Export]
@@ -27,6 +30,7 @@ public class PauseMenu : Control
     private Control primaryMenu;
     private HelpScreen helpScreen;
     private Control loadMenu;
+    private OptionsMenu optionsMenu;
     private NewSaveMenu saveMenu;
 
     [Signal]
@@ -62,6 +66,7 @@ public class PauseMenu : Control
     {
         primaryMenu = GetNode<Control>(PrimaryMenuPath);
         loadMenu = GetNode<Control>(LoadMenuPath);
+        optionsMenu = GetNode<OptionsMenu>(OptionsMenuPath);
         saveMenu = GetNode<NewSaveMenu>(SaveMenuPath);
     }
 
@@ -142,6 +147,20 @@ public class PauseMenu : Control
         SetActiveMenu("primary");
     }
 
+    private void OpenOptionsPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        SetActiveMenu("options");
+    }
+
+    private void CloseOptionsPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        SetActiveMenu("primary");
+    }
+
     private void OpenSavePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
@@ -170,6 +189,7 @@ public class PauseMenu : Control
         helpScreen.Hide();
         primaryMenu.Hide();
         loadMenu.Hide();
+        optionsMenu.Hide();
         saveMenu.Hide();
 
         switch (menu)
@@ -182,6 +202,9 @@ public class PauseMenu : Control
                 break;
             case "load":
                 loadMenu.Show();
+                break;
+            case "options":
+                optionsMenu.Show();
                 break;
             case "save":
                 saveMenu.Show();
