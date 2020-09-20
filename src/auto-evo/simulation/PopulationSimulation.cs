@@ -49,7 +49,7 @@
 
                 foreach (var currentSpecies in species)
                 {
-                    int currentPopulation = patch.GetSpeciesPopulation(currentSpecies);
+                    long currentPopulation = patch.GetSpeciesPopulation(currentSpecies);
 
                     // If this is an extra species, this first takes the
                     // population from extra species that match its index, if that
@@ -132,7 +132,7 @@
 
             foreach (var currentSpecies in species)
             {
-                int currentPopulation = populations.GetPopulationInPatch(currentSpecies, patch);
+                long currentPopulation = populations.GetPopulationInPatch(currentSpecies, patch);
                 int populationChange = random.Next(
                     -Constants.AUTO_EVO_RANDOM_POPULATION_CHANGE, Constants.AUTO_EVO_RANDOM_POPULATION_CHANGE + 1);
 
