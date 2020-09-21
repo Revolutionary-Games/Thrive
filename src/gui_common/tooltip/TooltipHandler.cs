@@ -69,9 +69,9 @@ public class TooltipHandler : CanvasLayer
             // Clamp tooltip position so it doesn't go offscreen
             var adjustedPosition = new Vector2(
                 Mathf.Clamp(lastMousePosition.x + Constants.TOOLTIP_OFFSET, 0, screenSize.x -
-                MainTooltip.Size.x),
+                    MainTooltip.Size.x),
                 Mathf.Clamp(lastMousePosition.y + Constants.TOOLTIP_OFFSET, 0, screenSize.y -
-                MainTooltip.Size.y));
+                    MainTooltip.Size.y));
 
             MainTooltip.Position = adjustedPosition;
             MainTooltip.Size = Vector2.Zero;

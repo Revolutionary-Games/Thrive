@@ -578,7 +578,8 @@ public class MicrobeEditorGUI : Node
     /// <summary>
     ///   Updates the organelle efficiencies in tooltips.
     /// </summary>
-    public void UpdateOrganelleEfficiencies(Dictionary<string, OrganelleEfficiency> organelleEfficiency)
+    public void UpdateOrganelleEfficiencies(
+        System.Collections.Generic.Dictionary<string, OrganelleEfficiency> organelleEfficiency)
     {
         foreach (var organelle in organelleEfficiency.Keys)
         {
@@ -621,7 +622,7 @@ public class MicrobeEditorGUI : Node
 
         if (mobilityChange >= 0)
         {
-           mobilityModifier.ModifierValueColor = new Color(0, 1, 0);
+            mobilityModifier.ModifierValueColor = new Color(0, 1, 0);
         }
         else
         {
