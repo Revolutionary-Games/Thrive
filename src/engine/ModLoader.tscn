@@ -32,6 +32,7 @@ ModInfoVersionPath = NodePath("MarginContainer/VBoxContainer/PanelContainer2/Mar
 ModInfoDescriptionPath = NodePath("MarginContainer/VBoxContainer/PanelContainer2/MarginContainer/VBoxContainer/Label4")
 LoadedItemListPath = NodePath("MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer3/ItemList")
 ConfirmationPopupPath = NodePath("ConfirmationDialog")
+AcceptPopupPath = NodePath("AcceptDialog")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_left = -0.00331078
@@ -370,6 +371,12 @@ dialog_text = "Are you sure you want to reset?"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AcceptDialog" type="AcceptDialog" parent="."]
+margin_right = 87.0
+margin_bottom = 71.0
+window_title = "Reminder"
+dialog_text = "Please relaunch the game now to fully reset the game."
 [connection signal="item_selected" from="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/PanelContainer/ItemList" to="." method="OnModSelected" binds= [ true ]]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/CenterBar/VBoxContainer/Button" to="." method="OnMoveToUnloadPressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/CenterBar/VBoxContainer/HBoxContainer/Button3" to="." method="OnMoveUpPressed"]

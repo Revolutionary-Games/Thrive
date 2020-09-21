@@ -1,15 +1,42 @@
-using Godot;
+using System;
 using Newtonsoft.Json;
 
+[JsonObject(MemberSerialization.OptIn)]
 public class ModInfo : Godot.Object
 {
+    [JsonProperty]
     public string Name;
+    [JsonProperty]
+    public string Author { get; set; }
+    [JsonProperty]
+    public string Version { get; set; }
+    [JsonProperty]
+    public string Description { get; set; }
+    [JsonProperty]
+    public string Location { get; set; }
+    [JsonProperty]
+    public string Dll { get; set; }
+    [JsonProperty]
+    public bool AutoLoad { get; set; } = false;
 
-    public string Author;
-    public string Version;
-    public string Description;
-    public string Location;
-    public string Dll;
+    public ModInfo()
+    {
+    }
 
-    public bool AutoLoad = false;
+    public override bool Equals(object other)
+    {
+        var item = other as ModInfo;
+
+        if (item == null)
+        {
+            return false;
+        }
+
+        return Name == item.Name && Location == item.Location && Version == item.Version;
+    }
+
+    public override int GetHashCode()
+    {
+        return (Name, Location, Version).GetHashCode();
+    }
 }

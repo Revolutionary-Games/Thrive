@@ -24,6 +24,9 @@ public class ModManagerUI : Control
     [Export]
     public NodePath ConfirmationPopupPath;
 
+    [Export]
+    public NodePath AcceptPopupPath;
+
     private ItemList unloadedItemList;
     private ItemList loadedItemList;
 
@@ -34,6 +37,7 @@ public class ModManagerUI : Control
     private Label modInfoDescription;
 
     private ConfirmationDialog confirmationPopup;
+    private AcceptDialog acceptPopup;
 
     private ModLoader loader = new ModLoader();
 
@@ -51,14 +55,9 @@ public class ModManagerUI : Control
         modInfoDescription = GetNode<Label>(ModInfoDescriptionPath);
 
         confirmationPopup = GetNode<ConfirmationDialog>(ConfirmationPopupPath);
+        acceptPopup = GetNode<AcceptDialog>(AcceptPopupPath);
 
-        int index = 0;
-        foreach (ModInfo currentModInfo in loader.LoadModList())
-        {
-            unloadedItemList.AddItem(currentModInfo.Name);
-            unloadedItemList.SetItemMetadata(index, (ModInfo)currentModInfo);
-            index++;
-        }
+        reloadUnloadedModList();
     }
 
     private void OnModSelected(int index, bool unloadedSelected)
@@ -170,13 +169,21 @@ public class ModManagerUI : Control
     private void OnResetPressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
-        confirmationPopup.PopupCentered();
+        confirmationPopup.PopupCenteredMinsize();
     }
 
     private void ResetGame()
     {
+        GUICommon.Instance.PlayButtonPressSound();
         loader.ResetGame();
+
+        unloadedItemList.Clear();
+        loadedItemList.Clear();
+        reloadUnloadedModList();
+
+        acceptPopup.PopupCenteredMinsize();
     }
+
 
     private void OnRefreshPressed()
     {
@@ -184,8 +191,13 @@ public class ModManagerUI : Control
         unloadedItemList.Clear();
         loadedItemList.Clear();
 
+        reloadUnloadedModList();
+    }
+
+    private void reloadUnloadedModList()
+    {
         int index = 0;
-        foreach (ModInfo currentModInfo in loader.LoadModList())
+        foreach (ModInfo currentModInfo in loader.LoadModList(false))
         {
             unloadedItemList.AddItem(currentModInfo.Name);
             unloadedItemList.SetItemMetadata(index, (ModInfo)currentModInfo);
@@ -201,7 +213,8 @@ public class ModManagerUI : Control
             return;
         }
 
-        loader.LoadModFromList(loadedItemList);
+        loader.LoadModFromList(loadedItemList, true, true, true);
+        Settings.Instance.Save();
         GD.Print("All mods loaded");
         SceneManager.Instance.ReturnToMenu();
     }

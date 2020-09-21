@@ -9,17 +9,8 @@ public class AutoModLoader : Node
     {
         ModLoader loader = new ModLoader();
 
-        var modList = loader.LoadModList(false);
-        foreach (ModInfo currentModInfo in modList)
-        {
-            if (currentModInfo.AutoLoad)
-            {
-                if (loader.LoadMod(currentModInfo) < 0)
-                {
-                   failedToLoadMods.Add(currentModInfo);
-                }
-            }
-        }
+        var autoLoadedModList = Settings.Instance.AutoLoadedMods.ToArray();
+        failedToLoadMods = loader.LoadModFromList(autoLoadedModList, false, false, false);
     }
 
     public void OpenModErrorPopup(AcceptDialog errorBox)
@@ -27,7 +18,7 @@ public class AutoModLoader : Node
         if (failedToLoadMods.Count != 0)
         {
             errorBox.DialogText = GetFailedMods();
-            errorBox.PopupCentered();
+            errorBox.PopupCenteredMinsize();
         }
     }
 
