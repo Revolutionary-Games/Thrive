@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/general/PauseMenu.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
 [ext_resource path="res://src/saving/SaveList.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/general/HelpScreen.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/saving/NewSaveMenu.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/general/OptionsMenu.tscn" type="PackedScene" id=6]
 
 [node name="PauseMenu" type="Control"]
 anchor_right = 1.0
@@ -17,6 +18,7 @@ HelpCategory = "MicrobeStage"
 PrimaryMenuPath = NodePath("CenterContainer/PrimaryMenu")
 HelpScreenPath = NodePath("HelpScreen")
 LoadMenuPath = NodePath("CenterContainer/LoadMenu")
+OptionsMenuPath = NodePath("OptionsMenu")
 SaveMenuPath = NodePath("CenterContainer/NewSaveMenu")
 LoadSaveListPath = NodePath("CenterContainer/LoadMenu/SaveList")
 
@@ -87,7 +89,6 @@ margin_top = 250.0
 margin_right = 250.0
 margin_bottom = 290.0
 rect_min_size = Vector2( 250, 40 )
-disabled = true
 text = "Options"
 
 [node name="ReturnToMenu" type="Button" parent="CenterContainer/PrimaryMenu"]
@@ -146,13 +147,18 @@ rect_min_size = Vector2( 1000, 600 )
 [node name="HelpScreen" parent="." instance=ExtResource( 4 )]
 visible = false
 Category = "MicrobeStage"
+
+[node name="OptionsMenu" parent="." instance=ExtResource( 6 )]
+visible = false
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/Resume" to="." method="ClosePressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/SaveGame" to="." method="OpenSavePressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/LoadGame" to="." method="OpenLoadPressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/Help" to="." method="OpenHelpPressed"]
+[connection signal="pressed" from="CenterContainer/PrimaryMenu/Options" to="." method="OpenOptionsPressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/ReturnToMenu" to="." method="ReturnToMenuPressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/Exit" to="." method="ExitPressed"]
 [connection signal="pressed" from="CenterContainer/LoadMenu/Back" to="." method="CloseLoadPressed"]
 [connection signal="OnClosed" from="CenterContainer/NewSaveMenu" to="." method="CloseSavePressed"]
 [connection signal="OnSaveNameChosen" from="CenterContainer/NewSaveMenu" to="." method="ForwardSaveAction"]
 [connection signal="HelpScreenClosed" from="HelpScreen" to="." method="CloseHelpPressed"]
+[connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="CloseOptionsPressed"]

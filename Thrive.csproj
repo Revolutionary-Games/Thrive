@@ -60,11 +60,13 @@
     <Compile Include="src\engine\FeatureInformation.cs" />
     <Compile Include="src\engine\GodotFileStream.cs" />
     <Compile Include="src\engine\GuidanceLine.cs" />
+    <Compile Include="src\engine\IAssignableSetting.cs" />
     <Compile Include="src\engine\Invoke.cs" />
     <Compile Include="src\engine\LoadingScreen.cs" />
     <Compile Include="src\engine\PostStartupActions.cs" />
     <Compile Include="src\engine\SceneManager.cs" />
     <Compile Include="src\engine\ScreenShotTaker.cs" />
+    <Compile Include="src\engine\SettingValue.cs" />
     <Compile Include="src\engine\StartupActions.cs" />
     <Compile Include="src\general\PathUtils.cs" />
     <Compile Include="src\general\HelpTexts.cs" />
@@ -92,7 +94,6 @@
     <Compile Include="simulation_parameters\Constants.cs" />
     <Compile Include="src\engine\FPSCounter.cs" />
     <Compile Include="src\engine\ColourblindScreenFilter.cs" />
-    <Compile Include="src\engine\OverlayManager.cs" />
     <Compile Include="src\engine\CursorLoader.cs" />
     <Compile Include="src\general\OptionsMenu.cs" />
     <Compile Include="src\general\SceneDisplayer.cs" />

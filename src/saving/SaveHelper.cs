@@ -328,6 +328,7 @@ public static class SaveHelper
     /// </summary>
     private static void QueueRemoveExcessQuickSaves()
     {
-        TaskExecutor.Instance.AddTask(new Task(() => DeleteExcessSaves("quick_save", Settings.Instance.MaxQuickSaves)));
+        TaskExecutor.Instance.AddTask(new Task(() =>
+            DeleteExcessSaves("quick_save", Settings.Instance.MaxQuickSaves)));
     }
 }
