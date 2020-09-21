@@ -1,27 +1,29 @@
-using System;
+using Godot;
 using Newtonsoft.Json;
 
 [JsonObject(MemberSerialization.OptIn)]
-public class ModInfo : Godot.Object
+public class ModInfo : Object
 {
     [JsonProperty]
     public string Name;
+
     [JsonProperty]
     public string Author { get; set; }
+
     [JsonProperty]
     public string Version { get; set; }
+
     [JsonProperty]
     public string Description { get; set; }
+
     [JsonProperty]
     public string Location { get; set; }
+
     [JsonProperty]
     public string Dll { get; set; }
-    [JsonProperty]
-    public bool AutoLoad { get; set; } = false;
 
-    public ModInfo()
-    {
-    }
+    [JsonProperty]
+    public bool AutoLoad { get; set; }
 
     public override bool Equals(object other)
     {

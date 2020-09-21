@@ -3,7 +3,7 @@ using Godot;
 
 public class AutoModLoader : Node
 {
-    private List<ModInfo> failedToLoadMods = new List<ModInfo>();
+    private List<ModInfo> failedToLoadMods;
 
     private AutoModLoader()
     {

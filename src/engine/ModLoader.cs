@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using Godot;
 using Newtonsoft.Json;
@@ -10,7 +8,7 @@ using File = System.IO.File;
 
 public class ModLoader
 {
-    public static List<ModInfo> LoadedMods = new List<ModInfo>();
+    public static List<ModInfo> LoadedMods { get; private set; } = new List<ModInfo>();
 
     public List<ModInfo> LoadModList(bool ignoreAutoload = true)
     {
@@ -66,7 +64,7 @@ public class ModLoader
 
         if (LoadedMods.Contains(currentMod))
         {
-             return 0;
+            return 0;
         }
 
         if (string.IsNullOrEmpty(currentMod.Dll))
@@ -89,14 +87,13 @@ public class ModLoader
             LoadedMods.Add(currentMod);
             return 1;
         }
-        else
-        {
-            GD.Print("Failed to load mod: " + currentMod.Name);
-            return -1;
-        }
+
+        GD.Print("Failed to load mod: " + currentMod.Name);
+        return -1;
     }
 
-    public List<ModInfo> LoadModFromList(ModInfo[] modsToLoad, bool ignoreAutoloaded = true, bool addToAutoLoader = false, bool clearAutoloaderModList = true)
+    public List<ModInfo> LoadModFromList(ModInfo[] modsToLoad, bool ignoreAutoloaded = true,
+        bool addToAutoLoader = false, bool clearAutoloaderModList = true)
     {
         var modSettingList = Settings.Instance.AutoLoadedMods;
         var failedModList = new List<ModInfo>();
@@ -127,7 +124,8 @@ public class ModLoader
         return failedModList;
     }
 
-    public List<ModInfo> LoadModFromList(ItemList modsToLoad, bool ignoreAutoloaded = true, bool addToAutoLoader = false, bool clearAutoloaderModList = true)
+    public List<ModInfo> LoadModFromList(ItemList modsToLoad, bool ignoreAutoloaded = true,
+        bool addToAutoLoader = false, bool clearAutoloaderModList = true)
     {
         var modListCount = modsToLoad.GetItemCount();
         var modSettingList = Settings.Instance.AutoLoadedMods;

@@ -1,4 +1,3 @@
-using System;
 using Godot;
 
 public class ModManagerUI : Control
@@ -57,7 +56,7 @@ public class ModManagerUI : Control
         confirmationPopup = GetNode<ConfirmationDialog>(ConfirmationPopupPath);
         acceptPopup = GetNode<AcceptDialog>(AcceptPopupPath);
 
-        reloadUnloadedModList();
+        ReloadUnloadedModList();
     }
 
     private void OnModSelected(int index, bool unloadedSelected)
@@ -179,11 +178,10 @@ public class ModManagerUI : Control
 
         unloadedItemList.Clear();
         loadedItemList.Clear();
-        reloadUnloadedModList();
+        ReloadUnloadedModList();
 
         acceptPopup.PopupCenteredMinsize();
     }
-
 
     private void OnRefreshPressed()
     {
@@ -191,16 +189,16 @@ public class ModManagerUI : Control
         unloadedItemList.Clear();
         loadedItemList.Clear();
 
-        reloadUnloadedModList();
+        ReloadUnloadedModList();
     }
 
-    private void reloadUnloadedModList()
+    private void ReloadUnloadedModList()
     {
         int index = 0;
         foreach (ModInfo currentModInfo in loader.LoadModList(false))
         {
             unloadedItemList.AddItem(currentModInfo.Name);
-            unloadedItemList.SetItemMetadata(index, (ModInfo)currentModInfo);
+            unloadedItemList.SetItemMetadata(index, currentModInfo);
             index++;
         }
     }
