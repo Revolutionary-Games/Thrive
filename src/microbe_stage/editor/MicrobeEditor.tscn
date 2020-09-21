@@ -1,4 +1,4 @@
-[gd_scene load_steps=154 format=2]
+[gd_scene load_steps=155 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
@@ -78,7 +78,6 @@
 [ext_resource path="res://assets/textures/gui/bevel/4xSymmetry.png" type="Texture" id=76]
 [ext_resource path="res://assets/textures/gui/bevel/2xSymmetry.png" type="Texture" id=77]
 [ext_resource path="res://assets/textures/gui/bevel/increase.png" type="Texture" id=78]
-[ext_resource path="res://src/engine/ChromaticFilter.tscn" type="PackedScene" id=79]
 [ext_resource path="res://src/gui_common/scrollbar_theme.tres" type="Theme" id=80]
 [ext_resource path="res://assets/textures/gui/bevel/MpBarSubtract.png" type="Texture" id=81]
 [ext_resource path="res://assets/textures/gui/bevel/MediumTwoNormal.png" type="Texture" id=82]
@@ -86,6 +85,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/MediumTwoHover.png" type="Texture" id=84]
 [ext_resource path="res://assets/textures/gui/bevel/NewIcon.png" type="Texture" id=85]
 [ext_resource path="res://src/gui_common/SegmentedBar.tscn" type="PackedScene" id=86]
+[ext_resource path="res://src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.tscn" type="PackedScene" id=87]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 37 )
@@ -977,6 +977,7 @@ corner_radius_bottom_left = 5
 [node name="MicrobeEditor" type="Node"]
 process_priority = -1
 script = ExtResource( 2 )
+PauseMenuPath = NodePath("MicrobeEditorGUI/PauseMenu")
 
 [node name="PrimaryCamera" parent="." instance=ExtResource( 1 )]
 DefaultCameraHeight = 10.0
@@ -996,8 +997,6 @@ shadow_enabled = true
 omni_range = 100.0
 omni_attenuation = 0.420448
 
-[node name="ChromaticFilter" parent="." instance=ExtResource( 79 )]
-
 [node name="MicrobeEditorGUI" type="Node" parent="."]
 pause_mode = 2
 script = ExtResource( 45 )
@@ -1016,9 +1015,11 @@ RedoButtonPath = NodePath("CellEditor/RedoButton")
 FinishButtonPath = NodePath("CellEditor/FinishButton")
 SymmetryButtonPath = NodePath("CellEditor/SymmetryButton")
 ATPBalanceLabelPath = NodePath("CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer/Label")
+ATPProductionLabelPath = NodePath("CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer/ATPBarContainer/HBoxContainer/Label")
+ATPConsumptionLabelPath = NodePath("CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer/ATPBarContainer/HBoxContainer2/Label")
 ATPBarContainerPath = NodePath("CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer/ATPBarContainer")
-ATPProductionBarPath = NodePath("CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer/ATPBarContainer/ATPProductionBar")
-ATPConsumptionBarPath = NodePath("CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer/ATPBarContainer/ATPConsumptionBar")
+ATPProductionBarPath = NodePath("CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer/ATPBarContainer/HBoxContainer/ATPProductionBar")
+ATPConsumptionBarPath = NodePath("CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer/ATPBarContainer/HBoxContainer2/ATPConsumptionBar")
 GlucoseReductionLabelPath = NodePath("Report/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/GlucoseReduction")
 AutoEvoLabelPath = NodePath("Report/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/AutoEvoResults")
 ExternalEffectsLabelPath = NodePath("Report/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/ExternalEffectsList")
@@ -1314,8 +1315,8 @@ __meta__ = {
 [node name="ATPBalancePanel" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -330.0
-margin_bottom = 66.0
+margin_left = -345.0
+margin_bottom = 98.0
 custom_styles/panel = SubResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -1324,7 +1325,7 @@ __meta__ = {
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/ATPBalancePanel"]
 margin_left = 3.0
 margin_top = 3.0
-margin_right = 327.0
+margin_right = 344.0
 margin_bottom = 95.0
 mouse_filter = 1
 custom_constants/margin_right = 3
@@ -1335,19 +1336,19 @@ custom_constants/margin_bottom = 3
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/ATPBalancePanel/MarginContainer"]
 margin_left = 3.0
 margin_top = 3.0
-margin_right = 321.0
+margin_right = 338.0
 margin_bottom = 89.0
 custom_constants/separation = 0
 
 [node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer"]
-margin_right = 318.0
+margin_right = 335.0
 margin_bottom = 17.0
 custom_fonts/font = SubResource( 10 )
 text = "ATP Balance"
 
 [node name="VSeparator" type="VSeparator" parent="MicrobeEditorGUI/CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer"]
 margin_top = 17.0
-margin_right = 318.0
+margin_right = 335.0
 margin_bottom = 22.0
 rect_min_size = Vector2( 0, 5 )
 mouse_filter = 2
@@ -1355,20 +1356,60 @@ custom_styles/separator = SubResource( 11 )
 
 [node name="ATPBarContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer"]
 margin_top = 22.0
-margin_right = 318.0
+margin_right = 335.0
 margin_bottom = 86.0
 alignment = 1
 
-[node name="ATPProductionBar" parent="MicrobeEditorGUI/CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer/ATPBarContainer" instance=ExtResource( 86 )]
-margin_right = 318.0
+[node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer/ATPBarContainer"]
+margin_right = 335.0
 margin_bottom = 30.0
-rect_min_size = Vector2( 318, 30 )
+rect_min_size = Vector2( 333, 30 )
+custom_constants/separation = 3
 
-[node name="ATPConsumptionBar" parent="MicrobeEditorGUI/CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer/ATPBarContainer" instance=ExtResource( 86 )]
+[node name="ATPProductionBar" parent="MicrobeEditorGUI/CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer/ATPBarContainer/HBoxContainer" instance=ExtResource( 86 )]
+margin_right = 287.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 287, 30 )
+size_flags_horizontal = 12
+size_flags_vertical = 5
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer/ATPBarContainer/HBoxContainer"]
+margin_left = 290.0
+margin_right = 335.0
+margin_bottom = 30.0
+grow_horizontal = 0
+rect_min_size = Vector2( 10, 30 )
+size_flags_horizontal = 3
+size_flags_vertical = 5
+custom_fonts/font = SubResource( 10 )
+text = "00000"
+align = 2
+valign = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer/ATPBarContainer"]
 margin_top = 34.0
-margin_right = 318.0
+margin_right = 335.0
 margin_bottom = 64.0
-rect_min_size = Vector2( 318, 30 )
+rect_min_size = Vector2( 333, 30 )
+custom_constants/separation = 3
+
+[node name="ATPConsumptionBar" parent="MicrobeEditorGUI/CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer/ATPBarContainer/HBoxContainer2" instance=ExtResource( 86 )]
+margin_right = 287.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 287, 30 )
+
+[node name="Label" type="Label" parent="MicrobeEditorGUI/CellEditor/ATPBalancePanel/MarginContainer/VBoxContainer/ATPBarContainer/HBoxContainer2"]
+margin_left = 290.0
+margin_right = 335.0
+margin_bottom = 30.0
+grow_horizontal = 0
+rect_min_size = Vector2( 10, 30 )
+size_flags_horizontal = 3
+size_flags_vertical = 5
+custom_fonts/font = SubResource( 10 )
+text = "00000"
+align = 2
+valign = 1
 
 [node name="LeftPanel" type="Control" parent="MicrobeEditorGUI/CellEditor"]
 anchor_bottom = 1.0
@@ -1983,7 +2024,7 @@ margin_right = 80.0
 margin_bottom = 80.0
 custom_fonts/font = SubResource( 26 )
 custom_constants/line_spacing = -2
-text = "Rusticyanin	
+text = "Rusticyanin
 45 MP"
 align = 1
 
@@ -3246,7 +3287,7 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer"]
-margin_right = 323.0
+margin_right = 333.0
 margin_bottom = 783.0
 mouse_filter = 1
 custom_constants/margin_top = 10
@@ -3259,7 +3300,7 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer"]
 margin_left = 10.0
 margin_top = 10.0
-margin_right = 323.0
+margin_right = 333.0
 margin_bottom = 773.0
 custom_constants/separation = 10
 
@@ -3853,10 +3894,10 @@ valign = 1
 uppercase = true
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/Panel/Membrane/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_left = 40.0
-margin_top = 40.0
-margin_right = 40.0
-margin_bottom = 40.0
+margin_left = 48.0
+margin_top = 48.0
+margin_right = 48.0
+margin_bottom = 48.0
 theme = SubResource( 29 )
 edit_alpha = false
 
@@ -9776,8 +9817,9 @@ rect_min_size = Vector2( 27, 27 )
 mouse_filter = 1
 
 [node name="minusButton" type="TextureButton" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/PhysicalConditions/HBoxContainer/Buttons"]
-margin_right = 27.0
-margin_bottom = 27.0
+margin_right = 200.0
+margin_bottom = 200.0
+rect_scale = Vector2( 0.13, 0.13 )
 mouse_filter = 1
 texture_normal = ExtResource( 67 )
 texture_hover = ExtResource( 68 )
@@ -9789,6 +9831,7 @@ __meta__ = {
 visible = false
 margin_right = 27.0
 margin_bottom = 27.0
+rect_scale = Vector2( 0.13, 0.13 )
 mouse_filter = 1
 texture_normal = ExtResource( 70 )
 texture_hover = ExtResource( 71 )
@@ -9930,6 +9973,7 @@ mouse_filter = 2
 [node name="minusButton" type="TextureButton" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/AtmosphericConditions/HBoxContainer/Buttons"]
 margin_right = 27.0
 margin_bottom = 27.0
+rect_scale = Vector2( 0.13, 0.13 )
 texture_normal = ExtResource( 67 )
 texture_hover = ExtResource( 68 )
 __meta__ = {
@@ -9940,6 +9984,7 @@ __meta__ = {
 visible = false
 margin_right = 27.0
 margin_bottom = 27.0
+rect_scale = Vector2( 0.13, 0.13 )
 texture_normal = ExtResource( 70 )
 texture_hover = ExtResource( 71 )
 __meta__ = {
@@ -10061,6 +10106,7 @@ mouse_filter = 2
 [node name="minusButton" type="TextureButton" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/Compounds/HBoxContainer/Buttons"]
 margin_right = 27.0
 margin_bottom = 27.0
+rect_scale = Vector2( 0.13, 0.13 )
 texture_normal = ExtResource( 67 )
 texture_hover = ExtResource( 68 )
 __meta__ = {
@@ -10071,6 +10117,7 @@ __meta__ = {
 visible = false
 margin_right = 27.0
 margin_bottom = 27.0
+rect_scale = Vector2( 0.13, 0.13 )
 texture_normal = ExtResource( 70 )
 texture_hover = ExtResource( 71 )
 __meta__ = {
@@ -10278,6 +10325,7 @@ rect_min_size = Vector2( 27, 27 )
 [node name="minusButton" type="TextureButton" parent="MicrobeEditorGUI/PatchMap/MapPanel/MarginContainer/HSplitContainer/HBoxContainer/MarginContainer/ScrollContainer/VBoxContainer/PatchDetailsContainer/SpeciesPresent/HBoxContainer/Buttons"]
 margin_right = 27.0
 margin_bottom = 27.0
+rect_scale = Vector2( 0.13, 0.13 )
 texture_normal = ExtResource( 67 )
 texture_hover = ExtResource( 68 )
 __meta__ = {
@@ -10288,6 +10336,7 @@ __meta__ = {
 visible = false
 margin_right = 27.0
 margin_bottom = 27.0
+rect_scale = Vector2( 0.13, 0.13 )
 texture_normal = ExtResource( 70 )
 texture_hover = ExtResource( 71 )
 __meta__ = {
@@ -10377,6 +10426,10 @@ __meta__ = {
 visible = false
 theme = ExtResource( 53 )
 HelpCategory = "MicrobeEditor"
+
+[node name="TutorialGUI" parent="." instance=ExtResource( 87 )]
+visible = false
+EditorEntryReportPath = NodePath("../TutorialGUI/EditorEntryReport")
 [connection signal="mouse_entered" from="MicrobeEditorGUI/LeftTopBar" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/LeftTopBar" to="MicrobeEditorGUI" method="OnMouseExit"]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/LeftTopBar/HBoxContainer/ReportButton" to="MicrobeEditorGUI" method="OnMouseEnter"]

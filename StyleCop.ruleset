@@ -21,6 +21,7 @@
     <Rule Id="CA1301" Action="Warning" />
     <Rule Id="CA1303" Action="None" /> <!-- resource table usage.
       probably should use once we implement localization -->
+    <Rule Id="CA1308" Action="None" /> <!-- tells to use ToUpperInvariant instead of ToLower -->
     <Rule Id="CA1400" Action="Warning" />
     <Rule Id="CA1401" Action="Warning" />
     <Rule Id="CA1403" Action="Warning" />

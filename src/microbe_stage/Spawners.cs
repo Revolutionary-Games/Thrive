@@ -112,106 +112,63 @@ public static class SpawnHelpers
             // Network is extremely rare
 
             // To prevent bacteria being spawned on top of each other
-            var horizontal = false;
             var vertical = false;
+
+            var colony = new ColonySpawnInfo
+            {
+                Horizontal = false,
+                Random = random,
+                Species = species,
+                CloudSystem = cloudSystem,
+                CurrentGame = currentGame,
+                CurSpawn = curSpawn,
+                MicrobeScene = microbeScene,
+                WorldRoot = worldRoot,
+            };
 
             for (int i = 0; i < random.Next(Constants.MIN_BACTERIAL_COLONY_SIZE,
                 Constants.MAX_BACTERIAL_COLONY_SIZE + 1); i++)
             {
-                if (random.Next(0, 5) < 2 && !horizontal)
+                if (random.Next(0, 5) < 2 && !colony.Horizontal)
                 {
-                    horizontal = true;
+                    colony.Horizontal = true;
                     vertical = false;
 
-                    for (int c = 0; c < random.Next(Constants.MIN_BACTERIAL_LINE_SIZE,
-                        Constants.MAX_BACTERIAL_LINE_SIZE + 1); c++)
-                    {
-                        // Dont spawn them on top of each other because
-                        // It causes them to bounce around and lag
-                        curSpawn.x += random.Next(5, 8);
-
-                        // Add a litlle organicness to the look
-                        curSpawn.z += random.Next(-2, 3);
-
-                        yield return SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
-                            cloudSystem, currentGame);
-                    }
+                    foreach (var microbe in MicrobeColonySpawnHelper(colony, location))
+                        yield return microbe;
                 }
                 else if (random.Next(0, 5) < 2 && !vertical)
                 {
-                    horizontal = false;
+                    colony.Horizontal = false;
                     vertical = true;
 
-                    for (int c = 0; c < random.Next(Constants.MIN_BACTERIAL_LINE_SIZE,
-                        Constants.MAX_BACTERIAL_LINE_SIZE + 1); c++)
-                    {
-                        // Dont spawn them on top of each other because it
-                        // Causes them to bounce around and lag
-                        curSpawn.z += random.Next(5, 8);
-
-                        // Add a litlle organicness to the look
-                        curSpawn.x += random.Next(-2, 3);
-
-                        yield return SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
-                            cloudSystem, currentGame);
-                    }
+                    foreach (var microbe in MicrobeColonySpawnHelper(colony, location))
+                        yield return microbe;
                 }
-                else if (random.Next(0, 5) < 2 && !horizontal)
+                else if (random.Next(0, 5) < 2 && !colony.Horizontal)
                 {
-                    horizontal = true;
+                    colony.Horizontal = true;
                     vertical = false;
 
-                    for (int c = 0; c < random.Next(Constants.MIN_BACTERIAL_LINE_SIZE,
-                        Constants.MAX_BACTERIAL_LINE_SIZE + 1); c++)
-                    {
-                        // Dont spawn them on top of each other because
-                        // It causes them to bounce around and lag
-                        curSpawn.x -= random.Next(5, 8);
-
-                        // Add a little organicness to the look
-                        curSpawn.z -= random.Next(-2, 3);
-
-                        yield return SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
-                            cloudSystem, currentGame);
-                    }
+                    foreach (var microbe in MicrobeColonySpawnHelper(colony, location))
+                        yield return microbe;
                 }
                 else if (random.Next(0, 5) < 2 && !vertical)
                 {
-                    horizontal = false;
+                    colony.Horizontal = false;
                     vertical = true;
 
-                    for (int c = 0; c < random.Next(Constants.MIN_BACTERIAL_LINE_SIZE,
-                        Constants.MAX_BACTERIAL_LINE_SIZE + 1); c++)
-                    {
-                        // Dont spawn them on top of each other because it
-                        // causes them to bounce around and lag
-                        curSpawn.z -= random.Next(5, 8);
-
-                        // Add a little organicness to the look
-                        curSpawn.x -= random.Next(-2, 3);
-
-                        yield return SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
-                            cloudSystem, currentGame);
-                    }
+                    foreach (var microbe in MicrobeColonySpawnHelper(colony, location))
+                        yield return microbe;
                 }
                 else
                 {
                     // Diagonal
-                    horizontal = false;
+                    colony.Horizontal = false;
                     vertical = false;
 
-                    for (int c = 0; c < random.Next(Constants.MIN_BACTERIAL_LINE_SIZE,
-                        Constants.MAX_BACTERIAL_LINE_SIZE + 1); c++)
-                    {
-                        // Dont spawn them on top of each other because it
-                        // Causes them to bounce around and lag
-                        curSpawn.z += random.Next(5, 8);
-
-                        curSpawn.x += random.Next(5, 8);
-
-                        yield return SpawnMicrobe(species, location + curSpawn, worldRoot, microbeScene, true,
-                            cloudSystem, currentGame);
-                    }
+                    foreach (var microbe in MicrobeColonySpawnHelper(colony, location))
+                        yield return microbe;
                 }
             }
         }
@@ -302,6 +259,43 @@ public static class SpawnHelpers
     public static PackedScene LoadAgentScene()
     {
         return GD.Load<PackedScene>("res://src/microbe_stage/AgentProjectile.tscn");
+    }
+
+    private static IEnumerable<Microbe> MicrobeColonySpawnHelper(ColonySpawnInfo colony, Vector3 location)
+    {
+        for (int c = 0; c < colony.Random.Next(Constants.MIN_BACTERIAL_LINE_SIZE,
+            Constants.MAX_BACTERIAL_LINE_SIZE + 1); c++)
+        {
+            // Dont spawn them on top of each other because
+            // It causes them to bounce around and lag
+            // And add a little organicness to the look
+
+            if (colony.Horizontal)
+            {
+                colony.CurSpawn.x += colony.Random.Next(5, 8);
+                colony.CurSpawn.z += colony.Random.Next(-2, 3);
+            }
+            else
+            {
+                colony.CurSpawn.z += colony.Random.Next(5, 8);
+                colony.CurSpawn.x += colony.Random.Next(-2, 3);
+            }
+
+            yield return SpawnMicrobe(colony.Species, location + colony.CurSpawn, colony.WorldRoot,
+                colony.MicrobeScene, true, colony.CloudSystem, colony.CurrentGame);
+        }
+    }
+
+    private class ColonySpawnInfo
+    {
+        public Species Species;
+        public Node WorldRoot;
+        public PackedScene MicrobeScene;
+        public Vector3 CurSpawn;
+        public bool Horizontal;
+        public Random Random;
+        public CompoundCloudSystem CloudSystem;
+        public GameProperties CurrentGame;
     }
 }
 

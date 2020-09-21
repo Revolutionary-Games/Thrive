@@ -20,6 +20,10 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
     [JsonProperty]
     public Compound[] Compounds;
 
+    // TODO: give each cloud a viscosity value in the
+    // JSON file and use it instead.
+    private const float VISCOSITY = 0.0525f;
+
     private Image image;
     private ImageTexture texture;
     private FluidSystem fluidSystem;
@@ -442,6 +446,19 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
     }
 
     /// <summary>
+    ///   Converts cloud local coordinates to world coordinates
+    /// </summary>
+    public Vector3 ConvertToWorld(int cloudX, int cloudY)
+    {
+        return new Vector3(
+            cloudX * Resolution + ((4 - position.x) % 3 - 1) * Resolution * Size / Constants.CLOUD_SQUARES_PER_SIDE -
+            Constants.CLOUD_WIDTH,
+            0,
+            cloudY * Resolution + ((4 - position.y) % 3 - 1) * Resolution * Size / Constants.CLOUD_SQUARES_PER_SIDE -
+            Constants.CLOUD_HEIGHT) + Translation;
+    }
+
+    /// <summary>
     ///   Absorbs compounds from this cloud
     /// </summary>
     public void AbsorbCompounds(int localX, int localY, CompoundBag storage,
@@ -531,6 +548,28 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
         IsLoadedFromSave = true;
     }
 
+    /// <summary>
+    ///   Calculates the multipliers for the old density to move to new locations
+    /// </summary>
+    /// <remarks>
+    ///   <para>
+    ///     The name might not be super accurate as I just picked something to reduce code duplication
+    ///   </para>
+    /// </remarks>
+    private static void CalculateMovementFactors(float dx, float dy, out int q0, out int q1, out int r0, out int r1,
+        out float s1, out float s0, out float t1, out float t0)
+    {
+        q0 = (int)Math.Floor(dx);
+        q1 = q0 + 1;
+        r0 = (int)Math.Floor(dy);
+        r1 = r0 + 1;
+
+        s1 = Math.Abs(dx - q0);
+        s0 = 1.0f - s1;
+        t1 = Math.Abs(dy - r0);
+        t0 = 1.0f - t1;
+    }
+
     private void PartialDiffuseCenter(int x0, int y0, int width, int height, float delta)
     {
         float a = delta * Constants.CLOUD_DIFFUSION_RATE;
@@ -575,11 +614,8 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
             {
                 if (OldDensity[x, y].LengthSquared() > 1)
                 {
-                    // TODO: give each cloud a viscosity value in the
-                    // JSON file and use it instead.
-                    const float viscosity = 0.0525f;
                     var velocity = fluidSystem.VelocityAt(
-                        pos + (new Vector2(x, y) * Resolution)) * viscosity;
+                        pos + (new Vector2(x, y) * Resolution)) * VISCOSITY;
 
                     // This is ran in parallel, this may not touch the other compound clouds
                     float dx = x + (delta * velocity.x);
@@ -589,15 +625,8 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
                     dx = dx.Clamp(x0 - 0.5f, x0 + width + 0.5f);
                     dy = dy.Clamp(y0 - 0.5f, y0 + height + 0.5f);
 
-                    int q0 = (int)Math.Floor(dx);
-                    int q1 = q0 + 1;
-                    int r0 = (int)Math.Floor(dy);
-                    int r1 = r0 + 1;
-
-                    float s1 = Math.Abs(dx - q0);
-                    float s0 = 1.0f - s1;
-                    float t1 = Math.Abs(dy - r0);
-                    float t0 = 1.0f - t1;
+                    CalculateMovementFactors(dx, dy, out var q0, out var q1, out var r0, out var r1,
+                        out var s1, out var s0, out var t1, out var t0);
 
                     Density[q0, r0] += OldDensity[x, y] * s0 * t0;
                     Density[q0, r1] += OldDensity[x, y] * s0 * t1;
@@ -616,25 +645,15 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
             {
                 if (OldDensity[x, y].LengthSquared() > 1)
                 {
-                    // TODO: give each cloud a viscosity value in the
-                    // JSON file and use it instead.
-                    const float viscosity = 0.0525f;
                     var velocity = fluidSystem.VelocityAt(
-                        pos + (new Vector2(x, y) * Resolution)) * viscosity;
+                        pos + (new Vector2(x, y) * Resolution)) * VISCOSITY;
 
                     // This is ran in parallel, this may not touch the other compound clouds
                     float dx = x + (delta * velocity.x);
                     float dy = y + (delta * velocity.y);
 
-                    int q0 = (int)Math.Floor(dx);
-                    int q1 = q0 + 1;
-                    int r0 = (int)Math.Floor(dy);
-                    int r1 = r0 + 1;
-
-                    float s1 = Math.Abs(dx - q0);
-                    float s0 = 1.0f - s1;
-                    float t1 = Math.Abs(dy - r0);
-                    float t0 = 1.0f - t1;
+                    CalculateMovementFactors(dx, dy, out var q0, out var q1, out var r0, out var r1,
+                        out var s1, out var s0, out var t1, out var t0);
 
                     Density[(q0 + Size) % Size, (r0 + Size) % Size] += OldDensity[x, y] * s0 * t0;
                     Density[(q0 + Size) % Size, (r1 + Size) % Size] += OldDensity[x, y] * s0 * t1;
