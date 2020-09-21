@@ -458,26 +458,25 @@ public class MicrobeHUD : Node
 
     public void ShowExtinctionBox()
     {
-        if (extinctionBox == null)
-        {
-            extinctionBox = ExtinctionBoxScene.Instance();
-            GetNode("WinExtinctBoxHolder").AddChild(extinctionBox);
-        }
+        if (extinctionBox != null)
+            return;
+
+        extinctionBox = ExtinctionBoxScene.Instance();
+        GetNode("WinExtinctBoxHolder").AddChild(extinctionBox);
     }
 
     public void ToggleWinBox()
     {
-        if (winBox == null)
-        {
-            winBox = WinBoxScene.Instance();
-            GetNode("WinExtinctBoxHolder").AddChild(winBox);
-
-            winBox.GetNode<Timer>("Timer").Connect("timeout", this, nameof(ToggleWinBox));
-        }
-        else
+        if (winBox != null)
         {
             winBox.QueueFree();
+            return;
         }
+
+        winBox = WinBoxScene.Instance();
+        GetNode("WinExtinctBoxHolder").AddChild(winBox);
+
+        winBox.GetNode<Timer>("Timer").Connect("timeout", this, nameof(ToggleWinBox));
     }
 
     /// <summary>
@@ -595,8 +594,8 @@ public class MicrobeHUD : Node
             children.Free();
         }
 
-        if (mouseHoverPanel.RectSize != new Vector2(240, 165))
-            mouseHoverPanel.RectSize = new Vector2(240, 165);
+        if (mouseHoverPanel.RectSize != new Vector2(240, 80))
+            mouseHoverPanel.RectSize = new Vector2(240, 80);
 
         if (mouseHoverPanel.MarginLeft != -240)
             mouseHoverPanel.MarginLeft = -240;
@@ -605,17 +604,15 @@ public class MicrobeHUD : Node
 
         var compounds = stage.Clouds.GetAllAvailableAt(stage.Camera.CursorWorldPos);
 
-        var builder = new StringBuilder(string.Empty, 250);
+        var container = mouseHoverPanel.GetNode("PanelContainer/MarginContainer/VBoxContainer");
+        var mousePosLabel = container.GetNode<Label>("MousePos");
+        var nothingHere = container.GetNode<MarginContainer>("NothingHere");
 
         if (showMouseCoordinates)
         {
-            builder.AppendFormat(CultureInfo.CurrentCulture, "Stuff at {0:F1}, {1:F1}:\n",
-                stage.Camera.CursorWorldPos.x, stage.Camera.CursorWorldPos.z);
+            mousePosLabel.Text = string.Format(CultureInfo.CurrentCulture, "Stuff at {0:F1}, {0:F1}",
+                stage.Camera.CursorWorldPos.x, stage.Camera.CursorWorldPos.y);
         }
-
-        var container = mouseHoverPanel.GetNode("PanelContainer/MarginContainer/VBoxContainer");
-
-        var mousePosLabel = container.GetNode<Label>("MousePos");
 
         if (compounds.Count == 0)
         {
@@ -638,10 +635,7 @@ public class MicrobeHUD : Node
                 compoundName.SizeFlagsHorizontal = (int)Control.SizeFlags.ExpandFill;
                 compoundName.Text = readableName;
 
-                var compoundsText = new StringBuilder(string.Empty, 150);
-                compoundsText.AppendFormat(CultureInfo.CurrentCulture, "{0:F1}", entry.Value);
-
-                compoundValue.Text = compoundsText.ToString();
+                compoundValue.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", entry.Value);
 
                 hBox.AddChild(compoundIcon);
                 hBox.AddChild(compoundName);
@@ -679,14 +673,12 @@ public class MicrobeHUD : Node
 
         if (compounds.Count > 0 || hoveredCellsContainer.GetChildCount() > 0)
         {
-            builder.Append("At Cursor:");
+            nothingHere.Hide();
         }
         else
         {
-            builder.Append("Nothing to eat here");
+            nothingHere.Show();
         }
-
-        mousePosLabel.Text = builder.ToString();
     }
 
     /// <summary>
@@ -879,5 +871,23 @@ public class MicrobeHUD : Node
 
         OpenMenu();
         menu.ShowHelpScreen();
+    }
+
+    private void OnEditorButtonMouseEnter()
+    {
+        if (editorButton.Disabled)
+            return;
+
+        editorButton.GetNode<TextureRect>("Highlight").Hide();
+        editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Stop();
+    }
+
+    private void OnEditorButtonMouseExit()
+    {
+        if (editorButton.Disabled)
+            return;
+
+        editorButton.GetNode<TextureRect>("Highlight").Show();
+        editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Play();
     }
 }

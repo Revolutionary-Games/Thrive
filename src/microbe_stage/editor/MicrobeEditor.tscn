@@ -1,4 +1,4 @@
-[gd_scene load_steps=166 format=2]
+[gd_scene load_steps=167 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
@@ -95,6 +95,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/clockButtonHover.png" type="Texture" id=93]
 [ext_resource path="res://assets/textures/gui/bevel/redoButtonHover.png" type="Texture" id=94]
 [ext_resource path="res://assets/textures/gui/bevel/undoButtonActive.png" type="Texture" id=95]
+[ext_resource path="res://assets/textures/gui/bevel/sliderTick.png" type="Texture" id=96]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0.435294, 0.52549, 1 )
@@ -928,7 +929,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_vertical_guides_": [  ]
 }
-PauseMenuPath = NodePath("MicrobeEditorGUI/PauseMenu")
+PauseMenuPath = NodePath("MicrobeEditorGUI/CanvasLayer/PauseMenu")
 
 [node name="PrimaryCamera" parent="." instance=ExtResource( 1 )]
 DefaultCameraHeight = 10.0
@@ -953,7 +954,7 @@ omni_attenuation = 0.420448
 [node name="MicrobeEditorGUI" type="Node" parent="."]
 pause_mode = 2
 script = ExtResource( 45 )
-MenuPath = NodePath("PauseMenu")
+MenuPath = NodePath("CanvasLayer/PauseMenu")
 ReportTabButtonPath = NodePath("TopLeft/HBoxContainer/ReportButton")
 PatchMapButtonPath = NodePath("TopLeft/HBoxContainer/PatchMapButton")
 CellEditorButtonPath = NodePath("TopLeft/HBoxContainer/CellEditorButton")
@@ -1132,10 +1133,10 @@ __meta__ = {
 }
 
 [node name="Statistics" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/TopRight"]
-margin_left = 260.0
+margin_left = 238.0
 margin_top = 10.0
-margin_right = 262.0
-margin_bottom = 256.0
+margin_right = 240.0
+margin_bottom = 252.0
 mouse_filter = 1
 size_flags_horizontal = 8
 __meta__ = {
@@ -3197,7 +3198,7 @@ align = 1
 
 [node name="Appearance" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer"]
 visible = false
-margin_top = 40.0
+margin_top = 327.0
 margin_right = 318.0
 margin_bottom = 604.0
 mouse_filter = 1
@@ -3206,7 +3207,7 @@ custom_styles/panel = SubResource( 36 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance"]
 margin_right = 318.0
-margin_bottom = 564.0
+margin_bottom = 277.0
 mouse_filter = 1
 theme = ExtResource( 80 )
 scroll_horizontal_enabled = false
@@ -3754,13 +3755,16 @@ margin_top = 22.0
 margin_right = 302.0
 margin_bottom = 37.0
 mouse_filter = 1
+custom_icons/tick = ExtResource( 96 )
 min_value = -10.0
 max_value = 10.0
+tick_count = 9
+ticks_on_borders = true
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 311.0
 margin_right = 302.0
-margin_bottom = 749.0
+margin_bottom = 799.0
 custom_constants/separation = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
@@ -3784,10 +3788,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 39 )
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_left = 196.0
-margin_top = 218.0
-margin_right = 498.0
-margin_bottom = 634.0
+margin_left = 28.0
+margin_top = 50.0
+margin_right = 330.0
+margin_bottom = 516.0
 theme = SubResource( 41 )
 edit_alpha = false
 
@@ -3956,7 +3960,7 @@ margin_bottom = 101.0
 popup_exclusive = true
 window_title = "Negative ATP Balance"
 dialog_text = "Your microbe is not producing enough ATP for it to survive!
-Do you still wish to continue?"
+Do you wish to continue?"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -5143,7 +5147,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PauseMenu" parent="MicrobeEditorGUI" instance=ExtResource( 52 )]
+[node name="CanvasLayer" type="CanvasLayer" parent="MicrobeEditorGUI"]
+layer = 3
+__meta__ = {
+"_editor_description_": "The pause menu is inside this CanvasLayer, to make sure the menu will always be on top of every other UIs"
+}
+
+[node name="PauseMenu" parent="MicrobeEditorGUI/CanvasLayer" instance=ExtResource( 52 )]
 visible = false
 theme = ExtResource( 53 )
 HelpCategory = "MicrobeEditor"
@@ -11836,6 +11846,6 @@ CellEditorClosingWordsPath = NodePath("../TutorialGUI/CellEditorClosingWords")
 [connection signal="mouse_entered" from="MicrobeEditorGUI/BottomButtons/HBoxContainer/HelpButton" to="MicrobeEditorGUI" method="OnHelpButtonMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/BottomButtons/HBoxContainer/HelpButton" to="MicrobeEditorGUI" method="OnTooltipMouseExit"]
 [connection signal="pressed" from="MicrobeEditorGUI/BottomButtons/HBoxContainer/HelpButton" to="MicrobeEditorGUI" method="HelpButtonPressed"]
-[connection signal="MakeSave" from="MicrobeEditorGUI/PauseMenu" to="." method="SaveGame"]
-[connection signal="OnClosed" from="MicrobeEditorGUI/PauseMenu" to="MicrobeEditorGUI" method="CloseMenu"]
-[connection signal="OnOpenWithKeyPress" from="MicrobeEditorGUI/PauseMenu" to="MicrobeEditorGUI" method="OpenMenu"]
+[connection signal="MakeSave" from="MicrobeEditorGUI/CanvasLayer/PauseMenu" to="." method="SaveGame"]
+[connection signal="OnClosed" from="MicrobeEditorGUI/CanvasLayer/PauseMenu" to="MicrobeEditorGUI" method="CloseMenu"]
+[connection signal="OnOpenWithKeyPress" from="MicrobeEditorGUI/CanvasLayer/PauseMenu" to="MicrobeEditorGUI" method="OpenMenu"]

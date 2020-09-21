@@ -514,7 +514,7 @@ public class MicrobeEditorGUI : Node
             " of the previous amount.";
     }
 
-    public void UpdateInitialCellStats()
+    public void SetInitialCellStats()
     {
         initialCellSpeed = editor.CalculateSpeed();
         initialCellHp = editor.CalculateHitpoints();
@@ -817,7 +817,7 @@ public class MicrobeEditorGUI : Node
         GUICommon.Instance.PlayButtonPressSound();
 
         // Show warning popup if trying to exit with negative atp production
-        if (energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumption)
+        if (energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumptionStationary)
         {
             negativeAtpPopup.PopupCenteredMinsize();
             return;
