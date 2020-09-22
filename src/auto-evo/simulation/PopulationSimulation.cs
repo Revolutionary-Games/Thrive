@@ -52,8 +52,8 @@
                     int currentPopulation = patch.GetSpeciesPopulation(currentSpecies);
 
                     // If this is an extra species, this first takes the
-                    // population from extra species that match its index, if that
-                    // doesn't exist then the population number is used
+                    // population from excluded species that match its index, if that
+                    // doesn't exist then the global population number (from Species) is used
                     if (currentPopulation == 0 && parameters.ExtraSpecies.Contains(currentSpecies))
                     {
                         bool useGlobal = true;
