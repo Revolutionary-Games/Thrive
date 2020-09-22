@@ -1,6 +1,5 @@
 using System;
 using System.Globalization;
-using System.Text;
 using Godot;
 using Array = Godot.Collections.Array;
 
@@ -610,8 +609,8 @@ public class MicrobeHUD : Node
 
         if (showMouseCoordinates)
         {
-            mousePosLabel.Text = string.Format(CultureInfo.CurrentCulture, "Stuff at {0:F1}, {0:F1}",
-                stage.Camera.CursorWorldPos.x, stage.Camera.CursorWorldPos.y);
+            mousePosLabel.Text = string.Format(CultureInfo.CurrentCulture, "Stuff at {0:F1}, {1:F1}:",
+                stage.Camera.CursorWorldPos.x, stage.Camera.CursorWorldPos.z);
         }
 
         if (compounds.Count == 0)

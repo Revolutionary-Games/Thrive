@@ -1685,6 +1685,8 @@ public class MicrobeEditor : Node, ILoadableGameState
         // TODO: select which units will be used for the master elapsed time counter
         CurrentGame.GameWorld.OnTimePassed(1);
 
+        gui.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);
+
         // Get summary before applying results in order to get comparisons to the previous populations
         var run = CurrentGame.GameWorld.GetAutoEvoRun();
 
@@ -1715,6 +1717,8 @@ public class MicrobeEditor : Node, ILoadableGameState
             throw new InvalidOperationException("loaded editor isn't in the ready state");
 
         gui.UpdateAutoEvoResults(autoEvoSummary, autoEvoExternal);
+
+        gui.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);
 
         // Make absolutely sure the current game doesn't have an auto-evo run
         CurrentGame.GameWorld.ResetAutoEvoRun();

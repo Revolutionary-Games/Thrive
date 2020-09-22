@@ -86,6 +86,9 @@ public class GameWorld
     [JsonProperty]
     public PatchMap Map { get; private set; }
 
+    [JsonProperty]
+    public double TotalPassedTime { get; private set; }
+
     [JsonIgnore]
     public TimedWorldOperations TimedEffects { get; }
 
@@ -153,6 +156,8 @@ public class GameWorld
     /// </summary>
     public void OnTimePassed(double timePassed)
     {
+        TotalPassedTime += timePassed * 100000000;
+
         TimedEffects.OnTimePassed(timePassed);
     }
 

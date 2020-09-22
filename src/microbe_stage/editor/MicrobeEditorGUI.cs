@@ -93,6 +93,9 @@ public class MicrobeEditorGUI : Node
     public NodePath ATPConsumptionBarPath;
 
     [Export]
+    public NodePath TimeIndicatorPath;
+
+    [Export]
     public NodePath GlucoseReductionLabelPath;
 
     [Export]
@@ -286,6 +289,7 @@ public class MicrobeEditorGUI : Node
     private SegmentedBar atpProductionBar;
     private SegmentedBar atpConsumptionBar;
 
+    private Label timeIndicator;
     private Label glucoseReductionLabel;
     private Label autoEvoLabel;
     private Label externalEffectsLabel;
@@ -385,6 +389,7 @@ public class MicrobeEditorGUI : Node
         atpProductionBar = GetNode<SegmentedBar>(ATPProductionBarPath);
         atpConsumptionBar = GetNode<SegmentedBar>(ATPConsumptionBarPath);
 
+        timeIndicator = GetNode<Label>(TimeIndicatorPath);
         glucoseReductionLabel = GetNode<Label>(GlucoseReductionLabelPath);
         autoEvoLabel = GetNode<Label>(AutoEvoLabelPath);
         externalEffectsLabel = GetNode<Label>(ExternalEffectsLabelPath);
@@ -512,6 +517,11 @@ public class MicrobeEditorGUI : Node
 
         glucoseReductionLabel.Text = "The amount of glucose has been reduced to " + percentage +
             " of the previous amount.";
+    }
+
+    public void UpdateTimeIndicator(double value)
+    {
+        timeIndicator.Text = string.Format(CultureInfo.CurrentCulture, "{0:#,##0,,}", value) + " Myr";
     }
 
     public void SetInitialCellStats()
@@ -733,6 +743,13 @@ public class MicrobeEditorGUI : Node
     internal void OnHelpButtonMouseEnter()
     {
         tooltipHandler.ShowDefaultTooltip("Open Help Screen");
+    }
+
+    internal void OnTimeIndicatorMouseEnter()
+    {
+        tooltipHandler.ShowDefaultTooltip(string.Format(
+            CultureInfo.CurrentCulture, "{0:#,#}", editor.CurrentGame.GameWorld.TotalPassedTime) +
+            " years", 0.5f);
     }
 
     internal void OnTooltipMouseExit()

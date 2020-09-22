@@ -981,6 +981,7 @@ ATPProductionLabelPath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer/
 ATPConsumptionLabelPath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer/Body/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer2/Label")
 ATPProductionBarPath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer/Body/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer/ATPProductionBar")
 ATPConsumptionBarPath = NodePath("CellEditor/TopRight/Statistics/VBoxContainer/Body/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer2/ATPConsumptionBar")
+TimeIndicatorPath = NodePath("Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TimeIndicator")
 GlucoseReductionLabelPath = NodePath("Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/GlucoseReduction")
 AutoEvoLabelPath = NodePath("Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/AutoEvoResults")
 ExternalEffectsLabelPath = NodePath("Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/EvoResultsPanel/MarginContainer/ScrollContainer/VBoxContainer/ExternalEffectsList")
@@ -3788,10 +3789,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 39 )
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_left = 28.0
-margin_top = 50.0
-margin_right = 330.0
-margin_bottom = 516.0
+margin_left = 48.0
+margin_top = 70.0
+margin_right = 350.0
+margin_bottom = 536.0
 theme = SubResource( 41 )
 edit_alpha = false
 
@@ -4022,7 +4023,7 @@ custom_constants/separation = 5
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer"]
 margin_right = 1284.0
-margin_bottom = 4.0
+margin_bottom = 26.0
 
 [node name="PatchName" type="Label" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 visible = false
@@ -4032,30 +4033,29 @@ custom_fonts/font = SubResource( 47 )
 text = "Patch Name"
 
 [node name="HSeparator" type="HSeparator" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_right = 640.0
-margin_bottom = 4.0
+margin_right = 638.0
+margin_bottom = 26.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 48 )
 
 [node name="TimeIndicator" type="Label" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-visible = false
-margin_left = 563.0
-margin_right = 720.0
+margin_left = 642.0
+margin_right = 642.0
 margin_bottom = 26.0
+mouse_filter = 1
 custom_fonts/font = SubResource( 49 )
-text = "Time Indicator"
 
 [node name="HSeparator2" type="HSeparator" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
-margin_left = 644.0
+margin_left = 646.0
 margin_right = 1284.0
-margin_bottom = 4.0
+margin_bottom = 26.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 48 )
 
 [node name="FoodChainButton" type="Button" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 visible = false
-margin_left = 1163.0
-margin_right = 1283.0
+margin_left = 1164.0
+margin_right = 1284.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 120, 35 )
 size_flags_vertical = 4
@@ -4067,8 +4067,8 @@ text = "Food Chain"
 
 [node name="TimelineButton" type="Button" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 visible = false
-margin_left = 1163.0
-margin_right = 1283.0
+margin_left = 1164.0
+margin_right = 1284.0
 margin_bottom = 35.0
 rect_min_size = Vector2( 120, 35 )
 size_flags_vertical = 4
@@ -4080,7 +4080,7 @@ group = SubResource( 51 )
 text = "Timeline"
 
 [node name="EvoResultsPanel" type="PanelContainer" parent="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer"]
-margin_top = 9.0
+margin_top = 31.0
 margin_right = 1284.0
 margin_bottom = 581.0
 size_flags_horizontal = 3
@@ -4090,7 +4090,7 @@ size_flags_vertical = 3
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 1283.0
-margin_bottom = 571.0
+margin_bottom = 549.0
 custom_constants/margin_right = 10
 custom_constants/margin_top = 10
 custom_constants/margin_left = 10
@@ -4100,7 +4100,7 @@ custom_constants/margin_bottom = 10
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 1272.0
-margin_bottom = 560.0
+margin_bottom = 538.0
 theme = ExtResource( 80 )
 follow_focus = true
 
@@ -11827,6 +11827,8 @@ CellEditorClosingWordsPath = NodePath("../TutorialGUI/CellEditorClosingWords")
 [connection signal="confirmed" from="MicrobeEditorGUI/CellEditor/NegativeAtpWarning" to="MicrobeEditorGUI" method="ConfirmFinishEditingPressed"]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer" to="MicrobeEditorGUI" method="OnMouseExit"]
+[connection signal="mouse_entered" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TimeIndicator" to="MicrobeEditorGUI" method="OnTimeIndicatorMouseEnter"]
+[connection signal="mouse_exited" from="MicrobeEditorGUI/Report/MarginContainer/HSplitContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/TimeIndicator" to="MicrobeEditorGUI" method="OnTooltipMouseExit"]
 [connection signal="pressed" from="MicrobeEditorGUI/Report/NextTabButton/Button" to="MicrobeEditorGUI" method="SetEditorTab" binds= [ "PatchMap" ]]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer/MapPanel" to="MicrobeEditorGUI" method="OnMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeEditorGUI/PatchMap/MarginContainer/HSplitContainer/MapPanel" to="MicrobeEditorGUI" method="OnMouseExit"]
