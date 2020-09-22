@@ -1,4 +1,4 @@
-[gd_scene load_steps=167 format=2]
+[gd_scene load_steps=166 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
@@ -78,7 +78,6 @@
 [ext_resource path="res://assets/textures/gui/bevel/buttonHover.png" type="Texture" id=76]
 [ext_resource path="res://assets/textures/gui/bevel/buttonActive.png" type="Texture" id=77]
 [ext_resource path="res://src/gui_common/tooltip/TooltipHandler.cs" type="Script" id=78]
-[ext_resource path="res://src/engine/ChromaticFilter.tscn" type="PackedScene" id=79]
 [ext_resource path="res://src/gui_common/scrollbar_theme.tres" type="Theme" id=80]
 [ext_resource path="res://assets/textures/gui/bevel/4xSymmetry.png" type="Texture" id=81]
 [ext_resource path="res://assets/textures/gui/bevel/decrease.png" type="Texture" id=82]
@@ -3787,10 +3786,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 39 )
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_left = 48.0
-margin_top = 70.0
-margin_right = 350.0
-margin_bottom = 536.0
+margin_left = 52.0
+margin_top = 74.0
+margin_right = 354.0
+margin_bottom = 540.0
 theme = SubResource( 41 )
 edit_alpha = false
 
