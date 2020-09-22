@@ -158,7 +158,7 @@ public class GameWorld
     {
         TotalPassedTime += timePassed * 100000000;
 
-        TimedEffects.OnTimePassed(timePassed);
+        TimedEffects.OnTimePassed(timePassed, TotalPassedTime);
     }
 
     /// <summary>

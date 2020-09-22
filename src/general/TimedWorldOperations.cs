@@ -24,9 +24,9 @@ public class TimedWorldOperations
     ///   </para>
     /// </remarks>
     /// <param name="timePassed">Time passed since last call</param>
-    public void OnTimePassed(double timePassed)
+    public void OnTimePassed(double timePassed, double totalPassed)
     {
-        totalPassedTime += timePassed;
+        totalPassedTime = totalPassed;
 
         GD.Print("TimedWorldOperations: running effects. elapsed: ",
             timePassed, " total passed: ", totalPassedTime);

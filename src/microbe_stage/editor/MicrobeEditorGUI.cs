@@ -748,7 +748,7 @@ public class MicrobeEditorGUI : Node
     internal void OnTimeIndicatorMouseEnter()
     {
         tooltipHandler.ShowDefaultTooltip(string.Format(
-            CultureInfo.CurrentCulture, "{0:#,#}", editor.CurrentGame.GameWorld.TotalPassedTime) +
+                CultureInfo.CurrentCulture, "{0:#,#}", editor.CurrentGame.GameWorld.TotalPassedTime) +
             " years", 0.5f);
     }
 
