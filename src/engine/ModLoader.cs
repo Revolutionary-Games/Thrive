@@ -1,10 +1,7 @@
 using System.Collections.Generic;
-using System.IO;
 using System.Reflection;
 using Godot;
 using Newtonsoft.Json;
-using Directory = System.IO.Directory;
-using File = System.IO.File;
 
 public class ModLoader
 {
@@ -12,12 +9,23 @@ public class ModLoader
 
     public List<ModInfo> LoadModList(bool ignoreAutoload = true)
     {
-        DirectoryInfo modFolder = Directory.CreateDirectory($"{Directory.GetCurrentDirectory()}\\mods");
+        FileHelpers.MakeSureDirectoryExists(Constants.MOD_FOLDER);
+        var modFolder = new Directory();
+
+        modFolder.Open(Constants.MOD_FOLDER);
+        modFolder.ListDirBegin(true, true);
 
         List<ModInfo> modList = new List<ModInfo>();
-        foreach (DirectoryInfo currentMod in modFolder.EnumerateDirectories())
+        var currentMod = modFolder.GetNext();
+
+        while (true)
         {
-            var currentModInfo = GetModInfo(currentMod.FullName);
+            if (string.IsNullOrEmpty(currentMod))
+            {
+                break;
+            }
+
+            var currentModInfo = GetModInfo(PathUtils.Join(Constants.MOD_FOLDER, currentMod));
 
             if (currentModInfo.Name == null)
             {
@@ -30,6 +38,7 @@ public class ModLoader
             }
 
             modList.Add(currentModInfo);
+            currentMod = modFolder.GetNext();
         }
 
         return modList;
@@ -37,7 +46,8 @@ public class ModLoader
 
     public ModInfo GetModInfo(string location)
     {
-        if (!File.Exists(location + "/mod_info.json"))
+        var file = new File();
+        if (!file.FileExists(location + "/mod_info.json"))
         {
             return new ModInfo();
         }
@@ -51,7 +61,9 @@ public class ModLoader
 
     public int LoadMod(ModInfo currentMod, bool addToAutoLoader = false, bool clearAutoloaderModList = true)
     {
+        var file = new File();
         var modSettingList = Settings.Instance.AutoLoadedMods;
+
         if (clearAutoloaderModList)
         {
             modSettingList.Clear();
@@ -69,13 +81,13 @@ public class ModLoader
 
         if (string.IsNullOrEmpty(currentMod.Dll))
         {
-            if (File.Exists(ProjectSettings.GlobalizePath(currentMod.Dll)))
+            if (file.FileExists(ProjectSettings.GlobalizePath(currentMod.Dll)))
             {
                 Assembly.LoadFile(ProjectSettings.GlobalizePath(currentMod.Dll));
             }
         }
 
-        if (!File.Exists(currentMod.Location + "/mod.pck"))
+        if (!file.FileExists(currentMod.Location + "/mod.pck"))
         {
             GD.Print("Fail to find mod file: " + currentMod.Name);
             return -2;
@@ -168,9 +180,9 @@ public class ModLoader
     // Copied From The PauseMenu.cs
     private static string ReadJSONFile(string path)
     {
-        using (var file = new Godot.File())
+        using (var file = new File())
         {
-            file.Open(path, Godot.File.ModeFlags.Read);
+            file.Open(path, File.ModeFlags.Read);
             var result = file.GetAsText();
 
             // This might be completely unnecessary

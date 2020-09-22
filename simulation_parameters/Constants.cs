@@ -425,6 +425,8 @@ public static class Constants
 
     public const string LOGS_FOLDER_NAME = "logs";
 
+    public const string MOD_FOLDER = "user://mods";
+
     /// <summary>
     ///   This is just here to make it easier to debug saves
     /// </summary>
