@@ -853,27 +853,18 @@ public class MicrobeAI
         // Angle should only change if you havent picked up compounds || picked up less compounds
         if (compoundDifference < 0 && random.Next(0, 10) < 5)
         {
-            randAngle = previousAngle + random.Next(0.1f, 1.0f);
-            previousAngle = randAngle;
-            randDist = random.Next(200.0f, movementRadius);
-            targetPosition = new Vector3(Mathf.Cos(randAngle) * randDist, 0, Mathf.Sin(randAngle) * randDist);
+            randAngle = SelectRandomTargetPosition(random);
         }
 
         // If last round you had 0, then have a high likelihood of turning
         if (compoundDifference < Constants.AI_COMPOUND_BIAS && random.Next(0, 10) < 9)
         {
-            randAngle = previousAngle + random.Next(1.0f, 2.0f);
-            previousAngle = randAngle;
-            randDist = random.Next(200.0f, movementRadius);
-            targetPosition = new Vector3(Mathf.Cos(randAngle) * randDist, 0, Mathf.Sin(randAngle) * randDist);
+            randAngle = SelectRandomTargetPosition(random);
         }
 
         if (compoundDifference == 0 && random.Next(0, 10) < 9)
         {
-            randAngle = previousAngle + random.Next(1.0f, 2.0f);
-            previousAngle = randAngle;
-            randDist = random.Next(200.0f, movementRadius);
-            targetPosition = new Vector3(Mathf.Cos(randAngle) * randDist, 0, Mathf.Sin(randAngle) * randDist);
+            randAngle = SelectRandomTargetPosition(random);
         }
 
         // If positive last step you gained compounds
@@ -895,6 +886,15 @@ public class MicrobeAI
         microbe.LookAtPoint = targetPosition;
         microbe.MovementDirection = new Vector3(0.0f, 0.0f, -Constants.AI_BASE_MOVEMENT);
         hasTargetPosition = true;
+    }
+
+    private float SelectRandomTargetPosition(Random random)
+    {
+        var randAngle = previousAngle + random.Next(0.1f, 1.0f);
+        previousAngle = randAngle;
+        var randDist = random.Next(200.0f, movementRadius);
+        targetPosition = new Vector3(Mathf.Cos(randAngle) * randDist, 0, Mathf.Sin(randAngle) * randDist);
+        return randAngle;
     }
 
     /// <summary>

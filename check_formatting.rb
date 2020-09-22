@@ -13,17 +13,19 @@ require_relative 'RubySetupSystem/RubyCommon'
 require_relative 'scripts/fast_build/toggle_analysis_lib'
 
 MAX_LINE_LENGTH = 120
+DUPLICATE_THRESSHOLD = 110
 
 # Pretty generous, so can't detect like small models with only a few
 # vertices, as text etc. is on a single line
 SCENE_EMBEDDED_LENGTH_HEURISTIC = 920
 
-VALID_CHECKS = %w[compile files inspectcode cleanupcode].freeze
-DEFAULT_CHECKS = %w[compile files inspectcode cleanupcode].freeze
+VALID_CHECKS = %w[compile files inspectcode cleanupcode duplicatecode].freeze
+DEFAULT_CHECKS = %w[compile files inspectcode cleanupcode duplicatecode].freeze
 
 ONLY_FILE_LIST = 'files_to_check.txt'
 
 OUTPUT_MUTEX = Mutex.new
+MSBUILD_MUTEX = Mutex.new
 
 @options = {
   checks: DEFAULT_CHECKS,
@@ -45,6 +47,9 @@ OptionParser.new do |opts|
   opts.on('-p', '--[no-]parallel', 'Run different checks in parallel (default)') do |b|
     @options[:parallel] = b
   end
+  opts.on('--msbuild MSBUILD', 'Specify msbuild dll to use with jetbrains tools') do |f|
+    @options[:msBuild] = f
+  end
 end.parse!
 
 onError "Unhandled parameters: #{ARGV}" unless ARGV.empty?
@@ -52,6 +57,43 @@ onError "Unhandled parameters: #{ARGV}" unless ARGV.empty?
 info "Starting formatting checks with the following checks: #{@options[:checks]}"
 
 # Helper functions
+
+def detect_ms_build_dll
+  msbuild = which 'msbuild'
+
+  unless msbuild
+    OUTPUT_MUTEX.synchronize do
+      puts 'Searched paths:'
+      pathAsArray.each do |p|
+        puts p
+      end
+
+      onError 'msbuild not found in PATH'
+    end
+  end
+
+  File.foreach(msbuild) do |line|
+    match = line.match(%r{/mono\s+.+\s(/.*/MSBuild.dll)\s+})
+
+    next unless match
+
+    dll = match.captures[0]
+
+    info "msbuild dll path detected: #{dll}"
+    return dll
+  end
+
+  onError 'Could not determine MSBuild.dll location, please specify --msbuild ' \
+          'parameter with the correct path'
+end
+
+def ms_build
+  MSBUILD_MUTEX.synchronize do
+    return @options[:msBuild] if @options[:msBuild]
+
+    @options[:msBuild] = detect_ms_build_dll
+  end
+end
 
 def ide_file?(path)
   path =~ %r{/\.vs/} || path =~ %r{/\.idea/}
@@ -350,6 +392,8 @@ def run_inspect_code
 
   params = [inspect_code_executable, 'Thrive.sln', '-o=inspect_results.xml']
 
+  params.append "--toolset-path=#{ms_build}" if OS.linux?
+
   params.append "--include=#{@includes.join(';')}" if @includes
 
   runOpen3Checked(*params)
@@ -400,6 +444,8 @@ def run_cleanup_code
 
   params = [cleanup_code_executable, 'Thrive.sln', '--profile=full_no_xml']
 
+  params.append "--toolset-path=#{ms_build}" if OS.linux?
+
   params.append "--include=#{@includes.join(';')}" if @includes
 
   runOpen3Checked(*params)
@@ -414,6 +460,67 @@ def run_cleanup_code
   exit 2
 end
 
+def duplicate_code_executable
+  if OS.windows?
+    'dupfinder.exe'
+  else
+    'dupfinder.sh'
+  end
+end
+
+def run_duplicate_finder
+  return if skip_jetbrains?
+
+  params = [duplicate_code_executable, '-o=duplicate_results.xml', '--show-text',
+            "--discard-cost=#{DUPLICATE_THRESSHOLD}", '--discard-literals=true']
+
+  params.append "--toolset-path=#{ms_build}" if OS.linux?
+
+  if @includes
+    params += @includes.select { |item| item =~ /\.cs$/ }.uniq
+  else
+    params.append 'Thrive.sln'
+  end
+
+  runOpen3Checked(*params)
+
+  issues_found = false
+
+  doc = Nokogiri::XML(File.open('duplicate_results.xml'), &:norecover)
+
+  doc.xpath('//Duplicate').each do |duplicate|
+    issues_found = true
+
+    OUTPUT_MUTEX.synchronize do
+      error "Found duplicate with cost #{duplicate['Cost']}"
+
+      duplicate.xpath('//Fragment').each do |fragment|
+        file = fragment.xpath('FileName')[0].content
+        start_end = fragment.xpath('LineRange')[0]
+
+        puts "Fragment in file #{file}"
+        puts "Lines #{start_end['Start']}--#{start_end['End']}"
+
+        if fragment.xpath('Text')
+          puts 'Fragment code:'
+          puts fragment.xpath('Text')[0].content
+        end
+
+        puts 'End of fragment'
+      end
+
+      puts 'End of duplicate'
+    end
+  end
+
+  return unless issues_found
+
+  OUTPUT_MUTEX.synchronize do
+    error 'Duplicate finder found duplicates, see duplicate_results.xml'
+  end
+  exit 2
+end
+
 run_check = proc { |check|
   if check == 'compile'
     run_compile
@@ -423,6 +530,8 @@ run_check = proc { |check|
     run_inspect_code
   elsif check == 'cleanupcode'
     run_cleanup_code
+  elsif check == 'duplicatecode'
+    run_duplicate_finder
   else
     OUTPUT_MUTEX.synchronize do
       onError "Unknown check type: #{check}"

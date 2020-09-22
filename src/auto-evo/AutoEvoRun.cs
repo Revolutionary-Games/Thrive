@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using AutoEvo;
 using Godot;
+using Thread = System.Threading.Thread;
 
 /// <summary>
 ///   A single run of the auto-evo system happening in a background thread
@@ -42,7 +44,7 @@ public class AutoEvoRun
     /// </summary>
     private volatile int totalSteps = -1;
 
-    private volatile int completeSteps;
+    private int completeSteps;
 
     public AutoEvoRun(GameWorld world)
     {
@@ -97,9 +99,11 @@ public class AutoEvoRun
             if (total <= 0)
                 return 0;
 
-            return (float)completeSteps / total;
+            return (float)CompleteSteps / total;
         }
     }
+
+    public int CompleteSteps => Thread.VolatileRead(ref completeSteps);
 
     public bool WasSuccessful => Finished && !Aborted;
 
@@ -125,7 +129,7 @@ public class AutoEvoRun
             {
                 var percentage = CompletionFraction * 100;
 
-                return $"{percentage:F1}% done. {completeSteps:n0}/{total:n0} steps.";
+                return $"{percentage:F1}% done. {CompleteSteps:n0}/{total:n0} steps.";
             }
 
             return "Starting";
@@ -319,7 +323,7 @@ public class AutoEvoRun
                 // +2 is for this step and the result apply step
                 totalSteps = runSteps.Sum(step => step.TotalSteps) + 2;
 
-                ++completeSteps;
+                Interlocked.Increment(ref completeSteps);
                 state = RunStage.STEPPING;
                 return false;
             case RunStage.STEPPING:
@@ -333,14 +337,14 @@ public class AutoEvoRun
                     if (runSteps.Peek().RunStep(results))
                         runSteps.Dequeue();
 
-                    ++completeSteps;
+                    Interlocked.Increment(ref completeSteps);
                 }
 
                 return false;
             case RunStage.ENDED:
                 // Results are no longer applied here as it's easier to just apply them on the main thread while
                 // moving to the editor
-                ++completeSteps;
+                Interlocked.Increment(ref completeSteps);
                 return true;
         }
 

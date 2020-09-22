@@ -57,6 +57,9 @@ public class MainMenu : Node
         {
             OnIntroEnded();
         }
+
+        // Let all suppressed deletions happen (if we came back directly from the editor that was loaded from a save)
+        TemporaryLoadedNodeDeleter.Instance.ReleaseAllHolds();
     }
 
     public void StartMusic()
@@ -121,7 +124,8 @@ public class MainMenu : Node
         modLoader = GetNode<ModManagerUI>("ModLoader");
 
         // Load settings
-        options.SetSettingsFrom(Settings.Instance);
+        if (Settings.Instance == null)
+            GD.PrintErr("Failed to initialize settings.");
 
         // Set initial menu
         SwitchMenu();

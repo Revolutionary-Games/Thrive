@@ -31,6 +31,7 @@ __meta__ = {
 SaveNamePath = NodePath("SaveListItem/VBoxContainer/HBoxContainer/SaveName")
 ScreenshotPath = NodePath("SaveListItem/Screenshot")
 VersionPath = NodePath("SaveListItem/VBoxContainer/HBoxContainer/Version")
+VersionWarningPath = NodePath("SaveListItem/VBoxContainer/HBoxContainer/VersionWarning")
 TypePath = NodePath("SaveListItem/VBoxContainer/HBoxContainer4/Type")
 CreatedAtPath = NodePath("SaveListItem/VBoxContainer/HBoxContainer2/CreatedAt")
 CreatedByPath = NodePath("SaveListItem/VBoxContainer/HBoxContainer2/Creator")
@@ -42,7 +43,7 @@ LoadButtonPath = NodePath("SaveListItem/VBoxContainer/HBoxContainer/HBoxContaine
 [node name="SaveListItem" type="HBoxContainer" parent="."]
 margin_left = 3.0
 margin_top = 3.0
-margin_right = 618.0
+margin_right = 650.0
 margin_bottom = 131.0
 size_flags_horizontal = 3
 __meta__ = {
@@ -60,7 +61,7 @@ stretch_mode = 6
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SaveListItem"]
 margin_left = 132.0
-margin_right = 615.0
+margin_right = 647.0
 margin_bottom = 128.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 4.0
@@ -69,7 +70,7 @@ __meta__ = {
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="SaveListItem/VBoxContainer"]
-margin_right = 483.0
+margin_right = 515.0
 margin_bottom = 43.0
 
 [node name="Label1" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer"]
@@ -85,23 +86,36 @@ margin_right = 160.0
 margin_bottom = 33.0
 text = "Loading..."
 
-[node name="Label2" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer"]
+[node name="Spacer" type="Control" parent="SaveListItem/VBoxContainer/HBoxContainer"]
 margin_left = 164.0
+margin_right = 167.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 3, 0 )
+
+[node name="Label2" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer"]
+margin_left = 171.0
 margin_top = 10.0
-margin_right = 251.0
+margin_right = 252.0
 margin_bottom = 33.0
-text = " Version:"
+text = "Version:"
 
 [node name="Version" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer"]
-margin_left = 255.0
+margin_left = 256.0
 margin_top = 10.0
-margin_right = 270.0
+margin_right = 271.0
 margin_bottom = 33.0
 text = "..."
 
+[node name="VersionWarning" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer"]
+margin_left = 275.0
+margin_top = 10.0
+margin_right = 302.0
+margin_bottom = 33.0
+text = "( ! )"
+
 [node name="HBoxContainer" type="HBoxContainer" parent="SaveListItem/VBoxContainer/HBoxContainer"]
-margin_left = 274.0
-margin_right = 483.0
+margin_left = 306.0
+margin_right = 515.0
 margin_bottom = 43.0
 size_flags_horizontal = 3
 alignment = 2
@@ -127,7 +141,7 @@ text = "Load"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="SaveListItem/VBoxContainer"]
 margin_top = 47.0
-margin_right = 483.0
+margin_right = 515.0
 margin_bottom = 70.0
 
 [node name="Label" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer2"]
@@ -141,21 +155,27 @@ margin_right = 128.0
 margin_bottom = 23.0
 text = "..."
 
-[node name="Label3" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer2"]
+[node name="Spacer" type="Control" parent="SaveListItem/VBoxContainer/HBoxContainer2"]
 margin_left = 132.0
-margin_right = 169.0
+margin_right = 135.0
 margin_bottom = 23.0
-text = " By:"
+rect_min_size = Vector2( 3, 0 )
+
+[node name="Label3" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer2"]
+margin_left = 139.0
+margin_right = 170.0
+margin_bottom = 23.0
+text = "By:"
 
 [node name="Creator" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer2"]
-margin_left = 173.0
-margin_right = 188.0
+margin_left = 174.0
+margin_right = 189.0
 margin_bottom = 23.0
 text = "..."
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="SaveListItem/VBoxContainer"]
 margin_top = 74.0
-margin_right = 483.0
+margin_right = 515.0
 margin_bottom = 97.0
 
 [node name="Label" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer4"]
@@ -169,21 +189,27 @@ margin_right = 73.0
 margin_bottom = 23.0
 text = "..."
 
-[node name="Label2" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer4"]
+[node name="Spacer" type="Control" parent="SaveListItem/VBoxContainer/HBoxContainer4"]
 margin_left = 77.0
-margin_right = 288.0
+margin_right = 80.0
 margin_bottom = 23.0
-text = " Created on Platform:"
+rect_min_size = Vector2( 3, 0 )
+
+[node name="Label2" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer4"]
+margin_left = 84.0
+margin_right = 289.0
+margin_bottom = 23.0
+text = "Created on Platform:"
 
 [node name="Platform" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer4"]
-margin_left = 292.0
-margin_right = 307.0
+margin_left = 293.0
+margin_right = 308.0
 margin_bottom = 23.0
 text = "..."
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="SaveListItem/VBoxContainer"]
 margin_top = 101.0
-margin_right = 483.0
+margin_right = 515.0
 margin_bottom = 124.0
 
 [node name="Label" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer3"]
