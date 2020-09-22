@@ -86,6 +86,10 @@ public class GameWorld
     [JsonProperty]
     public PatchMap Map { get; private set; }
 
+    /// <summary>
+    ///   This probably needs to be changed to a huge precision number
+    ///   depending on what timespans we'll end up using.
+    /// </summary>
     [JsonProperty]
     public double TotalPassedTime { get; private set; }
 
