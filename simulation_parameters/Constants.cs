@@ -82,9 +82,9 @@ public static class Constants
     public const float MAX_FORCE_APPLIED_BY_CURRENTS = 0.0525f;
 
     /// <summary>
-    ///   Added 2 seconds here to make the random implementation look a bit better
+    ///   How often the microbe AI processes each microbe
     /// </summary>
-    public const float MICROBE_AI_THINK_INTERVAL = 2.3f;
+    public const float MICROBE_AI_THINK_INTERVAL = 0.3f;
 
     public const int MICROBE_AI_OBJECTS_PER_TASK = 15;
 
@@ -96,6 +96,11 @@ public static class Constants
     // Right now these are used for species split from the player
     public const int INITIAL_SPLIT_POPULATION_MIN = 600;
     public const int INITIAL_SPLIT_POPULATION_MAX = 2000;
+
+    /// <summary>
+    ///   Max number of concurrent audio players that may be spawned per entity.
+    /// </summary>
+    public const int MAX_CONCURRENT_SOUNDS_PER_ENTITY = 10;
 
     /// <summary>
     ///   Controls with how much force agents are fired
@@ -378,6 +383,16 @@ public static class Constants
 
     public const int MAX_SPAWNS_PER_FRAME = 2;
     public const int MAX_DESPAWNS_PER_FRAME = 2;
+
+    public const float TIME_BEFORE_TUTORIAL_CAN_PAUSE = 0.01f;
+
+    public const float MICROBE_MOVEMENT_EXPLAIN_TUTORIAL_DELAY = 15.0f;
+    public const float MICROBE_MOVEMENT_TUTORIAL_REQUIRE_DIRECTION_PRESS_TIME = 2.2f;
+    public const float TUTORIAL_COMPOUND_POSITION_UPDATE_INTERVAL = 0.2f;
+    public const float GLUCOSE_TUTORIAL_TRIGGER_ENABLE_FREE_STORAGE_SPACE = 0.14f;
+    public const float GLUCOSE_TUTORIAL_COLLECT_BEFORE_COMPLETE = 0.21f;
+    public const float MICROBE_REPRODUCTION_TUTORIAL_DELAY = 180;
+    public const float HIDE_MICROBE_STAYING_ALIVE_TUTORIAL_AFTER = 60;
 
     /// <summary>
     ///   All Nodes tagged with this are handled by the spawn system for despawning

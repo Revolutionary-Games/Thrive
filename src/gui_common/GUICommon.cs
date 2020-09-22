@@ -16,6 +16,7 @@ public class GUICommon : Node
         instance = this;
 
         AudioSource = new AudioStreamPlayer();
+        AudioSource.Bus = "GUI";
         tween = new Tween();
 
         AddChild(AudioSource);
@@ -34,6 +35,21 @@ public class GUICommon : Node
     ///   The audio player for UI sound effects.
     /// </summary>
     public AudioStreamPlayer AudioSource { get; }
+
+    public static Vector2 GetFirstChildMinSize(Control control)
+    {
+        var child = control.GetChild<Control>(0);
+
+        return child.RectMinSize;
+    }
+
+    public static void PopupMinSizeMarginPosition(Popup popup)
+    {
+        var left = popup.MarginLeft;
+        var top = popup.MarginTop;
+        popup.PopupCenteredMinsize();
+        popup.RectPosition = new Vector2(left, top);
+    }
 
     /// <summary>
     ///   Play the button click sound effect.

@@ -33,8 +33,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
     // Child components
     private AudioStreamPlayer3D engulfAudio;
-    private AudioStreamPlayer3D otherAudio;
     private AudioStreamPlayer3D movementAudio;
+    private List<AudioStreamPlayer3D> otherAudioPlayers = new List<AudioStreamPlayer3D>();
     private SphereShape engulfShape;
 
     /// <summary>
@@ -128,6 +128,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
     private PackedScene cellBurstEffectScene;
     private bool deathParticlesSpawned;
+
+    /// <summary>
+    ///   3d audio listener attached to this microbe if it is the player owned one.
+    /// </summary>
+    private Listener listener;
 
     /// <summary>
     ///   The membrane of this Microbe. Used for grabbing radius / points from this.
@@ -276,7 +281,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     public float TimeUntilNextAIUpdate { get; set; }
 
     /// <summary>
-    ///   For use by the AI to do run and tumble to find compounds
+    ///   For use by the AI to do run and tumble to find compounds. Also used by player cell for tutorials
     /// </summary>
     [JsonProperty]
     public Dictionary<Compound, float> TotalAbsorbedCompounds { get; set; } = new Dictionary<Compound, float>();
@@ -306,7 +311,15 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         IsPlayerMicrobe = isPlayer;
 
         if (IsPlayerMicrobe)
+        {
+            // Creates and activates the audio listener for the player microbe. Positional sound will be
+            // received by it instead of the main camera.
+            listener = new Listener();
+            AddChild(listener);
+            listener.MakeCurrent();
+
             GD.Print("Player Microbe spawned");
+        }
 
         if (!isPlayer)
             ai = new MicrobeAI(this);
@@ -328,7 +341,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         Membrane = GetNode<Membrane>("Membrane");
         OrganelleParent = GetNode<Spatial>("OrganelleParent");
         engulfAudio = GetNode<AudioStreamPlayer3D>("EngulfAudio");
-        otherAudio = GetNode<AudioStreamPlayer3D>("OtherAudio");
         movementAudio = GetNode<AudioStreamPlayer3D>("MovementAudio");
 
         cellBurstEffectScene = GD.Load<PackedScene>("res://src/microbe_stage/particles/CellBurst.tscn");
@@ -461,6 +473,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         SpawnHelpers.SpawnAgent(props, 10.0f, Constants.EMITTED_AGENT_LIFETIME,
             position, direction, GetParent(),
             SpawnHelpers.LoadAgentScene(), this);
+
+        PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
     }
 
     /// <summary>
@@ -498,10 +512,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             return;
         }
 
-        if (source == "toxin")
+        if (source == "toxin" || source == "oxytoxy")
         {
+            // TODO: Replace this take damage sound with a more appropriate one.
+
             // Play the toxin sound
-            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-toxin-damage.ogg");
+            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
 
             // Divide damage by toxin resistance
             amount /= Species.MembraneType.ToxinResistance;
@@ -518,8 +534,18 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         }
         else if (source == "chunk")
         {
+            // TODO: Replace this take damage sound with a more appropriate one.
+
+            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-toxin-damage.ogg");
+
             // Divide damage by physical resistance
             amount /= Species.MembraneType.PhysicalResistance;
+        }
+        else if (source == "atpDamage")
+        {
+            // TODO: Replace this take damage sound with a more appropriate one.
+
+            PlaySoundEffect("res://assets/sounds/soundeffects/microbe-release-toxin.ogg");
         }
 
         Hitpoints -= amount;
@@ -753,8 +779,26 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         // TODO: make these sound objects only be loaded once
         var sound = GD.Load<AudioStream>(effect);
 
-        otherAudio.Stream = sound;
-        otherAudio.Play();
+        // Find a player not in use or create a new one if none are available.
+        var player = otherAudioPlayers.Find(nextPlayer => !nextPlayer.Playing);
+
+        if (player == null)
+        {
+            // If we hit the player limit just return and ignore the sound.
+            if (otherAudioPlayers.Count >= Constants.MAX_CONCURRENT_SOUNDS_PER_ENTITY)
+                return;
+
+            player = new AudioStreamPlayer3D();
+            player.UnitDb = 50.0f;
+            player.MaxDistance = 100.0f;
+            player.Bus = "SFX";
+
+            AddChild(player);
+            otherAudioPlayers.Add(player);
+        }
+
+        player.Stream = sound;
+        player.Play();
     }
 
     /// <summary>
@@ -789,14 +833,45 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         copyEntity.Compounds.ClearCompounds();
 
         var keys = new List<Compound>(Compounds.Compounds.Keys);
+        var reproductionCompounds = copyEntity.CalculateTotalCompounds();
 
-        // Split the compounds evenly between the two cells.
+        // Split the compounds between the two cells.
         foreach (var compound in keys)
         {
             var amount = Compounds.GetCompoundAmount(compound);
 
-            if (amount > 0)
+            if (amount <= 0)
+                continue;
+
+            // If the compound is for reproduction we give player and NPC microbes different amounts.
+            if (reproductionCompounds.TryGetValue(compound, out float divideAmount))
             {
+                // The amount taken away from the parent cell depends on if it is a player or NPC. Player
+                // cells always have 50% of the compounds they divided with taken away.
+                float amountToTake = amount * 0.5f;
+
+                if (!IsPlayerMicrobe)
+                {
+                    // NPC parent cells have at least 50% taken away, or more if it would leave them
+                    // with more than 90% of the compound it would take to immediately divide again.
+                    amountToTake = Math.Max(amountToTake, amount - (divideAmount * 0.9f));
+                }
+
+                Compounds.TakeCompound(compound, amountToTake);
+
+                // Since the child cell is always an NPC they are given either 50% of the compound from the
+                // parent, or 90% of the amount required to immediately divide again, whichever is smaller.
+                float amountToGive = Math.Min(amount * 0.5f, divideAmount * 0.9f);
+                var didntFit = copyEntity.Compounds.AddCompound(compound, amountToGive);
+
+                if (didntFit > 0)
+                {
+                    // TODO: handle the excess compound that didn't fit in the other cell
+                }
+            }
+            else
+            {
+                // Non-reproductive compounds just always get split evenly to both cells.
                 Compounds.TakeCompound(compound, amount * 0.5f);
 
                 var didntFit = copyEntity.Compounds.AddCompound(compound, amount * 0.5f);
@@ -917,6 +992,17 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
     public override void _Process(float delta)
     {
+        // Updates the listener if this is the player owned microbe.
+        if (listener != null)
+        {
+            // Listener is directional and since it is a child of the microbe it will have the same forward
+            // vector as the parent. Since we want sound to come from the side of the screen relative to the
+            // camera rather than the microbe we need to force the listener to face up every frame.
+            Transform transform = GlobalTransform;
+            transform.basis = new Basis(new Vector3(0.0f, 0.0f, -1.0f));
+            listener.GlobalTransform = transform;
+        }
+
         if (membraneOrganellePositionsAreDirty)
         {
             // Redo the cell membrane.
@@ -967,6 +1053,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             totalMovement += queuedMovementForce;
 
             ApplyMovementImpulse(totalMovement, delta);
+
+            // Play movement sound if one isn't already playing.
+            if (!movementAudio.Playing)
+                movementAudio.Play();
         }
 
         // Rotation is applied in the physics force callback as that's
