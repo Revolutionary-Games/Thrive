@@ -158,7 +158,7 @@ font_data = ExtResource( 55 )
 [sub_resource type="StyleBoxEmpty" id=11]
 
 [sub_resource type="StyleBoxFlat" id=12]
-bg_color = Color( 0.592157, 0.792157, 0.152941, 1 )
+bg_color = Color( 0.294118, 0.152941, 0.356863, 1 )
 
 [sub_resource type="StyleBoxEmpty" id=13]
 
@@ -1131,10 +1131,10 @@ __meta__ = {
 }
 
 [node name="Statistics" type="PanelContainer" parent="MicrobeEditorGUI/CellEditor/TopRight"]
-margin_left = 238.0
+margin_left = 260.0
 margin_top = 10.0
-margin_right = 240.0
-margin_bottom = 252.0
+margin_right = 262.0
+margin_bottom = 256.0
 mouse_filter = 1
 size_flags_horizontal = 8
 __meta__ = {
@@ -1453,7 +1453,7 @@ margin_right = 308.0
 margin_bottom = 20.0
 mouse_filter = 1
 size_flags_horizontal = 3
-color = Color( 0, 0, 0, 0.752941 )
+color = Color( 0, 0, 0, 0.54902 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -3786,10 +3786,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 39 )
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_left = 52.0
-margin_top = 74.0
-margin_right = 354.0
-margin_bottom = 540.0
+margin_left = 56.0
+margin_top = 78.0
+margin_right = 358.0
+margin_bottom = 544.0
 theme = SubResource( 41 )
 edit_alpha = false
 
