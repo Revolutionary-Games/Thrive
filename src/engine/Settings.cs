@@ -175,6 +175,12 @@ public class Settings
     /// </summary>
     public SettingValue<bool> CheatsEnabled { get; set; } = new SettingValue<bool>(false);
 
+    /// <summary>
+    ///   Mods that are loaded in by the auto mod loader
+    ///   so the player don't have to reload them every time they start the game
+    /// </summary>
+    public List<ModInfo> AutoLoadedMods { get; set; } = new List<ModInfo>();
+
     public int CloudSimulationWidth => Constants.CLOUD_X_EXTENT / CloudResolution;
 
     public int CloudSimulationHeight => Constants.CLOUD_Y_EXTENT / CloudResolution;
@@ -265,12 +271,6 @@ public class Settings
     }
 
     /// <summary>
-    ///   Mods that are loaded in by the auto mod loader
-    ///   so the player don't have to reload them every time they start the game
-    /// </summary>
-    public List<ModInfo> AutoLoadedMods { get; set; } = new List<ModInfo>();
-
-    /// <summary>
     ///   Saves the current settings by writing them to the settings file
     /// </summary>
     /// <returns>True on success, false if the file can't be written.</returns>
@@ -309,6 +309,11 @@ public class Settings
     /// </summary>
     public void ApplyGraphicsSettings()
     {
+        if (GUICommon.Instance is null)
+        {
+            return;
+        }
+
         GUICommon.Instance.GetTree().Root.GetViewport().Msaa = MSAAResolution;
         ColourblindScreenFilter.Instance.SetColourblindSetting(ColourblindSetting);
     }
@@ -351,20 +356,6 @@ public class Settings
     {
         OS.WindowFullscreen = FullScreen;
         OS.VsyncEnabled = VSync;
-    }
-
-    /// <summary>
-    ///   Applies current graphics related settings.
-    /// </summary>
-    public void ApplyGraphicsSettings()
-    {
-        if (GUICommon.Instance is null)
-        {
-            return;
-        }
-
-        GUICommon.Instance.GetTree().Root.GetViewport().Msaa = MSAAResolution;
-        ColourblindScreenFilter.Instance.SetColourblindSetting(ColourblindSetting);
     }
 
     /// <summary>
