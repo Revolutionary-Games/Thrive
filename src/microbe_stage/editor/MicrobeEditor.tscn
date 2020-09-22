@@ -949,8 +949,6 @@ shadow_enabled = true
 omni_range = 100.0
 omni_attenuation = 0.420448
 
-[node name="ChromaticFilter" parent="." instance=ExtResource( 79 )]
-
 [node name="MicrobeEditorGUI" type="Node" parent="."]
 pause_mode = 2
 script = ExtResource( 45 )

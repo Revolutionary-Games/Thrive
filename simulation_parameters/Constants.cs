@@ -82,9 +82,9 @@ public static class Constants
     public const float MAX_FORCE_APPLIED_BY_CURRENTS = 0.0525f;
 
     /// <summary>
-    ///   Added 2 seconds here to make the random implementation look a bit better
+    ///   How often the microbe AI processes each microbe
     /// </summary>
-    public const float MICROBE_AI_THINK_INTERVAL = 2.3f;
+    public const float MICROBE_AI_THINK_INTERVAL = 0.3f;
 
     public const int MICROBE_AI_OBJECTS_PER_TASK = 15;
 

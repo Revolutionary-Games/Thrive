@@ -6,9 +6,11 @@
 [ext_resource path="res://src/engine/ColourblindScreenFilter.tscn" type="PackedScene" id=4]
 
 [node name="ScreenOverlays" type="Node"]
+pause_mode = 2
+process_priority = 2000
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = 2
+layer = 128
 
 [node name="LoadingScreen" parent="CanvasLayer" instance=ExtResource( 3 )]
 visible = false
