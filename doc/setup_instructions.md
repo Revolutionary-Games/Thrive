@@ -36,6 +36,9 @@ through the [previous Godot
 versions](https://downloads.tuxfamily.org/godotengine/) to get the
 right version.
 
+Godot is self-contained, meaning that you just extract the downloaded
+archive and run the Godot executable in it.
+
 
 Git with LFS
 ------------
@@ -63,7 +66,7 @@ place.
 If you haven't used git before you can read a free online book to learn
 it here https://git-scm.com/book/en/v2 or if you prefer video learning
 these two are recommended https://www.youtube.com/watch?v=SWYqp7iY_Tc
-https://www.youtube.com/watch?v=HVsySz-h9r4 
+https://www.youtube.com/watch?v=HVsySz-h9r4
 
 
 A development environment
@@ -111,6 +114,10 @@ debugging experience is better than with MonoDevelop.
 Rider requires mono to be installed similarly to MonoDevelop, so
 follow those instructions on how to get mono setup.
 
+<img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/rider_godot_plugin.png" alt="rider godot plugin" width="600px">
+
+For better experience make sure to install the Godot plugin for Rider.
+
 ### Visual Studio 2019
 
 On Windows you can use Visual Studio 2019 to work on Thrive. You can
@@ -122,7 +129,7 @@ Note: Setting up Visual Studio Code with Linux is possible,
 however it is recommended to use MonoDevelop instead
 
 Visual Studio Code, not to be confused with Visual Studio,
-doesn't come with build tools, so you'll need to install 
+doesn't come with build tools, so you'll need to install
 the build tools for Visual Studio from here: https://visualstudio.microsoft.com/downloads/?q=build+tools
 During the installation process, make sure MSBuild tools is listed under
 the installation details.
@@ -157,10 +164,20 @@ have your own repository to work with. There is an in-depth guide
 for working with forks
 [here](https://gist.github.com/Chaser324/ce0505fbed06b947d962).
 
-Next, use git clone to copy your fork to your computer. If you're setting
-up Thrive just for testing or because you want to try in development
-features you don't need to fork the project, and can clone the main
-Thrive repository.
+Next, use `git clone` to copy your fork to your computer. If you're
+setting up Thrive just for testing or because you want to try in
+development features you don't need to fork the project, and can clone
+the main Thrive repository.
+
+<img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/terminal_git_clone.png" alt="termina running git clone">
+
+Terminal showing git clone command. If you don't see the line with
+"filtering content", then you don't have Git LFS working correctly.
+If you don't have Github ssh key setup, you'll want to use a HTTPS URL
+for cloning.
+
+If you use the "download as zip" option on Github, it won't work. This
+is because that option won't properly include the Git LFS files in it.
 
 Note: a path with spaces in it MAY NOT WORK, so to avoid issues you
 should clone to a folder like `~/projects` or `C:/projects`. Also, long
@@ -186,26 +203,57 @@ Setup
 
 Now open your installed Godot with mono. It should open with a project
 manager window. From this window select the option to import a
-project. Use that option and input the path to the folder you cloned
-Thrive in and import the project.godot file.
+project.
 
-Now you should see Thrive on the list of projects, double click it to
-open it.
+<img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/godot_import_button.png" alt="godot import button" width="550px">
+
+Godot project manager with the import button highlighted. If you haven't
+used Godot before the list of projects is most likely blank, so please ignore
+the demo project in this screenshot.
+
+Use that option and input the path to the folder you cloned
+Thrive in and import the project.godot file. Like this:
+
+<img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/godot_project_import.png" alt="godot project import" width="550px">
+
+Clicking on "import & edit" will immediately open the project in Godot.
+So next time you open Godot you will see Thrive on the list of projects,
+double click it to open it.
+
+<img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/project_in_godot_pm.png" alt="godot project manager" width="550px">
+
+Thrive on the project list
 
 Now you should let the Godot editor sit for some time until it is done
 checking and importing all the assets. If the asset import fails it is
 probably because you didn't have Git LFS installed properly. If that
 happens delete the Thrive folder you cloned and go back to the Git LFS
 install step, after doing it again try cloning again.
+
+<img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/thrive_open_in_godot.png" alt="thrive in godot" width="720px">
+
+If everything went fine you should now see Godot editor looking like in this image.
+
 On the top toolbar, go to Editor -> Editor Settings.
+
+<img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/godot_editor_settings_location.png" alt="godot editor settings">
+
 Scroll down on the left window until you find the Mono section.
-Click on Editor. Set External Editor to your development environment. Click
-on Builds under Mono and set Build Tool to your compiler. If you have build errors,
+Click on Editor. Set External Editor to your development environment.
+
+<img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/godot_external_editor_settings.png" alt="godot external editor" width="550px">
+
+Here selected IDE is Rider.
+
+Click on Builds under Mono and set Build Tool to your compiler. If you have build errors,
 check if this is setup properly.
 
 On Linux it is required to use mono as the build tool as selected in
 Godot editor settings. The option to build with dotnet is creates
-broken releases.
+broken releases. Like this:
+
+<img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/godot_build_tool_option_linux.png" alt="godot linux build tool" width="550px">
+
 
 ### C# packages
 
@@ -218,7 +266,7 @@ command: `nuget restore` it should download the missing nuget
 packages. You may need to rerun this command when new package
 dependencies are added to Thrive. Note: if you use MonoDevelop it
 *might* automatically restore missing packages using nuget when
-compiling the game within MonoDevelop. 
+compiling the game within MonoDevelop.
 
 
 On Windows you should use Visual Studio to restore the packages. To do
@@ -246,6 +294,11 @@ environment (and not the Godot editor) to see warnings and get
 highlighting of errors in the source code. However running the game
 from Visual Studio is a bit complicated.
 
+If the compile fails with a bunch of `Godot.something` or `Node` not
+found, undefined references, you need to compile the game from the
+Godot editor to make it setup the correct Godot assembly
+references. After that compiling from an external tool should work.
+
 From MonoDevelop you can use the plugin mentioned before, that adds a
 toolbar with a button to launch the game. To do that open `Thrive.sln`
 with MonoDevelop and in the new toolbar select the options `Thrive -
@@ -256,9 +309,16 @@ breakpoints set in MonoDevelop work.
 From Rider you can compile the game from the top right menu bar by
 selecting the `Player` target (with the Godot icon). That target
 should automatically appear once you install the Godot plugin
-(https://plugins.jetbrains.com/plugin/13882-godot-support). If it
-doesn't you should be able to manually add it with the configuration
-editor.
+(https://plugins.jetbrains.com/plugin/13882-godot-support).
+
+With that plugin you can run the game from Godot (once you have ran once
+from Godot editor so that it sets up things), using these toolbar buttons
+and options:
+
+<img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/rider_debugging_buttons.png" alt="rider debug toolbar">
+
+If it doesn't automatically appear you should be able to manually add it with the
+configuration editor.
 
 Done
 ----
@@ -289,10 +349,17 @@ you are not a team member. If that is needed for a PR please ask some
 team member to commit the assets for you.
 
 For information on committing to the LFS repository you can read this
-wiki page https://wiki.revolutionarygamesstudio.com/wiki/Git_LFS 
+wiki page https://wiki.revolutionarygamesstudio.com/wiki/Git_LFS
 
 Optional downloads
 ------------------
+
+In addition to the following optional downloads you need to have Godot
+in your PATH for the scripts to find it. To do this create a link /
+rename the Godot editor executable to just `godot` or `godot.exe` if
+you are on Windows. Then you need to either add the folder where that
+executable is to your system PATH or move the executable (along the
+other Godot resources it needs) to a path that is already in PATH.
 
 ### Ruby
 
@@ -347,7 +414,7 @@ Linter
 
 Thrive uses automatic formatting of source code to keep style as
 consistent as possible. It is highly recommended you install
-this linter to check your code formatting before submitting a 
+this linter to check your code formatting before submitting a
 pull request.
 
 ## NodeJS
@@ -384,6 +451,9 @@ check_formatting.rb` in order to automatically run all of the
 formatting tools. Make sure that that script doesn't report any errors
 before committing.
 
+When running the script like that it can take a long time to run. See
+the pre-commit hook section for how to speed things up.
+
 Pre-commit hook
 ---------------
 
@@ -403,6 +473,14 @@ emulate this by creating a file in the Thrive folder called
 files to check.
 
 ## Additional Tips
+
+### Troubleshooting (Windows)
+
+If Godot still can't build the full game after following the
+instructions, you should verify that it's using the proper toolset. Go
+to Editor > Editor Settings > Builds under Mono in the panel on the
+left. For VS2019, you should select MSBuild (VS Build Tools) for the
+build tool option, if it isn't already.
 
 ### Cleaning Godot
 
