@@ -3,10 +3,17 @@ using System.Reflection;
 using Godot;
 using Newtonsoft.Json;
 
+/// <summary>
+///   Class that manages all the loading, getting the mods from the directory, and other things
+///   relating to mods
+/// </summary>
 public class ModLoader
 {
     public static List<ModInfo> LoadedMods { get; private set; } = new List<ModInfo>();
 
+    /// <summary>
+    ///   This fetches the mods from the mod directory and then returns it
+    /// </summary>
     public List<ModInfo> LoadModList(bool ignoreAutoload = true)
     {
         FileHelpers.MakeSureDirectoryExists(Constants.MOD_FOLDER);
@@ -44,6 +51,9 @@ public class ModLoader
         return modList;
     }
 
+    /// <summary>
+    ///   This get a ModInfo from a directory and then returns it
+    /// </summary>
     public ModInfo GetModInfo(string location)
     {
         var file = new File();
@@ -59,6 +69,9 @@ public class ModLoader
         return currentModInfo;
     }
 
+    /// <summary>
+    ///   This is the method that actually loads the mod after verifying it and updating all the other variables
+    /// </summary>
     public int LoadMod(ModInfo currentMod, bool addToAutoLoader = false, bool clearAutoloaderModList = true)
     {
         var file = new File();
@@ -104,6 +117,9 @@ public class ModLoader
         return -1;
     }
 
+    /// <summary>
+    ///   This loads multiple mods from a array
+    /// </summary>
     public List<ModInfo> LoadModFromList(ModInfo[] modsToLoad, bool ignoreAutoloaded = true,
         bool addToAutoLoader = false, bool clearAutoloaderModList = true)
     {
@@ -136,6 +152,9 @@ public class ModLoader
         return failedModList;
     }
 
+    /// <summary>
+    ///   This loads multiple mods from a ItemList, Mostly use for the ModManagerUI
+    /// </summary>
     public List<ModInfo> LoadModFromList(ItemList modsToLoad, bool ignoreAutoloaded = true,
         bool addToAutoLoader = false, bool clearAutoloaderModList = true)
     {
@@ -170,6 +189,9 @@ public class ModLoader
         return failedModList;
     }
 
+    /// <summary>
+    ///   This resets the game by clearing the mod list in the settings file
+    /// </summary>
     public void ResetGame()
     {
         var modSettingList = Settings.Instance.AutoLoadedMods;
@@ -177,7 +199,12 @@ public class ModLoader
         Settings.Instance.Save();
     }
 
-    // Copied From The PauseMenu.cs
+    /// <summary>
+    ///   This loads multiple mods from a array
+    /// </summary>
+    /// <remarks>
+    ///   This was copied from the PauseMenu.cs
+    /// </remarks>
     private static string ReadJSONFile(string path)
     {
         using (var file = new File())

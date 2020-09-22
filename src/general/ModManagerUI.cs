@@ -1,5 +1,8 @@
 using Godot;
 
+/// <summary>
+///   Class managing the Mod Manager UI
+/// </summary>
 public class ModManagerUI : Control
 {
     [Export]
@@ -171,6 +174,9 @@ public class ModManagerUI : Control
         confirmationPopup.PopupCenteredMinsize();
     }
 
+    /// <summary>
+    ///   This is the method that actually reset the game
+    /// </summary>
     private void ResetGame()
     {
         GUICommon.Instance.PlayButtonPressSound();
@@ -192,6 +198,9 @@ public class ModManagerUI : Control
         ReloadUnloadedModList();
     }
 
+    /// <summary>
+    ///   This get the mods from the mod directory and updates the ItemList
+    /// </summary>
     private void ReloadUnloadedModList()
     {
         int index = 0;

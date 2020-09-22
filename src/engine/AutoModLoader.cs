@@ -1,6 +1,10 @@
 using System.Collections.Generic;
 using Godot;
 
+/// <summary>
+///   Autoloads Mods from the Settings and handles the mods that failed to load
+///   so that we can show a popup for the player
+/// </summary>
 public class AutoModLoader : Node
 {
     private List<ModInfo> failedToLoadMods;

@@ -1,6 +1,9 @@
 using Godot;
 using Newtonsoft.Json;
 
+/// <summary>
+///   Class that holds the info of a mod from a 'mod_info.json' file
+/// </summary>
 [JsonObject(MemberSerialization.OptIn)]
 public class ModInfo : Object
 {
