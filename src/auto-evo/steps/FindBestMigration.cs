@@ -121,14 +121,14 @@
 
         private class AttemptResult : IAttemptResult
         {
-            public AttemptResult(SpeciesMigration migration, int score)
+            public AttemptResult(SpeciesMigration migration, long score)
             {
                 Migration = migration;
                 Score = score;
             }
 
             public SpeciesMigration Migration { get; }
-            public int Score { get; }
+            public long Score { get; }
         }
     }
 }

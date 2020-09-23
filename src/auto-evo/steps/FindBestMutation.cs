@@ -52,14 +52,14 @@
 
         private class AttemptResult : IAttemptResult
         {
-            public AttemptResult(Species mutation, int score)
+            public AttemptResult(Species mutation, long score)
             {
                 Mutation = mutation;
                 Score = score;
             }
 
             public Species Mutation { get; }
-            public int Score { get; }
+            public long Score { get; }
         }
     }
 }
