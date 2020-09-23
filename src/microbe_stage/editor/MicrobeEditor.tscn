@@ -78,7 +78,6 @@
 [ext_resource path="res://assets/textures/gui/bevel/4xSymmetry.png" type="Texture" id=76]
 [ext_resource path="res://assets/textures/gui/bevel/2xSymmetry.png" type="Texture" id=77]
 [ext_resource path="res://assets/textures/gui/bevel/increase.png" type="Texture" id=78]
-[ext_resource path="res://src/engine/ChromaticFilter.tscn" type="PackedScene" id=79]
 [ext_resource path="res://src/gui_common/scrollbar_theme.tres" type="Theme" id=80]
 [ext_resource path="res://assets/textures/gui/bevel/MpBarSubtract.png" type="Texture" id=81]
 [ext_resource path="res://assets/textures/gui/bevel/MediumTwoNormal.png" type="Texture" id=82]
@@ -997,8 +996,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.33046, 0 )
 shadow_enabled = true
 omni_range = 100.0
 omni_attenuation = 0.420448
-
-[node name="ChromaticFilter" parent="." instance=ExtResource( 79 )]
 
 [node name="MicrobeEditorGUI" type="Node" parent="."]
 pause_mode = 2
