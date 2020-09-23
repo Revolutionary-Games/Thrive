@@ -184,8 +184,7 @@ public class SaveManagerGUI : Control
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.3f, true);
-        TransitionManager.Instance.StartTransitions(this, nameof(LoadFirstSelectedSave));
+        LoadFirstSelectedSave();
     }
 
     private void RefreshButtonPressed()

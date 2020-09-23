@@ -189,6 +189,24 @@ public class SaveListItem : PanelContainer
 
     public void LoadThisSave()
     {
+        if (versionDifference < 0)
+        {
+            EmitSignal(nameof(OnOldSaveLoaded));
+            return;
+        }
+
+        if (versionDifference > 0)
+        {
+            EmitSignal(nameof(OnNewSaveLoaded));
+            return;
+        }
+
+        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.3f, true);
+        TransitionManager.Instance.StartTransitions(this, nameof(LoadSave));
+    }
+
+    private void LoadSave()
+    {
         SaveHelper.LoadSave(SaveName);
     }
 
@@ -225,20 +243,7 @@ public class SaveListItem : PanelContainer
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        if (versionDifference < 0)
-        {
-            EmitSignal(nameof(OnOldSaveLoaded));
-            return;
-        }
-
-        if (versionDifference > 0)
-        {
-            EmitSignal(nameof(OnNewSaveLoaded));
-            return;
-        }
-
-        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.3f, true);
-        TransitionManager.Instance.StartTransitions(this, nameof(LoadThisSave));
+        LoadThisSave();
     }
 
     private void OnSelect()

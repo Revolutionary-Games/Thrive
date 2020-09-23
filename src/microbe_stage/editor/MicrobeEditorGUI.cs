@@ -39,6 +39,9 @@ public class MicrobeEditorGUI : Node
     public NodePath SizeLabelPath;
 
     [Export]
+    public NodePath OrganismStatisticsPath;
+
+    [Export]
     public NodePath SpeedLabelPath;
 
     [Export]
@@ -260,6 +263,7 @@ public class MicrobeEditorGUI : Node
     private PanelContainer structureTab;
     private PanelContainer appearanceTab;
 
+    private MarginContainer statisticsPanel;
     private Label sizeLabel;
     private Label speedLabel;
     private Label hpLabel;
@@ -364,6 +368,7 @@ public class MicrobeEditorGUI : Node
         appearanceTab = GetNode<PanelContainer>(ApperanceTabPath);
         appearanceTabButton = GetNode<Button>(AppearanceTabButtonPath);
 
+        statisticsPanel = GetNode<MarginContainer>(OrganismStatisticsPath);
         sizeLabel = GetNode<Label>(SizeLabelPath);
         speedLabel = GetNode<Label>(SpeedLabelPath);
         hpLabel = GetNode<Label>(HpLabelPath);
@@ -529,6 +534,9 @@ public class MicrobeEditorGUI : Node
         initialCellSpeed = editor.CalculateSpeed();
         initialCellHp = editor.CalculateHitpoints();
         initialCellSize = editor.MicrobeHexSize;
+
+        // Resets the statistics panel size to fit
+        statisticsPanel.RectSize = Vector2.Zero;
     }
 
     public void UpdateSize(int size)
@@ -581,6 +589,9 @@ public class MicrobeEditorGUI : Node
 
         atpProductionBar.UpdateAndMoveBars(SortBarData(energyBalance.Production));
         atpConsumptionBar.UpdateAndMoveBars(SortBarData(energyBalance.Consumption));
+
+        // Resets the statistics panel size to fit
+        statisticsPanel.RectSize = Vector2.Zero;
     }
 
     // Disable this because the cleanup and inspections disagree
@@ -1187,6 +1198,9 @@ public class MicrobeEditorGUI : Node
         {
             hpIndicator.Hide();
         }
+
+        // Resets the statistics panel size to fit
+        statisticsPanel.RectSize = Vector2.Zero;
     }
 
     /// <remarks>

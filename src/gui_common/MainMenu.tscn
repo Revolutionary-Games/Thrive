@@ -117,10 +117,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -683.0
-margin_top = -224.0
-margin_right = 683.0
-margin_bottom = 224.0
+margin_left = -640.0
+margin_top = -209.6
+margin_right = 640.0
+margin_bottom = 209.4
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -128,16 +128,16 @@ __meta__ = {
 [node name="MainMenu" type="VBoxContainer" parent="MenuContainers/Menus/MarginContainer" groups=[
 "MenuItem",
 ]]
-margin_right = 1366.0
-margin_bottom = 448.0
+margin_right = 1280.0
+margin_bottom = 419.0
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="NewGame" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
-margin_left = 558.0
-margin_right = 808.0
+margin_left = 515.0
+margin_right = 765.0
 margin_bottom = 40.0
 rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
@@ -147,9 +147,9 @@ enabled_focus_mode = 0
 text = "New Game"
 
 [node name="LoadGame" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
-margin_left = 558.0
+margin_left = 515.0
 margin_top = 50.0
-margin_right = 808.0
+margin_right = 765.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
@@ -159,9 +159,9 @@ enabled_focus_mode = 0
 text = "Load Game"
 
 [node name="Options" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
-margin_left = 558.0
+margin_left = 515.0
 margin_top = 100.0
-margin_right = 808.0
+margin_right = 765.0
 margin_bottom = 140.0
 rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
@@ -171,9 +171,9 @@ enabled_focus_mode = 0
 text = "Options"
 
 [node name="Tools" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
-margin_left = 558.0
+margin_left = 515.0
 margin_top = 150.0
-margin_right = 808.0
+margin_right = 765.0
 margin_bottom = 190.0
 rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
@@ -183,9 +183,9 @@ enabled_focus_mode = 0
 text = "Tools"
 
 [node name="Extras" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
-margin_left = 558.0
+margin_left = 515.0
 margin_top = 200.0
-margin_right = 808.0
+margin_right = 765.0
 margin_bottom = 240.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
@@ -195,9 +195,9 @@ enabled_focus_mode = 0
 text = "Extras"
 
 [node name="Credits" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
-margin_left = 558.0
+margin_left = 515.0
 margin_top = 250.0
-margin_right = 808.0
+margin_right = 765.0
 margin_bottom = 290.0
 rect_min_size = Vector2( 250, 40 )
 mouse_filter = 1
@@ -207,9 +207,9 @@ enabled_focus_mode = 0
 text = "Credits"
 
 [node name="Quit" type="Button" parent="MenuContainers/Menus/MarginContainer/MainMenu"]
-margin_left = 558.0
+margin_left = 515.0
 margin_top = 300.0
-margin_right = 808.0
+margin_right = 765.0
 margin_bottom = 340.0
 rect_min_size = Vector2( 250, 40 )
 focus_mode = 0
@@ -222,8 +222,8 @@ text = "Quit"
 "MenuItem",
 ]]
 visible = false
-margin_right = 1366.0
-margin_bottom = 448.0
+margin_right = 1280.0
+margin_bottom = 419.0
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
