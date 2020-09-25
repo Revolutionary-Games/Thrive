@@ -24,7 +24,7 @@
 
         protected override IAttemptResult TryCurrentVariant()
         {
-            var config = new SimulationConfiguration(map, Constants.AUTOEVO_VARIANT_SIMULATION_STEPS);
+            var config = new SimulationConfiguration(map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
 
             PopulationSimulation.Simulate(config);
 
@@ -38,7 +38,7 @@
             var mutated = (MicrobeSpecies)species.Clone();
             mutations.CreateMutatedSpecies((MicrobeSpecies)species, mutated);
 
-            var config = new SimulationConfiguration(map, Constants.AUTOEVO_VARIANT_SIMULATION_STEPS);
+            var config = new SimulationConfiguration(map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
 
             config.ExcludedSpecies.Add(species);
             config.ExtraSpecies.Add(mutated);

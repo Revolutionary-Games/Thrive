@@ -366,18 +366,16 @@ public static class Constants
     ///   How many steps forward of the population simulation to do when auto-evo looks at the results of mutations
     ///   etc. for which is the most beneficial
     /// </summary>
-    public const int AUTOEVO_VARIANT_SIMULATION_STEPS = 10;
+    public const int AUTO_EVO_VARIANT_SIMULATION_STEPS = 10;
+
+    /// <summary>
+    ///   Populations of species that are under this will be killed off by auto-evo
+    /// </summary>
+    public const int AUTO_EVO_MINIMUM_VIABLE_POPULATION = 25;
 
     public const int AUTO_EVO_MINIMUM_MOVE_POPULATION = 250;
     public const float AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION = 0.1f;
-    public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.9f;
-
-    // Some (placeholder) auto-evo algorithm tweak parameters
-    public const int AUTO_EVO_LOW_SPECIES_THRESHOLD = 3;
-    public const int AUTO_EVO_LOW_SPECIES_BOOST = 500;
-    public const int AUTO_EVO_HIGH_SPECIES_THRESHOLD = 11;
-    public const int AUTO_EVO_HIGH_SPECIES_PENALTY = 500;
-    public const int AUTO_EVO_RANDOM_POPULATION_CHANGE = 500;
+    public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.8f;
 
     public const float GLUCOSE_REDUCTION_RATE = 0.8f;
 
@@ -453,6 +451,25 @@ public static class Constants
     public const int KIBIBYTE = 1024;
     public const int MEBIBYTE = 1024 * KIBIBYTE;
 
+    // Following is a hacky way to ensure some conditions apply on the constants defined here.
+    // When the constants don't follow a set of conditions a warning is raised, which CI treats as an error.
+    // Or maybe it raises an actual error. Anyway this seems good enough for now to do some stuff
+
+#pragma warning disable CA1823 // unused fields
+
+    // ReSharper disable UnreachableCode
+    private const uint MinimumMovePopIsHigherThanMinimumViable =
+        (AUTO_EVO_MINIMUM_MOVE_POPULATION * AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION >=
+            AUTO_EVO_MINIMUM_VIABLE_POPULATION) ?
+            0 :
+            -42;
+
+    // ReSharper restore UnreachableCode
+#pragma warning restore CA1823
+
+    /// <summary>
+    ///   Game version property
+    /// </summary>
     public static string Version
     {
         get

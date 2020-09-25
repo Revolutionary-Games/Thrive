@@ -146,6 +146,8 @@
 
             var ironInPatch = patch.GetTotalChunkCompoundAmount(Iron) * 300;
 
+            // Begin of new auto-evo prototype algorithm
+
             var speciesEnergies = new Dictionary<MicrobeSpecies, float>(species.Count);
 
             var totalPhotosynthesisScore = 0.0f;
@@ -205,6 +207,10 @@
 
                 var newPopulation = (int)(speciesEnergies[currentSpecies]
                     / Math.Pow(currentSpecies.Organelles.Count, 1.3f));
+
+                // Can't survive without enough population
+                if (newPopulation < Constants.AUTO_EVO_MINIMUM_VIABLE_POPULATION)
+                    newPopulation = 0;
 
                 populations.AddPopulationResultForSpecies(currentSpecies, patch, newPopulation);
             }
