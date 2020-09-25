@@ -15,6 +15,7 @@
         private static readonly Compound HydrogenSulfide = SimulationParameters.Instance.GetCompound("hydrogensulfide");
         private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
         private static readonly Compound Iron = SimulationParameters.Instance.GetCompound("iron");
+        private static readonly Compound Oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
 
         public static void Simulate(SimulationConfiguration parameters)
         {
@@ -224,6 +225,15 @@
                 if (organelle.Definition.HasComponentFactory<PilusComponentFactory>())
                 {
                     predationScore += 1;
+                    continue;
+                }
+
+                foreach (var process in organelle.Definition.RunnableProcesses)
+                {
+                    if (process.Process.Outputs.ContainsKey(Oxytoxy))
+                    {
+                        predationScore += 1;
+                    }
                 }
             }
 
