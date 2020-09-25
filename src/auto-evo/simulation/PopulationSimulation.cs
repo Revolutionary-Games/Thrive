@@ -121,13 +121,17 @@
         /// <summary>
         ///   The heart of the simulation that handles the processed parameters and calculates future populations.
         /// </summary>
-        private static void SimulatePatchStep(RunResults populations, Patch patch, List<Species> species, Random random)
+        private static void SimulatePatchStep(RunResults populations, Patch patch, List<Species> genericSpecies,
+            Random random)
         {
             _ = random;
 
             // Skip if there aren't any species in this patch
-            if (species.Count < 1)
+            if (genericSpecies.Count < 1)
                 return;
+
+            // This algorithm version is for microbe species
+            var species = genericSpecies.Select(s => (MicrobeSpecies)s).ToList();
 
             var biome = patch.Biome;
 
@@ -142,8 +146,6 @@
 
             var ironInPatch = patch.GetTotalChunkCompoundAmount(Iron) * 300;
 
-            // TODO: this is where the proper auto-evo algorithm goes
-
             var speciesEnergies = new Dictionary<MicrobeSpecies, float>(species.Count);
 
             var totalPhotosynthesisScore = 0.0f;
@@ -154,7 +156,7 @@
             var totalPredationScore = 0.0f;
 
             // Calculate the total scores of each type in the current patch
-            foreach (MicrobeSpecies currentSpecies in species)
+            foreach (var currentSpecies in species)
             {
                 totalPhotosynthesisScore += GetCompoundUseScore(currentSpecies, Sunlight);
                 totalChemosynthesisScore += GetCompoundUseScore(currentSpecies, HydrogenSulfide);
@@ -173,7 +175,7 @@
             // Calculate the share of environmental energy captured by each species
             var energyAvailableForPredation = 0.0f;
 
-            foreach (MicrobeSpecies currentSpecies in species)
+            foreach (var currentSpecies in species)
             {
                 var currentSpeciesEnergy = 0.0f;
 
@@ -195,7 +197,7 @@
 
             // Calculate the share of predation done by each species
             // Then update populations
-            foreach (MicrobeSpecies currentSpecies in species)
+            foreach (var currentSpecies in species)
             {
                 speciesEnergies[currentSpecies] += energyAvailableForPredation
                     * GetPredationScore(currentSpecies) / totalPredationScore;
