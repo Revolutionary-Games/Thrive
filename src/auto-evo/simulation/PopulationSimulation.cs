@@ -136,16 +136,16 @@
 
             var biome = patch.Biome;
 
-            var sunlightInPatch = biome.Compounds[Sunlight].Dissolved * 3000;
+            var sunlightInPatch = biome.Compounds[Sunlight].Dissolved * Constants.AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT;
 
             var hydrogenSulfideInPatch = biome.Compounds[HydrogenSulfide].Density
-                * biome.Compounds[HydrogenSulfide].Amount * 300;
+                * biome.Compounds[HydrogenSulfide].Amount * Constants.AUTO_EVO_COMPOUND_ENERGY_AMOUNT;
 
             var glucoseInPatch = (biome.Compounds[Glucose].Density
                 * biome.Compounds[Glucose].Amount
-                + patch.GetTotalChunkCompoundAmount(Glucose)) * 300;
+                + patch.GetTotalChunkCompoundAmount(Glucose)) * Constants.AUTO_EVO_COMPOUND_ENERGY_AMOUNT;
 
-            var ironInPatch = patch.GetTotalChunkCompoundAmount(Iron) * 300;
+            var ironInPatch = patch.GetTotalChunkCompoundAmount(Iron) * Constants.AUTO_EVO_COMPOUND_ENERGY_AMOUNT;
 
             // Begin of new auto-evo prototype algorithm
 
@@ -194,7 +194,7 @@
                 currentSpeciesEnergy += glucoseInPatch
                     * GetCompoundUseScore(currentSpecies, Glucose) / totalGlucoseScore;
 
-                energyAvailableForPredation += 0.5f * currentSpeciesEnergy;
+                energyAvailableForPredation += currentSpeciesEnergy * Constants.AUTO_EVO_PREDATION_ENERGY_MULTIPLIER;
                 speciesEnergies.Add(currentSpecies, currentSpeciesEnergy);
             }
 
@@ -206,7 +206,7 @@
                     * GetPredationScore(currentSpecies) / totalPredationScore;
                 speciesEnergies[currentSpecies] -= energyAvailableForPredation / species.Count;
 
-                var newPopulation = (int)(speciesEnergies[currentSpecies]
+                var newPopulation = (long)(speciesEnergies[currentSpecies]
                     / Math.Pow(currentSpecies.Organelles.Count, 1.3f));
 
                 // Can't survive without enough population
@@ -220,11 +220,12 @@
         private static float GetPredationScore(MicrobeSpecies species)
         {
             var predationScore = 0.0f;
+
             foreach (var organelle in species.Organelles)
             {
                 if (organelle.Definition.HasComponentFactory<PilusComponentFactory>())
                 {
-                    predationScore += 1;
+                    predationScore += Constants.AUTO_EVO_PILUS_PREDATION_SCORE;
                     continue;
                 }
 
@@ -232,7 +233,7 @@
                 {
                     if (process.Process.Outputs.ContainsKey(Oxytoxy))
                     {
-                        predationScore += 1;
+                        predationScore += Constants.AUTO_EVO_TOXIN_PREDATION_SCORE;
                     }
                 }
             }
@@ -253,13 +254,13 @@
                         if (process.Process.Outputs.ContainsKey(Glucose))
                         {
                             compoundUseScore += process.Process.Outputs[Glucose]
-                                / process.Process.Inputs[compound];
+                                / process.Process.Inputs[compound] / Constants.AUTO_EVO_GLUCOSE_USE_SCORE_DIVISOR;
                         }
 
                         if (process.Process.Outputs.ContainsKey(ATP))
                         {
                             compoundUseScore += process.Process.Outputs[ATP]
-                                / process.Process.Inputs[compound] / 300;
+                                / process.Process.Inputs[compound] / Constants.AUTO_EVO_ATP_USE_SCORE_DIVISOR;
                         }
                     }
                 }
