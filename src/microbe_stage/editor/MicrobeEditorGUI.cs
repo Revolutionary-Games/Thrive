@@ -58,6 +58,12 @@ public class MicrobeEditorGUI : Node
     public NodePath ATPBalanceLabelPath;
 
     [Export]
+    public NodePath ATPProductionLabelPath;
+
+    [Export]
+    public NodePath ATPConsumptionLabelPath;
+
+    [Export]
     public NodePath ATPBarContainerPath;
 
     [Export]
@@ -240,6 +246,8 @@ public class MicrobeEditorGUI : Node
     private TextureButton symmetryButton;
     private TextureRect symmetryIcon;
     private Label atpBalanceLabel;
+    private Label atpProductionLabel;
+    private Label atpConsumptionLabel;
     private SegmentedBar atpProductionBar;
     private SegmentedBar atpConsumptionBar;
     private Label glucoseReductionLabel;
@@ -313,6 +321,8 @@ public class MicrobeEditorGUI : Node
         symmetryButton = GetNode<TextureButton>(SymmetryButtonPath);
         finishButton = GetNode<Button>(FinishButtonPath);
         atpBalanceLabel = GetNode<Label>(ATPBalanceLabelPath);
+        atpProductionLabel = GetNode<Label>(ATPProductionLabelPath);
+        atpConsumptionLabel = GetNode<Label>(ATPConsumptionLabelPath);
         atpProductionBar = GetNode<SegmentedBar>(ATPProductionBarPath);
         atpConsumptionBar = GetNode<SegmentedBar>(ATPConsumptionBarPath);
         glucoseReductionLabel = GetNode<Label>(GlucoseReductionLabelPath);
@@ -384,6 +394,7 @@ public class MicrobeEditorGUI : Node
         mutationPointsBar.Value = possibleMutationPoints;
         mutationPointsSubtractBar.MaxValue = Constants.BASE_MUTATION_POINTS;
         mutationPointsSubtractBar.Value = editor.MutationPoints;
+
         if (possibleMutationPoints != editor.MutationPoints)
         {
             mutationPointsLabel.Text =
@@ -459,6 +470,9 @@ public class MicrobeEditorGUI : Node
             atpBalanceLabel.Text = ATP_BALANCE_DEFAULT_TEXT + " - ATP PRODUCTION TOO LOW!";
             atpBalanceLabel.AddColorOverride("font_color", new Color(1.0f, 0.2f, 0.2f));
         }
+
+        atpProductionLabel.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", energyBalance.TotalProduction);
+        atpConsumptionLabel.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", energyBalance.TotalConsumption);
 
         float maxValue = Math.Max(energyBalance.TotalConsumption, energyBalance.TotalProduction);
         atpProductionBar.MaxValue = maxValue;
@@ -748,6 +762,14 @@ public class MicrobeEditorGUI : Node
         SetRigiditySliderTooltip(value);
     }
 
+    internal void SendUndoToTutorial(TutorialState tutorial)
+    {
+        if (tutorial.EditorUndoTutorial == null)
+            return;
+
+        tutorial.EditorUndoTutorial.EditorUndoButtonControl = undoButton;
+    }
+
     private static void SetOrganelleButtonStatus(Button organelleItem, bool nucleus)
     {
         if (organelleItem.Name == "nucleus")
@@ -829,6 +851,8 @@ public class MicrobeEditorGUI : Node
         {
             GD.PrintErr("Invalid tab");
         }
+
+        editor.TutorialState.SendEvent(TutorialEventType.MicrobeEditorTabChanged, new StringEventArgs(tab), this);
     }
 
     private void GoToPatchTab()
@@ -1268,6 +1292,8 @@ public class MicrobeEditorGUI : Node
     private void UpdateShownPatchDetails()
     {
         var patch = mapDrawer.SelectedPatch;
+
+        editor.TutorialState.SendEvent(TutorialEventType.MicrobeEditorPatchSelected, new PatchEventArgs(patch), this);
 
         if (patch == null)
         {

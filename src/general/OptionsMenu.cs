@@ -69,6 +69,24 @@ public class OptionsMenu : Control
     [Export]
     public NodePath MusicMutedPath;
 
+    [Export]
+    public NodePath AmbianceVolumePath;
+
+    [Export]
+    public NodePath AmbianceMutedPath;
+
+    [Export]
+    public NodePath SFXVolumePath;
+
+    [Export]
+    public NodePath SFXMutedPath;
+
+    [Export]
+    public NodePath GUIVolumePath;
+
+    [Export]
+    public NodePath GUIMutedPath;
+
     // Performance tab.
     [Export]
     public NodePath PerformanceTabPath;
@@ -90,6 +108,9 @@ public class OptionsMenu : Control
     public NodePath PlayMicrobeIntroPath;
 
     [Export]
+    public NodePath TutorialsEnabledPath;
+
+    [Export]
     public NodePath CheatsPath;
 
     [Export]
@@ -106,6 +127,9 @@ public class OptionsMenu : Control
 
     [Export]
     public NodePath DefaultsConfirmationBoxPath;
+
+    [Export]
+    public NodePath ErrorAcceptBoxPath;
 
     private const float AUDIO_BAR_SCALE = 6f;
     private Button resetButton;
@@ -132,6 +156,12 @@ public class OptionsMenu : Control
     private CheckBox masterMuted;
     private Slider musicVolume;
     private CheckBox musicMuted;
+    private Slider ambianceVolume;
+    private CheckBox ambianceMuted;
+    private Slider sfxVolume;
+    private CheckBox sfxMuted;
+    private Slider guiVolume;
+    private CheckBox guiMuted;
 
     // Performance tab
     private Control performanceTab;
@@ -143,13 +173,15 @@ public class OptionsMenu : Control
     private CheckBox playIntro;
     private CheckBox playMicrobeIntro;
     private CheckBox cheats;
+    private CheckBox tutorialsEnabled;
     private CheckBox autosave;
     private SpinBox maxAutosaves;
     private SpinBox maxQuicksaves;
 
     // Confirmation Boxes
-    private ConfirmationDialog backConfirmationBox;
+    private WindowDialog backConfirmationBox;
     private ConfirmationDialog defaultsConfirmationBox;
+    private AcceptDialog errorAcceptBox;
 
     /*
       Misc
@@ -210,6 +242,12 @@ public class OptionsMenu : Control
         masterMuted = GetNode<CheckBox>(MasterMutedPath);
         musicVolume = GetNode<Slider>(MusicVolumePath);
         musicMuted = GetNode<CheckBox>(MusicMutedPath);
+        ambianceVolume = GetNode<Slider>(AmbianceVolumePath);
+        ambianceMuted = GetNode<CheckBox>(AmbianceMutedPath);
+        sfxVolume = GetNode<Slider>(SFXVolumePath);
+        sfxMuted = GetNode<CheckBox>(SFXMutedPath);
+        guiVolume = GetNode<Slider>(GUIVolumePath);
+        guiMuted = GetNode<CheckBox>(GUIMutedPath);
 
         // Performance
         performanceTab = GetNode<Control>(PerformanceTabPath);
@@ -220,13 +258,15 @@ public class OptionsMenu : Control
         miscTab = GetNode<Control>(MiscTabPath);
         playIntro = GetNode<CheckBox>(PlayIntroPath);
         playMicrobeIntro = GetNode<CheckBox>(PlayMicrobeIntroPath);
+        tutorialsEnabled = GetNode<CheckBox>(TutorialsEnabledPath);
         cheats = GetNode<CheckBox>(CheatsPath);
         autosave = GetNode<CheckBox>(AutoSavePath);
         maxAutosaves = GetNode<SpinBox>(MaxAutoSavesPath);
         maxQuicksaves = GetNode<SpinBox>(MaxQuickSavesPath);
 
-        backConfirmationBox = GetNode<ConfirmationDialog>(BackConfirmationBoxPath);
+        backConfirmationBox = GetNode<WindowDialog>(BackConfirmationBoxPath);
         defaultsConfirmationBox = GetNode<ConfirmationDialog>(DefaultsConfirmationBoxPath);
+        errorAcceptBox = GetNode<AcceptDialog>(ErrorAcceptBoxPath);
 
         selectedOptionsTab = SelectedOptionsTab.Graphics;
 
@@ -260,6 +300,12 @@ public class OptionsMenu : Control
         masterMuted.Pressed = settings.VolumeMasterMuted;
         musicVolume.Value = ConvertDBToSoundBar(settings.VolumeMusic);
         musicMuted.Pressed = settings.VolumeMusicMuted;
+        ambianceVolume.Value = ConvertDBToSoundBar(settings.VolumeAmbiance);
+        ambianceMuted.Pressed = settings.VolumeAmbianceMuted;
+        sfxVolume.Value = ConvertDBToSoundBar(settings.VolumeSFX);
+        sfxMuted.Pressed = settings.VolumeSFXMuted;
+        guiVolume.Value = ConvertDBToSoundBar(settings.VolumeGUI);
+        guiMuted.Pressed = settings.VolumeGUIMuted;
 
         // Performance
         cloudInterval.Selected = CloudIntervalToIndex(settings.CloudUpdateInterval);
@@ -268,6 +314,7 @@ public class OptionsMenu : Control
         // Misc
         playIntro.Pressed = settings.PlayIntroVideo;
         playMicrobeIntro.Pressed = settings.PlayMicrobeIntroVideo;
+        tutorialsEnabled.Pressed = settings.TutorialsEnabled;
         cheats.Pressed = settings.CheatsEnabled;
         autosave.Pressed = settings.AutoSaveEnabled;
         maxAutosaves.Value = settings.MaxAutoSaves;
@@ -499,7 +546,8 @@ public class OptionsMenu : Control
         // Save the new settings to the config file.
         if (!Settings.Save())
         {
-            GD.PrintErr("Failed to save new options menu settings.");
+            GD.PrintErr("Failed to save new options menu settings to configuration file.");
+            errorAcceptBox.PopupCenteredMinsize();
             return;
         }
 
@@ -516,15 +564,41 @@ public class OptionsMenu : Control
         defaultsConfirmationBox.PopupCenteredMinsize();
     }
 
-    private void BackConfirmSelected()
+    private void BackSaveSelected()
+    {
+        // Save the new settings to the config file.
+        if (!Settings.Save())
+        {
+            GD.PrintErr("Failed to save new options menu settings to configuration file.");
+            backConfirmationBox.Hide();
+            errorAcceptBox.PopupCenteredMinsize();
+
+            return;
+        }
+
+        // Copy over the new saved settings.
+        savedSettings = Settings.Instance.Clone();
+        backConfirmationBox.Hide();
+
+        CompareSettings();
+        EmitSignal(nameof(OnOptionsClosed));
+    }
+
+    private void BackDiscardSelected()
     {
         Settings.Instance.LoadFromObject(savedSettings);
         Settings.ApplyAll();
         ApplySettingsToControls(Settings.Instance);
 
-        CompareSettings();
+        backConfirmationBox.Hide();
 
+        CompareSettings();
         EmitSignal(nameof(OnOptionsClosed));
+    }
+
+    private void BackCancelSelected()
+    {
+        backConfirmationBox.Hide();
     }
 
     private void DefaultsConfirmSelected()
@@ -540,7 +614,7 @@ public class OptionsMenu : Control
     // Graphics Button Callbacks
     private void OnFullScreenToggled(bool pressed)
     {
-        Settings.Instance.FullScreen = pressed;
+        Settings.Instance.FullScreen.Value = pressed;
         Settings.ApplyWindowSettings();
 
         CompareSettings();
@@ -548,7 +622,7 @@ public class OptionsMenu : Control
 
     private void OnVSyncToggled(bool pressed)
     {
-        Settings.Instance.VSync = pressed;
+        Settings.Instance.VSync.Value = pressed;
         Settings.ApplyWindowSettings();
 
         CompareSettings();
@@ -556,7 +630,7 @@ public class OptionsMenu : Control
 
     private void OnMSAAResolutionSelected(int index)
     {
-        Settings.Instance.MSAAResolution = MSAAIndexToResolution(index);
+        Settings.Instance.MSAAResolution.Value = MSAAIndexToResolution(index);
         Settings.ApplyGraphicsSettings();
 
         CompareSettings();
@@ -564,7 +638,7 @@ public class OptionsMenu : Control
 
     private void OnColourblindSettingSelected(int index)
     {
-        Settings.Instance.ColourblindSetting = index;
+        Settings.Instance.ColourblindSetting.Value = index;
         Settings.ApplyGraphicsSettings();
 
         CompareSettings();
@@ -572,38 +646,30 @@ public class OptionsMenu : Control
 
     private void OnChromaticAberrationToggled(bool toggle)
     {
-        Settings.Instance.ChromaticEnabled = toggle;
+        Settings.Instance.ChromaticEnabled.Value = toggle;
 
         CompareSettings();
     }
 
     private void OnChromaticAberrationValueChanged(float amount)
     {
-        Settings.Instance.ChromaticAmount = amount;
+        Settings.Instance.ChromaticAmount.Value = amount;
 
         CompareSettings();
     }
 
     // Sound Button Callbacks
-    private void OnMasterMutedToggled(bool pressed)
-    {
-        Settings.Instance.VolumeMasterMuted = pressed;
-        Settings.ApplySoundSettings();
-
-        CompareSettings();
-    }
-
-    private void OnMusicMutedToggled(bool pressed)
-    {
-        Settings.Instance.VolumeMusicMuted = pressed;
-        Settings.ApplySoundSettings();
-
-        CompareSettings();
-    }
-
     private void OnMasterVolumeChanged(float value)
     {
-        Settings.Instance.VolumeMaster = ConvertSoundBarToDb(value);
+        Settings.Instance.VolumeMaster.Value = ConvertSoundBarToDb(value);
+        Settings.ApplySoundSettings();
+
+        CompareSettings();
+    }
+
+    private void OnMasterMutedToggled(bool pressed)
+    {
+        Settings.Instance.VolumeMasterMuted.Value = pressed;
         Settings.ApplySoundSettings();
 
         CompareSettings();
@@ -611,7 +677,63 @@ public class OptionsMenu : Control
 
     private void OnMusicVolumeChanged(float value)
     {
-        Settings.Instance.VolumeMusic = ConvertSoundBarToDb(value);
+        Settings.Instance.VolumeMusic.Value = ConvertSoundBarToDb(value);
+        Settings.ApplySoundSettings();
+
+        CompareSettings();
+    }
+
+    private void OnMusicMutedToggled(bool pressed)
+    {
+        Settings.Instance.VolumeMusicMuted.Value = pressed;
+        Settings.ApplySoundSettings();
+
+        CompareSettings();
+    }
+
+    private void OnAmbianceVolumeChanged(float value)
+    {
+        Settings.Instance.VolumeAmbiance.Value = ConvertSoundBarToDb(value);
+        Settings.ApplySoundSettings();
+
+        CompareSettings();
+    }
+
+    private void OnAmbianceMutedToggled(bool pressed)
+    {
+        Settings.Instance.VolumeAmbianceMuted.Value = pressed;
+        Settings.ApplySoundSettings();
+
+        CompareSettings();
+    }
+
+    private void OnSFXVolumeChanged(float value)
+    {
+        Settings.Instance.VolumeSFX.Value = ConvertSoundBarToDb(value);
+        Settings.ApplySoundSettings();
+
+        CompareSettings();
+    }
+
+    private void OnSFXMutedToggled(bool pressed)
+    {
+        Settings.Instance.VolumeSFXMuted.Value = pressed;
+        Settings.ApplySoundSettings();
+
+        CompareSettings();
+    }
+
+    private void OnGUIVolumeChanged(float value)
+    {
+        Settings.Instance.VolumeGUI.Value = ConvertSoundBarToDb(value);
+        Settings.ApplySoundSettings();
+
+        CompareSettings();
+    }
+
+    private void OnGUIMutedToggled(bool pressed)
+    {
+        Settings.Instance.VolumeGUIMuted.Value = pressed;
         Settings.ApplySoundSettings();
 
         CompareSettings();
@@ -620,14 +742,14 @@ public class OptionsMenu : Control
     // Performance Button Callbacks
     private void OnCloudIntervalSelected(int index)
     {
-        Settings.Instance.CloudUpdateInterval = CloudIndexToInterval(index);
+        Settings.Instance.CloudUpdateInterval.Value = CloudIndexToInterval(index);
 
         CompareSettings();
     }
 
     private void OnCloudResolutionSelected(int index)
     {
-        Settings.Instance.CloudResolution = CloudIndexToResolution(index);
+        Settings.Instance.CloudResolution.Value = CloudIndexToResolution(index);
 
         CompareSettings();
     }
@@ -635,28 +757,35 @@ public class OptionsMenu : Control
     // Misc Button Callbacks
     private void OnIntroToggled(bool pressed)
     {
-        Settings.Instance.PlayIntroVideo = pressed;
+        Settings.Instance.PlayIntroVideo.Value = pressed;
 
         CompareSettings();
     }
 
     private void OnMicrobeIntroToggled(bool pressed)
     {
-        Settings.Instance.PlayMicrobeIntroVideo = pressed;
+        Settings.Instance.PlayMicrobeIntroVideo.Value = pressed;
+
+        CompareSettings();
+    }
+
+    private void OnTutorialsToggled(bool pressed)
+    {
+        Settings.Instance.TutorialsEnabled.Value = pressed;
 
         CompareSettings();
     }
 
     private void OnCheatsToggled(bool pressed)
     {
-        Settings.Instance.CheatsEnabled = pressed;
+        Settings.Instance.CheatsEnabled.Value = pressed;
 
         CompareSettings();
     }
 
     private void OnAutoSaveToggled(bool pressed)
     {
-        Settings.Instance.AutoSaveEnabled = pressed;
+        Settings.Instance.AutoSaveEnabled.Value = pressed;
         maxAutosaves.Editable = pressed;
 
         CompareSettings();
@@ -664,14 +793,14 @@ public class OptionsMenu : Control
 
     private void OnMaxAutoSavesValueChanged(float value)
     {
-        Settings.Instance.MaxAutoSaves = (int)value;
+        Settings.Instance.MaxAutoSaves.Value = (int)value;
 
         CompareSettings();
     }
 
     private void OnMaxQuickSavesValueChanged(float value)
     {
-        Settings.Instance.MaxQuickSaves = (int)value;
+        Settings.Instance.MaxQuickSaves.Value = (int)value;
 
         CompareSettings();
     }
