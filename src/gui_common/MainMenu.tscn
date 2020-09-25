@@ -331,5 +331,3 @@ anims/MenuSlide = SubResource( 1 )
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/MainMenu/Quit" to="." method="QuitPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Tools/Freebuild Editor" to="." method="FreebuildEditorPressed"]
 [connection signal="pressed" from="MenuContainers/Menus/MarginContainer/Tools/Back" to="." method="BackFromToolsPressed"]
-[connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="OnReturnFromOptions"]
-[connection signal="OnBackPressed" from="SaveManagerGUI" to="." method="OnReturnFromLoadGame"]
