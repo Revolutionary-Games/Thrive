@@ -19,6 +19,9 @@ public class PauseMenu : Control
     public NodePath LoadMenuPath;
 
     [Export]
+    public NodePath OptionsMenuPath;
+
+    [Export]
     public NodePath SaveMenuPath;
 
     [Export]
@@ -27,6 +30,7 @@ public class PauseMenu : Control
     private Control primaryMenu;
     private HelpScreen helpScreen;
     private Control loadMenu;
+    private OptionsMenu optionsMenu;
     private NewSaveMenu saveMenu;
 
     [Signal]
@@ -45,6 +49,12 @@ public class PauseMenu : Control
     [Signal]
     public delegate void MakeSave(string name);
 
+    /// <summary>
+    ///   The tutorial state reported by the game state, this is needed to not allow pausing while exclusive tutorial
+    ///   is open. As well as to disable tutorials from the in-game options menu
+    /// </summary>
+    public TutorialState GameTutorialState { get; set; }
+
     public override void _EnterTree()
     {
         // This needs to be done early here to make sure the help screen loads the right text
@@ -56,6 +66,7 @@ public class PauseMenu : Control
     {
         primaryMenu = GetNode<Control>(PrimaryMenuPath);
         loadMenu = GetNode<Control>(LoadMenuPath);
+        optionsMenu = GetNode<OptionsMenu>(OptionsMenuPath);
         saveMenu = GetNode<NewSaveMenu>(SaveMenuPath);
     }
 
@@ -69,7 +80,7 @@ public class PauseMenu : Control
 
                 EmitSignal(nameof(OnClosed));
             }
-            else
+            else if (GameTutorialState == null || !GameTutorialState.ExclusiveTutorialActive())
             {
                 EmitSignal(nameof(OnOpenWithKeyPress));
             }
@@ -136,6 +147,20 @@ public class PauseMenu : Control
         SetActiveMenu("primary");
     }
 
+    private void OpenOptionsPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        SetActiveMenu("options");
+    }
+
+    private void CloseOptionsPressed()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        SetActiveMenu("primary");
+    }
+
     private void OpenSavePressed()
     {
         GUICommon.Instance.PlayButtonPressSound();
@@ -164,6 +189,7 @@ public class PauseMenu : Control
         helpScreen.Hide();
         primaryMenu.Hide();
         loadMenu.Hide();
+        optionsMenu.Hide();
         saveMenu.Hide();
 
         switch (menu)
@@ -176,6 +202,9 @@ public class PauseMenu : Control
                 break;
             case "load":
                 loadMenu.Show();
+                break;
+            case "options":
+                optionsMenu.Show();
                 break;
             case "save":
                 saveMenu.Show();

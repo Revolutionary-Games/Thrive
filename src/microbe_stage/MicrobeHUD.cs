@@ -257,15 +257,13 @@ public class MicrobeHUD : Node
         populationLabel = GetNode<Label>(PopulationLabelPath);
         patchLabel = GetNode<Label>(PatchLabelPath);
         editorButton = GetNode<TextureButton>(EditorButtonPath);
-
-        OnEnterStageTransition();
     }
 
     public void OnEnterStageTransition()
     {
         // Fade out for that smooth satisfying transition
         TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeOut, 0.5f);
-        TransitionManager.Instance.StartTransitions(null, string.Empty);
+        TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.OnFinishTransitioning));
     }
 
     public override void _Process(float delta)
@@ -293,6 +291,8 @@ public class MicrobeHUD : Node
     public void Init(MicrobeStage stage)
     {
         this.stage = stage;
+
+        OnEnterStageTransition();
     }
 
     public void ResizeEnvironmentPanel(string mode)
@@ -303,13 +303,7 @@ public class MicrobeHUD : Node
         {
             environmentCompressed = true;
 
-            panelsTween.InterpolateProperty(
-                environmentPanel, "rect_min_size", environmentPanel.RectMinSize, new Vector2(195, 170), 0.3f);
-            panelsTween.Start();
-
-            environmentPanelBarContainer.Columns = 2;
-            environmentPanelBarContainer.AddConstantOverride("vseparation", 20);
-            environmentPanelBarContainer.AddConstantOverride("hseparation", 17);
+            HandleEnvironmentResize(170, 2, 20, 17);
 
             foreach (ProgressBar bar in bars)
             {
@@ -326,13 +320,7 @@ public class MicrobeHUD : Node
         {
             environmentCompressed = false;
 
-            panelsTween.InterpolateProperty(
-                environmentPanel, "rect_min_size", environmentPanel.RectMinSize, new Vector2(195, 224), 0.3f);
-            panelsTween.Start();
-
-            environmentPanelBarContainer.Columns = 1;
-            environmentPanelBarContainer.AddConstantOverride("vseparation", 4);
-            environmentPanelBarContainer.AddConstantOverride("hseparation", 0);
+            HandleEnvironmentResize(224, 1, 4, 0);
 
             foreach (ProgressBar bar in bars)
             {
@@ -417,18 +405,17 @@ public class MicrobeHUD : Node
     public void HideReproductionDialog()
     {
         if (!editorButton.Disabled)
-        {
             editorButton.Disabled = true;
-            editorButton.GetNode<TextureRect>("Highlight").Hide();
-            editorButton.GetNode<Control>("ReproductionBar").Show();
-            editorButton.GetNode<TextureProgress>("ReproductionBar/PhosphateReproductionBar").TintProgress =
-                new Color(0.69f, 0.42f, 1, 1);
-            editorButton.GetNode<TextureProgress>("ReproductionBar/AmmoniaReproductionBar").TintProgress =
-                new Color(1, 0.62f, 0.12f, 1);
-            editorButton.GetNode<TextureRect>("ReproductionBar/PhosphateIcon").Texture = PhosphatesInv;
-            editorButton.GetNode<TextureRect>("ReproductionBar/AmmoniaIcon").Texture = AmmoniaInv;
-            editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Stop();
-        }
+
+        editorButton.GetNode<TextureRect>("Highlight").Hide();
+        editorButton.GetNode<Control>("ReproductionBar").Show();
+        editorButton.GetNode<TextureProgress>("ReproductionBar/PhosphateReproductionBar").TintProgress =
+            new Color(0.69f, 0.42f, 1, 1);
+        editorButton.GetNode<TextureProgress>("ReproductionBar/AmmoniaReproductionBar").TintProgress =
+            new Color(1, 0.62f, 0.12f, 1);
+        editorButton.GetNode<TextureRect>("ReproductionBar/PhosphateIcon").Texture = PhosphatesInv;
+        editorButton.GetNode<TextureRect>("ReproductionBar/AmmoniaIcon").Texture = AmmoniaInv;
+        editorButton.GetNode<AnimationPlayer>("AnimationPlayer").Stop();
     }
 
     public void OnSuicide()
@@ -551,6 +538,17 @@ public class MicrobeHUD : Node
         temperature.GetNode<Label>("Value").Text = averageTemperature + " °C";
 
         // TODO: pressure?
+    }
+
+    private void HandleEnvironmentResize(int height, int columns, int vseparation, int hseparation)
+    {
+        panelsTween.InterpolateProperty(
+            environmentPanel, "rect_min_size", environmentPanel.RectMinSize, new Vector2(195, height), 0.3f);
+        panelsTween.Start();
+
+        environmentPanelBarContainer.Columns = columns;
+        environmentPanelBarContainer.AddConstantOverride("vseparation", vseparation);
+        environmentPanelBarContainer.AddConstantOverride("hseparation", hseparation);
     }
 
     /// <summary>
@@ -720,6 +718,27 @@ public class MicrobeHUD : Node
 
         ammoniaReproductionBar.Value = fractionOfAmmonia * ammoniaReproductionBar.MaxValue;
         phosphateReproductionBar.Value = fractionOfPhosphates * phosphateReproductionBar.MaxValue;
+
+        CheckAmmoniaProgressHighlight(fractionOfAmmonia);
+        CheckPhosphateProgressHighlight(fractionOfPhosphates);
+    }
+
+    private void CheckAmmoniaProgressHighlight(float fractionOfAmmonia)
+    {
+        if (fractionOfAmmonia < 1.0f)
+            return;
+
+        ammoniaReproductionBar.TintProgress = new Color(1, 1, 1, 1);
+        editorButton.GetNode<TextureRect>("ReproductionBar/AmmoniaIcon").Texture = AmmoniaBW;
+    }
+
+    private void CheckPhosphateProgressHighlight(float fractionOfPhosphates)
+    {
+        if (fractionOfPhosphates < 1.0f)
+            return;
+
+        phosphateReproductionBar.TintProgress = new Color(1, 1, 1, 1);
+        editorButton.GetNode<TextureRect>("ReproductionBar/PhosphateIcon").Texture = PhosphatesBW;
     }
 
     private void UpdateATP()

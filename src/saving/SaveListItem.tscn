@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/textures/gui/bevel/TrashIcon.png" type="Texture" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
@@ -7,185 +7,231 @@
 [ext_resource path="res://src/saving/SaveListItem.cs" type="Script" id=5]
 [ext_resource path="res://assets/textures/gui/bevel/trashButton.png" type="Texture" id=6]
 
-[node name="SaveListItem" type="HBoxContainer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 2.0
-margin_bottom = 2.0
-size_flags_horizontal = 3
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.054902, 0.145098, 0.168627, 0.784314 )
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color( 0.0666667, 0.6, 0.537255, 1 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="PanelContainer" type="PanelContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
 theme = ExtResource( 2 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-SaveNamePath = NodePath("VBoxContainer/HBoxContainer/SaveName")
-ScreenshotPath = NodePath("Screenshot")
-VersionPath = NodePath("VBoxContainer/HBoxContainer/Version")
-TypePath = NodePath("VBoxContainer/HBoxContainer4/Type")
-CreatedAtPath = NodePath("VBoxContainer/HBoxContainer2/CreatedAt")
-CreatedByPath = NodePath("VBoxContainer/HBoxContainer2/Creator")
-CreatedOnPlatformPath = NodePath("VBoxContainer/HBoxContainer4/Platform")
-DescriptionPath = NodePath("VBoxContainer/HBoxContainer3/Description")
-SelectedPath = NodePath("VBoxContainer/HBoxContainer/HBoxContainer/SelectBox")
-LoadButtonPath = NodePath("VBoxContainer/HBoxContainer/HBoxContainer/Load")
+SaveNamePath = NodePath("SaveListItem/VBoxContainer/HBoxContainer/SaveName")
+ScreenshotPath = NodePath("SaveListItem/Screenshot")
+VersionPath = NodePath("SaveListItem/VBoxContainer/HBoxContainer/Version")
+VersionWarningPath = NodePath("SaveListItem/VBoxContainer/HBoxContainer/VersionWarning")
+TypePath = NodePath("SaveListItem/VBoxContainer/HBoxContainer4/Type")
+CreatedAtPath = NodePath("SaveListItem/VBoxContainer/HBoxContainer2/CreatedAt")
+CreatedByPath = NodePath("SaveListItem/VBoxContainer/HBoxContainer2/Creator")
+CreatedOnPlatformPath = NodePath("SaveListItem/VBoxContainer/HBoxContainer4/Platform")
+DescriptionPath = NodePath("SaveListItem/VBoxContainer/HBoxContainer3/Description")
+SelectedPath = NodePath("SaveListItem/VBoxContainer/HBoxContainer/HBoxContainer/SelectBox")
+LoadButtonPath = NodePath("SaveListItem/VBoxContainer/HBoxContainer/HBoxContainer/Load")
 
-[node name="Screenshot" type="TextureRect" parent="."]
-margin_right = 255.0
-margin_bottom = 720.0
+[node name="SaveListItem" type="HBoxContainer" parent="."]
+margin_left = 3.0
+margin_top = 3.0
+margin_right = 650.0
+margin_bottom = 131.0
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Screenshot" type="TextureRect" parent="SaveListItem"]
+margin_right = 128.0
+margin_bottom = 128.0
 rect_min_size = Vector2( 128, 128 )
 size_flags_horizontal = 3
 texture = ExtResource( 3 )
 expand = true
 stretch_mode = 6
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_left = 259.0
-margin_right = 1280.0
-margin_bottom = 720.0
+[node name="VBoxContainer" type="VBoxContainer" parent="SaveListItem"]
+margin_left = 132.0
+margin_right = 647.0
+margin_bottom = 128.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 4.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_right = 1021.0
+[node name="HBoxContainer" type="HBoxContainer" parent="SaveListItem/VBoxContainer"]
+margin_right = 515.0
 margin_bottom = 43.0
 
-[node name="Label1" type="Label" parent="VBoxContainer/HBoxContainer"]
+[node name="Label1" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer"]
 margin_top = 10.0
 margin_right = 62.0
 margin_bottom = 33.0
 text = "Name:"
 
-[node name="SaveName" type="Label" parent="VBoxContainer/HBoxContainer"]
+[node name="SaveName" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer"]
 margin_left = 66.0
 margin_top = 10.0
 margin_right = 160.0
 margin_bottom = 33.0
 text = "Loading..."
 
-[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer"]
+[node name="Spacer" type="Control" parent="SaveListItem/VBoxContainer/HBoxContainer"]
 margin_left = 164.0
-margin_top = 10.0
-margin_right = 251.0
-margin_bottom = 33.0
-text = " Version:"
+margin_right = 167.0
+margin_bottom = 43.0
+rect_min_size = Vector2( 3, 0 )
 
-[node name="Version" type="Label" parent="VBoxContainer/HBoxContainer"]
-margin_left = 255.0
+[node name="Label2" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer"]
+margin_left = 171.0
 margin_top = 10.0
-margin_right = 270.0
+margin_right = 252.0
+margin_bottom = 33.0
+text = "Version:"
+
+[node name="Version" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer"]
+margin_left = 256.0
+margin_top = 10.0
+margin_right = 271.0
 margin_bottom = 33.0
 text = "..."
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer"]
-margin_left = 274.0
-margin_right = 1021.0
+[node name="VersionWarning" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer"]
+margin_left = 275.0
+margin_top = 10.0
+margin_right = 302.0
+margin_bottom = 33.0
+text = "( ! )"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SaveListItem/VBoxContainer/HBoxContainer"]
+margin_left = 306.0
+margin_right = 515.0
 margin_bottom = 43.0
 size_flags_horizontal = 3
 alignment = 2
 
-[node name="SelectBox" type="CheckBox" parent="VBoxContainer/HBoxContainer/HBoxContainer"]
-margin_left = 538.0
-margin_right = 628.0
+[node name="SelectBox" type="CheckBox" parent="SaveListItem/VBoxContainer/HBoxContainer/HBoxContainer"]
+margin_right = 90.0
 margin_bottom = 43.0
 text = "select"
 
-[node name="Delete" type="TextureButton" parent="VBoxContainer/HBoxContainer/HBoxContainer"]
-margin_left = 632.0
-margin_right = 674.0
+[node name="Delete" type="TextureButton" parent="SaveListItem/VBoxContainer/HBoxContainer/HBoxContainer"]
+margin_left = 94.0
+margin_right = 136.0
 margin_bottom = 43.0
 texture_normal = ExtResource( 6 )
 texture_hover = ExtResource( 4 )
 texture_disabled = ExtResource( 1 )
 
-[node name="Load" type="Button" parent="VBoxContainer/HBoxContainer/HBoxContainer"]
-margin_left = 678.0
-margin_right = 747.0
+[node name="Load" type="Button" parent="SaveListItem/VBoxContainer/HBoxContainer/HBoxContainer"]
+margin_left = 140.0
+margin_right = 209.0
 margin_bottom = 43.0
 text = "Load"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="SaveListItem/VBoxContainer"]
 margin_top = 47.0
-margin_right = 1021.0
+margin_right = 515.0
 margin_bottom = 70.0
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer2"]
 margin_right = 109.0
 margin_bottom = 23.0
 text = "Created at:"
 
-[node name="CreatedAt" type="Label" parent="VBoxContainer/HBoxContainer2"]
+[node name="CreatedAt" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer2"]
 margin_left = 113.0
 margin_right = 128.0
 margin_bottom = 23.0
 text = "..."
 
-[node name="Label3" type="Label" parent="VBoxContainer/HBoxContainer2"]
+[node name="Spacer" type="Control" parent="SaveListItem/VBoxContainer/HBoxContainer2"]
 margin_left = 132.0
-margin_right = 169.0
+margin_right = 135.0
 margin_bottom = 23.0
-text = " By:"
+rect_min_size = Vector2( 3, 0 )
 
-[node name="Creator" type="Label" parent="VBoxContainer/HBoxContainer2"]
-margin_left = 173.0
-margin_right = 188.0
+[node name="Label3" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer2"]
+margin_left = 139.0
+margin_right = 170.0
+margin_bottom = 23.0
+text = "By:"
+
+[node name="Creator" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer2"]
+margin_left = 174.0
+margin_right = 189.0
 margin_bottom = 23.0
 text = "..."
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="SaveListItem/VBoxContainer"]
 margin_top = 74.0
-margin_right = 1021.0
+margin_right = 515.0
 margin_bottom = 97.0
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer4"]
+[node name="Label" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer4"]
 margin_right = 54.0
 margin_bottom = 23.0
 text = "Type:"
 
-[node name="Type" type="Label" parent="VBoxContainer/HBoxContainer4"]
+[node name="Type" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer4"]
 margin_left = 58.0
 margin_right = 73.0
 margin_bottom = 23.0
 text = "..."
 
-[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer4"]
+[node name="Spacer" type="Control" parent="SaveListItem/VBoxContainer/HBoxContainer4"]
 margin_left = 77.0
-margin_right = 288.0
+margin_right = 80.0
 margin_bottom = 23.0
-text = " Created on Platform:"
+rect_min_size = Vector2( 3, 0 )
 
-[node name="Platform" type="Label" parent="VBoxContainer/HBoxContainer4"]
-margin_left = 292.0
-margin_right = 307.0
+[node name="Label2" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer4"]
+margin_left = 84.0
+margin_right = 289.0
+margin_bottom = 23.0
+text = "Created on Platform:"
+
+[node name="Platform" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer4"]
+margin_left = 293.0
+margin_right = 308.0
 margin_bottom = 23.0
 text = "..."
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="SaveListItem/VBoxContainer"]
 margin_top = 101.0
-margin_right = 1021.0
+margin_right = 515.0
 margin_bottom = 124.0
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer3"]
+[node name="Label" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer3"]
 margin_right = 119.0
 margin_bottom = 23.0
 text = "Description:"
 
-[node name="Description" type="Label" parent="VBoxContainer/HBoxContainer3"]
+[node name="Description" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer3"]
 margin_left = 123.0
 margin_right = 138.0
 margin_bottom = 23.0
 text = "..."
 
-[node name="DeleteConfirmDialog" type="ConfirmationDialog" parent="."]
-margin_left = 1079.0
-margin_right = 1279.0
+[node name="DeleteConfirmDialog" type="ConfirmationDialog" parent="SaveListItem"]
+margin_left = 619.0
+margin_right = 1537.0
 margin_bottom = 720.0
 size_flags_horizontal = 5
 size_flags_vertical = 5
 popup_exclusive = true
 window_title = "Delete this Save?"
 dialog_text = "Deleting this save cannot be undone, are you sure you want to permanently delete this?"
-[connection signal="toggled" from="VBoxContainer/HBoxContainer/HBoxContainer/SelectBox" to="." method="OnSelectedCheckboxChanged"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/HBoxContainer/Delete" to="." method="DeletePressed"]
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/HBoxContainer/Load" to="." method="LoadThisSave"]
+[connection signal="toggled" from="SaveListItem/VBoxContainer/HBoxContainer/HBoxContainer/SelectBox" to="." method="OnSelectedCheckboxChanged"]
+[connection signal="pressed" from="SaveListItem/VBoxContainer/HBoxContainer/HBoxContainer/Delete" to="." method="DeletePressed"]
+[connection signal="pressed" from="SaveListItem/VBoxContainer/HBoxContainer/HBoxContainer/Load" to="." method="LoadThisSave"]
