@@ -7,13 +7,12 @@ using Newtonsoft.Json;
 /// </summary>
 public class Settings
 {
+    public static readonly string DefaultLanguage = TranslationServer.GetLocale();
+
     /// <summary>
     ///   Singleton used for holding the live copy of game settings.
     /// </summary>
     private static readonly Settings SingletonInstance = InitializeGlobalSettings();
-
-    [JsonProperty]
-    private string selectedLanguage;
 
     static Settings()
     {
@@ -178,12 +177,7 @@ public class Settings
     /// <summary>
     /// Property with backing field used to return the default locale for this computer if nothing has been set
     /// </summary>
-    [JsonIgnore]
-    public string SelectedLanguage
-    {
-        get => selectedLanguage ?? OS.GetLocale();
-        set => selectedLanguage = value;
-    }
+    public string SelectedLanguage { get; set; } = null;
 
     public static bool operator ==(Settings lhs, Settings rhs)
     {
@@ -227,7 +221,7 @@ public class Settings
             }
         }
 
-        return selectedLanguage == obj.selectedLanguage;
+        return true;
     }
 
     public override int GetHashCode()
@@ -359,17 +353,14 @@ public class Settings
     /// </summary>
     public void ApplyLanguageSettings()
     {
-        TranslationServer.SetLocale(SelectedLanguage);
+        string language = SelectedLanguage ?? DefaultLanguage;
+
+        TranslationServer.SetLocale(language);
 
         // Set locale for the game.
-        CultureInfo cultureInfo = new CultureInfo(SelectedLanguage);
+        CultureInfo cultureInfo = new CultureInfo(language);
         CultureInfo.CurrentCulture = cultureInfo;
         CultureInfo.CurrentUICulture = cultureInfo;
-    }
-
-    public bool IsSelectedLanguageNull()
-    {
-        return selectedLanguage == null;
     }
 
     /// <summary>
@@ -424,7 +415,5 @@ public class Settings
 
             property.SetValue(this, property.GetValue(settings));
         }
-
-        selectedLanguage = settings.selectedLanguage;
     }
 }

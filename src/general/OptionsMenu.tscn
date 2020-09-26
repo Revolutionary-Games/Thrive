@@ -77,7 +77,6 @@ MaxQuickSavesPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Margi
 BackConfirmationBoxPath = NodePath("CenterContainer/BackConfirm")
 DefaultsConfirmationBoxPath = NodePath("CenterContainer/DefaultsConfirm")
 ErrorAcceptBoxPath = NodePath("CenterContainer/ErrorAccept")
-NeedRestartBoxPath = NodePath("CenterContainer/NeedRestart")
 LanguageSelectionPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer6/LanguagesButton")
 ResetLanguageButtonPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Sound/VBoxContainer/HBoxContainer6/ResetLanguageButton")
 
@@ -600,42 +599,42 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer"]
-margin_right = 733.0
+margin_right = 582.0
 margin_bottom = 23.0
 text = "COMPOUND_CLOUDS"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer"]
 margin_top = 33.0
-margin_right = 733.0
+margin_right = 582.0
 margin_bottom = 75.0
 size_flags_horizontal = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer"]
-margin_right = 350.0
+margin_right = 371.0
 margin_bottom = 42.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer/VBoxContainer"]
-margin_right = 350.0
+margin_right = 371.0
 margin_bottom = 23.0
 text = "CLOUD_SIMULATION_MINIMUM_INTERVAL"
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer/VBoxContainer"]
 margin_top = 27.0
-margin_right = 350.0
+margin_right = 371.0
 margin_bottom = 42.0
 custom_fonts/font = SubResource( 3 )
 text = "HIGHER_VALUES_INCREASE_PERFORMANCE"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer"]
-margin_left = 354.0
-margin_right = 529.0
+margin_left = 375.0
+margin_right = 378.0
 margin_bottom = 42.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 6 )
 
 [node name="CloudInterval" type="OptionButton" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer"]
-margin_left = 533.0
-margin_right = 733.0
+margin_left = 382.0
+margin_right = 582.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 25 )
 size_flags_vertical = 0
@@ -648,16 +647,16 @@ __meta__ = {
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer"]
 margin_top = 85.0
-margin_right = 733.0
+margin_right = 582.0
 margin_bottom = 127.0
 size_flags_horizontal = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer2"]
-margin_right = 351.0
+margin_right = 273.0
 margin_bottom = 42.0
 
 [node name="Label" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer2/VBoxContainer"]
-margin_right = 351.0
+margin_right = 273.0
 margin_bottom = 23.0
 hint_tooltip = "This value only applies to new games started after changing this option"
 mouse_filter = 0
@@ -665,21 +664,21 @@ text = "CLOUD_RESOLUTION_DIVISOR"
 
 [node name="Label2" type="Label" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer2/VBoxContainer"]
 margin_top = 27.0
-margin_right = 351.0
+margin_right = 273.0
 margin_bottom = 42.0
 custom_fonts/font = SubResource( 3 )
 text = "HIGHER_VALUES_INCREASE_PERFORMANCE"
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer2"]
-margin_left = 355.0
-margin_right = 529.0
+margin_left = 277.0
+margin_right = 378.0
 margin_bottom = 42.0
 size_flags_horizontal = 3
 custom_styles/separator = SubResource( 6 )
 
 [node name="CloudResolution" type="OptionButton" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer2"]
-margin_left = 533.0
-margin_right = 733.0
+margin_left = 382.0
+margin_right = 582.0
 margin_bottom = 25.0
 rect_min_size = Vector2( 200, 25 )
 size_flags_vertical = 0
@@ -693,7 +692,7 @@ __meta__ = {
 
 [node name="HSeparator" type="HSeparator" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer"]
 margin_top = 137.0
-margin_right = 733.0
+margin_right = 582.0
 margin_bottom = 141.0
 
 [node name="Misc" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer"]
@@ -969,15 +968,6 @@ margin_bottom = 395.0
 popup_exclusive = true
 window_title = "ERROR"
 dialog_text = "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
-
-[node name="NeedRestart" type="AcceptDialog" parent="CenterContainer"]
-margin_left = 511.0
-margin_top = 324.0
-margin_right = 768.0
-margin_bottom = 395.0
-popup_exclusive = true
-window_title = "RESTART_REQUIRED"
-dialog_text = "RESTART_REQUIRED_TEXT"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/GraphicsButton" to="." method="SetSettingsTab" binds= [ "Graphics" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/SoundButton" to="." method="SetSettingsTab" binds= [ "Sound" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/PerformanceButton" to="." method="SetSettingsTab" binds= [ "Performance" ]]
