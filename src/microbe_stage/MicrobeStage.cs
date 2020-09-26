@@ -308,6 +308,11 @@ public class MicrobeStage : NodeWithInput, ILoadableGameState, IGodotEarlyNodeRe
 
         Player.OnReproductionStatus = OnPlayerReproductionStatusChanged;
 
+        Player.OnReportActiveProcesses = (microbe, process) =>
+        {
+            // TODO: send this info to the process panel
+        };
+
         Camera.ObjectToFollow = Player;
 
         if (spawnedPlayer)

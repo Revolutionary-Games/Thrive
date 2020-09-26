@@ -294,6 +294,10 @@ public class ProcessSystem
         // used it will be marked useful
         bag.ClearUseful();
 
+        var ranProcesses = processor.LastRanProcesses;
+
+        ranProcesses?.Clear();
+
         foreach (TweakedProcess process in processor.ActiveProcesses)
         {
             // If rate is 0 dont do it
@@ -410,6 +414,9 @@ public class ProcessSystem
 
                 bag.AddCompound(entry.Key, outputGenerated);
             }
+
+            // Mark as having been ran
+            ranProcesses?.Add(process);
         }
 
         bag.ClampNegativeCompoundAmounts();
