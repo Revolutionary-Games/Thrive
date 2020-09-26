@@ -8,7 +8,7 @@ using Godot;
 ///   The main tooltip class for the selections on the microbe editor's selection menu.
 ///   Contains list of processes and modifiers info
 /// </summary>
-public class SelectionMenuTooltip : Control, ICustomTooltip
+public class SelectionMenuToolTip : Control, ICustomToolTip
 {
     [Export]
     public NodePath NameLabelPath;
@@ -37,8 +37,8 @@ public class SelectionMenuTooltip : Control, ICustomTooltip
     private VBoxContainer modifierInfoList;
     private VBoxContainer processList;
 
-    private string tooltipName;
-    private string tooltipDescription;
+    private string displayName;
+    private string description;
 
     /// <summary>
     ///   Hold reference of modifier info elements for easier access to change their values later
@@ -57,35 +57,38 @@ public class SelectionMenuTooltip : Control, ICustomTooltip
         set => RectSize = value;
     }
 
-    public string TooltipName
+    [Export]
+    public string DisplayName
     {
-        get => tooltipName;
+        get => displayName;
         set
         {
-            tooltipName = value;
+            displayName = value;
             UpdateName();
         }
     }
 
-    public string TooltipDescription
+    [Export]
+    public string Description
     {
-        get => tooltipDescription;
+        get => description;
         set
         {
-            tooltipDescription = value;
+            description = value;
             UpdateDescription();
         }
     }
 
+    [Export]
     public float DisplayDelay { get; set; } = 0.1f;
 
-    public bool TooltipVisible
+    public bool ToolTipVisible
     {
         get => Visible;
         set => Visible = value;
     }
 
-    public Node TooltipNode => this;
+    public Node ToolTipNode => this;
 
     public override void _Ready()
     {
@@ -95,6 +98,8 @@ public class SelectionMenuTooltip : Control, ICustomTooltip
         modifierInfoList = GetNode<VBoxContainer>(ModifierListPath);
         processList = GetNode<VBoxContainer>(ProcessListPath);
 
+        UpdateName();
+        UpdateDescription();
         UpdateLists();
     }
 
@@ -264,7 +269,14 @@ public class SelectionMenuTooltip : Control, ICustomTooltip
         if (nameLabel == null)
             return;
 
-        nameLabel.Text = tooltipName;
+        if (string.IsNullOrEmpty(displayName))
+        {
+            displayName = nameLabel.Text;
+        }
+        else
+        {
+            nameLabel.Text = displayName;
+        }
     }
 
     private void UpdateDescription()
@@ -272,14 +284,20 @@ public class SelectionMenuTooltip : Control, ICustomTooltip
         if (descriptionLabel == null)
             return;
 
-        descriptionLabel.Text = tooltipDescription;
+        if (string.IsNullOrEmpty(Description))
+        {
+            description = descriptionLabel.Text;
+        }
+        else
+        {
+            descriptionLabel.Text = description;
+        }
     }
 
     private void UpdateLists()
     {
         foreach (ModifierInfoLabel item in modifierInfoList.GetChildren())
         {
-            item.ModifierName = item.Name;
             modifierInfos.Add(item);
         }
     }

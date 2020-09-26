@@ -15,6 +15,7 @@ public class ModifierInfoLabel : HBoxContainer
     private Color modifierValueColor;
     private Texture iconTexture;
 
+    [Export]
     public string ModifierName
     {
         get => modifierName;
@@ -25,6 +26,7 @@ public class ModifierInfoLabel : HBoxContainer
         }
     }
 
+    [Export]
     public string ModifierValue
     {
         get => modifierValue;
@@ -35,9 +37,10 @@ public class ModifierInfoLabel : HBoxContainer
         }
     }
 
+    [Export]
     public Color ModifierValueColor
     {
-        get => valueLabel.GetColor("font_color");
+        get => modifierValueColor;
         set
         {
             modifierValueColor = value;
@@ -45,6 +48,7 @@ public class ModifierInfoLabel : HBoxContainer
         }
     }
 
+    [Export]
     public Texture ModifierIcon
     {
         get => iconTexture;
@@ -60,6 +64,10 @@ public class ModifierInfoLabel : HBoxContainer
         nameLabel = GetNode<Label>("Name");
         valueLabel = GetNode<Label>("Value");
         icon = GetNode<TextureRect>("Icon");
+
+        UpdateName();
+        UpdateValue();
+        UpdateIcon();
     }
 
     private void UpdateName()
@@ -67,7 +75,14 @@ public class ModifierInfoLabel : HBoxContainer
         if (nameLabel == null)
             return;
 
-        nameLabel.Text = modifierName;
+        if (string.IsNullOrEmpty(ModifierName))
+        {
+            modifierName = nameLabel.Text;
+        }
+        else
+        {
+            nameLabel.Text = modifierName;
+        }
     }
 
     private void UpdateValue()
@@ -75,8 +90,23 @@ public class ModifierInfoLabel : HBoxContainer
         if (valueLabel == null)
             return;
 
-        valueLabel.Text = modifierValue;
-        valueLabel.AddColorOverride("font_color", modifierValueColor);
+        if (string.IsNullOrEmpty(ModifierValue))
+        {
+            modifierValue = valueLabel.Text;
+        }
+        else
+        {
+            valueLabel.Text = modifierValue;
+        }
+
+        if (ModifierValueColor == new Color(0, 0, 0, 0))
+        {
+            valueLabel.GetColor("font_color");
+        }
+        else
+        {
+            valueLabel.AddColorOverride("font_color", modifierValueColor);
+        }
     }
 
     private void UpdateIcon()
@@ -84,6 +114,13 @@ public class ModifierInfoLabel : HBoxContainer
         if (icon == null)
             return;
 
-        icon.Texture = iconTexture;
+        if (ModifierIcon == null)
+        {
+            iconTexture = icon.Texture;
+        }
+        else
+        {
+            icon.Texture = iconTexture;
+        }
     }
 }

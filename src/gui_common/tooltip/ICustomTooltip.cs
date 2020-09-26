@@ -3,15 +3,15 @@ using Godot;
 /// <summary>
 ///   Interface for all custom tooltip nodes
 /// </summary>
-public interface ICustomTooltip
+public interface ICustomToolTip
 {
     Vector2 Position { get; set; }
 
     Vector2 Size { get; set; }
 
-    string TooltipName { get; set; }
+    string DisplayName { get; set; }
 
-    string TooltipDescription { get; set; }
+    string Description { get; set; }
 
     /// <summary>
     ///   Used to delay how long it takes for this tooltip to appear
@@ -21,10 +21,10 @@ public interface ICustomTooltip
     /// <summary>
     ///   If true the tooltip is shown
     /// </summary>
-    bool TooltipVisible { get; set; }
+    bool ToolTipVisible { get; set; }
 
     /// <summary>
     ///   Node of this tooltip
     /// </summary>
-    Node TooltipNode { get; }
+    Node ToolTipNode { get; }
 }

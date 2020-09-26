@@ -22,15 +22,15 @@ public class SegmentedBar : HBoxContainer
     /// </remarks>
     public float MaxValue;
 
+    public readonly List<IconProgressBar> SubBars = new List<IconProgressBar>();
+
     private readonly PackedScene iconProgressBarScene =
         GD.Load<PackedScene>("res://src/gui_common/IconProgressBar.tscn");
-
-    private readonly List<IconProgressBar> subBars = new List<IconProgressBar>();
 
     private List<KeyValuePair<string, float>> barValues;
 
     [Signal]
-    public delegate void SubBarMouseEnter(string name);
+    public delegate void SubBarMouseEnter();
 
     [Signal]
     public delegate void SubBarMouseExit();
@@ -68,7 +68,7 @@ public class SegmentedBar : HBoxContainer
     {
         var unusedBars = new List<IconProgressBar>();
 
-        foreach (var progressBar in subBars)
+        foreach (var progressBar in SubBars)
         {
             bool match = false;
             foreach (var dataPair in data)
@@ -84,13 +84,13 @@ public class SegmentedBar : HBoxContainer
         foreach (var unusedBar in unusedBars)
         {
             unusedBar.Free();
-            subBars.Remove(unusedBar);
+            SubBars.Remove(unusedBar);
         }
     }
 
     private IconProgressBar FindBar(string name)
     {
-        foreach (var bar in subBars)
+        foreach (var bar in SubBars)
         {
             if (bar.Name == name)
                 return bar;
@@ -114,7 +114,7 @@ public class SegmentedBar : HBoxContainer
             progressBar = (IconProgressBar)iconProgressBarScene.Instance();
             progressBar.Name = dataPair.Key;
             AddChild(progressBar);
-            subBars.Add(progressBar);
+            SubBars.Add(progressBar);
 
             progressBar.Color = BarHelper.GetBarColour(SelectedType, dataPair.Key, IsProduction);
             progressBar.HighlightColor = new Color(progressBar.Color.r + 0.5f, progressBar.Color.g + 0.5f,
@@ -146,12 +146,14 @@ public class SegmentedBar : HBoxContainer
     private void OnBarMouseOver(IconProgressBar bar)
     {
         bar.Highlight = true;
-        EmitSignal(nameof(SubBarMouseEnter), bar.Name);
+
+        EmitSignal(nameof(SubBarMouseEnter));
     }
 
     private void OnBarMouseExit(IconProgressBar bar)
     {
         bar.Highlight = false;
+
         EmitSignal(nameof(SubBarMouseExit));
     }
 
@@ -172,7 +174,7 @@ public class SegmentedBar : HBoxContainer
     private void MoveBars()
     {
         // Sort the bars list based on what is in subBars as well as what is disabled
-        subBars.Sort((a, b) =>
+        SubBars.Sort((a, b) =>
         {
             if (a.Disabled && !b.Disabled)
                 return 1;
@@ -185,7 +187,7 @@ public class SegmentedBar : HBoxContainer
         });
 
         int location = 0;
-        foreach (var bar in subBars)
+        foreach (var bar in SubBars)
         {
             if (GetChild(location) != bar)
             {

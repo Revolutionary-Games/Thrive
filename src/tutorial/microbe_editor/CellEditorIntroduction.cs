@@ -7,6 +7,8 @@ namespace Tutorial
     /// </summary>
     public class CellEditorIntroduction : TutorialPhase
     {
+        private readonly string cellEditorTab = MicrobeEditorGUI.EditorTab.CellEditor.ToString();
+
         public override string ClosedByName { get; } = "CellEditorIntroduction";
 
         public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
@@ -21,7 +23,7 @@ namespace Tutorial
             {
                 case TutorialEventType.MicrobeEditorTabChanged:
                 {
-                    if (!HasBeenShown && CanTrigger && ((StringEventArgs)args).Data == "CellEditor")
+                    if (!HasBeenShown && CanTrigger && ((StringEventArgs)args).Data == cellEditorTab)
                     {
                         Show();
                     }

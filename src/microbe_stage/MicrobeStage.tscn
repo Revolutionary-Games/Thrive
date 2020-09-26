@@ -5,9 +5,9 @@
 [ext_resource path="res://assets/textures/gui/bevel/AmmoniaInv.png" type="Texture" id=3]
 [ext_resource path="res://assets/textures/gui/bevel/PhosphateInv.png" type="Texture" id=4]
 [ext_resource path="res://assets/textures/gui/bevel/PhosphatesBW.png" type="Texture" id=5]
-[ext_resource path="res://assets/sounds/soundeffects/microbe-pickup-organelle.ogg" type="AudioStream" id=6]
+[ext_resource path="res://assets/textures/gui/bevel/AmmoniaBW.png" type="Texture" id=6]
 [ext_resource path="res://src/microbe_stage/PlayerMicrobeInput.cs" type="Script" id=7]
-[ext_resource path="res://src/microbe_stage/gui/WinBox.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/sounds/soundeffects/microbe-pickup-organelle.ogg" type="AudioStream" id=8]
 [ext_resource path="res://src/microbe_stage/MicrobeHUD.cs" type="Script" id=9]
 [ext_resource path="res://src/microbe_stage/CompoundCloudSystem.cs" type="Script" id=10]
 [ext_resource path="res://src/general/PauseMenu.tscn" type="PackedScene" id=11]
@@ -68,8 +68,8 @@
 [ext_resource path="res://assets/fonts/Jura-Medium.ttf" type="DynamicFontData" id=66]
 [ext_resource path="res://src/engine/ChromaticFilter.tscn" type="PackedScene" id=67]
 [ext_resource path="res://assets/fonts/Lato-Bold.ttf" type="DynamicFontData" id=68]
+[ext_resource path="res://src/microbe_stage/gui/WinBox.tscn" type="PackedScene" id=69]
 [ext_resource path="res://src/microbe_stage/gui/ExtinctionBox.tscn" type="PackedScene" id=70]
-[ext_resource path="res://assets/textures/gui/bevel/AmmoniaBW.png" type="Texture" id=71]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=72]
 [ext_resource path="res://assets/textures/gui/bevel/hSeparatorCentered.png" type="Texture" id=73]
 [ext_resource path="res://src/tutorial/microbe_stage/MicrobeTutorialGUI.tscn" type="PackedScene" id=74]
@@ -827,9 +827,9 @@ HealthBarPath = NodePath("BottomRight/HealthBar")
 AmmoniaReproductionBarPath = NodePath("BottomRight/EditorButton/ReproductionBar/AmmoniaReproductionBar")
 PhosphateReproductionBarPath = NodePath("BottomRight/EditorButton/ReproductionBar/PhosphateReproductionBar")
 ExtinctionBoxScene = ExtResource( 70 )
-WinBoxScene = ExtResource( 8 )
-MicrobePickupOrganelleSound = ExtResource( 6 )
-AmmoniaBW = ExtResource( 71 )
+WinBoxScene = ExtResource( 69 )
+MicrobePickupOrganelleSound = ExtResource( 8 )
+AmmoniaBW = ExtResource( 6 )
 PhosphatesBW = ExtResource( 5 )
 AmmoniaInv = ExtResource( 3 )
 PhosphatesInv = ExtResource( 4 )

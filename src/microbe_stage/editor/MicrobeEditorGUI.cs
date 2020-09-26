@@ -207,6 +207,9 @@ public class MicrobeEditorGUI : Node
     public NodePath NegativeAtpPopupPath;
 
     [Export]
+    public NodePath HelpButtonPath;
+
+    [Export]
     public NodePath SymmetryIconPath;
 
     [Export]
@@ -263,7 +266,7 @@ public class MicrobeEditorGUI : Node
     private PanelContainer structureTab;
     private PanelContainer appearanceTab;
 
-    private MarginContainer statisticsPanel;
+    private PanelContainer statisticsPanel;
     private Label sizeLabel;
     private Label speedLabel;
     private Label hpLabel;
@@ -333,20 +336,23 @@ public class MicrobeEditorGUI : Node
 
     private ConfirmationDialog negativeAtpPopup;
 
+    private TextureButton helpButton;
+
     private EditorTab selectedEditorTab = EditorTab.Report;
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
     private MicrobeEditor.MicrobeSymmetry symmetry = MicrobeEditor.MicrobeSymmetry.None;
 
-    private TooltipHandler tooltipHandler;
+    private readonly List<ToolTipCallbackData> tooltipCallbacks = new List<ToolTipCallbackData>();
+    private readonly List<ToolTipCallbackData> processesTooltipCallbacks = new List<ToolTipCallbackData>();
 
-    private enum EditorTab
+    public enum EditorTab
     {
         Report,
         PatchMap,
         CellEditor,
     }
 
-    private enum SelectionMenuTab
+    public enum SelectionMenuTab
     {
         Structure,
         Appearance,
@@ -368,7 +374,7 @@ public class MicrobeEditorGUI : Node
         appearanceTab = GetNode<PanelContainer>(ApperanceTabPath);
         appearanceTabButton = GetNode<Button>(AppearanceTabButtonPath);
 
-        statisticsPanel = GetNode<MarginContainer>(OrganismStatisticsPath);
+        statisticsPanel = GetNode<PanelContainer>(OrganismStatisticsPath);
         sizeLabel = GetNode<Label>(SizeLabelPath);
         speedLabel = GetNode<Label>(SpeedLabelPath);
         hpLabel = GetNode<Label>(HpLabelPath);
@@ -381,6 +387,7 @@ public class MicrobeEditorGUI : Node
         rigiditySlider = GetNode<Slider>(RigiditySliderPath);
         membraneColorPicker = GetNode<ColorPicker>(MembraneColorPickerPath);
 
+        helpButton = GetNode<TextureButton>(HelpButtonPath);
         undoButton = GetNode<TextureButton>(UndoButtonPath);
         redoButton = GetNode<TextureButton>(RedoButtonPath);
         symmetryButton = GetNode<TextureButton>(SymmetryButtonPath);
@@ -432,8 +439,6 @@ public class MicrobeEditorGUI : Node
         hpIndicator = GetNode<TextureRect>(HpIndicatorPath);
         sizeIndicator = GetNode<TextureRect>(SizeIndicatorPath);
 
-        tooltipHandler = GetNode<TooltipHandler>("TooltipHandler");
-
         negativeAtpPopup = GetNode<ConfirmationDialog>(NegativeAtpPopupPath);
 
         menu = GetNode<PauseMenu>(MenuPath);
@@ -443,6 +448,8 @@ public class MicrobeEditorGUI : Node
         atpProductionBar.SelectedType = SegmentedBar.Type.ATP;
         atpProductionBar.IsProduction = true;
         atpConsumptionBar.SelectedType = SegmentedBar.Type.ATP;
+
+        RegisterTooltips();
     }
 
     public void Init(MicrobeEditor editor)
@@ -452,6 +459,41 @@ public class MicrobeEditorGUI : Node
         // Fade out for that smooth satisfying transition
         TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeOut, 0.5f);
         TransitionManager.Instance.StartTransitions(editor, nameof(MicrobeEditor.OnFinishTransitioning));
+    }
+
+    /// <summary>
+    ///   Registers tooltip for the existing Controls
+    /// </summary>
+    private void RegisterTooltips()
+    {
+        foreach (Control organelleSelection in organelleSelectionElements)
+        {
+            ToolTipManager.RegisterToolTipForControl(
+                organelleSelection, tooltipCallbacks, ToolTipManager.Instance.GetToolTip(
+                    organelleSelection.Name, "organelleSelection"));
+        }
+
+        foreach (Control membraneSelection in membraneSelectionElements)
+        {
+            ToolTipManager.RegisterToolTipForControl(
+                membraneSelection, tooltipCallbacks, ToolTipManager.Instance.GetToolTip(
+                    membraneSelection.Name, "membraneSelection"));
+        }
+
+        ToolTipManager.RegisterToolTipForControl(
+            rigiditySlider, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("rigiditySlider"));
+        ToolTipManager.RegisterToolTipForControl(
+            helpButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("editorHelpButton"));
+        ToolTipManager.RegisterToolTipForControl(
+            symmetryButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("editorSymmetryButton"));
+        ToolTipManager.RegisterToolTipForControl(
+            undoButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("editorUndoButton"));
+        ToolTipManager.RegisterToolTipForControl(
+            redoButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("editorRedoButton"));
+        ToolTipManager.RegisterToolTipForControl(
+            newCellButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("editorNewCellButton"));
+        ToolTipManager.RegisterToolTipForControl(
+            timeIndicator, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("timeIndicator"));
     }
 
     public override void _Process(float delta)
@@ -527,6 +569,9 @@ public class MicrobeEditorGUI : Node
     public void UpdateTimeIndicator(double value)
     {
         timeIndicator.Text = string.Format(CultureInfo.CurrentCulture, "{0:#,##0,,}", value) + " Myr";
+
+        ToolTipManager.Instance.GetToolTip("timeIndicator").Description = string.Format(
+            CultureInfo.CurrentCulture, "{0:#,#}", editor.CurrentGame.GameWorld.TotalPassedTime) + " years";
     }
 
     public void SetInitialCellStats()
@@ -592,6 +637,57 @@ public class MicrobeEditorGUI : Node
 
         // Resets the statistics panel size to fit
         statisticsPanel.RectSize = Vector2.Zero;
+
+        UpdateEnergyBalanceToolTips(energyBalance);
+    }
+
+    public void UpdateEnergyBalanceToolTips(EnergyBalanceInfo energyBalance)
+    {
+        // Clear previous callbacks
+        processesTooltipCallbacks.Clear();
+
+        foreach (var subBar in atpProductionBar.SubBars)
+        {
+            var tooltip = ToolTipManager.Instance.GetToolTip(subBar.Name, "processesProduction");
+
+            ToolTipManager.RegisterToolTipForControl(subBar, processesTooltipCallbacks, tooltip);
+
+            tooltip.Description =
+                $"{SimulationParameters.Instance.GetOrganelleType(subBar.Name).Name}: " +
+                $"+{energyBalanceInfo.Production[subBar.Name]} ATP";
+        }
+
+        foreach (var subBar in atpConsumptionBar.SubBars)
+        {
+            var tooltip = ToolTipManager.Instance.GetToolTip(subBar.Name, "processesConsumption");
+
+            ToolTipManager.RegisterToolTipForControl(subBar, processesTooltipCallbacks, tooltip);
+
+            string displayName;
+
+            switch (subBar.Name)
+            {
+                case "osmoregulation":
+                {
+                    displayName = "Osmoregulation";
+                    break;
+                }
+
+                case "baseMovement":
+                {
+                    displayName = "Base Movement";
+                    break;
+                }
+
+                default:
+                {
+                    displayName = SimulationParameters.Instance.GetOrganelleType(subBar.Name).Name;
+                    break;
+                }
+            }
+
+            tooltip.Description = $"{displayName}: -{energyBalanceInfo.Consumption[subBar.Name]} ATP";
+        }
     }
 
     // Disable this because the cleanup and inspections disagree
@@ -604,8 +700,8 @@ public class MicrobeEditorGUI : Node
     {
         foreach (var organelle in organelleEfficiency.Keys)
         {
-            var tooltip = (SelectionMenuTooltip)tooltipHandler.GetTooltip(
-                SimulationParameters.Instance.GetOrganelleType(organelle).Name);
+            var tooltip = (SelectionMenuToolTip)ToolTipManager.Instance.GetToolTip(
+                SimulationParameters.Instance.GetOrganelleType(organelle).InternalName, "organelleSelection");
 
             tooltip?.WriteOrganelleProcessList(organelleEfficiency[organelle].Processes);
         }
@@ -618,7 +714,7 @@ public class MicrobeEditorGUI : Node
     {
         float convertedRigidity = rigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
 
-        var rigidityTooltip = (SelectionMenuTooltip)tooltipHandler.GetTooltip("Membrane Rigidity");
+        var rigidityTooltip = (SelectionMenuToolTip)ToolTipManager.Instance.GetToolTip("rigiditySlider");
 
         var healthModifier = rigidityTooltip.GetModifierInfo("Health");
         var mobilityModifier = rigidityTooltip.GetModifierInfo("Mobility");
@@ -671,101 +767,6 @@ public class MicrobeEditorGUI : Node
     internal void OnMouseExit()
     {
         editor.ShowHover = selectedEditorTab == EditorTab.CellEditor;
-    }
-
-    /// <summary>
-    ///   Used by the selection options on the selection menu to show tooltips
-    /// </summary>
-    internal void OnItemMouseHover(string itemName)
-    {
-        tooltipHandler.MainTooltip = tooltipHandler.GetTooltip(itemName);
-        tooltipHandler.Display = true;
-    }
-
-    /// <summary>
-    ///   Shows tooltips for the production balance bar
-    /// </summary>
-    internal void OnAtpProductionBarMouseEnter(string name)
-    {
-        if (energyBalanceInfo == null)
-            return;
-
-        var displayName = SimulationParameters.Instance.GetOrganelleType(name).Name;
-        var value = energyBalanceInfo.Production[name];
-
-        tooltipHandler.ShowDefaultTooltip($"{displayName}: +{value} ATP", 0.1f);
-    }
-
-    /// <summary>
-    ///   Shows tooltips for the consumption balance bar
-    /// </summary>
-    internal void OnAtpConsumptionBarMouseEnter(string name)
-    {
-        if (energyBalanceInfo == null)
-            return;
-
-        string displayName;
-        var value = energyBalanceInfo.Consumption[name];
-
-        switch (name)
-        {
-            case "osmoregulation":
-            {
-                displayName = "Osmoregulation";
-                break;
-            }
-
-            case "baseMovement":
-            {
-                displayName = "Base Movement";
-                break;
-            }
-
-            default:
-            {
-                displayName = SimulationParameters.Instance.GetOrganelleType(name).Name;
-                break;
-            }
-        }
-
-        tooltipHandler.ShowDefaultTooltip($"{displayName}: -{value} ATP", 0.1f);
-    }
-
-    internal void OnSymmetryButtonMouseEnter()
-    {
-        tooltipHandler.ShowDefaultTooltip("Symmetry");
-    }
-
-    internal void OnUndoButtonMouseEnter()
-    {
-        tooltipHandler.ShowDefaultTooltip("Undo");
-    }
-
-    internal void OnRedoButtonMouseEnter()
-    {
-        tooltipHandler.ShowDefaultTooltip("Redo");
-    }
-
-    internal void OnNewButtonMouseEnter()
-    {
-        tooltipHandler.ShowDefaultTooltip("New Cell");
-    }
-
-    internal void OnHelpButtonMouseEnter()
-    {
-        tooltipHandler.ShowDefaultTooltip("Open Help Screen");
-    }
-
-    internal void OnTimeIndicatorMouseEnter()
-    {
-        tooltipHandler.ShowDefaultTooltip(string.Format(
-                CultureInfo.CurrentCulture, "{0:#,#}", editor.CurrentGame.GameWorld.TotalPassedTime) +
-            " years", 0.5f);
-    }
-
-    internal void OnTooltipMouseExit()
-    {
-        tooltipHandler.Display = false;
     }
 
     internal void SetUndoButtonStatus(bool enabled)
@@ -825,7 +826,7 @@ public class MicrobeEditorGUI : Node
             var button = element.GetNode<Button>("VBoxContainer/Button");
             var icon = button.GetNode<TextureRect>("Icon");
 
-            if (element.Name == SimulationParameters.Instance.GetOrganelleType(organelle).Name)
+            if (element.Name == organelle)
             {
                 if (!button.Pressed)
                     button.Pressed = true;
@@ -991,31 +992,31 @@ public class MicrobeEditorGUI : Node
     {
         var button = organelleItem.GetNode<Button>("VBoxContainer/Button");
 
-        if (organelleItem.Name == "Nucleus")
+        if (organelleItem.Name == "nucleus")
         {
             button.Disabled = nucleus;
         }
-        else if (organelleItem.Name == "Mitochondrion")
+        else if (organelleItem.Name == "mitochondrion")
         {
             button.Disabled = !nucleus;
         }
-        else if (organelleItem.Name == "Chloroplast")
+        else if (organelleItem.Name == "chloroplast")
         {
             button.Disabled = !nucleus;
         }
-        else if (organelleItem.Name == "Chemoplast")
+        else if (organelleItem.Name == "chemoplast")
         {
             button.Disabled = !nucleus;
         }
-        else if (organelleItem.Name == "Nitrogen Fixing Plastid")
+        else if (organelleItem.Name == "nitrogenfixingplastid")
         {
             button.Disabled = !nucleus;
         }
-        else if (organelleItem.Name == "Vacuole")
+        else if (organelleItem.Name == "vacuole")
         {
             button.Disabled = !nucleus;
         }
-        else if (organelleItem.Name == "Toxin Vacuole")
+        else if (organelleItem.Name == "oxytoxy")
         {
             button.Disabled = !nucleus;
         }
@@ -1446,15 +1447,26 @@ public class MicrobeEditorGUI : Node
     {
         var input = newText.ToLower(CultureInfo.InvariantCulture);
 
-        foreach (VBoxContainer node in organelleSelectionElements)
+        var organelles = SimulationParameters.Instance.GetAllOrganelles().Where(
+            organelle => organelle.Name.ToLower(CultureInfo.CurrentCulture).Contains(input));
+
+        foreach (Control node in organelleSelectionElements)
         {
-            if (!node.Name.ToLower(CultureInfo.InvariantCulture).Contains(input))
-            {
-                node.Hide();
-            }
-            else
+            // To show back organelles that simulation parameters didn't include
+            if (string.IsNullOrEmpty(input))
             {
                 node.Show();
+                continue;
+            }
+
+            node.Hide();
+
+            foreach (var organelle in organelles)
+            {
+                if (node.Name == organelle.InternalName)
+                {
+                    node.Show();
+                }
             }
         }
     }

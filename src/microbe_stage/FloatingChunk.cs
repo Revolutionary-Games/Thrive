@@ -177,13 +177,17 @@ public class FloatingChunk : RigidBody, ISpawned
 
         if (string.IsNullOrEmpty(ModelNodePath))
         {
-            if (graphicsNode.GetClass() == "MeshInstance")
+            if (graphicsNode.IsClass("MeshInstance"))
             {
                 chunkMesh = (MeshInstance)graphicsNode;
             }
-            else if (graphicsNode.GetClass() == "Particles")
+            else if (graphicsNode.IsClass("Particles"))
             {
                 isParticles = true;
+            }
+            else
+            {
+                throw new Exception("Invalid class");
             }
         }
         else

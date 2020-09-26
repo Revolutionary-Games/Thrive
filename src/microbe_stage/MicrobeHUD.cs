@@ -225,7 +225,7 @@ public class MicrobeHUD : Node
     /// <summary>
     ///   Used by UpdateHoverInfo to run HOVER_PANEL_UPDATE_INTERVAL
     /// </summary>
-    private float timeElapsed;
+    private float hoverInfoTimeElapsed;
 
     public override void _Ready()
     {
@@ -569,12 +569,12 @@ public class MicrobeHUD : Node
     /// </summary>
     private void UpdateHoverInfo(float delta)
     {
-        timeElapsed += delta;
+        hoverInfoTimeElapsed += delta;
 
-        if (timeElapsed < Constants.HOVER_PANEL_UPDATE_INTERVAL)
+        if (hoverInfoTimeElapsed < Constants.HOVER_PANEL_UPDATE_INTERVAL)
             return;
 
-        timeElapsed -= Constants.HOVER_PANEL_UPDATE_INTERVAL;
+        hoverInfoTimeElapsed = 0;
 
         // Refresh compounds list
         foreach (Node children in hoveredCompoundsContainer.GetChildren())

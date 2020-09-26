@@ -1,19 +1,20 @@
 using Godot;
 
 /// <summary>
-///   For a more generic use and less customized tooltips
+///   For a more generic use and less customized tooltips, only has message text
 /// </summary>
-public class DefaultTooltip : Control, ICustomTooltip
+public class DefaultToolTip : Control, ICustomToolTip
 {
     [Export]
     public NodePath DescriptionLabelPath;
 
     /// <summary>
-    ///   TODO: Use RichTextLabel
+    ///   TODO: Use RichTextLabel once its sizing issue is fixed
     /// </summary>
     private Label descriptionLabel;
 
-    private string tooltipDescription;
+    private string displayName;
+    private string description;
 
     public Vector2 Position
     {
@@ -27,35 +28,42 @@ public class DefaultTooltip : Control, ICustomTooltip
         set => RectSize = value;
     }
 
-    public string TooltipName
+    /// <summary>
+    ///   Only get and set the node name since this tooltip only shows a message
+    /// </summary>
+    public string DisplayName
     {
-        get => Name;
-        set => Name = value;
+        get => ToolTipNode.Name;
+        set => ToolTipNode.Name = value;
     }
 
-    public string TooltipDescription
+    [Export]
+    public string Description
     {
-        get => tooltipDescription;
+        get => description;
         set
         {
-            tooltipDescription = value;
+            description = value;
             UpdateDescription();
         }
     }
 
+    [Export]
     public float DisplayDelay { get; set; } = Constants.TOOLTIP_DEFAULT_DELAY;
 
-    public bool TooltipVisible
+    public bool ToolTipVisible
     {
         get => Visible;
         set => Visible = value;
     }
 
-    public Node TooltipNode => this;
+    public Node ToolTipNode => this;
 
     public override void _Ready()
     {
         descriptionLabel = GetNode<Label>(DescriptionLabelPath);
+
+        UpdateDescription();
     }
 
     private void UpdateDescription()
@@ -63,6 +71,13 @@ public class DefaultTooltip : Control, ICustomTooltip
         if (descriptionLabel == null)
             return;
 
-        descriptionLabel.Text = TooltipDescription;
+        if (string.IsNullOrEmpty(Description))
+        {
+            description = descriptionLabel.Text;
+        }
+        else
+        {
+            descriptionLabel.Text = Description;
+        }
     }
 }
