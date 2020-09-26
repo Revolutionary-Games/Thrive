@@ -80,7 +80,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     }
 
     [Export]
-    public float DisplayDelay { get; set; } = 0.1f;
+    public float DisplayDelay { get; set; } = 0.3f;
 
     public bool ToolTipVisible
     {

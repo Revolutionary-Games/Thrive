@@ -6630,61 +6630,61 @@ mouse_filter = 2
 [node name="cytoplasm" parent="Holder/processesProduction" instance=ExtResource( 1 )]
 visible = false
 custom_styles/panel = SubResource( 1 )
-DisplayDelay = 0.1
+DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("../../processesProduction/cytoplasm/MarginContainer/VBoxContainer/Description")
 
 [node name="metabolosome" parent="Holder/processesProduction" instance=ExtResource( 1 )]
 visible = false
 custom_styles/panel = SubResource( 1 )
-DisplayDelay = 0.1
+DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("../../processesProduction/metabolosome/MarginContainer/VBoxContainer/Description")
 
 [node name="chromatophore" parent="Holder/processesProduction" instance=ExtResource( 1 )]
 visible = false
 custom_styles/panel = SubResource( 1 )
-DisplayDelay = 0.1
+DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("../../processesProduction/chromatophore/MarginContainer/VBoxContainer/Description")
 
 [node name="chemoSynthesizingProteins" parent="Holder/processesProduction" instance=ExtResource( 1 )]
 visible = false
 custom_styles/panel = SubResource( 1 )
-DisplayDelay = 0.1
+DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("../../processesProduction/chemoSynthesizingProteins/MarginContainer/VBoxContainer/Description")
 
 [node name="rusticyanin" parent="Holder/processesProduction" instance=ExtResource( 1 )]
 visible = false
 custom_styles/panel = SubResource( 1 )
-DisplayDelay = 0.1
+DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("../../processesProduction/rusticyanin/MarginContainer/VBoxContainer/Description")
 
 [node name="nitrogenase" parent="Holder/processesProduction" instance=ExtResource( 1 )]
 visible = false
 custom_styles/panel = SubResource( 1 )
-DisplayDelay = 0.1
+DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("../../processesProduction/nitrogenase/MarginContainer/VBoxContainer/Description")
 
 [node name="oxytoxyProteins" parent="Holder/processesProduction" instance=ExtResource( 1 )]
 visible = false
 custom_styles/panel = SubResource( 1 )
-DisplayDelay = 0.1
+DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("../../processesProduction/oxytoxyProteins/MarginContainer/VBoxContainer/Description")
 
 [node name="mitochondrion" parent="Holder/processesProduction" instance=ExtResource( 1 )]
 visible = false
 custom_styles/panel = SubResource( 1 )
-DisplayDelay = 0.1
+DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("../../processesProduction/mitochondrion/MarginContainer/VBoxContainer/Description")
 
 [node name="nitrogenfixingplastid" parent="Holder/processesProduction" instance=ExtResource( 1 )]
 visible = false
 custom_styles/panel = SubResource( 1 )
-DisplayDelay = 0.1
+DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("../../processesProduction/nitrogenfixingplastid/MarginContainer/VBoxContainer/Description")
 
 [node name="oxytoxy" parent="Holder/processesProduction" instance=ExtResource( 1 )]
 visible = false
 custom_styles/panel = SubResource( 1 )
-DisplayDelay = 0.1
+DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("../../processesProduction/oxytoxy/MarginContainer/VBoxContainer/Description")
 
 [node name="processesConsumption" type="Control" parent="Holder"]
@@ -6695,59 +6695,59 @@ mouse_filter = 2
 [node name="osmoregulation" parent="Holder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
 custom_styles/panel = SubResource( 1 )
-DisplayDelay = 0.1
+DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
 
 [node name="baseMovement" parent="Holder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
 custom_styles/panel = SubResource( 1 )
-DisplayDelay = 0.1
+DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
 
 [node name="chromatophore" parent="Holder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
 custom_styles/panel = SubResource( 1 )
-DisplayDelay = 0.1
+DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
 
 [node name="chemoSynthesizingProteins" parent="Holder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
 custom_styles/panel = SubResource( 1 )
-DisplayDelay = 0.1
+DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
 
 [node name="rusticyanin" parent="Holder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
 custom_styles/panel = SubResource( 1 )
-DisplayDelay = 0.1
+DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
 
 [node name="nitrogenase" parent="Holder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
 custom_styles/panel = SubResource( 1 )
-DisplayDelay = 0.1
+DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
 
 [node name="oxytoxyProteins" parent="Holder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
 custom_styles/panel = SubResource( 1 )
-DisplayDelay = 0.1
+DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
 
 [node name="flagellum" parent="Holder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
 custom_styles/panel = SubResource( 1 )
-DisplayDelay = 0.1
+DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
 
 [node name="nitrogenfixingplastid" parent="Holder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
 custom_styles/panel = SubResource( 1 )
-DisplayDelay = 0.1
+DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
 
 [node name="oxytoxy" parent="Holder/processesConsumption" instance=ExtResource( 1 )]
 visible = false
 custom_styles/panel = SubResource( 1 )
-DisplayDelay = 0.1
+DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
