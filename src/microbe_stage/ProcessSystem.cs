@@ -121,6 +121,45 @@ public class ProcessSystem
         return result;
     }
 
+    /// <summary>
+    ///   Computes the compound balances for given organelle list in a patch
+    /// </summary>
+    public static Dictionary<Compound, CompoundBalance> ComputeCompoundBalance(
+        IEnumerable<OrganelleDefinition> organelles, BiomeConditions biome)
+    {
+        var result = new Dictionary<Compound, CompoundBalance>();
+
+        void MakeSureResultExists(Compound compound)
+        {
+            if (!result.ContainsKey(compound))
+            {
+                result[compound] = new CompoundBalance();
+            }
+        }
+
+        foreach (var organelle in organelles)
+        {
+            foreach (var process in organelle.RunnableProcesses)
+            {
+                var speedAdjusted = CalculateProcessMaximumSpeed(process, biome);
+
+                foreach (var input in speedAdjusted.OtherInputs)
+                {
+                    MakeSureResultExists(input.Key);
+                    result[input.Key].AddConsumption(organelle.InternalName, input.Value.Amount);
+                }
+
+                foreach (var output in speedAdjusted.Outputs)
+                {
+                    MakeSureResultExists(output.Key);
+                    result[output.Key].AddProduction(organelle.InternalName, output.Value.Amount);
+                }
+            }
+        }
+
+        return result;
+    }
+
     public void Process(float delta)
     {
         if (biome == null)
