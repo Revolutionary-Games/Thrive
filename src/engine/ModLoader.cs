@@ -9,6 +9,15 @@ using Newtonsoft.Json;
 /// </summary>
 public class ModLoader
 {
+    /// <summary>
+    ///   Mods that are loaded in by the auto mod loader
+    ///   so the player don't have to reload them every time they start the game
+    /// </summary>
+    public static List<ModInfo> AutoLoadedMods { get; set; } = new List<ModInfo>();
+
+    /// <summary>
+    ///   Mods that have already been loaded including autoloaded mods too
+    /// </summary>
     public static List<ModInfo> LoadedMods { get; private set; } = new List<ModInfo>();
 
     /// <summary>
@@ -75,16 +84,15 @@ public class ModLoader
     public int LoadMod(ModInfo currentMod, bool addToAutoLoader = false, bool clearAutoloaderModList = true)
     {
         var file = new File();
-        var modSettingList = Settings.Instance.AutoLoadedMods;
 
         if (clearAutoloaderModList)
         {
-            modSettingList.Clear();
+            AutoLoadedMods.Clear();
         }
 
-        if (addToAutoLoader && !modSettingList.Contains(currentMod))
+        if (addToAutoLoader && !AutoLoadedMods.Contains(currentMod))
         {
-            modSettingList.Add(currentMod);
+            AutoLoadedMods.Add(currentMod);
         }
 
         if (LoadedMods.Contains(currentMod))
@@ -123,12 +131,11 @@ public class ModLoader
     public List<ModInfo> LoadModFromList(ModInfo[] modsToLoad, bool ignoreAutoloaded = true,
         bool addToAutoLoader = false, bool clearAutoloaderModList = true)
     {
-        var modSettingList = Settings.Instance.AutoLoadedMods;
         var failedModList = new List<ModInfo>();
 
         if (clearAutoloaderModList)
         {
-            modSettingList.Clear();
+            AutoLoadedMods.Clear();
         }
 
         foreach (ModInfo currentMod in modsToLoad)
@@ -137,7 +144,7 @@ public class ModLoader
             {
                 if (addToAutoLoader)
                 {
-                    modSettingList.Add(currentMod);
+                    AutoLoadedMods.Add(currentMod);
                 }
 
                 continue;
@@ -159,12 +166,11 @@ public class ModLoader
         bool addToAutoLoader = false, bool clearAutoloaderModList = true)
     {
         var modListCount = modsToLoad.GetItemCount();
-        var modSettingList = Settings.Instance.AutoLoadedMods;
         var failedModList = new List<ModInfo>();
 
         if (clearAutoloaderModList)
         {
-            modSettingList.Clear();
+            AutoLoadedMods.Clear();
         }
 
         for (int index = 0; index < modListCount; index++)
@@ -174,7 +180,7 @@ public class ModLoader
             {
                 if (addToAutoLoader)
                 {
-                    modSettingList.Add(currentMod);
+                    AutoLoadedMods.Add(currentMod);
                 }
 
                 continue;
@@ -194,14 +200,56 @@ public class ModLoader
     /// </summary>
     public void ResetGame()
     {
-        var modSettingList = Settings.Instance.AutoLoadedMods;
-        modSettingList.Clear();
-        Settings.Instance.Save();
+        AutoLoadedMods.Clear();
+        SaveAutoLoadedModsList();
     }
 
     /// <summary>
-    ///   This loads multiple mods from a array
+    ///   This saves the 'AutoLoadedMods' list to a file
     /// </summary>
+    /// <returns>True on success, false if the file can't be written.</returns>
+    /// <remarks>
+    ///   This was based on the Save method from Settings.cs
+    /// </remarks>
+    public bool SaveAutoLoadedModsList()
+    {
+        using (var file = new File())
+        {
+            var error = file.Open(Constants.MOD_CONFIGURATION, File.ModeFlags.Write);
+
+            if (error != Error.Ok)
+            {
+                GD.PrintErr("Couldn't open mod configuration file for writing.");
+                return false;
+            }
+
+            file.StoreString(JsonConvert.SerializeObject(AutoLoadedMods));
+
+            file.Close();
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    ///   This saves the 'AutoLoadedMods' list to a file
+    /// </summary>
+    /// <returns>True on success, false if the file can't be loaded.</returns>
+    public bool LoadAutoLoadedModsList()
+    {
+        var modFileContent = ReadJSONFile(Constants.MOD_CONFIGURATION);
+        var autoModList =
+            JsonConvert.DeserializeObject<List<ModInfo>>(modFileContent);
+
+        if (autoModList != null)
+        {
+            AutoLoadedMods = autoModList;
+            return true;
+        }
+
+        return false;
+    }
+
     /// <remarks>
     ///   This was copied from the PauseMenu.cs
     /// </remarks>

@@ -221,7 +221,7 @@ public class ModManagerUI : Control
         }
 
         loader.LoadModFromList(loadedItemList, true, true, true);
-        Settings.Instance.Save();
+        loader.SaveAutoLoadedModsList();
         GD.Print("All mods loaded");
         SceneManager.Instance.ReturnToMenu();
     }

@@ -175,12 +175,6 @@ public class Settings
     /// </summary>
     public SettingValue<bool> CheatsEnabled { get; set; } = new SettingValue<bool>(false);
 
-    /// <summary>
-    ///   Mods that are loaded in by the auto mod loader
-    ///   so the player don't have to reload them every time they start the game
-    /// </summary>
-    public List<ModInfo> AutoLoadedMods { get; set; } = new List<ModInfo>();
-
     public int CloudSimulationWidth => Constants.CLOUD_X_EXTENT / CloudResolution;
 
     public int CloudSimulationHeight => Constants.CLOUD_Y_EXTENT / CloudResolution;

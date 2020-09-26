@@ -12,8 +12,9 @@ public class AutoModLoader : Node
     private AutoModLoader()
     {
         ModLoader loader = new ModLoader();
+        loader.LoadAutoLoadedModsList();
 
-        var autoLoadedModList = Settings.Instance.AutoLoadedMods.ToArray();
+        var autoLoadedModList = ModLoader.AutoLoadedMods.ToArray();
         failedToLoadMods = loader.LoadModFromList(autoLoadedModList, false, false, false);
     }
 

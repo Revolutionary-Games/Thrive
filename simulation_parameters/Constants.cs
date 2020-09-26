@@ -442,6 +442,8 @@ public static class Constants
 
     public const string MOD_FOLDER = "user://mods";
 
+    public const string MOD_CONFIGURATION = "user://mods_settings.json";
+
     /// <summary>
     ///   This is just here to make it easier to debug saves
     /// </summary>
