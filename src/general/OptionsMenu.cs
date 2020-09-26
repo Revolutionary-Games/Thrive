@@ -131,9 +131,6 @@ public class OptionsMenu : Control
     public NodePath ErrorAcceptBoxPath;
 
     [Export]
-    public NodePath NeedRestartBoxPath;
-
-    [Export]
     public NodePath LanguageSelectionPath;
 
     [Export]
@@ -192,7 +189,6 @@ public class OptionsMenu : Control
     private WindowDialog backConfirmationBox;
     private ConfirmationDialog defaultsConfirmationBox;
     private AcceptDialog errorAcceptBox;
-    private AcceptDialog needRestartBox;
 
     /*
       Misc
@@ -280,7 +276,6 @@ public class OptionsMenu : Control
         backConfirmationBox = GetNode<WindowDialog>(BackConfirmationBoxPath);
         defaultsConfirmationBox = GetNode<ConfirmationDialog>(DefaultsConfirmationBoxPath);
         errorAcceptBox = GetNode<AcceptDialog>(ErrorAcceptBoxPath);
-        needRestartBox = GetNode<AcceptDialog>(NeedRestartBoxPath);
 
         selectedOptionsTab = SelectedOptionsTab.Graphics;
 
@@ -323,7 +318,8 @@ public class OptionsMenu : Control
         languageSelection.Selected = languages.IndexOf(Settings.Instance.SelectedLanguage);
 
         // Hide or show the reset language button based on the selected language
-        resetLanguageButton.Visible = !Settings.Instance.IsSelectedLanguageNull();
+        resetLanguageButton.Visible = Settings.Instance.SelectedLanguage != null &&
+            Settings.Instance.SelectedLanguage != Settings.DefaultLanguage;
 
         // Performance
         cloudInterval.Selected = CloudIntervalToIndex(settings.CloudUpdateInterval);
@@ -838,10 +834,8 @@ public class OptionsMenu : Control
 
     private void OnResetLanguagePressed()
     {
-        Settings.Instance.SelectedLanguage = null;
+        Settings.Instance.SelectedLanguage = Settings.DefaultLanguage;
         resetLanguageButton.Visible = false;
-
-        needRestartBox.PopupCenteredMinsize();
 
         Settings.Instance.ApplyLanguageSettings();
         languageSelection.Selected = languages.IndexOf(Settings.Instance.SelectedLanguage);
