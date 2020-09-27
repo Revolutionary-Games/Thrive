@@ -10,6 +10,13 @@
     /// </summary>
     public static class PopulationSimulation
     {
+        private static readonly Compound Sunlight = SimulationParameters.Instance.GetCompound("sunlight");
+        private static readonly Compound Glucose = SimulationParameters.Instance.GetCompound("glucose");
+        private static readonly Compound HydrogenSulfide = SimulationParameters.Instance.GetCompound("hydrogensulfide");
+        private static readonly Compound ATP = SimulationParameters.Instance.GetCompound("atp");
+        private static readonly Compound Iron = SimulationParameters.Instance.GetCompound("iron");
+        private static readonly Compound Oxytoxy = SimulationParameters.Instance.GetCompound("oxytoxy");
+
         public static void Simulate(SimulationConfiguration parameters)
         {
             var random = new Random();
@@ -49,7 +56,7 @@
 
                 foreach (var currentSpecies in species)
                 {
-                    int currentPopulation = patch.GetSpeciesPopulation(currentSpecies);
+                    long currentPopulation = patch.GetSpeciesPopulation(currentSpecies);
 
                     // If this is an extra species, this first takes the
                     // population from excluded species that match its index, if that
@@ -115,38 +122,151 @@
         /// <summary>
         ///   The heart of the simulation that handles the processed parameters and calculates future populations.
         /// </summary>
-        private static void SimulatePatchStep(RunResults populations, Patch patch, List<Species> species, Random random)
+        private static void SimulatePatchStep(RunResults populations, Patch patch, List<Species> genericSpecies,
+            Random random)
         {
+            _ = random;
+
             // Skip if there aren't any species in this patch
-            if (species.Count < 1)
+            if (genericSpecies.Count < 1)
                 return;
 
-            // var biome = patch.Biome;
+            // This algorithm version is for microbe species
+            var species = genericSpecies.Select(s => (MicrobeSpecies)s).ToList();
 
-            // TODO: this is where the proper auto-evo algorithm goes
+            var biome = patch.Biome;
 
-            // Here's a temporary boost when there are few species and penalty
-            // when there are many species
-            bool lowSpecies = species.Count <= Constants.AUTO_EVO_LOW_SPECIES_THRESHOLD;
-            bool highSpecies = species.Count >= Constants.AUTO_EVO_HIGH_SPECIES_THRESHOLD;
+            var sunlightInPatch = biome.Compounds[Sunlight].Dissolved * Constants.AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT;
+
+            var hydrogenSulfideInPatch = biome.Compounds[HydrogenSulfide].Density
+                * biome.Compounds[HydrogenSulfide].Amount * Constants.AUTO_EVO_COMPOUND_ENERGY_AMOUNT;
+
+            var glucoseInPatch = (biome.Compounds[Glucose].Density
+                * biome.Compounds[Glucose].Amount
+                + patch.GetTotalChunkCompoundAmount(Glucose)) * Constants.AUTO_EVO_COMPOUND_ENERGY_AMOUNT;
+
+            var ironInPatch = patch.GetTotalChunkCompoundAmount(Iron) * Constants.AUTO_EVO_COMPOUND_ENERGY_AMOUNT;
+
+            // Begin of new auto-evo prototype algorithm
+
+            var speciesEnergies = new Dictionary<MicrobeSpecies, float>(species.Count);
+
+            var totalPhotosynthesisScore = 0.0f;
+            var totalChemosynthesisScore = 0.0f;
+            var totalChemolithautotrophyScore = 0.0f;
+            var totalGlucoseScore = 0.0f;
+
+            var totalPredationScore = 0.0f;
+
+            // Calculate the total scores of each type in the current patch
+            foreach (var currentSpecies in species)
+            {
+                totalPhotosynthesisScore += GetCompoundUseScore(currentSpecies, Sunlight);
+                totalChemosynthesisScore += GetCompoundUseScore(currentSpecies, HydrogenSulfide);
+                totalChemolithautotrophyScore += GetCompoundUseScore(currentSpecies, Iron);
+                totalGlucoseScore += GetCompoundUseScore(currentSpecies, Glucose);
+                totalPredationScore += GetPredationScore(currentSpecies);
+            }
+
+            // Avoid division by 0
+            totalPhotosynthesisScore = Math.Max(MathUtils.EPSILON, totalPhotosynthesisScore);
+            totalChemosynthesisScore = Math.Max(MathUtils.EPSILON, totalChemosynthesisScore);
+            totalChemolithautotrophyScore = Math.Max(MathUtils.EPSILON, totalChemolithautotrophyScore);
+            totalGlucoseScore = Math.Max(MathUtils.EPSILON, totalGlucoseScore);
+            totalPredationScore = Math.Max(MathUtils.EPSILON, totalPredationScore);
+
+            // Calculate the share of environmental energy captured by each species
+            var energyAvailableForPredation = 0.0f;
 
             foreach (var currentSpecies in species)
             {
-                int currentPopulation = populations.GetPopulationInPatch(currentSpecies, patch);
-                int populationChange = random.Next(
-                    -Constants.AUTO_EVO_RANDOM_POPULATION_CHANGE, Constants.AUTO_EVO_RANDOM_POPULATION_CHANGE + 1);
+                var currentSpeciesEnergy = 0.0f;
 
-                if (lowSpecies)
-                {
-                    populationChange += Constants.AUTO_EVO_LOW_SPECIES_BOOST;
-                }
-                else if (highSpecies)
-                {
-                    populationChange -= Constants.AUTO_EVO_HIGH_SPECIES_PENALTY;
-                }
+                currentSpeciesEnergy += sunlightInPatch
+                    * GetCompoundUseScore(currentSpecies, Sunlight) / totalPhotosynthesisScore;
 
-                populations.AddPopulationResultForSpecies(currentSpecies, patch, currentPopulation + populationChange);
+                currentSpeciesEnergy += hydrogenSulfideInPatch
+                    * GetCompoundUseScore(currentSpecies, HydrogenSulfide) / totalChemosynthesisScore;
+
+                currentSpeciesEnergy += ironInPatch
+                    * GetCompoundUseScore(currentSpecies, Iron) / totalChemolithautotrophyScore;
+
+                currentSpeciesEnergy += glucoseInPatch
+                    * GetCompoundUseScore(currentSpecies, Glucose) / totalGlucoseScore;
+
+                energyAvailableForPredation += currentSpeciesEnergy * Constants.AUTO_EVO_PREDATION_ENERGY_MULTIPLIER;
+                speciesEnergies.Add(currentSpecies, currentSpeciesEnergy);
             }
+
+            // Calculate the share of predation done by each species
+            // Then update populations
+            foreach (var currentSpecies in species)
+            {
+                speciesEnergies[currentSpecies] += energyAvailableForPredation
+                    * GetPredationScore(currentSpecies) / totalPredationScore;
+                speciesEnergies[currentSpecies] -= energyAvailableForPredation / species.Count;
+
+                var newPopulation = (long)(speciesEnergies[currentSpecies]
+                    / Math.Pow(currentSpecies.Organelles.Count, 1.3f));
+
+                // Can't survive without enough population
+                if (newPopulation < Constants.AUTO_EVO_MINIMUM_VIABLE_POPULATION)
+                    newPopulation = 0;
+
+                populations.AddPopulationResultForSpecies(currentSpecies, patch, newPopulation);
+            }
+        }
+
+        private static float GetPredationScore(MicrobeSpecies species)
+        {
+            var predationScore = 0.0f;
+
+            foreach (var organelle in species.Organelles)
+            {
+                if (organelle.Definition.HasComponentFactory<PilusComponentFactory>())
+                {
+                    predationScore += Constants.AUTO_EVO_PILUS_PREDATION_SCORE;
+                    continue;
+                }
+
+                foreach (var process in organelle.Definition.RunnableProcesses)
+                {
+                    if (process.Process.Outputs.ContainsKey(Oxytoxy))
+                    {
+                        predationScore += Constants.AUTO_EVO_TOXIN_PREDATION_SCORE;
+                    }
+                }
+            }
+
+            return predationScore;
+        }
+
+        private static float GetCompoundUseScore(MicrobeSpecies species, Compound compound)
+        {
+            var compoundUseScore = 0.0f;
+
+            foreach (var organelle in species.Organelles)
+            {
+                foreach (var process in organelle.Definition.RunnableProcesses)
+                {
+                    if (process.Process.Inputs.ContainsKey(compound))
+                    {
+                        if (process.Process.Outputs.ContainsKey(Glucose))
+                        {
+                            compoundUseScore += process.Process.Outputs[Glucose]
+                                / process.Process.Inputs[compound] / Constants.AUTO_EVO_GLUCOSE_USE_SCORE_DIVISOR;
+                        }
+
+                        if (process.Process.Outputs.ContainsKey(ATP))
+                        {
+                            compoundUseScore += process.Process.Outputs[ATP]
+                                / process.Process.Inputs[compound] / Constants.AUTO_EVO_ATP_USE_SCORE_DIVISOR;
+                        }
+                    }
+                }
+            }
+
+            return compoundUseScore;
         }
     }
 }

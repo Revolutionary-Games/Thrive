@@ -270,8 +270,6 @@ public class MicrobeHUD : Node
         populationLabel = GetNode<Label>(PopulationLabelPath);
         patchLabel = GetNode<Label>(PatchLabelPath);
         editorButton = GetNode<TextureButton>(EditorButtonPath);
-
-        OnEnterStageTransition();
     }
 
     public void OnEnterStageTransition()
@@ -306,6 +304,8 @@ public class MicrobeHUD : Node
     public void Init(MicrobeStage stage)
     {
         this.stage = stage;
+
+        OnEnterStageTransition();
     }
 
     public void ResizeEnvironmentPanel(string mode)
