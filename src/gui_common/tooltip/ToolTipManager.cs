@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Godot;
-using Object = Godot.Object;
 
 /// <summary>
 ///   Holds and handles a collection of custom tooltip Controls
