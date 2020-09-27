@@ -1,7 +1,7 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/microbe_stage/AgentProjectile.cs" type="Script" id=1]
-[ext_resource path="res://assets/textures/background_particle.png" type="Texture" id=2]
+[ext_resource path="res://src/microbe_stage/particles/projectile_material.tres" type="Material" id=2]
 
 [sub_resource type="SphereShape" id=1]
 radius = 1.41921
@@ -26,19 +26,12 @@ gravity = Vector3( 5, 0, 0 )
 initial_velocity = 2.0
 initial_velocity_random = 1.0
 damping = 19.54
-scale = 0.5
+scale = 0.35
 scale_curve = SubResource( 5 )
 color_ramp = SubResource( 3 )
 
-[sub_resource type="SpatialMaterial" id=7]
-flags_transparent = true
-flags_unshaded = true
-vertex_color_use_as_albedo = true
-albedo_color = Color( 0.780392, 0.0901961, 0.470588, 1 )
-albedo_texture = ExtResource( 2 )
-
-[sub_resource type="PlaneMesh" id=8]
-material = SubResource( 7 )
+[sub_resource type="PlaneMesh" id=7]
+material = ExtResource( 2 )
 size = Vector2( 5, 5 )
 
 [node name="AgentProjectile" type="RigidBody"]
@@ -58,7 +51,7 @@ shape = SubResource( 1 )
 
 [node name="Particles" type="Particles" parent="."]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.128502, 0, -0.092073 )
-amount = 35
+amount = 55
 local_coords = false
 process_material = SubResource( 6 )
-draw_pass_1 = SubResource( 8 )
+draw_pass_1 = SubResource( 7 )
