@@ -391,7 +391,7 @@ public class OptionsMenu : Control
         maxAutosaves.Editable = settings.AutoSaveEnabled;
         maxQuicksaves.Value = settings.MaxQuickSaves;
     }
-    
+
     private void SwitchMode(OptionsMode mode)
     {
         if (mode == OptionsMode.MainMenu)
