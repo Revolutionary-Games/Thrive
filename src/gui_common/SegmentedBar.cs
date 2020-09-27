@@ -8,6 +8,8 @@ using Array = Godot.Collections.Array;
 /// </summary>
 public class SegmentedBar : HBoxContainer
 {
+    public readonly List<IconProgressBar> SubBars = new List<IconProgressBar>();
+
     public Type SelectedType;
 
     public bool IsProduction;
@@ -21,8 +23,6 @@ public class SegmentedBar : HBoxContainer
     ///   </para>
     /// </remarks>
     public float MaxValue;
-
-    public readonly List<IconProgressBar> SubBars = new List<IconProgressBar>();
 
     private readonly PackedScene iconProgressBarScene =
         GD.Load<PackedScene>("res://src/gui_common/IconProgressBar.tscn");

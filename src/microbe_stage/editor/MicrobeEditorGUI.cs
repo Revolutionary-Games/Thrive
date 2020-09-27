@@ -242,6 +242,9 @@ public class MicrobeEditorGUI : Node
     private readonly Compound phosphates = SimulationParameters.Instance.GetCompound("phosphates");
     private readonly Compound sunlight = SimulationParameters.Instance.GetCompound("sunlight");
 
+    private readonly List<ToolTipCallbackData> tooltipCallbacks = new List<ToolTipCallbackData>();
+    private readonly List<ToolTipCallbackData> processesTooltipCallbacks = new List<ToolTipCallbackData>();
+
     private EnergyBalanceInfo energyBalanceInfo;
     private float initialCellSpeed;
     private int initialCellSize;
@@ -341,9 +344,6 @@ public class MicrobeEditorGUI : Node
     private EditorTab selectedEditorTab = EditorTab.Report;
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
     private MicrobeEditor.MicrobeSymmetry symmetry = MicrobeEditor.MicrobeSymmetry.None;
-
-    private readonly List<ToolTipCallbackData> tooltipCallbacks = new List<ToolTipCallbackData>();
-    private readonly List<ToolTipCallbackData> processesTooltipCallbacks = new List<ToolTipCallbackData>();
 
     public enum EditorTab
     {
@@ -464,7 +464,7 @@ public class MicrobeEditorGUI : Node
     /// <summary>
     ///   Registers tooltip for the existing Controls
     /// </summary>
-    private void RegisterTooltips()
+    public void RegisterTooltips()
     {
         foreach (Control organelleSelection in organelleSelectionElements)
         {
@@ -654,7 +654,7 @@ public class MicrobeEditorGUI : Node
 
             tooltip.Description =
                 $"{SimulationParameters.Instance.GetOrganelleType(subBar.Name).Name}: " +
-                $"+{energyBalanceInfo.Production[subBar.Name]} ATP";
+                $"+{energyBalance.Production[subBar.Name]} ATP";
         }
 
         foreach (var subBar in atpConsumptionBar.SubBars)
@@ -686,7 +686,7 @@ public class MicrobeEditorGUI : Node
                 }
             }
 
-            tooltip.Description = $"{displayName}: -{energyBalanceInfo.Consumption[subBar.Name]} ATP";
+            tooltip.Description = $"{displayName}: -{energyBalance.Consumption[subBar.Name]} ATP";
         }
     }
 
@@ -1436,7 +1436,7 @@ public class MicrobeEditorGUI : Node
         var input = newText.ToLower(CultureInfo.InvariantCulture);
 
         var organelles = SimulationParameters.Instance.GetAllOrganelles().Where(
-            organelle => organelle.Name.ToLower(CultureInfo.CurrentCulture).Contains(input));
+            organelle => organelle.Name.ToLower(CultureInfo.CurrentCulture).Contains(input)).ToList();
 
         foreach (Control node in organelleSelectionElements)
         {

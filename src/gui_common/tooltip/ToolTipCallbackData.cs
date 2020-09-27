@@ -5,12 +5,12 @@ using Godot;
 /// </summary>
 public class ToolTipCallbackData : Reference
 {
-    public ICustomToolTip ToolTip { get; private set; }
-
     public ToolTipCallbackData(ICustomToolTip tooltip)
     {
         ToolTip = tooltip;
     }
+
+    public ICustomToolTip ToolTip { get; private set; }
 
     public void OnMouseEnter()
     {

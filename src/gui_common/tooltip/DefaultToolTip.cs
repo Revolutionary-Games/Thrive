@@ -13,7 +13,6 @@ public class DefaultToolTip : Control, ICustomToolTip
     /// </summary>
     private Label descriptionLabel;
 
-    private string displayName;
     private string description;
 
     public Vector2 Position

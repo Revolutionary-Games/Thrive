@@ -7,12 +7,12 @@ using Object = Godot.Object;
 /// </summary>
 public class ToolTipManager : CanvasLayer
 {
-    private static ToolTipManager instance;
-
     /// <summary>
     ///   The tooltip to be shown
     /// </summary>
     public ICustomToolTip MainToolTip;
+
+    private static ToolTipManager instance;
 
     /// <summary>
     ///   Collection of tooltips in a group
@@ -47,6 +47,28 @@ public class ToolTipManager : CanvasLayer
             display = value;
             UpdateToolTipVisibility();
         }
+    }
+
+    /// <summary>
+    ///   Helper method for registering a Control mouse enter/exit event to display a tooltip
+    /// </summary>
+    /// <param name="control">The Control to register the tooltip to</param>
+    /// <param name="callbackDatas">List to store the callbacks to keep them from unloading</param>
+    /// <param name="tooltip">The tooltip to register with</param>
+    public static void RegisterToolTipForControl(Control control, List<ToolTipCallbackData> callbackDatas,
+        ICustomToolTip tooltip)
+    {
+        // Skip if already registered
+        if (callbackDatas.Find(match => match.ToolTip == tooltip) != null)
+            return;
+
+        var toolTipCallbackData = new ToolTipCallbackData(tooltip);
+
+        control.Connect("mouse_entered", toolTipCallbackData, nameof(ToolTipCallbackData.OnMouseEnter));
+        control.Connect("mouse_exited", toolTipCallbackData, nameof(ToolTipCallbackData.OnMouseExit));
+        control.Connect("hide", toolTipCallbackData, nameof(ToolTipCallbackData.OnMouseExit));
+
+        callbackDatas.Add(toolTipCallbackData);
     }
 
     public override void _Ready()
@@ -91,28 +113,6 @@ public class ToolTipManager : CanvasLayer
         }
     }
 
-    /// <summary>
-    ///   Helper method for registering a Control mouse enter/exit event to display a tooltip
-    /// </summary>
-    /// <param name="control">The Control to register the tooltip to</param>
-    /// <param name="callbackDatas">List to store the callbacks to keep them from unloading</param>
-    /// <param name="tooltip">The tooltip to register with</param>
-    public static void RegisterToolTipForControl(Control control, List<ToolTipCallbackData> callbackDatas,
-        ICustomToolTip tooltip)
-    {
-        // Skip if already registered
-        if (callbackDatas.Find(match => match.ToolTip == tooltip) != null)
-            return;
-
-        var toolTipCallbackData = new ToolTipCallbackData(tooltip);
-
-        control.Connect("mouse_entered", toolTipCallbackData, nameof(ToolTipCallbackData.OnMouseEnter));
-        control.Connect("mouse_exited", toolTipCallbackData, nameof(ToolTipCallbackData.OnMouseExit));
-        control.Connect("hide", toolTipCallbackData, nameof(ToolTipCallbackData.OnMouseExit));
-
-        callbackDatas.Add(toolTipCallbackData);
-    }
-
     public void AddToolTip(ICustomToolTip tooltip, string group = "general")
     {
         tooltip.ToolTipVisible = false;
@@ -155,6 +155,7 @@ public class ToolTipManager : CanvasLayer
     public void AddGroup(string name)
     {
         var groupNode = new Control();
+        groupNode.Name = name;
         groupNode.MouseFilter = Control.MouseFilterEnum.Ignore;
         holder.AddChild(groupNode);
 
