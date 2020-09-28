@@ -62,11 +62,6 @@ public class MicrobeStage : Node, ILoadableGameState
     private List<Node> savedGameEntities;
 
     /// <summary>
-    ///   True once stage fade-in is complete
-    /// </summary>
-    private bool transitionFinished;
-
-    /// <summary>
     ///   True if auto save should trigger ASAP
     /// </summary>
     private bool wantsToSave;
@@ -143,6 +138,12 @@ public class MicrobeStage : Node, ILoadableGameState
         }
         set => savedGameEntities = value;
     }
+
+    /// <summary>
+    ///   True once stage fade-in is complete
+    /// </summary>
+    [JsonIgnore]
+    public bool TransitionFinished { get; internal set; }
 
     /// <summary>
     ///   This should get called the first time the stage scene is put
@@ -305,14 +306,6 @@ public class MicrobeStage : Node, ILoadableGameState
 
     public override void _Process(float delta)
     {
-        if (transitionFinished && wantsToSave)
-        {
-            if (!CurrentGame.FreeBuild)
-                SaveHelper.AutoSave(this);
-
-            wantsToSave = false;
-        }
-
         FluidSystem.Process(delta);
         TimedLifeSystem.Process(delta);
         ProcessSystem.Process(delta);
@@ -394,6 +387,15 @@ public class MicrobeStage : Node, ILoadableGameState
         // Start auto-evo if not already and settings have auto-evo be started during gameplay
         if (Settings.Instance.RunAutoEvoDuringGamePlay)
             GameWorld.IsAutoEvoFinished(true);
+
+        // Save if wanted
+        if (TransitionFinished && wantsToSave)
+        {
+            if (!CurrentGame.FreeBuild)
+                SaveHelper.AutoSave(this);
+
+            wantsToSave = false;
+        }
     }
 
     public override void _Input(InputEvent @event)
@@ -469,7 +471,7 @@ public class MicrobeStage : Node, ILoadableGameState
 
     public void OnFinishTransitioning()
     {
-        transitionFinished = true;
+        TransitionFinished = true;
         TutorialState.SendEvent(TutorialEventType.EnteredMicrobeStage, EventArgs.Empty, this);
     }
 

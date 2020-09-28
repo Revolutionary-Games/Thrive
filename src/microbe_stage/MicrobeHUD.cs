@@ -262,6 +262,7 @@ public class MicrobeHUD : Node
     public void OnEnterStageTransition()
     {
         // Fade out for that smooth satisfying transition
+        stage.TransitionFinished = false;
         TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeOut, 0.5f);
         TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.OnFinishTransitioning));
     }
