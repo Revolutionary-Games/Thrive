@@ -61,6 +61,16 @@ public class MicrobeStage : Node, ILoadableGameState
     /// </summary>
     private List<Node> savedGameEntities;
 
+    /// <summary>
+    ///   True once stage fade-in is complete
+    /// </summary>
+    private bool transitionFinished;
+
+    /// <summary>
+    ///   True if auto save should trigger ASAP
+    /// </summary>
+    private bool wantsToSave;
+
     [JsonProperty]
     public Microbe Player { get; private set; }
 
@@ -295,6 +305,14 @@ public class MicrobeStage : Node, ILoadableGameState
 
     public override void _Process(float delta)
     {
+        if (transitionFinished && wantsToSave)
+        {
+            if (!CurrentGame.FreeBuild)
+                SaveHelper.AutoSave(this);
+
+            wantsToSave = false;
+        }
+
         FluidSystem.Process(delta);
         TimedLifeSystem.Process(delta);
         ProcessSystem.Process(delta);
@@ -444,13 +462,14 @@ public class MicrobeStage : Node, ILoadableGameState
         HUD.HideReproductionDialog();
 
         StartMusic();
+
+        // Auto save is wanted once possible
+        wantsToSave = true;
     }
 
     public void OnFinishTransitioning()
     {
-        if (!CurrentGame.FreeBuild)
-            SaveHelper.AutoSave(this);
-
+        transitionFinished = true;
         TutorialState.SendEvent(TutorialEventType.EnteredMicrobeStage, EventArgs.Empty, this);
     }
 
