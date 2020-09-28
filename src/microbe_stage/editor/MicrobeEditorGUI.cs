@@ -709,6 +709,9 @@ public class MicrobeEditorGUI : Node
     {
         foreach (var organelle in organelleEfficiency.Keys)
         {
+            if (organelle == "protoplasm")
+                continue;
+
             var tooltip = (SelectionMenuToolTip)ToolTipManager.Instance.GetToolTip(
                 SimulationParameters.Instance.GetOrganelleType(organelle).InternalName, "organelleSelection");
 

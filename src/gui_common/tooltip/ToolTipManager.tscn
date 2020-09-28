@@ -80,6 +80,7 @@ region_rect = Rect2( 0, 0, 429, 1 )
 
 [node name="TooltipHandler" type="CanvasLayer"]
 pause_mode = 2
+layer = 3
 script = ExtResource( 23 )
 
 [node name="Tween" type="Tween" parent="."]

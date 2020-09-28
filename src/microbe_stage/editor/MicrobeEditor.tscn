@@ -72,7 +72,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/plusButton.png" type="Texture" id=70]
 [ext_resource path="res://assets/textures/gui/bevel/plusButtonHover.png" type="Texture" id=71]
 [ext_resource path="res://assets/fonts/Jura-Regular.ttf" type="DynamicFontData" id=73]
-[ext_resource path="res://src/microbe_stage/editor/CollapsibleList.cs" type="Script" id=75]
+[ext_resource path="res://src/gui_common/tooltip/CollapsibleList.cs" type="Script" id=75]
 [ext_resource path="res://assets/textures/gui/bevel/buttonHover.png" type="Texture" id=76]
 [ext_resource path="res://assets/textures/gui/bevel/buttonActive.png" type="Texture" id=77]
 [ext_resource path="res://src/gui_common/scrollbar_theme.tres" type="Theme" id=80]
@@ -87,6 +87,7 @@
 [ext_resource path="res://assets/textures/gui/bevel/redoButtonHover.png" type="Texture" id=94]
 [ext_resource path="res://assets/textures/gui/bevel/undoButtonActive.png" type="Texture" id=95]
 [ext_resource path="res://assets/textures/gui/bevel/sliderTick.png" type="Texture" id=96]
+
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0.435294, 0.52549, 1 )
