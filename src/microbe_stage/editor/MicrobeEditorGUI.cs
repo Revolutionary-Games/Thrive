@@ -245,6 +245,8 @@ public class MicrobeEditorGUI : Node
     private readonly Compound phosphates = SimulationParameters.Instance.GetCompound("phosphates");
     private readonly Compound sunlight = SimulationParameters.Instance.GetCompound("sunlight");
 
+    private readonly OrganelleDefinition protoplasm = SimulationParameters.Instance.GetOrganelleType("protoplasm");
+
     private readonly List<ToolTipCallbackData> tooltipCallbacks = new List<ToolTipCallbackData>();
     private readonly List<ToolTipCallbackData> processesTooltipCallbacks = new List<ToolTipCallbackData>();
 
@@ -709,7 +711,7 @@ public class MicrobeEditorGUI : Node
     {
         foreach (var organelle in organelleEfficiency.Keys)
         {
-            if (organelle == "protoplasm")
+            if (organelle == protoplasm.InternalName)
                 continue;
 
             var tooltip = (SelectionMenuToolTip)ToolTipManager.Instance.GetToolTip(
