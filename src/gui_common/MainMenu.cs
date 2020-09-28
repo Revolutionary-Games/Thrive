@@ -267,7 +267,7 @@ public class MainMenu : Node
         SetCurrentMenu(uint.MaxValue, false);
 
         // Show the options
-        options.Visible = true;
+        options.OpenFromMainMenu();
 
         thriveLogo.Hide();
     }
