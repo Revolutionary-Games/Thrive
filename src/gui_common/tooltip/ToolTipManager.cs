@@ -66,6 +66,7 @@ public class ToolTipManager : CanvasLayer
         control.Connect("mouse_entered", toolTipCallbackData, nameof(ToolTipCallbackData.OnMouseEnter));
         control.Connect("mouse_exited", toolTipCallbackData, nameof(ToolTipCallbackData.OnMouseExit));
         control.Connect("hide", toolTipCallbackData, nameof(ToolTipCallbackData.OnMouseExit));
+        control.Connect("tree_exiting", toolTipCallbackData, nameof(ToolTipCallbackData.OnMouseExit));
 
         callbackDatas.Add(toolTipCallbackData);
     }

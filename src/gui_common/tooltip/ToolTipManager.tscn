@@ -79,6 +79,7 @@ texture = ExtResource( 11 )
 region_rect = Rect2( 0, 0, 429, 1 )
 
 [node name="TooltipHandler" type="CanvasLayer"]
+pause_mode = 2
 script = ExtResource( 23 )
 
 [node name="Tween" type="Tween" parent="."]
@@ -97,49 +98,65 @@ margin_right = 40.0
 margin_bottom = 40.0
 mouse_filter = 2
 
-[node name="timeIndicator" parent="Holder/general" instance=ExtResource( 1 )]
+[node name="DefaultTooltip" parent="Holder/general" instance=ExtResource( 1 )]
+
+[node name="menuButton" parent="Holder/general" instance=ExtResource( 1 )]
+Description = "Open the menu"
+DescriptionLabelPath = NodePath("../../general/menuButton/MarginContainer/VBoxContainer/Description")
+
+[node name="helpButton" parent="Holder/general" instance=ExtResource( 1 )]
+visible = false
+custom_styles/panel = SubResource( 1 )
+Description = "Open help screen"
+DescriptionLabelPath = NodePath("../../general/helpButton/MarginContainer/VBoxContainer/Description")
+
+[node name="mainMenu" type="Control" parent="Holder"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="thriveLogoEasterEgg" parent="Holder/mainMenu" instance=ExtResource( 1 )]
+Description = "Will you thrive?"
+DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
+
+[node name="editor" type="Control" parent="Holder"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="finishButton" parent="Holder/editor" instance=ExtResource( 1 )]
+Description = "Finish editing and return to environment"
+DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
+
+[node name="symmetryButton" parent="Holder/editor" instance=ExtResource( 1 )]
+visible = false
+custom_styles/panel = SubResource( 1 )
+Description = "Change the symmetry"
+DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
+
+[node name="undoButton" parent="Holder/editor" instance=ExtResource( 1 )]
+visible = false
+custom_styles/panel = SubResource( 1 )
+Description = "Undo the last action"
+DescriptionLabelPath = NodePath("../undoButton/MarginContainer/VBoxContainer/Description")
+
+[node name="redoButton" parent="Holder/editor" instance=ExtResource( 1 )]
+visible = false
+custom_styles/panel = SubResource( 1 )
+Description = "Redo the last action"
+DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
+
+[node name="newCellButton" parent="Holder/editor" instance=ExtResource( 1 )]
+visible = false
+custom_styles/panel = SubResource( 1 )
+Description = "Create a new microbe"
+DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
+
+[node name="timeIndicator" parent="Holder/editor" instance=ExtResource( 1 )]
 visible = false
 custom_styles/panel = SubResource( 1 )
 DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
 
-[node name="editorHelpButton" parent="Holder/general" instance=ExtResource( 1 )]
-visible = false
-custom_styles/panel = SubResource( 1 )
-Description = "Open help screen"
-DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
-
-[node name="editorSymmetryButton" parent="Holder/general" instance=ExtResource( 1 )]
-visible = false
-custom_styles/panel = SubResource( 1 )
-Description = "Symmetry"
-DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
-
-[node name="editorUndoButton" parent="Holder/general" instance=ExtResource( 1 )]
-visible = false
-custom_styles/panel = SubResource( 1 )
-Description = "Undo"
-DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
-
-[node name="editorRedoButton" parent="Holder/general" instance=ExtResource( 1 )]
-visible = false
-custom_styles/panel = SubResource( 1 )
-Description = "Redo"
-DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
-
-[node name="editorNewCellButton" parent="Holder/general" instance=ExtResource( 1 )]
-visible = false
-custom_styles/panel = SubResource( 1 )
-Description = "New cell"
-DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
-
-[node name="atpSegmentBar" parent="Holder/general" instance=ExtResource( 1 )]
-visible = false
-custom_styles/panel = SubResource( 1 )
-DisplayDelay = 0.1
-DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
-
-[node name="rigiditySlider" type="PanelContainer" parent="Holder/general"]
+[node name="rigiditySlider" type="PanelContainer" parent="Holder/editor"]
 visible = false
 margin_right = 350.0
 margin_bottom = 238.0
@@ -158,7 +175,7 @@ ModifierListPath = NodePath("../rigiditySlider/MarginContainer/VBoxContainer/Mod
 ProcessListPath = NodePath("../rigiditySlider/MarginContainer/VBoxContainer/ProcessList")
 ModifierInfoScene = ExtResource( 2 )
 
-[node name="MarginContainer" type="MarginContainer" parent="Holder/general/rigiditySlider"]
+[node name="MarginContainer" type="MarginContainer" parent="Holder/editor/rigiditySlider"]
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 349.0
@@ -169,7 +186,7 @@ custom_constants/margin_top = 15
 custom_constants/margin_left = 15
 custom_constants/margin_bottom = 15
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Holder/general/rigiditySlider/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Holder/editor/rigiditySlider/MarginContainer"]
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 333.0
@@ -177,20 +194,20 @@ margin_bottom = 222.0
 mouse_filter = 2
 custom_constants/separation = 15
 
-[node name="Header" type="HBoxContainer" parent="Holder/general/rigiditySlider/MarginContainer/VBoxContainer"]
+[node name="Header" type="HBoxContainer" parent="Holder/editor/rigiditySlider/MarginContainer/VBoxContainer"]
 margin_right = 318.0
 margin_bottom = 57.0
 mouse_filter = 2
 custom_constants/separation = 10
 
-[node name="MP" type="HBoxContainer" parent="Holder/general/rigiditySlider/MarginContainer/VBoxContainer/Header"]
+[node name="MP" type="HBoxContainer" parent="Holder/editor/rigiditySlider/MarginContainer/VBoxContainer/Header"]
 margin_right = 49.0
 margin_bottom = 20.0
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 
-[node name="Icon" type="TextureRect" parent="Holder/general/rigiditySlider/MarginContainer/VBoxContainer/Header/MP"]
+[node name="Icon" type="TextureRect" parent="Holder/editor/rigiditySlider/MarginContainer/VBoxContainer/Header/MP"]
 margin_right = 20.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 20, 20 )
@@ -199,7 +216,7 @@ size_flags_vertical = 4
 texture = ExtResource( 13 )
 expand = true
 
-[node name="Value" type="Label" parent="Holder/general/rigiditySlider/MarginContainer/VBoxContainer/Header/MP"]
+[node name="Value" type="Label" parent="Holder/editor/rigiditySlider/MarginContainer/VBoxContainer/Header/MP"]
 margin_left = 24.0
 margin_top = 1.0
 margin_right = 33.0
@@ -207,7 +224,7 @@ margin_bottom = 19.0
 custom_fonts/font = SubResource( 3 )
 text = "2"
 
-[node name="Title" type="Label" parent="Holder/general/rigiditySlider/MarginContainer/VBoxContainer/Header"]
+[node name="Title" type="Label" parent="Holder/editor/rigiditySlider/MarginContainer/VBoxContainer/Header"]
 margin_left = 59.0
 margin_right = 259.0
 margin_bottom = 57.0
@@ -218,21 +235,21 @@ text = "Membrane Rigidity"
 align = 1
 autowrap = true
 
-[node name="Spacer" type="Control" parent="Holder/general/rigiditySlider/MarginContainer/VBoxContainer/Header"]
+[node name="Spacer" type="Control" parent="Holder/editor/rigiditySlider/MarginContainer/VBoxContainer/Header"]
 margin_left = 269.0
 margin_right = 318.0
 margin_bottom = 57.0
 mouse_filter = 2
 size_flags_horizontal = 3
 
-[node name="ProcessDescription" type="VBoxContainer" parent="Holder/general/rigiditySlider/MarginContainer/VBoxContainer"]
+[node name="ProcessDescription" type="VBoxContainer" parent="Holder/editor/rigiditySlider/MarginContainer/VBoxContainer"]
 visible = false
 margin_top = 72.0
 margin_right = 318.0
 margin_bottom = 72.0
 mouse_filter = 2
 
-[node name="ProcessList" type="VBoxContainer" parent="Holder/general/rigiditySlider/MarginContainer/VBoxContainer"]
+[node name="ProcessList" type="VBoxContainer" parent="Holder/editor/rigiditySlider/MarginContainer/VBoxContainer"]
 visible = false
 margin_top = 87.0
 margin_right = 318.0
@@ -240,19 +257,19 @@ margin_bottom = 87.0
 mouse_filter = 2
 theme = SubResource( 6 )
 
-[node name="ModifierList" type="VBoxContainer" parent="Holder/general/rigiditySlider/MarginContainer/VBoxContainer"]
+[node name="ModifierList" type="VBoxContainer" parent="Holder/editor/rigiditySlider/MarginContainer/VBoxContainer"]
 margin_top = 72.0
 margin_right = 318.0
 margin_bottom = 116.0
 mouse_filter = 2
 
-[node name="Mobility" type="HBoxContainer" parent="Holder/general/rigiditySlider/MarginContainer/VBoxContainer/ModifierList"]
+[node name="Mobility" type="HBoxContainer" parent="Holder/editor/rigiditySlider/MarginContainer/VBoxContainer/ModifierList"]
 margin_right = 318.0
 margin_bottom = 20.0
 mouse_filter = 2
 script = ExtResource( 21 )
 
-[node name="Value" type="Label" parent="Holder/general/rigiditySlider/MarginContainer/VBoxContainer/ModifierList/Mobility"]
+[node name="Value" type="Label" parent="Holder/editor/rigiditySlider/MarginContainer/VBoxContainer/ModifierList/Mobility"]
 margin_top = 1.0
 margin_right = 24.0
 margin_bottom = 18.0
@@ -260,14 +277,14 @@ custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "-0.4"
 
-[node name="Name" type="Label" parent="Holder/general/rigiditySlider/MarginContainer/VBoxContainer/ModifierList/Mobility"]
+[node name="Name" type="Label" parent="Holder/editor/rigiditySlider/MarginContainer/VBoxContainer/ModifierList/Mobility"]
 margin_left = 28.0
 margin_right = 86.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 8 )
 text = "Mobility"
 
-[node name="Icon" type="TextureRect" parent="Holder/general/rigiditySlider/MarginContainer/VBoxContainer/ModifierList/Mobility"]
+[node name="Icon" type="TextureRect" parent="Holder/editor/rigiditySlider/MarginContainer/VBoxContainer/ModifierList/Mobility"]
 margin_left = 90.0
 margin_right = 110.0
 margin_bottom = 20.0
@@ -276,14 +293,14 @@ mouse_filter = 2
 texture = ExtResource( 6 )
 expand = true
 
-[node name="Health" type="HBoxContainer" parent="Holder/general/rigiditySlider/MarginContainer/VBoxContainer/ModifierList"]
+[node name="Health" type="HBoxContainer" parent="Holder/editor/rigiditySlider/MarginContainer/VBoxContainer/ModifierList"]
 margin_top = 24.0
 margin_right = 318.0
 margin_bottom = 44.0
 mouse_filter = 2
 script = ExtResource( 21 )
 
-[node name="Value" type="Label" parent="Holder/general/rigiditySlider/MarginContainer/VBoxContainer/ModifierList/Health"]
+[node name="Value" type="Label" parent="Holder/editor/rigiditySlider/MarginContainer/VBoxContainer/ModifierList/Health"]
 margin_top = 1.0
 margin_right = 24.0
 margin_bottom = 18.0
@@ -291,14 +308,14 @@ custom_fonts/font = SubResource( 7 )
 custom_colors/font_color = Color( 0, 1, 0, 1 )
 text = "+30"
 
-[node name="Name" type="Label" parent="Holder/general/rigiditySlider/MarginContainer/VBoxContainer/ModifierList/Health"]
+[node name="Name" type="Label" parent="Holder/editor/rigiditySlider/MarginContainer/VBoxContainer/ModifierList/Health"]
 margin_left = 28.0
 margin_right = 74.0
 margin_bottom = 19.0
 custom_fonts/font = SubResource( 8 )
 text = "Health"
 
-[node name="Icon" type="TextureRect" parent="Holder/general/rigiditySlider/MarginContainer/VBoxContainer/ModifierList/Health"]
+[node name="Icon" type="TextureRect" parent="Holder/editor/rigiditySlider/MarginContainer/VBoxContainer/ModifierList/Health"]
 margin_left = 78.0
 margin_right = 98.0
 margin_bottom = 20.0
@@ -306,14 +323,14 @@ rect_min_size = Vector2( 20, 20 )
 mouse_filter = 2
 expand = true
 
-[node name="HSeparator" type="HSeparator" parent="Holder/general/rigiditySlider/MarginContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="Holder/editor/rigiditySlider/MarginContainer/VBoxContainer"]
 margin_top = 131.0
 margin_right = 318.0
 margin_bottom = 135.0
 mouse_filter = 2
 custom_styles/separator = SubResource( 9 )
 
-[node name="Description" type="Label" parent="Holder/general/rigiditySlider/MarginContainer/VBoxContainer"]
+[node name="Description" type="Label" parent="Holder/editor/rigiditySlider/MarginContainer/VBoxContainer"]
 margin_top = 150.0
 margin_right = 318.0
 margin_bottom = 207.0

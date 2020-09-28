@@ -906,6 +906,8 @@ MutationPointsBarPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/M
 MutationPointsSubtractBarPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer2/MutationPointsBar/MarginContainer/MPBarSubtract")
 SpeciesNameEditPath = NodePath("CellEditor/BottomLeft/HBoxContainer/SpeciesName")
 MembraneColorPickerPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2/ColorPicker")
+MenuButtonPath = NodePath("BottomButtons/HBoxContainer/MenuButton")
+HelpButtonPath = NodePath("BottomButtons/HBoxContainer/HelpButton")
 NewCellButtonPath = NodePath("CellEditor/BottomLeft/HBoxContainer/NewButton")
 UndoButtonPath = NodePath("CellEditor/BottomLeft/HBoxContainer/UndoButton")
 RedoButtonPath = NodePath("CellEditor/BottomLeft/HBoxContainer/RedoButton")
@@ -953,7 +955,6 @@ HpIndicatorPath = NodePath("CellEditor/Statistics/VBoxContainer/Body/VBoxContain
 SizeIndicatorPath = NodePath("CellEditor/Statistics/VBoxContainer/Body/VBoxContainer/Size/Indicator")
 RigiditySliderPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/RigiditySlider")
 NegativeAtpPopupPath = NodePath("CellEditor/NegativeAtpWarning")
-HelpButtonPath = NodePath("BottomButtons/HBoxContainer/HelpButton")
 SymmetryIconPath = NodePath("CellEditor/BottomLeft/HBoxContainer/SymmetryButton/SymmetryIcon")
 SymmetryIconDefault = ExtResource( 34 )
 SymmetryIcon2x = ExtResource( 39 )
@@ -3716,10 +3717,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 39 )
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_left = 156.0
-margin_top = 178.0
-margin_right = 458.0
-margin_bottom = 644.0
+margin_left = 164.0
+margin_top = 186.0
+margin_right = 466.0
+margin_bottom = 652.0
 theme = SubResource( 41 )
 edit_alpha = false
 

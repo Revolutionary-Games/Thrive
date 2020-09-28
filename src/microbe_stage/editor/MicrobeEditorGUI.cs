@@ -66,6 +66,12 @@ public class MicrobeEditorGUI : Node
     public NodePath MembraneColorPickerPath;
 
     [Export]
+    public NodePath MenuButtonPath;
+
+    [Export]
+    public NodePath HelpButtonPath;
+
+    [Export]
     public NodePath NewCellButtonPath;
 
     [Export]
@@ -207,9 +213,6 @@ public class MicrobeEditorGUI : Node
     public NodePath NegativeAtpPopupPath;
 
     [Export]
-    public NodePath HelpButtonPath;
-
-    [Export]
     public NodePath SymmetryIconPath;
 
     [Export]
@@ -339,6 +342,7 @@ public class MicrobeEditorGUI : Node
 
     private ConfirmationDialog negativeAtpPopup;
 
+    private TextureButton menuButton;
     private TextureButton helpButton;
 
     private EditorTab selectedEditorTab = EditorTab.Report;
@@ -387,6 +391,7 @@ public class MicrobeEditorGUI : Node
         rigiditySlider = GetNode<Slider>(RigiditySliderPath);
         membraneColorPicker = GetNode<ColorPicker>(MembraneColorPickerPath);
 
+        menuButton = GetNode<TextureButton>(MenuButtonPath);
         helpButton = GetNode<TextureButton>(HelpButtonPath);
         undoButton = GetNode<TextureButton>(UndoButtonPath);
         redoButton = GetNode<TextureButton>(RedoButtonPath);
@@ -481,19 +486,23 @@ public class MicrobeEditorGUI : Node
         }
 
         ToolTipManager.RegisterToolTipForControl(
-            rigiditySlider, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("rigiditySlider"));
+            rigiditySlider, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("rigiditySlider", "editor"));
         ToolTipManager.RegisterToolTipForControl(
-            helpButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("editorHelpButton"));
+            helpButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("helpButton"));
         ToolTipManager.RegisterToolTipForControl(
-            symmetryButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("editorSymmetryButton"));
+            symmetryButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("symmetryButton", "editor"));
         ToolTipManager.RegisterToolTipForControl(
-            undoButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("editorUndoButton"));
+            undoButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("undoButton", "editor"));
         ToolTipManager.RegisterToolTipForControl(
-            redoButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("editorRedoButton"));
+            redoButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("redoButton", "editor"));
         ToolTipManager.RegisterToolTipForControl(
-            newCellButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("editorNewCellButton"));
+            newCellButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("newCellButton", "editor"));
         ToolTipManager.RegisterToolTipForControl(
-            timeIndicator, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("timeIndicator"));
+            timeIndicator, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("timeIndicator", "editor"));
+        ToolTipManager.RegisterToolTipForControl(
+            finishButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("finishButton", "editor"));
+        ToolTipManager.RegisterToolTipForControl(
+            menuButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("menuButton"));
     }
 
     public override void _Process(float delta)
@@ -570,7 +579,7 @@ public class MicrobeEditorGUI : Node
     {
         timeIndicator.Text = string.Format(CultureInfo.CurrentCulture, "{0:#,##0,,}", value) + " Myr";
 
-        ToolTipManager.Instance.GetToolTip("timeIndicator").Description = string.Format(
+        ToolTipManager.Instance.GetToolTip("timeIndicator", "editor").Description = string.Format(
             CultureInfo.CurrentCulture, "{0:#,#}", editor.CurrentGame.GameWorld.TotalPassedTime) + " years";
     }
 
@@ -714,7 +723,7 @@ public class MicrobeEditorGUI : Node
     {
         float convertedRigidity = rigidity / Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO;
 
-        var rigidityTooltip = (SelectionMenuToolTip)ToolTipManager.Instance.GetToolTip("rigiditySlider");
+        var rigidityTooltip = (SelectionMenuToolTip)ToolTipManager.Instance.GetToolTip("rigiditySlider", "editor");
 
         var healthModifier = rigidityTooltip.GetModifierInfo("Health");
         var mobilityModifier = rigidityTooltip.GetModifierInfo("Mobility");
