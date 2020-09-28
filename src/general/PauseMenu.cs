@@ -203,7 +203,7 @@ public class PauseMenu : Control
                 loadMenu.Show();
                 break;
             case "options":
-                optionsMenu.OpenFromMicrobeStage(GameProperties);
+                optionsMenu.OpenFromInGame(GameProperties);
                 break;
             case "save":
                 saveMenu.Show();

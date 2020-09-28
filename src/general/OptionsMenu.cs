@@ -126,9 +126,6 @@ public class OptionsMenu : Control
     public NodePath BackConfirmationBoxPath;
 
     [Export]
-    public NodePath LocalSettingsVBoxPath;
-
-    [Export]
     public NodePath TutorialsEnabledPath;
 
     [Export]
@@ -183,8 +180,6 @@ public class OptionsMenu : Control
     private SpinBox maxAutosaves;
     private SpinBox maxQuicksaves;
 
-    private VBoxContainer localSettingsVBox;
-
     private CheckBox tutorialsEnabled;
 
     // Confirmation Boxes
@@ -219,7 +214,7 @@ public class OptionsMenu : Control
     public enum OptionsMode
     {
         MainMenu,
-        MicrobeStage,
+        InGame,
     }
 
     private enum SelectedOptionsTab
@@ -278,7 +273,6 @@ public class OptionsMenu : Control
         autosave = GetNode<CheckBox>(AutoSavePath);
         maxAutosaves = GetNode<SpinBox>(MaxAutoSavesPath);
         maxQuicksaves = GetNode<SpinBox>(MaxQuickSavesPath);
-        localSettingsVBox = GetNode<VBoxContainer>(LocalSettingsVBoxPath);
         tutorialsEnabled = GetNode<CheckBox>(TutorialsEnabledPath);
 
         backConfirmationBox = GetNode<WindowDialog>(BackConfirmationBoxPath);
@@ -286,10 +280,6 @@ public class OptionsMenu : Control
         errorAcceptBox = GetNode<AcceptDialog>(ErrorAcceptBoxPath);
 
         selectedOptionsTab = SelectedOptionsTab.Graphics;
-    }
-
-    public override void _Process(float delta)
-    {
     }
 
     /// <summary>
@@ -315,9 +305,9 @@ public class OptionsMenu : Control
     }
 
     /// <summary>
-    ///   Opens the options menu with microbe stage settings.
+    ///   Opens the options menu with in game settings.
     /// </summary>
-    public void OpenFromMicrobeStage(GameProperties gameProperties)
+    public void OpenFromInGame(GameProperties gameProperties)
     {
         // Shouldn't do anything if options is already open.
         if (Visible)
@@ -330,22 +320,14 @@ public class OptionsMenu : Control
         // Need a reference to game properties in the current game for later comparisons.
         this.gameProperties = gameProperties;
 
-        // If we're in free build mode then tutorials should not be toggleable.
-        if (gameProperties.FreeBuild)
-        {
-            tutorialsEnabled.Hide();
-        }
-
-        // Set the mode to the one we opened with, and enable any options that should only be visible
+        // Set the mode to the one we opened with, and show/hide any options that should only be visible
         // when the options menu is opened from in-game.
-        SwitchMode(OptionsMode.MicrobeStage);
-
-        if (savedTutorialsEnabled)
-        {
-            tutorialsEnabled.Pressed = savedTutorialsEnabled;
-        }
+        SwitchMode(OptionsMode.InGame);
 
         // Set the state of the gui controls to match the settings.
+        if (savedTutorialsEnabled)
+            tutorialsEnabled.Pressed = savedTutorialsEnabled;
+
         ApplySettingsToControls(savedSettings);
         UpdateResetSaveButtonState();
 
@@ -394,17 +376,29 @@ public class OptionsMenu : Control
 
     private void SwitchMode(OptionsMode mode)
     {
-        if (mode == OptionsMode.MainMenu)
+        switch (mode)
         {
-            // Hide the local game settings if opened from the main menu.
-            localSettingsVBox.Hide();
-            optionsMode = OptionsMode.MainMenu;
-        }
-        else if (mode == OptionsMode.MicrobeStage)
-        {
-            // Show the local game settings if opened from the microbe stage or editor.
-            localSettingsVBox.Show();
-            optionsMode = OptionsMode.MicrobeStage;
+            case OptionsMode.MainMenu:
+            {
+                tutorialsEnabled.Hide();
+                optionsMode = OptionsMode.MainMenu;
+                break;
+            }
+
+            case OptionsMode.InGame:
+            {
+                // Current game tutorial option shouldn't be visible in freebuild mode.
+                if (!gameProperties.FreeBuild)
+                    tutorialsEnabled.Show();
+                else
+                    tutorialsEnabled.Hide();
+
+                optionsMode = OptionsMode.InGame;
+                break;
+            }
+
+            default:
+                throw new ArgumentException("Options menu SwitchMode called with an invalid mode argument");
         }
     }
 
@@ -589,7 +583,7 @@ public class OptionsMenu : Control
             return false;
 
         // If we're in game we need to compare the tutorials enabled state as well.
-        if (optionsMode == OptionsMode.MicrobeStage)
+        if (optionsMode == OptionsMode.InGame)
         {
             if (gameProperties.TutorialState.Enabled != savedTutorialsEnabled)
             {
@@ -638,7 +632,7 @@ public class OptionsMenu : Control
         Settings.Instance.ApplyAll();
         ApplySettingsToControls(Settings.Instance);
 
-        if (optionsMode == OptionsMode.MicrobeStage)
+        if (optionsMode == OptionsMode.InGame)
         {
             gameProperties.TutorialState.Enabled = savedTutorialsEnabled;
             tutorialsEnabled.Pressed = savedTutorialsEnabled;
@@ -662,7 +656,7 @@ public class OptionsMenu : Control
         // Copy over the new saved settings.
         savedSettings = Settings.Instance.Clone();
 
-        if (optionsMode == OptionsMode.MicrobeStage)
+        if (optionsMode == OptionsMode.InGame)
             savedTutorialsEnabled = gameProperties.TutorialState.Enabled;
 
         UpdateResetSaveButtonState();
@@ -701,7 +695,7 @@ public class OptionsMenu : Control
         Settings.Instance.ApplyAll();
         ApplySettingsToControls(Settings.Instance);
 
-        if (optionsMode == OptionsMode.MicrobeStage)
+        if (optionsMode == OptionsMode.InGame)
         {
             gameProperties.TutorialState.Enabled = savedTutorialsEnabled;
             tutorialsEnabled.Pressed = savedTutorialsEnabled;
