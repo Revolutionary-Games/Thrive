@@ -187,7 +187,7 @@ public class MicrobeStage : Node, ILoadableGameState
         }
 
         tutorialGUI.EventReceiver = TutorialState;
-        pauseMenu.GameTutorialState = TutorialState;
+        pauseMenu.GameProperties = CurrentGame;
 
         CreatePatchManagerIfNeeded();
 
@@ -214,7 +214,7 @@ public class MicrobeStage : Node, ILoadableGameState
         StartMusic();
 
         tutorialGUI.EventReceiver = TutorialState;
-        pauseMenu.GameTutorialState = TutorialState;
+        pauseMenu.GameProperties = CurrentGame;
     }
 
     public void StartNewGame()
