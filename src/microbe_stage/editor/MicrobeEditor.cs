@@ -977,8 +977,7 @@ public class MicrobeEditor : Node, ILoadableGameState
 
         // Make tutorials run
         tutorialGUI.EventReceiver = TutorialState;
-
-        pauseMenu.GameTutorialState = TutorialState;
+        pauseMenu.GameProperties = CurrentGame;
 
         // Send undo button to the tutorial system
         gui.SendUndoToTutorial(TutorialState);
