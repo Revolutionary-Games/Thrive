@@ -72,7 +72,7 @@ public class PauseMenu : Control
     public override void _UnhandledInput(InputEvent @event)
     {
         bool noExclusiveTutorialActive =
-            (GameProperties.TutorialState == null || !GameProperties.TutorialState.ExclusiveTutorialActive());
+            GameProperties.TutorialState == null || !GameProperties.TutorialState.ExclusiveTutorialActive();
 
         if (@event.IsActionPressed("ui_cancel"))
         {
