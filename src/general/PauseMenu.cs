@@ -84,6 +84,14 @@ public class PauseMenu : Control
                 EmitSignal(nameof(OnOpenWithKeyPress));
             }
         }
+        else if (@event.IsActionPressed("help"))
+        {
+            if (GameProperties.TutorialState == null || !GameProperties.TutorialState.ExclusiveTutorialActive())
+            {
+                EmitSignal(nameof(OnOpenWithKeyPress));
+                ShowHelpScreen();
+            }
+        }
     }
 
     public void ShowHelpScreen()
