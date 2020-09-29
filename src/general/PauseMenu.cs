@@ -71,6 +71,8 @@ public class PauseMenu : Control
 
     public override void _UnhandledInput(InputEvent @event)
     {
+        bool noExclusiveTutorialActive = (GameProperties.TutorialState == null || !GameProperties.TutorialState.ExclusiveTutorialActive());
+
         if (@event.IsActionPressed("ui_cancel"))
         {
             if (Visible)
@@ -79,14 +81,14 @@ public class PauseMenu : Control
 
                 EmitSignal(nameof(OnClosed));
             }
-            else if (GameProperties.TutorialState == null || !GameProperties.TutorialState.ExclusiveTutorialActive())
+            else if (noExclusiveTutorial)
             {
                 EmitSignal(nameof(OnOpenWithKeyPress));
             }
         }
         else if (@event.IsActionPressed("help"))
         {
-            if (GameProperties.TutorialState == null || !GameProperties.TutorialState.ExclusiveTutorialActive())
+            if (noExclusiveTutorial)
             {
                 EmitSignal(nameof(OnOpenWithKeyPress));
                 ShowHelpScreen();
