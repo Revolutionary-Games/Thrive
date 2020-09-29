@@ -82,14 +82,14 @@ public class PauseMenu : Control
 
                 EmitSignal(nameof(OnClosed));
             }
-            else if (noExclusiveTutorial)
+            else if (noExclusiveTutorialActive)
             {
                 EmitSignal(nameof(OnOpenWithKeyPress));
             }
         }
         else if (@event.IsActionPressed("help"))
         {
-            if (noExclusiveTutorial)
+            if (noExclusiveTutorialActive)
             {
                 EmitSignal(nameof(OnOpenWithKeyPress));
                 ShowHelpScreen();
