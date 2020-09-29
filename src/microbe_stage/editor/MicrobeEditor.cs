@@ -634,6 +634,7 @@ public class MicrobeEditor : Node, ILoadableGameState
                     new Hex(0, 0), 0));
                 gui.UpdateMembraneButtons(Membrane.InternalName);
                 gui.UpdateSpeed(CalculateSpeed());
+                gui.UpdateHitpoints(CalculateHitpoints());
             },
             undo =>
             {
@@ -642,6 +643,7 @@ public class MicrobeEditor : Node, ILoadableGameState
                 Membrane = oldMembrane;
                 gui.UpdateMembraneButtons(Membrane.InternalName);
                 gui.UpdateSpeed(CalculateSpeed());
+                gui.UpdateHitpoints(CalculateHitpoints());
 
                 foreach (var organelle in oldEditedMicrobeOrganelles)
                 {
@@ -745,6 +747,7 @@ public class MicrobeEditor : Node, ILoadableGameState
                 gui.UpdateRigiditySlider((int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO),
                     MutationPoints);
                 gui.UpdateSpeed(CalculateSpeed());
+                gui.UpdateHitpoints(CalculateHitpoints());
             },
             undo =>
             {
@@ -752,6 +755,7 @@ public class MicrobeEditor : Node, ILoadableGameState
                 gui.UpdateRigiditySlider((int)Math.Round(Rigidity * Constants.MEMBRANE_RIGIDITY_SLIDER_TO_VALUE_RATIO),
                     MutationPoints);
                 gui.UpdateSpeed(CalculateSpeed());
+                gui.UpdateHitpoints(CalculateHitpoints());
             });
 
         EnqueueAction(action);
@@ -852,6 +856,14 @@ public class MicrobeEditor : Node, ILoadableGameState
         float finalSpeed = (baseMovementForce + organelleMovementForce) / microbeMass;
 
         return finalSpeed;
+    }
+
+    public float CalculateHitpoints()
+    {
+        var maxHitpoints = Membrane.Hitpoints +
+            (Rigidity * Constants.MEMBRANE_RIGIDITY_HITPOINTS_MODIFIER);
+
+        return maxHitpoints;
     }
 
     /// <summary>
@@ -1079,8 +1091,11 @@ public class MicrobeEditor : Node, ILoadableGameState
             gui.OnOrganelleToPlaceSelected("cytoplasm");
         }
 
+        gui.SetInitialCellStats();
+
         gui.SetSpeciesInfo(NewName, Membrane, Colour, Rigidity);
         gui.UpdateGeneration(species.Generation);
+        gui.UpdateHitpoints(CalculateHitpoints());
     }
 
     private void CreateMutatedSpeciesCopy(Species species)
@@ -1418,7 +1433,7 @@ public class MicrobeEditor : Node, ILoadableGameState
             if (organelleHere == null)
                 continue;
 
-            if (organelleHere.Definition.Name != "cytoplasm")
+            if (organelleHere.Definition.InternalName != "cytoplasm")
             {
                 throw new Exception("Can't place organelle on top of something " +
                     "else than cytoplasm");
@@ -1429,7 +1444,7 @@ public class MicrobeEditor : Node, ILoadableGameState
             editedMicrobeOrganelles.Remove(organelleHere);
         }
 
-        GD.Print("Placing organelle '", organelle.Definition.Name, "' at: ",
+        GD.Print("Placing organelle '", organelle.Definition.InternalName, "' at: ",
             organelle.Position);
 
         editedMicrobeOrganelles.Add(organelle);
@@ -1443,7 +1458,7 @@ public class MicrobeEditor : Node, ILoadableGameState
 
         foreach (var cyto in data.ReplacedCytoplasm)
         {
-            GD.Print("Replacing ", cyto.Definition.Name, " at: ",
+            GD.Print("Replacing ", cyto.Definition.InternalName, " at: ",
                 cyto.Position);
 
             editedMicrobeOrganelles.Add(cyto);
@@ -1454,7 +1469,7 @@ public class MicrobeEditor : Node, ILoadableGameState
     {
         // 1 - you put nucleus but you already have it
         // 2 - you put organelle that need nucleus and you don't have it
-        if ((organelle.Definition.Name == "nucleus" && HasNucleus) ||
+        if ((organelle.Definition.InternalName == "nucleus" && HasNucleus) ||
             (organelle.Definition.ProkaryoteChance == 0 && !HasNucleus
                 && organelle.Definition.ChanceToCreate != 0))
             return false;
@@ -1619,6 +1634,7 @@ public class MicrobeEditor : Node, ILoadableGameState
         Membrane = membrane;
         gui.UpdateMembraneButtons(Membrane.InternalName);
         gui.UpdateSpeed(CalculateSpeed());
+        gui.UpdateHitpoints(CalculateHitpoints());
         CalculateEnergyBalanceWithOrganellesAndMembraneType(
             editedMicrobeOrganelles.Organelles, Membrane, targetPatch);
     }
@@ -1630,6 +1646,7 @@ public class MicrobeEditor : Node, ILoadableGameState
         GD.Print("Changing membrane back to '", Membrane.InternalName, "'");
         gui.UpdateMembraneButtons(Membrane.InternalName);
         gui.UpdateSpeed(CalculateSpeed());
+        gui.UpdateHitpoints(CalculateHitpoints());
         CalculateEnergyBalanceWithOrganellesAndMembraneType(
             editedMicrobeOrganelles.Organelles, Membrane, targetPatch);
     }
@@ -1667,6 +1684,8 @@ public class MicrobeEditor : Node, ILoadableGameState
         // TODO: select which units will be used for the master elapsed time counter
         CurrentGame.GameWorld.OnTimePassed(1);
 
+        gui.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);
+
         // Get summary before applying results in order to get comparisons to the previous populations
         var run = CurrentGame.GameWorld.GetAutoEvoRun();
 
@@ -1697,6 +1716,8 @@ public class MicrobeEditor : Node, ILoadableGameState
             throw new InvalidOperationException("loaded editor isn't in the ready state");
 
         gui.UpdateAutoEvoResults(autoEvoSummary, autoEvoExternal);
+
+        gui.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);
 
         // Make absolutely sure the current game doesn't have an auto-evo run
         CurrentGame.GameWorld.ResetAutoEvoRun();

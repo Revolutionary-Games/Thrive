@@ -33,11 +33,17 @@
     <Compile Include="src\engine\SettingValue.cs" />
     <Compile Include="src\engine\StartupActions.cs" />
     <Compile Include="src\general\PathUtils.cs" />
-    <Compile Include="src\general\EasterEggMessages.cs" />
     <Compile Include="src\general\HelpTexts.cs" />
     <Compile Include="src\general\HelpScreen.cs" />
     <Compile Include="src\general\PauseMenu.cs" />
+    <Compile Include="src\gui_common\tooltip\DefaultToolTip.cs" />
+    <Compile Include="src\gui_common\tooltip\ICustomToolTip.cs" />
+    <Compile Include="src\gui_common\tooltip\microbe_editor\ModifierInfoLabel.cs" />
+    <Compile Include="src\gui_common\tooltip\microbe_editor\SelectionMenuToolTip.cs" />
+    <Compile Include="src\gui_common\tooltip\ToolTipCallbackData.cs" />
+    <Compile Include="src\gui_common\tooltip\ToolTipManager.cs" />
     <Compile Include="src\gui_common\ControlHighlight.cs" />
+    <Compile Include="src\gui_common\CollapsibleList.cs" />
     <Compile Include="src\gui_common\Cutscene.cs" />
     <Compile Include="src\gui_common\Fade.cs" />
     <Compile Include="src\gui_common\GUICommon.cs" />
@@ -241,7 +247,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="simulation_parameters\common\easter_egg_messages.json" />
     <Content Include="simulation_parameters\common\help_texts.json" />
     <Content Include="simulation_parameters\common\music_tracks.json" />
     <Content Include="simulation_parameters\microbe_stage\backgrounds.json" />

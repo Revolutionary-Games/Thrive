@@ -9,9 +9,15 @@ __meta__ = {
 }
 
 [node name="Icon" type="TextureRect" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = 30.0
+margin_bottom = 30.0
+mouse_filter = 2
 expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Highlight" type="ColorRect" parent="."]
+visible = false
+mouse_filter = 2
+color = Color( 0.403922, 0.403922, 0.403922, 1 )
