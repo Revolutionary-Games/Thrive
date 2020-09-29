@@ -402,6 +402,18 @@ public static class Constants
     public const float HIDE_MICROBE_STAYING_ALIVE_TUTORIAL_AFTER = 60;
 
     /// <summary>
+    ///   Used to limit how often the hover indicator panel are
+    ///   updated. Default value is every 0.1 seconds.
+    /// </summary>
+    public const float HOVER_PANEL_UPDATE_INTERVAL = 0.1f;
+
+    public const float TOOLTIP_OFFSET = 20;
+
+    public const float TOOLTIP_DEFAULT_DELAY = 1.0f;
+
+    public const float TOOLTIP_FADE_SPEED = 0.1f;
+
+    /// <summary>
     ///   All Nodes tagged with this are handled by the spawn system for despawning
     /// </summary>
     public const string SPAWNED_GROUP = "spawned";

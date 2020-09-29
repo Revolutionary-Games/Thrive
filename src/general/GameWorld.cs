@@ -86,6 +86,13 @@ public class GameWorld
     [JsonProperty]
     public PatchMap Map { get; private set; }
 
+    /// <summary>
+    ///   This probably needs to be changed to a huge precision number
+    ///   depending on what timespans we'll end up using.
+    /// </summary>
+    [JsonProperty]
+    public double TotalPassedTime { get; private set; }
+
     [JsonIgnore]
     public TimedWorldOperations TimedEffects { get; }
 
@@ -153,7 +160,9 @@ public class GameWorld
     /// </summary>
     public void OnTimePassed(double timePassed)
     {
-        TimedEffects.OnTimePassed(timePassed);
+        TotalPassedTime += timePassed * 100000000;
+
+        TimedEffects.OnTimePassed(timePassed, TotalPassedTime);
     }
 
     /// <summary>
