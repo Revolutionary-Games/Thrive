@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/tutorial/microbe_editor/MicrobeEditorTutorialGUI.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
 [ext_resource path="res://src/gui_common/ControlHighlight.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/fonts/Lato-Regular.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+use_filter = true
+font_data = ExtResource( 4 )
 
 [node name="MicrobeEditorTutorialGUI" type="Control"]
 pause_mode = 2
@@ -23,13 +28,15 @@ CellEditorRedoPath = NodePath("RedoTutorial")
 CellEditorClosingWordsPath = NodePath("CellEditorClosingWords")
 
 [node name="EditorEntryReport" type="WindowDialog" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 780.0
-margin_top = 160.0
-margin_right = -99.9999
-margin_bottom = -160.0
-rect_min_size = Vector2( 400, 400 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 107.0
+margin_top = -184.0
+margin_right = 467.0
+margin_bottom = 176.0
+rect_min_size = Vector2( 360, 360 )
 window_title = "Tutorial"
 resizable = true
 __meta__ = {
@@ -37,15 +44,19 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="EditorEntryReport"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 5.0
-margin_bottom = 5.0
-rect_min_size = Vector2( 390, 390 )
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 315.0
+margin_bottom = 337.0
+rect_min_size = Vector2( 330, 330 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="EditorEntryReport/VBoxContainer"]
-margin_right = 390.0
-margin_bottom = 361.0
+margin_right = 330.0
+margin_bottom = 273.0
+custom_fonts/font = SubResource( 1 )
 text = "Welcome to the Microbe Editor.
 Here you can review what has happened since start of the game or when you were last in the editor. And then make changes to your species.
 
@@ -55,13 +66,15 @@ To go to the next editor tab, press the next button in the bottom right."
 autowrap = true
 
 [node name="PatchMapTutorial" type="WindowDialog" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 878.0
-margin_top = 258.0
-margin_right = -1.99988
-margin_bottom = -62.0
-rect_min_size = Vector2( 400, 400 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 107.0
+margin_top = -184.0
+margin_right = 457.0
+margin_bottom = 166.0
+rect_min_size = Vector2( 350, 350 )
 window_title = "Tutorial"
 resizable = true
 __meta__ = {
@@ -69,15 +82,19 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PatchMapTutorial"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 5.0
-margin_bottom = 5.0
-rect_min_size = Vector2( 390, 390 )
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 335.0
+margin_bottom = 335.0
+rect_min_size = Vector2( 320, 320 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="PatchMapTutorial/VBoxContainer"]
-margin_right = 390.0
-margin_bottom = 387.0
+margin_right = 320.0
+margin_bottom = 319.0
+custom_fonts/font = SubResource( 1 )
 text = "This is the patch map.
 Here you can see the different patches microbes can live in.
 Your current patch is highlighted.
@@ -89,13 +106,15 @@ Select a patch to continue."
 autowrap = true
 
 [node name="CellEditorIntro" type="WindowDialog" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 877.0
-margin_top = 150.0
-margin_right = -2.99976
-margin_bottom = -170.0
-rect_min_size = Vector2( 400, 400 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 237.0
+margin_top = -134.0
+margin_right = 587.0
+margin_bottom = 216.0
+rect_min_size = Vector2( 350, 350 )
 window_title = "Tutorial"
 resizable = true
 __meta__ = {
@@ -103,15 +122,16 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CellEditorIntro"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 5.0
-margin_bottom = 5.0
-rect_min_size = Vector2( 390, 390 )
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 335.0
+margin_bottom = 335.0
+rect_min_size = Vector2( 320, 320 )
 
 [node name="Label" type="Label" parent="CellEditorIntro/VBoxContainer"]
-margin_right = 390.0
-margin_bottom = 361.0
+margin_right = 320.0
+margin_bottom = 250.0
+custom_fonts/font = SubResource( 1 )
 text = "This is the cell editor where you can add or remove organelles from your species by spending mutation points (MP).
 
 You can also change other properties of your species in the other tabs of the cell editor.
@@ -120,13 +140,15 @@ To continue select an organelle from the panel on the left (cytoplasm is a good 
 autowrap = true
 
 [node name="UndoTutorial" type="WindowDialog" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 877.0
-margin_top = 150.0
-margin_right = -2.99976
-margin_bottom = -170.0
-rect_min_size = Vector2( 400, 400 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 237.0
+margin_top = -134.0
+margin_right = 527.0
+margin_bottom = 156.0
+rect_min_size = Vector2( 290, 290 )
 window_title = "Tutorial"
 resizable = true
 __meta__ = {
@@ -134,15 +156,19 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UndoTutorial"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 5.0
-margin_bottom = 5.0
-rect_min_size = Vector2( 390, 390 )
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 275.0
+margin_bottom = 275.0
+rect_min_size = Vector2( 260, 260 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="UndoTutorial/VBoxContainer"]
-margin_right = 390.0
-margin_bottom = 283.0
+margin_right = 260.0
+margin_bottom = 250.0
+custom_fonts/font = SubResource( 1 )
 text = "Removing organelles also costs MP as it is a mutation to your species. You can right click organelles to remove them.
 If you make a mistake, you can undo any change you make in the editor.
 
@@ -152,16 +178,17 @@ Click the undo button to continue."
 autowrap = true
 
 [node name="UndoButtonHighlight" parent="." instance=ExtResource( 3 )]
-visible = false
 
 [node name="RedoTutorial" type="WindowDialog" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 877.0
-margin_top = 150.0
-margin_right = -2.99976
-margin_bottom = -170.0
-rect_min_size = Vector2( 400, 400 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 237.0
+margin_top = -134.0
+margin_right = 607.0
+margin_bottom = 236.0
+rect_min_size = Vector2( 370, 370 )
 window_title = "Tutorial"
 resizable = true
 __meta__ = {
@@ -169,15 +196,19 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="RedoTutorial"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 5.0
-margin_bottom = 5.0
-rect_min_size = Vector2( 390, 390 )
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 355.0
+margin_bottom = 355.0
+rect_min_size = Vector2( 340, 340 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="RedoTutorial/VBoxContainer"]
-margin_right = 390.0
-margin_bottom = 387.0
+margin_right = 340.0
+margin_bottom = 296.0
+custom_fonts/font = SubResource( 1 )
 text = "When selecting which organelles to add, pay attention to the tooltips for the organelles on which processes they do and what compounds they use and produce.
 
 Also pay attention to the ATP balance bar in the top right to make sure your cell can survive.
@@ -188,13 +219,15 @@ Press the redo button (close to the undo button) to continue."
 autowrap = true
 
 [node name="CellEditorClosingWords" type="WindowDialog" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 877.0
-margin_top = 150.0
-margin_right = -2.99976
-margin_bottom = -170.0
-rect_min_size = Vector2( 400, 400 )
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 237.0
+margin_top = -134.0
+margin_right = 607.0
+margin_bottom = 236.0
+rect_min_size = Vector2( 370, 370 )
 window_title = "Tutorial"
 resizable = true
 __meta__ = {
@@ -202,18 +235,19 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CellEditorClosingWords"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 5.0
-margin_bottom = 5.0
-rect_min_size = Vector2( 390, 390 )
+margin_left = 15.0
+margin_top = 15.0
+margin_right = 355.0
+margin_bottom = 355.0
+rect_min_size = Vector2( 340, 340 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="CellEditorClosingWords/VBoxContainer"]
-margin_right = 390.0
-margin_bottom = 335.0
+margin_right = 340.0
+margin_bottom = 250.0
+custom_fonts/font = SubResource( 1 )
 text = "Those are the basics of editing your species. You can check the other cell editor tabs for even more options.
 
 You can rename your species by clicking on your current species name and editing the text.
@@ -224,16 +258,16 @@ Good luck!"
 autowrap = true
 
 [node name="Control" type="Control" parent="CellEditorClosingWords/VBoxContainer"]
-margin_top = 339.0
-margin_right = 390.0
-margin_bottom = 362.0
+margin_top = 254.0
+margin_right = 340.0
+margin_bottom = 306.0
 size_flags_vertical = 3
 
 [node name="Button" type="Button" parent="CellEditorClosingWords/VBoxContainer"]
-margin_left = 140.0
-margin_top = 366.0
-margin_right = 250.0
-margin_bottom = 390.0
+margin_left = 115.0
+margin_top = 310.0
+margin_right = 225.0
+margin_bottom = 340.0
 rect_min_size = Vector2( 110, 0 )
 size_flags_horizontal = 4
 text = "Got it"

@@ -50,10 +50,9 @@ public class PauseMenu : Control
     public delegate void MakeSave(string name);
 
     /// <summary>
-    ///   The tutorial state reported by the game state, this is needed to not allow pausing while exclusive tutorial
-    ///   is open. As well as to disable tutorials from the in-game options menu
+    ///   The GameProperties object holding settings and state for the current game session.
     /// </summary>
-    public TutorialState GameTutorialState { get; set; }
+    public GameProperties GameProperties { get; set; }
 
     public override void _EnterTree()
     {
@@ -80,7 +79,7 @@ public class PauseMenu : Control
 
                 EmitSignal(nameof(OnClosed));
             }
-            else if (GameTutorialState == null || !GameTutorialState.ExclusiveTutorialActive())
+            else if (GameProperties.TutorialState == null || !GameProperties.TutorialState.ExclusiveTutorialActive())
             {
                 EmitSignal(nameof(OnOpenWithKeyPress));
             }
@@ -103,10 +102,8 @@ public class PauseMenu : Control
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        // Unpause the game as well as close the pause menu
+        // Unpause the game
         GetTree().Paused = false;
-
-        EmitSignal(nameof(OnClosed));
 
         TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.3f, false);
         TransitionManager.Instance.StartTransitions(this, nameof(OnSwitchToMenu));
@@ -204,7 +201,7 @@ public class PauseMenu : Control
                 loadMenu.Show();
                 break;
             case "options":
-                optionsMenu.Show();
+                optionsMenu.OpenFromInGame(GameProperties);
                 break;
             case "save":
                 saveMenu.Show();

@@ -31,6 +31,8 @@ public class FloatingChunk : RigidBody, ISpawned
 
     private float dissolveEffectValue;
 
+    private bool isParticles;
+
     public int DespawnRadiusSqr { get; set; }
 
     [JsonIgnore]
@@ -175,14 +177,25 @@ public class FloatingChunk : RigidBody, ISpawned
 
         if (string.IsNullOrEmpty(ModelNodePath))
         {
-            chunkMesh = (MeshInstance)graphicsNode;
+            if (graphicsNode.IsClass("MeshInstance"))
+            {
+                chunkMesh = (MeshInstance)graphicsNode;
+            }
+            else if (graphicsNode.IsClass("Particles"))
+            {
+                isParticles = true;
+            }
+            else
+            {
+                throw new Exception("Invalid class");
+            }
         }
         else
         {
             chunkMesh = graphicsNode.GetNode<MeshInstance>(ModelNodePath);
         }
 
-        if (chunkMesh == null)
+        if (chunkMesh == null && !isParticles)
             throw new InvalidOperationException("Can't make a chunk without graphics scene");
     }
 
@@ -241,7 +254,15 @@ public class FloatingChunk : RigidBody, ISpawned
 
             if (DeleteOnTouch || disappear)
             {
-                isDissolving = true;
+                if (Dissolves)
+                {
+                    isDissolving = true;
+                }
+                else
+                {
+                    QueueFree();
+                }
+
                 break;
             }
         }

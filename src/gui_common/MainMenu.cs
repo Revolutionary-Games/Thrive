@@ -34,6 +34,8 @@ public class MainMenu : Node
 
     public bool IsReturningToMenu = false;
 
+    private readonly List<ToolTipCallbackData> toolTipCallbacks = new List<ToolTipCallbackData>();
+
     private TextureRect thriveLogo;
     private OptionsMenu options;
     private AnimationPlayer guiAnimations;
@@ -127,6 +129,10 @@ public class MainMenu : Node
 
         // Set initial menu
         SwitchMenu();
+
+        // Easter egg message
+        ToolTipManager.RegisterToolTipForControl(
+            thriveLogo, toolTipCallbacks, ToolTipManager.Instance.GetToolTip("thriveLogoEasterEgg", "mainMenu"));
     }
 
     /// <summary>
@@ -267,7 +273,7 @@ public class MainMenu : Node
         SetCurrentMenu(uint.MaxValue, false);
 
         // Show the options
-        options.Visible = true;
+        options.OpenFromMainMenu();
 
         thriveLogo.Hide();
     }

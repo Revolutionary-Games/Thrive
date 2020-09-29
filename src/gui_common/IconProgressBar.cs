@@ -10,7 +10,11 @@ public class IconProgressBar : ColorRect
     /// </summary>
     public bool Disabled;
 
+    private bool highlighted;
+
     private TextureRect icon;
+
+    private ColorRect highlight;
 
     public Vector2 BarSize
     {
@@ -19,6 +23,8 @@ public class IconProgressBar : ColorRect
         {
             RectSize = value;
             RectMinSize = value;
+
+            highlight.RectSize = value;
 
             // Sets icon size
             icon.RectSize = new Vector2(value.y, value.y);
@@ -40,8 +46,25 @@ public class IconProgressBar : ColorRect
         set => icon.Modulate = value;
     }
 
+    public Color HighlightColor
+    {
+        get => highlight.Modulate;
+        set => highlight.Modulate = value;
+    }
+
+    public bool Highlight
+    {
+        get => highlighted;
+        set
+        {
+            highlighted = value;
+            highlight.Visible = value;
+        }
+    }
+
     public override void _Ready()
     {
         icon = GetChild<TextureRect>(0);
+        highlight = GetChild<ColorRect>(1);
     }
 }
