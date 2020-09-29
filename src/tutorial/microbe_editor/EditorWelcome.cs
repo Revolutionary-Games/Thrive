@@ -7,6 +7,8 @@ namespace Tutorial
     /// </summary>
     public class EditorWelcome : TutorialPhase
     {
+        private readonly string reportTab = MicrobeEditorGUI.EditorTab.Report.ToString();
+
         public override string ClosedByName { get; } = "MicrobeEditorReport";
 
         public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
@@ -34,7 +36,7 @@ namespace Tutorial
                     string tab = ((StringEventArgs)args).Data;
 
                     // Hide when switched to another tab
-                    if (tab != "report")
+                    if (tab != reportTab)
                     {
                         if (ShownCurrently)
                         {

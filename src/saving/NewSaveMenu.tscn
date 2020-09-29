@@ -1,13 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/saving/NewSaveMenu.cs" type="Script" id=2]
-[ext_resource path="res://assets/fonts/Jura-Regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://src/saving/SaveList.tscn" type="PackedScene" id=4]
-
-[sub_resource type="DynamicFont" id=1]
-size = 32
-font_data = ExtResource( 3 )
 
 [node name="NewSaveMenu" type="Control"]
 anchor_right = 1.0
@@ -37,32 +32,32 @@ align = 1
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
 margin_top = 27.0
 margin_right = 1280.0
-margin_bottom = 692.0
+margin_bottom = 679.0
 size_flags_vertical = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer"]
 margin_right = 1280.0
-margin_bottom = 36.0
+margin_bottom = 37.0
 
 [node name="Label" type="Label" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
-margin_top = 6.0
+margin_top = 7.0
 margin_right = 62.0
-margin_bottom = 29.0
+margin_bottom = 30.0
 text = "Name:"
 
 [node name="SaveName" type="TextEdit" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_left = 66.0
-margin_right = 1032.0
-margin_bottom = 36.0
+margin_right = 1033.0
+margin_bottom = 37.0
 size_flags_horizontal = 3
 draw_tabs = true
 draw_spaces = true
 caret_blink = true
 
 [node name="ExtraOptions" type="MenuButton" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
-margin_left = 1036.0
-margin_right = 1185.0
-margin_bottom = 36.0
+margin_left = 1037.0
+margin_right = 1176.0
+margin_bottom = 37.0
 custom_colors/font_color_disabled = Color( 1, 1, 1, 1 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 1, 1, 1, 1 )
@@ -71,43 +66,44 @@ disabled = true
 text = "Extra Options"
 
 [node name="Save" type="Button" parent="VBoxContainer/VBoxContainer/HBoxContainer"]
-margin_left = 1189.0
+margin_left = 1180.0
 margin_right = 1280.0
-margin_bottom = 36.0
-custom_fonts/font = SubResource( 1 )
+margin_bottom = 37.0
+rect_min_size = Vector2( 100, 37 )
 text = "Save"
 
 [node name="VSeparator" type="HSeparator" parent="VBoxContainer/VBoxContainer"]
-margin_top = 40.0
+margin_top = 41.0
 margin_right = 1280.0
-margin_bottom = 44.0
+margin_bottom = 45.0
 
 [node name="Label" type="Label" parent="VBoxContainer/VBoxContainer"]
-margin_top = 48.0
+margin_top = 49.0
 margin_right = 1280.0
-margin_bottom = 71.0
+margin_bottom = 72.0
 text = "Overwrite existing save:"
 
 [node name="SaveList" parent="VBoxContainer/VBoxContainer" instance=ExtResource( 4 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 75.0
+margin_top = 76.0
 margin_right = 1280.0
-margin_bottom = 665.0
+margin_bottom = 652.0
 size_flags_vertical = 3
 AutoRefreshOnFirstVisible = false
 SelectableItems = true
 LoadableItems = false
 
 [node name="CenterContainer" type="CenterContainer" parent="VBoxContainer"]
-margin_top = 696.0
+margin_top = 683.0
 margin_right = 1280.0
 margin_bottom = 720.0
 
 [node name="Back" type="Button" parent="VBoxContainer/CenterContainer"]
-margin_left = 606.0
-margin_right = 673.0
-margin_bottom = 24.0
+margin_left = 590.0
+margin_right = 690.0
+margin_bottom = 37.0
+rect_min_size = Vector2( 100, 37 )
 size_flags_horizontal = 0
 theme = ExtResource( 1 )
 text = "Back"
