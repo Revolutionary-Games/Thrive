@@ -25,12 +25,12 @@
                     "name": "Floating Hazard",
                     "meshes": [
                         {
-                            "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
+                            "scenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
                         }
                     ],
                     "density": 0.0001,
                     "dissolves": false,
-                    "radius": 2,
+                    "radius": 1,
                     "chunkScale": 1,
                     "mass": 7,
                     "size": 10000,
@@ -148,12 +148,12 @@
                     "name": "Floating Hazard",
                     "meshes": [
                         {
-                            "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
+                            "scenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
                         }
                     ],
                     "density": 0.0001,
                     "dissolves": false,
-                    "radius": 2,
+                    "radius": 1,
                     "chunkScale": 1,
                     "mass": 7,
                     "size": 10000,
@@ -249,6 +249,9 @@
                     "ventAmount": 2,
                     "deleteOnTouch": false,
                     "compounds": {
+                        "atp": {
+                            "amount": 200
+                        },
                         "ammonia": {
                             "amount": 200
                         },
@@ -343,12 +346,12 @@
                     "name": "Floating Hazard",
                     "meshes": [
                         {
-                            "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
+                            "scenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
                         }
                     ],
                     "density": 0.0001,
                     "dissolves": false,
-                    "radius": 2,
+                    "radius": 1,
                     "chunkScale": 1,
                     "mass": 7,
                     "size": 10000,
@@ -450,7 +453,7 @@
                 "sunlight": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 2
+                    "dissolved": 1
                 }
             }
         }
@@ -470,12 +473,12 @@
                     "name": "Floating Hazard",
                     "meshes": [
                         {
-                            "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
+                            "scenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
                         }
                     ],
                     "density": 0.00007,
                     "dissolves": false,
-                    "radius": 2,
+                    "radius": 1,
                     "chunkScale": 1,
                     "mass": 7,
                     "size": 10000,
@@ -593,6 +596,9 @@
                     "ventAmount": 2,
                     "deleteOnTouch": false,
                     "compounds": {
+                        "atp": {
+                            "amount": 200
+                        },
                         "ammonia": {
                             "amount": 200
                         },
@@ -661,12 +667,12 @@
                     "name": "Floating Hazard",
                     "meshes": [
                         {
-                            "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
+                            "scenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
                         }
                     ],
                     "density": 0.0001,
                     "dissolves": false,
-                    "radius": 2,
+                    "radius": 1,
                     "chunkScale": 1,
                     "mass": 7,
                     "size": 10000,
@@ -784,6 +790,9 @@
                     "ventAmount": 2,
                     "deleteOnTouch": false,
                     "compounds": {
+                        "atp": {
+                            "amount": 200
+                        },
                         "ammonia": {
                             "amount": 200
                         },
@@ -856,12 +865,12 @@
                     "name": "Floating Hazard",
                     "meshes": [
                         {
-                            "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
+                            "scenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
                         }
                     ],
                     "density": 0.0001,
                     "dissolves": false,
-                    "radius": 2,
+                    "radius": 1,
                     "chunkScale": 1,
                     "mass": 7,
                     "size": 10000,
@@ -979,6 +988,9 @@
                     "ventAmount": 2,
                     "deleteOnTouch": false,
                     "compounds": {
+                        "atp": {
+                            "amount": 200
+                        },
                         "ammonia": {
                             "amount": 200
                         },
@@ -1051,12 +1063,12 @@
                     "name": "Floating Hazard",
                     "meshes": [
                         {
-                            "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
+                            "scenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
                         }
                     ],
                     "density": 0.0001,
                     "dissolves": false,
-                    "radius": 2,
+                    "radius": 1,
                     "chunkScale": 1,
                     "mass": 7,
                     "size": 10000,
@@ -1174,12 +1186,12 @@
                     "name": "Floating Hazard",
                     "meshes": [
                         {
-                            "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
+                            "scenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
                         }
                     ],
                     "density": 0.001,
                     "dissolves": false,
-                    "radius": 2,
+                    "radius": 1,
                     "chunkScale": 1,
                     "mass": 7,
                     "size": 10000,
@@ -1301,12 +1313,12 @@
                     "name": "Floating Hazard",
                     "meshes": [
                         {
-                            "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
+                            "scenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
                         }
                     ],
                     "density": 0.0005,
                     "dissolves": false,
-                    "radius": 2,
+                    "radius": 1,
                     "chunkScale": 1,
                     "mass": 7,
                     "size": 10000,
@@ -1445,12 +1457,12 @@
                     "name": "Floating Hazard",
                     "meshes": [
                         {
-                            "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
+                            "scenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
                         }
                     ],
                     "density": 0.0001,
                     "dissolves": false,
-                    "radius": 2,
+                    "radius": 1,
                     "chunkScale": 1,
                     "mass": 7,
                     "size": 10000,
@@ -1552,7 +1564,7 @@
                 "sunlight": {
                     "amount": 0,
                     "density": 0,
-                    "dissolved": 1.5
+                    "dissolved": 1
                 }
             }
         }
@@ -1572,12 +1584,12 @@
                     "name": "Floating Hazard",
                     "meshes": [
                         {
-                            "scenePath": "res://src/microbe_stage/ToxinCloud.tscn"
+                            "scenePath": "res://assets/models/organelles/OxytoxyProteins.tscn"
                         }
                     ],
                     "density": 0.0001,
                     "dissolves": false,
-                    "radius": 2,
+                    "radius": 1,
                     "chunkScale": 1,
                     "mass": 7,
                     "size": 10000,
@@ -1695,6 +1707,9 @@
                     "ventAmount": 2,
                     "deleteOnTouch": false,
                     "compounds": {
+                        "atp": {
+                            "amount": 200
+                        },
                         "ammonia": {
                             "amount": 200
                         },
