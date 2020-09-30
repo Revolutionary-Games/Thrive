@@ -43,6 +43,8 @@ public class MicrobeEditor : Node, ILoadableGameState
 
     private Material invalidMaterial;
     private Material validMaterial;
+    private Material oldMaterial;
+
     private PackedScene hexScene;
     private PackedScene modelScene;
 
@@ -108,6 +110,16 @@ public class MicrobeEditor : Node, ILoadableGameState
     ///   This is the hexes for editedMicrobeOrganelles
     /// </summary>
     private List<MeshInstance> placedHexes;
+
+    /// <summary>
+    /// The hexes that have been changed by a hovering organelle and need to be reset to old material.
+    /// </summary>
+    private List<MeshInstance> hexesToResetToOldMaterial;
+
+    /// <summary>
+    /// The hexes that have been changed by a hovering organelle and need to be reset to valid material.
+    /// </summary>
+    private List<MeshInstance> hexesToResetToValidMaterial;
 
     /// <summary>
     ///   This is the organelle models for editedMicrobeOrganelles
@@ -312,6 +324,8 @@ public class MicrobeEditor : Node, ILoadableGameState
         invalidMaterial = GD.Load<Material>(
             "res://src/microbe_stage/editor/InvalidHex.material");
         validMaterial = GD.Load<Material>("res://src/microbe_stage/editor/ValidHex.material");
+        oldMaterial = GD.Load<Material>("res://src/microbe_stage/editor/OldHex.material");
+
         hexScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/EditorHex.tscn");
         modelScene = GD.Load<PackedScene>("res://src/general/SceneDisplayer.tscn");
 
@@ -945,6 +959,9 @@ public class MicrobeEditor : Node, ILoadableGameState
         placedHexes = new List<MeshInstance>();
         placedModels = new List<SceneDisplayer>();
 
+        hexesToResetToOldMaterial = new List<MeshInstance>();
+        hexesToResetToValidMaterial = new List<MeshInstance>();
+
         if (!IsLoadedFromSave)
         {
             InitEditorFresh();
@@ -1136,11 +1153,20 @@ public class MicrobeEditor : Node, ILoadableGameState
         // This is also highly non-optimal to update the hex locations
         // and materials all the time
 
-        // Reset colour of each already placed hex
-        foreach (var hex in placedHexes)
+        // Reset the material of hexes that have been hovered over
+        foreach (var hex in hexesToResetToOldMaterial)
+        {
+            hex.MaterialOverride = oldMaterial;
+        }
+
+        hexesToResetToOldMaterial.Clear();
+
+        foreach (var hex in hexesToResetToValidMaterial)
         {
             hex.MaterialOverride = validMaterial;
         }
+
+        hexesToResetToValidMaterial.Clear();
 
         usedHoverHex = 0;
         usedHoverOrganelle = 0;
@@ -1239,6 +1265,16 @@ public class MicrobeEditor : Node, ILoadableGameState
                     if (!canPlace)
                     {
                         // Mark as invalid
+
+                        if (placed.MaterialOverride == oldMaterial)
+                        {
+                            hexesToResetToOldMaterial.Add(placed);
+                        }
+                        else if (placed.MaterialOverride == validMaterial)
+                        {
+                            hexesToResetToValidMaterial.Add(placed);
+                        }
+
                         placed.MaterialOverride = invalidMaterial;
 
                         showModel = false;
@@ -1571,7 +1607,7 @@ public class MicrobeEditor : Node, ILoadableGameState
                 }
 
                 var hexNode = placedHexes[nextFreeHex++];
-                hexNode.MaterialOverride = validMaterial;
+                hexNode.MaterialOverride = organelle.PlacedThisSession ? validMaterial : oldMaterial;
                 hexNode.Translation = pos;
 
                 hexNode.Visible = true;
