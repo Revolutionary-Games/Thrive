@@ -79,14 +79,14 @@ public class PauseMenu : Control
 
                 EmitSignal(nameof(OnClosed));
             }
-            else if (noExclusiveTutorialActive())
+            else if (NoExclusiveTutorialActive())
             {
                 EmitSignal(nameof(OnOpenWithKeyPress));
             }
         }
         else if (@event.IsActionPressed("help"))
         {
-            if (noExclusiveTutorialActive())
+            if (NoExclusiveTutorialActive())
             {
                 EmitSignal(nameof(OnOpenWithKeyPress));
                 ShowHelpScreen();
@@ -100,7 +100,7 @@ public class PauseMenu : Control
         helpScreen.RandomizeEasterEgg();
     }
 
-    private bool noExclusiveTutorialActive()
+    private bool NoExclusiveTutorialActive()
     {
         return GameProperties.TutorialState == null || !GameProperties.TutorialState.ExclusiveTutorialActive();
     }
