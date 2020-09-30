@@ -79,9 +79,17 @@ public class PauseMenu : Control
 
                 EmitSignal(nameof(OnClosed));
             }
-            else if (GameProperties.TutorialState == null || !GameProperties.TutorialState.ExclusiveTutorialActive())
+            else if (NoExclusiveTutorialActive())
             {
                 EmitSignal(nameof(OnOpenWithKeyPress));
+            }
+        }
+        else if (@event.IsActionPressed("help"))
+        {
+            if (NoExclusiveTutorialActive())
+            {
+                EmitSignal(nameof(OnOpenWithKeyPress));
+                ShowHelpScreen();
             }
         }
     }
@@ -90,6 +98,11 @@ public class PauseMenu : Control
     {
         SetActiveMenu("help");
         helpScreen.RandomizeEasterEgg();
+    }
+
+    private bool NoExclusiveTutorialActive()
+    {
+        return GameProperties.TutorialState == null || !GameProperties.TutorialState.ExclusiveTutorialActive();
     }
 
     private void ClosePressed()
