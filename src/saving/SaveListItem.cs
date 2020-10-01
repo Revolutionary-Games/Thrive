@@ -6,7 +6,7 @@ using Godot;
 /// <summary>
 ///   An item in the saves list. This is a class to handle loading its data from the file
 /// </summary>
-public class SaveListItem : HBoxContainer
+public class SaveListItem : PanelContainer
 {
     [Export]
     public bool Selectable;
@@ -24,6 +24,9 @@ public class SaveListItem : HBoxContainer
     public NodePath VersionPath;
 
     [Export]
+    public NodePath VersionWarningPath;
+
+    [Export]
     public NodePath TypePath;
 
     [Export]
@@ -39,32 +42,43 @@ public class SaveListItem : HBoxContainer
     public NodePath DescriptionPath;
 
     [Export]
-    public NodePath SelectedPath;
+    public NodePath LoadButtonPath;
 
     [Export]
-    public NodePath LoadButtonPath;
+    public NodePath HighlightPath;
 
     private Label saveNameLabel;
     private TextureRect screenshot;
     private Label version;
+    private Label versionWarning;
     private Label type;
     private Label createdAt;
     private Label createdBy;
     private Label createdOnPlatform;
     private Label description;
-    private CheckBox selected;
     private Button loadButton;
+    private Panel highlightPanel;
 
     private string saveName;
+    private int versionDifference;
 
     private bool loadingData;
     private Task<Save> saveInfoLoadTask;
+
+    private bool highlighted;
+    private bool selected;
 
     [Signal]
     public delegate void OnSelectedChanged();
 
     [Signal]
     public delegate void OnDeleted();
+
+    [Signal]
+    public delegate void OnOldSaveLoaded();
+
+    [Signal]
+    public delegate void OnNewSaveLoaded();
 
     public string SaveName
     {
@@ -80,6 +94,16 @@ public class SaveListItem : HBoxContainer
         }
     }
 
+    public bool Highlighted
+    {
+        get => highlighted;
+        set
+        {
+            highlighted = value;
+            UpdateHighlighting();
+        }
+    }
+
     public bool Selected
     {
         get
@@ -87,14 +111,15 @@ public class SaveListItem : HBoxContainer
             if (!Selectable)
                 return false;
 
-            return selected.Pressed;
+            return selected;
         }
         set
         {
             if (!Selectable)
                 throw new InvalidOperationException();
 
-            selected.Pressed = value;
+            selected = value;
+            UpdateHighlighting();
         }
     }
 
@@ -103,19 +128,19 @@ public class SaveListItem : HBoxContainer
         saveNameLabel = GetNode<Label>(SaveNamePath);
         screenshot = GetNode<TextureRect>(ScreenshotPath);
         version = GetNode<Label>(VersionPath);
+        versionWarning = GetNode<Label>(VersionWarningPath);
         type = GetNode<Label>(TypePath);
         createdAt = GetNode<Label>(CreatedAtPath);
         createdBy = GetNode<Label>(CreatedByPath);
         createdOnPlatform = GetNode<Label>(CreatedOnPlatformPath);
         description = GetNode<Label>(DescriptionPath);
-        selected = GetNode<CheckBox>(SelectedPath);
         loadButton = GetNode<Button>(LoadButtonPath);
-
-        selected.Visible = Selectable;
+        highlightPanel = GetNode<Panel>(HighlightPath);
 
         loadButton.Visible = Loadable;
 
         UpdateName();
+        UpdateHighlighting();
     }
 
     public override void _Process(float delta)
@@ -137,7 +162,10 @@ public class SaveListItem : HBoxContainer
         screenshot.Texture = texture;
 
         // General info
+        versionDifference = VersionUtils.Compare(save.Info.ThriveVersion, Constants.Version);
+
         version.Text = save.Info.ThriveVersion;
+        versionWarning.Visible = versionDifference != 0;
         type.Text = save.Info.Type.ToString();
         createdAt.Text = save.Info.CreatedAt.ToString("G", CultureInfo.CurrentCulture);
         createdBy.Text = save.Info.Creator;
@@ -145,6 +173,41 @@ public class SaveListItem : HBoxContainer
         description.Text = save.Info.Description;
 
         loadingData = false;
+    }
+
+    public override void _GuiInput(InputEvent @event)
+    {
+        if (@event is InputEventMouseButton mouse)
+        {
+            if (mouse.Pressed && mouse.ButtonIndex == (int)ButtonList.Left)
+            {
+                OnSelect();
+                AcceptEvent();
+            }
+        }
+    }
+
+    public void LoadThisSave()
+    {
+        if (versionDifference < 0)
+        {
+            EmitSignal(nameof(OnOldSaveLoaded));
+            return;
+        }
+
+        if (versionDifference > 0)
+        {
+            EmitSignal(nameof(OnNewSaveLoaded));
+            return;
+        }
+
+        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.3f, true);
+        TransitionManager.Instance.StartTransitions(this, nameof(LoadSave));
+    }
+
+    private void LoadSave()
+    {
+        SaveHelper.LoadSave(SaveName);
     }
 
     private void LoadSaveData()
@@ -176,19 +239,45 @@ public class SaveListItem : HBoxContainer
             saveNameLabel.Text = saveName.Replace(Constants.SAVE_EXTENSION_WITH_DOT, string.Empty);
     }
 
-    private void OnSelectedCheckboxChanged(bool newValue)
+    private void LoadSavePressed()
     {
-        _ = newValue;
+        GUICommon.Instance.PlayButtonPressSound();
+
+        LoadThisSave();
+    }
+
+    private void OnSelect()
+    {
+        if (!Selectable)
+            return;
+
+        Selected = !Selected;
+
         EmitSignal(nameof(OnSelectedChanged));
     }
 
-    private void LoadThisSave()
+    private void OnMouseEnter()
     {
-        SaveHelper.LoadSave(SaveName);
+        Highlighted = true;
+    }
+
+    private void OnMouseExit()
+    {
+        Highlighted = false;
+    }
+
+    private void UpdateHighlighting()
+    {
+        if (highlightPanel == null)
+            return;
+
+        highlightPanel.Visible = Highlighted || Selected;
     }
 
     private void DeletePressed()
     {
+        GUICommon.Instance.PlayButtonPressSound();
+
         EmitSignal(nameof(OnDeleted));
     }
 }

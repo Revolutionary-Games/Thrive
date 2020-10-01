@@ -67,4 +67,15 @@ public static class BarHelper
                 return null;
         }
     }
+
+    public static Color GetBarIconColor(SegmentedBar.Type type)
+    {
+        switch (type)
+        {
+            case SegmentedBar.Type.ATP:
+                return new Color(0.15f, 0.15f, 0.15f);
+            default:
+                return new Color(1, 1, 1);
+        }
+    }
 }

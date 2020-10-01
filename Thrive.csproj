@@ -1,56 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project Sdk="Godot.NET.Sdk/3.2.3">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{D38E3F51-1E8C-4F32-99B2-641320B0AC3C}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <OutputPath>.mono/temp/bin/$(Configuration)</OutputPath>
     <RootNamespace>Thrive</RootNamespace>
     <AssemblyName>Thrive</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <GodotProjectGeneratorVersion>1.0.7333.4679</GodotProjectGeneratorVersion>
-    <BaseIntermediateOutputPath>.mono/temp/obj</BaseIntermediateOutputPath>
-    <IntermediateOutputPath>$(BaseIntermediateOutputPath)/$(Configuration)</IntermediateOutputPath>
-    <ApiConfiguration Condition=" '$(Configuration)' != 'ExportRelease' ">Debug</ApiConfiguration>
-    <ApiConfiguration Condition=" '$(Configuration)' == 'ExportRelease' ">Release</ApiConfiguration>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ExportDebug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>portable</DebugType>
-    <Optimize>false</Optimize>
-    <DefineConstants>$(GodotDefineConstants);GODOT;DEBUG;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'ExportRelease|AnyCPU' ">
-    <DebugType>portable</DebugType>
-    <Optimize>true</Optimize>
-    <DefineConstants>$(GodotDefineConstants);GODOT;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>portable</DebugType>
-    <Optimize>false</Optimize>
-    <DefineConstants>$(GodotDefineConstants);GODOT;DEBUG;TOOLS;</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <ConsolePause>false</ConsolePause>
+    <TargetFramework>net472</TargetFramework>
+    <!--The following properties were overriden during migration to prevent errors.
+    Enabling them may require other manual changes to the project and its files.-->
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <Deterministic>false</Deterministic>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="GodotSharp">
-      <HintPath>$(ProjectDir)/.mono/assemblies/$(ApiConfiguration)/GodotSharp.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="GodotSharpEditor" Condition=" '$(Configuration)' == 'Debug' ">
-      <HintPath>$(ProjectDir)/.mono/assemblies/$(ApiConfiguration)/GodotSharpEditor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
@@ -59,22 +23,34 @@
     <Compile Include="src\engine\ChromaticFilter.cs" />
     <Compile Include="src\engine\FeatureInformation.cs" />
     <Compile Include="src\engine\GodotFileStream.cs" />
+    <Compile Include="src\engine\GuidanceLine.cs" />
+    <Compile Include="src\engine\IAssignableSetting.cs" />
     <Compile Include="src\engine\Invoke.cs" />
     <Compile Include="src\engine\LoadingScreen.cs" />
     <Compile Include="src\engine\PostStartupActions.cs" />
     <Compile Include="src\engine\SceneManager.cs" />
     <Compile Include="src\engine\ScreenShotTaker.cs" />
+    <Compile Include="src\engine\SettingValue.cs" />
     <Compile Include="src\engine\StartupActions.cs" />
     <Compile Include="src\general\PathUtils.cs" />
-    <Compile Include="src\general\EasterEggMessages.cs" />
     <Compile Include="src\general\HelpTexts.cs" />
     <Compile Include="src\general\HelpScreen.cs" />
     <Compile Include="src\general\PauseMenu.cs" />
+    <Compile Include="src\gui_common\tooltip\DefaultToolTip.cs" />
+    <Compile Include="src\gui_common\tooltip\ICustomToolTip.cs" />
+    <Compile Include="src\gui_common\tooltip\microbe_editor\ModifierInfoLabel.cs" />
+    <Compile Include="src\gui_common\tooltip\microbe_editor\SelectionMenuToolTip.cs" />
+    <Compile Include="src\gui_common\tooltip\ToolTipCallbackData.cs" />
+    <Compile Include="src\gui_common\tooltip\ToolTipManager.cs" />
+    <Compile Include="src\gui_common\ControlHighlight.cs" />
+    <Compile Include="src\gui_common\CollapsibleList.cs" />
     <Compile Include="src\gui_common\Cutscene.cs" />
     <Compile Include="src\gui_common\Fade.cs" />
     <Compile Include="src\gui_common\GUICommon.cs" />
     <Compile Include="src\gui_common\IconProgressBar.cs" />
     <Compile Include="src\gui_common\ITransition.cs" />
+    <Compile Include="src\gui_common\KeyPrompt.cs" />
+    <Compile Include="src\gui_common\KeyPromptHelper.cs" />
     <Compile Include="src\gui_common\MainMenu.cs" />
     <Compile Include="src\gui_common\QuickLoadHandler.cs" />
     <Compile Include="src\gui_common\SegmentedBar.cs" />
@@ -83,7 +59,6 @@
     <Compile Include="simulation_parameters\Constants.cs" />
     <Compile Include="src\engine\FPSCounter.cs" />
     <Compile Include="src\engine\ColourblindScreenFilter.cs" />
-    <Compile Include="src\engine\OverlayManager.cs" />
     <Compile Include="src\engine\CursorLoader.cs" />
     <Compile Include="src\general\OptionsMenu.cs" />
     <Compile Include="src\general\SceneDisplayer.cs" />
@@ -227,6 +202,28 @@
     <Compile Include="src\saving\serializers\ThriveJsonConverter.cs" />
     <Compile Include="src\saving\serializers\ThriveTypeConverter.cs" />
     <Compile Include="src\saving\TemporaryLoadedNodeDeleter.cs" />
+    <Compile Include="src\general\VersionUtils.cs" />
+    <Compile Include="src\tutorial\ITutorialGUI.cs" />
+    <Compile Include="src\tutorial\ITutorialInput.cs" />
+    <Compile Include="src\tutorial\microbe_editor\CellEditorIntroduction.cs" />
+    <Compile Include="src\tutorial\microbe_editor\EditorRedoTutorial.cs" />
+    <Compile Include="src\tutorial\microbe_editor\EditorTutorialEnd.cs" />
+    <Compile Include="src\tutorial\microbe_editor\EditorUndoTutorial.cs" />
+    <Compile Include="src\tutorial\microbe_editor\EditorWelcome.cs" />
+    <Compile Include="src\tutorial\microbe_editor\MicrobeEditorTutorialGUI.cs" />
+    <Compile Include="src\tutorial\microbe_editor\PatchMap.cs" />
+    <Compile Include="src\tutorial\microbe_stage\GlucoseCollecting.cs" />
+    <Compile Include="src\tutorial\microbe_stage\MicrobeMovement.cs" />
+    <Compile Include="src\tutorial\microbe_stage\MicrobeMovementExplanation.cs" />
+    <Compile Include="src\tutorial\microbe_stage\MicrobeReproduction.cs" />
+    <Compile Include="src\tutorial\microbe_stage\MicrobeStageWelcome.cs" />
+    <Compile Include="src\tutorial\microbe_stage\MicrobeStayingAlive.cs" />
+    <Compile Include="src\tutorial\TutorialEventArgs.cs" />
+    <Compile Include="src\tutorial\TutorialEventType.cs" />
+    <Compile Include="src\tutorial\microbe_stage\MicrobeTutorialGUI.cs" />
+    <Compile Include="src\tutorial\TutorialHelper.cs" />
+    <Compile Include="src\tutorial\TutorialPhase.cs" />
+    <Compile Include="src\tutorial\TutorialState.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="StyleCop.ruleset" />
@@ -238,12 +235,7 @@
     <Folder Include="src\auto-evo\steps\" />
     <Folder Include="src\auto-evo\simulation\" />
   </ItemGroup>
-  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies">
-      <Version>1.0.0</Version>
-      <PrivateAssets>All</PrivateAssets>
-    </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.3</Version>
     </PackageReference>
@@ -255,7 +247,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="simulation_parameters\common\easter_egg_messages.json" />
     <Content Include="simulation_parameters\common\help_texts.json" />
     <Content Include="simulation_parameters\common\music_tracks.json" />
     <Content Include="simulation_parameters\microbe_stage\backgrounds.json" />

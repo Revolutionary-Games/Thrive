@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/general/PauseMenu.cs" type="Script" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
 [ext_resource path="res://src/saving/SaveList.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/general/HelpScreen.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/saving/NewSaveMenu.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/general/OptionsMenu.tscn" type="PackedScene" id=6]
 
 [node name="PauseMenu" type="Control"]
 anchor_right = 1.0
@@ -17,6 +18,7 @@ HelpCategory = "MicrobeStage"
 PrimaryMenuPath = NodePath("CenterContainer/PrimaryMenu")
 HelpScreenPath = NodePath("HelpScreen")
 LoadMenuPath = NodePath("CenterContainer/LoadMenu")
+OptionsMenuPath = NodePath("OptionsMenu")
 SaveMenuPath = NodePath("CenterContainer/NewSaveMenu")
 LoadSaveListPath = NodePath("CenterContainer/LoadMenu/SaveList")
 
@@ -37,10 +39,10 @@ __meta__ = {
 }
 
 [node name="PrimaryMenu" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 515.0
-margin_top = 165.0
-margin_right = 765.0
-margin_bottom = 555.0
+margin_left = 558.0
+margin_top = 189.0
+margin_right = 808.0
+margin_bottom = 579.0
 theme = ExtResource( 2 )
 custom_constants/separation = 10
 __meta__ = {
@@ -87,7 +89,6 @@ margin_top = 250.0
 margin_right = 250.0
 margin_bottom = 290.0
 rect_min_size = Vector2( 250, 40 )
-disabled = true
 text = "Options"
 
 [node name="ReturnToMenu" type="Button" parent="CenterContainer/PrimaryMenu"]
@@ -106,25 +107,26 @@ text = "Exit"
 
 [node name="LoadMenu" type="VBoxContainer" parent="CenterContainer"]
 visible = false
-margin_left = 139.0
-margin_top = 85.0
-margin_right = 1139.0
-margin_bottom = 635.0
-rect_min_size = Vector2( 1000, 550 )
+margin_left = 182.0
+margin_top = 84.0
+margin_right = 1182.0
+margin_bottom = 684.0
+rect_min_size = Vector2( 1000, 600 )
 
 [node name="SaveList" parent="CenterContainer/LoadMenu" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 1000.0
-margin_bottom = 522.0
+margin_right = 800.0
+margin_bottom = 559.0
 size_flags_vertical = 3
 AutoRefreshOnFirstVisible = false
 
 [node name="Back" type="Button" parent="CenterContainer/LoadMenu"]
-margin_left = 462.0
-margin_top = 526.0
-margin_right = 538.0
-margin_bottom = 550.0
+margin_left = 350.0
+margin_top = 563.0
+margin_right = 450.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 100, 37 )
 size_flags_horizontal = 4
 theme = ExtResource( 2 )
 text = "Back"
@@ -136,22 +138,27 @@ __meta__ = {
 visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 189.0
-margin_top = 85.0
-margin_right = 1089.0
-margin_bottom = 635.0
-rect_min_size = Vector2( 900, 550 )
+margin_left = 283.0
+margin_top = 84.0
+margin_right = 1083.0
+margin_bottom = 684.0
+rect_min_size = Vector2( 1000, 600 )
 
 [node name="HelpScreen" parent="." instance=ExtResource( 4 )]
 visible = false
 Category = "MicrobeStage"
+
+[node name="OptionsMenu" parent="." instance=ExtResource( 6 )]
+visible = false
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/Resume" to="." method="ClosePressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/SaveGame" to="." method="OpenSavePressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/LoadGame" to="." method="OpenLoadPressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/Help" to="." method="OpenHelpPressed"]
+[connection signal="pressed" from="CenterContainer/PrimaryMenu/Options" to="." method="OpenOptionsPressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/ReturnToMenu" to="." method="ReturnToMenuPressed"]
 [connection signal="pressed" from="CenterContainer/PrimaryMenu/Exit" to="." method="ExitPressed"]
 [connection signal="pressed" from="CenterContainer/LoadMenu/Back" to="." method="CloseLoadPressed"]
 [connection signal="OnClosed" from="CenterContainer/NewSaveMenu" to="." method="CloseSavePressed"]
 [connection signal="OnSaveNameChosen" from="CenterContainer/NewSaveMenu" to="." method="ForwardSaveAction"]
 [connection signal="HelpScreenClosed" from="HelpScreen" to="." method="CloseHelpPressed"]
+[connection signal="OnOptionsClosed" from="OptionsMenu" to="." method="CloseOptionsPressed"]

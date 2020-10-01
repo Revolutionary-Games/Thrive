@@ -71,7 +71,7 @@ public class ProcessSystem
 
                     processATPConsumption += amount;
 
-                    result.AddConsumption(organelle.Name, amount);
+                    result.AddConsumption(organelle.InternalName, amount);
                 }
 
                 if (processData.Outputs.ContainsKey(ATP))
@@ -80,7 +80,7 @@ public class ProcessSystem
 
                     processATPProduction += amount;
 
-                    result.AddProduction(organelle.Name, amount);
+                    result.AddProduction(organelle.InternalName, amount);
                 }
             }
 
@@ -92,7 +92,7 @@ public class ProcessSystem
                 movementATPConsumption += amount;
                 result.Flagella += amount;
 
-                result.AddConsumption(organelle.Name, amount);
+                result.AddConsumption(organelle.InternalName, amount);
             }
 
             // Store hex count

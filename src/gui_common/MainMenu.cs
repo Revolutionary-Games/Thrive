@@ -34,6 +34,8 @@ public class MainMenu : Node
 
     public bool IsReturningToMenu = false;
 
+    private readonly List<ToolTipCallbackData> toolTipCallbacks = new List<ToolTipCallbackData>();
+
     private TextureRect thriveLogo;
     private OptionsMenu options;
     private AnimationPlayer guiAnimations;
@@ -56,6 +58,9 @@ public class MainMenu : Node
         {
             OnIntroEnded();
         }
+
+        // Let all suppressed deletions happen (if we came back directly from the editor that was loaded from a save)
+        TemporaryLoadedNodeDeleter.Instance.ReleaseAllHolds();
     }
 
     public void StartMusic()
@@ -119,10 +124,15 @@ public class MainMenu : Node
         saves = GetNode<SaveManagerGUI>("SaveManagerGUI");
 
         // Load settings
-        options.SetSettingsFrom(Settings.Instance);
+        if (Settings.Instance == null)
+            GD.PrintErr("Failed to initialize settings.");
 
         // Set initial menu
         SwitchMenu();
+
+        // Easter egg message
+        ToolTipManager.RegisterToolTipForControl(
+            thriveLogo, toolTipCallbacks, ToolTipManager.Instance.GetToolTip("thriveLogoEasterEgg", "mainMenu"));
     }
 
     /// <summary>
@@ -263,7 +273,7 @@ public class MainMenu : Node
         SetCurrentMenu(uint.MaxValue, false);
 
         // Show the options
-        options.Visible = true;
+        options.OpenFromMainMenu();
 
         thriveLogo.Hide();
     }
