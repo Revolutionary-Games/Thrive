@@ -71,6 +71,7 @@ public static class Constants
 
     public const int MICROBE_SPAWN_RADIUS = 170;
     public const int CLOUD_SPAWN_RADIUS = 170;
+    public const int SPAWN_DISTANCE_DIVISOR = 200;
 
     public const float STARTING_SPAWN_DENSITY = 70000.0f;
     public const float MAX_SPAWN_DENSITY = 20000.0f;

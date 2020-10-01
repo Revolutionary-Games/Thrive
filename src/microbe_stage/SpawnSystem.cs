@@ -68,6 +68,8 @@ public class SpawnSystem
     /// </summary>
     private int estimateEntityCount;
 
+    private Vector3 previousPlayerPosition;
+
     public SpawnSystem(Node root)
     {
         worldRoot = root;
@@ -223,6 +225,9 @@ public class SpawnSystem
             return;
 
         int spawned = 0;
+        int spawnFrequencyFactor = previousPlayerPosition == null ?
+            2 :
+            (int)(playerPosition.DistanceSquaredTo(previousPlayerPosition) / Constants.SPAWN_DISTANCE_DIVISOR);
 
         foreach (var spawnType in spawnTypes)
         {
@@ -241,8 +246,8 @@ public class SpawnSystem
             numAttempts stores how many times the SpawnSystem attempts
             to spawn the given entity.
             */
-            int numAttempts = Math.Min(Math.Max(spawnType.SpawnFrequency * 2, 1),
-                maxTriesPerSpawner);
+            int numAttempts = Math.Min(spawnType.SpawnFrequency * spawnFrequencyFactor, maxTriesPerSpawner);
+            previousPlayerPosition = playerPosition;
 
             for (int i = 0; i < numAttempts; i++)
             {
