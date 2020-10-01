@@ -24,14 +24,14 @@
             results[species].MutatedProperties = mutated;
         }
 
-        public void AddPopulationResultForSpecies(Species species, Patch patch, int newPopulation)
+        public void AddPopulationResultForSpecies(Species species, Patch patch, long newPopulation)
         {
             MakeSureResultExistsForSpecies(species);
 
             results[species].NewPopulationInPatches[patch] = Math.Max(newPopulation, 0);
         }
 
-        public void AddMigrationResultForSpecies(Species species, Patch fromPatch, Patch toPatch, int populationAmount)
+        public void AddMigrationResultForSpecies(Species species, Patch fromPatch, Patch toPatch, long populationAmount)
         {
             AddMigrationResultForSpecies(species, new SpeciesMigration(fromPatch, toPatch, populationAmount));
         }
@@ -79,8 +79,8 @@
                         continue;
                     }
 
-                    int remainingPopulation = from.GetSpeciesPopulation(entry.Key) - spreadEntry.Population;
-                    int newPopulation = to.GetSpeciesPopulation(entry.Key) + spreadEntry.Population;
+                    long remainingPopulation = from.GetSpeciesPopulation(entry.Key) - spreadEntry.Population;
+                    long newPopulation = to.GetSpeciesPopulation(entry.Key) + spreadEntry.Population;
 
                     if (!from.UpdateSpeciesPopulation(entry.Key, remainingPopulation))
                     {
@@ -107,9 +107,9 @@
         ///     Throws an exception if no population is found
         ///   </para>
         /// </remarks>
-        public int GetGlobalPopulation(Species species)
+        public long GetGlobalPopulation(Species species)
         {
-            var result = 0;
+            long result = 0;
 
             foreach (var entry in results[species].NewPopulationInPatches)
             {
@@ -122,7 +122,7 @@
         /// <summary>
         ///   variant of GetGlobalPopulation for a single patch
         /// </summary>
-        public int GetPopulationInPatch(Species species, Patch patch)
+        public long GetPopulationInPatch(Species species, Patch patch)
         {
             return Math.Max(results[species].NewPopulationInPatches[patch], 0);
         }
@@ -167,7 +167,7 @@
                 return builder2.ToString();
             }
 
-            void OutputPopulationForPatch(Species species, Patch patch, int population)
+            void OutputPopulationForPatch(Species species, Patch patch, long population)
             {
                 builder.Append("  ");
 
@@ -237,7 +237,7 @@
 
                 foreach (var patchPopulation in entry.NewPopulationInPatches)
                 {
-                    int adjustedPopulation = patchPopulation.Value;
+                    long adjustedPopulation = patchPopulation.Value;
 
                     if (resolveMoves)
                     {
@@ -254,7 +254,7 @@
                             if (effect.Species == entry.Species)
                             {
                                 adjustedPopulation +=
-                                    effect.Constant + (int)(effect.Species.Population * effect.Coefficient)
+                                    effect.Constant + (long)(effect.Species.Population * effect.Coefficient)
                                     - effect.Species.Population;
                             }
                         }
@@ -324,10 +324,10 @@
             results[species] = new SpeciesResult(species);
         }
 
-        private int CountSpeciesSpreadPopulation(Species species,
+        private long CountSpeciesSpreadPopulation(Species species,
             Patch targetPatch)
         {
-            var totalPopulation = 0;
+            long totalPopulation = 0;
 
             if (!results.ContainsKey(species))
             {
@@ -354,7 +354,7 @@
         {
             public Species Species;
 
-            public Dictionary<Patch, int> NewPopulationInPatches = new Dictionary<Patch, int>();
+            public Dictionary<Patch, long> NewPopulationInPatches = new Dictionary<Patch, long>();
 
             /// <summary>
             ///   null means no changes

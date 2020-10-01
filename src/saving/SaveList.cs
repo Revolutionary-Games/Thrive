@@ -146,6 +146,8 @@ public class SaveList : ScrollContainer
 
     private void OnDeletePressed(string saveName)
     {
+        GUICommon.Instance.PlayButtonPressSound();
+
         saveToBeDeleted = saveName;
         deleteConfirmDialog.DialogText =
             $"Deleting this save cannot be undone, are you sure you want to permanently delete {saveName}?";
@@ -154,6 +156,8 @@ public class SaveList : ScrollContainer
 
     private void OnConfirmDelete()
     {
+        GUICommon.Instance.PlayButtonPressSound();
+
         GD.Print("Deleting save: ", saveToBeDeleted);
         SaveHelper.DeleteSave(saveToBeDeleted);
         saveToBeDeleted = null;
@@ -185,6 +189,14 @@ public class SaveList : ScrollContainer
     }
 
     private void OnConfirmSaveLoad()
+    {
+        GUICommon.Instance.PlayButtonPressSound();
+
+        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.3f, true);
+        TransitionManager.Instance.StartTransitions(this, nameof(LoadSave));
+    }
+
+    private void LoadSave()
     {
         SaveHelper.LoadSave(saveToBeLoaded);
     }

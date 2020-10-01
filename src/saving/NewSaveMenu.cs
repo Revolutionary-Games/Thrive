@@ -42,6 +42,8 @@ public class NewSaveMenu : Control
 
     private void ClosePressed()
     {
+        GUICommon.Instance.PlayButtonPressSound();
+
         EmitSignal(nameof(OnClosed));
     }
 
@@ -64,6 +66,8 @@ public class NewSaveMenu : Control
 
     private void OnConfirmSaveName()
     {
+        GUICommon.Instance.PlayButtonPressSound();
+
         EmitSignal(nameof(OnSaveNameChosen), GetSaveName());
     }
 

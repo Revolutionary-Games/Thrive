@@ -42,10 +42,10 @@ public class SaveListItem : PanelContainer
     public NodePath DescriptionPath;
 
     [Export]
-    public NodePath SelectedPath;
+    public NodePath LoadButtonPath;
 
     [Export]
-    public NodePath LoadButtonPath;
+    public NodePath HighlightPath;
 
     private Label saveNameLabel;
     private TextureRect screenshot;
@@ -56,14 +56,17 @@ public class SaveListItem : PanelContainer
     private Label createdBy;
     private Label createdOnPlatform;
     private Label description;
-    private CheckBox selected;
     private Button loadButton;
+    private Panel highlightPanel;
 
     private string saveName;
     private int versionDifference;
 
     private bool loadingData;
     private Task<Save> saveInfoLoadTask;
+
+    private bool highlighted;
+    private bool selected;
 
     [Signal]
     public delegate void OnSelectedChanged();
@@ -91,6 +94,16 @@ public class SaveListItem : PanelContainer
         }
     }
 
+    public bool Highlighted
+    {
+        get => highlighted;
+        set
+        {
+            highlighted = value;
+            UpdateHighlighting();
+        }
+    }
+
     public bool Selected
     {
         get
@@ -98,14 +111,15 @@ public class SaveListItem : PanelContainer
             if (!Selectable)
                 return false;
 
-            return selected.Pressed;
+            return selected;
         }
         set
         {
             if (!Selectable)
                 throw new InvalidOperationException();
 
-            selected.Pressed = value;
+            selected = value;
+            UpdateHighlighting();
         }
     }
 
@@ -120,14 +134,13 @@ public class SaveListItem : PanelContainer
         createdBy = GetNode<Label>(CreatedByPath);
         createdOnPlatform = GetNode<Label>(CreatedOnPlatformPath);
         description = GetNode<Label>(DescriptionPath);
-        selected = GetNode<CheckBox>(SelectedPath);
         loadButton = GetNode<Button>(LoadButtonPath);
-
-        selected.Visible = Selectable;
+        highlightPanel = GetNode<Panel>(HighlightPath);
 
         loadButton.Visible = Loadable;
 
         UpdateName();
+        UpdateHighlighting();
     }
 
     public override void _Process(float delta)
@@ -162,6 +175,18 @@ public class SaveListItem : PanelContainer
         loadingData = false;
     }
 
+    public override void _GuiInput(InputEvent @event)
+    {
+        if (@event is InputEventMouseButton mouse)
+        {
+            if (mouse.Pressed && mouse.ButtonIndex == (int)ButtonList.Left)
+            {
+                OnSelect();
+                AcceptEvent();
+            }
+        }
+    }
+
     public void LoadThisSave()
     {
         if (versionDifference < 0)
@@ -176,6 +201,12 @@ public class SaveListItem : PanelContainer
             return;
         }
 
+        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.3f, true);
+        TransitionManager.Instance.StartTransitions(this, nameof(LoadSave));
+    }
+
+    private void LoadSave()
+    {
         SaveHelper.LoadSave(SaveName);
     }
 
@@ -208,14 +239,45 @@ public class SaveListItem : PanelContainer
             saveNameLabel.Text = saveName.Replace(Constants.SAVE_EXTENSION_WITH_DOT, string.Empty);
     }
 
-    private void OnSelectedCheckboxChanged(bool newValue)
+    private void LoadSavePressed()
     {
-        _ = newValue;
+        GUICommon.Instance.PlayButtonPressSound();
+
+        LoadThisSave();
+    }
+
+    private void OnSelect()
+    {
+        if (!Selectable)
+            return;
+
+        Selected = !Selected;
+
         EmitSignal(nameof(OnSelectedChanged));
+    }
+
+    private void OnMouseEnter()
+    {
+        Highlighted = true;
+    }
+
+    private void OnMouseExit()
+    {
+        Highlighted = false;
+    }
+
+    private void UpdateHighlighting()
+    {
+        if (highlightPanel == null)
+            return;
+
+        highlightPanel.Visible = Highlighted || Selected;
     }
 
     private void DeletePressed()
     {
+        GUICommon.Instance.PlayButtonPressSound();
+
         EmitSignal(nameof(OnDeleted));
     }
 }
