@@ -149,6 +149,12 @@ public class MicrobeEditor : Node, ILoadableGameState
     [JsonProperty]
     private string activeActionName;
 
+    [Signal]
+    public delegate void InvalidPlacementOfHex();
+
+    [Signal]
+    public delegate void InsufficientMPToPlaceHex();
+
     /// <summary>
     /// The Symmetry setting of the Microbe Editor.
     /// </summary>
@@ -1426,11 +1432,19 @@ public class MicrobeEditor : Node, ILoadableGameState
             new Hex(q, r), rotation);
 
         if (!IsValidPlacement(organelle))
+        {
+            // Play Sound
+            EmitSignal(nameof(InvalidPlacementOfHex));
             return;
+        }
 
         // Skip placing if the player can't afford the organelle
         if (organelle.Definition.MPCost > MutationPoints && !FreeBuilding)
+        {
+            // Flash the MP bar and play sound
+            EmitSignal(nameof(InsufficientMPToPlaceHex));
             return;
+        }
 
         if (AddOrganelle(organelle))
         {
