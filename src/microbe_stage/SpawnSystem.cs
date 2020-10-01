@@ -68,7 +68,7 @@ public class SpawnSystem
     /// </summary>
     private int estimateEntityCount;
 
-    private Vector3 previousPlayerPosition;
+    private Vector3 previousPlayerPosition = new Vector3(0, 0, 0);
 
     public SpawnSystem(Node root)
     {
@@ -225,7 +225,7 @@ public class SpawnSystem
             return;
 
         int spawned = 0;
-        int spawnFrequencyFactor = previousPlayerPosition == null ?
+        int spawnFrequencyFactor = previousPlayerPosition.x == 0 && previousPlayerPosition.z == 0?
             2 :
             (int)(playerPosition.DistanceSquaredTo(previousPlayerPosition) / Constants.SPAWN_DISTANCE_DIVISOR);
 
