@@ -122,7 +122,6 @@ public class ModManagerUI : Control
 
     private void OnMoveUpPressed()
     {
-        GUICommon.Instance.PlayButtonPressSound();
         if (loadedItemList.GetSelectedItems().Length > 0)
         {
             MoveItem(loadedItemList, true, loadedItemList.GetSelectedItems()[0]);
@@ -135,7 +134,6 @@ public class ModManagerUI : Control
 
     private void OnMoveDownPressed()
     {
-        GUICommon.Instance.PlayButtonPressSound();
         if (loadedItemList.GetSelectedItems().Length > 0)
         {
             MoveItem(loadedItemList, false, loadedItemList.GetSelectedItems()[0]);
@@ -148,6 +146,7 @@ public class ModManagerUI : Control
 
     private void MoveItem(ItemList list, bool moveUp, int currentIndex)
     {
+        GUICommon.Instance.PlayButtonPressSound();
         if (moveUp)
         {
             if (currentIndex == 0)
