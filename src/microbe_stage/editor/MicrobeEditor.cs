@@ -149,6 +149,12 @@ public class MicrobeEditor : Node, ILoadableGameState
     [JsonProperty]
     private string activeActionName;
 
+    [Signal]
+    public delegate void InvalidPlacementOfHex();
+
+    [Signal]
+    public delegate void InsufficientMPToPlaceHex();
+
     /// <summary>
     /// The Symmetry setting of the Microbe Editor.
     /// </summary>
@@ -312,12 +318,6 @@ public class MicrobeEditor : Node, ILoadableGameState
     public Node GameStateRoot => this;
 
     public bool IsLoadedFromSave { get; set; } = false;
-
-    [Signal]
-    public delegate void InvalidPlacementOfHex();
-
-    [Signal]
-    public delegate void InsufficientMPToPlaceHex();
 
     public override void _Ready()
     {
