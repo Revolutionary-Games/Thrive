@@ -245,6 +245,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     [JsonIgnore]
     public Spatial OrganelleParent { get; private set; }
 
+    public Area EngulfDetector { get; private set; }
+
     [JsonProperty]
     public int DespawnRadiusSqr { get; set; }
 
@@ -346,11 +348,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         cellBurstEffectScene = GD.Load<PackedScene>("res://src/microbe_stage/particles/CellBurst.tscn");
 
         // Setup physics callback stuff
-        var engulfDetector = GetNode<Area>("EngulfDetector");
-        engulfShape = (SphereShape)engulfDetector.GetNode<CollisionShape>("EngulfShape").Shape;
+        EngulfDetector = GetNode<Area>("EngulfDetector");
+        engulfShape = (SphereShape)EngulfDetector.GetNode<CollisionShape>("EngulfShape").Shape;
 
-        engulfDetector.Connect("body_entered", this, "OnBodyEnteredEngulfArea");
-        engulfDetector.Connect("body_exited", this, "OnBodyExitedEngulfArea");
+        EngulfDetector.Connect("body_entered", this, "OnBodyEnteredEngulfArea");
+        EngulfDetector.Connect("body_exited", this, "OnBodyExitedEngulfArea");
 
         ContactsReported = Constants.DEFAULT_STORE_CONTACTS_COUNT;
         Connect("body_shape_entered", this, "OnContactBegin");
@@ -393,6 +395,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         var massOffset = -organelles.CenterOfMass * scale;
         Membrane.Translation = massOffset;
         OrganelleParent.Translation = massOffset;
+        EngulfDetector.Translation = massOffset;
     }
 
     /// <summary>
