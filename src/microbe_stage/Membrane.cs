@@ -313,14 +313,19 @@ public class Membrane : MeshInstance
 
         float distanceSquared = 0;
 
-        foreach (var vertex in vertices2D)
+        foreach (var vertexA in vertices2D)
         {
-            var currentDistance = vertex.LengthSquared();
-            if (currentDistance > distanceSquared)
-                distanceSquared = currentDistance;
+            foreach (var vertexB in vertices2D)
+            {
+                var currentDistance = vertexA.DistanceSquaredTo(vertexB);
+                if (currentDistance > distanceSquared)
+                {
+                    distanceSquared = currentDistance;
+                }
+            }
         }
 
-        return Mathf.Sqrt(distanceSquared);
+        return Mathf.Sqrt(distanceSquared) / 2;
     }
 
     /// <summary>
