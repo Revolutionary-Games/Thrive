@@ -388,6 +388,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         Membrane.Dirty = true;
 
         SetupMicrobeHitpoints();
+
+        // Move the center of mass of the organelles to the center of the microbe
+        var massOffset = -organelles.CenterOfMass * scale;
+        Membrane.Translation = massOffset;
+        OrganelleParent.Translation = massOffset;
     }
 
     /// <summary>
