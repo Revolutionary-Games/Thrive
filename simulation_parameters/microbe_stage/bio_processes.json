@@ -3,10 +3,10 @@
         "name": "Respiration",
         "inputs": {
             "oxygen": 1,
-            "glucose": 0.08
+            "glucose": 0.1
         },
         "outputs": {
-            "atp": 70
+            "atp": 90
         }
     },
     "glycolysis": {
@@ -34,7 +34,7 @@
             "sunlight": 1
         },
         "outputs": {
-            "glucose": 0.03
+            "glucose": 0.1
         }
     },
     "oxytoxySynthesis": {
@@ -105,7 +105,7 @@
             "glucose": 0.15
         },
         "outputs": {
-            "atp": 35
+            "atp": 40
         }
     },
     "chromatophore_photosynthesis": {
@@ -115,7 +115,7 @@
             "sunlight": 1
         },
         "outputs": {
-            "glucose": 0.025
+            "glucose": 0.03
         }
     },
     "iron_chemolithoautotrophy": {
