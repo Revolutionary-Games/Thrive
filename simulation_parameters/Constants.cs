@@ -412,6 +412,11 @@ public static class Constants
     public const float TOOLTIP_DEFAULT_DELAY = 1.0f;
 
     public const float TOOLTIP_FADE_SPEED = 0.1f;
+    
+    /// <summary>
+    ///   Increment to ai membrane microbes to make hovering over small cells easier
+    ///</summary>
+    public const float MEMBRANE_INCREMENT_RADIUS_FOR_MOUSE_HOVER = 2.0f;
 
     /// <summary>
     ///   All Nodes tagged with this are handled by the spawn system for despawning
