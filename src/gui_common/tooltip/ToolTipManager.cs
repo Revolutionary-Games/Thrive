@@ -92,7 +92,9 @@ public class ToolTipManager : CanvasLayer
             if (displayTimer < 0)
             {
                 lastMousePosition = GetViewport().GetMousePosition();
-                DisplayToolTip();
+
+                holder.Show();
+                MainToolTip.OnDisplay();
             }
         }
 
@@ -211,52 +213,16 @@ public class ToolTipManager : CanvasLayer
             if (!MainToolTip.ToolTipVisible)
                 return;
 
-            HideToolTip();
+            holder.Hide();
+            MainToolTip.OnHide();
         }
-    }
-
-    private void DisplayToolTip()
-    {
-        holder.Show();
-
-        tween.InterpolateProperty(holder, "modulate", new Color(1, 1, 1, 0), new Color(1, 1, 1, 1),
-            Constants.TOOLTIP_FADE_SPEED, Tween.TransitionType.Sine, Tween.EaseType.In);
-        tween.Start();
-
-        tween.Connect("tween_started", this, nameof(OnFadeInStarted), null, (int)ConnectFlags.Oneshot);
-    }
-
-    private void HideToolTip()
-    {
-        tween.InterpolateProperty(holder, "modulate", new Color(1, 1, 1, 1), new Color(1, 1, 1, 0),
-            Constants.TOOLTIP_FADE_SPEED, Tween.TransitionType.Sine, Tween.EaseType.Out);
-        tween.Start();
-
-        if (!tween.IsConnected("tween_completed", this, nameof(OnFadeOutFinished)))
-            tween.Connect("tween_completed", this, nameof(OnFadeOutFinished), null, (int)ConnectFlags.Oneshot);
     }
 
     private void HideAllToolTips()
     {
-        foreach (var group in tooltips.Keys)
-            tooltips[group].ForEach(tooltip => tooltip.ToolTipVisible = false);
-    }
-
-    private void OnFadeInStarted(Object obj, NodePath key)
-    {
-        _ = obj;
-        _ = key;
-
-        MainToolTip.ToolTipVisible = true;
-    }
-
-    private void OnFadeOutFinished(Object obj, NodePath key)
-    {
-        _ = obj;
-        _ = key;
-
         holder.Hide();
 
-        HideAllToolTips();
+        foreach (var group in tooltips.Keys)
+            tooltips[group].ForEach(tooltip => tooltip.ToolTipVisible = false);
     }
 }

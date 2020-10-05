@@ -1,4 +1,5 @@
 using Godot;
+using Object = Godot.Object;
 
 /// <summary>
 ///   For a more generic use and less customized tooltips, only has message text
@@ -12,6 +13,8 @@ public class DefaultToolTip : Control, ICustomToolTip
     ///   TODO: Use RichTextLabel once its sizing issue is fixed
     /// </summary>
     private Label descriptionLabel;
+
+    private Tween tween;
 
     private string description;
 
@@ -61,8 +64,23 @@ public class DefaultToolTip : Control, ICustomToolTip
     public override void _Ready()
     {
         descriptionLabel = GetNode<Label>(DescriptionLabelPath);
+        tween = GetNode<Tween>("Tween");
+        tween.Connect("tween_started", this, nameof(OnFadeInStarted));
 
         UpdateDescription();
+    }
+
+    public void OnDisplay()
+    {
+        tween.InterpolateProperty(this, "modulate", new Color(1, 1, 1, 0), new Color(1, 1, 1, 1),
+            Constants.TOOLTIP_FADE_SPEED, Tween.TransitionType.Sine, Tween.EaseType.In);
+
+        tween.Start();
+    }
+
+    public void OnHide()
+    {
+        Hide();
     }
 
     private void UpdateDescription()
@@ -78,5 +96,13 @@ public class DefaultToolTip : Control, ICustomToolTip
         {
             descriptionLabel.Text = Description;
         }
+    }
+
+    private void OnFadeInStarted(Object obj, NodePath key)
+    {
+        _ = obj;
+        _ = key;
+
+        Show();
     }
 }
