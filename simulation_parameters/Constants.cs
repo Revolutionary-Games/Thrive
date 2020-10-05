@@ -414,6 +414,13 @@ public static class Constants
     public const float TOOLTIP_FADE_SPEED = 0.1f;
 
     /// <summary>
+    ///   When checking if the mouse is hovering over a microbe, this increments
+    ///   the testing area as an addition to microbe radius, so it's easier to hover
+    ///   over smaller microbes.
+    /// </summary>
+    public const float MICROBE_HOVER_DETECTION_EXTRA_RADIUS = 2.0f;
+
+    /// <summary>
     ///   All Nodes tagged with this are handled by the spawn system for despawning
     /// </summary>
     public const string SPAWNED_GROUP = "spawned";
