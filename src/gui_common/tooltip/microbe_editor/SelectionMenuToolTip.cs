@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
 using Godot;
+using Object = Godot.Object;
 
 /// <summary>
 ///   The main tooltip class for the selections on the microbe editor's selection menu.
@@ -36,6 +37,8 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     private Label descriptionLabel;
     private VBoxContainer modifierInfoList;
     private VBoxContainer processList;
+
+    private Tween tween;
 
     private string displayName;
     private string description;
@@ -97,6 +100,9 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         descriptionLabel = GetNode<Label>(DescriptionLabelPath);
         modifierInfoList = GetNode<VBoxContainer>(ModifierListPath);
         processList = GetNode<VBoxContainer>(ProcessListPath);
+
+        tween = GetNode<Tween>("Tween");
+        tween.Connect("tween_started", this, nameof(OnFadeInStarted));
 
         UpdateName();
         UpdateDescription();
@@ -264,6 +270,19 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         }
     }
 
+    public void OnDisplay()
+    {
+        tween.InterpolateProperty(this, "modulate", new Color(1, 1, 1, 0), new Color(1, 1, 1, 1),
+            Constants.TOOLTIP_FADE_SPEED, Tween.TransitionType.Sine, Tween.EaseType.In);
+
+        tween.Start();
+    }
+
+    public void OnHide()
+    {
+        Hide();
+    }
+
     private void UpdateName()
     {
         if (nameLabel == null)
@@ -300,5 +319,13 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         {
             modifierInfos.Add(item);
         }
+    }
+
+    private void OnFadeInStarted(Object obj, NodePath key)
+    {
+        _ = obj;
+        _ = key;
+
+        Show();
     }
 }

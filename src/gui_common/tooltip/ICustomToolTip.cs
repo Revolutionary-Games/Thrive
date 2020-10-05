@@ -19,7 +19,7 @@ public interface ICustomToolTip
     float DisplayDelay { get; set; }
 
     /// <summary>
-    ///   If true the tooltip is shown
+    ///   If true tooltip is shown
     /// </summary>
     bool ToolTipVisible { get; set; }
 
@@ -27,4 +27,14 @@ public interface ICustomToolTip
     ///   Node of this tooltip
     /// </summary>
     Node ToolTipNode { get; }
+
+    /// <summary>
+    ///   Displays tooltip with additional behavior
+    /// </summary>
+    void OnDisplay();
+
+    /// <summary>
+    ///   Hides tooltip with additional behavior
+    /// </summary>
+    void OnHide();
 }
