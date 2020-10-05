@@ -413,7 +413,7 @@ public static class Constants
 
     public const float TOOLTIP_FADE_SPEED = 0.1f;
     
-    /// <summary>
+    ///<summary>
     ///   Increment to AI membrane microbes to make hovering over small cells easier
     ///</summary>
     public const float MICROBE_HOVER_DETECTION_EXTRA_RADIUS = 2.0f;
