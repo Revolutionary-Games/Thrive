@@ -412,7 +412,7 @@ public static class Constants
     public const float TOOLTIP_DEFAULT_DELAY = 1.0f;
 
     public const float TOOLTIP_FADE_SPEED = 0.1f;
-    
+
     /// <summary>
     ///   When checking if the mouse is hovering over a microbe, this increments
     ///   the testing area as an addition to microbe radius, so it's easier to hover
