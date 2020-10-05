@@ -653,7 +653,7 @@ public class MicrobeHUD : Node
 
             // Find only cells that have the mouse
             // position within their membrane
-            if (distance > entry.Radius + Constants.MEMBRANE_INCREMENT_RADIUS_FOR_MOUSE_HOVER)
+            if (distance > entry.Radius + Constants.MICROBE_HOVER_DETECTION_EXTRA_RADIUS)
                 continue;
 
             // TODO: Combine cells of same species within mouse over

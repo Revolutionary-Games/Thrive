@@ -416,7 +416,7 @@ public static class Constants
     /// <summary>
     ///   Increment to ai membrane microbes to make hovering over small cells easier
     ///</summary>
-    public const float MEMBRANE_INCREMENT_RADIUS_FOR_MOUSE_HOVER = 2.0f;
+    public const float MICROBE_HOVER_DETECTION_EXTRA_RADIUS = 2.0f;
 
     /// <summary>
     ///   All Nodes tagged with this are handled by the spawn system for despawning
