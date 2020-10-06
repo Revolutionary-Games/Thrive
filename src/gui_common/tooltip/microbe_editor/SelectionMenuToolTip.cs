@@ -272,10 +272,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
 
     public void OnDisplay()
     {
-        tween.InterpolateProperty(this, "modulate", new Color(1, 1, 1, 0), new Color(1, 1, 1, 1),
-            Constants.TOOLTIP_FADE_SPEED, Tween.TransitionType.Sine, Tween.EaseType.In);
-
-        tween.Start();
+        ToolTipHelper.TooltipFadeIn(tween, this);
     }
 
     public void OnHide()
