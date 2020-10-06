@@ -757,7 +757,7 @@ tracks/2/keys = {
 process_priority = -1
 script = ExtResource( 1 )
 GuidanceLinePath = NodePath("World/GuidanceLine")
-PauseMenuPath = NodePath("MicrobeHUD/CanvasLayer/PauseMenu")
+PauseMenuPath = NodePath("PauseMenu")
 
 [node name="World" type="Node" parent="."]
 
@@ -796,7 +796,7 @@ MouseHoverPanelPath = NodePath("MouseHoverPanel")
 HoveredCompoundsContainerPath = NodePath("MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/HoveredCompounds/List")
 HoverPanelSeparatorPath = NodePath("MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/SpeciesSeparator")
 HoveredCellsContainerPath = NodePath("MouseHoverPanel/PanelContainer/MarginContainer/VBoxContainer/HoveredCells/List")
-MenuPath = NodePath("CanvasLayer/PauseMenu")
+MenuPath = NodePath("../PauseMenu")
 PauseButtonPath = NodePath("BottomLeft/BottomBar/PauseButtonMargin/Pause")
 ResumeButtonPath = NodePath("BottomLeft/BottomBar/PauseButtonMargin/Resume")
 AtpLabelPath = NodePath("BottomRight/DataValue/Margin/VBox/ATPValue")
@@ -2374,20 +2374,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CanvasLayer" type="CanvasLayer" parent="MicrobeHUD"]
-layer = 3
-__meta__ = {
-"_editor_description_": "The pause menu is inside this CanvasLayer, to make sure the menu will always be on top of every other UIs"
-}
-
-[node name="PauseMenu" parent="MicrobeHUD/CanvasLayer" instance=ExtResource( 11 )]
-visible = false
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="MicrobeHUD"]
 anims/HideLeftPanels = SubResource( 39 )
 anims/ShowLeftPanels = SubResource( 40 )
 
 [node name="TutorialGUI" parent="." instance=ExtResource( 74 )]
+visible = false
+
+[node name="PauseMenu" parent="." instance=ExtResource( 11 )]
 visible = false
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentExpandButton" to="MicrobeHUD" method="ResizeEnvironmentPanel" binds= [ "expand" ]]
 [connection signal="pressed" from="MicrobeHUD/BottomLeft/LeftPanels/EnvironmentPanel/VBoxContainer/Header/HBoxContainer/EnvironmentCompressButton" to="MicrobeHUD" method="ResizeEnvironmentPanel" binds= [ "compress" ]]
@@ -2402,6 +2396,6 @@ visible = false
 [connection signal="mouse_entered" from="MicrobeHUD/BottomRight/EditorButton" to="MicrobeHUD" method="OnEditorButtonMouseEnter"]
 [connection signal="mouse_exited" from="MicrobeHUD/BottomRight/EditorButton" to="MicrobeHUD" method="OnEditorButtonMouseExit"]
 [connection signal="pressed" from="MicrobeHUD/BottomRight/EditorButton" to="MicrobeHUD" method="EditorButtonPressed"]
-[connection signal="MakeSave" from="MicrobeHUD/CanvasLayer/PauseMenu" to="." method="SaveGame"]
-[connection signal="OnClosed" from="MicrobeHUD/CanvasLayer/PauseMenu" to="MicrobeHUD" method="CloseMenu"]
-[connection signal="OnOpenWithKeyPress" from="MicrobeHUD/CanvasLayer/PauseMenu" to="MicrobeHUD" method="OpenMenu"]
+[connection signal="MakeSave" from="PauseMenu" to="." method="SaveGame"]
+[connection signal="OnClosed" from="PauseMenu" to="MicrobeHUD" method="CloseMenu"]
+[connection signal="OnOpenWithKeyPress" from="PauseMenu" to="MicrobeHUD" method="OpenMenu"]
