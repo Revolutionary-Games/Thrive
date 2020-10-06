@@ -14,27 +14,27 @@ public interface ICustomToolTip
     string Description { get; set; }
 
     /// <summary>
-    ///   Used to delay how long it takes for this tooltip to appear
+    ///   Used to delay how long it takes for the tooltip to appear
     /// </summary>
     float DisplayDelay { get; set; }
 
     /// <summary>
-    ///   If true tooltip is shown
+    ///   If true the tooltip is shown
     /// </summary>
     bool ToolTipVisible { get; set; }
 
     /// <summary>
-    ///   Node of this tooltip
+    ///   Node of the tooltip
     /// </summary>
     Node ToolTipNode { get; }
 
     /// <summary>
-    ///   Displays tooltip with additional behavior
+    ///   Display the tooltip with additional behavior if any
     /// </summary>
     void OnDisplay();
 
     /// <summary>
-    ///   Hides tooltip with additional behavior
+    ///   Hide the tooltip with additional behavior if any
     /// </summary>
     void OnHide();
 }
