@@ -1,5 +1,4 @@
 using Godot;
-using Object = Godot.Object;
 
 /// <summary>
 ///   For a more generic use and less customized tooltips, only has message text
@@ -72,10 +71,7 @@ public class DefaultToolTip : Control, ICustomToolTip
 
     public void OnDisplay()
     {
-        tween.InterpolateProperty(this, "modulate", new Color(1, 1, 1, 0), new Color(1, 1, 1, 1),
-            Constants.TOOLTIP_FADE_SPEED, Tween.TransitionType.Sine, Tween.EaseType.In);
-
-        tween.Start();
+        ToolTipHelper.TooltipFadeIn(tween, this);
     }
 
     public void OnHide()

@@ -29,12 +29,12 @@ public interface ICustomToolTip
     Node ToolTipNode { get; }
 
     /// <summary>
-    ///   Display the tooltip with additional behavior if any
+    ///   Display the tooltip in a customized way (like fade in or scale tweening)
     /// </summary>
     void OnDisplay();
 
     /// <summary>
-    ///   Hide the tooltip with additional behavior if any
+    ///   Hide the tooltip
     /// </summary>
     void OnHide();
 }
