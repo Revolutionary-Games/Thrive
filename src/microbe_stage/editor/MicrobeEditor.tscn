@@ -905,7 +905,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_vertical_guides_": [  ]
 }
-PauseMenuPath = NodePath("MicrobeEditorGUI/CanvasLayer/PauseMenu")
+PauseMenuPath = NodePath("PauseMenu")
 
 [node name="PrimaryCamera" parent="." instance=ExtResource( 1 )]
 DefaultCameraHeight = 10.0
@@ -928,7 +928,7 @@ omni_attenuation = 0.420448
 [node name="MicrobeEditorGUI" type="Node" parent="."]
 pause_mode = 2
 script = ExtResource( 45 )
-MenuPath = NodePath("CanvasLayer/PauseMenu")
+MenuPath = NodePath("../PauseMenu")
 ReportTabButtonPath = NodePath("TopLeft/HBoxContainer/ReportButton")
 PatchMapButtonPath = NodePath("TopLeft/HBoxContainer/PatchMapButton")
 CellEditorButtonPath = NodePath("TopLeft/HBoxContainer/CellEditorButton")
@@ -3761,10 +3761,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 40 )
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_left = 176.0
-margin_top = 198.0
-margin_right = 478.0
-margin_bottom = 664.0
+margin_left = 180.0
+margin_top = 202.0
+margin_right = 482.0
+margin_bottom = 668.0
 theme = SubResource( 42 )
 edit_alpha = false
 
@@ -5117,17 +5117,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CanvasLayer" type="CanvasLayer" parent="MicrobeEditorGUI"]
-layer = 3
-__meta__ = {
-"_editor_description_": "The pause menu is inside this CanvasLayer, to make sure the menu will always be on top of every other UIs"
-}
-
-[node name="PauseMenu" parent="MicrobeEditorGUI/CanvasLayer" instance=ExtResource( 52 )]
-visible = false
-theme = ExtResource( 53 )
-HelpCategory = "MicrobeEditor"
-
 [node name="TutorialGUI" parent="." instance=ExtResource( 85 )]
 visible = false
 EditorEntryReportPath = NodePath("../TutorialGUI/EditorEntryReport")
@@ -5137,6 +5126,11 @@ CellEditorUndoPath = NodePath("../TutorialGUI/UndoTutorial")
 CellEditorUndoHighlightPath = NodePath("../TutorialGUI/UndoButtonHighlight")
 CellEditorRedoPath = NodePath("../TutorialGUI/RedoTutorial")
 CellEditorClosingWordsPath = NodePath("../TutorialGUI/CellEditorClosingWords")
+
+[node name="PauseMenu" parent="." instance=ExtResource( 52 )]
+visible = false
+theme = ExtResource( 53 )
+HelpCategory = "MicrobeEditor"
 [connection signal="InsufficientMPToPlaceHex" from="." to="MicrobeEditorGUI" method="OnInsufficientMPToPlaceHex"]
 [connection signal="InvalidPlacementOfHex" from="." to="MicrobeEditorGUI" method="OnInvalidHexLocationSelected"]
 [connection signal="mouse_entered" from="MicrobeEditorGUI/TopLeft" to="MicrobeEditorGUI" method="OnMouseEnter"]
@@ -5226,6 +5220,6 @@ CellEditorClosingWordsPath = NodePath("../TutorialGUI/CellEditorClosingWords")
 [connection signal="mouse_exited" from="MicrobeEditorGUI/BottomButtons" to="MicrobeEditorGUI" method="OnMouseExit"]
 [connection signal="pressed" from="MicrobeEditorGUI/BottomButtons/HBoxContainer/MenuButton" to="MicrobeEditorGUI" method="MenuButtonPressed"]
 [connection signal="pressed" from="MicrobeEditorGUI/BottomButtons/HBoxContainer/HelpButton" to="MicrobeEditorGUI" method="HelpButtonPressed"]
-[connection signal="MakeSave" from="MicrobeEditorGUI/CanvasLayer/PauseMenu" to="." method="SaveGame"]
-[connection signal="OnClosed" from="MicrobeEditorGUI/CanvasLayer/PauseMenu" to="MicrobeEditorGUI" method="CloseMenu"]
-[connection signal="OnOpenWithKeyPress" from="MicrobeEditorGUI/CanvasLayer/PauseMenu" to="MicrobeEditorGUI" method="OpenMenu"]
+[connection signal="MakeSave" from="PauseMenu" to="." method="SaveGame"]
+[connection signal="OnClosed" from="PauseMenu" to="MicrobeEditorGUI" method="CloseMenu"]
+[connection signal="OnOpenWithKeyPress" from="PauseMenu" to="MicrobeEditorGUI" method="OpenMenu"]

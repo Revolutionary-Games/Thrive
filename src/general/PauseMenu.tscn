@@ -8,6 +8,7 @@
 [ext_resource path="res://src/general/OptionsMenu.tscn" type="PackedScene" id=6]
 
 [node name="PauseMenu" type="Control"]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
@@ -39,10 +40,10 @@ __meta__ = {
 }
 
 [node name="PrimaryMenu" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 558.0
-margin_top = 189.0
-margin_right = 808.0
-margin_bottom = 579.0
+margin_left = 515.0
+margin_top = 165.0
+margin_right = 765.0
+margin_bottom = 555.0
 theme = ExtResource( 2 )
 custom_constants/separation = 10
 __meta__ = {
@@ -107,10 +108,10 @@ text = "Exit"
 
 [node name="LoadMenu" type="VBoxContainer" parent="CenterContainer"]
 visible = false
-margin_left = 182.0
-margin_top = 84.0
-margin_right = 1182.0
-margin_bottom = 684.0
+margin_left = 140.0
+margin_top = 60.0
+margin_right = 1140.0
+margin_bottom = 660.0
 rect_min_size = Vector2( 1000, 600 )
 
 [node name="SaveList" parent="CenterContainer/LoadMenu" instance=ExtResource( 3 )]
@@ -138,10 +139,10 @@ __meta__ = {
 visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 283.0
-margin_top = 84.0
-margin_right = 1083.0
-margin_bottom = 684.0
+margin_left = 140.0
+margin_top = 60.0
+margin_right = 1140.0
+margin_bottom = 660.0
 rect_min_size = Vector2( 1000, 600 )
 
 [node name="HelpScreen" parent="." instance=ExtResource( 4 )]
