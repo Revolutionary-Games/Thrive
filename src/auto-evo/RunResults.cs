@@ -107,13 +107,22 @@
         ///     Throws an exception if no population is found
         ///   </para>
         /// </remarks>
-        public long GetGlobalPopulation(Species species)
+        public long GetGlobalPopulation(Species species, bool resolveMoves = false)
         {
             long result = 0;
 
             foreach (var entry in results[species].NewPopulationInPatches)
             {
-                result += Math.Max(entry.Value, 0);
+                var population = entry.Value;
+
+                if (resolveMoves){
+                    foreach (var migration in results[species].SpreadToPatches)
+                    {
+                        population += migration.Population;
+                    }
+                }
+
+                result += Math.Max(population, 0);
             }
 
             return result;
@@ -169,12 +178,19 @@
 
             void OutputPopulationForPatch(Species species, Patch patch, long population)
             {
-                builder.Append("  ");
-
-                builder.Append(PatchString(patch));
-
-                builder.Append(" population: ");
-                builder.Append(Math.Max(population, 0));
+                if (population > 0)
+                {
+                    builder.Append("  ");
+                    builder.Append(PatchString(patch));
+                    builder.Append(" population: ");
+                    builder.Append(population);
+                }
+                else
+                {
+                    builder.Append("  ");
+                    builder.Append(" went extinct in ");
+                    builder.Append(PatchString(patch));
+                }
 
                 if (previousPopulations != null)
                 {
@@ -205,6 +221,7 @@
 
                 if (entry.SpreadToPatches.Count > 0)
                 {
+                    //totalMovedPopulation += entry.SpreadToPatches.Count;
                     builder.Append(" spread to patches:\n");
 
                     foreach (var spreadEntry in entry.SpreadToPatches)
@@ -307,6 +324,13 @@
                                 CountSpeciesSpreadPopulation(entry.Species, to));
                         }
                     }
+                }
+
+                if (GetGlobalPopulation(entry.Species, resolveMoves) <= 0)
+                {
+                    builder.Append("  ");
+                    builder.Append(" went extinct from the planet");
+                    builder.Append("\n");
                 }
 
                 if (playerReadable)
