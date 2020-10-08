@@ -83,8 +83,6 @@ pause_mode = 2
 layer = 3
 script = ExtResource( 23 )
 
-[node name="Tween" type="Tween" parent="."]
-
 [node name="Holder" type="Control" parent="."]
 visible = false
 anchor_right = 1.0
@@ -340,6 +338,8 @@ custom_fonts/font = SubResource( 7 )
 text = "A more rigid membrane is more resistant to damage, but will make it harder for the cell to move around."
 autowrap = true
 
+[node name="Tween" type="Tween" parent="Holder/editor/rigiditySlider"]
+
 [node name="organelleSelection" type="Control" parent="Holder"]
 margin_right = 40.0
 margin_bottom = 40.0
@@ -582,6 +582,8 @@ size_flags_horizontal = 3
 custom_fonts/font = SubResource( 7 )
 text = "The gooey innards of a cell. The cytoplasm is the basic mixture of ions, proteins, and other substances dissolved in water that fill the interior of the cell. One of the functions it performs is Fermentation, the conversion of glucose into ATP energy. For cells that lack organelles to have more advanced metabolisms, this is what they rely on for energy. It is also used to store molecules in the cell and to grow the cell's size."
 autowrap = true
+
+[node name="Tween" type="Tween" parent="Holder/organelleSelection/cytoplasm"]
 
 [node name="metabolosome" type="PanelContainer" parent="Holder/organelleSelection"]
 visible = false
@@ -861,6 +863,8 @@ size_flags_horizontal = 3
 custom_fonts/font = SubResource( 7 )
 text = "Metabolosomes are clusters of proteins wrapped in protein shells. They are able to convert glucose into ATP at a much higher rate than can be done in the cytoplasm in a process called Aerobic Respiration. It does, however, require oxygen to function, and lower levels of oxygen in the environment will slow down the rate of its ATP production. Since the metabolosomes are suspended directly in the cytoplasm, the surrounding fluid performs some fermentation."
 autowrap = true
+
+[node name="Tween" type="Tween" parent="Holder/organelleSelection/metabolosome"]
 
 [node name="chromatophore" type="PanelContainer" parent="Holder/organelleSelection"]
 visible = false
@@ -1147,6 +1151,8 @@ size_flags_horizontal = 3
 custom_fonts/font = SubResource( 7 )
 text = "Thylakoids are clusters of proteins and photosensitive pigments. The pigments are able to use the energy of light to produce glucose from water and gaseous carbon dioxide in a process called Photosynthesis. These pigments are also what give them a distinctive colour. The rate of their glucose production scales with the concentration of carbon dioxide, and intensity of light. Since the thylakoids are suspended directly in the cytoplasm, the surrounding fluid performs some fermentation."
 autowrap = true
+
+[node name="Tween" type="Tween" parent="Holder/organelleSelection/chromatophore"]
 
 [node name="chemoSynthesizingProteins" type="PanelContainer" parent="Holder/organelleSelection"]
 visible = false
@@ -1479,6 +1485,8 @@ custom_fonts/font = SubResource( 7 )
 text = "Chemosynthesizing proteins are small clusters of protein in the cytoplasm that are able to convert hydrogen sulfide, water, and gaseous carbon dioxide into glucose in a process called Hydrogen Sulfide Chemosynthesis. The rate of its glucose production scales with the concentration of carbon dioxide. Since the chemosynthesizing proteins are suspended directly in the cytoplasm, the surrounding fluid performs some fermentation."
 autowrap = true
 
+[node name="Tween" type="Tween" parent="Holder/organelleSelection/chemoSynthesizingProteins"]
+
 [node name="rusticyanin" type="PanelContainer" parent="Holder/organelleSelection"]
 visible = false
 margin_right = 350.0
@@ -1782,6 +1790,8 @@ custom_fonts/font = SubResource( 7 )
 text = "Rusticyanin is a protein able to use gaseous carbon dioxide and oxygen to oxidize iron from one chemical state to another. This process, called Iron Respiration, releases energy which the cell can then harvest."
 autowrap = true
 
+[node name="Tween" type="Tween" parent="Holder/organelleSelection/rusticyanin"]
+
 [node name="nitrogenase" type="PanelContainer" parent="Holder/organelleSelection"]
 visible = false
 margin_right = 350.0
@@ -2054,6 +2064,8 @@ size_flags_horizontal = 3
 custom_fonts/font = SubResource( 7 )
 text = "Nitrogenase is a protein able to use gaseous nitrogen and cellular energy in the form of ATP to produce ammonia, a key growth nutrient for cells. This is a process referred to as Anaerobic Nitrogen Fixation. Since the nitrogenase is suspended directly in the cytoplasm, the surrounding fluid performs some fermentation."
 autowrap = true
+
+[node name="Tween" type="Tween" parent="Holder/organelleSelection/nitrogenase"]
 
 [node name="oxytoxyProteins" type="PanelContainer" parent="Holder/organelleSelection"]
 visible = false
@@ -2340,6 +2352,8 @@ custom_fonts/font = SubResource( 7 )
 text = "A modified metabolosome responsible for the production of a primitive form of the toxic agent Oxytoxy NT."
 autowrap = true
 
+[node name="Tween" type="Tween" parent="Holder/organelleSelection/oxytoxyProteins"]
+
 [node name="flagellum" type="PanelContainer" parent="Holder/organelleSelection"]
 visible = false
 margin_right = 350.0
@@ -2602,6 +2616,8 @@ custom_fonts/font = SubResource( 7 )
 text = "The flagellum (plural: flagella) is a whip-like bundle of protein fibers extending from the cell's membrane which can use ATP to undulate and propel the cell in a direction."
 autowrap = true
 
+[node name="Tween" type="Tween" parent="Holder/organelleSelection/flagellum"]
+
 [node name="pilus" type="PanelContainer" parent="Holder/organelleSelection"]
 visible = false
 margin_right = 350.0
@@ -2727,6 +2743,8 @@ custom_fonts/font = SubResource( 7 )
 text = "Stab other cells with this."
 autowrap = true
 
+[node name="Tween" type="Tween" parent="Holder/organelleSelection/pilus"]
+
 [node name="cilia" type="PanelContainer" parent="Holder/organelleSelection"]
 visible = false
 margin_right = 350.0
@@ -2851,6 +2869,8 @@ size_flags_horizontal = 3
 custom_fonts/font = SubResource( 7 )
 text = "To be Implemented."
 autowrap = true
+
+[node name="Tween" type="Tween" parent="Holder/organelleSelection/cilia"]
 
 [node name="nucleus" type="PanelContainer" parent="Holder/organelleSelection"]
 visible = false
@@ -3038,6 +3058,8 @@ size_flags_horizontal = 3
 custom_fonts/font = SubResource( 7 )
 text = "The defining feature of eukaryotic cells. The nucleus also includes the endoplasmic reticulum and the golgi body. It is an evolution of prokaryotic cells to develop a system of internal membranes, done by assimilating another prokaryote inside of themselves. This allows them to compartmentalize, or ward off, the different processes happening inside the cell and prevent them from overlapping. This allows their new membrane bound organelles to be much more complex, efficient, and specialized than if they were free-floating in the cytoplasm. However, this comes at the cost of making the cell much larger and requiring a lot of the cell's energy to maintain."
 autowrap = true
+
+[node name="Tween" type="Tween" parent="Holder/organelleSelection/nucleus"]
 
 [node name="mitochondrion" type="PanelContainer" parent="Holder/organelleSelection"]
 visible = false
@@ -3311,6 +3333,8 @@ size_flags_horizontal = 3
 custom_fonts/font = SubResource( 7 )
 text = "The powerhouse of the cell. The mitochondrion (plural: mitochondria) is a double membrane structure filled with proteins and enzymes. It is a prokaryote that has been assimilated for use by its eukaryotic host. It is able to convert glucose into ATP at a much higher efficiency than can be done in the cytoplasm in a process called Aerobic Respiration. It does, however, require oxygen to function, and lower levels of oxygen in the environment will slow down the rate of its ATP production."
 autowrap = true
+
+[node name="Tween" type="Tween" parent="Holder/organelleSelection/mitochondrion"]
 
 [node name="chloroplast" type="PanelContainer" parent="Holder/organelleSelection"]
 visible = false
@@ -3598,6 +3622,8 @@ custom_fonts/font = SubResource( 7 )
 text = "The chloroplast is a double membrane structure containing photosensitive pigments stacked together in membranous sacs. It is a prokaryote that has been assimilated for use by its eukaryotic host. The pigments in the chloroplast are able to use the energy of light to produce glucose from water and gaseous carbon dioxide in a process called Photosynthesis. These pigments are also what give it a distinctive colour. The rate of its glucose production scales with the concentration of carbon dioxide, and intensity of light."
 autowrap = true
 
+[node name="Tween" type="Tween" parent="Holder/organelleSelection/chloroplast"]
+
 [node name="thermoplast" type="PanelContainer" parent="Holder/organelleSelection"]
 visible = false
 margin_right = 350.0
@@ -3876,6 +3902,8 @@ custom_fonts/font = SubResource( 7 )
 text = "The thermoplast is a double membrane structure containing thermosensitive pigments stacked together in membranous sacs. It is a prokaryote that has been assimilated for use by its eukaryotic host. The pigments in the thermoplast are able to use the energy of heat differences in the surroundings to produce glucose from water and gaseous carbon dioxide in a process called Thermosynthesis. The rate of its glucose production scales with the concentration of carbon dioxide, and temperature."
 autowrap = true
 
+[node name="Tween" type="Tween" parent="Holder/organelleSelection/thermoplast"]
+
 [node name="chemoplast" type="PanelContainer" parent="Holder/organelleSelection"]
 visible = false
 margin_right = 350.0
@@ -4146,6 +4174,8 @@ custom_fonts/font = SubResource( 7 )
 text = "The chemoplast is a double membrane structure containing proteins able to convert hydrogen sulfide, water, and gaseous carbon dioxide into glucose in a process called Hydrogen Sulfide Chemosynthesis.
 The rate of its glucose production scales with the concentration of water and carbon dioxide."
 autowrap = true
+
+[node name="Tween" type="Tween" parent="Holder/organelleSelection/chemoplast"]
 
 [node name="nitrogenfixingplastid" type="PanelContainer" parent="Holder/organelleSelection"]
 visible = false
@@ -4450,6 +4480,8 @@ custom_fonts/font = SubResource( 7 )
 text = "The Nitrogen Fixing Plastid is a protein able to use gaseous nitrogen and oxygen and cellular energy in the form of ATP to produce ammonia, a key growth nutrient for cells. This is a process referred to as Aerobic Nitrogen Fixation."
 autowrap = true
 
+[node name="Tween" type="Tween" parent="Holder/organelleSelection/nitrogenfixingplastid"]
+
 [node name="vacuole" type="PanelContainer" parent="Holder/organelleSelection"]
 visible = false
 margin_right = 350.0
@@ -4636,6 +4668,8 @@ size_flags_horizontal = 3
 custom_fonts/font = SubResource( 7 )
 text = "The vacuole is an internal membranous organelle used for storage in the cell. They are composed of several vesicles, smaller membranous structures widely used in cells for storage, that have fused together. It is filled with water which is used to contain molecules, enzymes, solids, and other substances. Their shape is fluid and can vary between cells."
 autowrap = true
+
+[node name="Tween" type="Tween" parent="Holder/organelleSelection/vacuole"]
 
 [node name="oxytoxy" type="PanelContainer" parent="Holder/organelleSelection"]
 visible = false
@@ -4938,6 +4972,8 @@ custom_fonts/font = SubResource( 7 )
 text = "The toxin vacuole is a vacuole that has been modified for the specific production, storage, and secretion of oxytoxy toxins. More toxin vacuoles will increase the rate at which toxins can be released."
 autowrap = true
 
+[node name="Tween" type="Tween" parent="Holder/organelleSelection/oxytoxy"]
+
 [node name="bioluminescentVacuole" type="PanelContainer" parent="Holder/organelleSelection"]
 visible = false
 margin_right = 350.0
@@ -5062,6 +5098,8 @@ size_flags_horizontal = 3
 custom_fonts/font = SubResource( 7 )
 text = "To be implemented."
 autowrap = true
+
+[node name="Tween" type="Tween" parent="Holder/organelleSelection/bioluminescentVacuole"]
 
 [node name="membraneSelection" type="Control" parent="Holder"]
 margin_right = 40.0
@@ -5311,6 +5349,8 @@ custom_fonts/font = SubResource( 7 )
 text = "The most basic form of membrane, it has little protection against damage. It also needs more energy to not deform. The advantage is that it allows the cell to move and absorb nutrients swiftly."
 autowrap = true
 
+[node name="Tween" type="Tween" parent="Holder/membraneSelection/single"]
+
 [node name="double" type="PanelContainer" parent="Holder/membraneSelection"]
 visible = false
 margin_right = 350.0
@@ -5548,6 +5588,8 @@ custom_fonts/font = SubResource( 7 )
 text = "A membrane with two layers, it has better protection against damage and takes less energy to not deform. However, it slows the cell down some and lowers the rate at which it can absorb resources."
 autowrap = true
 
+[node name="Tween" type="Tween" parent="Holder/membraneSelection/double"]
+
 [node name="cellulose" type="PanelContainer" parent="Holder/membraneSelection"]
 visible = false
 margin_right = 350.0
@@ -5582,7 +5624,7 @@ custom_constants/margin_bottom = 15
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 333.0
-margin_bottom = 280.0
+margin_bottom = 304.0
 mouse_filter = 2
 custom_constants/separation = 15
 
@@ -5821,6 +5863,8 @@ custom_fonts/font = SubResource( 7 )
 text = "This membrane has a wall, resulting in better protection against overall damage and especially against physical damage. It also costs less energy to retain its form, but cannot absorb resources quickly and is slower."
 autowrap = true
 
+[node name="Tween" type="Tween" parent="Holder/membraneSelection/cellulose"]
+
 [node name="chitin" type="PanelContainer" parent="Holder/membraneSelection"]
 visible = false
 margin_right = 350.0
@@ -5855,7 +5899,7 @@ custom_constants/margin_bottom = 15
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 333.0
-margin_bottom = 280.0
+margin_bottom = 304.0
 mouse_filter = 2
 custom_constants/separation = 15
 
@@ -6093,6 +6137,8 @@ size_flags_horizontal = 3
 custom_fonts/font = SubResource( 7 )
 text = "This membrane has a wall, which means it has better protections against overall damage and especially against toxin damage. It also costs less energy to retain its form, but it is slower and cannot absorb resources quickly."
 autowrap = true
+
+[node name="Tween" type="Tween" parent="Holder/membraneSelection/chitin"]
 
 [node name="calcium_carbonate" type="PanelContainer" parent="Holder/membraneSelection"]
 visible = false
@@ -6333,7 +6379,7 @@ margin_top = 1.0
 margin_right = 27.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 7 )
-custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "-40%"
 
 [node name="Name" type="Label" parent="Holder/membraneSelection/calcium_carbonate/MarginContainer/VBoxContainer/ModifierList/Physical Resistance"]
@@ -6396,6 +6442,8 @@ size_flags_horizontal = 3
 custom_fonts/font = SubResource( 7 )
 text = "This membrane has a strong shell made from calcium carbonate. It can easily resist toxic damage and requires less energy to not deform. The disadvantages of having such a heavy shell is that the cell is much slower and takes a while to absorb resources."
 autowrap = true
+
+[node name="Tween" type="Tween" parent="Holder/membraneSelection/calcium_carbonate"]
 
 [node name="silica" type="PanelContainer" parent="Holder/membraneSelection"]
 visible = false
@@ -6666,7 +6714,7 @@ margin_top = 1.0
 margin_right = 27.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 7 )
-custom_colors/font_color = Color( 0, 1, 0, 1 )
+custom_colors/font_color = Color( 1, 0.301961, 0.301961, 1 )
 text = "-40%"
 
 [node name="Name" type="Label" parent="Holder/membraneSelection/silica/MarginContainer/VBoxContainer/ModifierList/Toxin Resistance"]
@@ -6699,6 +6747,8 @@ size_flags_horizontal = 3
 custom_fonts/font = SubResource( 7 )
 text = "This membrane has a strong wall of silica. It can resist overall damage well and is very resistant to physical damage. It also requires less energy to maintain its form. However, it slows the cell down by a large factor and the cell absorbs resources at a reduced rate."
 autowrap = true
+
+[node name="Tween" type="Tween" parent="Holder/membraneSelection/silica"]
 
 [node name="processesProduction" type="Control" parent="Holder"]
 margin_right = 40.0

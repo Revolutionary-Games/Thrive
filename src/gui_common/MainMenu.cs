@@ -131,7 +131,7 @@ public class MainMenu : Node
         SwitchMenu();
 
         // Easter egg message
-        ToolTipManager.RegisterToolTipForControl(
+        ToolTipHelper.RegisterToolTipForControl(
             thriveLogo, toolTipCallbacks, ToolTipManager.Instance.GetToolTip("thriveLogoEasterEgg", "mainMenu"));
     }
 

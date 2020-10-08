@@ -478,35 +478,35 @@ public class MicrobeEditorGUI : Node
     {
         foreach (Control organelleSelection in organelleSelectionElements)
         {
-            ToolTipManager.RegisterToolTipForControl(
+            ToolTipHelper.RegisterToolTipForControl(
                 organelleSelection, tooltipCallbacks, ToolTipManager.Instance.GetToolTip(
                     organelleSelection.Name, "organelleSelection"));
         }
 
         foreach (Control membraneSelection in membraneSelectionElements)
         {
-            ToolTipManager.RegisterToolTipForControl(
+            ToolTipHelper.RegisterToolTipForControl(
                 membraneSelection, tooltipCallbacks, ToolTipManager.Instance.GetToolTip(
                     membraneSelection.Name, "membraneSelection"));
         }
 
-        ToolTipManager.RegisterToolTipForControl(
+        ToolTipHelper.RegisterToolTipForControl(
             rigiditySlider, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("rigiditySlider", "editor"));
-        ToolTipManager.RegisterToolTipForControl(
+        ToolTipHelper.RegisterToolTipForControl(
             helpButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("helpButton"));
-        ToolTipManager.RegisterToolTipForControl(
+        ToolTipHelper.RegisterToolTipForControl(
             symmetryButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("symmetryButton", "editor"));
-        ToolTipManager.RegisterToolTipForControl(
+        ToolTipHelper.RegisterToolTipForControl(
             undoButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("undoButton", "editor"));
-        ToolTipManager.RegisterToolTipForControl(
+        ToolTipHelper.RegisterToolTipForControl(
             redoButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("redoButton", "editor"));
-        ToolTipManager.RegisterToolTipForControl(
+        ToolTipHelper.RegisterToolTipForControl(
             newCellButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("newCellButton", "editor"));
-        ToolTipManager.RegisterToolTipForControl(
+        ToolTipHelper.RegisterToolTipForControl(
             timeIndicator, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("timeIndicator", "editor"));
-        ToolTipManager.RegisterToolTipForControl(
+        ToolTipHelper.RegisterToolTipForControl(
             finishButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("finishButton", "editor"));
-        ToolTipManager.RegisterToolTipForControl(
+        ToolTipHelper.RegisterToolTipForControl(
             menuButton, tooltipCallbacks, ToolTipManager.Instance.GetToolTip("menuButton"));
     }
 
@@ -664,7 +664,7 @@ public class MicrobeEditorGUI : Node
         {
             var tooltip = ToolTipManager.Instance.GetToolTip(subBar.Name, "processesProduction");
 
-            ToolTipManager.RegisterToolTipForControl(subBar, processesTooltipCallbacks, tooltip);
+            ToolTipHelper.RegisterToolTipForControl(subBar, processesTooltipCallbacks, tooltip);
 
             tooltip.Description =
                 $"{SimulationParameters.Instance.GetOrganelleType(subBar.Name).Name}: " +
@@ -675,7 +675,7 @@ public class MicrobeEditorGUI : Node
         {
             var tooltip = ToolTipManager.Instance.GetToolTip(subBar.Name, "processesConsumption");
 
-            ToolTipManager.RegisterToolTipForControl(subBar, processesTooltipCallbacks, tooltip);
+            ToolTipHelper.RegisterToolTipForControl(subBar, processesTooltipCallbacks, tooltip);
 
             string displayName;
 
@@ -885,7 +885,7 @@ public class MicrobeEditorGUI : Node
         // To prevent being clicked twice
         finishButton.MouseFilter = Control.MouseFilterEnum.Ignore;
 
-        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.3f, false);
+        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.5f, false);
         TransitionManager.Instance.StartTransitions(editor, nameof(MicrobeEditor.OnFinishEditing));
     }
 
@@ -893,7 +893,7 @@ public class MicrobeEditorGUI : Node
     {
         GUICommon.Instance.PlayButtonPressSound();
 
-        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.3f, false);
+        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.5f, false);
         TransitionManager.Instance.StartTransitions(editor, nameof(MicrobeEditor.OnFinishEditing));
     }
 
