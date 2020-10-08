@@ -349,7 +349,7 @@ public class MicrobeStage : Node, ILoadableGameState
                         this);
                 }
 
-                guidancePosition = TutorialState.GetPLayerGuidancePosition();
+                guidancePosition = TutorialState.GetPlayerGuidancePosition();
             }
 
             if (guidancePosition != null)

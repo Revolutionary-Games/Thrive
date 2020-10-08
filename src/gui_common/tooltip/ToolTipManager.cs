@@ -20,7 +20,6 @@ public class ToolTipManager : CanvasLayer
         new Dictionary<Control, List<ICustomToolTip>>();
 
     private Control holder;
-    private Tween tween;
 
     private bool display;
     private float displayTimer;
@@ -48,33 +47,9 @@ public class ToolTipManager : CanvasLayer
         }
     }
 
-    /// <summary>
-    ///   Helper method for registering a Control mouse enter/exit event to display a tooltip
-    /// </summary>
-    /// <param name="control">The Control to register the tooltip to</param>
-    /// <param name="callbackDatas">List to store the callbacks to keep them from unloading</param>
-    /// <param name="tooltip">The tooltip to register with</param>
-    public static void RegisterToolTipForControl(Control control, List<ToolTipCallbackData> callbackDatas,
-        ICustomToolTip tooltip)
-    {
-        // Skip if already registered
-        if (callbackDatas.Find(match => match.ToolTip == tooltip) != null)
-            return;
-
-        var toolTipCallbackData = new ToolTipCallbackData(tooltip);
-
-        control.Connect("mouse_entered", toolTipCallbackData, nameof(ToolTipCallbackData.OnMouseEnter));
-        control.Connect("mouse_exited", toolTipCallbackData, nameof(ToolTipCallbackData.OnMouseExit));
-        control.Connect("hide", toolTipCallbackData, nameof(ToolTipCallbackData.OnMouseExit));
-        control.Connect("tree_exiting", toolTipCallbackData, nameof(ToolTipCallbackData.OnMouseExit));
-
-        callbackDatas.Add(toolTipCallbackData);
-    }
-
     public override void _Ready()
     {
         holder = GetNode<Control>("Holder");
-        tween = GetNode<Tween>("Tween");
 
         FetchToolTips();
     }
@@ -92,7 +67,9 @@ public class ToolTipManager : CanvasLayer
             if (displayTimer < 0)
             {
                 lastMousePosition = GetViewport().GetMousePosition();
-                DisplayToolTip();
+
+                holder.Show();
+                MainToolTip.OnDisplay();
             }
         }
 
@@ -211,52 +188,16 @@ public class ToolTipManager : CanvasLayer
             if (!MainToolTip.ToolTipVisible)
                 return;
 
-            HideToolTip();
+            holder.Hide();
+            MainToolTip.OnHide();
         }
-    }
-
-    private void DisplayToolTip()
-    {
-        holder.Show();
-
-        tween.InterpolateProperty(holder, "modulate", new Color(1, 1, 1, 0), new Color(1, 1, 1, 1),
-            Constants.TOOLTIP_FADE_SPEED, Tween.TransitionType.Sine, Tween.EaseType.In);
-        tween.Start();
-
-        tween.Connect("tween_started", this, nameof(OnFadeInStarted), null, (int)ConnectFlags.Oneshot);
-    }
-
-    private void HideToolTip()
-    {
-        tween.InterpolateProperty(holder, "modulate", new Color(1, 1, 1, 1), new Color(1, 1, 1, 0),
-            Constants.TOOLTIP_FADE_SPEED, Tween.TransitionType.Sine, Tween.EaseType.Out);
-        tween.Start();
-
-        if (!tween.IsConnected("tween_completed", this, nameof(OnFadeOutFinished)))
-            tween.Connect("tween_completed", this, nameof(OnFadeOutFinished), null, (int)ConnectFlags.Oneshot);
     }
 
     private void HideAllToolTips()
     {
-        foreach (var group in tooltips.Keys)
-            tooltips[group].ForEach(tooltip => tooltip.ToolTipVisible = false);
-    }
-
-    private void OnFadeInStarted(Object obj, NodePath key)
-    {
-        _ = obj;
-        _ = key;
-
-        MainToolTip.ToolTipVisible = true;
-    }
-
-    private void OnFadeOutFinished(Object obj, NodePath key)
-    {
-        _ = obj;
-        _ = key;
-
         holder.Hide();
 
-        HideAllToolTips();
+        foreach (var group in tooltips.Keys)
+            tooltips[group].ForEach(tooltip => tooltip.ToolTipVisible = false);
     }
 }

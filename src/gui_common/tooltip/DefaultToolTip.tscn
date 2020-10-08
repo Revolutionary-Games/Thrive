@@ -3,8 +3,7 @@
 [ext_resource path="res://assets/fonts/Lato-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://src/gui_common/tooltip/DefaultToolTip.cs" type="Script" id=3]
 
-
-[sub_resource type="StyleBoxFlat" id=65]
+[sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0, 0.129412, 0.141176, 1 )
 border_width_left = 1
 border_width_top = 1
@@ -16,7 +15,7 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="DynamicFont" id=64]
+[sub_resource type="DynamicFont" id=2]
 size = 14
 use_filter = true
 font_data = ExtResource( 1 )
@@ -25,7 +24,7 @@ font_data = ExtResource( 1 )
 margin_right = 14.0
 margin_bottom = 14.0
 mouse_filter = 2
-custom_styles/panel = SubResource( 65 )
+custom_styles/panel = SubResource( 1 )
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -55,4 +54,6 @@ custom_constants/separation = 0
 margin_right = 2.0
 margin_bottom = 17.0
 size_flags_horizontal = 3
-custom_fonts/font = SubResource( 64 )
+custom_fonts/font = SubResource( 2 )
+
+[node name="Tween" type="Tween" parent="."]

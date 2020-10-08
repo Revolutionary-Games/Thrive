@@ -276,7 +276,7 @@ public class MicrobeHUD : Node
     {
         // Fade out for that smooth satisfying transition
         stage.TransitionFinished = false;
-        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeOut, 0.5f);
+        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeOut, 0.3f);
         TransitionManager.Instance.StartTransitions(stage, nameof(MicrobeStage.OnFinishTransitioning));
     }
 
@@ -653,7 +653,7 @@ public class MicrobeHUD : Node
 
             // Find only cells that have the mouse
             // position within their membrane
-            if (distance > entry.Radius)
+            if (distance > entry.Radius + Constants.MICROBE_HOVER_DETECTION_EXTRA_RADIUS)
                 continue;
 
             // TODO: Combine cells of same species within mouse over

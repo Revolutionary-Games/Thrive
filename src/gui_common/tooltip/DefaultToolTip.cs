@@ -13,6 +13,8 @@ public class DefaultToolTip : Control, ICustomToolTip
     /// </summary>
     private Label descriptionLabel;
 
+    private Tween tween;
+
     private string description;
 
     public Vector2 Position
@@ -61,8 +63,20 @@ public class DefaultToolTip : Control, ICustomToolTip
     public override void _Ready()
     {
         descriptionLabel = GetNode<Label>(DescriptionLabelPath);
+        tween = GetNode<Tween>("Tween");
+        tween.Connect("tween_started", this, nameof(OnFadeInStarted));
 
         UpdateDescription();
+    }
+
+    public void OnDisplay()
+    {
+        ToolTipHelper.TooltipFadeIn(tween, this);
+    }
+
+    public void OnHide()
+    {
+        Hide();
     }
 
     private void UpdateDescription()
@@ -78,5 +92,13 @@ public class DefaultToolTip : Control, ICustomToolTip
         {
             descriptionLabel.Text = Description;
         }
+    }
+
+    private void OnFadeInStarted(Object obj, NodePath key)
+    {
+        _ = obj;
+        _ = key;
+
+        Show();
     }
 }
