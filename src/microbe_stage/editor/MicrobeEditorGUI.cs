@@ -1400,10 +1400,10 @@ public class MicrobeEditorGUI : Node
         // Atmospheric gasses
         patchTemperature.Text = patch.Biome.AverageTemperature + " °C";
         patchPressure.Text = "20 bar";
-        patchLight.Text = (patch.Biome.Compounds[sunlight].Dissolved * 100) + " lux";
+        patchLight.Text = (patch.Biome.Compounds[sunlight].Dissolved * 100) + "% lux";
         patchOxygen.Text = (patch.Biome.Compounds[oxygen].Dissolved * 100) + "%";
-        patchNitrogen.Text = (patch.Biome.Compounds[nitrogen].Dissolved * 100) + " ppm";
-        patchCO2.Text = (patch.Biome.Compounds[carbondioxide].Dissolved * 100) + " ppm";
+        patchNitrogen.Text = (patch.Biome.Compounds[nitrogen].Dissolved * 100) + "%";
+        patchCO2.Text = (patch.Biome.Compounds[carbondioxide].Dissolved * 100) + "%";
 
         // Compounds
         patchHydrogenSulfide.Text = Math.Round(patch.Biome.Compounds[hydrogensulfide].Density *
