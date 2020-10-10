@@ -13,6 +13,11 @@ public class MicrobeEditor : Node, ILoadableGameState
     public NodePath PauseMenuPath;
 
     /// <summary>
+    ///   The speed of the cam when moving with the keyboard
+    /// </summary>
+    private const float EDITOR_CAMERA_SPEED = 10f;
+
+    /// <summary>
     ///   The new to set on the species after exiting
     /// </summary>
     public string NewName;
@@ -533,6 +538,31 @@ public class MicrobeEditor : Node, ILoadableGameState
         Jukebox.Instance.Resume();
     }
 
+    public override void _PhysicsProcess(float delta)
+    {
+        var myDelta = delta * EDITOR_CAMERA_SPEED;
+
+        if (Input.IsActionPressed("e_pan_left"))
+        {
+            TranslateCam(Vector3.Left * myDelta);
+        }
+
+        if (Input.IsActionPressed("e_pan_right"))
+        {
+            TranslateCam(Vector3.Right * myDelta);
+        }
+
+        if (Input.IsActionPressed("e_pan_down"))
+        {
+            TranslateCam(Vector3.Back * myDelta);
+        }
+
+        if (Input.IsActionPressed("e_pan_up"))
+        {
+            TranslateCam(Vector3.Forward * myDelta);
+        }
+    }
+
     public override void _UnhandledInput(InputEvent @event)
     {
         if (@event.IsActionPressed("e_rotate_right"))
@@ -702,6 +732,11 @@ public class MicrobeEditor : Node, ILoadableGameState
             // Only trigger tutorial if something was really placed
             TutorialState.SendEvent(TutorialEventType.MicrobeEditorOrganellePlaced, EventArgs.Empty, this);
         }
+    }
+
+    public void TranslateCam(Vector3 dir)
+    {
+        camera.Translation += dir;
     }
 
     public void RotateRight()
