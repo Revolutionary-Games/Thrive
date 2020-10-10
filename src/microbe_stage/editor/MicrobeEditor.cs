@@ -459,14 +459,6 @@ public class MicrobeEditor : Node, ILoadableGameState
             ReturnToStage.CurrentGame = CurrentGame;
         }
 
-        // Check if there are any organelles islands
-        var hasIslands = HasIslands();
-        if (hasIslands)
-        {
-            // TODO: Notify user
-            return;
-        }
-
         // Apply changes to the species organelles
 
         // It is easiest to just replace all
@@ -848,6 +840,9 @@ public class MicrobeEditor : Node, ILoadableGameState
                 break;
             }
         }
+
+        // Disable Continue button if there are islands
+        gui.SetFinishButtonStatus(!HasIslands());
     }
 
     public float CalculateSpeed()

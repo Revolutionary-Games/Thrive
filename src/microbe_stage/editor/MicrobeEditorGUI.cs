@@ -796,6 +796,11 @@ public class MicrobeEditorGUI : Node
         redoButton.Disabled = !enabled;
     }
 
+    internal void SetFinishButtonStatus(bool enabled)
+    {
+        finishButton.Disabled = !enabled;
+    }
+
     internal void NotifyFreebuild(bool freebuilding)
     {
         if (freebuilding)
