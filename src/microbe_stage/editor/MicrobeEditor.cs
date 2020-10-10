@@ -575,6 +575,11 @@ public class MicrobeEditor : Node, ILoadableGameState
 
     public override void _UnhandledInput(InputEvent @event)
     {
+        if (@event.IsActionPressed("e_reset_cam"))
+        {
+            ResetCamera();
+        }
+
         if (@event.IsActionPressed("e_pan_mouse"))
         {
             mousePanningStart = camera.CursorWorldPos;
@@ -752,6 +757,13 @@ public class MicrobeEditor : Node, ILoadableGameState
             // Only trigger tutorial if something was really placed
             TutorialState.SendEvent(TutorialEventType.MicrobeEditorOrganellePlaced, EventArgs.Empty, this);
         }
+    }
+
+    public void ResetCamera()
+    {
+        camera.CameraHeight = camera.DefaultCameraHeight;
+        camera.Translation = new Vector3(0, camera.DefaultCameraHeight, 0);
+        organelleRot = 0;
     }
 
     public void TranslateCam(Vector3 dir)
