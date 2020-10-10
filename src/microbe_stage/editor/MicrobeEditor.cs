@@ -1471,7 +1471,7 @@ public class MicrobeEditor : Node, ILoadableGameState
 
     private void CheckmarkNeighbors(List<Hex> @checked, Hex me)
     {
-        var myNeighbors = GetNeighborHexes(me).ToArray();
+        var myNeighbors = GetNeighborHexes(me).Where(p => !@checked.Contains(p)).ToArray();
         @checked.AddRange(myNeighbors);
         foreach (var neighbor in myNeighbors)
         {
