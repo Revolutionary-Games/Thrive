@@ -463,10 +463,11 @@ public class MicrobeEditor : Node, ILoadableGameState
 
         // It is easiest to just replace all
         editedSpecies.Organelles.Clear();
-
+        var centerOfMass = editedMicrobeOrganelles.CenterOfMass;
         foreach (var organelle in editedMicrobeOrganelles.Organelles)
         {
             var organelleToAdd = (OrganelleTemplate)organelle.Clone();
+            organelleToAdd.Position -= centerOfMass;
             organelleToAdd.PlacedThisSession = false;
             editedSpecies.Organelles.Add(organelleToAdd);
         }

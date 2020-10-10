@@ -34,28 +34,23 @@ public class OrganelleLayout<T> : ICollection<T>
     public int Count => Organelles.Count;
 
     public bool IsReadOnly => false;
-    
+
     /// <summary>
     /// The center of mass of the contained organelles.
     /// </summary>
-    public Vector3 CenterOfMass
+    public Hex CenterOfMass
     {
         get
         {
-            float   totalMass   = 0;
+            float totalMass = 0;
             Vector3 weightedSum = Vector3.Zero;
             foreach (var organelle in Organelles)
             {
-                totalMass   += organelle.Definition.Mass;
+                totalMass += organelle.Definition.Mass;
                 weightedSum += Hex.AxialToCartesian(organelle.Position) * organelle.Definition.Mass;
             }
 
-            if (totalMass <= 0)
-            {
-                return Vector3.Zero;
-            }
-
-            return weightedSum / totalMass;
+            return Hex.CartesianToAxial(weightedSum / totalMass);
         }
     }
 
