@@ -1482,8 +1482,8 @@ public class MicrobeEditor : Node, ILoadableGameState
     private IEnumerable<Hex> GetNeighborHexes(Hex hex)
     {
         return Hex.HexNeighbourOffset
-                  .Where(p => editedMicrobeOrganelles.GetOrganelleAt(hex + p.Value) != null)
-                  .Select(p => p.Value);
+                  .Select(p => hex + p.Value)
+                  .Where(p => editedMicrobeOrganelles.GetOrganelleAt(p) != null);
     }
 
     private bool IsValidPlacement(OrganelleTemplate organelle)
