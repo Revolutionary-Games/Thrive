@@ -1481,7 +1481,7 @@ public class MicrobeEditor : Node, ILoadableGameState
     private IEnumerable<Hex> GetNeighborHexes(Hex hex)
     {
         return Hex.HexNeighbourOffset
-                  .Where(p => editedSpecies.Organelles.GetOrganelleAt(p.Value) != null)
+                  .Where(p => editedSpecies.Organelles.GetOrganelleAt(hex + p.Value) != null)
                   .Select(p => p.Value);
     }
 
