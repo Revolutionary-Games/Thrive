@@ -704,6 +704,9 @@ public class MicrobeEditor : Node, ILoadableGameState
             // Only trigger tutorial if something was really placed
             TutorialState.SendEvent(TutorialEventType.MicrobeEditorOrganellePlaced, EventArgs.Empty, this);
         }
+
+        // Disable Continue button if there are islands
+        gui.SetFinishButtonStatus(!HasIslands());
     }
 
     public void RotateRight()
