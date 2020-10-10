@@ -762,7 +762,7 @@ public class MicrobeEditor : Node, ILoadableGameState
     public void ResetCamera()
     {
         camera.CameraHeight = camera.DefaultCameraHeight;
-        camera.Translation = new Vector3(0, camera.DefaultCameraHeight, 0);
+        camera.Translation = new Vector3(0, camera.Translation.y, 0);
         organelleRot = 0;
     }
 
