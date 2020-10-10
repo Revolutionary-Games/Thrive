@@ -13,11 +13,6 @@ public class MicrobeEditor : Node, ILoadableGameState
     public NodePath PauseMenuPath;
 
     /// <summary>
-    ///   The speed of the cam when moving with the keyboard
-    /// </summary>
-    private const float EDITOR_CAMERA_SPEED = 10f;
-
-    /// <summary>
     ///   The new to set on the species after exiting
     /// </summary>
     public string NewName;
@@ -87,6 +82,12 @@ public class MicrobeEditor : Node, ILoadableGameState
     private int usedHoverHex;
 
     private int usedHoverOrganelle;
+
+    /// <summary>
+    ///   Where the user started panning with the mouse
+    ///   Null if the user is not panning with the mouse
+    /// </summary>
+    private Vector3? mousePanningStart;
 
     /// <summary>
     ///   The species that is being edited, changes are applied to it on exit
@@ -540,31 +541,50 @@ public class MicrobeEditor : Node, ILoadableGameState
 
     public override void _PhysicsProcess(float delta)
     {
-        var myDelta = delta * EDITOR_CAMERA_SPEED;
+        var myDelta = delta * camera.CameraHeight;
 
-        if (Input.IsActionPressed("e_pan_left"))
+        if (mousePanningStart == null)
         {
-            TranslateCam(Vector3.Left * myDelta);
+            if (Input.IsActionPressed("e_pan_left"))
+            {
+                TranslateCam(Vector3.Left * myDelta);
+            }
+
+            if (Input.IsActionPressed("e_pan_right"))
+            {
+                TranslateCam(Vector3.Right * myDelta);
+            }
+
+            if (Input.IsActionPressed("e_pan_down"))
+            {
+                TranslateCam(Vector3.Back * myDelta);
+            }
+
+            if (Input.IsActionPressed("e_pan_up"))
+            {
+                TranslateCam(Vector3.Forward * myDelta);
+            }
         }
-
-        if (Input.IsActionPressed("e_pan_right"))
+        else
         {
-            TranslateCam(Vector3.Right * myDelta);
-        }
-
-        if (Input.IsActionPressed("e_pan_down"))
-        {
-            TranslateCam(Vector3.Back * myDelta);
-        }
-
-        if (Input.IsActionPressed("e_pan_up"))
-        {
-            TranslateCam(Vector3.Forward * myDelta);
+            // ReSharper disable once PossibleInvalidOperationException
+            var direction = mousePanningStart.Value - camera.CursorWorldPos;
+            camera.Translation += direction;
         }
     }
 
     public override void _UnhandledInput(InputEvent @event)
     {
+        if (@event.IsActionPressed("e_pan_mouse"))
+        {
+            mousePanningStart = camera.CursorWorldPos;
+        }
+
+        if (@event.IsActionReleased("e_pan_mouse"))
+        {
+            mousePanningStart = null;
+        }
+
         if (@event.IsActionPressed("e_rotate_right"))
         {
             RotateRight();
