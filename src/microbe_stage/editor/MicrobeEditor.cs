@@ -459,6 +459,14 @@ public class MicrobeEditor : Node, ILoadableGameState
             ReturnToStage.CurrentGame = CurrentGame;
         }
 
+        // Check if there are any organelles islands
+        var hasIslands = HasIslands();
+        if (hasIslands)
+        {
+            // TODO: Notify user
+            return;
+        }
+
         // Apply changes to the species organelles
 
         // It is easiest to just replace all
@@ -1450,6 +1458,31 @@ public class MicrobeEditor : Node, ILoadableGameState
         {
             placed = true;
         }
+    }
+
+    private bool HasIslands()
+    {
+        var checkedHexes = new List<Hex>();
+        var shouldBeChecked = editedSpecies.Organelles.Select(p => p.Position).ToList();
+        CheckmarkNeighbors(checkedHexes, editedSpecies.Organelles[0].Position);
+        return shouldBeChecked.Except(checkedHexes).Any();
+    }
+
+    private void CheckmarkNeighbors(List<Hex> @checked, Hex me)
+    {
+        var myNeighbors = GetNeighborHexes(me).ToArray();
+        @checked.AddRange(myNeighbors);
+        foreach (var neighbor in myNeighbors)
+        {
+            CheckmarkNeighbors(@checked, neighbor);
+        }
+    }
+
+    private IEnumerable<Hex> GetNeighborHexes(Hex hex)
+    {
+        return Hex.HexNeighbourOffset
+                  .Where(p => editedSpecies.Organelles.GetOrganelleAt(p.Value) != null)
+                  .Select(p => p.Value);
     }
 
     private bool IsValidPlacement(OrganelleTemplate organelle)
