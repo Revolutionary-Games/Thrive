@@ -1462,9 +1462,11 @@ public class MicrobeEditor : Node, ILoadableGameState
 
     private bool HasIslands()
     {
-        var initHex = editedSpecies.Organelles[0].Position;
+        var organelles = editedMicrobeOrganelles.Organelles;
+        var initHex = organelles[0].Position;
         var checkedHexes = new List<Hex> { initHex };
-        var shouldBeChecked = editedSpecies.Organelles.Select(p => p.Position).ToList();
+        var shouldBeChecked = organelles.Select(p => p.Position).ToList();
+
         CheckmarkNeighbors(checkedHexes, initHex);
         return shouldBeChecked.Except(checkedHexes).Any();
     }
@@ -1482,7 +1484,7 @@ public class MicrobeEditor : Node, ILoadableGameState
     private IEnumerable<Hex> GetNeighborHexes(Hex hex)
     {
         return Hex.HexNeighbourOffset
-                  .Where(p => editedSpecies.Organelles.GetOrganelleAt(hex + p.Value) != null)
+                  .Where(p => editedMicrobeOrganelles.GetOrganelleAt(hex + p.Value) != null)
                   .Select(p => p.Value);
     }
 
