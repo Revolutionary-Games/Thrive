@@ -456,7 +456,42 @@ the pre-commit hook section for how to speed things up.
 
 ## Localization tools
 
-The list of tools needed for localization can be found on the [Working with translation page](working_with_translations.md#Required-tools).
+If you are planning to do anything that would require translation, or
+simply to translate the game into your locale language you may need
+a few more tools.
+
+**Note: if you are simply planning to add a new localization, Poedit is
+enough. You can find more information on how to translate the game with poedit [here](working_with_translations.md#Translating-the-game-into-a-new-language).**
+
+### Python 3
+
+The tool used to extract strings from the game files is using
+[Python 3](https://www.python.org/downloads).
+You'll need it if you are planning to add or edit strings in the game.
+
+*Note : Linux users should already have it installed.
+You can use the command **python --version** to make sure you have it.
+If not, you can use the package manager of your distribution to install the **python3** package.*
+
+### Babel and Babel_thrive
+
+Babel and its extension [Babel_thrive](https://github.com/westtunger/pybabel-godot)
+are the tools used for extracting strings from the game files.
+Just like Python, you'll want to download these if you are planning
+to add or edit strings into the game.
+
+You can quickly install these by using the command **pip install Babel PyBabel-json Babel-Thrive** or **pip3 install Babel PyBabel-json Babel-Thrive**
+if you have python installed.
+
+### Optional : Poedit
+
+[Poedit](https://poedit.net/) is a free .pot and .po file editor that may
+make your life easier when working on translation files.
+
+It is needed to create new .po files without using the command line tools.
+
+Note: Poedit will complain about translation format since it was made to
+directly use text as keys. Those can be ignored.
 
 Pre-commit hook
 ---------------
