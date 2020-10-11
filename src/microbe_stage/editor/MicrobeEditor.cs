@@ -340,7 +340,7 @@ public class MicrobeEditor : Node, ILoadableGameState
 
         hexScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/EditorHex.tscn");
         modelScene = GD.Load<PackedScene>("res://src/general/SceneDisplayer.tscn");
-
+        camera.InterpolateSpeed = 1;
         camera.ObjectToFollow = GetNode<Spatial>("CameraLookAt");
 
         tutorialGUI.Visible = true;
@@ -571,7 +571,7 @@ public class MicrobeEditor : Node, ILoadableGameState
         {
             // ReSharper disable once PossibleInvalidOperationException
             var direction = mousePanningStart.Value - camera.CursorWorldPos;
-            camera.Translation += direction;
+            camera.ObjectToFollow.Translation += direction;
         }
     }
 
@@ -770,7 +770,7 @@ public class MicrobeEditor : Node, ILoadableGameState
 
     public void TranslateCam(Vector3 dir)
     {
-        camera.Translation += dir;
+        camera.ObjectToFollow.Translation += dir;
     }
 
     public void RotateRight()
