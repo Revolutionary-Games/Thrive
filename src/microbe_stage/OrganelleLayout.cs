@@ -36,7 +36,7 @@ public class OrganelleLayout<T> : ICollection<T>
     public bool IsReadOnly => false;
 
     /// <summary>
-    /// The center of mass of the contained organelles.
+    ///   The center of mass of the contained organelles.
     /// </summary>
     public Hex CenterOfMass
     {
