@@ -44,6 +44,7 @@ public class MicrobeEditor : Node, ILoadableGameState
     private Material invalidMaterial;
     private Material validMaterial;
     private Material oldMaterial;
+    private Material islandMaterial;
 
     private PackedScene hexScene;
     private PackedScene modelScene;
@@ -120,6 +121,11 @@ public class MicrobeEditor : Node, ILoadableGameState
     /// The hexes that have been changed by a hovering organelle and need to be reset to valid material.
     /// </summary>
     private List<MeshInstance> hexesToResetToValidMaterial;
+
+    /// <summary>
+    /// The hexes that have been changed by a hovering organelle and need to be reset to island material.
+    /// </summary>
+    private List<MeshInstance> hexesToResetToIslandMaterial;
 
     /// <summary>
     ///   This is the organelle models for editedMicrobeOrganelles
@@ -331,6 +337,7 @@ public class MicrobeEditor : Node, ILoadableGameState
             "res://src/microbe_stage/editor/InvalidHex.material");
         validMaterial = GD.Load<Material>("res://src/microbe_stage/editor/ValidHex.material");
         oldMaterial = GD.Load<Material>("res://src/microbe_stage/editor/OldHex.material");
+        islandMaterial = GD.Load<Material>("res://src/microbe_stage/editor/IslandHex.material");
 
         hexScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/EditorHex.tscn");
         modelScene = GD.Load<PackedScene>("res://src/general/SceneDisplayer.tscn");
@@ -705,8 +712,7 @@ public class MicrobeEditor : Node, ILoadableGameState
             TutorialState.SendEvent(TutorialEventType.MicrobeEditorOrganellePlaced, EventArgs.Empty, this);
         }
 
-        // Disable Continue button if there are islands
-        gui.SetFinishButtonStatus(!HasIslands());
+        HandleIslands();
     }
 
     public void RotateRight()
@@ -844,8 +850,7 @@ public class MicrobeEditor : Node, ILoadableGameState
             }
         }
 
-        // Disable Continue button if there are islands
-        gui.SetFinishButtonStatus(!HasIslands());
+        HandleIslands();
     }
 
     public float CalculateSpeed()
@@ -973,6 +978,7 @@ public class MicrobeEditor : Node, ILoadableGameState
 
         hexesToResetToOldMaterial = new List<MeshInstance>();
         hexesToResetToValidMaterial = new List<MeshInstance>();
+        hexesToResetToIslandMaterial = new List<MeshInstance>();
 
         if (!IsLoadedFromSave)
         {
@@ -1010,6 +1016,19 @@ public class MicrobeEditor : Node, ILoadableGameState
 
         // Send undo button to the tutorial system
         gui.SendUndoToTutorial(TutorialState);
+    }
+
+    private void HandleIslands()
+    {
+        var islands = GetIslandHexes();
+        foreach (var hex in islands)
+        {
+            var coords = Hex.AxialToCartesian(hex);
+            var inst = placedHexes.First(p => p.Translation == coords);
+            hexesToResetToIslandMaterial.Add(inst);
+        }
+
+        gui.SetFinishButtonStatus(!islands.Any());
     }
 
     private void InitEditorFresh()
@@ -1164,7 +1183,6 @@ public class MicrobeEditor : Node, ILoadableGameState
 
         // This is also highly non-optimal to update the hex locations
         // and materials all the time
-
         // Reset the material of hexes that have been hovered over
         foreach (var hex in hexesToResetToOldMaterial)
         {
@@ -1179,6 +1197,13 @@ public class MicrobeEditor : Node, ILoadableGameState
         }
 
         hexesToResetToValidMaterial.Clear();
+
+        foreach (var hex in hexesToResetToIslandMaterial)
+        {
+            hex.MaterialOverride = islandMaterial;
+        }
+
+        hexesToResetToIslandMaterial.Clear();
 
         usedHoverHex = 0;
         usedHoverOrganelle = 0;
@@ -1277,7 +1302,6 @@ public class MicrobeEditor : Node, ILoadableGameState
                     if (!canPlace)
                     {
                         // Mark as invalid
-
                         if (placed.MaterialOverride == oldMaterial)
                         {
                             hexesToResetToOldMaterial.Add(placed);
@@ -1285,6 +1309,10 @@ public class MicrobeEditor : Node, ILoadableGameState
                         else if (placed.MaterialOverride == validMaterial)
                         {
                             hexesToResetToValidMaterial.Add(placed);
+                        }
+                        else if (placed.MaterialOverride == islandMaterial)
+                        {
+                            hexesToResetToIslandMaterial.Add(placed);
                         }
 
                         placed.MaterialOverride = invalidMaterial;
@@ -1458,7 +1486,7 @@ public class MicrobeEditor : Node, ILoadableGameState
         }
     }
 
-    private bool HasIslands()
+    private List<Hex> GetIslandHexes()
     {
         var organelles = editedMicrobeOrganelles.Organelles;
         var initHex = organelles[0].Position;
@@ -1466,7 +1494,7 @@ public class MicrobeEditor : Node, ILoadableGameState
         var shouldBeChecked = organelles.Select(p => p.Position).ToList();
 
         CheckmarkNeighbors(checkedHexes, initHex);
-        return shouldBeChecked.Except(checkedHexes).Any();
+        return shouldBeChecked.Except(checkedHexes).ToList();
     }
 
     private void CheckmarkNeighbors(List<Hex> @checked, Hex me)
