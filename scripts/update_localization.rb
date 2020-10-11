@@ -7,6 +7,10 @@ runOpen3Checked 'pybabel', 'extract', '-F', '../locale/babelrc', '-k', 'LineEdit
 puts 'Done extracting'
 
 puts 'Extracting .po files'
-runOpen3Checked 'msgmerge', '--update', '--backup=none', '../locale/en.po', '../locale/messages.pot'
-runOpen3Checked 'msgmerge', '--update', '--backup=none', '../locale/fr.po', '../locale/messages.pot'
+LOCALES = %w[en fr]
+
+LOCALES.each{|locale|
+    puts 'Extracting ' + locale + '.po'
+    runOpen3Checked 'msgmerge', '--update', '--backup=none', '../locale/' + locale + '.po', '../locale/messages.pot'
+}
 success 'Done extracting .po files'
