@@ -1183,6 +1183,7 @@ public class MicrobeEditor : Node, ILoadableGameState
 
         // This is also highly non-optimal to update the hex locations
         // and materials all the time
+
         // Reset the material of hexes that have been hovered over
         foreach (var hex in hexesToResetToOldMaterial)
         {
@@ -1302,6 +1303,7 @@ public class MicrobeEditor : Node, ILoadableGameState
                     if (!canPlace)
                     {
                         // Mark as invalid
+
                         if (placed.MaterialOverride == oldMaterial)
                         {
                             hexesToResetToOldMaterial.Add(placed);
