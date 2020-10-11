@@ -8,43 +8,7 @@ each language (of extension type .po)
 Required tools
 --------------
 
-If you are planning to do anything that would require translation, or
-simply to translate the game into your locale language you may need
-a few more tools.
-
-Note if you are simply planning to add a new localization, Poedit is
-enough.
-
-### Python 3
-
-The tool used to extract strings from the game files is using
-[Python 3](https://www.python.org/downloads).
-You'll need it if you are planning to add or edit strings in the game.
-
-*Note : Linux users should already have it installed.
-You can use the command **python --version** to make sure you have it.
-If not, you can use the package manager of your distribution to install the **python3** package.*
-
-### Babel and Babel_thrive
-
-Babel and its extension [Babel_thrive](https://github.com/westtunger/pybabel-godot)
-are the tools used for extracting strings from the game files.
-Just like Python, you'll want to download these if you are planning
-to add or edit strings into the game.
-
-You can quickly install these by using the command **pip install Babel PyBabel-json Babel-Thrive** or **pip3 install Babel PyBabel-json Babel-Thrive**
-if you have python installed.
-
-### Optional : Poedit
-
-[Poedit](https://poedit.net/) is a free .pot and .po file editor that may
-make your life easier when working on translation files.
-
-It is needed to create new .po files without using the command line tools.
-
-Note: Poedit will complain about translation format since it was made to
-directly use text as keys. Those can be ignored.
-
+The list of tools needed for localization can be found on the [Setup instruction page](setup_instructions.md#Localization-tools).
 
 Adding new contents into the game with translation in mind
 ----------------------------------------------------------
@@ -111,6 +75,8 @@ Simply open the ruby script into any text editor, and edit the locale list as su
 **LOCALES = %w[en fr _new-locale_]**
 
 E.g. **LOCALES = %w[en fr jp]**
+
+**If you are not confident in doing it, you can always ask for the a programmer to do it for you in you pull request.**
 
 ### Translate the texts
 
