@@ -123,7 +123,8 @@ public class MicrobeEditor : Node, ILoadableGameState
     private List<MeshInstance> hexesToResetToValidMaterial;
 
     /// <summary>
-    ///   The hexes that have been changed by a hovering organelle and need to be reset to island material.
+    ///   The next render cycle, these hexes need to have the islandMaterial applied to them.
+    ///   A new entry is added when the islands were recalculated or when an island was hovered over.
     /// </summary>
     private List<MeshInstance> hexesToResetToIslandMaterial;
 
@@ -971,22 +972,19 @@ public class MicrobeEditor : Node, ILoadableGameState
     /// </returns>
     internal List<Hex> GetIslandHexes()
     {
-        // All organelles
         var organelles = editedMicrobeOrganelles.Organelles;
 
         // The hex to start the recursion with
         var initHex = organelles[0].Position;
 
-        // List of all visited hexes
-        var checkedHexes = new List<Hex> { initHex };
+        var visitedHexes = new List<Hex> { initHex };
 
-        // List of hexes that should be visited
-        var shouldBeChecked = organelles.Select(p => p.Position).ToList();
+        var shouldBeVisited = organelles.Select(p => p.Position).ToList();
 
-        CheckmarkNeighbors(checkedHexes, initHex);
+        CheckmarkNeighbors(visitedHexes, initHex);
 
         // Return the difference of the lists (hexes that were not visited)
-        return shouldBeChecked.Except(checkedHexes).ToList();
+        return shouldBeVisited.Except(visitedHexes).ToList();
     }
 
     /// <summary>
@@ -1511,12 +1509,8 @@ public class MicrobeEditor : Node, ILoadableGameState
     /// <summary>
     ///   A recursive function that adds my neighbors to the checked list and calls the function for each neighbor.
     /// </summary>
-    /// <param name="checked">
-    ///   The list of visited hexes will be filled up.
-    /// </param>
-    /// <param name="me">
-    ///   Which neighbors to visit next.
-    /// </param>
+    /// <param name="checked">The list of visited hexes will be filled up.</param>
+    /// <param name="me">Which neighbors to visit next.</param>
     private void CheckmarkNeighbors(List<Hex> @checked, Hex me)
     {
         // Get all neighbors not already visited
@@ -1530,15 +1524,9 @@ public class MicrobeEditor : Node, ILoadableGameState
         }
     }
 
-    /// <summary>
-    ///   Gets all neighboring hexes
-    /// </summary>
-    /// <param name="hex">
-    ///   The hex to get the hexes for
-    /// </param>
-    /// <returns>
-    ///   Returns a list of neighbors
-    /// </returns>
+    /// <summary>Gets all neighboring hexes</summary>
+    /// <param name="hex">The hex to get the hexes for</param>
+    /// <returns>Returns a list of neighbors</returns>
     private IEnumerable<Hex> GetNeighborHexes(Hex hex)
     {
         return Hex.HexNeighbourOffset
