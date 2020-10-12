@@ -138,6 +138,11 @@ public class MicrobeEditor : Node, ILoadableGameState
     private bool transitionFinished;
 
     /// <summary>
+    ///   The movement of the cam when controlled with keys.
+    /// </summary>
+    private Vector2 cameraMovement;
+
+    /// <summary>
     ///   True once auto-evo (and possibly other stuff) we need to wait for is ready
     /// </summary>
     [JsonProperty]
@@ -540,42 +545,10 @@ public class MicrobeEditor : Node, ILoadableGameState
         Jukebox.Instance.Resume();
     }
 
-    public override void _PhysicsProcess(float delta)
-    {
-        var myDelta = delta * camera.CameraHeight;
-
-        if (mousePanningStart == null)
-        {
-            if (Input.IsActionPressed("e_pan_left"))
-            {
-                TranslateCam(Vector3.Left * myDelta);
-            }
-
-            if (Input.IsActionPressed("e_pan_right"))
-            {
-                TranslateCam(Vector3.Right * myDelta);
-            }
-
-            if (Input.IsActionPressed("e_pan_down"))
-            {
-                TranslateCam(Vector3.Back * myDelta);
-            }
-
-            if (Input.IsActionPressed("e_pan_up"))
-            {
-                TranslateCam(Vector3.Forward * myDelta);
-            }
-        }
-        else
-        {
-            // ReSharper disable once PossibleInvalidOperationException
-            var direction = mousePanningStart.Value - camera.CursorWorldPos;
-            camera.ObjectToFollow.Translation += direction;
-        }
-    }
-
     public override void _UnhandledInput(InputEvent @event)
     {
+        HandleMovement();
+
         if (@event.IsActionPressed("e_reset_cam"))
         {
             ResetCamera();
@@ -758,18 +731,6 @@ public class MicrobeEditor : Node, ILoadableGameState
             // Only trigger tutorial if something was really placed
             TutorialState.SendEvent(TutorialEventType.MicrobeEditorOrganellePlaced, EventArgs.Empty, this);
         }
-    }
-
-    public void ResetCamera()
-    {
-        camera.CameraHeight = camera.DefaultCameraHeight;
-        camera.Translation = new Vector3(0, camera.Translation.y, 0);
-        organelleRot = 0;
-    }
-
-    public void TranslateCam(Vector3 dir)
-    {
-        camera.ObjectToFollow.Translation += dir;
     }
 
     public void RotateRight()
@@ -1299,6 +1260,50 @@ public class MicrobeEditor : Node, ILoadableGameState
         {
             CurrentOrganelleCost = 0;
         }
+
+        // Apply camera movement
+        camera.ObjectToFollow.Translation += new Vector3(cameraMovement.x, 0, cameraMovement.y) * delta;
+    }
+
+    private void HandleMovement()
+    {
+        cameraMovement = Vector2.Zero;
+        if (mousePanningStart == null)
+        {
+            if (Input.IsActionPressed("e_pan_left"))
+            {
+                cameraMovement += Vector2.Left;
+            }
+
+            if (Input.IsActionPressed("e_pan_right"))
+            {
+                cameraMovement += Vector2.Right;
+            }
+
+            if (Input.IsActionPressed("e_pan_down"))
+            {
+                cameraMovement += Vector2.Down;
+            }
+
+            if (Input.IsActionPressed("e_pan_up"))
+            {
+                cameraMovement += Vector2.Up;
+            }
+
+            cameraMovement = cameraMovement.Normalized() * camera.CameraHeight;
+        }
+        else
+        {
+            // ReSharper disable once PossibleInvalidOperationException
+            var direction = mousePanningStart.Value - camera.CursorWorldPos;
+            camera.ObjectToFollow.Translation += direction;
+        }
+    }
+
+    private void ResetCamera()
+    {
+        camera.ResetPosition();
+        organelleRot = 0;
     }
 
     /// <summary>
