@@ -30,12 +30,20 @@ public class SaveList : ScrollContainer
     public NodePath DeleteConfirmDialogPath;
 
     [Export]
-    public NodePath LoadConfirmDialogPath;
+    public NodePath LoadNewerSaveDialogPath;
+
+    [Export]
+    public NodePath LoadOlderSaveDialogPath;
+
+    [Export]
+    public NodePath LoadInvalidSaveDialogPath;
 
     private Control loadingItem;
     private BoxContainer savesList;
     private ConfirmationDialog deleteConfirmDialog;
-    private ConfirmationDialog loadConfirmDialog;
+    private ConfirmationDialog loadNewerConfirmDialog;
+    private ConfirmationDialog loadOlderConfirmDialog;
+    private ConfirmationDialog loadInvalidConfirmDialog;
 
     private PackedScene listItemScene;
 
@@ -60,7 +68,9 @@ public class SaveList : ScrollContainer
         loadingItem = GetNode<Control>(LoadingItemPath);
         savesList = GetNode<BoxContainer>(SavesListPath);
         deleteConfirmDialog = GetNode<ConfirmationDialog>(DeleteConfirmDialogPath);
-        loadConfirmDialog = GetNode<ConfirmationDialog>(LoadConfirmDialogPath);
+        loadOlderConfirmDialog = GetNode<ConfirmationDialog>(LoadOlderSaveDialogPath);
+        loadNewerConfirmDialog = GetNode<ConfirmationDialog>(LoadNewerSaveDialogPath);
+        loadInvalidConfirmDialog = GetNode<ConfirmationDialog>(LoadInvalidSaveDialogPath);
 
         listItemScene = GD.Load<PackedScene>("res://src/saving/SaveListItem.tscn");
     }
@@ -103,7 +113,7 @@ public class SaveList : ScrollContainer
 
             item.Connect(nameof(SaveListItem.OnOldSaveLoaded), this, nameof(OnOldSaveLoaded), new Array { save });
             item.Connect(nameof(SaveListItem.OnNewSaveLoaded), this, nameof(OnNewSaveLoaded), new Array { save });
-            item.Connect(nameof(SaveListItem.OnBrokenSaveLoaded), this, nameof(OnBrokenLoaded), new Array { save });
+            item.Connect(nameof(SaveListItem.OnBrokenSaveLoaded), this, nameof(OnInvalidLoaded), new Array { save });
 
             item.SaveName = save;
             savesList.AddChild(item);
@@ -170,33 +180,19 @@ public class SaveList : ScrollContainer
     private void OnOldSaveLoaded(string saveName)
     {
         saveToBeLoaded = saveName;
-
-        loadConfirmDialog.DialogText = "This save is from an old version of Thrive and may be incompatible.\n";
-        loadConfirmDialog.DialogText += "As Thrive is currently early in development ";
-        loadConfirmDialog.DialogText += "save compatibility is not a priority.\n";
-        loadConfirmDialog.DialogText += "You may report any issues you encounter, ";
-        loadConfirmDialog.DialogText += "but they aren't the highest priority right now.\n";
-        loadConfirmDialog.DialogText += "Do you want to try loading the save anyway?";
-        loadConfirmDialog.PopupCenteredMinsize();
+        loadOlderConfirmDialog.PopupCenteredMinsize();
     }
 
     private void OnNewSaveLoaded(string saveName)
     {
         saveToBeLoaded = saveName;
-
-        loadConfirmDialog.DialogText = "This save is from a newer version of Thrive and very likely incompatible.\n";
-        loadConfirmDialog.DialogText += "Do you want to try loading the save anyway?";
-        loadConfirmDialog.PopupCenteredMinsize();
+        loadNewerConfirmDialog.PopupCenteredMinsize();
     }
 
-    private void OnBrokenLoaded(string saveName)
+    private void OnInvalidLoaded(string saveName)
     {
         saveToBeLoaded = saveName;
-
-        loadConfirmDialog.DialogText = "Thrive could not load this file.\n";
-        loadConfirmDialog.DialogText += "It seems like the save is broken.\n";
-        loadConfirmDialog.DialogText += "Do you want to try loading the save anyway?";
-        loadConfirmDialog.PopupCenteredMinsize();
+        loadInvalidConfirmDialog.PopupCenteredMinsize();
     }
 
     private void OnConfirmSaveLoad()
