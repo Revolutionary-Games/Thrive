@@ -219,7 +219,7 @@ public class Save
             }
             catch (Exception ex)
             {
-                GD.PrintErr("Broken save game: " + ex.Message);
+                GD.PrintErr("Error deserializing save info object: " + ex.Message);
                 saveResult = null;
             }
         }
