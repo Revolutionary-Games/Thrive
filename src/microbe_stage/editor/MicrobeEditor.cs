@@ -547,41 +547,6 @@ public class MicrobeEditor : Node, ILoadableGameState
         Jukebox.Instance.Resume();
     }
 
-    public void HandleMovement()
-    {
-        cameraMovement = Vector2.Zero;
-        if (mousePanningStart == null)
-        {
-            if (Input.IsActionPressed("e_pan_left"))
-            {
-                cameraMovement += Vector2.Left;
-            }
-
-            if (Input.IsActionPressed("e_pan_right"))
-            {
-                cameraMovement += Vector2.Right;
-            }
-
-            if (Input.IsActionPressed("e_pan_down"))
-            {
-                cameraMovement += Vector2.Down;
-            }
-
-            if (Input.IsActionPressed("e_pan_up"))
-            {
-                cameraMovement += Vector2.Up;
-            }
-
-            cameraMovement = cameraMovement.Normalized() * camera.CameraHeight;
-        }
-        else
-        {
-            // ReSharper disable once PossibleInvalidOperationException
-            var direction = mousePanningStart.Value - camera.CursorWorldPos;
-            camera.ObjectToFollow.Translation += direction;
-        }
-    }
-
     public override void _UnhandledInput(InputEvent @event)
     {
         HandleMovement();
@@ -768,12 +733,6 @@ public class MicrobeEditor : Node, ILoadableGameState
             // Only trigger tutorial if something was really placed
             TutorialState.SendEvent(TutorialEventType.MicrobeEditorOrganellePlaced, EventArgs.Empty, this);
         }
-    }
-
-    public void ResetCamera()
-    {
-        camera.ResetPosition();
-        organelleRot = 0;
     }
 
     public void RotateRight()
@@ -1306,6 +1265,47 @@ public class MicrobeEditor : Node, ILoadableGameState
 
         // Apply camera movement
         camera.ObjectToFollow.Translation += new Vector3(cameraMovement.x, 0, cameraMovement.y) * delta;
+    }
+
+    private void HandleMovement()
+    {
+        cameraMovement = Vector2.Zero;
+        if (mousePanningStart == null)
+        {
+            if (Input.IsActionPressed("e_pan_left"))
+            {
+                cameraMovement += Vector2.Left;
+            }
+
+            if (Input.IsActionPressed("e_pan_right"))
+            {
+                cameraMovement += Vector2.Right;
+            }
+
+            if (Input.IsActionPressed("e_pan_down"))
+            {
+                cameraMovement += Vector2.Down;
+            }
+
+            if (Input.IsActionPressed("e_pan_up"))
+            {
+                cameraMovement += Vector2.Up;
+            }
+
+            cameraMovement = cameraMovement.Normalized() * camera.CameraHeight;
+        }
+        else
+        {
+            // ReSharper disable once PossibleInvalidOperationException
+            var direction = mousePanningStart.Value - camera.CursorWorldPos;
+            camera.ObjectToFollow.Translation += direction;
+        }
+    }
+
+    private void ResetCamera()
+    {
+        camera.ResetPosition();
+        organelleRot = 0;
     }
 
     /// <summary>
