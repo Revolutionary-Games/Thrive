@@ -137,10 +137,10 @@ public class MicrobeEditor : Node, ILoadableGameState
     /// </summary>
     private bool transitionFinished;
 
-    /// <summary>
-    ///   The movement of the cam when controlled with keys.
-    /// </summary>
-    private Vector2 cameraMovement;
+    private bool cameraMovementLeft;
+    private bool cameraMovementRight;
+    private bool cameraMovementUp;
+    private bool cameraMovementDown;
 
     /// <summary>
     ///   True once auto-evo (and possibly other stuff) we need to wait for is ready
@@ -1267,36 +1267,31 @@ public class MicrobeEditor : Node, ILoadableGameState
             CurrentOrganelleCost = 0;
         }
 
+        var vector = Vector3.Zero;
+        if (cameraMovementLeft)
+            vector += Vector3.Left;
+        if (cameraMovementRight)
+            vector += Vector3.Right;
+        if (cameraMovementUp)
+            vector += Vector3.Forward;
+        if (cameraMovementDown)
+            vector += Vector3.Back;
+
         // Apply camera movement
-        camera.ObjectToFollow.Translation += new Vector3(cameraMovement.x, 0, cameraMovement.y) * delta;
+        camera.ObjectToFollow.Translation += vector.Normalized() * camera.CameraHeight * delta;
     }
 
     private void HandleMovement()
     {
-        cameraMovement = Vector2.Zero;
         if (mousePanningStart == null)
         {
-            if (Input.IsActionPressed("e_pan_left"))
-            {
-                cameraMovement += Vector2.Left;
-            }
+            cameraMovementLeft = Input.IsActionPressed("e_pan_left");
 
-            if (Input.IsActionPressed("e_pan_right"))
-            {
-                cameraMovement += Vector2.Right;
-            }
+            cameraMovementRight = Input.IsActionPressed("e_pan_right");
 
-            if (Input.IsActionPressed("e_pan_down"))
-            {
-                cameraMovement += Vector2.Down;
-            }
+            cameraMovementDown = Input.IsActionPressed("e_pan_down");
 
-            if (Input.IsActionPressed("e_pan_up"))
-            {
-                cameraMovement += Vector2.Up;
-            }
-
-            cameraMovement = cameraMovement.Normalized() * camera.CameraHeight;
+            cameraMovementUp = Input.IsActionPressed("e_pan_up");
         }
         else
         {
