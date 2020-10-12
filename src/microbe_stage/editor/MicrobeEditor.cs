@@ -1519,6 +1519,7 @@ public class MicrobeEditor : Node, ILoadableGameState
 
         // Add the new neighbors to the list
         @checked.AddRange(myNeighbors);
+        
         foreach (var neighbor in myNeighbors)
         {
             CheckmarkNeighbors(@checked, neighbor);
