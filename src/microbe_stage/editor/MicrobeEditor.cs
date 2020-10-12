@@ -539,6 +539,12 @@ public class MicrobeEditor : Node, ILoadableGameState
         stage.OnReturnFromEditor();
     }
 
+    public void ResetCamera()
+    {
+        camera.ObjectToFollow.Translation = new Vector3(0, 0, 0);
+        camera.ResetHeight();
+    }
+
     public void StartMusic()
     {
         Jukebox.Instance.PlayingCategory = "MicrobeEditor";
@@ -1298,12 +1304,6 @@ public class MicrobeEditor : Node, ILoadableGameState
             var direction = mousePanningStart.Value - camera.CursorWorldPos;
             camera.ObjectToFollow.Translation += direction;
         }
-    }
-
-    private void ResetCamera()
-    {
-        camera.ResetPosition();
-        organelleRot = 0;
     }
 
     /// <summary>

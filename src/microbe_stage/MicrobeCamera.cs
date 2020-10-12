@@ -81,12 +81,6 @@ public class MicrobeCamera : Camera
         private set => cursorWorldPos = value;
     }
 
-    public void ResetPosition()
-    {
-        ObjectToFollow.Translation = new Vector3(0, 0, 0);
-        ResetHeight();
-    }
-
     public void ResetHeight()
     {
         CameraHeight = DefaultCameraHeight;
