@@ -5,17 +5,6 @@ using System;
 /// </summary>
 public class SaveInformation
 {
-    public static SaveInformation CreateBroken()
-    {
-        return new SaveInformation
-        {
-            Type = SaveType.Invalid,
-            ThriveVersion = "Invalid",
-            Platform = "Invalid",
-            Creator = "Invalid",
-        };
-    }
-
     public enum SaveType
     {
         /// <summary>
@@ -37,6 +26,23 @@ public class SaveInformation
         ///   A broken save that cannot be loaded
         /// </summary>
         Invalid,
+    }
+
+    /// <summary>
+    ///   Creates save information for an invalid save
+    /// </summary>
+    /// <returns>
+    ///  A save information for an invalid save
+    /// </returns>
+    public static SaveInformation CreateInvalid()
+    {
+        return new SaveInformation
+        {
+            Type = SaveType.Invalid,
+            ThriveVersion = "Invalid",
+            Platform = "Invalid",
+            Creator = "Invalid",
+        };
     }
 
     /// <summary>
