@@ -188,9 +188,9 @@ public class Save
         {
             data = LoadDataFromFile(file, info, save, screenshot);
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            GD.PrintErr("Broken save game: " + file);
+            GD.PrintErr("Broken save game: " + ex.Message);
             data = (null, null, null);
         }
 
