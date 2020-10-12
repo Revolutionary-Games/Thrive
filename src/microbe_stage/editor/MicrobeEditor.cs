@@ -1699,7 +1699,10 @@ public class MicrobeEditor : Node, ILoadableGameState
 
                 var hexNode = placedHexes[nextFreeHex++];
                 if (islands.Contains(organelle.Position))
+                {
                     hexNode.MaterialOverride = islandMaterial;
+                    hexesToResetToIslandMaterial.Add(hexNode);
+                }
                 else
                     hexNode.MaterialOverride = organelle.PlacedThisSession ? validMaterial : oldMaterial;
 
