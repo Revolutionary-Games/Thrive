@@ -84,6 +84,9 @@ public class MicrobeEditorGUI : Node
     public NodePath FinishButtonPath;
 
     [Export]
+    public NodePath ErrorLabelPath;
+
+    [Export]
     public NodePath SymmetryButtonPath;
 
     [Export]
@@ -296,6 +299,7 @@ public class MicrobeEditorGUI : Node
     private LineEdit speciesNameEdit;
 
     private Button finishButton;
+    private Label errorLabel;
 
     // ReSharper disable once NotAccessedField.Local
     private TextureButton symmetryButton;
@@ -404,6 +408,8 @@ public class MicrobeEditorGUI : Node
         newCellButton = GetNode<TextureButton>(NewCellButtonPath);
         speciesNameEdit = GetNode<LineEdit>(SpeciesNameEditPath);
         finishButton = GetNode<Button>(FinishButtonPath);
+
+        errorLabel = GetNode<Label>(ErrorLabelPath);
 
         atpBalanceLabel = GetNode<Label>(ATPBalanceLabelPath);
         atpProductionLabel = GetNode<Label>(ATPProductionLabelPath);
@@ -796,9 +802,16 @@ public class MicrobeEditorGUI : Node
         redoButton.Disabled = !enabled;
     }
 
-    internal void SetFinishButtonStatus(bool enabled)
+    internal void SetError(string message)
     {
-        finishButton.Disabled = !enabled;
+        finishButton.Disabled = true;
+        errorLabel.Text = message;
+    }
+
+    internal void ClearError()
+    {
+        finishButton.Disabled = false;
+        errorLabel.Text = string.Empty;
     }
 
     internal void NotifyFreebuild(bool freebuilding)

@@ -952,6 +952,7 @@ NewCellButtonPath = NodePath("CellEditor/BottomLeft/HBoxContainer/NewButton")
 UndoButtonPath = NodePath("CellEditor/BottomLeft/HBoxContainer/UndoButton")
 RedoButtonPath = NodePath("CellEditor/BottomLeft/HBoxContainer/RedoButton")
 FinishButtonPath = NodePath("CellEditor/ConfirmButton/Button")
+ErrorLabelPath = NodePath("CellEditor/ErrorMessage/ErrorLabel")
 SymmetryButtonPath = NodePath("CellEditor/BottomLeft/HBoxContainer/SymmetryButton")
 ATPBalanceLabelPath = NodePath("CellEditor/Statistics/VBoxContainer/Body/VBoxContainer/ATPBalancePanel/VBoxContainer/Label")
 ATPProductionLabelPath = NodePath("CellEditor/Statistics/VBoxContainer/Body/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer/Label")
@@ -1090,7 +1091,6 @@ __meta__ = {
 }
 
 [node name="CellEditor" type="Control" parent="MicrobeEditorGUI"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -1631,14 +1631,14 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer"]
-margin_right = 318.0
+margin_right = 312.0
 margin_bottom = 885.0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_constants/margin_right = 10
 
 [node name="PartsSelection" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer"]
-margin_right = 308.0
+margin_right = 302.0
 margin_bottom = 885.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
@@ -3761,10 +3761,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 40 )
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_left = 180.0
-margin_top = 202.0
-margin_right = 482.0
-margin_bottom = 668.0
+margin_left = 192.0
+margin_top = 214.0
+margin_right = 494.0
+margin_bottom = 680.0
 theme = SubResource( 42 )
 edit_alpha = false
 
@@ -3927,6 +3927,25 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ErrorMessage" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -10.0
+margin_top = -80.0
+margin_right = -10.0
+margin_bottom = -58.0
+grow_horizontal = 0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ErrorLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/ErrorMessage"]
+margin_bottom = 22.0
+custom_colors/font_color = Color( 1, 0, 0, 1 )
+align = 2
+
 [node name="NegativeAtpWarning" type="ConfirmationDialog" parent="MicrobeEditorGUI/CellEditor"]
 margin_right = 587.0
 margin_bottom = 101.0
@@ -3939,6 +3958,7 @@ __meta__ = {
 }
 
 [node name="Report" type="Control" parent="MicrobeEditorGUI"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -0.200001

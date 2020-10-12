@@ -1028,7 +1028,11 @@ public class MicrobeEditor : Node, ILoadableGameState
             hexesToResetToIslandMaterial.Add(inst);
         }
 
-        gui.SetFinishButtonStatus(!islands.Any());
+        var hasError = islands.Any();
+        if (hasError)
+            gui.SetError("Connect or remove the disconnected organelles to continue");
+        else
+            gui.ClearError();
     }
 
     private void InitEditorFresh()
