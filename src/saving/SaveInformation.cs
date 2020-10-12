@@ -7,7 +7,7 @@ public class SaveInformation
 {
     public static SaveInformation CreateBroken()
     {
-        return new SaveInformation()
+        return new SaveInformation
         {
             Type = SaveType.Invalid,
             ThriveVersion = "Invalid",
