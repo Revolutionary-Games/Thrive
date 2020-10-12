@@ -68,6 +68,8 @@ public class SaveListItem : PanelContainer
     private bool highlighted;
     private bool selected;
 
+    private bool isBroken;
+
     [Signal]
     public delegate void OnSelectedChanged();
 
@@ -175,6 +177,8 @@ public class SaveListItem : PanelContainer
         createdOnPlatform.Text = save.Info.Platform;
         description.Text = save.Info.Description;
 
+        isBroken = save.Info is BrokenSaveInformation;
+
         loadingData = false;
     }
 
@@ -192,7 +196,7 @@ public class SaveListItem : PanelContainer
 
     public void LoadThisSave()
     {
-        if (type.Text == "Broken")
+        if (isBroken)
         {
             EmitSignal(nameof(OnBrokenSaveLoaded));
             return;
