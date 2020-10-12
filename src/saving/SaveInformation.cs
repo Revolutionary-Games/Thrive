@@ -9,10 +9,10 @@ public class SaveInformation
     {
         return new SaveInformation()
         {
-            Type = SaveType.Broken,
-            ThriveVersion = "INVALID",
-            Platform = "INVALID",
-            Creator = "INVALID",
+            Type = SaveType.Invalid,
+            ThriveVersion = "Invalid",
+            Platform = "Invalid",
+            Creator = "Invalid",
         };
     }
 
@@ -36,7 +36,7 @@ public class SaveInformation
         /// <summary>
         ///   A broken save that cannot be loaded
         /// </summary>
-        Broken,
+        Invalid,
     }
 
     /// <summary>
