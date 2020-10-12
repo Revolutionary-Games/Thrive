@@ -213,7 +213,15 @@ public class Save
             }
 
             // This deserializes a huge tree of objects
-            saveResult = ThriveJsonConverter.Instance.DeserializeObject<Save>(data.saveStr);
+            try
+            {
+                saveResult = ThriveJsonConverter.Instance.DeserializeObject<Save>(data.saveStr);
+            }
+            catch (Exception ex)
+            {
+                GD.PrintErr("Broken save game: " + ex.Message);
+                saveResult = null;
+            }
         }
 
         if (screenshot)
