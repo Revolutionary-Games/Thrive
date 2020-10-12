@@ -138,6 +138,11 @@ public class MicrobeEditor : Node, ILoadableGameState
     private bool transitionFinished;
 
     /// <summary>
+    ///   The movement of the cam when controlled with keys.
+    /// </summary>
+    private Vector2 cameraMovement;
+
+    /// <summary>
     ///   True once auto-evo (and possibly other stuff) we need to wait for is ready
     /// </summary>
     [JsonProperty]
@@ -542,31 +547,32 @@ public class MicrobeEditor : Node, ILoadableGameState
         Jukebox.Instance.Resume();
     }
 
-    public override void _PhysicsProcess(float delta)
+    public void HandleMovement()
     {
-        var myDelta = delta * camera.CameraHeight;
-
+        cameraMovement = Vector2.Zero;
         if (mousePanningStart == null)
         {
             if (Input.IsActionPressed("e_pan_left"))
             {
-                TranslateCam(Vector3.Left * myDelta);
+                cameraMovement += Vector2.Left;
             }
 
             if (Input.IsActionPressed("e_pan_right"))
             {
-                TranslateCam(Vector3.Right * myDelta);
+                cameraMovement += Vector2.Right;
             }
 
             if (Input.IsActionPressed("e_pan_down"))
             {
-                TranslateCam(Vector3.Back * myDelta);
+                cameraMovement += Vector2.Down;
             }
 
             if (Input.IsActionPressed("e_pan_up"))
             {
-                TranslateCam(Vector3.Forward * myDelta);
+                cameraMovement += Vector2.Up;
             }
+
+            cameraMovement = cameraMovement.Normalized() * camera.CameraHeight;
         }
         else
         {
@@ -578,6 +584,8 @@ public class MicrobeEditor : Node, ILoadableGameState
 
     public override void _UnhandledInput(InputEvent @event)
     {
+        HandleMovement();
+
         if (@event.IsActionPressed("e_reset_cam"))
         {
             ResetCamera();
@@ -1300,6 +1308,9 @@ public class MicrobeEditor : Node, ILoadableGameState
         {
             CurrentOrganelleCost = 0;
         }
+
+        // Apply camera movement
+        camera.ObjectToFollow.Translation += new Vector3(cameraMovement.x, 0, cameraMovement.y) * delta;
     }
 
     /// <summary>
