@@ -192,7 +192,7 @@ public class SaveList : ScrollContainer
     private void OnBrokenLoaded(string saveName)
     {
         saveToBeDeleted = saveName;
-        
+
         deleteConfirmDialog.DialogText = "Thrive could not load this file.\n";
         deleteConfirmDialog.DialogText += "It seems like the save is broken.\n";
         deleteConfirmDialog.DialogText += "Do you want to delete the save?";
