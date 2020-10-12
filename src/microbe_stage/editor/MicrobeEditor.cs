@@ -1580,8 +1580,6 @@ public class MicrobeEditor : Node, ILoadableGameState
             organelle.Position);
 
         editedMicrobeOrganelles.Add(organelle);
-
-        HandleIslands();
     }
 
     private void UndoOrganellePlaceAction(EditorAction action)
@@ -1597,8 +1595,6 @@ public class MicrobeEditor : Node, ILoadableGameState
 
             editedMicrobeOrganelles.Add(cyto);
         }
-
-        HandleIslands();
     }
 
     private bool AddOrganelle(OrganelleTemplate organelle)
@@ -1624,16 +1620,12 @@ public class MicrobeEditor : Node, ILoadableGameState
     {
         var data = (RemoveActionData)action.Data;
         editedMicrobeOrganelles.Remove(data.Organelle);
-
-        HandleIslands();
     }
 
     private void UndoOrganelleRemoveAction(EditorAction action)
     {
         var data = (RemoveActionData)action.Data;
         editedMicrobeOrganelles.Add(data.Organelle);
-
-        HandleIslands();
     }
 
     private void RemoveOrganelleAt(Hex location)
@@ -1685,6 +1677,8 @@ public class MicrobeEditor : Node, ILoadableGameState
 
         // TODO: this might also be expensive
         gui.UpdateSpeed(CalculateSpeed());
+
+        HandleIslands();
     }
 
     /// <summary>
