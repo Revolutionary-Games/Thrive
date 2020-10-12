@@ -776,11 +776,6 @@ public class MicrobeEditor : Node, ILoadableGameState
         organelleRot = 0;
     }
 
-    public void TranslateCam(Vector3 dir)
-    {
-        camera.ObjectToFollow.Translation += dir;
-    }
-
     public void RotateRight()
     {
         organelleRot = (organelleRot + 1) % 6;
