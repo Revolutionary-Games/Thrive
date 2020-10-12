@@ -9,7 +9,7 @@ or if you are a team member you can ask on the development discord or open a git
 
 If you are a team member you can ask for help on the [Private
 Developer
-Forums](http://forum.revolutionarygamesstudio.com/c/programming)
+Forums](https://forum.revolutionarygamesstudio.com/c/programming)
 
 You can also join and ask on our [community
 discord](https://discordapp.com/invite/FZxDQ4H) please use the
@@ -254,6 +254,10 @@ broken releases. Like this:
 
 <img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/godot_build_tool_option_linux.png" alt="godot linux build tool" width="550px">
 
+Even if you do not use the Godot script editor, Godot automatically opens some files and replaces the spaces with tabs.
+To stop Godot from messing with you files, go to Text Editor -> Indent and set Type to spaces
+
+<img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/godot_editor_use_spaces.png" alt="set intend to spaces" width="550px">
 
 ### C# packages
 
