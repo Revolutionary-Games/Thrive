@@ -115,14 +115,45 @@
             {
                 var population = entry.Value;
 
-                if (resolveMoves){
+                if (resolveMoves)
+                {
                     foreach (var migration in results[species].SpreadToPatches)
                     {
-                        population += migration.Population;
+                        if (migration.From == entry.Key)
+                        {
+                            population -= migration.Population;
+                        }
+                        else if (migration.To == entry.Key)
+                        {
+                            population += migration.Population;
+                        }
                     }
                 }
 
                 result += Math.Max(population, 0);
+            }
+
+            // Find patches that were moved to but don't include population results
+            if (resolveMoves)
+            {
+                foreach (var migration in results[species].SpreadToPatches)
+                {
+                    bool found = false;
+
+                    foreach (var populationResult in results[species].NewPopulationInPatches)
+                    {
+                        if (migration.To == populationResult.Key)
+                        {
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    if (!found)
+                    {
+                        result += Math.Max(migration.Population, 0);
+                    }
+                }
             }
 
             return result;
@@ -221,7 +252,6 @@
 
                 if (entry.SpreadToPatches.Count > 0)
                 {
-                    //totalMovedPopulation += entry.SpreadToPatches.Count;
                     builder.Append(" spread to patches:\n");
 
                     foreach (var spreadEntry in entry.SpreadToPatches)
@@ -328,8 +358,8 @@
 
                 if (GetGlobalPopulation(entry.Species, resolveMoves) <= 0)
                 {
-                    builder.Append("  ");
-                    builder.Append(" went extinct from the planet");
+                    builder.Append(" ");
+                    builder.Append("went extinct from the planet");
                     builder.Append("\n");
                 }
 
