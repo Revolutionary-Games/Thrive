@@ -107,13 +107,53 @@
         ///     Throws an exception if no population is found
         ///   </para>
         /// </remarks>
-        public long GetGlobalPopulation(Species species)
+        public long GetGlobalPopulation(Species species, bool resolveMoves = false)
         {
             long result = 0;
 
             foreach (var entry in results[species].NewPopulationInPatches)
             {
-                result += Math.Max(entry.Value, 0);
+                var population = entry.Value;
+
+                if (resolveMoves)
+                {
+                    foreach (var migration in results[species].SpreadToPatches)
+                    {
+                        if (migration.From == entry.Key)
+                        {
+                            population -= migration.Population;
+                        }
+                        else if (migration.To == entry.Key)
+                        {
+                            population += migration.Population;
+                        }
+                    }
+                }
+
+                result += Math.Max(population, 0);
+            }
+
+            // Find patches that were moved to but don't include population results
+            if (resolveMoves)
+            {
+                foreach (var migration in results[species].SpreadToPatches)
+                {
+                    bool found = false;
+
+                    foreach (var populationResult in results[species].NewPopulationInPatches)
+                    {
+                        if (migration.To == populationResult.Key)
+                        {
+                            found = true;
+                            break;
+                        }
+                    }
+
+                    if (!found)
+                    {
+                        result += Math.Max(migration.Population, 0);
+                    }
+                }
             }
 
             return result;
@@ -169,12 +209,19 @@
 
             void OutputPopulationForPatch(Species species, Patch patch, long population)
             {
-                builder.Append("  ");
-
-                builder.Append(PatchString(patch));
-
-                builder.Append(" population: ");
-                builder.Append(Math.Max(population, 0));
+                if (population > 0)
+                {
+                    builder.Append("  ");
+                    builder.Append(PatchString(patch));
+                    builder.Append(" population: ");
+                    builder.Append(population);
+                }
+                else
+                {
+                    builder.Append("  ");
+                    builder.Append(" went extinct in ");
+                    builder.Append(PatchString(patch));
+                }
 
                 if (previousPopulations != null)
                 {
@@ -307,6 +354,13 @@
                                 CountSpeciesSpreadPopulation(entry.Species, to));
                         }
                     }
+                }
+
+                if (GetGlobalPopulation(entry.Species, resolveMoves) <= 0)
+                {
+                    builder.Append(" ");
+                    builder.Append("went extinct from the planet");
+                    builder.Append("\n");
                 }
 
                 if (playerReadable)
