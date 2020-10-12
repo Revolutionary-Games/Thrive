@@ -1,5 +1,3 @@
-using Thrive.saving;
-
 public class BrokenSaveInformation : SaveInformation
 {
     public override string ThriveVersion { get; set; } = "INVALID";
