@@ -1038,18 +1038,6 @@ public class MicrobeEditor : Node, ILoadableGameState
         gui.SendUndoToTutorial(TutorialState);
     }
 
-    private void HandleIslands()
-    {
-        var islands = GetIslandHexes();
-        hexesToResetToIslandMaterial.Clear();
-        foreach (var hex in islands)
-        {
-            var coords = Hex.AxialToCartesian(hex);
-            var inst = placedHexes.First(p => p.Translation == coords);
-            hexesToResetToIslandMaterial.Add(inst);
-        }
-    }
-
     private void InitEditorFresh()
     {
         // For now we only show a loading screen if auto-evo is not ready yet
@@ -1679,8 +1667,6 @@ public class MicrobeEditor : Node, ILoadableGameState
 
         // TODO: this might also be expensive
         gui.UpdateSpeed(CalculateSpeed());
-
-        HandleIslands();
     }
 
     /// <summary>
@@ -1692,6 +1678,8 @@ public class MicrobeEditor : Node, ILoadableGameState
     {
         int nextFreeHex = 0;
         int nextFreeOrganelle = 0;
+
+        var islands = GetIslandHexes();
 
         // Build the entities to show the current microbe
         foreach (var organelle in editedMicrobeOrganelles.Organelles)
@@ -1707,7 +1695,11 @@ public class MicrobeEditor : Node, ILoadableGameState
                 }
 
                 var hexNode = placedHexes[nextFreeHex++];
-                hexNode.MaterialOverride = organelle.PlacedThisSession ? validMaterial : oldMaterial;
+                if (islands.Contains(organelle.Position))
+                    hexNode.MaterialOverride = islandMaterial;
+                else
+                    hexNode.MaterialOverride = organelle.PlacedThisSession ? validMaterial : oldMaterial;
+
                 hexNode.Translation = pos;
 
                 hexNode.Visible = true;
