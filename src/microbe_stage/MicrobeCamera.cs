@@ -57,6 +57,7 @@ public class MicrobeCamera : Camera
     [JsonProperty]
     public bool DisableBackgroundParticles;
 
+    [Export]
     [JsonProperty]
     public float InterpolateSpeed = 0.3f;
 

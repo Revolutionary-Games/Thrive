@@ -340,7 +340,6 @@ public class MicrobeEditor : Node, ILoadableGameState
 
         hexScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/EditorHex.tscn");
         modelScene = GD.Load<PackedScene>("res://src/general/SceneDisplayer.tscn");
-        camera.InterpolateSpeed = 1;
         camera.ObjectToFollow = GetNode<Spatial>("CameraLookAt");
 
         tutorialGUI.Visible = true;
