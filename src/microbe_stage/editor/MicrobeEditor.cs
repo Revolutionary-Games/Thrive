@@ -113,17 +113,17 @@ public class MicrobeEditor : Node, ILoadableGameState
     private List<MeshInstance> placedHexes;
 
     /// <summary>
-    /// The hexes that have been changed by a hovering organelle and need to be reset to old material.
+    ///   The hexes that have been changed by a hovering organelle and need to be reset to old material.
     /// </summary>
     private List<MeshInstance> hexesToResetToOldMaterial;
 
     /// <summary>
-    /// The hexes that have been changed by a hovering organelle and need to be reset to valid material.
+    ///   The hexes that have been changed by a hovering organelle and need to be reset to valid material.
     /// </summary>
     private List<MeshInstance> hexesToResetToValidMaterial;
 
     /// <summary>
-    /// The hexes that have been changed by a hovering organelle and need to be reset to island material.
+    ///   The hexes that have been changed by a hovering organelle and need to be reset to island material.
     /// </summary>
     private List<MeshInstance> hexesToResetToIslandMaterial;
 

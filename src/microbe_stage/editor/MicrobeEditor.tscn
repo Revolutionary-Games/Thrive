@@ -1091,6 +1091,7 @@ __meta__ = {
 }
 
 [node name="CellEditor" type="Control" parent="MicrobeEditorGUI"]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -1631,14 +1632,14 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer"]
-margin_right = 312.0
+margin_right = 318.0
 margin_bottom = 885.0
 mouse_filter = 1
 size_flags_horizontal = 3
 custom_constants/margin_right = 10
 
 [node name="PartsSelection" type="VBoxContainer" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Structure/ScrollContainer/MarginContainer"]
-margin_right = 302.0
+margin_right = 308.0
 margin_bottom = 885.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
@@ -3761,10 +3762,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 40 )
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_left = 192.0
-margin_top = 214.0
-margin_right = 494.0
-margin_bottom = 680.0
+margin_left = 196.0
+margin_top = 218.0
+margin_right = 498.0
+margin_bottom = 684.0
 theme = SubResource( 42 )
 edit_alpha = false
 
@@ -3958,7 +3959,6 @@ __meta__ = {
 }
 
 [node name="Report" type="Control" parent="MicrobeEditorGUI"]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -0.200001
