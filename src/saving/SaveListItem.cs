@@ -177,7 +177,7 @@ public class SaveListItem : PanelContainer
         createdOnPlatform.Text = save.Info.Platform;
         description.Text = save.Info.Description;
 
-        isBroken = save.Info is BrokenSaveInformation;
+        isBroken = save.Info.Type == SaveInformation.SaveType.Broken;
 
         loadingData = false;
     }

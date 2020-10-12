@@ -202,14 +202,7 @@ public class Save
 
         if (info)
         {
-            if (string.IsNullOrEmpty(data.infoStr))
-            {
-                infoResult = new BrokenSaveInformation();
-            }
-            else
-            {
-                infoResult = ThriveJsonConverter.Instance.DeserializeObject<SaveInformation>(data.infoStr);
-            }
+            infoResult = string.IsNullOrEmpty(data.infoStr) ? SaveInformation.CreateBroken() : ThriveJsonConverter.Instance.DeserializeObject<SaveInformation>(data.infoStr);
         }
 
         if (save)
