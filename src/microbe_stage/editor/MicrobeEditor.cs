@@ -1041,6 +1041,7 @@ public class MicrobeEditor : Node, ILoadableGameState
     private void HandleIslands()
     {
         var islands = GetIslandHexes();
+        hexesToResetToIslandMaterial.Clear();
         foreach (var hex in islands)
         {
             var coords = Hex.AxialToCartesian(hex);
