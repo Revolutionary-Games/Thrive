@@ -84,9 +84,6 @@ public class MicrobeEditorGUI : Node
     public NodePath FinishButtonPath;
 
     [Export]
-    public NodePath ErrorLabelPath;
-
-    [Export]
     public NodePath SymmetryButtonPath;
 
     [Export]
@@ -216,6 +213,9 @@ public class MicrobeEditorGUI : Node
     public NodePath NegativeAtpPopupPath;
 
     [Export]
+    public NodePath IslandErrorPath;
+
+    [Export]
     public NodePath SymmetryIconPath;
 
     [Export]
@@ -299,7 +299,6 @@ public class MicrobeEditorGUI : Node
     private LineEdit speciesNameEdit;
 
     private Button finishButton;
-    private Label errorLabel;
 
     // ReSharper disable once NotAccessedField.Local
     private TextureButton symmetryButton;
@@ -350,6 +349,7 @@ public class MicrobeEditorGUI : Node
     private TextureRect sizeIndicator;
 
     private ConfirmationDialog negativeAtpPopup;
+    private AcceptDialog islandPopup;
 
     private TextureButton menuButton;
     private TextureButton helpButton;
@@ -409,8 +409,6 @@ public class MicrobeEditorGUI : Node
         speciesNameEdit = GetNode<LineEdit>(SpeciesNameEditPath);
         finishButton = GetNode<Button>(FinishButtonPath);
 
-        errorLabel = GetNode<Label>(ErrorLabelPath);
-
         atpBalanceLabel = GetNode<Label>(ATPBalanceLabelPath);
         atpProductionLabel = GetNode<Label>(ATPProductionLabelPath);
         atpConsumptionLabel = GetNode<Label>(ATPConsumptionLabelPath);
@@ -456,6 +454,7 @@ public class MicrobeEditorGUI : Node
         sizeIndicator = GetNode<TextureRect>(SizeIndicatorPath);
 
         negativeAtpPopup = GetNode<ConfirmationDialog>(NegativeAtpPopupPath);
+        islandPopup = GetNode<AcceptDialog>(IslandErrorPath);
 
         menu = GetNode<PauseMenu>(MenuPath);
 
@@ -802,18 +801,6 @@ public class MicrobeEditorGUI : Node
         redoButton.Disabled = !enabled;
     }
 
-    internal void SetError(string message)
-    {
-        finishButton.Disabled = true;
-        errorLabel.Text = message;
-    }
-
-    internal void ClearError()
-    {
-        finishButton.Disabled = false;
-        errorLabel.Text = string.Empty;
-    }
-
     internal void NotifyFreebuild(bool freebuilding)
     {
         if (freebuilding)
@@ -897,6 +884,12 @@ public class MicrobeEditorGUI : Node
         if (energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumptionStationary)
         {
             negativeAtpPopup.PopupCenteredMinsize();
+            return;
+        }
+
+        if (editor.GetIslandHexes().Any())
+        {
+            islandPopup.PopupCenteredMinsize();
             return;
         }
 

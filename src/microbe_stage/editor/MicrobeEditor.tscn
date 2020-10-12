@@ -952,7 +952,6 @@ NewCellButtonPath = NodePath("CellEditor/BottomLeft/HBoxContainer/NewButton")
 UndoButtonPath = NodePath("CellEditor/BottomLeft/HBoxContainer/UndoButton")
 RedoButtonPath = NodePath("CellEditor/BottomLeft/HBoxContainer/RedoButton")
 FinishButtonPath = NodePath("CellEditor/ConfirmButton/Button")
-ErrorLabelPath = NodePath("CellEditor/ErrorMessage/ErrorLabel")
 SymmetryButtonPath = NodePath("CellEditor/BottomLeft/HBoxContainer/SymmetryButton")
 ATPBalanceLabelPath = NodePath("CellEditor/Statistics/VBoxContainer/Body/VBoxContainer/ATPBalancePanel/VBoxContainer/Label")
 ATPProductionLabelPath = NodePath("CellEditor/Statistics/VBoxContainer/Body/VBoxContainer/ATPBalancePanel/VBoxContainer/ATPBarContainer/HBoxContainer/Label")
@@ -996,6 +995,7 @@ HpIndicatorPath = NodePath("CellEditor/Statistics/VBoxContainer/Body/VBoxContain
 SizeIndicatorPath = NodePath("CellEditor/Statistics/VBoxContainer/Body/VBoxContainer/Size/Indicator")
 RigiditySliderPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/RigiditySlider")
 NegativeAtpPopupPath = NodePath("CellEditor/NegativeAtpWarning")
+IslandErrorPath = NodePath("CellEditor/IslandError")
 SymmetryIconPath = NodePath("CellEditor/BottomLeft/HBoxContainer/SymmetryButton/SymmetryIcon")
 SymmetryIconDefault = ExtResource( 34 )
 SymmetryIcon2x = ExtResource( 39 )
@@ -3762,10 +3762,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 40 )
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_left = 196.0
-margin_top = 218.0
-margin_right = 498.0
-margin_bottom = 684.0
+margin_left = 200.0
+margin_top = 222.0
+margin_right = 502.0
+margin_bottom = 688.0
 theme = SubResource( 42 )
 edit_alpha = false
 
@@ -3928,25 +3928,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ErrorMessage" type="MarginContainer" parent="MicrobeEditorGUI/CellEditor"]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -10.0
-margin_top = -80.0
-margin_right = -10.0
-margin_bottom = -58.0
-grow_horizontal = 0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ErrorLabel" type="Label" parent="MicrobeEditorGUI/CellEditor/ErrorMessage"]
-margin_bottom = 22.0
-custom_colors/font_color = Color( 1, 0, 0, 1 )
-align = 2
-
 [node name="NegativeAtpWarning" type="ConfirmationDialog" parent="MicrobeEditorGUI/CellEditor"]
 margin_right = 587.0
 margin_bottom = 101.0
@@ -3957,6 +3938,13 @@ Do you wish to continue?"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="IslandError" type="AcceptDialog" parent="MicrobeEditorGUI/CellEditor"]
+margin_right = 99.0
+margin_bottom = 76.0
+window_title = "Disconnected Organelles"
+dialog_text = "There are placed organelles, which are not connected to the rest.
+Please connect all placed organelles with each other or undo your changes."
 
 [node name="Report" type="Control" parent="MicrobeEditorGUI"]
 anchor_right = 1.0

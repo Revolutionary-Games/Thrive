@@ -1023,12 +1023,6 @@ public class MicrobeEditor : Node, ILoadableGameState
             var inst = placedHexes.First(p => p.Translation == coords);
             hexesToResetToIslandMaterial.Add(inst);
         }
-
-        var hasError = islands.Any();
-        if (hasError)
-            gui.SetError("Connect or remove the disconnected organelles to continue");
-        else
-            gui.ClearError();
     }
 
     private void InitEditorFresh()
@@ -1488,7 +1482,7 @@ public class MicrobeEditor : Node, ILoadableGameState
         }
     }
 
-    private List<Hex> GetIslandHexes()
+    internal List<Hex> GetIslandHexes()
     {
         var organelles = editedMicrobeOrganelles.Organelles;
         var initHex = organelles[0].Position;
