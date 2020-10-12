@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Godot;
+using Thrive.saving;
 
 /// <summary>
 ///   Helper functions for making the places in code dealing with saves shorter

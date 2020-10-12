@@ -5,6 +5,7 @@ using Godot;
 using ICSharpCode.SharpZipLib.GZip;
 using ICSharpCode.SharpZipLib.Tar;
 using Newtonsoft.Json;
+using Thrive.saving;
 using Directory = Godot.Directory;
 using Environment = System.Environment;
 using File = Godot.File;
@@ -184,7 +185,16 @@ public class Save
                 throw new ArgumentException("save with the given name doesn't exist");
         }
 
-        var (infoStr, saveStr, screenshotData) = LoadDataFromFile(file, info, save, screenshot);
+        (string infoStr, string saveStr, byte[] screenshotData) data;
+        try
+        {
+            data = LoadDataFromFile(file, info, save, screenshot);
+        }
+        catch (Exception ex)
+        {
+            GD.PrintErr("Broken save game: " + file);
+            data = (null, null, null);
+        }
 
         readFinished?.Invoke();
 
@@ -194,32 +204,34 @@ public class Save
 
         if (info)
         {
-            if (string.IsNullOrEmpty(infoStr))
+            if (string.IsNullOrEmpty(data.infoStr))
             {
-                throw new IOException("couldn't find info content in save");
+                infoResult = new BrokenSaveInformation();
             }
-
-            infoResult = ThriveJsonConverter.Instance.DeserializeObject<SaveInformation>(infoStr);
+            else
+            {
+                infoResult = ThriveJsonConverter.Instance.DeserializeObject<SaveInformation>(data.infoStr);
+            }
         }
 
         if (save)
         {
-            if (string.IsNullOrEmpty(saveStr))
+            if (string.IsNullOrEmpty(data.saveStr))
             {
                 throw new IOException("couldn't find save content in save file");
             }
 
             // This deserializes a huge tree of objects
-            saveResult = ThriveJsonConverter.Instance.DeserializeObject<Save>(saveStr);
+            saveResult = ThriveJsonConverter.Instance.DeserializeObject<Save>(data.saveStr);
         }
 
         if (screenshot)
         {
             imageResult = new Image();
 
-            if (screenshotData != null && screenshotData.Length > 0)
+            if (data.screenshotData != null && data.screenshotData.Length > 0)
             {
-                imageResult.LoadPngFromBuffer(screenshotData);
+                imageResult.LoadPngFromBuffer(data.screenshotData);
             }
 
             // Not a critical error
@@ -348,51 +360,4 @@ public class Save
 
         return buffer;
     }
-}
-
-/// <summary>
-///   Info embedded in a save file
-/// </summary>
-public class SaveInformation
-{
-    public enum SaveType
-    {
-        /// <summary>
-        ///   Player initiated save
-        /// </summary>
-        Manual,
-
-        /// <summary>
-        ///   Automatic save
-        /// </summary>
-        AutoSave,
-
-        /// <summary>
-        ///   Quick save, separate from manual to make it easier to keep a fixed number of quick saves
-        /// </summary>
-        QuickSave,
-    }
-
-    /// <summary>
-    ///   Version of the game the save was made with, used to detect incompatible versions
-    /// </summary>
-    public string ThriveVersion { get; set; } = Constants.Version;
-
-    public string Platform { get; set; } = FeatureInformation.GetOS();
-
-    public string Creator { get; set; } = Environment.UserName;
-
-    public DateTime CreatedAt { get; set; } = DateTime.Now;
-
-    /// <summary>
-    ///   An extended description for this save
-    /// </summary>
-    public string Description { get; set; } = string.Empty;
-
-    /// <summary>
-    ///   Unique ID of this save
-    /// </summary>
-    public Guid ID { get; set; } = Guid.NewGuid();
-
-    public SaveType Type { get; set; } = SaveType.Manual;
 }

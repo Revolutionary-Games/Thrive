@@ -2,6 +2,7 @@ using System;
 using System.Globalization;
 using System.Threading.Tasks;
 using Godot;
+using Thrive.saving;
 
 /// <summary>
 ///   An item in the saves list. This is a class to handle loading its data from the file
@@ -76,6 +77,9 @@ public class SaveListItem : PanelContainer
 
     [Signal]
     public delegate void OnOldSaveLoaded();
+
+    [Signal]
+    public delegate void OnBrokenSaveLoaded();
 
     [Signal]
     public delegate void OnNewSaveLoaded();
@@ -189,6 +193,12 @@ public class SaveListItem : PanelContainer
 
     public void LoadThisSave()
     {
+        if (type.Text == "Broken")
+        {
+            EmitSignal(nameof(OnBrokenSaveLoaded));
+            return;
+        }
+
         if (versionDifference < 0)
         {
             EmitSignal(nameof(OnOldSaveLoaded));

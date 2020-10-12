@@ -164,6 +164,7 @@
     <Compile Include="src\general\MusicCategory.cs" />
     <Compile Include="src\microbe_stage\MicrobeAI.cs" />
     <Compile Include="src\microbe_stage\MicrobeAICommonData.cs" />
+    <Compile Include="src\saving\BrokenSaveInformation.cs" />
     <Compile Include="src\saving\FileHelpers.cs" />
     <Compile Include="src\saving\ILoadableGameState.cs" />
     <Compile Include="src\saving\InProgressLoad.cs" />
@@ -176,6 +177,7 @@
     <Compile Include="src\saving\SaveApplyHelper.cs" />
     <Compile Include="src\saving\SaveFileInfo.cs" />
     <Compile Include="src\saving\MainGameState.cs" />
+    <Compile Include="src\saving\SaveInformation.cs" />
     <Compile Include="src\saving\SaveList.cs" />
     <Compile Include="src\saving\SaveListItem.cs" />
     <Compile Include="src\saving\SaveLoadable.cs" />

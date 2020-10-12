@@ -103,6 +103,7 @@ public class SaveList : ScrollContainer
 
             item.Connect(nameof(SaveListItem.OnOldSaveLoaded), this, nameof(OnOldSaveLoaded), new Array { save });
             item.Connect(nameof(SaveListItem.OnNewSaveLoaded), this, nameof(OnNewSaveLoaded), new Array { save });
+            item.Connect(nameof(SaveListItem.OnBrokenSaveLoaded), this, nameof(OnBrokenLoaded), new Array { save });
 
             item.SaveName = save;
             savesList.AddChild(item);
@@ -186,6 +187,16 @@ public class SaveList : ScrollContainer
         loadConfirmDialog.DialogText = "This save is from a newer version of Thrive and very likely incompatible.\n";
         loadConfirmDialog.DialogText += "Do you want to try loading the save anyway?";
         loadConfirmDialog.PopupCenteredMinsize();
+    }
+
+    private void OnBrokenLoaded(string saveName)
+    {
+        saveToBeDeleted = saveName;
+        
+        deleteConfirmDialog.DialogText = "Thrive could not load this file.\n";
+        deleteConfirmDialog.DialogText += "It seems like the save is broken.\n";
+        deleteConfirmDialog.DialogText += "Do you want to delete the save?";
+        deleteConfirmDialog.PopupCenteredMinsize();
     }
 
     private void OnConfirmSaveLoad()
