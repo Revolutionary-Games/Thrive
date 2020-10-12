@@ -974,6 +974,9 @@ public class MicrobeEditor : Node, ILoadableGameState
     {
         var organelles = editedMicrobeOrganelles.Organelles;
 
+        if (!organelles.Any())
+            return new List<Hex>();
+
         // The hex to start the recursion with
         var initHex = organelles[0].Position;
 
