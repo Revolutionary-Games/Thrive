@@ -29,23 +29,6 @@ public class SaveInformation
     }
 
     /// <summary>
-    ///   Creates save information for an invalid save
-    /// </summary>
-    /// <returns>
-    ///  A save information for an invalid save
-    /// </returns>
-    public static SaveInformation CreateInvalid()
-    {
-        return new SaveInformation
-        {
-            Type = SaveType.Invalid,
-            ThriveVersion = "Invalid",
-            Platform = "Invalid",
-            Creator = "Invalid",
-        };
-    }
-
-    /// <summary>
     ///   Version of the game the save was made with, used to detect incompatible versions
     /// </summary>
     public string ThriveVersion { get; set; } = Constants.Version;
@@ -67,4 +50,21 @@ public class SaveInformation
     public Guid ID { get; set; } = Guid.NewGuid();
 
     public SaveType Type { get; set; } = SaveType.Manual;
+
+    /// <summary>
+    ///   Creates save information for an invalid save
+    /// </summary>
+    /// <returns>
+    ///  A save information for an invalid save
+    /// </returns>
+    public static SaveInformation CreateInvalid()
+    {
+        return new SaveInformation
+        {
+            Type = SaveType.Invalid,
+            ThriveVersion = "Invalid",
+            Platform = "Invalid",
+            Creator = "Invalid",
+        };
+    }
 }
