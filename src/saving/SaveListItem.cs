@@ -2,7 +2,6 @@ using System;
 using System.Globalization;
 using System.Threading.Tasks;
 using Godot;
-using Thrive.saving;
 
 /// <summary>
 ///   An item in the saves list. This is a class to handle loading its data from the file

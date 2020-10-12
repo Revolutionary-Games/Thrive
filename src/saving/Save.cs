@@ -7,7 +7,6 @@ using ICSharpCode.SharpZipLib.Tar;
 using Newtonsoft.Json;
 using Thrive.saving;
 using Directory = Godot.Directory;
-using Environment = System.Environment;
 using File = Godot.File;
 
 /// <summary>
@@ -190,7 +189,7 @@ public class Save
         {
             data = LoadDataFromFile(file, info, save, screenshot);
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             GD.PrintErr("Broken save game: " + file);
             data = (null, null, null);
