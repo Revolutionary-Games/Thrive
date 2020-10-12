@@ -711,8 +711,6 @@ public class MicrobeEditor : Node, ILoadableGameState
             // Only trigger tutorial if something was really placed
             TutorialState.SendEvent(TutorialEventType.MicrobeEditorOrganellePlaced, EventArgs.Empty, this);
         }
-
-        HandleIslands();
     }
 
     public void RotateRight()
@@ -849,8 +847,6 @@ public class MicrobeEditor : Node, ILoadableGameState
                 break;
             }
         }
-
-        HandleIslands();
     }
 
     public float CalculateSpeed()
@@ -1566,6 +1562,8 @@ public class MicrobeEditor : Node, ILoadableGameState
             organelle.Position);
 
         editedMicrobeOrganelles.Add(organelle);
+
+        HandleIslands();
     }
 
     private void UndoOrganellePlaceAction(EditorAction action)
@@ -1581,6 +1579,8 @@ public class MicrobeEditor : Node, ILoadableGameState
 
             editedMicrobeOrganelles.Add(cyto);
         }
+
+        HandleIslands();
     }
 
     private bool AddOrganelle(OrganelleTemplate organelle)
@@ -1606,12 +1606,16 @@ public class MicrobeEditor : Node, ILoadableGameState
     {
         var data = (RemoveActionData)action.Data;
         editedMicrobeOrganelles.Remove(data.Organelle);
+
+        HandleIslands();
     }
 
     private void UndoOrganelleRemoveAction(EditorAction action)
     {
         var data = (RemoveActionData)action.Data;
         editedMicrobeOrganelles.Add(data.Organelle);
+
+        HandleIslands();
     }
 
     private void RemoveOrganelleAt(Hex location)
