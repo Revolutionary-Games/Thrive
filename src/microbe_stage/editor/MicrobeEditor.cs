@@ -340,6 +340,7 @@ public class MicrobeEditor : Node, ILoadableGameState
 
         hexScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/EditorHex.tscn");
         modelScene = GD.Load<PackedScene>("res://src/general/SceneDisplayer.tscn");
+
         camera.InterpolateSpeed = 1;
         camera.ObjectToFollow = GetNode<Spatial>("CameraLookAt");
 
@@ -763,8 +764,7 @@ public class MicrobeEditor : Node, ILoadableGameState
 
     public void ResetCamera()
     {
-        camera.CameraHeight = camera.DefaultCameraHeight;
-        camera.Translation = new Vector3(0, camera.Translation.y, 0);
+        camera.ResetPosition();
         organelleRot = 0;
     }
 
