@@ -36,6 +36,9 @@ public static class ToolTipHelper
     /// <param name="control">The tooltip's control node</param>
     public static void TooltipFadeIn(Tween tween, Control control)
     {
+        control.Show();
+        control.Modulate = new Color(1, 1, 1, 0);
+
         tween.InterpolateProperty(control, "modulate", new Color(1, 1, 1, 0), new Color(1, 1, 1, 1),
             Constants.TOOLTIP_FADE_SPEED, Tween.TransitionType.Sine, Tween.EaseType.In);
 
