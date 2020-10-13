@@ -51,12 +51,15 @@ public class ToolTipManager : CanvasLayer
     {
         holder = GetNode<Control>("Holder");
 
+        // Make sure the tooltip parent control is visible
+        holder.Show();
+
         FetchToolTips();
     }
 
     public override void _Process(float delta)
     {
-        if (MainToolTip == null || !Display)
+        if (MainToolTip == null)
             return;
 
         // Wait for duration of the delay and then show the tooltip
@@ -67,8 +70,6 @@ public class ToolTipManager : CanvasLayer
             if (displayTimer < 0)
             {
                 lastMousePosition = GetViewport().GetMousePosition();
-
-                holder.Show();
                 MainToolTip.OnDisplay();
             }
         }
@@ -172,32 +173,23 @@ public class ToolTipManager : CanvasLayer
 
     private void UpdateToolTipVisibility()
     {
-        if (MainToolTip == null)
-            return;
-
         // TODO: Fix the current tooltip changing while still fading out
         // when quickly mousing over multiple closely positioned elements
         // (Happens when a single tooltip is registered to multiple Controls)
 
+        // Make sure to hide any other tooltips that are still visible
+        HideAllToolTips();
+
         if (Display)
         {
+            // Set timer
             displayTimer = MainToolTip.DisplayDelay;
-        }
-        else
-        {
-            if (!MainToolTip.ToolTipVisible)
-                return;
-
-            holder.Hide();
-            MainToolTip.OnHide();
         }
     }
 
     private void HideAllToolTips()
     {
-        holder.Hide();
-
         foreach (var group in tooltips.Keys)
-            tooltips[group].ForEach(tooltip => tooltip.ToolTipVisible = false);
+            tooltips[group].ForEach(tooltip => tooltip.OnHide());
     }
 }
