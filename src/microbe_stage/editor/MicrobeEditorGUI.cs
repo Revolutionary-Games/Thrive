@@ -887,7 +887,8 @@ public class MicrobeEditorGUI : Node
             return;
         }
 
-        if (editor.GetIslandHexes().Any())
+        // Can't exit the editor with disconnected organelles
+        if (editor.GetIslandHexes().Count > 0)
         {
             islandPopup.PopupCenteredMinsize();
             return;

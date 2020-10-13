@@ -115,18 +115,7 @@ public class MicrobeEditor : Node, ILoadableGameState
     /// <summary>
     ///   The hexes that have been changed by a hovering organelle and need to be reset to old material.
     /// </summary>
-    private List<MeshInstance> hexesToResetToOldMaterial;
-
-    /// <summary>
-    ///   The hexes that have been changed by a hovering organelle and need to be reset to valid material.
-    /// </summary>
-    private List<MeshInstance> hexesToResetToValidMaterial;
-
-    /// <summary>
-    ///   The next render cycle, these hexes need to have the islandMaterial applied to them.
-    ///   A new entry is added when the islands were recalculated or when an island was hovered over.
-    /// </summary>
-    private List<MeshInstance> hexesToResetToIslandMaterial;
+    private Dictionary<MeshInstance, Material> hoverOverriddenMaterials;
 
     /// <summary>
     ///   This is the organelle models for editedMicrobeOrganelles
@@ -980,14 +969,16 @@ public class MicrobeEditor : Node, ILoadableGameState
         // The hex to start the recursion with
         var initHex = organelles[0].Position;
 
-        var visitedHexes = new List<Hex> { initHex };
+        // These are the hexes have neighbours and aren't islands
+        var hexesWithNeighbours = new List<Hex> { initHex };
 
+        // These are all of the existing hexes, that if there are no islands will all be visited
         var shouldBeVisited = organelles.Select(p => p.Position).ToList();
 
-        CheckmarkNeighbors(visitedHexes, initHex);
+        CheckmarkNeighbors(hexesWithNeighbours, initHex);
 
         // Return the difference of the lists (hexes that were not visited)
-        return shouldBeVisited.Except(visitedHexes).ToList();
+        return shouldBeVisited.Except(hexesWithNeighbours).ToList();
     }
 
     /// <summary>
@@ -999,9 +990,7 @@ public class MicrobeEditor : Node, ILoadableGameState
         placedHexes = new List<MeshInstance>();
         placedModels = new List<SceneDisplayer>();
 
-        hexesToResetToOldMaterial = new List<MeshInstance>();
-        hexesToResetToValidMaterial = new List<MeshInstance>();
-        hexesToResetToIslandMaterial = new List<MeshInstance>();
+        hoverOverriddenMaterials = new Dictionary<MeshInstance, Material>();
 
         if (!IsLoadedFromSave)
         {
@@ -1195,26 +1184,12 @@ public class MicrobeEditor : Node, ILoadableGameState
         // and materials all the time
 
         // Reset the material of hexes that have been hovered over
-        foreach (var hex in hexesToResetToOldMaterial)
+        foreach (var entry in hoverOverriddenMaterials)
         {
-            hex.MaterialOverride = oldMaterial;
+            entry.Key.MaterialOverride = entry.Value;
         }
 
-        hexesToResetToOldMaterial.Clear();
-
-        foreach (var hex in hexesToResetToValidMaterial)
-        {
-            hex.MaterialOverride = validMaterial;
-        }
-
-        hexesToResetToValidMaterial.Clear();
-
-        foreach (var hex in hexesToResetToIslandMaterial)
-        {
-            hex.MaterialOverride = islandMaterial;
-        }
-
-        hexesToResetToIslandMaterial.Clear();
+        hoverOverriddenMaterials.Clear();
 
         usedHoverHex = 0;
         usedHoverOrganelle = 0;
@@ -1312,21 +1287,10 @@ public class MicrobeEditor : Node, ILoadableGameState
 
                     if (!canPlace)
                     {
+                        // Store the material to put it back later
+                        hoverOverriddenMaterials[placed] = placed.MaterialOverride;
+
                         // Mark as invalid
-
-                        if (placed.MaterialOverride == oldMaterial)
-                        {
-                            hexesToResetToOldMaterial.Add(placed);
-                        }
-                        else if (placed.MaterialOverride == validMaterial)
-                        {
-                            hexesToResetToValidMaterial.Add(placed);
-                        }
-                        else if (placed.MaterialOverride == islandMaterial)
-                        {
-                            hexesToResetToIslandMaterial.Add(placed);
-                        }
-
                         placed.MaterialOverride = invalidMaterial;
 
                         showModel = false;
@@ -1499,27 +1463,29 @@ public class MicrobeEditor : Node, ILoadableGameState
     }
 
     /// <summary>
-    ///   A recursive function that adds my neighbors to the checked list and calls the function for each neighbor.
+    ///   A recursive function that adds the neighbours of current hex that contain organelles to the checked list and
+    ///   recurses to them to find more connected organelles
     /// </summary>
-    /// <param name="checked">The list of visited hexes will be filled up.</param>
-    /// <param name="me">Which neighbors to visit next.</param>
-    private void CheckmarkNeighbors(List<Hex> @checked, Hex me)
+    /// <param name="checked">The list of already visited hexes. Will be filled up with found hexes.</param>
+    /// <param name="currentHex">The hex to visit the neighbours of.</param>
+    private void CheckmarkNeighbors(List<Hex> @checked, Hex currentHex)
     {
         // Get all neighbors not already visited
-        var myNeighbors = GetNeighborHexes(me).Where(p => !@checked.Contains(p)).ToArray();
+        var myNeighbors = GetNeighborHexes(currentHex).Where(p => !@checked.Contains(p)).ToArray();
 
-        // Add the new neighbors to the list
+        // Add the new neighbors to the list to not visit them again
         @checked.AddRange(myNeighbors);
 
+        // Recurse to all neighbours to find more connected hexes
         foreach (var neighbor in myNeighbors)
         {
             CheckmarkNeighbors(@checked, neighbor);
         }
     }
 
-    /// <summary>Gets all neighboring hexes</summary>
-    /// <param name="hex">The hex to get the hexes for</param>
-    /// <returns>Returns a list of neighbors</returns>
+    /// <summary>Gets all neighboring hexes where there is an organelle</summary>
+    /// <param name="hex">The hex to get the neighbours for</param>
+    /// <returns>Returns a list of neighbors that are part of an organelle</returns>
     private IEnumerable<Hex> GetNeighborHexes(Hex hex)
     {
         return Hex.HexNeighbourOffset
@@ -1698,13 +1664,22 @@ public class MicrobeEditor : Node, ILoadableGameState
                 }
 
                 var hexNode = placedHexes[nextFreeHex++];
+
                 if (islands.Contains(organelle.Position))
                 {
                     hexNode.MaterialOverride = islandMaterial;
-                    hexesToResetToIslandMaterial.Add(hexNode);
+                }
+                else if (organelle.PlacedThisSession)
+                {
+                    hexNode.MaterialOverride = validMaterial;
                 }
                 else
-                    hexNode.MaterialOverride = organelle.PlacedThisSession ? validMaterial : oldMaterial;
+                {
+                    hexNode.MaterialOverride = oldMaterial;
+                }
+
+                // As we set the correct material, we don't need to remember to restore it anymore
+                hoverOverriddenMaterials.Remove(hexNode);
 
                 hexNode.Translation = pos;
 
