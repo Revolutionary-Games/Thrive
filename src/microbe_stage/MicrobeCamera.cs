@@ -174,6 +174,7 @@ public class MicrobeCamera : Camera
     public void ApplyPropertiesFromSave(MicrobeCamera camera)
     {
         SaveApplyHelper.CopyJSONSavedPropertiesAndFields(this, camera, new List<string> { "ObjectToFollow" });
+        BackgroundPlane = camera.BackgroundPlane;
     }
 
     private void UpdateCursorWorldPos()
