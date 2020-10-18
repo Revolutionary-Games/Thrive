@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using Godot;
+using Newtonsoft.Json;
 using Array = Godot.Collections.Array;
 
 /// <summary>
@@ -256,9 +257,16 @@ public class MicrobeEditorGUI : Node
     private readonly List<ToolTipCallbackData> tooltipCallbacks = new List<ToolTipCallbackData>();
     private readonly List<ToolTipCallbackData> processesTooltipCallbacks = new List<ToolTipCallbackData>();
 
+    [JsonProperty]
     private EnergyBalanceInfo energyBalanceInfo;
+
+    [JsonProperty]
     private float initialCellSpeed;
+
+    [JsonProperty]
     private int initialCellSize;
+
+    [JsonProperty]
     private float initialCellHp;
 
     private MicrobeEditor editor;
@@ -354,8 +362,12 @@ public class MicrobeEditorGUI : Node
     private TextureButton menuButton;
     private TextureButton helpButton;
 
+    [JsonProperty]
     private EditorTab selectedEditorTab = EditorTab.Report;
+
+    [JsonProperty]
     private SelectionMenuTab selectedSelectionMenuTab = SelectionMenuTab.Structure;
+
     private MicrobeEditor.MicrobeSymmetry symmetry = MicrobeEditor.MicrobeSymmetry.None;
 
     public enum EditorTab

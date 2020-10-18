@@ -19,8 +19,10 @@ public class BaseNodeConverter : BaseThriveConverter
             // Ignore a bunch of editor-only or data that should really be set from the scene this is loaded from
             case "EditorDescription":
             case "_ImportPath":
+            // TODO: this may cause problems if we ever want to allow objects to dynamically change their pause mode
             case "PauseMode":
             case "Owner":
+            // TODO: or process priority
             case "ProcessPriority":
             case "NativeInstance":
             case "DynamicObject":

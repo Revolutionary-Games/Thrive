@@ -5,18 +5,16 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Camera script for the microbe stage and the cell editor
 /// </summary>
-public class MicrobeCamera : Camera
+public class MicrobeCamera : Camera, IGodotEarlyNodeResolve
 {
     /// <summary>
     ///   Object the camera positions itself over
     /// </summary>
-    [JsonProperty]
     public Spatial ObjectToFollow;
 
     /// <summary>
     ///   Background plane that is moved farther away from the camera when zooming out
     /// </summary>
-    [JsonIgnore]
     public Spatial BackgroundPlane;
 
     [JsonIgnore]
@@ -62,7 +60,7 @@ public class MicrobeCamera : Camera
 
     private ShaderMaterial materialToUpdate;
 
-    private Vector3 cursorWorldPos;
+    private Vector3 cursorWorldPos = new Vector3(0, 0, 0);
     private bool cursorDirty = true;
 
     /// <summary>
@@ -80,6 +78,8 @@ public class MicrobeCamera : Camera
         private set => cursorWorldPos = value;
     }
 
+    public bool NodeReferencesResolved { get; private set; }
+
     public void ResetHeight()
     {
         CameraHeight = DefaultCameraHeight;
@@ -96,11 +96,20 @@ public class MicrobeCamera : Camera
 
         materialToUpdate = (ShaderMaterial)material;
 
-        CursorWorldPos = new Vector3(0, 0, 0);
+        ResolveNodeReferences();
+    }
+
+    public void ResolveNodeReferences()
+    {
+        if (NodeReferencesResolved)
+            return;
+
+        NodeReferencesResolved = true;
 
         if (HasNode("BackgroundPlane"))
             BackgroundPlane = GetNode<Spatial>("BackgroundPlane");
 
+        // This is done here to not have this overwrite on save load
         ResetHeight();
     }
 

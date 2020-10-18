@@ -166,6 +166,7 @@
     <Compile Include="src\microbe_stage\MicrobeAI.cs" />
     <Compile Include="src\microbe_stage\MicrobeAICommonData.cs" />
     <Compile Include="src\saving\FileHelpers.cs" />
+    <Compile Include="src\saving\IGodotEarlyNodeResolve.cs" />
     <Compile Include="src\saving\ILoadableGameState.cs" />
     <Compile Include="src\saving\InProgressLoad.cs" />
     <Compile Include="src\saving\InProgressSave.cs" />
@@ -184,6 +185,7 @@
     <Compile Include="src\saving\SaveHelper.cs" />
     <Compile Include="src\saving\SaveManagerGUI.cs" />
     <Compile Include="src\saving\SaveStatusOverlay.cs" />
+    <Compile Include="src\saving\serializers\AssignOnlyChildItemsOnDeserializeAttribute.cs" />
     <Compile Include="src\saving\serializers\Base64BinaryConverter.cs" />
     <Compile Include="src\saving\serializers\BaseNodeConverter.cs" />
     <Compile Include="src\saving\serializers\CompoundBagConverter.cs" />
@@ -198,6 +200,7 @@
     <Compile Include="src\saving\serializers\ReferenceResolver.cs" />
     <Compile Include="src\saving\serializers\RegistryTypeConverter.cs" />
     <Compile Include="src\saving\serializers\RegistryTypeStringConverter.cs" />
+    <Compile Include="src\saving\serializers\SceneLoadedClassAttribute.cs" />
     <Compile Include="src\saving\serializers\SerializationBinder.cs" />
     <Compile Include="src\saving\serializers\SingleTypeConverter.cs" />
     <Compile Include="src\saving\serializers\SystemVector4ArrayConverter.cs" />

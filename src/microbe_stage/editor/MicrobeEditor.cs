@@ -7,7 +7,8 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Main class of the microbe editor
 /// </summary>
-public class MicrobeEditor : Node, ILoadableGameState
+[SceneLoadedClass("res://src/microbe_stage/editor/MicrobeEditor.tscn")]
+public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
 {
     [Export]
     public NodePath PauseMenuPath;
@@ -15,18 +16,26 @@ public class MicrobeEditor : Node, ILoadableGameState
     /// <summary>
     ///   The new to set on the species after exiting
     /// </summary>
+    [JsonProperty]
     public string NewName;
 
     /// <summary>
     ///   Cost of the organelle that is about to be placed
     /// </summary>
+    [JsonProperty]
     public float CurrentOrganelleCost;
 
     private MicrobeSymmetry symmetry = MicrobeSymmetry.None;
 
+    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
     private MicrobeCamera camera;
-    private Node world;
+
+    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
     private MicrobeEditorGUI gui;
+
+    private Node world;
     private MicrobeEditorTutorialGUI tutorialGUI;
     private PauseMenu pauseMenu;
 
@@ -177,6 +186,8 @@ public class MicrobeEditor : Node, ILoadableGameState
         SixWaySymmetry,
     }
 
+    public bool NodeReferencesResolved { get; private set; }
+
     [JsonIgnore]
     public MicrobeCamera Camera => camera;
 
@@ -311,17 +322,14 @@ public class MicrobeEditor : Node, ILoadableGameState
     [JsonIgnore]
     public Patch CurrentPatch => targetPatch ?? playerPatchOnEntry;
 
+    [JsonIgnore]
     public Node GameStateRoot => this;
 
     public bool IsLoadedFromSave { get; set; } = false;
 
     public override void _Ready()
     {
-        camera = GetNode<MicrobeCamera>("PrimaryCamera");
-        world = GetNode("World");
-        gui = GetNode<MicrobeEditorGUI>("MicrobeEditorGUI");
-        tutorialGUI = GetNode<MicrobeEditorTutorialGUI>("TutorialGUI");
-        pauseMenu = GetNode<PauseMenu>(PauseMenuPath);
+        ResolveNodeReferences();
 
         invalidMaterial = GD.Load<Material>(
             "res://src/microbe_stage/editor/InvalidHex.material");
@@ -340,6 +348,20 @@ public class MicrobeEditor : Node, ILoadableGameState
         transitionFinished = false;
 
         OnEnterEditor();
+    }
+
+    public void ResolveNodeReferences()
+    {
+        if (NodeReferencesResolved)
+            return;
+
+        NodeReferencesResolved = true;
+
+        camera = GetNode<MicrobeCamera>("PrimaryCamera");
+        world = GetNode("World");
+        gui = GetNode<MicrobeEditorGUI>("MicrobeEditorGUI");
+        tutorialGUI = GetNode<MicrobeEditorTutorialGUI>("TutorialGUI");
+        pauseMenu = GetNode<PauseMenu>(PauseMenuPath);
     }
 
     public override void _ExitTree()
