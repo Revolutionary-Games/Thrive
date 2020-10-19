@@ -24,6 +24,17 @@ THRIVE_VERSION_FILE = 'Properties/AssemblyInfo.cs'
 README_FILE = 'builds/README.txt'
 REVISION_FILE = 'builds/revision.txt'
 
+# Files that will never be considered for dehydrating
+DEHYDRATE_IGNORE_FILES = [
+  'source.7z',
+  'revision.txt',
+  'ThriveAssetsLICENSE.txt',
+  'GodotLicense.txt',
+  'gpl.txt',
+  'LICENSE.txt',
+  'README.txt'
+].freeze
+
 LICENSE_FILES = [
   ['LICENSE.txt', 'LICENSE.txt'],
   ['gpl.txt', 'gpl.txt'],
@@ -38,6 +49,9 @@ SOURCE_ITEMS = [
   'Thrive.csproj', 'Thrive.sln', 'Thrive.sln.DotSettings', 'doc', 'docker', 'Properties',
   'shaders', 'simulation_parameters', 'src', 'test', 'README.md'
 ].freeze
+
+ASSEMBLY_VERSION = /AssemblyVersion\(\"([\d\.]+)\"\)/.freeze
+INFORMATIONAL_VERSION = /AssemblyInformationalVersion\(\"([^\"]*)\"\)/.freeze
 
 SET_EXECUTE_FOR_MAC = false
 
@@ -75,6 +89,8 @@ end.parse!
 
 onError "Unhandled parameters: #{ARGV}" unless ARGV.empty?
 
+VALID_TARGETS = @options[:dehydrate] ? DEVBUILD_TARGETS : ALL_TARGETS
+
 if @options[:dehydrate]
   puts 'Making dehydrated devbuilds'
 
@@ -104,11 +120,6 @@ else
   puts "Release doesn't include source code"
   @extra_included_files = LICENSE_FILES
 end
-
-VALID_TARGETS = @options[:dehydrate] ? DEVBUILD_TARGETS : ALL_TARGETS
-
-ASSEMBLY_VERSION = /AssemblyVersion\(\"([\d\.]+)\"\)/.freeze
-INFORMATIONAL_VERSION = /AssemblyInformationalVersion\(\"([^\"]*)\"\)/.freeze
 
 # Messages to print again after the end
 @reprint_messages = []
@@ -280,6 +291,9 @@ def devbuild_package(target, target_name, target_folder, target_file)
   Dir.glob(File.join(target_folder, '**/*'), File::FNM_DOTMATCH) do |file|
     raise "found file doesn't exist" unless File.exist? file
     next if File.directory? file
+
+    # Always ignore some files despite their sizes
+    next if DEHYDRATE_IGNORE_FILES.include? file.sub(target_folder + '/', '')
 
     check_dehydrate_file file, normal_cache
   end
