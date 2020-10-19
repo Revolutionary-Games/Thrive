@@ -912,6 +912,7 @@ PauseMenuPath = NodePath("PauseMenu")
 DefaultCameraHeight = 10.0
 MaxCameraHeight = 40.0
 DisableBackgroundParticles = true
+InterpolateSpeed = 1.0
 
 [node name="CameraLookAt" type="Spatial" parent="."]
 __meta__ = {
@@ -3766,10 +3767,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 40 )
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_left = 204.0
-margin_top = 226.0
-margin_right = 506.0
-margin_bottom = 692.0
+margin_left = 208.0
+margin_top = 230.0
+margin_right = 510.0
+margin_bottom = 696.0
 theme = SubResource( 42 )
 edit_alpha = false
 
