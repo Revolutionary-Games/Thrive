@@ -32,13 +32,21 @@ LICENSE_FILES = [
   ['doc/GodotLicense.txt', 'GodotLicense.txt']
 ].freeze
 
+SOURCE_ITEMS = [
+  'default_bus_layout.tres', 'default_env.tres', 'Directory.Build.props', 'export_presets.cfg',
+  'GlobalSuppressions.cs', 'LICENSE.txt', 'project.godot', 'stylecop.json', 'StyleCop.ruleset',
+  'Thrive.csproj', 'Thrive.sln', 'Thrive.sln.DotSettings', 'doc', 'docker', 'Properties',
+  'shaders', 'simulation_parameters', 'src', 'test', 'README.md'
+].freeze
+
 SET_EXECUTE_FOR_MAC = false
 
 @options = {
   custom_targets: false,
   targets: ALL_TARGETS,
   retries: 2,
-  zip: true
+  zip: true,
+  include_source: true
 }
 
 OptionParser.new do |opts|
@@ -60,6 +68,9 @@ OptionParser.new do |opts|
     @options[:dehydrate] = b
     @options[:zip] = !b
   end
+  opts.on('-s', '--[no-]source', 'Include or exclude source code') do |b|
+    @options[:include_source] = b
+  end
 end.parse!
 
 onError "Unhandled parameters: #{ARGV}" unless ARGV.empty?
@@ -68,6 +79,30 @@ if @options[:dehydrate]
   puts 'Making dehydrated devbuilds'
 
   @options[:targets] = DEVBUILD_TARGETS unless @options[:custom_targets]
+end
+
+if @options[:include_source]
+
+  puts 'Release includes source code'
+
+  zip_target = 'builds/source.7z'
+
+  @extra_included_files = LICENSE_FILES + [
+    [zip_target, 'source.7z']
+  ]
+
+  puts 'Collecting source code...'
+
+  File.unlink zip_target if File.exist? zip_target
+
+  puts 'Zipping source code...'
+
+  runOpen3Checked(p7zip, 'a', '-mx=9', '-ms=on', zip_target, *SOURCE_ITEMS)
+
+  success 'Source code prepared for release'
+else
+  puts "Release doesn't include source code"
+  @extra_included_files = LICENSE_FILES
 end
 
 VALID_TARGETS = @options[:dehydrate] ? DEVBUILD_TARGETS : ALL_TARGETS
@@ -144,9 +179,9 @@ def create_readme
   end
 end
 
-# Copies license information to a target folder
+# Copies license information to a target folder (and specified extra files)
 def prepare_licenses(target_folder)
-  LICENSE_FILES.each do |l|
+  @extra_included_files.each do |l|
     FileUtils.cp l[0], File.join(target_folder, l[1])
   end
 end
@@ -313,7 +348,8 @@ def package(target, target_name, target_folder, target_file)
     puts 'Including licenses in mac .zip'
 
     Dir.chdir(target_folder) do
-      runOpen3Checked(*['zip', '-u', target_file, LICENSE_FILES.map { |i| i[1] }].flatten,
+      runOpen3Checked(*['zip', '-u', target_file,
+                        @extra_included_files.map { |i| i[1] }].flatten,
                       'README.txt', 'revision.txt')
     end
 
