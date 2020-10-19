@@ -88,12 +88,11 @@ public class PlayerMicrobeEditorInput : InputEnvironment<MicrobeEditor>
 
             // Apply camera movement
             if (movement != Vector3.Zero) // Check to save performance
-                Environment.MoveObjectToFollow(movement.Normalized() * delta);
+                Environment.MoveObjectToFollow(movement.Normalized() * delta * Environment.Camera.CameraHeight);
         }
         else
         {
             // Pan the camera with the mouse
-            // ReSharper disable once PossibleInvalidOperationException
             var mousePanDirection = mousePanningStart.Value - Environment.Camera.CursorWorldPos;
             Environment.MoveObjectToFollow(mousePanDirection);
         }
@@ -101,8 +100,10 @@ public class PlayerMicrobeEditorInput : InputEnvironment<MicrobeEditor>
         if (startMousePan.ReadTrigger() && mousePanningStart == null)
         {
             mousePanningStart = Environment.Camera.CursorWorldPos;
+            GD.Print("set mousePanningStart");
         }
-        else
+
+        if (!startMousePan.Pressed)
         {
             mousePanningStart = null;
         }
