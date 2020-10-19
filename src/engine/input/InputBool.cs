@@ -1,7 +1,7 @@
 using Godot;
 
 /// <summary>
-///   Helper class for using an input to hold a boolean while the input is pressed
+///   Input that just tracks if key is down or not
 /// </summary>
 public class InputBool : IInputReceiver
 {

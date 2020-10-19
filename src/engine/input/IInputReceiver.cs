@@ -9,7 +9,7 @@ public interface IInputReceiver
     ///   Checks the input inputEvent if it is for us and acts on it
     /// </summary>
     /// <param name="inputEvent">Event to check</param>
-    /// <returns>True if this became pressed</returns>
+    /// <returns>True if the event was consumed</returns>
     bool CheckInput(InputEvent inputEvent);
 
     /// <summary>
