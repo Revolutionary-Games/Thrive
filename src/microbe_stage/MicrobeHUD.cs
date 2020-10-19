@@ -625,7 +625,7 @@ public class MicrobeHUD : Node
             // Create for each compound the information in GUI
             foreach (var entry in compounds)
             {
-                if (Math.Round(entry.Value) > 0)
+                if (entry.Value >= 0.1)
                 {
                     var hBox = new HBoxContainer();
                     var compoundName = new Label();
