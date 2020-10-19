@@ -345,6 +345,7 @@ public class MicrobeEditor : Node, ILoadableGameState
 
         hexScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/EditorHex.tscn");
         modelScene = GD.Load<PackedScene>("res://src/general/SceneDisplayer.tscn");
+
         camera.ObjectToFollow = GetNode<Spatial>("CameraLookAt");
 
         tutorialGUI.Visible = true;
@@ -553,7 +554,7 @@ public class MicrobeEditor : Node, ILoadableGameState
 
     public override void _UnhandledInput(InputEvent @event)
     {
-        HandleMovement();
+        HandleMovementKeys();
 
         if (@event.IsActionPressed("e_reset_cam"))
         {
@@ -623,6 +624,11 @@ public class MicrobeEditor : Node, ILoadableGameState
 
             OnEditorReady();
         }
+
+        // Pan the camera with the mouse
+        // ReSharper disable once PossibleInvalidOperationException
+        var direction = mousePanningStart.Value - camera.CursorWorldPos;
+        camera.ObjectToFollow.Translation += direction;
 
         UpdateEditor(delta);
     }
@@ -1267,21 +1273,22 @@ public class MicrobeEditor : Node, ILoadableGameState
             CurrentOrganelleCost = 0;
         }
 
-        var vector = Vector3.Zero;
+        var cameraMovement = Vector3.Zero;
         if (cameraMovementLeft)
-            vector += Vector3.Left;
+            cameraMovement += Vector3.Left;
         if (cameraMovementRight)
-            vector += Vector3.Right;
+            cameraMovement += Vector3.Right;
         if (cameraMovementUp)
-            vector += Vector3.Forward;
+            cameraMovement += Vector3.Forward;
         if (cameraMovementDown)
-            vector += Vector3.Back;
+            cameraMovement += Vector3.Back;
 
         // Apply camera movement
-        camera.ObjectToFollow.Translation += vector.Normalized() * camera.CameraHeight * delta;
+        if (cameraMovement != Vector3.Zero) // Check to save performance
+            camera.ObjectToFollow.Translation += cameraMovement.Normalized() * camera.CameraHeight * delta;
     }
 
-    private void HandleMovement()
+    private void HandleMovementKeys()
     {
         if (mousePanningStart == null)
         {
@@ -1295,9 +1302,7 @@ public class MicrobeEditor : Node, ILoadableGameState
         }
         else
         {
-            // ReSharper disable once PossibleInvalidOperationException
-            var direction = mousePanningStart.Value - camera.CursorWorldPos;
-            camera.ObjectToFollow.Translation += direction;
+            cameraMovementLeft = cameraMovementRight = cameraMovementDown = cameraMovementUp = false;
         }
     }
 
