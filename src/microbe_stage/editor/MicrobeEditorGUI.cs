@@ -213,6 +213,9 @@ public class MicrobeEditorGUI : Node
     public NodePath NegativeAtpPopupPath;
 
     [Export]
+    public NodePath IslandErrorPath;
+
+    [Export]
     public NodePath SymmetryIconPath;
 
     [Export]
@@ -346,6 +349,7 @@ public class MicrobeEditorGUI : Node
     private TextureRect sizeIndicator;
 
     private ConfirmationDialog negativeAtpPopup;
+    private AcceptDialog islandPopup;
 
     private TextureButton menuButton;
     private TextureButton helpButton;
@@ -450,6 +454,7 @@ public class MicrobeEditorGUI : Node
         sizeIndicator = GetNode<TextureRect>(SizeIndicatorPath);
 
         negativeAtpPopup = GetNode<ConfirmationDialog>(NegativeAtpPopupPath);
+        islandPopup = GetNode<AcceptDialog>(IslandErrorPath);
 
         menu = GetNode<PauseMenu>(MenuPath);
 
@@ -879,6 +884,13 @@ public class MicrobeEditorGUI : Node
         if (energyBalanceInfo.TotalProduction < energyBalanceInfo.TotalConsumptionStationary)
         {
             negativeAtpPopup.PopupCenteredMinsize();
+            return;
+        }
+
+        // Can't exit the editor with disconnected organelles
+        if (editor.GetIslandHexes().Count > 0)
+        {
+            islandPopup.PopupCenteredMinsize();
             return;
         }
 
