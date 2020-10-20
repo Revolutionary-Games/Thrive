@@ -625,25 +625,27 @@ public class MicrobeHUD : Node
             // Create for each compound the information in GUI
             foreach (var entry in compounds)
             {
-                if (entry.Value >= 0.1)
+                if (entry.Value < 0.1)
                 {
-                    var hBox = new HBoxContainer();
-                    var compoundName = new Label();
-                    var compoundValue = new Label();
-
-                    var readableName = entry.Key.Name;
-                    var compoundIcon = GUICommon.Instance.CreateCompoundIcon(readableName, 20, 20);
-
-                    compoundName.SizeFlagsHorizontal = (int)Control.SizeFlags.ExpandFill;
-                    compoundName.Text = readableName;
-
-                    compoundValue.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", entry.Value);
-
-                    hBox.AddChild(compoundIcon);
-                    hBox.AddChild(compoundName);
-                    hBox.AddChild(compoundValue);
-                    hoveredCompoundsContainer.AddChild(hBox);
+                    continue;
                 }
+                
+                var hBox = new HBoxContainer();
+                var compoundName = new Label();
+                var compoundValue = new Label();
+
+                var readableName = entry.Key.Name;
+                var compoundIcon = GUICommon.Instance.CreateCompoundIcon(readableName, 20, 20);
+
+                compoundName.SizeFlagsHorizontal = (int)Control.SizeFlags.ExpandFill;
+                compoundName.Text = readableName;
+
+                compoundValue.Text = string.Format(CultureInfo.CurrentCulture, "{0:F1}", entry.Value);
+
+                hBox.AddChild(compoundIcon);
+                hBox.AddChild(compoundName);
+                hBox.AddChild(compoundValue);
+                hoveredCompoundsContainer.AddChild(hBox);
             }
         }
 
