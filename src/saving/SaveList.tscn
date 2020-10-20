@@ -49,9 +49,7 @@ align = 1
 margin_right = 1270.0
 
 [node name="DeleteSaveConfirmDialog" type="ConfirmationDialog" parent="MarginContainer/VBoxContainer"]
-margin_top = 4.0
-margin_right = 1356.0
-margin_bottom = 80.0
+margin_top = 15.0
 size_flags_horizontal = 5
 size_flags_vertical = 5
 popup_exclusive = true
@@ -59,9 +57,7 @@ window_title = "Delete this Save?"
 dialog_text = "Text not set..."
 
 [node name="LoadNewerSaveDialog" type="ConfirmationDialog" parent="MarginContainer/VBoxContainer"]
-margin_top = 4.0
-margin_right = 292.0
-margin_bottom = 80.0
+margin_top = 15.0
 size_flags_horizontal = 5
 size_flags_vertical = 5
 popup_exclusive = true
@@ -70,9 +66,7 @@ dialog_text = "This save is from a newer version of Thrive and very likely incom
 Do you want to try loading the save anyway?"
 
 [node name="LoadOlderSaveDialog" type="ConfirmationDialog" parent="MarginContainer/VBoxContainer"]
-margin_top = 4.0
-margin_right = 292.0
-margin_bottom = 80.0
+margin_top = 15.0
 size_flags_horizontal = 5
 size_flags_vertical = 5
 popup_exclusive = true
@@ -83,15 +77,13 @@ You may report any issues you encounter, but they aren't the highest priority ri
 Do you want to try loading the save anyway?"
 
 [node name="LoadInvalidSaveDialog" type="ConfirmationDialog" parent="MarginContainer/VBoxContainer"]
-margin_top = 4.0
-margin_right = 292.0
-margin_bottom = 80.0
+margin_top = 15.0
 size_flags_horizontal = 5
 size_flags_vertical = 5
 popup_exclusive = true
 window_title = "Load invalid save?"
-dialog_text = "Thrive could not load this file.
-It seems like the save is broken.
+dialog_text = "Save information could not be loaded from this file.
+This save is most likely corrupt or newer format not understood by this version of Thrive.
 Do you want to try loading the save anyway?"
 [connection signal="confirmed" from="MarginContainer/VBoxContainer/DeleteSaveConfirmDialog" to="." method="OnConfirmDelete"]
 [connection signal="confirmed" from="MarginContainer/VBoxContainer/LoadNewerSaveDialog" to="." method="OnConfirmSaveLoad"]

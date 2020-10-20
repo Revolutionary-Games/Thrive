@@ -23,7 +23,7 @@ public class SaveInformation
         QuickSave,
 
         /// <summary>
-        ///   A broken save that cannot be loaded
+        ///   A broken save that (probably) cannot be loaded
         /// </summary>
         Invalid,
     }
@@ -54,9 +54,7 @@ public class SaveInformation
     /// <summary>
     ///   Creates save information for an invalid save
     /// </summary>
-    /// <returns>
-    ///  A save information for an invalid save
-    /// </returns>
+    /// <returns>A save information for an invalid save</returns>
     public static SaveInformation CreateInvalid()
     {
         return new SaveInformation

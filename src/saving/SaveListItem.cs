@@ -160,14 +160,28 @@ public class SaveListItem : PanelContainer
         saveInfoLoadTask.Dispose();
         saveInfoLoadTask = null;
 
-        // Screenshot
-        var texture = new ImageTexture();
-        texture.CreateFromImage(save.Screenshot);
+        isBroken = save.Info.Type == SaveInformation.SaveType.Invalid;
 
-        screenshot.Texture = texture;
+        // Screenshot (if present, saves can have a missing screenshot)
+        if (save.Screenshot != null)
+        {
+            var texture = new ImageTexture();
+            texture.CreateFromImage(save.Screenshot);
+
+            screenshot.Texture = texture;
+        }
 
         // General info
-        versionDifference = VersionUtils.Compare(save.Info.ThriveVersion, Constants.Version);
+
+        // If save is valid compare version numbers
+        if (!isBroken)
+        {
+            versionDifference = VersionUtils.Compare(save.Info.ThriveVersion, Constants.Version);
+        }
+        else
+        {
+            versionDifference = 0;
+        }
 
         version.Text = save.Info.ThriveVersion;
         versionWarning.Visible = versionDifference != 0;
@@ -176,8 +190,6 @@ public class SaveListItem : PanelContainer
         createdBy.Text = save.Info.Creator;
         createdOnPlatform.Text = save.Info.Platform;
         description.Text = save.Info.Description;
-
-        isBroken = save.Info.Type == SaveInformation.SaveType.Invalid;
 
         loadingData = false;
     }
@@ -231,13 +243,16 @@ public class SaveListItem : PanelContainer
         {
             var save = Save.LoadInfoAndScreenshotFromSave(saveName);
 
-            // Rescale the screenshot to save memory etc.
-            float aspectRatio = save.Screenshot.GetWidth() / (float)save.Screenshot.GetHeight();
-
-            if (save.Screenshot.GetHeight() > Constants.SAVE_LIST_SCREENSHOT_HEIGHT)
+            if (save.Screenshot != null)
             {
-                save.Screenshot.Resize((int)(Constants.SAVE_LIST_SCREENSHOT_HEIGHT * aspectRatio),
-                    Constants.SAVE_LIST_SCREENSHOT_HEIGHT);
+                // Rescale the screenshot to save memory etc.
+                float aspectRatio = save.Screenshot.GetWidth() / (float)save.Screenshot.GetHeight();
+
+                if (save.Screenshot.GetHeight() > Constants.SAVE_LIST_SCREENSHOT_HEIGHT)
+                {
+                    save.Screenshot.Resize((int)(Constants.SAVE_LIST_SCREENSHOT_HEIGHT * aspectRatio),
+                        Constants.SAVE_LIST_SCREENSHOT_HEIGHT);
+                }
             }
 
             return save;
