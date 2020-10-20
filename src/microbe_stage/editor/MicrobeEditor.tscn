@@ -995,6 +995,7 @@ HpIndicatorPath = NodePath("CellEditor/Statistics/VBoxContainer/Body/VBoxContain
 SizeIndicatorPath = NodePath("CellEditor/Statistics/VBoxContainer/Body/VBoxContainer/Size/Indicator")
 RigiditySliderPath = NodePath("CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/RigiditySlider")
 NegativeAtpPopupPath = NodePath("CellEditor/NegativeAtpWarning")
+IslandErrorPath = NodePath("CellEditor/IslandError")
 SymmetryIconPath = NodePath("CellEditor/BottomLeft/HBoxContainer/SymmetryButton/SymmetryIcon")
 SymmetryIconDefault = ExtResource( 34 )
 SymmetryIcon2x = ExtResource( 39 )
@@ -3761,10 +3762,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 40 )
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_left = 180.0
-margin_top = 202.0
-margin_right = 482.0
-margin_bottom = 668.0
+margin_left = 200.0
+margin_top = 222.0
+margin_right = 502.0
+margin_bottom = 688.0
 theme = SubResource( 42 )
 edit_alpha = false
 
@@ -3937,6 +3938,13 @@ Do you wish to continue?"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="IslandError" type="AcceptDialog" parent="MicrobeEditorGUI/CellEditor"]
+margin_right = 99.0
+margin_bottom = 76.0
+window_title = "Disconnected Organelles"
+dialog_text = "There are placed organelles, which are not connected to the rest.
+Please connect all placed organelles with each other or undo your changes."
 
 [node name="Report" type="Control" parent="MicrobeEditorGUI"]
 anchor_right = 1.0
