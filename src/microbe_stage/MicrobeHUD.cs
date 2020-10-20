@@ -629,7 +629,7 @@ public class MicrobeHUD : Node
                 {
                     continue;
                 }
-                
+
                 var hBox = new HBoxContainer();
                 var compoundName = new Label();
                 var compoundValue = new Label();
