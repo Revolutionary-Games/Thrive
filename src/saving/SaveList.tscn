@@ -15,12 +15,14 @@ __meta__ = {
 }
 LoadingItemPath = NodePath("MarginContainer/VBoxContainer/LoadingLabel")
 SavesListPath = NodePath("MarginContainer/VBoxContainer/ItemList")
-DeleteConfirmDialogPath = NodePath("MarginContainer/VBoxContainer/DeleteConfirmDialog")
-LoadConfirmDialogPath = NodePath("MarginContainer/VBoxContainer/LoadConfirmDialog")
+DeleteConfirmDialogPath = NodePath("MarginContainer/VBoxContainer/DeleteSaveConfirmDialog")
+LoadNewerSaveDialogPath = NodePath("MarginContainer/VBoxContainer/LoadNewerSaveDialog")
+LoadOlderSaveDialogPath = NodePath("MarginContainer/VBoxContainer/LoadOlderSaveDialog")
+LoadInvalidSaveDialogPath = NodePath("MarginContainer/VBoxContainer/LoadInvalidSaveDialog")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-margin_right = 1366.0
-margin_bottom = 768.0
+margin_right = 1280.0
+margin_bottom = 720.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 5
@@ -31,8 +33,8 @@ custom_constants/margin_bottom = 5
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 1361.0
-margin_bottom = 763.0
+margin_right = 1275.0
+margin_bottom = 715.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -44,26 +46,54 @@ text = "Loading..."
 align = 1
 
 [node name="ItemList" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_right = 1356.0
+margin_right = 1270.0
 
-[node name="DeleteConfirmDialog" type="ConfirmationDialog" parent="MarginContainer/VBoxContainer"]
+[node name="DeleteSaveConfirmDialog" type="ConfirmationDialog" parent="MarginContainer/VBoxContainer"]
 margin_top = 4.0
-margin_right = 1356.0
+margin_right = 218.0
 margin_bottom = 80.0
-size_flags_horizontal = 5
+size_flags_horizontal = 0
 size_flags_vertical = 5
 popup_exclusive = true
 window_title = "Delete this Save?"
 dialog_text = "Text not set..."
 
-[node name="LoadConfirmDialog" type="ConfirmationDialog" parent="MarginContainer/VBoxContainer"]
-margin_top = 4.0
-margin_right = 292.0
-margin_bottom = 80.0
-size_flags_horizontal = 5
+[node name="LoadNewerSaveDialog" type="ConfirmationDialog" parent="MarginContainer/VBoxContainer"]
+margin_top = 84.0
+margin_right = 715.0
+margin_bottom = 185.0
+size_flags_horizontal = 0
 size_flags_vertical = 5
 popup_exclusive = true
 window_title = "Load incompatible save?"
-dialog_text = "Text not set..."
-[connection signal="confirmed" from="MarginContainer/VBoxContainer/DeleteConfirmDialog" to="." method="OnConfirmDelete"]
-[connection signal="confirmed" from="MarginContainer/VBoxContainer/LoadConfirmDialog" to="." method="OnConfirmSaveLoad"]
+dialog_text = "This save is from a newer version of Thrive and very likely incompatible.
+Do you want to try loading the save anyway?"
+
+[node name="LoadOlderSaveDialog" type="ConfirmationDialog" parent="MarginContainer/VBoxContainer"]
+margin_top = 189.0
+margin_right = 885.0
+margin_bottom = 340.0
+size_flags_horizontal = 0
+size_flags_vertical = 5
+popup_exclusive = true
+window_title = "Load incompatible save?"
+dialog_text = "This save is from an old version of Thrive and may be incompatible.
+As Thrive is currently early in development save compatibility is not a priority.
+You may report any issues you encounter, but they aren't the highest priority right now.
+Do you want to try loading the save anyway?"
+
+[node name="LoadInvalidSaveDialog" type="ConfirmationDialog" parent="MarginContainer/VBoxContainer"]
+margin_top = 344.0
+margin_right = 885.0
+margin_bottom = 470.0
+size_flags_horizontal = 0
+size_flags_vertical = 5
+popup_exclusive = true
+window_title = "Load invalid save?"
+dialog_text = "Save information could not be loaded from this file.
+This save is most likely corrupt or newer format not understood by this version of Thrive.
+Do you want to try loading the save anyway?"
+[connection signal="confirmed" from="MarginContainer/VBoxContainer/DeleteSaveConfirmDialog" to="." method="OnConfirmDelete"]
+[connection signal="confirmed" from="MarginContainer/VBoxContainer/LoadNewerSaveDialog" to="." method="OnConfirmSaveLoad"]
+[connection signal="confirmed" from="MarginContainer/VBoxContainer/LoadOlderSaveDialog" to="." method="OnConfirmSaveLoad"]
+[connection signal="confirmed" from="MarginContainer/VBoxContainer/LoadInvalidSaveDialog" to="." method="OnConfirmSaveLoad"]
