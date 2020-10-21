@@ -1,4 +1,4 @@
-[gd_scene load_steps=152 format=2]
+[gd_scene load_steps=151 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
@@ -73,7 +73,6 @@
 [ext_resource path="res://assets/textures/gui/bevel/plusButtonHover.png" type="Texture" id=71]
 [ext_resource path="res://assets/sounds/soundeffects/gui/click_place_blocked.ogg" type="AudioStream" id=72]
 [ext_resource path="res://assets/fonts/Jura-Regular.ttf" type="DynamicFontData" id=73]
-[ext_resource path="res://src/microbe_stage/editor/PlayerMicrobeEditorInput.cs" type="Script" id=74]
 [ext_resource path="res://src/gui_common/CollapsibleList.cs" type="Script" id=75]
 [ext_resource path="res://assets/textures/gui/bevel/buttonHover.png" type="Texture" id=76]
 [ext_resource path="res://assets/textures/gui/bevel/buttonActive.png" type="Texture" id=77]
@@ -912,6 +911,7 @@ PauseMenuPath = NodePath("PauseMenu")
 DefaultCameraHeight = 10.0
 MaxCameraHeight = 40.0
 DisableBackgroundParticles = true
+InterpolateSpeed = 1.0
 
 [node name="CameraLookAt" type="Spatial" parent="."]
 __meta__ = {
@@ -925,9 +925,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0 )
 shadow_enabled = true
 omni_range = 100.0
 omni_attenuation = 0.420448
-
-[node name="PlayerMicrobeEditorInput" type="Node" parent="."]
-script = ExtResource( 74 )
 
 [node name="MicrobeEditorGUI" type="Node" parent="."]
 pause_mode = 2
@@ -3766,10 +3763,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 40 )
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_left = 204.0
-margin_top = 226.0
-margin_right = 506.0
-margin_bottom = 692.0
+margin_left = 200.0
+margin_top = 222.0
+margin_right = 502.0
+margin_bottom = 688.0
 theme = SubResource( 42 )
 edit_alpha = false
 
