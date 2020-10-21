@@ -77,7 +77,6 @@ public class PlayerMicrobeEditorInput : InputEnvironment<MicrobeEditor>
         ProcessCamPan(delta);
         ProcessRotation(delta);
         ProcessRedoUndo(delta);
-        ProcessMainEditorControls(delta);
     }
 
     private void ProcessCamPan(float delta)
