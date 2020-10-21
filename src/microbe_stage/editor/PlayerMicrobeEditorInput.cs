@@ -43,18 +43,18 @@ public class PlayerMicrobeEditorInput : InputEnvironment<MicrobeEditor>
 
     public PlayerMicrobeEditorInput()
     {
-        panUpDownAxis = new InputAxis(new List<(InputBool input, int associatedValue)>
+        panUpDownAxis = new InputAxis(new List<(InputBool input, int associatedValue)>()
         {
             (up, -1),
             (down, 1),
         });
-        panLeftRightAxis = new InputAxis(new List<(InputBool input, int associatedValue)>
+        panLeftRightAxis = new InputAxis(new List<(InputBool input, int associatedValue)>()
         {
             (left, -1),
             (right, 1),
         });
 
-        Inputs = new InputGroup(new List<IInputReceiver>
+        Inputs = new InputGroup(new List<IInputReceiver>()
         {
             panUpDownAxis,
             panLeftRightAxis,
