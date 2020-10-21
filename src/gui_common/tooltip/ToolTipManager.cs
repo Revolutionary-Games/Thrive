@@ -91,11 +91,17 @@ public class ToolTipManager : CanvasLayer
         }
     }
 
+    /// <summary>
+    ///   Add tooltip into collection. Creates a new group if group node with the given name doesn't exist
+    /// </summary>
     public void AddToolTip(ICustomToolTip tooltip, string group = "general")
     {
         tooltip.ToolTipVisible = false;
 
         var groupNode = GetGroup(group);
+
+        if (groupNode == null)
+            groupNode = AddGroup(group);
 
         tooltips[groupNode].Add(tooltip);
         groupNode.AddChild(tooltip.ToolTipNode);
@@ -130,14 +136,18 @@ public class ToolTipManager : CanvasLayer
     /// <summary>
     ///   Creates a new group node to contain tooltips
     /// </summary>
-    public void AddGroup(string name)
+    public Control AddGroup(string name)
     {
+        GD.Print("Creating new tooltip group: '" + name + "'");
+
         var groupNode = new Control();
         groupNode.Name = name;
         groupNode.MouseFilter = Control.MouseFilterEnum.Ignore;
         holder.AddChild(groupNode);
 
         tooltips.Add(groupNode, new List<ICustomToolTip>());
+
+        return groupNode;
     }
 
     private Control GetGroup(string name)

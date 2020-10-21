@@ -174,6 +174,9 @@ public class MicrobeEditorGUI : Node
     public NodePath SpeciesCollapsibleBoxPath;
 
     [Export]
+    public NodePath PhysicalConditionsChartPath;
+
+    [Export]
     public NodePath MoveToPatchButtonPath;
 
     [Export]
@@ -336,6 +339,8 @@ public class MicrobeEditorGUI : Node
     private CollapsibleList speciesListBox;
     private Button moveToPatchButton;
 
+    private CollapsibleList physicalConditionsChart;
+
     private TextureRect patchTemperatureSituation;
     private TextureRect patchLightSituation;
     private TextureRect patchHydrogenSulfideSituation;
@@ -440,6 +445,8 @@ public class MicrobeEditorGUI : Node
         speciesListBox = GetNode<CollapsibleList>(SpeciesCollapsibleBoxPath);
         moveToPatchButton = GetNode<Button>(MoveToPatchButtonPath);
         symmetryIcon = GetNode<TextureRect>(SymmetryIconPath);
+
+        physicalConditionsChart = GetNode<CollapsibleList>(PhysicalConditionsChartPath);
 
         patchTemperatureSituation = GetNode<TextureRect>(PatchTemperatureSituationPath);
         patchLightSituation = GetNode<TextureRect>(PatchLightSituationPath);
@@ -591,6 +598,42 @@ public class MicrobeEditorGUI : Node
 
         ToolTipManager.Instance.GetToolTip("timeIndicator", "editor").Description = string.Format(
             CultureInfo.CurrentCulture, "{0:#,#}", editor.CurrentGame.GameWorld.TotalPassedTime) + " years";
+    }
+
+    public void UpdateReportTabStatistics(double timePassed)
+    {
+        _ = timePassed;
+
+        var physCondChart = (LineChart)physicalConditionsChart.GetItem("LineChart");
+
+        // For testing purposes
+        var points1 = new List<ChartPoint>
+        {
+            new ChartPoint(0, 0, new Color(1, 1, 1)),
+            new ChartPoint(20, 50, new Color(1, 1, 1)),
+            new ChartPoint(50, 80, new Color(1, 1, 1)),
+            new ChartPoint(100, 0, new Color(1, 1, 1)),
+            new ChartPoint(200, 50, new Color(1, 1, 1)),
+            new ChartPoint(300, 80, new Color(1, 1, 1)),
+        };
+
+        var line1 = new LineChartData("glucose", points1, 0.5f, new Color(1, 1, 1));
+
+        var points2 = new List<ChartPoint>
+        {
+            new ChartPoint(15, 0, new Color(0, 1, 0)),
+            new ChartPoint(40, 20, new Color(0, 1, 0)),
+            new ChartPoint(70, 17, new Color(0, 1, 0)),
+            new ChartPoint(180, 65, new Color(0, 1, 0)),
+            new ChartPoint(250, 43, new Color(0, 1, 0)),
+            new ChartPoint(300, 0, new Color(0, 1, 0), 5, ChartPoint.MarkerIcon.Cross),
+        };
+
+        var line2 = new LineChartData("other", points2, 0.5f, new Color(0, 1, 0));
+
+        physCondChart.DataSets.Add(line1);
+        physCondChart.DataSets.Add(line2);
+        physCondChart.Plot();
     }
 
     public void SetInitialCellStats()

@@ -40,6 +40,7 @@ public class CollapsibleList : VBoxContainer
 
     private int cachedTopMarginValue;
 
+    [Export]
     public string Title
     {
         get => title;
@@ -50,6 +51,7 @@ public class CollapsibleList : VBoxContainer
         }
     }
 
+    [Export]
     public int Columns
     {
         get => columns;
@@ -60,6 +62,7 @@ public class CollapsibleList : VBoxContainer
         }
     }
 
+    [Export]
     public bool Collapsed
     {
         get => collapsed;
@@ -93,6 +96,11 @@ public class CollapsibleList : VBoxContainer
         // Readjusts the clip box height
         if (Collapsed)
             clipBox.AddConstantOverride("margin_top", -(int)itemContainer.RectSize.y);
+    }
+
+    public Control GetItem(string name)
+    {
+        return items.Find(match => match.Name == name);
     }
 
     public void RemoveItem(string name)

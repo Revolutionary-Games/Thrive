@@ -1799,6 +1799,7 @@ public class MicrobeEditor : Node, ILoadableGameState
         CurrentGame.GameWorld.OnTimePassed(1);
 
         gui.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);
+        gui.UpdateReportTabStatistics(CurrentGame.GameWorld.TotalPassedTime);
 
         // Get summary before applying results in order to get comparisons to the previous populations
         var run = CurrentGame.GameWorld.GetAutoEvoRun();

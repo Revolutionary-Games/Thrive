@@ -6879,3 +6879,7 @@ visible = false
 custom_styles/panel = SubResource( 1 )
 DisplayDelay = 0.3
 DescriptionLabelPath = NodePath("MarginContainer/VBoxContainer/Description")
+
+[node name="chartMarkers" type="Control" parent="Holder"]
+margin_right = 40.0
+margin_bottom = 40.0

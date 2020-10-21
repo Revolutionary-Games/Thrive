@@ -8,8 +8,6 @@
 [ext_resource path="res://assets/fonts/Jura-Regular.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://src/gui_common/CollapsibleList.cs" type="Script" id=7]
 
-
-
 [sub_resource type="DynamicFont" id=1]
 size = 15
 use_filter = true
@@ -72,14 +70,13 @@ __meta__ = {
 [node name="Title" type="Label" parent="HBoxContainer"]
 margin_left = 24.0
 margin_top = 2.0
-margin_right = 134.0
+margin_right = 24.0
 margin_bottom = 18.0
 custom_fonts/font = SubResource( 1 )
-text = "Insert Title Here"
 valign = 1
 
 [node name="HSeparator" type="HSeparator" parent="HBoxContainer"]
-margin_left = 138.0
+margin_left = 28.0
 margin_right = 141.0
 margin_bottom = 20.0
 mouse_filter = 1

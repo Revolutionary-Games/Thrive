@@ -1,0 +1,161 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://src/gui_common/charts/LineChart.cs" type="Script" id=1]
+[ext_resource path="res://assets/fonts/Jura-DemiBold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/fonts/Lato-Regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://src/gui_common/charts/LineChartDrawer.cs" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 14
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 12
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 3 )
+
+[sub_resource type="Theme" id=3]
+default_font = SubResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+border_width_left = 1
+border_color = Color( 0.0666667, 1, 0.835294, 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+border_width_top = 1
+border_color = Color( 0.0666667, 1, 0.835294, 1 )
+
+[node name="LineChart" type="VBoxContainer"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -720.0
+margin_right = 1280.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+HorizontalLabelPath = NodePath("VBoxContainer/HBoxContainer/xAxisLabel")
+VerticalLabelPath = NodePath("VBoxContainer/yAxisLabel")
+yTicksContainerPath = NodePath("VBoxContainer/HBoxContainer/ChartContainer/Ordinate/VBoxContainer/Labels")
+xTicksContainerPath = NodePath("VBoxContainer/HBoxContainer/ChartContainer/Abscissa/VBoxContainer/HBoxContainer/Labels")
+LineContainerPath = NodePath("VBoxContainer/HBoxContainer/ChartContainer/Drawer")
+XAxisTicks = 5
+YAxisTicks = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_right = 1280.0
+margin_bottom = 720.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="yAxisLabel" type="Label" parent="VBoxContainer"]
+margin_right = 9.0
+margin_bottom = 15.0
+rect_min_size = Vector2( 0, 15 )
+size_flags_horizontal = 0
+custom_fonts/font = SubResource( 1 )
+text = "y"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 19.0
+margin_right = 1280.0
+margin_bottom = 720.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ChartContainer" type="GridContainer" parent="VBoxContainer/HBoxContainer"]
+margin_right = 1268.0
+margin_bottom = 701.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/vseparation = -2
+custom_constants/hseparation = -3
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ordinate" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/ChartContainer"]
+margin_right = 4.0
+margin_bottom = 701.0
+size_flags_vertical = 3
+custom_constants/separation = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/ChartContainer/Ordinate"]
+margin_bottom = 701.0
+size_flags_vertical = 3
+
+[node name="Labels" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/ChartContainer/Ordinate/VBoxContainer"]
+margin_bottom = 701.0
+size_flags_vertical = 3
+theme = SubResource( 3 )
+custom_constants/separation = 0
+
+[node name="Line" type="VSeparator" parent="VBoxContainer/HBoxContainer/ChartContainer/Ordinate"]
+margin_right = 4.0
+margin_bottom = 701.0
+custom_styles/separator = SubResource( 4 )
+
+[node name="Drawer" type="Control" parent="VBoxContainer/HBoxContainer/ChartContainer"]
+margin_left = 1.0
+margin_right = 1268.0
+margin_bottom = 701.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 4 )
+
+[node name="Spacer" type="Control" parent="VBoxContainer/HBoxContainer/ChartContainer"]
+margin_top = 699.0
+margin_right = 4.0
+margin_bottom = 703.0
+
+[node name="Abscissa" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/ChartContainer"]
+margin_left = 1.0
+margin_top = 699.0
+margin_right = 1268.0
+margin_bottom = 703.0
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/ChartContainer/Abscissa"]
+margin_right = 1267.0
+margin_bottom = 4.0
+size_flags_horizontal = 3
+custom_constants/separation = 0
+
+[node name="Line" type="HSeparator" parent="VBoxContainer/HBoxContainer/ChartContainer/Abscissa/VBoxContainer"]
+margin_right = 1267.0
+margin_bottom = 4.0
+custom_styles/separator = SubResource( 5 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/ChartContainer/Abscissa/VBoxContainer"]
+margin_top = 4.0
+margin_right = 1267.0
+margin_bottom = 4.0
+
+[node name="Labels" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/ChartContainer/Abscissa/VBoxContainer/HBoxContainer"]
+margin_right = 1267.0
+size_flags_horizontal = 3
+theme = SubResource( 3 )
+custom_constants/separation = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/ChartContainer"]
+margin_top = 701.0
+margin_right = 4.0
+margin_bottom = 701.0
+
+[node name="xAxisLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+margin_left = 1272.0
+margin_top = 686.0
+margin_right = 1280.0
+margin_bottom = 701.0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+custom_fonts/font = SubResource( 1 )
+text = "x"
