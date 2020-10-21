@@ -75,9 +75,9 @@ public class PlayerMicrobeEditorInput : InputEnvironment<MicrobeEditor>
     {
         base._Process(delta);
         ProcessCamPan(delta);
-        ProcessRotation(delta);
-        ProcessRedoUndo(delta);
-        ProcessMainEditorControls(delta);
+        ProcessRotation();
+        ProcessRedoUndo();
+        ProcessMainEditorControls();
     }
 
     private void ProcessCamPan(float delta)
@@ -112,7 +112,7 @@ public class PlayerMicrobeEditorInput : InputEnvironment<MicrobeEditor>
             Environment.ResetCamera();
     }
 
-    private void ProcessRotation(float delta)
+    private void ProcessRotation()
     {
         if (rotateLeft.ReadTrigger())
             Environment.RotateLeft();
@@ -120,7 +120,7 @@ public class PlayerMicrobeEditorInput : InputEnvironment<MicrobeEditor>
             Environment.RotateRight();
     }
 
-    private void ProcessRedoUndo(float delta)
+    private void ProcessRedoUndo()
     {
         if (undo.ReadTrigger())
             Environment.Undo();
@@ -128,7 +128,7 @@ public class PlayerMicrobeEditorInput : InputEnvironment<MicrobeEditor>
             Environment.Redo();
     }
 
-    private void ProcessMainEditorControls(float delta)
+    private void ProcessMainEditorControls()
     {
         if (primary.ReadTrigger())
             Environment.PlaceOrganelle();

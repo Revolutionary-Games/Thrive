@@ -127,11 +127,6 @@ public class MicrobeEditor : Node, ILoadableGameState
     /// </summary>
     private bool transitionFinished;
 
-    private bool cameraMovementLeft;
-    private bool cameraMovementRight;
-    private bool cameraMovementUp;
-    private bool cameraMovementDown;
-
     /// <summary>
     ///   True once auto-evo (and possibly other stuff) we need to wait for is ready
     /// </summary>
