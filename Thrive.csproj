@@ -13,6 +13,7 @@
     <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <Deterministic>false</Deterministic>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -25,6 +26,12 @@
     <Compile Include="src\engine\GodotFileStream.cs" />
     <Compile Include="src\engine\GuidanceLine.cs" />
     <Compile Include="src\engine\IAssignableSetting.cs" />
+    <Compile Include="src\engine\input\IInputReceiver.cs" />
+    <Compile Include="src\engine\input\InputAxis.cs" />
+    <Compile Include="src\engine\input\InputBool.cs" />
+    <Compile Include="src\engine\input\InputGroup.cs" />
+    <Compile Include="src\engine\input\InputToggle.cs" />
+    <Compile Include="src\engine\input\InputTrigger.cs" />
     <Compile Include="src\engine\Invoke.cs" />
     <Compile Include="src\engine\LoadingScreen.cs" />
     <Compile Include="src\engine\PostStartupActions.cs" />
