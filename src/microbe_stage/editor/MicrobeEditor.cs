@@ -85,6 +85,12 @@ public class MicrobeEditor : Node, ILoadableGameState
     private int usedHoverOrganelle;
 
     /// <summary>
+    ///   Where the user started panning with the mouse
+    ///   Null if the user is not panning with the mouse
+    /// </summary>
+    private Vector3? mousePanningStart;
+
+    /// <summary>
     ///   The species that is being edited, changes are applied to it on exit
     /// </summary>
     [JsonProperty]
@@ -548,8 +554,54 @@ public class MicrobeEditor : Node, ILoadableGameState
         Jukebox.Instance.Resume();
     }
 
-    public override void _Input(InputEvent @event)
+    public override void _UnhandledInput(InputEvent @event)
     {
+        HandleMovementKeys();
+
+        if (@event.IsActionPressed("e_reset_cam"))
+        {
+            ResetCamera();
+        }
+
+        if (@event.IsActionPressed("e_pan_mouse"))
+        {
+            mousePanningStart = camera.CursorWorldPos;
+        }
+
+        if (@event.IsActionReleased("e_pan_mouse"))
+        {
+            mousePanningStart = null;
+        }
+
+        if (@event.IsActionPressed("e_rotate_right"))
+        {
+            RotateRight();
+        }
+
+        if (@event.IsActionPressed("e_rotate_left"))
+        {
+            RotateLeft();
+        }
+
+        if (@event.IsActionPressed("e_redo"))
+        {
+            Redo();
+        }
+        else if (@event.IsActionPressed("e_undo"))
+        {
+            Undo();
+        }
+
+        if (@event.IsActionPressed("e_primary"))
+        {
+            PlaceOrganelle();
+        }
+
+        if (@event.IsActionPressed("e_secondary"))
+        {
+            RemoveOrganelle();
+        }
+
         // Can only save once the editor is ready
         if (@event.IsActionPressed("g_quick_save") && ready)
         {
@@ -574,6 +626,11 @@ public class MicrobeEditor : Node, ILoadableGameState
 
             OnEditorReady();
         }
+
+        // Pan the camera with the mouse
+        // ReSharper disable once PossibleInvalidOperationException
+        var direction = mousePanningStart.Value - camera.CursorWorldPos;
+        camera.ObjectToFollow.Translation += direction;
 
         UpdateEditor(delta);
     }
@@ -969,15 +1026,6 @@ public class MicrobeEditor : Node, ILoadableGameState
     }
 
     /// <summary>
-    ///   Called by PlayerMicrobeEditorInput
-    /// </summary>
-    /// <param name="vector">The direction to move the camera into</param>
-    internal void MoveObjectToFollow(Vector3 vector)
-    {
-        camera.ObjectToFollow.Translation += vector * camera.CameraHeight;
-    }
-
-    /// <summary>
     ///   Combined old editor init and activate method
     /// </summary>
     private void InitEditor()
@@ -1245,6 +1293,38 @@ public class MicrobeEditor : Node, ILoadableGameState
         else
         {
             CurrentOrganelleCost = 0;
+        }
+
+        var cameraMovement = Vector3.Zero;
+        if (cameraMovementLeft)
+            cameraMovement += Vector3.Left;
+        if (cameraMovementRight)
+            cameraMovement += Vector3.Right;
+        if (cameraMovementUp)
+            cameraMovement += Vector3.Forward;
+        if (cameraMovementDown)
+            cameraMovement += Vector3.Back;
+
+        // Apply camera movement
+        if (cameraMovement != Vector3.Zero) // Check to save performance
+            camera.ObjectToFollow.Translation += cameraMovement.Normalized() * camera.CameraHeight * delta;
+    }
+
+    private void HandleMovementKeys()
+    {
+        if (mousePanningStart == null)
+        {
+            cameraMovementLeft = Input.IsActionPressed("e_pan_left");
+
+            cameraMovementRight = Input.IsActionPressed("e_pan_right");
+
+            cameraMovementDown = Input.IsActionPressed("e_pan_down");
+
+            cameraMovementUp = Input.IsActionPressed("e_pan_up");
+        }
+        else
+        {
+            cameraMovementLeft = cameraMovementRight = cameraMovementDown = cameraMovementUp = false;
         }
     }
 

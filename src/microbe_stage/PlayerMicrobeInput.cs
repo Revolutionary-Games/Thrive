@@ -4,8 +4,11 @@ using Godot;
 /// <summary>
 ///   Handles key input in the microbe stage
 /// </summary>
-public class PlayerMicrobeInput : InputEnvironment<MicrobeStage>
+public class PlayerMicrobeInput : Node
 {
+    // Inputs all grouped for easy focus loss and input passing
+    private readonly InputGroup inputs;
+
     private readonly InputAxis forwardBackAxis;
     private readonly InputAxis leftRightAxis;
 
@@ -28,6 +31,12 @@ public class PlayerMicrobeInput : InputEnvironment<MicrobeStage>
     private readonly InputBool fireToxin = new InputBool("g_fire_toxin");
     private readonly InputToggle autoMove = new InputToggle("g_hold_forward");
 
+    /// <summary>
+    ///   A reference to the stage is kept to get to the player object
+    ///   and also the cloud spawning.
+    /// </summary>
+    private MicrobeStage stage;
+
     public PlayerMicrobeInput()
     {
         forwardBackAxis = new InputAxis(new List<(InputBool input, int associatedValue)>
@@ -42,7 +51,7 @@ public class PlayerMicrobeInput : InputEnvironment<MicrobeStage>
             (right, 1),
         });
 
-        Inputs = new InputGroup(new List<IInputReceiver>
+        inputs = new InputGroup(new List<IInputReceiver>
         {
             forwardBackAxis,
             leftRightAxis,
@@ -56,11 +65,33 @@ public class PlayerMicrobeInput : InputEnvironment<MicrobeStage>
         });
     }
 
-    protected override InputGroup Inputs { get; }
+    public override void _Ready()
+    {
+        // Not the cleanest that the parent has to be MicrobeState type...
+        stage = (MicrobeStage)GetParent();
+    }
+
+    public override void _UnhandledInput(InputEvent @event)
+    {
+        if (inputs.CheckInput(@event))
+        {
+            GetTree().SetInputAsHandled();
+        }
+    }
+
+    public override void _Notification(int focus)
+    {
+        // If the window goes out of focus, we don't receive the key released events
+        // We reset our held down keys if the player tabs out while pressing a key
+        if (focus == MainLoop.NotificationWmFocusOut)
+        {
+            inputs.FocusLost();
+        }
+    }
 
     public override void _Process(float delta)
     {
-        base._Process(delta);
+        inputs.OnFrameChanged();
 
         var settings = Settings.Instance;
 
@@ -79,28 +110,28 @@ public class PlayerMicrobeInput : InputEnvironment<MicrobeStage>
             autoMove.ToggledOn = false;
         }
 
-        if (Environment.Player != null)
+        if (stage.Player != null)
         {
-            Environment.Player.MovementDirection = movement.Normalized();
-            Environment.Player.LookAtPoint = Environment.Camera.CursorWorldPos;
+            stage.Player.MovementDirection = movement.Normalized();
+            stage.Player.LookAtPoint = stage.Camera.CursorWorldPos;
         }
 
         if (fireToxin.Pressed)
         {
-            Environment.Player?.EmitToxin();
+            stage.Player?.EmitToxin();
         }
 
         if (toggleEngulf.ReadTrigger())
         {
-            if (Environment.Player != null)
+            if (stage.Player != null)
             {
-                Environment.Player.EngulfMode = !Environment.Player.EngulfMode;
+                stage.Player.EngulfMode = !stage.Player.EngulfMode;
             }
         }
 
         if (settings.CheatsEnabled && cheatEditor.ReadTrigger())
         {
-            Environment.HUD.ShowReproductionDialog();
+            stage.HUD.ShowReproductionDialog();
         }
 
         if (settings.CheatsEnabled && cheatAmmonia.Pressed)
@@ -121,7 +152,7 @@ public class PlayerMicrobeInput : InputEnvironment<MicrobeStage>
 
     private void SpawnCheatCloud(string name, float delta)
     {
-        Environment.Clouds.AddCloud(SimulationParameters.Instance.GetCompound(name),
-            8000.0f * delta, Environment.Camera.CursorWorldPos);
+        stage.Clouds.AddCloud(SimulationParameters.Instance.GetCompound(name),
+            8000.0f * delta, stage.Camera.CursorWorldPos);
     }
 }
