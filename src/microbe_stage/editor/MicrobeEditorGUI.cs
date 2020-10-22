@@ -609,7 +609,10 @@ public class MicrobeEditorGUI : Node
         initialCellSpeed = editor.CalculateSpeed();
         initialCellHp = editor.CalculateHitpoints();
         initialCellSize = editor.MicrobeHexSize;
+    }
 
+    public void ResetStatisticsPanelSize()
+    {
         // Resets the statistics panel size to fit
         statisticsPanel.RectSize = Vector2.Zero;
     }
@@ -930,21 +933,19 @@ public class MicrobeEditorGUI : Node
         }
         else if (symmetry == MicrobeEditor.MicrobeSymmetry.None)
         {
-            symmetryIcon.Texture = SymmetryIcon2x;
             symmetry = MicrobeEditor.MicrobeSymmetry.XAxisSymmetry;
         }
         else if (symmetry == MicrobeEditor.MicrobeSymmetry.XAxisSymmetry)
         {
-            symmetryIcon.Texture = SymmetryIcon4x;
             symmetry = MicrobeEditor.MicrobeSymmetry.FourWaySymmetry;
         }
         else if (symmetry == MicrobeEditor.MicrobeSymmetry.FourWaySymmetry)
         {
-            symmetryIcon.Texture = SymmetryIcon6x;
             symmetry = MicrobeEditor.MicrobeSymmetry.SixWaySymmetry;
         }
 
         editor.Symmetry = symmetry;
+        UpdateSymmetryIcon();
     }
 
     internal void OnSymmetryHold()
@@ -961,6 +962,14 @@ public class MicrobeEditorGUI : Node
     {
         symmetryIcon.Texture = SymmetryIconDefault;
         symmetry = 0;
+    }
+
+    internal void SetSymmetry(MicrobeEditor.MicrobeSymmetry newSymmetry)
+    {
+        symmetry = newSymmetry;
+        editor.Symmetry = newSymmetry;
+
+        UpdateSymmetryIcon();
     }
 
     internal void HelpButtonPressed()
@@ -1071,6 +1080,25 @@ public class MicrobeEditorGUI : Node
         else if (organelleItem.Name == "oxytoxy")
         {
             button.Disabled = !nucleus;
+        }
+    }
+
+    private void UpdateSymmetryIcon()
+    {
+        switch (symmetry)
+        {
+            case MicrobeEditor.MicrobeSymmetry.None:
+                symmetryIcon.Texture = SymmetryIconDefault;
+                break;
+            case MicrobeEditor.MicrobeSymmetry.XAxisSymmetry:
+                symmetryIcon.Texture = SymmetryIcon2x;
+                break;
+            case MicrobeEditor.MicrobeSymmetry.FourWaySymmetry:
+                symmetryIcon.Texture = SymmetryIcon4x;
+                break;
+            case MicrobeEditor.MicrobeSymmetry.SixWaySymmetry:
+                symmetryIcon.Texture = SymmetryIcon6x;
+                break;
         }
     }
 

@@ -390,7 +390,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     /// </summary>
     public void OnEnterEditor()
     {
-        // Clear old stuff in the world
+        // Clear old stuff in the world (just in case, the editor scene is recycled each time anyway)
         foreach (Node node in world.GetChildren())
         {
             node.Free();
@@ -414,31 +414,31 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
             hoverOrganelles.Add(CreateEditorOrganelle());
         }
 
-        // Rest of the setup is only ran when not loading a save, the save finish callback does the equivalent thing
-        if (IsLoadedFromSave)
-            return;
-
-        // Start a new game if no game has been started
-        if (CurrentGame == null)
+        if (!IsLoadedFromSave)
         {
-            if (ReturnToStage != null)
-                throw new Exception("stage to return to should have set our current game");
+            // Start a new game if no game has been started
+            if (CurrentGame == null)
+            {
+                if (ReturnToStage != null)
+                    throw new Exception("stage to return to should have set our current game");
 
-            GD.Print("Starting a new game for the microbe editor");
-            CurrentGame = GameProperties.StartNewMicrobeGame();
+                GD.Print("Starting a new game for the microbe editor");
+                CurrentGame = GameProperties.StartNewMicrobeGame();
+            }
+
+            TutorialState.SendEvent(TutorialEventType.EnteredMicrobeEditor, EventArgs.Empty, this);
         }
 
         InitEditor();
 
         StartMusic();
-
-        TutorialState.SendEvent(TutorialEventType.EnteredMicrobeEditor, EventArgs.Empty, this);
     }
 
     public void OnFinishLoading(Save save)
     {
         // Handle the stage to return to specially, as it also needs to run the code
         // for fixing the stuff in order to return there
+        // TODO: this could be probably moved now to just happen when it enters the scene first time
         if (ReturnToStage != null)
         {
             NeedToRestoreStageFromSave = true;
@@ -447,10 +447,6 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
             // // We need to not let the objects be deleted before we apply them
             // TemporaryLoadedNodeDeleter.Instance.AddDeletionHold(Constants.DELETION_HOLD_MICROBE_EDITOR);
         }
-
-        InitEditor();
-
-        StartMusic();
     }
 
     public void OnFinishTransitioning()
@@ -1019,15 +1015,17 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         if (!IsLoadedFromSave)
         {
             InitEditorFresh();
+
+            Symmetry = 0;
+            gui.ResetSymmetryButton();
         }
         else
         {
             InitEditorSaved();
-        }
 
-        // It's fine to reset these even when loading a save
-        Symmetry = 0;
-        gui.ResetSymmetryButton();
+            gui.SetSymmetry(Symmetry);
+            gui.UpdatePlayerPatch(targetPatch);
+        }
 
         UpdateUndoRedoButtons();
 
@@ -1035,7 +1033,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         gui.NotifyFreebuild(FreeBuilding);
 
         // Send info to the GUI about the organelle effectiveness in the current patch
-        CalculateOrganelleEffectivenessInPatch();
+        CalculateOrganelleEffectivenessInPatch(CurrentPatch);
 
         // Reset this, GUI will tell us to enable it again
         ShowHover = false;
@@ -1117,6 +1115,8 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
 
         UpdateGUIAfterLoadingSpecies(editedSpecies);
         OnLoadedEditorReady();
+
+        OnOrganellesChanged();
     }
 
     private void SetupEditedSpecies(MicrobeSpecies species)
@@ -1147,6 +1147,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
 
         // Only when not loaded from save are these properties fetched
         gui.SetInitialCellStats();
+        gui.ResetStatisticsPanelSize();
     }
 
     private void UpdateGUIAfterLoadingSpecies(MicrobeSpecies species)
@@ -1859,6 +1860,8 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
 
         // Make absolutely sure the current game doesn't have an auto-evo run
         CurrentGame.GameWorld.ResetAutoEvoRun();
+
+        gui.ResetStatisticsPanelSize();
     }
 
     private void ApplyAutoEvoResults()
