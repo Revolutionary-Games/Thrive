@@ -17,7 +17,6 @@ public class InProgressLoad
     private State state = State.Initial;
     private Save save;
 
-    private PackedScene loadedScene;
     private ILoadableGameState loadedState;
 
     private Stopwatch stopwatch;
@@ -94,22 +93,11 @@ public class InProgressLoad
             {
                 try
                 {
-                    loadedScene = SceneManager.Instance.LoadScene(save.GameState);
+                    loadedState = save.TargetScene;
                 }
-                catch (ArgumentException)
+                catch (Exception)
                 {
-                    ReportStatus(false, "Save is invalid", "Save has an unknown game state");
-                    state = State.Finished;
-                    break;
-                }
-
-                try
-                {
-                    loadedState = (ILoadableGameState)loadedScene.Instance();
-                }
-                catch (Exception e)
-                {
-                    ReportStatus(false, "An exception happened while instantiating target scene", e.ToString());
+                    ReportStatus(false, "Save is invalid", "Save has invalid game state scene");
                     state = State.Finished;
                     break;
                 }
@@ -122,12 +110,12 @@ public class InProgressLoad
             {
                 LoadingScreen.Instance.Show("Loading Game", "Processing loaded objects");
 
-                loadedState.IsLoadedFromSave = true;
-
-                SceneManager.Instance.SwitchToScene(loadedState.GameStateRoot);
+                if (loadedState.IsLoadedFromSave != true)
+                    throw new Exception("Game load logic not working correctly, IsLoadedFromSave was not set");
 
                 try
                 {
+                    SceneManager.Instance.SwitchToScene(loadedState.GameStateRoot);
                     loadedState.OnFinishLoading(save);
                 }
                 catch (Exception e)
@@ -155,6 +143,7 @@ public class InProgressLoad
                     LoadingScreen.Instance.Hide();
                     SaveStatusOverlay.Instance.ShowMessage(message);
 
+                    // TODO: does this cause problems if the game was paused when saving?
                     loadedState.GameStateRoot.GetTree().Paused = false;
                 }
                 else

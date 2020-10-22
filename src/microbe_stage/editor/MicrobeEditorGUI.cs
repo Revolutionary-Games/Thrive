@@ -257,7 +257,6 @@ public class MicrobeEditorGUI : Node
     private readonly List<ToolTipCallbackData> tooltipCallbacks = new List<ToolTipCallbackData>();
     private readonly List<ToolTipCallbackData> processesTooltipCallbacks = new List<ToolTipCallbackData>();
 
-    [JsonProperty]
     private EnergyBalanceInfo energyBalanceInfo;
 
     [JsonProperty]

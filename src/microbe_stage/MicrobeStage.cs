@@ -209,14 +209,18 @@ public class MicrobeStage : Node, ILoadableGameState
 
     public void OnFinishLoading(Save save)
     {
-        OnFinishLoading(save.MicrobeStage);
+        OnFinishLoading();
     }
 
-    public void OnFinishLoading(MicrobeStage stage)
+    public void OnFinishLoading()
     {
-        ApplyPropertiesFromSave(stage);
+        // ApplyPropertiesFromSave(stage);
+        //
+        // RespawnEntitiesFromSave(stage);
 
-        RespawnEntitiesFromSave(stage);
+        // spawner.ApplyPropertiesFromSave(savedMicrobeStage.spawner);
+        // Clouds.ApplyPropertiesFromSave(savedMicrobeStage.Clouds);
+        // Camera.ApplyPropertiesFromSave(savedMicrobeStage.Camera);
 
         CreatePatchManagerIfNeeded();
 
@@ -527,21 +531,6 @@ public class MicrobeStage : Node, ILoadableGameState
     private void SaveGame(string name)
     {
         SaveHelper.Save(name, this);
-    }
-
-    private void ApplyPropertiesFromSave(MicrobeStage savedMicrobeStage)
-    {
-        SaveApplyHelper.CopyJSONSavedPropertiesAndFields(this, savedMicrobeStage, new List<string>
-        {
-            "spawner",
-            "Player",
-            "Camera",
-            "Clouds",
-        });
-
-        spawner.ApplyPropertiesFromSave(savedMicrobeStage.spawner);
-        Clouds.ApplyPropertiesFromSave(savedMicrobeStage.Clouds);
-        Camera.ApplyPropertiesFromSave(savedMicrobeStage.Camera);
     }
 
     private void RespawnEntitiesFromSave(MicrobeStage savedMicrobeStage)

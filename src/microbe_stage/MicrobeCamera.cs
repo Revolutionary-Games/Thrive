@@ -5,16 +5,18 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Camera script for the microbe stage and the cell editor
 /// </summary>
-public class MicrobeCamera : Camera, IGodotEarlyNodeResolve
+public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
 {
     /// <summary>
     ///   Object the camera positions itself over
     /// </summary>
+    [JsonIgnore]
     public Spatial ObjectToFollow;
 
     /// <summary>
     ///   Background plane that is moved farther away from the camera when zooming out
     /// </summary>
+    [JsonIgnore]
     public Spatial BackgroundPlane;
 
     [JsonIgnore]
@@ -80,6 +82,8 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve
 
     public bool NodeReferencesResolved { get; private set; }
 
+    public bool IsLoadedFromSave { get; set; }
+
     public void ResetHeight()
     {
         CameraHeight = DefaultCameraHeight;
@@ -97,6 +101,9 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve
         materialToUpdate = (ShaderMaterial)material;
 
         ResolveNodeReferences();
+
+        if (!IsLoadedFromSave)
+            ResetHeight();
     }
 
     public void ResolveNodeReferences()
@@ -108,9 +115,6 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve
 
         if (HasNode("BackgroundPlane"))
             BackgroundPlane = GetNode<Spatial>("BackgroundPlane");
-
-        // This is done here to not have this overwrite on save load
-        ResetHeight();
     }
 
     public override void _UnhandledInput(InputEvent @event)
@@ -178,11 +182,6 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve
             BackgroundParticles.LocalCoords = false;
             AddChild(BackgroundParticles);
         }
-    }
-
-    public void ApplyPropertiesFromSave(MicrobeCamera camera)
-    {
-        SaveApplyHelper.CopyJSONSavedPropertiesAndFields(this, camera, new List<string> { "ObjectToFollow" });
     }
 
     private void UpdateCursorWorldPos()

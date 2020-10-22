@@ -46,6 +46,8 @@ public class ThriveJsonConverter : IDisposable
             new CompoundCloudPlaneConverter(context),
             new CompoundBagConverter(context),
 
+            new CallbackConverter(),
+
             // Converter for all types with the specific attribute for this to be enabled
             new DefaultThriveJSONConverter(context),
 
@@ -225,9 +227,15 @@ public abstract class BaseThriveConverter : JsonConverter
                 a.AttributeType != typeof(CompilerGeneratedAttribute)));
 
         // Ignore fields that aren't public unless it has JsonPropertyAttribute
-        return fields.Where(p =>
+        fields = fields.Where(p =>
             (p.IsPublic && !p.IsInitOnly) ||
             p.CustomAttributes.Any(a => a.AttributeType == typeof(JsonPropertyAttribute)));
+
+        // Ignore fields that are marked export without explicit JSON property
+        fields = fields.Where(p =>
+            !ExportWithoutExplicitJson(p.CustomAttributes));
+
+        return fields;
     }
 
     public static IEnumerable<PropertyInfo> PropertiesOf(object value)
@@ -238,8 +246,29 @@ public abstract class BaseThriveConverter : JsonConverter
                 a => a.AttributeType != typeof(JsonIgnoreAttribute)));
 
         // Ignore properties that don't have a public setter unless it has JsonPropertyAttribute
-        return properties.Where(p => p.GetSetMethod() != null ||
+        properties = properties.Where(p => p.GetSetMethod() != null ||
             p.CustomAttributes.Any(a => a.AttributeType == typeof(JsonPropertyAttribute)));
+
+        // Ignore properties that are marked export without explicit JSON property
+        properties = properties.Where(p =>
+            !ExportWithoutExplicitJson(p.CustomAttributes));
+
+        return properties;
+    }
+
+    /// <summary>
+    ///   Fields and properties marked Godot.Export are skipped unless explicitly marked JsonProperty
+    /// </summary>
+    public static bool ExportWithoutExplicitJson(IEnumerable<CustomAttributeData> customAttributes)
+    {
+        var customAttributeData = customAttributes.ToList();
+
+        bool export = customAttributeData.Any(attr => attr.AttributeType == typeof(ExportAttribute));
+
+        if (!export)
+            return false;
+
+        return customAttributeData.All(attr => attr.AttributeType != typeof(JsonPropertyAttribute));
     }
 
     public static bool IsIgnoredGodotMember(string name, Type type)
@@ -307,6 +336,12 @@ public abstract class BaseThriveConverter : JsonConverter
             serializer.ReferenceResolver.AddReference(serializer, objId.Value<string>(), instance);
         }
 
+        // Any loaded object supports knowing if it was loaded from a save
+        if (instance is ISaveLoadedTracked tracked)
+        {
+            tracked.IsLoadedFromSave = true;
+        }
+
         bool Skip(string name, string key)
         {
             return SkipMember(name) || alreadyConsumedItems.Contains(key);
@@ -322,7 +357,7 @@ public abstract class BaseThriveConverter : JsonConverter
         {
             var name = DetermineKey(item, field.Name);
 
-            if (Skip(field.Name, name) || ExportWithoutExplicitJson(field.CustomAttributes))
+            if (Skip(field.Name, name))
                 continue;
 
             var newData = ReadMember(name, field.FieldType, item, instance, reader, serializer);
@@ -341,8 +376,7 @@ public abstract class BaseThriveConverter : JsonConverter
         {
             var name = DetermineKey(item, property.Name);
 
-            if (Skip(property.Name, name) || !item.ContainsKey(name) ||
-                ExportWithoutExplicitJson(property.CustomAttributes))
+            if (Skip(property.Name, name) || !item.ContainsKey(name))
             {
                 continue;
             }
@@ -372,10 +406,8 @@ public abstract class BaseThriveConverter : JsonConverter
 
         ReadCustomExtraFields(item, instance, reader, objectType, existingValue, serializer);
 
-        // Node types need to be deleted to not leak memory, so any type derived from Node is
-        // registered to be deleted here
-        if (instance is Node converted)
-            TemporaryLoadedNodeDeleter.Instance.Register(converted);
+        // It is now assumed (because loading scenes and keeping references) that all loaded Nodes are deleted by
+        // someone else (other than the ones that have just their properties grabbed in deserialize)
 
         // TODO: these should be called after loading the whole object tree
         if (instance is ISaveLoadable loadable)
@@ -438,19 +470,13 @@ public abstract class BaseThriveConverter : JsonConverter
                 {
                     writer.WritePropertyName(TYPE_PROPERTY);
 
-                    var typeStr = $"{type.FullName}, {type.Assembly.GetName().Name}";
-
-                    writer.WriteValue(typeStr);
+                    writer.WriteValue(type.AssemblyQualifiedNameWithoutVersion());
                 }
             }
 
             // First time writing, write all fields and properties
             foreach (var field in FieldsOf(value))
             {
-                // Would be kinda nice to allow child types to override th behaviour here...
-                if (ExportWithoutExplicitJson(field.CustomAttributes))
-                    continue;
-
                 WriteMember(field.Name, field.GetValue(value), field.FieldType, type, writer, serializer);
             }
 
@@ -458,9 +484,6 @@ public abstract class BaseThriveConverter : JsonConverter
             {
                 // Reading some godot properties already triggers problems, so we ignore those here
                 if (SkipIfGodotNodeType(property.Name, type))
-                    continue;
-
-                if (ExportWithoutExplicitJson(property.CustomAttributes))
                     continue;
 
                 object memberValue;
@@ -538,6 +561,11 @@ public abstract class BaseThriveConverter : JsonConverter
 
     protected virtual bool SkipMember(string name)
     {
+        // By default IsLoadedFromSave is ignored as properties by default don't inherit attributes so this makes
+        // things a bit easier when adding new types
+        if (SaveApplyHelper.IsNameLoadedFromSaveName(name))
+            return true;
+
         return false;
     }
 
@@ -547,21 +575,6 @@ public abstract class BaseThriveConverter : JsonConverter
             return true;
 
         return false;
-    }
-
-    /// <summary>
-    ///   Fields and properties marked Godot.Export are skipped unless explicitly marked JsonProperty
-    /// </summary>
-    protected bool ExportWithoutExplicitJson(IEnumerable<CustomAttributeData> customAttributes)
-    {
-        var customAttributeData = customAttributes.ToList();
-
-        bool export = customAttributeData.Any(attr => attr.AttributeType == typeof(ExportAttribute));
-
-        if (!export)
-            return false;
-
-        return customAttributeData.All(attr => attr.AttributeType != typeof(JsonPropertyAttribute));
     }
 
     /// <summary>
@@ -643,7 +656,7 @@ public abstract class BaseThriveConverter : JsonConverter
         var scene = GD.Load<PackedScene>(data.ScenePath);
 
         if (scene == null)
-            throw new JsonException($"Couldn't load scene (${data.ScenePath}) for scene loaded type");
+            throw new JsonException($"Couldn't load scene ({data.ScenePath}) for scene loaded type");
 
         var node = scene.Instance();
 

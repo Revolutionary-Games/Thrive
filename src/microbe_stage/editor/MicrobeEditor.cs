@@ -7,7 +7,9 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Main class of the microbe editor
 /// </summary>
+[JsonObject(IsReference = true)]
 [SceneLoadedClass("res://src/microbe_stage/editor/MicrobeEditor.tscn")]
+[DeserializedCallbackTarget]
 public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
 {
     [Export]
@@ -30,6 +32,10 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     private MicrobeCamera camera;
+
+    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
+    private Spatial cameraFollow;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
@@ -340,7 +346,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         hexScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/EditorHex.tscn");
         modelScene = GD.Load<PackedScene>("res://src/general/SceneDisplayer.tscn");
 
-        camera.ObjectToFollow = GetNode<Spatial>("CameraLookAt");
+        camera.ObjectToFollow = cameraFollow;
 
         tutorialGUI.Visible = true;
         gui.Init(this);
@@ -358,6 +364,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         NodeReferencesResolved = true;
 
         camera = GetNode<MicrobeCamera>("PrimaryCamera");
+        cameraFollow = GetNode<Spatial>("CameraLookAt");
         world = GetNode("World");
         gui = GetNode<MicrobeEditorGUI>("MicrobeEditorGUI");
         tutorialGUI = GetNode<MicrobeEditorTutorialGUI>("TutorialGUI");
@@ -430,16 +437,15 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
 
     public void OnFinishLoading(Save save)
     {
-        ApplyPropertiesFromSave(save.MicrobeEditor);
-
         // Handle the stage to return to specially, as it also needs to run the code
         // for fixing the stuff in order to return there
         if (ReturnToStage != null)
         {
             NeedToRestoreStageFromSave = true;
 
-            // We need to not let the objects be deleted before we apply them
-            TemporaryLoadedNodeDeleter.Instance.AddDeletionHold(Constants.DELETION_HOLD_MICROBE_EDITOR);
+            // Probably shouldn't be needed as the stage object is not orphaned automatically
+            // // We need to not let the objects be deleted before we apply them
+            // TemporaryLoadedNodeDeleter.Instance.AddDeletionHold(Constants.DELETION_HOLD_MICROBE_EDITOR);
         }
 
         InitEditor();
@@ -459,20 +465,11 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     {
         GD.Print("MicrobeEditor: applying changes to edited Species");
 
-        MicrobeStage savedStageToApply = null;
-
-        if (ReturnToStage == null || NeedToRestoreStageFromSave)
+        if (ReturnToStage == null)
         {
-            var scene = SceneManager.Instance.LoadScene(MainGameState.MicrobeStage);
+            GD.Print("Creating new microbe stage as there isn't one yet");
 
-            if (ReturnToStage == null)
-            {
-                GD.Print("Creating new microbe stage as there isn't one yet");
-            }
-            else
-            {
-                savedStageToApply = ReturnToStage;
-            }
+            var scene = SceneManager.Instance.LoadScene(MainGameState.MicrobeStage);
 
             ReturnToStage = (MicrobeStage)scene.Instance();
             ReturnToStage.CurrentGame = CurrentGame;
@@ -541,13 +538,13 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         SceneManager.Instance.SwitchToScene(stage);
 
         // We need to finish loading the save after attaching the stage scene
-        if (savedStageToApply != null)
+        if (NeedToRestoreStageFromSave)
         {
-            stage.OnFinishLoading(savedStageToApply);
+            stage.OnFinishLoading();
             NeedToRestoreStageFromSave = false;
 
-            // Resume deletion of save loaded objects now that we have used them finally
-            TemporaryLoadedNodeDeleter.Instance.RemoveDeletionHold(Constants.DELETION_HOLD_MICROBE_EDITOR);
+            // // Resume deletion of save loaded objects now that we have used them finally
+            // TemporaryLoadedNodeDeleter.Instance.RemoveDeletionHold(Constants.DELETION_HOLD_MICROBE_EDITOR);
         }
 
         stage.OnReturnFromEditor();
@@ -1108,15 +1105,15 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     {
         // Need to recreate our organelle layout to make the callbacks work again, but we need to copy the existing
         // organelles to it
-        var tempOrganelles = editedMicrobeOrganelles;
-
-        editedMicrobeOrganelles = new OrganelleLayout<OrganelleTemplate>(
-            OnOrganelleAdded, OnOrganelleRemoved);
-
-        foreach (var organelle in tempOrganelles)
-        {
-            editedMicrobeOrganelles.Add(organelle);
-        }
+        // var tempOrganelles = editedMicrobeOrganelles;
+        //
+        // editedMicrobeOrganelles = new OrganelleLayout<OrganelleTemplate>(
+        //     OnOrganelleAdded, OnOrganelleRemoved);
+        //
+        // foreach (var organelle in tempOrganelles)
+        // {
+        //     editedMicrobeOrganelles.Add(organelle);
+        // }
 
         UpdateGUIAfterLoadingSpecies(editedSpecies);
         OnLoadedEditorReady();
@@ -1147,14 +1144,15 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         species.Generation += 1;
 
         UpdateGUIAfterLoadingSpecies(species);
+
+        // Only when not loaded from save are these properties fetched
+        gui.SetInitialCellStats();
     }
 
     private void UpdateGUIAfterLoadingSpecies(MicrobeSpecies species)
     {
-        var genes = species.StringCode;
-
         GD.Print("Starting microbe editor with: ", editedMicrobeOrganelles.Organelles.Count,
-            " organelles in the microbe, genes: ", genes);
+            " organelles in the microbe");
 
         // Update GUI buttons now that we have correct organelles
         gui.UpdateGuiButtonStatus(HasNucleus);
@@ -1164,8 +1162,10 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         {
             gui.OnOrganelleToPlaceSelected("cytoplasm");
         }
-
-        gui.SetInitialCellStats();
+        else
+        {
+            gui.OnOrganelleToPlaceSelected(ActiveActionName);
+        }
 
         gui.SetSpeciesInfo(NewName, Membrane, Colour, Rigidity);
         gui.UpdateGeneration(species.Generation);
@@ -1636,11 +1636,13 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         EnqueueAction(action);
     }
 
+    [DeserializedCallbackAllowed]
     private void OnOrganelleAdded(OrganelleTemplate organelle)
     {
         OnOrganellesChanged();
     }
 
+    [DeserializedCallbackAllowed]
     private void OnOrganelleRemoved(OrganelleTemplate organelle)
     {
         OnOrganellesChanged();
@@ -1890,11 +1892,6 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     private void SaveGame(string name)
     {
         SaveHelper.Save(name, this);
-    }
-
-    private void ApplyPropertiesFromSave(MicrobeEditor savedMicrobeEditor)
-    {
-        SaveApplyHelper.CopyJSONSavedPropertiesAndFields(this, savedMicrobeEditor);
     }
 
     /// <summary>

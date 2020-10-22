@@ -55,6 +55,26 @@ public class Save
     public Image Screenshot { get; set; }
 
     /// <summary>
+    ///   The scene object to switch to once this save is loaded
+    /// </summary>
+    [JsonIgnore]
+    public ILoadableGameState TargetScene
+    {
+        get
+        {
+            switch (GameState)
+            {
+                case MainGameState.MicrobeStage:
+                    return MicrobeStage;
+                case MainGameState.MicrobeEditor:
+                    return MicrobeEditor;
+                default:
+                    throw new InvalidOperationException("specified game state has no associated scene");
+            }
+        }
+    }
+
+    /// <summary>
     ///   Loads a save from a file or throws an exception
     /// </summary>
     /// <param name="saveName">The name of the save. This is not the full path.</param>

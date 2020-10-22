@@ -37,6 +37,7 @@
     <Compile Include="src\general\HelpTexts.cs" />
     <Compile Include="src\general\HelpScreen.cs" />
     <Compile Include="src\general\PauseMenu.cs" />
+    <Compile Include="src\general\TypeUtils.cs" />
     <Compile Include="src\gui_common\tooltip\DefaultToolTip.cs" />
     <Compile Include="src\gui_common\tooltip\ICustomToolTip.cs" />
     <Compile Include="src\gui_common\tooltip\microbe_editor\ModifierInfoLabel.cs" />
@@ -173,6 +174,7 @@
     <Compile Include="src\saving\ISaveApplyable.cs" />
     <Compile Include="src\saving\ISaveContext.cs" />
     <Compile Include="src\saving\ISaveLoadable.cs" />
+    <Compile Include="src\saving\ISaveLoadedTracked.cs" />
     <Compile Include="src\saving\NewSaveMenu.cs" />
     <Compile Include="src\saving\Save.cs" />
     <Compile Include="src\saving\SaveApplyHelper.cs" />
@@ -188,6 +190,7 @@
     <Compile Include="src\saving\serializers\AssignOnlyChildItemsOnDeserializeAttribute.cs" />
     <Compile Include="src\saving\serializers\Base64BinaryConverter.cs" />
     <Compile Include="src\saving\serializers\BaseNodeConverter.cs" />
+    <Compile Include="src\saving\serializers\CallbackConverter.cs" />
     <Compile Include="src\saving\serializers\CompoundBagConverter.cs" />
     <Compile Include="src\saving\serializers\CompoundCloudPlaneConverter.cs" />
     <Compile Include="src\saving\serializers\DynamicDeserializeObjectConverter.cs" />
