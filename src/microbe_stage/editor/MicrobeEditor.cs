@@ -1143,11 +1143,11 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
 
         species.Generation += 1;
 
-        UpdateGUIAfterLoadingSpecies(species);
-
         // Only when not loaded from save are these properties fetched
         gui.SetInitialCellStats();
         gui.ResetStatisticsPanelSize();
+
+        UpdateGUIAfterLoadingSpecies(species);
     }
 
     private void UpdateGUIAfterLoadingSpecies(MicrobeSpecies species)

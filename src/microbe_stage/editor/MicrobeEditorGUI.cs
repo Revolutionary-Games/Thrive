@@ -9,7 +9,7 @@ using Array = Godot.Collections.Array;
 /// <summary>
 ///   Main class managing the microbe editor GUI
 /// </summary>
-public class MicrobeEditorGUI : Node
+public class MicrobeEditorGUI : Node, ISaveLoadedTracked
 {
     // The labels to update are at really long relative paths, so they are set in the Godot editor
     [Export]
@@ -383,6 +383,8 @@ public class MicrobeEditorGUI : Node
         Behaviour,
     }
 
+    public bool IsLoadedFromSave { get; set; }
+
     public override void _Ready()
     {
         organelleSelectionElements = GetTree().GetNodesInGroup("OrganelleSelectionElement");
@@ -481,6 +483,10 @@ public class MicrobeEditorGUI : Node
     public void Init(MicrobeEditor editor)
     {
         this.editor = editor ?? throw new ArgumentNullException(nameof(editor));
+
+        // Set the right tabs if they aren't the defaults
+        ApplyEditorTab();
+        ApplySelectionMenuTab();
 
         // Fade out for that smooth satisfying transition
         TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeOut, 0.5f);
@@ -1129,6 +1135,15 @@ public class MicrobeEditorGUI : Node
 
         GUICommon.Instance.PlayButtonPressSound();
 
+        selectedEditorTab = selection;
+
+        ApplyEditorTab();
+
+        editor.TutorialState.SendEvent(TutorialEventType.MicrobeEditorTabChanged, new StringEventArgs(tab), this);
+    }
+
+    private void ApplyEditorTab()
+    {
         // Hide all
         var cellEditor = GetNode<Control>("CellEditor");
         var report = GetNode<Control>("Report");
@@ -1139,7 +1154,7 @@ public class MicrobeEditorGUI : Node
         cellEditor.Hide();
 
         // Show selected
-        switch (selection)
+        switch (selectedEditorTab)
         {
             case EditorTab.Report:
             {
@@ -1165,10 +1180,6 @@ public class MicrobeEditorGUI : Node
             default:
                 throw new Exception("Invalid editor tab");
         }
-
-        selectedEditorTab = selection;
-
-        editor.TutorialState.SendEvent(TutorialEventType.MicrobeEditorTabChanged, new StringEventArgs(tab), this);
     }
 
     private void SetSelectionMenuTab(string tab)
@@ -1180,12 +1191,17 @@ public class MicrobeEditorGUI : Node
 
         GUICommon.Instance.PlayButtonPressSound();
 
+        selectedSelectionMenuTab = selection;
+    }
+
+    private void ApplySelectionMenuTab()
+    {
         // Hide all
         structureTab.Hide();
         appearanceTab.Hide();
 
         // Show selected
-        switch (selection)
+        switch (selectedSelectionMenuTab)
         {
             case SelectionMenuTab.Structure:
             {
@@ -1204,8 +1220,6 @@ public class MicrobeEditorGUI : Node
             default:
                 throw new Exception("Invalid selection menu tab");
         }
-
-        selectedSelectionMenuTab = selection;
     }
 
     private void MenuButtonPressed()
