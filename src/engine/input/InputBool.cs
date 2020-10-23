@@ -33,10 +33,12 @@ public class InputBool : IInputReceiver
         return false;
     }
 
-    public virtual bool ReadInput()
+    public virtual object ReadInput()
     {
         return Pressed;
     }
+
+    public virtual bool HasInput() => (bool)ReadInput();
 
     public virtual void FocusLost()
     {

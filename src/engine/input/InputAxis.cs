@@ -80,6 +80,13 @@ public class InputAxis : IInputReceiver
         return false;
     }
 
+    public object ReadInput()
+    {
+        return CurrentValue;
+    }
+
+    public bool HasInput() => (int)ReadInput() != 0;
+
     public void FocusLost()
     {
         foreach (var input in inputs)

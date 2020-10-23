@@ -5,15 +5,9 @@ using Godot;
 /// <summary>
 ///   Handles key input in the microbe editor
 /// </summary>
-public class PlayerMicrobeEditorInput : InputEnvironment<MicrobeEditor>
+public class PlayerMicrobeEditorInput : Node
 {
-    [RunOnInput("e_reset_cam", RunOnInputAttribute.InputType.Press)]
-    public static void ExecuteMe()
-    {
-        GD.Print("hooray, its working!");
-    }
-
-    // Camera axis
+    /*// Camera axis
 
     private readonly InputAxis panUpDownAxis;
     private readonly InputAxis panLeftRightAxis;
@@ -50,6 +44,7 @@ public class PlayerMicrobeEditorInput : InputEnvironment<MicrobeEditor>
 
     public PlayerMicrobeEditorInput()
     {
+        RunOnInputAttribute.InputClasses.Add(this);
         panUpDownAxis = new InputAxis(new List<(InputBool input, int associatedValue)>()
         {
             (up, -1),
@@ -60,32 +55,7 @@ public class PlayerMicrobeEditorInput : InputEnvironment<MicrobeEditor>
             (left, -1),
             (right, 1),
         });
-
-        Inputs = new InputGroup(new List<IInputReceiver>()
-        {
-            panUpDownAxis,
-            panLeftRightAxis,
-            startMousePan,
-            reset,
-            rotateLeft,
-            rotateRight,
-            undo,
-            redo,
-            primary,
-            secondary,
-        });
     }
-
-    protected override InputGroup Inputs { get; }
-
-    /*public override void _Process(float delta)
-    {
-        base._Process(delta);
-        ProcessCamPan(delta);
-        ProcessRotation();
-        ProcessRedoUndo();
-        ProcessMainEditorControls();
-    }*/    
 
     private void ProcessCamPan(float delta)
     {
@@ -141,5 +111,5 @@ public class PlayerMicrobeEditorInput : InputEnvironment<MicrobeEditor>
             Environment.PlaceOrganelle();
         if (secondary.ReadTrigger())
             Environment.RemoveOrganelle();
-    }
+    }*/
 }

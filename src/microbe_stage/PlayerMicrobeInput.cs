@@ -1,12 +1,18 @@
+using System;
 using System.Collections.Generic;
 using Godot;
 
 /// <summary>
 ///   Handles key input in the microbe stage
 /// </summary>
-public class PlayerMicrobeInput : InputEnvironment<MicrobeStage>
+public class PlayerMicrobeInput : Node
 {
-    private readonly InputAxis forwardBackAxis;
+    public PlayerMicrobeInput()
+    {
+        RunOnInputAttribute.InputClasses.Add(this);
+    }
+
+    /*private readonly InputAxis forwardBackAxis;
     private readonly InputAxis leftRightAxis;
 
     // Access to individual inputs
@@ -123,5 +129,5 @@ public class PlayerMicrobeInput : InputEnvironment<MicrobeStage>
     {
         Environment.Clouds.AddCloud(SimulationParameters.Instance.GetCompound(name),
             8000.0f * delta, Environment.Camera.CursorWorldPos);
-    }
+    }*/
 }

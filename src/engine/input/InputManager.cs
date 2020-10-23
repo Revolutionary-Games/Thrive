@@ -5,7 +5,7 @@ using Godot;
 
 public class InputManager : Node
 {
-    static InputManager()
+    public override void _Ready()
     {
         foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
         {
@@ -13,7 +13,7 @@ public class InputManager : Node
             {
                 foreach (var methodInfo in type.GetMethods())
                 {
-                    foreach (var attr in methodInfo.GetCustomAttributes(typeof(RunOnInputAttribute), false))
+                    foreach (var attr in methodInfo.GetCustomAttributes(typeof(RunOnInputAttribute), true))
                     {
                         if (!(attr is RunOnInputAttribute myAttr))
                             continue;
@@ -28,10 +28,36 @@ public class InputManager : Node
     {
         RunOnInputAttribute.AttributesWithMethods.ForEach(p =>
         {
-            var receiver = p.Item2.InputReceiver;
-            receiver.CheckInput(@event);
-            if (receiver.ReadInput())
-                p.Item1.Invoke(null, Array.Empty<object>());
+            p.Item2.InputReceiver.CheckInput(@event);
+        });
+    }
+
+    public override void _Process(float delta)
+    {
+        RunOnInputAttribute.AttributesWithMethods.ForEach(p =>
+        {
+            var inputReceiver = p.Item2.InputReceiver;
+            if (!inputReceiver.HasInput())
+                return;
+
+            var instance =
+                RunOnInputAttribute.InputClasses.FirstOrDefault(x => x.GetType() == p.Item1.DeclaringType);
+            if (!p.Item1.IsStatic && instance == null)
+                return;
+
+            switch (inputReceiver)
+            {
+                case InputAxis _:
+                    p.Item1.Invoke(instance, new object[] { delta, (int)inputReceiver.ReadInput() });
+                    break;
+                case InputTrigger _:
+                case InputReleaseTrigger _:
+                    p.Item1.Invoke(instance, Array.Empty<object>());
+                    break;
+                case InputBool _:
+                    p.Item1.Invoke(instance, new object[] { delta });
+                    break;
+            }
         });
     }
 }

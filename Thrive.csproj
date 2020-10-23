@@ -29,13 +29,13 @@
     <Compile Include="src\engine\input\IInputReceiver.cs" />
     <Compile Include="src\engine\input\InputAxis.cs" />
     <Compile Include="src\engine\input\InputBool.cs" />
-    <Compile Include="src\engine\input\InputGroup.cs" />
-    <Compile Include="src\engine\input\InputHold.cs" />
     <Compile Include="src\engine\input\InputManager.cs" />
     <Compile Include="src\engine\input\InputReleaseTrigger.cs" />
     <Compile Include="src\engine\input\InputToggle.cs" />
     <Compile Include="src\engine\input\InputTrigger.cs" />
+    <Compile Include="src\engine\input\RunOnAxisAttribute.cs" />
     <Compile Include="src\engine\input\RunOnInputAttribute.cs" />
+    <Compile Include="src\engine\input\RunOnKeyAttribute.cs" />
     <Compile Include="src\engine\Invoke.cs" />
     <Compile Include="src\engine\LoadingScreen.cs" />
     <Compile Include="src\engine\PostStartupActions.cs" />
@@ -43,7 +43,6 @@
     <Compile Include="src\engine\ScreenShotTaker.cs" />
     <Compile Include="src\engine\SettingValue.cs" />
     <Compile Include="src\engine\StartupActions.cs" />
-    <Compile Include="src\general\InputEnvironment.cs" />
     <Compile Include="src\general\PathUtils.cs" />
     <Compile Include="src\general\HelpTexts.cs" />
     <Compile Include="src\general\HelpScreen.cs" />
