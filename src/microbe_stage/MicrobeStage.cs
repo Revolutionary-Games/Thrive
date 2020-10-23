@@ -66,6 +66,11 @@ public class MicrobeStage : Node, ILoadableGameState
     /// </summary>
     private bool wantsToSave;
 
+    /// <summary>
+    ///    True if player is stationary
+    /// </summary>
+    public bool isPlayerStationary = true;
+
     [JsonProperty]
     public Microbe Player { get; private set; }
 
@@ -324,7 +329,7 @@ public class MicrobeStage : Node, ILoadableGameState
 
         if (Player != null)
         {
-            spawner.Process(delta, Player.Translation, Player.Rotation);
+            spawner.Process(delta, Player.Translation, Player.Rotation, isPlayerStationary);
             Clouds.ReportPlayerPosition(Player.Translation);
 
             TutorialState.SendEvent(TutorialEventType.MicrobePlayerOrientation,

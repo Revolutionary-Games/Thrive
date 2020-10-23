@@ -6,6 +6,9 @@ using Godot;
 /// </summary>
 public abstract class Spawner
 {
+    /// What this spawner spawns e.g. cloud, chunk, cell
+    public string type;
+
     /// <summary>
     ///   The distance at which spawning happens
     /// </summary>

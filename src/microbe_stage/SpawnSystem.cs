@@ -146,7 +146,7 @@ public class SpawnSystem
     /// <summary>
     ///   Processes spawning and despawning things
     /// </summary>
-    public void Process(float delta, Vector3 playerPosition, Vector3 playerRotation)
+    public void Process(float delta, Vector3 playerPosition, Vector3 playerRotation, bool isPlayerStationary)
     {
         elapsed += delta;
 
@@ -176,7 +176,7 @@ public class SpawnSystem
 
             spawnTypes.RemoveAll(entity => entity.DestroyQueued);
 
-            SpawnEntities(playerPosition, playerRotation, estimateEntityCount, spawnsLeftThisFrame);
+            SpawnEntities(playerPosition, playerRotation, estimateEntityCount, spawnsLeftThisFrame, isPlayerStationary);
         }
     }
 
@@ -216,9 +216,9 @@ public class SpawnSystem
         return spawnsLeftThisFrame;
     }
 
-    private void SpawnEntities(Vector3 playerPosition, Vector3 playerRotation, int existing, int spawnsLeftThisFrame)
+    private void SpawnEntities(Vector3 playerPosition, Vector3 playerRotation, int existing, int spawnsLeftThisFrame, bool isPlayerStationary)
     {
-        // If  there are already too many entities, don't spawn more
+        // If there are already too many entities, don't spawn more
         if (existing >= maxAliveEntities)
             return;
 
@@ -226,6 +226,10 @@ public class SpawnSystem
 
         foreach (var spawnType in spawnTypes)
         {
+            // Prevents too many clouds from spawning when stationary
+            if (isPlayerStationary && spawnType.type == "cloud")
+                continue;
+            
             /*
             To actually spawn a given entity for a given attempt, two
             conditions should be met. The first condition is a random
