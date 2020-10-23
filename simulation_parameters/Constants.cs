@@ -471,6 +471,11 @@ public static class Constants
     /// </summary>
     public const Formatting SAVE_FORMATTING = Formatting.None;
 
+    /// <summary>
+    ///   If true diagnostic information about JSON serialization is printed
+    /// </summary>
+    public const bool DEBUG_JSON_SERIALIZE = false;
+
     public const string SAVE_EXTENSION = "thrivesave";
     public const string SAVE_EXTENSION_WITH_DOT = "." + SAVE_EXTENSION;
 

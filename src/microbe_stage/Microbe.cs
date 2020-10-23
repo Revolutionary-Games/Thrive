@@ -9,6 +9,8 @@ using Newtonsoft.Json;
 /// </summary>
 [JsonObject(IsReference = true)]
 [JSONAlwaysDynamicType]
+[SceneLoadedClass("res://src/microbe_stage/Microbe.tscn")]
+[DeserializedCallbackTarget]
 public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 {
     /// <summary>
@@ -29,6 +31,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
 
+    [JsonProperty]
     private CompoundCloudSystem cloudSystem;
 
     // Child components
@@ -127,6 +130,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     private MicrobeAI ai;
 
     private PackedScene cellBurstEffectScene;
+
+    [JsonProperty]
     private bool deathParticlesSpawned;
 
     /// <summary>
@@ -292,13 +297,13 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// <summary>
     ///   Called when this Microbe dies
     /// </summary>
-    [JsonIgnore]
+    [JsonProperty]
     public Action<Microbe> OnDeath { get; set; }
 
     /// <summary>
     ///   Called when the reproduction status of this microbe changes
     /// </summary>
-    [JsonIgnore]
+    [JsonProperty]
     public Action<Microbe, bool> OnReproductionStatus { get; set; }
 
     /// <summary>
@@ -309,17 +314,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         this.cloudSystem = cloudSystem;
         CurrentGame = currentGame;
         IsPlayerMicrobe = isPlayer;
-
-        if (IsPlayerMicrobe)
-        {
-            // Creates and activates the audio listener for the player microbe. Positional sound will be
-            // received by it instead of the main camera.
-            listener = new Listener();
-            AddChild(listener);
-            listener.MakeCurrent();
-
-            GD.Print("Player Microbe spawned");
-        }
 
         if (!isPlayer)
             ai = new MicrobeAI(this);
@@ -344,6 +338,17 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         movementAudio = GetNode<AudioStreamPlayer3D>("MovementAudio");
 
         cellBurstEffectScene = GD.Load<PackedScene>("res://src/microbe_stage/particles/CellBurst.tscn");
+
+        if (IsPlayerMicrobe)
+        {
+            // Creates and activates the audio listener for the player microbe. Positional sound will be
+            // received by it instead of the main camera.
+            listener = new Listener();
+            AddChild(listener);
+            listener.MakeCurrent();
+
+            GD.Print("Player Microbe spawned");
+        }
 
         // Setup physics callback stuff
         var engulfDetector = GetNode<Area>("EngulfDetector");
@@ -1116,35 +1121,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         state.Transform = GetNewPhysicsRotation(state.Transform);
     }
 
-    public void ApplyPropertiesFromSave(Microbe microbe)
-    {
-        SaveApplyHelper.CopyJSONSavedPropertiesAndFields(this, microbe, new List<string>
-        {
-            "organelles",
-        });
-
-        NodeGroupSaveHelper.CopyGroups(this, microbe);
-
-        organelles.Clear();
-
-        while (microbe.organelles.Count > 0)
-        {
-            // Steal the organelles from the other microbe which will be destroyed anyway once the save is fully loaded
-            var organelle = microbe.organelles[0];
-            microbe.organelles.Remove(organelle);
-
-            // Though we don't want them to be actually disposed
-            if (TemporaryLoadedNodeDeleter.Instance.Release(organelle) != organelle)
-                throw new Exception("failed to remove a loaded organelle from being released");
-
-            organelles.Add(organelle);
-        }
-
-        // TODO: fix existing references in the microbe AI
-        // For now we just cause amnesia on the cell's AI
-        ai?.ClearAfterLoadedFromSave(this);
-    }
-
     internal void SuccessfulScavenge()
     {
         GameWorld.AlterSpeciesPopulation(Species,
@@ -1709,6 +1685,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         return new Transform(new Basis(slerped), transform.origin);
     }
 
+    [DeserializedCallbackAllowed]
     private void OnOrganelleAdded(PlacedOrganelle organelle)
     {
         organelle.OnAddedToMicrobe(this);
@@ -1725,6 +1702,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         Compounds.Capacity = organellesCapacity;
     }
 
+    [DeserializedCallbackAllowed]
     private void OnOrganelleRemoved(PlacedOrganelle organelle)
     {
         organellesCapacity -= organelle.StorageCapacity;

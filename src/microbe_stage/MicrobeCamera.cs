@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
 
@@ -10,7 +9,6 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     /// <summary>
     ///   Object the camera positions itself over
     /// </summary>
-    [JsonIgnore]
     public Spatial ObjectToFollow;
 
     /// <summary>

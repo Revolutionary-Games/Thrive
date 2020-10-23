@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -7,6 +8,7 @@ using System.Threading;
 using Godot;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
 
 /// <summary>
 ///   Main JSON conversion class for Thrive handling all our custom stuff
@@ -44,17 +46,18 @@ public class ThriveJsonConverter : IDisposable
             new SystemVector4ArrayConverter(),
 
             new CompoundCloudPlaneConverter(context),
-            new CompoundBagConverter(context),
 
             new CallbackConverter(),
 
-            // Converter for all types with the specific attribute for this to be enabled
-            new DefaultThriveJSONConverter(context),
-
             // Specific Godot Node converter types
 
-            // Fallback Godot Node converter
+            // Fallback Godot Node converter, this is before default serializer to make Node types with scene loaded
+            // attribute work correctly. Unfortunately this means it is not possible to force a Node derived class
+            // to not use this
             new BaseNodeConverter(context),
+
+            // Converter for all types with a specific few attributes for this to be enabled
+            new DefaultThriveJSONConverter(context),
         };
 
         thriveConvertersDynamicDeserialize = new List<JsonConverter> { new DynamicDeserializeObjectConverter(context) };
@@ -134,7 +137,22 @@ public class ThriveJsonConverter : IDisposable
             Converters = thriveConverters,
 
             ReferenceResolverProvider = () => referenceResolver,
+
+            TraceWriter = GetTraceWriter(Constants.DEBUG_JSON_SERIALIZE),
         };
+    }
+
+    /// <summary>
+    ///   This method is needed to fool code checking to think that this is runtime configurable
+    /// </summary>
+    private ITraceWriter GetTraceWriter(bool debug)
+    {
+        if (debug)
+        {
+            return new MemoryTraceWriter();
+        }
+
+        return null;
     }
 
     private T PerformWithSettings<T>(Func<JsonSerializerSettings, T> func)
@@ -148,6 +166,8 @@ public class ThriveJsonConverter : IDisposable
             // This is a recursive call
             recursive = true;
             settings = currentJsonSettings.Value;
+
+            settings.TraceWriter?.Trace(TraceLevel.Info, "Entering recursive object", null);
         }
         else
         {
@@ -162,7 +182,21 @@ public class ThriveJsonConverter : IDisposable
         finally
         {
             if (!recursive)
+            {
                 currentJsonSettings.Value = null;
+
+                if (settings.TraceWriter != null)
+                {
+                    GD.Print("JSON serialization trace: ", settings.TraceWriter);
+
+                    // This shouldn't get reused so no point in creating a new instance here
+                    settings.TraceWriter = null;
+                }
+            }
+            else
+            {
+                settings.TraceWriter?.Trace(TraceLevel.Info, "Exited recursive object", null);
+            }
         }
     }
 }
@@ -195,6 +229,11 @@ public abstract class BaseThriveConverter : JsonConverter
     ///   have a one-way converter
     /// </summary>
     public override bool CanRead => true;
+
+    /// <summary>
+    ///   If this is true all serialized types are assumed to be marked as using references
+    /// </summary>
+    public virtual bool ForceReferenceWrite => false;
 
     /// <summary>
     ///   Finds the actual key for a thing ignoring different cases
@@ -336,21 +375,24 @@ public abstract class BaseThriveConverter : JsonConverter
             serializer.ReferenceResolver.AddReference(serializer, objId.Value<string>(), instance);
         }
 
-        // Any loaded object supports knowing if it was loaded from a save
-        if (instance is ISaveLoadedTracked tracked)
-        {
-            tracked.IsLoadedFromSave = true;
-        }
+        RunPrePropertyDeserializeActions(instance);
 
         bool Skip(string name, string key)
         {
             return SkipMember(name) || alreadyConsumedItems.Contains(key);
         }
 
-        bool OnlyChildAssign(IEnumerable<CustomAttributeData> customAttributes)
+        bool OnlyChildAssign(IEnumerable<Attribute> customAttributes,
+            out AssignOnlyChildItemsOnDeserializeAttribute data)
         {
-            return customAttributes.Any(
-                attr => attr.AttributeType == typeof(AssignOnlyChildItemsOnDeserializeAttribute));
+            data = customAttributes.FirstOrDefault() as AssignOnlyChildItemsOnDeserializeAttribute;
+
+            if (data == null)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         foreach (var field in FieldsOf(instance))
@@ -362,13 +404,14 @@ public abstract class BaseThriveConverter : JsonConverter
 
             var newData = ReadMember(name, field.FieldType, item, instance, reader, serializer);
 
-            if (!OnlyChildAssign(field.CustomAttributes))
+            if (!OnlyChildAssign(field.GetCustomAttributes(typeof(AssignOnlyChildItemsOnDeserializeAttribute)),
+                out var data))
             {
                 field.SetValue(instance, newData);
             }
             else
             {
-                ApplyOnlyChildProperties(newData, field.GetValue(instance));
+                ApplyOnlyChildProperties(newData, field.GetValue(instance), serializer, data);
             }
         }
 
@@ -381,7 +424,8 @@ public abstract class BaseThriveConverter : JsonConverter
                 continue;
             }
 
-            if (!OnlyChildAssign(property.CustomAttributes))
+            if (!OnlyChildAssign(property.GetCustomAttributes(typeof(AssignOnlyChildItemsOnDeserializeAttribute)),
+                out var data))
             {
                 var set = property.GetSetMethodOnDeclaringType();
 
@@ -400,7 +444,7 @@ public abstract class BaseThriveConverter : JsonConverter
             else
             {
                 ApplyOnlyChildProperties(ReadMember(name, property.PropertyType, item, instance, reader,
-                    serializer), property.GetValue(instance));
+                    serializer), property.GetValue(instance), serializer, data);
             }
         }
 
@@ -409,9 +453,7 @@ public abstract class BaseThriveConverter : JsonConverter
         // It is now assumed (because loading scenes and keeping references) that all loaded Nodes are deleted by
         // someone else (other than the ones that have just their properties grabbed in deserialize)
 
-        // TODO: these should be called after loading the whole object tree
-        if (instance is ISaveLoadable loadable)
-            loadable.FinishLoading(Context);
+        RunPostPropertyDeserializeActions(instance);
 
         return instance;
     }
@@ -431,7 +473,8 @@ public abstract class BaseThriveConverter : JsonConverter
 
         var contract = serializer.ContractResolver.ResolveContract(type);
 
-        bool reference = serializer.PreserveReferencesHandling != PreserveReferencesHandling.None ||
+        bool reference = ForceReferenceWrite ||
+            serializer.PreserveReferencesHandling != PreserveReferencesHandling.None ||
             (contract.IsReference.HasValue && contract.IsReference.Value);
 
         writer.WriteStartObject();
@@ -577,6 +620,22 @@ public abstract class BaseThriveConverter : JsonConverter
         return false;
     }
 
+    private void RunPrePropertyDeserializeActions(object instance)
+    {
+        // Any loaded object supports knowing if it was loaded from a save
+        if (instance is ISaveLoadedTracked tracked)
+        {
+            tracked.IsLoadedFromSave = true;
+        }
+    }
+
+    private void RunPostPropertyDeserializeActions(object instance)
+    {
+        // TODO: these should be called after loading the whole object tree
+        if (instance is ISaveLoadable loadable)
+            loadable.FinishLoading(Context);
+    }
+
     /// <summary>
     ///   Figures out what constructor to call for an object that is to be loaded from JSON
     /// </summary>
@@ -685,7 +744,10 @@ public abstract class BaseThriveConverter : JsonConverter
     /// </summary>
     /// <param name="newData">The new object to copy non-ignored fields and properties to target</param>
     /// <param name="target">The object to apply properties to</param>
-    private void ApplyOnlyChildProperties(object newData, object target)
+    /// <param name="serializer">Serializer to use for reference handling</param>
+    /// <param name="data">Options for the child assign</param>
+    private void ApplyOnlyChildProperties(object newData, object target, JsonSerializer serializer,
+        AssignOnlyChildItemsOnDeserializeAttribute data)
     {
         // Need to register for deletion the orphaned Godot object
         if (newData is Node node)
@@ -695,6 +757,19 @@ public abstract class BaseThriveConverter : JsonConverter
 
         SaveApplyHelper.CopyJSONSavedPropertiesAndFields(target, newData,
             DefaultOnlyChildCopyIgnore);
+
+        // Make sure target gets a chance to run stuff like normally deserialized objects
+        RunPrePropertyDeserializeActions(target);
+        RunPostPropertyDeserializeActions(target);
+
+        if (data.ReplaceReferences && serializer.ReferenceResolver != null)
+        {
+            if (serializer.ReferenceResolver.IsReferenced(serializer, newData))
+            {
+                serializer.ReferenceResolver.AddReference(serializer,
+                    serializer.ReferenceResolver.GetReference(serializer, newData), target);
+            }
+        }
     }
 }
 

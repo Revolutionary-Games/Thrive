@@ -29,13 +29,16 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
 
     private MicrobeSymmetry symmetry = MicrobeSymmetry.None;
 
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
-    private MicrobeCamera camera;
-
+    /// <summary>
+    ///   Object camera is over. Needs to be defined before camera for saving to work
+    /// </summary>
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
     private Spatial cameraFollow;
+
+    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
+    private MicrobeCamera camera;
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
@@ -277,11 +280,6 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     [JsonProperty]
     public MicrobeStage ReturnToStage { get; set; }
 
-    /// <summary>
-    ///   If true ReturnToStage has been loaded from a save and needs to be recreated on return
-    /// </summary>
-    public bool NeedToRestoreStageFromSave { get; set; }
-
     [JsonIgnore]
     public bool HasNucleus
     {
@@ -331,7 +329,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     [JsonIgnore]
     public Node GameStateRoot => this;
 
-    public bool IsLoadedFromSave { get; set; } = false;
+    public bool IsLoadedFromSave { get; set; }
 
     public override void _Ready()
     {
@@ -346,7 +344,8 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         hexScene = GD.Load<PackedScene>("res://src/microbe_stage/editor/EditorHex.tscn");
         modelScene = GD.Load<PackedScene>("res://src/general/SceneDisplayer.tscn");
 
-        camera.ObjectToFollow = cameraFollow;
+        if (!IsLoadedFromSave)
+            camera.ObjectToFollow = cameraFollow;
 
         tutorialGUI.Visible = true;
         gui.Init(this);
@@ -436,17 +435,15 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
 
     public void OnFinishLoading(Save save)
     {
-        // Handle the stage to return to specially, as it also needs to run the code
-        // for fixing the stuff in order to return there
-        // TODO: this could be probably moved now to just happen when it enters the scene first time
-        if (ReturnToStage != null)
-        {
-            NeedToRestoreStageFromSave = true;
+        // // Handle the stage to return to specially, as it also needs to run the code
+        // // for fixing the stuff in order to return there
+        // // TODO: this could be probably moved now to just happen when it enters the scene first time
 
-            // Probably shouldn't be needed as the stage object is not orphaned automatically
-            // // We need to not let the objects be deleted before we apply them
-            // TemporaryLoadedNodeDeleter.Instance.AddDeletionHold(Constants.DELETION_HOLD_MICROBE_EDITOR);
-        }
+        ReturnToStage?.OnFinishLoading();
+
+        // Probably shouldn't be needed as the stage object is not orphaned automatically
+        // // We need to not let the objects be deleted before we apply them
+        // TemporaryLoadedNodeDeleter.Instance.AddDeletionHold(Constants.DELETION_HOLD_MICROBE_EDITOR);
     }
 
     public void OnFinishTransitioning()
@@ -532,16 +529,6 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         ReturnToStage = null;
 
         SceneManager.Instance.SwitchToScene(stage);
-
-        // We need to finish loading the save after attaching the stage scene
-        if (NeedToRestoreStageFromSave)
-        {
-            stage.OnFinishLoading();
-            NeedToRestoreStageFromSave = false;
-
-            // // Resume deletion of save loaded objects now that we have used them finally
-            // TemporaryLoadedNodeDeleter.Instance.RemoveDeletionHold(Constants.DELETION_HOLD_MICROBE_EDITOR);
-        }
 
         stage.OnReturnFromEditor();
     }

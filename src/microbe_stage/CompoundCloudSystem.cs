@@ -8,7 +8,7 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Manages spawning and processing compound clouds
 /// </summary>
-public class CompoundCloudSystem : Node
+public class CompoundCloudSystem : Node, ISaveLoadedTracked
 {
     [JsonProperty]
     private int neededCloudsAtOnePosition;
@@ -37,6 +37,8 @@ public class CompoundCloudSystem : Node
     [JsonIgnore]
     public int Resolution => clouds[0].Resolution;
 
+    public bool IsLoadedFromSave { get; set; }
+
     public override void _Ready()
     {
         cloudScene = GD.Load<PackedScene>("res://src/microbe_stage/CompoundCloudPlane.tscn");
@@ -62,7 +64,10 @@ public class CompoundCloudSystem : Node
     {
         allCloudCompounds = SimulationParameters.Instance.GetCloudCompounds();
 
-        clouds.Clear();
+        if (!IsLoadedFromSave)
+        {
+            clouds.Clear();
+        }
 
         // Count the number of clouds needed at one position from the loaded compound types
         neededCloudsAtOnePosition = (int)Math.Ceiling(allCloudCompounds.Count /
@@ -76,12 +81,27 @@ public class CompoundCloudSystem : Node
             AddChild(createdCloud);
         }
 
+        // TODO: this should be changed to detect which clouds are safe to delete
         while (clouds.Count > neededCloudsAtOnePosition)
         {
-            var cloud = clouds[0];
+            var cloud = clouds[clouds.Count - 1];
             RemoveChild(cloud);
             cloud.Free();
             clouds.Remove(cloud);
+        }
+
+        // TODO: if the compound types have changed since we saved, that needs to be handled
+        if (IsLoadedFromSave)
+        {
+            foreach (var cloud in clouds)
+            {
+                // Re-init with potentially changed compounds
+                // TODO: special handling is needed if the compounds actually changed
+                cloud.Init(fluidSystem, cloud.Compounds[0], cloud.Compounds[1], cloud.Compounds[2],
+                    cloud.Compounds[3]);
+            }
+
+            return;
         }
 
         for (int i = 0; i < clouds.Count; ++i)
@@ -393,27 +413,9 @@ public class CompoundCloudSystem : Node
         }
     }
 
-    public void ApplyPropertiesFromSave(CompoundCloudSystem compoundCloudSystem)
-    {
-        cloudGridCenter = compoundCloudSystem.cloudGridCenter;
-        elapsed = compoundCloudSystem.elapsed;
-
-        // Copy concentrations (and as well as the other cloud parameters that need to be set)
-        // TODO: allow saves to work if new compounds are added
-        if (clouds.Count != compoundCloudSystem.clouds.Count)
-            throw new Exception("Loading a save that has different compound cloud types doesn't currently work");
-
-        for (int i = 0; i < clouds.Count; ++i)
-        {
-            // TODO: it's not very nice to pass null as the context here
-            clouds[i].ApplySave(compoundCloudSystem.clouds[i], null);
-        }
-    }
-
     [SuppressMessage("ReSharper", "PossibleLossOfFraction",
         Justification = "I'm not sure how I should fix this code I didn't write (hhyyrylainen)")]
-    private static Vector3
-        CalculateGridCenterForPlayerPos(Vector3 pos)
+    private static Vector3 CalculateGridCenterForPlayerPos(Vector3 pos)
     {
         // The gaps between the positions is used for calculations here. Otherwise
         // all clouds get moved when the player moves

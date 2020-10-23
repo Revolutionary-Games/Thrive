@@ -6,11 +6,12 @@ using Newtonsoft.Json;
 /// <summary>
 ///   Script for the floating chunks (cell parts, rocks, hazards)
 /// </summary>
-[JsonObject(IsReference = true)]
 [JSONAlwaysDynamicType]
-public class FloatingChunk : RigidBody, ISpawned
+[SceneLoadedClass("res://src/microbe_stage/FloatingChunk.tscn")]
+public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
 {
     [Export]
+    [JsonProperty]
     public PackedScene GraphicsScene;
 
     /// <summary>
@@ -18,6 +19,7 @@ public class FloatingChunk : RigidBody, ISpawned
     /// </summary>
     public string ModelNodePath;
 
+    [JsonProperty]
     private CompoundCloudSystem compoundClouds;
 
     /// <summary>
@@ -27,10 +29,13 @@ public class FloatingChunk : RigidBody, ISpawned
 
     private MeshInstance chunkMesh;
 
+    [JsonProperty]
     private bool isDissolving;
 
+    [JsonProperty]
     private float dissolveEffectValue;
 
+    [JsonProperty]
     private bool isParticles;
 
     public int DespawnRadiusSqr { get; set; }
@@ -72,6 +77,8 @@ public class FloatingChunk : RigidBody, ISpawned
 
     public float ChunkScale { get; set; }
 
+    public bool IsLoadedFromSave { get; set; }
+
     /// <summary>
     ///   Grabs data from the type to initialize this
     /// </summary>
@@ -100,12 +107,6 @@ public class FloatingChunk : RigidBody, ISpawned
 
         ModelNodePath = modelPath;
 
-        // Apply physics shape
-        var shape = GetNode<CollisionShape>("CollisionShape");
-
-        // This only works as long as the sphere shape type is not changed in the editor
-        ((SphereShape)shape.Shape).Radius = chunkType.Radius;
-
         // Copy compounds to vent
         if (chunkType.Compounds != null && chunkType.Compounds.Count > 0)
         {
@@ -117,14 +118,6 @@ public class FloatingChunk : RigidBody, ISpawned
             {
                 ContainedCompounds.Compounds.Add(entry.Key, entry.Value.Amount);
             }
-        }
-
-        // Needs physics callback when this is engulfable or damaging
-        if (Damages > 0 || DeleteOnTouch || Size > 0)
-        {
-            ContactsReported = Constants.DEFAULT_STORE_CONTACTS_COUNT;
-            Connect("body_shape_entered", this, "OnContactBegin");
-            Connect("body_shape_exited", this, "OnContactEnd");
         }
     }
 
@@ -197,6 +190,8 @@ public class FloatingChunk : RigidBody, ISpawned
 
         if (chunkMesh == null && !isParticles)
             throw new InvalidOperationException("Can't make a chunk without graphics scene");
+
+        InitPhysics();
     }
 
     public override void _Process(float delta)
@@ -269,29 +264,6 @@ public class FloatingChunk : RigidBody, ISpawned
     }
 
     /// <summary>
-    ///   A bit on the lighter save properties copying,
-    ///   the spawn function used to create this needs to set some stuff beforehand
-    /// </summary>
-    public void ApplyPropertiesFromSave(FloatingChunk chunk)
-    {
-        NodeGroupSaveHelper.CopyGroups(this, chunk);
-
-        VentPerSecond = chunk.VentPerSecond;
-        Dissolves = chunk.Dissolves;
-        Size = chunk.Size;
-        Damages = chunk.Damages;
-        DeleteOnTouch = chunk.DeleteOnTouch;
-        Mass = chunk.Mass;
-        Radius = chunk.Radius;
-        ChunkScale = chunk.ChunkScale;
-
-        ContainedCompounds = chunk.ContainedCompounds;
-        Transform = chunk.Transform;
-        LinearVelocity = chunk.LinearVelocity;
-        AngularVelocity = chunk.AngularVelocity;
-    }
-
-    /// <summary>
     ///   Vents compounds if this is a chunk that contains compounds
     /// </summary>
     private void VentCompounds(float delta)
@@ -350,6 +322,23 @@ public class FloatingChunk : RigidBody, ISpawned
         if (dissolveEffectValue >= 1)
         {
             QueueFree();
+        }
+    }
+
+    private void InitPhysics()
+    {
+        // Apply physics shape
+        var shape = GetNode<CollisionShape>("CollisionShape");
+
+        // This only works as long as the sphere shape type is not changed in the editor
+        ((SphereShape)shape.Shape).Radius = Radius;
+
+        // Needs physics callback when this is engulfable or damaging
+        if (Damages > 0 || DeleteOnTouch || Size > 0)
+        {
+            ContactsReported = Constants.DEFAULT_STORE_CONTACTS_COUNT;
+            Connect("body_shape_entered", this, "OnContactBegin");
+            Connect("body_shape_exited", this, "OnContactEnd");
         }
     }
 

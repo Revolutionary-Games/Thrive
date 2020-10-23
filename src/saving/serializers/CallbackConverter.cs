@@ -13,56 +13,20 @@ public class CallbackConverter : JsonConverter
 
     public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
     {
-        var objectType = value.GetType();
-
         string type;
         MethodInfo method;
         object target;
 
-        /*switch (value)
+        if (value is MulticastDelegate @delegate)
         {
-            case Action callback:
-            {
-                target = callback.Target;
-                method = callback.Method;
-                type = "action";
-                break;
-            }
+            type = "delegate";
 
-            // case Func<T> callback:
-            // {
-            //     target = callback.Target;
-            //     method = callback.Method;
-            //     type = "action";
-            //     break;
-            // }
-
-            default:
-                throw new JsonSerializationException("unexpected callback type to serialize");
-        }*/
-
-        try
-        {
-            // Couldn't find a clean way to get this, so this uses reflection to go and grab the stuff this needs
-            if (typeof(Action) == objectType ||
-                (objectType.IsGenericType && objectType.GetGenericTypeDefinition() == typeof(Action<>)))
-            {
-                type = "action";
-
-                // ReSharper disable PossibleNullReferenceException
-                target = objectType.GetProperty("Target").GetValue(value);
-                method = (MethodInfo)objectType.GetProperty("Method").GetValue(value);
-
-                // ReSharper restore PossibleNullReferenceException
-            }
-            else
-            {
-                throw new JsonSerializationException("unexpected callback type to serialize");
-            }
+            method = @delegate.Method;
+            target = @delegate.Target;
         }
-        catch (NullReferenceException e)
+        else
         {
-            throw new JsonException("can't serialize callback due to expected property missing", e);
+            throw new JsonSerializationException("unexpected callback type to serialize");
         }
 
         writer.WriteStartObject();
@@ -109,6 +73,9 @@ public class CallbackConverter : JsonConverter
         {
             throw new JsonException("can't read callback (missing property)", e);
         }
+
+        if (type != "delegate")
+            throw new JsonException("Callback with unknown type: " + type);
 
         var targetType = Type.GetType(targetTypeName);
 
@@ -161,19 +128,11 @@ public class CallbackConverter : JsonConverter
         }
 
         return method.CreateDelegate(objectType, target);
-
-        // switch (type)
-        // {
-        // case "action":
-        // }
     }
 
     public override bool CanConvert(Type objectType)
     {
-        if (typeof(Action) == objectType)
-            return true;
-
-        if (objectType.IsGenericType && objectType.GetGenericTypeDefinition() == typeof(Action<>))
+        if (typeof(MulticastDelegate).IsAssignableFrom(objectType))
             return true;
 
         return false;
@@ -183,6 +142,12 @@ public class CallbackConverter : JsonConverter
 /// <summary>
 ///   When a class has this attribute a callback is allowed to have that type as its target on deserialize
 /// </summary>
+/// <remarks>
+///   <para>
+///     If an object owns whatever calls the callback, it likely also needs
+///     <code>[JsonObject(IsReference = true)]</code> to work correctly.
+///   </para>
+/// </remarks>
 [AttributeUsage(AttributeTargets.Class)]
 public class DeserializedCallbackTargetAttribute : Attribute
 {
