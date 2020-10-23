@@ -3,11 +3,11 @@ using Godot;
 /// <summary>
 ///   Input that is moved to triggered state on press
 /// </summary>
-public class InputTrigger : InputBool
+public class InputReleaseTrigger : InputBool
 {
     protected bool triggered;
 
-    public InputTrigger(string actionName) : base(actionName)
+    public InputReleaseTrigger(string actionName) : base(actionName)
     {
     }
 
@@ -35,9 +35,9 @@ public class InputTrigger : InputBool
     {
         bool wasPressed = Pressed;
 
-        if (base.CheckInput(inputEvent))
+        if (!base.CheckInput(inputEvent))
         {
-            if (!wasPressed && Pressed)
+            if (wasPressed && !Pressed)
             {
                 // Just became pressed, trigger
                 triggered = true;

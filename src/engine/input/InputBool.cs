@@ -5,7 +5,7 @@ using Godot;
 /// </summary>
 public class InputBool : IInputReceiver
 {
-    private readonly string action;
+    protected readonly string action;
 
     public InputBool(string actionName)
     {
@@ -31,6 +31,11 @@ public class InputBool : IInputReceiver
         }
 
         return false;
+    }
+
+    public virtual bool ReadInput()
+    {
+        return Pressed;
     }
 
     public virtual void FocusLost()

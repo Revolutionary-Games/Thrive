@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using Godot;
 
 /// <summary>
@@ -6,6 +7,12 @@ using Godot;
 /// </summary>
 public class PlayerMicrobeEditorInput : InputEnvironment<MicrobeEditor>
 {
+    [RunOnInput("e_reset_cam", RunOnInputAttribute.InputType.Press)]
+    public static void ExecuteMe()
+    {
+        GD.Print("hooray, its working!");
+    }
+
     // Camera axis
 
     private readonly InputAxis panUpDownAxis;
@@ -71,14 +78,14 @@ public class PlayerMicrobeEditorInput : InputEnvironment<MicrobeEditor>
 
     protected override InputGroup Inputs { get; }
 
-    public override void _Process(float delta)
+    /*public override void _Process(float delta)
     {
         base._Process(delta);
         ProcessCamPan(delta);
         ProcessRotation();
         ProcessRedoUndo();
         ProcessMainEditorControls();
-    }
+    }*/    
 
     private void ProcessCamPan(float delta)
     {
