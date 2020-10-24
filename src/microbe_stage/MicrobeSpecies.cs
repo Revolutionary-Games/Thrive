@@ -38,7 +38,7 @@ public class MicrobeSpecies : Species
     {
         get
         {
-            return Organelles.Any() && GetIslandHexes().Any();
+            return Organelles.Any() && !Organelles.GetIslandHexes().Any();
         }
     }
 
@@ -118,59 +118,5 @@ public class MicrobeSpecies : Species
         }
 
         return result;
-    }
-
-    /// <summary>
-    ///   Recursively loops though all hexes and checks if there any without connection to the rest.
-    /// </summary>
-    /// <returns>
-    ///   Returns a list of hexes that are not connected to the rest
-    /// </returns>
-    internal List<Hex> GetIslandHexes()
-    {
-        // The hex to start the recursion with
-        var initHex = Organelles[0].Position;
-
-        // These are the hexes have neighbours and aren't islands
-        var hexesWithNeighbours = new List<Hex> { initHex };
-
-        // These are all of the existing hexes, that if there are no islands will all be visited
-        var shouldBeVisited = Organelles.Select(p => p.Position).ToList();
-
-        CheckmarkNeighbors(hexesWithNeighbours, initHex);
-
-        // Return the difference of the lists (hexes that were not visited)
-        return shouldBeVisited.Except(hexesWithNeighbours).ToList();
-    }
-
-    /// <summary>
-    ///   A recursive function that adds the neighbours of current hex that contain organelles to the checked list and
-    ///   recurses to them to find more connected organelles
-    /// </summary>
-    /// <param name="checked">The list of already visited hexes. Will be filled up with found hexes.</param>
-    /// <param name="currentHex">The hex to visit the neighbours of.</param>
-    private void CheckmarkNeighbors(List<Hex> @checked, Hex currentHex)
-    {
-        // Get all neighbors not already visited
-        var myNeighbors = GetNeighborHexes(currentHex).Where(p => !@checked.Contains(p)).ToArray();
-
-        // Add the new neighbors to the list to not visit them again
-        @checked.AddRange(myNeighbors);
-
-        // Recurse to all neighbours to find more connected hexes
-        foreach (var neighbor in myNeighbors)
-        {
-            CheckmarkNeighbors(@checked, neighbor);
-        }
-    }
-
-    /// <summary>Gets all neighboring hexes where there is an organelle</summary>
-    /// <param name="hex">The hex to get the neighbours for</param>
-    /// <returns>Returns a list of neighbors that are part of an organelle</returns>
-    private IEnumerable<Hex> GetNeighborHexes(Hex hex)
-    {
-        return Hex.HexNeighbourOffset
-                  .Select(p => hex + p.Value)
-                  .Where(p => Organelles.GetOrganelleAt(p) != null);
     }
 }

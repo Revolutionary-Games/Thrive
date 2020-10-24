@@ -33,9 +33,12 @@ public class Mutations
     /// <summary>
     ///   Creates a mutated version of a species
     /// </summary>
+    /// <returns>
+    ///     Returns the mutated species.
+    ///     Returns null if the mutated species is invalid.
+    /// </returns>
     public MicrobeSpecies CreateMutatedSpecies(MicrobeSpecies parent, MicrobeSpecies mutated)
     {
-        var originalSpecies = (MicrobeSpecies)mutated.Clone();
         if (parent.Organelles.Count < 1)
         {
             throw new ArgumentException("Can't create a mutated version of an empty species");
@@ -74,8 +77,6 @@ public class Mutations
         }
 
         MutateMicrobeOrganelles(parent.Organelles, mutated.Organelles, mutated.IsBacteria);
-        if (!mutated.IsStructureValid)
-            return CreateMutatedSpecies(parent, originalSpecies);
 
         // There is a small chance of evolving into a eukaryote
         var nucleus = simulation.GetOrganelleType("nucleus");
@@ -153,8 +154,10 @@ public class Mutations
 
         for (int step = 0; step < steps; ++step)
         {
-            if (CreateMutatedSpecies(temp, mutated) == null)
+            CreateMutatedSpecies(temp, mutated);
+            if (!mutated.IsStructureValid)
             {
+                mutated = temp;
                 step--;
                 continue;
             }

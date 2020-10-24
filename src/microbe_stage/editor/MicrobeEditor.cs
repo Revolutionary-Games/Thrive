@@ -281,7 +281,7 @@ public class MicrobeEditor : Node, ILoadableGameState
     }
 
     [JsonIgnore]
-    public bool HasIslands => editedSpecies.GetIslandHexes().Any();
+    public bool HasIslands => editedMicrobeOrganelles.GetIslandHexes().Any();
 
     /// <summary>
     ///   Number of organelles in the microbe
@@ -1599,7 +1599,7 @@ public class MicrobeEditor : Node, ILoadableGameState
         int nextFreeHex = 0;
         int nextFreeOrganelle = 0;
 
-        var islands = editedSpecies.GetIslandHexes();
+        var islands = editedMicrobeOrganelles.GetIslandHexes();
 
         // Build the entities to show the current microbe
         foreach (var organelle in editedMicrobeOrganelles.Organelles)
