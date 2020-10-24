@@ -181,10 +181,12 @@ public class MicrobeCamera : Camera
     {
         var worldPlane = new Plane(new Vector3(0, 1, 0), 0.0f);
 
-        var mousePos = GetViewport().GetMousePosition();
+        var mousePos = GetViewport()?.GetMousePosition();
+        if (mousePos == null)
+            return;
 
-        var intersection = worldPlane.IntersectRay(ProjectRayOrigin(mousePos),
-            ProjectRayNormal(mousePos));
+        var intersection = worldPlane.IntersectRay(ProjectRayOrigin(mousePos.Value),
+            ProjectRayNormal(mousePos.Value));
 
         if (intersection.HasValue)
         {

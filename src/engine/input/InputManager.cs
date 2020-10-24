@@ -53,9 +53,9 @@ public class InputManager : Node
                     break;
                 case InputTrigger _:
                 case InputReleaseTrigger _:
-                case InputHoldToggle _:
                     p.Item1.Invoke(instance, Array.Empty<object>());
                     break;
+                case InputHoldToggle _:
                 case InputBool _:
                     p.Item1.Invoke(instance, new object[] { delta });
                     break;

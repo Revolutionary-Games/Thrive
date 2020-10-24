@@ -145,6 +145,12 @@ public class MicrobeEditor : Node, ILoadableGameState
     [JsonProperty]
     private string activeActionName;
 
+    /// <summary>
+    ///   Where the user started panning with the mouse
+    ///   Null if the user is not panning with the mouse
+    /// </summary>
+    private Vector3? mousePanningStart;
+
     [Signal]
     public delegate void InvalidPlacementOfHex();
 
@@ -175,6 +181,11 @@ public class MicrobeEditor : Node, ILoadableGameState
         /// Symmetry across the X and Y axis, as well as across center, in the editor.
         /// </summary>
         SixWaySymmetry,
+    }
+
+    public MicrobeEditor()
+    {
+        RunOnInputAttribute.InputClasses.Add(this);
     }
 
     [JsonIgnore]
@@ -356,6 +367,153 @@ public class MicrobeEditor : Node, ILoadableGameState
         }
     }
 
+    [RunOnMultiAxis("[[{\"e_pan_up\": -1}, {\"e_pan_down\": 1}],[{\"e_pan_left\": -1}, {\"e_pan_right\": 1}]]")]
+    public void PanCamWithKeys(float delta, int[] inputs)
+    {
+        if (mousePanningStart != null)
+            return;
+        var movement = new Vector3(inputs[1], 0, inputs[0]);
+        if (movement != Vector3.Zero)
+            MoveObjectToFollow(movement.Normalized() * delta * Camera.CameraHeight);
+    }
+
+    [RunOnKey("e_pan_mouse", RunOnKeyAttribute.InputType.Hold)]
+    public void PanCamWithMouse(float delta)
+    {
+        if (mousePanningStart == null)
+            mousePanningStart = Camera.CursorWorldPos;
+        else
+        {
+            var mousePanDirection = mousePanningStart.Value - Camera.CursorWorldPos;
+            MoveObjectToFollow(mousePanDirection * delta * 10);
+        }
+    }
+
+    [RunOnKey("e_pan_mouse", RunOnKeyAttribute.InputType.Released)]
+    public void ReleasePanCamWithMouse()
+    {
+        mousePanningStart = null;
+    }
+
+    [RunOnKey("e_reset_cam", RunOnKeyAttribute.InputType.Hold)]
+    public void ResetCamera()
+    {
+        camera.ObjectToFollow.Translation = new Vector3(0, 0, 0);
+        camera.ResetHeight();
+    }
+
+    [RunOnKey("e_rotate_right", RunOnKeyAttribute.InputType.Press)]
+    public void RotateRight()
+    {
+        organelleRot = (organelleRot + 1) % 6;
+    }
+
+    [RunOnKey("e_rotate_left", RunOnKeyAttribute.InputType.Press)]
+    public void RotateLeft()
+    {
+        --organelleRot;
+
+        if (organelleRot < 0)
+            organelleRot = 5;
+    }
+
+    [RunOnKey("e_redo", RunOnKeyAttribute.InputType.Press)]
+    public void Redo()
+    {
+        if (history.Redo())
+        {
+            TutorialState.SendEvent(TutorialEventType.MicrobeEditorRedo, EventArgs.Empty, this);
+        }
+
+        UpdateUndoRedoButtons();
+    }
+
+    [RunOnKey("e_undo", RunOnKeyAttribute.InputType.Press)]
+    public void Undo()
+    {
+        if (history.Undo())
+        {
+            TutorialState.SendEvent(TutorialEventType.MicrobeEditorUndo, EventArgs.Empty, this);
+        }
+
+        UpdateUndoRedoButtons();
+    }
+
+    [RunOnKey("e_primary", RunOnKeyAttribute.InputType.Press)]
+    public void PlaceOrganelle()
+    {
+        if (ActiveActionName == null)
+            return;
+
+        if (AddOrganelle(ActiveActionName))
+        {
+            // Only trigger tutorial if something was really placed
+            TutorialState.SendEvent(TutorialEventType.MicrobeEditorOrganellePlaced, EventArgs.Empty, this);
+        }
+    }
+
+    /// <summary>
+    ///   Removes organelles under the cursor
+    /// </summary>
+    [RunOnKey("e_secondary", RunOnKeyAttribute.InputType.Press)]
+    public void RemoveOrganelle()
+    {
+        GetMouseHex(out int q, out int r);
+
+        switch (Symmetry)
+        {
+            case MicrobeSymmetry.None:
+            {
+                RemoveOrganelleAt(new Hex(q, r));
+                break;
+            }
+
+            case MicrobeSymmetry.XAxisSymmetry:
+            {
+                RemoveOrganelleAt(new Hex(q, r));
+
+                if (q != -1 * q || r != r + q)
+                {
+                    RemoveOrganelleAt(new Hex(-1 * q, r + q));
+                }
+
+                break;
+            }
+
+            case MicrobeSymmetry.FourWaySymmetry:
+            {
+                RemoveOrganelleAt(new Hex(q, r));
+
+                if (q != -1 * q || r != r + q)
+                {
+                    RemoveOrganelleAt(new Hex(-1 * q, r + q));
+                    RemoveOrganelleAt(new Hex(-1 * q, -1 * r));
+                    RemoveOrganelleAt(new Hex(q,      -1 * (r + q)));
+                }
+                else
+                {
+                    RemoveOrganelleAt(new Hex(-1 * q, -1 * r));
+                }
+
+                break;
+            }
+
+            case MicrobeSymmetry.SixWaySymmetry:
+            {
+                RemoveOrganelleAt(new Hex(q, r));
+
+                RemoveOrganelleAt(new Hex(-1 * r,       r + q));
+                RemoveOrganelleAt(new Hex(-1 * (r + q), q));
+                RemoveOrganelleAt(new Hex(-1 * q,       -1 * r));
+                RemoveOrganelleAt(new Hex(r,            -1 * (r + q)));
+                RemoveOrganelleAt(new Hex(r,            -1 * (r + q)));
+                RemoveOrganelleAt(new Hex(r + q,        -1 * q));
+
+                break;
+            }
+        }
+    }
+
     /// <summary>
     ///   Sets up the editor when entering
     /// </summary>
@@ -531,12 +689,6 @@ public class MicrobeEditor : Node, ILoadableGameState
         stage.OnReturnFromEditor();
     }
 
-    public void ResetCamera()
-    {
-        camera.ObjectToFollow.Translation = new Vector3(0, 0, 0);
-        camera.ResetHeight();
-    }
-
     public void StartMusic()
     {
         Jukebox.Instance.PlayingCategory = "MicrobeEditor";
@@ -653,51 +805,6 @@ public class MicrobeEditor : Node, ILoadableGameState
         EnqueueAction(action);
     }
 
-    public void Redo()
-    {
-        if (history.Redo())
-        {
-            TutorialState.SendEvent(TutorialEventType.MicrobeEditorRedo, EventArgs.Empty, this);
-        }
-
-        UpdateUndoRedoButtons();
-    }
-
-    public void Undo()
-    {
-        if (history.Undo())
-        {
-            TutorialState.SendEvent(TutorialEventType.MicrobeEditorUndo, EventArgs.Empty, this);
-        }
-
-        UpdateUndoRedoButtons();
-    }
-
-    public void PlaceOrganelle()
-    {
-        if (ActiveActionName == null)
-            return;
-
-        if (AddOrganelle(ActiveActionName))
-        {
-            // Only trigger tutorial if something was really placed
-            TutorialState.SendEvent(TutorialEventType.MicrobeEditorOrganellePlaced, EventArgs.Empty, this);
-        }
-    }
-
-    public void RotateRight()
-    {
-        organelleRot = (organelleRot + 1) % 6;
-    }
-
-    public void RotateLeft()
-    {
-        --organelleRot;
-
-        if (organelleRot < 0)
-            organelleRot = 5;
-    }
-
     public void SetMembrane(string membraneName)
     {
         var membrane = SimulationParameters.Instance.GetMembrane(membraneName);
@@ -758,67 +865,6 @@ public class MicrobeEditor : Node, ILoadableGameState
             });
 
         EnqueueAction(action);
-    }
-
-    /// <summary>
-    ///   Removes organelles under the cursor
-    /// </summary>
-    public void RemoveOrganelle()
-    {
-        GetMouseHex(out int q, out int r);
-
-        switch (Symmetry)
-        {
-            case MicrobeSymmetry.None:
-            {
-                RemoveOrganelleAt(new Hex(q, r));
-                break;
-            }
-
-            case MicrobeSymmetry.XAxisSymmetry:
-            {
-                RemoveOrganelleAt(new Hex(q, r));
-
-                if (q != -1 * q || r != r + q)
-                {
-                    RemoveOrganelleAt(new Hex(-1 * q, r + q));
-                }
-
-                break;
-            }
-
-            case MicrobeSymmetry.FourWaySymmetry:
-            {
-                RemoveOrganelleAt(new Hex(q, r));
-
-                if (q != -1 * q || r != r + q)
-                {
-                    RemoveOrganelleAt(new Hex(-1 * q, r + q));
-                    RemoveOrganelleAt(new Hex(-1 * q, -1 * r));
-                    RemoveOrganelleAt(new Hex(q, -1 * (r + q)));
-                }
-                else
-                {
-                    RemoveOrganelleAt(new Hex(-1 * q, -1 * r));
-                }
-
-                break;
-            }
-
-            case MicrobeSymmetry.SixWaySymmetry:
-            {
-                RemoveOrganelleAt(new Hex(q, r));
-
-                RemoveOrganelleAt(new Hex(-1 * r, r + q));
-                RemoveOrganelleAt(new Hex(-1 * (r + q), q));
-                RemoveOrganelleAt(new Hex(-1 * q, -1 * r));
-                RemoveOrganelleAt(new Hex(r, -1 * (r + q)));
-                RemoveOrganelleAt(new Hex(r, -1 * (r + q)));
-                RemoveOrganelleAt(new Hex(r + q, -1 * q));
-
-                break;
-            }
-        }
     }
 
     public float CalculateSpeed()
