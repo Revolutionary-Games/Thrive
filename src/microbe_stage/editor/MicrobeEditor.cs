@@ -1127,7 +1127,9 @@ public class MicrobeEditor : Node, ILoadableGameState
 
     private void CreateMutatedSpeciesCopy(Species species)
     {
-        var newSpecies = CurrentGame.GameWorld.CreateMutatedSpecies(species);
+        Species newSpecies = null;
+        while (newSpecies == null)
+            newSpecies = CurrentGame.GameWorld.CreateMutatedSpecies(species);
 
         var random = new Random();
 
