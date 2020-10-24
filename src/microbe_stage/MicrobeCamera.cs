@@ -111,15 +111,14 @@ public class MicrobeCamera : Camera
         ResetHeight();
     }
 
-    [SuppressMessage("ReSharper", "UnusedParameter.Global",
-                     Justification = "The parameters are filled via reflection")]
     [RunOnAxis(new[] { "g_zoom_in", "g_zoom_out" }, new[] { -1, 1 })]
-    [SuppressMessage("ReSharper", "UnusedMember.Global",
-                     Justification = "Called from InputManager")]
     public void ZoomIn(float delta, int acceptedValue)
     {
         CameraHeight += acceptedValue * ZoomSpeed;
         CameraHeight = CameraHeight.Clamp(MinCameraHeight, MaxCameraHeight);
+
+        // This is just to fix CI. Because the InputManager uses reflection, it requires the float delta variable.
+        var i = delta;
     }
 
     /// <summary>
