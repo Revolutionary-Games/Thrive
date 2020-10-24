@@ -69,11 +69,6 @@ public abstract class Species : ICloneable
     public abstract string StringCode { get; set; }
 
     /// <summary>
-    ///   Repositions the structure of the species to the center of mass
-    /// </summary>
-    public abstract void RepositionToCenterOfMass();
-
-    /// <summary>
     ///   When true this is the player species
     /// </summary>
     [JsonProperty]
@@ -84,6 +79,11 @@ public abstract class Species : ICloneable
 
     [JsonIgnore]
     public string FormattedIdentifier => FormattedName + $" ({ID:n0})";
+
+    /// <summary>
+    ///   Repositions the structure of the species to the center of mass
+    /// </summary>
+    public abstract void RepositionToCenterOfMass();
 
     public void SetPopulationFromPatches(long population)
     {
