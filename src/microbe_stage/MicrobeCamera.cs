@@ -111,9 +111,11 @@ public class MicrobeCamera : Camera
         ResetHeight();
     }
 
-    [RunOnAxis(new[] { "g_zoom_in", "g_zoom_out" }, new[] { -1, 1 })]
     [SuppressMessage("ReSharper", "UnusedParameter.Global",
                      Justification = "The parameters are filled via reflection")]
+    [RunOnAxis(new[] { "g_zoom_in", "g_zoom_out" }, new[] { -1, 1 })]
+    [SuppressMessage("ReSharper", "UnusedMember.Global",
+                     Justification = "Called from InputManager")]
     public void ZoomIn(float delta, int acceptedValue)
     {
         CameraHeight += acceptedValue * ZoomSpeed;
