@@ -64,7 +64,6 @@ public class DefaultToolTip : Control, ICustomToolTip
     {
         descriptionLabel = GetNode<Label>(DescriptionLabelPath);
         tween = GetNode<Tween>("Tween");
-        tween.Connect("tween_started", this, nameof(OnFadeInStarted));
 
         UpdateDescription();
     }
@@ -92,13 +91,5 @@ public class DefaultToolTip : Control, ICustomToolTip
         {
             descriptionLabel.Text = Description;
         }
-    }
-
-    private void OnFadeInStarted(Object obj, NodePath key)
-    {
-        _ = obj;
-        _ = key;
-
-        Show();
     }
 }
