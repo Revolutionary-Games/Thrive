@@ -734,6 +734,8 @@ public class MicrobeEditorGUI : Node
         foreach (var membraneType in SimulationParameters.Instance.GetAllMembranes()) {
             var tooltip = (SelectionMenuToolTip)ToolTipManager.Instance.GetToolTip(
                 membraneType.InternalName, "membraneSelection");
+
+            tooltip.WriteMembraneModifierList(referenceMembrane, membraneType);
         }
     }
 

@@ -268,6 +268,71 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         }
     }
 
+    public void WriteMembraneModifierList(MembraneType referenceMembrane, MembraneType membraneType) {
+        
+
+        String[] modifierNames = { "Mobility", "Osmoregulation Cost", "Resource Absorption Speed", "Health",
+            "Physical Resistance", "Toxin Resistance" };
+        var modifierInfoLabels = new Dictionary<String, ModifierInfoLabel>();
+        var modifierValues = new Dictionary<String, float>();
+
+        foreach (var modifier in modifierNames) {
+            modifierInfoLabels.Add(modifier,GetModifierInfo(modifier));
+            switch (modifier)
+            {
+                case "Mobility":
+                    modifierValues.Add(modifier, membraneType.MovementFactor - referenceMembrane.MovementFactor);
+                    break;
+                case "Osmoregulation Cost":
+                    modifierValues.Add(modifier, membraneType.OsmoregulationFactor - referenceMembrane.OsmoregulationFactor);
+                    break;
+                case "Resource Absorption Speed":
+                    modifierValues.Add(modifier, membraneType.ResourceAbsorptionFactor - referenceMembrane.ResourceAbsorptionFactor);
+                    break;
+                case "Health":
+                    modifierValues.Add(modifier, membraneType.Hitpoints - referenceMembrane.Hitpoints);
+                    break;
+                case "Physical Resistance":
+                    modifierValues.Add(modifier, membraneType.PhysicalResistance - referenceMembrane.PhysicalResistance);
+                    break;
+                case "Toxin Resistance":
+                    modifierValues.Add(modifier, membraneType.ToxinResistance - referenceMembrane.ToxinResistance);
+                    break;
+            };
+        }
+
+        try {
+            foreach (var modifierLabel in modifierInfoLabels) {
+            if (modifierLabel.Key == "Health") {
+                modifierLabel.Value.ModifierValue = ((modifierValues[modifierLabel.Key] > 0) ? "+" : string.Empty)
+                    + (modifierValues[modifierLabel.Key]).ToString("F0", CultureInfo.CurrentCulture);
+            } else {
+                modifierLabel.Value.ModifierValue = ((modifierValues[modifierLabel.Key] > 0) ? "+" : string.Empty)
+                    + (modifierValues[modifierLabel.Key] * 100).ToString("F0", CultureInfo.CurrentCulture)
+                    + "%";
+            }
+
+            if (modifierValues[modifierLabel.Key] > 0)
+            {
+                modifierLabel.Value.ModifierValueColor = new Color(0, 1, 0);
+            }
+            else if (modifierValues[modifierLabel.Key] == 0)
+            {
+                modifierLabel.Value.ModifierValueColor = new Color(1, 1, 1);
+            }
+            else
+            {
+                modifierLabel.Value.ModifierValueColor = new Color(1, 0.3f, 0.3f);
+            }
+
+
+            }
+        } catch {}
+
+        
+
+    }
+
     public void OnDisplay()
     {
         ToolTipHelper.TooltipFadeIn(tween, this);
