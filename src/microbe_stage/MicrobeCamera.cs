@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Godot;
 using Newtonsoft.Json;
 
@@ -111,6 +112,8 @@ public class MicrobeCamera : Camera
     }
 
     [RunOnAxis(new[] { "g_zoom_in", "g_zoom_out" }, new[] { -1, 1 })]
+    [SuppressMessage("ReSharper", "UnusedParameter.Global",
+                     Justification = "The parameters are filled via reflection")]
     public void ZoomIn(float delta, int acceptedValue)
     {
         CameraHeight += acceptedValue * ZoomSpeed;
