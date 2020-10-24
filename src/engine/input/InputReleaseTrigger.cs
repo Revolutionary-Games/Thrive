@@ -5,25 +5,10 @@ using Godot;
 /// </summary>
 public class InputReleaseTrigger : InputBool
 {
-    protected bool triggered;
+    private bool triggered;
 
     public InputReleaseTrigger(string actionName) : base(actionName)
     {
-    }
-
-    /// <summary>
-    ///   Reads the trigger status and resets it
-    /// </summary>
-    /// <returns>True if has been triggered</returns>
-    public bool ReadTrigger()
-    {
-        if (triggered)
-        {
-            triggered = false;
-            return true;
-        }
-
-        return false;
     }
 
     public override object ReadInput()
@@ -33,23 +18,34 @@ public class InputReleaseTrigger : InputBool
 
     public override bool CheckInput(InputEvent inputEvent)
     {
-        bool wasPressed = Pressed;
+        var wasPressed = Pressed;
 
-        if (!base.CheckInput(inputEvent))
+        if (base.CheckInput(inputEvent))
+            return false;
+
+        if (wasPressed && !Pressed)
         {
-            if (wasPressed && !Pressed)
-            {
-                // Just became pressed, trigger
-                triggered = true;
-            }
-
-            return true;
+            // Just became pressed, trigger
+            triggered = true;
         }
 
-        return false;
+        return true;
     }
 
     public override bool HasInput() => (bool)ReadInput();
+
+    /// <summary>
+    ///   Reads the trigger status and resets it
+    /// </summary>
+    /// <returns>True if has been triggered</returns>
+    private bool ReadTrigger()
+    {
+        if (!triggered)
+            return false;
+
+        triggered = false;
+        return true;
+    }
 
     // This doesn't actually reset the trigger status, but will reset detection for being pressed currently
     // public override void FocusLost()

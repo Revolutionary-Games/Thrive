@@ -5,14 +5,12 @@ using System.Reflection;
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
 public abstract class RunOnInputAttribute : Attribute
 {
-    public static List<object> InputClasses { get; } = new List<object>();
-    internal static List<Tuple<MethodBase, RunOnInputAttribute>> AttributesWithMethods { get; } = new List<Tuple<MethodBase, RunOnInputAttribute>>();
-    protected IInputReceiver inputReceiver;
-
     ~RunOnInputAttribute()
     {
         AttributesWithMethods.RemoveAll(p => p.Item2.Equals(this));
     }
 
+    public static List<object> InputClasses { get; } = new List<object>();
     public abstract IInputReceiver InputReceiver { get; }
+    internal static List<Tuple<MethodBase, RunOnInputAttribute>> AttributesWithMethods { get; } = new List<Tuple<MethodBase, RunOnInputAttribute>>();
 }

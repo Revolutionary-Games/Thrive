@@ -1,4 +1,4 @@
-[gd_scene load_steps=118 format=2]
+[gd_scene load_steps=117 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeStage.cs" type="Script" id=1]
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://assets/textures/gui/bevel/PhosphateInv.png" type="Texture" id=4]
 [ext_resource path="res://assets/textures/gui/bevel/PhosphatesBW.png" type="Texture" id=5]
 [ext_resource path="res://assets/textures/gui/bevel/AmmoniaBW.png" type="Texture" id=6]
-[ext_resource path="res://src/microbe_stage/PlayerMicrobeInput.cs" type="Script" id=7]
 [ext_resource path="res://assets/sounds/soundeffects/microbe-pickup-organelle.ogg" type="AudioStream" id=8]
 [ext_resource path="res://src/microbe_stage/MicrobeHUD.cs" type="Script" id=9]
 [ext_resource path="res://src/microbe_stage/CompoundCloudSystem.cs" type="Script" id=10]
@@ -775,9 +774,6 @@ shadow_enabled = true
 
 [node name="GuidanceLine" parent="World" instance=ExtResource( 75 )]
 visible = false
-
-[node name="PlayerMicrobeInput" type="Node" parent="."]
-script = ExtResource( 7 )
 
 [node name="ChromaticFilter" parent="." instance=ExtResource( 67 )]
 margin_left = -0.943848

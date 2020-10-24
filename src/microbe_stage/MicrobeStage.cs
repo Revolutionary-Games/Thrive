@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
+using Environment = Godot.Environment;
 
 /// <summary>
 ///   Main class for managing the microbe stage
@@ -32,6 +33,7 @@ public class MicrobeStage : Node, ILoadableGameState
     private GuidanceLine guidanceLine;
     private Vector3? guidancePosition;
     private PauseMenu pauseMenu;
+    private bool autoMove;
 
     /// <summary>
     ///   Used to control how often compound position info is sent to the tutorial
@@ -65,6 +67,11 @@ public class MicrobeStage : Node, ILoadableGameState
     ///   True if auto save should trigger ASAP
     /// </summary>
     private bool wantsToSave;
+
+    public MicrobeStage()
+    {
+        RunOnInputAttribute.InputClasses.Add(this);
+    }
 
     [JsonProperty]
     public Microbe Player { get; private set; }
@@ -144,6 +151,90 @@ public class MicrobeStage : Node, ILoadableGameState
     /// </summary>
     [JsonIgnore]
     public bool TransitionFinished { get; internal set; }
+
+    [RunOnKey("g_hold_forward", RunOnKeyAttribute.InputType.Press)]
+    public void ToggleAutoMove()
+    {
+        autoMove = !autoMove;
+    }
+
+    [RunOnMultiAxis("[[{\"g_move_forward\": -1}, {\"g_move_backwards\": 1}],[{\"g_move_left\": -1}, {\"g_move_right\": 1}]]")]
+    public void MovePlayer(float delta, int[] inputs)
+    {
+        var forwardMovement = inputs[0];
+        var leftRightMovement = inputs[1];
+        if (autoMove)
+        {
+            if (forwardMovement != 0 || leftRightMovement != 0)
+                autoMove = false;
+            else
+                forwardMovement = -1;
+        }
+
+        var movement = new Vector3(leftRightMovement, 0, forwardMovement);
+        if (Player != null)
+        {
+            Player.MovementDirection = movement.Normalized();
+            Player.LookAtPoint = Camera.CursorWorldPos;
+        }
+    }
+
+    [RunOnKey("g_fire_toxin", RunOnKeyAttribute.InputType.Hold)]
+    public void FireToxin()
+    {
+        Player?.EmitToxin();
+    }
+
+    [RunOnKey("g_toggle_engulf", RunOnKeyAttribute.InputType.Press)]
+    public void ToggleEngulf()
+    {
+        if (Player != null)
+            Player.EngulfMode = !Player.EngulfMode;
+    }
+
+    [RunOnKey("g_cheat_editor", RunOnKeyAttribute.InputType.Press)]
+    public void TryCheatEditor()
+    {
+        if (Settings.Instance.CheatsEnabled)
+            HUD.ShowReproductionDialog();
+    }
+
+    [RunOnKey("g_cheat_glucose", RunOnKeyAttribute.InputType.Hold)]
+    public void TryCheatGlucose(float delta)
+    {
+        SpawnCheatCloud("glucose", delta);
+    }
+
+    [RunOnKey("g_cheat_ammonia", RunOnKeyAttribute.InputType.Hold)]
+    public void TryCheatAmmonia(float delta)
+    {
+        SpawnCheatCloud("ammonia", delta);
+    }
+
+    [RunOnKey("g_cheat_phosphates", RunOnKeyAttribute.InputType.Hold)]
+    public void TryCheatPhosphates(float delta)
+    {
+        SpawnCheatCloud("phosphates", delta);
+    }
+
+    private void SpawnCheatCloud(string name, float delta)
+    {
+        Clouds.AddCloud(SimulationParameters.Instance.GetCompound(name),
+                                    8000.0f * delta, Camera.CursorWorldPos);
+    }
+
+    public void MoveForwardBackwards(float delta, int value)
+    {
+        if (autoMove)
+        {
+            if (value != 0)
+                autoMove = false;
+            value = -1;
+        }
+
+        var movement = new Vector3(0, 0, value);
+        Player.MovementDirection = movement.Normalized();
+    }
 
     /// <summary>
     ///   This should get called the first time the stage scene is put

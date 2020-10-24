@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Godot;
 
 /// <summary>
@@ -50,31 +51,28 @@ public class InputAxis : IInputReceiver
 
     public bool CheckInput(InputEvent @event)
     {
-        foreach (var input in inputs)
+        foreach (var input in inputs.Where(input => input.Input.CheckInput(@event)))
         {
-            if (input.Input.CheckInput(@event))
+            // Was consumed
+
+            // Just to make sure that it became pressed if the logic in the InputBool is changed
+            if (input.Input.Pressed)
             {
-                // Was consumed
-
-                // Just to make sure that it became pressed if the logic in the InputBool is changed
-                if (input.Input.Pressed)
+                try
                 {
-                    try
-                    {
-                        input.LastDown = NextInputNumber;
-                    }
-                    catch (OverflowException)
-                    {
-                        // Reset to a lower value
-                        OnInputNumberOverflow();
-
-                        input.LastDown = 0;
-                        inputNumber = 0;
-                    }
+                    input.LastDown = NextInputNumber;
                 }
+                catch (OverflowException)
+                {
+                    // Reset to a lower value
+                    OnInputNumberOverflow();
 
-                return true;
+                    input.LastDown = 0;
+                    inputNumber = 0;
+                }
             }
+
+            return true;
         }
 
         return false;
@@ -85,7 +83,7 @@ public class InputAxis : IInputReceiver
         return CurrentValue;
     }
 
-    public bool HasInput() => (int)ReadInput() != 0;
+    public bool HasInput() => true;
 
     public void FocusLost()
     {

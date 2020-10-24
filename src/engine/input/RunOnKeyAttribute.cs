@@ -4,6 +4,7 @@ using System.Reflection;
 
 public class RunOnKeyAttribute : RunOnInputAttribute
 {
+    private IInputReceiver inputReceiver;
     public RunOnKeyAttribute(string inputString, InputType type)
     {
         InputString = inputString;
@@ -13,14 +14,24 @@ public class RunOnKeyAttribute : RunOnInputAttribute
 
     public enum InputType
     {
+        /// <summary>
+        ///   Fires the method once when the key is pressed down
+        /// </summary>
         Press,
+        /// <summary>
+        ///   Fires the method repeatedly when the key is held down
+        /// </summary>
         Hold,
-        Relase,
+        /// <summary>
+        ///   Fires the method once when the key is released
+        /// </summary>
+        Released,
+        /// <summary>
+        ///   Fires the method repeatedly and toggles when the key is pressed down
+        /// </summary>
+        ToggleHold,
     }
 
-
-    public string InputString { get; }
-    public InputType Type { get; }
     public override IInputReceiver InputReceiver
     {
         get
@@ -29,11 +40,13 @@ public class RunOnKeyAttribute : RunOnInputAttribute
             {
                 InputType.Hold => new InputBool(InputString),
                 InputType.Press => new InputTrigger(InputString),
-                InputType.Relase => new InputReleaseTrigger(InputString),
+                InputType.Released => new InputReleaseTrigger(InputString),
+                InputType.ToggleHold => new InputHoldToggle(InputString),
                 _ => throw new NotSupportedException("Input type not supported"),
             };
         }
     }
 
-    internal static List<Tuple<MethodBase, RunOnKeyAttribute>> AttributesWithMethods { get; } = new List<Tuple<MethodBase, RunOnKeyAttribute>>();
+    private string InputString { get; }
+    private InputType Type { get; }
 }

@@ -5,6 +5,7 @@ using Godot;
 
 public class RunOnAxisAttribute : RunOnInputAttribute
 {
+    private IInputReceiver inputReceiver;
     public RunOnAxisAttribute(string[] inputs, int[] associatedValues)
     {
         if (inputs.Length != associatedValues.Length)
@@ -16,8 +17,6 @@ public class RunOnAxisAttribute : RunOnInputAttribute
         }
     }
 
-    public List<(InputBool input, int associatedValue)> InputKeys { get; }
-
     public override IInputReceiver InputReceiver
     {
         get
@@ -26,4 +25,5 @@ public class RunOnAxisAttribute : RunOnInputAttribute
         }
     }
 
+    private List<(InputBool input, int associatedValue)> InputKeys { get; }
 }

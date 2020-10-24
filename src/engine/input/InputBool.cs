@@ -5,7 +5,7 @@ using Godot;
 /// </summary>
 public class InputBool : IInputReceiver
 {
-    protected readonly string action;
+    private readonly string action;
 
     public InputBool(string actionName)
     {

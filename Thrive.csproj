@@ -31,11 +31,13 @@
     <Compile Include="src\engine\input\InputBool.cs" />
     <Compile Include="src\engine\input\InputManager.cs" />
     <Compile Include="src\engine\input\InputReleaseTrigger.cs" />
-    <Compile Include="src\engine\input\InputToggle.cs" />
+    <Compile Include="src\engine\input\InputHoldToggle.cs" />
     <Compile Include="src\engine\input\InputTrigger.cs" />
+    <Compile Include="src\engine\input\InputMultiAxis.cs" />
     <Compile Include="src\engine\input\RunOnAxisAttribute.cs" />
     <Compile Include="src\engine\input\RunOnInputAttribute.cs" />
     <Compile Include="src\engine\input\RunOnKeyAttribute.cs" />
+    <Compile Include="src\engine\input\RunOnMultiAxisAttribute.cs" />
     <Compile Include="src\engine\Invoke.cs" />
     <Compile Include="src\engine\LoadingScreen.cs" />
     <Compile Include="src\engine\PostStartupActions.cs" />
@@ -93,7 +95,6 @@
     <Compile Include="src\microbe_stage\MicrobeStage.cs" />
     <Compile Include="src\microbe_stage\NucleusMesh.cs" />
     <Compile Include="src\microbe_stage\PlacedOrganelle.cs" />
-    <Compile Include="src\microbe_stage\PlayerMicrobeInput.cs" />
     <Compile Include="src\microbe_stage\SpawnSystem.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="src\general\MathUtils.cs" />

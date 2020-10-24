@@ -47,11 +47,13 @@ public class InputManager : Node
 
             switch (inputReceiver)
             {
+                case InputMultiAxis _:
                 case InputAxis _:
-                    p.Item1.Invoke(instance, new object[] { delta, (int)inputReceiver.ReadInput() });
+                    p.Item1.Invoke(instance, new[] { delta, inputReceiver.ReadInput() });
                     break;
                 case InputTrigger _:
                 case InputReleaseTrigger _:
+                case InputHoldToggle _:
                     p.Item1.Invoke(instance, Array.Empty<object>());
                     break;
                 case InputBool _:

@@ -5,7 +5,7 @@ using Godot;
 /// </summary>
 public class InputTrigger : InputBool
 {
-    protected bool triggered;
+    private bool triggered;
 
     public InputTrigger(string actionName) : base(actionName)
     {
@@ -15,7 +15,7 @@ public class InputTrigger : InputBool
     ///   Reads the trigger status and resets it
     /// </summary>
     /// <returns>True if has been triggered</returns>
-    public bool ReadTrigger()
+    private bool ReadTrigger()
     {
         if (triggered)
         {
@@ -33,20 +33,19 @@ public class InputTrigger : InputBool
 
     public override bool CheckInput(InputEvent inputEvent)
     {
-        bool wasPressed = Pressed;
+        var wasPressed = Pressed;
 
-        if (base.CheckInput(inputEvent))
+        if (!base.CheckInput(inputEvent))
+            return false;
+
+        if (!wasPressed && Pressed)
         {
-            if (!wasPressed && Pressed)
-            {
-                // Just became pressed, trigger
-                triggered = true;
-            }
-
-            return true;
+            // Just became pressed, trigger
+            triggered = true;
         }
 
-        return false;
+        return true;
+
     }
 
     public override bool HasInput() => (bool)ReadInput();
