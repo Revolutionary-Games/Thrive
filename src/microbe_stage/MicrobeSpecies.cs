@@ -33,7 +33,7 @@ public class MicrobeSpecies : Species
         set => throw new NotImplementedException();
     }
 
-    public override void RepositionToCenterOfMass()
+    public override void RepositionToOrigin()
     {
         var centerOfMass = Organelles.CenterOfMass;
 

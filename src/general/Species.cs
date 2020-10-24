@@ -83,7 +83,7 @@ public abstract class Species : ICloneable
     /// <summary>
     ///   Repositions the structure of the species to the center of mass
     /// </summary>
-    public abstract void RepositionToCenterOfMass();
+    public abstract void RepositionToOrigin();
 
     public void SetPopulationFromPatches(long population)
     {

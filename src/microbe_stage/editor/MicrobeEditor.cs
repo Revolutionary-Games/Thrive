@@ -421,7 +421,7 @@ public class MicrobeEditor : Node, ILoadableGameState
             editedSpecies.Organelles.Add(organelleToAdd);
         }
 
-        editedSpecies.RepositionToCenterOfMass();
+        editedSpecies.RepositionToOrigin();
 
         // Update bacteria status
         editedSpecies.IsBacteria = !HasNucleus;
