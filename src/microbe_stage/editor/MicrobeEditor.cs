@@ -488,7 +488,7 @@ public class MicrobeEditor : Node, ILoadableGameState
                 {
                     RemoveOrganelleAt(new Hex(-1 * q, r + q));
                     RemoveOrganelleAt(new Hex(-1 * q, -1 * r));
-                    RemoveOrganelleAt(new Hex(q,      -1 * (r + q)));
+                    RemoveOrganelleAt(new Hex(q, -1 * (r + q)));
                 }
                 else
                 {
@@ -502,12 +502,12 @@ public class MicrobeEditor : Node, ILoadableGameState
             {
                 RemoveOrganelleAt(new Hex(q, r));
 
-                RemoveOrganelleAt(new Hex(-1 * r,       r + q));
+                RemoveOrganelleAt(new Hex(-1 * r, r + q));
                 RemoveOrganelleAt(new Hex(-1 * (r + q), q));
-                RemoveOrganelleAt(new Hex(-1 * q,       -1 * r));
-                RemoveOrganelleAt(new Hex(r,            -1 * (r + q)));
-                RemoveOrganelleAt(new Hex(r,            -1 * (r + q)));
-                RemoveOrganelleAt(new Hex(r + q,        -1 * q));
+                RemoveOrganelleAt(new Hex(-1 * q, -1 * r));
+                RemoveOrganelleAt(new Hex(r, -1 * (r + q)));
+                RemoveOrganelleAt(new Hex(r, -1 * (r + q)));
+                RemoveOrganelleAt(new Hex(r + q, -1 * q));
 
                 break;
             }
