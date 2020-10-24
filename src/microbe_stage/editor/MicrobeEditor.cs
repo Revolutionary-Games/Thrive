@@ -164,7 +164,7 @@ public class MicrobeEditor : Node, ILoadableGameState
 
     /// <summary>
     /// The Symmetry setting of the Microbe Editor.
-    /// </summary> 
+    /// </summary>
     public enum MicrobeSymmetry
     {
         /// <summary>

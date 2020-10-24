@@ -28,9 +28,11 @@ public class InputManager : Node
             if (!inputReceiver.HasInput())
                 return;
 
+            var readValue = inputReceiver.ReadInput();
+
             if (p.Item1.IsStatic)
             {
-                TryInvoke(p.Item1, null, delta, inputReceiver);
+                TryInvoke(p.Item1, null, delta, inputReceiver, readValue);
             }
             else
             {
@@ -38,7 +40,7 @@ public class InputManager : Node
                     RunOnInputAttribute.InputClasses.Where(x => x.GetType() == p.Item1.DeclaringType).ToList();
                 foreach (var instance in instances)
                 {
-                    if (!TryInvoke(p.Item1, instance, delta, inputReceiver))
+                    if (!TryInvoke(p.Item1, instance, delta, inputReceiver, readValue))
                         disposed.Add(instance);
                 }
             }
@@ -47,7 +49,7 @@ public class InputManager : Node
     }
 
     /// <returns>False if the instance was disposed</returns>
-    private static bool TryInvoke(MethodBase method, object instance, float delta, IInputReceiver inputReceiver)
+    private static bool TryInvoke(MethodBase method, object instance, float delta, IInputReceiver inputReceiver, object readValue)
     {
         try
         {
@@ -55,7 +57,7 @@ public class InputManager : Node
             {
                 case InputMultiAxis _:
                 case InputAxis _:
-                    method.Invoke(instance, new[] { delta, inputReceiver.ReadInput() });
+                    method.Invoke(instance, new[] { delta, readValue });
                     break;
                 case InputTrigger _:
                 case InputReleaseTrigger _:
