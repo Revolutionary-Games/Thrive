@@ -157,6 +157,11 @@ public class MicrobeEditor : Node, ILoadableGameState
     [Signal]
     public delegate void InsufficientMPToPlaceHex();
 
+    public MicrobeEditor()
+    {
+        RunOnInputAttribute.InputClasses.Add(this);
+    }
+
     /// <summary>
     /// The Symmetry setting of the Microbe Editor.
     /// </summary>
@@ -181,11 +186,6 @@ public class MicrobeEditor : Node, ILoadableGameState
         /// Symmetry across the X and Y axis, as well as across center, in the editor.
         /// </summary>
         SixWaySymmetry,
-    }
-
-    public MicrobeEditor()
-    {
-        RunOnInputAttribute.InputClasses.Add(this);
     }
 
     [JsonIgnore]

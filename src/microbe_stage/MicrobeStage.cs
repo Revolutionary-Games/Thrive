@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using Godot;
 using Newtonsoft.Json;
 using Environment = Godot.Environment;
@@ -171,7 +172,7 @@ public class MicrobeStage : Node, ILoadableGameState
                 forwardMovement = -1;
         }
 
-        var movement = new Vector3(leftRightMovement, 0, forwardMovement);
+        var movement = new Vector3(leftRightMovement, 0, forwardMovement) * delta;
         if (Player != null)
         {
             Player.MovementDirection = movement.Normalized();
@@ -179,6 +180,7 @@ public class MicrobeStage : Node, ILoadableGameState
         }
     }
 
+    [SuppressMessage("ReSharper", "CA1030", Justification = "This is called from the intput system and should not be made an event")]
     [RunOnKey("g_fire_toxin", RunOnKeyAttribute.InputType.Hold)]
     public void FireToxin()
     {
@@ -215,25 +217,6 @@ public class MicrobeStage : Node, ILoadableGameState
     public void TryCheatPhosphates(float delta)
     {
         SpawnCheatCloud("phosphates", delta);
-    }
-
-    private void SpawnCheatCloud(string name, float delta)
-    {
-        Clouds.AddCloud(SimulationParameters.Instance.GetCompound(name),
-                                    8000.0f * delta, Camera.CursorWorldPos);
-    }
-
-    public void MoveForwardBackwards(float delta, int value)
-    {
-        if (autoMove)
-        {
-            if (value != 0)
-                autoMove = false;
-            value = -1;
-        }
-
-        var movement = new Vector3(0, 0, value);
-        Player.MovementDirection = movement.Normalized();
     }
 
     /// <summary>
@@ -597,6 +580,12 @@ public class MicrobeStage : Node, ILoadableGameState
             // Player is not extinct, so can respawn
             SpawnPlayer();
         }
+    }
+
+    private void SpawnCheatCloud(string name, float delta)
+    {
+        Clouds.AddCloud(SimulationParameters.Instance.GetCompound(name),
+                        8000.0f * delta, Camera.CursorWorldPos);
     }
 
     private void UpdatePatchSettings(bool isLoading)

@@ -11,21 +11,6 @@ public class InputTrigger : InputBool
     {
     }
 
-    /// <summary>
-    ///   Reads the trigger status and resets it
-    /// </summary>
-    /// <returns>True if has been triggered</returns>
-    private bool ReadTrigger()
-    {
-        if (triggered)
-        {
-            triggered = false;
-            return true;
-        }
-
-        return false;
-    }
-
     public override object ReadInput()
     {
         return ReadTrigger();
@@ -45,10 +30,24 @@ public class InputTrigger : InputBool
         }
 
         return true;
-
     }
 
     public override bool HasInput() => (bool)ReadInput();
+
+    /// <summary>
+    ///   Reads the trigger status and resets it
+    /// </summary>
+    /// <returns>True if has been triggered</returns>
+    private bool ReadTrigger()
+    {
+        if (triggered)
+        {
+            triggered = false;
+            return true;
+        }
+
+        return false;
+    }
 
     // This doesn't actually reset the trigger status, but will reset detection for being pressed currently
     // public override void FocusLost()
