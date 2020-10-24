@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Godot;
@@ -30,9 +29,10 @@ public class InputMultiAxis : IInputReceiver
     {
         var returnValue = false;
 
-        foreach (var input in inputs.Where(input => input.CheckInput(@event)))
+        foreach (var input in inputs)
         {
-            returnValue = true;
+            if (input.CheckInput(@event))
+                returnValue = true;
         }
 
         return returnValue;

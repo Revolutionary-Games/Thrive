@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using Godot;
 using Newtonsoft.Json;
-using Environment = Godot.Environment;
 
 /// <summary>
 ///   Main class for managing the microbe stage
@@ -159,7 +158,8 @@ public class MicrobeStage : Node, ILoadableGameState
         autoMove = !autoMove;
     }
 
-    [RunOnMultiAxis("[[{\"g_move_forward\": -1}, {\"g_move_backwards\": 1}],[{\"g_move_left\": -1}, {\"g_move_right\": 1}]]")]
+    [RunOnMultiAxis(
+        "[[{\"g_move_forward\": -1}, {\"g_move_backwards\": 1}],[{\"g_move_left\": -1}, {\"g_move_right\": 1}]]")]
     public void MovePlayer(float delta, int[] inputs)
     {
         var forwardMovement = inputs[0];
@@ -180,7 +180,8 @@ public class MicrobeStage : Node, ILoadableGameState
         }
     }
 
-    [SuppressMessage("ReSharper", "CA1030", Justification = "This is called from the intput system and should not be made an event")]
+    [SuppressMessage("ReSharper", "CA1030",
+                     Justification = "This is called from the intput system and should not be made an event")]
     [RunOnKey("g_fire_toxin", RunOnKeyAttribute.InputType.Hold)]
     public void FireToxin()
     {

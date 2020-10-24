@@ -151,16 +151,16 @@ public class MicrobeEditor : Node, ILoadableGameState
     /// </summary>
     private Vector3? mousePanningStart;
 
+    public MicrobeEditor()
+    {
+        RunOnInputAttribute.InputClasses.Add(this);
+    }
+
     [Signal]
     public delegate void InvalidPlacementOfHex();
 
     [Signal]
     public delegate void InsufficientMPToPlaceHex();
-
-    public MicrobeEditor()
-    {
-        RunOnInputAttribute.InputClasses.Add(this);
-    }
 
     /// <summary>
     /// The Symmetry setting of the Microbe Editor.

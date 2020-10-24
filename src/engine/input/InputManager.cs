@@ -17,7 +17,8 @@ public class InputManager : Node
                     {
                         if (!(attr is RunOnInputAttribute myAttr))
                             continue;
-                        RunOnInputAttribute.AttributesWithMethods.Add(new Tuple<MethodBase, RunOnInputAttribute>(methodInfo, myAttr));
+                        RunOnInputAttribute.AttributesWithMethods.Add(
+                        new Tuple<MethodBase, RunOnInputAttribute>(methodInfo, myAttr));
                     }
                 }
             }
