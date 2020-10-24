@@ -49,7 +49,8 @@ public class InputManager : Node
     }
 
     /// <returns>False if the instance was disposed</returns>
-    private static bool TryInvoke(MethodBase method, object instance, float delta, IInputReceiver inputReceiver, object readValue)
+    private static bool TryInvoke(
+        MethodBase method, object instance, float delta, IInputReceiver inputReceiver, object readValue)
     {
         try
         {
@@ -91,7 +92,7 @@ public class InputManager : Node
                         if (!(attr is RunOnInputAttribute myAttr))
                             continue;
                         RunOnInputAttribute.AttributesWithMethods.Add(
-                                                                      new Tuple<MethodBase, RunOnInputAttribute>(methodInfo, myAttr));
+                        new Tuple<MethodBase, RunOnInputAttribute>(methodInfo, myAttr));
                     }
                 }
             }
