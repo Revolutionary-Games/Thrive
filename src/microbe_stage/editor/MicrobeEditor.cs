@@ -700,12 +700,6 @@ public class MicrobeEditor : Node, ILoadableGameState
         stage.OnReturnFromEditor();
     }
 
-    public void StartMusic()
-    {
-        Jukebox.Instance.PlayingCategory = "MicrobeEditor";
-        Jukebox.Instance.Resume();
-    }
-
     public override void _Process(float delta)
     {
         if (!ready)
@@ -984,54 +978,6 @@ public class MicrobeEditor : Node, ILoadableGameState
     internal void MoveObjectToFollow(Vector3 vector)
     {
         camera.ObjectToFollow.Translation += vector;
-    /// <summary>
-    ///   Sets up the editor when entering
-    /// </summary>
-    private void OnEnterEditor()
-    {
-        // Clear old stuff in the world
-        foreach (Node node in world.GetChildren())
-        {
-            node.Free();
-        }
-
-        // Let go of old resources
-        hoverHexes = new List<MeshInstance>();
-        hoverOrganelles = new List<SceneDisplayer>();
-
-        history = new ActionHistory<EditorAction>();
-
-        // Create new hover hexes. See the TODO comment in _Process
-        // This seems really cluttered, there must be a better way.
-        for (int i = 0; i < Constants.MAX_HOVER_HEXES; ++i)
-        {
-            hoverHexes.Add(CreateEditorHex());
-        }
-
-        for (int i = 0; i < Constants.MAX_SYMMETRY; ++i)
-        {
-            hoverOrganelles.Add(CreateEditorOrganelle());
-        }
-
-        // Rest of the setup is only ran when not loading a save, the save finish callback does the equivalent thing
-        if (IsLoadedFromSave)
-            return;
-
-        // Start a new game if no game has been started
-        if (CurrentGame == null)
-        {
-            if (ReturnToStage != null)
-                throw new Exception("stage to return to should have set our current game");
-
-            GD.Print("Starting a new game for the microbe editor");
-            CurrentGame = GameProperties.StartNewMicrobeGame();
-        }
-
-        InitEditor();
-
-        StartMusic();
-
-        TutorialState.SendEvent(TutorialEventType.EnteredMicrobeEditor, EventArgs.Empty, this);
     }
 
     private void StartMusic()
