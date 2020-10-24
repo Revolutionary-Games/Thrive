@@ -269,7 +269,8 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     }
 
     public void WriteMembraneModifierList(MembraneType referenceMembrane, MembraneType membraneType) {
-        
+        // Temporary: Set the reference membrane to double, which has 0 in every stat
+        referenceMembrane = SimulationParameters.Instance.GetMembrane("double");
 
         String[] modifierNames = { "Mobility", "Osmoregulation Cost", "Resource Absorption Speed", "Health",
             "Physical Resistance", "Toxin Resistance" };
