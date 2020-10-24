@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Godot;
@@ -7,22 +8,7 @@ public class InputManager : Node
 {
     public override void _Ready()
     {
-        foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
-        {
-            foreach (var type in assembly.GetTypes())
-            {
-                foreach (var methodInfo in type.GetMethods())
-                {
-                    foreach (var attr in methodInfo.GetCustomAttributes(typeof(RunOnInputAttribute), true))
-                    {
-                        if (!(attr is RunOnInputAttribute myAttr))
-                            continue;
-                        RunOnInputAttribute.AttributesWithMethods.Add(
-                        new Tuple<MethodBase, RunOnInputAttribute>(methodInfo, myAttr));
-                    }
-                }
-            }
-        }
+        RecalculateAttributes();
     }
 
     public override void _UnhandledInput(InputEvent @event)
@@ -35,32 +21,78 @@ public class InputManager : Node
 
     public override void _Process(float delta)
     {
+        var disposed = new List<object>();
         RunOnInputAttribute.AttributesWithMethods.ForEach(p =>
         {
             var inputReceiver = p.Item2.InputReceiver;
             if (!inputReceiver.HasInput())
                 return;
 
-            var instance =
-                RunOnInputAttribute.InputClasses.FirstOrDefault(x => x.GetType() == p.Item1.DeclaringType);
-            if (!p.Item1.IsStatic && instance == null)
-                return;
+            if (p.Item1.IsStatic)
+            {
+                TryInvoke(p.Item1, null, delta, inputReceiver);
+            }
+            else
+            {
+                var instances =
+                    RunOnInputAttribute.InputClasses.Where(x => x.GetType() == p.Item1.DeclaringType).ToList();
+                foreach (var instance in instances)
+                {
+                    if (!TryInvoke(p.Item1, instance, delta, inputReceiver))
+                        disposed.Add(instance);
+                }
+            }
+        });
+        disposed.ForEach(p => RunOnInputAttribute.InputClasses.Remove(p));
+    }
 
+    /// <returns>False if the instance was disposed</returns>
+    private static bool TryInvoke(MethodBase method, object instance, float delta, IInputReceiver inputReceiver)
+    {
+        try
+        {
             switch (inputReceiver)
             {
                 case InputMultiAxis _:
                 case InputAxis _:
-                    p.Item1.Invoke(instance, new[] { delta, inputReceiver.ReadInput() });
+                    method.Invoke(instance, new[] { delta, inputReceiver.ReadInput() });
                     break;
                 case InputTrigger _:
                 case InputReleaseTrigger _:
-                    p.Item1.Invoke(instance, Array.Empty<object>());
+                    method.Invoke(instance, Array.Empty<object>());
                     break;
                 case InputHoldToggle _:
                 case InputBool _:
-                    p.Item1.Invoke(instance, new object[] { delta });
+                    method.Invoke(instance, new object[] { delta });
                     break;
             }
-        });
+        }
+        catch (TargetInvocationException ex)
+        {
+            // Disposed object
+            return !(ex.InnerException is ObjectDisposedException);
+        }
+
+        return true;
+    }
+
+    private static void RecalculateAttributes()
+    {
+        foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+        {
+            foreach (var type in assembly.GetTypes())
+            {
+                foreach (var methodInfo in type.GetMethods())
+                {
+                    foreach (var attr in methodInfo.GetCustomAttributes(typeof(RunOnInputAttribute), true))
+                    {
+                        if (!(attr is RunOnInputAttribute myAttr))
+                            continue;
+                        RunOnInputAttribute.AttributesWithMethods.Add(
+                                                                      new Tuple<MethodBase, RunOnInputAttribute>(methodInfo, myAttr));
+                    }
+                }
+            }
+        }
     }
 }
