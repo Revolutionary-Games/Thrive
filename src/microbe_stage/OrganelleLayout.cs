@@ -286,7 +286,7 @@ public class OrganelleLayout<T> : ICollection<T>
     private IEnumerable<Hex> GetNeighborHexes(Hex hex)
     {
         return Hex.HexNeighbourOffset
-                  .Select(p => hex + p.Value)
-                  .Where(p => GetOrganelleAt(p) != null);
+            .Select(p => hex + p.Value)
+            .Where(p => GetOrganelleAt(p) != null);
     }
 }
