@@ -128,6 +128,7 @@ public class Mutations
         mutated.MembraneRigidity = Math.Max(Math.Min(parent.MembraneRigidity +
             random.Next(-25, 26) / 100.0f, 1), -1);
 
+        mutated.RepositionToCenterOfMass();
         mutated.UpdateInitialCompounds();
 
         return mutated;

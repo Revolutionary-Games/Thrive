@@ -76,6 +76,11 @@ public abstract class Species : ICloneable
     public abstract bool IsStructureValid { get; }
 
     /// <summary>
+    ///   Repositions the structure of the species to the center of mass
+    /// </summary>
+    public abstract void RepositionToCenterOfMass();
+
+    /// <summary>
     ///   When true this is the player species
     /// </summary>
     [JsonProperty]
