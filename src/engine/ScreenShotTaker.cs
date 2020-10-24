@@ -12,6 +12,7 @@ public class ScreenShotTaker : Node
     private ScreenShotTaker()
     {
         instance = this;
+        RunOnInputAttribute.InputClasses.Add(this);
     }
 
     public static ScreenShotTaker Instance => instance;
@@ -20,15 +21,14 @@ public class ScreenShotTaker : Node
     {
         // Keep this node running while paused
         PauseMode = PauseModeEnum.Process;
+        RunOnInputAttribute.InputClasses.Add(this);
     }
 
-    public override void _Input(InputEvent @event)
+    [RunOnKey("screenshot", RunOnKeyAttribute.InputType.Press)]
+    public void TakeScreenshotInput()
     {
-        if (@event.IsActionPressed("screenshot"))
-        {
-            GD.Print("Taking a screenshot");
-            TakeAndSaveScreenShot();
-        }
+        GD.Print("Taking a screenshot");
+        TakeAndSaveScreenShot();
     }
 
     /// <summary>

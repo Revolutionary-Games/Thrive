@@ -5,18 +5,16 @@ using Godot;
 /// </summary>
 public class QuickLoadHandler : Node
 {
+    [RunOnKey("quick_load", RunOnKeyAttribute.InputType.Press)]
+    public static void QuickLoad()
+    {
+        GD.Print("Quick load pressed, attempting to load latest save");
+        SaveHelper.QuickLoad();
+    }
+
     public override void _Ready()
     {
         // Keep this node running while paused
         PauseMode = PauseModeEnum.Process;
-    }
-
-    public override void _Input(InputEvent @event)
-    {
-        if (@event.IsActionPressed("quick_load"))
-        {
-            GD.Print("Quick load pressed, attempting to load latest save");
-            SaveHelper.QuickLoad();
-        }
     }
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=152 format=2]
+[gd_scene load_steps=151 format=2]
 
 [ext_resource path="res://src/microbe_stage/MicrobeCamera.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/microbe_stage/editor/MicrobeEditor.cs" type="Script" id=2]
@@ -73,7 +73,6 @@
 [ext_resource path="res://assets/textures/gui/bevel/plusButtonHover.png" type="Texture" id=71]
 [ext_resource path="res://assets/sounds/soundeffects/gui/click_place_blocked.ogg" type="AudioStream" id=72]
 [ext_resource path="res://assets/fonts/Jura-Regular.ttf" type="DynamicFontData" id=73]
-[ext_resource path="res://src/microbe_stage/editor/PlayerMicrobeEditorInput.cs" type="Script" id=74]
 [ext_resource path="res://src/gui_common/CollapsibleList.cs" type="Script" id=75]
 [ext_resource path="res://assets/textures/gui/bevel/buttonHover.png" type="Texture" id=76]
 [ext_resource path="res://assets/textures/gui/bevel/buttonActive.png" type="Texture" id=77]
@@ -926,9 +925,6 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0 )
 shadow_enabled = true
 omni_range = 100.0
 omni_attenuation = 0.420448
-
-[node name="PlayerMicrobeEditorInput" type="Node" parent="."]
-script = ExtResource( 74 )
 
 [node name="MicrobeEditorGUI" type="Node" parent="."]
 pause_mode = 2
@@ -3767,10 +3763,10 @@ size_flags_horizontal = 3
 custom_styles/separator = SubResource( 40 )
 
 [node name="ColorPicker" type="ColorPicker" parent="MicrobeEditorGUI/CellEditor/LeftPanel/MainPanel/VBoxContainer/MarginContainer/VBoxContainer/Appearance/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_left = 208.0
-margin_top = 230.0
-margin_right = 510.0
-margin_bottom = 696.0
+margin_left = 212.0
+margin_top = 234.0
+margin_right = 514.0
+margin_bottom = 700.0
 theme = SubResource( 42 )
 edit_alpha = false
 

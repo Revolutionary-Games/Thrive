@@ -16,6 +16,8 @@ public class InputAxis : IInputReceiver
     /// </summary>
     private int inputNumber;
 
+    private int lastInput;
+
     public InputAxis(IEnumerable<(InputBool input, int associatedValue)> keys)
     {
         foreach (var input in keys)
@@ -51,7 +53,8 @@ public class InputAxis : IInputReceiver
 
     public bool CheckInput(InputEvent @event)
     {
-        foreach (var input in inputs.Where(input => input.Input.CheckInput(@event)))
+        inputs.ForEach(input => input.Input.CheckInput(@event));
+        foreach (var input in inputs.Where(input => input.Input.HasInput()))
         {
             // Was consumed
 
@@ -61,6 +64,7 @@ public class InputAxis : IInputReceiver
                 try
                 {
                     input.LastDown = NextInputNumber;
+                    lastInput = input.Value;
                 }
                 catch (OverflowException)
                 {
@@ -80,7 +84,9 @@ public class InputAxis : IInputReceiver
 
     public object ReadInput()
     {
-        return CurrentValue;
+        var temp = lastInput;
+        lastInput = 0;
+        return temp;
     }
 
     public bool HasInput() => true;

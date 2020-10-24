@@ -23,6 +23,8 @@ public class TransitionManager : Node
 
         screenFadeScene = GD.Load<PackedScene>("res://src/gui_common/Fade.tscn");
         cutsceneScene = GD.Load<PackedScene>("res://src/gui_common/Cutscene.tscn");
+
+        RunOnInputAttribute.InputClasses.Add(this);
     }
 
     [Signal]
@@ -37,9 +39,10 @@ public class TransitionManager : Node
 
     public bool HasQueuedTransitions => TransitionSequence.Count > 0;
 
-    public override void _Input(InputEvent @event)
+    [RunOnKey("ui_cancel", RunOnKeyAttribute.InputType.Press)]
+    public void Cancel()
     {
-        if (@event.IsActionPressed("ui_cancel") && HasQueuedTransitions)
+        if (HasQueuedTransitions)
         {
             GetTree().SetInputAsHandled();
             CancelQueuedTransitions();

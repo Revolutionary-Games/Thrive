@@ -514,6 +514,17 @@ public class MicrobeEditor : Node, ILoadableGameState
         }
     }
 
+    [RunOnKey("g_quick_save", RunOnKeyAttribute.InputType.Press)]
+    public void Screenshot()
+    {
+        // Can only save once the editor is ready
+        if (ready)
+        {
+            GD.Print("quick saving microbe editor");
+            SaveHelper.QuickSave(this);
+        }
+    }
+
     /// <summary>
     ///   Sets up the editor when entering
     /// </summary>
@@ -693,16 +704,6 @@ public class MicrobeEditor : Node, ILoadableGameState
     {
         Jukebox.Instance.PlayingCategory = "MicrobeEditor";
         Jukebox.Instance.Resume();
-    }
-
-    public override void _Input(InputEvent @event)
-    {
-        // Can only save once the editor is ready
-        if (@event.IsActionPressed("g_quick_save") && ready)
-        {
-            GD.Print("quick saving microbe editor");
-            SaveHelper.QuickSave(this);
-        }
     }
 
     public override void _Process(float delta)

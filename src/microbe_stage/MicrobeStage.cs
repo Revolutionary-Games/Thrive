@@ -220,6 +220,13 @@ public class MicrobeStage : Node, ILoadableGameState
         SpawnCheatCloud("phosphates", delta);
     }
 
+    [RunOnKey("g_quick_save", RunOnKeyAttribute.InputType.Press)]
+    public void Screenshot()
+    {
+        GD.Print("quick saving microbe stage");
+        SaveHelper.QuickSave(this);
+    }
+
     /// <summary>
     ///   This should get called the first time the stage scene is put
     ///   into an active scene tree. So returning from the editor
@@ -473,15 +480,6 @@ public class MicrobeStage : Node, ILoadableGameState
         }
     }
 
-    public override void _Input(InputEvent @event)
-    {
-        if (@event.IsActionPressed("g_quick_save"))
-        {
-            GD.Print("quick saving microbe stage");
-            SaveHelper.QuickSave(this);
-        }
-    }
-
     /// <summary>
     ///   Switches to the editor
     /// </summary>
@@ -494,7 +492,6 @@ public class MicrobeStage : Node, ILoadableGameState
             "player reproduced", false, Constants.PLAYER_REPRODUCTION_POPULATION_GAIN_COEFFICIENT);
 
         var scene = SceneManager.Instance.LoadScene(MainGameState.MicrobeEditor);
-
         var editor = (MicrobeEditor)scene.Instance();
 
         editor.CurrentGame = CurrentGame;

@@ -66,6 +66,11 @@ public class MicrobeCamera : Camera
     private Vector3 cursorWorldPos;
     private bool cursorDirty = true;
 
+    public MicrobeCamera()
+    {
+        RunOnInputAttribute.InputClasses.Add(this);
+    }
+
     /// <summary>
     ///   Returns the position the player is pointing to with their cursor
     /// </summary>
@@ -105,18 +110,10 @@ public class MicrobeCamera : Camera
         ResetHeight();
     }
 
-    public override void _UnhandledInput(InputEvent @event)
+    [RunOnAxis(new[] { "g_zoom_in", "g_zoom_out" }, new[] { -1, 1 })]
+    public void ZoomIn(float delta, int acceptedValue)
     {
-        if (@event.IsActionPressed("g_zoom_in", true))
-        {
-            CameraHeight -= ZoomSpeed;
-        }
-
-        if (@event.IsActionPressed("g_zoom_out", true))
-        {
-            CameraHeight += ZoomSpeed;
-        }
-
+        CameraHeight += acceptedValue * ZoomSpeed;
         CameraHeight = CameraHeight.Clamp(MinCameraHeight, MaxCameraHeight);
     }
 
