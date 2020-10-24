@@ -152,12 +152,6 @@ public class Mutations
         for (int step = 0; step < steps; ++step)
         {
             CreateMutatedSpecies(temp, mutated);
-            if (!mutated.IsStructureValid)
-            {
-                mutated = temp;
-                step--;
-                continue;
-            }
 
             temp = (MicrobeSpecies)mutated.Clone();
         }
@@ -214,6 +208,12 @@ public class Mutations
     private void MutateMicrobeOrganelles(OrganelleLayout<OrganelleTemplate> parentOrganelles,
         OrganelleLayout<OrganelleTemplate> organelles, bool isBacteria)
     {
+        var originalOrganelles = new OrganelleLayout<OrganelleTemplate>();
+        foreach (var organelleTemplate in organelles)
+        {
+            originalOrganelles.Add((OrganelleTemplate)organelleTemplate.Clone());
+        }
+
         var nucleus = SimulationParameters.Instance.GetOrganelleType("nucleus");
 
         organelles.Clear();
@@ -313,6 +313,10 @@ public class Mutations
             if (organelles.Count < 1)
                 organelles.Add((OrganelleTemplate)parentOrganelles[0].Clone());
         }
+
+        // Try again if the mutation has islands
+        if (organelles.GetIslandHexes().Any())
+            MutateMicrobeOrganelles(parentOrganelles, originalOrganelles, isBacteria);
     }
 
     /// <summary>

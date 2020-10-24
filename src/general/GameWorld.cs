@@ -170,19 +170,13 @@ public class GameWorld
     /// </summary>
     public Species CreateMutatedSpecies(Species species)
     {
-        Species result;
         switch (species)
         {
             case MicrobeSpecies s:
-                result = mutator.CreateMutatedSpecies(s, NewMicrobeSpecies());
-                break;
+                return mutator.CreateMutatedSpecies(s, NewMicrobeSpecies());
             default:
                 throw new ArgumentException("unhandled species type for CreateMutatedSpecies");
         }
-
-        if (!result.IsStructureValid)
-            return CreateMutatedSpecies(species);
-        return result;
     }
 
     /// <summary>

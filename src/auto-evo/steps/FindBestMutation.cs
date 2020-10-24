@@ -38,8 +38,6 @@
             var mutated = (MicrobeSpecies)species.Clone();
             mutations.CreateMutatedSpecies((MicrobeSpecies)species, mutated);
 
-            if (!mutated.IsStructureValid)
-                return new AttemptResult(mutated, long.MinValue);
             var config = new SimulationConfiguration(map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
 
             config.ExcludedSpecies.Add(species);

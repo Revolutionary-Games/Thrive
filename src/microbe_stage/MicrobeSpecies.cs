@@ -34,14 +34,6 @@ public class MicrobeSpecies : Species
         set => throw new NotImplementedException();
     }
 
-    public override bool IsStructureValid
-    {
-        get
-        {
-            return Organelles.Any() && !Organelles.GetIslandHexes().Any();
-        }
-    }
-
     public override void RepositionToCenterOfMass()
     {
         var centerOfMass = Organelles.CenterOfMass;
