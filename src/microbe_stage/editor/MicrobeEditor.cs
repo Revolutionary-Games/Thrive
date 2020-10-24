@@ -259,9 +259,10 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     public bool FreeBuilding { get; private set; }
 
     /// <summary>
-    ///   Hover hexes and models are only shown if this is true
+    ///   Hover hexes and models are only shown if this is true. This is saved to make this work better when the player
+    ///   was in the cell editor tab and saved, though that doesn't seem to work:
+    ///   https://github.com/Revolutionary-Games/Thrive/issues/1750
     /// </summary>
-    [JsonIgnore]
     public bool ShowHover { get; set; }
 
     /// <summary>

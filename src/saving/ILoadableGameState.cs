@@ -1,5 +1,4 @@
 using Godot;
-using Newtonsoft.Json;
 
 /// <summary>
 ///   Game state interface for callbacks after loading
