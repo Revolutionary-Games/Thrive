@@ -123,7 +123,7 @@ public class PlayerMicrobeInput : Node
 
         if (toggleEngulf.ReadTrigger())
         {
-            if (stage.Player != null)
+            if (stage.Player != null && !stage.Player.Membrane.Type.CellWall)
             {
                 stage.Player.EngulfMode = !stage.Player.EngulfMode;
             }
