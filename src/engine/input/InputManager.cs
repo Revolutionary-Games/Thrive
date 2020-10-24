@@ -87,12 +87,19 @@ public class InputManager : Node
             {
                 foreach (var methodInfo in type.GetMethods())
                 {
-                    foreach (var attr in methodInfo.GetCustomAttributes(typeof(RunOnInputAttribute), true))
+                    var attributes = methodInfo.GetCustomAttributes(typeof(RunOnInputAttribute), true);
+                    var multiAxis = attributes.FirstOrDefault(p => p is RunOnMultiAxisAttribute) as RunOnMultiAxisAttribute;
+                    foreach (var attr in attributes)
                     {
                         if (!(attr is RunOnInputAttribute myAttr))
                             continue;
-                        RunOnInputAttribute.AttributesWithMethods.Add(
-                        new Tuple<MethodBase, RunOnInputAttribute>(methodInfo, myAttr));
+                        if (attr is RunOnAxisAttribute axis && multiAxis != null)
+                            multiAxis.DefinitionAttributes.Add(axis);
+                        else
+                        {
+                            RunOnInputAttribute.AttributesWithMethods.Add(
+                            new Tuple<MethodBase, RunOnInputAttribute>(methodInfo, myAttr));
+                        }
                     }
                 }
             }

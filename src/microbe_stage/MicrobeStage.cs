@@ -158,8 +158,9 @@ public class MicrobeStage : Node, ILoadableGameState
         autoMove = !autoMove;
     }
 
-    [RunOnMultiAxis(
-        "[[{\"g_move_forward\": -1}, {\"g_move_backwards\": 1}],[{\"g_move_left\": -1}, {\"g_move_right\": 1}]]")]
+    [RunOnMultiAxis]
+    [RunOnAxis(new[] { "g_move_forward", "g_move_backwards" }, new[] { -1, 1 })]
+    [RunOnAxis(new[] { "g_move_left", "g_move_right" }, new[] { -1, 1 })]
     public void MovePlayer(float delta, int[] inputs)
     {
         var forwardMovement = inputs[0];

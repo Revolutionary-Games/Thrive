@@ -367,7 +367,9 @@ public class MicrobeEditor : Node, ILoadableGameState
         }
     }
 
-    [RunOnMultiAxis("[[{\"e_pan_up\": -1}, {\"e_pan_down\": 1}],[{\"e_pan_left\": -1}, {\"e_pan_right\": 1}]]")]
+    [RunOnMultiAxis]
+    [RunOnAxis(new[] { "e_pan_up", "e_pan_down" }, new[] { -1, 1 })]
+    [RunOnAxis(new[] { "e_pan_left", "e_pan_right" }, new[] { -1, 1 })]
     public void PanCamWithKeys(float delta, int[] inputs)
     {
         if (mousePanningStart != null)

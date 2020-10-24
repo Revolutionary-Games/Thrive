@@ -5,31 +5,8 @@ using Godot;
 
 public class RunOnMultiAxisAttribute : RunOnInputAttribute
 {
-    public RunOnMultiAxisAttribute(string json)
-    {
-        var result = new List<InputAxis>();
-        var jsonRes = JSON.Parse(json);
-        if (jsonRes.Error != 0)
-            throw new ArgumentException("Invalid json: " + jsonRes.ErrorString);
-
-        var axisArray = (Godot.Collections.Array)jsonRes.Result;
-        foreach (var axis in axisArray)
-        {
-            var inputs = new List<(InputBool input, int associatedValue)>();
-            var subArray = (Godot.Collections.Array)axis;
-            foreach (var input in subArray)
-            {
-                var dictionary = (Godot.Collections.Dictionary)input;
-                var key = dictionary.Keys.OfType<string>().First();
-                var value = (int)(float)dictionary[key];
-                inputs.Add((new InputBool(key), value));
-            }
-
-            result.Add(new InputAxis(inputs));
-        }
-
-        InputKeys = new InputMultiAxis(result);
-    }
+    internal readonly List<RunOnAxisAttribute> DefinitionAttributes = new List<RunOnAxisAttribute>();
+    private InputMultiAxis inputKeys;
 
     public override IInputReceiver InputReceiver
     {
@@ -39,5 +16,6 @@ public class RunOnMultiAxisAttribute : RunOnInputAttribute
         }
     }
 
-    private InputMultiAxis InputKeys { get; }
+    private InputMultiAxis InputKeys
+        => inputKeys ??= new InputMultiAxis(DefinitionAttributes.Select(p => p.InputReceiver as InputAxis));
 }
