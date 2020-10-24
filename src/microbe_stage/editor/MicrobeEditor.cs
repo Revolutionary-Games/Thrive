@@ -1751,6 +1751,7 @@ public class MicrobeEditor : Node, ILoadableGameState
         gui.UpdateHitpoints(CalculateHitpoints());
         CalculateEnergyBalanceWithOrganellesAndMembraneType(
             editedMicrobeOrganelles.Organelles, Membrane, targetPatch);
+        gui.SetMembraneTooltips(Membrane);
     }
 
     private void UndoMembraneChangeAction(EditorAction action)
@@ -1763,6 +1764,7 @@ public class MicrobeEditor : Node, ILoadableGameState
         gui.UpdateHitpoints(CalculateHitpoints());
         CalculateEnergyBalanceWithOrganellesAndMembraneType(
             editedMicrobeOrganelles.Organelles, Membrane, targetPatch);
+        gui.SetMembraneTooltips(Membrane);
     }
 
     /// <summary>
