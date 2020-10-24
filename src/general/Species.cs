@@ -69,6 +69,13 @@ public abstract class Species : ICloneable
     public abstract string StringCode { get; set; }
 
     /// <summary>
+    ///   Checks if the structure is valid.
+    ///   Should always be true in the game.
+    ///   Used by the editor and mutation.
+    /// </summary>
+    public abstract bool IsStructureValid { get; }
+
+    /// <summary>
     ///   When true this is the player species
     /// </summary>
     [JsonProperty]

@@ -73,7 +73,7 @@ public class Mutations
         }
 
         MutateMicrobeOrganelles(parent.Organelles, mutated.Organelles, mutated.IsBacteria);
-
+    
         // There is a small chance of evolving into a eukaryote
         var nucleus = simulation.GetOrganelleType("nucleus");
 
