@@ -33,10 +33,6 @@ public class Mutations
     /// <summary>
     ///   Creates a mutated version of a species
     /// </summary>
-    /// <returns>
-    ///     Returns the mutated species.
-    ///     Returns null if the mutated species is invalid.
-    /// </returns>
     public MicrobeSpecies CreateMutatedSpecies(MicrobeSpecies parent, MicrobeSpecies mutated)
     {
         if (parent.Organelles.Count < 1)
