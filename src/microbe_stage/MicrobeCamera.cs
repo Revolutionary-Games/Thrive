@@ -31,7 +31,7 @@ public class MicrobeCamera : Camera
     /// </summary>
     [Export]
     [JsonProperty]
-    public float ZoomSpeed = 1.4f;
+    public float ZoomSpeed = 600f;
 
     /// <summary>
     ///   The height at which the camera starts at
@@ -114,11 +114,8 @@ public class MicrobeCamera : Camera
     [RunOnAxis(new[] { "g_zoom_in", "g_zoom_out" }, new[] { -1, 1 })]
     public void ZoomIn(float delta, int acceptedValue)
     {
-        CameraHeight += acceptedValue * ZoomSpeed;
+        CameraHeight += acceptedValue * ZoomSpeed * delta;
         CameraHeight = CameraHeight.Clamp(MinCameraHeight, MaxCameraHeight);
-
-        // This is just to fix CI. Because the InputManager uses reflection, it requires the float delta variable.
-        var i = delta;
     }
 
     /// <summary>
