@@ -182,7 +182,7 @@ public class MicrobeStage : Node, ILoadableGameState
     }
 
     [SuppressMessage("ReSharper", "CA1030",
-                     Justification = "This is called from the intput system and should not be made an event")]
+        Justification = "This is called from the intput system and should not be made an event")]
     [RunOnKey("g_fire_toxin", RunOnKeyAttribute.InputType.Hold)]
     public void FireToxin()
     {
@@ -584,7 +584,7 @@ public class MicrobeStage : Node, ILoadableGameState
     private void SpawnCheatCloud(string name, float delta)
     {
         Clouds.AddCloud(SimulationParameters.Instance.GetCompound(name),
-                        8000.0f * delta, Camera.CursorWorldPos);
+            8000.0f * delta, Camera.CursorWorldPos);
     }
 
     private void UpdatePatchSettings(bool isLoading)

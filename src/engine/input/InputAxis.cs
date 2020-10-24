@@ -89,7 +89,10 @@ public class InputAxis : IInputReceiver
         return temp;
     }
 
-    public bool HasInput() => true;
+    public bool HasInput()
+    {
+        return lastInput != 0;
+    }
 
     public void FocusLost()
     {

@@ -43,7 +43,10 @@ public class InputMultiAxis : IInputReceiver
         return CurrentValues;
     }
 
-    public bool HasInput() => true;
+    public bool HasInput()
+    {
+        return true;
+    }
 
     public void FocusLost()
     {

@@ -374,6 +374,7 @@ public class MicrobeEditor : Node, ILoadableGameState
     {
         if (mousePanningStart != null)
             return;
+
         var movement = new Vector3(inputs[1], 0, inputs[0]);
         if (movement != Vector3.Zero)
             MoveObjectToFollow(movement.Normalized() * delta * Camera.CameraHeight);

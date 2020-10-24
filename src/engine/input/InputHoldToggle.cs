@@ -30,9 +30,15 @@ public class InputHoldToggle : InputBool
         return true;
     }
 
-    public override object ReadInput() => ToggledOn;
+    public override object ReadInput()
+    {
+        return ToggledOn;
+    }
 
-    public override bool HasInput() => ToggledOn;
+    public override bool HasInput()
+    {
+        return ToggledOn;
+    }
 
     // This doesn't actually reset the on status, but will reset detection for being pressed currently
     // public override void FocusLost()

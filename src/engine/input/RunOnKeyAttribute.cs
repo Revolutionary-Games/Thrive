@@ -3,6 +3,7 @@ using System;
 public class RunOnKeyAttribute : RunOnInputAttribute
 {
     private IInputReceiver inputReceiver;
+
     public RunOnKeyAttribute(string inputString, InputType type)
     {
         InputString = inputString;

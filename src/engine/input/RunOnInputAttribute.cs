@@ -12,6 +12,7 @@ public abstract class RunOnInputAttribute : Attribute
 
     public static IList<object> InputClasses { get; } = new List<object>();
     public abstract IInputReceiver InputReceiver { get; }
+
     internal static List<Tuple<MethodBase, RunOnInputAttribute>> AttributesWithMethods { get; }
         = new List<Tuple<MethodBase, RunOnInputAttribute>>();
 }

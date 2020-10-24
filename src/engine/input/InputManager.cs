@@ -13,10 +13,7 @@ public class InputManager : Node
 
     public override void _UnhandledInput(InputEvent @event)
     {
-        RunOnInputAttribute.AttributesWithMethods.ForEach(p =>
-        {
-            p.Item2.InputReceiver.CheckInput(@event);
-        });
+        RunOnInputAttribute.AttributesWithMethods.ForEach(p => p.Item2.InputReceiver.CheckInput(@event));
     }
 
     public override void _Process(float delta)
@@ -49,8 +46,8 @@ public class InputManager : Node
     }
 
     /// <returns>False if the instance was disposed</returns>
-    private static bool TryInvoke(
-        MethodBase method, object instance, float delta, IInputReceiver inputReceiver, object readValue)
+    private static bool TryInvoke(MethodBase method, object instance, float delta, IInputReceiver inputReceiver,
+        object readValue)
     {
         try
         {
@@ -94,12 +91,13 @@ public class InputManager : Node
                     {
                         if (!(attr is RunOnInputAttribute myAttr))
                             continue;
+
                         if (attr is RunOnAxisAttribute axis && multiAxis != null)
                             multiAxis.DefinitionAttributes.Add(axis);
                         else
                         {
                             RunOnInputAttribute.AttributesWithMethods.Add(
-                            new Tuple<MethodBase, RunOnInputAttribute>(methodInfo, myAttr));
+                                new Tuple<MethodBase, RunOnInputAttribute>(methodInfo, myAttr));
                         }
                     }
                 }

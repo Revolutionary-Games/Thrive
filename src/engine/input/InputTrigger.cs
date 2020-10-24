@@ -32,7 +32,10 @@ public class InputTrigger : InputBool
         return true;
     }
 
-    public override bool HasInput() => (bool)ReadInput();
+    public override bool HasInput()
+    {
+        return (bool)ReadInput();
+    }
 
     /// <summary>
     ///   Reads the trigger status and resets it
