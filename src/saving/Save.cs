@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using Godot;
 using ICSharpCode.SharpZipLib.GZip;
 using ICSharpCode.SharpZipLib.Tar;
@@ -61,11 +62,11 @@ public class Save
     ///   A callback that is called when reading data has finished and creating objects start.
     /// </param>
     /// <returns>The loaded save</returns>
-    public static Save LoadFromFile(string saveName, Action readFinished = null)
+    public static async Task<Save> LoadFromFile(string saveName, Action readFinished = null)
     {
         var target = SaveFileInfo.SaveNameToPath(saveName);
 
-        var (_, save, screenshot) = LoadFromFile(target, false, true, true, readFinished);
+        var (_, save, screenshot) = await LoadFromFile(target, false, true, true, readFinished).ConfigureAwait(true);
 
         // Info is already contained in save so it doesn't need to be loaded and assigned here
         save.Screenshot = screenshot;
@@ -73,13 +74,13 @@ public class Save
         return save;
     }
 
-    public static SaveInformation LoadJustInfoFromSave(string saveName)
+    public static async Task<SaveInformation> LoadJustInfoFromSave(string saveName)
     {
         var target = SaveFileInfo.SaveNameToPath(saveName);
 
         try
         {
-            var (info, _, _) = LoadFromFile(target, true, false, false, null);
+            var (info, _, _) = await LoadFromFile(target, true, false, false, null).ConfigureAwait(true);
 
             return info;
         }
@@ -90,7 +91,7 @@ public class Save
         }
     }
 
-    public static Save LoadInfoAndScreenshotFromSave(string saveName)
+    public static async Task<Save> LoadInfoAndScreenshotFromSave(string saveName)
     {
         var target = SaveFileInfo.SaveNameToPath(saveName);
 
@@ -98,7 +99,7 @@ public class Save
 
         try
         {
-            var (info, _, screenshot) = LoadFromFile(target, true, false, true, null);
+            var (info, _, screenshot) = await LoadFromFile(target, true, false, true, null).ConfigureAwait(true);
 
             save.Info = info;
             save.Screenshot = screenshot;
@@ -191,7 +192,7 @@ public class Save
         }
     }
 
-    private static (SaveInformation info, Save save, Image screenshot) LoadFromFile(string file, bool info,
+    private static async Task<(SaveInformation info, Save save, Image screenshot)> LoadFromFile(string file, bool info,
         bool save, bool screenshot, Action readFinished)
     {
         using (var directory = new Directory())
@@ -200,7 +201,7 @@ public class Save
                 throw new ArgumentException("save with the given name doesn't exist");
         }
 
-        var (infoStr, saveStr, screenshotData) = LoadDataFromFile(file, info, save, screenshot);
+        var (infoStr, saveStr, screenshotData) = await LoadDataFromFile(file, info, save, screenshot).ConfigureAwait(true);
 
         readFinished?.Invoke();
 
@@ -244,7 +245,7 @@ public class Save
         return (infoResult, saveResult, imageResult);
     }
 
-    private static (string infoStr, string saveStr, byte[] screenshot) LoadDataFromFile(string file, bool info,
+    private static async Task<(string infoStr, string saveStr, byte[] screenshot)> LoadDataFromFile(string file, bool info,
         bool save, bool screenshot)
     {
         string infoStr = null;
@@ -268,61 +269,64 @@ public class Save
             throw new ArgumentException("no things to load specified from save");
         }
 
-        using (var reader = new File())
+        await Task.Run(() =>
         {
-            reader.Open(file, File.ModeFlags.Read);
-            if (!reader.IsOpen())
-                throw new ArgumentException("couldn't open the file for reading");
-
-            using (var stream = new GodotFileStream(reader))
+            using (var reader = new File())
             {
-                using (Stream gzoStream = new GZipInputStream(stream))
+                reader.Open(file, File.ModeFlags.Read);
+                if (!reader.IsOpen())
+                    throw new ArgumentException("couldn't open the file for reading");
+
+                using (var stream = new GodotFileStream(reader))
                 {
-                    using (var tar = new TarInputStream(gzoStream))
+                    using (Stream gzoStream = new GZipInputStream(stream))
                     {
-                        TarEntry tarEntry;
-                        while ((tarEntry = tar.GetNextEntry()) != null)
+                        using (var tar = new TarInputStream(gzoStream))
                         {
-                            if (tarEntry.IsDirectory)
-                                continue;
-
-                            if (tarEntry.Name == SAVE_INFO_JSON)
+                            TarEntry tarEntry;
+                            while ((tarEntry = tar.GetNextEntry()) != null)
                             {
-                                if (!info)
+                                if (tarEntry.IsDirectory)
                                     continue;
 
-                                infoStr = ReadStringEntry(tar, (int)tarEntry.Size);
-                                --itemsToRead;
-                            }
-                            else if (tarEntry.Name == SAVE_SAVE_JSON)
-                            {
-                                if (!save)
-                                    continue;
+                                if (tarEntry.Name == SAVE_INFO_JSON)
+                                {
+                                    if (!info)
+                                        continue;
 
-                                saveStr = ReadStringEntry(tar, (int)tarEntry.Size);
-                                --itemsToRead;
-                            }
-                            else if (tarEntry.Name == SAVE_SCREENSHOT)
-                            {
-                                if (!screenshot)
-                                    continue;
+                                    infoStr = ReadStringEntry(tar, (int)tarEntry.Size);
+                                    --itemsToRead;
+                                }
+                                else if (tarEntry.Name == SAVE_SAVE_JSON)
+                                {
+                                    if (!save)
+                                        continue;
 
-                                screenshotData = ReadBytesEntry(tar, (int)tarEntry.Size);
-                                --itemsToRead;
-                            }
-                            else
-                            {
-                                GD.PrintErr("Unknown file in save: ", tarEntry.Name);
-                            }
+                                    saveStr = ReadStringEntry(tar, (int)tarEntry.Size);
+                                    --itemsToRead;
+                                }
+                                else if (tarEntry.Name == SAVE_SCREENSHOT)
+                                {
+                                    if (!screenshot)
+                                        continue;
 
-                            // Early quit if we already got as many things as we want
-                            if (itemsToRead <= 0)
-                                break;
+                                    screenshotData = ReadBytesEntry(tar, (int)tarEntry.Size);
+                                    --itemsToRead;
+                                }
+                                else
+                                {
+                                    GD.PrintErr("Unknown file in save: ", tarEntry.Name);
+                                }
+
+                                // Early quit if we already got as many things as we want
+                                if (itemsToRead <= 0)
+                                    break;
+                            }
                         }
                     }
                 }
             }
-        }
+        }).ConfigureAwait(true);
 
         return (infoStr, saveStr, screenshotData);
     }

@@ -56,7 +56,7 @@ public class InProgressLoad
         Invoke.Instance.Perform(Step);
     }
 
-    private void Step()
+    private async void Step()
     {
         switch (state)
         {
@@ -76,8 +76,8 @@ public class InProgressLoad
                 // TODO: do this in a background thread if possible
                 try
                 {
-                    save = Save.LoadFromFile(saveName, () => Invoke.Instance.Perform(() =>
-                        LoadingScreen.Instance.Show("Loading Game", "Creating objects from save")));
+                    save = await Save.LoadFromFile(saveName, () => Invoke.Instance.Perform(() =>
+                        LoadingScreen.Instance.Show("Loading Game", "Creating objects from save"))).ConfigureAwait(true);
                 }
                 catch (Exception e)
                 {

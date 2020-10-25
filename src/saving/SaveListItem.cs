@@ -241,7 +241,7 @@ public class SaveListItem : PanelContainer
 
         saveInfoLoadTask = new Task<Save>(() =>
         {
-            var save = Save.LoadInfoAndScreenshotFromSave(saveName);
+            var save = Save.LoadInfoAndScreenshotFromSave(saveName).Result;
 
             if (save.Screenshot != null)
             {
