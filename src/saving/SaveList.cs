@@ -205,6 +205,6 @@ public class SaveList : ScrollContainer
 
     private void LoadSave()
     {
-        SaveHelper.LoadSave(saveToBeLoaded);
+        SaveHelper.LoadSave(saveToBeLoaded, true);
     }
 }

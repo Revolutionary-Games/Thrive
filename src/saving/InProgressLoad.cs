@@ -22,6 +22,7 @@ public class InProgressLoad
 
     private Stopwatch stopwatch;
 
+    private bool forceLoad;
     private bool success;
     private string message;
     private string exception;
@@ -48,8 +49,9 @@ public class InProgressLoad
         this.exception = exception;
     }
 
-    public void Start()
+    public void Start(bool forceLoad)
     {
+        this.forceLoad = forceLoad;
         SceneManager.Instance.DetachCurrentScene();
         SceneManager.Instance.GetTree().Paused = true;
 
@@ -78,6 +80,15 @@ public class InProgressLoad
                 {
                     save = Save.LoadFromFile(saveName, () => Invoke.Instance.Perform(() =>
                         LoadingScreen.Instance.Show("Loading Game", "Creating objects from save")));
+                    var versionDiff = VersionUtils.Compare(save.Info.ThriveVersion, Constants.Version);
+                    if (!forceLoad && versionDiff != 0)
+                    {
+                        ReportStatus(false, $"Tried to load {(versionDiff > 0 ? "a newer" : "an older")} save.\n" +
+                            $"The current version is {Constants.Version} and you tried to load a {save.Info.ThriveVersion} save.\n" +
+                            $"Please load it manually through the menu.", null);
+                        state = State.Finished;
+                        break;
+                    }
                 }
                 catch (Exception e)
                 {

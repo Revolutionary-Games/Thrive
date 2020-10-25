@@ -107,10 +107,11 @@ public static class SaveHelper
     ///   Loads save
     /// </summary>
     /// <param name="name">The name of the save to load</param>
-    public static void LoadSave(string name)
+    /// <param name="forceLoad">Do not stop if a different version is detected</param>
+    public static void LoadSave(string name, bool forceLoad)
     {
         GD.Print("Starting load of save: ", name);
-        new InProgressLoad(name).Start();
+        new InProgressLoad(name).Start(forceLoad);
     }
 
     /// <summary>
@@ -127,7 +128,7 @@ public static class SaveHelper
             return;
         }
 
-        LoadSave(save);
+        LoadSave(save, false);
     }
 
     /// <summary>

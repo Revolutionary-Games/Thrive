@@ -232,7 +232,7 @@ public class SaveListItem : PanelContainer
 
     private void LoadSave()
     {
-        SaveHelper.LoadSave(SaveName);
+        SaveHelper.LoadSave(SaveName, true);
     }
 
     private void LoadSaveData()
