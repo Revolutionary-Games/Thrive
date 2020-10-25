@@ -270,15 +270,16 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
 
     public void WriteMembraneModifierList(MembraneType referenceMembrane, MembraneType membraneType) {
         // Temporary: Set the reference membrane to double, which has 0 in every stat
-        referenceMembrane = SimulationParameters.Instance.GetMembrane("double");
+        // referenceMembrane = SimulationParameters.Instance.GetMembrane("double");
 
         String[] modifierNames = { "Mobility", "Osmoregulation Cost", "Resource Absorption Speed", "Health",
             "Physical Resistance", "Toxin Resistance" };
-        var modifierInfoLabels = new Dictionary<String, ModifierInfoLabel>();
+        // var modifierInfoLabels = new Dictionary<String, ModifierInfoLabel>();
         var modifierValues = new Dictionary<String, float>();
 
+        
         foreach (var modifier in modifierNames) {
-            modifierInfoLabels.Add(modifier,GetModifierInfo(modifier));
+            // modifierInfoLabels.Add(modifier,GetModifierInfo(modifier));
             switch (modifier)
             {
                 case "Mobility":
@@ -301,6 +302,8 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
                     break;
             };
         }
+
+        /*
         
         foreach (var modifierLabel in modifierInfoLabels) {
             try {
@@ -327,6 +330,25 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
                 }
             } catch (System.NullReferenceException _) {}
         } 
+        */
+
+        if (modifierInfoList.GetChildCount() > 0)
+        {
+            foreach (Node children in modifierInfoList.GetChildren())
+            {
+                children.QueueFree();
+            }
+        }
+
+        foreach (var modifier in modifierNames) {
+            var nameLabel = new Label();
+            nameLabel.Text = modifier;
+            var valueLabel = new Label();
+            valueLabel.Text = (modifierValues[modifier] * 100).ToString("F0", CultureInfo.CurrentCulture) + "%";
+
+            var modifierToAdd = new ModifierInfoLabel(nameLabel, valueLabel, new TextureRect());
+            modifierInfoList.AddChild(modifierToAdd);
+        }
     }
 
     public void OnDisplay()
