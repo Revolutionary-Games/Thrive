@@ -83,9 +83,12 @@ You may report any issues you encounter, but they aren't the highest priority ri
 Do you want to try loading the save anyway?"
 
 [node name="LoadInvalidSaveDialog" type="ConfirmationDialog" parent="MarginContainer/VBoxContainer"]
-margin_right = 209.0
-margin_bottom = 76.0
-window_title = "Load broken save?"
+margin_top = 344.0
+margin_right = 885.0
+margin_bottom = 470.0
+size_flags_horizontal = 0
+size_flags_vertical = 5
+window_title = "Load invalid save?"
 dialog_text = "Save information could not be loaded from this file.
 This save is most likely corrupt or newer format not understood by this version of Thrive.
 Do you want to try loading the save anyway?"
