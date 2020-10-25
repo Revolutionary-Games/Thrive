@@ -288,16 +288,19 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
                         membraneType.OsmoregulationFactor - referenceMembrane.OsmoregulationFactor);
                     break;
                 case "Resource Absorption Speed":
-                    modifierValues.Add(modifier, membraneType.ResourceAbsorptionFactor - referenceMembrane.ResourceAbsorptionFactor);
+                    modifierValues.Add(modifier,
+                        membraneType.ResourceAbsorptionFactor - referenceMembrane.ResourceAbsorptionFactor);
                     break;
                 case "Health":
                     modifierValues.Add(modifier, membraneType.Hitpoints - referenceMembrane.Hitpoints);
                     break;
                 case "Physical Resistance":
-                    modifierValues.Add(modifier, membraneType.PhysicalResistance - referenceMembrane.PhysicalResistance);
+                    modifierValues.Add(modifier,
+                        membraneType.PhysicalResistance - referenceMembrane.PhysicalResistance);
                     break;
                 case "Toxin Resistance":
-                    modifierValues.Add(modifier, membraneType.ToxinResistance - referenceMembrane.ToxinResistance);
+                    modifierValues.Add(modifier,
+                        membraneType.ToxinResistance - referenceMembrane.ToxinResistance);
                     break;
             }
         }
