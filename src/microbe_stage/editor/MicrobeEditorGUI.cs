@@ -729,9 +729,11 @@ public class MicrobeEditorGUI : Node
         }
     }
 
-    public void SetMembraneTooltips(MembraneType referenceMembrane) {
+    public void SetMembraneTooltips(MembraneType referenceMembrane)
+    {
         // Pass in a membrane that the values are taken as relative to
-        foreach (var membraneType in SimulationParameters.Instance.GetAllMembranes()) {
+        foreach (var membraneType in SimulationParameters.Instance.GetAllMembranes())
+        {
             var tooltip = (SelectionMenuToolTip)ToolTipManager.Instance.GetToolTip(
                 membraneType.InternalName, "membraneSelection");
 

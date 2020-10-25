@@ -92,7 +92,8 @@ public class SimulationParameters : Node
         return membranes[name];
     }
 
-    public IEnumerable<MembraneType> GetAllMembranes() {
+    public IEnumerable<MembraneType> GetAllMembranes()
+    {
         return membranes.Values;
     }
 
