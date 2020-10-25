@@ -72,7 +72,7 @@ public class Mutations
             }
         }
 
-        MutateMicrobeOrganelles(parent.Organelles, mutated.Organelles, mutated.IsBacteria);
+        MutateMicrobeOrganelles(parent.Organelles, mutated.Organelles, mutated.IsBacteria, 0);
 
         // There is a small chance of evolving into a eukaryote
         var nucleus = simulation.GetOrganelleType("nucleus");
@@ -206,8 +206,14 @@ public class Mutations
     ///   Creates a mutated version of parentOrganelles in organelles
     /// </summary>
     private void MutateMicrobeOrganelles(OrganelleLayout<OrganelleTemplate> parentOrganelles,
-        OrganelleLayout<OrganelleTemplate> organelles, bool isBacteria)
+        OrganelleLayout<OrganelleTemplate> organelles, bool isBacteria, int iteration)
     {
+        if (iteration >= 10)
+        {
+            GD.PrintErr("Could not create a valid mutation after 10 retries.");
+            return;
+        }
+
         var originalOrganelles = new OrganelleLayout<OrganelleTemplate>();
         foreach (var organelleTemplate in organelles)
         {
@@ -316,7 +322,7 @@ public class Mutations
 
         // Try again if the mutation has islands
         if (organelles.GetIslandHexes().Any())
-            MutateMicrobeOrganelles(parentOrganelles, originalOrganelles, isBacteria);
+            MutateMicrobeOrganelles(parentOrganelles, originalOrganelles, isBacteria, ++iteration);
     }
 
     /// <summary>
