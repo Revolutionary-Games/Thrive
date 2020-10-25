@@ -111,8 +111,8 @@ public class SaveList : ScrollContainer
 
             item.Connect(nameof(SaveListItem.OnDeleted), this, nameof(OnDeletePressed), new Array { save });
 
-            item.Connect(nameof(SaveListItem.OnOldSaveLoaded),    this, nameof(OnOldSaveLoaded), new Array { save });
-            item.Connect(nameof(SaveListItem.OnNewSaveLoaded),    this, nameof(OnNewSaveLoaded), new Array { save });
+            item.Connect(nameof(SaveListItem.OnOldSaveLoaded), this, nameof(OnOldSaveLoaded), new Array { save });
+            item.Connect(nameof(SaveListItem.OnNewSaveLoaded), this, nameof(OnNewSaveLoaded), new Array { save });
             item.Connect(nameof(SaveListItem.OnBrokenSaveLoaded), this, nameof(OnInvalidLoaded), new Array { save });
 
             item.SaveName = save;
