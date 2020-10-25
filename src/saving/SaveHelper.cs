@@ -107,11 +107,10 @@ public static class SaveHelper
     ///   Loads save
     /// </summary>
     /// <param name="name">The name of the save to load</param>
-    /// <param name="forceLoad">Do not stop if a different version is detected</param>
-    public static void LoadSave(string name, bool forceLoad)
+    public static void LoadSave(string name)
     {
         GD.Print("Starting load of save: ", name);
-        new InProgressLoad(name).Start(forceLoad);
+        new InProgressLoad(name).Start();
     }
 
     /// <summary>
@@ -128,7 +127,24 @@ public static class SaveHelper
             return;
         }
 
-        LoadSave(save, false);
+        var info = global::Save.LoadJustInfoFromSave(save);
+        var versionDiff = VersionUtils.Compare(info.ThriveVersion, Constants.Version);
+        if (versionDiff != 0)
+        {
+            Task.Run(async () =>
+            {
+                LoadingScreen.Instance.Show($"Tried to load {(versionDiff > 0 ? "a newer" : "an older")} save.\n" +
+                    $"The current version is {Constants.Version} " +
+                    $"but you tried to load a {info.ThriveVersion} save.\n",
+                    "Please load it manually through the menu.\nWait to go back.");
+                await Task.Delay(TimeSpan.FromSeconds(5)).ConfigureAwait(true);
+                LoadingScreen.Instance.Hide();
+            });
+        }
+        else
+        {
+            LoadSave(save);
+        }
     }
 
     /// <summary>
