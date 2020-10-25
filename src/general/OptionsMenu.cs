@@ -98,7 +98,7 @@ public class OptionsMenu : Control
     public NodePath CloudResolutionPath;
 
     [Export]
-    public NodePath RunAutoEvoPath;
+    public NodePath RunAutoEvoDuringGameplayPath;
 
     // Misc tab.
     [Export]
@@ -172,7 +172,7 @@ public class OptionsMenu : Control
     private Control performanceTab;
     private OptionButton cloudInterval;
     private OptionButton cloudResolution;
-    private CheckBox runAutoEvo;
+    private CheckBox runAutoEvoDuringGameplay;
 
     // Misc tab
     private Control miscTab;
@@ -267,7 +267,7 @@ public class OptionsMenu : Control
         performanceTab = GetNode<Control>(PerformanceTabPath);
         cloudInterval = GetNode<OptionButton>(CloudIntervalPath);
         cloudResolution = GetNode<OptionButton>(CloudResolutionPath);
-        runAutoEvo = GetNode<CheckBox>(RunAutoEvoPath);
+        runAutoEvoDuringGameplay = GetNode<CheckBox>(runAutoEvoDuringGameplayPath);
 
         // Misc
         miscTab = GetNode<Control>(MiscTabPath);
@@ -367,7 +367,7 @@ public class OptionsMenu : Control
         // Performance
         cloudInterval.Selected = CloudIntervalToIndex(settings.CloudUpdateInterval);
         cloudResolution.Selected = CloudResolutionToIndex(settings.CloudResolution);
-        runAutoEvo.Pressed = settings.RunAutoEvoDuringGamePlay;
+        runAutoEvoDuringGameplay.Pressed = settings.runAutoEvoDuringGameplayDuringGamePlay;
 
         // Misc
         playIntro.Pressed = settings.PlayIntroVideo;
@@ -873,7 +873,7 @@ public class OptionsMenu : Control
 
     private void OnAutoEvoToggled(bool pressed)
     {
-        Settings.Instance.RunAutoEvoDuringGamePlay.Value = pressed;
+        Settings.Instance.runAutoEvoDuringGameplayDuringGamePlay.Value = pressed;
 
         UpdateResetSaveButtonState();
     }
