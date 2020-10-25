@@ -39,25 +39,12 @@ public class SaveList : ScrollContainer
     [Export]
     public NodePath LoadInvalidSaveDialogPath;
 
-    [Export]
-    public NodePath LoadInvalidSaveOkPath;
-
-    [Export]
-    public NodePath LoadInvalidSaveCancelPath;
-
-    [Export]
-    public NodePath LoadInvalidSaveOpenLogPath;
-
     private Control loadingItem;
     private BoxContainer savesList;
     private ConfirmationDialog deleteConfirmDialog;
     private ConfirmationDialog loadNewerConfirmDialog;
     private ConfirmationDialog loadOlderConfirmDialog;
-    private WindowDialog loadInvalidConfirmDialog;
-
-    private Button loadInvalidConfirmOk;
-    private Button loadInvalidConfirmCancel;
-    private Button loadInvalidConfirmOpenLog;
+    private ConfirmationDialog loadInvalidConfirmDialog;
 
     private PackedScene listItemScene;
 
@@ -84,11 +71,7 @@ public class SaveList : ScrollContainer
         deleteConfirmDialog = GetNode<ConfirmationDialog>(DeleteConfirmDialogPath);
         loadOlderConfirmDialog = GetNode<ConfirmationDialog>(LoadOlderSaveDialogPath);
         loadNewerConfirmDialog = GetNode<ConfirmationDialog>(LoadNewerSaveDialogPath);
-        loadInvalidConfirmDialog = GetNode<WindowDialog>(LoadInvalidSaveDialogPath);
-
-        loadInvalidConfirmOk = GetNode<Button>(LoadInvalidSaveOkPath);
-        loadInvalidConfirmCancel = GetNode<Button>(LoadInvalidSaveCancelPath);
-        loadInvalidConfirmOpenLog = GetNode<Button>(LoadInvalidSaveOpenLogPath);
+        loadInvalidConfirmDialog = GetNode<ConfirmationDialog>(LoadInvalidSaveDialogPath);
 
         listItemScene = GD.Load<PackedScene>("res://src/saving/SaveListItem.tscn");
     }
@@ -129,13 +112,9 @@ public class SaveList : ScrollContainer
 
             item.Connect(nameof(SaveListItem.OnDeleted), this, nameof(OnDeletePressed), new Array { save });
 
-            item.Connect(nameof(SaveListItem.OnOldSaveLoaded), this, nameof(OnOldSaveLoaded), new Array { save });
-            item.Connect(nameof(SaveListItem.OnNewSaveLoaded), this, nameof(OnNewSaveLoaded), new Array { save });
+            item.Connect(nameof(SaveListItem.OnOldSaveLoaded),    this, nameof(OnOldSaveLoaded), new Array { save });
+            item.Connect(nameof(SaveListItem.OnNewSaveLoaded),    this, nameof(OnNewSaveLoaded), new Array { save });
             item.Connect(nameof(SaveListItem.OnBrokenSaveLoaded), this, nameof(OnInvalidLoaded), new Array { save });
-
-            loadInvalidConfirmOk.Connect("pressed", this, nameof(LoadSave));
-            loadInvalidConfirmOpenLog.Connect("pressed", this, nameof(OnInvalidOpenLog));
-            loadInvalidConfirmCancel.Connect("pressed", this, nameof(OnInvalidCancel));
 
             item.SaveName = save;
             savesList.AddChild(item);
@@ -217,17 +196,6 @@ public class SaveList : ScrollContainer
         loadInvalidConfirmDialog.PopupCenteredMinsize();
     }
 
-    private void OnInvalidOpenLog()
-    {
-        var path = ProjectSettings.GlobalizePath($"user://logs/log.txt");
-        Process.Start(path);
-    }
-
-    private void OnInvalidCancel()
-    {
-        loadInvalidConfirmDialog.Hide();
-    }
-
     private void OnConfirmLoadOlder()
     {
         GD.PrintErr("The user requested to load an older save.");
@@ -237,6 +205,12 @@ public class SaveList : ScrollContainer
     private void OnConfirmLoadNewer()
     {
         GD.PrintErr("The user requested to load a newer save.");
+        OnConfirmSaveLoad();
+    }
+
+    private void OnConfirmLoadInvalid()
+    {
+        GD.PrintErr("The user requested to load an invalid save.");
         OnConfirmSaveLoad();
     }
 
