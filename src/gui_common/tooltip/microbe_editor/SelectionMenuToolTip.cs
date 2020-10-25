@@ -269,14 +269,10 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
     }
 
     public void WriteMembraneModifierList(MembraneType referenceMembrane, MembraneType membraneType) {
-        // Temporary: Set the reference membrane to double, which has 0 in every stat
-        // referenceMembrane = SimulationParameters.Instance.GetMembrane("double");
-
         String[] modifierNames = { "Mobility", "Osmoregulation Cost", "Resource Absorption Speed", "Health",
             "Physical Resistance", "Toxin Resistance" };
         var modifierInfoLabels = new Dictionary<String, ModifierInfoLabel>();
         var modifierValues = new Dictionary<String, float>();
-
         
         foreach (var modifier in modifierNames) {
             modifierInfoLabels.Add(modifier,GetModifierInfo(modifier));
@@ -304,38 +300,42 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         }
 
         foreach (var modifierLabel in modifierInfoLabels) {
-            try {
-                if (modifierLabel.Key == "Physical Resistance" || modifierLabel.Key == "Toxin Resistance")
+            if (modifierLabel.Key == "Physical Resistance" || modifierLabel.Key == "Toxin Resistance")
+            {
+                if (modifierValues[modifierLabel.Key] == 0)
                 {
-                    if (modifierValues[modifierLabel.Key] == 0) {
-                        modifierLabel.Value.Hide();
-                    } else {
-                        modifierLabel.Value.Show();
-                    }
-                }
-
-                if (modifierLabel.Key == "Health") {
-                    modifierLabel.Value.ModifierValue = ((modifierValues[modifierLabel.Key] > 0) ? "+" : string.Empty)
-                        + (modifierValues[modifierLabel.Key]).ToString("F0", CultureInfo.CurrentCulture);
-                } else {
-                    modifierLabel.Value.ModifierValue = ((modifierValues[modifierLabel.Key] > 0) ? "+" : string.Empty)
-                        + (modifierValues[modifierLabel.Key] * 100).ToString("F0", CultureInfo.CurrentCulture)
-                        + "%";
-                }
-
-                if (modifierValues[modifierLabel.Key] > 0)
-                {
-                    modifierLabel.Value.ModifierValueColor = new Color(0, 1, 0);
-                }
-                else if (modifierValues[modifierLabel.Key] == 0)
-                {
-                    modifierLabel.Value.ModifierValueColor = new Color(1, 1, 1);
+                    modifierLabel.Value.Hide();
                 }
                 else
                 {
-                    modifierLabel.Value.ModifierValueColor = new Color(1, 0.3f, 0.3f);
+                    modifierLabel.Value.Show();
                 }
-            } catch (System.NullReferenceException _) {}
+            }
+
+            if (modifierLabel.Key == "Health")
+            {
+                modifierLabel.Value.ModifierValue = ((modifierValues[modifierLabel.Key] > 0) ? "+" : string.Empty)
+                    + (modifierValues[modifierLabel.Key]).ToString("F0", CultureInfo.CurrentCulture);
+            }
+            else
+            {
+                modifierLabel.Value.ModifierValue = ((modifierValues[modifierLabel.Key] > 0) ? "+" : string.Empty)
+                    + (modifierValues[modifierLabel.Key] * 100).ToString("F0", CultureInfo.CurrentCulture)
+                    + "%";
+            }
+
+            if (modifierValues[modifierLabel.Key] > 0)
+            {
+                modifierLabel.Value.ModifierValueColor = new Color(0, 1, 0);
+            }
+            else if (modifierValues[modifierLabel.Key] == 0)
+            {
+                modifierLabel.Value.ModifierValueColor = new Color(1, 1, 1);
+            }
+            else
+            {
+                modifierLabel.Value.ModifierValueColor = new Color(1, 0.3f, 0.3f);
+            }
         }
     }
 
