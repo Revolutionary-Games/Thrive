@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/engine/FPSCounter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/saving/SaveStatusOverlay.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/engine/LoadingScreen.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/engine/ColourblindScreenFilter.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/engine/QuickLoad.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=6]
 
 [node name="ScreenOverlays" type="Node"]
 pause_mode = 2
@@ -18,6 +20,10 @@ LoadingMessagePath = NodePath("../../../ScreenOverlays/CanvasLayer/LoadingScreen
 
 [node name="SaveStatusOverlay" parent="CanvasLayer" instance=ExtResource( 2 )]
 visible = false
+
+[node name="QuickLoad" parent="CanvasLayer" instance=ExtResource( 5 )]
+visible = false
+theme = ExtResource( 6 )
 
 [node name="ColourblindScreenFilter" parent="CanvasLayer" instance=ExtResource( 4 )]
 visible = false
