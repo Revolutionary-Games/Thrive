@@ -116,35 +116,26 @@ public static class SaveHelper
     /// <summary>
     ///   Loads the save file with the latest write time
     /// </summary>
-    public static void QuickLoad()
+    /// <returns>False if the versions do not match</returns>
+    public static bool QuickLoad()
     {
         // TODO: is there a way to to find the latest modified file without checking them all?
         var save = CreateListOfSaves(SaveOrder.LastModifiedFirst).FirstOrDefault();
-
         if (save == null)
         {
             GD.Print("No saves exist, can't quick load");
-            return;
+            return true;
         }
 
         var info = global::Save.LoadJustInfoFromSave(save);
         var versionDiff = VersionUtils.Compare(info.ThriveVersion, Constants.Version);
         if (versionDiff != 0)
         {
-            Task.Run(async () =>
-            {
-                LoadingScreen.Instance.Show($"Tried to load {(versionDiff > 0 ? "a newer" : "an older")} save.\n" +
-                    $"The current version is {Constants.Version} " +
-                    $"but you tried to load a {info.ThriveVersion} save.\n",
-                    "Please load it manually through the menu.\nWait to go back.");
-                await Task.Delay(TimeSpan.FromSeconds(5)).ConfigureAwait(true);
-                LoadingScreen.Instance.Hide();
-            });
+            return false;
         }
-        else
-        {
-            LoadSave(save);
-        }
+
+        LoadSave(save);
+        return true;
     }
 
     /// <summary>
