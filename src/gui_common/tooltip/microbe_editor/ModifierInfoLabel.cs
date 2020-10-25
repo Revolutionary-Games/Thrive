@@ -59,17 +59,6 @@ public class ModifierInfoLabel : HBoxContainer
         }
     }
 
-    public ModifierInfoLabel() {}
-
-    public ModifierInfoLabel(Label name, Label value, TextureRect icon) {
-        name.Name = "Name";
-        value.Name = "Value";
-        icon.Name = "Icon";
-        AddChild(value);
-        AddChild(name);
-        AddChild(icon);
-    }
-
     public override void _Ready()
     {
         nameLabel = GetNode<Label>("Name");
