@@ -138,5 +138,5 @@ anchor_left = 0.79
 anchor_right = 1.0
 text = "Cancel"
 [connection signal="confirmed" from="MarginContainer/VBoxContainer/DeleteSaveConfirmDialog" to="." method="OnConfirmDelete"]
-[connection signal="confirmed" from="MarginContainer/VBoxContainer/LoadNewerSaveDialog" to="." method="OnConfirmSaveLoad"]
-[connection signal="confirmed" from="MarginContainer/VBoxContainer/LoadOlderSaveDialog" to="." method="OnConfirmSaveLoad"]
+[connection signal="confirmed" from="MarginContainer/VBoxContainer/LoadNewerSaveDialog" to="." method="OnConfirmLoadNewer"]
+[connection signal="confirmed" from="MarginContainer/VBoxContainer/LoadOlderSaveDialog" to="." method="OnConfirmLoadOlder"]

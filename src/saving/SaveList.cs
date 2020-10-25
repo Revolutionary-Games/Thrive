@@ -228,6 +228,18 @@ public class SaveList : ScrollContainer
         loadInvalidConfirmDialog.Hide();
     }
 
+    private void OnConfirmLoadOlder()
+    {
+        Save.LogErrorToFile(saveToBeLoaded, "OLD", null);
+        OnConfirmSaveLoad();
+    }
+
+    private void OnConfirmLoadNewer()
+    {
+        Save.LogErrorToFile(saveToBeLoaded, "NEW", null);
+        OnConfirmSaveLoad();
+    }
+
     private void OnConfirmSaveLoad()
     {
         GUICommon.Instance.PlayButtonPressSound();
