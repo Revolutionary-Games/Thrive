@@ -270,8 +270,11 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
 
     public void WriteMembraneModifierList(MembraneType referenceMembrane, MembraneType membraneType)
     {
-        string[] modifierNames = { "Mobility", "Osmoregulation Cost", "Resource Absorption Speed", "Health",
-            "Physical Resistance", "Toxin Resistance", };
+        string[] modifierNames =
+        {
+            "Mobility", "Osmoregulation Cost", "Resource Absorption Speed", "Health",
+            "Physical Resistance", "Toxin Resistance",
+        };
         var modifierInfoLabels = new Dictionary<string, ModifierInfoLabel>();
         var modifierValues = new Dictionary<string, float>();
         foreach (var modifier in modifierNames)
