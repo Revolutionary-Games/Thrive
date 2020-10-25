@@ -127,7 +127,17 @@ public static class SaveHelper
             return true;
         }
 
-        var info = global::Save.LoadJustInfoFromSave(save);
+        SaveInformation info;
+        try
+        {
+            info = global::Save.LoadJustInfoFromSave(save);
+        }
+        catch (Exception ex)
+        {
+            GD.PrintErr(ex.ToString());
+            return true;
+        }
+
         var versionDiff = VersionUtils.Compare(info.ThriveVersion, Constants.Version);
         if (versionDiff != 0)
         {
