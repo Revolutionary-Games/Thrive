@@ -158,7 +158,8 @@ public class Save
     {
         var filename = $"user://logs/{saveName}.error.log.txt";
 
-        var fileContent = $"Loading a save ({saveName}) that might be incompatible (type: {type}), if an exception follows it is likely due to the save being incompatible\n{ex?.ToString() ?? string.Empty}";
+        var fileContent =
+            $"Loading a save ({saveName}) that might be incompatible (type: {type}), if an exception follows it is likely due to the save being incompatible\n{ex?.ToString() ?? string.Empty}";
         using var logFile = new File();
         logFile.Open(filename, File.ModeFlags.Write);
         logFile.StoreString(fileContent);
