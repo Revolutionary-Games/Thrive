@@ -268,14 +268,16 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
         }
     }
 
-    public void WriteMembraneModifierList(MembraneType referenceMembrane, MembraneType membraneType) {
+    public void WriteMembraneModifierList(MembraneType referenceMembrane, MembraneType membraneType)
+    {
         String[] modifierNames = { "Mobility", "Osmoregulation Cost", "Resource Absorption Speed", "Health",
             "Physical Resistance", "Toxin Resistance" };
         var modifierInfoLabels = new Dictionary<String, ModifierInfoLabel>();
         var modifierValues = new Dictionary<String, float>();
         
-        foreach (var modifier in modifierNames) {
-            modifierInfoLabels.Add(modifier,GetModifierInfo(modifier));
+        foreach (var modifier in modifierNames)
+        {
+            modifierInfoLabels.Add(modifier, GetModifierInfo(modifier));
             switch (modifier)
             {
                 case "Mobility":
@@ -286,23 +288,22 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
                         membraneType.OsmoregulationFactor - referenceMembrane.OsmoregulationFactor);
                     break;
                 case "Resource Absorption Speed":
-                    modifierValues.Add(modifier,
-                        membraneType.ResourceAbsorptionFactor - referenceMembrane.ResourceAbsorptionFactor);
+                    modifierValues.Add(modifier, membraneType.ResourceAbsorptionFactor - referenceMembrane.ResourceAbsorptionFactor);
                     break;
                 case "Health":
                     modifierValues.Add(modifier, membraneType.Hitpoints - referenceMembrane.Hitpoints);
                     break;
                 case "Physical Resistance":
-                    modifierValues.Add(modifier,
-                        membraneType.PhysicalResistance - referenceMembrane.PhysicalResistance);
+                    modifierValues.Add(modifier, membraneType.PhysicalResistance - referenceMembrane.PhysicalResistance);
                     break;
                 case "Toxin Resistance":
                     modifierValues.Add(modifier, membraneType.ToxinResistance - referenceMembrane.ToxinResistance);
                     break;
-            };
+            }
         }
 
-        foreach (var modifierLabel in modifierInfoLabels) {
+        foreach (var modifierLabel in modifierInfoLabels)
+        {
             if (modifierLabel.Key == "Physical Resistance" || modifierLabel.Key == "Toxin Resistance")
             {
                 if (modifierValues[modifierLabel.Key] == 0)
