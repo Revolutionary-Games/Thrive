@@ -891,7 +891,7 @@ public class MicrobeEditor : Node, ILoadableGameState
         // These are all of the existing hexes, that if there are no islands will all be visited
         var shouldBeVisited = organelles.Select(p => p.Position).ToList();
 
-        CheckmarkNeighbors(hexesWithNeighbours, initHex);
+        CheckmarkNeighbors(hexesWithNeighbours);
 
         // Return the difference of the lists (hexes that were not visited)
         return shouldBeVisited.Except(hexesWithNeighbours).ToList();
@@ -1472,19 +1472,23 @@ public class MicrobeEditor : Node, ILoadableGameState
     ///   recurses to them to find more connected organelles
     /// </summary>
     /// <param name="checked">The list of already visited hexes. Will be filled up with found hexes.</param>
-    /// <param name="currentHex">The hex to visit the neighbours of.</param>
-    private void CheckmarkNeighbors(List<Hex> @checked, Hex currentHex)
+    private void CheckmarkNeighbors(List<Hex> @checked)
     {
-        // Get all neighbors not already visited
-        var myNeighbors = GetNeighborHexes(currentHex).Where(p => !@checked.Contains(p)).ToArray();
-
-        // Add the new neighbors to the list to not visit them again
-        @checked.AddRange(myNeighbors);
-
-        // Recurse to all neighbours to find more connected hexes
-        foreach (var neighbor in myNeighbors)
+        while (true)
         {
-            CheckmarkNeighbors(@checked, neighbor);
+            int endHexCount = 0;
+            foreach (var hex in @checked.ToList())
+            {
+                var myNeighbors = GetNeighborHexes(hex).Where(p => !@checked.Contains(p)).ToArray();
+                if (myNeighbors.Length == 0)
+                    endHexCount++;
+
+                // Add the new neighbors to the list to not visit them again
+                @checked.AddRange(myNeighbors);
+            }
+
+            if (endHexCount == @checked.Count)
+                break;
         }
     }
 
