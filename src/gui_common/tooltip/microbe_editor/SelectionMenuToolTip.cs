@@ -270,7 +270,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
 
     public void WriteMembraneModifierList(MembraneType referenceMembrane, MembraneType membraneType) {
         // Temporary: Set the reference membrane to double, which has 0 in every stat
-        referenceMembrane = SimulationParameters.Instance.GetMembrane("double");
+        // referenceMembrane = SimulationParameters.Instance.GetMembrane("double");
 
         String[] modifierNames = { "Mobility", "Osmoregulation Cost", "Resource Absorption Speed", "Health",
             "Physical Resistance", "Toxin Resistance" };
@@ -305,6 +305,15 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
 
         foreach (var modifierLabel in modifierInfoLabels) {
             try {
+                if (modifierLabel.Key == "Physical Resistance" || modifierLabel.Key == "Toxin Resistance")
+                {
+                    if (modifierValues[modifierLabel.Key] == 0) {
+                        modifierLabel.Value.Hide();
+                    } else {
+                        modifierLabel.Value.Show();
+                    }
+                }
+
                 if (modifierLabel.Key == "Health") {
                     modifierLabel.Value.ModifierValue = ((modifierValues[modifierLabel.Key] > 0) ? "+" : string.Empty)
                         + (modifierValues[modifierLabel.Key]).ToString("F0", CultureInfo.CurrentCulture);
