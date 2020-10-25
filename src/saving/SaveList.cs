@@ -134,7 +134,7 @@ public class SaveList : ScrollContainer
             item.Connect(nameof(SaveListItem.OnBrokenSaveLoaded), this, nameof(OnInvalidLoaded), new Array { save });
 
             loadInvalidConfirmOk.Connect("pressed", this, nameof(LoadSave));
-            loadInvalidConfirmOpenLog.Connect("pressed", this, nameof(OnInvalidOpenLog), new Array { save });
+            loadInvalidConfirmOpenLog.Connect("pressed", this, nameof(OnInvalidOpenLog));
             loadInvalidConfirmCancel.Connect("pressed", this, nameof(OnInvalidCancel));
 
             item.SaveName = save;
@@ -217,9 +217,9 @@ public class SaveList : ScrollContainer
         loadInvalidConfirmDialog.PopupCenteredMinsize();
     }
 
-    private void OnInvalidOpenLog(string saveName)
+    private void OnInvalidOpenLog()
     {
-        var path = ProjectSettings.GlobalizePath($"user://logs/{saveName}.error.log.txt");
+        var path = ProjectSettings.GlobalizePath($"user://logs/log.txt");
         Process.Start(path);
     }
 
@@ -230,13 +230,13 @@ public class SaveList : ScrollContainer
 
     private void OnConfirmLoadOlder()
     {
-        Save.LogErrorToFile(saveToBeLoaded, "OLD", null);
+        GD.PrintErr("The user requested to load an older save.");
         OnConfirmSaveLoad();
     }
 
     private void OnConfirmLoadNewer()
     {
-        Save.LogErrorToFile(saveToBeLoaded, "NEW", null);
+        GD.PrintErr("The user requested to load a newer save.");
         OnConfirmSaveLoad();
     }
 

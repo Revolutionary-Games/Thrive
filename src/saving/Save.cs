@@ -86,7 +86,6 @@ public class Save
         catch (Exception e)
         {
             GD.PrintErr($"Failed to load save info from ${saveName}, error: ${e}");
-            LogErrorToFile(saveName, "BROKEN", e);
             return SaveInformation.CreateInvalid();
         }
     }
@@ -109,7 +108,6 @@ public class Save
             GD.PrintErr($"Failed to load save info and screenshot from ${saveName}, error: ${e}");
             save.Info = SaveInformation.CreateInvalid();
             save.Screenshot = null;
-            LogErrorToFile(saveName, "BROKEN", e);
         }
 
         return save;
@@ -152,18 +150,6 @@ public class Save
             if (tempScreenshot != null)
                 FileHelpers.DeleteFile(tempScreenshot);
         }
-    }
-
-    internal static void LogErrorToFile(string saveName, string type, Exception ex)
-    {
-        var filename = $"user://logs/{saveName}.error.log.txt";
-
-        var fileContent =
-            $"Loading a save ({saveName}) that might be incompatible (type: {type}), if an exception follows" +
-            $"it is likely due to the save being incompatible\n{ex?.ToString() ?? string.Empty}";
-        using var logFile = new File();
-        logFile.Open(filename, File.ModeFlags.Write);
-        logFile.StoreString(fileContent);
     }
 
     private static void WriteDataToSaveFile(string target, string justInfo, string serialized, string tempScreenshot)
