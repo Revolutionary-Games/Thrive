@@ -314,12 +314,12 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
 
             if (modifierLabel.Key == "Health")
             {
-                modifierLabel.Value.ModifierValue = ((modifierValues[modifierLabel.Key] > 0) ? "+" : string.Empty)
+                modifierLabel.Value.ModifierValue = ((modifierValues[modifierLabel.Key] >= 0) ? "+" : string.Empty)
                     + (modifierValues[modifierLabel.Key]).ToString("F0", CultureInfo.CurrentCulture);
             }
             else
             {
-                modifierLabel.Value.ModifierValue = ((modifierValues[modifierLabel.Key] > 0) ? "+" : string.Empty)
+                modifierLabel.Value.ModifierValue = ((modifierValues[modifierLabel.Key] >= 0) ? "+" : string.Empty)
                     + (modifierValues[modifierLabel.Key] * 100).ToString("F0", CultureInfo.CurrentCulture)
                     + "%";
             }
