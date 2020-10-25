@@ -193,7 +193,14 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     public bool EngulfMode
     {
         get => engulfMode;
-        set => engulfMode = value;
+        set {
+            if (!Membrane.Type.CellWall) {
+                engulfMode = value;
+            } else {
+                engulfMode = false;
+            }
+            
+        }
     }
 
     [JsonIgnore]
@@ -386,11 +393,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         Membrane.Type = Species.MembraneType;
         Membrane.Tint = Species.Colour;
         Membrane.Dirty = true;
-        if (Membrane.Type.CellWall)
-        {
-            // Reset engulf mode if the new membrane doesn't allow it
-            EngulfMode = false;
-        }
 
         SetupMicrobeHitpoints();
     }

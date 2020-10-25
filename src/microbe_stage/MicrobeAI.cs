@@ -576,8 +576,7 @@ public class MicrobeAI
             if ((microbe.Translation - targetPosition).LengthSquared() <= 300 + microbe.EngulfSize * 3.0f
                 && microbe.Compounds.GetCompoundAmount(atp) >= 1.0f
                 && !microbe.EngulfMode &&
-                microbe.EngulfSize > Constants.ENGULF_SIZE_RATIO_REQ * prey.EngulfSize
-                && !microbe.Membrane.Type.CellWall)
+                microbe.EngulfSize > Constants.ENGULF_SIZE_RATIO_REQ * prey.EngulfSize)
             {
                 microbe.EngulfMode = true;
                 ticksSinceLastToggle = 0;
@@ -657,8 +656,7 @@ public class MicrobeAI
             microbe.EngulfSize * 3.0f
             && microbe.Compounds.GetCompoundAmount(atp) >= 1.0f
             && !microbe.EngulfMode &&
-            microbe.EngulfSize > Constants.ENGULF_SIZE_RATIO_REQ * chunk.Size
-            && !microbe.Membrane.Type.CellWall)
+            microbe.EngulfSize > Constants.ENGULF_SIZE_RATIO_REQ * chunk.Size)
         {
             microbe.EngulfMode = true;
             ticksSinceLastToggle = 0;
