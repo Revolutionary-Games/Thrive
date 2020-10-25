@@ -84,7 +84,7 @@ public class InProgressLoad
                     if (!forceLoad && versionDiff != 0)
                     {
                         ReportStatus(false, $"Tried to load {(versionDiff > 0 ? "a newer" : "an older")} save.\n" +
-                            $"The current version is {Constants.Version} and you tried to load a {save.Info.ThriveVersion} save.\n" +
+                            $"The current version is {Constants.Version} but you tried to load a {save.Info.ThriveVersion} save.\n" +
                             $"Please load it manually through the menu.", null);
                         state = State.Finished;
                         break;
