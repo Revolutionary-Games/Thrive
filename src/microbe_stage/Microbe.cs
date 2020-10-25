@@ -193,13 +193,16 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     public bool EngulfMode
     {
         get => engulfMode;
-        set {
-            if (!Membrane.Type.CellWall) {
+        set
+        {
+            if (!Membrane.Type.CellWall)
+            {
                 engulfMode = value;
-            } else {
+            }
+            else
+            {
                 engulfMode = false;
             }
-            
         }
     }
 
