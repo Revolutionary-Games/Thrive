@@ -325,7 +325,7 @@ public class SelectionMenuToolTip : Control, ICustomToolTip
                 {
                     modifierLabel.Value.ModifierValueColor = new Color(1, 0.3f, 0.3f);
                 }
-            } catch {}
+            } catch (System.NullReferenceException _) {}
         } 
     }
 
