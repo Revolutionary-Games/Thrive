@@ -184,7 +184,7 @@ public class GameWorld
     /// </summary>
     public bool IsAutoEvoFinished(bool autostart = true)
     {
-        if (autoEvo == null && autostart)
+        if ((autoEvo == null || !autoEvo.Running) && autostart)
         {
             CreateRunIfMissing();
             autoEvo.Start();

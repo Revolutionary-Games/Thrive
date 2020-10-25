@@ -524,7 +524,7 @@ public class MicrobeEditor : Node, ILoadableGameState
     {
         if (!ready)
         {
-            if (!CurrentGame.GameWorld.IsAutoEvoFinished() && Settings.Instance.RunAutoEvoDuringGamePlay.Value)
+            if (!CurrentGame.GameWorld.IsAutoEvoFinished())
             {
                 LoadingScreen.Instance.Show("Loading Microbe Editor", "Waiting for auto-evo: " +
                     CurrentGame.GameWorld.GetAutoEvoRun().Status);
@@ -1038,7 +1038,7 @@ public class MicrobeEditor : Node, ILoadableGameState
     private void InitEditorFresh()
     {
         // For now we only show a loading screen if auto-evo is not ready yet
-        if (!CurrentGame.GameWorld.IsAutoEvoFinished() && Settings.Instance.RunAutoEvoDuringGamePlay.Value)
+        if (!CurrentGame.GameWorld.IsAutoEvoFinished())
         {
             ready = false;
             LoadingScreen.Instance.Show("Loading Microbe Editor", CurrentGame.GameWorld.GetAutoEvoRun().Status);
@@ -1800,27 +1800,24 @@ public class MicrobeEditor : Node, ILoadableGameState
 
         gui.UpdateTimeIndicator(CurrentGame.GameWorld.TotalPassedTime);
 
-        if (Settings.Instance.RunAutoEvoDuringGamePlay.Value)
+        // Get summary before applying results in order to get comparisons to the previous populations
+        var run = CurrentGame.GameWorld.GetAutoEvoRun();
+
+        if (run?.Results == null)
         {
-            // Get summary before applying results in order to get comparisons to the previous populations
-            var run = CurrentGame.GameWorld.GetAutoEvoRun();
-
-            if (run?.Results == null)
-            {
-                gui.UpdateAutoEvoResults("Auto-evo failed to run", "run status: " +
-                    (run != null ? run.Status : string.Empty));
-            }
-            else
-            {
-                autoEvoSummary = run.Results.MakeSummary(CurrentGame.GameWorld.Map, true,
-                    run.ExternalEffects);
-                autoEvoExternal = run.MakeSummaryOfExternalEffects();
-
-                gui.UpdateAutoEvoResults(autoEvoSummary, autoEvoExternal);
-            }
-
-            ApplyAutoEvoResults();
+            gui.UpdateAutoEvoResults("Auto-evo failed to run", "run status: " +
+                (run != null ? run.Status : string.Empty));
         }
+        else
+        {
+            autoEvoSummary = run.Results.MakeSummary(CurrentGame.GameWorld.Map, true,
+                run.ExternalEffects);
+            autoEvoExternal = run.MakeSummaryOfExternalEffects();
+
+            gui.UpdateAutoEvoResults(autoEvoSummary, autoEvoExternal);
+        }
+
+        ApplyAutoEvoResults();
 
         // Auto save after editor entry is complete
         if (!CurrentGame.FreeBuild)
