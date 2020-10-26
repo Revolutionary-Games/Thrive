@@ -109,8 +109,11 @@ public static class SaveHelper
     /// <param name="name">The name of the save to load</param>
     public static void LoadSave(string name)
     {
-        GD.Print("Starting load of save: ", name);
-        new InProgressLoad(name).Start();
+        if (!SceneManager.Instance.GetTree().Paused)
+        {
+            GD.Print("Starting load of save: ", name);
+            new InProgressLoad(name).Start();
+        }
     }
 
     /// <summary>
