@@ -219,7 +219,7 @@ class DevBuildUploader
         
         if response.code == 503
           puts "Error 503: waiting 3 minutes..."
-          sleep(180)
+          sleep(10 + i*20)
         elsif response.code != needed_response_code
           puts "Response: #{response}"
           raise "unexpected response code: #{response.code}"
