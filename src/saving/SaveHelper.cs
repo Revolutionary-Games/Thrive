@@ -114,7 +114,8 @@ public static class SaveHelper
     }
 
     /// <summary>
-    ///   Loads the save file with the latest write time
+    ///   Loads the save file with the latest write time.
+    ///   Does not load if there is a version difference.
     /// </summary>
     /// <returns>False if the versions do not match</returns>
     public static bool QuickLoad()
