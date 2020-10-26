@@ -77,8 +77,8 @@ public class InProgressLoad
                 try
                 {
                     save = await Save.LoadFromFile(saveName, () => Invoke.Instance.Perform(() =>
-                        LoadingScreen.Instance.Show("Loading Game", "Creating objects from save")))
-                            .ConfigureAwait(true);
+                            LoadingScreen.Instance.Show("Loading Game", "Creating objects from save")))
+                        .ConfigureAwait(true);
                 }
                 catch (Exception e)
                 {
