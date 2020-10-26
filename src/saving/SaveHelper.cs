@@ -132,9 +132,9 @@ public static class SaveHelper
         {
             info = global::Save.LoadJustInfoFromSave(save);
         }
-        catch (Exception ex)
+        catch (Exception e)
         {
-            GD.PrintErr(ex.ToString());
+            GD.PrintErr($"Cannot load save information for save {save}: {e}");
             return true;
         }
 
