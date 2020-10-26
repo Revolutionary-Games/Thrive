@@ -144,6 +144,11 @@ public static class Constants
     public const float CLOUD_ABSORPTION_HALF_LIFE = 0.02291666666f;
 
     /// <summary>
+    ///   Reduces likelihood of clouds being spawned.
+    /// </summary>
+    public const float PLAYER_STATIONARY_CLOUD_SPAWN_PENALTY = 0.1f;
+
+    /// <summary>
     ///   How much of a compound is actually given to a cell when absorbed
     /// </summary>
     public const float ABSORPTION_RATIO = 0.0000125f;

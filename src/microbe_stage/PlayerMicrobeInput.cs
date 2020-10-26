@@ -22,11 +22,6 @@ public class PlayerMicrobeInput : Node
     private bool left;
     private bool right;
 
-    /// <summary>
-    ///  Whether or not player is stationary. Used to adjust cloud spawn rate
-    /// </summary>
-    private bool isPlayerStationary = true;
-
     private bool cheatGlucose;
     private bool cheatAmmonia;
     private bool cheatPhosphates;
@@ -49,52 +44,44 @@ public class PlayerMicrobeInput : Node
         {
             forward = true;
             autoMoveAllowed = false;
-            isPlayerStationary = false;
         }
         else if (@event.IsActionReleased("g_move_forward"))
         {
             forward = false;
             autoMoveAllowed = true;
-            isPlayerStationary = true;
         }
 
         if (@event.IsActionPressed("g_move_backwards"))
         {
             backwards = true;
             autoMoveAllowed = false;
-            isPlayerStationary = false;
         }
         else if (@event.IsActionReleased("g_move_backwards"))
         {
             backwards = false;
             autoMoveAllowed = true;
-            isPlayerStationary = true;
         }
 
         if (@event.IsActionPressed("g_move_left"))
         {
             left = true;
             autoMoveAllowed = false;
-            isPlayerStationary = false;
         }
         else if (@event.IsActionReleased("g_move_left"))
         {
             left = false;
             autoMoveAllowed = true;
-            isPlayerStationary = true;
         }
 
         if (@event.IsActionPressed("g_move_right"))
         {
             right = true;
             autoMoveAllowed = false;
-            isPlayerStationary = false;
         }
         else if (@event.IsActionReleased("g_move_right"))
         {
             right = false;
             autoMoveAllowed = true;
-            isPlayerStationary = true;
         }
 
         if (settings.CheatsEnabled && @event.IsActionPressed("g_cheat_editor"))
@@ -187,7 +174,6 @@ public class PlayerMicrobeInput : Node
         {
             stage.Player.MovementDirection = movement.Normalized();
             stage.Player.LookAtPoint = stage.Camera.CursorWorldPos;
-            stage.isPlayerStationary = isPlayerStationary;
         }
 
         if (cheatAmmonia)

@@ -35,6 +35,13 @@ public class SpawnSystem
     private int maxEntitiesToDeletePerStep = Constants.MAX_DESPAWNS_PER_FRAME;
 
     /// <summary>
+    ///   Tracks recent movement percentage to set likelihood of clouds spawning
+    ///   This prevents a player from merely staying still long enough for clouds to spawn
+    /// </summary>
+    private float cloudSpawnFactor;
+    private Vector3 lastPlayerPos;
+
+    /// <summary>
     ///   This limits the total number of things that can be spawned.
     /// </summary>
     [JsonProperty]
@@ -146,7 +153,7 @@ public class SpawnSystem
     /// <summary>
     ///   Processes spawning and despawning things
     /// </summary>
-    public void Process(float delta, Vector3 playerPosition, Vector3 playerRotation, bool isPlayerStationary)
+    public void Process(float delta, Vector3 playerPosition, Vector3 playerRotation)
     {
         elapsed += delta;
 
@@ -176,7 +183,7 @@ public class SpawnSystem
 
             spawnTypes.RemoveAll(entity => entity.DestroyQueued);
 
-            SpawnEntities(playerPosition, playerRotation, estimateEntityCount, spawnsLeftThisFrame, isPlayerStationary);
+            SpawnEntities(playerPosition, playerRotation, estimateEntityCount, spawnsLeftThisFrame);
         }
     }
 
@@ -216,19 +223,27 @@ public class SpawnSystem
         return spawnsLeftThisFrame;
     }
 
-    private void SpawnEntities(Vector3 playerPosition, Vector3 playerRotation, int existing, int spawnsLeftThisFrame, bool isPlayerStationary)
+    private void SpawnEntities(Vector3 playerPosition, Vector3 playerRotation, int existing, int spawnsLeftThisFrame)
     {
         // If there are already too many entities, don't spawn more
         if (existing >= maxAliveEntities)
             return;
+
+        // If the player is not moving around too much, reduce spawn
+        var positionDelta = lastPlayerPos - playerPosition;
+        cloudSpawnFactor -= Constants.PLAYER_STATIONARY_CLOUD_SPAWN_PENALTY;
+        cloudSpawnFactor += positionDelta.LengthSquared();
+        lastPlayerPos = playerPosition;
 
         int spawned = 0;
 
         foreach (var spawnType in spawnTypes)
         {
             // Prevents too many clouds from spawning when stationary
-            if (isPlayerStationary && spawnType.type == "cloud")
-                continue;
+            if (spawnType.type == "cloud")
+            {
+                spawnType.SpawnFrequency += cloudSpawnFactor;
+            }
             
             /*
             To actually spawn a given entity for a given attempt, two
