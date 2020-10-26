@@ -280,6 +280,9 @@ public class MicrobeEditor : Node, ILoadableGameState
         }
     }
 
+    [JsonIgnore]
+    public bool HasIslands => editedMicrobeOrganelles.GetIslandHexes().Count > 0;
+
     /// <summary>
     ///   Number of organelles in the microbe
     /// </summary>
@@ -411,17 +414,14 @@ public class MicrobeEditor : Node, ILoadableGameState
         // It is easiest to just replace all
         editedSpecies.Organelles.Clear();
 
-        var centerOfMass = editedMicrobeOrganelles.CenterOfMass;
-
         foreach (var organelle in editedMicrobeOrganelles.Organelles)
         {
             var organelleToAdd = (OrganelleTemplate)organelle.Clone();
-
-            // This calculation aligns the center of mass with the origin by moving every organelle of the microbe.
-            organelleToAdd.Position -= centerOfMass;
             organelleToAdd.PlacedThisSession = false;
             editedSpecies.Organelles.Add(organelleToAdd);
         }
+
+        editedSpecies.RepositionToOrigin();
 
         // Update bacteria status
         editedSpecies.IsBacteria = !HasNucleus;
@@ -1152,7 +1152,9 @@ public class MicrobeEditor : Node, ILoadableGameState
 
     private void CreateMutatedSpeciesCopy(Species species)
     {
-        var newSpecies = CurrentGame.GameWorld.CreateMutatedSpecies(species);
+        Species newSpecies = null;
+        while (newSpecies == null)
+            newSpecies = CurrentGame.GameWorld.CreateMutatedSpecies(species);
 
         var random = new Random();
 
@@ -1657,7 +1659,7 @@ public class MicrobeEditor : Node, ILoadableGameState
         int nextFreeHex = 0;
         int nextFreeOrganelle = 0;
 
-        var islands = GetIslandHexes();
+        var islands = editedMicrobeOrganelles.GetIslandHexes();
 
         // Build the entities to show the current microbe
         foreach (var organelle in editedMicrobeOrganelles.Organelles)

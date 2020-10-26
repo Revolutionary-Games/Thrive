@@ -80,6 +80,11 @@ public abstract class Species : ICloneable
     [JsonIgnore]
     public string FormattedIdentifier => FormattedName + $" ({ID:n0})";
 
+    /// <summary>
+    ///   Repositions the structure of the species to the center of mass
+    /// </summary>
+    public abstract void RepositionToOrigin();
+
     public void SetPopulationFromPatches(long population)
     {
         if (population < 0)
