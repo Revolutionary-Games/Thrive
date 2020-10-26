@@ -67,13 +67,6 @@ public class MicrobeStage : Node, ILoadableGameState, IGodotEarlyNodeResolve
 
     [JsonProperty]
     [AssignOnlyChildItemsOnDeserialize]
-    public MicrobeCamera Camera { get; private set; }
-
-    [JsonIgnore]
-    public MicrobeHUD HUD { get; private set; }
-
-    [JsonProperty]
-    [AssignOnlyChildItemsOnDeserialize]
     public CompoundCloudSystem Clouds { get; private set; }
 
     [JsonIgnore]
@@ -84,6 +77,16 @@ public class MicrobeStage : Node, ILoadableGameState, IGodotEarlyNodeResolve
 
     [JsonIgnore]
     public ProcessSystem ProcessSystem { get; private set; }
+
+    /// <summary>
+    ///   The main camera, needs to be after anything with AssignOnlyChildItemsOnDeserialize due to load order
+    /// </summary>
+    [JsonProperty]
+    [AssignOnlyChildItemsOnDeserialize]
+    public MicrobeCamera Camera { get; private set; }
+
+    [JsonIgnore]
+    public MicrobeHUD HUD { get; private set; }
 
     /// <summary>
     ///   The current player or null. Due to references on save load this needs to be after the systems
