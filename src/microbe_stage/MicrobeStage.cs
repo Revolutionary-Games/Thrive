@@ -384,6 +384,12 @@ public class MicrobeStage : Node, ILoadableGameState
             }
         }
 
+        // Start auto-evo if auto save not wanted & auto-evo not already start, and settings have auto-evo be started during gameplay
+        if (TransitionFinished && !wantsToSave && Settings.Instance.RunAutoEvoDuringGamePlay)
+        {
+            GameWorld.IsAutoEvoFinished(true);
+        }
+
         // Save if wanted
         if (TransitionFinished && wantsToSave)
         {
@@ -391,12 +397,6 @@ public class MicrobeStage : Node, ILoadableGameState
                 SaveHelper.AutoSave(this);
 
             wantsToSave = false;
-        }
-
-        // Start auto-evo if not already and settings have auto-evo be started during gameplay
-        if (TransitionFinished && !wantsToSave && Settings.Instance.RunAutoEvoDuringGamePlay)
-        {
-            GameWorld.IsAutoEvoFinished(true);
         }
     }
 
