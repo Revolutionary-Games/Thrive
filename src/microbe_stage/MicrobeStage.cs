@@ -384,8 +384,8 @@ public class MicrobeStage : Node, ILoadableGameState
             }
         }
 
-        // If auto save not wanted, start auto-evo if not already start,
-        // and settings have auto-evo be started during gameplay
+        // Start auto-evo if stage entry finished, don't need to auto save,
+        // settings have auto-evo be started during gameplay and auto-evo is not already started
         if (TransitionFinished && !wantsToSave && Settings.Instance.RunAutoEvoDuringGamePlay)
         {
             GameWorld.IsAutoEvoFinished(true);
