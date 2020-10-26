@@ -13,6 +13,7 @@ using Godot;
 /// </remarks>
 public class InProgressLoad
 {
+    public static bool IsLoading;
     private readonly string saveName;
     private State state = State.Initial;
     private Save save;
@@ -50,6 +51,7 @@ public class InProgressLoad
 
     public void Start()
     {
+        IsLoading = true;
         SceneManager.Instance.DetachCurrentScene();
         SceneManager.Instance.GetTree().Paused = true;
 
@@ -153,6 +155,7 @@ public class InProgressLoad
                 if (success)
                 {
                     LoadingScreen.Instance.Hide();
+                    IsLoading = false;
                     SaveStatusOverlay.Instance.ShowMessage(message);
 
                     loadedState.GameStateRoot.GetTree().Paused = false;
