@@ -195,6 +195,24 @@ public class SaveList : ScrollContainer
         loadInvalidConfirmDialog.PopupCenteredMinsize();
     }
 
+    private void OnConfirmLoadOlder()
+    {
+        GD.PrintErr("The user requested to load an older save.");
+        OnConfirmSaveLoad();
+    }
+
+    private void OnConfirmLoadNewer()
+    {
+        GD.PrintErr("The user requested to load a newer save.");
+        OnConfirmSaveLoad();
+    }
+
+    private void OnConfirmLoadInvalid()
+    {
+        GD.PrintErr("The user requested to load an invalid save.");
+        OnConfirmSaveLoad();
+    }
+
     private void OnConfirmSaveLoad()
     {
         GUICommon.Instance.PlayButtonPressSound();
