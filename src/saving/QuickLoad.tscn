@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/gui_common/QuickLoadHandler.cs" type="Script" id=1]
+
+[node name="QuickLoad" type="Control"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+DifferentVersionDialogPath = NodePath("DifferentVersionDialog")
+
+[node name="DifferentVersionDialog" type="AcceptDialog" parent="."]
+margin_right = 83.0
+margin_bottom = 58.0
+window_title = "Version problems"
+dialog_text = "The version of the save you are trying to load does not match the game version.
+Please load the save manually through the menu."
