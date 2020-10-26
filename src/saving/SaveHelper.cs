@@ -276,13 +276,13 @@ public static class SaveHelper
         Action<Save> copyInfoToSave, Func<Node> stateRoot, string saveName = null)
     {
         new InProgressSave(type, stateRoot, data =>
-                CreateSaveObject(gameState, data.Type),
-            (inProgress, save) =>
-            {
-                copyInfoToSave.Invoke(save);
+                               CreateSaveObject(gameState, data.Type),
+                           (inProgress, save) =>
+                           {
+                               copyInfoToSave.Invoke(save);
 
-                PerformSave(inProgress, save);
-            }, saveName).Start();
+                               PerformSave(inProgress, save);
+                           }, saveName).Start();
     }
 
     private static Save CreateSaveObject(MainGameState gameState, SaveInformation.SaveType type)
@@ -299,8 +299,12 @@ public static class SaveHelper
     {
         try
         {
-            save.SaveToFile();
-            inProgress.ReportStatus(true, "Saving succeeded");
+            var task = new Task(() =>
+            {
+                save.SaveToFile();
+                inProgress.ReportStatus(true, "Saving succeeded", null);
+            });
+            TaskExecutor.Instance.AddTask(task);
         }
         catch (Exception e)
         {

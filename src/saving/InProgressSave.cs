@@ -28,7 +28,7 @@ public class InProgressSave : IDisposable
 
     private Stopwatch stopwatch;
 
-    private bool success;
+    private bool success = true;
     private string message;
     private string exception;
 
@@ -181,7 +181,7 @@ public class InProgressSave : IDisposable
 
                 if (success)
                 {
-                    SaveStatusOverlay.Instance.ShowMessage(message);
+                    SaveStatusOverlay.Instance.ShowMessage(message ?? "Save successful");
 
                     currentGameRoot.Invoke().GetTree().Paused = returnToPauseState;
                 }
