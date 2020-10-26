@@ -201,7 +201,8 @@ public class Save
                 throw new ArgumentException("save with the given name doesn't exist");
         }
 
-        var (infoStr, saveStr, screenshotData) = await LoadDataFromFile(file, info, save, screenshot).ConfigureAwait(true);
+        var (infoStr, saveStr, screenshotData) =
+            await LoadDataFromFile(file, info, save, screenshot).ConfigureAwait(true);
 
         readFinished?.Invoke();
 
@@ -245,8 +246,8 @@ public class Save
         return (infoResult, saveResult, imageResult);
     }
 
-    private static async Task<(string infoStr, string saveStr, byte[] screenshot)> LoadDataFromFile(string file, bool info,
-        bool save, bool screenshot)
+    private static async Task<(string infoStr, string saveStr, byte[] screenshot)> LoadDataFromFile(string file,
+        bool info, bool save, bool screenshot)
     {
         string infoStr = null;
         string saveStr = null;
