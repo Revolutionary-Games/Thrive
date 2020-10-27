@@ -32,6 +32,9 @@ public class OptionsMenu : Control
     public NodePath PerformanceButtonPath;
 
     [Export]
+    public NodePath InputsButtonPath;
+
+    [Export]
     public NodePath MiscButtonPath;
 
     // Graphics tab.
@@ -103,6 +106,10 @@ public class OptionsMenu : Control
     [Export]
     public NodePath RunAutoEvoDuringGameplayPath;
 
+    // Inputs tab.
+    [Export]
+    public NodePath InputsTabPath;
+
     // Misc tab.
     [Export]
     public NodePath MiscTabPath;
@@ -159,6 +166,7 @@ public class OptionsMenu : Control
     private Button graphicsButton;
     private Button soundButton;
     private Button performanceButton;
+    private Button inputsButton;
     private Button miscButton;
 
     // Graphics tab
@@ -191,6 +199,9 @@ public class OptionsMenu : Control
     private OptionButton cloudInterval;
     private OptionButton cloudResolution;
     private CheckBox runAutoEvoDuringGameplay;
+
+    // Inputs tab
+    private Control inputsTab;
 
     // Misc tab
     private Control miscTab;
@@ -246,6 +257,7 @@ public class OptionsMenu : Control
         Graphics,
         Sound,
         Performance,
+        Inputs,
         Miscellaneous,
     }
 
@@ -259,6 +271,7 @@ public class OptionsMenu : Control
         graphicsButton = GetNode<Button>(GraphicsButtonPath);
         soundButton = GetNode<Button>(SoundButtonPath);
         performanceButton = GetNode<Button>(PerformanceButtonPath);
+        inputsButton = GetNode<Button>(InputsButtonPath);
         miscButton = GetNode<Button>(MiscButtonPath);
 
         // Graphics
@@ -291,6 +304,9 @@ public class OptionsMenu : Control
         cloudInterval = GetNode<OptionButton>(CloudIntervalPath);
         cloudResolution = GetNode<OptionButton>(CloudResolutionPath);
         runAutoEvoDuringGameplay = GetNode<CheckBox>(RunAutoEvoDuringGameplayPath);
+
+        // Inputs
+        inputsTab = GetNode<Control>(InputsTabPath);
 
         // Misc
         miscTab = GetNode<Control>(MiscTabPath);
@@ -458,6 +474,7 @@ public class OptionsMenu : Control
         graphicsTab.Hide();
         soundTab.Hide();
         performanceTab.Hide();
+        inputsTab.Hide();
         miscTab.Hide();
 
         switch (selection)
@@ -473,6 +490,10 @@ public class OptionsMenu : Control
             case SelectedOptionsTab.Performance:
                 performanceTab.Show();
                 performanceButton.Pressed = true;
+                break;
+            case SelectedOptionsTab.Inputs:
+                inputsButton.Show();
+                inputsButton.Pressed = true;
                 break;
             case SelectedOptionsTab.Miscellaneous:
                 miscTab.Show();
