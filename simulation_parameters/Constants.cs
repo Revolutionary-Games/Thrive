@@ -436,9 +436,10 @@ public static class Constants
     public const string FLUID_EFFECT_GROUP = "fluid_effect";
 
     /// <summary>
-    ///   All Nodes tagged with this are handled by the process system
+    ///   All Nodes tagged with this are handled by the process system. Can't be just "process" as that conflicts with
+    ///   godot idle_process and process, at least I think it does.
     /// </summary>
-    public const string PROCESS_GROUP = "process";
+    public const string PROCESS_GROUP = "run_processes";
 
     /// <summary>
     ///   All Nodes tagged with this are handled by the ai system
