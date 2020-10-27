@@ -20,5 +20,5 @@ public class SceneLoadedClassAttribute : Attribute
     /// <summary>
     ///   If true the type this is on implements IGodotEarlyNodeResolve
     /// </summary>
-    public bool UsesEarlyResolve { get; } = true;
+    public bool UsesEarlyResolve { get; set; } = true;
 }

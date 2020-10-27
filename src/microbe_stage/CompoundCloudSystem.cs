@@ -99,6 +99,9 @@ public class CompoundCloudSystem : Node, ISaveLoadedTracked
                 // TODO: special handling is needed if the compounds actually changed
                 cloud.Init(fluidSystem, cloud.Compounds[0], cloud.Compounds[1], cloud.Compounds[2],
                     cloud.Compounds[3]);
+
+                // Re-add the clouds as our children
+                AddChild(cloud);
             }
 
             return;

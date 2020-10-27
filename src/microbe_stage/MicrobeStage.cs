@@ -178,11 +178,6 @@ public class MicrobeStage : Node, ILoadableGameState, IGodotEarlyNodeResolve
     {
         ResolveNodeReferences();
 
-        TimedLifeSystem = new TimedLifeSystem(rootOfDynamicallySpawned);
-        ProcessSystem = new ProcessSystem(rootOfDynamicallySpawned);
-        microbeAISystem = new MicrobeAISystem(rootOfDynamicallySpawned);
-        FluidSystem = new FluidSystem(rootOfDynamicallySpawned);
-
         tutorialGUI.Visible = true;
         HUD.Init(this);
 
@@ -205,6 +200,13 @@ public class MicrobeStage : Node, ILoadableGameState, IGodotEarlyNodeResolve
         guidanceLine = GetNode<GuidanceLine>(GuidanceLinePath);
         pauseMenu = GetNode<PauseMenu>(PauseMenuPath);
 
+        // These need to be created here as well for child property save load to work
+        TimedLifeSystem = new TimedLifeSystem(rootOfDynamicallySpawned);
+        ProcessSystem = new ProcessSystem(rootOfDynamicallySpawned);
+        microbeAISystem = new MicrobeAISystem(rootOfDynamicallySpawned);
+        FluidSystem = new FluidSystem(rootOfDynamicallySpawned);
+        spawner = new SpawnSystem(rootOfDynamicallySpawned);
+
         NodeReferencesResolved = true;
     }
 
@@ -220,15 +222,10 @@ public class MicrobeStage : Node, ILoadableGameState, IGodotEarlyNodeResolve
         if (Settings.Instance == null)
             GD.PrintErr("Settings load problem");
 
-        // Happens when not loaded from a save
-        if (spawner == null)
-        {
-            spawner = new SpawnSystem(rootOfDynamicallySpawned);
-            spawner.Init();
-        }
-
         if (!IsLoadedFromSave)
         {
+            spawner.Init();
+
             if (CurrentGame == null)
             {
                 StartNewGame();

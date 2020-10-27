@@ -9,9 +9,9 @@ using Newtonsoft.Json;
 /// </summary>
 [JsonObject(IsReference = true)]
 [JSONAlwaysDynamicType]
-[SceneLoadedClass("res://src/microbe_stage/Microbe.tscn")]
+[SceneLoadedClass("res://src/microbe_stage/Microbe.tscn", UsesEarlyResolve = false)]
 [DeserializedCallbackTarget]
-public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
+public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoadedTracked
 {
     /// <summary>
     ///   The stored compounds in this microbe
@@ -306,6 +306,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     [JsonProperty]
     public Action<Microbe, bool> OnReproductionStatus { get; set; }
 
+    public bool IsLoadedFromSave { get; set; }
+
     /// <summary>
     ///   Must be called when spawned to provide access to the needed systems
     /// </summary>
@@ -362,6 +364,14 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         Connect("body_shape_exited", this, "OnContactEnd");
 
         Mass = Constants.MICROBE_BASE_MASS;
+
+        if (IsLoadedFromSave)
+        {
+            // Need to re-attach our organelles
+            foreach (var organelle in organelles)
+                AddChild(organelle);
+        }
+
         onReadyCalled = true;
     }
 

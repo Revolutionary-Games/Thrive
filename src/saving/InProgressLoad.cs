@@ -77,15 +77,23 @@ public class InProgressLoad
                 {
                     save = Save.LoadFromFile(saveName, () => Invoke.Instance.Perform(() =>
                         LoadingScreen.Instance.Show("Loading Game", "Creating objects from save")));
+
+                    state = State.CreatingScene;
                 }
                 catch (Exception e)
                 {
                     ReportStatus(false, "An exception happened while loading the save data", e.ToString());
                     state = State.Finished;
-                    break;
+
+                    // ReSharper disable HeuristicUnreachableCode ConditionIsAlwaysTrueOrFalse
+                    if (!Constants.CATCH_SAVE_ERRORS)
+#pragma warning disable 162
+                        throw;
+#pragma warning restore 162
+
+                    // ReSharper restore HeuristicUnreachableCode ConditionIsAlwaysTrueOrFalse
                 }
 
-                state = State.CreatingScene;
                 break;
             }
 

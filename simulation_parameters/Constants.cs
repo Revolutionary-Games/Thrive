@@ -476,6 +476,11 @@ public static class Constants
     /// </summary>
     public const bool DEBUG_JSON_SERIALIZE = false;
 
+    /// <summary>
+    ///   If set to false, saving related errors are re-thrown to make debugging easier
+    /// </summary>
+    public const bool CATCH_SAVE_ERRORS = true;
+
     public const string SAVE_EXTENSION = "thrivesave";
     public const string SAVE_EXTENSION_WITH_DOT = "." + SAVE_EXTENSION;
 

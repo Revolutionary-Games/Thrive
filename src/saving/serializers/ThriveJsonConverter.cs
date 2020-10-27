@@ -732,7 +732,14 @@ public abstract class BaseThriveConverter : JsonConverter
         // Perform early Node resolve to make loading child Node properties work
         if (data.UsesEarlyResolve)
         {
-            ((IGodotEarlyNodeResolve)instance).ResolveNodeReferences();
+            try
+            {
+                ((IGodotEarlyNodeResolve)instance).ResolveNodeReferences();
+            }
+            catch (InvalidCastException e)
+            {
+                throw new JsonException("Scene loaded JSON type cast to IGodotEarlyNodeResolve failed", e);
+            }
         }
 
         return instance;
@@ -749,6 +756,11 @@ public abstract class BaseThriveConverter : JsonConverter
     private void ApplyOnlyChildProperties(object newData, object target, JsonSerializer serializer,
         AssignOnlyChildItemsOnDeserializeAttribute data)
     {
+        if (target == null)
+        {
+            throw new JsonSerializationException("Copy only child properties target is null");
+        }
+
         // Need to register for deletion the orphaned Godot object
         if (newData is Node node)
         {

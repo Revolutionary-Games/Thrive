@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 using Vector2 = Godot.Vector2;
 using Vector3 = Godot.Vector3;
 
-[SceneLoadedClass("res://src/microbe_stage/CompoundCloudPlane.tscn")]
+[SceneLoadedClass("res://src/microbe_stage/CompoundCloudPlane.tscn", UsesEarlyResolve = false)]
 public class CompoundCloudPlane : CSGMesh, ISaveLoadedTracked
 {
     /// <summary>
