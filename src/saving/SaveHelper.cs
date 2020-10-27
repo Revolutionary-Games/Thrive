@@ -141,9 +141,7 @@ public static class SaveHelper
 
         var versionDiff = VersionUtils.Compare(info.ThriveVersion, Constants.Version);
         if (versionDiff != 0)
-        {
             return false;
-        }
 
         LoadSave(save);
         return true;
