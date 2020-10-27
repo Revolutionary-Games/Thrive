@@ -109,11 +109,8 @@ public static class SaveHelper
     /// <param name="name">The name of the save to load</param>
     public static void LoadSave(string name)
     {
-        if (!InProgressLoad.IsLoading)
-        {
-            GD.Print("Starting load of save: ", name);
-            new InProgressLoad(name).Start();
-        }
+        GD.Print("Starting load of save: ", name);
+        new InProgressLoad(name).Start();
     }
 
     /// <summary>

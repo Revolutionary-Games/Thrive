@@ -15,8 +15,11 @@ public class QuickLoadHandler : Node
     {
         if (@event.IsActionPressed("quick_load"))
         {
-            GD.Print("Quick load pressed, attempting to load latest save");
-            SaveHelper.QuickLoad();
+            if (!InProgressLoad.CheckIsLoading())
+            {
+                GD.Print("Quick load pressed, attempting to load latest save");
+                SaveHelper.QuickLoad();
+            }
         }
     }
 }

@@ -13,7 +13,7 @@ using Godot;
 /// </remarks>
 public class InProgressLoad
 {
-    public static bool IsLoading;
+    private static bool IsLoading;
     private readonly string saveName;
     private State state = State.Initial;
     private Save save;
@@ -47,6 +47,11 @@ public class InProgressLoad
         this.success = success;
         this.message = message;
         this.exception = exception;
+    }
+
+    public static bool CheckIsLoading()
+    {
+        return IsLoading;
     }
 
     public void Start()
