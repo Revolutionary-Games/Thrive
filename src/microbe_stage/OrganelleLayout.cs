@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
@@ -33,6 +34,25 @@ public class OrganelleLayout<T> : ICollection<T>
     public int Count => Organelles.Count;
 
     public bool IsReadOnly => false;
+
+    /// <summary>
+    ///   The center of mass of the contained organelles.
+    /// </summary>
+    public Hex CenterOfMass
+    {
+        get
+        {
+            float totalMass = 0;
+            Vector3 weightedSum = Vector3.Zero;
+            foreach (var organelle in Organelles)
+            {
+                totalMass += organelle.Definition.Mass;
+                weightedSum += Hex.AxialToCartesian(organelle.Position) * organelle.Definition.Mass;
+            }
+
+            return Hex.CartesianToAxial(weightedSum / totalMass);
+        }
+    }
 
     /// <summary>
     ///   Access organelle by index

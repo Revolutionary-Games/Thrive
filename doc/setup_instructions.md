@@ -9,7 +9,7 @@ or if you are a team member you can ask on the development discord or open a git
 
 If you are a team member you can ask for help on the [Private
 Developer
-Forums](http://forum.revolutionarygamesstudio.com/c/programming)
+Forums](https://forum.revolutionarygamesstudio.com/c/programming)
 
 You can also join and ask on our [community
 discord](https://discordapp.com/invite/FZxDQ4H) please use the
@@ -28,7 +28,7 @@ issues please don't hesitate to bring them up.
 Godot mono version
 ------------------
 
-The currently used Godot version is __3.2.2 mono__. The regular version
+The currently used Godot version is __3.2.3 mono__. The regular version
 will not work. You can download Godot here: https://godotengine.org/download/
 if it is still the latest stable version. If a new version of Godot has
 been released but Thrive has not been updated yet, you need to look
@@ -121,18 +121,21 @@ For better experience make sure to install the Godot plugin for Rider.
 ### Visual Studio 2019
 
 On Windows you can use Visual Studio 2019 to work on Thrive. You can
-find download and setup instructions here https://docs.godotengine.org/en/stable/getting_started/scripting/c_sharp/c_sharp_basics.html#configuring-vs-2019-for-debugging
+find download and setup instructions here:
+https://docs.godotengine.org/en/stable/getting_started/scripting/c_sharp/c_sharp_basics.html#configuring-vs-2019-for-debugging
 
 ### Visual Studio Code
 
 Note: Setting up Visual Studio Code with Linux is possible,
 however it is recommended to use MonoDevelop instead
 
-Visual Studio Code, not to be confused with Visual Studio,
-doesn't come with build tools, so you'll need to install
-the build tools for Visual Studio from here: https://visualstudio.microsoft.com/downloads/?q=build+tools
-During the installation process, make sure MSBuild tools is listed under
-the installation details.
+Visual Studio Code, not to be confused with Visual Studio, doesn't
+come with build tools, so you'll need to install the build tools for
+Visual Studio from here:
+https://visualstudio.microsoft.com/downloads/?q=build+tools You will
+need **at least** VS Build tools 2019 due to the version of C# used by
+Thrive. During the installation process, make sure MSBuild tools is
+listed under the installation details.
 
 Go to https://dotnet.microsoft.com/download Under the .NET Core
 section, click on _Download .NET Core SDK_ and run the installer.
@@ -140,7 +143,7 @@ Go back to the main download page and find
 _All .NET Framework Downloads_ Choose version 4.7 and select the Developer Pack.
 
 Open Visual Studio Code and go to the Extensions tab. Get the extensions
-_C#_, _Mono Debug_, and _godot-tools_.
+_C#_, _Mono Debug_, and _C# Tools for Godot_.
 
 Open up a Project in Godot. On the top toolbar, go to Editor -> Editor Settings.
 Scroll down on the left window until you find Mono. Click on Editor and set
@@ -254,6 +257,10 @@ broken releases. Like this:
 
 <img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/godot_build_tool_option_linux.png" alt="godot linux build tool" width="550px">
 
+Even if you do not use the Godot script editor, Godot automatically opens some files and replaces the spaces with tabs.
+To stop Godot from messing with you files, go to Text Editor -> Indent and set Type to spaces
+
+<img src="https://randomthrivefiles.b-cdn.net/setup_instructions/images/godot_editor_use_spaces.png" alt="set intend to spaces" width="550px">
 
 ### C# packages
 
@@ -481,6 +488,13 @@ instructions, you should verify that it's using the proper toolset. Go
 to Editor > Editor Settings > Builds under Mono in the panel on the
 left. For VS2019, you should select MSBuild (VS Build Tools) for the
 build tool option, if it isn't already.
+
+### Build problems with unsupported C# version
+
+If the build fails with errors about unsupported C# language version,
+you need to update your VS build tools, if you are on Windows, or
+mono, if on Linux. Note that you should use the official mono repo on
+Linux to get the latest version of mono.
 
 ### Cleaning Godot
 

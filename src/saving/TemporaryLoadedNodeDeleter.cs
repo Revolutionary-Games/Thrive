@@ -63,7 +63,14 @@ public class TemporaryLoadedNodeDeleter : Node
 
         foreach (var node in nodesToDelete)
         {
-            node.QueueFree();
+            try
+            {
+                node.QueueFree();
+            }
+            catch (ObjectDisposedException)
+            {
+                GD.PrintErr("TemporaryLoadedNodeDeleter failed to delete a node because it was already disposed");
+            }
         }
 
         nodesToDelete.Clear();

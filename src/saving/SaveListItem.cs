@@ -42,10 +42,10 @@ public class SaveListItem : PanelContainer
     public NodePath DescriptionPath;
 
     [Export]
-    public NodePath SelectedPath;
+    public NodePath LoadButtonPath;
 
     [Export]
-    public NodePath LoadButtonPath;
+    public NodePath HighlightPath;
 
     private Label saveNameLabel;
     private TextureRect screenshot;
@@ -56,14 +56,19 @@ public class SaveListItem : PanelContainer
     private Label createdBy;
     private Label createdOnPlatform;
     private Label description;
-    private CheckBox selected;
     private Button loadButton;
+    private Panel highlightPanel;
 
     private string saveName;
     private int versionDifference;
 
     private bool loadingData;
     private Task<Save> saveInfoLoadTask;
+
+    private bool highlighted;
+    private bool selected;
+
+    private bool isBroken;
 
     [Signal]
     public delegate void OnSelectedChanged();
@@ -73,6 +78,9 @@ public class SaveListItem : PanelContainer
 
     [Signal]
     public delegate void OnOldSaveLoaded();
+
+    [Signal]
+    public delegate void OnBrokenSaveLoaded();
 
     [Signal]
     public delegate void OnNewSaveLoaded();
@@ -91,6 +99,16 @@ public class SaveListItem : PanelContainer
         }
     }
 
+    public bool Highlighted
+    {
+        get => highlighted;
+        set
+        {
+            highlighted = value;
+            UpdateHighlighting();
+        }
+    }
+
     public bool Selected
     {
         get
@@ -98,14 +116,15 @@ public class SaveListItem : PanelContainer
             if (!Selectable)
                 return false;
 
-            return selected.Pressed;
+            return selected;
         }
         set
         {
             if (!Selectable)
                 throw new InvalidOperationException();
 
-            selected.Pressed = value;
+            selected = value;
+            UpdateHighlighting();
         }
     }
 
@@ -120,14 +139,13 @@ public class SaveListItem : PanelContainer
         createdBy = GetNode<Label>(CreatedByPath);
         createdOnPlatform = GetNode<Label>(CreatedOnPlatformPath);
         description = GetNode<Label>(DescriptionPath);
-        selected = GetNode<CheckBox>(SelectedPath);
         loadButton = GetNode<Button>(LoadButtonPath);
-
-        selected.Visible = Selectable;
+        highlightPanel = GetNode<Panel>(HighlightPath);
 
         loadButton.Visible = Loadable;
 
         UpdateName();
+        UpdateHighlighting();
     }
 
     public override void _Process(float delta)
@@ -142,14 +160,28 @@ public class SaveListItem : PanelContainer
         saveInfoLoadTask.Dispose();
         saveInfoLoadTask = null;
 
-        // Screenshot
-        var texture = new ImageTexture();
-        texture.CreateFromImage(save.Screenshot);
+        isBroken = save.Info.Type == SaveInformation.SaveType.Invalid;
 
-        screenshot.Texture = texture;
+        // Screenshot (if present, saves can have a missing screenshot)
+        if (save.Screenshot != null)
+        {
+            var texture = new ImageTexture();
+            texture.CreateFromImage(save.Screenshot);
+
+            screenshot.Texture = texture;
+        }
 
         // General info
-        versionDifference = VersionUtils.Compare(save.Info.ThriveVersion, Constants.Version);
+
+        // If save is valid compare version numbers
+        if (!isBroken)
+        {
+            versionDifference = VersionUtils.Compare(save.Info.ThriveVersion, Constants.Version);
+        }
+        else
+        {
+            versionDifference = 0;
+        }
 
         version.Text = save.Info.ThriveVersion;
         versionWarning.Visible = versionDifference != 0;
@@ -162,8 +194,26 @@ public class SaveListItem : PanelContainer
         loadingData = false;
     }
 
+    public override void _GuiInput(InputEvent @event)
+    {
+        if (@event is InputEventMouseButton mouse)
+        {
+            if (mouse.Pressed && mouse.ButtonIndex == (int)ButtonList.Left)
+            {
+                OnSelect();
+                AcceptEvent();
+            }
+        }
+    }
+
     public void LoadThisSave()
     {
+        if (isBroken)
+        {
+            EmitSignal(nameof(OnBrokenSaveLoaded));
+            return;
+        }
+
         if (versionDifference < 0)
         {
             EmitSignal(nameof(OnOldSaveLoaded));
@@ -176,6 +226,12 @@ public class SaveListItem : PanelContainer
             return;
         }
 
+        TransitionManager.Instance.AddScreenFade(Fade.FadeType.FadeIn, 0.3f, true);
+        TransitionManager.Instance.StartTransitions(this, nameof(LoadSave));
+    }
+
+    private void LoadSave()
+    {
         SaveHelper.LoadSave(SaveName);
     }
 
@@ -187,13 +243,16 @@ public class SaveListItem : PanelContainer
         {
             var save = Save.LoadInfoAndScreenshotFromSave(saveName);
 
-            // Rescale the screenshot to save memory etc.
-            float aspectRatio = save.Screenshot.GetWidth() / (float)save.Screenshot.GetHeight();
-
-            if (save.Screenshot.GetHeight() > Constants.SAVE_LIST_SCREENSHOT_HEIGHT)
+            if (save.Screenshot != null)
             {
-                save.Screenshot.Resize((int)(Constants.SAVE_LIST_SCREENSHOT_HEIGHT * aspectRatio),
-                    Constants.SAVE_LIST_SCREENSHOT_HEIGHT);
+                // Rescale the screenshot to save memory etc.
+                float aspectRatio = save.Screenshot.GetWidth() / (float)save.Screenshot.GetHeight();
+
+                if (save.Screenshot.GetHeight() > Constants.SAVE_LIST_SCREENSHOT_HEIGHT)
+                {
+                    save.Screenshot.Resize((int)(Constants.SAVE_LIST_SCREENSHOT_HEIGHT * aspectRatio),
+                        Constants.SAVE_LIST_SCREENSHOT_HEIGHT);
+                }
             }
 
             return save;
@@ -208,14 +267,45 @@ public class SaveListItem : PanelContainer
             saveNameLabel.Text = saveName.Replace(Constants.SAVE_EXTENSION_WITH_DOT, string.Empty);
     }
 
-    private void OnSelectedCheckboxChanged(bool newValue)
+    private void LoadSavePressed()
     {
-        _ = newValue;
+        GUICommon.Instance.PlayButtonPressSound();
+
+        LoadThisSave();
+    }
+
+    private void OnSelect()
+    {
+        if (!Selectable)
+            return;
+
+        Selected = !Selected;
+
         EmitSignal(nameof(OnSelectedChanged));
+    }
+
+    private void OnMouseEnter()
+    {
+        Highlighted = true;
+    }
+
+    private void OnMouseExit()
+    {
+        Highlighted = false;
+    }
+
+    private void UpdateHighlighting()
+    {
+        if (highlightPanel == null)
+            return;
+
+        highlightPanel.Visible = Highlighted || Selected;
     }
 
     private void DeletePressed()
     {
+        GUICommon.Instance.PlayButtonPressSound();
+
         EmitSignal(nameof(OnDeleted));
     }
 }

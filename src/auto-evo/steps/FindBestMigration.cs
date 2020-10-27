@@ -32,7 +32,7 @@
 
         protected override IAttemptResult TryCurrentVariant()
         {
-            var config = new SimulationConfiguration(map, Constants.AUTOEVO_VARIANT_SIMULATION_STEPS);
+            var config = new SimulationConfiguration(map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
 
             PopulationSimulation.Simulate(config);
 
@@ -49,7 +49,7 @@
             if (migration == null)
                 return new AttemptResult(null, -1);
 
-            var config = new SimulationConfiguration(map, Constants.AUTOEVO_VARIANT_SIMULATION_STEPS);
+            var config = new SimulationConfiguration(map, Constants.AUTO_EVO_VARIANT_SIMULATION_STEPS);
             config.Migrations.Add(new Tuple<Species, SpeciesMigration>(species, migration));
 
             // TODO: this could be faster to just simulate the source and
@@ -121,14 +121,14 @@
 
         private class AttemptResult : IAttemptResult
         {
-            public AttemptResult(SpeciesMigration migration, int score)
+            public AttemptResult(SpeciesMigration migration, long score)
             {
                 Migration = migration;
                 Score = score;
             }
 
             public SpeciesMigration Migration { get; }
-            public int Score { get; }
+            public long Score { get; }
         }
     }
 }

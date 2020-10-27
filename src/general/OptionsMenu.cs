@@ -108,7 +108,7 @@ public class OptionsMenu : Control
     public NodePath PlayMicrobeIntroPath;
 
     [Export]
-    public NodePath TutorialsEnabledPath;
+    public NodePath TutorialsEnabledOnNewGamePath;
 
     [Export]
     public NodePath CheatsPath;
@@ -126,12 +126,14 @@ public class OptionsMenu : Control
     public NodePath BackConfirmationBoxPath;
 
     [Export]
+    public NodePath TutorialsEnabledPath;
+
+    [Export]
     public NodePath DefaultsConfirmationBoxPath;
 
     [Export]
     public NodePath ErrorAcceptBoxPath;
 
-    private const float AUDIO_BAR_SCALE = 6f;
     private Button resetButton;
     private Button saveButton;
 
@@ -173,10 +175,12 @@ public class OptionsMenu : Control
     private CheckBox playIntro;
     private CheckBox playMicrobeIntro;
     private CheckBox cheats;
-    private CheckBox tutorialsEnabled;
+    private CheckBox tutorialsEnabledOnNewGame;
     private CheckBox autosave;
     private SpinBox maxAutosaves;
     private SpinBox maxQuicksaves;
+
+    private CheckBox tutorialsEnabled;
 
     // Confirmation Boxes
     private WindowDialog backConfirmationBox;
@@ -187,13 +191,18 @@ public class OptionsMenu : Control
       Misc
     */
 
+    private OptionsMode optionsMode;
+    private SelectedOptionsTab selectedOptionsTab;
+
     /// <summary>
     ///   Copy of the settings object that should match what is saved to the configuration file,
     ///   used for comparing and restoring to previous state.
     /// </summary>
     private Settings savedSettings;
 
-    private SelectedOptionsTab selectedOptionsTab;
+    private bool savedTutorialsEnabled;
+
+    private GameProperties gameProperties;
 
     /*
       Signals
@@ -202,6 +211,12 @@ public class OptionsMenu : Control
     [Signal]
     public delegate void OnOptionsClosed();
 
+    public enum OptionsMode
+    {
+        MainMenu,
+        InGame,
+    }
+
     private enum SelectedOptionsTab
     {
         Graphics,
@@ -209,11 +224,6 @@ public class OptionsMenu : Control
         Performance,
         Miscellaneous,
     }
-
-    /// <summary>
-    ///   Returns the place to save the new settings values
-    /// </summary>
-    public Settings Settings => Settings.Instance;
 
     public override void _Ready()
     {
@@ -258,32 +268,74 @@ public class OptionsMenu : Control
         miscTab = GetNode<Control>(MiscTabPath);
         playIntro = GetNode<CheckBox>(PlayIntroPath);
         playMicrobeIntro = GetNode<CheckBox>(PlayMicrobeIntroPath);
-        tutorialsEnabled = GetNode<CheckBox>(TutorialsEnabledPath);
+        tutorialsEnabledOnNewGame = GetNode<CheckBox>(TutorialsEnabledOnNewGamePath);
         cheats = GetNode<CheckBox>(CheatsPath);
         autosave = GetNode<CheckBox>(AutoSavePath);
         maxAutosaves = GetNode<SpinBox>(MaxAutoSavesPath);
         maxQuicksaves = GetNode<SpinBox>(MaxQuickSavesPath);
+        tutorialsEnabled = GetNode<CheckBox>(TutorialsEnabledPath);
 
         backConfirmationBox = GetNode<WindowDialog>(BackConfirmationBoxPath);
         defaultsConfirmationBox = GetNode<ConfirmationDialog>(DefaultsConfirmationBoxPath);
         errorAcceptBox = GetNode<AcceptDialog>(ErrorAcceptBoxPath);
 
         selectedOptionsTab = SelectedOptionsTab.Graphics;
-
-        // Copy settings from the singleton to serve as a copy of the last saved settings.
-        savedSettings = Settings.Instance.Clone();
-
-        // Set the initial state of the options controls to match the settings data.
-        ApplySettingsToControls(savedSettings);
-        CompareSettings();
-    }
-
-    public override void _Process(float delta)
-    {
     }
 
     /// <summary>
-    ///   Applies the values of the specified settings object to all corresponding menu controls.
+    ///   Opens the options menu with main menu configuration settings.
+    /// </summary>
+    public void OpenFromMainMenu()
+    {
+        // Shouldn't do anything if options is already open.
+        if (Visible)
+            return;
+
+        // Copy the live game settings so we can check against them for changes.
+        savedSettings = Settings.Instance.Clone();
+
+        // Set the mode to the one we opened with, and disable any options that should only be visible in game.
+        SwitchMode(OptionsMode.MainMenu);
+
+        // Set the state of the gui controls to match the settings.
+        ApplySettingsToControls(savedSettings);
+        UpdateResetSaveButtonState();
+
+        Show();
+    }
+
+    /// <summary>
+    ///   Opens the options menu with in game settings.
+    /// </summary>
+    public void OpenFromInGame(GameProperties gameProperties)
+    {
+        // Shouldn't do anything if options is already open.
+        if (Visible)
+            return;
+
+        // Copy the live game settings so we can check against them for changes.
+        savedSettings = Settings.Instance.Clone();
+        savedTutorialsEnabled = gameProperties.TutorialState.Enabled;
+
+        // Need a reference to game properties in the current game for later comparisons.
+        this.gameProperties = gameProperties;
+
+        // Set the mode to the one we opened with, and show/hide any options that should only be visible
+        // when the options menu is opened from in-game.
+        SwitchMode(OptionsMode.InGame);
+
+        // Set the state of the gui controls to match the settings.
+        if (savedTutorialsEnabled)
+            tutorialsEnabled.Pressed = savedTutorialsEnabled;
+
+        ApplySettingsToControls(savedSettings);
+        UpdateResetSaveButtonState();
+
+        Show();
+    }
+
+    /// <summary>
+    ///   Applies the values of a settings object to all corresponding options menu GUI controls.
     /// </summary>
     public void ApplySettingsToControls(Settings settings)
     {
@@ -314,7 +366,7 @@ public class OptionsMenu : Control
         // Misc
         playIntro.Pressed = settings.PlayIntroVideo;
         playMicrobeIntro.Pressed = settings.PlayMicrobeIntroVideo;
-        tutorialsEnabled.Pressed = settings.TutorialsEnabled;
+        tutorialsEnabledOnNewGame.Pressed = settings.TutorialsEnabled;
         cheats.Pressed = settings.CheatsEnabled;
         autosave.Pressed = settings.AutoSaveEnabled;
         maxAutosaves.Value = settings.MaxAutoSaves;
@@ -322,16 +374,45 @@ public class OptionsMenu : Control
         maxQuicksaves.Value = settings.MaxQuickSaves;
     }
 
-    private void SetSettingsTab(string tab)
+    private void SwitchMode(OptionsMode mode)
+    {
+        switch (mode)
+        {
+            case OptionsMode.MainMenu:
+            {
+                tutorialsEnabled.Hide();
+                optionsMode = OptionsMode.MainMenu;
+                break;
+            }
+
+            case OptionsMode.InGame:
+            {
+                // Current game tutorial option shouldn't be visible in freebuild mode.
+                if (!gameProperties.FreeBuild)
+                    tutorialsEnabled.Show();
+                else
+                    tutorialsEnabled.Hide();
+
+                optionsMode = OptionsMode.InGame;
+                break;
+            }
+
+            default:
+                throw new ArgumentException("Options menu SwitchMode called with an invalid mode argument");
+        }
+    }
+
+    /// <summary>
+    ///   Changes the active settings tab that is displayed, or returns if the tab is already active.
+    /// </summary>
+    private void ChangeSettingsTab(string newTabName)
     {
         // Convert from the string binding to an enum.
-        SelectedOptionsTab selection = (SelectedOptionsTab)Enum.Parse(typeof(SelectedOptionsTab), tab);
+        SelectedOptionsTab selection = (SelectedOptionsTab)Enum.Parse(typeof(SelectedOptionsTab), newTabName);
 
         // Pressing the same button that's already active, so just return.
         if (selection == selectedOptionsTab)
-        {
             return;
-        }
 
         graphicsTab.Hide();
         soundTab.Hide();
@@ -370,12 +451,12 @@ public class OptionsMenu : Control
     /// </summary>
     private float ConvertSoundBarToDb(float value)
     {
-        return (value - 100) / AUDIO_BAR_SCALE;
+        return GD.Linear2Db(value / 100.0f);
     }
 
     private float ConvertDBToSoundBar(float value)
     {
-        return value * AUDIO_BAR_SCALE + 100;
+        return GD.Db2Linear(value) * 100.0f;
     }
 
     private int CloudIntervalToIndex(float interval)
@@ -491,21 +572,36 @@ public class OptionsMenu : Control
         }
     }
 
-    private void CompareSettings()
+    /// <summary>
+    ///   Returns whether current settings match their saved originals. Settings that are
+    ///   inactive due to a different options menu mode will not be used in the comparison.
+    /// </summary>
+    private bool CompareSettings()
+    {
+        // Compare global settings.
+        if (Settings.Instance != savedSettings)
+            return false;
+
+        // If we're in game we need to compare the tutorials enabled state as well.
+        if (optionsMode == OptionsMode.InGame)
+        {
+            if (gameProperties.TutorialState.Enabled != savedTutorialsEnabled)
+            {
+                return false;
+            }
+        }
+
+        // All active settings match.
+        return true;
+    }
+
+    private void UpdateResetSaveButtonState()
     {
         // Enable the save and reset buttons if the current setting values differ from the saved ones.
-        if (Settings.Instance == savedSettings)
-        {
-            // Settings match
-            resetButton.Disabled = true;
-            saveButton.Disabled = true;
-        }
-        else
-        {
-            // Settings differ
-            resetButton.Disabled = false;
-            saveButton.Disabled = false;
-        }
+        bool result = CompareSettings();
+
+        resetButton.Disabled = result;
+        saveButton.Disabled = result;
     }
 
     /*
@@ -518,7 +614,7 @@ public class OptionsMenu : Control
 
         // If any settings have been changed, show a dialogue asking if the changes should be kept or
         // discarded.
-        if (Settings.Instance != savedSettings)
+        if (!CompareSettings())
         {
             backConfirmationBox.PopupCenteredMinsize();
             return;
@@ -533,10 +629,16 @@ public class OptionsMenu : Control
 
         // Restore and apply the old saved settings.
         Settings.Instance.LoadFromObject(savedSettings);
-        Settings.ApplyAll();
+        Settings.Instance.ApplyAll();
         ApplySettingsToControls(Settings.Instance);
 
-        CompareSettings();
+        if (optionsMode == OptionsMode.InGame)
+        {
+            gameProperties.TutorialState.Enabled = savedTutorialsEnabled;
+            tutorialsEnabled.Pressed = savedTutorialsEnabled;
+        }
+
+        UpdateResetSaveButtonState();
     }
 
     private void OnSavePressed()
@@ -544,7 +646,7 @@ public class OptionsMenu : Control
         GUICommon.Instance.PlayButtonPressSound();
 
         // Save the new settings to the config file.
-        if (!Settings.Save())
+        if (!Settings.Instance.Save())
         {
             GD.PrintErr("Failed to save new options menu settings to configuration file.");
             errorAcceptBox.PopupCenteredMinsize();
@@ -554,7 +656,10 @@ public class OptionsMenu : Control
         // Copy over the new saved settings.
         savedSettings = Settings.Instance.Clone();
 
-        CompareSettings();
+        if (optionsMode == OptionsMode.InGame)
+            savedTutorialsEnabled = gameProperties.TutorialState.Enabled;
+
+        UpdateResetSaveButtonState();
     }
 
     private void OnDefaultsPressed()
@@ -567,7 +672,7 @@ public class OptionsMenu : Control
     private void BackSaveSelected()
     {
         // Save the new settings to the config file.
-        if (!Settings.Save())
+        if (!Settings.Instance.Save())
         {
             GD.PrintErr("Failed to save new options menu settings to configuration file.");
             backConfirmationBox.Hide();
@@ -580,19 +685,25 @@ public class OptionsMenu : Control
         savedSettings = Settings.Instance.Clone();
         backConfirmationBox.Hide();
 
-        CompareSettings();
+        UpdateResetSaveButtonState();
         EmitSignal(nameof(OnOptionsClosed));
     }
 
     private void BackDiscardSelected()
     {
         Settings.Instance.LoadFromObject(savedSettings);
-        Settings.ApplyAll();
+        Settings.Instance.ApplyAll();
         ApplySettingsToControls(Settings.Instance);
+
+        if (optionsMode == OptionsMode.InGame)
+        {
+            gameProperties.TutorialState.Enabled = savedTutorialsEnabled;
+            tutorialsEnabled.Pressed = savedTutorialsEnabled;
+        }
 
         backConfirmationBox.Hide();
 
-        CompareSettings();
+        UpdateResetSaveButtonState();
         EmitSignal(nameof(OnOptionsClosed));
     }
 
@@ -605,138 +716,138 @@ public class OptionsMenu : Control
     {
         // Sets active settings to default values and applies them to the options controls.
         Settings.Instance.LoadDefaults();
-        Settings.ApplyAll();
+        Settings.Instance.ApplyAll();
         ApplySettingsToControls(Settings.Instance);
 
-        CompareSettings();
+        UpdateResetSaveButtonState();
     }
 
     // Graphics Button Callbacks
     private void OnFullScreenToggled(bool pressed)
     {
         Settings.Instance.FullScreen.Value = pressed;
-        Settings.ApplyWindowSettings();
+        Settings.Instance.ApplyWindowSettings();
 
-        CompareSettings();
+        UpdateResetSaveButtonState();
     }
 
     private void OnVSyncToggled(bool pressed)
     {
         Settings.Instance.VSync.Value = pressed;
-        Settings.ApplyWindowSettings();
+        Settings.Instance.ApplyWindowSettings();
 
-        CompareSettings();
+        UpdateResetSaveButtonState();
     }
 
     private void OnMSAAResolutionSelected(int index)
     {
         Settings.Instance.MSAAResolution.Value = MSAAIndexToResolution(index);
-        Settings.ApplyGraphicsSettings();
+        Settings.Instance.ApplyGraphicsSettings();
 
-        CompareSettings();
+        UpdateResetSaveButtonState();
     }
 
     private void OnColourblindSettingSelected(int index)
     {
         Settings.Instance.ColourblindSetting.Value = index;
-        Settings.ApplyGraphicsSettings();
+        Settings.Instance.ApplyGraphicsSettings();
 
-        CompareSettings();
+        UpdateResetSaveButtonState();
     }
 
     private void OnChromaticAberrationToggled(bool toggle)
     {
         Settings.Instance.ChromaticEnabled.Value = toggle;
 
-        CompareSettings();
+        UpdateResetSaveButtonState();
     }
 
     private void OnChromaticAberrationValueChanged(float amount)
     {
         Settings.Instance.ChromaticAmount.Value = amount;
 
-        CompareSettings();
+        UpdateResetSaveButtonState();
     }
 
     // Sound Button Callbacks
     private void OnMasterVolumeChanged(float value)
     {
         Settings.Instance.VolumeMaster.Value = ConvertSoundBarToDb(value);
-        Settings.ApplySoundSettings();
+        Settings.Instance.ApplySoundSettings();
 
-        CompareSettings();
+        UpdateResetSaveButtonState();
     }
 
     private void OnMasterMutedToggled(bool pressed)
     {
         Settings.Instance.VolumeMasterMuted.Value = pressed;
-        Settings.ApplySoundSettings();
+        Settings.Instance.ApplySoundSettings();
 
-        CompareSettings();
+        UpdateResetSaveButtonState();
     }
 
     private void OnMusicVolumeChanged(float value)
     {
         Settings.Instance.VolumeMusic.Value = ConvertSoundBarToDb(value);
-        Settings.ApplySoundSettings();
+        Settings.Instance.ApplySoundSettings();
 
-        CompareSettings();
+        UpdateResetSaveButtonState();
     }
 
     private void OnMusicMutedToggled(bool pressed)
     {
         Settings.Instance.VolumeMusicMuted.Value = pressed;
-        Settings.ApplySoundSettings();
+        Settings.Instance.ApplySoundSettings();
 
-        CompareSettings();
+        UpdateResetSaveButtonState();
     }
 
     private void OnAmbianceVolumeChanged(float value)
     {
         Settings.Instance.VolumeAmbiance.Value = ConvertSoundBarToDb(value);
-        Settings.ApplySoundSettings();
+        Settings.Instance.ApplySoundSettings();
 
-        CompareSettings();
+        UpdateResetSaveButtonState();
     }
 
     private void OnAmbianceMutedToggled(bool pressed)
     {
         Settings.Instance.VolumeAmbianceMuted.Value = pressed;
-        Settings.ApplySoundSettings();
+        Settings.Instance.ApplySoundSettings();
 
-        CompareSettings();
+        UpdateResetSaveButtonState();
     }
 
     private void OnSFXVolumeChanged(float value)
     {
         Settings.Instance.VolumeSFX.Value = ConvertSoundBarToDb(value);
-        Settings.ApplySoundSettings();
+        Settings.Instance.ApplySoundSettings();
 
-        CompareSettings();
+        UpdateResetSaveButtonState();
     }
 
     private void OnSFXMutedToggled(bool pressed)
     {
         Settings.Instance.VolumeSFXMuted.Value = pressed;
-        Settings.ApplySoundSettings();
+        Settings.Instance.ApplySoundSettings();
 
-        CompareSettings();
+        UpdateResetSaveButtonState();
     }
 
     private void OnGUIVolumeChanged(float value)
     {
         Settings.Instance.VolumeGUI.Value = ConvertSoundBarToDb(value);
-        Settings.ApplySoundSettings();
+        Settings.Instance.ApplySoundSettings();
 
-        CompareSettings();
+        UpdateResetSaveButtonState();
     }
 
     private void OnGUIMutedToggled(bool pressed)
     {
         Settings.Instance.VolumeGUIMuted.Value = pressed;
-        Settings.ApplySoundSettings();
+        Settings.Instance.ApplySoundSettings();
 
-        CompareSettings();
+        UpdateResetSaveButtonState();
     }
 
     // Performance Button Callbacks
@@ -744,14 +855,14 @@ public class OptionsMenu : Control
     {
         Settings.Instance.CloudUpdateInterval.Value = CloudIndexToInterval(index);
 
-        CompareSettings();
+        UpdateResetSaveButtonState();
     }
 
     private void OnCloudResolutionSelected(int index)
     {
         Settings.Instance.CloudResolution.Value = CloudIndexToResolution(index);
 
-        CompareSettings();
+        UpdateResetSaveButtonState();
     }
 
     // Misc Button Callbacks
@@ -759,28 +870,28 @@ public class OptionsMenu : Control
     {
         Settings.Instance.PlayIntroVideo.Value = pressed;
 
-        CompareSettings();
+        UpdateResetSaveButtonState();
     }
 
     private void OnMicrobeIntroToggled(bool pressed)
     {
         Settings.Instance.PlayMicrobeIntroVideo.Value = pressed;
 
-        CompareSettings();
+        UpdateResetSaveButtonState();
     }
 
-    private void OnTutorialsToggled(bool pressed)
+    private void OnTutorialsOnNewGameToggled(bool pressed)
     {
         Settings.Instance.TutorialsEnabled.Value = pressed;
 
-        CompareSettings();
+        UpdateResetSaveButtonState();
     }
 
     private void OnCheatsToggled(bool pressed)
     {
         Settings.Instance.CheatsEnabled.Value = pressed;
 
-        CompareSettings();
+        UpdateResetSaveButtonState();
     }
 
     private void OnAutoSaveToggled(bool pressed)
@@ -788,20 +899,27 @@ public class OptionsMenu : Control
         Settings.Instance.AutoSaveEnabled.Value = pressed;
         maxAutosaves.Editable = pressed;
 
-        CompareSettings();
+        UpdateResetSaveButtonState();
     }
 
     private void OnMaxAutoSavesValueChanged(float value)
     {
         Settings.Instance.MaxAutoSaves.Value = (int)value;
 
-        CompareSettings();
+        UpdateResetSaveButtonState();
     }
 
     private void OnMaxQuickSavesValueChanged(float value)
     {
         Settings.Instance.MaxQuickSaves.Value = (int)value;
 
-        CompareSettings();
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnTutorialsEnabledToggled(bool pressed)
+    {
+        gameProperties.TutorialState.Enabled = pressed;
+
+        UpdateResetSaveButtonState();
     }
 }
