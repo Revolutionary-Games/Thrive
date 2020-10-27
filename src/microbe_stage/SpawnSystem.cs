@@ -38,7 +38,7 @@ public class SpawnSystem
     ///   Tracks recent movement percentage to set likelihood of clouds spawning
     ///   This prevents a player from merely staying still long enough for clouds to spawn
     /// </summary>
-    private float cloudSpawnFactor;
+    private float cloudSpawnFactor = 0.0f;
     private Vector3 lastPlayerPos;
 
     /// <summary>
@@ -240,11 +240,11 @@ public class SpawnSystem
         foreach (var spawnType in spawnTypes)
         {
             // Prevents too many clouds from spawning when stationary
-            if (spawnType.type == "cloud")
+            if (spawnType.Type == "cloud")
             {
-                spawnType.SpawnFrequency += cloudSpawnFactor;
+                spawnType.SpawnFrequency -= (int)cloudSpawnFactor;
             }
-            
+
             /*
             To actually spawn a given entity for a given attempt, two
             conditions should be met. The first condition is a random
