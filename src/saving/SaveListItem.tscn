@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/textures/gui/bevel/TrashIcon.png" type="Texture" id=1]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=2]
@@ -6,232 +6,296 @@
 [ext_resource path="res://assets/textures/gui/bevel/trashButtonHover.png" type="Texture" id=4]
 [ext_resource path="res://src/saving/SaveListItem.cs" type="Script" id=5]
 [ext_resource path="res://assets/textures/gui/bevel/trashButton.png" type="Texture" id=6]
+[ext_resource path="res://assets/fonts/Jura-Regular.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://assets/fonts/Lato-Bold.ttf" type="DynamicFontData" id=8]
+[ext_resource path="res://assets/fonts/Lato-Regular.ttf" type="DynamicFontData" id=9]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.054902, 0.145098, 0.168627, 0.784314 )
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
 border_color = Color( 0.0666667, 0.6, 0.537255, 1 )
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
-[node name="PanelContainer" type="PanelContainer"]
-margin_right = 40.0
-margin_bottom = 40.0
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 0.435294, 0.52549, 0.27451 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 20
+use_filter = true
+font_data = ExtResource( 8 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 17
+font_data = ExtResource( 7 )
+
+[sub_resource type="Theme" id=5]
+default_font = SubResource( 4 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 15
+use_filter = true
+font_data = ExtResource( 9 )
+
+[node name="SaveListItem" type="PanelContainer"]
+margin_right = 577.0
+margin_bottom = 142.0
 theme = ExtResource( 2 )
 custom_styles/panel = SubResource( 1 )
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-SaveNamePath = NodePath("SaveListItem/VBoxContainer/HBoxContainer/SaveName")
-ScreenshotPath = NodePath("SaveListItem/Screenshot")
-VersionPath = NodePath("SaveListItem/VBoxContainer/HBoxContainer/Version")
-VersionWarningPath = NodePath("SaveListItem/VBoxContainer/HBoxContainer/VersionWarning")
-TypePath = NodePath("SaveListItem/VBoxContainer/HBoxContainer4/Type")
-CreatedAtPath = NodePath("SaveListItem/VBoxContainer/HBoxContainer2/CreatedAt")
-CreatedByPath = NodePath("SaveListItem/VBoxContainer/HBoxContainer2/Creator")
-CreatedOnPlatformPath = NodePath("SaveListItem/VBoxContainer/HBoxContainer4/Platform")
-DescriptionPath = NodePath("SaveListItem/VBoxContainer/HBoxContainer3/Description")
-SelectedPath = NodePath("SaveListItem/VBoxContainer/HBoxContainer/HBoxContainer/SelectBox")
-LoadButtonPath = NodePath("SaveListItem/VBoxContainer/HBoxContainer/HBoxContainer/Load")
+SaveNamePath = NodePath("MarginContainer/HBoxContainer/VBoxContainer/SaveName")
+ScreenshotPath = NodePath("MarginContainer/HBoxContainer/Screenshot")
+VersionPath = NodePath("MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer/Version")
+VersionWarningPath = NodePath("MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer/VersionWarning")
+TypePath = NodePath("MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer4/Type")
+CreatedAtPath = NodePath("MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer2/CreatedAt")
+CreatedByPath = NodePath("MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer2/Creator")
+CreatedOnPlatformPath = NodePath("MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer3/Platform")
+DescriptionPath = NodePath("MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer3/Description")
+LoadButtonPath = NodePath("MarginContainer/HBoxContainer/HBoxContainer/Load")
+HighlightPath = NodePath("Highlight")
 
-[node name="SaveListItem" type="HBoxContainer" parent="."]
-margin_left = 3.0
-margin_top = 3.0
-margin_right = 650.0
-margin_bottom = 131.0
-size_flags_horizontal = 3
+[node name="Highlight" type="Panel" parent="."]
+visible = false
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 498.0
+margin_bottom = 162.0
+mouse_filter = 2
+custom_styles/panel = SubResource( 2 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 575.0
+margin_bottom = 140.0
+mouse_filter = 1
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Screenshot" type="TextureRect" parent="SaveListItem"]
-margin_right = 128.0
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 568.0
+margin_bottom = 133.0
+size_flags_horizontal = 3
+custom_constants/separation = 15
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Screenshot" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+margin_right = 168.0
 margin_bottom = 128.0
-rect_min_size = Vector2( 128, 128 )
+rect_min_size = Vector2( 168, 128 )
 size_flags_horizontal = 3
 texture = ExtResource( 3 )
 expand = true
 stretch_mode = 6
 
-[node name="VBoxContainer" type="VBoxContainer" parent="SaveListItem"]
-margin_left = 132.0
-margin_right = 647.0
-margin_bottom = 128.0
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+margin_left = 183.0
+margin_top = 17.0
+margin_right = 446.0
+margin_bottom = 111.0
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="SaveName" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+margin_right = 263.0
+margin_bottom = 25.0
+custom_fonts/font = SubResource( 3 )
+text = "Loading..."
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+margin_top = 29.0
+margin_right = 263.0
+margin_bottom = 94.0
+custom_constants/separation = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_right = 94.0
+margin_bottom = 65.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 4.0
+theme = SubResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="SaveListItem/VBoxContainer"]
-margin_right = 515.0
-margin_bottom = 43.0
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+margin_right = 94.0
+margin_bottom = 19.0
+size_flags_vertical = 3
 
-[node name="Label1" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer"]
-margin_top = 10.0
-margin_right = 62.0
-margin_bottom = 33.0
-text = "Name:"
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer2"]
+margin_right = 75.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 6 )
+text = "Created at:"
 
-[node name="SaveName" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer"]
-margin_left = 66.0
-margin_top = 10.0
-margin_right = 160.0
-margin_bottom = 33.0
-text = "Loading..."
-
-[node name="Spacer" type="Control" parent="SaveListItem/VBoxContainer/HBoxContainer"]
-margin_left = 164.0
-margin_right = 167.0
-margin_bottom = 43.0
-rect_min_size = Vector2( 3, 0 )
-
-[node name="Label2" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer"]
-margin_left = 171.0
-margin_top = 10.0
-margin_right = 252.0
-margin_bottom = 33.0
-text = "Version:"
-
-[node name="Version" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer"]
-margin_left = 256.0
-margin_top = 10.0
-margin_right = 271.0
-margin_bottom = 33.0
+[node name="CreatedAt" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer2"]
+margin_left = 79.0
+margin_right = 88.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 6 )
 text = "..."
 
-[node name="VersionWarning" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer"]
-margin_left = 275.0
-margin_top = 10.0
-margin_right = 302.0
-margin_bottom = 33.0
+[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+margin_top = 23.0
+margin_right = 94.0
+margin_bottom = 42.0
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer4"]
+margin_right = 37.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 6 )
+text = "Type:"
+
+[node name="Type" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer4"]
+margin_left = 41.0
+margin_right = 50.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 6 )
+text = "..."
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer"]
+margin_top = 46.0
+margin_right = 94.0
+margin_bottom = 65.0
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer3"]
+margin_right = 81.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 6 )
+text = "Description:"
+
+[node name="Description" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer/HBoxContainer3"]
+margin_left = 85.0
+margin_right = 94.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 6 )
+text = "..."
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 109.0
+margin_right = 263.0
+margin_bottom = 65.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+margin_right = 154.0
+margin_bottom = 19.0
+size_flags_vertical = 3
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
+margin_right = 58.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 6 )
+text = " Version:"
+
+[node name="Version" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
+margin_left = 62.0
+margin_right = 71.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 6 )
+text = "..."
+
+[node name="VersionWarning" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer"]
+margin_left = 75.0
+margin_right = 96.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 6 )
 text = "( ! )"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="SaveListItem/VBoxContainer/HBoxContainer"]
-margin_left = 306.0
-margin_right = 515.0
-margin_bottom = 43.0
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+margin_top = 23.0
+margin_right = 154.0
+margin_bottom = 42.0
+size_flags_vertical = 3
+
+[node name="Label3" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer2"]
+margin_right = 25.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 6 )
+text = " By:"
+
+[node name="Creator" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer2"]
+margin_left = 29.0
+margin_right = 38.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 6 )
+text = "..."
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2"]
+margin_top = 46.0
+margin_right = 154.0
+margin_bottom = 65.0
+size_flags_vertical = 3
+
+[node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer3"]
+margin_right = 141.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 6 )
+text = " Created on Platform:"
+
+[node name="Platform" type="Label" parent="MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer2/HBoxContainer3"]
+margin_left = 145.0
+margin_right = 154.0
+margin_bottom = 19.0
+custom_fonts/font = SubResource( 6 )
+text = "..."
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer"]
+margin_left = 461.0
+margin_right = 563.0
+margin_bottom = 128.0
 size_flags_horizontal = 3
 alignment = 2
 
-[node name="SelectBox" type="CheckBox" parent="SaveListItem/VBoxContainer/HBoxContainer/HBoxContainer"]
-margin_right = 90.0
+[node name="Delete" type="TextureButton" parent="MarginContainer/HBoxContainer/HBoxContainer"]
+margin_right = 43.0
 margin_bottom = 43.0
-text = "select"
-
-[node name="Delete" type="TextureButton" parent="SaveListItem/VBoxContainer/HBoxContainer/HBoxContainer"]
-margin_left = 94.0
-margin_right = 136.0
-margin_bottom = 43.0
+rect_min_size = Vector2( 43, 43 )
+size_flags_vertical = 0
 texture_normal = ExtResource( 6 )
 texture_hover = ExtResource( 4 )
 texture_disabled = ExtResource( 1 )
 
-[node name="Load" type="Button" parent="SaveListItem/VBoxContainer/HBoxContainer/HBoxContainer"]
-margin_left = 140.0
-margin_right = 209.0
+[node name="Load" type="Button" parent="MarginContainer/HBoxContainer/HBoxContainer"]
+margin_left = 47.0
+margin_right = 102.0
 margin_bottom = 43.0
+rect_min_size = Vector2( 55, 43 )
+size_flags_horizontal = 0
+size_flags_vertical = 0
 text = "Load"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="SaveListItem/VBoxContainer"]
-margin_top = 47.0
-margin_right = 515.0
-margin_bottom = 70.0
-
-[node name="Label" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer2"]
-margin_right = 109.0
-margin_bottom = 23.0
-text = "Created at:"
-
-[node name="CreatedAt" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer2"]
-margin_left = 113.0
-margin_right = 128.0
-margin_bottom = 23.0
-text = "..."
-
-[node name="Spacer" type="Control" parent="SaveListItem/VBoxContainer/HBoxContainer2"]
-margin_left = 132.0
-margin_right = 135.0
-margin_bottom = 23.0
-rect_min_size = Vector2( 3, 0 )
-
-[node name="Label3" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer2"]
-margin_left = 139.0
-margin_right = 170.0
-margin_bottom = 23.0
-text = "By:"
-
-[node name="Creator" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer2"]
-margin_left = 174.0
-margin_right = 189.0
-margin_bottom = 23.0
-text = "..."
-
-[node name="HBoxContainer4" type="HBoxContainer" parent="SaveListItem/VBoxContainer"]
-margin_top = 74.0
-margin_right = 515.0
-margin_bottom = 97.0
-
-[node name="Label" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer4"]
-margin_right = 54.0
-margin_bottom = 23.0
-text = "Type:"
-
-[node name="Type" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer4"]
-margin_left = 58.0
-margin_right = 73.0
-margin_bottom = 23.0
-text = "..."
-
-[node name="Spacer" type="Control" parent="SaveListItem/VBoxContainer/HBoxContainer4"]
-margin_left = 77.0
-margin_right = 80.0
-margin_bottom = 23.0
-rect_min_size = Vector2( 3, 0 )
-
-[node name="Label2" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer4"]
-margin_left = 84.0
-margin_right = 289.0
-margin_bottom = 23.0
-text = "Created on Platform:"
-
-[node name="Platform" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer4"]
-margin_left = 293.0
-margin_right = 308.0
-margin_bottom = 23.0
-text = "..."
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="SaveListItem/VBoxContainer"]
-margin_top = 101.0
-margin_right = 515.0
-margin_bottom = 124.0
-
-[node name="Label" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer3"]
-margin_right = 119.0
-margin_bottom = 23.0
-text = "Description:"
-
-[node name="Description" type="Label" parent="SaveListItem/VBoxContainer/HBoxContainer3"]
-margin_left = 123.0
-margin_right = 138.0
-margin_bottom = 23.0
-text = "..."
-
-[node name="DeleteConfirmDialog" type="ConfirmationDialog" parent="SaveListItem"]
+[node name="DeleteConfirmDialog" type="ConfirmationDialog" parent="MarginContainer/HBoxContainer"]
 margin_left = 619.0
 margin_right = 1537.0
 margin_bottom = 720.0
+mouse_filter = 1
 size_flags_horizontal = 5
 size_flags_vertical = 5
 popup_exclusive = true
 window_title = "Delete this Save?"
 dialog_text = "Deleting this save cannot be undone, are you sure you want to permanently delete this?"
-[connection signal="toggled" from="SaveListItem/VBoxContainer/HBoxContainer/HBoxContainer/SelectBox" to="." method="OnSelectedCheckboxChanged"]
-[connection signal="pressed" from="SaveListItem/VBoxContainer/HBoxContainer/HBoxContainer/Delete" to="." method="DeletePressed"]
-[connection signal="pressed" from="SaveListItem/VBoxContainer/HBoxContainer/HBoxContainer/Load" to="." method="LoadThisSave"]
+[connection signal="mouse_entered" from="." to="." method="OnMouseEnter"]
+[connection signal="mouse_exited" from="." to="." method="OnMouseExit"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/HBoxContainer/Delete" to="." method="DeletePressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/HBoxContainer/Load" to="." method="LoadSavePressed"]

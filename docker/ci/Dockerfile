@@ -14,7 +14,7 @@ RUN wget https://download.jetbrains.com/resharper/dotUltimate.2020.2/JetBrains.R
     -O jetbrains.zip && unzip jetbrains.zip -d /usr/bin && rm -rf jetbrains.zip
 
 # Godot install
-ENV GODOT_VERSION "3.2.2"
+ENV GODOT_VERSION "3.2.3"
 
 RUN wget https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/mono/Godot_v${GODOT_VERSION}-stable_mono_linux_headless_64.zip \
     && wget https://downloads.tuxfamily.org/godotengine/${GODOT_VERSION}/mono/Godot_v${GODOT_VERSION}-stable_mono_export_templates.tpz \

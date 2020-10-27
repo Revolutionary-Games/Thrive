@@ -61,6 +61,11 @@ public class MicrobeStage : Node, ILoadableGameState
     /// </summary>
     private List<Node> savedGameEntities;
 
+    /// <summary>
+    ///   True if auto save should trigger ASAP
+    /// </summary>
+    private bool wantsToSave;
+
     [JsonProperty]
     public Microbe Player { get; private set; }
 
@@ -135,6 +140,12 @@ public class MicrobeStage : Node, ILoadableGameState
     }
 
     /// <summary>
+    ///   True once stage fade-in is complete
+    /// </summary>
+    [JsonIgnore]
+    public bool TransitionFinished { get; internal set; }
+
+    /// <summary>
     ///   This should get called the first time the stage scene is put
     ///   into an active scene tree. So returning from the editor
     ///   might be safe without it unloading this.
@@ -187,7 +198,7 @@ public class MicrobeStage : Node, ILoadableGameState
         }
 
         tutorialGUI.EventReceiver = TutorialState;
-        pauseMenu.GameTutorialState = TutorialState;
+        pauseMenu.GameProperties = CurrentGame;
 
         CreatePatchManagerIfNeeded();
 
@@ -214,7 +225,7 @@ public class MicrobeStage : Node, ILoadableGameState
         StartMusic();
 
         tutorialGUI.EventReceiver = TutorialState;
-        pauseMenu.GameTutorialState = TutorialState;
+        pauseMenu.GameProperties = CurrentGame;
     }
 
     public void StartNewGame()
@@ -338,7 +349,7 @@ public class MicrobeStage : Node, ILoadableGameState
                         this);
                 }
 
-                guidancePosition = TutorialState.GetPLayerGuidancePosition();
+                guidancePosition = TutorialState.GetPlayerGuidancePosition();
             }
 
             if (guidancePosition != null)
@@ -373,9 +384,21 @@ public class MicrobeStage : Node, ILoadableGameState
             }
         }
 
-        // Start auto-evo if not already and settings have auto-evo be started during gameplay
-        if (Settings.Instance.RunAutoEvoDuringGamePlay)
+        // Start auto-evo if stage entry finished, don't need to auto save,
+        // settings have auto-evo be started during gameplay and auto-evo is not already started
+        if (TransitionFinished && !wantsToSave && Settings.Instance.RunAutoEvoDuringGamePlay)
+        {
             GameWorld.IsAutoEvoFinished(true);
+        }
+
+        // Save if wanted
+        if (TransitionFinished && wantsToSave)
+        {
+            if (!CurrentGame.FreeBuild)
+                SaveHelper.AutoSave(this);
+
+            wantsToSave = false;
+        }
     }
 
     public override void _Input(InputEvent @event)
@@ -444,13 +467,14 @@ public class MicrobeStage : Node, ILoadableGameState
         HUD.HideReproductionDialog();
 
         StartMusic();
+
+        // Auto save is wanted once possible
+        wantsToSave = true;
     }
 
     public void OnFinishTransitioning()
     {
-        if (!CurrentGame.FreeBuild)
-            SaveHelper.AutoSave(this);
-
+        TransitionFinished = true;
         TutorialState.SendEvent(TutorialEventType.EnteredMicrobeStage, EventArgs.Empty, this);
     }
 

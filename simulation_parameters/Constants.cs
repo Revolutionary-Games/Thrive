@@ -366,18 +366,25 @@ public static class Constants
     ///   How many steps forward of the population simulation to do when auto-evo looks at the results of mutations
     ///   etc. for which is the most beneficial
     /// </summary>
-    public const int AUTOEVO_VARIANT_SIMULATION_STEPS = 10;
+    public const int AUTO_EVO_VARIANT_SIMULATION_STEPS = 10;
+
+    /// <summary>
+    ///   Populations of species that are under this will be killed off by auto-evo
+    /// </summary>
+    public const int AUTO_EVO_MINIMUM_VIABLE_POPULATION = 20;
 
     public const int AUTO_EVO_MINIMUM_MOVE_POPULATION = 250;
     public const float AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION = 0.1f;
-    public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.9f;
+    public const float AUTO_EVO_MAXIMUM_MOVE_POPULATION_FRACTION = 0.8f;
 
-    // Some (placeholder) auto-evo algorithm tweak parameters
-    public const int AUTO_EVO_LOW_SPECIES_THRESHOLD = 3;
-    public const int AUTO_EVO_LOW_SPECIES_BOOST = 500;
-    public const int AUTO_EVO_HIGH_SPECIES_THRESHOLD = 11;
-    public const int AUTO_EVO_HIGH_SPECIES_PENALTY = 500;
-    public const int AUTO_EVO_RANDOM_POPULATION_CHANGE = 500;
+    // Auto evo population algorithm tweak variables
+    public const float AUTO_EVO_ATP_USE_SCORE_DIVISOR = 300;
+    public const float AUTO_EVO_GLUCOSE_USE_SCORE_DIVISOR = 1;
+    public const float AUTO_EVO_PILUS_PREDATION_SCORE = 1;
+    public const float AUTO_EVO_TOXIN_PREDATION_SCORE = 1;
+    public const float AUTO_EVO_PREDATION_ENERGY_MULTIPLIER = 0.5f;
+    public const float AUTO_EVO_SUNLIGHT_ENERGY_AMOUNT = 6000;
+    public const float AUTO_EVO_COMPOUND_ENERGY_AMOUNT = 600;
 
     public const float GLUCOSE_REDUCTION_RATE = 0.8f;
 
@@ -393,6 +400,25 @@ public static class Constants
     public const float GLUCOSE_TUTORIAL_COLLECT_BEFORE_COMPLETE = 0.21f;
     public const float MICROBE_REPRODUCTION_TUTORIAL_DELAY = 180;
     public const float HIDE_MICROBE_STAYING_ALIVE_TUTORIAL_AFTER = 60;
+
+    /// <summary>
+    ///   Used to limit how often the hover indicator panel are
+    ///   updated. Default value is every 0.1 seconds.
+    /// </summary>
+    public const float HOVER_PANEL_UPDATE_INTERVAL = 0.1f;
+
+    public const float TOOLTIP_OFFSET = 20;
+
+    public const float TOOLTIP_DEFAULT_DELAY = 1.0f;
+
+    public const float TOOLTIP_FADE_SPEED = 0.1f;
+
+    /// <summary>
+    ///   When checking if the mouse is hovering over a microbe, this increments
+    ///   the testing area as an addition to microbe radius, so it's easier to hover
+    ///   over smaller microbes.
+    /// </summary>
+    public const float MICROBE_HOVER_DETECTION_EXTRA_RADIUS = 2.0f;
 
     /// <summary>
     ///   All Nodes tagged with this are handled by the spawn system for despawning
@@ -457,6 +483,25 @@ public static class Constants
     public const int KIBIBYTE = 1024;
     public const int MEBIBYTE = 1024 * KIBIBYTE;
 
+    // Following is a hacky way to ensure some conditions apply on the constants defined here.
+    // When the constants don't follow a set of conditions a warning is raised, which CI treats as an error.
+    // Or maybe it raises an actual error. Anyway this seems good enough for now to do some stuff
+
+#pragma warning disable CA1823 // unused fields
+
+    // ReSharper disable UnreachableCode
+    private const uint MinimumMovePopIsHigherThanMinimumViable =
+        (AUTO_EVO_MINIMUM_MOVE_POPULATION * AUTO_EVO_MINIMUM_MOVE_POPULATION_FRACTION >=
+            AUTO_EVO_MINIMUM_VIABLE_POPULATION) ?
+            0 :
+            -42;
+
+    // ReSharper restore UnreachableCode
+#pragma warning restore CA1823
+
+    /// <summary>
+    ///   Game version property
+    /// </summary>
     public static string Version
     {
         get

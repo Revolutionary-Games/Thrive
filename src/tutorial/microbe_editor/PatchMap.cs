@@ -7,6 +7,9 @@ namespace Tutorial
     /// </summary>
     public class PatchMap : TutorialPhase
     {
+        private readonly string patchMapTab = MicrobeEditorGUI.EditorTab.PatchMap.ToString();
+        private readonly string cellEditorTab = MicrobeEditorGUI.EditorTab.CellEditor.ToString();
+
         public override string ClosedByName { get; } = "PatchMap";
 
         public override void ApplyGUIState(MicrobeEditorTutorialGUI gui)
@@ -23,12 +26,12 @@ namespace Tutorial
                 {
                     string tab = ((StringEventArgs)args).Data;
 
-                    if (!HasBeenShown && CanTrigger && tab == "patch")
+                    if (!HasBeenShown && CanTrigger && tab == patchMapTab)
                     {
                         Show();
                     }
 
-                    if (ShownCurrently && tab == "editor")
+                    if (ShownCurrently && tab == cellEditorTab)
                     {
                         Hide();
                     }

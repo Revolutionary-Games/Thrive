@@ -37,10 +37,10 @@ Invoke="*res://src/engine/Invoke.cs"
 GUICommon="*res://src/gui_common/GUICommon.cs"
 SceneManager="*res://src/engine/SceneManager.cs"
 ScreenOverlays="*res://src/engine/ScreenOverlays.tscn"
+ToolTipManager="*res://src/gui_common/tooltip/ToolTipManager.tscn"
 TransitionManager="*res://src/gui_common/TransitionManager.cs"
 CursorLoader="*res://src/engine/CursorLoader.cs"
 ScreenShotTaker="*res://src/engine/ScreenShotTaker.cs"
-QuickLoadHandler="*res://src/gui_common/QuickLoadHandler.cs"
 Jukebox="*res://src/general/Jukebox.cs"
 TemporaryLoadedNodeDeleter="*res://src/saving/TemporaryLoadedNodeDeleter.cs"
 PostStartupActions="*res://src/engine/PostStartupActions.cs"
@@ -198,6 +198,11 @@ screenshot={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777226,"unicode":0,"echo":false,"script":null)
  ]
 }
+help={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777244,"unicode":0,"echo":false,"script":null)
+ ]
+}
 
 [layer_names]
 
@@ -207,6 +212,8 @@ screenshot={
 [logging]
 
 file_logging/enable_file_logging=true
+file_logging/log_path="user://logs/log.txt"
+file_logging/max_log_files=8
 
 [physics]
 
