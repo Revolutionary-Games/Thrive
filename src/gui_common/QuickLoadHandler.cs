@@ -20,6 +20,10 @@ public class QuickLoadHandler : Node
                 GD.Print("Quick load pressed, attempting to load latest save");
                 SaveHelper.QuickLoad();
             }
+            else
+            {
+                GD.Print("Quick load pressed, cancelled because another is already in progress");
+            }
         }
     }
 }
