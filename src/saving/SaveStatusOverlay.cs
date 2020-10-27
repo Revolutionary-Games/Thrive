@@ -67,7 +67,7 @@ public class SaveStatusOverlay : Control
     /// <param name="visibleTime">How long to show the message for</param>
     public void ShowMessage(string message, float visibleTime = 0.7f)
     {
-        statusLabel.Modulate = new Color (1, 1, 1, 1);
+        statusLabel.Modulate = new Color(1, 1, 1, 1);
         statusLabel.Text = message;
         hideTimer = visibleTime;
         ExternalSetStatus(true);
