@@ -422,6 +422,9 @@ public class MicrobeAI
     /// <param name="chunk">The chunk to be checked</param>
     private bool IsChunkUseful(FloatingChunk chunk)
     {
+        if (chunk.ContainedCompounds == null)
+            return false;
+
         foreach (var compound in chunk.ContainedCompounds.Compounds.Keys)
         {
             if (microbe.ProcessCompoundStorage.IsUseful(compound))
