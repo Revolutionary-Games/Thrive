@@ -20,9 +20,6 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
     [JsonIgnore]
     public Particles BackgroundParticles;
 
-    [JsonProperty]
-    public float CameraHeight;
-
     /// <summary>
     ///   How fast the camera zooming is
     /// </summary>
@@ -62,6 +59,11 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
 
     private Vector3 cursorWorldPos = new Vector3(0, 0, 0);
     private bool cursorDirty = true;
+
+    /// <summary>
+    ///   How high the camera is above the followed object
+    /// </summary>
+    public float CameraHeight { get; set; }
 
     /// <summary>
     ///   Returns the position the player is pointing to with their cursor
@@ -117,17 +119,22 @@ public class MicrobeCamera : Camera, IGodotEarlyNodeResolve, ISaveLoadedTracked
 
     public override void _UnhandledInput(InputEvent @event)
     {
+        bool changed = false;
+
         if (@event.IsActionPressed("g_zoom_in", true))
         {
             CameraHeight -= ZoomSpeed;
+            changed = true;
         }
 
         if (@event.IsActionPressed("g_zoom_out", true))
         {
             CameraHeight += ZoomSpeed;
+            changed = true;
         }
 
-        CameraHeight = CameraHeight.Clamp(MinCameraHeight, MaxCameraHeight);
+        if (changed)
+            CameraHeight = CameraHeight.Clamp(MinCameraHeight, MaxCameraHeight);
     }
 
     /// <summary>

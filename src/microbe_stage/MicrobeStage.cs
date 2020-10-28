@@ -273,7 +273,6 @@ public class MicrobeStage : Node, ILoadableGameState, IGodotEarlyNodeResolve
         UpdatePatchSettings(false);
 
         SpawnPlayer();
-        Camera.ResetHeight();
     }
 
     public void StartMusic()
