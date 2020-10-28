@@ -370,6 +370,9 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
             // Need to re-attach our organelles
             foreach (var organelle in organelles)
                 AddChild(organelle);
+
+            // And recompute storage
+            RecomputeOrganelleCapacity();
         }
 
         onReadyCalled = true;
@@ -1775,6 +1778,15 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         Membrane.OrganellePositions = organellePositions;
         Membrane.Dirty = true;
         membraneOrganellePositionsAreDirty = false;
+    }
+
+    /// <summary>
+    ///   Recomputes storage from organelles, used after loading a save
+    /// </summary>
+    private void RecomputeOrganelleCapacity()
+    {
+        organellesCapacity = organelles.Sum(o => o.StorageCapacity);
+        Compounds.Capacity = organellesCapacity;
     }
 
     /// <summary>
