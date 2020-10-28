@@ -174,6 +174,17 @@ public class Settings
     /// </summary>
     public SettingValue<bool> CheatsEnabled { get; set; } = new SettingValue<bool>(false);
 
+    /// <summary>
+    ///   If false username will be set to System username
+    /// </summary>
+    public SettingValue<bool> CustomUsernameEnabled { get; set; } = new SettingValue<bool>(false);
+
+    /// <summary>
+    ///   Username that the user can choose
+    ///   Settings this to null will crash on save
+    /// </summary>
+    public SettingValue<string> CustomUsername { get; set; } = new SettingValue<string>("");
+
     public int CloudSimulationWidth => Constants.CLOUD_X_EXTENT / CloudResolution;
 
     public int CloudSimulationHeight => Constants.CLOUD_Y_EXTENT / CloudResolution;

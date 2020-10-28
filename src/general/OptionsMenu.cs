@@ -134,6 +134,12 @@ public class OptionsMenu : Control
     [Export]
     public NodePath ErrorAcceptBoxPath;
 
+    [Export]
+    public NodePath CustomUsernameEnabledPath;
+
+    [Export]
+    public NodePath CustomUsernamePath;
+
     private Button resetButton;
     private Button saveButton;
 
@@ -179,6 +185,8 @@ public class OptionsMenu : Control
     private CheckBox autosave;
     private SpinBox maxAutosaves;
     private SpinBox maxQuicksaves;
+    private CheckBox customUsernameEnabled;
+    private LineEdit customUsername;
 
     private CheckBox tutorialsEnabled;
 
@@ -274,6 +282,8 @@ public class OptionsMenu : Control
         maxAutosaves = GetNode<SpinBox>(MaxAutoSavesPath);
         maxQuicksaves = GetNode<SpinBox>(MaxQuickSavesPath);
         tutorialsEnabled = GetNode<CheckBox>(TutorialsEnabledPath);
+        customUsernameEnabled = GetNode<CheckBox>(CustomUsernameEnabledPath);
+        customUsername = GetNode<LineEdit>(CustomUsernamePath);
 
         backConfirmationBox = GetNode<WindowDialog>(BackConfirmationBoxPath);
         defaultsConfirmationBox = GetNode<ConfirmationDialog>(DefaultsConfirmationBoxPath);
@@ -372,6 +382,9 @@ public class OptionsMenu : Control
         maxAutosaves.Value = settings.MaxAutoSaves;
         maxAutosaves.Editable = settings.AutoSaveEnabled;
         maxQuicksaves.Value = settings.MaxQuickSaves;
+        customUsernameEnabled.Pressed = settings.CustomUsernameEnabled;
+        customUsername.Text = settings.CustomUsername;
+        customUsername.Editable = settings.CustomUsernameEnabled;
     }
 
     private void SwitchMode(OptionsMode mode)
@@ -919,6 +932,21 @@ public class OptionsMenu : Control
     private void OnTutorialsEnabledToggled(bool pressed)
     {
         gameProperties.TutorialState.Enabled = pressed;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnCustomUsernameEnabledToggled(bool pressed)
+    {
+        Settings.Instance.CustomUsernameEnabled.Value = pressed;
+        customUsername.Editable = pressed;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnCustomUsernameTextChanged(string text)
+    {
+        Settings.Instance.CustomUsername.Value = text;
 
         UpdateResetSaveButtonState();
     }
