@@ -5,8 +5,15 @@ using Godot;
 /// </summary>
 public class QuickLoadHandler : Node
 {
+    [Export]
+    public NodePath DifferentVersionDialogPath;
+
+    private AcceptDialog differentVersionDialog;
+
     public override void _Ready()
     {
+        differentVersionDialog = GetNode<AcceptDialog>(DifferentVersionDialogPath);
+
         // Keep this node running while paused
         PauseMode = PauseModeEnum.Process;
     }
@@ -16,7 +23,8 @@ public class QuickLoadHandler : Node
         if (@event.IsActionPressed("quick_load"))
         {
             GD.Print("Quick load pressed, attempting to load latest save");
-            SaveHelper.QuickLoad();
+            if (!SaveHelper.QuickLoad())
+                differentVersionDialog.PopupCenteredMinsize();
         }
     }
 }
