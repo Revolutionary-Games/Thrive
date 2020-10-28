@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Globalization;
 using Godot;
 using Newtonsoft.Json;
@@ -189,6 +191,14 @@ public class Settings
     public SettingValue<bool> CheatsEnabled { get; set; } = new SettingValue<bool>(false);
 
     /// <summary>
+    ///   The current control scheme of the game.
+    ///   Key = InputMap name.
+    ///   Value = The events associated with the control.
+    /// </summary>
+    public SettingValue<Dictionary<string, List<InputEventWithModifiers>>> CurrentControlScheme { get; set; } =
+        new SettingValue<Dictionary<string, List<InputEventWithModifiers>>>(InputGroupList.DefaultControlScheme);
+
+    /// <summary>
     ///   If false username will be set to System username
     /// </summary>
     public SettingValue<bool> CustomUsernameEnabled { get; set; } = new SettingValue<bool>(false);
@@ -310,7 +320,7 @@ public class Settings
                 return false;
             }
 
-            file.StoreString(JsonConvert.SerializeObject(this));
+            file.StoreString(JsonConvert.SerializeObject(this, new InputEventWithModifiersConverter()));
 
             file.Close();
         }
@@ -341,6 +351,7 @@ public class Settings
         }
 
         ApplyLanguageSettings();
+        ApplyInputSettings();
         ApplyWindowSettings();
     }
 
@@ -382,6 +393,25 @@ public class Settings
 
         AudioServer.SetBusVolumeDb(gui, VolumeGUI);
         AudioServer.SetBusMute(gui, VolumeGUIMuted);
+    }
+
+    /// <summary>
+    ///   Applies the current control scheme to the InputMap.
+    /// </summary>
+    public void ApplyInputSettings()
+    {
+        var data = InputGroupList.Instance.GetCurrentlyPendingControlScheme();
+        foreach (var action in data)
+        {
+            // Clear all old input events
+            InputMap.ActionEraseEvents(action.Key);
+
+            // Add the new input events
+            foreach (var inputEvent in action.Value)
+            {
+                InputMap.ActionAddEvent(action.Key, inputEvent);
+            }
+        }
     }
 
     /// <summary>
@@ -494,7 +524,11 @@ public class Settings
 
             try
             {
-                return JsonConvert.DeserializeObject<Settings>(text);
+                var result = JsonConvert.DeserializeObject<Settings>(text, new InputEventWithModifiersConverter());
+                if (result == null)
+                    throw new Exception("Could not deserialize settings");
+
+                return result;
             }
             catch
             {
