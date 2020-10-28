@@ -65,7 +65,7 @@ public class MicrobeAI
     private FloatingChunk targetChunk;
 
     [JsonIgnore]
-    private float previousAtpAmount = 0.0f;
+    private float previousAtpAmount;
 
     [JsonProperty]
     private Vector3 targetPosition = new Vector3(0, 0, 0);
@@ -154,7 +154,7 @@ public class MicrobeAI
                 lifeState = LifeState.GATHERING_STATE;
             }
         }
-            
+
         previousAtpAmount = microbe.Compounds.GetCompoundAmount(atp);
 
         switch (lifeState)
