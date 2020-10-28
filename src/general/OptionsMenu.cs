@@ -948,7 +948,7 @@ public class OptionsMenu : Control
 
     private void OnCustomUsernameTextChanged(string text)
     {
-        if (text.Equals(System.Environment.UserName))
+        if (text.Equals(System.Environment.UserName, System.StringComparison.CurrentCulture))
         {
             Settings.Instance.CustomUsername.Value = null;
         }

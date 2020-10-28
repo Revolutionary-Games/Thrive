@@ -181,7 +181,6 @@ public class Settings
 
     /// <summary>
     ///   Username that the user can choose
-    ///   Settings this to null will crash on save
     /// </summary>
     public SettingValue<string> CustomUsername { get; set; } = new SettingValue<string>(null);
 
