@@ -27,11 +27,6 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// </summary>
     public Vector3 MovementDirection = new Vector3(0, 0, 0);
 
-    /// <summary>
-    ///   Base Movement Cost in ATP
-    /// </summary>
-    public float BaseMovementCost => Constants.BASE_MOVEMENT_ATP_COST * HexCount;
-
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
 
     private CompoundCloudSystem cloudSystem;
@@ -138,6 +133,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     ///   3d audio listener attached to this microbe if it is the player owned one.
     /// </summary>
     private Listener listener;
+
+    /// <summary>
+    ///   Base Movement Cost in ATP
+    /// </summary>
+    [JsonIgnore]
+    public float BaseMovementCost => Constants.BASE_MOVEMENT_ATP_COST * HexCount;
 
     /// <summary>
     ///   The membrane of this Microbe. Used for grabbing radius / points from this.
