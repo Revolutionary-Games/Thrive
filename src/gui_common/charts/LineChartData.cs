@@ -2,29 +2,37 @@ using System.Collections.Generic;
 using Godot;
 
 /// <summary>
-///   Data set to be represented on the line chart
+///   Data set to be visualized on the line chart
 /// </summary>
 public class LineChartData
 {
+    private Color lineColor;
+    private bool draw = true;
+
     /// <summary>
-    ///   Name for display in legends
+    ///   Name of the data set
     /// </summary>
-    public string Name;
+    public string Name { get; set; }
 
-    public List<ChartPoint> PointDatas;
-    public float LineWidth;
-    public Color LineColor;
+    public List<ChartPoint> PointDatas { get; set; }
 
-    private bool draw;
+    public Texture LegendIcon { get; set; }
 
-    public LineChartData(string name, List<ChartPoint> pointDatas, float lineWidth,
-        Color lineColor, bool draw = true)
+    public float LineWidth { get; set; } = 1.5f;
+
+    public Color LineColor
     {
-        Name = name;
-        PointDatas = pointDatas;
-        LineWidth = lineWidth;
-        LineColor = lineColor;
-        Draw = draw;
+        get => lineColor;
+        set
+        {
+            lineColor = value;
+
+            if (PointDatas.Count <= 0)
+                return;
+
+            foreach (var point in PointDatas)
+                point.MarkerColor = lineColor;
+        }
     }
 
     /// <summary>

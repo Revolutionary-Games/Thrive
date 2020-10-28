@@ -19,11 +19,9 @@ public class ChartPoint : Control
 
     private TextureRect icon;
 
-    public ChartPoint(float xValue, float yValue, Color color, float size = 8f,
-        MarkerIcon shape = MarkerIcon.Circle)
+    public ChartPoint(float xValue, float yValue, float size = 8f, MarkerIcon shape = MarkerIcon.Circle)
     {
         Value = new Vector2(xValue, yValue);
-        MarkerColor = color;
         Size = size;
         IconType = shape;
     }
@@ -66,7 +64,9 @@ public class ChartPoint : Control
         set
         {
             size = value;
-            RectSize = new Vector2(value, value);
+
+            // Increased by 10 for bigger mouse detection area
+            RectSize = new Vector2(value + 10, value + 10);
         }
     }
 
@@ -89,8 +89,7 @@ public class ChartPoint : Control
     {
         icon.Modulate = MarkerColor;
         icon.RectSize = new Vector2(Size, Size);
-
-        icon.SetAnchorsPreset(LayoutPreset.Wide, true);
+        icon.RectPosition = (RectSize / 2) - (icon.RectSize / 2);
 
         switch (IconType)
         {

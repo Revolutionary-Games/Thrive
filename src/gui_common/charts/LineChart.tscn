@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/gui_common/charts/LineChart.cs" type="Script" id=1]
 [ext_resource path="res://assets/fonts/Jura-DemiBold.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://assets/fonts/Lato-Regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://src/gui_common/charts/LineChartDrawer.cs" type="Script" id=4]
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 14
@@ -37,17 +38,29 @@ grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource( 5 )
+custom_constants/separation = 0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+YAxisName = "X"
+XAxisName = "Y"
 HorizontalLabelPath = NodePath("VBoxContainer/HBoxContainer/xAxisLabel")
 VerticalLabelPath = NodePath("VBoxContainer/yAxisLabel")
-yTicksContainerPath = NodePath("VBoxContainer/HBoxContainer/ChartContainer/Ordinate/VBoxContainer/Labels")
-xTicksContainerPath = NodePath("VBoxContainer/HBoxContainer/ChartContainer/Abscissa/VBoxContainer/HBoxContainer/Labels")
+VerticalTicksContainerPath = NodePath("VBoxContainer/HBoxContainer/ChartContainer/Ordinate/VBoxContainer/Labels")
+HorizontalTicksContainerPath = NodePath("VBoxContainer/HBoxContainer/ChartContainer/Abscissa/VBoxContainer/HBoxContainer/Labels")
 LineContainerPath = NodePath("VBoxContainer/HBoxContainer/ChartContainer/Drawer")
+LegendsContainerPath = NodePath("Legends")
 XAxisTicks = 5
 YAxisTicks = 6
+DisplayedLegendMode = 1
+
+[node name="Legends" type="HBoxContainer" parent="."]
+margin_right = 1280.0
+size_flags_horizontal = 3
+custom_constants/separation = 0
+alignment = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_right = 1280.0
@@ -101,6 +114,7 @@ custom_constants/separation = 0
 [node name="Line" type="VSeparator" parent="VBoxContainer/HBoxContainer/ChartContainer/Ordinate"]
 margin_right = 4.0
 margin_bottom = 701.0
+mouse_filter = 2
 custom_styles/separator = SubResource( 4 )
 
 [node name="Drawer" type="Control" parent="VBoxContainer/HBoxContainer/ChartContainer"]
@@ -132,6 +146,7 @@ custom_constants/separation = 0
 [node name="Line" type="HSeparator" parent="VBoxContainer/HBoxContainer/ChartContainer/Abscissa/VBoxContainer"]
 margin_right = 1267.0
 margin_bottom = 4.0
+mouse_filter = 2
 custom_styles/separator = SubResource( 5 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/ChartContainer/Abscissa/VBoxContainer"]

@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=55 format=2]
+[gd_resource type="Theme" load_steps=52 format=2]
 
 [ext_resource path="res://assets/fonts/Jura-Regular.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/textures/gui/bevel/grab.png" type="Texture" id=2]
@@ -112,20 +112,31 @@ expand_margin_right = 3.0
 [sub_resource type="StyleBoxEmpty" id=13]
 
 [sub_resource type="StyleBoxFlat" id=14]
-bg_color = Color( 0, 0.313726, 0.313726, 1 )
+bg_color = Color( 0.0666667, 1, 0.835294, 1 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id=15]
 bg_color = Color( 0.34902, 0.823529, 1, 0.392157 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id=16]
 bg_color = Color( 0.34902, 0.823529, 1, 0.392157 )
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
-[sub_resource type="StyleBoxLine" id=17]
-content_margin_left = 0.0
-content_margin_right = 0.0
-content_margin_top = 0.0
-color = Color( 0, 0, 0, 0 )
-thickness = 10
+[sub_resource type="StyleBoxFlat" id=47]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_top = 3
+border_width_bottom = 3
+border_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="StyleBoxFlat" id=18]
 bg_color = Color( 0.0666667, 1, 0.835294, 1 )
@@ -191,9 +202,9 @@ corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
 [sub_resource type="DynamicFont" id=26]
-size = 18
+size = 14
 use_filter = true
-font_data = ExtResource( 1 )
+font_data = ExtResource( 9 )
 
 [sub_resource type="StyleBoxFlat" id=27]
 content_margin_left = 10.0
@@ -217,7 +228,7 @@ border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color( 0.0431373, 0.34902, 0.313726, 1 )
+border_color = Color( 0.0666667, 1, 0.835294, 1 )
 corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
@@ -246,14 +257,6 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[sub_resource type="DynamicFont" id=31]
-size = 15
-font_data = ExtResource( 1 )
-
-[sub_resource type="ImageTexture" id=32]
-
-[sub_resource type="ImageTexture" id=33]
-
 [sub_resource type="StyleBoxFlat" id=34]
 bg_color = Color( 0, 0.435294, 0.52549, 1 )
 border_width_left = 1
@@ -261,10 +264,10 @@ border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
 border_color = Color( 0.0666667, 1, 0.835294, 1 )
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [sub_resource type="StyleBoxFlat" id=35]
 content_margin_left = 5.0
@@ -495,7 +498,7 @@ HScrollBar/icons/increment_highlight = null
 HScrollBar/styles/grabber = SubResource( 14 )
 HScrollBar/styles/grabber_highlight = SubResource( 15 )
 HScrollBar/styles/grabber_pressed = SubResource( 16 )
-HScrollBar/styles/scroll = SubResource( 17 )
+HScrollBar/styles/scroll = SubResource( 47 )
 HScrollBar/styles/scroll_focus = null
 HSeparator/constants/separation = 4
 HSeparator/styles/separator = null
@@ -557,17 +560,17 @@ MarginContainer/constants/margin_bottom = 0
 MarginContainer/constants/margin_left = 0
 MarginContainer/constants/margin_right = 0
 MarginContainer/constants/margin_top = 0
-MenuButton/colors/font_color = Color( 0, 0, 0, 1 )
-MenuButton/colors/font_color_disabled = Color( 0, 0, 0, 1 )
-MenuButton/colors/font_color_hover = Color( 0, 0, 0, 1 )
-MenuButton/colors/font_color_pressed = Color( 0, 0, 0, 1 )
+MenuButton/colors/font_color = Color( 1, 1, 1, 1 )
+MenuButton/colors/font_color_disabled = Color( 1, 1, 1, 1 )
+MenuButton/colors/font_color_hover = Color( 1, 1, 1, 1 )
+MenuButton/colors/font_color_pressed = Color( 1, 1, 1, 1 )
 MenuButton/constants/hseparation = 3
-MenuButton/fonts/font = null
+MenuButton/fonts/font = SubResource( 26 )
 MenuButton/styles/disabled = null
 MenuButton/styles/focus = null
-MenuButton/styles/hover = null
-MenuButton/styles/normal = null
-MenuButton/styles/pressed = null
+MenuButton/styles/hover = SubResource( 27 )
+MenuButton/styles/normal = SubResource( 28 )
+MenuButton/styles/pressed = SubResource( 29 )
 OptionButton/colors/font_color = Color( 1, 1, 1, 1 )
 OptionButton/colors/font_color_disabled = Color( 1, 1, 1, 1 )
 OptionButton/colors/font_color_hover = Color( 1, 1, 1, 1 )
@@ -588,14 +591,14 @@ PopupMenu/colors/font_color = Color( 1, 1, 1, 1 )
 PopupMenu/colors/font_color_accel = Color( 1, 1, 1, 1 )
 PopupMenu/colors/font_color_disabled = Color( 1, 1, 1, 1 )
 PopupMenu/colors/font_color_hover = Color( 1, 1, 1, 1 )
-PopupMenu/constants/hseparation = -4
+PopupMenu/constants/hseparation = 2
 PopupMenu/constants/vseparation = 4
-PopupMenu/fonts/font = SubResource( 31 )
-PopupMenu/icons/checked = null
-PopupMenu/icons/radio_checked = SubResource( 32 )
-PopupMenu/icons/radio_unchecked = SubResource( 33 )
+PopupMenu/fonts/font = SubResource( 26 )
+PopupMenu/icons/checked = ExtResource( 5 )
+PopupMenu/icons/radio_checked = ExtResource( 5 )
+PopupMenu/icons/radio_unchecked = ExtResource( 6 )
 PopupMenu/icons/submenu = null
-PopupMenu/icons/unchecked = null
+PopupMenu/icons/unchecked = ExtResource( 6 )
 PopupMenu/styles/hover = SubResource( 34 )
 PopupMenu/styles/labeled_separator_left = null
 PopupMenu/styles/labeled_separator_right = null
