@@ -112,7 +112,7 @@ public class SaveStatusOverlay : Control
         {
             if (!hidden)
             {
-                animationPlayer.Play("Saving Status Fade Out");
+                animationPlayer.Play("SavingStatusFadeOut");
                 hidden = true;
             }
         }
