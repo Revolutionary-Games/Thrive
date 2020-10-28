@@ -183,7 +183,7 @@ public class Settings
     ///   Username that the user can choose
     ///   Settings this to null will crash on save
     /// </summary>
-    public SettingValue<string> CustomUsername { get; set; } = new SettingValue<string>(string.Empty);
+    public SettingValue<string> CustomUsername { get; set; } = new SettingValue<string>(null);
 
     public int CloudSimulationWidth => Constants.CLOUD_X_EXTENT / CloudResolution;
 
