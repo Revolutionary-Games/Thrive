@@ -1,5 +1,6 @@
 using System;
 using Godot;
+using Environment = System.Environment;
 
 /// <summary>
 ///   Handles the logic for the options menu GUI.
@@ -385,7 +386,7 @@ public class OptionsMenu : Control
         customUsernameEnabled.Pressed = settings.CustomUsernameEnabled;
         customUsername.Text = settings.CustomUsername.Value != null ?
             settings.CustomUsername :
-            System.Environment.UserName;
+            Environment.UserName;
         customUsername.Editable = settings.CustomUsernameEnabled;
     }
 
@@ -948,7 +949,7 @@ public class OptionsMenu : Control
 
     private void OnCustomUsernameTextChanged(string text)
     {
-        if (text.Equals(System.Environment.UserName, StringComparison.CurrentCulture))
+        if (text.Equals(Environment.UserName, StringComparison.CurrentCulture))
         {
             Settings.Instance.CustomUsername.Value = null;
         }
