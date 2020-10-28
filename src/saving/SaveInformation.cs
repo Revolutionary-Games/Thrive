@@ -36,8 +36,7 @@ public class SaveInformation
     public string Platform { get; set; } = FeatureInformation.GetOS();
 
     public string Creator { get; set; } =
-        Settings.Instance.CustomUsernameEnabled &&
-        !string.IsNullOrEmpty(Settings.Instance.CustomUsername.Value.Trim()) ?
+        Settings.Instance.CustomUsernameEnabled ?
             Settings.Instance.CustomUsername.Value :
             Environment.UserName;
 
