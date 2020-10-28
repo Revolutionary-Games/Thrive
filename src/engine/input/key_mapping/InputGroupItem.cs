@@ -2,6 +2,7 @@
 using Godot;
 using Newtonsoft.Json;
 
+[JsonConverter(typeof(InputGroupItemConverter))]
 public class InputGroupItem : VBoxContainer
 {
     [Export]
@@ -20,6 +21,9 @@ public class InputGroupItem : VBoxContainer
 
     [JsonProperty]
     public IList<InputActionItem> Actions { get; set; }
+
+    [JsonProperty]
+    public IList<string> EnvironmentId { get; set; }
 
     public override void _Ready()
     {

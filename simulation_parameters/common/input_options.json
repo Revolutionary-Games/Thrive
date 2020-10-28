@@ -1,10 +1,147 @@
-﻿[
+[
     {
+        "EnvironmentId": [
+            "Game"
+        ],
         "GroupName": "Movement",
         "Actions": [
             {
                 "InputName": "g_move_left",
                 "DisplayName": "Move left"
+            },
+            {
+                "InputName": "g_move_right",
+                "DisplayName": "Move right"
+            },
+            {
+                "InputName": "g_move_forward",
+                "DisplayName": "Move forward"
+            },
+            {
+                "InputName": "g_move_backwards",
+                "DisplayName": "Move backwards"
+            },
+            {
+                "InputName": "g_hold_forward",
+                "DisplayName": "Auto move forwards"
+            }
+        ]
+    },
+    {
+        "EnvironmentId": [
+            "Game"
+        ],
+        "GroupName": "Abilities",
+        "Actions": [
+            {
+                "InputName": "g_fire_toxin",
+                "DisplayName": "Fire toxin"
+            },
+            {
+                "InputName": "g_toggle_engulf",
+                "DisplayName": "Toggle engulf"
+            }
+        ]
+    },
+    {
+        "EnvironmentId": [
+            "Game",
+            "Editor"
+        ],
+        "GroupName": "Camera",
+        "Actions": [
+            {
+                "InputName": "g_zoom_out",
+                "DisplayName": "Zoom out"
+            },
+            {
+                "InputName": "g_zoom_in",
+                "DisplayName": "Zoom in"
+            }
+        ]
+    },
+    {
+        "EnvironmentId": [
+            "Editor"
+        ],
+        "GroupName": "Editor",
+        "Actions": [
+            {
+                "InputName": "e_rotate_right",
+                "DisplayName": "Rotate right"
+            },
+            {
+                "InputName": "e_rotate_left",
+                "DisplayName": "Rotate left"
+            },
+            {
+                "InputName": "e_undo",
+                "DisplayName": "Undo"
+            },
+            {
+                "InputName": "e_redo",
+                "DisplayName": "Redo"
+            },
+            {
+                "InputName": "e_primary",
+                "DisplayName": "Place organelle"
+            },
+            {
+                "InputName": "e_secondary",
+                "DisplayName": "Remove organelle"
+            }
+        ]
+    },
+    {
+        "EnvironmentId": [
+            "Game"
+        ],
+        "GroupName": "Cheats",
+        "Actions": [
+            {
+                "InputName": "g_cheat_editor",
+                "DisplayName": "Enable Editor"
+            },
+            {
+                "InputName": "g_cheat_glucose",
+                "DisplayName": "Spawn glucose"
+            },
+            {
+                "InputName": "g_cheat_ammonia",
+                "DisplayName": "Spawn ammonia"
+            },
+            {
+                "InputName": "g_cheat_phosphates",
+                "DisplayName": "Spawn phosphates"
+            }
+        ]
+    },
+    {
+        "EnvironmentId": [
+            "Game",
+            "Editor"
+        ],
+        "GroupName": "Misc",
+        "Actions": [
+            {
+                "InputName": "toggle_FPS",
+                "DisplayName": "Toggle FPS"
+            },
+            {
+                "InputName": "g_quick_save",
+                "DisplayName": "Quick save"
+            },
+            {
+                "InputName": "quick_load",
+                "DisplayName": "Quick load"
+            },
+            {
+                "InputName": "screenshot",
+                "DisplayName": "Take screenshot"
+            },
+            {
+                "InputName": "help",
+                "DisplayName": "Show help"
             }
         ]
     }

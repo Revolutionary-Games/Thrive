@@ -67,6 +67,7 @@ CloudIntervalPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/Margi
 CloudResolutionPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/HBoxContainer2/CloudResolution")
 RunAutoEvoDuringGameplayPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer/RunAutoEvoDuringGameplay")
 InputsTabPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Inputs")
+InputGroupListPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Inputs/ScrollContainer/InputGroupList")
 MiscTabPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc")
 PlayIntroPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/Intro")
 PlayMicrobeIntroPath = NodePath("CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/MicrobeIntro")
@@ -725,14 +726,20 @@ margin_top = 15.0
 margin_right = 650.0
 margin_bottom = 583.0
 
-[node name="InputGroupList" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Inputs"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Inputs"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InputGroupList" type="VBoxContainer" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Inputs/ScrollContainer"]
+custom_constants/separation = 30
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+ConflictDialogPath = NodePath("../../../../../../ConflictDialog")
 
 [node name="RunAutoEvoDuringGameplay" type="CheckBox" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Performance/VBoxContainer"]
 margin_top = 177.0
@@ -1063,13 +1070,21 @@ __meta__ = {
 }
 
 [node name="ErrorAccept" type="AcceptDialog" parent="CenterContainer"]
-margin_left = 445.0
-margin_top = 321.0
-margin_right = 835.0
+margin_left = 366.0
+margin_top = 322.0
+margin_right = 913.0
 margin_bottom = 398.0
 popup_exclusive = true
 window_title = "ERROR"
 dialog_text = "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
+
+[node name="ConflictDialog" type="ConfirmationDialog" parent="CenterContainer"]
+margin_left = 540.0
+margin_top = 322.0
+margin_right = 740.0
+margin_bottom = 398.0
+popup_exclusive = true
+window_title = "Conflict"
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/GraphicsButton" to="." method="ChangeSettingsTab" binds= [ "Graphics" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/SoundButton" to="." method="ChangeSettingsTab" binds= [ "Sound" ]]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/TabButtons/PerformanceButton" to="." method="ChangeSettingsTab" binds= [ "Performance" ]]
@@ -1114,3 +1129,4 @@ dialog_text = "ERROR_FAILED_TO_SAVE_NEW_SETTINGS"
 [connection signal="pressed" from="CenterContainer/BackConfirm/VBoxContainer/MarginContainer2/HBoxContainer/SaveButton" to="." method="BackSaveSelected"]
 [connection signal="pressed" from="CenterContainer/BackConfirm/VBoxContainer/MarginContainer2/HBoxContainer/DiscardButton" to="." method="BackDiscardSelected"]
 [connection signal="pressed" from="CenterContainer/BackConfirm/VBoxContainer/MarginContainer2/HBoxContainer/CancelButton" to="." method="BackCancelSelected"]
+[connection signal="confirmed" from="CenterContainer/ConflictDialog" to="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Inputs/ScrollContainer/InputGroupList" method="OnConflictConfirmed"]

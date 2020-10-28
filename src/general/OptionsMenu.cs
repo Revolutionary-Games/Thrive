@@ -110,6 +110,9 @@ public class OptionsMenu : Control
     [Export]
     public NodePath InputsTabPath;
 
+    [Export]
+    public NodePath InputGroupListPath;
+
     // Misc tab.
     [Export]
     public NodePath MiscTabPath;
@@ -202,6 +205,7 @@ public class OptionsMenu : Control
 
     // Inputs tab
     private Control inputsTab;
+    private InputGroupList inputGroupList;
 
     // Misc tab
     private Control miscTab;
@@ -307,6 +311,7 @@ public class OptionsMenu : Control
 
         // Inputs
         inputsTab = GetNode<Control>(InputsTabPath);
+        inputGroupList = GetNode<InputGroupList>(InputGroupListPath);
 
         // Misc
         miscTab = GetNode<Control>(MiscTabPath);
@@ -415,6 +420,10 @@ public class OptionsMenu : Control
         cloudResolution.Selected = CloudResolutionToIndex(settings.CloudResolution);
         runAutoEvoDuringGameplay.Pressed = settings.RunAutoEvoDuringGamePlay;
 
+        // Input
+        inputGroupList.InitFromData(settings.CurrentControlScheme);
+        inputGroupList.OnControlSchemeChanged += OnInputSchemeChanged;
+
         // Misc
         playIntro.Pressed = settings.PlayIntroVideo;
         playMicrobeIntro.Pressed = settings.PlayMicrobeIntroVideo;
@@ -492,7 +501,7 @@ public class OptionsMenu : Control
                 performanceButton.Pressed = true;
                 break;
             case SelectedOptionsTab.Inputs:
-                inputsButton.Show();
+                inputsTab.Show();
                 inputsButton.Pressed = true;
                 break;
             case SelectedOptionsTab.Miscellaneous:
@@ -942,6 +951,14 @@ public class OptionsMenu : Control
     {
         Settings.Instance.RunAutoEvoDuringGamePlay.Value = pressed;
 
+        UpdateResetSaveButtonState();
+    }
+
+    // Input Callbacks
+    private void OnInputSchemeChanged(Dictionary<string, List<InputEventWithModifiers>> data)
+    {
+        Settings.Instance.CurrentControlScheme.Value = data;
+        Settings.Instance.ApplyInputSettings();
         UpdateResetSaveButtonState();
     }
 

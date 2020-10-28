@@ -32,10 +32,13 @@
     <Compile Include="src\engine\input\InputGroup.cs" />
     <Compile Include="src\engine\input\InputToggle.cs" />
     <Compile Include="src\engine\input\InputTrigger.cs" />
-    <Compile Include="src\engine\input\key-mapping\InputActionItem.cs" />
-    <Compile Include="src\engine\input\key-mapping\InputEventItem.cs" />
-    <Compile Include="src\engine\input\key-mapping\InputGroupItem.cs" />
-    <Compile Include="src\engine\input\key-mapping\InputGroupList.cs" />
+    <Compile Include="src\engine\input\key_mapping\InputActionItem.cs" />
+    <Compile Include="src\engine\input\key_mapping\InputEventItem.cs" />
+    <Compile Include="src\engine\input\key_mapping\InputEventWithModifiersConverter.cs" />
+    <Compile Include="src\engine\input\key_mapping\InputGroupItem.cs" />
+    <Compile Include="src\engine\input\key_mapping\InputGroupItemConverter.cs" />
+    <Compile Include="src\engine\input\key_mapping\InputGroupList.cs" />
+    <Compile Include="src\engine\input\key_mapping\InputActionItemConverter.cs" />
     <Compile Include="src\engine\Invoke.cs" />
     <Compile Include="src\engine\LoadingScreen.cs" />
     <Compile Include="src\engine\PostStartupActions.cs" />
