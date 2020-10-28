@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 ///   Script for the floating chunks (cell parts, rocks, hazards)
 /// </summary>
 [JSONAlwaysDynamicType]
-[SceneLoadedClass("res://src/microbe_stage/FloatingChunk.tscn")]
+[SceneLoadedClass("res://src/microbe_stage/FloatingChunk.tscn", UsesEarlyResolve = false)]
 public class FloatingChunk : RigidBody, ISpawned, ISaveLoadedTracked
 {
     [Export]

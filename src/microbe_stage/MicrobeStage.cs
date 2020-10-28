@@ -472,9 +472,10 @@ public class MicrobeStage : Node, ILoadableGameState, IGodotEarlyNodeResolve
         // Update the player's cell
         Player.ApplySpecies(Player.Species);
 
-        // Spawn another cell from the player species
+        // Reset all the duplicates organelles of the player
         Player.ResetOrganelleLayout();
 
+        // Spawn another cell from the player species
         Player.Divide();
 
         HUD.OnEnterStageTransition();
