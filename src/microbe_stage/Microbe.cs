@@ -174,7 +174,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     ///   The number of agent vacuoles. Determines the time between
     ///   toxin shots.
     /// </summary>
-    [JsonIgnore]
+    [JsonProperty]
     public int AgentVacuoleCount { get; private set; }
 
     [JsonProperty]
