@@ -139,7 +139,8 @@ public class MainMenu : Node
         ToolTipHelper.RegisterToolTipForControl(
             thriveLogo, toolTipCallbacks, ToolTipManager.Instance.GetToolTip("thriveLogoEasterEgg", "mainMenu"));
 
-        if ((int)OS.GetCurrentVideoDriver() == 1) gles2Popup.PopupCenteredMinsize();
+        if ((int)OS.GetCurrentVideoDriver() == 1)
+            gles2Popup.PopupCenteredMinsize();
     }
 
     /// <summary>
