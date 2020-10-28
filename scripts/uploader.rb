@@ -213,15 +213,15 @@ class DevBuildUploader
   end
 
   def with_retry(needed_response_code: 200)
-    timeToWait = 20
+    time_to_wait = 20
     (1..@retries).each do |i|
       begin
         response = yield
         
         if response.code == 503
-          puts "Error 503: waiting #{timeToWait} seconds..."
-          sleep(timeToWait)
-          timeToWait *= 2
+          puts "Error 503: waiting #{time_to_wait} seconds..."
+          sleep(time_to_wait)
+          time_to_wait *= 2
         elsif response.code != needed_response_code
           puts "Response: #{response}"
           raise "unexpected response code: #{response.code}"
