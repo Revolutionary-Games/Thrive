@@ -387,6 +387,9 @@ public class MicrobeAI
         // Retrieve nearest potential chunk
         foreach (var chunk in allChunks)
         {
+            if (!IsChunkUseful(chunk))
+                continue;
+
             if ((SpeciesOpportunism == Constants.MAX_SPECIES_OPPORTUNISM) ||
                 ((microbe.EngulfSize * (SpeciesOpportunism / Constants.OPPORTUNISM_DIVISOR)) >
                     chunk.Size))
@@ -411,6 +414,21 @@ public class MicrobeAI
         }
 
         return chosenChunk;
+    }
+
+    /// <summary>
+    /// Checks if the given chunk has useful compounds for the current Microbe object
+    /// </summary>
+    /// <param name="chunk">The chunk to be checked</param>
+    private bool IsChunkUseful(FloatingChunk chunk)
+    {
+        foreach (var compound in chunk.ContainedCompounds.Compounds.Keys)
+        {
+            if (microbe.ProcessCompoundStorage.IsUseful(compound))
+                return true;
+        }
+
+        return false;
     }
 
     /// <summary>
