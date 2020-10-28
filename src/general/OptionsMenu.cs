@@ -383,7 +383,9 @@ public class OptionsMenu : Control
         maxAutosaves.Editable = settings.AutoSaveEnabled;
         maxQuicksaves.Value = settings.MaxQuickSaves;
         customUsernameEnabled.Pressed = settings.CustomUsernameEnabled;
-        customUsername.Text = settings.CustomUsername;
+        customUsername.Text = settings.CustomUsername.Value != null ?
+            settings.CustomUsername :
+            System.Environment.UserName;
         customUsername.Editable = settings.CustomUsernameEnabled;
     }
 
@@ -946,7 +948,14 @@ public class OptionsMenu : Control
 
     private void OnCustomUsernameTextChanged(string text)
     {
+        if (text.Equals(System.Environment.UserName))
+        {
+            Settings.Instance.CustomUsername.Value = null;
+        }
+        else
+        {
         Settings.Instance.CustomUsername.Value = text;
+        }
 
         UpdateResetSaveButtonState();
     }
