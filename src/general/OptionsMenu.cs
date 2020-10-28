@@ -948,13 +948,13 @@ public class OptionsMenu : Control
 
     private void OnCustomUsernameTextChanged(string text)
     {
-        if (text.Equals(System.Environment.UserName, System.StringComparison.CurrentCulture))
+        if (text.Equals(System.Environment.UserName, StringComparison.CurrentCulture))
         {
             Settings.Instance.CustomUsername.Value = null;
         }
         else
         {
-        Settings.Instance.CustomUsername.Value = text;
+            Settings.Instance.CustomUsername.Value = text;
         }
 
         UpdateResetSaveButtonState();
