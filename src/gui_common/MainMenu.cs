@@ -34,6 +34,7 @@ public class MainMenu : Node
 
     public Array MenuArray;
     public TextureRect Background;
+
     public bool IsReturningToMenu = false;
 
     private readonly List<ToolTipCallbackData> toolTipCallbacks = new List<ToolTipCallbackData>();

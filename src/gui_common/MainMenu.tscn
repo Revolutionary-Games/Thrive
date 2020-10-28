@@ -61,6 +61,7 @@ ThriveLogoPath = NodePath("MenuContainers/LogoCenterContainer/Logo")
 MenuBackgrounds = [ ExtResource( 7 ), ExtResource( 6 ), ExtResource( 8 ) ]
 NewGameButtonPath = NodePath("MenuContainers/Menus/MarginContainer/MainMenu/NewGame")
 FreebuildButtonPath = NodePath("MenuContainers/Menus/MarginContainer/Tools/Freebuild Editor")
+GLES2PopupPath = NodePath("GLES2 Popup")
 
 [node name="Background" type="TextureRect" parent="."]
 anchor_right = 1.0
@@ -330,7 +331,7 @@ margin_right = 515.0
 margin_bottom = 108.0
 theme = ExtResource( 2 )
 window_title = "GLES2 Mode Warning"
-dialog_text = "You are running Thrive with GLES2. This is severely untested and is likely to cause issues. Try to update your video drivers and/or force AMD or Nvidia graphics to be used to run Thrive."
+dialog_text = "You are running Thrive with GLES2. This is severely untested and is likely to cause issues."
 dialog_autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
