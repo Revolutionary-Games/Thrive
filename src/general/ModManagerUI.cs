@@ -122,14 +122,22 @@ public class ModManagerUI : Control
 
     private void OnMoveUpPressed()
     {
+        ItemList chosenList;
+
         if (loadedItemList.GetSelectedItems().Length > 0)
         {
-            MoveItem(loadedItemList, true, loadedItemList.GetSelectedItems()[0]);
+            chosenList = loadedItemList;
         }
         else if (unloadedItemList.GetSelectedItems().Length > 0)
         {
-            MoveItem(unloadedItemList, true, unloadedItemList.GetSelectedItems()[0]);
+            chosenList = unloadedItemList;
         }
+        else
+        {
+            return;
+        }
+
+        MoveItem(chosenList, true, chosenList.GetSelectedItems()[0]);
     }
 
     private void OnMoveDownPressed()
