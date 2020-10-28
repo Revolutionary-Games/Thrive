@@ -47,7 +47,7 @@ public class MainMenu : Node
     private Button newGameButton;
     private Button freebuildButton;
 
-    private ConfirmationDialog gles2Popup;
+    private AcceptDialog gles2Popup;
 
     public override void _Ready()
     {
@@ -127,7 +127,7 @@ public class MainMenu : Node
 
         options = GetNode<OptionsMenu>("OptionsMenu");
         saves = GetNode<SaveManagerGUI>("SaveManagerGUI");
-        gles2Popup = GetNode<ConfirmationDialog>(GLES2PopupPath);
+        gles2Popup = GetNode<AcceptDialog>(GLES2PopupPath);
 
         // Load settings
         if (Settings.Instance == null)
