@@ -197,6 +197,8 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
         // Grab the species colour for us
         Colour = microbe.Species.Colour;
 
+        ParentMicrobe.OrganelleParent.AddChild(this);
+
         FinishAttachToMicrobe();
 
         ResetGrowth();
@@ -386,8 +388,6 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
     private void FinishAttachToMicrobe()
     {
-        ParentMicrobe.OrganelleParent.AddChild(this);
-
         // Graphical display
         if (Definition.LoadedScene != null)
         {

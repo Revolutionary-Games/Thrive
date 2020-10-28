@@ -369,7 +369,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         {
             // Need to re-attach our organelles
             foreach (var organelle in organelles)
-                AddChild(organelle);
+                OrganelleParent.AddChild(organelle);
 
             // And recompute storage
             RecomputeOrganelleCapacity();
