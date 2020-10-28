@@ -109,8 +109,6 @@ public class MicrobeAI
 
     public void Think(float delta, Random random, MicrobeAICommonData data)
     {
-        _ = delta;
-
         // SetRandomTargetAndSpeed(random);
 
         // Clear the lists
@@ -145,7 +143,7 @@ public class MicrobeAI
         float atpFraction = microbe.Compounds.GetCompoundAmount(atp) / microbe.Compounds.Capacity;
         if (!RollCheck(atpFraction, 0.4f, random))
         {
-            if (microbe.Compounds.GetCompoundAmount(atp) - previousAtpAmount + microbe.BaseMovementCost > 0)
+            if (microbe.Compounds.GetCompoundAmount(atp) - previousAtpAmount + microbe.BaseMovementCost * delta > 0)
             {
                 lifeState = LifeState.PLANTLIKE_STATE;
             }
