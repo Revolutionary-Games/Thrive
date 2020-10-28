@@ -64,6 +64,9 @@ public class MicrobeAI
     [JsonIgnore]
     private FloatingChunk targetChunk;
 
+    [JsonIgnore]
+    private float previousAtpAmount = 0.0f;
+
     [JsonProperty]
     private Vector3 targetPosition = new Vector3(0, 0, 0);
 
@@ -135,6 +138,24 @@ public class MicrobeAI
         {
             boredom++;
         }
+
+        // Detects if ATP is low with RollCheck
+        // Becomes plantlike if stopping movement will increase ATP
+        // Starts gathering if stopping movement will keep decreasing ATP
+        float atpFraction = microbe.Compounds.GetCompoundAmount(atp) / microbe.Compounds.Capacity;
+        if (!RollCheck(atpFraction, 0.4f, random))
+        {
+            if (microbe.Compounds.GetCompoundAmount(atp) - previousAtpAmount + microbe.BaseMovementCost > 0)
+            {
+                lifeState = LifeState.PLANTLIKE_STATE;
+            }
+            else
+            {
+                lifeState = LifeState.GATHERING_STATE;
+            }
+        }
+            
+        previousAtpAmount = microbe.Compounds.GetCompoundAmount(atp);
 
         switch (lifeState)
         {

@@ -27,6 +27,8 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     /// </summary>
     public Vector3 MovementDirection = new Vector3(0, 0, 0);
 
+    public float BaseMovementCost { get; private set; }
+
     private readonly Compound atp = SimulationParameters.Instance.GetCompound("atp");
 
     private CompoundCloudSystem cloudSystem;
@@ -1684,14 +1686,14 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
 
     private Vector3 DoBaseMovementForce(float delta)
     {
-        var cost = (Constants.BASE_MOVEMENT_ATP_COST * HexCount) * delta;
+        BaseMovementCost = (Constants.BASE_MOVEMENT_ATP_COST * HexCount) * delta;
 
-        var got = Compounds.TakeCompound(atp, cost);
+        var got = Compounds.TakeCompound(atp, BaseMovementCost);
 
         float force = Constants.CELL_BASE_THRUST;
 
         // Halve speed if out of ATP
-        if (got < cost)
+        if (got < BaseMovementCost)
         {
             // Not enough ATP to move at full speed
             force *= 0.5f;
