@@ -373,6 +373,10 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
 
             // And recompute storage
             RecomputeOrganelleCapacity();
+
+            // Do species setup that we need on load
+            SetScaleFromSpecies();
+            SetMembraneFromSpecies();
         }
 
         onReadyCalled = true;
@@ -388,22 +392,11 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
         if (Species.Organelles.Count < 1)
             throw new ArgumentException("Species with no organelles is not valid");
 
-        var scale = new Vector3(1.0f, 1.0f, 1.0f);
-
-        // Bacteria are 50% the size of other cells
-        if (Species.IsBacteria)
-            scale = new Vector3(0.5f, 0.5f, 0.5f);
-
-        // Scale only the graphics parts to not have physics affected
-        Membrane.Scale = scale;
-        OrganelleParent.Scale = scale;
+        SetScaleFromSpecies();
 
         ResetOrganelleLayout();
 
-        // Set membrane type on the membrane
-        Membrane.Type = Species.MembraneType;
-        Membrane.Tint = Species.Colour;
-        Membrane.Dirty = true;
+        SetMembraneFromSpecies();
 
         SetupMicrobeHitpoints();
     }
@@ -1144,6 +1137,26 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI, ISaveLoade
     {
         GameWorld.AlterSpeciesPopulation(Species,
             Constants.CREATURE_KILL_POPULATION_GAIN, "successful kill");
+    }
+
+    private void SetScaleFromSpecies()
+    {
+        var scale = new Vector3(1.0f, 1.0f, 1.0f);
+
+        // Bacteria are 50% the size of other cells
+        if (Species.IsBacteria)
+            scale = new Vector3(0.5f, 0.5f, 0.5f);
+
+        // Scale only the graphics parts to not have physics affected
+        Membrane.Scale = scale;
+        OrganelleParent.Scale = scale;
+    }
+
+    private void SetMembraneFromSpecies()
+    {
+        Membrane.Type = Species.MembraneType;
+        Membrane.Tint = Species.Colour;
+        Membrane.Dirty = true;
     }
 
     private void HandleCompoundAbsorbing(float delta)

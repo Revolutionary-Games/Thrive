@@ -176,6 +176,8 @@ public class PlacedOrganelle : Spatial, IPositionedOrganelle, ISaveLoadedTracked
 
         if (IsLoadedFromSave)
             FinishAttachToMicrobe();
+
+        ApplyScale();
     }
 
     /// <summary>
