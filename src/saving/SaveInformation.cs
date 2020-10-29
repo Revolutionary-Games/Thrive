@@ -35,10 +35,7 @@ public class SaveInformation
 
     public string Platform { get; set; } = FeatureInformation.GetOS();
 
-    public string Creator { get; set; } =
-        Settings.Instance.CustomUsernameEnabled ?
-            Settings.Instance.CustomUsername.Value :
-            Environment.UserName;
+    public string Creator { get; set; } = Settings.Instance.CustomUsernameValue;
 
     public DateTime CreatedAt { get; set; } = DateTime.Now;
 

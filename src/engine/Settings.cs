@@ -1,5 +1,6 @@
 ﻿using Godot;
 using Newtonsoft.Json;
+using Environment = System.Environment;
 
 /// <summary>
 ///   Class that handles storing and applying player changeable game settings.
@@ -183,6 +184,12 @@ public class Settings
     ///   Username that the user can choose
     /// </summary>
     public SettingValue<string> CustomUsername { get; set; } = new SettingValue<string>(null);
+
+    public string CustomUsernameValue =>
+        CustomUsernameEnabled &&
+        CustomUsername.Value != null ?
+            CustomUsername.Value :
+            Environment.UserName;
 
     public int CloudSimulationWidth => Constants.CLOUD_X_EXTENT / CloudResolution;
 
