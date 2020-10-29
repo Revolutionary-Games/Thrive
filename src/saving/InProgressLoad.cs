@@ -14,6 +14,7 @@ using Godot;
 public class InProgressLoad
 {
     /// <summary>
+    ///   Used to stop quick load starting while a load is in progress already
     ///   True when a save is currently being loaded
     /// </summary>
     public static bool IsLoading{ get; private set; }
