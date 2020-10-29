@@ -32,12 +32,6 @@ public class InProgressLoad
         stopwatch = Stopwatch.StartNew();
     }
 
-    /// <summary>
-    ///   True when a save is currently being loaded
-    ///   Used to stop quick load starting while a load is in progress already
-    /// </summary>
-    public static bool IsLoading { get; private set; }
-
     private enum State
     {
         Initial,
@@ -46,6 +40,12 @@ public class InProgressLoad
         CreatingScene,
         Finished,
     }
+
+    /// <summary>
+    ///   True when a save is currently being loaded
+    ///   Used to stop quick load starting while a load is in progress already
+    /// </summary>
+    public static bool IsLoading { get; private set; }
 
     public void ReportStatus(bool success, string message, string exception = "")
     {
