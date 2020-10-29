@@ -13,12 +13,6 @@ using Godot;
 /// </remarks>
 public class InProgressLoad
 {
-    /// <summary>
-    ///   Used to stop quick load starting while a load is in progress already
-    ///   True when a save is currently being loaded
-    /// </summary>
-    public static bool IsLoading{ get; private set; }
-
     private readonly string saveName;
     private State state = State.Initial;
     private Save save;
@@ -31,6 +25,12 @@ public class InProgressLoad
     private bool success;
     private string message;
     private string exception;
+
+    /// <summary>
+    ///   True when a save is currently being loaded
+    ///   Used to stop quick load starting while a load is in progress already
+    /// </summary>
+    public static bool IsLoading { get; private set; }
 
     public InProgressLoad(string saveName)
     {
@@ -56,7 +56,7 @@ public class InProgressLoad
 
     public void Start()
     {
-        IsLoading= true;
+        IsLoading = true;
         SceneManager.Instance.DetachCurrentScene();
         SceneManager.Instance.GetTree().Paused = true;
 
@@ -170,7 +170,7 @@ public class InProgressLoad
                         () => LoadingScreen.Instance.Hide());
                 }
 
-                IsLoading= false;
+                IsLoading = false;
                 return;
             }
 
