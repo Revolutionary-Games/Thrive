@@ -1,5 +1,6 @@
 ﻿using Godot;
 using Newtonsoft.Json;
+using Environment = System.Environment;
 
 /// <summary>
 ///   Class that handles storing and applying player changeable game settings.
@@ -173,6 +174,23 @@ public class Settings
     ///   When true cheats are enabled
     /// </summary>
     public SettingValue<bool> CheatsEnabled { get; set; } = new SettingValue<bool>(false);
+
+    /// <summary>
+    ///   If false username will be set to System username
+    /// </summary>
+    public SettingValue<bool> CustomUsernameEnabled { get; set; } = new SettingValue<bool>(false);
+
+    /// <summary>
+    ///   Username that the user can choose
+    /// </summary>
+    public SettingValue<string> CustomUsername { get; set; } = new SettingValue<string>(null);
+
+    [JsonIgnore]
+    public string ActiveUsername =>
+        CustomUsernameEnabled &&
+        CustomUsername.Value != null ?
+            CustomUsername.Value :
+            Environment.UserName;
 
     public int CloudSimulationWidth => Constants.CLOUD_X_EXTENT / CloudResolution;
 
