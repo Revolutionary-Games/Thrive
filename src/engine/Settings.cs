@@ -185,7 +185,8 @@ public class Settings
     /// </summary>
     public SettingValue<string> CustomUsername { get; set; } = new SettingValue<string>(null);
 
-    public string CustomUsernameValue =>
+    [JsonIgnore]
+    public string ActiveUsername =>
         CustomUsernameEnabled &&
         CustomUsername.Value != null ?
             CustomUsername.Value :
