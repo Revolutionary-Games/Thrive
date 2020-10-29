@@ -116,6 +116,12 @@ Code style rules
   runnable scripts they need to begin with a shebang and be marked
   executable.
 
+- Defensive programming is recommended. The idea is to write code that
+  expects other parts of the codebase to mess up somewhere. For example,
+  when checking if a species is extinct, instead of checking
+  `population == 0`, it is recommended to do `population <= 0` to guard
+  against negative population bugs.
+
 - Finally you should attempt to reach the abstract goal of clean
   code. Here are some concepts that are indicative of good code (and
   breaking these can be bad code): Liskov substitution principle,
