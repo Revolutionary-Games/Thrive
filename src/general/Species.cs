@@ -81,7 +81,7 @@ public abstract class Species : ICloneable
     public string FormattedIdentifier => FormattedName + $" ({ID:n0})";
 
     /// <summary>
-    ///   Repositions the structure of the species to the center of mass
+    ///   Repositions the structure of the species according to stage specific rules
     /// </summary>
     public abstract void RepositionToOrigin();
 

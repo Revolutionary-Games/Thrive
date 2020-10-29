@@ -870,34 +870,6 @@ public class MicrobeEditor : Node, ILoadableGameState
     }
 
     /// <summary>
-    ///   Recursively loops though all hexes and checks if there any without connection to the rest.
-    /// </summary>
-    /// <returns>
-    ///   Returns a list of hexes that are not connected to the rest
-    /// </returns>
-    internal List<Hex> GetIslandHexes()
-    {
-        var organelles = editedMicrobeOrganelles.Organelles;
-
-        if (organelles.Count == 0)
-            return new List<Hex>();
-
-        // The hex to start the recursion with
-        var initHex = organelles[0].Position;
-
-        // These are the hexes have neighbours and aren't islands
-        var hexesWithNeighbours = new List<Hex> { initHex };
-
-        // These are all of the existing hexes, that if there are no islands will all be visited
-        var shouldBeVisited = organelles.Select(p => p.Position).ToList();
-
-        CheckmarkNeighbors(hexesWithNeighbours);
-
-        // Return the difference of the lists (hexes that were not visited)
-        return shouldBeVisited.Except(hexesWithNeighbours).ToList();
-    }
-
-    /// <summary>
     ///   Sets up the editor when entering
     /// </summary>
     private void OnEnterEditor()
@@ -1152,9 +1124,7 @@ public class MicrobeEditor : Node, ILoadableGameState
 
     private void CreateMutatedSpeciesCopy(Species species)
     {
-        Species newSpecies = null;
-        while (newSpecies == null)
-            newSpecies = CurrentGame.GameWorld.CreateMutatedSpecies(species);
+        Species newSpecies = CurrentGame.GameWorld.CreateMutatedSpecies(species);
 
         var random = new Random();
 
@@ -1466,31 +1436,6 @@ public class MicrobeEditor : Node, ILoadableGameState
         if (AddOrganelle(organelle))
         {
             placed = true;
-        }
-    }
-
-    /// <summary>
-    ///   A recursive function that adds the neighbours of current hex that contain organelles to the checked list and
-    ///   recurses to them to find more connected organelles
-    /// </summary>
-    /// <param name="checked">The list of already visited hexes. Will be filled up with found hexes.</param>
-    private void CheckmarkNeighbors(List<Hex> @checked)
-    {
-        while (true)
-        {
-            int endHexCount = 0;
-            foreach (var hex in @checked.ToList())
-            {
-                var myNeighbors = GetNeighborHexes(hex).Where(p => !@checked.Contains(p)).ToArray();
-                if (myNeighbors.Length == 0)
-                    endHexCount++;
-
-                // Add the new neighbors to the list to not visit them again
-                @checked.AddRange(myNeighbors);
-            }
-
-            if (endHexCount == @checked.Count)
-                break;
         }
     }
 
