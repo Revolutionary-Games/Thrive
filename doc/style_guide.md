@@ -118,7 +118,7 @@ Code style rules
 
 - Defensive programming is recommended. The idea is to write code that
   expects other parts of the codebase to mess up somewhere. For example,
-  when checking if a species population is extinct, instead of checking
+  when checking if a species is extinct, instead of checking
   `population == 0`, it is recommended to do `population <= 0` to guard
   against negative population bugs.
 
