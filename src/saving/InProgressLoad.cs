@@ -41,6 +41,12 @@ public class InProgressLoad
         Finished,
     }
 
+    /// <summary>
+    ///   True when a save is currently being loaded
+    ///   Used to stop quick load starting while a load is in progress already
+    /// </summary>
+    public static bool IsLoading { get; private set; }
+
     public void ReportStatus(bool success, string message, string exception = "")
     {
         this.success = success;
@@ -50,6 +56,7 @@ public class InProgressLoad
 
     public void Start()
     {
+        IsLoading = true;
         SceneManager.Instance.DetachCurrentScene();
         SceneManager.Instance.GetTree().Paused = true;
 
@@ -163,6 +170,7 @@ public class InProgressLoad
                         () => LoadingScreen.Instance.Hide());
                 }
 
+                IsLoading = false;
                 return;
             }
 
