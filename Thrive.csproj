@@ -37,10 +37,10 @@
     <Compile Include="src\general\HelpTexts.cs" />
     <Compile Include="src\general\HelpScreen.cs" />
     <Compile Include="src\general\PauseMenu.cs" />
-    <Compile Include="src\gui_common\charts\LineChart.cs" />
-    <Compile Include="src\gui_common\charts\LineChartData.cs" />
+    <Compile Include="src\gui_common\charts\line\LineChart.cs" />
+    <Compile Include="src\gui_common\charts\line\LineChartData.cs" />
     <Compile Include="src\gui_common\charts\ChartPoint.cs" />
-    <Compile Include="src\gui_common\charts\LineChartDrawer.cs" />
+    <Compile Include="src\gui_common\charts\line\LineChartDrawer.cs" />
     <Compile Include="src\gui_common\tooltip\DefaultToolTip.cs" />
     <Compile Include="src\gui_common\tooltip\ICustomToolTip.cs" />
     <Compile Include="src\gui_common\tooltip\microbe_editor\ModifierInfoLabel.cs" />

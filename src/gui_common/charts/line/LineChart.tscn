@@ -1,22 +1,22 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://src/gui_common/charts/LineChart.cs" type="Script" id=1]
-[ext_resource path="res://assets/fonts/Jura-DemiBold.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://assets/fonts/Lato-Regular.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://src/gui_common/charts/LineChartDrawer.cs" type="Script" id=4]
-[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=5]
+[ext_resource path="res://assets/fonts/Jura-DemiBold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/fonts/Lato-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=3]
+[ext_resource path="res://src/gui_common/charts/line/LineChart.cs" type="Script" id=4]
+[ext_resource path="res://src/gui_common/charts/line/LineChartDrawer.cs" type="Script" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 14
 use_mipmaps = true
 use_filter = true
-font_data = ExtResource( 2 )
+font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 12
 use_mipmaps = true
 use_filter = true
-font_data = ExtResource( 3 )
+font_data = ExtResource( 2 )
 
 [sub_resource type="Theme" id=3]
 default_font = SubResource( 2 )
@@ -38,29 +38,28 @@ grow_horizontal = 0
 grow_vertical = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme = ExtResource( 5 )
+theme = ExtResource( 3 )
 custom_constants/separation = 0
-script = ExtResource( 1 )
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-YAxisName = "X"
-XAxisName = "Y"
 HorizontalLabelPath = NodePath("VBoxContainer/HBoxContainer/xAxisLabel")
 VerticalLabelPath = NodePath("VBoxContainer/yAxisLabel")
 VerticalTicksContainerPath = NodePath("VBoxContainer/HBoxContainer/ChartContainer/Ordinate/VBoxContainer/Labels")
 HorizontalTicksContainerPath = NodePath("VBoxContainer/HBoxContainer/ChartContainer/Abscissa/VBoxContainer/HBoxContainer/Labels")
-LineContainerPath = NodePath("VBoxContainer/HBoxContainer/ChartContainer/Drawer")
+DrawerPath = NodePath("VBoxContainer/HBoxContainer/ChartContainer/Drawer")
 LegendsContainerPath = NodePath("Legends")
-XAxisTicks = 5
-YAxisTicks = 6
-DisplayedLegendMode = 1
 
 [node name="Legends" type="HBoxContainer" parent="."]
 margin_right = 1280.0
 size_flags_horizontal = 3
 custom_constants/separation = 0
 alignment = 2
+
+[node name="TextureButton" type="TextureButton" parent="Legends"]
+margin_left = 1280.0
+margin_right = 1280.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_right = 1280.0
@@ -123,7 +122,7 @@ margin_right = 1268.0
 margin_bottom = 701.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource( 4 )
+script = ExtResource( 5 )
 
 [node name="Spacer" type="Control" parent="VBoxContainer/HBoxContainer/ChartContainer"]
 margin_top = 699.0

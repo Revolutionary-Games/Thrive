@@ -2,15 +2,12 @@ using System;
 using Godot;
 
 /// <summary>
-///   Point / marker on a line chart containing a single value data
+///   Point / marker on a line chart containing a single data value
 /// </summary>
 public class ChartPoint : Control
 {
-    private readonly Texture graphMarkerCircle =
-        GD.Load<Texture>("res://assets/textures/gui/bevel/graphMarkerCircle.png");
-
-    private readonly Texture graphMarkerCross =
-        GD.Load<Texture>("res://assets/textures/gui/bevel/graphMarkerCross.png");
+    private Texture graphMarkerCircle;
+    private Texture graphMarkerCross;
 
     private bool isMouseOver;
 
@@ -65,7 +62,7 @@ public class ChartPoint : Control
         {
             size = value;
 
-            // Increased by 10 for bigger mouse detection area
+            // Increased by 10 for more bigger cursor detection area
             RectSize = new Vector2(value + 10, value + 10);
         }
     }
@@ -74,6 +71,9 @@ public class ChartPoint : Control
 
     public override void _Ready()
     {
+        graphMarkerCircle = GD.Load<Texture>("res://assets/textures/gui/bevel/graphMarkerCircle.png");
+        graphMarkerCross = GD.Load<Texture>("res://assets/textures/gui/bevel/graphMarkerCross.png");
+
         icon = new TextureRect();
         icon.Expand = true;
         icon.MouseFilter = MouseFilterEnum.Ignore;

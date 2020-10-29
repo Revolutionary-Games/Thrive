@@ -102,6 +102,10 @@ public class GUICommon : Node
         var icon = GD.Load<Texture>("res://assets/textures/gui/bevel/" + compoundName.ReplaceN(
             " ", string.Empty) + ".png");
 
+        // Just use a dummy icon instead if the requested icon is not found
+        if (icon == null)
+            icon = GD.Load<Texture>("res://assets/textures/gui/bevel/TestIcon.png");
+
         return icon;
     }
 }

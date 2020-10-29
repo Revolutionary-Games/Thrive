@@ -1,7 +1,8 @@
+using System.Linq;
 using Godot;
 
 /// <summary>
-///   Draws visuals for the line chart like the line segments and markers
+///   Draws visuals of the line chart like the line segments and markers
 /// </summary>
 /// <para>
 ///   This is separated from LineChart class because it seems the renderings behave better
@@ -9,12 +10,17 @@ using Godot;
 /// </para>
 public class LineChartDrawer : Control
 {
-    private readonly Texture hLineTexture = GD.Load<Texture>("res://assets/textures/gui/bevel/hSeparatorCentered.png");
-
     /// <summary>
     ///   Reference to the parent chart to access datas
     /// </summary>
     private LineChart chart;
+
+    private Texture hLineTexture;
+
+    public override void _Ready()
+    {
+        hLineTexture = GD.Load<Texture>("res://assets/textures/gui/bevel/hSeparatorCentered.png");
+    }
 
     public void Init(LineChart chart)
     {
@@ -60,23 +66,31 @@ public class LineChartDrawer : Control
     {
         foreach (var data in chart.DataSets)
         {
-            foreach (var point in data.PointDatas)
+            data.Value.Points.ForEach(point =>
             {
                 point.Coordinate = ConvertToCoordinate(point.Value);
 
                 if (!point.IsInsideTree())
                     AddChild(point);
+            });
 
-                point.Update();
+            var previousPoint = data.Value.Points.First();
+
+            foreach (var point in data.Value.Points)
+            {
+                if (data.Value.Draw)
+                {
+                    DrawLine(previousPoint.Coordinate, point.Coordinate, data.Value.DataColor,
+                        data.Value.LineWidth, true);
+                }
+
+                previousPoint = point;
             }
-
-            if (data.Draw)
-                DrawPolyline(data.GetCoordinates().ToArray(), data.LineColor, data.LineWidth, true);
         }
     }
 
     /// <summary>
-    ///   Helper method for converting a chart value into a coordinate.
+    ///   Helper method for converting a single point data value into a coordinate.
     /// </summary>
     /// <para>
     ///   (for purely aesthetic reasons) find out if the origin could be at 0,0.

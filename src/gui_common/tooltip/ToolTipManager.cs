@@ -111,8 +111,20 @@ public class ToolTipManager : CanvasLayer
     {
         var tooltip = GetToolTip(name, group);
 
-        tooltip.ToolTipNode.QueueFree();
+        tooltip?.ToolTipNode.QueueFree();
         tooltips[GetGroup(group)].Remove(tooltip);
+    }
+
+    public void ClearToolTip(string group)
+    {
+        var groupNode = tooltips[GetGroup(group)];
+
+        foreach (var tip in groupNode)
+        {
+            tip.ToolTipNode.QueueFree();
+        }
+
+        groupNode.Clear();
     }
 
     /// <summary>
