@@ -9,9 +9,6 @@ public class QuickLoadHandler : Node
     [Export]
     public NodePath DifferentVersionDialogPath;
 
-    /// <summary>
-    ///   Used to avoid problems with duplicate inputs
-    /// </summary>
     private readonly InputGroup inputs;
 
     private readonly InputTrigger load = new InputTrigger("quick_load");
