@@ -31,6 +31,9 @@ public class QuickLoadHandler : Node
             {
                 GD.Print("Quick load pressed, cancelled because another is already in progress");
             }
+
+            if (!SaveHelper.QuickLoad())
+                differentVersionDialog.PopupCenteredMinsize();
         }
     }
 }
