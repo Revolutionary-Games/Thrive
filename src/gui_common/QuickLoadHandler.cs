@@ -5,8 +5,15 @@ using Godot;
 /// </summary>
 public class QuickLoadHandler : Node
 {
+    [Export]
+    public NodePath DifferentVersionDialogPath;
+
+    private AcceptDialog differentVersionDialog;
+
     public override void _Ready()
     {
+        differentVersionDialog = GetNode<AcceptDialog>(DifferentVersionDialogPath);
+
         // Keep this node running while paused
         PauseMode = PauseModeEnum.Process;
     }

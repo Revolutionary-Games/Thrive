@@ -1,5 +1,6 @@
 using System;
 using Godot;
+using Environment = System.Environment;
 
 /// <summary>
 ///   Handles the logic for the options menu GUI.
@@ -97,6 +98,9 @@ public class OptionsMenu : Control
     [Export]
     public NodePath CloudResolutionPath;
 
+    [Export]
+    public NodePath RunAutoEvoDuringGameplayPath;
+
     // Misc tab.
     [Export]
     public NodePath MiscTabPath;
@@ -134,6 +138,12 @@ public class OptionsMenu : Control
     [Export]
     public NodePath ErrorAcceptBoxPath;
 
+    [Export]
+    public NodePath CustomUsernameEnabledPath;
+
+    [Export]
+    public NodePath CustomUsernamePath;
+
     private Button resetButton;
     private Button saveButton;
 
@@ -169,6 +179,7 @@ public class OptionsMenu : Control
     private Control performanceTab;
     private OptionButton cloudInterval;
     private OptionButton cloudResolution;
+    private CheckBox runAutoEvoDuringGameplay;
 
     // Misc tab
     private Control miscTab;
@@ -179,6 +190,8 @@ public class OptionsMenu : Control
     private CheckBox autosave;
     private SpinBox maxAutosaves;
     private SpinBox maxQuicksaves;
+    private CheckBox customUsernameEnabled;
+    private LineEdit customUsername;
 
     private CheckBox tutorialsEnabled;
 
@@ -263,6 +276,7 @@ public class OptionsMenu : Control
         performanceTab = GetNode<Control>(PerformanceTabPath);
         cloudInterval = GetNode<OptionButton>(CloudIntervalPath);
         cloudResolution = GetNode<OptionButton>(CloudResolutionPath);
+        runAutoEvoDuringGameplay = GetNode<CheckBox>(RunAutoEvoDuringGameplayPath);
 
         // Misc
         miscTab = GetNode<Control>(MiscTabPath);
@@ -274,6 +288,8 @@ public class OptionsMenu : Control
         maxAutosaves = GetNode<SpinBox>(MaxAutoSavesPath);
         maxQuicksaves = GetNode<SpinBox>(MaxQuickSavesPath);
         tutorialsEnabled = GetNode<CheckBox>(TutorialsEnabledPath);
+        customUsernameEnabled = GetNode<CheckBox>(CustomUsernameEnabledPath);
+        customUsername = GetNode<LineEdit>(CustomUsernamePath);
 
         backConfirmationBox = GetNode<WindowDialog>(BackConfirmationBoxPath);
         defaultsConfirmationBox = GetNode<ConfirmationDialog>(DefaultsConfirmationBoxPath);
@@ -362,6 +378,7 @@ public class OptionsMenu : Control
         // Performance
         cloudInterval.Selected = CloudIntervalToIndex(settings.CloudUpdateInterval);
         cloudResolution.Selected = CloudResolutionToIndex(settings.CloudResolution);
+        runAutoEvoDuringGameplay.Pressed = settings.RunAutoEvoDuringGamePlay;
 
         // Misc
         playIntro.Pressed = settings.PlayIntroVideo;
@@ -372,6 +389,11 @@ public class OptionsMenu : Control
         maxAutosaves.Value = settings.MaxAutoSaves;
         maxAutosaves.Editable = settings.AutoSaveEnabled;
         maxQuicksaves.Value = settings.MaxQuickSaves;
+        customUsernameEnabled.Pressed = settings.CustomUsernameEnabled;
+        customUsername.Text = settings.CustomUsername.Value != null ?
+            settings.CustomUsername :
+            Environment.UserName;
+        customUsername.Editable = settings.CustomUsernameEnabled;
     }
 
     private void SwitchMode(OptionsMode mode)
@@ -865,6 +887,13 @@ public class OptionsMenu : Control
         UpdateResetSaveButtonState();
     }
 
+    private void OnAutoEvoToggled(bool pressed)
+    {
+        Settings.Instance.RunAutoEvoDuringGamePlay.Value = pressed;
+
+        UpdateResetSaveButtonState();
+    }
+
     // Misc Button Callbacks
     private void OnIntroToggled(bool pressed)
     {
@@ -919,6 +948,28 @@ public class OptionsMenu : Control
     private void OnTutorialsEnabledToggled(bool pressed)
     {
         gameProperties.TutorialState.Enabled = pressed;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnCustomUsernameEnabledToggled(bool pressed)
+    {
+        Settings.Instance.CustomUsernameEnabled.Value = pressed;
+        customUsername.Editable = pressed;
+
+        UpdateResetSaveButtonState();
+    }
+
+    private void OnCustomUsernameTextChanged(string text)
+    {
+        if (text.Equals(Environment.UserName, StringComparison.CurrentCulture))
+        {
+            Settings.Instance.CustomUsername.Value = null;
+        }
+        else
+        {
+            Settings.Instance.CustomUsername.Value = text;
+        }
 
         UpdateResetSaveButtonState();
     }
