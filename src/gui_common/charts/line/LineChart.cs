@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using Godot;
 using Array = Godot.Collections.Array;
 
@@ -22,7 +23,7 @@ public class LineChart : VBoxContainer
     public NodePath HorizontalTicksContainerPath;
 
     [Export]
-    public NodePath DrawerPath;
+    public NodePath DrawAreaPath;
 
     [Export]
     public NodePath LegendsContainerPath;
@@ -57,11 +58,13 @@ public class LineChart : VBoxContainer
     /// </summary>
     private Texture defaultIconLegendTexture;
 
+    private Texture hLineTexture;
+
     private Label horizontalLabel;
     private Label verticalLabel;
     private VBoxContainer verticalLabelsContainer;
     private HBoxContainer horizontalLabelsContainer;
-    private LineChartDrawer drawer;
+    private Control drawArea;
     private HBoxContainer legendContainer;
 
     private string xAxisName;
@@ -123,13 +126,24 @@ public class LineChart : VBoxContainer
         verticalLabel = GetNode<Label>(VerticalLabelPath);
         verticalLabelsContainer = GetNode<VBoxContainer>(VerticalTicksContainerPath);
         horizontalLabelsContainer = GetNode<HBoxContainer>(HorizontalTicksContainerPath);
-        drawer = GetNode<LineChartDrawer>(DrawerPath);
+        drawArea = GetNode<Control>(DrawAreaPath);
         legendContainer = GetNode<HBoxContainer>(LegendsContainerPath);
         defaultIconLegendTexture = GD.Load<Texture>("res://assets/textures/gui/bevel/blankCircle.png");
-
-        drawer.Init(this);
+        hLineTexture = GD.Load<Texture>("res://assets/textures/gui/bevel/hSeparatorCentered.png");
 
         UpdateAxesName();
+    }
+
+    public override void _Draw()
+    {
+        if (DataSets.Count <= 0)
+            return;
+
+        DrawSetTransform(new Vector2(drawArea.RectPosition.x, (RectSize.y - drawArea.RectSize.y) -
+            verticalLabel.RectSize.y), drawArea.RectRotation, drawArea.RectScale);
+
+        DrawOrdinateLines();
+        DrawLineSegments();
     }
 
     /// <summary>
@@ -149,9 +163,9 @@ public class LineChart : VBoxContainer
             return;
         }
 
-        drawer.ClearPoints();
+        ClearPoints();
 
-        ToolTipManager.Instance.ClearToolTip("chartMarkers");
+        ToolTipManager.Instance.ClearToolTips("chartMarkers");
 
         // Clear abscissas
         foreach (Node child in horizontalLabelsContainer.GetChildren())
@@ -222,7 +236,7 @@ public class LineChart : VBoxContainer
             verticalLabelsContainer.AddChild(label);
         }
 
-        drawer.Update();
+        RenderChart();
     }
 
     public void CreateLegend(string title)
@@ -230,7 +244,7 @@ public class LineChart : VBoxContainer
         foreach (Node child in legendContainer.GetChildren())
             child.QueueFree();
 
-        ToolTipManager.Instance.ClearToolTip("chartLegends");
+        ToolTipManager.Instance.ClearToolTips("chartLegends");
 
         // Switch to dropdown if amount of dataset is more than maximum number of icon legends allowed
         if (DataSets.Count > MaxIconLegend && LegendMode == LegendDisplayMode.Icon)
@@ -268,12 +282,18 @@ public class LineChart : VBoxContainer
 
                     legendContainer.AddChild(icon);
 
-                    icon.Connect("mouse_entered", this, nameof(IconLegendMouseEnter), new Array {
-                        icon, fallbackIconIsUsed, data.Value.DataColor });
-                    icon.Connect("mouse_exited", this, nameof(IconLegendMouseExit), new Array {
-                        icon, fallbackIconIsUsed, data.Value.DataColor });
-                    icon.Connect("toggled", this, nameof(IconLegendToggled), new Array {
-                        icon, data.Key, fallbackIconIsUsed });
+                    icon.Connect("mouse_entered", this, nameof(IconLegendMouseEnter), new Array
+                    {
+                        icon, fallbackIconIsUsed, data.Value.DataColor,
+                    });
+                    icon.Connect("mouse_exited", this, nameof(IconLegendMouseExit), new Array
+                    {
+                        icon, fallbackIconIsUsed, data.Value.DataColor,
+                    });
+                    icon.Connect("toggled", this, nameof(IconLegendToggled), new Array
+                    {
+                        icon, data.Key, fallbackIconIsUsed,
+                    });
 
                     // Set initial icon toggle state
                     if (!data.Value.Draw)
@@ -335,7 +355,96 @@ public class LineChart : VBoxContainer
     public void UpdateDataSetVisibility(string name, bool visible)
     {
         DataSets[name].Draw = visible;
-        drawer.Update();
+        RenderChart();
+    }
+
+    /// <summary>
+    ///   Redraws the chart. This method is mainly used so the draw area node could connect its "draw()"
+    ///   signal to this for requesting a redraw (since it can't be connected directly with "Update()")
+    /// </summary>
+    private void RenderChart()
+    {
+        Update();
+    }
+
+    /// <summary>
+    ///   Draw columns of lines going horizontal
+    /// </summary>
+    private void DrawOrdinateLines()
+    {
+        for (int i = 0; i < YAxisTicks; i++)
+        {
+            var value = Mathf.Round(i * (MaxValues.y - MinValues.y) /
+                (YAxisTicks - 1) + MinValues.y);
+
+            DrawTextureRect(hLineTexture, new Rect2(new Vector2(
+                0, ConvertToYCoordinate(value)), RectSize.x, 1), false, new Color(1, 1, 1, 0.5f));
+        }
+    }
+
+    /// <summary>
+    ///   Connect the dataset points
+    /// </summary>
+    private void DrawLineSegments()
+    {
+        foreach (var data in DataSets)
+        {
+            data.Value.Points.ForEach(point =>
+            {
+                point.Coordinate = ConvertToCoordinate(point.Value);
+
+                if (!point.IsInsideTree())
+                    drawArea.AddChild(point);
+            });
+
+            var previousPoint = data.Value.Points.First();
+
+            foreach (var point in data.Value.Points)
+            {
+                if (data.Value.Draw)
+                {
+                    DrawLine(previousPoint.Coordinate, point.Coordinate, data.Value.DataColor,
+                        data.Value.LineWidth, true);
+                }
+
+                previousPoint = point;
+            }
+        }
+    }
+
+    /// <summary>
+    ///   Helper method for converting a single point data value into a coordinate.
+    /// </summary>
+    /// <para>
+    ///   (for purely aesthetic reasons) find out if the origin could be at 0,0.
+    ///   Currently it's offset a bit from the bottom left
+    /// </para>
+    /// <returns>Position of the given value on the chart</returns>
+    private Vector2 ConvertToCoordinate(Vector2 value)
+    {
+        return new Vector2(ConvertToXCoordinate(value.x), ConvertToYCoordinate(value.y));
+    }
+
+    private float ConvertToXCoordinate(float value)
+    {
+        var lineRectX = drawArea.RectSize.x / XAxisTicks;
+
+        var lineRectWidth = lineRectX * (XAxisTicks - 1);
+
+        var dx = MaxValues.x - MinValues.x;
+
+        return ((value - MinValues.x) * lineRectWidth / dx) + lineRectX / 2;
+    }
+
+    private float ConvertToYCoordinate(float value)
+    {
+        var lineRectY = drawArea.RectSize.y / YAxisTicks;
+
+        var lineRectHeight = lineRectY * (YAxisTicks - 1);
+
+        var dy = MaxValues.y - MinValues.y;
+
+        return lineRectHeight - ((value - MinValues.y) * lineRectHeight / dy) + lineRectY / 2;
     }
 
     /// <summary>
@@ -352,6 +461,17 @@ public class LineChart : VBoxContainer
         }
 
         return count >= MaxDisplayedDataSet;
+    }
+
+    /// <summary>
+    ///   Deletes all point markers
+    /// </summary>
+    private void ClearPoints()
+    {
+        foreach (Node child in drawArea.GetChildren())
+        {
+            child.QueueFree();
+        }
     }
 
     private void UpdateAxesName()

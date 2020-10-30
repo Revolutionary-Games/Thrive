@@ -115,16 +115,19 @@ public class ToolTipManager : CanvasLayer
         tooltips[GetGroup(group)].Remove(tooltip);
     }
 
-    public void ClearToolTip(string group)
+    public void ClearToolTips(string group)
     {
-        var groupNode = tooltips[GetGroup(group)];
+        var toolips = tooltips[GetGroup(group)];
 
-        foreach (var tip in groupNode)
+        if (tooltips == null || toolips.Count == 0)
+            return;
+
+        var intermediateList = new List<ICustomToolTip>(toolips);
+
+        foreach (var item in intermediateList)
         {
-            tip.ToolTipNode.QueueFree();
+            RemoveToolTip(item.ToolTipNode.Name);
         }
-
-        groupNode.Clear();
     }
 
     /// <summary>

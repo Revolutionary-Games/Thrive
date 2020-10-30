@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/fonts/Jura-DemiBold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://assets/fonts/Lato-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://src/gui_common/thrive_theme.tres" type="Theme" id=3]
 [ext_resource path="res://src/gui_common/charts/line/LineChart.cs" type="Script" id=4]
-[ext_resource path="res://src/gui_common/charts/line/LineChartDrawer.cs" type="Script" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 14
@@ -44,22 +43,23 @@ script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+YAxisName = "Y"
+XAxisName = "X"
 HorizontalLabelPath = NodePath("VBoxContainer/HBoxContainer/xAxisLabel")
 VerticalLabelPath = NodePath("VBoxContainer/yAxisLabel")
 VerticalTicksContainerPath = NodePath("VBoxContainer/HBoxContainer/ChartContainer/Ordinate/VBoxContainer/Labels")
 HorizontalTicksContainerPath = NodePath("VBoxContainer/HBoxContainer/ChartContainer/Abscissa/VBoxContainer/HBoxContainer/Labels")
-DrawerPath = NodePath("VBoxContainer/HBoxContainer/ChartContainer/Drawer")
+DrawAreaPath = NodePath("VBoxContainer/HBoxContainer/ChartContainer/Drawer")
 LegendsContainerPath = NodePath("Legends")
+XAxisTicks = 5
+YAxisTicks = 6
+LegendMode = 1
 
 [node name="Legends" type="HBoxContainer" parent="."]
 margin_right = 1280.0
 size_flags_horizontal = 3
 custom_constants/separation = 0
 alignment = 2
-
-[node name="TextureButton" type="TextureButton" parent="Legends"]
-margin_left = 1280.0
-margin_right = 1280.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 margin_right = 1280.0
@@ -122,7 +122,6 @@ margin_right = 1268.0
 margin_bottom = 701.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource( 5 )
 
 [node name="Spacer" type="Control" parent="VBoxContainer/HBoxContainer/ChartContainer"]
 margin_top = 699.0
@@ -173,3 +172,4 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 custom_fonts/font = SubResource( 1 )
 text = "x"
+[connection signal="draw" from="VBoxContainer/HBoxContainer/ChartContainer/Drawer" to="." method="RenderChart"]
