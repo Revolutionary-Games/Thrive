@@ -173,6 +173,8 @@ public class Settings
 	///   When true cheats are enabled
 	/// </summary>
 	public SettingValue<bool> CheatsEnabled { get; set; } = new SettingValue<bool>(false);
+	
+	public SettingValue<bool> OpenScreenshotFolder {get; set; } = new SettingValue<bool>(false);
 
 	public int CloudSimulationWidth => Constants.CLOUD_X_EXTENT / CloudResolution;
 
@@ -417,23 +419,20 @@ public class Settings
 
 			setting.AssignFrom(property.GetValue(settings));
 		}
-	}
-
-	///<summary>
-	///   Open The ScreenShot Folder when click on the button   
-	///</summary>
+	}	
 	
-	public bool OpenScreenshotFolder()
+	/*public bool  OpenScreenshotFolder()
 	{
 		
 		using (var directory = new Directory())
 		{
-			if (!directory.DirExists(Constants.SCREENSHOT_FOLDER))
-				return false;
-			OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.SCREENSHOT_FOLDER));
-			return true;
+			if (!directory.DirExists(Constants.SCREENSHOT_FOLDER)) return false;
 			
+			OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.SCREENSHOT_FOLDER));
+			
+			return true;
 		}
-	}
+	}*/
+	
 }
 	

@@ -379,7 +379,7 @@ public class OptionsMenu : Control
 		maxAutosaves.Value = settings.MaxAutoSaves;
 		maxAutosaves.Editable = settings.AutoSaveEnabled;
 		maxQuicksaves.Value = settings.MaxQuickSaves;
-		goToScreenshotFolder.Pressed = Settings.Instance.OpenScreenshotFolder();
+		goToScreenshotFolder.Pressed = settings.OpenScreenshotFolder;
 		
 	}
 
@@ -930,6 +930,15 @@ public class OptionsMenu : Control
 		gameProperties.TutorialState.Enabled = pressed;
 
 		UpdateResetSaveButtonState();
-	}	
+	}
 	
+		private void OnOpenScreenshotFolder()
+	{
+   
+		GUICommon.Instance.PlayButtonPressSound();
+
+		OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.SCREENSHOT_FOLDER));				
+		
+		UpdateResetSaveButtonState();
+	}
 }

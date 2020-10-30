@@ -790,6 +790,7 @@ __meta__ = {
 margin_top = 280.0
 margin_right = 511.0
 margin_bottom = 310.0
+action_mode = 0
 text = "Screenshot Folder"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer"]
@@ -984,6 +985,7 @@ dialog_text = "Error: Failed to save new settings to configuration file."
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/TutorialsEnabledOnNewGame" to="." method="OnTutorialsOnNewGameToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/TutorialsEnabled" to="." method="OnTutorialsEnabledToggled"]
 [connection signal="toggled" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/Cheats" to="." method="OnCheatsToggled"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/PanelContainer/MarginContainer/Misc/VBoxContainer/Screeshot Folder" to="." method="OnOpenScreenshotFolder"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Back" to="." method="OnBackPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Reset" to="." method="OnResetPressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/Save" to="." method="OnSavePressed"]
