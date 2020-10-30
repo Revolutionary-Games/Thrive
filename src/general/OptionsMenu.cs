@@ -143,7 +143,7 @@ public class OptionsMenu : Control
 
     [Export]
     public NodePath CustomUsernamePath;
-    
+
     [Export]
     public NodePath ScreenshotFolderPath;
 
@@ -979,7 +979,7 @@ public class OptionsMenu : Control
 
         UpdateResetSaveButtonState();
     }
-    
+
     private void OnOpenScreenshotFolder()
     {
         GUICommon.Instance.PlayButtonPressSound();
