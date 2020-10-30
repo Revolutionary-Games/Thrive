@@ -10,249 +10,249 @@ using Godot;
 /// </summary>
 public class SaveManagerGUI : Control
 {
-    [Export]
-    public NodePath SaveListPath;
+	[Export]
+	public NodePath SaveListPath;
 
-    [Export]
-    public NodePath SelectedItemCountPath;
+	[Export]
+	public NodePath SelectedItemCountPath;
 
-    [Export]
-    public NodePath TotalSaveCountPath;
+	[Export]
+	public NodePath TotalSaveCountPath;
 
-    [Export]
-    public NodePath TotalSaveSizePath;
+	[Export]
+	public NodePath TotalSaveSizePath;
 
-    [Export]
-    public NodePath LoadButtonPath;
+	[Export]
+	public NodePath LoadButtonPath;
 
-    [Export]
-    public NodePath DeleteSelectedButtonPath;
+	[Export]
+	public NodePath DeleteSelectedButtonPath;
 
-    [Export]
-    public NodePath DeleteOldButtonPath;
+	[Export]
+	public NodePath DeleteOldButtonPath;
 
-    [Export]
-    public NodePath DeleteSelectedConfirmDialogPath;
+	[Export]
+	public NodePath DeleteSelectedConfirmDialogPath;
 
-    [Export]
-    public NodePath DeleteOldConfirmDialogPath;
+	[Export]
+	public NodePath DeleteOldConfirmDialogPath;
 
-    private SaveList saveList;
-    private Label selectedItemCount;
-    private Label totalSaveCount;
-    private Label totalSaveSize;
-    private Button loadButton;
-    private Button deleteSelectedButton;
-    private Button deleteOldButton;
-    private ConfirmationDialog deleteSelectedConfirmDialog;
-    private ConfirmationDialog deleteOldConfirmDialog;
+	private SaveList saveList;
+	private Label selectedItemCount;
+	private Label totalSaveCount;
+	private Label totalSaveSize;
+	private Button loadButton;
+	private Button deleteSelectedButton;
+	private Button deleteOldButton;
+	private ConfirmationDialog deleteSelectedConfirmDialog;
+	private ConfirmationDialog deleteOldConfirmDialog;
 
-    private List<SaveListItem> selected;
-    private bool selectedDirty = true;
+	private List<SaveListItem> selected;
+	private bool selectedDirty = true;
 
-    private bool saveCountRefreshed;
-    private bool refreshing;
+	private bool saveCountRefreshed;
+	private bool refreshing;
 
-    private int currentAutoSaveCount;
-    private int currentQuickSaveCount;
+	private int currentAutoSaveCount;
+	private int currentQuickSaveCount;
 
-    private Task<(int count, long diskSpace)> getTotalSaveCountTask;
-    private Task<(int count, long diskSpace)> getAutoSaveCountTask;
-    private Task<(int count, long diskSpace)> getQuickSaveCountTask;
+	private Task<(int count, long diskSpace)> getTotalSaveCountTask;
+	private Task<(int count, long diskSpace)> getAutoSaveCountTask;
+	private Task<(int count, long diskSpace)> getQuickSaveCountTask;
 
-    [Signal]
-    public delegate void OnBackPressed();
+	[Signal]
+	public delegate void OnBackPressed();
 
-    public List<SaveListItem> Selected
-    {
-        get
-        {
-            if (selectedDirty)
-            {
-                selected = saveList.GetSelectedItems().ToList();
-                selectedDirty = false;
-            }
+	public List<SaveListItem> Selected
+	{
+		get
+		{
+			if (selectedDirty)
+			{
+				selected = saveList.GetSelectedItems().ToList();
+				selectedDirty = false;
+			}
 
-            return selected;
-        }
-    }
+			return selected;
+		}
+	}
 
-    public override void _Ready()
-    {
-        saveList = GetNode<SaveList>(SaveListPath);
-        selectedItemCount = GetNode<Label>(SelectedItemCountPath);
-        totalSaveCount = GetNode<Label>(TotalSaveCountPath);
-        totalSaveSize = GetNode<Label>(TotalSaveSizePath);
-        loadButton = GetNode<Button>(LoadButtonPath);
-        deleteSelectedButton = GetNode<Button>(DeleteSelectedButtonPath);
-        deleteOldButton = GetNode<Button>(DeleteOldButtonPath);
-        deleteSelectedConfirmDialog = GetNode<ConfirmationDialog>(DeleteSelectedConfirmDialogPath);
-        deleteOldConfirmDialog = GetNode<ConfirmationDialog>(DeleteOldConfirmDialogPath);
+	public override void _Ready()
+	{
+		saveList = GetNode<SaveList>(SaveListPath);
+		selectedItemCount = GetNode<Label>(SelectedItemCountPath);
+		totalSaveCount = GetNode<Label>(TotalSaveCountPath);
+		totalSaveSize = GetNode<Label>(TotalSaveSizePath);
+		loadButton = GetNode<Button>(LoadButtonPath);
+		deleteSelectedButton = GetNode<Button>(DeleteSelectedButtonPath);
+		deleteOldButton = GetNode<Button>(DeleteOldButtonPath);
+		deleteSelectedConfirmDialog = GetNode<ConfirmationDialog>(DeleteSelectedConfirmDialogPath);
+		deleteOldConfirmDialog = GetNode<ConfirmationDialog>(DeleteOldConfirmDialogPath);
 
-        saveList.Connect(nameof(SaveList.OnItemsChanged), this, nameof(RefreshList));
-    }
+		saveList.Connect(nameof(SaveList.OnItemsChanged), this, nameof(RefreshList));
+	}
 
-    public override void _Process(float delta)
-    {
-        if (!saveCountRefreshed && IsVisibleInTree())
-        {
-            RefreshSaveCounts();
-            return;
-        }
+	public override void _Process(float delta)
+	{
+		if (!saveCountRefreshed && IsVisibleInTree())
+		{
+			RefreshSaveCounts();
+			return;
+		}
 
-        if (!refreshing)
-            return;
+		if (!refreshing)
+			return;
 
-        if (!getTotalSaveCountTask.IsCompleted)
-            return;
+		if (!getTotalSaveCountTask.IsCompleted)
+			return;
 
-        var info = getTotalSaveCountTask.Result;
-        currentAutoSaveCount = getAutoSaveCountTask.Result.count;
-        currentQuickSaveCount = getQuickSaveCountTask.Result.count;
+		var info = getTotalSaveCountTask.Result;
+		currentAutoSaveCount = getAutoSaveCountTask.Result.count;
+		currentQuickSaveCount = getQuickSaveCountTask.Result.count;
 
-        getTotalSaveCountTask.Dispose();
-        getAutoSaveCountTask.Dispose();
-        getQuickSaveCountTask.Dispose();
-        getTotalSaveCountTask = null;
-        getAutoSaveCountTask = null;
-        getQuickSaveCountTask = null;
+		getTotalSaveCountTask.Dispose();
+		getAutoSaveCountTask.Dispose();
+		getQuickSaveCountTask.Dispose();
+		getTotalSaveCountTask = null;
+		getAutoSaveCountTask = null;
+		getQuickSaveCountTask = null;
 
-        totalSaveCount.Text = info.count.ToString(CultureInfo.CurrentCulture);
-        totalSaveSize.Text =
-            Math.Round((float)info.diskSpace / Constants.MEBIBYTE, 2).ToString(CultureInfo.CurrentCulture) + " MiB";
+		totalSaveCount.Text = info.count.ToString(CultureInfo.CurrentCulture);
+		totalSaveSize.Text =
+			Math.Round((float)info.diskSpace / Constants.MEBIBYTE, 2).ToString(CultureInfo.CurrentCulture) + " MiB";
 
-        UpdateSelectedCount();
-        UpdateButtonsStatus();
+		UpdateSelectedCount();
+		UpdateButtonsStatus();
 
-        refreshing = false;
-    }
+		refreshing = false;
+	}
 
-    private void OnSelectedChanged()
-    {
-        selectedDirty = true;
+	private void OnSelectedChanged()
+	{
+		selectedDirty = true;
 
-        UpdateSelectedCount();
-        UpdateButtonsStatus();
-    }
+		UpdateSelectedCount();
+		UpdateButtonsStatus();
+	}
 
-    private void UpdateSelectedCount()
-    {
-        selectedItemCount.Text = Selected.Count.ToString(CultureInfo.CurrentCulture);
-    }
+	private void UpdateSelectedCount()
+	{
+		selectedItemCount.Text = Selected.Count.ToString(CultureInfo.CurrentCulture);
+	}
 
-    private void RefreshList()
-    {
-        selectedDirty = true;
+	private void RefreshList()
+	{
+		selectedDirty = true;
 
-        saveList.Refresh();
-        RefreshSaveCounts();
-    }
+		saveList.Refresh();
+		RefreshSaveCounts();
+	}
 
-    private void RefreshSaveCounts()
-    {
-        if (refreshing)
-            return;
+	private void RefreshSaveCounts()
+	{
+		if (refreshing)
+			return;
 
-        saveCountRefreshed = true;
-        refreshing = true;
+		saveCountRefreshed = true;
+		refreshing = true;
 
-        getTotalSaveCountTask = new Task<(int count, long diskSpace)>(() => SaveHelper.CountSaves());
-        getAutoSaveCountTask = new Task<(int count, long diskSpace)>(() => SaveHelper.CountSaves("auto_save"));
-        getQuickSaveCountTask = new Task<(int count, long diskSpace)>(() => SaveHelper.CountSaves("quick_save"));
+		getTotalSaveCountTask = new Task<(int count, long diskSpace)>(() => SaveHelper.CountSaves());
+		getAutoSaveCountTask = new Task<(int count, long diskSpace)>(() => SaveHelper.CountSaves("auto_save"));
+		getQuickSaveCountTask = new Task<(int count, long diskSpace)>(() => SaveHelper.CountSaves("quick_save"));
 
-        TaskExecutor.Instance.AddTask(getTotalSaveCountTask);
-        TaskExecutor.Instance.AddTask(getAutoSaveCountTask);
-        TaskExecutor.Instance.AddTask(getQuickSaveCountTask);
-    }
+		TaskExecutor.Instance.AddTask(getTotalSaveCountTask);
+		TaskExecutor.Instance.AddTask(getAutoSaveCountTask);
+		TaskExecutor.Instance.AddTask(getQuickSaveCountTask);
+	}
 
-    private void UpdateButtonsStatus()
-    {
-        loadButton.Disabled = Selected.Count != 1;
-        deleteSelectedButton.Disabled = Selected.Count == 0;
-        deleteOldButton.Disabled = (currentAutoSaveCount <= 1) && (currentQuickSaveCount <= 1);
-    }
+	private void UpdateButtonsStatus()
+	{
+		loadButton.Disabled = Selected.Count != 1;
+		deleteSelectedButton.Disabled = Selected.Count == 0;
+		deleteOldButton.Disabled = (currentAutoSaveCount <= 1) && (currentQuickSaveCount <= 1);
+	}
 
-    private void LoadFirstSelectedSave()
-    {
-        if (Selected.Count < 1)
-            return;
+	private void LoadFirstSelectedSave()
+	{
+		if (Selected.Count < 1)
+			return;
 
-        Selected[0].LoadThisSave();
-    }
+		Selected[0].LoadThisSave();
+	}
 
-    private void LoadFirstSelectedSaveButtonPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
+	private void LoadFirstSelectedSaveButtonPressed()
+	{
+		GUICommon.Instance.PlayButtonPressSound();
 
-        LoadFirstSelectedSave();
-    }
+		LoadFirstSelectedSave();
+	}
 
-    private void RefreshButtonPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
+	private void RefreshButtonPressed()
+	{
+		GUICommon.Instance.PlayButtonPressSound();
 
-        RefreshList();
-    }
+		RefreshList();
+	}
 
-    private void OpenSaveDirectoryPressed()
-    {
-        OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.SAVE_FOLDER));
-    }
+	private void OpenSaveDirectoryPressed()
+	{
+		OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.SAVE_FOLDER));
+	}
 
-    private void DeleteSelectedButtonPressed()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
+	private void DeleteSelectedButtonPressed()
+	{
+		GUICommon.Instance.PlayButtonPressSound();
 
-        deleteSelectedConfirmDialog.DialogText =
-            "Deleting the selected save(s) cannot be undone, are you sure you want to permanently delete " +
-            $"{Selected.Count} save(s)?";
-        deleteSelectedConfirmDialog.PopupCenteredMinsize();
-    }
+		deleteSelectedConfirmDialog.DialogText =
+			"Deleting the selected save(s) cannot be undone, are you sure you want to permanently delete " +
+			$"{Selected.Count} save(s)?";
+		deleteSelectedConfirmDialog.PopupCenteredMinsize();
+	}
 
-    private void DeleteOldButtonPressed()
-    {
-        int autoSavesToDeleteCount = (currentAutoSaveCount - 1).Clamp(0, Settings.Instance.MaxAutoSaves);
-        int quickSavesToDeleteCount = (currentQuickSaveCount - 1).Clamp(0, Settings.Instance.MaxQuickSaves);
+	private void DeleteOldButtonPressed()
+	{
+		int autoSavesToDeleteCount = (currentAutoSaveCount - 1).Clamp(0, Settings.Instance.MaxAutoSaves);
+		int quickSavesToDeleteCount = (currentQuickSaveCount - 1).Clamp(0, Settings.Instance.MaxQuickSaves);
 
-        deleteOldConfirmDialog.DialogText =
-            "Deleting all old Auto and Quick saves cannot be undone, " +
-            "are you sure you want to permanently delete the following?\n" +
-            $" - {autoSavesToDeleteCount} Auto save(s)\n" +
-            $" - {quickSavesToDeleteCount} Quick save(s)";
-        deleteOldConfirmDialog.PopupCenteredMinsize();
-    }
+		deleteOldConfirmDialog.DialogText =
+			"Deleting all old Auto and Quick saves cannot be undone, " +
+			"are you sure you want to permanently delete the following?\n" +
+			$" - {autoSavesToDeleteCount} Auto save(s)\n" +
+			$" - {quickSavesToDeleteCount} Quick save(s)";
+		deleteOldConfirmDialog.PopupCenteredMinsize();
+	}
 
-    private void OnConfirmDeleteSelected()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
+	private void OnConfirmDeleteSelected()
+	{
+		GUICommon.Instance.PlayButtonPressSound();
 
-        GD.Print("Deleting save(s): ", string.Join(", ", Selected.Select(item => item.SaveName).ToList()));
+		GD.Print("Deleting save(s): ", string.Join(", ", Selected.Select(item => item.SaveName).ToList()));
 
-        Selected.ForEach(item => SaveHelper.DeleteSave(item.SaveName));
-        deleteSelectedButton.Disabled = true;
-        selected = null;
+		Selected.ForEach(item => SaveHelper.DeleteSave(item.SaveName));
+		deleteSelectedButton.Disabled = true;
+		selected = null;
 
-        RefreshList();
-    }
+		RefreshList();
+	}
 
-    private void OnConfirmDeleteOld()
-    {
-        string message = string.Join(", ", SaveHelper.CleanUpOldSavesOfType("auto_save"));
+	private void OnConfirmDeleteOld()
+	{
+		string message = string.Join(", ", SaveHelper.CleanUpOldSavesOfType("auto_save"));
 
-        if (message.Length > 0)
-            message += ", ";
+		if (message.Length > 0)
+			message += ", ";
 
-        message += string.Join(", ", SaveHelper.CleanUpOldSavesOfType("quick_save"));
+		message += string.Join(", ", SaveHelper.CleanUpOldSavesOfType("quick_save"));
 
-        GD.Print("Deleted save(s): ", message);
+		GD.Print("Deleted save(s): ", message);
 
-        RefreshList();
-    }
+		RefreshList();
+	}
 
-    private void OnBackButton()
-    {
-        GUICommon.Instance.PlayButtonPressSound();
+	private void OnBackButton()
+	{
+		GUICommon.Instance.PlayButtonPressSound();
 
-        EmitSignal(nameof(OnBackPressed));
-    }
+		EmitSignal(nameof(OnBackPressed));
+	}
 }
