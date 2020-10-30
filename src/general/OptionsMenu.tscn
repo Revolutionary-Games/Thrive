@@ -175,7 +175,6 @@ custom_constants/margin_left = 15
 custom_constants/margin_bottom = 15
 
 [node name="Graphics" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer"]
-visible = false
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 516.0
@@ -662,6 +661,7 @@ pressed = true
 text = "Run auto-evo during gameplay"
 
 [node name="Misc" type="Control" parent="CenterContainer/VBoxContainer/PanelContainer/MarginContainer"]
+visible = false
 margin_left = 15.0
 margin_top = 15.0
 margin_right = 516.0

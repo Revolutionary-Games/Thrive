@@ -400,6 +400,7 @@ public class OptionsMenu : Control
             settings.CustomUsername :
             Environment.UserName;
         customUsername.Editable = settings.CustomUsernameEnabled;
+        goToScreenshotFolder.Pressed = settings.OpenScreenShotFolder;
     }
 
     private void SwitchMode(OptionsMode mode)
