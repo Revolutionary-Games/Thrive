@@ -289,7 +289,6 @@ public class Settings
         return true;
     }
 
-
     /// <summary>
     ///   Applies all current settings to any applicable engine systems.
     /// </summary>
@@ -420,8 +419,4 @@ public class Settings
             setting.AssignFrom(property.GetValue(settings));
         }
     }
-    
-    
-    
 }
-    
