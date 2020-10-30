@@ -51,12 +51,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
     /// <summary>
     ///   Where all user actions will  be registered
     /// </summary>
-    /// <remarks>
-    ///   <para>
-    ///     This is ignored until saving these actions to json is done
-    ///   </para>
-    /// </remarks>
-    [JsonIgnore]
+    [JsonProperty]
     private ActionHistory<EditorAction> history;
 
     private Material invalidMaterial;
@@ -408,8 +403,6 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         hoverHexes = new List<MeshInstance>();
         hoverOrganelles = new List<SceneDisplayer>();
 
-        history = new ActionHistory<EditorAction>();
-
         // Create new hover hexes. See the TODO comment in _Process
         // This seems really cluttered, there must be a better way.
         for (int i = 0; i < Constants.MAX_HOVER_HEXES; ++i)
@@ -424,6 +417,8 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
 
         if (!IsLoadedFromSave)
         {
+            history = new ActionHistory<EditorAction>();
+
             // Start a new game if no game has been started
             if (CurrentGame == null)
             {
@@ -1532,6 +1527,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         return SimulationParameters.Instance.GetOrganelleType(name);
     }
 
+    [DeserializedCallbackAllowed]
     private void DoOrganellePlaceAction(EditorAction action)
     {
         var data = (PlacementActionData)action.Data;
@@ -1565,6 +1561,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         editedMicrobeOrganelles.Add(organelle);
     }
 
+    [DeserializedCallbackAllowed]
     private void UndoOrganellePlaceAction(EditorAction action)
     {
         var data = (PlacementActionData)action.Data;
@@ -1599,12 +1596,14 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         return true;
     }
 
+    [DeserializedCallbackAllowed]
     private void DoOrganelleRemoveAction(EditorAction action)
     {
         var data = (RemoveActionData)action.Data;
         editedMicrobeOrganelles.Remove(data.Organelle);
     }
 
+    [DeserializedCallbackAllowed]
     private void UndoOrganelleRemoveAction(EditorAction action)
     {
         var data = (RemoveActionData)action.Data;
@@ -1907,11 +1906,16 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         /// <summary>
         ///   Action specific data
         /// </summary>
+        [JsonProperty]
         public object Data;
 
+        [JsonProperty]
         private readonly Action<EditorAction> redo;
+
+        [JsonProperty]
         private readonly Action<EditorAction> undo;
 
+        [JsonProperty]
         private readonly MicrobeEditor editor;
 
         public EditorAction(MicrobeEditor editor, int cost,
@@ -1938,6 +1942,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         }
     }
 
+    [JSONAlwaysDynamicType]
     private class PlacementActionData
     {
         public List<OrganelleTemplate> ReplacedCytoplasm;
@@ -1949,6 +1954,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         }
     }
 
+    [JSONAlwaysDynamicType]
     private class RemoveActionData
     {
         public OrganelleTemplate Organelle;
@@ -1959,6 +1965,7 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         }
     }
 
+    [JSONAlwaysDynamicType]
     private class MembraneActionData
     {
         public MembraneType OldMembrane;
