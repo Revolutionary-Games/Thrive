@@ -197,7 +197,7 @@ public class OptionsMenu : Control
     private LineEdit customUsername;
 
     private CheckBox tutorialsEnabled;
-    
+
     private Button goToScreenshotFolder;
 
     // Confirmation Boxes
@@ -300,7 +300,7 @@ public class OptionsMenu : Control
         defaultsConfirmationBox = GetNode<ConfirmationDialog>(DefaultsConfirmationBoxPath);
         errorAcceptBox = GetNode<AcceptDialog>(ErrorAcceptBoxPath);
         goToScreenshotFolder = GetNode<Button>(ScreenshotFolderPath);
-        
+
         selectedOptionsTab = SelectedOptionsTab.Graphics;
     }
 
@@ -400,7 +400,6 @@ public class OptionsMenu : Control
             settings.CustomUsername :
             Environment.UserName;
         customUsername.Editable = settings.CustomUsernameEnabled;
-        
     }
 
     private void SwitchMode(OptionsMode mode)
