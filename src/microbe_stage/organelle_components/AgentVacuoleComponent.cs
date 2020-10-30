@@ -1,4 +1,4 @@
-﻿/// <summary>
+/// <summary>
 ///   Adds toxin shooting capability
 /// </summary>
 public class AgentVacuoleComponent : IOrganelleComponent
