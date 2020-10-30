@@ -471,6 +471,9 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
             if (Compounds[i] == null)
                 break;
 
+            if (!storage.IsUseful(Compounds[i]))
+                continue;
+
             // Overestimate of how much compounds we get
             float generousAmount = HackyAdress(Density[localX, localY], i) *
                 Constants.SKIP_TRYING_TO_ABSORB_RATIO;
