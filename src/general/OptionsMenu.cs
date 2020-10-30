@@ -127,7 +127,7 @@ public class OptionsMenu : Control
 
     [Export]
     public NodePath TutorialsEnabledPath;
- 
+
     [Export]
     public NodePath ScreenshotFolderPath;
 
@@ -186,6 +186,7 @@ public class OptionsMenu : Control
     private CheckBox tutorialsEnabled;
 
     private Button goToScreenshotFolder;
+
     // Confirmation Boxes
     private WindowDialog backConfirmationBox;
     private ConfirmationDialog defaultsConfirmationBox;
@@ -307,7 +308,6 @@ public class OptionsMenu : Control
         UpdateResetSaveButtonState();
 
         Show();
-
     }
 
     /// <summary>
@@ -378,7 +378,7 @@ public class OptionsMenu : Control
         maxAutosaves.Value = settings.MaxAutoSaves;
         maxAutosaves.Editable = settings.AutoSaveEnabled;
         maxQuicksaves.Value = settings.MaxQuickSaves;
-        goToScreenshotFolder.Pressed = settings.OpenScreenshotFolder;        
+        goToScreenshotFolder.Pressed = settings.OpenScreenshotFolder;
     }
 
     private void SwitchMode(OptionsMode mode)
@@ -929,13 +929,13 @@ public class OptionsMenu : Control
 
         UpdateResetSaveButtonState();
     }
-    
-     private void OnOpenScreenshotFolder()
-    {  
+
+    private void OnOpenScreenshotFolder()
+    {
         GUICommon.Instance.PlayButtonPressSound();
 
         OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.SCREENSHOT_FOLDER));
-        
+
         UpdateResetSaveButtonState();
     }
 }
