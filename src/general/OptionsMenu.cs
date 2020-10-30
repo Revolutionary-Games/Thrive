@@ -194,7 +194,6 @@ public class OptionsMenu : Control
     private LineEdit customUsername;
 
     private CheckBox tutorialsEnabled;
-   
 
     // Confirmation Boxes
     private WindowDialog backConfirmationBox;
@@ -295,7 +294,6 @@ public class OptionsMenu : Control
         backConfirmationBox = GetNode<WindowDialog>(BackConfirmationBoxPath);
         defaultsConfirmationBox = GetNode<ConfirmationDialog>(DefaultsConfirmationBoxPath);
         errorAcceptBox = GetNode<AcceptDialog>(ErrorAcceptBoxPath);
-        
 
         selectedOptionsTab = SelectedOptionsTab.Graphics;
     }
@@ -396,7 +394,6 @@ public class OptionsMenu : Control
             settings.CustomUsername :
             Environment.UserName;
         customUsername.Editable = settings.CustomUsernameEnabled;
-        
     }
 
     private void SwitchMode(OptionsMode mode)

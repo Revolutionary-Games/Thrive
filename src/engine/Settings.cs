@@ -184,8 +184,7 @@ public class Settings
     ///   Username that the user can choose
     /// </summary>
     public SettingValue<string> CustomUsername { get; set; } = new SettingValue<string>(null);
-    
-    
+
     [JsonIgnore]
     public string ActiveUsername =>
         CustomUsernameEnabled &&
