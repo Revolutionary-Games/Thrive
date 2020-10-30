@@ -419,7 +419,9 @@ public class Settings
             setting.AssignFrom(property.GetValue(settings));
         }
     }
-}using Godot;
+}
+
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
