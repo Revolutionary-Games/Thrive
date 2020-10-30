@@ -419,20 +419,8 @@ public class Settings
 
 			setting.AssignFrom(property.GetValue(settings));
 		}
-	}	
+	}		
 	
-	/*public bool  OpenScreenshotFolder()
-	{
-		
-		using (var directory = new Directory())
-		{
-			if (!directory.DirExists(Constants.SCREENSHOT_FOLDER)) return false;
-			
-			OS.ShellOpen(ProjectSettings.GlobalizePath(Constants.SCREENSHOT_FOLDER));
-			
-			return true;
-		}
-	}*/
 	
 }
 	
