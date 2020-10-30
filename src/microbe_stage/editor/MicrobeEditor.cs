@@ -377,6 +377,14 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         // This might be disposed if this was loaded from a save and we loaded another save
         try
         {
+            if (IsLoadedFromSave)
+            {
+                // When loaded from save, the stage needs to be attached as a scene for the callbacks that reattach
+                // children to run, otherwise some objects won't be correctly deleted
+                if (ReturnToStage != null)
+                    SceneManager.Instance.AttachAndDetachScene(ReturnToStage);
+            }
+
             ReturnToStage?.QueueFree();
         }
         catch (ObjectDisposedException)
