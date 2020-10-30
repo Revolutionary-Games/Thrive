@@ -471,6 +471,7 @@ public class CompoundCloudPlane : CSGMesh, ISaveApplyable
             if (Compounds[i] == null)
                 break;
 
+            // Skip if compound is non-useful
             if (!storage.IsUseful(Compounds[i]))
                 continue;
 
