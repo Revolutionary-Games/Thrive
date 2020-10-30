@@ -144,9 +144,6 @@ public class OptionsMenu : Control
     [Export]
     public NodePath CustomUsernamePath;
 
-    [Export]
-    public NodePath ScreenshotFolderPath;
-
     private Button resetButton;
     private Button saveButton;
 
@@ -197,8 +194,7 @@ public class OptionsMenu : Control
     private LineEdit customUsername;
 
     private CheckBox tutorialsEnabled;
-
-    private Button goToScreenshotFolder;
+   
 
     // Confirmation Boxes
     private WindowDialog backConfirmationBox;
@@ -299,7 +295,7 @@ public class OptionsMenu : Control
         backConfirmationBox = GetNode<WindowDialog>(BackConfirmationBoxPath);
         defaultsConfirmationBox = GetNode<ConfirmationDialog>(DefaultsConfirmationBoxPath);
         errorAcceptBox = GetNode<AcceptDialog>(ErrorAcceptBoxPath);
-        goToScreenshotFolder = GetNode<Button>(ScreenshotFolderPath);
+        
 
         selectedOptionsTab = SelectedOptionsTab.Graphics;
     }
@@ -400,7 +396,7 @@ public class OptionsMenu : Control
             settings.CustomUsername :
             Environment.UserName;
         customUsername.Editable = settings.CustomUsernameEnabled;
-        goToScreenshotFolder.Pressed = settings.OpenScreenShotFolder;
+        
     }
 
     private void SwitchMode(OptionsMode mode)

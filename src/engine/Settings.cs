@@ -184,9 +184,8 @@ public class Settings
     ///   Username that the user can choose
     /// </summary>
     public SettingValue<string> CustomUsername { get; set; } = new SettingValue<string>(null);
-
-    public SettingValue<bool> OpenScreenShotFolder { get; set; } = new SettingValue<bool>(false);
-
+    
+    
     [JsonIgnore]
     public string ActiveUsername =>
         CustomUsernameEnabled &&
