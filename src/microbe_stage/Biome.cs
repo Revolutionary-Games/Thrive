@@ -1,4 +1,4 @@
-﻿using Godot;
+using Godot;
 using Newtonsoft.Json;
 
 /// <summary>

@@ -1,4 +1,4 @@
-﻿/// <summary>
+/// <summary>
 ///   Population effect external to the auto-evo simulation
 /// </summary>
 public class ExternalEffect
