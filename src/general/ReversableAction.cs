@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 /// <summary>
 ///   Action that can be undone and redone
