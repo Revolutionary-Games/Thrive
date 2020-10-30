@@ -89,8 +89,7 @@ public class LineChart : VBoxContainer
     /// <summary>
     ///   Datasets to be plotted on the chart
     /// </summary>
-    public System.Collections.Generic.Dictionary<string, LineChartData> DataSets { get; set; } =
-        new System.Collections.Generic.Dictionary<string, LineChartData>();
+    public Dictionary<string, LineChartData> DataSets { get; set; } = new Dictionary<string, LineChartData>();
 
     public Vector2 MinValues { get; private set; }
 
@@ -269,18 +268,12 @@ public class LineChart : VBoxContainer
 
                     legendContainer.AddChild(icon);
 
-                    icon.Connect("mouse_entered", this, nameof(IconLegendMouseEnter), new Array
-                    {
-                        icon, fallbackIconIsUsed, data.Value.DataColor,
-                    });
-                    icon.Connect("mouse_exited", this, nameof(IconLegendMouseExit), new Array
-                    {
-                        icon, fallbackIconIsUsed, data.Value.DataColor,
-                    });
-                    icon.Connect("toggled", this, nameof(IconLegendToggled), new Array
-                    {
-                        icon, data.Key, fallbackIconIsUsed,
-                    });
+                    icon.Connect("mouse_entered", this, nameof(IconLegendMouseEnter), new Array {
+                        icon, fallbackIconIsUsed, data.Value.DataColor });
+                    icon.Connect("mouse_exited", this, nameof(IconLegendMouseExit), new Array {
+                        icon, fallbackIconIsUsed, data.Value.DataColor });
+                    icon.Connect("toggled", this, nameof(IconLegendToggled), new Array {
+                        icon, data.Key, fallbackIconIsUsed });
 
                     // Set initial icon toggle state
                     if (!data.Value.Draw)
@@ -339,9 +332,9 @@ public class LineChart : VBoxContainer
         }
     }
 
-    public void UpdateDataSetVisibility(string name, bool visibility)
+    public void UpdateDataSetVisibility(string name, bool visible)
     {
-        DataSets[name].Draw = visibility;
+        DataSets[name].Draw = visible;
         drawer.Update();
     }
 

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Godot;
 
 /// <summary>
@@ -5,128 +6,76 @@ using Godot;
 /// </summary>
 public class PlayerMicrobeInput : Node
 {
+    // Inputs all grouped for easy focus loss and input passing
+    private readonly InputGroup inputs;
+
+    private readonly InputAxis forwardBackAxis;
+    private readonly InputAxis leftRightAxis;
+
+    // Access to individual inputs
+
+    private readonly InputTrigger forward = new InputTrigger("g_move_forward");
+    private readonly InputTrigger backwards = new InputTrigger("g_move_backwards");
+    private readonly InputTrigger left = new InputTrigger("g_move_left");
+    private readonly InputTrigger right = new InputTrigger("g_move_right");
+
+    // Other inputs
+
+    private readonly InputTrigger cheatEditor = new InputTrigger("g_cheat_editor");
+    private readonly InputBool cheatGlucose = new InputBool("g_cheat_glucose");
+    private readonly InputBool cheatAmmonia = new InputBool("g_cheat_ammonia");
+    private readonly InputBool cheatPhosphates = new InputBool("g_cheat_phosphates");
+
+    private readonly InputTrigger toggleEngulf = new InputTrigger("g_toggle_engulf");
+
+    private readonly InputBool fireToxin = new InputBool("g_fire_toxin");
+    private readonly InputToggle autoMove = new InputToggle("g_hold_forward");
+
     /// <summary>
     ///   A reference to the stage is kept to get to the player object
     ///   and also the cloud spawning.
     /// </summary>
     private MicrobeStage stage;
 
-    /// <summary>
-    ///  Whether or not the player is allowed to use auto-move
-    /// </summary>
-    private bool autoMoveAllowed = true;
+    public PlayerMicrobeInput()
+    {
+        forwardBackAxis = new InputAxis(new List<(InputBool input, int associatedValue)>
+        {
+            (forward, -1),
+            (backwards, 1),
+        });
 
-    // // All the input actions
-    private bool forward;
-    private bool backwards;
-    private bool left;
-    private bool right;
+        leftRightAxis = new InputAxis(new List<(InputBool input, int associatedValue)>
+        {
+            (left, -1),
+            (right, 1),
+        });
 
-    private bool cheatGlucose;
-    private bool cheatAmmonia;
-    private bool cheatPhosphates;
+        inputs = new InputGroup(new List<IInputReceiver>
+        {
+            forwardBackAxis,
+            leftRightAxis,
+            autoMove,
+            toggleEngulf,
+            fireToxin,
+            cheatEditor,
+            cheatGlucose,
+            cheatAmmonia,
+            cheatPhosphates,
+        });
+    }
 
     public override void _Ready()
     {
+        // Not the cleanest that the parent has to be MicrobeState type...
         stage = (MicrobeStage)GetParent();
     }
 
     public override void _UnhandledInput(InputEvent @event)
     {
-        var settings = Settings.Instance;
-
-        if (@event.IsActionPressed("g_hold_forward") && autoMoveAllowed)
+        if (inputs.CheckInput(@event))
         {
-            forward = !forward;
-        }
-
-        if (@event.IsActionPressed("g_move_forward"))
-        {
-            forward = true;
-            autoMoveAllowed = false;
-        }
-        else if (@event.IsActionReleased("g_move_forward"))
-        {
-            forward = false;
-            autoMoveAllowed = true;
-        }
-
-        if (@event.IsActionPressed("g_move_backwards"))
-        {
-            backwards = true;
-            autoMoveAllowed = false;
-        }
-        else if (@event.IsActionReleased("g_move_backwards"))
-        {
-            backwards = false;
-            autoMoveAllowed = true;
-        }
-
-        if (@event.IsActionPressed("g_move_left"))
-        {
-            left = true;
-            autoMoveAllowed = false;
-        }
-        else if (@event.IsActionReleased("g_move_left"))
-        {
-            left = false;
-            autoMoveAllowed = true;
-        }
-
-        if (@event.IsActionPressed("g_move_right"))
-        {
-            right = true;
-            autoMoveAllowed = false;
-        }
-        else if (@event.IsActionReleased("g_move_right"))
-        {
-            right = false;
-            autoMoveAllowed = true;
-        }
-
-        if (settings.CheatsEnabled && @event.IsActionPressed("g_cheat_editor"))
-        {
-            stage.HUD.ShowReproductionDialog();
-        }
-
-        if (settings.CheatsEnabled && @event.IsActionPressed("g_cheat_glucose"))
-        {
-            cheatGlucose = true;
-        }
-        else if (@event.IsActionReleased("g_cheat_glucose"))
-        {
-            cheatGlucose = false;
-        }
-
-        if (settings.CheatsEnabled && @event.IsActionPressed("g_cheat_ammonia"))
-        {
-            cheatAmmonia = true;
-        }
-        else if (@event.IsActionReleased("g_cheat_ammonia"))
-        {
-            cheatAmmonia = false;
-        }
-
-        if (settings.CheatsEnabled && @event.IsActionPressed("g_cheat_phosphates"))
-        {
-            cheatPhosphates = true;
-        }
-        else if (@event.IsActionReleased("g_cheat_phosphates"))
-        {
-            cheatPhosphates = false;
-        }
-
-        if (@event.IsActionPressed("g_toggle_engulf"))
-        {
-            if (stage.Player != null)
-            {
-                stage.Player.EngulfMode = !stage.Player.EngulfMode;
-            }
-        }
-
-        if (@event.IsActionPressed("g_fire_toxin", true))
-        {
-            stage.Player?.EmitToxin();
+            GetTree().SetInputAsHandled();
         }
     }
 
@@ -136,38 +85,29 @@ public class PlayerMicrobeInput : Node
         // We reset our held down keys if the player tabs out while pressing a key
         if (focus == MainLoop.NotificationWmFocusOut)
         {
-            if (!autoMoveAllowed)
-            {
-                forward = false;
-                backwards = false;
-                left = false;
-                right = false;
-            }
+            inputs.FocusLost();
         }
     }
 
     public override void _Process(float delta)
     {
-        var movement = new Vector3(0, 0, 0);
+        inputs.OnFrameChanged();
 
-        if (forward)
+        var settings = Settings.Instance;
+
+        float forwardMovement = forwardBackAxis.CurrentValue;
+
+        if (autoMove.ToggledOn)
         {
-            movement.z -= 1;
+            forwardMovement = -1;
         }
 
-        if (backwards)
-        {
-            movement.z += 1;
-        }
+        var movement = new Vector3(leftRightAxis.CurrentValue, 0, forwardMovement);
 
-        if (left)
+        // Reset auto move if a key was pressed
+        if (forward.ReadTrigger() || backwards.ReadTrigger() || left.ReadTrigger() || right.ReadTrigger())
         {
-            movement.x -= 1;
-        }
-
-        if (right)
-        {
-            movement.x += 1;
+            autoMove.ToggledOn = false;
         }
 
         if (stage.Player != null)
@@ -176,17 +116,35 @@ public class PlayerMicrobeInput : Node
             stage.Player.LookAtPoint = stage.Camera.CursorWorldPos;
         }
 
-        if (cheatAmmonia)
+        if (fireToxin.Pressed)
+        {
+            stage.Player?.EmitToxin();
+        }
+
+        if (toggleEngulf.ReadTrigger())
+        {
+            if (stage.Player != null)
+            {
+                stage.Player.EngulfMode = !stage.Player.EngulfMode;
+            }
+        }
+
+        if (settings.CheatsEnabled && cheatEditor.ReadTrigger())
+        {
+            stage.HUD.ShowReproductionDialog();
+        }
+
+        if (settings.CheatsEnabled && cheatAmmonia.Pressed)
         {
             SpawnCheatCloud("ammonia", delta);
         }
 
-        if (cheatGlucose)
+        if (settings.CheatsEnabled && cheatGlucose.Pressed)
         {
             SpawnCheatCloud("glucose", delta);
         }
 
-        if (cheatPhosphates)
+        if (settings.CheatsEnabled && cheatPhosphates.Pressed)
         {
             SpawnCheatCloud("phosphates", delta);
         }
