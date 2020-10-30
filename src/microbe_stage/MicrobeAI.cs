@@ -715,7 +715,7 @@ public class MicrobeAI
     // For self defense (not necessarily fleeing)
     private void DealWithPredators(Random random)
     {
-        if (random.Next(0, 50) <= 10)
+        if (RollCheck(SpeciesFocus, 150.0f, random))
         {
             hasTargetPosition = false;
         }
@@ -748,7 +748,7 @@ public class MicrobeAI
     private void PreyFlee(Random random)
     {
         // If focused you can run away more specifically, if not you freak out and scatter
-        if (predator == null || !RollCheck(SpeciesFocus, 500.0f, random))
+        if (predator == null || !RollCheck(SpeciesFocus, 200.0f, random))
         {
             // Scatter
             var randAngle = random.Next(-2 * Mathf.Pi, 2 * Mathf.Pi);
