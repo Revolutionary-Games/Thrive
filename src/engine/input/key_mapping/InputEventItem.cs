@@ -1,6 +1,4 @@
-﻿using System;
 using Godot;
-using Newtonsoft.Json;
 
 /// <summary>
 ///   Defines one specific event associated to an <see cref="InputActionItem">InputActionItem</see>.
@@ -10,7 +8,12 @@ public class InputEventItem : Node
     [Export]
     public NodePath ButtonPath;
 
+    [Export]
+    public NodePath XButtonPath;
+
     private Button button;
+    private Button xbutton;
+    private bool wasPressingButton;
 
     /// <summary>
     ///   If it is currently awaiting the user to press a button
@@ -21,20 +24,16 @@ public class InputEventItem : Node
     ///   The currently assigned godot input event.
     ///   null if this event was just created
     /// </summary>
-    [JsonProperty]
-    [JsonConverter(typeof(InputEventWithModifiersConverter))]
-    public InputEventWithModifiers AssociatedEvent { get; set; }
+    public ThriveInputEventWithModifiers AssociatedEvent { get; set; }
 
     /// <summary>
     ///   The action this event is associated with
     /// </summary>
-    [JsonIgnore]
     internal InputActionItem AssociatedAction { get; set; }
 
     /// <summary>
     ///   If the event was just created and has never been assigned with a value
     /// </summary>
-    [JsonIgnore]
     internal bool JustAdded { get; set; }
 
     /// <summary>
@@ -49,8 +48,10 @@ public class InputEventItem : Node
     public override void _Ready()
     {
         button = GetNode<Button>(ButtonPath);
+        xbutton = GetNode<Button>(XButtonPath);
+
         if (JustAdded)
-            OnButtonPressed();
+            OnButtonLeftPressed();
         else
             UpdateButtonText();
     }
@@ -74,13 +75,33 @@ public class InputEventItem : Node
         if (!(@event is InputEventMouseButton) && !(@event is InputEventKey))
             return;
 
+        if ((@event is InputEventMouseButton inputMouse) && inputMouse.ButtonIndex == (int)ButtonList.Left &&
+            xbutton.IsHovered())
+        {
+            Delete();
+            return;
+        }
+
+        if (wasPressingButton)
+        {
+            wasPressingButton = false;
+            return;
+        }
+
         if (@event is InputEventKey iek)
         {
             switch (iek.Scancode)
             {
                 case (uint)KeyList.Escape:
+                    if (AssociatedEvent == null)
+                    {
+                        Delete();
+                        return;
+                    }
+
                     InputGroupList.Instance.WasListeningForInput = true;
-                    Delete();
+                    WaitingForInput = false;
+                    UpdateButtonText();
                     return;
                 case (uint)KeyList.Alt:
                 case (uint)KeyList.Shift:
@@ -91,15 +112,16 @@ public class InputEventItem : Node
 
         // The old godot input event. Null if this event is assigned a value the first time.
         var old = AssociatedEvent;
-        AssociatedEvent = (InputEventWithModifiers)@event;
+        AssociatedEvent = new ThriveInputEventWithModifiers((InputEventWithModifiers)@event);
 
         // Get the conflicts with the new input.
         var conflict = InputGroupList.Instance.Conflicts(this);
         if (conflict != null)
         {
-            // If there are conflicts detected reset the changes and ask the user.
-            InputGroupList.Instance.ShowInputConflictDialog(this, conflict, AssociatedEvent);
             AssociatedEvent = old;
+
+            // If there are conflicts detected reset the changes and ask the user.
+            InputGroupList.Instance.ShowInputConflictDialog(this, conflict, (InputEventWithModifiers)@event);
             return;
         }
 
@@ -129,81 +151,60 @@ public class InputEventItem : Node
         UpdateButtonText();
     }
 
-
     public override bool Equals(object obj)
     {
         if (!(obj is InputEventItem input))
             return false;
 
-        return string.Equals(AsText(), input.AsText(), StringComparison.InvariantCulture);
+        return Equals(AssociatedEvent, input.AssociatedEvent);
     }
 
     public override int GetHashCode()
     {
-        return AsText().GetHashCode();
+        return AssociatedEvent.GetHashCode();
     }
 
     protected override void Dispose(bool disposing)
     {
         AssociatedAction = null;
+        button?.Dispose();
+        xbutton?.Dispose();
         base.Dispose(disposing);
     }
 
-    private void OnButtonPressed()
+    private void OnButtonPressed(InputEvent @event)
+    {
+        if (InputGroupList.Instance.IsConflictDialogOpen())
+            return;
+
+        if (InputGroupList.Instance.ListeningForInput)
+            return;
+
+        if (!(@event is InputEventMouseButton inputButton))
+            return;
+
+        switch (inputButton.ButtonIndex)
+        {
+            case (int)ButtonList.Left:
+                wasPressingButton = true;
+                OnButtonLeftPressed();
+                break;
+            case (int)ButtonList.Right:
+                Delete();
+                break;
+        }
+    }
+
+    private void OnButtonLeftPressed()
     {
         WaitingForInput = true;
         button.Text = "Press a key...";
+        xbutton.Visible = true;
     }
 
     private void UpdateButtonText()
     {
-        button.Text = AsText();
-    }
-
-    /// <summary>
-    ///   Creates a string for the button to show.
-    /// </summary>
-    /// <returns>
-    ///   A human readable string.
-    /// </returns>
-    private string AsText()
-    {
-        var text = string.Empty;
-
-        // Should never happen, just a fallback
-        if (AssociatedEvent == null)
-            return text;
-
-        switch (AssociatedEvent)
-        {
-            case InputEventMouseButton iemb:
-                if (AssociatedEvent.Control)
-                    text += "Control+";
-                if (AssociatedEvent.Alt)
-                    text += "Alt+";
-                if (AssociatedEvent.Shift)
-                    text += "Shift+";
-                text += iemb.ButtonIndex switch
-                {
-                    1 => "Left mouse",
-                    2 => "Right mouse",
-                    3 => "Middle mouse",
-                    4 => "Wheel up",
-                    5 => "Wheel down",
-                    6 => "Wheel left",
-                    7 => "Wheel right",
-                    8 => "Special 1 mouse",
-                    9 => "Special 2 mouse",
-                    _ => throw new NotSupportedException($"Mouse button {iemb} not supported."),
-                };
-                break;
-            case InputEventKey iek:
-                text += iek.AsText();
-                break;
-            default:
-                throw new NotSupportedException($"Input event {AssociatedEvent} is not supported");
-        }
-
-        return text;
+        button.Text = AssociatedEvent.ToString();
+        xbutton.Visible = false;
     }
 }

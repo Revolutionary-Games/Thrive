@@ -35,11 +35,11 @@
     <Compile Include="src\engine\input\key_mapping\InputActionItem.cs" />
     <Compile Include="src\engine\input\key_mapping\InputDataList.cs" />
     <Compile Include="src\engine\input\key_mapping\InputEventItem.cs" />
-    <Compile Include="src\engine\input\key_mapping\InputEventWithModifiersConverter.cs" />
     <Compile Include="src\engine\input\key_mapping\InputGroupItem.cs" />
-    <Compile Include="src\engine\input\key_mapping\InputGroupItemConverter.cs" />
     <Compile Include="src\engine\input\key_mapping\InputGroupList.cs" />
-    <Compile Include="src\engine\input\key_mapping\InputActionItemConverter.cs" />
+    <Compile Include="src\engine\input\key_mapping\serialisation\NamedInputAction.cs" />
+    <Compile Include="src\engine\input\key_mapping\serialisation\NamedInputGroup.cs" />
+    <Compile Include="src\engine\input\key_mapping\ThriveInputEventWithModifiers.cs" />
     <Compile Include="src\engine\Invoke.cs" />
     <Compile Include="src\engine\LoadingScreen.cs" />
     <Compile Include="src\engine\PostStartupActions.cs" />

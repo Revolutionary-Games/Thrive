@@ -7,10 +7,25 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-ButtonPath = NodePath("Button")
+ButtonPath = NodePath("HBoxContainer/Button")
+XButtonPath = NodePath("HBoxContainer/XButton")
 
-[node name="Button" type="Button" parent="."]
-margin_right = 12.0
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_right = 94.0
+margin_bottom = 20.0
+custom_constants/separation = 0
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+margin_right = 75.0
 margin_bottom = 20.0
 focus_mode = 0
-[connection signal="pressed" from="Button" to="." method="OnButtonPressed"]
+text = "Control+A"
+
+[node name="XButton" type="Button" parent="HBoxContainer"]
+margin_left = 75.0
+margin_right = 94.0
+margin_bottom = 20.0
+custom_colors/font_color = Color( 0.784314, 0, 0, 1 )
+action_mode = 0
+text = "x"
+[connection signal="gui_input" from="HBoxContainer/Button" to="." method="OnButtonPressed"]
