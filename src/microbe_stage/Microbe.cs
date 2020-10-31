@@ -1185,6 +1185,7 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
             }
             catch (Exception)
             {
+                continue;
             }
         }
 
