@@ -135,6 +135,12 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
     private Listener listener;
 
     /// <summary>
+    ///   Returns the number of piluses the microbe has
+    /// </summary>
+    [JsonIgnore]
+    public int PilusCount => pilusPhysicsShapes.Count;
+
+    /// <summary>
     ///   Base Movement Cost in ATP
     /// </summary>
     [JsonIgnore]
@@ -1165,6 +1171,24 @@ public class Microbe : RigidBody, ISpawned, IProcessable, IMicrobeAI
         // TODO: fix existing references in the microbe AI
         // For now we just cause amnesia on the cell's AI
         ai?.ClearAfterLoadedFromSave(this);
+    }
+
+    public Vector3 GetClosestPilusTranslation(Vector3 target)
+    {
+        var piluses = new List<Vector3>();
+        foreach (var organelle in organelles)
+        {
+            try
+            {
+                if (organelle.GetChild<Spatial>(0).GetChild(0).Name == "Pilus")
+                    piluses.Add(organelle.GetChild<Spatial>(0).Translation);
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        return piluses.OrderBy(x => target.DistanceSquaredTo(x + Translation)).ToList()[0];
     }
 
     internal void SuccessfulScavenge()

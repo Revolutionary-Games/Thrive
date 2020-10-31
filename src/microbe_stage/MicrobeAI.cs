@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
@@ -509,7 +509,7 @@ public class MicrobeAI
             if (otherMicrobe.Species != microbe.Species && !otherMicrobe.Dead)
             {
                 if ((SpeciesFear == Constants.MAX_SPECIES_FEAR) ||
-                    ((((microbe.AgentVacuoleCount + otherMicrobe.EngulfSize) * 1.0f) *
+                    ((((microbe.AgentVacuoleCount + microbe.PilusCount + otherMicrobe.EngulfSize) * 1.0f) *
                             (SpeciesFear / Constants.FEAR_DIVISOR)) >
                         (microbe.EngulfSize * 1.0f)))
                 {
@@ -548,7 +548,17 @@ public class MicrobeAI
 
         try
         {
-            targetPosition = prey.Translation;
+            if (microbe.PilusCount == 0 ||
+                microbe.Translation.DistanceSquaredTo(prey.Translation)
+                > Math.Pow(Constants.DEFAULT_HEX_SIZE, 2) * 3)
+            {
+                targetPosition = prey.Translation;
+            }
+            else
+            {
+                targetPosition = prey.Translation.Rotated(microbe.Translation,
+                    microbe.Translation.AngleTo(microbe.GetClosestPilusTranslation(prey.Translation)));
+            }
         }
         catch (ObjectDisposedException)
         {
@@ -571,7 +581,15 @@ public class MicrobeAI
         // Always set target Position, for use later in AI
         if (moveThisHunt)
         {
-            if (moveFocused)
+            if (microbe.PilusCount > 0 &&
+                microbe.Translation.DistanceSquaredTo(prey.Translation)
+                <= Math.Pow(Constants.DEFAULT_HEX_SIZE, 2) * 3)
+            {
+                microbe.MovementDirection = new Vector3(0.0f, 0.0f, -Constants.AI_FOCUSED_MOVEMENT).Rotated(
+                    new Vector3(0.0f, 0.0f, 0.0f),
+                    -microbe.Translation.AngleTo(microbe.GetClosestPilusTranslation(prey.Translation)));
+            }
+            else if (moveFocused)
             {
                 microbe.MovementDirection = new Vector3(0.0f, 0.0f, -Constants.AI_FOCUSED_MOVEMENT);
             }
@@ -617,7 +635,8 @@ public class MicrobeAI
                 && microbe.Compounds.GetCompoundAmount(atp) >= 1.0f
                 && !microbe.EngulfMode &&
                 microbe.EngulfSize > Constants.ENGULF_SIZE_RATIO_REQ * prey.EngulfSize
-                && !microbe.Membrane.Type.CellWall)
+                && !microbe.Membrane.Type.CellWall
+                && microbe.PilusCount == 0)
             {
                 microbe.EngulfMode = true;
                 ticksSinceLastToggle = 0;
