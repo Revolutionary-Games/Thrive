@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using Godot;
 using Newtonsoft.Json;
 
 /// <summary>
+///   Holds the various <see cref="InputGroupItem">input groups</see> in one VBoxContainer.
 ///   Used by OptionsMenu>Inputs>InputGroupContainer
 /// </summary>
 public class InputGroupList : VBoxContainer
@@ -16,7 +16,9 @@ public class InputGroupList : VBoxContainer
     internal static PackedScene InputEventItemScene;
     internal static PackedScene InputGroupItemScene;
     internal static PackedScene InputActionItemScene;
-    private static InputDataList defaultControls = GetCurrentlyAppliedControls();
+
+    private static IEnumerable<InputGroupItem> allGroupItems;
+    private static InputDataList defaultControls;
 
     private ConfirmationDialog conflictDialog;
 
@@ -25,7 +27,16 @@ public class InputGroupList : VBoxContainer
     private InputEventWithModifiers latestDialogNewEvent;
 
     private bool wasListeningForInput;
-    private IEnumerable<InputGroupItem> allGroupItems;
+    private InputDataList loadingData;
+
+    static InputGroupList()
+    {
+        InputEventItemScene = GD.Load<PackedScene>("res://src/engine/input/key_mapping/InputEventItem.tscn");
+        InputGroupItemScene = GD.Load<PackedScene>("res://src/engine/input/key_mapping/InputGroupItem.tscn");
+        InputActionItemScene = GD.Load<PackedScene>("res://src/engine/input/key_mapping/InputActionItem.tscn");
+
+        defaultControls = GetCurrentlyAppliedControls();
+    }
 
     public InputGroupList()
     {
@@ -35,12 +46,44 @@ public class InputGroupList : VBoxContainer
 
     public delegate void ControlsChangedDelegate(InputDataList data);
 
+    /// <summary>
+    ///   Fires whenever some inputs were redefined.
+    /// </summary>
     public event ControlsChangedDelegate OnControlsChanged;
 
     public static InputGroupList Instance { get; private set; }
 
-    public InputDataList LoadingData { get; private set; }
+    /// <summary>
+    ///   The currently loading data.
+    ///   Used by <see cref="InputGroupItemConverter"></see>
+    /// </summary>
+    public InputDataList LoadingData
+    {
+        get => loadingData;
+        private set
+        {
+            loadingData = value;
 
+            // Load json
+            try
+            {
+                using var file = new File();
+                file.Open(Constants.INPUT_OPTIONS, File.ModeFlags.Read);
+                var fileContent = file.GetAsText();
+                allGroupItems = JsonConvert.DeserializeObject<IList<InputGroupItem>>(fileContent);
+                file.Close();
+            }
+            catch (Exception e)
+            {
+                GD.PrintErr($"Could not load the input settings: {e}");
+            }
+        }
+    }
+
+    /// <summary>
+    ///   If I was listening for inputs.
+    ///   Used by the pause menu to not close whenever escape is pressed if the user was redefining keys
+    /// </summary>
     public bool WasListeningForInput
     {
         get
@@ -54,11 +97,20 @@ public class InputGroupList : VBoxContainer
 
     public IEnumerable<InputGroupItem> AllGroupItems => allGroupItems ??= GetChildren().OfType<InputGroupItem>();
 
+    /// <summary>
+    ///   Returns the default controls which never change, unless there is a new release.
+    /// </summary>
+    /// <returns>The default controls</returns>
     public static InputDataList GetDefaultControls()
     {
-        return CloneControls(defaultControls);
+        return (InputDataList)defaultControls.Clone();
     }
 
+    /// <summary>
+    ///   Returns the currently applied controls. Gathers the data from the godot InputMap.
+    ///   Required to get the default controls.
+    /// </summary>
+    /// <returns>The current inputs</returns>
     public static InputDataList GetCurrentlyAppliedControls()
     {
         return new InputDataList(InputMap.GetActions().OfType<string>()
@@ -67,6 +119,10 @@ public class InputGroupList : VBoxContainer
                     .ToList()));
     }
 
+    /// <summary>
+    ///   Returns not only the applied controls, but the controls the user is currently editing before pressing save.
+    /// </summary>
+    /// <returns>The not applied controls.</returns>
     public InputDataList GetCurrentlyPendingControls()
     {
         var groups = AllGroupItems.ToList();
@@ -78,23 +134,15 @@ public class InputGroupList : VBoxContainer
 
     public override void _Ready()
     {
-        InputEventItemScene = GD.Load<PackedScene>("res://src/engine/input/key_mapping/InputEventItem.tscn");
-        InputGroupItemScene = GD.Load<PackedScene>("res://src/engine/input/key_mapping/InputGroupItem.tscn");
-        InputActionItemScene = GD.Load<PackedScene>("res://src/engine/input/key_mapping/InputActionItem.tscn");
-
         conflictDialog = GetNode<ConfirmationDialog>(ConflictDialogPath);
     }
 
-    protected override void Dispose(bool disposing)
-    {
-        foreach (var inputGroupItem in AllGroupItems)
-        {
-            inputGroupItem.Dispose();
-        }
-
-        base.Dispose(disposing);
-    }
-
+    /// <summary>
+    ///   Sets up and displays the "There is a conflict" dialog.
+    /// </summary>
+    /// <param name="caller">The event which wants to be redefined</param>
+    /// <param name="conflict">The event which produced the conflict</param>
+    /// <param name="newEvent">The new event wanted to be set to the caller</param>
     public void ShowInputConflictDialog(InputEventItem caller, InputEventItem conflict, InputEventWithModifiers newEvent)
     {
         latestDialogCaller = caller;
@@ -102,7 +150,7 @@ public class InputGroupList : VBoxContainer
         latestDialogNewEvent = newEvent;
 
         conflictDialog.DialogText = $"There is a conflict with {conflict.AssociatedAction.DisplayName}.\n" +
-            $"Do you want to remove the input from {conflict.AssociatedAction.DisplayName}?";
+                                    $"Do you want to remove the input from {conflict.AssociatedAction.DisplayName}?";
         conflictDialog.PopupCenteredMinsize();
     }
 
@@ -127,6 +175,10 @@ public class InputGroupList : VBoxContainer
             .FirstOrDefault(p => Equals(p, item));
     }
 
+    /// <summary>
+    ///   Loads the input_options.json file and sets up the tree.
+    /// </summary>
+    /// <param name="data">The input data the input tab should be loaded with</param>
     public void InitFromData(InputDataList data)
     {
         LoadingData = data;
@@ -137,25 +189,9 @@ public class InputGroupList : VBoxContainer
             child.Free();
         }
 
-
-        // Load json
-        try
+        foreach (var inputGroup in AllGroupItems)
         {
-            using var file = new File();
-            file.Open(Constants.INPUT_OPTIONS, File.ModeFlags.Read);
-            var fileContent = file.GetAsText();
-            var inputGroups = JsonConvert.DeserializeObject<IList<InputGroupItem>>(fileContent);
-            file.Close();
-
-            foreach (var inputGroup in inputGroups)
-            {
-                AddChild(inputGroup);
-            }
-        }
-        catch (Exception e)
-        {
-            GD.PrintErr($"Could not load the input settings: {e}");
-            InitFromData(Settings.Instance.CurrentControls);
+            AddChild(inputGroup);
         }
     }
 
@@ -175,29 +211,13 @@ public class InputGroupList : VBoxContainer
         OnControlsChanged?.Invoke(GetCurrentlyPendingControls());
     }
 
-    internal static InputDataList CloneControls(InputDataList data)
+    protected override void Dispose(bool disposing)
     {
-        var result = new Dictionary<string, List<InputEventWithModifiers>>();
-        foreach (var keyValuePair in data.Data)
+        foreach (var inputGroupItem in AllGroupItems)
         {
-            result[keyValuePair.Key] = new List<InputEventWithModifiers>();
-            foreach (var inputEventWithModifiers in keyValuePair.Value)
-            {
-                InputEventWithModifiers newEvent = inputEventWithModifiers switch
-                {
-                    InputEventKey key => new InputEventKey { Scancode = key.Scancode, },
-                    InputEventMouseButton mouse => new InputEventMouseButton { ButtonIndex = mouse.ButtonIndex, },
-                    _ => throw new NotSupportedException($"InputType {inputEventWithModifiers.GetType()} not supported"),
-                };
-
-                newEvent.Alt = inputEventWithModifiers.Alt;
-                newEvent.Control = inputEventWithModifiers.Control;
-                newEvent.Shift = inputEventWithModifiers.Shift;
-
-                result[keyValuePair.Key].Add(newEvent);
-            }
+            inputGroupItem.Dispose();
         }
 
-        return new InputDataList(result);
+        base.Dispose(disposing);
     }
 }
