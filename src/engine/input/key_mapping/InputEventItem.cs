@@ -7,22 +7,23 @@ public class InputEventItem : Node
     [Export]
     public NodePath ButtonPath;
 
-    internal InputActionItem AssociatedAction;
-
     internal bool JustAdded;
 
     private Button button;
 
-    private bool waitingForInput;
+    public bool WaitingForInput { get; private set; }
 
     [JsonProperty]
     [JsonConverter(typeof(InputEventWithModifiersConverter))]
     public InputEventWithModifiers AssociatedEvent { get; set; }
 
+    [JsonIgnore]
+    internal InputActionItem AssociatedAction { get; set; }
+
     public void Delete()
     {
         AssociatedAction.Inputs.Remove(this);
-        AssociatedAction.AssociatedGroup.GetParent<InputGroupList>().ControlSchemeChanged();
+        InputGroupList.Instance.ControlsChanged();
     }
 
     public override void _Input(InputEvent @event)
@@ -30,7 +31,7 @@ public class InputEventItem : Node
         if (InputGroupList.Instance.IsConflictDialogOpen())
             return;
 
-        if (!waitingForInput)
+        if (!WaitingForInput)
             return;
 
         if (!(@event is InputEventMouseButton) && !(@event is InputEventKey))
@@ -41,6 +42,7 @@ public class InputEventItem : Node
             switch (iek.Scancode)
             {
                 case (uint)KeyList.Escape:
+                    InputGroupList.Instance.WasListeningForInput = true;
                     Delete();
                     return;
                 case (uint)KeyList.Alt:
@@ -55,7 +57,7 @@ public class InputEventItem : Node
         var conflict = InputGroupList.Instance.Conflicts(this);
         if (conflict != null)
         {
-            InputGroupList.Instance.ShowDialog(this, conflict, AssociatedEvent);
+            InputGroupList.Instance.ShowInputConflictDialog(this, conflict, AssociatedEvent);
             AssociatedEvent = old;
             return;
         }
@@ -75,9 +77,10 @@ public class InputEventItem : Node
             }
         }
 
-        waitingForInput = false;
+        WaitingForInput = false;
         JustAdded = false;
-        AssociatedAction.AssociatedGroup.GetParent<InputGroupList>().ControlSchemeChanged();
+        InputGroupList.Instance.WasListeningForInput = false;
+        InputGroupList.Instance.ControlsChanged();
 
         UpdateButtonText();
     }
@@ -104,9 +107,15 @@ public class InputEventItem : Node
         return AsText().GetHashCode();
     }
 
+    protected override void Dispose(bool disposing)
+    {
+        AssociatedAction = null;
+        base.Dispose(disposing);
+    }
+
     private void OnButtonPressed()
     {
-        waitingForInput = true;
+        WaitingForInput = true;
         button.Text = "Press a key...";
     }
 

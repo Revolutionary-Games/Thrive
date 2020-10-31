@@ -191,12 +191,12 @@ public class Settings
     public SettingValue<bool> CheatsEnabled { get; set; } = new SettingValue<bool>(false);
 
     /// <summary>
-    ///   The current control scheme of the game.
+    ///   The current controls of the game.
     ///   Key = InputMap name.
     ///   Value = The events associated with the control.
     /// </summary>
-    public SettingValue<Dictionary<string, List<InputEventWithModifiers>>> CurrentControlScheme { get; set; } =
-        new SettingValue<Dictionary<string, List<InputEventWithModifiers>>>(InputGroupList.DefaultControlScheme);
+    public SettingValue<InputDataList> CurrentControls { get; set; } =
+        new SettingValue<InputDataList>(InputGroupList.GetDefaultControls());
 
     /// <summary>
     ///   If false username will be set to System username
@@ -396,12 +396,12 @@ public class Settings
     }
 
     /// <summary>
-    ///   Applies the current control scheme to the InputMap.
+    ///   Applies the current controls to the InputMap.
     /// </summary>
     public void ApplyInputSettings()
     {
-        var data = InputGroupList.Instance.GetCurrentlyPendingControlScheme();
-        foreach (var action in data)
+        var data = CurrentControls.Value;
+        foreach (var action in data.Data)
         {
             // Clear all old input events
             InputMap.ActionEraseEvents(action.Key);

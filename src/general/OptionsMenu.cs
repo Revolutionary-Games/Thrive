@@ -312,6 +312,7 @@ public class OptionsMenu : Control
         // Inputs
         inputsTab = GetNode<Control>(InputsTabPath);
         inputGroupList = GetNode<InputGroupList>(InputGroupListPath);
+        inputGroupList.InitFromData(Settings.Instance.CurrentControls);
 
         // Misc
         miscTab = GetNode<Control>(MiscTabPath);
@@ -421,8 +422,7 @@ public class OptionsMenu : Control
         runAutoEvoDuringGameplay.Pressed = settings.RunAutoEvoDuringGamePlay;
 
         // Input
-        inputGroupList.InitFromData(settings.CurrentControlScheme);
-        inputGroupList.OnControlSchemeChanged += OnInputSchemeChanged;
+        inputGroupList.OnControlsChanged += OnControlsChanged;
 
         // Misc
         playIntro.Pressed = settings.PlayIntroVideo;
@@ -712,6 +712,7 @@ public class OptionsMenu : Control
         // Restore and apply the old saved settings.
         Settings.Instance.LoadFromObject(savedSettings);
         Settings.Instance.ApplyAll();
+        InitInputGroupList();
         ApplySettingsToControls(Settings.Instance);
 
         if (optionsMode == OptionsMode.InGame)
@@ -775,6 +776,7 @@ public class OptionsMenu : Control
     {
         Settings.Instance.LoadFromObject(savedSettings);
         Settings.Instance.ApplyAll();
+        InitInputGroupList();
         ApplySettingsToControls(Settings.Instance);
 
         if (optionsMode == OptionsMode.InGame)
@@ -799,6 +801,7 @@ public class OptionsMenu : Control
         // Sets active settings to default values and applies them to the options controls.
         Settings.Instance.LoadDefaults();
         Settings.Instance.ApplyAll();
+        InitInputGroupList();
         ApplySettingsToControls(Settings.Instance);
 
         UpdateResetSaveButtonState();
@@ -955,9 +958,9 @@ public class OptionsMenu : Control
     }
 
     // Input Callbacks
-    private void OnInputSchemeChanged(Dictionary<string, List<InputEventWithModifiers>> data)
+    private void OnControlsChanged(InputDataList data)
     {
-        Settings.Instance.CurrentControlScheme.Value = data;
+        Settings.Instance.CurrentControls.Value = data;
         Settings.Instance.ApplyInputSettings();
         UpdateResetSaveButtonState();
     }
@@ -1018,6 +1021,11 @@ public class OptionsMenu : Control
         gameProperties.TutorialState.Enabled = pressed;
 
         UpdateResetSaveButtonState();
+    }
+
+    private void InitInputGroupList()
+    {
+        InputGroupList.Instance.InitFromData(Settings.Instance.CurrentControls);
     }
 
     private void OnCustomUsernameEnabledToggled(bool pressed)

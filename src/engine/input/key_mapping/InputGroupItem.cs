@@ -6,11 +6,9 @@ using Newtonsoft.Json;
 public class InputGroupItem : VBoxContainer
 {
     [Export]
-    [JsonIgnore]
     public NodePath InputGroupHeaderPath;
 
     [Export]
-    [JsonIgnore]
     public NodePath InputActionsContainerPath;
 
     private Label inputGroupHeader;
@@ -36,6 +34,15 @@ public class InputGroupItem : VBoxContainer
         foreach (var action in Actions)
         {
             inputActionsContainer.AddChild(action);
+        }
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
+        foreach (var inputActionItem in Actions)
+        {
+            inputActionItem.Dispose();
         }
     }
 }

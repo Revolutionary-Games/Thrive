@@ -130,6 +130,7 @@ public class MainMenu : Node
         gles2Popup = GetNode<AcceptDialog>(GLES2PopupPath);
 
         // Set initial menu
+        // Set initial menu
         SwitchMenu();
 
         // Easter egg message
