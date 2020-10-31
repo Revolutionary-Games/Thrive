@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Godot;
 using Newtonsoft.Json;
@@ -215,10 +215,10 @@ public class GameWorld
     public bool IsAutoEvoFinished(bool autostart = true)
     {
         if (autoEvo == null && autostart)
-        {
             CreateRunIfMissing();
+
+        if (autoEvo != null && !autoEvo.Running && autostart)
             autoEvo.Start();
-        }
 
         if (autoEvo == null)
             return false;

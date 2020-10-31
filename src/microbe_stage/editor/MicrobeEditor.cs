@@ -388,55 +388,6 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         }
     }
 
-    /// <summary>
-    ///   Sets up the editor when entering
-    /// </summary>
-    public void OnEnterEditor()
-    {
-        // Clear old stuff in the world (just in case, the editor scene is recycled each time anyway)
-        foreach (Node node in world.GetChildren())
-        {
-            node.Free();
-        }
-
-        // Let go of old resources
-        hoverHexes = new List<MeshInstance>();
-        hoverOrganelles = new List<SceneDisplayer>();
-
-        // Create new hover hexes. See the TODO comment in _Process
-        // This seems really cluttered, there must be a better way.
-        for (int i = 0; i < Constants.MAX_HOVER_HEXES; ++i)
-        {
-            hoverHexes.Add(CreateEditorHex());
-        }
-
-        for (int i = 0; i < Constants.MAX_SYMMETRY; ++i)
-        {
-            hoverOrganelles.Add(CreateEditorOrganelle());
-        }
-
-        if (!IsLoadedFromSave)
-        {
-            history = new ActionHistory<MicrobeEditorAction>();
-
-            // Start a new game if no game has been started
-            if (CurrentGame == null)
-            {
-                if (ReturnToStage != null)
-                    throw new Exception("stage to return to should have set our current game");
-
-                GD.Print("Starting a new game for the microbe editor");
-                CurrentGame = GameProperties.StartNewMicrobeGame();
-            }
-
-            TutorialState.SendEvent(TutorialEventType.EnteredMicrobeEditor, EventArgs.Empty, this);
-        }
-
-        InitEditor();
-
-        StartMusic();
-    }
-
     public void OnFinishLoading(Save save)
     {
         // // Handle the stage to return to specially, as it also needs to run the code
@@ -537,12 +488,6 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         stage.OnReturnFromEditor();
     }
 
-    public void StartMusic()
-    {
-        Jukebox.Instance.PlayingCategory = "MicrobeEditor";
-        Jukebox.Instance.Resume();
-    }
-
     public override void _UnhandledInput(InputEvent @event)
     {
         if (@event.IsActionPressed("e_rotate_right"))
@@ -600,39 +545,6 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
         }
 
         UpdateEditor(delta);
-    }
-
-    /// <summary>
-    ///   Calculates the energy balance for a cell with the given organelles
-    /// </summary>
-    public void CalculateEnergyBalanceWithOrganellesAndMembraneType(List<OrganelleTemplate> organelles,
-        MembraneType membrane, Patch patch = null)
-    {
-        if (patch == null)
-        {
-            patch = CurrentPatch;
-        }
-
-        gui.UpdateEnergyBalance(ProcessSystem.ComputeEnergyBalance(organelles.Select(i => i.Definition), patch.Biome,
-            membrane));
-    }
-
-    /// <summary>
-    ///   Calculates the effectiveness of organelles in the current or
-    ///   given patch
-    /// </summary>
-    public void CalculateOrganelleEffectivenessInPatch(Patch patch = null)
-    {
-        if (patch == null)
-        {
-            patch = CurrentPatch;
-        }
-
-        var organelles = SimulationParameters.Instance.GetAllOrganelles();
-
-        var result = ProcessSystem.ComputeOrganelleProcessEfficiencies(organelles, patch.Biome);
-
-        gui.UpdateOrganelleEfficiencies(result);
     }
 
     /// <summary>
@@ -969,6 +881,95 @@ public class MicrobeEditor : Node, ILoadableGameState, IGodotEarlyNodeResolve
 
         // Return the difference of the lists (hexes that were not visited)
         return shouldBeVisited.Except(hexesWithNeighbours).ToList();
+    }
+
+    /// <summary>
+    ///   Sets up the editor when entering
+    /// </summary>
+    private void OnEnterEditor()
+    {
+        // Clear old stuff in the world
+        foreach (Node node in world.GetChildren())
+        {
+            node.Free();
+        }
+
+        // Let go of old resources
+        hoverHexes = new List<MeshInstance>();
+        hoverOrganelles = new List<SceneDisplayer>();
+
+        history = new ActionHistory<MicrobeEditorAction>();
+
+        // Create new hover hexes. See the TODO comment in _Process
+        // This seems really cluttered, there must be a better way.
+        for (int i = 0; i < Constants.MAX_HOVER_HEXES; ++i)
+        {
+            hoverHexes.Add(CreateEditorHex());
+        }
+
+        for (int i = 0; i < Constants.MAX_SYMMETRY; ++i)
+        {
+            hoverOrganelles.Add(CreateEditorOrganelle());
+        }
+
+        // Rest of the setup is only ran when not loading a save, the save finish callback does the equivalent thing
+        if (IsLoadedFromSave)
+            return;
+
+        // Start a new game if no game has been started
+        if (CurrentGame == null)
+        {
+            if (ReturnToStage != null)
+                throw new Exception("stage to return to should have set our current game");
+
+            GD.Print("Starting a new game for the microbe editor");
+            CurrentGame = GameProperties.StartNewMicrobeGame();
+        }
+
+        InitEditor();
+
+        StartMusic();
+
+        TutorialState.SendEvent(TutorialEventType.EnteredMicrobeEditor, EventArgs.Empty, this);
+    }
+
+    private void StartMusic()
+    {
+        Jukebox.Instance.PlayingCategory = "MicrobeEditor";
+        Jukebox.Instance.Resume();
+    }
+
+    /// <summary>
+    ///   Calculates the effectiveness of organelles in the current or
+    ///   given patch
+    /// </summary>
+    private void CalculateOrganelleEffectivenessInPatch(Patch patch = null)
+    {
+        if (patch == null)
+        {
+            patch = CurrentPatch;
+        }
+
+        var organelles = SimulationParameters.Instance.GetAllOrganelles();
+
+        var result = ProcessSystem.ComputeOrganelleProcessEfficiencies(organelles, patch.Biome);
+
+        gui.UpdateOrganelleEfficiencies(result);
+    }
+
+    /// <summary>
+    ///   Calculates the energy balance for a cell with the given organelles
+    /// </summary>
+    private void CalculateEnergyBalanceWithOrganellesAndMembraneType(List<OrganelleTemplate> organelles,
+        MembraneType membrane, Patch patch = null)
+    {
+        if (patch == null)
+        {
+            patch = CurrentPatch;
+        }
+
+        gui.UpdateEnergyBalance(ProcessSystem.ComputeEnergyBalance(organelles.Select(i => i.Definition), patch.Biome,
+            membrane));
     }
 
     /// <summary>
